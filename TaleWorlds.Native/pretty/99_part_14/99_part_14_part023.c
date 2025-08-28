@@ -73,16 +73,16 @@
  ========================================*/
 
 /** 异常处理函数指针类型 */
-typedef void (*ExceptionHandlerFunc)(longlong, undefined8, undefined8, longlong);
+typedef void (*ExceptionHandlerFunc)(longlong, uint64_t, uint64_t, longlong);
 
 /** 系统初始化函数指针类型 */
 typedef void (*SystemInitFunc)(void);
 
 /** 库控制函数指针类型 */
-typedef undefined8 (*LibraryControlFunc)(undefined8, int);
+typedef uint64_t (*LibraryControlFunc)(uint64_t, int);
 
 /** 系统状态设置函数指针类型 */
-typedef void (*SystemStateSetterFunc)(undefined4);
+typedef void (*SystemStateSetterFunc)(int32_t);
 
 /** 安全检查函数指针类型 */
 typedef void (*SecurityCheckFunc)(void);
@@ -91,22 +91,22 @@ typedef void (*SecurityCheckFunc)(void);
 typedef void (*ExceptionCleanupFunc)(void);
 
 /** 数学计算函数指针类型 */
-typedef ulonglong (*MathCalculationFunc)(undefined8, undefined4);
+typedef ulonglong (*MathCalculationFunc)(uint64_t, int32_t);
 
 /** 内存管理函数指针类型 */
 typedef void (*MemoryManagerFunc)(void);
 
 /** 对象构造函数指针类型 */
-typedef undefined8* (*ObjectConstructorFunc)(undefined8*, longlong);
+typedef uint64_t* (*ObjectConstructorFunc)(uint64_t*, longlong);
 
 /** 对象析构函数指针类型 */
-typedef undefined8* (*ObjectDestructorFunc)(undefined8*, ulonglong);
+typedef uint64_t* (*ObjectDestructorFunc)(uint64_t*, ulonglong);
 
 /** 异常抛出函数指针类型 */
 typedef void (*ExceptionThrowerFunc)(void);
 
 /** 向量数学函数指针类型 */
-typedef ulonglong (*VectorMathFunc)(undefined8, undefined4);
+typedef ulonglong (*VectorMathFunc)(uint64_t, int32_t);
 
 /** 时间戳类型 */
 typedef ulonglong timestamp_t;
@@ -197,8 +197,8 @@ typedef enum {
 /** 异常处理上下文结构体 */
 typedef struct {
     longlong context_handle;
-    undefined8 exception_code;
-    undefined8 exception_flags;
+    uint64_t exception_code;
+    uint64_t exception_flags;
     longlong exception_info;
     ExceptionHandlerFunc handler;
     exception_state_t state;
@@ -216,7 +216,7 @@ typedef struct {
 
 /** 库控制信息结构体 */
 typedef struct {
-    undefined8 library_handle;
+    uint64_t library_handle;
     int library_flags;
     library_state_t state;
     LibraryControlFunc controller;
@@ -224,7 +224,7 @@ typedef struct {
 
 /** 系统状态结构体 */
 typedef struct {
-    undefined4 state_flags;
+    int32_t state_flags;
     SystemStateSetterFunc state_setter;
     uint processor_features;
     code *processor_handler;
@@ -256,15 +256,15 @@ typedef struct {
 
 /** 对象构造信息结构体 */
 typedef struct {
-    undefined8 *object_pointer;
+    uint64_t *object_pointer;
     longlong construction_params;
     ObjectConstructorFunc constructor;
-    undefined8 *vtable_pointer;
+    uint64_t *vtable_pointer;
 } object_construction_info_t;
 
 /** 对象析构信息结构体 */
 typedef struct {
-    undefined8 *object_pointer;
+    uint64_t *object_pointer;
     ulonglong destruction_flags;
     ObjectDestructorFunc destructor;
     uint cleanup_flags;
@@ -272,15 +272,15 @@ typedef struct {
 
 /** 异常抛出信息结构体 */
 typedef struct {
-    undefined1 exception_data[40];
+    int8_t exception_data[40];
     ExceptionThrowerFunc thrower;
-    undefined8 *exception_type;
+    uint64_t *exception_type;
 } exception_throw_info_t;
 
 /** 向量数学计算信息结构体 */
 typedef struct {
-    undefined8 param_1;
-    undefined4 param_2;
+    uint64_t param_1;
+    int32_t param_2;
     VectorMathFunc calculator;
     vector_register_t *result_vector;
     uint vector_flags;
@@ -349,44 +349,44 @@ extern longlong UNK_180a908f8;
 extern longlong UNK_180a90908;
 
 /** 异常类型指针变量 */
-extern undefined8 UNK_18098b928;
+extern uint64_t UNK_18098b928;
 
 /** 异常类型指针变量2 */
-extern undefined8 UNK_18098b958;
+extern uint64_t UNK_18098b958;
 
 /** 异常处理类型指针变量 */
-extern undefined8 UNK_180bd8a18;
+extern uint64_t UNK_180bd8a18;
 
 /** 异常处理类型指针变量2 */
-extern undefined8 UNK_180bd88e8;
+extern uint64_t UNK_180bd88e8;
 
 /** 数学计算常量变量 */
-extern undefined8 DAT_180d9f5d0;
-extern undefined8 DAT_180d9f5c0;
-extern undefined8 DAT_180d9f580;
-extern undefined8 DAT_180d9f600;
-extern undefined8 DAT_180d9f6d0;
-extern undefined8 DAT_180d9f680;
-extern undefined8 DAT_180d9f670;
-extern undefined8 DAT_180d9f6b0;
-extern undefined8 DAT_180d9f610;
-extern undefined8 UNK_180d9f410;
-extern undefined8 UNK_180d9f418;
-extern undefined8 DAT_180d9f008;
-extern undefined8 DAT_180d9f000;
-extern undefined8 DAT_180d9fd20;
-extern undefined8 DAT_180d9fd10;
-extern undefined8 DAT_180d9fce0;
-extern undefined8 DAT_180d9fcd0;
-extern undefined8 DAT_180d9fda0;
-extern undefined8 DAT_180d9fd90;
-extern undefined8 DAT_180d9fd30;
-extern undefined8 DAT_180d9fdc0;
-extern undefined8 DAT_180d9fc80;
-extern undefined8 UNK_180d9fb10;
-extern undefined8 UNK_180d9fb18;
-extern undefined8 UNK_180d9f708;
-extern undefined8 UNK_180d9f700;
+extern uint64_t DAT_180d9f5d0;
+extern uint64_t DAT_180d9f5c0;
+extern uint64_t DAT_180d9f580;
+extern uint64_t DAT_180d9f600;
+extern uint64_t DAT_180d9f6d0;
+extern uint64_t DAT_180d9f680;
+extern uint64_t DAT_180d9f670;
+extern uint64_t DAT_180d9f6b0;
+extern uint64_t DAT_180d9f610;
+extern uint64_t UNK_180d9f410;
+extern uint64_t UNK_180d9f418;
+extern uint64_t DAT_180d9f008;
+extern uint64_t DAT_180d9f000;
+extern uint64_t DAT_180d9fd20;
+extern uint64_t DAT_180d9fd10;
+extern uint64_t DAT_180d9fce0;
+extern uint64_t DAT_180d9fcd0;
+extern uint64_t DAT_180d9fda0;
+extern uint64_t DAT_180d9fd90;
+extern uint64_t DAT_180d9fd30;
+extern uint64_t DAT_180d9fdc0;
+extern uint64_t DAT_180d9fc80;
+extern uint64_t UNK_180d9fb10;
+extern uint64_t UNK_180d9fb18;
+extern uint64_t UNK_180d9f708;
+extern uint64_t UNK_180d9f700;
 
 /*=========================================
  * 函数实现
@@ -406,8 +406,8 @@ extern undefined8 UNK_180d9f700;
  * @note 这是一个简化的实现版本
  * @see ExceptionHandlerFunc
  */
-void ExceptionHandlerAndFrameProcessor(longlong param_1, undefined8 param_2, 
-                                       undefined8 param_3, longlong param_4)
+void ExceptionHandlerAndFrameProcessor(longlong param_1, uint64_t param_2, 
+                                       uint64_t param_3, longlong param_4)
 {
     longlong context_pointer;
     
@@ -442,7 +442,7 @@ void SystemInitializerAndRandomSeedGenerator(void)
     timestamp_t system_time;
     performance_counter_t performance_counter;
     system_id_t generated_id;
-    undefined4 performance_counter_low;
+    int32_t performance_counter_low;
     
     /* 检查系统是否已初始化 */
     if (_DAT_180bf00a8 == SYSTEM_INIT_MAGIC_NUMBER) {
@@ -492,12 +492,12 @@ void SystemInitializerAndRandomSeedGenerator(void)
  * 
  * @param param_1 库句柄
  * @param param_2 控制标志（1表示禁用线程库调用）
- * @return undefined8 返回成功状态（1）
+ * @return uint64_t 返回成功状态（1）
  * 
  * @note 这是一个简化的实现版本
  * @see LibraryControlFunc
  */
-undefined8 LibraryLoaderAndThreadController(undefined8 param_1, int param_2)
+uint64_t LibraryLoaderAndThreadController(uint64_t param_1, int param_2)
 {
     /* 检查是否需要禁用线程库调用 */
     if (param_2 == SYSTEM_FLAG_THREAD_DISABLE) {
@@ -543,14 +543,14 @@ void SystemStateActivatorAndFlagSetter(void)
  * @note 这是一个简化的实现版本
  * @see SystemStateSetterFunc
  */
-void SystemStateSetterAndProcessorHandler(undefined4 param_1)
+void SystemStateSetterAndProcessorHandler(int32_t param_1)
 {
     code *processor_handler;
     int feature_present;
-    undefined1 *stack_pointer;
-    undefined1 stack_buffer_8[8];
-    undefined1 stack_buffer_232[232];
-    undefined1 stack_buffer_1232[1232];
+    int8_t *stack_pointer;
+    int8_t stack_buffer_8[8];
+    int8_t stack_buffer_232[232];
+    int8_t stack_buffer_1232[1232];
     
     /* 初始化栈指针 */
     stack_pointer = stack_buffer_8;
@@ -566,13 +566,13 @@ void SystemStateSetterAndProcessorHandler(undefined4 param_1)
     }
     
     /* 设置栈帧返回地址 */
-    *(undefined8 *)(stack_pointer + -8) = 0x1808fd643;
+    *(uint64_t *)(stack_pointer + -8) = 0x1808fd643;
     
     /* 调用系统初始化函数（不返回） */
     func_0x0001808fd608(3);
     
     /* 设置栈帧返回地址 */
-    *(undefined8 *)(stack_pointer + -8) = 0x1808fd654;
+    *(uint64_t *)(stack_pointer + -8) = 0x1808fd654;
     
     /* 清理内存区域 */
     memset(stack_buffer_1232, 0, 0x4d0);
@@ -655,12 +655,12 @@ void free(void)
  * 
  * @param param_1 对象指针
  * @param param_2 构造参数
- * @return undefined8* 返回构造后的对象指针
+ * @return uint64_t* 返回构造后的对象指针
  * 
  * @note 这是一个简化的实现版本
  * @see ObjectConstructorAndExceptionCopier
  */
-undefined8 * ObjectConstructorAndExceptionCopier(undefined8 *param_1, longlong param_2)
+uint64_t * ObjectConstructorAndExceptionCopier(uint64_t *param_1, longlong param_2)
 {
     /* 设置异常类型指针 */
     *param_1 = &UNK_18098b928;
@@ -683,12 +683,12 @@ undefined8 * ObjectConstructorAndExceptionCopier(undefined8 *param_1, longlong p
  * 
  * @param param_1 对象指针
  * @param param_2 析构标志
- * @return undefined8* 返回析构后的对象指针
+ * @return uint64_t* 返回析构后的对象指针
  * 
  * @note 这是一个简化的实现版本
  * @see ObjectDestructorAndMemoryCleaner
  */
-undefined8 * ObjectDestructorAndMemoryCleaner(undefined8 *param_1, ulonglong param_2)
+uint64_t * ObjectDestructorAndMemoryCleaner(uint64_t *param_1, ulonglong param_2)
 {
     /* 设置异常类型指针 */
     *param_1 = &UNK_18098b928;
@@ -714,7 +714,7 @@ undefined8 * ObjectDestructorAndMemoryCleaner(undefined8 *param_1, ulonglong par
  */
 void ExceptionThrowerAndSystemTerminator1(void)
 {
-    undefined1 exception_data[40];
+    int8_t exception_data[40];
     
     /* 准备异常数据 */
     FUN_180287f70(exception_data);
@@ -733,7 +733,7 @@ void ExceptionThrowerAndSystemTerminator1(void)
  */
 void ExceptionThrowerAndSystemTerminator2(void)
 {
-    undefined1 exception_data[40];
+    int8_t exception_data[40];
     
     /* 准备异常数据 */
     func_0x0001808fd81c(exception_data);
@@ -755,9 +755,9 @@ void ExceptionThrowerAndSystemTerminator2(void)
  * @note 这是一个简化的实现版本
  * @see VectorMathSinCalculator
  */
-ulonglong VectorMathSinCalculator(undefined8 param_1, undefined4 param_2)
+ulonglong VectorMathSinCalculator(uint64_t param_1, int32_t param_2)
 {
-    undefined4 in_EAX;
+    int32_t in_EAX;
     uint uVar1;
     ulonglong uVar2;
     longlong lVar3;
@@ -769,7 +769,7 @@ ulonglong VectorMathSinCalculator(undefined8 param_1, undefined4 param_2)
     int iVar9;
     float fVar10;
     int iVar11;
-    undefined1 in_XMM0 [16];
+    int8_t in_XMM0 [16];
     int iVar12;
     float fVar13;
     float fVar14;
@@ -777,7 +777,7 @@ ulonglong VectorMathSinCalculator(undefined8 param_1, undefined4 param_2)
     float fVar16;
     float fVar17;
     float fVar18;
-    undefined1 auVar19 [16];
+    int8_t auVar19 [16];
     float fVar20;
     double dVar21;
     double dVar22;
@@ -788,22 +788,22 @@ ulonglong VectorMathSinCalculator(undefined8 param_1, undefined4 param_2)
     double dVar27;
     double dVar28;
     float fVar29;
-    undefined1 auVar30 [16];
-    undefined1 auVar31 [16];
-    undefined1 auVar32 [16];
-    undefined1 auVar33 [16];
-    undefined1 auVar34 [16];
+    int8_t auVar30 [16];
+    int8_t auVar31 [16];
+    int8_t auVar32 [16];
+    int8_t auVar33 [16];
+    int8_t auVar34 [16];
     uint uVar35;
     uint uVar39;
     double dVar36;
-    undefined1 auVar37 [16];
+    int8_t auVar37 [16];
     double dVar40;
     float afStack_f8 [8];
     ulonglong uStack_d8;
     uint uStack_b8;
     uint uStack_b4;
-    undefined1 aauStack_38 [3] [16];
-    undefined1 auVar38 [16];
+    int8_t aauStack_38 [3] [16];
+    int8_t auVar38 [16];
     
     /* 获取输入向量参数 */
     fVar13 = in_XMM0._0_4_;
@@ -1040,9 +1040,9 @@ ulonglong VectorMathSinCalculator(undefined8 param_1, undefined4 param_2)
  * @note 这是一个简化的实现版本
  * @see VectorMathCosCalculator
  */
-ulonglong VectorMathCosCalculator(undefined8 param_1, undefined4 param_2)
+ulonglong VectorMathCosCalculator(uint64_t param_1, int32_t param_2)
 {
-    undefined4 in_EAX;
+    int32_t in_EAX;
     uint uVar1;
     ulonglong uVar2;
     int iVar3;
@@ -1052,13 +1052,13 @@ ulonglong VectorMathCosCalculator(undefined8 param_1, undefined4 param_2)
     float fVar7;
     float fVar10;
     float fVar13;
-    undefined1 in_XMM0 [16];
-    undefined1 auVar8 [16];
+    int8_t in_XMM0 [16];
+    int8_t auVar8 [16];
     float fVar11;
     float fVar12;
     int iVar14;
     float fVar15;
-    undefined1 auVar9 [16];
+    int8_t auVar9 [16];
     float fVar16;
     float fVar20;
     double dVar17;
@@ -1073,20 +1073,20 @@ ulonglong VectorMathCosCalculator(undefined8 param_1, undefined4 param_2)
     double dVar26;
     float fVar28;
     double dVar29;
-    undefined1 auVar30 [16];
-    undefined1 auVar31 [16];
-    undefined1 auVar32 [16];
-    undefined1 auVar33 [16];
-    undefined1 auVar34 [16];
+    int8_t auVar30 [16];
+    int8_t auVar31 [16];
+    int8_t auVar32 [16];
+    int8_t auVar33 [16];
+    int8_t auVar34 [16];
     float fVar35;
     float fVar36;
-    undefined1 auVar37 [16];
+    int8_t auVar37 [16];
     uint uVar38;
     uint uVar39;
-    undefined1 aauStack_d8 [2] [16];
+    int8_t aauStack_d8 [2] [16];
     uint uStack_b8;
     uint uStack_b4;
-    undefined1 aauStack_38 [3] [16];
+    int8_t aauStack_38 [3] [16];
     
     /* 获取输入向量参数 */
     auVar8 = in_XMM0 & _DAT_180d9fd20;

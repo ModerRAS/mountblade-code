@@ -97,7 +97,7 @@ uint ui_system_data_processor(longlong *ui_data_context,uint data_param)
     *(uint *)(ui_data_context + 2) = processed_value >> (shift_bits & 0x1f);
     temp_value = (1 << (shift_bits & 0x1f)) - 1U & processed_value | processing_index << (shift_bits & 0x1f);
     if (temp_value < temp_value) {
-      *(undefined4 *)(ui_data_context + 6) = 1;
+      *(int32_t *)(ui_data_context + 6) = 1;
       temp_value = temp_value;
     }
   }
@@ -106,9 +106,9 @@ uint ui_system_data_processor(longlong *ui_data_context,uint data_param)
 
 
 
-// 函数: uint FUN_18070f57b(undefined8 param_1,uint param_2)
+// 函数: uint FUN_18070f57b(uint64_t param_1,uint param_2)
 // 简化实现：UI系统高级数据处理器，处理复杂的数据转换和计算
-uint ui_system_advanced_data_processor(undefined8 processing_context,uint input_data)
+uint ui_system_advanced_data_processor(uint64_t processing_context,uint input_data)
 
 {
   ulonglong division_result;
@@ -165,7 +165,7 @@ uint ui_system_advanced_data_processor(undefined8 processing_context,uint input_
   *(uint *)(context_pointer + 2) = data_chunk >> (bit_shift & 0x1f);
   loop_counter = (1 << (bit_shift & 0x1f)) - 1U & data_chunk | processing_index << (bit_shift & 0x1f);
   if (processing_context < loop_counter) {
-    *(undefined4 *)(context_pointer + 6) = 1;
+    *(int32_t *)(context_pointer + 6) = 1;
     loop_counter = processing_context;
   }
   return loop_counter;
@@ -173,15 +173,15 @@ uint ui_system_advanced_data_processor(undefined8 processing_context,uint input_
 
 
 
-// 函数: undefined4 FUN_18070f64d(void)
+// 函数: int32_t FUN_18070f64d(void)
 // 简化实现：UI系统状态设置器，设置UI组件状态
-undefined4 ui_system_set_component_state(void)
+int32_t ui_system_set_component_state(void)
 
 {
-  undefined4 return_value;
+  int32_t return_value;
   longlong component_context;
   
-  *(undefined4 *)(component_context + 0x30) = 1;
+  *(int32_t *)(component_context + 0x30) = 1;
   return return_value;
 }
 
@@ -407,9 +407,9 @@ PROCESSING_COMPLETE:
 
 
 
-// 函数: ulonglong FUN_18070f8a4(byte *param_1,undefined8 param_2,int param_3)
+// 函数: ulonglong FUN_18070f8a4(byte *param_1,uint64_t param_2,int param_3)
 // 简化实现：UI系统高级音频数据处理器，处理复杂音频数据流
-ulonglong ui_system_advanced_audio_processor(byte *audio_stream,undefined8 stream_context,int processing_mode)
+ulonglong ui_system_advanced_audio_processor(byte *audio_stream,uint64_t stream_context,int processing_mode)
 
 {
   byte audio_format;
@@ -631,10 +631,10 @@ int ui_system_audio_buffer_processor(void)
   int sample_count;
   longlong data_offset;
   int channel_count;
-  undefined1 audio_format;
+  int8_t audio_format;
   int iteration_count;
-  undefined4 stack_temp;
-  undefined1 *format_output;
+  int32_t stack_temp;
+  int8_t *format_output;
   longlong context_ptr;
   int *bytes_processed;
   int *total_bytes;
@@ -657,7 +657,7 @@ int ui_system_audio_buffer_processor(void)
     if (total_bytes != (int *)0x0) {
       *total_bytes = ((int)data_offset - stack_temp) + iteration_count;
     }
-    if (format_output != (undefined1 *)0x0) {
+    if (format_output != (int8_t *)0x0) {
       *format_output = audio_format;
     }
   }
@@ -669,9 +669,9 @@ int ui_system_audio_buffer_processor(void)
 
 
 
-// 函数: undefined8 FUN_18070fc08(void)
+// 函数: uint64_t FUN_18070fc08(void)
 // 简化实现：UI系统错误处理器，返回错误代码
-undefined8 ui_system_error_handler(void)
+uint64_t ui_system_error_handler(void)
 
 {
   return 0xffffffff;
@@ -689,10 +689,10 @@ void ui_system_audio_signal_processor(longlong signal_data,int width,int height,
 
 {
   bool processing_flag;
-  undefined1 min_vector [16];
-  undefined1 max_vector [16];
+  int8_t min_vector [16];
+  int8_t max_vector [16];
   int iteration_count;
-  undefined1 (*data_pointer) [16];
+  int8_t (*data_pointer) [16];
   uint total_elements;
   int processing_index;
   longlong element_offset;
@@ -712,7 +712,7 @@ void ui_system_audio_signal_processor(longlong signal_data,int width,int height,
   float current_sample;
   float peak_value;
   float temp_sample;
-  undefined1 temp_vector [16];
+  int8_t temp_vector [16];
   float *coeff_pointer;
   longlong height_counter;
   
@@ -729,7 +729,7 @@ void ui_system_audio_signal_processor(longlong signal_data,int width,int height,
           elements_remaining = (elements_remaining - 1 | 0xfffffff0) + 1;
         }
         element_offset = 0;
-        data_pointer = (undefined1 (*) [16])(signal_data + 0x20);
+        data_pointer = (int8_t (*) [16])(signal_data + 0x20);
         do {
           row_index = row_index + 0x10;
           temp_vector = minps(max_vector,data_pointer[-2]);

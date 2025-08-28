@@ -2,26 +2,26 @@
 
 // 03_rendering_part023.c - 2 个函数
 
-// 函数: void FUN_18027d880(undefined8 *param_1,undefined8 *param_2)
-void FUN_18027d880(undefined8 *param_1,undefined8 *param_2)
+// 函数: void FUN_18027d880(uint64_t *param_1,uint64_t *param_2)
+void FUN_18027d880(uint64_t *param_1,uint64_t *param_2)
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   char cVar3;
-  undefined1 uVar4;
-  undefined8 *puVar5;
+  int8_t uVar4;
+  uint64_t *puVar5;
   
   puVar5 = param_2;
   cVar3 = func_0x000180285980(param_1 + 0x66);
   if (cVar3 != '\0') {
     uVar4 = func_0x00018023a100(puVar5);
-    *(undefined1 *)(param_1 + 100) = uVar4;
-    if ((undefined *)*param_1 == &UNK_180a169b8) {
+    *(int8_t *)(param_1 + 100) = uVar4;
+    if ((void *)*param_1 == &UNK_180a169b8) {
       FUN_180276f30(param_1,(longlong)param_1 + 0x214,0);
     }
     else {
-      (**(code **)((undefined *)*param_1 + 0x160))(param_1);
+      (**(code **)((void *)*param_1 + 0x160))(param_1);
     }
     lVar1 = param_1[5];
     if (lVar1 != 0) {
@@ -65,7 +65,7 @@ int FUN_18027da30(longlong param_1)
     do {
       lVar2 = *plVar3;
       if ((*(byte *)(lVar2 + 0xfd) & 0x20) == 0) {
-        lVar2 = func_0x000180085de0(*(undefined8 *)(lVar2 + 0x1b0));
+        lVar2 = func_0x000180085de0(*(uint64_t *)(lVar2 + 0x1b0));
       }
       iVar5 = iVar5 + *(int *)(lVar2 + 0x1fc);
       plVar3 = plVar3 + 2;
@@ -95,7 +95,7 @@ int FUN_18027daa0(longlong param_1,byte param_2)
       if ((*(uint *)(plVar2 + 1) & 1 << (param_2 & 0x1f)) != 0) {
         lVar1 = *plVar2;
         if ((*(byte *)(lVar1 + 0xfd) & 0x20) == 0) {
-          lVar1 = func_0x000180085de0(*(undefined8 *)(lVar1 + 0x1b0));
+          lVar1 = func_0x000180085de0(*(uint64_t *)(lVar1 + 0x1b0));
         }
         iVar4 = iVar4 + *(int *)(lVar1 + 0x1fc);
       }
@@ -110,10 +110,10 @@ int FUN_18027daa0(longlong param_1,byte param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_18027db30(undefined8 param_1,undefined8 *param_2)
+uint64_t * FUN_18027db30(uint64_t param_1,uint64_t *param_2)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   longlong *plVar2;
   
   uVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x3d0,8,0x16,0,0xfffffffffffffffe);
@@ -134,14 +134,14 @@ undefined8 * FUN_18027db30(undefined8 param_1,undefined8 *param_2)
 
 
 
-// 函数: void FUN_18027dc40(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18027dc40(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void FUN_18027dc40(longlong param_1,longlong param_2,uint64_t param_3,uint64_t param_4)
+void FUN_18027dc40(longlong param_1,longlong param_2,uint64_t param_3,uint64_t param_4)
 
 {
   longlong lVar1;
   longlong *plVar2;
   longlong *plVar3;
-  undefined8 uVar4;
+  uint64_t uVar4;
   
   uVar4 = 0xfffffffffffffffe;
   if ((0 < *(int *)(param_1 + 0x58)) && (*(int *)(param_1 + 0x58) < *(int *)(param_2 + 0x58))) {

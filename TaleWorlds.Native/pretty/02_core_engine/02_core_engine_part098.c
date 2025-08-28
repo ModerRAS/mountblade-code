@@ -37,22 +37,22 @@ extern int UNK_18011ae80;  // 比较函数指针
  */
 void process_render_queue_optimization(int *render_queue)
 {
-    undefined4 *src_ptr;
-    undefined4 *dest_ptr;
-    undefined8 *src_ptr64;
-    undefined4 temp4_1;
-    undefined4 temp4_2;
-    undefined4 temp4_3;
-    undefined8 temp8_1;
-    undefined8 temp8_2;
-    undefined8 temp8_3;
-    undefined8 temp8_4;
-    undefined8 temp8_5;
+    int32_t *src_ptr;
+    int32_t *dest_ptr;
+    uint64_t *src_ptr64;
+    int32_t temp4_1;
+    int32_t temp4_2;
+    int32_t temp4_3;
+    uint64_t temp8_1;
+    uint64_t temp8_2;
+    uint64_t temp8_3;
+    uint64_t temp8_4;
+    uint64_t temp8_5;
     bool has_active_item;
     longlong engine_context;
     int queue_count;
     int processed_count;
-    undefined8 temp_data;
+    uint64_t temp_data;
     int *item_ptr;
     float *float_ptr;
     int *temp_ptr;
@@ -74,13 +74,13 @@ void process_render_queue_optimization(int *render_queue)
     float float_temp4;
     uint stack_temp1;
     longlong stack_temp2;
-    undefined1 local_buffer[72];
+    int8_t local_buffer[72];
     
     engine_context = _DAT_180c8a9b0;
     queue_count = *render_queue;
     item_ptr = (int *)0x0;
     processed_count = 0;
-    *(undefined1 *)(render_queue + 0x16) = 0;
+    *(int8_t *)(render_queue + 0x16) = 0;
     temp_ptr = item_ptr;
     temp_ptr2 = item_ptr;
     temp_ptr5 = item_ptr;
@@ -99,23 +99,23 @@ void process_render_queue_optimization(int *render_queue)
             }
             else {
                 if (temp_ptr5 != index_ptr) {
-                    src_ptr = (undefined4 *)((longlong)temp_ptr + item_offset);
+                    src_ptr = (int32_t *)((longlong)temp_ptr + item_offset);
                     temp4_1 = src_ptr[1];
                     temp4_2 = src_ptr[2];
                     temp4_3 = src_ptr[3];
-                    src_ptr64 = (undefined8 *)((longlong)temp_ptr + item_offset + 0x10);
+                    src_ptr64 = (uint64_t *)((longlong)temp_ptr + item_offset + 0x10);
                     temp8_1 = *src_ptr64;
                     temp8_2 = src_ptr64[1];
-                    temp_data = *(undefined8 *)((longlong)temp_ptr + item_offset + 0x20);
-                    dest_ptr = (undefined4 *)((longlong)temp_ptr2 + item_offset);
+                    temp_data = *(uint64_t *)((longlong)temp_ptr + item_offset + 0x20);
+                    dest_ptr = (int32_t *)((longlong)temp_ptr2 + item_offset);
                     *dest_ptr = *src_ptr;
                     dest_ptr[1] = temp4_1;
                     dest_ptr[2] = temp4_2;
                     dest_ptr[3] = temp4_3;
-                    src_ptr64 = (undefined8 *)((longlong)temp_ptr2 + item_offset + 0x10);
+                    src_ptr64 = (uint64_t *)((longlong)temp_ptr2 + item_offset + 0x10);
                     *src_ptr64 = temp8_1;
                     src_ptr64[1] = temp8_2;
-                    *(undefined8 *)((longlong)temp_ptr2 + item_offset + 0x20) = temp_data;
+                    *(uint64_t *)((longlong)temp_ptr2 + item_offset + 0x20) = temp_data;
                 }
                 temp_ptr4 = (int *)(ulonglong)((int)temp_ptr4 + 1);
                 temp_ptr5 = (int *)((longlong)temp_ptr5 + 1);
@@ -174,24 +174,24 @@ void process_render_queue_optimization(int *render_queue)
                     if (temp_ptr5 != (int *)0x0) {
                         processed_count = (int)(((longlong)temp_ptr5 - (longlong)temp_ptr2) / 0x28) + render_queue[0x15];
                         if ((-1 < processed_count) && (processed_count < queue_count)) {
-                            temp8_1 = *(undefined8 *)temp_ptr5;
-                            temp8_2 = *(undefined8 *)(temp_ptr5 + 2);
+                            temp8_1 = *(uint64_t *)temp_ptr5;
+                            temp8_2 = *(uint64_t *)(temp_ptr5 + 2);
                             item_offset = (longlong)processed_count;
-                            temp8_3 = *(undefined8 *)(temp_ptr5 + 4);
-                            temp8_4 = *(undefined8 *)(temp_ptr5 + 6);
-                            temp_data = *(undefined8 *)(temp_ptr5 + 8);
-                            temp8_5 = *(undefined8 *)(temp_ptr2 + item_offset * 10 + 2);
-                            *(undefined8 *)temp_ptr5 = *(undefined8 *)(temp_ptr2 + item_offset * 10);
-                            *(undefined8 *)(temp_ptr5 + 2) = temp8_5;
-                            temp8_5 = *(undefined8 *)(temp_ptr2 + item_offset * 10 + 4 + 2);
-                            *(undefined8 *)(temp_ptr5 + 4) = *(undefined8 *)(temp_ptr2 + item_offset * 10 + 4);
-                            *(undefined8 *)(temp_ptr5 + 6) = temp8_5;
-                            *(undefined8 *)(temp_ptr5 + 8) = *(undefined8 *)(temp_ptr2 + item_offset * 10 + 8);
-                            *(undefined8 *)(temp_ptr2 + item_offset * 10) = temp8_1;
-                            *(undefined8 *)(temp_ptr2 + item_offset * 10 + 2) = temp8_2;
-                            *(undefined8 *)(temp_ptr2 + item_offset * 10 + 4) = temp8_3;
-                            *(undefined8 *)(temp_ptr2 + item_offset * 10 + 4 + 2) = temp8_4;
-                            *(undefined8 *)(temp_ptr2 + item_offset * 10 + 8) = temp_data;
+                            temp8_3 = *(uint64_t *)(temp_ptr5 + 4);
+                            temp8_4 = *(uint64_t *)(temp_ptr5 + 6);
+                            temp_data = *(uint64_t *)(temp_ptr5 + 8);
+                            temp8_5 = *(uint64_t *)(temp_ptr2 + item_offset * 10 + 2);
+                            *(uint64_t *)temp_ptr5 = *(uint64_t *)(temp_ptr2 + item_offset * 10);
+                            *(uint64_t *)(temp_ptr5 + 2) = temp8_5;
+                            temp8_5 = *(uint64_t *)(temp_ptr2 + item_offset * 10 + 4 + 2);
+                            *(uint64_t *)(temp_ptr5 + 4) = *(uint64_t *)(temp_ptr2 + item_offset * 10 + 4);
+                            *(uint64_t *)(temp_ptr5 + 6) = temp8_5;
+                            *(uint64_t *)(temp_ptr5 + 8) = *(uint64_t *)(temp_ptr2 + item_offset * 10 + 8);
+                            *(uint64_t *)(temp_ptr2 + item_offset * 10) = temp8_1;
+                            *(uint64_t *)(temp_ptr2 + item_offset * 10 + 2) = temp8_2;
+                            *(uint64_t *)(temp_ptr2 + item_offset * 10 + 4) = temp8_3;
+                            *(uint64_t *)(temp_ptr2 + item_offset * 10 + 4 + 2) = temp8_4;
+                            *(uint64_t *)(temp_ptr2 + item_offset * 10 + 8) = temp_data;
                             if (temp_ptr2[item_offset * 10] == render_queue[5]) {
                                 temp_ptr = (int *)(ulonglong)(uint)temp_ptr2[item_offset * 10];
                             }
@@ -199,8 +199,8 @@ void process_render_queue_optimization(int *render_queue)
                         }
                         if (((render_queue[0x13] & 0x800000U) != 0) && 
                             (*(float *)(_DAT_180c8a9b0 + 0x2e04) <= 0.0)) {
-                            *(undefined4 *)(_DAT_180c8a9b0 + 0x2e04) = 
-                                *(undefined4 *)(_DAT_180c8a9b0 + 0x1c);
+                            *(int32_t *)(_DAT_180c8a9b0 + 0x2e04) = 
+                                *(int32_t *)(_DAT_180c8a9b0 + 0x1c);
                         }
                     }
                     break;
@@ -239,7 +239,7 @@ void process_render_queue_optimization(int *render_queue)
                 memcpy(temp_data, *(longlong *)(engine_context + 0x1ea0),
                        (longlong)*(int *)(engine_context + 0x1e98) << 3);
             }
-            *(undefined8 *)(engine_context + 0x1ea0) = temp_data;
+            *(uint64_t *)(engine_context + 0x1ea0) = temp_data;
             *(int *)(engine_context + 0x1e9c) = int_temp2;
         }
     }
@@ -260,13 +260,13 @@ void process_render_queue_optimization(int *render_queue)
             if ((item_ptr == (int *)0x0) || (item_ptr[5] < temp_ptr5[5])) {
                 item_ptr = temp_ptr5;
             }
-            src_ptr64 = *(undefined8 **)(temp_ptr5 + 2);
+            src_ptr64 = *(uint64_t **)(temp_ptr5 + 2);
             if (*temp_ptr5 == render_queue[5]) {
                 has_active_item = true;
             }
-            if (src_ptr64 != (undefined8 *)0x0) {
+            if (src_ptr64 != (uint64_t *)0x0) {
                 index_ptr = (int *)FUN_18011ce30(local_buffer, *src_ptr64,
-                                               *(undefined1 *)((longlong)src_ptr64 + 0xb7));
+                                               *(int8_t *)((longlong)src_ptr64 + 0xb7));
                 temp_ptr5[8] = *index_ptr;
             }
             int_temp = (int)temp_ptr;
@@ -318,7 +318,7 @@ void process_render_queue_optimization(int *render_queue)
     }
     else {
         if (1 < queue_count) {
-            qsort(*(undefined8 *)(engine_context + 0x1ea0),
+            qsort(*(uint64_t *)(engine_context + 0x1ea0),
                   (longlong)*(int *)(engine_context + 0x1e98), 8, &UNK_18011ae80);
         }
         
@@ -449,7 +449,7 @@ LAB_weight_assignment_complete:
     }
     
     render_queue[7] = queue_count;
-    *(undefined1 *)((longlong)render_queue + 0x59) = 0;
+    *(int8_t *)((longlong)render_queue + 0x59) = 0;
     
     // 第十一步：处理特殊上下文
     item_offset = *(longlong *)(engine_context + 0x1cd8);
@@ -566,7 +566,7 @@ void calculate_string_hash(longlong context, byte *string)
     if ((*(uint *)(context + 0x4c) & 0x100000) == 0) {
         // 普通哈希计算模式
         computed_hash = FUN_180121250(string, 0,
-                                      *(undefined4 *)
+                                      *(int32_t *)
                                        (*(longlong *)
                                          (*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0x220) + -4 +
                                          (longlong)*(int *)
@@ -577,7 +577,7 @@ void calculate_string_hash(longlong context, byte *string)
             *(int *)(engine_context + 0x1b34) = computed_hash;
         }
         if (*(int *)(engine_context + 0x1b30) == computed_hash) {
-            *(undefined1 *)(engine_context + 0x1b3f) = 1;
+            *(int8_t *)(engine_context + 0x1b3f) = 1;
         }
     }
     else {
@@ -604,7 +604,7 @@ void calculate_string_hash(longlong context, byte *string)
             *(uint *)(_DAT_180c8a9b0 + 0x1b34) = hash_value;
         }
         if (*(uint *)(engine_context + 0x1b30) == hash_value) {
-            *(undefined1 *)(engine_context + 0x1b3f) = 1;
+            *(int8_t *)(engine_context + 0x1b3f) = 1;
             return;
         }
     }
@@ -629,7 +629,7 @@ void update_default_hash_validation(void)
         *(int *)(engine_context + 0x1b34) = computed_hash;
     }
     if (*(int *)(engine_context + 0x1b30) == computed_hash) {
-        *(undefined1 *)(engine_context + 0x1b3f) = 1;
+        *(int8_t *)(engine_context + 0x1b3f) = 1;
     }
     return;
 }
@@ -654,10 +654,10 @@ void empty_function(void)
  * @param entry_id 条目ID
  * @param entry_data 条目数据指针
  */
-void add_render_queue_entry(int *render_queue, undefined4 entry_id, longlong entry_data)
+void add_render_queue_entry(int *render_queue, int32_t entry_id, longlong entry_data)
 {
-    undefined8 *dest_ptr64;
-    undefined4 data_part;
+    uint64_t *dest_ptr64;
+    int32_t data_part;
     longlong queue_base;
     int queue_count;
     int queue_capacity;
@@ -666,7 +666,7 @@ void add_render_queue_entry(int *render_queue, undefined4 entry_id, longlong ent
     int priority_level;
     uint entry_flags;
     
-    data_part = *(undefined4 *)(entry_data + 8);
+    data_part = *(int32_t *)(entry_data + 8);
     priority_level = render_queue[8];
     
     // 设置默认优先级
@@ -696,12 +696,12 @@ void add_render_queue_entry(int *render_queue, undefined4 entry_id, longlong ent
     // 计算条目位置并写入数据
     entry_offset = (longlong)queue_count;
     queue_base = *(longlong *)(render_queue + 2);
-    dest_ptr64 = (undefined8 *)(queue_base + entry_offset * 0x28);
+    dest_ptr64 = (uint64_t *)(queue_base + entry_offset * 0x28);
     *dest_ptr64 = CONCAT44(entry_id, data_part);
     dest_ptr64[1] = entry_data;
     
     // 设置条目属性
-    dest_ptr64 = (undefined8 *)(queue_base + 0x10 + entry_offset * 0x28);
+    dest_ptr64 = (uint64_t *)(queue_base + 0x10 + entry_offset * 0x28);
     *dest_ptr64 = CONCAT44(0xffffffff, priority_level);
     dest_ptr64[1] = 0;
     

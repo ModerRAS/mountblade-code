@@ -71,17 +71,17 @@
  * 
  * @return void (该函数不返回值，可能通过异常处理机制退出)
  */
-void NetworkSystem_ConnectionProcessor(undefined8 *connection_pool_ptr, longlong network_context, longlong system_base)
+void NetworkSystem_ConnectionProcessor(uint64_t *connection_pool_ptr, longlong network_context, longlong system_base)
 
 {
   int validation_result;
-  undefined8 *resource_ptr;
+  uint64_t *resource_ptr;
   longlong connection_base;
   longlong system_context;
   
   // 遍历网络连接池中的所有连接
-  for (; (*(undefined8 **)(connection_base + NETWORK_CONNECTION_BASE_ADDR) <= connection_pool_ptr &&
-         (connection_pool_ptr < *(undefined8 **)(connection_base + NETWORK_CONNECTION_BASE_ADDR) + *(int *)(connection_base + NETWORK_CONNECTION_POOL_SIZE)));
+  for (; (*(uint64_t **)(connection_base + NETWORK_CONNECTION_BASE_ADDR) <= connection_pool_ptr &&
+         (connection_pool_ptr < *(uint64_t **)(connection_base + NETWORK_CONNECTION_BASE_ADDR) + *(int *)(connection_base + NETWORK_CONNECTION_POOL_SIZE)));
       connection_pool_ptr = connection_pool_ptr + 1) {
     // 验证每个连接的状态
     validation_result = FUN_1808b5060(*connection_pool_ptr, &stack0x00000040, system_context + -0x60);
@@ -92,12 +92,12 @@ void NetworkSystem_ConnectionProcessor(undefined8 *connection_pool_ptr, longlong
   validation_result = FUN_180864850();
   if (validation_result == 0) {
     // 设置最小网络质量值
-    *(undefined4 *)(connection_base + NETWORK_QUALITY_OFFSET) = NETWORK_QUALITY_MIN;
+    *(int32_t *)(connection_base + NETWORK_QUALITY_OFFSET) = NETWORK_QUALITY_MIN;
     
     // 遍历网络资源池
-    for (resource_ptr = *(undefined8 **)(connection_base + NETWORK_RESOURCE_POOL_OFFSET);
-        (*(undefined8 **)(connection_base + NETWORK_RESOURCE_POOL_OFFSET) <= resource_ptr &&
-        (resource_ptr < *(undefined8 **)(connection_base + NETWORK_RESOURCE_POOL_OFFSET) + *(int *)(connection_base + NETWORK_RESOURCE_POOL_SIZE)));
+    for (resource_ptr = *(uint64_t **)(connection_base + NETWORK_RESOURCE_POOL_OFFSET);
+        (*(uint64_t **)(connection_base + NETWORK_RESOURCE_POOL_OFFSET) <= resource_ptr &&
+        (resource_ptr < *(uint64_t **)(connection_base + NETWORK_RESOURCE_POOL_OFFSET) + *(int *)(connection_base + NETWORK_RESOURCE_POOL_SIZE)));
         resource_ptr = resource_ptr + 1) {
       // 验证资源状态
       validation_result = FUN_1808d6e30(*resource_ptr);
@@ -111,7 +111,7 @@ void NetworkSystem_ConnectionProcessor(undefined8 *connection_pool_ptr, longlong
       validation_result = FUN_1808d15f0(connection_base + NETWORK_CONNECTION_INFO_2_OFFSET);
       if (validation_result == 0) {
         // 重置网络状态标志
-        *(undefined1 *)(connection_base + NETWORK_STATUS_FLAG_OFFSET) = 0;
+        *(int8_t *)(connection_base + NETWORK_STATUS_FLAG_OFFSET) = 0;
       }
     }
   }
@@ -149,14 +149,14 @@ int NetworkSystem_ConnectionValidator(longlong connection_handle)
   byte flag_bit;
   char status_char;
   int result_code;
-  undefined4 status_value;
+  int32_t status_value;
   int connection_state;
-  undefined8 *resource_pool_ptr;
+  uint64_t *resource_pool_ptr;
   longlong resource_handle;
-  undefined8 connection_data;
+  uint64_t connection_data;
   float quality_metric;
   ulonglong timeout_counter;
-  undefined8 backup_data;
+  uint64_t backup_data;
   longlong context_handle;
   uint start_time;
   byte performance_flag;
@@ -222,10 +222,10 @@ LAB_180864477:
       
       // 处理连接状态5
       if (*(int *)(connection_handle + NETWORK_CONNECTION_STATE_OFFSET) == NETWORK_STATE_TRANSFERRING) {
-        FUN_1808d0490(connection_handle + NETWORK_CONNECTION_INFO_1_OFFSET, *(undefined8 *)(connection_handle + NETWORK_CONNECTION_DATA_OFFSET), 1);
-        FUN_1808d0490(connection_handle + NETWORK_CONNECTION_INFO_2_OFFSET, *(undefined8 *)(connection_handle + NETWORK_CONNECTION_DATA_OFFSET), 1);
+        FUN_1808d0490(connection_handle + NETWORK_CONNECTION_INFO_1_OFFSET, *(uint64_t *)(connection_handle + NETWORK_CONNECTION_DATA_OFFSET), 1);
+        FUN_1808d0490(connection_handle + NETWORK_CONNECTION_INFO_2_OFFSET, *(uint64_t *)(connection_handle + NETWORK_CONNECTION_DATA_OFFSET), 1);
         if (*(ulonglong *)(connection_handle + NETWORK_CONNECTION_DATA_OFFSET) < *(ulonglong *)(*(longlong *)(connection_handle + NETWORK_CONNECTION_CONTEXT_OFFSET) + 0x30)) {
-          *(undefined4 *)(connection_handle + NETWORK_CONNECTION_STATE_OFFSET) = NETWORK_STATE_OPTIMIZING;  // 转换到优化状态
+          *(int32_t *)(connection_handle + NETWORK_CONNECTION_STATE_OFFSET) = NETWORK_STATE_OPTIMIZING;  // 转换到优化状态
         }
       }
       
@@ -238,14 +238,14 @@ LAB_180864477:
         // 处理超时和清理
         timeout_counter = timeout_counter & 0xffffffffffffff00;
         backup_data = 0;
-        result_code = FUN_18073c380(*(undefined8 *)(*(longlong *)(connection_handle + NETWORK_CONNECTION_CONTEXT_OFFSET) + 0x78), 0xffffffff, &backup_data);
+        result_code = FUN_18073c380(*(uint64_t *)(*(longlong *)(connection_handle + NETWORK_CONNECTION_CONTEXT_OFFSET) + 0x78), 0xffffffff, &backup_data);
         if (((result_code != 0) || (result_code = FUN_180740410(backup_data, &timeout_counter), result_code != 0)) &&
            (result_code != 0)) goto LAB_180864627;
         
         // 检查连接质量
         if (((char)timeout_counter != '\0') ||
-           (quality_metric = (float)func_0x000180851e30(*(undefined8 *)(connection_handle + NETWORK_CONNECTION_CONTEXT_OFFSET)), quality_metric == 0.0)) {
-          *(undefined4 *)(connection_handle + NETWORK_CONNECTION_STATE_OFFSET) = NETWORK_STATE_STABILIZING;  // 转换到稳定状态
+           (quality_metric = (float)func_0x000180851e30(*(uint64_t *)(connection_handle + NETWORK_CONNECTION_CONTEXT_OFFSET)), quality_metric == 0.0)) {
+          *(int32_t *)(connection_handle + NETWORK_CONNECTION_STATE_OFFSET) = NETWORK_STATE_STABILIZING;  // 转换到稳定状态
         }
       }
       
@@ -275,19 +275,19 @@ LAB_18086460a:
       resource_handle = *(longlong *)(connection_handle + NETWORK_CONNECTION_RESOURCE_OFFSET);
       if (resource_handle != 0) {
         status_value = FUN_1808605e0(connection_handle);
-        *(undefined4 *)(resource_handle + 0x80) = status_value;
+        *(int32_t *)(resource_handle + 0x80) = status_value;
       }
       goto LAB_180864624;
     }
     
     // 处理连接数据同步
-    connection_data = *(undefined8 *)(*(longlong *)(connection_handle + NETWORK_CONNECTION_CONTEXT_OFFSET) + 0x30);
-    *(undefined8 *)(connection_handle + 0x330) = connection_data;
+    connection_data = *(uint64_t *)(*(longlong *)(connection_handle + NETWORK_CONNECTION_CONTEXT_OFFSET) + 0x30);
+    *(uint64_t *)(connection_handle + 0x330) = connection_data;
     
     // 验证资源池中的所有资源
-    for (resource_pool_ptr = *(undefined8 **)(connection_handle + 0x260);
-        (*(undefined8 **)(connection_handle + 0x260) <= resource_pool_ptr &&
-        (resource_pool_ptr < *(undefined8 **)(connection_handle + 0x260) + *(int *)(connection_handle + 0x268)));
+    for (resource_pool_ptr = *(uint64_t **)(connection_handle + 0x260);
+        (*(uint64_t **)(connection_handle + 0x260) <= resource_pool_ptr &&
+        (resource_pool_ptr < *(uint64_t **)(connection_handle + 0x260) + *(int *)(connection_handle + 0x268)));
         resource_pool_ptr = resource_pool_ptr + 1) {
       result_code = FUN_1808d7550(*resource_pool_ptr);
       if (result_code != 0) goto LAB_180864627;  // 资源验证失败
@@ -304,7 +304,7 @@ LAB_18086460a:
     if (*(int *)(connection_handle + NETWORK_CONNECTION_STATE_OFFSET) != NETWORK_STATE_MANAGED) {
       if (*(longlong *)(connection_handle + NETWORK_CONNECTION_STATS_OFFSET) != 0) {
         timeout_counter = 0;
-        result_code = FUN_18073c730(*(undefined8 *)(*(longlong *)(connection_handle + NETWORK_CONNECTION_CONTEXT_OFFSET) + 0x78), &timeout_counter, 0, 0);
+        result_code = FUN_18073c730(*(uint64_t *)(*(longlong *)(connection_handle + NETWORK_CONNECTION_CONTEXT_OFFSET) + 0x78), &timeout_counter, 0, 0);
         if (result_code != 0) goto LAB_180864627;
         
         // 检查超时状态
@@ -314,7 +314,7 @@ LAB_18086460a:
         else {
           connection_data = 0;
         }
-        result_code = FUN_1808d9380(*(undefined8 *)(connection_handle + NETWORK_CONNECTION_STATS_OFFSET), connection_data);
+        result_code = FUN_1808d9380(*(uint64_t *)(connection_handle + NETWORK_CONNECTION_STATS_OFFSET), connection_data);
         if (result_code != 0) goto LAB_180864627;
       }
       
@@ -323,7 +323,7 @@ LAB_18086460a:
         status_char = *(ulonglong *)(connection_handle + NETWORK_CONNECTION_TIMEOUT_OFFSET) < *(ulonglong *)(connection_handle + NETWORK_CONNECTION_LIMIT_OFFSET);
         timeout_counter = CONCAT71(timeout_counter._1_7_, status_char);
         if (((bool)status_char) && (*(longlong *)(connection_handle + NETWORK_CONNECTION_STATS_OFFSET) == 0)) {
-          FUN_18073cd10(*(undefined8 *)(*(longlong *)(connection_handle + NETWORK_CONNECTION_CONTEXT_OFFSET) + 0x78), &timeout_counter);
+          FUN_18073cd10(*(uint64_t *)(*(longlong *)(connection_handle + NETWORK_CONNECTION_CONTEXT_OFFSET) + 0x78), &timeout_counter);
           status_char = (char)timeout_counter;
         }
         if (status_char == '\0') {
@@ -397,13 +397,13 @@ LAB_180864627:
   if (context_handle != 0) {
     connection_state = FUN_1808605e0();
     if (connection_state == 2) {
-      *(undefined4 *)(context_handle + NETWORK_CONNECTION_PERF_OFFSET) = 0;
+      *(int32_t *)(context_handle + NETWORK_CONNECTION_PERF_OFFSET) = 0;
     }
     else {
       FUN_180768b90(&timeout_counter);
       if (start_time <= (uint)timeout_counter) {
         if (performance_flag == 0) {
-          *(undefined4 *)(context_handle + NETWORK_CONNECTION_PERF_OFFSET) = (uint)timeout_counter - start_time;
+          *(int32_t *)(context_handle + NETWORK_CONNECTION_PERF_OFFSET) = (uint)timeout_counter - start_time;
         }
         else {
           *(int *)(context_handle + NETWORK_CONNECTION_PERF_OFFSET) = *(int *)(context_handle + NETWORK_CONNECTION_PERF_OFFSET) + ((uint)timeout_counter - start_time);
@@ -431,7 +431,7 @@ LAB_180864627:
  * 
  * @return ulonglong 返回优化结果状态码
  */
-ulonglong NetworkSystem_ConnectionOptimizer(undefined4 optimization_param)
+ulonglong NetworkSystem_ConnectionOptimizer(int32_t optimization_param)
 
 {
   longlong *connection_info_ptr;
@@ -441,16 +441,16 @@ ulonglong NetworkSystem_ConnectionOptimizer(undefined4 optimization_param)
   byte flag_bit;
   char status_char;
   uint param_value;
-  undefined4 status_value;
+  int32_t status_value;
   int connection_state;
-  undefined8 *resource_pool_ptr;
-  undefined8 connection_data;
+  uint64_t *resource_pool_ptr;
+  uint64_t connection_data;
   longlong system_context;
   ulonglong result_code;
   longlong connection_context;
   char perf_flag;
   ulonglong timeout_counter;
-  undefined4 extraout_XMM0_Da;
+  int32_t extraout_XMM0_Da;
   
   perf_flag = (char)timeout_counter;
   if (param_value < 2) {
@@ -474,13 +474,13 @@ LAB_1808640fb:
     
     // 处理资源优化
     if ((*(uint *)(connection_context + NETWORK_CONNECTION_FLAGS_OFFSET) >> 1 & 1) == 0) {
-      connection_data = *(undefined8 *)(*(longlong *)(connection_context + NETWORK_CONNECTION_CONTEXT_OFFSET) + 0x30);
-      *(undefined8 *)(connection_context + 0x330) = connection_data;
+      connection_data = *(uint64_t *)(*(longlong *)(connection_context + NETWORK_CONNECTION_CONTEXT_OFFSET) + 0x30);
+      *(uint64_t *)(connection_context + 0x330) = connection_data;
       
       // 验证资源池中的所有资源
-      for (resource_pool_ptr = *(undefined8 **)(connection_context + 0x260);
-          (*(undefined8 **)(connection_context + 0x260) <= resource_pool_ptr &&
-          (resource_pool_ptr < *(undefined8 **)(connection_context + 0x260) + *(int *)(connection_context + 0x268)));
+      for (resource_pool_ptr = *(uint64_t **)(connection_context + 0x260);
+          (*(uint64_t **)(connection_context + 0x260) <= resource_pool_ptr &&
+          (resource_pool_ptr < *(uint64_t **)(connection_context + 0x260) + *(int *)(connection_context + 0x268)));
           resource_pool_ptr = resource_pool_ptr + 1) {
         result_code = FUN_1808d7550(*resource_pool_ptr);
         if (result_code != 0) goto LAB_180864627;  // 资源验证失败
@@ -502,7 +502,7 @@ LAB_1808640fb:
         if (*(ulonglong *)(connection_context + NETWORK_CONNECTION_STATS_OFFSET) != timeout_counter) {
           resource_handle = *(longlong *)(connection_context + NETWORK_CONNECTION_CONTEXT_OFFSET);
           *(ulonglong *)(system_context + 0x28) = timeout_counter;
-          result_code = FUN_18073c730(*(undefined8 *)(resource_handle + 0x78), system_context + 0x28, 0, 0);
+          result_code = FUN_18073c730(*(uint64_t *)(resource_handle + 0x78), system_context + 0x28, 0, 0);
           if (result_code != 0) goto LAB_180864627;
           
           // 检查超时状态
@@ -513,7 +513,7 @@ LAB_1808640fb:
           else {
             connection_data = 0;
           }
-          result_code = FUN_1808d9380(*(undefined8 *)(connection_context + NETWORK_CONNECTION_STATS_OFFSET), connection_data);
+          result_code = FUN_1808d9380(*(uint64_t *)(connection_context + NETWORK_CONNECTION_STATS_OFFSET), connection_data);
           if (result_code != 0) goto LAB_180864627;
           status_value = extraout_XMM0_Da_02;
         }
@@ -523,7 +523,7 @@ LAB_1808640fb:
           status_char = *(ulonglong *)(connection_context + NETWORK_CONNECTION_TIMEOUT_OFFSET) < *(ulonglong *)(connection_context + NETWORK_CONNECTION_LIMIT_OFFSET);
           *(char *)(system_context + 0x28) = status_char;
           if (((bool)status_char) && (*(ulonglong *)(connection_context + NETWORK_CONNECTION_STATS_OFFSET) == timeout_counter)) {
-            status_value = FUN_18073cd10(*(undefined8 *)(*(longlong *)(connection_context + NETWORK_CONNECTION_CONTEXT_OFFSET) + 0x78), system_context + 0x28);
+            status_value = FUN_18073cd10(*(uint64_t *)(*(longlong *)(connection_context + NETWORK_CONNECTION_CONTEXT_OFFSET) + 0x78), system_context + 0x28);
             status_char = *(char *)(system_context + 0x28);
           }
           if (status_char == '\0') {
@@ -620,11 +620,11 @@ LAB_180864477:
     
     // 处理传输状态
     if (*(int *)(connection_context + NETWORK_CONNECTION_STATE_OFFSET) == NETWORK_STATE_TRANSFERRING) {
-      FUN_1808d0490(connection_context + NETWORK_CONNECTION_INFO_1_OFFSET, *(undefined8 *)(connection_context + NETWORK_CONNECTION_DATA_OFFSET), 1);
-      FUN_1808d0490(connection_context + NETWORK_CONNECTION_INFO_2_OFFSET, *(undefined8 *)(connection_context + NETWORK_CONNECTION_DATA_OFFSET), 1);
+      FUN_1808d0490(connection_context + NETWORK_CONNECTION_INFO_1_OFFSET, *(uint64_t *)(connection_context + NETWORK_CONNECTION_DATA_OFFSET), 1);
+      FUN_1808d0490(connection_context + NETWORK_CONNECTION_INFO_2_OFFSET, *(uint64_t *)(connection_context + NETWORK_CONNECTION_DATA_OFFSET), 1);
       if (*(ulonglong *)(connection_context + NETWORK_CONNECTION_DATA_OFFSET) <
           *(ulonglong *)(*(longlong *)(connection_context + NETWORK_CONNECTION_CONTEXT_OFFSET) + 0x30)) {
-        *(undefined4 *)(connection_context + NETWORK_CONNECTION_STATE_OFFSET) = NETWORK_STATE_OPTIMIZING;
+        *(int32_t *)(connection_context + NETWORK_CONNECTION_STATE_OFFSET) = NETWORK_STATE_OPTIMIZING;
       }
     }
     
@@ -639,15 +639,15 @@ LAB_180864477:
       resource_handle = *(longlong *)(connection_context + NETWORK_CONNECTION_CONTEXT_OFFSET);
       *(char *)(system_context + 0x28) = perf_flag;
       *(ulonglong *)(system_context + 0x30) = timeout_counter;
-      result_code = FUN_18073c380(*(undefined8 *)(resource_handle + 0x78), 0xffffffff, system_context + 0x30);
+      result_code = FUN_18073c380(*(uint64_t *)(resource_handle + 0x78), 0xffffffff, system_context + 0x30);
       if (((result_code != 0) ||
-          (result_code = FUN_180740410(*(undefined8 *)(system_context + 0x30), system_context + 0x28), result_code != 0)) &&
+          (result_code = FUN_180740410(*(uint64_t *)(system_context + 0x30), system_context + 0x28), result_code != 0)) &&
          (result_code = result_code, result_code != 0)) goto LAB_180864627;
       
       // 检查连接质量
       if ((*(char *)(system_context + 0x28) != perf_flag) ||
-         (quality_metric = (float)func_0x000180851e30(*(undefined8 *)(connection_context + NETWORK_CONNECTION_CONTEXT_OFFSET)), quality_metric == 0.0)) {
-        *(undefined4 *)(connection_context + NETWORK_CONNECTION_STATE_OFFSET) = NETWORK_STATE_STABILIZING;
+         (quality_metric = (float)func_0x000180851e30(*(uint64_t *)(connection_context + NETWORK_CONNECTION_CONTEXT_OFFSET)), quality_metric == 0.0)) {
+        *(int32_t *)(connection_context + NETWORK_CONNECTION_STATE_OFFSET) = NETWORK_STATE_STABILIZING;
       }
     }
     
@@ -683,7 +683,7 @@ LAB_18086460a:
     resource_handle = *(longlong *)(connection_context + NETWORK_CONNECTION_RESOURCE_OFFSET);
     if (resource_handle != 0) {
       status_value = FUN_1808605e0();
-      *(undefined4 *)(resource_handle + 0x80) = status_value;
+      *(int32_t *)(resource_handle + 0x80) = status_value;
     }
   }
 LAB_180864624:
@@ -725,20 +725,20 @@ LAB_180864627:
  * 2. 更新连接统计信息
  * 3. 处理性能指标
  * 
- * @return undefined4 返回管理状态
+ * @return int32_t 返回管理状态
  */
-undefined4 NetworkSystem_ConnectionManager(void)
+int32_t NetworkSystem_ConnectionManager(void)
 
 {
   int *stats_ptr;
   int connection_state;
   longlong system_context;
-  undefined4 status_value;
-  undefined4 performance_value;
+  int32_t status_value;
+  int32_t performance_value;
   
   connection_state = FUN_1808605e0();
   if (connection_state == 2) {
-    *(undefined4 *)(*(longlong *)(system_context + -0x38) + NETWORK_CONNECTION_PERF_OFFSET) = performance_value;
+    *(int32_t *)(*(longlong *)(system_context + -0x38) + NETWORK_CONNECTION_PERF_OFFSET) = performance_value;
   }
   else {
     FUN_180768b90(system_context + 0x28);
@@ -769,13 +769,13 @@ undefined4 NetworkSystem_ConnectionManager(void)
  * 2. 处理质量评估逻辑
  * 3. 验证连接质量
  * 
- * @return undefined8 返回质量控制结果
+ * @return uint64_t 返回质量控制结果
  */
-undefined8 NetworkSystem_ConnectionQualityController(longlong connection_context)
+uint64_t NetworkSystem_ConnectionQualityController(longlong connection_context)
 
 {
-  undefined8 result_value;
-  undefined8 *resource_ptr;
+  uint64_t result_value;
+  uint64_t *resource_ptr;
   float quality_min;
   float quality_max;
   float quality_threshold;
@@ -797,9 +797,9 @@ undefined8 NetworkSystem_ConnectionQualityController(longlong connection_context
   }
   
   // 验证资源池中的所有资源
-  for (resource_ptr = *(undefined8 **)(connection_context + NETWORK_CONNECTION_BASE_ADDR);
-      (*(undefined8 **)(connection_context + NETWORK_CONNECTION_BASE_ADDR) <= resource_ptr &&
-      (resource_ptr < *(undefined8 **)(connection_context + NETWORK_CONNECTION_BASE_ADDR) + *(int *)(connection_context + NETWORK_CONNECTION_POOL_SIZE))); 
+  for (resource_ptr = *(uint64_t **)(connection_context + NETWORK_CONNECTION_BASE_ADDR);
+      (*(uint64_t **)(connection_context + NETWORK_CONNECTION_BASE_ADDR) <= resource_ptr &&
+      (resource_ptr < *(uint64_t **)(connection_context + NETWORK_CONNECTION_BASE_ADDR) + *(int *)(connection_context + NETWORK_CONNECTION_POOL_SIZE))); 
       resource_ptr = resource_ptr + 1) {
     result_value = FUN_1808b5030(*resource_ptr, &quality_min);
     if ((int)result_value != 0) {
@@ -830,17 +830,17 @@ void NetworkSystem_ConnectionEnhancer(longlong connection_context)
 {
   longlong resource_base;
   int enhancement_result;
-  undefined8 *resource_ptr;
+  uint64_t *resource_ptr;
   float quality_factor;
   
   resource_base = *(longlong *)(connection_context + NETWORK_CONNECTION_CONTEXT_OFFSET);
-  *(undefined4 *)(connection_context + 0x2f4) = NETWORK_QUALITY_MAX;
+  *(int32_t *)(connection_context + 0x2f4) = NETWORK_QUALITY_MAX;
   
   // 遍历资源池进行优化
-  for (resource_ptr = (undefined8 *)
+  for (resource_ptr = (uint64_t *)
                 (*(longlong *)(resource_base + 0x90) + (longlong)(*(int *)(resource_base + 0x98) + -1) * 8);
-      (*(undefined8 **)(resource_base + 0x90) <= resource_ptr &&
-      (resource_ptr < *(undefined8 **)(resource_base + 0x90) + *(int *)(resource_base + 0x98))); 
+      (*(uint64_t **)(resource_base + 0x90) <= resource_ptr &&
+      (resource_ptr < *(uint64_t **)(resource_base + 0x90) + *(int *)(resource_base + 0x98))); 
       resource_ptr = resource_ptr + -1) {
     enhancement_result = FUN_1808b3bc0(*resource_ptr, connection_context + 0x2f4);
     if (enhancement_result != 0) {
@@ -849,7 +849,7 @@ void NetworkSystem_ConnectionEnhancer(longlong connection_context)
   }
   
   // 计算最终质量指标
-  quality_factor = (float)func_0x000180851e30(*(undefined8 *)(connection_context + NETWORK_CONNECTION_CONTEXT_OFFSET));
+  quality_factor = (float)func_0x000180851e30(*(uint64_t *)(connection_context + NETWORK_CONNECTION_CONTEXT_OFFSET));
   *(float *)(connection_context + 0x2f4) = quality_factor * *(float *)(connection_context + 0x2f4);
   enhancement_result = FUN_18085e860(*(longlong *)(connection_context + NETWORK_CONNECTION_CONTEXT_OFFSET) + 0x80, connection_context + 0x2f4);
   if (enhancement_result == 0) {

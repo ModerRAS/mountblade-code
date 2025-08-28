@@ -41,7 +41,7 @@ void release_resource_reference_count(longlong param_1)
             (*(char *)(param_1 + 0xf4) == '\0')) &&
            (((*(byte *)(param_1 + 0xfd) & 0x20) == 0 || ((*(byte *)(param_1 + 0xfe) & 1) == 0)))) {
             plVar2 = *(longlong **)(param_1 + 0x210);
-            *(undefined8 *)(param_1 + 0x210) = 0;
+            *(uint64_t *)(param_1 + 0x210) = 0;
             if (plVar2 != (longlong *)0x0) {
                 (**(code **)(*plVar2 + 0x38))();
             }
@@ -67,7 +67,7 @@ void release_resource_reference_count(longlong param_1)
  * @param param_1 资源对象指针
  * @return 资源状态有效性标志 (1=有效, 0=无效)
  */
-undefined8 check_resource_status_validity(longlong param_1)
+uint64_t check_resource_status_validity(longlong param_1)
 {
     byte bVar1;
     longlong lVar2;
@@ -76,7 +76,7 @@ undefined8 check_resource_status_validity(longlong param_1)
     bVar3 = *(byte *)(param_1 + 0xfd);
     lVar2 = param_1;
     if ((bVar3 & 0x20) == 0) {
-        lVar2 = func_0x000180085de0(*(undefined8 *)(param_1 + 0x1b0));
+        lVar2 = func_0x000180085de0(*(uint64_t *)(param_1 + 0x1b0));
     }
     if (0 < *(int *)(lVar2 + 0x200)) {
         lVar2 = *(longlong *)(param_1 + 0x1b8);
@@ -87,7 +87,7 @@ undefined8 check_resource_status_validity(longlong param_1)
             bVar3 = *(byte *)(param_1 + 0xfd);
         }
         if ((bVar3 & 0x20) == 0) {
-            param_1 = func_0x000180085de0(*(undefined8 *)(param_1 + 0x1b0));
+            param_1 = func_0x000180085de0(*(uint64_t *)(param_1 + 0x1b0));
         }
         if ((*(longlong *)(param_1 + 0x1e0) == 0) ||
            (*(byte *)(*(longlong *)(param_1 + 0x1e0) + 0x15 + (ulonglong)bVar1 * 0x18) < 2)) {
@@ -124,21 +124,21 @@ int process_resource_hash_table_operations(longlong param_1, longlong *param_2)
     ulonglong *puVar12;
     uint uVar13;
     ulonglong uVar14;
-    undefined4 extraout_XMM0_Da;
-    undefined4 uVar15;
-    undefined8 uStackX_8;
-    undefined8 *puStackX_10;
-    undefined8 *puStackX_18;
+    int32_t extraout_XMM0_Da;
+    int32_t uVar15;
+    uint64_t uStackX_8;
+    uint64_t *puStackX_10;
+    uint64_t *puStackX_18;
     uint in_stack_ffffffffffffff38;
-    undefined8 uVar16;
+    uint64_t uVar16;
     ulonglong *puStack_80;
     longlong *plStack_78;
     code *pcStack_70;
     code *pcStack_68;
-    undefined8 uStack_60;
-    undefined8 uStack_58;
-    undefined8 uStack_50;
-    undefined4 uStack_48;
+    uint64_t uStack_60;
+    uint64_t uStack_58;
+    uint64_t uStack_50;
+    int32_t uStack_48;
     
     uVar16 = 0xfffffffffffffffe;
     iVar5 = 0;
@@ -179,7 +179,7 @@ int process_resource_hash_table_operations(longlong param_1, longlong *param_2)
     uStack_58 = 0;
     uStack_50 = 0;
     uStack_48 = 3;
-    puStackX_10 = *(undefined8 **)(param_1 + 0x1b8);
+    puStackX_10 = *(uint64_t **)(param_1 + 0x1b8);
     uVar13 = *(uint *)(param_1 + 0x100) >> 0x16;
     pcVar8 = "";
     if ((char *)puStackX_10[3] != (char *)0x0) {
@@ -251,7 +251,7 @@ int process_resource_hash_table_operations(longlong param_1, longlong *param_2)
     puVar12 = (ulonglong *)(*plVar1 + uVar10);
     *puVar12 = uVar11;
     puVar12[1] = 0;
-    FUN_18066c220(lVar9 + 0x20,&uStackX_8,*(undefined4 *)(lVar9 + 0x10),*(undefined4 *)(lVar9 + 0x18),
+    FUN_18066c220(lVar9 + 0x20,&uStackX_8,*(int32_t *)(lVar9 + 0x10),*(int32_t *)(lVar9 + 0x18),
                   1);
     if ((char)uStackX_8 != '\0') {
         uVar14 = uVar11 % (ulonglong)uStackX_8._4_4_;
@@ -274,18 +274,18 @@ LAB_180076feb:
  */
 void cleanup_resource_array(longlong *param_1)
 {
-    undefined8 *puVar1;
-    undefined8 *puVar2;
+    uint64_t *puVar1;
+    uint64_t *puVar2;
     
-    puVar1 = (undefined8 *)param_1[1];
-    for (puVar2 = (undefined8 *)*param_1; puVar2 != puVar1; puVar2 = puVar2 + 6) {
+    puVar1 = (uint64_t *)param_1[1];
+    for (puVar2 = (uint64_t *)*param_1; puVar2 != puVar1; puVar2 = puVar2 + 6) {
         *puVar2 = &UNK_180a3c3e0;
         if (puVar2[1] != 0) {
                     // WARNING: 此函数不会返回
             FUN_18064e900();
         }
         puVar2[1] = 0;
-        *(undefined4 *)(puVar2 + 3) = 0;
+        *(int32_t *)(puVar2 + 3) = 0;
         *puVar2 = &UNK_18098bcb0;
     }
     if (*param_1 != 0) {
@@ -340,7 +340,7 @@ ulonglong update_resource_status_manager(longlong param_1)
                     // WARNING: 此函数不会返回
             FUN_18064e900();
         }
-        *(undefined8 *)(param_1 + 0x1d8) = 0;
+        *(uint64_t *)(param_1 + 0x1d8) = 0;
         LOCK();
         bVar2 = *(byte *)(param_1 + 0xf9);
         *(byte *)(param_1 + 0xf9) = 0;
@@ -350,7 +350,7 @@ ulonglong update_resource_status_manager(longlong param_1)
     if (*(longlong *)(param_1 + 0x1e8) != 0) {
         FUN_180080060();
         uVar4 = *(ulonglong *)(param_1 + 0x1f0);
-        *(undefined8 *)(param_1 + 0x1e8) = 0;
+        *(uint64_t *)(param_1 + 0x1e8) = 0;
         if (uVar4 != 0) {
             *(byte *)(uVar4 + 0xfe) = *(byte *)(uVar4 + 0xfe) & 0xfb;
         }
@@ -369,20 +369,20 @@ ulonglong update_resource_status_manager(longlong param_1)
  */
 void process_resource_event_callbacks(longlong *param_1)
 {
-    undefined8 uVar1;
+    uint64_t uVar1;
     ulonglong *puVar2;
     ulonglong uVar3;
     longlong *plVar4;
     longlong lVar5;
     byte bVar6;
-    undefined1 auStack_88 [32];
+    int8_t auStack_88 [32];
     ulonglong *puStack_68;
-    undefined8 uStack_60;
-    undefined *puStack_58;
+    uint64_t uStack_60;
+    void *puStack_58;
     ulonglong *puStack_50;
     ulonglong uStack_48;
     ulonglong auStack_40 [2];
-    undefined8 uStack_30;
+    uint64_t uStack_30;
     char cStack_28;
     char cStack_27;
     char cStack_26;
@@ -390,7 +390,7 @@ void process_resource_event_callbacks(longlong *param_1)
     
     uStack_60 = 0xfffffffffffffffe;
     uStack_20 = _DAT_180bf00a8 ^ (ulonglong)auStack_88;
-    uVar1 = *(undefined8 *)(param_1[0x37] + 0x1e0);
+    uVar1 = *(uint64_t *)(param_1[0x37] + 0x1e0);
     puStack_58 = &UNK_18098bc80;
     puStack_50 = auStack_40;
     auStack_40[0] = auStack_40[0] & 0xffffffffffffff00;
@@ -409,7 +409,7 @@ void process_resource_event_callbacks(longlong *param_1)
             if (((*(uint *)(plVar4 + 0x20) & 0x8000000) == 0) && (bVar6 != 0)) {
                 puStack_68 = (ulonglong *)param_1;
                 (**(code **)(*param_1 + 0x28))(param_1);
-                puStack_58 = (undefined *)0x0;
+                puStack_58 = (void *)0x0;
                 puStack_50 = (ulonglong *)0x0;
                 puStack_68 = &uStack_48;
                 uStack_30 = 0;
@@ -431,7 +431,7 @@ void process_resource_event_callbacks(longlong *param_1)
         if ((*(uint *)(plVar4 + 0x20) & 0x8000000) != 0) {
             puStack_68 = (ulonglong *)param_1;
             (**(code **)(*param_1 + 0x28))(param_1);
-            puStack_58 = (undefined *)0x0;
+            puStack_58 = (void *)0x0;
             puStack_50 = (ulonglong *)0x0;
             puStack_68 = &uStack_48;
             uStack_30 = 0;
@@ -477,7 +477,7 @@ LAB_18007738d:
  * @param param_2 加载状态参数
  * @return 处理结果状态
  */
-undefined8 process_resource_loading_status(longlong param_1, longlong param_2)
+uint64_t process_resource_loading_status(longlong param_1, longlong param_2)
 {
     uint *puVar1;
     longlong *plVar2;
@@ -495,23 +495,23 @@ undefined8 process_resource_loading_status(longlong param_1, longlong param_2)
     ulonglong uVar14;
     code *pcVar15;
     bool bVar16;
-    undefined8 uStack_78;
-    undefined4 uStack_70;
-    undefined4 uStack_6c;
-    undefined2 uStack_68;
-    undefined1 uStack_66;
-    undefined4 uStack_64;
-    undefined1 uStack_60;
-    undefined8 uStack_58;
+    uint64_t uStack_78;
+    int32_t uStack_70;
+    int32_t uStack_6c;
+    int16_t uStack_68;
+    int8_t uStack_66;
+    int32_t uStack_64;
+    int8_t uStack_60;
+    uint64_t uStack_58;
     longlong lStack_50;
-    undefined8 uStack_48;
-    undefined8 uStack_40;
-    undefined4 uStack_38;
-    undefined8 uStack_30;
+    uint64_t uStack_48;
+    uint64_t uStack_40;
+    int32_t uStack_38;
+    uint64_t uStack_30;
     
     lVar13 = param_1;
     if ((*(byte *)(param_1 + 0xfd) & 0x20) == 0) {
-        lVar13 = func_0x000180085de0(*(undefined8 *)(param_1 + 0x1b0));
+        lVar13 = func_0x000180085de0(*(uint64_t *)(param_1 + 0x1b0));
     }
     lVar12 = *(longlong *)(param_1 + 0x1b8);
     bVar6 = *(byte *)(lVar12 + 0x38c);
@@ -540,7 +540,7 @@ undefined8 process_resource_loading_status(longlong param_1, longlong param_2)
         uStack_40 = 0;
         uStack_38 = 3;
         uStack_30 = 0;
-        iVar8 = FUN_18022d470(*(undefined8 *)(param_1 + 0x1b8),&uStack_78);
+        iVar8 = FUN_18022d470(*(uint64_t *)(param_1 + 0x1b8),&uStack_78);
         if (iVar8 < 1) {
             if (lStack_50 != 0) {
                     // WARNING: 此函数不会返回
@@ -581,7 +581,7 @@ undefined8 process_resource_loading_status(longlong param_1, longlong param_2)
                             UNLOCK();
                             if (bVar16) {
                                 LOCK();
-                                *(undefined1 *)(uVar14 + 0x48 + (longlong)puVar1) = 0;
+                                *(int8_t *)(uVar14 + 0x48 + (longlong)puVar1) = 0;
                                 UNLOCK();
                             }
                             else {

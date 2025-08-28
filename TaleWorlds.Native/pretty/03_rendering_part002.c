@@ -1450,7 +1450,7 @@ undefined FUN_18031c300;
 undefined UNK_180a1a8d8;      // 渲染状态主数据结构
 undefined UNK_180a1a940;      // 材质数据结构数组
 undefined DAT_180bf02a0;       // 渲染配置数据
-undefined1 DAT_180c8aa6a;     // 渲染系统状态标志
+int8_t DAT_180c8aa6a;     // 渲染系统状态标志
 undefined UNK_180a1a918;      // 纹理管理数据结构
 undefined UNK_180a1a8f0;      // 几何体管理数据结构
 undefined UNK_180a1a960;      // 着色器管理数据结构
@@ -1599,7 +1599,7 @@ undefined DAT_180d48ec0;      // 内存警告统计数据
 undefined DAT_180d48ed0;      // 内存调试统计数据
 undefined DAT_180d48e30;      // 内存配置数据
 undefined UNK_180941dc0;      // 内存池数据结构
-undefined8 UNK_180d48ec8;    // 内存分配器数据结构
+uint64_t UNK_180d48ec8;    // 内存分配器数据结构
 undefined DAT_180c917d8;      // 内存限制数据
 undefined UNK_180a1b168;      // 内存管理配置数据结构
 undefined DAT_180c917c0;      // 内存策略数据
@@ -2196,11 +2196,11 @@ undefined UNK_180a27654;      // 特殊功能算法数据结构
 undefined UNK_180a2765c;      // 特殊功能缓存策略数据结构
 undefined UNK_180a27664;      // 特殊功能内存策略数据结构
 undefined UNK_180a27670;      // 特殊功能磁盘策略数据结构
-undefined1 DAT_180bfaee8;     // 特殊功能网络策略数据
+int8_t DAT_180bfaee8;     // 特殊功能网络策略数据
 undefined DAT_180bfaeb0;      // 特殊功能任务策略数据
 undefined UNK_180a12d78;      // 特殊功能线程策略数据结构
 undefined UNK_180a12d88;      // 特殊功能同步策略数据结构
-undefined1 DAT_180bfaeb8;     // 特殊功能错误策略数据
+int8_t DAT_180bfaeb8;     // 特殊功能错误策略数据
 undefined UNK_180a27988;      // 特殊功能调试策略数据结构
 undefined UNK_180a279a8;      // 特殊功能日志策略数据结构
 undefined UNK_180a276f8;      // 特殊功能报告策略数据结构

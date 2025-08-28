@@ -4,18 +4,18 @@
 // 包含8个函数，主要处理数据序列化和反序列化操作
 
 // 全局变量声明
-undefined8 _DAT_180c8ed18;  // 内存分配器引用
-undefined8 _DAT_180bf00a8;  // 加密密钥相关
-undefined8 _DAT_180c86930;  // 初始化地址
-undefined8 UNK_1809ffa18;  // 对象模板
-undefined8 UNK_1809ff9a8;  // 对象模板
-undefined8 UNK_180a21690;  // 上下文模板
-undefined8 UNK_180a21720;  // 上下文模板
-undefined8 UNK_180a02e68;  // 上下文模板
-undefined8 UNK_180a13a28;  // 上下文模板
-undefined8 UNK_1809fcc28;  // 未知数据结构
-undefined8 UNK_18098bcb0;  // 未知数据结构
-undefined8 DAT_18098bc73;  // 默认名称指针
+uint64_t _DAT_180c8ed18;  // 内存分配器引用
+uint64_t _DAT_180bf00a8;  // 加密密钥相关
+uint64_t _DAT_180c86930;  // 初始化地址
+uint64_t UNK_1809ffa18;  // 对象模板
+uint64_t UNK_1809ff9a8;  // 对象模板
+uint64_t UNK_180a21690;  // 上下文模板
+uint64_t UNK_180a21720;  // 上下文模板
+uint64_t UNK_180a02e68;  // 上下文模板
+uint64_t UNK_180a13a28;  // 上下文模板
+uint64_t UNK_1809fcc28;  // 未知数据结构
+uint64_t UNK_18098bcb0;  // 未知数据结构
+uint64_t DAT_18098bc73;  // 默认名称指针
 
 /**
  * 处理数据流中的序列化数据
@@ -198,12 +198,12 @@ void parse_complex_data_structure(longlong output, longlong input)
  * 原始实现：FUN_1800745f0
  * 简化实现：创建并初始化数据对象
  */
-undefined8 *create_data_object(undefined8 template, longlong config)
+uint64_t *create_data_object(uint64_t template, longlong config)
 {
-    undefined8 *object_ptr;
+    uint64_t *object_ptr;
     
     // 分配对象内存
-    object_ptr = (undefined8 *)allocate_memory(_DAT_180c8ed18, 0x38, 8, 3, 0xfffffffffffffffe);
+    object_ptr = (uint64_t *)allocate_memory(_DAT_180c8ed18, 0x38, 8, 3, 0xfffffffffffffffe);
     
     // 初始化对象（简化实现）
     *object_ptr = &UNK_1809ffa18;
@@ -244,7 +244,7 @@ void initialize_data_processor(longlong processor)
         *(longlong *)(*(longlong *)(processor + 0xb0) + 0xa8) = processor;
         
         // 设置处理标志
-        *(undefined1 *)(*(longlong *)(processor + 0xb0) + 0xb1) = 1;
+        *(int8_t *)(*(longlong *)(processor + 0xb0) + 0xb1) = 1;
     }
 }
 
@@ -262,7 +262,7 @@ void cleanup_data_processor(longlong processor)
     // 检查是否有活动的处理器
     if (*(longlong *)(processor + 0xb0) != 0) {
         // 重置处理器关联
-        *(undefined8 *)(*(longlong *)(processor + 0xb0) + 0xa8) = 0;
+        *(uint64_t *)(*(longlong *)(processor + 0xb0) + 0xa8) = 0;
         
         // 获取处理器指针
         handler_ptr = *(longlong **)(processor + 0xb0);
@@ -276,7 +276,7 @@ void cleanup_data_processor(longlong processor)
         cleanup_memory();
         
         // 重置处理器指针
-        *(undefined8 *)(processor + 0xb0) = 0;
+        *(uint64_t *)(processor + 0xb0) = 0;
         
         // 调用析构函数
         if (handler_ptr != (longlong *)0x0) {
@@ -286,16 +286,16 @@ void cleanup_data_processor(longlong processor)
 }
 
 // 辅助函数声明（简化实现）
-longlong allocate_memory(undefined8 allocator, ulonglong size, longlong align);
-longlong allocate_memory_with_flags(undefined8 allocator, ulonglong size, longlong align, longlong flags, longlong guard);
+longlong allocate_memory(uint64_t allocator, ulonglong size, longlong align);
+longlong allocate_memory_with_flags(uint64_t allocator, ulonglong size, longlong align, longlong flags, longlong guard);
 void cleanup_memory(void);
 void handle_memory_error(void);
 void process_item_count(longlong *data_ptr, longlong count);
 void FUN_180074b30(longlong *data_ptr, longlong count);
 void FUN_1802abe00(longlong addr, longlong context);
 void FUN_1800b55b0(void);
-void FUN_180049910(undefined8 **context, uint *data, uint size);
+void FUN_180049910(uint64_t **context, uint *data, uint size);
 void FUN_1808fc050(ulonglong param);
-longlong FUN_18062b420(undefined8 allocator, ulonglong size, longlong align);
-longlong FUN_18062b1e0(undefined8 allocator, ulonglong size, longlong align, longlong flags, longlong guard);
+longlong FUN_18062b420(uint64_t allocator, ulonglong size, longlong align);
+longlong FUN_18062b1e0(uint64_t allocator, ulonglong size, longlong align, longlong flags, longlong guard);
 void FUN_18064e900(void);

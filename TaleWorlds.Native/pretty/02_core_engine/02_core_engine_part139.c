@@ -27,8 +27,8 @@ void update_object_position_and_animation_state(float time_delta)
   longlong current_object;
   float *position_ptr;
   uint state_index;
-  undefined1 *stack_ptr;
-  undefined8 stack_data;
+  int8_t *stack_ptr;
+  uint64_t stack_data;
   longlong unaff_RBX;
   ulonglong object_context;
   longlong target_object;
@@ -87,7 +87,7 @@ LAB_1801338ca:
     position_y = *(float *)(unaff_RBX + 0x14b8);
     if (time_threshold <= position_y) {
       object_id = calculate_animation_weight(position_y,position_y - *(float *)(unaff_RBX + 0x18),
-                                  *(undefined4 *)(unaff_RBX + 0x90),
+                                  *(int32_t *)(unaff_RBX + 0x90),
                                   *(float *)(unaff_RBX + 0x94) + *(float *)(unaff_RBX + 0x94));
       position_y = (float)object_id;
     }
@@ -97,7 +97,7 @@ LAB_1801338ca:
     position_x = *(float *)(unaff_RBX + 0x14bc);
     if (time_threshold <= position_x) {
       object_id = calculate_animation_weight(position_x,position_x - *(float *)(unaff_RBX + 0x18),
-                                  *(undefined4 *)(unaff_RBX + 0x90),
+                                  *(int32_t *)(unaff_RBX + 0x90),
                                   *(float *)(unaff_RBX + 0x94) + *(float *)(unaff_RBX + 0x94));
       position_x = (float)object_id;
     }
@@ -108,7 +108,7 @@ LAB_1801338ca:
     if ((int)CONCAT71(animation_flags,time_threshold < position_y) != (int)CONCAT71(animation_flags,time_threshold < position_x))
     {
       trigger_animation_state_update();
-      *(undefined4 *)(unaff_RBX + 0x1cf4) = 0x3f800000;
+      *(int32_t *)(unaff_RBX + 0x1cf4) = 0x3f800000;
       interpolation_factor = 1.0;
     }
     if (*(float *)(unaff_RBX + 0x344) <= time_threshold) {
@@ -157,7 +157,7 @@ LAB_1801338ca:
   }
   if ((time_threshold <= *(float *)(unaff_RBX + 0x14c8)) &&
      (*(float *)(unaff_RBX + 0x14c8) == time_threshold)) {
-    *(undefined1 *)(unaff_RBX + 0x1cf8) = 1;
+    *(int8_t *)(unaff_RBX + 0x1cf8) = 1;
   }
   if ((((*(int *)(unaff_RBX + 0x1b2c) == frame_count) || (*(char *)(unaff_RBX + 0x1b3d) != object_flag)) &&
       (*(char *)(unaff_RBX + 0x1cf8) != object_flag)) &&
@@ -204,10 +204,10 @@ LAB_180133c1e:
           position_y = (float)(int)(position_y * *(float *)(unaff_RBX + 0x18) * 800.0);
           *(float *)(current_object + 0x40) = *position_ptr * position_y + *(float *)(current_object + 0x40);
           *(float *)(current_object + 0x44) = interpolation_factor * position_y + *(float *)(current_object + 0x44);
-          *(undefined1 *)(unaff_RBX + 0x1d07) = 1;
+          *(int8_t *)(unaff_RBX + 0x1d07) = 1;
           if (((*(uint *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0xc) & 0x100) == 0) &&
              (*(float *)(unaff_RBX + 0x2e04) <= time_threshold)) {
-            *(undefined4 *)(unaff_RBX + 0x2e04) = *(undefined4 *)(unaff_RBX + 0x1c);
+            *(int32_t *)(unaff_RBX + 0x2e04) = *(int32_t *)(unaff_RBX + 0x1c);
           }
         }
       }
@@ -223,7 +223,7 @@ LAB_180133c1e:
   object_context = animation_id;
   if (current_object == 0) {
 LAB_180133ce2:
-    *(undefined2 *)(unaff_RBX + 0x1d06) = 0x100;
+    *(int16_t *)(unaff_RBX + 0x1d06) = 0x100;
     if (*(longlong *)(target_object + 0x3c0) != 0) {
       target_object = *(longlong *)(target_object + 0x3c0);
     }
@@ -233,7 +233,7 @@ LAB_180133ce2:
       set_object_frame(target_object,0);
     }
     if (*(int *)(target_object + 0x174) == 2) {
-      *(undefined4 *)(unaff_RBX + 0x1cfc) = 1;
+      *(int32_t *)(unaff_RBX + 0x1cfc) = 1;
     }
     if ((*(ulonglong *)(target_object + 0x28) != object_context) &&
        (*(code **)(unaff_RBX + 0x1578) != (code *)0x0)) {
@@ -261,7 +261,7 @@ LAB_180133d4a:
       *(ulonglong *)(render_state + 0x3c0) = object_context;
       object_context = *(ulonglong *)(unaff_RBX + 0x1c98);
     }
-    *(undefined2 *)(unaff_RBX + 0x1d06) = 0x100;
+    *(int16_t *)(unaff_RBX + 0x1d06) = 0x100;
     if ((*(byte *)(object_context + 0x174) & 2) == 0) {
       temp_var = animation_id & 0xffffffff;
     }
@@ -291,8 +291,8 @@ void process_animation_state_transition(void)
   int object_id;
   float *position_ptr;
   uint state_index;
-  undefined1 *stack_ptr;
-  undefined8 stack_data;
+  int8_t *stack_ptr;
+  uint64_t stack_data;
   longlong unaff_RBX;
   longlong current_object;
   ulonglong object_context;
@@ -327,7 +327,7 @@ void process_animation_state_transition(void)
   position_y = *(float *)(object_context + 0x14b8);
   if (min_threshold <= position_y) {
     object_id = calculate_animation_weight(position_y,position_y - *(float *)(object_context + 0x18),
-                                *(undefined4 *)(object_context + 0x90),
+                                *(int32_t *)(object_context + 0x90),
                                 *(float *)(object_context + 0x94) + *(float *)(object_context + 0x94));
     position_y = (float)object_id;
   }
@@ -337,7 +337,7 @@ void process_animation_state_transition(void)
   position_x = *(float *)(object_context + 0x14bc);
   if (min_threshold <= position_x) {
     object_id = calculate_animation_weight(position_x,position_x - *(float *)(object_context + 0x18),
-                                *(undefined4 *)(object_context + 0x90),
+                                *(int32_t *)(object_context + 0x90),
                                 *(float *)(object_context + 0x94) + *(float *)(object_context + 0x94));
     position_x = (float)object_id;
   }
@@ -349,7 +349,7 @@ void process_animation_state_transition(void)
   animation_flags = (undefined7)(animation_id >> 8);
   if ((int)CONCAT71(animation_flags,min_threshold < position_y) != (int)CONCAT71(animation_flags,min_threshold < position_x)) {
     trigger_animation_state_update();
-    *(undefined4 *)(object_context + 0x1cf4) = 0x3f800000;
+    *(int32_t *)(object_context + 0x1cf4) = 0x3f800000;
     interpolation_factor = max_threshold;
   }
   // 更新动画状态标志
@@ -398,7 +398,7 @@ void process_animation_state_transition(void)
   }
   if ((min_threshold <= *(float *)(unaff_RBX + 0x14c8)) &&
      (*(float *)(unaff_RBX + 0x14c8) == min_threshold)) {
-    *(undefined1 *)(unaff_RBX + 0x1cf8) = 1;
+    *(int8_t *)(unaff_RBX + 0x1cf8) = 1;
   }
   if ((((*(int *)(unaff_RBX + 0x1b2c) == object_id) || (*(char *)(unaff_RBX + 0x1b3d) != object_flag)) &&
       (*(char *)(unaff_RBX + 0x1cf8) != object_flag)) &&
@@ -445,10 +445,10 @@ LAB_180133c1e:
           position_y = (float)(int)(position_y * *(float *)(unaff_RBX + 0x18) * 800.0);
           *(float *)(current_object + 0x40) = *position_ptr * position_y + *(float *)(current_object + 0x40);
           *(float *)(current_object + 0x44) = interpolation_factor * position_y + *(float *)(current_object + 0x44);
-          *(undefined1 *)(unaff_RBX + 0x1d07) = 1;
+          *(int8_t *)(unaff_RBX + 0x1d07) = 1;
           if (((*(uint *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0xc) & 0x100) == 0) &&
              (*(float *)(unaff_RBX + 0x2e04) <= min_threshold)) {
-            *(undefined4 *)(unaff_RBX + 0x2e04) = *(undefined4 *)(unaff_RBX + 0x1c);
+            *(int32_t *)(unaff_RBX + 0x2e04) = *(int32_t *)(unaff_RBX + 0x1c);
           }
         }
       }
@@ -464,7 +464,7 @@ LAB_180133c1e:
   object_context = animation_id;
   if (current_object == 0) {
 LAB_180133ce2:
-    *(undefined2 *)(unaff_RBX + 0x1d06) = 0x100;
+    *(int16_t *)(unaff_RBX + 0x1d06) = 0x100;
     if (*(longlong *)(target_object + 0x3c0) != 0) {
       target_object = *(longlong *)(target_object + 0x3c0);
     }
@@ -474,7 +474,7 @@ LAB_180133ce2:
       set_object_frame(target_object,0);
     }
     if (*(int *)(target_object + 0x174) == 2) {
-      *(undefined4 *)(unaff_RBX + 0x1cfc) = 1;
+      *(int32_t *)(unaff_RBX + 0x1cfc) = 1;
     }
     if ((*(ulonglong *)(target_object + 0x28) != object_context) &&
        (*(code **)(unaff_RBX + 0x1578) != (code *)0x0)) {
@@ -502,7 +502,7 @@ LAB_180133d4a:
       *(ulonglong *)(render_state + 0x3c0) = object_context;
       object_context = *(ulonglong *)(unaff_RBX + 0x1c98);
     }
-    *(undefined2 *)(unaff_RBX + 0x1d06) = 0x100;
+    *(int16_t *)(unaff_RBX + 0x1d06) = 0x100;
     if ((*(byte *)(object_context + 0x174) & 2) == 0) {
       temp_var = animation_id & 0xffffffff;
     }
@@ -529,8 +529,8 @@ void reset_animation_state(void)
   char transition_flag;
   float *position_ptr;
   uint state_index;
-  undefined1 *stack_ptr;
-  undefined8 stack_data;
+  int8_t *stack_ptr;
+  uint64_t stack_data;
   longlong unaff_RBX;
   longlong current_object;
   ulonglong object_context;
@@ -549,9 +549,9 @@ void reset_animation_state(void)
   
   // 触发动画状态更新并重置插值因子
   trigger_animation_state_update();
-  *(undefined4 *)(object_context + 0x1cf4) = 0x3f800000;
+  *(int32_t *)(object_context + 0x1cf4) = 0x3f800000;
   if (*(float *)(object_context + 0x344) <= min_threshold) {
-    *(undefined1 *)(object_context + 0x1cf8) = 0;
+    *(int8_t *)(object_context + 0x1cf8) = 0;
     target_object = *(longlong *)(object_context + 0x1cd8);
     *(ulonglong *)(object_context + 0x1cd8) = animation_id;
   }
@@ -589,7 +589,7 @@ void reset_animation_state(void)
   }
   if ((min_threshold <= *(float *)(unaff_RBX + 0x14c8)) &&
      (*(float *)(unaff_RBX + 0x14c8) == min_threshold)) {
-    *(undefined1 *)(unaff_RBX + 0x1cf8) = 1;
+    *(int8_t *)(unaff_RBX + 0x1cf8) = 1;
   }
   object_id = (int)animation_id;
   if ((((*(int *)(unaff_RBX + 0x1b2c) == object_id) || (*(char *)(unaff_RBX + 0x1b3d) != object_flag)) &&
@@ -637,10 +637,10 @@ LAB_180133c1e:
           position_y = (float)(int)(position_y * *(float *)(unaff_RBX + 0x18) * 800.0);
           *(float *)(current_object + 0x40) = *position_ptr * position_y + *(float *)(current_object + 0x40);
           *(float *)(current_object + 0x44) = position_x * position_y + *(float *)(current_object + 0x44);
-          *(undefined1 *)(unaff_RBX + 0x1d07) = 1;
+          *(int8_t *)(unaff_RBX + 0x1d07) = 1;
           if (((*(uint *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0xc) & 0x100) == 0) &&
              (*(float *)(unaff_RBX + 0x2e04) <= min_threshold)) {
-            *(undefined4 *)(unaff_RBX + 0x2e04) = *(undefined4 *)(unaff_RBX + 0x1c);
+            *(int32_t *)(unaff_RBX + 0x2e04) = *(int32_t *)(unaff_RBX + 0x1c);
           }
         }
       }
@@ -656,7 +656,7 @@ LAB_180133c1e:
   object_context = animation_id;
   if (current_object == 0) {
 LAB_180133ce2:
-    *(undefined2 *)(unaff_RBX + 0x1d06) = 0x100;
+    *(int16_t *)(unaff_RBX + 0x1d06) = 0x100;
     if (*(longlong *)(target_object + 0x3c0) != 0) {
       target_object = *(longlong *)(target_object + 0x3c0);
     }
@@ -666,7 +666,7 @@ LAB_180133ce2:
       set_object_frame(target_object,0);
     }
     if (*(int *)(target_object + 0x174) == 2) {
-      *(undefined4 *)(unaff_RBX + 0x1cfc) = 1;
+      *(int32_t *)(unaff_RBX + 0x1cfc) = 1;
     }
     if ((*(ulonglong *)(target_object + 0x28) != object_context) &&
        (*(code **)(unaff_RBX + 0x1578) != (code *)0x0)) {
@@ -694,7 +694,7 @@ LAB_180133d4a:
       *(ulonglong *)(render_state + 0x3c0) = object_context;
       object_context = *(ulonglong *)(unaff_RBX + 0x1c98);
     }
-    *(undefined2 *)(unaff_RBX + 0x1d06) = 0x100;
+    *(int16_t *)(unaff_RBX + 0x1d06) = 0x100;
     if ((*(byte *)(object_context + 0x174) & 2) == 0) {
       temp_var = animation_id & 0xffffffff;
     }
@@ -722,7 +722,7 @@ void update_animation_with_parameters(void)
   char transition_flag;
   float *position_ptr;
   uint state_index;
-  undefined1 *stack_ptr;
+  int8_t *stack_ptr;
   longlong unaff_RBX;
   longlong animation_parameter;
   ulonglong render_state;
@@ -822,7 +822,7 @@ LAB_180133c1e:
           *(char *)(unaff_RBX + 0x1d07) = object_flag;
           if (((*(uint *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0xc) & 0x100) == 0) &&
              (*(float *)(unaff_RBX + 0x2e04) <= min_threshold)) {
-            *(undefined4 *)(unaff_RBX + 0x2e04) = *(undefined4 *)(unaff_RBX + 0x1c);
+            *(int32_t *)(unaff_RBX + 0x2e04) = *(int32_t *)(unaff_RBX + 0x1c);
           }
         }
       }
@@ -838,7 +838,7 @@ LAB_180133c1e:
   object_context = animation_id;
   if (current_object == 0) {
 LAB_180133ce2:
-    *(undefined2 *)(unaff_RBX + 0x1d06) = 0x100;
+    *(int16_t *)(unaff_RBX + 0x1d06) = 0x100;
     if (*(longlong *)(target_object + 0x3c0) != 0) {
       target_object = *(longlong *)(target_object + 0x3c0);
     }
@@ -876,7 +876,7 @@ LAB_180133d4a:
       *(ulonglong *)(render_state + 0x3c0) = object_context;
       object_context = *(ulonglong *)(unaff_RBX + 0x1c98);
     }
-    *(undefined2 *)(unaff_RBX + 0x1d06) = 0x100;
+    *(int16_t *)(unaff_RBX + 0x1d06) = 0x100;
     if ((*(byte *)(object_context + 0x174) & 2) == 0) {
       temp_var = animation_id & 0xffffffff;
     }

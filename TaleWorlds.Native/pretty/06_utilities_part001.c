@@ -15,13 +15,13 @@ undefined DAT_180bf52c0;
 undefined DAT_180bf52c8;
 undefined DAT_180bf52d0;
 undefined DAT_180bf52d8;
-undefined1 DAT_180bf5240;
+int8_t DAT_180bf5240;
 undefined DAT_180bf52a8;
 undefined DAT_180bf52b0;
-undefined1 DAT_180bf52e0;
+int8_t DAT_180bf52e0;
 undefined UNK_180a3c3e0;
-undefined8 UNK_180bf5278;
-undefined8 UNK_180bf5298;
+uint64_t UNK_180bf5278;
+uint64_t UNK_180bf5298;
 undefined DAT_180bf5320;
 undefined DAT_180bf5328;
 undefined DAT_180bf5330;
@@ -73,22 +73,22 @@ undefined DAT_180bf6098;
 
 // 函数: undefined FUN_180941630;
 undefined FUN_180941630;
-undefined1 DAT_180c910f8;
+int8_t DAT_180c910f8;
 
 
 // 函数: undefined FUN_180941650;
 undefined FUN_180941650;
-undefined1 DAT_180c91198;
+int8_t DAT_180c91198;
 
 
 // 函数: undefined FUN_180941690;
 undefined FUN_180941690;
-undefined1 DAT_180c91238;
+int8_t DAT_180c91238;
 
 
 // 函数: undefined FUN_1809416d0;
 undefined FUN_1809416d0;
-undefined1 DAT_180c912d8;
+int8_t DAT_180c912d8;
 
 
 // 函数: undefined FUN_180941710;
@@ -1203,10 +1203,10 @@ undefined UNK_180a24dc0;
 // 函数: undefined FUN_180942660;
 undefined FUN_180942660;
 undefined DAT_180bfc150;
-undefined1 DAT_180bfc140;
+int8_t DAT_180bfc140;
 undefined DAT_180bfc160;
 undefined DAT_180bfc168;
-undefined8 UNK_180bfc158;
+uint64_t UNK_180bfc158;
 undefined DAT_180bfaec0;
 undefined DAT_180bfaec8;
 undefined DAT_180bfaed0;

@@ -16,9 +16,9 @@ void process_render_batch(void)
   bool is_enabled;
   char state_flag1;
   char state_flag2;
-  undefined4 render_flags;
+  int32_t render_flags;
   int element_count;
-  undefined8 texture_handle;
+  uint64_t texture_handle;
   char *string_buffer;
   longlong context_ptr;
   int current_index;
@@ -27,7 +27,7 @@ void process_render_batch(void)
   longlong render_context;
   ulonglong color_value;
   longlong position_offset;
-  undefined8 matrix_data;
+  uint64_t matrix_data;
   int texture_id;
   longlong transform_ptr;
   float position_x;
@@ -40,12 +40,12 @@ void process_render_batch(void)
   float color_g;
   float color_b;
   float color_a;
-  undefined4 blend_mode;
-  undefined4 stack_param1;
+  int32_t blend_mode;
+  int32_t stack_param1;
   double depth_value;
   float position_w;
   float temp_float1;
-  undefined4 temp_param1;
+  int32_t temp_param1;
   float temp_float2;
   float temp_float3;
   float temp_float4;
@@ -77,7 +77,7 @@ void process_render_batch(void)
   else {
     is_enabled = false;
   }
-  render_flags = (undefined4)((ulonglong)stack_param1 >> 0x20);
+  render_flags = (int32_t)((ulonglong)stack_param1 >> 0x20);
   color_a = *(float *)(transform_ptr + 0xd8);
   render_index = *(int *)(transform_ptr + 0xc0);
   scale_y = *(float *)(transform_ptr + 0xe0);
@@ -85,10 +85,10 @@ void process_render_batch(void)
     temp_float4 = -3.4028235e+38;
     temp_float3 = color_b;
     if (0 < render_index) {
-      texture_handle = *(undefined8 *)(transform_ptr + 0xb8);
+      texture_handle = *(uint64_t *)(transform_ptr + 0xb8);
       do {
         alpha_value = (float)func_0x00018011a9b0(texture_handle,texture_id);
-        render_flags = (undefined4)((ulonglong)stack_param1 >> 0x20);
+        render_flags = (int32_t)((ulonglong)stack_param1 >> 0x20);
         if (alpha_value <= temp_float3) {
           temp_float3 = alpha_value;
         }
@@ -110,12 +110,12 @@ void process_render_batch(void)
   }
   position_w = *(float *)(render_context + 0x1738);
   temp_float1 = *(float *)(render_context + 0x173c);
-  temp_param1 = *(undefined4 *)(render_context + 0x1740);
+  temp_param1 = *(int32_t *)(render_context + 0x1740);
   temp_float2 = *(float *)(render_context + 0x1744) * *(float *)(render_context + 0x1628);
   blend_mode = func_0x000180121e20(&stack0x00000040);
-  depth_value = (double)CONCAT44(render_flags,*(undefined4 *)(transform_ptr + 0x1664));
+  depth_value = (double)CONCAT44(render_flags,*(int32_t *)(transform_ptr + 0x1664));
   *(ulonglong *)(transform_ptr + -0x78) = CONCAT44(color_r,blend_mode);
-  FUN_180122960(CONCAT44(color_r,blend_mode),*(undefined8 *)(transform_ptr + -0x70),blend_mode,1,
+  FUN_180122960(CONCAT44(color_r,blend_mode),*(uint64_t *)(transform_ptr + -0x70),blend_mode,1,
                 depth_value);
   data_ptr = _DAT_180c8a9b0;
   if (0 < render_index) {
@@ -135,17 +135,17 @@ void process_render_batch(void)
       }
       current_index = (int)((float)(render_index + -1) * temp_float4);
       temp_index = current_index;
-      temp_float4 = (float)func_0x00018011a9b0(*(undefined8 *)(transform_ptr + 0xb8),
+      temp_float4 = (float)func_0x00018011a9b0(*(uint64_t *)(transform_ptr + 0xb8),
                                           (longlong)(current_index + batch_count) % (longlong)render_index & 0xffffffff)
       ;
-      texture_handle = *(undefined8 *)(transform_ptr + 0xb8);
+      texture_handle = *(uint64_t *)(transform_ptr + 0xb8);
       temp_float3 = (float)func_0x00018011a9b0(texture_handle,(longlong)(current_index + batch_count + 1) % (longlong)render_index &
                                                 0xffffffff);
       depth_value = (double)temp_float3;
       FUN_18012ea30(&UNK_180a063d0,current_index,(double)temp_float4,current_index + 1,depth_value);
     }
     else {
-      texture_handle = *(undefined8 *)(transform_ptr + 0xb8);
+      texture_handle = *(uint64_t *)(transform_ptr + 0xb8);
     }
     temp_float4 = alpha_value;
     if (color_a != scale_y) {
@@ -161,14 +161,14 @@ void process_render_batch(void)
     scale_y = 1.0 - scale_y;
     position_w = *(float *)(_DAT_180c8a9b0 + 0x1948);
     temp_float1 = *(float *)(_DAT_180c8a9b0 + 0x194c);
-    temp_param1 = *(undefined4 *)(_DAT_180c8a9b0 + 0x1950);
+    temp_param1 = *(int32_t *)(_DAT_180c8a9b0 + 0x1950);
     temp_float3 = *(float *)(_DAT_180c8a9b0 + 0x1628);
     temp_float2 = *(float *)(_DAT_180c8a9b0 + 0x1954) * temp_float3;
     scale_factor = alpha_value;
     temp_float8 = (float)func_0x000180121e20(&stack0x00000040);
     position_w = *(float *)(data_ptr + 0x1958);
     temp_float1 = *(float *)(data_ptr + 0x195c);
-    temp_param1 = *(undefined4 *)(data_ptr + 0x1960);
+    temp_param1 = *(int32_t *)(data_ptr + 0x1960);
     temp_float2 = *(float *)(data_ptr + 0x1964) * temp_float3;
     alpha_value = (float)func_0x000180121e20(&stack0x00000040);
     temp_float3 = temp_float8;
@@ -178,11 +178,11 @@ void process_render_batch(void)
       *(float *)(transform_ptr + 0xb0) = *(float *)(transform_ptr + 0xb0) - *(float *)(transform_ptr + 0xa0);
       temp_float7 = alpha_value;
       do {
-        render_flags = (undefined4)((ulonglong)depth_value >> 0x20);
+        render_flags = (int32_t)((ulonglong)depth_value >> 0x20);
         position_x = (float)(render_index + -1) * temp_float7;
         temp_float7 = temp_float7 + 1.0 / (float)(int)loop_counter;
         element_count = (int)(position_x + 0.5);
-        position_x = (float)func_0x00018011a9b0(*(undefined8 *)(transform_ptr + 0xb8),
+        position_x = (float)func_0x00018011a9b0(*(uint64_t *)(transform_ptr + 0xb8),
                                             (longlong)(element_count + batch_count + 1) % (longlong)render_index &
                                             0xffffffff);
         position_y = (position_x - color_a) * temp_float4;
@@ -202,7 +202,7 @@ void process_render_batch(void)
              *(float *)(transform_ptr + 0xb0) * temp_float2 + *(float *)(transform_ptr + 0xa0);
         temp_float1 = temp_float5 * scale_y + temp_float6;
         position_w = *(float *)(transform_ptr + 0xb0) * temp_float7 + *(float *)(transform_ptr + 0xa0);
-        FUN_180293d20(*(undefined8 *)(*(longlong *)(transform_ptr + -0x80) + 0x2e8),&stack0x00000070,
+        FUN_180293d20(*(uint64_t *)(*(longlong *)(transform_ptr + -0x80) + 0x2e8),&stack0x00000070,
                       &stack0x00000040,position_x,depth_value);
         color_value = color_value - 1;
         data_ptr = _DAT_180c8a9b0;
@@ -210,13 +210,13 @@ void process_render_batch(void)
         temp_float2 = temp_float7;
       } while (color_value != 0);
     }
-    matrix_data = *(undefined8 *)(transform_ptr + 0xa8);
-    blend_mode = *(undefined4 *)(transform_ptr + -0x60);
+    matrix_data = *(uint64_t *)(transform_ptr + 0xa8);
+    blend_mode = *(int32_t *)(transform_ptr + -0x60);
     color_r = temp_float6;
   }
   text_ptr = *(char **)(transform_ptr + 0xd0);
   if (text_ptr != (char *)0x0) {
-    *(undefined4 *)(transform_ptr + 0xb0) = blend_mode;
+    *(int32_t *)(transform_ptr + 0xb0) = blend_mode;
     stack_param2 = 0x3f000000;
     *(float *)(transform_ptr + 0xb4) = color_r + *(float *)(transform_ptr + 0x1660);
     string_buffer = text_ptr;
@@ -227,7 +227,7 @@ void process_render_batch(void)
       }
     }
     if (((int)string_buffer != (int)text_ptr) &&
-       (FUN_1801224c0(*(undefined8 *)(*(longlong *)(data_ptr + 0x1af8) + 0x2e8),transform_ptr + 0xb0,
+       (FUN_1801224c0(*(uint64_t *)(*(longlong *)(data_ptr + 0x1af8) + 0x2e8),transform_ptr + 0xb0,
                       transform_ptr + -0x70,text_ptr,string_buffer), *(char *)(data_ptr + 0x2e38) != '\0')) {
       FUN_18013c800(transform_ptr + 0xb0,text_ptr,string_buffer);
     }
@@ -259,11 +259,11 @@ void process_text_elements(void)
   longlong render_data;
   float alpha_value;
   float color_value;
-  undefined4 blend_mode;
-  undefined8 stack_param1;
-  undefined8 stack_param2;
+  int32_t blend_mode;
+  uint64_t stack_param1;
+  uint64_t stack_param2;
   
-  *(undefined4 *)(transform_ptr + 0xb0) = blend_mode;
+  *(int32_t *)(transform_ptr + 0xb0) = blend_mode;
   stack_param2 = 0x3f000000;
   *(float *)(transform_ptr + 0xb4) = color_value + *(float *)(render_data + 0x1660);
   text_ptr = string_data;
@@ -274,7 +274,7 @@ void process_text_elements(void)
     }
   }
   if ((int)text_ptr != (int)string_data) {
-    FUN_1801224c0(*(undefined8 *)(*(longlong *)(context_ptr + 0x1af8) + 0x2e8),transform_ptr + 0xb0,
+    FUN_1801224c0(*(uint64_t *)(*(longlong *)(context_ptr + 0x1af8) + 0x2e8),transform_ptr + 0xb0,
                   transform_ptr + -0x70);
     if (*(char *)(context_ptr + 0x2e38) != '\0') {
       FUN_18013c800(transform_ptr + 0xb0);
@@ -341,13 +341,13 @@ void process_text_with_params(void)
   longlong render_data;
   float alpha_value;
   float color_value;
-  undefined4 blend_mode;
-  undefined8 stack_param1;
+  int32_t blend_mode;
+  uint64_t stack_param1;
   
   context_ptr = _DAT_180c8a9b0;
   text_ptr = *(char **)(transform_ptr + 0xd0);
   if (text_ptr != (char *)0x0) {
-    *(undefined4 *)(transform_ptr + 0xb0) = blend_mode;
+    *(int32_t *)(transform_ptr + 0xb0) = blend_mode;
     *(float *)(transform_ptr + 0xb4) = color_value + *(float *)(render_data + 0x1660);
     string_end = text_ptr;
     if (text_ptr != (char *)0xffffffffffffffff) {
@@ -357,7 +357,7 @@ void process_text_with_params(void)
       }
     }
     if ((int)string_end != (int)text_ptr) {
-      FUN_1801224c0(*(undefined8 *)(*(longlong *)(context_ptr + 0x1af8) + 0x2e8),transform_ptr + 0xb0,
+      FUN_1801224c0(*(uint64_t *)(*(longlong *)(context_ptr + 0x1af8) + 0x2e8),transform_ptr + 0xb0,
                     transform_ptr + -0x70,text_ptr,string_end);
       if (*(char *)(context_ptr + 0x2e38) != '\0') {
         FUN_18013c800(transform_ptr + 0xb0,text_ptr,string_end);
@@ -379,7 +379,7 @@ void process_text_with_params(void)
  * 功能：渲染带特效的文本，处理文本渲染和特效
  * 这个函数负责渲染带有各种视觉特效的文本
  */
-ulonglong render_text_with_effects(char *text_data,ulonglong position_data,char effect_flag,undefined8 render_params)
+ulonglong render_text_with_effects(char *text_data,ulonglong position_data,char effect_flag,uint64_t render_params)
 
 {
   float position_x;
@@ -388,7 +388,7 @@ ulonglong render_text_with_effects(char *text_data,ulonglong position_data,char 
   longlong context_ptr;
   longlong render_data;
   byte is_enabled;
-  undefined4 render_flags;
+  int32_t render_flags;
   ulonglong result;
   char *text_ptr;
   float *font_data;
@@ -396,14 +396,14 @@ ulonglong render_text_with_effects(char *text_data,ulonglong position_data,char 
   float extraout_XMM0_Da;
   float text_width;
   ulonglong stack_param;
-  undefined4 stack_buffer1;
-  undefined4 stack_buffer2;
-  undefined4 stack_buffer3;
+  int32_t stack_buffer1;
+  int32_t stack_buffer2;
+  int32_t stack_buffer3;
   float stack_buffer4;
   
   render_data = _DAT_180c8a9b0;
   result = *(ulonglong *)(_DAT_180c8a9b0 + 0x1af8);
-  *(undefined1 *)(result + 0xb1) = 1;
+  *(int8_t *)(result + 0xb1) = 1;
   context_ptr = *(longlong *)(render_data + 0x1af8);
   if (*(char *)(context_ptr + 0xb4) == '\0') {
     position_x = *(float *)(context_ptr + 0x100);
@@ -435,8 +435,8 @@ ulonglong render_text_with_effects(char *text_data,ulonglong position_data,char 
            (float)(int)(*(float *)(render_data + 0x166c) * 0.5) + *(float *)(context_ptr + 0x100);
       position_x = *(float *)(render_data + 0x166c);
       position_y = *(float *)(render_data + 0x1670);
-      stack_buffer2 = *(undefined4 *)(render_data + 0x166c);
-      stack_buffer3 = *(undefined4 *)(render_data + 0x1670);
+      stack_buffer2 = *(int32_t *)(render_data + 0x166c);
+      stack_buffer3 = *(int32_t *)(render_data + 0x1670);
       FUN_18013e000(render_data + 0x1b90,&stack_buffer1);
       *(float *)(render_data + 0x166c) = position_x + position_x;
       *(float *)(render_data + 0x1670) = position_y + position_y;
@@ -458,9 +458,9 @@ ulonglong render_text_with_effects(char *text_data,ulonglong position_data,char 
       if (effect_flag != '\0') {
         font_size = *(float *)(render_data + 0x19f8);
         position_z = *(float *)(context_ptr + 0x2a0);
-        stack_buffer1 = *(undefined4 *)(_DAT_180c8a9b0 + 0x16c8);
-        stack_buffer2 = *(undefined4 *)(_DAT_180c8a9b0 + 0x16cc);
-        stack_buffer3 = *(undefined4 *)(_DAT_180c8a9b0 + 0x16d0);
+        stack_buffer1 = *(int32_t *)(_DAT_180c8a9b0 + 0x16c8);
+        stack_buffer2 = *(int32_t *)(_DAT_180c8a9b0 + 0x16cc);
+        stack_buffer3 = *(int32_t *)(_DAT_180c8a9b0 + 0x16d0);
         stack_buffer4 = *(float *)(_DAT_180c8a9b0 + 0x16d4) * *(float *)(_DAT_180c8a9b0 + 0x1628);
         render_flags = func_0x000180121e20(&stack_buffer1);
         FUN_180122f40(CONCAT44(font_size * 0.067 + position_y,text_width + position_z + font_size * 0.4 + position_x),render_flags,
@@ -484,14 +484,14 @@ ulonglong render_text_with_effects(char *text_data,ulonglong position_data,char 
  * 功能：渲染文本元素，处理单个文本元素的渲染
  * 这个函数负责渲染单个文本元素，支持多种渲染模式
  */
-undefined1 render_text_element(void)
+int8_t render_text_element(void)
 
 {
   float position_x;
   float position_y;
   float position_z;
-  undefined1 result;
-  undefined4 render_flags;
+  int8_t result;
+  int32_t render_flags;
   char *text_ptr;
   float *font_data;
   longlong context_ptr;
@@ -499,16 +499,16 @@ undefined1 render_text_element(void)
   longlong render_context;
   char effect_flag;
   float font_size;
-  undefined8 stack_param1;
-  undefined8 extraout_XMM0_Qa;
+  uint64_t stack_param1;
+  uint64_t extraout_XMM0_Qa;
   float text_width;
-  undefined4 stack_param2;
-  undefined4 stack_param3;
-  undefined4 stack_param4;
+  int32_t stack_param2;
+  int32_t stack_param3;
+  int32_t stack_param4;
   float stack_param5;
-  undefined4 stack_param6;
-  undefined4 stack_param7;
-  undefined4 stack_param8;
+  int32_t stack_param6;
+  int32_t stack_param7;
+  int32_t stack_param8;
   float stack_param9;
   
   position_x = *(float *)(render_context + 0x100);
@@ -539,8 +539,8 @@ undefined1 render_text_element(void)
          (float)(int)(*(float *)(context_ptr + 0x166c) * 0.5) + *(float *)(render_context + 0x100);
     position_x = *(float *)(context_ptr + 0x166c);
     position_y = *(float *)(context_ptr + 0x1670);
-    stack_param3 = *(undefined4 *)(context_ptr + 0x166c);
-    stack_param4 = *(undefined4 *)(context_ptr + 0x1670);
+    stack_param3 = *(int32_t *)(context_ptr + 0x166c);
+    stack_param4 = *(int32_t *)(context_ptr + 0x1670);
     stack_param1 = FUN_18013e000(context_ptr + 0x1b90,&stack0x00000040);
     *(float *)(context_ptr + 0x166c) = position_x + position_x;
     *(float *)(context_ptr + 0x1670) = position_y + position_y;
@@ -564,9 +564,9 @@ undefined1 render_text_element(void)
     if (effect_flag != '\0') {
       font_size = *(float *)(context_ptr + 0x19f8);
       position_z = *(float *)(render_context + 0x2a0);
-      stack_param2 = *(undefined4 *)(_DAT_180c8a9b0 + 0x16c8);
-      stack_param3 = *(undefined4 *)(_DAT_180c8a9b0 + 0x16cc);
-      stack_param4 = *(undefined4 *)(_DAT_180c8a9b0 + 0x16d0);
+      stack_param2 = *(int32_t *)(_DAT_180c8a9b0 + 0x16c8);
+      stack_param3 = *(int32_t *)(_DAT_180c8a9b0 + 0x16cc);
+      stack_param4 = *(int32_t *)(_DAT_180c8a9b0 + 0x16d0);
       stack_param5 =
            *(float *)(_DAT_180c8a9b0 + 0x16d4) * *(float *)(_DAT_180c8a9b0 + 0x1628);
       render_flags = func_0x000180121e20(&stack0x00000040);
@@ -584,28 +584,28 @@ undefined1 render_text_element(void)
  * 功能：执行简单的渲染操作，处理基础渲染任务
  * 这是一个简化的渲染操作函数，用于执行基础的渲染任务
  */
-undefined1 simple_render_operation(void)
+int8_t simple_render_operation(void)
 
 {
   float position_x;
   float position_y;
-  undefined1 result;
+  int8_t result;
   longlong context_ptr;
   longlong render_context;
-  undefined8 stack_param1;
-  undefined4 stack_param2;
-  undefined4 stack_param3;
-  undefined4 stack_param4;
-  undefined4 stack_param5;
-  undefined4 stack_param6;
+  uint64_t stack_param1;
+  int32_t stack_param2;
+  int32_t stack_param3;
+  int32_t stack_param4;
+  int32_t stack_param5;
+  int32_t stack_param6;
   
   stack_param2 = 0xd;
   *(float *)(render_context + 0x100) =
        (float)(int)(*(float *)(context_ptr + 0x166c) * 0.5) + *(float *)(render_context + 0x100);
   position_x = *(float *)(context_ptr + 0x166c);
   position_y = *(float *)(context_ptr + 0x1670);
-  stack_param3 = *(undefined4 *)(context_ptr + 0x166c);
-  stack_param4 = *(undefined4 *)(context_ptr + 0x1670);
+  stack_param3 = *(int32_t *)(context_ptr + 0x166c);
+  stack_param4 = *(int32_t *)(context_ptr + 0x1670);
   stack_param1 = FUN_18013e000(context_ptr + 0x1b90,&stack0x00000040);
   *(float *)(context_ptr + 0x166c) = position_x + position_x;
   *(float *)(context_ptr + 0x1670) = position_y + position_y;

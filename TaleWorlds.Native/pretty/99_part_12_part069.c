@@ -597,7 +597,7 @@ void Math_MatrixTransformProcessor(float *outputVector, float *inputVector, uint
  * - 实现内存对齐访问优化
  * - 支持向量化计算
  */
-void Math_VectorCalculationEngine(undefined8 context, float *inputVector, uint elementCount, int param_4)
+void Math_VectorCalculationEngine(uint64_t context, float *inputVector, uint elementCount, int param_4)
 {
   // 浮点数变量声明 - 用于矩阵和向量计算
   float matrixElement_A1, matrixElement_A2, matrixElement_A3, matrixElement_A4;
@@ -614,14 +614,14 @@ void Math_VectorCalculationEngine(undefined8 context, float *inputVector, uint e
   longlong matrixPointer;
   longlong registerRBX;
   int mainLoopCounter;
-  undefined8 registerRBP;
+  uint64_t registerRBP;
   float *outputVector;
   longlong tempVariable;
   longlong registerR10;
   longlong registerR11;
-  undefined8 registerR12;
-  undefined8 registerR13;
-  undefined8 registerR14;
+  uint64_t registerR12;
+  uint64_t registerR13;
+  uint64_t registerR14;
   ulonglong registerR15;
   float calculationResult_A, calculationResult_B, calculationResult_C, calculationResult_D;
   
@@ -633,14 +633,14 @@ void Math_VectorCalculationEngine(undefined8 context, float *inputVector, uint e
   longlong stackParameter_b8;
   
   // 保存寄存器状态到栈中
-  *(undefined8 *)(registerRAX + 8) = registerRBP;
+  *(uint64_t *)(registerRAX + 8) = registerRBP;
   mainLoopCounter = (int)elementCount >> 2;  // 4路循环展开
-  *(undefined8 *)(registerRAX + -0x28) = registerR14;
+  *(uint64_t *)(registerRAX + -0x28) = registerR14;
   
   // 主循环：处理4个元素为一组的数据块
   if (mainLoopCounter != 0) {
-    *(undefined8 *)(registerRAX + 0x10) = registerR12;
-    *(undefined8 *)(registerRAX + 0x18) = registerR13;
+    *(uint64_t *)(registerRAX + 0x10) = registerR12;
+    *(uint64_t *)(registerRAX + 0x18) = registerR13;
     stride_2x = param_4 * 2;     // 2倍步长
     stride_3x = param_4 * 3;     // 3倍步长
     

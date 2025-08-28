@@ -61,7 +61,7 @@
  */
 void ui_system_advanced_particle_system_update(longlong ui_context, longlong particle_data, 
                                              longlong animation_data, float time_delta,
-                                             undefined1 *effect_params, char *control_data)
+                                             int8_t *effect_params, char *control_data)
 {
     // 局部变量声明
     float *particle_position_ptr;
@@ -69,11 +69,11 @@ void ui_system_advanced_particle_system_update(longlong ui_context, longlong par
     float *particle_acceleration_ptr;
     float *particle_force_ptr;
     char control_flag;
-    undefined8 transform_result;
-    undefined1 transform_matrix_1[16];
-    undefined1 transform_matrix_2[16];
-    undefined1 transform_matrix_3[16];
-    undefined1 transform_matrix_4[16];
+    uint64_t transform_result;
+    int8_t transform_matrix_1[16];
+    int8_t transform_matrix_2[16];
+    int8_t transform_matrix_3[16];
+    int8_t transform_matrix_4[16];
     uint blend_mask_result;
     longlong particle_index;
     float *particle_weight_ptr;
@@ -86,7 +86,7 @@ void ui_system_advanced_particle_system_update(longlong ui_context, longlong par
     ulonglong effect_id;
     longlong render_target;
     float *render_data_ptr;
-    undefined1 *effect_param_ptr;
+    int8_t *effect_param_ptr;
     float base_weight;
     float target_weight;
     float interpolation_result;
@@ -95,15 +95,15 @@ void ui_system_advanced_particle_system_update(longlong ui_context, longlong par
     float animation_progress;
     float rotation_angle;
     float scale_factor;
-    undefined1 stack_matrix_1[16];
-    undefined1 stack_matrix_2[16];
-    undefined1 stack_matrix_3[16];
-    undefined1 stack_matrix_4[16];
-    undefined1 stack_matrix_5[16];
-    undefined1 stack_matrix_6[16];
-    undefined1 stack_matrix_7[16];
-    undefined1 stack_matrix_8[16];
-    undefined1 stack_matrix_9[16];
+    int8_t stack_matrix_1[16];
+    int8_t stack_matrix_2[16];
+    int8_t stack_matrix_3[16];
+    int8_t stack_matrix_4[16];
+    int8_t stack_matrix_5[16];
+    int8_t stack_matrix_6[16];
+    int8_t stack_matrix_7[16];
+    int8_t stack_matrix_8[16];
+    int8_t stack_matrix_9[16];
     float particle_intensity;
     float particle_opacity;
     float particle_size;
@@ -114,15 +114,15 @@ void ui_system_advanced_particle_system_update(longlong ui_context, longlong par
     float particle_attraction;
     float particle_repulsion;
     float particle_turbulence;
-    undefined1 stack_buffer[32];
-    undefined4 render_flags;
-    undefined1 blend_mode;
+    int8_t stack_buffer[32];
+    int32_t render_flags;
+    int8_t blend_mode;
     float stack_weight_1;
     float stack_weight_2;
     longlong stack_context_1;
     longlong stack_context_2;
     char *stack_control_ptr;
-    undefined8 stack_transform;
+    uint64_t stack_transform;
     float stack_scale_1;
     float stack_scale_2;
     float stack_scale_3;
@@ -131,9 +131,9 @@ void ui_system_advanced_particle_system_update(longlong ui_context, longlong par
     longlong stack_particle_1;
     char *stack_particle_ptr;
     longlong stack_resource_1;
-    undefined1 *stack_effect_ptr;
+    int8_t *stack_effect_ptr;
     float matrix_stack[UI_MATRIX_STACK_SIZE];
-    undefined1 stack_flag;
+    int8_t stack_flag;
     ulonglong stack_id;
     
     // 初始化栈变量
@@ -347,7 +347,7 @@ void ui_system_advanced_particle_system_update(longlong ui_context, longlong par
                 
                 stack_weight_2 = particle_intensity;
                 particle_weight_ptr = (float *)ui_system_get_particle_data(stack_resource_1, 
-                                                                        *(undefined1 *)(effect_id + 0x100 + stack_context_2),
+                                                                        *(int8_t *)(effect_id + 0x100 + stack_context_2),
                                                                         stack_context_2);
                 
                 // 读取粒子变换矩阵
@@ -607,7 +607,7 @@ void ui_system_advanced_particle_system_update(longlong ui_context, longlong par
                 particle_lifetime_factor = particle_weight_ptr[2];
                 particle_intensity = particle_weight_ptr[3];
                 particle_weight_ptr = (float *)ui_system_get_particle_data(stack_resource_1, 
-                                                                        *(undefined1 *)(effect_id + 0x100 + stack_context_2),
+                                                                        *(int8_t *)(effect_id + 0x100 + stack_context_2),
                                                                         stack_context_2);
                 
                 // 读取粒子变换矩阵并应用
@@ -946,7 +946,7 @@ void ui_system_advanced_particle_system_update(longlong ui_context, longlong par
             matrix_stack[9] = 3.4028235e+38;
             stack_flag = 0;
             matrix_stack[0xe] = 0.0;
-            transform_result = *(undefined8 *)(particle_state + 0x20);
+            transform_result = *(uint64_t *)(particle_state + 0x20);
             matrix_stack[10] = 0.0;
             matrix_stack[0xb] = 0.0;
             matrix_stack[0xc] = 0.0;

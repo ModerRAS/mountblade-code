@@ -116,17 +116,17 @@
  * @param param_5 数据长度
  * @return void 无返回值
  */
-void DataStreamProcessor(longlong *param_1,longlong *param_2,undefined8 *param_3,byte param_4,uint param_5)
+void DataStreamProcessor(longlong *param_1,longlong *param_2,uint64_t *param_3,byte param_4,uint param_5)
 
 {{
-  undefined1 uVar1;
+  int8_t uVar1;
   longlong lVar2;
-  undefined1 *puVar3;
+  int8_t *puVar3;
   longlong lVar4;
-  undefined1 *puVar5;
+  int8_t *puVar5;
   longlong lVar6;
   ulonglong uVar7;
-  undefined1 *puVar8;
+  int8_t *puVar8;
   longlong lVar9;
   
   // 检查控制标志，决定是否进行数据预处理
@@ -163,20 +163,20 @@ void DataStreamProcessor(longlong *param_1,longlong *param_2,undefined8 *param_3
   }
   
   // 处理主数据块
-  puVar3 = (undefined1 *)*param_3;
+  puVar3 = (int8_t *)*param_3;
   lVar2 = *param_2;
   lVar4 = param_2[1];
   lVar9 = 0;
-  if (puVar3 == (undefined1 *)0x0) {
-    puVar5 = (undefined1 *)GLOBAL_DATA_ADDRESS_1;
+  if (puVar3 == (int8_t *)0x0) {
+    puVar5 = (int8_t *)GLOBAL_DATA_ADDRESS_1;
     lVar6 = lVar9;
   }
   else {
     puVar5 = puVar3;
     lVar6 = param_3[2];
   }
-  puVar8 = (undefined1 *)GLOBAL_DATA_ADDRESS_1;
-  if (puVar3 != (undefined1 *)0x0) {
+  puVar8 = (int8_t *)GLOBAL_DATA_ADDRESS_1;
+  if (puVar3 != (int8_t *)0x0) {
     puVar8 = puVar3;
   }
   while (puVar8 != puVar5 + lVar6) {
@@ -198,16 +198,16 @@ void DataStreamProcessor(longlong *param_1,longlong *param_2,undefined8 *param_3
   }
   
   // 处理属性数据
-  puVar3 = (undefined1 *)param_3[1];
-  if (puVar3 == (undefined1 *)0x0) {
-    puVar5 = (undefined1 *)GLOBAL_DATA_ADDRESS_1;
+  puVar3 = (int8_t *)param_3[1];
+  if (puVar3 == (int8_t *)0x0) {
+    puVar5 = (int8_t *)GLOBAL_DATA_ADDRESS_1;
   }
   else {
     lVar9 = param_3[3];
     puVar5 = puVar3;
   }
-  puVar8 = (undefined1 *)GLOBAL_DATA_ADDRESS_1;
-  if (puVar3 != (undefined1 *)0x0) {
+  puVar8 = (int8_t *)GLOBAL_DATA_ADDRESS_1;
+  if (puVar3 != (int8_t *)0x0) {
     puVar8 = puVar3;
   }
   while (puVar8 != puVar5 + lVar9) {
@@ -254,7 +254,7 @@ void DataStreamProcessor(longlong *param_1,longlong *param_2,undefined8 *param_3
  * @param param_4 附加参数
  * @return longlong* 流对象指针
  */
-longlong * StreamOutputOperator(longlong *param_1,undefined1 param_2,undefined8 param_3,undefined8 param_4)
+longlong * StreamOutputOperator(longlong *param_1,int8_t param_2,uint64_t param_3,uint64_t param_4)
 
 {{
   longlong *plVar1;
@@ -283,16 +283,16 @@ longlong * StreamOutputOperator(longlong *param_1,undefined1 param_2,undefined8 
     if ((*(uint *)((longlong)*(int *)(lVar3 + 4) + 0x18 + (longlong)param_1) & 0x1c0) == 0x40) {
 LAB_1800a0f0c:
       iVar7 = _sputc___basic_streambuf_DU__char_traits_D_std___std__QEAAHD_Z
-                        (*(undefined8 *)((longlong)*(int *)(lVar3 + 4) + 0x48 + (longlong)param_1),
+                        (*(uint64_t *)((longlong)*(int *)(lVar3 + 4) + 0x48 + (longlong)param_1),
                          param_2);
       if (iVar7 == FILE_OPERATION_FAILURE) {
         iVar5 = iVar6;
       }
       for (; (iVar7 = iVar5, iVar5 == 0 && (0 < lVar4)); lVar4 = lVar4 + -1) {
         iVar7 = _sputc___basic_streambuf_DU__char_traits_D_std___std__QEAAHD_Z
-                          (*(undefined8 *)
+                          (*(uint64_t *)
                             ((longlong)*(int *)(*param_1 + 4) + 0x48 + (longlong)param_1),
-                           *(undefined1 *)
+                           *(int8_t *)
                             ((longlong)*(int *)(*param_1 + 4) + 0x58 + (longlong)param_1));
         if (iVar7 == FILE_OPERATION_FAILURE) {
           iVar5 = iVar6;
@@ -306,9 +306,9 @@ LAB_1800a0f0c:
           goto LAB_1800a0f0c;
         }
         iVar7 = _sputc___basic_streambuf_DU__char_traits_D_std___std__QEAAHD_Z
-                          (*(undefined8 *)
+                          (*(uint64_t *)
                             ((longlong)*(int *)(*param_1 + 4) + 0x48 + (longlong)param_1),
-                           *(undefined1 *)
+                           *(int8_t *)
                             ((longlong)*(int *)(*param_1 + 4) + 0x58 + (longlong)param_1));
         if (iVar7 == FILE_OPERATION_FAILURE) {
           iVar5 = iVar6;
@@ -318,7 +318,7 @@ LAB_1800a0f0c:
       }
     }
   }
-  *(undefined8 *)((longlong)*(int *)(*param_1 + 4) + 0x28 + (longlong)param_1) = 0;
+  *(uint64_t *)((longlong)*(int *)(*param_1 + 4) + 0x28 + (longlong)param_1) = 0;
   _setstate___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
             ((longlong)*(int *)(*param_1 + 4) + (longlong)param_1,iVar5,0,param_4,iVar7);
   cVar2 = _uncaught_exception_std__YA_NXZ();
@@ -349,9 +349,9 @@ LAB_1800a0f0c:
  * 
  * @param param_1 初始化目标指针
  * @param param_2 流对象指针
- * @return undefined8* 初始化完成的对象指针
+ * @return uint64_t* 初始化完成的对象指针
  */
-undefined8 * StreamInitializer(undefined8 *param_1,longlong *param_2)
+uint64_t * StreamInitializer(uint64_t *param_1,longlong *param_2)
 
 {{
   longlong *plVar1;
@@ -465,17 +465,17 @@ void StreamCleaner(longlong *param_1)
  * @param param_4 附加参数
  * @return longlong* 流对象指针
  */
-longlong * StringStreamOutputter(longlong *param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+longlong * StringStreamOutputter(longlong *param_1,longlong param_2,uint64_t param_3,uint64_t param_4)
 
 {{
   longlong *plVar1;
   char cVar2;
   int iVar3;
   longlong lVar4;
-  undefined4 uVar5;
+  int32_t uVar5;
   longlong lVar6;
   longlong lVar7;
-  undefined4 uVar8;
+  int32_t uVar8;
   longlong *plStack_30;
   char cStack_28;
   
@@ -501,23 +501,23 @@ longlong * StringStreamOutputter(longlong *param_1,longlong param_2,undefined8 p
     if ((*(uint *)((longlong)*(int *)(lVar4 + 4) + 0x18 + (longlong)param_1) & 0x1c0) != 0x40) {
       for (; 0 < lVar6; lVar6 = lVar6 + -1) {
         iVar3 = _sputc___basic_streambuf_DU__char_traits_D_std___std__QEAAHD_Z
-                          (*(undefined8 *)
+                          (*(uint64_t *)
                             ((longlong)*(int *)(*param_1 + 4) + 0x48 + (longlong)param_1),
-                           *(undefined1 *)
+                           *(int8_t *)
                             ((longlong)*(int *)(*param_1 + 4) + 0x58 + (longlong)param_1));
         if (iVar3 == FILE_OPERATION_FAILURE) goto LAB_1800a1263;
       }
       lVar4 = *param_1;
     }
     lVar4 = _sputn___basic_streambuf_DU__char_traits_D_std___std__QEAA_JPEBD_J_Z
-                      (*(undefined8 *)((longlong)*(int *)(lVar4 + 4) + 0x48 + (longlong)param_1),
+                      (*(uint64_t *)((longlong)*(int *)(lVar4 + 4) + 0x48 + (longlong)param_1),
                        param_2,lVar7);
     if (lVar4 == lVar7) {
       for (; 0 < lVar6; lVar6 = lVar6 + -1) {
         iVar3 = _sputc___basic_streambuf_DU__char_traits_D_std___std__QEAAHD_Z
-                          (*(undefined8 *)
+                          (*(uint64_t *)
                             ((longlong)*(int *)(*param_1 + 4) + 0x48 + (longlong)param_1),
-                           *(undefined1 *)
+                           *(int8_t *)
                             ((longlong)*(int *)(*param_1 + 4) + 0x58 + (longlong)param_1));
         if (iVar3 == FILE_OPERATION_FAILURE) goto LAB_1800a1263;
       }
@@ -527,7 +527,7 @@ LAB_1800a1263:
       uVar5 = STREAM_STATE_FAILURE;
       uVar8 = STREAM_STATE_FAILURE;
     }
-    *(undefined8 *)((longlong)*(int *)(*param_1 + 4) + 0x28 + (longlong)param_1) = 0;
+    *(uint64_t *)((longlong)*(int *)(*param_1 + 4) + 0x28 + (longlong)param_1) = 0;
   }
   _setstate___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
             ((longlong)*(int *)(*param_1 + 4) + (longlong)param_1,uVar5,0,param_4,uVar8);
@@ -577,10 +577,10 @@ DataDistributionProcessor(longlong *param_1,longlong *param_2,longlong param_3,u
   longlong lVar7;
   longlong *plStack_58;
   longlong lStack_50;
-  undefined1 auStack_48 [32];
+  int8_t auStack_48 [32];
   
   // 根据数据类型分发处理
-  switch(*(undefined4 *)(param_3 + 0x28)) {
+  switch(*(int32_t *)(param_3 + 0x28)) {
   case 0: // 递归处理数据类型
     plVar6 = (longlong *)*param_2;
     lVar7 = param_2[1];
@@ -754,24 +754,24 @@ DataTransferProcessor:
  * @param param_4 控制标志
  * @return longlong* 格式化结果指针
  */
-longlong * DataFormattingProcessor(longlong *param_1,undefined8 param_2,undefined8 param_3,uint param_4)
+longlong * DataFormattingProcessor(longlong *param_1,uint64_t param_2,uint64_t param_3,uint param_4)
 
 {
   longlong lVar1;
   longlong in_RAX;
   longlong *plVar2;
   longlong *unaff_RBX;
-  undefined8 unaff_RSI;
+  uint64_t unaff_RSI;
   longlong in_R11;
-  undefined8 unaff_R13;
-  undefined8 unaff_R14;
-  undefined8 unaff_R15;
+  uint64_t unaff_R13;
+  uint64_t unaff_R14;
+  uint64_t unaff_R15;
   
-  *(undefined8 *)(in_R11 + 0x10) = unaff_R13;
-  *(undefined8 *)(in_R11 + -0x28) = unaff_R15;
+  *(uint64_t *)(in_R11 + 0x10) = unaff_R13;
+  *(uint64_t *)(in_R11 + -0x28) = unaff_R15;
   if ((uint)in_RAX < 8) {
-    *(undefined8 *)(in_R11 + 8) = unaff_RSI;
-    *(undefined8 *)(in_R11 + 0x18) = unaff_R14;
+    *(uint64_t *)(in_R11 + 8) = unaff_RSI;
+    *(uint64_t *)(in_R11 + 0x18) = unaff_R14;
                     // WARNING: Could not recover jumptable at 0x0001800a135a. Too many branches
                     // WARNING: Treating indirect jump as call
     plVar2 = (longlong *)
@@ -808,12 +808,12 @@ void SystemCallProcessor(void)
 
 {
   longlong in_RAX;
-  undefined8 unaff_RSI;
+  uint64_t unaff_RSI;
   longlong in_R11;
-  undefined8 unaff_R14;
+  uint64_t unaff_R14;
   
-  *(undefined8 *)(in_R11 + 8) = unaff_RSI;
-  *(undefined8 *)(in_R11 + 0x18) = unaff_R14;
+  *(uint64_t *)(in_R11 + 8) = unaff_RSI;
+  *(uint64_t *)(in_R11 + 0x18) = unaff_R14;
                     // WARNING: Could not recover jumptable at 0x0001800a135a. Too many branches
                     // WARNING: Treating indirect jump as call
   (*(code *)((ulonglong)*(uint *)(&UNK_1800a1660 + in_RAX * 4) + 0x180000000))();
@@ -835,13 +835,13 @@ void SystemCallProcessor(void)
  * @param param_2 数据指针
  * @return void 无返回值
  */
-void AdvancedDataProcessor(undefined8 param_1,undefined8 *param_2)
+void AdvancedDataProcessor(uint64_t param_1,uint64_t *param_2)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   longlong lVar2;
   longlong lVar3;
-  undefined8 uVar4;
+  uint64_t uVar4;
   longlong *plVar5;
   longlong *unaff_RBX;
   longlong unaff_RBP;
@@ -851,13 +851,13 @@ void AdvancedDataProcessor(undefined8 param_1,undefined8 *param_2)
   
   uVar1 = *param_2;
   uVar4 = param_2[1];
-  *(undefined8 *)(unaff_RBP + -0x38) = uVar1;
-  *(undefined8 *)(unaff_RBP + -0x30) = uVar4;
+  *(uint64_t *)(unaff_RBP + -0x38) = uVar1;
+  *(uint64_t *)(unaff_RBP + -0x30) = uVar4;
   if ((unaff_R15 & 1) == 0) {
-    *(undefined8 *)(unaff_RBP + -0x38) = uVar1;
-    *(undefined8 *)(unaff_RBP + -0x30) = uVar4;
+    *(uint64_t *)(unaff_RBP + -0x38) = uVar1;
+    *(uint64_t *)(unaff_RBP + -0x30) = uVar4;
     if (0 < (int)*(uint *)(unaff_RBP + 0x48)) {
-      uVar1 = *(undefined8 *)(unaff_RBP + -0x30);
+      uVar1 = *(uint64_t *)(unaff_RBP + -0x30);
       uVar6 = (ulonglong)*(uint *)(unaff_RBP + 0x48);
       lVar2 = *(longlong *)(unaff_RBP + -0x38);
       do {
@@ -872,7 +872,7 @@ void AdvancedDataProcessor(undefined8 param_1,undefined8 *param_2)
     *(longlong *)(unaff_RBP + -0x38) = *unaff_RBX;
     *(longlong *)(unaff_RBP + -0x30) = lVar2;
   }
-  uVar1 = *(undefined8 *)(unaff_RBP + -0x30);
+  uVar1 = *(uint64_t *)(unaff_RBP + -0x30);
   FUN_1800a0e50(uVar1,0x3c);
   lVar2 = *(longlong *)(unaff_RBP + -0x38);
   if (lVar2 != 0) {
@@ -940,14 +940,14 @@ void AdvancedDataProcessor(undefined8 param_1,undefined8 *param_2)
  * @param param_4 控制标志
  * @return void 无返回值
  */
-void DataConversionProcessor(undefined8 param_1,undefined4 *param_2,undefined8 param_3,undefined8 param_4)
+void DataConversionProcessor(uint64_t param_1,int32_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
   longlong lVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  undefined4 uVar4;
-  undefined4 *puVar5;
+  int32_t uVar2;
+  int32_t uVar3;
+  int32_t uVar4;
+  int32_t *puVar5;
   longlong *unaff_RBX;
   longlong unaff_RBP;
   longlong *unaff_R12;
@@ -956,20 +956,20 @@ void DataConversionProcessor(undefined8 param_1,undefined4 *param_2,undefined8 p
   uVar2 = param_2[1];
   uVar3 = param_2[2];
   uVar4 = param_2[3];
-  *(undefined4 *)(unaff_RBP + -0x38) = *param_2;
-  *(undefined4 *)(unaff_RBP + -0x34) = uVar2;
-  *(undefined4 *)(unaff_RBP + -0x30) = uVar3;
-  *(undefined4 *)(unaff_RBP + -0x2c) = uVar4;
-  puVar5 = (undefined4 *)
+  *(int32_t *)(unaff_RBP + -0x38) = *param_2;
+  *(int32_t *)(unaff_RBP + -0x34) = uVar2;
+  *(int32_t *)(unaff_RBP + -0x30) = uVar3;
+  *(int32_t *)(unaff_RBP + -0x2c) = uVar4;
+  puVar5 = (int32_t *)
            FUN_1800a0820(unaff_RBP + -0x28,unaff_RBP + -0x38,param_3,param_4,
-                         *(undefined4 *)(unaff_RBP + 0x48));
+                         *(int32_t *)(unaff_RBP + 0x48));
   uVar2 = puVar5[1];
   uVar3 = puVar5[2];
   uVar4 = puVar5[3];
-  *(undefined4 *)unaff_RBX = *puVar5;
-  *(undefined4 *)((longlong)unaff_RBX + 4) = uVar2;
-  *(undefined4 *)(unaff_RBX + 1) = uVar3;
-  *(undefined4 *)((longlong)unaff_RBX + 0xc) = uVar4;
+  *(int32_t *)unaff_RBX = *puVar5;
+  *(int32_t *)((longlong)unaff_RBX + 4) = uVar2;
+  *(int32_t *)(unaff_RBX + 1) = uVar3;
+  *(int32_t *)((longlong)unaff_RBX + 0xc) = uVar4;
   if ((unaff_R15 & 1) == 0) {
     lVar1 = unaff_RBX[1];
     FUN_1800a0e50(lVar1,10);
@@ -1069,22 +1069,22 @@ void CharacterEncodingProcessor(longlong param_1,int param_2)
 
 {
   ulonglong uVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   int iVar3;
   char *pcVar4;
   longlong lVar5;
   longlong lVar6;
   char cVar7;
-  undefined1 auStack_88 [32];
-  undefined8 *puStack_68;
-  undefined1 *puStack_60;
+  int8_t auStack_88 [32];
+  uint64_t *puStack_68;
+  int8_t *puStack_60;
   ulonglong *puStack_58;
   longlong *plStack_50;
   char cStack_48;
-  undefined1 auStack_47 [7];
+  int8_t auStack_47 [7];
   longlong lStack_40;
-  undefined8 uStack_38;
-  undefined1 auStack_30 [32];
+  uint64_t uStack_38;
+  int8_t auStack_30 [32];
   ulonglong uStack_10;
   
   uStack_10 = _DAT_180bf00a8 ^ (ulonglong)auStack_88;
@@ -1094,14 +1094,14 @@ void CharacterEncodingProcessor(longlong param_1,int param_2)
     if ((uVar1 == 0) || ((longlong)**(int **)(param_1 + 0x58) + uVar1 <= uVar1)) {
       if (*(longlong *)(param_1 + 0x80) != 0) {
         if (**(longlong **)(param_1 + 0x18) == param_1 + 0x70) {
-          uVar2 = *(undefined8 *)(param_1 + 0x90);
+          uVar2 = *(uint64_t *)(param_1 + 0x90);
           lVar6 = *(longlong *)(param_1 + 0x88);
           **(longlong **)(param_1 + 0x18) = lVar6;
           **(longlong **)(param_1 + 0x38) = lVar6;
           **(int **)(param_1 + 0x50) = (int)uVar2 - (int)lVar6;
         }
         if (*(longlong *)(param_1 + 0x68) == 0) {
-          fputc((int)cVar7,*(undefined8 *)(param_1 + 0x80));
+          fputc((int)cVar7,*(uint64_t *)(param_1 + 0x80));
         }
         else {
           plStack_50 = &lStack_40;
@@ -1115,13 +1115,13 @@ void CharacterEncodingProcessor(longlong param_1,int param_2)
             if (iVar3 < 2) {
               lVar6 = lStack_40 - (longlong)auStack_30;
               if ((lVar6 == 0) ||
-                 (lVar5 = fwrite(auStack_30,1,lVar6,*(undefined8 *)(param_1 + 0x80)), lVar6 == lVar5
+                 (lVar5 = fwrite(auStack_30,1,lVar6,*(uint64_t *)(param_1 + 0x80)), lVar6 == lVar5
                  )) {
-                *(undefined1 *)(param_1 + 0x71) = 1;
+                *(int8_t *)(param_1 + 0x71) = 1;
               }
             }
             else if (iVar3 == 3) {
-              fputc((int)cStack_48,*(undefined8 *)(param_1 + 0x80));
+              fputc((int)cStack_48,*(uint64_t *)(param_1 + 0x80));
             }
           }
         }
@@ -1153,7 +1153,7 @@ void CharacterEncodingProcessor(longlong param_1,int param_2)
 void CharacterOutputProcessor(longlong param_1)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   int iVar2;
   longlong lVar3;
   longlong unaff_RBX;
@@ -1162,19 +1162,19 @@ void CharacterOutputProcessor(longlong param_1)
   bool in_ZF;
   char in_stack_00000040;
   longlong in_stack_00000048;
-  undefined8 in_stack_00000050;
+  uint64_t in_stack_00000050;
   ulonglong in_stack_00000078;
   
   if (!in_ZF) {
     if (**(longlong **)(param_1 + 0x18) == param_1 + 0x70) {
-      uVar1 = *(undefined8 *)(param_1 + 0x90);
+      uVar1 = *(uint64_t *)(param_1 + 0x90);
       lVar4 = *(longlong *)(param_1 + 0x88);
       **(longlong **)(param_1 + 0x18) = lVar4;
       **(longlong **)(unaff_RBX + 0x38) = lVar4;
       **(int **)(unaff_RBX + 0x50) = (int)uVar1 - (int)lVar4;
     }
     if (*(longlong *)(unaff_RBX + 0x68) == 0) {
-      fputc((int)unaff_DIL,*(undefined8 *)(unaff_RBX + 0x80));
+      fputc((int)unaff_DIL,*(uint64_t *)(unaff_RBX + 0x80));
     }
     else {
       in_stack_00000040 = unaff_DIL;
@@ -1185,13 +1185,13 @@ void CharacterOutputProcessor(longlong param_1)
         if (iVar2 < 2) {
           lVar4 = in_stack_00000048 - (longlong)&stack0x00000058;
           if ((lVar4 == 0) ||
-             (lVar3 = fwrite(&stack0x00000058,1,lVar4,*(undefined8 *)(unaff_RBX + 0x80)),
+             (lVar3 = fwrite(&stack0x00000058,1,lVar4,*(uint64_t *)(unaff_RBX + 0x80)),
              lVar4 == lVar3)) {
-            *(undefined1 *)(unaff_RBX + 0x71) = 1;
+            *(int8_t *)(unaff_RBX + 0x71) = 1;
           }
         }
         else if (iVar2 == 3) {
-          fputc((int)in_stack_00000040,*(undefined8 *)(unaff_RBX + 0x80));
+          fputc((int)in_stack_00000040,*(uint64_t *)(unaff_RBX + 0x80));
         }
       }
     }
@@ -1242,10 +1242,10 @@ void BufferCleaner(longlong param_1)
 
 {
   int iVar1;
-  undefined1 auStack_68 [32];
+  int8_t auStack_68 [32];
   longlong *plStack_48;
   longlong lStack_38;
-  undefined1 auStack_30 [32];
+  int8_t auStack_30 [32];
   ulonglong uStack_10;
   
   uStack_10 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
@@ -1253,13 +1253,13 @@ void BufferCleaner(longlong param_1)
      (iVar1 = FUN_1800a16b0(param_1,0xffffffff), iVar1 != -1)) {
     plStack_48 = &lStack_38;
     iVar1 = _unshift___codecvt_DDU_Mbstatet___std__QEBAHAEAU_Mbstatet__PEAD1AEAPEAD_Z
-                      (*(undefined8 *)(param_1 + 0x68),param_1 + 0x74,auStack_30,&uStack_10);
+                      (*(uint64_t *)(param_1 + 0x68),param_1 + 0x74,auStack_30,&uStack_10);
     if (iVar1 == 0) {
-      *(undefined1 *)(param_1 + 0x71) = 0;
+      *(int8_t *)(param_1 + 0x71) = 0;
     }
     else if (iVar1 != 1) goto LAB_1800a18fd;
     if (lStack_38 - (longlong)auStack_30 != 0) {
-      fwrite(auStack_30,1,lStack_38 - (longlong)auStack_30,*(undefined8 *)(param_1 + 0x80));
+      fwrite(auStack_30,1,lStack_38 - (longlong)auStack_30,*(uint64_t *)(param_1 + 0x80));
     }
   }
 LAB_1800a18fd:
@@ -1288,11 +1288,11 @@ LAB_1800a18fd:
 void StreamInitializerConfig(longlong param_1,longlong param_2,int param_3)
 
 {
-  undefined8 uStackX_8;
-  undefined8 auStackX_10 [2];
-  undefined8 uStackX_20;
+  uint64_t uStackX_8;
+  uint64_t auStackX_10 [2];
+  uint64_t uStackX_20;
   
-  *(undefined1 *)(param_1 + 0x71) = 0;
+  *(int8_t *)(param_1 + 0x71) = 0;
   *(bool *)(param_1 + 0x7c) = param_3 == 1;
   __Init___basic_streambuf_DU__char_traits_D_std___std__IEAAXXZ();
   if (param_2 != 0) {
@@ -1300,16 +1300,16 @@ void StreamInitializerConfig(longlong param_1,longlong param_2,int param_3)
     auStackX_10[0] = 0;
     uStackX_20 = 0;
     _get_stream_buffer_pointers(param_2,&uStackX_8,auStackX_10,&uStackX_20);
-    *(undefined8 *)(param_1 + 0x18) = uStackX_8;
-    *(undefined8 *)(param_1 + 0x20) = uStackX_8;
-    *(undefined8 *)(param_1 + 0x38) = auStackX_10[0];
-    *(undefined8 *)(param_1 + 0x40) = auStackX_10[0];
-    *(undefined8 *)(param_1 + 0x50) = uStackX_20;
-    *(undefined8 *)(param_1 + 0x58) = uStackX_20;
+    *(uint64_t *)(param_1 + 0x18) = uStackX_8;
+    *(uint64_t *)(param_1 + 0x20) = uStackX_8;
+    *(uint64_t *)(param_1 + 0x38) = auStackX_10[0];
+    *(uint64_t *)(param_1 + 0x40) = auStackX_10[0];
+    *(uint64_t *)(param_1 + 0x50) = uStackX_20;
+    *(uint64_t *)(param_1 + 0x58) = uStackX_20;
   }
-  *(undefined8 *)(param_1 + 0x74) = _DAT_180d48d38;
+  *(uint64_t *)(param_1 + 0x74) = _DAT_180d48d38;
   *(longlong *)(param_1 + 0x80) = param_2;
-  *(undefined8 *)(param_1 + 0x68) = 0;
+  *(uint64_t *)(param_1 + 0x68) = 0;
   return;
 }
 
@@ -1342,17 +1342,17 @@ longlong FileCloseProcessor(longlong param_1)
     if (cVar1 == '\0') {
       lVar3 = 0;
     }
-    iVar2 = fclose(*(undefined8 *)(param_1 + 0x80));
+    iVar2 = fclose(*(uint64_t *)(param_1 + 0x80));
     if (iVar2 != 0) {
       lVar3 = 0;
     }
   }
-  *(undefined1 *)(param_1 + 0x7c) = 0;
-  *(undefined1 *)(param_1 + 0x71) = 0;
+  *(int8_t *)(param_1 + 0x7c) = 0;
+  *(int8_t *)(param_1 + 0x71) = 0;
   __Init___basic_streambuf_DU__char_traits_D_std___std__IEAAXXZ(param_1);
-  *(undefined8 *)(param_1 + 0x74) = _DAT_180d48d38;
-  *(undefined8 *)(param_1 + 0x80) = 0;
-  *(undefined8 *)(param_1 + 0x68) = 0;
+  *(uint64_t *)(param_1 + 0x74) = _DAT_180d48d38;
+  *(uint64_t *)(param_1 + 0x80) = 0;
+  *(uint64_t *)(param_1 + 0x68) = 0;
   return lVar3;
 }
 
@@ -1370,7 +1370,7 @@ longlong FileCloseProcessor(longlong param_1)
  * @param param_1 异常对象指针
  * @return void 无返回值
  */
-void ExceptionObjectDestroyer(undefined8 *param_1)
+void ExceptionObjectDestroyer(uint64_t *param_1)
 
 {
   *param_1 = &UNK_18098b928;
@@ -1390,13 +1390,13 @@ void ExceptionObjectDestroyer(undefined8 *param_1)
  * @param param_2 内存大小
  * @param param_3 附加参数
  * @param param_4 附加参数
- * @return undefined8* 释放后的对象指针
+ * @return uint64_t* 释放后的对象指针
  */
-undefined8 *
-ExceptionMemoryDeallocator(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+uint64_t *
+ExceptionMemoryDeallocator(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
   *param_1 = &UNK_18098b928;
@@ -1417,9 +1417,9 @@ ExceptionMemoryDeallocator(undefined8 *param_1,ulonglong param_2,undefined8 para
  * 
  * @param param_1 目标对象指针
  * @param param_2 源对象指针
- * @return undefined8* 复制后的对象指针
+ * @return uint64_t* 复制后的对象指针
  */
-undefined8 * ExceptionObjectCopier(undefined8 *param_1,longlong param_2)
+uint64_t * ExceptionObjectCopier(uint64_t *param_1,longlong param_2)
 
 {
   *param_1 = &UNK_18098b928;

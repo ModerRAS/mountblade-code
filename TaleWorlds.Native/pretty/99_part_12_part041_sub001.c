@@ -16,10 +16,10 @@
 //------------------------------------------------------------------------------
 
 // 文件系统句柄类型
-typedef undefined8 FileSystemHandle;              // 文件系统句柄
-typedef undefined8 StorageHandle;                 // 存储管理句柄
-typedef undefined8 FileHandle;                    // 文件操作句柄
-typedef undefined8 PersistenceHandle;             // 持久化句柄
+typedef uint64_t FileSystemHandle;              // 文件系统句柄
+typedef uint64_t StorageHandle;                 // 存储管理句柄
+typedef uint64_t FileHandle;                    // 文件操作句柄
+typedef uint64_t PersistenceHandle;             // 持久化句柄
 
 // 文件系统状态常量
 #define FILE_STATE_READY           0x00000001     // 文件系统就绪状态
@@ -53,13 +53,13 @@ typedef undefined8 PersistenceHandle;             // 持久化句柄
 //------------------------------------------------------------------------------
 
 // 文件系统操作函数
-undefined8 FileSystemOperation(longlong context, undefined8 operation, undefined8 *buffer);
+uint64_t FileSystemOperation(longlong context, uint64_t operation, uint64_t *buffer);
 
 // 存储空间管理函数
-undefined8 StorageSpaceManager(longlong context, undefined8 *buffer);
+uint64_t StorageSpaceManager(longlong context, uint64_t *buffer);
 
 // 文件操作控制函数
-undefined8 FileOperationController(longlong context, undefined8 *buffer);
+uint64_t FileOperationController(longlong context, uint64_t *buffer);
 
 //------------------------------------------------------------------------------
 // 函数别名定义
@@ -83,7 +83,7 @@ undefined8 FileOperationController(longlong context, undefined8 *buffer);
 //   param_2 - 操作类型或参数，标识要执行的文件系统操作
 //
 // 返回值：
-//   undefined8 - 操作结果或状态码
+//   uint64_t - 操作结果或状态码
 //
 // 处理流程：
 //   1. 验证输入参数的有效性
@@ -110,13 +110,13 @@ undefined8 FileOperationController(longlong context, undefined8 *buffer);
 //   简化实现：基于高级文件系统模块架构，创建完整的文件管理功能
 //   优化点：添加完整的文件系统、存储管理、文件操作功能
 //------------------------------------------------------------------------------
-undefined8 FUN_180012349(undefined8 param_1, undefined8 param_2)
+uint64_t FUN_180012349(uint64_t param_1, uint64_t param_2)
 {
     // 局部变量定义
-    undefined8 uVar1;                            // 操作结果
+    uint64_t uVar1;                            // 操作结果
     longlong lVar2;                              // 上下文指针
     int iVar3;                                  // 状态标志
-    undefined8 auStack_28 [4];                   // 栈缓冲区 (32字节)
+    uint64_t auStack_28 [4];                   // 栈缓冲区 (32字节)
     ulonglong uStack_8;                         // 安全检查值
     
     // 安全检查：栈保护机制
@@ -226,9 +226,9 @@ undefined8 FUN_180012349(undefined8 param_1, undefined8 param_2)
 //   buffer - 操作缓冲区
 // 返回值：操作结果
 //------------------------------------------------------------------------------
-undefined8 FileSystemOperation(longlong context, undefined8 operation, undefined8 *buffer)
+uint64_t FileSystemOperation(longlong context, uint64_t operation, uint64_t *buffer)
 {
-    undefined8 result = FILE_SUCCESS;
+    uint64_t result = FILE_SUCCESS;
     
     // 根据操作类型执行相应的文件系统操作
     switch (operation & 0xFF) {
@@ -260,9 +260,9 @@ undefined8 FileSystemOperation(longlong context, undefined8 operation, undefined
 //   buffer - 操作缓冲区
 // 返回值：操作结果
 //------------------------------------------------------------------------------
-undefined8 StorageSpaceManager(longlong context, undefined8 *buffer)
+uint64_t StorageSpaceManager(longlong context, uint64_t *buffer)
 {
-    undefined8 result = FILE_SUCCESS;
+    uint64_t result = FILE_SUCCESS;
     
     // 执行存储空间管理操作
     if (context != 0 && buffer != 0) {
@@ -288,9 +288,9 @@ undefined8 StorageSpaceManager(longlong context, undefined8 *buffer)
 //   buffer - 操作缓冲区
 // 返回值：操作结果
 //------------------------------------------------------------------------------
-undefined8 FileOperationController(longlong context, undefined8 *buffer)
+uint64_t FileOperationController(longlong context, uint64_t *buffer)
 {
-    undefined8 result = FILE_SUCCESS;
+    uint64_t result = FILE_SUCCESS;
     
     // 执行文件操作控制
     if (context != 0 && buffer != 0) {
@@ -311,11 +311,11 @@ undefined8 FileOperationController(longlong context, undefined8 *buffer)
 //------------------------------------------------------------------------------
 // 辅助函数声明
 //------------------------------------------------------------------------------
-undefined8 MountFileSystem(longlong context, undefined8 *buffer);
-undefined8 UnmountFileSystem(longlong context, undefined8 *buffer);
-undefined8 CheckFileSystem(longlong context, undefined8 *buffer);
-undefined8 RepairFileSystem(longlong context, undefined8 *buffer);
-undefined8 CheckStorageSpace(longlong context, undefined8 *buffer);
-undefined8 OptimizeStorageSpace(longlong context, undefined8 *buffer);
-undefined8 CheckFileAccess(longlong context, undefined8 *buffer);
-undefined8 ExecuteFileOperation(longlong context, undefined8 *buffer);
+uint64_t MountFileSystem(longlong context, uint64_t *buffer);
+uint64_t UnmountFileSystem(longlong context, uint64_t *buffer);
+uint64_t CheckFileSystem(longlong context, uint64_t *buffer);
+uint64_t RepairFileSystem(longlong context, uint64_t *buffer);
+uint64_t CheckStorageSpace(longlong context, uint64_t *buffer);
+uint64_t OptimizeStorageSpace(longlong context, uint64_t *buffer);
+uint64_t CheckFileAccess(longlong context, uint64_t *buffer);
+uint64_t ExecuteFileOperation(longlong context, uint64_t *buffer);

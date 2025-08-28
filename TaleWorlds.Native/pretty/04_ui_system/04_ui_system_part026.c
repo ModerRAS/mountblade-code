@@ -656,14 +656,14 @@ uint ui_system_cpu_capability_checker(void)
  * @param height 纹理高度
  * @return 成功返回1，失败返回0
  */
-undefined8 ui_system_texture_manager(longlong context, uint width, uint height)
+uint64_t ui_system_texture_manager(longlong context, uint width, uint height)
 {
     int result;
     longlong texture_offset;
     longlong buffer_size;
-    undefined4 *texture_data;
+    int32_t *texture_data;
     int texture_index;
-    undefined4 *texture_info;
+    int32_t *texture_info;
     
     // 初始化纹理系统
     ui_system_resource_cleaner();
@@ -679,9 +679,9 @@ undefined8 ui_system_texture_manager(longlong context, uint width, uint height)
     }
     
     // 初始化纹理数据指针
-    texture_data = (undefined4 *)(context + 0x80c);
+    texture_data = (int32_t *)(context + 0x80c);
     texture_index = 0;
-    texture_info = (undefined4 *)(context + 0x9c0);
+    texture_info = (int32_t *)(context + 0x9c0);
     
     // 初始化4个纹理单元
     do {
@@ -695,12 +695,12 @@ undefined8 ui_system_texture_manager(longlong context, uint width, uint height)
     } while (texture_index < UI_TEXTURE_COUNT);
     
     // 设置纹理索引
-    *(undefined4 *)(context + 0x9d0) = 0;
-    *(undefined4 *)(context + 0x9d4) = 1;
-    *(undefined4 *)(context + 0x9d8) = 2;
-    *(undefined4 *)(context + 0x9dc) = 3;
-    *(undefined8 *)(context + 0x9c0) = 0x100000001;
-    *(undefined8 *)(context + 0x9c8) = 0x100000001;
+    *(int32_t *)(context + 0x9d0) = 0;
+    *(int32_t *)(context + 0x9d4) = 1;
+    *(int32_t *)(context + 0x9d8) = 2;
+    *(int32_t *)(context + 0x9dc) = 3;
+    *(uint64_t *)(context + 0x9c0) = 0x100000001;
+    *(uint64_t *)(context + 0x9c8) = 0x100000001;
     
     // 初始化主纹理
     result = FUN_180697e60(context + 0x9e0, width, 0x10);
@@ -726,7 +726,7 @@ undefined8 ui_system_texture_manager(longlong context, uint width, uint height)
             if (buffer_size != 0) {
                 result = FUN_180697e60(context + 0xa70, width, height, 0x20);
                 if (-1 < result) {
-                    *(undefined4 *)(context + 0xb90) = 0;
+                    *(int32_t *)(context + 0xb90) = 0;
                     // 初始化纹理数据（不会返回）
                     memset(context + 0x2230, 0, 0xc40);
                 }
@@ -751,14 +751,14 @@ void ui_system_context_initializer(longlong context)
     ui_system_advanced_data_processor();
     func_0x0001806980f0(context);
     func_0x0001806980d0();
-    *(undefined8 *)(context + 0xbc0) = 1;
-    *(undefined4 *)(context + 0xc00) = 0;
-    *(undefined8 *)(context + 0xbc8) = 0;
-    *(undefined4 *)(context + 0x2224) = 0;
-    *(undefined4 *)(context + 0x770) = 0;
-    *(undefined8 *)(context + 0x1944) = 0;
-    *(undefined8 *)(context + 0x194c) = 0;
-    *(undefined8 *)(context + 0x1938) = 0;
+    *(uint64_t *)(context + 0xbc0) = 1;
+    *(int32_t *)(context + 0xc00) = 0;
+    *(uint64_t *)(context + 0xbc8) = 0;
+    *(int32_t *)(context + 0x2224) = 0;
+    *(int32_t *)(context + 0x770) = 0;
+    *(uint64_t *)(context + 0x1944) = 0;
+    *(uint64_t *)(context + 0x194c) = 0;
+    *(uint64_t *)(context + 0x1938) = 0;
     return;
 }
 
@@ -792,12 +792,12 @@ void ui_system_resource_cleaner(longlong context)
         FUN_180697ed0(context + 0xb00);
     }
     
-    func_0x00018066e940(*(undefined8 *)(context + 0xb98));
-    *(undefined8 *)(context + 0xb98) = 0;
-    func_0x00018066e940(*(undefined8 *)(context + 0x1958));
-    func_0x00018066e940(*(undefined8 *)(context + 0xbe8));
-    *(undefined8 *)(context + 0x1958) = 0;
-    *(undefined8 *)(context + 0xbe8) = 0;
+    func_0x00018066e940(*(uint64_t *)(context + 0xb98));
+    *(uint64_t *)(context + 0xb98) = 0;
+    func_0x00018066e940(*(uint64_t *)(context + 0x1958));
+    func_0x00018066e940(*(uint64_t *)(context + 0xbe8));
+    *(uint64_t *)(context + 0x1958) = 0;
+    *(uint64_t *)(context + 0xbe8) = 0;
     return;
 }
 
@@ -827,12 +827,12 @@ void thunk_ui_system_resource_cleaner(longlong context)
         FUN_180697ed0(context + 0xb00);
     }
     
-    func_0x00018066e940(*(undefined8 *)(context + 0xb98));
-    *(undefined8 *)(context + 0xb98) = 0;
-    func_0x00018066e940(*(undefined8 *)(context + 0x1958));
-    func_0x00018066e940(*(undefined8 *)(context + 0xbe8));
-    *(undefined8 *)(context + 0x1958) = 0;
-    *(undefined8 *)(context + 0xbe8) = 0;
+    func_0x00018066e940(*(uint64_t *)(context + 0xb98));
+    *(uint64_t *)(context + 0xb98) = 0;
+    func_0x00018066e940(*(uint64_t *)(context + 0x1958));
+    func_0x00018066e940(*(uint64_t *)(context + 0xbe8));
+    *(uint64_t *)(context + 0x1958) = 0;
+    *(uint64_t *)(context + 0xbe8) = 0;
     return;
 }
 
@@ -916,7 +916,7 @@ ulonglong ui_system_aligned_memory_allocator(longlong alignment, longlong size)
  * @param context UI系统上下文
  * @return 成功返回0，失败返回1
  */
-undefined8 ui_system_texture_initializer(longlong context)
+uint64_t ui_system_texture_initializer(longlong context)
 {
     int *texture_count;
     int current_count;
@@ -934,8 +934,8 @@ undefined8 ui_system_texture_initializer(longlong context)
             FUN_18069c540(context + 0x1a40 + texture_offset * UI_VERTEX_BUFFER_SIZE,
                           context + 0x1a40 + (longlong)current_count * UI_VERTEX_BUFFER_SIZE);
         }
-        *(undefined4 *)(context + 0x1ac8 + (longlong)*(int *)(context + 0x1c94) * UI_VERTEX_BUFFER_SIZE) = 1;
-        *(undefined4 *)(context + 0x1e68) = 0;
+        *(int32_t *)(context + 0x1ac8 + (longlong)*(int *)(context + 0x1c94) * UI_VERTEX_BUFFER_SIZE) = 1;
+        *(int32_t *)(context + 0x1e68) = 0;
         return 0;
     }
     return 1;
@@ -949,7 +949,7 @@ undefined8 ui_system_texture_initializer(longlong context)
  * @param context UI系统上下文
  * @return 总是返回0
  */
-undefined8 ui_system_texture_switcher(longlong context)
+uint64_t ui_system_texture_switcher(longlong context)
 {
     int *texture_count;
     int current_count;
@@ -964,8 +964,8 @@ undefined8 ui_system_texture_switcher(longlong context)
         FUN_18069c540(context + 0x1a40 + texture_offset * UI_VERTEX_BUFFER_SIZE,
                       context + 0x1a40 + (longlong)current_count * UI_VERTEX_BUFFER_SIZE);
     }
-    *(undefined4 *)(context + 0x1ac8 + (longlong)*(int *)(context + 0x1c94) * UI_VERTEX_BUFFER_SIZE) = 1;
-    *(undefined4 *)(context + 0x1e68) = 0;
+    *(int32_t *)(context + 0x1ac8 + (longlong)*(int *)(context + 0x1c94) * UI_VERTEX_BUFFER_SIZE) = 1;
+    *(int32_t *)(context + 0x1e68) = 0;
     return 0;
 }
 
@@ -976,7 +976,7 @@ undefined8 ui_system_texture_switcher(longlong context)
  * 
  * @return 总是返回1（表示正常状态）
  */
-undefined8 ui_system_status_checker(void)
+uint64_t ui_system_status_checker(void)
 {
     return 1;
 }
@@ -988,10 +988,10 @@ undefined8 ui_system_status_checker(void)
  * 
  * @return 成功返回0，失败返回1
  */
-undefined8 ui_system_buffer_allocator(void)
+uint64_t ui_system_buffer_allocator(void)
 {
     longlong allocated_memory;
-    undefined8 unused_param;
+    uint64_t unused_param;
     
     allocated_memory = ui_system_aligned_memory_allocator(0x20, UI_CONTEXT_POOL_SIZE);
     if (allocated_memory != 0) {
@@ -1167,7 +1167,7 @@ void ui_system_global_finalizer_thread_safe(void)
  * @param context UI系统上下文
  * @return 成功返回0，失败返回1
  */
-undefined4 ui_system_resource_validator(int *resource_handle, longlong context)
+int32_t ui_system_resource_validator(int *resource_handle, longlong context)
 {
     longlong allocated_memory;
     
@@ -1177,8 +1177,8 @@ undefined4 ui_system_resource_validator(int *resource_handle, longlong context)
         if (allocated_memory == 0) {
             return 1;
         }
-        *(undefined4 *)(allocated_memory + 0x4384) = *(undefined4 *)(context + 0x10);
-        FUN_1806708b0(*(undefined8 *)(resource_handle + 2));
+        *(int32_t *)(allocated_memory + 0x4384) = *(int32_t *)(context + 0x10);
+        FUN_1806708b0(*(uint64_t *)(resource_handle + 2));
     }
     return 0;
 }
@@ -1191,7 +1191,7 @@ undefined4 ui_system_resource_validator(int *resource_handle, longlong context)
  * @param resource_handle 资源句柄
  * @return 成功返回0，失败返回1
  */
-undefined4 ui_system_resource_deallocator(int *resource_handle)
+int32_t ui_system_resource_deallocator(int *resource_handle)
 {
     longlong allocated_memory;
     
@@ -1201,7 +1201,7 @@ undefined4 ui_system_resource_deallocator(int *resource_handle)
             return 1;
         }
         if (*(int *)(allocated_memory + 0x4380) != 0) {
-            FUN_180671080(allocated_memory, *(undefined4 *)(allocated_memory + 0x1e74));
+            FUN_180671080(allocated_memory, *(int32_t *)(allocated_memory + 0x1e74));
         }
         FUN_180670b00(allocated_memory);
         thunk_ui_system_resource_cleaner(allocated_memory + 0x12c0);
@@ -1222,15 +1222,15 @@ undefined4 ui_system_resource_deallocator(int *resource_handle)
  * @param extra_param 额外参数
  * @return 操作结果
  */
-undefined4
-ui_system_context_processor(longlong context, undefined8 operation, undefined8 *output_param, undefined8 *input_param,
-             undefined8 extra_param)
+int32_t
+ui_system_context_processor(longlong context, uint64_t operation, uint64_t *output_param, uint64_t *input_param,
+             uint64_t extra_param)
 {
-    undefined4 result;
+    int32_t result;
     
     if ((*(int *)(context + 0x4410) != 1) && (*(int *)(context + 0x1e68) != 0)) {
-        *(undefined4 *)(context + 0x4410) = 1;
-        *output_param = *(undefined8 *)(context + 0x4408);
+        *(int32_t *)(context + 0x4410) = 1;
+        *output_param = *(uint64_t *)(context + 0x4408);
         *input_param = 0;
         result = FUN_180698e20(context + 0x12c0, operation, extra_param);
         func_0x000180001000();
@@ -1249,14 +1249,14 @@ ui_system_context_processor(longlong context, undefined8 operation, undefined8 *
  * @param param_values 参数值数组
  * @return 验证结果
  */
-undefined4 ui_system_parameter_validator(longlong context, int param_type, int *param_values)
+int32_t ui_system_parameter_validator(longlong context, int param_type, int *param_values)
 {
-    undefined4 *ui_data;
+    int32_t *ui_data;
     int current_index;
-    undefined *error_handler;
+    void *error_handler;
     longlong texture_offset;
     
-    ui_data = (undefined4 *)(context + 0x12c0);
+    ui_data = (int32_t *)(context + 0x12c0);
     if (param_type == 1) {
         current_index = *(int *)(context + 0x1c94);
     }
@@ -1298,17 +1298,17 @@ validation_failed:
  * @param param4 参数4
  * @return 操作结果
  */
-ulonglong ui_system_context_manager(longlong context, undefined8 param1, undefined8 param2, undefined8 param3, undefined8 param4)
+ulonglong ui_system_context_manager(longlong context, uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-    undefined4 *ui_data;
+    int32_t *ui_data;
     uint result;
     ulonglong operation_result;
     int texture_index;
-    undefined1 jump_buffer[32];
+    int8_t jump_buffer[32];
     uint status_code;
-    undefined4 *ui_data_ptr;
+    int32_t *ui_data_ptr;
     
-    ui_data = (undefined4 *)(context + 0x12c0);
+    ui_data = (int32_t *)(context + 0x12c0);
     *ui_data = 0;
     ui_data_ptr = ui_data;
     operation_result = ui_system_texture_initializer();
@@ -1325,9 +1325,9 @@ ulonglong ui_system_context_manager(longlong context, undefined8 param1, undefin
         texture_index = texture_index + 1;
     } while (texture_index < MAX_INITIALIZATION_ATTEMPTS);
     
-    *(undefined4 *)(context + 0x1c80 + (longlong)texture_index * 4) = 1;
+    *(int32_t *)(context + 0x1c80 + (longlong)texture_index * 4) = 1;
     *(int *)(context + 0x1c90) = texture_index;
-    *(undefined4 **)(context + 0x12a0) = ui_data + (longlong)texture_index * 0x24 + 0x1e0;
+    *(int32_t **)(context + 0x12a0) = ui_data + (longlong)texture_index * 0x24 + 0x1e0;
     *(longlong *)(context + 0x12a8) = context + 0x1a40 + (longlong)*(int *)(context + 0x1c94) * UI_VERTEX_BUFFER_SIZE;
     *(longlong *)(context + 0x12b0) = context + 0x1a40 + (longlong)*(int *)(context + 0x1c98) * UI_VERTEX_BUFFER_SIZE;
     *(longlong *)(context + 0x12b8) = context + 0x1a40 + (longlong)*(int *)(context + 0x1c9c) * UI_VERTEX_BUFFER_SIZE;
@@ -1335,7 +1335,7 @@ ulonglong ui_system_context_manager(longlong context, undefined8 param1, undefin
     // 设置跳转缓冲区用于错误处理
     texture_index = __intrinsic_setjmp(context + 0x1320, jump_buffer);
     if (texture_index == 0) {
-        *(undefined4 *)(context + 0x1318) = 1;
+        *(int32_t *)(context + 0x1318) = 1;
         result = FUN_18069a490(context);
         ui_data = ui_data_ptr;
         status_code = result;
@@ -1352,14 +1352,14 @@ ulonglong ui_system_context_manager(longlong context, undefined8 param1, undefin
                 func_0x000180001000();
                 if (ui_data[0x2ea] != 0) {
                     ui_data[0x887] = ui_data[0x887] + 1;
-                    *(undefined8 *)(ui_data + 0x2fe) = *(undefined8 *)(ui_data + 0x2fc);
+                    *(uint64_t *)(ui_data + 0x2fe) = *(uint64_t *)(ui_data + 0x2fc);
                 }
-                *(undefined8 *)(context + 0x4408) = param4;
-                *(undefined4 *)(context + 0x4410) = 0;
+                *(uint64_t *)(context + 0x4408) = param4;
+                *(int32_t *)(context + 0x4410) = 0;
                 goto context_setup_complete;
             }
         }
-        *(undefined4 *)(context + 0x12c0) = 1;
+        *(int32_t *)(context + 0x12c0) = 1;
     }
     else {
         ui_data_ptr[(longlong)(int)ui_data_ptr[0x275] * 0x24 + 0x202] = 1;
@@ -1371,7 +1371,7 @@ ulonglong ui_system_context_manager(longlong context, undefined8 param1, undefin
     }
     
 context_setup_complete:
-    *(undefined4 *)(context + 0x1318) = 0;
+    *(int32_t *)(context + 0x1318) = 0;
     func_0x000180001000();
     return (ulonglong)status_code;
 }
@@ -1386,16 +1386,16 @@ context_setup_complete:
  * @param param_values 参数值数组
  * @return 操作结果
  */
-undefined4 ui_system_texture_switcher_advanced(longlong context, int param_type, int *param_values)
+int32_t ui_system_texture_switcher_advanced(longlong context, int param_type, int *param_values)
 {
-    undefined4 *ui_data;
+    int32_t *ui_data;
     int *texture_count;
     int new_texture_index;
     longlong texture_offset;
-    undefined *error_handler;
+    void *error_handler;
     int *texture_slot;
     
-    ui_data = (undefined4 *)(context + 0x12c0);
+    ui_data = (int32_t *)(context + 0x12c0);
     if (param_type == 1) {
         texture_slot = (int *)(context + 0x1c94);
     }

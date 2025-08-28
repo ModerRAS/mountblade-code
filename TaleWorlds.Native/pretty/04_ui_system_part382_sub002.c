@@ -11,7 +11,7 @@ void FUN_1808753b5(void)
 
 
 
-undefined8 FUN_1808753c6(void)
+uint64_t FUN_1808753c6(void)
 
 {
   return 0x1c;

@@ -115,34 +115,34 @@
  * ============================================================================ */
 
 // 基础类型别名
-typedef undefined8 UIHandle;                  // UI句柄
-typedef undefined8 ImageHandle;                // 图像句柄
-typedef undefined8 BufferHandle;               // 缓冲区句柄
-typedef undefined8 ConsoleHandle;              // 控制台句柄
-typedef undefined8 StateHandle;                // 状态句柄
+typedef uint64_t UIHandle;                  // UI句柄
+typedef uint64_t ImageHandle;                // 图像句柄
+typedef uint64_t BufferHandle;               // 缓冲区句柄
+typedef uint64_t ConsoleHandle;              // 控制台句柄
+typedef uint64_t StateHandle;                // 状态句柄
 
 // 状态类型别名
-typedef undefined4 ProcessingStatus;          // 处理状态
-typedef undefined4 UIStatus;                   // UI状态
-typedef undefined4 ImageStatus;                // 图像状态
-typedef undefined4 ConsoleStatus;              // 控制台状态
+typedef int32_t ProcessingStatus;          // 处理状态
+typedef int32_t UIStatus;                   // UI状态
+typedef int32_t ImageStatus;                // 图像状态
+typedef int32_t ConsoleStatus;              // 控制台状态
 
 // 标志类型别名
-typedef undefined4 ProcessingFlags;           // 处理标志
-typedef undefined4 UIFlags;                    // UI标志
-typedef undefined4 ImageFlags;                 // 图像标志
+typedef int32_t ProcessingFlags;           // 处理标志
+typedef int32_t UIFlags;                    // UI标志
+typedef int32_t ImageFlags;                 // 图像标志
 
 // 数据类型别名
-typedef undefined1 UIDataByte;                // UI数据字节
-typedef undefined2 UIDataWord;                 // UI数据字
-typedef undefined4 UIDataDword;                // UI数据双字
-typedef undefined8 UIDataQword;                // UI数据四字
+typedef int8_t UIDataByte;                // UI数据字节
+typedef int16_t UIDataWord;                 // UI数据字
+typedef int32_t UIDataDword;                // UI数据双字
+typedef uint64_t UIDataQword;                // UI数据四字
 
 // SIMD类型别名
-typedef undefined1 SIMDByte;                   // SIMD字节
-typedef undefined2 SIMDWord;                   // SIMD字
-typedef undefined4 SIMDDword;                  // SIMD双字
-typedef undefined8 SIMDQword;                  // SIMD四字
+typedef int8_t SIMDByte;                   // SIMD字节
+typedef int16_t SIMDWord;                   // SIMD字
+typedef int32_t SIMDDword;                  // SIMD双字
+typedef uint64_t SIMDQword;                  // SIMD四字
 
 /* ============================================================================
  * 枚举类型定义

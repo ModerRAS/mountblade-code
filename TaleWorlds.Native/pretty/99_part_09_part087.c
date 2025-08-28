@@ -2,8 +2,8 @@
 
 // 99_part_09_part087.c - 1 个函数
 
-// 函数: void FUN_1805f8240(undefined8 *param_1,int param_2,int param_3)
-void FUN_1805f8240(undefined8 *param_1,int param_2,int param_3)
+// 函数: void FUN_1805f8240(uint64_t *param_1,int param_2,int param_3)
+void FUN_1805f8240(uint64_t *param_1,int param_2,int param_3)
 
 {
   float *pfVar1;
@@ -18,7 +18,7 @@ void FUN_1805f8240(undefined8 *param_1,int param_2,int param_3)
   longlong lVar10;
   longlong *plVar11;
   ulonglong uVar12;
-  undefined1 auVar13 [16];
+  int8_t auVar13 [16];
   
   if (param_2 < param_3) {
     uVar9 = (ulonglong)param_2;
@@ -28,7 +28,7 @@ void FUN_1805f8240(undefined8 *param_1,int param_2,int param_3)
     do {
       if (*(char *)*param_1 == '\0') {
 LAB_1805f82de:
-        *(undefined1 *)param_1[3] = 1;
+        *(int8_t *)param_1[3] = 1;
         lVar7 = *(longlong *)param_1[4];
         pfVar5 = (float *)param_1[5];
         fVar3 = *(float *)(lVar7 + 0x1a10 + lVar10);
@@ -46,9 +46,9 @@ LAB_1805f82de:
             }
             UNLOCK();
           } while (cVar2 != '\0');
-          auVar13 = maxps(*(undefined1 (*) [16])param_1[5],
-                          *(undefined1 (*) [16])(lVar7 + 0x1a10 + lVar10));
-          *(undefined1 (*) [16])param_1[5] = auVar13;
+          auVar13 = maxps(*(int8_t (*) [16])param_1[5],
+                          *(int8_t (*) [16])(lVar7 + 0x1a10 + lVar10));
+          *(int8_t (*) [16])param_1[5] = auVar13;
           *pcVar6 = '\0';
           fVar3 = *(float *)(lVar7 + 0x1a10 + lVar10);
         }
@@ -69,9 +69,9 @@ LAB_1805f82de:
             }
             UNLOCK();
           } while (cVar2 != '\0');
-          auVar13 = minps(*(undefined1 (*) [16])param_1[7],
-                          *(undefined1 (*) [16])(lVar7 + 0x1a10 + lVar10));
-          *(undefined1 (*) [16])param_1[7] = auVar13;
+          auVar13 = minps(*(int8_t (*) [16])param_1[7],
+                          *(int8_t (*) [16])(lVar7 + 0x1a10 + lVar10));
+          *(int8_t (*) [16])param_1[7] = auVar13;
           *pcVar6 = '\0';
         }
       }

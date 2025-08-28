@@ -9,7 +9,7 @@ void cleanup_resource_array(longlong resource_context)
 {
     int *reference_count;
     longlong resource_pointer;
-    undefined8 *array_pointer;
+    uint64_t *array_pointer;
     longlong memory_block;
     ulonglong array_size;
     ulonglong index;
@@ -23,20 +23,20 @@ void cleanup_resource_array(longlong resource_context)
             if (resource_pointer != 0) {
                 FUN_18064e900(resource_pointer);
             }
-            *(undefined8 *)(resource_pointer + index * 8) = 0;
+            *(uint64_t *)(resource_pointer + index * 8) = 0;
             index = index + 1;
         } while (index < array_size);
         array_size = *(ulonglong *)(resource_context + 0x10);
     }
-    *(undefined8 *)(resource_context + 0x18) = 0;
-    if ((1 < array_size) && (array_pointer = *(undefined8 **)(resource_context + 8), array_pointer != (undefined8 *)0x0)) {
+    *(uint64_t *)(resource_context + 0x18) = 0;
+    if ((1 < array_size) && (array_pointer = *(uint64_t **)(resource_context + 8), array_pointer != (uint64_t *)0x0)) {
         array_size = (ulonglong)array_pointer & 0xffffffffffc00000;
         if (array_size != 0) {
             memory_block = array_size + 0x80 + ((longlong)array_pointer - array_size >> 0x10) * 0x50;
             memory_block = memory_block - (ulonglong)*(uint *)(memory_block + 4);
             if ((*(void ***)(array_size + 0x70) == &ExceptionList) && (*(char *)(memory_block + 0xe) == '\0')) {
-                *array_pointer = *(undefined8 *)(memory_block + 0x20);
-                *(undefined8 **)(memory_block + 0x20) = array_pointer;
+                *array_pointer = *(uint64_t *)(memory_block + 0x20);
+                *(uint64_t **)(memory_block + 0x20) = array_pointer;
                 reference_count = (int *)(memory_block + 0x18);
                 *reference_count = *reference_count + -1;
                 if (*reference_count == 0) {
@@ -58,21 +58,21 @@ void cleanup_resource_array(longlong resource_context)
 // 原始实现: FUN_18004f920 - 执行系统清理和关闭操作
 void perform_system_cleanup(void)
 {
-    undefined8 *resource_manager;
+    uint64_t *resource_manager;
     char *network_status;
-    undefined8 cleanup_flag;
+    uint64_t cleanup_flag;
     longlong system_context;
     char cleanup_result;
     int lock_result;
-    undefined4 resource_handle;
+    int32_t resource_handle;
     longlong *thread_pool;
-    undefined4 *temp_pointer;
-    undefined4 uStack_68;
-    undefined8 uStack_60;
-    undefined *resource_ptr;
-    undefined1 *string_ptr;
-    undefined4 string_size;
-    undefined1 temp_buffer[16];
+    int32_t *temp_pointer;
+    int32_t uStack_68;
+    uint64_t uStack_60;
+    void *resource_ptr;
+    int8_t *string_ptr;
+    int32_t string_size;
+    int8_t temp_buffer[16];
     ulonglong stack_cookie;
     
     system_context = _DAT_180c86870;
@@ -94,11 +94,11 @@ void perform_system_cleanup(void)
         if (lock_result != 0) {
             __Throw_C_error_std__YAXH_Z(lock_result);
         }
-        FUN_180126380(*(undefined8 *)*resource_manager);
-        FUN_180126380(*(undefined8 *)resource_manager[1]);
+        FUN_180126380(*(uint64_t *)*resource_manager);
+        FUN_180126380(*(uint64_t *)resource_manager[1]);
         FUN_180095420(*resource_manager);
         FUN_180095420(resource_manager[1]);
-        *(undefined1 *)(resource_manager + 7) = 0;
+        *(int8_t *)(resource_manager + 7) = 0;
         lock_result = _Mtx_unlock(0x180c91970);
         if (lock_result != 0) {
             __Throw_C_error_std__YAXH_Z(lock_result);
@@ -112,14 +112,14 @@ void perform_system_cleanup(void)
 void initialize_engine_core(void)
 {
     longlong *engine_context;
-    undefined8 *resource_pool;
+    uint64_t *resource_pool;
     code *initialization_code;
-    undefined1 *system_flags;
-    undefined8 init_status;
+    int8_t *system_flags;
+    uint64_t init_status;
     longlong performance_counter;
     int thread_result;
     longlong **thread_context;
-    undefined2 *flag_array;
+    int16_t *flag_array;
     uint array_index;
     ulonglong loop_counter;
     float performance_value;
@@ -134,9 +134,9 @@ void initialize_engine_core(void)
     longlong stack_var3;
     longlong stack_var4;
     longlong ***thread_manager;
-    undefined8 stack_var5;
+    uint64_t stack_var5;
     longlong **thread_scheduler;
-    undefined8 stack_var6;
+    uint64_t stack_var6;
     ulonglong resource_index;
     
     performance_counter = _DAT_180c868d0;
@@ -153,13 +153,13 @@ void initialize_engine_core(void)
 void initialize_engine_partial(longlong engine_context)
 {
     longlong *context_pointer;
-    undefined8 *resource_pool;
+    uint64_t *resource_pool;
     code *initialization_code;
-    undefined1 *system_flags;
-    undefined8 init_status;
+    int8_t *system_flags;
+    uint64_t init_status;
     int thread_result;
     longlong **thread_context;
-    undefined2 *flag_array;
+    int16_t *flag_array;
     uint array_index;
     ulonglong resource_index;
     float performance_value;
@@ -174,9 +174,9 @@ void initialize_engine_partial(longlong engine_context)
     longlong stack_var3;
     longlong stack_var4;
     longlong ***thread_manager;
-    undefined8 stack_var5;
+    uint64_t stack_var5;
     longlong **thread_scheduler;
-    undefined8 stack_var6;
+    uint64_t stack_var6;
     ulonglong loop_counter;
     
     local_counter = _DAT_180c868d0;
@@ -186,43 +186,43 @@ void initialize_engine_partial(longlong engine_context)
 
 // 函数5: 更新性能计数器
 // 原始实现: FUN_180051150 - 更新系统性能计数器
-void update_performance_counter(longlong system_context, undefined8 time_delta)
+void update_performance_counter(longlong system_context, uint64_t time_delta)
 {
     longlong *performance_data;
     char system_status1;
     char system_status2;
     int status_result;
-    undefined4 performance_flag;
-    undefined1 *performance_ptr;
-    undefined8 *performance_manager;
-    undefined8 *resource_manager;
+    int32_t performance_flag;
+    int8_t *performance_ptr;
+    uint64_t *performance_manager;
+    uint64_t *resource_manager;
     longlong frame_count;
     uint update_index;
     longlong performance_time;
     ulonglong loop_counter;
     longlong *resource_pointer;
     float performance_value;
-    undefined8 performance_metric;
+    uint64_t performance_metric;
     float normalized_value;
-    undefined1 temp_buffer[32];
+    int8_t temp_buffer[32];
     longlong **update_context;
-    undefined *context_ptr;
-    undefined4 context_flag;
-    undefined8 context_data;
+    void *context_ptr;
+    int32_t context_flag;
+    uint64_t context_data;
     char context_status;
     char context_array[7];
     longlong *frame_data;
-    undefined4 frame_flag;
-    undefined *resource_ptr;
-    undefined8 *resource_manager;
-    undefined4 resource_flag;
-    undefined8 resource_data;
-    undefined4 temp_array[2];
+    int32_t frame_flag;
+    void *resource_ptr;
+    uint64_t *resource_manager;
+    int32_t resource_flag;
+    uint64_t resource_data;
+    int32_t temp_array[2];
     longlong *performance_array;
-    undefined8 performance_info;
-    undefined8 temp_array_large[67];
+    uint64_t performance_info;
+    uint64_t temp_array_large[67];
     longlong temp_values[3];
-    undefined4 temp_flag;
+    int32_t temp_flag;
     ulonglong stack_cookie;
     ulonglong resource_index;
     
@@ -244,12 +244,12 @@ void update_performance_counter(longlong system_context, undefined8 time_delta)
 void cleanup_system_handles(longlong system_context)
 {
     int *reference_count;
-    undefined8 *resource_handle;
+    uint64_t *resource_handle;
     longlong memory_block;
     ulonglong memory_address;
     
-    resource_handle = *(undefined8 **)(system_context + 0x218);
-    if (resource_handle == (undefined8 *)0x0) {
+    resource_handle = *(uint64_t **)(system_context + 0x218);
+    if (resource_handle == (uint64_t *)0x0) {
         return;
     }
     memory_address = (ulonglong)resource_handle & 0xffffffffffc00000;
@@ -257,8 +257,8 @@ void cleanup_system_handles(longlong system_context)
         memory_block = memory_address + 0x80 + ((longlong)resource_handle - memory_address >> 0x10) * 0x50;
         memory_block = memory_block - (ulonglong)*(uint *)(memory_block + 4);
         if ((*(void ***)(memory_address + 0x70) == &ExceptionList) && (*(char *)(memory_block + 0xe) == '\0')) {
-            *resource_handle = *(undefined8 *)(memory_block + 0x20);
-            *(undefined8 **)(memory_block + 0x20) = resource_handle;
+            *resource_handle = *(uint64_t *)(memory_block + 0x20);
+            *(uint64_t **)(memory_block + 0x20) = resource_handle;
             reference_count = (int *)(memory_block + 0x18);
             *reference_count = *reference_count + -1;
             if (*reference_count == 0) {
@@ -276,7 +276,7 @@ void cleanup_system_handles(longlong system_context)
 
 // 函数7: 复制资源数据
 // 原始实现: FUN_180051d40 - 复制资源数据
-undefined8 * copy_resource_data(undefined8 *destination, undefined8 *source)
+uint64_t * copy_resource_data(uint64_t *destination, uint64_t *source)
 {
     longlong *dest_ptr;
     longlong source_start;
@@ -284,16 +284,16 @@ undefined8 * copy_resource_data(undefined8 *destination, undefined8 *source)
     longlong dest_start;
     ulonglong data_size;
     longlong buffer_size;
-    undefined1 *data_ptr;
+    int8_t *data_ptr;
     longlong copy_size;
     ulonglong required_size;
     
-    data_ptr = (undefined1 *)((longlong)destination + 0xf);
+    data_ptr = (int8_t *)((longlong)destination + 0xf);
     *destination = *source;
-    *(undefined4 *)(destination + 1) = *(undefined4 *)(source + 1);
-    *(undefined1 *)((longlong)destination + 0xc) = *(undefined1 *)((longlong)source + 0xc);
-    *(undefined1 *)((longlong)destination + 0xd) = *(undefined1 *)((longlong)source + 0xd);
-    *(undefined1 *)((longlong)destination + 0xe) = *(undefined1 *)((longlong)source + 0xe);
+    *(int32_t *)(destination + 1) = *(int32_t *)(source + 1);
+    *(int8_t *)((longlong)destination + 0xc) = *(int8_t *)((longlong)source + 0xc);
+    *(int8_t *)((longlong)destination + 0xd) = *(int8_t *)((longlong)source + 0xd);
+    *(int8_t *)((longlong)destination + 0xe) = *(int8_t *)((longlong)source + 0xe);
     buffer_size = 0x100;
     do {
         *data_ptr = data_ptr[(longlong)source - (longlong)destination];
@@ -301,10 +301,10 @@ undefined8 * copy_resource_data(undefined8 *destination, undefined8 *source)
         data_ptr = data_ptr + 2;
         buffer_size = buffer_size + -1;
     } while (buffer_size != 0);
-    *(undefined1 *)((longlong)destination + 0x20f) = *(undefined1 *)((longlong)source + 0x20f);
+    *(int8_t *)((longlong)destination + 0x20f) = *(int8_t *)((longlong)source + 0x20f);
     dest_ptr = destination + 0x43;
-    *(undefined1 *)(destination + 0x42) = *(undefined1 *)(source + 0x42);
-    *(undefined1 *)((longlong)destination + 0x211) = *(undefined1 *)((longlong)source + 0x211);
+    *(int8_t *)(destination + 0x42) = *(int8_t *)(source + 0x42);
+    *(int8_t *)((longlong)destination + 0x211) = *(int8_t *)((longlong)source + 0x211);
     if (dest_ptr != source + 0x43) {
         copy_size = *dest_ptr;
         source_start = source[0x44];
@@ -316,7 +316,7 @@ undefined8 * copy_resource_data(undefined8 *destination, undefined8 *source)
                 copy_size = 0;
             }
             else {
-                copy_size = FUN_18062b420(_DAT_180c8ed18,required_size * 4,*(undefined1 *)(destination + 0x46));
+                copy_size = FUN_18062b420(_DAT_180c8ed18,required_size * 4,*(int8_t *)(destination + 0x46));
             }
             if (source_end != source_start) {
                 memmove(copy_size,source_end,copy_size);
@@ -492,30 +492,30 @@ void placeholder_function(void)
 // 原始实现: FUN_180051f00 - 检查系统状态
 bool check_system_status(longlong system_context)
 {
-    undefined8 *status_array;
+    uint64_t *status_array;
     byte status_byte;
     bool status_result;
     byte *status_ptr;
     uint status_value;
     int comparison_result;
     longlong status_offset;
-    undefined8 *status_entry;
-    undefined8 *next_entry;
-    undefined8 *current_entry;
-    undefined8 *previous_entry;
-    undefined *context_ptr;
+    uint64_t *status_entry;
+    uint64_t *next_entry;
+    uint64_t *current_entry;
+    uint64_t *previous_entry;
+    void *context_ptr;
     byte *string_buffer;
     int buffer_index;
     
-    status_array = (undefined8 *)(system_context + 0x2e0);
+    status_array = (uint64_t *)(system_context + 0x2e0);
     FUN_1806279c0(&context_ptr);
-    status_entry = *(undefined8 **)(system_context + 0x2f0);
+    status_entry = *(uint64_t **)(system_context + 0x2f0);
     previous_entry = status_array;
-    if (status_entry != (undefined8 *)0x0) {
+    if (status_entry != (uint64_t *)0x0) {
         do {
             if (buffer_index == 0) {
                 status_result = false;
-                next_entry = (undefined8 *)status_entry[1];
+                next_entry = (uint64_t *)status_entry[1];
             }
             else {
                 if (*(int *)(status_entry + 6) == 0) {
@@ -531,11 +531,11 @@ bool check_system_status(longlong system_context)
                     } while (status_value != 0);
                     status_result = 0 < comparison_result;
                     if (comparison_result < 1) {
-                        next_entry = (undefined8 *)status_entry[1];
+                        next_entry = (uint64_t *)status_entry[1];
                         goto STATUS_CHECK_DONE;
                     }
                 }
-                next_entry = (undefined8 *)*status_entry;
+                next_entry = (uint64_t *)*status_entry;
             }
 STATUS_CHECK_DONE:
             current_entry = status_entry;
@@ -544,7 +544,7 @@ STATUS_CHECK_DONE:
             }
             status_entry = next_entry;
             previous_entry = current_entry;
-        } while (next_entry != (undefined8 *)0x0);
+        } while (next_entry != (uint64_t *)0x0);
         if (current_entry != status_array) {
             if (*(int *)(current_entry + 6) == 0) goto STATUS_VALID;
             if (buffer_index != 0) {
@@ -571,7 +571,7 @@ STATUS_VALID:
 
 // 函数13: 初始化系统模块
 // 原始实现: FUN_180052020 - 初始化系统模块
-undefined8 initialize_system_module(undefined8 module_handle, undefined8 module_data, undefined8 init_params, undefined8 context_data)
+uint64_t initialize_system_module(uint64_t module_handle, uint64_t module_data, uint64_t init_params, uint64_t context_data)
 {
     FUN_180627ae0(module_data,_DAT_180c86870 + 0x2c0,init_params,context_data,0,0xfffffffffffffffe);
     return module_data;
@@ -581,13 +581,13 @@ undefined8 initialize_system_module(undefined8 module_handle, undefined8 module_
 // 原始实现: FUN_180052070 - 执行模块初始化
 void execute_module_initialization(longlong module_context)
 {
-    undefined8 *module_manager;
+    uint64_t *module_manager;
     int init_result;
-    undefined1 temp_buffer[32];
-    undefined4 init_flag;
-    undefined8 init_data;
+    int8_t temp_buffer[32];
+    int32_t init_flag;
+    uint64_t init_data;
     longlong context_ptr;
-    undefined1 init_buffer[128];
+    int8_t init_buffer[128];
     ulonglong stack_cookie;
     
     init_data = 0xfffffffffffffffe;
@@ -598,32 +598,32 @@ void execute_module_initialization(longlong module_context)
     init_flag = 1;
     init_result = *(int *)(module_context + 0x10) + 8;
     FUN_1806277c0(module_context,init_result);
-    module_manager = (undefined8 *)((ulonglong)*(uint *)(module_context + 0x10) + *(longlong *)(module_context + 8));
+    module_manager = (uint64_t *)((ulonglong)*(uint *)(module_context + 0x10) + *(longlong *)(module_context + 8));
     *module_manager = 0x2f73656873617263;
-    *(undefined1 *)(module_manager + 1) = 0;
+    *(int8_t *)(module_manager + 1) = 0;
     *(int *)(module_context + 0x10) = init_result;
     memset(init_buffer,0,0x80);
 }
 
 // 函数15: 处理模块数据
 // 原始实现: FUN_180052200 - 处理模块数据
-void process_module_data(longlong module_context, longlong data_source, undefined8 data_target, undefined8 data_size)
+void process_module_data(longlong module_context, longlong data_source, uint64_t data_target, uint64_t data_size)
 {
     longlong *data_pointer;
-    undefined4 process_flag;
+    int32_t process_flag;
     int transfer_result;
-    undefined8 *data_buffer;
+    uint64_t *data_buffer;
     ulonglong buffer_size;
     longlong transfer_size;
-    undefined8 transfer_status;
-    undefined *context_ptr;
-    undefined8 *target_buffer;
-    undefined4 target_flag;
-    undefined8 target_data;
-    undefined *source_ptr;
-    undefined8 *source_buffer;
-    undefined4 source_flag;
-    undefined8 source_data;
+    uint64_t transfer_status;
+    void *context_ptr;
+    uint64_t *target_buffer;
+    int32_t target_flag;
+    uint64_t target_data;
+    void *source_ptr;
+    uint64_t *source_buffer;
+    int32_t source_flag;
+    uint64_t source_data;
     
     transfer_status = 0xfffffffffffffffe;
     data_pointer = (longlong *)(module_context + 0xd8);
@@ -649,31 +649,31 @@ void process_module_data(longlong module_context, longlong data_source, undefine
     }
     source_ptr = &UNK_180a3c3e0;
     source_data = 0;
-    source_buffer = (undefined8 *)0x0;
+    source_buffer = (uint64_t *)0x0;
     source_flag = 0;
-    data_buffer = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13,context_data,0xfffffffffffffffe);
-    *(undefined1 *)data_buffer = 0;
+    data_buffer = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13,context_data,0xfffffffffffffffe);
+    *(int8_t *)data_buffer = 0;
     source_buffer = data_buffer;
     process_flag = FUN_18064e990(data_buffer);
     source_data = CONCAT44(source_data._4_4_,process_flag);
     *data_buffer = 0x53454c55444f4d5f;
-    *(undefined2 *)(data_buffer + 1) = 0x2a5f;
-    *(undefined1 *)((longlong)data_buffer + 10) = 0;
+    *(int16_t *)(data_buffer + 1) = 0x2a5f;
+    *(int8_t *)((longlong)data_buffer + 10) = 0;
     source_flag = 10;
     transfer_result = FUN_180628d60(module_context + 0x2c0,&source_ptr);
     if (-1 < transfer_result) {
         context_ptr = &UNK_180a3c3e0;
         target_data = 0;
-        target_buffer = (undefined8 *)0x0;
+        target_buffer = (uint64_t *)0x0;
         target_flag = 0;
-        data_buffer = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13,context_data,transfer_status);
-        *(undefined1 *)data_buffer = 0;
+        data_buffer = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13,context_data,transfer_status);
+        *(int8_t *)data_buffer = 0;
         target_buffer = data_buffer;
         process_flag = FUN_18064e990(data_buffer);
         target_data = CONCAT44(target_data._4_4_,process_flag);
         *data_buffer = 0x454c55444f4d5f2a;
-        *(undefined2 *)(data_buffer + 1) = 0x5f53;
-        *(undefined1 *)((longlong)data_buffer + 10) = 0;
+        *(int16_t *)(data_buffer + 1) = 0x5f53;
+        *(int8_t *)((longlong)data_buffer + 10) = 0;
         target_flag = 10;
         FUN_180628d60(module_context + 0x2c0,&context_ptr);
         context_ptr = &UNK_180a3c3e0;
@@ -685,20 +685,20 @@ void process_module_data(longlong module_context, longlong data_source, undefine
 
 // 函数16: 注册系统模块
 // 原始实现: FUN_1800524c0 - 注册系统模块
-undefined8 register_system_module(undefined8 module_handle, undefined8 module_data)
+uint64_t register_system_module(uint64_t module_handle, uint64_t module_data)
 {
     longlong system_context;
-    undefined4 register_flag;
+    int32_t register_flag;
     int register_result;
-    undefined8 *module_info;
-    undefined *context_ptr;
-    undefined8 *target_buffer;
-    undefined4 target_flag;
-    undefined8 target_data;
-    undefined *source_ptr;
-    undefined8 *source_buffer;
-    undefined4 source_flag;
-    undefined8 source_data;
+    uint64_t *module_info;
+    void *context_ptr;
+    uint64_t *target_buffer;
+    int32_t target_flag;
+    uint64_t target_data;
+    void *source_ptr;
+    uint64_t *source_buffer;
+    int32_t source_flag;
+    uint64_t source_data;
     
     system_context = _DAT_180c86870;
     if (*(int *)(_DAT_180c86870 + 200) != 0) {
@@ -707,31 +707,31 @@ undefined8 register_system_module(undefined8 module_handle, undefined8 module_da
     }
     source_ptr = &UNK_180a3c3e0;
     source_data = 0;
-    source_buffer = (undefined8 *)0x0;
+    source_buffer = (uint64_t *)0x0;
     source_flag = 0;
-    module_info = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
-    *(undefined1 *)module_info = 0;
+    module_info = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+    *(int8_t *)module_info = 0;
     source_buffer = module_info;
     register_flag = FUN_18064e990(module_info);
     source_data = CONCAT44(source_data._4_4_,register_flag);
     *module_info = 0x53454c55444f4d5f;
-    *(undefined2 *)(module_info + 1) = 0x2a5f;
-    *(undefined1 *)((longlong)module_info + 10) = 0;
+    *(int16_t *)(module_info + 1) = 0x2a5f;
+    *(int8_t *)((longlong)module_info + 10) = 0;
     source_flag = 10;
     register_result = FUN_180628d60(system_context + 0x2c0,&source_ptr);
     if (-1 < register_result) {
         context_ptr = &UNK_180a3c3e0;
         target_data = 0;
-        target_buffer = (undefined8 *)0x0;
+        target_buffer = (uint64_t *)0x0;
         target_flag = 0;
-        module_info = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
-        *(undefined1 *)module_info = 0;
+        module_info = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+        *(int8_t *)module_info = 0;
         target_buffer = module_info;
         register_flag = FUN_18064e990(module_info);
         target_data = CONCAT44(target_data._4_4_,register_flag);
         *module_info = 0x454c55444f4d5f2a;
-        *(undefined2 *)(module_info + 1) = 0x5f53;
-        *(undefined1 *)((longlong)module_info + 10) = 0;
+        *(int16_t *)(module_info + 1) = 0x5f53;
+        *(int8_t *)((longlong)module_info + 10) = 0;
         target_flag = 10;
         FUN_180628d60(system_context + 0x2c0,&context_ptr);
         context_ptr = &UNK_180a3c3e0;

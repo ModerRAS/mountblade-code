@@ -3,21 +3,21 @@
 // 02_core_engine_part204.c - 核心引擎内存管理和数据处理模块 (17个函数)
 
 // 全局变量声明
-extern undefined8 _DAT_180c8a9e0;    // 核心引擎数据结构指针
-extern undefined8 _DAT_180bf00a8;    // 安全检查相关数据
-extern undefined1 UNK_180a3c3e0;     // 空字符串标记
-extern undefined1 UNK_18098bcb0;      // 字符串常量
-extern undefined1 UNK_180a0aa34;      // 格式化字符串
-extern undefined1 UNK_180a0abe0;      // 处理器标记
-extern undefined1 UNK_180a0ab70;      // 双参数标记
-extern undefined1 UNK_180a0aba8;      // 四参数标记
-extern undefined1 UNK_180a0ab00;      // 数组处理标记
-extern undefined1 UNK_180a0ab38;      // 结果处理标记
-extern undefined1 UNK_180a0ac88;      // 节点类型标记
-extern undefined1 UNK_180a0acd8;      // 链表类型标记
-extern undefined1 UNK_180a0ad28;      // 特殊处理标记
-extern undefined8 _DAT_180c8ed18;    // 内存池标识
-extern undefined1 DAT_18098bc73;      // 默认字符串数据
+extern uint64_t _DAT_180c8a9e0;    // 核心引擎数据结构指针
+extern uint64_t _DAT_180bf00a8;    // 安全检查相关数据
+extern int8_t UNK_180a3c3e0;     // 空字符串标记
+extern int8_t UNK_18098bcb0;      // 字符串常量
+extern int8_t UNK_180a0aa34;      // 格式化字符串
+extern int8_t UNK_180a0abe0;      // 处理器标记
+extern int8_t UNK_180a0ab70;      // 双参数标记
+extern int8_t UNK_180a0aba8;      // 四参数标记
+extern int8_t UNK_180a0ab00;      // 数组处理标记
+extern int8_t UNK_180a0ab38;      // 结果处理标记
+extern int8_t UNK_180a0ac88;      // 节点类型标记
+extern int8_t UNK_180a0acd8;      // 链表类型标记
+extern int8_t UNK_180a0ad28;      // 特殊处理标记
+extern uint64_t _DAT_180c8ed18;    // 内存池标识
+extern int8_t DAT_18098bc73;      // 默认字符串数据
 
 /**
  * 清理链表结构的内存
@@ -28,14 +28,14 @@ extern undefined1 DAT_18098bc73;      // 默认字符串数据
  * @param param3 保留参数
  * @param param4 保留参数
  */
-void cleanup_linked_list_memory(longlong context, undefined8 param2, undefined8 param3, undefined8 param_4)
+void cleanup_linked_list_memory(longlong context, uint64_t param2, uint64_t param3, uint64_t param_4)
 
 {
   longlong *list_head;
   longlong current_node;
   longlong *next_node;
   longlong *node_ptr;
-  undefined8 cleanup_flag;
+  uint64_t cleanup_flag;
   
   cleanup_flag = 0xfffffffffffffffe;
   list_head = (longlong *)(context + 0x28);
@@ -58,7 +58,7 @@ void cleanup_linked_list_memory(longlong context, undefined8 param2, undefined8 
   *(longlong *)(current_node + 8) = current_node;
   *(longlong *)*list_head = current_node;
   *(longlong *)(*list_head + 0x10) = current_node;
-  *(undefined8 *)(context + 0x30) = 0;
+  *(uint64_t *)(context + 0x30) = 0;
   free(*list_head, 0x28);
   FUN_180067070(context + 8);
   return;
@@ -77,7 +77,7 @@ void cleanup_linked_list_memory(longlong context, undefined8 param2, undefined8 
  * @param param3 保留参数
  * @param param4 保留参数
  */
-void free_buffer_memory(longlong *buffer_ptr, undefined8 param2, undefined8 param3, undefined8 param_4)
+void free_buffer_memory(longlong *buffer_ptr, uint64_t param2, uint64_t param3, uint64_t param_4)
 
 {
   longlong buffer_start;
@@ -119,30 +119,30 @@ void free_buffer_memory(longlong *buffer_ptr, undefined8 param2, undefined8 para
  * @param context 上下文指针
  * @param data_ptr 数据指针数组
  */
-void format_and_process_string_data(undefined8 context, undefined8 *data_ptr)
+void format_and_process_string_data(uint64_t context, uint64_t *data_ptr)
 
 {
   longlong *engine_data;
   longlong security_check;
-  undefined8 format_result;
-  undefined *string_data;
+  uint64_t format_result;
+  void *string_data;
   ulonglong buffer_size;
   longlong string_length;
   longlong data_length;
-  undefined1 security_buffer [32];
+  int8_t security_buffer [32];
   longlong **temp_pointer;
-  undefined8 cleanup_flag;
-  undefined8 *output_data;
-  undefined1 temp_buffer [16];
-  undefined8 buffer_capacity;
-  undefined8 buffer_size_flag;
+  uint64_t cleanup_flag;
+  uint64_t *output_data;
+  int8_t temp_buffer [16];
+  uint64_t buffer_capacity;
+  uint64_t buffer_size_flag;
   longlong *format_data;
-  undefined8 format_flag;
-  undefined *temp_string;
+  uint64_t format_flag;
+  void *temp_string;
   longlong temp_length;
-  undefined8 temp_data;
+  uint64_t temp_data;
   ulonglong alloc_size;
-  undefined **string_pointer;
+  void **string_pointer;
   ulonglong security_xor;
   
   engine_data = _DAT_180c8a9e0;
@@ -156,7 +156,7 @@ void format_and_process_string_data(undefined8 context, undefined8 *data_ptr)
       FUN_18064e900();
     }
     data_ptr[1] = 0;
-    *(undefined4 *)(data_ptr + 3) = 0;
+    *(int32_t *)(data_ptr + 3) = 0;
   }
   else {
     buffer_capacity = 0;
@@ -167,8 +167,8 @@ void format_and_process_string_data(undefined8 context, undefined8 *data_ptr)
     format_flag = 0;
     format_data = (longlong *)FUN_180188490();
     string_data = &DAT_18098bc73;
-    if ((undefined *)data_ptr[1] != (undefined *)0x0) {
-      string_data = (undefined *)data_ptr[1];
+    if ((void *)data_ptr[1] != (void *)0x0) {
+      string_data = (void *)data_ptr[1];
     }
     string_length = -1;
     data_length = -1;
@@ -177,12 +177,12 @@ void format_and_process_string_data(undefined8 context, undefined8 *data_ptr)
     } while (string_data[data_length] != '\0');
     FUN_1800671b0(temp_buffer);
     string_data = &DAT_18098bc73;
-    if ((undefined *)data_ptr[1] != (undefined *)0x0) {
-      string_data = (undefined *)data_ptr[1];
+    if ((void *)data_ptr[1] != (void *)0x0) {
+      string_data = (void *)data_ptr[1];
     }
     temp_data = 0;
     alloc_size = 0xf;
-    temp_string = (undefined *)((ulonglong)temp_string & 0xffffffffffffff00);
+    temp_string = (void *)((ulonglong)temp_string & 0xffffffffffffff00);
     FUN_1800671b0(&temp_string,&UNK_180a0aa34,5);
     format_result = FUN_180187f00(&format_data,&temp_string);
     do {
@@ -194,8 +194,8 @@ void format_and_process_string_data(undefined8 context, undefined8 *data_ptr)
       string_data = temp_string;
       if (0xfff < buffer_size) {
         buffer_size = alloc_size + 0x28;
-        string_data = *(undefined **)(temp_string + -8);
-        if ((undefined *)0x1f < temp_string + (-8 - (longlong)string_data)) {
+        string_data = *(void **)(temp_string + -8);
+        if ((void *)0x1f < temp_string + (-8 - (longlong)string_data)) {
                     // WARNING: Subroutine does not return
           _invalid_parameter_noinfo_noreturn();
         }
@@ -225,7 +225,7 @@ void format_and_process_string_data(undefined8 context, undefined8 *data_ptr)
       FUN_18064e900();
     }
     data_ptr[1] = 0;
-    *(undefined4 *)(data_ptr + 3) = 0;
+    *(int32_t *)(data_ptr + 3) = 0;
   }
   *data_ptr = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
@@ -245,7 +245,7 @@ void format_and_process_string_data(undefined8 context, undefined8 *data_ptr)
  * @param param3 保留参数
  * @param param4 保留参数
  */
-void reset_data_structure_and_free_memory(longlong data_context, undefined8 param2, undefined8 param3, undefined8 param4)
+void reset_data_structure_and_free_memory(longlong data_context, uint64_t param2, uint64_t param3, uint64_t param4)
 
 {
   longlong *data_pointer;
@@ -253,11 +253,11 @@ void reset_data_structure_and_free_memory(longlong data_context, undefined8 para
   
   data_pointer = (longlong *)(data_context + 0x20);
   current_data = *data_pointer;
-  FUN_1801884d0(data_pointer,*(undefined8 *)(current_data + 8),param3,param4,0xfffffffffffffffe);
+  FUN_1801884d0(data_pointer,*(uint64_t *)(current_data + 8),param3,param4,0xfffffffffffffffe);
   *(longlong *)(*data_pointer + 8) = current_data;
   *(longlong *)*data_pointer = current_data;
   *(longlong *)(*data_pointer + 0x10) = current_data;
-  *(undefined8 *)(data_context + 0x28) = 0;
+  *(uint64_t *)(data_context + 0x28) = 0;
   free(*data_pointer,0x60);
   FUN_180067070(data_context);
   return;
@@ -277,28 +277,28 @@ void reset_data_structure_and_free_memory(longlong data_context, undefined8 para
  * @param first_data 第一个数据指针
  * @param second_data 第二个数据指针
  */
-void process_dual_parameter_formatting(undefined8 context, undefined8 *first_data, undefined8 *second_data)
+void process_dual_parameter_formatting(uint64_t context, uint64_t *first_data, uint64_t *second_data)
 
 {
   longlong *engine_data;
   longlong security_check;
-  undefined *string_data;
+  void *string_data;
   longlong first_length;
   longlong second_length;
-  undefined1 security_buffer [32];
-  undefined8 cleanup_flag;
-  undefined8 *output_first;
-  undefined8 *output_second;
-  undefined **format_pointer;
-  undefined *format_data;
+  int8_t security_buffer [32];
+  uint64_t cleanup_flag;
+  uint64_t *output_first;
+  uint64_t *output_second;
+  void **format_pointer;
+  void *format_data;
   longlong engine_context;
-  undefined **temp_pointer;
-  undefined1 first_buffer [16];
-  undefined8 first_capacity;
-  undefined8 first_size;
-  undefined1 second_buffer [16];
-  undefined8 second_capacity;
-  undefined8 second_size;
+  void **temp_pointer;
+  int8_t first_buffer [16];
+  uint64_t first_capacity;
+  uint64_t first_size;
+  int8_t second_buffer [16];
+  uint64_t second_capacity;
+  uint64_t second_size;
   ulonglong security_xor;
   
   engine_data = _DAT_180c8a9e0;
@@ -313,7 +313,7 @@ void process_dual_parameter_formatting(undefined8 context, undefined8 *first_dat
       FUN_18064e900();
     }
     first_data[1] = 0;
-    *(undefined4 *)(first_data + 3) = 0;
+    *(int32_t *)(first_data + 3) = 0;
     *first_data = &UNK_18098bcb0;
     *second_data = &UNK_180a3c3e0;
     if (second_data[1] != 0) {
@@ -321,7 +321,7 @@ void process_dual_parameter_formatting(undefined8 context, undefined8 *first_dat
       FUN_18064e900();
     }
     second_data[1] = 0;
-    *(undefined4 *)(second_data + 3) = 0;
+    *(int32_t *)(second_data + 3) = 0;
   }
   else {
     first_capacity = 0;
@@ -331,8 +331,8 @@ void process_dual_parameter_formatting(undefined8 context, undefined8 *first_dat
     second_size = 0xf;
     second_buffer[0] = 0;
     string_data = &DAT_18098bc73;
-    if ((undefined *)second_data[1] != (undefined *)0x0) {
-      string_data = (undefined *)second_data[1];
+    if ((void *)second_data[1] != (void *)0x0) {
+      string_data = (void *)second_data[1];
     }
     second_length = -1;
     first_length = -1;
@@ -341,8 +341,8 @@ void process_dual_parameter_formatting(undefined8 context, undefined8 *first_dat
     } while (string_data[second_length] != '\0');
     FUN_1800671b0(first_buffer);
     string_data = &DAT_18098bc73;
-    if ((undefined *)first_data[1] != (undefined *)0x0) {
-      string_data = (undefined *)first_data[1];
+    if ((void *)first_data[1] != (void *)0x0) {
+      string_data = (void *)first_data[1];
     }
     do {
       first_length = first_length + 1;
@@ -362,7 +362,7 @@ void process_dual_parameter_formatting(undefined8 context, undefined8 *first_dat
       FUN_18064e900();
     }
     first_data[1] = 0;
-    *(undefined4 *)(first_data + 3) = 0;
+    *(int32_t *)(first_data + 3) = 0;
     *first_data = &UNK_18098bcb0;
     *second_data = &UNK_180a3c3e0;
     if (second_data[1] != 0) {
@@ -370,7 +370,7 @@ void process_dual_parameter_formatting(undefined8 context, undefined8 *first_dat
       FUN_18064e900();
     }
     second_data[1] = 0;
-    *(undefined4 *)(second_data + 3) = 0;
+    *(int32_t *)(second_data + 3) = 0;
   }
   *second_data = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
@@ -411,31 +411,31 @@ void release_object_memory_resources(longlong object_ptr)
  * @param first_param 第一个整型参数
  * @param second_param 第二个整型参数
  */
-void process_quad_parameter_formatting(undefined8 context, undefined8 *first_data, undefined8 *second_data, undefined4 first_param,
-                                       undefined4 second_param)
+void process_quad_parameter_formatting(uint64_t context, uint64_t *first_data, uint64_t *second_data, int32_t first_param,
+                                       int32_t second_param)
 
 {
   longlong *engine_data;
   longlong security_check;
-  undefined *string_data;
+  void *string_data;
   longlong first_length;
   longlong second_length;
-  undefined1 security_buffer [32];
-  undefined8 cleanup_flag;
-  undefined8 *output_first;
-  undefined8 *output_second;
-  undefined **format_pointer;
-  undefined *format_data;
+  int8_t security_buffer [32];
+  uint64_t cleanup_flag;
+  uint64_t *output_first;
+  uint64_t *output_second;
+  void **format_pointer;
+  void *format_data;
   longlong engine_context;
-  undefined **temp_pointer;
-  undefined1 first_buffer [16];
-  undefined8 first_capacity;
-  undefined8 first_size;
-  undefined1 second_buffer [16];
-  undefined8 second_capacity;
-  undefined8 second_size;
-  undefined4 param1_value;
-  undefined4 param2_value;
+  void **temp_pointer;
+  int8_t first_buffer [16];
+  uint64_t first_capacity;
+  uint64_t first_size;
+  int8_t second_buffer [16];
+  uint64_t second_capacity;
+  uint64_t second_size;
+  int32_t param1_value;
+  int32_t param2_value;
   ulonglong security_xor;
   
   engine_data = _DAT_180c8a9e0;
@@ -450,7 +450,7 @@ void process_quad_parameter_formatting(undefined8 context, undefined8 *first_dat
       FUN_18064e900();
     }
     first_data[1] = 0;
-    *(undefined4 *)(first_data + 3) = 0;
+    *(int32_t *)(first_data + 3) = 0;
     *first_data = &UNK_18098bcb0;
     *second_data = &UNK_180a3c3e0;
     if (second_data[1] != 0) {
@@ -458,7 +458,7 @@ void process_quad_parameter_formatting(undefined8 context, undefined8 *first_dat
       FUN_18064e900();
     }
     second_data[1] = 0;
-    *(undefined4 *)(second_data + 3) = 0;
+    *(int32_t *)(second_data + 3) = 0;
   }
   else {
     first_capacity = 0;
@@ -469,8 +469,8 @@ void process_quad_parameter_formatting(undefined8 context, undefined8 *first_dat
     second_buffer[0] = 0;
     param2_value = second_param;
     string_data = &DAT_18098bc73;
-    if ((undefined *)second_data[1] != (undefined *)0x0) {
-      string_data = (undefined *)second_data[1];
+    if ((void *)second_data[1] != (void *)0x0) {
+      string_data = (void *)second_data[1];
     }
     second_length = -1;
     first_length = -1;
@@ -480,8 +480,8 @@ void process_quad_parameter_formatting(undefined8 context, undefined8 *first_dat
     param1_value = first_param;
     FUN_1800671b0(first_buffer);
     string_data = &DAT_18098bc73;
-    if ((undefined *)first_data[1] != (undefined *)0x0) {
-      string_data = (undefined *)first_data[1];
+    if ((void *)first_data[1] != (void *)0x0) {
+      string_data = (void *)first_data[1];
     }
     do {
       first_length = first_length + 1;
@@ -501,7 +501,7 @@ void process_quad_parameter_formatting(undefined8 context, undefined8 *first_dat
       FUN_18064e900();
     }
     first_data[1] = 0;
-    *(undefined4 *)(first_data + 3) = 0;
+    *(int32_t *)(first_data + 3) = 0;
     *first_data = &UNK_18098bcb0;
     *second_data = &UNK_180a3c3e0;
     if (second_data[1] != 0) {
@@ -509,7 +509,7 @@ void process_quad_parameter_formatting(undefined8 context, undefined8 *first_dat
       FUN_18064e900();
     }
     second_data[1] = 0;
-    *(undefined4 *)(second_data + 3) = 0;
+    *(int32_t *)(second_data + 3) = 0;
   }
   *second_data = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
@@ -530,42 +530,42 @@ void process_quad_parameter_formatting(undefined8 context, undefined8 *first_dat
  * @param array_data 数组数据指针
  * @param array_size 数组大小
  */
-void process_array_data_formatting(undefined8 context, longlong array_data, ulonglong array_size)
+void process_array_data_formatting(uint64_t context, longlong array_data, ulonglong array_size)
 
 {
   longlong *engine_data;
   longlong security_check;
-  undefined **array_start;
-  undefined **array_current;
+  void **array_start;
+  void **array_current;
   ulonglong array_index;
   longlong string_length;
-  undefined1 security_buffer [32];
-  undefined **array_head;
-  undefined **array_tail;
-  undefined **array_end;
-  undefined **array_temp;
-  undefined8 cleanup_flag;
-  undefined *temp_string;
+  int8_t security_buffer [32];
+  void **array_head;
+  void **array_tail;
+  void **array_end;
+  void **array_temp;
+  uint64_t cleanup_flag;
+  void *temp_string;
   longlong engine_context;
-  undefined8 temp_capacity;
-  undefined8 temp_size;
-  undefined8 temp_data;
-  undefined **format_pointer;
+  uint64_t temp_capacity;
+  uint64_t temp_size;
+  uint64_t temp_data;
+  void **format_pointer;
   ulonglong security_xor;
   
   engine_data = _DAT_180c8a9e0;
   cleanup_flag = 0xfffffffffffffffe;
   security_xor = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
   if (*(longlong *)(_DAT_180c8a9e0 + 8) != 0) {
-    array_head = (undefined **)0x0;
-    array_tail = (undefined **)0x0;
+    array_head = (void **)0x0;
+    array_tail = (void **)0x0;
     array_index = 0;
-    array_end = (undefined **)0x0;
+    array_end = (void **)0x0;
     if (array_size != 0) {
       do {
         temp_capacity = 0;
         temp_size = 0xf;
-        temp_string = (undefined *)((ulonglong)temp_string & 0xffffffffffffff00);
+        temp_string = (void *)((ulonglong)temp_string & 0xffffffffffffff00);
         temp_data = 0;
         string_length = -1;
         do {
@@ -579,8 +579,8 @@ void process_array_data_formatting(undefined8 context, longlong array_data, ulon
         else {
           array_temp = array_tail;
           FUN_18018b350(array_tail,&temp_string);
-          *(undefined4 *)(array_current + 4) = (undefined4)temp_data;
-          *(undefined4 *)((longlong)array_current + 0x24) = temp_data._4_4_;
+          *(int32_t *)(array_current + 4) = (int32_t)temp_data;
+          *(int32_t *)((longlong)array_current + 0x24) = temp_data._4_4_;
           array_tail = array_tail + 5;
         }
         FUN_180067070(&temp_string);
@@ -595,7 +595,7 @@ void process_array_data_formatting(undefined8 context, longlong array_data, ulon
     (**(code **)(*engine_data + 0x38))(engine_data,&array_head,&temp_string,0);
     array_start = array_tail;
     array_current = array_head;
-    if (array_head != (undefined **)0x0) {
+    if (array_head != (void **)0x0) {
       for (; array_temp = array_current, array_current != array_start; array_current = array_current + 5) {
         FUN_180067070(array_current);
       }
@@ -603,16 +603,16 @@ void process_array_data_formatting(undefined8 context, longlong array_data, ulon
       array_current = array_head;
       if (0xfff < array_index) {
         array_index = array_index + 0x27;
-        array_current = (undefined **)array_head[-1];
+        array_current = (void **)array_head[-1];
         if (0x1f < (ulonglong)((longlong)array_head + (-8 - (longlong)array_current))) {
                     // WARNING: Subroutine does not return
           _invalid_parameter_noinfo_noreturn();
         }
       }
       free(array_current,array_index);
-      array_head = (undefined **)0x0;
-      array_tail = (undefined **)0x0;
-      array_end = (undefined **)0x0;
+      array_head = (void **)0x0;
+      array_tail = (void **)0x0;
+      array_end = (void **)0x0;
     }
   }
                     // WARNING: Subroutine does not return
@@ -653,26 +653,26 @@ void initialize_memory_pool_structure(void)
  * @param context 上下文指针
  * @param string_data 字符串数据指针
  */
-void remove_entry_from_string_map(undefined8 context, undefined8 *string_data)
+void remove_entry_from_string_map(uint64_t context, uint64_t *string_data)
 
 {
   byte *current_char;
   int target_length;
   int entry_length;
-  undefined8 *map_entry;
-  undefined8 *map_end;
+  uint64_t *map_entry;
+  uint64_t *map_end;
   longlong engine_data;
   byte *entry_string;
   int compare_result;
-  undefined8 *map_start;
+  uint64_t *map_start;
   longlong string_offset;
   
   engine_data = _DAT_180c8a9e0;
-  map_start = *(undefined8 **)(_DAT_180c8a9e0 + 0x18);
-  if (map_start != *(undefined8 **)(_DAT_180c8a9e0 + 0x20)) {
+  map_start = *(uint64_t **)(_DAT_180c8a9e0 + 0x18);
+  if (map_start != *(uint64_t **)(_DAT_180c8a9e0 + 0x20)) {
     target_length = *(int *)(string_data + 2);
     do {
-      map_entry = (undefined8 *)*map_start;
+      map_entry = (uint64_t *)*map_start;
       entry_length = *(int *)(map_entry + 2);
       compare_result = target_length;
       if (entry_length == target_length) {
@@ -688,7 +688,7 @@ void remove_entry_from_string_map(undefined8 context, undefined8 *string_data)
         }
 ENTRY_FOUND:
         if (compare_result == 0) {
-          if (map_entry != (undefined8 *)0x0) {
+          if (map_entry != (uint64_t *)0x0) {
             if (map_entry[0xd] != 0) {
                     // WARNING: Subroutine does not return
               FUN_18064e900();
@@ -696,12 +696,12 @@ ENTRY_FOUND:
             map_entry[4] = &UNK_180a3c3e0;
             if (map_entry[5] == 0) {
               map_entry[5] = 0;
-              *(undefined4 *)(map_entry + 7) = 0;
+              *(int32_t *)(map_entry + 7) = 0;
               map_entry[4] = &UNK_18098bcb0;
               *map_entry = &UNK_180a3c3e0;
               if (map_entry[1] == 0) {
                 map_entry[1] = 0;
-                *(undefined4 *)(map_entry + 3) = 0;
+                *(int32_t *)(map_entry + 3) = 0;
                 *map_entry = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
                 FUN_18064e900(map_entry);
@@ -714,24 +714,24 @@ ENTRY_FOUND:
           }
           *map_start = 0;
           map_entry = map_start + 1;
-          map_end = *(undefined8 **)(engine_data + 0x20);
+          map_end = *(uint64_t **)(engine_data + 0x20);
           if (map_entry < map_end) {
                     // WARNING: Subroutine does not return
             memmove(map_start,map_entry,(longlong)map_end - (longlong)map_entry,target_length,0xfffffffffffffffe);
           }
-          *(undefined8 **)(engine_data + 0x20) = map_end + -1;
+          *(uint64_t **)(engine_data + 0x20) = map_end + -1;
           break;
         }
       }
       else if (entry_length == 0) goto ENTRY_FOUND;
       map_start = map_start + 1;
-    } while (map_start != *(undefined8 **)(_DAT_180c8a9e0 + 0x20));
+    } while (map_start != *(uint64_t **)(_DAT_180c8a9e0 + 0x20));
   }
   FUN_180187390(engine_data,&UNK_180a0aa34);
   *string_data = &UNK_180a3c3e0;
   if (string_data[1] == 0) {
     string_data[1] = 0;
-    *(undefined4 *)(string_data + 3) = 0;
+    *(int32_t *)(string_data + 3) = 0;
     *string_data = &UNK_18098bcb0;
     return;
   }
@@ -752,77 +752,77 @@ ENTRY_FOUND:
  * @param map_ptr 映射结构指针
  * @param search_key 搜索键值
  */
-void process_string_map_structure(undefined **map_ptr, longlong search_key)
+void process_string_map_structure(void **map_ptr, longlong search_key)
 
 {
   ulonglong compare_size;
-  undefined1 *string_buffer;
+  int8_t *string_buffer;
   int compare_result;
-  undefined8 *node_data;
-  undefined8 ref_count;
-  undefined8 *string_ptr;
-  undefined1 *target_string;
+  uint64_t *node_data;
+  uint64_t ref_count;
+  uint64_t *string_ptr;
+  int8_t *target_string;
   ulonglong buffer_size;
-  undefined8 *current_node;
-  undefined8 **node_iterator;
+  uint64_t *current_node;
+  uint64_t **node_iterator;
   longlong string_length;
   longlong node_offset;
   ulonglong min_size;
   ulonglong max_size;
-  undefined1 security_buffer [32];
-  undefined8 process_result;
-  undefined8 **iterator_start;
-  undefined8 **iterator_current;
+  int8_t security_buffer [32];
+  uint64_t process_result;
+  uint64_t **iterator_start;
+  uint64_t **iterator_current;
   ulonglong match_count;
-  undefined8 *result_data;
-  undefined **map_pointer;
-  undefined1 *match_string;
+  uint64_t *result_data;
+  void **map_pointer;
+  int8_t *match_string;
   longlong key_length;
-  undefined8 cleanup_flag;
-  undefined *temp_data;
-  undefined **temp_pointer;
-  undefined8 data_capacity;
-  undefined8 data_size;
-  undefined1 is_found;
-  undefined8 found_data;
-  undefined8 *search_node;
-  undefined **node_pointer;
-  undefined1 temp_string;
+  uint64_t cleanup_flag;
+  void *temp_data;
+  void **temp_pointer;
+  uint64_t data_capacity;
+  uint64_t data_size;
+  int8_t is_found;
+  uint64_t found_data;
+  uint64_t *search_node;
+  void **node_pointer;
+  int8_t temp_string;
   undefined7 temp_padding;
   ulonglong temp_capacity;
   ulonglong temp_size;
   longlong result_start;
   longlong result_end;
   longlong result_capacity;
-  undefined1 key_buffer [16];
-  undefined8 key_capacity;
-  undefined8 key_size;
+  int8_t key_buffer [16];
+  uint64_t key_capacity;
+  uint64_t key_size;
   ulonglong security_xor;
   
   cleanup_flag = 0xfffffffffffffffe;
   security_xor = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
-  current_node = (undefined8 *)*map_ptr;
+  current_node = (uint64_t *)*map_ptr;
   map_pointer = map_ptr;
   key_length = search_key;
-  if ((current_node != (undefined8 *)0x0) &&
+  if ((current_node != (uint64_t *)0x0) &&
      (((longlong)map_ptr[4] - (longlong)map_ptr[3] & 0xfffffffffffffff8U) != 0)) {
-    node_data = (undefined8 *)FUN_1808fc418(0x10);
+    node_data = (uint64_t *)FUN_1808fc418(0x10);
     *node_data = &UNK_180a0ac88;
     *node_data = &UNK_180a0acd8;
     ref_count = 0;
     result_data = node_data;
-    if (current_node != (undefined8 *)0x0) {
-      if ((undefined *)*current_node == &UNK_180a0ad28) {
+    if (current_node != (uint64_t *)0x0) {
+      if ((void *)*current_node == &UNK_180a0ad28) {
         ref_count = current_node[1];
       }
       else {
-        ref_count = (**(code **)((undefined *)*current_node + 0x20))(current_node);
+        ref_count = (**(code **)((void *)*current_node + 0x20))(current_node);
       }
     }
     node_data[1] = ref_count;
-    current_node = (undefined8 *)map_ptr[1];
-    map_ptr[1] = (undefined *)node_data;
-    if (current_node != (undefined8 *)0x0) {
+    current_node = (uint64_t *)map_ptr[1];
+    map_ptr[1] = (void *)node_data;
+    if (current_node != (uint64_t *)0x0) {
       (**(code **)*current_node)(current_node,1);
     }
     result_start = 0;
@@ -836,29 +836,29 @@ void process_string_map_structure(undefined **map_ptr, longlong search_key)
       string_length = string_length + 1;
     } while (*(char *)(search_key + string_length) != '\0');
     FUN_1800671b0(key_buffer,search_key);
-    for (node_iterator = (undefined8 **)map_ptr[3]; iterator_current = node_iterator,
-        node_iterator != (undefined8 **)map_ptr[4]; node_iterator = (undefined8 **)((longlong *)node_iterator + 1))
+    for (node_iterator = (uint64_t **)map_ptr[3]; iterator_current = node_iterator,
+        node_iterator != (uint64_t **)map_ptr[4]; node_iterator = (uint64_t **)((longlong *)node_iterator + 1))
     {
       data_capacity = 0;
       data_size = 0xf;
-      temp_data = (undefined *)((ulonglong)temp_data & 0xffffffffffffff00);
+      temp_data = (void *)((ulonglong)temp_data & 0xffffffffffffff00);
       is_found = 1;
       found_data = 0;
       iterator_start = &search_node;
-      search_node = (undefined8 *)0x0;
-      node_pointer = (undefined **)0x0;
-      search_node = (undefined8 *)FUN_180188490();
+      search_node = (uint64_t *)0x0;
+      node_pointer = (void **)0x0;
+      search_node = (uint64_t *)FUN_180188490();
       string_length = -1;
       do {
         string_length = string_length + 1;
       } while (*(char *)(*(longlong *)((longlong)*node_iterator + 0x40) + string_length) != '\0');
       FUN_1800671b0(&temp_data);
       string_length = (longlong)*node_iterator;
-      is_found = *(undefined1 *)(string_length + 0x48);
-      found_data = *(undefined8 *)(string_length + 0x4c);
+      is_found = *(int8_t *)(string_length + 0x48);
+      found_data = *(uint64_t *)(string_length + 0x4c);
       match_count = 0;
       if (*(longlong *)(string_length + 0x60) != 0) {
-        iterator_start = (undefined8 **)0x0;
+        iterator_start = (uint64_t **)0x0;
         do {
           string_length = *(longlong *)(*(longlong *)(string_length + 0x58) + 8 + (longlong)iterator_start);
           temp_capacity = 0;
@@ -873,8 +873,8 @@ void process_string_map_structure(undefined **map_ptr, longlong search_key)
           buffer_size = temp_capacity;
           current_node = search_node;
           if (*(char *)((longlong)search_node[1] + 0x19) == '\0') {
-            string_buffer = (undefined1 *)CONCAT71(temp_padding,temp_string);
-            node_data = (undefined8 *)search_node[1];
+            string_buffer = (int8_t *)CONCAT71(temp_padding,temp_string);
+            node_data = (uint64_t *)search_node[1];
             do {
               string_ptr = node_data + 4;
               target_string = &temp_string;
@@ -883,7 +883,7 @@ void process_string_map_structure(undefined **map_ptr, longlong search_key)
               }
               compare_size = node_data[6];
               if (0xf < (ulonglong)node_data[7]) {
-                string_ptr = (undefined8 *)*string_ptr;
+                string_ptr = (uint64_t *)*string_ptr;
               }
               min_size = compare_size;
               if (buffer_size < compare_size) {
@@ -893,13 +893,13 @@ void process_string_map_structure(undefined **map_ptr, longlong search_key)
               if (compare_result == 0) {
                 if (compare_size < buffer_size) goto INSERT_LEFT;
 TRAVERSE_RIGHT:
-                string_ptr = (undefined8 *)*node_data;
+                string_ptr = (uint64_t *)*node_data;
                 current_node = node_data;
               }
               else {
                 if (-1 < compare_result) goto TRAVERSE_RIGHT;
 INSERT_LEFT:
-                string_ptr = (undefined8 *)node_data[2];
+                string_ptr = (uint64_t *)node_data[2];
               }
               node_data = string_ptr;
             } while (*(char *)((longlong)string_ptr + 0x19) == '\0');
@@ -907,7 +907,7 @@ INSERT_LEFT:
             node_data = current_node + 4;
             compare_size = current_node[6];
             if (0xf < (ulonglong)current_node[7]) {
-              node_data = (undefined8 *)*node_data;
+              node_data = (uint64_t *)*node_data;
             }
             target_string = &temp_string;
             if (0xf < max_size) {
@@ -969,7 +969,7 @@ INSERT_NEW:
       search_node[1] = current_node;
       *search_node = current_node;
       search_node[2] = current_node;
-      node_pointer = (undefined **)0x0;
+      node_pointer = (void **)0x0;
       free(search_node,0x60);
       FUN_180067070(&temp_data);
     }
@@ -1059,7 +1059,7 @@ void release_array_block_memory(longlong *array_ptr)
  * @param param3 保留参数
  * @param param4 保留参数
  */
-void cleanup_data_block_resources(longlong block_ptr, undefined8 param2, undefined8 param3, undefined8 param4)
+void cleanup_data_block_resources(longlong block_ptr, uint64_t param2, uint64_t param3, uint64_t param4)
 
 {
   longlong *data_pointer;
@@ -1067,11 +1067,11 @@ void cleanup_data_block_resources(longlong block_ptr, undefined8 param2, undefin
   
   data_pointer = (longlong *)(block_ptr + 0x30);
   current_data = *data_pointer;
-  FUN_1801884d0(data_pointer,*(undefined8 *)(current_data + 8),param3,param4,0xfffffffffffffffe);
+  FUN_1801884d0(data_pointer,*(uint64_t *)(current_data + 8),param3,param4,0xfffffffffffffffe);
   *(longlong *)(*data_pointer + 8) = current_data;
   *(longlong *)*data_pointer = current_data;
   *(longlong *)(*data_pointer + 0x10) = current_data;
-  *(undefined8 *)(block_ptr + 0x38) = 0;
+  *(uint64_t *)(block_ptr + 0x38) = 0;
   free(*data_pointer,0x60);
   FUN_180067070(block_ptr);
   return;
@@ -1090,7 +1090,7 @@ void cleanup_data_block_resources(longlong block_ptr, undefined8 param2, undefin
  * @param param3 保留参数
  * @param param4 保留参数
  */
-void release_object_instance_memory(longlong *object_ptr, undefined8 param2, undefined8 param3, undefined8 param4)
+void release_object_instance_memory(longlong *object_ptr, uint64_t param2, uint64_t param3, uint64_t param4)
 
 {
   longlong *instance_data;
@@ -1123,7 +1123,7 @@ void release_object_instance_memory(longlong *object_ptr, undefined8 param2, und
  * @param param3 保留参数
  * @param param4 保留参数
  */
-void release_16byte_aligned_memory(longlong *memory_ptr, undefined8 param2, undefined8 param3, undefined8 param4)
+void release_16byte_aligned_memory(longlong *memory_ptr, uint64_t param2, uint64_t param3, uint64_t param4)
 
 {
   longlong memory_start;
@@ -1163,7 +1163,7 @@ void release_16byte_aligned_memory(longlong *memory_ptr, undefined8 param2, unde
  * @param param3 保留参数
  * @param param4 保留参数
  */
-void release_24byte_aligned_array_memory(longlong *array_ptr, undefined8 param2, undefined8 param3, undefined8 param4)
+void release_24byte_aligned_array_memory(longlong *array_ptr, uint64_t param2, uint64_t param3, uint64_t param4)
 
 {
   longlong array_start;
@@ -1203,7 +1203,7 @@ void release_24byte_aligned_array_memory(longlong *array_ptr, undefined8 param2,
  * @param param3 保留参数
  * @param param4 保留参数
  */
-void release_40byte_aligned_array_memory(longlong *array_ptr, undefined8 param2, undefined8 param3, undefined8 param4)
+void release_40byte_aligned_array_memory(longlong *array_ptr, uint64_t param2, uint64_t param3, uint64_t param4)
 
 {
   longlong array_start;

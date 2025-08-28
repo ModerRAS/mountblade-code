@@ -73,9 +73,9 @@ static void* g_ui_context = NULL;                                   // UI系统�
  * @param config_data 配置数据指针
  * @return 无返回值
  */
-void UI_Component_Initialize(longlong ui_context, undefined8 config_data)
+void UI_Component_Initialize(longlong ui_context, uint64_t config_data)
 {
-  undefined8 stack_config[3];
+  uint64_t stack_config[3];
   
   stack_config[0] = config_data;
   System_Call_Initialize(ui_context + 0x168, stack_config);
@@ -100,41 +100,41 @@ void UI_Component_Initialize(longlong ui_context, undefined8 config_data)
  * @param param_4 处理参数4
  * @return 无返回值
  */
-void UI_Component_Process_Config(longlong ui_context, longlong *config_ptr, undefined8 param_3, undefined8 param_4)
+void UI_Component_Process_Config(longlong ui_context, longlong *config_ptr, uint64_t param_3, uint64_t param_4)
 {
-  undefined *data_ptr1;
-  undefined *data_ptr2;
+  void *data_ptr1;
+  void *data_ptr2;
   longlong *config_stack;
-  undefined *stack_ptr_50;
-  undefined *stack_ptr_48;
-  undefined4 stack_value_38;
-  undefined *stack_ptr_30;
-  undefined *stack_ptr_28;
+  void *stack_ptr_50;
+  void *stack_ptr_48;
+  int32_t stack_value_38;
+  void *stack_ptr_30;
+  void *stack_ptr_28;
   
   config_stack = config_ptr;
   System_Call_Initialize(ui_context + 0x168, &config_stack, param_3, param_4, 0xfffffffffffffffe);
   (**(code **)(*config_ptr + 8))(config_ptr, &stack_ptr_30);
   (**(code **)(*config_ptr + 0x10))(config_ptr, &stack_ptr_50);
   data_ptr2 = &DAT_18098bc73;
-  if (stack_ptr_48 != (undefined *)0x0) {
+  if (stack_ptr_48 != (void *)0x0) {
     data_ptr2 = stack_ptr_48;
   }
   data_ptr1 = &DAT_18098bc73;
-  if (stack_ptr_28 != (undefined *)0x0) {
+  if (stack_ptr_28 != (void *)0x0) {
     data_ptr1 = stack_ptr_28;
   }
   (**(code **)(_DAT_180c8f008 + 0xe8))(data_ptr1, data_ptr2);
   (**(code **)*config_ptr)(config_ptr);
   stack_ptr_50 = &UNK_180a3c3e0;
-  if (stack_ptr_48 != (undefined *)0x0) {
+  if (stack_ptr_48 != (void *)0x0) {
                     // WARNING: Subroutine does not return
     System_Error_Handler();
   }
-  stack_ptr_48 = (undefined *)0x0;
+  stack_ptr_48 = (void *)0x0;
   stack_value_38 = 0;
   stack_ptr_50 = &UNK_18098bcb0;
   stack_ptr_30 = &UNK_180a3c3e0;
-  if (stack_ptr_28 != (undefined *)0x0) {
+  if (stack_ptr_28 != (void *)0x0) {
                     // WARNING: Subroutine does not return
     System_Error_Handler();
   }
@@ -161,22 +161,22 @@ void UI_Component_Process_Config(longlong ui_context, longlong *config_ptr, unde
 void UI_System_Handle_Event(longlong ui_context, longlong event_source, longlong event_data)
 {
   code *callback_ptr;
-  undefined *event_data_ptr1;
-  undefined *event_data_ptr2;
+  void *event_data_ptr1;
+  void *event_data_ptr2;
   
   callback_ptr = _DAT_180c8f018;
-  *(undefined1 *)(ui_context + 0x189) = 1;
+  *(int8_t *)(ui_context + 0x189) = 1;
   if (callback_ptr == (code *)0x0) {
     System_Event_Default_Handler(&UNK_180a3dc30);
   }
   else {
     event_data_ptr1 = &DAT_18098bc73;
-    if (*(undefined **)(event_source + 8) != (undefined *)0x0) {
-      event_data_ptr1 = *(undefined **)(event_source + 8);
+    if (*(void **)(event_source + 8) != (void *)0x0) {
+      event_data_ptr1 = *(void **)(event_source + 8);
     }
     event_data_ptr2 = &DAT_18098bc73;
-    if (*(undefined **)(event_data + 8) != (undefined *)0x0) {
-      event_data_ptr2 = *(undefined **)(event_data + 8);
+    if (*(void **)(event_data + 8) != (void *)0x0) {
+      event_data_ptr2 = *(void **)(event_data + 8);
     }
     (*callback_ptr)(event_data_ptr1, event_data_ptr2, _DAT_180c8ecfc, _DAT_180bf3ff4);
   }
@@ -251,17 +251,17 @@ void UI_System_Process_Task_Queue(longlong task_queue)
   task_index = 0;
   max_tasks = task_index;
   if (*(longlong *)(task_queue + 0x170) - *(longlong *)(task_queue + 0x168) >> 3 == 0) {
-    *(undefined1 *)(task_queue + 0x188) = 1;
+    *(int8_t *)(task_queue + 0x188) = 1;
     return;
   }
   do {
-    (**(code **)**(undefined8 **)(task_index + *(longlong *)(task_queue + 0x168)))();
+    (**(code **)**(uint64_t **)(task_index + *(longlong *)(task_queue + 0x168)))();
     task_index = task_index + 8;
     task_count = (int)max_tasks + 1;
     max_tasks = (ulonglong)task_count;
   } while ((ulonglong)(longlong)(int)task_count <
            (ulonglong)(*(longlong *)(task_queue + 0x170) - *(longlong *)(task_queue + 0x168) >> 3));
-  *(undefined1 *)(task_queue + 0x188) = 1;
+  *(int8_t *)(task_queue + 0x188) = 1;
   return;
 }
 
@@ -284,12 +284,12 @@ void UI_System_Task_Handler_Inline(void)
   
   task_index = (ulonglong)task_counter;
   do {
-    (**(code **)**(undefined8 **)(task_index + *(longlong *)(queue_context + 0x168)))();
+    (**(code **)**(uint64_t **)(task_index + *(longlong *)(queue_context + 0x168)))();
     task_index = task_index + 8;
     task_counter = task_counter + 1;
   } while ((ulonglong)(longlong)(int)task_counter <
            (ulonglong)(*(longlong *)(queue_context + 0x170) - *(longlong *)(queue_context + 0x168) >> 3));
-  *(undefined1 *)(queue_context + 0x188) = 1;
+  *(int8_t *)(queue_context + 0x188) = 1;
   return;
 }
 
@@ -307,7 +307,7 @@ void UI_System_Task_Handler_Inline(void)
  */
 void UI_System_Mark_Task_Complete(longlong task_context)
 {
-  *(undefined1 *)(task_context + 0x188) = 1;
+  *(int8_t *)(task_context + 0x188) = 1;
   return;
 }
 
@@ -324,15 +324,15 @@ void UI_System_Mark_Task_Complete(longlong task_context)
  * @param resource_type 资源类型
  * @return 创建成功返回资源句柄，失败返回0
  */
-undefined8 UI_Create_Resource(longlong ui_context, undefined8 resource_data, undefined4 resource_type)
+uint64_t UI_Create_Resource(longlong ui_context, uint64_t resource_data, int32_t resource_type)
 {
   longlong resource_handle;
-  undefined *resource_name;
+  void *resource_name;
   
   resource_handle = (**(code **)(ui_context + 0x148))(resource_type);
   resource_name = &DAT_18098bc73;
-  if (*(undefined **)(resource_handle + 8) != (undefined *)0x0) {
-    resource_name = *(undefined **)(resource_handle + 8);
+  if (*(void **)(resource_handle + 8) != (void *)0x0) {
+    resource_name = *(void **)(resource_handle + 8);
   }
   System_Resource_Register(resource_data, resource_name);
   return resource_data;
@@ -352,31 +352,31 @@ undefined8 UI_Create_Resource(longlong ui_context, undefined8 resource_data, und
  * @param process_flags 处理标志位
  * @return 处理成功返回1，失败返回0
  */
-ulonglong UI_Process_Data(longlong ui_context, longlong data_dest, longlong data_source, undefined8 process_flags)
+ulonglong UI_Process_Data(longlong ui_context, longlong data_dest, longlong data_source, uint64_t process_flags)
 {
   ulonglong result_status;
   longlong source_handle;
   longlong temp_handle;
-  undefined *source_data;
+  void *source_data;
   ulonglong data_length;
-  undefined8 process_mode;
-  undefined *stack_buffer;
+  uint64_t process_mode;
+  void *stack_buffer;
   longlong buffer_handle;
   uint buffer_size;
-  undefined4 buffer_flags;
+  int32_t buffer_flags;
   
   process_mode = 0xfffffffffffffffe;
   if (*(int *)(data_source + 0x10) == 0) {
     return result_status & 0xffffffffffffff00;
   }
   source_data = &DAT_18098bc73;
-  if (*(undefined **)(data_source + 8) != (undefined *)0x0) {
-    source_data = *(undefined **)(data_source + 8);
+  if (*(void **)(data_source + 8) != (void *)0x0) {
+    source_data = *(void **)(data_source + 8);
   }
   source_handle = (**(code **)(ui_context + 0xb0))(source_data);
   source_data = &DAT_18098bc73;
-  if (*(undefined **)(source_handle + 8) != (undefined *)0x0) {
-    source_data = *(undefined **)(source_handle + 8);
+  if (*(void **)(source_handle + 8) != (void *)0x0) {
+    source_data = *(void **)(source_handle + 8);
   }
   System_Resource_Register(&stack_buffer, source_data);
   if (buffer_size == 7) {
@@ -395,13 +395,13 @@ data_process:
     }
     if (buffer_size != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(*(undefined8 *)(data_dest + 8), buffer_handle, (ulonglong)buffer_size, process_flags, process_mode);
+      memcpy(*(uint64_t *)(data_dest + 8), buffer_handle, (ulonglong)buffer_size, process_flags, process_mode);
     }
-    *(undefined4 *)(data_dest + 0x10) = 0;
+    *(int32_t *)(data_dest + 0x10) = 0;
     if (*(longlong *)(data_dest + 8) != 0) {
-      *(undefined1 *)((ulonglong)buffer_size + *(longlong *)(data_dest + 8)) = 0;
+      *(int8_t *)((ulonglong)buffer_size + *(longlong *)(data_dest + 8)) = 0;
     }
-    *(undefined4 *)(data_dest + 0x1c) = buffer_flags;
+    *(int32_t *)(data_dest + 0x1c) = buffer_flags;
     result_status = 1;
   }
   stack_buffer = &UNK_180a3c3e0;
@@ -424,13 +424,13 @@ data_process:
  * @param resource_handle 资源句柄
  * @return 激活成功返回1，失败返回0
  */
-undefined8 UI_Activate_Resource(longlong ui_context, longlong resource_handle)
+uint64_t UI_Activate_Resource(longlong ui_context, longlong resource_handle)
 {
-  undefined *resource_data;
+  void *resource_data;
   
   resource_data = &DAT_18098bc73;
-  if (*(undefined **)(resource_handle + 8) != (undefined *)0x0) {
-    resource_data = *(undefined **)(resource_handle + 8);
+  if (*(void **)(resource_handle + 8) != (void *)0x0) {
+    resource_data = *(void **)(resource_handle + 8);
   }
   (**(code **)(ui_context + 0x110))(resource_data);
   return 1;
@@ -448,13 +448,13 @@ undefined8 UI_Activate_Resource(longlong ui_context, longlong resource_handle)
  * @param resource_handle 资源句柄
  * @return 停用成功返回1，失败返回0
  */
-undefined8 UI_Deactivate_Resource(longlong ui_context, longlong resource_handle)
+uint64_t UI_Deactivate_Resource(longlong ui_context, longlong resource_handle)
 {
-  undefined *resource_data;
+  void *resource_data;
   
   resource_data = &DAT_18098bc73;
-  if (*(undefined **)(resource_handle + 8) != (undefined *)0x0) {
-    resource_data = *(undefined **)(resource_handle + 8);
+  if (*(void **)(resource_handle + 8) != (void *)0x0) {
+    resource_data = *(void **)(resource_handle + 8);
   }
   (**(code **)(ui_context + 0x118))(resource_data);
   return 1;
@@ -476,17 +476,17 @@ undefined8 UI_Deactivate_Resource(longlong ui_context, longlong resource_handle)
  * @param process_flags 处理标志位
  * @return 处理结果指针
  */
-int * UI_Batch_Process(longlong ui_context, int *result_count, longlong *item_array, undefined8 process_flags)
+int * UI_Batch_Process(longlong ui_context, int *result_count, longlong *item_array, uint64_t process_flags)
 {
-  undefined *item_data;
+  void *item_data;
   int batch_size;
   longlong array_start;
   uint item_index;
   ulonglong current_index;
   ulonglong max_items;
-  undefined *item_name;
-  undefined4 item_flags;
-  undefined8 process_params;
+  void *item_name;
+  int32_t item_flags;
+  uint64_t process_params;
   
   process_params = 0xfffffffffffffffe;
   current_index = 0;
@@ -500,9 +500,9 @@ int * UI_Batch_Process(longlong ui_context, int *result_count, longlong *item_ar
   max_items = current_index;
   if (item_array[1] - array_start >> 5 != 0) {
     do {
-      item_data = *(undefined **)(array_start + 8 + current_index);
+      item_data = *(void **)(array_start + 8 + current_index);
       item_name = &DAT_18098bc73;
-      if (item_data != (undefined *)0x0) {
+      if (item_data != (void *)0x0) {
         item_name = item_data;
       }
       (**(code **)(ui_context + 0x128))(*result_count, current_index, item_name, process_flags, item_flags, process_params);
@@ -527,7 +527,7 @@ int * UI_Batch_Process(longlong ui_context, int *result_count, longlong *item_ar
  * 
  * @return FTDN管理接口指针
  */
-undefined8 Get_FTDN_Managed_Interface(void)
+uint64_t Get_FTDN_Managed_Interface(void)
 {
                     // 0x6523f0  33  get_ftdn_managed_interface
   return _DAT_180c8f008;
@@ -551,39 +551,39 @@ undefined8 Get_FTDN_Managed_Interface(void)
  */
 void UI_Parse_Config_Data(longlong *config_context, longlong config_source)
 {
-  undefined4 *data_ptr1;
-  undefined4 data_value1;
-  undefined4 data_value2;
-  undefined4 data_value3;
-  undefined8 *data_ptr2;
-  undefined8 *data_ptr3;
+  int32_t *data_ptr1;
+  int32_t data_value1;
+  int32_t data_value2;
+  int32_t data_value3;
+  uint64_t *data_ptr2;
+  uint64_t *data_ptr3;
   int int_value1;
   int int_value2;
   ulonglong item_count;
-  undefined8 *data_ptr4;
+  uint64_t *data_ptr4;
   longlong long_value1;
   longlong long_value2;
-  undefined8 *data_ptr5;
+  uint64_t *data_ptr5;
   longlong long_value3;
-  undefined8 *data_ptr6;
-  undefined2 stack_config[4];
+  uint64_t *data_ptr6;
+  int16_t stack_config[4];
   ulonglong stack_size;
-  undefined8 stack_data;
-  undefined8 *stack_ptr_98;
-  undefined8 *stack_ptr_90;
-  undefined8 stack_value_88;
-  undefined4 stack_value_80;
-  undefined *stack_ptr_78;
+  uint64_t stack_data;
+  uint64_t *stack_ptr_98;
+  uint64_t *stack_ptr_90;
+  uint64_t stack_value_88;
+  int32_t stack_value_80;
+  void *stack_ptr_78;
   longlong stack_value_70;
-  undefined4 stack_value_60;
-  undefined8 *stack_ptr_58;
-  undefined8 *stack_ptr_50;
-  undefined8 stack_value_48;
-  undefined4 stack_value_40;
+  int32_t stack_value_60;
+  uint64_t *stack_ptr_58;
+  uint64_t *stack_ptr_50;
+  uint64_t stack_value_48;
+  int32_t stack_value_40;
   
   if (*(int *)(config_source + 0x10) != 0) {
-    stack_ptr_98 = (undefined8 *)0x0;
-    stack_ptr_90 = (undefined8 *)0x0;
+    stack_ptr_98 = (uint64_t *)0x0;
+    stack_ptr_90 = (uint64_t *)0x0;
     stack_value_88 = 0;
     stack_value_80 = 3;
     stack_config[0] = 10;
@@ -597,8 +597,8 @@ void UI_Parse_Config_Data(longlong *config_context, longlong config_source)
     if ((int)item_count != 0) {
       item_count = item_count & 0xffffffff;
       do {
-        stack_ptr_58 = (undefined8 *)0x0;
-        stack_ptr_50 = (undefined8 *)0x0;
+        stack_ptr_58 = (uint64_t *)0x0;
+        stack_ptr_50 = (uint64_t *)0x0;
         stack_value_48 = 0;
         stack_value_40 = 3;
         stack_config[0] = 0x40;
@@ -614,8 +614,8 @@ void UI_Parse_Config_Data(longlong *config_context, longlong config_source)
           int_value1 = atoi(data_ptr2[5]);
           int_value2 = atoi(data_ptr2[9]);
           stack_data = UI_Create_Handle(&stack_ptr_78);
-          data_ptr5 = (undefined8 *)config_context[1];
-          if (data_ptr5 < (undefined8 *)config_context[2]) {
+          data_ptr5 = (uint64_t *)config_context[1];
+          if (data_ptr5 < (uint64_t *)config_context[2]) {
             *data_ptr5 = stack_data;
             data_ptr5[1] = (longlong)int_value1;
             data_ptr5[2] = (longlong)int_value2;
@@ -627,28 +627,28 @@ void UI_Parse_Config_Data(longlong *config_context, longlong config_source)
             if (long_value2 == 0) {
               long_value2 = 1;
 resize_buffer:
-              data_ptr4 = (undefined8 *)System_Allocate_Buffer(_DAT_180c8ed18, long_value2 * 0x18, (char)config_context[3]);
-              data_ptr5 = (undefined8 *)config_context[1];
+              data_ptr4 = (uint64_t *)System_Allocate_Buffer(_DAT_180c8ed18, long_value2 * 0x18, (char)config_context[3]);
+              data_ptr5 = (uint64_t *)config_context[1];
               long_value3 = *config_context;
             }
             else {
               long_value2 = long_value2 * 2;
               if (long_value2 != 0) goto resize_buffer;
-              data_ptr4 = (undefined8 *)0x0;
+              data_ptr4 = (uint64_t *)0x0;
             }
             long_value1 = ((longlong)data_ptr5 - long_value3) / 0x18;
             data_ptr5 = data_ptr4;
             if (0 < long_value1) {
               do {
-                data_ptr1 = (undefined4 *)((longlong)data_ptr5 + (long_value3 - (longlong)data_ptr4));
+                data_ptr1 = (int32_t *)((longlong)data_ptr5 + (long_value3 - (longlong)data_ptr4));
                 data_value1 = data_ptr1[1];
                 data_value2 = data_ptr1[2];
                 data_value3 = data_ptr1[3];
-                *(undefined4 *)data_ptr5 = *data_ptr1;
-                *(undefined4 *)((longlong)data_ptr5 + 4) = data_value1;
-                *(undefined4 *)(data_ptr5 + 1) = data_value2;
-                *(undefined4 *)((longlong)data_ptr5 + 0xc) = data_value3;
-                data_ptr5[2] = *(undefined8 *)
+                *(int32_t *)data_ptr5 = *data_ptr1;
+                *(int32_t *)((longlong)data_ptr5 + 4) = data_value1;
+                *(int32_t *)(data_ptr5 + 1) = data_value2;
+                *(int32_t *)((longlong)data_ptr5 + 0xc) = data_value3;
+                data_ptr5[2] = *(uint64_t *)
                               ((longlong)data_ptr5 + (long_value3 - (longlong)data_ptr4) + 0x10);
                 long_value1 = long_value1 + -1;
                 data_ptr5 = data_ptr5 + 3;
@@ -683,7 +683,7 @@ resize_buffer:
             (**(code **)*data_ptr5)(data_ptr5, 0);
           }
         }
-        if (data_ptr2 != (undefined8 *)0x0) {
+        if (data_ptr2 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
           System_Error_Handler(data_ptr2);
         }
@@ -705,7 +705,7 @@ resize_buffer:
       stack_ptr_90 = data_ptr4;
       stack_ptr_98 = data_ptr3;
     }
-    if (stack_ptr_98 != (undefined8 *)0x0) {
+    if (stack_ptr_98 != (uint64_t *)0x0) {
       stack_ptr_98 = data_ptr5;
       stack_ptr_90 = data_ptr2;
                     // WARNING: Subroutine does not return
@@ -731,9 +731,9 @@ resize_buffer:
  */
 void UI_System_Secure_Cleanup(void)
 {
-  undefined1 secure_buffer[144];
-  undefined8 cleanup_param;
-  undefined1 cleanup_area[288];
+  int8_t secure_buffer[144];
+  uint64_t cleanup_param;
+  int8_t cleanup_area[288];
   ulonglong security_key;
   
   cleanup_param = 0xfffffffffffffffe;
@@ -758,15 +758,15 @@ void UI_System_Secure_Cleanup(void)
  * @param data_array 数据数组指针
  * @return 无返回值
  */
-void UI_Thread_Safe_Process(undefined8 thread_param, longlong *data_array)
+void UI_Thread_Safe_Process(uint64_t thread_param, longlong *data_array)
 {
   int mutex_result;
   longlong array_size;
-  undefined1 thread_buffer[184];
-  undefined1 temp_storage[32];
-  undefined8 mutex_handle;
-  undefined8 backup_handle;
-  undefined1 process_area[2048];
+  int8_t thread_buffer[184];
+  int8_t temp_storage[32];
+  uint64_t mutex_handle;
+  uint64_t backup_handle;
+  int8_t process_area[2048];
   ulonglong stack_guard;
   
   mutex_handle = 0xfffffffffffffffe;
@@ -805,19 +805,19 @@ void UI_Thread_Safe_Process(undefined8 thread_param, longlong *data_array)
  * @param process_flags 处理标志位
  * @return 处理结果指针
  */
-undefined8 * UI_Process_String_Data(longlong *string_array, undefined8 *result_buffer, undefined8 process_param, undefined8 process_flags)
+uint64_t * UI_Process_String_Data(longlong *string_array, uint64_t *result_buffer, uint64_t process_param, uint64_t process_flags)
 {
   char *char_ptr;
-  undefined *string_data;
+  void *string_data;
   longlong string_length;
   ulonglong array_size;
   longlong current_pos;
-  undefined *char_data;
-  undefined *stack_buffer;
+  void *char_data;
+  void *stack_buffer;
   longlong buffer_handle;
-  undefined4 buffer_size;
-  undefined4 buffer_type;
-  undefined4 buffer_flags;
+  int32_t buffer_size;
+  int32_t buffer_type;
+  int32_t buffer_flags;
   longlong temp_var;
   
   current_pos = 0;
@@ -841,9 +841,9 @@ undefined8 * UI_Process_String_Data(longlong *string_array, undefined8 *result_b
     }
     array_size = array_size & 0xffffffff;
     do {
-      string_data = *(undefined **)(current_pos + 8 + *string_array);
+      string_data = *(void **)(current_pos + 8 + *string_array);
       char_data = &DAT_18098bc73;
-      if (string_data != (undefined *)0x0) {
+      if (string_data != (void *)0x0) {
         char_data = string_data;
       }
       System_String_Format(&stack_buffer, &UNK_1809fe62c, char_data);
@@ -856,12 +856,12 @@ undefined8 * UI_Process_String_Data(longlong *string_array, undefined8 *result_b
   }
   *result_buffer = &UNK_18098bcb0;
   result_buffer[1] = 0;
-  *(undefined4 *)(result_buffer + 2) = 0;
+  *(int32_t *)(result_buffer + 2) = 0;
   *result_buffer = &UNK_180a3c3e0;
-  *(undefined4 *)(result_buffer + 2) = buffer_size;
+  *(int32_t *)(result_buffer + 2) = buffer_size;
   result_buffer[1] = buffer_handle;
-  *(undefined4 *)((longlong)result_buffer + 0x1c) = buffer_flags;
-  *(undefined4 *)(result_buffer + 3) = buffer_type;
+  *(int32_t *)((longlong)result_buffer + 0x1c) = buffer_flags;
+  *(int32_t *)(result_buffer + 3) = buffer_type;
   return result_buffer;
 }
 
@@ -950,16 +950,16 @@ void UI_System_Call(void)
  * @param process_flags 处理标志位
  * @return 处理结果指针
  */
-undefined8 * UI_Process_Mono_String(undefined8 *result_buffer, longlong mono_string, undefined8 process_param, undefined8 process_flags)
+uint64_t * UI_Process_Mono_String(uint64_t *result_buffer, longlong mono_string, uint64_t process_param, uint64_t process_flags)
 {
-  undefined8 mono_handle;
-  undefined4 buffer_size;
-  undefined8 process_mode;
-  undefined1 temp_buffer[8];
-  undefined8 buffer_handle;
-  undefined4 buffer_length;
-  undefined4 buffer_type;
-  undefined4 buffer_flags;
+  uint64_t mono_handle;
+  int32_t buffer_size;
+  uint64_t process_mode;
+  int8_t temp_buffer[8];
+  uint64_t buffer_handle;
+  int32_t buffer_length;
+  int32_t buffer_type;
+  int32_t buffer_flags;
   
   process_mode = 0xfffffffffffffffe;
   buffer_size = 0;
@@ -969,12 +969,12 @@ undefined8 * UI_Process_Mono_String(undefined8 *result_buffer, longlong mono_str
     mono_free(mono_handle);
     *result_buffer = &UNK_18098bcb0;
     result_buffer[1] = 0;
-    *(undefined4 *)(result_buffer + 2) = 0;
+    *(int32_t *)(result_buffer + 2) = 0;
     *result_buffer = &UNK_180a3c3e0;
-    *(undefined4 *)(result_buffer + 2) = buffer_length;
+    *(int32_t *)(result_buffer + 2) = buffer_length;
     result_buffer[1] = buffer_handle;
-    *(undefined4 *)((longlong)result_buffer + 0x1c) = buffer_flags;
-    *(undefined4 *)(result_buffer + 3) = buffer_type;
+    *(int32_t *)((longlong)result_buffer + 0x1c) = buffer_flags;
+    *(int32_t *)(result_buffer + 3) = buffer_type;
     return result_buffer;
   }
   process_mode = System_Get_Mono_Handle();
@@ -994,7 +994,7 @@ undefined8 * UI_Process_Mono_String(undefined8 *result_buffer, longlong mono_str
  * @param debug_message 调试信息指针
  * @return 无返回值
  */
-void UI_Debug_Output(undefined8 debug_message)
+void UI_Debug_Output(uint64_t debug_message)
 {
   UI_String_Process_Wrapper();
   OutputDebugStringA(debug_message);
@@ -1013,7 +1013,7 @@ void UI_Debug_Output(undefined8 debug_message)
  */
 void UI_Memory_Allocate(longlong element_size, longlong element_count)
 {
-  undefined8 memory_handle;
+  uint64_t memory_handle;
   
   memory_handle = System_Allocate_Buffer(_DAT_180c8ed18, element_size * element_count, 0x19);
                     // WARNING: Subroutine does not return
@@ -1036,32 +1036,32 @@ void UI_Memory_Allocate(longlong element_size, longlong element_count)
  */
 void UI_Mono_Allocator_Initialize(void)
 {
-  undefined8 *allocator_table;
-  undefined4 *environment_var;
+  uint64_t *allocator_table;
+  int32_t *environment_var;
   
-  allocator_table = (undefined8 *)System_Allocate_Handle(_DAT_180c8ed18, 0x28, 8, 3, 0xfffffffffffffffe);
+  allocator_table = (uint64_t *)System_Allocate_Handle(_DAT_180c8ed18, 0x28, 8, 3, 0xfffffffffffffffe);
   *allocator_table = 1;
   allocator_table[1] = UI_Memory_Allocate;
   allocator_table[2] = UI_Memory_Reallocate;
   allocator_table[3] = UI_Memory_Free;
   allocator_table[4] = UI_Memory_Allocate_Array;
   mono_set_allocator_vtable(allocator_table);
-  environment_var = (undefined4 *)System_Allocate_Buffer(_DAT_180c8ed18, 0x13, 0x13);
-  *(undefined1 *)environment_var = 0;
+  environment_var = (int32_t *)System_Allocate_Buffer(_DAT_180c8ed18, 0x13, 0x13);
+  *(int8_t *)environment_var = 0;
   System_String_Sanitize(environment_var);
   *environment_var = 0x7372756e;
   environment_var[1] = 0x2d797265;
   environment_var[2] = 0x657a6973;
   environment_var[3] = 0x3931383d;
-  *(undefined2 *)(environment_var + 4) = 0x6b32;
-  *(undefined1 *)((longlong)environment_var + 0x12) = 0;
-  allocator_table = (undefined8 *)System_Allocate_Buffer(_DAT_180c8ed18, 0x10, 0x13);
-  *(undefined1 *)allocator_table = 0;
+  *(int16_t *)(environment_var + 4) = 0x6b32;
+  *(int8_t *)((longlong)environment_var + 0x12) = 0;
+  allocator_table = (uint64_t *)System_Allocate_Buffer(_DAT_180c8ed18, 0x10, 0x13);
+  *(int8_t *)allocator_table = 0;
   System_String_Sanitize(allocator_table);
   *allocator_table = 0x5f43475f4f4e4f4d;
-  *(undefined4 *)(allocator_table + 1) = 0x41524150;
-  *(undefined2 *)((longlong)allocator_table + 0xc) = 0x534d;
-  *(undefined1 *)((longlong)allocator_table + 0xe) = 0;
+  *(int32_t *)(allocator_table + 1) = 0x41524150;
+  *(int16_t *)((longlong)allocator_table + 0xc) = 0x534d;
+  *(int8_t *)((longlong)allocator_table + 0xe) = 0;
   SetEnvironmentVariableA(allocator_table, environment_var);
                     // WARNING: Subroutine does not return
   System_Error_Handler(allocator_table);
@@ -1084,23 +1084,23 @@ void UI_Mono_Allocator_Initialize(void)
 void UI_Load_Assembly(void)
 {
   longlong *domain_handle;
-  undefined4 *assembly_name;
-  undefined4 name_length;
+  int32_t *assembly_name;
+  int32_t name_length;
   longlong assembly_handle;
-  undefined8 *class_name;
-  undefined4 *namespace_ptr;
+  uint64_t *class_name;
+  int32_t *namespace_ptr;
   ulonglong string_length;
-  undefined1 stack_buffer[32];
-  undefined *stack_ptr_b8;
-  undefined4 *stack_ptr_b0;
+  int8_t stack_buffer[32];
+  void *stack_ptr_b8;
+  int32_t *stack_ptr_b0;
   uint stack_size_a8;
   ulonglong stack_size_a0;
-  undefined4 stack_value_98;
-  undefined *stack_ptr_90;
-  undefined8 *stack_ptr_88;
-  undefined4 stack_value_80;
-  undefined8 stack_value_78;
-  undefined8 stack_value_50;
+  int32_t stack_value_98;
+  void *stack_ptr_90;
+  uint64_t *stack_ptr_88;
+  int32_t stack_value_80;
+  uint64_t stack_value_78;
+  uint64_t stack_value_50;
   ulonglong stack_guard;
   
   domain_handle = _DAT_180c91020;
@@ -1109,30 +1109,30 @@ void UI_Load_Assembly(void)
   stack_value_98 = 0;
   stack_ptr_b8 = &UNK_180a3c3e0;
   stack_size_a0 = 0;
-  stack_ptr_b0 = (undefined4 *)0x0;
+  stack_ptr_b0 = (int32_t *)0x0;
   stack_size_a8 = 0;
   System_String_Create(&stack_ptr_b8, 0x15);
   assembly_name = stack_ptr_b0;
   string_length = (ulonglong)stack_size_a8;
-  namespace_ptr = (undefined4 *)((longlong)stack_ptr_b0 + string_length);
+  namespace_ptr = (int32_t *)((longlong)stack_ptr_b0 + string_length);
   *namespace_ptr = 0x656c6154;
   namespace_ptr[1] = 0x6c726f57;
   namespace_ptr[2] = 0x442e7364;
   namespace_ptr[3] = 0x654e746f;
-  *(undefined4 *)((longlong)stack_ptr_b0 + string_length + 0x10) = 0x6c642e74;
-  *(undefined2 *)((longlong)stack_ptr_b0 + string_length + 0x14) = 0x6c;
+  *(int32_t *)((longlong)stack_ptr_b0 + string_length + 0x10) = 0x6c642e74;
+  *(int16_t *)((longlong)stack_ptr_b0 + string_length + 0x14) = 0x6c;
   stack_size_a8 = 0x15;
-  namespace_ptr = (undefined4 *)&DAT_18098bc73;
-  if (stack_ptr_b0 != (undefined4 *)0x0) {
+  namespace_ptr = (int32_t *)&DAT_18098bc73;
+  if (stack_ptr_b0 != (int32_t *)0x0) {
     namespace_ptr = stack_ptr_b0;
   }
   assembly_handle = mono_domain_assembly_open(_DAT_180c91028, namespace_ptr);
   stack_ptr_b8 = &UNK_180a3c3e0;
-  if (assembly_name != (undefined4 *)0x0) {
+  if (assembly_name != (int32_t *)0x0) {
                     // WARNING: Subroutine does not return
     System_Error_Handler(assembly_name);
   }
-  stack_ptr_b0 = (undefined4 *)0x0;
+  stack_ptr_b0 = (int32_t *)0x0;
   stack_size_a0 = stack_size_a0 & 0xffffffff00000000;
   stack_ptr_b8 = &UNK_18098bcb0;
   *domain_handle = assembly_handle;
@@ -1147,23 +1147,23 @@ void UI_Load_Assembly(void)
   }
   stack_ptr_90 = &UNK_180a3c3e0;
   stack_value_78 = 0;
-  stack_ptr_88 = (undefined8 *)0x0;
+  stack_ptr_88 = (uint64_t *)0x0;
   stack_value_80 = 0;
-  class_name = (undefined8 *)System_Allocate_Buffer(_DAT_180c8ed18, 0x10, 0x13);
-  *(undefined1 *)class_name = 0;
+  class_name = (uint64_t *)System_Allocate_Buffer(_DAT_180c8ed18, 0x10, 0x13);
+  *(int8_t *)class_name = 0;
   stack_ptr_88 = class_name;
   name_length = System_String_Sanitize(class_name);
   stack_value_78 = CONCAT44(stack_value_78._4_4_, name_length);
   *class_name = 0x6c6c6f72746e6f43;
-  *(undefined2 *)(class_name + 1) = 0x7265;
-  *(undefined1 *)((longlong)class_name + 10) = 0;
+  *(int16_t *)(class_name + 1) = 0x7265;
+  *(int8_t *)((longlong)class_name + 10) = 0;
   stack_value_80 = 10;
   stack_ptr_b8 = &UNK_180a3c3e0;
   stack_size_a0 = 0;
-  stack_ptr_b0 = (undefined4 *)0x0;
+  stack_ptr_b0 = (int32_t *)0x0;
   stack_size_a8 = 0;
-  namespace_ptr = (undefined4 *)System_Allocate_Buffer(_DAT_180c8ed18, 0x12, 0x13);
-  *(undefined1 *)namespace_ptr = 0;
+  namespace_ptr = (int32_t *)System_Allocate_Buffer(_DAT_180c8ed18, 0x12, 0x13);
+  *(int8_t *)namespace_ptr = 0;
   stack_ptr_b0 = namespace_ptr;
   name_length = System_String_Sanitize(namespace_ptr);
   stack_size_a0 = CONCAT44(stack_size_a0._4_4_, name_length);
@@ -1171,7 +1171,7 @@ void UI_Load_Assembly(void)
   namespace_ptr[1] = 0x6c726f57;
   namespace_ptr[2] = 0x442e7364;
   namespace_ptr[3] = 0x654e746f;
-  *(undefined2 *)(namespace_ptr + 4) = 0x74;
+  *(int16_t *)(namespace_ptr + 4) = 0x74;
   stack_size_a8 = 0x11;
   mono_class_from_name(domain_handle[1], namespace_ptr, class_name);
   stack_ptr_b8 = &UNK_180a3c3e0;
@@ -1193,15 +1193,15 @@ void UI_Load_Assembly(void)
  * @param copy_flags 复制标志位
  * @return 复制结果指针
  */
-undefined8 * UI_String_Copy(undefined8 source_string, undefined8 *dest_buffer, undefined8 copy_param, undefined8 copy_flags)
+uint64_t * UI_String_Copy(uint64_t source_string, uint64_t *dest_buffer, uint64_t copy_param, uint64_t copy_flags)
 {
   *dest_buffer = &UNK_18098bcb0;
   dest_buffer[1] = 0;
-  *(undefined4 *)(dest_buffer + 2) = 0;
+  *(int32_t *)(dest_buffer + 2) = 0;
   *dest_buffer = &UNK_1809fcc28;
   dest_buffer[1] = dest_buffer + 3;
-  *(undefined1 *)(dest_buffer + 3) = 0;
-  *(undefined4 *)(dest_buffer + 2) = 0x10;
+  *(int8_t *)(dest_buffer + 3) = 0;
+  *(int32_t *)(dest_buffer + 2) = 0x10;
   strcpy_s(dest_buffer[1], 0x80, &UNK_180a3def0, copy_flags, 0, 0xfffffffffffffffe);
   return dest_buffer;
 }
@@ -1223,7 +1223,7 @@ undefined8 * UI_String_Copy(undefined8 source_string, undefined8 *dest_buffer, u
  * @param data_size 数据大小
  * @return 无返回值
  */
-void UI_Manage_Buffer(longlong buffer_context, undefined8 data_source, int data_size)
+void UI_Manage_Buffer(longlong buffer_context, uint64_t data_source, int data_size)
 {
   longlong buffer_start;
   longlong buffer_end;
@@ -1253,7 +1253,7 @@ void UI_Manage_Buffer(longlong buffer_context, undefined8 data_source, int data_
         buffer_start = 0;
       }
       else {
-        buffer_start = System_Allocate_Buffer(_DAT_180c8ed18, new_size, *(undefined1 *)(buffer_context + 0x28));
+        buffer_start = System_Allocate_Buffer(_DAT_180c8ed18, new_size, *(int8_t *)(buffer_context + 0x28));
         buffer_end = *(longlong *)(buffer_context + 0x10);
         buffer_capacity = *(longlong *)(buffer_context + 0x18);
       }
@@ -1306,18 +1306,18 @@ void UI_Manage_Buffer(longlong buffer_context, undefined8 data_source, int data_
  * @param data_size 数据大小
  * @return 无返回值
  */
-void UI_Dynamic_Buffer_Manage(longlong target_pos, longlong source_pos, undefined8 data_source, longlong data_size)
+void UI_Dynamic_Buffer_Manage(longlong target_pos, longlong source_pos, uint64_t data_source, longlong data_size)
 {
   longlong current_buffer;
   longlong buffer_start;
   longlong new_buffer;
-  undefined8 buffer_data;
+  uint64_t buffer_data;
   ulonglong required_size;
   longlong buffer_context;
   ulonglong new_capacity;
   int buffer_offset;
   longlong *buffer_ptr;
-  undefined8 stack_param;
+  uint64_t stack_param;
   
   required_size = (target_pos - buffer_start) + data_size;
   if ((ulonglong)(current_buffer - buffer_start) < required_size) {
@@ -1333,7 +1333,7 @@ void UI_Dynamic_Buffer_Manage(longlong target_pos, longlong source_pos, undefine
       buffer_start = 0;
     }
     else {
-      buffer_start = System_Allocate_Buffer(_DAT_180c8ed18, new_capacity, *(undefined1 *)(buffer_context + 0x28));
+      buffer_start = System_Allocate_Buffer(_DAT_180c8ed18, new_capacity, *(int8_t *)(buffer_context + 0x28));
       target_pos = *(longlong *)(buffer_context + 0x10);
       new_buffer = *buffer_ptr;
     }
@@ -1380,11 +1380,11 @@ void UI_Dynamic_Buffer_Manage(longlong target_pos, longlong source_pos, undefine
  */
 void UI_Buffer_Manage_Inline(void)
 {
-  undefined8 buffer_start;
+  uint64_t buffer_start;
   longlong buffer_context;
   longlong buffer_capacity;
   int buffer_offset;
-  undefined8 *buffer_ptr;
+  uint64_t *buffer_ptr;
   
   if (buffer_capacity != 0) {
                     // WARNING: Subroutine does not return

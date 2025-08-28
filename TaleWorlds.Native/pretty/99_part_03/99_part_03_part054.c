@@ -71,14 +71,14 @@ void SceneDataProcessor(longlong param_1)
     int iVar2;                            // 临时整型变量1
     longlong lVar3;                       // 临时长整型变量1
     longlong lVar4;                       // 临时长整型变量2
-    undefined8 uVar5;                     // 临时未定义变量1
+    uint64_t uVar5;                     // 临时未定义变量1
     longlong in_RAX;                      // 寄存器RAX输入
     longlong unaff_RBP;                   // 寄存器RBP未关联
     float *unaff_RSI;                     // 寄存器RSI未关联（浮点指针）
     longlong unaff_RDI;                   // 寄存器RDI未关联
     longlong in_R11;                      // 寄存器R11输入
     int iVar6;                            // 临时整型变量2
-    undefined8 unaff_R12;                 // 寄存器R12未关联
+    uint64_t unaff_R12;                 // 寄存器R12未关联
     float *unaff_R14;                     // 寄存器R14未关联（浮点指针）
     float *unaff_R15;                     // 寄存器R15未关联（浮点指针）
     float fVar7;                           // 临时浮点变量2
@@ -97,9 +97,9 @@ void SceneDataProcessor(longlong param_1)
     float fVar15;                          // 临时浮点变量10
     float fStack0000000000000040;          // 栈变量1（浮点）
     float fStack0000000000000044;          // 栈变量2（浮点）
-    undefined8 uStack0000000000000048;     // 栈变量3（未定义）
+    uint64_t uStack0000000000000048;     // 栈变量3（未定义）
     int in_stack_00000050;                 // 栈变量4（整型）
-    undefined4 uStack0000000000000054;      // 栈变量5（未定义4字节）
+    int32_t uStack0000000000000054;      // 栈变量5（未定义4字节）
     float fStack0000000000000058;          // 栈变量6（浮点）
     float fStack000000000000005c;          // 栈变量7（浮点）
     float fStack0000000000000060;          // 栈变量8（浮点）
@@ -109,7 +109,7 @@ void SceneDataProcessor(longlong param_1)
     float fStack0000000000000070;          // 栈变量12（浮点）
     float fStack0000000000000074;          // 栈变量13（浮点）
     int iStack0000000000000078;            // 栈变量14（整型）
-    undefined4 uStack000000000000007c;      // 栈变量15（未定义4字节）
+    int32_t uStack000000000000007c;      // 栈变量15（未定义4字节）
     
     /* 核心数据处理逻辑 */
     *(longlong *)(in_R11 + OFFSET_0x70) = in_RAX;
@@ -143,7 +143,7 @@ void SceneDataProcessor(longlong param_1)
         }
         *(float *)(unaff_RBP + 100) = fVar7;
         *(float *)(unaff_RBP + OFFSET_0x60) = fVar14;
-        uVar5 = *(undefined8 *)(unaff_RBP + OFFSET_0x60);
+        uVar5 = *(uint64_t *)(unaff_RBP + OFFSET_0x60);
         fStack0000000000000044 = (float)((ulonglong)uVar5 >> 0x20);
         fStack0000000000000040 = (float)uVar5;
         unaff_XMM11_Da = fStack0000000000000058;
@@ -169,23 +169,23 @@ void SceneDataProcessor(longlong param_1)
     
     /* 条件分支处理 */
     if (*(longlong *)(lVar3 + OFFSET_0xb8) == 0) {
-        *(undefined8 *)(lVar3 + OFFSET_0xb8) = unaff_R12;
-        FUN_180085530(*(undefined8 *)(lVar3 + OFFSET_0xb0));
-        *(undefined8 *)(lVar3 + OFFSET_0xb0) = unaff_R12;
+        *(uint64_t *)(lVar3 + OFFSET_0xb8) = unaff_R12;
+        FUN_180085530(*(uint64_t *)(lVar3 + OFFSET_0xb0));
+        *(uint64_t *)(lVar3 + OFFSET_0xb0) = unaff_R12;
         *(int *)(lVar3 + 200) = iVar6;
-        *(undefined2 *)(unaff_RDI + OFFSET_0x30) = FLAG_INITIALIZED;
+        *(int16_t *)(unaff_RDI + OFFSET_0x30) = FLAG_INITIALIZED;
         fVar8 = unaff_RSI[1];
         if (fVar7 < fVar8) {
             fVar10 = fVar9 * unaff_XMM8_Da;
             do {
                 fVar1 = *unaff_R14;
-                *(undefined4 *)(unaff_RBP + OFFSET_0x60) = FLAG_ACTIVE;
+                *(int32_t *)(unaff_RBP + OFFSET_0x60) = FLAG_ACTIVE;
                 fVar11 = fVar10 + fVar7;
                 if (fVar11 <= fVar8) {
                     *(float *)(unaff_RBP + -0x80) = fVar1;
                     *(float *)(unaff_RBP + -0x7c) = fVar7;
                     *(int *)(unaff_RBP + -0x78) = iVar6;
-                    *(undefined4 *)(unaff_RBP + -0x74) = FLAG_MAX_FLOAT;
+                    *(int32_t *)(unaff_RBP + -0x74) = FLAG_MAX_FLOAT;
                     fStack0000000000000068 = fVar9 * unaff_XMM9_Da;
                     fStack000000000000006c = fVar10;
                     FUN_1802358c0(fVar1, unaff_RBP + -0x80, &fStack0000000000000068, &fStack0000000000000040, &fStack0000000000000048);
@@ -210,13 +210,13 @@ void SceneDataProcessor(longlong param_1)
         }
         fVar7 = *unaff_R15;
         if (fVar7 <= unaff_XMM14_Da) {
-            *(undefined1 *)(unaff_RDI + OFFSET_0x30) = 1;
+            *(int8_t *)(unaff_RDI + OFFSET_0x30) = 1;
             return;
         }
-        *(undefined4 *)(unaff_RBP + OFFSET_0x60) = FLAG_ACTIVE;
+        *(int32_t *)(unaff_RBP + OFFSET_0x60) = FLAG_ACTIVE;
         iVar2 = **(int **)(unaff_RBP + OFFSET_0x80);
         *(int *)(unaff_RBP + -0x78) = iVar6;
-        *(undefined4 *)(unaff_RBP + -0x74) = FLAG_MAX_FLOAT;
+        *(int32_t *)(unaff_RBP + -0x74) = FLAG_MAX_FLOAT;
         uStack000000000000007c = FLAG_MAX_FLOAT;
         uStack0000000000000054 = FLAG_MAX_FLOAT;
         fStack000000000000005c = fVar14 - fVar13;
@@ -259,7 +259,7 @@ void SceneDataProcessor(longlong param_1)
  * @note 该函数实现了复杂的边界检查逻辑，包括动态边界调整和坐标归一化
  *       函数内部包含多个条件分支和循环处理，用于确保坐标数据的完整性
  */
-void CoordinateBoundaryChecker(undefined8 param_1, float param_2)
+void CoordinateBoundaryChecker(uint64_t param_1, float param_2)
 {
     /* 局部变量声明 */
     float fVar1;                          // 临时浮点变量1
@@ -280,11 +280,11 @@ void CoordinateBoundaryChecker(undefined8 param_1, float param_2)
     float unaff_XMM12_Da;                  // 寄存器XMM12未关联（双精度浮点）
     float unaff_XMM13_Da;                  // 寄存器XMM13未关联（双精度浮点）
     float unaff_XMM15_Da;                  // 寄存器XMM15未关联（双精度浮点）
-    undefined8 *puStack0000000000000028;   // 栈变量1（未定义指针）
+    uint64_t *puStack0000000000000028;   // 栈变量1（未定义指针）
     float in_stack_00000048;               // 栈变量2（浮点）
     float fStack000000000000004c;          // 栈变量3（浮点）
-    undefined4 in_stack_00000050;          // 栈变量4（未定义4字节）
-    undefined4 uStack0000000000000054;      // 栈变量5（未定义4字节）
+    int32_t in_stack_00000050;          // 栈变量4（未定义4字节）
+    int32_t uStack0000000000000054;      // 栈变量5（未定义4字节）
     float in_stack_00000058;               // 栈变量6（浮点）
     float fStack000000000000005c;          // 栈变量7（浮点）
     float fStack0000000000000060;          // 栈变量8（浮点）
@@ -294,20 +294,20 @@ void CoordinateBoundaryChecker(undefined8 param_1, float param_2)
     float fStack0000000000000070;          // 栈变量12（浮点）
     float fStack0000000000000074;          // 栈变量13（浮点）
     int iStack0000000000000078;            // 栈变量14（整型）
-    undefined4 uStack000000000000007c;      // 栈变量15（未定义4字节）
+    int32_t uStack000000000000007c;      // 栈变量15（未定义4字节）
     
     /* 边界检查处理逻辑 */
     fVar3 = unaff_XMM7_Da * unaff_XMM8_Da;
     do {
         fVar1 = *unaff_R14;
-        puStack0000000000000028 = (undefined8 *)(unaff_RBP + OFFSET_0x60);
-        *(undefined4 *)(unaff_RBP + OFFSET_0x60) = FLAG_ACTIVE;
+        puStack0000000000000028 = (uint64_t *)(unaff_RBP + OFFSET_0x60);
+        *(int32_t *)(unaff_RBP + OFFSET_0x60) = FLAG_ACTIVE;
         fVar4 = fVar3 + unaff_XMM6_Da;
         if (fVar4 <= param_2) {
             *(float *)(unaff_RBP + -0x80) = fVar1;
             *(float *)(unaff_RBP + -0x7c) = unaff_XMM6_Da;
             *(int *)(unaff_RBP + -0x78) = unaff_R12D;
-            *(undefined4 *)(unaff_RBP + -0x74) = FLAG_MAX_FLOAT;
+            *(int32_t *)(unaff_RBP + -0x74) = FLAG_MAX_FLOAT;
             fStack0000000000000068 = unaff_XMM7_Da * unaff_XMM9_Da;
             fStack000000000000006c = fVar3;
             FUN_1802358c0(fVar1, unaff_RBP + -0x80, &fStack0000000000000068, &fStack0000000000000040, &fStack0000000000000048);
@@ -331,11 +331,11 @@ void CoordinateBoundaryChecker(undefined8 param_1, float param_2)
     /* 最终边界验证 */
     fVar1 = *unaff_R15;
     if (0.0 < fVar1) {
-        *(undefined4 *)(unaff_RBP + OFFSET_0x60) = FLAG_ACTIVE;
+        *(int32_t *)(unaff_RBP + OFFSET_0x60) = FLAG_ACTIVE;
         iVar2 = **(int **)(unaff_RBP + OFFSET_0x80);
-        puStack0000000000000028 = (undefined8 *)&fStack0000000000000060;
+        puStack0000000000000028 = (uint64_t *)&fStack0000000000000060;
         *(int *)(unaff_RBP + -0x78) = unaff_R12D;
-        *(undefined4 *)(unaff_RBP + -0x74) = FLAG_MAX_FLOAT;
+        *(int32_t *)(unaff_RBP + -0x74) = FLAG_MAX_FLOAT;
         uStack000000000000007c = FLAG_MAX_FLOAT;
         uStack0000000000000054 = FLAG_MAX_FLOAT;
         fStack000000000000005c = unaff_XMM13_Da - unaff_XMM12_Da;
@@ -360,7 +360,7 @@ void CoordinateBoundaryChecker(undefined8 param_1, float param_2)
         fStack0000000000000070 = in_stack_00000048;
         FUN_1802354f0(in_stack_00000048 - fVar1, &in_stack_00000048, &fStack0000000000000070, unaff_RBP + -0x80, &in_stack_00000058);
     }
-    *(undefined1 *)(unaff_RDI + OFFSET_0x30) = 1;
+    *(int8_t *)(unaff_RDI + OFFSET_0x30) = 1;
     return;
 }
 
@@ -397,10 +397,10 @@ void EmptyPlaceholderFunction(void)
 void CoordinateNormalizationProcessor(longlong param_1, float *param_2, float *param_3, float param_4)
 {
     /* 局部变量声明 */
-    undefined8 *puVar1;                   // 临时未定义指针1
-    undefined8 *puVar2;                   // 临时未定义指针2
+    uint64_t *puVar1;                   // 临时未定义指针1
+    uint64_t *puVar2;                   // 临时未定义指针2
     longlong lVar3;                        // 临时长整型变量1
-    undefined8 uVar4;                      // 临时未定义变量1
+    uint64_t uVar4;                      // 临时未定义变量1
     longlong lVar5;                        // 临时长整型变量2
     float *pfVar6;                         // 临时浮点指针1
     ulonglong uVar7;                       // 临时无符号长整型变量1
@@ -559,9 +559,9 @@ void CoordinateNormalizationProcessor(longlong param_1, float *param_2, float *p
                 *(float *)(uVar8 + 4 + lVar10) = *(float *)(uVar8 + 4 + lVar10) + param_2[1];
                 lVar15 = *(longlong *)(param_1 + OFFSET_0x8);
                 if (*(int *)(lVar15 + OFFSET_0x38) != 0) {
-                    uVar4 = ((undefined8 *)(uVar8 + lVar10))[1];
-                    puVar1 = (undefined8 *)(*(longlong *)(lVar15 + OFFSET_0x40) + uVar8);
-                    *puVar1 = *(undefined8 *)(uVar8 + lVar10);
+                    uVar4 = ((uint64_t *)(uVar8 + lVar10))[1];
+                    puVar1 = (uint64_t *)(*(longlong *)(lVar15 + OFFSET_0x40) + uVar8);
+                    *puVar1 = *(uint64_t *)(uVar8 + lVar10);
                     puVar1[1] = uVar4;
                     lVar15 = *(longlong *)(param_1 + OFFSET_0x8);
                 }
@@ -583,9 +583,9 @@ void CoordinateNormalizationProcessor(longlong param_1, float *param_2, float *p
                 *(float *)(lVar10 + OFFSET_0x14 + uVar8) = *(float *)(lVar10 + OFFSET_0x14 + uVar8) + param_2[1];
                 lVar15 = *(longlong *)(param_1 + OFFSET_0x8);
                 if (*(int *)(lVar15 + OFFSET_0x38) != 0) {
-                    puVar1 = (undefined8 *)(lVar10 + OFFSET_0x10 + uVar8);
+                    puVar1 = (uint64_t *)(lVar10 + OFFSET_0x10 + uVar8);
                     uVar4 = puVar1[1];
-                    puVar2 = (undefined8 *)(*(longlong *)(lVar15 + OFFSET_0x40) + OFFSET_0x10 + uVar8);
+                    puVar2 = (uint64_t *)(*(longlong *)(lVar15 + OFFSET_0x40) + OFFSET_0x10 + uVar8);
                     *puVar2 = *puVar1;
                     puVar2[1] = uVar4;
                     lVar15 = *(longlong *)(param_1 + OFFSET_0x8);
@@ -608,9 +608,9 @@ void CoordinateNormalizationProcessor(longlong param_1, float *param_2, float *p
                 *(float *)(uVar8 + OFFSET_0x24 + lVar10) = *(float *)(uVar8 + OFFSET_0x24 + lVar10) + param_2[1];
                 lVar15 = *(longlong *)(param_1 + OFFSET_0x8);
                 if (*(int *)(lVar15 + OFFSET_0x38) != 0) {
-                    puVar1 = (undefined8 *)(uVar8 + OFFSET_0x20 + lVar10);
+                    puVar1 = (uint64_t *)(uVar8 + OFFSET_0x20 + lVar10);
                     uVar4 = puVar1[1];
-                    puVar2 = (undefined8 *)(*(longlong *)(lVar15 + OFFSET_0x40) + OFFSET_0x20 + uVar8);
+                    puVar2 = (uint64_t *)(*(longlong *)(lVar15 + OFFSET_0x40) + OFFSET_0x20 + uVar8);
                     *puVar2 = *puVar1;
                     puVar2[1] = uVar4;
                     lVar15 = *(longlong *)(param_1 + OFFSET_0x8);
@@ -633,9 +633,9 @@ void CoordinateNormalizationProcessor(longlong param_1, float *param_2, float *p
                 *(float *)(uVar8 + OFFSET_0x34 + lVar3) = *(float *)(uVar8 + OFFSET_0x34 + lVar3) + param_2[1];
                 lVar10 = *(longlong *)(param_1 + OFFSET_0x8);
                 if (*(int *)(lVar10 + OFFSET_0x38) != 0) {
-                    puVar1 = (undefined8 *)(uVar8 + OFFSET_0x30 + lVar3);
+                    puVar1 = (uint64_t *)(uVar8 + OFFSET_0x30 + lVar3);
                     uVar4 = puVar1[1];
-                    puVar2 = (undefined8 *)(*(longlong *)(lVar10 + OFFSET_0x40) + OFFSET_0x30 + uVar8);
+                    puVar2 = (uint64_t *)(*(longlong *)(lVar10 + OFFSET_0x40) + OFFSET_0x30 + uVar8);
                     *puVar2 = *puVar1;
                     puVar2[1] = uVar4;
                     lVar10 = *(longlong *)(param_1 + OFFSET_0x8);
@@ -672,9 +672,9 @@ void CoordinateNormalizationProcessor(longlong param_1, float *param_2, float *p
                 *(float *)(lVar5 + 4 + lVar3) = fVar19 + param_2[1];
                 lVar10 = *(longlong *)(param_1 + OFFSET_0x8);
                 if (*(int *)(lVar10 + OFFSET_0x38) != 0) {
-                    uVar4 = ((undefined8 *)(lVar5 + lVar3))[1];
-                    puVar1 = (undefined8 *)(*(longlong *)(lVar10 + OFFSET_0x40) + lVar5);
-                    *puVar1 = *(undefined8 *)(lVar5 + lVar3);
+                    uVar4 = ((uint64_t *)(lVar5 + lVar3))[1];
+                    puVar1 = (uint64_t *)(*(longlong *)(lVar10 + OFFSET_0x40) + lVar5);
+                    *puVar1 = *(uint64_t *)(lVar5 + lVar3);
                     puVar1[1] = uVar4;
                     lVar10 = *(longlong *)(param_1 + OFFSET_0x8);
                 }
@@ -708,7 +708,7 @@ void CoordinateNormalizationProcessor(longlong param_1, float *param_2, float *p
                 uVar9 = (ulonglong)uVar11;
             } while ((int)uVar11 < *(int *)(lVar10 + OFFSET_0x60));
         }
-        *(undefined1 *)(param_1 + OFFSET_0x30) = 1;
+        *(int8_t *)(param_1 + OFFSET_0x30) = 1;
     }
     return;
 }
@@ -729,10 +729,10 @@ void CoordinateNormalizationProcessor(longlong param_1, float *param_2, float *p
 void DataTransformationHandler(void)
 {
     /* 局部变量声明 */
-    undefined8 *puVar1;                   // 临时未定义指针1
-    undefined8 *puVar2;                   // 临时未定义指针2
+    uint64_t *puVar1;                   // 临时未定义指针1
+    uint64_t *puVar2;                   // 临时未定义指针2
     longlong lVar3;                        // 临时长整型变量1
-    undefined8 uVar4;                      // 临时未定义变量1
+    uint64_t uVar4;                      // 临时未定义变量1
     ulonglong uVar5;                       // 临时无符号长整型变量1
     int iVar6;                             // 临时整型变量1
     uint uVar7;                            // 临时无符号整型变量1
@@ -785,9 +785,9 @@ void DataTransformationHandler(void)
             *(float *)(uVar5 + 4 + lVar10) = *(float *)(uVar5 + 4 + lVar10) + in_R11[1];
             lVar12 = *(longlong *)(in_R9 + OFFSET_0x8);
             if (*(int *)(lVar12 + OFFSET_0x38) != iVar6) {
-                uVar4 = ((undefined8 *)(uVar5 + lVar10))[1];
-                puVar1 = (undefined8 *)(*(longlong *)(lVar12 + OFFSET_0x40) + uVar5);
-                *puVar1 = *(undefined8 *)(uVar5 + lVar10);
+                uVar4 = ((uint64_t *)(uVar5 + lVar10))[1];
+                puVar1 = (uint64_t *)(*(longlong *)(lVar12 + OFFSET_0x40) + uVar5);
+                *puVar1 = *(uint64_t *)(uVar5 + lVar10);
                 puVar1[1] = uVar4;
                 lVar12 = *(longlong *)(in_R9 + OFFSET_0x8);
             }
@@ -809,9 +809,9 @@ void DataTransformationHandler(void)
             *(float *)(lVar10 + OFFSET_0x14 + uVar5) = *(float *)(lVar10 + OFFSET_0x14 + uVar5) + in_R11[1];
             lVar12 = *(longlong *)(in_R9 + OFFSET_0x8);
             if (*(int *)(lVar12 + OFFSET_0x38) != iVar6) {
-                puVar1 = (undefined8 *)(lVar10 + OFFSET_0x10 + uVar5);
+                puVar1 = (uint64_t *)(lVar10 + OFFSET_0x10 + uVar5);
                 uVar4 = puVar1[1];
-                puVar2 = (undefined8 *)(*(longlong *)(lVar12 + OFFSET_0x40) + OFFSET_0x10 + uVar5);
+                puVar2 = (uint64_t *)(*(longlong *)(lVar12 + OFFSET_0x40) + OFFSET_0x10 + uVar5);
                 *puVar2 = *puVar1;
                 puVar2[1] = uVar4;
                 lVar12 = *(longlong *)(in_R9 + OFFSET_0x8);
@@ -834,9 +834,9 @@ void DataTransformationHandler(void)
             *(float *)(uVar5 + OFFSET_0x24 + lVar10) = *(float *)(uVar5 + OFFSET_0x24 + lVar10) + in_R11[1];
             lVar12 = *(longlong *)(in_R9 + OFFSET_0x8);
             if (*(int *)(lVar12 + OFFSET_0x38) != iVar6) {
-                puVar1 = (undefined8 *)(uVar5 + OFFSET_0x20 + lVar10);
+                puVar1 = (uint64_t *)(uVar5 + OFFSET_0x20 + lVar10);
                 uVar4 = puVar1[1];
-                puVar2 = (undefined8 *)(*(longlong *)(lVar12 + OFFSET_0x40) + OFFSET_0x20 + uVar5);
+                puVar2 = (uint64_t *)(*(longlong *)(lVar12 + OFFSET_0x40) + OFFSET_0x20 + uVar5);
                 *puVar2 = *puVar1;
                 puVar2[1] = uVar4;
                 lVar12 = *(longlong *)(in_R9 + OFFSET_0x8);
@@ -859,9 +859,9 @@ void DataTransformationHandler(void)
             *(float *)(uVar5 + OFFSET_0x34 + lVar10) = *(float *)(uVar5 + OFFSET_0x34 + lVar10) + in_R11[1];
             in_R10 = *(longlong *)(in_R9 + OFFSET_0x8);
             if (*(int *)(in_R10 + OFFSET_0x38) != iVar6) {
-                puVar1 = (undefined8 *)(uVar5 + OFFSET_0x30 + lVar10);
+                puVar1 = (uint64_t *)(uVar5 + OFFSET_0x30 + lVar10);
                 uVar4 = puVar1[1];
-                puVar2 = (undefined8 *)(*(longlong *)(in_R10 + OFFSET_0x40) + OFFSET_0x30 + uVar5);
+                puVar2 = (uint64_t *)(*(longlong *)(in_R10 + OFFSET_0x40) + OFFSET_0x30 + uVar5);
                 *puVar2 = *puVar1;
                 puVar2[1] = uVar4;
                 in_R10 = *(longlong *)(in_R9 + OFFSET_0x8);
@@ -898,9 +898,9 @@ void DataTransformationHandler(void)
             *(float *)(lVar9 + 4 + lVar3) = fVar13 + in_R11[1];
             in_R10 = *(longlong *)(in_R9 + OFFSET_0x8);
             if (*(int *)(in_R10 + OFFSET_0x38) != iVar6) {
-                uVar4 = ((undefined8 *)(lVar9 + lVar3))[1];
-                puVar1 = (undefined8 *)(*(longlong *)(in_R10 + OFFSET_0x40) + lVar9);
-                *puVar1 = *(undefined8 *)(lVar9 + lVar3);
+                uVar4 = ((uint64_t *)(lVar9 + lVar3))[1];
+                puVar1 = (uint64_t *)(*(longlong *)(in_R10 + OFFSET_0x40) + lVar9);
+                *puVar1 = *(uint64_t *)(lVar9 + lVar3);
                 puVar1[1] = uVar4;
                 in_R10 = *(longlong *)(in_R9 + OFFSET_0x8);
             }
@@ -934,7 +934,7 @@ void DataTransformationHandler(void)
             uVar8 = (ulonglong)uVar7;
         } while ((int)uVar7 < *(int *)(in_R10 + OFFSET_0x60));
     }
-    *(undefined1 *)(in_R9 + OFFSET_0x30) = 1;
+    *(int8_t *)(in_R9 + OFFSET_0x30) = 1;
     return;
 }
 

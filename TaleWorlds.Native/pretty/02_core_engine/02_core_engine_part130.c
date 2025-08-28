@@ -21,14 +21,14 @@ void process_render_system_state_update(void)
     longlong render_state;       // 渲染状态指针
     int state_flag;               // 状态标志
     int mode_type;                // 模式类型
-    undefined4 param_x;           // 参数X坐标
-    undefined4 param_y;           // 参数Y坐标
+    int32_t param_x;           // 参数X坐标
+    int32_t param_y;           // 参数Y坐标
     int index_value;              // 索引值
     longlong temp_ptr;            // 临时指针
     longlong queue_ptr;            // 队列指针
     float scale_factor;           // 缩放因子
     uint status_flag;             // 状态标志位
-    undefined4 width_param;       // 宽度参数
+    int32_t width_param;       // 宽度参数
     int counter;                  // 计数器
     longlong file_handle;         // 文件句柄
     longlong memory_ptr;          // 内存指针
@@ -47,15 +47,15 @@ void process_render_system_state_update(void)
          (state_flag = *(int *)(_DAT_180c8a9b0 + 0x1cfc), state_flag == 0)))) {
         
         mode_type = *(int *)(_DAT_180c8a9b0 + 0x1d2c);
-        param_x = *(undefined4 *)(render_state + 0x3d0);
-        param_y = *(undefined4 *)(render_state + 0x3d8);
+        param_x = *(int32_t *)(render_state + 0x3d0);
+        param_y = *(int32_t *)(render_state + 0x3d8);
         index_value = mode_type;
         
         if (mode_type == 1) {
             index_value = 1;
         }
         
-        width_param = (int)*(undefined8 *)(render_state + 0x3d0);
+        width_param = (int)*(uint64_t *)(render_state + 0x3d0);
         
         if (index_value == 2) {
             // 处理边界计算和参数调整
@@ -66,15 +66,15 @@ void process_render_system_state_update(void)
             
             offset_x = *(float *)(render_state + 0x90);
             scale_factor = scale_factor - offset_x;
-            *(undefined1 *)(_DAT_180c8a9b0 + 0x1d21) = 0;
+            *(int8_t *)(_DAT_180c8a9b0 + 0x1d21) = 0;
             *(bool *)(engine_context + 0x1d08) = *offset_x != '\0';
-            *(undefined4 *)(engine_context + 0x1d2c) = 2;
+            *(int32_t *)(engine_context + 0x1d2c) = 2;
             *(int *)(engine_context + 0x1d34) = mode_type;
-            *(undefined4 *)(engine_context + 0x1d28) = 1;
-            *(undefined4 *)(engine_context + 0x1d24) = 2;
+            *(int32_t *)(engine_context + 0x1d28) = 1;
+            *(int32_t *)(engine_context + 0x1d24) = 2;
             
             // 更新渲染参数数组
-            undefined4 *param_array = (undefined4 *)
+            int32_t *param_array = (int32_t *)
                 (*(longlong *)(engine_context + 0x1c98) + ((longlong)state_flag + 0x3d) * 0x10);
             *param_array = param_x;
             param_array[1] = scale_factor;
@@ -88,14 +88,14 @@ void process_render_system_state_update(void)
             // 处理状态标志位操作
             status_flag = *(uint *)(render_state + 0x90) ^ 0x80000000;
             *(bool *)(engine_context + 0x1d08) = *(char *)(engine_context + 0x1d09) != '\0';
-            *(undefined1 *)(engine_context + 0x1d21) = 0;
-            *(undefined4 *)(engine_context + 0x1d2c) = 3;
+            *(int8_t *)(engine_context + 0x1d21) = 0;
+            *(int32_t *)(engine_context + 0x1d2c) = 3;
             *(int *)(engine_context + 0x1d34) = mode_type;
-            *(undefined4 *)(engine_context + 0x1d28) = 1;
-            *(undefined4 *)(engine_context + 0x1d24) = 2;
+            *(int32_t *)(engine_context + 0x1d28) = 1;
+            *(int32_t *)(engine_context + 0x1d24) = 2;
             
             // 更新渲染参数
-            undefined4 *param_array = (undefined4 *)
+            int32_t *param_array = (int32_t *)
                 (*(longlong *)(engine_context + 0x1c98) + ((longlong)*(int *)(engine_context + 0x1cfc) + 0x3d) * 0x10);
             *param_array = width_param;
             param_array[1] = status_flag;
@@ -134,7 +134,7 @@ void process_render_system_state_update(void)
                 else {
                     close_render_file();
                 }
-                *(undefined8 *)(temp_ptr + 0x2e40) = 0;
+                *(uint64_t *)(temp_ptr + 0x2e40) = 0;
             }
             
             // 清理内存资源
@@ -142,7 +142,7 @@ void process_render_system_state_update(void)
             memory_ptr = *(longlong *)(temp_ptr + 0x2e50);
             if ((memory_ptr != 0) && (1 < *counter + -1)) {
                 if (*(code **)(_DAT_180c8a9b0 + 0x100) != (code *)0x0) {
-                    (**(code **)(_DAT_180c8a9b0 + 0x100))(*(undefined8 *)(_DAT_180c8a9b0 + 0x108), memory_ptr);
+                    (**(code **)(_DAT_180c8a9b0 + 0x100))(*(uint64_t *)(_DAT_180c8a9b0 + 0x108), memory_ptr);
                     memory_ptr = *(longlong *)(temp_ptr + 0x2e50);
                 }
                 temp_ptr = _DAT_180c8a9b0;
@@ -193,7 +193,7 @@ void process_render_system_state_update(void)
         if (*(longlong *)(render_state + 0x1af8) != 0) {
             render_state = *(longlong *)(*(longlong *)(render_state + 0x1af8) + 0x28);
             if (render_state != 0) {
-                *(undefined4 *)(render_state + 0x54) = *(undefined4 *)(temp_ptr + 0x1a90);
+                *(int32_t *)(render_state + 0x54) = *(int32_t *)(temp_ptr + 0x1a90);
             }
             if (((*(longlong *)(temp_ptr + 0x1c78) != render_state) &&
                 (*(longlong *)(temp_ptr + 0x1c78) = render_state, render_state != 0)) &&
@@ -236,7 +236,7 @@ void calculate_rectangle_boundary_and_adjustment(float *param_1, float *param_2,
     float target_y;               // 目标Y坐标
     float boundary_height;        // 边界高度
     float boundary_width;         // 边界宽度
-    undefined8 adjustment_param;  // 调整参数
+    uint64_t adjustment_param;  // 调整参数
     int current_mode;             // 当前模式
     int test_mode;                // 测试模式
     float *adjustment_ptr;        // 调整指针
@@ -247,9 +247,9 @@ void calculate_rectangle_boundary_and_adjustment(float *param_1, float *param_2,
     float calc_y;                 // 计算Y坐标
     float limit_x;                // 限制X坐标
     float limit_y;                // 限制Y坐标
-    undefined8 stack_param;       // 栈参数
-    undefined4 stack_param_1;     // 栈参数1
-    undefined4 stack_param_2;     // 栈参数2
+    uint64_t stack_param;       // 栈参数
+    int32_t stack_param_1;     // 栈参数1
+    int32_t stack_param_2;     // 栈参数2
     ulonglong security_cookie;    // 安全cookie
     
     security_cookie = _DAT_180bf00a8 ^ (ulonglong)&stack_param;
@@ -387,7 +387,7 @@ void calculate_rectangle_boundary_and_adjustment(float *param_1, float *param_2,
         if (3 < mode_index) {
             // 默认边界处理
             *param_4 = -1;
-            adjustment_param = *(undefined8 *)param_2;
+            adjustment_param = *(uint64_t *)param_2;
             test_x = *param_3 + (float)adjustment_param;
             if (param_5[2] <= test_x) {
                 test_x = param_5[2];
@@ -456,7 +456,7 @@ float * calculate_boundary_box_and_coordinate_transform(float *param_1, longlong
     transform_data = (longlong)*(int *)(param_2 + 0x3c);
     if (*(int *)(param_2 + 0x3c) < 0) {
         // 负索引处理：使用直接变换数据
-        *(undefined8 *)param_1 = *(undefined8 *)(*(longlong *)(param_2 + 0x28) + 8);
+        *(uint64_t *)param_1 = *(uint64_t *)(*(longlong *)(param_2 + 0x28) + 8);
         transform_data = *(longlong *)(param_2 + 0x28);
         boundary_max_x = *(float *)(transform_data + 8) + *(float *)(transform_data + 0x10);
         boundary_max_y = *(float *)(transform_data + 0xc) + *(float *)(transform_data + 0x14);
@@ -464,7 +464,7 @@ float * calculate_boundary_box_and_coordinate_transform(float *param_1, longlong
     else {
         // 正索引处理：使用变换表
         transform_table = *(longlong *)(engine_context + 0x1608);
-        *(undefined8 *)param_1 = *(undefined8 *)(transform_table + 0x10 + transform_data * 0x24);
+        *(uint64_t *)param_1 = *(uint64_t *)(transform_table + 0x10 + transform_data * 0x24);
         boundary_max_x = *(float *)(transform_table + 0x18 + transform_data * 0x24) + 
                         *(float *)(transform_table + 0x10 + transform_data * 0x24);
         boundary_max_y = *(float *)(transform_table + 0x1c + transform_data * 0x24) + 
@@ -520,7 +520,7 @@ float * calculate_boundary_box_and_coordinate_transform(float *param_1, longlong
  * 原始实现：FUN_18012f6d0
  * 简化实现：渲染位置计算和边界检测
  */
-undefined8 * process_render_position_calculation_and_boundary_detection(undefined8 *param_1, longlong param_2)
+uint64_t * process_render_position_calculation_and_boundary_detection(uint64_t *param_1, longlong param_2)
 {
     uint render_flags;           // 渲染标志
     longlong object_data;        // 对象数据指针
@@ -529,12 +529,12 @@ undefined8 * process_render_position_calculation_and_boundary_detection(undefine
     float scale_factor;           // 缩放因子
     float position_x;             // 位置X坐标
     float position_y;             // 位置Y坐标
-    undefined8 position_result;   // 位置结果
+    uint64_t position_result;   // 位置结果
     float boundary_min_x;         // 边界最小X坐标
     float boundary_min_y;         // 边界最小Y坐标
     float boundary_max_x;         // 边界最大X坐标
     float boundary_max_y;         // 边界最大Y坐标
-    undefined1 boundary_data[64]; // 边界数据缓冲区
+    int8_t boundary_data[64]; // 边界数据缓冲区
     
     render_flags = *(uint *)(param_2 + 0xc);
     
@@ -543,7 +543,7 @@ undefined8 * process_render_position_calculation_and_boundary_detection(undefine
         if ((render_flags >> 0x1a & 1) == 0) {
             if ((render_flags >> 0x19 & 1) == 0) {
                 // 基本位置模式
-                *param_1 = *(undefined8 *)(param_2 + 0x40);
+                *param_1 = *(uint64_t *)(param_2 + 0x40);
             }
             else {
                 // 缩放调整模式
@@ -660,12 +660,12 @@ undefined8 * process_render_position_calculation_and_boundary_detection(undefine
  * 原始实现：FUN_18012f711
  * 简化实现：渲染边界和位置调整
  */
-void process_render_boundary_and_position_adjustment(undefined8 param_1, longlong param_2)
+void process_render_boundary_and_position_adjustment(uint64_t param_1, longlong param_2)
 {
     longlong render_object;       // 渲染对象指针
     uint render_flags;           // 渲染标志
     longlong engine_context;     // 引擎上下文指针
-    undefined4 boundary_limit;    // 边界限制
+    int32_t boundary_limit;    // 边界限制
     float position_x;             // 位置X坐标
     float position_y;             // 位置Y坐标
     float boundary_x;             // 边界X坐标
@@ -684,13 +684,13 @@ void process_render_boundary_and_position_adjustment(undefined8 param_1, longlon
         
         // 设置边界参数
         *(float *)(engine_context + 7) = position_y;
-        *(undefined4 *)(engine_context + 0xb) = 0xff7fffff;
+        *(int32_t *)(engine_context + 0xb) = 0xff7fffff;
         *(float *)(engine_context + 0xf) = boundary_x;
-        *(undefined4 *)(engine_context + 0x13) = 0x7f7fffff;
+        *(int32_t *)(engine_context + 0x13) = 0x7f7fffff;
         *(float *)(engine_context + 7) = position_y;
-        *(undefined4 *)(engine_context + 0xb) = 0xff7fffff;
+        *(int32_t *)(engine_context + 0xb) = 0xff7fffff;
         *(float *)(engine_context + 0xf) = boundary_x;
-        *(undefined4 *)(engine_context + 0x13) = 0x7f7fffff;
+        *(int32_t *)(engine_context + 0x13) = 0x7f7fffff;
     }
     else {
         // 高级边界模式
@@ -725,13 +725,13 @@ void process_render_boundary_and_position_adjustment(undefined8 param_1, longlon
         boundary_limit = 0x7f7fffff;
         
         // 设置高级边界参数
-        *(undefined4 *)(engine_context + 7) = 0xff7fffff;
+        *(int32_t *)(engine_context + 7) = 0xff7fffff;
         *(float *)(engine_context + 0xb) = boundary_y;
-        *(undefined4 *)(engine_context + 0xf) = 0x7f7fffff;
+        *(int32_t *)(engine_context + 0xf) = 0x7f7fffff;
         *(float *)(engine_context + 0x13) = boundary_x;
-        *(undefined4 *)(engine_context + 7) = 0xff7fffff;
+        *(int32_t *)(engine_context + 7) = 0xff7fffff;
         *(float *)(engine_context + 0xb) = boundary_y;
-        *(undefined4 *)(engine_context + 0xf) = 0x7f7fffff;
+        *(int32_t *)(engine_context + 0xf) = 0x7f7fffff;
         *(float *)(engine_context + 0x13) = boundary_x;
     }
     
@@ -755,11 +755,11 @@ void process_render_boundary_and_position_adjustment(undefined8 param_1, longlon
  * 原始实现：FUN_18012f8b5
  * 简化实现：渲染位置高级计算
  */
-void process_advanced_render_position_calculation(undefined8 *param_1, longlong param_2)
+void process_advanced_render_position_calculation(uint64_t *param_1, longlong param_2)
 {
     uint render_flags;           // 渲染标志
     longlong engine_context;     // 引擎上下文指针
-    undefined8 *output_ptr;      // 输出指针
+    uint64_t *output_ptr;      // 输出指针
     longlong object_data;        // 对象数据指针
     int *mode_selector;          // 模式选择器指针
     float scale_factor;           // 缩放因子
@@ -774,7 +774,7 @@ void process_advanced_render_position_calculation(undefined8 *param_1, longlong 
     if ((render_flags >> 0x1a & 1) == 0) {
         if ((render_flags >> 0x19 & 1) == 0) {
             // 基本位置模式
-            *param_1 = *(undefined8 *)(param_2 + 0x40);
+            *param_1 = *(uint64_t *)(param_2 + 0x40);
         }
         else {
             // 缩放调整模式
@@ -819,7 +819,7 @@ void process_advanced_render_position_calculation(undefined8 *param_1, longlong 
                 *output_ptr = CONCAT44(position_x + 2.0, boundary_y + 2.0);
             }
             else {
-                *output_ptr = *(undefined8 *)(engine_context + 0x77);
+                *output_ptr = *(uint64_t *)(engine_context + 0x77);
             }
         }
     }
@@ -854,7 +854,7 @@ void process_advanced_render_position_calculation(undefined8 *param_1, longlong 
 void process_standard_render_position_calculation(void)
 {
     longlong engine_context;     // 引擎上下文指针
-    undefined8 *output_ptr;      // 输出指针
+    uint64_t *output_ptr;      // 输出指针
     longlong object_data;        // 对象数据指针
     int *mode_selector;          // 模式选择器指针
     float scale_factor;           // 缩放因子
@@ -904,7 +904,7 @@ void process_standard_render_position_calculation(void)
         *output_ptr = CONCAT44(boundary_x + 2.0, boundary_y + 2.0);
     }
     else {
-        *output_ptr = *(undefined8 *)(engine_context + 0x77);
+        *output_ptr = *(uint64_t *)(engine_context + 0x77);
     }
     return;
 }
@@ -924,7 +924,7 @@ void process_standard_render_position_calculation(void)
 void process_simplified_render_position_calculation(void)
 {
     longlong engine_context;     // 引擎上下文指针
-    undefined8 *output_ptr;      // 输出指针
+    uint64_t *output_ptr;      // 输出指针
     longlong object_data;        // 对象数据指针
     int *mode_selector;          // 模式选择器指针
     float scale_factor;           // 缩放因子
@@ -974,7 +974,7 @@ void process_simplified_render_position_calculation(void)
         *output_ptr = CONCAT44(boundary_x + 2.0, boundary_y + 2.0);
     }
     else {
-        *output_ptr = *(undefined8 *)(engine_context + 0x77);
+        *output_ptr = *(uint64_t *)(engine_context + 0x77);
     }
     return;
 }
@@ -992,7 +992,7 @@ void process_simplified_render_position_calculation(void)
  */
 void process_render_position_quick_adjustment(void)
 {
-    undefined8 *output_ptr;      // 输出指针
+    uint64_t *output_ptr;      // 输出指针
     float offset_x;               // X轴偏移
     float offset_y;               // Y轴偏移
     
@@ -1014,23 +1014,23 @@ void process_render_position_quick_adjustment(void)
 void process_render_position_direct_setting(void)
 {
     longlong engine_context;     // 引擎上下文指针
-    undefined8 *output_ptr;      // 输出指针
+    uint64_t *output_ptr;      // 输出指针
     
-    *output_ptr = *(undefined8 *)(engine_context + 0x77);
+    *output_ptr = *(uint64_t *)(engine_context + 0x77);
     return;
 }
 
 // 全局变量和函数声明
-undefined8 _DAT_180c8a9b0 = 0;          // 引擎全局上下文
-undefined8 _DAT_180bf00a8 = 0;          // 安全cookie基址
-undefined8 UNK_180a0677c = 0;           // 未知数据引用
+uint64_t _DAT_180c8a9b0 = 0;          // 引擎全局上下文
+uint64_t _DAT_180bf00a8 = 0;          // 安全cookie基址
+uint64_t UNK_180a0677c = 0;           // 未知数据引用
 
 // 函数声明
 void cleanup_render_resources(void);
 void update_render_state(void);
-void process_render_cleanup(undefined8 *param_1);
+void process_render_cleanup(uint64_t *param_1);
 void flush_render_buffers(void);
 void close_render_file(void);
-void free_render_memory(undefined8 param_1, undefined8 param_2);
+void free_render_memory(uint64_t param_1, uint64_t param_2);
 void calculate_transform_parameters(float *param_1);
-void apply_boundary_adjustment(undefined8 param_1);
+void apply_boundary_adjustment(uint64_t param_1);

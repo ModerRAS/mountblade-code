@@ -11,7 +11,7 @@
  * @param param3 参数3
  * @param param4 参数4
  */
-void initialize_component_manager(undefined8 *manager, undefined8 param2, undefined8 param3, undefined8 param4)
+void initialize_component_manager(uint64_t *manager, uint64_t param2, uint64_t param3, uint64_t param4)
 {
   *manager = &COMPONENT_MANAGER_VTABLE;
   initialize_subsystem();
@@ -52,7 +52,7 @@ void initialize_component_manager(undefined8 *manager, undefined8 param2, undefi
     handle_critical_error();
   }
   manager[0x19] = 0;
-  *(undefined4 *)(manager + 0x1b) = 0;
+  *(int32_t *)(manager + 0x1b) = 0;
   manager[0x18] = &COMPONENT_DESTROYER_VTABLE;
   process_manager_callbacks(manager + 0x12, manager[0x14], param3, param4, 0xfffffffffffffffe);
   if (manager[0xd] != 0) {
@@ -85,21 +85,21 @@ void initialize_component_manager(undefined8 *manager, undefined8 param2, undefi
  */
 longlong initialize_component_pool(longlong pool)
 {
-  *(undefined8 *)(pool + 8) = &COMPONENT_DESTROYER_VTABLE;
-  *(undefined8 *)(pool + 0x10) = 0;
-  *(undefined4 *)(pool + 0x18) = 0;
-  *(undefined8 *)(pool + 8) = &COMPONENT_FACTORY_VTABLE;
-  *(undefined8 *)(pool + 0x20) = 0;
-  *(undefined8 *)(pool + 0x10) = 0;
-  *(undefined4 *)(pool + 0x18) = 0;
-  *(undefined8 *)(pool + 0x28) = &COMPONENT_DESTROYER_VTABLE;
-  *(undefined8 *)(pool + 0x30) = 0;
-  *(undefined4 *)(pool + 0x38) = 0;
-  *(undefined8 *)(pool + 0x28) = &COMPONENT_FACTORY_VTABLE;
-  *(undefined8 *)(pool + 0x40) = 0;
-  *(undefined8 *)(pool + 0x30) = 0;
-  *(undefined4 *)(pool + 0x38) = 0;
-  *(undefined8 *)(pool + 0x60) = 0;
+  *(uint64_t *)(pool + 8) = &COMPONENT_DESTROYER_VTABLE;
+  *(uint64_t *)(pool + 0x10) = 0;
+  *(int32_t *)(pool + 0x18) = 0;
+  *(uint64_t *)(pool + 8) = &COMPONENT_FACTORY_VTABLE;
+  *(uint64_t *)(pool + 0x20) = 0;
+  *(uint64_t *)(pool + 0x10) = 0;
+  *(int32_t *)(pool + 0x18) = 0;
+  *(uint64_t *)(pool + 0x28) = &COMPONENT_DESTROYER_VTABLE;
+  *(uint64_t *)(pool + 0x30) = 0;
+  *(int32_t *)(pool + 0x38) = 0;
+  *(uint64_t *)(pool + 0x28) = &COMPONENT_FACTORY_VTABLE;
+  *(uint64_t *)(pool + 0x40) = 0;
+  *(uint64_t *)(pool + 0x30) = 0;
+  *(int32_t *)(pool + 0x38) = 0;
+  *(uint64_t *)(pool + 0x60) = 0;
   *(code **)(pool + 0x68) = _guard_check_icall;
   return pool;
 }
@@ -117,27 +117,27 @@ longlong initialize_component_pool(longlong pool)
  * @param param3 参数3
  * @param param4 参数4
  */
-void setup_component_slot(longlong slot, undefined8 param2, undefined8 param3, undefined8 param4)
+void setup_component_slot(longlong slot, uint64_t param2, uint64_t param3, uint64_t param4)
 {
   if (*(code **)(slot + 0x60) != (code *)0x0) {
     (**(code **)(slot + 0x60))(slot + 0x50, 0, 0, param4, 0xfffffffffffffffe);
   }
-  *(undefined8 *)(slot + 0x28) = &COMPONENT_FACTORY_VTABLE;
+  *(uint64_t *)(slot + 0x28) = &COMPONENT_FACTORY_VTABLE;
   if (*(longlong *)(slot + 0x30) != 0) {
     // 警告：子程序不返回
     handle_critical_error();
   }
-  *(undefined8 *)(slot + 0x30) = 0;
-  *(undefined4 *)(slot + 0x40) = 0;
-  *(undefined8 *)(slot + 0x28) = &COMPONENT_DESTROYER_VTABLE;
-  *(undefined8 *)(slot + 8) = &COMPONENT_FACTORY_VTABLE;
+  *(uint64_t *)(slot + 0x30) = 0;
+  *(int32_t *)(slot + 0x40) = 0;
+  *(uint64_t *)(slot + 0x28) = &COMPONENT_DESTROYER_VTABLE;
+  *(uint64_t *)(slot + 8) = &COMPONENT_FACTORY_VTABLE;
   if (*(longlong *)(slot + 0x10) != 0) {
     // 警告：子程序不返回
     handle_critical_error();
   }
-  *(undefined8 *)(slot + 0x10) = 0;
-  *(undefined4 *)(slot + 0x20) = 0;
-  *(undefined8 *)(slot + 8) = &COMPONENT_DESTROYER_VTABLE;
+  *(uint64_t *)(slot + 0x10) = 0;
+  *(int32_t *)(slot + 0x20) = 0;
+  *(uint64_t *)(slot + 8) = &COMPONENT_DESTROYER_VTABLE;
   return;
 }
 
@@ -150,43 +150,43 @@ void setup_component_slot(longlong slot, undefined8 param2, undefined8 param3, u
  * @param array 组件数组指针
  * @return 初始化后的组件数组指针
  */
-undefined8 * initialize_component_array(undefined8 *array)
+uint64_t * initialize_component_array(uint64_t *array)
 {
   *array = &COMPONENT_DESTROYER_VTABLE;
   array[1] = 0;
-  *(undefined4 *)(array + 2) = 0;
+  *(int32_t *)(array + 2) = 0;
   *array = &COMPONENT_FACTORY_VTABLE;
   array[3] = 0;
   array[1] = 0;
-  *(undefined4 *)(array + 2) = 0;
+  *(int32_t *)(array + 2) = 0;
   array[4] = &COMPONENT_DESTROYER_VTABLE;
   array[5] = 0;
-  *(undefined4 *)(array + 6) = 0;
+  *(int32_t *)(array + 6) = 0;
   array[4] = &COMPONENT_FACTORY_VTABLE;
   array[7] = 0;
   array[5] = 0;
-  *(undefined4 *)(array + 6) = 0;
+  *(int32_t *)(array + 6) = 0;
   array[8] = &COMPONENT_DESTROYER_VTABLE;
   array[9] = 0;
-  *(undefined4 *)(array + 10) = 0;
+  *(int32_t *)(array + 10) = 0;
   array[8] = &COMPONENT_FACTORY_VTABLE;
   array[0xb] = 0;
   array[9] = 0;
-  *(undefined4 *)(array + 10) = 0;
+  *(int32_t *)(array + 10) = 0;
   array[0xc] = &COMPONENT_DESTROYER_VTABLE;
   array[0xd] = 0;
-  *(undefined4 *)(array + 0xe) = 0;
+  *(int32_t *)(array + 0xe) = 0;
   array[0xc] = &COMPONENT_FACTORY_VTABLE;
   array[0xf] = 0;
   array[0xd] = 0;
-  *(undefined4 *)(array + 0xe) = 0;
+  *(int32_t *)(array + 0xe) = 0;
   array[0x10] = &COMPONENT_DESTROYER_VTABLE;
   array[0x11] = 0;
-  *(undefined4 *)(array + 0x12) = 0;
+  *(int32_t *)(array + 0x12) = 0;
   array[0x10] = &COMPONENT_FACTORY_VTABLE;
   array[0x13] = 0;
   array[0x11] = 0;
-  *(undefined4 *)(array + 0x12) = 0;
+  *(int32_t *)(array + 0x12) = 0;
   array[0x16] = 0;
   array[0x17] = _guard_check_icall;
   return array;
@@ -205,7 +205,7 @@ undefined8 * initialize_component_array(undefined8 *array)
  * @param param3 参数3
  * @param param4 参数4
  */
-void register_component_handler(undefined8 *handler, undefined8 param2, undefined8 param3, undefined8 param4)
+void register_component_handler(uint64_t *handler, uint64_t param2, uint64_t param3, uint64_t param4)
 {
   if ((code *)handler[0x16] != (code *)0x0) {
     (*(code *)handler[0x16])(handler + 0x14, 0, 0, param4, 0xfffffffffffffffe);
@@ -216,7 +216,7 @@ void register_component_handler(undefined8 *handler, undefined8 param2, undefine
     handle_critical_error();
   }
   handler[0x11] = 0;
-  *(undefined4 *)(handler + 0x13) = 0;
+  *(int32_t *)(handler + 0x13) = 0;
   handler[0x10] = &COMPONENT_DESTROYER_VTABLE;
   handler[0xc] = &COMPONENT_FACTORY_VTABLE;
   if (handler[0xd] != 0) {
@@ -224,7 +224,7 @@ void register_component_handler(undefined8 *handler, undefined8 param2, undefine
     handle_critical_error();
   }
   handler[0xd] = 0;
-  *(undefined4 *)(handler + 0xf) = 0;
+  *(int32_t *)(handler + 0xf) = 0;
   handler[0xc] = &COMPONENT_DESTROYER_VTABLE;
   handler[8] = &COMPONENT_FACTORY_VTABLE;
   if (handler[9] != 0) {
@@ -232,7 +232,7 @@ void register_component_handler(undefined8 *handler, undefined8 param2, undefine
     handle_critical_error();
   }
   handler[9] = 0;
-  *(undefined4 *)(handler + 0xb) = 0;
+  *(int32_t *)(handler + 0xb) = 0;
   handler[8] = &COMPONENT_DESTROYER_VTABLE;
   handler[4] = &COMPONENT_FACTORY_VTABLE;
   if (handler[5] != 0) {
@@ -240,7 +240,7 @@ void register_component_handler(undefined8 *handler, undefined8 param2, undefine
     handle_critical_error();
   }
   handler[5] = 0;
-  *(undefined4 *)(handler + 7) = 0;
+  *(int32_t *)(handler + 7) = 0;
   handler[4] = &COMPONENT_DESTROYER_VTABLE;
   *handler = &COMPONENT_FACTORY_VTABLE;
   if (handler[1] != 0) {
@@ -248,7 +248,7 @@ void register_component_handler(undefined8 *handler, undefined8 param2, undefine
     handle_critical_error();
   }
   handler[1] = 0;
-  *(undefined4 *)(handler + 3) = 0;
+  *(int32_t *)(handler + 3) = 0;
   *handler = &COMPONENT_DESTROYER_VTABLE;
   return;
 }
@@ -268,26 +268,26 @@ void register_component_handler(undefined8 *handler, undefined8 param2, undefine
  * @param param3 参数3
  * @param param4 参数4
  */
-void create_user_session(undefined8 param1, undefined8 param2, undefined8 param3, undefined8 param4)
+void create_user_session(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-  undefined4 user_id;
-  undefined8 *session;
-  undefined *session_type;
-  undefined8 *session_data;
-  undefined4 session_flags;
-  undefined8 session_timeout;
+  int32_t user_id;
+  uint64_t *session;
+  void *session_type;
+  uint64_t *session_data;
+  int32_t session_flags;
+  uint64_t session_timeout;
   
   session_type = &COMPONENT_FACTORY_VTABLE;
   session_timeout = 0;
-  session_data = (undefined8 *)0x0;
+  session_data = (uint64_t *)0x0;
   session_flags = 0;
-  session = (undefined8 *)allocate_session_object(GLOBAL_SESSION_POOL, 0x10, 0x13, param4, 0xfffffffffffffffe);
-  *(undefined1 *)session = 0;
+  session = (uint64_t *)allocate_session_object(GLOBAL_SESSION_POOL, 0x10, 0x13, param4, 0xfffffffffffffffe);
+  *(int8_t *)session = 0;
   session_data = session;
   user_id = generate_session_id(session);
   session_timeout = CONCAT44(session_timeout._4_4_, user_id);
   *session = 0x6e6f632072657355; // "User con"
-  *(undefined4 *)(session + 1) = 0x676966; // "fig"
+  *(int32_t *)(session + 1) = 0x676966; // "fig"
   session_flags = 0xb;
   register_session_handler(param1, &session_type);
   session_type = &COMPONENT_FACTORY_VTABLE;
@@ -304,12 +304,12 @@ void create_user_session(undefined8 param1, undefined8 param2, undefined8 param3
  * @param buffer 缓冲区指针
  * @return 初始化后的缓冲区指针
  */
-undefined8 * initialize_data_buffer(undefined8 *buffer)
+uint64_t * initialize_data_buffer(uint64_t *buffer)
 {
   *buffer = 0;
   buffer[1] = 0;
   buffer[2] = 0;
-  *(undefined4 *)(buffer + 3) = 0x24;
+  *(int32_t *)(buffer + 3) = 0x24;
   return buffer;
 }
 
@@ -329,29 +329,29 @@ longlong initialize_memory_pool(longlong pool)
   
   create_memory_region(pool, 0x20, 0x400, initialize_data_buffer, cleanup_buffer_function);
   create_memory_region(pool + 0x8000, 0x20, 0x400, initialize_data_buffer, cleanup_buffer_function);
-  *(undefined8 *)(pool + 0x10400) = 0;
-  *(undefined8 *)(pool + 0x10408) = 0;
-  *(undefined8 *)(pool + 0x10410) = 0;
-  *(undefined4 *)(pool + 0x10418) = 0x24;
+  *(uint64_t *)(pool + 0x10400) = 0;
+  *(uint64_t *)(pool + 0x10408) = 0;
+  *(uint64_t *)(pool + 0x10410) = 0;
+  *(int32_t *)(pool + 0x10418) = 0x24;
   buffer_ptr = pool + 0x10002;
   counter = 8;
   do {
-    *(undefined8 *)(buffer_ptr + -2) = 0;
-    *(undefined8 *)(buffer_ptr + 6) = 0;
-    *(undefined8 *)(buffer_ptr + 0xe) = 0;
-    *(undefined8 *)(buffer_ptr + 0x16) = 0;
-    *(undefined8 *)(buffer_ptr + 0x1e) = 0;
-    *(undefined8 *)(buffer_ptr + 0x26) = 0;
-    *(undefined8 *)(buffer_ptr + 0x2e) = 0;
-    *(undefined8 *)(buffer_ptr + 0x36) = 0;
-    *(undefined8 *)(buffer_ptr + 0x3e) = 0;
-    *(undefined8 *)(buffer_ptr + 0x46) = 0;
-    *(undefined8 *)(buffer_ptr + 0x4e) = 0;
-    *(undefined8 *)(buffer_ptr + 0x56) = 0;
-    *(undefined8 *)(buffer_ptr + 0x5e) = 0;
-    *(undefined8 *)(buffer_ptr + 0x66) = 0;
-    *(undefined8 *)(buffer_ptr + 0x6e) = 0;
-    *(undefined8 *)(buffer_ptr + 0x76) = 0;
+    *(uint64_t *)(buffer_ptr + -2) = 0;
+    *(uint64_t *)(buffer_ptr + 6) = 0;
+    *(uint64_t *)(buffer_ptr + 0xe) = 0;
+    *(uint64_t *)(buffer_ptr + 0x16) = 0;
+    *(uint64_t *)(buffer_ptr + 0x1e) = 0;
+    *(uint64_t *)(buffer_ptr + 0x26) = 0;
+    *(uint64_t *)(buffer_ptr + 0x2e) = 0;
+    *(uint64_t *)(buffer_ptr + 0x36) = 0;
+    *(uint64_t *)(buffer_ptr + 0x3e) = 0;
+    *(uint64_t *)(buffer_ptr + 0x46) = 0;
+    *(uint64_t *)(buffer_ptr + 0x4e) = 0;
+    *(uint64_t *)(buffer_ptr + 0x56) = 0;
+    *(uint64_t *)(buffer_ptr + 0x5e) = 0;
+    *(uint64_t *)(buffer_ptr + 0x66) = 0;
+    *(uint64_t *)(buffer_ptr + 0x6e) = 0;
+    *(uint64_t *)(buffer_ptr + 0x76) = 0;
     buffer_ptr = buffer_ptr + 0x80;
     counter = counter + -1;
   } while (counter != 0);
@@ -372,7 +372,7 @@ longlong initialize_memory_pool(longlong pool)
  * @param param_4 命令参数4
  * @return 返回参数2
  */
-undefined8 process_engine_command(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+uint64_t process_engine_command(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   FUN_180627ae0(param_2, _DAT_180c86928 + 0xe0, param_3, param_4, 0, 0xfffffffffffffffe);
   return param_2;
@@ -390,7 +390,7 @@ undefined8 process_engine_command(undefined8 param_1, undefined8 param_2, undefi
  * @param param_4 参数4
  * @return 返回组件指针
  */
-undefined8 * cleanup_component_with_flags(undefined8 *param_1, uint param_2, undefined8 param_3, undefined8 param_4)
+uint64_t * cleanup_component_with_flags(uint64_t *param_1, uint param_2, uint64_t param_3, uint64_t param_4)
 {
   if ((code *)param_1[6] != (code *)0x0) {
     (*(code *)param_1[6])(param_1 + 4, 0, 0, param_4, 0xfffffffffffffffe);
@@ -416,17 +416,17 @@ undefined8 * cleanup_component_with_flags(undefined8 *param_1, uint param_2, und
  * @param param_4 传输标志
  * @return 返回目标组件指针
  */
-undefined8 * transfer_component_data(undefined8 *param_1, undefined8 *param_2, undefined8 param_3, undefined8 param_4)
+uint64_t * transfer_component_data(uint64_t *param_1, uint64_t *param_2, uint64_t param_3, uint64_t param_4)
 {
-  undefined8 *puVar1;
+  uint64_t *puVar1;
   code *pcVar2;
   
   *param_1 = &COMPONENT_ALLOCATOR_VTABLE;
   *param_1 = &COMPONENT_FACTORY_VTABLE;
-  *(undefined4 *)(param_1 + 1) = 0;
+  *(int32_t *)(param_1 + 1) = 0;
   *param_1 = &COMPONENT_DESTROYER_VTABLE;
   LOCK();
-  *(undefined1 *)(param_1 + 2) = 0;
+  *(int8_t *)(param_1 + 2) = 0;
   UNLOCK();
   param_1[3] = 0xffffffffffffffff;
   *param_1 = &COMPONENT_TRANSFER_VTABLE;
@@ -463,14 +463,14 @@ undefined8 * transfer_component_data(undefined8 *param_1, undefined8 *param_2, u
  */
 void cleanup_component_instance(longlong param_1)
 {
-  *(undefined8 *)(param_1 + 0x18) = &COMPONENT_ALLOCATOR_VTABLE;
+  *(uint64_t *)(param_1 + 0x18) = &COMPONENT_ALLOCATOR_VTABLE;
   if (*(longlong *)(param_1 + 0x20) != 0) {
     // 警告：子程序不返回
     handle_critical_error();
   }
-  *(undefined8 *)(param_1 + 0x20) = 0;
-  *(undefined4 *)(param_1 + 0x30) = 0;
-  *(undefined8 *)(param_1 + 0x18) = &COMPONENT_DESTROYER_VTABLE;
+  *(uint64_t *)(param_1 + 0x20) = 0;
+  *(int32_t *)(param_1 + 0x30) = 0;
+  *(uint64_t *)(param_1 + 0x18) = &COMPONENT_DESTROYER_VTABLE;
   return;
 }
 
@@ -496,14 +496,14 @@ void cleanup_component_chain(longlong *param_1)
   }
   else {
     do {
-      *(undefined8 *)(lVar2 + 0x18) = &COMPONENT_ALLOCATOR_VTABLE;
+      *(uint64_t *)(lVar2 + 0x18) = &COMPONENT_ALLOCATOR_VTABLE;
       if (*(longlong *)(lVar2 + 0x20) != 0) {
         // 警告：子程序不返回
         handle_critical_error();
       }
-      *(undefined8 *)(lVar2 + 0x20) = 0;
-      *(undefined4 *)(lVar2 + 0x30) = 0;
-      *(undefined8 *)(lVar2 + 0x18) = &COMPONENT_DESTROYER_VTABLE;
+      *(uint64_t *)(lVar2 + 0x20) = 0;
+      *(int32_t *)(lVar2 + 0x30) = 0;
+      *(uint64_t *)(lVar2 + 0x18) = &COMPONENT_DESTROYER_VTABLE;
       lVar2 = lVar2 + 0x50;
     } while (lVar2 != lVar1);
     param_1[1] = *param_1;
@@ -523,7 +523,7 @@ void cleanup_component_chain(longlong *param_1)
  * @param param_4 参数4
  * @return 返回组件指针
  */
-longlong release_component_with_flags(longlong param_1, uint param_2, undefined8 param_3, undefined8 param_4)
+longlong release_component_with_flags(longlong param_1, uint param_2, uint64_t param_3, uint64_t param_4)
 {
   if (*(code **)(param_1 + 0xd0) != (code *)0x0) {
     (**(code **)(param_1 + 0xd0))(param_1 + 0xc0, 0, 0, param_4, 0xfffffffffffffffe);
@@ -556,7 +556,7 @@ void notify_component_destruction(longlong param_1)
   if (iVar2 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar2);
   }
-  *(undefined1 *)(lVar1 + 0x98) = 1;
+  *(int8_t *)(lVar1 + 0x98) = 1;
   iVar2 = _Cnd_broadcast(lVar1);
   if (iVar2 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar2);
@@ -580,11 +580,11 @@ void notify_component_destruction(longlong param_1)
  * @param param_4 回调标志
  * @return 返回目标组件指针
  */
-undefined8 * setup_component_callback(undefined8 *param_1, undefined8 *param_2, undefined8 param_3, undefined8 param_4)
+uint64_t * setup_component_callback(uint64_t *param_1, uint64_t *param_2, uint64_t param_3, uint64_t param_4)
 {
-  undefined8 *puVar1;
+  uint64_t *puVar1;
   code *pcVar2;
-  undefined8 uVar3;
+  uint64_t uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   initialize_callback_system();
@@ -628,21 +628,21 @@ void execute_component_callback(longlong *param_1)
   int iVar1;
   longlong lVar2;
   int iVar3;
-  undefined8 uVar4;
+  uint64_t uVar4;
   longlong *plVar5;
   code *pcVar6;
-  undefined1 auStack_128 [32];
+  int8_t auStack_128 [32];
   longlong *plStack_108;
   longlong **pplStack_100;
   longlong alStack_f8 [2];
   code *pcStack_e8;
   code *pcStack_e0;
-  undefined8 uStack_d8;
+  uint64_t uStack_d8;
   longlong *plStack_d0;
   longlong *plStack_c8;
   longlong alStack_b8 [9];
   longlong alStack_70 [10];
-  undefined1 uStack_20;
+  int8_t uStack_20;
   ulonglong uStack_18;
   
   uStack_d8 = 0xfffffffffffffffe;
@@ -715,11 +715,11 @@ void generate_timestamp_hash(uint *hash_value)
   uint uVar1;
   char cVar2;
   
-  if (*(undefined **)*_DAT_180c8ed08 == &UNK_18098bb88) {
+  if (*(void **)*_DAT_180c8ed08 == &UNK_18098bb88) {
     cVar2 = *(int *)(_DAT_180c8a9c8 + 0xe0) != 0;
   }
   else {
-    cVar2 = (**(code **)(*(undefined **)*_DAT_180c8ed08 + 0x48))();
+    cVar2 = (**(code **)(*(void **)*_DAT_180c8ed08 + 0x48))();
   }
   if (cVar2 != '\0') {
     *hash_value = 0x41c6fe0c;
@@ -732,23 +732,23 @@ void generate_timestamp_hash(uint *hash_value)
 
 
 
-// 函数: bool validate_and_process_condition(longlong context, undefined8 param_2)
+// 函数: bool validate_and_process_condition(longlong context, uint64_t param_2)
 // 功能: 验证条件并处理相应的操作
 // 参数: context - 上下文指针，param_2 - 处理参数
 // 返回: 成功返回1，失败返回0
-bool validate_and_process_condition(longlong context, undefined8 param_2)
+bool validate_and_process_condition(longlong context, uint64_t param_2)
 
 {
   char cVar1;
-  undefined *puVar2;
+  void *puVar2;
   
   if (*(longlong *)(param_1 + 0xb0) != 0) {
     cVar1 = (**(code **)(param_1 + 0xb8))(param_2);
     if (cVar1 == '\0') {
       if (DAT_180c82860 == '\0') {
         puVar2 = &DAT_18098bc73;
-        if (*(undefined **)(param_1 + 0x48) != (undefined *)0x0) {
-          puVar2 = *(undefined **)(param_1 + 0x48);
+        if (*(void **)(param_1 + 0x48) != (void *)0x0) {
+          puVar2 = *(void **)(param_1 + 0x48);
         }
         FUN_180626f80(&UNK_18098bc00,puVar2);
       }
@@ -766,39 +766,39 @@ bool validate_and_process_condition(longlong context, undefined8 param_2)
 
 
 
-// 函数: void insert_node_into_structure(undefined8 *root_node, undefined8 param_2, int *value)
+// 函数: void insert_node_into_structure(uint64_t *root_node, uint64_t param_2, int *value)
 // 功能: 在有序数据结构中插入新节点
 // 参数: root_node - 根节点指针，param_2 - 插入参数，value - 要插入的值
-void insert_node_into_structure(undefined8 *root_node, undefined8 param_2, int *value)
+void insert_node_into_structure(uint64_t *root_node, uint64_t param_2, int *value)
 
 {
   int iVar1;
   bool bVar2;
-  undefined8 *puVar3;
+  uint64_t *puVar3;
   longlong lVar4;
-  undefined8 *puVar5;
-  undefined8 uVar6;
+  uint64_t *puVar5;
+  uint64_t uVar6;
   
-  lVar4 = FUN_18062b420(_DAT_180c8ed18,0x28,*(undefined1 *)(param_1 + 5));
+  lVar4 = FUN_18062b420(_DAT_180c8ed18,0x28,*(int8_t *)(param_1 + 5));
   iVar1 = *value;
   bVar2 = true;
   *(int *)(lVar4 + 0x20) = iVar1; // 存储要插入的值
-  puVar5 = (undefined8 *)param_1[2];
+  puVar5 = (uint64_t *)param_1[2];
   puVar3 = param_1;
-  while (puVar5 != (undefined8 *)0x0) {
+  while (puVar5 != (uint64_t *)0x0) {
     bVar2 = iVar1 < *(int *)(puVar5 + 4);
     puVar3 = puVar5;
     if (iVar1 < *(int *)(puVar5 + 4)) {
-      puVar5 = (undefined8 *)puVar5[1];
+      puVar5 = (uint64_t *)puVar5[1];
     }
     else {
-      puVar5 = (undefined8 *)*puVar5;
+      puVar5 = (uint64_t *)*puVar5;
     }
   }
   puVar5 = puVar3;
   if (bVar2) {
-    if (puVar3 == (undefined8 *)param_1[1]) goto LAB_18005c9be;
-    puVar5 = (undefined8 *)func_0x00018066b9a0(puVar3);
+    if (puVar3 == (uint64_t *)param_1[1]) goto LAB_18005c9be;
+    puVar5 = (uint64_t *)func_0x00018066b9a0(puVar3);
   }
   if (*(int *)(lVar4 + 0x20) <= *(int *)(puVar5 + 4)) {
                     // WARNING: Subroutine does not return
@@ -819,70 +819,70 @@ LAB_18005c9be:
 
 
 
-// 函数: void set_status_flag(longlong context, undefined4 flag)
+// 函数: void set_status_flag(longlong context, int32_t flag)
 // 功能: 设置状态标志，处理条件检查和错误处理
 // 参数: context - 上下文指针，flag - 要设置的标志
-void set_status_flag(longlong context, undefined4 flag)
+void set_status_flag(longlong context, int32_t flag)
 
 {
   char cVar1;
-  undefined *puVar2;
-  undefined4 auStackX_10 [6];
+  void *puVar2;
+  int32_t auStackX_10 [6];
   
   if ((*(longlong *)(param_1 + 0x1f00) != 0) &&
      (auStackX_10[0] = param_2, cVar1 = (**(code **)(param_1 + 0x1f08))(auStackX_10),
      param_2 = auStackX_10[0], cVar1 == '\0')) {
     if (DAT_180c82860 == '\0') {
       puVar2 = &DAT_18098bc73;
-      if (*(undefined **)(param_1 + 0x1eb0) != (undefined *)0x0) {
-        puVar2 = *(undefined **)(param_1 + 0x1eb0);
+      if (*(void **)(param_1 + 0x1eb0) != (void *)0x0) {
+        puVar2 = *(void **)(param_1 + 0x1eb0);
       }
       FUN_180626f80(&UNK_18098bc00,puVar2);
     }
-    *(undefined4 *)(context + 0x1ea0) = *(undefined4 *)(context + 0x1ee8); // 设置状态标志
+    *(int32_t *)(context + 0x1ea0) = *(int32_t *)(context + 0x1ee8); // 设置状态标志
     return;
   }
-  *(undefined4 *)(context + 0x1ea0) = flag; // 设置标志
+  *(int32_t *)(context + 0x1ea0) = flag; // 设置标志
   return;
 }
 
 
 
-// 函数: undefined8 * copy_and_initialize_data_structure(undefined8 *dest, longlong src)
+// 函数: uint64_t * copy_and_initialize_data_structure(uint64_t *dest, longlong src)
 // 功能: 复制和初始化数据结构
 // 参数: dest - 目标指针，src - 源数据
 // 返回: 目标指针
-undefined8 * copy_and_initialize_data_structure(undefined8 *dest, longlong src)
+uint64_t * copy_and_initialize_data_structure(uint64_t *dest, longlong src)
 
 {
   *dest = &UNK_18098bcb0; // 初始化指针
   param_1[1] = 0;
-  *(undefined4 *)(param_1 + 2) = 0;
+  *(int32_t *)(param_1 + 2) = 0;
   *param_1 = &UNK_180a3c3e0;
   param_1[3] = 0;
   param_1[1] = 0;
-  *(undefined4 *)(param_1 + 2) = 0;
-  *(undefined4 *)(param_1 + 2) = *(undefined4 *)(param_2 + 0x10);
-  param_1[1] = *(undefined8 *)(param_2 + 8);
-  *(undefined4 *)((longlong)param_1 + 0x1c) = *(undefined4 *)(param_2 + 0x1c);
-  *(undefined4 *)(param_1 + 3) = *(undefined4 *)(param_2 + 0x18);
-  *(undefined4 *)(src + 0x10) = 0; // 清空源数据
-  *(undefined8 *)(param_2 + 8) = 0;
-  *(undefined8 *)(param_2 + 0x18) = 0;
+  *(int32_t *)(param_1 + 2) = 0;
+  *(int32_t *)(param_1 + 2) = *(int32_t *)(param_2 + 0x10);
+  param_1[1] = *(uint64_t *)(param_2 + 8);
+  *(int32_t *)((longlong)param_1 + 0x1c) = *(int32_t *)(param_2 + 0x1c);
+  *(int32_t *)(param_1 + 3) = *(int32_t *)(param_2 + 0x18);
+  *(int32_t *)(src + 0x10) = 0; // 清空源数据
+  *(uint64_t *)(param_2 + 8) = 0;
+  *(uint64_t *)(param_2 + 0x18) = 0;
   memory_ptr[4] = &UNK_18098bcb0; // 设置内存标记
   param_1[5] = 0;
-  *(undefined4 *)(param_1 + 6) = 0;
+  *(int32_t *)(param_1 + 6) = 0;
   param_1[4] = &UNK_180a3c3e0;
   param_1[7] = 0;
   param_1[5] = 0;
-  *(undefined4 *)(param_1 + 6) = 0;
-  *(undefined4 *)(param_1 + 6) = *(undefined4 *)(param_2 + 0x30);
-  param_1[5] = *(undefined8 *)(param_2 + 0x28);
-  *(undefined4 *)((longlong)param_1 + 0x3c) = *(undefined4 *)(param_2 + 0x3c);
-  *(undefined4 *)(param_1 + 7) = *(undefined4 *)(param_2 + 0x38);
-  *(undefined4 *)(param_2 + 0x30) = 0;
-  *(undefined8 *)(structure + 0x28) = 0; // 清理指针
-  *(undefined8 *)(param_2 + 0x38) = 0;
+  *(int32_t *)(param_1 + 6) = 0;
+  *(int32_t *)(param_1 + 6) = *(int32_t *)(param_2 + 0x30);
+  param_1[5] = *(uint64_t *)(param_2 + 0x28);
+  *(int32_t *)((longlong)param_1 + 0x3c) = *(int32_t *)(param_2 + 0x3c);
+  *(int32_t *)(param_1 + 7) = *(int32_t *)(param_2 + 0x38);
+  *(int32_t *)(param_2 + 0x30) = 0;
+  *(uint64_t *)(structure + 0x28) = 0; // 清理指针
+  *(uint64_t *)(param_2 + 0x38) = 0;
   return param_1;
 }
 
@@ -895,22 +895,22 @@ undefined8 * copy_and_initialize_data_structure(undefined8 *dest, longlong src)
 longlong cleanup_and_reset_structure(longlong structure)
 
 {
-  *(undefined8 *)(structure + 0x40) = &UNK_180a3c3e0; // 设置安全标记
+  *(uint64_t *)(structure + 0x40) = &UNK_180a3c3e0; // 设置安全标记
   if (*(longlong *)(param_1 + 0x48) != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  *(undefined8 *)(param_1 + 0x48) = 0;
-  *(undefined4 *)(param_1 + 0x58) = 0;
-  *(undefined8 *)(param_1 + 0x40) = &UNK_18098bcb0;
-  *(undefined8 *)(param_1 + 0x20) = &UNK_180a3c3e0;
+  *(uint64_t *)(param_1 + 0x48) = 0;
+  *(int32_t *)(param_1 + 0x58) = 0;
+  *(uint64_t *)(param_1 + 0x40) = &UNK_18098bcb0;
+  *(uint64_t *)(param_1 + 0x20) = &UNK_180a3c3e0;
   if (*(longlong *)(param_1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  *(undefined8 *)(param_1 + 0x28) = 0;
-  *(undefined4 *)(param_1 + 0x38) = 0;
-  *(undefined8 *)(param_1 + 0x20) = &UNK_18098bcb0;
+  *(uint64_t *)(param_1 + 0x28) = 0;
+  *(int32_t *)(param_1 + 0x38) = 0;
+  *(uint64_t *)(param_1 + 0x20) = &UNK_18098bcb0;
   return param_1;
 }
 
@@ -920,33 +920,33 @@ longlong cleanup_and_reset_structure(longlong structure)
 
 
 
-// 函数: void register_or_add_component(undefined **registry, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+// 函数: void register_or_add_component(void **registry, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 // 功能: 注册或添加组件到注册表
 // 参数: registry - 注册表指针，param_2 - 组件类型，param_3 - 组件数据，param_4 - 标志
-void register_or_add_component(undefined **registry, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void register_or_add_component(void **registry, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 
 {
   byte bVar1;
   uint uVar2;
   longlong lVar3;
-  undefined **ppuVar4;
+  void **ppuVar4;
   byte *pbVar5;
-  undefined **ppuVar6;
+  void **ppuVar6;
   longlong lVar7;
-  undefined8 uVar8;
-  undefined **ppuStackX_8;
+  uint64_t uVar8;
+  void **ppuStackX_8;
   char acStackX_20 [8];
-  undefined4 uVar9;
-  undefined *puStack_68;
+  int32_t uVar9;
+  void *puStack_68;
   longlong lStack_60;
-  undefined *puStack_48;
+  void *puStack_48;
   longlong lStack_40;
-  undefined4 uStack_30;
+  int32_t uStack_30;
   
   lVar3 = _DAT_180c8a9a0;
   acStackX_20[0] = (char)param_4;
   uVar8 = 0;
-  ppuVar6 = (undefined **)(_DAT_180c8a9a0 + 0x70);
+  ppuVar6 = (void **)(_DAT_180c8a9a0 + 0x70);
   ppuStackX_8 = param_1;
   FUN_180058080(ppuVar6,&ppuStackX_8,param_2,param_4,0,0xfffffffffffffffe);
   if (ppuStackX_8 != ppuVar6) {
@@ -956,9 +956,9 @@ void register_or_add_component(undefined **registry, undefined8 param_2, undefin
   FUN_180627ae0(&puStack_68,param_2);
   FUN_180627ae0(&puStack_48,param_3);
   uVar9 = 1;
-  lVar3 = FUN_18062b420(_DAT_180c8ed18,0x60,*(undefined1 *)(lVar3 + 0x98));
+  lVar3 = FUN_18062b420(_DAT_180c8ed18,0x60,*(int8_t *)(lVar3 + 0x98));
   FUN_18005caa0(lVar3 + 0x20,&puStack_68);
-  ppuVar4 = (undefined **)FUN_1800590b0(ppuVar6,acStackX_20,lVar3 + 0x20);
+  ppuVar4 = (void **)FUN_1800590b0(ppuVar6,acStackX_20,lVar3 + 0x20);
   if (acStackX_20[0] == '\0') {
     FUN_18005cb60(lVar3);
     if (lVar3 != 0) {
@@ -1003,12 +1003,12 @@ LAB_18005ccff:
 
 
 
-// 函数: undefined8 * allocate_and_initialize_memory(undefined8 *memory_ptr, ulonglong flags, undefined8 param_3, undefined8 param_4)
+// 函数: uint64_t * allocate_and_initialize_memory(uint64_t *memory_ptr, ulonglong flags, uint64_t param_3, uint64_t param_4)
 // 功能: 分配和初始化内存
 // 参数: memory_ptr - 内存指针，flags - 分配标志，param_3, param_4 - 分配参数
 // 返回: 初始化后的内存指针
-undefined8 *
-allocate_and_initialize_memory(undefined8 *memory_ptr, ulonglong flags, undefined8 param_3, undefined8 param_4)
+uint64_t *
+allocate_and_initialize_memory(uint64_t *memory_ptr, ulonglong flags, uint64_t param_3, uint64_t param_4)
 
 {
   memory_ptr[4] = &UNK_18098bcb0; // 设置内存标记
@@ -1023,29 +1023,29 @@ allocate_and_initialize_memory(undefined8 *memory_ptr, ulonglong flags, undefine
 
 
 
-undefined8 * FUN_18005ce30(undefined8 *param_1,undefined8 *param_2)
+uint64_t * FUN_18005ce30(uint64_t *param_1,uint64_t *param_2)
 
 {
-  undefined8 *puVar1;
-  undefined8 uVar2;
+  uint64_t *puVar1;
+  uint64_t uVar2;
   
   *param_1 = &UNK_180a21690;
   *param_1 = &UNK_180a21720;
-  *(undefined4 *)(param_1 + 1) = 0;
+  *(int32_t *)(param_1 + 1) = 0;
   *memory_ptr = &UNK_18098bdc8; // 设置虚函数表
   LOCK();
-  *(undefined1 *)(param_1 + 2) = 0;
+  *(int8_t *)(param_1 + 2) = 0;
   UNLOCK();
   param_1[3] = 0xffffffffffffffff;
   *param_1 = &UNK_1809fdfd0;
   puVar1 = param_1 + 4;
   *puVar1 = &UNK_18098bcb0;
   param_1[5] = 0;
-  *(undefined4 *)(param_1 + 6) = 0;
+  *(int32_t *)(param_1 + 6) = 0;
   *puVar1 = &UNK_1809fcc28;
   param_1[5] = param_1 + 7;
-  *(undefined4 *)(param_1 + 6) = 0;
-  *(undefined1 *)(param_1 + 7) = 0;
+  *(int32_t *)(param_1 + 6) = 0;
+  *(int8_t *)(param_1 + 7) = 0;
   uVar2 = param_2[1];
   *puVar1 = *param_2;
   param_1[5] = uVar2;
@@ -1088,21 +1088,21 @@ undefined8 * FUN_18005ce30(undefined8 *param_1,undefined8 *param_2)
   uVar2 = param_2[0x1b];
   param_1[0x1e] = param_2[0x1a];
   param_1[0x1f] = uVar2;
-  *(undefined4 *)(param_1 + 0x17) = *(undefined4 *)(param_2 + 0x13);
+  *(int32_t *)(param_1 + 0x17) = *(int32_t *)(param_2 + 0x13);
   return param_1;
 }
 
 
 
-// 函数: undefined4 get_value_with_mutex_lock(longlong mutex_context)
+// 函数: int32_t get_value_with_mutex_lock(longlong mutex_context)
 // 功能: 在互斥锁保护下获取值
 // 参数: mutex_context - 包含互斥锁的上下文
 // 返回: 获取的值
-undefined4 get_value_with_mutex_lock(longlong mutex_context)
+int32_t get_value_with_mutex_lock(longlong mutex_context)
 
 {
   int iVar1;
-  undefined4 uVar2;
+  int32_t uVar2;
   
   iVar1 = _Mtx_lock(mutex_context + 0x9f0); // 获取互斥锁
   if (iVar1 != 0) {
@@ -1191,12 +1191,12 @@ void format_value_to_buffer(ulonglong value, longlong buffer)
   float fVar10;
   double dStackX_18;
   ulonglong uStackX_20;
-  undefined1 auStack_478 [32];
-  undefined8 uStack_458;
+  int8_t auStack_478 [32];
+  uint64_t uStack_458;
   double *pdStack_450;
   char acStack_438 [1024];
   ulonglong uStack_38;
-  undefined8 uStack_30;
+  uint64_t uStack_30;
   
   iVar7 = -1;
   iVar8 = -1;
@@ -1276,16 +1276,16 @@ longlong copy_and_initialize_simple_structure(longlong dest, longlong src)
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  *(undefined8 *)(param_1 + 0x18) = 0;
-  *(undefined8 *)(param_1 + 8) = 0;
-  *(undefined4 *)(param_1 + 0x10) = 0;
-  *(undefined4 *)(param_1 + 0x10) = *(undefined4 *)(param_2 + 0x10);
-  *(undefined8 *)(dest + 8) = *(undefined8 *)(src + 8); // 复制数据
-  *(undefined4 *)(param_1 + 0x1c) = *(undefined4 *)(param_2 + 0x1c);
-  *(undefined4 *)(param_1 + 0x18) = *(undefined4 *)(param_2 + 0x18);
-  *(undefined4 *)(src + 0x10) = 0; // 清空源数据
-  *(undefined8 *)(param_2 + 8) = 0;
-  *(undefined8 *)(param_2 + 0x18) = 0;
+  *(uint64_t *)(param_1 + 0x18) = 0;
+  *(uint64_t *)(param_1 + 8) = 0;
+  *(int32_t *)(param_1 + 0x10) = 0;
+  *(int32_t *)(param_1 + 0x10) = *(int32_t *)(param_2 + 0x10);
+  *(uint64_t *)(dest + 8) = *(uint64_t *)(src + 8); // 复制数据
+  *(int32_t *)(param_1 + 0x1c) = *(int32_t *)(param_2 + 0x1c);
+  *(int32_t *)(param_1 + 0x18) = *(int32_t *)(param_2 + 0x18);
+  *(int32_t *)(src + 0x10) = 0; // 清空源数据
+  *(uint64_t *)(param_2 + 8) = 0;
+  *(uint64_t *)(param_2 + 0x18) = 0;
   return param_1;
 }
 
@@ -1293,20 +1293,20 @@ longlong copy_and_initialize_simple_structure(longlong dest, longlong src)
 
 
 
-// 函数: void cleanup_structure_safety(undefined8 param_1, longlong structure)
+// 函数: void cleanup_structure_safety(uint64_t param_1, longlong structure)
 // 功能: 安全清理数据结构
 // 参数: param_1 - 未使用参数，structure - 要清理的结构
-void cleanup_structure_safety(undefined8 param_1, longlong structure)
+void cleanup_structure_safety(uint64_t param_1, longlong structure)
 
 {
-  *(undefined8 *)(structure + 0x20) = &UNK_180a3c3e0; // 设置安全标记
+  *(uint64_t *)(structure + 0x20) = &UNK_180a3c3e0; // 设置安全标记
   if (*(longlong *)(param_2 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  *(undefined8 *)(structure + 0x28) = 0; // 清理指针
-  *(undefined4 *)(param_2 + 0x38) = 0;
-  *(undefined8 *)(param_2 + 0x20) = &UNK_18098bcb0;
+  *(uint64_t *)(structure + 0x28) = 0; // 清理指针
+  *(int32_t *)(param_2 + 0x38) = 0;
+  *(uint64_t *)(param_2 + 0x20) = &UNK_18098bcb0;
   if (param_2 != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900(param_2);

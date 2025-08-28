@@ -78,12 +78,12 @@
 // ============================================================================
 
 /** 渲染系统句柄类型 */
-typedef undefined8 RenderContextHandle;           // 渲染上下文句柄
-typedef undefined8 MatrixHandle;                  // 矩阵句柄
-typedef undefined8 VertexBufferHandle;           // 顶点缓冲区句柄
-typedef undefined8 IndexBufferHandle;             // 索引缓冲区句柄
-typedef undefined8 ShaderHandle;                 // 着色器句柄
-typedef undefined8 TextureHandle;                // 纹理句柄
+typedef uint64_t RenderContextHandle;           // 渲染上下文句柄
+typedef uint64_t MatrixHandle;                  // 矩阵句柄
+typedef uint64_t VertexBufferHandle;           // 顶点缓冲区句柄
+typedef uint64_t IndexBufferHandle;             // 索引缓冲区句柄
+typedef uint64_t ShaderHandle;                 // 着色器句柄
+typedef uint64_t TextureHandle;                // 纹理句柄
 
 /** 渲染数据类型 */
 typedef float Vector3[3];                         // 3D向量

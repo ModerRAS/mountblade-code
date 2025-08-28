@@ -16,10 +16,10 @@
 //------------------------------------------------------------------------------
 
 // 缓存管理句柄类型
-typedef undefined8 CacheManagerHandle;             // 缓存管理器句柄
-typedef undefined8 MemoryPoolHandle;               // 内存池句柄
-typedef undefined8 PerformanceHandle;              // 性能监控句柄
-typedef undefined8 StrategyHandle;                  // 策略句柄
+typedef uint64_t CacheManagerHandle;             // 缓存管理器句柄
+typedef uint64_t MemoryPoolHandle;               // 内存池句柄
+typedef uint64_t PerformanceHandle;              // 性能监控句柄
+typedef uint64_t StrategyHandle;                  // 策略句柄
 
 // 缓存状态常量
 #define CACHE_STATE_READY           0x00000001     // 缓存就绪状态
@@ -73,7 +73,7 @@ typedef undefined8 StrategyHandle;                  // 策略句柄
 //   param_2 - 操作类型或参数，标识要执行的缓存操作
 //
 // 返回值：
-//   undefined8 - 操作结果或状态码
+//   uint64_t - 操作结果或状态码
 //
 // 处理流程：
 //   1. 验证输入参数的有效性
@@ -100,13 +100,13 @@ typedef undefined8 StrategyHandle;                  // 策略句柄
 //   简化实现：基于高级缓存管理模块架构，创建完整的缓存管理功能
 //   优化点：添加完整的缓存管理、性能优化、内存池管理功能
 //------------------------------------------------------------------------------
-undefined8 FUN_180012347(undefined8 param_1, undefined8 param_2)
+uint64_t FUN_180012347(uint64_t param_1, uint64_t param_2)
 {
     // 局部变量定义
-    undefined8 uVar1;                            // 操作结果
+    uint64_t uVar1;                            // 操作结果
     longlong lVar2;                              // 上下文指针
     int iVar3;                                  // 状态标志
-    undefined8 auStack_28 [4];                   // 栈缓冲区 (32字节)
+    uint64_t auStack_28 [4];                   // 栈缓冲区 (32字节)
     ulonglong uStack_8;                         // 安全检查值
     
     // 安全检查：栈保护机制

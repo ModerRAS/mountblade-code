@@ -98,9 +98,9 @@ void network_connection_advanced_processor(longlong param_1, longlong param_2);
  * 
  * @param param_1 网络上下文指针
  * @param param_2 查询参数
- * @return undefined8 状态信息
+ * @return uint64_t 状态信息
  */
-undefined8 network_connection_status_query(longlong param_1, longlong param_2);
+uint64_t network_connection_status_query(longlong param_1, longlong param_2);
 
 /**
  * @brief 网络连接数据管理器
@@ -110,9 +110,9 @@ undefined8 network_connection_status_query(longlong param_1, longlong param_2);
  * 
  * @param param_1 网络上下文指针
  * @param param_2 数据参数
- * @return undefined8 操作结果
+ * @return uint64_t 操作结果
  */
-undefined8 network_connection_data_manager(longlong param_1, longlong param_2);
+uint64_t network_connection_data_manager(longlong param_1, longlong param_2);
 
 /** @} */
 
@@ -134,9 +134,9 @@ undefined8 network_connection_data_manager(longlong param_1, longlong param_2);
  * 
  * @param param_1 网络上下文指针
  * @param param_2 输入数据
- * @return undefined8 处理结果码
+ * @return uint64_t 处理结果码
  */
-undefined8 network_data_validator_and_processor(longlong param_1, longlong param_2);
+uint64_t network_data_validator_and_processor(longlong param_1, longlong param_2);
 
 /**
  * @brief 网络数据索引管理器
@@ -146,9 +146,9 @@ undefined8 network_data_validator_and_processor(longlong param_1, longlong param
  * 
  * @param param_1 网络上下文指针
  * @param param_2 索引参数
- * @return undefined8 操作结果
+ * @return uint64_t 操作结果
  */
-undefined8 network_data_index_manager(longlong param_1, longlong param_2);
+uint64_t network_data_index_manager(longlong param_1, longlong param_2);
 
 /**
  * @brief 网络数据遍历处理器
@@ -156,9 +156,9 @@ undefined8 network_data_index_manager(longlong param_1, longlong param_2);
  * 遍历网络数据，执行批量处理操作。
  * 支持高效的数据处理和状态管理。
  * 
- * @return undefined8 处理结果
+ * @return uint64_t 处理结果
  */
-undefined8 network_data_traversal_processor(void);
+uint64_t network_data_traversal_processor(void);
 
 /**
  * @brief 网络浮点数验证器
@@ -168,9 +168,9 @@ undefined8 network_data_traversal_processor(void);
  * 
  * @param param_1 网络上下文指针
  * @param param_2 浮点数据
- * @return undefined8 验证结果
+ * @return uint64_t 验证结果
  */
-undefined8 network_float_validator(longlong param_1, longlong param_2);
+uint64_t network_float_validator(longlong param_1, longlong param_2);
 
 /**
  * @brief 网络浮点数高级处理器
@@ -180,9 +180,9 @@ undefined8 network_float_validator(longlong param_1, longlong param_2);
  * 
  * @param param_1 网络上下文指针
  * @param param_2 浮点参数
- * @return undefined8 处理结果
+ * @return uint64_t 处理结果
  */
-undefined8 network_float_advanced_processor(longlong param_1, longlong param_2);
+uint64_t network_float_advanced_processor(longlong param_1, longlong param_2);
 
 /**
  * @brief 网络浮点数范围检查器
@@ -192,9 +192,9 @@ undefined8 network_float_advanced_processor(longlong param_1, longlong param_2);
  * 
  * @param param_1 网络上下文指针
  * @param param_2 浮点数据
- * @return undefined8 检查结果
+ * @return uint64_t 检查结果
  */
-undefined8 network_float_range_checker(longlong param_1, longlong param_2);
+uint64_t network_float_range_checker(longlong param_1, longlong param_2);
 
 /**
  * @brief 网络浮点数优化处理器
@@ -204,9 +204,9 @@ undefined8 network_float_range_checker(longlong param_1, longlong param_2);
  * 
  * @param param_1 网络上下文指针
  * @param param_2 浮点参数
- * @return undefined8 优化结果
+ * @return uint64_t 优化结果
  */
-undefined8 network_float_optimization_processor(longlong param_1, longlong param_2);
+uint64_t network_float_optimization_processor(longlong param_1, longlong param_2);
 
 /** @} */
 
@@ -228,9 +228,9 @@ undefined8 network_float_optimization_processor(longlong param_1, longlong param
  * 
  * @param param_1 网络上下文指针
  * @param param_2 分配参数
- * @return undefined8 分配结果
+ * @return uint64_t 分配结果
  */
-undefined8 network_memory_allocator(longlong param_1, longlong param_2);
+uint64_t network_memory_allocator(longlong param_1, longlong param_2);
 
 /**
  * @brief 网络数据结构管理器
@@ -240,9 +240,9 @@ undefined8 network_memory_allocator(longlong param_1, longlong param_2);
  * 
  * @param param_1 网络上下文指针
  * @param param_2 结构参数
- * @return undefined8 操作结果
+ * @return uint64_t 操作结果
  */
-undefined8 network_data_structure_manager(longlong param_1, longlong param_2);
+uint64_t network_data_structure_manager(longlong param_1, longlong param_2);
 
 /**
  * @brief 网络资源清理器
@@ -338,9 +338,9 @@ void network_system_finalizer(void);
  * 处理网络系统异常情况。
  * 支持异常恢复和错误报告。
  * 
- * @return undefined8 处理结果
+ * @return uint64_t 处理结果
  */
-undefined8 network_exception_handler(void);
+uint64_t network_exception_handler(void);
 
 /** @} */
 
@@ -364,9 +364,9 @@ undefined8 network_exception_handler(void);
  * @param param_2 配置参数
  * @param param_3 附加参数
  * @param param_4 扩展参数
- * @return undefined8 配置结果
+ * @return uint64_t 配置结果
  */
-undefined8 network_parameter_configurator(longlong param_1, longlong param_2, undefined8 param_3, undefined8 param_4);
+uint64_t network_parameter_configurator(longlong param_1, longlong param_2, uint64_t param_3, uint64_t param_4);
 
 /**
  * @brief 网络批量数据处理器
@@ -376,9 +376,9 @@ undefined8 network_parameter_configurator(longlong param_1, longlong param_2, un
  * 
  * @param param_1 网络上下文指针
  * @param param_2 数据参数
- * @return undefined8 处理结果
+ * @return uint64_t 处理结果
  */
-undefined8 network_batch_data_processor(longlong param_1, longlong param_2);
+uint64_t network_batch_data_processor(longlong param_1, longlong param_2);
 
 /**
  * @brief 网络数据同步器
@@ -386,9 +386,9 @@ undefined8 network_batch_data_processor(longlong param_1, longlong param_2);
  * 同步网络数据，确保数据一致性。
  * 支持多线程和异步处理。
  * 
- * @return undefined8 同步结果
+ * @return uint64_t 同步结果
  */
-undefined8 network_data_synchronizer(void);
+uint64_t network_data_synchronizer(void);
 
 /** @} */
 
@@ -403,8 +403,8 @@ undefined8 network_data_synchronizer(void);
 /** @{ */
 
 /** 网络配置数据 */
-extern undefined8 _DAT_180bf00a8;        /**< 网络配置基地址 */
-extern undefined4 DAT_18098bc73;          /**< 网络状态数据 */
+extern uint64_t _DAT_180bf00a8;        /**< 网络配置基地址 */
+extern int32_t DAT_18098bc73;          /**< 网络状态数据 */
 
 /** 网络连接数据 */
 extern int network_connection_count;      /**< 网络连接计数 */
@@ -488,7 +488,7 @@ undefined FUN_180892880(longlong param_1, longlong param_2);              /**< �
 undefined FUN_180892410(longlong param_1, longlong param_2);              /**< 网络内存分配函数 */
 undefined FUN_18089246a(longlong *param_1, longlong param_2);            /**< 网络数据结构管理函数 */
 undefined FUN_180892720(longlong param_1, longlong param_2);              /**< 网络资源清理函数 */
-undefined FUN_180892e50(longlong param_1, undefined8 param_2);           /**< 网络缓冲区管理函数 */
+undefined FUN_180892e50(longlong param_1, uint64_t param_2);           /**< 网络缓冲区管理函数 */
 undefined FUN_180892983(void);                                          /**< 网络系统初始化函数 */
 
 /* 错误处理和异常管理函数声明 */
@@ -498,15 +498,15 @@ undefined FUN_1808924c8(void);                                          /**< 网
 undefined FUN_180892e35(void);                                          /**< 网络异常处理函数 */
 
 /* 高级网络处理函数声明 */
-undefined FUN_180892bd0(longlong param_1, longlong param_2, undefined8 param_3, undefined8 param_4); /**< 网络参数配置函数 */
+undefined FUN_180892bd0(longlong param_1, longlong param_2, uint64_t param_3, uint64_t param_4); /**< 网络参数配置函数 */
 undefined FUN_180892cc0(longlong param_1, longlong param_2);              /**< 网络批量数据处理函数 */
 undefined FUN_180892ceb(void);                                          /**< 网络数据同步函数 */
 
 /* 辅助函数声明 */
 undefined FUN_1808928d3(void);                                          /**< 网络辅助处理函数1 */
 undefined FUN_1808928f1(void);                                          /**< 网络辅助处理函数2 */
-undefined FUN_180892909(undefined4 param_1);                           /**< 网络辅助处理函数3 */
-undefined FUN_180892920(undefined4 param_1);                           /**< 网络辅助处理函数4 */
+undefined FUN_180892909(int32_t param_1);                           /**< 网络辅助处理函数3 */
+undefined FUN_180892920(int32_t param_1);                           /**< 网络辅助处理函数4 */
 undefined FUN_180892974(void);                                          /**< 网络辅助处理函数5 */
 undefined FUN_180892990(longlong param_1, longlong param_2);              /**< 网络辅助处理函数6 */
 undefined FUN_180892ac0(longlong param_1, longlong param_2);              /**< 网络辅助处理函数7 */

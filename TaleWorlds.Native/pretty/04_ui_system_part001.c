@@ -83,7 +83,7 @@ undefined UNK_180a3c948;                           // UI组件渲染器 - 负责
 undefined UNK_180a3c968;                           // UI组件事件绑定器 - 管理组件的事件绑定
 
 // UI系统状态标志
-undefined1 DAT_180c95fea;                          // UI系统初始化标志 - 标识系统是否已初始化
+int8_t DAT_180c95fea;                          // UI系统初始化标志 - 标识系统是否已初始化
 char DAT_180c8eced;                                // UI系统运行状态 - 存储当前运行状态
 
 // UI组件生命周期管理变量
@@ -174,7 +174,7 @@ undefined SUB_18063e940;                           // UI系统辅助函数 - 提
 
 // UI系统常量定义
 uint UNK_00004000;                                 // UI系统最大组件数 - 定义最大组件数量
-undefined2 UNK_00004006;                           // UI系统事件类型 - 定义事件类型
+int16_t UNK_00004006;                           // UI系统事件类型 - 定义事件类型
 int UNK_00004018;                                  // UI系统渲染模式 - 定义渲染模式
 
 // UI系统布局变量
@@ -366,31 +366,31 @@ undefined FUN_1806561d0;                           // UI系统清理函数 - 负
 //------------------------------------------------------------------------------
 
 // UI系统核心类型别名
-typedef undefined8 UISystemHandle;                 // UI系统句柄 - 用于标识UI系统实例
-typedef undefined8 UIComponentHandle;             // UI组件句柄 - 用于标识UI组件
-typedef undefined8 UIEventHandle;                 // UI事件句柄 - 用于标识UI事件
-typedef undefined8 UIRenderHandle;               // UI渲染句柄 - 用于标识UI渲染上下文
-typedef undefined8 UIResourceHandle;              // UI资源句柄 - 用于标识UI资源
+typedef uint64_t UISystemHandle;                 // UI系统句柄 - 用于标识UI系统实例
+typedef uint64_t UIComponentHandle;             // UI组件句柄 - 用于标识UI组件
+typedef uint64_t UIEventHandle;                 // UI事件句柄 - 用于标识UI事件
+typedef uint64_t UIRenderHandle;               // UI渲染句柄 - 用于标识UI渲染上下文
+typedef uint64_t UIResourceHandle;              // UI资源句柄 - 用于标识UI资源
 
 // UI系统管理器类型别名
-typedef undefined8 UIComponentManager;           // UI组件管理器 - 管理UI组件
-typedef undefined8 UIEventManager;                // UI事件管理器 - 管理UI事件
-typedef undefined8 UIRenderManager;               // UI渲染管理器 - 管理UI渲染
-typedef undefined8 UIResourceManager;            // UI资源管理器 - 管理UI资源
-typedef undefined8 UILayoutManager;               // UI布局管理器 - 管理UI布局
-typedef undefined8 UIStyleManager;                // UI样式管理器 - 管理UI样式
+typedef uint64_t UIComponentManager;           // UI组件管理器 - 管理UI组件
+typedef uint64_t UIEventManager;                // UI事件管理器 - 管理UI事件
+typedef uint64_t UIRenderManager;               // UI渲染管理器 - 管理UI渲染
+typedef uint64_t UIResourceManager;            // UI资源管理器 - 管理UI资源
+typedef uint64_t UILayoutManager;               // UI布局管理器 - 管理UI布局
+typedef uint64_t UIStyleManager;                // UI样式管理器 - 管理UI样式
 
 // UI系统配置类型别名
-typedef undefined8 UIConfigHandle;                // UI配置句柄 - 用于标识UI配置
-typedef undefined8 UIThemeHandle;                 // UI主题句柄 - 用于标识UI主题
-typedef undefined8 UILanguageHandle;              // UI语言句柄 - 用于标识UI语言
-typedef undefined8 UIRegionHandle;                // UI区域句柄 - 用于标识UI区域
+typedef uint64_t UIConfigHandle;                // UI配置句柄 - 用于标识UI配置
+typedef uint64_t UIThemeHandle;                 // UI主题句柄 - 用于标识UI主题
+typedef uint64_t UILanguageHandle;              // UI语言句柄 - 用于标识UI语言
+typedef uint64_t UIRegionHandle;                // UI区域句柄 - 用于标识UI区域
 
 // UI系统数据类型别名
-typedef undefined8 UIDataTableHandle;             // UI数据表句柄 - 用于标识UI数据表
-typedef undefined8 UIStateHandle;                 // UI状态句柄 - 用于标识UI状态
-typedef undefined8 UIAnimationHandle;              // UI动画句柄 - 用于标识UI动画
-typedef undefined8 UITransitionHandle;             // UI过渡句柄 - 用于标识UI过渡效果
+typedef uint64_t UIDataTableHandle;             // UI数据表句柄 - 用于标识UI数据表
+typedef uint64_t UIStateHandle;                 // UI状态句柄 - 用于标识UI状态
+typedef uint64_t UIAnimationHandle;              // UI动画句柄 - 用于标识UI动画
+typedef uint64_t UITransitionHandle;             // UI过渡句柄 - 用于标识UI过渡效果
 
 //------------------------------------------------------------------------------
 // UI系统函数别名定义
@@ -525,7 +525,7 @@ undefined FUN_180655e60;                           // UI系统数据序列化函
 undefined UNK_180a16f70;                          // UI系统序列化缓存 - 缓存序列化数据
 undefined UNK_180a3dd38;                          // UI系统序列化配置 - 存储序列化配置
 defundefined DAT_180c8f020;                       // UI系统序列化标志 - 标识序列化状态
-defundefined1 DAT_180c8f020;                      // UI系统序列化锁 - 控制序列化访问
+defint8_t DAT_180c8f020;                      // UI系统序列化锁 - 控制序列化访问
 undefined UNK_180a3dd80;                          // UI系统序列化验证器 - 验证序列化数据
 defundefined DAT_180c967c8;                       // UI系统序列化统计 - 统计序列化信息
 
@@ -582,7 +582,7 @@ undefined UNK_180a3e2e8;                          // UI系统缓存解密器 - �
 undefined UNK_180a3e300;                          // UI系统缓存备份器 - 备份缓存数据
 undefined UNK_180a3e310;                          // UI系统缓存恢复器 - 恢复缓存数据
 undefined UNK_180a3e378;                          // UI系统缓存测试器 - 测试缓存功能
-defundefined1 DAT_180c96808;                      // UI系统缓存标志 - 标识缓存状态
+defint8_t DAT_180c96808;                      // UI系统缓存标志 - 标识缓存状态
 undefined UNK_180a3e470;                          // UI系统缓存调试器 - 调试缓存功能
 undefined UNK_180a3e408;                          // UI系统缓存分析器 - 分析缓存性能
 undefined UNK_180a3e418;                          // UI系统缓存优化器 - 优化缓存操作

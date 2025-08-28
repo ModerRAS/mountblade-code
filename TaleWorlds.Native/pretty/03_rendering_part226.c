@@ -89,10 +89,10 @@ typedef struct {
 // 函数别名定义
 typedef void (*RenderingEmptyFunction)(void);
 typedef ulonglong (*TextureMappingFunction)(longlong param_1, float* param_2, longlong* param_3);
-typedef longlong (*GeometryTransformFunction)(undefined8 param_1, undefined8 param_2, undefined8 param_3);
+typedef longlong (*GeometryTransformFunction)(uint64_t param_1, uint64_t param_2, uint64_t param_3);
 typedef longlong (*AdvancedRenderingFunction)(void);
-typedef void (*AdvancedTextureMappingFunction)(longlong param_1, float* param_2, longlong param_3, ulonglong param_4, float* param_5, undefined8* param_6);
-typedef void (*RenderingStateFunction)(undefined8 param_1, undefined8 param_2, longlong param_3);
+typedef void (*AdvancedTextureMappingFunction)(longlong param_1, float* param_2, longlong param_3, ulonglong param_4, float* param_5, uint64_t* param_6);
+typedef void (*RenderingStateFunction)(uint64_t param_1, uint64_t param_2, longlong param_3);
 
 // 具体函数别名
 #define RenderingSystemEmptyOperation FUN_180395821
@@ -391,7 +391,7 @@ code_r0x000180395b5d:
  * @note 使用优化的搜索策略提高性能
  * @see GeometryTransformFunction
  */
-longlong FUN_18039586d(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+longlong FUN_18039586d(uint64_t param_1,uint64_t param_2,uint64_t param_3)
 
 {
   byte bVar1;
@@ -416,7 +416,7 @@ longlong FUN_18039586d(undefined8 param_1,undefined8 param_2,undefined8 param_3)
   float fVar16;
   int iStackX_24;
   longlong lStack0000000000000028;
-  undefined8 in_stack_000000d8;
+  uint64_t in_stack_000000d8;
   longlong *in_stack_000000e0;
   ulonglong *puStack00000000000000e8;
   
@@ -649,7 +649,7 @@ longlong FUN_1803958d2(void)
   float unaff_XMM7_Da;
   int iStackX_24;
   longlong lStack0000000000000028;
-  undefined8 in_stack_000000d8;
+  uint64_t in_stack_000000d8;
   longlong *in_stack_000000e0;
   ulonglong *in_stack_000000e8;
   
@@ -830,7 +830,7 @@ longlong FUN_180395999(void)
   longlong lStack0000000000000028;
   longlong lStack0000000000000030;
   int iStack00000000000000d0;
-  undefined8 in_stack_000000d8;
+  uint64_t in_stack_000000d8;
   longlong *in_stack_000000e0;
   ulonglong *in_stack_000000e8;
   
@@ -976,7 +976,7 @@ longlong FUN_1803959af(float param_1,float param_2)
   longlong lStack0000000000000028;
   longlong lStack0000000000000030;
   int iStack00000000000000d0;
-  undefined8 in_stack_000000d8;
+  uint64_t in_stack_000000d8;
   longlong *in_stack_000000e0;
   ulonglong *in_stack_000000e8;
   
@@ -1133,22 +1133,22 @@ void FUN_180395c11(void)
  * @see rsqrtss
  */
 void FUN_180395c50(longlong param_1,float *param_2,longlong param_3,ulonglong param_4,float *param_5
-                  ,undefined8 *param_6)
+                  ,uint64_t *param_6)
 
 {
   // 局部变量声明
   float fVar1;                    // 浮点变量，用于Y坐标存储
-  undefined8 *puVar2;             // 无类型指针，用于数据结构访问
+  uint64_t *puVar2;             // 无类型指针，用于数据结构访问
   float *pfVar3;                  // 浮点指针，用于线段终点坐标
   float *pfVar4;                  // 浮点指针，用于线段起点坐标
-  undefined8 uVar5;               // 无类型变量，用于坐标组合
+  uint64_t uVar5;               // 无类型变量，用于坐标组合
   longlong lVar6;                 // 长整型变量，用于偏移量计算
-  undefined8 *puVar7;             // 无类型指针，用于子节点遍历
+  uint64_t *puVar7;             // 无类型指针，用于子节点遍历
   int iVar8;                      // 整型变量，用于循环计数
   ulonglong uVar9;                // 无符号长整型，用于纹理层索引
   longlong lVar10;                // 长整型变量，用于纹理层偏移
   float fVar11;                   // 浮点变量，用于距离平方计算
-  undefined1 auVar12 [16];        // 数组变量，用于SIMD指令结果
+  int8_t auVar12 [16];        // 数组变量，用于SIMD指令结果
   float fVar13;                   // 浮点变量，用于投影参数计算
   float fVar14;                   // 浮点变量，用于X方向向量
   float fVar15;                   // 浮点变量，用于Y方向向量
@@ -1162,18 +1162,18 @@ void FUN_180395c50(longlong param_1,float *param_2,longlong param_3,ulonglong pa
   iVar8 = 0;  // 初始化循环计数器
   
   // 复制纹理层数据到目标位置
-  *(undefined4 *)(param_3 + 0x40 + lVar10 * 4) = *(undefined4 *)(param_1 + 0x558 + lVar10 * 4);
+  *(int32_t *)(param_3 + 0x40 + lVar10 * 4) = *(int32_t *)(param_1 + 0x558 + lVar10 * 4);
   
   // 检查是否有子节点需要处理
   if (*(char *)(param_3 + 0xa8) != '\0') {
     // 获取子节点数组起始地址
-    puVar7 = (undefined8 *)(param_3 + 0x60);
+    puVar7 = (uint64_t *)(param_3 + 0x60);
     uVar9 = param_4;  // 保存纹理层索引
     
     // 遍历所有子节点
     do {
       // 获取当前子节点
-      puVar2 = (undefined8 *)*puVar7;
+      puVar2 = (uint64_t *)*puVar7;
       
       // 检查是否为线段节点（类型为0x01）
       if (*(char *)(puVar2 + 4) == '\x01') {
@@ -1210,12 +1210,12 @@ void FUN_180395c50(longlong param_1,float *param_2,longlong param_3,ulonglong pa
           }
           else {
             // 投影点在线段终点之外，选择终点
-            uVar5 = *(undefined8 *)pfVar3;
+            uVar5 = *(uint64_t *)pfVar3;
           }
         }
         else {
           // 投影点在线段起点之外，选择起点
-          uVar5 = *(undefined8 *)pfVar4;
+          uVar5 = *(uint64_t *)pfVar4;
         }
         
         // 计算目标点到最近点的距离平方
@@ -1287,62 +1287,62 @@ void FUN_180395c50(longlong param_1,float *param_2,longlong param_3,ulonglong pa
  * @note 使用栈空间保存临时数据
  * @see RenderingStateFunction
  */
-void FUN_180395c8e(undefined8 param_1,undefined8 param_2,longlong param_3)
+void FUN_180395c8e(uint64_t param_1,uint64_t param_2,longlong param_3)
 
 {
   float fVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   float *pfVar3;
   float *pfVar4;
-  undefined8 uVar5;
+  uint64_t uVar5;
   ulonglong uVar6;
   ulonglong uVar7;
-  undefined8 unaff_RBX;
-  undefined8 *puVar8;
+  uint64_t unaff_RBX;
+  uint64_t *puVar8;
   longlong unaff_RBP;
-  undefined8 unaff_RSI;
+  uint64_t unaff_RSI;
   int unaff_EDI;
   longlong in_R11;
-  undefined8 unaff_R12;
+  uint64_t unaff_R12;
   float *unaff_R13;
   longlong unaff_R14;
   longlong unaff_R15;
   float fVar9;
-  undefined1 auVar10 [16];
+  int8_t auVar10 [16];
   float fVar11;
   float fVar12;
   float fVar13;
   float fVar14;
   float fVar15;
-  undefined4 unaff_XMM8_Da;
-  undefined4 unaff_XMM8_Db;
-  undefined4 unaff_XMM8_Dc;
-  undefined4 unaff_XMM8_Dd;
-  undefined4 unaff_XMM9_Da;
-  undefined4 unaff_XMM9_Db;
-  undefined4 unaff_XMM9_Dc;
-  undefined4 unaff_XMM9_Dd;
-  undefined8 *puStack0000000000000028;
+  int32_t unaff_XMM8_Da;
+  int32_t unaff_XMM8_Db;
+  int32_t unaff_XMM8_Dc;
+  int32_t unaff_XMM8_Dd;
+  int32_t unaff_XMM9_Da;
+  int32_t unaff_XMM9_Db;
+  int32_t unaff_XMM9_Dc;
+  int32_t unaff_XMM9_Dd;
+  uint64_t *puStack0000000000000028;
   float fStack00000000000000c0;
   float fStack00000000000000c4;
   float *in_stack_000000e0;
-  undefined8 *in_stack_000000e8;
+  uint64_t *in_stack_000000e8;
   
-  *(undefined8 *)(in_R11 + 0x10) = unaff_RBX;
+  *(uint64_t *)(in_R11 + 0x10) = unaff_RBX;
   uVar7 = (ulonglong)(unaff_EDI + 0x18);
-  *(undefined8 *)(in_R11 + -0x30) = unaff_RSI;
-  puVar8 = (undefined8 *)(param_3 + 0x60);
-  *(undefined8 *)(in_R11 + -0x38) = unaff_R12;
-  *(undefined4 *)(in_R11 + -0x68) = unaff_XMM8_Da;
-  *(undefined4 *)(in_R11 + -100) = unaff_XMM8_Db;
-  *(undefined4 *)(in_R11 + -0x60) = unaff_XMM8_Dc;
-  *(undefined4 *)(in_R11 + -0x5c) = unaff_XMM8_Dd;
-  *(undefined4 *)(in_R11 + -0x78) = unaff_XMM9_Da;
-  *(undefined4 *)(in_R11 + -0x74) = unaff_XMM9_Db;
-  *(undefined4 *)(in_R11 + -0x70) = unaff_XMM9_Dc;
-  *(undefined4 *)(in_R11 + -0x6c) = unaff_XMM9_Dd;
+  *(uint64_t *)(in_R11 + -0x30) = unaff_RSI;
+  puVar8 = (uint64_t *)(param_3 + 0x60);
+  *(uint64_t *)(in_R11 + -0x38) = unaff_R12;
+  *(int32_t *)(in_R11 + -0x68) = unaff_XMM8_Da;
+  *(int32_t *)(in_R11 + -100) = unaff_XMM8_Db;
+  *(int32_t *)(in_R11 + -0x60) = unaff_XMM8_Dc;
+  *(int32_t *)(in_R11 + -0x5c) = unaff_XMM8_Dd;
+  *(int32_t *)(in_R11 + -0x78) = unaff_XMM9_Da;
+  *(int32_t *)(in_R11 + -0x74) = unaff_XMM9_Db;
+  *(int32_t *)(in_R11 + -0x70) = unaff_XMM9_Dc;
+  *(int32_t *)(in_R11 + -0x6c) = unaff_XMM9_Dd;
   do {
-    puVar2 = (undefined8 *)*puVar8;
+    puVar2 = (uint64_t *)*puVar8;
     if (*(char *)(puVar2 + 4) == '\x01') {
       pfVar3 = (float *)puVar2[1];
       pfVar4 = (float *)*puVar2;
@@ -1360,11 +1360,11 @@ void FUN_180395c8e(undefined8 param_1,undefined8 param_2,longlong param_3)
           uVar5 = CONCAT44(fVar13 * fVar14 * fVar11 + fVar1,fVar12 * fVar14 * fVar11 + fVar9);
         }
         else {
-          uVar5 = *(undefined8 *)pfVar3;
+          uVar5 = *(uint64_t *)pfVar3;
         }
       }
       else {
-        uVar5 = *(undefined8 *)pfVar4;
+        uVar5 = *(uint64_t *)pfVar4;
       }
       uVar7 = 0x18;
       fStack00000000000000c0 = (float)uVar5;

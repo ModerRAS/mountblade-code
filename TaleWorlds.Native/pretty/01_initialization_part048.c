@@ -67,28 +67,28 @@
  * ============================================================================ */
 
 // 基础类型别名
-typedef undefined8 ResourceHandle;         // 资源句柄
-typedef undefined8 StateHandle;            // 状态句柄
-typedef undefined8 ConfigHandle;           // 配置句柄
-typedef undefined8 SyncHandle;             // 同步句柄
-typedef undefined8 MemoryHandle;          // 内存句柄
-typedef undefined8 ThreadHandle;           // 线程句柄
+typedef uint64_t ResourceHandle;         // 资源句柄
+typedef uint64_t StateHandle;            // 状态句柄
+typedef uint64_t ConfigHandle;           // 配置句柄
+typedef uint64_t SyncHandle;             // 同步句柄
+typedef uint64_t MemoryHandle;          // 内存句柄
+typedef uint64_t ThreadHandle;           // 线程句柄
 
 // 状态类型别名
-typedef undefined4 ResourceStatus;        // 资源状态
-typedef undefined4 SystemState;           // 系统状态
-typedef undefined4 SyncStatus;            // 同步状态
-typedef undefined4 MemoryStatus;          // 内存状态
+typedef int32_t ResourceStatus;        // 资源状态
+typedef int32_t SystemState;           // 系统状态
+typedef int32_t SyncStatus;            // 同步状态
+typedef int32_t MemoryStatus;          // 内存状态
 
 // 标志类型别名
-typedef undefined4 ResourceFlags;         // 资源标志
-typedef undefined4 SystemFlags;           // 系统标志
-typedef undefined4 SyncFlags;             // 同步标志
+typedef int32_t ResourceFlags;         // 资源标志
+typedef int32_t SystemFlags;           // 系统标志
+typedef int32_t SyncFlags;             // 同步标志
 
 // 数据类型别名
-typedef undefined1 SystemByte;            // 系统字节
-typedef undefined2 SystemWord;            // 系统字
-typedef undefined4 SystemDword;           // 系统双字
+typedef int8_t SystemByte;            // 系统字节
+typedef int16_t SystemWord;            // 系统字
+typedef int32_t SystemDword;           // 系统双字
 
 // 指针类型别名
 typedef void* ResourceContext;            // 资源上下文
@@ -262,7 +262,7 @@ void InitializationSystem_ResourceManager(longlong param_1)
             
             // 执行资源清理回调
             callback = *(ResourceCallback*)(param_1 + 0x210);
-            *(undefined8*)(param_1 + 0x210) = 0;
+            *(uint64_t*)(param_1 + 0x210) = 0;
             if (callback != (ResourceCallback)0x0) {
                 (*callback)();
             }
@@ -297,7 +297,7 @@ void InitializationSystem_ResourceManager(longlong param_1)
  * @param param_1 - 系统上下文指针
  * 
  * 返回值：
- * @return undefined8 - 验证结果：非零表示有效，零表示无效
+ * @return uint64_t - 验证结果：非零表示有效，零表示无效
  * 
  * 技术说明：
  * - 支持多种状态检查模式
@@ -305,7 +305,7 @@ void InitializationSystem_ResourceManager(longlong param_1)
  * - 包含配置参数验证
  * - 提供详细的验证结果
  */
-undefined8 InitializationSystem_StateValidator(longlong param_1)
+uint64_t InitializationSystem_StateValidator(longlong param_1)
 {
     SystemByte system_flags;
     StateContext state_context;
@@ -318,7 +318,7 @@ undefined8 InitializationSystem_StateValidator(longlong param_1)
     
     // 检查系统模式
     if ((system_flags & 0x20) == 0) {
-        state_context = func_0x000180085de0(*(undefined8*)(param_1 + 0x1b0));
+        state_context = func_0x000180085de0(*(uint64_t*)(param_1 + 0x1b0));
     }
     
     // 验证资源可用性
@@ -333,7 +333,7 @@ undefined8 InitializationSystem_StateValidator(longlong param_1)
         
         // 检查系统模式
         if ((system_flags & 0x20) == 0) {
-            param_1 = func_0x000180085de0(*(undefined8*)(param_1 + 0x1b0));
+            param_1 = func_0x000180085de0(*(uint64_t*)(param_1 + 0x1b0));
         }
         
         // 验证状态配置
@@ -382,20 +382,20 @@ int InitializationSystem_ParameterProcessor(longlong param_1, longlong *param_2)
     longlong config_data;
     ulonglong hash_value;
     ulonglong config_key;
-    undefined4 extraout_XMM0_Da;
-    undefined4 config_result;
-    undefined8 stack protector;
-    undefined8 *temp_buffer;
-    undefined8 *config_buffer;
+    int32_t extraout_XMM0_Da;
+    int32_t config_result;
+    uint64_t stack protector;
+    uint64_t *temp_buffer;
+    uint64_t *config_buffer;
     uint stack_cookie;
-    undefined8 security_cookie;
+    uint64_t security_cookie;
     ulonglong *hash_table;
     longlong *resource_table;
     code *callback_func;
     code *guard_func;
-    undefined8 temp_stack[6];
-    undefined8 stack_buffer[6];
-    undefined4 process_flags;
+    uint64_t temp_stack[6];
+    uint64_t stack_buffer[6];
+    int32_t process_flags;
     
     // 设置栈保护
     security_cookie = 0xfffffffffffffffe;
@@ -446,7 +446,7 @@ int InitializationSystem_ParameterProcessor(longlong param_1, longlong *param_2)
     stack_buffer[1] = 0;
     stack_buffer[2] = 0;
     process_flags = 3;
-    config_buffer = *(undefined8**)(param_1 + 0x1b8);
+    config_buffer = *(uint64_t**)(param_1 + 0x1b8);
     config_hash = *(uint*)(param_1 + 0x100) >> 0x16;
     config_string = "";
     if ((char*)config_buffer[3] != (char*)0x0) {
@@ -529,7 +529,7 @@ int InitializationSystem_ParameterProcessor(longlong param_1, longlong *param_2)
     hash_table = (ulonglong*)(*resource_table + config_key);
     *hash_table = hash_value;
     hash_table[1] = 0;
-    FUN_18066c220(config_data + 0x20, &temp_stack, *(undefined4*)(config_data + 0x10), *(undefined4*)(config_data + 0x18),
+    FUN_18066c220(config_data + 0x20, &temp_stack, *(int32_t*)(config_data + 0x10), *(int32_t*)(config_data + 0x18),
                   1);
     if ((char)temp_stack != 0) {
         hash_value = hash_value % (ulonglong)temp_stack._4_4_;
@@ -584,7 +584,7 @@ void InitializationSystem_ResourceCleaner(longlong *param_1)
             FUN_18064e900();
         }
         current_resource[1] = 0;
-        *(undefined4*)(current_resource + 3) = 0;
+        *(int32_t*)(current_resource + 3) = 0;
         *current_resource = &UNK_18098bcb0;
     }
     
@@ -653,7 +653,7 @@ ulonglong InitializationSystem_StateSynchronizer(longlong param_1)
         if (*(longlong*)(param_1 + 0x1d8) != 0) {
             FUN_18064e900();
         }
-        *(undefined8*)(param_1 + 0x1d8) = 0;
+        *(uint64_t*)(param_1 + 0x1d8) = 0;
         LOCK();
         system_flags = *(SystemByte*)(param_1 + 0xf9);
         *(SystemByte*)(param_1 + 0xf9) = 0;
@@ -665,7 +665,7 @@ ulonglong InitializationSystem_StateSynchronizer(longlong param_1)
     if (*(longlong*)(param_1 + 0x1e8) != 0) {
         FUN_180080060();
         sync_result = *(ulonglong*)(param_1 + 0x1f0);
-        *(undefined8*)(param_1 + 0x1e8) = 0;
+        *(uint64_t*)(param_1 + 0x1e8) = 0;
         if (sync_result != 0) {
             *(SystemByte*)(sync_result + 0xfe) = *(SystemByte*)(sync_result + 0xfe) & 0xfb;
         }
@@ -697,19 +697,19 @@ ulonglong InitializationSystem_StateSynchronizer(longlong param_1)
  */
 void InitializationSystem_ConfigManager(longlong *param_1)
 {
-    undefined8 config_handle;
+    uint64_t config_handle;
     ulonglong *config_data;
     ulonglong config_flag;
     longlong *resource_table;
     longlong resource_handle;
     SystemByte system_mode;
-    undefined1 security_buffer[32];
+    int8_t security_buffer[32];
     ulonglong *temp_buffer;
-    undefined8 buffer_control;
-    undefined *data_pointer;
+    uint64_t buffer_control;
+    void *data_pointer;
     ulonglong *config_pointer;
     ulonglong config_info[2];
-    undefined8 stack_control;
+    uint64_t stack_control;
     char cleanup_flag_1;
     char cleanup_flag_2;
     char cleanup_flag_3;
@@ -720,7 +720,7 @@ void InitializationSystem_ConfigManager(longlong *param_1)
     security_cookie = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
     
     // 获取配置句柄
-    config_handle = *(undefined8*)(param_1[0x37] + 0x1e0);
+    config_handle = *(uint64_t*)(param_1[0x37] + 0x1e0);
     data_pointer = &UNK_18098bc80;
     config_pointer = config_info;
     config_info[0] = config_info[0] & 0xffffffffffffff00;
@@ -741,7 +741,7 @@ void InitializationSystem_ConfigManager(longlong *param_1)
             if (((*(uint*)(resource_table + 0x20) & 0x8000000) == 0) && (system_mode != 0)) {
                 temp_buffer = (ulonglong*)param_1;
                 (**(code**)(*param_1 + 0x28))(param_1);
-                data_pointer = (undefined*)0x0;
+                data_pointer = (void*)0x0;
                 config_pointer = (ulonglong*)0x0;
                 temp_buffer = &config_flag;
                 stack_control = 0;
@@ -763,7 +763,7 @@ void InitializationSystem_ConfigManager(longlong *param_1)
         if ((*(uint*)(resource_table + 0x20) & 0x8000000) != 0) {
             temp_buffer = (ulonglong*)param_1;
             (**(code**)(*param_1 + 0x28))(param_1);
-            data_pointer = (undefined*)0x0;
+            data_pointer = (void*)0x0;
             config_pointer = (ulonglong*)0x0;
             temp_buffer = &config_flag;
             stack_control = 0;
@@ -814,7 +814,7 @@ CONFIG_UPDATE_COMPLETE:
  * @param param_2 - 权限配置指针
  * 
  * 返回值：
- * @return undefined8 - 验证结果：非零表示有权限，零表示无权限
+ * @return uint64_t - 验证结果：非零表示有权限，零表示无权限
  * 
  * 技术说明：
  * - 实现多层权限验证
@@ -822,7 +822,7 @@ CONFIG_UPDATE_COMPLETE:
  * - 包含访问控制机制
  * - 提供安全审计功能
  */
-undefined8 InitializationSystem_PermissionValidator(longlong param_1, longlong param_2)
+uint64_t InitializationSystem_PermissionValidator(longlong param_1, longlong param_2)
 {
     uint *status_counter;
     longlong *resource_table;
@@ -839,22 +839,22 @@ undefined8 InitializationSystem_PermissionValidator(longlong param_1, longlong p
     ulonglong permission_key;
     code *security_callback;
     bool access_allowed;
-    undefined8 permission_info;
-    undefined4 permission_flags;
-    undefined2 permission_type;
-    undefined1 permission_class;
-    undefined4 access_control;
-    undefined1 permission_status;
-    undefined8 stack_buffer[6];
+    uint64_t permission_info;
+    int32_t permission_flags;
+    int16_t permission_type;
+    int8_t permission_class;
+    int32_t access_control;
+    int8_t permission_status;
+    uint64_t stack_buffer[6];
     longlong stack_data;
-    undefined8 resource_info[6];
-    undefined4 validation_flags;
-    undefined8 config_data;
+    uint64_t resource_info[6];
+    int32_t validation_flags;
+    uint64_t config_data;
     
     // 获取系统上下文
     resource_context = param_1;
     if ((*(SystemByte*)(param_1 + 0xfd) & 0x20) == 0) {
-        resource_context = func_0x000180085de0(*(undefined8*)(param_1 + 0x1b0));
+        resource_context = func_0x000180085de0(*(uint64_t*)(param_1 + 0x1b0));
     }
     
     // 获取资源表
@@ -890,7 +890,7 @@ undefined8 InitializationSystem_PermissionValidator(longlong param_1, longlong p
         config_data = 0;
         
         // 执行权限验证
-        validation_result = FUN_18022d470(*(undefined8*)(param_1 + 0x1b8), &permission_info);
+        validation_result = FUN_18022d470(*(uint64_t*)(param_1 + 0x1b8), &permission_info);
         if (validation_result < 1) {
             if (stack_data != 0) {
                 FUN_18064e900();

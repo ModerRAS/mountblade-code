@@ -10,7 +10,7 @@
  * @param param3 参数3
  * @param param4 参数4
  */
-void initialize_engine_system_components(undefined8 *engine_context, undefined8 param2, undefined8 param3, undefined8 param4)
+void initialize_engine_system_components(uint64_t *engine_context, uint64_t param2, uint64_t param3, uint64_t param4)
 {
     // 清理和初始化多个系统组件
     cleanup_system_component(engine_context + 0x1ea);   // 清理组件1
@@ -60,7 +60,7 @@ void initialize_engine_system_components(undefined8 *engine_context, undefined8 
     
     // 重置系统状态
     engine_context[0x19] = 0;                           // 清除错误标志
-    *(undefined4 *)(engine_context + 0x1b) = 0;        // 重置状态字段
+    *(int32_t *)(engine_context + 0x1b) = 0;        // 重置状态字段
     
     // 设置资源管理器
     engine_context[0x18] = &resource_manager_v2;        // 更新资源管理器
@@ -92,22 +92,22 @@ void initialize_engine_system_components(undefined8 *engine_context, undefined8 
  * @param param3 参数3
  * @return 处理结果，1表示成功，0表示失败
  */
-undefined8 process_system_configuration(longlong config_context, longlong param2, longlong param3)
+uint64_t process_system_configuration(longlong config_context, longlong param2, longlong param3)
 {
     longlong config_ptr;
     char validation_result;
     int compare_result;
-    undefined *string_ptr;
+    void *string_ptr;
     uint config_values[2];
     
     // 检查是否为端口配置参数
     if ((*(int *)(param2 + 0x10) == 0x15) &&
-        (compare_result = strcmp(*(undefined8 *)(param2 + 8), &PORT_CONFIG_STRING), compare_result == 0)) {
+        (compare_result = strcmp(*(uint64_t *)(param2 + 8), &PORT_CONFIG_STRING), compare_result == 0)) {
         
         // 获取配置值字符串
         string_ptr = &DEFAULT_CONFIG_STRING;
-        if (*(undefined **)(param3 + 8) != (undefined *)0x0) {
-            string_ptr = *(undefined **)(param3 + 8);
+        if (*(void **)(param3 + 8) != (void *)0x0) {
+            string_ptr = *(void **)(param3 + 8);
         }
         
         // 转换配置值为整数
@@ -121,14 +121,14 @@ undefined8 process_system_configuration(longlong config_context, longlong param2
             // 配置验证失败，使用默认值
             if (DEBUG_MODE_DISABLED == '\0') {
                 string_ptr = &DEFAULT_CONFIG_STRING;
-                if (*(undefined **)(config_ptr + 0x4e0) != (undefined *)0x0) {
-                    string_ptr = *(undefined **)(config_ptr + 0x4e0);
+                if (*(void **)(config_ptr + 0x4e0) != (void *)0x0) {
+                    string_ptr = *(void **)(config_ptr + 0x4e0);
                 }
                 log_configuration_error(&ERROR_LOG_PREFIX, string_ptr);
             }
             
             // 使用默认配置值
-            *(undefined4 *)(config_ptr + 0x4d0) = *(undefined4 *)(config_ptr + 0x518);
+            *(int32_t *)(config_ptr + 0x4d0) = *(int32_t *)(config_ptr + 0x518);
             return 1;
         }
         
@@ -139,12 +139,12 @@ undefined8 process_system_configuration(longlong config_context, longlong param2
     
     // 检查是否为调试模式配置参数
     if ((*(int *)(param2 + 0x10) == 0x12) &&
-        (compare_result = strcmp(*(undefined8 *)(param2 + 8), &DEBUG_CONFIG_STRING), compare_result == 0)) {
+        (compare_result = strcmp(*(uint64_t *)(param2 + 8), &DEBUG_CONFIG_STRING), compare_result == 0)) {
         
         // 获取配置值字符串
         string_ptr = &DEFAULT_CONFIG_STRING;
-        if (*(undefined **)(param3 + 8) != (undefined *)0x0) {
-            string_ptr = *(undefined **)(param3 + 8);
+        if (*(void **)(param3 + 8) != (void *)0x0) {
+            string_ptr = *(void **)(param3 + 8);
         }
         
         // 转换配置值为布尔值
@@ -158,14 +158,14 @@ undefined8 process_system_configuration(longlong config_context, longlong param2
             // 配置验证失败，使用默认值
             if (DEBUG_MODE_DISABLED == '\0') {
                 string_ptr = &DEFAULT_CONFIG_STRING;
-                if (*(undefined **)(config_context + 0x9b0) != (undefined *)0x0) {
-                    string_ptr = *(undefined **)(config_context + 0x9b0);
+                if (*(void **)(config_context + 0x9b0) != (void *)0x0) {
+                    string_ptr = *(void **)(config_context + 0x9b0);
                 }
                 log_configuration_error(&ERROR_LOG_PREFIX, string_ptr);
             }
             
             // 使用默认配置值
-            *(undefined4 *)(config_context + 0x9a0) = *(undefined4 *)(config_context + 0x9e8);
+            *(int32_t *)(config_context + 0x9a0) = *(int32_t *)(config_context + 0x9e8);
             return 0;
         }
         
@@ -184,12 +184,12 @@ void execute_system_cleanup(longlong system_context)
 {
     int cleanup_level;
     char cleanup_status;
-    undefined1 temp_buffer[32];
-    undefined8 cleanup_flag;
-    undefined *log_prefix;
-    undefined1 *log_message;
-    undefined4 log_code;
-    undefined1 log_buffer[32];
+    int8_t temp_buffer[32];
+    uint64_t cleanup_flag;
+    void *log_prefix;
+    int8_t *log_message;
+    int32_t log_code;
+    int8_t log_buffer[32];
     ulonglong security_key;
     
     // 设置清理标志

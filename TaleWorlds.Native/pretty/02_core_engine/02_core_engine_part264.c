@@ -21,13 +21,13 @@ float * calculate_transformation_matrix(longlong context_ptr,float *result_matri
 
 {
   float *bone_matrix;
-  undefined8 *temp_ptr;
+  uint64_t *temp_ptr;
   ulonglong bone_mask;
   float x1, y1, z1, w1;
   float x2, y2, z2, w2;
   float x3, y3, z3, w3;
   float x4, y4, z4, w4;
-  undefined8 temp_value;
+  uint64_t temp_value;
   int current_index;
   char parent_index;
   int target_index;
@@ -103,24 +103,24 @@ float * calculate_transformation_matrix(longlong context_ptr,float *result_matri
     result_matrix[3] = result_y;
     return result_matrix;
   }
-  temp_ptr = (undefined8 *)(context_ptr + bone_offset * 0x10);
+  temp_ptr = (uint64_t *)(context_ptr + bone_offset * 0x10);
   temp_value = temp_ptr[1];
-  *(undefined8 *)result_matrix = *temp_ptr;
-  *(undefined8 *)(result_matrix + 2) = temp_value;
+  *(uint64_t *)result_matrix = *temp_ptr;
+  *(uint64_t *)(result_matrix + 2) = temp_value;
   return result_matrix;
 }
 
 
 
 // 函数: 设置骨骼变换
-void set_bone_transformation(undefined8 *context,char bone_index,float *transform_matrix,longlong skeleton_ptr)
+void set_bone_transformation(uint64_t *context,char bone_index,float *transform_matrix,longlong skeleton_ptr)
 
 {
   float x1, y1, z1, w1;
   float x2, y2, z2, w2;
   float x3, y3, z3, w3;
   float x4, y4, z4, w4;
-  undefined8 temp_value;
+  uint64_t temp_value;
   float *bone_matrix;
   longlong bone_offset;
   ulonglong bone_index_ulong;
@@ -129,16 +129,16 @@ void set_bone_transformation(undefined8 *context,char bone_index,float *transfor
   bone_offset = bone_index_ulong * 0x1b0 + *(longlong *)(skeleton_ptr + 0x140);
   context[0x100] = context[0x100] | *(ulonglong *)(bone_offset + 0xe8);
   if (bone_index == '\0') {
-    temp_value = *(undefined8 *)(transform_matrix + 2);
-    context[0x104] = *(undefined8 *)transform_matrix;
+    temp_value = *(uint64_t *)(transform_matrix + 2);
+    context[0x104] = *(uint64_t *)transform_matrix;
     context[0x105] = temp_value;
-    temp_value = *(undefined8 *)(transform_matrix + 2);
-    *context = *(undefined8 *)transform_matrix;
+    temp_value = *(uint64_t *)(transform_matrix + 2);
+    *context = *(uint64_t *)transform_matrix;
     context[1] = temp_value;
     context[0x100] = context[0x100] & 0xfffffffffffffffe;
   }
   else {
-    bone_matrix = (float *)get_bone_matrix_ptr(context,*(undefined1 *)(bone_offset + 0xf0),skeleton_ptr);
+    bone_matrix = (float *)get_bone_matrix_ptr(context,*(int8_t *)(bone_offset + 0xf0),skeleton_ptr);
     x1 = *transform_matrix;
     y1 = transform_matrix[1];
     z1 = transform_matrix[2];
@@ -152,8 +152,8 @@ void set_bone_transformation(undefined8 *context,char bone_index,float *transfor
     bone_matrix[1] = z2 * w1 * -1.0 + x1 * y2 * -1.0 + x2 * y1 + w2 * z1;
     bone_matrix[2] = w2 * y1 * -1.0 + x1 * z2 * -1.0 + x2 * z1 + y2 * w1;
     bone_matrix[3] = y2 * z1 * -1.0 + x1 * w2 * -1.0 + x2 * w1 + z2 * y1;
-    temp_value = *(undefined8 *)(transform_matrix + 2);
-    context[bone_index_ulong * 2] = *(undefined8 *)transform_matrix;
+    temp_value = *(uint64_t *)(transform_matrix + 2);
+    context[bone_index_ulong * 2] = *(uint64_t *)transform_matrix;
     (context + bone_index_ulong * 2)[1] = temp_value;
   }
   context[0x101] = context[0x101] | 1L << (bone_index_ulong & 0x3f);
@@ -163,17 +163,17 @@ void set_bone_transformation(undefined8 *context,char bone_index,float *transfor
 
 
 // 函数: 初始化字符串资源
-undefined8 *
-initialize_string_resource(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+uint64_t *
+initialize_string_resource(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
   *param_2 = &STRING_TABLE_18098bcb0;
   param_2[1] = 0;
-  *(undefined4 *)(param_2 + 2) = 0;
+  *(int32_t *)(param_2 + 2) = 0;
   *param_2 = &STRING_HANDLE_1809fcc28;
   param_2[1] = param_2 + 3;
-  *(undefined1 *)(param_2 + 3) = 0;
-  *(undefined4 *)(param_2 + 2) = 0xb;
+  *(int8_t *)(param_2 + 3) = 0;
+  *(int32_t *)(param_2 + 2) = 0xb;
   strcpy_s(param_2[1],0x80,&DEFAULT_STRING_180a13a98,param_4,0,0xfffffffffffffffe);
   return param_2;
 }
@@ -181,31 +181,31 @@ initialize_string_resource(undefined8 param_1,undefined8 *param_2,undefined8 par
 
 
 // 函数: 初始化引擎核心数据结构
-undefined8 * initialize_engine_core_data(undefined8 *engine_context)
+uint64_t * initialize_engine_core_data(uint64_t *engine_context)
 
 {
   longlong *resource_ptr;
-  undefined8 *data_ptr;
+  uint64_t *data_ptr;
   longlong *system_ptr;
   longlong resource_count;
   longlong system_count;
   longlong *resource_array;
-  undefined8 *status_ptr;
+  uint64_t *status_ptr;
   
   *engine_context = &RESOURCE_TABLE_180a21690;
   *engine_context = &SYSTEM_TABLE_180a21720;
-  *(undefined4 *)(engine_context + 1) = 0;
+  *(int32_t *)(engine_context + 1) = 0;
   *engine_context = &MEMORY_POOL_180a02e68;
   engine_context[2] = &STRING_TABLE_18098bcb0;
   engine_context[3] = 0;
-  *(undefined4 *)(engine_context + 4) = 0;
+  *(int32_t *)(engine_context + 4) = 0;
   engine_context[2] = &STRING_HANDLE_1809fcc28;
   engine_context[3] = engine_context + 5;
-  *(undefined4 *)(engine_context + 4) = 0;
-  *(undefined1 *)(engine_context + 5) = 0;
-  *(undefined1 *)((longlong)engine_context + 0xb2) = 0;
-  *(undefined4 *)(engine_context + 1) = 0;
-  *(undefined2 *)(engine_context + 0x16) = 0;
+  *(int32_t *)(engine_context + 4) = 0;
+  *(int8_t *)(engine_context + 5) = 0;
+  *(int8_t *)((longlong)engine_context + 0xb2) = 0;
+  *(int32_t *)(engine_context + 1) = 0;
+  *(int16_t *)(engine_context + 0x16) = 0;
   engine_context[0x15] = 0;
   *engine_context = &RESOURCE_HANDLE_180a13cc0;
   system_ptr = engine_context + 0x17;
@@ -218,11 +218,11 @@ undefined8 * initialize_engine_core_data(undefined8 *engine_context)
   system_count = 2;
   resource_array = resource_ptr;
   do {
-    *(undefined1 *)status_ptr = 0;
+    *(int8_t *)status_ptr = 0;
     *data_ptr = 0xffffffffffffffff;
     (**(code **)(*resource_array + 0x10))(resource_ptr,&DEFAULT_RESOURCE_18098bc73);
     resource_ptr = resource_ptr + 7;
-    status_ptr = (undefined8 *)((longlong)status_ptr + 1);
+    status_ptr = (uint64_t *)((longlong)status_ptr + 1);
     data_ptr = data_ptr + 1;
     resource_array = resource_array + 7;
     system_count = system_count + -1;
@@ -232,18 +232,18 @@ undefined8 * initialize_engine_core_data(undefined8 *engine_context)
   engine_context[0x47] = 0;
   engine_context[0x48] = 0;
   engine_context[0x49] = 0;
-  *(undefined4 *)(engine_context + 0x4a) = 3;
+  *(int32_t *)(engine_context + 0x4a) = 3;
   engine_context[0x5a] = &STRING_TABLE_18098bcb0;
   engine_context[0x5b] = 0;
-  *(undefined4 *)(engine_context + 0x5c) = 0;
+  *(int32_t *)(engine_context + 0x5c) = 0;
   engine_context[0x5a] = &STRING_HANDLE_1809fcc28;
   engine_context[0x5b] = engine_context + 0x5d;
-  *(undefined4 *)(engine_context + 0x5c) = 0;
-  *(undefined1 *)(engine_context + 0x5d) = 0;
+  *(int32_t *)(engine_context + 0x5c) = 0;
+  *(int8_t *)(engine_context + 0x5d) = 0;
   engine_context[0x6d] = 0;
   engine_context[0x6e] = 0;
   engine_context[0x6f] = 0;
-  *(undefined4 *)(engine_context + 0x70) = 0x11;
+  *(int32_t *)(engine_context + 0x70) = 0x11;
   status_ptr = engine_context + 0x7b;
   resource_ptr = engine_context + 0x7c;
   initialize_resource_pool(resource_ptr,8,0x10,&SUB_18005d5f0,FUN_180045af0);
@@ -257,14 +257,14 @@ undefined8 * initialize_engine_core_data(undefined8 *engine_context)
     resource_ptr = resource_ptr + 1;
     system_count = system_count + -1;
   } while (system_count != 0);
-  *(undefined1 *)status_ptr = 0;
+  *(int8_t *)status_ptr = 0;
   cleanup_resource(status_ptr);
   engine_context[0x79] = 0;
   engine_context[0x7a] = 0;
   cleanup_resource(status_ptr);
   engine_context[0x3a] = 0xffffffffffffffff;
-  *(undefined1 *)(engine_context + 0x3b) = 0;
-  *(undefined4 *)(engine_context + 0x27) = 0;
+  *(int8_t *)(engine_context + 0x3b) = 0;
+  *(int32_t *)(engine_context + 0x27) = 0;
   do {
     resource_ptr = (longlong *)*system_ptr;
     *system_ptr = 0;
@@ -285,21 +285,21 @@ undefined8 * initialize_engine_core_data(undefined8 *engine_context)
   engine_context[0x75] = 0;
   engine_context[0x76] = 0;
   engine_context[0x77] = 0;
-  *(undefined1 *)((longlong)engine_context + 0x1d9) = 0;
+  *(int8_t *)((longlong)engine_context + 0x1d9) = 0;
   engine_context[0x28] = 0;
   initialize_render_system(engine_context + 0x6d);
-  *(undefined4 *)((longlong)engine_context + 0x25c) = 0x3f800000;
-  *(undefined4 *)(engine_context + 0x4c) = 0x3f266666;
-  *(undefined4 *)((longlong)engine_context + 0x264) = 0x3f800000;
+  *(int32_t *)((longlong)engine_context + 0x25c) = 0x3f800000;
+  *(int32_t *)(engine_context + 0x4c) = 0x3f266666;
+  *(int32_t *)((longlong)engine_context + 0x264) = 0x3f800000;
   engine_context[0x4d] = 0x3f800000;
-  *(undefined4 *)(engine_context + 0x50) = 0x3f800000;
-  *(undefined4 *)(engine_context + 0x4f) = 0;
-  *(undefined4 *)((longlong)engine_context + 0x27c) = 0x3f000000;
-  *(undefined4 *)((longlong)engine_context + 0x284) = 0x3f800000;
-  *(undefined4 *)(engine_context + 0x4b) = 0;
-  *(undefined4 *)(engine_context + 0x4e) = 0x3f800000;
-  *(undefined4 *)((longlong)engine_context + 0x274) = 0x3f800000;
-  *(undefined1 *)((longlong)engine_context + 0x13c) = 0;
+  *(int32_t *)(engine_context + 0x50) = 0x3f800000;
+  *(int32_t *)(engine_context + 0x4f) = 0;
+  *(int32_t *)((longlong)engine_context + 0x27c) = 0x3f000000;
+  *(int32_t *)((longlong)engine_context + 0x284) = 0x3f800000;
+  *(int32_t *)(engine_context + 0x4b) = 0;
+  *(int32_t *)(engine_context + 0x4e) = 0x3f800000;
+  *(int32_t *)((longlong)engine_context + 0x274) = 0x3f800000;
+  *(int8_t *)((longlong)engine_context + 0x13c) = 0;
   engine_context[0x51] = 0;
   engine_context[0x52] = 0;
   engine_context[0x53] = 0;
@@ -308,17 +308,17 @@ undefined8 * initialize_engine_core_data(undefined8 *engine_context)
   engine_context[0x56] = 0x3f8000003f800000;
   engine_context[0x57] = 0x3f8000003f800000;
   engine_context[0x58] = 0x3f8000003f800000;
-  *(undefined4 *)(engine_context + 0x59) = 0;
-  *(undefined4 *)(engine_context + 0x71) = 0;
-  *(undefined1 *)((longlong)engine_context + 0x38c) = 9;
-  *(undefined2 *)(engine_context + 0x78) = 0xffff;
+  *(int32_t *)(engine_context + 0x59) = 0;
+  *(int32_t *)(engine_context + 0x71) = 0;
+  *(int8_t *)((longlong)engine_context + 0x38c) = 9;
+  *(int16_t *)(engine_context + 0x78) = 0xffff;
   return engine_context;
 }
 
 
 
 // 函数: 释放引擎资源
-undefined8 release_engine_resources(undefined8 engine_ptr,ulonglong flags)
+uint64_t release_engine_resources(uint64_t engine_ptr,ulonglong flags)
 
 {
   cleanup_engine_internal();
@@ -351,13 +351,13 @@ void cleanup_memory_pool(longlong memory_ptr)
 
 
 // 函数: 清理引擎内部资源
-void cleanup_engine_internal(undefined8 *engine_context)
+void cleanup_engine_internal(uint64_t *engine_context)
 
 {
   longlong *resource_ptr;
   longlong *system_ptr;
   longlong resource_count;
-  undefined8 cleanup_flag;
+  uint64_t cleanup_flag;
   
   cleanup_flag = 0xfffffffffffffffe;
   *engine_context = &RESOURCE_HANDLE_180a13cc0;
@@ -399,7 +399,7 @@ void cleanup_engine_internal(undefined8 *engine_context)
 
 
 
-undefined8 get_resource_handler(longlong base_ptr,int resource_index)
+uint64_t get_resource_handler(longlong base_ptr,int resource_index)
 
 {
   longlong resource_ptr;
@@ -408,7 +408,7 @@ undefined8 get_resource_handler(longlong base_ptr,int resource_index)
   resource_ptr = *(longlong *)(base_ptr + 0x3c8);
   if (resource_ptr != 0) {
     (**(code **)(**(longlong **)(resource_ptr + 0x20) + 0x80))(*(longlong **)(resource_ptr + 0x20),resource_ptr,0);
-    return *(undefined8 *)(base_ptr + 0x3c8);
+    return *(uint64_t *)(base_ptr + 0x3c8);
   }
   return DEFAULT_HANDLER_180d49658;
 }
@@ -423,35 +423,35 @@ undefined8 get_resource_handler(longlong base_ptr,int resource_index)
 void initialize_skeleton_system(longlong skeleton_context)
 
 {
-  undefined4 *texture_ptr;
+  int32_t *texture_ptr;
   longlong bone_offset;
   int texture_count;
-  undefined8 texture_data;
+  uint64_t texture_data;
   longlong *resource_ptr;
-  undefined8 *data_ptr;
+  uint64_t *data_ptr;
   longlong bone_index;
-  undefined8 *texture_table;
-  undefined8 *texture_entry;
-  undefined8 *next_texture;
+  uint64_t *texture_table;
+  uint64_t *texture_entry;
+  uint64_t *next_texture;
   uint texture_flags;
   longlong *texture_array;
-  undefined1 stack_buffer_d8 [32];
-  undefined1 *stack_ptr_b8;
+  int8_t stack_buffer_d8 [32];
+  int8_t *stack_ptr_b8;
   longlong stack_value_a8;
   int stack_value_a0;
   uint stack_flags_9c;
   longlong *stack_ptr_98;
   longlong *stack_ptr_90;
   longlong stack_value_88;
-  undefined1 stack_buffer_80 [16];
+  int8_t stack_buffer_80 [16];
   code *callback_70;
   code *guard_check;
-  undefined8 stack_value_60;
-  undefined1 stack_buffer_58 [16];
-  undefined4 stack_value_48;
-  undefined4 stack_value_44;
-  undefined4 stack_value_40;
-  undefined4 stack_value_3c;
+  uint64_t stack_value_60;
+  int8_t stack_buffer_58 [16];
+  int32_t stack_value_48;
+  int32_t stack_value_44;
+  int32_t stack_value_40;
+  int32_t stack_value_3c;
   longlong *stack_ptr_38;
   ulonglong stack_protection_30;
   
@@ -459,7 +459,7 @@ void initialize_skeleton_system(longlong skeleton_context)
   stack_protection_30 = GLOBAL_PROTECTION_180bf00a8 ^ (ulonglong)stack_buffer_d8;
   stack_flags_9c = 0;
   texture_count = *(int *)(GLOBAL_TEXTURE_TABLE_180c86870 + 0x224);
-  *(undefined1 *)(skeleton_context + 0x460) = 1;
+  *(int8_t *)(skeleton_context + 0x460) = 1;
   texture_flags = 0;
   do {
     texture_flags = texture_flags + 8;
@@ -473,11 +473,11 @@ void initialize_skeleton_system(longlong skeleton_context)
     bone_index = stack_value_a8;
     if (bone_offset != 0) {
       if ((*texture_array == 0) && (bone_index = *(longlong *)(bone_offset + 0xa8), bone_index != 0)) {
-        texture_ptr = (undefined4 *)(bone_index + 0xc);
-        data_ptr = (undefined8 *)(GLOBAL_TEXTURE_MANAGER_180c8a9d0 + 0x1f8);
+        texture_ptr = (int32_t *)(bone_index + 0xc);
+        data_ptr = (uint64_t *)(GLOBAL_TEXTURE_MANAGER_180c8a9d0 + 0x1f8);
         texture_table = data_ptr;
-        next_texture = *(undefined8 **)(GLOBAL_TEXTURE_MANAGER_180c8a9d0 + 0x208);
-        if (*(undefined8 **)(GLOBAL_TEXTURE_MANAGER_180c8a9d0 + 0x208) == (undefined8 *)0x0) {
+        next_texture = *(uint64_t **)(GLOBAL_TEXTURE_MANAGER_180c8a9d0 + 0x208);
+        if (*(uint64_t **)(GLOBAL_TEXTURE_MANAGER_180c8a9d0 + 0x208) == (uint64_t *)0x0) {
 LAB_18022bda0:
           texture_table = data_ptr;
         }
@@ -485,14 +485,14 @@ LAB_18022bda0:
           do {
             texture_count = memcmp(next_texture + 4,texture_ptr,0x10);
             if (texture_count < 0) {
-              texture_entry = (undefined8 *)*next_texture;
+              texture_entry = (uint64_t *)*next_texture;
             }
             else {
-              texture_entry = (undefined8 *)next_texture[1];
+              texture_entry = (uint64_t *)next_texture[1];
               texture_table = next_texture;
             }
             next_texture = texture_entry;
-          } while (texture_entry != (undefined8 *)0x0);
+          } while (texture_entry != (uint64_t *)0x0);
           if ((texture_table == data_ptr) || (texture_count = memcmp(texture_ptr,texture_table + 4,0x10), texture_count < 0))
           goto LAB_18022bda0;
         }
@@ -510,12 +510,12 @@ LAB_18022bda0:
           }
           (**(code **)(*(longlong *)(*texture_array + 0x10) + 0x10))
                     ((longlong *)(*texture_array + 0x10),&DEFAULT_TEXTURE_180a13ad0);
-          *(undefined8 *)(*texture_array + 0xa8) = *(undefined8 *)(bone_offset + 0xa8);
+          *(uint64_t *)(*texture_array + 0xa8) = *(uint64_t *)(bone_offset + 0xa8);
           bone_offset = GLOBAL_TEXTURE_MANAGER_180c8a9d0;
           stack_value_48 = *texture_ptr;
-          stack_value_44 = *(undefined4 *)(bone_index + 0x10);
-          stack_value_40 = *(undefined4 *)(bone_index + 0x14);
-          stack_value_3c = *(undefined4 *)(bone_index + 0x18);
+          stack_value_44 = *(int32_t *)(bone_index + 0x10);
+          stack_value_40 = *(int32_t *)(bone_index + 0x14);
+          stack_value_3c = *(int32_t *)(bone_index + 0x18);
           stack_ptr_38 = (longlong *)*texture_array;
           if (stack_ptr_38 != (longlong *)0x0) {
             (**(code **)(*stack_ptr_38 + 0x28))();
@@ -580,27 +580,27 @@ void initialize_bone_render_system(longlong render_context,char render_flag)
   int texture_id;
   longlong bone_offset;
   longlong *resource_ptr;
-  undefined8 resource_data;
+  uint64_t resource_data;
   uint texture_size;
   longlong *texture_ptr;
   longlong *texture_array;
   longlong *texture_entry;
   byte *texture_buffer;
   char *texture_name;
-  undefined8 texture_handle;
+  uint64_t texture_handle;
   ulonglong bone_index_ulong;
-  undefined *texture_info;
+  void *texture_info;
   int texture_format;
   longlong texture_addr;
   longlong texture_size2;
   longlong texture_pitch;
-  undefined *texture_format_ptr;
+  void *texture_format_ptr;
   longlong texture_offset;
   int texture_width;
   int texture_height;
   longlong texture_data_ptr;
   ulonglong texture_flags;
-  undefined1 stack_buffer_2c8 [32];
+  int8_t stack_buffer_2c8 [32];
   code *render_callback;
   longlong *stack_ptr_298;
   longlong *stack_ptr_290;
@@ -612,26 +612,26 @@ void initialize_bone_render_system(longlong render_context,char render_flag)
   longlong *stack_ptr_258;
   longlong *stack_ptr_250;
   uint stack_flags_248;
-  undefined8 stack_value_240;
-  undefined *stack_ptr_238;
-  undefined1 *stack_ptr_230;
-  undefined4 stack_value_228;
-  undefined1 stack_buffer_220 [72];
-  undefined *stack_ptr_1d8;
-  undefined1 *stack_ptr_1d0;
-  undefined4 stack_value_1c8;
-  undefined1 stack_buffer_1c0 [72];
-  undefined *stack_ptr_178;
-  undefined1 *stack_ptr_170;
-  undefined4 stack_value_168;
-  undefined1 stack_buffer_160 [72];
-  undefined *stack_ptr_118;
-  undefined1 *stack_ptr_110;
-  undefined4 stack_value_108;
-  undefined1 stack_buffer_100 [72];
-  undefined1 *stack_ptr_array_b8 [2];
-  undefined4 stack_value_a8;
-  undefined1 stack_buffer_a0 [104];
+  uint64_t stack_value_240;
+  void *stack_ptr_238;
+  int8_t *stack_ptr_230;
+  int32_t stack_value_228;
+  int8_t stack_buffer_220 [72];
+  void *stack_ptr_1d8;
+  int8_t *stack_ptr_1d0;
+  int32_t stack_value_1c8;
+  int8_t stack_buffer_1c0 [72];
+  void *stack_ptr_178;
+  int8_t *stack_ptr_170;
+  int32_t stack_value_168;
+  int8_t stack_buffer_160 [72];
+  void *stack_ptr_118;
+  int8_t *stack_ptr_110;
+  int32_t stack_value_108;
+  int8_t stack_buffer_100 [72];
+  int8_t *stack_ptr_array_b8 [2];
+  int32_t stack_value_a8;
+  int8_t stack_buffer_a0 [104];
   ulonglong stack_protection_38;
   
   stack_value_240 = 0xfffffffffffffffe;
@@ -670,15 +670,15 @@ LAB_18022c3ff:
         do {
           *texture_entry = (longlong)&STRING_TABLE_18098bcb0;
           texture_entry[1] = 0;
-          *(undefined4 *)(texture_entry + 2) = 0;
+          *(int32_t *)(texture_entry + 2) = 0;
           *texture_entry = (longlong)&STRING_HANDLE_1809fcc58;
           texture_entry[1] = (longlong)(texture_entry + 3);
-          *(undefined4 *)(texture_entry + 2) = 0;
-          *(undefined1 *)(texture_entry + 3) = 0;
-          *(undefined4 *)(texture_entry + 2) = *(undefined4 *)((longlong)texture_entry + texture_pitch + 0x10);
-          texture_format_ptr = *(undefined **)((longlong)texture_entry + texture_pitch + 8);
+          *(int32_t *)(texture_entry + 2) = 0;
+          *(int8_t *)(texture_entry + 3) = 0;
+          *(int32_t *)(texture_entry + 2) = *(int32_t *)((longlong)texture_entry + texture_pitch + 0x10);
+          texture_format_ptr = *(void **)((longlong)texture_entry + texture_pitch + 8);
           texture_info = &DEFAULT_TEXTURE_INFO_18098bc73;
-          if (texture_format_ptr != (undefined *)0x0) {
+          if (texture_format_ptr != (void *)0x0) {
             texture_info = texture_format_ptr;
           }
           stack_ptr_290 = texture_entry;
@@ -750,7 +750,7 @@ LAB_18022c20f:
           (**(code **)(*texture_ptr + 0x28))(texture_ptr);
         }
         stack_ptr_298 = (longlong *)stack_ptr_array_b8[texture_pitch];
-        stack_ptr_array_b8[texture_pitch] = (undefined1 *)texture_ptr;
+        stack_ptr_array_b8[texture_pitch] = (int8_t *)texture_ptr;
         if (stack_ptr_298 != (longlong *)0x0) {
           (**(code **)(*stack_ptr_298 + 0x38))();
         }
@@ -812,12 +812,12 @@ LAB_18022c20f:
     goto LAB_18022c3ff;
   }
   texture_format_ptr = &DEFAULT_TEXTURE_INFO_18098bc73;
-  if (*(undefined **)(render_context + 0x18) != (undefined *)0x0) {
-    texture_format_ptr = *(undefined **)(render_context + 0x18);
+  if (*(void **)(render_context + 0x18) != (void *)0x0) {
+    texture_format_ptr = *(void **)(render_context + 0x18);
   }
   texture_info = &DEFAULT_TEXTURE_INFO_18098bc73;
-  if (*(undefined **)(render_context + 0x2d8) != (undefined *)0x0) {
-    texture_info = *(undefined **)(render_context + 0x2d8);
+  if (*(void **)(render_context + 0x2d8) != (void *)0x0) {
+    texture_info = *(void **)(render_context + 0x2d8);
   }
   initialize_texture_manager(&TEXTURE_HANDLE_180a13ae8,texture_info,texture_format_ptr);
   get_render_device_data(GLOBAL_RENDER_DEVICE_180c86898,&stack_ptr_290,0);
@@ -836,22 +836,22 @@ LAB_18022c460:
     (**(code **)(*stack_ptr_298 + 0x38))();
   }
   initialize_render_pipeline(render_context);
-  resource_data = *(undefined8 *)(render_context + 0x1e0);
+  resource_data = *(uint64_t *)(render_context + 0x1e0);
   stack_ptr_238 = &STRING_HANDLE_1809fcc58;
   stack_ptr_230 = stack_buffer_220;
   stack_buffer_220[0] = 0;
   stack_value_228 = 0xf;
   strcpy_s(stack_buffer_220,0x40,&DEFAULT_TEXTURE_NAME_180a0ba58);
   resource_data = get_texture_resource(resource_data,&stack_ptr_238,0);
-  *(undefined8 *)(render_context + 0x390) = resource_data;
+  *(uint64_t *)(render_context + 0x390) = resource_data;
   stack_ptr_238 = &STRING_TABLE_18098bcb0;
-  resource_data = *(undefined8 *)(render_context + 0x1e0);
+  resource_data = *(uint64_t *)(render_context + 0x1e0);
   stack_ptr_1d8 = &STRING_HANDLE_1809fcc58;
   stack_ptr_1d0 = stack_buffer_1c0;
   stack_buffer_1c0[0] = 0;
   stack_value_1c8 = 9;
   strcpy_s(stack_buffer_1c0,0x40,&TEXTURE_ID_180a13aa8);
-  bone_index_ulong = *(undefined8 *)(render_context + 0x1e0);
+  bone_index_ulong = *(uint64_t *)(render_context + 0x1e0);
   stack_ptr_238 = &STRING_HANDLE_1809fcc58;
   stack_ptr_230 = stack_buffer_220;
   stack_buffer_220[0] = 0;
@@ -862,36 +862,36 @@ LAB_18022c460:
   *(ulonglong *)(render_context + 0x3a8) = texture_flags | bone_index_ulong;
   stack_ptr_238 = &STRING_TABLE_18098bcb0;
   stack_ptr_1d8 = &STRING_TABLE_18098bcb0;
-  resource_data = *(undefined8 *)(render_context + 0x1e0);
+  resource_data = *(uint64_t *)(render_context + 0x1e0);
   stack_ptr_178 = &STRING_HANDLE_1809fcc58;
   stack_ptr_170 = stack_buffer_160;
   stack_buffer_160[0] = 0;
   stack_value_168 = 0x10;
   strcpy_s(stack_buffer_160,0x40,&TEXTURE_FORMAT_180a0d580);
   resource_data = get_texture_resource(resource_data,&stack_ptr_178,0);
-  *(undefined8 *)(render_context + 0x3b0) = resource_data;
+  *(uint64_t *)(render_context + 0x3b0) = resource_data;
   stack_ptr_178 = &STRING_TABLE_18098bcb0;
-  resource_data = *(undefined8 *)(render_context + 0x1e0);
+  resource_data = *(uint64_t *)(render_context + 0x1e0);
   stack_ptr_118 = &STRING_HANDLE_1809fcc58;
   stack_ptr_110 = stack_buffer_100;
   stack_buffer_100[0] = 0;
   stack_value_108 = 0x14;
   strcpy_s(stack_buffer_100,0x40,&TEXTURE_SIZE_180a0d5b8);
   resource_data = get_texture_resource(resource_data,&stack_ptr_118,0);
-  *(undefined8 *)(render_context + 0x3b8) = resource_data;
+  *(uint64_t *)(render_context + 0x3b8) = resource_data;
   stack_ptr_118 = &STRING_TABLE_18098bcb0;
-  resource_data = *(undefined8 *)(render_context + 0x1e0);
+  resource_data = *(uint64_t *)(render_context + 0x1e0);
   stack_ptr_array_b8[0] = &STRING_HANDLE_1809fcc58;
   stack_ptr_array_b8[1] = stack_buffer_a0;
   stack_buffer_a0[0] = 0;
   stack_value_a8 = 0x1d;
   strcpy_s(stack_buffer_a0,0x40,&TEXTURE_TYPE_180a13bb8);
   resource_data = get_texture_resource(resource_data,stack_ptr_array_b8,0);
-  *(undefined8 *)(render_context + 0x398) = resource_data;
+  *(uint64_t *)(render_context + 0x398) = resource_data;
   stack_ptr_array_b8[0] = &STRING_TABLE_18098bcb0;
   bone_index_ulong = initialize_render_targets(render_context);
   *(ulonglong *)(render_context + 0x3a0) = (ulonglong)bone_index_ulong;
-  *(undefined2 *)(render_context + 0x3c0) = 0xffff;
+  *(int16_t *)(render_context + 0x3c0) = 0xffff;
   initialize_render_shaders(render_context);
                     // WARNING: 此函数不会返回
   crash_handler(stack_protection_38 ^ (ulonglong)stack_buffer_2c8);

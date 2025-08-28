@@ -137,8 +137,8 @@ void heap_insert_and_balance(longlong heap_base, longlong heap_size, longlong ca
  * @param param4 保留参数
  * @return 返回初始化后的内存块指针
  */
-undefined8 *
-initialize_memory_block_with_vtable(undefined8 *memory_block, ulonglong flags, undefined8 param3, undefined8 param4)
+uint64_t *
+initialize_memory_block_with_vtable(uint64_t *memory_block, ulonglong flags, uint64_t param3, uint64_t param4)
 {
   // 设置虚函数表指针
   *memory_block = &UNK_18098bcb0;
@@ -206,7 +206,7 @@ void safe_copy_string_to_buffer(longlong string_buffer, longlong source_string)
  * @param source_data 源数据指针
  * @param data_length 要复制的数据长度
  */
-void safe_copy_string_with_length(longlong string_buffer, undefined8 source_data, int data_length)
+void safe_copy_string_with_length(longlong string_buffer, uint64_t source_data, int data_length)
 {
   // 检查缓冲区大小是否足够
   if (data_length + 1 < 0x200) {
@@ -245,7 +245,7 @@ void memory_copy_wrapper(void)
  * 
  * @param string_obj 字符串对象指针
  */
-void reset_string_object(undefined1 *string_obj)
+void reset_string_object(int8_t *string_obj)
 {
   longlong object_base;
   
@@ -276,12 +276,12 @@ void string_replace_and_memory_operation(longlong string_buffer, longlong search
   longlong search_result;
   longlong search_len;
   longlong replace_len;
-  undefined1 stack_buffer_298 [32];
-  undefined8 stack_value_278;
-  undefined *stack_ptr_268;
-  undefined1 *stack_buffer_260;
-  undefined4 stack_value_258;
-  undefined1 stack_buffer_250 [520];
+  int8_t stack_buffer_298 [32];
+  uint64_t stack_value_278;
+  void *stack_ptr_268;
+  int8_t *stack_buffer_260;
+  int32_t stack_value_258;
+  int8_t stack_buffer_250 [520];
   ulonglong security_cookie;
   
   // 初始化栈变量和安全cookie
@@ -330,12 +330,12 @@ void string_replace_and_memory_operation(longlong string_buffer, longlong search
  * @param config_flags 配置标志
  * @return 返回初始化后的内存管理器对象指针
  */
-undefined8 * create_memory_manager_object(undefined8 memory_pool, undefined4 config_flags)
+uint64_t * create_memory_manager_object(uint64_t memory_pool, int32_t config_flags)
 {
-  undefined8 *manager_ptr;
+  uint64_t *manager_ptr;
   
   // 分配内存管理器对象
-  manager_ptr = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
+  manager_ptr = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
   
   // 初始化管理器配置
   FUN_1802565b0(manager_ptr, memory_pool, config_flags);
@@ -361,12 +361,12 @@ undefined8 * create_memory_manager_object(undefined8 memory_pool, undefined4 con
  * @param config_flags 配置标志
  * @return 返回初始化后的高级内存管理器对象指针
  */
-undefined8 * create_advanced_memory_manager_object(undefined8 memory_pool, undefined4 config_flags)
+uint64_t * create_advanced_memory_manager_object(uint64_t memory_pool, int32_t config_flags)
 {
-  undefined8 *manager_ptr;
+  uint64_t *manager_ptr;
   
   // 分配高级内存管理器对象
-  manager_ptr = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
+  manager_ptr = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
   
   // 初始化管理器配置
   FUN_1802565b0(manager_ptr, memory_pool, config_flags);
@@ -391,11 +391,11 @@ undefined8 * create_advanced_memory_manager_object(undefined8 memory_pool, undef
  * @param thread_manager 线程管理器对象指针
  * @return 返回初始化后的线程管理器指针
  */
-undefined8 * initialize_thread_manager(undefined8 *thread_manager)
+uint64_t * initialize_thread_manager(uint64_t *thread_manager)
 {
   longlong *old_object;
   int mutex_result;
-  undefined8 new_object;
+  uint64_t new_object;
   longlong *thread_object;
   longlong object_ptr;
   longlong loop_counter;
@@ -461,14 +461,14 @@ undefined8 * initialize_thread_manager(undefined8 *thread_manager)
     
     // 设置线程状态标志1
     if (*(char *)(object_ptr + 0xfa) != '\x01') {
-      *(undefined1 *)(object_ptr + 0xfa) = 1;
+      *(int8_t *)(object_ptr + 0xfa) = 1;
       FUN_180079520(object_ptr);
       object_ptr = *thread_pool;
     }
     
     // 设置线程状态标志2
     if (*(char *)(object_ptr + 0xfb) != '\x01') {
-      *(undefined1 *)(object_ptr + 0xfb) = 1;
+      *(int8_t *)(object_ptr + 0xfb) = 1;
       FUN_180079520(object_ptr);
       object_ptr = *thread_pool;
     }
@@ -505,7 +505,7 @@ undefined8 * initialize_thread_manager(undefined8 *thread_manager)
  */
 void destroy_thread_manager(longlong thread_manager)
 {
-  undefined8 cleanup_flag;
+  uint64_t cleanup_flag;
   
   cleanup_flag = 0xfffffffffffffffe;
   
@@ -540,7 +540,7 @@ void destroy_thread_manager(longlong thread_manager)
 void cleanup_resource_manager(longlong *resource_manager)
 {
   longlong *old_object;
-  undefined8 cleanup_flag;
+  uint64_t cleanup_flag;
   
   cleanup_flag = 0xfffffffffffffffe;
   
@@ -606,12 +606,12 @@ void cleanup_simple_resource_manager(longlong simple_manager)
  * 
  * @param thread_manager 线程管理器对象指针
  */
-void reset_thread_manager_state(undefined8 *thread_manager)
+void reset_thread_manager_state(uint64_t *thread_manager)
 {
   int mutex_result;
   longlong loop_counter;
-  undefined8 *counter_ptr;
-  undefined8 *thread_pool_ptr;
+  uint64_t *counter_ptr;
+  uint64_t *thread_pool_ptr;
   
   // 获取互斥锁
   mutex_result = _Mtx_lock(thread_manager + 0x106);
@@ -637,7 +637,7 @@ void reset_thread_manager_state(undefined8 *thread_manager)
     // 清理线程对象
     FUN_180076760(*thread_pool_ptr);
     
-    counter_ptr = (undefined8 *)((longlong)counter_ptr + 4);
+    counter_ptr = (uint64_t *)((longlong)counter_ptr + 4);
     thread_pool_ptr = thread_pool_ptr + 1;
     loop_counter = loop_counter + -1;
   } while (loop_counter != 0);
@@ -742,7 +742,7 @@ void update_float_array_values(float *float_array, float delta_value)
  * @param render_context 渲染上下文参数
  * @param color_param 颜色参数指针
  */
-void process_render_objects(float *render_manager, undefined8 render_context, undefined4 *color_param)
+void process_render_objects(float *render_manager, uint64_t render_context, int32_t *color_param)
 {
   float object_color;
   longlong *render_object;
@@ -754,36 +754,36 @@ void process_render_objects(float *render_manager, undefined8 render_context, un
   char is_aligned;
   float distance_factor;
   float alpha_value;
-  undefined4 render_params_188;
-  undefined4 render_params_184;
-  undefined4 render_params_180;
+  int32_t render_params_188;
+  int32_t render_params_184;
+  int32_t render_params_180;
   float alpha_stack;
-  undefined8 transform_178;
-  undefined4 material_170;
-  undefined2 texture_16c;
-  undefined8 shader_168;
-  undefined8 uniform_160;
-  undefined4 buffer_158;
-  undefined1 flag_154;
-  undefined4 state_150;
-  undefined8 vertex_14c;
-  undefined2 index_144;
-  undefined8 fragment_140;
-  undefined4 geometry_138;
-  undefined8 tessellation_130;
-  undefined4 compute_128;
-  undefined1 attribute_124;
-  undefined8 viewport_110;
-  undefined8 projection_108;
-  undefined8 view_100;
-  undefined8 model_f8;
-  undefined8 normal_f0;
-  undefined8 tangent_e8;
-  undefined8 bitangent_e0;
-  undefined8 light_d8;
-  undefined4 time_d0;
-  undefined4 delta_cc;
-  undefined8 frame_c8;
+  uint64_t transform_178;
+  int32_t material_170;
+  int16_t texture_16c;
+  uint64_t shader_168;
+  uint64_t uniform_160;
+  int32_t buffer_158;
+  int8_t flag_154;
+  int32_t state_150;
+  uint64_t vertex_14c;
+  int16_t index_144;
+  uint64_t fragment_140;
+  int32_t geometry_138;
+  uint64_t tessellation_130;
+  int32_t compute_128;
+  int8_t attribute_124;
+  uint64_t viewport_110;
+  uint64_t projection_108;
+  uint64_t view_100;
+  uint64_t model_f8;
+  uint64_t normal_f0;
+  uint64_t tangent_e8;
+  uint64_t bitangent_e0;
+  uint64_t light_d8;
+  int32_t time_d0;
+  int32_t delta_cc;
+  uint64_t frame_c8;
   
   // 初始化栈变量和帧参数
   frame_c8 = 0xfffffffffffffffe;
@@ -821,7 +821,7 @@ void process_render_objects(float *render_manager, undefined8 render_context, un
     if (render_manager[render_index + 0x82] < 10.0) {
       // 更新透明度值
       alpha_value = alpha_value + render_manager[render_index + 0xa2];
-      light_d8 = CONCAT44(alpha_value, (undefined4)light_d8);
+      light_d8 = CONCAT44(alpha_value, (int32_t)light_d8);
       
       // 获取对象颜色
       object_color = render_manager[render_index + 0xc2];
@@ -916,7 +916,7 @@ void process_render_objects(float *render_manager, undefined8 render_context, un
       viewport_110 = 0;               // 视口参数
       
       // 调用渲染函数
-      FUN_180077750(*(undefined8 *)(render_manager + render_index * 2 + 0x42), 
+      FUN_180077750(*(uint64_t *)(render_manager + render_index * 2 + 0x42), 
                   render_context, &projection_108, 0, &transform_178);
       
       // 调用对象的最终渲染函数
@@ -949,29 +949,29 @@ void process_render_objects(float *render_manager, undefined8 render_context, un
  * @param param3 保留参数
  * @param param4 保留参数
  */
-void initialize_render_parameters(longlong render_system, undefined8 param2, undefined8 param3, undefined8 param4)
+void initialize_render_parameters(longlong render_system, uint64_t param2, uint64_t param3, uint64_t param4)
 {
   longlong loop_counter;
   longlong *old_resource;
   longlong *resource_array;
-  undefined8 cleanup_flag;
+  uint64_t cleanup_flag;
   
   cleanup_flag = 0xfffffffffffffffe;
   
   // 设置渲染系统的基地址
-  *(undefined8 *)(render_system + 0xd28) = 
-       *(undefined8 *)(&DAT_180c8ed30 + (longlong)*(int *)(render_system + 0xd30) * 8);
+  *(uint64_t *)(render_system + 0xd28) = 
+       *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(render_system + 0xd30) * 8);
   
   // 清理旧的渲染资源
   old_resource = *(longlong **)(render_system + 0xd20);
-  *(undefined8 *)(render_system + 0xd20) = 0;
+  *(uint64_t *)(render_system + 0xd20) = 0;
   if (old_resource != (longlong *)0x0) {
     (**(code **)(*old_resource + 0x38))();
   }
   
   // 设置渲染状态标志
-  *(undefined4 *)(render_system + 0xd3c) = 0xffffffff;  // 完整性标志
-  *(undefined4 *)(render_system + 0x28) = 0xff101010;    // 渲染模式
+  *(int32_t *)(render_system + 0xd3c) = 0xffffffff;  // 完整性标志
+  *(int32_t *)(render_system + 0x28) = 0xff101010;    // 渲染模式
   
   // 初始化资源数组
   resource_array = (longlong *)(render_system + 0x30);
@@ -986,19 +986,19 @@ void initialize_render_parameters(longlong render_system, undefined8 param2, und
   } while (loop_counter != 0);
   
   // 重置渲染计数器和状态
-  *(undefined4 *)(render_system + 0xd04) = 0;      // 渲染计数器
-  *(undefined4 *)(render_system + 0xd08) = 0xbcf5c28f;  // 状态哈希
-  *(undefined4 *)(render_system + 0xd00) = 0;      // 帧计数器
+  *(int32_t *)(render_system + 0xd04) = 0;      // 渲染计数器
+  *(int32_t *)(render_system + 0xd08) = 0xbcf5c28f;  // 状态哈希
+  *(int32_t *)(render_system + 0xd00) = 0;      // 帧计数器
   
   // 再次清理渲染资源（确保完全清理）
   old_resource = *(longlong **)(render_system + 0xd20);
-  *(undefined8 *)(render_system + 0xd20) = 0;
+  *(uint64_t *)(render_system + 0xd20) = 0;
   if (old_resource != (longlong *)0x0) {
     (**(code **)(*old_resource + 0x38))();
   }
   
   // 重置最终状态标志
-  *(undefined4 *)(render_system + 0xd40) = 0;
+  *(int32_t *)(render_system + 0xd40) = 0;
   
   return;
 }
@@ -1017,7 +1017,7 @@ void initialize_render_parameters(longlong render_system, undefined8 param2, und
 longlong * create_render_manager(longlong *render_manager)
 {
   longlong *old_object;
-  undefined8 new_object;
+  uint64_t new_object;
   longlong *resource_object;
   
   // 重置管理器状态
@@ -1031,7 +1031,7 @@ longlong * create_render_manager(longlong *render_manager)
   
   // 设置资源管理参数
   render_manager[0x1a4] = 0;           // 资源对象指针
-  *(undefined4 *)(render_manager + 0x1a6) = 0;  // 资源计数器
+  *(int32_t *)(render_manager + 0x1a6) = 0;  // 资源计数器
   render_manager[0x1a5] = _DAT_180c8ed30;      // 资源基地址
   
   // 清理旧的资源对象
@@ -1043,7 +1043,7 @@ longlong * create_render_manager(longlong *render_manager)
   
   // 设置渲染状态
   render_manager[0x1a0] = 0;           // 状态标志
-  *(undefined4 *)(render_manager + 0x1a1) = 0xbcf5c28f;  // 状态哈希值
+  *(int32_t *)(render_manager + 0x1a1) = 0xbcf5c28f;  // 状态哈希值
   
   // 清理5个主要资源对象
   resource_object = (longlong *)render_manager[1];
@@ -1071,8 +1071,8 @@ longlong * create_render_manager(longlong *render_manager)
   }
   
   // 设置最终状态标志
-  *(undefined4 *)(render_manager + 0x1a7) = 0;      // 完成标志
-  *(undefined4 *)(render_manager + 5) = 0xff101010;   // 渲染模式
+  *(int32_t *)(render_manager + 0x1a7) = 0;      // 完成标志
+  *(int32_t *)(render_manager + 5) = 0xff101010;   // 渲染模式
   
   // 创建新的渲染对象（768字节，16字节对齐）
   new_object = FUN_18062b1e0(_DAT_180c8ed18, 0x300, 0x10, 3);
@@ -1109,10 +1109,10 @@ longlong * create_render_manager(longlong *render_manager)
  * @param param4 保留参数
  * @return 返回初始化后的渲染系统指针
  */
-undefined8 * initialize_render_system(undefined8 *render_system, undefined8 param2, undefined8 param3, undefined8 param4)
+uint64_t * initialize_render_system(uint64_t *render_system, uint64_t param2, uint64_t param3, uint64_t param4)
 {
   longlong *old_object;
-  undefined8 init_flag;
+  uint64_t init_flag;
   
   init_flag = 0xfffffffffffffffe;
   
@@ -1120,7 +1120,7 @@ undefined8 * initialize_render_system(undefined8 *render_system, undefined8 para
   render_system[2] = 0;  // 渲染管线
   render_system[3] = 0;  // 着色器管理器
   render_system[4] = 0;  // 纹理管理器
-  *(undefined4 *)(render_system + 5) = 3;  // 渲染质量级别
+  *(int32_t *)(render_system + 5) = 3;  // 渲染质量级别
   
   // 初始化渲染管线组件
   FUN_180090130(render_system + 6);
@@ -1138,7 +1138,7 @@ undefined8 * initialize_render_system(undefined8 *render_system, undefined8 para
   
   // 设置帧缓冲区
   render_system[0x2fc] = 0;  // 帧缓冲区指针
-  *(undefined8 *)((longlong)render_system + 0x17ec) = 0;  // 帧缓冲区大小
+  *(uint64_t *)((longlong)render_system + 0x17ec) = 0;  // 帧缓冲区大小
   render_system[0x300] = 0;  // 帧缓冲区对象
   
   // 初始化渲染同步互斥锁
@@ -1149,11 +1149,11 @@ undefined8 * initialize_render_system(undefined8 *render_system, undefined8 para
   render_system[0x30d] = 0;  // 多重采样标志
   render_system[0x30e] = 0;  // 抗锯齿标志
   render_system[0x30f] = 0;  // 后处理效果标志
-  *(undefined4 *)(render_system + 0x310) = 3;  // 渲染精度
+  *(int32_t *)(render_system + 0x310) = 3;  // 渲染精度
   
   // 设置视口参数
-  *(undefined2 *)((longlong)render_system + 0x1609) = 0x101;  // 视口宽度
-  *(undefined4 *)((longlong)render_system + 0x160c) = 1;       // 视口高度
+  *(int16_t *)((longlong)render_system + 0x1609) = 0x101;  // 视口宽度
+  *(int32_t *)((longlong)render_system + 0x160c) = 1;       // 视口高度
   
   // 清理旧的渲染目标
   old_object = (longlong *)render_system[0x2c0];
@@ -1163,7 +1163,7 @@ undefined8 * initialize_render_system(undefined8 *render_system, undefined8 para
   }
   
   // 设置初始化完成标志
-  *(undefined1 *)(render_system + 0x2fd) = 1;
+  *(int8_t *)(render_system + 0x2fd) = 1;
   
   // 重置线程管理器状态
   FUN_180090520(render_system + 6);
@@ -1184,17 +1184,17 @@ undefined8 * initialize_render_system(undefined8 *render_system, undefined8 para
   }
   
   // 设置最终渲染参数
-  *(undefined2 *)(render_system + 0x311) = 0x101;  // 刷新率
+  *(int16_t *)(render_system + 0x311) = 0x101;  // 刷新率
   render_system[0x2fc] = 0x3f0000003f000000;     // 渲染分辨率
-  *(undefined8 *)((longlong)render_system + 0x17ec) = 0x4434000044a00000;  // 显示模式
+  *(uint64_t *)((longlong)render_system + 0x17ec) = 0x4434000044a00000;  // 显示模式
   
   // 清理状态标志
-  *(undefined1 *)(render_system + 0x2bf) = 0;  // 错误状态
+  *(int8_t *)(render_system + 0x2bf) = 0;  // 错误状态
   render_system[0x2c4] = 0;                   // 警告计数
-  *(undefined2 *)(render_system + 0x2c5) = 0;  // 性能计数器
-  *(undefined1 *)((longlong)render_system + 0x162a) = 0;  // 调试标志
-  *(undefined1 *)(render_system + 0x2c2) = 0;             // 优化标志
-  *(undefined1 *)(render_system + 1) = 0;                 // 保留字段
+  *(int16_t *)(render_system + 0x2c5) = 0;  // 性能计数器
+  *(int8_t *)((longlong)render_system + 0x162a) = 0;  // 调试标志
+  *(int8_t *)(render_system + 0x2c2) = 0;             // 优化标志
+  *(int8_t *)(render_system + 1) = 0;                 // 保留字段
   render_system[0x30c] = 0;                               // 最后错误代码
   
   return render_system;
@@ -1224,19 +1224,19 @@ void main_render_loop(void)
   ulonglong context_index1;
   ulonglong context_index2;
   ulonglong context_index3;
-  undefined8 render_result;
-  undefined1 stack_buffer_d8 [32];
-  undefined1 active_flag;
+  uint64_t render_result;
+  int8_t stack_buffer_d8 [32];
+  int8_t active_flag;
   int render_height;
   int render_width;
   int viewport_x;
   int viewport_y;
   longlong *resource_ptr;
-  undefined8 cleanup_flag;
-  undefined *resource_manager;
-  undefined1 *string_buffer;
-  undefined4 buffer_size;
-  undefined1 stack_buffer_70 [72];
+  uint64_t cleanup_flag;
+  void *resource_manager;
+  int8_t *string_buffer;
+  int32_t buffer_size;
+  int8_t stack_buffer_70 [72];
   ulonglong security_cookie;
   
   // 获取引擎上下文
@@ -1245,7 +1245,7 @@ void main_render_loop(void)
   security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_d8;
   
   // 保存当前渲染状态
-  *(undefined1 *)(_DAT_180c86950 + 0x1889) = *(undefined1 *)(_DAT_180c86950 + 0x1888);
+  *(int8_t *)(_DAT_180c86950 + 0x1889) = *(int8_t *)(_DAT_180c86950 + 0x1888);
   
   // 获取新的渲染状态
   current_state = *(char *)(*(longlong *)(_DAT_180c86870 + 8) + 0xbc +
@@ -1301,7 +1301,7 @@ ACTIVE_RENDERING:
   
   // 状态变化处理
   if (((current_state != previous_state) && (_DAT_180c8a9c0 != 0)) && (*(longlong *)(_DAT_180c8a9c0 + 0x10) != 0)) {
-    (**(code **)(_DAT_180c8a9c0 + 0x80))(*(undefined1 *)(engine_context + 0x1888));
+    (**(code **)(_DAT_180c8a9c0 + 0x80))(*(int8_t *)(engine_context + 0x1888));
   }
   
 RENDER_CONTINUE:
@@ -1316,7 +1316,7 @@ RENDER_CONTINUE:
        (*(char *)(*(longlong *)(_DAT_180c86870 + 8) + 0xbc +
                  (ulonglong)(*(uint *)(*(longlong *)(_DAT_180c86870 + 8) + 0x13c) & 1) * 0x48) ==
         '\0')) {
-      FUN_180171fb0(*(undefined8 *)(_DAT_180c86870 + 8), 0);
+      FUN_180171fb0(*(uint64_t *)(_DAT_180c86870 + 8), 0);
     }
     else {
       // 计算显示参数
@@ -1334,11 +1334,11 @@ RENDER_CONTINUE:
       viewport_y = *(int )(context_ptr3 + 0xec + context_index3 * 0x48) + *(int )(context_ptr1 + 0xb4 + context_index1 * 0x48);
       
       // 更新显示设置
-      FUN_180171fb0(*(undefined8 *)(_DAT_180c86870 + 8), &render_height);
+      FUN_180171fb0(*(uint64_t *)(_DAT_180c86870 + 8), &render_height);
       
       // 更新显示比例
       context_ptr1 = *(longlong *)(_DAT_180c868d0 + 0x2010);
-      FUN_180093780(context_ptr1, *(undefined4 *)(context_ptr1 + 4), *(undefined4 *)(context_ptr1 + 8));
+      FUN_180093780(context_ptr1, *(int32_t *)(context_ptr1 + 4), *(int32_t *)(context_ptr1 + 8));
       context_ptr1 = _DAT_180c868d0;
       
       // 计算并设置宽高比
@@ -1395,7 +1395,7 @@ void update_render_parameters(void)
   // 分辨率发生变化，触发重新配置
   // 注意：此函数可能不返回，将触发系统重新初始化
   FUN_180062300(_DAT_180c86928, &UNK_180a16bd0, *(int *)(config_ptr + 4), 
-                *(undefined4 *)(config_ptr + 8), new_height, new_width);
+                *(int32_t *)(config_ptr + 8), new_height, new_width);
 }
 
 

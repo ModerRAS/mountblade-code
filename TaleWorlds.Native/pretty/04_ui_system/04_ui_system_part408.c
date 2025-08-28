@@ -48,8 +48,8 @@ typedef longlong UI_System_StateManager;          // UI系统状态管理器
 typedef float UI_System_FloatValue;                // UI系统浮点数值
 typedef uint UI_System_UIntValue;                 // UI系统无符号整数值
 typedef int UI_System_IntValue;                    // UI系统整数值
-typedef undefined8 UI_System_ErrorCode;            // UI系统错误代码
-typedef undefined8 UI_System_Result;               // UI系统结果值
+typedef uint64_t UI_System_ErrorCode;            // UI系统错误代码
+typedef uint64_t UI_System_Result;               // UI系统结果值
 typedef byte UI_System_Byte;                       // UI系统字节
 typedef bool UI_System_Bool;                       // UI系统布尔值
 

@@ -191,7 +191,7 @@ typedef struct {
  * @note 如果资源状态为非活动状态，则跳过清理操作
  * @warning 如果资源正在使用中，可能会触发紧急错误处理
  */
-void UISystemResourceCleaner(undefined8 param_1, undefined8 *param_2)
+void UISystemResourceCleaner(uint64_t param_1, uint64_t *param_2)
 {
     // 检查资源状态是否为活动状态
     if (*(int *)(param_2 + 6) != UI_SYSTEM_STATE_INACTIVE) {
@@ -232,7 +232,7 @@ void UISystemResourceCleaner(undefined8 param_1, undefined8 *param_2)
  * @note 如果状态为非活动状态，则直接返回
  * @warning 如果状态转换失败，可能会触发紧急错误处理
  */
-void UISystemStateManager(undefined8 param_1, undefined8 *param_2)
+void UISystemStateManager(uint64_t param_1, uint64_t *param_2)
 {
     // 检查状态是否为非活动状态
     if (*(int *)(param_2 + 6) == UI_SYSTEM_STATE_INACTIVE) {
@@ -279,16 +279,16 @@ void UISystemMathCalculator(uint *param_1)
 {
     uint base_value;                  // 基础值
     uint target_value;                // 目标值
-    undefined4 pow_result;            // 幂运算结果
+    int32_t pow_result;            // 幂运算结果
     uint iteration_result;            // 迭代结果
     int current_estimate;              // 当前估算值
     int temp_value1;                  // 临时值1
     int temp_value2;                  // 临时值2
     ulonglong loop_counter;           // 循环计数器
-    undefined8 xmm_temp;              // XMM临时寄存器
-    undefined1 vector_temp1 [16];      // 向量临时变量1
-    undefined1 vector_temp2 [16];     // 向量临时变量2
-    undefined4 mask_result;           // 掩码结果
+    uint64_t xmm_temp;              // XMM临时寄存器
+    int8_t vector_temp1 [16];      // 向量临时变量1
+    int8_t vector_temp2 [16];     // 向量临时变量2
+    int32_t mask_result;           // 掩码结果
     
     // 获取基础值和目标值
     base_value = *param_1;
@@ -301,7 +301,7 @@ void UISystemMathCalculator(uint *param_1)
     
     // 处理浮点精度问题
     if ((current_estimate != -0x80000000) && ((float)current_estimate != vector_temp1._0_4_)) {
-        mask_result = (undefined4)((ulonglong)xmm_temp >> 0x20);
+        mask_result = (int32_t)((ulonglong)xmm_temp >> 0x20);
         vector_temp2._8_4_ = mask_result;
         vector_temp2._0_8_ = xmm_temp;
         vector_temp2._12_4_ = mask_result;
@@ -360,11 +360,11 @@ void UISystemMathCalculator(uint *param_1)
  * @note 该函数支持两种主要的数据处理模式
  * @note 数据处理过程中会进行严格的验证和错误检查
  */
-longlong UISystemDataProcessor(undefined8 param_1, uint *param_2, int param_3, int *param_4)
+longlong UISystemDataProcessor(uint64_t param_1, uint *param_2, int param_3, int *param_4)
 {
     uint data_size;                   // 数据大小
     int temp_int1;                    // 临时整数1
-    undefined4 temp_float1;           // 临时浮点数1
+    int32_t temp_float1;           // 临时浮点数1
     uint temp_uint1;                  // 无符号整数1
     int temp_int2;                    // 临时整数2
     longlong result_ptr;              // 结果指针
@@ -379,10 +379,10 @@ longlong UISystemDataProcessor(undefined8 param_1, uint *param_2, int param_3, i
     float temp_float2;                 // 临时浮点数2
     double temp_double1;               // 双精度1
     double temp_double2;               // 双精度2
-    undefined8 xmm_temp;              // XMM临时寄存器
-    undefined1 vector_temp1 [16];     // 向量临时变量1
-    undefined1 vector_temp2 [16];     // 向量临时变量2
-    undefined4 mask_result;           // 掩码结果
+    uint64_t xmm_temp;              // XMM临时寄存器
+    int8_t vector_temp1 [16];     // 向量临时变量1
+    int8_t vector_temp2 [16];     // 向量临时变量2
+    int32_t mask_result;           // 掩码结果
     
     temp_int3 = 0;
     
@@ -412,7 +412,7 @@ longlong UISystemDataProcessor(undefined8 param_1, uint *param_2, int param_3, i
             
             // 处理浮点精度
             if ((temp_int5 != -0x80000000) && ((float)temp_int5 != vector_temp1._0_4_)) {
-                mask_result = (undefined4)((ulonglong)xmm_temp >> 0x20);
+                mask_result = (int32_t)((ulonglong)xmm_temp >> 0x20);
                 vector_temp2._8_4_ = mask_result;
                 vector_temp2._0_8_ = xmm_temp;
                 vector_temp2._12_4_ = mask_result;
@@ -549,7 +549,7 @@ longlong UISystemDataProcessor(undefined8 param_1, uint *param_2, int param_3, i
 void UISystemMemoryManager(void)
 {
     uint data_size1;                  // 数据大小1
-    undefined4 pow_result;             // 幂运算结果
+    int32_t pow_result;             // 幂运算结果
     uint data_size2;                   // 数据大小2
     int estimate_value;                // 估算值
     int product1;                      // 乘积1
@@ -562,12 +562,12 @@ void UISystemMemoryManager(void)
     int *temp_ptr1;                    // 临时指针1
     longlong offset_ptr;               // 偏移指针
     float temp_float;                  // 临时浮点数
-    undefined8 xmm_temp;               // XMM临时寄存器
-    undefined1 vector_temp1 [16];      // 向量临时变量1
+    uint64_t xmm_temp;               // XMM临时寄存器
+    int8_t vector_temp1 [16];      // 向量临时变量1
     float scale_factor1;               // 缩放因子1
     float scale_factor2;               // 缩放因子2
-    undefined1 vector_temp2 [16];      // 向量临时变量2
-    undefined4 mask_result;            // 掩码结果
+    int8_t vector_temp2 [16];      // 向量临时变量2
+    int32_t mask_result;            // 掩码结果
     
     // 获取数据大小
     data_size1 = *(uint*)(0x0);  // 假设的RDI寄存器值
@@ -580,7 +580,7 @@ void UISystemMemoryManager(void)
     
     // 处理浮点精度
     if ((estimate_value != -0x80000000) && ((float)estimate_value != vector_temp1._0_4_)) {
-        mask_result = (undefined4)((ulonglong)xmm_temp >> 0x20);
+        mask_result = (int32_t)((ulonglong)xmm_temp >> 0x20);
         vector_temp2._8_4_ = mask_result;
         vector_temp2._0_8_ = xmm_temp;
         vector_temp2._12_4_ = mask_result;
@@ -688,11 +688,11 @@ void UISystemEmptyFunction(void)
  * @note 配置处理过程中会进行严格的验证和错误检查
  * @warning 如果配置无效，可能会触发系统错误处理
  */
-void UISystemConfigProcessor(undefined8 param_1, undefined8 param_2, int param_3, int param_4)
+void UISystemConfigProcessor(uint64_t param_1, uint64_t param_2, int param_3, int param_4)
 {
     longlong temp_long1;              // 临时长整数1
-    undefined1 stack_data1 [32];      // 栈数据1
-    undefined1 stack_data2 [144];     // 栈数据2
+    int8_t stack_data1 [32];      // 栈数据1
+    int8_t stack_data2 [144];     // 栈数据2
     ulonglong xor_value;              // 异或值
     
     // 执行异或操作以获取配置值
@@ -726,9 +726,9 @@ void UISystemConfigProcessor(undefined8 param_1, undefined8 param_2, int param_3
  * @note 数据清理过程是不可逆的，请谨慎使用
  * @warning 清理过程中可能会影响系统性能
  */
-void UISystemDataCleaner(undefined8 param_1, undefined8 param_2)
+void UISystemDataCleaner(uint64_t param_1, uint64_t param_2)
 {
-    undefined1 stack_data [8];         // 栈数据
+    int8_t stack_data [8];         // 栈数据
     
     // 清理数据内存
     memset(stack_data, param_2, 0x84);
@@ -778,7 +778,7 @@ void UISystemEmergencyErrorHandler(void)
  * @note 数据获取过程中会进行严格的边界检查
  * @warning 如果访问越界，会返回错误值
  */
-undefined4 UISystemDataGetter(longlong param_1)
+int32_t UISystemDataGetter(longlong param_1)
 {
     int index_value;                   // 索引值
     
@@ -786,7 +786,7 @@ undefined4 UISystemDataGetter(longlong param_1)
     if (0 < *(int *)(param_1 + 8)) {
         index_value = FUN_18082f650();
         if (-1 < index_value) {
-            return *(undefined4 *)(*(longlong *)(param_1 + 0x28) + (longlong)index_value * 4);
+            return *(int32_t *)(*(longlong *)(param_1 + 0x28) + (longlong)index_value * 4);
         }
     }
     return 0xffffffff;
@@ -808,7 +808,7 @@ undefined4 UISystemDataGetter(longlong param_1)
  * @note 批量处理过程中会进行严格的验证和错误检查
  * @note 该函数支持多种数据处理模式和优化技术
  */
-undefined8 UISystemBatchDataProcessor(int *param_1, longlong param_2, undefined8 param_3, uint param_4)
+uint64_t UISystemBatchDataProcessor(int *param_1, longlong param_2, uint64_t param_3, uint param_4)
 {
     int data_dimension;                // 数据维度
     float scale_factor;                // 缩放因子

@@ -4,17 +4,17 @@
 // 本文件包含数据结构操作、内存管理、数组操作和对象创建功能
 
 // 全局变量声明
-undefined8 _DAT_180c8ed18;  // 内存管理器
-undefined8 _DAT_180c86870;  // 引擎配置数据
-undefined8 UNK_180a3c3e0;   // 全局数据指针
-undefined8 UNK_18098bcb0;   // 函数表指针
-undefined8 UNK_180a21720;   // 虚函数表指针
-undefined8 UNK_180a21690;   // 虚函数表指针
-undefined8 UNK_180a00330;   // 比较数据指针
-undefined8 UNK_18098bc73;   // 默认配置指针
-undefined8 _DAT_180bf6658;  // 配置覆盖指针
-undefined8 UNK_180a00550;   // 初始化函数指针
-undefined8 UNK_1809fcc28;   // 字符串函数表指针
+uint64_t _DAT_180c8ed18;  // 内存管理器
+uint64_t _DAT_180c86870;  // 引擎配置数据
+uint64_t UNK_180a3c3e0;   // 全局数据指针
+uint64_t UNK_18098bcb0;   // 函数表指针
+uint64_t UNK_180a21720;   // 虚函数表指针
+uint64_t UNK_180a21690;   // 虚函数表指针
+uint64_t UNK_180a00330;   // 比较数据指针
+uint64_t UNK_18098bc73;   // 默认配置指针
+uint64_t _DAT_180bf6658;  // 配置覆盖指针
+uint64_t UNK_180a00550;   // 初始化函数指针
+uint64_t UNK_1809fcc28;   // 字符串函数表指针
 
 /**
  * 处理数据结构初始化和复制操作
@@ -25,17 +25,17 @@ undefined8 UNK_1809fcc28;   // 字符串函数表指针
  */
 void process_data_structure_initialization(void)
 {
-    undefined4 *src_ptr1;       // 源数据指针1
-    undefined4 *src_ptr2;       // 源数据指针2
-    undefined4 *dest_ptr1;      // 目标数据指针1
-    undefined4 *dest_ptr2;      // 目标数据指针2
+    int32_t *src_ptr1;       // 源数据指针1
+    int32_t *src_ptr2;       // 源数据指针2
+    int32_t *dest_ptr1;      // 目标数据指针1
+    int32_t *dest_ptr2;      // 目标数据指针2
     ushort data_count;           // 数据元素数量
     uint capacity1;             // 容量1
     uint capacity2;             // 容量2
-    undefined4 data_val1;       // 数据值1
-    undefined4 data_val2;       // 数据值2
-    undefined4 data_val3;       // 数据值3
-    undefined4 data_val4;       // 数据值4
+    int32_t data_val1;       // 数据值1
+    int32_t data_val2;       // 数据值2
+    int32_t data_val3;       // 数据值3
+    int32_t data_val4;       // 数据值4
     longlong input_param;       // 输入参数
     ulonglong alloc_size;       // 分配大小
     longlong array_base;        // 数组基地址
@@ -56,7 +56,7 @@ void process_data_structure_initialization(void)
     }
     else {
         alloc_size = allocate_memory(_DAT_180c8ed18, input_param * 4, 0xf);
-        data_count = (undefined2)data_struct2[2];
+        data_count = (int16_t)data_struct2[2];
     }
     
     // 设置数据结构基础地址
@@ -101,11 +101,11 @@ void process_data_structure_initialization(void)
                 do {
                     element_index = (int)current_offset;
                     current_offset = (ulonglong)(element_index + 1U);
-                    src_ptr1 = (undefined4 *)(*(longlong *)(array_ptr1 + 2) + (longlong)element_index * 0x10);
+                    src_ptr1 = (int32_t *)(*(longlong *)(array_ptr1 + 2) + (longlong)element_index * 0x10);
                     data_val1 = src_ptr1[1];
                     data_val2 = src_ptr1[2];
                     data_val3 = src_ptr1[3];
-                    dest_ptr1 = (undefined4 *)(*(longlong *)(array_ptr2 + 2) + (longlong)element_index * 0x10);
+                    dest_ptr1 = (int32_t *)(*(longlong *)(array_ptr2 + 2) + (longlong)element_index * 0x10);
                     *dest_ptr1 = *src_ptr1;
                     dest_ptr1[1] = data_val1;
                     dest_ptr1[2] = data_val2;
@@ -140,11 +140,11 @@ void process_data_structure_initialization(void)
                 do {
                     element_index = (int)current_offset;
                     current_offset = (ulonglong)(element_index + 1U);
-                    src_ptr1 = (undefined4 *)(*(longlong *)(array_ptr1 + 0xc) + (longlong)element_index * 0x10);
+                    src_ptr1 = (int32_t *)(*(longlong *)(array_ptr1 + 0xc) + (longlong)element_index * 0x10);
                     data_val1 = src_ptr1[1];
                     data_val2 = src_ptr1[2];
                     data_val3 = src_ptr1[3];
-                    dest_ptr1 = (undefined4 *)(*(longlong *)(array_ptr2 + 0xc) + (longlong)element_index * 0x10);
+                    dest_ptr1 = (int32_t *)(*(longlong *)(array_ptr2 + 0xc) + (longlong)element_index * 0x10);
                     *dest_ptr1 = *src_ptr1;
                     dest_ptr1[1] = data_val1;
                     dest_ptr1[2] = data_val2;
@@ -172,15 +172,15 @@ void process_data_structure_initialization(void)
  */
 void process_batch_data_structures(void)
 {
-    undefined4 *src_ptr1;       // 源数据指针1
-    undefined4 *src_ptr2;       // 源数据指针2
-    undefined4 *dest_ptr1;      // 目标数据指针1
-    undefined4 *dest_ptr2;      // 目标数据指针2
+    int32_t *src_ptr1;       // 源数据指针1
+    int32_t *src_ptr2;       // 源数据指针2
+    int32_t *dest_ptr1;      // 目标数据指针1
+    int32_t *dest_ptr2;      // 目标数据指针2
     uint element_count;         // 元素计数
     uint capacity;              // 容量
-    undefined4 data_val1;       // 数据值1
-    undefined4 data_val2;       // 数据值2
-    undefined4 data_val3;       // 数据值3
+    int32_t data_val1;       // 数据值1
+    int32_t data_val2;       // 数据值2
+    int32_t data_val3;       // 数据值3
     int array_index;            // 数组索引
     ulonglong current_offset;   // 当前偏移
     uint *array_ptr1;           // 数组指针1
@@ -222,11 +222,11 @@ void process_batch_data_structures(void)
             do {
                 array_index = (int)current_offset;
                 current_offset = (ulonglong)(array_index + 1U);
-                src_ptr1 = (undefined4 *)(*(longlong *)(array_ptr1 + 2) + (longlong)array_index * 0x10);
+                src_ptr1 = (int32_t *)(*(longlong *)(array_ptr1 + 2) + (longlong)array_index * 0x10);
                 data_val1 = src_ptr1[1];
                 data_val2 = src_ptr1[2];
                 data_val3 = src_ptr1[3];
-                dest_ptr1 = (undefined4 *)(*(longlong *)(array_ptr2 + 2) + (longlong)array_index * 0x10);
+                dest_ptr1 = (int32_t *)(*(longlong *)(array_ptr2 + 2) + (longlong)array_index * 0x10);
                 *dest_ptr1 = *src_ptr1;
                 dest_ptr1[1] = data_val1;
                 dest_ptr1[2] = data_val2;
@@ -261,11 +261,11 @@ void process_batch_data_structures(void)
             do {
                 array_index = (int)current_offset;
                 current_offset = (ulonglong)(array_index + 1U);
-                src_ptr1 = (undefined4 *)(*(longlong *)(array_ptr1 + 0xc) + (longlong)array_index * 0x10);
+                src_ptr1 = (int32_t *)(*(longlong *)(array_ptr1 + 0xc) + (longlong)array_index * 0x10);
                 data_val1 = src_ptr1[1];
                 data_val2 = src_ptr1[2];
                 data_val3 = src_ptr1[3];
-                dest_ptr1 = (undefined4 *)(*(longlong *)(array_ptr2 + 0xc) + (longlong)array_index * 0x10);
+                dest_ptr1 = (int32_t *)(*(longlong *)(array_ptr2 + 0xc) + (longlong)array_index * 0x10);
                 *dest_ptr1 = *src_ptr1;
                 dest_ptr1[1] = data_val1;
                 dest_ptr1[2] = data_val2;
@@ -295,7 +295,7 @@ void perform_fast_memory_copy(void)
     longlong *dest_struct;     // 目标数据结构
     
     // 执行内存复制
-    memcpy(*(undefined8 *)(dest_struct + 8), *(undefined8 *)(src_struct + 8), (ulonglong)copy_size << 2);
+    memcpy(*(uint64_t *)(dest_struct + 8), *(uint64_t *)(src_struct + 8), (ulonglong)copy_size << 2);
 }
 
 /**
@@ -333,7 +333,7 @@ longlong process_context_recursively(longlong context_ptr)
  * 原始实现：FUN_180085970
  * 简化实现：资源释放操作
  */
-void release_resource(undefined8 resource_id, undefined4 release_flags)
+void release_resource(uint64_t resource_id, int32_t release_flags)
 {
     execute_resource_release(release_flags);
 }
@@ -345,7 +345,7 @@ void release_resource(undefined8 resource_id, undefined4 release_flags)
  * 原始实现：FUN_180085ac0
  * 简化实现：资源销毁操作
  */
-void destroy_resource(undefined8 resource_id, undefined4 destroy_flags)
+void destroy_resource(uint64_t resource_id, int32_t destroy_flags)
 {
     execute_resource_release(destroy_flags);
 }
@@ -357,7 +357,7 @@ void destroy_resource(undefined8 resource_id, undefined4 destroy_flags)
  * 原始实现：FUN_180085c10
  * 简化实现：资源清理操作
  */
-void cleanup_resource(undefined8 resource_id, undefined4 cleanup_flags)
+void cleanup_resource(uint64_t resource_id, int32_t cleanup_flags)
 {
     execute_resource_release(cleanup_flags);
 }
@@ -371,7 +371,7 @@ void cleanup_resource(undefined8 resource_id, undefined4 cleanup_flags)
  */
 void resize_array_20byte_elements(int *array_info)
 {
-    undefined8 new_buffer;      // 新缓冲区
+    uint64_t new_buffer;      // 新缓冲区
     
     if (array_info[1] < 1) {
         if (*(longlong *)(array_info + 2) != 0) {
@@ -386,7 +386,7 @@ void resize_array_20byte_elements(int *array_info)
     if (*(longlong *)(array_info + 2) != 0) {
         memcpy(new_buffer, *(longlong *)(array_info + 2), (longlong)*array_info * 0x14);
     }
-    *(undefined8 *)(array_info + 2) = new_buffer;
+    *(uint64_t *)(array_info + 2) = new_buffer;
     return;
 }
 
@@ -399,14 +399,14 @@ void resize_array_20byte_elements(int *array_info)
  */
 void resize_global_array_20byte(void)
 {
-    undefined8 new_buffer;      // 新缓冲区
+    uint64_t new_buffer;      // 新缓冲区
     int *global_array;          // 全局数组指针
     
     new_buffer = allocate_memory();
     if (*(longlong *)(global_array + 2) != 0) {
         memcpy(new_buffer, *(longlong *)(global_array + 2), (longlong)*global_array * 0x14);
     }
-    *(undefined8 *)(global_array + 2) = new_buffer;
+    *(uint64_t *)(global_array + 2) = new_buffer;
     return;
 }
 
@@ -424,7 +424,7 @@ void reset_data_structure_pointers(longlong struct_ptr)
     if (*(longlong *)(struct_ptr + 8) != 0) {
         release_memory_buffer();
     }
-    *(undefined8 *)(global_ptr + 8) = 0;
+    *(uint64_t *)(global_ptr + 8) = 0;
     return;
 }
 
@@ -438,7 +438,7 @@ void reset_data_structure_pointers(longlong struct_ptr)
 void copy_array_data_20byte(int *dest_array, int *src_array)
 {
     int element_count;          // 元素数量
-    undefined8 data_buffer;    // 数据缓冲区
+    uint64_t data_buffer;    // 数据缓冲区
     
     element_count = *src_array;
     *dest_array = element_count;
@@ -448,13 +448,13 @@ void copy_array_data_20byte(int *dest_array, int *src_array)
         dest_array[1] = src_array[1];
         resize_array_20byte_elements(dest_array);
         element_count = *dest_array;
-        data_buffer = *(undefined8 *)(src_array + 2);
+        data_buffer = *(uint64_t *)(src_array + 2);
     }
     else {
-        data_buffer = *(undefined8 *)(src_array + 2);
+        data_buffer = *(uint64_t *)(src_array + 2);
     }
     
-    memcpy(*(undefined8 *)(dest_array + 2), data_buffer, (longlong)element_count * 0x14);
+    memcpy(*(uint64_t *)(dest_array + 2), data_buffer, (longlong)element_count * 0x14);
     return;
 }
 
@@ -467,7 +467,7 @@ void copy_array_data_20byte(int *dest_array, int *src_array)
  */
 void resize_array_12byte_elements(int *array_info)
 {
-    undefined8 new_buffer;      // 新缓冲区
+    uint64_t new_buffer;      // 新缓冲区
     
     if (array_info[1] < 1) {
         if (*(longlong *)(array_info + 2) != 0) {
@@ -482,7 +482,7 @@ void resize_array_12byte_elements(int *array_info)
     if (*(longlong *)(array_info + 2) != 0) {
         memcpy(new_buffer, *(longlong *)(array_info + 2), (longlong)*array_info * 0xc);
     }
-    *(undefined8 *)(array_info + 2) = new_buffer;
+    *(uint64_t *)(array_info + 2) = new_buffer;
     return;
 }
 
@@ -495,14 +495,14 @@ void resize_array_12byte_elements(int *array_info)
  */
 void resize_global_array_12byte(void)
 {
-    undefined8 new_buffer;      // 新缓冲区
+    uint64_t new_buffer;      // 新缓冲区
     int *global_array;          // 全局数组指针
     
     new_buffer = allocate_memory();
     if (*(longlong *)(global_array + 2) != 0) {
         memcpy(new_buffer, *(longlong *)(global_array + 2), (longlong)*global_array * 0xc);
     }
-    *(undefined8 *)(global_array + 2) = new_buffer;
+    *(uint64_t *)(global_array + 2) = new_buffer;
     return;
 }
 
@@ -520,7 +520,7 @@ void reset_data_structure_pointers_12byte(longlong struct_ptr)
     if (*(longlong *)(struct_ptr + 8) != 0) {
         release_memory_buffer();
     }
-    *(undefined8 *)(global_ptr + 8) = 0;
+    *(uint64_t *)(global_ptr + 8) = 0;
     return;
 }
 
@@ -534,7 +534,7 @@ void reset_data_structure_pointers_12byte(longlong struct_ptr)
 void copy_array_data_12byte(int *dest_array, int *src_array)
 {
     int element_count;          // 元素数量
-    undefined8 data_buffer;    // 数据缓冲区
+    uint64_t data_buffer;    // 数据缓冲区
     
     element_count = *src_array;
     *dest_array = element_count;
@@ -544,13 +544,13 @@ void copy_array_data_12byte(int *dest_array, int *src_array)
         dest_array[1] = src_array[1];
         resize_array_12byte_elements(dest_array);
         element_count = *dest_array;
-        data_buffer = *(undefined8 *)(src_array + 2);
+        data_buffer = *(uint64_t *)(src_array + 2);
     }
     else {
-        data_buffer = *(undefined8 *)(src_array + 2);
+        data_buffer = *(uint64_t *)(src_array + 2);
     }
     
-    memcpy(*(undefined8 *)(dest_array + 2), data_buffer, (longlong)element_count * 0xc);
+    memcpy(*(uint64_t *)(dest_array + 2), data_buffer, (longlong)element_count * 0xc);
     return;
 }
 
@@ -563,7 +563,7 @@ void copy_array_data_12byte(int *dest_array, int *src_array)
  */
 void resize_array_92byte_elements(int *array_info)
 {
-    undefined8 new_buffer;      // 新缓冲区
+    uint64_t new_buffer;      // 新缓冲区
     
     if (array_info[1] < 1) {
         if (*(longlong *)(array_info + 2) != 0) {
@@ -578,7 +578,7 @@ void resize_array_92byte_elements(int *array_info)
     if (*(longlong *)(array_info + 2) != 0) {
         memcpy(new_buffer, *(longlong *)(array_info + 2), (longlong)*array_info * 0x5c);
     }
-    *(undefined8 *)(array_info + 2) = new_buffer;
+    *(uint64_t *)(array_info + 2) = new_buffer;
     return;
 }
 
@@ -591,14 +591,14 @@ void resize_array_92byte_elements(int *array_info)
  */
 void resize_global_array_92byte(void)
 {
-    undefined8 new_buffer;      // 新缓冲区
+    uint64_t new_buffer;      // 新缓冲区
     int *global_array;          // 全局数组指针
     
     new_buffer = allocate_memory();
     if (*(longlong *)(global_array + 2) != 0) {
         memcpy(new_buffer, *(longlong *)(global_array + 2), (longlong)*global_array * 0x5c);
     }
-    *(undefined8 *)(global_array + 2) = new_buffer;
+    *(uint64_t *)(global_array + 2) = new_buffer;
     return;
 }
 
@@ -616,7 +616,7 @@ void reset_data_structure_pointers_92byte(longlong struct_ptr)
     if (*(longlong *)(struct_ptr + 8) != 0) {
         release_memory_buffer();
     }
-    *(undefined8 *)(global_ptr + 8) = 0;
+    *(uint64_t *)(global_ptr + 8) = 0;
     return;
 }
 
@@ -630,7 +630,7 @@ void reset_data_structure_pointers_92byte(longlong struct_ptr)
 void copy_array_data_92byte(int *dest_array, int *src_array)
 {
     int element_count;          // 元素数量
-    undefined8 data_buffer;    // 数据缓冲区
+    uint64_t data_buffer;    // 数据缓冲区
     
     element_count = *src_array;
     *dest_array = element_count;
@@ -640,13 +640,13 @@ void copy_array_data_92byte(int *dest_array, int *src_array)
         dest_array[1] = src_array[1];
         resize_array_92byte_elements(dest_array);
         element_count = *dest_array;
-        data_buffer = *(undefined8 *)(src_array + 2);
+        data_buffer = *(uint64_t *)(src_array + 2);
     }
     else {
-        data_buffer = *(undefined8 *)(src_array + 2);
+        data_buffer = *(uint64_t *)(src_array + 2);
     }
     
-    memcpy(*(undefined8 *)(dest_array + 2), data_buffer, (longlong)element_count * 0x5c);
+    memcpy(*(uint64_t *)(dest_array + 2), data_buffer, (longlong)element_count * 0x5c);
     return;
 }
 
@@ -660,7 +660,7 @@ void copy_array_data_92byte(int *dest_array, int *src_array)
 void copy_array_data_16byte(int *dest_array, int *src_array)
 {
     int element_count;          // 元素数量
-    undefined8 data_buffer;    // 数据缓冲区
+    uint64_t data_buffer;    // 数据缓冲区
     
     element_count = *src_array;
     *dest_array = element_count;
@@ -670,13 +670,13 @@ void copy_array_data_16byte(int *dest_array, int *src_array)
         dest_array[1] = src_array[1];
         resize_array(dest_array);
         element_count = *dest_array;
-        data_buffer = *(undefined8 *)(src_array + 2);
+        data_buffer = *(uint64_t *)(src_array + 2);
     }
     else {
-        data_buffer = *(undefined8 *)(src_array + 2);
+        data_buffer = *(uint64_t *)(src_array + 2);
     }
     
-    memcpy(*(undefined8 *)(dest_array + 2), data_buffer, (longlong)element_count << 4);
+    memcpy(*(uint64_t *)(dest_array + 2), data_buffer, (longlong)element_count << 4);
     return;
 }
 
@@ -687,7 +687,7 @@ void copy_array_data_16byte(int *dest_array, int *src_array)
  * 原始实现：FUN_1800861a0
  * 简化实现：单位矩阵检查
  */
-undefined1 is_identity_matrix(float *matrix_data)
+int8_t is_identity_matrix(float *matrix_data)
 {
     char is_identity;          // 是否为单位矩阵
     
@@ -712,19 +712,19 @@ undefined1 is_identity_matrix(float *matrix_data)
  * 原始实现：FUN_180086270
  * 简化实现：数组元素添加
  */
-void add_element_to_array_24byte(ulonglong *array_info, undefined8 *element_data)
+void add_element_to_array_24byte(ulonglong *array_info, uint64_t *element_data)
 {
-    undefined4 data_val1;       // 数据值1
-    undefined4 data_val2;       // 数据值2
-    undefined4 data_val3;       // 数据值3
-    undefined8 data_val4;       // 数据值4
-    undefined4 *dest_ptr;       // 目标指针
+    int32_t data_val1;       // 数据值1
+    int32_t data_val2;       // 数据值2
+    int32_t data_val3;       // 数据值3
+    uint64_t data_val4;       // 数据值4
+    int32_t *dest_ptr;       // 目标指针
     longlong capacity;          // 容量
-    undefined8 *write_ptr;      // 写入指针
-    undefined8 *base_ptr;       // 基础指针
+    uint64_t *write_ptr;      // 写入指针
+    uint64_t *base_ptr;       // 基础指针
     
-    write_ptr = (undefined8 *)array_info[1];
-    if (write_ptr < (undefined8 *)array_info[2]) {
+    write_ptr = (uint64_t *)array_info[1];
+    if (write_ptr < (uint64_t *)array_info[2]) {
         array_info[1] = (ulonglong)(write_ptr + 3);
         data_val4 = element_data[1];
         *write_ptr = *element_data;
@@ -733,7 +733,7 @@ void add_element_to_array_24byte(ulonglong *array_info, undefined8 *element_data
         return;
     }
     
-    base_ptr = (undefined8 *)*array_info;
+    base_ptr = (uint64_t *)*array_info;
     capacity = ((longlong)write_ptr - (longlong)base_ptr) / 0x18;
     if (capacity == 0) {
         capacity = 1;
@@ -741,28 +741,28 @@ void add_element_to_array_24byte(ulonglong *array_info, undefined8 *element_data
     else {
         capacity = capacity * 2;
         if (capacity == 0) {
-            dest_ptr = (undefined4 *)0x0;
+            dest_ptr = (int32_t *)0x0;
             goto ARRAY_RESIZE_DONE;
         }
     }
     
-    dest_ptr = (undefined4 *)allocate_memory(_DAT_180c8ed18, capacity * 0x18, (char)array_info[3]);
-    base_ptr = (undefined8 *)*array_info;
-    write_ptr = (undefined8 *)array_info[1];
+    dest_ptr = (int32_t *)allocate_memory(_DAT_180c8ed18, capacity * 0x18, (char)array_info[3]);
+    base_ptr = (uint64_t *)*array_info;
+    write_ptr = (uint64_t *)array_info[1];
     
 ARRAY_RESIZE_DONE:
     if (base_ptr != write_ptr) {
         memmove(dest_ptr, base_ptr, (longlong)write_ptr - (longlong)base_ptr);
     }
     
-    data_val1 = *(undefined4 *)((longlong)element_data + 4);
-    data_val2 = *(undefined4 *)(element_data + 1);
-    data_val3 = *(undefined4 *)((longlong)element_data + 0xc);
-    *dest_ptr = *(undefined4 *)element_data;
+    data_val1 = *(int32_t *)((longlong)element_data + 4);
+    data_val2 = *(int32_t *)(element_data + 1);
+    data_val3 = *(int32_t *)((longlong)element_data + 0xc);
+    *dest_ptr = *(int32_t *)element_data;
     dest_ptr[1] = data_val1;
     dest_ptr[2] = data_val2;
     dest_ptr[3] = data_val3;
-    *(undefined8 *)(dest_ptr + 4) = element_data[2];
+    *(uint64_t *)(dest_ptr + 4) = element_data[2];
     
     if (*array_info != 0) {
         release_memory_buffer();
@@ -781,14 +781,14 @@ ARRAY_RESIZE_DONE:
  * 原始实现：FUN_1800862bb
  * 简化实现：数组元素添加
  */
-void add_element_to_array_24byte_offset(longlong offset, undefined8 element1, undefined8 element2, longlong param4)
+void add_element_to_array_24byte_offset(longlong offset, uint64_t element1, uint64_t element2, longlong param4)
 {
-    undefined4 data_val1;       // 数据值1
-    undefined4 data_val2;       // 数据值2
-    undefined4 data_val3;       // 数据值3
-    undefined4 *dest_ptr;       // 目标指针
+    int32_t data_val1;       // 数据值1
+    int32_t data_val2;       // 数据值2
+    int32_t data_val3;       // 数据值3
+    int32_t *dest_ptr;       // 目标指针
     longlong *array_info;       // 数组信息
-    undefined4 *element_ptr;    // 元素指针
+    int32_t *element_ptr;    // 元素指针
     longlong capacity;          // 容量
     longlong current_pos;        // 当前位置
     
@@ -798,12 +798,12 @@ void add_element_to_array_24byte_offset(longlong offset, undefined8 element1, un
     else {
         capacity = (offset / 0x18) * 2;
         if (capacity == 0) {
-            dest_ptr = (undefined4 *)0x0;
+            dest_ptr = (int32_t *)0x0;
             goto ARRAY_RESIZE_DONE;
         }
     }
     
-    dest_ptr = (undefined4 *)allocate_memory(_DAT_180c8ed18, capacity * 0x18, (char)array_info[3]);
+    dest_ptr = (int32_t *)allocate_memory(_DAT_180c8ed18, capacity * 0x18, (char)array_info[3]);
     param4 = *array_info;
     current_pos = array_info[1];
     
@@ -819,7 +819,7 @@ ARRAY_RESIZE_DONE:
     dest_ptr[1] = data_val1;
     dest_ptr[2] = data_val2;
     dest_ptr[3] = data_val3;
-    *(undefined8 *)(dest_ptr + 4) = *(undefined8 *)(element_ptr + 4);
+    *(uint64_t *)(dest_ptr + 4) = *(uint64_t *)(element_ptr + 4);
     
     if (*array_info != 0) {
         release_memory_buffer();
@@ -850,19 +850,19 @@ void thunk_release_memory_buffer(void)
  * 原始实现：FUN_1800863a0
  * 简化实现：数组元素添加
  */
-void add_element_to_array_16byte(ulonglong *array_info, undefined8 *element_data)
+void add_element_to_array_16byte(ulonglong *array_info, uint64_t *element_data)
 {
-    undefined4 data_val1;       // 数据值1
-    undefined4 data_val2;       // 数据值2
-    undefined4 data_val3;       // 数据值3
-    undefined8 data_val4;       // 数据值4
-    undefined4 *dest_ptr;       // 目标指针
-    undefined8 *write_ptr;      // 写入指针
-    undefined8 *base_ptr;       // 基础指针
+    int32_t data_val1;       // 数据值1
+    int32_t data_val2;       // 数据值2
+    int32_t data_val3;       // 数据值3
+    uint64_t data_val4;       // 数据值4
+    int32_t *dest_ptr;       // 目标指针
+    uint64_t *write_ptr;      // 写入指针
+    uint64_t *base_ptr;       // 基础指针
     longlong capacity;          // 容量
     
-    write_ptr = (undefined8 *)array_info[1];
-    if (write_ptr < (undefined8 *)array_info[2]) {
+    write_ptr = (uint64_t *)array_info[1];
+    if (write_ptr < (uint64_t *)array_info[2]) {
         array_info[1] = (ulonglong)(write_ptr + 2);
         data_val4 = element_data[1];
         *write_ptr = *element_data;
@@ -870,7 +870,7 @@ void add_element_to_array_16byte(ulonglong *array_info, undefined8 *element_data
         return;
     }
     
-    base_ptr = (undefined8 *)*array_info;
+    base_ptr = (uint64_t *)*array_info;
     capacity = (longlong)write_ptr - (longlong)base_ptr >> 4;
     if (capacity == 0) {
         capacity = 1;
@@ -878,24 +878,24 @@ void add_element_to_array_16byte(ulonglong *array_info, undefined8 *element_data
     else {
         capacity = capacity * 2;
         if (capacity == 0) {
-            dest_ptr = (undefined4 *)0x0;
+            dest_ptr = (int32_t *)0x0;
             goto ARRAY_RESIZE_DONE;
         }
     }
     
-    dest_ptr = (undefined4 *)allocate_memory(_DAT_180c8ed18, capacity << 4, (char)array_info[3]);
-    base_ptr = (undefined8 *)*array_info;
-    write_ptr = (undefined8 *)array_info[1];
+    dest_ptr = (int32_t *)allocate_memory(_DAT_180c8ed18, capacity << 4, (char)array_info[3]);
+    base_ptr = (uint64_t *)*array_info;
+    write_ptr = (uint64_t *)array_info[1];
     
 ARRAY_RESIZE_DONE:
     if (base_ptr != write_ptr) {
         memmove(dest_ptr, base_ptr, (longlong)write_ptr - (longlong)base_ptr);
     }
     
-    data_val1 = *(undefined4 *)((longlong)element_data + 4);
-    data_val2 = *(undefined4 *)(element_data + 1);
-    data_val3 = *(undefined4 *)((longlong)element_data + 0xc);
-    *dest_ptr = *(undefined4 *)element_data;
+    data_val1 = *(int32_t *)((longlong)element_data + 4);
+    data_val2 = *(int32_t *)(element_data + 1);
+    data_val3 = *(int32_t *)((longlong)element_data + 0xc);
+    *dest_ptr = *(int32_t *)element_data;
     dest_ptr[1] = data_val1;
     dest_ptr[2] = data_val2;
     dest_ptr[3] = data_val3;
@@ -917,14 +917,14 @@ ARRAY_RESIZE_DONE:
  * 原始实现：FUN_180086490
  * 简化实现：对象实例初始化
  */
-undefined8 *initialize_object_instance(undefined8 *object_ptr, ulonglong init_flags, undefined8 param3, undefined8 param4)
+uint64_t *initialize_object_instance(uint64_t *object_ptr, ulonglong init_flags, uint64_t param3, uint64_t param4)
 {
     object_ptr[4] = &UNK_180a3c3e0;
     if (object_ptr[5] != 0) {
         release_memory_buffer();
     }
     object_ptr[5] = 0;
-    *(undefined4 *)(object_ptr + 7) = 0;
+    *(int32_t *)(object_ptr + 7) = 0;
     object_ptr[4] = &UNK_18098bcb0;
     *object_ptr = &UNK_180a21720;
     *object_ptr = &UNK_180a21690;
@@ -956,17 +956,17 @@ void perform_resource_cleanup(longlong *resource_ptr)
  * 原始实现：FUN_180086570
  * 简化实现：字符串对象初始化
  */
-undefined8 *initialize_string_object(undefined8 *string_obj, longlong string_data, undefined8 param3, undefined8 param4)
+uint64_t *initialize_string_object(uint64_t *string_obj, longlong string_data, uint64_t param3, uint64_t param4)
 {
     longlong string_length;      // 字符串长度
     
     *string_obj = &UNK_18098bcb0;
     string_obj[1] = 0;
-    *(undefined4 *)(string_obj + 2) = 0;
+    *(int32_t *)(string_obj + 2) = 0;
     *string_obj = &UNK_1809fcc28;
     string_obj[1] = string_obj + 3;
-    *(undefined4 *)(string_obj + 2) = 0;
-    *(undefined1 *)(string_obj + 3) = 0;
+    *(int32_t *)(string_obj + 2) = 0;
+    *(int8_t *)(string_obj + 3) = 0;
     
     if (string_data != 0) {
         string_length = -1;
@@ -986,11 +986,11 @@ undefined8 *initialize_string_object(undefined8 *string_obj, longlong string_dat
  * 原始实现：FUN_180086600
  * 简化实现：对象A创建
  */
-undefined8 *create_object_typeA(undefined8 param1, undefined4 param2)
+uint64_t *create_object_typeA(uint64_t param1, int32_t param2)
 {
-    undefined8 *new_object;     // 新对象指针
+    uint64_t *new_object;     // 新对象指针
     
-    new_object = (undefined8 *)allocate_object_memory(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
+    new_object = (uint64_t *)allocate_object_memory(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
     *new_object = &UNK_180a14ff8;
     new_object[0x16] = 0;
@@ -1004,11 +1004,11 @@ undefined8 *create_object_typeA(undefined8 param1, undefined4 param2)
  * 原始实现：FUN_180086670
  * 简化实现：对象B创建
  */
-undefined8 *create_object_typeB(undefined8 param1, undefined4 param2)
+uint64_t *create_object_typeB(uint64_t param1, int32_t param2)
 {
-    undefined8 *new_object;     // 新对象指针
+    uint64_t *new_object;     // 新对象指针
     
-    new_object = (undefined8 *)allocate_object_memory(_DAT_180c8ed18, 0xb0, 8, 0x1a, 0xfffffffffffffffe);
+    new_object = (uint64_t *)allocate_object_memory(_DAT_180c8ed18, 0xb0, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
     *new_object = &UNK_180a01240;
     return new_object;
@@ -1021,9 +1021,9 @@ undefined8 *create_object_typeB(undefined8 param1, undefined4 param2)
  * 原始实现：FUN_1800866f0
  * 简化实现：对象B释放
  */
-undefined8 release_object_typeB(undefined8 object_ptr, ulonglong release_flags, undefined8 param3, undefined8 param4)
+uint64_t release_object_typeB(uint64_t object_ptr, ulonglong release_flags, uint64_t param3, uint64_t param4)
 {
-    undefined8 release_param;   // 释放参数
+    uint64_t release_param;   // 释放参数
     
     release_param = 0xfffffffffffffffe;
     execute_release_sequence();
@@ -1040,11 +1040,11 @@ undefined8 release_object_typeB(undefined8 object_ptr, ulonglong release_flags, 
  * 原始实现：FUN_180086740
  * 简化实现：对象C创建
  */
-undefined8 *create_object_typeC(undefined8 param1, undefined4 param2)
+uint64_t *create_object_typeC(uint64_t param1, int32_t param2)
 {
-    undefined8 *new_object;     // 新对象指针
+    uint64_t *new_object;     // 新对象指针
     
-    new_object = (undefined8 *)allocate_object_memory(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
+    new_object = (uint64_t *)allocate_object_memory(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
     *new_object = &UNK_180a01188;
     new_object[0x16] = 0;
@@ -1058,9 +1058,9 @@ undefined8 *create_object_typeC(undefined8 param1, undefined4 param2)
  * 原始实现：FUN_1800867d0
  * 简化实现：对象C释放
  */
-longlong release_object_typeC(longlong object_ptr, ulonglong release_flags, undefined8 param3, undefined8 param4)
+longlong release_object_typeC(longlong object_ptr, ulonglong release_flags, uint64_t param3, uint64_t param4)
 {
-    undefined8 release_param;   // 释放参数
+    uint64_t release_param;   // 释放参数
     
     release_param = 0xfffffffffffffffe;
     if (*(longlong **)(object_ptr + 0xb0) != (longlong *)0x0) {
@@ -1080,11 +1080,11 @@ longlong release_object_typeC(longlong object_ptr, ulonglong release_flags, unde
  * 原始实现：FUN_180086830
  * 简化实现：对象D创建
  */
-undefined8 *create_object_typeD(undefined8 param1, undefined4 param2)
+uint64_t *create_object_typeD(uint64_t param1, int32_t param2)
 {
-    undefined8 *new_object;     // 新对象指针
+    uint64_t *new_object;     // 新对象指针
     
-    new_object = (undefined8 *)allocate_object_memory(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
+    new_object = (uint64_t *)allocate_object_memory(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
     *new_object = &UNK_180a010d0;
     new_object[0x16] = 0;
@@ -1098,11 +1098,11 @@ undefined8 *create_object_typeD(undefined8 param1, undefined4 param2)
  * 原始实现：FUN_1800868d0
  * 简化实现：对象E创建
  */
-undefined8 *create_object_typeE(undefined8 param1, undefined4 param2)
+uint64_t *create_object_typeE(uint64_t param1, int32_t param2)
 {
-    undefined8 *new_object;     // 新对象指针
+    uint64_t *new_object;     // 新对象指针
     
-    new_object = (undefined8 *)allocate_object_memory(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
+    new_object = (uint64_t *)allocate_object_memory(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
     *new_object = &UNK_180a00f10;
     new_object[0x16] = 0;
@@ -1116,11 +1116,11 @@ undefined8 *create_object_typeE(undefined8 param1, undefined4 param2)
  * 原始实现：FUN_180086960
  * 简化实现：对象F创建
  */
-undefined8 *create_object_typeF(undefined8 param1, undefined4 param2)
+uint64_t *create_object_typeF(uint64_t param1, int32_t param2)
 {
-    undefined8 *new_object;     // 新对象指针
+    uint64_t *new_object;     // 新对象指针
     
-    new_object = (undefined8 *)allocate_object_memory(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
+    new_object = (uint64_t *)allocate_object_memory(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
     *new_object = &UNK_180a00e58;
     new_object[0x16] = 0;
@@ -1134,11 +1134,11 @@ undefined8 *create_object_typeF(undefined8 param1, undefined4 param2)
  * 原始实现：FUN_180086a00
  * 简化实现：对象G创建
  */
-undefined8 *create_object_typeG(undefined8 param1, undefined4 param2)
+uint64_t *create_object_typeG(uint64_t param1, int32_t param2)
 {
-    undefined8 *new_object;     // 新对象指针
+    uint64_t *new_object;     // 新对象指针
     
-    new_object = (undefined8 *)allocate_object_memory(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
+    new_object = (uint64_t *)allocate_object_memory(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
     *new_object = &UNK_180a00d78;
     new_object[0x16] = 0;
@@ -1152,11 +1152,11 @@ undefined8 *create_object_typeG(undefined8 param1, undefined4 param2)
  * 原始实现：FUN_180086aa0
  * 简化实现：对象H创建
  */
-undefined8 *create_object_typeH(undefined8 param1, undefined4 param2)
+uint64_t *create_object_typeH(uint64_t param1, int32_t param2)
 {
-    undefined8 *new_object;     // 新对象指针
+    uint64_t *new_object;     // 新对象指针
     
-    new_object = (undefined8 *)allocate_object_memory(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
+    new_object = (uint64_t *)allocate_object_memory(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
     *new_object = &UNK_180a00ca8;
     new_object[0x16] = 0;
@@ -1170,11 +1170,11 @@ undefined8 *create_object_typeH(undefined8 param1, undefined4 param2)
  * 原始实现：FUN_180086b40
  * 简化实现：对象I创建
  */
-undefined8 *create_object_typeI(undefined8 param1, undefined4 param2)
+uint64_t *create_object_typeI(uint64_t param1, int32_t param2)
 {
-    undefined8 *new_object;     // 新对象指针
+    uint64_t *new_object;     // 新对象指针
     
-    new_object = (undefined8 *)allocate_object_memory(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
+    new_object = (uint64_t *)allocate_object_memory(_DAT_180c8ed18, 0xb8, 8, 0x1a, 0xfffffffffffffffe);
     initialize_object_data(new_object, param1, param2);
     *new_object = &UNK_180a00be0;
     new_object[0x16] = 0;
@@ -1188,38 +1188,38 @@ undefined8 *create_object_typeI(undefined8 param1, undefined4 param2)
  * 原始实现：FUN_180086bd0
  * 简化实现：渲染配置初始化
  */
-void initialize_render_configuration(longlong config_ptr, undefined8 param2, longlong param3)
+void initialize_render_configuration(longlong config_ptr, uint64_t param2, longlong param3)
 {
-    undefined *config_param1;    // 配置参数1
-    undefined *config_param2;    // 配置参数2
-    undefined *config_param3;    // 配置参数3
-    undefined *stack_param1;     // 栈参数1
-    undefined *stack_param2;     // 栈参数2
+    void *config_param1;    // 配置参数1
+    void *config_param2;    // 配置参数2
+    void *config_param3;    // 配置参数3
+    void *stack_param1;     // 栈参数1
+    void *stack_param2;     // 栈参数2
     
-    *(undefined4 *)(config_ptr + 0x10) = 0;
-    if (*(undefined1 **)(config_ptr + 8) != (undefined1 *)0x0) {
-        **(undefined1 **)(config_ptr + 8) = 0;
+    *(int32_t *)(config_ptr + 0x10) = 0;
+    if (*(int8_t **)(config_ptr + 8) != (int8_t *)0x0) {
+        **(int8_t **)(config_ptr + 8) = 0;
     }
     
     create_render_context(*_DAT_180c86870, &stack_param1, param2);
     config_param1 = &DAT_18098bc73;
-    if (_DAT_180bf6658 != (undefined *)0x0) {
+    if (_DAT_180bf6658 != (void *)0x0) {
         config_param1 = _DAT_180bf6658;
     }
     
     config_param3 = &DAT_18098bc73;
-    if (*(undefined **)(param3 + 8) != (undefined *)0x0) {
-        config_param3 = *(undefined **)(param3 + 8);
+    if (*(void **)(param3 + 8) != (void *)0x0) {
+        config_param3 = *(void **)(param3 + 8);
     }
     
     config_param2 = &DAT_18098bc73;
-    if (stack_param2 != (undefined *)0x0) {
+    if (stack_param2 != (void *)0x0) {
         config_param2 = stack_param2;
     }
     
     setup_render_parameters(config_ptr, &UNK_180a00550, config_param2, config_param3, config_param1);
     stack_param1 = &UNK_180a3c3e0;
-    if (stack_param2 != (undefined *)0x0) {
+    if (stack_param2 != (void *)0x0) {
         release_memory_buffer();
     }
     return;
@@ -1232,57 +1232,57 @@ void initialize_render_configuration(longlong config_ptr, undefined8 param2, lon
  * 原始实现：FUN_180086ca0
  * 简化实现：数组结构初始化
  */
-undefined8 *initialize_array_structure(undefined8 *array_ptr)
+uint64_t *initialize_array_structure(uint64_t *array_ptr)
 {
-    undefined8 *sub_array_ptr;   // 子数组指针
+    uint64_t *sub_array_ptr;   // 子数组指针
     
     array_ptr[1] = 0;
     array_ptr[2] = 0;
     array_ptr[3] = 0;
-    *(undefined4 *)(array_ptr + 4) = 3;
+    *(int32_t *)(array_ptr + 4) = 3;
     array_ptr[5] = 0;
     array_ptr[6] = 0;
     array_ptr[7] = 0;
-    *(undefined4 *)(array_ptr + 8) = 3;
+    *(int32_t *)(array_ptr + 8) = 3;
     sub_array_ptr = array_ptr + 9;
     array_ptr[0xc] = 0;
-    *(undefined4 *)(array_ptr + 0xe) = 3;
+    *(int32_t *)(array_ptr + 0xe) = 3;
     *sub_array_ptr = sub_array_ptr;
     array_ptr[10] = sub_array_ptr;
     array_ptr[0xb] = 0;
-    *(undefined1 *)(array_ptr + 0xc) = 0;
+    *(int8_t *)(array_ptr + 0xc) = 0;
     array_ptr[0xd] = 0;
     sub_array_ptr = array_ptr + 0xf;
     array_ptr[0x12] = 0;
-    *(undefined4 *)(array_ptr + 0x14) = 0x1a;
+    *(int32_t *)(array_ptr + 0x14) = 0x1a;
     *sub_array_ptr = sub_array_ptr;
     array_ptr[0x10] = sub_array_ptr;
     array_ptr[0x11] = 0;
-    *(undefined1 *)(array_ptr + 0x12) = 0;
+    *(int8_t *)(array_ptr + 0x12) = 0;
     array_ptr[0x13] = 0;
     sub_array_ptr = array_ptr + 0x16;
     array_ptr[0x19] = 0;
-    *(undefined4 *)(array_ptr + 0x1b) = 0x1a;
+    *(int32_t *)(array_ptr + 0x1b) = 0x1a;
     *sub_array_ptr = sub_array_ptr;
     array_ptr[0x17] = sub_array_ptr;
     array_ptr[0x18] = 0;
-    *(undefined1 *)(array_ptr + 0x19) = 0;
+    *(int8_t *)(array_ptr + 0x19) = 0;
     array_ptr[0x1a] = 0;
     sub_array_ptr = array_ptr + 0x1c;
     array_ptr[0x1f] = 0;
-    *(undefined4 *)(array_ptr + 0x21) = 3;
+    *(int32_t *)(array_ptr + 0x21) = 3;
     *sub_array_ptr = sub_array_ptr;
     array_ptr[0x1d] = sub_array_ptr;
     array_ptr[0x1e] = 0;
-    *(undefined1 *)(array_ptr + 0x1f) = 0;
+    *(int8_t *)(array_ptr + 0x1f) = 0;
     array_ptr[0x20] = 0;
     array_ptr[0x22] = 0;
     array_ptr[0x23] = 0;
     array_ptr[0x24] = 0;
-    *(undefined4 *)(array_ptr + 0x25) = 0x1a;
+    *(int32_t *)(array_ptr + 0x25) = 0x1a;
     array_ptr[0x15] = 0;
     *array_ptr = 0;
-    *(undefined1 *)(array_ptr + 0x26) = 0;
+    *(int8_t *)(array_ptr + 0x26) = 0;
     return array_ptr;
 }
 
@@ -1315,9 +1315,9 @@ void cleanup_array_resources(longlong *array_info)
  * 原始实现：FUN_180086de0
  * 简化实现：渲染资源释放
  */
-void release_render_resources(longlong resource_ptr, undefined8 param2, undefined8 param3, undefined8 param4)
+void release_render_resources(longlong resource_ptr, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-    release_render_resource(resource_ptr, *(undefined8 *)(resource_ptr + 0x10), param3, param4, 0xfffffffffffffffe);
+    release_render_resource(resource_ptr, *(uint64_t *)(resource_ptr + 0x10), param3, param4, 0xfffffffffffffffe);
     return;
 }
 
@@ -1328,25 +1328,25 @@ void release_render_resources(longlong resource_ptr, undefined8 param2, undefine
  * 原始实现：FUN_180086e10
  * 简化实现：渲染资源清理
  */
-void cleanup_render_resources(longlong resource_ptr, undefined8 param2, undefined8 param3, undefined8 param4)
+void cleanup_render_resources(longlong resource_ptr, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-    release_render_resource(resource_ptr, *(undefined8 *)(resource_ptr + 0x10), param3, param4, 0xfffffffffffffffe);
+    release_render_resource(resource_ptr, *(uint64_t *)(resource_ptr + 0x10), param3, param4, 0xfffffffffffffffe);
     return;
 }
 
 // 辅助函数声明
 longlong process_array_allocation(ushort data_count);
 void resize_array(uint *array_ptr);
-void execute_resource_release(undefined4 flags);
-undefined8 allocate_memory(undefined8 allocator, longlong size, char flags);
+void execute_resource_release(int32_t flags);
+uint64_t allocate_memory(uint64_t allocator, longlong size, char flags);
 void release_memory_buffer(void);
 void execute_cleanup_operations(void);
-char verify_matrix_components(float *matrix_data, undefined8 *compare_data);
-undefined8 allocate_object_memory(undefined8 allocator, longlong size, longlong align, longlong type, undefined8 flags);
-void initialize_object_data(undefined8 *object, undefined8 param1, undefined4 param2);
+char verify_matrix_components(float *matrix_data, uint64_t *compare_data);
+uint64_t allocate_object_memory(uint64_t allocator, longlong size, longlong align, longlong type, uint64_t flags);
+void initialize_object_data(uint64_t *object, uint64_t param1, int32_t param2);
 void execute_release_sequence(longlong object_ptr);
-void create_render_context(undefined8 config, undefined8 *context_ptr, undefined8 param2);
-void setup_render_parameters(longlong config_ptr, undefined8 *param1, undefined8 *param2, undefined8 *param3, undefined8 *param4);
+void create_render_context(uint64_t config, uint64_t *context_ptr, uint64_t param2);
+void setup_render_parameters(longlong config_ptr, uint64_t *param1, uint64_t *param2, uint64_t *param3, uint64_t *param4);
 void release_array_element(longlong element_ptr);
-void release_render_resource(longlong resource_ptr, undefined8 param2, undefined8 param3, undefined8 param4, undefined8 flags);
-void strcpy_s(undefined8 dest, longlong dest_size, undefined8 src, undefined8 param4, undefined8 flags);
+void release_render_resource(longlong resource_ptr, uint64_t param2, uint64_t param3, uint64_t param4, uint64_t flags);
+void strcpy_s(uint64_t dest, longlong dest_size, uint64_t src, uint64_t param4, uint64_t flags);

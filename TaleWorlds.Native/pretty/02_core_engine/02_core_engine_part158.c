@@ -5,14 +5,14 @@
 
 // 函数：处理字符串比较和内存分配
 // 原始函数名：FUN_18013f4b0
-void process_string_comparison_and_memory_allocation(longlong context_ptr, undefined8 param_2, 
-                                                    longlong target_ptr, undefined8 flag_param,
+void process_string_comparison_and_memory_allocation(longlong context_ptr, uint64_t param_2, 
+                                                    longlong target_ptr, uint64_t flag_param,
                                                     longlong source_ptr)
 {
   byte current_char;
   byte *string_ptr;
   uint char_value;
-  undefined4 comparison_result;
+  int32_t comparison_result;
   longlong allocated_memory;
   
   // 检查标志位和指针有效性
@@ -38,10 +38,10 @@ void process_string_comparison_and_memory_allocation(longlong context_ptr, undef
   comparison_result = 0;
 finalize_allocation:
   // 分配内存并初始化
-  allocated_memory = allocate_memory_structure(_DAT_180c8ed18, 0x48, *(undefined1 *)(context_ptr + 0x28), 
+  allocated_memory = allocate_memory_structure(_DAT_180c8ed18, 0x48, *(int8_t *)(context_ptr + 0x28), 
                                              flag_param, 0xfffffffffffffffe);
   copy_memory_data(allocated_memory + 0x20, source_ptr);
-  *(undefined8 *)(allocated_memory + 0x40) = 0;
+  *(uint64_t *)(allocated_memory + 0x40) = 0;
   // 调用处理函数（不返回）
   process_allocated_structure(allocated_memory, target_ptr, context_ptr, comparison_result);
 }
@@ -50,26 +50,26 @@ finalize_allocation:
 
 // 函数：构建格式化字符串缓冲区
 // 原始函数名：FUN_18013f590
-undefined8 *build_formatted_string_buffer(longlong data_source, undefined8 *buffer_ptr, 
-                                         undefined8 param_3, undefined8 param_4)
+uint64_t *build_formatted_string_buffer(longlong data_source, uint64_t *buffer_ptr, 
+                                         uint64_t param_3, uint64_t param_4)
 {
   int item_count;
   longlong base_offset;
   uint loop_counter;
   ulonglong total_items;
   ulonglong current_index;
-  undefined4 format_flag;
-  undefined8 separator_flag;
+  int32_t format_flag;
+  uint64_t separator_flag;
   
   separator_flag = 0xfffffffffffffffe;
   total_items = 0;
   *buffer_ptr = &EMPTY_STRING_PTR;
   buffer_ptr[1] = 0;
-  *(undefined4 *)(buffer_ptr + 2) = 0;
+  *(int32_t *)(buffer_ptr + 2) = 0;
   *buffer_ptr = &STRING_TERMINATOR;
   buffer_ptr[3] = 0;
   buffer_ptr[1] = 0;
-  *(undefined4 *)(buffer_ptr + 2) = 0;
+  *(int32_t *)(buffer_ptr + 2) = 0;
   format_flag = 1;
   base_offset = *(longlong *)(data_source + 0x888);
   current_index = total_items;
@@ -81,14 +81,14 @@ undefined8 *build_formatted_string_buffer(longlong data_source, undefined8 *buff
         expand_buffer_capacity(buffer_ptr, *(int *)(buffer_ptr + 2) + item_count);
         // 复制数据到缓冲区（不返回）
         copy_data_to_buffer((ulonglong)*(uint *)(buffer_ptr + 2) + buffer_ptr[1], 
-                           *(undefined8 *)(current_index + 8 + base_offset),
+                           *(uint64_t *)(current_index + 8 + base_offset),
                            (longlong)(*(int *)(current_index + 0x10 + base_offset) + 1), 
                            param_4, format_flag, separator_flag);
       }
       item_count = *(int *)(buffer_ptr + 2) + 1;
       expand_buffer_capacity(buffer_ptr, item_count);
       // 添加分隔符
-      *(undefined2 *)((ulonglong)*(uint *)(buffer_ptr + 2) + buffer_ptr[1]) = 0x2a; // '*'
+      *(int16_t *)((ulonglong)*(uint *)(buffer_ptr + 2) + buffer_ptr[1]) = 0x2a; // '*'
       *(int *)(buffer_ptr + 2) = item_count;
       loop_counter = (int)total_items + 1;
       total_items = (ulonglong)loop_counter;
@@ -104,7 +104,7 @@ undefined8 *build_formatted_string_buffer(longlong data_source, undefined8 *buff
   expand_buffer_capacity(buffer_ptr, *(int *)(buffer_ptr + 2) + *(int *)(base_offset + -0x10));
   // 复制最后一项数据（不返回）
   copy_data_to_buffer((ulonglong)*(uint *)(buffer_ptr + 2) + buffer_ptr[1], 
-                     *(undefined8 *)(base_offset + -0x18),
+                     *(uint64_t *)(base_offset + -0x18),
                      (longlong)(*(int *)(base_offset + -0x10) + 1));
 }
 
@@ -121,23 +121,23 @@ void process_module_path_and_configuration(longlong module_context)
 {
   longlong temp_offset;
   int config_result;
-  undefined4 string_length;
-  undefined8 buffer_handle;
-  undefined8 *string_buffer;
+  int32_t string_length;
+  uint64_t buffer_handle;
+  uint64_t *string_buffer;
   longlong path_length;
-  undefined *default_path;
-  undefined1 security_buffer [32];
-  undefined4 operation_flag;
-  undefined *stack_ptr;
-  undefined8 *buffer_ptr;
-  undefined4 buffer_size;
-  undefined8 temp_value;
-  undefined8 security_param;
-  undefined **ptr_to_stack_ptr;
-  undefined *string_start;
-  undefined1 *string_data;
-  undefined4 data_size;
-  undefined1 temp_string [16];
+  void *default_path;
+  int8_t security_buffer [32];
+  int32_t operation_flag;
+  void *stack_ptr;
+  uint64_t *buffer_ptr;
+  int32_t buffer_size;
+  uint64_t temp_value;
+  uint64_t security_param;
+  void **ptr_to_stack_ptr;
+  void *string_start;
+  int8_t *string_data;
+  int32_t data_size;
+  int8_t temp_string [16];
   char path_buffer [256];
   ulonglong security_hash;
   
@@ -156,19 +156,19 @@ void process_module_path_and_configuration(longlong module_context)
   }
   stack_ptr = &STRING_TERMINATOR;
   temp_value = 0;
-  buffer_ptr = (undefined8 *)0x0;
+  buffer_ptr = (uint64_t *)0x0;
   buffer_size = 0;
-  string_buffer = (undefined8 *)allocate_memory_structure(_DAT_180c8ed18, 0x10, 0x13);
-  *(undefined1 *)string_buffer = 0;
+  string_buffer = (uint64_t *)allocate_memory_structure(_DAT_180c8ed18, 0x10, 0x13);
+  *(int8_t *)string_buffer = 0;
   buffer_ptr = string_buffer;
   string_length = get_string_length(string_buffer);
   temp_value = CONCAT44(temp_value._4_4_, string_length);
   *string_buffer = 0x2f73656c75646f4d; // "/Modules"
-  *(undefined1 *)(string_buffer + 1) = 0;
+  *(int8_t *)(string_buffer + 1) = 0;
   buffer_size = 8;
   default_path = &DEFAULT_PATH_PTR;
-  if (*(undefined **)(module_context + 0x28) != (undefined *)0x0) {
-    default_path = *(undefined **)(module_context + 0x28);
+  if (*(void **)(module_context + 0x28) != (void *)0x0) {
+    default_path = *(void **)(module_context + 0x28);
   }
   // 构建完整路径
   format_path_string(path_buffer, &PATH_FORMAT_PTR, string_buffer, default_path);
@@ -214,93 +214,93 @@ void initialize_engine_system(void)
 
 // 函数：初始化数据结构指针
 // 原始函数名：FUN_180141660
-undefined8 *initialize_data_structure_pointers(undefined8 *data_structure)
+uint64_t *initialize_data_structure_pointers(uint64_t *data_structure)
 {
-  undefined8 *return_ptr;
+  uint64_t *return_ptr;
   
   // 初始化基础数据结构
   *data_structure = 0;
   data_structure[1] = 0;
   data_structure[2] = 0;
-  *(undefined4 *)(data_structure + 3) = 3;
+  *(int32_t *)(data_structure + 3) = 3;
   data_structure[4] = &EMPTY_STRING_PTR;
   data_structure[5] = 0;
-  *(undefined4 *)(data_structure + 6) = 0;
+  *(int32_t *)(data_structure + 6) = 0;
   data_structure[4] = &STRING_BUFFER_PTR;
   data_structure[5] = data_structure + 7;
-  *(undefined4 *)(data_structure + 6) = 0;
-  *(undefined1 *)(data_structure + 7) = 0;
+  *(int32_t *)(data_structure + 6) = 0;
+  *(int8_t *)(data_structure + 7) = 0;
   
   // 初始化索引87-8A的数据结构
   data_structure[0x87] = &EMPTY_STRING_PTR;
   data_structure[0x88] = 0;
-  *(undefined4 *)(data_structure + 0x89) = 0;
+  *(int32_t *)(data_structure + 0x89) = 0;
   data_structure[0x87] = &STRING_BUFFER_PTR;
   data_structure[0x88] = data_structure + 0x8a;
-  *(undefined4 *)(data_structure + 0x89) = 0;
-  *(undefined1 *)(data_structure + 0x8a) = 0;
+  *(int32_t *)(data_structure + 0x89) = 0;
+  *(int8_t *)(data_structure + 0x8a) = 0;
   
   // 初始化10B-110的数据结构
   return_ptr = data_structure + 0x10b;
   data_structure[0x10e] = 0;
-  *(undefined4 *)(data_structure + 0x110) = 3;
+  *(int32_t *)(data_structure + 0x110) = 3;
   *return_ptr = return_ptr;
   data_structure[0x10c] = return_ptr;
   data_structure[0x10d] = 0;
-  *(undefined1 *)(data_structure + 0x10e) = 0;
+  *(int8_t *)(data_structure + 0x10e) = 0;
   data_structure[0x10f] = 0;
   data_structure[0x111] = 0;
   data_structure[0x112] = 0;
   data_structure[0x113] = 0;
-  *(undefined4 *)(data_structure + 0x114) = 3;
+  *(int32_t *)(data_structure + 0x114) = 3;
   data_structure[0x115] = 0;
   data_structure[0x116] = 0;
   data_structure[0x117] = 0;
-  *(undefined4 *)(data_structure + 0x118) = 3;
+  *(int32_t *)(data_structure + 0x118) = 3;
   data_structure[0x119] = 0;
   data_structure[0x11a] = 0;
   data_structure[0x11b] = 0;
-  *(undefined4 *)(data_structure + 0x11c) = 3;
+  *(int32_t *)(data_structure + 0x11c) = 3;
   
   // 初始化11D-122的数据结构
   return_ptr = data_structure + 0x11d;
   data_structure[0x120] = 0;
-  *(undefined4 *)(data_structure + 0x122) = 3;
+  *(int32_t *)(data_structure + 0x122) = 3;
   *return_ptr = return_ptr;
   data_structure[0x11e] = return_ptr;
   data_structure[0x11f] = 0;
-  *(undefined1 *)(data_structure + 0x120) = 0;
+  *(int8_t *)(data_structure + 0x120) = 0;
   data_structure[0x121] = 0;
   data_structure[0x123] = &EMPTY_STRING_PTR;
   data_structure[0x124] = 0;
-  *(undefined4 *)(data_structure + 0x125) = 0;
+  *(int32_t *)(data_structure + 0x125) = 0;
   data_structure[0x123] = &STRING_TERMINATOR;
   data_structure[0x126] = 0;
   data_structure[0x124] = 0;
-  *(undefined4 *)(data_structure + 0x125) = 0;
+  *(int32_t *)(data_structure + 0x125) = 0;
   
   // 初始化127-12A的数据结构
   return_ptr = data_structure + 0x127;
   data_structure[0x12a] = 0;
-  *(undefined4 *)(data_structure + 300) = 3;
+  *(int32_t *)(data_structure + 300) = 3;
   *return_ptr = return_ptr;
   data_structure[0x128] = return_ptr;
   data_structure[0x129] = 0;
-  *(undefined1 *)(data_structure + 0x12a) = 0;
+  *(int8_t *)(data_structure + 0x12a) = 0;
   data_structure[299] = 0;
   
   // 初始化12D-132的数据结构
   return_ptr = data_structure + 0x12d;
   data_structure[0x130] = 0;
-  *(undefined4 *)(data_structure + 0x132) = 3;
+  *(int32_t *)(data_structure + 0x132) = 3;
   *return_ptr = return_ptr;
   data_structure[0x12e] = return_ptr;
   data_structure[0x12f] = 0;
-  *(undefined1 *)(data_structure + 0x130) = 0;
+  *(int8_t *)(data_structure + 0x130) = 0;
   data_structure[0x131] = 0;
   
   // 设置标志位
-  *(undefined1 *)(data_structure + 0x10a) = 0;
+  *(int8_t *)(data_structure + 0x10a) = 0;
   return data_structure;
 }
 
@@ -334,52 +334,52 @@ undefined8 *initialize_data_structure_pointers(undefined8 *data_structure)
 ulonglong process_path_normalization(longlong *path_data)
 {
   char current_char;
-  undefined4 temp_result;
+  int32_t temp_result;
   int comparison_result;
   uint buffer_size;
   uint required_size;
   int string_length;
-  undefined8 *main_buffer;
-  undefined2 *path_separator;
-  undefined1 *string_buffer;
-  undefined1 *temp_string_ptr;
+  uint64_t *main_buffer;
+  int16_t *path_separator;
+  int8_t *string_buffer;
+  int8_t *temp_string_ptr;
   longlong current_offset;
   uint char_code;
   ulonglong loop_counter;
   ulonglong path_length;
   ulonglong normalized_length;
   ulonglong total_chars;
-  undefined *stack_buffer_c0;
-  undefined1 *path_string;
+  void *stack_buffer_c0;
+  int8_t *path_string;
   uint path_size;
-  undefined8 temp_value;
-  undefined *stack_buffer_a0;
-  undefined8 *buffer_ptr;
-  undefined4 buffer_flag;
+  uint64_t temp_value;
+  void *stack_buffer_a0;
+  uint64_t *buffer_ptr;
+  int32_t buffer_flag;
   ulonglong buffer_capacity;
-  undefined *stack_buffer_80;
-  undefined2 *separator_ptr;
-  undefined4 separator_size;
-  undefined8 separator_value;
-  undefined *stack_buffer_60;
-  undefined1 *char_buffer;
-  undefined4 char_buffer_size;
+  void *stack_buffer_80;
+  int16_t *separator_ptr;
+  int32_t separator_size;
+  uint64_t separator_value;
+  void *stack_buffer_60;
+  int8_t *char_buffer;
+  int32_t char_buffer_size;
   ulonglong buffer_handle;
-  undefined8 security_param;
+  uint64_t security_param;
   
   security_param = 0xfffffffffffffffe;
   initialize_string_buffer(&stack_buffer_c0);
   stack_buffer_a0 = &STRING_TERMINATOR;
   buffer_capacity = 0;
-  buffer_ptr = (undefined8 *)0x0;
+  buffer_ptr = (uint64_t *)0x0;
   buffer_flag = 0;
-  main_buffer = (undefined8 *)allocate_memory_structure(_DAT_180c8ed18, 0x10, 0x13);
-  *(undefined1 *)main_buffer = 0;
+  main_buffer = (uint64_t *)allocate_memory_structure(_DAT_180c8ed18, 0x10, 0x13);
+  *(int8_t *)main_buffer = 0;
   buffer_ptr = main_buffer;
   temp_result = get_string_length(main_buffer);
   buffer_capacity = CONCAT44(buffer_capacity._4_4_, temp_result);
   *main_buffer = 0x73656c75646f4d2f; // "Modules/"
-  *(undefined2 *)(main_buffer + 1) = 0x2f; // "/"
+  *(int16_t *)(main_buffer + 1) = 0x2f; // "/"
   buffer_flag = 9;
   comparison_result = compare_string_paths(&stack_buffer_c0, &stack_buffer_a0);
   path_length = 0;
@@ -387,33 +387,33 @@ ulonglong process_path_normalization(longlong *path_data)
   if ((comparison_result < 0) && (path_data[1] - *path_data >> 5 != 0)) {
     stack_buffer_80 = &STRING_TERMINATOR;
     separator_value = 0;
-    separator_ptr = (undefined2 *)0x0;
+    separator_ptr = (int16_t *)0x0;
     separator_size = 0;
-    path_separator = (undefined2 *)allocate_memory_structure(_DAT_180c8ed18, 0x10, 0x13);
-    *(undefined1 *)path_separator = 0;
+    path_separator = (int16_t *)allocate_memory_structure(_DAT_180c8ed18, 0x10, 0x13);
+    *(int8_t *)path_separator = 0;
     separator_ptr = path_separator;
     temp_result = get_string_length(path_separator);
     separator_value = CONCAT44(separator_value._4_4_, temp_result);
     *path_separator = 0x2f; // "/"
     separator_size = 1;
     current_offset = *path_data;
-    temp_string_ptr = (undefined1 *)0x0;
+    temp_string_ptr = (int8_t *)0x0;
     stack_buffer_60 = &STRING_TERMINATOR;
     buffer_handle = 0;
-    char_buffer = (undefined1 *)0x0;
+    char_buffer = (int8_t *)0x0;
     char_buffer_size = 0;
-    string_buffer = (undefined1 *)allocate_memory_structure(_DAT_180c8ed18, 0x10, 0x13);
+    string_buffer = (int8_t *)allocate_memory_structure(_DAT_180c8ed18, 0x10, 0x13);
     *string_buffer = 0;
     char_buffer = string_buffer;
     buffer_size = get_string_length(string_buffer);
-    *string_buffer = *(undefined1 *)path_separator;
+    *string_buffer = *(int8_t *)path_separator;
     char_buffer_size = 1;
     string_buffer[1] = 0;
     buffer_handle = (ulonglong)buffer_size;
     comparison_result = *(int *)(current_offset + 0x10);
     if (comparison_result < 1) {
-      if (string_buffer != (undefined1 *)0x0) {
-        temp_string_ptr = (undefined1 *)allocate_memory_structure(_DAT_180c8ed18, 0x10, 0x13);
+      if (string_buffer != (int8_t *)0x0) {
+        temp_string_ptr = (int8_t *)allocate_memory_structure(_DAT_180c8ed18, 0x10, 0x13);
         *temp_string_ptr = 0;
         get_string_length(temp_string_ptr);
       }
@@ -421,7 +421,7 @@ ulonglong process_path_normalization(longlong *path_data)
       copy_memory_data(temp_string_ptr, string_buffer, 1);
     }
     if ((comparison_result != -1) && (buffer_size < comparison_result + 2U)) {
-      string_buffer = (undefined1 *)expand_memory_buffer(_DAT_180c8ed18, string_buffer, 
+      string_buffer = (int8_t *)expand_memory_buffer(_DAT_180c8ed18, string_buffer, 
                                                          comparison_result + 2U, 0x10, 0x13);
       char_buffer = string_buffer;
       temp_result = get_string_length(string_buffer);
@@ -429,27 +429,27 @@ ulonglong process_path_normalization(longlong *path_data)
       comparison_result = *(int *)(current_offset + 0x10);
     }
     // 复制路径数据（不返回）
-    copy_memory_data(string_buffer + 1, *(undefined8 *)(current_offset + 8), 
+    copy_memory_data(string_buffer + 1, *(uint64_t *)(current_offset + 8), 
                    (longlong)(comparison_result + 1));
   }
   current_offset = concatenate_string_buffers(&stack_buffer_80, &stack_buffer_c0);
-  if (path_string != (undefined1 *)0x0) {
+  if (path_string != (int8_t *)0x0) {
     // 释放字符串缓冲区（不返回）
     release_string_buffer();
   }
   path_size = *(uint *)(current_offset + 0x10);
-  path_string = *(undefined1 **)(current_offset + 8);
+  path_string = *(int8_t **)(current_offset + 8);
   buffer_size = *(uint *)(current_offset + 0x18);
-  temp_value = *(undefined8 *)(current_offset + 0x18);
-  *(undefined4 *)(current_offset + 0x10) = 0;
-  *(undefined8 *)(current_offset + 8) = 0;
-  *(undefined8 *)(current_offset + 0x18) = 0;
+  temp_value = *(uint64_t *)(current_offset + 0x18);
+  *(int32_t *)(current_offset + 0x10) = 0;
+  *(uint64_t *)(current_offset + 8) = 0;
+  *(uint64_t *)(current_offset + 0x18) = 0;
   stack_buffer_80 = &STRING_TERMINATOR;
-  if (separator_ptr != (undefined2 *)0x0) {
+  if (separator_ptr != (int16_t *)0x0) {
     // 释放字符串缓冲区（不返回）
     release_string_buffer();
   }
-  separator_ptr = (undefined2 *)0x0;
+  separator_ptr = (int16_t *)0x0;
   separator_value = (ulonglong)separator_value._4_4_ << 0x20;
   stack_buffer_80 = &EMPTY_STRING_PTR;
   normalized_length = (ulonglong)path_size;
@@ -459,18 +459,18 @@ ulonglong process_path_normalization(longlong *path_data)
   required_size = path_size + 1;
   if (required_size != 0) {
     buffer_size = path_size + 2;
-    if (path_string == (undefined1 *)0x0) {
+    if (path_string == (int8_t *)0x0) {
       if ((int)buffer_size < 0x10) {
         buffer_size = 0x10;
       }
-      path_string = (undefined1 *)
+      path_string = (int8_t *)
                    allocate_memory_structure(_DAT_180c8ed18, (longlong)(int)buffer_size,
                                  CONCAT71((uint7)(uint3)(path_size >> 8), 0x13));
       *path_string = 0;
     }
     else {
       if (buffer_size <= buffer_size) goto buffer_sufficient;
-      path_string = (undefined1 *)expand_memory_buffer(_DAT_180c8ed18, path_string, 
+      path_string = (int8_t *)expand_memory_buffer(_DAT_180c8ed18, path_string, 
                                                        buffer_size, 0x10, 0x13);
     }
     temp_result = get_string_length(path_string);
@@ -478,7 +478,7 @@ ulonglong process_path_normalization(longlong *path_data)
     temp_value = CONCAT44(temp_value._4_4_, temp_result);
   }
 buffer_sufficient:
-  *(undefined2 *)(path_string + normalized_length) = 0x2f; // "/"
+  *(int16_t *)(path_string + normalized_length) = 0x2f; // "/"
   normalized_length = (ulonglong)required_size;
   path_size = required_size;
 path_complete:
@@ -503,32 +503,32 @@ path_complete:
   // 处理路径组件
   if (0 < comparison_result) {
     do {
-      string_buffer = (undefined1 *)0x0;
+      string_buffer = (int8_t *)0x0;
       current_offset = path_data[0x111] + total_chars;
       if (*(int *)(current_offset + 0x10) != 0) {
         string_length = *(int *)(current_offset + 0x10) + 1;
         if (string_length < 0x10) {
           string_length = 0x10;
         }
-        string_buffer = (undefined1 *)allocate_memory_structure(_DAT_180c8ed18, (longlong)string_length, 0x13);
+        string_buffer = (int8_t *)allocate_memory_structure(_DAT_180c8ed18, (longlong)string_length, 0x13);
         *string_buffer = 0;
         if (*(int *)(current_offset + 0x10) != 0) {
           // 复制组件数据（不返回）
-          copy_memory_data(string_buffer, *(undefined8 *)(current_offset + 8), 
+          copy_memory_data(string_buffer, *(uint64_t *)(current_offset + 8), 
                          *(int *)(current_offset + 0x10) + 1);
         }
       }
-      if ((*(longlong *)(current_offset + 8) != 0) && (string_buffer != (undefined1 *)0x0)) {
+      if ((*(longlong *)(current_offset + 8) != 0) && (string_buffer != (int8_t *)0x0)) {
         *string_buffer = 0;
       }
       if ((path_size == 0) || (path_size == 0)) {
-        if (string_buffer != (undefined1 *)0x0) {
+        if (string_buffer != (int8_t *)0x0) {
           // 释放字符串缓冲区（不返回）
           release_string_buffer(string_buffer);
         }
         goto cleanup_complete;
       }
-      if (string_buffer != (undefined1 *)0x0) {
+      if (string_buffer != (int8_t *)0x0) {
         // 释放字符串缓冲区（不返回）
         release_string_buffer(string_buffer);
       }
@@ -540,15 +540,15 @@ path_complete:
   path_length = 0xffffffff;
 cleanup_complete:
   stack_buffer_a0 = &STRING_TERMINATOR;
-  if (buffer_ptr != (undefined8 *)0x0) {
+  if (buffer_ptr != (uint64_t *)0x0) {
     // 释放字符串缓冲区（不返回）
     release_string_buffer();
   }
-  buffer_ptr = (undefined8 *)0x0;
+  buffer_ptr = (uint64_t *)0x0;
   buffer_capacity = buffer_capacity & 0xffffffff00000000;
   stack_buffer_a0 = &EMPTY_STRING_PTR;
   stack_buffer_c0 = &STRING_TERMINATOR;
-  if (path_string == (undefined1 *)0x0) {
+  if (path_string == (int8_t *)0x0) {
     return path_length;
   }
   // 释放字符串缓冲区（不返回）
@@ -559,15 +559,15 @@ cleanup_complete:
 
 // 函数：查找配置条目
 // 原始函数名：FUN_180142220
-undefined4 find_configuration_entry(longlong config_context, undefined8 *search_buffer, 
-                                   undefined8 param_3, longlong search_key)
+int32_t find_configuration_entry(longlong config_context, uint64_t *search_buffer, 
+                                   uint64_t param_3, longlong search_key)
 {
-  undefined4 result;
+  int32_t result;
   longlong *found_entry;
   uint search_length;
   ulonglong current_pos;
-  undefined1 temp_stack [8];
-  undefined8 *buffer_ptr;
+  int8_t temp_stack [8];
+  uint64_t *buffer_ptr;
   ulonglong search_index;
   
   search_index = 0;
@@ -594,18 +594,18 @@ undefined4 find_configuration_entry(longlong config_context, undefined8 *search_
       release_string_buffer();
     }
     search_buffer[1] = 0;
-    *(undefined4 *)(search_buffer + 3) = 0;
+    *(int32_t *)(search_buffer + 3) = 0;
     result = 0xffffffff;
   }
   else {
-    result = *(undefined4 *)(*found_entry + 0x40);
+    result = *(int32_t *)(*found_entry + 0x40);
     *search_buffer = &STRING_TERMINATOR;
     if (search_buffer[1] != 0) {
       // 释放字符串缓冲区（不返回）
       release_string_buffer();
     }
     search_buffer[1] = 0;
-    *(undefined4 *)(search_buffer + 3) = 0;
+    *(int32_t *)(search_buffer + 3) = 0;
   }
   *search_buffer = &EMPTY_STRING_PTR;
   return result;
@@ -619,33 +619,33 @@ undefined4 find_configuration_entry(longlong config_context, undefined8 *search_
 
 // 函数：处理模块配置更新
 // 原始函数名：FUN_180142300
-void process_module_configuration_update(longlong module_context, undefined8 *config_buffer, 
+void process_module_configuration_update(longlong module_context, uint64_t *config_buffer, 
                                        longlong config_source)
 {
   uint buffer_index;
-  undefined4 temp_result;
-  undefined4 config_size;
+  int32_t temp_result;
+  int32_t config_size;
   ulonglong buffer_capacity;
   uint path_length;
   int string_length;
-  undefined2 *path_buffer;
+  int16_t *path_buffer;
   longlong source_offset;
-  undefined8 temp_value1;
-  undefined8 temp_value2;
+  uint64_t temp_value1;
+  uint64_t temp_value2;
   int config_length;
-  undefined *default_config;
-  undefined1 security_buffer [32];
-  undefined1 buffer_type;
-  undefined4 operation_flag;
-  undefined *stack_ptr;
-  undefined2 *string_ptr;
-  undefined4 ptr_size;
-  undefined8 temp_value;
-  undefined8 *main_buffer;
-  undefined **ptr_to_stack_ptr;
-  undefined *temp_stack_ptr;
-  undefined *char_buffer;
-  undefined4 data_size;
+  void *default_config;
+  int8_t security_buffer [32];
+  int8_t buffer_type;
+  int32_t operation_flag;
+  void *stack_ptr;
+  int16_t *string_ptr;
+  int32_t ptr_size;
+  uint64_t temp_value;
+  uint64_t *main_buffer;
+  void **ptr_to_stack_ptr;
+  void *temp_stack_ptr;
+  void *char_buffer;
+  int32_t data_size;
   undefined temp_string [16];
   ulonglong security_hash;
   longlong temp_offset;
@@ -655,18 +655,18 @@ void process_module_configuration_update(longlong module_context, undefined8 *co
   operation_flag = 0;
   stack_ptr = &STRING_TERMINATOR;
   temp_value._0_4_ = 0;
-  string_ptr = (undefined2 *)0x0;
+  string_ptr = (int16_t *)0x0;
   ptr_size = 0;
   main_buffer = config_buffer;
-  path_buffer = (undefined2 *)allocate_memory_structure(_DAT_180c8ed18, 0x10, 0x13);
-  *(undefined1 *)path_buffer = 0;
+  path_buffer = (int16_t *)allocate_memory_structure(_DAT_180c8ed18, 0x10, 0x13);
+  *(int8_t *)path_buffer = 0;
   string_ptr = path_buffer;
   path_length = get_string_length(path_buffer);
   *path_buffer = 0x2f; // "/"
   ptr_size = 1;
   default_config = &DEFAULT_CONFIG_PTR;
-  if (*(undefined **)(config_source + 8) != (undefined *)0x0) {
-    default_config = *(undefined **)(config_source + 8);
+  if (*(void **)(config_source + 8) != (void *)0x0) {
+    default_config = *(void **)(config_source + 8);
   }
   source_offset = -1;
   // 计算配置字符串长度
@@ -681,13 +681,13 @@ void process_module_configuration_update(longlong module_context, undefined8 *co
     config_length = string_length + 2;
     if ((config_length != 0) && (buffer_index = string_length + 3, path_length < buffer_index)) {
       buffer_type = 0x13;
-      path_buffer = (undefined2 *)expand_memory_buffer(_DAT_180c8ed18, path_buffer, 
+      path_buffer = (int16_t *)expand_memory_buffer(_DAT_180c8ed18, path_buffer, 
                                                        buffer_index, 0x10);
       string_ptr = path_buffer;
       temp_value._0_4_ = get_string_length(path_buffer);
     }
     // 复制配置数据（不返回）
-    copy_memory_data((undefined1 *)((longlong)path_buffer + 1), default_config, 
+    copy_memory_data((int8_t *)((longlong)path_buffer + 1), default_config, 
                      (longlong)config_length);
   }
   ptr_to_stack_ptr = &char_buffer;
@@ -698,7 +698,7 @@ void process_module_configuration_update(longlong module_context, undefined8 *co
     copy_configuration_data(config_buffer, config_source);
     operation_flag = 1;
     stack_ptr = &STRING_TERMINATOR;
-    if (string_ptr != (undefined2 *)0x0) {
+    if (string_ptr != (int16_t *)0x0) {
       // 释放字符串缓冲区（不返回）
       release_string_buffer();
     }
@@ -712,24 +712,24 @@ void process_module_configuration_update(longlong module_context, undefined8 *co
     copy_string_safely(temp_string, 0x10, &ERROR_CODE_PTR);
     operation_flag = 2;
     default_config = &DEFAULT_CONFIG_PTR;
-    if (char_buffer != (undefined *)0x0) {
+    if (char_buffer != (void *)0x0) {
       default_config = char_buffer;
     }
     temp_value1 = format_error_message(&char_buffer, default_config);
     temp_value2 = concatenate_buffers(&stack_ptr, &temp_stack_ptr, 1, ptr_size);
     source_offset = merge_config_data(temp_value1, &temp_stack_ptr, temp_value2);
-    if (string_ptr != (undefined2 *)0x0) {
+    if (string_ptr != (int16_t *)0x0) {
       // 释放字符串缓冲区（不返回）
       release_string_buffer();
     }
-    ptr_size = *(undefined4 *)(source_offset + 0x10);
-    string_ptr = *(undefined2 **)(source_offset + 8);
-    temp_result = *(undefined4 *)(source_offset + 0x1c);
-    config_size = *(undefined4 *)(source_offset + 0x18);
-    temp_value = *(undefined8 *)(source_offset + 0x18);
-    *(undefined4 *)(source_offset + 0x10) = 0;
-    *(undefined8 *)(source_offset + 8) = 0;
-    *(undefined8 *)(source_offset + 0x18) = 0;
+    ptr_size = *(int32_t *)(source_offset + 0x10);
+    string_ptr = *(int16_t **)(source_offset + 8);
+    temp_result = *(int32_t *)(source_offset + 0x1c);
+    config_size = *(int32_t *)(source_offset + 0x18);
+    temp_value = *(uint64_t *)(source_offset + 0x18);
+    *(int32_t *)(source_offset + 0x10) = 0;
+    *(uint64_t *)(source_offset + 8) = 0;
+    *(uint64_t *)(source_offset + 0x18) = 0;
     temp_stack_ptr = &STRING_TERMINATOR;
     if (temp_offset != 0) {
       // 释放字符串缓冲区（不返回）
@@ -749,17 +749,17 @@ void process_module_configuration_update(longlong module_context, undefined8 *co
     temp_stack_ptr = &EMPTY_STRING_PTR;
     *config_buffer = &EMPTY_STRING_PTR;
     config_buffer[1] = 0;
-    *(undefined4 *)(config_buffer + 2) = 0;
+    *(int32_t *)(config_buffer + 2) = 0;
     *config_buffer = &STRING_TERMINATOR;
-    *(undefined4 *)(config_buffer + 2) = ptr_size;
+    *(int32_t *)(config_buffer + 2) = ptr_size;
     config_buffer[1] = string_ptr;
-    *(undefined4 *)((longlong)config_buffer + 0x1c) = temp_result;
-    *(undefined4 *)(config_buffer + 3) = config_size;
+    *(int32_t *)((longlong)config_buffer + 0x1c) = temp_result;
+    *(int32_t *)(config_buffer + 3) = config_size;
     ptr_size = 0;
     buffer_capacity = 0;
   }
   temp_value = buffer_capacity << 0x20;
-  string_ptr = (undefined2 *)0x0;
+  string_ptr = (int16_t *)0x0;
   stack_ptr = &EMPTY_STRING_PTR;
   operation_flag = 1;
   // 执行安全检查（不返回）
@@ -770,26 +770,26 @@ void process_module_configuration_update(longlong module_context, undefined8 *co
 
 // 函数：在模块列表中查找匹配项
 // 原始函数名：FUN_1801426a0
-undefined4 find_matching_module_in_list(longlong module_list, longlong search_key)
+int32_t find_matching_module_in_list(longlong module_list, longlong search_key)
 {
-  undefined8 *current_module;
+  uint64_t *current_module;
   byte current_char;
   bool is_match;
-  undefined8 *previous_module;
+  uint64_t *previous_module;
   byte *key_string;
   uint char_value;
   int comparison_result;
-  undefined8 *next_module;
-  undefined8 *temp_module;
+  uint64_t *next_module;
+  uint64_t *temp_module;
   longlong string_offset;
   
-  current_module = (undefined8 *)(module_list + 0x858);
-  if (*(undefined8 **)(module_list + 0x868) != (undefined8 *)0x0) {
+  current_module = (uint64_t *)(module_list + 0x858);
+  if (*(uint64_t **)(module_list + 0x868) != (uint64_t *)0x0) {
     previous_module = current_module;
-    next_module = *(undefined8 **)(module_list + 0x868);
+    next_module = *(uint64_t **)(module_list + 0x868);
     do {
       if (*(int *)(search_key + 0x10) == 0) {
-        temp_module = (undefined8 *)next_module[1];
+        temp_module = (uint64_t *)next_module[1];
         is_match = false;
       }
       else {
@@ -807,11 +807,11 @@ undefined4 find_matching_module_in_list(longlong module_list, longlong search_ke
           } while (char_value != 0);
           is_match = 0 < comparison_result;
           if (comparison_result < 1) {
-            temp_module = (undefined8 *)next_module[1];
+            temp_module = (uint64_t *)next_module[1];
             goto comparison_complete;
           }
         }
-        temp_module = (undefined8 *)*next_module;
+        temp_module = (uint64_t *)*next_module;
       }
 comparison_complete:
       if (is_match) {
@@ -819,7 +819,7 @@ comparison_complete:
       }
       previous_module = next_module;
       next_module = temp_module;
-    } while (temp_module != (undefined8 *)0x0);
+    } while (temp_module != (uint64_t *)0x0);
     if (previous_module != current_module) {
       if (*(int *)(previous_module + 6) == 0) goto match_found;
       if (*(int *)(search_key + 0x10) != 0) {
@@ -840,33 +840,33 @@ match_found:
   if (previous_module == current_module) {
     return 0xffffffff;
   }
-  return *(undefined4 *)(previous_module[9] + -4);
+  return *(int32_t *)(previous_module[9] + -4);
 }
 
 
 
 // 函数：在模块列表中查找匹配项（副本）
 // 原始函数名：FUN_1801426a4
-undefined4 find_matching_module_duplicate(longlong module_list, longlong search_key)
+int32_t find_matching_module_duplicate(longlong module_list, longlong search_key)
 {
-  undefined8 *current_module;
+  uint64_t *current_module;
   byte current_char;
   bool is_match;
-  undefined8 *previous_module;
+  uint64_t *previous_module;
   byte *key_string;
   uint char_value;
   int comparison_result;
-  undefined8 *next_module;
-  undefined8 *temp_module;
+  uint64_t *next_module;
+  uint64_t *temp_module;
   longlong string_offset;
   
-  current_module = (undefined8 *)(module_list + 0x858);
-  if (*(undefined8 **)(module_list + 0x868) != (undefined8 *)0x0) {
+  current_module = (uint64_t *)(module_list + 0x858);
+  if (*(uint64_t **)(module_list + 0x868) != (uint64_t *)0x0) {
     previous_module = current_module;
-    next_module = *(undefined8 **)(module_list + 0x868);
+    next_module = *(uint64_t **)(module_list + 0x868);
     do {
       if (*(int *)(search_key + 0x10) == 0) {
-        temp_module = (undefined8 *)next_module[1];
+        temp_module = (uint64_t *)next_module[1];
         is_match = false;
       }
       else {
@@ -884,11 +884,11 @@ undefined4 find_matching_module_duplicate(longlong module_list, longlong search_
           } while (char_value != 0);
           is_match = 0 < comparison_result;
           if (comparison_result < 1) {
-            temp_module = (undefined8 *)next_module[1];
+            temp_module = (uint64_t *)next_module[1];
             goto comparison_complete;
           }
         }
-        temp_module = (undefined8 *)*next_module;
+        temp_module = (uint64_t *)*next_module;
       }
 comparison_complete:
       if (is_match) {
@@ -896,7 +896,7 @@ comparison_complete:
       }
       previous_module = next_module;
       next_module = temp_module;
-    } while (temp_module != (undefined8 *)0x0);
+    } while (temp_module != (uint64_t *)0x0);
     if (previous_module != current_module) {
       if (*(int *)(previous_module + 6) == 0) goto match_found;
       if (*(int *)(search_key + 0x10) != 0) {
@@ -917,14 +917,14 @@ match_found:
   if (previous_module == current_module) {
     return 0xffffffff;
   }
-  return *(undefined4 *)(previous_module[9] + -4);
+  return *(int32_t *)(previous_module[9] + -4);
 }
 
 
 
 // 函数：获取默认错误代码
 // 原始函数名：FUN_180142780
-undefined8 get_default_error_code(void)
+uint64_t get_default_error_code(void)
 
 {
   return 0xffffffff;
@@ -935,7 +935,7 @@ undefined8 get_default_error_code(void)
 // 函数：查找并插入数据结构项
 // 原始函数名：FUN_1801427a0
 longlong *find_and_insert_structure_item(longlong *structure_root, longlong search_key, 
-                                      undefined8 param_3, ulonglong param_4)
+                                      uint64_t param_3, ulonglong param_4)
 {
   byte current_char;
   bool is_match;
@@ -1073,19 +1073,19 @@ final_cleanup:
 // 原始函数名：FUN_180142990
 void cleanup_module_resources(longlong module_context)
 {
-  undefined8 *resource_ptr;
+  uint64_t *resource_ptr;
   
-  resource_ptr = *(undefined8 **)(module_context + 0x10);
-  if (resource_ptr != (undefined8 *)0x0) {
+  resource_ptr = *(uint64_t **)(module_context + 0x10);
+  if (resource_ptr != (uint64_t *)0x0) {
     release_module_resources(module_context, *resource_ptr);
     deallocate_memory_buffer(resource_ptr);
     // 释放内存缓冲区（不返回）
     release_memory_buffer(resource_ptr);
   }
   *(longlong *)module_context = module_context;
-  *(undefined8 *)(module_context + 0x10) = 0;
-  *(undefined1 *)(module_context + 0x18) = 0;
-  *(undefined8 *)(module_context + 0x20) = 0;
+  *(uint64_t *)(module_context + 0x10) = 0;
+  *(int8_t *)(module_context + 0x18) = 0;
+  *(uint64_t *)(module_context + 0x20) = 0;
   *(longlong *)(module_context + 8) = module_context;
   return;
 }

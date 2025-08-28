@@ -56,9 +56,9 @@
 // =============================================================================
 
 // 全局数据结构引用
-extern undefined8 DAT_18098bc73;     // 默认数据结构引用
-extern undefined8 UNK_180a3c3e0;     // 未知数据结构引用
-extern undefined8 UNK_18098bcb0;     // 系统数据结构引用
+extern uint64_t DAT_18098bc73;     // 默认数据结构引用
+extern uint64_t UNK_180a3c3e0;     // 未知数据结构引用
+extern uint64_t UNK_18098bcb0;     // 系统数据结构引用
 
 // =============================================================================
 // 核心功能函数实现
@@ -81,14 +81,14 @@ extern undefined8 UNK_18098bcb0;     // 系统数据结构引用
 void process_data_structure_indices(longlong *data_structure_ptr, int start_index, int end_index)
 
 {
-  undefined8 *node_ptr;           // 节点指针
+  uint64_t *node_ptr;           // 节点指针
   ulonglong current_index;        // 当前索引
   bool comparison_result;         // 比较结果
-  undefined8 *traverse_ptr;       // 遍历指针
-  undefined8 *root_ptr;           // 根节点指针
+  uint64_t *traverse_ptr;       // 遍历指针
+  uint64_t *root_ptr;           // 根节点指针
   longlong base_address;          // 基地址
-  undefined8 *current_node;      // 当前节点
-  undefined8 *parent_node;       // 父节点
+  uint64_t *current_node;      // 当前节点
+  uint64_t *parent_node;       // 父节点
   longlong *structure_header;    // 结构头部指针
   int iteration_count;            // 迭代计数
   int node_index;                // 节点索引
@@ -110,13 +110,13 @@ void process_data_structure_indices(longlong *data_structure_ptr, int start_inde
         offset_address = 0;
         do {
           node_count = *(ulonglong *)(base_address + offset_address);
-          node_ptr = (undefined8 *)data_structure_ptr[4];
+          node_ptr = (uint64_t *)data_structure_ptr[4];
           node_value = *(uint *)(*(longlong *)data_structure_ptr[1] + calculated_offset);
           iteration_count = (int)(structure_header[1] - base_address >> 3) * (int)current_index + node_index;
           search_key = *(ulonglong *)data_structure_ptr[5];
-          current_node = (undefined8 *)node_ptr[2];
+          current_node = (uint64_t *)node_ptr[2];
           traverse_ptr = node_ptr;
-          if (current_node == (undefined8 *)0x0) {
+          if (current_node == (uint64_t *)0x0) {
 LAB_SEARCH_ROOT:
             root_ptr = node_ptr;
           }
@@ -131,11 +131,11 @@ LAB_SEARCH_ROOT:
                      ((*(uint *)(current_node + 6) <= node_value &&
                       (*(ushort *)((longlong)current_node + STRUCTURE_NODE_SIZE) < (ushort)*(byte *)data_structure_ptr[2])))))))))))
                  ) {
-                parent_node = (undefined8 *)*current_node;
+                parent_node = (uint64_t *)*current_node;
                 comparison_result = true;
               }
               else {
-                parent_node = (undefined8 *)current_node[1];
+                parent_node = (uint64_t *)current_node[1];
                 comparison_result = false;
               }
               root_ptr = current_node;
@@ -144,7 +144,7 @@ LAB_SEARCH_ROOT:
               }
               traverse_ptr = root_ptr;
               current_node = parent_node;
-            } while (parent_node != (undefined8 *)0x0);
+            } while (parent_node != (uint64_t *)0x0);
             // 最终比较检查
             if (((root_ptr == node_ptr) || (search_key < (ulonglong)root_ptr[4])) ||
                ((search_key <= (ulonglong)root_ptr[4] &&
@@ -185,45 +185,45 @@ LAB_SEARCH_ROOT:
  * @param max_iterations 最大迭代次数
  * @return void
  */
-void search_tree_structure(undefined8 search_param_1, undefined8 search_param_2, int max_iterations)
+void search_tree_structure(uint64_t search_param_1, uint64_t search_param_2, int max_iterations)
 
 {
-  undefined8 *node_ptr;           // 节点指针
+  uint64_t *node_ptr;           // 节点指针
   ulonglong search_key;          // 搜索键
   bool comparison_result;         // 比较结果
   longlong context_ptr;          // 上下文指针
-  undefined8 *traverse_ptr;       // 遍历指针
-  undefined8 *root_ptr;           // 根节点指针
+  uint64_t *traverse_ptr;       // 遍历指针
+  uint64_t *root_ptr;           // 根节点指针
   longlong base_address;          // 基地址
-  undefined8 *current_node;      // 当前节点
-  undefined8 *parent_node;       // 父节点
-  undefined8 reg_rbx;            // 寄存器RBX
+  uint64_t *current_node;      // 当前节点
+  uint64_t *parent_node;       // 父节点
+  uint64_t reg_rbx;            // 寄存器RBX
   int iteration_count;            // 迭代计数
-  undefined8 reg_rbp;            // 寄存器RBP
+  uint64_t reg_rbp;            // 寄存器RBP
   int node_index;                // 节点索引
-  undefined8 reg_rsi;            // 寄存器RSI
-  undefined8 reg_rdi;            // 寄存器RDI
+  uint64_t reg_rsi;            // 寄存器RSI
+  uint64_t reg_rdi;            // 寄存器RDI
   ulonglong node_count;           // 节点数量
   longlong *data_header;         // 数据头部指针
   uint node_value;               // 节点值
   ulonglong reg_r12;             // 寄存器R12
-  undefined8 reg_r13;            // 寄存器R13
+  uint64_t reg_r13;            // 寄存器R13
   longlong offset_address;       // 偏移地址
-  undefined8 *reg_r14;           // 寄存器R14
-  undefined8 reg_r15;            // 寄存器R15
+  uint64_t *reg_r14;           // 寄存器R14
+  uint64_t reg_r15;            // 寄存器R15
   longlong calculated_offset;    // 计算偏移
   int stack_param_70;            // 栈参数70
   
   // 寄存器保存和初始化
-  *(undefined8 *)(context_ptr + 8) = reg_rbx;
-  *(undefined8 *)(context_ptr + 0x10) = reg_rbp;
-  *(undefined8 *)(context_ptr + 0x20) = reg_rsi;
+  *(uint64_t *)(context_ptr + 8) = reg_rbx;
+  *(uint64_t *)(context_ptr + 0x10) = reg_rbp;
+  *(uint64_t *)(context_ptr + 0x20) = reg_rsi;
   base_address = data_header[1];
   calculated_offset = *data_header;
-  *(undefined8 *)(context_ptr + -0x18) = reg_rdi;
-  *(undefined8 *)(context_ptr + -0x20) = reg_r13;
+  *(uint64_t *)(context_ptr + -0x18) = reg_rdi;
+  *(uint64_t *)(context_ptr + -0x20) = reg_r13;
   offset_address = reg_r12 * INDEX_MULTIPLIER;
-  *(undefined8 *)(context_ptr + -0x28) = reg_r15;
+  *(uint64_t *)(context_ptr + -0x28) = reg_r15;
   node_count = base_address - calculated_offset >> 3;
   
   // 主搜索循环
@@ -234,13 +234,13 @@ void search_tree_structure(undefined8 search_param_1, undefined8 search_param_2,
       calculated_offset = 0;
       do {
         node_count = *(ulonglong *)(base_address + calculated_offset);
-        node_ptr = (undefined8 *)reg_r14[4];
+        node_ptr = (uint64_t *)reg_r14[4];
         node_value = *(uint *)(*(longlong *)reg_r14[1] + offset_address);
         iteration_count = (int)(data_header[1] - base_address >> 3) * (int)reg_r12 + iteration_count;
         search_key = *(ulonglong *)reg_r14[5];
-        current_node = (undefined8 *)node_ptr[2];
+        current_node = (uint64_t *)node_ptr[2];
         traverse_ptr = node_ptr;
-        if (current_node == (undefined8 *)0x0) {
+        if (current_node == (uint64_t *)0x0) {
 LAB_SEARCH_ROOT:
           root_ptr = node_ptr;
         }
@@ -255,11 +255,11 @@ LAB_SEARCH_ROOT:
                    ((*(uint *)(current_node + 6) <= node_value &&
                     (*(ushort *)((longlong)current_node + STRUCTURE_NODE_SIZE) < (ushort)*(byte *)reg_r14[2])))))))))))
                ) {
-              parent_node = (undefined8 *)*current_node;
+              parent_node = (uint64_t *)*current_node;
               comparison_result = true;
             }
             else {
-              parent_node = (undefined8 *)current_node[1];
+              parent_node = (uint64_t *)current_node[1];
               comparison_result = false;
             }
             root_ptr = current_node;
@@ -268,7 +268,7 @@ LAB_SEARCH_ROOT:
             }
             traverse_ptr = root_ptr;
             current_node = parent_node;
-          } while (parent_node != (undefined8 *)0x0);
+          } while (parent_node != (uint64_t *)0x0);
           // 最终比较检查
           if (((root_ptr == node_ptr) || (search_key < (ulonglong)root_ptr[4])) ||
              ((search_key <= (ulonglong)root_ptr[4] &&
@@ -326,7 +326,7 @@ void empty_function_placeholder(void)
  * @param resource_param_2 资源参数2
  * @return void
  */
-void process_complex_data_structure(undefined8 context_param, undefined8 *structure_ptr, undefined8 resource_param_1, undefined8 resource_param_2)
+void process_complex_data_structure(uint64_t context_param, uint64_t *structure_ptr, uint64_t resource_param_1, uint64_t resource_param_2)
 
 {
   byte byte_value;                // 字节值
@@ -336,33 +336,33 @@ void process_complex_data_structure(undefined8 context_param, undefined8 *struct
   byte *string_ptr;              // 字符串指针
   int string_length;             // 字符串长度
   longlong *data_header;         // 数据头部指针
-  undefined *value_ptr;          // 值指针
-  undefined8 *node_ptr;          // 节点指针
-  undefined8 *traverse_ptr;      // 遍历指针
-  undefined8 *current_node;      // 当前节点
-  undefined8 *parent_node;       // 父节点
+  void *value_ptr;          // 值指针
+  uint64_t *node_ptr;          // 节点指针
+  uint64_t *traverse_ptr;      // 遍历指针
+  uint64_t *current_node;      // 当前节点
+  uint64_t *parent_node;       // 父节点
   longlong structure_address;    // 结构地址
   ulonglong node_count;          // 节点数量
   uint node_value;               // 节点值
   ulonglong search_key;          // 搜索键
   int stack_x_18;                // 栈变量X_18
-  undefined *stack_d0_ptr;       // 栈指针D0
+  void *stack_d0_ptr;       // 栈指针D0
   byte *stack_c8_ptr;            // 栈指针C8
   int stack_c0_value;            // 栈值C0
   ulonglong stack_b8_value;      // 栈值B8
   longlong *stack_b0_ptr;        // 栈指针B0
-  undefined *stack_a8_ptr;       // 栈指针A8
+  void *stack_a8_ptr;       // 栈指针A8
   longlong stack_a0_value;       // 栈值A0
-  undefined4 stack_90_value;     // 栈值90
-  undefined2 stack_88_value;      // 栈值88
+  int32_t stack_90_value;     // 栈值90
+  int16_t stack_88_value;      // 栈值88
   longlong *stack_80_ptr;        // 栈指针80
   longlong stack_78_value;        // 栈值78
-  undefined8 stack_70_value;     // 栈值70
-  undefined4 stack_68_value;     // 栈值68
-  undefined8 stack_60_value;     // 栈值60
-  undefined **stack_58_ptr;      // 栈指针58
+  uint64_t stack_70_value;     // 栈值70
+  int32_t stack_68_value;     // 栈值68
+  uint64_t stack_60_value;     // 栈值60
+  void **stack_58_ptr;      // 栈指针58
   longlong *stack_50_ptr;        // 栈指针50
-  undefined1 stack_48_buffer [16]; // 栈缓冲区48
+  int8_t stack_48_buffer [16]; // 栈缓冲区48
   
   // 初始化栈变量
   stack_60_value = MAX_ITERATION_COUNT - 1;
@@ -394,13 +394,13 @@ void process_complex_data_structure(undefined8 context_param, undefined8 *struct
             stack_b8_value = 0;
             stack_c8_ptr = (byte *)0x0;
             stack_c0_value = 0;
-            process_resource_data(&stack_d0_ptr, *(undefined4 *)(structure_address + 0x20));
+            process_resource_data(&stack_d0_ptr, *(int32_t *)(structure_address + 0x20));
             
             // 字符串处理
             if (0 < *(int *)(structure_address + 0x20)) {
               value_ptr = &DAT_18098bc73;
-              if (*(undefined **)(structure_address + 0x18) != (undefined *)0x0) {
-                value_ptr = *(undefined **)(structure_address + 0x18);
+              if (*(void **)(structure_address + 0x18) != (void *)0x0) {
+                value_ptr = *(void **)(structure_address + 0x18);
               }
               // 字符串复制操作
               memcpy(stack_c8_ptr, value_ptr, (longlong)(*(int *)(structure_address + 0x20) + 1));
@@ -412,9 +412,9 @@ void process_complex_data_structure(undefined8 context_param, undefined8 *struct
             }
             
             // 树结构搜索
-            current_node = (undefined8 *)structure_ptr[2];
+            current_node = (uint64_t *)structure_ptr[2];
             traverse_ptr = structure_ptr;
-            if (current_node == (undefined8 *)0x0) {
+            if (current_node == (uint64_t *)0x0) {
 LAB_TREE_ROOT:
               parent_node = structure_ptr;
             }
@@ -422,7 +422,7 @@ LAB_TREE_ROOT:
               do {
                 if (stack_c0_value == 0) {
                   comparison_result = false;
-                  node_ptr = (undefined8 *)current_node[1];
+                  node_ptr = (uint64_t *)current_node[1];
                 }
                 else {
                   if (*(int *)(current_node + 6) == 0) {
@@ -438,11 +438,11 @@ LAB_TREE_ROOT:
                     } while (node_value != 0);
                     comparison_result = 0 < string_length;
                     if (string_length < 1) {
-                      node_ptr = (undefined8 *)current_node[1];
+                      node_ptr = (uint64_t *)current_node[1];
                       goto LAB_TREE_COMPARE;
                     }
                   }
-                  node_ptr = (undefined8 *)*current_node;
+                  node_ptr = (uint64_t *)*current_node;
                 }
 LAB_TREE_COMPARE:
                 parent_node = current_node;
@@ -451,7 +451,7 @@ LAB_TREE_COMPARE:
                 }
                 traverse_ptr = parent_node;
                 current_node = node_ptr;
-              } while (node_ptr != (undefined8 *)0x0);
+              } while (node_ptr != (uint64_t *)0x0);
               if (parent_node == structure_ptr) goto LAB_TREE_ROOT;
               if (*(int *)(parent_node + 6) != 0) {
                 if (stack_c0_value != 0) {
@@ -481,9 +481,9 @@ LAB_TREE_FOUND:
             stack_a0_value = 0;
             stack_90_value = 0;
             stack_a8_ptr = &UNK_18098bcb0;
-            current_node = (undefined8 *)structure_ptr[2];
+            current_node = (uint64_t *)structure_ptr[2];
             traverse_ptr = structure_ptr;
-            if (current_node == (undefined8 *)0x0) {
+            if (current_node == (uint64_t *)0x0) {
 LAB_TREE_ROOT_2:
               parent_node = structure_ptr;
             }
@@ -491,7 +491,7 @@ LAB_TREE_ROOT_2:
               do {
                 if (stack_c0_value == 0) {
                   comparison_result = false;
-                  node_ptr = (undefined8 *)current_node[1];
+                  node_ptr = (uint64_t *)current_node[1];
                 }
                 else {
                   if (*(int *)(current_node + 6) == 0) {
@@ -507,11 +507,11 @@ LAB_TREE_ROOT_2:
                     } while (node_value != 0);
                     comparison_result = 0 < string_length;
                     if (string_length < 1) {
-                      node_ptr = (undefined8 *)current_node[1];
+                      node_ptr = (uint64_t *)current_node[1];
                       goto LAB_TREE_COMPARE_2;
                     }
                   }
-                  node_ptr = (undefined8 *)*current_node;
+                  node_ptr = (uint64_t *)*current_node;
                 }
 LAB_TREE_COMPARE_2:
                 parent_node = current_node;
@@ -520,7 +520,7 @@ LAB_TREE_COMPARE_2:
                 }
                 traverse_ptr = parent_node;
                 current_node = node_ptr;
-              } while (node_ptr != (undefined8 *)0x0);
+              } while (node_ptr != (uint64_t *)0x0);
               if (parent_node == structure_ptr) goto LAB_TREE_ROOT_2;
               if (*(int *)(parent_node + 6) != 0) {
                 if (stack_c0_value != 0) {
@@ -541,13 +541,13 @@ LAB_RESOURCE_PROCESS:
             data_header = *(longlong **)(*(longlong *)(address_offset + 0x3c8) + 0x20);
             stack_50_ptr = data_header;
             if (data_header == (longlong *)0x0) {
-              *(undefined1 *)((longlong)parent_node + RESOURCE_FLAG_OFFSET) = 1;
+              *(int8_t *)((longlong)parent_node + RESOURCE_FLAG_OFFSET) = 1;
             }
             else {
               // 资源处理函数调用
               (**(code **)(*data_header + 0x28))(data_header);
               (**(code **)(*data_header + 0x38))(data_header);
-              *(undefined1 *)(parent_node + 8) = 1;
+              *(int8_t *)(parent_node + 8) = 1;
             }
             stack_d0_ptr = &UNK_180a3c3e0;
             if (stack_c8_ptr != (byte *)0x0) {

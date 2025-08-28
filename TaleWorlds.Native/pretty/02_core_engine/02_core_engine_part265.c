@@ -55,33 +55,33 @@ void 复制场景对象组件数据(longlong target_object, longlong source_obje
   longlong *source_component_ptr;      // 源组件指针
   longlong *target_component_ptr;      // 目标组件指针
   longlong *temp_component_ptr;        // 临时组件指针
-  undefined8 temp_value_64bit;         // 64位临时值
-  undefined4 temp_value_32bit;         // 32位临时值
+  uint64_t temp_value_64bit;         // 64位临时值
+  int32_t temp_value_32bit;         // 32位临时值
   bool event_registration_success;     // 事件注册成功标志
   bool lifecycle_event_active;         // 生命周期事件活动标志
   char lifecycle_check_result;         // 生命周期检查结果
-  undefined4 *event_string_ptr;       // 事件字符串指针
+  int32_t *event_string_ptr;       // 事件字符串指针
   ulonglong event_bitmask;             // 事件位掩码
   longlong *reference_count_ptr;       // 引用计数指针
-  undefined *object_name_ptr;          // 对象名称指针
+  void *object_name_ptr;          // 对象名称指针
   longlong component_loop_counter;     // 组件循环计数器
   longlong render_loop_counter;        // 渲染组件循环计数器
   
   // 堆栈缓冲区 - 用于堆栈保护检查
-  undefined1 stack_protection_buffer_1[32];
-  undefined *stack_context_ptr_1;
-  undefined4 *stack_context_ptr_2;
-  undefined4 stack_temp_value_1;
+  int8_t stack_protection_buffer_1[32];
+  void *stack_context_ptr_1;
+  int32_t *stack_context_ptr_2;
+  int32_t stack_temp_value_1;
   ulonglong stack_temp_value_2;
-  undefined4 stack_temp_value_3;
-  undefined8 stack_temp_value_4;
-  undefined *stack_context_ptr_3;
-  undefined1 *stack_context_ptr_4;
-  undefined4 stack_temp_value_5;
+  int32_t stack_temp_value_3;
+  uint64_t stack_temp_value_4;
+  void *stack_context_ptr_3;
+  int8_t *stack_context_ptr_4;
+  int32_t stack_temp_value_5;
   
   // 生命周期事件处理缓冲区
-  undefined1 lifecycle_event_buffer[24];
-  undefined8 stack_temp_value_6;
+  int8_t lifecycle_event_buffer[24];
+  uint64_t stack_temp_value_6;
   ulonglong stack_protection_value;
   
   // 初始化堆栈保护
@@ -89,55 +89,55 @@ void 复制场景对象组件数据(longlong target_object, longlong source_obje
   
   // 第一阶段：复制基础属性值 (0x138 - 0x284)
   // 这些是对象的基本变换和渲染属性
-  *(undefined4 *)(target_object + 0x138) = *(undefined4 *)(source_object + 0x138);  // 基础属性1
-  *(undefined4 *)(target_object + 0x25c) = *(undefined4 *)(source_object + 0x25c);  // 渲染属性1
-  *(undefined4 *)(target_object + 0x260) = *(undefined4 *)(source_object + 0x260);  // 渲染属性2
-  *(undefined4 *)(target_object + 0x264) = *(undefined4 *)(source_object + 0x264);  // 渲染属性3
-  *(undefined4 *)(target_object + 0x268) = *(undefined4 *)(source_object + 0x268);  // 渲染属性4
-  *(undefined4 *)(target_object + 0x278) = *(undefined4 *)(source_object + 0x278);  // 材质属性1
-  *(undefined4 *)(target_object + 0x27c) = *(undefined4 *)(source_object + 0x27c);  // 材质属性2
-  *(undefined4 *)(target_object + 0x280) = *(undefined4 *)(source_object + 0x280);  // 材质属性3
-  *(undefined4 *)(target_object + 0x284) = *(undefined4 *)(source_object + 0x284);  // 材质属性4
+  *(int32_t *)(target_object + 0x138) = *(int32_t *)(source_object + 0x138);  // 基础属性1
+  *(int32_t *)(target_object + 0x25c) = *(int32_t *)(source_object + 0x25c);  // 渲染属性1
+  *(int32_t *)(target_object + 0x260) = *(int32_t *)(source_object + 0x260);  // 渲染属性2
+  *(int32_t *)(target_object + 0x264) = *(int32_t *)(source_object + 0x264);  // 渲染属性3
+  *(int32_t *)(target_object + 0x268) = *(int32_t *)(source_object + 0x268);  // 渲染属性4
+  *(int32_t *)(target_object + 0x278) = *(int32_t *)(source_object + 0x278);  // 材质属性1
+  *(int32_t *)(target_object + 0x27c) = *(int32_t *)(source_object + 0x27c);  // 材质属性2
+  *(int32_t *)(target_object + 0x280) = *(int32_t *)(source_object + 0x280);  // 材质属性3
+  *(int32_t *)(target_object + 0x284) = *(int32_t *)(source_object + 0x284);  // 材质属性4
   
   // 第二阶段：复制64位变换数据 (0x288 - 0x2b0)
   // 包含位置、旋转、缩放等变换矩阵数据
-  temp_value_64bit = *(undefined8 *)(source_object + 0x290);  // 保存临时值
-  *(undefined8 *)(target_object + 0x288) = *(undefined8 *)(source_object + 0x288);  // 变换数据1
-  *(undefined8 *)(target_object + 0x290) = temp_value_64bit;                    // 变换数据2
-  temp_value_64bit = *(undefined8 *)(source_object + 0x2a0);  // 保存临时值
-  *(undefined8 *)(target_object + 0x298) = *(undefined8 *)(source_object + 0x298);  // 变换数据3
-  *(undefined8 *)(target_object + 0x2a0) = temp_value_64bit;                    // 变换数据4
-  temp_value_64bit = *(undefined8 *)(source_object + 0x2b0);  // 保存临时值
-  *(undefined8 *)(target_object + 0x2a8) = *(undefined8 *)(source_object + 0x2a8);  // 变换数据5
-  *(undefined8 *)(target_object + 0x2b0) = temp_value_64bit;                    // 变换数据6
+  temp_value_64bit = *(uint64_t *)(source_object + 0x290);  // 保存临时值
+  *(uint64_t *)(target_object + 0x288) = *(uint64_t *)(source_object + 0x288);  // 变换数据1
+  *(uint64_t *)(target_object + 0x290) = temp_value_64bit;                    // 变换数据2
+  temp_value_64bit = *(uint64_t *)(source_object + 0x2a0);  // 保存临时值
+  *(uint64_t *)(target_object + 0x298) = *(uint64_t *)(source_object + 0x298);  // 变换数据3
+  *(uint64_t *)(target_object + 0x2a0) = temp_value_64bit;                    // 变换数据4
+  temp_value_64bit = *(uint64_t *)(source_object + 0x2b0);  // 保存临时值
+  *(uint64_t *)(target_object + 0x2a8) = *(uint64_t *)(source_object + 0x2a8);  // 变换数据5
+  *(uint64_t *)(target_object + 0x2b0) = temp_value_64bit;                    // 变换数据6
   
   // 第三阶段：复制高级属性 (0x2b8 - 0x2e0)
-  temp_value_32bit = *(undefined4 *)(source_object + 700);    // 保存临时值
-  undefined4 temp_render_attr_1 = *(undefined4 *)(source_object + 0x2c0);  // 渲染属性
-  undefined4 temp_render_attr_2 = *(undefined4 *)(source_object + 0x2c4);  // 渲染属性
-  *(undefined4 *)(target_object + 0x2b8) = *(undefined4 *)(source_object + 0x2b8);  // 高级属性1
-  *(undefined4 *)(target_object + 700) = temp_value_32bit;                  // 高级属性2
-  *(undefined4 *)(target_object + 0x2c0) = temp_render_attr_1;              // 渲染属性
-  *(undefined4 *)(target_object + 0x2c4) = temp_render_attr_2;              // 渲染属性
-  *(undefined4 *)(target_object + 0x2c8) = *(undefined4 *)(source_object + 0x2c8);  // 高级属性3
-  *(undefined4 *)(target_object + 0x2e0) = *(undefined4 *)(source_object + 0x2e0);  // 高级属性4
+  temp_value_32bit = *(int32_t *)(source_object + 700);    // 保存临时值
+  int32_t temp_render_attr_1 = *(int32_t *)(source_object + 0x2c0);  // 渲染属性
+  int32_t temp_render_attr_2 = *(int32_t *)(source_object + 0x2c4);  // 渲染属性
+  *(int32_t *)(target_object + 0x2b8) = *(int32_t *)(source_object + 0x2b8);  // 高级属性1
+  *(int32_t *)(target_object + 700) = temp_value_32bit;                  // 高级属性2
+  *(int32_t *)(target_object + 0x2c0) = temp_render_attr_1;              // 渲染属性
+  *(int32_t *)(target_object + 0x2c4) = temp_render_attr_2;              // 渲染属性
+  *(int32_t *)(target_object + 0x2c8) = *(int32_t *)(source_object + 0x2c8);  // 高级属性3
+  *(int32_t *)(target_object + 0x2e0) = *(int32_t *)(source_object + 0x2e0);  // 高级属性4
   
   // 第四阶段：复制字符串数据 (对象名称等)
   object_name_ptr = &DEFAULT_STRING_DATA;
-  if (*(undefined **)(source_object + 0x2d8) != (undefined *)0x0) {
-    object_name_ptr = *(undefined **)(source_object + 0x2d8);
+  if (*(void **)(source_object + 0x2d8) != (void *)0x0) {
+    object_name_ptr = *(void **)(source_object + 0x2d8);
   }
-  stack_context_ptr_4 = (undefined1 *)0x18022c87f;  // 调试信息指针
-  strcpy_s(*(undefined8 *)(target_object + 0x2d8), OBJECT_NAME_MAX_LENGTH, object_name_ptr);
+  stack_context_ptr_4 = (int8_t *)0x18022c87f;  // 调试信息指针
+  strcpy_s(*(uint64_t *)(target_object + 0x2d8), OBJECT_NAME_MAX_LENGTH, object_name_ptr);
   
   // 第五阶段：复制状态标志
-  *(undefined1 *)(target_object + 0x13c) = *(undefined1 *)(source_object + 0x13c);  // 对象状态标志
-  *(undefined4 *)(target_object + 600) = *(undefined4 *)(source_object + 600);      // 状态数据
+  *(int8_t *)(target_object + 0x13c) = *(int8_t *)(source_object + 0x13c);  // 对象状态标志
+  *(int32_t *)(target_object + 600) = *(int32_t *)(source_object + 600);      // 状态数据
   
   // 第六阶段：处理引用计数 (对象类型信息)
   reference_count_ptr = *(longlong **)(source_object + OFFSET_OBJECT_TYPE_INFO);
   if (reference_count_ptr != (longlong *)0x0) {
-    stack_context_ptr_4 = (undefined1 *)0x18022c8b2;  // 调试信息指针
+    stack_context_ptr_4 = (int8_t *)0x18022c8b2;  // 调试信息指针
     // 增加源对象引用计数
     (**(code **)(*reference_count_ptr + 0x28))(reference_count_ptr);
   }
@@ -146,17 +146,17 @@ void 复制场景对象组件数据(longlong target_object, longlong source_obje
   temp_component_ptr = *(longlong **)(target_object + OFFSET_OBJECT_TYPE_INFO);
   *(longlong **)(target_object + OFFSET_OBJECT_TYPE_INFO) = reference_count_ptr;
   if (temp_component_ptr != (longlong *)0x0) {
-    stack_context_ptr_4 = (undefined1 *)0x18022c8d1;  // 调试信息指针
+    stack_context_ptr_4 = (int8_t *)0x18022c8d1;  // 调试信息指针
     // 减少旧引用的计数
     (**(code **)(*temp_component_ptr + 0x38))();
   }
   
   // 第七阶段：复制更多状态数据
-  *(undefined4 *)(target_object + 0x388) = *(undefined4 *)(source_object + 0x388);  // 状态标志1
-  *(undefined1 *)(target_object + 0x38c) = *(undefined1 *)(source_object + 0x38c);  // 状态标志2
-  *(undefined4 *)(target_object + 0x26c) = *(undefined4 *)(source_object + 0x26c);  // 变换属性1
-  *(undefined4 *)(target_object + 0x270) = *(undefined4 *)(source_object + 0x270);  // 变换属性2
-  *(undefined4 *)(target_object + 0x274) = *(undefined4 *)(source_object + 0x274);  // 变换属性3
+  *(int32_t *)(target_object + 0x388) = *(int32_t *)(source_object + 0x388);  // 状态标志1
+  *(int8_t *)(target_object + 0x38c) = *(int8_t *)(source_object + 0x38c);  // 状态标志2
+  *(int32_t *)(target_object + 0x26c) = *(int32_t *)(source_object + 0x26c);  // 变换属性1
+  *(int32_t *)(target_object + 0x270) = *(int32_t *)(source_object + 0x270);  // 变换属性2
+  *(int32_t *)(target_object + 0x274) = *(int32_t *)(source_object + 0x274);  // 变换属性3
   
   // 第八阶段：处理主组件数组 (16个元素)
   reference_count_ptr = (longlong *)(target_object + OFFSET_OBJECT_COMPONENT_ARRAY);
@@ -167,7 +167,7 @@ void 复制场景对象组件数据(longlong target_object, longlong source_obje
     // 获取源组件并增加引用计数
     source_component_ptr = *(longlong **)((source_object - target_object) + (longlong)reference_count_ptr);
     if (source_component_ptr != (longlong *)0x0) {
-      stack_context_ptr_4 = (undefined1 *)0x18022c947;  // 调试信息指针
+      stack_context_ptr_4 = (int8_t *)0x18022c947;  // 调试信息指针
       (**(code **)(*source_component_ptr + 0x28))(source_component_ptr);
     }
     
@@ -175,7 +175,7 @@ void 复制场景对象组件数据(longlong target_object, longlong source_obje
     target_component_ptr = (longlong *)*reference_count_ptr;
     *reference_count_ptr = (longlong)source_component_ptr;
     if (target_component_ptr != (longlong *)0x0) {
-      stack_context_ptr_4 = (undefined1 *)0x18022c95e;  // 调试信息指针
+      stack_context_ptr_4 = (int8_t *)0x18022c95e;  // 调试信息指针
       (**(code **)(*target_component_ptr + 0x38))();
     }
     
@@ -184,41 +184,41 @@ void 复制场景对象组件数据(longlong target_object, longlong source_obje
   } while (component_loop_counter != 0);
   
   // 第九阶段：复制事件掩码
-  *(undefined8 *)(target_object + OFFSET_OBJECT_EVENT_MASK) = *(undefined8 *)(source_object + OFFSET_OBJECT_EVENT_MASK);
-  stack_context_ptr_4 = (undefined1 *)0x18022c97e;  // 调试信息指针
+  *(uint64_t *)(target_object + OFFSET_OBJECT_EVENT_MASK) = *(uint64_t *)(source_object + OFFSET_OBJECT_EVENT_MASK);
+  stack_context_ptr_4 = (int8_t *)0x18022c97e;  // 调试信息指针
   update_object_event_mask(target_object);
   
   // 第十阶段：设置组件掩码标志
-  *(undefined2 *)(target_object + 0x3c0) = FULL_COMPONENT_MASK;
+  *(int16_t *)(target_object + 0x3c0) = FULL_COMPONENT_MASK;
   
   // 第十一阶段：复制变换数据矩阵
-  *(undefined8 *)(target_object + OFFSET_OBJECT_TRANSFORM_DATA) = *(undefined8 *)(source_object + OFFSET_OBJECT_TRANSFORM_DATA);      // 变换矩阵1
-  *(undefined8 *)(target_object + 0x3a8) = *(undefined8 *)(source_object + 0x3a8);  // 变换矩阵2
-  *(undefined8 *)(target_object + 0x3b0) = *(undefined8 *)(source_object + 0x3b0);  // 变换矩阵3
-  *(undefined8 *)(target_object + 0x3b8) = *(undefined8 *)(source_object + 0x3b8);  // 变换矩阵4
-  *(undefined8 *)(target_object + 0x398) = *(undefined8 *)(source_object + 0x398);  // 变换矩阵5
-  *(undefined8 *)(target_object + 0x3a0) = *(undefined8 *)(source_object + 0x3a0);  // 变换矩阵6
+  *(uint64_t *)(target_object + OFFSET_OBJECT_TRANSFORM_DATA) = *(uint64_t *)(source_object + OFFSET_OBJECT_TRANSFORM_DATA);      // 变换矩阵1
+  *(uint64_t *)(target_object + 0x3a8) = *(uint64_t *)(source_object + 0x3a8);  // 变换矩阵2
+  *(uint64_t *)(target_object + 0x3b0) = *(uint64_t *)(source_object + 0x3b0);  // 变换矩阵3
+  *(uint64_t *)(target_object + 0x3b8) = *(uint64_t *)(source_object + 0x3b8);  // 变换矩阵4
+  *(uint64_t *)(target_object + 0x398) = *(uint64_t *)(source_object + 0x398);  // 变换矩阵5
+  *(uint64_t *)(target_object + 0x3a0) = *(uint64_t *)(source_object + 0x3a0);  // 变换矩阵6
   
   // 第十二阶段：复制纹理数据
-  stack_context_ptr_4 = (undefined1 *)0x18022c9ee;  // 调试信息指针
+  stack_context_ptr_4 = (int8_t *)0x18022c9ee;  // 调试信息指针
   复制纹理数据(target_object + OFFSET_OBJECT_TEXTURE_DATA, source_object + OFFSET_OBJECT_TEXTURE_DATA);
   
   // 第十三阶段：复制渲染状态
-  *(undefined1 *)(target_object + OFFSET_OBJECT_RENDER_STATE) = *(undefined1 *)(source_object + OFFSET_OBJECT_RENDER_STATE);
+  *(int8_t *)(target_object + OFFSET_OBJECT_RENDER_STATE) = *(int8_t *)(source_object + OFFSET_OBJECT_RENDER_STATE);
   reference_count_ptr = (longlong *)(target_object + OFFSET_OBJECT_RENDER_COMPONENT_ARRAY);
   
   do {
     // 处理渲染组件数组 (16个元素)
     source_component_ptr = *(longlong **)(((source_object + OFFSET_OBJECT_RENDER_STATE) - (target_object + OFFSET_OBJECT_RENDER_STATE)) + (longlong)reference_count_ptr);
     if (source_component_ptr != (longlong *)0x0) {
-      stack_context_ptr_4 = (undefined1 *)0x18022ca27;  // 调试信息指针
+      stack_context_ptr_4 = (int8_t *)0x18022ca27;  // 调试信息指针
       (**(code **)(*source_component_ptr + 0x28))(source_component_ptr);
     }
     
     target_component_ptr = (longlong *)*reference_count_ptr;
     *reference_count_ptr = (longlong)source_component_ptr;
     if (target_component_ptr != (longlong *)0x0) {
-      stack_context_ptr_4 = (undefined1 *)0x18022ca3e;  // 调试信息指针
+      stack_context_ptr_4 = (int8_t *)0x18022ca3e;  // 调试信息指针
       (**(code **)(*target_component_ptr + 0x38))();
     }
     
@@ -227,10 +227,10 @@ void 复制场景对象组件数据(longlong target_object, longlong source_obje
   } while (render_loop_counter != 0);
   
   // 第十四阶段：复制碰撞数据
-  *(undefined1 *)(target_object + OFFSET_OBJECT_COLLISION) = *(undefined1 *)(source_object + OFFSET_OBJECT_COLLISION);
-  *(undefined8 *)(target_object + OFFSET_OBJECT_RENDERER) = *(undefined8 *)(source_object + OFFSET_OBJECT_RENDERER);
-  *(undefined8 *)(target_object + OFFSET_OBJECT_PHYSICS) = *(undefined8 *)(source_object + OFFSET_OBJECT_PHYSICS);
-  stack_context_ptr_4 = (undefined1 *)0x18022ca86;  // 调试信息指针
+  *(int8_t *)(target_object + OFFSET_OBJECT_COLLISION) = *(int8_t *)(source_object + OFFSET_OBJECT_COLLISION);
+  *(uint64_t *)(target_object + OFFSET_OBJECT_RENDERER) = *(uint64_t *)(source_object + OFFSET_OBJECT_RENDERER);
+  *(uint64_t *)(target_object + OFFSET_OBJECT_PHYSICS) = *(uint64_t *)(source_object + OFFSET_OBJECT_PHYSICS);
+  stack_context_ptr_4 = (int8_t *)0x18022ca86;  // 调试信息指针
   复制纹理数据(target_object + OFFSET_OBJECT_TEXTURE_DATA, source_object + OFFSET_OBJECT_TEXTURE_DATA);
   
   // 第十五阶段：初始化生命周期事件处理
@@ -238,7 +238,7 @@ void 复制场景对象组件数据(longlong target_object, longlong source_obje
   stack_protection_value = _DAT_180bf00a8 ^ (ulonglong)stack_protection_buffer_1;
   event_registration_success = false;
   stack_temp_value_3 = 0;
-  *(undefined8 *)(target_object + OFFSET_OBJECT_LIFETIME_EVENT) = 0;
+  *(uint64_t *)(target_object + OFFSET_OBJECT_LIFETIME_EVENT) = 0;
   
   // 检查是否需要处理生存期事件
   if (LIFETIME_EVENT_ENABLED == 0) goto 跳过生命周期事件处理;
@@ -257,14 +257,14 @@ void 复制场景对象组件数据(longlong target_object, longlong source_obje
   }
   else {
     // 注册生存期事件监听器
-    temp_value_64bit = *(undefined8 *)(target_object + OFFSET_OBJECT_TYPE_INFO);
+    temp_value_64bit = *(uint64_t *)(target_object + OFFSET_OBJECT_TYPE_INFO);
     stack_context_ptr_1 = &EVENT_LOG_BUFFER;
     stack_temp_value_2 = 0;
-    stack_context_ptr_2 = (undefined4 *)0x0;
+    stack_context_ptr_2 = (int32_t *)0x0;
     stack_temp_value_1 = 0;
     
-    event_string_ptr = (undefined4 *)allocate_event_string(_DAT_180c8ed18, 0x16, 0x13);
-    *(undefined1 *)event_string_ptr = 0;
+    event_string_ptr = (int32_t *)allocate_event_string(_DAT_180c8ed18, 0x16, 0x13);
+    *(int8_t *)event_string_ptr = 0;
     stack_context_ptr_2 = event_string_ptr;
     
     temp_value_32bit = initialize_event_string(event_string_ptr);
@@ -276,7 +276,7 @@ void 复制场景对象组件数据(longlong target_object, longlong source_obje
     event_string_ptr[2] = 0x5f6c6175;  // "_lau"
     event_string_ptr[3] = 0x74786574;  // "txet"
     event_string_ptr[4] = 0x6e697275;  // "niru"
-    *(undefined2 *)(event_string_ptr + 5) = 0x67;  // "g"
+    *(int16_t *)(event_string_ptr + 5) = 0x67;  // "g"
     
     stack_temp_value_1 = 0x15;
     event_registration_success = true;
@@ -291,11 +291,11 @@ void 复制场景对象组件数据(longlong target_object, longlong source_obje
   if (event_registration_success) {
     stack_temp_value_3 = 0;
     stack_context_ptr_1 = &EVENT_LOG_BUFFER;
-    if (event_string_ptr != (undefined4 *)0x0) {
+    if (event_string_ptr != (int32_t *)0x0) {
       // WARNING: Subroutine does not return
       free_event_string(event_string_ptr);
     }
-    stack_context_ptr_2 = (undefined4 *)0x0;
+    stack_context_ptr_2 = (int32_t *)0x0;
     stack_temp_value_2 = stack_temp_value_2 & 0xffffffff00000000;
     stack_context_ptr_1 = &MEMORY_CLEANUP_FLAG;
   }
@@ -304,10 +304,10 @@ void 复制场景对象组件数据(longlong target_object, longlong source_obje
   if (lifecycle_event_active) {
     // 检查场景数据有效性
     if (*(longlong *)(target_object + OFFSET_OBJECT_SCENE_DATA) != 0) {
-      *(undefined1 *)(target_object + OFFSET_OBJECT_LIFETIME_FLAG) = 1;
+      *(int8_t *)(target_object + OFFSET_OBJECT_LIFETIME_FLAG) = 1;
       initialize_object_lifecycle(&stack_context_ptr_1, target_object);
-      if (*(undefined **)(target_object + OFFSET_OBJECT_TEXTURE_DATA) != stack_context_ptr_1) {
-        *(undefined2 *)(target_object + OFFSET_OBJECT_LIFETIME_FLAG) = 0;
+      if (*(void **)(target_object + OFFSET_OBJECT_TEXTURE_DATA) != stack_context_ptr_1) {
+        *(int16_t *)(target_object + OFFSET_OBJECT_LIFETIME_FLAG) = 0;
       }
     }
     
@@ -315,23 +315,23 @@ void 复制场景对象组件数据(longlong target_object, longlong source_obje
     if (*(char *)(target_object + OFFSET_OBJECT_LIFETIME_FLAG) != '\0') {
       // 更新主组件数组的生存期引用
       if (*(longlong *)(target_object + OFFSET_OBJECT_COMPONENT_ARRAY) != 0) {
-        *(undefined8 *)(*(longlong *)(target_object + OFFSET_OBJECT_COMPONENT_ARRAY) + 0x348) = 
-          *(undefined8 *)(target_object + OFFSET_OBJECT_TEXTURE_DATA);
-        *(undefined4 *)(*(longlong *)(target_object + OFFSET_OBJECT_COMPONENT_ARRAY) + 0x350) = 0;
+        *(uint64_t *)(*(longlong *)(target_object + OFFSET_OBJECT_COMPONENT_ARRAY) + 0x348) = 
+          *(uint64_t *)(target_object + OFFSET_OBJECT_TEXTURE_DATA);
+        *(int32_t *)(*(longlong *)(target_object + OFFSET_OBJECT_COMPONENT_ARRAY) + 0x350) = 0;
       }
       
       // 更新渲染组件数组的生存期引用
       if (*(longlong *)(target_object + 200) != 0) {
-        *(undefined8 *)(*(longlong *)(target_object + 200) + 0x348) = 
-          *(undefined8 *)(target_object + OFFSET_OBJECT_TEXTURE_DATA);
-        *(undefined4 *)(*(longlong *)(target_object + 200) + 0x350) = 1;
+        *(uint64_t *)(*(longlong *)(target_object + 200) + 0x348) = 
+          *(uint64_t *)(target_object + OFFSET_OBJECT_TEXTURE_DATA);
+        *(int32_t *)(*(longlong *)(target_object + 200) + 0x350) = 1;
       }
       
       // 更新其他组件的生存期引用
       if (*(longlong *)(target_object + 0xd8) != 0) {
-        *(undefined8 *)(*(longlong *)(target_object + 0xd8) + 0x348) = 
-          *(undefined8 *)(target_object + OFFSET_OBJECT_TEXTURE_DATA);
-        *(undefined4 *)(*(longlong *)(target_object + 0xd8) + 0x350) = 2;
+        *(uint64_t *)(*(longlong *)(target_object + 0xd8) + 0x348) = 
+          *(uint64_t *)(target_object + OFFSET_OBJECT_TEXTURE_DATA);
+        *(int32_t *)(*(longlong *)(target_object + 0xd8) + 0x350) = 2;
       }
       
       // 注册组件事件
@@ -341,25 +341,25 @@ void 复制场景对象组件数据(longlong target_object, longlong source_obje
       stack_temp_value_5 = 0x15;
       strcpy_s(lifecycle_event_buffer, EVENT_STRING_MAX_LENGTH, &COMPONENT_EVENT_DATA);
       
-      event_bitmask = register_event_listener(*(undefined8 *)(target_object + OFFSET_OBJECT_TYPE_INFO), 
+      event_bitmask = register_event_listener(*(uint64_t *)(target_object + OFFSET_OBJECT_TYPE_INFO), 
                                             &stack_context_ptr_3, 1);
       *(ulonglong *)(target_object + OFFSET_OBJECT_EVENT_MASK) = 
         *(ulonglong *)(target_object + OFFSET_OBJECT_EVENT_MASK) | event_bitmask;
       
       update_object_event_mask(target_object);
-      *(undefined2 *)(target_object + 0x3c0) = FULL_COMPONENT_MASK;
+      *(int16_t *)(target_object + 0x3c0) = FULL_COMPONENT_MASK;
       stack_context_ptr_3 = &MEMORY_CLEANUP_FLAG;
-      *(undefined4 *)(target_object + OFFSET_OBJECT_LIFETIME_EVENT) = 1;
+      *(int32_t *)(target_object + OFFSET_OBJECT_LIFETIME_EVENT) = 1;
       
       // 记录调试事件: "_use_build_color_control_with_sample_texture"
-      temp_value_64bit = *(undefined8 *)(target_object + OFFSET_OBJECT_TYPE_INFO);
+      temp_value_64bit = *(uint64_t *)(target_object + OFFSET_OBJECT_TYPE_INFO);
       stack_context_ptr_1 = &EVENT_LOG_BUFFER;
       stack_temp_value_2 = 0;
-      stack_context_ptr_2 = (undefined4 *)0x0;
+      stack_context_ptr_2 = (int32_t *)0x0;
       stack_temp_value_1 = 0;
       
-      event_string_ptr = (undefined4 *)allocate_event_string(_DAT_180c8ed18, 0x26, 0x13);
-      *(undefined1 *)event_string_ptr = 0;
+      event_string_ptr = (int32_t *)allocate_event_string(_DAT_180c8ed18, 0x26, 0x13);
+      *(int8_t *)event_string_ptr = 0;
       stack_context_ptr_2 = event_string_ptr;
       
       temp_value_32bit = initialize_event_string(event_string_ptr);
@@ -374,7 +374,7 @@ void 复制场景对象组件数据(longlong target_object, longlong source_obje
       event_string_ptr[6] = 0x73616d5f;  // "sam_"
       event_string_ptr[7] = 0x65745f6b;  // "et_k"
       event_string_ptr[8] = 0x72757478;  // "rutx"
-      *(undefined2 *)(event_string_ptr + 9) = 0x65;  // "e"
+      *(int16_t *)(event_string_ptr + 9) = 0x65;  // "e"
       
       stack_temp_value_1 = 0x25;
       register_event_listener(temp_value_64bit, &stack_context_ptr_1, 0);
@@ -390,7 +390,7 @@ void 复制场景对象组件数据(longlong target_object, longlong source_obje
     stack_temp_value_5 = 0x15;
     strcpy_s(lifecycle_event_buffer, EVENT_STRING_MAX_LENGTH, &COMPONENT_EVENT_DATA);
     
-    event_bitmask = register_event_listener(*(undefined8 *)(target_object + OFFSET_OBJECT_TYPE_INFO), 
+    event_bitmask = register_event_listener(*(uint64_t *)(target_object + OFFSET_OBJECT_TYPE_INFO), 
                                           &stack_context_ptr_3, 1);
     *(ulonglong *)(target_object + OFFSET_OBJECT_EVENT_MASK) = 
       *(ulonglong *)(target_object + OFFSET_OBJECT_EVENT_MASK) & ~event_bitmask;
@@ -423,11 +423,11 @@ void 复制场景对象组件数据(longlong target_object, longlong source_obje
  * - 第6个元素开始：纹理数据块数组
  * - 每个数据块包含：数据指针和名称字符串
  */
-undefined8 *复制纹理数据(undefined8 *dest, undefined8 *source) {
-  undefined *source_name_ptr;        // 源纹理名称指针
-  undefined8 *texture_data_ptr;     // 纹理数据指针
+uint64_t *复制纹理数据(uint64_t *dest, uint64_t *source) {
+  void *source_name_ptr;        // 源纹理名称指针
+  uint64_t *texture_data_ptr;     // 纹理数据指针
   longlong texture_block_counter;    // 纹理块计数器
-  undefined *default_name_ptr;       // 默认名称指针
+  void *default_name_ptr;       // 默认名称指针
   
   // 初始化纹理数据指针和计数器
   texture_data_ptr = dest + 5;  // 跳过前5个基本属性
@@ -436,19 +436,19 @@ undefined8 *复制纹理数据(undefined8 *dest, undefined8 *source) {
   texture_block_counter = 2;    // 从第3个属性开始
   
   // 复制纹理基本属性
-  *(undefined1 *)(dest + 2) = *(undefined1 *)(source + 2);  // 第3个属性（字节）
-  *(undefined1 *)((longlong)dest + 0x11) = *(undefined1 *)((longlong)source + 0x11);  // 第17个属性（字节）
+  *(int8_t *)(dest + 2) = *(int8_t *)(source + 2);  // 第3个属性（字节）
+  *(int8_t *)((longlong)dest + 0x11) = *(int8_t *)((longlong)source + 0x11);  // 第17个属性（字节）
   
   // 复制纹理数据块（7个块）
   do {
     // 复制纹理数据块的32位数据
-    *(undefined4 *)texture_data_ptr = *(undefined4 *)(((longlong)source - (longlong)dest) + (longlong)texture_data_ptr);
+    *(int32_t *)texture_data_ptr = *(int32_t *)(((longlong)source - (longlong)dest) + (longlong)texture_data_ptr);
     
     // 获取纹理名称并复制
-    source_name_ptr = *(undefined **)(((longlong)source - (longlong)dest) + -8 + (longlong)texture_data_ptr);
+    source_name_ptr = *(void **)(((longlong)source - (longlong)dest) + -8 + (longlong)texture_data_ptr);
     default_name_ptr = &DEFAULT_STRING_DATA;
     
-    if (source_name_ptr != (undefined *)0x0) {
+    if (source_name_ptr != (void *)0x0) {
       default_name_ptr = source_name_ptr;
     }
     
@@ -487,16 +487,16 @@ undefined8 *复制纹理数据(undefined8 *dest, undefined8 *source) {
  * - 配置字符串格式："poc(y)" + 对象名称
  */
 void 创建场景对象实例(longlong scene_data, longlong *object_ptr) {
-  undefined8 allocated_memory;      // 分配的内存块
+  uint64_t allocated_memory;      // 分配的内存块
   longlong *object_instance_ptr;   // 对象实例指针
-  undefined4 *config_string_ptr;   // 配置字符串指针
-  undefined *object_name_ptr;      // 对象名称指针
-  undefined1 name_buffer[32];      // 名称缓冲区（用于堆栈保护）
-  undefined4 stack_temp_value_1;   // 堆栈临时值1
-  undefined8 stack_temp_value_2;   // 堆栈临时值2
+  int32_t *config_string_ptr;   // 配置字符串指针
+  void *object_name_ptr;      // 对象名称指针
+  int8_t name_buffer[32];      // 名称缓冲区（用于堆栈保护）
+  int32_t stack_temp_value_1;   // 堆栈临时值1
+  uint64_t stack_temp_value_2;   // 堆栈临时值2
   longlong *output_ptr;            // 输出指针
-  undefined *stack_context_ptr_1;  // 堆栈上下文指针1
-  undefined *stack_context_ptr_2;  // 堆栈上下文指针2
+  void *stack_context_ptr_1;  // 堆栈上下文指针1
+  void *stack_context_ptr_2;  // 堆栈上下文指针2
   uint object_name_length;         // 对象名称长度
   
   // 配置缓冲区 - 用于构建对象配置字符串
@@ -530,8 +530,8 @@ void 创建场景对象实例(longlong scene_data, longlong *object_ptr) {
   object_name_length = *(uint *)(scene_data + 0x20);  // 名称长度
   object_name_ptr = &DEFAULT_STRING_DATA;
   
-  if (*(undefined **)(scene_data + 0x18) != (undefined *)0x0) {
-    object_name_ptr = *(undefined **)(scene_data + 0x18);  // 获取实际名称
+  if (*(void **)(scene_data + 0x18) != (void *)0x0) {
+    object_name_ptr = *(void **)(scene_data + 0x18);  // 获取实际名称
   }
   
   // 复制对象名称到配置缓冲区
@@ -540,18 +540,18 @@ void 创建场景对象实例(longlong scene_data, longlong *object_ptr) {
   // 第四阶段：构建配置字符串
   // 格式：对象名称 + "poc(y)" 后缀
   if (object_name_length + 6 < 0x7f) {  // 检查缓冲区大小
-    config_string_ptr = (undefined4 *)(stack_context_ptr_2 + object_name_length);
+    config_string_ptr = (int32_t *)(stack_context_ptr_2 + object_name_length);
     *config_string_ptr = 0x706f6328;  // "poc("
-    *(undefined2 *)(config_string_ptr + 1) = 0x2979;  // ")y"
-    *(undefined1 *)((longlong)config_string_ptr + 6) = 0;  // 字符串结束符
+    *(int16_t *)(config_string_ptr + 1) = 0x2979;  // ")y"
+    *(int8_t *)((longlong)config_string_ptr + 6) = 0;  // 字符串结束符
     object_name_length = object_name_length + 6;
   }
   
   // 第五阶段：复制场景数据到对象
-  *(undefined8 *)(*object_ptr + OFFSET_OBJECT_SCENE_DATA) = *(undefined8 *)(scene_data + OFFSET_OBJECT_SCENE_DATA);
+  *(uint64_t *)(*object_ptr + OFFSET_OBJECT_SCENE_DATA) = *(uint64_t *)(scene_data + OFFSET_OBJECT_SCENE_DATA);
   object_name_ptr = &DEFAULT_STRING_DATA;
   
-  if (stack_context_ptr_2 != (undefined *)0x0) {
+  if (stack_context_ptr_2 != (void *)0x0) {
     object_name_ptr = stack_context_ptr_2;
   }
   
@@ -594,9 +594,9 @@ void 创建场景对象实例(longlong scene_data, longlong *object_ptr) {
  * - 需要确保事件处理器正确处理销毁逻辑
  * - 资源清理会释放所有相关内存
  */
-void 处理场景对象销毁事件(longlong object_ptr, undefined8 *event_data, undefined8 param3, undefined8 param4) {
+void 处理场景对象销毁事件(longlong object_ptr, uint64_t *event_data, uint64_t param3, uint64_t param4) {
   code *destruction_event_handler;  // 销毁事件处理器函数指针
-  undefined *event_name_ptr;        // 事件名称指针
+  void *event_name_ptr;        // 事件名称指针
   
   // 获取对象的销毁事件处理器
   // 从对象偏移0x2d0处获取虚函数表，然后获取偏移0x10处的事件处理器
@@ -604,8 +604,8 @@ void 处理场景对象销毁事件(longlong object_ptr, undefined8 *event_data,
   
   // 获取事件名称
   event_name_ptr = &DEFAULT_STRING_DATA;
-  if ((undefined *)event_data[1] != (undefined *)0x0) {
-    event_name_ptr = (undefined *)event_data[1];  // 使用事件数据中的名称
+  if ((void *)event_data[1] != (void *)0x0) {
+    event_name_ptr = (void *)event_data[1];  // 使用事件数据中的名称
   }
   
   // 调用销毁事件处理器
@@ -655,30 +655,30 @@ void 处理场景对象销毁事件(longlong object_ptr, undefined8 *event_data,
  */
 void 设置对象组件(longlong object_ptr, int component_index, longlong *component_ptr) {
   longlong *old_component_ptr;     // 旧组件指针
-  undefined8 object_type_data;     // 对象类型数据
+  uint64_t object_type_data;     // 对象类型数据
   bool event_registration_success; // 事件注册成功标志
   bool lifecycle_event_active;     // 生命周期事件活动标志
   char lifecycle_check_result;     // 生命周期检查结果
-  undefined4 event_string_value;   // 事件字符串值
+  int32_t event_string_value;   // 事件字符串值
   longlong component_offset;       // 组件偏移量
-  undefined4 *event_string_ptr;    // 事件字符串指针
+  int32_t *event_string_ptr;    // 事件字符串指针
   ulonglong component_event_mask;  // 组件事件掩码
   
   // 堆栈缓冲区 - 用于堆栈保护检查
-  undefined1 stack_protection_buffer_1[32];
-  undefined *stack_context_ptr_1;
-  undefined4 *stack_context_ptr_2;
-  undefined4 stack_temp_value_1;
+  int8_t stack_protection_buffer_1[32];
+  void *stack_context_ptr_1;
+  int32_t *stack_context_ptr_2;
+  int32_t stack_temp_value_1;
   ulonglong stack_temp_value_2;
-  undefined4 stack_temp_value_3;
-  undefined8 stack_temp_value_4;
-  undefined *stack_context_ptr_3;
-  undefined1 *stack_context_ptr_4;
-  undefined4 stack_temp_value_5;
+  int32_t stack_temp_value_3;
+  uint64_t stack_temp_value_4;
+  void *stack_context_ptr_3;
+  int8_t *stack_context_ptr_4;
+  int32_t stack_temp_value_5;
   
   // 生命周期事件处理缓冲区
-  undefined1 lifecycle_event_buffer[16];
-  undefined8 stack_temp_value_6;
+  int8_t lifecycle_event_buffer[16];
+  uint64_t stack_temp_value_6;
   ulonglong stack_protection_value;
   
   // 计算组件在对象中的偏移量
@@ -706,7 +706,7 @@ void 设置对象组件(longlong object_ptr, int component_index, longlong *comp
   stack_protection_value = _DAT_180bf00a8 ^ (ulonglong)stack_protection_buffer_1;
   event_registration_success = false;
   stack_temp_value_3 = 0;
-  *(undefined8 *)(object_ptr + OFFSET_OBJECT_LIFETIME_EVENT) = 0;
+  *(uint64_t *)(object_ptr + OFFSET_OBJECT_LIFETIME_EVENT) = 0;
   
   // 检查是否需要处理生存期事件
   if (LIFETIME_EVENT_ENABLED == 0) goto 跳过生命周期事件处理;
@@ -725,14 +725,14 @@ void 设置对象组件(longlong object_ptr, int component_index, longlong *comp
   }
   else {
     // 注册生存期事件监听器
-    object_type_data = *(undefined8 *)(object_ptr + OFFSET_OBJECT_TYPE_INFO);
+    object_type_data = *(uint64_t *)(object_ptr + OFFSET_OBJECT_TYPE_INFO);
     stack_context_ptr_1 = &EVENT_LOG_BUFFER;
     stack_temp_value_2 = 0;
-    stack_context_ptr_2 = (undefined4 *)0x0;
+    stack_context_ptr_2 = (int32_t *)0x0;
     stack_temp_value_1 = 0;
     
-    event_string_ptr = (undefined4 *)allocate_event_string(_DAT_180c8ed18, 0x16, 0x13);
-    *(undefined1 *)event_string_ptr = 0;
+    event_string_ptr = (int32_t *)allocate_event_string(_DAT_180c8ed18, 0x16, 0x13);
+    *(int8_t *)event_string_ptr = 0;
     stack_context_ptr_2 = event_string_ptr;
     
     event_string_value = initialize_event_string(event_string_ptr);
@@ -744,7 +744,7 @@ void 设置对象组件(longlong object_ptr, int component_index, longlong *comp
     event_string_ptr[2] = 0x5f6c6175;  // "_lau"
     event_string_ptr[3] = 0x74786574;  // "txet"
     event_string_ptr[4] = 0x6e697275;  // "niru"
-    *(undefined2 *)(event_string_ptr + 5) = 0x67;  // "g"
+    *(int16_t *)(event_string_ptr + 5) = 0x67;  // "g"
     
     stack_temp_value_1 = 0x15;
     event_registration_success = true;
@@ -759,11 +759,11 @@ void 设置对象组件(longlong object_ptr, int component_index, longlong *comp
   if (event_registration_success) {
     stack_temp_value_3 = 0;
     stack_context_ptr_1 = &EVENT_LOG_BUFFER;
-    if (event_string_ptr != (undefined4 *)0x0) {
+    if (event_string_ptr != (int32_t *)0x0) {
       // WARNING: Subroutine does not return
       free_event_string(event_string_ptr);
     }
-    stack_context_ptr_2 = (undefined4 *)0x0;
+    stack_context_ptr_2 = (int32_t *)0x0;
     stack_temp_value_2 = stack_temp_value_2 & 0xffffffff00000000;
     stack_context_ptr_1 = &MEMORY_CLEANUP_FLAG;
   }
@@ -772,10 +772,10 @@ void 设置对象组件(longlong object_ptr, int component_index, longlong *comp
   if (lifecycle_event_active) {
     // 检查场景数据有效性
     if (*(longlong *)(object_ptr + OFFSET_OBJECT_SCENE_DATA) != 0) {
-      *(undefined1 *)(object_ptr + OFFSET_OBJECT_LIFETIME_FLAG) = 1;
+      *(int8_t *)(object_ptr + OFFSET_OBJECT_LIFETIME_FLAG) = 1;
       initialize_object_lifecycle(&stack_context_ptr_1, object_ptr);
-      if (*(undefined **)(object_ptr + OFFSET_OBJECT_TEXTURE_DATA) != stack_context_ptr_1) {
-        *(undefined2 *)(object_ptr + OFFSET_OBJECT_LIFETIME_FLAG) = 0;
+      if (*(void **)(object_ptr + OFFSET_OBJECT_TEXTURE_DATA) != stack_context_ptr_1) {
+        *(int16_t *)(object_ptr + OFFSET_OBJECT_LIFETIME_FLAG) = 0;
       }
     }
     
@@ -783,23 +783,23 @@ void 设置对象组件(longlong object_ptr, int component_index, longlong *comp
     if (*(char *)(object_ptr + OFFSET_OBJECT_LIFETIME_FLAG) != '\0') {
       // 更新主组件数组的生存期引用
       if (*(longlong *)(object_ptr + OFFSET_OBJECT_COMPONENT_ARRAY) != 0) {
-        *(undefined8 *)(*(longlong *)(object_ptr + OFFSET_OBJECT_COMPONENT_ARRAY) + 0x348) = 
-          *(undefined8 *)(object_ptr + OFFSET_OBJECT_TEXTURE_DATA);
-        *(undefined4 *)(*(longlong *)(object_ptr + OFFSET_OBJECT_COMPONENT_ARRAY) + 0x350) = 0;
+        *(uint64_t *)(*(longlong *)(object_ptr + OFFSET_OBJECT_COMPONENT_ARRAY) + 0x348) = 
+          *(uint64_t *)(object_ptr + OFFSET_OBJECT_TEXTURE_DATA);
+        *(int32_t *)(*(longlong *)(object_ptr + OFFSET_OBJECT_COMPONENT_ARRAY) + 0x350) = 0;
       }
       
       // 更新渲染组件数组的生存期引用
       if (*(longlong *)(object_ptr + 200) != 0) {
-        *(undefined8 *)(*(longlong *)(object_ptr + 200) + 0x348) = 
-          *(undefined8 *)(object_ptr + OFFSET_OBJECT_TEXTURE_DATA);
-        *(undefined4 *)(*(longlong *)(object_ptr + 200) + 0x350) = 1;
+        *(uint64_t *)(*(longlong *)(object_ptr + 200) + 0x348) = 
+          *(uint64_t *)(object_ptr + OFFSET_OBJECT_TEXTURE_DATA);
+        *(int32_t *)(*(longlong *)(object_ptr + 200) + 0x350) = 1;
       }
       
       // 更新其他组件的生存期引用
       if (*(longlong *)(object_ptr + 0xd8) != 0) {
-        *(undefined8 *)(*(longlong *)(object_ptr + 0xd8) + 0x348) = 
-          *(undefined8 *)(object_ptr + OFFSET_OBJECT_TEXTURE_DATA);
-        *(undefined4 *)(*(longlong *)(object_ptr + 0xd8) + 0x350) = 2;
+        *(uint64_t *)(*(longlong *)(object_ptr + 0xd8) + 0x348) = 
+          *(uint64_t *)(object_ptr + OFFSET_OBJECT_TEXTURE_DATA);
+        *(int32_t *)(*(longlong *)(object_ptr + 0xd8) + 0x350) = 2;
       }
       
       // 注册组件事件
@@ -809,25 +809,25 @@ void 设置对象组件(longlong object_ptr, int component_index, longlong *comp
       stack_temp_value_5 = 0x15;
       strcpy_s(lifecycle_event_buffer, EVENT_STRING_MAX_LENGTH, &COMPONENT_EVENT_DATA);
       
-      component_event_mask = register_event_listener(*(undefined8 *)(object_ptr + OFFSET_OBJECT_TYPE_INFO), 
+      component_event_mask = register_event_listener(*(uint64_t *)(object_ptr + OFFSET_OBJECT_TYPE_INFO), 
                                                     &stack_context_ptr_3, 1);
       *(ulonglong *)(object_ptr + OFFSET_OBJECT_EVENT_MASK) = 
         *(ulonglong *)(object_ptr + OFFSET_OBJECT_EVENT_MASK) | component_event_mask;
       
       update_object_event_mask(object_ptr);
-      *(undefined2 *)(object_ptr + 0x3c0) = FULL_COMPONENT_MASK;
+      *(int16_t *)(object_ptr + 0x3c0) = FULL_COMPONENT_MASK;
       stack_context_ptr_3 = &MEMORY_CLEANUP_FLAG;
-      *(undefined4 *)(object_ptr + OFFSET_OBJECT_LIFETIME_EVENT) = 1;
+      *(int32_t *)(object_ptr + OFFSET_OBJECT_LIFETIME_EVENT) = 1;
       
       // 记录调试事件: "_use_build_color_control_with_sample_texture"
-      object_type_data = *(undefined8 *)(object_ptr + OFFSET_OBJECT_TYPE_INFO);
+      object_type_data = *(uint64_t *)(object_ptr + OFFSET_OBJECT_TYPE_INFO);
       stack_context_ptr_1 = &EVENT_LOG_BUFFER;
       stack_temp_value_2 = 0;
-      stack_context_ptr_2 = (undefined4 *)0x0;
+      stack_context_ptr_2 = (int32_t *)0x0;
       stack_temp_value_1 = 0;
       
-      event_string_ptr = (undefined4 *)allocate_event_string(_DAT_180c8ed18, 0x26, 0x13);
-      *(undefined1 *)event_string_ptr = 0;
+      event_string_ptr = (int32_t *)allocate_event_string(_DAT_180c8ed18, 0x26, 0x13);
+      *(int8_t *)event_string_ptr = 0;
       stack_context_ptr_2 = event_string_ptr;
       
       event_string_value = initialize_event_string(event_string_ptr);
@@ -842,7 +842,7 @@ void 设置对象组件(longlong object_ptr, int component_index, longlong *comp
       event_string_ptr[6] = 0x73616d5f;  // "sam_"
       event_string_ptr[7] = 0x65745f6b;  // "et_k"
       event_string_ptr[8] = 0x72757478;  // "rutx"
-      *(undefined2 *)(event_string_ptr + 9) = 0x65;  // "e"
+      *(int16_t *)(event_string_ptr + 9) = 0x65;  // "e"
       
       stack_temp_value_1 = 0x25;
       register_event_listener(object_type_data, &stack_context_ptr_1, 0);
@@ -858,7 +858,7 @@ void 设置对象组件(longlong object_ptr, int component_index, longlong *comp
     stack_temp_value_5 = 0x15;
     strcpy_s(lifecycle_event_buffer, EVENT_STRING_MAX_LENGTH, &COMPONENT_EVENT_DATA);
     
-    component_event_mask = register_event_listener(*(undefined8 *)(object_ptr + OFFSET_OBJECT_TYPE_INFO), 
+    component_event_mask = register_event_listener(*(uint64_t *)(object_ptr + OFFSET_OBJECT_TYPE_INFO), 
                                                   &stack_context_ptr_3, 1);
     *(ulonglong *)(object_ptr + OFFSET_OBJECT_EVENT_MASK) = 
       *(ulonglong *)(object_ptr + OFFSET_OBJECT_EVENT_MASK) & ~component_event_mask;
@@ -903,29 +903,29 @@ void 设置对象组件(longlong object_ptr, int component_index, longlong *comp
  * - 需要确保所有相关资源都被正确释放
  */
 void 销毁场景对象(longlong object_ptr) {
-  undefined8 object_type_data;     // 对象类型数据
+  uint64_t object_type_data;     // 对象类型数据
   bool event_registration_success; // 事件注册成功标志
   bool lifecycle_event_active;     // 生命周期事件活动标志
   char lifecycle_check_result;     // 生命周期检查结果
-  undefined4 event_string_value;   // 事件字符串值
+  int32_t event_string_value;   // 事件字符串值
   longlong temp_value;             // 临时值
-  undefined4 *event_string_ptr;    // 事件字符串指针
+  int32_t *event_string_ptr;    // 事件字符串指针
   ulonglong destruction_event_mask; // 销毁事件掩码
   
   // 堆栈缓冲区 - 用于堆栈保护检查
-  undefined1 stack_protection_buffer_1[32];
-  undefined *stack_context_ptr_1;
-  undefined4 *stack_context_ptr_2;
-  undefined4 stack_temp_value_1;
+  int8_t stack_protection_buffer_1[32];
+  void *stack_context_ptr_1;
+  int32_t *stack_context_ptr_2;
+  int32_t stack_temp_value_1;
   ulonglong stack_temp_value_2;
-  undefined4 stack_temp_value_3;
-  undefined8 stack_temp_value_4;
-  undefined *stack_context_ptr_3;
-  undefined1 *stack_context_ptr_4;
-  undefined4 stack_temp_value_5;
+  int32_t stack_temp_value_3;
+  uint64_t stack_temp_value_4;
+  void *stack_context_ptr_3;
+  int8_t *stack_context_ptr_4;
+  int32_t stack_temp_value_5;
   
   // 生命周期事件处理缓冲区
-  undefined1 destruction_event_buffer[32];
+  int8_t destruction_event_buffer[32];
   ulonglong stack_protection_value;
   
   // 初始化堆栈保护
@@ -933,7 +933,7 @@ void 销毁场景对象(longlong object_ptr) {
   stack_protection_value = _DAT_180bf00a8 ^ (ulonglong)stack_protection_buffer_1;
   event_registration_success = false;
   stack_temp_value_3 = 0;
-  *(undefined8 *)(object_ptr + OFFSET_OBJECT_LIFETIME_EVENT) = 0;
+  *(uint64_t *)(object_ptr + OFFSET_OBJECT_LIFETIME_EVENT) = 0;
   
   // 检查是否需要处理生存期事件
   if (LIFETIME_EVENT_ENABLED == 0) goto 跳过生命周期事件处理;
@@ -952,14 +952,14 @@ void 销毁场景对象(longlong object_ptr) {
   }
   else {
     // 注册销毁事件监听器
-    object_type_data = *(undefined8 *)(object_ptr + OFFSET_OBJECT_TYPE_INFO);
+    object_type_data = *(uint64_t *)(object_ptr + OFFSET_OBJECT_TYPE_INFO);
     stack_context_ptr_1 = &EVENT_LOG_BUFFER;
     stack_temp_value_2 = 0;
-    stack_context_ptr_2 = (undefined4 *)0x0;
+    stack_context_ptr_2 = (int32_t *)0x0;
     stack_temp_value_1 = 0;
     
-    event_string_ptr = (undefined4 *)allocate_event_string(_DAT_180c8ed18, 0x16, 0x13);
-    *(undefined1 *)event_string_ptr = 0;
+    event_string_ptr = (int32_t *)allocate_event_string(_DAT_180c8ed18, 0x16, 0x13);
+    *(int8_t *)event_string_ptr = 0;
     stack_context_ptr_2 = event_string_ptr;
     
     event_string_value = initialize_event_string(event_string_ptr);
@@ -971,7 +971,7 @@ void 销毁场景对象(longlong object_ptr) {
     event_string_ptr[2] = 0x5f6c6175;  // "_lau"
     event_string_ptr[3] = 0x74786574;  // "txet"
     event_string_ptr[4] = 0x6e697275;  // "niru"
-    *(undefined2 *)(event_string_ptr + 5) = 0x67;  // "g"
+    *(int16_t *)(event_string_ptr + 5) = 0x67;  // "g"
     
     stack_temp_value_1 = 0x15;
     event_registration_success = true;
@@ -986,11 +986,11 @@ void 销毁场景对象(longlong object_ptr) {
   if (event_registration_success) {
     stack_temp_value_3 = 0;
     stack_context_ptr_1 = &EVENT_LOG_BUFFER;
-    if (event_string_ptr != (undefined4 *)0x0) {
+    if (event_string_ptr != (int32_t *)0x0) {
       // WARNING: Subroutine does not return
       free_event_string(event_string_ptr);
     }
-    stack_context_ptr_2 = (undefined4 *)0x0;
+    stack_context_ptr_2 = (int32_t *)0x0;
     stack_temp_value_2 = stack_temp_value_2 & 0xffffffff00000000;
     stack_context_ptr_1 = &MEMORY_CLEANUP_FLAG;
   }
@@ -999,10 +999,10 @@ void 销毁场景对象(longlong object_ptr) {
   if (lifecycle_event_active) {
     // 检查场景数据有效性
     if (*(longlong *)(object_ptr + OFFSET_OBJECT_SCENE_DATA) != 0) {
-      *(undefined1 *)(object_ptr + OFFSET_OBJECT_LIFETIME_FLAG) = 1;
+      *(int8_t *)(object_ptr + OFFSET_OBJECT_LIFETIME_FLAG) = 1;
       initialize_object_lifecycle(&stack_context_ptr_1, object_ptr);
-      if (*(undefined **)(object_ptr + OFFSET_OBJECT_TEXTURE_DATA) != stack_context_ptr_1) {
-        *(undefined2 *)(object_ptr + OFFSET_OBJECT_LIFETIME_FLAG) = 0;
+      if (*(void **)(object_ptr + OFFSET_OBJECT_TEXTURE_DATA) != stack_context_ptr_1) {
+        *(int16_t *)(object_ptr + OFFSET_OBJECT_LIFETIME_FLAG) = 0;
       }
     }
     
@@ -1010,23 +1010,23 @@ void 销毁场景对象(longlong object_ptr) {
     if (*(char *)(object_ptr + OFFSET_OBJECT_LIFETIME_FLAG) != '\0') {
       // 清理主组件数组的生存期引用
       if (*(longlong *)(object_ptr + OFFSET_OBJECT_COMPONENT_ARRAY) != 0) {
-        *(undefined8 *)(*(longlong *)(object_ptr + OFFSET_OBJECT_COMPONENT_ARRAY) + 0x348) = 
-          *(undefined8 *)(object_ptr + OFFSET_OBJECT_TEXTURE_DATA);
-        *(undefined4 *)(*(longlong *)(object_ptr + OFFSET_OBJECT_COMPONENT_ARRAY) + 0x350) = 0;
+        *(uint64_t *)(*(longlong *)(object_ptr + OFFSET_OBJECT_COMPONENT_ARRAY) + 0x348) = 
+          *(uint64_t *)(object_ptr + OFFSET_OBJECT_TEXTURE_DATA);
+        *(int32_t *)(*(longlong *)(object_ptr + OFFSET_OBJECT_COMPONENT_ARRAY) + 0x350) = 0;
       }
       
       // 清理渲染组件数组的生存期引用
       if (*(longlong *)(object_ptr + 200) != 0) {
-        *(undefined8 *)(*(longlong *)(object_ptr + 200) + 0x348) = 
-          *(undefined8 *)(object_ptr + OFFSET_OBJECT_TEXTURE_DATA);
-        *(undefined4 *)(*(longlong *)(object_ptr + 200) + 0x350) = 1;
+        *(uint64_t *)(*(longlong *)(object_ptr + 200) + 0x348) = 
+          *(uint64_t *)(object_ptr + OFFSET_OBJECT_TEXTURE_DATA);
+        *(int32_t *)(*(longlong *)(object_ptr + 200) + 0x350) = 1;
       }
       
       // 清理其他组件的生存期引用
       if (*(longlong *)(object_ptr + 0xd8) != 0) {
-        *(undefined8 *)(*(longlong *)(object_ptr + 0xd8) + 0x348) = 
-          *(undefined8 *)(object_ptr + OFFSET_OBJECT_TEXTURE_DATA);
-        *(undefined4 *)(*(longlong *)(object_ptr + 0xd8) + 0x350) = 2;
+        *(uint64_t *)(*(longlong *)(object_ptr + 0xd8) + 0x348) = 
+          *(uint64_t *)(object_ptr + OFFSET_OBJECT_TEXTURE_DATA);
+        *(int32_t *)(*(longlong *)(object_ptr + 0xd8) + 0x350) = 2;
       }
       
       // 注册销毁组件事件
@@ -1036,25 +1036,25 @@ void 销毁场景对象(longlong object_ptr) {
       stack_temp_value_5 = 0x15;
       strcpy_s(destruction_event_buffer, EVENT_STRING_MAX_LENGTH, &COMPONENT_EVENT_DATA);
       
-      destruction_event_mask = register_event_listener(*(undefined8 *)(object_ptr + OFFSET_OBJECT_TYPE_INFO), 
+      destruction_event_mask = register_event_listener(*(uint64_t *)(object_ptr + OFFSET_OBJECT_TYPE_INFO), 
                                                     &stack_context_ptr_3, 1);
       *(ulonglong *)(object_ptr + OFFSET_OBJECT_EVENT_MASK) = 
         *(ulonglong *)(object_ptr + OFFSET_OBJECT_EVENT_MASK) | destruction_event_mask;
       
       update_object_event_mask(object_ptr);
-      *(undefined2 *)(object_ptr + 0x3c0) = FULL_COMPONENT_MASK;
+      *(int16_t *)(object_ptr + 0x3c0) = FULL_COMPONENT_MASK;
       stack_context_ptr_3 = &MEMORY_CLEANUP_FLAG;
-      *(undefined4 *)(object_ptr + OFFSET_OBJECT_LIFETIME_EVENT) = 1;
+      *(int32_t *)(object_ptr + OFFSET_OBJECT_LIFETIME_EVENT) = 1;
       
       // 记录销毁调试事件: "_use_build_color_control_with_sample_texture"
-      object_type_data = *(undefined8 *)(object_ptr + OFFSET_OBJECT_TYPE_INFO);
+      object_type_data = *(uint64_t *)(object_ptr + OFFSET_OBJECT_TYPE_INFO);
       stack_context_ptr_1 = &EVENT_LOG_BUFFER;
       stack_temp_value_2 = 0;
-      stack_context_ptr_2 = (undefined4 *)0x0;
+      stack_context_ptr_2 = (int32_t *)0x0;
       stack_temp_value_1 = 0;
       
-      event_string_ptr = (undefined4 *)allocate_event_string(_DAT_180c8ed18, 0x26, 0x13);
-      *(undefined1 *)event_string_ptr = 0;
+      event_string_ptr = (int32_t *)allocate_event_string(_DAT_180c8ed18, 0x26, 0x13);
+      *(int8_t *)event_string_ptr = 0;
       stack_context_ptr_2 = event_string_ptr;
       
       event_string_value = initialize_event_string(event_string_ptr);
@@ -1069,7 +1069,7 @@ void 销毁场景对象(longlong object_ptr) {
       event_string_ptr[6] = 0x73616d5f;  // "sam_"
       event_string_ptr[7] = 0x65745f6b;  // "et_k"
       event_string_ptr[8] = 0x72757478;  // "rutx"
-      *(undefined2 *)(event_string_ptr + 9) = 0x65;  // "e"
+      *(int16_t *)(event_string_ptr + 9) = 0x65;  // "e"
       
       stack_temp_value_1 = 0x25;
       register_event_listener(object_type_data, &stack_context_ptr_1, 0);
@@ -1085,7 +1085,7 @@ void 销毁场景对象(longlong object_ptr) {
     stack_temp_value_5 = 0x15;
     strcpy_s(destruction_event_buffer, EVENT_STRING_MAX_LENGTH, &COMPONENT_EVENT_DATA);
     
-    destruction_event_mask = register_event_listener(*(undefined8 *)(object_ptr + OFFSET_OBJECT_TYPE_INFO), 
+    destruction_event_mask = register_event_listener(*(uint64_t *)(object_ptr + OFFSET_OBJECT_TYPE_INFO), 
                                                   &stack_context_ptr_3, 1);
     *(ulonglong *)(object_ptr + OFFSET_OBJECT_EVENT_MASK) = 
       *(ulonglong *)(object_ptr + OFFSET_OBJECT_EVENT_MASK) & ~destruction_event_mask;
@@ -1239,8 +1239,8 @@ uint 处理对象更新事件(longlong object_ptr, longlong *event_params) {
   uint successfully_processed_count; // 成功处理的数量
   uint current_component_index;    // 当前组件索引
   longlong current_component_data;  // 当前组件数据
-  undefined8 callback_stack_param_1; // 回调堆栈参数1
-  undefined8 callback_stack_param_2; // 回调堆栈参数2
+  uint64_t callback_stack_param_1; // 回调堆栈参数1
+  uint64_t callback_stack_param_2; // 回调堆栈参数2
   code *component_callback_func;    // 组件回调函数
   code *guard_check_function;       // 保护检查函数
   
@@ -1308,7 +1308,7 @@ uint 处理对象更新事件(longlong object_ptr, longlong *event_params) {
           
           // 执行组件回调函数
           execute_component_callback(*main_component_array, 0, 
-                                   *(undefined4 *)((longlong)event_params + 0x14), 
+                                   *(int32_t *)((longlong)event_params + 0x14), 
                                    &callback_stack_param_1);
           
           // 如果有回调函数，执行它
@@ -1374,13 +1374,13 @@ uint 处理对象更新事件(longlong object_ptr, longlong *event_params) {
  * - 需要确保所有相关系统都收到通知
  */
 void 发送对象销毁通知(longlong object_ptr) {
-  undefined8 object_type_data;       // 对象类型数据
-  undefined1 stack_protection_buffer[32]; // 堆栈保护缓冲区
-  undefined8 stack_temp_value_1;    // 堆栈临时值1
-  undefined *event_flag_ptr;        // 事件标志指针
-  undefined1 *event_name_ptr;       // 事件名称指针
-  undefined4 event_name_length;     // 事件名称长度
-  undefined1 destruction_event_buffer[32]; // 销毁事件缓冲区
+  uint64_t object_type_data;       // 对象类型数据
+  int8_t stack_protection_buffer[32]; // 堆栈保护缓冲区
+  uint64_t stack_temp_value_1;    // 堆栈临时值1
+  void *event_flag_ptr;        // 事件标志指针
+  int8_t *event_name_ptr;       // 事件名称指针
+  int32_t event_name_length;     // 事件名称长度
+  int8_t destruction_event_buffer[32]; // 销毁事件缓冲区
   ulonglong stack_protection_value;  // 堆栈保护值
   
   // 初始化堆栈保护
@@ -1388,7 +1388,7 @@ void 发送对象销毁通知(longlong object_ptr) {
   stack_protection_value = _DAT_180bf00a8 ^ (ulonglong)stack_protection_buffer;
   
   // 获取对象类型信息
-  object_type_data = *(undefined8 *)(object_ptr + OFFSET_OBJECT_TYPE_INFO);
+  object_type_data = *(uint64_t *)(object_ptr + OFFSET_OBJECT_TYPE_INFO);
   
   // 设置事件标志和名称指针
   event_flag_ptr = &COMPONENT_EVENT_FLAG;
@@ -1441,17 +1441,17 @@ void 发送对象销毁通知(longlong object_ptr) {
  * - 名称比较区分大小写
  * - 搜索成功会直接设置组件参数
  */
-void 按名称查找对象组件(longlong object_ptr, longlong name_data, undefined8 search_param) {
+void 按名称查找对象组件(longlong object_ptr, longlong name_data, uint64_t search_param) {
   byte *target_name_ptr;           // 目标名称指针
   int target_name_length;          // 目标名称长度
   int current_component_name_length; // 当前组件名称长度
   byte *current_component_name_ptr; // 当前组件名称指针
   int name_comparison_result;      // 名称比较结果
-  undefined *default_name_ptr;     // 默认名称指针
+  void *default_name_ptr;     // 默认名称指针
   longlong name_offset_value;      // 名称偏移值
-  undefined *object_display_name;  // 对象显示名称
-  undefined8 *component_lookup_table; // 组件查找表
-  undefined *component_display_name; // 组件显示名称
+  void *object_display_name;  // 对象显示名称
+  uint64_t *component_lookup_table; // 组件查找表
+  void *component_display_name; // 组件显示名称
   ulonglong current_table_index;   // 当前表索引
   ulonglong search_max_index;      // 搜索最大索引
   
@@ -1460,7 +1460,7 @@ void 按名称查找对象组件(longlong object_ptr, longlong name_data, undefi
   target_name_length = *(int *)(name_data + 0x10);  // 获取目标名称长度
   
   // 获取组件查找表（偏移0x1c38）
-  component_lookup_table = (undefined8 *)(*(longlong *)(object_ptr + OFFSET_OBJECT_TYPE_INFO) + OFFSET_OBJECT_COMPONENT_TABLE);
+  component_lookup_table = (uint64_t *)(*(longlong *)(object_ptr + OFFSET_OBJECT_TYPE_INFO) + OFFSET_OBJECT_COMPONENT_TABLE);
   current_table_index = search_max_index;
   
   // 遍历组件查找表
@@ -1510,21 +1510,21 @@ void 按名称查找对象组件(longlong object_ptr, longlong name_data, undefi
     if (MAX_COMPONENT_INDEX < (longlong)search_max_index) {
     组件未找到:
       // 记录组件查找错误
-      object_display_name = *(undefined **)(*(longlong *)(object_ptr + OFFSET_OBJECT_TYPE_INFO) + 0x18);
+      object_display_name = *(void **)(*(longlong *)(object_ptr + OFFSET_OBJECT_TYPE_INFO) + 0x18);
       component_display_name = &DEFAULT_STRING_DATA;
       
-      if (object_display_name != (undefined *)0x0) {
+      if (object_display_name != (void *)0x0) {
         component_display_name = object_display_name;
       }
       
       default_name_ptr = &DEFAULT_STRING_DATA;
-      if (*(undefined **)(name_data + 8) != (undefined *)0x0) {
-        default_name_ptr = *(undefined **)(name_data + 8);  // 获取搜索的名称
+      if (*(void **)(name_data + 8) != (void *)0x0) {
+        default_name_ptr = *(void **)(name_data + 8);  // 获取搜索的名称
       }
       
       object_display_name = &DEFAULT_STRING_DATA;
-      if (*(undefined **)(object_ptr + 0x18) != (undefined *)0x0) {
-        object_display_name = *(undefined **)(object_ptr + 0x18);  // 获取对象名称
+      if (*(void **)(object_ptr + 0x18) != (void *)0x0) {
+        object_display_name = *(void **)(object_ptr + 0x18);  // 获取对象名称
       }
       
       // 记录详细的错误信息

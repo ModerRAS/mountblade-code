@@ -110,8 +110,8 @@
 // =============================================================================
 
 // UI系统辅助函数声明
-extern int ui_system_validate_event_parameters(longlong event_context, undefined4 event_param, undefined4 validation_flag);
-extern void ui_system_initialize_event_context(longlong event_context, undefined4 event_param);
+extern int ui_system_validate_event_parameters(longlong event_context, int32_t event_param, int32_t validation_flag);
+extern void ui_system_initialize_event_context(longlong event_context, int32_t event_param);
 extern longlong ui_system_allocate_event_resources(longlong resource_manager, uint resource_size, void *resource_data, uint alignment, ulonglong stack_param, int flags, int priority);
 extern longlong ui_system_create_event_handler(longlong resource_handle);
 extern int ui_system_configure_event_handler(longlong event_handler, longlong event_context);
@@ -163,7 +163,7 @@ extern void ui_system_cleanup_event_queue(longlong event_context);
  * - 确保事件状态的正确初始化
  * - 处理失败时会设置相应的错误状态
  */
-void ui_system_set_event_parameter(longlong event_context, undefined4 event_param)
+void ui_system_set_event_parameter(longlong event_context, int32_t event_param)
 {
     int validation_result;
     
@@ -173,9 +173,9 @@ void ui_system_set_event_parameter(longlong event_context, undefined4 event_para
     // 如果验证成功，设置事件参数和状态
     if (validation_result == UI_EVENT_SUCCESS) {
         // 设置事件参数到指定位置
-        *(undefined4 *)(event_context + UI_EVENT_PARAM_OFFSET) = event_param;
+        *(int32_t *)(event_context + UI_EVENT_PARAM_OFFSET) = event_param;
         // 初始化事件状态
-        *(undefined4 *)(event_context + UI_EVENT_STATE_OFFSET) = 0;
+        *(int32_t *)(event_context + UI_EVENT_STATE_OFFSET) = 0;
     }
     
     return;
@@ -210,14 +210,14 @@ int ui_system_process_event_queue(longlong event_context)
 {
     longlong resource_handle;
     longlong *event_handler_ptr;
-    undefined8 event_type;
+    uint64_t event_type;
     longlong *handler_storage;
     int process_result;
     ulonglong stack_parameter;
-    undefined4 validation_flag;
+    int32_t validation_flag;
     
     // 分配事件资源
-    resource_handle = ui_system_allocate_event_resources(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), 
+    resource_handle = ui_system_allocate_event_resources(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
                                                      UI_RESOURCE_POOL_SIZE, 
                                                      &UNK_180958000, 
                                                      UI_RESOURCE_ALIGNMENT, 
@@ -531,7 +531,7 @@ int ui_system_process_event_queue(longlong event_context)
                                                                                                                                                                                                                             
                                                                                                                                                                                                                             if (process_result == UI_EVENT_SUCCESS) {
                                                                                                                                                                                                                                 // 设置成功状态标志
-                                                                                                                                                                                                                                *(undefined1 *)(event_context + 9) = 1;
+                                                                                                                                                                                                                                *(int8_t *)(event_context + 9) = 1;
                                                                                                                                                                                                                                 return UI_EVENT_SUCCESS;
                                                                                                                                                                                                                             }
                                                                                                                                                                                                                         }
@@ -619,10 +619,10 @@ int ui_system_process_event_queue(longlong event_context)
  */
 void ui_system_event_handler_thunk(longlong event_context)
 {
-    undefined8 *event_processor;
-    undefined4 event_flags;
-    undefined8 *event_handler;
-    undefined8 event_data;
+    uint64_t *event_processor;
+    int32_t event_flags;
+    uint64_t *event_handler;
+    uint64_t event_data;
     int process_result;
     longlong resource_manager;
     ulonglong stack_cookie;
@@ -630,24 +630,24 @@ void ui_system_event_handler_thunk(longlong event_context)
     ulonglong loop_counter;
     ulonglong index_counter;
     float weight_factor;
-    undefined1 stack_buffer[32];
+    int8_t stack_buffer[32];
     float *weight_array;
     char temp_buffer[4];
     float weight_x;
     float weight_y;
     uint event_id;
     float weight_values[2];
-    undefined8 event_config[2];
-    undefined8 callback_data[2];
-    undefined8 event_params[2];
-    undefined8 event_state[2];
-    undefined8 event_resources[2];
-    undefined8 control_data[2];
-    undefined1 protection_buffer[16];
-    undefined8 heap_data[2];
-    undefined8 stack_data[2];
-    undefined8 register_data[2];
-    undefined1 workspace[48];
+    uint64_t event_config[2];
+    uint64_t callback_data[2];
+    uint64_t event_params[2];
+    uint64_t event_state[2];
+    uint64_t event_resources[2];
+    uint64_t control_data[2];
+    int8_t protection_buffer[16];
+    uint64_t heap_data[2];
+    uint64_t stack_data[2];
+    uint64_t register_data[2];
+    int8_t workspace[48];
     ulonglong workspace_cookie;
     
     // 初始化栈保护cookie
@@ -684,8 +684,8 @@ void ui_system_event_handler_thunk(longlong event_context)
         if ((*(longlong *)(event_context + 0x6b0) == 0) || 
             (process_result = func_0x000180069ee0(), process_result == 0)) {
             
-            event_processor = (undefined8 *)(event_context + 0x12758);
-            event_handler = (undefined8 *)*event_processor;
+            event_processor = (uint64_t *)(event_context + 0x12758);
+            event_handler = (uint64_t *)*event_processor;
             weight_factor = 0.0;
             
             // 初始化事件权重数组
@@ -699,7 +699,7 @@ void ui_system_event_handler_thunk(longlong event_context)
             event_resources[1] = 0;
             
             // 处理事件处理器链
-            for (; event_handler != event_processor; event_handler = (undefined8 *)*event_handler) {
+            for (; event_handler != event_processor; event_handler = (uint64_t *)*event_handler) {
                 event_data = event_handler[2];
                 func_0x0001807673f0(event_data, temp_buffer);
                 
@@ -732,8 +732,8 @@ void ui_system_event_handler_thunk(longlong event_context)
             }
             
             // 处理权重归一化
-            if (((undefined8 *)*event_processor != event_processor) || 
-                (*(undefined8 **)(event_context + 0x12760) != event_processor)) {
+            if (((uint64_t *)*event_processor != event_processor) || 
+                (*(uint64_t **)(event_context + 0x12760) != event_processor)) {
                 
                 if (weight_factor < 1.0) {
                     event_params[0] = 0;
@@ -742,26 +742,26 @@ void ui_system_event_handler_thunk(longlong event_context)
                     control_data[0] = 0;
                     event_resources[1] = 0;
                     
-                    func_0x000180746970(event_context, *(undefined4 *)(event_context + 0x11654), &event_params[0]);
+                    func_0x000180746970(event_context, *(int32_t *)(event_context + 0x11654), &event_params[0]);
                     FUN_180767800(&event_config[0], &event_params[0], 1.0 - weight_factor);
                     weight_factor = 1.0;
                 }
                 
                 FUN_180767270(workspace, &event_config[0], 1.0 / weight_factor);
-                FUN_180743940(event_context, *(undefined4 *)(event_context + 0x11654), workspace, 1);
+                FUN_180743940(event_context, *(int32_t *)(event_context + 0x11654), workspace, 1);
             }
             
             // 处理事件回调链
-            event_processor = *(undefined8 **)(event_context + 0x11708);
+            event_processor = *(uint64_t **)(event_context + 0x11708);
             do {
-                if (event_processor == (undefined8 *)(event_context + 0x11708)) {
+                if (event_processor == (uint64_t *)(event_context + 0x11708)) {
                     process_result = FUN_18078baf0(event_context, event_counter);
                     if ((process_result != 0) || 
                         (process_result = FUN_18078c760(event_context, event_counter), process_result != 0)) break;
                     
                     if (*(longlong *)(event_context + 0x670) != 0) {
                         ui_system_update_event_state(event_context + 0x11678, 1);
-                        process_result = FUN_180789300(*(undefined8 *)(event_context + 0x670));
+                        process_result = FUN_180789300(*(uint64_t *)(event_context + 0x670));
                         if (process_result != 0) break;
                         ui_system_update_event_state(event_context + 0x11678, 0);
                     }
@@ -777,7 +777,7 @@ void ui_system_event_handler_thunk(longlong event_context)
                     break;
                 }
                 
-                event_handler = (undefined8 *)*event_processor;
+                event_handler = (uint64_t *)*event_processor;
                 process_result = FUN_180754a30(event_processor[2], event_counter, 0);
                 event_processor = event_handler;
             } while (process_result == 0);
@@ -810,7 +810,7 @@ event_processing_complete:
         
         if (*(char *)(event_context + 0x6a8) != '\0') {
             weight_array = *(float **)(event_context + 0x11670);
-            *(undefined1 *)(event_context + 0x6a8) = 0;
+            *(int8_t *)(event_context + 0x6a8) = 0;
             (**(code **)(event_context + 0x11838))(event_context, 0x1000, 0, 0);
         }
     }
@@ -819,14 +819,14 @@ event_processing_complete:
     if (0 < *(int *)(event_context + 0x11400)) {
         resource_manager = event_context + 0x110ed;
         do {
-            *(undefined2 *)(resource_manager + -1) = 0;
+            *(int16_t *)(resource_manager + -1) = 0;
             resource_manager = resource_manager + 0x70;
             event_counter = (int)loop_counter + 1;
             loop_counter = (ulonglong)event_counter;
         } while ((int)event_counter < *(int *)(event_context + 0x11400));
     }
     
-    *(undefined1 *)(event_context + 0x12440) = 0;
+    *(int8_t *)(event_context + 0x12440) = 0;
     
     if ((*(byte *)(event_context + 0x78) & 1) != 0) {
         FUN_18078c950(event_context);
@@ -840,11 +840,11 @@ event_processing_complete:
             resource_manager = *(longlong *)(event_context + 0x670);
         }
         
-        event_flags = *(undefined4 *)(resource_manager + 0x318);
+        event_flags = *(int32_t *)(resource_manager + 0x318);
         
-        for (event_processor = *(undefined8 **)(event_context + 0x10f58); 
-             event_processor != (undefined8 *)(event_context + 0x10f58);
-             event_processor = (undefined8 *)*event_processor) {
+        for (event_processor = *(uint64_t **)(event_context + 0x10f58); 
+             event_processor != (uint64_t *)(event_context + 0x10f58);
+             event_processor = (uint64_t *)*event_processor) {
             
             resource_manager = event_processor[2];
             if (*(char *)(resource_manager + 0x212) != '\0') {
@@ -867,10 +867,10 @@ event_processing_complete:
             func_0x000180743c20(event_context, 6);
         }
         
-        event_processor = *(undefined8 **)(event_context + 0x10ff0);
-        while (event_processor != (undefined8 *)(event_context + 0x10ff0)) {
+        event_processor = *(uint64_t **)(event_context + 0x10ff0);
+        while (event_processor != (uint64_t *)(event_context + 0x10ff0)) {
             resource_manager = event_processor[2];
-            event_processor = (undefined8 *)*event_processor;
+            event_processor = (uint64_t *)*event_processor;
             
             if (((*(longlong *)(resource_manager + 0x120) != 0) && 
                  ((*(byte *)(resource_manager + 0x11a) & 0x40) != 0)) &&
@@ -883,11 +883,11 @@ event_processing_complete:
             FUN_180743d60(event_context, 6);
         }
         
-        event_processor = (undefined8 *)UI_MEMORY_STACK_BASE;
+        event_processor = (uint64_t *)UI_MEMORY_STACK_BASE;
         if ((0 == 0) ||
-           (process_result = FUN_1807d0fe0(), event_processor = (undefined8 *)UI_MEMORY_STACK_BASE, process_result == 0)) {
+           (process_result = FUN_1807d0fe0(), event_processor = (uint64_t *)UI_MEMORY_STACK_BASE, process_result == 0)) {
             
-            for (; event_processor != (undefined8 *)UI_MEMORY_STACK_BASE; event_processor = (undefined8 *)*event_processor) {
+            for (; event_processor != (uint64_t *)UI_MEMORY_STACK_BASE; event_processor = (uint64_t *)*event_processor) {
                 resource_manager = event_processor[2];
                 if ((*(code **)(resource_manager + 0x120) != (code *)0x0) && 
                     ((*(byte *)(resource_manager + 0x11a) & 4) != 0)) {
@@ -934,11 +934,11 @@ void ui_system_validate_event_state(longlong event_context)
     int config_result;
     uint event_state;
     ulonglong loop_counter;
-    undefined1 event_stack[64];
+    int8_t event_stack[64];
     int config_values[3];
     int stack_value;
     int event_flags[8];
-    undefined1 config_buffer[256];
+    int8_t config_buffer[256];
     ulonglong stack_cookie;
     ulonglong config_cookie;
     
@@ -1006,7 +1006,7 @@ void ui_system_validate_event_state(longlong event_context)
     }
     
     // 设置事件状态标志
-    *(undefined1 *)(event_context + 0x6a8) = 1;
+    *(int8_t *)(event_context + 0x6a8) = 1;
     
 validation_complete:
     FUN_1808fc050(stack_cookie ^ (ulonglong)event_stack);
@@ -1032,7 +1032,7 @@ void ui_system_cleanup_event_resources(void)
  * @param event_context 事件上下文指针
  * @param event_param 事件参数
  */
-void ui_system_initialize_event_system(longlong event_context, undefined4 event_param)
+void ui_system_initialize_event_system(longlong event_context, int32_t event_param)
 {
     int process_result;
     
@@ -1043,7 +1043,7 @@ void ui_system_initialize_event_system(longlong event_context, undefined4 event_
     }
     
     // 注册事件处理器
-    ui_system_process_event_callbacks(*(undefined8 *)(event_context + UI_EVENT_QUEUE_OFFSET), event_param, 0);
+    ui_system_process_event_callbacks(*(uint64_t *)(event_context + UI_EVENT_QUEUE_OFFSET), event_param, 0);
     return;
 }
 
@@ -1075,7 +1075,7 @@ int ui_system_process_event_callbacks(longlong event_context)
         queue_manager = 0;
         do {
             if (*(longlong *)(queue_manager + 0x30 + *(longlong *)(event_context + 0x6a0)) != 0) {
-                process_result = FUN_180788e60(*(undefined8 *)(event_context + 0x670));
+                process_result = FUN_180788e60(*(uint64_t *)(event_context + 0x670));
                 if (process_result != 0) goto callback_complete;
             }
             event_counter = event_counter + 1;
@@ -1120,7 +1120,7 @@ int ui_system_check_event_state(longlong event_context)
         queue_manager = 0;
         do {
             if (*(longlong *)(queue_manager + 0x30 + *(longlong *)(event_context + 0x6a0)) != 0) {
-                process_result = FUN_180788e60(*(undefined8 *)(event_context + 0x670));
+                process_result = FUN_180788e60(*(uint64_t *)(event_context + 0x670));
                 if (process_result != 0) goto check_complete;
             }
             event_counter = event_counter + 1;

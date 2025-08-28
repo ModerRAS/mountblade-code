@@ -71,7 +71,7 @@
  * - 内存泄漏防护
  * - 异常安全处理
  */
-void RenderingSystem_TexturePathProcessor(longlong render_context, longlong file_handle, undefined8 texture_param)
+void RenderingSystem_TexturePathProcessor(longlong render_context, longlong file_handle, uint64_t texture_param)
 
 {
     // 局部变量声明
@@ -79,16 +79,16 @@ void RenderingSystem_TexturePathProcessor(longlong render_context, longlong file
     uint texture_count;
     int path_length;
     longlong path_buffer;
-    undefined1 *texture_data;
-    undefined4 *texture_ids;
-    undefined2 *path_buffer_wide;
-    undefined2 *temp_path_buffer;
+    int8_t *texture_data;
+    int32_t *texture_ids;
+    int16_t *path_buffer_wide;
+    int16_t *temp_path_buffer;
     uint path_hash;
     longlong texture_manager;
-    undefined8 *texture_ptr;
+    uint64_t *texture_ptr;
     longlong *shader_ptr;
-    undefined8 *data_ptr;
-    undefined8 *buffer_ptr;
+    uint64_t *data_ptr;
+    uint64_t *buffer_ptr;
     char *current_path;
     int path_index;
     ulonglong data_offset;
@@ -98,20 +98,20 @@ void RenderingSystem_TexturePathProcessor(longlong render_context, longlong file
     float *float_ptr;
     longlong calculation_base;
     uint *param_ptr;
-    undefined8 *temp_ptr;
+    uint64_t *temp_ptr;
     bool is_allocated;
-    undefined4 format_flag;
-    undefined1 alignment_buffer[32];
+    int32_t format_flag;
+    int8_t alignment_buffer[32];
     ulonglong *stack_pointer;
-    undefined1 temp_buffer1[16];
-    undefined1 temp_buffer2[16];
+    int8_t temp_buffer1[16];
+    int8_t temp_buffer2[16];
     longlong param_save1;
     longlong param_save2;
-    undefined1 temp_buffer3[8];
-    undefined1 temp_buffer4[8];
-    undefined1 temp_buffer5[8];
-    undefined1 temp_buffer6[24];
-    undefined1 workspace[224];
+    int8_t temp_buffer3[8];
+    int8_t temp_buffer4[8];
+    int8_t temp_buffer5[8];
+    int8_t temp_buffer6[24];
+    int8_t workspace[224];
     uint render_flag1;
     uint render_flag2;
     uint render_flag3;
@@ -156,7 +156,7 @@ void RenderingSystem_TexturePathProcessor(longlong render_context, longlong file
             
             if (is_allocated) {
                 LOCK();
-                *(undefined1 *)((longlong)path_index + 0x48 + (longlong)param_ptr) = 0;
+                *(int8_t *)((longlong)path_index + 0x48 + (longlong)param_ptr) = 0;
                 UNLOCK();
             }
             else {
@@ -182,21 +182,21 @@ void RenderingSystem_TexturePathProcessor(longlong render_context, longlong file
     } while ((longlong)(current_path + (-0x48 - (longlong)param_ptr)) <= (longlong)(ulonglong)texture_param);
     
     // 处理纹理路径规范化
-    texture_ptr = (undefined8 *)
+    texture_ptr = (uint64_t *)
             (*(longlong *)
               ((longlong)*(int *)(base_address + 0x74e0) * 0x50 + calculation_base + 8 + (ulonglong)texture_param * 8) +
             (ulonglong)(texture_count - (texture_count & 0xfffffe00)) * 0x240);
     
     // 读取纹理数据
-    texture_data = (undefined1 *)FUN_1803de8d0(path_buffer, workspace);
+    texture_data = (int8_t *)FUN_1803de8d0(path_buffer, workspace);
     texture_param = texture_data[1];
     *texture_ptr = *texture_data;
     texture_ptr[1] = texture_param;
     
     // 设置纹理参数
-    *(undefined4 *)((longlong)texture_ptr + 0xc) = *(undefined4 *)(path_buffer + 0x34);
-    *(undefined4 *)(texture_ptr + 2) = *(undefined4 *)(path_buffer + 0x38);
-    *(undefined4 *)((longlong)texture_ptr + 0x14) = 0x7fc00001;
+    *(int32_t *)((longlong)texture_ptr + 0xc) = *(int32_t *)(path_buffer + 0x34);
+    *(int32_t *)(texture_ptr + 2) = *(int32_t *)(path_buffer + 0x38);
+    *(int32_t *)((longlong)texture_ptr + 0x14) = 0x7fc00001;
     *(float *)(texture_ptr + 3) = 1.0 / (float)*(int *)(path_buffer + 0x3ec);
     *(float *)((longlong)texture_ptr + 0x1c) = (float)(*(int *)(path_buffer + 200) != 0);
     
@@ -212,44 +212,44 @@ void RenderingSystem_TexturePathProcessor(longlong render_context, longlong file
     
     // 计算纹理变换参数
     texture_param = cosf(*(float *)(path_buffer + 0xec) * 0.017453292);
-    *(undefined4 *)(texture_ptr + 6) = texture_param;
+    *(int32_t *)(texture_ptr + 6) = texture_param;
     texture_param = cosf(*(float *)(path_buffer + 0xe8) * 0.017453292);
-    *(undefined4 *)((longlong)texture_ptr + 0x34) = texture_param;
+    *(int32_t *)((longlong)texture_ptr + 0x34) = texture_param;
     *(float *)(texture_ptr + 7) = (float)*(int *)(path_buffer + 0x394);
     *(float *)((longlong)texture_ptr + 0x3c) = (float)(*(uint *)(path_buffer + 0xc0) & 8);
-    *(undefined4 *)(texture_ptr + 8) = *(undefined4 *)(path_buffer + 0x398);
-    *(undefined4 *)((longlong)texture_ptr + 0x44) = *(undefined4 *)(path_buffer + 0x39c);
-    texture_param = *(undefined8 *)(path_buffer + 0xb8);
-    texture_ptr[0x46] = *(undefined8 *)(path_buffer + 0xb0);
+    *(int32_t *)(texture_ptr + 8) = *(int32_t *)(path_buffer + 0x398);
+    *(int32_t *)((longlong)texture_ptr + 0x44) = *(int32_t *)(path_buffer + 0x39c);
+    texture_param = *(uint64_t *)(path_buffer + 0xb8);
+    texture_ptr[0x46] = *(uint64_t *)(path_buffer + 0xb0);
     texture_ptr[0x47] = texture_param;
     
     // 处理高级纹理特性
     if (*(int *)(path_buffer + 200) != 0) {
-        texture_data = (undefined1 *)(path_buffer + 0x170);
-        temp_path_buffer = (undefined2 *)(param_save2 + 0x3580);
+        texture_data = (int8_t *)(path_buffer + 0x170);
+        temp_path_buffer = (int16_t *)(param_save2 + 0x3580);
         
         if ((*(byte *)(path_buffer + 0xc0) & 0x80) == 0) {
             // 处理标准纹理路径
             path_buffer = 0x28;
             base_address = 0x28;
             do {
-                temp_ptr = *(undefined1 **)(path_buffer + 0x180);
+                temp_ptr = *(int8_t **)(path_buffer + 0x180);
                 texture_ptr = texture_data;
-                if (temp_ptr != (undefined1 *)0x0) {
+                if (temp_ptr != (int8_t *)0x0) {
                     do {
                         if ((ulonglong)temp_ptr[4] < *temp_path_buffer) {
-                            temp_ptr = (undefined1 *)*temp_ptr;
+                            temp_ptr = (int8_t *)*temp_ptr;
                         }
                         else {
                             texture_ptr = temp_ptr;
-                            temp_ptr = (undefined1 *)temp_ptr[1];
+                            temp_ptr = (int8_t *)temp_ptr[1];
                         }
-                    } while (temp_ptr != (undefined1 *)0x0);
+                    } while (temp_ptr != (int8_t *)0x0);
                 }
                 
                 if ((texture_ptr == texture_data) || (*temp_path_buffer < (ulonglong)texture_ptr[4])) {
-                    texture_ptr = (undefined1 *)FUN_180387860(texture_data, workspace + 0x168);
-                    texture_ptr = (undefined1 *)*texture_ptr;
+                    texture_ptr = (int8_t *)FUN_180387860(texture_data, workspace + 0x168);
+                    texture_ptr = (int8_t *)*texture_ptr;
                 }
                 
                 if (*(longlong *)(base_address + (longlong)texture_ptr) == 0) {
@@ -264,108 +264,108 @@ void RenderingSystem_TexturePathProcessor(longlong render_context, longlong file
             base_address = path_buffer - (longlong)texture_ptr;
             
             do {
-                texture_ptr = *(undefined1 **)(path_buffer + 0x180);
+                texture_ptr = *(int8_t **)(path_buffer + 0x180);
                 texture_data = texture_data;
-                if (texture_ptr != (undefined1 *)0x0) {
+                if (texture_ptr != (int8_t *)0x0) {
                     do {
                         if ((ulonglong)texture_ptr[4] < *temp_path_buffer) {
-                            texture_ptr = (undefined1 *)*texture_ptr;
+                            texture_ptr = (int8_t *)*texture_ptr;
                         }
                         else {
                             texture_data = texture_ptr;
-                            texture_ptr = (undefined1 *)texture_ptr[1];
+                            texture_ptr = (int8_t *)texture_ptr[1];
                         }
-                    } while (texture_ptr != (undefined1 *)0x0);
+                    } while (texture_ptr != (int8_t *)0x0);
                 }
                 
                 if ((texture_data == texture_data) || (*temp_path_buffer < (ulonglong)texture_data[4])) {
-                    texture_data = (undefined1 *)FUN_180387860(texture_data, workspace + 0x200);
-                    texture_data = (undefined1 *)*texture_data;
+                    texture_data = (int8_t *)FUN_180387860(texture_data, workspace + 0x200);
+                    texture_data = (int8_t *)*texture_data;
                 }
                 
                 path_index = *(int *)(*(longlong *)(path_buffer + (longlong)texture_data) + 0xc);
                 path_length = *(int *)(*(longlong *)(path_buffer + (longlong)texture_data) + 0x10);
-                texture_ptr = *(undefined1 **)(path_buffer + 0x180);
+                texture_ptr = *(int8_t **)(path_buffer + 0x180);
                 texture_data = texture_data;
-                if (texture_ptr != (undefined1 *)0x0) {
+                if (texture_ptr != (int8_t *)0x0) {
                     do {
                         if ((ulonglong)texture_ptr[4] < *temp_path_buffer) {
-                            texture_ptr = (undefined1 *)*texture_ptr;
+                            texture_ptr = (int8_t *)*texture_ptr;
                         }
                         else {
                             texture_data = texture_ptr;
-                            texture_ptr = (undefined1 *)texture_ptr[1];
+                            texture_ptr = (int8_t *)texture_ptr[1];
                         }
-                    } while (texture_ptr != (undefined1 *)0x0);
+                    } while (texture_ptr != (int8_t *)0x0);
                 }
                 
                 if ((texture_data == texture_data) || (*temp_path_buffer < (ulonglong)texture_data[4])) {
-                    texture_data = (undefined1 *)FUN_180387860(texture_data, workspace + 0x1f8);
-                    texture_data = (undefined1 *)*texture_data;
+                    texture_data = (int8_t *)FUN_180387860(texture_data, workspace + 0x1f8);
+                    texture_data = (int8_t *)*texture_data;
                 }
                 
                 texture_count = *(int *)(*(longlong *)(path_buffer + (longlong)texture_data) + 0xc);
                 texture_hash = *(int *)(*(longlong *)(path_buffer + (longlong)texture_data) + 0x10);
-                texture_ptr = *(undefined1 **)(path_buffer + 0x180);
+                texture_ptr = *(int8_t **)(path_buffer + 0x180);
                 texture_data = texture_data;
-                if (texture_ptr != (undefined1 *)0x0) {
+                if (texture_ptr != (int8_t *)0x0) {
                     do {
                         if ((ulonglong)texture_ptr[4] < *temp_path_buffer) {
-                            texture_ptr = (undefined1 *)*texture_ptr;
+                            texture_ptr = (int8_t *)*texture_ptr;
                         }
                         else {
                             texture_data = texture_ptr;
-                            texture_ptr = (undefined1 *)texture_ptr[1];
+                            texture_ptr = (int8_t *)texture_ptr[1];
                         }
-                    } while (texture_ptr != (undefined1 *)0x0);
+                    } while (texture_ptr != (int8_t *)0x0);
                 }
                 
                 if ((texture_data == texture_data) || (*temp_path_buffer < (ulonglong)texture_data[4])) {
-                    texture_data = (undefined1 *)FUN_180387860(texture_data, workspace + 0x1f0);
-                    texture_data = (undefined1 *)*texture_data;
+                    texture_data = (int8_t *)FUN_180387860(texture_data, workspace + 0x1f0);
+                    texture_data = (int8_t *)*texture_data;
                 }
                 
                 path_hash = *(int *)(*(longlong *)(path_buffer + (longlong)texture_data) + 0x10);
                 texture_param = *(float *)(*(longlong *)(path_buffer + (longlong)texture_data) + 4);
-                texture_data = *(undefined1 **)(path_buffer + 0x180);
+                texture_data = *(int8_t **)(path_buffer + 0x180);
                 texture_ptr = texture_data;
-                if (texture_data != (undefined1 *)0x0) {
+                if (texture_data != (int8_t *)0x0) {
                     do {
                         if ((ulonglong)texture_data[4] < *temp_path_buffer) {
-                            texture_data = (undefined1 *)*texture_data;
+                            texture_data = (int8_t *)*texture_data;
                         }
                         else {
                             texture_ptr = texture_data;
-                            texture_data = (undefined1 *)texture_data[1];
+                            texture_data = (int8_t *)texture_data[1];
                         }
-                    } while (texture_data != (undefined1 *)0x0);
+                    } while (texture_data != (int8_t *)0x0);
                 }
                 
                 if ((texture_ptr == texture_data) || (*temp_path_buffer < (ulonglong)texture_ptr[4])) {
-                    texture_ptr = (undefined1 *)FUN_180387860(texture_data, workspace + 0x228);
-                    texture_ptr = (undefined1 *)*texture_ptr;
+                    texture_ptr = (int8_t *)FUN_180387860(texture_data, workspace + 0x228);
+                    texture_ptr = (int8_t *)*texture_ptr;
                 }
                 
-                texture_data = (undefined1 *)(path_buffer + (longlong)texture_ptr);
+                texture_data = (int8_t *)(path_buffer + (longlong)texture_ptr);
                 path_buffer = path_buffer + 8;
                 *float_ptr = 0.05 / (float)(int)((float *)*texture_data)[4] + *(float *)*texture_data;
                 float_ptr[1] = 0.05 / (float)path_hash + texture_param;
                 float_ptr[2] = ((float)texture_count * 0.9) / (float)path_length;
                 float_ptr[3] = ((float)path_index * 0.9) / (float)texture_hash;
                 float_ptr = float_ptr + 4;
-                texture_data = (undefined1 *)((longlong)temp_ptr + base_address + 0x120);
+                texture_data = (int8_t *)((longlong)temp_ptr + base_address + 0x120);
                 texture_param = texture_data[1];
                 *temp_ptr = *texture_data;
                 temp_ptr[1] = texture_param;
-                texture_data = (undefined1 *)((longlong)temp_ptr + base_address + 0x130);
+                texture_data = (int8_t *)((longlong)temp_ptr + base_address + 0x130);
                 texture_param = texture_data[1];
                 temp_ptr[2] = *texture_data;
                 temp_ptr[3] = texture_param;
-                texture_data = (undefined1 *)((longlong)temp_ptr + base_address + 0x140);
+                texture_data = (int8_t *)((longlong)temp_ptr + base_address + 0x140);
                 texture_param = texture_data[1];
                 temp_ptr[4] = *texture_data;
                 temp_ptr[5] = texture_param;
-                texture_data = (undefined1 *)((longlong)temp_ptr + base_address + 0x150);
+                texture_data = (int8_t *)((longlong)temp_ptr + base_address + 0x150);
                 texture_param = texture_data[1];
                 temp_ptr[6] = *texture_data;
                 temp_ptr[7] = texture_param;
@@ -377,7 +377,7 @@ void RenderingSystem_TexturePathProcessor(longlong render_context, longlong file
             shader_ptr = (longlong *)FUN_180387380(texture_data, temp_path_buffer);
             if (*shader_ptr == 0) {
 texture_processing_complete:
-                *(undefined4 *)((longlong)texture_ptr + 0x1c) = 0;
+                *(int32_t *)((longlong)texture_ptr + 0x1c) = 0;
             }
             else {
                 shader_ptr = (longlong *)FUN_180387380(texture_data, temp_path_buffer);
@@ -389,22 +389,22 @@ texture_processing_complete:
                 shader_ptr = (longlong *)FUN_180387380(texture_data, temp_path_buffer);
                 path_hash = *(int *)(*shader_ptr + 0x10);
                 texture_param = *(float *)(*shader_ptr + 4);
-                texture_data = (undefined1 *)FUN_180387380(texture_data, temp_path_buffer);
+                texture_data = (int8_t *)FUN_180387380(texture_data, temp_path_buffer);
                 *(float *)(texture_ptr + 10) = 0.05 / (float)(int)((float *)*texture_data)[4] + *(float *)*texture_data;
                 *(float *)((longlong)texture_ptr + 0x54) = 0.05 / (float)path_hash + texture_param;
                 *(float *)(texture_ptr + 0xb) = ((float)texture_count * 0.9) / (float)texture_hash;
                 *(float *)((longlong)texture_ptr + 0x5c) = ((float)path_index * 0.9) / (float)path_length;
-                texture_param = *(undefined8 *)(path_buffer + 0x1d8);
-                texture_ptr[0x16] = *(undefined8 *)(path_buffer + 0x1d0);
+                texture_param = *(uint64_t *)(path_buffer + 0x1d8);
+                texture_ptr[0x16] = *(uint64_t *)(path_buffer + 0x1d0);
                 texture_ptr[0x17] = texture_param;
-                texture_param = *(undefined8 *)(path_buffer + 0x1e8);
-                texture_ptr[0x18] = *(undefined8 *)(path_buffer + 0x1e0);
+                texture_param = *(uint64_t *)(path_buffer + 0x1e8);
+                texture_ptr[0x18] = *(uint64_t *)(path_buffer + 0x1e0);
                 texture_ptr[0x19] = texture_param;
-                texture_param = *(undefined8 *)(path_buffer + 0x1f8);
-                texture_ptr[0x1a] = *(undefined8 *)(path_buffer + 0x1f0);
+                texture_param = *(uint64_t *)(path_buffer + 0x1f8);
+                texture_ptr[0x1a] = *(uint64_t *)(path_buffer + 0x1f0);
                 texture_ptr[0x1b] = texture_param;
-                texture_param = *(undefined8 *)(path_buffer + 0x208);
-                texture_ptr[0x1c] = *(undefined8 *)(path_buffer + 0x200);
+                texture_param = *(uint64_t *)(path_buffer + 0x208);
+                texture_ptr[0x1c] = *(uint64_t *)(path_buffer + 0x200);
                 texture_ptr[0x1d] = texture_param;
             }
         }
@@ -415,7 +415,7 @@ texture_processing_complete:
 }
 
 // 函数别名：保持向后兼容性
-void FUN_180330ab0(longlong param_1, longlong param_2, undefined8 param_3) __attribute__((alias("RenderingSystem_TexturePathProcessor")));
+void FUN_180330ab0(longlong param_1, longlong param_2, uint64_t param_3) __attribute__((alias("RenderingSystem_TexturePathProcessor")));
 
 // ===================================================================
 // 函数实现：渲染参数插值器
@@ -451,57 +451,57 @@ void FUN_180330ab0(longlong param_1, longlong param_2, undefined8 param_3) __att
  * - 精度误差控制
  * - 边界条件处理
  */
-void RenderingSystem_ParameterInterpolator(undefined8 render_context, float *target_buffer, undefined8 *source_buffer1, undefined8 *source_buffer2, float interpolation_factor)
+void RenderingSystem_ParameterInterpolator(uint64_t render_context, float *target_buffer, uint64_t *source_buffer1, uint64_t *source_buffer2, float interpolation_factor)
 
 {
     // 局部变量声明
-    undefined1 simd_vector1[16];
-    undefined8 simd_result;
-    undefined4 interpolation_result;
+    int8_t simd_vector1[16];
+    uint64_t simd_result;
+    int32_t interpolation_result;
     uint mask_result;
     float *source_ptr1;
     float *source_ptr2;
     ulonglong data_offset;
-    undefined8 *data_ptr;
+    uint64_t *data_ptr;
     float target_value1;
     float target_value2;
     float target_value3;
     float target_value4;
     float target_value5;
     float target_value6;
-    undefined1 simd_vector2[16];
-    undefined1 simd_vector3[16];
+    int8_t simd_vector2[16];
+    int8_t simd_vector3[16];
     float target_value7;
     float target_value8;
     float target_value9;
     float target_value10;
     float target_value11;
     float target_value12;
-    undefined1 workspace[32];
+    int8_t workspace[32];
     float temp_value1;
     float temp_value2;
     float temp_value3;
     float temp_value4;
-    undefined8 ustack_138;
-    undefined8 ustack_130;
-    undefined4 ustack_128;
-    undefined4 ustack_124;
-    undefined4 ustack_120;
-    undefined4 ustack_11c;
-    undefined4 ustack_118;
-    undefined4 ustack_114;
-    undefined4 ustack_110;
-    undefined4 ustack_10c;
-    undefined8 ustack_108;
-    undefined8 ustack_100;
-    undefined4 ustack_f8;
-    undefined4 ustack_f4;
-    undefined4 ustack_f0;
-    undefined4 ustack_ec;
-    undefined4 ustack_e8;
-    undefined4 ustack_e4;
-    undefined4 ustack_e0;
-    undefined4 ustack_dc;
+    uint64_t ustack_138;
+    uint64_t ustack_130;
+    int32_t ustack_128;
+    int32_t ustack_124;
+    int32_t ustack_120;
+    int32_t ustack_11c;
+    int32_t ustack_118;
+    int32_t ustack_114;
+    int32_t ustack_110;
+    int32_t ustack_10c;
+    uint64_t ustack_108;
+    uint64_t ustack_100;
+    int32_t ustack_f8;
+    int32_t ustack_f4;
+    int32_t ustack_f0;
+    int32_t ustack_ec;
+    int32_t ustack_e8;
+    int32_t ustack_e4;
+    int32_t ustack_e0;
+    int32_t ustack_dc;
     float float_array[8];
     ulonglong frame_sync;
     
@@ -510,11 +510,11 @@ void RenderingSystem_ParameterInterpolator(undefined8 render_context, float *tar
     
     // 复制源数据到目标缓冲区
     simd_result = source_buffer1[1];
-    *(undefined8 *)target_buffer = *source_buffer1;
-    *(undefined8 *)(target_buffer + 2) = simd_result;
+    *(uint64_t *)target_buffer = *source_buffer1;
+    *(uint64_t *)(target_buffer + 2) = simd_result;
     simd_result = source_buffer1[3];
-    *(undefined8 *)(target_buffer + 4) = source_buffer1[2];
-    *(undefined8 *)(target_buffer + 6) = simd_result;
+    *(uint64_t *)(target_buffer + 4) = source_buffer1[2];
+    *(uint64_t *)(target_buffer + 6) = simd_result;
     
     // 处理浮点参数
     target_value1 = *(float *)((longlong)source_buffer1 + 0x24);
@@ -540,14 +540,14 @@ void RenderingSystem_ParameterInterpolator(undefined8 render_context, float *tar
     // 保存源数据
     ustack_138 = *source_buffer1;
     ustack_130 = source_buffer1[1];
-    ustack_128 = *(undefined4 *)(source_buffer1 + 2);
-    ustack_124 = *(undefined4 *)((longlong)source_buffer1 + 0x14);
-    ustack_120 = *(undefined4 *)(source_buffer1 + 3);
-    ustack_11c = *(undefined4 *)((longlong)source_buffer1 + 0x1c);
-    ustack_118 = *(undefined4 *)(source_buffer1 + 4);
-    ustack_114 = *(undefined4 *)((longlong)source_buffer1 + 0x24);
-    ustack_110 = *(undefined4 *)(source_buffer1 + 5);
-    ustack_10c = *(undefined4 *)((longlong)source_buffer1 + 0x2c);
+    ustack_128 = *(int32_t *)(source_buffer1 + 2);
+    ustack_124 = *(int32_t *)((longlong)source_buffer1 + 0x14);
+    ustack_120 = *(int32_t *)(source_buffer1 + 3);
+    ustack_11c = *(int32_t *)((longlong)source_buffer1 + 0x1c);
+    ustack_118 = *(int32_t *)(source_buffer1 + 4);
+    ustack_114 = *(int32_t *)((longlong)source_buffer1 + 0x24);
+    ustack_110 = *(int32_t *)(source_buffer1 + 5);
+    ustack_10c = *(int32_t *)((longlong)source_buffer1 + 0x2c);
     
     // 计算插值结果
     target_value1 = (*source_ptr1 - *source_ptr2) * interpolation_factor + *source_ptr2;
@@ -558,14 +558,14 @@ void RenderingSystem_ParameterInterpolator(undefined8 render_context, float *tar
     FUN_1802bfc90(&ustack_138, float_array);
     ustack_108 = *data_ptr;
     ustack_100 = data_ptr[1];
-    ustack_f8 = *(undefined4 *)(data_ptr + 2);
-    ustack_f4 = *(undefined4 *)((longlong)data_ptr + 0x14);
-    ustack_f0 = *(undefined4 *)(data_ptr + 3);
-    ustack_ec = *(undefined4 *)((longlong)data_ptr + 0x1c);
-    ustack_e8 = *(undefined4 *)(data_ptr + 4);
-    ustack_e4 = *(undefined4 *)((longlong)data_ptr + 0x24);
-    ustack_e0 = *(undefined4 *)(data_ptr + 5);
-    ustack_dc = *(undefined4 *)((longlong)data_ptr + 0x2c);
+    ustack_f8 = *(int32_t *)(data_ptr + 2);
+    ustack_f4 = *(int32_t *)((longlong)data_ptr + 0x14);
+    ustack_f0 = *(int32_t *)(data_ptr + 3);
+    ustack_ec = *(int32_t *)((longlong)data_ptr + 0x1c);
+    ustack_e8 = *(int32_t *)(data_ptr + 4);
+    ustack_e4 = *(int32_t *)((longlong)data_ptr + 0x24);
+    ustack_e0 = *(int32_t *)(data_ptr + 5);
+    ustack_dc = *(int32_t *)((longlong)data_ptr + 0x2c);
     
     FUN_1802bfc90(&ustack_108, float_array);
     FUN_18063b470(float_array, &ustack_108);
@@ -659,8 +659,8 @@ void RenderingSystem_ParameterInterpolator(undefined8 render_context, float *tar
     
     // 应用变换结果
     FUN_18063b5f0(&ustack_138, &temp_value1);
-    *(undefined8 *)target_buffer = ustack_138;
-    *(undefined8 *)(target_buffer + 2) = ustack_130;
+    *(uint64_t *)target_buffer = ustack_138;
+    *(uint64_t *)(target_buffer + 2) = ustack_130;
     *(ulonglong *)(target_buffer + 4) = CONCAT44(ustack_124, ustack_128);
     *(ulonglong *)(target_buffer + 6) = CONCAT44(ustack_11c, ustack_120);
     *(ulonglong *)(target_buffer + 8) = CONCAT44(ustack_114, ustack_118);
@@ -689,7 +689,7 @@ void RenderingSystem_ParameterInterpolator(undefined8 render_context, float *tar
 }
 
 // 函数别名：保持向后兼容性
-void FUN_1803310f0(undefined8 param_1, float *param_2, undefined8 *param_3, undefined8 *param_4, float param_5) __attribute__((alias("RenderingSystem_ParameterInterpolator")));
+void FUN_1803310f0(uint64_t param_1, float *param_2, uint64_t *param_3, uint64_t *param_4, float param_5) __attribute__((alias("RenderingSystem_ParameterInterpolator")));
 
 // ===================================================================
 // 函数实现：高级矩阵变换器
@@ -731,15 +731,15 @@ void FUN_1803310f0(undefined8 param_1, float *param_2, undefined8 *param_3, unde
  * - 数值精度控制
  * - 边界条件处理
  */
-void RenderingSystem_AdvancedMatrixTransformer(undefined8 param1, undefined8 param2, undefined8 param3, undefined8 param4,
-                                           undefined8 param5, undefined8 param6, undefined8 param7, undefined8 param8,
-                                           undefined8 param9, undefined8 param10, undefined8 param11)
+void RenderingSystem_AdvancedMatrixTransformer(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4,
+                                           uint64_t param5, uint64_t param6, uint64_t param7, uint64_t param8,
+                                           uint64_t param9, uint64_t param10, uint64_t param11)
 
 {
     // 局部变量声明
     float *target_buffer;
-    undefined1 simd_vector1[16];
-    undefined4 register_eax;
+    int8_t simd_vector1[16];
+    int32_t register_eax;
     uint mask_result;
     float *source_buffer;
     longlong transform_matrix;
@@ -749,19 +749,19 @@ void RenderingSystem_AdvancedMatrixTransformer(undefined8 param1, undefined8 par
     float transform_factor3;
     float register_xmm0_dc;
     float register_xmm0_dd;
-    undefined4 register_xmm1_dc;
-    undefined4 register_xmm1_dd;
-    undefined1 simd_vector2[16];
-    undefined1 simd_vector3[16];
+    int32_t register_xmm1_dc;
+    int32_t register_xmm1_dd;
+    int8_t simd_vector2[16];
+    int8_t simd_vector3[16];
     float register_xmm3_dc;
     float register_xmm3_dd;
     float transform_factor4;
-    undefined4 register_xmm6_da;
-    undefined4 register_xmm6_dc;
-    undefined4 register_xmm7_da;
-    undefined4 register_xmm7_dc;
-    undefined4 register_xmm8_da;
-    undefined4 register_xmm8_dc;
+    int32_t register_xmm6_da;
+    int32_t register_xmm6_dc;
+    int32_t register_xmm7_da;
+    int32_t register_xmm7_dc;
+    int32_t register_xmm8_da;
+    int32_t register_xmm8_dc;
     float register_xmm9_da;
     float transform_factor5;
     float transform_factor6;
@@ -771,19 +771,19 @@ void RenderingSystem_AdvancedMatrixTransformer(undefined8 param1, undefined8 par
     float register_xmm15_da;
     float stack_temp1;
     float stack_temp2;
-    undefined4 stack_param1;
-    undefined4 stack_param2;
-    undefined4 stack_param3;
-    undefined4 stack_param4;
-    undefined4 stack_param5;
-    undefined4 stack_param6;
-    undefined4 stack_param7;
+    int32_t stack_param1;
+    int32_t stack_param2;
+    int32_t stack_param3;
+    int32_t stack_param4;
+    int32_t stack_param5;
+    int32_t stack_param6;
+    int32_t stack_param7;
     
     // 设置变换矩阵参数
     *(int *)(transform_matrix + -0x60) = (int)param2;
     *(int *)(transform_matrix + -0x5c) = (int)((ulonglong)param2 >> 0x20);
-    *(undefined4 *)(transform_matrix + -0x58) = register_xmm1_dc;
-    *(undefined4 *)(transform_matrix + -0x54) = register_xmm1_dd;
+    *(int32_t *)(transform_matrix + -0x58) = register_xmm1_dc;
+    *(int32_t *)(transform_matrix + -0x54) = register_xmm1_dd;
     
     // 计算SIMD向量变换
     simd_vector3._0_4_ = register_xmm0_dc + (float)param1;
@@ -794,8 +794,8 @@ void RenderingSystem_AdvancedMatrixTransformer(undefined8 param1, undefined8 par
     simd_vector2._0_4_ = simd_vector3._0_4_ + simd_vector3._4_4_;
     
     // 初始化单位矩阵
-    *(undefined8 *)(transform_matrix + -0x70) = 0x3f8000003f800000;
-    *(undefined8 *)(transform_matrix + -0x68) = 0x3f8000003f800000;
+    *(uint64_t *)(transform_matrix + -0x70) = 0x3f8000003f800000;
+    *(uint64_t *)(transform_matrix + -0x68) = 0x3f8000003f800000;
     
     // 执行SIMD掩码操作
     mask_result = movmskps(register_eax, simd_vector2);
@@ -851,12 +851,12 @@ void RenderingSystem_AdvancedMatrixTransformer(undefined8 param1, undefined8 par
     
     // 应用变换结果
     FUN_18063b5f0(&param6, &stack_temp1);
-    *(undefined8 *)source_buffer = param6;
-    *(undefined8 *)(source_buffer + 2) = param7;
-    *(undefined8 *)(source_buffer + 4) = param8;
-    *(undefined8 *)(source_buffer + 6) = param9;
-    *(undefined8 *)(source_buffer + 8) = param10;
-    *(undefined8 *)(source_buffer + 10) = param11;
+    *(uint64_t *)source_buffer = param6;
+    *(uint64_t *)(source_buffer + 2) = param7;
+    *(uint64_t *)(source_buffer + 4) = param8;
+    *(uint64_t *)(source_buffer + 6) = param9;
+    *(uint64_t *)(source_buffer + 8) = param10;
+    *(uint64_t *)(source_buffer + 10) = param11;
     
     // 处理最终变换
     transform_factor1 = register_xmm11_da - register_xmm9_da;
@@ -882,9 +882,9 @@ void RenderingSystem_AdvancedMatrixTransformer(undefined8 param1, undefined8 par
 }
 
 // 函数别名：保持向后兼容性
-void FUN_180331284(undefined8 param1, undefined8 param2, undefined8 param3, undefined8 param4,
-                   undefined8 param5, undefined8 param6, undefined8 param7, undefined8 param8,
-                   undefined8 param9, undefined8 param10, undefined8 param11) __attribute__((alias("RenderingSystem_AdvancedMatrixTransformer")));
+void FUN_180331284(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4,
+                   uint64_t param5, uint64_t param6, uint64_t param7, uint64_t param8,
+                   uint64_t param9, uint64_t param10, uint64_t param11) __attribute__((alias("RenderingSystem_AdvancedMatrixTransformer")));
 
 // ===================================================================
 // 函数实现：四元数旋转处理器
@@ -934,12 +934,12 @@ void RenderingSystem_QuaternionRotationProcessor(void)
     float register_xmm15_da;
     float stack_temp1;
     float stack_temp2;
-    undefined8 stack_param1;
-    undefined8 stack_param2;
-    undefined8 stack_param3;
-    undefined8 stack_param4;
-    undefined8 stack_param5;
-    undefined8 stack_param6;
+    uint64_t stack_param1;
+    uint64_t stack_param2;
+    uint64_t stack_param3;
+    uint64_t stack_param4;
+    uint64_t stack_param5;
+    uint64_t stack_param6;
     
     // 计算球面线性插值参数
     rotation_factor1 = (float)acosf();
@@ -955,12 +955,12 @@ void RenderingSystem_QuaternionRotationProcessor(void)
     
     // 应用变换结果
     FUN_18063b5f0(&stack0x00000030, &stack_temp1);
-    *(undefined8 *)target_buffer = stack_param1;
-    *(undefined8 *)(target_buffer + 2) = stack_param2;
-    *(undefined8 *)(target_buffer + 4) = stack_param3;
-    *(undefined8 *)(target_buffer + 6) = stack_param4;
-    *(undefined8 *)(target_buffer + 8) = stack_param5;
-    *(undefined8 *)(target_buffer + 10) = stack_param6;
+    *(uint64_t *)target_buffer = stack_param1;
+    *(uint64_t *)(target_buffer + 2) = stack_param2;
+    *(uint64_t *)(target_buffer + 4) = stack_param3;
+    *(uint64_t *)(target_buffer + 6) = stack_param4;
+    *(uint64_t *)(target_buffer + 8) = stack_param5;
+    *(uint64_t *)(target_buffer + 10) = stack_param6;
     
     // 处理旋转变换
     rotation_factor3 = register_xmm11_da - register_xmm9_da;
@@ -1026,8 +1026,8 @@ void RenderingSystem_VectorNormalizationProcessor(void)
     longlong data_buffer;
     float normalization_factor1;
     float normalization_factor2;
-    undefined1 register_xmm2[16];
-    undefined1 simd_vector[16];
+    int8_t register_xmm2[16];
+    int8_t simd_vector[16];
     float normalization_factor3;
     float normalization_factor4;
     float normalization_factor5;
@@ -1046,12 +1046,12 @@ void RenderingSystem_VectorNormalizationProcessor(void)
     float stack_temp2;
     float stack_temp3;
     float stack_temp4;
-    undefined8 stack_param2;
-    undefined8 stack_param3;
-    undefined8 stack_param4;
-    undefined8 stack_param5;
-    undefined8 stack_param6;
-    undefined8 stack_param7;
+    uint64_t stack_param2;
+    uint64_t stack_param3;
+    uint64_t stack_param4;
+    uint64_t stack_param5;
+    uint64_t stack_param6;
+    uint64_t stack_param7;
     
     // 计算向量归一化参数
     normalization_factor3 = register_xmm11_da - register_xmm9_da;
@@ -1080,12 +1080,12 @@ void RenderingSystem_VectorNormalizationProcessor(void)
     
     // 应用归一化结果
     FUN_18063b5f0(&stack0x00000030, &stack_param1, simd_vector._0_8_, normalization_factor5, normalization_factor4 * normalization_factor5);
-    *(undefined8 *)target_buffer = stack_param2;
-    *(undefined8 *)(target_buffer + 2) = stack_param3;
-    *(undefined8 *)(target_buffer + 4) = stack_param4;
-    *(undefined8 *)(target_buffer + 6) = stack_param5;
-    *(undefined8 *)(target_buffer + 8) = stack_param6;
-    *(undefined8 *)(target_buffer + 10) = stack_param7;
+    *(uint64_t *)target_buffer = stack_param2;
+    *(uint64_t *)(target_buffer + 2) = stack_param3;
+    *(uint64_t *)(target_buffer + 4) = stack_param4;
+    *(uint64_t *)(target_buffer + 6) = stack_param5;
+    *(uint64_t *)(target_buffer + 8) = stack_param6;
+    *(uint64_t *)(target_buffer + 10) = stack_param7;
     
     // 处理最终归一化
     normalization_factor3 = register_xmm11_da - register_xmm9_da;
@@ -1157,23 +1157,23 @@ void RenderingSystem_FastTransformProcessor(void)
     float register_xmm13_da;
     float register_xmm14_da;
     float register_xmm15_da;
-    undefined1 alignment_buffer[8];
-    undefined8 stack_param1;
-    undefined8 stack_param2;
-    undefined8 stack_param3;
-    undefined8 stack_param4;
-    undefined8 stack_param5;
-    undefined8 stack_param6;
-    undefined8 stack_param7;
+    int8_t alignment_buffer[8];
+    uint64_t stack_param1;
+    uint64_t stack_param2;
+    uint64_t stack_param3;
+    uint64_t stack_param4;
+    uint64_t stack_param5;
+    uint64_t stack_param6;
+    uint64_t stack_param7;
     
     // 应用快速变换
     FUN_18063b5f0(&stack0x00000030, alignment_buffer);
-    *(undefined8 *)target_buffer = stack_param1;
-    *(undefined8 *)(target_buffer + 2) = stack_param2;
-    *(undefined8 *)(target_buffer + 4) = stack_param3;
-    *(undefined8 *)(target_buffer + 6) = stack_param4;
-    *(undefined8 *)(target_buffer + 8) = stack_param5;
-    *(undefined8 *)(target_buffer + 10) = stack_param6;
+    *(uint64_t *)target_buffer = stack_param1;
+    *(uint64_t *)(target_buffer + 2) = stack_param2;
+    *(uint64_t *)(target_buffer + 4) = stack_param3;
+    *(uint64_t *)(target_buffer + 6) = stack_param4;
+    *(uint64_t *)(target_buffer + 8) = stack_param5;
+    *(uint64_t *)(target_buffer + 10) = stack_param6;
     
     // 处理变换参数
     transform_factor3 = register_xmm11_da - register_xmm9_da;

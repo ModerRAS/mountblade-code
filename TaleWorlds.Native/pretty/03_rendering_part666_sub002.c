@@ -22,9 +22,9 @@ void FUN_18064c2bf(longlong param_1)
     FUN_1806491b0();
   }
   *(byte *)(unaff_RBX + 2) = (byte)unaff_RBX[2] & 0xfb;
-  *(undefined8 *)((longlong)unaff_RBX + 10) = 0;
-  *(undefined8 *)((longlong)unaff_RBX + 0x12) = 0;
-  *(undefined2 *)((longlong)unaff_RBX + 0x1a) = 0;
+  *(uint64_t *)((longlong)unaff_RBX + 10) = 0;
+  *(uint64_t *)((longlong)unaff_RBX + 0x12) = 0;
+  *(int16_t *)((longlong)unaff_RBX + 0x1a) = 0;
   unaff_RBX[8] = 0;
   unaff_RBX[9] = 0;
   unaff_RBX[10] = 0;

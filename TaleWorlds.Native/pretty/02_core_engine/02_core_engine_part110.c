@@ -54,13 +54,13 @@ void update_engine_state_and_resources(void)
   
   // 设置引擎默认参数
   resource_ptr = g_engine_global_data;
-  *(undefined4 *)(g_engine_global_data + 0x1c04) = 0x43c80000;
-  *(undefined4 *)(resource_ptr + 0x1c08) = 0x43c80000;
-  *(undefined4 *)(resource_ptr + 0x1bd4) = 4;
+  *(int32_t *)(g_engine_global_data + 0x1c04) = 0x43c80000;
+  *(int32_t *)(resource_ptr + 0x1c08) = 0x43c80000;
+  *(int32_t *)(resource_ptr + 0x1bd4) = 4;
   
   // 初始化渲染系统
   initialize_render_system(&g_render_context, 0, 0);
-  *(undefined1 *)(context_base + 2) = 1;
+  *(int8_t *)(context_base + 2) = 1;
   return;
 }
 
@@ -106,11 +106,11 @@ void update_engine_state_simple(void)
   
   // 设置引擎参数并初始化渲染
   resource_ptr = g_engine_global_data;
-  *(undefined4 *)(g_engine_global_data + 0x1c04) = 0x43c80000;
-  *(undefined4 *)(resource_ptr + 0x1c08) = 0x43c80000;
-  *(undefined4 *)(resource_ptr + 0x1bd4) = 4;
+  *(int32_t *)(g_engine_global_data + 0x1c04) = 0x43c80000;
+  *(int32_t *)(resource_ptr + 0x1c08) = 0x43c80000;
+  *(int32_t *)(resource_ptr + 0x1bd4) = 4;
   initialize_render_system(&g_render_context, 0, 0);
-  *(undefined1 *)(context_base + 2) = 1;
+  *(int8_t *)(context_base + 2) = 1;
   return;
 }
 
@@ -142,42 +142,42 @@ void process_object_iteration(void)
   } while ((int)object_index < *engine_config);
   
   // 更新引擎参数并初始化系统
-  *(undefined4 *)(g_engine_global_data + 0x1c04) = 0x43c80000;
-  *(undefined4 *)(object_ptr + 0x1c08) = 0x43c80000;
-  *(undefined4 *)(object_ptr + 0x1bd4) = 4;
+  *(int32_t *)(g_engine_global_data + 0x1c04) = 0x43c80000;
+  *(int32_t *)(object_ptr + 0x1c08) = 0x43c80000;
+  *(int32_t *)(object_ptr + 0x1bd4) = 4;
   initialize_render_system(&g_render_context, 0, 0);
-  *(undefined1 *)(context_base + 2) = 1;
+  *(int8_t *)(context_base + 2) = 1;
   return;
 }
 
 
 
 // 函数：初始化对象管理系统
-void initialize_object_management(undefined1 *system_context)
+void initialize_object_management(int8_t *system_context)
 
 {
   int *object_pool;
   byte flag_byte;
-  undefined8 hash_value;
+  uint64_t hash_value;
   int object_capacity;
   int object_count;
-  undefined8 *memory_block;
+  uint64_t *memory_block;
   int new_capacity;
   uint iterator;
   byte *string_ptr;
   ulonglong char_value;
-  undefined8 *stack_ptr_8;
-  undefined8 *stack_ptr_10;
-  undefined8 **stack_ptr_18;
-  undefined8 *stack_ptr_20;
-  undefined *stack_78;
+  uint64_t *stack_ptr_8;
+  uint64_t *stack_ptr_10;
+  uint64_t **stack_ptr_18;
+  uint64_t *stack_ptr_20;
+  void *stack_78;
   ulonglong stack_70;
   code *callback_68;
   code *callback_60;
   code *callback_58;
-  undefined8 stack_50;
+  uint64_t stack_50;
   
-  memory_block = (undefined8 *)0x0;
+  memory_block = (uint64_t *)0x0;
   stack_50 = 0;
   stack_78 = &g_string_constants;
   iterator = 0xffffffff;
@@ -208,23 +208,23 @@ void initialize_object_management(undefined1 *system_context)
   }
   
   // 分配内存块
-  stack_ptr_10 = (undefined8 *)allocate_memory_block(0xf0, g_memory_allocator);
+  stack_ptr_10 = (uint64_t *)allocate_memory_block(0xf0, g_memory_allocator);
   stack_ptr_18 = &stack_ptr_8;
   stack_ptr_8 = memory_block;
   stack_ptr_20 = stack_ptr_10;
   
-  if (stack_ptr_10 != (undefined8 *)0x0) {
-    stack_ptr_8 = (undefined8 *)initialize_memory_block(stack_ptr_10);
+  if (stack_ptr_10 != (uint64_t *)0x0) {
+    stack_ptr_8 = (uint64_t *)initialize_memory_block(stack_ptr_10);
   }
   
-  *(undefined4 *)stack_ptr_8 = 0x11111111;
-  *(undefined4 *)(stack_ptr_8 + 10) = 0;
+  *(int32_t *)stack_ptr_8 = 0x11111111;
+  *(int32_t *)(stack_ptr_8 + 10) = 0;
   register_object_handler(system_context + 0x1c68, &stack_ptr_8);
   
   // 管理对象引用
-  *(undefined8 *)(system_context + 0x1610) = **(undefined8 **)(system_context + 0x1c70);
+  *(uint64_t *)(system_context + 0x1610) = **(uint64_t **)(system_context + 0x1c70);
   object_pool = (int *)(system_context + 0x1618);
-  hash_value = **(undefined8 **)(system_context + 0x1c70);
+  hash_value = **(uint64_t **)(system_context + 0x1c70);
   object_count = *(int *)(system_context + 0x161c);
   object_capacity = *object_pool;
   
@@ -244,7 +244,7 @@ void initialize_object_management(undefined1 *system_context)
     object_capacity = *object_pool;
   }
   
-  *(undefined8 *)(*(longlong *)(system_context + 0x1620) + (longlong)object_capacity * 8) = hash_value;
+  *(uint64_t *)(*(longlong *)(system_context + 0x1620) + (longlong)object_capacity * 8) = hash_value;
   *object_pool = *object_pool + 1;
   
   if (g_engine_global_data != 0) {
@@ -252,21 +252,21 @@ void initialize_object_management(undefined1 *system_context)
   }
   
   // 分配并初始化额外内存
-  stack_ptr_10 = (undefined8 *)allocate_memory_block(0x38, g_memory_allocator);
+  stack_ptr_10 = (uint64_t *)allocate_memory_block(0x38, g_memory_allocator);
   stack_ptr_18 = &stack_ptr_8;
   
-  if (stack_ptr_10 != (undefined8 *)0x0) {
+  if (stack_ptr_10 != (uint64_t *)0x0) {
     *stack_ptr_10 = 0;
     stack_ptr_10[1] = 0;
     stack_ptr_10[2] = 0;
     stack_ptr_10[3] = 0;
     stack_ptr_10[4] = 0;
     stack_ptr_10[5] = 0;
-    *(undefined1 *)(stack_ptr_10 + 6) = 0;
+    *(int8_t *)(stack_ptr_10 + 6) = 0;
     memory_block = stack_ptr_10;
   }
   
-  *(undefined8 **)(system_context + 0x2df8) = memory_block;
+  *(uint64_t **)(system_context + 0x2df8) = memory_block;
   stack_50 = 0;
   stack_78 = &g_string_constants_2;
   iterator = 0xffffffff;
@@ -297,7 +297,7 @@ void initialize_object_management(undefined1 *system_context)
 
 
 // 函数：清理系统资源和内存
-void cleanup_system_resources(char *system_context, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void cleanup_system_resources(char *system_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 
 {
   longlong resource_ptr;
@@ -307,13 +307,13 @@ void cleanup_system_resources(char *system_context, undefined8 param_2, undefine
   ulonglong iterator_1;
   ulonglong iterator_2;
   ulonglong iterator_3;
-  undefined8 cleanup_param;
+  uint64_t cleanup_param;
   
   cleanup_param = 0xfffffffffffffffe;
   
   // 清理主资源
-  if ((*(undefined1 **)(system_context + 0xa0) != (undefined1 *)0x0) && (system_context[3] != '\0')) {
-    **(undefined1 **)(system_context + 0xa0) = 0;
+  if ((*(int8_t **)(system_context + 0xa0) != (int8_t *)0x0) && (system_context[3] != '\0')) {
+    **(int8_t **)(system_context + 0xa0) = 0;
     resource_ptr = *(longlong *)(system_context + 0xa0);
     
     if (resource_ptr != 0) {
@@ -391,11 +391,11 @@ void cleanup_system_resources(char *system_context, undefined8 param_2, undefine
         }
         
         // 重置对象状态
-        *(undefined8 *)(memory_block + 0x40) = 0;
-        *(undefined8 *)(memory_block + 0x30) = 0;
-        *(undefined1 *)(memory_block + 0x76) = 0;
-        *(undefined2 *)(memory_block + 0x49) = 0;
-        *(undefined1 *)(memory_block + 0x48) = 0;
+        *(uint64_t *)(memory_block + 0x40) = 0;
+        *(uint64_t *)(memory_block + 0x30) = 0;
+        *(int8_t *)(memory_block + 0x76) = 0;
+        *(int16_t *)(memory_block + 0x49) = 0;
+        *(int8_t *)(memory_block + 0x48) = 0;
         
         cleanup_flag = (int)iterator_2 + 1;
         iterator_2 = (ulonglong)cleanup_flag;
@@ -447,7 +447,7 @@ void cleanup_system_resources(char *system_context, undefined8 param_2, undefine
     iterator_3 = iterator_1;
     if (0 < *(int *)(system_context + 0x1c68)) {
       do {
-        release_object_memory(*(undefined8 *)(iterator_2 + *(longlong *)(system_context + 0x1c70)));
+        release_object_memory(*(uint64_t *)(iterator_2 + *(longlong *)(system_context + 0x1c70)));
         cleanup_flag = (int)iterator_3 + 1;
         iterator_2 = iterator_2 + 8;
         iterator_3 = (ulonglong)cleanup_flag;
@@ -565,7 +565,7 @@ void add_to_object_array(int *array_ptr, longlong element_ptr)
     current_count = *(int *)(element_ptr + 0x188);
     if (1 < current_count) {
       // 对子对象数组进行排序
-      qsort(*(undefined8 *)(element_ptr + 400), (longlong)current_count, 8, &g_object_compare_func);
+      qsort(*(uint64_t *)(element_ptr + 400), (longlong)current_count, 8, &g_object_compare_func);
     }
     
     if (0 < current_count) {
@@ -593,7 +593,7 @@ void sort_and_process_object_array(void)
   
   object_count = *(int *)(object_context + 0x188);
   if (1 < object_count) {
-    qsort(*(undefined8 *)(object_context + 400), (longlong)object_count, 8, &g_object_compare_func);
+    qsort(*(uint64_t *)(object_context + 400), (longlong)object_count, 8, &g_object_compare_func);
   }
   
   if (0 < object_count) {
@@ -676,7 +676,7 @@ void process_object_hierarchy(longlong object_ptr, int hierarchy_level)
   
   // 将当前对象添加到对应层级的引用树
   build_object_reference_tree(*(longlong *)(object_ptr + 0x28) + 0xb8 + (longlong)hierarchy_level * 0x10,
-                             *(undefined8 *)(object_ptr + 0x2e8));
+                             *(uint64_t *)(object_ptr + 0x2e8));
   
   child_index = 0;
   if (0 < *(int *)(object_ptr + 0x188)) {
@@ -704,7 +704,7 @@ void traverse_and_process_objects(void)
 {
   longlong object_ptr;
   uint object_index;
-  undefined4 hierarchy_level;
+  int32_t hierarchy_level;
   longlong object_context;
   ulonglong iterator;
   
@@ -735,40 +735,40 @@ void placeholder_function(void)
 
 
 // 函数：设置渲染参数
-void set_render_parameters(undefined8 *param_1, undefined8 *param_2, undefined1 param_3)
+void set_render_parameters(uint64_t *param_1, uint64_t *param_2, int8_t param_3)
 
 {
-  undefined8 *render_data;
+  uint64_t *render_data;
   longlong context_ptr;
-  undefined8 render_value;
+  uint64_t render_value;
   
   context_ptr = g_engine_global_data;
   
   // 启用渲染状态
-  *(undefined1 *)(*(longlong *)(g_engine_global_data + 0x1af8) + 0xb1) = 1;
+  *(int8_t *)(*(longlong *)(g_engine_global_data + 0x1af8) + 0xb1) = 1;
   context_ptr = *(longlong *)(context_ptr + 0x1af8);
   
   // 配置渲染参数
-  configure_render_system(*(undefined8 *)(context_ptr + 0x2e8), *param_1, *param_2, param_3);
+  configure_render_system(*(uint64_t *)(context_ptr + 0x2e8), *param_1, *param_2, param_3);
   
   // 获取渲染数据
-  render_data = (undefined8 *)
+  render_data = (uint64_t *)
                (*(longlong *)(*(longlong *)(context_ptr + 0x2e8) + 0x68) + -0x10 +
                (longlong)*(int *)(*(longlong *)(context_ptr + 0x2e8) + 0x60) * 0x10);
   
   render_value = render_data[1];
-  *(undefined8 *)(context_ptr + 0x228) = *render_data;
-  *(undefined8 *)(context_ptr + 0x230) = render_value;
+  *(uint64_t *)(context_ptr + 0x228) = *render_data;
+  *(uint64_t *)(context_ptr + 0x230) = render_value;
   return;
 }
 
 
 // 全局变量定义
 longlong g_engine_global_data = 0;           // 引擎全局数据指针
-undefined8 g_render_context = 0;             // 渲染上下文
-undefined8 g_memory_allocator = 0;           // 内存分配器
-undefined8 g_string_constants = 0;           // 字符串常量表
-undefined8 g_hash_table = 0;                  // 哈希表
-undefined8 g_object_compare_func = 0;       // 对象比较函数
-undefined8 g_string_constants_2 = 0;         // 第二组字符串常量
-undefined8 g_callback_table = 0;             // 回调函数表
+uint64_t g_render_context = 0;             // 渲染上下文
+uint64_t g_memory_allocator = 0;           // 内存分配器
+uint64_t g_string_constants = 0;           // 字符串常量表
+uint64_t g_hash_table = 0;                  // 哈希表
+uint64_t g_object_compare_func = 0;       // 对象比较函数
+uint64_t g_string_constants_2 = 0;         // 第二组字符串常量
+uint64_t g_callback_table = 0;             // 回调函数表

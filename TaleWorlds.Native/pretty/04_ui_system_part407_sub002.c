@@ -48,10 +48,10 @@
 #define UI_ERROR_RESOURCE      -3             // 资源错误
 
 // 类型别名定义
-typedef undefined8 UIHandle;                 // UI句柄
-typedef undefined4 UIState;                  // UI状态
-typedef undefined2 UIComponentID;           // UI组件ID
-typedef undefined1 UIFlag;                   // UI标志
+typedef uint64_t UIHandle;                 // UI句柄
+typedef int32_t UIState;                  // UI状态
+typedef int16_t UIComponentID;           // UI组件ID
+typedef int8_t UIFlag;                   // UI标志
 
 //==============================================================================
 // 核心功能实现

@@ -6,21 +6,21 @@
 void FUN_1808fd200(void)
 
 {
-  undefined1 *in_RAX;
-  undefined1 *puVar1;
-  undefined1 *puVar2;
-  undefined1 auStackX_8 [32];
+  int8_t *in_RAX;
+  int8_t *puVar1;
+  int8_t *puVar2;
+  int8_t auStackX_8 [32];
   
   puVar1 = auStackX_8 + -(longlong)in_RAX;
   if (auStackX_8 < in_RAX) {
-    puVar1 = (undefined1 *)0x0;
+    puVar1 = (int8_t *)0x0;
   }
   if (puVar1 < StackLimit) {
-    puVar2 = (undefined1 *)StackLimit;
+    puVar2 = (int8_t *)StackLimit;
     do {
       puVar2 = puVar2 + -0x1000;
       *puVar2 = 0;
-    } while ((undefined1 *)((ulonglong)puVar1 & 0xfffffffffffff000) != puVar2);
+    } while ((int8_t *)((ulonglong)puVar1 & 0xfffffffffffff000) != puVar2);
   }
   return;
 }
@@ -32,7 +32,7 @@ void FUN_1808fd200(void)
 // WARNING: Removing unreachable block (ram,0x0001808fd27b)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1808fd254(void)
+uint64_t FUN_1808fd254(void)
 
 {
   int *piVar1;
@@ -84,10 +84,10 @@ undefined8 FUN_1808fd254(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong thunk_FUN_1808fd8e0(undefined8 param_1,undefined4 param_2)
+ulonglong thunk_FUN_1808fd8e0(uint64_t param_1,int32_t param_2)
 
 {
-  undefined4 in_EAX;
+  int32_t in_EAX;
   uint uVar1;
   ulonglong uVar2;
   longlong lVar3;
@@ -99,7 +99,7 @@ ulonglong thunk_FUN_1808fd8e0(undefined8 param_1,undefined4 param_2)
   int iVar9;
   float fVar10;
   int iVar11;
-  undefined1 in_XMM0 [16];
+  int8_t in_XMM0 [16];
   int iVar12;
   float fVar13;
   float fVar14;
@@ -107,7 +107,7 @@ ulonglong thunk_FUN_1808fd8e0(undefined8 param_1,undefined4 param_2)
   float fVar16;
   float fVar17;
   float fVar18;
-  undefined1 auVar19 [16];
+  int8_t auVar19 [16];
   float fVar20;
   double dVar21;
   double dVar22;
@@ -118,22 +118,22 @@ ulonglong thunk_FUN_1808fd8e0(undefined8 param_1,undefined4 param_2)
   double dVar27;
   double dVar28;
   float fVar29;
-  undefined1 auVar30 [16];
-  undefined1 auVar31 [16];
-  undefined1 auVar32 [16];
-  undefined1 auVar33 [16];
-  undefined1 auVar34 [16];
+  int8_t auVar30 [16];
+  int8_t auVar31 [16];
+  int8_t auVar32 [16];
+  int8_t auVar33 [16];
+  int8_t auVar34 [16];
   uint uVar35;
   uint uVar39;
   double dVar36;
-  undefined1 auVar37 [16];
+  int8_t auVar37 [16];
   double dVar40;
   float afStack_f8 [8];
   ulonglong uStack_d8;
   uint uStack_b8;
   uint uStack_b4;
-  undefined1 aauStack_38 [3] [16];
-  undefined1 auVar38 [16];
+  int8_t aauStack_38 [3] [16];
+  int8_t auVar38 [16];
   
   fVar13 = in_XMM0._0_4_;
   fVar14 = in_XMM0._4_4_;
@@ -348,10 +348,10 @@ ulonglong thunk_FUN_1808fd8e0(undefined8 param_1,undefined4 param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_1808fd400(undefined8 param_1,undefined4 param_2)
+ulonglong FUN_1808fd400(uint64_t param_1,int32_t param_2)
 
 {
-  undefined4 in_EAX;
+  int32_t in_EAX;
   uint uVar1;
   ulonglong uVar2;
   longlong lVar3;
@@ -362,12 +362,12 @@ ulonglong FUN_1808fd400(undefined8 param_1,undefined4 param_2)
   int iVar9;
   float fVar10;
   float fVar11;
-  undefined1 auVar6 [16];
+  int8_t auVar6 [16];
   float fVar12;
   float fVar13;
   float fVar14;
   float fVar15;
-  undefined1 auVar16 [16];
+  int8_t auVar16 [16];
   float fVar17;
   double dVar18;
   double dVar19;
@@ -378,21 +378,21 @@ ulonglong FUN_1808fd400(undefined8 param_1,undefined4 param_2)
   double dVar24;
   double dVar25;
   float fVar26;
-  undefined1 auVar27 [16];
-  undefined1 auVar28 [16];
-  undefined1 auVar29 [16];
-  undefined1 auVar30 [16];
-  undefined1 auVar31 [16];
+  int8_t auVar27 [16];
+  int8_t auVar28 [16];
+  int8_t auVar29 [16];
+  int8_t auVar30 [16];
+  int8_t auVar31 [16];
   uint uVar32;
   uint uVar35;
   double dVar33;
   double dVar36;
-  undefined1 aauStack_f8 [2] [16];
+  int8_t aauStack_f8 [2] [16];
   ulonglong uStack_d8;
   uint uStack_b8;
   uint uStack_b4;
-  undefined1 aauStack_38 [3] [16];
-  undefined1 auVar34 [16];
+  int8_t aauStack_38 [3] [16];
+  int8_t auVar34 [16];
   
   fVar5 = (float)((ulonglong)param_1 >> 0x20);
   fVar12 = (float)param_1;
@@ -606,10 +606,10 @@ ulonglong FUN_1808fd400(undefined8 param_1,undefined4 param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong thunk_FUN_1808fe1a0(undefined8 param_1,undefined4 param_2)
+ulonglong thunk_FUN_1808fe1a0(uint64_t param_1,int32_t param_2)
 
 {
-  undefined4 in_EAX;
+  int32_t in_EAX;
   uint uVar1;
   ulonglong uVar2;
   int iVar3;
@@ -619,13 +619,13 @@ ulonglong thunk_FUN_1808fe1a0(undefined8 param_1,undefined4 param_2)
   float fVar7;
   float fVar10;
   float fVar13;
-  undefined1 in_XMM0 [16];
-  undefined1 auVar8 [16];
+  int8_t in_XMM0 [16];
+  int8_t auVar8 [16];
   float fVar11;
   float fVar12;
   int iVar14;
   float fVar15;
-  undefined1 auVar9 [16];
+  int8_t auVar9 [16];
   float fVar16;
   float fVar20;
   double dVar17;
@@ -640,20 +640,20 @@ ulonglong thunk_FUN_1808fe1a0(undefined8 param_1,undefined4 param_2)
   double dVar26;
   float fVar28;
   double dVar29;
-  undefined1 auVar30 [16];
-  undefined1 auVar31 [16];
-  undefined1 auVar32 [16];
-  undefined1 auVar33 [16];
-  undefined1 auVar34 [16];
+  int8_t auVar30 [16];
+  int8_t auVar31 [16];
+  int8_t auVar32 [16];
+  int8_t auVar33 [16];
+  int8_t auVar34 [16];
   float fVar35;
   float fVar36;
-  undefined1 auVar37 [16];
+  int8_t auVar37 [16];
   uint uVar38;
   uint uVar39;
-  undefined1 aauStack_d8 [2] [16];
+  int8_t aauStack_d8 [2] [16];
   uint uStack_b8;
   uint uStack_b4;
-  undefined1 aauStack_38 [3] [16];
+  int8_t aauStack_38 [3] [16];
   
   auVar8 = in_XMM0 & _DAT_180d9fd20;
   fVar16 = auVar8._0_4_;
@@ -863,15 +863,15 @@ ulonglong thunk_FUN_1808fe1a0(undefined8 param_1,undefined4 param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void thunk_FUN_1808fea60(undefined8 param_1,undefined8 param_2)
+void thunk_FUN_1808fea60(uint64_t param_1,uint64_t param_2)
 
 {
   double dVar1;
   double dVar2;
   double dVar3;
   double dVar4;
-  undefined1 auVar5 [12];
-  undefined1 auVar6 [12];
+  int8_t auVar5 [12];
+  int8_t auVar6 [12];
   uint uVar7;
   uint uVar8;
   ulonglong uVar9;
@@ -880,40 +880,40 @@ void thunk_FUN_1808fea60(undefined8 param_1,undefined8 param_2)
   int iVar13;
   float in_XMM0_Dc;
   float in_XMM0_Dd;
-  undefined1 auVar11 [16];
+  int8_t auVar11 [16];
   float in_XMM1_Dc;
   float in_XMM1_Dd;
-  undefined1 auVar14 [16];
+  int8_t auVar14 [16];
   float fVar15;
   float fVar16;
-  undefined1 auVar17 [16];
-  undefined1 auVar18 [16];
+  int8_t auVar17 [16];
+  int8_t auVar18 [16];
   double dVar19;
-  undefined1 unaff_XMM8 [16];
-  undefined1 auVar20 [16];
-  undefined1 auVar21 [16];
+  int8_t unaff_XMM8 [16];
+  int8_t auVar20 [16];
+  int8_t auVar21 [16];
   float fVar22;
   float fVar23;
-  undefined1 unaff_XMM10 [16];
-  undefined1 auVar24 [16];
-  undefined1 auVar25 [16];
+  int8_t unaff_XMM10 [16];
+  int8_t auVar24 [16];
+  int8_t auVar25 [16];
   uint uVar26;
   double dVar27;
-  undefined1 auVar28 [16];
+  int8_t auVar28 [16];
   double dVar30;
   double dVar31;
-  undefined1 auVar29 [16];
+  int8_t auVar29 [16];
   float fVar33;
-  undefined1 auVar32 [16];
+  int8_t auVar32 [16];
   double dVar34;
-  undefined1 auVar36 [16];
+  int8_t auVar36 [16];
   double dVar35;
   double dVar38;
   double dVar39;
-  undefined1 auVar37 [16];
+  int8_t auVar37 [16];
   float afStack_100 [16];
-  undefined8 uStack_c0;
-  undefined8 uStack_b8;
+  uint64_t uStack_c0;
+  uint64_t uStack_b8;
   
   fVar33 = (float)((ulonglong)param_2 >> 0x20);
   afStack_100[0] = (float)param_2;

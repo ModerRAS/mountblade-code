@@ -117,7 +117,7 @@ undefined DAT_180c96338;   // 内存碎片整理器
 undefined SUB_18005d5f0;   // 内存分配器子函数
 undefined UNK_180942f90;   // 内存保护机制
 undefined DAT_180c96220;   // 内存分配策略表
-undefined8 UNK_180c96358;  // 内存对齐控制
+uint64_t UNK_180c96358;  // 内存对齐控制
 undefined DAT_180bf64f8;   // 内存使用统计
 undefined DAT_180bf6500;   // 内存泄漏检测器
 undefined DAT_180bf6508;   // 内存性能计数器
@@ -340,11 +340,11 @@ undefined UNK_1809fed78;   // 配置文件签名器
 ulonglong UNK_000001c8;   // 配置文件哈希种子
 ulonglong UNK_000001d0;   // 配置文件加密密钥
 ulonglong UNK_000001d8;   // 配置文件解密密钥
-undefined8 UNK_000001e0;  // 配置文件压缩级别
-undefined8 UNK_000001e8;  // 配置文件加密级别
-undefined8 UNK_000001f0;  // 配置文件缓存大小
+uint64_t UNK_000001e0;  // 配置文件压缩级别
+uint64_t UNK_000001e8;  // 配置文件加密级别
+uint64_t UNK_000001f0;  // 配置文件缓存大小
 longlong UNK_000001f8;    // 配置文件超时时间
-undefined1 DAT_180bf65bc; // 配置系统标志位5
+int8_t DAT_180bf65bc; // 配置系统标志位5
 undefined UNK_1809feda8;   // 配置文件监控器
 undefined UNK_1809feeb8;   // 配置文件同步器
 undefined UNK_1809feec8;   // 配置文件备份器
@@ -354,7 +354,7 @@ undefined UNK_18006a030;   // 配置文件加载器
 undefined UNK_180a0e170;   // 配置文件验证器
 undefined UNK_180a0e368;   // 配置文件解析器
 undefined UNK_1809fefb0;   // 配置文件优化器
-undefined1 DAT_180c8ecee; // 配置系统运行标志
+int8_t DAT_180c8ecee; // 配置系统运行标志
 undefined UNK_1809ff498;   // 配置文件缓存管理器
 undefined UNK_1809ff390;   // 配置文件内存管理器
 undefined UNK_1809ff3e8;   // 配置文件线程管理器
@@ -769,7 +769,7 @@ byte DAT_180d49438;
 undefined DAT_180d4943e;
 undefined DAT_180d49444;
 undefined DAT_180d49448;
-undefined4 UNK_180d49440;
+int32_t UNK_180d49440;
 undefined UNK_180a08a08;
 undefined UNK_180a08a28;
 undefined UNK_180a08a68;
@@ -1274,16 +1274,16 @@ undefined UNK_180a17770;
 undefined UNK_180a17798;
 undefined UNK_180a177c8;
 undefined UNK_180a177f0;
-undefined1 DAT_180d48da8;
+int8_t DAT_180d48da8;
 undefined UNK_1802a1d4c;
 undefined DAT_180bf5c18;
 undefined DAT_180bf5c28;
 undefined UNK_180a02b03;
 undefined UNK_180a17818;
 undefined UNK_180a27cb0;
-undefined4 UNK_180bf5c1c;
-undefined4 UNK_180bf5c20;
-undefined4 UNK_180bf5c24;
+int32_t UNK_180bf5c1c;
+int32_t UNK_180bf5c20;
+int32_t UNK_180bf5c24;
 undefined DAT_180c8ecd0;
 char DAT_180d48dac;
 undefined UNK_18042d5d0;

@@ -2,11 +2,11 @@
 
 // 02_core_engine_part190.c - 6 个函数
 
-// 函数: void process_window_messages(longlong window_context, undefined8 window_handle, uint message_type, longlong param_4,
+// 函数: void process_window_messages(longlong window_context, uint64_t window_handle, uint message_type, longlong param_4,
 //                               ulonglong param_5)
 // 功能: 处理Windows窗口消息，包括鼠标移动、按键、窗口控制等
 // 参数: window_context - 窗口上下文, window_handle - 窗口句柄, message_type - 消息类型, param_4/5 - 消息参数
-void process_window_messages(longlong window_context, undefined8 window_handle, uint message_type, longlong param_4,
+void process_window_messages(longlong window_context, uint64_t window_handle, uint message_type, longlong param_4,
                              ulonglong param_5)
 
 {
@@ -18,7 +18,7 @@ void process_window_messages(longlong window_context, undefined8 window_handle, 
   int iVar6;
   uint uVar7;
   uint uVar8;
-  undefined8 *puVar9;
+  uint64_t *puVar9;
   ulonglong uVar10;
   longlong lVar11;
   int *piVar12;
@@ -26,83 +26,83 @@ void process_window_messages(longlong window_context, undefined8 window_handle, 
   uint uVar14;
   int iVar15;
   int iVar16;
-  undefined8 uVar17;
-  undefined8 extraout_XMM0_Qa;
+  uint64_t uVar17;
+  uint64_t extraout_XMM0_Qa;
   float fVar18;
-  undefined1 auVar19 [16];
+  int8_t auVar19 [16];
   float fVar20;
-  undefined1 auVar21 [16];
+  int8_t auVar21 [16];
   float fVar22;
   float fVar23;
-  undefined1 auStack_8d8 [32];
+  int8_t auStack_8d8 [32];
   uint uStack_8b8;
-  undefined4 auStack_8a8 [2];
+  int32_t auStack_8a8 [2];
   int iStack_8a0;
   int iStack_89c;
   int iStack_898;
-  undefined4 uStack_894;
+  int32_t uStack_894;
   int iStack_890;
-  undefined4 uStack_88c;
+  int32_t uStack_88c;
   uint uStack_888;
-  undefined8 uStack_880;
-  undefined4 uStack_878;
+  uint64_t uStack_880;
+  int32_t uStack_878;
   char cStack_874;
-  undefined8 uStack_870;
-  undefined4 uStack_868;
+  uint64_t uStack_870;
+  int32_t uStack_868;
   char cStack_864;
-  undefined8 uStack_860;
-  undefined4 auStack_858 [2];
-  undefined8 uStack_850;
+  uint64_t uStack_860;
+  int32_t auStack_858 [2];
+  uint64_t uStack_850;
   int iStack_848;
   int iStack_844;
-  undefined4 uStack_838;
-  undefined8 uStack_830;
+  int32_t uStack_838;
+  uint64_t uStack_830;
   int iStack_828;
   int iStack_824;
-  undefined4 uStack_818;
-  undefined4 uStack_814;
-  undefined8 uStack_810;
-  undefined4 uStack_7f8;
-  undefined4 uStack_7f4;
-  undefined8 uStack_7f0;
-  undefined4 uStack_7d8;
-  undefined4 uStack_7d4;
-  undefined8 uStack_7d0;
-  undefined4 uStack_7b8;
-  undefined4 uStack_7b4;
-  undefined8 uStack_7b0;
-  undefined4 uStack_798;
-  undefined4 uStack_794;
-  undefined8 uStack_790;
-  undefined4 uStack_778;
-  undefined4 uStack_774;
-  undefined8 uStack_770;
-  undefined4 uStack_758;
-  undefined4 uStack_754;
-  undefined8 uStack_750;
-  undefined4 uStack_738;
-  undefined4 uStack_734;
-  undefined8 uStack_730;
-  undefined4 uStack_718;
-  undefined4 uStack_714;
-  undefined8 uStack_710;
-  undefined4 uStack_6f8;
+  int32_t uStack_818;
+  int32_t uStack_814;
+  uint64_t uStack_810;
+  int32_t uStack_7f8;
+  int32_t uStack_7f4;
+  uint64_t uStack_7f0;
+  int32_t uStack_7d8;
+  int32_t uStack_7d4;
+  uint64_t uStack_7d0;
+  int32_t uStack_7b8;
+  int32_t uStack_7b4;
+  uint64_t uStack_7b0;
+  int32_t uStack_798;
+  int32_t uStack_794;
+  uint64_t uStack_790;
+  int32_t uStack_778;
+  int32_t uStack_774;
+  uint64_t uStack_770;
+  int32_t uStack_758;
+  int32_t uStack_754;
+  uint64_t uStack_750;
+  int32_t uStack_738;
+  int32_t uStack_734;
+  uint64_t uStack_730;
+  int32_t uStack_718;
+  int32_t uStack_714;
+  uint64_t uStack_710;
+  int32_t uStack_6f8;
   int iStack_6f4;
-  undefined8 uStack_6f0;
-  undefined4 uStack_6d8;
+  uint64_t uStack_6f0;
+  int32_t uStack_6d8;
   int iStack_6d4;
-  undefined8 uStack_6d0;
-  undefined4 uStack_6b8;
+  uint64_t uStack_6d0;
+  int32_t uStack_6b8;
   int iStack_6b4;
-  undefined8 uStack_6b0;
-  undefined4 uStack_698;
-  undefined8 uStack_690;
+  uint64_t uStack_6b0;
+  int32_t uStack_698;
+  uint64_t uStack_690;
   int iStack_680;
   int iStack_678;
   int iStack_674;
-  undefined4 uStack_670;
-  undefined8 uStack_668;
-  undefined1 auStack_658 [28];
+  int32_t uStack_670;
+  uint64_t uStack_668;
+  int8_t auStack_658 [28];
   int aiStack_63c [377];
   ulonglong uStack_58;
   
@@ -120,7 +120,7 @@ void process_window_messages(longlong window_context, undefined8 window_handle, 
         if (*(int *)(_DAT_180c86908 + 0x850) == 0) {
           iVar15 = 0;
           auStack_8a8[0] = GetMessageTime();
-          uStack_880 = *(undefined8 *)(param_1 + 0xa4);
+          uStack_880 = *(uint64_t *)(param_1 + 0xa4);
           ClientToScreen(param_2,&uStack_880);
           iStack_8a0 = iStack_898;
           iStack_89c = iStack_890;
@@ -155,7 +155,7 @@ void process_window_messages(longlong window_context, undefined8 window_handle, 
               FUN_1801edeb0(extraout_XMM0_Qa,auStack_858);
             }
           }
-          *(undefined4 *)(param_1 + 0xa0) = auStack_8a8[0];
+          *(int32_t *)(param_1 + 0xa0) = auStack_8a8[0];
         }
         else {
           uVar10 = (ulonglong)(*(uint *)(param_1 + 0x13c) & 1);
@@ -337,7 +337,7 @@ void process_window_messages(longlong window_context, undefined8 window_handle, 
   if (param_3 < 0x11) {
     if (param_3 == 0x10) {
       if (*(char *)(_DAT_180c86870 + 0x1ec) == '\0') goto LAB_1801732ce;
-      *(undefined1 *)(_DAT_180c86870 + 0x1ed) = 0;
+      *(int8_t *)(_DAT_180c86870 + 0x1ed) = 0;
     }
     else {
       if (param_3 == 2) {
@@ -352,7 +352,7 @@ void process_window_messages(longlong window_context, undefined8 window_handle, 
               uStack_8b8 = uStack_8b8 & 0xffffff00;
               func_0x000180055000(uVar17,(int)*(float *)(_DAT_180c86950 + 0x17ec),
                                   (int)*(float *)(_DAT_180c86950 + 0x17f0));
-              *(undefined1 *)(param_1 + 0x3c) = 0;
+              *(int8_t *)(param_1 + 0x3c) = 0;
             }
           }
           else if (*(int *)(param_1 + 0x38) == 2) {
@@ -362,28 +362,28 @@ void process_window_messages(longlong window_context, undefined8 window_handle, 
             uStack_8b8 = uStack_8b8 & 0xffffff00;
             func_0x000180055000(uVar17,(int)*(float *)(_DAT_180c86950 + 0x17ec),
                                 (int)*(float *)(_DAT_180c86950 + 0x17f0));
-            *(undefined1 *)(param_1 + 0x3c) = 1;
+            *(int8_t *)(param_1 + 0x3c) = 1;
           }
           goto LAB_1801732ce;
         }
       }
       else if (param_3 == 7) {
         if (_DAT_180c86950 != 0) {
-          FUN_180092940(_DAT_180c86950,*(undefined1 *)(_DAT_180c86950 + 0x160a));
+          FUN_180092940(_DAT_180c86950,*(int8_t *)(_DAT_180c86950 + 0x160a));
           FUN_180093af0(_DAT_180c86950);
         }
       }
       else if (param_3 == 8) {
         if ((_DAT_180c86950 != 0) && (*(char *)(_DAT_180c86950 + 0x1609) != '\x01')) {
-          FUN_1801723a0(*(undefined8 *)(_DAT_180c86870 + 8),
+          FUN_1801723a0(*(uint64_t *)(_DAT_180c86870 + 8),
                         *(char *)(_DAT_180c868d0 + 0x2028) != '\0',
-                        *(undefined4 *)(_DAT_180c86950 + 0x160c));
-          *(undefined1 *)(lVar3 + 0x1609) = 1;
+                        *(int32_t *)(_DAT_180c86950 + 0x160c));
+          *(int8_t *)(lVar3 + 0x1609) = 1;
         }
         lVar3 = _DAT_180c868d0;
         lVar11 = 0x100;
-        *(undefined8 *)(_DAT_180c868d0 + 0x2038) = *(undefined8 *)(_DAT_180c868d0 + 0x2030);
-        puVar9 = (undefined8 *)(lVar3 + 0x1804);
+        *(uint64_t *)(_DAT_180c868d0 + 0x2038) = *(uint64_t *)(_DAT_180c868d0 + 0x2030);
+        puVar9 = (uint64_t *)(lVar3 + 0x1804);
         do {
           *puVar9 = 0;
           puVar9 = puVar9 + 1;
@@ -397,12 +397,12 @@ void process_window_messages(longlong window_context, undefined8 window_handle, 
   switch(param_3) {
   case 0x20:
     if (((_DAT_180c86950 != 0) && (*(char *)(_DAT_180c86950 + 0x1609) != '\0')) &&
-       (cVar4 = FUN_1801720a0(param_1,*(undefined4 *)(_DAT_180c86950 + 0x160c)), cVar4 != '\0'))
+       (cVar4 = FUN_1801720a0(param_1,*(int32_t *)(_DAT_180c86950 + 0x160c)), cVar4 != '\0'))
     goto LAB_1801732ce;
     break;
   case 0x24:
-    *(undefined4 *)(param_5 + 0x18) = 0x140;
-    *(undefined4 *)(param_5 + 0x1c) = 0xf0;
+    *(int32_t *)(param_5 + 0x18) = 0x140;
+    *(int32_t *)(param_5 + 0x1c) = 0xf0;
     break;
   case 0xff:
     uStack_8b8 = 0x18;
@@ -415,7 +415,7 @@ void process_window_messages(longlong window_context, undefined8 window_handle, 
              _DAT_180d4943c >> 2 & 3 | (_DAT_180d4943c & 3) << 2 | _DAT_180d4943c & 0xfffffff0;
       }
       if (_DAT_180d49420 == 0) {
-        *(undefined1 *)(_DAT_180c868d0 + 0x2028) = 1;
+        *(int8_t *)(_DAT_180c868d0 + 0x2028) = 1;
       }
       if (*(char *)(_DAT_180c86950 + 0x1609) == '\0') {
         FUN_180173470(param_1);
@@ -445,7 +445,7 @@ void process_window_messages(longlong window_context, undefined8 window_handle, 
     goto LAB_1801732b6;
   case 0x102:
     iStack_890 = 6;
-    uStack_88c = (undefined4)param_4;
+    uStack_88c = (int32_t)param_4;
     goto LAB_1801732b6;
   case 0x109:
     if (param_4 == 0xffff) goto LAB_1801732ce;
@@ -478,8 +478,8 @@ void process_mouse_movement_events(void)
 {
   int *piVar1;
   int iVar2;
-  undefined8 uVar3;
-  undefined4 uVar4;
+  uint64_t uVar3;
+  int32_t uVar4;
   int iVar5;
   int *piVar6;
   longlong unaff_RBP;
@@ -487,22 +487,22 @@ void process_mouse_movement_events(void)
   int iVar7;
   int iVar8;
   int iVar9;
-  undefined4 uStack000000000000003c;
-  undefined4 in_stack_00000040;
-  undefined4 in_stack_00000048;
+  int32_t uStack000000000000003c;
+  int32_t in_stack_00000040;
+  int32_t in_stack_00000048;
   int iStack000000000000005c;
   
   iVar8 = 0;
   uVar4 = GetMessageTime();
-  uVar3 = *(undefined8 *)(unaff_RSI + 0xa4);
+  uVar3 = *(uint64_t *)(unaff_RSI + 0xa4);
   ClientToScreen();
   uStack000000000000003c = in_stack_00000048;
   *(ulonglong *)(unaff_RSI + 0xa4) = CONCAT44(in_stack_00000048,in_stack_00000040);
   ClientToScreen();
-  *(undefined4 *)(unaff_RBP + 0x164) = uStack000000000000003c;
-  *(undefined4 *)(unaff_RBP + 0x168) = uVar4;
-  *(undefined4 *)(unaff_RBP + 0x160) = in_stack_00000040;
-  *(undefined8 *)(unaff_RBP + 0x170) = 0;
+  *(int32_t *)(unaff_RBP + 0x164) = uStack000000000000003c;
+  *(int32_t *)(unaff_RBP + 0x168) = uVar4;
+  *(int32_t *)(unaff_RBP + 0x160) = in_stack_00000040;
+  *(uint64_t *)(unaff_RBP + 0x170) = 0;
   iVar5 = GetMouseMovePointsEx(0x18,unaff_RBP + 0x160,unaff_RBP + 0x180,0x40,1);
   if ((1 < iVar5) && (0 < iVar5 + -1)) {
     piVar6 = (int *)(unaff_RBP + 0x19c);
@@ -521,14 +521,14 @@ void process_mouse_movement_events(void)
       iVar9 = iVar9 + (*piVar1 - iVar2);
     } while (iVar7 < iVar5 + -1);
     if ((iVar8 != 0) || (iVar9 != 0)) {
-      *(undefined8 *)(unaff_RBP + -0x78) = 0;
-      *(undefined4 *)(unaff_RBP + -0x80) = 0;
+      *(uint64_t *)(unaff_RBP + -0x78) = 0;
+      *(int32_t *)(unaff_RBP + -0x80) = 0;
       *(int *)(unaff_RBP + -0x70) = iVar8;
       *(int *)(unaff_RBP + -0x6c) = iVar9;
       FUN_1801edeb0();
     }
   }
-  *(undefined4 *)(unaff_RSI + 0xa0) = uVar4;
+  *(int32_t *)(unaff_RSI + 0xa0) = uVar4;
   DefWindowProcW();
                     // WARNING: Subroutine does not return
   FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x780) ^ (ulonglong)&stack0x00000000);
@@ -540,10 +540,10 @@ void process_mouse_movement_events(void)
 
 
 
-// 函数: void process_mouse_position_delta(longlong window_context, undefined8 window_handle, int delta_x, int delta_y)
+// 函数: void process_mouse_position_delta(longlong window_context, uint64_t window_handle, int delta_x, int delta_y)
 // 功能: 处理鼠标位置变化，计算坐标增量并触发相应事件
 // 参数: window_context - 窗口上下文, window_handle - 窗口句柄, delta_x/delta_y - 坐标增量
-void process_mouse_position_delta(longlong window_context, undefined8 window_handle, int delta_x, int delta_y)
+void process_mouse_position_delta(longlong window_context, uint64_t window_handle, int delta_x, int delta_y)
 
 {
   int iVar1;
@@ -555,9 +555,9 @@ void process_mouse_position_delta(longlong window_context, undefined8 window_han
   longlong unaff_RSI;
   uint uVar6;
   float fVar7;
-  undefined1 auVar8 [16];
+  int8_t auVar8 [16];
   float fVar9;
-  undefined1 auVar10 [16];
+  int8_t auVar10 [16];
   float fVar11;
   float fVar12;
   
@@ -602,8 +602,8 @@ void process_mouse_position_delta(longlong window_context, undefined8 window_han
     iVar1 = (int)fVar7 + 1;
   }
   if ((param_4 - iVar4 != 0) || (param_3 - iVar1 != 0)) {
-    *(undefined8 *)(unaff_RBP + -0x58) = 0;
-    *(undefined4 *)(unaff_RBP + -0x60) = 0;
+    *(uint64_t *)(unaff_RBP + -0x58) = 0;
+    *(int32_t *)(unaff_RBP + -0x60) = 0;
     *(int *)(unaff_RBP + -0x50) = param_4 - iVar4;
     *(int *)(unaff_RBP + -0x4c) = param_3 - iVar1;
     FUN_1801edeb0(iVar1,unaff_RBP + -0x60);
@@ -619,10 +619,10 @@ void process_mouse_position_delta(longlong window_context, undefined8 window_han
 
 
 
-// 函数: void process_raw_mouse_input(float window_context, undefined8 input_data)
+// 函数: void process_raw_mouse_input(float window_context, uint64_t input_data)
 // 功能: 处理原始鼠标输入数据，转换为游戏内的鼠标事件
 // 参数: window_context - 窗口上下文, input_data - 输入数据
-void process_raw_mouse_input(float window_context, undefined8 input_data)
+void process_raw_mouse_input(float window_context, uint64_t input_data)
 
 {
   ushort uVar1;
@@ -630,11 +630,11 @@ void process_raw_mouse_input(float window_context, undefined8 input_data)
   ulonglong uVar2;
   float fVar3;
   float fVar4;
-  undefined8 uStackX_10;
-  undefined8 auStackX_18 [2];
-  undefined4 uStack_38;
-  undefined4 uStack_34;
-  undefined8 uStack_30;
+  uint64_t uStackX_10;
+  uint64_t auStackX_18 [2];
+  int32_t uStack_38;
+  int32_t uStack_34;
+  uint64_t uStack_30;
   int iStack_28;
   int iStack_24;
   int iStack_20;
@@ -662,7 +662,7 @@ LAB_180173542:
     if (_DAT_180c86950 != 0) {
       GetCursorPos(auStackX_18);
       uStackX_10 = auStackX_18[0];
-      ScreenToClient(*(undefined8 *)(in_RCX + 8),&uStackX_10);
+      ScreenToClient(*(uint64_t *)(in_RCX + 8),&uStackX_10);
       fVar3 = (float)(int)uStackX_10 -
               *(float *)(_DAT_180c86950 + 0x17e0) * *(float *)(_DAT_180c86950 + 0x17ec);
       param_1 = *(float *)(_DAT_180c86950 + 0x17e4) * *(float *)(_DAT_180c86950 + 0x17f0);
@@ -761,7 +761,7 @@ LAB_1801736de:
 void handle_mouse_button_events(float window_context)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   ushort uVar2;
   ulonglong uVar3;
   longlong unaff_RBX;
@@ -775,8 +775,8 @@ void handle_mouse_button_events(float window_context)
     fVar5 = (float)_DAT_180d49448;
 LAB_180173542:
     if ((fVar4 != 0.0) || (fVar5 != 0.0)) {
-      *(undefined8 *)(unaff_RBP + -0x28) = 0;
-      *(undefined4 *)(unaff_RBP + -0x30) = 0;
+      *(uint64_t *)(unaff_RBP + -0x28) = 0;
+      *(int32_t *)(unaff_RBP + -0x30) = 0;
       *(int *)(unaff_RBP + -0x20) = (int)fVar4;
       *(int *)(unaff_RBP + -0x1c) = (int)fVar5;
       FUN_1801edeb0(param_1,unaff_RBP + -0x30);
@@ -788,8 +788,8 @@ LAB_180173542:
     }
     if (_DAT_180c86950 != 0) {
       GetCursorPos(unaff_RBP + 0x20);
-      uVar1 = *(undefined8 *)(unaff_RBX + 8);
-      *(undefined8 *)(unaff_RBP + 0x18) = *(undefined8 *)(unaff_RBP + 0x20);
+      uVar1 = *(uint64_t *)(unaff_RBX + 8);
+      *(uint64_t *)(unaff_RBP + 0x18) = *(uint64_t *)(unaff_RBP + 0x20);
       ScreenToClient(uVar1,unaff_RBP + 0x18);
       fVar4 = (float)*(int *)(unaff_RBP + 0x18) -
               *(float *)(_DAT_180c86950 + 0x17e0) * *(float *)(_DAT_180c86950 + 0x17ec);
@@ -801,77 +801,77 @@ LAB_180173542:
   uVar3 = CONCAT44(uRam0000000180d49440,CONCAT22(_DAT_180d4943e,_DAT_180d4943c));
   uVar2 = _DAT_180d4943c & 2;
   if ((_DAT_180d4943c & 1) != 0) {
-    *(undefined8 *)(unaff_RBP + -0x28) = 0;
-    *(undefined4 *)(unaff_RBP + -0x30) = 1;
-    *(undefined4 *)(unaff_RBP + -0x2c) = 0xe0;
+    *(uint64_t *)(unaff_RBP + -0x28) = 0;
+    *(int32_t *)(unaff_RBP + -0x30) = 1;
+    *(int32_t *)(unaff_RBP + -0x2c) = 0xe0;
     FUN_1801edeb0(uVar3,unaff_RBP + -0x30);
     uVar3 = CONCAT44(uRam0000000180d49440,CONCAT22(_DAT_180d4943e,_DAT_180d4943c));
   }
   if (uVar2 != 0) {
-    *(undefined8 *)(unaff_RBP + -0x28) = 0;
-    *(undefined4 *)(unaff_RBP + -0x30) = 2;
-    *(undefined4 *)(unaff_RBP + -0x2c) = 0xe0;
+    *(uint64_t *)(unaff_RBP + -0x28) = 0;
+    *(int32_t *)(unaff_RBP + -0x30) = 2;
+    *(int32_t *)(unaff_RBP + -0x2c) = 0xe0;
     FUN_1801edeb0(uVar3,unaff_RBP + -0x30);
     uVar3 = CONCAT44(uRam0000000180d49440,CONCAT22(_DAT_180d4943e,_DAT_180d4943c));
   }
   if ((uVar3 >> 2 & 1) == 0) {
     if ((uVar3 >> 3 & 1) != 0) {
-      *(undefined4 *)(unaff_RBP + -0x30) = 2;
+      *(int32_t *)(unaff_RBP + -0x30) = 2;
       goto LAB_1801735fc;
     }
   }
   else {
-    *(undefined4 *)(unaff_RBP + -0x30) = 1;
+    *(int32_t *)(unaff_RBP + -0x30) = 1;
 LAB_1801735fc:
-    *(undefined8 *)(unaff_RBP + -0x28) = 0;
-    *(undefined4 *)(unaff_RBP + -0x2c) = 0xe1;
+    *(uint64_t *)(unaff_RBP + -0x28) = 0;
+    *(int32_t *)(unaff_RBP + -0x2c) = 0xe1;
     FUN_1801edeb0(uVar3,unaff_RBP + -0x30);
     uVar3 = CONCAT44(uRam0000000180d49440,CONCAT22(_DAT_180d4943e,_DAT_180d4943c));
   }
   if ((uVar3 >> 4 & 1) == 0) {
     if ((uVar3 >> 5 & 1) != 0) {
-      *(undefined4 *)(unaff_RBP + -0x30) = 2;
+      *(int32_t *)(unaff_RBP + -0x30) = 2;
       goto LAB_18017363d;
     }
   }
   else {
-    *(undefined4 *)(unaff_RBP + -0x30) = 1;
+    *(int32_t *)(unaff_RBP + -0x30) = 1;
 LAB_18017363d:
-    *(undefined8 *)(unaff_RBP + -0x28) = 0;
-    *(undefined4 *)(unaff_RBP + -0x2c) = 0xe2;
+    *(uint64_t *)(unaff_RBP + -0x28) = 0;
+    *(int32_t *)(unaff_RBP + -0x2c) = 0xe2;
     FUN_1801edeb0(uVar3,unaff_RBP + -0x30);
     uVar3 = CONCAT44(uRam0000000180d49440,CONCAT22(_DAT_180d4943e,_DAT_180d4943c));
   }
   if ((uVar3 >> 6 & 1) == 0) {
     if ((uVar3 >> 7 & 1) != 0) {
-      *(undefined4 *)(unaff_RBP + -0x30) = 2;
+      *(int32_t *)(unaff_RBP + -0x30) = 2;
       goto LAB_18017367e;
     }
   }
   else {
-    *(undefined4 *)(unaff_RBP + -0x30) = 1;
+    *(int32_t *)(unaff_RBP + -0x30) = 1;
 LAB_18017367e:
-    *(undefined8 *)(unaff_RBP + -0x28) = 0;
-    *(undefined4 *)(unaff_RBP + -0x2c) = 0xe3;
+    *(uint64_t *)(unaff_RBP + -0x28) = 0;
+    *(int32_t *)(unaff_RBP + -0x2c) = 0xe3;
     FUN_1801edeb0(uVar3,unaff_RBP + -0x30);
     uVar3 = CONCAT44(uRam0000000180d49440,CONCAT22(_DAT_180d4943e,_DAT_180d4943c));
   }
   if ((uVar3 >> 8 & 1) == 0) {
     if ((uVar3 >> 9 & 1) == 0) goto LAB_1801736de;
-    *(undefined4 *)(unaff_RBP + -0x30) = 2;
+    *(int32_t *)(unaff_RBP + -0x30) = 2;
   }
   else {
-    *(undefined4 *)(unaff_RBP + -0x30) = 1;
+    *(int32_t *)(unaff_RBP + -0x30) = 1;
   }
-  *(undefined8 *)(unaff_RBP + -0x28) = 0;
-  *(undefined4 *)(unaff_RBP + -0x2c) = 0xe4;
+  *(uint64_t *)(unaff_RBP + -0x28) = 0;
+  *(int32_t *)(unaff_RBP + -0x2c) = 0xe4;
   FUN_1801edeb0(uVar3,unaff_RBP + -0x30);
   uVar3 = CONCAT44(uRam0000000180d49440,CONCAT22(_DAT_180d4943e,_DAT_180d4943c));
 LAB_1801736de:
   if ((uVar3 & 0x400) != 0) {
     *(int *)(unaff_RBP + -0x18) = (int)_DAT_180d4943e;
-    *(undefined8 *)(unaff_RBP + -0x28) = 0;
-    *(undefined4 *)(unaff_RBP + -0x30) = 3;
+    *(uint64_t *)(unaff_RBP + -0x28) = 0;
+    *(int32_t *)(unaff_RBP + -0x30) = 3;
     FUN_1801edeb0(uVar3,unaff_RBP + -0x30);
   }
   return;
@@ -883,86 +883,86 @@ LAB_1801736de:
 
 
 
-// 函数: void process_mouse_capture_events(undefined8 event_data)
+// 函数: void process_mouse_capture_events(uint64_t event_data)
 // 功能: 处理鼠标捕获相关事件，管理窗口焦点和输入状态
 // 参数: event_data - 事件数据
-void process_mouse_capture_events(undefined8 event_data)
+void process_mouse_capture_events(uint64_t event_data)
 
 {
   ulonglong uVar1;
   char unaff_BL;
   longlong unaff_RBP;
   
-  *(undefined8 *)(unaff_RBP + -0x28) = 0;
-  *(undefined4 *)(unaff_RBP + -0x30) = 1;
-  *(undefined4 *)(unaff_RBP + -0x2c) = 0xe0;
+  *(uint64_t *)(unaff_RBP + -0x28) = 0;
+  *(int32_t *)(unaff_RBP + -0x30) = 1;
+  *(int32_t *)(unaff_RBP + -0x2c) = 0xe0;
   FUN_1801edeb0(param_1,unaff_RBP + -0x30);
   uVar1 = CONCAT44(uRam0000000180d49440,CONCAT22(_DAT_180d4943e,_DAT_180d4943c));
   if (unaff_BL != '\0') {
-    *(undefined8 *)(unaff_RBP + -0x28) = 0;
-    *(undefined4 *)(unaff_RBP + -0x30) = 2;
-    *(undefined4 *)(unaff_RBP + -0x2c) = 0xe0;
+    *(uint64_t *)(unaff_RBP + -0x28) = 0;
+    *(int32_t *)(unaff_RBP + -0x30) = 2;
+    *(int32_t *)(unaff_RBP + -0x2c) = 0xe0;
     FUN_1801edeb0(uVar1,unaff_RBP + -0x30);
     uVar1 = CONCAT44(uRam0000000180d49440,CONCAT22(_DAT_180d4943e,_DAT_180d4943c));
   }
   if ((uVar1 >> 2 & 1) == 0) {
     if ((uVar1 >> 3 & 1) != 0) {
-      *(undefined4 *)(unaff_RBP + -0x30) = 2;
+      *(int32_t *)(unaff_RBP + -0x30) = 2;
       goto LAB_1801735fc;
     }
   }
   else {
-    *(undefined4 *)(unaff_RBP + -0x30) = 1;
+    *(int32_t *)(unaff_RBP + -0x30) = 1;
 LAB_1801735fc:
-    *(undefined8 *)(unaff_RBP + -0x28) = 0;
-    *(undefined4 *)(unaff_RBP + -0x2c) = 0xe1;
+    *(uint64_t *)(unaff_RBP + -0x28) = 0;
+    *(int32_t *)(unaff_RBP + -0x2c) = 0xe1;
     FUN_1801edeb0(uVar1,unaff_RBP + -0x30);
     uVar1 = CONCAT44(uRam0000000180d49440,CONCAT22(_DAT_180d4943e,_DAT_180d4943c));
   }
   if ((uVar1 >> 4 & 1) == 0) {
     if ((uVar1 >> 5 & 1) != 0) {
-      *(undefined4 *)(unaff_RBP + -0x30) = 2;
+      *(int32_t *)(unaff_RBP + -0x30) = 2;
       goto LAB_18017363d;
     }
   }
   else {
-    *(undefined4 *)(unaff_RBP + -0x30) = 1;
+    *(int32_t *)(unaff_RBP + -0x30) = 1;
 LAB_18017363d:
-    *(undefined8 *)(unaff_RBP + -0x28) = 0;
-    *(undefined4 *)(unaff_RBP + -0x2c) = 0xe2;
+    *(uint64_t *)(unaff_RBP + -0x28) = 0;
+    *(int32_t *)(unaff_RBP + -0x2c) = 0xe2;
     FUN_1801edeb0(uVar1,unaff_RBP + -0x30);
     uVar1 = CONCAT44(uRam0000000180d49440,CONCAT22(_DAT_180d4943e,_DAT_180d4943c));
   }
   if ((uVar1 >> 6 & 1) == 0) {
     if ((uVar1 >> 7 & 1) != 0) {
-      *(undefined4 *)(unaff_RBP + -0x30) = 2;
+      *(int32_t *)(unaff_RBP + -0x30) = 2;
       goto LAB_18017367e;
     }
   }
   else {
-    *(undefined4 *)(unaff_RBP + -0x30) = 1;
+    *(int32_t *)(unaff_RBP + -0x30) = 1;
 LAB_18017367e:
-    *(undefined8 *)(unaff_RBP + -0x28) = 0;
-    *(undefined4 *)(unaff_RBP + -0x2c) = 0xe3;
+    *(uint64_t *)(unaff_RBP + -0x28) = 0;
+    *(int32_t *)(unaff_RBP + -0x2c) = 0xe3;
     FUN_1801edeb0(uVar1,unaff_RBP + -0x30);
     uVar1 = CONCAT44(uRam0000000180d49440,CONCAT22(_DAT_180d4943e,_DAT_180d4943c));
   }
   if ((uVar1 >> 8 & 1) == 0) {
     if ((uVar1 >> 9 & 1) == 0) goto LAB_1801736de;
-    *(undefined4 *)(unaff_RBP + -0x30) = 2;
+    *(int32_t *)(unaff_RBP + -0x30) = 2;
   }
   else {
-    *(undefined4 *)(unaff_RBP + -0x30) = 1;
+    *(int32_t *)(unaff_RBP + -0x30) = 1;
   }
-  *(undefined8 *)(unaff_RBP + -0x28) = 0;
-  *(undefined4 *)(unaff_RBP + -0x2c) = 0xe4;
+  *(uint64_t *)(unaff_RBP + -0x28) = 0;
+  *(int32_t *)(unaff_RBP + -0x2c) = 0xe4;
   FUN_1801edeb0(uVar1,unaff_RBP + -0x30);
   uVar1 = CONCAT44(uRam0000000180d49440,CONCAT22(_DAT_180d4943e,_DAT_180d4943c));
 LAB_1801736de:
   if ((uVar1 & 0x400) != 0) {
     *(int *)(unaff_RBP + -0x18) = (int)_DAT_180d4943e;
-    *(undefined8 *)(unaff_RBP + -0x28) = 0;
-    *(undefined4 *)(unaff_RBP + -0x30) = 3;
+    *(uint64_t *)(unaff_RBP + -0x28) = 0;
+    *(int32_t *)(unaff_RBP + -0x30) = 3;
     FUN_1801edeb0(uVar1,unaff_RBP + -0x30);
   }
   return;

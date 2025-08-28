@@ -95,12 +95,12 @@ ulonglong ProcessObjectRendering(longlong rendererContext, uint *materialParams,
   uint tempValue;
   
   // 主要变量
-  undefined8 tempPointer;
+  uint64_t tempPointer;
   ulonglong result;
-  undefined8 *renderBuffer;
+  uint64_t *renderBuffer;
   longlong objectContext;
   longlong sceneContext;
-  undefined4 *texturePtr;
+  int32_t *texturePtr;
   uint *counterPtr;
   byte visibilityFlags;
   char *dataBuffer;
@@ -110,24 +110,24 @@ ulonglong ProcessObjectRendering(longlong rendererContext, uint *materialParams,
   bool isAllocated;
   
   // 栈变量
-  undefined4 tempStack[2];
+  int32_t tempStack[2];
   uint *materialParamsPtr;
   float *transformMatrixPtr;
   longlong objectDataPtr;
-  undefined4 defaultParams[2];
+  int32_t defaultParams[2];
   ulonglong bufferSize;
-  undefined8 *renderData[2];
+  uint64_t *renderData[2];
   longlong renderContext;
-  undefined8 transformResult1;
-  undefined8 transformResult2;
-  undefined8 transformResult3;
-  undefined8 transformResult4;
-  undefined8 transformResult5;
-  undefined8 transformResult6;
-  undefined8 transformResult7;
-  undefined8 transformResult8;
-  undefined8 transformResult9;
-  undefined8 transformResult10;
+  uint64_t transformResult1;
+  uint64_t transformResult2;
+  uint64_t transformResult3;
+  uint64_t transformResult4;
+  uint64_t transformResult5;
+  uint64_t transformResult6;
+  uint64_t transformResult7;
+  uint64_t transformResult8;
+  uint64_t transformResult9;
+  uint64_t transformResult10;
   
   // 变换矩阵栈变量
   float transformedX1;
@@ -156,25 +156,25 @@ ulonglong ProcessObjectRendering(longlong rendererContext, uint *materialParams,
   if (*(char *)(rendererContext + 0xf9) == '\0') {
     tempPointer = FUN_18062b1e0(_DAT_180c8ed18, 0xc0, 8, 9);
     tempPointer = FUN_180084ea0(tempPointer);
-    *(undefined8 *)(rendererContext + 0x1d8) = tempPointer;
+    *(uint64_t *)(rendererContext + 0x1d8) = tempPointer;
     LOCK();
-    *(undefined1 *)(rendererContext + 0xf9) = 1;
+    *(int8_t *)(rendererContext + 0xf9) = 1;
     UNLOCK();
   }
   
   // 处理场景对象的渲染参数
   if ((char)*(byte *)(rendererContext + 0xfd) < '\0') {
     objectContext = *(longlong *)(rendererContext + 0x1b8);
-    tempPointer = *(undefined8 *)(objectContext + 0x290);
-    *(undefined8 *)(rendererContext + 0x2a8) = *(undefined8 *)(objectContext + 0x288);
-    *(undefined8 *)(rendererContext + 0x2b0) = tempPointer;
-    tempValue = *(undefined4 *)(objectContext + 0x29c);
-    renderState1 = *(undefined4 *)(objectContext + 0x2a0);
-    renderState2 = *(undefined4 *)(objectContext + 0x2a4);
-    *(undefined4 *)(rendererContext + 0x2b8) = *(undefined4 *)(objectContext + 0x298);
-    *(undefined4 *)(rendererContext + 700) = tempValue;
-    *(undefined4 *)(rendererContext + 0x2c0) = renderState1;
-    *(undefined4 *)(rendererContext + 0x2c4) = renderState2;
+    tempPointer = *(uint64_t *)(objectContext + 0x290);
+    *(uint64_t *)(rendererContext + 0x2a8) = *(uint64_t *)(objectContext + 0x288);
+    *(uint64_t *)(rendererContext + 0x2b0) = tempPointer;
+    tempValue = *(int32_t *)(objectContext + 0x29c);
+    renderState1 = *(int32_t *)(objectContext + 0x2a0);
+    renderState2 = *(int32_t *)(objectContext + 0x2a4);
+    *(int32_t *)(rendererContext + 0x2b8) = *(int32_t *)(objectContext + 0x298);
+    *(int32_t *)(rendererContext + 700) = tempValue;
+    *(int32_t *)(rendererContext + 0x2c0) = renderState1;
+    *(int32_t *)(rendererContext + 0x2c4) = renderState2;
   }
   
   // 检查材质标志是否匹配
@@ -184,7 +184,7 @@ ulonglong ProcessObjectRendering(longlong rendererContext, uint *materialParams,
   visibilityFlags = *(byte *)(rendererContext + 0xfd) & 0x20;
   objectContext = rendererContext;
   if (visibilityFlags == 0) {
-    objectContext = func_0x000180085de0(*(undefined8 *)(rendererContext + 0x1b0));
+    objectContext = func_0x000180085de0(*(uint64_t *)(rendererContext + 0x1b0));
   }
   
   // 检查对象是否可见
@@ -204,7 +204,7 @@ skip_rendering:
   else {
     objectContext = rendererContext;
     if (visibilityFlags == 0) {
-      objectContext = func_0x000180085de0(*(undefined8 *)(rendererContext + 0x1b0));
+      objectContext = func_0x000180085de0(*(uint64_t *)(rendererContext + 0x1b0));
     }
     if (*(int *)(objectContext + 0x1fc) * 3 == 0) goto check_visibility;
     
@@ -227,23 +227,23 @@ prepare_rendering:
          ((*(longlong *)(rendererContext + 600) != 0 && (0 < *(int *)(*(longlong *)(rendererContext + 600) + 0x1c)))
          )) {
         frameIndex = *(int *)(_DAT_180c86870 + 0x224);
-        renderBuffer = *(undefined8 **)(rendererContext + 600);
-        if (renderBuffer == (undefined8 *)0x0) {
+        renderBuffer = *(uint64_t **)(rendererContext + 600);
+        if (renderBuffer == (uint64_t *)0x0) {
           // 初始化渲染缓冲区
-          renderBuffer = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, 0x58, 8, 3);
-          *(undefined8 *)((longlong)renderBuffer + 0x2c) = 0xffffffffffffffff;
-          *(undefined4 *)(renderBuffer + 9) = 0xffffffff;
+          renderBuffer = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x58, 8, 3);
+          *(uint64_t *)((longlong)renderBuffer + 0x2c) = 0xffffffffffffffff;
+          *(int32_t *)(renderBuffer + 9) = 0xffffffff;
           *renderBuffer = 0;
           renderBuffer[2] = 0;
           renderBuffer[7] = 0;
-          *(undefined4 *)(renderBuffer + 5) = 0xffffffff;
-          *(undefined4 *)(renderBuffer + 4) = 0xffffffff;
+          *(int32_t *)(renderBuffer + 5) = 0xffffffff;
+          *(int32_t *)(renderBuffer + 4) = 0xffffffff;
           renderBuffer[3] = 0;
-          *(undefined4 *)(renderBuffer + 8) = 0;
-          *(undefined4 *)(renderBuffer + 1) = 0;
-          *(undefined1 *)((longlong)renderBuffer + 0x44) = 0;
-          *(undefined1 *)((longlong)renderBuffer + 0x24) = 0;
-          *(undefined8 **)(rendererContext + 600) = renderBuffer;
+          *(int32_t *)(renderBuffer + 8) = 0;
+          *(int32_t *)(renderBuffer + 1) = 0;
+          *(int8_t *)((longlong)renderBuffer + 0x44) = 0;
+          *(int8_t *)((longlong)renderBuffer + 0x24) = 0;
+          *(uint64_t **)(rendererContext + 600) = renderBuffer;
         }
         
         transformMatrix = transformMatrix;
@@ -283,7 +283,7 @@ prepare_rendering:
                 if (isAllocated) {
                   FUN_1800e94a0(counterPtr, frameIndex << 9);
                   LOCK();
-                  *(undefined1 *)((longlong)counterPtr + (longlong)frameIndex + 0x808) = 0;
+                  *(int8_t *)((longlong)counterPtr + (longlong)frameIndex + 0x808) = 0;
                   UNLOCK();
                   result = bufferSize;
                 }
@@ -307,7 +307,7 @@ prepare_rendering:
             } while ((longlong)(dataBuffer + (-0x808 - (longlong)counterPtr)) <= (longlong)result);
             
             // 获取渲染数据
-            renderBuffer = (undefined8 *)
+            renderBuffer = (uint64_t *)
                       (*(longlong *)
                         ((longlong)*(int *)(renderContext + 0x1210) * 0x908 + renderContext + 8 +
                         result * 8) + (ulonglong)(materialFlags - (materialFlags & 0xfffffe00)) * 0x60);
@@ -315,7 +315,7 @@ prepare_rendering:
             renderData[0] = renderBuffer;
             
             if ((*(byte *)(rendererContext + 0xfd) & 0x20) == 0) {
-              objectContext = func_0x000180085de0(*(undefined8 *)(rendererContext + 0x1b0));
+              objectContext = func_0x000180085de0(*(uint64_t *)(rendererContext + 0x1b0));
             }
             
             sceneContext = *(longlong *)(rendererContext + 0x1b8);
@@ -327,14 +327,14 @@ prepare_rendering:
             
             materialParams = materialParams;
             objectContext = *(longlong *)(objectContext + 0x1e0);
-            *renderBuffer = *(undefined8 *)(objectContext + (ulonglong)visibilityFlags * 0x18);
-            renderBuffer[1] = *(undefined8 *)(objectContext + 8 + (ulonglong)visibilityFlags * 0x18);
+            *renderBuffer = *(uint64_t *)(objectContext + (ulonglong)visibilityFlags * 0x18);
+            renderBuffer[1] = *(uint64_t *)(objectContext + 8 + (ulonglong)visibilityFlags * 0x18);
             
             // 设置渲染参数
-            *(undefined4 *)(renderData[0] + 2) =
-                 *(undefined4 *)(*(longlong *)(rendererContext + 600) + 0x2c);
-            *(undefined4 *)((longlong)renderData[0] + 0x14) =
-                 *(undefined4 *)(*(longlong *)(rendererContext + 600) + 0x4c);
+            *(int32_t *)(renderData[0] + 2) =
+                 *(int32_t *)(*(longlong *)(rendererContext + 600) + 0x2c);
+            *(int32_t *)((longlong)renderData[0] + 0x14) =
+                 *(int32_t *)(*(longlong *)(rendererContext + 600) + 0x4c);
             *(int *)(renderData[0] + 9) = (int)*(char *)(*(longlong *)(rendererContext + 600) + 0x44);
             
             // 处理纹理参数
@@ -343,66 +343,66 @@ prepare_rendering:
               tempValue = 0xffffffff;
             }
             else {
-              tempValue = *(undefined4 *)(rendererContext + 0x108);
+              tempValue = *(int32_t *)(rendererContext + 0x108);
             }
-            *(undefined4 *)(renderData[0] + 3) = tempValue;
+            *(int32_t *)(renderData[0] + 3) = tempValue;
             
             if ((*(longlong *)(rendererContext + 0x2d0) == 0) ||
                (*(int *)(*(longlong *)(rendererContext + 0x2d0) + 0x14) == 0)) {
               tempValue = 0xffffffff;
             }
             else {
-              tempValue = *(undefined4 *)(rendererContext + 0x10c);
+              tempValue = *(int32_t *)(rendererContext + 0x10c);
             }
-            *(undefined4 *)((longlong)renderData[0] + 0x1c) = tempValue;
+            *(int32_t *)((longlong)renderData[0] + 0x1c) = tempValue;
             
             if ((*(longlong *)(rendererContext + 0x2d0) == 0) ||
                (*(int *)(*(longlong *)(rendererContext + 0x2d0) + 0x14) == 0)) {
               tempValue = 0xffffffff;
             }
             else {
-              tempValue = *(undefined4 *)(rendererContext + 0x110);
+              tempValue = *(int32_t *)(rendererContext + 0x110);
             }
-            *(undefined4 *)(renderData[0] + 4) = tempValue;
+            *(int32_t *)(renderData[0] + 4) = tempValue;
             
             // 设置渲染标志
             *(byte *)((longlong)renderData[0] + 0x4e) = *(byte *)(rendererContext + 0xfe) >> 3 & 1;
             
             if (*(int *)(rendererContext + 0x108) != -1) {
-              texturePtr = *(undefined4 **)(rendererContext + 0x2d0);
+              texturePtr = *(int32_t **)(rendererContext + 0x2d0);
               tempValue = texturePtr[1];
               renderState1 = texturePtr[2];
               renderState2 = texturePtr[3];
-              *(undefined4 *)(renderData[0] + 5) = *texturePtr;
-              *(undefined4 *)((longlong)renderData[0] + 0x2c) = tempValue;
-              *(undefined4 *)(renderData[0] + 6) = renderState1;
-              *(undefined4 *)((longlong)renderData[0] + 0x34) = renderState2;
-              tempPointer = *(undefined8 *)(texturePtr + 6);
-              renderData[0][7] = *(undefined8 *)(texturePtr + 4);
+              *(int32_t *)(renderData[0] + 5) = *texturePtr;
+              *(int32_t *)((longlong)renderData[0] + 0x2c) = tempValue;
+              *(int32_t *)(renderData[0] + 6) = renderState1;
+              *(int32_t *)((longlong)renderData[0] + 0x34) = renderState2;
+              tempPointer = *(uint64_t *)(texturePtr + 6);
+              renderData[0][7] = *(uint64_t *)(texturePtr + 4);
               renderData[0][8] = tempPointer;
             }
             
-            *(undefined1 *)((longlong)renderData[0] + 0x4f) =
-                 *(undefined1 *)(*(longlong *)(rendererContext + 600) + 0x24);
+            *(int8_t *)((longlong)renderData[0] + 0x4f) =
+                 *(int8_t *)(*(longlong *)(rendererContext + 600) + 0x24);
             objectContext = *(longlong *)(rendererContext + 600);
             
             if (*(char *)(objectContext + 0x24) != '\0') {
-              tempValue = *(undefined4 *)(rendererContext + 0x2ac);
-              renderState1 = *(undefined4 *)(rendererContext + 0x2b0);
-              renderState2 = *(undefined4 *)(rendererContext + 0x2b4);
-              *(undefined4 *)(renderData[0] + 10) = *(undefined4 *)(rendererContext + 0x2a8);
-              *(undefined4 *)((longlong)renderData[0] + 0x54) = tempValue;
-              *(undefined4 *)(renderData[0] + 0xb) = renderState1;
-              *(undefined4 *)((longlong)renderData[0] + 0x5c) = renderState2;
+              tempValue = *(int32_t *)(rendererContext + 0x2ac);
+              renderState1 = *(int32_t *)(rendererContext + 0x2b0);
+              renderState2 = *(int32_t *)(rendererContext + 0x2b4);
+              *(int32_t *)(renderData[0] + 10) = *(int32_t *)(rendererContext + 0x2a8);
+              *(int32_t *)((longlong)renderData[0] + 0x54) = tempValue;
+              *(int32_t *)(renderData[0] + 0xb) = renderState1;
+              *(int32_t *)((longlong)renderData[0] + 0x5c) = renderState2;
               objectContext = *(longlong *)(rendererContext + 600);
             }
             
             *(bool *)((longlong)renderData[0] + 0x4c) = *(longlong *)(objectContext + 0x10) != 0;
-            *(undefined1 *)((longlong)renderData[0] + 0x4d) = 1;
+            *(int8_t *)((longlong)renderData[0] + 0x4d) = 1;
             
             if ((*(char *)(renderState + 0xc) != '\0') ||
                (0 < *(int *)(*(longlong *)(rendererContext + 600) + 0x1c))) {
-              *(undefined1 *)((longlong)renderData[0] + 0x4d) = 0;
+              *(int8_t *)((longlong)renderData[0] + 0x4d) = 0;
             }
             
             // 处理材质参数
@@ -490,7 +490,7 @@ prepare_rendering:
     }
     
     // 应用变换矩阵
-    FUN_180085190(&transformResult1, materialParams + 0xc, *(undefined1 *)(rendererContext + 0xf7), transformMatrix);
+    FUN_180085190(&transformResult1, materialParams + 0xc, *(int8_t *)(rendererContext + 0xf7), transformMatrix);
     
     // 更新渲染状态
     materialFlags = materialParams[0x6f6];
@@ -510,14 +510,14 @@ prepare_rendering:
     
     // 如果需要，保存变换结果
     if ((stateFlags != 0) && (visibilityFlags != 0)) {
-      *(undefined8 *)(rendererContext + 0x160) = transformResult1;
-      *(undefined8 *)(rendererContext + 0x168) = transformResult2;
-      *(undefined8 *)(rendererContext + 0x170) = transformResult3;
-      *(undefined8 *)(rendererContext + 0x178) = transformResult4;
-      *(undefined8 *)(rendererContext + 0x180) = transformResult5;
-      *(undefined8 *)(rendererContext + 0x188) = transformResult6;
-      *(undefined8 *)(rendererContext + 400) = transformResult7;
-      *(undefined8 *)(rendererContext + 0x198) = transformResult8;
+      *(uint64_t *)(rendererContext + 0x160) = transformResult1;
+      *(uint64_t *)(rendererContext + 0x168) = transformResult2;
+      *(uint64_t *)(rendererContext + 0x170) = transformResult3;
+      *(uint64_t *)(rendererContext + 0x178) = transformResult4;
+      *(uint64_t *)(rendererContext + 0x180) = transformResult5;
+      *(uint64_t *)(rendererContext + 0x188) = transformResult6;
+      *(uint64_t *)(rendererContext + 400) = transformResult7;
+      *(uint64_t *)(rendererContext + 0x198) = transformResult8;
     }
     
     // 执行渲染操作
@@ -529,14 +529,14 @@ prepare_rendering:
     
     // 恢复变换结果（如果需要）
     if (stateFlags != 0) {
-      *(undefined8 *)(rendererContext + 0x160) = transformResult1;
-      *(undefined8 *)(rendererContext + 0x168) = transformResult2;
-      *(undefined8 *)(rendererContext + 0x170) = transformResult3;
-      *(undefined8 *)(rendererContext + 0x178) = transformResult4;
-      *(undefined8 *)(rendererContext + 0x180) = transformResult5;
-      *(undefined8 *)(rendererContext + 0x188) = transformResult6;
-      *(undefined8 *)(rendererContext + 400) = transformResult7;
-      *(undefined8 *)(rendererContext + 0x198) = transformResult8;
+      *(uint64_t *)(rendererContext + 0x160) = transformResult1;
+      *(uint64_t *)(rendererContext + 0x168) = transformResult2;
+      *(uint64_t *)(rendererContext + 0x170) = transformResult3;
+      *(uint64_t *)(rendererContext + 0x178) = transformResult4;
+      *(uint64_t *)(rendererContext + 0x180) = transformResult5;
+      *(uint64_t *)(rendererContext + 0x188) = transformResult6;
+      *(uint64_t *)(rendererContext + 400) = transformResult7;
+      *(uint64_t *)(rendererContext + 0x198) = transformResult8;
     }
   }
   return result;
@@ -576,14 +576,14 @@ void ProcessSceneBatchRendering(void)
   float transformedMatrix[16];
   
   // 变换结果
-  undefined8 transformResult1;
-  undefined8 transformResult2;
-  undefined8 transformResult3;
-  undefined8 transformResult4;
-  undefined8 transformResult5;
-  undefined8 transformResult6;
-  undefined8 transformResult7;
-  undefined8 transformResult8;
+  uint64_t transformResult1;
+  uint64_t transformResult2;
+  uint64_t transformResult3;
+  uint64_t transformResult4;
+  uint64_t transformResult5;
+  uint64_t transformResult6;
+  uint64_t transformResult7;
+  uint64_t transformResult8;
   
   // 状态标志
   byte visibilityFlags1;
@@ -594,10 +594,10 @@ void ProcessSceneBatchRendering(void)
   ulonglong bufferSize;
   longlong objectContext;
   longlong sceneContext;
-  undefined4 *texturePtr;
+  int32_t *texturePtr;
   uint *counterPtr;
   char *dataBuffer;
-  undefined8 *renderBuffer;
+  uint64_t *renderBuffer;
   float *transformMatrix;
   int frameIndex;
   ulonglong bufferOffset;
@@ -605,11 +605,11 @@ void ProcessSceneBatchRendering(void)
   bool isAllocated;
   
   // 栈变量
-  undefined4 tempStack;
+  int32_t tempStack;
   ulonglong stackSize;
-  undefined8 *renderData;
+  uint64_t *renderData;
   longlong renderContext;
-  undefined8 transformResult[8];
+  uint64_t transformResult[8];
   
   // 变换矩阵栈变量
   float transformedX1;
@@ -630,26 +630,26 @@ void ProcessSceneBatchRendering(void)
   float transformedW4;
   
   // 输入栈变量
-  undefined4 stackParam1;
-  undefined4 stackParam2;
-  undefined4 stackParam3;
-  undefined4 stackParam4;
-  undefined4 stackParam5;
-  undefined4 stackParam6;
-  undefined4 stackParam7;
-  undefined4 stackParam8;
-  undefined4 stackParam9;
-  undefined4 stackParam10;
-  undefined4 stackParam11;
-  undefined4 stackParam12;
-  undefined4 stackParam13;
-  undefined4 stackParam14;
-  undefined4 stackParam15;
-  undefined4 stackParam16;
-  undefined4 stackParam17;
+  int32_t stackParam1;
+  int32_t stackParam2;
+  int32_t stackParam3;
+  int32_t stackParam4;
+  int32_t stackParam5;
+  int32_t stackParam6;
+  int32_t stackParam7;
+  int32_t stackParam8;
+  int32_t stackParam9;
+  int32_t stackParam10;
+  int32_t stackParam11;
+  int32_t stackParam12;
+  int32_t stackParam13;
+  int32_t stackParam14;
+  int32_t stackParam15;
+  int32_t stackParam16;
+  int32_t stackParam17;
   longlong sceneData;
   float *matrixPtr;
-  undefined8 matrixParam;
+  uint64_t matrixParam;
   longlong renderState;
   
   // 渲染器上下文（从寄存器获取）
@@ -698,7 +698,7 @@ void ProcessSceneBatchRendering(void)
       if (isAllocated) {
         FUN_1800e94a0(counterPtr, frameIndex << 9);
         LOCK();
-        *(undefined1 *)((longlong)counterPtr + (longlong)frameIndex + 0x808) = 0;
+        *(int8_t *)((longlong)counterPtr + (longlong)frameIndex + 0x808) = 0;
         UNLOCK();
         bufferSize = stackSize;
       }
@@ -722,7 +722,7 @@ void ProcessSceneBatchRendering(void)
   } while ((longlong)(dataBuffer + (-0x808 - (longlong)counterPtr)) <= (longlong)bufferSize);
   
   // 获取渲染数据
-  renderBuffer = (undefined8 *)
+  renderBuffer = (uint64_t *)
             (*(longlong *)
               ((longlong)*(int *)(renderContext + 0x1210) * 0x908 + renderContext + 8 +
               bufferSize * 8) + (ulonglong)(renderFlags - (renderFlags & 0xfffffe00)) * 0x60);
@@ -731,7 +731,7 @@ void ProcessSceneBatchRendering(void)
   
   // 获取对象上下文
   if ((*(byte *)(rendererContext + 0xfd) & 0x20) == 0) {
-    objectContext = func_0x000180085de0(*(undefined8 *)(rendererContext + 0x1b0));
+    objectContext = func_0x000180085de0(*(uint64_t *)(rendererContext + 0x1b0));
   }
   
   sceneContext = *(longlong *)(rendererContext + 0x1b8);
@@ -744,12 +744,12 @@ void ProcessSceneBatchRendering(void)
   // 设置场景数据
   sceneContext = sceneData;
   objectContext = *(longlong *)(objectContext + 0x1e0);
-  *renderBuffer = *(undefined8 *)(objectContext + (ulonglong)visibilityFlags1 * 0x18);
-  renderBuffer[1] = *(undefined8 *)(objectContext + 8 + (ulonglong)visibilityFlags1 * 0x18);
+  *renderBuffer = *(uint64_t *)(objectContext + (ulonglong)visibilityFlags1 * 0x18);
+  renderBuffer[1] = *(uint64_t *)(objectContext + 8 + (ulonglong)visibilityFlags1 * 0x18);
   
   // 设置渲染参数
-  *(undefined4 *)(renderData + 2) = *(undefined4 *)(*(longlong *)(rendererContext + 600) + 0x2c);
-  *(undefined4 *)((longlong)renderData + 0x14) = *(undefined4 *)(*(longlong *)(rendererContext + 600) + 0x4c);
+  *(int32_t *)(renderData + 2) = *(int32_t *)(*(longlong *)(rendererContext + 600) + 0x2c);
+  *(int32_t *)((longlong)renderData + 0x14) = *(int32_t *)(*(longlong *)(rendererContext + 600) + 0x4c);
   *(int *)(renderData + 9) = (int)*(char *)(*(longlong *)(rendererContext + 600) + 0x44);
   
   // 处理纹理参数
@@ -758,65 +758,65 @@ void ProcessSceneBatchRendering(void)
     tempValue = 0xffffffff;
   }
   else {
-    tempValue = *(undefined4 *)(rendererContext + 0x108);
+    tempValue = *(int32_t *)(rendererContext + 0x108);
   }
-  *(undefined4 *)(renderData + 3) = tempValue;
+  *(int32_t *)(renderData + 3) = tempValue;
   
   if ((*(longlong *)(rendererContext + 0x2d0) == 0) ||
      (*(int *)(*(longlong *)(rendererContext + 0x2d0) + 0x14) == 0)) {
     tempValue = 0xffffffff;
   }
   else {
-    tempValue = *(undefined4 *)(rendererContext + 0x10c);
+    tempValue = *(int32_t *)(rendererContext + 0x10c);
   }
-  *(undefined4 *)((longlong)renderData + 0x1c) = tempValue;
+  *(int32_t *)((longlong)renderData + 0x1c) = tempValue;
   
   if ((*(longlong *)(rendererContext + 0x2d0) == 0) ||
      (*(int *)(*(longlong *)(rendererContext + 0x2d0) + 0x14) == 0)) {
     tempValue = 0xffffffff;
   }
   else {
-    tempValue = *(undefined4 *)(rendererContext + 0x110);
+    tempValue = *(int32_t *)(rendererContext + 0x110);
   }
-  *(undefined4 *)(renderData + 4) = tempValue;
+  *(int32_t *)(renderData + 4) = tempValue;
   
   // 设置渲染标志
   *(byte *)((longlong)renderData + 0x4e) = *(byte *)(rendererContext + 0xfe) >> 3 & 1;
   
   if (*(int *)(rendererContext + 0x108) != -1) {
-    texturePtr = *(undefined4 **)(rendererContext + 0x2d0);
+    texturePtr = *(int32_t **)(rendererContext + 0x2d0);
     tempValue = texturePtr[1];
     renderState1 = texturePtr[2];
     renderState2 = texturePtr[3];
-    *(undefined4 *)(renderData + 5) = *texturePtr;
-    *(undefined4 *)((longlong)renderData + 0x2c) = tempValue;
-    *(undefined4 *)(renderData + 6) = renderState1;
-    *(undefined4 *)((longlong)renderData + 0x34) = renderState2;
-    transformResult1 = *(undefined8 *)(texturePtr + 6);
-    renderData[7] = *(undefined8 *)(texturePtr + 4);
+    *(int32_t *)(renderData + 5) = *texturePtr;
+    *(int32_t *)((longlong)renderData + 0x2c) = tempValue;
+    *(int32_t *)(renderData + 6) = renderState1;
+    *(int32_t *)((longlong)renderData + 0x34) = renderState2;
+    transformResult1 = *(uint64_t *)(texturePtr + 6);
+    renderData[7] = *(uint64_t *)(texturePtr + 4);
     renderData[8] = transformResult1;
   }
   
-  *(undefined1 *)((longlong)renderData + 0x4f) = *(undefined1 *)(*(longlong *)(rendererContext + 600) + 0x24);
+  *(int8_t *)((longlong)renderData + 0x4f) = *(int8_t *)(*(longlong *)(rendererContext + 600) + 0x24);
   objectContext = *(longlong *)(rendererContext + 600);
   
   if (*(char *)(objectContext + 0x24) != '\0') {
-    tempValue = *(undefined4 *)(rendererContext + 0x2ac);
-    renderState1 = *(undefined4 *)(rendererContext + 0x2b0);
-    renderState2 = *(undefined4 *)(rendererContext + 0x2b4);
-    *(undefined4 *)(renderData + 10) = *(undefined4 *)(rendererContext + 0x2a8);
-    *(undefined4 *)((longlong)renderData + 0x54) = tempValue;
-    *(undefined4 *)(renderData + 0xb) = renderState1;
-    *(undefined4 *)((longlong)renderData + 0x5c) = renderState2;
+    tempValue = *(int32_t *)(rendererContext + 0x2ac);
+    renderState1 = *(int32_t *)(rendererContext + 0x2b0);
+    renderState2 = *(int32_t *)(rendererContext + 0x2b4);
+    *(int32_t *)(renderData + 10) = *(int32_t *)(rendererContext + 0x2a8);
+    *(int32_t *)((longlong)renderData + 0x54) = tempValue;
+    *(int32_t *)(renderData + 0xb) = renderState1;
+    *(int32_t *)((longlong)renderData + 0x5c) = renderState2;
     objectContext = *(longlong *)(rendererContext + 600);
   }
   
   *(bool *)((longlong)renderData + 0x4c) = *(longlong *)(objectContext + 0x10) != 0;
-  *(undefined1 *)((longlong)renderData + 0x4d) = 1;
+  *(int8_t *)((longlong)renderData + 0x4d) = 1;
   
   if ((*(char *)(renderState + 0xc) != '\0') ||
      (0 < *(int *)(*(longlong *)(rendererContext + 600) + 0x1c))) {
-    *(undefined1 *)((longlong)renderData + 0x4d) = 0;
+    *(int8_t *)((longlong)renderData + 0x4d) = 0;
   }
   
   // 处理材质参数
@@ -901,7 +901,7 @@ void ProcessSceneBatchRendering(void)
   }
   
   // 应用变换矩阵
-  FUN_180085190(&transformResult[0], sceneContext + 0x30, *(undefined1 *)(rendererContext + 0xf7), transformMatrix);
+  FUN_180085190(&transformResult[0], sceneContext + 0x30, *(int8_t *)(rendererContext + 0xf7), transformMatrix);
   
   // 保存变换结果
   transformResult8 = transformResult[7];
@@ -930,14 +930,14 @@ void ProcessSceneBatchRendering(void)
   
   // 如果需要，保存变换结果
   if ((visibilityFlags1 != 0) && (visibilityFlags2 != 0)) {
-    *(undefined8 *)(rendererContext + 0x160) = transformResult[0];
-    *(undefined8 *)(rendererContext + 0x168) = transformResult[1];
-    *(undefined8 *)(rendererContext + 0x170) = transformResult[2];
-    *(undefined8 *)(rendererContext + 0x178) = transformResult[3];
-    *(undefined8 *)(rendererContext + 0x180) = transformResult[4];
-    *(undefined8 *)(rendererContext + 0x188) = transformResult[5];
-    *(undefined8 *)(rendererContext + 400) = transformResult[6];
-    *(undefined8 *)(rendererContext + 0x198) = transformResult[7];
+    *(uint64_t *)(rendererContext + 0x160) = transformResult[0];
+    *(uint64_t *)(rendererContext + 0x168) = transformResult[1];
+    *(uint64_t *)(rendererContext + 0x170) = transformResult[2];
+    *(uint64_t *)(rendererContext + 0x178) = transformResult[3];
+    *(uint64_t *)(rendererContext + 0x180) = transformResult[4];
+    *(uint64_t *)(rendererContext + 0x188) = transformResult[5];
+    *(uint64_t *)(rendererContext + 400) = transformResult[6];
+    *(uint64_t *)(rendererContext + 0x198) = transformResult[7];
   }
   
   // 执行场景渲染
@@ -949,14 +949,14 @@ void ProcessSceneBatchRendering(void)
   
   // 恢复变换结果（如果需要）
   if (visibilityFlags1 != 0) {
-    *(undefined8 *)(rendererContext + 0x160) = transformResult1;
-    *(undefined8 *)(rendererContext + 0x168) = transformResult2;
-    *(undefined8 *)(rendererContext + 0x170) = transformResult3;
-    *(undefined8 *)(rendererContext + 0x178) = transformResult4;
-    *(undefined8 *)(rendererContext + 0x180) = transformResult5;
-    *(undefined8 *)(rendererContext + 0x188) = transformResult6;
-    *(undefined8 *)(rendererContext + 400) = transformResult7;
-    *(undefined8 *)(rendererContext + 0x198) = transformResult8;
+    *(uint64_t *)(rendererContext + 0x160) = transformResult1;
+    *(uint64_t *)(rendererContext + 0x168) = transformResult2;
+    *(uint64_t *)(rendererContext + 0x170) = transformResult3;
+    *(uint64_t *)(rendererContext + 0x178) = transformResult4;
+    *(uint64_t *)(rendererContext + 0x180) = transformResult5;
+    *(uint64_t *)(rendererContext + 0x188) = transformResult6;
+    *(uint64_t *)(rendererContext + 400) = transformResult7;
+    *(uint64_t *)(rendererContext + 0x198) = transformResult8;
   }
   return;
 }

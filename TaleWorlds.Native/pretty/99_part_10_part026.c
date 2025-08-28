@@ -8,9 +8,9 @@ void FUN_1806b50c0(longlong param_1,ulonglong param_2)
 {
   longlong *plVar1;
   longlong lVar2;
-  undefined1 *puVar3;
+  int8_t *puVar3;
   ushort uVar4;
-  undefined1 uStackX_9;
+  int8_t uStackX_9;
   ulonglong uStackX_10;
   
   if (param_2 != 0) {
@@ -30,15 +30,15 @@ void FUN_1806b50c0(longlong param_1,ulonglong param_2)
     lVar2 = *(longlong *)(param_1 + 0x90);
     uStackX_10 = param_2;
     FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 2);
-    puVar3 = *(undefined1 **)(lVar2 + 0x18);
-    uStackX_9 = (undefined1)(uVar4 >> 8);
+    puVar3 = *(int8_t **)(lVar2 + 0x18);
+    uStackX_9 = (int8_t)(uVar4 >> 8);
     *puVar3 = (char)uVar4;
     puVar3[1] = uStackX_9;
     *(longlong *)(lVar2 + 0x18) = *(longlong *)(lVar2 + 0x18) + 2;
     FUN_1806b6980(param_1 + 0x90,&UNK_18094b4f8,&uStackX_10,uVar4 >> 4 & 3);
     if (*(uint *)(param_1 + 0x68) <= (uint)(*(int *)(param_1 + 0x40) - *(int *)(param_1 + 0x38))) {
-      FUN_1806b5bb0(plVar1,*(undefined8 *)(param_1 + 0x38));
-      *(undefined8 *)(param_1 + 0x40) = *(undefined8 *)(param_1 + 0x38);
+      FUN_1806b5bb0(plVar1,*(uint64_t *)(param_1 + 0x38));
+      *(uint64_t *)(param_1 + 0x40) = *(uint64_t *)(param_1 + 0x38);
       (**(code **)(*plVar1 + 0x18))(plVar1);
     }
   }
@@ -56,7 +56,7 @@ void FUN_1806b50ce(longlong param_1,ulonglong param_2)
 {
   longlong *plVar1;
   longlong lVar2;
-  undefined1 *puVar3;
+  int8_t *puVar3;
   ushort uVar4;
   ushort uStack0000000000000040;
   ulonglong uStack0000000000000048;
@@ -78,14 +78,14 @@ void FUN_1806b50ce(longlong param_1,ulonglong param_2)
   uStack0000000000000040 = uVar4;
   uStack0000000000000048 = param_2;
   FUN_1806b5600(lVar2,(*(int *)(lVar2 + 0x18) - *(int *)(lVar2 + 0x10)) + 2);
-  puVar3 = *(undefined1 **)(lVar2 + 0x18);
+  puVar3 = *(int8_t **)(lVar2 + 0x18);
   *puVar3 = (char)uVar4;
   puVar3[1] = uStack0000000000000040._1_1_;
   *(longlong *)(lVar2 + 0x18) = *(longlong *)(lVar2 + 0x18) + 2;
   FUN_1806b6980(param_1 + 0x90,&UNK_18094b4f8,&stack0x00000048,uVar4 >> 4 & 3);
   if (*(uint *)(param_1 + 0x68) <= (uint)(*(int *)(param_1 + 0x40) - *(int *)(param_1 + 0x38))) {
-    FUN_1806b5bb0(plVar1,*(undefined8 *)(param_1 + 0x38));
-    *(undefined8 *)(param_1 + 0x40) = *(undefined8 *)(param_1 + 0x38);
+    FUN_1806b5bb0(plVar1,*(uint64_t *)(param_1 + 0x38));
+    *(uint64_t *)(param_1 + 0x40) = *(uint64_t *)(param_1 + 0x38);
     (**(code **)(*plVar1 + 0x18))(plVar1);
   }
   return;
@@ -117,11 +117,11 @@ void FUN_1806b518b(void)
 void FUN_1806b51b0(longlong param_1)
 
 {
-  undefined8 *puVar1;
+  uint64_t *puVar1;
   longlong *plVar2;
   
   plVar2 = *(longlong **)(param_1 + -0x98);
-  puVar1 = (undefined8 *)(param_1 + -0xa0);
+  puVar1 = (uint64_t *)(param_1 + -0xa0);
   (**(code **)*puVar1)(puVar1,0);
                     // WARNING: Could not recover jumptable at 0x0001806b51e5. Too many branches
                     // WARNING: Treating indirect jump as call
@@ -153,8 +153,8 @@ void FUN_1806b51f0(longlong *param_1)
 
 
 
-// 函数: void FUN_1806b5220(undefined8 *param_1)
-void FUN_1806b5220(undefined8 *param_1)
+// 函数: void FUN_1806b5220(uint64_t *param_1)
+void FUN_1806b5220(uint64_t *param_1)
 
 {
   longlong *plVar1;
@@ -184,7 +184,7 @@ void FUN_1806b5250(longlong param_1,longlong *param_2)
   
   lVar1 = *(longlong *)(param_1 + 0x68);
   if (lVar1 != 0) {
-    _lock_MutexImpl_shdfnd_physx__QEAAXXZ(*(undefined8 *)(lVar1 + 8));
+    _lock_MutexImpl_shdfnd_physx__QEAAXXZ(*(uint64_t *)(lVar1 + 8));
   }
   uVar4 = *(uint *)(param_1 + 0x48);
   uVar3 = 0;
@@ -194,8 +194,8 @@ void FUN_1806b5250(longlong param_1,longlong *param_2)
       if (*(longlong **)(*(longlong *)(param_1 + 0x40) + uVar3 * 8) == param_2) {
         (**(code **)(*param_2 + 0x10))(param_2);
         *(int *)(param_1 + 0x48) = *(int *)(param_1 + 0x48) + -1;
-        *(undefined8 *)(*(longlong *)(param_1 + 0x40) + uVar3 * 8) =
-             *(undefined8 *)
+        *(uint64_t *)(*(longlong *)(param_1 + 0x40) + uVar3 * 8) =
+             *(uint64_t *)
               (*(longlong *)(param_1 + 0x40) + (ulonglong)*(uint *)(param_1 + 0x48) * 8);
         uVar4 = *(uint *)(param_1 + 0x48);
         break;
@@ -212,7 +212,7 @@ void FUN_1806b5250(longlong param_1,longlong *param_2)
                     // WARNING: Could not recover jumptable at 0x0001808ffe03. Too many branches
                     // WARNING: Subroutine does not return
                     // WARNING: Treating indirect jump as call
-  _unlock_MutexImpl_shdfnd_physx__QEAAXXZ(*(undefined8 *)(lVar1 + 8));
+  _unlock_MutexImpl_shdfnd_physx__QEAAXXZ(*(uint64_t *)(lVar1 + 8));
   return;
 }
 
@@ -232,7 +232,7 @@ void FUN_1806b525a(longlong param_1,longlong *param_2)
   bool bVar4;
   
   if (unaff_RBX != 0) {
-    _lock_MutexImpl_shdfnd_physx__QEAAXXZ(*(undefined8 *)(unaff_RBX + 8));
+    _lock_MutexImpl_shdfnd_physx__QEAAXXZ(*(uint64_t *)(unaff_RBX + 8));
   }
   uVar3 = *(uint *)(param_1 + 0x48);
   uVar2 = 0;
@@ -242,8 +242,8 @@ void FUN_1806b525a(longlong param_1,longlong *param_2)
       if (*(longlong **)(*(longlong *)(param_1 + 0x40) + uVar2 * 8) == param_2) {
         (**(code **)(*param_2 + 0x10))(param_2);
         *(int *)(param_1 + 0x48) = *(int *)(param_1 + 0x48) + -1;
-        *(undefined8 *)(*(longlong *)(param_1 + 0x40) + uVar2 * 8) =
-             *(undefined8 *)
+        *(uint64_t *)(*(longlong *)(param_1 + 0x40) + uVar2 * 8) =
+             *(uint64_t *)
               (*(longlong *)(param_1 + 0x40) + (ulonglong)*(uint *)(param_1 + 0x48) * 8);
         uVar3 = *(uint *)(param_1 + 0x48);
         break;
@@ -260,7 +260,7 @@ void FUN_1806b525a(longlong param_1,longlong *param_2)
                     // WARNING: Could not recover jumptable at 0x0001808ffe03. Too many branches
                     // WARNING: Subroutine does not return
                     // WARNING: Treating indirect jump as call
-  _unlock_MutexImpl_shdfnd_physx__QEAAXXZ(*(undefined8 *)(unaff_RBX + 8));
+  _unlock_MutexImpl_shdfnd_physx__QEAAXXZ(*(uint64_t *)(unaff_RBX + 8));
   return;
 }
 
@@ -269,8 +269,8 @@ void FUN_1806b525a(longlong param_1,longlong *param_2)
 
 
 
-// 函数: void FUN_1806b5287(longlong param_1,undefined8 param_2,uint param_3)
-void FUN_1806b5287(longlong param_1,undefined8 param_2,uint param_3)
+// 函数: void FUN_1806b5287(longlong param_1,uint64_t param_2,uint param_3)
+void FUN_1806b5287(longlong param_1,uint64_t param_2,uint param_3)
 
 {
   uint uVar1;
@@ -283,8 +283,8 @@ void FUN_1806b5287(longlong param_1,undefined8 param_2,uint param_3)
     if (*(longlong **)(param_1 + in_RAX * 8) == unaff_R14) {
       (**(code **)(*unaff_R14 + 0x10))();
       *(int *)(unaff_RSI + 0x48) = *(int *)(unaff_RSI + 0x48) + -1;
-      *(undefined8 *)(*(longlong *)(unaff_RSI + 0x40) + (in_RAX & 0xffffffff) * 8) =
-           *(undefined8 *)
+      *(uint64_t *)(*(longlong *)(unaff_RSI + 0x40) + (in_RAX & 0xffffffff) * 8) =
+           *(uint64_t *)
             (*(longlong *)(unaff_RSI + 0x40) + (ulonglong)*(uint *)(unaff_RSI + 0x48) * 8);
       param_3 = *(uint *)(unaff_RSI + 0x48);
       break;
@@ -299,7 +299,7 @@ void FUN_1806b5287(longlong param_1,undefined8 param_2,uint param_3)
                     // WARNING: Could not recover jumptable at 0x0001808ffe03. Too many branches
                     // WARNING: Subroutine does not return
                     // WARNING: Treating indirect jump as call
-  _unlock_MutexImpl_shdfnd_physx__QEAAXXZ(*(undefined8 *)(unaff_RBX + 8));
+  _unlock_MutexImpl_shdfnd_physx__QEAAXXZ(*(uint64_t *)(unaff_RBX + 8));
   return;
 }
 
@@ -321,7 +321,7 @@ void FUN_1806b52c8(void)
                     // WARNING: Could not recover jumptable at 0x0001808ffe03. Too many branches
                     // WARNING: Subroutine does not return
                     // WARNING: Treating indirect jump as call
-    _unlock_MutexImpl_shdfnd_physx__QEAAXXZ(*(undefined8 *)(unaff_RBX + 8));
+    _unlock_MutexImpl_shdfnd_physx__QEAAXXZ(*(uint64_t *)(unaff_RBX + 8));
     return;
   }
   return;
@@ -341,7 +341,7 @@ void FUN_1806b52dd(void)
                     // WARNING: Could not recover jumptable at 0x0001808ffe03. Too many branches
                     // WARNING: Subroutine does not return
                     // WARNING: Treating indirect jump as call
-  _unlock_MutexImpl_shdfnd_physx__QEAAXXZ(*(undefined8 *)(unaff_RBX + 8));
+  _unlock_MutexImpl_shdfnd_physx__QEAAXXZ(*(uint64_t *)(unaff_RBX + 8));
   return;
 }
 
@@ -359,7 +359,7 @@ void FUN_1806b5300(longlong param_1,longlong *param_2)
   uint uVar3;
   bool bVar4;
   
-  _lock_MutexImpl_shdfnd_physx__QEAAXXZ(*(undefined8 *)(param_1 + 0x38));
+  _lock_MutexImpl_shdfnd_physx__QEAAXXZ(*(uint64_t *)(param_1 + 0x38));
   uVar3 = *(uint *)(param_1 + 0x130);
   uVar2 = 0;
   bVar4 = uVar3 == 0;
@@ -368,8 +368,8 @@ void FUN_1806b5300(longlong param_1,longlong *param_2)
       if (*(longlong **)(*(longlong *)(param_1 + 0x128) + uVar2 * 8) == param_2) {
         (**(code **)(*param_2 + 0x10))(param_2);
         *(int *)(param_1 + 0x130) = *(int *)(param_1 + 0x130) + -1;
-        *(undefined8 *)(*(longlong *)(param_1 + 0x128) + uVar2 * 8) =
-             *(undefined8 *)
+        *(uint64_t *)(*(longlong *)(param_1 + 0x128) + uVar2 * 8) =
+             *(uint64_t *)
               (*(longlong *)(param_1 + 0x128) + (ulonglong)*(uint *)(param_1 + 0x130) * 8);
         uVar3 = *(uint *)(param_1 + 0x130);
         break;
@@ -383,7 +383,7 @@ void FUN_1806b5300(longlong param_1,longlong *param_2)
                     // WARNING: Could not recover jumptable at 0x0001808ffe03. Too many branches
                     // WARNING: Subroutine does not return
                     // WARNING: Treating indirect jump as call
-  _unlock_MutexImpl_shdfnd_physx__QEAAXXZ(*(undefined8 *)(param_1 + 0x38));
+  _unlock_MutexImpl_shdfnd_physx__QEAAXXZ(*(uint64_t *)(param_1 + 0x38));
   return;
 }
 
@@ -392,8 +392,8 @@ void FUN_1806b5300(longlong param_1,longlong *param_2)
 
 
 
-// 函数: void FUN_1806b532e(longlong param_1,undefined8 param_2,uint param_3)
-void FUN_1806b532e(longlong param_1,undefined8 param_2,uint param_3)
+// 函数: void FUN_1806b532e(longlong param_1,uint64_t param_2,uint param_3)
+void FUN_1806b532e(longlong param_1,uint64_t param_2,uint param_3)
 
 {
   uint uVar1;
@@ -405,8 +405,8 @@ void FUN_1806b532e(longlong param_1,undefined8 param_2,uint param_3)
     if (*(longlong **)(param_1 + in_RAX * 8) == unaff_RSI) {
       (**(code **)(*unaff_RSI + 0x10))();
       *(int *)(unaff_RDI + 0x130) = *(int *)(unaff_RDI + 0x130) + -1;
-      *(undefined8 *)(*(longlong *)(unaff_RDI + 0x128) + (in_RAX & 0xffffffff) * 8) =
-           *(undefined8 *)
+      *(uint64_t *)(*(longlong *)(unaff_RDI + 0x128) + (in_RAX & 0xffffffff) * 8) =
+           *(uint64_t *)
             (*(longlong *)(unaff_RDI + 0x128) + (ulonglong)*(uint *)(unaff_RDI + 0x130) * 8);
       param_3 = *(uint *)(unaff_RDI + 0x130);
       break;
@@ -418,7 +418,7 @@ void FUN_1806b532e(longlong param_1,undefined8 param_2,uint param_3)
                     // WARNING: Could not recover jumptable at 0x0001808ffe03. Too many branches
                     // WARNING: Subroutine does not return
                     // WARNING: Treating indirect jump as call
-  _unlock_MutexImpl_shdfnd_physx__QEAAXXZ(*(undefined8 *)(unaff_RDI + 0x38));
+  _unlock_MutexImpl_shdfnd_physx__QEAAXXZ(*(uint64_t *)(unaff_RDI + 0x38));
   return;
 }
 
@@ -438,7 +438,7 @@ void FUN_1806b5377(void)
                     // WARNING: Could not recover jumptable at 0x0001808ffe03. Too many branches
                     // WARNING: Subroutine does not return
                     // WARNING: Treating indirect jump as call
-  _unlock_MutexImpl_shdfnd_physx__QEAAXXZ(*(undefined8 *)(unaff_RDI + 0x38));
+  _unlock_MutexImpl_shdfnd_physx__QEAAXXZ(*(uint64_t *)(unaff_RDI + 0x38));
   return;
 }
 
@@ -464,8 +464,8 @@ void FUN_1806b53a0(longlong param_1,longlong *param_2)
       if (*(longlong **)(*(longlong *)(param_1 + 0x50) + uVar2 * 8) == param_2) {
         (**(code **)(*param_2 + 0x10))(param_2);
         *(int *)(param_1 + 0x58) = *(int *)(param_1 + 0x58) + -1;
-        *(undefined8 *)(*(longlong *)(param_1 + 0x50) + uVar2 * 8) =
-             *(undefined8 *)
+        *(uint64_t *)(*(longlong *)(param_1 + 0x50) + uVar2 * 8) =
+             *(uint64_t *)
               (*(longlong *)(param_1 + 0x50) + (ulonglong)*(uint *)(param_1 + 0x58) * 8);
         uVar3 = *(uint *)(param_1 + 0x58);
         break;
@@ -496,8 +496,8 @@ void FUN_1806b53b8(longlong param_1,longlong *param_2,uint param_3)
     if (*(longlong **)(param_1 + in_RAX * 8) == param_2) {
       (**(code **)(*param_2 + 0x10))(param_2);
       *(int *)(unaff_RDI + 0x58) = *(int *)(unaff_RDI + 0x58) + -1;
-      *(undefined8 *)(*(longlong *)(unaff_RDI + 0x50) + (in_RAX & 0xffffffff) * 8) =
-           *(undefined8 *)
+      *(uint64_t *)(*(longlong *)(unaff_RDI + 0x50) + (in_RAX & 0xffffffff) * 8) =
+           *(uint64_t *)
             (*(longlong *)(unaff_RDI + 0x50) + (ulonglong)*(uint *)(unaff_RDI + 0x58) * 8);
       param_3 = *(uint *)(unaff_RDI + 0x58);
       break;
@@ -534,7 +534,7 @@ void FUN_1806b53f8(void)
 void FUN_1806b5410(longlong param_1,longlong *param_2)
 
 {
-  undefined8 *puVar1;
+  uint64_t *puVar1;
   longlong lVar2;
   longlong *plVar3;
   uint uVar4;
@@ -542,8 +542,8 @@ void FUN_1806b5410(longlong param_1,longlong *param_2)
   uint uVar6;
   ulonglong uVar7;
   
-  puVar1 = (undefined8 *)(param_1 + 0x40);
-  if (puVar1 != (undefined8 *)0x0) {
+  puVar1 = (uint64_t *)(param_1 + 0x40);
+  if (puVar1 != (uint64_t *)0x0) {
     _lock_MutexImpl_shdfnd_physx__QEAAXXZ(*puVar1);
   }
   lVar2 = (**(code **)(*param_2 + 0x38))(param_2);
@@ -567,8 +567,8 @@ void FUN_1806b5410(longlong param_1,longlong *param_2)
               uVar6 = *(uint *)(param_1 + 0x20);
             }
             *(uint *)(param_1 + 0x20) = uVar6 - 1;
-            *(undefined8 *)(*(longlong *)(param_1 + 0x18) + uVar5 * 8) =
-                 *(undefined8 *)(*(longlong *)(param_1 + 0x18) + (ulonglong)(uVar6 - 1) * 8);
+            *(uint64_t *)(*(longlong *)(param_1 + 0x18) + uVar5 * 8) =
+                 *(uint64_t *)(*(longlong *)(param_1 + 0x18) + (ulonglong)(uVar6 - 1) * 8);
           }
           uVar6 = *(uint *)(param_1 + 0x20);
           uVar4 = (int)uVar5 + 1;
@@ -581,7 +581,7 @@ void FUN_1806b5410(longlong param_1,longlong *param_2)
       (**(code **)(*plVar3 + 0x18))(plVar3,param_2);
     }
   }
-  if (puVar1 == (undefined8 *)0x0) {
+  if (puVar1 == (uint64_t *)0x0) {
     return;
   }
                     // WARNING: Could not recover jumptable at 0x0001808ffe03. Too many branches
@@ -600,7 +600,7 @@ void FUN_1806b5410(longlong param_1,longlong *param_2)
 void FUN_1806b5416(longlong param_1,longlong *param_2)
 
 {
-  undefined8 *puVar1;
+  uint64_t *puVar1;
   longlong lVar2;
   longlong *plVar3;
   uint uVar4;
@@ -608,8 +608,8 @@ void FUN_1806b5416(longlong param_1,longlong *param_2)
   uint uVar6;
   ulonglong uVar7;
   
-  puVar1 = (undefined8 *)(param_1 + 0x40);
-  if (puVar1 != (undefined8 *)0x0) {
+  puVar1 = (uint64_t *)(param_1 + 0x40);
+  if (puVar1 != (uint64_t *)0x0) {
     _lock_MutexImpl_shdfnd_physx__QEAAXXZ(*puVar1);
   }
   lVar2 = (**(code **)(*param_2 + 0x38))(param_2);
@@ -633,8 +633,8 @@ void FUN_1806b5416(longlong param_1,longlong *param_2)
               uVar6 = *(uint *)(param_1 + 0x20);
             }
             *(uint *)(param_1 + 0x20) = uVar6 - 1;
-            *(undefined8 *)(*(longlong *)(param_1 + 0x18) + uVar5 * 8) =
-                 *(undefined8 *)(*(longlong *)(param_1 + 0x18) + (ulonglong)(uVar6 - 1) * 8);
+            *(uint64_t *)(*(longlong *)(param_1 + 0x18) + uVar5 * 8) =
+                 *(uint64_t *)(*(longlong *)(param_1 + 0x18) + (ulonglong)(uVar6 - 1) * 8);
           }
           uVar6 = *(uint *)(param_1 + 0x20);
           uVar4 = (int)uVar5 + 1;
@@ -647,7 +647,7 @@ void FUN_1806b5416(longlong param_1,longlong *param_2)
       (**(code **)(*plVar3 + 0x18))(plVar3,param_2);
     }
   }
-  if (puVar1 == (undefined8 *)0x0) {
+  if (puVar1 == (uint64_t *)0x0) {
     return;
   }
                     // WARNING: Could not recover jumptable at 0x0001808ffe03. Too many branches
@@ -662,11 +662,11 @@ void FUN_1806b5416(longlong param_1,longlong *param_2)
 
 
 
-// 函数: void FUN_1806b5475(undefined8 param_1,undefined8 param_2,longlong param_3)
-void FUN_1806b5475(undefined8 param_1,undefined8 param_2,longlong param_3)
+// 函数: void FUN_1806b5475(uint64_t param_1,uint64_t param_2,longlong param_3)
+void FUN_1806b5475(uint64_t param_1,uint64_t param_2,longlong param_3)
 
 {
-  undefined8 *unaff_RBX;
+  uint64_t *unaff_RBX;
   uint uVar1;
   ulonglong uVar2;
   uint uVar3;
@@ -690,15 +690,15 @@ void FUN_1806b5475(undefined8 param_1,undefined8 param_2,longlong param_3)
           uVar3 = *(uint *)(unaff_RDI + 0x20);
         }
         *(uint *)(unaff_RDI + 0x20) = uVar3 - 1;
-        *(undefined8 *)(*(longlong *)(unaff_RDI + 0x18) + uVar2 * 8) =
-             *(undefined8 *)(*(longlong *)(unaff_RDI + 0x18) + (ulonglong)(uVar3 - 1) * 8);
+        *(uint64_t *)(*(longlong *)(unaff_RDI + 0x18) + uVar2 * 8) =
+             *(uint64_t *)(*(longlong *)(unaff_RDI + 0x18) + (ulonglong)(uVar3 - 1) * 8);
       }
       uVar3 = *(uint *)(unaff_RDI + 0x20);
       uVar1 = (int)uVar2 + 1;
       uVar2 = (ulonglong)uVar1;
     } while (uVar1 < uVar3);
   }
-  if (unaff_RBX == (undefined8 *)0x0) {
+  if (unaff_RBX == (uint64_t *)0x0) {
     return;
   }
                     // WARNING: Could not recover jumptable at 0x0001808ffe03. Too many branches
@@ -717,7 +717,7 @@ void FUN_1806b5475(undefined8 param_1,undefined8 param_2,longlong param_3)
 void FUN_1806b5487(uint param_1)
 
 {
-  undefined8 *unaff_RBX;
+  uint64_t *unaff_RBX;
   ulonglong unaff_RBP;
   uint uVar1;
   ulonglong uVar2;
@@ -736,14 +736,14 @@ void FUN_1806b5487(uint param_1)
         param_1 = *(uint *)(unaff_RDI + 0x20);
       }
       *(uint *)(unaff_RDI + 0x20) = param_1 - 1;
-      *(undefined8 *)(*(longlong *)(unaff_RDI + 0x18) + unaff_RBP * 8) =
-           *(undefined8 *)(*(longlong *)(unaff_RDI + 0x18) + (ulonglong)(param_1 - 1) * 8);
+      *(uint64_t *)(*(longlong *)(unaff_RDI + 0x18) + unaff_RBP * 8) =
+           *(uint64_t *)(*(longlong *)(unaff_RDI + 0x18) + (ulonglong)(param_1 - 1) * 8);
     }
     param_1 = *(uint *)(unaff_RDI + 0x20);
     uVar1 = (int)unaff_RBP + 1;
     unaff_RBP = (ulonglong)uVar1;
   } while (uVar1 < param_1);
-  if (unaff_RBX != (undefined8 *)0x0) {
+  if (unaff_RBX != (uint64_t *)0x0) {
                     // WARNING: Could not recover jumptable at 0x0001808ffe03. Too many branches
                     // WARNING: Subroutine does not return
                     // WARNING: Treating indirect jump as call
@@ -762,9 +762,9 @@ void FUN_1806b5487(uint param_1)
 void FUN_1806b5500(void)
 
 {
-  undefined8 *unaff_RBX;
+  uint64_t *unaff_RBX;
   
-  if (unaff_RBX != (undefined8 *)0x0) {
+  if (unaff_RBX != (uint64_t *)0x0) {
                     // WARNING: Could not recover jumptable at 0x0001808ffe03. Too many branches
                     // WARNING: Subroutine does not return
                     // WARNING: Treating indirect jump as call
@@ -783,9 +783,9 @@ void FUN_1806b5500(void)
 void FUN_1806b5505(void)
 
 {
-  undefined8 *unaff_RBX;
+  uint64_t *unaff_RBX;
   
-  if (unaff_RBX != (undefined8 *)0x0) {
+  if (unaff_RBX != (uint64_t *)0x0) {
                     // WARNING: Could not recover jumptable at 0x0001808ffe03. Too many branches
                     // WARNING: Subroutine does not return
                     // WARNING: Treating indirect jump as call
@@ -804,7 +804,7 @@ void FUN_1806b5505(void)
 void FUN_1806b5514(void)
 
 {
-  undefined8 *unaff_RBX;
+  uint64_t *unaff_RBX;
   
                     // WARNING: Could not recover jumptable at 0x0001808ffe03. Too many branches
                     // WARNING: Subroutine does not return
@@ -822,14 +822,14 @@ void FUN_1806b5514(void)
 void FUN_1806b5530(longlong param_1,longlong *param_2)
 
 {
-  undefined8 *puVar1;
+  uint64_t *puVar1;
   uint uVar2;
   ulonglong uVar3;
   uint uVar4;
   ulonglong uVar5;
   
-  puVar1 = (undefined8 *)(param_1 + 0x40);
-  if (puVar1 != (undefined8 *)0x0) {
+  puVar1 = (uint64_t *)(param_1 + 0x40);
+  if (puVar1 != (uint64_t *)0x0) {
     _lock_MutexImpl_shdfnd_physx__QEAAXXZ(*puVar1);
   }
   uVar5 = 0;
@@ -837,7 +837,7 @@ void FUN_1806b5530(longlong param_1,longlong *param_2)
   if (*(int *)(param_1 + 0x20) != 0) {
     do {
       (**(code **)(*param_2 + 0x10))
-                (param_2,*(undefined8 *)(*(longlong *)(param_1 + 0x18) + uVar3 * 8));
+                (param_2,*(uint64_t *)(*(longlong *)(param_1 + 0x18) + uVar3 * 8));
       uVar2 = (int)uVar3 + 1;
       uVar3 = (ulonglong)uVar2;
     } while (uVar2 < *(uint *)(param_1 + 0x20));
@@ -847,15 +847,15 @@ void FUN_1806b5530(longlong param_1,longlong *param_2)
     do {
       if (*(longlong **)(uVar5 * 8 + *(longlong *)(param_1 + 0x30)) == param_2) {
         *(uint *)(param_1 + 0x38) = uVar2 - 1;
-        *(undefined8 *)(*(longlong *)(param_1 + 0x30) + uVar5 * 8) =
-             *(undefined8 *)(*(longlong *)(param_1 + 0x30) + (ulonglong)(uVar2 - 1) * 8);
+        *(uint64_t *)(*(longlong *)(param_1 + 0x30) + uVar5 * 8) =
+             *(uint64_t *)(*(longlong *)(param_1 + 0x30) + (ulonglong)(uVar2 - 1) * 8);
         uVar2 = *(uint *)(param_1 + 0x38);
       }
       uVar4 = (int)uVar5 + 1;
       uVar5 = (ulonglong)uVar4;
     } while (uVar4 < uVar2);
   }
-  if (puVar1 == (undefined8 *)0x0) {
+  if (puVar1 == (uint64_t *)0x0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -867,12 +867,12 @@ void FUN_1806b5530(longlong param_1,longlong *param_2)
 
 
 
-// 函数: void FUN_1806b5600(undefined8 *param_1,uint param_2)
-void FUN_1806b5600(undefined8 *param_1,uint param_2)
+// 函数: void FUN_1806b5600(uint64_t *param_1,uint param_2)
+void FUN_1806b5600(uint64_t *param_1,uint param_2)
 
 {
   uint uVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   
   if ((uint)(*(int *)(param_1 + 4) - *(int *)(param_1 + 2)) <= param_2) {
     uVar1 = param_2 * 2;
@@ -897,12 +897,12 @@ void FUN_1806b5600(undefined8 *param_1,uint param_2)
 
 
 
-// 函数: void FUN_1806b5629(undefined8 *param_1,int param_2)
-void FUN_1806b5629(undefined8 *param_1,int param_2)
+// 函数: void FUN_1806b5629(uint64_t *param_1,int param_2)
+void FUN_1806b5629(uint64_t *param_1,int param_2)
 
 {
   int in_EAX;
-  undefined8 uVar1;
+  uint64_t uVar1;
   longlong unaff_RBX;
   bool in_ZF;
   
@@ -914,7 +914,7 @@ void FUN_1806b5629(undefined8 *param_1,int param_2)
   }
   else {
     uVar1 = (**(code **)(**(longlong **)*param_1 + 8))
-                      (*(longlong **)*param_1,in_EAX,*(undefined8 *)(unaff_RBX + 8),&UNK_18094b4b0,
+                      (*(longlong **)*param_1,in_EAX,*(uint64_t *)(unaff_RBX + 8),&UNK_18094b4b0,
                        0x7e);
   }
                     // WARNING: Subroutine does not return
@@ -938,11 +938,11 @@ void FUN_1806b56bd(void)
 
 
 
-// 函数: void FUN_1806b56d0(undefined8 *param_1,uint param_2)
-void FUN_1806b56d0(undefined8 *param_1,uint param_2)
+// 函数: void FUN_1806b56d0(uint64_t *param_1,uint param_2)
+void FUN_1806b56d0(uint64_t *param_1,uint param_2)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   int iVar2;
   int iVar3;
   
@@ -967,11 +967,11 @@ void FUN_1806b56d0(undefined8 *param_1,uint param_2)
 
 
 
-// 函数: void FUN_1806b5870(undefined8 *param_1,uint param_2)
-void FUN_1806b5870(undefined8 *param_1,uint param_2)
+// 函数: void FUN_1806b5870(uint64_t *param_1,uint param_2)
+void FUN_1806b5870(uint64_t *param_1,uint param_2)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   int iVar2;
   int iVar3;
   
@@ -1001,11 +1001,11 @@ void FUN_1806b5870(undefined8 *param_1,uint param_2)
 
 
 
-// 函数: void FUN_1806b5a10(undefined8 *param_1,uint param_2)
-void FUN_1806b5a10(undefined8 *param_1,uint param_2)
+// 函数: void FUN_1806b5a10(uint64_t *param_1,uint param_2)
+void FUN_1806b5a10(uint64_t *param_1,uint param_2)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   int iVar2;
   int iVar3;
   
@@ -1030,8 +1030,8 @@ void FUN_1806b5a10(undefined8 *param_1,uint param_2)
 
 
 
-// 函数: void FUN_1806b5bb0(longlong param_1,undefined8 param_2,undefined4 param_3)
-void FUN_1806b5bb0(longlong param_1,undefined8 param_2,undefined4 param_3)
+// 函数: void FUN_1806b5bb0(longlong param_1,uint64_t param_2,int32_t param_3)
+void FUN_1806b5bb0(longlong param_1,uint64_t param_2,int32_t param_3)
 
 {
   longlong *plVar1;

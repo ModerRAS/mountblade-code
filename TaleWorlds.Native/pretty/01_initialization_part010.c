@@ -274,36 +274,36 @@ typedef struct {
 void FUN_18003e510(void)
 {
     char component_status;                // 组件状态标志
-    undefined8 *registry_root;           // 注册表根节点
+    uint64_t *registry_root;           // 注册表根节点
     int comparison_result;               // 比较结果
     longlong *system_context;            // 系统上下文
     longlong memory_size;                 // 内存大小
-    undefined8 *current_node;            // 当前节点
-    undefined8 *previous_node;           // 前一个节点
-    undefined8 *next_node;               // 下一个节点
-    undefined8 *new_component;           // 新组件
-    undefined8 component_flags;           // 组件标志
+    uint64_t *current_node;            // 当前节点
+    uint64_t *previous_node;           // 前一个节点
+    uint64_t *next_node;               // 下一个节点
+    uint64_t *new_component;           // 新组件
+    uint64_t component_flags;           // 组件标志
 
     // 获取系统上下文
     system_context = (longlong *)FUN_18008d070();
-    registry_root = (undefined8 *)*system_context;
+    registry_root = (uint64_t *)*system_context;
     
     // 检查组件状态
     component_status = *(char *)((longlong)registry_root[1] + 0x19);
     component_flags = 0;
     
     previous_node = registry_root;
-    current_node = (undefined8 *)registry_root[1];
+    current_node = (uint64_t *)registry_root[1];
     
     // 遍历注册表查找合适位置
     while (component_status == '\0') {
         comparison_result = memcmp(current_node + 4, &DAT_180a00fb0, 0x10);
         if (comparison_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;
@@ -345,36 +345,36 @@ void FUN_18003e510(void)
 void FUN_18003e610(void)
 {
     char component_status;                // 组件状态标志
-    undefined8 *registry_root;           // 注册表根节点
+    uint64_t *registry_root;           // 注册表根节点
     int comparison_result;               // 比较结果
     longlong *system_context;            // 系统上下文
     longlong memory_size;                 // 内存大小
-    undefined8 *current_node;            // 当前节点
-    undefined8 *previous_node;           // 前一个节点
-    undefined8 *next_node;               // 下一个节点
-    undefined8 *new_component;           // 新组件
+    uint64_t *current_node;            // 当前节点
+    uint64_t *previous_node;           // 前一个节点
+    uint64_t *next_node;               // 下一个节点
+    uint64_t *new_component;           // 新组件
     code *callback_function;             // 回调函数
 
     // 获取系统上下文
     system_context = (longlong *)FUN_18008d070();
-    registry_root = (undefined8 *)*system_context;
+    registry_root = (uint64_t *)*system_context;
     
     // 检查组件状态
     component_status = *(char *)((longlong)registry_root[1] + 0x19);
     callback_function = FUN_18025cc00;    // 设置回调函数
     
     previous_node = registry_root;
-    current_node = (undefined8 *)registry_root[1];
+    current_node = (uint64_t *)registry_root[1];
     
     // 遍历注册表查找合适位置
     while (component_status == '\0') {
         comparison_result = memcmp(current_node + 4, &DAT_180a010a0, 0x10);
         if (comparison_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;
@@ -416,36 +416,36 @@ void FUN_18003e610(void)
 void FUN_18003e710(void)
 {
     char component_status;                // 组件状态标志
-    undefined8 *registry_root;           // 注册表根节点
+    uint64_t *registry_root;           // 注册表根节点
     int comparison_result;               // 比较结果
     longlong *system_context;            // 系统上下文
     longlong memory_size;                 // 内存大小
-    undefined8 *current_node;            // 当前节点
-    undefined8 *previous_node;           // 前一个节点
-    undefined8 *next_node;               // 下一个节点
-    undefined8 *new_component;           // 新组件
+    uint64_t *current_node;            // 当前节点
+    uint64_t *previous_node;           // 前一个节点
+    uint64_t *next_node;               // 下一个节点
+    uint64_t *new_component;           // 新组件
     code *service_handler;               // 服务处理函数
 
     // 获取系统上下文
     system_context = (longlong *)FUN_18008d070();
-    registry_root = (undefined8 *)*system_context;
+    registry_root = (uint64_t *)*system_context;
     
     // 检查组件状态
     component_status = *(char *)((longlong)registry_root[1] + 0x19);
     service_handler = FUN_18025c000;      // 设置服务处理函数
     
     previous_node = registry_root;
-    current_node = (undefined8 *)registry_root[1];
+    current_node = (uint64_t *)registry_root[1];
     
     // 遍历注册表查找合适位置
     while (component_status == '\0') {
         comparison_result = memcmp(current_node + 4, &DAT_180a01078, 0x10);
         if (comparison_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;
@@ -487,36 +487,36 @@ void FUN_18003e710(void)
 void FUN_18003e810(void)
 {
     char component_status;                // 组件状态标志
-    undefined8 *registry_root;           // 注册表根节点
+    uint64_t *registry_root;           // 注册表根节点
     int comparison_result;               // 比较结果
     longlong *system_context;            // 系统上下文
     longlong memory_size;                 // 内存大小
-    undefined8 *current_node;            // 当前节点
-    undefined8 *previous_node;           // 前一个节点
-    undefined8 *next_node;               // 下一个节点
-    undefined8 *new_component;           // 新组件
-    undefined8 resource_flags;            // 资源标志
+    uint64_t *current_node;            // 当前节点
+    uint64_t *previous_node;           // 前一个节点
+    uint64_t *next_node;               // 下一个节点
+    uint64_t *new_component;           // 新组件
+    uint64_t resource_flags;            // 资源标志
 
     // 获取系统上下文
     system_context = (longlong *)FUN_18008d070();
-    registry_root = (undefined8 *)*system_context;
+    registry_root = (uint64_t *)*system_context;
     
     // 检查组件状态
     component_status = *(char *)((longlong)registry_root[1] + 0x19);
     resource_flags = 0;                   // 初始化资源标志
     
     previous_node = registry_root;
-    current_node = (undefined8 *)registry_root[1];
+    current_node = (uint64_t *)registry_root[1];
     
     // 遍历注册表查找合适位置
     while (component_status == '\0') {
         comparison_result = memcmp(current_node + 4, &DAT_180a01050, 0x10);
         if (comparison_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;
@@ -558,36 +558,36 @@ void FUN_18003e810(void)
 void FUN_18003e910(void)
 {
     char component_status;                // 组件状态标志
-    undefined8 *registry_root;           // 注册表根节点
+    uint64_t *registry_root;           // 注册表根节点
     int comparison_result;               // 比较结果
     longlong *system_context;            // 系统上下文
     longlong memory_size;                 // 内存大小
-    undefined8 *current_node;            // 当前节点
-    undefined8 *previous_node;           // 前一个节点
-    undefined8 *next_node;               // 下一个节点
-    undefined8 *new_component;           // 新组件
+    uint64_t *current_node;            // 当前节点
+    uint64_t *previous_node;           // 前一个节点
+    uint64_t *next_node;               // 下一个节点
+    uint64_t *new_component;           // 新组件
     code *log_handler;                    // 日志处理函数
 
     // 获取系统上下文
     system_context = (longlong *)FUN_18008d070();
-    registry_root = (undefined8 *)*system_context;
+    registry_root = (uint64_t *)*system_context;
     
     // 检查组件状态
     component_status = *(char *)((longlong)registry_root[1] + 0x19);
     log_handler = FUN_18025d270;          // 设置日志处理函数
     
     previous_node = registry_root;
-    current_node = (undefined8 *)registry_root[1];
+    current_node = (uint64_t *)registry_root[1];
     
     // 遍历注册表查找合适位置
     while (component_status == '\0') {
         comparison_result = memcmp(current_node + 4, &DAT_180a01028, 0x10);
         if (comparison_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;
@@ -629,36 +629,36 @@ void FUN_18003e910(void)
 void FUN_18003ea10(void)
 {
     char component_status;                // 组件状态标志
-    undefined8 *registry_root;           // 注册表根节点
+    uint64_t *registry_root;           // 注册表根节点
     int comparison_result;               // 比较结果
     longlong *system_context;            // 系统上下文
     longlong memory_size;                 // 内存大小
-    undefined8 *current_node;            // 当前节点
-    undefined8 *previous_node;           // 前一个节点
-    undefined8 *next_node;               // 下一个节点
-    undefined8 *new_component;           // 新组件
-    undefined8 config_flags;             // 配置标志
+    uint64_t *current_node;            // 当前节点
+    uint64_t *previous_node;           // 前一个节点
+    uint64_t *next_node;               // 下一个节点
+    uint64_t *new_component;           // 新组件
+    uint64_t config_flags;             // 配置标志
 
     // 获取系统上下文
     system_context = (longlong *)FUN_18008d070();
-    registry_root = (undefined8 *)*system_context;
+    registry_root = (uint64_t *)*system_context;
     
     // 检查组件状态
     component_status = *(char *)((longlong)registry_root[1] + 0x19);
     config_flags = 0;                     // 初始化配置标志
     
     previous_node = registry_root;
-    current_node = (undefined8 *)registry_root[1];
+    current_node = (uint64_t *)registry_root[1];
     
     // 遍历注册表查找合适位置
     while (component_status == '\0') {
         comparison_result = memcmp(current_node + 4, &DAT_180a01000, 0x10);
         if (comparison_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;
@@ -700,36 +700,36 @@ void FUN_18003ea10(void)
 void FUN_18003eb10(void)
 {
     char component_status;                // 组件状态标志
-    undefined8 *registry_root;           // 注册表根节点
+    uint64_t *registry_root;           // 注册表根节点
     int comparison_result;               // 比较结果
     longlong *system_context;            // 系统上下文
     longlong memory_size;                 // 内存大小
-    undefined8 *current_node;            // 当前节点
-    undefined8 *previous_node;           // 前一个节点
-    undefined8 *next_node;               // 下一个节点
-    undefined8 *new_component;           // 新组件
-    undefined *cache_handler;             // 缓存处理函数
+    uint64_t *current_node;            // 当前节点
+    uint64_t *previous_node;           // 前一个节点
+    uint64_t *next_node;               // 下一个节点
+    uint64_t *new_component;           // 新组件
+    void *cache_handler;             // 缓存处理函数
 
     // 获取系统上下文
     system_context = (longlong *)FUN_18008d070();
-    registry_root = (undefined8 *)*system_context;
+    registry_root = (uint64_t *)*system_context;
     
     // 检查组件状态
     component_status = *(char *)((longlong)registry_root[1] + 0x19);
     cache_handler = &UNK_1800868c0;       // 设置缓存处理函数
     
     previous_node = registry_root;
-    current_node = (undefined8 *)registry_root[1];
+    current_node = (uint64_t *)registry_root[1];
     
     // 遍历注册表查找合适位置
     while (component_status == '\0') {
         comparison_result = memcmp(current_node + 4, &DAT_180a00fd8, 0x10);
         if (comparison_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;
@@ -771,36 +771,36 @@ void FUN_18003eb10(void)
 void FUN_18003ec10(void)
 {
     char component_status;                // 组件状态标志
-    undefined8 *registry_root;           // 注册表根节点
+    uint64_t *registry_root;           // 注册表根节点
     int comparison_result;               // 比较结果
     longlong *system_context;            // 系统上下文
     longlong memory_size;                 // 内存大小
-    undefined8 *current_node;            // 当前节点
-    undefined8 *previous_node;           // 前一个节点
-    undefined8 *next_node;               // 下一个节点
-    undefined8 *new_component;           // 新组件
-    undefined8 storage_flags;            // 存储标志
+    uint64_t *current_node;            // 当前节点
+    uint64_t *previous_node;           // 前一个节点
+    uint64_t *next_node;               // 下一个节点
+    uint64_t *new_component;           // 新组件
+    uint64_t storage_flags;            // 存储标志
 
     // 获取系统上下文
     system_context = (longlong *)FUN_18008d070();
-    registry_root = (undefined8 *)*system_context;
+    registry_root = (uint64_t *)*system_context;
     
     // 检查组件状态
     component_status = *(char *)((longlong)registry_root[1] + 0x19);
     storage_flags = 0;                   // 初始化存储标志
     
     previous_node = registry_root;
-    current_node = (undefined8 *)registry_root[1];
+    current_node = (uint64_t *)registry_root[1];
     
     // 遍历注册表查找合适位置
     while (component_status == '\0') {
         comparison_result = memcmp(current_node + 4, &DAT_180a00fb0, 0x10);
         if (comparison_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;
@@ -841,11 +841,11 @@ void FUN_18003ec10(void)
  */
 void FUN_18003ed10(void)
 {
-    undefined8 system_config;              // 系统配置参数
-    undefined *system_service;            // 系统服务指针
-    undefined1 *system_buffer;            // 系统缓冲区
-    undefined4 buffer_size;               // 缓冲区大小
-    undefined1 system_data[136];          // 系统数据缓冲区
+    uint64_t system_config;              // 系统配置参数
+    void *system_service;            // 系统服务指针
+    int8_t *system_buffer;            // 系统缓冲区
+    int32_t buffer_size;               // 缓冲区大小
+    int8_t system_data[136];          // 系统数据缓冲区
     
     // 初始化系统服务
     system_service = &UNK_1809fcc28;
@@ -910,7 +910,7 @@ int FUN_18003eda0(void)
 int FUN_18003edc0(void)
 {
     longlong validation_result;           // 验证结果
-    undefined1 config_data[32];          // 配置数据缓冲区
+    int8_t config_data[32];          // 配置数据缓冲区
     
     // 初始化配置数据
     config_data[0] = 1;
@@ -943,7 +943,7 @@ int FUN_18003edc0(void)
 int FUN_18003edf0(void)
 {
     longlong load_result;                // 加载结果
-    undefined1 load_data[32];            // 加载数据缓冲区
+    int8_t load_data[32];            // 加载数据缓冲区
     
     // 初始化加载数据
     load_data[0] = 0;
@@ -1026,36 +1026,36 @@ int FUN_18003ee40(void)
 void FUN_18003ee90(void)
 {
     char resource_status;                // 资源状态标志
-    undefined8 *resource_root;           // 资源根节点
+    uint64_t *resource_root;           // 资源根节点
     int comparison_result;               // 比较结果
     longlong *system_context;            // 系统上下文
     longlong resource_size;               // 资源大小
-    undefined8 *current_node;            // 当前节点
-    undefined8 *previous_node;           // 前一个节点
-    undefined8 *next_node;               // 下一个节点
-    undefined8 *new_resource;            // 新资源
+    uint64_t *current_node;            // 当前节点
+    uint64_t *previous_node;           // 前一个节点
+    uint64_t *next_node;               // 下一个节点
+    uint64_t *new_resource;            // 新资源
     code *resource_loader;               // 资源加载器
 
     // 获取系统上下文
     system_context = (longlong *)FUN_18008d070();
-    resource_root = (undefined8 *)*system_context;
+    resource_root = (uint64_t *)*system_context;
     
     // 检查资源状态
     resource_status = *(char *)((longlong)resource_root[1] + 0x19);
     resource_loader = FUN_18007fcd0;      // 设置资源加载器
     
     previous_node = resource_root;
-    current_node = (undefined8 *)resource_root[1];
+    current_node = (uint64_t *)resource_root[1];
     
     // 遍历资源树查找合适位置
     while (resource_status == '\0') {
         comparison_result = memcmp(current_node + 4, &DAT_1809fc740, 0x10);
         if (comparison_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;

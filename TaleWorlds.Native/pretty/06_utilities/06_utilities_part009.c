@@ -242,10 +242,10 @@ void UtilitiesSystem_EmptyFunction(void)
  * @param param_1 输入参数（64位无符号整数）
  * @return 处理结果（32位无符号整数）
  */
-undefined4 UtilitiesSystem_DataProcessor(undefined8 param_1)
+int32_t UtilitiesSystem_DataProcessor(uint64_t param_1)
 {
     int validation_result;                    /**< 验证结果 */
-    undefined4 processing_buffer[6];          /**< 处理缓冲区 */
+    int32_t processing_buffer[6];          /**< 处理缓冲区 */
     
     /* 初始化处理缓冲区 */
     processing_buffer[0] = 0;
@@ -271,13 +271,13 @@ undefined4 UtilitiesSystem_DataProcessor(undefined8 param_1)
  * @param param_2 内存大小参数
  * @return 操作结果（64位无符号整数）
  */
-undefined8 UtilitiesSystem_MemoryManager(longlong *param_1, int param_2)
+uint64_t UtilitiesSystem_MemoryManager(longlong *param_1, int param_2)
 {
     int current_capacity;                     /**< 当前容量 */
     longlong source_address;                  /**< 源地址 */
-    undefined8 *target_buffer;               /**< 目标缓冲区 */
+    uint64_t *target_buffer;               /**< 目标缓冲区 */
     longlong copy_count;                      /**< 复制计数 */
-    undefined8 *copy_pointer;                 /**< 复制指针 */
+    uint64_t *copy_pointer;                 /**< 复制指针 */
     
     /* 参数验证：检查请求大小是否超过当前容量 */
     if (param_2 < (int)param_1[1]) {
@@ -285,22 +285,22 @@ undefined8 UtilitiesSystem_MemoryManager(longlong *param_1, int param_2)
     }
     
     /* 初始化目标缓冲区 */
-    target_buffer = (undefined8 *)0x0;
+    target_buffer = (uint64_t *)0x0;
     
     /* 内存分配逻辑 */
     if (param_2 != 0) {
         /* 检查内存分配大小是否在安全范围内 */
         if (param_2 * UTILITIES_MEMORY_BLOCK_SIZE - 1U < UTILITIES_MEMORY_MAX_ALLOCATION) {
             /* 分配内存块 */
-            target_buffer = (undefined8 *)
-                     FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + UTILITIES_SYSTEM_CONFIG_OFFSET), 
+            target_buffer = (uint64_t *)
+                     FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + UTILITIES_SYSTEM_CONFIG_OFFSET), 
                                   param_2 * UTILITIES_MEMORY_BLOCK_SIZE, 
                                   &UNK_180957f70, 
                                   UTILITIES_SYSTEM_TIMEOUT, 
                                   0, 0, 1);
             
             /* 内存分配成功处理 */
-            if (target_buffer != (undefined8 *)0x0) {
+            if (target_buffer != (uint64_t *)0x0) {
                 current_capacity = (int)param_1[1];
                 copy_count = (longlong)current_capacity;
                 
@@ -309,10 +309,10 @@ undefined8 UtilitiesSystem_MemoryManager(longlong *param_1, int param_2)
                     copy_pointer = target_buffer;
                     do {
                         /* 复制数据块 */
-                        *copy_pointer = *(undefined8 *)((source_address - (longlong)target_buffer) + (longlong)copy_pointer);
-                        *(undefined4 *)(copy_pointer + 1) =
-                             *(undefined4 *)((source_address - (longlong)target_buffer) + 8 + (longlong)copy_pointer);
-                        copy_pointer = (undefined8 *)((longlong)copy_pointer + UTILITIES_MEMORY_BLOCK_SIZE);
+                        *copy_pointer = *(uint64_t *)((source_address - (longlong)target_buffer) + (longlong)copy_pointer);
+                        *(int32_t *)(copy_pointer + 1) =
+                             *(int32_t *)((source_address - (longlong)target_buffer) + 8 + (longlong)copy_pointer);
+                        copy_pointer = (uint64_t *)((longlong)copy_pointer + UTILITIES_MEMORY_BLOCK_SIZE);
                         copy_count = copy_count + -1;
                     } while (copy_count != 0);
                 }
@@ -326,7 +326,7 @@ MEMORY_CLEANUP:
     /* 清理现有资源 */
     if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
         /* 释放现有内存资源 */
-        FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + UTILITIES_SYSTEM_CONFIG_OFFSET), 
+        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + UTILITIES_SYSTEM_CONFIG_OFFSET), 
                       *param_1, 
                       &UNK_180957f70, 
                       UTILITIES_SYSTEM_STACK_SIZE, 
@@ -350,18 +350,18 @@ MEMORY_CLEANUP:
  * @param param_2 资源大小参数
  * @return 操作结果（64位无符号整数）
  */
-undefined8 UtilitiesSystem_ResourceHandler(undefined8 param_1, int param_2)
+uint64_t UtilitiesSystem_ResourceHandler(uint64_t param_1, int param_2)
 {
     int resource_count;                        /**< 资源计数 */
     longlong resource_address;                 /**< 资源地址 */
-    undefined8 *target_buffer;               /**< 目标缓冲区 */
+    uint64_t *target_buffer;               /**< 目标缓冲区 */
     longlong copy_count;                      /**< 复制计数 */
-    undefined8 *copy_pointer;                 /**< 复制指针 */
+    uint64_t *copy_pointer;                 /**< 复制指针 */
     longlong *resource_pointer;               /**< 资源指针 */
     int unaff_EDI;                           /**< 未使用的EDI寄存器 */
     
     /* 初始化目标缓冲区 */
-    target_buffer = (undefined8 *)0x0;
+    target_buffer = (uint64_t *)0x0;
     
     /* 检查资源状态 */
     if (unaff_EDI == 0) {
@@ -370,15 +370,15 @@ undefined8 UtilitiesSystem_ResourceHandler(undefined8 param_1, int param_2)
     
     /* 资源分配逻辑 */
     if (param_2 * UTILITIES_MEMORY_BLOCK_SIZE - 1U < UTILITIES_MEMORY_MAX_ALLOCATION) {
-        target_buffer = (undefined8 *)
-                 FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + UTILITIES_SYSTEM_CONFIG_OFFSET), 
+        target_buffer = (uint64_t *)
+                 FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + UTILITIES_SYSTEM_CONFIG_OFFSET), 
                               param_2 * UTILITIES_MEMORY_BLOCK_SIZE, 
                               &UNK_180957f70, 
                               UTILITIES_SYSTEM_TIMEOUT, 
                               0);
         
         /* 资源分配成功处理 */
-        if (target_buffer != (undefined8 *)0x0) {
+        if (target_buffer != (uint64_t *)0x0) {
             resource_count = (int)unaff_RBX[1];
             copy_count = (longlong)resource_count;
             
@@ -387,10 +387,10 @@ undefined8 UtilitiesSystem_ResourceHandler(undefined8 param_1, int param_2)
                 copy_pointer = target_buffer;
                 do {
                     /* 复制资源数据 */
-                    *copy_pointer = *(undefined8 *)((resource_address - (longlong)target_buffer) + (longlong)copy_pointer);
-                    *(undefined4 *)(copy_pointer + 1) =
-                         *(undefined4 *)((resource_address - (longlong)target_buffer) + 8 + (longlong)copy_pointer);
-                    copy_pointer = (undefined8 *)((longlong)copy_pointer + UTILITIES_MEMORY_BLOCK_SIZE);
+                    *copy_pointer = *(uint64_t *)((resource_address - (longlong)target_buffer) + (longlong)copy_pointer);
+                    *(int32_t *)(copy_pointer + 1) =
+                         *(int32_t *)((resource_address - (longlong)target_buffer) + 8 + (longlong)copy_pointer);
+                    copy_pointer = (uint64_t *)((longlong)copy_pointer + UTILITIES_MEMORY_BLOCK_SIZE);
                     copy_count = copy_count + -1;
                 } while (copy_count != 0);
             }
@@ -403,7 +403,7 @@ RESOURCE_CLEANUP:
     /* 资源清理逻辑 */
     if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
         /* 释放资源内存 */
-        FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + UTILITIES_SYSTEM_CONFIG_OFFSET), 
+        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + UTILITIES_SYSTEM_CONFIG_OFFSET), 
                       *unaff_RBX, 
                       &UNK_180957f70, 
                       UTILITIES_SYSTEM_STACK_SIZE, 
@@ -425,7 +425,7 @@ RESOURCE_CLEANUP:
  * 
  * @return 系统状态码（64位无符号整数）
  */
-undefined8 UtilitiesSystem_StatusChecker(void)
+uint64_t UtilitiesSystem_StatusChecker(void)
 {
     /* 返回内存分配错误状态码 */
     return UTILITIES_ERROR_MEMORY_ALLOCATION;
@@ -441,7 +441,7 @@ undefined8 UtilitiesSystem_StatusChecker(void)
  * @param param_2 配置大小参数
  * @return 操作结果（64位无符号整数）
  */
-undefined8 UtilitiesSystem_ConfigManager(longlong *param_1, int param_2)
+uint64_t UtilitiesSystem_ConfigManager(longlong *param_1, int param_2)
 {
     longlong configuration_address;            /**< 配置地址 */
     
@@ -455,7 +455,7 @@ undefined8 UtilitiesSystem_ConfigManager(longlong *param_1, int param_2)
         /* 检查配置大小是否在安全范围内 */
         if (param_2 * UTILITIES_MEMORY_BLOCK_SIZE - 1U < UTILITIES_MEMORY_MAX_ALLOCATION) {
             /* 分配配置内存 */
-            configuration_address = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + UTILITIES_SYSTEM_CONFIG_OFFSET), 
+            configuration_address = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + UTILITIES_SYSTEM_CONFIG_OFFSET), 
                                                  param_2 * UTILITIES_MEMORY_BLOCK_SIZE, 
                                                  &UNK_180957f70, 
                                                  UTILITIES_SYSTEM_TIMEOUT, 
@@ -480,7 +480,7 @@ CONFIG_CLEANUP:
     /* 清理现有配置 */
     if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
         /* 释放配置内存 */
-        FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + UTILITIES_SYSTEM_CONFIG_OFFSET), 
+        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + UTILITIES_SYSTEM_CONFIG_OFFSET), 
                       *param_1, 
                       &UNK_180957f70, 
                       UTILITIES_SYSTEM_STACK_SIZE, 
@@ -506,8 +506,8 @@ CONFIG_CLEANUP:
 ulonglong UtilitiesSystem_AdvancedProcessor(longlong param_1)
 {
     byte *data_pointer;                       /**< 数据指针 */
-    undefined4 status_flag;                  /**< 状态标志 */
-    undefined8 operation_result;              /**< 操作结果 */
+    int32_t status_flag;                  /**< 状态标志 */
+    uint64_t operation_result;              /**< 操作结果 */
     int processing_status;                   /**< 处理状态 */
     longlong temp_address;                   /**< 临时地址 */
     ulonglong final_result;                  /**< 最终结果 */
@@ -516,38 +516,38 @@ ulonglong UtilitiesSystem_AdvancedProcessor(longlong param_1)
     uint temp_flag;                           /**< 临时标志 */
     ulonglong temp_result;                    /**< 临时结果 */
     int index_value;                          /**< 索引值 */
-    undefined4 *flag_pointer;                /**< 标志指针 */
+    int32_t *flag_pointer;                /**< 标志指针 */
     longlong *config_pointer;                /**< 配置指针 */
     int temp_int;                             /**< 临时整型 */
     longlong temp_long;                       /**< 长整型 */
     bool condition_flag;                      /**< 条件标志 */
     int temp_array[2];                       /**< 临时数组 */
     uint temp_array2[2];                     /**< 临时数组2 */
-    undefined8 temp_value;                    /**< 临时值 */
-    undefined1 temp_buffer[8];                /**< 临时缓冲区 */
+    uint64_t temp_value;                    /**< 临时值 */
+    int8_t temp_buffer[8];                /**< 临时缓冲区 */
     ulonglong stack_value_118;               /**< 栈值118 */
-    undefined8 stack_value_110;               /**< 栈值110 */
+    uint64_t stack_value_110;               /**< 栈值110 */
     longlong *stack_pointer_108;             /**< 栈指针108 */
     ulonglong stack_value_100;                /**< 栈值100 */
     int stack_array_f8[2];                   /**< 栈数组f8 */
-    undefined *stack_pointer_f0;             /**< 栈指针f0 */
-    undefined4 stack_value_e8;                /**< 栈值e8 */
-    undefined4 stack_value_e0;                /**< 栈值e0 */
-    undefined *stack_pointer_d8;              /**< 栈指针d8 */
-    undefined4 stack_value_d0;                /**< 栈值d0 */
-    undefined4 stack_value_c8;                /**< 栈值c8 */
-    undefined4 stack_value_c0;                /**< 栈值c0 */
-    undefined *stack_pointer_b8;              /**< 栈指针b8 */
-    undefined4 stack_value_b0;                /**< 栈值b0 */
-    undefined4 stack_value_a8;                /**< 栈值a8 */
+    void *stack_pointer_f0;             /**< 栈指针f0 */
+    int32_t stack_value_e8;                /**< 栈值e8 */
+    int32_t stack_value_e0;                /**< 栈值e0 */
+    void *stack_pointer_d8;              /**< 栈指针d8 */
+    int32_t stack_value_d0;                /**< 栈值d0 */
+    int32_t stack_value_c8;                /**< 栈值c8 */
+    int32_t stack_value_c0;                /**< 栈值c0 */
+    void *stack_pointer_b8;              /**< 栈指针b8 */
+    int32_t stack_value_b0;                /**< 栈值b0 */
+    int32_t stack_value_a8;                /**< 栈值a8 */
     uint stack_value_a0;                     /**< 栈值a0 */
-    undefined *stack_pointer_98;              /**< 栈指针98 */
-    undefined4 stack_value_90;                /**< 栈值90 */
-    undefined4 stack_value_88;                /**< 栈值88 */
-    undefined1 stack_value_80;                /**< 栈值80 */
-    undefined1 stack_buffer_78[8];            /**< 栈缓冲区78 */
-    undefined1 stack_buffer_70[8];            /**< 栈缓冲区70 */
-    undefined1 stack_buffer_68[40];           /**< 栈缓冲区68 */
+    void *stack_pointer_98;              /**< 栈指针98 */
+    int32_t stack_value_90;                /**< 栈值90 */
+    int32_t stack_value_88;                /**< 栈值88 */
+    int8_t stack_value_80;                /**< 栈值80 */
+    int8_t stack_buffer_78[8];            /**< 栈缓冲区78 */
+    int8_t stack_buffer_70[8];            /**< 栈缓冲区70 */
+    int8_t stack_buffer_68[40];           /**< 栈缓冲区68 */
     
     /* 获取系统状态标志 */
     flag_value = *(uint *)(param_1 + 0x6c);
@@ -587,7 +587,7 @@ ulonglong UtilitiesSystem_AdvancedProcessor(longlong param_1)
                     
                     /* 数据类型处理 */
                     if (processing_status == 2) {
-                        processing_status = func_0x00018088c530(*(undefined4 *)(temp_address + 0xc + temp_long * 0x10), 
+                        processing_status = func_0x00018088c530(*(int32_t *)(temp_address + 0xc + temp_long * 0x10), 
                                                                &temp_value);
                         operation_result = temp_value;
                         config_pointer = stack_pointer_108;
@@ -599,10 +599,10 @@ ulonglong UtilitiesSystem_AdvancedProcessor(longlong param_1)
                             0 < processing_status)) {
                             do {
                                 /* 处理数据操作 */
-                                stack_value_e0 = *(undefined4 *)(temp_address + 0xc + temp_long * 0x10);
+                                stack_value_e0 = *(int32_t *)(temp_address + 0xc + temp_long * 0x10);
                                 stack_value_e8 = 0;
                                 stack_pointer_f0 = &UNK_180983588;
-                                FUN_180892120(&stack_pointer_f0, *(undefined8 *)(param_1 + 0x58));
+                                FUN_180892120(&stack_pointer_f0, *(uint64_t *)(param_1 + 0x58));
                                 processing_status = func_0x0001808c7ed0(operation_result);
                             } while (0 < processing_status);
                             
@@ -657,7 +657,7 @@ ulonglong UtilitiesSystem_AdvancedProcessor(longlong param_1)
                 stack_value_100 = stack_value_100 & 0xffffffff00000000;
                 stack_pointer_108 = (longlong *)&UNK_180982dc0;
                 stack_array_f8[0] = *(int *)(final_result + temp_address * 4);
-                FUN_180891af0(&stack_pointer_108, *(undefined8 *)(param_1 + 0x58));
+                FUN_180891af0(&stack_pointer_108, *(uint64_t *)(param_1 + 0x58));
                 temp_address = temp_address + -1;
             } while (-1 < temp_address);
         }
@@ -672,7 +672,7 @@ ulonglong UtilitiesSystem_AdvancedProcessor(longlong param_1)
             if (0 < index_value) goto RESOURCE_CLEANUP_PHASE;
             if ((0 < processing_status) && (final_result != 0)) {
                 /* 释放资源 */
-                FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + UTILITIES_SYSTEM_CONFIG_OFFSET), 
+                FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + UTILITIES_SYSTEM_CONFIG_OFFSET), 
                               final_result, 
                               &UNK_180957f70, 
                               UTILITIES_SYSTEM_STACK_SIZE, 
@@ -687,7 +687,7 @@ ulonglong UtilitiesSystem_AdvancedProcessor(longlong param_1)
         /* 清理内存区域 */
         if (index_value < 0) {
             temp_address = (longlong)-index_value;
-            flag_pointer = (undefined4 *)(final_result + (longlong)index_value * 4);
+            flag_pointer = (int32_t *)(final_result + (longlong)index_value * 4);
             if (index_value < 0) {
                 for (; temp_address != 0; temp_address = temp_address + -1) {
                     *flag_pointer = 0;
@@ -726,8 +726,8 @@ RESOURCE_CLEANUP_PHASE:
     /* 系统状态验证 */
     processing_status = FUN_180744cc0(param_1 + 0x70);
     if ((processing_status == 0) && (processing_status = FUN_180895130(param_1 + 0x80), processing_status == 0)) {
-        *(undefined4 *)(param_1 + 0x90) = 0xffffffff;
-        *(undefined4 *)(param_1 + 0x94) = 0;
+        *(int32_t *)(param_1 + 0x90) = 0xffffffff;
+        *(int32_t *)(param_1 + 0x94) = 0;
     }
     
     /* 更新系统状态 */
@@ -738,7 +738,7 @@ ADVANCED_PROCESSING_COMPLETE:
     /* 高级处理完成 */
     if ((flag_value >> 0x19 & 1) != 0) {
         temp_address = *(longlong *)(param_1 + 0xa0);
-        final_result = FUN_18073c4c0(*(undefined8 *)(param_1 + 0x60), param_1 + 0xa0, 0);
+        final_result = FUN_18073c4c0(*(uint64_t *)(param_1 + 0x60), param_1 + 0xa0, 0);
         
         /* 验证最终结果 */
         if ((int)final_result != 0) {
@@ -759,10 +759,10 @@ ADVANCED_PROCESSING_COMPLETE:
             }
             else {
                 /* 重置系统配置 */
-                *(undefined8 *)(param_1 + 0xa8) = 0;
+                *(uint64_t *)(param_1 + 0xa8) = 0;
                 *(uint *)(param_1 + 0x6c) = *(uint *)(param_1 + 0x6c) | 0x6000000;
-                *(undefined8 *)(param_1 + 0x98) = 0;
-                *(undefined8 *)(param_1 + 0xa0) = 0;
+                *(uint64_t *)(param_1 + 0x98) = 0;
+                *(uint64_t *)(param_1 + 0xa0) = 0;
             }
         }
         /* 系统状态同步处理 */
@@ -785,7 +785,7 @@ ADVANCED_PROCESSING_COMPLETE:
  * @param param_2 初始化标志
  * @return 初始化后的对象指针
  */
-undefined8 *UtilitiesSystem_ObjectInitializer(undefined8 *param_1, ulonglong param_2)
+uint64_t *UtilitiesSystem_ObjectInitializer(uint64_t *param_1, ulonglong param_2)
 {
     /* 设置对象默认值 */
     *param_1 = &UNK_180986350;
@@ -808,7 +808,7 @@ undefined8 *UtilitiesSystem_ObjectInitializer(undefined8 *param_1, ulonglong par
  * @param param_2 清理标志
  * @return 清理后的对象指针
  */
-undefined8 *UtilitiesSystem_ObjectFinalizer(undefined8 *param_1, ulonglong param_2)
+uint64_t *UtilitiesSystem_ObjectFinalizer(uint64_t *param_1, ulonglong param_2)
 {
     /* 设置对象终结状态 */
     *param_1 = &UNK_180986370;
@@ -844,7 +844,7 @@ void UtilitiesSystem_StateManager(longlong *param_1)
     
     /* 验证操作结果 */
     if (operation_result == 0) {
-        *(undefined1 *)(param_1 + 4) = 0;
+        *(int8_t *)(param_1 + 4) = 0;
     }
     
     return;

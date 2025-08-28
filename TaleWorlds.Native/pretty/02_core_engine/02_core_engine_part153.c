@@ -27,9 +27,9 @@ void process_entity_collision(longlong entity_data)
 
 {
   char *temp_ptr1;
-  undefined8 *data_ptr1;
-  undefined4 *data_ptr2;
-  undefined8 collision_data;
+  uint64_t *data_ptr1;
+  int32_t *data_ptr2;
+  uint64_t collision_data;
   bool collision_valid;
   longlong entity_offset;
   longlong next_entity;
@@ -42,22 +42,22 @@ void process_entity_collision(longlong entity_data)
   int new_capacity;
   longlong engine_context;
   char *temp_ptr2;
-  undefined1 is_active;
-  undefined1 stack_buffer1 [32];
-  undefined1 flag1;
-  undefined1 flag2;
-  undefined8 position_x;
-  undefined8 position_y;
-  undefined4 collision_flags;
-  undefined4 reserved1;
+  int8_t is_active;
+  int8_t stack_buffer1 [32];
+  int8_t flag1;
+  int8_t flag2;
+  uint64_t position_x;
+  uint64_t position_y;
+  int32_t collision_flags;
+  int32_t reserved1;
   longlong entity_handle;
-  undefined8 velocity_x;
-  undefined8 velocity_y;
-  undefined4 collision_normal_x;
-  undefined4 collision_normal_y;
-  undefined4 collision_depth;
-  undefined4 collision_time;
-  undefined8 stack_var1;
+  uint64_t velocity_x;
+  uint64_t velocity_y;
+  int32_t collision_normal_x;
+  int32_t collision_normal_y;
+  int32_t collision_depth;
+  int32_t collision_time;
+  uint64_t stack_var1;
   char collision_buffer1 [168];
   char collision_buffer2 [376];
   ulonglong stack_guard;
@@ -67,7 +67,7 @@ void process_entity_collision(longlong entity_data)
   stack_guard = g_security_cookie ^ (ulonglong)stack_buffer1;
   if (*(char *)(g_engine_context + 0x1dd0) == '\0') goto cleanup_exit;
   entity_id = *(int *)(entity_data + 8);
-  position_x = *(undefined8 *)(entity_data + 0x40);
+  position_x = *(uint64_t *)(entity_data + 0x40);
   position_y = CONCAT44(*(float *)(entity_data + 0x44) + *(float *)(entity_data + 0x4c),
                         *(float *)(entity_data + 0x40) + *(float *)(entity_data + 0x48));
   collision_system = *(longlong *)(g_engine_context + 0x1af8);
@@ -79,15 +79,15 @@ void process_entity_collision(longlong entity_data)
   if ((collision_result == '\0') ||
      ((entity_id == *(int *)(engine_context + 0x1dec) || (*(char *)(collision_system + 0xb4) != '\0'))))
   goto cleanup_exit;
-  *(undefined4 *)(engine_context + 0x1e20) = (undefined4)position_x;
-  *(undefined4 *)(engine_context + 0x1e24) = position_x._4_4_;
-  *(undefined4 *)(engine_context + 0x1e28) = (undefined4)position_y;
-  *(undefined4 *)(engine_context + 0x1e2c) = position_y._4_4_;
+  *(int32_t *)(engine_context + 0x1e20) = (int32_t)position_x;
+  *(int32_t *)(engine_context + 0x1e24) = position_x._4_4_;
+  *(int32_t *)(engine_context + 0x1e28) = (int32_t)position_y;
+  *(int32_t *)(engine_context + 0x1e2c) = position_y._4_4_;
   *(int *)(engine_context + 0x1e30) = entity_id;
-  *(undefined1 *)(engine_context + 0x1dd1) = is_active;
+  *(int8_t *)(engine_context + 0x1dd1) = is_active;
   if ((*(int *)(engine_context + 0x1df4) != -1) &&
      (entity_id = strcmp(&DEFAULT_ENTITY_TYPE,engine_context + 0x1df8), entity_id == 0)) {
-    collision_data = **(undefined8 **)(engine_context + 0x1de0);
+    collision_data = **(uint64_t **)(engine_context + 0x1de0);
     collision_result = process_collision_data(entity_data,collision_data);
     if ((collision_result != '\0') && (collision_system = get_collision_system(), collision_system != 0)) {
       collision_valid = false;
@@ -98,21 +98,21 @@ void process_entity_collision(longlong entity_data)
         has_sub_entities = true;
 process_complete:
         collision_valid = has_sub_entities;
-        position_x = *(undefined8 *)(entity_data + 0x40);
+        position_x = *(uint64_t *)(entity_data + 0x40);
         position_y = CONCAT44(*(float *)(entity_data + 0x44) +
                               *(float *)(engine_context + 0x1660) + *(float *)(engine_context + 0x1660) +
                               *(float *)(engine_context + 0x19f8),
                               *(float *)(entity_data + 0x40) + *(float *)(entity_data + 0x48));
       }
       else {
-        collision_entity = find_collision_entity(*(longlong *)(entity_data + 0x410),*(undefined8 *)(engine_context + 0x118));
+        collision_entity = find_collision_entity(*(longlong *)(entity_data + 0x410),*(uint64_t *)(engine_context + 0x118));
 process_entity_collision:
         collision_system = collision_entity;
         has_sub_entities = false;
         if ((collision_entity == 0) || (collision_entity = *(longlong *)(collision_entity + 0x30), collision_entity == 0))
         goto process_complete;
-        position_x = *(undefined8 *)(collision_entity + 0x28);
-        position_y = *(undefined8 *)(collision_entity + 0x30);
+        position_x = *(uint64_t *)(collision_entity + 0x28);
+        position_y = *(uint64_t *)(collision_entity + 0x30);
       }
       if ((*(char *)(engine_context + 0xc1) == '\0') &&
          (collision_result = check_collision_bounds(&position_x,&position_y,1), collision_result == '\0')) {
@@ -153,9 +153,9 @@ process_entity_collision:
         apply_collision_response(entity_data,collision_system,collision_data,collision_buffer2 + 0x68);
         apply_collision_response(entity_data,collision_system,collision_data,collision_buffer1);
         if ((temp_ptr2[0xa8] != '\0') && (*(char *)(engine_context + 0x1e1a) != '\0')) {
-          collision_normal_y = *(undefined4 *)(temp_ptr2 + 0xbc);
-          collision_depth = *(undefined4 *)(temp_ptr2 + 0xb8);
-          velocity_x = *(undefined8 *)(temp_ptr2 + 0xb0);
+          collision_normal_y = *(int32_t *)(temp_ptr2 + 0xbc);
+          collision_depth = *(int32_t *)(temp_ptr2 + 0xb8);
+          velocity_x = *(uint64_t *)(temp_ptr2 + 0xb0);
           collision_flags = 1;
           collision_time = CONCAT31(collision_time._1_3_,temp_ptr2 == collision_buffer1);
           engine_context = *(longlong *)(engine_context + 0x2df8);
@@ -179,17 +179,17 @@ process_entity_collision:
           }
           collision_entity = (longlong)entity_id * 0x40;
           collision_system = *(longlong *)(engine_context + 0x18);
-          *(undefined8 *)(collision_entity + collision_system) = CONCAT44(reserved1,collision_flags);
-          ((undefined8 *)(collision_entity + collision_system))[1] = entity_handle;
-          data_ptr1 = (undefined8 *)(collision_entity + 0x10 + collision_system);
+          *(uint64_t *)(collision_entity + collision_system) = CONCAT44(reserved1,collision_flags);
+          ((uint64_t *)(collision_entity + collision_system))[1] = entity_handle;
+          data_ptr1 = (uint64_t *)(collision_entity + 0x10 + collision_system);
           *data_ptr1 = velocity_x;
           data_ptr1[1] = velocity_y;
-          data_ptr2 = (undefined4 *)(collision_entity + 0x20 + collision_system);
+          data_ptr2 = (int32_t *)(collision_entity + 0x20 + collision_system);
           *data_ptr2 = collision_depth;
           data_ptr2[1] = collision_normal_y;
           data_ptr2[2] = collision_time;
           data_ptr2[3] = collision_normal_x;
-          data_ptr1 = (undefined8 *)(collision_entity + 0x30 + collision_system);
+          data_ptr1 = (uint64_t *)(collision_entity + 0x30 + collision_system);
           *data_ptr1 = 0;
           data_ptr1[1] = 0;
           *(int *)(engine_context + 0x10) = *(int *)(engine_context + 0x10) + 1;
@@ -200,7 +200,7 @@ process_entity_collision:
       }
     }
   }
-  *(undefined1 *)(engine_context + 0x1dd1) = 0;
+  *(int8_t *)(engine_context + 0x1dd1) = 0;
 cleanup_exit:
                     // WARNING: Subroutine does not return
   exit_function(stack_guard ^ (ulonglong)stack_buffer1);
@@ -212,19 +212,19 @@ cleanup_exit:
 
 
 
-// 函数: void cleanup_collision_resources(longlong resource_ptr, undefined8 param2, undefined8 param3, undefined8 param4)
+// 函数: void cleanup_collision_resources(longlong resource_ptr, uint64_t param2, uint64_t param3, uint64_t param4)
 // 清理碰撞相关的资源
-declspec(noinline) void cleanup_collision_resources(longlong resource_ptr, undefined8 param2, undefined8 param3, undefined8 param4)
+declspec(noinline) void cleanup_collision_resources(longlong resource_ptr, uint64_t param2, uint64_t param3, uint64_t param4)
 
 {
   longlong resource_handle;
-  undefined8 cleanup_flag;
+  uint64_t cleanup_flag;
   
   cleanup_flag = 0xfffffffffffffffe;
-  release_collision_data(*(undefined8 *)(resource_ptr + 0x30));
-  *(undefined8 *)(resource_ptr + 0x30) = 0;
-  *(undefined8 *)(resource_ptr + 0x18) = 0;
-  *(undefined8 *)(resource_ptr + 0x10) = 0;
+  release_collision_data(*(uint64_t *)(resource_ptr + 0x30));
+  *(uint64_t *)(resource_ptr + 0x30) = 0;
+  *(uint64_t *)(resource_ptr + 0x18) = 0;
+  *(uint64_t *)(resource_ptr + 0x10) = 0;
   resource_handle = *(longlong *)(resource_ptr + 0x28);
   if (resource_handle != 0) {
     if (g_engine_context != 0) {
@@ -242,9 +242,9 @@ declspec(noinline) void cleanup_collision_resources(longlong resource_ptr, undef
 
 
 
-// 函数: void update_entity_collision_flags(int entity_type, undefined4 collision_flag)
+// 函数: void update_entity_collision_flags(int entity_type, int32_t collision_flag)
 // 更新实体的碰撞标志
-void update_entity_collision_flags(int entity_type, undefined4 collision_flag)
+void update_entity_collision_flags(int entity_type, int32_t collision_flag)
 
 {
   longlong entity_list;
@@ -262,7 +262,7 @@ void update_entity_collision_flags(int entity_type, undefined4 collision_flag)
     do {
       entity_data = *(longlong *)(array_index + *(longlong *)(entity_list + 0x1aa8));
       if ((*(int *)(entity_data + 0x418) == entity_type) && (*(longlong *)(entity_data + 0x408) == 0)) {
-        *(undefined4 *)(entity_data + 0x418) = collision_flag;
+        *(int32_t *)(entity_data + 0x418) = collision_flag;
       }
       entity_count = (int)list_index + 1;
       list_index = (ulonglong)entity_count;
@@ -273,7 +273,7 @@ void update_entity_collision_flags(int entity_type, undefined4 collision_flag)
   if (0 < *(int *)(entity_list + 0x2e28)) {
     do {
       if (*(int *)(entity_index + 0x28 + *(longlong *)(entity_list + 0x2e30)) == entity_type) {
-        *(undefined4 *)(entity_index + 0x28 + *(longlong *)(entity_list + 0x2e30)) = collision_flag;
+        *(int32_t *)(entity_index + 0x28 + *(longlong *)(entity_list + 0x2e30)) = collision_flag;
       }
       entity_count = (int)list_index + 1;
       entity_index = entity_index + 0x38;
@@ -287,12 +287,12 @@ void update_entity_collision_flags(int entity_type, undefined4 collision_flag)
 
 
 
-// 函数: void parse_collision_command(longlong command_context, undefined8 param2, undefined8 param3, char *command_string)
+// 函数: void parse_collision_command(longlong command_context, uint64_t param2, uint64_t param3, char *command_string)
 // 解析碰撞相关的命令字符串
-void parse_collision_command(longlong command_context, undefined8 param2, undefined8 param3, char *command_string)
+void parse_collision_command(longlong command_context, uint64_t param2, uint64_t param3, char *command_string)
 
 {
-  undefined8 *data_ptr;
+  uint64_t *data_ptr;
   longlong entity_table;
   int parse_result;
   longlong table_data;
@@ -304,22 +304,22 @@ void parse_collision_command(longlong command_context, undefined8 param2, undefi
   char axis_buffer [8];
   int command_id;
   int entity_id;
-  undefined4 position_x;
-  undefined4 position_y;
-  undefined4 position_z;
+  int32_t position_x;
+  int32_t position_y;
+  int32_t position_z;
   int collision_type;
-  undefined4 collision_data;
-  undefined1 axis_index;
+  int32_t collision_data;
+  int8_t axis_index;
   char collision_flag;
-  undefined1 is_relative;
-  undefined1 has_rotation;
-  undefined1 has_scale;
-  undefined1 is_dynamic;
-  undefined4 velocity_x;
-  undefined2 velocity_y;
-  undefined2 velocity_z;
-  undefined4 rotation;
-  undefined2 rotation_y;
+  int8_t is_relative;
+  int8_t has_rotation;
+  int8_t has_scale;
+  int8_t is_dynamic;
+  int32_t velocity_x;
+  int16_t velocity_y;
+  int16_t velocity_z;
+  int32_t rotation;
+  int16_t rotation_y;
   
   entity_index = 0;
   axis_buffer[0] = '\0';
@@ -372,7 +372,7 @@ void parse_collision_command(longlong command_context, undefined8 param2, undefi
       return;
     }
     table_data = (longlong)command_id;
-    position_y = CONCAT22((undefined2)position_x,(short)entity_id);
+    position_y = CONCAT22((int16_t)position_x,(short)entity_id);
     entity_id_ptr = &command_id;
     velocity_x = position_y;
     parse_result = parse_command_token(command_string + table_data,&POSITION_Z_TOKEN,&entity_id,&position_x,entity_id_ptr);
@@ -380,16 +380,16 @@ void parse_collision_command(longlong command_context, undefined8 param2, undefi
       return;
     }
     command_string = command_string + table_data + command_id;
-    velocity_y = (undefined2)entity_id;
-    position_y = CONCAT22((undefined2)position_x,velocity_y);
-    velocity_z = (undefined2)position_x;
+    velocity_y = (int16_t)entity_id;
+    position_y = CONCAT22((int16_t)position_x,velocity_y);
+    velocity_z = (int16_t)position_x;
     goto store_collision_data;
   }
   entity_id_ptr = &command_id;
   parse_result = parse_command_token(command_string,&ROTATION_TOKEN,&entity_id,&position_x,entity_id_ptr);
   if (parse_result == 2) {
     command_string = command_string + command_id;
-    position_y = CONCAT22((undefined2)position_x,(short)entity_id);
+    position_y = CONCAT22((int16_t)position_x,(short)entity_id);
     rotation = position_y;
   }
 store_collision_data:
@@ -445,11 +445,11 @@ store_collision_data:
     parse_result = *(int *)(table_data + 0x20);
   }
   entity_table = *(longlong *)(table_data + 0x28);
-  data_ptr = (undefined8 *)((longlong)parse_result * 0x20 + entity_table);
+  data_ptr = (uint64_t *)((longlong)parse_result * 0x20 + entity_table);
   *data_ptr = CONCAT44(collision_type,collision_data);
   data_ptr[1] = CONCAT17(has_rotation,
                        CONCAT16(is_relative,CONCAT15(collision_flag,CONCAT14(axis_index,collision_data))));
-  data_ptr = (undefined8 *)((longlong)parse_result * 0x20 + 0x10 + entity_table);
+  data_ptr = (uint64_t *)((longlong)parse_result * 0x20 + 0x10 + entity_table);
   *data_ptr = CONCAT26(velocity_y,CONCAT42(velocity_x,CONCAT11(is_dynamic,has_scale)));
   data_ptr[1] = CONCAT26(rotation_y,CONCAT42(rotation,velocity_z));
   *(int *)(table_data + 0x20) = *(int *)(table_data + 0x20) + 1;
@@ -460,12 +460,12 @@ store_collision_data:
 
 
 
-// 函数: void process_collision_entities(longlong collision_system, undefined4 *entity_data, int entity_index)
+// 函数: void process_collision_entities(longlong collision_system, int32_t *entity_data, int entity_index)
 // 处理碰撞实体数据
-void process_collision_entities(longlong collision_system, undefined4 *entity_data, int entity_index)
+void process_collision_entities(longlong collision_system, int32_t *entity_data, int entity_index)
 
 {
-  undefined4 *data_ptr1;
+  int32_t *data_ptr1;
   uint *data_ptr2;
   float position_x;
   float position_y;
@@ -473,38 +473,38 @@ void process_collision_entities(longlong collision_system, undefined4 *entity_da
   float velocity_x;
   float velocity_y;
   float velocity_z;
-  undefined1 collision_type;
+  int8_t collision_type;
   byte entity_flags;
-  undefined4 entity_id;
-  undefined4 entity_type;
+  int32_t entity_id;
+  int32_t entity_type;
   longlong array_offset;
   int current_count;
   int max_count;
   int new_capacity;
-  undefined4 collision_flags;
-  undefined4 entity_properties;
-  undefined1 reserved_byte;
-  undefined2 velocity_flags;
+  int32_t collision_flags;
+  int32_t entity_properties;
+  int8_t reserved_byte;
+  int16_t velocity_flags;
   
   while( true ) {
     entity_id = *entity_data;
-    if (*(undefined4 **)(entity_data + 2) == (undefined4 *)0x0) {
+    if (*(int32_t **)(entity_data + 2) == (int32_t *)0x0) {
       collision_flags = 0;
     }
     else {
-      collision_flags = **(undefined4 **)(entity_data + 2);
+      collision_flags = **(int32_t **)(entity_data + 2);
     }
     entity_type = entity_data[0x26];
     if (*(longlong *)(entity_data + 4) == 0) {
       collision_type = 0xff;
     }
     else {
-      collision_type = *(undefined1 *)(entity_data + 0x14);
+      collision_type = *(int8_t *)(entity_data + 0x14);
     }
     entity_flags = *(byte *)(entity_data + 0x28);
     current_count = *(int *)(collision_system + 0x24);
     entity_properties._0_2_ = CONCAT11((char)entity_index,collision_type);
-    entity_properties = CONCAT13(entity_flags >> 5,CONCAT12(entity_flags >> 4,(undefined2)entity_properties)) & 0x101ffff;
+    entity_properties = CONCAT13(entity_flags >> 5,CONCAT12(entity_flags >> 4,(int16_t)entity_properties)) & 0x101ffff;
     position_x = (float)entity_data[0xe];
     position_y = (float)entity_data[0xf];
     position_z = (float)entity_data[0x10];
@@ -527,7 +527,7 @@ void process_collision_entities(longlong collision_system, undefined4 *entity_da
       max_count = *(int *)(collision_system + 0x20);
     }
     array_offset = *(longlong *)(collision_system + 0x28);
-    data_ptr1 = (undefined4 *)((longlong)max_count * 0x20 + array_offset);
+    data_ptr1 = (int32_t *)((longlong)max_count * 0x20 + array_offset);
     *data_ptr1 = entity_id;
     data_ptr1[1] = collision_flags;
     data_ptr1[2] = entity_type;
@@ -541,8 +541,8 @@ void process_collision_entities(longlong collision_system, undefined4 *entity_da
     if (*(longlong *)(entity_data + 4) != 0) {
       process_collision_entities(collision_system,*(longlong *)(entity_data + 4),entity_index + 1);
     }
-    entity_data = *(undefined4 **)(entity_data + 6);
-    if (entity_data == (undefined4 *)0x0) break;
+    entity_data = *(int32_t **)(entity_data + 6);
+    if (entity_data == (int32_t *)0x0) break;
     entity_index = entity_index + 1;
   }
   return;
@@ -552,23 +552,23 @@ void process_collision_entities(longlong collision_system, undefined4 *entity_da
 
 
 
-// 函数: void generate_collision_report(longlong report_context, undefined8 *collision_data, undefined8 output_buffer)
+// 函数: void generate_collision_report(longlong report_context, uint64_t *collision_data, uint64_t output_buffer)
 // 生成碰撞报告
-void generate_collision_report(longlong report_context, undefined8 *collision_data, undefined8 output_buffer)
+void generate_collision_report(longlong report_context, uint64_t *collision_data, uint64_t output_buffer)
 
 {
   char report_flag;
   int *entity_table;
   longlong collision_entry;
   int entity_count;
-  undefined *format_ptr;
+  void *format_ptr;
   char *data_ptr;
   int collision_index;
   longlong table_offset;
   int max_collisions;
-  undefined4 collision_id;
+  int32_t collision_id;
   int entity_id;
-  undefined *format_ptr2;
+  void *format_ptr2;
   
   piVar2 = *(int **)(param_1 + 0x2df8);
   if ((*(byte *)(param_1 + 8) & 0x40) != 0) {
@@ -622,8 +622,8 @@ void generate_collision_report(longlong report_context, undefined8 *collision_da
           puVar5 = &UNK_180a065f0;
         }
         FUN_180122210(param_3,&UNK_180a066d8,iVar9 * 2,&DAT_18098bc73,puVar5,iVar11,&DAT_18098bc73);
-        uVar10 = (undefined4)((ulonglong)puVar5 >> 0x20);
-        FUN_180122210(param_3,&UNK_180a066c8,*(undefined4 *)(lVar8 + lVar3));
+        uVar10 = (int32_t)((ulonglong)puVar5 >> 0x20);
+        FUN_180122210(param_3,&UNK_180a066c8,*(int32_t *)(lVar8 + lVar3));
         iVar9 = *(int *)(lVar8 + 4 + lVar3);
         if (iVar9 == 0) {
           FUN_180122210(param_3,&UNK_180a066e8,(int)*(short *)(lVar8 + 0x12 + lVar3),
@@ -760,7 +760,7 @@ void update_collision_statistics(void)
   longlong table_offset;
   longlong system_context;
   int collision_count;
-  undefined *format_data;
+  void *format_data;
   
   lVar2 = 0;
   do {
@@ -827,16 +827,16 @@ void initialize_collision_debug(void)
 
 
 
-// 函数: void log_collision_event(undefined8 log_format, undefined8 param2, undefined8 param3, undefined8 param4)
+// 函数: void log_collision_event(uint64_t log_format, uint64_t param2, uint64_t param3, uint64_t param4)
 // 记录碰撞事件日志
-void log_collision_event(undefined8 log_format, undefined8 param2, undefined8 param3, undefined8 param4)
+void log_collision_event(uint64_t log_format, uint64_t param2, uint64_t param3, uint64_t param4)
 
 {
   longlong log_handle;
-  undefined8 *format_ptr;
-  undefined8 log_param1;
-  undefined8 log_param2;
-  undefined8 log_param3;
+  uint64_t *format_ptr;
+  uint64_t log_param1;
+  uint64_t log_param2;
+  uint64_t log_param3;
   
   if (*(char *)(_DAT_180c8a9b0 + 0x2e38) != '\0') {
     lVar1 = *(longlong *)(_DAT_180c8a9b0 + 0x2e40);
@@ -844,7 +844,7 @@ void log_collision_event(undefined8 log_format, undefined8 param2, undefined8 pa
     uStackX_18 = param_3;
     uStackX_20 = param_4;
     if (lVar1 != 0) {
-      puVar2 = (undefined8 *)func_0x00018004b9a0();
+      puVar2 = (uint64_t *)func_0x00018004b9a0();
       __stdio_common_vfprintf(*puVar2,lVar1,param_1,0,&uStackX_10);
       return;
     }
@@ -864,15 +864,15 @@ void flush_collision_log(longlong log_context)
 {
   longlong log_file;
   longlong stack_ptr;
-  undefined8 *format_ptr;
-  undefined8 log_param1;
-  undefined8 log_param2;
+  uint64_t *format_ptr;
+  uint64_t log_param1;
+  uint64_t log_param2;
   
-  *(undefined8 *)(in_RAX + -0x10) = unaff_RSI;
-  *(undefined8 *)(in_RAX + -0x18) = unaff_RDI;
+  *(uint64_t *)(in_RAX + -0x10) = unaff_RSI;
+  *(uint64_t *)(in_RAX + -0x18) = unaff_RDI;
   lVar1 = *(longlong *)(param_1 + 0x2e40);
   if (lVar1 != 0) {
-    puVar2 = (undefined8 *)func_0x00018004b9a0();
+    puVar2 = (uint64_t *)func_0x00018004b9a0();
     __stdio_common_vfprintf(*puVar2,lVar1);
     return;
   }

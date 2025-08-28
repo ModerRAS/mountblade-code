@@ -64,55 +64,55 @@
 // =============================================================================
 
 /** 系统数据比较目标地址 */
-extern undefined8 DAT_180a01000;
-extern undefined8 DAT_180a00fd8;
-extern undefined8 DAT_180a00fb0;
-extern undefined8 DAT_180a00bb0;
-extern undefined8 DAT_180a00b88;
-extern undefined8 DAT_180a010a0;
-extern undefined8 DAT_180a01078;
-extern undefined8 DAT_180a01050;
-extern undefined8 DAT_180a01028;
-extern undefined8 DAT_180a00d48;
-extern undefined8 DAT_180a00e28;
-extern undefined8 DAT_1809ff9e8;
+extern uint64_t DAT_180a01000;
+extern uint64_t DAT_180a00fd8;
+extern uint64_t DAT_180a00fb0;
+extern uint64_t DAT_180a00bb0;
+extern uint64_t DAT_180a00b88;
+extern uint64_t DAT_180a010a0;
+extern uint64_t DAT_180a01078;
+extern uint64_t DAT_180a01050;
+extern uint64_t DAT_180a01028;
+extern uint64_t DAT_180a00d48;
+extern uint64_t DAT_180a00e28;
+extern uint64_t DAT_1809ff9e8;
 
 /** 系统函数指针地址 */
-extern undefined8 UNK_180a003d0;
-extern undefined8 UNK_180a003e8;
-extern undefined8 UNK_180a00400;
-extern undefined8 UNK_180a004a8;
-extern undefined8 UNK_180a004c0;
-extern undefined8 UNK_180a00370;
-extern undefined8 UNK_180a00388;
-extern undefined8 UNK_180a003a0;
-extern undefined8 UNK_180a003b8;
-extern undefined8 UNK_180a00460;
-extern undefined8 UNK_180a00430;
-extern undefined8 UNK_1809ff978;
+extern uint64_t UNK_180a003d0;
+extern uint64_t UNK_180a003e8;
+extern uint64_t UNK_180a00400;
+extern uint64_t UNK_180a004a8;
+extern uint64_t UNK_180a004c0;
+extern uint64_t UNK_180a00370;
+extern uint64_t UNK_180a00388;
+extern uint64_t UNK_180a003a0;
+extern uint64_t UNK_180a003b8;
+extern uint64_t UNK_180a00460;
+extern uint64_t UNK_180a00430;
+extern uint64_t UNK_1809ff978;
 
 /** 系统字符串数据 */
-extern undefined8 UNK_180a13e48;
-extern undefined8 UNK_180a140f8;
-extern undefined8 UNK_180a14290;
-extern undefined8 UNK_180a14668;
-extern undefined8 UNK_180a14640;
-extern undefined8 UNK_180a14840;
+extern uint64_t UNK_180a13e48;
+extern uint64_t UNK_180a140f8;
+extern uint64_t UNK_180a14290;
+extern uint64_t UNK_180a14668;
+extern uint64_t UNK_180a14640;
+extern uint64_t UNK_180a14840;
 
 /** 系统全局变量 */
-extern undefined8 _DAT_180c91d5c;
-extern undefined8 _DAT_180bf7e90;
-extern undefined8 _DAT_180bf7e98;
-extern undefined8 _DAT_180c91d60;
-extern undefined8 _DAT_180c91d64;
-extern undefined8 _DAT_180c91d68;
-extern undefined8 _DAT_180c91d6c;
-extern undefined8 _DAT_180c91d70;
+extern uint64_t _DAT_180c91d5c;
+extern uint64_t _DAT_180bf7e90;
+extern uint64_t _DAT_180bf7e98;
+extern uint64_t _DAT_180c91d60;
+extern uint64_t _DAT_180c91d64;
+extern uint64_t _DAT_180c91d68;
+extern uint64_t _DAT_180c91d6c;
+extern uint64_t _DAT_180c91d70;
 
-extern undefined8 UNK_1809fcc28;
-extern undefined8 UNK_1809fcc58;
-extern undefined8 DAT_180bf7ea8;
-extern undefined8 UNK_1800868c0;
+extern uint64_t UNK_1809fcc28;
+extern uint64_t UNK_1809fcc58;
+extern uint64_t DAT_180bf7ea8;
+extern uint64_t UNK_1800868c0;
 
 // =============================================================================
 // 函数声明区域
@@ -171,34 +171,34 @@ void core_engine_math_calculator(void);
 void core_engine_system_initializer_type1(void)
 {
     char system_status;
-    undefined8 *system_root;
+    uint64_t *system_root;
     int comparison_result;
     longlong *registry_manager;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *allocated_node;
-    undefined8 stack_value;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *allocated_node;
+    uint64_t stack_value;
 
     // 获取系统注册表管理器
     registry_manager = (longlong *)FUN_18008d070();
-    system_root = (undefined8 *)*registry_manager;
+    system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
     system_status = *(char *)((longlong)system_root[1] + 0x19);
     stack_value = 0;
     parent_node = system_root;
-    current_node = (undefined8 *)system_root[1];
+    current_node = (uint64_t *)system_root[1];
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
         comparison_result = memcmp(current_node + 4, &DAT_180a01000, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         } else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -237,34 +237,34 @@ void core_engine_system_initializer_type1(void)
 void core_engine_system_initializer_type2(void)
 {
     char system_status;
-    undefined8 *system_root;
+    uint64_t *system_root;
     int comparison_result;
     longlong *registry_manager;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *allocated_node;
-    undefined *callback_function;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *allocated_node;
+    void *callback_function;
 
     // 获取系统注册表管理器
     registry_manager = (longlong *)FUN_18008d070();
-    system_root = (undefined8 *)*registry_manager;
+    system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
     system_status = *(char *)((longlong)system_root[1] + 0x19);
     callback_function = &UNK_1800868c0;
     parent_node = system_root;
-    current_node = (undefined8 *)system_root[1];
+    current_node = (uint64_t *)system_root[1];
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
         comparison_result = memcmp(current_node + 4, &DAT_180a00fd8, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         } else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -303,34 +303,34 @@ void core_engine_system_initializer_type2(void)
 void core_engine_system_initializer_type3(void)
 {
     char system_status;
-    undefined8 *system_root;
+    uint64_t *system_root;
     int comparison_result;
     longlong *registry_manager;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *allocated_node;
-    undefined8 stack_value;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *allocated_node;
+    uint64_t stack_value;
 
     // 获取系统注册表管理器
     registry_manager = (longlong *)FUN_18008d070();
-    system_root = (undefined8 *)*registry_manager;
+    system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
     system_status = *(char *)((longlong)system_root[1] + 0x19);
     stack_value = 0;
     parent_node = system_root;
-    current_node = (undefined8 *)system_root[1];
+    current_node = (uint64_t *)system_root[1];
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
         comparison_result = memcmp(current_node + 4, &DAT_180a00fb0, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         } else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -367,11 +367,11 @@ void core_engine_system_initializer_type3(void)
  */
 void core_engine_system_initializer_type4(void)
 {
-    undefined8 parameter_register;
-    undefined *string_processor;
-    undefined1 *buffer_pointer;
-    undefined4 buffer_size;
-    undefined1 buffer_data[136];
+    uint64_t parameter_register;
+    void *string_processor;
+    int8_t *buffer_pointer;
+    int32_t buffer_size;
+    int8_t buffer_data[136];
 
     // 初始化字符串处理器
     string_processor = &UNK_1809fcc28;
@@ -401,7 +401,7 @@ void core_engine_system_initializer_type4(void)
 int core_engine_system_initializer_type5(void)
 {
     longlong status_value;
-    undefined8 parameter_register;
+    uint64_t parameter_register;
 
     // 设置系统状态指针
     _DAT_180bf7e90 = &UNK_1809fcc58;
@@ -422,11 +422,11 @@ int core_engine_system_initializer_type5(void)
  */
 void core_engine_system_initializer_type6(void)
 {
-    undefined8 parameter_register;
-    undefined *string_processor;
-    undefined1 *buffer_pointer;
-    undefined4 buffer_size;
-    undefined1 buffer_data[136];
+    uint64_t parameter_register;
+    void *string_processor;
+    int8_t *buffer_pointer;
+    int32_t buffer_size;
+    int8_t buffer_data[136];
 
     // 初始化字符串处理器
     string_processor = &UNK_1809fcc28;
@@ -455,11 +455,11 @@ void core_engine_system_initializer_type6(void)
  */
 void core_engine_system_initializer_type7(void)
 {
-    undefined8 parameter_register;
-    undefined *string_processor;
-    undefined1 *buffer_pointer;
-    undefined4 buffer_size;
-    undefined1 buffer_data[136];
+    uint64_t parameter_register;
+    void *string_processor;
+    int8_t *buffer_pointer;
+    int32_t buffer_size;
+    int8_t buffer_data[136];
 
     // 初始化字符串处理器
     string_processor = &UNK_1809fcc28;
@@ -488,11 +488,11 @@ void core_engine_system_initializer_type7(void)
  */
 void core_engine_system_initializer_type8(void)
 {
-    undefined8 parameter_register;
-    undefined *string_processor;
-    undefined1 *buffer_pointer;
-    undefined4 buffer_size;
-    undefined1 buffer_data[136];
+    uint64_t parameter_register;
+    void *string_processor;
+    int8_t *buffer_pointer;
+    int32_t buffer_size;
+    int8_t buffer_data[136];
 
     // 初始化字符串处理器
     string_processor = &UNK_1809fcc28;
@@ -521,11 +521,11 @@ void core_engine_system_initializer_type8(void)
  */
 void core_engine_system_initializer_type9(void)
 {
-    undefined8 parameter_register;
-    undefined *string_processor;
-    undefined1 *buffer_pointer;
-    undefined4 buffer_size;
-    undefined1 buffer_data[136];
+    uint64_t parameter_register;
+    void *string_processor;
+    int8_t *buffer_pointer;
+    int32_t buffer_size;
+    int8_t buffer_data[136];
 
     // 初始化字符串处理器
     string_processor = &UNK_1809fcc28;
@@ -554,11 +554,11 @@ void core_engine_system_initializer_type9(void)
  */
 void core_engine_system_initializer_type10(void)
 {
-    undefined8 parameter_register;
-    undefined *string_processor;
-    undefined1 *buffer_pointer;
-    undefined4 buffer_size;
-    undefined1 buffer_data[136];
+    uint64_t parameter_register;
+    void *string_processor;
+    int8_t *buffer_pointer;
+    int32_t buffer_size;
+    int8_t buffer_data[136];
 
     // 初始化字符串处理器
     string_processor = &UNK_1809fcc28;
@@ -589,34 +589,34 @@ void core_engine_system_initializer_type10(void)
 void core_engine_system_initializer_type11(void)
 {
     char system_status;
-    undefined8 *system_root;
+    uint64_t *system_root;
     int comparison_result;
     longlong *registry_manager;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *allocated_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *allocated_node;
     code *callback_function;
 
     // 获取系统注册表管理器
     registry_manager = (longlong *)FUN_18008d070();
-    system_root = (undefined8 *)*registry_manager;
+    system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
     system_status = *(char *)((longlong)system_root[1] + 0x19);
     callback_function = FUN_1802633c0;
     parent_node = system_root;
-    current_node = (undefined8 *)system_root[1];
+    current_node = (uint64_t *)system_root[1];
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
         comparison_result = memcmp(current_node + 4, &DAT_180a00bb0, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         } else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -655,34 +655,34 @@ void core_engine_system_initializer_type11(void)
 void core_engine_system_initializer_type12(void)
 {
     char system_status;
-    undefined8 *system_root;
+    uint64_t *system_root;
     int comparison_result;
     longlong *registry_manager;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *allocated_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *allocated_node;
     code *callback_function;
 
     // 获取系统注册表管理器
     registry_manager = (longlong *)FUN_18008d070();
-    system_root = (undefined8 *)*registry_manager;
+    system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
     system_status = *(char *)((longlong)system_root[1] + 0x19);
     callback_function = FUN_180262b00;
     parent_node = system_root;
-    current_node = (undefined8 *)system_root[1];
+    current_node = (uint64_t *)system_root[1];
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
         comparison_result = memcmp(current_node + 4, &DAT_180a00b88, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         } else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -721,34 +721,34 @@ void core_engine_system_initializer_type12(void)
 void core_engine_system_initializer_type13(void)
 {
     char system_status;
-    undefined8 *system_root;
+    uint64_t *system_root;
     int comparison_result;
     longlong *registry_manager;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *allocated_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *allocated_node;
     code *callback_function;
 
     // 获取系统注册表管理器
     registry_manager = (longlong *)FUN_18008d070();
-    system_root = (undefined8 *)*registry_manager;
+    system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
     system_status = *(char *)((longlong)system_root[1] + 0x19);
     callback_function = FUN_18025cc00;
     parent_node = system_root;
-    current_node = (undefined8 *)system_root[1];
+    current_node = (uint64_t *)system_root[1];
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
         comparison_result = memcmp(current_node + 4, &DAT_180a010a0, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         } else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -787,34 +787,34 @@ void core_engine_system_initializer_type13(void)
 void core_engine_system_initializer_type14(void)
 {
     char system_status;
-    undefined8 *system_root;
+    uint64_t *system_root;
     int comparison_result;
     longlong *registry_manager;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *allocated_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *allocated_node;
     code *callback_function;
 
     // 获取系统注册表管理器
     registry_manager = (longlong *)FUN_18008d070();
-    system_root = (undefined8 *)*registry_manager;
+    system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
     system_status = *(char *)((longlong)system_root[1] + 0x19);
     callback_function = FUN_18025c000;
     parent_node = system_root;
-    current_node = (undefined8 *)system_root[1];
+    current_node = (uint64_t *)system_root[1];
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
         comparison_result = memcmp(current_node + 4, &DAT_180a01078, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         } else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -853,34 +853,34 @@ void core_engine_system_initializer_type14(void)
 void core_engine_system_initializer_type15(void)
 {
     char system_status;
-    undefined8 *system_root;
+    uint64_t *system_root;
     int comparison_result;
     longlong *registry_manager;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *allocated_node;
-    undefined8 stack_value;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *allocated_node;
+    uint64_t stack_value;
 
     // 获取系统注册表管理器
     registry_manager = (longlong *)FUN_18008d070();
-    system_root = (undefined8 *)*registry_manager;
+    system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
     system_status = *(char *)((longlong)system_root[1] + 0x19);
     stack_value = 0;
     parent_node = system_root;
-    current_node = (undefined8 *)system_root[1];
+    current_node = (uint64_t *)system_root[1];
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
         comparison_result = memcmp(current_node + 4, &DAT_180a01050, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         } else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -919,34 +919,34 @@ void core_engine_system_initializer_type15(void)
 void core_engine_system_initializer_type16(void)
 {
     char system_status;
-    undefined8 *system_root;
+    uint64_t *system_root;
     int comparison_result;
     longlong *registry_manager;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *allocated_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *allocated_node;
     code *callback_function;
 
     // 获取系统注册表管理器
     registry_manager = (longlong *)FUN_18008d070();
-    system_root = (undefined8 *)*registry_manager;
+    system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
     system_status = *(char *)((longlong)system_root[1] + 0x19);
     callback_function = FUN_18025d270;
     parent_node = system_root;
-    current_node = (undefined8 *)system_root[1];
+    current_node = (uint64_t *)system_root[1];
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
         comparison_result = memcmp(current_node + 4, &DAT_180a01028, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         } else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -985,34 +985,34 @@ void core_engine_system_initializer_type16(void)
 void core_engine_system_initializer_type17(void)
 {
     char system_status;
-    undefined8 *system_root;
+    uint64_t *system_root;
     int comparison_result;
     longlong *registry_manager;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *allocated_node;
-    undefined8 stack_value;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *allocated_node;
+    uint64_t stack_value;
 
     // 获取系统注册表管理器
     registry_manager = (longlong *)FUN_18008d070();
-    system_root = (undefined8 *)*registry_manager;
+    system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
     system_status = *(char *)((longlong)system_root[1] + 0x19);
     stack_value = 0;
     parent_node = system_root;
-    current_node = (undefined8 *)system_root[1];
+    current_node = (uint64_t *)system_root[1];
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
         comparison_result = memcmp(current_node + 4, &DAT_180a01000, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         } else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -1051,34 +1051,34 @@ void core_engine_system_initializer_type17(void)
 void core_engine_system_initializer_type18(void)
 {
     char system_status;
-    undefined8 *system_root;
+    uint64_t *system_root;
     int comparison_result;
     longlong *registry_manager;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *allocated_node;
-    undefined *callback_function;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *allocated_node;
+    void *callback_function;
 
     // 获取系统注册表管理器
     registry_manager = (longlong *)FUN_18008d070();
-    system_root = (undefined8 *)*registry_manager;
+    system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
     system_status = *(char *)((longlong)system_root[1] + 0x19);
     callback_function = &UNK_1800868c0;
     parent_node = system_root;
-    current_node = (undefined8 *)system_root[1];
+    current_node = (uint64_t *)system_root[1];
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
         comparison_result = memcmp(current_node + 4, &DAT_180a00fd8, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         } else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -1117,34 +1117,34 @@ void core_engine_system_initializer_type18(void)
 void core_engine_system_initializer_type19(void)
 {
     char system_status;
-    undefined8 *system_root;
+    uint64_t *system_root;
     int comparison_result;
     longlong *registry_manager;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *allocated_node;
-    undefined8 stack_value;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *allocated_node;
+    uint64_t stack_value;
 
     // 获取系统注册表管理器
     registry_manager = (longlong *)FUN_18008d070();
-    system_root = (undefined8 *)*registry_manager;
+    system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
     system_status = *(char *)((longlong)system_root[1] + 0x19);
     stack_value = 0;
     parent_node = system_root;
-    current_node = (undefined8 *)system_root[1];
+    current_node = (uint64_t *)system_root[1];
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
         comparison_result = memcmp(current_node + 4, &DAT_180a00fb0, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         } else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -1183,34 +1183,34 @@ void core_engine_system_initializer_type19(void)
 void core_engine_system_initializer_type20(void)
 {
     char system_status;
-    undefined8 *system_root;
+    uint64_t *system_root;
     int comparison_result;
     longlong *registry_manager;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *allocated_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *allocated_node;
     code *callback_function;
 
     // 获取系统注册表管理器
     registry_manager = (longlong *)FUN_18008d070();
-    system_root = (undefined8 *)*registry_manager;
+    system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
     system_status = *(char *)((longlong)system_root[1] + 0x19);
     callback_function = FUN_18025cc00;
     parent_node = system_root;
-    current_node = (undefined8 *)system_root[1];
+    current_node = (uint64_t *)system_root[1];
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
         comparison_result = memcmp(current_node + 4, &DAT_180a010a0, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         } else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -1249,34 +1249,34 @@ void core_engine_system_initializer_type20(void)
 void core_engine_system_initializer_type21(void)
 {
     char system_status;
-    undefined8 *system_root;
+    uint64_t *system_root;
     int comparison_result;
     longlong *registry_manager;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *allocated_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *allocated_node;
     code *callback_function;
 
     // 获取系统注册表管理器
     registry_manager = (longlong *)FUN_18008d070();
-    system_root = (undefined8 *)*registry_manager;
+    system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
     system_status = *(char *)((longlong)system_root[1] + 0x19);
     callback_function = FUN_18025c000;
     parent_node = system_root;
-    current_node = (undefined8 *)system_root[1];
+    current_node = (uint64_t *)system_root[1];
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
         comparison_result = memcmp(current_node + 4, &DAT_180a01078, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         } else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -1315,34 +1315,34 @@ void core_engine_system_initializer_type21(void)
 void core_engine_system_initializer_type22(void)
 {
     char system_status;
-    undefined8 *system_root;
+    uint64_t *system_root;
     int comparison_result;
     longlong *registry_manager;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *allocated_node;
-    undefined8 stack_value;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *allocated_node;
+    uint64_t stack_value;
 
     // 获取系统注册表管理器
     registry_manager = (longlong *)FUN_18008d070();
-    system_root = (undefined8 *)*registry_manager;
+    system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
     system_status = *(char *)((longlong)system_root[1] + 0x19);
     stack_value = 0;
     parent_node = system_root;
-    current_node = (undefined8 *)system_root[1];
+    current_node = (uint64_t *)system_root[1];
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
         comparison_result = memcmp(current_node + 4, &DAT_180a01050, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         } else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -1381,34 +1381,34 @@ void core_engine_system_initializer_type22(void)
 void core_engine_system_initializer_type23(void)
 {
     char system_status;
-    undefined8 *system_root;
+    uint64_t *system_root;
     int comparison_result;
     longlong *registry_manager;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *allocated_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *allocated_node;
     code *callback_function;
 
     // 获取系统注册表管理器
     registry_manager = (longlong *)FUN_18008d070();
-    system_root = (undefined8 *)*registry_manager;
+    system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
     system_status = *(char *)((longlong)system_root[1] + 0x19);
     callback_function = FUN_18025d270;
     parent_node = system_root;
-    current_node = (undefined8 *)system_root[1];
+    current_node = (uint64_t *)system_root[1];
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
         comparison_result = memcmp(current_node + 4, &DAT_180a01028, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         } else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -1447,34 +1447,34 @@ void core_engine_system_initializer_type23(void)
 void core_engine_system_initializer_type24(void)
 {
     char system_status;
-    undefined8 *system_root;
+    uint64_t *system_root;
     int comparison_result;
     longlong *registry_manager;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *allocated_node;
-    undefined8 stack_value;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *allocated_node;
+    uint64_t stack_value;
 
     // 获取系统注册表管理器
     registry_manager = (longlong *)FUN_18008d070();
-    system_root = (undefined8 *)*registry_manager;
+    system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
     system_status = *(char *)((longlong)system_root[1] + 0x19);
     stack_value = 0;
     parent_node = system_root;
-    current_node = (undefined8 *)system_root[1];
+    current_node = (uint64_t *)system_root[1];
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
         comparison_result = memcmp(current_node + 4, &DAT_180a01000, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         } else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -1584,34 +1584,34 @@ void core_engine_math_calculator(void)
 void core_engine_data_processor_type1(void)
 {
     char system_status;
-    undefined8 *system_root;
+    uint64_t *system_root;
     int comparison_result;
     longlong *registry_manager;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *allocated_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *allocated_node;
     code *callback_function;
 
     // 获取系统注册表管理器
     registry_manager = (longlong *)FUN_18008d070();
-    system_root = (undefined8 *)*registry_manager;
+    system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
     system_status = *(char *)((longlong)system_root[1] + 0x19);
     callback_function = FUN_18025e330;
     parent_node = system_root;
-    current_node = (undefined8 *)system_root[1];
+    current_node = (uint64_t *)system_root[1];
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
         comparison_result = memcmp(current_node + 4, &DAT_180a00d48, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         } else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -1650,34 +1650,34 @@ void core_engine_data_processor_type1(void)
 void core_engine_data_processor_type2(void)
 {
     char system_status;
-    undefined8 *system_root;
+    uint64_t *system_root;
     int comparison_result;
     longlong *registry_manager;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *allocated_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *allocated_node;
     code *callback_function;
 
     // 获取系统注册表管理器
     registry_manager = (longlong *)FUN_18008d070();
-    system_root = (undefined8 *)*registry_manager;
+    system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
     system_status = *(char *)((longlong)system_root[1] + 0x19);
     callback_function = FUN_18025d510;
     parent_node = system_root;
-    current_node = (undefined8 *)system_root[1];
+    current_node = (uint64_t *)system_root[1];
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
         comparison_result = memcmp(current_node + 4, &DAT_180a00e28, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         } else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -1716,34 +1716,34 @@ void core_engine_data_processor_type2(void)
 void core_engine_data_processor_type3(void)
 {
     char system_status;
-    undefined8 *system_root;
+    uint64_t *system_root;
     int comparison_result;
     longlong *registry_manager;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *allocated_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *allocated_node;
     code *callback_function;
 
     // 获取系统注册表管理器
     registry_manager = (longlong *)FUN_18008d070();
-    system_root = (undefined8 *)*registry_manager;
+    system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
     system_status = *(char *)((longlong)system_root[1] + 0x19);
     callback_function = FUN_1802281a0;
     parent_node = system_root;
-    current_node = (undefined8 *)system_root[1];
+    current_node = (uint64_t *)system_root[1];
 
     // 遍历注册表查找匹配项
     while (system_status == SYSTEM_STATUS_ACTIVE) {
         comparison_result = memcmp(current_node + 4, &DAT_1809ff9e8, MEMORY_BLOCK_SIZE);
         if (comparison_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         } else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;

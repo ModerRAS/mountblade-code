@@ -2,8 +2,8 @@
 
 // 03_rendering_part295.c - 3 个函数
 
-// 函数: void FUN_180424f34(undefined8 param_1,undefined8 param_2,int param_3)
-void FUN_180424f34(undefined8 param_1,undefined8 param_2,int param_3)
+// 函数: void FUN_180424f34(uint64_t param_1,uint64_t param_2,int param_3)
+void FUN_180424f34(uint64_t param_1,uint64_t param_2,int param_3)
 
 {
   ushort uVar1;
@@ -16,10 +16,10 @@ void FUN_180424f34(undefined8 param_1,undefined8 param_2,int param_3)
   byte bVar7;
   byte bVar8;
   uint uVar9;
-  undefined8 *unaff_RBX;
+  uint64_t *unaff_RBX;
   int iVar10;
   longlong lVar11;
-  undefined1 uVar12;
+  int8_t uVar12;
   uint unaff_R12D;
   int unaff_R14D;
   int iVar13;
@@ -206,8 +206,8 @@ LAB_180425272:
 
 
 
-// 函数: void FUN_180424f7f(uint param_1,undefined8 param_2,int param_3)
-void FUN_180424f7f(uint param_1,undefined8 param_2,int param_3)
+// 函数: void FUN_180424f7f(uint param_1,uint64_t param_2,int param_3)
+void FUN_180424f7f(uint param_1,uint64_t param_2,int param_3)
 
 {
   ushort uVar1;
@@ -216,15 +216,15 @@ void FUN_180424f7f(uint param_1,undefined8 param_2,int param_3)
   byte bVar4;
   byte bVar5;
   uint uVar6;
-  undefined8 *unaff_RBX;
+  uint64_t *unaff_RBX;
   uint unaff_EBP;
   longlong unaff_RSI;
   int iVar7;
   ulonglong uVar8;
   uint uVar9;
-  undefined1 uVar10;
+  int8_t uVar10;
   uint unaff_R12D;
-  undefined4 unaff_R14D;
+  int32_t unaff_R14D;
   uint unaff_R15D;
   ushort auStackX_20 [4];
   ulonglong in_stack_00000a00;
@@ -408,13 +408,13 @@ void FUN_18042500e(void)
   byte bVar4;
   byte bVar5;
   uint uVar6;
-  undefined8 *unaff_RBX;
+  uint64_t *unaff_RBX;
   int unaff_EBP;
   int iVar7;
   uint uVar8;
-  undefined1 uVar9;
+  int8_t uVar9;
   uint unaff_R12D;
-  undefined4 unaff_R14D;
+  int32_t unaff_R14D;
   int unaff_R15D;
   ushort auStackX_20 [4];
   ulonglong in_stack_00000a00;

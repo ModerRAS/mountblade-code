@@ -29,12 +29,12 @@
 #define RENDER_STATE_OPAQUE        0xff
 
 // 函数声明
-void rendering_system_execute_render_command(undefined8 param_1, undefined1 *param_2);
+void rendering_system_execute_render_command(uint64_t param_1, int8_t *param_2);
 void rendering_system_cleanup_render_context(ulonglong param_1);
 void rendering_system_update_collision_data(void);
-void rendering_system_update_vertex_buffer(undefined8 param_1, undefined8 param_2);
-void rendering_system_apply_material(undefined4 param_1, void *param_2, undefined8 param_3, undefined8 param_4, undefined4 param_5);
-void rendering_system_check_render_state(undefined4 param_1, void *param_2);
+void rendering_system_update_vertex_buffer(uint64_t param_1, uint64_t param_2);
+void rendering_system_apply_material(int32_t param_1, void *param_2, uint64_t param_3, uint64_t param_4, int32_t param_5);
+void rendering_system_check_render_state(int32_t param_1, void *param_2);
 void rendering_system_finalize_render(ulonglong param_1);
 
 // 函数: void rendering_system_process_render_data(void)
@@ -67,58 +67,58 @@ void rendering_system_process_render_data(void)
   ulonglong color_data;
   byte alpha_value;
   int vertex_count;
-  undefined4 render_mode;
+  int32_t render_mode;
   longlong object_ptr;
   longlong scene_ptr;
   char render_state;
   int frame_counter;
-  undefined4 render_flags_ext;
+  int32_t render_flags_ext;
   byte visibility_flag;
   int index_offset;
   longlong shader_ptr;
   float position_x;
-  undefined8 matrix_data;
-  undefined1 transform_matrix[16];
-  undefined1 color_matrix[16];
-  undefined1 projection_matrix[16];
-  undefined1 view_matrix[16];
+  uint64_t matrix_data;
+  int8_t transform_matrix[16];
+  int8_t color_matrix[16];
+  int8_t projection_matrix[16];
+  int8_t view_matrix[16];
   float depth_value;
-  undefined1 normal_matrix[16];
-  undefined1 texture_matrix[16];
-  undefined1 light_matrix[16];
+  int8_t normal_matrix[16];
+  int8_t texture_matrix[16];
+  int8_t light_matrix[16];
   ulonglong vertex_buffer;
-  undefined1 shadow_matrix[16];
-  undefined1 fog_matrix[16];
+  int8_t shadow_matrix[16];
+  int8_t fog_matrix[16];
   float rotation_angle;
   float camera_distance;
   uint material_flags;
   float scale_factor;
   float blend_factor;
   float opacity;
-  undefined4 blend_mode;
-  undefined4 color_r;
-  undefined4 color_g;
-  undefined4 color_b;
+  int32_t blend_mode;
+  int32_t color_r;
+  int32_t color_g;
+  int32_t color_b;
   float position_y;
   float position_z;
   float light_intensity;
-  undefined2 texture_coord;
+  int16_t texture_coord;
   float world_x;
   int render_pass;
   float screen_x;
-  undefined4 screen_flags;
-  undefined8 viewport_data;
+  int32_t screen_flags;
+  uint64_t viewport_data;
   float world_y;
   float world_z;
   int pixel_x;
-  undefined1 render_opcode;
+  int8_t render_opcode;
   float clip_x;
   float clip_y;
   int pixel_y;
   int pixel_z;
-  undefined8 transform_result;
-  undefined8 extraout_XMM0_Qb;
-  undefined1 final_matrix[16];
+  uint64_t transform_result;
+  uint64_t extraout_XMM0_Qb;
+  int8_t final_matrix[16];
   
   fVar15 = (float)*(byte *)(unaff_RBP + 0xa9) * unaff_XMM10_Da;
   if (unaff_XMM12_Da <= (float)in_EAX * unaff_XMM10_Da) {
@@ -200,7 +200,7 @@ void rendering_system_process_render_data(void)
   }
   _fStack0000000000000048 = CONCAT14(0xff,fStack0000000000000048);
   FUN_180310a00();
-  uVar33 = (undefined2)((uint)fVar15 >> 0x10);
+  uVar33 = (int16_t)((uint)fVar15 >> 0x10);
   iVar7 = *(int *)(_DAT_180c86920 + 0x2300);
   cVar12 = (char)unaff_R13D;
   if (*(byte *)(unaff_RBP + -0x2c) < unaff_R14B) {
@@ -218,9 +218,9 @@ void rendering_system_process_render_data(void)
     uStack000000000000006c = 0xe7;
     FUN_180310a00();
     *(char *)(unaff_RSI + 0x7c) = cVar12;
-    *(undefined4 *)(unaff_RSI + 0x68) = 0xbf800000;
-    *(undefined8 *)(unaff_RSI + 0x6c) = 0;
-    *(undefined8 *)(unaff_RSI + 0x74) = 0;
+    *(int32_t *)(unaff_RSI + 0x68) = 0xbf800000;
+    *(uint64_t *)(unaff_RSI + 0x6c) = 0;
+    *(uint64_t *)(unaff_RSI + 0x74) = 0;
     bVar9 = 0;
   }
   else {
@@ -231,7 +231,7 @@ void rendering_system_process_render_data(void)
       fVar15 = 0.0;
       _fStack0000000000000048 =
            CONCAT44((float)*(ushort *)(unaff_RBP + -0x22),(float)*(ushort *)(unaff_RBP + -0x24));
-      *(undefined8 *)(unaff_RSI + 0x6c) = _fStack0000000000000048;
+      *(uint64_t *)(unaff_RSI + 0x6c) = _fStack0000000000000048;
     }
     else {
       fVar15 = *(float *)(unaff_RSI + 0x68) + _DAT_180bf3ff8;
@@ -242,7 +242,7 @@ void rendering_system_process_render_data(void)
     FUN_180310a00();
     _fStack0000000000000048 =
          CONCAT44((float)*(ushort *)(unaff_RBP + -0x22),(float)*(ushort *)(unaff_RBP + -0x24));
-    *(undefined8 *)(unaff_RSI + 0x74) = _fStack0000000000000048;
+    *(uint64_t *)(unaff_RSI + 0x74) = _fStack0000000000000048;
     bVar9 = unaff_R14B;
   }
   *(byte *)(unaff_RSI + 0x7d) = bVar9;
@@ -273,18 +273,18 @@ void rendering_system_process_render_data(void)
     }
     *(float *)(unaff_RBP + -0x78) = fVar15;
     *(float *)(unaff_RBP + -0x74) = fVar31;
-    uVar16 = *(undefined8 *)(unaff_RBP + -0x78);
+    uVar16 = *(uint64_t *)(unaff_RBP + -0x78);
     *(char *)(lVar14 + 0x2028) = cVar12;
   }
   else {
     uVar16 = 0;
   }
   lVar6 = _DAT_180c86920;
-  uVar11 = *(undefined4 *)(unaff_RBP + -0x34);
-  *(undefined4 *)(unaff_RSI + 0x338) = *(undefined4 *)(unaff_RBP + -0x38);
-  *(undefined4 *)(unaff_RSI + 0x340) = *(undefined4 *)(unaff_RBP + -0x30);
-  *(undefined4 *)(unaff_RSI + 0x33c) = uVar11;
-  *(undefined8 *)(unaff_RBP + -0x78) = uVar16;
+  uVar11 = *(int32_t *)(unaff_RBP + -0x34);
+  *(int32_t *)(unaff_RSI + 0x338) = *(int32_t *)(unaff_RBP + -0x38);
+  *(int32_t *)(unaff_RSI + 0x340) = *(int32_t *)(unaff_RBP + -0x30);
+  *(int32_t *)(unaff_RSI + 0x33c) = uVar11;
+  *(uint64_t *)(unaff_RBP + -0x78) = uVar16;
   if (*(int *)(lVar6 + 0x2530) != unaff_R13D) {
     if (*(byte *)(unaff_RBP + -0x2c) < unaff_R14B) {
       *(int *)(unaff_RSI + 0x334) = unaff_R13D;
@@ -310,7 +310,7 @@ void rendering_system_process_render_data(void)
         lVar14 = _DAT_180c868d0;
         if (*(char *)(_DAT_180c86950 + 0x1609) != cVar12) {
           _fStack0000000000000048 = CONCAT44(iVar13,iVar10);
-          FUN_180174080(*(undefined8 *)(_DAT_180c86870 + 8),_fStack0000000000000048);
+          FUN_180174080(*(uint64_t *)(_DAT_180c86870 + 8),_fStack0000000000000048);
           lVar14 = _DAT_180c868d0;
         }
       }
@@ -446,21 +446,21 @@ void rendering_system_process_render_data(void)
     auVar25._0_4_ = auVar24._0_4_ * 255.0;
     auVar29._4_12_ = auVar28._4_12_;
     auVar29._0_4_ = auVar28._0_4_ * 255.0;
-    FUN_1808eecf0(*(undefined4 *)(unaff_RSI + 0x330),&stack0x00000020,auVar25._0_8_,auVar29._0_8_,
+    FUN_1808eecf0(*(int32_t *)(unaff_RSI + 0x330),&stack0x00000020,auVar25._0_8_,auVar29._0_8_,
                   CONCAT22(uVar33,CONCAT11((char)(int)auVar29._0_4_,(char)(int)auVar25._0_4_)));
     fVar15 = _DAT_180bf3ff8;
   }
   if (*(char *)(unaff_RSI + 0x192) == cVar12) {
     uVar11 = 4;
-    *(undefined4 *)(unaff_RSI + 100) = 4;
-    iVar7 = FUN_1808ee530(*(undefined4 *)(unaff_RSI + 0x330),&stack0x00000038);
+    *(int32_t *)(unaff_RSI + 100) = 4;
+    iVar7 = FUN_1808ee530(*(int32_t *)(unaff_RSI + 0x330),&stack0x00000038);
     if ((iVar7 == 0) && (in_stack_00000038 != 0)) {
       if (in_stack_00000038 == 1) {
         uVar11 = 2;
       }
-      *(undefined4 *)(unaff_RSI + 100) = uVar11;
+      *(int32_t *)(unaff_RSI + 100) = uVar11;
     }
-    *(undefined1 *)(unaff_RSI + 0x7e) = 1;
+    *(int8_t *)(unaff_RSI + 0x7e) = 1;
                     // WARNING: Subroutine does not return
     FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0xc0) ^ (ulonglong)&stack0x00000000);
   }
@@ -499,10 +499,10 @@ void rendering_system_process_render_data(void)
 void rendering_system_finalize_render_process(void)
 
 {
-  undefined4 render_result;
+  int32_t render_result;
   longlong render_context;
   longlong scene_object;
-  undefined4 render_flags;
+  int32_t render_flags;
   int render_mode;
   
   // 根据渲染模式设置最终结果
@@ -510,11 +510,11 @@ void rendering_system_finalize_render_process(void)
     if (render_mode == 1) {
       render_result = render_flags;
     }
-    *(undefined4 *)(scene_object + 100) = render_result;
+    *(int32_t *)(scene_object + 100) = render_result;
   }
   
   // 标记渲染完成并执行最终清理
-  *(undefined1 *)(scene_object + 0x7e) = 1;
+  *(int8_t *)(scene_object + 0x7e) = 1;
                     // WARNING: Subroutine does not return
   rendering_system_cleanup_render_context(*(ulonglong *)(render_context + 0xc0) ^ (ulonglong)&render_mode);
 }
@@ -523,15 +523,15 @@ void rendering_system_finalize_render_process(void)
 
 
 
-// 函数: void rendering_system_set_render_parameter(undefined4 param_1,undefined1 param_2,char param_3)
+// 函数: void rendering_system_set_render_parameter(int32_t param_1,int8_t param_2,char param_3)
 // 渲染系统参数设置函数
 // 设置渲染参数，包括透明度、混合模式等渲染状态
-void rendering_system_set_render_parameter(undefined4 param_1,undefined1 param_2,char param_3)
+void rendering_system_set_render_parameter(int32_t param_1,int8_t param_2,char param_3)
 
 {
-  undefined1 render_stack[4];
-  undefined1 parameter_type;
-  undefined8 parameter_value;
+  int8_t render_stack[4];
+  int8_t parameter_type;
+  uint64_t parameter_value;
   
   parameter_type = param_2;
   if (param_3 != '\0') {

@@ -194,54 +194,54 @@ typedef struct {
  * 
  * @note 该函数是系统核心功能的重要组成部分，提供了高效的数据处理能力
  */
-undefined8 AdvancedDataProcessor(SystemContext system_context, DataProcessParams* resource_params, longlong output_buffer)
+uint64_t AdvancedDataProcessor(SystemContext system_context, DataProcessParams* resource_params, longlong output_buffer)
 
 {
     /* 数据处理相关的变量 */
-    undefined2 config_param1;
-    undefined4 config_param2;
-    undefined4 config_param3;
-    undefined4 config_param4;
+    int16_t config_param1;
+    int32_t config_param2;
+    int32_t config_param3;
+    int32_t config_param4;
     longlong resource_handle;
     int status_code;
-    undefined8 *memory_block;
+    uint64_t *memory_block;
     longlong *state_array;
-    undefined8 *temp_pointer;
+    uint64_t *temp_pointer;
     longlong *resource_array;
-    undefined *data_pointer;
+    void *data_pointer;
     uint resource_count;
     longlong *state_pointer;
     uint temp_value;
     int iteration_index;
     longlong *loop_pointer;
-    undefined1 stack_guard[32];
+    int8_t stack_guard[32];
     uint config_value1;
     uint config_value2;
     uint config_value3;
     uint config_value4;
-    undefined **context_ptr1;
-    undefined **context_ptr2;
-    undefined8 guard_value1;
+    void **context_ptr1;
+    void **context_ptr2;
+    uint64_t guard_value1;
     ulonglong security_cookie;
-    undefined8 temp_storage1;
+    uint64_t temp_storage1;
     uint config_array1[6];
     longlong state_storage;
-    undefined8 temp_storage2;
+    uint64_t temp_storage2;
     uint config_array2[6];
-    undefined8 temp_storage3;
-    undefined *stack_ptr1;
-    undefined1 *stack_ptr2;
-    undefined4 temp_storage4;
-    undefined1 buffer1[128];
-    undefined4 temp_storage5;
-    undefined4 temp_storage6;
-    undefined4 temp_storage7;
+    uint64_t temp_storage3;
+    void *stack_ptr1;
+    int8_t *stack_ptr2;
+    int32_t temp_storage4;
+    int8_t buffer1[128];
+    int32_t temp_storage5;
+    int32_t temp_storage6;
+    int32_t temp_storage7;
     uint temp_storage8;
     uint temp_storage9;
-    undefined8 temp_storage10;
-    undefined4 temp_storage11;
-    undefined8 temp_storage12;
-    undefined4 temp_storage13;
+    uint64_t temp_storage10;
+    int32_t temp_storage11;
+    uint64_t temp_storage12;
+    int32_t temp_storage13;
     ulonglong temp_storage14;
     
     /* 初始化安全cookie和栈保护 */
@@ -254,18 +254,18 @@ undefined8 AdvancedDataProcessor(SystemContext system_context, DataProcessParams
     config_param4 = resource_params[3];
     
     /* 初始化输出缓冲区 */
-    *(undefined4 *)(output_buffer + 0x140) = *resource_params;
-    *(undefined4 *)(output_buffer + 0x144) = config_param2;
-    *(undefined4 *)(output_buffer + 0x148) = config_param3;
-    *(undefined4 *)(output_buffer + 0x14c) = config_param4;
-    *(undefined8 *)(output_buffer + 0x150) = *(undefined8 *)(resource_params + 4);
-    *(undefined4 *)(output_buffer + 0x158) = resource_params[6];
+    *(int32_t *)(output_buffer + 0x140) = *resource_params;
+    *(int32_t *)(output_buffer + 0x144) = config_param2;
+    *(int32_t *)(output_buffer + 0x148) = config_param3;
+    *(int32_t *)(output_buffer + 0x14c) = config_param4;
+    *(uint64_t *)(output_buffer + 0x150) = *(uint64_t *)(resource_params + 4);
+    *(int32_t *)(output_buffer + 0x158) = resource_params[6];
     
     /* 处理资源标识符 */
-    config_param1 = *(undefined2 *)(resource_params + 1);
-    *(undefined2 *)(output_buffer + 0x32c) = *(undefined2 *)resource_params;
-    *(undefined2 *)(output_buffer + 0x32e) = config_param1;
-    *(undefined2 *)(output_buffer + 0x332) = *(undefined2 *)(resource_params + 2);
+    config_param1 = *(int16_t *)(resource_params + 1);
+    *(int16_t *)(output_buffer + 0x32c) = *(int16_t *)resource_params;
+    *(int16_t *)(output_buffer + 0x32e) = config_param1;
+    *(int16_t *)(output_buffer + 0x332) = *(int16_t *)(resource_params + 2);
     resource_count = resource_params[3];
     *(uint *)(output_buffer + 0x324) = resource_count;
     
@@ -274,14 +274,14 @@ undefined8 AdvancedDataProcessor(SystemContext system_context, DataProcessParams
     temp_value = config_value4 * 2;
     config_value3 = resource_count;
     context_ptr1 = system_context;
-    context_ptr2 = (undefined **)resource_params;
+    context_ptr2 = (void **)resource_params;
     
     /* 分配内存块 */
     if (temp_value == 0) {
-        memory_block = (undefined8 *)0x0;
+        memory_block = (uint64_t *)0x0;
     }
     else {
-        memory_block = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,(ulonglong)temp_value << 4,3);
+        memory_block = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,(ulonglong)temp_value << 4,3);
         status_code = 0;
         temp_pointer = memory_block;
         
@@ -296,7 +296,7 @@ undefined8 AdvancedDataProcessor(SystemContext system_context, DataProcessParams
     
     /* 初始化状态数组 */
     state_array = (longlong *)0x0;
-    *(undefined8 **)(output_buffer + 0x1e0) = memory_block;
+    *(uint64_t **)(output_buffer + 0x1e0) = memory_block;
     
     /* 根据资源类型配置参数 */
     if (resource_count == RESOURCE_TYPE_BASIC) {
@@ -338,8 +338,8 @@ undefined8 AdvancedDataProcessor(SystemContext system_context, DataProcessParams
     
 CONFIG_COMPLETE:
     /* 设置配置参数 */
-    temp_storage5 = *(undefined4 *)context_ptr2;
-    temp_storage6 = *(undefined4 *)((longlong)context_ptr2 + 4);
+    temp_storage5 = *(int32_t *)context_ptr2;
+    temp_storage6 = *(int32_t *)((longlong)context_ptr2 + 4);
     temp_storage7 = 1;
     temp_storage10 = 1;
     temp_storage11 = 0;
@@ -357,7 +357,7 @@ CONFIG_COMPLETE:
     }
     
     /* 设置输出缓冲区 */
-    *(undefined8 *)(output_buffer + 0x170) = temp_storage2;
+    *(uint64_t *)(output_buffer + 0x170) = temp_storage2;
     *(longlong *)(output_buffer + 0x168) = output_buffer;
     state_array = state_array;
     resource_array = state_array;
@@ -391,7 +391,7 @@ CONFIG_COMPLETE:
                 
                 state_storage = 0;
                 (**(code **)(**(longlong **)((longlong)context_ptr1 + 0x1d78) + 0x50))
-                          (*(longlong **)((longlong)context_ptr1 + 0x1d78),*(undefined8 *)(output_buffer + 0x170),
+                          (*(longlong **)((longlong)context_ptr1 + 0x1d78),*(uint64_t *)(output_buffer + 0x170),
                            &guard_value1,&state_storage);
                 
                 /* 处理资源数据 */
@@ -447,7 +447,7 @@ CONFIG_COMPLETE:
     /* 处理扩展配置 */
     if (*(char *)((longlong)context_ptr2 + 0x15) != '\0') {
         (**(code **)(**(longlong **)((longlong)system_context + 0x1d78) + 0x38))
-                  (*(longlong **)((longlong)system_context + 0x1d78),*(undefined8 *)(output_buffer + 0x170),
+                  (*(longlong **)((longlong)system_context + 0x1d78),*(uint64_t *)(output_buffer + 0x170),
                    config_array1,output_buffer + 0x178);
     }
     
@@ -458,7 +458,7 @@ CONFIG_COMPLETE:
         config_array2[0] = config_value1;
         config_array2[3] = 1;
         (**(code **)(**(longlong **)((longlong)system_context + 0x1d78) + 0x38))
-                  (*(longlong **)((longlong)system_context + 0x1d78),*(undefined8 *)(output_buffer + 0x170),
+                  (*(longlong **)((longlong)system_context + 0x1d78),*(uint64_t *)(output_buffer + 0x170),
                    config_array2,output_buffer + 0x1b0);
     }
     
@@ -470,10 +470,10 @@ CONFIG_COMPLETE:
     UNLOCK();
     *(longlong *)(output_buffer + 0x340) = (longlong)*(int *)(_DAT_180c86870 + 0x224);
     LOCK();
-    *(undefined4 *)(output_buffer + 0x380) = 2;
+    *(int32_t *)(output_buffer + 0x380) = 2;
     UNLOCK();
     LOCK();
-    *(undefined1 *)(output_buffer + 900) = 1;
+    *(int8_t *)(output_buffer + 900) = 1;
     UNLOCK();
     FUN_18023a940(output_buffer);
     
@@ -482,11 +482,11 @@ CONFIG_COMPLETE:
     stack_ptr1 = &UNK_1809fcc28;
     stack_ptr2 = buffer1;
     buffer1[0] = 0;
-    temp_storage4 = *(undefined4 *)(output_buffer + 0x20);
+    temp_storage4 = *(int32_t *)(output_buffer + 0x20);
     data_pointer = &DAT_18098bc73;
     
-    if (*(undefined **)(output_buffer + 0x18) != (undefined *)0x0) {
-        data_pointer = *(undefined **)(output_buffer + 0x18);
+    if (*(void **)(output_buffer + 0x18) != (void *)0x0) {
+        data_pointer = *(void **)(output_buffer + 0x18);
     }
     
     strcpy_s(buffer1,0x80,data_pointer);
@@ -514,7 +514,7 @@ CONFIG_COMPLETE:
  * 
  * @note 该函数提供了完整的资源初始化和管理功能
  */
-undefined8 ResourceInitializer(longlong system_context, int* init_params, longlong resource_handle)
+uint64_t ResourceInitializer(longlong system_context, int* init_params, longlong resource_handle)
 
 {
     /* 资源初始化相关的变量 */
@@ -526,51 +526,51 @@ undefined8 ResourceInitializer(longlong system_context, int* init_params, longlo
     ulonglong resource_flags;
     byte resource_size;
     uint resource_count;
-    undefined8 *memory_block;
-    undefined *data_pointer;
+    uint64_t *memory_block;
+    void *data_pointer;
     ulonglong temp_value;
     int status_code;
-    undefined1 stack_guard[32];
-    undefined **context_ptr;
-    undefined4 temp_storage1;
-    undefined4 temp_storage2;
+    int8_t stack_guard[32];
+    void **context_ptr;
+    int32_t temp_storage1;
+    int32_t temp_storage2;
     int temp_storage3;
-    undefined4 temp_storage4;
+    int32_t temp_storage4;
     int temp_storage5;
-    undefined4 temp_storage6;
-    undefined4 temp_storage7;
-    undefined4 temp_storage8;
+    int32_t temp_storage6;
+    int32_t temp_storage7;
+    int32_t temp_storage8;
     int temp_storage9;
     int temp_storage10;
-    undefined4 temp_storage11;
-    undefined8 temp_storage12;
-    undefined8 temp_storage13;
-    undefined8 temp_storage14;
-    undefined8 temp_storage15;
+    int32_t temp_storage11;
+    uint64_t temp_storage12;
+    uint64_t temp_storage13;
+    uint64_t temp_storage14;
+    uint64_t temp_storage15;
     int temp_storage16;
-    undefined4 temp_storage17;
-    undefined4 temp_storage18;
-    undefined8 temp_storage19;
-    undefined4 temp_storage20;
-    undefined4 temp_storage21;
-    undefined4 temp_storage22;
+    int32_t temp_storage17;
+    int32_t temp_storage18;
+    uint64_t temp_storage19;
+    int32_t temp_storage20;
+    int32_t temp_storage21;
+    int32_t temp_storage22;
     int temp_storage23;
     int *param_ptr;
-    undefined *stack_ptr1;
-    undefined1 *stack_ptr2;
-    undefined4 temp_storage24;
-    undefined1 buffer1[128];
-    undefined1 buffer2[152];
+    void *stack_ptr1;
+    int8_t *stack_ptr2;
+    int32_t temp_storage24;
+    int8_t buffer1[128];
+    int8_t buffer2[152];
     int temp_storage25;
     int temp_storage26;
     int temp_storage27;
-    undefined4 temp_storage28;
-    undefined4 temp_storage29;
-    undefined8 temp_storage30;
-    undefined4 temp_storage31;
+    int32_t temp_storage28;
+    int32_t temp_storage29;
+    uint64_t temp_storage30;
+    int32_t temp_storage31;
     uint temp_storage32;
     uint temp_storage33;
-    undefined4 temp_storage34;
+    int32_t temp_storage34;
     ulonglong temp_storage35;
     
     /* 初始化安全cookie和栈保护 */
@@ -618,7 +618,7 @@ undefined8 ResourceInitializer(longlong system_context, int* init_params, longlo
         }
     }
     
-    temp_storage31 = (undefined4)temp_value;
+    temp_storage31 = (int32_t)temp_value;
     temp_storage34 = 0;
     temp_storage32 = 0;
     temp_storage33 = temp_storage32;
@@ -639,10 +639,10 @@ undefined8 ResourceInitializer(longlong system_context, int* init_params, longlo
     
     /* 分配内存块 */
     if (*(longlong *)(init_params + 10) == 0) {
-        memory_block = (undefined8 *)0x0;
+        memory_block = (uint64_t *)0x0;
     }
     else {
-        temp_storage15 = *(undefined8 *)(*(longlong *)(init_params + 10) + 0x10);
+        temp_storage15 = *(uint64_t *)(*(longlong *)(init_params + 10) + 0x10);
         temp_storage17 = 0;
         temp_storage16 = func_0x000180225d90(access_mode & 0xffffffff);
         temp_storage16 = temp_storage16 * config_param2;
@@ -660,8 +660,8 @@ undefined8 ResourceInitializer(longlong system_context, int* init_params, longlo
     
     config_param2 = func_0x000180225d90(init_params[4]);
     *(int *)(resource_handle + 0x368) = config_param2 * *init_params;
-    *(undefined8 *)(resource_handle + 0x170) = temp_storage12;
-    context_ptr = (undefined **)FUN_180049b30(buffer2,resource_handle + 0x10);
+    *(uint64_t *)(resource_handle + 0x170) = temp_storage12;
+    context_ptr = (void **)FUN_180049b30(buffer2,resource_handle + 0x10);
     *context_ptr = &UNK_18098bcb0;
     *(longlong *)(resource_handle + 0x168) = resource_handle;
     
@@ -697,7 +697,7 @@ undefined8 ResourceInitializer(longlong system_context, int* init_params, longlo
         temp_storage23 = init_params[3];
         temp_storage22 = 0;
         (**(code **)(**(longlong **)(system_context + 0x1d78) + 0x38))
-                  (*(longlong **)(system_context + 0x1d78),*(undefined8 *)(resource_handle + 0x170),&temp_storage20,
+                  (*(longlong **)(system_context + 0x1d78),*(uint64_t *)(resource_handle + 0x170),&temp_storage20,
                    resource_handle + 0x178);
         
         /* 处理资源循环 */
@@ -734,9 +734,9 @@ undefined8 ResourceInitializer(longlong system_context, int* init_params, longlo
                         temp_storage9 = config_param2;
                         temp_storage1 = func_0x0001800ab000(temp_storage3);
                         (**(code **)(**(longlong **)(system_context + 0x1d78) + 0x38))
-                                  (*(longlong **)(system_context + 0x1d78),*(undefined8 *)(resource_handle + 0x170),&temp_storage1
+                                  (*(longlong **)(system_context + 0x1d78),*(uint64_t *)(resource_handle + 0x170),&temp_storage1
                                    ,&temp_storage13);
-                        *(undefined8 *)
+                        *(uint64_t *)
                          (*(longlong *)(resource_handle + 0x180) + (longlong)(int)(resource_type * status_code + config_param2) * 8) =
                              temp_storage13;
                         config_param2 = config_param2 + 1;
@@ -784,7 +784,7 @@ undefined8 ResourceInitializer(longlong system_context, int* init_params, longlo
         }
         temp_storage18 = func_0x0001800ab000(config_param2);
         (**(code **)(**(longlong **)(system_context + 0x1d78) + 0x40))
-                  (*(longlong **)(system_context + 0x1d78),*(undefined8 *)(resource_handle + 0x170),&temp_storage18,
+                  (*(longlong **)(system_context + 0x1d78),*(uint64_t *)(resource_handle + 0x170),&temp_storage18,
                    resource_handle + 0x208);
         *(longlong *)(resource_handle + 0x200) = resource_handle;
         
@@ -821,9 +821,9 @@ undefined8 ResourceInitializer(longlong system_context, int* init_params, longlo
                         temp_storage27 = config_param2;
                         temp_storage24 = func_0x0001800ab000(temp_storage3);
                         (**(code **)(**(longlong **)(system_context + 0x1d78) + 0x40))
-                                  (*(longlong **)(system_context + 0x1d78),*(undefined8 *)(resource_handle + 0x170),&temp_storage24
+                                  (*(longlong **)(system_context + 0x1d78),*(uint64_t *)(resource_handle + 0x170),&temp_storage24
                                    ,&temp_storage14);
-                        *(undefined8 *)
+                        *(uint64_t *)
                          (*(longlong *)(resource_handle + 0x210) + (longlong)(int)(resource_type * status_code + config_param2) * 8) =
                              temp_storage14;
                         config_param2 = config_param2 + 1;
@@ -845,11 +845,11 @@ undefined8 ResourceInitializer(longlong system_context, int* init_params, longlo
     stack_ptr1 = &UNK_1809fcc28;
     stack_ptr2 = buffer1;
     buffer1[0] = 0;
-    temp_storage24 = *(undefined4 *)(resource_handle + 0x20);
+    temp_storage24 = *(int32_t *)(resource_handle + 0x20);
     data_pointer = &DAT_18098bc73;
     
-    if (*(undefined **)(resource_handle + 0x18) != (undefined *)0x0) {
-        data_pointer = *(undefined **)(resource_handle + 0x18);
+    if (*(void **)(resource_handle + 0x18) != (void *)0x0) {
+        data_pointer = *(void **)(resource_handle + 0x18);
     }
     
     strcpy_s(buffer1,0x80,data_pointer);
@@ -860,15 +860,15 @@ undefined8 ResourceInitializer(longlong system_context, int* init_params, longlo
     UNLOCK();
     *(longlong *)(resource_handle + 0x340) = (longlong)*(int *)(_DAT_180c86870 + 0x224);
     LOCK();
-    *(undefined4 *)(resource_handle + 0x380) = 2;
+    *(int32_t *)(resource_handle + 0x380) = 2;
     UNLOCK();
     LOCK();
-    *(undefined1 *)(resource_handle + 900) = 1;
+    *(int8_t *)(resource_handle + 900) = 1;
     UNLOCK();
-    context_ptr = *(undefined ***)(resource_handle + 0xf8);
-    *(undefined8 *)(resource_handle + 0xf8) = 0;
+    context_ptr = *(void ***)(resource_handle + 0xf8);
+    *(uint64_t *)(resource_handle + 0xf8) = 0;
     
-    if (context_ptr != (undefined **)0x0) {
+    if (context_ptr != (void **)0x0) {
         (**(code **)((longlong)*context_ptr + 0x38))();
     }
     
@@ -897,7 +897,7 @@ undefined8 ResourceInitializer(longlong system_context, int* init_params, longlo
  * 
  * @note 该函数提供了高效且安全的数据复制功能
  */
-undefined4 * DataCopier(undefined4 *dest_ptr, undefined4 *src_ptr)
+int32_t * DataCopier(int32_t *dest_ptr, int32_t *src_ptr)
 
 {
     /* 数据复制相关的变量 */
@@ -915,10 +915,10 @@ undefined4 * DataCopier(undefined4 *dest_ptr, undefined4 *src_ptr)
     dest_ptr[7] = src_ptr[7];
     
     /* 复制状态标志 */
-    *(undefined1 *)(dest_ptr + 8) = *(undefined1 *)(src_ptr + 8);
-    *(undefined1 *)((longlong)dest_ptr + 0x21) = *(undefined1 *)((longlong)src_ptr + 0x21);
-    *(undefined1 *)((longlong)dest_ptr + 0x22) = *(undefined1 *)((longlong)src_ptr + 0x22);
-    *(undefined1 *)((longlong)dest_ptr + 0x23) = *(undefined1 *)((longlong)src_ptr + 0x23);
+    *(int8_t *)(dest_ptr + 8) = *(int8_t *)(src_ptr + 8);
+    *(int8_t *)((longlong)dest_ptr + 0x21) = *(int8_t *)((longlong)src_ptr + 0x21);
+    *(int8_t *)((longlong)dest_ptr + 0x22) = *(int8_t *)((longlong)src_ptr + 0x22);
+    *(int8_t *)((longlong)dest_ptr + 0x23) = *(int8_t *)((longlong)src_ptr + 0x23);
     
     /* 管理资源引用计数 */
     resource_ptr1 = *(longlong **)(src_ptr + 10);
@@ -935,7 +935,7 @@ undefined4 * DataCopier(undefined4 *dest_ptr, undefined4 *src_ptr)
     
     /* 复制扩展参数 */
     dest_ptr[0xc] = src_ptr[0xc];
-    *(undefined1 *)(dest_ptr + 0xd) = *(undefined1 *)(src_ptr + 0xd);
+    *(int8_t *)(dest_ptr + 0xd) = *(int8_t *)(src_ptr + 0xd);
     
     return dest_ptr;
 }

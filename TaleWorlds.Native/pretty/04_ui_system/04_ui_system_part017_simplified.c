@@ -67,7 +67,7 @@ void ui_system_advanced_event_processor(longlong ui_context_ptr,longlong event_d
   float blend_factor;            // 混合因子
   int event_type;               // 事件类型
   int control_state;            // 控件状态
-  undefined8 *widget_array;     // 控件数组指针
+  uint64_t *widget_array;     // 控件数组指针
   float threshold_value;        // 阈值
   float position_x;             // X坐标
   float position_y;             // Y坐标
@@ -87,7 +87,7 @@ void ui_system_advanced_event_processor(longlong ui_context_ptr,longlong event_d
   }
   else {
     FUN_18065ffa0((longlong)*(int *)(ui_context_ptr + 0x10) * UI_ANIMATION_BLOCK_SIZE + *(longlong *)(ui_context_ptr + 0xc78),
-                  *(undefined4 *)(ui_context_ptr + 0x1c));
+                  *(int32_t *)(ui_context_ptr + 0x1c));
   }
   
   // 处理副控件事件类型
@@ -96,7 +96,7 @@ void ui_system_advanced_event_processor(longlong ui_context_ptr,longlong event_d
   }
   else {
     FUN_18065ffa0((longlong)*(int *)(ui_context_ptr + 0x14) * UI_ANIMATION_BLOCK_SIZE + *(longlong *)(ui_context_ptr + 0xc78),
-                  *(undefined4 *)(ui_context_ptr + 0x1c));
+                  *(int32_t *)(ui_context_ptr + 0x1c));
   }
   
   // 初始化控件状态索引
@@ -113,7 +113,7 @@ void ui_system_advanced_event_processor(longlong ui_context_ptr,longlong event_d
         position_x = *(float *)(ui_context_ptr + 0x34);
         position_y = *(float *)(ui_context_ptr + 0x38);
         size_width = *(float *)(ui_context_ptr + 0x30);
-        widget_array = (undefined8 *)(*(longlong *)(ui_context_ptr + 0xc78) + 0xf0);
+        widget_array = (uint64_t *)(*(longlong *)(ui_context_ptr + 0xc78) + 0xf0);
         blend_factor = (UI_ONE_FLOAT - position_x) - position_y;
         event_type = control_state;
         
@@ -152,7 +152,7 @@ LAB_18065da24:
       if (UI_ZERO_FLOAT < threshold_value) {
         position_x = *(float *)(ui_context_ptr + 0x34);
         position_y = *(float *)(ui_context_ptr + 0x38);
-        widget_array = (undefined8 *)(*(longlong *)(ui_context_ptr + 0xc78) + 0x120);
+        widget_array = (uint64_t *)(*(longlong *)(ui_context_ptr + 0xc78) + 0x120);
         size_width = *(float *)(ui_context_ptr + 0x30);
         blend_factor = (UI_ONE_FLOAT - position_x) - position_y;
         event_type = control_state;
@@ -204,7 +204,7 @@ LAB_18065dae7:
       position_y = *(float *)(ui_context_ptr + 0x38);
       size_width = *(float *)(ui_context_ptr + 0x30);
       blend_factor = (UI_ONE_FLOAT - visibility_factor) * smooth_factor;
-      widget_array = (undefined8 *)(*(longlong *)(ui_context_ptr + 0xc78) + 0xf0);
+      widget_array = (uint64_t *)(*(longlong *)(ui_context_ptr + 0xc78) + 0xf0);
       threshold_value = (UI_ONE_FLOAT - position_x) - position_y;
       visibility_factor = -UI_ONE_FLOAT;
       
@@ -250,7 +250,7 @@ LAB_18065dae7:
     if (UI_ZERO_FLOAT < visibility_factor) {
       position_x = *(float *)(ui_context_ptr + 0x34);
       position_y = *(float *)(ui_context_ptr + 0x38);
-      widget_array = (undefined8 *)(*(longlong *)(ui_context_ptr + 0xc78) + 0x120);
+      widget_array = (uint64_t *)(*(longlong *)(ui_context_ptr + 0xc78) + 0x120);
       size_width = *(float *)(ui_context_ptr + 0x30);
       visibility_factor = visibility_factor * smooth_factor;
       smooth_factor = (UI_ONE_FLOAT - position_x) - position_y;
@@ -315,74 +315,74 @@ void ui_system_animation_controller(longlong animation_context_ptr,float time_fa
   float position_y;             // Y坐标位置
   float size_width;             // 宽度尺寸
   longlong context_ptr;         // 上下文指针
-  undefined8 register_rbx;       // 寄存器RBX备份
-  undefined8 register_rsi;       // 寄存器RSI备份
+  uint64_t register_rbx;       // 寄存器RBX备份
+  uint64_t register_rsi;       // 寄存器RSI备份
   int frame_count;              // 帧计数
   int animation_state;          // 动画状态
   longlong register_r12;        // 寄存器R12备份
-  undefined8 register_r13;      // 寄存器R13备份
-  undefined8 *widget_array;     // 控件数组指针
-  undefined8 register_r15;      // 寄存器R15备份
+  uint64_t register_r13;      // 寄存器R13备份
+  uint64_t *widget_array;     // 控件数组指针
+  uint64_t register_r15;      // 寄存器R15备份
   float blend_factor;            // 混合因子
-  undefined4 xmm6_data_a;       // XMM6寄存器数据A
+  int32_t xmm6_data_a;       // XMM6寄存器数据A
   float interaction_strength;   // 交互强度
-  undefined4 xmm6_data_b;       // XMM6寄存器数据B
-  undefined4 xmm6_data_c;       // XMM6寄存器数据C
-  undefined4 xmm6_data_d;       // XMM6寄存器数据D
-  undefined4 xmm7_data_a;       // XMM7寄存器数据A
+  int32_t xmm6_data_b;       // XMM6寄存器数据B
+  int32_t xmm6_data_c;       // XMM6寄存器数据C
+  int32_t xmm6_data_d;       // XMM6寄存器数据D
+  int32_t xmm7_data_a;       // XMM7寄存器数据A
   float smooth_factor;          // 平滑因子
-  undefined4 xmm7_data_b;       // XMM7寄存器数据B
-  undefined4 xmm7_data_c;       // XMM7寄存器数据C
-  undefined4 xmm7_data_d;       // XMM7寄存器数据D
+  int32_t xmm7_data_b;       // XMM7寄存器数据B
+  int32_t xmm7_data_c;       // XMM7寄存器数据C
+  int32_t xmm7_data_d;       // XMM7寄存器数据D
   float threshold_value;        // 阈值
   float visibility_factor;      // 可见性因子
-  undefined4 xmm12_data_a;      // XMM12寄存器数据A
-  undefined4 xmm12_data_b;      // XMM12寄存器数据B
-  undefined4 xmm12_data_c;      // XMM12寄存器数据C
-  undefined4 xmm12_data_d;      // XMM12寄存器数据D
-  undefined4 xmm13_data_a;      // XMM13寄存器数据A
-  undefined4 xmm13_data_b;      // XMM13寄存器数据B
-  undefined4 xmm13_data_c;      // XMM13寄存器数据C
-  undefined4 xmm13_data_d;      // XMM13寄存器数据D
-  undefined4 xmm14_data_a;      // XMM14寄存器数据A
-  undefined4 xmm14_data_b;      // XMM14寄存器数据B
-  undefined4 xmm14_data_c;      // XMM14寄存器数据C
-  undefined4 xmm14_data_d;      // XMM14寄存器数据D
-  undefined4 xmm15_data_a;      // XMM15寄存器数据A
+  int32_t xmm12_data_a;      // XMM12寄存器数据A
+  int32_t xmm12_data_b;      // XMM12寄存器数据B
+  int32_t xmm12_data_c;      // XMM12寄存器数据C
+  int32_t xmm12_data_d;      // XMM12寄存器数据D
+  int32_t xmm13_data_a;      // XMM13寄存器数据A
+  int32_t xmm13_data_b;      // XMM13寄存器数据B
+  int32_t xmm13_data_c;      // XMM13寄存器数据C
+  int32_t xmm13_data_d;      // XMM13寄存器数据D
+  int32_t xmm14_data_a;      // XMM14寄存器数据A
+  int32_t xmm14_data_b;      // XMM14寄存器数据B
+  int32_t xmm14_data_c;      // XMM14寄存器数据C
+  int32_t xmm14_data_d;      // XMM14寄存器数据D
+  int32_t xmm15_data_a;      // XMM15寄存器数据A
   float animation_curve;        // 动画曲线值
-  undefined4 xmm15_data_b;      // XMM15寄存器数据B
-  undefined4 xmm15_data_c;      // XMM15寄存器数据C
-  undefined4 xmm15_data_d;      // XMM15寄存器数据D
+  int32_t xmm15_data_b;      // XMM15寄存器数据B
+  int32_t xmm15_data_c;      // XMM15寄存器数据C
+  int32_t xmm15_data_d;      // XMM15寄存器数据D
   
   // 备份寄存器状态（用于保存函数调用前的寄存器值）
-  *(undefined8 *)(context_ptr + 8) = register_rbx;
-  *(undefined8 *)(context_ptr + 0x18) = register_rsi;
-  *(undefined8 *)(context_ptr + -0x18) = register_r13;
-  *(undefined8 *)(context_ptr + -0x28) = register_r15;
-  *(undefined4 *)(context_ptr + -0x38) = xmm6_data_a;
-  *(undefined4 *)(context_ptr + -0x34) = xmm6_data_b;
-  *(undefined4 *)(context_ptr + -0x30) = xmm6_data_c;
-  *(undefined4 *)(context_ptr + -0x2c) = xmm6_data_d;
-  *(undefined4 *)(context_ptr + -0x48) = xmm7_data_a;
-  *(undefined4 *)(context_ptr + -0x44) = xmm7_data_b;
-  *(undefined4 *)(context_ptr + -0x40) = xmm7_data_c;
-  *(undefined4 *)(context_ptr + -0x3c) = xmm7_data_d;
-  *(undefined4 *)(context_ptr + -0x98) = xmm12_data_a;
-  *(undefined4 *)(context_ptr + -0x94) = xmm12_data_b;
-  *(undefined4 *)(context_ptr + -0x90) = xmm12_data_c;
-  *(undefined4 *)(context_ptr + -0x8c) = xmm12_data_d;
-  *(undefined4 *)(context_ptr + -0xa8) = xmm13_data_a;
-  *(undefined4 *)(context_ptr + -0xa4) = xmm13_data_b;
-  *(undefined4 *)(context_ptr + -0xa0) = xmm13_data_c;
-  *(undefined4 *)(context_ptr + -0x9c) = xmm13_data_d;
-  *(undefined4 *)(context_ptr + -0xb8) = xmm14_data_a;
-  *(undefined4 *)(context_ptr + -0xb4) = xmm14_data_b;
-  *(undefined4 *)(context_ptr + -0xb0) = xmm14_data_c;
-  *(undefined4 *)(context_ptr + -0xac) = xmm14_data_d;
-  *(undefined4 *)(context_ptr + -200) = xmm15_data_a;
-  *(undefined4 *)(context_ptr + -0xc4) = xmm15_data_b;
-  *(undefined4 *)(context_ptr + -0xc0) = xmm15_data_c;
-  *(undefined4 *)(context_ptr + -0xbc) = xmm15_data_d;
+  *(uint64_t *)(context_ptr + 8) = register_rbx;
+  *(uint64_t *)(context_ptr + 0x18) = register_rsi;
+  *(uint64_t *)(context_ptr + -0x18) = register_r13;
+  *(uint64_t *)(context_ptr + -0x28) = register_r15;
+  *(int32_t *)(context_ptr + -0x38) = xmm6_data_a;
+  *(int32_t *)(context_ptr + -0x34) = xmm6_data_b;
+  *(int32_t *)(context_ptr + -0x30) = xmm6_data_c;
+  *(int32_t *)(context_ptr + -0x2c) = xmm6_data_d;
+  *(int32_t *)(context_ptr + -0x48) = xmm7_data_a;
+  *(int32_t *)(context_ptr + -0x44) = xmm7_data_b;
+  *(int32_t *)(context_ptr + -0x40) = xmm7_data_c;
+  *(int32_t *)(context_ptr + -0x3c) = xmm7_data_d;
+  *(int32_t *)(context_ptr + -0x98) = xmm12_data_a;
+  *(int32_t *)(context_ptr + -0x94) = xmm12_data_b;
+  *(int32_t *)(context_ptr + -0x90) = xmm12_data_c;
+  *(int32_t *)(context_ptr + -0x8c) = xmm12_data_d;
+  *(int32_t *)(context_ptr + -0xa8) = xmm13_data_a;
+  *(int32_t *)(context_ptr + -0xa4) = xmm13_data_b;
+  *(int32_t *)(context_ptr + -0xa0) = xmm13_data_c;
+  *(int32_t *)(context_ptr + -0x9c) = xmm13_data_d;
+  *(int32_t *)(context_ptr + -0xb8) = xmm14_data_a;
+  *(int32_t *)(context_ptr + -0xb4) = xmm14_data_b;
+  *(int32_t *)(context_ptr + -0xb0) = xmm14_data_c;
+  *(int32_t *)(context_ptr + -0xac) = xmm14_data_d;
+  *(int32_t *)(context_ptr + -200) = xmm15_data_a;
+  *(int32_t *)(context_ptr + -0xc4) = xmm15_data_b;
+  *(int32_t *)(context_ptr + -0xc0) = xmm15_data_c;
+  *(int32_t *)(context_ptr + -0xbc) = xmm15_data_d;
   
   // 计算动画曲线值 - 使用三次贝塞尔曲线公式
   animation_curve = (UI_THREE_FLOAT - (time_factor + time_factor)) * time_factor * time_factor;
@@ -394,7 +394,7 @@ void ui_system_animation_controller(longlong animation_context_ptr,float time_fa
   }
   else {
     FUN_18065ffa0((longlong)*(int *)(animation_context_ptr + 0x10) * UI_ANIMATION_BLOCK_SIZE + *(longlong *)(animation_context_ptr + 0xc78),
-                  *(undefined4 *)(animation_context_ptr + 0x1c));
+                  *(int32_t *)(animation_context_ptr + 0x1c));
   }
   
   // 处理副控件动画状态
@@ -403,7 +403,7 @@ void ui_system_animation_controller(longlong animation_context_ptr,float time_fa
   }
   else {
     FUN_18065ffa0((longlong)*(int *)(animation_context_ptr + 0x14) * UI_ANIMATION_BLOCK_SIZE + *(longlong *)(animation_context_ptr + 0xc78),
-                  *(undefined4 *)(animation_context_ptr + 0x1c));
+                  *(int32_t *)(animation_context_ptr + 0x1c));
   }
   
   // 初始化动画状态
@@ -420,7 +420,7 @@ void ui_system_animation_controller(longlong animation_context_ptr,float time_fa
         position_x = *(float *)(animation_context_ptr + 0x34);
         position_y = *(float *)(animation_context_ptr + 0x38);
         size_width = *(float *)(animation_context_ptr + 0x30);
-        widget_array = (undefined8 *)(*(longlong *)(animation_context_ptr + 0xc78) + 0xf0);
+        widget_array = (uint64_t *)(*(longlong *)(animation_context_ptr + 0xc78) + 0xf0);
         blend_factor = (UI_ONE_FLOAT - position_x) - position_y;
         frame_count = animation_state;
         
@@ -459,7 +459,7 @@ LAB_18065da24:
       if (UI_ZERO_FLOAT < threshold_value) {
         position_x = *(float *)(animation_context_ptr + 0x34);
         position_y = *(float *)(animation_context_ptr + 0x38);
-        widget_array = (undefined8 *)(*(longlong *)(animation_context_ptr + 0xc78) + 0x120);
+        widget_array = (uint64_t *)(*(longlong *)(animation_context_ptr + 0xc78) + 0x120);
         size_width = *(float *)(animation_context_ptr + 0x30);
         blend_factor = (UI_ONE_FLOAT - position_x) - position_y;
         frame_count = animation_state;
@@ -510,7 +510,7 @@ LAB_18065dae7:
       position_y = *(float *)(animation_context_ptr + 0x38);
       size_width = *(float *)(animation_context_ptr + 0x30);
       blend_factor = (UI_ONE_FLOAT - smooth_factor) * animation_curve;
-      widget_array = (undefined8 *)(*(longlong *)(animation_context_ptr + 0xc78) + 0xf0);
+      widget_array = (uint64_t *)(*(longlong *)(animation_context_ptr + 0xc78) + 0xf0);
       interaction_strength = (UI_ONE_FLOAT - position_x) - position_y;
       smooth_factor = -UI_ONE_FLOAT;
       
@@ -556,7 +556,7 @@ LAB_18065dae7:
     if (UI_ZERO_FLOAT < smooth_factor) {
       position_x = *(float *)(animation_context_ptr + 0x34);
       position_y = *(float *)(animation_context_ptr + 0x38);
-      widget_array = (undefined8 *)(*(longlong *)(animation_context_ptr + 0xc78) + 0x120);
+      widget_array = (uint64_t *)(*(longlong *)(animation_context_ptr + 0xc78) + 0x120);
       size_width = *(float *)(animation_context_ptr + 0x30);
       smooth_factor = smooth_factor * animation_curve;
       animation_curve = (UI_ONE_FLOAT - position_x) - position_y;
@@ -604,165 +604,165 @@ LAB_18065dae7:
   return;
 }
 
-// 函数: void FUN_18065d902(undefined4 param_1)
+// 函数: void FUN_18065d902(int32_t param_1)
 // UI系统状态管理器 - 管理UI系统的状态转换和状态同步
 // 该函数实现了高级的UI状态管理机制，包括状态转换、状态同步、参数更新等
 // 主要功能：状态管理、状态转换、参数更新、状态同步
-void ui_system_state_manager(undefined4 state_parameter)
+void ui_system_state_manager(int32_t state_parameter)
 {
   // 状态管理变量
-  undefined8 register_rax;       // 寄存器RAX备份
-  undefined8 register_rbx;       // 寄存器RBX备份
-  undefined8 register_rbp;       // 寄存器RBP备份
-  undefined8 register_rsi;       // 寄存器RSI备份
-  undefined8 register_r12;       // 寄存器R12备份
-  undefined8 register_r13;       // 寄存器R13备份
-  undefined8 register_r14;       // 寄存器R14备份
-  undefined8 register_r15;       // 寄存器R15备份
-  undefined4 xmm6_data_a;       // XMM6寄存器数据A
-  undefined4 xmm6_data_b;       // XMM6寄存器数据B
-  undefined4 xmm6_data_c;       // XMM6寄存器数据C
-  undefined4 xmm6_data_d;       // XMM6寄存器数据D
-  undefined4 xmm7_data_a;       // XMM7寄存器数据A
-  undefined4 xmm7_data_b;       // XMM7寄存器数据B
-  undefined4 xmm7_data_c;       // XMM7寄存器数据C
-  undefined4 xmm7_data_d;       // XMM7寄存器数据D
-  undefined4 xmm8_data_a;       // XMM8寄存器数据A
-  undefined4 xmm8_data_b;       // XMM8寄存器数据B
-  undefined4 xmm8_data_c;       // XMM8寄存器数据C
-  undefined4 xmm8_data_d;       // XMM8寄存器数据D
-  undefined4 xmm9_data_a;       // XMM9寄存器数据A
-  undefined4 xmm9_data_b;       // XMM9寄存器数据B
-  undefined4 xmm9_data_c;       // XMM9寄存器数据C
-  undefined4 xmm9_data_d;       // XMM9寄存器数据D
-  undefined4 xmm10_data_a;      // XMM10寄存器数据A
-  undefined4 xmm10_data_b;      // XMM10寄存器数据B
-  undefined4 xmm10_data_c;      // XMM10寄存器数据C
-  undefined4 xmm10_data_d;      // XMM10寄存器数据D
-  undefined4 xmm11_data_a;      // XMM11寄存器数据A
-  undefined4 xmm11_data_b;      // XMM11寄存器数据B
-  undefined4 xmm11_data_c;      // XMM11寄存器数据C
-  undefined4 xmm11_data_d;      // XMM11寄存器数据D
-  undefined4 xmm12_data_a;      // XMM12寄存器数据A
-  undefined4 xmm12_data_b;      // XMM12寄存器数据B
-  undefined4 xmm12_data_c;      // XMM12寄存器数据C
-  undefined4 xmm12_data_d;      // XMM12寄存器数据D
-  undefined4 xmm13_data_a;      // XMM13寄存器数据A
-  undefined4 xmm13_data_b;      // XMM13寄存器数据B
-  undefined4 xmm13_data_c;      // XMM13寄存器数据C
-  undefined4 xmm13_data_d;      // XMM13寄存器数据D
-  undefined4 xmm14_data_a;      // XMM14寄存器数据A
-  undefined4 xmm14_data_b;      // XMM14寄存器数据B
-  undefined4 xmm14_data_c;      // XMM14寄存器数据C
-  undefined4 xmm14_data_d;      // XMM14寄存器数据D
-  undefined4 xmm15_data_a;      // XMM15寄存器数据A
-  undefined4 xmm15_data_b;      // XMM15寄存器数据B
-  undefined4 xmm15_data_c;      // XMM15寄存器数据C
-  undefined4 xmm15_data_d;      // XMM15寄存器数据D
+  uint64_t register_rax;       // 寄存器RAX备份
+  uint64_t register_rbx;       // 寄存器RBX备份
+  uint64_t register_rbp;       // 寄存器RBP备份
+  uint64_t register_rsi;       // 寄存器RSI备份
+  uint64_t register_r12;       // 寄存器R12备份
+  uint64_t register_r13;       // 寄存器R13备份
+  uint64_t register_r14;       // 寄存器R14备份
+  uint64_t register_r15;       // 寄存器R15备份
+  int32_t xmm6_data_a;       // XMM6寄存器数据A
+  int32_t xmm6_data_b;       // XMM6寄存器数据B
+  int32_t xmm6_data_c;       // XMM6寄存器数据C
+  int32_t xmm6_data_d;       // XMM6寄存器数据D
+  int32_t xmm7_data_a;       // XMM7寄存器数据A
+  int32_t xmm7_data_b;       // XMM7寄存器数据B
+  int32_t xmm7_data_c;       // XMM7寄存器数据C
+  int32_t xmm7_data_d;       // XMM7寄存器数据D
+  int32_t xmm8_data_a;       // XMM8寄存器数据A
+  int32_t xmm8_data_b;       // XMM8寄存器数据B
+  int32_t xmm8_data_c;       // XMM8寄存器数据C
+  int32_t xmm8_data_d;       // XMM8寄存器数据D
+  int32_t xmm9_data_a;       // XMM9寄存器数据A
+  int32_t xmm9_data_b;       // XMM9寄存器数据B
+  int32_t xmm9_data_c;       // XMM9寄存器数据C
+  int32_t xmm9_data_d;       // XMM9寄存器数据D
+  int32_t xmm10_data_a;      // XMM10寄存器数据A
+  int32_t xmm10_data_b;      // XMM10寄存器数据B
+  int32_t xmm10_data_c;      // XMM10寄存器数据C
+  int32_t xmm10_data_d;      // XMM10寄存器数据D
+  int32_t xmm11_data_a;      // XMM11寄存器数据A
+  int32_t xmm11_data_b;      // XMM11寄存器数据B
+  int32_t xmm11_data_c;      // XMM11寄存器数据C
+  int32_t xmm11_data_d;      // XMM11寄存器数据D
+  int32_t xmm12_data_a;      // XMM12寄存器数据A
+  int32_t xmm12_data_b;      // XMM12寄存器数据B
+  int32_t xmm12_data_c;      // XMM12寄存器数据C
+  int32_t xmm12_data_d;      // XMM12寄存器数据D
+  int32_t xmm13_data_a;      // XMM13寄存器数据A
+  int32_t xmm13_data_b;      // XMM13寄存器数据B
+  int32_t xmm13_data_c;      // XMM13寄存器数据C
+  int32_t xmm13_data_d;      // XMM13寄存器数据D
+  int32_t xmm14_data_a;      // XMM14寄存器数据A
+  int32_t xmm14_data_b;      // XMM14寄存器数据B
+  int32_t xmm14_data_c;      // XMM14寄存器数据C
+  int32_t xmm14_data_d;      // XMM14寄存器数据D
+  int32_t xmm15_data_a;      // XMM15寄存器数据A
+  int32_t xmm15_data_b;      // XMM15寄存器数据B
+  int32_t xmm15_data_c;      // XMM15寄存器数据C
+  int32_t xmm15_data_d;      // XMM15寄存器数据D
   
   // 备份寄存器状态（用于保存函数调用前的寄存器值）
-  register_rax = *(undefined8 *)(state_parameter + 8);
-  register_rbx = *(undefined8 *)(state_parameter + 0x10);
-  register_rbp = *(undefined8 *)(state_parameter + 0x18);
-  register_rsi = *(undefined8 *)(state_parameter + 0x20);
-  register_r12 = *(undefined8 *)(state_parameter + 0x28);
-  register_r13 = *(undefined8 *)(state_parameter + 0x30);
-  register_r14 = *(undefined8 *)(state_parameter + 0x38);
-  register_r15 = *(undefined8 *)(state_parameter + 0x40);
-  xmm6_data_a = *(undefined4 *)(state_parameter + 0x48);
-  xmm6_data_b = *(undefined4 *)(state_parameter + 0x4c);
-  xmm6_data_c = *(undefined4 *)(state_parameter + 0x50);
-  xmm6_data_d = *(undefined4 *)(state_parameter + 0x54);
-  xmm7_data_a = *(undefined4 *)(state_parameter + 0x58);
-  xmm7_data_b = *(undefined4 *)(state_parameter + 0x5c);
-  xmm7_data_c = *(undefined4 *)(state_parameter + 0x60);
-  xmm7_data_d = *(undefined4 *)(state_parameter + 0x64);
-  xmm8_data_a = *(undefined4 *)(state_parameter + 0x68);
-  xmm8_data_b = *(undefined4 *)(state_parameter + 0x6c);
-  xmm8_data_c = *(undefined4 *)(state_parameter + 0x70);
-  xmm8_data_d = *(undefined4 *)(state_parameter + 0x74);
-  xmm9_data_a = *(undefined4 *)(state_parameter + 0x78);
-  xmm9_data_b = *(undefined4 *)(state_parameter + 0x7c);
-  xmm9_data_c = *(undefined4 *)(state_parameter + 0x80);
-  xmm9_data_d = *(undefined4 *)(state_parameter + 0x84);
-  xmm10_data_a = *(undefined4 *)(state_parameter + 0x88);
-  xmm10_data_b = *(undefined4 *)(state_parameter + 0x8c);
-  xmm10_data_c = *(undefined4 *)(state_parameter + 0x90);
-  xmm10_data_d = *(undefined4 *)(state_parameter + 0x94);
-  xmm11_data_a = *(undefined4 *)(state_parameter + 0x98);
-  xmm11_data_b = *(undefined4 *)(state_parameter + 0x9c);
-  xmm11_data_c = *(undefined4 *)(state_parameter + 0xa0);
-  xmm11_data_d = *(undefined4 *)(state_parameter + 0xa4);
-  xmm12_data_a = *(undefined4 *)(state_parameter + 0xa8);
-  xmm12_data_b = *(undefined4 *)(state_parameter + 0xac);
-  xmm12_data_c = *(undefined4 *)(state_parameter + 0xb0);
-  xmm12_data_d = *(undefined4 *)(state_parameter + 0xb4);
-  xmm13_data_a = *(undefined4 *)(state_parameter + 0xb8);
-  xmm13_data_b = *(undefined4 *)(state_parameter + 0xbc);
-  xmm13_data_c = *(undefined4 *)(state_parameter + 0xc0);
-  xmm13_data_d = *(undefined4 *)(state_parameter + 0xc4);
-  xmm14_data_a = *(undefined4 *)(state_parameter + 0xc8);
-  xmm14_data_b = *(undefined4 *)(state_parameter + 0xcc);
-  xmm14_data_c = *(undefined4 *)(state_parameter + 0xd0);
-  xmm14_data_d = *(undefined4 *)(state_parameter + 0xd4);
-  xmm15_data_a = *(undefined4 *)(state_parameter + 0xd8);
-  xmm15_data_b = *(undefined4 *)(state_parameter + 0xdc);
-  xmm15_data_c = *(undefined4 *)(state_parameter + 0xe0);
-  xmm15_data_d = *(undefined4 *)(state_parameter + 0xe4);
+  register_rax = *(uint64_t *)(state_parameter + 8);
+  register_rbx = *(uint64_t *)(state_parameter + 0x10);
+  register_rbp = *(uint64_t *)(state_parameter + 0x18);
+  register_rsi = *(uint64_t *)(state_parameter + 0x20);
+  register_r12 = *(uint64_t *)(state_parameter + 0x28);
+  register_r13 = *(uint64_t *)(state_parameter + 0x30);
+  register_r14 = *(uint64_t *)(state_parameter + 0x38);
+  register_r15 = *(uint64_t *)(state_parameter + 0x40);
+  xmm6_data_a = *(int32_t *)(state_parameter + 0x48);
+  xmm6_data_b = *(int32_t *)(state_parameter + 0x4c);
+  xmm6_data_c = *(int32_t *)(state_parameter + 0x50);
+  xmm6_data_d = *(int32_t *)(state_parameter + 0x54);
+  xmm7_data_a = *(int32_t *)(state_parameter + 0x58);
+  xmm7_data_b = *(int32_t *)(state_parameter + 0x5c);
+  xmm7_data_c = *(int32_t *)(state_parameter + 0x60);
+  xmm7_data_d = *(int32_t *)(state_parameter + 0x64);
+  xmm8_data_a = *(int32_t *)(state_parameter + 0x68);
+  xmm8_data_b = *(int32_t *)(state_parameter + 0x6c);
+  xmm8_data_c = *(int32_t *)(state_parameter + 0x70);
+  xmm8_data_d = *(int32_t *)(state_parameter + 0x74);
+  xmm9_data_a = *(int32_t *)(state_parameter + 0x78);
+  xmm9_data_b = *(int32_t *)(state_parameter + 0x7c);
+  xmm9_data_c = *(int32_t *)(state_parameter + 0x80);
+  xmm9_data_d = *(int32_t *)(state_parameter + 0x84);
+  xmm10_data_a = *(int32_t *)(state_parameter + 0x88);
+  xmm10_data_b = *(int32_t *)(state_parameter + 0x8c);
+  xmm10_data_c = *(int32_t *)(state_parameter + 0x90);
+  xmm10_data_d = *(int32_t *)(state_parameter + 0x94);
+  xmm11_data_a = *(int32_t *)(state_parameter + 0x98);
+  xmm11_data_b = *(int32_t *)(state_parameter + 0x9c);
+  xmm11_data_c = *(int32_t *)(state_parameter + 0xa0);
+  xmm11_data_d = *(int32_t *)(state_parameter + 0xa4);
+  xmm12_data_a = *(int32_t *)(state_parameter + 0xa8);
+  xmm12_data_b = *(int32_t *)(state_parameter + 0xac);
+  xmm12_data_c = *(int32_t *)(state_parameter + 0xb0);
+  xmm12_data_d = *(int32_t *)(state_parameter + 0xb4);
+  xmm13_data_a = *(int32_t *)(state_parameter + 0xb8);
+  xmm13_data_b = *(int32_t *)(state_parameter + 0xbc);
+  xmm13_data_c = *(int32_t *)(state_parameter + 0xc0);
+  xmm13_data_d = *(int32_t *)(state_parameter + 0xc4);
+  xmm14_data_a = *(int32_t *)(state_parameter + 0xc8);
+  xmm14_data_b = *(int32_t *)(state_parameter + 0xcc);
+  xmm14_data_c = *(int32_t *)(state_parameter + 0xd0);
+  xmm14_data_d = *(int32_t *)(state_parameter + 0xd4);
+  xmm15_data_a = *(int32_t *)(state_parameter + 0xd8);
+  xmm15_data_b = *(int32_t *)(state_parameter + 0xdc);
+  xmm15_data_c = *(int32_t *)(state_parameter + 0xe0);
+  xmm15_data_d = *(int32_t *)(state_parameter + 0xe4);
   
   // 执行状态管理的主要逻辑
   // 这里包含了复杂的状态转换和同步逻辑
   // 具体实现需要根据实际的UI系统状态管理需求来定
   
   // 恢复寄存器状态（用于恢复函数调用前的寄存器值）
-  *(undefined8 *)(state_parameter + 8) = register_rax;
-  *(undefined8 *)(state_parameter + 0x10) = register_rbx;
-  *(undefined8 *)(state_parameter + 0x18) = register_rbp;
-  *(undefined8 *)(state_parameter + 0x20) = register_rsi;
-  *(undefined8 *)(state_parameter + 0x28) = register_r12;
-  *(undefined8 *)(state_parameter + 0x30) = register_r13;
-  *(undefined8 *)(state_parameter + 0x38) = register_r14;
-  *(undefined8 *)(state_parameter + 0x40) = register_r15;
-  *(undefined4 *)(state_parameter + 0x48) = xmm6_data_a;
-  *(undefined4 *)(state_parameter + 0x4c) = xmm6_data_b;
-  *(undefined4 *)(state_parameter + 0x50) = xmm6_data_c;
-  *(undefined4 *)(state_parameter + 0x54) = xmm6_data_d;
-  *(undefined4 *)(state_parameter + 0x58) = xmm7_data_a;
-  *(undefined4 *)(state_parameter + 0x5c) = xmm7_data_b;
-  *(undefined4 *)(state_parameter + 0x60) = xmm7_data_c;
-  *(undefined4 *)(state_parameter + 0x64) = xmm7_data_d;
-  *(undefined4 *)(state_parameter + 0x68) = xmm8_data_a;
-  *(undefined4 *)(state_parameter + 0x6c) = xmm8_data_b;
-  *(undefined4 *)(state_parameter + 0x70) = xmm8_data_c;
-  *(undefined4 *)(state_parameter + 0x74) = xmm8_data_d;
-  *(undefined4 *)(state_parameter + 0x78) = xmm9_data_a;
-  *(undefined4 *)(state_parameter + 0x7c) = xmm9_data_b;
-  *(undefined4 *)(state_parameter + 0x80) = xmm9_data_c;
-  *(undefined4 *)(state_parameter + 0x84) = xmm9_data_d;
-  *(undefined4 *)(state_parameter + 0x88) = xmm10_data_a;
-  *(undefined4 *)(state_parameter + 0x8c) = xmm10_data_b;
-  *(undefined4 *)(state_parameter + 0x90) = xmm10_data_c;
-  *(undefined4 *)(state_parameter + 0x94) = xmm10_data_d;
-  *(undefined4 *)(state_parameter + 0x98) = xmm11_data_a;
-  *(undefined4 *)(state_parameter + 0x9c) = xmm11_data_b;
-  *(undefined4 *)(state_parameter + 0xa0) = xmm11_data_c;
-  *(undefined4 *)(state_parameter + 0xa4) = xmm11_data_d;
-  *(undefined4 *)(state_parameter + 0xa8) = xmm12_data_a;
-  *(undefined4 *)(state_parameter + 0xac) = xmm12_data_b;
-  *(undefined4 *)(state_parameter + 0xb0) = xmm12_data_c;
-  *(undefined4 *)(state_parameter + 0xb4) = xmm12_data_d;
-  *(undefined4 *)(state_parameter + 0xb8) = xmm13_data_a;
-  *(undefined4 *)(state_parameter + 0xbc) = xmm13_data_b;
-  *(undefined4 *)(state_parameter + 0xc0) = xmm13_data_c;
-  *(undefined4 *)(state_parameter + 0xc4) = xmm13_data_d;
-  *(undefined4 *)(state_parameter + 0xc8) = xmm14_data_a;
-  *(undefined4 *)(state_parameter + 0xcc) = xmm14_data_b;
-  *(undefined4 *)(state_parameter + 0xd0) = xmm14_data_c;
-  *(undefined4 *)(state_parameter + 0xd4) = xmm14_data_d;
-  *(undefined4 *)(state_parameter + 0xd8) = xmm15_data_a;
-  *(undefined4 *)(state_parameter + 0xdc) = xmm15_data_b;
-  *(undefined4 *)(state_parameter + 0xe0) = xmm15_data_c;
-  *(undefined4 *)(state_parameter + 0xe4) = xmm15_data_d;
+  *(uint64_t *)(state_parameter + 8) = register_rax;
+  *(uint64_t *)(state_parameter + 0x10) = register_rbx;
+  *(uint64_t *)(state_parameter + 0x18) = register_rbp;
+  *(uint64_t *)(state_parameter + 0x20) = register_rsi;
+  *(uint64_t *)(state_parameter + 0x28) = register_r12;
+  *(uint64_t *)(state_parameter + 0x30) = register_r13;
+  *(uint64_t *)(state_parameter + 0x38) = register_r14;
+  *(uint64_t *)(state_parameter + 0x40) = register_r15;
+  *(int32_t *)(state_parameter + 0x48) = xmm6_data_a;
+  *(int32_t *)(state_parameter + 0x4c) = xmm6_data_b;
+  *(int32_t *)(state_parameter + 0x50) = xmm6_data_c;
+  *(int32_t *)(state_parameter + 0x54) = xmm6_data_d;
+  *(int32_t *)(state_parameter + 0x58) = xmm7_data_a;
+  *(int32_t *)(state_parameter + 0x5c) = xmm7_data_b;
+  *(int32_t *)(state_parameter + 0x60) = xmm7_data_c;
+  *(int32_t *)(state_parameter + 0x64) = xmm7_data_d;
+  *(int32_t *)(state_parameter + 0x68) = xmm8_data_a;
+  *(int32_t *)(state_parameter + 0x6c) = xmm8_data_b;
+  *(int32_t *)(state_parameter + 0x70) = xmm8_data_c;
+  *(int32_t *)(state_parameter + 0x74) = xmm8_data_d;
+  *(int32_t *)(state_parameter + 0x78) = xmm9_data_a;
+  *(int32_t *)(state_parameter + 0x7c) = xmm9_data_b;
+  *(int32_t *)(state_parameter + 0x80) = xmm9_data_c;
+  *(int32_t *)(state_parameter + 0x84) = xmm9_data_d;
+  *(int32_t *)(state_parameter + 0x88) = xmm10_data_a;
+  *(int32_t *)(state_parameter + 0x8c) = xmm10_data_b;
+  *(int32_t *)(state_parameter + 0x90) = xmm10_data_c;
+  *(int32_t *)(state_parameter + 0x94) = xmm10_data_d;
+  *(int32_t *)(state_parameter + 0x98) = xmm11_data_a;
+  *(int32_t *)(state_parameter + 0x9c) = xmm11_data_b;
+  *(int32_t *)(state_parameter + 0xa0) = xmm11_data_c;
+  *(int32_t *)(state_parameter + 0xa4) = xmm11_data_d;
+  *(int32_t *)(state_parameter + 0xa8) = xmm12_data_a;
+  *(int32_t *)(state_parameter + 0xac) = xmm12_data_b;
+  *(int32_t *)(state_parameter + 0xb0) = xmm12_data_c;
+  *(int32_t *)(state_parameter + 0xb4) = xmm12_data_d;
+  *(int32_t *)(state_parameter + 0xb8) = xmm13_data_a;
+  *(int32_t *)(state_parameter + 0xbc) = xmm13_data_b;
+  *(int32_t *)(state_parameter + 0xc0) = xmm13_data_c;
+  *(int32_t *)(state_parameter + 0xc4) = xmm13_data_d;
+  *(int32_t *)(state_parameter + 0xc8) = xmm14_data_a;
+  *(int32_t *)(state_parameter + 0xcc) = xmm14_data_b;
+  *(int32_t *)(state_parameter + 0xd0) = xmm14_data_c;
+  *(int32_t *)(state_parameter + 0xd4) = xmm14_data_d;
+  *(int32_t *)(state_parameter + 0xd8) = xmm15_data_a;
+  *(int32_t *)(state_parameter + 0xdc) = xmm15_data_b;
+  *(int32_t *)(state_parameter + 0xe0) = xmm15_data_c;
+  *(int32_t *)(state_parameter + 0xe4) = xmm15_data_d;
   
   return;
 }
@@ -774,54 +774,54 @@ void ui_system_state_manager(undefined4 state_parameter)
 void ui_system_render_optimizer(void)
 {
   // 渲染优化变量
-  undefined8 register_rax;       // 寄存器RAX备份
-  undefined8 register_rbx;       // 寄存器RBX备份
-  undefined8 register_rbp;       // 寄存器RBP备份
-  undefined8 register_rsi;       // 寄存器RSI备份
-  undefined8 register_r12;       // 寄存器R12备份
-  undefined8 register_r13;       // 寄存器R13备份
-  undefined8 register_r14;       // 寄存器R14备份
-  undefined8 register_r15;       // 寄存器R15备份
-  undefined4 xmm6_data_a;       // XMM6寄存器数据A
-  undefined4 xmm6_data_b;       // XMM6寄存器数据B
-  undefined4 xmm6_data_c;       // XMM6寄存器数据C
-  undefined4 xmm6_data_d;       // XMM6寄存器数据D
-  undefined4 xmm7_data_a;       // XMM7寄存器数据A
-  undefined4 xmm7_data_b;       // XMM7寄存器数据B
-  undefined4 xmm7_data_c;       // XMM7寄存器数据C
-  undefined4 xmm7_data_d;       // XMM7寄存器数据D
-  undefined4 xmm8_data_a;       // XMM8寄存器数据A
-  undefined4 xmm8_data_b;       // XMM8寄存器数据B
-  undefined4 xmm8_data_c;       // XMM8寄存器数据C
-  undefined4 xmm8_data_d;       // XMM8寄存器数据D
-  undefined4 xmm9_data_a;       // XMM9寄存器数据A
-  undefined4 xmm9_data_b;       // XMM9寄存器数据B
-  undefined4 xmm9_data_c;       // XMM9寄存器数据C
-  undefined4 xmm9_data_d;       // XMM9寄存器数据D
-  undefined4 xmm10_data_a;      // XMM10寄存器数据A
-  undefined4 xmm10_data_b;      // XMM10寄存器数据B
-  undefined4 xmm10_data_c;      // XMM10寄存器数据C
-  undefined4 xmm10_data_d;      // XMM10寄存器数据D
-  undefined4 xmm11_data_a;      // XMM11寄存器数据A
-  undefined4 xmm11_data_b;      // XMM11寄存器数据B
-  undefined4 xmm11_data_c;      // XMM11寄存器数据C
-  undefined4 xmm11_data_d;      // XMM11寄存器数据D
-  undefined4 xmm12_data_a;      // XMM12寄存器数据A
-  undefined4 xmm12_data_b;      // XMM12寄存器数据B
-  undefined4 xmm12_data_c;      // XMM12寄存器数据C
-  undefined4 xmm12_data_d;      // XMM12寄存器数据D
-  undefined4 xmm13_data_a;      // XMM13寄存器数据A
-  undefined4 xmm13_data_b;      // XMM13寄存器数据B
-  undefined4 xmm13_data_c;      // XMM13寄存器数据C
-  undefined4 xmm13_data_d;      // XMM13寄存器数据D
-  undefined4 xmm14_data_a;      // XMM14寄存器数据A
-  undefined4 xmm14_data_b;      // XMM14寄存器数据B
-  undefined4 xmm14_data_c;      // XMM14寄存器数据C
-  undefined4 xmm14_data_d;      // XMM14寄存器数据D
-  undefined4 xmm15_data_a;      // XMM15寄存器数据A
-  undefined4 xmm15_data_b;      // XMM15寄存器数据B
-  undefined4 xmm15_data_c;      // XMM15寄存器数据C
-  undefined4 xmm15_data_d;      // XMM15寄存器数据D
+  uint64_t register_rax;       // 寄存器RAX备份
+  uint64_t register_rbx;       // 寄存器RBX备份
+  uint64_t register_rbp;       // 寄存器RBP备份
+  uint64_t register_rsi;       // 寄存器RSI备份
+  uint64_t register_r12;       // 寄存器R12备份
+  uint64_t register_r13;       // 寄存器R13备份
+  uint64_t register_r14;       // 寄存器R14备份
+  uint64_t register_r15;       // 寄存器R15备份
+  int32_t xmm6_data_a;       // XMM6寄存器数据A
+  int32_t xmm6_data_b;       // XMM6寄存器数据B
+  int32_t xmm6_data_c;       // XMM6寄存器数据C
+  int32_t xmm6_data_d;       // XMM6寄存器数据D
+  int32_t xmm7_data_a;       // XMM7寄存器数据A
+  int32_t xmm7_data_b;       // XMM7寄存器数据B
+  int32_t xmm7_data_c;       // XMM7寄存器数据C
+  int32_t xmm7_data_d;       // XMM7寄存器数据D
+  int32_t xmm8_data_a;       // XMM8寄存器数据A
+  int32_t xmm8_data_b;       // XMM8寄存器数据B
+  int32_t xmm8_data_c;       // XMM8寄存器数据C
+  int32_t xmm8_data_d;       // XMM8寄存器数据D
+  int32_t xmm9_data_a;       // XMM9寄存器数据A
+  int32_t xmm9_data_b;       // XMM9寄存器数据B
+  int32_t xmm9_data_c;       // XMM9寄存器数据C
+  int32_t xmm9_data_d;       // XMM9寄存器数据D
+  int32_t xmm10_data_a;      // XMM10寄存器数据A
+  int32_t xmm10_data_b;      // XMM10寄存器数据B
+  int32_t xmm10_data_c;      // XMM10寄存器数据C
+  int32_t xmm10_data_d;      // XMM10寄存器数据D
+  int32_t xmm11_data_a;      // XMM11寄存器数据A
+  int32_t xmm11_data_b;      // XMM11寄存器数据B
+  int32_t xmm11_data_c;      // XMM11寄存器数据C
+  int32_t xmm11_data_d;      // XMM11寄存器数据D
+  int32_t xmm12_data_a;      // XMM12寄存器数据A
+  int32_t xmm12_data_b;      // XMM12寄存器数据B
+  int32_t xmm12_data_c;      // XMM12寄存器数据C
+  int32_t xmm12_data_d;      // XMM12寄存器数据D
+  int32_t xmm13_data_a;      // XMM13寄存器数据A
+  int32_t xmm13_data_b;      // XMM13寄存器数据B
+  int32_t xmm13_data_c;      // XMM13寄存器数据C
+  int32_t xmm13_data_d;      // XMM13寄存器数据D
+  int32_t xmm14_data_a;      // XMM14寄存器数据A
+  int32_t xmm14_data_b;      // XMM14寄存器数据B
+  int32_t xmm14_data_c;      // XMM14寄存器数据C
+  int32_t xmm14_data_d;      // XMM14寄存器数据D
+  int32_t xmm15_data_a;      // XMM15寄存器数据A
+  int32_t xmm15_data_b;      // XMM15寄存器数据B
+  int32_t xmm15_data_c;      // XMM15寄存器数据C
+  int32_t xmm15_data_d;      // XMM15寄存器数据D
   
   // 执行渲染优化的主要逻辑
   // 这里包含了复杂的渲染优化和性能监控逻辑
@@ -830,68 +830,68 @@ void ui_system_render_optimizer(void)
   return;
 }
 
-// 函数: void FUN_18065df80(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 *param_4,
-//                           undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8,
-//                           undefined8 param_9,undefined8 param_10,undefined8 param_11,undefined8 param_12,
-//                           undefined8 param_13,undefined8 param_14,undefined8 param_15,undefined8 param_16)
+// 函数: void FUN_18065df80(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t *param_4,
+//                           uint64_t param_5,uint64_t param_6,uint64_t param_7,uint64_t param_8,
+//                           uint64_t param_9,uint64_t param_10,uint64_t param_11,uint64_t param_12,
+//                           uint64_t param_13,uint64_t param_14,uint64_t param_15,uint64_t param_16)
 // UI系统参数计算器 - 计算UI系统的各种参数和配置
 // 该函数实现了高级的UI参数计算机制，包括参数计算、配置管理、数据转换等
 // 主要功能：参数计算、配置管理、数据转换、参数优化
-void ui_system_parameter_calculator(undefined8 *parameter_array,undefined8 config_data,undefined8 context_data,undefined8 *result_buffer,
-                                    undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8,
-                                    undefined8 param_9,undefined8 param_10,undefined8 param_11,undefined8 param_12,
-                                    undefined8 param_13,undefined8 param_14,undefined8 param_15,undefined8 param_16)
+void ui_system_parameter_calculator(uint64_t *parameter_array,uint64_t config_data,uint64_t context_data,uint64_t *result_buffer,
+                                    uint64_t param_5,uint64_t param_6,uint64_t param_7,uint64_t param_8,
+                                    uint64_t param_9,uint64_t param_10,uint64_t param_11,uint64_t param_12,
+                                    uint64_t param_13,uint64_t param_14,uint64_t param_15,uint64_t param_16)
 {
   // 参数计算变量
   longlong stack_ptr;            // 栈指针
-  undefined8 register_rax;       // 寄存器RAX备份
-  undefined8 register_rbx;       // 寄存器RBX备份
-  undefined8 register_rbp;       // 寄存器RBP备份
-  undefined8 register_rsi;       // 寄存器RSI备份
-  undefined8 register_r12;       // 寄存器R12备份
-  undefined8 register_r13;       // 寄存器R13备份
-  undefined8 register_r14;       // 寄存器R14备份
-  undefined8 register_r15;       // 寄存器R15备份
-  undefined4 xmm6_data_a;       // XMM6寄存器数据A
-  undefined4 xmm6_data_b;       // XMM6寄存器数据B
-  undefined4 xmm6_data_c;       // XMM6寄存器数据C
-  undefined4 xmm6_data_d;       // XMM6寄存器数据D
-  undefined4 xmm7_data_a;       // XMM7寄存器数据A
-  undefined4 xmm7_data_b;       // XMM7寄存器数据B
-  undefined4 xmm7_data_c;       // XMM7寄存器数据C
-  undefined4 xmm7_data_d;       // XMM7寄存器数据D
-  undefined4 xmm8_data_a;       // XMM8寄存器数据A
-  undefined4 xmm8_data_b;       // XMM8寄存器数据B
-  undefined4 xmm8_data_c;       // XMM8寄存器数据C
-  undefined4 xmm8_data_d;       // XMM8寄存器数据D
-  undefined4 xmm9_data_a;       // XMM9寄存器数据A
-  undefined4 xmm9_data_b;       // XMM9寄存器数据B
-  undefined4 xmm9_data_c;       // XMM9寄存器数据C
-  undefined4 xmm9_data_d;       // XMM9寄存器数据D
-  undefined4 xmm10_data_a;      // XMM10寄存器数据A
-  undefined4 xmm10_data_b;      // XMM10寄存器数据B
-  undefined4 xmm10_data_c;      // XMM10寄存器数据C
-  undefined4 xmm10_data_d;      // XMM10寄存器数据D
-  undefined4 xmm11_data_a;      // XMM11寄存器数据A
-  undefined4 xmm11_data_b;      // XMM11寄存器数据B
-  undefined4 xmm11_data_c;      // XMM11寄存器数据C
-  undefined4 xmm11_data_d;      // XMM11寄存器数据D
-  undefined4 xmm12_data_a;      // XMM12寄存器数据A
-  undefined4 xmm12_data_b;      // XMM12寄存器数据B
-  undefined4 xmm12_data_c;      // XMM12寄存器数据C
-  undefined4 xmm12_data_d;      // XMM12寄存器数据D
-  undefined4 xmm13_data_a;      // XMM13寄存器数据A
-  undefined4 xmm13_data_b;      // XMM13寄存器数据B
-  undefined4 xmm13_data_c;      // XMM13寄存器数据C
-  undefined4 xmm13_data_d;      // XMM13寄存器数据D
-  undefined4 xmm14_data_a;      // XMM14寄存器数据A
-  undefined4 xmm14_data_b;      // XMM14寄存器数据B
-  undefined4 xmm14_data_c;      // XMM14寄存器数据C
-  undefined4 xmm14_data_d;      // XMM14寄存器数据D
-  undefined4 xmm15_data_a;      // XMM15寄存器数据A
-  undefined4 xmm15_data_b;      // XMM15寄存器数据B
-  undefined4 xmm15_data_c;      // XMM15寄存器数据C
-  undefined4 xmm15_data_d;      // XMM15寄存器数据D
+  uint64_t register_rax;       // 寄存器RAX备份
+  uint64_t register_rbx;       // 寄存器RBX备份
+  uint64_t register_rbp;       // 寄存器RBP备份
+  uint64_t register_rsi;       // 寄存器RSI备份
+  uint64_t register_r12;       // 寄存器R12备份
+  uint64_t register_r13;       // 寄存器R13备份
+  uint64_t register_r14;       // 寄存器R14备份
+  uint64_t register_r15;       // 寄存器R15备份
+  int32_t xmm6_data_a;       // XMM6寄存器数据A
+  int32_t xmm6_data_b;       // XMM6寄存器数据B
+  int32_t xmm6_data_c;       // XMM6寄存器数据C
+  int32_t xmm6_data_d;       // XMM6寄存器数据D
+  int32_t xmm7_data_a;       // XMM7寄存器数据A
+  int32_t xmm7_data_b;       // XMM7寄存器数据B
+  int32_t xmm7_data_c;       // XMM7寄存器数据C
+  int32_t xmm7_data_d;       // XMM7寄存器数据D
+  int32_t xmm8_data_a;       // XMM8寄存器数据A
+  int32_t xmm8_data_b;       // XMM8寄存器数据B
+  int32_t xmm8_data_c;       // XMM8寄存器数据C
+  int32_t xmm8_data_d;       // XMM8寄存器数据D
+  int32_t xmm9_data_a;       // XMM9寄存器数据A
+  int32_t xmm9_data_b;       // XMM9寄存器数据B
+  int32_t xmm9_data_c;       // XMM9寄存器数据C
+  int32_t xmm9_data_d;       // XMM9寄存器数据D
+  int32_t xmm10_data_a;      // XMM10寄存器数据A
+  int32_t xmm10_data_b;      // XMM10寄存器数据B
+  int32_t xmm10_data_c;      // XMM10寄存器数据C
+  int32_t xmm10_data_d;      // XMM10寄存器数据D
+  int32_t xmm11_data_a;      // XMM11寄存器数据A
+  int32_t xmm11_data_b;      // XMM11寄存器数据B
+  int32_t xmm11_data_c;      // XMM11寄存器数据C
+  int32_t xmm11_data_d;      // XMM11寄存器数据D
+  int32_t xmm12_data_a;      // XMM12寄存器数据A
+  int32_t xmm12_data_b;      // XMM12寄存器数据B
+  int32_t xmm12_data_c;      // XMM12寄存器数据C
+  int32_t xmm12_data_d;      // XMM12寄存器数据D
+  int32_t xmm13_data_a;      // XMM13寄存器数据A
+  int32_t xmm13_data_b;      // XMM13寄存器数据B
+  int32_t xmm13_data_c;      // XMM13寄存器数据C
+  int32_t xmm13_data_d;      // XMM13寄存器数据D
+  int32_t xmm14_data_a;      // XMM14寄存器数据A
+  int32_t xmm14_data_b;      // XMM14寄存器数据B
+  int32_t xmm14_data_c;      // XMM14寄存器数据C
+  int32_t xmm14_data_d;      // XMM14寄存器数据D
+  int32_t xmm15_data_a;      // XMM15寄存器数据A
+  int32_t xmm15_data_b;      // XMM15寄存器数据B
+  int32_t xmm15_data_c;      // XMM15寄存器数据C
+  int32_t xmm15_data_d;      // XMM15寄存器数据D
   
   // 执行参数计算的主要逻辑
   // 这里包含了复杂的参数计算和配置管理逻辑
@@ -908,54 +908,54 @@ void ui_system_memory_manager(void)
 {
   // 内存管理变量
   longlong stack_ptr;            // 栈指针
-  undefined8 register_rax;       // 寄存器RAX备份
-  undefined8 register_rbx;       // 寄存器RBX备份
-  undefined8 register_rbp;       // 寄存器RBP备份
-  undefined8 register_rsi;       // 寄存器RSI备份
-  undefined8 register_r12;       // 寄存器R12备份
-  undefined8 register_r13;       // 寄存器R13备份
-  undefined8 register_r14;       // 寄存器R14备份
-  undefined8 register_r15;       // 寄存器R15备份
-  undefined4 xmm6_data_a;       // XMM6寄存器数据A
-  undefined4 xmm6_data_b;       // XMM6寄存器数据B
-  undefined4 xmm6_data_c;       // XMM6寄存器数据C
-  undefined4 xmm6_data_d;       // XMM6寄存器数据D
-  undefined4 xmm7_data_a;       // XMM7寄存器数据A
-  undefined4 xmm7_data_b;       // XMM7寄存器数据B
-  undefined4 xmm7_data_c;       // XMM7寄存器数据C
-  undefined4 xmm7_data_d;       // XMM7寄存器数据D
-  undefined4 xmm8_data_a;       // XMM8寄存器数据A
-  undefined4 xmm8_data_b;       // XMM8寄存器数据B
-  undefined4 xmm8_data_c;       // XMM8寄存器数据C
-  undefined4 xmm8_data_d;       // XMM8寄存器数据D
-  undefined4 xmm9_data_a;       // XMM9寄存器数据A
-  undefined4 xmm9_data_b;       // XMM9寄存器数据B
-  undefined4 xmm9_data_c;       // XMM9寄存器数据C
-  undefined4 xmm9_data_d;       // XMM9寄存器数据D
-  undefined4 xmm10_data_a;      // XMM10寄存器数据A
-  undefined4 xmm10_data_b;      // XMM10寄存器数据B
-  undefined4 xmm10_data_c;      // XMM10寄存器数据C
-  undefined4 xmm10_data_d;      // XMM10寄存器数据D
-  undefined4 xmm11_data_a;      // XMM11寄存器数据A
-  undefined4 xmm11_data_b;      // XMM11寄存器数据B
-  undefined4 xmm11_data_c;      // XMM11寄存器数据C
-  undefined4 xmm11_data_d;      // XMM11寄存器数据D
-  undefined4 xmm12_data_a;      // XMM12寄存器数据A
-  undefined4 xmm12_data_b;      // XMM12寄存器数据B
-  undefined4 xmm12_data_c;      // XMM12寄存器数据C
-  undefined4 xmm12_data_d;      // XMM12寄存器数据D
-  undefined4 xmm13_data_a;      // XMM13寄存器数据A
-  undefined4 xmm13_data_b;      // XMM13寄存器数据B
-  undefined4 xmm13_data_c;      // XMM13寄存器数据C
-  undefined4 xmm13_data_d;      // XMM13寄存器数据D
-  undefined4 xmm14_data_a;      // XMM14寄存器数据A
-  undefined4 xmm14_data_b;      // XMM14寄存器数据B
-  undefined4 xmm14_data_c;      // XMM14寄存器数据C
-  undefined4 xmm14_data_d;      // XMM14寄存器数据D
-  undefined4 xmm15_data_a;      // XMM15寄存器数据A
-  undefined4 xmm15_data_b;      // XMM15寄存器数据B
-  undefined4 xmm15_data_c;      // XMM15寄存器数据C
-  undefined4 xmm15_data_d;      // XMM15寄存器数据D
+  uint64_t register_rax;       // 寄存器RAX备份
+  uint64_t register_rbx;       // 寄存器RBX备份
+  uint64_t register_rbp;       // 寄存器RBP备份
+  uint64_t register_rsi;       // 寄存器RSI备份
+  uint64_t register_r12;       // 寄存器R12备份
+  uint64_t register_r13;       // 寄存器R13备份
+  uint64_t register_r14;       // 寄存器R14备份
+  uint64_t register_r15;       // 寄存器R15备份
+  int32_t xmm6_data_a;       // XMM6寄存器数据A
+  int32_t xmm6_data_b;       // XMM6寄存器数据B
+  int32_t xmm6_data_c;       // XMM6寄存器数据C
+  int32_t xmm6_data_d;       // XMM6寄存器数据D
+  int32_t xmm7_data_a;       // XMM7寄存器数据A
+  int32_t xmm7_data_b;       // XMM7寄存器数据B
+  int32_t xmm7_data_c;       // XMM7寄存器数据C
+  int32_t xmm7_data_d;       // XMM7寄存器数据D
+  int32_t xmm8_data_a;       // XMM8寄存器数据A
+  int32_t xmm8_data_b;       // XMM8寄存器数据B
+  int32_t xmm8_data_c;       // XMM8寄存器数据C
+  int32_t xmm8_data_d;       // XMM8寄存器数据D
+  int32_t xmm9_data_a;       // XMM9寄存器数据A
+  int32_t xmm9_data_b;       // XMM9寄存器数据B
+  int32_t xmm9_data_c;       // XMM9寄存器数据C
+  int32_t xmm9_data_d;       // XMM9寄存器数据D
+  int32_t xmm10_data_a;      // XMM10寄存器数据A
+  int32_t xmm10_data_b;      // XMM10寄存器数据B
+  int32_t xmm10_data_c;      // XMM10寄存器数据C
+  int32_t xmm10_data_d;      // XMM10寄存器数据D
+  int32_t xmm11_data_a;      // XMM11寄存器数据A
+  int32_t xmm11_data_b;      // XMM11寄存器数据B
+  int32_t xmm11_data_c;      // XMM11寄存器数据C
+  int32_t xmm11_data_d;      // XMM11寄存器数据D
+  int32_t xmm12_data_a;      // XMM12寄存器数据A
+  int32_t xmm12_data_b;      // XMM12寄存器数据B
+  int32_t xmm12_data_c;      // XMM12寄存器数据C
+  int32_t xmm12_data_d;      // XMM12寄存器数据D
+  int32_t xmm13_data_a;      // XMM13寄存器数据A
+  int32_t xmm13_data_b;      // XMM13寄存器数据B
+  int32_t xmm13_data_c;      // XMM13寄存器数据C
+  int32_t xmm13_data_d;      // XMM13寄存器数据D
+  int32_t xmm14_data_a;      // XMM14寄存器数据A
+  int32_t xmm14_data_b;      // XMM14寄存器数据B
+  int32_t xmm14_data_c;      // XMM14寄存器数据C
+  int32_t xmm14_data_d;      // XMM14寄存器数据D
+  int32_t xmm15_data_a;      // XMM15寄存器数据A
+  int32_t xmm15_data_b;      // XMM15寄存器数据B
+  int32_t xmm15_data_c;      // XMM15寄存器数据C
+  int32_t xmm15_data_d;      // XMM15寄存器数据D
   
   // 执行内存管理的主要逻辑
   // 这里包含了复杂的内存分配和内存释放逻辑
@@ -964,62 +964,62 @@ void ui_system_memory_manager(void)
   return;
 }
 
-// 函数: void FUN_18065e276(longlong param_1,undefined8 param_2,longlong param_3,undefined8 param_4)
+// 函数: void FUN_18065e276(longlong param_1,uint64_t param_2,longlong param_3,uint64_t param_4)
 // UI系统错误处理器 - 处理UI系统的错误和异常
 // 该函数实现了高级的UI错误处理机制，包括错误检测、错误处理、错误恢复等
 // 主要功能：错误检测、错误处理、错误恢复、错误管理
-void ui_system_error_handler(longlong error_context,undefined8 error_data,longlong recovery_context,undefined8 recovery_data)
+void ui_system_error_handler(longlong error_context,uint64_t error_data,longlong recovery_context,uint64_t recovery_data)
 {
   // 错误处理变量
   longlong stack_ptr;            // 栈指针
-  undefined8 register_rax;       // 寄存器RAX备份
-  undefined8 register_rbx;       // 寄存器RBX备份
-  undefined8 register_rbp;       // 寄存器RBP备份
-  undefined8 register_rsi;       // 寄存器RSI备份
-  undefined8 register_r12;       // 寄存器R12备份
-  undefined8 register_r13;       // 寄存器R13备份
-  undefined8 register_r14;       // 寄存器R14备份
-  undefined8 register_r15;       // 寄存器R15备份
-  undefined4 xmm6_data_a;       // XMM6寄存器数据A
-  undefined4 xmm6_data_b;       // XMM6寄存器数据B
-  undefined4 xmm6_data_c;       // XMM6寄存器数据C
-  undefined4 xmm6_data_d;       // XMM6寄存器数据D
-  undefined4 xmm7_data_a;       // XMM7寄存器数据A
-  undefined4 xmm7_data_b;       // XMM7寄存器数据B
-  undefined4 xmm7_data_c;       // XMM7寄存器数据C
-  undefined4 xmm7_data_d;       // XMM7寄存器数据D
-  undefined4 xmm8_data_a;       // XMM8寄存器数据A
-  undefined4 xmm8_data_b;       // XMM8寄存器数据B
-  undefined4 xmm8_data_c;       // XMM8寄存器数据C
-  undefined4 xmm8_data_d;       // XMM8寄存器数据D
-  undefined4 xmm9_data_a;       // XMM9寄存器数据A
-  undefined4 xmm9_data_b;       // XMM9寄存器数据B
-  undefined4 xmm9_data_c;       // XMM9寄存器数据C
-  undefined4 xmm9_data_d;       // XMM9寄存器数据D
-  undefined4 xmm10_data_a;      // XMM10寄存器数据A
-  undefined4 xmm10_data_b;      // XMM10寄存器数据B
-  undefined4 xmm10_data_c;      // XMM10寄存器数据C
-  undefined4 xmm10_data_d;      // XMM10寄存器数据D
-  undefined4 xmm11_data_a;      // XMM11寄存器数据A
-  undefined4 xmm11_data_b;      // XMM11寄存器数据B
-  undefined4 xmm11_data_c;      // XMM11寄存器数据C
-  undefined4 xmm11_data_d;      // XMM11寄存器数据D
-  undefined4 xmm12_data_a;      // XMM12寄存器数据A
-  undefined4 xmm12_data_b;      // XMM12寄存器数据B
-  undefined4 xmm12_data_c;      // XMM12寄存器数据C
-  undefined4 xmm12_data_d;      // XMM12寄存器数据D
-  undefined4 xmm13_data_a;      // XMM13寄存器数据A
-  undefined4 xmm13_data_b;      // XMM13寄存器数据B
-  undefined4 xmm13_data_c;      // XMM13寄存器数据C
-  undefined4 xmm13_data_d;      // XMM13寄存器数据D
-  undefined4 xmm14_data_a;      // XMM14寄存器数据A
-  undefined4 xmm14_data_b;      // XMM14寄存器数据B
-  undefined4 xmm14_data_c;      // XMM14寄存器数据C
-  undefined4 xmm14_data_d;      // XMM14寄存器数据D
-  undefined4 xmm15_data_a;      // XMM15寄存器数据A
-  undefined4 xmm15_data_b;      // XMM15寄存器数据B
-  undefined4 xmm15_data_c;      // XMM15寄存器数据C
-  undefined4 xmm15_data_d;      // XMM15寄存器数据D
+  uint64_t register_rax;       // 寄存器RAX备份
+  uint64_t register_rbx;       // 寄存器RBX备份
+  uint64_t register_rbp;       // 寄存器RBP备份
+  uint64_t register_rsi;       // 寄存器RSI备份
+  uint64_t register_r12;       // 寄存器R12备份
+  uint64_t register_r13;       // 寄存器R13备份
+  uint64_t register_r14;       // 寄存器R14备份
+  uint64_t register_r15;       // 寄存器R15备份
+  int32_t xmm6_data_a;       // XMM6寄存器数据A
+  int32_t xmm6_data_b;       // XMM6寄存器数据B
+  int32_t xmm6_data_c;       // XMM6寄存器数据C
+  int32_t xmm6_data_d;       // XMM6寄存器数据D
+  int32_t xmm7_data_a;       // XMM7寄存器数据A
+  int32_t xmm7_data_b;       // XMM7寄存器数据B
+  int32_t xmm7_data_c;       // XMM7寄存器数据C
+  int32_t xmm7_data_d;       // XMM7寄存器数据D
+  int32_t xmm8_data_a;       // XMM8寄存器数据A
+  int32_t xmm8_data_b;       // XMM8寄存器数据B
+  int32_t xmm8_data_c;       // XMM8寄存器数据C
+  int32_t xmm8_data_d;       // XMM8寄存器数据D
+  int32_t xmm9_data_a;       // XMM9寄存器数据A
+  int32_t xmm9_data_b;       // XMM9寄存器数据B
+  int32_t xmm9_data_c;       // XMM9寄存器数据C
+  int32_t xmm9_data_d;       // XMM9寄存器数据D
+  int32_t xmm10_data_a;      // XMM10寄存器数据A
+  int32_t xmm10_data_b;      // XMM10寄存器数据B
+  int32_t xmm10_data_c;      // XMM10寄存器数据C
+  int32_t xmm10_data_d;      // XMM10寄存器数据D
+  int32_t xmm11_data_a;      // XMM11寄存器数据A
+  int32_t xmm11_data_b;      // XMM11寄存器数据B
+  int32_t xmm11_data_c;      // XMM11寄存器数据C
+  int32_t xmm11_data_d;      // XMM11寄存器数据D
+  int32_t xmm12_data_a;      // XMM12寄存器数据A
+  int32_t xmm12_data_b;      // XMM12寄存器数据B
+  int32_t xmm12_data_c;      // XMM12寄存器数据C
+  int32_t xmm12_data_d;      // XMM12寄存器数据D
+  int32_t xmm13_data_a;      // XMM13寄存器数据A
+  int32_t xmm13_data_b;      // XMM13寄存器数据B
+  int32_t xmm13_data_c;      // XMM13寄存器数据C
+  int32_t xmm13_data_d;      // XMM13寄存器数据D
+  int32_t xmm14_data_a;      // XMM14寄存器数据A
+  int32_t xmm14_data_b;      // XMM14寄存器数据B
+  int32_t xmm14_data_c;      // XMM14寄存器数据C
+  int32_t xmm14_data_d;      // XMM14寄存器数据D
+  int32_t xmm15_data_a;      // XMM15寄存器数据A
+  int32_t xmm15_data_b;      // XMM15寄存器数据B
+  int32_t xmm15_data_c;      // XMM15寄存器数据C
+  int32_t xmm15_data_d;      // XMM15寄存器数据D
   
   // 执行错误处理的主要逻辑
   // 这里包含了复杂的错误检测和错误处理逻辑
@@ -1036,54 +1036,54 @@ void ui_system_debug_support(void)
 {
   // 调试支持变量
   longlong stack_ptr;            // 栈指针
-  undefined8 register_rax;       // 寄存器RAX备份
-  undefined8 register_rbx;       // 寄存器RBX备份
-  undefined8 register_rbp;       // 寄存器RBP备份
-  undefined8 register_rsi;       // 寄存器RSI备份
-  undefined8 register_r12;       // 寄存器R12备份
-  undefined8 register_r13;       // 寄存器R13备份
-  undefined8 register_r14;       // 寄存器R14备份
-  undefined8 register_r15;       // 寄存器R15备份
-  undefined4 xmm6_data_a;       // XMM6寄存器数据A
-  undefined4 xmm6_data_b;       // XMM6寄存器数据B
-  undefined4 xmm6_data_c;       // XMM6寄存器数据C
-  undefined4 xmm6_data_d;       // XMM6寄存器数据D
-  undefined4 xmm7_data_a;       // XMM7寄存器数据A
-  undefined4 xmm7_data_b;       // XMM7寄存器数据B
-  undefined4 xmm7_data_c;       // XMM7寄存器数据C
-  undefined4 xmm7_data_d;       // XMM7寄存器数据D
-  undefined4 xmm8_data_a;       // XMM8寄存器数据A
-  undefined4 xmm8_data_b;       // XMM8寄存器数据B
-  undefined4 xmm8_data_c;       // XMM8寄存器数据C
-  undefined4 xmm8_data_d;       // XMM8寄存器数据D
-  undefined4 xmm9_data_a;       // XMM9寄存器数据A
-  undefined4 xmm9_data_b;       // XMM9寄存器数据B
-  undefined4 xmm9_data_c;       // XMM9寄存器数据C
-  undefined4 xmm9_data_d;       // XMM9寄存器数据D
-  undefined4 xmm10_data_a;      // XMM10寄存器数据A
-  undefined4 xmm10_data_b;      // XMM10寄存器数据B
-  undefined4 xmm10_data_c;      // XMM10寄存器数据C
-  undefined4 xmm10_data_d;      // XMM10寄存器数据D
-  undefined4 xmm11_data_a;      // XMM11寄存器数据A
-  undefined4 xmm11_data_b;      // XMM11寄存器数据B
-  undefined4 xmm11_data_c;      // XMM11寄存器数据C
-  undefined4 xmm11_data_d;      // XMM11寄存器数据D
-  undefined4 xmm12_data_a;      // XMM12寄存器数据A
-  undefined4 xmm12_data_b;      // XMM12寄存器数据B
-  undefined4 xmm12_data_c;      // XMM12寄存器数据C
-  undefined4 xmm12_data_d;      // XMM12寄存器数据D
-  undefined4 xmm13_data_a;      // XMM13寄存器数据A
-  undefined4 xmm13_data_b;      // XMM13寄存器数据B
-  undefined4 xmm13_data_c;      // XMM13寄存器数据C
-  undefined4 xmm13_data_d;      // XMM13寄存器数据D
-  undefined4 xmm14_data_a;      // XMM14寄存器数据A
-  undefined4 xmm14_data_b;      // XMM14寄存器数据B
-  undefined4 xmm14_data_c;      // XMM14寄存器数据C
-  undefined4 xmm14_data_d;      // XMM14寄存器数据D
-  undefined4 xmm15_data_a;      // XMM15寄存器数据A
-  undefined4 xmm15_data_b;      // XMM15寄存器数据B
-  undefined4 xmm15_data_c;      // XMM15寄存器数据C
-  undefined4 xmm15_data_d;      // XMM15寄存器数据D
+  uint64_t register_rax;       // 寄存器RAX备份
+  uint64_t register_rbx;       // 寄存器RBX备份
+  uint64_t register_rbp;       // 寄存器RBP备份
+  uint64_t register_rsi;       // 寄存器RSI备份
+  uint64_t register_r12;       // 寄存器R12备份
+  uint64_t register_r13;       // 寄存器R13备份
+  uint64_t register_r14;       // 寄存器R14备份
+  uint64_t register_r15;       // 寄存器R15备份
+  int32_t xmm6_data_a;       // XMM6寄存器数据A
+  int32_t xmm6_data_b;       // XMM6寄存器数据B
+  int32_t xmm6_data_c;       // XMM6寄存器数据C
+  int32_t xmm6_data_d;       // XMM6寄存器数据D
+  int32_t xmm7_data_a;       // XMM7寄存器数据A
+  int32_t xmm7_data_b;       // XMM7寄存器数据B
+  int32_t xmm7_data_c;       // XMM7寄存器数据C
+  int32_t xmm7_data_d;       // XMM7寄存器数据D
+  int32_t xmm8_data_a;       // XMM8寄存器数据A
+  int32_t xmm8_data_b;       // XMM8寄存器数据B
+  int32_t xmm8_data_c;       // XMM8寄存器数据C
+  int32_t xmm8_data_d;       // XMM8寄存器数据D
+  int32_t xmm9_data_a;       // XMM9寄存器数据A
+  int32_t xmm9_data_b;       // XMM9寄存器数据B
+  int32_t xmm9_data_c;       // XMM9寄存器数据C
+  int32_t xmm9_data_d;       // XMM9寄存器数据D
+  int32_t xmm10_data_a;      // XMM10寄存器数据A
+  int32_t xmm10_data_b;      // XMM10寄存器数据B
+  int32_t xmm10_data_c;      // XMM10寄存器数据C
+  int32_t xmm10_data_d;      // XMM10寄存器数据D
+  int32_t xmm11_data_a;      // XMM11寄存器数据A
+  int32_t xmm11_data_b;      // XMM11寄存器数据B
+  int32_t xmm11_data_c;      // XMM11寄存器数据C
+  int32_t xmm11_data_d;      // XMM11寄存器数据D
+  int32_t xmm12_data_a;      // XMM12寄存器数据A
+  int32_t xmm12_data_b;      // XMM12寄存器数据B
+  int32_t xmm12_data_c;      // XMM12寄存器数据C
+  int32_t xmm12_data_d;      // XMM12寄存器数据D
+  int32_t xmm13_data_a;      // XMM13寄存器数据A
+  int32_t xmm13_data_b;      // XMM13寄存器数据B
+  int32_t xmm13_data_c;      // XMM13寄存器数据C
+  int32_t xmm13_data_d;      // XMM13寄存器数据D
+  int32_t xmm14_data_a;      // XMM14寄存器数据A
+  int32_t xmm14_data_b;      // XMM14寄存器数据B
+  int32_t xmm14_data_c;      // XMM14寄存器数据C
+  int32_t xmm14_data_d;      // XMM14寄存器数据D
+  int32_t xmm15_data_a;      // XMM15寄存器数据A
+  int32_t xmm15_data_b;      // XMM15寄存器数据B
+  int32_t xmm15_data_c;      // XMM15寄存器数据C
+  int32_t xmm15_data_d;      // XMM15寄存器数据D
   
   // 执行调试支持的主要逻辑
   // 这里包含了复杂的调试信息输出和测试支持逻辑
@@ -1100,54 +1100,54 @@ void ui_system_performance_monitor(void)
 {
   // 性能监控变量
   longlong stack_ptr;            // 栈指针
-  undefined8 register_rax;       // 寄存器RAX备份
-  undefined8 register_rbx;       // 寄存器RBX备份
-  undefined8 register_rbp;       // 寄存器RBP备份
-  undefined8 register_rsi;       // 寄存器RSI备份
-  undefined8 register_r12;       // 寄存器R12备份
-  undefined8 register_r13;       // 寄存器R13备份
-  undefined8 register_r14;       // 寄存器R14备份
-  undefined8 register_r15;       // 寄存器R15备份
-  undefined4 xmm6_data_a;       // XMM6寄存器数据A
-  undefined4 xmm6_data_b;       // XMM6寄存器数据B
-  undefined4 xmm6_data_c;       // XMM6寄存器数据C
-  undefined4 xmm6_data_d;       // XMM6寄存器数据D
-  undefined4 xmm7_data_a;       // XMM7寄存器数据A
-  undefined4 xmm7_data_b;       // XMM7寄存器数据B
-  undefined4 xmm7_data_c;       // XMM7寄存器数据C
-  undefined4 xmm7_data_d;       // XMM7寄存器数据D
-  undefined4 xmm8_data_a;       // XMM8寄存器数据A
-  undefined4 xmm8_data_b;       // XMM8寄存器数据B
-  undefined4 xmm8_data_c;       // XMM8寄存器数据C
-  undefined4 xmm8_data_d;       // XMM8寄存器数据D
-  undefined4 xmm9_data_a;       // XMM9寄存器数据A
-  undefined4 xmm9_data_b;       // XMM9寄存器数据B
-  undefined4 xmm9_data_c;       // XMM9寄存器数据C
-  undefined4 xmm9_data_d;       // XMM9寄存器数据D
-  undefined4 xmm10_data_a;      // XMM10寄存器数据A
-  undefined4 xmm10_data_b;      // XMM10寄存器数据B
-  undefined4 xmm10_data_c;      // XMM10寄存器数据C
-  undefined4 xmm10_data_d;      // XMM10寄存器数据D
-  undefined4 xmm11_data_a;      // XMM11寄存器数据A
-  undefined4 xmm11_data_b;      // XMM11寄存器数据B
-  undefined4 xmm11_data_c;      // XMM11寄存器数据C
-  undefined4 xmm11_data_d;      // XMM11寄存器数据D
-  undefined4 xmm12_data_a;      // XMM12寄存器数据A
-  undefined4 xmm12_data_b;      // XMM12寄存器数据B
-  undefined4 xmm12_data_c;      // XMM12寄存器数据C
-  undefined4 xmm12_data_d;      // XMM12寄存器数据D
-  undefined4 xmm13_data_a;      // XMM13寄存器数据A
-  undefined4 xmm13_data_b;      // XMM13寄存器数据B
-  undefined4 xmm13_data_c;      // XMM13寄存器数据C
-  undefined4 xmm13_data_d;      // XMM13寄存器数据D
-  undefined4 xmm14_data_a;      // XMM14寄存器数据A
-  undefined4 xmm14_data_b;      // XMM14寄存器数据B
-  undefined4 xmm14_data_c;      // XMM14寄存器数据C
-  undefined4 xmm14_data_d;      // XMM14寄存器数据D
-  undefined4 xmm15_data_a;      // XMM15寄存器数据A
-  undefined4 xmm15_data_b;      // XMM15寄存器数据B
-  undefined4 xmm15_data_c;      // XMM15寄存器数据C
-  undefined4 xmm15_data_d;      // XMM15寄存器数据D
+  uint64_t register_rax;       // 寄存器RAX备份
+  uint64_t register_rbx;       // 寄存器RBX备份
+  uint64_t register_rbp;       // 寄存器RBP备份
+  uint64_t register_rsi;       // 寄存器RSI备份
+  uint64_t register_r12;       // 寄存器R12备份
+  uint64_t register_r13;       // 寄存器R13备份
+  uint64_t register_r14;       // 寄存器R14备份
+  uint64_t register_r15;       // 寄存器R15备份
+  int32_t xmm6_data_a;       // XMM6寄存器数据A
+  int32_t xmm6_data_b;       // XMM6寄存器数据B
+  int32_t xmm6_data_c;       // XMM6寄存器数据C
+  int32_t xmm6_data_d;       // XMM6寄存器数据D
+  int32_t xmm7_data_a;       // XMM7寄存器数据A
+  int32_t xmm7_data_b;       // XMM7寄存器数据B
+  int32_t xmm7_data_c;       // XMM7寄存器数据C
+  int32_t xmm7_data_d;       // XMM7寄存器数据D
+  int32_t xmm8_data_a;       // XMM8寄存器数据A
+  int32_t xmm8_data_b;       // XMM8寄存器数据B
+  int32_t xmm8_data_c;       // XMM8寄存器数据C
+  int32_t xmm8_data_d;       // XMM8寄存器数据D
+  int32_t xmm9_data_a;       // XMM9寄存器数据A
+  int32_t xmm9_data_b;       // XMM9寄存器数据B
+  int32_t xmm9_data_c;       // XMM9寄存器数据C
+  int32_t xmm9_data_d;       // XMM9寄存器数据D
+  int32_t xmm10_data_a;      // XMM10寄存器数据A
+  int32_t xmm10_data_b;      // XMM10寄存器数据B
+  int32_t xmm10_data_c;      // XMM10寄存器数据C
+  int32_t xmm10_data_d;      // XMM10寄存器数据D
+  int32_t xmm11_data_a;      // XMM11寄存器数据A
+  int32_t xmm11_data_b;      // XMM11寄存器数据B
+  int32_t xmm11_data_c;      // XMM11寄存器数据C
+  int32_t xmm11_data_d;      // XMM11寄存器数据D
+  int32_t xmm12_data_a;      // XMM12寄存器数据A
+  int32_t xmm12_data_b;      // XMM12寄存器数据B
+  int32_t xmm12_data_c;      // XMM12寄存器数据C
+  int32_t xmm12_data_d;      // XMM12寄存器数据D
+  int32_t xmm13_data_a;      // XMM13寄存器数据A
+  int32_t xmm13_data_b;      // XMM13寄存器数据B
+  int32_t xmm13_data_c;      // XMM13寄存器数据C
+  int32_t xmm13_data_d;      // XMM13寄存器数据D
+  int32_t xmm14_data_a;      // XMM14寄存器数据A
+  int32_t xmm14_data_b;      // XMM14寄存器数据B
+  int32_t xmm14_data_c;      // XMM14寄存器数据C
+  int32_t xmm14_data_d;      // XMM14寄存器数据D
+  int32_t xmm15_data_a;      // XMM15寄存器数据A
+  int32_t xmm15_data_b;      // XMM15寄存器数据B
+  int32_t xmm15_data_c;      // XMM15寄存器数据C
+  int32_t xmm15_data_d;      // XMM15寄存器数据D
   
   // 执行性能监控的主要逻辑
   // 这里包含了复杂的性能监控和资源监控逻辑

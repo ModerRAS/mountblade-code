@@ -70,7 +70,7 @@
 void ui_system_simd_processor(void)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   ulonglong uVar2;
   ulonglong uVar3;
   ulonglong uVar4;
@@ -87,7 +87,7 @@ void ui_system_simd_processor(void)
   uint unaff_EBX;
   longlong unaff_RBP;
   ulonglong uVar14;
-  undefined8 *unaff_RDI;
+  uint64_t *unaff_RDI;
   longlong unaff_R13;
   longlong unaff_R14;
   longlong unaff_R15;
@@ -98,44 +98,44 @@ void ui_system_simd_processor(void)
   short sVar20;
   short sVar21;
   short sVar22;
-  undefined1 auVar16 [16];
+  int8_t auVar16 [16];
   short sVar23;
-  undefined1 auVar24 [16];
-  undefined1 auVar31 [16];
-  undefined1 auVar38 [16];
-  undefined1 auVar39 [16];
-  undefined1 auVar46 [16];
-  undefined1 auVar47 [16];
-  undefined1 auVar48 [16];
-  undefined1 auVar56 [16];
+  int8_t auVar24 [16];
+  int8_t auVar31 [16];
+  int8_t auVar38 [16];
+  int8_t auVar39 [16];
+  int8_t auVar46 [16];
+  int8_t auVar47 [16];
+  int8_t auVar48 [16];
+  int8_t auVar56 [16];
   longlong in_stack_00000070;
   int in_stack_00000080;
   int in_stack_00000088;
-  undefined1 auVar25 [16];
-  undefined1 auVar26 [16];
-  undefined1 auVar27 [16];
-  undefined1 auVar28 [16];
-  undefined1 auVar29 [16];
-  undefined1 auVar30 [16];
-  undefined1 auVar32 [16];
-  undefined1 auVar33 [16];
-  undefined1 auVar34 [16];
-  undefined1 auVar35 [16];
-  undefined1 auVar36 [16];
-  undefined1 auVar37 [16];
-  undefined1 auVar40 [16];
-  undefined1 auVar41 [16];
-  undefined1 auVar42 [16];
-  undefined1 auVar43 [16];
-  undefined1 auVar44 [16];
-  undefined1 auVar45 [16];
-  undefined1 auVar49 [16];
-  undefined1 auVar50 [16];
-  undefined1 auVar51 [16];
-  undefined1 auVar52 [16];
-  undefined1 auVar53 [16];
-  undefined1 auVar54 [16];
-  undefined1 auVar55 [16];
+  int8_t auVar25 [16];
+  int8_t auVar26 [16];
+  int8_t auVar27 [16];
+  int8_t auVar28 [16];
+  int8_t auVar29 [16];
+  int8_t auVar30 [16];
+  int8_t auVar32 [16];
+  int8_t auVar33 [16];
+  int8_t auVar34 [16];
+  int8_t auVar35 [16];
+  int8_t auVar36 [16];
+  int8_t auVar37 [16];
+  int8_t auVar40 [16];
+  int8_t auVar41 [16];
+  int8_t auVar42 [16];
+  int8_t auVar43 [16];
+  int8_t auVar44 [16];
+  int8_t auVar45 [16];
+  int8_t auVar49 [16];
+  int8_t auVar50 [16];
+  int8_t auVar51 [16];
+  int8_t auVar52 [16];
+  int8_t auVar53 [16];
+  int8_t auVar54 [16];
+  int8_t auVar55 [16];
   
   uVar14 = (ulonglong)in_EAX;
   do {
@@ -144,7 +144,7 @@ void ui_system_simd_processor(void)
                     // WARNING: Subroutine does not return
       memcpy(unaff_RDI,unaff_R15 + (longlong)puVar13,(longlong)in_stack_00000088);
     }
-    uVar1 = *(undefined8 *)(unaff_R15 + (longlong)puVar13);
+    uVar1 = *(uint64_t *)(unaff_R15 + (longlong)puVar13);
     uVar2 = *(ulonglong *)((longlong)puVar13 + unaff_R14 * 2);
     uVar3 = *(ulonglong *)((longlong)puVar13 + unaff_R14 * 4);
     uVar4 = *puVar13;
@@ -182,12 +182,12 @@ void ui_system_simd_processor(void)
     auVar48[4] = (char)(uVar2 >> 0x10);
     auVar48[3] = (char)((ulonglong)uVar1 >> 8);
     auVar48[2] = (char)(uVar2 >> 8);
-    auVar48[0] = (undefined1)uVar2;
+    auVar48[0] = (int8_t)uVar2;
     auVar48[1] = (char)uVar1;
-    auVar47 = *(undefined1 (*) [16])((ulonglong)(unaff_EBX & 0xf) * 0x10 + in_stack_00000070);
+    auVar47 = *(int8_t (*) [16])((ulonglong)(unaff_EBX & 0xf) * 0x10 + in_stack_00000070);
     auVar16 = pshufb(auVar47,_DAT_180946f70);
     auVar56 = pmaddubsw(auVar48,auVar16);
-    uVar1 = *(undefined8 *)((longlong)puVar13 + unaff_R14 * 5);
+    uVar1 = *(uint64_t *)((longlong)puVar13 + unaff_R14 * 5);
     uVar2 = *(ulonglong *)((longlong)puVar13 + unaff_R14 * 6);
     auVar45._8_6_ = 0;
     auVar45._0_8_ = uVar3;
@@ -223,11 +223,11 @@ void ui_system_simd_processor(void)
     auVar46[4] = (char)(uVar3 >> 0x10);
     auVar46[3] = (char)((ulonglong)uVar1 >> 8);
     auVar46[2] = (char)(uVar3 >> 8);
-    auVar46[0] = (undefined1)uVar3;
+    auVar46[0] = (int8_t)uVar3;
     auVar46[1] = (char)uVar1;
     auVar16 = pshufb(auVar47,_DAT_180946f90);
     auVar46 = pmaddubsw(auVar46,auVar16);
-    uVar1 = *(undefined8 *)(unaff_R14 * 7 + (longlong)puVar13);
+    uVar1 = *(uint64_t *)(unaff_R14 * 7 + (longlong)puVar13);
     auVar37._8_6_ = 0;
     auVar37._0_8_ = uVar2;
     auVar37[0xe] = (char)(uVar2 >> 0x38);
@@ -262,12 +262,12 @@ void ui_system_simd_processor(void)
     auVar38[4] = (char)(uVar2 >> 0x10);
     auVar38[3] = (char)((ulonglong)uVar1 >> 8);
     auVar38[2] = (char)(uVar2 >> 8);
-    auVar38[0] = (undefined1)uVar2;
+    auVar38[0] = (int8_t)uVar2;
     auVar38[1] = (char)uVar1;
     auVar16 = pshufb(auVar47,_DAT_180946fa0);
     auVar47 = pshufb(auVar47,_DAT_180946f40);
     auVar38 = pmaddubsw(auVar38,auVar16);
-    uVar1 = *(undefined8 *)((longlong)puVar13 + unaff_R14);
+    uVar1 = *(uint64_t *)((longlong)puVar13 + unaff_R14);
     auVar30._8_6_ = 0;
     auVar30._0_8_ = uVar4;
     auVar30[0xe] = (char)(uVar4 >> 0x38);
@@ -302,7 +302,7 @@ void ui_system_simd_processor(void)
     auVar16[4] = (char)(uVar4 >> 0x10);
     auVar16[3] = (char)((ulonglong)uVar1 >> 8);
     auVar16[2] = (char)(uVar4 >> 8);
-    auVar16[0] = (undefined1)uVar4;
+    auVar16[0] = (int8_t)uVar4;
     auVar16[1] = (char)uVar1;
     auVar16 = pmaddubsw(auVar16,auVar47);
     sVar5 = auVar56._0_2_;
@@ -369,7 +369,7 @@ void ui_system_simd_processor(void)
                                                                                  (0xff < sVar5))))))
                                   ));
     unaff_EBX = unaff_EBX + in_stack_00000080;
-    unaff_RDI = (undefined8 *)((longlong)unaff_RDI + unaff_R13);
+    unaff_RDI = (uint64_t *)((longlong)unaff_RDI + unaff_R13);
     uVar14 = uVar14 - 1;
   } while (uVar14 != 0);
   return;
@@ -411,13 +411,13 @@ void ui_system_empty_function(void)
  * @param param_5 控件状态指针
  * @return 无
  */
-void ui_system_data_transfer_optimizer(longlong param_1,undefined8 param_2,longlong param_3,undefined8 param_4,
+void ui_system_data_transfer_optimizer(longlong param_1,uint64_t param_2,longlong param_3,uint64_t param_4,
                   short *param_5)
 
 {
   ulonglong uVar1;
   uint in_stack_00000048;
-  undefined4 in_stack_00000050;
+  int32_t in_stack_00000050;
   
   if (((*param_5 == 0) && (param_5[1] == 0)) && (param_5[2] == 0)) {
     if (0xf < (int)in_stack_00000048) {
@@ -532,9 +532,9 @@ void ui_system_control_initializer(void)
  * @param param_10 控制参数
  * @return 无
  */
-void ui_system_control_processor(longlong param_1,longlong param_2,longlong param_3,undefined8 param_4,
-                  undefined8 param_5,undefined8 param_6,short *param_7,undefined8 param_8,
-                  uint param_9,undefined4 param_10)
+void ui_system_control_processor(longlong param_1,longlong param_2,longlong param_3,uint64_t param_4,
+                  uint64_t param_5,uint64_t param_6,short *param_7,uint64_t param_8,
+                  uint param_9,int32_t param_10)
 
 {
   ulonglong uVar1;
@@ -633,13 +633,13 @@ void ui_system_control_processor(longlong param_1,longlong param_2,longlong para
  * @param param_5 控件状态指针
  * @return 无
  */
-void ui_system_data_transfer_manager(longlong param_1,undefined8 param_2,longlong param_3,undefined8 param_4,
+void ui_system_data_transfer_manager(longlong param_1,uint64_t param_2,longlong param_3,uint64_t param_4,
                   short *param_5)
 
 {
   ulonglong uVar1;
   uint in_stack_00000048;
-  undefined4 in_stack_00000050;
+  int32_t in_stack_00000050;
   
   if (((*param_5 == 0) && (param_5[1] == 0)) && (param_5[2] == 0)) {
     if (0xf < (int)in_stack_00000048) {
@@ -754,9 +754,9 @@ void ui_system_control_cleaner(void)
  * @param param_10 渲染参数
  * @return 无
  */
-void ui_system_control_renderer(longlong param_1,longlong param_2,longlong param_3,undefined8 param_4,
-                  undefined8 param_5,undefined8 param_6,short *param_7,undefined8 param_8,
-                  uint param_9,undefined4 param_10)
+void ui_system_control_renderer(longlong param_1,longlong param_2,longlong param_3,uint64_t param_4,
+                  uint64_t param_5,uint64_t param_6,short *param_7,uint64_t param_8,
+                  uint param_9,int32_t param_10)
 
 {
   ulonglong uVar1;
@@ -856,8 +856,8 @@ void ui_system_control_renderer(longlong param_1,longlong param_2,longlong param
  * @param param_6 SIMD数据指针
  * @return 无
  */
-void ui_system_control_state_updater(longlong param_1,longlong param_2,undefined4 *param_3,longlong param_4,
-                  uint param_5,undefined1 (*param_6) [16])
+void ui_system_control_state_updater(longlong param_1,longlong param_2,int32_t *param_3,longlong param_4,
+                  uint param_5,int8_t (*param_6) [16])
 
 {
   short sVar1;
@@ -868,24 +868,24 @@ void ui_system_control_state_updater(longlong param_1,longlong param_2,undefined
   short sVar6;
   short sVar7;
   short sVar8;
-  undefined1 auVar9 [16];
-  undefined1 auVar10 [16];
-  undefined1 auVar11 [16];
-  undefined1 (*pauVar12) [16];
+  int8_t auVar9 [16];
+  int8_t auVar10 [16];
+  int8_t auVar11 [16];
+  int8_t (*pauVar12) [16];
   ulonglong uVar13;
   short sVar14;
   short sVar18;
   short sVar19;
   short sVar20;
-  undefined1 in_XMM0 [16];
-  undefined1 auVar15 [16];
-  undefined1 auVar16 [16];
-  undefined1 auVar17 [16];
-  undefined1 auVar21 [16];
-  undefined1 auVar22 [16];
-  undefined1 auVar23 [16];
-  undefined1 in_XMM5 [16];
-  undefined1 unaff_XMM6 [16];
+  int8_t in_XMM0 [16];
+  int8_t auVar15 [16];
+  int8_t auVar16 [16];
+  int8_t auVar17 [16];
+  int8_t auVar21 [16];
+  int8_t auVar22 [16];
+  int8_t auVar23 [16];
+  int8_t in_XMM5 [16];
+  int8_t unaff_XMM6 [16];
   
   auVar11 = _DAT_180946f20;
   auVar10 = _DAT_180946ed0;
@@ -896,11 +896,11 @@ void ui_system_control_state_updater(longlong param_1,longlong param_2,undefined
   auVar21 = pshufhw(unaff_XMM6,auVar21,0xff);
   auVar15 = pshufhw(in_XMM5,auVar15,0x55);
   if (param_5 != 0) {
-    pauVar12 = (undefined1 (*) [16])(param_1 + -3);
+    pauVar12 = (int8_t (*) [16])(param_1 + -3);
     uVar13 = (ulonglong)param_5;
     do {
       auVar17 = *pauVar12;
-      pauVar12 = (undefined1 (*) [16])(*pauVar12 + param_2);
+      pauVar12 = (int8_t (*) [16])(*pauVar12 + param_2);
       auVar16 = pshufb(auVar17,auVar9);
       auVar22 = pshufb(auVar17,auVar10);
       auVar17 = pmaddubsw(auVar16,auVar15);
@@ -948,7 +948,7 @@ void ui_system_control_state_updater(longlong param_1,longlong param_2,undefined
                                             (0xff < sVar2),
                                             (0 < sVar1) * (sVar1 < 0x100) * auVar17[0] -
                                             (0xff < sVar1))));
-      param_3 = (undefined4 *)((longlong)param_3 + param_4);
+      param_3 = (int32_t *)((longlong)param_3 + param_4);
       uVar13 = uVar13 - 1;
     } while (uVar13 != 0);
   }

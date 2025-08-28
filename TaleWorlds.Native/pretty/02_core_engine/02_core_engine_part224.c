@@ -19,27 +19,27 @@
 //   param_2 - 数据源指针
 //   param_3 - 上下文参数1
 //   param_4 - 上下文参数2
-void EngineDataStructure_AdvancedProcessor(longlong *engine_context, longlong data_source, undefined8 context_param1, undefined8 context_param2)
+void EngineDataStructure_AdvancedProcessor(longlong *engine_context, longlong data_source, uint64_t context_param1, uint64_t context_param2)
 
 {
-  undefined8 *temp_ptr1;
-  undefined8 *temp_ptr2;
+  uint64_t *temp_ptr1;
+  uint64_t *temp_ptr2;
   longlong context_data;
-  undefined8 *array_ptr;
+  uint64_t *array_ptr;
   longlong iteration_data;
-  undefined *resource_ptr;
-  undefined *stack_resource1;
+  void *resource_ptr;
+  void *stack_resource1;
   longlong stack_data1;
   int stack_count;
-  undefined *stack_resource2;
+  void *stack_resource2;
   longlong stack_data2;
-  undefined4 stack_flags1;
-  undefined8 stack_data3;
-  undefined4 stack_flags2;
+  int32_t stack_flags1;
+  uint64_t stack_data3;
+  int32_t stack_flags2;
   
   // 初始化资源管理器
   FUN_180627ae0(&stack_resource1, context_param1, context_param1, context_param2, 0, 0xfffffffffffffffe);
-  FUN_180628040(&stack_resource1, &STRING_CONST_180a0b2b4, *(undefined8 *)(data_source + 0x20));
+  FUN_180628040(&stack_resource1, &STRING_CONST_180a0b2b4, *(uint64_t *)(data_source + 0x20));
   
   context_data = *engine_context;
   
@@ -52,9 +52,9 @@ void EngineDataStructure_AdvancedProcessor(longlong *engine_context, longlong da
   }
   
   // 初始化数组指针
-  temp_ptr1 = (undefined8 *)engine_context[1];
-  temp_ptr2 = (undefined8 *)temp_ptr1[1];
-  array_ptr = (undefined8 *)*temp_ptr1;
+  temp_ptr1 = (uint64_t *)engine_context[1];
+  temp_ptr2 = (uint64_t *)temp_ptr1[1];
+  array_ptr = (uint64_t *)*temp_ptr1;
   
   // 清理和初始化数组元素
   if (array_ptr != temp_ptr2) {
@@ -65,11 +65,11 @@ void EngineDataStructure_AdvancedProcessor(longlong *engine_context, longlong da
         FUN_18064e900();
       }
       array_ptr[1] = 0;
-      *(undefined4 *)(array_ptr + 3) = 0;
+      *(int32_t *)(array_ptr + 3) = 0;
       *array_ptr = &STRING_CONST_18098bcb0;
       array_ptr = array_ptr + 5;
     } while (array_ptr != temp_ptr2);
-    array_ptr = (undefined8 *)*temp_ptr1;
+    array_ptr = (uint64_t *)*temp_ptr1;
   }
   
   temp_ptr1[1] = array_ptr;
@@ -80,29 +80,29 @@ void EngineDataStructure_AdvancedProcessor(longlong *engine_context, longlong da
     
     // 为当前元素创建资源
     FUN_180627ae0(&stack_resource2, iteration_data + 0x20);
-    stack_flags2 = *(undefined4 *)(iteration_data + 0x40);
+    stack_flags2 = *(int32_t *)(iteration_data + 0x40);
     
-    temp_ptr1 = *(undefined8 **)(array_base + 8);
+    temp_ptr1 = *(uint64_t **)(array_base + 8);
     
     // 检查数组空间并分配新元素
-    if (temp_ptr1 < *(undefined8 **)(array_base + 0x10)) {
+    if (temp_ptr1 < *(uint64_t **)(array_base + 0x10)) {
       // 直接分配空间
-      *(undefined8 **)(array_base + 8) = temp_ptr1 + 5;
+      *(uint64_t **)(array_base + 8) = temp_ptr1 + 5;
       *temp_ptr1 = &STRING_CONST_18098bcb0;
       temp_ptr1[1] = 0;
-      *(undefined4 *)(temp_ptr1 + 2) = 0;
+      *(int32_t *)(temp_ptr1 + 2) = 0;
       *temp_ptr1 = &RESOURCE_HANDLE_180a3c3e0;
       temp_ptr1[3] = 0;
       temp_ptr1[1] = 0;
-      *(undefined4 *)(temp_ptr1 + 2) = 0;
-      *(undefined4 *)(temp_ptr1 + 2) = stack_flags1;
+      *(int32_t *)(temp_ptr1 + 2) = 0;
+      *(int32_t *)(temp_ptr1 + 2) = stack_flags1;
       temp_ptr1[1] = stack_data2;
-      *(undefined4 *)((longlong)temp_ptr1 + 0x1c) = stack_data3._4_4_;
-      *(undefined4 *)(temp_ptr1 + 3) = (undefined4)stack_data3;
+      *(int32_t *)((longlong)temp_ptr1 + 0x1c) = stack_data3._4_4_;
+      *(int32_t *)(temp_ptr1 + 3) = (int32_t)stack_data3;
       stack_flags1 = 0;
       stack_data2 = 0;
       stack_data3 = 0;
-      *(undefined4 *)(temp_ptr1 + 4) = stack_flags2;
+      *(int32_t *)(temp_ptr1 + 4) = stack_flags2;
     }
     else {
       // 扩展数组空间
@@ -121,16 +121,16 @@ void EngineDataStructure_AdvancedProcessor(longlong *engine_context, longlong da
   }
   
   // 处理最终数据
-  FUN_1801bb3a0(*(undefined8 *)engine_context[1], ((undefined8 *)engine_context[1])[1], 0);
+  FUN_1801bb3a0(*(uint64_t *)engine_context[1], ((uint64_t *)engine_context[1])[1], 0);
   context_data = ((longlong *)engine_context[1])[1];
   
   // 遍历处理后的数据并更新引擎状态
   for (iteration_data = *(longlong *)engine_context[1]; iteration_data != context_data; iteration_data = iteration_data + 0x28) {
     resource_ptr = &STRING_CONST_18098bc73;
-    if (*(undefined **)(iteration_data + 8) != (undefined *)0x0) {
-      resource_ptr = *(undefined **)(iteration_data + 8);
+    if (*(void **)(iteration_data + 8) != (void *)0x0) {
+      resource_ptr = *(void **)(iteration_data + 8);
     }
-    FUN_180628040(*engine_context + 0x60780, &STRING_CONST_180a0b2a8, resource_ptr, *(undefined4 *)(iteration_data + 0x20));
+    FUN_180628040(*engine_context + 0x60780, &STRING_CONST_180a0b2a8, resource_ptr, *(int32_t *)(iteration_data + 0x20));
   }
   
   // 最终清理和同步
@@ -146,12 +146,12 @@ void EngineDataStructure_AdvancedProcessor(longlong *engine_context, longlong da
 }
 
 // 全局常量定义
-static undefined8 *STRING_CONST_18098bcb0 = (undefined8 *)0x18098bcb0;  // 字符串常量
-static undefined8 *STRING_CONST_180a0b2a8 = (undefined8 *)0x180a0b2a8;  // 字符串常量2
-static undefined8 *STRING_CONST_180a0b2b4 = (undefined8 *)0x180a0b2b4;  // 字符串常量3
-static undefined8 *STRING_CONST_18098bc73 = (undefined8 *)0x18098bc73;  // 默认字符串
-static undefined8 *STRING_CONST_1809fcc18 = (undefined8 *)0x1809fcc18;  // 终止字符串
-static undefined8 *RESOURCE_HANDLE_180a3c3e0 = (undefined8 *)0x180a3c3e0;  // 资源句柄
+static uint64_t *STRING_CONST_18098bcb0 = (uint64_t *)0x18098bcb0;  // 字符串常量
+static uint64_t *STRING_CONST_180a0b2a8 = (uint64_t *)0x180a0b2a8;  // 字符串常量2
+static uint64_t *STRING_CONST_180a0b2b4 = (uint64_t *)0x180a0b2b4;  // 字符串常量3
+static uint64_t *STRING_CONST_18098bc73 = (uint64_t *)0x18098bc73;  // 默认字符串
+static uint64_t *STRING_CONST_1809fcc18 = (uint64_t *)0x1809fcc18;  // 终止字符串
+static uint64_t *RESOURCE_HANDLE_180a3c3e0 = (uint64_t *)0x180a3c3e0;  // 资源句柄
 
 // 注意：此函数处理复杂的引擎内部数据结构操作
 // 包含内存管理、资源分配、数据遍历和清理等核心功能

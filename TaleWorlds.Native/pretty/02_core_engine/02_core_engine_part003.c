@@ -9,33 +9,33 @@ void register_base_system_component(void)
 
 {
   char node_type;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong new_id;
-  undefined8 *current_node;
-  undefined8 *parent_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
-  undefined8 callback_ptr;
+  uint64_t *current_node;
+  uint64_t *parent_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
+  uint64_t callback_ptr;
   
   // 获取系统注册表管理器
   registry_manager = (longlong *)get_system_registry();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   node_type = *(char *)((longlong)registry_root[1] + 0x19);
   callback_ptr = 0;
   parent_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找合适的位置
   while (node_type == '\0') {
     compare_result = memcmp(current_node + 4,&BASE_SYSTEM_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     parent_node = current_node;
     current_node = next_node;
@@ -66,33 +66,33 @@ void register_render_system_component(void)
 
 {
   char node_type;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong new_id;
-  undefined8 *current_node;
-  undefined8 *parent_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
-  undefined *render_callback;
+  uint64_t *current_node;
+  uint64_t *parent_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
+  void *render_callback;
   
   // 获取系统注册表管理器
   registry_manager = (longlong *)get_system_registry();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   node_type = *(char *)((longlong)registry_root[1] + 0x19);
   render_callback = &RENDER_SYSTEM_CALLBACK;
   parent_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找合适的位置
   while (node_type == '\0') {
     compare_result = memcmp(current_node + 4,&RENDER_SYSTEM_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     parent_node = current_node;
     current_node = next_node;
@@ -123,33 +123,33 @@ void register_physics_system_component(void)
 
 {
   char node_type;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong new_id;
-  undefined8 *current_node;
-  undefined8 *parent_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
-  undefined8 callback_ptr;
+  uint64_t *current_node;
+  uint64_t *parent_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
+  uint64_t callback_ptr;
   
   // 获取系统注册表管理器
   registry_manager = (longlong *)get_system_registry();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   node_type = *(char *)((longlong)registry_root[1] + 0x19);
   callback_ptr = 0;
   parent_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找合适的位置
   while (node_type == '\0') {
     compare_result = memcmp(current_node + 4,&PHYSICS_SYSTEM_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     parent_node = current_node;
     current_node = next_node;
@@ -181,11 +181,11 @@ void register_physics_system_component(void)
 void initialize_string_processing_system(void)
 
 {
-  undefined8 in_R9;
-  undefined *system_ptr;
-  undefined1 *string_buffer;
-  undefined4 buffer_size;
-  undefined1 auStack_88 [136];
+  uint64_t in_R9;
+  void *system_ptr;
+  int8_t *string_buffer;
+  int32_t buffer_size;
+  int8_t auStack_88 [136];
   
   system_ptr = &STRING_SYSTEM_CONFIG;
   string_buffer = auStack_88;
@@ -203,7 +203,7 @@ int get_system_status(void)
 
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   
   GLOBAL_STATUS_PTR = &STATUS_CONFIG_ROOT;
   GLOBAL_STATUS_DATA = &STATUS_DATA_TABLE;
@@ -214,11 +214,11 @@ int get_system_status(void)
 void initialize_memory_management_system(void)
 
 {
-  undefined8 in_R9;
-  undefined *system_ptr;
-  undefined1 *memory_buffer;
-  undefined4 buffer_size;
-  undefined1 auStack_88 [136];
+  uint64_t in_R9;
+  void *system_ptr;
+  int8_t *memory_buffer;
+  int32_t buffer_size;
+  int8_t auStack_88 [136];
   
   system_ptr = &MEMORY_SYSTEM_CONFIG;
   memory_buffer = auStack_88;
@@ -238,11 +238,11 @@ void initialize_memory_management_system(void)
 void initialize_file_system(void)
 
 {
-  undefined8 in_R9;
-  undefined *system_ptr;
-  undefined1 *file_buffer;
-  undefined4 buffer_size;
-  undefined1 auStack_88 [136];
+  uint64_t in_R9;
+  void *system_ptr;
+  int8_t *file_buffer;
+  int32_t buffer_size;
+  int8_t auStack_88 [136];
   
   system_ptr = &FILE_SYSTEM_CONFIG;
   file_buffer = auStack_88;
@@ -262,11 +262,11 @@ void initialize_file_system(void)
 void initialize_network_system(void)
 
 {
-  undefined8 in_R9;
-  undefined *system_ptr;
-  undefined1 *network_buffer;
-  undefined4 buffer_size;
-  undefined1 auStack_88 [136];
+  uint64_t in_R9;
+  void *system_ptr;
+  int8_t *network_buffer;
+  int32_t buffer_size;
+  int8_t auStack_88 [136];
   
   system_ptr = &NETWORK_SYSTEM_CONFIG;
   network_buffer = auStack_88;
@@ -286,11 +286,11 @@ void initialize_network_system(void)
 void initialize_audio_system(void)
 
 {
-  undefined8 in_R9;
-  undefined *system_ptr;
-  undefined1 *audio_buffer;
-  undefined4 buffer_size;
-  undefined1 auStack_88 [136];
+  uint64_t in_R9;
+  void *system_ptr;
+  int8_t *audio_buffer;
+  int32_t buffer_size;
+  int8_t auStack_88 [136];
   
   system_ptr = &AUDIO_SYSTEM_CONFIG;
   audio_buffer = auStack_88;
@@ -310,11 +310,11 @@ void initialize_audio_system(void)
 void initialize_input_system(void)
 
 {
-  undefined8 in_R9;
-  undefined *system_ptr;
-  undefined1 *input_buffer;
-  undefined4 buffer_size;
-  undefined1 auStack_88 [136];
+  uint64_t in_R9;
+  void *system_ptr;
+  int8_t *input_buffer;
+  int32_t buffer_size;
+  int8_t auStack_88 [136];
   
   system_ptr = &INPUT_SYSTEM_CONFIG;
   input_buffer = auStack_88;
@@ -333,33 +333,33 @@ void register_input_handler_component(void)
 
 {
   char node_type;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong new_id;
-  undefined8 *current_node;
-  undefined8 *parent_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
+  uint64_t *current_node;
+  uint64_t *parent_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
   code *input_callback;
   
   // 获取系统注册表管理器
   registry_manager = (longlong *)get_system_registry();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   node_type = *(char *)((longlong)registry_root[1] + 0x19);
   input_callback = INPUT_HANDLER_CALLBACK;
   parent_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找合适的位置
   while (node_type == '\0') {
     compare_result = memcmp(current_node + 4,&INPUT_HANDLER_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     parent_node = current_node;
     current_node = next_node;
@@ -390,33 +390,33 @@ void register_window_manager_component(void)
 
 {
   char node_type;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong new_id;
-  undefined8 *current_node;
-  undefined8 *parent_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
+  uint64_t *current_node;
+  uint64_t *parent_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
   code *window_callback;
   
   // 获取系统注册表管理器
   registry_manager = (longlong *)get_system_registry();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   node_type = *(char *)((longlong)registry_root[1] + 0x19);
   window_callback = WINDOW_MANAGER_CALLBACK;
   parent_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找合适的位置
   while (node_type == '\0') {
     compare_result = memcmp(current_node + 4,&WINDOW_MANAGER_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     parent_node = current_node;
     current_node = next_node;
@@ -447,33 +447,33 @@ void register_texture_manager_component(void)
 
 {
   char node_type;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong new_id;
-  undefined8 *current_node;
-  undefined8 *parent_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
+  uint64_t *current_node;
+  uint64_t *parent_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
   code *texture_callback;
   
   // 获取系统注册表管理器
   registry_manager = (longlong *)get_system_registry();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   node_type = *(char *)((longlong)registry_root[1] + 0x19);
   texture_callback = TEXTURE_MANAGER_CALLBACK;
   parent_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找合适的位置
   while (node_type == '\0') {
     compare_result = memcmp(current_node + 4,&TEXTURE_MANAGER_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     parent_node = current_node;
     current_node = next_node;
@@ -504,33 +504,33 @@ void register_shader_manager_component(void)
 
 {
   char node_type;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong new_id;
-  undefined8 *current_node;
-  undefined8 *parent_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
+  uint64_t *current_node;
+  uint64_t *parent_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
   code *shader_callback;
   
   // 获取系统注册表管理器
   registry_manager = (longlong *)get_system_registry();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   node_type = *(char *)((longlong)registry_root[1] + 0x19);
   shader_callback = SHADER_MANAGER_CALLBACK;
   parent_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找合适的位置
   while (node_type == '\0') {
     compare_result = memcmp(current_node + 4,&SHADER_MANAGER_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     parent_node = current_node;
     current_node = next_node;
@@ -561,33 +561,33 @@ void register_material_manager_component(void)
 
 {
   char node_type;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong new_id;
-  undefined8 *current_node;
-  undefined8 *parent_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
-  undefined8 callback_ptr;
+  uint64_t *current_node;
+  uint64_t *parent_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
+  uint64_t callback_ptr;
   
   // 获取系统注册表管理器
   registry_manager = (longlong *)get_system_registry();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   node_type = *(char *)((longlong)registry_root[1] + 0x19);
   callback_ptr = 0;
   parent_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找合适的位置
   while (node_type == '\0') {
     compare_result = memcmp(current_node + 4,&MATERIAL_MANAGER_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     parent_node = current_node;
     current_node = next_node;
@@ -618,33 +618,33 @@ void register_scene_manager_component(void)
 
 {
   char node_type;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong new_id;
-  undefined8 *current_node;
-  undefined8 *parent_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
+  uint64_t *current_node;
+  uint64_t *parent_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
   code *scene_callback;
   
   // 获取系统注册表管理器
   registry_manager = (longlong *)get_system_registry();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   node_type = *(char *)((longlong)registry_root[1] + 0x19);
   scene_callback = SCENE_MANAGER_CALLBACK;
   parent_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找合适的位置
   while (node_type == '\0') {
     compare_result = memcmp(current_node + 4,&SCENE_MANAGER_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     parent_node = current_node;
     current_node = next_node;
@@ -675,33 +675,33 @@ void register_time_manager_component(void)
 
 {
   char node_type;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong new_id;
-  undefined8 *current_node;
-  undefined8 *parent_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
-  undefined8 callback_ptr;
+  uint64_t *current_node;
+  uint64_t *parent_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
+  uint64_t callback_ptr;
   
   // 获取系统注册表管理器
   registry_manager = (longlong *)get_system_registry();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   node_type = *(char *)((longlong)registry_root[1] + 0x19);
   callback_ptr = 0;
   parent_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找合适的位置
   while (node_type == '\0') {
     compare_result = memcmp(current_node + 4,&TIME_MANAGER_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     parent_node = current_node;
     current_node = next_node;
@@ -732,33 +732,33 @@ void register_event_manager_component(void)
 
 {
   char node_type;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong new_id;
-  undefined8 *current_node;
-  undefined8 *parent_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
-  undefined *event_callback;
+  uint64_t *current_node;
+  uint64_t *parent_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
+  void *event_callback;
   
   // 获取系统注册表管理器
   registry_manager = (longlong *)get_system_registry();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   node_type = *(char *)((longlong)registry_root[1] + 0x19);
   event_callback = &EVENT_CALLBACK_HANDLER;
   parent_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找合适的位置
   while (node_type == '\0') {
     compare_result = memcmp(current_node + 4,&EVENT_MANAGER_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     parent_node = current_node;
     current_node = next_node;
@@ -789,33 +789,33 @@ void register_resource_manager_component(void)
 
 {
   char node_type;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong new_id;
-  undefined8 *current_node;
-  undefined8 *parent_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
-  undefined8 callback_ptr;
+  uint64_t *current_node;
+  uint64_t *parent_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
+  uint64_t callback_ptr;
   
   // 获取系统注册表管理器
   registry_manager = (longlong *)get_system_registry();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   node_type = *(char *)((longlong)registry_root[1] + 0x19);
   callback_ptr = 0;
   parent_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找合适的位置
   while (node_type == '\0') {
     compare_result = memcmp(current_node + 4,&RESOURCE_MANAGER_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     parent_node = current_node;
     current_node = next_node;
@@ -846,33 +846,33 @@ void register_render_pipeline_component(void)
 
 {
   char node_type;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong new_id;
-  undefined8 *current_node;
-  undefined8 *parent_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
+  uint64_t *current_node;
+  uint64_t *parent_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
   code *pipeline_callback;
   
   // 获取系统注册表管理器
   registry_manager = (longlong *)get_system_registry();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   node_type = *(char *)((longlong)registry_root[1] + 0x19);
   pipeline_callback = RENDER_PIPELINE_CALLBACK;
   parent_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找合适的位置
   while (node_type == '\0') {
     compare_result = memcmp(current_node + 4,&RENDER_PIPELINE_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     parent_node = current_node;
     current_node = next_node;
@@ -903,33 +903,33 @@ void register_shader_compiler_component(void)
 
 {
   char node_type;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong new_id;
-  undefined8 *current_node;
-  undefined8 *parent_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
+  uint64_t *current_node;
+  uint64_t *parent_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
   code *compiler_callback;
   
   // 获取系统注册表管理器
   registry_manager = (longlong *)get_system_registry();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   node_type = *(char *)((longlong)registry_root[1] + 0x19);
   compiler_callback = SHADER_COMPILER_CALLBACK;
   parent_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找合适的位置
   while (node_type == '\0') {
     compare_result = memcmp(current_node + 4,&SHADER_COMPILER_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     parent_node = current_node;
     current_node = next_node;
@@ -960,33 +960,33 @@ void register_texture_cache_component(void)
 
 {
   char node_type;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong new_id;
-  undefined8 *current_node;
-  undefined8 *parent_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
-  undefined8 callback_ptr;
+  uint64_t *current_node;
+  uint64_t *parent_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
+  uint64_t callback_ptr;
   
   // 获取系统注册表管理器
   registry_manager = (longlong *)get_system_registry();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   node_type = *(char *)((longlong)registry_root[1] + 0x19);
   callback_ptr = 0;
   parent_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找合适的位置
   while (node_type == '\0') {
     compare_result = memcmp(current_node + 4,&TEXTURE_CACHE_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     parent_node = current_node;
     current_node = next_node;
@@ -1017,33 +1017,33 @@ void register_scene_renderer_component(void)
 
 {
   char node_type;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong new_id;
-  undefined8 *current_node;
-  undefined8 *parent_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
+  uint64_t *current_node;
+  uint64_t *parent_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
   code *renderer_callback;
   
   // 获取系统注册表管理器
   registry_manager = (longlong *)get_system_registry();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   node_type = *(char *)((longlong)registry_root[1] + 0x19);
   renderer_callback = SCENE_RENDERER_CALLBACK;
   parent_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找合适的位置
   while (node_type == '\0') {
     compare_result = memcmp(current_node + 4,&SCENE_RENDERER_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     parent_node = current_node;
     current_node = next_node;
@@ -1074,33 +1074,33 @@ void register_time_sync_component(void)
 
 {
   char node_type;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong new_id;
-  undefined8 *current_node;
-  undefined8 *parent_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
-  undefined8 callback_ptr;
+  uint64_t *current_node;
+  uint64_t *parent_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
+  uint64_t callback_ptr;
   
   // 获取系统注册表管理器
   registry_manager = (longlong *)get_system_registry();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   node_type = *(char *)((longlong)registry_root[1] + 0x19);
   callback_ptr = 0;
   parent_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找合适的位置
   while (node_type == '\0') {
     compare_result = memcmp(current_node + 4,&TIME_SYNC_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     parent_node = current_node;
     current_node = next_node;
@@ -1131,33 +1131,33 @@ void register_event_dispatcher_component(void)
 
 {
   char node_type;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong new_id;
-  undefined8 *current_node;
-  undefined8 *parent_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
-  undefined *dispatcher_callback;
+  uint64_t *current_node;
+  uint64_t *parent_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
+  void *dispatcher_callback;
   
   // 获取系统注册表管理器
   registry_manager = (longlong *)get_system_registry();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   node_type = *(char *)((longlong)registry_root[1] + 0x19);
   dispatcher_callback = &EVENT_DISPATCHER_HANDLER;
   parent_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找合适的位置
   while (node_type == '\0') {
     compare_result = memcmp(current_node + 4,&EVENT_DISPATCHER_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     parent_node = current_node;
     current_node = next_node;
@@ -1253,33 +1253,33 @@ void register_collision_detection_component(void)
 
 {
   char node_type;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong new_id;
-  undefined8 *current_node;
-  undefined8 *parent_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
+  uint64_t *current_node;
+  uint64_t *parent_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
   code *collision_callback;
   
   // 获取系统注册表管理器
   registry_manager = (longlong *)get_system_registry();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   node_type = *(char *)((longlong)registry_root[1] + 0x19);
   collision_callback = COLLISION_DETECTION_CALLBACK;
   parent_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找合适的位置
   while (node_type == '\0') {
     compare_result = memcmp(current_node + 4,&COLLISION_DETECTION_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     parent_node = current_node;
     current_node = next_node;
@@ -1310,33 +1310,33 @@ void register_physics_simulation_component(void)
 
 {
   char node_type;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong new_id;
-  undefined8 *current_node;
-  undefined8 *parent_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
+  uint64_t *current_node;
+  uint64_t *parent_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
   code *simulation_callback;
   
   // 获取系统注册表管理器
   registry_manager = (longlong *)get_system_registry();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   node_type = *(char *)((longlong)registry_root[1] + 0x19);
   simulation_callback = PHYSICS_SIMULATION_CALLBACK;
   parent_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找合适的位置
   while (node_type == '\0') {
     compare_result = memcmp(current_node + 4,&PHYSICS_SIMULATION_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     parent_node = current_node;
     current_node = next_node;
@@ -1367,33 +1367,33 @@ void register_animation_system_component(void)
 
 {
   char node_type;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong new_id;
-  undefined8 *current_node;
-  undefined8 *parent_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
+  uint64_t *current_node;
+  uint64_t *parent_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
   code *animation_callback;
   
   // 获取系统注册表管理器
   registry_manager = (longlong *)get_system_registry();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   node_type = *(char *)((longlong)registry_root[1] + 0x19);
   animation_callback = ANIMATION_SYSTEM_CALLBACK;
   parent_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找合适的位置
   while (node_type == '\0') {
     compare_result = memcmp(current_node + 4,&ANIMATION_SYSTEM_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     parent_node = current_node;
     current_node = next_node;

@@ -2,27 +2,27 @@
 
 // 02_core_engine_part199.c - 核心引擎模块第199部分 - 包含2个函数
 
-// 函数: void create_platform_object(undefined8 param_1, undefined8 param_2)
+// 函数: void create_platform_object(uint64_t param_1, uint64_t param_2)
 // 功能: 创建平台对象，分配内存并初始化相关结构
 // 参数: 
 //   param_1 - 平台对象类型标识符
 //   param_2 - 平台对象配置参数
-void create_platform_object(undefined8 param_1, undefined8 param_2)
+void create_platform_object(uint64_t param_1, uint64_t param_2)
 
 {
   longlong *object_ptr;
-  undefined4 temp_var;
-  undefined8 *memory_block;
-  undefined4 *string_buffer;
-  undefined8 *object_data;
-  undefined8 flag_value;
-  undefined *stack_ptr_80;
-  undefined4 *stack_ptr_78;
-  undefined4 stack_value_70;
-  undefined8 stack_value_68;
+  int32_t temp_var;
+  uint64_t *memory_block;
+  int32_t *string_buffer;
+  uint64_t *object_data;
+  uint64_t flag_value;
+  void *stack_ptr_80;
+  int32_t *stack_ptr_78;
+  int32_t stack_value_70;
+  uint64_t stack_value_68;
   
   // 分配内存块，大小为0x98字节，对齐为8字节
-  memory_block = (undefined8 *)allocate_memory(_memory_pool_address, 0x98, 8, 3);
+  memory_block = (uint64_t *)allocate_memory(_memory_pool_address, 0x98, 8, 3);
   flag_value = 0xfffffffffffffffe;
   object_data = memory_block;
   
@@ -36,12 +36,12 @@ void create_platform_object(undefined8 param_1, undefined8 param_2)
   
   // 初始化对象属性
   object_data[0x10] = 0;
-  *(undefined4 *)(object_data + 0x11) = 0;
+  *(int32_t *)(object_data + 0x11) = 0;
   *object_ptr = (longlong)&platform_object_interface;
   object_data[0x12] = 0;
   object_data[0x10] = 0;
-  *(undefined4 *)(object_data + 0x11) = 0;
-  *(undefined1 *)(object_data + 0xe) = 0;
+  *(int32_t *)(object_data + 0x11) = 0;
+  *(int8_t *)(object_data + 0xe) = 0;
   
   // 调用对象初始化方法
   (**(code **)(*object_ptr + 0x10))(object_ptr, &platform_object_config);
@@ -49,12 +49,12 @@ void create_platform_object(undefined8 param_1, undefined8 param_2)
   // 准备错误消息字符串
   stack_ptr_80 = &platform_object_interface;
   stack_value_68 = 0;
-  stack_ptr_78 = (undefined4 *)0x0;
+  stack_ptr_78 = (int32_t *)0x0;
   stack_value_70 = 0;
   
   // 分配字符串缓冲区
-  string_buffer = (undefined4 *)allocate_string_buffer(_memory_pool_address, 0x1f, 0x13);
-  *(undefined1 *)string_buffer = 0;
+  string_buffer = (int32_t *)allocate_string_buffer(_memory_pool_address, 0x1f, 0x13);
+  *(int8_t *)string_buffer = 0;
   stack_ptr_78 = string_buffer;
   
   // 获取字符串句柄
@@ -66,10 +66,10 @@ void create_platform_object(undefined8 param_1, undefined8 param_2)
   string_buffer[1] = 0x206c6169;  // "ial "
   string_buffer[2] = 0x656b6142;  // "Bake"
   string_buffer[3] = 0x726f4620;  // " Fro"
-  *(undefined8 *)(string_buffer + 4) = 0x746e657272754320;  // "e Current "
+  *(uint64_t *)(string_buffer + 4) = 0x746e657272754320;  // "e Current "
   string_buffer[6] = 0x76654c20;  // " Leve"
-  *(undefined2 *)(string_buffer + 7) = 0x6c65;  // "el"
-  *(undefined1 *)((longlong)string_buffer + 0x1e) = 0;
+  *(int16_t *)(string_buffer + 7) = 0x6c65;  // "el"
+  *(int8_t *)((longlong)string_buffer + 0x1e) = 0;
   stack_value_70 = 0x1e;
   
   // 调用对象方法设置错误消息
@@ -94,7 +94,7 @@ void create_platform_object(undefined8 param_1, undefined8 param_2)
 void initialize_engine_object(longlong *param_1)
 
 {
-  undefined8 config_value;
+  uint64_t config_value;
   longlong base_address;
   longlong *engine_object;
   longlong *stack_ptr_8;

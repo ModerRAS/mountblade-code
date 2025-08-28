@@ -109,18 +109,18 @@
  * ============================================================================ */
 
 // 基础类型别名
-typedef undefined8 SystemHandle;              // 系统句柄
-typedef undefined8 ComponentHandle;           // 组件句柄
-typedef undefined8 ConfigHandle;              // 配置句柄
-typedef undefined8 ResourceHandle;            // 资源句柄
-typedef undefined4 SystemStatus;              // 系统状态
-typedef undefined4 ComponentFlags;            // 组件标志
-typedef undefined1 SystemByte;                // 系统字节
+typedef uint64_t SystemHandle;              // 系统句柄
+typedef uint64_t ComponentHandle;           // 组件句柄
+typedef uint64_t ConfigHandle;              // 配置句柄
+typedef uint64_t ResourceHandle;            // 资源句柄
+typedef int32_t SystemStatus;              // 系统状态
+typedef int32_t ComponentFlags;            // 组件标志
+typedef int8_t SystemByte;                // 系统字节
 typedef void* SystemContext;                  // 系统上下文
-typedef undefined4 SystemErrorCode;           // 系统错误代码
-typedef undefined4 SystemPriority;            // 系统优先级
-typedef undefined8 SystemTimestamp;           // 系统时间戳
-typedef undefined4 SystemConfigType;         // 系统配置类型
+typedef int32_t SystemErrorCode;           // 系统错误代码
+typedef int32_t SystemPriority;            // 系统优先级
+typedef uint64_t SystemTimestamp;           // 系统时间戳
+typedef int32_t SystemConfigType;         // 系统配置类型
 
 // 枚举类型定义
 typedef enum {
@@ -233,24 +233,24 @@ typedef struct {
 
 // 系统数据区域 - 主要系统状态信息
 extern undefined DAT_180d49830;              // 系统主数据区域
-extern undefined8 UNK_180d498a0;            // 系统控制块
-extern undefined4 UNK_180d498a8;            // 系统状态标志
-extern undefined *UNK_180d498b0;             // 系统指针表
-extern undefined1 *UNK_180d498b8;            // 系统字节表
-extern undefined4 UNK_180d498c0;            // 系统计数器
+extern uint64_t UNK_180d498a0;            // 系统控制块
+extern int32_t UNK_180d498a8;            // 系统状态标志
+extern void *UNK_180d498b0;             // 系统指针表
+extern int8_t *UNK_180d498b8;            // 系统字节表
+extern int32_t UNK_180d498c0;            // 系统计数器
 extern longlong UNK_180d49908;              // 系统时间戳1
 extern longlong UNK_180d49910;              // 系统时间戳2
 extern longlong UNK_180d49928;              // 系统性能计数器1
 extern longlong UNK_180d49930;              // 系统性能计数器2
-extern undefined4 UNK_180d49948;            // 系统错误代码
-extern undefined4 UNK_180d4994c;            // 系统警告代码
+extern int32_t UNK_180d49948;            // 系统错误代码
+extern int32_t UNK_180d4994c;            // 系统警告代码
 extern undefined DAT_180d49950;             // 系统配置数据
 extern undefined DAT_180d49970;             // 系统资源数据
 extern undefined DAT_180bfc140;              // 系统缓存数据
 extern undefined DAT_1803f48b2;              // 系统临时数据
 extern undefined UNK_180d49d58;              // 系统保留区域1
 extern longlong UNK_180d49d68;              // 系统统计信息1
-extern undefined8 UNK_180d49d70;            // 系统统计信息2
+extern uint64_t UNK_180d49d70;            // 系统统计信息2
 extern longlong UNK_180d49d78;              // 系统统计信息3
 extern longlong *UNK_180c96358;             // 系统全局指针表
 

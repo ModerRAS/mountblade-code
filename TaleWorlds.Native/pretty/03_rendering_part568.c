@@ -56,7 +56,7 @@
  * 
  * @note 本函数包含复杂的数学运算，涉及SIMD指令和优化算法
  */
-void rendering_system_advanced_math_calculator(longlong param_1, undefined8 param_2)
+void rendering_system_advanced_math_calculator(longlong param_1, uint64_t param_2)
 {
   /* ============================================================================
    * 变量声明区域
@@ -65,7 +65,7 @@ void rendering_system_advanced_math_calculator(longlong param_1, undefined8 para
   // 基础变量声明
   int iVar1;                                    // 整数临时变量，用于循环计数和条件判断
   float fVar2, fVar3, fVar4;                     // 浮点数临时变量，用于存储中间计算结果
-  undefined8 uVar5, uVar6, uVar7, uVar8;        // 8位未定义变量，用于数据传输和存储
+  uint64_t uVar5, uVar6, uVar7, uVar8;        // 8位未定义变量，用于数据传输和存储
   float fVar9, fVar10, fVar11;                   // 浮点数计算变量，用于向量运算
   float *pfVar12;                                // 浮点数指针，指向渲染数据数组
   longlong lVar13;                               // 长整型临时变量，用于内存地址计算
@@ -79,8 +79,8 @@ void rendering_system_advanced_math_calculator(longlong param_1, undefined8 para
   // SIMD和数学计算相关变量
   float in_XMM1_Da;                             // XMM1寄存器值，用于SIMD计算
   float fVar14, fVar15, fVar16;                 // 浮点数计算变量，用于向量和矩阵运算
-  undefined1 in_XMM2 [16];                      // XMM2寄存器数组，用于SIMD数据传输
-  undefined1 auVar17 [16];                      // 计算结果数组，存储SIMD运算结果
+  int8_t in_XMM2 [16];                      // XMM2寄存器数组，用于SIMD数据传输
+  int8_t auVar17 [16];                      // 计算结果数组，存储SIMD运算结果
   
   // 主要计算变量
   float fVar18, fVar19, fVar20;                  // 主要浮点数计算变量，用于距离和角度计算
@@ -93,7 +93,7 @@ void rendering_system_advanced_math_calculator(longlong param_1, undefined8 para
   float fStack0000000000000030;                 // 栈浮点数变量1，存储矩阵元素
   float fStack0000000000000034;                 // 栈浮点数变量2，存储矩阵元素
   float fStack0000000000000038;                 // 栈浮点数变量3，存储矩阵元素
-  undefined4 uStack000000000000003c;            // 栈未定义4位变量，用于数据对齐
+  int32_t uStack000000000000003c;            // 栈未定义4位变量，用于数据对齐
   
   // 输入栈变量
   float in_stack_00000040;                      // 输入栈浮点数1，存储向量X分量
@@ -122,9 +122,9 @@ void rendering_system_advanced_math_calculator(longlong param_1, undefined8 para
   
   // 第二阶段：从渲染上下文提取数据指针
   // 从参数1的0x30偏移处获取第一个8位数据
-  uVar5 = *(undefined8 *)(param_1 + 0x30);
+  uVar5 = *(uint64_t *)(param_1 + 0x30);
   // 从参数1的0x38偏移处获取第二个8位数据
-  uVar6 = *(undefined8 *)(param_1 + 0x38);
+  uVar6 = *(uint64_t *)(param_1 + 0x38);
   
   // 第三阶段：从渲染数据数组加载向量分量
   // 加载第一个向量的各个分量
@@ -144,10 +144,10 @@ void rendering_system_advanced_math_calculator(longlong param_1, undefined8 para
   fStack0000000000000064 = pfVar12[1];           // 向量3的Y分量
   in_stack_00000068 = pfVar12[2];                // 向量3的Z分量
   fStack000000000000006c = pfVar12[3];           // 向量3的W分量
-  *(undefined8 *)(unaff_RBP + -0x1c) = uVar5;
-  *(undefined8 *)(unaff_RBP + -0x1a) = uVar6;
-  *(undefined8 *)(unaff_RBP + -0x10) = uVar5;
-  *(undefined8 *)(unaff_RBP + -0xe) = uVar6;
+  *(uint64_t *)(unaff_RBP + -0x1c) = uVar5;
+  *(uint64_t *)(unaff_RBP + -0x1a) = uVar6;
+  *(uint64_t *)(unaff_RBP + -0x10) = uVar5;
+  *(uint64_t *)(unaff_RBP + -0xe) = uVar6;
   unaff_RBP[-0x20] = fVar15;
   unaff_RBP[-0x1f] = fVar21;
   unaff_RBP[-0x1e] = fVar29;
@@ -203,8 +203,8 @@ LAB_18057aad4:
   }
   in_stack_00000070 = in_stack_00000040;
   if (*(float *)(unaff_RBX + 0x68) == -1e+30) {
-    uVar5 = *(undefined8 *)(param_1 + 0x30);
-    uVar6 = *(undefined8 *)(param_1 + 0x38);
+    uVar5 = *(uint64_t *)(param_1 + 0x30);
+    uVar6 = *(uint64_t *)(param_1 + 0x38);
     *(float *)(unaff_RBX + 0x98) = fVar26;
     *(float *)(unaff_RBX + 0x9c) = fVar27;
     *(float *)(unaff_RBX + 0xa0) = fVar28;
@@ -221,8 +221,8 @@ LAB_18057aad4:
     *(float *)(unaff_RBX + 0xdc) = fStack0000000000000074;
     *(float *)(unaff_RBX + 0xe0) = in_stack_00000078;
     *(float *)(unaff_RBX + 0xe4) = fStack000000000000007c;
-    *(undefined8 *)(unaff_RBX + 0x68) = uVar5;
-    *(undefined8 *)(unaff_RBX + 0x70) = uVar6;
+    *(uint64_t *)(unaff_RBX + 0x68) = uVar5;
+    *(uint64_t *)(unaff_RBX + 0x70) = uVar6;
     *(float *)(unaff_RBX + 0xb8) = fVar15;
     *(float *)(unaff_RBX + 0xbc) = fVar21;
     *(float *)(unaff_RBX + 0xc0) = fVar29;
@@ -238,19 +238,19 @@ LAB_18057aad4:
     fStack0000000000000030 = *(float *)(unaff_RBX + 200);
     fStack0000000000000034 = *(float *)(unaff_RBX + 0xcc);
     fStack0000000000000038 = *(float *)(unaff_RBX + 0xd0);
-    uStack000000000000003c = *(undefined4 *)(unaff_RBX + 0xd4);
+    uStack000000000000003c = *(int32_t *)(unaff_RBX + 0xd4);
   }
   else if (*(int *)(unaff_RBX + 0x104) == 1) {
     fStack0000000000000030 = *(float *)(unaff_RBX + 0xd8);
     fStack0000000000000034 = *(float *)(unaff_RBX + 0xdc);
     fStack0000000000000038 = *(float *)(unaff_RBX + 0xe0);
-    uStack000000000000003c = *(undefined4 *)(unaff_RBX + 0xe4);
+    uStack000000000000003c = *(int32_t *)(unaff_RBX + 0xe4);
   }
   else {
     fStack0000000000000030 = *(float *)(unaff_RBX + 0xe8);
     fStack0000000000000034 = *(float *)(unaff_RBX + 0xec);
     fStack0000000000000038 = *(float *)(unaff_RBX + 0xf0);
-    uStack000000000000003c = *(undefined4 *)(unaff_RBX + 0xf4);
+    uStack000000000000003c = *(int32_t *)(unaff_RBX + 0xf4);
   }
   FUN_1801c1720(unaff_RBX + 0x98,unaff_RBP + -0x14);
   FUN_1801c1720(&stack0x00000060,unaff_RBP + -0x10);
@@ -278,19 +278,19 @@ LAB_18057aad4:
   fVar18 = fVar29 * 0.5 * (3.0 - fVar21 * fVar29 * fVar29);
   fVar21 = *(float *)(unaff_RBX + 0xfc);
   fVar29 = *(float *)(unaff_RBX + 0x6c);
-  uVar5 = *(undefined8 *)(unaff_RBX + 0xe0);
-  uVar6 = *(undefined8 *)(unaff_RBX + 200);
-  uVar7 = *(undefined8 *)(unaff_RBX + 0xd0);
-  *(undefined8 *)(unaff_RBP + 0x10) = *(undefined8 *)(unaff_RBX + 0xd8);
-  *(undefined8 *)(unaff_RBP + 0x12) = uVar5;
+  uVar5 = *(uint64_t *)(unaff_RBX + 0xe0);
+  uVar6 = *(uint64_t *)(unaff_RBX + 200);
+  uVar7 = *(uint64_t *)(unaff_RBX + 0xd0);
+  *(uint64_t *)(unaff_RBP + 0x10) = *(uint64_t *)(unaff_RBX + 0xd8);
+  *(uint64_t *)(unaff_RBP + 0x12) = uVar5;
   fStack0000000000000030 =
        (fStack0000000000000030 * fVar25 + fVar15 +
        fVar18 * fVar23 * ABS(fVar31) * 0.2 * fVar21 * (1.0 / fVar25)) - unaff_RBP[-0x1c];
   fStack0000000000000034 =
        (fStack0000000000000034 * fVar25 + fVar29 +
        fVar18 * fVar14 * ABS(fVar31) * 0.2 * fVar21 * (1.0 / fVar25)) - unaff_RBP[-0x1b];
-  *(undefined8 *)(unaff_RBP + 0xc) = uVar6;
-  *(undefined8 *)(unaff_RBP + 0xe) = uVar7;
+  *(uint64_t *)(unaff_RBP + 0xc) = uVar6;
+  *(uint64_t *)(unaff_RBP + 0xe) = uVar7;
   fVar31 = *(float *)(unaff_RBX + 0xec);
   fVar25 = *(float *)(unaff_RBX + 0xf0);
   fVar15 = *(float *)(unaff_RBX + 0xf4);
@@ -520,9 +520,9 @@ LAB_18057b6d9:
     unaff_RBP[0x12] = unaff_RBP[0x12] * fVar31;
   }
   uStack000000000000003c = 0x7f7fffff;
-  uVar5 = *(undefined8 *)(unaff_RBP + 0xe);
-  uVar6 = *(undefined8 *)(unaff_RBP + 0x10);
-  uVar7 = *(undefined8 *)(unaff_RBP + 0x12);
+  uVar5 = *(uint64_t *)(unaff_RBP + 0xe);
+  uVar6 = *(uint64_t *)(unaff_RBP + 0x10);
+  uVar7 = *(uint64_t *)(unaff_RBP + 0x12);
   fVar15 = unaff_RBP[-0x20];
   fVar21 = unaff_RBP[-0x1f];
   fVar29 = unaff_RBP[-0x1e];
@@ -530,16 +530,16 @@ LAB_18057b6d9:
   fVar18 = unaff_RBP[-0x1e];
   fVar31 = unaff_RBP[-0x1f];
   fVar25 = unaff_RBP[-0x20];
-  *(undefined8 *)(unaff_RBX + 200) = *(undefined8 *)(unaff_RBP + 0xc);
-  *(undefined8 *)(unaff_RBX + 0xd0) = uVar5;
-  uVar5 = *(undefined8 *)(unaff_RBP + 0x14);
-  uVar8 = *(undefined8 *)(unaff_RBP + 0x16);
-  *(undefined8 *)(unaff_RBX + 0xd8) = uVar6;
-  *(undefined8 *)(unaff_RBX + 0xe0) = uVar7;
-  *(undefined8 *)(unaff_RBX + 0xe8) = uVar5;
-  *(undefined8 *)(unaff_RBX + 0xf0) = uVar8;
-  *(undefined8 *)(unaff_RBP + -0x10) = *(undefined8 *)(unaff_RBP + -0x1c);
-  *(undefined8 *)(unaff_RBP + -0xe) = *(undefined8 *)(unaff_RBP + -0x1a);
+  *(uint64_t *)(unaff_RBX + 200) = *(uint64_t *)(unaff_RBP + 0xc);
+  *(uint64_t *)(unaff_RBX + 0xd0) = uVar5;
+  uVar5 = *(uint64_t *)(unaff_RBP + 0x14);
+  uVar8 = *(uint64_t *)(unaff_RBP + 0x16);
+  *(uint64_t *)(unaff_RBX + 0xd8) = uVar6;
+  *(uint64_t *)(unaff_RBX + 0xe0) = uVar7;
+  *(uint64_t *)(unaff_RBX + 0xe8) = uVar5;
+  *(uint64_t *)(unaff_RBX + 0xf0) = uVar8;
+  *(uint64_t *)(unaff_RBP + -0x10) = *(uint64_t *)(unaff_RBP + -0x1c);
+  *(uint64_t *)(unaff_RBP + -0xe) = *(uint64_t *)(unaff_RBP + -0x1a);
   unaff_RBP[-0x14] = fVar15;
   unaff_RBP[-0x13] = fVar21;
   unaff_RBP[-0x12] = fVar29;
@@ -623,9 +623,9 @@ LAB_18057b795:
     *(float *)(unaff_RBX + 0x60) = in_stack_00000040;
   }
   else {
-    *(undefined8 *)(unaff_RBX + 0x58) = 0;
+    *(uint64_t *)(unaff_RBX + 0x58) = 0;
     in_stack_00000040 = 0.0;
-    *(undefined8 *)(unaff_RBX + 0x60) = 0;
+    *(uint64_t *)(unaff_RBX + 0x60) = 0;
   }
   fVar25 = *(float *)(unaff_RBX + 0xcc);
   fVar18 = *(float *)(unaff_RBX + 0xd0);

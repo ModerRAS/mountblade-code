@@ -7,28 +7,28 @@
 // 原始函数名：FUN_1800826b0
 void resize_container(longlong *container_ptr, longlong *data_range_ptr)
 {
-    undefined4 *data_start;
-    undefined4 *data_end;
+    int32_t *data_start;
+    int32_t *data_end;
     uint allocation_flags;
-    undefined8 new_memory_block;
-    undefined8 *new_container;
-    undefined4 *current_data;
-    undefined8 *iterator;
-    undefined8 *temp_ptr;
+    uint64_t new_memory_block;
+    uint64_t *new_container;
+    int32_t *current_data;
+    uint64_t *iterator;
+    uint64_t *temp_ptr;
     longlong *current_slot;
     longlong capacity;
     longlong new_capacity;
-    undefined4 *element_ptr;
-    undefined8 element_data;
+    int32_t *element_ptr;
+    uint64_t element_data;
     
     // 内存分配标志位
     element_data = 0xfffffffffffffffe;
-    element_ptr = (undefined4 *)container_ptr[1];
-    data_start = (undefined4 *)*container_ptr;
+    element_ptr = (int32_t *)container_ptr[1];
+    data_start = (int32_t *)*container_ptr;
     
     // 计算当前容量
     capacity = (longlong)element_ptr - (longlong)data_start >> 5;
-    new_container = (undefined8 *)0x0;
+    new_container = (uint64_t *)0x0;
     
     // 确定新容量
     if (capacity == 0) {
@@ -41,12 +41,12 @@ void resize_container(longlong *container_ptr, longlong *data_range_ptr)
     }
     
     // 分配新内存块
-    new_container = (undefined8 *)
+    new_container = (uint64_t *)
                    allocate_memory(_global_memory_allocator, capacity << 5, 
                                  (char)container_ptr[3], element_ptr, 0xfffffffffffffffe);
     
-    element_ptr = (undefined4 *)container_ptr[1];
-    data_start = (undefined4 *)*container_ptr;
+    element_ptr = (int32_t *)container_ptr[1];
+    data_start = (int32_t *)*container_ptr;
 
 ALLOCATION_COMPLETE:
     iterator = new_container;
@@ -57,20 +57,20 @@ ALLOCATION_COMPLETE:
         data_start = data_start + 6;
         do {
             *iterator = 0;
-            *(undefined8 *)(new_capacity + -0x10 + (longlong)data_start) = 0;
-            *(undefined8 *)(new_capacity + -8 + (longlong)data_start) = 0;
-            *(undefined4 *)(new_capacity + (longlong)data_start) = *data_start;
+            *(uint64_t *)(new_capacity + -0x10 + (longlong)data_start) = 0;
+            *(uint64_t *)(new_capacity + -8 + (longlong)data_start) = 0;
+            *(int32_t *)(new_capacity + (longlong)data_start) = *data_start;
             element_data = *iterator;
-            *iterator = *(undefined8 *)(data_start + -6);
-            *(undefined8 *)(data_start + -6) = element_data;
-            element_data = *(undefined8 *)(new_capacity + -0x10 + (longlong)data_start);
-            *(undefined8 *)(new_capacity + -0x10 + (longlong)data_start) = *(undefined8 *)(data_start + -4);
-            *(undefined8 *)(data_start + -4) = element_data;
-            element_data = *(undefined8 *)(new_capacity + -8 + (longlong)data_start);
-            *(undefined8 *)(new_capacity + -8 + (longlong)data_start) = *(undefined8 *)(data_start + -2);
-            *(undefined8 *)(data_start + -2) = element_data;
-            element_ptr = *(undefined4 *)(new_capacity + (longlong)data_start);
-            *(undefined4 *)(new_capacity + (longlong)data_start) = *data_start;
+            *iterator = *(uint64_t *)(data_start + -6);
+            *(uint64_t *)(data_start + -6) = element_data;
+            element_data = *(uint64_t *)(new_capacity + -0x10 + (longlong)data_start);
+            *(uint64_t *)(new_capacity + -0x10 + (longlong)data_start) = *(uint64_t *)(data_start + -4);
+            *(uint64_t *)(data_start + -4) = element_data;
+            element_data = *(uint64_t *)(new_capacity + -8 + (longlong)data_start);
+            *(uint64_t *)(new_capacity + -8 + (longlong)data_start) = *(uint64_t *)(data_start + -2);
+            *(uint64_t *)(data_start + -2) = element_data;
+            element_ptr = *(int32_t *)(new_capacity + (longlong)data_start);
+            *(int32_t *)(new_capacity + (longlong)data_start) = *data_start;
             *data_start = element_ptr;
             iterator = iterator + 4;
             temp_ptr = data_start + 2;
@@ -84,7 +84,7 @@ ALLOCATION_COMPLETE:
     *(uint *)(iterator + 3) = allocation_flags;
     
     if (new_capacity != 0) {
-        temp_ptr = (undefined8 *)allocate_memory(_global_memory_allocator, new_capacity * 4, 
+        temp_ptr = (uint64_t *)allocate_memory(_global_memory_allocator, new_capacity * 4, 
                                               allocation_flags & 0xff, element_ptr, element_data);
     }
     
@@ -146,13 +146,13 @@ void cleanup_memory_region(longlong *start_ptr, longlong *end_ptr)
 
 // 函数：从内存池分配对象
 // 原始函数名：FUN_1800828d0
-undefined8 * allocate_from_pool(longlong pool_handle, undefined8 *object_ptr)
+uint64_t * allocate_from_pool(longlong pool_handle, uint64_t *object_ptr)
 {
     longlong pool_position;
     int lock_result;
     longlong *new_object;
-    undefined4 init_flag;
-    undefined8 allocation_flags;
+    int32_t init_flag;
+    uint64_t allocation_flags;
     
     allocation_flags = 0xfffffffffffffffe;
     init_flag = 0;
@@ -171,11 +171,11 @@ undefined8 * allocate_from_pool(longlong pool_handle, undefined8 *object_ptr)
         new_object = (longlong *)allocate_object(_global_memory_allocator, 0x28, 8, 0x20, init_flag, allocation_flags);
         *new_object = (longlong)&vtable_type_180a21690;
         *new_object = (longlong)&vtable_type_180a21720;
-        *(undefined4 *)(new_object + 1) = 0;
+        *(int32_t *)(new_object + 1) = 0;
         *new_object = (longlong)&vtable_type_1809fff60;
         new_object[2] = 0;
         new_object[3] = 0;
-        *(undefined1 *)(new_object + 4) = 0;
+        *(int8_t *)(new_object + 4) = 0;
         *new_object = (longlong)&vtable_type_1809ffef8;
         // 调用虚函数
         (*(code **)(*new_object + 0x28))(new_object);
@@ -191,11 +191,11 @@ undefined8 * allocate_from_pool(longlong pool_handle, undefined8 *object_ptr)
         new_object[4] = -0x5a5a5a5a5a5a5a5b;
         *new_object = (longlong)&vtable_type_180a21690;
         *new_object = (longlong)&vtable_type_180a21720;
-        *(undefined4 *)(new_object + 1) = 0;
+        *(int32_t *)(new_object + 1) = 0;
         *new_object = (longlong)&vtable_type_1809fff60;
         new_object[2] = 0;
         new_object[3] = 0;
-        *(undefined1 *)(new_object + 4) = 0;
+        *(int8_t *)(new_object + 4) = 0;
         *new_object = (longlong)&vtable_type_1809ffef8;
         // 调用虚函数
         (*(code **)(*new_object + 0x28))(new_object);
@@ -213,7 +213,7 @@ undefined8 * allocate_from_pool(longlong pool_handle, undefined8 *object_ptr)
 
 // 函数：内存块移动
 // 原始函数名：FUN_180082a50
-void move_memory_block(longlong source, longlong destination, undefined8 size)
+void move_memory_block(longlong source, longlong destination, uint64_t size)
 {
     if (source != destination) {
         // WARNING: 此子程序不返回
@@ -226,13 +226,13 @@ void move_memory_block(longlong source, longlong destination, undefined8 size)
 
 // 函数：分配特定类型对象
 // 原始函数名：FUN_180082aa0
-undefined8 * allocate_specific_type(longlong pool_handle, undefined8 *object_ptr)
+uint64_t * allocate_specific_type(longlong pool_handle, uint64_t *object_ptr)
 {
     longlong pool_position;
     int lock_result;
     longlong *new_object;
-    undefined4 init_flag;
-    undefined8 allocation_flags;
+    int32_t init_flag;
+    uint64_t allocation_flags;
     
     allocation_flags = 0xfffffffffffffffe;
     init_flag = 0;
@@ -251,11 +251,11 @@ undefined8 * allocate_specific_type(longlong pool_handle, undefined8 *object_ptr
         new_object = (longlong *)allocate_object(_global_memory_allocator, 0x28, 8, 0x20, init_flag, allocation_flags);
         *new_object = (longlong)&vtable_type_180a21690;
         *new_object = (longlong)&vtable_type_180a21720;
-        *(undefined4 *)(new_object + 1) = 0;
+        *(int32_t *)(new_object + 1) = 0;
         *new_object = (longlong)&vtable_type_1809fff60;
         new_object[2] = 0;
         new_object[3] = 0;
-        *(undefined1 *)(new_object + 4) = 0;
+        *(int8_t *)(new_object + 4) = 0;
         *new_object = (longlong)&vtable_type_1809ffe28;
         // 调用虚函数
         (*(code **)(*new_object + 0x28))(new_object);
@@ -271,11 +271,11 @@ undefined8 * allocate_specific_type(longlong pool_handle, undefined8 *object_ptr
         new_object[4] = -0x5a5a5a5a5a5a5a5b;
         *new_object = (longlong)&vtable_type_180a21690;
         *new_object = (longlong)&vtable_type_180a21720;
-        *(undefined4 *)(new_object + 1) = 0;
+        *(int32_t *)(new_object + 1) = 0;
         *new_object = (longlong)&vtable_type_1809fff60;
         new_object[2] = 0;
         new_object[3] = 0;
-        *(undefined1 *)(new_object + 4) = 0;
+        *(int8_t *)(new_object + 4) = 0;
         *new_object = (longlong)&vtable_type_1809ffe28;
         // 调用虚函数
         (*(code **)(*new_object + 0x28))(new_object);
@@ -295,13 +295,13 @@ undefined8 * allocate_specific_type(longlong pool_handle, undefined8 *object_ptr
 
 // 函数：分配另一种特定类型对象
 // 原始函数名：FUN_180082c20
-undefined8 * allocate_alternative_type(longlong pool_handle, undefined8 *object_ptr)
+uint64_t * allocate_alternative_type(longlong pool_handle, uint64_t *object_ptr)
 {
     longlong pool_position;
     int lock_result;
     longlong *new_object;
-    undefined4 init_flag;
-    undefined8 allocation_flags;
+    int32_t init_flag;
+    uint64_t allocation_flags;
     
     allocation_flags = 0xfffffffffffffffe;
     init_flag = 0;
@@ -320,11 +320,11 @@ undefined8 * allocate_alternative_type(longlong pool_handle, undefined8 *object_
         new_object = (longlong *)allocate_object(_global_memory_allocator, 0x28, 8, 0x20, init_flag, allocation_flags);
         *new_object = (longlong)&vtable_type_180a21690;
         *new_object = (longlong)&vtable_type_180a21720;
-        *(undefined4 *)(new_object + 1) = 0;
+        *(int32_t *)(new_object + 1) = 0;
         *new_object = (longlong)&vtable_type_1809fff60;
         new_object[2] = 0;
         new_object[3] = 0;
-        *(undefined1 *)(new_object + 4) = 0;
+        *(int8_t *)(new_object + 4) = 0;
         *new_object = (longlong)&vtable_type_1809ffe90;
         // 调用虚函数
         (*(code **)(*new_object + 0x28))(new_object);
@@ -340,11 +340,11 @@ undefined8 * allocate_alternative_type(longlong pool_handle, undefined8 *object_
         new_object[4] = -0x5a5a5a5a5a5a5a5b;
         *new_object = (longlong)&vtable_type_180a21690;
         *new_object = (longlong)&vtable_type_180a21720;
-        *(undefined4 *)(new_object + 1) = 0;
+        *(int32_t *)(new_object + 1) = 0;
         *new_object = (longlong)&vtable_type_1809fff60;
         new_object[2] = 0;
         new_object[3] = 0;
-        *(undefined1 *)(new_object + 4) = 0;
+        *(int8_t *)(new_object + 4) = 0;
         *new_object = (longlong)&vtable_type_1809ffe90;
         // 调用虚函数
         (*(code **)(*new_object + 0x28))(new_object);
@@ -362,19 +362,19 @@ undefined8 * allocate_alternative_type(longlong pool_handle, undefined8 *object_
 
 // 函数：处理对象状态更新
 // 原始函数名：FUN_180082da0
-undefined1 update_object_state(longlong *object_manager, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+int8_t update_object_state(longlong *object_manager, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    undefined1 *state_ptr;
-    undefined1 old_state;
-    undefined8 vtable_entry;
+    int8_t *state_ptr;
+    int8_t old_state;
+    uint64_t vtable_entry;
     longlong *subsystem_a;
     longlong *subsystem_b;
     longlong **temp_ptr_a;
-    undefined8 allocation_flags;
+    uint64_t allocation_flags;
     
     allocation_flags = 0xfffffffffffffffe;
     object_manager = (longlong *)*object_manager;
-    vtable_entry = *(undefined8 *)
+    vtable_entry = *(uint64_t *)
                    (*(longlong *)(*object_manager + 0x1e0) + (ulonglong)*(byte *)(object_manager + 1) * 0x18);
     
     temp_ptr_a = &subsystem_a;
@@ -385,7 +385,7 @@ undefined1 update_object_state(longlong *object_manager, undefined8 param_2, und
     
     process_subsystem(vtable_entry, &subsystem_a, param_3, param_4, allocation_flags);
     
-    vtable_entry = *(undefined8 *)
+    vtable_entry = *(uint64_t *)
                    (*(longlong *)(*object_manager + 0x1e0) + 8 + (ulonglong)*(byte *)(object_manager + 1) * 0x18);
     
     temp_ptr_a = &subsystem_b;
@@ -398,7 +398,7 @@ undefined1 update_object_state(longlong *object_manager, undefined8 param_2, und
     
     // 锁定并更新状态
     acquire_global_lock();
-    state_ptr = (undefined1 *)
+    state_ptr = (int8_t *)
                (*(longlong *)(*object_manager + 0x1e0) + 0x15 + (ulonglong)*(byte *)(object_manager + 1) * 0x18);
     old_state = *state_ptr;
     *state_ptr = 3;
@@ -413,10 +413,10 @@ undefined1 update_object_state(longlong *object_manager, undefined8 param_2, und
 // 原始函数名：FUN_180082e70
 longlong manage_object_lifecycle(longlong *object_ptr, longlong *source_ptr, int operation)
 {
-    undefined8 *new_object;
+    uint64_t *new_object;
     longlong *ref_counted_obj;
     longlong object_handle;
-    undefined8 *source_data;
+    uint64_t *source_data;
     
     if (operation == 3) {
         return 0x180bfdd20;  // 返回类型信息
@@ -441,11 +441,11 @@ longlong manage_object_lifecycle(longlong *object_ptr, longlong *source_ptr, int
     else {
         if (operation == 1) {
             // 复制构造对象
-            source_data = (undefined8 *)allocate_object(_global_memory_allocator, 0x20, 8, 
+            source_data = (uint64_t *)allocate_object(_global_memory_allocator, 0x20, 8, 
                                                       object_type_descriptor, 0xfffffffffffffffe);
-            new_object = (undefined8 *)*source_ptr;
+            new_object = (uint64_t *)*source_ptr;
             *source_data = *new_object;
-            *(undefined1 *)(source_data + 1) = *(undefined1 *)(new_object + 1);
+            *(int8_t *)(source_data + 1) = *(int8_t *)(new_object + 1);
             ref_counted_obj = (longlong *)new_object[2];
             source_data[2] = ref_counted_obj;
             if (ref_counted_obj != (longlong *)0x0) {
@@ -473,13 +473,13 @@ longlong manage_object_lifecycle(longlong *object_ptr, longlong *source_ptr, int
 
 // 函数：初始化渲染上下文
 // 原始函数名：FUN_180082fd0
-void initialize_render_context(longlong context_handle, undefined8 param_2, undefined8 param_3, longlong *render_data)
+void initialize_render_context(longlong context_handle, uint64_t param_2, uint64_t param_3, longlong *render_data)
 {
     int render_param_a;
     int render_param_b;
     longlong context_base;
     longlong *new_renderer;
-    undefined8 render_object;
+    uint64_t render_object;
     longlong *renderer_list;
     
     context_base = *render_data;
@@ -497,13 +497,13 @@ void initialize_render_context(longlong context_handle, undefined8 param_2, unde
         (*(code **)(*new_renderer + 0x38))();
     }
     
-    *(undefined1 *)(context_handle + 0x1a) = 0x12;
+    *(int8_t *)(context_handle + 0x1a) = 0x12;
     context_base = *(longlong *)(context_base + 0x210);
     initialize_render_pipeline(context_base + 0x10);
     initialize_render_pipeline(context_base + 0x38, context_handle);
     
-    *(undefined1 *)(context_base + 0x80) = *(undefined1 *)(context_handle + 0x1a);
-    *(undefined4 *)(context_base + 0x60) = **(undefined4 **)(context_handle + 8);
+    *(int8_t *)(context_base + 0x80) = *(int8_t *)(context_handle + 0x1a);
+    *(int32_t *)(context_base + 0x60) = **(int32_t **)(context_handle + 8);
     *(longlong *)(context_handle + 8) = *(longlong *)(context_handle + 8) + 4;
     
     render_param_a = *(int *)(context_base + 0x60);
@@ -512,7 +512,7 @@ void initialize_render_context(longlong context_handle, undefined8 param_2, unde
     if (render_param_b < render_param_a) {
         if (render_param_a == 0) {
             if (render_param_b < 2) {
-                *(undefined4 *)(context_base + 100) = 8;
+                *(int32_t *)(context_base + 100) = 8;
             }
             else {
                 *(int *)(context_base + 100) = (render_param_b >> 1) + render_param_b;
@@ -526,13 +526,13 @@ void initialize_render_context(longlong context_handle, undefined8 param_2, unde
     
     *(int *)(context_base + 0x60) = render_param_a;
     // WARNING: 此子程序不返回
-    memcpy(*(undefined8 *)(context_base + 0x68), *(undefined8 *)(context_handle + 8), 
+    memcpy(*(uint64_t *)(context_base + 0x68), *(uint64_t *)(context_handle + 8), 
            (longlong)(render_param_a * 0x5c));
 }
 
 // 函数：减少引用计数
 // 原始函数名：FUN_180083100
-int decrease_reference_count(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 *ref_count_ptr)
+int decrease_reference_count(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t *ref_count_ptr)
 {
     int current_count;
     int *count_ptr;
@@ -550,21 +550,21 @@ int decrease_reference_count(undefined8 param_1, undefined8 param_2, undefined8 
 
 // 函数：处理对象销毁
 // 原始函数名：FUN_1800831c0
-void handle_object_destruction(undefined8 param_1, undefined8 param_2, undefined8 param_3, longlong *object_ptr)
+void handle_object_destruction(uint64_t param_1, uint64_t param_2, uint64_t param_3, longlong *object_ptr)
 {
-    undefined8 *object_data;
-    undefined8 object_header;
+    uint64_t *object_data;
+    uint64_t object_header;
     longlong *destructor_a;
     longlong *destructor_b;
-    undefined8 stack_temp;
+    uint64_t stack_temp;
     longlong **temp_ptr_a;
     longlong **temp_ptr_b;
     
     stack_temp = 0xfffffffffffffffe;
-    object_data = (undefined8 *)*object_ptr;
+    object_data = (uint64_t *)*object_ptr;
     
     // 调用析构函数
-    call_object_destructor(object_data[2], object_data[3], *(undefined1 *)(object_data + 1), param_1);
+    call_object_destructor(object_data[2], object_data[3], *(int8_t *)(object_data + 1), param_1);
     
     object_header = *object_data;
     temp_ptr_a = &destructor_a;
@@ -580,7 +580,7 @@ void handle_object_destruction(undefined8 param_1, undefined8 param_2, undefined
     }
     
     // 执行清理操作
-    perform_cleanup_operations(object_header, *(undefined1 *)(object_data + 1), &destructor_b, &destructor_a);
+    perform_cleanup_operations(object_header, *(int8_t *)(object_data + 1), &destructor_b, &destructor_a);
     
     // WARNING: 无法恢复跳转表，分支过多
     // WARNING: 将间接跳转作为调用处理
@@ -641,10 +641,10 @@ longlong manage_object_lifecycle_variant(longlong *object_ptr, longlong *source_
 // 原始函数名：FUN_180083390
 longlong manage_object_lifecycle_alternative(longlong *object_ptr, longlong *source_ptr, int operation)
 {
-    undefined8 *new_object;
+    uint64_t *new_object;
     longlong *ref_counted_obj;
     longlong object_handle;
-    undefined8 *source_data;
+    uint64_t *source_data;
     
     if (operation == 3) {
         return 0x180bfdba0;  // 返回类型信息
@@ -669,11 +669,11 @@ longlong manage_object_lifecycle_alternative(longlong *object_ptr, longlong *sou
     else {
         if (operation == 1) {
             // 复制构造对象
-            source_data = (undefined8 *)allocate_object(_global_memory_allocator, 0x20, 8, 
+            source_data = (uint64_t *)allocate_object(_global_memory_allocator, 0x20, 8, 
                                                       object_type_descriptor, 0xfffffffffffffffe);
-            new_object = (undefined8 *)*source_ptr;
+            new_object = (uint64_t *)*source_ptr;
             *source_data = *new_object;
-            *(undefined1 *)(source_data + 1) = *(undefined1 *)(new_object + 1);
+            *(int8_t *)(source_data + 1) = *(int8_t *)(new_object + 1);
             ref_counted_obj = (longlong *)new_object[2];
             source_data[2] = ref_counted_obj;
             if (ref_counted_obj != (longlong *)0x0) {
@@ -702,12 +702,12 @@ longlong manage_object_lifecycle_alternative(longlong *object_ptr, longlong *sou
 void release_object_reference(ulonglong *object_ref_ptr)
 {
     int *ref_count;
-    undefined8 *object_ptr;
+    uint64_t *object_ptr;
     longlong memory_block;
     ulonglong block_header;
     
-    object_ptr = (undefined8 *)*object_ref_ptr;
-    if (object_ptr == (undefined8 *)0x0) {
+    object_ptr = (uint64_t *)*object_ref_ptr;
+    if (object_ptr == (uint64_t *)0x0) {
         return;
     }
     
@@ -719,8 +719,8 @@ void release_object_reference(ulonglong *object_ref_ptr)
         if ((*(void ***)(block_header + 0x70) == &ExceptionList) && 
             (*(char *)(memory_block + 0xe) == '\0')) {
             // 将对象返回到空闲列表
-            *object_ptr = *(undefined8 *)(memory_block + 0x20);
-            *(undefined8 **)(memory_block + 0x20) = object_ptr;
+            *object_ptr = *(uint64_t *)(memory_block + 0x20);
+            *(uint64_t **)(memory_block + 0x20) = object_ptr;
             ref_count = (int *)(memory_block + 0x18);
             *ref_count = *ref_count - 1;
             if (*ref_count == 0) {
@@ -742,13 +742,13 @@ void release_object_reference(ulonglong *object_ref_ptr)
 
 // 函数：分配特定类型对象（变体A）
 // 原始函数名：FUN_180083520
-undefined8 * allocate_specific_type_variant_a(longlong pool_handle, undefined8 *object_ptr)
+uint64_t * allocate_specific_type_variant_a(longlong pool_handle, uint64_t *object_ptr)
 {
     longlong pool_position;
     int lock_result;
     longlong *new_object;
-    undefined4 init_flag;
-    undefined8 allocation_flags;
+    int32_t init_flag;
+    uint64_t allocation_flags;
     
     allocation_flags = 0xfffffffffffffffe;
     init_flag = 0;
@@ -767,11 +767,11 @@ undefined8 * allocate_specific_type_variant_a(longlong pool_handle, undefined8 *
         new_object = (longlong *)allocate_object(_global_memory_allocator, 0x28, 8, 0x20, init_flag, allocation_flags);
         *new_object = (longlong)&vtable_type_180a21690;
         *new_object = (longlong)&vtable_type_180a21720;
-        *(undefined4 *)(new_object + 1) = 0;
+        *(int32_t *)(new_object + 1) = 0;
         *new_object = (longlong)&vtable_type_1809fff60;
         new_object[2] = 0;
         new_object[3] = 0;
-        *(undefined1 *)(new_object + 4) = 0;
+        *(int8_t *)(new_object + 4) = 0;
         *new_object = (longlong)&vtable_type_1809ffc88;
         // 调用虚函数
         (*(code **)(*new_object + 0x28))(new_object);
@@ -787,11 +787,11 @@ undefined8 * allocate_specific_type_variant_a(longlong pool_handle, undefined8 *
         new_object[4] = -0x5a5a5a5a5a5a5a5b;
         *new_object = (longlong)&vtable_type_180a21690;
         *new_object = (longlong)&vtable_type_180a21720;
-        *(undefined4 *)(new_object + 1) = 0;
+        *(int32_t *)(new_object + 1) = 0;
         *new_object = (longlong)&vtable_type_1809fff60;
         new_object[2] = 0;
         new_object[3] = 0;
-        *(undefined1 *)(new_object + 4) = 0;
+        *(int8_t *)(new_object + 4) = 0;
         *new_object = (longlong)&vtable_type_1809ffc88;
         // 调用虚函数
         (*(code **)(*new_object + 0x28))(new_object);
@@ -811,13 +811,13 @@ undefined8 * allocate_specific_type_variant_a(longlong pool_handle, undefined8 *
 
 // 函数：分配特定类型对象（变体B）
 // 原始函数名：FUN_1800836a0
-undefined8 * allocate_specific_type_variant_b(longlong pool_handle, undefined8 *object_ptr)
+uint64_t * allocate_specific_type_variant_b(longlong pool_handle, uint64_t *object_ptr)
 {
     longlong pool_position;
     int lock_result;
     longlong *new_object;
-    undefined4 init_flag;
-    undefined8 allocation_flags;
+    int32_t init_flag;
+    uint64_t allocation_flags;
     
     allocation_flags = 0xfffffffffffffffe;
     init_flag = 0;
@@ -836,11 +836,11 @@ undefined8 * allocate_specific_type_variant_b(longlong pool_handle, undefined8 *
         new_object = (longlong *)allocate_object(_global_memory_allocator, 0x28, 8, 0x20, init_flag, allocation_flags);
         *new_object = (longlong)&vtable_type_180a21690;
         *new_object = (longlong)&vtable_type_180a21720;
-        *(undefined4 *)(new_object + 1) = 0;
+        *(int32_t *)(new_object + 1) = 0;
         *new_object = (longlong)&vtable_type_1809fff60;
         new_object[2] = 0;
         new_object[3] = 0;
-        *(undefined1 *)(new_object + 4) = 0;
+        *(int8_t *)(new_object + 4) = 0;
         *new_object = (longlong)&vtable_type_1809ffcf0;
         // 调用虚函数
         (*(code **)(*new_object + 0x28))(new_object);
@@ -856,11 +856,11 @@ undefined8 * allocate_specific_type_variant_b(longlong pool_handle, undefined8 *
         new_object[4] = -0x5a5a5a5a5a5a5a5b;
         *new_object = (longlong)&vtable_type_180a21690;
         *new_object = (longlong)&vtable_type_180a21720;
-        *(undefined4 *)(new_object + 1) = 0;
+        *(int32_t *)(new_object + 1) = 0;
         *new_object = (longlong)&vtable_type_1809fff60;
         new_object[2] = 0;
         new_object[3] = 0;
-        *(undefined1 *)(new_object + 4) = 0;
+        *(int8_t *)(new_object + 4) = 0;
         *new_object = (longlong)&vtable_type_1809ffcf0;
         // 调用虚函数
         (*(code **)(*new_object + 0x28))(new_object);
@@ -880,13 +880,13 @@ undefined8 * allocate_specific_type_variant_b(longlong pool_handle, undefined8 *
 
 // 函数：分配特定类型对象（变体C）
 // 原始函数名：FUN_180083820
-undefined8 * allocate_specific_type_variant_c(longlong pool_handle, undefined8 *object_ptr)
+uint64_t * allocate_specific_type_variant_c(longlong pool_handle, uint64_t *object_ptr)
 {
     longlong pool_position;
     int lock_result;
     longlong *new_object;
-    undefined4 init_flag;
-    undefined8 allocation_flags;
+    int32_t init_flag;
+    uint64_t allocation_flags;
     
     allocation_flags = 0xfffffffffffffffe;
     init_flag = 0;
@@ -905,11 +905,11 @@ undefined8 * allocate_specific_type_variant_c(longlong pool_handle, undefined8 *
         new_object = (longlong *)allocate_object(_global_memory_allocator, 0x28, 8, 0x20, init_flag, allocation_flags);
         *new_object = (longlong)&vtable_type_180a21690;
         *new_object = (longlong)&vtable_type_180a21720;
-        *(undefined4 *)(new_object + 1) = 0;
+        *(int32_t *)(new_object + 1) = 0;
         *new_object = (longlong)&vtable_type_1809fff60;
         new_object[2] = 0;
         new_object[3] = 0;
-        *(undefined1 *)(new_object + 4) = 0;
+        *(int8_t *)(new_object + 4) = 0;
         *new_object = (longlong)&vtable_type_1809ffd58;
         // 调用虚函数
         (*(code **)(*new_object + 0x28))(new_object);
@@ -925,11 +925,11 @@ undefined8 * allocate_specific_type_variant_c(longlong pool_handle, undefined8 *
         new_object[4] = -0x5a5a5a5a5a5a5a5b;
         *new_object = (longlong)&vtable_type_180a21690;
         *new_object = (longlong)&vtable_type_180a21720;
-        *(undefined4 *)(new_object + 1) = 0;
+        *(int32_t *)(new_object + 1) = 0;
         *new_object = (longlong)&vtable_type_1809fff60;
         new_object[2] = 0;
         new_object[3] = 0;
-        *(undefined1 *)(new_object + 4) = 0;
+        *(int8_t *)(new_object + 4) = 0;
         *new_object = (longlong)&vtable_type_1809ffd58;
         // 调用虚函数
         (*(code **)(*new_object + 0x28))(new_object);
@@ -949,13 +949,13 @@ undefined8 * allocate_specific_type_variant_c(longlong pool_handle, undefined8 *
 
 // 函数：分配特定类型对象（变体D）
 // 原始函数名：FUN_1800839a0
-undefined8 * allocate_specific_type_variant_d(longlong pool_handle, undefined8 *object_ptr)
+uint64_t * allocate_specific_type_variant_d(longlong pool_handle, uint64_t *object_ptr)
 {
     longlong pool_position;
     int lock_result;
     longlong *new_object;
-    undefined4 init_flag;
-    undefined8 allocation_flags;
+    int32_t init_flag;
+    uint64_t allocation_flags;
     
     allocation_flags = 0xfffffffffffffffe;
     init_flag = 0;
@@ -974,11 +974,11 @@ undefined8 * allocate_specific_type_variant_d(longlong pool_handle, undefined8 *
         new_object = (longlong *)allocate_object(_global_memory_allocator, 0x28, 8, 0x20, init_flag, allocation_flags);
         *new_object = (longlong)&vtable_type_180a21690;
         *new_object = (longlong)&vtable_type_180a21720;
-        *(undefined4 *)(new_object + 1) = 0;
+        *(int32_t *)(new_object + 1) = 0;
         *new_object = (longlong)&vtable_type_1809fff60;
         new_object[2] = 0;
         new_object[3] = 0;
-        *(undefined1 *)(new_object + 4) = 0;
+        *(int8_t *)(new_object + 4) = 0;
         *new_object = (longlong)&vtable_type_1809ffdc0;
         // 调用虚函数
         (*(code **)(*new_object + 0x28))(new_object);
@@ -994,11 +994,11 @@ undefined8 * allocate_specific_type_variant_d(longlong pool_handle, undefined8 *
         new_object[4] = -0x5a5a5a5a5a5a5a5b;
         *new_object = (longlong)&vtable_type_180a21690;
         *new_object = (longlong)&vtable_type_180a21720;
-        *(undefined4 *)(new_object + 1) = 0;
+        *(int32_t *)(new_object + 1) = 0;
         *new_object = (longlong)&vtable_type_1809fff60;
         new_object[2] = 0;
         new_object[3] = 0;
-        *(undefined1 *)(new_object + 4) = 0;
+        *(int8_t *)(new_object + 4) = 0;
         *new_object = (longlong)&vtable_type_1809ffdc0;
         // 调用虚函数
         (*(code **)(*new_object + 0x28))(new_object);
@@ -1030,14 +1030,14 @@ void expand_buffer_capacity(longlong buffer_manager, longlong additional_size)
 
 // 函数：检查对象状态
 // 原始函数名：FUN_180083bf0
-undefined8 check_object_status(longlong object_handle)
+uint64_t check_object_status(longlong object_handle)
 {
     longlong vtable_ptr;
     longlong index;
     
     // 检查特定标志位
     if ((*(byte *)(object_handle + 0xfd) & 0x20) == 0) {
-        object_handle = get_object_type_info(*(undefined8 *)(object_handle + 0x1b0));
+        object_handle = get_object_type_info(*(uint64_t *)(object_handle + 0x1b0));
     }
     
     index = 0;
@@ -1055,7 +1055,7 @@ undefined8 check_object_status(longlong object_handle)
 
 // 函数：初始化特定类型对象（变体A）
 // 原始函数名：FUN_180083c60
-undefined8 * initialize_specific_type_a(undefined8 *object_ptr, ulonglong flags, undefined8 param_3, undefined8 param_4)
+uint64_t * initialize_specific_type_a(uint64_t *object_ptr, ulonglong flags, uint64_t param_3, uint64_t param_4)
 {
     *object_ptr = &vtable_type_1809ffc88;
     *object_ptr = &vtable_type_180a21720;
@@ -1068,7 +1068,7 @@ undefined8 * initialize_specific_type_a(undefined8 *object_ptr, ulonglong flags,
 
 // 函数：初始化特定类型对象（变体B）
 // 原始函数名：FUN_180083cb0
-undefined8 * initialize_specific_type_b(undefined8 *object_ptr, ulonglong flags, undefined8 param_3, undefined8 param_4)
+uint64_t * initialize_specific_type_b(uint64_t *object_ptr, ulonglong flags, uint64_t param_3, uint64_t param_4)
 {
     *object_ptr = &vtable_type_1809ffcf0;
     *object_ptr = &vtable_type_180a21720;
@@ -1081,7 +1081,7 @@ undefined8 * initialize_specific_type_b(undefined8 *object_ptr, ulonglong flags,
 
 // 函数：初始化特定类型对象（变体C）
 // 原始函数名：FUN_180083d00
-undefined8 * initialize_specific_type_c(undefined8 *object_ptr, ulonglong flags, undefined8 param_3, undefined8 param_4)
+uint64_t * initialize_specific_type_c(uint64_t *object_ptr, ulonglong flags, uint64_t param_3, uint64_t param_4)
 {
     *object_ptr = &vtable_type_1809ffd58;
     *object_ptr = &vtable_type_180a21720;
@@ -1094,7 +1094,7 @@ undefined8 * initialize_specific_type_c(undefined8 *object_ptr, ulonglong flags,
 
 // 函数：初始化特定类型对象（变体D）
 // 原始函数名：FUN_180083d50
-undefined8 * initialize_specific_type_d(undefined8 *object_ptr, ulonglong flags, undefined8 param_3, undefined8 param_4)
+uint64_t * initialize_specific_type_d(uint64_t *object_ptr, ulonglong flags, uint64_t param_3, uint64_t param_4)
 {
     *object_ptr = &vtable_type_1809ffdc0;
     *object_ptr = &vtable_type_180a21720;
@@ -1107,7 +1107,7 @@ undefined8 * initialize_specific_type_d(undefined8 *object_ptr, ulonglong flags,
 
 // 函数：初始化特定类型对象（变体E）
 // 原始函数名：FUN_180083da0
-undefined8 * initialize_specific_type_e(undefined8 *object_ptr, ulonglong flags, undefined8 param_3, undefined8 param_4)
+uint64_t * initialize_specific_type_e(uint64_t *object_ptr, ulonglong flags, uint64_t param_3, uint64_t param_4)
 {
     *object_ptr = &vtable_type_1809ffe28;
     *object_ptr = &vtable_type_180a21720;
@@ -1120,7 +1120,7 @@ undefined8 * initialize_specific_type_e(undefined8 *object_ptr, ulonglong flags,
 
 // 函数：初始化特定类型对象（变体F）
 // 原始函数名：FUN_180083df0
-undefined8 * initialize_specific_type_f(undefined8 *object_ptr, ulonglong flags, undefined8 param_3, undefined8 param_4)
+uint64_t * initialize_specific_type_f(uint64_t *object_ptr, ulonglong flags, uint64_t param_3, uint64_t param_4)
 {
     *object_ptr = &vtable_type_1809ffe90;
     *object_ptr = &vtable_type_180a21720;
@@ -1133,7 +1133,7 @@ undefined8 * initialize_specific_type_f(undefined8 *object_ptr, ulonglong flags,
 
 // 函数：初始化特定类型对象（变体G）
 // 原始函数名：FUN_180083e40
-undefined8 * initialize_specific_type_g(undefined8 *object_ptr, ulonglong flags, undefined8 param_3, undefined8 param_4)
+uint64_t * initialize_specific_type_g(uint64_t *object_ptr, ulonglong flags, uint64_t param_3, uint64_t param_4)
 {
     *object_ptr = &vtable_type_1809ffef8;
     *object_ptr = &vtable_type_180a21720;
@@ -1146,7 +1146,7 @@ undefined8 * initialize_specific_type_g(undefined8 *object_ptr, ulonglong flags,
 
 // 函数：设置对象虚表
 // 原始函数名：FUN_180083e90
-void set_object_vtable(undefined8 *object_ptr)
+void set_object_vtable(uint64_t *object_ptr)
 {
     *object_ptr = &vtable_type_180a21720;
     *object_ptr = &vtable_type_180a21690;
@@ -1155,7 +1155,7 @@ void set_object_vtable(undefined8 *object_ptr)
 
 // 函数：初始化基础对象类型
 // 原始函数名：FUN_180083ec0
-undefined8 * initialize_base_object_type(undefined8 *object_ptr, ulonglong flags, undefined8 param_3, undefined8 param_4)
+uint64_t * initialize_base_object_type(uint64_t *object_ptr, ulonglong flags, uint64_t param_3, uint64_t param_4)
 {
     *object_ptr = &vtable_type_180a21720;
     *object_ptr = &vtable_type_180a21690;

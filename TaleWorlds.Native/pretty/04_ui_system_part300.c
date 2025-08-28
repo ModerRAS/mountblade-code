@@ -662,7 +662,7 @@ void FUN_180833200(float *outputBuffer, uint animationCount, longlong animationB
  * - 动画数据处理：批量更新动画数据
  * - 着色器数据处理：准备着色器所需的uniform数据
  */
-void FUN_180833250(undefined8 context, int blockCount)
+void FUN_180833250(uint64_t context, int blockCount)
 {
   // 简化实现：该函数使用SIMD指令进行批量数据处理
   // 原始原始代码包含复杂的寄存器操作和内存访问
@@ -676,7 +676,7 @@ void FUN_180833250(undefined8 context, int blockCount)
   uint offset;
   longlong basePtr;
   ulonglong *dataPtr;
-  undefined8 contextData;
+  uint64_t contextData;
   longlong *stepPtr;
   uint remainder;
   uint dataOffset;
@@ -684,30 +684,30 @@ void FUN_180833250(undefined8 context, int blockCount)
   float *outputBuffer;
   longlong dataBase;
   float factor1, factor2, factor3, factor4;
-  undefined8 simdReg1, simdReg2;
-  undefined8 simdReg3, simdReg4;
-  undefined8 simdReg5, simdReg6;
-  undefined8 simdReg7, simdReg8;
-  undefined8 simdReg9, simdReg10;
+  uint64_t simdReg1, simdReg2;
+  uint64_t simdReg3, simdReg4;
+  uint64_t simdReg5, simdReg6;
+  uint64_t simdReg7, simdReg8;
+  uint64_t simdReg9, simdReg10;
   float scale1, scale2, scale3;
   
   // 初始化SIMD寄存器和上下文
-  *(undefined8 *)(basePtr + 8) = contextData;
+  *(uint64_t *)(basePtr + 8) = contextData;
   blockCount = blockCount >> 2;
   
   // 主处理循环：使用SIMD指令批量处理数据
   if (blockCount != 0) {
     // 设置SIMD寄存器状态
-    *(undefined8 *)(basePtr + -0x18) = simdReg1;
-    *(undefined8 *)(basePtr + -0x10) = simdReg2;
-    *(undefined8 *)(basePtr + -0x28) = simdReg3;
-    *(undefined8 *)(basePtr + -0x20) = simdReg4;
-    *(undefined8 *)(basePtr + -0x38) = simdReg5;
-    *(undefined8 *)(basePtr + -0x30) = simdReg6;
-    *(undefined8 *)(basePtr + -0x48) = simdReg7;
-    *(undefined8 *)(basePtr + -0x40) = simdReg8;
-    *(undefined8 *)(basePtr + -0x58) = simdReg9;
-    *(undefined8 *)(basePtr + -0x50) = simdReg10;
+    *(uint64_t *)(basePtr + -0x18) = simdReg1;
+    *(uint64_t *)(basePtr + -0x10) = simdReg2;
+    *(uint64_t *)(basePtr + -0x28) = simdReg3;
+    *(uint64_t *)(basePtr + -0x20) = simdReg4;
+    *(uint64_t *)(basePtr + -0x38) = simdReg5;
+    *(uint64_t *)(basePtr + -0x30) = simdReg6;
+    *(uint64_t *)(basePtr + -0x48) = simdReg7;
+    *(uint64_t *)(basePtr + -0x40) = simdReg8;
+    *(uint64_t *)(basePtr + -0x58) = simdReg9;
+    *(uint64_t *)(basePtr + -0x50) = simdReg10;
     
     do {
       // 批量数据采样和处理
@@ -850,30 +850,30 @@ void FUN_180833261(void)
   float fVar23;
   float fVar24;
   float fVar25;
-  undefined8 unaff_XMM6_Qa;
-  undefined8 unaff_XMM6_Qb;
-  undefined8 unaff_XMM7_Qa;
-  undefined8 unaff_XMM7_Qb;
-  undefined8 unaff_XMM8_Qa;
-  undefined8 unaff_XMM8_Qb;
-  undefined8 unaff_XMM9_Qa;
-  undefined8 unaff_XMM9_Qb;
-  undefined8 unaff_XMM10_Qa;
-  undefined8 unaff_XMM10_Qb;
+  uint64_t unaff_XMM6_Qa;
+  uint64_t unaff_XMM6_Qb;
+  uint64_t unaff_XMM7_Qa;
+  uint64_t unaff_XMM7_Qb;
+  uint64_t unaff_XMM8_Qa;
+  uint64_t unaff_XMM8_Qb;
+  uint64_t unaff_XMM9_Qa;
+  uint64_t unaff_XMM9_Qb;
+  uint64_t unaff_XMM10_Qa;
+  uint64_t unaff_XMM10_Qb;
   float unaff_XMM11_Da;
   float unaff_XMM12_Da;
   float unaff_XMM13_Da;
   
-  *(undefined8 *)(in_RAX + -0x18) = unaff_XMM6_Qa;
-  *(undefined8 *)(in_RAX + -0x10) = unaff_XMM6_Qb;
-  *(undefined8 *)(in_RAX + -0x28) = unaff_XMM7_Qa;
-  *(undefined8 *)(in_RAX + -0x20) = unaff_XMM7_Qb;
-  *(undefined8 *)(in_RAX + -0x38) = unaff_XMM8_Qa;
-  *(undefined8 *)(in_RAX + -0x30) = unaff_XMM8_Qb;
-  *(undefined8 *)(in_RAX + -0x48) = unaff_XMM9_Qa;
-  *(undefined8 *)(in_RAX + -0x40) = unaff_XMM9_Qb;
-  *(undefined8 *)(in_RAX + -0x58) = unaff_XMM10_Qa;
-  *(undefined8 *)(in_RAX + -0x50) = unaff_XMM10_Qb;
+  *(uint64_t *)(in_RAX + -0x18) = unaff_XMM6_Qa;
+  *(uint64_t *)(in_RAX + -0x10) = unaff_XMM6_Qb;
+  *(uint64_t *)(in_RAX + -0x28) = unaff_XMM7_Qa;
+  *(uint64_t *)(in_RAX + -0x20) = unaff_XMM7_Qb;
+  *(uint64_t *)(in_RAX + -0x38) = unaff_XMM8_Qa;
+  *(uint64_t *)(in_RAX + -0x30) = unaff_XMM8_Qb;
+  *(uint64_t *)(in_RAX + -0x48) = unaff_XMM9_Qa;
+  *(uint64_t *)(in_RAX + -0x40) = unaff_XMM9_Qb;
+  *(uint64_t *)(in_RAX + -0x58) = unaff_XMM10_Qa;
+  *(uint64_t *)(in_RAX + -0x50) = unaff_XMM10_Qb;
   do {
     uVar20 = *unaff_RBX + *unaff_RSI;
     uVar19 = *(uint *)((longlong)unaff_RBX + 4) * 2;
@@ -1166,16 +1166,16 @@ void FUN_180833610(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
   uint uVar37;
   uint uVar38;
   int iVar40;
-  undefined1 auVar39 [16];
+  int8_t auVar39 [16];
   int iVar42;
   longlong lVar41;
   int iVar44;
-  undefined1 auVar43 [16];
+  int8_t auVar43 [16];
   int iVar45;
   float fVar46;
-  undefined1 auStack_e8 [8];
-  undefined8 uStack_e0;
-  undefined8 uStack_d8;
+  int8_t auStack_e8 [8];
+  uint64_t uStack_e0;
+  uint64_t uStack_d8;
   ulonglong auStack_b8 [22];
   
   puVar30 = auStack_b8;
@@ -1362,7 +1362,7 @@ void FUN_180833610(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
     } while (param_2 != 0);
   }
                     // WARNING: Subroutine does not return
-  *(undefined8 *)((longlong)puVar30 + -8) = 0x180833afc;
+  *(uint64_t *)((longlong)puVar30 + -8) = 0x180833afc;
   FUN_1808fc050(auStack_b8[0] ^ (ulonglong)auStack_b8);
 }
 

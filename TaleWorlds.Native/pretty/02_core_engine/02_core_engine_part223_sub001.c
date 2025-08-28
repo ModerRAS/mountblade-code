@@ -12,7 +12,7 @@
 // 函数: 核心引擎子系统初始化 (简化实现)
 // 功能: 初始化核心引擎的子系统组件，包括内存分配、状态设置和资源准备
 // 简化实现说明：原函数具体实现内容不在此文件中，此处提供基于核心引擎模式的简化版本
-void CoreEngineSubsystem_Initialize(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void CoreEngineSubsystem_Initialize(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   // 简化实现说明：
   // 根据核心引擎模块的常见模式，此函数可能负责：
@@ -24,9 +24,9 @@ void CoreEngineSubsystem_Initialize(undefined8 param_1, undefined8 param_2, unde
   
   // 核心变量（基于引擎模式推断）
   longlong *engine_context;
-  undefined8 *subsystem_state;
-  undefined8 *resource_manager;
-  undefined8 initialization_flag;
+  uint64_t *subsystem_state;
+  uint64_t *resource_manager;
+  uint64_t initialization_flag;
   
   // 获取引擎上下文
   engine_context = (longlong *)GLOBAL_ENGINE_CONTEXT;
@@ -34,11 +34,11 @@ void CoreEngineSubsystem_Initialize(undefined8 param_1, undefined8 param_2, unde
   // 检查引擎状态
   if (engine_context != (longlong *)0x0) {
     // 初始化子系统状态
-    subsystem_state = (undefined8 *)FUN_1800671b0(0x40);  // 分配状态缓冲区
+    subsystem_state = (uint64_t *)FUN_1800671b0(0x40);  // 分配状态缓冲区
     *subsystem_state = 0;  // 初始化为未激活状态
     
     // 配置资源管理器
-    resource_manager = (undefined8 *)FUN_180188490();  // 创建资源管理器
+    resource_manager = (uint64_t *)FUN_180188490();  // 创建资源管理器
     
     // 设置初始化标志
     initialization_flag = 0x1;  // 标记为初始化中

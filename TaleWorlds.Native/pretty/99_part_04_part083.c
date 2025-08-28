@@ -2,8 +2,8 @@
 
 // 99_part_04_part083.c - 2 个函数
 
-// 函数: void FUN_1802d40d9(longlong param_1,undefined8 param_2,longlong param_3,undefined8 param_4)
-void FUN_1802d40d9(longlong param_1,undefined8 param_2,longlong param_3,undefined8 param_4)
+// 函数: void FUN_1802d40d9(longlong param_1,uint64_t param_2,longlong param_3,uint64_t param_4)
+void FUN_1802d40d9(longlong param_1,uint64_t param_2,longlong param_3,uint64_t param_4)
 
 {
   float *pfVar1;
@@ -48,8 +48,8 @@ void FUN_1802d40d9(longlong param_1,undefined8 param_2,longlong param_3,undefine
   char cStack0000000000000054;
   char in_stack_00000058;
   longlong in_stack_00000070;
-  undefined8 in_stack_00000078;
-  undefined8 uStack0000000000000160;
+  uint64_t in_stack_00000078;
+  uint64_t uStack0000000000000160;
   char in_stack_00000168;
   int in_stack_00000170;
   

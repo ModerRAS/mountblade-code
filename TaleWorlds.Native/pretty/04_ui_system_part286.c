@@ -2,8 +2,8 @@
 
 // 04_ui_system_part286.c - 4 个函数
 
-// 函数: void FUN_18082b693(int param_1,undefined8 param_2,longlong param_3,float *param_4)
-void FUN_18082b693(int param_1,undefined8 param_2,longlong param_3,float *param_4)
+// 函数: void FUN_18082b693(int param_1,uint64_t param_2,longlong param_3,float *param_4)
+void FUN_18082b693(int param_1,uint64_t param_2,longlong param_3,float *param_4)
 
 {
   int iVar1;
@@ -474,8 +474,8 @@ void FUN_18082b693(int param_1,undefined8 param_2,longlong param_3,float *param_
 
 
 
-// 函数: void FUN_18082bc49(undefined8 param_1,undefined8 param_2,longlong param_3,longlong param_4)
-void FUN_18082bc49(undefined8 param_1,undefined8 param_2,longlong param_3,longlong param_4)
+// 函数: void FUN_18082bc49(uint64_t param_1,uint64_t param_2,longlong param_3,longlong param_4)
+void FUN_18082bc49(uint64_t param_1,uint64_t param_2,longlong param_3,longlong param_4)
 
 {
   int iVar1;

@@ -2,8 +2,8 @@
 
 // 02_core_engine_part165_sub002.c - 1 个函数
 
-// 函数: void FUN_18014f0e5(undefined8 param_1,undefined8 param_2,longlong param_3)
-void FUN_18014f0e5(undefined8 param_1,undefined8 param_2,longlong param_3)
+// 函数: void FUN_18014f0e5(uint64_t param_1,uint64_t param_2,longlong param_3)
+void FUN_18014f0e5(uint64_t param_1,uint64_t param_2,longlong param_3)
 
 {
   longlong lVar1;
@@ -14,14 +14,14 @@ void FUN_18014f0e5(undefined8 param_1,undefined8 param_2,longlong param_3)
   longlong unaff_RSI;
   longlong unaff_RDI;
   longlong in_R10;
-  undefined8 in_stack_00000050;
+  uint64_t in_stack_00000050;
   
   lVar2 = SUB168(SEXT816(in_R10) * SEXT816(*(longlong *)(unaff_RDI + 8) - param_3),8);
   uVar3 = (lVar2 >> 6) - (lVar2 >> 0x3f);
   if (uVar3 < unaff_RBP) {
     FUN_18014fe60();
     FUN_18014fbc0(&stack0x00000050,uVar3 * 0x88 + unaff_RSI);
-    *(undefined8 *)(unaff_RDI + 8) = in_stack_00000050;
+    *(uint64_t *)(unaff_RDI + 8) = in_stack_00000050;
   }
   else {
     lVar1 = FUN_18014fe60();

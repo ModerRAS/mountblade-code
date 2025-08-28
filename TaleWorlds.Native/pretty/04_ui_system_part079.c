@@ -538,8 +538,8 @@ void FUN_1807123c2(float param_1,float param_2,uint param_3,uint param_4)
 
 
 
-// 函数: void FUN_180712526(float param_1,undefined8 param_2,longlong param_3,longlong param_4)
-void FUN_180712526(float param_1,undefined8 param_2,longlong param_3,longlong param_4)
+// 函数: void FUN_180712526(float param_1,uint64_t param_2,longlong param_3,longlong param_4)
+void FUN_180712526(float param_1,uint64_t param_2,longlong param_3,longlong param_4)
 
 {
   longlong lVar1;

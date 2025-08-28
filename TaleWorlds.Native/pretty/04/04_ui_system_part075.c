@@ -27,10 +27,10 @@ typedef void (*ui_system_float_processor)(longlong, int, int, float *);
 // 函数声明
 void ui_system_empty_function(void);
 uint ui_system_calculate_bit_allocation(longlong *ui_context, uint bit_count);
-uint ui_system_process_audio_data(undefined8 param_1, uint param_2);
-uint ui_system_empty_function_return(undefined8 param_1);
+uint ui_system_process_audio_data(uint64_t param_1, uint param_2);
+uint ui_system_empty_function_return(uint64_t param_1);
 ulonglong ui_system_decode_audio_stream(byte *audio_data, int data_size, int decode_mode, byte *format_output, longlong buffer_ptr, short *channel_sizes, int *bytes_processed, int *total_size);
-ulonglong ui_system_process_audio_chunk(undefined8 param_1, undefined8 param_2, int param_3);
+ulonglong ui_system_process_audio_chunk(uint64_t param_1, uint64_t param_2, int param_3);
 int ui_system_validate_audio_data(void);
 uint ui_system_return_error_code(void);
 void ui_system_process_float_array(longlong array_ptr, int width, int height, float *output_buffer);
@@ -135,7 +135,7 @@ uint ui_system_calculate_bit_allocation(longlong *ui_context, uint bit_count)
     *(uint *)(ui_context + 2) = processed_bits >> (shift_bits & 0x1f);
     result = (1 << (shift_bits & 0x1f)) - 1U & processed_bits | adjustment_factor << (shift_bits & 0x1f);
     if (available_bits < result) {
-      *(undefined4 *)(ui_context + 6) = 1;
+      *(int32_t *)(ui_context + 6) = 1;
       result = available_bits;
     }
   }
@@ -150,7 +150,7 @@ uint ui_system_calculate_bit_allocation(longlong *ui_context, uint bit_count)
  * 
  * 该函数处理音频数据的位操作和编码，用于UI系统的音频处理模块
  */
-uint ui_system_process_audio_data(undefined8 audio_context, uint sample_count)
+uint ui_system_process_audio_data(uint64_t audio_context, uint sample_count)
 {
   ulonglong sample_rate;
   byte bit_shift;
@@ -209,7 +209,7 @@ uint ui_system_process_audio_data(undefined8 audio_context, uint sample_count)
   *(uint *)(audio_context + 2) = total_bits >> (bit_shift & 0x1f);
   processed_bits = (1 << (bit_shift & 0x1f)) - 1U & total_bits | frame_count << (bit_shift & 0x1f);
   if (available_bits < processed_bits) {
-    *(undefined4 *)(audio_context + 6) = 1;
+    *(int32_t *)(audio_context + 6) = 1;
     processed_bits = available_bits;
   }
   return processed_bits;
@@ -467,7 +467,7 @@ DECODE_SUCCESS:
  * 
  * 该函数处理音频数据块，用于UI系统的音频处理模块
  */
-ulonglong ui_system_process_audio_chunk(undefined8 param_1, undefined8 param_2, int param_3)
+ulonglong ui_system_process_audio_chunk(uint64_t param_1, uint64_t param_2, int param_3)
 {
   byte format_header;
   byte encoding_flag;
@@ -680,7 +680,7 @@ int ui_system_validate_audio_data(void)
   longlong output_ptr;
   int sample_rate;
   longlong buffer_offset;
-  undefined1 format_header;
+  int8_t format_header;
   longlong array_ptr;
   int *bytes_processed;
   longlong buffer_ptr;
@@ -704,7 +704,7 @@ int ui_system_validate_audio_data(void)
     if (total_size != (int *)0x0) {
       *total_size = ((int)data_ptr - buffer_offset) + sample_rate;
     }
-    if (format_output != (undefined1 *)0x0) {
+    if (format_output != (int8_t *)0x0) {
       *format_output = format_header;
     }
   }
@@ -737,10 +737,10 @@ uint ui_system_return_error_code(void)
 void ui_system_process_float_array(longlong array_ptr, int width, int height, float *output_buffer)
 {
   bool needs_clamping;
-  undefined1 temp_array_1[16];
-  undefined1 temp_array_2[16];
+  int8_t temp_array_1[16];
+  int8_t temp_array_2[16];
   int index;
-  undefined1 (*array_ptr_5)[16];
+  int8_t (*array_ptr_5)[16];
   uint element_count;
   int temp_value;
   longlong offset;
@@ -763,7 +763,7 @@ void ui_system_process_float_array(longlong array_ptr, int width, int height, fl
   float float_value_4;
   float float_value_5;
   float float_value_6;
-  undefined1 temp_array_3[16];
+  int8_t temp_array_3[16];
   float *stack_ptr;
   longlong stack_offset;
   
@@ -780,7 +780,7 @@ void ui_system_process_float_array(longlong array_ptr, int width, int height, fl
           remaining_elements = (remaining_elements - 1 | 0xfffffff0) + 1;
         }
         offset = 0;
-        array_ptr_5 = (undefined1 (*) [16])(array_ptr + 0x20);
+        array_ptr_5 = (int8_t (*) [16])(array_ptr + 0x20);
         do {
           temp_index_5 = temp_index_5 + 0x10;
           temp_array_3 = minps(temp_array_2, array_ptr_5[-2]);

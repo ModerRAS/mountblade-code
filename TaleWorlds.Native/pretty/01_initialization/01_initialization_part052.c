@@ -6,27 +6,27 @@
 // 函数: 初始化渲染状态
 // 原始函数名: FUN_1800786e0
 // 功能: 初始化渲染状态，设置各种渲染参数和矩阵
-void initialize_render_state(undefined8 *render_context, longlong config_data)
+void initialize_render_state(uint64_t *render_context, longlong config_data)
 {
     longlong temp_value;
-    undefined4 temp_result;
+    int32_t temp_result;
     longlong *object_ptr;
-    undefined8 handle_result;
+    uint64_t handle_result;
     float *float_ptr;
-    undefined *data_ptr;
+    void *data_ptr;
     longlong offset_value;
     longlong *array_ptr;
     int loop_counter;
     float float_temp1;
-    undefined4 temp_var1;
-    undefined4 temp_var2;
-    undefined4 temp_var3;
+    int32_t temp_var1;
+    int32_t temp_var2;
+    int32_t temp_var3;
     float matrix_data[16];
     longlong *stack_ptr;
-    undefined8 stack_array[2];
-    undefined8 stack_var1;
-    undefined8 stack_var2;
-    undefined4 stack_var3;
+    uint64_t stack_array[2];
+    uint64_t stack_var1;
+    uint64_t stack_var2;
+    int32_t stack_var3;
     
     loop_counter = 0;
     array_ptr = render_context + 1;
@@ -51,8 +51,8 @@ void initialize_render_state(undefined8 *render_context, longlong config_data)
         if ((((*(char *)(config_data + 0x380) != '\0') && (*(char *)(config_data + 0x381) == '\0')) &&
             (temp_value = *array_ptr, temp_value != 0)) && ((*(uint *)(temp_value + 0x328) & 0x200000) == 0)) {
             data_ptr = &DEFAULT_MATERIAL_DATA;
-            if (*(undefined **)(temp_value + 0x18) != (undefined *)0x0) {
-                data_ptr = *(undefined **)(temp_value + 0x18);
+            if (*(void **)(temp_value + 0x18) != (void *)0x0) {
+                data_ptr = *(void **)(temp_value + 0x18);
             }
             register_material(&MATERIAL_REGISTRY, data_ptr);
         }
@@ -93,22 +93,22 @@ void initialize_render_state(undefined8 *render_context, longlong config_data)
     // 设置颜色参数
     if ((*(char *)(config_data + 0x2f0) == '\0') && (*(longlong *)(config_data + 0x3c8) != 0)) {
         get_color_values(*(longlong *)(config_data + 0x3c8), &stack_var2);
-        temp_result = (undefined4)stack_var2;
+        temp_result = (int32_t)stack_var2;
         temp_var1 = stack_var2._4_4_;
-        temp_var2 = (undefined4)stack_var1;
+        temp_var2 = (int32_t)stack_var1;
         temp_var3 = stack_var1._4_4_;
     }
     else {
-        temp_result = *(undefined4 *)(config_data + 0x2d0);
-        temp_var1 = *(undefined4 *)(config_data + 0x2d4);
-        temp_var2 = *(undefined4 *)(config_data + 0x2d8);
-        temp_var3 = *(undefined4 *)(config_data + 0x2dc);
+        temp_result = *(int32_t *)(config_data + 0x2d0);
+        temp_var1 = *(int32_t *)(config_data + 0x2d4);
+        temp_var2 = *(int32_t *)(config_data + 0x2d8);
+        temp_var3 = *(int32_t *)(config_data + 0x2dc);
     }
     
-    *(undefined4 *)(render_context + 0x20) = temp_result;
-    *(undefined4 *)((longlong)render_context + 0x104) = temp_var1;
-    *(undefined4 *)(render_context + 0x21) = temp_var2;
-    *(undefined4 *)((longlong)render_context + 0x10c) = temp_var3;
+    *(int32_t *)(render_context + 0x20) = temp_result;
+    *(int32_t *)((longlong)render_context + 0x104) = temp_var1;
+    *(int32_t *)(render_context + 0x21) = temp_var2;
+    *(int32_t *)((longlong)render_context + 0x10c) = temp_var3;
     
     // 设置其他渲染参数
     set_render_parameter(render_context, config_data, 0x2fc, 0x2f4, get_shader_param_3);
@@ -127,8 +127,8 @@ void initialize_render_state(undefined8 *render_context, longlong config_data)
     set_render_parameter(render_context, config_data, 0x29c, 0x294, get_shader_param_9);
     
     // 设置状态标志
-    *(undefined1 *)((longlong)render_context + 0x152) = *(undefined1 *)(config_data + 0x380);
-    *(undefined1 *)(render_context + 0x2a) = *(undefined1 *)(config_data + 0x381);
+    *(int8_t *)((longlong)render_context + 0x152) = *(int8_t *)(config_data + 0x380);
+    *(int8_t *)(render_context + 0x2a) = *(int8_t *)(config_data + 0x381);
     
     // 获取纹理和材质数据
     if ((*(char *)(config_data + 0x35c) == '\0') && (*(longlong *)(config_data + 0x3c8) != 0)) {
@@ -142,35 +142,35 @@ void initialize_render_state(undefined8 *render_context, longlong config_data)
         get_material_data(*(longlong *)(config_data + 0x3c8), stack_array);
     }
     else {
-        stack_array[0] = *(undefined8 *)(config_data + 0x338);
+        stack_array[0] = *(uint64_t *)(config_data + 0x338);
     }
     
     if ((*(char *)(config_data + 0x334) == '\0') && (*(longlong *)(config_data + 0x3c8) != 0)) {
         get_shader_data(*(longlong *)(config_data + 0x3c8), &stack_var1);
     }
     else {
-        stack_var1 = *(undefined8 *)(config_data + 0x324);
+        stack_var1 = *(uint64_t *)(config_data + 0x324);
     }
     
     if ((*(char *)(config_data + 800) == '\0') && (*(longlong *)(config_data + 0x3c8) != 0)) {
         get_render_target(*(longlong *)(config_data + 0x3c8), &stack_var2);
     }
     else {
-        stack_var2 = *(undefined **)(config_data + 0x300);
-        stack_var1 = *(undefined8 *)(config_data + 0x308);
+        stack_var2 = *(void **)(config_data + 0x300);
+        stack_var1 = *(uint64_t *)(config_data + 0x308);
     }
     
     // 设置渲染管线
     setup_render_pipeline(render_context + 8, &stack_var2, &stack_var1, stack_array, &stack_ptr);
     
     // 如果是标准渲染上下文，设置变换矩阵
-    if ((undefined *)*render_context == &STANDARD_RENDER_CONTEXT) {
+    if ((void *)*render_context == &STANDARD_RENDER_CONTEXT) {
         setup_transformation_matrices(render_context);
         return;
     }
     
     // 调用自定义初始化函数
-    (**(code **)((undefined *)*render_context + 0x10))(render_context);
+    (**(code **)((void *)*render_context + 0x10))(render_context);
     return;
 }
 
@@ -235,7 +235,7 @@ void calculate_transformation_matrix(longlong matrix_data)
     // 继续计算矩阵各项
     temp_float5 = source_matrix[5];
     temp_float4 = source_matrix[1];
-    *(undefined4 *)(matrix_data + 0xcc) = 0;
+    *(int32_t *)(matrix_data + 0xcc) = 0;
     temp_float20 = temp_float7 * temp_float4 - temp_float12 * temp_float5;
     *(float *)(matrix_data + 200) = temp_float20;
     
@@ -261,18 +261,18 @@ void calculate_transformation_matrix(longlong matrix_data)
 // 函数: 写入渲染数据
 // 原始函数名: FUN_180078c70
 // 功能: 将渲染数据写入缓冲区，处理缓冲区溢出
-void write_render_data(undefined4 *data_buffer, longlong *buffer_info)
+void write_render_data(int32_t *data_buffer, longlong *buffer_info)
 {
-    undefined4 data_value;
-    undefined4 *buffer_ptr;
+    int32_t data_value;
+    int32_t *buffer_ptr;
     
     data_value = *data_buffer;
-    buffer_ptr = (undefined4 *)buffer_info[1];
+    buffer_ptr = (int32_t *)buffer_info[1];
     
     // 检查缓冲区空间
     if ((ulonglong)((*buffer_info - (longlong)buffer_ptr) + buffer_info[2]) < 5) {
         expand_buffer(buffer_info, (longlong)buffer_ptr + (4 - *buffer_info));
-        buffer_ptr = (undefined4 *)buffer_info[1];
+        buffer_ptr = (int32_t *)buffer_info[1];
     }
     
     // 写入数据
@@ -297,16 +297,16 @@ void update_render_state(longlong render_context)
     material_data = *(longlong *)(render_context + 0x210);
     
     // 复制材质属性
-    *(undefined4 *)(render_context + 0x1f8) = *(undefined4 *)(material_data + 0x10);
-    *(undefined4 *)(render_context + 0x1fc) = *(undefined4 *)(material_data + 0x88);
-    *(undefined4 *)(render_context + 0x200) = *(undefined4 *)(material_data + 0x60);
+    *(int32_t *)(render_context + 0x1f8) = *(int32_t *)(material_data + 0x10);
+    *(int32_t *)(render_context + 0x1fc) = *(int32_t *)(material_data + 0x88);
+    *(int32_t *)(render_context + 0x200) = *(int32_t *)(material_data + 0x60);
     
     state_flags = *(byte *)(render_context + 0xfd) & 0x40;
     
     // 检查是否需要更新特殊材质
     if ((((state_flags != 0) && (material_data != 0)) || (*(longlong *)(render_context + 0x1b0) == 0)) ||
        (context_data = get_current_context(), render_context == context_data)) {
-        *(undefined4 *)(render_context + 0x204) = *(undefined4 *)(material_data + 200);
+        *(int32_t *)(render_context + 0x204) = *(int32_t *)(material_data + 200);
     }
     
     // 检查是否跳过更新
@@ -321,45 +321,45 @@ void update_render_state(longlong render_context)
 }
 
 // 辅助函数: 设置渲染参数
-void set_render_parameter(undefined8 *render_context, longlong config_data, int flag_offset, int value_offset, undefined4 (*get_param_func)())
+void set_render_parameter(uint64_t *render_context, longlong config_data, int flag_offset, int value_offset, int32_t (*get_param_func)())
 {
-    undefined4 result;
+    int32_t result;
     
     if ((*(char *)(config_data + flag_offset) == '\0') && (*(longlong *)(config_data + 0x3c8) != 0)) {
         result = get_param_func();
     }
     else {
-        result = *(undefined4 *)(config_data + value_offset);
+        result = *(int32_t *)(config_data + value_offset);
     }
     
-    *(undefined4 *)(render_context + 0x20) = result;
+    *(int32_t *)(render_context + 0x20) = result;
 }
 
 // 辅助函数: 复制矩阵数据
 void copy_matrix_data(longlong dest, float *src)
 {
-    *(undefined8 *)(dest + 0x80) = *(undefined8 *)(src + 0x00);
-    *(undefined8 *)(dest + 0x88) = *(undefined8 *)(src + 0x08);
-    *(undefined8 *)(dest + 0x90) = *(undefined8 *)(src + 0x10);
-    *(undefined8 *)(dest + 0x98) = *(undefined8 *)(src + 0x18);
-    *(undefined4 *)(dest + 0xa0) = *(undefined4 *)(src + 0x20);
-    *(undefined4 *)(dest + 0xa4) = *(undefined4 *)(src + 0x24);
-    *(undefined4 *)(dest + 0xa8) = *(undefined4 *)(src + 0x28);
-    *(undefined4 *)(dest + 0xac) = *(undefined4 *)(src + 0x2c);
-    *(undefined4 *)(dest + 0xb0) = *(undefined4 *)(src + 0x30);
-    *(undefined4 *)(dest + 0xb4) = *(undefined4 *)(src + 0x34);
-    *(undefined4 *)(dest + 0xb8) = *(undefined4 *)(src + 0x38);
-    *(undefined4 *)(dest + 0xbc) = *(undefined4 *)(src + 0x3c);
+    *(uint64_t *)(dest + 0x80) = *(uint64_t *)(src + 0x00);
+    *(uint64_t *)(dest + 0x88) = *(uint64_t *)(src + 0x08);
+    *(uint64_t *)(dest + 0x90) = *(uint64_t *)(src + 0x10);
+    *(uint64_t *)(dest + 0x98) = *(uint64_t *)(src + 0x18);
+    *(int32_t *)(dest + 0xa0) = *(int32_t *)(src + 0x20);
+    *(int32_t *)(dest + 0xa4) = *(int32_t *)(src + 0x24);
+    *(int32_t *)(dest + 0xa8) = *(int32_t *)(src + 0x28);
+    *(int32_t *)(dest + 0xac) = *(int32_t *)(src + 0x2c);
+    *(int32_t *)(dest + 0xb0) = *(int32_t *)(src + 0x30);
+    *(int32_t *)(dest + 0xb4) = *(int32_t *)(src + 0x34);
+    *(int32_t *)(dest + 0xb8) = *(int32_t *)(src + 0x38);
+    *(int32_t *)(dest + 0xbc) = *(int32_t *)(src + 0x3c);
 }
 
 // 辅助函数: 初始化矩阵
 void initialize_matrix(longlong matrix_data)
 {
     matrix_setup_function();
-    *(undefined4 *)(matrix_data + 0xbc) = 0x3f800000; // 1.0f
-    *(undefined4 *)(matrix_data + 0x8c) = 0;
-    *(undefined4 *)(matrix_data + 0x9c) = 0;
-    *(undefined4 *)(matrix_data + 0xac) = 0;
+    *(int32_t *)(matrix_data + 0xbc) = 0x3f800000; // 1.0f
+    *(int32_t *)(matrix_data + 0x8c) = 0;
+    *(int32_t *)(matrix_data + 0x9c) = 0;
+    *(int32_t *)(matrix_data + 0xac) = 0;
 }
 
 // 辅助函数: 计算矩阵元素
@@ -392,19 +392,19 @@ void normalize_matrix(longlong matrix_data, float factor)
 }
 
 // 辅助函数: 写入额外数据
-void write_additional_data(undefined4 *data_buffer, longlong *buffer_info)
+void write_additional_data(int32_t *data_buffer, longlong *buffer_info)
 {
-    undefined4 *buffer_ptr;
-    undefined4 data_value;
+    int32_t *buffer_ptr;
+    int32_t data_value;
     int i;
     
     for (i = 1; i < 23; i++) {
-        buffer_ptr = (undefined4 *)buffer_info[1];
+        buffer_ptr = (int32_t *)buffer_info[1];
         data_value = data_buffer[i];
         
         if ((ulonglong)((*buffer_info - (longlong)buffer_ptr) + buffer_info[2]) < 5) {
             expand_buffer(buffer_info, (longlong)buffer_ptr + (4 - *buffer_info));
-            buffer_ptr = (undefined4 *)buffer_info[1];
+            buffer_ptr = (int32_t *)buffer_info[1];
         }
         
         *buffer_ptr = data_value;
@@ -412,10 +412,10 @@ void write_additional_data(undefined4 *data_buffer, longlong *buffer_info)
         
         // 每4个元素后写入1.0f
         if (i % 4 == 3) {
-            buffer_ptr = (undefined4 *)buffer_info[1];
+            buffer_ptr = (int32_t *)buffer_info[1];
             if ((ulonglong)((*buffer_info - (longlong)buffer_ptr) + buffer_info[2]) < 5) {
                 expand_buffer(buffer_info, (longlong)buffer_ptr + (4 - *buffer_info));
-                buffer_ptr = (undefined4 *)buffer_info[1];
+                buffer_ptr = (int32_t *)buffer_info[1];
             }
             *buffer_ptr = 0x3f800000; // 1.0f
             buffer_info[1] = buffer_info[1] + 4;
@@ -424,7 +424,7 @@ void write_additional_data(undefined4 *data_buffer, longlong *buffer_info)
 }
 
 // 辅助函数: 设置变换矩阵
-void setup_transformation_matrices(undefined8 *render_context)
+void setup_transformation_matrices(uint64_t *render_context)
 {
     float *matrix_ptr;
     float matrix_data[16];
@@ -432,30 +432,30 @@ void setup_transformation_matrices(undefined8 *render_context)
     matrix_ptr = (float *)(render_context + 0x10);
     
     // 复制基础矩阵数据
-    *(undefined8 *)matrix_ptr = render_context[8];
+    *(uint64_t *)matrix_ptr = render_context[8];
     render_context[0x11] = render_context[9];
     render_context[0x12] = render_context[10];
     render_context[0x13] = render_context[0xb];
     
     // 设置矩阵参数
-    *(undefined4 *)(render_context + 0x14) = *(undefined4 *)(render_context + 0xc);
-    *(undefined4 *)((longlong)render_context + 0xa4) = *(undefined4 *)((longlong)render_context + 100);
-    *(undefined4 *)(render_context + 0x15) = *(undefined4 *)(render_context + 0xd);
-    *(undefined4 *)((longlong)render_context + 0xac) = *(undefined4 *)((longlong)render_context + 0x6c);
+    *(int32_t *)(render_context + 0x14) = *(int32_t *)(render_context + 0xc);
+    *(int32_t *)((longlong)render_context + 0xa4) = *(int32_t *)((longlong)render_context + 100);
+    *(int32_t *)(render_context + 0x15) = *(int32_t *)(render_context + 0xd);
+    *(int32_t *)((longlong)render_context + 0xac) = *(int32_t *)((longlong)render_context + 0x6c);
     
     // 初始化矩阵计算
     matrix_setup_function();
-    *(undefined4 *)((longlong)render_context + 0x8c) = 0;
-    *(undefined4 *)((longlong)render_context + 0x9c) = 0;
-    *(undefined4 *)((longlong)render_context + 0xac) = 0;
-    *(undefined4 *)((longlong)render_context + 0xbc) = 0x3f800000;
+    *(int32_t *)((longlong)render_context + 0x8c) = 0;
+    *(int32_t *)((longlong)render_context + 0x9c) = 0;
+    *(int32_t *)((longlong)render_context + 0xac) = 0;
+    *(int32_t *)((longlong)render_context + 0xbc) = 0x3f800000;
     
     // 计算最终的变换矩阵
     calculate_final_matrix(render_context, matrix_ptr);
 }
 
 // 辅助函数: 计算最终矩阵
-void calculate_final_matrix(undefined8 *render_context, float *source_matrix)
+void calculate_final_matrix(uint64_t *render_context, float *source_matrix)
 {
     float temp_matrix[16];
     float normalization_factor;
@@ -487,7 +487,7 @@ void calculate_final_matrix(undefined8 *render_context, float *source_matrix)
 }
 
 // 辅助函数: 应用归一化
-void apply_normalization(undefined8 *render_context, float *matrix, float factor)
+void apply_normalization(uint64_t *render_context, float *matrix, float factor)
 {
     *(float *)(render_context + 0x18) = matrix[0] * factor;
     *(float *)(render_context + 0x19) = matrix[1] * factor;
@@ -509,39 +509,39 @@ longlong *create_render_object(longlong config_data, int index) {
 }
 
 // 简化实现：获取渲染配置
-undefined8 get_render_config(longlong config_data, undefined8 *output) {
+uint64_t get_render_config(longlong config_data, uint64_t *output) {
     // 简化实现：原始实现应该包含复杂的配置获取逻辑
     return 0;
 }
 
 // 简化实现：查找渲染条目
-int find_render_entry(longlong table, undefined8 key) {
+int find_render_entry(longlong table, uint64_t key) {
     // 简化实现：原始实现应该包含复杂的查找逻辑
     return -1;
 }
 
 // 简化实现：注册材质
-void register_material(undefined8 *registry, undefined *material) {
+void register_material(uint64_t *registry, void *material) {
     // 简化实现：原始实现应该包含复杂的材质注册逻辑
 }
 
 // 简化实现：获取着色器参数
-undefined4 get_shader_param_1() { return 0; }
-undefined4 get_shader_param_2() { return 0; }
-undefined4 get_shader_param_3() { return 0; }
-undefined4 get_shader_param_4() { return 0; }
-undefined4 get_shader_param_5() { return 0; }
-undefined4 get_shader_param_6() { return 0; }
-undefined4 get_shader_param_7() { return 0; }
-undefined4 get_shader_param_8() { return 0; }
-undefined4 get_shader_param_9() { return 0; }
-undefined4 get_shader_param_10() { return 0; }
-undefined4 get_shader_param_11() { return 0; }
-undefined4 get_shader_param_12() { return 0; }
-undefined4 get_shader_param_13() { return 0; }
+int32_t get_shader_param_1() { return 0; }
+int32_t get_shader_param_2() { return 0; }
+int32_t get_shader_param_3() { return 0; }
+int32_t get_shader_param_4() { return 0; }
+int32_t get_shader_param_5() { return 0; }
+int32_t get_shader_param_6() { return 0; }
+int32_t get_shader_param_7() { return 0; }
+int32_t get_shader_param_8() { return 0; }
+int32_t get_shader_param_9() { return 0; }
+int32_t get_shader_param_10() { return 0; }
+int32_t get_shader_param_11() { return 0; }
+int32_t get_shader_param_12() { return 0; }
+int32_t get_shader_param_13() { return 0; }
 
 // 简化实现：获取颜色值
-void get_color_values(longlong context, undefined8 *output) {
+void get_color_values(longlong context, uint64_t *output) {
     // 简化实现：原始实现应该包含复杂的颜色计算逻辑
 }
 
@@ -551,22 +551,22 @@ void get_texture_data(longlong context, longlong **output) {
 }
 
 // 简化实现：获取材质数据
-void get_material_data(longlong context, undefined8 *output) {
+void get_material_data(longlong context, uint64_t *output) {
     // 简化实现：原始实现应该包含复杂的材质数据获取逻辑
 }
 
 // 简化实现：获取着色器数据
-void get_shader_data(longlong context, undefined8 *output) {
+void get_shader_data(longlong context, uint64_t *output) {
     // 简化实现：原始实现应该包含复杂的着色器数据获取逻辑
 }
 
 // 简化实现：获取渲染目标
-void get_render_target(longlong context, undefined8 *output) {
+void get_render_target(longlong context, uint64_t *output) {
     // 简化实现：原始实现应该包含复杂的渲染目标获取逻辑
 }
 
 // 简化实现：设置渲染管线
-void setup_render_pipeline(undefined8 *context, undefined8 *target, undefined8 *shader, undefined8 *material, longlong **texture) {
+void setup_render_pipeline(uint64_t *context, uint64_t *target, uint64_t *shader, uint64_t *material, longlong **texture) {
     // 简化实现：原始实现应该包含复杂的渲染管线设置逻辑
 }
 
@@ -592,9 +592,9 @@ longlong get_current_context() {
 }
 
 // 全局变量占位符
-undefined8 DEFAULT_MATERIAL_DATA = 0;
-undefined8 MATERIAL_REGISTRY = 0;
-undefined8 DEFAULT_SHADER = 0;
-undefined8 GLOBAL_RENDER_TABLE = 0;
-undefined8 STANDARD_RENDER_CONTEXT = 0;
-undefined8 TEXTURE_REGISTRY = 0;
+uint64_t DEFAULT_MATERIAL_DATA = 0;
+uint64_t MATERIAL_REGISTRY = 0;
+uint64_t DEFAULT_SHADER = 0;
+uint64_t GLOBAL_RENDER_TABLE = 0;
+uint64_t STANDARD_RENDER_CONTEXT = 0;
+uint64_t TEXTURE_REGISTRY = 0;

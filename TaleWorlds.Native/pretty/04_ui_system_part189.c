@@ -115,7 +115,7 @@
  * - 动态分辨率调整
  * 
  * @param 无直接参数，通过全局状态和配置进行操作
- * @return undefined8 操作状态码，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 操作状态码，成功返回UI_SYSTEM_SUCCESS
  */
 undefined FUN_180763100(void);
 
@@ -131,7 +131,7 @@ undefined FUN_180763100(void);
  * - 状态恢复和回滚
  * 
  * @param 无直接参数，通过系统状态接口进行操作
- * @return undefined8 操作状态码，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 操作状态码，成功返回UI_SYSTEM_SUCCESS
  */
 undefined FUN_1807868e0(void);
 
@@ -149,9 +149,9 @@ undefined FUN_1807868e0(void);
  * @param event_type 事件类型标识符
  * @param event_data 事件数据指针
  * @param event_size 事件数据大小
- * @return undefined8 事件处理结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 事件处理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_180788990(undefined8 event_type, undefined8 event_data, undefined8 event_size);
+undefined FUN_180788990(uint64_t event_type, uint64_t event_data, uint64_t event_size);
 
 /**
  * @brief UI系统布局管理器
@@ -167,9 +167,9 @@ undefined FUN_180788990(undefined8 event_type, undefined8 event_data, undefined8
  * @param layout_info 布局信息结构体指针
  * @param constraints 布局约束参数
  * @param available_size 可用空间大小
- * @return undefined8 布局操作结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 布局操作结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_1807863b0(undefined8 layout_info, undefined8 constraints, undefined8 available_size);
+undefined FUN_1807863b0(uint64_t layout_info, uint64_t constraints, uint64_t available_size);
 
 /**
  * @brief UI系统资源控制器
@@ -185,9 +185,9 @@ undefined FUN_1807863b0(undefined8 layout_info, undefined8 constraints, undefine
  * @param resource_type 资源类型标识符
  * @param resource_path 资源路径字符串
  * @param load_options 加载选项参数
- * @return undefined8 资源操作结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 资源操作结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_180787030(undefined8 resource_type, undefined8 resource_path, undefined8 load_options);
+undefined FUN_180787030(uint64_t resource_type, uint64_t resource_path, uint64_t load_options);
 
 /**
  * @brief UI系统元素处理器
@@ -203,9 +203,9 @@ undefined FUN_180787030(undefined8 resource_type, undefined8 resource_path, unde
  * @param element_id 元素唯一标识符
  * @param operation_type 操作类型（创建、更新、销毁等）
  * @param element_data 元素数据指针
- * @return undefined8 元素操作结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 元素操作结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_18079bc20(undefined8 element_id, undefined8 operation_type, undefined8 element_data);
+undefined FUN_18079bc20(uint64_t element_id, uint64_t operation_type, uint64_t element_data);
 
 /**
  * @brief UI系统渲染优化器
@@ -220,9 +220,9 @@ undefined FUN_18079bc20(undefined8 element_id, undefined8 operation_type, undefi
  * 
  * @param render_context 渲染上下文指针
  * @param optimization_level 优化级别参数
- * @return undefined8 优化操作结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 优化操作结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_18079c2e0(undefined8 render_context, undefined8 optimization_level);
+undefined FUN_18079c2e0(uint64_t render_context, uint64_t optimization_level);
 
 /**
  * @brief UI系统交互处理器
@@ -237,9 +237,9 @@ undefined FUN_18079c2e0(undefined8 render_context, undefined8 optimization_level
  * 
  * @param interaction_data 交互数据结构体指针
  * @param interaction_type 交互类型标识符
- * @return undefined8 交互处理结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 交互处理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_18079b740(undefined8 interaction_data, undefined8 interaction_type);
+undefined FUN_18079b740(uint64_t interaction_data, uint64_t interaction_type);
 
 /**
  * @brief UI系统显示管理器
@@ -254,9 +254,9 @@ undefined FUN_18079b740(undefined8 interaction_data, undefined8 interaction_type
  * 
  * @param display_info 显示信息结构体指针
  * @param display_config 显示配置参数
- * @return undefined8 显示管理结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 显示管理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_18079b400(undefined8 display_info, undefined8 display_config);
+undefined FUN_18079b400(uint64_t display_info, uint64_t display_config);
 
 /**
  * @brief UI系统动画控制器
@@ -271,9 +271,9 @@ undefined FUN_18079b400(undefined8 display_info, undefined8 display_config);
  * 
  * @param animation_id 动画唯一标识符
  * @param animation_control 动画控制参数
- * @return undefined8 动画控制结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 动画控制结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_18079b4c0(undefined8 animation_id, undefined8 animation_control);
+undefined FUN_18079b4c0(uint64_t animation_id, uint64_t animation_control);
 
 /**
  * @brief UI系统特效处理器
@@ -288,9 +288,9 @@ undefined FUN_18079b4c0(undefined8 animation_id, undefined8 animation_control);
  * 
  * @param effect_type 特效类型标识符
  * @param effect_params 特效参数结构体指针
- * @return undefined8 特效处理结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 特效处理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_18079b5a0(undefined8 effect_type, undefined8 effect_params);
+undefined FUN_18079b5a0(uint64_t effect_type, uint64_t effect_params);
 
 /**
  * @brief UI系统过渡管理器
@@ -305,9 +305,9 @@ undefined FUN_18079b5a0(undefined8 effect_type, undefined8 effect_params);
  * 
  * @param transition_data 过渡数据结构体指针
  * @param transition_type 过渡类型标识符
- * @return undefined8 过渡管理结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 过渡管理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_18079b600(undefined8 transition_data, undefined8 transition_type);
+undefined FUN_18079b600(uint64_t transition_data, uint64_t transition_type);
 
 /**
  * @brief UI系统纹理处理器
@@ -322,9 +322,9 @@ undefined FUN_18079b600(undefined8 transition_data, undefined8 transition_type);
  * 
  * @param texture_id 纹理唯一标识符
  * @param texture_operation 纹理操作类型
- * @return undefined8 纹理处理结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 纹理处理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_18079cd20(undefined8 texture_id, undefined8 texture_operation);
+undefined FUN_18079cd20(uint64_t texture_id, uint64_t texture_operation);
 
 /**
  * @brief UI系统着色器处理器
@@ -339,9 +339,9 @@ undefined FUN_18079cd20(undefined8 texture_id, undefined8 texture_operation);
  * 
  * @param shader_id 着色器唯一标识符
  * @param shader_params 着色器参数结构体指针
- * @return undefined8 着色器处理结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 着色器处理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_18079cda0(undefined8 shader_id, undefined8 shader_params);
+undefined FUN_18079cda0(uint64_t shader_id, uint64_t shader_params);
 
 /**
  * @brief UI系统缓冲区管理器
@@ -357,9 +357,9 @@ undefined FUN_18079cda0(undefined8 shader_id, undefined8 shader_params);
  * @param buffer_type 缓冲区类型标识符
  * @param buffer_size 缓冲区大小参数
  * @param buffer_data 缓冲区数据指针
- * @return undefined8 缓冲区管理结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 缓冲区管理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_180801cc0(undefined8 buffer_type, undefined8 buffer_size, undefined8 buffer_data);
+undefined FUN_180801cc0(uint64_t buffer_type, uint64_t buffer_size, uint64_t buffer_data);
 
 /**
  * @brief UI系统内存分配器
@@ -374,9 +374,9 @@ undefined FUN_180801cc0(undefined8 buffer_type, undefined8 buffer_size, undefine
  * 
  * @param allocation_size 分配大小参数
  * @param alignment 对齐要求参数
- * @return undefined8 分配的内存指针，失败返回NULL
+ * @return uint64_t 分配的内存指针，失败返回NULL
  */
-undefined FUN_180808090(undefined8 allocation_size, undefined8 alignment);
+undefined FUN_180808090(uint64_t allocation_size, uint64_t alignment);
 
 /**
  * @brief UI系统性能监控器
@@ -390,9 +390,9 @@ undefined FUN_180808090(undefined8 allocation_size, undefined8 alignment);
  * - 性能优化建议
  * 
  * @param monitor_config 监控配置结构体指针
- * @return undefined8 性能监控结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 性能监控结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_1808267d0(undefined8 monitor_config);
+undefined FUN_1808267d0(uint64_t monitor_config);
 
 /**
  * @brief UI系统质量控制台
@@ -406,9 +406,9 @@ undefined FUN_1808267d0(undefined8 monitor_config);
  * - 动态质量调整
  * 
  * @param quality_params 质量参数结构体指针
- * @return undefined8 质量控制结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 质量控制结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_180824f70(undefined8 quality_params);
+undefined FUN_180824f70(uint64_t quality_params);
 
 /**
  * @brief UI系统设置管理器
@@ -423,9 +423,9 @@ undefined FUN_180824f70(undefined8 quality_params);
  * 
  * @param settings_data 设置数据结构体指针
  * @param settings_scope 设置作用域标识符
- * @return undefined8 设置管理结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 设置管理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_180825ef0(undefined8 settings_data, undefined8 settings_scope);
+undefined FUN_180825ef0(uint64_t settings_data, uint64_t settings_scope);
 
 /**
  * @brief UI系统配置加载器
@@ -440,9 +440,9 @@ undefined FUN_180825ef0(undefined8 settings_data, undefined8 settings_scope);
  * 
  * @param config_path 配置文件路径
  * @param config_type 配置类型标识符
- * @return undefined8 配置加载结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 配置加载结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_18081c0c0(undefined8 config_path, undefined8 config_type);
+undefined FUN_18081c0c0(uint64_t config_path, uint64_t config_type);
 
 /**
  * @brief UI系统配置文件管理器
@@ -457,9 +457,9 @@ undefined FUN_18081c0c0(undefined8 config_path, undefined8 config_type);
  * 
  * @param profile_id 配置文件标识符
  * @param profile_operation 配置文件操作类型
- * @return undefined8 配置文件管理结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 配置文件管理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_18081bc60(undefined8 profile_id, undefined8 profile_operation);
+undefined FUN_18081bc60(uint64_t profile_id, uint64_t profile_operation);
 
 /**
  * @brief UI系统调试工具
@@ -474,9 +474,9 @@ undefined FUN_18081bc60(undefined8 profile_id, undefined8 profile_operation);
  * 
  * @param debug_command 调试命令标识符
  * @param debug_params 调试参数结构体指针
- * @return undefined8 调试工具结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 调试工具结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_18082ed00(undefined8 debug_command, undefined8 debug_params);
+undefined FUN_18082ed00(uint64_t debug_command, uint64_t debug_params);
 
 /**
  * @brief UI系统性能分析器
@@ -490,9 +490,9 @@ undefined FUN_18082ed00(undefined8 debug_command, undefined8 debug_params);
  * - 性能报告生成
  * 
  * @param analysis_config 分析配置结构体指针
- * @return undefined8 性能分析结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 性能分析结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_18082e800(undefined8 analysis_config);
+undefined FUN_18082e800(uint64_t analysis_config);
 
 /**
  * @brief UI系统渲染管线
@@ -507,9 +507,9 @@ undefined FUN_18082e800(undefined8 analysis_config);
  * 
  * @param pipeline_config 管线配置结构体指针
  * @param render_target 渲染目标参数
- * @return undefined8 渲染管线结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 渲染管线结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_1808632b0(undefined8 pipeline_config, undefined8 render_target);
+undefined FUN_1808632b0(uint64_t pipeline_config, uint64_t render_target);
 
 /**
  * @brief UI系统图形引擎
@@ -524,9 +524,9 @@ undefined FUN_1808632b0(undefined8 pipeline_config, undefined8 render_target);
  * 
  * @param graphics_command 图形命令标识符
  * @param graphics_params 图形参数结构体指针
- * @return undefined8 图形引擎结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 图形引擎结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_180873f80(undefined8 graphics_command, undefined8 graphics_params);
+undefined FUN_180873f80(uint64_t graphics_command, uint64_t graphics_params);
 
 /**
  * @brief UI系统输入处理器
@@ -541,9 +541,9 @@ undefined FUN_180873f80(undefined8 graphics_command, undefined8 graphics_params)
  * 
  * @param input_type 输入类型标识符
  * @param input_data 输入数据结构体指针
- * @return undefined8 输入处理结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 输入处理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_1808793e0(undefined8 input_type, undefined8 input_data);
+undefined FUN_1808793e0(uint64_t input_type, uint64_t input_data);
 
 /**
  * @brief UI系统光标管理器
@@ -558,9 +558,9 @@ undefined FUN_1808793e0(undefined8 input_type, undefined8 input_data);
  * 
  * @param cursor_command 光标命令标识符
  * @param cursor_params 光标参数结构体指针
- * @return undefined8 光标管理结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 光标管理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_1808777c0(undefined8 cursor_command, undefined8 cursor_params);
+undefined FUN_1808777c0(uint64_t cursor_command, uint64_t cursor_params);
 
 /**
  * @brief UI系统焦点控制器
@@ -575,9 +575,9 @@ undefined FUN_1808777c0(undefined8 cursor_command, undefined8 cursor_params);
  * 
  * @param focus_command 焦点命令标识符
  * @param focus_params 焦点参数结构体指针
- * @return undefined8 焦点控制结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 焦点控制结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_180877810(undefined8 focus_command, undefined8 focus_params);
+undefined FUN_180877810(uint64_t focus_command, uint64_t focus_params);
 
 /**
  * @brief UI系统可访问性管理器
@@ -591,9 +591,9 @@ undefined FUN_180877810(undefined8 focus_command, undefined8 focus_params);
  * - 语音控制支持
  * 
  * @param accessibility_config 可访问性配置结构体指针
- * @return undefined8 可访问性管理结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 可访问性管理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_180877f00(undefined8 accessibility_config);
+undefined FUN_180877f00(uint64_t accessibility_config);
 
 /**
  * @brief UI系统主题处理器
@@ -608,9 +608,9 @@ undefined FUN_180877f00(undefined8 accessibility_config);
  * 
  * @param theme_data 主题数据结构体指针
  * @param theme_operation 主题操作类型
- * @return undefined8 主题处理结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 主题处理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_1808780d0(undefined8 theme_data, undefined8 theme_operation);
+undefined FUN_1808780d0(uint64_t theme_data, uint64_t theme_operation);
 
 /**
  * @brief UI系统本地化处理器
@@ -625,9 +625,9 @@ undefined FUN_1808780d0(undefined8 theme_data, undefined8 theme_operation);
  * 
  * @param locale_data 本地化数据结构体指针
  * @param locale_operation 本地化操作类型
- * @return undefined8 本地化处理结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 本地化处理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_1808794d0(undefined8 locale_data, undefined8 locale_operation);
+undefined FUN_1808794d0(uint64_t locale_data, uint64_t locale_operation);
 
 /**
  * @brief UI系统字体渲染器
@@ -642,9 +642,9 @@ undefined FUN_1808794d0(undefined8 locale_data, undefined8 locale_operation);
  * 
  * @param font_id 字体唯一标识符
  * @param text_data 文本数据结构体指针
- * @return undefined8 字体渲染结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 字体渲染结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_180879510(undefined8 font_id, undefined8 text_data);
+undefined FUN_180879510(uint64_t font_id, uint64_t text_data);
 
 /**
  * @brief UI系统声音控制器
@@ -659,9 +659,9 @@ undefined FUN_180879510(undefined8 font_id, undefined8 text_data);
  * 
  * @param sound_id 声音唯一标识符
  * @param sound_params 声音参数结构体指针
- * @return undefined8 声音控制结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 声音控制结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_180876d70(undefined8 sound_id, undefined8 sound_params);
+undefined FUN_180876d70(uint64_t sound_id, uint64_t sound_params);
 
 /**
  * @brief UI系统振动管理器
@@ -676,9 +676,9 @@ undefined FUN_180876d70(undefined8 sound_id, undefined8 sound_params);
  * 
  * @param vibration_pattern 振动模式标识符
  * @param vibration_params 振动参数结构体指针
- * @return undefined8 振动管理结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 振动管理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_180876d90(undefined8 vibration_pattern, undefined8 vibration_params);
+undefined FUN_180876d90(uint64_t vibration_pattern, uint64_t vibration_params);
 
 /**
  * @brief UI系统触觉处理器
@@ -693,9 +693,9 @@ undefined FUN_180876d90(undefined8 vibration_pattern, undefined8 vibration_param
  * 
  * @param haptic_effect 触觉效果标识符
  * @param haptic_params 触觉参数结构体指针
- * @return undefined8 触觉处理结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 触觉处理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_180876eb0(undefined8 haptic_effect, undefined8 haptic_params);
+undefined FUN_180876eb0(uint64_t haptic_effect, uint64_t haptic_params);
 
 /**
  * @brief UI系统网络处理器
@@ -710,9 +710,9 @@ undefined FUN_180876eb0(undefined8 haptic_effect, undefined8 haptic_params);
  * 
  * @param network_operation 网络操作类型
  * @param network_params 网络参数结构体指针
- * @return undefined8 网络处理结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 网络处理结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_180876fb0(undefined8 network_operation, undefined8 network_params);
+undefined FUN_180876fb0(uint64_t network_operation, uint64_t network_params);
 
 /**
  * @brief UI系统平台适配器
@@ -727,9 +727,9 @@ undefined FUN_180876fb0(undefined8 network_operation, undefined8 network_params)
  * 
  * @param platform_type 平台类型标识符
  * @param platform_params 平台参数结构体指针
- * @return undefined8 平台适配结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 平台适配结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined FUN_18088ea60(undefined8 platform_type, undefined8 platform_params);
+undefined FUN_18088ea60(uint64_t platform_type, uint64_t platform_params);
 
 /**
  * @brief UI系统数据复制器
@@ -748,7 +748,7 @@ undefined FUN_18088ea60(undefined8 platform_type, undefined8 platform_params);
  * @param height 数据高度参数
  * @return void 无返回值
  */
-void FUN_180779d80(undefined8 destination, undefined8 source, undefined8 data_ptr, int width, int height);
+void FUN_180779d80(uint64_t destination, uint64_t source, uint64_t data_ptr, int width, int height);
 
 /**
  * @brief UI系统矩阵变换器
@@ -763,9 +763,9 @@ void FUN_180779d80(undefined8 destination, undefined8 source, undefined8 data_pt
  * 
  * @param transform_params 变换参数结构体指针
  * @param matrix_size 矩阵大小参数
- * @return undefined8 变换结果，成功返回UI_SYSTEM_SUCCESS
+ * @return uint64_t 变换结果，成功返回UI_SYSTEM_SUCCESS
  */
-undefined8 FUN_180779df5(undefined4 transform_params, ulonglong matrix_size);
+uint64_t FUN_180779df5(int32_t transform_params, ulonglong matrix_size);
 
 /* ============================================================================
  * UI系统全局数据定义

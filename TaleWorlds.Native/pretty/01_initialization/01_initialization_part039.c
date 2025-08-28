@@ -28,7 +28,7 @@
  * 4. 实现线程安全的内存块分配和回收
  * 5. 处理内存块的引用计数和生命周期管理
  */
-void InitializeMemoryPoolManager(undefined8 *pool_manager)
+void InitializeMemoryPoolManager(uint64_t *pool_manager)
 
 {
   int *ref_count_ptr;
@@ -66,7 +66,7 @@ void InitializeMemoryPoolManager(undefined8 *pool_manager)
           current_head = *(longlong *)(pool_base + 0x28);
           do {
             *(longlong *)(memory_block + MEMORY_POOL_NEXT_BLOCK_OFFSET) = current_head;
-            *(undefined4 *)(memory_block + MEMORY_POOL_REF_COUNT_OFFSET) = 1;
+            *(int32_t *)(memory_block + MEMORY_POOL_REF_COUNT_OFFSET) = 1;
             hash_table_ptr = (longlong *)(pool_base + 0x28);
             LOCK();
             next_head = *hash_table_ptr;
@@ -114,7 +114,7 @@ LAB_PROCESS_MEMORY_BLOCK:
       current_head = *(longlong *)(pool_base + 0x28);
       do {
         *(longlong *)(memory_block + MEMORY_POOL_NEXT_BLOCK_OFFSET) = current_head;
-        *(undefined4 *)(memory_block + MEMORY_POOL_REF_COUNT_OFFSET) = 1;
+        *(int32_t *)(memory_block + MEMORY_POOL_REF_COUNT_OFFSET) = 1;
         hash_table_ptr = (longlong *)(pool_base + 0x28);
         LOCK();
         next_head = *hash_table_ptr;
@@ -158,7 +158,7 @@ LAB_PROCESS_MEMORY_BLOCK:
  * @param thread_context 线程上下文指针
  * @return 线程本地存储数据指针，失败返回NULL
  */
-undefined8 * GetThreadLocalStorageData(longlong *thread_context)
+uint64_t * GetThreadLocalStorageData(longlong *thread_context)
 
 {
   longlong *plVar1;
@@ -168,14 +168,14 @@ undefined8 * GetThreadLocalStorageData(longlong *thread_context)
   uint uVar5;
   ulonglong uVar6;
   ulonglong *puVar7;
-  undefined8 *puVar8;
+  uint64_t *puVar8;
   longlong lVar9;
   longlong lVar10;
-  undefined8 *puVar11;
+  uint64_t *puVar11;
   ulonglong uVar12;
   ulonglong uVar13;
   uint uVar14;
-  undefined8 *puVar15;
+  uint64_t *puVar15;
   bool bVar16;
   bool bVar17;
   
@@ -198,7 +198,7 @@ undefined8 * GetThreadLocalStorageData(longlong *thread_context)
       
       // 如果找到匹配的线程ID，返回对应的线程数据
       if (uVar14 == uVar5) {
-        puVar15 = *(undefined8 **)(puVar3[1] + 8 + uVar6 * 0x10);
+        puVar15 = *(uint64_t **)(puVar3[1] + 8 + uVar6 * 0x10);
         if (puVar3 == puVar7) {
           return puVar15;
         }
@@ -216,7 +216,7 @@ undefined8 * GetThreadLocalStorageData(longlong *thread_context)
             }
             UNLOCK();
             if (bVar17) {
-              *(undefined8 **)(puVar7[1] + 8 + uVar13 * 0x10) = puVar15;
+              *(uint64_t **)(puVar7[1] + 8 + uVar13 * 0x10) = puVar15;
               return puVar15;
             }
           }
@@ -235,7 +235,7 @@ undefined8 * GetThreadLocalStorageData(longlong *thread_context)
   *plVar1 = *plVar1 + 1;
   UNLOCK();
   uVar6 = lVar9 + 1;
-  puVar15 = (undefined8 *)0x0;
+  puVar15 = (uint64_t *)0x0;
   
   // 检查是否需要扩展哈希表
   while( true ) {
@@ -265,8 +265,8 @@ undefined8 * GetThreadLocalStorageData(longlong *thread_context)
             LOCK();
             param_1[7] = param_1[7] + -1;
             UNLOCK();
-            *(undefined4 *)(param_1 + 0x4b) = 0;
-            return (undefined8 *)0x0;
+            *(int32_t *)(param_1 + 0x4b) = 0;
+            return (uint64_t *)0x0;
           }
           
           // 初始化新的哈希表
@@ -274,22 +274,22 @@ undefined8 * GetThreadLocalStorageData(longlong *thread_context)
           puVar7[1] = (ulonglong)(-(int)(puVar7 + 3) & 7) + (longlong)(puVar7 + 3);
           puVar11 = puVar15;
           for (; uVar12 != 0; uVar12 = uVar12 - 1) {
-            *(undefined8 *)((longlong)puVar11 + puVar7[1] + 8) = 0;
-            *(undefined4 *)((longlong)puVar11 + puVar7[1]) = 0;
+            *(uint64_t *)((longlong)puVar11 + puVar7[1] + 8) = 0;
+            *(int32_t *)((longlong)puVar11 + puVar7[1]) = 0;
             puVar11 = puVar11 + 2;
           }
           puVar7[2] = (ulonglong)puVar3;
           param_1[6] = (longlong)puVar7;
         }
-        *(undefined4 *)(param_1 + 0x4b) = 0;
+        *(int32_t *)(param_1 + 0x4b) = 0;
       }
     }
     if (uVar6 < (*puVar7 >> 2) + (*puVar7 >> 1)) break;
     puVar7 = (ulonglong *)param_1[6];
   }
   // 查找可用的线程数据槽位
-  puVar11 = (undefined8 *)*param_1;
-  while (puVar11 != (undefined8 *)0x0) {
+  puVar11 = (uint64_t *)*param_1;
+  while (puVar11 != (uint64_t *)0x0) {
     if ((*(char *)(puVar11 + 2) != '\0') && (*(char *)(puVar11 + 9) == '\0')) {
       bVar17 = true;
       LOCK();
@@ -301,7 +301,7 @@ undefined8 * GetThreadLocalStorageData(longlong *thread_context)
       if (bVar16) goto LAB_18006d3bb;
     }
     plVar1 = puVar11 + 1;
-    puVar11 = (undefined8 *)(*plVar1 + -8);
+    puVar11 = (uint64_t *)(*plVar1 + -8);
     if (*plVar1 == 0) {
       puVar11 = puVar15;
     }
@@ -309,12 +309,12 @@ undefined8 * GetThreadLocalStorageData(longlong *thread_context)
   
   // 没有找到可用槽位，创建新的线程数据结构
   bVar17 = false;
-  puVar8 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x68,10);
+  puVar8 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x68,10);
   puVar11 = puVar15;
-  if (puVar8 != (undefined8 *)0x0) {
+  if (puVar8 != (uint64_t *)0x0) {
     // 初始化新的线程数据结构
     puVar8[1] = 0;
-    *(undefined1 *)(puVar8 + 2) = 0;
+    *(int8_t *)(puVar8 + 2) = 0;
     puVar8[3] = 0;
     *puVar8 = &UNK_1809ff488;
     puVar8[4] = 0;
@@ -322,7 +322,7 @@ undefined8 * GetThreadLocalStorageData(longlong *thread_context)
     puVar8[6] = 0;
     puVar8[7] = 0;
     puVar8[8] = 0;
-    *(undefined1 *)(puVar8 + 9) = 0;
+    *(int8_t *)(puVar8 + 9) = 0;
     puVar8[10] = param_1;
     *puVar8 = &UNK_1809ff3e8;
     puVar8[0xb] = 0x20;
@@ -339,7 +339,7 @@ undefined8 * GetThreadLocalStorageData(longlong *thread_context)
     // 将新的线程数据结构添加到链表头部
     lVar9 = *param_1;
     do {
-      puVar11 = (undefined8 *)(lVar9 + 8);
+      puVar11 = (uint64_t *)(lVar9 + 8);
       if (lVar9 == 0) {
         puVar11 = puVar15;
       }
@@ -359,11 +359,11 @@ undefined8 * GetThreadLocalStorageData(longlong *thread_context)
   
 LAB_18006d3bb:
   // 检查是否成功分配了线程数据结构
-  if (puVar11 == (undefined8 *)0x0) {
+  if (puVar11 == (uint64_t *)0x0) {
     LOCK();
     param_1[7] = param_1[7] + -1;
     UNLOCK();
-    return (undefined8 *)0x0;
+    return (uint64_t *)0x0;
   }
   
   // 如果是重用的数据结构，减少活跃线程计数
@@ -385,7 +385,7 @@ LAB_18006d3bb:
       }
       UNLOCK();
       if (bVar17) {
-        *(undefined8 **)(puVar7[1] + 8 + uVar13 * 0x10) = puVar11;
+        *(uint64_t **)(puVar7[1] + 8 + uVar13 * 0x10) = puVar11;
         return puVar11;
       }
     }
@@ -406,13 +406,13 @@ LAB_18006d3bb:
  * @param dest_start 目标数据起始地址
  * @return 返回结果指针
  */
-longlong * ProcessMemoryBlockDataConversion(longlong *result_ptr, undefined8 *src_start, undefined8 *src_end, undefined8 *dest_start)
+longlong * ProcessMemoryBlockDataConversion(longlong *result_ptr, uint64_t *src_start, uint64_t *src_end, uint64_t *dest_start)
 
 {
-  undefined8 *puVar1;
+  uint64_t *puVar1;
   code *pcVar2;
-  undefined8 *puVar3;
-  undefined *puVar4;
+  uint64_t *puVar3;
+  void *puVar4;
   
   *result_ptr = (longlong)dest_start;
   if (src_start != src_end) {
@@ -421,17 +421,17 @@ longlong * ProcessMemoryBlockDataConversion(longlong *result_ptr, undefined8 *sr
       // 初始化目标数据结构
       *dest_start = &UNK_18098bcb0;
       dest_start[1] = 0;
-      *(undefined4 *)(dest_start + 2) = 0;
+      *(int32_t *)(dest_start + 2) = 0;
       *dest_start = &UNK_1809feda8;
       dest_start[1] = dest_start + 3;
-      *(undefined4 *)(dest_start + 2) = 0;
-      *(undefined1 *)(dest_start + 3) = 0;
+      *(int32_t *)(dest_start + 2) = 0;
+      *(int8_t *)(dest_start + 3) = 0;
       
       // 复制属性数据
-      *(undefined4 *)(dest_start + 2) = *(undefined4 *)(puVar3 + -0x29);
+      *(int32_t *)(dest_start + 2) = *(int32_t *)(puVar3 + -0x29);
       puVar4 = &DAT_18098bc73;
-      if ((undefined *)puVar3[-0x2a] != (undefined *)0x0) {
-        puVar4 = (undefined *)puVar3[-0x2a];
+      if ((void *)puVar3[-0x2a] != (void *)0x0) {
+        puVar4 = (void *)puVar3[-0x2a];
       }
       strcpy_s(dest_start[1], 0x100, puVar4);
       
@@ -441,7 +441,7 @@ longlong * ProcessMemoryBlockDataConversion(longlong *result_ptr, undefined8 *sr
       dest_start[0x25] = puVar3[-6];
       dest_start[0x26] = puVar3[-5];
       dest_start[0x27] = puVar3[-4];
-      *(undefined1 *)(dest_start + 0x28) = *(undefined1 *)(puVar3 + -3);
+      *(int8_t *)(dest_start + 0x28) = *(int8_t *)(puVar3 + -3);
       
       // 处理回调函数1
       dest_start[0x2b] = 0;
@@ -481,7 +481,7 @@ longlong * ProcessMemoryBlockDataConversion(longlong *result_ptr, undefined8 *sr
       
       // 移动到下一个数据块
       *result_ptr = *result_ptr + 0x1a8;
-      dest_start = (undefined8 *)*result_ptr;
+      dest_start = (uint64_t *)*result_ptr;
       puVar1 = puVar3 + 10;
       puVar3 = puVar3 + 0x35;
     } while (puVar1 != src_end);
@@ -530,7 +530,7 @@ longlong * AllocateMemoryBlockOfSize(longlong pool_info, longlong size)
       if (uVar4 < (ulonglong)plVar3[1]) {
         // 分割内存块
         plVar2 = (longlong *)func_0x00018006e810(plVar5 + 4);
-        *(undefined1 *)(plVar2 + 4) = 0;
+        *(int8_t *)(plVar2 + 4) = 0;
         *plVar2 = *plVar3 + uVar4;
         plVar2[1] = plVar3[1] - uVar4;
         lVar1 = plVar3[2];
@@ -544,7 +544,7 @@ longlong * AllocateMemoryBlockOfSize(longlong pool_info, longlong size)
       }
       
       // 标记内存块为已使用
-      *(undefined1 *)(plVar3 + 4) = 1;
+      *(int8_t *)(plVar3 + 4) = 1;
       *plVar5 = *plVar5 + uVar4;
       plVar5[2] = plVar5[2] - uVar4;
       return plVar3;

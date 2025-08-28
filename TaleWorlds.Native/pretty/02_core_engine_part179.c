@@ -34,8 +34,8 @@
 
 typedef longlong* CoreEngineDataPointer;
 typedef longlong CoreEngineDataSize;
-typedef undefined8 CoreEngineResourceHandle;
-typedef undefined4 CoreEngineStatusFlags;
+typedef uint64_t CoreEngineResourceHandle;
+typedef int32_t CoreEngineStatusFlags;
 typedef char* CoreEngineStringBuffer;
 typedef int CoreEngineStringLength;
 typedef void* CoreEngineMemoryBlock;
@@ -118,11 +118,11 @@ typedef enum {
 // 全局变量
 //============================================================================
 
-undefined8* _DAT_180c868f8 = NULL;  // 核心引擎全局数据指针
-undefined8* _DAT_180c8ed18 = NULL;  // 内存分配器数据指针
-undefined* UNK_180a3c3e0 = NULL;    // 未知数据结构指针
-undefined* DAT_18098bc73 = NULL;    // 字符串处理数据指针
-undefined* UNK_18098bcb0 = NULL;    // 配置数据指针
+uint64_t* _DAT_180c868f8 = NULL;  // 核心引擎全局数据指针
+uint64_t* _DAT_180c8ed18 = NULL;  // 内存分配器数据指针
+void* UNK_180a3c3e0 = NULL;    // 未知数据结构指针
+void* DAT_18098bc73 = NULL;    // 字符串处理数据指针
+void* UNK_18098bcb0 = NULL;    // 配置数据指针
 
 //============================================================================
 // 核心功能函数实现
@@ -173,7 +173,7 @@ void CoreEngineDataProcessor(longlong param_1, longlong param_2)
     }
     
     // 分配新的内存空间
-    new_buffer = (CoreEngineDataPointer)FUN_18062b420(_DAT_180c8ed18, data_size * 8, *(undefined1*)(param_1 + 0x40));
+    new_buffer = (CoreEngineDataPointer)FUN_18062b420(_DAT_180c8ed18, data_size * 8, *(int8_t*)(param_1 + 0x40));
     data_start = *(CoreEngineDataPointer*)(param_1 + 0x28);
     data_current = *(CoreEngineDataPointer*)(param_1 + 0x30);
     
@@ -213,14 +213,14 @@ CoreEngineDataPointer CoreEngineResourceAllocator(longlong param_1, CoreEngineDa
     CoreEngineDataPointer result_buffer;
     CoreEngineDataSize data_size;
     CoreEngineDataPointer temp_buffer;
-    undefined1* string_buffer;
-    undefined4 string_flags;
+    int8_t* string_buffer;
+    int32_t string_flags;
     longlong current_data;
-    undefined* search_pattern;
-    undefined* default_pattern;
+    void* search_pattern;
+    void* default_pattern;
     CoreEngineDataSize index;
-    undefined4 temp_flags;
-    undefined8 temp_data;
+    int32_t temp_flags;
+    uint64_t temp_data;
     CoreEngineDataSize found_count;
     CoreEngineDataSize capacity;
     CoreEngineDataPointer result_array;
@@ -232,7 +232,7 @@ CoreEngineDataPointer CoreEngineResourceAllocator(longlong param_1, CoreEngineDa
     *param_2 = 0;
     param_2[1] = 0;
     param_2[2] = 0;
-    *(undefined4*)(param_2 + 3) = CORE_ENGINE_RESOURCE_FLAG_INITIALIZED;
+    *(int32_t*)(param_2 + 3) = CORE_ENGINE_RESOURCE_FLAG_INITIALIZED;
     string_flags = 1;
     
     current_data = *(longlong*)(param_1 + 0x28);
@@ -247,20 +247,20 @@ CoreEngineDataPointer CoreEngineResourceAllocator(longlong param_1, CoreEngineDa
             // 初始化字符串处理缓冲区
             result_buffer = &UNK_180a3c3e0;
             temp_data = 0;
-            string_buffer = (undefined1*)0x0;
+            string_buffer = (int8_t*)0x0;
             string_flags = 0;
             
             // 处理字符串数据
-            FUN_1806277c0(&result_buffer, *(undefined4*)(current_data + 0x10));
+            FUN_1806277c0(&result_buffer, *(int32_t*)(current_data + 0x10));
             
             if (*(int*)(current_data + 0x10) != 0) {
-                memcpy(string_buffer, *(undefined8*)(current_data + 8), *(int*)(current_data + 0x10) + 1);
+                memcpy(string_buffer, *(uint64_t*)(current_data + 8), *(int*)(current_data + 0x10) + 1);
             }
             
             // 处理字符串内容
             if (*(longlong*)(current_data + 8) != 0) {
                 string_flags = 0;
-                if (string_buffer != (undefined1*)0x0) {
+                if (string_buffer != (int8_t*)0x0) {
                     *string_buffer = 0;
                 }
                 temp_data = temp_data & 0xffffffff;
@@ -282,12 +282,12 @@ CoreEngineDataPointer CoreEngineResourceAllocator(longlong param_1, CoreEngineDa
             
             // 设置搜索模式
             default_pattern = &DAT_18098bc73;
-            if (*(undefined**)(param_3 + 8) != (undefined*)0x0) {
-                default_pattern = *(undefined**)(param_3 + 8);
+            if (*(void**)(param_3 + 8) != (void*)0x0) {
+                default_pattern = *(void**)(param_3 + 8);
             }
             
             search_pattern = &DAT_18098bc73;
-            if (string_buffer != (undefined1*)0x0) {
+            if (string_buffer != (int8_t*)0x0) {
                 search_pattern = string_buffer;
             }
             
@@ -335,7 +335,7 @@ LAB_180162130:
             
             // 清理临时缓冲区
             result_buffer = &UNK_180a3c3e0;
-            if (string_buffer != (undefined1*)0x0) {
+            if (string_buffer != (int8_t*)0x0) {
                 FUN_18064e900();
             }
             
@@ -359,20 +359,20 @@ LAB_180162130:
  * @param param_4 处理标志
  * @return void
  */
-void CoreEngineStringHandler(longlong param_1, longlong param_2, undefined8* param_3, undefined8 param_4)
+void CoreEngineStringHandler(longlong param_1, longlong param_2, uint64_t* param_3, uint64_t param_4)
 {
-    undefined8 string_handle;
+    uint64_t string_handle;
     longlong string_length;
     ulonglong buffer_size;
     ulonglong processed_size;
-    undefined4 char_count;
-    undefined* temp_buffer;
+    int32_t char_count;
+    void* temp_buffer;
     longlong string_data;
-    undefined4 string_flags;
-    undefined8 temp_data;
-    undefined* char_buffer;
-    undefined1* string_ptr;
-    undefined4 buffer_flags;
+    int32_t string_flags;
+    uint64_t temp_data;
+    void* char_buffer;
+    int8_t* string_ptr;
+    int32_t buffer_flags;
     ulonglong total_size;
     
     processed_size = 0;
@@ -397,10 +397,10 @@ void CoreEngineStringHandler(longlong param_1, longlong param_2, undefined8* par
         
         // 添加字符串结束符
         if (string_data != 0) {
-            *(undefined1*)(buffer_size + string_data) = 0;
+            *(int8_t*)(buffer_size + string_data) = 0;
         }
         
-        temp_data = CONCAT44(*(undefined4*)((longlong)param_3 + 0x1c), (undefined4)temp_data);
+        temp_data = CONCAT44(*(int32_t*)((longlong)param_3 + 0x1c), (int32_t)temp_data);
         buffer_flags = 0;
         
 LAB_18016236a:
@@ -417,23 +417,23 @@ LAB_18016236a:
         temp_data = *(ulonglong*)(string_length + 0x18);
         
         // 清理临时数据
-        *(undefined4*)(string_length + 0x10) = 0;
-        *(undefined8*)(string_length + 8) = 0;
-        *(undefined8*)(string_length + 0x18) = 0;
+        *(int32_t*)(string_length + 0x10) = 0;
+        *(uint64_t*)(string_length + 8) = 0;
+        *(uint64_t*)(string_length + 0x18) = 0;
         
         char_buffer = &UNK_180a3c3e0;
-        if (string_ptr != (undefined1*)0x0) {
+        if (string_ptr != (int8_t*)0x0) {
             FUN_18064e900();
         }
         
-        string_ptr = (undefined1*)0x0;
+        string_ptr = (int8_t*)0x0;
         total_size = total_size & 0xffffffff00000000;
         char_buffer = &UNK_18098bcb0;
         
         if (*(int*)(param_1 + 0x20) == 0) {
             FUN_1806277c0(&temp_buffer, buffer_flags + 1);
-            *(undefined1*)((ulonglong)buffer_flags + string_data) = 0x2e;
-            *(undefined1*)((ulonglong)(buffer_flags + 1) + string_data) = 0;
+            *(int8_t*)((ulonglong)buffer_flags + string_data) = 0x2e;
+            *(int8_t*)((ulonglong)(buffer_flags + 1) + string_data) = 0;
             buffer_flags = buffer_flags + 1;
             goto LAB_18016236a;
         }
@@ -454,10 +454,10 @@ LAB_180162395:
     // 递归处理字符串
     if (*(longlong*)(param_1 + 0x30) - string_length >> 3 != 0) {
         do {
-            string_handle = *(undefined8*)(processed_size + string_length);
+            string_handle = *(uint64_t*)(processed_size + string_length);
             char_buffer = &UNK_180a3c3e0;
             total_size = 0;
-            string_ptr = (undefined1*)0x0;
+            string_ptr = (int8_t*)0x0;
             buffer_flags = 0;
             
             FUN_1806277c0(&char_buffer, buffer_flags);
@@ -467,7 +467,7 @@ LAB_180162395:
             
             if (string_data != 0) {
                 buffer_flags = 0;
-                if (string_ptr != (undefined1*)0x0) {
+                if (string_ptr != (int8_t*)0x0) {
                     *string_ptr = 0;
                 }
                 total_size = total_size & 0xffffffff;
@@ -491,7 +491,7 @@ LAB_180162395:
         *param_3 = &UNK_180a3c3e0;
         if (param_3[1] == 0) {
             param_3[1] = 0;
-            *(undefined4*)(param_3 + 3) = 0;
+            *(int32_t*)(param_3 + 3) = 0;
             *param_3 = &UNK_18098bcb0;
             return;
         }
@@ -509,24 +509,24 @@ LAB_180162395:
  * @param param_2 初始化参数指针
  * @param param_3 初始化标志
  * @param param_4 初始化选项
- * @return undefined8* 初始化后的系统指针
+ * @return uint64_t* 初始化后的系统指针
  */
-undefined8* CoreEngineSystemInitializer(longlong param_1, undefined8* param_2, undefined8 param_3, undefined8 param_4)
+uint64_t* CoreEngineSystemInitializer(longlong param_1, uint64_t* param_2, uint64_t param_3, uint64_t param_4)
 {
     longlong system_handle;
-    undefined8 init_result;
-    undefined* temp_buffer;
+    uint64_t init_result;
+    void* temp_buffer;
     longlong temp_data;
-    undefined4 init_flags;
+    int32_t init_flags;
     
     // 初始化系统参数
     *param_2 = &UNK_18098bcb0;
     param_2[1] = 0;
-    *(undefined4*)(param_2 + 2) = 0;
+    *(int32_t*)(param_2 + 2) = 0;
     *param_2 = &UNK_180a3c3e0;
     param_2[3] = 0;
     param_2[1] = 0;
-    *(undefined4*)(param_2 + 2) = 0;
+    *(int32_t*)(param_2 + 2) = 0;
     
     system_handle = *(longlong*)(param_1 + 0x48);
     
@@ -542,15 +542,15 @@ undefined8* CoreEngineSystemInitializer(longlong param_1, undefined8* param_2, u
         init_flags = 0;
         temp_buffer = &UNK_18098bcb0;
         FUN_1806277c0(param_2, *(int*)(param_2 + 2) + 1);
-        *(undefined1*)((ulonglong)*(uint*)(param_2 + 2) + param_2[1]) = 0x2e;
-        *(undefined1*)((ulonglong)(*(int*)(param_2 + 2) + 1) + param_2[1]) = 0;
+        *(int8_t*)((ulonglong)*(uint*)(param_2 + 2) + param_2[1]) = 0x2e;
+        *(int8_t*)((ulonglong)(*(int*)(param_2 + 2) + 1) + param_2[1]) = 0;
         *(int*)(param_2 + 2) = *(int*)(param_2 + 2) + 1;
     }
     
     // 处理系统数据
     if (0 < *(int*)(param_1 + 0x10)) {
         FUN_1806277c0(param_2, *(int*)(param_2 + 2) + *(int*)(param_1 + 0x10));
-        memcpy((ulonglong)*(uint*)(param_2 + 2) + param_2[1], *(undefined8*)(param_1 + 8), (longlong)(*(int*)(param_1 + 0x10) + 1));
+        memcpy((ulonglong)*(uint*)(param_2 + 2) + param_2[1], *(uint64_t*)(param_1 + 8), (longlong)(*(int*)(param_1 + 0x10) + 1));
     }
     
     return param_2;
@@ -565,13 +565,13 @@ undefined8* CoreEngineSystemInitializer(longlong param_1, undefined8* param_2, u
  */
 void CoreEngineMemoryManager(void)
 {
-    undefined8 memory_handle;
-    undefined8* global_pointer;
-    undefined4 init_flags;
-    undefined4* string_buffer;
-    undefined* temp_buffer;
-    undefined8 temp_data;
-    undefined8 local_data;
+    uint64_t memory_handle;
+    uint64_t* global_pointer;
+    int32_t init_flags;
+    int32_t* string_buffer;
+    void* temp_buffer;
+    uint64_t temp_data;
+    uint64_t local_data;
     
     global_pointer = _DAT_180c868f8;
     local_data = 0xfffffffffffffffe;
@@ -580,12 +580,12 @@ void CoreEngineMemoryManager(void)
     memory_handle = FUN_18062b1e0(_DAT_180c8ed18, 0x88, 8, 3);
     temp_buffer = &UNK_180a3c3e0;
     temp_data = 0;
-    string_buffer = (undefined4*)0x0;
+    string_buffer = (int32_t*)0x0;
     init_flags = 0;
     
     // 初始化字符串缓冲区
-    string_buffer = (undefined4*)FUN_18062b420(_DAT_180c8ed18, 0x16, 0x13);
-    *(undefined1*)string_buffer = 0;
+    string_buffer = (int32_t*)FUN_18062b420(_DAT_180c8ed18, 0x16, 0x13);
+    *(int8_t*)string_buffer = 0;
     string_buffer = string_buffer;
     init_flags = FUN_18064e990(string_buffer);
     temp_data = CONCAT44(temp_data._4_4_, init_flags);
@@ -596,7 +596,7 @@ void CoreEngineMemoryManager(void)
     string_buffer[2] = 0x525f5f45; // "R__E"
     string_buffer[3] = 0x5f544f4f; // "_TOO"
     string_buffer[4] = 0x4554495f; // "ETI_"
-    *(undefined2*)(string_buffer + 5) = 0x4d; // "M"
+    *(int16_t*)(string_buffer + 5) = 0x4d; // "M"
     init_flags = 0x15;
     
     // 初始化数据结构
@@ -617,13 +617,13 @@ void CoreEngineMemoryManager(void)
  * @param param_2 配置数据指针
  * @param param_3 配置标志
  * @param param_4 配置选项
- * @return undefined8* 处理后的配置指针
+ * @return uint64_t* 处理后的配置指针
  */
-undefined8* CoreEngineConfigurationProcessor(undefined8 param_1, undefined8* param_2, undefined8 param_3, undefined8 param_4)
+uint64_t* CoreEngineConfigurationProcessor(uint64_t param_1, uint64_t* param_2, uint64_t param_3, uint64_t param_4)
 {
-    undefined4* config_buffer;
-    undefined4 config_flags;
-    undefined8 config_result;
+    int32_t* config_buffer;
+    int32_t config_flags;
+    uint64_t config_result;
     
     config_result = 0xfffffffffffffffe;
     config_flags = 0;
@@ -634,20 +634,20 @@ undefined8* CoreEngineConfigurationProcessor(undefined8 param_1, undefined8* par
     // 设置默认配置
     *param_2 = &UNK_18098bcb0;
     param_2[1] = 0;
-    *(undefined4*)(param_2 + 2) = 0;
+    *(int32_t*)(param_2 + 2) = 0;
     *param_2 = &UNK_180a3c3e0;
     param_2[3] = 0;
     param_2[1] = 0;
-    *(undefined4*)(param_2 + 2) = 0;
+    *(int32_t*)(param_2 + 2) = 0;
     
     // 处理配置参数
     FUN_1806277c0(param_2, 5, param_3, param_4, config_flags, config_result);
     
     // 设置配置标识符
-    config_buffer = (undefined4*)param_2[1];
+    config_buffer = (int32_t*)param_2[1];
     *config_buffer = 0x656e6f44;  // "enon" (Done)
-    *(undefined2*)(config_buffer + 1) = 0x2e; // "."
-    *(undefined4*)(param_2 + 2) = 5;
+    *(int16_t*)(config_buffer + 1) = 0x2e; // "."
+    *(int32_t*)(param_2 + 2) = 5;
     
     return param_2;
 }

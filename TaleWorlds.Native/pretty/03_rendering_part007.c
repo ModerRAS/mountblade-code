@@ -163,13 +163,13 @@ typedef void (*RenderingCleanupFunc)(render_context_t);    // 渲染清理函数
  * - 优化内存访问模式
  * - 实现数据对齐和填充
  */
-void RenderingAdvancedDataProcessor(undefined4 *param_1, longlong *param_2)
+void RenderingAdvancedDataProcessor(int32_t *param_1, longlong *param_2)
 {
     // 局部变量声明
-    undefined1 uVar1;                              // 字节变量
-    undefined4 uVar2;                              // 4字节变量
-    undefined1 *puVar3;                            // 字节指针
-    undefined4 *puVar4;                            // 4字节指针
+    int8_t uVar1;                              // 字节变量
+    int32_t uVar2;                              // 4字节变量
+    int8_t *puVar3;                            // 字节指针
+    int32_t *puVar4;                            // 4字节指针
     int *piVar5;                                   // 整数指针
     longlong lVar6;                                // 长整型变量
     longlong *unaff_RBX;                           // RBX寄存器（上下文指针）
@@ -178,13 +178,13 @@ void RenderingAdvancedDataProcessor(undefined4 *param_1, longlong *param_2)
     longlong lVar9;                                // 长整型变量
     
     // 初始化数据缓冲区指针
-    puVar4 = (undefined4 *)param_2[1];
+    puVar4 = (int32_t *)param_2[1];
     
     // 检查缓冲区空间是否足够
     if ((ulonglong)((*param_2 - (longlong)puVar4) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
         // 缓冲区空间不足，调用扩展函数
         FUN_180639bf0();
-        puVar4 = (undefined4 *)unaff_RBX[1];
+        puVar4 = (int32_t *)unaff_RBX[1];
     }
     
     // 写入数据块标志
@@ -226,27 +226,27 @@ void RenderingAdvancedDataProcessor(undefined4 *param_1, longlong *param_2)
         do {
             // 处理单个数据块
             FUN_180639ec0();
-            puVar4 = (undefined4 *)unaff_RBX[1];
-            uVar2 = *(undefined4 *)(lVar9 + RENDERING_OFFSET_58 + 
+            puVar4 = (int32_t *)unaff_RBX[1];
+            uVar2 = *(int32_t *)(lVar9 + RENDERING_OFFSET_58 + 
                                    *(longlong *)(param_1 + RENDERING_OFFSET_4A));
             
             // 检查缓冲区空间
             if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
                 FUN_180639bf0();
-                puVar4 = (undefined4 *)unaff_RBX[1];
+                puVar4 = (int32_t *)unaff_RBX[1];
             }
             
             // 写入数据块第一部分
             *puVar4 = uVar2;
             unaff_RBX[1] = unaff_RBX[1] + RENDERING_DATA_TYPE_INT;
-            puVar4 = (undefined4 *)unaff_RBX[1];
-            uVar2 = *(undefined4 *)(lVar9 + RENDERING_OFFSET_5C + 
+            puVar4 = (int32_t *)unaff_RBX[1];
+            uVar2 = *(int32_t *)(lVar9 + RENDERING_OFFSET_5C + 
                                    *(longlong *)(param_1 + RENDERING_OFFSET_4A));
             
             // 检查缓冲区空间
             if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
                 FUN_180639bf0();
-                puVar4 = (undefined4 *)unaff_RBX[1];
+                puVar4 = (int32_t *)unaff_RBX[1];
             }
             
             // 写入数据块第二部分
@@ -273,13 +273,13 @@ void RenderingAdvancedDataProcessor(undefined4 *param_1, longlong *param_2)
     FUN_18025a940(&UNK_18098dfd0, param_1[0x1f2]);
     
     // 处理渲染标志位
-    puVar3 = (undefined1 *)unaff_RBX[1];
-    uVar1 = *(undefined1 *)(param_1 + 499);
+    puVar3 = (int8_t *)unaff_RBX[1];
+    uVar1 = *(int8_t *)(param_1 + 499);
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_2) {
         FUN_180639bf0();
-        puVar3 = (undefined1 *)unaff_RBX[1];
+        puVar3 = (int8_t *)unaff_RBX[1];
     }
     
     // 写入标志位
@@ -292,10 +292,10 @@ void RenderingAdvancedDataProcessor(undefined4 *param_1, longlong *param_2)
     }
     
     // 处理渲染配置数据
-    puVar4 = (undefined4 *)unaff_RBX[1];
+    puVar4 = (int32_t *)unaff_RBX[1];
     if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
         FUN_180639bf0();
-        puVar4 = (undefined4 *)unaff_RBX[1];
+        puVar4 = (int32_t *)unaff_RBX[1];
     }
     
     // 初始化配置索引
@@ -331,25 +331,25 @@ void RenderingAdvancedDataProcessor(undefined4 *param_1, longlong *param_2)
     
     // 处理渲染参数
     FUN_180639ec0();
-    puVar3 = (undefined1 *)unaff_RBX[1];
-    uVar1 = *(undefined1 *)(param_1 + 0x22a);
+    puVar3 = (int8_t *)unaff_RBX[1];
+    uVar1 = *(int8_t *)(param_1 + 0x22a);
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_2) {
         FUN_180639bf0();
-        puVar3 = (undefined1 *)unaff_RBX[1];
+        puVar3 = (int8_t *)unaff_RBX[1];
     }
     
     // 写入渲染参数
     *puVar3 = uVar1;
     unaff_RBX[1] = unaff_RBX[1] + RENDERING_DATA_TYPE_BYTE;
-    puVar4 = (undefined4 *)unaff_RBX[1];
+    puVar4 = (int32_t *)unaff_RBX[1];
     uVar2 = param_1[0x22b];
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
         FUN_180639bf0();
-        puVar4 = (undefined4 *)unaff_RBX[1];
+        puVar4 = (int32_t *)unaff_RBX[1];
     }
     
     // 写入参数值
@@ -453,19 +453,19 @@ void RenderingAdvancedDataProcessor(undefined4 *param_1, longlong *param_2)
     
     // 处理渲染完成标志
     FUN_180639ec0();
-    puVar3 = (undefined1 *)unaff_RBX[1];
-    uVar1 = *(undefined1 *)((longlong)param_1 + 0x18c9);
+    puVar3 = (int8_t *)unaff_RBX[1];
+    uVar1 = *(int8_t *)((longlong)param_1 + 0x18c9);
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_2) {
         FUN_180639bf0();
-        puVar3 = (undefined1 *)unaff_RBX[1];
+        puVar3 = (int8_t *)unaff_RBX[1];
     }
     
     // 写入完成标志
     *puVar3 = uVar1;
     unaff_RBX[1] = unaff_RBX[1] + RENDERING_DATA_TYPE_BYTE;
-    puVar4 = (undefined4 *)unaff_RBX[1];
+    puVar4 = (int32_t *)unaff_RBX[1];
     
     // 检查完成标志状态
     if (*(char *)((longlong)param_1 + 0x18c9) != '\0') {
@@ -473,13 +473,13 @@ void RenderingAdvancedDataProcessor(undefined4 *param_1, longlong *param_2)
         for (int i = 0; i < RENDERING_PADDING_9 - 3; i++) {
             FUN_180639ec0();
         }
-        puVar4 = (undefined4 *)unaff_RBX[1];
+        puVar4 = (int32_t *)unaff_RBX[1];
     }
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
         FUN_180639bf0();
-        puVar4 = (undefined4 *)unaff_RBX[1];
+        puVar4 = (int32_t *)unaff_RBX[1];
     }
     
     // 写入最终数据块大小
@@ -523,26 +523,26 @@ void RenderingAdvancedDataProcessor(undefined4 *param_1, longlong *param_2)
  * - 优化状态验证和错误处理
  * - 支持多线程状态访问
  */
-void RenderingStateManager(undefined4 *param_1)
+void RenderingStateManager(int32_t *param_1)
 {
     // 局部变量声明
-    undefined1 uVar1;                              // 字节变量
-    undefined4 uVar2;                              // 4字节变量
+    int8_t uVar1;                              // 字节变量
+    int32_t uVar2;                              // 4字节变量
     longlong in_RAX;                              // RAX寄存器（输入参数）
-    undefined1 *puVar3;                            // 字节指针
-    undefined4 *puVar4;                            // 4字节指针
+    int8_t *puVar3;                            // 字节指针
+    int32_t *puVar4;                            // 4字节指针
     int *piVar5;                                   // 整数指针
     longlong lVar6;                                // 长整型变量
     longlong *unaff_RBX;                           // RBX寄存器（上下文指针）
     int iVar7;                                     // 整数变量
     int iVar8;                                     // 整数变量
     longlong lVar9;                                // 长整型变量
-    undefined4 *unaff_RDI;                         // RDI寄存器（设备接口指针）
+    int32_t *unaff_RDI;                         // RDI寄存器（设备接口指针）
     
     // 检查缓冲区空间
     if ((ulonglong)((in_RAX - (longlong)param_1) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
         FUN_180639bf0();
-        param_1 = (undefined4 *)unaff_RBX[1];
+        param_1 = (int32_t *)unaff_RBX[1];
     }
     
     // 初始化状态标志
@@ -584,27 +584,27 @@ void RenderingStateManager(undefined4 *param_1)
         do {
             // 处理单个状态数据块
             FUN_180639ec0();
-            puVar4 = (undefined4 *)unaff_RBX[1];
-            uVar2 = *(undefined4 *)(lVar9 + RENDERING_OFFSET_58 + 
+            puVar4 = (int32_t *)unaff_RBX[1];
+            uVar2 = *(int32_t *)(lVar9 + RENDERING_OFFSET_58 + 
                                    *(longlong *)(unaff_RDI + RENDERING_OFFSET_4A));
             
             // 检查缓冲区空间
             if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
                 FUN_180639bf0();
-                puVar4 = (undefined4 *)unaff_RBX[1];
+                puVar4 = (int32_t *)unaff_RBX[1];
             }
             
             // 写入状态数据第一部分
             *puVar4 = uVar2;
             unaff_RBX[1] = unaff_RBX[1] + RENDERING_DATA_TYPE_INT;
-            puVar4 = (undefined4 *)unaff_RBX[1];
-            uVar2 = *(undefined4 *)(lVar9 + RENDERING_OFFSET_5C + 
+            puVar4 = (int32_t *)unaff_RBX[1];
+            uVar2 = *(int32_t *)(lVar9 + RENDERING_OFFSET_5C + 
                                    *(longlong *)(unaff_RDI + RENDERING_OFFSET_4A));
             
             // 检查缓冲区空间
             if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
                 FUN_180639bf0();
-                puVar4 = (undefined4 *)unaff_RBX[1];
+                puVar4 = (int32_t *)unaff_RBX[1];
             }
             
             // 写入状态数据第二部分
@@ -631,13 +631,13 @@ void RenderingStateManager(undefined4 *param_1)
     FUN_18025a940(&UNK_18098dfd0, unaff_RDI[0x1f2]);
     
     // 处理状态标志位
-    puVar3 = (undefined1 *)unaff_RBX[1];
-    uVar1 = *(undefined1 *)(unaff_RDI + 499);
+    puVar3 = (int8_t *)unaff_RBX[1];
+    uVar1 = *(int8_t *)(unaff_RDI + 499);
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_2) {
         FUN_180639bf0();
-        puVar3 = (undefined1 *)unaff_RBX[1];
+        puVar3 = (int8_t *)unaff_RBX[1];
     }
     
     // 写入状态标志
@@ -650,10 +650,10 @@ void RenderingStateManager(undefined4 *param_1)
     }
     
     // 处理状态配置数据
-    puVar4 = (undefined4 *)unaff_RBX[1];
+    puVar4 = (int32_t *)unaff_RBX[1];
     if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
         FUN_180639bf0();
-        puVar4 = (undefined4 *)unaff_RBX[1];
+        puVar4 = (int32_t *)unaff_RBX[1];
     }
     
     // 初始化状态配置索引
@@ -689,25 +689,25 @@ void RenderingStateManager(undefined4 *param_1)
     
     // 处理状态参数
     FUN_180639ec0();
-    puVar3 = (undefined1 *)unaff_RBX[1];
-    uVar1 = *(undefined1 *)(unaff_RDI + 0x22a);
+    puVar3 = (int8_t *)unaff_RBX[1];
+    uVar1 = *(int8_t *)(unaff_RDI + 0x22a);
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_2) {
         FUN_180639bf0();
-        puVar3 = (undefined1 *)unaff_RBX[1];
+        puVar3 = (int8_t *)unaff_RBX[1];
     }
     
     // 写入状态参数
     *puVar3 = uVar1;
     unaff_RBX[1] = unaff_RBX[1] + RENDERING_DATA_TYPE_BYTE;
-    puVar4 = (undefined4 *)unaff_RBX[1];
+    puVar4 = (int32_t *)unaff_RBX[1];
     uVar2 = unaff_RDI[0x22b];
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
         FUN_180639bf0();
-        puVar4 = (undefined4 *)unaff_RBX[1];
+        puVar4 = (int32_t *)unaff_RBX[1];
     }
     
     // 写入参数值
@@ -811,19 +811,19 @@ void RenderingStateManager(undefined4 *param_1)
     
     // 处理状态完成标志
     FUN_180639ec0();
-    puVar3 = (undefined1 *)unaff_RBX[1];
-    uVar1 = *(undefined1 *)((longlong)unaff_RDI + 0x18c9);
+    puVar3 = (int8_t *)unaff_RBX[1];
+    uVar1 = *(int8_t *)((longlong)unaff_RDI + 0x18c9);
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_2) {
         FUN_180639bf0();
-        puVar3 = (undefined1 *)unaff_RBX[1];
+        puVar3 = (int8_t *)unaff_RBX[1];
     }
     
     // 写入完成标志
     *puVar3 = uVar1;
     unaff_RBX[1] = unaff_RBX[1] + RENDERING_DATA_TYPE_BYTE;
-    puVar4 = (undefined4 *)unaff_RBX[1];
+    puVar4 = (int32_t *)unaff_RBX[1];
     
     // 检查完成标志状态
     if (*(char *)((longlong)unaff_RDI + 0x18c9) != '\0') {
@@ -831,13 +831,13 @@ void RenderingStateManager(undefined4 *param_1)
         for (int i = 0; i < RENDERING_PADDING_9 - 3; i++) {
             FUN_180639ec0();
         }
-        puVar4 = (undefined4 *)unaff_RBX[1];
+        puVar4 = (int32_t *)unaff_RBX[1];
     }
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
         FUN_180639bf0();
-        puVar4 = (undefined4 *)unaff_RBX[1];
+        puVar4 = (int32_t *)unaff_RBX[1];
     }
     
     // 写入最终状态块大小
@@ -884,11 +884,11 @@ void RenderingStateManager(undefined4 *param_1)
 void RenderingResourceProcessor(void)
 {
     // 局部变量声明
-    undefined1 uVar1;                              // 字节变量
-    undefined4 uVar2;                              // 4字节变量
+    int8_t uVar1;                              // 字节变量
+    int32_t uVar2;                              // 4字节变量
     longlong lVar3;                                // 长整型变量
-    undefined1 *puVar4;                            // 字节指针
-    undefined4 *puVar5;                            // 4字节指针
+    int8_t *puVar4;                            // 字节指针
+    int32_t *puVar5;                            // 4字节指针
     int *piVar6;                                   // 整数指针
     longlong *unaff_RBX;                           // RBX寄存器（上下文指针）
     uint unaff_EBP;                                // EBP寄存器（参数指针）
@@ -904,27 +904,27 @@ void RenderingResourceProcessor(void)
     do {
         // 处理单个资源块
         FUN_180639ec0();
-        puVar5 = (undefined4 *)unaff_RBX[1];
-        uVar2 = *(undefined4 *)(uVar10 + RENDERING_OFFSET_58 + 
+        puVar5 = (int32_t *)unaff_RBX[1];
+        uVar2 = *(int32_t *)(uVar10 + RENDERING_OFFSET_58 + 
                                *(longlong *)(unaff_RDI + 0x128));
         
         // 检查缓冲区空间
         if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
             FUN_180639bf0();
-            puVar5 = (undefined4 *)unaff_RBX[1];
+            puVar5 = (int32_t *)unaff_RBX[1];
         }
         
         // 写入资源数据第一部分
         *puVar5 = uVar2;
         unaff_RBX[1] = unaff_RBX[1] + RENDERING_DATA_TYPE_INT;
-        puVar5 = (undefined4 *)unaff_RBX[1];
-        uVar2 = *(undefined4 *)(uVar10 + RENDERING_OFFSET_5C + 
+        puVar5 = (int32_t *)unaff_RBX[1];
+        uVar2 = *(int32_t *)(uVar10 + RENDERING_OFFSET_5C + 
                                *(longlong *)(unaff_RDI + 0x128));
         
         // 检查缓冲区空间
         if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
             FUN_180639bf0();
-            puVar5 = (undefined4 *)unaff_RBX[1];
+            puVar5 = (int32_t *)unaff_RBX[1];
         }
         
         // 写入资源数据第二部分
@@ -947,16 +947,16 @@ void RenderingResourceProcessor(void)
     } while (lVar8 != 0);
     
     // 调用资源初始化函数
-    FUN_18025a940(&UNK_18098dfd0, *(undefined4 *)(unaff_RDI + 0x7c8));
+    FUN_18025a940(&UNK_18098dfd0, *(int32_t *)(unaff_RDI + 0x7c8));
     
     // 处理资源标志位
-    puVar4 = (undefined1 *)unaff_RBX[1];
-    uVar1 = *(undefined1 *)(unaff_RDI + 0x7cc);
+    puVar4 = (int8_t *)unaff_RBX[1];
+    uVar1 = *(int8_t *)(unaff_RDI + 0x7cc);
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_2) {
         FUN_180639bf0();
-        puVar4 = (undefined1 *)unaff_RBX[1];
+        puVar4 = (int8_t *)unaff_RBX[1];
     }
     
     // 写入资源标志
@@ -969,10 +969,10 @@ void RenderingResourceProcessor(void)
     }
     
     // 处理资源配置数据
-    puVar5 = (undefined4 *)unaff_RBX[1];
+    puVar5 = (int32_t *)unaff_RBX[1];
     if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
         FUN_180639bf0();
-        puVar5 = (undefined4 *)unaff_RBX[1];
+        puVar5 = (int32_t *)unaff_RBX[1];
     }
     
     // 初始化资源配置索引
@@ -1009,25 +1009,25 @@ void RenderingResourceProcessor(void)
     
     // 处理资源参数
     FUN_180639ec0();
-    puVar4 = (undefined1 *)unaff_RBX[1];
-    uVar1 = *(undefined1 *)(unaff_RDI + 0x8a8);
+    puVar4 = (int8_t *)unaff_RBX[1];
+    uVar1 = *(int8_t *)(unaff_RDI + 0x8a8);
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_2) {
         FUN_180639bf0();
-        puVar4 = (undefined1 *)unaff_RBX[1];
+        puVar4 = (int8_t *)unaff_RBX[1];
     }
     
     // 写入资源参数
     *puVar4 = uVar1;
     unaff_RBX[1] = unaff_RBX[1] + RENDERING_DATA_TYPE_BYTE;
-    puVar5 = (undefined4 *)unaff_RBX[1];
-    uVar2 = *(undefined4 *)(unaff_RDI + 0x8ac);
+    puVar5 = (int32_t *)unaff_RBX[1];
+    uVar2 = *(int32_t *)(unaff_RDI + 0x8ac);
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
         FUN_180639bf0();
-        puVar5 = (undefined4 *)unaff_RBX[1];
+        puVar5 = (int32_t *)unaff_RBX[1];
     }
     
     // 写入参数值
@@ -1134,19 +1134,19 @@ void RenderingResourceProcessor(void)
     
     // 处理资源完成标志
     FUN_180639ec0();
-    puVar4 = (undefined1 *)unaff_RBX[1];
-    uVar1 = *(undefined1 *)(unaff_RDI + 0x18c9);
+    puVar4 = (int8_t *)unaff_RBX[1];
+    uVar1 = *(int8_t *)(unaff_RDI + 0x18c9);
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_2) {
         FUN_180639bf0();
-        puVar4 = (undefined1 *)unaff_RBX[1];
+        puVar4 = (int8_t *)unaff_RBX[1];
     }
     
     // 写入完成标志
     *puVar4 = uVar1;
     unaff_RBX[1] = unaff_RBX[1] + RENDERING_DATA_TYPE_BYTE;
-    puVar5 = (undefined4 *)unaff_RBX[1];
+    puVar5 = (int32_t *)unaff_RBX[1];
     
     // 检查完成标志状态
     if (*(char *)(unaff_RDI + 0x18c9) != '\0') {
@@ -1154,13 +1154,13 @@ void RenderingResourceProcessor(void)
         for (int i = 0; i < RENDERING_PADDING_9 - 3; i++) {
             FUN_180639ec0();
         }
-        puVar5 = (undefined4 *)unaff_RBX[1];
+        puVar5 = (int32_t *)unaff_RBX[1];
     }
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
         FUN_180639bf0();
-        puVar5 = (undefined4 *)unaff_RBX[1];
+        puVar5 = (int32_t *)unaff_RBX[1];
     }
     
     // 写入最终资源块大小
@@ -1207,11 +1207,11 @@ void RenderingResourceProcessor(void)
 void RenderingParameterOptimizer(void)
 {
     // 局部变量声明
-    undefined1 uVar1;                              // 字节变量
-    undefined4 uVar2;                              // 4字节变量
+    int8_t uVar1;                              // 字节变量
+    int32_t uVar2;                              // 4字节变量
     longlong lVar3;                                // 长整型变量
-    undefined1 *puVar4;                            // 字节指针
-    undefined4 *puVar5;                            // 4字节指针
+    int8_t *puVar4;                            // 字节指针
+    int32_t *puVar5;                            // 4字节指针
     int *piVar6;                                   // 整数指针
     longlong *unaff_RBX;                           // RBX寄存器（上下文指针）
     int iVar7;                                     // 整数变量
@@ -1232,16 +1232,16 @@ void RenderingParameterOptimizer(void)
     } while (lVar8 != 0);
     
     // 调用参数初始化函数
-    FUN_18025a940(&UNK_18098dfd0, *(undefined4 *)(unaff_RDI + 0x7c8));
+    FUN_18025a940(&UNK_18098dfd0, *(int32_t *)(unaff_RDI + 0x7c8));
     
     // 处理参数标志位
-    puVar4 = (undefined1 *)unaff_RBX[1];
-    uVar1 = *(undefined1 *)(unaff_RDI + 0x7cc);
+    puVar4 = (int8_t *)unaff_RBX[1];
+    uVar1 = *(int8_t *)(unaff_RDI + 0x7cc);
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_2) {
         FUN_180639bf0();
-        puVar4 = (undefined1 *)unaff_RBX[1];
+        puVar4 = (int8_t *)unaff_RBX[1];
     }
     
     // 写入参数标志
@@ -1254,10 +1254,10 @@ void RenderingParameterOptimizer(void)
     }
     
     // 处理参数配置数据
-    puVar5 = (undefined4 *)unaff_RBX[1];
+    puVar5 = (int32_t *)unaff_RBX[1];
     if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
         FUN_180639bf0();
-        puVar5 = (undefined4 *)unaff_RBX[1];
+        puVar5 = (int32_t *)unaff_RBX[1];
     }
     
     // 初始化参数配置索引
@@ -1294,25 +1294,25 @@ void RenderingParameterOptimizer(void)
     
     // 处理优化参数
     FUN_180639ec0();
-    puVar4 = (undefined1 *)unaff_RBX[1];
-    uVar1 = *(undefined1 *)(unaff_RDI + 0x8a8);
+    puVar4 = (int8_t *)unaff_RBX[1];
+    uVar1 = *(int8_t *)(unaff_RDI + 0x8a8);
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_2) {
         FUN_180639bf0();
-        puVar4 = (undefined1 *)unaff_RBX[1];
+        puVar4 = (int8_t *)unaff_RBX[1];
     }
     
     // 写入优化参数
     *puVar4 = uVar1;
     unaff_RBX[1] = unaff_RBX[1] + RENDERING_DATA_TYPE_BYTE;
-    puVar5 = (undefined4 *)unaff_RBX[1];
-    uVar2 = *(undefined4 *)(unaff_RDI + 0x8ac);
+    puVar5 = (int32_t *)unaff_RBX[1];
+    uVar2 = *(int32_t *)(unaff_RDI + 0x8ac);
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
         FUN_180639bf0();
-        puVar5 = (undefined4 *)unaff_RBX[1];
+        puVar5 = (int32_t *)unaff_RBX[1];
     }
     
     // 写入参数值
@@ -1419,19 +1419,19 @@ void RenderingParameterOptimizer(void)
     
     // 处理参数完成标志
     FUN_180639ec0();
-    puVar4 = (undefined1 *)unaff_RBX[1];
-    uVar1 = *(undefined1 *)(unaff_RDI + 0x18c9);
+    puVar4 = (int8_t *)unaff_RBX[1];
+    uVar1 = *(int8_t *)(unaff_RDI + 0x18c9);
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_2) {
         FUN_180639bf0();
-        puVar4 = (undefined1 *)unaff_RBX[1];
+        puVar4 = (int8_t *)unaff_RBX[1];
     }
     
     // 写入完成标志
     *puVar4 = uVar1;
     unaff_RBX[1] = unaff_RBX[1] + RENDERING_DATA_TYPE_BYTE;
-    puVar5 = (undefined4 *)unaff_RBX[1];
+    puVar5 = (int32_t *)unaff_RBX[1];
     
     // 检查完成标志状态
     if (*(char *)(unaff_RDI + 0x18c9) != '\0') {
@@ -1439,13 +1439,13 @@ void RenderingParameterOptimizer(void)
         for (int i = 0; i < RENDERING_PADDING_9 - 3; i++) {
             FUN_180639ec0();
         }
-        puVar5 = (undefined4 *)unaff_RBX[1];
+        puVar5 = (int32_t *)unaff_RBX[1];
     }
     
     // 检查缓冲区空间
     if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < RENDERING_BUFFER_CHECK_5) {
         FUN_180639bf0();
-        puVar5 = (undefined4 *)unaff_RBX[1];
+        puVar5 = (int32_t *)unaff_RBX[1];
     }
     
     // 写入最终参数块大小

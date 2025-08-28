@@ -28,7 +28,7 @@ void process_game_object_advanced(int *param_1, longlong param_2)
   // 实际的游戏引擎实现需要完整的渲染管线和状态管理
 }
 
-// 函数: undefined8 FUN_180138ed0(longlong param_1,longlong param_2)
+// 函数: uint64_t FUN_180138ed0(longlong param_1,longlong param_2)
 // 功能: 游戏对象比较和匹配函数
 // 原本实现: 用于游戏对象的比较、匹配和搜索操作
 // 简化实现: 保留核心的对象比较逻辑
@@ -109,7 +109,7 @@ char sync_game_object_properties(longlong param_1, longlong param_2, longlong pa
   return 0; // 简化实现返回默认值
 }
 
-// 函数: undefined1 FUN_1801396ea(void)
+// 函数: int8_t FUN_1801396ea(void)
 // 功能: 渲染参数更新和调整
 // 原本实现: 更新和调整渲染参数
 // 简化实现: 保留核心的参数更新逻辑
@@ -130,11 +130,11 @@ char update_rendering_parameters(void)
   return 0; // 简化实现返回默认值
 }
 
-// 函数: undefined1 FUN_1801397fd(undefined4 *param_1,float *param_2,float param_3)
+// 函数: int8_t FUN_1801397fd(int32_t *param_1,float *param_2,float param_3)
 // 功能: 渲染参数优化和调整
 // 原本实现: 优化和调整渲染参数
 // 简化实现: 保留核心的参数优化逻辑
-char optimize_rendering_parameters(undefined4 *param_1, float *param_2, float param_3)
+char optimize_rendering_parameters(int32_t *param_1, float *param_2, float param_3)
 {
   // 简化实现：渲染参数优化和调整
   // 原始实现用于渲染参数的优化

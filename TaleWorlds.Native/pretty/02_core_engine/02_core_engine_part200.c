@@ -67,10 +67,10 @@ void CoreEngineSystemStateManager(void)
   code *system_function_ptr;
   code ******system_manager_ptr;
   code *****system_handler_ptr;
-  undefined4 status_flag;
+  int32_t status_flag;
   int current_state;
-  undefined8 memory_block;
-  undefined4 *resource_ptr;
+  uint64_t memory_block;
+  int32_t *resource_ptr;
   longlong iteration_count;
   code *****event_handler_ptr;
   code ******state_manager_ptr;
@@ -78,38 +78,38 @@ void CoreEngineSystemStateManager(void)
   longlong thread_local_data;
   ulonglong security_cookie;
   ulonglong loop_counter;
-  undefined *buffer_ptr;
+  void *buffer_ptr;
   longlong *array_ptr;
   longlong object_offset;
   uint validation_flag;
-  undefined1 system_stack[32];
+  int8_t system_stack[32];
   code ***callback_array;
   code *****handler_stack;
   code *****manager_stack;
   code *****processor_stack;
   code ***function_array;
-  undefined4 *flag_ptr;
-  undefined8 context_data;
-  undefined8 timestamp;
-  undefined1 state_flag;
-  undefined *memory_buffer;
-  undefined4 *resource_handle;
-  undefined4 handle_flag;
-  undefined8 process_id;
-  undefined4 version_info;
-  undefined8 system_handle;
-  undefined *data_buffer;
-  undefined1 *string_buffer;
-  undefined4 operation_code;
-  undefined1 temp_buffer[32];
-  undefined *heap_buffer;
-  undefined1 *name_buffer;
-  undefined4 buffer_size;
-  undefined1 secure_buffer[32];
-  undefined *stack_buffer;
-  undefined1 *temp_name;
-  undefined4 stack_size;
-  undefined1 name_buffer2[32];
+  int32_t *flag_ptr;
+  uint64_t context_data;
+  uint64_t timestamp;
+  int8_t state_flag;
+  void *memory_buffer;
+  int32_t *resource_handle;
+  int32_t handle_flag;
+  uint64_t process_id;
+  int32_t version_info;
+  uint64_t system_handle;
+  void *data_buffer;
+  int8_t *string_buffer;
+  int32_t operation_code;
+  int8_t temp_buffer[32];
+  void *heap_buffer;
+  int8_t *name_buffer;
+  int32_t buffer_size;
+  int8_t secure_buffer[32];
+  void *stack_buffer;
+  int8_t *temp_name;
+  int32_t stack_size;
+  int8_t name_buffer2[32];
   ulonglong checksum_value;
   
   // 初始化系统上下文和安全检查
@@ -157,7 +157,7 @@ void CoreEngineSystemStateManager(void)
     
     // 状态特定的初始化处理
     if (current_state == SYSTEM_STATE_RUNNING) {
-      _DAT_180c91020 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,3);
+      _DAT_180c91020 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,3);
       *_DAT_180c91020 = 0;
       _DAT_180c91020[1] = 0;
       _DAT_180c91020[2] = 0;
@@ -171,21 +171,21 @@ void CoreEngineSystemStateManager(void)
       FUN_180653ef0();
       system_context = _DAT_180c91030;
       callback_array = (code ***)&UNK_180a3c3e0;
-      timestamp = (undefined *)0x0;
-      flag_ptr = (undefined4 *)0x0;
-      context_data = (undefined *)((ulonglong)context_data & 0xffffffff00000000);
-      resource_ptr = (undefined4 *)FUN_18062b420(_DAT_180c8ed18,0x18,0x13);
-      *(undefined1 *)resource_ptr = 0;
+      timestamp = (void *)0x0;
+      flag_ptr = (int32_t *)0x0;
+      context_data = (void *)((ulonglong)context_data & 0xffffffff00000000);
+      resource_ptr = (int32_t *)FUN_18062b420(_DAT_180c8ed18,0x18,0x13);
+      *(int8_t *)resource_ptr = 0;
       flag_ptr = resource_ptr;
       status_flag = FUN_18064e990(resource_ptr);
-      timestamp = (undefined *)CONCAT44(timestamp._4_4_,status_flag);
+      timestamp = (void *)CONCAT44(timestamp._4_4_,status_flag);
       *resource_ptr = 0x65726f63;  // "core"
       resource_ptr[1] = 0x5f726c63;  // "_rlc"
       resource_ptr[2] = 0x61657263;  // "aerc"
       resource_ptr[3] = 0x645f6574;  // "d_et"
-      *(undefined8 *)(resource_ptr + 4) = 0x65746167656c65;  // "etagele"
-      context_data = (undefined *)CONCAT44(context_data._4_4_,0x17);
-      GetProcAddress(*(undefined8 *)(system_context + 0x10),resource_ptr);
+      *(uint64_t *)(resource_ptr + 4) = 0x65746167656c65;  // "etagele"
+      context_data = (void *)CONCAT44(context_data._4_4_,0x17);
+      GetProcAddress(*(uint64_t *)(system_context + 0x10),resource_ptr);
       callback_array = (code ***)&UNK_180a3c3e0;
       FUN_18064e900(resource_ptr);
     }
@@ -199,10 +199,10 @@ void CoreEngineSystemStateManager(void)
       *processor_stack = (code ****)0x0;
       manager_stack[0x2e] = (code ****)0x0;
       manager_stack[0x2f] = (code ****)0x0;
-      *(undefined4 *)(manager_stack + 0x30) = 3;
-      *(undefined2 *)(manager_stack + 0x31) = 0;
+      *(int32_t *)(manager_stack + 0x30) = 3;
+      *(int16_t *)(manager_stack + 0x31) = 0;
       _DAT_180c8f008 = (code ******)manager_stack;
-      *(undefined4 *)((longlong)manager_stack + 0x18c) = 0;
+      *(int32_t *)((longlong)manager_stack + 0x18c) = 0;
       *(code ******)(system_context + 0x40) = manager_stack;
       FUN_180062300(_DAT_180c86928,&UNK_180a09c50);
     }
@@ -216,17 +216,17 @@ void CoreEngineSystemStateManager(void)
     *processor_stack = (code ****)0x0;
     ((code ******)manager_stack)[0x2e] = (code *****)0x0;
     ((code ******)manager_stack)[0x2f] = (code *****)0x0;
-    *(undefined4 *)((code ******)manager_stack + 0x30) = 3;
-    *(undefined2 *)((code ******)manager_stack + 0x31) = 0;
+    *(int32_t *)((code ******)manager_stack + 0x30) = 3;
+    *(int16_t *)((code ******)manager_stack + 0x31) = 0;
     _DAT_180c8f008 = (code ******)manager_stack;
-    *(undefined4 *)((longlong)manager_stack + 0x18c) = 0;
+    *(int32_t *)((longlong)manager_stack + 0x18c) = 0;
     *manager_stack = (code ****)&UNK_180a3e030;
     *(code ******)(system_context + 0x40) = manager_stack;
     memory_block = FUN_18062b1e0(_DAT_180c8ed18,0x238,8,3);
     memory_block = FUN_1801504b0(memory_block);
     (**(code **)(**(longlong **)(system_context + 0x40) + 8))(*(longlong **)(system_context + 0x40),memory_block);
     (**(code **)(**(longlong **)(system_context + 0x2b0) + 0x80))
-              (*(longlong **)(system_context + 0x2b0),*(undefined8 *)(system_context + 0x40));
+              (*(longlong **)(system_context + 0x2b0),*(uint64_t *)(system_context + 0x40));
     state_manager_ptr = (code ******)handler_stack;
     
     // 状态计数器管理
@@ -268,7 +268,7 @@ void CoreEngineSystemStateManager(void)
     
     if (current_state == SYSTEM_STATE_RUNNING) {
       if ((*(int *)(system_context + 0x3c) == -1) || (3 < *(int *)(system_context + 0x3c))) {
-        *(undefined4 *)(system_context + 0x318) = 3;
+        *(int32_t *)(system_context + 0x318) = 3;
       }
     }
     
@@ -306,14 +306,14 @@ void CoreEngineSystemStateManager(void)
           security_cookie = loop_counter;
           if (array_ptr[0x2e] - array_ptr[0x2d] >> 3 != 0) {
             do {
-              (**(code **)**(undefined8 **)(loop_counter + array_ptr[0x2d]))();
+              (**(code **)**(uint64_t **)(loop_counter + array_ptr[0x2d]))();
               validation_flag = (int)security_cookie + 1;
               loop_counter = loop_counter + 8;
               security_cookie = (ulonglong)validation_flag;
             } while ((ulonglong)(longlong)(int)validation_flag <
                      (ulonglong)(array_ptr[0x2e] - array_ptr[0x2d] >> 3));
           }
-          *(undefined1 *)(array_ptr + 0x31) = 1;
+          *(int8_t *)(array_ptr + 0x31) = 1;
         }
         else {
           (**(code **)(*array_ptr + 0x20))(array_ptr);
@@ -359,21 +359,21 @@ void CoreEngineSystemStateManager(void)
             system_context = _DAT_180c8a9a0;
             heap_buffer = &UNK_18098bcb0;
             callback_array = (code ***)&UNK_180a3c3e0;
-            timestamp = (undefined *)0x0;
-            flag_ptr = (undefined4 *)0x0;
-            context_data = (undefined *)((ulonglong)context_data._4_4_ << 0x20);
+            timestamp = (void *)0x0;
+            flag_ptr = (int32_t *)0x0;
+            context_data = (void *)((ulonglong)context_data._4_4_ << 0x20);
             memory_buffer = &UNK_180a3c3e0;
             process_id = 0;
-            resource_handle = (undefined4 *)0x0;
+            resource_handle = (int32_t *)0x0;
             handle_flag = 0;
-            resource_ptr = (undefined4 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
-            *(undefined1 *)resource_ptr = 0;
+            resource_ptr = (int32_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+            *(int8_t *)resource_ptr = 0;
             resource_handle = resource_ptr;
             status_flag = FUN_18064e990(resource_ptr);
             process_id = CONCAT44(process_id._4_4_,status_flag);
             *resource_ptr = 0x646e6572;  // "nder"
-            *(undefined2 *)(resource_ptr + 1) = 0x7265;  // "re"
-            *(undefined1 *)((longlong)resource_ptr + 6) = 0;
+            *(int16_t *)(resource_ptr + 1) = 0x7265;  // "re"
+            *(int8_t *)((longlong)resource_ptr + 6) = 0;
             handle_flag = 6;
             version_info = 1;
             FUN_180058080((code ******)(system_context + 0x70),&manager_stack,&memory_buffer);
@@ -396,7 +396,7 @@ void CoreEngineSystemStateManager(void)
           (**(code **)(**(longlong **)(_DAT_180c86870 + 0x2b0) + 0x120))
                     (*(longlong **)(_DAT_180c86870 + 0x2b0),1);
           system_context = _DAT_180c868a8;
-          *(undefined1 *)(_DAT_180c868a8 + 0x130) = 1;
+          *(int8_t *)(_DAT_180c868a8 + 0x130) = 1;
           thread_local_data = *(longlong *)(system_context + 0xb8);
           system_context = system_context + 0xb0;
           if (thread_local_data != system_context) {
@@ -416,7 +416,7 @@ void CoreEngineSystemStateManager(void)
           (**(code **)(**(longlong **)(_DAT_180c86870 + 0x2b0) + 0x128))();
           memory_block = FUN_18062b1e0(_DAT_180c8ed18,0xc0,8,3);
           memory_block = FUN_180370550(memory_block);
-          *(undefined8 *)(system_context + 0x3e0) = memory_block;
+          *(uint64_t *)(system_context + 0x3e0) = memory_block;
           if ((*(int *)(system_context + 0x3c) != -1) &&
              (*(int *)(system_context + 0x3c) <= *(int *)(system_context + 0x318) + 1));
         }

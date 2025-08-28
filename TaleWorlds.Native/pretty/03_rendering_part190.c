@@ -7,19 +7,19 @@ void FUN_18037ad00(longlong param_1)
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   longlong lVar3;
   
   uVar2 = FUN_180244ff0();
   lVar1 = *(longlong *)(param_1 + 0x9650);
   if ((*(int *)(param_1 + 0x124e8) == 0) && (*(int *)(param_1 + 0x124ec) == 0)) {
-    FUN_18037a770(uVar2,*(undefined8 *)(lVar1 + 0x10));
-    lVar3 = FUN_180275820(*(undefined8 *)(lVar1 + 0x20));
-    FUN_18022cd30(*(undefined8 *)(lVar3 + 0x1b8),2,uVar2);
-    **(undefined4 **)(lVar1 + 8) = 1;
+    FUN_18037a770(uVar2,*(uint64_t *)(lVar1 + 0x10));
+    lVar3 = FUN_180275820(*(uint64_t *)(lVar1 + 0x20));
+    FUN_18022cd30(*(uint64_t *)(lVar3 + 0x1b8),2,uVar2);
+    **(int32_t **)(lVar1 + 8) = 1;
     return;
   }
-  **(undefined4 **)(lVar1 + 8) = 2;
+  **(int32_t **)(lVar1 + 8) = 2;
   return;
 }
 
@@ -27,8 +27,8 @@ void FUN_18037ad00(longlong param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 *
-FUN_18037ad90(undefined8 *param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+uint64_t *
+FUN_18037ad90(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
   uint uVar1;
@@ -66,7 +66,7 @@ FUN_18037ad90(undefined8 *param_1,undefined8 *param_2,undefined8 param_3,undefin
 void FUN_18037ae40(longlong param_1,longlong *param_2)
 
 {
-  FUN_18037fb10(param_1 + 0x21e0,*(undefined8 *)(param_1 + 0x21e8),*param_2,param_2[1]);
+  FUN_18037fb10(param_1 + 0x21e0,*(uint64_t *)(param_1 + 0x21e8),*param_2,param_2[1]);
   *(int *)(param_1 + 0x2368) = *(int *)(param_1 + 0x2368) + (int)(param_2[1] - *param_2 >> 3);
   return;
 }

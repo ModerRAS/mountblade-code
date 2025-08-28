@@ -7,15 +7,15 @@ void FUN_1805c95ac(void)
 
 {
   longlong *unaff_RBX;
-  undefined4 unaff_R15D;
+  int32_t unaff_R15D;
   
   FUN_180508010();
-  *(undefined4 *)((longlong)unaff_RBX + 0x178c) = 0;
+  *(int32_t *)((longlong)unaff_RBX + 0x178c) = 0;
   if (*(int *)(*unaff_RBX + 0x1fc) - 1U < 2) {
     *(uint *)((longlong)unaff_RBX + 0x158c) =
          *(uint *)((longlong)unaff_RBX + 0x158c) & 0xfffffc3f | 0x4000;
   }
-  *(undefined4 *)((longlong)unaff_RBX + 0x215c) = unaff_R15D;
+  *(int32_t *)((longlong)unaff_RBX + 0x215c) = unaff_R15D;
   return;
 }
 
@@ -23,9 +23,9 @@ void FUN_1805c95ac(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8
-FUN_1805c9600(longlong *param_1,int param_2,undefined4 param_3,undefined1 param_4,undefined4 param_5
-             ,undefined4 *param_6,int *param_7)
+uint64_t
+FUN_1805c9600(longlong *param_1,int param_2,int32_t param_3,int8_t param_4,int32_t param_5
+             ,int32_t *param_6,int *param_7)
 
 {
   ulonglong uVar1;
@@ -35,7 +35,7 @@ FUN_1805c9600(longlong *param_1,int param_2,undefined4 param_3,undefined1 param_
   bool bVar5;
   bool bVar6;
   char cVar7;
-  undefined1 uVar8;
+  int8_t uVar8;
   uint uVar9;
   longlong lVar10;
   byte bVar11;
@@ -55,17 +55,17 @@ FUN_1805c9600(longlong *param_1,int param_2,undefined4 param_3,undefined1 param_
   bool bVar25;
   bool bVar26;
   float fVar27;
-  undefined4 uVar29;
-  undefined8 uVar28;
+  int32_t uVar29;
+  uint64_t uVar28;
   float fVar30;
   int iStack_d4;
   int iStack_d0;
   uint uStack_cc;
-  undefined4 auStack_c8 [2];
+  int32_t auStack_c8 [2];
   ulonglong uStack_c0;
   longlong lStack_b8;
   longlong lStack_b0;
-  undefined1 auStack_a8 [112];
+  int8_t auStack_a8 [112];
   
   if ((param_2 == 2) && (cVar7 = func_0x000180522f60(*param_1), cVar7 != '\0')) {
     fVar27 = 0.0;
@@ -294,7 +294,7 @@ LAB_1805c9bec:
                     if ((cVar7 == '\0') ||
                        (((iVar20 == 0xf && ((*(uint *)(*param_1 + 0x56c) & 0x1000000) != 0)) ||
                         ((~bVar18 & 2) != 0)))) {
-                      if (param_6 == (undefined4 *)0x0) {
+                      if (param_6 == (int32_t *)0x0) {
                         fVar27 = 1.0;
                         uVar29 = 0;
                         goto FUN_1805c9ef1;
@@ -384,7 +384,7 @@ code_r0x0001805c9a95:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1805c9641(void)
+uint64_t FUN_1805c9641(void)
 
 {
   ulonglong uVar1;
@@ -416,23 +416,23 @@ undefined8 FUN_1805c9641(void)
   float extraout_XMM0_Da;
   float extraout_XMM0_Da_00;
   float fVar24;
-  undefined8 uVar25;
+  uint64_t uVar25;
   float fVar26;
   float fVar27;
-  undefined4 uVar28;
+  int32_t uVar28;
   char cStack0000000000000040;
   char cStack0000000000000041;
   char cStack0000000000000042;
   int iStack0000000000000044;
   int in_stack_00000048;
   uint uStack000000000000004c;
-  undefined4 in_stack_00000050;
+  int32_t in_stack_00000050;
   ulonglong uStack0000000000000058;
   longlong lStack0000000000000060;
   longlong lStack0000000000000068;
   int in_stack_00000128;
-  undefined1 in_stack_00000138;
-  undefined4 *in_stack_00000148;
+  int8_t in_stack_00000138;
+  int32_t *in_stack_00000148;
   int *in_stack_00000150;
   
   lVar20 = *(longlong *)(in_RAX + 0x8f8);
@@ -663,7 +663,7 @@ LAB_1805c9bec:
                   if ((cVar6 == '\0') ||
                      (((iVar18 == 0xf && ((*(uint *)(*unaff_R15 + 0x56c) & 0x1000000) != 0)) ||
                       ((~bVar16 & 2) != 0)))) {
-                    if (in_stack_00000148 == (undefined4 *)0x0) {
+                    if (in_stack_00000148 == (int32_t *)0x0) {
                       fVar27 = 1.0;
                       uVar28 = 0;
                       goto LAB_1805c9e96;

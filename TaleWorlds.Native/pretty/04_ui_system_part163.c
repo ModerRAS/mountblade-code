@@ -13,12 +13,12 @@ void FUN_1807632c0(float *param_1,char param_2,int param_3,int param_4,float par
   int iVar5;
   uint uVar6;
   int iVar7;
-  undefined1 auStack_1b8 [32];
+  int8_t auStack_1b8 [32];
   uint uStack_198;
-  undefined8 uStack_190;
+  uint64_t uStack_190;
   float fStack_17c;
   uint auStack_178 [12];
-  undefined1 auStack_148 [256];
+  int8_t auStack_148 [256];
   ulonglong uStack_48;
   
   uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_1b8;

@@ -26,17 +26,17 @@
  * 游戏数据处理器
  * 处理游戏核心数据，包括状态管理、数据转换、缓存操作等
  */
-void game_data_processor(undefined8 param_1, longlong *param_2, longlong param_3, byte param_4)
+void game_data_processor(uint64_t param_1, longlong *param_2, longlong param_3, byte param_4)
 {
-    undefined1 uVar1;
+    int8_t uVar1;
     longlong lVar2;
     longlong lVar3;
-    undefined1 *puVar4;
+    int8_t *puVar4;
     longlong lVar5;
-    undefined1 *puVar6;
+    int8_t *puVar6;
     longlong lVar7;
     ulonglong uVar8;
-    undefined1 *puVar9;
+    int8_t *puVar9;
     longlong *unaff_R15;
     uint in_stack_00000080;
     
@@ -70,19 +70,19 @@ void game_data_processor(undefined8 param_1, longlong *param_2, longlong param_3
     execute_data_processing_sequence(lVar2, lVar3);
     
     // 处理字符串数据
-    puVar4 = *(undefined1 **)(param_3 + 8);
+    puVar4 = *(int8_t **)(param_3 + 8);
     lVar2 = *param_2;
     lVar3 = param_2[1];
-    if (puVar4 == (undefined1 *)0x0) {
-        puVar6 = (undefined1 *)0x180d48d24;
+    if (puVar4 == (int8_t *)0x0) {
+        puVar6 = (int8_t *)0x180d48d24;
         lVar7 = 0;
     }
     else {
         lVar7 = *(longlong *)(param_3 + 0x18);
         puVar6 = puVar4;
     }
-    puVar9 = (undefined1 *)0x180d48d24;
-    if (puVar4 != (undefined1 *)0x0) {
+    puVar9 = (int8_t *)0x180d48d24;
+    if (puVar4 != (int8_t *)0x0) {
         puVar9 = puVar4;
     }
     
@@ -118,7 +118,7 @@ void game_data_processor(undefined8 param_1, longlong *param_2, longlong param_3
  * 内存管理器
  * 管理系统内存分配、释放、重新分配等操作
  */
-void memory_manager(undefined8 param_1, void *param_2, size_t param_3)
+void memory_manager(uint64_t param_1, void *param_2, size_t param_3)
 {
     // 内存分配和管理的核心逻辑
     if (param_2 != NULL) {

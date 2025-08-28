@@ -9,21 +9,21 @@
 //   param_3 - 初始化参数2  
 //   param_4 - 初始化参数3
 // 功能: 初始化游戏引擎的各个核心组件系统
-void initialize_engine_components(longlong engine_context, undefined8 init_param1, undefined8 init_param2, undefined8 init_param3)
+void initialize_engine_components(longlong engine_context, uint64_t init_param1, uint64_t init_param2, uint64_t init_param3)
 
 {
   longlong component_ptr;
   ulonglong resource_handle;
-  undefined4 *component_data;
-  undefined1 *memory_buffer;
+  int32_t *component_data;
+  int8_t *memory_buffer;
   char status_flag;
-  undefined8 resource_id;
-  undefined *callback_ptr;
-  undefined4 temp_value;
-  undefined8 stack_temp;
-  undefined1 temp_buffer[16];
+  uint64_t resource_id;
+  void *callback_ptr;
+  int32_t temp_value;
+  uint64_t stack_temp;
+  int8_t temp_buffer[16];
   code *destructor_func;
-  undefined *allocator_ptr;
+  void *allocator_ptr;
   
   // 初始化第一个组件系统
   component_ptr = engine_context + 0xe0;
@@ -38,7 +38,7 @@ void initialize_engine_components(longlong engine_context, undefined8 init_param
   configure_component_settings(component_ptr, resource_id);
   
   // 注册组件到引擎
-  stack_temp = (undefined4 *)component_ptr;
+  stack_temp = (int32_t *)component_ptr;
   register_component_to_engine(engine_context + 0x48, &stack_temp);
   
   // 初始化第二个组件系统
@@ -52,7 +52,7 @@ void initialize_engine_components(longlong engine_context, undefined8 init_param
   configure_component_settings(component_ptr, resource_id);
   
   // 注册组件
-  stack_temp = (undefined4 *)component_ptr;
+  stack_temp = (int32_t *)component_ptr;
   register_component_to_engine(engine_context + 0x48, &stack_temp);
   
   // 初始化第三个组件系统
@@ -66,7 +66,7 @@ void initialize_engine_components(longlong engine_context, undefined8 init_param
   configure_component_settings(component_ptr, resource_id);
   
   // 注册组件
-  stack_temp = (undefined4 *)component_ptr;
+  stack_temp = (int32_t *)component_ptr;
   register_component_to_engine(engine_context + 0x48, &stack_temp);
   
   // 初始化第四个组件系统
@@ -80,7 +80,7 @@ void initialize_engine_components(longlong engine_context, undefined8 init_param
   configure_component_settings(component_ptr, resource_id);
   
   // 注册组件
-  stack_temp = (undefined4 *)component_ptr;
+  stack_temp = (int32_t *)component_ptr;
   register_component_to_engine(engine_context + 0x48, &stack_temp);
   
   // 初始化第五个组件系统
@@ -94,7 +94,7 @@ void initialize_engine_components(longlong engine_context, undefined8 init_param
   configure_component_settings(component_ptr, resource_id);
   
   // 注册组件
-  stack_temp = (undefined4 *)component_ptr;
+  stack_temp = (int32_t *)component_ptr;
   register_component_to_engine(engine_context + 0x48, &stack_temp);
   
   // 初始化第六个组件系统
@@ -108,7 +108,7 @@ void initialize_engine_components(longlong engine_context, undefined8 init_param
   configure_component_settings(component_ptr, resource_id);
   
   // 注册组件
-  stack_temp = (undefined4 *)component_ptr;
+  stack_temp = (int32_t *)component_ptr;
   register_component_to_engine(engine_context + 0x48, &stack_temp);
   
   // 初始化第七个组件系统
@@ -122,7 +122,7 @@ void initialize_engine_components(longlong engine_context, undefined8 init_param
   configure_component_settings(component_ptr, resource_id);
   
   // 注册组件
-  stack_temp = (undefined4 *)component_ptr;
+  stack_temp = (int32_t *)component_ptr;
   register_component_to_engine(engine_context + 0x48, &stack_temp);
   
   // 初始化第八个组件系统
@@ -136,7 +136,7 @@ void initialize_engine_components(longlong engine_context, undefined8 init_param
   configure_component_settings(component_ptr, resource_id);
   
   // 注册组件
-  stack_temp = (undefined4 *)component_ptr;
+  stack_temp = (int32_t *)component_ptr;
   register_component_to_engine(engine_context + 0x48, &stack_temp);
   
   // 初始化第九个组件系统
@@ -150,7 +150,7 @@ void initialize_engine_components(longlong engine_context, undefined8 init_param
   configure_component_settings(component_ptr, resource_id);
   
   // 注册组件
-  stack_temp = (undefined4 *)component_ptr;
+  stack_temp = (int32_t *)component_ptr;
   register_component_to_engine(engine_context + 0x48, &stack_temp);
   
   // 初始化第十个组件系统
@@ -163,7 +163,7 @@ void initialize_engine_components(longlong engine_context, undefined8 init_param
   configure_component_settings(component_ptr, resource_id);
   
   // 注册组件
-  stack_temp = (undefined4 *)component_ptr;
+  stack_temp = (int32_t *)component_ptr;
   register_component_to_engine(engine_context + 0x48, &stack_temp);
   
   // 初始化第十一个组件系统
@@ -176,7 +176,7 @@ void initialize_engine_components(longlong engine_context, undefined8 init_param
   configure_component_settings(component_ptr, resource_id);
   
   // 注册组件
-  stack_temp = (undefined4 *)component_ptr;
+  stack_temp = (int32_t *)component_ptr;
   register_component_to_engine(engine_context + 0x48, &stack_temp);
   
   // 初始化第十二个组件系统
@@ -189,7 +189,7 @@ void initialize_engine_components(longlong engine_context, undefined8 init_param
   configure_component_settings(component_ptr, resource_id);
   
   // 注册组件
-  stack_temp = (undefined4 *)component_ptr;
+  stack_temp = (int32_t *)component_ptr;
   register_component_to_engine(engine_context + 0x48, &stack_temp);
   
   // 初始化第十三个组件系统
@@ -202,7 +202,7 @@ void initialize_engine_components(longlong engine_context, undefined8 init_param
   configure_component_settings(component_ptr, resource_id);
   
   // 注册组件
-  stack_temp = (undefined4 *)component_ptr;
+  stack_temp = (int32_t *)component_ptr;
   register_component_to_engine(engine_context + 0x48, &stack_temp);
   
   // 初始化第十四个组件系统
@@ -215,7 +215,7 @@ void initialize_engine_components(longlong engine_context, undefined8 init_param
   configure_component_settings(component_ptr, resource_id);
   
   // 注册组件
-  stack_temp = (undefined4 *)component_ptr;
+  stack_temp = (int32_t *)component_ptr;
   register_component_to_engine(engine_context + 0x48, &stack_temp);
   
   // 初始化第十五个组件系统
@@ -228,7 +228,7 @@ void initialize_engine_components(longlong engine_context, undefined8 init_param
   configure_component_settings(component_ptr, resource_id);
   
   // 注册组件
-  stack_temp = (undefined4 *)component_ptr;
+  stack_temp = (int32_t *)component_ptr;
   register_component_to_engine(engine_context + 0x48, &stack_temp);
   
   // 初始化第十六个组件系统
@@ -241,63 +241,63 @@ void initialize_engine_components(longlong engine_context, undefined8 init_param
   configure_component_settings(resource_handle, resource_id);
   
   // 注册组件
-  stack_temp = (undefined4 *)resource_handle;
+  stack_temp = (int32_t *)resource_handle;
   register_component_to_engine(engine_context + 0x48, &stack_temp);
   
   // 处理配置数据
   (**(code **)(*(longlong *)(engine_context + 0xce8) + 0x10))(engine_context + 0xce8, &CONFIG_DATA_V1);
   
   // 配置组件参数
-  stack_temp = (undefined4 *)((ulonglong)stack_temp & 0xffffffff00000000);
+  stack_temp = (int32_t *)((ulonglong)stack_temp & 0xffffffff00000000);
   temp_value = 0;
   if (*(longlong *)(engine_context + 0xd40) != 0) {
     status_flag = (**(code **)(engine_context + 0xd48))(&stack_temp);
     if (status_flag == '\0') {
       if (GLOBAL_DEBUG_FLAG == '\0') {
         callback_ptr = &DEFAULT_CALLBACK_HANDLER;
-        if (*(undefined **)(engine_context + 0xcf0) != (undefined *)0x0) {
-          callback_ptr = *(undefined **)(engine_context + 0xcf0);
+        if (*(void **)(engine_context + 0xcf0) != (void *)0x0) {
+          callback_ptr = *(void **)(engine_context + 0xcf0);
         }
         setup_debug_handler(&DEBUG_HANDLER_TABLE, callback_ptr);
       }
-      temp_value = *(undefined4 *)(engine_context + 0xd28);
+      temp_value = *(int32_t *)(engine_context + 0xd28);
     }
     else {
-      temp_value = (undefined4)stack_temp;
+      temp_value = (int32_t)stack_temp;
     }
   }
-  *(undefined4 *)(engine_context + 0xce0) = temp_value;
+  *(int32_t *)(engine_context + 0xce0) = temp_value;
   
   // 处理第二个配置数据
-  stack_temp = (undefined4 *)((ulonglong)stack_temp & 0xffffffff00000000);
+  stack_temp = (int32_t *)((ulonglong)stack_temp & 0xffffffff00000000);
   temp_value = 0;
   if (*(longlong *)(engine_context + 0xd40) != 0) {
     status_flag = (**(code **)(engine_context + 0xd48))(&stack_temp);
     if (status_flag == '\0') {
       if (GLOBAL_DEBUG_FLAG == '\0') {
         callback_ptr = &DEFAULT_CALLBACK_HANDLER;
-        if (*(undefined **)(engine_context + 0xcf0) != (undefined *)0x0) {
-          callback_ptr = *(undefined **)(engine_context + 0xcf0);
+        if (*(void **)(engine_context + 0xcf0) != (void *)0x0) {
+          callback_ptr = *(void **)(engine_context + 0xcf0);
         }
         setup_debug_handler(&DEBUG_HANDLER_TABLE, callback_ptr);
       }
-      temp_value = *(undefined4 *)(engine_context + 0xd28);
+      temp_value = *(int32_t *)(engine_context + 0xd28);
     }
     else {
-      temp_value = (undefined4)stack_temp;
+      temp_value = (int32_t)stack_temp;
     }
   }
-  *(undefined4 *)(engine_context + 0xce4) = temp_value;
+  *(int32_t *)(engine_context + 0xce4) = temp_value;
   
   // 注册配置到引擎
-  stack_temp = (undefined4 *)(engine_context + 0xce0);
+  stack_temp = (int32_t *)(engine_context + 0xce0);
   register_component_to_engine(engine_context + 8, &stack_temp);
   
   // 继续处理其他组件系统...
   // 这里省略了重复的类似代码块，都是初始化不同的组件系统
   
   // 设置引擎状态为已初始化
-  *(undefined4 *)(engine_context + 0x88) = 1;
+  *(int32_t *)(engine_context + 0x88) = 1;
   return;
 }
 

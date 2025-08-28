@@ -42,11 +42,11 @@
 #define UI_LAYOUT_ABSOLUTE              0x00000010  // 绝对布局
 
 // 函数别名定义
-typedef void (*UI_SystemEventHandler)(longlong context, int event_type, undefined4 *event_data, longlong timestamp, undefined4 flags);
+typedef void (*UI_SystemEventHandler)(longlong context, int event_type, int32_t *event_data, longlong timestamp, int32_t flags);
 typedef ulonglong (*UI_SystemStateManager)(longlong *context, ulonglong state_id, ulonglong state_data, int transition_type, longlong *output);
-typedef undefined8 (*UI_SystemResourceCleaner)(longlong resource_handle);
-typedef ulonglong (*UI_SystemMemoryManager)(undefined1 *ui_context, longlong target_context, undefined1 operation_flag);
-typedef ulonglong (*UI_SystemErrorHandler)(longlong error_context, undefined1 error_code, undefined1 *error_message);
+typedef uint64_t (*UI_SystemResourceCleaner)(longlong resource_handle);
+typedef ulonglong (*UI_SystemMemoryManager)(int8_t *ui_context, longlong target_context, int8_t operation_flag);
+typedef ulonglong (*UI_SystemErrorHandler)(longlong error_context, int8_t error_code, int8_t *error_message);
 
 /*===================================================================================
     函数实现
@@ -73,19 +73,19 @@ typedef ulonglong (*UI_SystemErrorHandler)(longlong error_context, undefined1 er
  * 4. 触发相应的回调函数
  * 5. 清理临时数据和资源
  */
-void UI_SystemEventHandler(longlong param_1, int param_2, undefined4 *param_3, longlong param_4, undefined4 param_5)
+void UI_SystemEventHandler(longlong param_1, int param_2, int32_t *param_3, longlong param_4, int32_t param_5)
 {
   longlong lVar1;
   int iVar2;
-  undefined1 *puVar3;
-  undefined1 auStack_68 [32];
-  undefined4 auStack_48 [2];
-  undefined1 auStack_40 [32];
+  int8_t *puVar3;
+  int8_t auStack_68 [32];
+  int32_t auStack_48 [2];
+  int8_t auStack_40 [32];
   ulonglong uStack_20;
   
   // 初始化栈保护和安全检查
   uStack_20 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
-  puVar3 = (undefined1 *)0x0;
+  puVar3 = (int8_t *)0x0;
   auStack_48[0] = 0;
   
   // 验证系统状态和事件参数有效性
@@ -109,7 +109,7 @@ void UI_SystemEventHandler(longlong param_1, int param_2, undefined4 *param_3, l
     // 处理事件处理结果
     if (iVar2 == 0) {
       // 事件处理成功，更新事件数据
-      if (param_3 != (undefined4 *)0x0) {
+      if (param_3 != (int32_t *)0x0) {
         *param_3 = auStack_48[0];
       }
       
@@ -130,9 +130,9 @@ void UI_SystemEventHandler(longlong param_1, int param_2, undefined4 *param_3, l
  * 该函数负责初始化UI系统的各个核心组件，包括事件系统、渲染系统、
  * 输入系统等。它确保系统在启动时处于正确的初始状态。
  * 
- * @return undefined8 - 返回初始化状态码，0表示成功
+ * @return uint64_t - 返回初始化状态码，0表示成功
  */
-undefined8 UI_SystemInitializer(void)
+uint64_t UI_SystemInitializer(void)
 {
   // 调用系统初始化回调函数
   (**(code **)(_DAT_180c0c6d0 + 8))();
@@ -160,30 +160,30 @@ ulonglong UI_SystemStateManager(longlong *param_1, ulonglong param_2, ulonglong 
   int iVar3;
   ulonglong uVar4;
   longlong lVar5;
-  undefined8 *puVar6;
+  uint64_t *puVar6;
   ulonglong uVar7;
-  undefined8 *puVar8;
-  undefined8 uVar9;
+  uint64_t *puVar8;
+  uint64_t uVar9;
   ulonglong uVar10;
   uint uVar11;
   uint in_stack_fffffffffffffef0;
   uint uStack_f8;
   uint auStack_f4 [3];
-  undefined8 uStack_e8;
-  undefined8 ******ppppppuStack_e0;
-  undefined8 ******ppppppuStack_d8;
-  undefined8 uStack_d0;
-  undefined8 ******ppppppuStack_c8;
-  undefined8 ******ppppppuStack_c0;
-  undefined8 uStack_b8;
-  undefined4 uStack_b0;
-  undefined8 uStack_a8;
-  undefined4 uStack_a0;
-  undefined8 uStack_98;
-  undefined8 uStack_90;
-  undefined8 uStack_88;
-  undefined4 uStack_50;
-  undefined8 uStack_48;
+  uint64_t uStack_e8;
+  uint64_t ******ppppppuStack_e0;
+  uint64_t ******ppppppuStack_d8;
+  uint64_t uStack_d0;
+  uint64_t ******ppppppuStack_c8;
+  uint64_t ******ppppppuStack_c0;
+  uint64_t uStack_b8;
+  int32_t uStack_b0;
+  uint64_t uStack_a8;
+  int32_t uStack_a0;
+  uint64_t uStack_98;
+  uint64_t uStack_90;
+  uint64_t uStack_88;
+  int32_t uStack_50;
+  uint64_t uStack_48;
   ulonglong uVar12;
   
   // 检查系统状态标志
@@ -228,26 +228,26 @@ LAB_18075f551:
       // 更新状态数据
       if ((*param_5 == 0) || (iVar3 = FUN_18075f8e0(param_5), iVar3 == 0)) {
         *param_5 = *(longlong *)(lVar5 + 0x138);
-        *(undefined4 *)(param_5 + 2) = *(undefined4 *)(lVar5 + 0x148);
+        *(int32_t *)(param_5 + 2) = *(int32_t *)(lVar5 + 0x148);
         param_5[1] = *(longlong *)(lVar5 + 0x140);
-        *(undefined4 *)((longlong)param_5 + 0x14) = *(undefined4 *)(lVar5 + 0x14c);
-        *(undefined4 *)(param_5 + 3) = *(undefined4 *)(lVar5 + 0x150);
+        *(int32_t *)((longlong)param_5 + 0x14) = *(int32_t *)(lVar5 + 0x14c);
+        *(int32_t *)(param_5 + 3) = *(int32_t *)(lVar5 + 0x150);
         
         // 清理旧状态数据
-        *(undefined8 *)(lVar5 + 0x138) = 0;
-        *(undefined8 *)(lVar5 + 0x140) = 0;
-        *(undefined8 *)(lVar5 + 0x148) = 0;
-        *(undefined8 *)(lVar5 + 0x150) = 0;
+        *(uint64_t *)(lVar5 + 0x138) = 0;
+        *(uint64_t *)(lVar5 + 0x140) = 0;
+        *(uint64_t *)(lVar5 + 0x148) = 0;
+        *(uint64_t *)(lVar5 + 0x150) = 0;
       }
       
       // 执行状态同步操作
       if ((bVar2) && (FUN_180768b90(&uStack_f8), auStack_f4[0] <= uStack_f8)) {
         iVar3 = uStack_f8 - auStack_f4[0];
-        puVar8 = (undefined8 *)(lVar1 + 0x70);
+        puVar8 = (uint64_t *)(lVar1 + 0x70);
         *(int *)(lVar5 + 0x1dc) = iVar3;
         
         // 遍历状态关联项
-        for (puVar6 = (undefined8 *)*puVar8; puVar6 != puVar8; puVar6 = (undefined8 *)*puVar6) {
+        for (puVar6 = (uint64_t *)*puVar8; puVar6 != puVar8; puVar6 = (uint64_t *)*puVar6) {
           if ((*(byte *)(puVar6[2] + 0x7c) & 5) == 0) {
             iVar3 = iVar3 + *(int *)(*(longlong *)(puVar6[2] + 0x58) + 0x1e0);
           }
@@ -266,7 +266,7 @@ LAB_18075f551:
   }
   
   // 执行最终状态处理
-  puVar8 = (undefined8 *)0x0;
+  puVar8 = (uint64_t *)0x0;
   if ((*param_5 == 0) &&
      (uVar4 = FUN_18075a100(param_5, *param_1, param_4, uVar7 & 0xffffffff, 1), (int)uVar4 != 0)) {
     return uVar4;
@@ -304,10 +304,10 @@ LAB_18075f8b4:
       if (lVar5 == 0) {
         uVar11 = 0x26;
       } else {
-        puVar6 = (undefined8 *)(lVar5 + 0x1fU & 0xffffffffffffffe0);
+        puVar6 = (uint64_t *)(lVar5 + 0x1fU & 0xffffffffffffffe0);
         puVar6[3] = lVar5;
         puVar6[2] = puVar6 + 4;
-        *(undefined4 *)(puVar6 + 1) = 0;
+        *(int32_t *)(puVar6 + 1) = 0;
         *puVar6 = 0;
 LAB_18075f771:
         *(int *)(puVar6 + 1) = *(int *)(puVar6 + 1) + 1;
@@ -322,7 +322,7 @@ LAB_18075f771:
           
           // 获取状态数据
           if (*param_5 != 0) {
-            puVar8 = *(undefined8 **)(*param_5 + 0x10);
+            puVar8 = *(uint64_t **)(*param_5 + 0x10);
           }
           
           // 执行状态更新
@@ -334,8 +334,8 @@ LAB_18075f771:
               *param_5 = (longlong)puVar6;
               *(int *)(param_5 + 2) = param_4;
               param_5[1] = lVar1;
-              *(undefined4 *)((longlong)param_5 + 0x14) = 0;
-              *(undefined4 *)(param_5 + 3) = 0xffffffff;
+              *(int32_t *)((longlong)param_5 + 0x14) = 0;
+              *(int32_t *)(param_5 + 3) = 0xffffffff;
               *(int *)(puVar6 + 1) = *(int *)(puVar6 + 1) + 1;
             }
             
@@ -351,21 +351,21 @@ LAB_18075f771:
               if (puVar6[3] != 0) {
                 FUN_180742250(lVar1 + 0x10bd0, puVar6[3], &DAT_18098bc73, 0, 1);
               }
-              *puVar6 = *(undefined8 *)(lVar1 + 0x107a8);
-              *(undefined8 **)(lVar1 + 0x107a8) = puVar6;
+              *puVar6 = *(uint64_t *)(lVar1 + 0x107a8);
+              *(uint64_t **)(lVar1 + 0x107a8) = puVar6;
             }
             goto LAB_18075f8b4;
           }
         }
       }
     } else if ((*(longlong *)(lVar1 + 0x107a8) != 0) || (uVar11 = FUN_180742e60(lVar1), uVar11 == 0)) {
-      puVar6 = *(undefined8 **)(lVar1 + 0x107a8);
-      *(undefined8 *)(lVar1 + 0x107a8) = *puVar6;
+      puVar6 = *(uint64_t **)(lVar1 + 0x107a8);
+      *(uint64_t *)(lVar1 + 0x107a8) = *puVar6;
       goto LAB_18075f771;
     }
     
     // 清理临时状态
-    if (puVar6 != (undefined8 *)0x0) {
+    if (puVar6 != (uint64_t *)0x0) {
       iVar3 = *(int *)(puVar6 + 1);
       if (0 < iVar3) {
         iVar3 = iVar3 + -1;
@@ -375,8 +375,8 @@ LAB_18075f771:
         if (puVar6[3] != 0) {
           FUN_180742250(lVar1 + 0x10bd0, puVar6[3], &DAT_18098bc73, 0, 1);
         }
-        *puVar6 = *(undefined8 *)(lVar1 + 0x107a8);
-        *(undefined8 **)(lVar1 + 0x107a8) = puVar6;
+        *puVar6 = *(uint64_t *)(lVar1 + 0x107a8);
+        *(uint64_t **)(lVar1 + 0x107a8) = puVar6;
       }
     }
     uVar4 = (ulonglong)uVar11;
@@ -392,21 +392,21 @@ LAB_18075f771:
  * 
  * @param param_1 资源句柄指针
  * 
- * @return undefined8 - 返回清理状态码
+ * @return uint64_t - 返回清理状态码
  */
-undefined8 UI_SystemResourceCleaner(longlong *param_1)
+uint64_t UI_SystemResourceCleaner(longlong *param_1)
 {
-  undefined8 *puVar1;
+  uint64_t *puVar1;
   
-  puVar1 = (undefined8 *)*param_1;
-  if (puVar1 == (undefined8 *)0x0) {
+  puVar1 = (uint64_t *)*param_1;
+  if (puVar1 == (uint64_t *)0x0) {
     return 0;
   }
   
   // 减少引用计数
   if (0 < *(int *)(puVar1 + 1)) {
     *(int *)(puVar1 + 1) = *(int *)(puVar1 + 1) + -1;
-    puVar1 = (undefined8 *)*param_1;
+    puVar1 = (uint64_t *)*param_1;
   }
   
   // 当引用计数为0时，释放资源
@@ -414,12 +414,12 @@ undefined8 UI_SystemResourceCleaner(longlong *param_1)
     if (puVar1[3] != 0) {
       FUN_180742250(param_1[1] + 0x10bd0, puVar1[3], &DAT_18098bc73, 0, 1);
     }
-    *puVar1 = *(undefined8 *)(param_1[1] + 0x107a8);
+    *puVar1 = *(uint64_t *)(param_1[1] + 0x107a8);
     *(longlong *)(param_1[1] + 0x107a8) = *param_1;
   }
   
   // 重置资源句柄
-  *(undefined4 *)(param_1 + 3) = 0xffffffff;
+  *(int32_t *)(param_1 + 3) = 0xffffffff;
   *param_1 = 0;
   param_1[2] = 0;
   return 0;
@@ -443,8 +443,8 @@ ulonglong UI_SystemAdvancedResourceManager(longlong param_1)
   ulonglong uVar4;
   longlong *plVar5;
   longlong *plVar6;
-  undefined8 uVar7;
-  undefined1 *apuStackX_8 [2];
+  uint64_t uVar7;
+  int8_t *apuStackX_8 [2];
   
   // 检查系统是否已初始化
   if (*(longlong *)(param_1 + 0xa8) != 0) {
@@ -464,7 +464,7 @@ ulonglong UI_SystemAdvancedResourceManager(longlong param_1)
     
     // 处理特殊标志位
     if ((*(uint *)(param_1 + 100) & 0x300) != 0) {
-      FUN_180743160(*(undefined8 *)(param_1 + 0xa8), 1);
+      FUN_180743160(*(uint64_t *)(param_1 + 0xa8), 1);
       uVar4 = FUN_18075dcc0(param_1, 0, 0, 1, 1, 4);
       if ((int)uVar4 != 0) {
         return uVar4;
@@ -480,7 +480,7 @@ ulonglong UI_SystemAdvancedResourceManager(longlong param_1)
       // 执行资源释放操作
       lVar1 = *(longlong *)(param_1 + 0x200);
       if (lVar1 == 0) {
-        *(undefined8 *)(param_1 + 0x200) = 0;
+        *(uint64_t *)(param_1 + 0x200) = 0;
         if (((*(longlong *)(param_1 + 0x210) == 0) || (*(longlong *)(param_1 + 0x208) == 0)) ||
            (uVar4 = FUN_18075e410(param_1), (int)uVar4 == 0)) {
           
@@ -499,7 +499,7 @@ LAB_18075fba0:
                   *(longlong *)(*plVar6 + 8) = plVar6[1];
                   plVar6[1] = (longlong)plVar6;
                   *plVar6 = (longlong)plVar6;
-                  FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), plVar6, &UNK_1809589a0, 0xb73,
+                  FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), plVar6, &UNK_1809589a0, 0xb73,
                                 1);
                 }
               }
@@ -508,8 +508,8 @@ LAB_18075fba0:
           
           // 处理输入系统清理
           if ((*(uint *)(param_1 + 100) >> 2 & 1) != 0) {
-            uVar4 = func_0x000180771c60(*(undefined8 *)(*(longlong *)(param_1 + 0xa8) + 0x11418),
-                                        *(undefined4 *)(param_1 + 0xfc), apuStackX_8);
+            uVar4 = func_0x000180771c60(*(uint64_t *)(*(longlong *)(param_1 + 0xa8) + 0x11418),
+                                        *(int32_t *)(param_1 + 0xfc), apuStackX_8);
             if ((int)uVar4 != 0) {
               return uVar4;
             }
@@ -520,20 +520,20 @@ LAB_18075fba0:
           
           // 处理事件系统清理
           if ((*(uint *)(param_1 + 100) >> 1 & 1) != 0) {
-            FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), *(undefined8 *)(param_1 + 0xe8),
+            FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *(uint64_t *)(param_1 + 0xe8),
                           &UNK_1809589a0, 0xb8f, 1);
           }
           
           // 处理系统关闭
           if ((*(uint *)(param_1 + 100) >> 9 & 1) == 0) {
-            *(undefined4 *)(param_1 + 0x5c) = 0xdeadbead;
+            *(int32_t *)(param_1 + 0x5c) = 0xdeadbead;
             if (*(longlong *)(param_1 + 0x130) == 0) {
               uVar7 = 0xb9e;
             } else {
               uVar7 = 0xb9a;
               param_1 = *(longlong *)(param_1 + 0x130);
             }
-            FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), param_1, &UNK_1809589a0, uVar7, 1);
+            FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), param_1, &UNK_1809589a0, uVar7, 1);
           }
           uVar4 = 0;
         }
@@ -541,12 +541,12 @@ LAB_18075fba0:
         // 处理资源释放失败的情况
         if (*(longlong *)(param_1 + 0x1f0) == 0) {
 LAB_18075fb15:
-          FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), lVar1, &UNK_1809589a0, 0xb53, 1);
+          FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), lVar1, &UNK_1809589a0, 0xb53, 1);
         }
-        uVar4 = FUN_180743cc0(*(undefined8 *)(param_1 + 0xa8), 0);
+        uVar4 = FUN_180743cc0(*(uint64_t *)(param_1 + 0xa8), 0);
         if ((int)uVar4 == 0) {
           uVar3 = (**(code **)(param_1 + 0x1f0))(param_1, 0, lVar1 + 8);
-          uVar4 = FUN_180743da0(*(undefined8 *)(param_1 + 0xa8));
+          uVar4 = FUN_180743da0(*(uint64_t *)(param_1 + 0xa8));
           if (((int)uVar4 == 0) && ((uVar3 == 0 || (uVar4 = (ulonglong)uVar3, uVar3 == 0))))
             goto LAB_18075fb15;
         }
@@ -555,7 +555,7 @@ LAB_18075fb15:
     }
     
     // 执行资源分配
-    uVar4 = FUN_180743700(*(undefined8 *)(param_1 + 0xa8), apuStackX_8, 0x18, 1);
+    uVar4 = FUN_180743700(*(uint64_t *)(param_1 + 0xa8), apuStackX_8, 0x18, 1);
     if ((int)uVar4 != 0) {
       return uVar4;
     }
@@ -573,7 +573,7 @@ LAB_18075fb15:
     apuStackX_8[0][0x12] = 1;
     
     // 执行资源激活
-    uVar4 = func_0x000180743b40(*(undefined8 *)(param_1 + 0xa8), apuStackX_8[0], 1);
+    uVar4 = func_0x000180743b40(*(uint64_t *)(param_1 + 0xa8), apuStackX_8[0], 1);
     if ((int)uVar4 != 0) {
       return uVar4;
     }
@@ -599,7 +599,7 @@ ulonglong UI_SystemSimpleResourceManager(longlong param_1)
   ulonglong uVar4;
   longlong *plVar5;
   longlong *plVar6;
-  undefined8 uVar7;
+  uint64_t uVar7;
   longlong lStackX_8;
   
   // 执行系统回调
@@ -612,7 +612,7 @@ ulonglong UI_SystemSimpleResourceManager(longlong param_1)
   // 执行资源释放操作
   lVar1 = *(longlong *)(param_1 + 0x200);
   if (lVar1 == 0) {
-    *(undefined8 *)(param_1 + 0x200) = 0;
+    *(uint64_t *)(param_1 + 0x200) = 0;
     if (((*(longlong *)(param_1 + 0x210) == 0) || (*(longlong *)(param_1 + 0x208) == 0)) ||
        (uVar4 = FUN_18075e410(param_1), (int)uVar4 == 0)) {
       
@@ -631,7 +631,7 @@ LAB_18075fba0:
               *(longlong *)(*plVar6 + 8) = plVar6[1];
               plVar6[1] = (longlong)plVar6;
               *plVar6 = (longlong)plVar6;
-              FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), plVar6, &UNK_1809589a0, 0xb73,
+              FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), plVar6, &UNK_1809589a0, 0xb73,
                             1);
             }
           }
@@ -640,8 +640,8 @@ LAB_18075fba0:
       
       // 处理输入系统清理
       if ((*(uint *)(param_1 + 100) >> 2 & 1) != 0) {
-        uVar4 = func_0x000180771c60(*(undefined8 *)(*(longlong *)(param_1 + 0xa8) + 0x11418),
-                                    *(undefined4 *)(param_1 + 0xfc), &lStackX_8);
+        uVar4 = func_0x000180771c60(*(uint64_t *)(*(longlong *)(param_1 + 0xa8) + 0x11418),
+                                    *(int32_t *)(param_1 + 0xfc), &lStackX_8);
         if ((int)uVar4 != 0) {
           return uVar4;
         }
@@ -652,20 +652,20 @@ LAB_18075fba0:
       
       // 处理事件系统清理
       if ((*(uint *)(param_1 + 100) >> 1 & 1) != 0) {
-        FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), *(undefined8 *)(param_1 + 0xe8),
+        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *(uint64_t *)(param_1 + 0xe8),
                       &UNK_1809589a0, 0xb8f, 1);
       }
       
       // 处理系统关闭
       if ((*(uint *)(param_1 + 100) >> 9 & 1) == 0) {
-        *(undefined4 *)(param_1 + 0x5c) = 0xdeadbead;
+        *(int32_t *)(param_1 + 0x5c) = 0xdeadbead;
         if (*(longlong *)(param_1 + 0x130) == 0) {
           uVar7 = 0xb9e;
         } else {
           uVar7 = 0xb9a;
           param_1 = *(longlong *)(param_1 + 0x130);
         }
-        FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), param_1, &UNK_1809589a0, uVar7, 1);
+        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), param_1, &UNK_1809589a0, uVar7, 1);
       }
       uVar4 = 0;
     }
@@ -673,12 +673,12 @@ LAB_18075fba0:
     // 处理资源释放失败的情况
     if (*(longlong *)(param_1 + 0x1f0) == 0) {
 LAB_18075fb15:
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), lVar1, &UNK_1809589a0, 0xb53, 1);
+      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), lVar1, &UNK_1809589a0, 0xb53, 1);
     }
-    uVar4 = FUN_180743cc0(*(undefined8 *)(param_1 + 0xa8), 0);
+    uVar4 = FUN_180743cc0(*(uint64_t *)(param_1 + 0xa8), 0);
     if ((int)uVar4 == 0) {
       uVar3 = (**(code **)(param_1 + 0x1f0))(param_1, 0, lVar1 + 8);
-      uVar4 = FUN_180743da0(*(undefined8 *)(param_1 + 0xa8));
+      uVar4 = FUN_180743da0(*(uint64_t *)(param_1 + 0xa8));
       if (((int)uVar4 == 0) && ((uVar3 == 0 || (uVar4 = (ulonglong)uVar3, uVar3 == 0))))
         goto LAB_18075fb15;
     }
@@ -698,10 +698,10 @@ LAB_18075fb15:
  * 
  * @return ulonglong - 返回事件队列管理结果码
  */
-ulonglong UI_SystemEventQueueManager(undefined1 *param_1, longlong param_2, undefined1 param_3)
+ulonglong UI_SystemEventQueueManager(int8_t *param_1, longlong param_2, int8_t param_3)
 {
   short sVar1;
-  undefined1 *puVar2;
+  int8_t *puVar2;
   uint uVar3;
   ulonglong uVar4;
   ulonglong uVar5;
@@ -714,7 +714,7 @@ ulonglong UI_SystemEventQueueManager(undefined1 *param_1, longlong param_2, unde
   ulonglong uVar12;
   longlong *plVar13;
   longlong lVar14;
-  undefined1 *puStackX_8;
+  int8_t *puStackX_8;
   
   // 检查系统是否已初始化
   if (*(longlong *)(param_1 + 0xa8) == 0) {
@@ -728,18 +728,18 @@ ulonglong UI_SystemEventQueueManager(undefined1 *param_1, longlong param_2, unde
   
   // 检查系统标志位
   if ((*(uint *)(param_1 + 100) >> 8 & 1) == 0) {
-    uVar4 = FUN_180743700(*(undefined8 *)(param_1 + 0xa8), &puStackX_8, 0x18, param_3);
+    uVar4 = FUN_180743700(*(uint64_t *)(param_1 + 0xa8), &puStackX_8, 0x18, param_3);
     if ((int)uVar4 != 0) {
       return uVar4;
     }
     
     // 初始化事件队列项
     *puStackX_8 = 6;
-    *(undefined1 **)(puStackX_8 + 8) = param_1;
+    *(int8_t **)(puStackX_8 + 8) = param_1;
     *(longlong *)(puStackX_8 + 0x10) = param_2;
     
     // 添加事件到队列
-    uVar4 = func_0x000180743b40(*(undefined8 *)(param_1 + 0xa8), puStackX_8, param_3);
+    uVar4 = func_0x000180743b40(*(uint64_t *)(param_1 + 0xa8), puStackX_8, param_3);
     if ((int)uVar4 == 0) {
       return 0;
     }
@@ -1008,8 +1008,8 @@ ulonglong UI_SystemWidgetManager(longlong param_1, longlong param_2, char param_
   
   // 执行系统初始化操作
   if (param_3 != '\0') {
-    FUN_180743160(*(undefined8 *)(param_1 + 0xa8), 1);
-    func_0x000180743c20(*(undefined8 *)(param_1 + 0xa8), 1);
+    FUN_180743160(*(uint64_t *)(param_1 + 0xa8), 1);
+    func_0x000180743c20(*(uint64_t *)(param_1 + 0xa8), 1);
   }
   
   // 获取控件数量
@@ -1018,7 +1018,7 @@ ulonglong UI_SystemWidgetManager(longlong param_1, longlong param_2, char param_
   
   // 执行系统清理操作
   if (param_3 != '\0') {
-    FUN_180743d60(*(undefined8 *)(param_1 + 0xa8), 1);
+    FUN_180743d60(*(uint64_t *)(param_1 + 0xa8), 1);
   }
   
   // 获取目标控件数量
@@ -1271,7 +1271,7 @@ ulonglong UI_SystemAdvancedWidgetManager(void)
   char unaff_BPL;
   int unaff_EDI;
   ulonglong uVar8;
-  undefined8 uVar9;
+  uint64_t uVar9;
   longlong *plVar10;
   longlong lVar11;
   int iVar12;
@@ -1634,7 +1634,7 @@ ulonglong UI_SystemSimpleWidgetManager(void)
   int unaff_EDI;
   ulonglong uVar8;
   longlong *plVar9;
-  undefined8 uVar10;
+  uint64_t uVar10;
   longlong lVar11;
   int iVar12;
   longlong unaff_R13;
@@ -1988,7 +1988,7 @@ ulonglong UI_SystemMemoryManager(longlong param_1)
   ulonglong uVar4;
   ulonglong uVar5;
   ulonglong uVar6;
-  undefined1 *puStackX_8;
+  int8_t *puStackX_8;
   
   // 获取系统句柄
   lVar1 = *(longlong *)(param_1 + 0xa8);
@@ -2001,7 +2001,7 @@ ulonglong UI_SystemMemoryManager(longlong param_1)
       // 初始化内存块
       *puStackX_8 = 0x11;
       *(longlong *)(puStackX_8 + 8) = param_1;
-      uVar3 = func_0x000180743b40(*(undefined8 *)(param_1 + 0xa8), puStackX_8, 1);
+      uVar3 = func_0x000180743b40(*(uint64_t *)(param_1 + 0xa8), puStackX_8, 1);
     }
     return uVar3;
   }
@@ -2025,15 +2025,15 @@ ulonglong UI_SystemMemoryManager(longlong param_1)
   
   // 清理第一个内存块
   if (uVar4 != 0) {
-    *(undefined4 *)(uVar4 + 0x20c) = 0;
-    *(undefined2 *)(uVar4 + 0x210) = 0;
+    *(int32_t *)(uVar4 + 0x20c) = 0;
+    *(int16_t *)(uVar4 + 0x210) = 0;
     memset(uVar4, 0, 0x208);
   }
   
   // 清理第二个内存块
   if (uVar5 != 0) {
-    *(undefined4 *)(uVar5 + 0x20c) = 0;
-    *(undefined2 *)(uVar5 + 0x210) = 0;
+    *(int32_t *)(uVar5 + 0x20c) = 0;
+    *(int16_t *)(uVar5 + 0x210) = 0;
     memset(uVar5, 0, 0x208);
   }
   
@@ -2091,15 +2091,15 @@ ulonglong UI_SystemMemoryCleaner(void)
   
   // 清理第一个内存块
   if (uVar4 != 0) {
-    *(undefined4 *)(uVar4 + 0x20c) = 0;
-    *(undefined2 *)(uVar4 + 0x210) = 0;
+    *(int32_t *)(uVar4 + 0x20c) = 0;
+    *(int16_t *)(uVar4 + 0x210) = 0;
     memset(uVar4, 0, 0x208);
   }
   
   // 清理第二个内存块
   if (uVar5 != 0) {
-    *(undefined4 *)(uVar5 + 0x20c) = 0;
-    *(undefined2 *)(uVar5 + 0x210) = 0;
+    *(int32_t *)(uVar5 + 0x20c) = 0;
+    *(int16_t *)(uVar5 + 0x210) = 0;
     memset(uVar5, 0, 0x208);
   }
   

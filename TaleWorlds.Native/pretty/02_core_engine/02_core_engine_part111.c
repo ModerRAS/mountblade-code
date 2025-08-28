@@ -10,25 +10,25 @@ void cleanup_engine_state(void)
 
 {
   int *reference_count;
-  undefined8 *data_pointer;
+  uint64_t *data_pointer;
   longlong engine_context;
-  undefined8 temp_data;
+  uint64_t temp_data;
   
   engine_context = global_engine_context;
   // 设置引擎状态标志为1
-  *(undefined1 *)(*(longlong *)(global_engine_context + 0x1af8) + 0xb1) = 1;
+  *(int8_t *)(*(longlong *)(global_engine_context + 0x1af8) + 0xb1) = 1;
   engine_context = *(longlong *)(engine_context + 0x1af8);
   reference_count = (int *)(*(longlong *)(engine_context + 0x2e8) + 0x60);
   // 减少引用计数
   *reference_count = *reference_count - 1;
   update_reference_counter();
-  data_pointer = (undefined8 *)
+  data_pointer = (uint64_t *)
            (*(longlong *)(*(longlong *)(engine_context + 0x2e8) + 0x68) + -0x10 +
            (longlong)*(int *)(*(longlong *)(engine_context + 0x2e8) + 0x60) * 0x10);
   temp_data = data_pointer[1];
   // 保存数据到引擎上下文
-  *(undefined8 *)(engine_context + 0x228) = *data_pointer;
-  *(undefined8 *)(engine_context + 0x230) = temp_data;
+  *(uint64_t *)(engine_context + 0x228) = *data_pointer;
+  *(uint64_t *)(engine_context + 0x230) = temp_data;
   return;
 }
 
@@ -48,9 +48,9 @@ void process_engine_rendering(void)
   longlong entity_list;
   bool should_continue;
   longlong current_entity;
-  undefined4 color_value;
+  int32_t color_value;
   uint render_flags;
-  undefined8 entity_id;
+  uint64_t entity_id;
   longlong render_context;
   longlong texture_data;
   longlong *entity_pointer;
@@ -135,7 +135,7 @@ LAB_180126e9d:
         list_offset = (longlong)entity_index;
         do {
           if ((*(char *)(*entity_pointer + 0xaf) != '\0') && (*(char *)(*entity_pointer + 0xb6) == '\0')) {
-            current_entity = find_entity_by_id(*(undefined8 *)
+            current_entity = find_entity_by_id(*(uint64_t *)
                                          (*(longlong *)(current_entity + 400) + (longlong)entity_index * 8));
             break;
           }
@@ -146,8 +146,8 @@ LAB_180126e9d:
         } while (should_continue);
       }
       current_entity = *(longlong *)(current_entity + 0x2e8);
-      setup_render_context(current_entity,*(undefined8 *)(*(longlong *)(current_entity + 0x38) + 0x18),
-                    *(undefined8 *)(*(longlong *)(current_entity + 0x38) + 0x20),0);
+      setup_render_context(current_entity,*(uint64_t *)(*(longlong *)(current_entity + 0x38) + 0x18),
+                    *(uint64_t *)(*(longlong *)(current_entity + 0x38) + 0x20),0);
       list_offset = *(longlong *)(list_offset + 0x3a8);
       if (((*(byte *)(list_offset + 0x432) & 1) != 0) &&
          (entity_list = *(longlong *)(list_offset + 0x3a0), entity_list != list_offset)) {
@@ -165,7 +165,7 @@ LAB_180126e9d:
         temp_float_16 = temp_float_9 + *(float *)(list_offset + 0x4c);
         temp_float_11 = temp_float_10 + *(float *)(list_offset + 0x48);
         color_value = calculate_color_value(&temp_float_5);
-        render_texture(current_entity,&temp_float_1,&temp_float_10,color_value,*(undefined4 *)(entity_list + 0x1634));
+        render_texture(current_entity,&temp_float_1,&temp_float_10,color_value,*(int32_t *)(entity_list + 0x1634));
       }
       color_b = *(float *)(entity_list + 0x19f8);
       list_offset = *(longlong *)(list_offset + 0x28);
@@ -238,9 +238,9 @@ LAB_180126e9d:
           position_y = temp_float_15 - 0.5;
         }
         draw_entity(current_entity,&temp_float_3,&position_x,color_r,0xffffffff);
-        apply_texture(current_entity,*(undefined8 *)(current_entity + 0x88),*(undefined4 *)(current_entity + 0x80),
+        apply_texture(current_entity,*(uint64_t *)(current_entity + 0x88),*(int32_t *)(current_entity + 0x80),
                       render_flags | render_flags,1,0x40400000);
-        *(undefined4 *)(current_entity + 0x80) = 0;
+        *(int32_t *)(current_entity + 0x80) = 0;
       }
       *(int *)(current_entity + 0x60) = *(int *)(current_entity + 0x60) + -1;
       update_reference_counter(current_entity);
@@ -262,16 +262,16 @@ void process_engine_rendering_variant1(void)
 
 {
   float *render_params;
-  undefined4 *color_data;
+  int32_t *color_data;
   byte texture_flag;
   longlong entity_list;
   bool should_continue;
-  undefined4 color_r;
-  undefined4 color_g;
-  undefined4 color_b;
-  undefined4 color_a;
+  int32_t color_r;
+  int32_t color_g;
+  int32_t color_b;
+  int32_t color_a;
   uint render_flags;
-  undefined8 entity_id;
+  uint64_t entity_id;
   longlong render_context;
   longlong texture_data;
   longlong *entity_pointer;
@@ -317,13 +317,13 @@ void process_engine_rendering_variant1(void)
           texture_data = 0x3b0;
         }
         color_green = *(float *)(global_engine_context + 0x1628);
-        color_data = (undefined4 *)(texture_data + 0x1628 + global_engine_context);
+        color_data = (int32_t *)(texture_data + 0x1628 + global_engine_context);
         color_b = color_data[1];
         color_r = color_data[2];
         color_blue = (float)color_data[3];
-        *(undefined4 *)(unaff_RBP + -0x69) = *color_data;
-        *(undefined4 *)(unaff_RBP + -0x65) = color_b;
-        *(undefined4 *)(unaff_RBP + -0x61) = color_r;
+        *(int32_t *)(unaff_RBP + -0x69) = *color_data;
+        *(int32_t *)(unaff_RBP + -0x65) = color_b;
+        *(int32_t *)(unaff_RBP + -0x61) = color_r;
         *(float *)(unaff_RBP + -0x5d) = color_blue;
         temp_float_7 = *(float *)(render_context + 0x10);
         temp_float_9 = *(float *)(render_context + 8);
@@ -348,7 +348,7 @@ void process_engine_rendering_variant1(void)
       texture_data = (longlong)entity_index;
       do {
         if ((*(char *)(*entity_pointer + 0xaf) != '\0') && (*(char *)(*entity_pointer + 0xb6) == '\0')) {
-          render_context = find_entity_by_id(*(undefined8 *)
+          render_context = find_entity_by_id(*(uint64_t *)
                                         (*(longlong *)(render_context + 400) + (longlong)entity_index * 8));
           break;
         }
@@ -359,8 +359,8 @@ void process_engine_rendering_variant1(void)
       } while (should_continue);
     }
     render_context = *(longlong *)(render_context + 0x2e8);
-    setup_render_context(render_context,*(undefined8 *)(*(longlong *)(render_context + 0x38) + 0x18),
-                  *(undefined8 *)(*(longlong *)(render_context + 0x38) + 0x20),0);
+    setup_render_context(render_context,*(uint64_t *)(*(longlong *)(render_context + 0x38) + 0x18),
+                  *(uint64_t *)(*(longlong *)(render_context + 0x38) + 0x20),0);
     texture_data = *(longlong *)(list_offset + 0x3a8);
     if (((*(byte *)(texture_data + 0x432) & 1) != 0) &&
        (entity_list = *(longlong *)(list_offset + 0x3a0), entity_list != texture_data)) {
@@ -368,18 +368,18 @@ void process_engine_rendering_variant1(void)
       color_green = *(float *)(unaff_RDI + 0x1dc8);
       render_params = (float *)(entity_list + 0x40);
       temp_float_1 = *render_params;
-      color_a = *(undefined4 *)(entity_list + 0x44);
+      color_a = *(int32_t *)(entity_list + 0x44);
       temp_float_5 = *render_params;
-      color_g = *(undefined4 *)(entity_list + 0x44);
-      color_b = *(undefined4 *)(global_engine_context + 0x19cc);
-      color_r = *(undefined4 *)(global_engine_context + 0x19d0);
+      color_g = *(int32_t *)(entity_list + 0x44);
+      color_b = *(int32_t *)(global_engine_context + 0x19cc);
+      color_r = *(int32_t *)(global_engine_context + 0x19d0);
       color_blue = *(float *)(global_engine_context + 0x19d4);
       temp_float_9 = *(float *)(global_engine_context + 0x1628);
       temp_float_8 = *render_params + *(float *)(entity_list + 0x48);
       position_w = *(float *)(entity_list + 0x44) + *(float *)(entity_list + 0x4c);
-      *(undefined4 *)(unaff_RBP + -0x59) = *(undefined4 *)(global_engine_context + 0x19c8);
-      *(undefined4 *)(unaff_RBP + -0x55) = color_b;
-      *(undefined4 *)(unaff_RBP + -0x51) = color_r;
+      *(int32_t *)(unaff_RBP + -0x59) = *(int32_t *)(global_engine_context + 0x19c8);
+      *(int32_t *)(unaff_RBP + -0x55) = color_b;
+      *(int32_t *)(unaff_RBP + -0x51) = color_r;
       *(float *)(unaff_RBP + -0x4d) = color_blue;
       temp_float_7 = *(float *)(texture_data + 0x44);
       temp_float_4 = temp_float_7 + *(float *)(texture_data + 0x4c);
@@ -390,11 +390,11 @@ void process_engine_rendering_variant1(void)
       *(float *)(unaff_RBP + -0x61) = color_green;
       *(float *)(unaff_RBP + -0x5d) = temp_float_4;
       *(float *)(unaff_RBP + -0x69) = temp_float_5;
-      *(undefined4 *)(unaff_RBP + -0x65) = color_g;
+      *(int32_t *)(unaff_RBP + -0x65) = color_g;
       *(float *)(unaff_RBP + -0x61) = temp_float_8;
       *(float *)(unaff_RBP + -0x5d) = position_w;
       *(float *)(unaff_RBP + -0x69) = temp_float_1;
-      *(undefined4 *)(unaff_RBP + -0x65) = color_a;
+      *(int32_t *)(unaff_RBP + -0x65) = color_a;
       *(float *)(unaff_RBP + -0x61) = temp_float_8;
       *(float *)(unaff_RBP + -0x5d) = position_w;
       *(float *)(unaff_RBP + -0x49) = color_alpha;
@@ -403,7 +403,7 @@ void process_engine_rendering_variant1(void)
       *(float *)(unaff_RBP + -0x3d) = temp_float_4;
       color_b = calculate_color_value(unaff_RBP + -0x59);
       render_texture(render_context,unaff_RBP + -0x69,unaff_RBP + -0x49,color_b,
-                    *(undefined4 *)(unaff_RDI + 0x1634));
+                    *(int32_t *)(unaff_RDI + 0x1634));
     }
     color_alpha = *(float *)(unaff_RDI + 0x19f8);
     texture_data = *(longlong *)(list_offset + 0x28);
@@ -426,13 +426,13 @@ void process_engine_rendering_variant1(void)
       color_blue = color_alpha + color_blue;
     }
     color_alpha = *(float *)(global_engine_context + 0x19b8);
-    color_b = *(undefined4 *)(global_engine_context + 0x19bc);
-    color_r = *(undefined4 *)(global_engine_context + 0x19c0);
+    color_b = *(int32_t *)(global_engine_context + 0x19bc);
+    color_r = *(int32_t *)(global_engine_context + 0x19c0);
     temp_float_1 = *(float *)(global_engine_context + 0x19c4);
     temp_float_4 = *(float *)(unaff_RDI + 0x1cf4) * *(float *)(global_engine_context + 0x1628) * temp_float_1;
     *(float *)(unaff_RBP + -0x59) = color_alpha;
-    *(undefined4 *)(unaff_RBP + -0x55) = color_b;
-    *(undefined4 *)(unaff_RBP + -0x51) = color_r;
+    *(int32_t *)(unaff_RBP + -0x55) = color_b;
+    *(int32_t *)(unaff_RBP + -0x51) = color_r;
     *(float *)(unaff_RBP + -0x4d) = temp_float_1;
     if (0.0 <= color_alpha) {
       if (1.0 <= color_alpha) {
@@ -482,9 +482,9 @@ void process_engine_rendering_variant1(void)
       *(float *)(unaff_RBP + 0x67) = temp_float_5;
       *(float *)(unaff_RBP + 0x6b) = color_blue;
       draw_entity(render_context,unaff_RBP + 0x6f,unaff_RBP + 0x67,color_green,0xffffffff);
-      apply_texture(render_context,*(undefined8 *)(render_context + 0x88),*(undefined4 *)(render_context + 0x80),
+      apply_texture(render_context,*(uint64_t *)(render_context + 0x88),*(int32_t *)(render_context + 0x80),
                     alpha_value | render_flags,1);
-      *(undefined4 *)(render_context + 0x80) = 0;
+      *(int32_t *)(render_context + 0x80) = 0;
     }
     *(int *)(render_context + 0x60) = *(int *)(render_context + 0x60) + -1;
     update_reference_counter(render_context);
@@ -505,16 +505,16 @@ void process_engine_rendering_variant2(void)
 
 {
   float *render_params;
-  undefined4 *color_data;
+  int32_t *color_data;
   byte texture_flag;
   longlong entity_list;
   bool should_continue;
-  undefined4 color_r;
-  undefined4 color_g;
-  undefined4 color_b;
-  undefined4 color_a;
+  int32_t color_r;
+  int32_t color_g;
+  int32_t color_b;
+  int32_t color_a;
   uint render_flags;
-  undefined8 entity_id;
+  uint64_t entity_id;
   longlong render_context;
   longlong texture_data;
   longlong *entity_pointer;
@@ -560,13 +560,13 @@ void process_engine_rendering_variant2(void)
           texture_data = 0x3b0;
         }
         color_green = *(float *)(global_engine_context + 0x1628);
-        color_data = (undefined4 *)(texture_data + 0x1628 + global_engine_context);
+        color_data = (int32_t *)(texture_data + 0x1628 + global_engine_context);
         color_b = color_data[1];
         color_r = color_data[2];
         color_blue = (float)color_data[3];
-        *(undefined4 *)(unaff_RBP + -0x69) = *color_data;
-        *(undefined4 *)(unaff_RBP + -0x65) = color_b;
-        *(undefined4 *)(unaff_RBP + -0x61) = color_r;
+        *(int32_t *)(unaff_RBP + -0x69) = *color_data;
+        *(int32_t *)(unaff_RBP + -0x65) = color_b;
+        *(int32_t *)(unaff_RBP + -0x61) = color_r;
         *(float *)(unaff_RBP + -0x5d) = color_blue;
         temp_float_7 = *(float *)(render_context + 0x10);
         temp_float_9 = *(float *)(render_context + 8);
@@ -591,7 +591,7 @@ void process_engine_rendering_variant2(void)
       texture_data = (longlong)entity_index;
       do {
         if ((*(char *)(*entity_pointer + 0xaf) != '\0') && (*(char *)(*entity_pointer + 0xb6) == '\0')) {
-          render_context = find_entity_by_id(*(undefined8 *)
+          render_context = find_entity_by_id(*(uint64_t *)
                                         (*(longlong *)(render_context + 400) + (longlong)entity_index * 8));
           break;
         }
@@ -602,8 +602,8 @@ void process_engine_rendering_variant2(void)
       } while (should_continue);
     }
     render_context = *(longlong *)(render_context + 0x2e8);
-    setup_render_context(render_context,*(undefined8 *)(*(longlong *)(render_context + 0x38) + 0x18),
-                  *(undefined8 *)(*(longlong *)(render_context + 0x38) + 0x20),0);
+    setup_render_context(render_context,*(uint64_t *)(*(longlong *)(render_context + 0x38) + 0x18),
+                  *(uint64_t *)(*(longlong *)(render_context + 0x38) + 0x20),0);
     texture_data = *(longlong *)(list_offset + 0x3a8);
     if (((*(byte *)(texture_data + 0x432) & 1) != 0) &&
        (entity_list = *(longlong *)(list_offset + 0x3a0), entity_list != texture_data)) {
@@ -611,18 +611,18 @@ void process_engine_rendering_variant2(void)
       color_green = *(float *)(unaff_RDI + 0x1dc8);
       render_params = (float *)(entity_list + 0x40);
       temp_float_1 = *render_params;
-      color_a = *(undefined4 *)(entity_list + 0x44);
+      color_a = *(int32_t *)(entity_list + 0x44);
       temp_float_5 = *render_params;
-      color_g = *(undefined4 *)(entity_list + 0x44);
-      color_b = *(undefined4 *)(global_engine_context + 0x19cc);
-      color_r = *(undefined4 *)(global_engine_context + 0x19d0);
+      color_g = *(int32_t *)(entity_list + 0x44);
+      color_b = *(int32_t *)(global_engine_context + 0x19cc);
+      color_r = *(int32_t *)(global_engine_context + 0x19d0);
       color_blue = *(float *)(global_engine_context + 0x19d4);
       temp_float_9 = *(float *)(global_engine_context + 0x1628);
       temp_float_8 = *render_params + *(float *)(entity_list + 0x48);
       position_w = *(float *)(entity_list + 0x44) + *(float *)(entity_list + 0x4c);
-      *(undefined4 *)(unaff_RBP + -0x59) = *(undefined4 *)(global_engine_context + 0x19c8);
-      *(undefined4 *)(unaff_RBP + -0x55) = color_b;
-      *(undefined4 *)(unaff_RBP + -0x51) = color_r;
+      *(int32_t *)(unaff_RBP + -0x59) = *(int32_t *)(global_engine_context + 0x19c8);
+      *(int32_t *)(unaff_RBP + -0x55) = color_b;
+      *(int32_t *)(unaff_RBP + -0x51) = color_r;
       *(float *)(unaff_RBP + -0x4d) = color_blue;
       temp_float_7 = *(float *)(texture_data + 0x44);
       temp_float_4 = temp_float_7 + *(float *)(texture_data + 0x4c);
@@ -633,11 +633,11 @@ void process_engine_rendering_variant2(void)
       *(float *)(unaff_RBP + -0x61) = color_green;
       *(float *)(unaff_RBP + -0x5d) = temp_float_4;
       *(float *)(unaff_RBP + -0x69) = temp_float_5;
-      *(undefined4 *)(unaff_RBP + -0x65) = color_g;
+      *(int32_t *)(unaff_RBP + -0x65) = color_g;
       *(float *)(unaff_RBP + -0x61) = temp_float_8;
       *(float *)(unaff_RBP + -0x5d) = position_w;
       *(float *)(unaff_RBP + -0x69) = temp_float_1;
-      *(undefined4 *)(unaff_RBP + -0x65) = color_a;
+      *(int32_t *)(unaff_RBP + -0x65) = color_a;
       *(float *)(unaff_RBP + -0x61) = temp_float_8;
       *(float *)(unaff_RBP + -0x5d) = position_w;
       *(float *)(unaff_RBP + -0x49) = color_alpha;
@@ -646,7 +646,7 @@ void process_engine_rendering_variant2(void)
       *(float *)(unaff_RBP + -0x3d) = temp_float_4;
       color_b = calculate_color_value(unaff_RBP + -0x59);
       render_texture(render_context,unaff_RBP + -0x69,unaff_RBP + -0x49,color_b,
-                    *(undefined4 *)(unaff_RDI + 0x1634));
+                    *(int32_t *)(unaff_RDI + 0x1634));
     }
     color_alpha = *(float *)(unaff_RDI + 0x19f8);
     texture_data = *(longlong *)(list_offset + 0x28);
@@ -669,13 +669,13 @@ void process_engine_rendering_variant2(void)
       color_blue = color_alpha + color_blue;
     }
     color_alpha = *(float *)(global_engine_context + 0x19b8);
-    color_b = *(undefined4 *)(global_engine_context + 0x19bc);
-    color_r = *(undefined4 *)(global_engine_context + 0x19c0);
+    color_b = *(int32_t *)(global_engine_context + 0x19bc);
+    color_r = *(int32_t *)(global_engine_context + 0x19c0);
     temp_float_1 = *(float *)(global_engine_context + 0x19c4);
     temp_float_4 = *(float *)(unaff_RDI + 0x1cf4) * *(float *)(global_engine_context + 0x1628) * temp_float_1;
     *(float *)(unaff_RBP + -0x59) = color_alpha;
-    *(undefined4 *)(unaff_RBP + -0x55) = color_b;
-    *(undefined4 *)(unaff_RBP + -0x51) = color_r;
+    *(int32_t *)(unaff_RBP + -0x55) = color_b;
+    *(int32_t *)(unaff_RBP + -0x51) = color_r;
     *(float *)(unaff_RBP + -0x4d) = temp_float_1;
     if (0.0 <= color_alpha) {
       if (1.0 <= color_alpha) {
@@ -725,9 +725,9 @@ void process_engine_rendering_variant2(void)
       *(float *)(unaff_RBP + 0x67) = temp_float_5;
       *(float *)(unaff_RBP + 0x6b) = color_blue;
       draw_entity(render_context,unaff_RBP + 0x6f,unaff_RBP + 0x67,color_green,0xffffffff);
-      apply_texture(render_context,*(undefined8 *)(render_context + 0x88),*(undefined4 *)(render_context + 0x80),
+      apply_texture(render_context,*(uint64_t *)(render_context + 0x88),*(int32_t *)(render_context + 0x80),
                     alpha_value | render_flags,1);
-      *(undefined4 *)(render_context + 0x80) = 0;
+      *(int32_t *)(render_context + 0x80) = 0;
     }
     *(int *)(render_context + 0x60) = *(int *)(render_context + 0x60) + -1;
     update_reference_counter(render_context);

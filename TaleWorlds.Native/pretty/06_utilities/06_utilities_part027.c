@@ -147,7 +147,7 @@ static Logger g_logger = NULL;
  * 检查系统状态并根据条件执行相应的初始化操作。
  * 当特定条件满足时，重置全局数据状态。
  */
-void utilities_system_status_checker(undefined8 param_1, longlong param_2)
+void utilities_system_status_checker(uint64_t param_1, longlong param_2)
 {
     char status_flag;
     int system_check_result;
@@ -174,7 +174,7 @@ void utilities_system_status_checker(undefined8 param_1, longlong param_2)
  * 验证系统状态并执行相应的清理和初始化操作。
  * 包含预检查和状态验证逻辑。
  */
-void utilities_system_status_validator(undefined8 param_1, longlong param_2)
+void utilities_system_status_validator(uint64_t param_1, longlong param_2)
 {
     char validation_flag;
     int validation_result;
@@ -204,10 +204,10 @@ void utilities_system_status_validator(undefined8 param_1, longlong param_2)
  * 处理系统调用并执行相应的操作序列。
  * 包含参数验证和调用路由逻辑。
  */
-void utilities_system_call_handler(undefined8 *param_1, longlong param_2)
+void utilities_system_call_handler(uint64_t *param_1, longlong param_2)
 {
-    FUN_1808fc51c(*(undefined8 *)(param_2 + 0x60), *(undefined4 *)(param_2 + 0x68),
-                  *(undefined8 *)(param_2 + 0x70), FUN_1808fc074, *(undefined4 *)*param_1, param_1);
+    FUN_1808fc51c(*(uint64_t *)(param_2 + 0x60), *(int32_t *)(param_2 + 0x68),
+                  *(uint64_t *)(param_2 + 0x70), FUN_1808fc074, *(int32_t *)*param_1, param_1);
     return;
 }
 
@@ -219,7 +219,7 @@ void utilities_system_call_handler(undefined8 *param_1, longlong param_2)
  * 验证系统参数的有效性并返回验证结果。
  * 检查参数状态和完整性。
  */
-bool utilities_parameter_validator(undefined8 *param_1)
+bool utilities_parameter_validator(uint64_t *param_1)
 {
     return *(int *)*param_1 == -0x3ffffffb;
 }
@@ -233,11 +233,11 @@ bool utilities_parameter_validator(undefined8 *param_1)
  * 管理系统资源并执行相应的资源操作。
  * 根据资源状态执行不同的管理策略。
  */
-void utilities_resource_manager(undefined8 param_1, longlong param_2)
+void utilities_resource_manager(uint64_t param_1, longlong param_2)
 {
     if (*(char *)(param_2 + 0x20) == '\0') {
-        FUN_1808fc914(*(undefined8 *)(param_2 + 0x50), *(undefined8 *)(param_2 + 0x58),
-                      *(undefined8 *)(param_2 + 0x28), *(undefined8 *)(param_2 + 0x70));
+        FUN_1808fc914(*(uint64_t *)(param_2 + 0x50), *(uint64_t *)(param_2 + 0x58),
+                      *(uint64_t *)(param_2 + 0x28), *(uint64_t *)(param_2 + 0x70));
     }
     return;
 }
@@ -251,11 +251,11 @@ void utilities_resource_manager(undefined8 param_1, longlong param_2)
  * 高级资源管理器，支持更复杂的资源操作。
  * 包含资源生命周期管理。
  */
-void utilities_advanced_resource_manager(undefined8 param_1, longlong param_2)
+void utilities_advanced_resource_manager(uint64_t param_1, longlong param_2)
 {
     if (*(char *)(param_2 + 0x20) == '\0') {
-        FUN_1808fc914(*(undefined8 *)(param_2 + 0x60), *(undefined8 *)(param_2 + 0x68),
-                      *(undefined8 *)(param_2 + 0x70), *(undefined8 *)(param_2 + 0x78));
+        FUN_1808fc914(*(uint64_t *)(param_2 + 0x60), *(uint64_t *)(param_2 + 0x68),
+                      *(uint64_t *)(param_2 + 0x70), *(uint64_t *)(param_2 + 0x78));
     }
     return;
 }
@@ -269,14 +269,14 @@ void utilities_advanced_resource_manager(undefined8 param_1, longlong param_2)
  * 分配系统内存并设置相应的内存结构。
  * 包含内存验证和错误处理。
  */
-undefined4 utilities_memory_allocator(undefined8 param_1, longlong param_2)
+int32_t utilities_memory_allocator(uint64_t param_1, longlong param_2)
 {
-    *(undefined8 *)(param_2 + 0x40) = param_1;
-    *(undefined8 *)(param_2 + 0x30) = param_1;
-    *(undefined8 *)(param_2 + 0x38) = **(undefined8 **)(param_2 + 0x30);
+    *(uint64_t *)(param_2 + 0x40) = param_1;
+    *(uint64_t *)(param_2 + 0x30) = param_1;
+    *(uint64_t *)(param_2 + 0x38) = **(uint64_t **)(param_2 + 0x30);
     if (**(int **)(param_2 + 0x38) != -0x1f928c9d) {
-        *(undefined4 *)(param_2 + 0x20) = 0;
-        return *(undefined4 *)(param_2 + 0x20);
+        *(int32_t *)(param_2 + 0x20) = 0;
+        return *(int32_t *)(param_2 + 0x20);
     }
     // 内存验证失败，终止程序
     terminate();
@@ -291,11 +291,11 @@ undefined4 utilities_memory_allocator(undefined8 param_1, longlong param_2)
  * 清理系统资源并释放相关内存。
  * 执行完整的资源清理流程。
  */
-void utilities_resource_cleaner(undefined8 param_1, longlong param_2)
+void utilities_resource_cleaner(uint64_t param_1, longlong param_2)
 {
     if (*(char *)(param_2 + 0x20) == '\0') {
-        FUN_1808fc914(*(undefined8 *)(param_2 + 0x60), *(undefined8 *)(param_2 + 0x70),
-                      *(undefined8 *)(param_2 + 0x28), *(undefined8 *)(param_2 + 0x88));
+        FUN_1808fc914(*(uint64_t *)(param_2 + 0x60), *(uint64_t *)(param_2 + 0x70),
+                      *(uint64_t *)(param_2 + 0x28), *(uint64_t *)(param_2 + 0x88));
     }
     return;
 }
@@ -308,9 +308,9 @@ void utilities_resource_cleaner(undefined8 param_1, longlong param_2)
  * 处理函数调用并执行相应的操作。
  * 包含参数验证和调用路由。
  */
-void utilities_function_call_handler(undefined8 *param_1)
+void utilities_function_call_handler(uint64_t *param_1)
 {
-    func_0x0001808fd024(*(undefined4 *)*param_1);
+    func_0x0001808fd024(*(int32_t *)*param_1);
     return;
 }
 
@@ -643,7 +643,7 @@ void utilities_global_pointer_setter_16(void)
  * 
  * 管理系统内存并执行相应的内存操作。
  */
-void utilities_memory_manager(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void utilities_memory_manager(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     longlong *memory_ptr;
     
@@ -742,12 +742,12 @@ void utilities_system_state_resetter_2(void)
 void utilities_exception_handler(void)
 {
     int *exception_counter;
-    undefined8 *exception_ptr;
+    uint64_t *exception_ptr;
     longlong exception_address;
     ulonglong exception_mask;
     
     exception_ptr = _DAT_180d493f8;
-    if (_DAT_180d493f8 == (undefined8 *)0x0) {
+    if (_DAT_180d493f8 == (uint64_t *)0x0) {
         return;
     }
     
@@ -756,8 +756,8 @@ void utilities_exception_handler(void)
         exception_address = exception_mask + 0x80 + ((longlong)_DAT_180d493f8 - exception_mask >> 0x10) * 0x50;
         exception_address = exception_address - (ulonglong)*(uint *)(exception_address + 4);
         if ((*(void ***)(exception_mask + 0x70) == &ExceptionList) && (*(char *)(exception_address + 0xe) == '\0')) {
-            *_DAT_180d493f8 = *(undefined8 *)(exception_address + 0x20);
-            *(undefined8 **)(exception_address + 0x20) = exception_ptr;
+            *_DAT_180d493f8 = *(uint64_t *)(exception_address + 0x20);
+            *(uint64_t **)(exception_address + 0x20) = exception_ptr;
             exception_counter = (int *)(exception_address + 0x18);
             *exception_counter = *exception_counter + -1;
             if (*exception_counter == 0) {
@@ -1538,11 +1538,11 @@ void utilities_global_pointer_setter_70(void)
  * 
  * 执行回调函数并处理相应的操作。
  */
-void utilities_callback_executor_1(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void utilities_callback_executor_1(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    undefined8 *callback_ptr1;
-    undefined8 *callback_ptr2;
-    undefined8 callback_param;
+    uint64_t *callback_ptr1;
+    uint64_t *callback_ptr2;
+    uint64_t callback_param;
     
     callback_ptr1 = _DAT_180bfa2f0;
     callback_param = 0xfffffffffffffffe;
@@ -1553,7 +1553,7 @@ void utilities_callback_executor_1(undefined8 param_1, undefined8 param_2, undef
             callback_ptr2 = callback_ptr2 + 0xb;
         } while (callback_ptr2 != callback_ptr1);
     }
-    if (_DAT_180bfa2e8 == (undefined8 *)0x0) {
+    if (_DAT_180bfa2e8 == (uint64_t *)0x0) {
         return;
     }
     // 回调执行失败，执行错误处理
@@ -1570,11 +1570,11 @@ void utilities_callback_executor_1(undefined8 param_1, undefined8 param_2, undef
  * 
  * 执行回调函数并处理相应的操作。
  */
-void utilities_callback_executor_2(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void utilities_callback_executor_2(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    undefined8 *callback_ptr1;
-    undefined8 *callback_ptr2;
-    undefined8 callback_param;
+    uint64_t *callback_ptr1;
+    uint64_t *callback_ptr2;
+    uint64_t callback_param;
     
     callback_ptr1 = _DAT_180bfa310;
     callback_param = 0xfffffffffffffffe;
@@ -1585,7 +1585,7 @@ void utilities_callback_executor_2(undefined8 param_1, undefined8 param_2, undef
             callback_ptr2 = callback_ptr2 + 0xb;
         } while (callback_ptr2 != callback_ptr1);
     }
-    if (_DAT_180bfa308 == (undefined8 *)0x0) {
+    if (_DAT_180bfa308 == (uint64_t *)0x0) {
         return;
     }
     // 回调执行失败，执行错误处理
@@ -1602,11 +1602,11 @@ void utilities_callback_executor_2(undefined8 param_1, undefined8 param_2, undef
  * 
  * 执行回调函数并处理相应的操作。
  */
-void utilities_callback_executor_3(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void utilities_callback_executor_3(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    undefined8 *callback_ptr1;
-    undefined8 *callback_ptr2;
-    undefined8 callback_param;
+    uint64_t *callback_ptr1;
+    uint64_t *callback_ptr2;
+    uint64_t callback_param;
     
     callback_ptr1 = _DAT_180bfa330;
     callback_param = 0xfffffffffffffffe;
@@ -1617,7 +1617,7 @@ void utilities_callback_executor_3(undefined8 param_1, undefined8 param_2, undef
             callback_ptr2 = callback_ptr2 + 0xb;
         } while (callback_ptr2 != callback_ptr1);
     }
-    if (_DAT_180bfa328 == (undefined8 *)0x0) {
+    if (_DAT_180bfa328 == (uint64_t *)0x0) {
         return;
     }
     // 回调执行失败，执行错误处理

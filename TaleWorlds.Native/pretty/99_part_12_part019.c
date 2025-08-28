@@ -16,12 +16,12 @@ void FUN_1807d761a(int *param_1,float param_2)
   ulonglong *unaff_RBP;
   longlong unaff_RSI;
   int unaff_EDI;
-  undefined8 *puVar8;
+  uint64_t *puVar8;
   int iVar9;
   longlong unaff_R14;
   int unaff_R15D;
-  undefined1 auVar10 [16];
-  undefined1 auVar11 [16];
+  int8_t auVar10 [16];
+  int8_t auVar11 [16];
   float fVar12;
   float fVar13;
   float unaff_XMM6_Da;
@@ -29,9 +29,9 @@ void FUN_1807d761a(int *param_1,float param_2)
   float unaff_XMM14_Da;
   float in_stack_00000030;
   float in_stack_00000038;
-  undefined8 in_stack_00000110;
-  undefined8 in_stack_00000118;
-  undefined8 extraout_XMM0_Qb;
+  uint64_t in_stack_00000110;
+  uint64_t in_stack_00000118;
+  uint64_t extraout_XMM0_Qb;
   
   if (param_2 < -180.0) {
     do {
@@ -69,7 +69,7 @@ void FUN_1807d761a(int *param_1,float param_2)
       auVar11._4_12_ = auVar10._4_12_;
       auVar11._0_4_ = (float)auVar10._0_8_ * fVar12;
       fVar12 = (float)asinf(auVar11._0_8_);
-      FUN_1807d80d0(*(undefined8 *)(unaff_RSI + 0x28),&stack0x00000038,&stack0x00000030,
+      FUN_1807d80d0(*(uint64_t *)(unaff_RSI + 0x28),&stack0x00000038,&stack0x00000030,
                     fVar12 * 57.295776);
       uVar4 = 0;
       uVar7 = uVar4;
@@ -135,7 +135,7 @@ LAB_1807d7752:
     }
     iVar9 = func_0x0001807d57d0();
     if (0 < iVar9) {
-      puVar8 = (undefined8 *)(unaff_RSI + 0x58);
+      puVar8 = (uint64_t *)(unaff_RSI + 0x58);
       do {
         fVar12 = *(float *)(puVar8[1] + 4);
         fVar13 = (float)((int *)*puVar8)[1];
@@ -204,8 +204,8 @@ void FUN_1807d7847(void)
 
 
 
-// 函数: void FUN_1807d78d8(undefined8 param_1,undefined8 *param_2)
-void FUN_1807d78d8(undefined8 param_1,undefined8 *param_2)
+// 函数: void FUN_1807d78d8(uint64_t param_1,uint64_t *param_2)
+void FUN_1807d78d8(uint64_t param_1,uint64_t *param_2)
 
 {
   longlong lVar1;
@@ -261,7 +261,7 @@ void FUN_1807d78d8(undefined8 param_1,undefined8 *param_2)
   float fStack0000000000000040;
   float fStack0000000000000044;
   longlong lStack0000000000000048;
-  undefined8 *puStack0000000000000050;
+  uint64_t *puStack0000000000000050;
   longlong lStack0000000000000060;
   longlong in_stack_00000068;
   longlong in_stack_00000070;

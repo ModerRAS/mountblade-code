@@ -12,11 +12,11 @@ void release_texture_resources(longlong texture_context)
   int texture_height;
   int texture_depth;
   longlong texture_manager;
-  undefined *texture_data;
+  void *texture_data;
   longlong texture_info;
   longlong *resource_pool;
-  undefined8 new_buffer;
-  undefined *default_texture;
+  uint64_t new_buffer;
+  void *default_texture;
   int dimensions[2];
   longlong cleanup_context;
   int *buffer_ptr;
@@ -25,9 +25,9 @@ void release_texture_resources(longlong texture_context)
   
   // 获取纹理管理器
   texture_manager = *(longlong *)(texture_context + 0xb0);
-  texture_data = *(undefined **)(*(longlong *)(texture_manager + 0xa8) + 0x70);
+  texture_data = *(void **)(*(longlong *)(texture_manager + 0xa8) + 0x70);
   default_texture = &DAT_18098bc73;
-  if (texture_data != (undefined *)0x0) {
+  if (texture_data != (void *)0x0) {
     default_texture = texture_data;
   }
   
@@ -41,7 +41,7 @@ void release_texture_resources(longlong texture_context)
   }
   
   // 重置纹理状态
-  *(undefined8 *)(texture_manager + 0xb0) = 0;
+  *(uint64_t *)(texture_manager + 0xb0) = 0;
   dimensions[0] = *(int *)(texture_info + 0x24);
   *(int *)(texture_manager + 0xb8) = dimensions[0];
   texture_width = *(int *)(texture_info + 0x28);
@@ -64,7 +64,7 @@ void release_texture_resources(longlong texture_context)
     new_buffer = allocate_texture_buffer(_DAT_180c8ed18,(longlong)(dimensions[0] * 3) * 4,3);
   }
   
-  *(undefined8 *)(texture_manager + 0xb0) = new_buffer;
+  *(uint64_t *)(texture_manager + 0xb0) = new_buffer;
   resource_pool = *(longlong **)(*(longlong *)(texture_manager + 0xa8) + 0x88);
   buffer_ptr = dimensions;
   cleanup_callback = (code *)&UNK_18018c0a0;
@@ -94,41 +94,41 @@ void initialize_texture_object(longlong render_context)
 {
   longlong *texture_object;
   longlong *texture_methods;
-  undefined *texture_format;
+  void *texture_format;
   longlong init_params[3];
   
   // 分配纹理对象内存
   texture_object = (longlong *)allocate_texture_object(_DAT_180c8ed18,0xd0,8,3);
   *texture_object = (longlong)&texture_vtable_base;
   *texture_object = (longlong)&texture_vtable_extended;
-  *(undefined4 *)(texture_object + 1) = 0;
+  *(int32_t *)(texture_object + 1) = 0;
   *texture_object = (longlong)&texture_methods_table;
   texture_methods = texture_object + 2;
   *texture_methods = (longlong)&texture_resource_manager;
   texture_object[3] = 0;
-  *(undefined4 *)(texture_object + 4) = 0;
+  *(int32_t *)(texture_object + 4) = 0;
   *texture_methods = (longlong)&texture_shader_interface;
   texture_object[3] = (longlong)(texture_object + 5);
-  *(undefined4 *)(texture_object + 4) = 0;
-  *(undefined1 *)(texture_object + 5) = 0;
+  *(int32_t *)(texture_object + 4) = 0;
+  *(int8_t *)(texture_object + 5) = 0;
   texture_object[0x16] = 0;
   texture_object[0x15] = render_context;
   
   // 设置渲染上下文
   if (render_context != 0) {
     texture_format = &DAT_18098bc73;
-    if (*(undefined **)(render_context + 0x70) != (undefined *)0x0) {
-      texture_format = *(undefined **)(render_context + 0x70);
+    if (*(void **)(render_context + 0x70) != (void *)0x0) {
+      texture_format = *(void **)(render_context + 0x70);
     }
     (**(code **)(*texture_methods + 0x10))(texture_methods,texture_format);
   }
   
   // 初始化纹理属性
   texture_object[0x17] = 0;
-  *(undefined4 *)(texture_object + 0x18) = 0;
-  *(undefined4 *)((longlong)texture_object + 0xc4) = 0x7f7fffff;  // 最大浮点值
-  *(undefined4 *)(texture_object + 0x19) = 0x7f7fffff;
-  *(undefined4 *)((longlong)texture_object + 0xcc) = 0x7f7fffff;
+  *(int32_t *)(texture_object + 0x18) = 0;
+  *(int32_t *)((longlong)texture_object + 0xc4) = 0x7f7fffff;  // 最大浮点值
+  *(int32_t *)(texture_object + 0x19) = 0x7f7fffff;
+  *(int32_t *)((longlong)texture_object + 0xcc) = 0x7f7fffff;
   
   // 调用纹理初始化方法
   (**(code **)(*texture_object + 0x28))(texture_object);
@@ -247,13 +247,13 @@ void parse_texture_data_and_create(longlong texture_params,longlong data_stream)
   uint texture_type;
   longlong name_length;
   byte *current_char;
-  undefined4 *texture_flags;
+  int32_t *texture_flags;
   int texture_format;
   int texture_quality;
   longlong *texture_table;
-  undefined1 name_buffer[32];
-  undefined8 stream_position;
-  undefined *texture_data_ptr;
+  int8_t name_buffer[32];
+  uint64_t stream_position;
+  void *texture_data_ptr;
   byte *texture_name_buffer;
   int name_length_int;
   byte texture_full_name[1032];
@@ -300,7 +300,7 @@ void parse_texture_data_and_create(longlong texture_params,longlong data_stream)
 LAB_18018baee:
       // 设置纹理类型
       if (texture_format == 0) {
-        *(undefined4 *)(texture_params + 8) = *(undefined4 *)((longlong)texture_quality * 0x10 + 0x180bf6748);
+        *(int32_t *)(texture_params + 8) = *(int32_t *)((longlong)texture_quality * 0x10 + 0x180bf6748);
         goto LAB_18018baff;
       }
     }
@@ -312,27 +312,27 @@ LAB_18018baff:
       texture_data_ptr = &UNK_18098bcb0;
       
       // 读取纹理属性
-      *(undefined4 *)(texture_params + 0x24) = **(undefined4 **)(data_stream + 8);
+      *(int32_t *)(texture_params + 0x24) = **(int32_t **)(data_stream + 8);
       *(longlong *)(data_stream + 8) = *(longlong *)(data_stream + 8) + 4;
-      *(undefined4 *)(texture_params + 0x28) = **(undefined4 **)(data_stream + 8);
+      *(int32_t *)(texture_params + 0x28) = **(int32_t **)(data_stream + 8);
       *(longlong *)(data_stream + 8) = *(longlong *)(data_stream + 8) + 4;
-      *(undefined4 *)(texture_params + 0x2c) = **(undefined4 **)(data_stream + 8);
-      texture_flags = (undefined4 *)(*(longlong *)(data_stream + 8) + 4);
-      *(undefined4 **)(data_stream + 8) = texture_flags;
+      *(int32_t *)(texture_params + 0x2c) = **(int32_t **)(data_stream + 8);
+      texture_flags = (int32_t *)(*(longlong *)(data_stream + 8) + 4);
+      *(int32_t **)(data_stream + 8) = texture_flags;
       
       // 处理特殊纹理类型
       if (*(int *)(texture_params + 8) == 0) {
-        *(undefined4 *)(texture_params + 0x20) = *texture_flags;
+        *(int32_t *)(texture_params + 0x20) = *texture_flags;
         *(longlong *)(data_stream + 8) = *(longlong *)(data_stream + 8) + 4;
-        *(undefined4 *)(texture_params + 0x1c) = **(undefined4 **)(data_stream + 8);
+        *(int32_t *)(texture_params + 0x1c) = **(int32_t **)(data_stream + 8);
         *(longlong *)(data_stream + 8) = *(longlong *)(data_stream + 8) + 4;
-        *(undefined4 *)(texture_params + 0xc) = **(undefined4 **)(data_stream + 8);
+        *(int32_t *)(texture_params + 0xc) = **(int32_t **)(data_stream + 8);
         *(longlong *)(data_stream + 8) = *(longlong *)(data_stream + 8) + 4;
-        *(undefined4 *)(texture_params + 0x10) = **(undefined4 **)(data_stream + 8);
+        *(int32_t *)(texture_params + 0x10) = **(int32_t **)(data_stream + 8);
         *(longlong *)(data_stream + 8) = *(longlong *)(data_stream + 8) + 4;
-        *(undefined4 *)(texture_params + 0x14) = **(undefined4 **)(data_stream + 8);
+        *(int32_t *)(texture_params + 0x14) = **(int32_t **)(data_stream + 8);
         *(longlong *)(data_stream + 8) = *(longlong *)(data_stream + 8) + 4;
-        *(undefined4 *)(texture_params + 0x18) = **(undefined4 **)(data_stream + 8);
+        *(int32_t *)(texture_params + 0x18) = **(int32_t **)(data_stream + 8);
         *(longlong *)(data_stream + 8) = *(longlong *)(data_stream + 8) + 4;
       }
       // 清理并返回
@@ -350,15 +350,15 @@ LAB_18018baff:
 void serialize_texture_data(longlong texture_params,longlong *data_stream)
 
 {
-  undefined4 texture_value;
+  int32_t texture_value;
   int *texture_type_table;
   int texture_index;
-  undefined4 *stream_ptr;
+  int32_t *stream_ptr;
   
-  stream_ptr = (undefined4 *)data_stream[1];
+  stream_ptr = (int32_t *)data_stream[1];
   if ((ulonglong)((*data_stream - (longlong)stream_ptr) + data_stream[2]) < 5) {
     expand_data_buffer(data_stream,(longlong)stream_ptr + (4 - *data_stream));
-    stream_ptr = (undefined4 *)data_stream[1];
+    stream_ptr = (int32_t *)data_stream[1];
   }
   
   // 写入纹理类型
@@ -370,7 +370,7 @@ void serialize_texture_data(longlong texture_params,longlong *data_stream)
   // 查找并写入纹理类型数据
   do {
     if (*texture_type_table == *(int *)(texture_params + 8)) {
-      write_texture_type_data(data_stream,*(undefined8 *)((longlong)texture_index * 0x10 + 0x180bf6740));
+      write_texture_type_data(data_stream,*(uint64_t *)((longlong)texture_index * 0x10 + 0x180bf6740));
       break;
     }
     texture_index = texture_index + 1;
@@ -378,85 +378,85 @@ void serialize_texture_data(longlong texture_params,longlong *data_stream)
   } while ((longlong)texture_type_table < 0x180bf6758);
   
   // 写入纹理属性
-  stream_ptr = (undefined4 *)data_stream[1];
-  texture_value = *(undefined4 *)(texture_params + 0x24);
+  stream_ptr = (int32_t *)data_stream[1];
+  texture_value = *(int32_t *)(texture_params + 0x24);
   if ((ulonglong)((*data_stream - (longlong)stream_ptr) + data_stream[2]) < 5) {
     expand_data_buffer(data_stream,(longlong)stream_ptr + (4 - *data_stream));
-    stream_ptr = (undefined4 *)data_stream[1];
+    stream_ptr = (int32_t *)data_stream[1];
   }
   *stream_ptr = texture_value;
   data_stream[1] = data_stream[1] + 4;
   
-  stream_ptr = (undefined4 *)data_stream[1];
-  texture_value = *(undefined4 *)(texture_params + 0x28);
+  stream_ptr = (int32_t *)data_stream[1];
+  texture_value = *(int32_t *)(texture_params + 0x28);
   if ((ulonglong)((*data_stream - (longlong)stream_ptr) + data_stream[2]) < 5) {
     expand_data_buffer(data_stream,(longlong)stream_ptr + (4 - *data_stream));
-    stream_ptr = (undefined4 *)data_stream[1];
+    stream_ptr = (int32_t *)data_stream[1];
   }
   *stream_ptr = texture_value;
   data_stream[1] = data_stream[1] + 4;
   
-  stream_ptr = (undefined4 *)data_stream[1];
-  texture_value = *(undefined4 *)(texture_params + 0x2c);
+  stream_ptr = (int32_t *)data_stream[1];
+  texture_value = *(int32_t *)(texture_params + 0x2c);
   if ((ulonglong)((*data_stream - (longlong)stream_ptr) + data_stream[2]) < 5) {
     expand_data_buffer(data_stream,(longlong)stream_ptr + (4 - *data_stream));
-    stream_ptr = (undefined4 *)data_stream[1];
+    stream_ptr = (int32_t *)data_stream[1];
   }
   *stream_ptr = texture_value;
-  stream_ptr = (undefined4 *)(data_stream[1] + 4);
+  stream_ptr = (int32_t *)(data_stream[1] + 4);
   data_stream[1] = (longlong)stream_ptr;
   
   // 处理特殊纹理类型的额外数据
   if (*(int *)(texture_params + 8) == 0) {
-    texture_value = *(undefined4 *)(texture_params + 0x20);
+    texture_value = *(int32_t *)(texture_params + 0x20);
     if ((ulonglong)((*data_stream - (longlong)stream_ptr) + data_stream[2]) < 5) {
       expand_data_buffer(data_stream,(longlong)stream_ptr + (4 - *data_stream));
-      stream_ptr = (undefined4 *)data_stream[1];
+      stream_ptr = (int32_t *)data_stream[1];
     }
     *stream_ptr = texture_value;
     data_stream[1] = data_stream[1] + 4;
     
-    stream_ptr = (undefined4 *)data_stream[1];
-    texture_value = *(undefined4 *)(texture_params + 0x1c);
+    stream_ptr = (int32_t *)data_stream[1];
+    texture_value = *(int32_t *)(texture_params + 0x1c);
     if ((ulonglong)((*data_stream - (longlong)stream_ptr) + data_stream[2]) < 5) {
       expand_data_buffer(data_stream,(longlong)stream_ptr + (4 - *data_stream));
-      stream_ptr = (undefined4 *)data_stream[1];
+      stream_ptr = (int32_t *)data_stream[1];
     }
     *stream_ptr = texture_value;
     data_stream[1] = data_stream[1] + 4;
     
-    stream_ptr = (undefined4 *)data_stream[1];
-    texture_value = *(undefined4 *)(texture_params + 0xc);
+    stream_ptr = (int32_t *)data_stream[1];
+    texture_value = *(int32_t *)(texture_params + 0xc);
     if ((ulonglong)((*data_stream - (longlong)stream_ptr) + data_stream[2]) < 5) {
       expand_data_buffer(data_stream,(longlong)stream_ptr + (4 - *data_stream));
-      stream_ptr = (undefined4 *)data_stream[1];
+      stream_ptr = (int32_t *)data_stream[1];
     }
     *stream_ptr = texture_value;
     data_stream[1] = data_stream[1] + 4;
     
-    stream_ptr = (undefined4 *)data_stream[1];
-    texture_value = *(undefined4 *)(texture_params + 0x10);
+    stream_ptr = (int32_t *)data_stream[1];
+    texture_value = *(int32_t *)(texture_params + 0x10);
     if ((ulonglong)((*data_stream - (longlong)stream_ptr) + data_stream[2]) < 5) {
       expand_data_buffer(data_stream,(longlong)stream_ptr + (4 - *data_stream));
-      stream_ptr = (undefined4 *)data_stream[1];
+      stream_ptr = (int32_t *)data_stream[1];
     }
     *stream_ptr = texture_value;
     data_stream[1] = data_stream[1] + 4;
     
-    stream_ptr = (undefined4 *)data_stream[1];
-    texture_value = *(undefined4 *)(texture_params + 0x14);
+    stream_ptr = (int32_t *)data_stream[1];
+    texture_value = *(int32_t *)(texture_params + 0x14);
     if ((ulonglong)((*data_stream - (longlong)stream_ptr) + data_stream[2]) < 5) {
       expand_data_buffer(data_stream,(longlong)stream_ptr + (4 - *data_stream));
-      stream_ptr = (undefined4 *)data_stream[1];
+      stream_ptr = (int32_t *)data_stream[1];
     }
     *stream_ptr = texture_value;
     data_stream[1] = data_stream[1] + 4;
     
-    stream_ptr = (undefined4 *)data_stream[1];
-    texture_value = *(undefined4 *)(texture_params + 0x18);
+    stream_ptr = (int32_t *)data_stream[1];
+    texture_value = *(int32_t *)(texture_params + 0x18);
     if ((ulonglong)((*data_stream - (longlong)stream_ptr) + data_stream[2]) < 5) {
       expand_data_buffer(data_stream,(longlong)stream_ptr + (4 - *data_stream));
-      stream_ptr = (undefined4 *)data_stream[1];
+      stream_ptr = (int32_t *)data_stream[1];
     }
     *stream_ptr = texture_value;
     data_stream[1] = data_stream[1] + 4;
@@ -470,59 +470,59 @@ void serialize_texture_data(longlong texture_params,longlong *data_stream)
 
 // 函数: 写入纹理数据到数据流
 // 原函数名: FUN_18018bd0d
-void write_texture_data_to_stream(undefined4 *stream_position)
+void write_texture_data_to_stream(int32_t *stream_position)
 
 {
-  undefined4 texture_data;
+  int32_t texture_data;
   longlong buffer_size;
-  undefined4 *current_position;
+  int32_t *current_position;
   longlong *stream_info;
   longlong texture_context;
   
-  texture_data = *(undefined4 *)(texture_context + 0x20);
+  texture_data = *(int32_t *)(texture_context + 0x20);
   if ((ulonglong)((buffer_size - (longlong)stream_position) + stream_info[2]) < 5) {
     expand_data_buffer();
-    stream_position = (undefined4 *)stream_info[1];
+    stream_position = (int32_t *)stream_info[1];
   }
   *stream_position = texture_data;
   stream_info[1] = stream_info[1] + 4;
-  current_position = (undefined4 *)stream_info[1];
-  texture_data = *(undefined4 *)(texture_context + 0x1c);
+  current_position = (int32_t *)stream_info[1];
+  texture_data = *(int32_t *)(texture_context + 0x1c);
   if ((ulonglong)((*stream_info - (longlong)current_position) + stream_info[2]) < 5) {
     expand_data_buffer();
-    current_position = (undefined4 *)stream_info[1];
+    current_position = (int32_t *)stream_info[1];
   }
   *current_position = texture_data;
   stream_info[1] = stream_info[1] + 4;
-  current_position = (undefined4 *)stream_info[1];
-  texture_data = *(undefined4 *)(texture_context + 0xc);
+  current_position = (int32_t *)stream_info[1];
+  texture_data = *(int32_t *)(texture_context + 0xc);
   if ((ulonglong)((*stream_info - (longlong)current_position) + stream_info[2]) < 5) {
     expand_data_buffer();
-    current_position = (undefined4 *)stream_info[1];
+    current_position = (int32_t *)stream_info[1];
   }
   *current_position = texture_data;
   stream_info[1] = stream_info[1] + 4;
-  current_position = (undefined4 *)stream_info[1];
-  texture_data = *(undefined4 *)(texture_context + 0x10);
+  current_position = (int32_t *)stream_info[1];
+  texture_data = *(int32_t *)(texture_context + 0x10);
   if ((ulonglong)((*stream_info - (longlong)current_position) + stream_info[2]) < 5) {
     expand_data_buffer();
-    current_position = (undefined4 *)stream_info[1];
+    current_position = (int32_t *)stream_info[1];
   }
   *current_position = texture_data;
   stream_info[1] = stream_info[1] + 4;
-  current_position = (undefined4 *)stream_info[1];
-  texture_data = *(undefined4 *)(texture_context + 0x14);
+  current_position = (int32_t *)stream_info[1];
+  texture_data = *(int32_t *)(texture_context + 0x14);
   if ((ulonglong)((*stream_info - (longlong)current_position) + stream_info[2]) < 5) {
     expand_data_buffer();
-    current_position = (undefined4 *)stream_info[1];
+    current_position = (int32_t *)stream_info[1];
   }
   *current_position = texture_data;
   stream_info[1] = stream_info[1] + 4;
-  current_position = (undefined4 *)stream_info[1];
-  texture_data = *(undefined4 *)(texture_context + 0x18);
+  current_position = (int32_t *)stream_info[1];
+  texture_data = *(int32_t *)(texture_context + 0x18);
   if ((ulonglong)((*stream_info - (longlong)current_position) + stream_info[2]) < 5) {
     expand_data_buffer();
-    current_position = (undefined4 *)stream_info[1];
+    current_position = (int32_t *)stream_info[1];
   }
   *current_position = texture_data;
   stream_info[1] = stream_info[1] + 4;
@@ -538,44 +538,44 @@ void write_texture_data_to_stream(undefined4 *stream_position)
 void write_partial_texture_data(void)
 
 {
-  undefined4 texture_data;
-  undefined4 *stream_position;
+  int32_t texture_data;
+  int32_t *stream_position;
   longlong *stream_info;
-  undefined4 texture_flags;
+  int32_t texture_flags;
   longlong texture_context;
   
   expand_data_buffer();
-  *(undefined4 *)stream_info[1] = texture_flags;
+  *(int32_t *)stream_info[1] = texture_flags;
   stream_info[1] = stream_info[1] + 4;
-  stream_position = (undefined4 *)stream_info[1];
-  texture_data = *(undefined4 *)(texture_context + 0xc);
+  stream_position = (int32_t *)stream_info[1];
+  texture_data = *(int32_t *)(texture_context + 0xc);
   if ((ulonglong)((*stream_info - (longlong)stream_position) + stream_info[2]) < 5) {
     expand_data_buffer();
-    stream_position = (undefined4 *)stream_info[1];
+    stream_position = (int32_t *)stream_info[1];
   }
   *stream_position = texture_data;
   stream_info[1] = stream_info[1] + 4;
-  stream_position = (undefined4 *)stream_info[1];
-  texture_data = *(undefined4 *)(texture_context + 0x10);
+  stream_position = (int32_t *)stream_info[1];
+  texture_data = *(int32_t *)(texture_context + 0x10);
   if ((ulonglong)((*stream_info - (longlong)stream_position) + stream_info[2]) < 5) {
     expand_data_buffer();
-    stream_position = (undefined4 *)stream_info[1];
+    stream_position = (int32_t *)stream_info[1];
   }
   *stream_position = texture_data;
   stream_info[1] = stream_info[1] + 4;
-  stream_position = (undefined4 *)stream_info[1];
-  texture_data = *(undefined4 *)(texture_context + 0x14);
+  stream_position = (int32_t *)stream_info[1];
+  texture_data = *(int32_t *)(texture_context + 0x14);
   if ((ulonglong)((*stream_info - (longlong)stream_position) + stream_info[2]) < 5) {
     expand_data_buffer();
-    stream_position = (undefined4 *)stream_info[1];
+    stream_position = (int32_t *)stream_info[1];
   }
   *stream_position = texture_data;
   stream_info[1] = stream_info[1] + 4;
-  stream_position = (undefined4 *)stream_info[1];
-  texture_data = *(undefined4 *)(texture_context + 0x18);
+  stream_position = (int32_t *)stream_info[1];
+  texture_data = *(int32_t *)(texture_context + 0x18);
   if ((ulonglong)((*stream_info - (longlong)stream_position) + stream_info[2]) < 5) {
     expand_data_buffer();
-    stream_position = (undefined4 *)stream_info[1];
+    stream_position = (int32_t *)stream_info[1];
   }
   *stream_position = texture_data;
   stream_info[1] = stream_info[1] + 4;
@@ -586,23 +586,23 @@ void write_partial_texture_data(void)
 
 // 全局变量重叠警告已忽略
 
-undefined8 *
-add_texture_to_hash_table(longlong hash_table,undefined8 *texture_entry,undefined8 entry_key,longlong *texture_data,
+uint64_t *
+add_texture_to_hash_table(longlong hash_table,uint64_t *texture_entry,uint64_t entry_key,longlong *texture_data,
              ulonglong hash_value)
 
 {
-  undefined8 *existing_entry;
+  uint64_t *existing_entry;
   longlong hash_index;
   ulonglong table_size;
-  undefined4 texture_format;
-  undefined4 texture_quality;
-  undefined4 *new_texture;
-  undefined8 new_texture_id;
+  int32_t texture_format;
+  int32_t texture_quality;
+  int32_t *new_texture;
+  uint64_t new_texture_id;
   longlong *texture_properties;
   
   // 计算哈希索引
   table_size = hash_value % (ulonglong)*(uint *)(hash_table + 0x10);
-  existing_entry = (undefined8 *)(*(longlong *)(hash_table + 8) + table_size * 8);
+  existing_entry = (uint64_t *)(*(longlong *)(hash_table + 8) + table_size * 8);
   texture_properties = (longlong *)*existing_entry;
   
   do {
@@ -610,35 +610,35 @@ add_texture_to_hash_table(longlong hash_table,undefined8 *texture_entry,undefine
 LAB_18018bee2:
       // 扩展哈希表
       expand_hash_table(hash_table + 0x20,&hash_value,(ulonglong)*(uint *)(hash_table + 0x10),
-                    *(undefined4 *)(hash_table + 0x18),1);
+                    *(int32_t *)(hash_table + 0x18),1);
       
       // 创建新的纹理条目
-      new_texture = (undefined4 *)create_texture_entry(_DAT_180c8ed18,0x20,*(undefined1 *)(hash_table + 0x2c));
-      texture_format = *(undefined4 *)((longlong)texture_data + 4);
+      new_texture = (int32_t *)create_texture_entry(_DAT_180c8ed18,0x20,*(int8_t *)(hash_table + 0x2c));
+      texture_format = *(int32_t *)((longlong)texture_data + 4);
       hash_index = texture_data[1];
-      texture_quality = *(undefined4 *)((longlong)texture_data + 0xc);
+      texture_quality = *(int32_t *)((longlong)texture_data + 0xc);
       *new_texture = (int)*texture_data;
       new_texture[1] = texture_format;
       new_texture[2] = (int)hash_index;
       new_texture[3] = texture_quality;
-      *(undefined8 *)(new_texture + 4) = 0;
-      *(undefined8 *)(new_texture + 6) = 0;
+      *(uint64_t *)(new_texture + 4) = 0;
+      *(uint64_t *)(new_texture + 6) = 0;
       
       // 插入到哈希表
       if ((char)hash_value == '\0') {
-        *(undefined8 *)(new_texture + 6) = *(undefined8 *)(*(longlong *)(hash_table + 8) + table_size * 8);
-        *(undefined4 **)(*(longlong *)(hash_table + 8) + table_size * 8) = new_texture;
+        *(uint64_t *)(new_texture + 6) = *(uint64_t *)(*(longlong *)(hash_table + 8) + table_size * 8);
+        *(int32_t **)(*(longlong *)(hash_table + 8) + table_size * 8) = new_texture;
         *(longlong *)(hash_table + 0x18) = *(longlong *)(hash_table + 0x18) + 1;
         hash_index = *(longlong *)(hash_table + 8);
         *texture_entry = new_texture;
         texture_entry[1] = hash_index + table_size * 8;
-        *(undefined1 *)(texture_entry + 2) = 1;
+        *(int8_t *)(texture_entry + 2) = 1;
         return texture_entry;
       }
       
       // 处理哈希冲突
       new_texture_id = create_collision_list(_DAT_180c8ed18,(ulonglong)hash_value._4_4_ * 8 + 8,8,
-                            *(undefined1 *)(hash_table + 0x2c));
+                            *(int8_t *)(hash_table + 0x2c));
       // 初始化冲突列表
       memset(new_texture_id,0,(ulonglong)hash_value._4_4_ * 8);
     }
@@ -648,7 +648,7 @@ LAB_18018bee2:
       if (texture_properties != (longlong *)0x0) {
         *texture_entry = texture_properties;
         texture_entry[1] = existing_entry;
-        *(undefined1 *)(texture_entry + 2) = 0;
+        *(int8_t *)(texture_entry + 2) = 0;
         return texture_entry;
       }
       goto LAB_18018bee2;
@@ -663,11 +663,11 @@ LAB_18018bee2:
 
 // 函数: 复制纹理数据到目标缓冲区
 // 原函数名: FUN_18018c050
-void copy_texture_data_to_buffer(longlong source_context,undefined8 data_offset,undefined8 data_size,longlong *target_context)
+void copy_texture_data_to_buffer(longlong source_context,uint64_t data_offset,uint64_t data_size,longlong *target_context)
 
 {
   // 复制纹理数据
-  memcpy(*(undefined8 *)(*target_context + 0xb0),*(undefined8 *)(source_context + 8),
+  memcpy(*(uint64_t *)(*target_context + 0xb0),*(uint64_t *)(source_context + 8),
          (longlong)(*(int *)target_context[1] * 0xc));
 }
 
@@ -677,7 +677,7 @@ void copy_texture_data_to_buffer(longlong source_context,undefined8 data_offset,
 
 // 函数: 处理纹理资源并更新引用计数
 // 原函数名: FUN_18018c160
-longlong * process_texture_resources(longlong *resource_manager,undefined8 *texture_handle)
+longlong * process_texture_resources(longlong *resource_manager,uint64_t *texture_handle)
 
 {
   longlong old_ref_count;
@@ -687,13 +687,13 @@ longlong * process_texture_resources(longlong *resource_manager,undefined8 *text
   longlong new_ref_count;
   char is_valid;
   longlong *texture_object;
-  undefined4 texture_flags;
+  int32_t texture_flags;
   longlong *stack_resource;
-  undefined8 *stack_handle;
+  uint64_t *stack_handle;
   longlong stack_context;
   longlong stack_data;
-  undefined4 stack_format;
-  undefined4 stack_quality;
+  int32_t stack_format;
+  int32_t stack_quality;
   
   stack_resource = &stack_context;
   stack_context = 0;
@@ -732,14 +732,14 @@ longlong * process_texture_resources(longlong *resource_manager,undefined8 *text
     old_texture_id = texture_object[2];
     texture_object[2] = stack_data;
     old_texture_data = texture_object[3];
-    *(undefined4 *)(texture_object + 3) = stack_format;
+    *(int32_t *)(texture_object + 3) = stack_format;
     stack_context = old_ref_count;
     stack_quality = old_data_ptr;
     stack_data = old_texture_id;
     stack_format = (int)old_texture_data;
   }
   
-  *(undefined4 *)(texture_object + 4) = stack_quality;
+  *(int32_t *)(texture_object + 4) = stack_quality;
   stack_resource = &stack_context;
   
   if (stack_context != 0) {
@@ -767,7 +767,7 @@ longlong * process_texture_resources(longlong *resource_manager,undefined8 *text
       free_texture_memory();
     }
     texture_handle[1] = 0;
-    *(undefined4 *)(texture_handle + 3) = 0;
+    *(int32_t *)(texture_handle + 3) = 0;
     texture_object = (longlong *)0x0;
   }
   else {
@@ -777,7 +777,7 @@ longlong * process_texture_resources(longlong *resource_manager,undefined8 *text
       free_texture_memory();
     }
     texture_handle[1] = 0;
-    *(undefined4 *)(texture_handle + 3) = 0;
+    *(int32_t *)(texture_handle + 3) = 0;
     texture_object = texture_object + 8;
   }
   *texture_handle = &texture_resource_manager;

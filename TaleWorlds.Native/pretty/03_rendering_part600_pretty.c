@@ -86,7 +86,7 @@
 // - 处理角度环绕和规范化
 // - 支持多种渲染模式的切换
 //============================================================================
-void RenderingSystemAdvancedProcessor(longlong render_context, undefined8 render_params, float delta_time, longlong state_data)
+void RenderingSystemAdvancedProcessor(longlong render_context, uint64_t render_params, float delta_time, longlong state_data)
 {
     char state_flag;
     int direction1, direction2;
@@ -95,7 +95,7 @@ void RenderingSystemAdvancedProcessor(longlong render_context, undefined8 render
     float distance, interpolation_weight;
     float normalized_x, normalized_y, normalized_z;
     float vector_length, normalization_factor;
-    undefined1 simd_result[16];
+    int8_t simd_result[16];
     
     // 检查渲染状态标志
     state_flag = func_0x00018057c520(render_context + 0xa0, *(uint *)(state_data + 0x24) >> 8 & 0xffffff01);
@@ -127,7 +127,7 @@ void RenderingSystemAdvancedProcessor(longlong render_context, undefined8 render
                 interpolation_weight * *(float *)(render_context + 0x70) + distance * *(float *)(render_context + 0xb8);
             
             // 设置归一化标志
-            *(undefined4 *)(render_context + 0x74) = FLOAT_MAX_VALUE;
+            *(int32_t *)(render_context + 0x74) = FLOAT_MAX_VALUE;
             
             // 向量归一化处理
             current_z = *(float *)(render_context + 0x70);
@@ -149,13 +149,13 @@ void RenderingSystemAdvancedProcessor(longlong render_context, undefined8 render
         }
         else {
             // 直接设置目标位置
-            *(undefined8 *)(render_context + 0x68) = *(undefined8 *)(render_context + 0xb0);
-            *(undefined8 *)(render_context + 0x70) = *(undefined8 *)(render_context + 0xb8);
+            *(uint64_t *)(render_context + 0x68) = *(uint64_t *)(render_context + 0xb0);
+            *(uint64_t *)(render_context + 0x70) = *(uint64_t *)(render_context + 0xb8);
         }
         
         // 更新位置记录
-        *(undefined8 *)(render_context + 0xf8) = *(undefined8 *)(render_context + 0xc);
-        *(undefined8 *)(render_context + 0x100) = *(undefined8 *)(render_context + 0x14);
+        *(uint64_t *)(render_context + 0xf8) = *(uint64_t *)(render_context + 0xc);
+        *(uint64_t *)(render_context + 0x100) = *(uint64_t *)(render_context + 0x14);
     }
     
 position_update_complete:
@@ -204,7 +204,7 @@ position_update_complete:
     }
     
     // 重置处理标志
-    *(undefined8 *)(render_context + 0xf0) = 0;
+    *(uint64_t *)(render_context + 0xf0) = 0;
     return;
 }
 
@@ -220,7 +220,7 @@ position_update_complete:
 // - 实现相同的位置插值和角度处理逻辑
 // - 支持独立的渲染状态管理
 //============================================================================
-void RenderingSystemSecondaryProcessor(undefined8 render_params, undefined8 additional_params, float delta_time, longlong state_data)
+void RenderingSystemSecondaryProcessor(uint64_t render_params, uint64_t additional_params, float delta_time, longlong state_data)
 {
     char state_flag;
     int direction1, direction2;
@@ -230,7 +230,7 @@ void RenderingSystemSecondaryProcessor(undefined8 render_params, undefined8 addi
     float distance, interpolation_weight;
     float normalized_x, normalized_y, normalized_z;
     float vector_length, normalization_factor;
-    undefined1 simd_result[16];
+    int8_t simd_result[16];
     
     // 检查渲染状态标志
     state_flag = func_0x00018057c520();
@@ -262,7 +262,7 @@ void RenderingSystemSecondaryProcessor(undefined8 render_params, undefined8 addi
                 interpolation_weight * *(float *)(unaff_rbx + 0x70) + distance * *(float *)(unaff_rbx + 0xb8);
             
             // 设置归一化标志
-            *(undefined4 *)(unaff_rbx + 0x74) = FLOAT_MAX_VALUE;
+            *(int32_t *)(unaff_rbx + 0x74) = FLOAT_MAX_VALUE;
             
             // 向量归一化处理
             current_z = *(float *)(unaff_rbx + 0x70);
@@ -284,13 +284,13 @@ void RenderingSystemSecondaryProcessor(undefined8 render_params, undefined8 addi
         }
         else {
             // 直接设置目标位置
-            *(undefined8 *)(unaff_rbx + 0x68) = *(undefined8 *)(unaff_rbx + 0xb0);
-            *(undefined8 *)(unaff_rbx + 0x70) = *(undefined8 *)(unaff_rbx + 0xb8);
+            *(uint64_t *)(unaff_rbx + 0x68) = *(uint64_t *)(unaff_rbx + 0xb0);
+            *(uint64_t *)(unaff_rbx + 0x70) = *(uint64_t *)(unaff_rbx + 0xb8);
         }
         
         // 更新位置记录
-        *(undefined8 *)(unaff_rbx + 0xf8) = *(undefined8 *)(unaff_rbx + 0xc);
-        *(undefined8 *)(unaff_rbx + 0x100) = *(undefined8 *)(unaff_rbx + 0x14);
+        *(uint64_t *)(unaff_rbx + 0xf8) = *(uint64_t *)(unaff_rbx + 0xc);
+        *(uint64_t *)(unaff_rbx + 0x100) = *(uint64_t *)(unaff_rbx + 0x14);
     }
     
 position_update_complete:
@@ -339,7 +339,7 @@ position_update_complete:
     }
     
     // 重置处理标志
-    *(undefined8 *)(unaff_rbx + 0xf0) = 0;
+    *(uint64_t *)(unaff_rbx + 0xf0) = 0;
     return;
 }
 
@@ -355,14 +355,14 @@ position_update_complete:
 // - 实现高效的向量归一化
 // - 支持多种插值模式的切换
 //============================================================================
-void RenderingSystemInterpolationHandler(undefined8 render_params, undefined8 additional_params, float base_weight, float additional_weight)
+void RenderingSystemInterpolationHandler(uint64_t render_params, uint64_t additional_params, float base_weight, float additional_weight)
 {
     int direction1, direction2;
     longlong unaff_rbx;
     longlong unaff_rdi;
     float current_x, current_y, current_z;
     float vector_length, normalization_factor;
-    undefined1 simd_result[16];
+    int8_t simd_result[16];
     float interpolation_weight, remaining_weight;
     float angle_delta, angle_difference;
     float unaff_xmm8_da;
@@ -383,7 +383,7 @@ void RenderingSystemInterpolationHandler(undefined8 render_params, undefined8 ad
         remaining_weight * *(float *)(unaff_rbx + 0x70) + base_weight * *(float *)(unaff_rbx + 0xb8);
     
     // 设置归一化标志
-    *(undefined4 *)(unaff_rbx + 0x74) = FLOAT_MAX_VALUE;
+    *(int32_t *)(unaff_rbx + 0x74) = FLOAT_MAX_VALUE;
     
     // 向量归一化处理
     current_z = *(float *)(unaff_rbx + 0x70);
@@ -404,8 +404,8 @@ void RenderingSystemInterpolationHandler(undefined8 render_params, undefined8 ad
     *(float *)(unaff_rbx + 0x6c) = current_y * normalization_factor;
     
     // 更新位置记录
-    *(undefined8 *)(unaff_rbx + 0xf8) = *(undefined8 *)(unaff_rbx + 0xc);
-    *(undefined8 *)(unaff_rbx + 0x100) = *(undefined8 *)(unaff_rbx + 0x14);
+    *(uint64_t *)(unaff_rbx + 0xf8) = *(uint64_t *)(unaff_rbx + 0xc);
+    *(uint64_t *)(unaff_rbx + 0x100) = *(uint64_t *)(unaff_rbx + 0x14);
     
     // 角度处理和插值
     current_z = *(float *)(unaff_rbx + 0x108);
@@ -452,7 +452,7 @@ void RenderingSystemInterpolationHandler(undefined8 render_params, undefined8 ad
     }
     
     // 重置处理标志
-    *(undefined8 *)(unaff_rbx + 0xf0) = 0;
+    *(uint64_t *)(unaff_rbx + 0xf0) = 0;
     return;
 }
 
@@ -477,8 +477,8 @@ void RenderingSystemPositionUpdater(void)
     float unaff_xmm8_da;
     
     // 更新位置记录
-    *(undefined8 *)(unaff_rbx + 0xf8) = *(undefined8 *)(unaff_rbx + 0xc);
-    *(undefined8 *)(unaff_rbx + 0x100) = *(undefined8 *)(unaff_rbx + 0x14);
+    *(uint64_t *)(unaff_rbx + 0xf8) = *(uint64_t *)(unaff_rbx + 0xc);
+    *(uint64_t *)(unaff_rbx + 0x100) = *(uint64_t *)(unaff_rbx + 0x14);
     
     // 角度处理和插值
     current_z = *(float *)(unaff_rbx + 0x108);
@@ -525,7 +525,7 @@ void RenderingSystemPositionUpdater(void)
     }
     
     // 重置处理标志
-    *(undefined8 *)(unaff_rbx + 0xf0) = 0;
+    *(uint64_t *)(unaff_rbx + 0xf0) = 0;
     return;
 }
 
@@ -547,7 +547,7 @@ void RenderingSystemSimpleProcessor(void)
     }
     
     // 重置处理标志
-    *(undefined8 *)(unaff_rbx + 0xf0) = 0;
+    *(uint64_t *)(unaff_rbx + 0xf0) = 0;
     return;
 }
 
@@ -571,7 +571,7 @@ void CameraRotationController(longlong camera_context, float rotation_param, lon
     float current_angle, target_angle, angle_difference;
     float rotation_speed, max_rotation_speed;
     float distance_factor, interpolation_factor;
-    undefined4 angle_result;
+    int32_t angle_result;
     
     rotation_active = false;
     current_angle = *(float *)(camera_context + 0x34);
@@ -585,7 +585,7 @@ void CameraRotationController(longlong camera_context, float rotation_param, lon
            (*(int *)(state_data + 0x70) != 0x25)) {
             
             // 计算目标角度
-            angle_result = atan2f(*(uint *)(state_data + 0x2c) ^ 0x80000000, *(undefined4 *)(state_data + 0x30));
+            angle_result = atan2f(*(uint *)(state_data + 0x2c) ^ 0x80000000, *(int32_t *)(state_data + 0x30));
             FUN_180595490(camera_context, rotation_param, state_data, angle_result);
         }
         goto rotation_complete;
@@ -594,7 +594,7 @@ void CameraRotationController(longlong camera_context, float rotation_param, lon
     // 处理特殊旋转模式
     if (*(char *)(state_data + 0x9a) != '\0') {
         // 计算基于位置的角度
-        target_angle = (float)atan2f(*(uint *)(state_data + 0x108) ^ 0x80000000, *(undefined4 *)(state_data + 0x10c));
+        target_angle = (float)atan2f(*(uint *)(state_data + 0x108) ^ 0x80000000, *(int32_t *)(state_data + 0x10c));
         angle_difference = target_angle - current_angle;
         
         // 角度环绕处理
@@ -637,7 +637,7 @@ void CameraRotationController(longlong camera_context, float rotation_param, lon
     // 检查是否启用旋转处理
     if (*(float *)(camera_context + 0x44) <= 0.0f && *(float *)(camera_context + 0x44) != 0.0f) goto rotation_complete;
     if (*(char *)(state_data + 0x98) != '\0') {
-        *(undefined4 *)(camera_context + 0x138) = 0;
+        *(int32_t *)(camera_context + 0x138) = 0;
         goto rotation_complete;
     }
     
@@ -645,7 +645,7 @@ void CameraRotationController(longlong camera_context, float rotation_param, lon
     if (((*(char *)(state_data + 0x170) == '\0') || (*(int *)(state_data + 0x70) != -1)) ||
        ((*(byte *)(camera_context + 0x40) & 3) != 1)) {
         FUN_180595490();
-        *(undefined4 *)(camera_context + 0x14c) = 0;
+        *(int32_t *)(camera_context + 0x14c) = 0;
         goto rotation_complete;
     }
     
@@ -675,7 +675,7 @@ void CameraRotationController(longlong camera_context, float rotation_param, lon
             }
         }
         else {
-            *(undefined4 *)(camera_context + 0x14c) = 0;
+            *(int32_t *)(camera_context + 0x14c) = 0;
         }
     }
     
@@ -718,7 +718,7 @@ void CameraRotationController(longlong camera_context, float rotation_param, lon
     }
     
     *(float *)(camera_context + 0x150) = rotation_speed;
-    FUN_180595490(interpolation_factor, rotation_param * QUARTER_ROTATION_SPEED * rotation_speed, rotation_speed, *(undefined4 *)(state_data + 0x4c));
+    FUN_180595490(interpolation_factor, rotation_param * QUARTER_ROTATION_SPEED * rotation_speed, rotation_speed, *(int32_t *)(state_data + 0x4c));
     
     // 应用旋转限制
     target_angle = *(float *)(camera_context + 0x150) * -HALF_ROTATION_SPEED;
@@ -744,7 +744,7 @@ angle_normalize_complete:
         *(float *)(camera_context + 0x128) = target_angle;
     }
     
-    *(undefined4 *)(camera_context + 0x14c) = 0x3ecccccd;  // 0.4f
+    *(int32_t *)(camera_context + 0x14c) = 0x3ecccccd;  // 0.4f
     rotation_active = true;
     
 rotation_complete:
@@ -763,7 +763,7 @@ rotation_complete:
     *(float *)(camera_context + 0x138) = current_angle;
     
     if (ABS(current_angle) < MIN_FLOAT_EPSILON) {
-        *(undefined4 *)(camera_context + 0x138) = 0;
+        *(int32_t *)(camera_context + 0x138) = 0;
     }
     
     // 更新状态标志
@@ -793,52 +793,52 @@ void AdvancedRotationProcessor(longlong camera_context, float rotation_param, lo
     bool rotation_active;
     uint state_flags;
     longlong in_rax;
-    undefined8 unaff_rdi;
+    uint64_t unaff_rdi;
     float current_angle, target_angle, angle_difference;
     float rotation_speed, max_rotation_speed;
     float distance_factor, interpolation_factor;
-    undefined4 angle_result;
-    undefined4 unaff_xmm6_da, unaff_xmm6_db, unaff_xmm6_dc, unaff_xmm6_dd;
-    undefined4 unaff_xmm7_da, unaff_xmm7_db, unaff_xmm7_dc, unaff_xmm7_dd;
-    undefined4 unaff_xmm8_da, unaff_xmm8_db, unaff_xmm8_dc, unaff_xmm8_dd;
-    undefined4 unaff_xmm9_da, unaff_xmm9_db, unaff_xmm9_dc, unaff_xmm9_dd;
-    undefined4 unaff_xmm10_da, unaff_xmm10_db, unaff_xmm10_dc, unaff_xmm10_dd;
-    undefined4 unaff_xmm11_da, unaff_xmm11_db, unaff_xmm11_dc, unaff_xmm11_dd;
-    undefined4 unaff_xmm12_da, unaff_xmm12_db, unaff_xmm12_dc, unaff_xmm12_dd;
+    int32_t angle_result;
+    int32_t unaff_xmm6_da, unaff_xmm6_db, unaff_xmm6_dc, unaff_xmm6_dd;
+    int32_t unaff_xmm7_da, unaff_xmm7_db, unaff_xmm7_dc, unaff_xmm7_dd;
+    int32_t unaff_xmm8_da, unaff_xmm8_db, unaff_xmm8_dc, unaff_xmm8_dd;
+    int32_t unaff_xmm9_da, unaff_xmm9_db, unaff_xmm9_dc, unaff_xmm9_dd;
+    int32_t unaff_xmm10_da, unaff_xmm10_db, unaff_xmm10_dc, unaff_xmm10_dd;
+    int32_t unaff_xmm11_da, unaff_xmm11_db, unaff_xmm11_dc, unaff_xmm11_dd;
+    int32_t unaff_xmm12_da, unaff_xmm12_db, unaff_xmm12_dc, unaff_xmm12_dd;
     
     // 初始化寄存器状态
-    *(undefined8 *)(in_rax + 8) = unaff_rdi;
+    *(uint64_t *)(in_rax + 8) = unaff_rdi;
     rotation_active = false;
-    *(undefined4 *)(in_rax + -0x18) = unaff_xmm6_da;
-    *(undefined4 *)(in_rax + -0x14) = unaff_xmm6_db;
-    *(undefined4 *)(in_rax + -0x10) = unaff_xmm6_dc;
-    *(undefined4 *)(in_rax + -0xc) = unaff_xmm6_dd;
+    *(int32_t *)(in_rax + -0x18) = unaff_xmm6_da;
+    *(int32_t *)(in_rax + -0x14) = unaff_xmm6_db;
+    *(int32_t *)(in_rax + -0x10) = unaff_xmm6_dc;
+    *(int32_t *)(in_rax + -0xc) = unaff_xmm6_dd;
     
     state_index = *(int *)(state_data + 0x28);
-    *(undefined4 *)(in_rax + -0x28) = unaff_xmm7_da;
-    *(undefined4 *)(in_rax + -0x24) = unaff_xmm7_db;
-    *(undefined4 *)(in_rax + -0x20) = unaff_xmm7_dc;
-    *(undefined4 *)(in_rax + -0x1c) = unaff_xmm7_dd;
-    *(undefined4 *)(in_rax + -0x38) = unaff_xmm8_da;
-    *(undefined4 *)(in_rax + -0x34) = unaff_xmm8_db;
-    *(undefined4 *)(in_rax + -0x30) = unaff_xmm8_dc;
-    *(undefined4 *)(in_rax + -0x2c) = unaff_xmm8_dd;
-    *(undefined4 *)(in_rax + -0x48) = unaff_xmm9_da;
-    *(undefined4 *)(in_rax + -0x44) = unaff_xmm9_db;
-    *(undefined4 *)(in_rax + -0x40) = unaff_xmm9_dc;
-    *(undefined4 *)(in_rax + -0x3c) = unaff_xmm9_dd;
-    *(undefined4 *)(in_rax + -0x58) = unaff_xmm10_da;
-    *(undefined4 *)(in_rax + -0x54) = unaff_xmm10_db;
-    *(undefined4 *)(in_rax + -0x50) = unaff_xmm10_dc;
-    *(undefined4 *)(in_rax + -0x4c) = unaff_xmm10_dd;
-    *(undefined4 *)(in_rax + -0x68) = unaff_xmm11_da;
-    *(undefined4 *)(in_rax + -100) = unaff_xmm11_db;
-    *(undefined4 *)(in_rax + -0x60) = unaff_xmm11_dc;
-    *(undefined4 *)(in_rax + -0x5c) = unaff_xmm11_dd;
-    *(undefined4 *)(in_rax + -0x78) = unaff_xmm12_da;
-    *(undefined4 *)(in_rax + -0x74) = unaff_xmm12_db;
-    *(undefined4 *)(in_rax + -0x70) = unaff_xmm12_dc;
-    *(undefined4 *)(in_rax + -0x6c) = unaff_xmm12_dd;
+    *(int32_t *)(in_rax + -0x28) = unaff_xmm7_da;
+    *(int32_t *)(in_rax + -0x24) = unaff_xmm7_db;
+    *(int32_t *)(in_rax + -0x20) = unaff_xmm7_dc;
+    *(int32_t *)(in_rax + -0x1c) = unaff_xmm7_dd;
+    *(int32_t *)(in_rax + -0x38) = unaff_xmm8_da;
+    *(int32_t *)(in_rax + -0x34) = unaff_xmm8_db;
+    *(int32_t *)(in_rax + -0x30) = unaff_xmm8_dc;
+    *(int32_t *)(in_rax + -0x2c) = unaff_xmm8_dd;
+    *(int32_t *)(in_rax + -0x48) = unaff_xmm9_da;
+    *(int32_t *)(in_rax + -0x44) = unaff_xmm9_db;
+    *(int32_t *)(in_rax + -0x40) = unaff_xmm9_dc;
+    *(int32_t *)(in_rax + -0x3c) = unaff_xmm9_dd;
+    *(int32_t *)(in_rax + -0x58) = unaff_xmm10_da;
+    *(int32_t *)(in_rax + -0x54) = unaff_xmm10_db;
+    *(int32_t *)(in_rax + -0x50) = unaff_xmm10_dc;
+    *(int32_t *)(in_rax + -0x4c) = unaff_xmm10_dd;
+    *(int32_t *)(in_rax + -0x68) = unaff_xmm11_da;
+    *(int32_t *)(in_rax + -100) = unaff_xmm11_db;
+    *(int32_t *)(in_rax + -0x60) = unaff_xmm11_dc;
+    *(int32_t *)(in_rax + -0x5c) = unaff_xmm11_dd;
+    *(int32_t *)(in_rax + -0x78) = unaff_xmm12_da;
+    *(int32_t *)(in_rax + -0x74) = unaff_xmm12_db;
+    *(int32_t *)(in_rax + -0x70) = unaff_xmm12_dc;
+    *(int32_t *)(in_rax + -0x6c) = unaff_xmm12_dd;
     
     current_angle = *(float *)(camera_context + 0x34);
     
@@ -850,7 +850,7 @@ void AdvancedRotationProcessor(longlong camera_context, float rotation_param, lo
            (*(int *)(state_data + 0x70) != 0x25)) {
             
             // 计算目标角度
-            angle_result = atan2f(*(uint *)(state_data + 0x2c) ^ 0x80000000, *(undefined4 *)(state_data + 0x30));
+            angle_result = atan2f(*(uint *)(state_data + 0x2c) ^ 0x80000000, *(int32_t *)(state_data + 0x30));
             FUN_180595490(camera_context, rotation_param, state_data, angle_result);
         }
         goto rotation_complete;
@@ -859,7 +859,7 @@ void AdvancedRotationProcessor(longlong camera_context, float rotation_param, lo
     // 处理特殊旋转模式
     if (*(char *)(state_data + 0x9a) != '\0') {
         // 计算基于位置的角度
-        target_angle = (float)atan2f(*(uint *)(state_data + 0x108) ^ 0x80000000, *(undefined4 *)(state_data + 0x10c));
+        target_angle = (float)atan2f(*(uint *)(state_data + 0x108) ^ 0x80000000, *(int32_t *)(state_data + 0x10c));
         angle_difference = target_angle - current_angle;
         
         // 角度环绕处理
@@ -902,15 +902,15 @@ void AdvancedRotationProcessor(longlong camera_context, float rotation_param, lo
     // 检查是否启用旋转处理
     if (*(float *)(camera_context + 0x44) <= 0.0f && *(float *)(camera_context + 0x44) != 0.0f) goto rotation_complete;
     if (*(char *)(state_data + 0x98) != '\0') {
-        *(undefined4 *)(camera_context + 0x138) = 0;
+        *(int32_t *)(camera_context + 0x138) = 0;
         goto rotation_complete;
     }
     
     // 高级旋转处理逻辑
     if (((*(char *)(state_data + 0x170) == '\0') || (*(int *)(state_data + 0x70) != -1)) ||
        ((*(byte *)(camera_context + 0x40) & 3) != 1)) {
-        FUN_180595490(camera_context, rotation_param, state_data, *(undefined4 *)(state_data + 0x4c));
-        *(undefined4 *)(camera_context + 0x14c) = 0;
+        FUN_180595490(camera_context, rotation_param, state_data, *(int32_t *)(state_data + 0x4c));
+        *(int32_t *)(camera_context + 0x14c) = 0;
         goto rotation_complete;
     }
     
@@ -940,7 +940,7 @@ void AdvancedRotationProcessor(longlong camera_context, float rotation_param, lo
             }
         }
         else {
-            *(undefined4 *)(camera_context + 0x14c) = 0;
+            *(int32_t *)(camera_context + 0x14c) = 0;
         }
     }
     
@@ -983,7 +983,7 @@ void AdvancedRotationProcessor(longlong camera_context, float rotation_param, lo
     }
     
     *(float *)(camera_context + 0x150) = rotation_speed;
-    FUN_180595490(interpolation_factor, rotation_param * QUARTER_ROTATION_SPEED * rotation_speed, rotation_speed, *(undefined4 *)(state_data + 0x4c));
+    FUN_180595490(interpolation_factor, rotation_param * QUARTER_ROTATION_SPEED * rotation_speed, rotation_speed, *(int32_t *)(state_data + 0x4c));
     
     // 应用旋转限制
     target_angle = *(float *)(camera_context + 0x150) * -HALF_ROTATION_SPEED;
@@ -1009,7 +1009,7 @@ angle_normalize_complete:
         *(float *)(camera_context + 0x128) = target_angle;
     }
     
-    *(undefined4 *)(camera_context + 0x14c) = 0x3ecccccd;  // 0.4f
+    *(int32_t *)(camera_context + 0x14c) = 0x3ecccccd;  // 0.4f
     rotation_active = true;
     
 rotation_complete:
@@ -1028,7 +1028,7 @@ rotation_complete:
     *(float *)(camera_context + 0x138) = current_angle;
     
     if (ABS(current_angle) < MIN_FLOAT_EPSILON) {
-        *(undefined4 *)(camera_context + 0x138) = 0;
+        *(int32_t *)(camera_context + 0x138) = 0;
     }
     
     // 更新状态标志
@@ -1047,11 +1047,11 @@ rotation_complete:
 // 参数：param_1 - 渲染参数, param_2 - 附加参数, param_3 - 角度增量
 // 返回：void
 //============================================================================
-void RenderingSystemAngleHandler(undefined8 render_params, undefined8 additional_params, float angle_increment)
+void RenderingSystemAngleHandler(uint64_t render_params, uint64_t additional_params, float angle_increment)
 {
     uint state_flags;
     longlong unaff_rbx;
-    undefined4 unaff_ebp;
+    int32_t unaff_ebp;
     char unaff_sil;
     float angle_result;
     float unaff_xmm9_da;
@@ -1065,7 +1065,7 @@ void RenderingSystemAngleHandler(undefined8 render_params, undefined8 additional
     
     // 应用角度精度控制
     if ((float)((uint)angle_result & unaff_xmm15_da) < MIN_FLOAT_EPSILON) {
-        *(undefined4 *)(unaff_rbx + 0x138) = unaff_ebp;
+        *(int32_t *)(unaff_rbx + 0x138) = unaff_ebp;
     }
     
     // 更新状态标志
@@ -1088,11 +1088,11 @@ void RenderingSystemResetHandler(void)
 {
     uint state_flags;
     longlong unaff_rbx;
-    undefined4 unaff_ebp;
+    int32_t unaff_ebp;
     char unaff_sil;
     
     // 重置角度状态
-    *(undefined4 *)(unaff_rbx + 0x138) = unaff_ebp;
+    *(int32_t *)(unaff_rbx + 0x138) = unaff_ebp;
     
     // 更新状态标志
     state_flags = *(uint *)(unaff_rbx + 8) | FLAG_BIT_POSITION_UPDATE;
@@ -1118,7 +1118,7 @@ void RenderingSystemResetHandler(void)
 void VectorNormalizationProcessor(float *vector_ptr, float normalization_param, char mode_flag, longlong context_data)
 {
     float vector_magnitude, normalized_magnitude;
-    undefined1 simd_result[16];
+    int8_t simd_result[16];
     float x_component, y_component;
     float target_x, target_y;
     float normalization_factor;
@@ -1214,12 +1214,12 @@ void AdvancedVectorCalculator(float base_value, float calc_param, char mode_flag
 {
     float vector_magnitude, normalized_magnitude;
     uint in_xmm2_da;
-    undefined1 simd_result[16];
+    int8_t simd_result[16];
     float in_xmm3_da;
     float x_component, y_component;
     float in_xmm5_da;
     float target_x, target_y;
-    undefined8 in_stack_00000060;
+    uint64_t in_stack_00000060;
     
     // 根据模式计算向量大小
     if (mode_flag == '\0') {
@@ -1305,7 +1305,7 @@ void AdvancedVectorCalculator(float base_value, float calc_param, char mode_flag
 // 参数：param_1 - 渲染参数, param_2 - 附加参数, param_3 - 向量分量, param_4 - 上下文数据
 // 返回：void
 //============================================================================
-void SimplifiedVectorHandler(undefined8 render_params, undefined8 additional_params, float vector_component, longlong context_data)
+void SimplifiedVectorHandler(uint64_t render_params, uint64_t additional_params, float vector_component, longlong context_data)
 {
     float normalization_factor;
     uint in_xmm5_da;
@@ -1313,7 +1313,7 @@ void SimplifiedVectorHandler(undefined8 render_params, undefined8 additional_par
     uint unaff_xmm8_da;
     float unaff_xmm11_da;
     float unaff_xmm12_da;
-    undefined8 in_stack_00000060;
+    uint64_t in_stack_00000060;
     
     // 计算归一化因子
     if ((float)(*(uint *)(context_data + 0x8c) & unaff_xmm8_da) < (float)(in_xmm5_da & unaff_xmm8_da)) {
@@ -1336,7 +1336,7 @@ void SimplifiedVectorHandler(undefined8 render_params, undefined8 additional_par
     }
     
     // 直接设置向量值
-    *(undefined8 *)(context_data + 0x8c) = in_stack_00000060;
+    *(uint64_t *)(context_data + 0x8c) = in_stack_00000060;
     return;
 }
 
@@ -1350,10 +1350,10 @@ void SimplifiedVectorHandler(undefined8 render_params, undefined8 additional_par
 void VectorResetProcessor(void)
 {
     longlong in_r9;
-    undefined8 in_stack_00000060;
+    uint64_t in_stack_00000060;
     
     // 重置向量状态
-    *(undefined8 *)(in_r9 + 0x8c) = in_stack_00000060;
+    *(uint64_t *)(in_r9 + 0x8c) = in_stack_00000060;
     return;
 }
 
@@ -1377,7 +1377,7 @@ void PhysicsSimulationCalculator(float *position_vector1, float force_coefficien
     float normalization_factor, inverse_time_factor;
     float force_magnitude, force_component;
     float max_force, min_force;
-    undefined1 simd_result[16];
+    int8_t simd_result[16];
     
     // 获取向量分量
     vector1_y = position_vector2[1];

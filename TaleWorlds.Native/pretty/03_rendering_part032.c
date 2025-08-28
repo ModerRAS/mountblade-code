@@ -67,7 +67,7 @@ typedef enum {
  * @param param_2 要添加的数据指针
  * @note 向渲染数据数组中添加新的矩阵数据
  */
-void RenderingSystemAddMatrixData(ulonglong *param_1, undefined8 *param_2);
+void RenderingSystemAddMatrixData(ulonglong *param_1, uint64_t *param_2);
 
 /**
  * @brief 渲染系统数据数组调整函数
@@ -93,7 +93,7 @@ void RenderingSystemCleanupResources(longlong *param_1, longlong *param_2);
  * @return 复制后的数据指针
  * @note 在渲染系统中的不同缓冲区之间复制数据
  */
-undefined8 *RenderingSystemCopyData(undefined8 *param_1, undefined8 *param_2, undefined8 *param_3);
+uint64_t *RenderingSystemCopyData(uint64_t *param_1, uint64_t *param_2, uint64_t *param_3);
 
 /**
  * @brief 渲染系统投影参数清理函数
@@ -147,7 +147,7 @@ void RenderingSystemCleanupStencilBuffer(longlong param_1);
  * @return 创建后的渲染队列指针
  * @note 创建渲染系统的渲染队列，准备渲染操作
  */
-longlong *RenderingSystemCreateRenderQueue(longlong *param_1, undefined4 *param_2, undefined4 *param_3, undefined8 *param_4);
+longlong *RenderingSystemCreateRenderQueue(longlong *param_1, int32_t *param_2, int32_t *param_3, uint64_t *param_4);
 
 /**
  * @brief 渲染系统内存池分配函数
@@ -164,7 +164,7 @@ void RenderingSystemAllocateMemoryPool(longlong param_1, longlong param_2);
  * @return 查询结果状态
  * @note 查询渲染系统的各种状态信息
  */
-undefined1 RenderingSystemQueryState(longlong param_1, undefined1 param_2);
+int8_t RenderingSystemQueryState(longlong param_1, int8_t param_2);
 
 /**
  * @brief 渲染系统状态查询扩展函数
@@ -174,14 +174,14 @@ undefined1 RenderingSystemQueryState(longlong param_1, undefined1 param_2);
  * @return 查询结果状态
  * @note 扩展的渲染系统状态查询功能
  */
-undefined1 RenderingSystemQueryStateEx(undefined8 param_1, undefined8 param_2, longlong param_3);
+int8_t RenderingSystemQueryStateEx(uint64_t param_1, uint64_t param_2, longlong param_3);
 
 /**
  * @brief 渲染系统空操作函数
  * @return 空操作结果
  * @note 渲染系统的空操作函数，用于占位或同步
  */
-undefined1 RenderingSystemEmptyOperation(void);
+int8_t RenderingSystemEmptyOperation(void);
 
 /**
  * @brief 渲染系统资源释放函数
@@ -192,7 +192,7 @@ undefined1 RenderingSystemEmptyOperation(void);
  * @return 释放后的资源指针
  * @note 释放渲染系统中的各种资源
  */
-undefined8 *RenderingSystemReleaseResource(undefined8 *param_1, ulonglong param_2, undefined8 param_3, undefined8 param_4);
+uint64_t *RenderingSystemReleaseResource(uint64_t *param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4);
 
 /**
  * @brief 渲染系统向量归一化函数
@@ -212,7 +212,7 @@ float *RenderingSystemNormalizeVector(float *param_1, float *param_2, float *par
  * @return 计算后的距离参数
  * @note 计算渲染系统中的投影距离
  */
-undefined8 RenderingSystemCalculateProjectionDistance(longlong param_1, undefined8 param_2, float *param_3);
+uint64_t RenderingSystemCalculateProjectionDistance(longlong param_1, uint64_t param_2, float *param_3);
 
 // ============================================================================
 // 函数实现
@@ -227,20 +227,20 @@ undefined8 RenderingSystemCalculateProjectionDistance(longlong param_1, undefine
  * @param param_1 渲染数据指针数组
  * @param param_2 要添加的数据指针
  */
-void RenderingSystemAddMatrixData(ulonglong *param_1, undefined8 *param_2)
+void RenderingSystemAddMatrixData(ulonglong *param_1, uint64_t *param_2)
 {
-    undefined4 uVar1;
-    undefined4 uVar2;
-    undefined4 uVar3;
-    undefined8 uVar4;
-    undefined8 *puVar5;
-    undefined8 *puVar6;
-    undefined8 *puVar7;
+    int32_t uVar1;
+    int32_t uVar2;
+    int32_t uVar3;
+    uint64_t uVar4;
+    uint64_t *puVar5;
+    uint64_t *puVar6;
+    uint64_t *puVar7;
     longlong lVar8;
-    undefined8 *puVar9;
+    uint64_t *puVar9;
     
-    puVar9 = (undefined8 *)param_1[1];
-    if (puVar9 < (undefined8 *)param_1[2]) {
+    puVar9 = (uint64_t *)param_1[1];
+    if (puVar9 < (uint64_t *)param_1[2]) {
         // 数组有足够空间，直接添加数据
         param_1[1] = (ulonglong)(puVar9 + 2);
         uVar4 = param_2[1];
@@ -250,23 +250,23 @@ void RenderingSystemAddMatrixData(ulonglong *param_1, undefined8 *param_2)
     }
     
     // 数组空间不足，需要扩展
-    puVar6 = (undefined8 *)*param_1;
+    puVar6 = (uint64_t *)*param_1;
     lVar8 = (longlong)puVar9 - (longlong)puVar6 >> 4;
     if (lVar8 == 0) {
         lVar8 = 1;
     } else {
         lVar8 = lVar8 * 2;
         if (lVar8 == 0) {
-            puVar5 = (undefined8 *)0x0;
+            puVar5 = (uint64_t *)0x0;
             puVar7 = puVar5;
             goto joined_r0x000180284d76;
         }
     }
     
     // 分配新的内存空间
-    puVar5 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, lVar8 << 4, (char)param_1[3]);
-    puVar9 = (undefined8 *)param_1[1];
-    puVar6 = (undefined8 *)*param_1;
+    puVar5 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, lVar8 << 4, (char)param_1[3]);
+    puVar9 = (uint64_t *)param_1[1];
+    puVar6 = (uint64_t *)*param_1;
     puVar7 = puVar5;
     
 joined_r0x000180284d76:
@@ -279,13 +279,13 @@ joined_r0x000180284d76:
     }
     
     // 添加新数据
-    uVar1 = *(undefined4 *)((longlong)param_2 + 4);
-    uVar2 = *(undefined4 *)(param_2 + 1);
-    uVar3 = *(undefined4 *)((longlong)param_2 + 0xc);
-    *(undefined4 *)puVar5 = *(undefined4 *)param_2;
-    *(undefined4 *)((longlong)puVar5 + 4) = uVar1;
-    *(undefined4 *)(puVar5 + 1) = uVar2;
-    *(undefined4 *)((longlong)puVar5 + 0xc) = uVar3;
+    uVar1 = *(int32_t *)((longlong)param_2 + 4);
+    uVar2 = *(int32_t *)(param_2 + 1);
+    uVar3 = *(int32_t *)((longlong)param_2 + 0xc);
+    *(int32_t *)puVar5 = *(int32_t *)param_2;
+    *(int32_t *)((longlong)puVar5 + 4) = uVar1;
+    *(int32_t *)(puVar5 + 1) = uVar2;
+    *(int32_t *)((longlong)puVar5 + 0xc) = uVar3;
     
     // 更新数组指针
     if (*param_1 == 0) {
@@ -310,22 +310,22 @@ joined_r0x000180284d76:
  */
 void RenderingSystemResizeDataArray(longlong *param_1, ulonglong param_2)
 {
-    undefined4 *puVar1;
+    int32_t *puVar1;
     longlong *plVar2;
-    undefined8 *puVar3;
-    undefined8 *puVar4;
-    undefined8 *puVar5;
+    uint64_t *puVar3;
+    uint64_t *puVar4;
+    uint64_t *puVar5;
     longlong lVar6;
-    undefined8 *puVar7;
+    uint64_t *puVar7;
     ulonglong uVar8;
     longlong *plVar9;
     ulonglong uVar10;
     longlong lVar11;
     
-    puVar5 = (undefined8 *)param_1[1];
+    puVar5 = (uint64_t *)param_1[1];
     if ((ulonglong)(param_1[2] - (longlong)puVar5 >> 4) < param_2) {
         // 需要扩展数组
-        puVar4 = (undefined8 *)*param_1;
+        puVar4 = (uint64_t *)*param_1;
         lVar6 = (longlong)puVar5 - (longlong)puVar4 >> 4;
         uVar10 = lVar6 * 2;
         if (lVar6 == 0) {
@@ -335,12 +335,12 @@ void RenderingSystemResizeDataArray(longlong *param_1, ulonglong param_2)
             uVar10 = lVar6 + param_2;
         }
         
-        puVar3 = (undefined8 *)0x0;
+        puVar3 = (uint64_t *)0x0;
         if (uVar10 != 0) {
-            puVar3 = (undefined8 *)
+            puVar3 = (uint64_t *)
                      FUN_18062b420(_DAT_180c8ed18, uVar10 << 4, (char)param_1[3], puVar5, 0xfffffffffffffffe);
-            puVar5 = (undefined8 *)param_1[1];
-            puVar4 = (undefined8 *)*param_1;
+            puVar5 = (uint64_t *)param_1[1];
+            puVar4 = (uint64_t *)*param_1;
         }
         
         puVar7 = puVar3;
@@ -351,8 +351,8 @@ void RenderingSystemResizeDataArray(longlong *param_1, ulonglong param_2)
             do {
                 *puVar7 = *puVar4;
                 *puVar4 = 0;
-                puVar1 = (undefined4 *)((longlong)puVar3 + lVar6 + (longlong)puVar4);
-                *puVar1 = *(undefined4 *)((longlong)puVar1 + lVar11);
+                puVar1 = (int32_t *)((longlong)puVar3 + lVar6 + (longlong)puVar4);
+                *puVar1 = *(int32_t *)((longlong)puVar1 + lVar11);
                 puVar4 = puVar4 + 2;
                 puVar7 = puVar7 + 2;
             } while (puVar4 != puVar5);
@@ -401,7 +401,7 @@ void RenderingSystemResizeDataArray(longlong *param_1, ulonglong param_2)
                 puVar5 = puVar5 + 2;
                 uVar10 = uVar10 - 1;
             } while (uVar10 != 0);
-            puVar5 = (undefined8 *)param_1[1];
+            puVar5 = (uint64_t *)param_1[1];
         }
         param_1[1] = (longlong)(puVar5 + param_2 * 2);
     }
@@ -441,9 +441,9 @@ void RenderingSystemCleanupResources(longlong *param_1, longlong *param_2)
  * @param param_3 目标缓冲区指针
  * @return 复制后的数据指针
  */
-undefined8 *RenderingSystemCopyData(undefined8 *param_1, undefined8 *param_2, undefined8 *param_3)
+uint64_t *RenderingSystemCopyData(uint64_t *param_1, uint64_t *param_2, uint64_t *param_3)
 {
-    undefined4 *puVar1;
+    int32_t *puVar1;
     longlong lVar2;
     longlong lVar3;
     
@@ -453,8 +453,8 @@ undefined8 *RenderingSystemCopyData(undefined8 *param_1, undefined8 *param_2, un
         do {
             *param_3 = *param_1;
             *param_1 = 0;
-            puVar1 = (undefined4 *)(lVar3 + (longlong)param_1);
-            *puVar1 = *(undefined4 *)((longlong)puVar1 + lVar2);
+            puVar1 = (int32_t *)(lVar3 + (longlong)param_1);
+            *puVar1 = *(int32_t *)((longlong)puVar1 + lVar2);
             param_1 = param_1 + 2;
             param_3 = param_3 + 2;
         } while (param_1 != param_2);
@@ -473,7 +473,7 @@ undefined8 *RenderingSystemCopyData(undefined8 *param_1, undefined8 *param_2, un
 void RenderingSystemCleanupProjectionParameters(longlong param_1)
 {
     longlong lVar1;
-    undefined8 *puVar2;
+    uint64_t *puVar2;
     ulonglong uVar3;
     ulonglong uVar4;
     
@@ -482,26 +482,26 @@ void RenderingSystemCleanupProjectionParameters(longlong param_1)
     uVar4 = 0;
     if (uVar3 != 0) {
         do {
-            puVar2 = *(undefined8 **)(lVar1 + uVar4 * 8);
-            if (puVar2 != (undefined8 *)0x0) {
+            puVar2 = *(uint64_t **)(lVar1 + uVar4 * 8);
+            if (puVar2 != (uint64_t *)0x0) {
                 if (puVar2[4] != 0) {
                     FUN_18064e900();
                 }
                 *puVar2 = &UNK_180a3c3e0;
                 if (puVar2[1] == 0) {
                     puVar2[1] = 0;
-                    *(undefined4 *)(puVar2 + 3) = 0;
+                    *(int32_t *)(puVar2 + 3) = 0;
                     *puVar2 = &UNK_18098bcb0;
                     FUN_18064e900(puVar2);
                 }
                 FUN_18064e900();
             }
-            *(undefined8 *)(lVar1 + uVar4 * 8) = 0;
+            *(uint64_t *)(lVar1 + uVar4 * 8) = 0;
             uVar4 = uVar4 + 1;
         } while (uVar4 < uVar3);
         uVar3 = *(ulonglong *)(param_1 + 0x10);
     }
-    *(undefined8 *)(param_1 + 0x18) = 0;
+    *(uint64_t *)(param_1 + 0x18) = 0;
     if ((1 < uVar3) && (*(longlong *)(param_1 + 8) != 0)) {
         FUN_18064e900();
     }
@@ -519,7 +519,7 @@ void RenderingSystemCleanupProjectionParameters(longlong param_1)
 void RenderingSystemCleanupViewParameters(longlong param_1)
 {
     longlong lVar1;
-    undefined8 *puVar2;
+    uint64_t *puVar2;
     ulonglong uVar3;
     ulonglong uVar4;
     
@@ -528,26 +528,26 @@ void RenderingSystemCleanupViewParameters(longlong param_1)
     uVar4 = 0;
     if (uVar3 != 0) {
         do {
-            puVar2 = *(undefined8 **)(lVar1 + uVar4 * 8);
-            if (puVar2 != (undefined8 *)0x0) {
+            puVar2 = *(uint64_t **)(lVar1 + uVar4 * 8);
+            if (puVar2 != (uint64_t *)0x0) {
                 if (puVar2[4] != 0) {
                     FUN_18064e900();
                 }
                 *puVar2 = &UNK_180a3c3e0;
                 if (puVar2[1] == 0) {
                     puVar2[1] = 0;
-                    *(undefined4 *)(puVar2 + 3) = 0;
+                    *(int32_t *)(puVar2 + 3) = 0;
                     *puVar2 = &UNK_18098bcb0;
                     FUN_18064e900(puVar2);
                 }
                 FUN_18064e900();
             }
-            *(undefined8 *)(lVar1 + uVar4 * 8) = 0;
+            *(uint64_t *)(lVar1 + uVar4 * 8) = 0;
             uVar4 = uVar4 + 1;
         } while (uVar4 < uVar3);
         uVar3 = *(ulonglong *)(param_1 + 0x10);
     }
-    *(undefined8 *)(param_1 + 0x18) = 0;
+    *(uint64_t *)(param_1 + 0x18) = 0;
     if ((1 < uVar3) && (*(longlong *)(param_1 + 8) != 0)) {
         FUN_18064e900();
     }
@@ -565,7 +565,7 @@ void RenderingSystemCleanupViewParameters(longlong param_1)
 void RenderingSystemCleanupTextureParameters(longlong param_1)
 {
     longlong lVar1;
-    undefined8 *puVar2;
+    uint64_t *puVar2;
     ulonglong uVar3;
     ulonglong uVar4;
     
@@ -574,26 +574,26 @@ void RenderingSystemCleanupTextureParameters(longlong param_1)
     uVar4 = 0;
     if (uVar3 != 0) {
         do {
-            puVar2 = *(undefined8 **)(lVar1 + uVar4 * 8);
-            if (puVar2 != (undefined8 *)0x0) {
+            puVar2 = *(uint64_t **)(lVar1 + uVar4 * 8);
+            if (puVar2 != (uint64_t *)0x0) {
                 if (puVar2[4] != 0) {
                     FUN_18064e900();
                 }
                 *puVar2 = &UNK_180a3c3e0;
                 if (puVar2[1] == 0) {
                     puVar2[1] = 0;
-                    *(undefined4 *)(puVar2 + 3) = 0;
+                    *(int32_t *)(puVar2 + 3) = 0;
                     *puVar2 = &UNK_18098bcb0;
                     FUN_18064e900(puVar2);
                 }
                 FUN_18064e900();
             }
-            *(undefined8 *)(lVar1 + uVar4 * 8) = 0;
+            *(uint64_t *)(lVar1 + uVar4 * 8) = 0;
             uVar4 = uVar4 + 1;
         } while (uVar4 < uVar3);
         uVar3 = *(ulonglong *)(param_1 + 0x10);
     }
-    *(undefined8 *)(param_1 + 0x18) = 0;
+    *(uint64_t *)(param_1 + 0x18) = 0;
     if ((1 < uVar3) && (*(longlong *)(param_1 + 8) != 0)) {
         FUN_18064e900();
     }
@@ -611,41 +611,41 @@ void RenderingSystemCleanupTextureParameters(longlong param_1)
  */
 void RenderingSystemBatchInitialize(longlong param_1, longlong param_2)
 {
-    undefined4 *puVar1;
+    int32_t *puVar1;
     
     if (param_2 != 0) {
-        puVar1 = (undefined4 *)(param_1 + 0x168);
+        puVar1 = (int32_t *)(param_1 + 0x168);
         do {
             // 初始化渲染对象的基本属性
-            *(undefined **)(puVar1 + -0x5a) = &UNK_18098bcb0;
-            *(undefined8 *)(puVar1 + -0x58) = 0;
+            *(void **)(puVar1 + -0x5a) = &UNK_18098bcb0;
+            *(uint64_t *)(puVar1 + -0x58) = 0;
             puVar1[-0x56] = 0;
-            *(undefined **)(puVar1 + -0x5a) = &UNK_1809fcc58;
-            *(undefined4 **)(puVar1 + -0x58) = puVar1 + -0x54;
+            *(void **)(puVar1 + -0x5a) = &UNK_1809fcc58;
+            *(int32_t **)(puVar1 + -0x58) = puVar1 + -0x54;
             puVar1[-0x56] = 0;
-            *(undefined1 *)(puVar1 + -0x54) = 0;
-            *(undefined **)(puVar1 + -0x16) = &UNK_18098bcb0;
-            *(undefined8 *)(puVar1 + -0x14) = 0;
+            *(int8_t *)(puVar1 + -0x54) = 0;
+            *(void **)(puVar1 + -0x16) = &UNK_18098bcb0;
+            *(uint64_t *)(puVar1 + -0x14) = 0;
             puVar1[-0x12] = 0;
-            *(undefined **)(puVar1 + -0x16) = &UNK_180a3c3e0;
-            *(undefined8 *)(puVar1 + -0x10) = 0;
-            *(undefined8 *)(puVar1 + -0x14) = 0;
+            *(void **)(puVar1 + -0x16) = &UNK_180a3c3e0;
+            *(uint64_t *)(puVar1 + -0x10) = 0;
+            *(uint64_t *)(puVar1 + -0x14) = 0;
             puVar1[-0x12] = 0;
-            *(undefined8 *)(puVar1 + -0xe) = 0;
-            *(undefined8 *)(puVar1 + -0xc) = 0;
-            *(undefined8 *)(puVar1 + -10) = 0;
+            *(uint64_t *)(puVar1 + -0xe) = 0;
+            *(uint64_t *)(puVar1 + -0xc) = 0;
+            *(uint64_t *)(puVar1 + -10) = 0;
             puVar1[-8] = 3;
-            *(undefined8 *)(puVar1 + -6) = 0;
-            *(undefined8 *)(puVar1 + -4) = 0;
-            *(undefined8 *)(puVar1 + -2) = 0;
+            *(uint64_t *)(puVar1 + -6) = 0;
+            *(uint64_t *)(puVar1 + -4) = 0;
+            *(uint64_t *)(puVar1 + -2) = 0;
             *puVar1 = 3;
-            *(undefined8 *)(puVar1 + 2) = 0;
-            *(undefined8 *)(puVar1 + 4) = 0;
-            *(undefined8 *)(puVar1 + 6) = 0;
+            *(uint64_t *)(puVar1 + 2) = 0;
+            *(uint64_t *)(puVar1 + 4) = 0;
+            *(uint64_t *)(puVar1 + 6) = 0;
             puVar1[8] = 3;
             
             // 设置渲染参数的默认值
-            *(undefined8 *)(puVar1 + -0x43) = 0;
+            *(uint64_t *)(puVar1 + -0x43) = 0;
             puVar1[-0x41] = 0;
             puVar1[-0x3a] = 0;
             puVar1[-0x39] = 0;
@@ -655,26 +655,26 @@ void RenderingSystemBatchInitialize(longlong param_1, longlong param_2)
             puVar1[-0x35] = 0;
             puVar1[-0x34] = 0;
             puVar1[-0x33] = 0x3f800000;
-            *(undefined8 *)(puVar1 + -0x32) = 0;
-            *(undefined8 *)(puVar1 + -0x30) = 0;
-            *(undefined8 *)(puVar1 + -0x2e) = 0;
-            *(undefined8 *)(puVar1 + -0x2c) = 0;
-            *(undefined8 *)(puVar1 + -0x2a) = 0;
-            *(undefined8 *)(puVar1 + -0x28) = 0;
-            *(undefined8 *)(puVar1 + -0x26) = 0x3f800000;
-            *(undefined8 *)(puVar1 + -0x24) = 0;
-            *(undefined8 *)(puVar1 + -0x22) = 0x3f80000000000000;
-            *(undefined8 *)(puVar1 + -0x20) = 0;
-            *(undefined8 *)(puVar1 + -0x1e) = 0;
-            *(undefined8 *)(puVar1 + -0x1c) = 0x3f800000;
-            *(undefined8 *)(puVar1 + -0x1a) = 0;
-            *(undefined8 *)(puVar1 + -0x18) = 0x3f80000000000000;
+            *(uint64_t *)(puVar1 + -0x32) = 0;
+            *(uint64_t *)(puVar1 + -0x30) = 0;
+            *(uint64_t *)(puVar1 + -0x2e) = 0;
+            *(uint64_t *)(puVar1 + -0x2c) = 0;
+            *(uint64_t *)(puVar1 + -0x2a) = 0;
+            *(uint64_t *)(puVar1 + -0x28) = 0;
+            *(uint64_t *)(puVar1 + -0x26) = 0x3f800000;
+            *(uint64_t *)(puVar1 + -0x24) = 0;
+            *(uint64_t *)(puVar1 + -0x22) = 0x3f80000000000000;
+            *(uint64_t *)(puVar1 + -0x20) = 0;
+            *(uint64_t *)(puVar1 + -0x1e) = 0;
+            *(uint64_t *)(puVar1 + -0x1c) = 0x3f800000;
+            *(uint64_t *)(puVar1 + -0x1a) = 0;
+            *(uint64_t *)(puVar1 + -0x18) = 0x3f80000000000000;
             puVar1[-0x44] = 0;
-            *(undefined8 *)(puVar1 + -0x40) = 0;
-            *(undefined8 *)(puVar1 + -0x3e) = 0;
-            *(undefined8 *)(puVar1 + -0x3c) = 0;
+            *(uint64_t *)(puVar1 + -0x40) = 0;
+            *(uint64_t *)(puVar1 + -0x3e) = 0;
+            *(uint64_t *)(puVar1 + -0x3c) = 0;
             puVar1[0xc] = 0xffffffff;
-            *(undefined8 *)(puVar1 + 10) = 0;
+            *(uint64_t *)(puVar1 + 10) = 0;
             puVar1 = puVar1 + 0x68;
             param_2 = param_2 + -1;
         } while (param_2 != 0);
@@ -693,7 +693,7 @@ void RenderingSystemBatchInitialize(longlong param_1, longlong param_2)
 void RenderingSystemCleanupDepthBuffer(longlong param_1)
 {
     longlong lVar1;
-    undefined8 *puVar2;
+    uint64_t *puVar2;
     ulonglong uVar3;
     ulonglong uVar4;
     
@@ -702,26 +702,26 @@ void RenderingSystemCleanupDepthBuffer(longlong param_1)
     uVar4 = 0;
     if (uVar3 != 0) {
         do {
-            puVar2 = *(undefined8 **)(lVar1 + uVar4 * 8);
-            if (puVar2 != (undefined8 *)0x0) {
+            puVar2 = *(uint64_t **)(lVar1 + uVar4 * 8);
+            if (puVar2 != (uint64_t *)0x0) {
                 if (puVar2[4] != 0) {
                     FUN_18064e900();
                 }
                 *puVar2 = &UNK_180a3c3e0;
                 if (puVar2[1] == 0) {
                     puVar2[1] = 0;
-                    *(undefined4 *)(puVar2 + 3) = 0;
+                    *(int32_t *)(puVar2 + 3) = 0;
                     *puVar2 = &UNK_18098bcb0;
                     FUN_18064e900(puVar2);
                 }
                 FUN_18064e900();
             }
-            *(undefined8 *)(lVar1 + uVar4 * 8) = 0;
+            *(uint64_t *)(lVar1 + uVar4 * 8) = 0;
             uVar4 = uVar4 + 1;
         } while (uVar4 < uVar3);
         uVar3 = *(ulonglong *)(param_1 + 0x18);
     }
-    *(undefined8 *)(param_1 + 0x20) = 0;
+    *(uint64_t *)(param_1 + 0x20) = 0;
     if ((1 < uVar3) && (*(longlong *)(param_1 + 0x10) != 0)) {
         FUN_18064e900();
     }
@@ -740,16 +740,16 @@ void RenderingSystemCleanupDepthBuffer(longlong param_1)
  * @param param_4 纹理数据指针
  * @return 创建后的渲染队列指针
  */
-longlong *RenderingSystemCreateRenderQueue(longlong *param_1, undefined4 *param_2, undefined4 *param_3, undefined8 *param_4)
+longlong *RenderingSystemCreateRenderQueue(longlong *param_1, int32_t *param_2, int32_t *param_3, uint64_t *param_4)
 {
-    undefined8 *puVar1;
-    undefined4 *puVar2;
-    undefined4 uVar3;
-    undefined8 uVar4;
-    undefined4 uVar5;
-    undefined4 uVar6;
-    undefined4 *puVar7;
-    undefined *puVar8;
+    uint64_t *puVar1;
+    int32_t *puVar2;
+    int32_t uVar3;
+    uint64_t uVar4;
+    int32_t uVar5;
+    int32_t uVar6;
+    int32_t *puVar7;
+    void *puVar8;
     
     *param_1 = (longlong)param_4;
     if (param_2 != param_3) {
@@ -758,131 +758,131 @@ longlong *RenderingSystemCreateRenderQueue(longlong *param_1, undefined4 *param_
             // 初始化渲染队列的基本结构
             *param_4 = &UNK_18098bcb0;
             param_4[1] = 0;
-            *(undefined4 *)(param_4 + 2) = 0;
+            *(int32_t *)(param_4 + 2) = 0;
             *param_4 = &UNK_1809fcc58;
             param_4[1] = param_4 + 3;
-            *(undefined4 *)(param_4 + 2) = 0;
-            *(undefined1 *)(param_4 + 3) = 0;
-            *(undefined4 *)(param_4 + 2) = puVar7[-0x56];
+            *(int32_t *)(param_4 + 2) = 0;
+            *(int8_t *)(param_4 + 3) = 0;
+            *(int32_t *)(param_4 + 2) = puVar7[-0x56];
             puVar8 = &DAT_18098bc73;
-            if (*(undefined **)(puVar7 + -0x58) != (undefined *)0x0) {
-                puVar8 = *(undefined **)(puVar7 + -0x58);
+            if (*(void **)(puVar7 + -0x58) != (void *)0x0) {
+                puVar8 = *(void **)(puVar7 + -0x58);
             }
             strcpy_s(param_4[1], 0x40, puVar8);
-            *(undefined4 *)(param_4 + 0xb) = puVar7[-0x44];
-            *(undefined4 *)((longlong)param_4 + 0x5c) = puVar7[-0x43];
-            *(undefined4 *)(param_4 + 0xc) = puVar7[-0x42];
-            *(undefined4 *)((longlong)param_4 + 100) = puVar7[-0x41];
-            *(undefined4 *)(param_4 + 0xd) = puVar7[-0x40];
-            *(undefined4 *)((longlong)param_4 + 0x6c) = puVar7[-0x3f];
-            *(undefined4 *)(param_4 + 0xe) = puVar7[-0x3e];
-            *(undefined4 *)((longlong)param_4 + 0x74) = puVar7[-0x3d];
-            *(undefined4 *)(param_4 + 0xf) = puVar7[-0x3c];
-            *(undefined4 *)((longlong)param_4 + 0x7c) = puVar7[-0x3b];
-            uVar4 = *(undefined8 *)(puVar7 + -0x38);
-            param_4[0x10] = *(undefined8 *)(puVar7 + -0x3a);
+            *(int32_t *)(param_4 + 0xb) = puVar7[-0x44];
+            *(int32_t *)((longlong)param_4 + 0x5c) = puVar7[-0x43];
+            *(int32_t *)(param_4 + 0xc) = puVar7[-0x42];
+            *(int32_t *)((longlong)param_4 + 100) = puVar7[-0x41];
+            *(int32_t *)(param_4 + 0xd) = puVar7[-0x40];
+            *(int32_t *)((longlong)param_4 + 0x6c) = puVar7[-0x3f];
+            *(int32_t *)(param_4 + 0xe) = puVar7[-0x3e];
+            *(int32_t *)((longlong)param_4 + 0x74) = puVar7[-0x3d];
+            *(int32_t *)(param_4 + 0xf) = puVar7[-0x3c];
+            *(int32_t *)((longlong)param_4 + 0x7c) = puVar7[-0x3b];
+            uVar4 = *(uint64_t *)(puVar7 + -0x38);
+            param_4[0x10] = *(uint64_t *)(puVar7 + -0x3a);
             param_4[0x11] = uVar4;
-            uVar4 = *(undefined8 *)(puVar7 + -0x34);
-            param_4[0x12] = *(undefined8 *)(puVar7 + -0x36);
+            uVar4 = *(uint64_t *)(puVar7 + -0x34);
+            param_4[0x12] = *(uint64_t *)(puVar7 + -0x36);
             param_4[0x13] = uVar4;
-            uVar4 = *(undefined8 *)(puVar7 + -0x30);
-            param_4[0x14] = *(undefined8 *)(puVar7 + -0x32);
+            uVar4 = *(uint64_t *)(puVar7 + -0x30);
+            param_4[0x14] = *(uint64_t *)(puVar7 + -0x32);
             param_4[0x15] = uVar4;
-            uVar4 = *(undefined8 *)(puVar7 + -0x2c);
-            param_4[0x16] = *(undefined8 *)(puVar7 + -0x2e);
+            uVar4 = *(uint64_t *)(puVar7 + -0x2c);
+            param_4[0x16] = *(uint64_t *)(puVar7 + -0x2e);
             param_4[0x17] = uVar4;
-            uVar4 = *(undefined8 *)(puVar7 + -0x28);
-            param_4[0x18] = *(undefined8 *)(puVar7 + -0x2a);
+            uVar4 = *(uint64_t *)(puVar7 + -0x28);
+            param_4[0x18] = *(uint64_t *)(puVar7 + -0x2a);
             param_4[0x19] = uVar4;
-            uVar4 = *(undefined8 *)(puVar7 + -0x24);
-            param_4[0x1a] = *(undefined8 *)(puVar7 + -0x26);
+            uVar4 = *(uint64_t *)(puVar7 + -0x24);
+            param_4[0x1a] = *(uint64_t *)(puVar7 + -0x26);
             param_4[0x1b] = uVar4;
-            uVar4 = *(undefined8 *)(puVar7 + -0x20);
-            param_4[0x1c] = *(undefined8 *)(puVar7 + -0x22);
+            uVar4 = *(uint64_t *)(puVar7 + -0x20);
+            param_4[0x1c] = *(uint64_t *)(puVar7 + -0x22);
             param_4[0x1d] = uVar4;
             uVar3 = puVar7[-0x1d];
             uVar5 = puVar7[-0x1c];
             uVar6 = puVar7[-0x1b];
-            *(undefined4 *)(param_4 + 0x1e) = puVar7[-0x1e];
-            *(undefined4 *)((longlong)param_4 + 0xf4) = uVar3;
-            *(undefined4 *)(param_4 + 0x1f) = uVar5;
-            *(undefined4 *)((longlong)param_4 + 0xfc) = uVar6;
+            *(int32_t *)(param_4 + 0x1e) = puVar7[-0x1e];
+            *(int32_t *)((longlong)param_4 + 0xf4) = uVar3;
+            *(int32_t *)(param_4 + 0x1f) = uVar5;
+            *(int32_t *)((longlong)param_4 + 0xfc) = uVar6;
             uVar3 = puVar7[-0x19];
             uVar5 = puVar7[-0x18];
             uVar6 = puVar7[-0x17];
-            *(undefined4 *)(param_4 + 0x20) = puVar7[-0x1a];
-            *(undefined4 *)((longlong)param_4 + 0x104) = uVar3;
-            *(undefined4 *)(param_4 + 0x21) = uVar5;
-            *(undefined4 *)((longlong)param_4 + 0x10c) = uVar6;
+            *(int32_t *)(param_4 + 0x20) = puVar7[-0x1a];
+            *(int32_t *)((longlong)param_4 + 0x104) = uVar3;
+            *(int32_t *)(param_4 + 0x21) = uVar5;
+            *(int32_t *)((longlong)param_4 + 0x10c) = uVar6;
             param_4[0x22] = &UNK_18098bcb0;
             param_4[0x23] = 0;
-            *(undefined4 *)(param_4 + 0x24) = 0;
+            *(int32_t *)(param_4 + 0x24) = 0;
             param_4[0x22] = &UNK_180a3c3e0;
             param_4[0x25] = 0;
             param_4[0x23] = 0;
-            *(undefined4 *)(param_4 + 0x24) = 0;
-            *(undefined4 *)(param_4 + 0x24) = puVar7[-0x12];
-            param_4[0x23] = *(undefined8 *)(puVar7 + -0x14);
-            *(undefined4 *)((longlong)param_4 + 300) = puVar7[-0xf];
-            *(undefined4 *)(param_4 + 0x25) = puVar7[-0x10];
+            *(int32_t *)(param_4 + 0x24) = 0;
+            *(int32_t *)(param_4 + 0x24) = puVar7[-0x12];
+            param_4[0x23] = *(uint64_t *)(puVar7 + -0x14);
+            *(int32_t *)((longlong)param_4 + 300) = puVar7[-0xf];
+            *(int32_t *)(param_4 + 0x25) = puVar7[-0x10];
             puVar7[-0x12] = 0;
-            *(undefined8 *)(puVar7 + -0x14) = 0;
-            *(undefined8 *)(puVar7 + -0x10) = 0;
+            *(uint64_t *)(puVar7 + -0x14) = 0;
+            *(uint64_t *)(puVar7 + -0x10) = 0;
             puVar1 = param_4 + 0x26;
             *puVar1 = 0;
             param_4[0x27] = 0;
             param_4[0x28] = 0;
-            *(undefined4 *)(param_4 + 0x29) = puVar7[-8];
+            *(int32_t *)(param_4 + 0x29) = puVar7[-8];
             uVar4 = *puVar1;
-            *puVar1 = *(undefined8 *)(puVar7 + -0xe);
-            *(undefined8 *)(puVar7 + -0xe) = uVar4;
+            *puVar1 = *(uint64_t *)(puVar7 + -0xe);
+            *(uint64_t *)(puVar7 + -0xe) = uVar4;
             uVar4 = param_4[0x27];
-            param_4[0x27] = *(undefined8 *)(puVar7 + -0xc);
-            *(undefined8 *)(puVar7 + -0xc) = uVar4;
+            param_4[0x27] = *(uint64_t *)(puVar7 + -0xc);
+            *(uint64_t *)(puVar7 + -0xc) = uVar4;
             uVar4 = param_4[0x28];
-            param_4[0x28] = *(undefined8 *)(puVar7 + -10);
-            *(undefined8 *)(puVar7 + -10) = uVar4;
-            uVar3 = *(undefined4 *)(param_4 + 0x29);
-            *(undefined4 *)(param_4 + 0x29) = puVar7[-8];
+            param_4[0x28] = *(uint64_t *)(puVar7 + -10);
+            *(uint64_t *)(puVar7 + -10) = uVar4;
+            uVar3 = *(int32_t *)(param_4 + 0x29);
+            *(int32_t *)(param_4 + 0x29) = puVar7[-8];
             puVar7[-8] = uVar3;
             puVar1 = param_4 + 0x2a;
             *puVar1 = 0;
             param_4[0x2b] = 0;
             param_4[0x2c] = 0;
-            *(undefined4 *)(param_4 + 0x2d) = *puVar7;
+            *(int32_t *)(param_4 + 0x2d) = *puVar7;
             uVar4 = *puVar1;
-            *puVar1 = *(undefined8 *)(puVar7 + -6);
-            *(undefined8 *)(puVar7 + -6) = uVar4;
+            *puVar1 = *(uint64_t *)(puVar7 + -6);
+            *(uint64_t *)(puVar7 + -6) = uVar4;
             uVar4 = param_4[0x2b];
-            param_4[0x2b] = *(undefined8 *)(puVar7 + -4);
-            *(undefined8 *)(puVar7 + -4) = uVar4;
+            param_4[0x2b] = *(uint64_t *)(puVar7 + -4);
+            *(uint64_t *)(puVar7 + -4) = uVar4;
             uVar4 = param_4[0x2c];
-            param_4[0x2c] = *(undefined8 *)(puVar7 + -2);
-            *(undefined8 *)(puVar7 + -2) = uVar4;
-            uVar3 = *(undefined4 *)(param_4 + 0x2d);
-            *(undefined4 *)(param_4 + 0x2d) = *puVar7;
+            param_4[0x2c] = *(uint64_t *)(puVar7 + -2);
+            *(uint64_t *)(puVar7 + -2) = uVar4;
+            uVar3 = *(int32_t *)(param_4 + 0x2d);
+            *(int32_t *)(param_4 + 0x2d) = *puVar7;
             *puVar7 = uVar3;
             puVar1 = param_4 + 0x2e;
             *puVar1 = 0;
             param_4[0x2f] = 0;
             param_4[0x30] = 0;
-            *(undefined4 *)(param_4 + 0x31) = puVar7[8];
+            *(int32_t *)(param_4 + 0x31) = puVar7[8];
             uVar4 = *puVar1;
-            *puVar1 = *(undefined8 *)(puVar7 + 2);
-            *(undefined8 *)(puVar7 + 2) = uVar4;
+            *puVar1 = *(uint64_t *)(puVar7 + 2);
+            *(uint64_t *)(puVar7 + 2) = uVar4;
             uVar4 = param_4[0x2f];
-            param_4[0x2f] = *(undefined8 *)(puVar7 + 4);
-            *(undefined8 *)(puVar7 + 4) = uVar4;
+            param_4[0x2f] = *(uint64_t *)(puVar7 + 4);
+            *(uint64_t *)(puVar7 + 4) = uVar4;
             uVar4 = param_4[0x30];
-            param_4[0x30] = *(undefined8 *)(puVar7 + 6);
-            *(undefined8 *)(puVar7 + 6) = uVar4;
-            uVar3 = *(undefined4 *)(param_4 + 0x31);
-            *(undefined4 *)(param_4 + 0x31) = puVar7[8];
+            param_4[0x30] = *(uint64_t *)(puVar7 + 6);
+            *(uint64_t *)(puVar7 + 6) = uVar4;
+            uVar3 = *(int32_t *)(param_4 + 0x31);
+            *(int32_t *)(param_4 + 0x31) = puVar7[8];
             puVar7[8] = uVar3;
-            param_4[0x32] = *(undefined8 *)(puVar7 + 10);
-            *(undefined4 *)(param_4 + 0x33) = puVar7[0xc];
+            param_4[0x32] = *(uint64_t *)(puVar7 + 10);
+            *(int32_t *)(param_4 + 0x33) = puVar7[0xc];
             *param_1 = *param_1 + 0x1a0;
-            param_4 = (undefined8 *)*param_1;
+            param_4 = (uint64_t *)*param_1;
             puVar2 = puVar7 + 0xe;
             puVar7 = puVar7 + 0x68;
         } while (puVar2 != param_3);
@@ -920,14 +920,14 @@ void RenderingSystemAllocateMemoryPool(longlong param_1, longlong param_2)
  * @param param_2 查询标志
  * @return 查询结果状态
  */
-undefined1 RenderingSystemQueryState(longlong param_1, undefined1 param_2)
+int8_t RenderingSystemQueryState(longlong param_1, int8_t param_2)
 {
     uint uVar1;
     longlong lVar2;
     char cVar3;
-    undefined1 uVar4;
+    int8_t uVar4;
     uint uVar5;
-    undefined1 uVar6;
+    int8_t uVar6;
     longlong lVar7;
     longlong lVar8;
     int iVar9;
@@ -994,19 +994,19 @@ undefined1 RenderingSystemQueryState(longlong param_1, undefined1 param_2)
  * @param param_3 查询目标指针
  * @return 查询结果状态
  */
-undefined1 RenderingSystemQueryStateEx(undefined8 param_1, undefined8 param_2, longlong param_3)
+int8_t RenderingSystemQueryStateEx(uint64_t param_1, uint64_t param_2, longlong param_3)
 {
     uint uVar1;
     longlong lVar2;
     longlong lVar3;
     char cVar4;
-    undefined1 uVar5;
+    int8_t uVar5;
     uint uVar6;
     longlong unaff_RBP;
-    undefined1 unaff_SIL;
+    int8_t unaff_SIL;
     longlong lVar7;
     int unaff_R14D;
-    undefined1 unaff_R15B;
+    int8_t unaff_R15B;
     
     lVar7 = 0;
     do {
@@ -1061,9 +1061,9 @@ undefined1 RenderingSystemQueryStateEx(undefined8 param_1, undefined8 param_2, l
  * 
  * @return 空操作结果
  */
-undefined1 RenderingSystemEmptyOperation(void)
+int8_t RenderingSystemEmptyOperation(void)
 {
-    undefined1 unaff_SIL;
+    int8_t unaff_SIL;
     
     return unaff_SIL;
 }
@@ -1080,9 +1080,9 @@ undefined1 RenderingSystemEmptyOperation(void)
  * @param param_4 释放参数2
  * @return 释放后的资源指针
  */
-undefined8 *RenderingSystemReleaseResource(undefined8 *param_1, ulonglong param_2, undefined8 param_3, undefined8 param_4)
+uint64_t *RenderingSystemReleaseResource(uint64_t *param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4)
 {
-    undefined8 uVar1;
+    uint64_t uVar1;
     
     uVar1 = 0xfffffffffffffffe;
     if ((longlong *)param_1[4] != (longlong *)0x0) {
@@ -1155,12 +1155,12 @@ float *RenderingSystemNormalizeVector(float *param_1, float *param_2, float *par
  * @param param_3 坐标指针
  * @return 计算后的距离参数
  */
-undefined8 RenderingSystemCalculateProjectionDistance(longlong param_1, undefined8 param_2, float *param_3)
+uint64_t RenderingSystemCalculateProjectionDistance(longlong param_1, uint64_t param_2, float *param_3)
 {
     float fStack_18;
     float fStack_14;
     float fStack_10;
-    undefined4 uStack_c;
+    int32_t uStack_c;
     
     fStack_18 = *param_3 - *(float *)(param_1 + 0x10);
     fStack_14 = param_3[1] - *(float *)(param_1 + 0x14);

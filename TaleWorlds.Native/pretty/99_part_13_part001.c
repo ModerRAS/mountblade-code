@@ -156,14 +156,14 @@ void ContainerInitializer(void)
  * 
  * @param param_1 数据结构指针
  * @param param_2 参数指针
- * @return undefined8 操作结果状态码
+ * @return uint64_t 操作结果状态码
  */
-undefined8 DataProcessor(undefined8 *param_1, longlong *param_2)
+uint64_t DataProcessor(uint64_t *param_1, longlong *param_2)
 {
     // 语义化变量定义
     uint bit_mask;                /**< 位掩码 */
-    undefined8 operation_result;  /**< 操作结果 */
-    undefined8 process_result;    /**< 处理结果 */
+    uint64_t operation_result;  /**< 操作结果 */
+    uint64_t process_result;    /**< 处理结果 */
     uint capacity_check;          /**< 容量检查 */
     longlong element_count;       /**< 元素数量 */
     uint iteration_index;         /**< 迭代索引 */
@@ -273,14 +273,14 @@ undefined8 DataProcessor(undefined8 *param_1, longlong *param_2)
 ulonglong ContainerOperator(void)
 {
     // 语义化变量定义
-    undefined8 check_result;        /**< 检查结果 */
+    uint64_t check_result;        /**< 检查结果 */
     uint operation_flags;          /**< 操作标志 */
     ulonglong final_result;        /**< 最终结果 */
     uint capacity_value;           /**< 容量值 */
     longlong element_address;       /**< 元素地址 */
     uint iteration_count;          /**< 迭代计数 */
     longlong *container_ptr;       /**< 容器指针 */
-    undefined8 *data_ptr;          /**< 数据指针 */
+    uint64_t *data_ptr;          /**< 数据指针 */
     uint stack_flags;              /**< 栈标志 */
     
     // 步骤1：获取容量值
@@ -368,18 +368,18 @@ ulonglong ContainerOperator(void)
  * - 状态管理
  * - 遍历控制
  * 
- * @return undefined8 遍历结果状态码
+ * @return uint64_t 遍历结果状态码
  */
-undefined8 DataTraversal(void)
+uint64_t DataTraversal(void)
 {
     // 语义化变量定义
-    undefined8 traversal_result;   /**< 遍历结果 */
-    undefined8 process_result;    /**< 处理结果 */
+    uint64_t traversal_result;   /**< 遍历结果 */
+    uint64_t process_result;    /**< 处理结果 */
     uint traversal_flags;         /**< 遍历标志 */
     longlong element_address;      /**< 元素地址 */
     int iteration_limit;          /**< 迭代限制 */
     longlong *container_ptr;      /**< 容器指针 */
-    undefined8 *data_ptr;         /**< 数据指针 */
+    uint64_t *data_ptr;         /**< 数据指针 */
     int element_index;            /**< 元素索引 */
     uint stack_flags;             /**< 栈标志 */
     
@@ -485,14 +485,14 @@ void StructureValidator(void)
  * 
  * @param param_1 数据结构指针
  * @param param_2 参数指针
- * @return undefined8 操作结果状态码
+ * @return uint64_t 操作结果状态码
  */
-undefined8 ExtendedOperator(undefined8 *param_1, longlong *param_2)
+uint64_t ExtendedOperator(uint64_t *param_1, longlong *param_2)
 {
     // 语义化变量定义
     uint operation_mask;           /**< 操作掩码 */
-    undefined8 operation_result;  /**< 操作结果 */
-    undefined8 process_result;    /**< 处理结果 */
+    uint64_t operation_result;  /**< 操作结果 */
+    uint64_t process_result;    /**< 处理结果 */
     longlong element_address;      /**< 元素地址 */
     int element_index;            /**< 元素索引 */
     uint iteration_count;          /**< 迭代计数 */
@@ -601,17 +601,17 @@ undefined8 ExtendedOperator(undefined8 *param_1, longlong *param_2)
  * - 批量元素管理
  * - 性能优化
  * 
- * @return undefined8 批量处理结果状态码
+ * @return uint64_t 批量处理结果状态码
  */
-undefined8 BatchProcessor(void)
+uint64_t BatchProcessor(void)
 {
     // 语义化变量定义
-    undefined8 batch_result;       /**< 批量处理结果 */
-    undefined8 process_result;     /**< 处理结果 */
+    uint64_t batch_result;       /**< 批量处理结果 */
+    uint64_t process_result;     /**< 处理结果 */
     int operation_flags;           /**< 操作标志 */
     longlong element_address;       /**< 元素地址 */
     longlong *container_ptr;       /**< 容器指针 */
-    undefined8 *data_ptr;          /**< 数据指针 */
+    uint64_t *data_ptr;          /**< 数据指针 */
     uint batch_flags;              /**< 批量标志 */
     
     // 步骤1：批量处理初始化
@@ -695,19 +695,19 @@ undefined8 BatchProcessor(void)
  =============================================================================*/
 
 // 系统数据区域
-extern undefined4 DAT_180be12f0;
-extern undefined8 UNK_180986ef0;
-extern undefined8 UNK_18095b500;
-extern undefined8 UNK_180983828;
-extern undefined8 UNK_180983ac8;
-extern undefined8 UNK_1809839b8;
-extern undefined8 UNK_180983a40;
-extern undefined8 UNK_180983b50;
-extern undefined8 UNK_180983bd0;
-extern undefined8 UNK_1809820b0;
-extern undefined8 UNK_180981ec0;
-extern undefined8 UNK_180982878;
-extern undefined4 DAT_180a06434;
+extern int32_t DAT_180be12f0;
+extern uint64_t UNK_180986ef0;
+extern uint64_t UNK_18095b500;
+extern uint64_t UNK_180983828;
+extern uint64_t UNK_180983ac8;
+extern uint64_t UNK_1809839b8;
+extern uint64_t UNK_180983a40;
+extern uint64_t UNK_180983b50;
+extern uint64_t UNK_180983bd0;
+extern uint64_t UNK_1809820b0;
+extern uint64_t UNK_180981ec0;
+extern uint64_t UNK_180982878;
+extern int32_t DAT_180a06434;
 
 /*==============================================================================
  * 技术说明

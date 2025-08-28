@@ -2,15 +2,15 @@
 
 // 03_rendering_part584.c - 7 个函数
 
-// 函数: void FUN_18058b8d0(longlong param_1,int param_2,undefined8 param_3,undefined8 param_4,
-void FUN_18058b8d0(longlong param_1,int param_2,undefined8 param_3,undefined8 param_4,
-                  undefined4 param_5,undefined4 param_6,undefined4 param_7,undefined4 param_8,
-                  undefined4 param_9,undefined1 param_10,undefined1 param_11,undefined1 param_12,
-                  undefined1 param_13)
+// 函数: void FUN_18058b8d0(longlong param_1,int param_2,uint64_t param_3,uint64_t param_4,
+void FUN_18058b8d0(longlong param_1,int param_2,uint64_t param_3,uint64_t param_4,
+                  int32_t param_5,int32_t param_6,int32_t param_7,int32_t param_8,
+                  int32_t param_9,int8_t param_10,int8_t param_11,int8_t param_12,
+                  int8_t param_13)
 
 {
   FUN_1804317d0(param_1 + 0xf0 + (longlong)param_2 * 0x11b0,param_3,param_4,param_5,param_6,param_7,
-                param_8,param_9,param_10,param_11,param_12,param_13,*(undefined4 *)(param_1 + 0xa4))
+                param_8,param_9,param_10,param_11,param_12,param_13,*(int32_t *)(param_1 + 0xa4))
   ;
   return;
 }
@@ -26,7 +26,7 @@ longlong FUN_18058b980(longlong param_1,int param_2)
   longlong lVar2;
   
   if (param_2 != -1) {
-    iVar1 = FUN_18053a410(&DAT_180c95f30,*(undefined4 *)(param_1 + 0xac),param_2);
+    iVar1 = FUN_18053a410(&DAT_180c95f30,*(int32_t *)(param_1 + 0xac),param_2);
     iVar1 = *(int *)(_DAT_180c95f68 + (longlong)iVar1 * 4);
     if (iVar1 == -1) {
       lVar2 = 0;
@@ -378,8 +378,8 @@ void FUN_18058c0d0(longlong param_1,int param_2)
 
 
 
-// 函数: void FUN_18058c410(longlong param_1,undefined8 param_2,float *param_3,float *param_4,float *param_5)
-void FUN_18058c410(longlong param_1,undefined8 param_2,float *param_3,float *param_4,float *param_5)
+// 函数: void FUN_18058c410(longlong param_1,uint64_t param_2,float *param_3,float *param_4,float *param_5)
+void FUN_18058c410(longlong param_1,uint64_t param_2,float *param_3,float *param_4,float *param_5)
 
 {
   float fVar1;

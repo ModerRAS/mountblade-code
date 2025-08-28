@@ -10,79 +10,79 @@
  * @param operation_type 操作类型 (1=初始化, 2=数据处理, 0=清理, 3=配置, 4=终止)
  * @param data_params 数据参数数组指针
  */
-void process_engine_data(undefined8 engine_context, int operation_type, undefined **data_params)
+void process_engine_data(uint64_t engine_context, int operation_type, void **data_params)
 {
   float temp_float;
-  undefined1 temp_array_1 [16];
-  undefined1 temp_array_2 [16];
+  int8_t temp_array_1 [16];
+  int8_t temp_array_2 [16];
   float *float_ptr_1;
   longlong long_var_1;
   char char_var;
   int int_var_1;
   int int_var_2;
-  undefined4 uint_var_1;
+  int32_t uint_var_1;
   uint uint_var_2;
   longlong long_var_2;
   float *float_ptr_2;
   float *float_ptr_3;
   ulonglong ulonglong_var_1;
   char *char_ptr_1;
-  undefined1 *byte_ptr_1;
-  undefined1 *byte_ptr_2;
+  int8_t *byte_ptr_1;
+  int8_t *byte_ptr_2;
   uint uint_var_3;
   uint uint_var_4;
   ulonglong ulonglong_var_2;
   float *float_ptr_4;
   float *float_ptr_5;
-  undefined8 *ptr_8_1;
-  undefined4 *ptr_4_1;
+  uint64_t *ptr_8_1;
+  int32_t *ptr_4_1;
   float *float_ptr_6;
-  undefined1 *byte_ptr_3;
+  int8_t *byte_ptr_3;
   longlong long_var_3;
-  undefined *ptr_undefined_1;
+  void *ptr_undefined_1;
   char *char_ptr_2;
   longlong long_var_4;
-  undefined *ptr_undefined_2;
+  void *ptr_undefined_2;
   int int_var_3;
   double double_var_1;
   double double_var_2;
   float float_var_1;
-  undefined1 stack_array_1 [32];
-  undefined1 stack_byte_1;
-  undefined *stack_ptr_1;
-  undefined *stack_ptr_2;
+  int8_t stack_array_1 [32];
+  int8_t stack_byte_1;
+  void *stack_ptr_1;
+  void *stack_ptr_2;
   uint stack_uint_1;
-  undefined8 stack_8_1;
-  undefined1 stack_byte_2;
+  uint64_t stack_8_1;
+  int8_t stack_byte_2;
   float *stack_float_ptr_1;
   float *stack_float_ptr_2;
   ulonglong stack_ulonglong_1;
-  undefined8 stack_8_2;
-  undefined4 stack_4_1;
-  undefined1 stack_array_2 [8];
-  undefined1 *stack_byte_ptr_1;
+  uint64_t stack_8_2;
+  int32_t stack_4_1;
+  int8_t stack_array_2 [8];
+  int8_t *stack_byte_ptr_1;
   uint stack_uint_2;
   uint stack_uint_3;
   uint stack_uint_4;
-  undefined *stack_ptr_3;
-  undefined1 *stack_byte_ptr_2;
+  void *stack_ptr_3;
+  int8_t *stack_byte_ptr_2;
   int stack_int_1;
   ulonglong stack_ulonglong_2;
   int stack_int_2;
-  undefined *stack_ptr_4;
-  undefined1 *stack_byte_ptr_3;
+  void *stack_ptr_4;
+  int8_t *stack_byte_ptr_3;
   uint stack_uint_5;
-  undefined8 stack_8_3;
+  uint64_t stack_8_3;
   uint stack_uint_6;
-  undefined *stack_ptr_5;
-  undefined4 *stack_ptr_4_1;
-  undefined4 stack_4_2;
-  undefined8 stack_8_4;
-  undefined **stack_ptr_ptr_1;
+  void *stack_ptr_5;
+  int32_t *stack_ptr_4_1;
+  int32_t stack_4_2;
+  uint64_t stack_8_4;
+  void **stack_ptr_ptr_1;
   longlong stack_long_1;
-  undefined8 stack_8_5;
-  undefined **stack_ptr_ptr_2;
-  undefined *stack_ptr_array_1 [22];
+  uint64_t stack_8_5;
+  void **stack_ptr_ptr_2;
+  void *stack_ptr_array_1 [22];
   ulonglong stack_ulonglong_3;
   
   // 获取引擎全局数据指针
@@ -99,19 +99,19 @@ void process_engine_data(undefined8 engine_context, int operation_type, undefine
   // 根据操作类型执行不同的处理逻辑
   if (operation_type == 1) {
     // 初始化操作
-    ptr_undefined_1 = *(undefined **)
+    ptr_undefined_1 = *(void **)
                ((longlong)*(int *)(_DAT_180c86938 + 0x1d40) * 0xd0 + 0x18 +
                *(longlong *)(_DAT_180c86938 + 0x1d20));
     ptr_undefined_2 = &DAT_18098bc73;
-    if (ptr_undefined_1 != (undefined *)0x0) {
+    if (ptr_undefined_1 != (void *)0x0) {
       ptr_undefined_2 = ptr_undefined_1;
     }
     // 调用初始化回调函数
     (**(code **)(*(longlong *)(_DAT_180c8aa40 + 0x20) + 0x10))(_DAT_180c8aa40 + 0x20,ptr_undefined_2);
     long_var_2 = FUN_180623de0(stack_ptr_array_1);
     ptr_undefined_1 = &DAT_18098bc73;
-    if (*(undefined **)(long_var_2 + 8) != (undefined *)0x0) {
-      ptr_undefined_1 = *(undefined **)(long_var_2 + 8);
+    if (*(void **)(long_var_2 + 8) != (void *)0x0) {
+      ptr_undefined_1 = *(void **)(long_var_2 + 8);
     }
     (**(code **)(*(longlong *)(long_var_1 + 0x40) + 0x10))(long_var_1 + 0x40,ptr_undefined_1);
     stack_ptr_ptr_1 = stack_ptr_array_1;
@@ -119,20 +119,20 @@ void process_engine_data(undefined8 engine_context, int operation_type, undefine
     FUN_180628a40(long_var_1 + 0x40);
     
     // 设置引擎参数初始值
-    *(undefined4 *)(long_var_1 + 0xd0) = 0x7f7fffff;  // 最大浮点数
-    *(undefined4 *)(long_var_1 + 200) = 0x7f7fffff;
-    *(undefined4 *)(long_var_1 + 0xd4) = 0x800000;    // 最小浮点数
-    *(undefined4 *)(long_var_1 + 0xcc) = 0x800000;
-    *(undefined1 *)(long_var_1 + 0xd8) = 0;
-    *(undefined8 *)(long_var_1 + 0x70) = *(undefined8 *)(long_var_1 + 0x68);
-    *(undefined8 *)(long_var_1 + 0x90) = *(undefined8 *)(long_var_1 + 0x88);
-    *(undefined8 *)(long_var_1 + 0xc0) = 0;
-    *(undefined8 *)(long_var_1 + 0xb8) = 0;
-    *(undefined4 *)(long_var_1 + 0x60) = 1;
+    *(int32_t *)(long_var_1 + 0xd0) = 0x7f7fffff;  // 最大浮点数
+    *(int32_t *)(long_var_1 + 200) = 0x7f7fffff;
+    *(int32_t *)(long_var_1 + 0xd4) = 0x800000;    // 最小浮点数
+    *(int32_t *)(long_var_1 + 0xcc) = 0x800000;
+    *(int8_t *)(long_var_1 + 0xd8) = 0;
+    *(uint64_t *)(long_var_1 + 0x70) = *(uint64_t *)(long_var_1 + 0x68);
+    *(uint64_t *)(long_var_1 + 0x90) = *(uint64_t *)(long_var_1 + 0x88);
+    *(uint64_t *)(long_var_1 + 0xc0) = 0;
+    *(uint64_t *)(long_var_1 + 0xb8) = 0;
+    *(int32_t *)(long_var_1 + 0x60) = 1;
     
     // 检查特殊标记
     if ((*(int *)(data_params + 2) != 0) && (*data_params[1] == '#')) {
-      *(undefined1 *)(long_var_1 + 0xd9) = 1;
+      *(int8_t *)(long_var_1 + 0xd9) = 1;
       FUN_1806289a0(data_params);
     }
     FUN_180627be0(long_var_1,data_params);
@@ -195,7 +195,7 @@ void process_engine_data(undefined8 engine_context, int operation_type, undefine
     }
     
     // 计算平均值
-    *(undefined8 *)(long_var_1 + 0xa8) = 0;
+    *(uint64_t *)(long_var_1 + 0xa8) = 0;
     ulonglong_var_2 = (longlong)stack_float_ptr_2 - (longlong)stack_float_ptr_1 >> 2;
     temp_array_1._8_8_ = 0;
     temp_array_1._0_8_ = ulonglong_var_2;
@@ -304,7 +304,7 @@ void process_engine_data(undefined8 engine_context, int operation_type, undefine
     }
     
     // 计算第二组数据的平均值
-    *(undefined8 *)(long_var_1 + 0xb0) = 0;
+    *(uint64_t *)(long_var_1 + 0xb0) = 0;
     ulonglong_var_2 = (longlong)stack_float_ptr_2 - (longlong)stack_float_ptr_1 >> 2;
     temp_array_2._8_8_ = 0;
     temp_array_2._0_8_ = ulonglong_var_2;
@@ -337,7 +337,7 @@ void process_engine_data(undefined8 engine_context, int operation_type, undefine
         ulonglong_var_1 = ulonglong_var_1 + 1;
       } while ((longlong)ulonglong_var_1 < long_var_2);
     }
-    *(undefined4 *)(long_var_1 + 0x60) = 2;
+    *(int32_t *)(long_var_1 + 0x60) = 2;
     if (stack_float_ptr_1 != (float *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
@@ -363,10 +363,10 @@ void process_engine_data(undefined8 engine_context, int operation_type, undefine
       long_var_3 = *(longlong *)(long_var_1 + 0x68);
       uint_var_3 = stack_uint_1 + 0x10;
       FUN_1806277c0(&stack_ptr_1,uint_var_3);
-      ptr_8_1 = (undefined8 *)(stack_ptr_2 + stack_uint_1);
+      ptr_8_1 = (uint64_t *)(stack_ptr_2 + stack_uint_1);
       *ptr_8_1 = 0x2053504620555043;  // "CPU FPS "
       ptr_8_1[1] = 0x202c7365756c6156; // "Value ,"
-      *(undefined1 *)(ptr_8_1 + 2) = 0;
+      *(int8_t *)(ptr_8_1 + 2) = 0;
       
       // 处理用户数据（简化实现）
       // ... 原始实现包含复杂的数据处理循环
@@ -375,15 +375,15 @@ void process_engine_data(undefined8 engine_context, int operation_type, undefine
   else if ((*(int *)(_DAT_180c8aa40 + 0x60) == 1) && (operation_type == 0)) {
 CLEANUP_HANDLER:
     // 清理操作
-    *(undefined8 *)(long_var_1 + 0x70) = *(undefined8 *)(long_var_1 + 0x68);
-    *(undefined8 *)(long_var_1 + 0x90) = *(undefined8 *)(long_var_1 + 0x88);
-    *(undefined4 *)(long_var_1 + 0x10) = 0;
-    if (*(undefined1 **)(long_var_1 + 8) != (undefined1 *)0x0) {
-      **(undefined1 **)(long_var_1 + 8) = 0;
+    *(uint64_t *)(long_var_1 + 0x70) = *(uint64_t *)(long_var_1 + 0x68);
+    *(uint64_t *)(long_var_1 + 0x90) = *(uint64_t *)(long_var_1 + 0x88);
+    *(int32_t *)(long_var_1 + 0x10) = 0;
+    if (*(int8_t **)(long_var_1 + 8) != (int8_t *)0x0) {
+      **(int8_t **)(long_var_1 + 8) = 0;
     }
-    *(undefined8 *)(long_var_1 + 0xc0) = 0;
-    *(undefined8 *)(long_var_1 + 0xb8) = 0;
-    *(undefined4 *)(long_var_1 + 0x60) = 0;
+    *(uint64_t *)(long_var_1 + 0xc0) = 0;
+    *(uint64_t *)(long_var_1 + 0xb8) = 0;
+    *(int32_t *)(long_var_1 + 0x60) = 0;
     goto EXIT_HANDLER;
   }
   
@@ -393,14 +393,14 @@ CLEANUP_HANDLER:
   }
   else if (operation_type == 4) {
     FUN_180202660(_DAT_180c8aa40);
-    *(undefined4 *)(long_var_1 + 0xdc) = 1;
+    *(int32_t *)(long_var_1 + 0xdc) = 1;
   }
   
 EXIT_HANDLER:
   *data_params = &UNK_180a3c3e0;
-  if (data_params[1] == (undefined *)0x0) {
-    data_params[1] = (undefined *)0x0;
-    *(undefined4 *)(data_params + 3) = 0;
+  if (data_params[1] == (void *)0x0) {
+    data_params[1] = (void *)0x0;
+    *(int32_t *)(data_params + 3) = 0;
     *data_params = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
     FUN_1808fc050(stack_ulonglong_3 ^ (ulonglong)stack_array_1);

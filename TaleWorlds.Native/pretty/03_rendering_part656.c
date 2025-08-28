@@ -210,8 +210,8 @@ void FUN_18063f927(void)
 {
   longlong unaff_RBX;
   
-  *(undefined8 *)(unaff_RBX + 0x20) = 0xffffffffffffffff;
-  *(undefined8 *)(unaff_RBX + 0x28) = 0xffffffffffffffff;
+  *(uint64_t *)(unaff_RBX + 0x20) = 0xffffffffffffffff;
+  *(uint64_t *)(unaff_RBX + 0x28) = 0xffffffffffffffff;
   return;
 }
 
@@ -286,7 +286,7 @@ void FUN_18063f960(longlong *param_1,longlong *param_2,int param_3)
       }
       uVar18 = (ulonglong)(uVar17 + 1);
       uVar14 = uVar13 + 1;
-      *(undefined8 *)(*param_1 + uVar8 * 8) = *(undefined8 *)(*param_2 + uVar13 * 8);
+      *(uint64_t *)(*param_1 + uVar8 * 8) = *(uint64_t *)(*param_2 + uVar13 * 8);
       uVar8 = uVar8 + 1;
       uVar13 = uVar14;
     } while ((longlong)uVar14 < (longlong)param_3);
@@ -317,7 +317,7 @@ void FUN_18063f960(longlong *param_1,longlong *param_2,int param_3)
       }
       uVar17 = uVar17 + 1;
       uVar18 = (ulonglong)uVar17;
-      *(undefined8 *)(*param_1 + lVar9 * 8) = *(undefined8 *)(*param_2 + lVar3 * 8);
+      *(uint64_t *)(*param_1 + lVar9 * 8) = *(uint64_t *)(*param_2 + lVar3 * 8);
       lVar9 = lVar9 + 1;
       lVar3 = lVar3 + -1;
     } while (-1 < lVar3);
@@ -742,8 +742,8 @@ void FUN_1806402f4(void)
 {
   longlong unaff_RBX;
   
-  *(undefined8 *)(unaff_RBX + 0x20) = 0xffffffffffffffff;
-  *(undefined8 *)(unaff_RBX + 0x28) = 0xffffffffffffffff;
+  *(uint64_t *)(unaff_RBX + 0x20) = 0xffffffffffffffff;
+  *(uint64_t *)(unaff_RBX + 0x28) = 0xffffffffffffffff;
   return;
 }
 

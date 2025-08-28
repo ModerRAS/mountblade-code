@@ -14,11 +14,11 @@ void initialize_empty(void)
 
 // 函数：状态检查函数
 // 功能：循环检查特定状态，最多检查16次，返回状态值
-undefined1 check_system_status(void)
+int8_t check_system_status(void)
 
 {
-  undefined1 *status_ptr;      // 状态指针
-  undefined1 status_value;    // 状态值
+  int8_t *status_ptr;      // 状态指针
+  int8_t status_value;    // 状态值
   longlong index_offset;      // 索引偏移
   longlong base_ptr;           // 基础指针
   int counter;                 // 计数器
@@ -32,7 +32,7 @@ undefined1 check_system_status(void)
       array_offset = array_offset + 0x18;
       counter = counter + 1;
       LOCK();
-      status_ptr = (undefined1 *)(*(longlong *)(base_ptr + 0x1e0) + index_offset * 0x18 + 0x15);
+      status_ptr = (int8_t *)(*(longlong *)(base_ptr + 0x1e0) + index_offset * 0x18 + 0x15);
       status_value = *status_ptr;
       *status_ptr = 0;
       UNLOCK();
@@ -67,28 +67,28 @@ float * calculate_bounding_box(float *object_ptr)
   float temp_min_x;           // 临时最小X
   float temp_min_y;           // 临时最小Y
   float temp_min_z;           // 临时最小Z
-  undefined4 temp_padding_1;  // 临时填充1
+  int32_t temp_padding_1;  // 临时填充1
   float temp_max_x;           // 临时最大X
   float temp_max_y;           // 临时最大Y
   float temp_max_z;           // 临时最大Z
-  undefined4 temp_padding_2;  // 临时填充2
+  int32_t temp_padding_2;  // 临时填充2
   float *mesh_data_ptr;
-  undefined4 temp_flag;       // 临时标志
+  int32_t temp_flag;       // 临时标志
   longlong vertex_array_info; // 顶点数组信息
-  undefined8 stack_temp_80;      // 栈临时变量80
-  undefined8 stack_temp_78;      // 栈临时变量78
-  undefined8 stack_temp_70;      // 栈临时变量70
-  undefined8 stack_temp_68;      // 栈临时变量68
-  undefined8 stack_temp_60;      // 栈临时变量60
-  undefined8 stack_temp_58;      // 栈临时变量58
+  uint64_t stack_temp_80;      // 栈临时变量80
+  uint64_t stack_temp_78;      // 栈临时变量78
+  uint64_t stack_temp_70;      // 栈临时变量70
+  uint64_t stack_temp_68;      // 栈临时变量68
+  uint64_t stack_temp_60;      // 栈临时变量60
+  uint64_t stack_temp_58;      // 栈临时变量58
   float stack_temp_50;          // 栈临时变量50
   float stack_temp_4c;          // 栈临时变量4c
-  undefined8 stack_temp_48;      // 栈临时变量48
-  undefined8 stack_temp_40;      // 栈临时变量40
-  undefined8 stack_temp_38;      // 栈临时变量38
-  undefined1 stack_temp_30[8];   // 栈临时变量30数组
+  uint64_t stack_temp_48;      // 栈临时变量48
+  uint64_t stack_temp_40;      // 栈临时变量40
+  uint64_t stack_temp_38;      // 栈临时变量38
+  int8_t stack_temp_30[8];   // 栈临时变量30数组
   float *vertex_array_ptr;      // 顶点数组指针
-  undefined4 stack_temp_20;      // 栈临时变量20
+  int32_t stack_temp_20;      // 栈临时变量20
   
   stack_temp_38 = 0xfffffffffffffffe;  // 设置栈临时变量
   if (((uint)object_ptr[0x40] & 0x10000) == 0) {
@@ -103,10 +103,10 @@ float * calculate_bounding_box(float *object_ptr)
        ((int)(*(int *)(*(longlong *)(object_ptr + 0x84) + 0x88) +
              (*(int *)(*(longlong *)(object_ptr + 0x84) + 0x88) >> 0x1f & 3U)) >> 2 < (int)time_value)) {
       stack_temp_48 = &DAT_18098bc73;  // 设置数据指针
-      if (*(undefined **)(object_ptr + 6) != (undefined *)0x0) {
-        stack_temp_48 = *(undefined **)(object_ptr + 6);  // 更新数据指针
+      if (*(void **)(object_ptr + 6) != (void *)0x0) {
+        stack_temp_48 = *(void **)(object_ptr + 6);  // 更新数据指针
       }
-      stack_temp_40 = CONCAT44(stack_temp_40._4_4_,*(undefined4 *)(*(longlong *)(object_ptr + 0x84) + 0x60));
+      stack_temp_40 = CONCAT44(stack_temp_40._4_4_,*(int32_t *)(*(longlong *)(object_ptr + 0x84) + 0x60));
       stack_temp_58 = &UNK_1809ffb30;  // 设置未知数据指针
       stack_temp_80 = 0x18007967a;     // 设置函数地址
       stack_temp_50 = time_value;      // 保存时间值
@@ -119,7 +119,7 @@ float * calculate_bounding_box(float *object_ptr)
   stack_temp_38 = 0xfffffffffffffffe;  // 重置栈临时变量
   current_vertex = object_ptr;
   if ((*(byte *)((longlong)object_ptr + 0xfd) & 0x20) == 0) {
-    current_vertex = (float *)func_0x000180085de0(*(undefined8 *)(object_ptr + 0x6c));
+    current_vertex = (float *)func_0x000180085de0(*(uint64_t *)(object_ptr + 0x6c));
   }
   if ((*(longlong *)(current_vertex + 0x84) != 0) && (((uint)object_ptr[0x40] & 0x80) == 0)) {
     min_bounds_ptr = object_ptr + 0x9d;
@@ -176,39 +176,39 @@ float * calculate_bounding_box(float *object_ptr)
     }
     transform_ptr = *(float **)(object_ptr + 0x6e);
     if ((transform_ptr != (float *)0x0) && (((uint)transform_ptr[0x4e] & 0x3000) != 0)) {
-      stack_temp_78 = *(undefined8 *)(object_ptr + 0x48);  // 保存对象数据
-      stack_temp_70 = *(undefined8 *)(object_ptr + 0x4a);  // 保存对象数据
-      stack_temp_68 = *(undefined8 *)(object_ptr + 0x4c);  // 保存对象数据
-      stack_temp_60 = *(undefined8 *)(object_ptr + 0x4e);  // 保存对象数据
-      stack_temp_58 = *(undefined **)(object_ptr + 0x50);  // 保存对象指针
+      stack_temp_78 = *(uint64_t *)(object_ptr + 0x48);  // 保存对象数据
+      stack_temp_70 = *(uint64_t *)(object_ptr + 0x4a);  // 保存对象数据
+      stack_temp_68 = *(uint64_t *)(object_ptr + 0x4c);  // 保存对象数据
+      stack_temp_60 = *(uint64_t *)(object_ptr + 0x4e);  // 保存对象数据
+      stack_temp_58 = *(void **)(object_ptr + 0x50);  // 保存对象指针
       stack_temp_50 = object_ptr[0x52];                   // 保存对象数据
       stack_temp_4c = object_ptr[0x53];                   // 保存对象数据
-      stack_temp_48 = *(undefined **)(object_ptr + 0x54);  // 保存对象指针
-      stack_temp_40 = *(undefined8 *)(object_ptr + 0x56);  // 保存对象数据
+      stack_temp_48 = *(void **)(object_ptr + 0x54);  // 保存对象指针
+      stack_temp_40 = *(uint64_t *)(object_ptr + 0x56);  // 保存对象数据
       FUN_180085c10(&stack_temp_78);    // 调用变换函数
       FUN_18063a240(min_bounds_ptr,min_bounds_ptr,&stack_temp_78);  // 应用变换
       transform_ptr = *(float **)(object_ptr + 0x6e);
       if (((uint)transform_ptr[0x4e] & 0x3000) == 0x2000) {
-        stack_temp_78 = *(undefined8 *)(object_ptr + 0x48);  // 重新保存对象数据
-        stack_temp_70 = *(undefined8 *)(object_ptr + 0x4a);  // 重新保存对象数据
-        stack_temp_68 = *(undefined8 *)(object_ptr + 0x4c);  // 重新保存对象数据
-        stack_temp_60 = *(undefined8 *)(object_ptr + 0x4e);  // 重新保存对象数据
-        stack_temp_58 = *(undefined **)(object_ptr + 0x50);  // 重新保存对象指针
+        stack_temp_78 = *(uint64_t *)(object_ptr + 0x48);  // 重新保存对象数据
+        stack_temp_70 = *(uint64_t *)(object_ptr + 0x4a);  // 重新保存对象数据
+        stack_temp_68 = *(uint64_t *)(object_ptr + 0x4c);  // 重新保存对象数据
+        stack_temp_60 = *(uint64_t *)(object_ptr + 0x4e);  // 重新保存对象数据
+        stack_temp_58 = *(void **)(object_ptr + 0x50);  // 重新保存对象指针
         stack_temp_50 = object_ptr[0x52];                   // 重新保存对象数据
         stack_temp_4c = object_ptr[0x53];                   // 重新保存对象数据
-        stack_temp_48 = *(undefined **)(object_ptr + 0x54);  // 重新保存对象指针
-        stack_temp_40 = *(undefined8 *)(object_ptr + 0x56);  // 重新保存对象数据
+        stack_temp_48 = *(void **)(object_ptr + 0x54);  // 重新保存对象指针
+        stack_temp_40 = *(uint64_t *)(object_ptr + 0x56);  // 重新保存对象数据
         FUN_180085ac0(&stack_temp_78,0x3fc90fdb);  // 调用旋转变换函数
         FUN_18063a240(min_bounds_ptr,min_bounds_ptr,&stack_temp_78);  // 应用旋转变换
-        stack_temp_78 = *(undefined8 *)(object_ptr + 0x48);  // 重新保存对象数据
-        stack_temp_70 = *(undefined8 *)(object_ptr + 0x4a);  // 重新保存对象数据
-        stack_temp_68 = *(undefined8 *)(object_ptr + 0x4c);  // 重新保存对象数据
-        stack_temp_60 = *(undefined8 *)(object_ptr + 0x4e);  // 重新保存对象数据
-        stack_temp_58 = *(undefined **)(object_ptr + 0x50);  // 重新保存对象指针
+        stack_temp_78 = *(uint64_t *)(object_ptr + 0x48);  // 重新保存对象数据
+        stack_temp_70 = *(uint64_t *)(object_ptr + 0x4a);  // 重新保存对象数据
+        stack_temp_68 = *(uint64_t *)(object_ptr + 0x4c);  // 重新保存对象数据
+        stack_temp_60 = *(uint64_t *)(object_ptr + 0x4e);  // 重新保存对象数据
+        stack_temp_58 = *(void **)(object_ptr + 0x50);  // 重新保存对象指针
         stack_temp_50 = object_ptr[0x52];                   // 重新保存对象数据
         stack_temp_4c = object_ptr[0x53];                   // 重新保存对象数据
-        stack_temp_48 = *(undefined **)(object_ptr + 0x54);  // 重新保存对象指针
-        stack_temp_40 = *(undefined8 *)(object_ptr + 0x56);  // 重新保存对象数据
+        stack_temp_48 = *(void **)(object_ptr + 0x54);  // 重新保存对象指针
+        stack_temp_40 = *(uint64_t *)(object_ptr + 0x56);  // 重新保存对象数据
         FUN_180085970(&stack_temp_78);    // 调用另一个变换函数
         transform_ptr = (float *)FUN_18063a240(min_bounds_ptr,min_bounds_ptr,&stack_temp_78);  // 应用最终变换
       }

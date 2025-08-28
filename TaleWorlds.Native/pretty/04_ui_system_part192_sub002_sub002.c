@@ -14,7 +14,7 @@ void FUN_18077b2c0(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8
+uint64_t
 FUN_18077b410(longlong param_1,longlong param_2,longlong param_3,uint param_4,int param_5)
 
 {
@@ -335,7 +335,7 @@ FUN_18077b410(longlong param_1,longlong param_2,longlong param_3,uint param_4,in
         fVar16 = *(float *)(param_1 + 0x2b8);
         *(float *)(param_1 + 0x2b8) = *(float *)(param_1 + 0x238);
         *(float *)(param_1 + 0x2a8) = *(float *)(param_1 + 0x228);
-        *(undefined4 *)(param_1 + 0x2a4) = *(undefined4 *)(param_1 + 0x224);
+        *(int32_t *)(param_1 + 0x2a4) = *(int32_t *)(param_1 + 0x224);
         *(float *)(param_1 + 0x224) = fVar14;
         fVar21 = (((*(float *)(param_1 + 0x238) * fVar27 + *(float *)(param_1 + 0x430) * fVar13 +
                    *(float *)(param_1 + 0x438) * fVar16) -
@@ -345,7 +345,7 @@ FUN_18077b410(longlong param_1,longlong param_2,longlong param_3,uint param_4,in
         *(float *)(param_1 + 0x22c) = fVar25;
         *(float *)(param_1 + 0x230) = fVar34;
         *(float *)(param_1 + 0x234) = fVar33;
-        *(undefined4 *)(param_1 + 0x3a4) = *(undefined4 *)(param_1 + 0x324);
+        *(int32_t *)(param_1 + 0x3a4) = *(int32_t *)(param_1 + 0x324);
         *(float *)(param_1 + 0x2ac) = fVar2;
         *(float *)(param_1 + 0x2b0) = fVar24;
         *(float *)(param_1 + 0x2b4) = fVar32;
@@ -428,9 +428,9 @@ FUN_18077b410(longlong param_1,longlong param_2,longlong param_3,uint param_4,in
                   *(float *)(param_1 + 0x340) * *(float *)(param_1 + 0x428)) -
                  *(float *)(param_1 + 0x42c) * *(float *)(param_1 + 0x3c0)) /
                  *(float *)(param_1 + 0x424);
-        *(undefined4 *)(param_1 + 0x2a4) = *(undefined4 *)(param_1 + 0x224);
+        *(int32_t *)(param_1 + 0x2a4) = *(int32_t *)(param_1 + 0x224);
         *(float *)(param_1 + 0x224) = fVar25;
-        *(undefined4 *)(param_1 + 0x2a8) = *(undefined4 *)(param_1 + 0x228);
+        *(int32_t *)(param_1 + 0x2a8) = *(int32_t *)(param_1 + 0x228);
         *(float *)(param_1 + 0x228) = fVar31;
         *(float *)(param_1 + 0x22c) = fVar29;
         *(float *)(param_1 + 0x230) = fVar26;
@@ -438,9 +438,9 @@ FUN_18077b410(longlong param_1,longlong param_2,longlong param_3,uint param_4,in
         *(float *)(param_1 + 0x238) = fVar21;
         *(float *)(param_1 + 0x23c) = fVar22;
         *(float *)(param_1 + 0x240) = fVar23;
-        *(undefined4 *)(param_1 + 0x3a4) = *(undefined4 *)(param_1 + 0x324);
-        *(undefined4 *)(param_1 + 0x3a8) = *(undefined4 *)(param_1 + 0x328);
-        *(undefined4 *)(param_1 + 0x3ac) = *(undefined4 *)(param_1 + 0x32c);
+        *(int32_t *)(param_1 + 0x3a4) = *(int32_t *)(param_1 + 0x324);
+        *(int32_t *)(param_1 + 0x3a8) = *(int32_t *)(param_1 + 0x328);
+        *(int32_t *)(param_1 + 0x3ac) = *(int32_t *)(param_1 + 0x32c);
         *(float *)(param_1 + 0x2b8) = fVar33;
         *(float *)(param_1 + 700) = fVar13;
         *(float *)(param_1 + 0x2c0) = fVar27;
@@ -571,7 +571,7 @@ FUN_18077b410(longlong param_1,longlong param_2,longlong param_3,uint param_4,in
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18077b7d0(longlong param_1,undefined8 param_2,undefined8 param_3,int param_4)
+uint64_t FUN_18077b7d0(longlong param_1,uint64_t param_2,uint64_t param_3,int param_4)
 
 {
   float fVar1;
@@ -799,7 +799,7 @@ undefined8 FUN_18077b7d0(longlong param_1,undefined8 param_2,undefined8 param_3,
         fVar25 = *(float *)(unaff_RSI + 0x2b8);
         *(float *)(unaff_RSI + 0x2b8) = *(float *)(unaff_RSI + 0x238);
         *(float *)(unaff_RSI + 0x2a8) = *(float *)(unaff_RSI + 0x228);
-        *(undefined4 *)(unaff_RSI + 0x2a4) = *(undefined4 *)(unaff_RSI + 0x224);
+        *(int32_t *)(unaff_RSI + 0x2a4) = *(int32_t *)(unaff_RSI + 0x224);
         *(float *)(unaff_RSI + 0x224) = fVar10;
         fVar14 = (((*(float *)(unaff_RSI + 0x238) * fVar22 + *(float *)(unaff_RSI + 0x430) * fVar9 +
                    *(float *)(unaff_RSI + 0x438) * fVar25) -
@@ -809,7 +809,7 @@ undefined8 FUN_18077b7d0(longlong param_1,undefined8 param_2,undefined8 param_3,
         *(float *)(unaff_RSI + 0x22c) = fVar19;
         *(float *)(unaff_RSI + 0x230) = fVar30;
         *(float *)(unaff_RSI + 0x234) = fVar29;
-        *(undefined4 *)(unaff_RSI + 0x3a4) = *(undefined4 *)(unaff_RSI + 0x324);
+        *(int32_t *)(unaff_RSI + 0x3a4) = *(int32_t *)(unaff_RSI + 0x324);
         *(float *)(unaff_RSI + 0x2ac) = fVar2;
         *(float *)(unaff_RSI + 0x2b0) = fVar18;
         *(float *)(unaff_RSI + 0x2b4) = fVar28;
@@ -891,9 +891,9 @@ undefined8 FUN_18077b7d0(longlong param_1,undefined8 param_2,undefined8 param_3,
                   *(float *)(unaff_RSI + 0x340) * *(float *)(unaff_RSI + 0x428)) -
                  *(float *)(unaff_RSI + 0x42c) * *(float *)(unaff_RSI + 0x3c0)) /
                  *(float *)(unaff_RSI + 0x424);
-        *(undefined4 *)(unaff_RSI + 0x2a4) = *(undefined4 *)(unaff_RSI + 0x224);
+        *(int32_t *)(unaff_RSI + 0x2a4) = *(int32_t *)(unaff_RSI + 0x224);
         *(float *)(unaff_RSI + 0x224) = fVar19;
-        *(undefined4 *)(unaff_RSI + 0x2a8) = *(undefined4 *)(unaff_RSI + 0x228);
+        *(int32_t *)(unaff_RSI + 0x2a8) = *(int32_t *)(unaff_RSI + 0x228);
         *(float *)(unaff_RSI + 0x228) = fVar27;
         *(float *)(unaff_RSI + 0x22c) = fVar24;
         *(float *)(unaff_RSI + 0x230) = fVar21;
@@ -901,9 +901,9 @@ undefined8 FUN_18077b7d0(longlong param_1,undefined8 param_2,undefined8 param_3,
         *(float *)(unaff_RSI + 0x238) = fVar14;
         *(float *)(unaff_RSI + 0x23c) = fVar16;
         *(float *)(unaff_RSI + 0x240) = fVar17;
-        *(undefined4 *)(unaff_RSI + 0x3a4) = *(undefined4 *)(unaff_RSI + 0x324);
-        *(undefined4 *)(unaff_RSI + 0x3a8) = *(undefined4 *)(unaff_RSI + 0x328);
-        *(undefined4 *)(unaff_RSI + 0x3ac) = *(undefined4 *)(unaff_RSI + 0x32c);
+        *(int32_t *)(unaff_RSI + 0x3a4) = *(int32_t *)(unaff_RSI + 0x324);
+        *(int32_t *)(unaff_RSI + 0x3a8) = *(int32_t *)(unaff_RSI + 0x328);
+        *(int32_t *)(unaff_RSI + 0x3ac) = *(int32_t *)(unaff_RSI + 0x32c);
         *(float *)(unaff_RSI + 0x2b8) = fVar29;
         *(float *)(unaff_RSI + 700) = fVar9;
         *(float *)(unaff_RSI + 0x2c0) = fVar22;
@@ -1027,7 +1027,7 @@ undefined8 FUN_18077b7d0(longlong param_1,undefined8 param_2,undefined8 param_3,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18077c38b(longlong param_1)
+uint64_t FUN_18077c38b(longlong param_1)
 
 {
   float fVar1;
@@ -1121,9 +1121,9 @@ undefined8 FUN_18077c38b(longlong param_1)
                   *(float *)(unaff_RSI + 0x340) * *(float *)(unaff_RSI + 0x428)) -
                  *(float *)(unaff_RSI + 0x42c) * *(float *)(unaff_RSI + 0x3c0)) /
                  *(float *)(unaff_RSI + 0x424);
-        *(undefined4 *)(unaff_RSI + 0x2a4) = *(undefined4 *)(unaff_RSI + 0x224);
+        *(int32_t *)(unaff_RSI + 0x2a4) = *(int32_t *)(unaff_RSI + 0x224);
         *(float *)(unaff_RSI + 0x224) = fVar18;
-        *(undefined4 *)(unaff_RSI + 0x2a8) = *(undefined4 *)(unaff_RSI + 0x228);
+        *(int32_t *)(unaff_RSI + 0x2a8) = *(int32_t *)(unaff_RSI + 0x228);
         *(float *)(unaff_RSI + 0x228) = fVar30;
         *(float *)(unaff_RSI + 0x22c) = fVar29;
         *(float *)(unaff_RSI + 0x230) = fVar27;
@@ -1131,9 +1131,9 @@ undefined8 FUN_18077c38b(longlong param_1)
         *(float *)(unaff_RSI + 0x238) = fVar15;
         *(float *)(unaff_RSI + 0x23c) = fVar16;
         *(float *)(unaff_RSI + 0x240) = fVar17;
-        *(undefined4 *)(unaff_RSI + 0x3a4) = *(undefined4 *)(unaff_RSI + 0x324);
-        *(undefined4 *)(unaff_RSI + 0x3a8) = *(undefined4 *)(unaff_RSI + 0x328);
-        *(undefined4 *)(unaff_RSI + 0x3ac) = *(undefined4 *)(unaff_RSI + 0x32c);
+        *(int32_t *)(unaff_RSI + 0x3a4) = *(int32_t *)(unaff_RSI + 0x324);
+        *(int32_t *)(unaff_RSI + 0x3a8) = *(int32_t *)(unaff_RSI + 0x328);
+        *(int32_t *)(unaff_RSI + 0x3ac) = *(int32_t *)(unaff_RSI + 0x32c);
         *(float *)(unaff_RSI + 0x2b8) = fVar6;
         *(float *)(unaff_RSI + 700) = fVar7;
         *(float *)(unaff_RSI + 0x2c0) = fVar25;
@@ -1255,7 +1255,7 @@ undefined8 FUN_18077c38b(longlong param_1)
 
 
 
-undefined8 FUN_18077cd48(void)
+uint64_t FUN_18077cd48(void)
 
 {
   return 0;
@@ -1263,7 +1263,7 @@ undefined8 FUN_18077cd48(void)
 
 
 
-undefined8 FUN_18077cd81(void)
+uint64_t FUN_18077cd81(void)
 
 {
   return 0;
@@ -1271,12 +1271,12 @@ undefined8 FUN_18077cd81(void)
 
 
 
-undefined8
+uint64_t
 FUN_18077cdb0(longlong param_1,longlong param_2,longlong param_3,uint param_4,int param_5)
 
 {
   float fVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   longlong lVar3;
   float fVar4;
   float fVar5;

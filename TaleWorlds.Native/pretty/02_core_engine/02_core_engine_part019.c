@@ -92,7 +92,7 @@ void cleanup_object_array_variant(longlong *object_array_ptr)
  * 
  * 简化实现：原本实现涉及复杂的对象状态管理和资源清理
  */
-void cleanup_single_object(undefined8 *object_ptr)
+void cleanup_single_object(uint64_t *object_ptr)
 
 {
   // 重置对象的第一组属性
@@ -102,7 +102,7 @@ void cleanup_single_object(undefined8 *object_ptr)
     trigger_object_cleanup_error();
   }
   object_ptr[5] = 0;
-  *(undefined4 *)(object_ptr + 7) = 0;
+  *(int32_t *)(object_ptr + 7) = 0;
   
   // 重置对象的第二组属性
   object_ptr[4] = &OBJECT_CLEANUP_VTABLE2;
@@ -112,7 +112,7 @@ void cleanup_single_object(undefined8 *object_ptr)
     trigger_object_cleanup_error();
   }
   object_ptr[1] = 0;
-  *(undefined4 *)(object_ptr + 3) = 0;
+  *(int32_t *)(object_ptr + 3) = 0;
   *object_ptr = &OBJECT_CLEANUP_VTABLE2;
   return;
 }
@@ -153,11 +153,11 @@ void destroy_mutex_and_cleanup(longlong mutex_context)
  * 
  * 简化实现：原本实现涉及复杂的数据复制和内存管理
  */
-undefined8 * copy_and_cleanup_objects(undefined8 *source_start, undefined8 *source_end, undefined8 *destination)
+uint64_t * copy_and_cleanup_objects(uint64_t *source_start, uint64_t *source_end, uint64_t *destination)
 
 {
-  undefined8 *current_source;    // 当前源数据指针
-  undefined8 *current_dest;      // 当前目标指针
+  uint64_t *current_source;    // 当前源数据指针
+  uint64_t *current_dest;      // 当前目标指针
   longlong offset;              // 内存偏移量
   
   if (source_start != source_end) {
@@ -167,19 +167,19 @@ undefined8 * copy_and_cleanup_objects(undefined8 *source_start, undefined8 *sour
     do {
       // 复制并清理对象数据
       *destination = &OBJECT_CLEANUP_VTABLE1;
-      *(undefined8 *)(offset + (longlong)current_dest) = 0;
-      *(undefined4 *)(offset + 8 + (longlong)current_dest) = 0;
+      *(uint64_t *)(offset + (longlong)current_dest) = 0;
+      *(int32_t *)(offset + 8 + (longlong)current_dest) = 0;
       *destination = &OBJECT_CLEANUP_VTABLE2;
-      *(undefined8 *)(offset + 0x10 + (longlong)current_dest) = 0;
-      *(undefined8 *)(offset + (longlong)current_dest) = 0;
-      *(undefined4 *)(offset + 8 + (longlong)current_dest) = 0;
-      *(undefined4 *)(offset + 8 + (longlong)current_dest) = *(undefined4 *)(current_dest + 1);
-      *(undefined8 *)(offset + (longlong)current_dest) = *current_dest;
-      *(undefined4 *)(offset + 0x14 + (longlong)current_dest) = *(undefined4 *)((longlong)current_dest + 0x14);
-      *(undefined4 *)(offset + 0x10 + (longlong)current_dest) = *(undefined4 *)(current_dest + 2);
+      *(uint64_t *)(offset + 0x10 + (longlong)current_dest) = 0;
+      *(uint64_t *)(offset + (longlong)current_dest) = 0;
+      *(int32_t *)(offset + 8 + (longlong)current_dest) = 0;
+      *(int32_t *)(offset + 8 + (longlong)current_dest) = *(int32_t *)(current_dest + 1);
+      *(uint64_t *)(offset + (longlong)current_dest) = *current_dest;
+      *(int32_t *)(offset + 0x14 + (longlong)current_dest) = *(int32_t *)((longlong)current_dest + 0x14);
+      *(int32_t *)(offset + 0x10 + (longlong)current_dest) = *(int32_t *)(current_dest + 2);
       
       // 清理源对象
-      *(undefined4 *)(current_dest + 1) = 0;
+      *(int32_t *)(current_dest + 1) = 0;
       *current_dest = 0;
       current_dest[2] = 0;
       
@@ -205,14 +205,14 @@ undefined8 * copy_and_cleanup_objects(undefined8 *source_start, undefined8 *sour
  * 
  * 简化实现：原本实现涉及复杂的内存管理和数组操作
  */
-void reallocate_object_array_and_add(longlong *array_ptr, undefined8 new_object_data)
+void reallocate_object_array_and_add(longlong *array_ptr, uint64_t new_object_data)
 
 {
-  undefined8 *current_object;    // 当前对象指针
+  uint64_t *current_object;    // 当前对象指针
   longlong array_size;           // 数组大小
   longlong array_start;           // 数组起始地址
   longlong new_size;              // 新数组大小
-  undefined8 *new_array;          // 新数组指针
+  uint64_t *new_array;          // 新数组指针
   longlong new_capacity;          // 新数组容量
   
   array_size = array_ptr[1];
@@ -243,8 +243,8 @@ ALLOCATION_COMPLETE:
   add_object_to_array(new_size, new_object_data);
   
   // 清理旧数组
-  current_object = (undefined8 *)array_ptr[1];
-  new_array = (undefined8 *)*array_ptr;
+  current_object = (uint64_t *)array_ptr[1];
+  new_array = (uint64_t *)*array_ptr;
   
   if (new_array != current_object) {
     do {
@@ -252,10 +252,10 @@ ALLOCATION_COMPLETE:
       (**(code **)*new_array)(new_array, 0);
       new_array = new_array + 4;
     } while (new_array != current_object);
-    new_array = (undefined8 *)*array_ptr;
+    new_array = (uint64_t *)*array_ptr;
   }
   
-  if (new_array == (undefined8 *)0x0) {
+  if (new_array == (uint64_t *)0x0) {
     // 更新数组指针
     *array_ptr = new_size;
     array_ptr[2] = new_capacity * 0x20 + new_size;
@@ -283,7 +283,7 @@ ALLOCATION_COMPLETE:
  * 
  * 简化实现：原本实现涉及复杂的内存管理策略
  */
-undefined8 * release_object_memory(undefined8 *object_ptr, ulonglong flags, undefined8 param3, undefined8 param4, undefined8 param5)
+uint64_t * release_object_memory(uint64_t *object_ptr, ulonglong flags, uint64_t param3, uint64_t param4, uint64_t param5)
 
 {
   *object_ptr = &OBJECT_CLEANUP_VTABLE1;
@@ -313,8 +313,8 @@ void copy_string_to_object(longlong target_object, longlong source_string)
   
   if (source_string == 0) {
     // 如果源字符串为空，清空目标字符串
-    *(undefined4 *)(target_object + 0x10) = 0;
-    **(undefined1 **)(target_object + 8) = 0;
+    *(int32_t *)(target_object + 0x10) = 0;
+    **(int8_t **)(target_object + 8) = 0;
     return;
   }
   
@@ -327,14 +327,14 @@ void copy_string_to_object(longlong target_object, longlong source_string)
   if ((int)string_length < 0x10) {
     // 如果字符串较短，直接复制
     *(int *)(target_object + 0x10) = (int)string_length;
-    copy_string_safely(*(undefined8 *)(target_object + 8), 0x10);
+    copy_string_safely(*(uint64_t *)(target_object + 8), 0x10);
     return;
   }
   
   // 如果字符串较长，使用专门的复制函数
   copy_long_string_to_buffer(&GLOBAL_STRING_BUFFER, 0x10, source_string);
-  *(undefined4 *)(target_object + 0x10) = 0;
-  **(undefined1 **)(target_object + 8) = 0;
+  *(int32_t *)(target_object + 0x10) = 0;
+  **(int8_t **)(target_object + 8) = 0;
   return;
 }
 
@@ -351,17 +351,17 @@ void copy_string_to_object(longlong target_object, longlong source_string)
  * 
  * 简化实现：原本实现涉及复杂的字符串处理和边界检查
  */
-void set_object_string_data(longlong target_object, undefined8 source_data, int data_length)
+void set_object_string_data(longlong target_object, uint64_t source_data, int data_length)
 
 {
   if (data_length + 1 < 0x10) {
     // 如果数据长度适合缓冲区，直接复制
-    copy_memory_safely(*(undefined1 **)(target_object + 8), source_data, (longlong)data_length);
+    copy_memory_safely(*(int8_t **)(target_object + 8), source_data, (longlong)data_length);
   }
   
   // 清空字符串终止符
-  **(undefined1 **)(target_object + 8) = 0;
-  *(undefined4 *)(target_object + 0x10) = 0;
+  **(int8_t **)(target_object + 8) = 0;
+  *(int32_t *)(target_object + 0x10) = 0;
   return;
 }
 
@@ -392,13 +392,13 @@ void perform_memory_copy(void)
  * 
  * 简化实现：原本实现涉及复杂的对象状态管理
  */
-void reset_object_data(undefined1 *object_ptr)
+void reset_object_data(int8_t *object_ptr)
 
 {
   longlong context_ptr;    // 上下文指针
   
   *object_ptr = 0;
-  *(undefined4 *)(context_ptr + 0x10) = 0;
+  *(int32_t *)(context_ptr + 0x10) = 0;
   return;
 }
 
@@ -423,12 +423,12 @@ void perform_string_replacement(longlong target_object, longlong old_string, lon
   longlong found_position;   // 找到的位置
   longlong old_length;       // 旧字符串长度
   longlong new_length;       // 新字符串长度
-  undefined1 temp_buffer[32]; // 临时缓冲区
-  undefined8 stack_param1;   // 栈参数1
-  undefined *stack_param2;   // 栈参数2
-  undefined1 *stack_param3;  // 栈参数3
-  undefined4 stack_param4;   // 栈参数4
-  undefined1 temp_string[16]; // 临时字符串
+  int8_t temp_buffer[32]; // 临时缓冲区
+  uint64_t stack_param1;   // 栈参数1
+  void *stack_param2;   // 栈参数2
+  int8_t *stack_param3;  // 栈参数3
+  int32_t stack_param4;   // 栈参数4
+  int8_t temp_string[16]; // 临时字符串
   ulonglong checksum;       // 校验和
   
   stack_param1 = 0xfffffffffffffffe;
@@ -439,7 +439,7 @@ void perform_string_replacement(longlong target_object, longlong old_string, lon
   temp_string[0] = 0;
   
   // 查找旧字符串位置
-  found_position = find_substring(*(undefined8 *)(target_object + 8));
+  found_position = find_substring(*(uint64_t *)(target_object + 8));
   
   if (found_position != 0) {
     // 计算字符串长度
@@ -473,14 +473,14 @@ void perform_string_replacement(longlong target_object, longlong old_string, lon
  * 
  * 简化实现：原本实现涉及复杂的引用计数和内存管理
  */
-void release_object_reference(undefined8 *object_ptr)
+void release_object_reference(uint64_t *object_ptr)
 
 {
   int *reference_count;   // 引用计数指针
   longlong memory_block;  // 内存块地址
   ulonglong object_mask; // 对象掩码
   
-  if (object_ptr == (undefined8 *)0x0) {
+  if (object_ptr == (uint64_t *)0x0) {
     return;
   }
   
@@ -492,8 +492,8 @@ void release_object_reference(undefined8 *object_ptr)
     if ((*(void ***)(object_mask + 0x70) == &GLOBAL_EXCEPTION_LIST) && 
         (*(char *)(memory_block + 0xe) == '\0')) {
       // 更新引用链
-      *object_ptr = *(undefined8 *)(memory_block + 0x20);
-      *(undefined8 **)(memory_block + 0x20) = object_ptr;
+      *object_ptr = *(uint64_t *)(memory_block + 0x20);
+      *(uint64_t **)(memory_block + 0x20) = object_ptr;
       reference_count = (int *)(memory_block + 0x18);
       *reference_count = *reference_count + -1;
       
@@ -575,14 +575,14 @@ void cleanup_object_manager(longlong *manager_ptr)
 {
   int *reference_count;   // 引用计数指针
   char *status_flag;      // 状态标志指针
-  undefined8 *object_ptr; // 对象指针
+  uint64_t *object_ptr; // 对象指针
   longlong linked_object;  // 链接对象
   ulonglong object_mask;  // 对象掩码
   
-  object_ptr = (undefined8 *)*manager_ptr;
-  if (object_ptr != (undefined8 *)0x0) {
-    if ((undefined8 *)object_ptr[3] != (undefined8 *)0x0) {
-      *(undefined8 *)object_ptr[3] = 0;
+  object_ptr = (uint64_t *)*manager_ptr;
+  if (object_ptr != (uint64_t *)0x0) {
+    if ((uint64_t *)object_ptr[3] != (uint64_t *)0x0) {
+      *(uint64_t *)object_ptr[3] = 0;
     }
     
     // 调用对象的清理函数
@@ -606,8 +606,8 @@ void cleanup_object_manager(longlong *manager_ptr)
   }
   
   // 释放管理器的对象引用
-  object_ptr = (undefined8 *)manager_ptr[3];
-  if (object_ptr == (undefined8 *)0x0) {
+  object_ptr = (uint64_t *)manager_ptr[3];
+  if (object_ptr == (uint64_t *)0x0) {
     return;
   }
   
@@ -618,8 +618,8 @@ void cleanup_object_manager(longlong *manager_ptr)
     
     if ((*(void ***)(object_mask + 0x70) == &GLOBAL_EXCEPTION_LIST) && 
         (*(char *)(linked_object + 0xe) == '\0')) {
-      *object_ptr = *(undefined8 *)(linked_object + 0x20);
-      *(undefined8 **)(linked_object + 0x20) = object_ptr;
+      *object_ptr = *(uint64_t *)(linked_object + 0x20);
+      *(uint64_t **)(linked_object + 0x20) = object_ptr;
       reference_count = (int *)(linked_object + 0x18);
       *reference_count = *reference_count + -1;
       
@@ -653,14 +653,14 @@ void cleanup_object_manager_variant(longlong *manager_ptr)
 {
   int *reference_count;   // 引用计数指针
   char *status_flag;      // 状态标志指针
-  undefined8 *object_ptr; // 对象指针
+  uint64_t *object_ptr; // 对象指针
   longlong linked_object;  // 链接对象
   ulonglong object_mask;  // 对象掩码
   
-  object_ptr = (undefined8 *)*manager_ptr;
-  if (object_ptr != (undefined8 *)0x0) {
-    if ((undefined8 *)object_ptr[3] != (undefined8 *)0x0) {
-      *(undefined8 *)object_ptr[3] = 0;
+  object_ptr = (uint64_t *)*manager_ptr;
+  if (object_ptr != (uint64_t *)0x0) {
+    if ((uint64_t *)object_ptr[3] != (uint64_t *)0x0) {
+      *(uint64_t *)object_ptr[3] = 0;
     }
     
     // 调用对象的清理函数
@@ -684,8 +684,8 @@ void cleanup_object_manager_variant(longlong *manager_ptr)
   }
   
   // 释放管理器的对象引用
-  object_ptr = (undefined8 *)manager_ptr[3];
-  if (object_ptr == (undefined8 *)0x0) {
+  object_ptr = (uint64_t *)manager_ptr[3];
+  if (object_ptr == (uint64_t *)0x0) {
     return;
   }
   
@@ -696,8 +696,8 @@ void cleanup_object_manager_variant(longlong *manager_ptr)
     
     if ((*(void ***)(object_mask + 0x70) == &GLOBAL_EXCEPTION_LIST) && 
         (*(char *)(linked_object + 0xe) == '\0')) {
-      *object_ptr = *(undefined8 *)(linked_object + 0x20);
-      *(undefined8 **)(linked_object + 0x20) = object_ptr;
+      *object_ptr = *(uint64_t *)(linked_object + 0x20);
+      *(uint64_t **)(linked_object + 0x20) = object_ptr;
       reference_count = (int *)(linked_object + 0x18);
       *reference_count = *reference_count + -1;
       
@@ -727,10 +727,10 @@ void cleanup_object_manager_variant(longlong *manager_ptr)
 void cleanup_object_reference(void)
 
 {
-  undefined8 *object_ptr;  // 对象指针
+  uint64_t *object_ptr;  // 对象指针
   
-  if ((undefined8 *)object_ptr[3] != (undefined8 *)0x0) {
-    *(undefined8 *)object_ptr[3] = 0;
+  if ((uint64_t *)object_ptr[3] != (uint64_t *)0x0) {
+    *(uint64_t *)object_ptr[3] = 0;
   }
   
   // 调用对象的清理函数
@@ -752,7 +752,7 @@ void cleanup_context_object(void)
 {
   int *reference_count;   // 引用计数指针
   char *status_flag;      // 状态标志指针
-  undefined8 *object_ptr;  // 对象指针
+  uint64_t *object_ptr;  // 对象指针
   longlong context_ptr;    // 上下文指针
   ulonglong object_mask;   // 对象掩码
   
@@ -772,8 +772,8 @@ void cleanup_context_object(void)
   }
   
   // 释放上下文的对象引用
-  object_ptr = *(undefined8 **)(context_ptr + 0x18);
-  if (object_ptr != (undefined8 *)0x0) {
+  object_ptr = *(uint64_t **)(context_ptr + 0x18);
+  if (object_ptr != (uint64_t *)0x0) {
     object_mask = (ulonglong)object_ptr & 0xffffffffffc00000;
     if (object_mask != 0) {
       linked_object = object_mask + 0x80 + ((longlong)object_ptr - object_mask >> 0x10) * 0x50;
@@ -781,8 +781,8 @@ void cleanup_context_object(void)
       
       if ((*(void ***)(object_mask + 0x70) == &GLOBAL_EXCEPTION_LIST) && 
           (*(char *)(linked_object + 0xe) == '\0')) {
-        *object_ptr = *(undefined8 *)(linked_object + 0x20);
-        *(undefined8 **)(linked_object + 0x20) = object_ptr;
+        *object_ptr = *(uint64_t *)(linked_object + 0x20);
+        *(uint64_t **)(linked_object + 0x20) = object_ptr;
         reference_count = (int *)(linked_object + 0x18);
         *reference_count = *reference_count + -1;
         
@@ -813,7 +813,7 @@ void cleanup_context_object(void)
  * 
  * 简化实现：原本实现涉及复杂的引用计数和内存管理
  */
-void release_object_reference_variant(undefined8 *object_ptr)
+void release_object_reference_variant(uint64_t *object_ptr)
 
 {
   int *reference_count;   // 引用计数指针
@@ -828,8 +828,8 @@ void release_object_reference_variant(undefined8 *object_ptr)
     if ((*(void ***)(object_mask + 0x70) == &GLOBAL_EXCEPTION_LIST) && 
         (*(char *)(memory_block + 0xe) == '\0')) {
       // 更新引用链
-      *object_ptr = *(undefined8 *)(memory_block + 0x20);
-      *(undefined8 **)(memory_block + 0x20) = object_ptr;
+      *object_ptr = *(uint64_t *)(memory_block + 0x20);
+      *(uint64_t **)(memory_block + 0x20) = object_ptr;
       reference_count = (int *)(memory_block + 0x18);
       *reference_count = *reference_count + -1;
       
@@ -864,7 +864,7 @@ void cleanup_sync_object_manager(longlong *manager_ptr)
 {
   int *reference_count;   // 引用计数指针
   char *status_flag;      // 状态标志指针
-  undefined8 *object_ptr; // 对象指针
+  uint64_t *object_ptr; // 对象指针
   longlong linked_object;  // 链接对象
   ulonglong object_mask;  // 对象掩码
   
@@ -872,10 +872,10 @@ void cleanup_sync_object_manager(longlong *manager_ptr)
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
   
-  object_ptr = (undefined8 *)*manager_ptr;
-  if (object_ptr != (undefined8 *)0x0) {
-    if ((undefined8 *)object_ptr[3] != (undefined8 *)0x0) {
-      *(undefined8 *)object_ptr[3] = 0;
+  object_ptr = (uint64_t *)*manager_ptr;
+  if (object_ptr != (uint64_t *)0x0) {
+    if ((uint64_t *)object_ptr[3] != (uint64_t *)0x0) {
+      *(uint64_t *)object_ptr[3] = 0;
     }
     
     // 调用对象的清理函数
@@ -899,8 +899,8 @@ void cleanup_sync_object_manager(longlong *manager_ptr)
   }
   
   // 释放管理器的对象引用
-  object_ptr = (undefined8 *)manager_ptr[3];
-  if (object_ptr == (undefined8 *)0x0) {
+  object_ptr = (uint64_t *)manager_ptr[3];
+  if (object_ptr == (uint64_t *)0x0) {
     return;
   }
   
@@ -911,8 +911,8 @@ void cleanup_sync_object_manager(longlong *manager_ptr)
     
     if ((*(void ***)(object_mask + 0x70) == &GLOBAL_EXCEPTION_LIST) && 
         (*(char *)(linked_object + 0xe) == '\0')) {
-      *object_ptr = *(undefined8 *)(linked_object + 0x20);
-      *(undefined8 **)(linked_object + 0x20) = object_ptr;
+      *object_ptr = *(uint64_t *)(linked_object + 0x20);
+      *(uint64_t **)(linked_object + 0x20) = object_ptr;
       reference_count = (int *)(linked_object + 0x18);
       *reference_count = *reference_count + -1;
       
@@ -941,7 +941,7 @@ void cleanup_sync_object_manager(longlong *manager_ptr)
  * 
  * 简化实现：原本实现涉及复杂的回调函数管理和执行
  */
-void execute_object_callbacks(undefined8 *object_array)
+void execute_object_callbacks(uint64_t *object_array)
 
 {
   longlong *callback_object;  // 回调对象指针
@@ -1053,7 +1053,7 @@ CONTINUE_PROCESSING:
         current_object = *(longlong *)(lock_object + 0x28);
         do {
           *(longlong *)(temp_object + 0x138) = current_object;
-          *(undefined4 *)(temp_object + 0x130) = 1;
+          *(int32_t *)(temp_object + 0x130) = 1;
           callback_object = (longlong *)(lock_object + 0x28);
           ACQUIRE_LOCK();
           temp_object = *callback_object;
@@ -1096,7 +1096,7 @@ CONTINUE_PROCESSING:
  * 
  * 简化实现：原本实现涉及复杂的内存管理策略
  */
-undefined8 release_callback_object_memory(undefined8 object_ptr, ulonglong flags)
+uint64_t release_callback_object_memory(uint64_t object_ptr, ulonglong flags)
 
 {
   execute_callback_cleanup();
@@ -1118,7 +1118,7 @@ undefined8 release_callback_object_memory(undefined8 object_ptr, ulonglong flags
  * 
  * 简化实现：原本实现涉及复杂的回调管理和清理
  */
-void execute_callback_cleanup(undefined8 *callback_array)
+void execute_callback_cleanup(uint64_t *callback_array)
 
 {
   int *callback_status;       // 回调状态指针
@@ -1152,7 +1152,7 @@ void execute_callback_cleanup(undefined8 *callback_array)
           current_object = *(longlong *)(lock_object + 0x28);
           do {
             *(longlong *)(temp_object + 0x138) = current_object;
-            *(undefined4 *)(temp_object + 0x130) = 1;
+            *(int32_t *)(temp_object + 0x130) = 1;
             callback_object = (longlong *)(lock_object + 0x28);
             ACQUIRE_LOCK();
             temp_object = *callback_object;
@@ -1206,7 +1206,7 @@ OBJECT_LOOKUP:
       current_object = *(longlong *)(lock_object + 0x28);
       do {
         *(longlong *)(temp_object + 0x138) = current_object;
-        *(undefined4 *)(temp_object + 0x130) = 1;
+        *(int32_t *)(temp_object + 0x130) = 1;
         callback_object = (longlong *)(lock_object + 0x28);
         ACQUIRE_LOCK();
         temp_object = *callback_object;
@@ -1251,7 +1251,7 @@ OBJECT_LOOKUP:
  * 
  * 简化实现：原本实现涉及复杂的内存管理策略
  */
-undefined8 * release_callback_object(undefined8 *object_ptr, ulonglong flags)
+uint64_t * release_callback_object(uint64_t *object_ptr, ulonglong flags)
 
 {
   *object_ptr = &OBJECT_CALLBACK_VTABLE2;
@@ -1276,11 +1276,11 @@ undefined8 * release_callback_object(undefined8 *object_ptr, ulonglong flags)
  * 
  * 简化实现：原本实现涉及复杂的异步处理和初始化
  */
-void initialize_async_processor(undefined8 *processor_ptr, undefined8 param2, undefined8 param3, undefined8 param4)
+void initialize_async_processor(uint64_t *processor_ptr, uint64_t param2, uint64_t param3, uint64_t param4)
 
 {
   char init_result;      // 初始化结果
-  undefined8 loop_param;  // 循环参数
+  uint64_t loop_param;  // 循环参数
   
   loop_param = 0xfffffffffffffffe;
   *processor_ptr = &ASYNC_PROCESSOR_VTABLE;
@@ -1300,8 +1300,8 @@ void initialize_async_processor(undefined8 *processor_ptr, undefined8 param2, un
     cleanup_async_resources();
     
     if (processor_ptr[0xe] != 0) {
-      *(undefined8 *)(processor_ptr[0xe] + 0x10) = 0;
-      *(undefined1 *)(processor_ptr[0xe] + 8) = 1;
+      *(uint64_t *)(processor_ptr[0xe] + 0x10) = 0;
+      *(int8_t *)(processor_ptr[0xe] + 8) = 1;
     }
     
     processor_ptr[2] = &OBJECT_CLEANUP_VTABLE1;
@@ -1330,10 +1330,10 @@ void initialize_async_processor(undefined8 *processor_ptr, undefined8 param2, un
  * 
  * 简化实现：原本实现涉及复杂的内存管理策略
  */
-undefined8 release_async_processor_memory(undefined8 processor_ptr, ulonglong flags, undefined8 param3, undefined8 param4)
+uint64_t release_async_processor_memory(uint64_t processor_ptr, ulonglong flags, uint64_t param3, uint64_t param4)
 
 {
-  undefined8 release_param;  // 释放参数
+  uint64_t release_param;  // 释放参数
   
   release_param = 0xfffffffffffffffe;
   cleanup_async_processor();
@@ -1361,13 +1361,13 @@ undefined8 release_async_processor_memory(undefined8 processor_ptr, ulonglong fl
  * 
  * 简化实现：原本实现涉及复杂的字符串格式化和缓冲区管理
  */
-int format_string_to_buffer(undefined8 buffer, undefined8 format, undefined8 param3, undefined8 param4)
+int format_string_to_buffer(uint64_t buffer, uint64_t format, uint64_t param3, uint64_t param4)
 
 {
   int result;          // 结果值
   ulonglong *format_info; // 格式信息指针
-  undefined8 stack_param1; // 栈参数1
-  undefined8 stack_param2; // 栈参数2
+  uint64_t stack_param1; // 栈参数1
+  uint64_t stack_param2; // 栈参数2
   
   stack_param1 = param3;
   stack_param2 = param4;

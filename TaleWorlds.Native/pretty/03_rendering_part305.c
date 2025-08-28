@@ -8,7 +8,7 @@ void FUN_18042dad0(longlong param_1,int param_2,int *param_3,longlong *param_4)
 {
   int iVar1;
   uint uVar2;
-  undefined4 *puVar3;
+  int32_t *puVar3;
   int *piVar4;
   int *piVar5;
   int *piVar6;
@@ -37,13 +37,13 @@ void FUN_18042dad0(longlong param_1,int param_2,int *param_3,longlong *param_4)
   longlong lStack_58;
   
   piStack_60 = (int *)0x0;
-  puVar3 = (undefined4 *)realloc(0,10);
-  if (puVar3 != (undefined4 *)0x0) {
+  puVar3 = (int32_t *)realloc(0,10);
+  if (puVar3 != (int32_t *)0x0) {
     piStack_60 = puVar3 + 2;
     puVar3[1] = 0;
     *puVar3 = 2;
   }
-  *(undefined1 *)((longlong)piStack_60[-1] + (longlong)piStack_60) = 0x78;
+  *(int8_t *)((longlong)piStack_60[-1] + (longlong)piStack_60) = 0x78;
   piStack_60[-1] = piStack_60[-1] + 1;
   iVar15 = piStack_60[-2];
   if (iVar15 <= piStack_60[-1] + 1) {
@@ -57,7 +57,7 @@ void FUN_18042dad0(longlong param_1,int param_2,int *param_3,longlong *param_4)
   lStack_58 = 0x4000;
   uVar18 = 3;
   iVar15 = 0;
-  *(undefined1 *)((longlong)piStack_60[-1] + (longlong)piStack_60) = 0x5e;
+  *(int8_t *)((longlong)piStack_60[-1] + (longlong)piStack_60) = 0x5e;
   uVar9 = 3;
   piStack_60[-1] = piStack_60[-1] + 1;
   plVar20 = param_4;

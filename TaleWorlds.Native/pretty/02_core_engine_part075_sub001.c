@@ -16,10 +16,10 @@
 //------------------------------------------------------------------------------
 
 // 核心引擎句柄类型
-typedef undefined8 CoreEngineAdvancedHandle;        // 核心引擎高级句柄
-typedef undefined8 ProcessingContextHandle;         // 处理上下文句柄
-typedef undefined8 ConfigurationHandle;              // 配置句柄
-typedef undefined8 StateHandle;                      // 状态句柄
+typedef uint64_t CoreEngineAdvancedHandle;        // 核心引擎高级句柄
+typedef uint64_t ProcessingContextHandle;         // 处理上下文句柄
+typedef uint64_t ConfigurationHandle;              // 配置句柄
+typedef uint64_t StateHandle;                      // 状态句柄
 
 // 核心引擎处理状态常量
 #define CORE_ENGINE_ADVANCED_STATE_READY    0x00000001  // 核心引擎高级处理就绪

@@ -84,7 +84,7 @@
  * - 管理渲染目标切换
  * - 处理深度和模板缓冲区配置
  */
-void RenderingSystem_PipelineManager(undefined8 **render_context_ptr, code *material_data)
+void RenderingSystem_PipelineManager(uint64_t **render_context_ptr, code *material_data)
 
 {
   uint texture_unit;
@@ -92,47 +92,47 @@ void RenderingSystem_PipelineManager(undefined8 **render_context_ptr, code *mate
   float material_param2;
   int render_state;
   code *shader_program;
-  undefined8 render_target;
+  uint64_t render_target;
   longlong pipeline_config;
   longlong *state_block;
   uint vertex_count;
-  undefined8 texture_handle;
+  uint64_t texture_handle;
   longlong index_buffer;
   code **render_pass;
-  undefined8 *resource_ptr;
+  uint64_t *resource_ptr;
   longlong frame_buffer;
   code **shader_stage;
   uint *vertex_data;
   longlong constant_buffer;
-  undefined4 blend_state;
-  undefined1 alignment_buffer[32];
-  undefined8 depth_stencil_state;
-  undefined4 rasterizer_state;
-  undefined4 sample_mask;
-  undefined4 stencil_ref;
-  undefined8 viewport;
-  undefined1 scissor_enable;
-  undefined4 topology;
+  int32_t blend_state;
+  int8_t alignment_buffer[32];
+  uint64_t depth_stencil_state;
+  int32_t rasterizer_state;
+  int32_t sample_mask;
+  int32_t stencil_ref;
+  uint64_t viewport;
+  int8_t scissor_enable;
+  int32_t topology;
   code **input_layout;
   float viewport_scale;
-  undefined4 primitive_restart;
-  undefined1 padding_buffer[8];
+  int32_t primitive_restart;
+  int8_t padding_buffer[8];
   code **vertex_shader;
   code **pixel_shader;
   code *geometry_shader;
-  undefined8 stream_output;
-  undefined4 draw_indexed;
-  undefined2 index_format;
-  undefined2 index_offset;
+  uint64_t stream_output;
+  int32_t draw_indexed;
+  int16_t index_format;
+  int16_t index_offset;
   code *hull_shader;
-  undefined *stream_output_buffer;
+  void *stream_output_buffer;
   code *domain_shader;
   code *compute_shader;
-  undefined8 constant_buffer_update;
-  undefined4 draw_instance_count;
+  uint64_t constant_buffer_update;
+  int32_t draw_instance_count;
   longlong *vertex_buffer;
   longlong instance_buffer;
-  undefined4 vertex_offset;
+  int32_t vertex_offset;
   ulonglong frame_sync;
   
   // 初始化渲染管线状态
@@ -153,7 +153,7 @@ void RenderingSystem_PipelineManager(undefined8 **render_context_ptr, code *mate
   depth_stencil_state._4_4_ = 4;
   
   // 配置输入装配器
-  FUN_1800b0a10(blend_state, &input_layout, *(undefined4 *)(render_context_ptr[0x11] + 0xa0), &vertex_shader);
+  FUN_1800b0a10(blend_state, &input_layout, *(int32_t *)(render_context_ptr[0x11] + 0xa0), &vertex_shader);
   pipeline_config = _DAT_180c86898;
   vertex_shader = (code *)&UNK_18098bcb0;
   shader_program = render_context_ptr[0x11];
@@ -179,11 +179,11 @@ void RenderingSystem_PipelineManager(undefined8 **render_context_ptr, code *mate
       
       // 初始化资源池
       if (*(longlong *)(pipeline_config + 0x410) == 0) {
-        resource_ptr = (undefined8 *)FUN_18009e9e0((longlong)render_state, &vertex_buffer, &UNK_180a03740);
+        resource_ptr = (uint64_t *)FUN_18009e9e0((longlong)render_state, &vertex_buffer, &UNK_180a03740);
         render_target = *resource_ptr;
         *resource_ptr = 0;
         input_layout = *(code ***)(pipeline_config + 0x410);
-        *(undefined8 *)(pipeline_config + 0x410) = render_target;
+        *(uint64_t *)(pipeline_config + 0x410) = render_target;
         if (input_layout != (code **)0x0) {
           (**(code **)((longlong)*input_layout + 0x38))();
         }
@@ -206,9 +206,9 @@ void RenderingSystem_PipelineManager(undefined8 **render_context_ptr, code *mate
       draw_instance_count = 2;
       constant_buffer_update = 0;
       frame_buffer = 0;
-      render_target = *(undefined8 *)(render_pass + 0x15b8);
+      render_target = *(uint64_t *)(render_pass + 0x15b8);
       vertex_buffer = &vertex_shader;
-      frame_sync._4_4_ = (undefined4)((ulonglong)texture_handle >> 0x20);
+      frame_sync._4_4_ = (int32_t)((ulonglong)texture_handle >> 0x20);
       pixel_shader = geometry_shader;
       topology = draw_indexed;
       rasterizer_state = frame_sync._4_4_;
@@ -219,10 +219,10 @@ void RenderingSystem_PipelineManager(undefined8 **render_context_ptr, code *mate
       
       // 执行渲染管线配置
       FUN_180627ae0(alignment_buffer, &pixel_shader);
-      primitive_restart = (undefined4)constant_buffer_update;
+      primitive_restart = (int32_t)constant_buffer_update;
       sample_mask = constant_buffer_update._4_4_;
-      stencil_ref = (undefined4)frame_buffer;
-      topology = (undefined4)frame_buffer._4_4_;
+      stencil_ref = (int32_t)frame_buffer;
+      topology = (int32_t)frame_buffer._4_4_;
       state_block = vertex_buffer;
       if (vertex_buffer != (longlong *)0x0) {
         (**(code **)(*vertex_buffer + 0x28))();
@@ -231,33 +231,33 @@ void RenderingSystem_PipelineManager(undefined8 **render_context_ptr, code *mate
       // 执行材质绑定
       pipeline_config = FUN_180299eb0(render_target, 0, &vertex_shader, padding_buffer);
       pipeline_config = _DAT_180c86938;
-      *(undefined4 *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x1d88) =
-           *(undefined4 *)(render_context_ptr[0x11] + 0x30b0);
-      blend_state = powf(0x40000000, *(undefined4 *)(render_context_ptr[0x11] + 0x320c));
-      *(undefined4 *)(*(longlong *)(pipeline_config + 0x1cd8) + 0x1d58) = blend_state;
-      FUN_18029fc10(*(longlong *)(pipeline_config + 0x1cd8), *(undefined8 *)(pipeline_config + 0x1c88),
+      *(int32_t *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x1d88) =
+           *(int32_t *)(render_context_ptr[0x11] + 0x30b0);
+      blend_state = powf(0x40000000, *(int32_t *)(render_context_ptr[0x11] + 0x320c));
+      *(int32_t *)(*(longlong *)(pipeline_config + 0x1cd8) + 0x1d58) = blend_state;
+      FUN_18029fc10(*(longlong *)(pipeline_config + 0x1cd8), *(uint64_t *)(pipeline_config + 0x1c88),
                     *(longlong *)(pipeline_config + 0x1cd8) + 0x1be0, 0x230);
       pipeline_config = *(longlong *)(_DAT_180c86938 + 0x1c88);
       state_block = *(longlong **)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x8400);
       shader_program = *(code **)(*state_block + 0x238);
-      *(undefined4 *)(pipeline_config + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+      *(int32_t *)(pipeline_config + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
       (*shader_program)(state_block, 2, 1, pipeline_config + 0x10);
       pipeline_config = *(longlong *)(_DAT_180c86938 + 0x1cd8);
       
       // 更新渲染状态
       if ((pipeline_config != 0) && (*(longlong *)(pipeline_config + 0x82a0) != (longlong)**(int **)(pipeline_config + 0x10))) {
         (**(code **)(**(longlong **)(pipeline_config + 0x8400) + 0x228))
-                  (*(longlong **)(pipeline_config + 0x8400), *(undefined8 *)(*(int **)(pipeline_config + 0x10) + 6), 0, 0)
+                  (*(longlong **)(pipeline_config + 0x8400), *(uint64_t *)(*(int **)(pipeline_config + 0x10) + 6), 0, 0)
         ;
         *(longlong *)(pipeline_config + 0x82a0) = (longlong)**(int **)(pipeline_config + 0x10);
       }
       
       // 执行渲染操作
       depth_stencil_state = CONCAT44(depth_stencil_state._4_4_, 0xffffffff);
-      FUN_18029d150(*(undefined8 *)(_DAT_180c86938 + 0x1cd8), 0, frame_buffer, 0x20);
+      FUN_18029d150(*(uint64_t *)(_DAT_180c86938 + 0x1cd8), 0, frame_buffer, 0x20);
       pipeline_config = *(longlong *)(_DAT_180c86938 + 0x1cd8);
       if (input_layout != (code **)0x0) {
-        *(undefined4 *)((longlong)input_layout + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+        *(int32_t *)((longlong)input_layout + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
         render_pass = (code **)input_layout[4];
       }
       state_block = *(longlong **)(pipeline_config + 0x8400);
@@ -280,7 +280,7 @@ void RenderingSystem_PipelineManager(undefined8 **render_context_ptr, code *mate
       rasterizer_state = 0x10;
       stencil_ref = 0x21;
       depth_stencil_state._4_4_ = 0x10;
-      FUN_1800b0a10(blend_state, &domain_shader, *(undefined4 *)(render_context_ptr[0x11] + 0xa0), &vertex_shader);
+      FUN_1800b0a10(blend_state, &domain_shader, *(int32_t *)(render_context_ptr[0x11] + 0xa0), &vertex_shader);
       vertex_shader = (code *)&UNK_18098bcb0;
       render_pass = (code **)FUN_18062b1e0(_DAT_180c8ed18, 0x48, 8, 3);
       shader_program = domain_shader;
@@ -326,13 +326,13 @@ void RenderingSystem_PipelineManager(undefined8 **render_context_ptr, code *mate
       }
       render_pass[3] = material_data;
       vertex_data = (uint *)FUN_180145140(render_context_ptr[0x11] + 0x3018, &geometry_shader,
-                                      *(undefined4 *)(render_context_ptr[0x11] + 0x3f50));
+                                      *(int32_t *)(render_context_ptr[0x11] + 0x3f50));
       texture_unit = vertex_data[2];
       vertex_count = vertex_data[1];
       *(uint *)((longlong)render_pass + 0x24) = *vertex_data ^ 0x80000000;
       *(uint *)(render_pass + 5) = vertex_count ^ 0x80000000;
       *(uint *)((longlong)render_pass + 0x2c) = texture_unit ^ 0x80000000;
-      *(undefined4 *)(render_pass + 6) = 0x7f7fffff;
+      *(int32_t *)(render_pass + 6) = 0x7f7fffff;
       shader_program = render_context_ptr[0x11];
       material_param1 = *(float *)(shader_program + 0x30c8);
       viewport_scale = material_param1 * *(float *)(shader_program + 0x30e4);
@@ -341,7 +341,7 @@ void RenderingSystem_PipelineManager(undefined8 **render_context_ptr, code *mate
       *(float *)((longlong)render_pass + 0x34) = material_param1 * *(float *)(shader_program + 0x30dc);
       *(float *)(render_pass + 7) = material_param1 * material_param2;
       *(float *)((longlong)render_pass + 0x3c) = viewport_scale;
-      *(undefined4 *)(render_pass + 8) = 0x7f7fffff;
+      *(int32_t *)(render_pass + 8) = 0x7f7fffff;
       vertex_buffer = &geometry_shader;
       hull_shader = (code *)&UNK_1802e4bc0;
       stream_output_buffer = &UNK_1800ee4c0;
@@ -377,7 +377,7 @@ void RenderingSystem_PipelineManager(undefined8 **render_context_ptr, code *mate
   render_state = *(int *)(material_data + 0x4c);
   *(int *)(material_data + 0x4c) = render_state + 1;
   if (render_state + 1 == 0x18) {
-    *(undefined4 *)(material_data + 0x5c) = 0xffffffff;
+    *(int32_t *)(material_data + 0x5c) = 0xffffffff;
   }
 LAB_18031df5a:
   if (input_layout != (code **)0x0) {
@@ -421,25 +421,25 @@ void RenderingSystem_ResourceCleaner(longlong resource_context)
                     // WARNING: Subroutine does not return
     FUN_18064e900(texture_resource);
   }
-  *(undefined8 *)(resource_context + 0x3c8) = 0;
+  *(uint64_t *)(resource_context + 0x3c8) = 0;
   
   // 清理顶点着色器资源
   shader_resource = *(longlong **)(resource_context + 0x1c8);
-  *(undefined8 *)(resource_context + 0x1c8) = 0;
+  *(uint64_t *)(resource_context + 0x1c8) = 0;
   if (shader_resource != (longlong *)0x0) {
     (**(code **)(*shader_resource + 0x38))();
   }
   
   // 清理像素着色器资源
   shader_resource = *(longlong **)(resource_context + 0x1d0);
-  *(undefined8 *)(resource_context + 0x1d0) = 0;
+  *(uint64_t *)(resource_context + 0x1d0) = 0;
   if (shader_resource != (longlong *)0x0) {
     (**(code **)(*shader_resource + 0x38))();
   }
   
   // 清理几何着色器资源
   shader_resource = *(longlong **)(resource_context + 0x1d8);
-  *(undefined8 *)(resource_context + 0x1d8) = 0;
+  *(uint64_t *)(resource_context + 0x1d8) = 0;
   if (shader_resource != (longlong *)0x0) {
     (**(code **)(*shader_resource + 0x38))();
   }
@@ -473,27 +473,27 @@ void RenderingSystem_ObjectProcessor(longlong render_object)
 
 {
   int render_state;
-  undefined8 shader_handle;
-  undefined8 *resource_ptr;
+  uint64_t shader_handle;
+  uint64_t *resource_ptr;
   longlong shader_program;
   longlong *render_context;
-  undefined1 alignment_buffer[32];
-  undefined4 blend_state;
-  undefined4 rasterizer_state;
-  undefined4 depth_stencil_state;
-  undefined4 sample_mask;
+  int8_t alignment_buffer[32];
+  int32_t blend_state;
+  int32_t rasterizer_state;
+  int32_t depth_stencil_state;
+  int32_t sample_mask;
   int state_index;
   longlong *state_block;
-  undefined1 scissor_enable;
-  undefined4 topology;
+  int8_t scissor_enable;
+  int32_t topology;
   longlong *vertex_shader;
   longlong *pixel_shader;
-  undefined8 viewport;
+  uint64_t viewport;
   longlong *input_layout;
-  undefined *render_target;
-  undefined1 *shader_data;
-  undefined4 format;
-  undefined1 texture_buffer[72];
+  void *render_target;
+  int8_t *shader_data;
+  int32_t format;
+  int8_t texture_buffer[72];
   ulonglong frame_sync;
   
   // 初始化渲染对象状态
@@ -504,7 +504,7 @@ void RenderingSystem_ObjectProcessor(longlong render_object)
   if (*(int *)(render_object + 0x60) == 0) {
     // 处理顶点着色器
     render_context = *(longlong **)(render_object + 0x1c8);
-    *(undefined8 *)(render_object + 0x1c8) = 0;
+    *(uint64_t *)(render_object + 0x1c8) = 0;
     vertex_shader = render_context;
     if (render_context == (longlong *)0x0) goto LAB_18031e20e;
     shader_program = *render_context;
@@ -529,11 +529,11 @@ void RenderingSystem_ObjectProcessor(longlong render_object)
       blend_state = 0x41;
       state_index = render_state * 7;
       state_block = render_context;
-      resource_ptr = (undefined8 *)FUN_1800b0a10();
+      resource_ptr = (uint64_t *)FUN_1800b0a10();
       shader_handle = *resource_ptr;
       *resource_ptr = 0;
       vertex_shader = *(longlong **)(render_object + 0x1c8);
-      *(undefined8 *)(render_object + 0x1c8) = shader_handle;
+      *(uint64_t *)(render_object + 0x1c8) = shader_handle;
       if (vertex_shader != (longlong *)0x0) {
         (**(code **)(*vertex_shader + 0x38))();
       }
@@ -542,7 +542,7 @@ void RenderingSystem_ObjectProcessor(longlong render_object)
       }
       render_target = &UNK_18098bcb0;
       vertex_shader = *(longlong **)(render_object + 0x70);
-      *(undefined8 *)(render_object + 0x70) = 0;
+      *(uint64_t *)(render_object + 0x70) = 0;
       if (vertex_shader != (longlong *)0x0) {
         (**(code **)(*vertex_shader + 0x38))();
       }
@@ -582,25 +582,25 @@ LAB_18031e20e:
  * - 处理着色器参数
  * - 优化材质性能
  */
-void RenderingSystem_MaterialProcessor(undefined8 texture_handle, undefined8 shader_context, float *material_params, undefined4 material_flags)
+void RenderingSystem_MaterialProcessor(uint64_t texture_handle, uint64_t shader_context, float *material_params, int32_t material_flags)
 
 {
   float *result_vector;
   float param_x;
   float param_y;
   float param_z;
-  undefined4 max_float;
-  undefined1 texture_coords[16];
+  int32_t max_float;
+  int8_t texture_coords[16];
   float output_x;
   float output_y;
   float output_z;
   float output_w;
-  undefined4 param_flags;
+  int32_t param_flags;
   
   // 初始化材质处理
   result_vector = &output_x;
   FUN_18031c410(result_vector, material_flags, &param_x, texture_coords, result_vector);
-  param_flags = (undefined4)((ulonglong)result_vector >> 0x20);
+  param_flags = (int32_t)((ulonglong)result_vector >> 0x20);
   
   // 计算材质参数
   param_x = param_x + *material_params;
@@ -648,16 +648,16 @@ void RenderingSystem_DataTransfer(longlong source_context, longlong target_conte
 
 {
   float scale_factor;
-  undefined4 render_param1;
-  undefined4 render_param2;
+  int32_t render_param1;
+  int32_t render_param2;
   int render_state;
   longlong *render_resource;
-  undefined8 texture_handle;
+  uint64_t texture_handle;
   char validation_flag;
   uint buffer_size;
   int texture_index;
-  undefined8 *vertex_buffer;
-  undefined8 *index_buffer;
+  uint64_t *vertex_buffer;
+  uint64_t *index_buffer;
   longlong shader_program;
   float lighting_intensity;
   float normal_length;
@@ -666,26 +666,26 @@ void RenderingSystem_DataTransfer(longlong source_context, longlong target_conte
   double aspect_ratio_y;
   float scaled_intensity;
   float normal_x;
-  undefined1 alignment_buffer[32];
-  undefined1 user_flag;
-  undefined8 light_vector;
-  undefined8 normal_vector;
-  undefined4 transfer_flag;
-  undefined *render_target;
-  undefined8 *constant_buffer;
-  undefined4 buffer_size;
-  undefined8 frame_buffer;
-  undefined4 texture_width;
-  undefined4 texture_height;
-  undefined4 texture_depth;
-  undefined4 texture_mips;
-  undefined4 texture_format;
-  undefined8 viewport_data;
-  undefined8 projection_data;
-  undefined1 stencil_enable;
-  undefined8 blend_factor;
-  undefined4 clear_flags;
-  undefined1 scissor_enable;
+  int8_t alignment_buffer[32];
+  int8_t user_flag;
+  uint64_t light_vector;
+  uint64_t normal_vector;
+  int32_t transfer_flag;
+  void *render_target;
+  uint64_t *constant_buffer;
+  int32_t buffer_size;
+  uint64_t frame_buffer;
+  int32_t texture_width;
+  int32_t texture_height;
+  int32_t texture_depth;
+  int32_t texture_mips;
+  int32_t texture_format;
+  uint64_t viewport_data;
+  uint64_t projection_data;
+  int8_t stencil_enable;
+  uint64_t blend_factor;
+  int32_t clear_flags;
+  int8_t scissor_enable;
   longlong *vertex_shader;
   longlong *pixel_shader;
   longlong *geometry_shader;
@@ -693,11 +693,11 @@ void RenderingSystem_DataTransfer(longlong source_context, longlong target_conte
   longlong *domain_shader;
   longlong *compute_shader;
   longlong *stream_output;
-  undefined8 render_state_data;
-  undefined *frame_buffer_ptr;
-  undefined1 *shader_data;
-  undefined4 data_size;
-  undefined1 user_buffer[136];
+  uint64_t render_state_data;
+  void *frame_buffer_ptr;
+  int8_t *shader_data;
+  int32_t data_size;
+  int8_t user_buffer[136];
   ulonglong frame_sync;
   
   // 初始化数据传输状态
@@ -718,24 +718,24 @@ void RenderingSystem_DataTransfer(longlong source_context, longlong target_conte
   }
   
   // 传输渲染参数
-  texture_handle = *(undefined8 *)(source_context + 0x24c);
-  *(undefined8 *)(target_context + 0x97c8) = *(undefined8 *)(source_context + 0x244);
-  *(undefined8 *)(target_context + 0x97d0) = texture_handle;
-  texture_handle = *(undefined8 *)(source_context + 0x25c);
-  *(undefined8 *)(target_context + 0x97d8) = *(undefined8 *)(source_context + 0x254);
-  *(undefined8 *)(target_context + 0x97e0) = texture_handle;
-  texture_handle = *(undefined8 *)(source_context + 0x26c);
-  *(undefined8 *)(target_context + 0x97e8) = *(undefined8 *)(source_context + 0x264);
-  *(undefined8 *)(target_context + 0x97f0) = texture_handle;
-  texture_handle = *(undefined8 *)(source_context + 0x27c);
-  *(undefined8 *)(target_context + 0x97f8) = *(undefined8 *)(source_context + 0x274);
-  *(undefined8 *)(target_context + 0x9800) = texture_handle;
-  texture_handle = *(undefined8 *)(source_context + 0x28c);
-  *(undefined8 *)(target_context + 0x9808) = *(undefined8 *)(source_context + 0x284);
-  *(undefined8 *)(target_context + 0x9810) = texture_handle;
-  texture_handle = *(undefined8 *)(source_context + 0x29c);
-  *(undefined8 *)(target_context + 0x9818) = *(undefined8 *)(source_context + 0x294);
-  *(undefined8 *)(target_context + 0x9820) = texture_handle;
+  texture_handle = *(uint64_t *)(source_context + 0x24c);
+  *(uint64_t *)(target_context + 0x97c8) = *(uint64_t *)(source_context + 0x244);
+  *(uint64_t *)(target_context + 0x97d0) = texture_handle;
+  texture_handle = *(uint64_t *)(source_context + 0x25c);
+  *(uint64_t *)(target_context + 0x97d8) = *(uint64_t *)(source_context + 0x254);
+  *(uint64_t *)(target_context + 0x97e0) = texture_handle;
+  texture_handle = *(uint64_t *)(source_context + 0x26c);
+  *(uint64_t *)(target_context + 0x97e8) = *(uint64_t *)(source_context + 0x264);
+  *(uint64_t *)(target_context + 0x97f0) = texture_handle;
+  texture_handle = *(uint64_t *)(source_context + 0x27c);
+  *(uint64_t *)(target_context + 0x97f8) = *(uint64_t *)(source_context + 0x274);
+  *(uint64_t *)(target_context + 0x9800) = texture_handle;
+  texture_handle = *(uint64_t *)(source_context + 0x28c);
+  *(uint64_t *)(target_context + 0x9808) = *(uint64_t *)(source_context + 0x284);
+  *(uint64_t *)(target_context + 0x9810) = texture_handle;
+  texture_handle = *(uint64_t *)(source_context + 0x29c);
+  *(uint64_t *)(target_context + 0x9818) = *(uint64_t *)(source_context + 0x294);
+  *(uint64_t *)(target_context + 0x9820) = texture_handle;
   
   // 获取光照强度参数
   lighting_intensity = *(float *)(*(longlong *)(source_context + 0x88) + 0x4b4);
@@ -756,7 +756,7 @@ void RenderingSystem_DataTransfer(longlong source_context, longlong target_conte
     *(float *)(target_context + 0x97c8) = scaled_intensity;
     *(float *)(target_context + 0x97cc) = normal_length;
     *(float *)(target_context + 0x97d0) = normal_x;
-    *(undefined4 *)(target_context + 0x97d4) = 0x7f7fffff;
+    *(int32_t *)(target_context + 0x97d4) = 0x7f7fffff;
   }
   
   // 处理第二组法向量归一化
@@ -775,7 +775,7 @@ void RenderingSystem_DataTransfer(longlong source_context, longlong target_conte
     *(float *)(target_context + 0x97d8) = scaled_intensity;
     *(float *)(target_context + 0x97dc) = normal_length;
     *(float *)(target_context + 0x97e0) = normal_x;
-    *(undefined4 *)(target_context + 0x97e4) = 0x7f7fffff;
+    *(int32_t *)(target_context + 0x97e4) = 0x7f7fffff;
   }
   
   // 处理第三组法向量归一化
@@ -794,7 +794,7 @@ void RenderingSystem_DataTransfer(longlong source_context, longlong target_conte
     *(float *)(target_context + 0x97e8) = scaled_intensity;
     *(float *)(target_context + 0x97ec) = normal_length;
     *(float *)(target_context + 0x97f0) = normal_x;
-    *(undefined4 *)(target_context + 0x97f4) = 0x7f7fffff;
+    *(int32_t *)(target_context + 0x97f4) = 0x7f7fffff;
   }
   
   // 处理第四组法向量归一化
@@ -813,7 +813,7 @@ void RenderingSystem_DataTransfer(longlong source_context, longlong target_conte
     *(float *)(target_context + 0x97f8) = scaled_intensity;
     *(float *)(target_context + 0x97fc) = normal_length;
     *(float *)(target_context + 0x9800) = normal_x;
-    *(undefined4 *)(target_context + 0x9804) = 0x7f7fffff;
+    *(int32_t *)(target_context + 0x9804) = 0x7f7fffff;
   }
   
   // 处理第五组法向量归一化
@@ -832,7 +832,7 @@ void RenderingSystem_DataTransfer(longlong source_context, longlong target_conte
     *(float *)(target_context + 0x9808) = scaled_intensity;
     *(float *)(target_context + 0x980c) = normal_length;
     *(float *)(target_context + 0x9810) = normal_x;
-    *(undefined4 *)(target_context + 0x9814) = 0x7f7fffff;
+    *(int32_t *)(target_context + 0x9814) = 0x7f7fffff;
   }
   
   // 处理第六组法向量归一化
@@ -851,7 +851,7 @@ void RenderingSystem_DataTransfer(longlong source_context, longlong target_conte
     *(float *)(target_context + 0x9818) = scaled_intensity;
     *(float *)(target_context + 0x981c) = lighting_intensity;
     *(float *)(target_context + 0x9820) = normal_x;
-    *(undefined4 *)(target_context + 0x9824) = 0x7f7fffff;
+    *(int32_t *)(target_context + 0x9824) = 0x7f7fffff;
   }
   
   // 传输像素着色器资源
@@ -896,7 +896,7 @@ void RenderingSystem_DataTransfer(longlong source_context, longlong target_conte
   // 处理用户数据传输
   if (*(longlong *)(target_context + 0x97a0) == 0) {
     light_vector = *(longlong **)(target_context + 0x97c0);
-    *(undefined8 *)(target_context + 0x97c0) = 0;
+    *(uint64_t *)(target_context + 0x97c0) = 0;
     if (light_vector != (longlong *)0x0) {
       (**(code **)(*light_vector + 0x38))();
     }
@@ -906,16 +906,16 @@ void RenderingSystem_DataTransfer(longlong source_context, longlong target_conte
   // 配置用户数据缓冲区
   render_target = &UNK_180a3c3e0;
   frame_buffer = 0;
-  constant_buffer = (undefined8 *)0x0;
+  constant_buffer = (uint64_t *)0x0;
   buffer_size = 0;
-  vertex_buffer = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, 0x1c, 0x13);
-  *(undefined1 *)vertex_buffer = 0;
+  vertex_buffer = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, 0x1c, 0x13);
+  *(int8_t *)vertex_buffer = 0;
   constant_buffer = vertex_buffer;
   buffer_size = FUN_18064e990(vertex_buffer);
   *vertex_buffer = 0x666669645f747270;
   vertex_buffer[1] = 0x69626d615f657375;
   vertex_buffer[2] = 0x757365725f746e65;
-  *(undefined4 *)(vertex_buffer + 3) = 0x5f746c;
+  *(int32_t *)(vertex_buffer + 3) = 0x5f746c;
   buffer_size = 0x1b;
   shader_program = *(longlong *)(source_context + 0x88);
   texture_index = *(int *)(shader_program + 0x4e8);
@@ -923,13 +923,13 @@ void RenderingSystem_DataTransfer(longlong source_context, longlong target_conte
   if (0 < texture_index) {
     if ((texture_index != -0x1b) && (buffer_size < texture_index + 0x1cU)) {
       user_flag = 0x13;
-      vertex_buffer = (undefined8 *)FUN_18062b8b0(_DAT_180c8ed18, vertex_buffer, texture_index + 0x1cU, 0x10);
+      vertex_buffer = (uint64_t *)FUN_18062b8b0(_DAT_180c8ed18, vertex_buffer, texture_index + 0x1cU, 0x10);
       constant_buffer = vertex_buffer;
       frame_buffer._0_4_ = FUN_18064e990(vertex_buffer);
       texture_index = *(int *)(shader_program + 0x4e8);
     }
                     // WARNING: Subroutine does not return
-    memcpy((undefined1 *)((longlong)vertex_buffer + 0x1b), *(undefined8 *)(shader_program + 0x4e0),
+    memcpy((int8_t *)((longlong)vertex_buffer + 0x1b), *(uint64_t *)(shader_program + 0x4e0),
            (longlong)(texture_index + 1));
   }
   texture_width = 1;
@@ -948,26 +948,26 @@ void RenderingSystem_DataTransfer(longlong source_context, longlong target_conte
     aspect_ratio_x = *(double *)(shader_program + -8 + (longlong)texture_index * 0x10);
     aspect_ratio_y = *(double *)(shader_program + (longlong)texture_index * 0x10);
   }
-  texture_depth = (undefined4)(longlong)((double)*(float *)(target_context + 0x11c20) / aspect_ratio_x);
-  texture_mips = (undefined4)(longlong)((double)*(float *)(target_context + 0x11c24) / aspect_ratio_y);
+  texture_depth = (int32_t)(longlong)((double)*(float *)(target_context + 0x11c20) / aspect_ratio_x);
+  texture_mips = (int32_t)(longlong)((double)*(float *)(target_context + 0x11c24) / aspect_ratio_y);
   texture_format = 0x1e;
   frame_buffer_ptr = &UNK_1809fcc28;
   shader_data = user_buffer;
   user_buffer[0] = 0;
   data_size = 0x1b;
-  index_buffer = (undefined8 *)&DAT_18098bc73;
-  if (vertex_buffer != (undefined8 *)0x0) {
+  index_buffer = (uint64_t *)&DAT_18098bc73;
+  if (vertex_buffer != (uint64_t *)0x0) {
     index_buffer = vertex_buffer;
   }
   strcpy_s(user_buffer, 0x80, index_buffer);
   shader_program = *(longlong *)(source_context + 0x230);
   if (shader_program == 0) {
 LAB_18031eaf0:
-    index_buffer = (undefined8 *)FUN_1800b1230(_DAT_180c86930, &stream_output, &frame_buffer_ptr, &texture_depth);
+    index_buffer = (uint64_t *)FUN_1800b1230(_DAT_180c86930, &stream_output, &frame_buffer_ptr, &texture_depth);
     texture_handle = *index_buffer;
     *index_buffer = 0;
     compute_shader = *(longlong **)(source_context + 0x230);
-    *(undefined8 *)(source_context + 0x230) = texture_handle;
+    *(uint64_t *)(source_context + 0x230) = texture_handle;
     if (compute_shader != (longlong *)0x0) {
       (**(code **)(*compute_shader + 0x38))();
     }
@@ -994,11 +994,11 @@ LAB_18031eaf0:
     (**(code **)(*compute_shader + 0x38))();
   }
   render_target = &UNK_180a3c3e0;
-  if (vertex_buffer != (undefined8 *)0x0) {
+  if (vertex_buffer != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900(vertex_buffer);
   }
-  constant_buffer = (undefined8 *)0x0;
+  constant_buffer = (uint64_t *)0x0;
   frame_buffer = (ulonglong)frame_buffer._4_4_ << 0x20;
   render_target = &UNK_18098bcb0;
 LAB_18031ebd1:
@@ -1006,19 +1006,19 @@ LAB_18031ebd1:
   // 最终参数设置
   lighting_intensity = *(float *)(source_context + 0x210);
   normal_length = *(float *)(source_context + 0x214);
-  render_param1 = *(undefined4 *)(source_context + 500);
-  render_param2 = *(undefined4 *)(source_context + 0x1f8);
+  render_param1 = *(int32_t *)(source_context + 500);
+  render_param2 = *(int32_t *)(source_context + 0x1f8);
   texture_index = *(int *)(source_context + 0x1e4);
-  *(undefined4 *)(target_context + 0x9750) = *(undefined4 *)(source_context + 0x1f0);
-  *(undefined4 *)(target_context + 0x9754) = render_param1;
-  *(undefined4 *)(target_context + 0x9758) = render_param2;
+  *(int32_t *)(target_context + 0x9750) = *(int32_t *)(source_context + 0x1f0);
+  *(int32_t *)(target_context + 0x9754) = render_param1;
+  *(int32_t *)(target_context + 0x9758) = render_param2;
   *(float *)(target_context + 0x975c) = (float)texture_index;
-  render_param1 = *(undefined4 *)(source_context + 0x204);
-  render_param2 = *(undefined4 *)(source_context + 0x208);
+  render_param1 = *(int32_t *)(source_context + 0x204);
+  render_param2 = *(int32_t *)(source_context + 0x208);
   texture_index = *(int *)(source_context + 0x1e8);
-  *(undefined4 *)(target_context + 0x9760) = *(undefined4 *)(source_context + 0x200);
-  *(undefined4 *)(target_context + 0x9764) = render_param1;
-  *(undefined4 *)(target_context + 0x9768) = render_param2;
+  *(int32_t *)(target_context + 0x9760) = *(int32_t *)(source_context + 0x200);
+  *(int32_t *)(target_context + 0x9764) = render_param1;
+  *(int32_t *)(target_context + 0x9768) = render_param2;
   *(float *)(target_context + 0x976c) = (float)texture_index;
   lighting_intensity = 1.0 / lighting_intensity;
   texture_index = *(int *)(source_context + 0x1ec);
@@ -1026,20 +1026,20 @@ LAB_18031ebd1:
   *(float *)(target_context + 0x9774) = lighting_intensity;
   *(float *)(target_context + 0x9778) = 1.0 / normal_length;
   *(float *)(target_context + 0x977c) = (float)texture_index;
-  render_param1 = *(undefined4 *)(*(longlong *)(source_context + 0x88) + 0x4b0);
-  render_param2 = *(undefined4 *)(*(longlong *)(source_context + 0x88) + 0x4ac);
+  render_param1 = *(int32_t *)(*(longlong *)(source_context + 0x88) + 0x4b0);
+  render_param2 = *(int32_t *)(*(longlong *)(source_context + 0x88) + 0x4ac);
   light_vector = (longlong *)CONCAT44(render_param2, render_param1);
-  *(undefined4 *)(target_context + 0x9780) = render_param1;
-  *(undefined4 *)(target_context + 0x9784) = render_param2;
-  *(undefined4 *)(target_context + 0x9788) = 0;
-  *(undefined4 *)(target_context + 0x978c) = 0;
+  *(int32_t *)(target_context + 0x9780) = render_param1;
+  *(int32_t *)(target_context + 0x9784) = render_param2;
+  *(int32_t *)(target_context + 0x9788) = 0;
+  *(int32_t *)(target_context + 0x978c) = 0;
   texture_index = *(int *)(source_context + 0x23c);
   render_state = *(int *)(source_context + 0x240);
   normal_vector = 0x3f80000000000000;
   *(float *)(target_context + 0x9790) = (float)*(int *)(source_context + 0x238);
   *(float *)(target_context + 0x9794) = (float)texture_index;
   *(float *)(target_context + 0x9798) = (float)render_state;
-  *(undefined4 *)(target_context + 0x979c) = 0x3f800000;
+  *(int32_t *)(target_context + 0x979c) = 0x3f800000;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(frame_sync ^ (ulonglong)alignment_buffer);
 }
@@ -1068,26 +1068,26 @@ LAB_18031ebd1:
  * - 处理字符串匹配
  * - 优化内存使用
  */
-void RenderingSystem_MemoryManager(undefined8 **memory_pool, longlong *memory_context, undefined8 allocation_size, undefined8 memory_flags)
+void RenderingSystem_MemoryManager(uint64_t **memory_pool, longlong *memory_context, uint64_t allocation_size, uint64_t memory_flags)
 
 {
-  undefined8 *memory_block;
-  undefined8 *memory_ptr;
-  undefined8 *memory_end;
+  uint64_t *memory_block;
+  uint64_t *memory_ptr;
+  uint64_t *memory_end;
   longlong string_compare;
   longlong string_length;
   int block_size;
   int block_index;
   int *string_data;
   ulonglong block_count;
-  undefined8 *temp_block;
-  undefined8 *temp_ptr;
-  undefined8 alloc_size;
-  undefined4 memory_type;
+  uint64_t *temp_block;
+  uint64_t *temp_ptr;
+  uint64_t alloc_size;
+  int32_t memory_type;
   
   // 初始化内存管理器
-  temp_block = (undefined8 *)0x0;
-  temp_ptr = (undefined8 *)0x0;
+  temp_block = (uint64_t *)0x0;
+  temp_ptr = (uint64_t *)0x0;
   alloc_size = 0;
   memory_type = 3;
   
@@ -1128,14 +1128,14 @@ LAB_18031ee56:
         if (0 < block_size) {
           FUN_1806277c0(memory_context, (int)memory_context[2] + block_size);
                     // WARNING: Subroutine does not return
-          memcpy((ulonglong)*(uint *)(memory_context + 2) + memory_context[1], *(undefined8 *)(string_data + -2),
+          memcpy((ulonglong)*(uint *)(memory_context + 2) + memory_context[1], *(uint64_t *)(string_data + -2),
                  (longlong)(*string_data + 1));
         }
         
         // 更新内存块索引
         block_size = (int)memory_context[2] + 1;
         FUN_1806277c0(memory_context, block_size);
-        *(undefined2 *)((ulonglong)*(uint *)(memory_context + 2) + memory_context[1]) = 0x20;
+        *(int16_t *)((ulonglong)*(uint *)(memory_context + 2) + memory_context[1]) = 0x20;
         *(int *)(memory_context + 2) = block_size;
       }
       
@@ -1150,7 +1150,7 @@ LAB_18031ee56:
   }
   
   // 释放内存
-  if (memory_ptr != (undefined8 *)0x0) {
+  if (memory_ptr != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900(memory_ptr);
   }
@@ -1170,7 +1170,7 @@ LAB_18031ee56:
  * @param alloc_flags 分配标志
  * @param block_size 块大小
  * @param free_flags 释放标志
- * @return undefined8* 分配的内存指针
+ * @return uint64_t* 分配的内存指针
  * 
  * 技术说明：
  * - 分配内存块
@@ -1179,8 +1179,8 @@ LAB_18031ee56:
  * - 管理内存标志
  * - 确保内存对齐
  */
-undefined8 *
-RenderingSystem_MemoryAllocator(undefined8 *memory_ptr, ulonglong alloc_flags, undefined8 block_size, undefined8 free_flags)
+uint64_t *
+RenderingSystem_MemoryAllocator(uint64_t *memory_ptr, ulonglong alloc_flags, uint64_t block_size, uint64_t free_flags)
 
 {
   // 初始化内存指针链表

@@ -8,12 +8,12 @@
 void normalize_quaternion(float *quaternion)
 
 {
-  undefined1 temp_var1 [16];
+  int8_t temp_var1 [16];
   double x_squared;
   double y_squared;
   double z_squared;
   float x_component;
-  undefined1 temp_var2 [16];
+  int8_t temp_var2 [16];
   float y_component;
   float z_component;
   double w_squared;
@@ -54,20 +54,20 @@ void normalize_quaternion(float *quaternion)
 
 // 函数：初始化对象结构体
 // 初始化一个对象结构体，设置默认值和状态标志
-undefined8 * initialize_object_structure(undefined8 *object_ptr)
+uint64_t * initialize_object_structure(uint64_t *object_ptr)
 
 {
   *object_ptr = 0;
   object_ptr[1] = 0;
-  *(undefined1 *)((longlong)object_ptr + 0x14) = 0;
+  *(int8_t *)((longlong)object_ptr + 0x14) = 0;
   LOCK();
-  *(undefined4 *)(object_ptr + 2) = 0;
+  *(int32_t *)(object_ptr + 2) = 0;
   UNLOCK();
   LOCK();
-  *(undefined1 *)((longlong)object_ptr + 0x16) = 1;
+  *(int8_t *)((longlong)object_ptr + 0x16) = 1;
   UNLOCK();
   LOCK();
-  *(undefined1 *)((longlong)object_ptr + 0x15) = 0;
+  *(int8_t *)((longlong)object_ptr + 0x15) = 0;
   UNLOCK();
   return object_ptr;
 }
@@ -76,11 +76,11 @@ undefined8 * initialize_object_structure(undefined8 *object_ptr)
 
 // 函数：清理对象资源
 // 释放对象占用的资源，根据标志位决定是否释放内存
-undefined8 *
-cleanup_object_resources(undefined8 *object_ptr,ulonglong cleanup_flags,undefined8 param_3,undefined8 param_4)
+uint64_t *
+cleanup_object_resources(uint64_t *object_ptr,ulonglong cleanup_flags,uint64_t param_3,uint64_t param_4)
 
 {
-  undefined8 cleanup_mask;
+  uint64_t cleanup_mask;
   
   cleanup_mask = 0xfffffffffffffffe;
   if ((longlong *)object_ptr[4] != (longlong *)0x0) {
@@ -98,7 +98,7 @@ cleanup_object_resources(undefined8 *object_ptr,ulonglong cleanup_flags,undefine
 
 // 函数：销毁对象实例
 // 销毁对象实例，清理相关资源
-undefined8 * destroy_object_instance(undefined8 *object_ptr,uint destroy_flags)
+uint64_t * destroy_object_instance(uint64_t *object_ptr,uint destroy_flags)
 
 {
   FUN_1808fc8a8(object_ptr + 3,8,0x10,FUN_180045af0,0xfffffffffffffffe);
@@ -114,16 +114,16 @@ undefined8 * destroy_object_instance(undefined8 *object_ptr,uint destroy_flags)
 
 // 函数：创建对象实例
 // 创建一个新的对象实例并初始化相关数据结构
-undefined8 * create_object_instance(undefined8 *object_ptr)
+uint64_t * create_object_instance(uint64_t *object_ptr)
 
 {
   *object_ptr = &GLOBAL_VTABLE_PTR_180a21690;
   *object_ptr = &GLOBAL_VTABLE_PTR_180a21720;
-  *(undefined4 *)(object_ptr + 1) = 0;
+  *(int32_t *)(object_ptr + 1) = 0;
   *object_ptr = &GLOBAL_VTABLE_PTR_180a00098;
   FUN_1808fc838(object_ptr + 3,8,0x10,&SUB_18005d5f0,FUN_180045af0);
-  *(undefined4 *)(object_ptr + 2) = 0;
-  *(undefined1 *)((longlong)object_ptr + 0x14) = 9;
+  *(int32_t *)(object_ptr + 2) = 0;
+  *(int8_t *)((longlong)object_ptr + 0x14) = 9;
   *(byte *)(object_ptr + 0x13) = *(byte *)(object_ptr + 0x13) | 1;
   return object_ptr;
 }
@@ -136,23 +136,23 @@ undefined8 * create_object_instance(undefined8 *object_ptr)
 
 // 函数：处理对象初始化（类型1）
 // 处理特定类型对象的初始化流程
-void process_object_initialization_type1(undefined8 *object_ptr,uint init_flags)
+void process_object_initialization_type1(uint64_t *object_ptr,uint init_flags)
 
 {
-  undefined8 temp_var1;
-  undefined **function_ptr;
-  undefined1 stack_buffer_158 [32];
-  undefined **stack_ptr_138;
-  undefined ***stack_ptr_ptr_130;
-  undefined8 stack_var_128;
-  undefined8 *stack_ptr_120;
-  undefined **stack_ptr_118;
-  undefined *stack_ptr_108;
-  undefined1 *stack_ptr_100;
-  undefined4 stack_var_f8;
-  undefined1 stack_buffer_f0 [128];
-  undefined4 stack_var_70;
-  undefined8 stack_var_68;
+  uint64_t temp_var1;
+  void **function_ptr;
+  int8_t stack_buffer_158 [32];
+  void **stack_ptr_138;
+  void ***stack_ptr_ptr_130;
+  uint64_t stack_var_128;
+  uint64_t *stack_ptr_120;
+  void **stack_ptr_118;
+  void *stack_ptr_108;
+  int8_t *stack_ptr_100;
+  int32_t stack_var_f8;
+  int8_t stack_buffer_f0 [128];
+  int32_t stack_var_70;
+  uint64_t stack_var_68;
   ulonglong stack_var_28;
   
   stack_var_128 = 0xfffffffffffffffe;
@@ -168,22 +168,22 @@ void process_object_initialization_type1(undefined8 *object_ptr,uint init_flags)
     stack_var_70 = 0x25;
     stack_var_68 = object_ptr[3];
     temp_var1 = FUN_18062b1e0(GLOBAL_DATA_180c8ed18,0x100,8,3);
-    function_ptr = (undefined **)FUN_18005ce30(temp_var1,&stack_ptr_108);
+    function_ptr = (void **)FUN_18005ce30(temp_var1,&stack_ptr_108);
     stack_ptr_118 = function_ptr;
-    if (function_ptr != (undefined **)0x0) {
+    if (function_ptr != (void **)0x0) {
       (**(code **)(*function_ptr + 0x28))(function_ptr);
     }
     temp_var1 = GLOBAL_DATA_180c82868;
     stack_ptr_ptr_130 = &stack_ptr_138;
     stack_ptr_138 = function_ptr;
-    if (function_ptr != (undefined **)0x0) {
+    if (function_ptr != (void **)0x0) {
       (**(code **)(*function_ptr + 0x28))(function_ptr);
     }
     FUN_18005e370(temp_var1,&stack_ptr_138);
-    if (function_ptr != (undefined **)0x0) {
+    if (function_ptr != (void **)0x0) {
       (**(code **)(*function_ptr + 0x38))(function_ptr);
     }
-    stack_ptr_ptr_130 = (undefined ***)&stack_ptr_108;
+    stack_ptr_ptr_130 = (void ***)&stack_ptr_108;
     stack_ptr_108 = &GLOBAL_FUNCTION_TABLE_18098bcb0;
   }
   *object_ptr = &GLOBAL_VTABLE_PTR_180a21720;
@@ -203,23 +203,23 @@ void process_object_initialization_type1(undefined8 *object_ptr,uint init_flags)
 
 // 函数：处理对象初始化（类型2）
 // 处理另一种类型对象的初始化流程
-void process_object_initialization_type2(undefined8 *object_ptr,uint init_flags)
+void process_object_initialization_type2(uint64_t *object_ptr,uint init_flags)
 
 {
-  undefined8 temp_var1;
-  undefined **function_ptr;
-  undefined1 stack_buffer_158 [32];
-  undefined **stack_ptr_138;
-  undefined ***stack_ptr_ptr_130;
-  undefined8 stack_var_128;
-  undefined8 *stack_ptr_120;
-  undefined **stack_ptr_118;
-  undefined *stack_ptr_108;
-  undefined1 *stack_ptr_100;
-  undefined4 stack_var_f8;
-  undefined1 stack_buffer_f0 [128];
-  undefined4 stack_var_70;
-  undefined8 stack_var_68;
+  uint64_t temp_var1;
+  void **function_ptr;
+  int8_t stack_buffer_158 [32];
+  void **stack_ptr_138;
+  void ***stack_ptr_ptr_130;
+  uint64_t stack_var_128;
+  uint64_t *stack_ptr_120;
+  void **stack_ptr_118;
+  void *stack_ptr_108;
+  int8_t *stack_ptr_100;
+  int32_t stack_var_f8;
+  int8_t stack_buffer_f0 [128];
+  int32_t stack_var_70;
+  uint64_t stack_var_68;
   ulonglong stack_var_28;
   
   stack_var_128 = 0xfffffffffffffffe;
@@ -235,22 +235,22 @@ void process_object_initialization_type2(undefined8 *object_ptr,uint init_flags)
     stack_var_70 = 0x23;
     stack_var_68 = object_ptr[3];
     temp_var1 = FUN_18062b1e0(GLOBAL_DATA_180c8ed18,0x100,8,3);
-    function_ptr = (undefined **)FUN_18005ce30(temp_var1,&stack_ptr_108);
+    function_ptr = (void **)FUN_18005ce30(temp_var1,&stack_ptr_108);
     stack_ptr_118 = function_ptr;
-    if (function_ptr != (undefined **)0x0) {
+    if (function_ptr != (void **)0x0) {
       (**(code **)(*function_ptr + 0x28))(function_ptr);
     }
     temp_var1 = GLOBAL_DATA_180c82868;
     stack_ptr_ptr_130 = &stack_ptr_138;
     stack_ptr_138 = function_ptr;
-    if (function_ptr != (undefined **)0x0) {
+    if (function_ptr != (void **)0x0) {
       (**(code **)(*function_ptr + 0x28))(function_ptr);
     }
     FUN_18005e370(temp_var1,&stack_ptr_138);
-    if (function_ptr != (undefined **)0x0) {
+    if (function_ptr != (void **)0x0) {
       (**(code **)(*function_ptr + 0x38))(function_ptr);
     }
-    stack_ptr_ptr_130 = (undefined ***)&stack_ptr_108;
+    stack_ptr_ptr_130 = (void ***)&stack_ptr_108;
     stack_ptr_108 = &GLOBAL_FUNCTION_TABLE_18098bcb0;
   }
   *object_ptr = &GLOBAL_VTABLE_PTR_180a21720;
@@ -276,7 +276,7 @@ void set_object_status_flag(longlong *object_ptr)
   status_result = (**(code **)(*object_ptr + 0x38))();
   if (status_result == 0) {
     LOCK();
-    *(undefined1 *)(object_ptr + 2) = 1;
+    *(int8_t *)(object_ptr + 2) = 1;
     UNLOCK();
   }
   return;
@@ -296,7 +296,7 @@ void set_object_extended_flag(longlong object_ptr)
   check_result = FUN_1806237a0();
   if (check_result == 0) {
     LOCK();
-    *(undefined1 *)(object_ptr + 0x10) = 1;
+    *(int8_t *)(object_ptr + 0x10) = 1;
     UNLOCK();
   }
   return;
@@ -313,7 +313,7 @@ void set_object_extended_flag(longlong object_ptr)
 void reallocate_data_buffer(int *buffer_info)
 
 {
-  undefined8 new_buffer_ptr;
+  uint64_t new_buffer_ptr;
   
   if (buffer_info[1] < 1) {
     if (*(longlong *)(buffer_info + 2) != 0) {
@@ -329,7 +329,7 @@ void reallocate_data_buffer(int *buffer_info)
                     // 警告：子函数不返回
     memcpy(new_buffer_ptr,*(longlong *)(buffer_info + 2),(longlong)*buffer_info << 4);
   }
-  *(undefined8 *)(buffer_info + 2) = new_buffer_ptr;
+  *(uint64_t *)(buffer_info + 2) = new_buffer_ptr;
   return;
 }
 
@@ -342,7 +342,7 @@ void reallocate_data_buffer(int *buffer_info)
 void copy_data_buffer(void)
 
 {
-  undefined8 new_buffer_ptr;
+  uint64_t new_buffer_ptr;
   int *source_buffer;
   
   new_buffer_ptr = FUN_18062b420();
@@ -350,7 +350,7 @@ void copy_data_buffer(void)
                     // 警告：子函数不返回
     memcpy(new_buffer_ptr,*(longlong *)(source_buffer + 2),(longlong)*source_buffer << 4);
   }
-  *(undefined8 *)(source_buffer + 2) = new_buffer_ptr;
+  *(uint64_t *)(source_buffer + 2) = new_buffer_ptr;
   return;
 }
 
@@ -369,7 +369,7 @@ void validate_data_pointer(longlong object_ptr)
                     // 警告：子函数不返回
     FUN_18064e900();
   }
-  *(undefined8 *)(data_offset + 8) = 0;
+  *(uint64_t *)(data_offset + 8) = 0;
   return;
 }
 
@@ -463,7 +463,7 @@ void normalize_rotation_matrix(float *matrix)
 
 {
   float x_component, y_component, z_component;
-  undefined1 temp_var [16];
+  int8_t temp_var [16];
   float scale_factor;
   float magnitude;
   
@@ -563,13 +563,13 @@ void build_transformation_matrix(float *matrix,float *position,float *rotation,f
 
 
 
-undefined8 * initialize_data_structure(undefined8 *data_ptr)
+uint64_t * initialize_data_structure(uint64_t *data_ptr)
 
 {
-  undefined8 temp_var;
+  uint64_t temp_var;
   longlong loop_counter;
-  undefined8 *current_ptr;
-  undefined2 stack_var;
+  uint64_t *current_ptr;
+  int16_t stack_var;
   
   loop_counter = 6;
   current_ptr = data_ptr;
@@ -655,15 +655,15 @@ float * calculate_matrix_scale_factors(float *matrix,float *scale_factors)
 
 // 函数：设置变换矩阵数据
 // 根据不同的模式设置变换矩阵的数据
-void set_transformation_matrix_data(float *matrix,longlong data_source,char mode,undefined8 *source_data)
+void set_transformation_matrix_data(float *matrix,longlong data_source,char mode,uint64_t *source_data)
 
 {
-  undefined8 data_chunk1;
-  undefined8 data_chunk2;
-  undefined8 data_chunk3;
-  undefined8 data_chunk4;
+  uint64_t data_chunk1;
+  uint64_t data_chunk2;
+  uint64_t data_chunk3;
+  uint64_t data_chunk4;
   float scale_factor;
-  undefined1 temp_var [16];
+  int8_t temp_var [16];
   float rotation_y;
   float rotation_x;
   float rotation_z;
@@ -677,18 +677,18 @@ void set_transformation_matrix_data(float *matrix,longlong data_source,char mode
     data_chunk1 = source_data[1];
     data_chunk2 = source_data[2];
     data_chunk3 = source_data[3];
-    *(undefined8 *)matrix = *source_data;
-    *(undefined8 *)(matrix + 2) = data_chunk1;
+    *(uint64_t *)matrix = *source_data;
+    *(uint64_t *)(matrix + 2) = data_chunk1;
     data_chunk1 = source_data[4];
     data_chunk4 = source_data[5];
-    *(undefined8 *)(matrix + 4) = data_chunk2;
-    *(undefined8 *)(matrix + 6) = data_chunk3;
+    *(uint64_t *)(matrix + 4) = data_chunk2;
+    *(uint64_t *)(matrix + 6) = data_chunk3;
     data_chunk2 = source_data[6];
     data_chunk3 = source_data[7];
-    *(undefined8 *)(matrix + 8) = data_chunk1;
-    *(undefined8 *)(matrix + 10) = data_chunk4;
-    *(undefined8 *)(matrix + 12) = data_chunk2;
-    *(undefined8 *)(matrix + 14) = data_chunk3;
+    *(uint64_t *)(matrix + 8) = data_chunk1;
+    *(uint64_t *)(matrix + 10) = data_chunk4;
+    *(uint64_t *)(matrix + 12) = data_chunk2;
+    *(uint64_t *)(matrix + 14) = data_chunk3;
     matrix[3] = 0.0;
     matrix[7] = 0.0;
     matrix[11] = 0.0;
@@ -745,17 +745,17 @@ void set_transformation_matrix_data(float *matrix,longlong data_source,char mode
     return;
   }
   FUN_180085020(source_data,&stack_scale_68);
-  data_chunk1 = *(undefined8 *)(data_source + 200);
-  data_chunk2 = *(undefined8 *)(data_source + 0xd0);
-  data_chunk3 = *(undefined8 *)(data_source + 0xd8);
-  *(undefined8 *)matrix = *(undefined8 *)(data_source + 0xc0);
-  *(undefined8 *)(matrix + 2) = data_chunk1;
-  data_chunk1 = *(undefined8 *)(data_source + 0xe0);
-  data_chunk4 = *(undefined8 *)(data_source + 0xe8);
-  *(undefined8 *)(matrix + 4) = data_chunk2;
-  *(undefined8 *)(matrix + 6) = data_chunk3;
-  *(undefined8 *)(matrix + 8) = data_chunk1;
-  *(undefined8 *)(matrix + 10) = data_chunk4;
+  data_chunk1 = *(uint64_t *)(data_source + 200);
+  data_chunk2 = *(uint64_t *)(data_source + 0xd0);
+  data_chunk3 = *(uint64_t *)(data_source + 0xd8);
+  *(uint64_t *)matrix = *(uint64_t *)(data_source + 0xc0);
+  *(uint64_t *)(matrix + 2) = data_chunk1;
+  data_chunk1 = *(uint64_t *)(data_source + 0xe0);
+  data_chunk4 = *(uint64_t *)(data_source + 0xe8);
+  *(uint64_t *)(matrix + 4) = data_chunk2;
+  *(uint64_t *)(matrix + 6) = data_chunk3;
+  *(uint64_t *)(matrix + 8) = data_chunk1;
+  *(uint64_t *)(matrix + 10) = data_chunk4;
   matrix[1] = stack_scale_68 * matrix[1];
   *matrix = stack_scale_68 * *matrix;
   matrix[2] = stack_scale_68 * matrix[2];
@@ -778,19 +778,19 @@ void set_transformation_matrix_data(float *matrix,longlong data_source,char mode
 
 // 函数：设置变换矩阵数据扩展
 // 扩展版本的变换矩阵数据设置函数
-void set_transformation_matrix_data_extended(float *matrix,longlong data_source,undefined8 param_3,undefined8 param_4,
-                                          undefined8 param_5)
+void set_transformation_matrix_data_extended(float *matrix,longlong data_source,uint64_t param_3,uint64_t param_4,
+                                          uint64_t param_5)
 
 {
-  undefined8 xmm0_data;
+  uint64_t xmm0_data;
   float xmm0_float;
   float xmm0_float2;
   float scale_factor;
-  undefined1 temp_var [16];
-  undefined1 temp_var2 [16];
-  undefined4 temp_var3;
-  undefined4 xmm3_data;
-  undefined4 xmm3_data2;
+  int8_t temp_var [16];
+  int8_t temp_var2 [16];
+  int32_t temp_var3;
+  int32_t xmm3_data;
+  int32_t xmm3_data2;
   float xmm4_float;
   float rotation_y;
   float rotation_x;
@@ -800,7 +800,7 @@ void set_transformation_matrix_data_extended(float *matrix,longlong data_source,
   float magnitude;
   float determinant;
   
-  temp_var3 = (undefined4)((ulonglong)param_4 >> 0x20);
+  temp_var3 = (int32_t)((ulonglong)param_4 >> 0x20);
   determinant = (float)((ulonglong)xmm0_data >> 0x20);
   magnitude = (float)xmm0_data;
   matrix[8] = magnitude;
@@ -856,11 +856,11 @@ void set_transformation_matrix_data_extended(float *matrix,longlong data_source,
 void set_transformation_matrix_data_simplified(void)
 
 {
-  undefined8 data_chunk1;
-  undefined8 data_chunk2;
-  undefined8 data_chunk3;
-  undefined8 data_chunk4;
-  undefined8 input_r9;
+  uint64_t data_chunk1;
+  uint64_t data_chunk2;
+  uint64_t data_chunk3;
+  uint64_t data_chunk4;
+  uint64_t input_r9;
   float *output_r10;
   longlong input_r11;
   float stack_scale_20;
@@ -868,17 +868,17 @@ void set_transformation_matrix_data_simplified(void)
   float stack_scale_28;
   
   FUN_180085020(input_r9,&stack_scale_20);
-  data_chunk1 = *(undefined8 *)(input_r11 + 200);
-  data_chunk2 = *(undefined8 *)(input_r11 + 0xd0);
-  data_chunk3 = *(undefined8 *)(input_r11 + 0xd8);
-  *(undefined8 *)output_r10 = *(undefined8 *)(input_r11 + 0xc0);
-  *(undefined8 *)(output_r10 + 2) = data_chunk1;
-  data_chunk1 = *(undefined8 *)(input_r11 + 0xe0);
-  data_chunk4 = *(undefined8 *)(input_r11 + 0xe8);
-  *(undefined8 *)(output_r10 + 4) = data_chunk2;
-  *(undefined8 *)(output_r10 + 6) = data_chunk3;
-  *(undefined8 *)(output_r10 + 8) = data_chunk1;
-  *(undefined8 *)(output_r10 + 10) = data_chunk4;
+  data_chunk1 = *(uint64_t *)(input_r11 + 200);
+  data_chunk2 = *(uint64_t *)(input_r11 + 0xd0);
+  data_chunk3 = *(uint64_t *)(input_r11 + 0xd8);
+  *(uint64_t *)output_r10 = *(uint64_t *)(input_r11 + 0xc0);
+  *(uint64_t *)(output_r10 + 2) = data_chunk1;
+  data_chunk1 = *(uint64_t *)(input_r11 + 0xe0);
+  data_chunk4 = *(uint64_t *)(input_r11 + 0xe8);
+  *(uint64_t *)(output_r10 + 4) = data_chunk2;
+  *(uint64_t *)(output_r10 + 6) = data_chunk3;
+  *(uint64_t *)(output_r10 + 8) = data_chunk1;
+  *(uint64_t *)(output_r10 + 10) = data_chunk4;
   output_r10[1] = stack_scale_20 * output_r10[1];
   *output_r10 = stack_scale_20 * *output_r10;
   output_r10[2] = stack_scale_20 * output_r10[2];
@@ -937,7 +937,7 @@ void free_object_resources(longlong object_ptr)
 // 警告：以'_'开头的全局变量与同一地址的较小符号重叠
 
 ulonglong *
-allocate_resource_array(ulonglong array_size,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+allocate_resource_array(ulonglong array_size,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   ulonglong *array_ptr;
@@ -953,13 +953,13 @@ allocate_resource_array(ulonglong array_size,undefined8 param_2,undefined8 param
   element_index = 0;
   current_element = array_ptr + 8;
   do {
-    *(undefined4 *)((longlong)current_element + -0x2c) = 0;
-    *(undefined4 *)(current_element + -6) = 0;
+    *(int32_t *)((longlong)current_element + -0x2c) = 0;
+    *(int32_t *)(current_element + -6) = 0;
     current_element[-5] = 0;
-    *(undefined1 *)(current_element + -2) = 3;
+    *(int8_t *)(current_element + -2) = 3;
     current_element[-1] = 0;
     *current_element = 0;
-    *(undefined1 *)(current_element + 3) = 3;
+    *(int8_t *)(current_element + 3) = 3;
     element_index = element_index + 1;
     current_element = current_element + 10;
   } while ((ulonglong)(longlong)element_index < array_size);
@@ -977,12 +977,12 @@ allocate_resource_array(ulonglong array_size,undefined8 param_2,undefined8 param
 void copy_object_data(longlong *destination,longlong *source)
 
 {
-  undefined4 *src_data_ptr;
-  undefined4 *dest_data_ptr;
+  int32_t *src_data_ptr;
+  int32_t *dest_data_ptr;
   uint src_count;
-  undefined4 src_data;
-  undefined4 src_data2;
-  undefined4 src_data3;
+  int32_t src_data;
+  int32_t src_data2;
+  int32_t src_data3;
   ushort src_ushort;
   ulonglong dest_offset;
   longlong src_ptr;
@@ -1041,11 +1041,11 @@ void copy_object_data(longlong *destination,longlong *source)
         do {
           src_ptr = (longlong)(int)dest_count;
           dest_count = dest_count + 1;
-          src_data_ptr = (undefined4 *)(*(longlong *)(dest_uint_ptr + 2) + src_ptr * 0x10);
+          src_data_ptr = (int32_t *)(*(longlong *)(dest_uint_ptr + 2) + src_ptr * 0x10);
           src_data = src_data_ptr[1];
           src_data2 = src_data_ptr[2];
           src_data3 = src_data_ptr[3];
-          dest_data_ptr = (undefined4 *)(*(longlong *)(src_uint_ptr + 2) + src_ptr * 0x10);
+          dest_data_ptr = (int32_t *)(*(longlong *)(src_uint_ptr + 2) + src_ptr * 0x10);
           *dest_data_ptr = *src_data_ptr;
           dest_data_ptr[1] = src_data;
           dest_data_ptr[2] = src_data2;
@@ -1074,11 +1074,11 @@ void copy_object_data(longlong *destination,longlong *source)
         do {
           src_ptr = (longlong)(int)src_max_count;
           src_max_count = src_max_count + 1;
-          src_data_ptr = (undefined4 *)(*(longlong *)(dest_uint_ptr + 0xc) + src_ptr * 0x10);
+          src_data_ptr = (int32_t *)(*(longlong *)(dest_uint_ptr + 0xc) + src_ptr * 0x10);
           src_data = src_data_ptr[1];
           src_data2 = src_data_ptr[2];
           src_data3 = src_data_ptr[3];
-          dest_data_ptr = (undefined4 *)(*(longlong *)(src_uint_ptr + 0xc) + src_ptr * 0x10);
+          dest_data_ptr = (int32_t *)(*(longlong *)(src_uint_ptr + 0xc) + src_ptr * 0x10);
           *dest_data_ptr = *src_data_ptr;
           dest_data_ptr[1] = src_data;
           dest_data_ptr[2] = src_data2;

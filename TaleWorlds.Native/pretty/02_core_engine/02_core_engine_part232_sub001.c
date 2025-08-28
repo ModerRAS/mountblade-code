@@ -16,12 +16,12 @@ void process_statistics_and_sort_data(longlong context_ptr)
   float *float_ptr2;
   float *float_ptr3;
   float *float_ptr4;
-  undefined1 temp_array1 [16];
-  undefined1 temp_array2 [16];
-  undefined1 temp_array3 [16];
-  undefined1 temp_array4 [16];
-  undefined1 temp_array5 [16];
-  undefined1 temp_array6 [16];
+  int8_t temp_array1 [16];
+  int8_t temp_array2 [16];
+  int8_t temp_array3 [16];
+  int8_t temp_array4 [16];
+  int8_t temp_array5 [16];
+  int8_t temp_array6 [16];
   double temp_double1;
   double temp_double2;
   double temp_double3;
@@ -265,12 +265,12 @@ void update_statistics_with_sorting(void)
   float *float_ptr1;
   float *float_ptr2;
   float *float_ptr3;
-  undefined1 temp_array1 [16];
-  undefined1 temp_array2 [16];
-  undefined1 temp_array3 [16];
-  undefined1 temp_array4 [16];
-  undefined1 temp_array5 [16];
-  undefined1 temp_array6 [16];
+  int8_t temp_array1 [16];
+  int8_t temp_array2 [16];
+  int8_t temp_array3 [16];
+  int8_t temp_array4 [16];
+  int8_t temp_array5 [16];
+  int8_t temp_array6 [16];
   double temp_double1;
   longlong context_ptr;
   longlong temp_long1;
@@ -280,7 +280,7 @@ void update_statistics_with_sorting(void)
   float *float_ptr5;
   longlong temp_long2;
   float *buffer_start;
-  undefined8 stack_ptr;
+  uint64_t stack_ptr;
   longlong temp_long3;
   ulonglong index_counter;
   float *buffer_end;
@@ -295,19 +295,19 @@ void update_statistics_with_sorting(void)
   double temp_double7;
   double temp_double8;
   double temp_double9;
-  undefined4 xmm_register_a;
-  undefined4 xmm_register_b;
-  undefined4 xmm_register_c;
-  undefined4 xmm_register_d;
+  int32_t xmm_register_a;
+  int32_t xmm_register_b;
+  int32_t xmm_register_c;
+  int32_t xmm_register_d;
   double temp_double10;
   double temp_double11;
   
   // 设置栈帧和寄存器状态
-  *(undefined8 *)(context_ptr + 8) = stack_ptr;
-  *(undefined4 *)(context_ptr + -0x38) = xmm_register_a;
-  *(undefined4 *)(context_ptr + -0x34) = xmm_register_b;
-  *(undefined4 *)(context_ptr + -0x30) = xmm_register_c;
-  *(undefined4 *)(context_ptr + -0x2c) = xmm_register_d;
+  *(uint64_t *)(context_ptr + 8) = stack_ptr;
+  *(int32_t *)(context_ptr + -0x38) = xmm_register_a;
+  *(int32_t *)(context_ptr + -0x34) = xmm_register_b;
+  *(int32_t *)(context_ptr + -0x30) = xmm_register_c;
+  *(int32_t *)(context_ptr + -0x2c) = xmm_register_d;
   temp_uint1 = (uint)index_counter;
   
   // 第一个缓冲区排序
@@ -502,26 +502,26 @@ void update_statistics_with_sorting(void)
 }
 
 
-// 函数: void calculate_weighted_statistics(undefined8 context_ptr,double weight1,double weight2,int sample_count)
+// 函数: void calculate_weighted_statistics(uint64_t context_ptr,double weight1,double weight2,int sample_count)
 // 功能: 计算加权统计数据
 // 参数: context_ptr - 上下文指针，weight1/weight2 - 权重因子，sample_count - 样本数量
-void calculate_weighted_statistics(undefined8 context_ptr,double weight1,double weight2,int sample_count)
+void calculate_weighted_statistics(uint64_t context_ptr,double weight1,double weight2,int sample_count)
 
 {
   int temp_int;
-  undefined1 temp_array1 [16];
-  undefined1 temp_array2 [16];
-  undefined1 temp_array3 [16];
-  undefined1 temp_array4 [16];
-  undefined1 temp_array5 [16];
-  undefined1 temp_array6 [16];
-  undefined1 temp_array7 [16];
-  undefined1 temp_array8 [16];
-  undefined1 temp_array9 [16];
-  undefined1 temp_array10 [16];
-  undefined1 temp_array11 [16];
-  undefined1 temp_array12 [16];
-  undefined1 temp_array13 [16];
+  int8_t temp_array1 [16];
+  int8_t temp_array2 [16];
+  int8_t temp_array3 [16];
+  int8_t temp_array4 [16];
+  int8_t temp_array5 [16];
+  int8_t temp_array6 [16];
+  int8_t temp_array7 [16];
+  int8_t temp_array8 [16];
+  int8_t temp_array9 [16];
+  int8_t temp_array10 [16];
+  int8_t temp_array11 [16];
+  int8_t temp_array12 [16];
+  int8_t temp_array13 [16];
   ulonglong temp_ulong1;
   longlong temp_long1;
   longlong temp_long2;
@@ -665,18 +665,18 @@ void calculate_weighted_statistics(undefined8 context_ptr,double weight1,double 
 }
 
 
-// 函数: void update_moving_statistics(undefined8 param1,undefined8 param2,double weight,double value)
+// 函数: void update_moving_statistics(uint64_t param1,uint64_t param2,double weight,double value)
 // 功能: 更新移动统计数据
 // 参数: param1/param2 - 上下文参数，weight - 权重，value - 数值
-void update_moving_statistics(undefined8 param1,undefined8 param2,double weight,double value)
+void update_moving_statistics(uint64_t param1,uint64_t param2,double weight,double value)
 
 {
-  undefined1 temp_array1 [16];
-  undefined1 temp_array2 [16];
-  undefined1 temp_array3 [16];
-  undefined1 temp_array4 [16];
-  undefined1 temp_array5 [16];
-  undefined1 temp_array6 [16];
+  int8_t temp_array1 [16];
+  int8_t temp_array2 [16];
+  int8_t temp_array3 [16];
+  int8_t temp_array4 [16];
+  int8_t temp_array5 [16];
+  int8_t temp_array6 [16];
   longlong temp_long1;
   longlong temp_long2;
   longlong temp_long3;
@@ -693,8 +693,8 @@ void update_moving_statistics(undefined8 param1,undefined8 param2,double weight,
   double moving_value2;
   double moving_value3;
   double moving_value4;
-  undefined4 xmm_register_a;
-  undefined4 xmm_register_b;
+  int32_t xmm_register_a;
+  int32_t xmm_register_b;
   double moving_value5;
   ulonglong temp_ulong1;
   
@@ -769,16 +769,16 @@ void update_moving_statistics(undefined8 param1,undefined8 param2,double weight,
 void execute_performance_analysis(longlong context_ptr)
 
 {
-  undefined8 temp_ulong1;
-  undefined4 temp_uint1;
-  undefined4 *uint_ptr1;
-  undefined *ptr1;
-  undefined *stack_ptr1;
-  undefined4 *stack_ptr2;
-  undefined4 stack_value1;
-  undefined8 stack_value2;
-  undefined1 temp_array1 [32];
-  undefined8 stack_value3;
+  uint64_t temp_ulong1;
+  int32_t temp_uint1;
+  int32_t *uint_ptr1;
+  void *ptr1;
+  void *stack_ptr1;
+  int32_t *stack_ptr2;
+  int32_t stack_value1;
+  uint64_t stack_value2;
+  int8_t temp_array1 [32];
+  uint64_t stack_value3;
   
   stack_value3 = 0xfffffffffffffffe;
   ptr1 = &performance_table_entry;
@@ -789,14 +789,14 @@ void execute_performance_analysis(longlong context_ptr)
   }
   
   initialize_performance_table(temp_array1,ptr1);
-  temp_ulong1 = *(undefined8 *)(context_ptr + 0xe8);
+  temp_ulong1 = *(uint64_t *)(context_ptr + 0xe8);
   stack_ptr1 = &performance_data_array;
   stack_value2 = 0;
-  stack_ptr2 = (undefined4 *)0x0;
+  stack_ptr2 = (int32_t *)0x0;
   stack_value1 = 0;
-  uint_ptr1 = (undefined4 *)allocate_table_entry(_DAT_180c8ed18,0x10,0x13);
+  uint_ptr1 = (int32_t *)allocate_table_entry(_DAT_180c8ed18,0x10,0x13);
   
-  *(undefined1 *)uint_ptr1 = 0;
+  *(int8_t *)uint_ptr1 = 0;
   stack_ptr2 = uint_ptr1;
   temp_uint1 = get_table_entry_hash(uint_ptr1);
   stack_value2 = CONCAT44(stack_value2._4_4_,temp_uint1);
@@ -816,10 +816,10 @@ void execute_performance_analysis(longlong context_ptr)
 }
 
 
-// 函数: void optimized_quicksort(float *array_start,float *array_end,longlong depth,undefined1 sort_flag)
+// 函数: void optimized_quicksort(float *array_start,float *array_end,longlong depth,int8_t sort_flag)
 // 功能: 优化的快速排序算法
 // 参数: array_start - 数组起始指针，array_end - 数组结束指针，depth - 递归深度，sort_flag - 排序标志
-void optimized_quicksort(float *array_start,float *array_end,longlong depth,undefined1 sort_flag)
+void optimized_quicksort(float *array_start,float *array_end,longlong depth,int8_t sort_flag)
 
 {
   float pivot1;
@@ -898,10 +898,10 @@ void optimized_quicksort(float *array_start,float *array_end,longlong depth,unde
 }
 
 
-// 函数: void alternative_quicksort(float *array_start,float *array_end,longlong depth,undefined1 sort_flag)
+// 函数: void alternative_quicksort(float *array_start,float *array_end,longlong depth,int8_t sort_flag)
 // 功能: 替代的快速排序实现
 // 参数: array_start - 数组起始指针，array_end - 数组结束指针，depth - 递归深度，sort_flag - 排序标志
-void alternative_quicksort(float *array_start,float *array_end,longlong depth,undefined1 sort_flag)
+void alternative_quicksort(float *array_start,float *array_end,longlong depth,int8_t sort_flag)
 
 {
   float pivot1;
@@ -975,10 +975,10 @@ void alternative_quicksort(float *array_start,float *array_end,longlong depth,un
 }
 
 
-// 函数: void iterative_quicksort(undefined4 depth_param,float *array_end)
+// 函数: void iterative_quicksort(int32_t depth_param,float *array_end)
 // 功能: 迭代式快速排序
 // 参数: depth_param - 深度参数，array_end - 数组结束指针
-void iterative_quicksort(undefined4 depth_param,float *array_end)
+void iterative_quicksort(int32_t depth_param,float *array_end)
 
 {
   float pivot1;
@@ -986,7 +986,7 @@ void iterative_quicksort(undefined4 depth_param,float *array_end)
   longlong temp_long1;
   float *left_ptr;
   float *right_ptr;
-  undefined1 sort_flag;
+  int8_t sort_flag;
   longlong array_base;
   float *array_start;
   float temp_float1;
@@ -1077,10 +1077,10 @@ void direct_insertion_sort(void)
 }
 
 
-// 函数: void hybrid_quicksort(float *array_start,float *array_end,longlong depth,undefined1 sort_flag)
+// 函数: void hybrid_quicksort(float *array_start,float *array_end,longlong depth,int8_t sort_flag)
 // 功能: 混合快速排序算法
 // 参数: array_start - 数组起始指针，array_end - 数组结束指针，depth - 递归深度，sort_flag - 排序标志
-void hybrid_quicksort(float *array_start,float *array_end,longlong depth,undefined1 sort_flag)
+void hybrid_quicksort(float *array_start,float *array_end,longlong depth,int8_t sort_flag)
 
 {
   float pivot1;
@@ -1153,10 +1153,10 @@ void hybrid_quicksort(float *array_start,float *array_end,longlong depth,undefin
 }
 
 
-// 函数: void alternative_hybrid_quicksort(float *array_start,float *array_end,longlong depth,undefined1 sort_flag)
+// 函数: void alternative_hybrid_quicksort(float *array_start,float *array_end,longlong depth,int8_t sort_flag)
 // 功能: 替代的混合快速排序实现
 // 参数: array_start - 数组起始指针，array_end - 数组结束指针，depth - 递归深度，sort_flag - 排序标志
-void alternative_hybrid_quicksort(float *array_start,float *array_end,longlong depth,undefined1 sort_flag)
+void alternative_hybrid_quicksort(float *array_start,float *array_end,longlong depth,int8_t sort_flag)
 
 {
   float pivot1;
@@ -1241,12 +1241,12 @@ void process_float_array_sorting_and_statistics(longlong param_1)
   float fVar2;
   int iVar3;
   float *pfVar4;
-  undefined1 auVar5 [16];
-  undefined1 auVar6 [16];
-  undefined1 auVar7 [16];
-  undefined1 auVar8 [16];
-  undefined1 auVar9 [16];
-  undefined1 auVar10 [16];
+  int8_t auVar5 [16];
+  int8_t auVar6 [16];
+  int8_t auVar7 [16];
+  int8_t auVar8 [16];
+  int8_t auVar9 [16];
+  int8_t auVar10 [16];
   double dVar11;
   double dVar12;
   double dVar13;
@@ -1454,12 +1454,12 @@ void process_float_array_sorting_and_statistics_variant(void)
   float fVar2;
   int iVar3;
   float *pfVar4;
-  undefined1 auVar5 [16];
-  undefined1 auVar6 [16];
-  undefined1 auVar7 [16];
-  undefined1 auVar8 [16];
-  undefined1 auVar9 [16];
-  undefined1 auVar10 [16];
+  int8_t auVar5 [16];
+  int8_t auVar6 [16];
+  int8_t auVar7 [16];
+  int8_t auVar8 [16];
+  int8_t auVar9 [16];
+  int8_t auVar10 [16];
   double dVar11;
   longlong in_RAX;
   longlong lVar12;
@@ -1469,7 +1469,7 @@ void process_float_array_sorting_and_statistics_variant(void)
   float *pfVar16;
   longlong lVar17;
   float *unaff_RBX;
-  undefined8 unaff_RBP;
+  uint64_t unaff_RBP;
   longlong lVar18;
   ulonglong unaff_RSI;
   float *unaff_RDI;
@@ -1485,19 +1485,19 @@ void process_float_array_sorting_and_statistics_variant(void)
   double dVar27;
   double dVar28;
   double dVar29;
-  undefined4 unaff_XMM8_Da;
-  undefined4 unaff_XMM8_Db;
-  undefined4 unaff_XMM8_Dc;
-  undefined4 unaff_XMM8_Dd;
+  int32_t unaff_XMM8_Da;
+  int32_t unaff_XMM8_Db;
+  int32_t unaff_XMM8_Dc;
+  int32_t unaff_XMM8_Dd;
   double dVar30;
   double dVar31;
   
   // 保存寄存器状态
-  *(undefined8 *)(in_RAX + 8) = unaff_RBP;
-  *(undefined4 *)(in_RAX + -0x38) = unaff_XMM8_Da;
-  *(undefined4 *)(in_RAX + -0x34) = unaff_XMM8_Db;
-  *(undefined4 *)(in_RAX + -0x30) = unaff_XMM8_Dc;
-  *(undefined4 *)(in_RAX + -0x2c) = unaff_XMM8_Dd;
+  *(uint64_t *)(in_RAX + 8) = unaff_RBP;
+  *(int32_t *)(in_RAX + -0x38) = unaff_XMM8_Da;
+  *(int32_t *)(in_RAX + -0x34) = unaff_XMM8_Db;
+  *(int32_t *)(in_RAX + -0x30) = unaff_XMM8_Dc;
+  *(int32_t *)(in_RAX + -0x2c) = unaff_XMM8_Dd;
   uVar14 = (uint)unaff_RSI;
   
   // 处理第一个浮点数数组的排序

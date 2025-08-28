@@ -137,80 +137,80 @@ void render_string_comparator(longlong param_1, longlong param_2)
     char cVar2;
     int iVar3;
     char *pcVar4;
-    undefined8 *puVar5;
+    uint64_t *puVar5;
     longlong lVar6;
     bool bVar7;
-    undefined1 auStack_6c8 [32];
+    int8_t auStack_6c8 [32];
     longlong *plStack_6a8;
-    undefined8 uStack_6a0;
-    undefined *puStack_698;
-    undefined1 *puStack_690;
-    undefined4 uStack_688;
-    undefined1 auStack_680 [72];
-    undefined *puStack_638;
-    undefined1 *puStack_630;
-    undefined4 uStack_628;
-    undefined1 auStack_620 [72];
-    undefined *puStack_5d8;
-    undefined1 *puStack_5d0;
-    undefined4 uStack_5c8;
-    undefined1 auStack_5c0 [72];
-    undefined *puStack_578;
-    undefined1 *puStack_570;
-    undefined4 uStack_568;
-    undefined1 auStack_560 [72];
-    undefined *puStack_518;
-    undefined1 *puStack_510;
-    undefined4 uStack_508;
-    undefined1 auStack_500 [72];
-    undefined *puStack_4b8;
-    undefined1 *puStack_4b0;
-    undefined4 uStack_4a8;
-    undefined1 auStack_4a0 [72];
-    undefined *puStack_458;
-    undefined1 *puStack_450;
-    undefined4 uStack_448;
-    undefined1 auStack_440 [72];
-    undefined *puStack_3f8;
-    undefined1 *puStack_3f0;
-    undefined4 uStack_3e8;
-    undefined1 auStack_3e0 [72];
-    undefined *puStack_398;
-    undefined1 *puStack_390;
-    undefined4 uStack_388;
-    undefined1 auStack_380 [72];
-    undefined *puStack_338;
-    undefined1 *puStack_330;
-    undefined4 uStack_328;
-    undefined1 auStack_320 [72];
-    undefined *puStack_2d8;
-    undefined1 *puStack_2d0;
-    undefined4 uStack_2c8;
-    undefined1 auStack_2c0 [72];
-    undefined *puStack_278;
-    undefined1 *puStack_270;
-    undefined4 uStack_268;
-    undefined1 auStack_260 [72];
-    undefined *puStack_218;
-    undefined1 *puStack_210;
-    undefined4 uStack_208;
-    undefined1 auStack_200 [72];
-    undefined *puStack_1b8;
-    undefined1 *puStack_1b0;
-    undefined4 uStack_1a8;
-    undefined1 auStack_1a0 [72];
-    undefined *puStack_158;
-    undefined1 *puStack_150;
-    undefined4 uStack_148;
-    undefined1 auStack_140 [72];
-    undefined *puStack_f8;
-    undefined1 *puStack_f0;
-    undefined4 uStack_e8;
-    undefined1 auStack_e0 [72];
-    undefined *puStack_98;
-    undefined1 *puStack_90;
-    undefined4 uStack_88;
-    undefined1 auStack_80 [72];
+    uint64_t uStack_6a0;
+    void *puStack_698;
+    int8_t *puStack_690;
+    int32_t uStack_688;
+    int8_t auStack_680 [72];
+    void *puStack_638;
+    int8_t *puStack_630;
+    int32_t uStack_628;
+    int8_t auStack_620 [72];
+    void *puStack_5d8;
+    int8_t *puStack_5d0;
+    int32_t uStack_5c8;
+    int8_t auStack_5c0 [72];
+    void *puStack_578;
+    int8_t *puStack_570;
+    int32_t uStack_568;
+    int8_t auStack_560 [72];
+    void *puStack_518;
+    int8_t *puStack_510;
+    int32_t uStack_508;
+    int8_t auStack_500 [72];
+    void *puStack_4b8;
+    int8_t *puStack_4b0;
+    int32_t uStack_4a8;
+    int8_t auStack_4a0 [72];
+    void *puStack_458;
+    int8_t *puStack_450;
+    int32_t uStack_448;
+    int8_t auStack_440 [72];
+    void *puStack_3f8;
+    int8_t *puStack_3f0;
+    int32_t uStack_3e8;
+    int8_t auStack_3e0 [72];
+    void *puStack_398;
+    int8_t *puStack_390;
+    int32_t uStack_388;
+    int8_t auStack_380 [72];
+    void *puStack_338;
+    int8_t *puStack_330;
+    int32_t uStack_328;
+    int8_t auStack_320 [72];
+    void *puStack_2d8;
+    int8_t *puStack_2d0;
+    int32_t uStack_2c8;
+    int8_t auStack_2c0 [72];
+    void *puStack_278;
+    int8_t *puStack_270;
+    int32_t uStack_268;
+    int8_t auStack_260 [72];
+    void *puStack_218;
+    int8_t *puStack_210;
+    int32_t uStack_208;
+    int8_t auStack_200 [72];
+    void *puStack_1b8;
+    int8_t *puStack_1b0;
+    int32_t uStack_1a8;
+    int8_t auStack_1a0 [72];
+    void *puStack_158;
+    int8_t *puStack_150;
+    int32_t uStack_148;
+    int8_t auStack_140 [72];
+    void *puStack_f8;
+    int8_t *puStack_f0;
+    int32_t uStack_e8;
+    int8_t auStack_e0 [72];
+    void *puStack_98;
+    int8_t *puStack_90;
+    int32_t uStack_88;
+    int8_t auStack_80 [72];
     ulonglong uStack_38;
     
     /* 初始化渲染状态和超时设置 */
@@ -831,10 +831,10 @@ LAB_180359b66:
     puStack_698 = &UNK_18098bcb0;
 LAB_18035a6fd:
     /* 调用渲染状态初始化器和资源清理器 */
-    puVar5 = (undefined8 *)
+    puVar5 = (uint64_t *)
            render_state_initializer(*(longlong *)(*(longlong *)(param_1 + 0x18) + 0x20) + 0x2970, &plStack_6a8,
                          param_1 + 0x70);
-    *(undefined8 *)(param_1 + MEMORY_OFFSET_108) = *puVar5;
+    *(uint64_t *)(param_1 + MEMORY_OFFSET_108) = *puVar5;
     if (plStack_6a8 != (longlong *)0x0) {
         (**(code **)(*plStack_6a8 + 0x38))();
     }
@@ -866,9 +866,9 @@ void render_resource_allocator(longlong param_1)
 {
     uint uVar1;
     longlong lVar2;
-    undefined8 uVar3;
+    uint64_t uVar3;
     int iVar4;
-    undefined8 uVar5;
+    uint64_t uVar5;
     longlong *plVar6;
     longlong lVar7;
     byte bVar8;
@@ -880,7 +880,7 @@ void render_resource_allocator(longlong param_1)
     longlong **pplStackX_20;
     
     /* 获取渲染资源基础信息 */
-    uVar3 = *(undefined8 *)(*(longlong *)(param_1 + 0x18) + 0x20);
+    uVar3 = *(uint64_t *)(*(longlong *)(param_1 + 0x18) + 0x20);
     
     /* 分配渲染资源内存 */
     uVar5 = render_memory_allocator(_DAT_180c8ed18, RENDER_STATE_SIZE, RENDER_PARAM_SIZE, RENDER_FLAG_SIZE);
@@ -909,7 +909,7 @@ void render_resource_allocator(longlong param_1)
     }
     
     /* 设置渲染资源属性 */
-    render_system_initializer(*(undefined8 *)(param_1 + MEMORY_OFFSET_118), &UNK_180a1ed48);
+    render_system_initializer(*(uint64_t *)(param_1 + MEMORY_OFFSET_118), &UNK_180a1ed48);
     lVar7 = *(longlong *)(param_1 + MEMORY_OFFSET_118);
     uVar1 = *(uint *)(lVar7 + MEMORY_OFFSET_2AC);
     *(uint *)(lVar7 + MEMORY_OFFSET_2AC) = uVar1 | RENDER_CONTROL_FLAG;

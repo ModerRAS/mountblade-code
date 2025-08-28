@@ -73,23 +73,23 @@
  * ============================================================================ */
 
 // 系统数据区域
-extern undefined4 UNK_180d498a8;
-extern undefined *UNK_180d498b0;
-extern undefined1 *UNK_180d498b8;
-extern undefined4 UNK_180d498c0;
+extern int32_t UNK_180d498a8;
+extern void *UNK_180d498b0;
+extern int8_t *UNK_180d498b8;
+extern int32_t UNK_180d498c0;
 extern longlong UNK_180d49908;
 extern longlong UNK_180d49910;
 extern longlong UNK_180d49928;
 extern longlong UNK_180d49930;
-extern undefined4 UNK_180d49948;
-extern undefined4 UNK_180d4994c;
+extern int32_t UNK_180d49948;
+extern int32_t UNK_180d4994c;
 extern undefined DAT_180d49950;
 extern undefined DAT_180d49970;
 extern undefined DAT_180bfc140;
 extern undefined DAT_1803f48b2;
 extern undefined UNK_180d49d58;
 extern longlong UNK_180d49d68;
-extern undefined8 UNK_180d49d70;
+extern uint64_t UNK_180d49d70;
 extern longlong UNK_180d49d78;
 extern longlong *UNK_180c96358;
 
@@ -201,7 +201,7 @@ void FloatDataProcessor(longlong param_1, longlong *param_2, uint param_3);
  * @param param_3 处理数量
  * @return void 无返回值
  */
-void SIMDDataProcessor(longlong param_1, undefined8 param_2, uint param_3);
+void SIMDDataProcessor(longlong param_1, uint64_t param_2, uint param_3);
 
 /**
  * @brief 系统重置器
@@ -237,10 +237,10 @@ void AdvancedMathProcessor(longlong param_1, longlong *param_2, uint param_3);
  * ============================================================================ */
 
 // 基础类型别名
-typedef undefined8 MatrixHandle;            // 矩阵句柄
-typedef undefined8 DataBuffer;            // 数据缓冲区
-typedef undefined4 DataElement;           // 数据元素
-typedef undefined8 ProcessFlags;          // 处理标志
+typedef uint64_t MatrixHandle;            // 矩阵句柄
+typedef uint64_t DataBuffer;            // 数据缓冲区
+typedef int32_t DataElement;           // 数据元素
+typedef uint64_t ProcessFlags;          // 处理标志
 typedef float Float32;                    // 32位浮点数
 typedef uint ProcessCount;                // 处理计数
 typedef longlong DataPointer;             // 数据指针
@@ -342,37 +342,37 @@ void AdvancedMatrixTransformer(longlong param_1, longlong param_2, uint param_3)
     uint uVar39;                            // 无符号整型变量39
     longlong in_RAX;                        // 输入寄存器RAX
     ulonglong uVar40;                       // 无符号长整型变量40
-    undefined8 unaff_RBX;                  // 未关联寄存器RBX
-    undefined8 unaff_RBP;                  // 未关联寄存器RBP
-    undefined8 unaff_RSI;                  // 未关联寄存器RSI
-    undefined8 unaff_RDI;                  // 未关联寄存器RDI
+    uint64_t unaff_RBX;                  // 未关联寄存器RBX
+    uint64_t unaff_RBP;                  // 未关联寄存器RBP
+    uint64_t unaff_RSI;                  // 未关联寄存器RSI
+    uint64_t unaff_RDI;                  // 未关联寄存器RDI
     uint in_R10D;                           // 输入寄存器R10D
     longlong in_R11;                        // 输入寄存器R11
-    undefined8 unaff_R14;                  // 未关联寄存器R14
-    undefined4 unaff_XMM6_Da;              // 未关联XMM6寄存器a分量
-    undefined4 unaff_XMM6_Db;              // 未关联XMM6寄存器b分量
-    undefined4 unaff_XMM6_Dc;              // 未关联XMM6寄存器c分量
-    undefined4 unaff_XMM6_Dd;              // 未关联XMM6寄存器d分量
-    undefined4 unaff_XMM7_Da;              // 未关联XMM7寄存器a分量
-    undefined4 unaff_XMM7_Db;              // 未关联XMM7寄存器b分量
-    undefined4 unaff_XMM7_Dc;              // 未关联XMM7寄存器c分量
-    undefined4 unaff_XMM7_Dd;              // 未关联XMM7寄存器d分量
-    undefined4 unaff_XMM8_Da;              // 未关联XMM8寄存器a分量
-    undefined4 unaff_XMM8_Db;              // 未关联XMM8寄存器b分量
-    undefined4 unaff_XMM8_Dc;              // 未关联XMM8寄存器c分量
-    undefined4 unaff_XMM8_Dd;              // 未关联XMM8寄存器d分量
-    undefined4 unaff_XMM9_Da;              // 未关联XMM9寄存器a分量
-    undefined4 unaff_XMM9_Db;              // 未关联XMM9寄存器b分量
-    undefined4 unaff_XMM9_Dc;              // 未关联XMM9寄存器c分量
-    undefined4 unaff_XMM9_Dd;              // 未关联XMM9寄存器d分量
-    undefined4 unaff_XMM10_Da;             // 未关联XMM10寄存器a分量
-    undefined4 unaff_XMM10_Db;             // 未关联XMM10寄存器b分量
-    undefined4 unaff_XMM10_Dc;             // 未关联XMM10寄存器c分量
-    undefined4 unaff_XMM10_Dd;             // 未关联XMM10寄存器d分量
-    undefined4 unaff_XMM11_Da;             // 未关联XMM11寄存器a分量
-    undefined4 unaff_XMM11_Db;             // 未关联XMM11寄存器b分量
-    undefined4 unaff_XMM11_Dc;             // 未关联XMM11寄存器c分量
-    undefined4 unaff_XMM11_Dd;             // 未关联XMM11寄存器d分量
+    uint64_t unaff_R14;                  // 未关联寄存器R14
+    int32_t unaff_XMM6_Da;              // 未关联XMM6寄存器a分量
+    int32_t unaff_XMM6_Db;              // 未关联XMM6寄存器b分量
+    int32_t unaff_XMM6_Dc;              // 未关联XMM6寄存器c分量
+    int32_t unaff_XMM6_Dd;              // 未关联XMM6寄存器d分量
+    int32_t unaff_XMM7_Da;              // 未关联XMM7寄存器a分量
+    int32_t unaff_XMM7_Db;              // 未关联XMM7寄存器b分量
+    int32_t unaff_XMM7_Dc;              // 未关联XMM7寄存器c分量
+    int32_t unaff_XMM7_Dd;              // 未关联XMM7寄存器d分量
+    int32_t unaff_XMM8_Da;              // 未关联XMM8寄存器a分量
+    int32_t unaff_XMM8_Db;              // 未关联XMM8寄存器b分量
+    int32_t unaff_XMM8_Dc;              // 未关联XMM8寄存器c分量
+    int32_t unaff_XMM8_Dd;              // 未关联XMM8寄存器d分量
+    int32_t unaff_XMM9_Da;              // 未关联XMM9寄存器a分量
+    int32_t unaff_XMM9_Db;              // 未关联XMM9寄存器b分量
+    int32_t unaff_XMM9_Dc;              // 未关联XMM9寄存器c分量
+    int32_t unaff_XMM9_Dd;              // 未关联XMM9寄存器d分量
+    int32_t unaff_XMM10_Da;             // 未关联XMM10寄存器a分量
+    int32_t unaff_XMM10_Db;             // 未关联XMM10寄存器b分量
+    int32_t unaff_XMM10_Dc;             // 未关联XMM10寄存器c分量
+    int32_t unaff_XMM10_Dd;             // 未关联XMM10寄存器d分量
+    int32_t unaff_XMM11_Da;             // 未关联XMM11寄存器a分量
+    int32_t unaff_XMM11_Db;             // 未关联XMM11寄存器b分量
+    int32_t unaff_XMM11_Dc;             // 未关联XMM11寄存器c分量
+    int32_t unaff_XMM11_Dd;             // 未关联XMM11寄存器d分量
     float unaff_XMM12_Da;                   // 未关联XMM12寄存器a分量
     float unaff_XMM12_Db;                   // 未关联XMM12寄存器b分量
     float unaff_XMM12_Dc;                   // 未关联XMM12寄存器c分量
@@ -391,42 +391,42 @@ void AdvancedMatrixTransformer(longlong param_1, longlong param_2, uint param_3)
     float unaff_XMM15_Dd;                   // 未关联XMM15寄存器d分量
     
     // 保存寄存器状态到栈空间
-    *(undefined8 *)(in_RAX + 8) = unaff_RBX;
+    *(uint64_t *)(in_RAX + 8) = unaff_RBX;
     lVar3 = *(longlong *)(param_2 + 8);
-    *(undefined8 *)(in_RAX + 0x10) = unaff_RBP;
+    *(uint64_t *)(in_RAX + 0x10) = unaff_RBP;
     lVar4 = *(longlong *)(param_2 + 0x20);
-    *(undefined8 *)(in_RAX + 0x18) = unaff_RSI;
+    *(uint64_t *)(in_RAX + 0x18) = unaff_RSI;
     lVar5 = *(longlong *)(param_2 + 0x18);
-    *(undefined8 *)(in_RAX + 0x20) = unaff_RDI;
+    *(uint64_t *)(in_RAX + 0x20) = unaff_RDI;
     lVar6 = *(longlong *)(param_2 + 0x10);
-    *(undefined8 *)(in_RAX + -8) = unaff_R14;
+    *(uint64_t *)(in_RAX + -8) = unaff_R14;
     lVar7 = *(longlong *)(param_2 + 0x28);
     
     // 保存SIMD寄存器状态
-    *(undefined4 *)(in_RAX + -0x18) = unaff_XMM6_Da;
-    *(undefined4 *)(in_RAX + -0x14) = unaff_XMM6_Db;
-    *(undefined4 *)(in_RAX + -0x10) = unaff_XMM6_Dc;
-    *(undefined4 *)(in_RAX + -0xc) = unaff_XMM6_Dd;
-    *(undefined4 *)(in_RAX + -0x28) = unaff_XMM7_Da;
-    *(undefined4 *)(in_RAX + -0x24) = unaff_XMM7_Db;
-    *(undefined4 *)(in_RAX + -0x20) = unaff_XMM7_Dc;
-    *(undefined4 *)(in_RAX + -0x1c) = unaff_XMM7_Dd;
-    *(undefined4 *)(in_RAX + -0x38) = unaff_XMM8_Da;
-    *(undefined4 *)(in_RAX + -0x34) = unaff_XMM8_Db;
-    *(undefined4 *)(in_RAX + -0x30) = unaff_XMM8_Dc;
-    *(undefined4 *)(in_RAX + -0x2c) = unaff_XMM8_Dd;
-    *(undefined4 *)(in_RAX + -0x48) = unaff_XMM9_Da;
-    *(undefined4 *)(in_RAX + -0x44) = unaff_XMM9_Db;
-    *(undefined4 *)(in_RAX + -0x40) = unaff_XMM9_Dc;
-    *(undefined4 *)(in_RAX + -0x3c) = unaff_XMM9_Dd;
-    *(undefined4 *)(in_RAX + -0x58) = unaff_XMM10_Da;
-    *(undefined4 *)(in_RAX + -0x54) = unaff_XMM10_Db;
-    *(undefined4 *)(in_RAX + -0x50) = unaff_XMM10_Dc;
-    *(undefined4 *)(in_RAX + -0x4c) = unaff_XMM10_Dd;
-    *(undefined4 *)(in_RAX + -0x68) = unaff_XMM11_Da;
-    *(undefined4 *)(in_RAX + -100) = unaff_XMM11_Db;
-    *(undefined4 *)(in_RAX + -0x60) = unaff_XMM11_Dc;
-    *(undefined4 *)(in_RAX + -0x5c) = unaff_XMM11_Dd;
+    *(int32_t *)(in_RAX + -0x18) = unaff_XMM6_Da;
+    *(int32_t *)(in_RAX + -0x14) = unaff_XMM6_Db;
+    *(int32_t *)(in_RAX + -0x10) = unaff_XMM6_Dc;
+    *(int32_t *)(in_RAX + -0xc) = unaff_XMM6_Dd;
+    *(int32_t *)(in_RAX + -0x28) = unaff_XMM7_Da;
+    *(int32_t *)(in_RAX + -0x24) = unaff_XMM7_Db;
+    *(int32_t *)(in_RAX + -0x20) = unaff_XMM7_Dc;
+    *(int32_t *)(in_RAX + -0x1c) = unaff_XMM7_Dd;
+    *(int32_t *)(in_RAX + -0x38) = unaff_XMM8_Da;
+    *(int32_t *)(in_RAX + -0x34) = unaff_XMM8_Db;
+    *(int32_t *)(in_RAX + -0x30) = unaff_XMM8_Dc;
+    *(int32_t *)(in_RAX + -0x2c) = unaff_XMM8_Dd;
+    *(int32_t *)(in_RAX + -0x48) = unaff_XMM9_Da;
+    *(int32_t *)(in_RAX + -0x44) = unaff_XMM9_Db;
+    *(int32_t *)(in_RAX + -0x40) = unaff_XMM9_Dc;
+    *(int32_t *)(in_RAX + -0x3c) = unaff_XMM9_Dd;
+    *(int32_t *)(in_RAX + -0x58) = unaff_XMM10_Da;
+    *(int32_t *)(in_RAX + -0x54) = unaff_XMM10_Db;
+    *(int32_t *)(in_RAX + -0x50) = unaff_XMM10_Dc;
+    *(int32_t *)(in_RAX + -0x4c) = unaff_XMM10_Dd;
+    *(int32_t *)(in_RAX + -0x68) = unaff_XMM11_Da;
+    *(int32_t *)(in_RAX + -100) = unaff_XMM11_Db;
+    *(int32_t *)(in_RAX + -0x60) = unaff_XMM11_Dc;
+    *(int32_t *)(in_RAX + -0x5c) = unaff_XMM11_Dd;
     
     // 主处理循环：批量处理矩阵变换
     do {
@@ -572,8 +572,8 @@ void SystemInitializer(void)
  */
 void AdvancedDataProcessor(longlong param_1, longlong *param_2, uint param_3)
 {
-    undefined4 *puVar1;                     // 无符号整型指针1
-    undefined4 *puVar2;                     // 无符号整型指针2
+    int32_t *puVar1;                     // 无符号整型指针1
+    int32_t *puVar2;                     // 无符号整型指针2
     longlong lVar3;                         // 长整型变量3
     longlong lVar4;                         // 长整型变量4
     longlong lVar5;                         // 长整型变量5
@@ -582,37 +582,37 @@ void AdvancedDataProcessor(longlong param_1, longlong *param_2, uint param_3)
     longlong lVar8;                         // 长整型变量8
     longlong lVar9;                         // 长整型变量9
     longlong lVar10;                        // 长整型变量10
-    undefined4 uVar11;                     // 无符号整型变量11
-    undefined4 uVar12;                     // 无符号整型变量12
-    undefined4 uVar13;                     // 无符号整型变量13
-    undefined4 uVar14;                     // 无符号整型变量14
-    undefined4 uVar15;                     // 无符号整型变量15
-    undefined4 uVar16;                     // 无符号整型变量16
-    undefined4 uVar17;                     // 无符号整型变量17
-    undefined4 uVar18;                     // 无符号整型变量18
-    undefined4 uVar19;                     // 无符号整型变量19
-    undefined4 uVar20;                     // 无符号整型变量20
-    undefined4 uVar21;                     // 无符号整型变量21
-    undefined4 uVar22;                     // 无符号整型变量22
-    undefined4 uVar23;                     // 无符号整型变量23
-    undefined4 uVar24;                     // 无符号整型变量24
-    undefined4 uVar25;                     // 无符号整型变量25
-    undefined4 uVar26;                     // 无符号整型变量26
-    undefined4 uVar27;                     // 无符号整型变量27
-    undefined4 uVar28;                     // 无符号整型变量28
-    undefined4 uVar29;                     // 无符号整型变量29
-    undefined4 uVar30;                     // 无符号整型变量30
-    undefined4 uVar31;                     // 无符号整型变量31
-    undefined4 uVar32;                     // 无符号整型变量32
-    undefined4 uVar33;                     // 无符号整型变量33
-    undefined4 uVar34;                     // 无符号整型变量34
-    undefined4 uVar35;                     // 无符号整型变量35
-    undefined4 uVar36;                     // 无符号整型变量36
-    undefined4 uVar37;                     // 无符号整型变量37
-    undefined4 uVar38;                     // 无符号整型变量38
-    undefined4 uVar39;                     // 无符号整型变量39
-    undefined4 uVar40;                     // 无符号整型变量40
-    undefined4 uVar41;                     // 无符号整型变量41
+    int32_t uVar11;                     // 无符号整型变量11
+    int32_t uVar12;                     // 无符号整型变量12
+    int32_t uVar13;                     // 无符号整型变量13
+    int32_t uVar14;                     // 无符号整型变量14
+    int32_t uVar15;                     // 无符号整型变量15
+    int32_t uVar16;                     // 无符号整型变量16
+    int32_t uVar17;                     // 无符号整型变量17
+    int32_t uVar18;                     // 无符号整型变量18
+    int32_t uVar19;                     // 无符号整型变量19
+    int32_t uVar20;                     // 无符号整型变量20
+    int32_t uVar21;                     // 无符号整型变量21
+    int32_t uVar22;                     // 无符号整型变量22
+    int32_t uVar23;                     // 无符号整型变量23
+    int32_t uVar24;                     // 无符号整型变量24
+    int32_t uVar25;                     // 无符号整型变量25
+    int32_t uVar26;                     // 无符号整型变量26
+    int32_t uVar27;                     // 无符号整型变量27
+    int32_t uVar28;                     // 无符号整型变量28
+    int32_t uVar29;                     // 无符号整型变量29
+    int32_t uVar30;                     // 无符号整型变量30
+    int32_t uVar31;                     // 无符号整型变量31
+    int32_t uVar32;                     // 无符号整型变量32
+    int32_t uVar33;                     // 无符号整型变量33
+    int32_t uVar34;                     // 无符号整型变量34
+    int32_t uVar35;                     // 无符号整型变量35
+    int32_t uVar36;                     // 无符号整型变量36
+    int32_t uVar37;                     // 无符号整型变量37
+    int32_t uVar38;                     // 无符号整型变量38
+    int32_t uVar39;                     // 无符号整型变量39
+    int32_t uVar40;                     // 无符号整型变量40
+    int32_t uVar41;                     // 无符号整型变量41
     uint uVar42;                           // 无符号整型变量42
     ulonglong uVar43;                      // 无符号长整型变量43
     uint uVar44;                           // 无符号整型变量44
@@ -632,50 +632,50 @@ void AdvancedDataProcessor(longlong param_1, longlong *param_2, uint param_3)
         // 批量数据处理循环
         do {
             uVar42 = uVar44 * BATCH_PROCESS_SIZE;
-            puVar1 = (undefined4 *)(param_1 + (ulonglong)uVar42 * MATRIX_ELEMENT_SIZE);
+            puVar1 = (int32_t *)(param_1 + (ulonglong)uVar42 * MATRIX_ELEMENT_SIZE);
             uVar11 = puVar1[1];  // 读取数据元素
             uVar12 = puVar1[2];
             uVar13 = puVar1[3];
             
             // 读取下一组数据
-            puVar2 = (undefined4 *)(param_1 + (ulonglong)(uVar42 + 4) * MATRIX_ELEMENT_SIZE);
+            puVar2 = (int32_t *)(param_1 + (ulonglong)(uVar42 + 4) * MATRIX_ELEMENT_SIZE);
             uVar14 = *puVar2;
             uVar15 = puVar2[1];
             uVar16 = puVar2[2];
             uVar17 = puVar2[3];
             
             // 继续读取数据
-            puVar2 = (undefined4 *)(param_1 + (ulonglong)(uVar42 + 8) * MATRIX_ELEMENT_SIZE);
+            puVar2 = (int32_t *)(param_1 + (ulonglong)(uVar42 + 8) * MATRIX_ELEMENT_SIZE);
             uVar18 = *puVar2;
             uVar19 = puVar2[1];
             uVar20 = puVar2[2];
             uVar21 = puVar2[3];
             
-            puVar2 = (undefined4 *)(param_1 + (ulonglong)(uVar42 + 0xc) * MATRIX_ELEMENT_SIZE);
+            puVar2 = (int32_t *)(param_1 + (ulonglong)(uVar42 + 0xc) * MATRIX_ELEMENT_SIZE);
             uVar22 = *puVar2;
             uVar23 = puVar2[1];
             uVar24 = puVar2[2];
             uVar25 = puVar2[3];
             
-            puVar2 = (undefined4 *)(param_1 + (ulonglong)(uVar42 + 0x10) * MATRIX_ELEMENT_SIZE);
+            puVar2 = (int32_t *)(param_1 + (ulonglong)(uVar42 + 0x10) * MATRIX_ELEMENT_SIZE);
             uVar26 = *puVar2;
             uVar27 = puVar2[1];
             uVar28 = puVar2[2];
             uVar29 = puVar2[3];
             
-            puVar2 = (undefined4 *)(param_1 + (ulonglong)(uVar42 + 0x14) * MATRIX_ELEMENT_SIZE);
+            puVar2 = (int32_t *)(param_1 + (ulonglong)(uVar42 + 0x14) * MATRIX_ELEMENT_SIZE);
             uVar30 = *puVar2;
             uVar31 = puVar2[1];
             uVar32 = puVar2[2];
             uVar33 = puVar2[3];
             
-            puVar2 = (undefined4 *)(param_1 + (ulonglong)(uVar42 + 0x18) * MATRIX_ELEMENT_SIZE);
+            puVar2 = (int32_t *)(param_1 + (ulonglong)(uVar42 + 0x18) * MATRIX_ELEMENT_SIZE);
             uVar34 = *puVar2;
             uVar35 = puVar2[1];
             uVar36 = puVar2[2];
             uVar37 = puVar2[3];
             
-            puVar2 = (undefined4 *)(param_1 + (ulonglong)(uVar42 + 0x1c) * MATRIX_ELEMENT_SIZE);
+            puVar2 = (int32_t *)(param_1 + (ulonglong)(uVar42 + 0x1c) * MATRIX_ELEMENT_SIZE);
             uVar38 = *puVar2;
             uVar39 = puVar2[1];
             uVar40 = puVar2[2];
@@ -685,49 +685,49 @@ void AdvancedDataProcessor(longlong param_1, longlong *param_2, uint param_3)
             uVar44 = uVar44 + 1;
             
             // 数据重排和复制到输出缓冲区
-            puVar2 = (undefined4 *)(lVar3 + uVar43 * MATRIX_ELEMENT_SIZE);
+            puVar2 = (int32_t *)(lVar3 + uVar43 * MATRIX_ELEMENT_SIZE);
             *puVar2 = *puVar1;       // 数据重排
             puVar2[1] = uVar18;
             puVar2[2] = uVar26;
             puVar2[3] = uVar34;
             
-            puVar1 = (undefined4 *)(lVar4 + uVar43 * MATRIX_ELEMENT_SIZE);
+            puVar1 = (int32_t *)(lVar4 + uVar43 * MATRIX_ELEMENT_SIZE);
             *puVar1 = uVar11;
             puVar1[1] = uVar19;
             puVar1[2] = uVar27;
             puVar1[3] = uVar35;
             
-            puVar1 = (undefined4 *)(lVar7 + uVar43 * MATRIX_ELEMENT_SIZE);
+            puVar1 = (int32_t *)(lVar7 + uVar43 * MATRIX_ELEMENT_SIZE);
             *puVar1 = uVar12;
             puVar1[1] = uVar20;
             puVar1[2] = uVar28;
             puVar1[3] = uVar36;
             
-            puVar1 = (undefined4 *)(lVar6 + uVar43 * MATRIX_ELEMENT_SIZE);
+            puVar1 = (int32_t *)(lVar6 + uVar43 * MATRIX_ELEMENT_SIZE);
             *puVar1 = uVar13;
             puVar1[1] = uVar21;
             puVar1[2] = uVar29;
             puVar1[3] = uVar37;
             
-            puVar1 = (undefined4 *)(lVar5 + uVar43 * MATRIX_ELEMENT_SIZE);
+            puVar1 = (int32_t *)(lVar5 + uVar43 * MATRIX_ELEMENT_SIZE);
             *puVar1 = uVar14;
             puVar1[1] = uVar22;
             puVar1[2] = uVar30;
             puVar1[3] = uVar38;
             
-            puVar1 = (undefined4 *)(lVar9 + uVar43 * MATRIX_ELEMENT_SIZE);
+            puVar1 = (int32_t *)(lVar9 + uVar43 * MATRIX_ELEMENT_SIZE);
             *puVar1 = uVar15;
             puVar1[1] = uVar23;
             puVar1[2] = uVar31;
             puVar1[3] = uVar39;
             
-            puVar1 = (undefined4 *)(lVar10 + uVar43 * MATRIX_ELEMENT_SIZE);
+            puVar1 = (int32_t *)(lVar10 + uVar43 * MATRIX_ELEMENT_SIZE);
             *puVar1 = uVar16;
             puVar1[1] = uVar24;
             puVar1[2] = uVar32;
             puVar1[3] = uVar40;
             
-            puVar1 = (undefined4 *)(lVar8 + uVar43 * MATRIX_ELEMENT_SIZE);
+            puVar1 = (int32_t *)(lVar8 + uVar43 * MATRIX_ELEMENT_SIZE);
             *puVar1 = uVar17;
             puVar1[1] = uVar25;
             puVar1[2] = uVar33;
@@ -753,8 +753,8 @@ void AdvancedDataProcessor(longlong param_1, longlong *param_2, uint param_3)
  */
 void MatrixDataConverter(longlong param_1, longlong param_2, uint param_3)
 {
-    undefined4 *puVar1;                     // 无符号整型指针1
-    undefined4 *puVar2;                     // 无符号整型指针2
+    int32_t *puVar1;                     // 无符号整型指针1
+    int32_t *puVar2;                     // 无符号整型指针2
     longlong lVar3;                         // 长整型变量3
     longlong lVar4;                         // 长整型变量4
     longlong lVar5;                         // 长整型变量5
@@ -762,155 +762,155 @@ void MatrixDataConverter(longlong param_1, longlong param_2, uint param_3)
     longlong lVar7;                         // 长整型变量7
     longlong lVar8;                         // 长整型变量8
     longlong lVar9;                         // 长整型变量9
-    undefined4 uVar10;                      // 无符号整型变量10
-    undefined4 uVar11;                     // 无符号整型变量11
-    undefined4 uVar12;                     // 无符号整型变量12
-    undefined4 uVar13;                     // 无符号整型变量13
-    undefined4 uVar14;                     // 无符号整型变量14
-    undefined4 uVar15;                     // 无符号整型变量15
-    undefined4 uVar16;                     // 无符号整型变量16
-    undefined4 uVar17;                     // 无符号整型变量17
-    undefined4 uVar18;                     // 无符号整型变量18
-    undefined4 uVar19;                     // 无符号整型变量19
-    undefined4 uVar20;                     // 无符号整型变量20
-    undefined4 uVar21;                     // 无符号整型变量21
-    undefined4 uVar22;                     // 无符号整型变量22
-    undefined4 uVar23;                     // 无符号整型变量23
-    undefined4 uVar24;                     // 无符号整型变量24
-    undefined4 uVar25;                     // 无符号整型变量25
-    undefined4 uVar26;                     // 无符号整型变量26
-    undefined4 uVar27;                     // 无符号整型变量27
-    undefined4 uVar28;                     // 无符号整型变量28
-    undefined4 uVar29;                     // 无符号整型变量29
-    undefined4 uVar30;                     // 无符号整型变量30
-    undefined4 uVar31;                     // 无符号整型变量31
-    undefined4 uVar32;                     // 无符号整型变量32
-    undefined4 uVar33;                     // 无符号整型变量33
-    undefined4 uVar34;                     // 无符号整型变量34
-    undefined4 uVar35;                     // 无符号整型变量35
-    undefined4 uVar36;                     // 无符号整型变量36
-    undefined4 uVar37;                     // 无符号整型变量37
-    undefined4 uVar38;                     // 无符号整型变量38
-    undefined4 uVar39;                     // 无符号整型变量39
-    undefined4 uVar40;                     // 无符号整型变量40
+    int32_t uVar10;                      // 无符号整型变量10
+    int32_t uVar11;                     // 无符号整型变量11
+    int32_t uVar12;                     // 无符号整型变量12
+    int32_t uVar13;                     // 无符号整型变量13
+    int32_t uVar14;                     // 无符号整型变量14
+    int32_t uVar15;                     // 无符号整型变量15
+    int32_t uVar16;                     // 无符号整型变量16
+    int32_t uVar17;                     // 无符号整型变量17
+    int32_t uVar18;                     // 无符号整型变量18
+    int32_t uVar19;                     // 无符号整型变量19
+    int32_t uVar20;                     // 无符号整型变量20
+    int32_t uVar21;                     // 无符号整型变量21
+    int32_t uVar22;                     // 无符号整型变量22
+    int32_t uVar23;                     // 无符号整型变量23
+    int32_t uVar24;                     // 无符号整型变量24
+    int32_t uVar25;                     // 无符号整型变量25
+    int32_t uVar26;                     // 无符号整型变量26
+    int32_t uVar27;                     // 无符号整型变量27
+    int32_t uVar28;                     // 无符号整型变量28
+    int32_t uVar29;                     // 无符号整型变量29
+    int32_t uVar30;                     // 无符号整型变量30
+    int32_t uVar31;                     // 无符号整型变量31
+    int32_t uVar32;                     // 无符号整型变量32
+    int32_t uVar33;                     // 无符号整型变量33
+    int32_t uVar34;                     // 无符号整型变量34
+    int32_t uVar35;                     // 无符号整型变量35
+    int32_t uVar36;                     // 无符号整型变量36
+    int32_t uVar37;                     // 无符号整型变量37
+    int32_t uVar38;                     // 无符号整型变量38
+    int32_t uVar39;                     // 无符号整型变量39
+    int32_t uVar40;                     // 无符号整型变量40
     uint uVar41;                           // 无符号整型变量41
     longlong in_RAX;                        // 输入寄存器RAX
     ulonglong uVar42;                      // 无符号长整型变量42
-    undefined8 unaff_RBX;                  // 未关联寄存器RBX
-    undefined8 unaff_RBP;                  // 未关联寄存器RBP
-    undefined8 unaff_RSI;                  // 未关联寄存器RSI
-    undefined8 unaff_RDI;                  // 未关联寄存器RDI
+    uint64_t unaff_RBX;                  // 未关联寄存器RBX
+    uint64_t unaff_RBP;                  // 未关联寄存器RBP
+    uint64_t unaff_RSI;                  // 未关联寄存器RSI
+    uint64_t unaff_RDI;                  // 未关联寄存器RDI
     uint in_R10D;                           // 输入寄存器R10D
     longlong in_R11;                        // 输入寄存器R11
-    undefined8 unaff_R12;                  // 未关联寄存器R12
-    undefined8 unaff_R14;                  // 未关联寄存器R14
-    undefined8 unaff_R15;                  // 未关联寄存器R15
-    undefined4 unaff_XMM6_Da;              // 未关联XMM6寄存器a分量
-    undefined4 unaff_XMM6_Db;              // 未关联XMM6寄存器b分量
-    undefined4 unaff_XMM6_Dc;              // 未关联XMM6寄存器c分量
-    undefined4 unaff_XMM6_Dd;              // 未关联XMM6寄存器d分量
-    undefined4 unaff_XMM7_Da;              // 未关联XMM7寄存器a分量
-    undefined4 unaff_XMM7_Db;              // 未关联XMM7寄存器b分量
-    undefined4 unaff_XMM7_Dc;              // 未关联XMM7寄存器c分量
-    undefined4 unaff_XMM7_Dd;              // 未关联XMM7寄存器d分量
-    undefined4 unaff_XMM8_Da;              // 未关联XMM8寄存器a分量
-    undefined4 unaff_XMM8_Db;              // 未关联XMM8寄存器b分量
-    undefined4 unaff_XMM8_Dc;              // 未关联XMM8寄存器c分量
-    undefined4 unaff_XMM8_Dd;              // 未关联XMM8寄存器d分量
-    undefined4 unaff_XMM9_Da;              // 未关联XMM9寄存器a分量
-    undefined4 unaff_XMM9_Db;              // 未关联XMM9寄存器b分量
-    undefined4 unaff_XMM9_Dc;              // 未关联XMM9寄存器c分量
-    undefined4 unaff_XMM9_Dd;              // 未关联XMM9寄存器d分量
-    undefined4 unaff_XMM10_Da;             // 未关联XMM10寄存器a分量
-    undefined4 unaff_XMM10_Db;             // 未关联XMM10寄存器b分量
-    undefined4 unaff_XMM10_Dc;             // 未关联XMM10寄存器c分量
-    undefined4 unaff_XMM10_Dd;             // 未关联XMM10寄存器d分量
+    uint64_t unaff_R12;                  // 未关联寄存器R12
+    uint64_t unaff_R14;                  // 未关联寄存器R14
+    uint64_t unaff_R15;                  // 未关联寄存器R15
+    int32_t unaff_XMM6_Da;              // 未关联XMM6寄存器a分量
+    int32_t unaff_XMM6_Db;              // 未关联XMM6寄存器b分量
+    int32_t unaff_XMM6_Dc;              // 未关联XMM6寄存器c分量
+    int32_t unaff_XMM6_Dd;              // 未关联XMM6寄存器d分量
+    int32_t unaff_XMM7_Da;              // 未关联XMM7寄存器a分量
+    int32_t unaff_XMM7_Db;              // 未关联XMM7寄存器b分量
+    int32_t unaff_XMM7_Dc;              // 未关联XMM7寄存器c分量
+    int32_t unaff_XMM7_Dd;              // 未关联XMM7寄存器d分量
+    int32_t unaff_XMM8_Da;              // 未关联XMM8寄存器a分量
+    int32_t unaff_XMM8_Db;              // 未关联XMM8寄存器b分量
+    int32_t unaff_XMM8_Dc;              // 未关联XMM8寄存器c分量
+    int32_t unaff_XMM8_Dd;              // 未关联XMM8寄存器d分量
+    int32_t unaff_XMM9_Da;              // 未关联XMM9寄存器a分量
+    int32_t unaff_XMM9_Db;              // 未关联XMM9寄存器b分量
+    int32_t unaff_XMM9_Dc;              // 未关联XMM9寄存器c分量
+    int32_t unaff_XMM9_Dd;              // 未关联XMM9寄存器d分量
+    int32_t unaff_XMM10_Da;             // 未关联XMM10寄存器a分量
+    int32_t unaff_XMM10_Db;             // 未关联XMM10寄存器b分量
+    int32_t unaff_XMM10_Dc;             // 未关联XMM10寄存器c分量
+    int32_t unaff_XMM10_Dd;             // 未关联XMM10寄存器d分量
     
     // 保存寄存器状态到栈空间
-    *(undefined8 *)(in_RAX + 8) = unaff_RBX;
+    *(uint64_t *)(in_RAX + 8) = unaff_RBX;
     lVar3 = *(longlong *)(param_2 + 8);
-    *(undefined8 *)(in_RAX + 0x10) = unaff_RBP;
+    *(uint64_t *)(in_RAX + 0x10) = unaff_RBP;
     lVar4 = *(longlong *)(param_2 + 0x20);
-    *(undefined8 *)(in_RAX + 0x18) = unaff_RSI;
+    *(uint64_t *)(in_RAX + 0x18) = unaff_RSI;
     lVar5 = *(longlong *)(param_2 + 0x18);
-    *(undefined8 *)(in_RAX + 0x20) = unaff_RDI;
+    *(uint64_t *)(in_RAX + 0x20) = unaff_RDI;
     lVar6 = *(longlong *)(param_2 + 0x10);
-    *(undefined8 *)(in_RAX + -8) = unaff_R12;
+    *(uint64_t *)(in_RAX + -8) = unaff_R12;
     lVar7 = *(longlong *)(param_2 + 0x38);
-    *(undefined8 *)(in_RAX + -0x10) = unaff_R14;
+    *(uint64_t *)(in_RAX + -0x10) = unaff_R14;
     lVar8 = *(longlong *)(param_2 + 0x28);
-    *(undefined8 *)(in_RAX + -0x18) = unaff_R15;
+    *(uint64_t *)(in_RAX + -0x18) = unaff_R15;
     lVar9 = *(longlong *)(param_2 + 0x30);
     
     // 保存SIMD寄存器状态
-    *(undefined4 *)(in_RAX + -0x28) = unaff_XMM6_Da;
-    *(undefined4 *)(in_RAX + -0x24) = unaff_XMM6_Db;
-    *(undefined4 *)(in_RAX + -0x20) = unaff_XMM6_Dc;
-    *(undefined4 *)(in_RAX + -0x1c) = unaff_XMM6_Dd;
-    *(undefined4 *)(in_RAX + -0x38) = unaff_XMM7_Da;
-    *(undefined4 *)(in_RAX + -0x34) = unaff_XMM7_Db;
-    *(undefined4 *)(in_RAX + -0x30) = unaff_XMM7_Dc;
-    *(undefined4 *)(in_RAX + -0x2c) = unaff_XMM7_Dd;
-    *(undefined4 *)(in_RAX + -0x48) = unaff_XMM8_Da;
-    *(undefined4 *)(in_RAX + -0x44) = unaff_XMM8_Db;
-    *(undefined4 *)(in_RAX + -0x40) = unaff_XMM8_Dc;
-    *(undefined4 *)(in_RAX + -0x3c) = unaff_XMM8_Dd;
-    *(undefined4 *)(in_RAX + -0x58) = unaff_XMM9_Da;
-    *(undefined4 *)(in_RAX + -0x54) = unaff_XMM9_Db;
-    *(undefined4 *)(in_RAX + -0x50) = unaff_XMM9_Dc;
-    *(undefined4 *)(in_RAX + -0x4c) = unaff_XMM9_Dd;
-    *(undefined4 *)(in_RAX + -0x68) = unaff_XMM10_Da;
-    *(undefined4 *)(in_RAX + -100) = unaff_XMM10_Db;
-    *(undefined4 *)(in_RAX + -0x60) = unaff_XMM10_Dc;
-    *(undefined4 *)(in_RAX + -0x5c) = unaff_XMM10_Dd;
+    *(int32_t *)(in_RAX + -0x28) = unaff_XMM6_Da;
+    *(int32_t *)(in_RAX + -0x24) = unaff_XMM6_Db;
+    *(int32_t *)(in_RAX + -0x20) = unaff_XMM6_Dc;
+    *(int32_t *)(in_RAX + -0x1c) = unaff_XMM6_Dd;
+    *(int32_t *)(in_RAX + -0x38) = unaff_XMM7_Da;
+    *(int32_t *)(in_RAX + -0x34) = unaff_XMM7_Db;
+    *(int32_t *)(in_RAX + -0x30) = unaff_XMM7_Dc;
+    *(int32_t *)(in_RAX + -0x2c) = unaff_XMM7_Dd;
+    *(int32_t *)(in_RAX + -0x48) = unaff_XMM8_Da;
+    *(int32_t *)(in_RAX + -0x44) = unaff_XMM8_Db;
+    *(int32_t *)(in_RAX + -0x40) = unaff_XMM8_Dc;
+    *(int32_t *)(in_RAX + -0x3c) = unaff_XMM8_Dd;
+    *(int32_t *)(in_RAX + -0x58) = unaff_XMM9_Da;
+    *(int32_t *)(in_RAX + -0x54) = unaff_XMM9_Db;
+    *(int32_t *)(in_RAX + -0x50) = unaff_XMM9_Dc;
+    *(int32_t *)(in_RAX + -0x4c) = unaff_XMM9_Dd;
+    *(int32_t *)(in_RAX + -0x68) = unaff_XMM10_Da;
+    *(int32_t *)(in_RAX + -100) = unaff_XMM10_Db;
+    *(int32_t *)(in_RAX + -0x60) = unaff_XMM10_Dc;
+    *(int32_t *)(in_RAX + -0x5c) = unaff_XMM10_Dd;
     
     // 主处理循环：矩阵数据转换
     do {
         uVar41 = in_R10D * BATCH_PROCESS_SIZE;
-        puVar1 = (undefined4 *)(param_1 + (ulonglong)uVar41 * MATRIX_ELEMENT_SIZE);
+        puVar1 = (int32_t *)(param_1 + (ulonglong)uVar41 * MATRIX_ELEMENT_SIZE);
         uVar10 = puVar1[1];  // 读取矩阵数据
         uVar11 = puVar1[2];
         uVar12 = puVar1[3];
         
         // 读取下一组数据
-        puVar2 = (undefined4 *)(param_1 + (ulonglong)(uVar41 + 4) * MATRIX_ELEMENT_SIZE);
+        puVar2 = (int32_t *)(param_1 + (ulonglong)(uVar41 + 4) * MATRIX_ELEMENT_SIZE);
         uVar13 = *puVar2;
         uVar14 = puVar2[1];
         uVar15 = puVar2[2];
         uVar16 = puVar2[3];
         
         // 继续读取数据
-        puVar2 = (undefined4 *)(param_1 + (ulonglong)(uVar41 + 8) * MATRIX_ELEMENT_SIZE);
+        puVar2 = (int32_t *)(param_1 + (ulonglong)(uVar41 + 8) * MATRIX_ELEMENT_SIZE);
         uVar17 = *puVar2;
         uVar18 = puVar2[1];
         uVar19 = puVar2[2];
         uVar20 = puVar2[3];
         
-        puVar2 = (undefined4 *)(param_1 + (ulonglong)(uVar41 + 0xc) * MATRIX_ELEMENT_SIZE);
+        puVar2 = (int32_t *)(param_1 + (ulonglong)(uVar41 + 0xc) * MATRIX_ELEMENT_SIZE);
         uVar21 = *puVar2;
         uVar22 = puVar2[1];
         uVar23 = puVar2[2];
         uVar24 = puVar2[3];
         
-        puVar2 = (undefined4 *)(param_1 + (ulonglong)(uVar41 + 0x10) * MATRIX_ELEMENT_SIZE);
+        puVar2 = (int32_t *)(param_1 + (ulonglong)(uVar41 + 0x10) * MATRIX_ELEMENT_SIZE);
         uVar25 = *puVar2;
         uVar26 = puVar2[1];
         uVar27 = puVar2[2];
         uVar28 = puVar2[3];
         
-        puVar2 = (undefined4 *)(param_1 + (ulonglong)(uVar41 + 0x14) * MATRIX_ELEMENT_SIZE);
+        puVar2 = (int32_t *)(param_1 + (ulonglong)(uVar41 + 0x14) * MATRIX_ELEMENT_SIZE);
         uVar29 = *puVar2;
         uVar30 = puVar2[1];
         uVar31 = puVar2[2];
         uVar32 = puVar2[3];
         
-        puVar2 = (undefined4 *)(param_1 + (ulonglong)(uVar41 + 0x18) * MATRIX_ELEMENT_SIZE);
+        puVar2 = (int32_t *)(param_1 + (ulonglong)(uVar41 + 0x18) * MATRIX_ELEMENT_SIZE);
         uVar33 = *puVar2;
         uVar34 = puVar2[1];
         uVar35 = puVar2[2];
         uVar36 = puVar2[3];
         
-        puVar2 = (undefined4 *)(param_1 + (ulonglong)(uVar41 + 0x1c) * MATRIX_ELEMENT_SIZE);
+        puVar2 = (int32_t *)(param_1 + (ulonglong)(uVar41 + 0x1c) * MATRIX_ELEMENT_SIZE);
         uVar37 = *puVar2;
         uVar38 = puVar2[1];
         uVar39 = puVar2[2];
@@ -920,49 +920,49 @@ void MatrixDataConverter(longlong param_1, longlong param_2, uint param_3)
         in_R10D = in_R10D + 1;
         
         // 执行矩阵数据转换：重排数据到输出缓冲区
-        puVar2 = (undefined4 *)(in_R11 + uVar42 * MATRIX_ELEMENT_SIZE);
+        puVar2 = (int32_t *)(in_R11 + uVar42 * MATRIX_ELEMENT_SIZE);
         *puVar2 = *puVar1;       // 数据重排
         puVar2[1] = uVar17;
         puVar2[2] = uVar25;
         puVar2[3] = uVar33;
         
-        puVar1 = (undefined4 *)(lVar3 + uVar42 * MATRIX_ELEMENT_SIZE);
+        puVar1 = (int32_t *)(lVar3 + uVar42 * MATRIX_ELEMENT_SIZE);
         *puVar1 = uVar10;
         puVar1[1] = uVar18;
         puVar1[2] = uVar26;
         puVar1[3] = uVar34;
         
-        puVar1 = (undefined4 *)(lVar6 + uVar42 * MATRIX_ELEMENT_SIZE);
+        puVar1 = (int32_t *)(lVar6 + uVar42 * MATRIX_ELEMENT_SIZE);
         *puVar1 = uVar11;
         puVar1[1] = uVar19;
         puVar1[2] = uVar27;
         puVar1[3] = uVar35;
         
-        puVar1 = (undefined4 *)(lVar5 + uVar42 * MATRIX_ELEMENT_SIZE);
+        puVar1 = (int32_t *)(lVar5 + uVar42 * MATRIX_ELEMENT_SIZE);
         *puVar1 = uVar12;
         puVar1[1] = uVar20;
         puVar1[2] = uVar28;
         puVar1[3] = uVar36;
         
-        puVar1 = (undefined4 *)(lVar4 + uVar42 * MATRIX_ELEMENT_SIZE);
+        puVar1 = (int32_t *)(lVar4 + uVar42 * MATRIX_ELEMENT_SIZE);
         *puVar1 = uVar13;
         puVar1[1] = uVar21;
         puVar1[2] = uVar29;
         puVar1[3] = uVar37;
         
-        puVar1 = (undefined4 *)(lVar8 + uVar42 * MATRIX_ELEMENT_SIZE);
+        puVar1 = (int32_t *)(lVar8 + uVar42 * MATRIX_ELEMENT_SIZE);
         *puVar1 = uVar14;
         puVar1[1] = uVar22;
         puVar1[2] = uVar30;
         puVar1[3] = uVar38;
         
-        puVar1 = (undefined4 *)(lVar9 + uVar42 * MATRIX_ELEMENT_SIZE);
+        puVar1 = (int32_t *)(lVar9 + uVar42 * MATRIX_ELEMENT_SIZE);
         *puVar1 = uVar15;
         puVar1[1] = uVar23;
         puVar1[2] = uVar31;
         puVar1[3] = uVar39;
         
-        puVar1 = (undefined4 *)(lVar7 + uVar42 * MATRIX_ELEMENT_SIZE);
+        puVar1 = (int32_t *)(lVar7 + uVar42 * MATRIX_ELEMENT_SIZE);
         *puVar1 = uVar16;
         puVar1[1] = uVar24;
         puVar1[2] = uVar32;
@@ -1120,7 +1120,7 @@ void FloatDataProcessor(longlong param_1, longlong *param_2, uint param_3)
  * @param param_3 处理数量
  * @return void 无返回值
  */
-void SIMDDataProcessor(longlong param_1, undefined8 param_2, uint param_3)
+void SIMDDataProcessor(longlong param_1, uint64_t param_2, uint param_3)
 {
     float *pfVar1;                          // 浮点数指针1
     float *pfVar2;                          // 浮点数指针2

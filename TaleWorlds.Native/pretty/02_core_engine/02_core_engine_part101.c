@@ -82,14 +82,14 @@ float * calculate_text_rendering_width(float *output_result, char *text_start, c
 }
 
 // 函数：添加渲染元素到队列
-void add_render_element_to_queue(longlong render_context, float *position_data, uint render_flags, undefined4 render_type)
+void add_render_element_to_queue(longlong render_context, float *position_data, uint render_flags, int32_t render_type)
 {
   int *queue_count;
   int current_count;
   longlong engine_context;
   int queue_capacity;
   int new_capacity;
-  undefined4 temp_flags;
+  int32_t temp_flags;
   int element_size;
   float y_offset;
   float x_position;
@@ -98,7 +98,7 @@ void add_render_element_to_queue(longlong render_context, float *position_data, 
   float stack_temp1;
   float stack_temp2;
   uint processed_flags;
-  undefined4 stack_flags[3];
+  int32_t stack_flags[3];
   float stack_float;
   
   engine_context = _DAT_180c8a9b0;
@@ -181,16 +181,16 @@ void add_render_element_to_queue(longlong render_context, float *position_data, 
        CONCAT44(stack_temp2, stack_temp1);
   *queue_count = *queue_count + 1;
   
-  FUN_180293190(render_context, *(undefined8 *)(render_context + 0x88), *queue_count, render_type);
+  FUN_180293190(render_context, *(uint64_t *)(render_context + 0x88), *queue_count, render_type);
   
   height = *(float *)(engine_context + 0x16a0);
   if (0.0 < height) {
-    stack_flags[0] = *(undefined4 *)(_DAT_180c8a9b0 + 0x1718);
-    stack_flags[1] = *(undefined4 *)(_DAT_180c8a9b0 + 0x171c);
-    stack_flags[2] = *(undefined4 *)(_DAT_180c8a9b0 + 0x1720);
+    stack_flags[0] = *(int32_t *)(_DAT_180c8a9b0 + 0x1718);
+    stack_flags[1] = *(int32_t *)(_DAT_180c8a9b0 + 0x171c);
+    stack_flags[2] = *(int32_t *)(_DAT_180c8a9b0 + 0x1720);
     stack_float = *(float *)(_DAT_180c8a9b0 + 0x1724) * *(float *)(_DAT_180c8a9b0 + 0x1628);
     temp_flags = func_0x000180121e20(&stack_flags);
-    FUN_1802923e0(render_context, *(undefined8 *)(render_context + 0x88), *queue_count, temp_flags, processed_flags & 0xffffff00, height);
+    FUN_1802923e0(render_context, *(uint64_t *)(render_context + 0x88), *queue_count, temp_flags, processed_flags & 0xffffff00, height);
   }
   
   *queue_count = 0;
@@ -200,16 +200,16 @@ void add_render_element_to_queue(longlong render_context, float *position_data, 
 // 函数：处理文本布局
 ulonglong process_text_layout(longlong render_context, float *position_data, uint layout_flags, char *text_start, int text_id, int font_id)
 {
-  undefined4 temp_var1;
+  int32_t temp_var1;
   longlong context_var1;
   longlong context_var2;
-  undefined8 temp_var4;
-  undefined8 temp_var5;
-  undefined8 temp_var6;
-  undefined8 temp_var7;
+  uint64_t temp_var4;
+  uint64_t temp_var5;
+  uint64_t temp_var6;
+  uint64_t temp_var7;
   char char_flag;
   int int_var1;
-  undefined4 temp_var10;
+  int32_t temp_var10;
   char *text_current;
   ulonglong result;
   float *font_data;
@@ -222,12 +222,12 @@ ulonglong process_text_layout(longlong render_context, float *position_data, uin
   float y_position;
   float width;
   float height;
-  undefined8 stack_temp1;
+  uint64_t stack_temp1;
   uint stack_flags;
   float stack_float1;
   float stack_float2;
   ulonglong stack_ulong;
-  undefined8 stack_undefined[3];
+  uint64_t stack_undefined[3];
   float stack_float3;
   float stack_float4;
   float stack_float5;
@@ -309,12 +309,12 @@ ulonglong process_text_layout(longlong render_context, float *position_data, uin
       render_target = *(longlong *)(render_target + 0x1af8);
       y_position = *(float *)(context_var2 + 0x19f8) * 0.5;
       stack_temp1 = CONCAT71(SUB87(result, 1), 1);
-      temp_var10 = *(undefined4 *)(render_target + 0x144);
-      temp_var1 = *(undefined4 *)(render_target + 0x148);
-      temp_var4 = *(undefined8 *)(render_target + 0x14c);
-      temp_var5 = *(undefined8 *)(render_target + 0x154);
-      temp_var6 = *(undefined8 *)(render_target + 0x15c);
-      temp_var7 = *(undefined8 *)(render_target + 0x164);
+      temp_var10 = *(int32_t *)(render_target + 0x144);
+      temp_var1 = *(int32_t *)(render_target + 0x148);
+      temp_var4 = *(uint64_t *)(render_target + 0x14c);
+      temp_var5 = *(uint64_t *)(render_target + 0x154);
+      temp_var6 = *(uint64_t *)(render_target + 0x15c);
+      temp_var7 = *(uint64_t *)(render_target + 0x164);
       stack_undefined[0] = (char *)CONCAT44(position_data[1] + *(float *)(context_var2 + 0x1660) + y_position, (position_data[2] - *(float *)(context_var2 + 0x165c)) - y_position);
       char_flag = FUN_18010fd40(font_id, &stack_undefined[0], y_position);
       render_target = _DAT_180c8a9b0;
@@ -323,12 +323,12 @@ ulonglong process_text_layout(longlong render_context, float *position_data, uin
         stack_float1 = 1.4013e-45;
       }
       context_var1 = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
-      *(undefined4 *)(context_var1 + 0x144) = temp_var10;
-      *(undefined4 *)(context_var1 + 0x148) = temp_var1;
-      *(undefined8 *)(context_var1 + 0x14c) = temp_var4;
-      *(undefined8 *)(context_var1 + 0x154) = temp_var5;
-      *(undefined8 *)(context_var1 + 0x15c) = temp_var6;
-      *(undefined8 *)(context_var1 + 0x164) = temp_var7;
+      *(int32_t *)(context_var1 + 0x144) = temp_var10;
+      *(int32_t *)(context_var1 + 0x148) = temp_var1;
+      *(uint64_t *)(context_var1 + 0x14c) = temp_var4;
+      *(uint64_t *)(context_var1 + 0x154) = temp_var5;
+      *(uint64_t *)(context_var1 + 0x15c) = temp_var6;
+      *(uint64_t *)(context_var1 + 0x164) = temp_var7;
       if (((stack_flags & 4) == 0) && (*(float *)(render_target + 0x42c) == 0.0)) {
         stack_float1 = 1.4013e-45;
       }
@@ -350,7 +350,7 @@ ulonglong process_text_layout(longlong render_context, float *position_data, uin
     else {
       result = stack_ulong & 0xffffffff00000000;
       stack_undefined[0] = (char *)0x0;
-      font_data = (float *)FUN_180297340(*(undefined8 *)(render_target + 0x19f0), &stack_undefined[1], *(undefined4 *)(render_target + 0x19f8), (y_position - height) - 4.0, result, text_start, text_current, &stack_undefined[0]);
+      font_data = (float *)FUN_180297340(*(uint64_t *)(render_target + 0x19f0), &stack_undefined[1], *(int32_t *)(render_target + 0x19f8), (y_position - height) - 4.0, result, text_start, text_current, &stack_undefined[0]);
       y_position = *font_data;
       text_found = stack_undefined[0] == text_start;
       text_end = stack_undefined[0];
@@ -359,7 +359,7 @@ ulonglong process_text_layout(longlong render_context, float *position_data, uin
           int_var1 = FUN_180121550(&stack_undefined[0], text_start, text_current);
           text_end = text_start + int_var1;
           result = result & 0xffffffff00000000;
-          font_data = (float *)FUN_180297340(*(undefined8 *)(render_target + 0x19f0), &stack_undefined[1], *(undefined4 *)(render_target + 0x19f8), 0x7f7fffff, result, text_start, text_end, 0);
+          font_data = (float *)FUN_180297340(*(uint64_t *)(render_target + 0x19f0), &stack_undefined[1], *(int32_t *)(render_target + 0x19f8), 0x7f7fffff, result, text_start, text_end, 0);
           y_position = *font_data;
         }
         text_found = text_end == text_start;
@@ -370,7 +370,7 @@ ulonglong process_text_layout(longlong render_context, float *position_data, uin
           if ((text_end[-1] != ' ') && (text_current = text_end, text_end[-1] != '\t')) break;
           text_current = text_end + -1;
           result = result & 0xffffffff00000000;
-          font_data = (float *)FUN_180297340(*(undefined8 *)(render_target + 0x19f0), &stack_undefined[1], *(undefined4 *)(render_target + 0x19f8), 0x7f7fffff, result, text_current, text_end, 0);
+          font_data = (float *)FUN_180297340(*(uint64_t *)(render_target + 0x19f0), &stack_undefined[1], *(int32_t *)(render_target + 0x19f8), 0x7f7fffff, result, text_current, text_end, 0);
           y_position = y_position - *font_data;
           text_end = text_current;
         } while (text_start < text_current);
@@ -379,9 +379,9 @@ ulonglong process_text_layout(longlong render_context, float *position_data, uin
       FUN_1801224c0(render_context, &stack_float5, &stack_float4, text_start, text_current, &stack_float3, &stack_undefined[0], 0);
       y_position = stack_float5 + y_position + 1.0;
       if (((char)stack_temp1 == '\0') && (y_position + 5.0 < position_data[2] || y_position + 5.0 == position_data[2])) {
-        stack_undefined[1] = *(undefined4 *)(_DAT_180c8a9b0 + 0x16c8);
-        stack_undefined[2] = *(undefined4 *)(_DAT_180c8a9b0 + 0x16cc);
-        stack_undefined[3] = *(undefined4 *)(_DAT_180c8a9b0 + 0x16d0);
+        stack_undefined[1] = *(int32_t *)(_DAT_180c8a9b0 + 0x16c8);
+        stack_undefined[2] = *(int32_t *)(_DAT_180c8a9b0 + 0x16cc);
+        stack_undefined[3] = *(int32_t *)(_DAT_180c8a9b0 + 0x16d0);
         stack_float3 = *(float *)(_DAT_180c8a9b0 + 0x16d4) * *(float *)(_DAT_180c8a9b0 + 0x1628);
         temp_var1 = func_0x000180121e20(&stack_undefined[1]);
         render_target = *(longlong *)(*(longlong *)(render_context + 0x38) + 8);
@@ -406,22 +406,22 @@ ulonglong process_text_layout(longlong render_context, float *position_data, uin
 }
 
 // 函数：处理字符渲染
-undefined1 process_character_rendering(float param_1, float param_2, ulonglong param_3, undefined8 param_4)
+int8_t process_character_rendering(float param_1, float param_2, ulonglong param_3, uint64_t param_4)
 {
   float temp_float1;
   float temp_float2;
   float temp_float3;
   byte byte_flag;
-  undefined4 temp_var5;
-  undefined4 temp_var6;
+  int32_t temp_var5;
+  int32_t temp_var6;
   longlong context_var1;
   longlong context_var2;
-  undefined8 temp_var9;
-  undefined8 temp_var10;
-  undefined8 temp_var11;
+  uint64_t temp_var9;
+  uint64_t temp_var10;
+  uint64_t temp_var11;
   char char_flag1;
   int int_var1;
-  undefined4 temp_var14;
+  int32_t temp_var14;
   float *font_data;
   char *text_ptr;
   longlong stack_context;
@@ -436,9 +436,9 @@ undefined1 process_character_rendering(float param_1, float param_2, ulonglong p
   bool bool_flag;
   float char_width;
   float line_height;
-  undefined8 temp_result;
-  undefined8 temp_result2;
-  undefined8 temp_result3;
+  uint64_t temp_result;
+  uint64_t temp_result2;
+  uint64_t temp_result3;
   float stack_float1;
   float stack_float2;
   float stack_float3;
@@ -447,10 +447,10 @@ undefined1 process_character_rendering(float param_1, float param_2, ulonglong p
   float stack_float6;
   float stack_float7;
   float stack_float8;
-  undefined4 stack_flags[3];
+  int32_t stack_flags[3];
   float stack_float9;
   
-  temp_var14 = (undefined4)((ulonglong)temp_result >> 0x20);
+  temp_var14 = (int32_t)((ulonglong)temp_result >> 0x20);
   stack_float8 = temp_result3 - param_2;
   param_2 = temp_result2 + param_2;
   stack_float7 = param_1 + *(float *)(render_context + 0x1660);
@@ -485,7 +485,7 @@ undefined1 process_character_rendering(float param_1, float param_2, ulonglong p
     text_ptr = text_ptr2;
     stack_float8 = stack_float8;
     FUN_1801224c0(line_height, &text_start, stack_context + 0x6f, &_DAT_1809fdf28);
-    temp_var14 = (undefined4)((ulonglong)text_ptr >> 0x20);
+    temp_var14 = (int32_t)((ulonglong)text_ptr >> 0x20);
     render_context = _DAT_180c8a9b0;
   }
   
@@ -499,13 +499,13 @@ undefined1 process_character_rendering(float param_1, float param_2, ulonglong p
        (*(int *)(font_id + 0x1b18) == int_var1)) || (*(int *)(font_id + 0x1b2c) == int_var1)))) {
     context_var1 = *(longlong *)(render_context + 0x1af8);
     line_height = *(float *)(font_id + 0x19f8) * 0.5;
-    *(undefined1 *)(stack_context + 0x5f) = 1;
-    temp_var5 = *(undefined4 *)(context_var1 + 0x144);
-    temp_var6 = *(undefined4 *)(context_var1 + 0x148);
-    temp_result = *(undefined8 *)(context_var1 + 0x14c);
-    temp_var9 = *(undefined8 *)(context_var1 + 0x154);
-    temp_var10 = *(undefined8 *)(context_var1 + 0x15c);
-    temp_var11 = *(undefined8 *)(context_var1 + 0x164);
+    *(int8_t *)(stack_context + 0x5f) = 1;
+    temp_var5 = *(int32_t *)(context_var1 + 0x144);
+    temp_var6 = *(int32_t *)(context_var1 + 0x148);
+    temp_result = *(uint64_t *)(context_var1 + 0x14c);
+    temp_var9 = *(uint64_t *)(context_var1 + 0x154);
+    temp_var10 = *(uint64_t *)(context_var1 + 0x15c);
+    temp_var11 = *(uint64_t *)(context_var1 + 0x164);
     text_start = (char *)CONCAT44(position_data[1] + *(float *)(font_id + 0x1660) + line_height, (position_data[2] - *(float *)(font_id + 0x165c)) - line_height);
     char_flag1 = FUN_18010fd40(int_var1, &text_start, line_height);
     context_var1 = _DAT_180c8a9b0;
@@ -516,14 +516,14 @@ undefined1 process_character_rendering(float param_1, float param_2, ulonglong p
     byte_flag = *(byte *)(stack_context + 0x67);
     *(uint *)(stack_context + 0x6f) = uint_var1;
     context_var2 = *(longlong *)(context_var1 + 0x1af8);
-    *(undefined4 *)(context_var2 + 0x144) = temp_var5;
-    *(undefined4 *)(context_var2 + 0x148) = temp_var6;
-    *(undefined8 *)(context_var2 + 0x14c) = temp_result;
-    *(undefined8 *)(context_var2 + 0x154) = temp_var9;
-    *(undefined8 *)(context_var2 + 0x15c) = temp_var10;
-    *(undefined8 *)(context_var2 + 0x164) = temp_var11;
+    *(int32_t *)(context_var2 + 0x144) = temp_var5;
+    *(int32_t *)(context_var2 + 0x148) = temp_var6;
+    *(uint64_t *)(context_var2 + 0x14c) = temp_result;
+    *(uint64_t *)(context_var2 + 0x154) = temp_var9;
+    *(uint64_t *)(context_var2 + 0x15c) = temp_var10;
+    *(uint64_t *)(context_var2 + 0x164) = temp_var11;
     if (((byte_flag & 4) == 0) && (*(float *)(context_var1 + 0x42c) == temp_result2)) {
-      *(undefined1 *)(stack_context + 0x6f) = 1;
+      *(int8_t *)(stack_context + 0x6f) = 1;
     }
     stack_float8 = stack_float8 - (line_height + line_height);
   }
@@ -542,7 +542,7 @@ undefined1 process_character_rendering(float param_1, float param_2, ulonglong p
   }
   else {
     text_start = text_ptr2;
-    font_data = (float *)FUN_180297340(*(undefined8 *)(font_id + 0x19f0), &stack_flags[0], *(undefined4 *)(font_id + 0x19f8), (stack_float8 - param_2) - 4.0, CONCAT44(temp_var14, temp_result2));
+    font_data = (float *)FUN_180297340(*(uint64_t *)(font_id + 0x19f0), &stack_flags[0], *(int32_t *)(font_id + 0x19f8), (stack_float8 - param_2) - 4.0, CONCAT44(temp_var14, temp_result2));
     stack_float8 = *font_data;
     bool_flag = text_start == text_start;
     text_ptr = text_start;
@@ -551,7 +551,7 @@ undefined1 process_character_rendering(float param_1, float param_2, ulonglong p
       if (text_start < text_ptr) {
         int_var1 = FUN_180121550(&stack_flags[0]);
         text_ptr = text_start + int_var1;
-        font_data = (float *)FUN_180297340(*(undefined8 *)(font_id + 0x19f0), &stack_flags[0], *(undefined4 *)(font_id + 0x19f8));
+        font_data = (float *)FUN_180297340(*(uint64_t *)(font_id + 0x19f0), &stack_flags[0], *(int32_t *)(font_id + 0x19f8));
         stack_float8 = *font_data;
         temp_result = temp_result3;
       }
@@ -561,7 +561,7 @@ undefined1 process_character_rendering(float param_1, float param_2, ulonglong p
       do {
         if ((text_ptr[-1] != ' ') && (text_ptr[-1] != '\t')) break;
         text_ptr = text_ptr + -1;
-        font_data = (float *)FUN_180297340(*(undefined8 *)(font_id + 0x19f0), &stack_flags[0], *(undefined4 *)(font_id + 0x19f8));
+        font_data = (float *)FUN_180297340(*(uint64_t *)(font_id + 0x19f0), &stack_flags[0], *(int32_t *)(font_id + 0x19f8));
         stack_float8 = stack_float8 - *font_data;
         temp_result = temp_result._0_4_;
       } while (text_start < text_ptr);
@@ -570,9 +570,9 @@ undefined1 process_character_rendering(float param_1, float param_2, ulonglong p
     stack_float8 = stack_float6 + stack_float8 + 1.0;
     if ((*(char *)(stack_context + 0x5f) == char_flag2) &&
        (stack_float8 + 5.0 < position_data[2] || stack_float8 + 5.0 == position_data[2])) {
-      stack_flags[0] = *(undefined4 *)(_DAT_180c8a9b0 + 0x16c8);
-      stack_flags[1] = *(undefined4 *)(_DAT_180c8a9b0 + 0x16cc);
-      stack_flags[2] = *(undefined4 *)(_DAT_180c8a9b0 + 0x16d0);
+      stack_flags[0] = *(int32_t *)(_DAT_180c8a9b0 + 0x16c8);
+      stack_flags[1] = *(int32_t *)(_DAT_180c8a9b0 + 0x16cc);
+      stack_flags[2] = *(int32_t *)(_DAT_180c8a9b0 + 0x16d0);
       stack_float9 = *(float *)(_DAT_180c8a9b0 + 0x16d4) * *(float *)(_DAT_180c8a9b0 + 0x1628);
       temp_var14 = func_0x000180121e20(&stack_flags[0]);
       context_var1 = *(longlong *)(*(longlong *)(render_context + 0x38) + 8);
@@ -590,7 +590,7 @@ undefined1 process_character_rendering(float param_1, float param_2, ulonglong p
       } while ((int)uint_var1 < 3);
     }
   }
-  return *(undefined1 *)(stack_context + 0x6f);
+  return *(int8_t *)(stack_context + 0x6f);
 }
 
 // 函数：清理渲染缓存
@@ -601,7 +601,7 @@ void clear_render_cache(void)
 }
 
 // 函数：释放渲染资源
-void free_render_resources(longlong resource_handle, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void free_render_resources(longlong resource_handle, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   longlong resource_data;
   
@@ -617,7 +617,7 @@ void free_render_resources(longlong resource_handle, undefined8 param_2, undefin
 }
 
 // 函数：向整型数组添加元素
-void add_element_to_int_array(int *array_ptr, undefined4 *element)
+void add_element_to_int_array(int *array_ptr, int32_t *element)
 {
   int current_size;
   int capacity;
@@ -642,13 +642,13 @@ void add_element_to_int_array(int *array_ptr, undefined4 *element)
     current_size = *array_ptr;
   }
   
-  *(undefined4 *)(*(longlong *)(array_ptr + 2) + (longlong)current_size * 4) = *element;
+  *(int32_t *)(*(longlong *)(array_ptr + 2) + (longlong)current_size * 4) = *element;
   *array_ptr = *array_ptr + 1;
   return;
 }
 
 // 函数：向64位数组添加元素
-void add_element_to_uint64_array(int *array_ptr, undefined8 *element)
+void add_element_to_uint64_array(int *array_ptr, uint64_t *element)
 {
   int current_size;
   int capacity;
@@ -673,7 +673,7 @@ void add_element_to_uint64_array(int *array_ptr, undefined8 *element)
     current_size = *array_ptr;
   }
   
-  *(undefined8 *)(*(longlong *)(array_ptr + 2) + (longlong)current_size * 8) = *element;
+  *(uint64_t *)(*(longlong *)(array_ptr + 2) + (longlong)current_size * 8) = *element;
   *array_ptr = *array_ptr + 1;
   return;
 }
@@ -681,7 +681,7 @@ void add_element_to_uint64_array(int *array_ptr, undefined8 *element)
 // 函数：调整字节数组容量
 void resize_byte_array_capacity(int *array_ptr, int new_capacity)
 {
-  undefined8 new_buffer;
+  uint64_t new_buffer;
   
   if (array_ptr[1] < new_capacity) {
     if (_DAT_180c8a9b0 != 0) {
@@ -692,7 +692,7 @@ void resize_byte_array_capacity(int *array_ptr, int new_capacity)
       // 警告：子函数不返回
       memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr);
     }
-    *(undefined8 *)(array_ptr + 2) = new_buffer;
+    *(uint64_t *)(array_ptr + 2) = new_buffer;
     array_ptr[1] = new_capacity;
   }
   return;
@@ -702,7 +702,7 @@ void resize_byte_array_capacity(int *array_ptr, int new_capacity)
 void expand_byte_array(void)
 {
   longlong context_ptr;
-  undefined8 new_buffer;
+  uint64_t new_buffer;
   int *array_ptr;
   int new_size;
   
@@ -714,7 +714,7 @@ void expand_byte_array(void)
     // 警告：子函数不返回
     memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr);
   }
-  *(undefined8 *)(array_ptr + 2) = new_buffer;
+  *(uint64_t *)(array_ptr + 2) = new_buffer;
   array_ptr[1] = new_size;
   return;
 }
@@ -779,7 +779,7 @@ void ensure_array_capacity(int *array_ptr, int required_capacity)
 // 函数：调整结构体数组容量
 void resize_struct_array_capacity(int *array_ptr, int new_capacity)
 {
-  undefined8 new_buffer;
+  uint64_t new_buffer;
   
   if (array_ptr[1] < new_capacity) {
     if (_DAT_180c8a9b0 != 0) {
@@ -790,7 +790,7 @@ void resize_struct_array_capacity(int *array_ptr, int new_capacity)
       // 警告：子函数不返回
       memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr * 0x28);
     }
-    *(undefined8 *)(array_ptr + 2) = new_buffer;
+    *(uint64_t *)(array_ptr + 2) = new_buffer;
     array_ptr[1] = new_capacity;
   }
   return;
@@ -800,7 +800,7 @@ void resize_struct_array_capacity(int *array_ptr, int new_capacity)
 void expand_struct_array(void)
 {
   longlong context_ptr;
-  undefined8 new_buffer;
+  uint64_t new_buffer;
   int *array_ptr;
   longlong new_size;
   
@@ -812,7 +812,7 @@ void expand_struct_array(void)
     // 警告：子函数不返回
     memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr * 0x28);
   }
-  *(undefined8 *)(array_ptr + 2) = new_buffer;
+  *(uint64_t *)(array_ptr + 2) = new_buffer;
   array_ptr[1] = (int)new_size;
   return;
 }
@@ -827,7 +827,7 @@ void initialize_renderer(void)
 // 函数：调整浮点数数组容量
 void resize_float_array_capacity(int *array_ptr, int new_capacity)
 {
-  undefined8 new_buffer;
+  uint64_t new_buffer;
   
   if (array_ptr[1] < new_capacity) {
     if (_DAT_180c8a9b0 != 0) {
@@ -838,7 +838,7 @@ void resize_float_array_capacity(int *array_ptr, int new_capacity)
       // 警告：子函数不返回
       memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr << 2);
     }
-    *(undefined8 *)(array_ptr + 2) = new_buffer;
+    *(uint64_t *)(array_ptr + 2) = new_buffer;
     array_ptr[1] = new_capacity;
   }
   return;
@@ -848,7 +848,7 @@ void resize_float_array_capacity(int *array_ptr, int new_capacity)
 void expand_float_array(void)
 {
   longlong context_ptr;
-  undefined8 new_buffer;
+  uint64_t new_buffer;
   int *array_ptr;
   longlong new_size;
   
@@ -860,7 +860,7 @@ void expand_float_array(void)
     // 警告：子函数不返回
     memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr << 2);
   }
-  *(undefined8 *)(array_ptr + 2) = new_buffer;
+  *(uint64_t *)(array_ptr + 2) = new_buffer;
   array_ptr[1] = (int)new_size;
   return;
 }
@@ -875,7 +875,7 @@ void cleanup_resources(void)
 // 函数：调整64位数组容量
 void resize_uint64_array_capacity(int *array_ptr, int new_capacity)
 {
-  undefined8 new_buffer;
+  uint64_t new_buffer;
   
   if (array_ptr[1] < new_capacity) {
     if (_DAT_180c8a9b0 != 0) {
@@ -886,7 +886,7 @@ void resize_uint64_array_capacity(int *array_ptr, int new_capacity)
       // 警告：子函数不返回
       memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr << 3);
     }
-    *(undefined8 *)(array_ptr + 2) = new_buffer;
+    *(uint64_t *)(array_ptr + 2) = new_buffer;
     array_ptr[1] = new_capacity;
   }
   return;
@@ -896,7 +896,7 @@ void resize_uint64_array_capacity(int *array_ptr, int new_capacity)
 void expand_uint64_array(void)
 {
   longlong context_ptr;
-  undefined8 new_buffer;
+  uint64_t new_buffer;
   int *array_ptr;
   longlong new_size;
   
@@ -908,7 +908,7 @@ void expand_uint64_array(void)
     // 警告：子函数不返回
     memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr << 3);
   }
-  *(undefined8 *)(array_ptr + 2) = new_buffer;
+  *(uint64_t *)(array_ptr + 2) = new_buffer;
   array_ptr[1] = (int)new_size;
   return;
 }
@@ -923,7 +923,7 @@ void reset_counter(void)
 // 函数：调整16位数组容量
 void resize_uint16_array_capacity(int *array_ptr, int new_capacity)
 {
-  undefined8 new_buffer;
+  uint64_t new_buffer;
   
   if (array_ptr[1] < new_capacity) {
     if (_DAT_180c8a9b0 != 0) {
@@ -934,7 +934,7 @@ void resize_uint16_array_capacity(int *array_ptr, int new_capacity)
       // 警告：子函数不返回
       memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr * 2);
     }
-    *(undefined8 *)(array_ptr + 2) = new_buffer;
+    *(uint64_t *)(array_ptr + 2) = new_buffer;
     array_ptr[1] = new_capacity;
   }
   return;
@@ -944,7 +944,7 @@ void resize_uint16_array_capacity(int *array_ptr, int new_capacity)
 void expand_uint16_array(void)
 {
   longlong context_ptr;
-  undefined8 new_buffer;
+  uint64_t new_buffer;
   int *array_ptr;
   longlong new_size;
   
@@ -956,7 +956,7 @@ void expand_uint16_array(void)
     // 警告：子函数不返回
     memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr * 2);
   }
-  *(undefined8 *)(array_ptr + 2) = new_buffer;
+  *(uint64_t *)(array_ptr + 2) = new_buffer;
   array_ptr[1] = (int)new_size;
   return;
 }

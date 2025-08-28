@@ -231,7 +231,7 @@ static bool check_state_condition(uint32_t state_flags, uint32_t condition_mask)
  * - 空间复杂度: O(1) 使用固定大小的栈空间
  * - 支持批量处理和条件跳过
  */
-void DataStructureProcessor_Primary(longlong param_1, byte *param_2, undefined8 *param_3)
+void DataStructureProcessor_Primary(longlong param_1, byte *param_2, uint64_t *param_3)
 {
     // 局部变量声明
     float comparison_value;                   // 比较值
@@ -243,8 +243,8 @@ void DataStructureProcessor_Primary(longlong param_1, byte *param_2, undefined8 
     float processed_value;                    // 处理后的值
     
     // 栈空间分配和初始化
-    undefined8 stack_buffer[12];              // 栈缓冲区
-    undefined4 stack_params[4];              // 栈参数
+    uint64_t stack_buffer[12];              // 栈缓冲区
+    int32_t stack_params[4];              // 栈参数
     
     // 初始化栈数据
     stack_buffer[0] = param_3[0];             // 复制参数0
@@ -261,10 +261,10 @@ void DataStructureProcessor_Primary(longlong param_1, byte *param_2, undefined8 
     stack_buffer[9] = param_3[7];             // 复制参数7
     
     // 复制参数到栈
-    stack_params[0] = *(undefined4 *)(param_3 + 0xc);    // 参数12
-    stack_params[1] = *(undefined4 *)((longlong)param_3 + 100);  // 参数13
-    stack_params[2] = *(undefined4 *)(param_3 + 0xd);    // 参数14
-    stack_params[3] = *(undefined4 *)((longlong)param_3 + 0x6c);  // 参数15
+    stack_params[0] = *(int32_t *)(param_3 + 0xc);    // 参数12
+    stack_params[1] = *(int32_t *)((longlong)param_3 + 100);  // 参数13
+    stack_params[2] = *(int32_t *)(param_3 + 0xd);    // 参数14
+    stack_params[3] = *(int32_t *)((longlong)param_3 + 0x6c);  // 参数15
     
     stack_buffer[4] = param_3[10];            // 复制参数10
     stack_buffer[5] = param_3[11];            // 复制参数11
@@ -281,7 +281,7 @@ void DataStructureProcessor_Primary(longlong param_1, byte *param_2, undefined8 
             
             // 浮点数比较逻辑
             if ((comparison_value <= FLOAT_ZERO_THRESHOLD) ||
-                (processed_value = (float)func_0x000180285a90(param_1 + OFFSET_70, *(undefined4 *)(start_offset + 0x30)),
+                (processed_value = (float)func_0x000180285a90(param_1 + OFFSET_70, *(int32_t *)(start_offset + 0x30)),
                  comparison_value <= processed_value)) {
                 condition_result = 0;
             }
@@ -291,13 +291,13 @@ void DataStructureProcessor_Primary(longlong param_1, byte *param_2, undefined8 
             
             // 状态标志检查
             if ((*param_2 & STATUS_FLAG_MASK) != 0) {
-                condition_result = condition_result | (byte)((uint)*(undefined4 *)(param_1 + OFFSET_2ac) >> STATUS_FLAG_SHIFT_30) & 1;
+                condition_result = condition_result | (byte)((uint)*(int32_t *)(param_1 + OFFSET_2ac) >> STATUS_FLAG_SHIFT_30) & 1;
             }
             
             // 条件处理
             if (condition_result == 0) {
                 element_pointer = *(longlong **)(current_offset + *(longlong *)(param_1 + OFFSET_F0));
-                (*(code **)(*element_pointer + 0x1c8))(element_pointer, param_2, *(undefined8 *)(param_1 + OFFSET_20), param_1 + OFFSET_70, stack_buffer);
+                (*(code **)(*element_pointer + 0x1c8))(element_pointer, param_2, *(uint64_t *)(param_1 + OFFSET_20), param_1 + OFFSET_70, stack_buffer);
             }
             
             start_offset = *(longlong *)(param_1 + OFFSET_F0);
@@ -334,7 +334,7 @@ void DataStructureProcessor_Primary(longlong param_1, byte *param_2, undefined8 
  * - 实现高效的循环处理
  * - 支持动态状态更新
  */
-void DataStructureProcessor_Secondary(undefined8 param_1, longlong param_2)
+void DataStructureProcessor_Secondary(uint64_t param_1, longlong param_2)
 {
     // 局部变量声明
     float comparison_value;                   // 比较值
@@ -345,33 +345,33 @@ void DataStructureProcessor_Secondary(undefined8 param_1, longlong param_2)
     float processed_value;                    // 处理后的值
     
     // 寄存器变量（模拟优化）
-    undefined8 register_rbp;                 // RBP寄存器
+    uint64_t register_rbp;                 // RBP寄存器
     byte *register_rsi;                       // RSI寄存器
-    undefined8 register_rdi;                  // RDI寄存器
+    uint64_t register_rdi;                  // RDI寄存器
     longlong register_r14;                    // R14寄存器
     float register_xmm6[4];                  // XMM6寄存器
     float register_xmm7[4];                  // XMM7寄存器
     
     // 初始化寄存器数据
-    *(undefined8 *)(param_2 + 8) = register_rbp;
+    *(uint64_t *)(param_2 + 8) = register_rbp;
     iteration_index = 0;
     *(int *)(param_2 + -0x38) = (int)param_1;
     *(int *)(param_2 + -0x34) = (int)((ulonglong)param_1 >> 0x20);
     
     // 处理主循环
     if (register_data >> 3 != 0) {
-        *(undefined8 *)(param_2 + 0x10) = register_rdi;
+        *(uint64_t *)(param_2 + 0x10) = register_rdi;
         element_offset = 0;
         
         // 设置浮点寄存器数据
-        *(undefined4 *)(param_2 + -0x18) = *(undefined4 *)register_xmm6;
-        *(undefined4 *)(param_2 + -0x14) = *(undefined4 *)(register_xmm6 + 4);
-        *(undefined4 *)(param_2 + -0x10) = *(undefined4 *)(register_xmm6 + 8);
-        *(undefined4 *)(param_2 + -0xc) = *(undefined4 *)(register_xmm6 + 12);
-        *(undefined4 *)(param_2 + -0x28) = *(undefined4 *)register_xmm7;
-        *(undefined4 *)(param_2 + -0x24) = *(undefined4 *)(register_xmm7 + 4);
-        *(undefined4 *)(param_2 + -0x20) = *(undefined4 *)(register_xmm7 + 8);
-        *(undefined4 *)(param_2 + -0x1c) = *(undefined4 *)(register_xmm7 + 12);
+        *(int32_t *)(param_2 + -0x18) = *(int32_t *)register_xmm6;
+        *(int32_t *)(param_2 + -0x14) = *(int32_t *)(register_xmm6 + 4);
+        *(int32_t *)(param_2 + -0x10) = *(int32_t *)(register_xmm6 + 8);
+        *(int32_t *)(param_2 + -0xc) = *(int32_t *)(register_xmm6 + 12);
+        *(int32_t *)(param_2 + -0x28) = *(int32_t *)register_xmm7;
+        *(int32_t *)(param_2 + -0x24) = *(int32_t *)(register_xmm7 + 4);
+        *(int32_t *)(param_2 + -0x20) = *(int32_t *)(register_xmm7 + 8);
+        *(int32_t *)(param_2 + -0x1c) = *(int32_t *)(register_xmm7 + 12);
         
         do {
             // 获取比较值
@@ -380,7 +380,7 @@ void DataStructureProcessor_Secondary(undefined8 param_1, longlong param_2)
             
             // 浮点数比较
             if ((comparison_value <= FLOAT_ZERO_THRESHOLD) ||
-                (processed_value = (float)func_0x000180285a90(register_data + OFFSET_70, *(undefined4 *)(register_data + 0x30)),
+                (processed_value = (float)func_0x000180285a90(register_data + OFFSET_70, *(int32_t *)(register_data + 0x30)),
                  comparison_value <= processed_value)) {
                 condition_result = 0;
             }
@@ -390,7 +390,7 @@ void DataStructureProcessor_Secondary(undefined8 param_1, longlong param_2)
             
             // 状态标志处理
             if ((*register_rsi & STATUS_FLAG_MASK) != 0) {
-                condition_result = condition_result | (byte)((uint)*(undefined4 *)(register_data + OFFSET_2ac) >> STATUS_FLAG_SHIFT_30) & 1;
+                condition_result = condition_result | (byte)((uint)*(int32_t *)(register_data + OFFSET_2ac) >> STATUS_FLAG_SHIFT_30) & 1;
             }
             
             // 条件执行
@@ -430,7 +430,7 @@ void DataStructureProcessor_Secondary(undefined8 param_1, longlong param_2)
  * - 实现高效的无限循环处理
  * - 支持动态状态更新
  */
-void DataStructureProcessor_Tertiary(undefined8 param_1, longlong param_2)
+void DataStructureProcessor_Tertiary(uint64_t param_1, longlong param_2)
 {
     // 局部变量声明
     float comparison_value;                   // 比较值
@@ -440,13 +440,13 @@ void DataStructureProcessor_Tertiary(undefined8 param_1, longlong param_2)
     float processed_value;                    // 处理后的值
     
     // 寄存器变量
-    undefined8 register_rdi;                  // RDI寄存器
+    uint64_t register_rdi;                  // RDI寄存器
     uint register_ebp;                       // EBP寄存器
     byte *register_rsi;                       // RSI寄存器
     ulonglong current_offset;                 // 当前偏移
     
     // 初始化
-    *(undefined8 *)(param_2 + 0x10) = register_rdi;
+    *(uint64_t *)(param_2 + 0x10) = register_rdi;
     current_offset = (ulonglong)register_ebp;
     
     // 主处理循环
@@ -461,14 +461,14 @@ void DataStructureProcessor_Tertiary(undefined8 param_1, longlong param_2)
             condition_result = 0;
         }
         else {
-            processed_value = (float)func_0x000180285a90(param_1 + OFFSET_70, *(undefined4 *)(element_offset + 0x30));
+            processed_value = (float)func_0x000180285a90(param_1 + OFFSET_70, *(int32_t *)(element_offset + 0x30));
             if (comparison_value <= processed_value) goto condition_false;
             condition_result = 1;
         }
         
         // 状态标志处理
         if ((*register_rsi & STATUS_FLAG_MASK) != 0) {
-            condition_result = condition_result | (byte)((uint)*(undefined4 *)(param_1 + OFFSET_2ac) >> STATUS_FLAG_SHIFT_30) & 1;
+            condition_result = condition_result | (byte)((uint)*(int32_t *)(param_1 + OFFSET_2ac) >> STATUS_FLAG_SHIFT_30) & 1;
         }
         
         // 条件执行
@@ -560,7 +560,7 @@ void StateManager_Complex(void)
  * - 包含行列式计算逻辑
  * - 优化矩阵运算性能
  */
-void MatrixTransformer_Advanced(longlong param_1, undefined8 param_2, undefined4 param_3, undefined8 param_4)
+void MatrixTransformer_Advanced(longlong param_1, uint64_t param_2, int32_t param_3, uint64_t param_4)
 {
     // 矩阵运算变量
     float matrix_elements[12];                // 矩阵元素数组
@@ -577,8 +577,8 @@ void MatrixTransformer_Advanced(longlong param_1, undefined8 param_2, undefined4
     
     // 栈变量
     longlong *stack_pointer;                  // 栈指针
-    undefined8 stack_data[2];                 // 栈数据
-    undefined8 transform_param;               // 变换参数
+    uint64_t stack_data[2];                 // 栈数据
+    uint64_t transform_param;               // 变换参数
     
     // 初始化参数
     transform_param = 0xfffffffffffffffe;
@@ -616,10 +616,10 @@ void MatrixTransformer_Advanced(longlong param_1, undefined8 param_2, undefined4
         // 矩阵处理循环
         if (element_pointer != matrix_pointer[*(longlong *)(row_offset + 0x10)]) {
             do {
-                FUN_1803a02b0(param_4, &stack_pointer, *(undefined8 *)(element_pointer + 8));
+                FUN_1803a02b0(param_4, &stack_pointer, *(uint64_t *)(element_pointer + 8));
                 (*(code **)(*stack_pointer + 0xe0))(stack_pointer, CONCAT31((uint3)(*(uint *)(param_1 + OFFSET_2ac) >> STATUS_FLAG_SHIFT_30), ~(byte)(*(uint *)(param_1 + OFFSET_2ac) >> STATUS_FLAG_SHIFT_22)) & 0xffffff01);
                 matrix_pointer = stack_pointer;
-                FUN_180279640(stack_pointer, *(undefined8 *)(element_pointer + 8), 0);
+                FUN_180279640(stack_pointer, *(uint64_t *)(element_pointer + 8), 0);
                 
                 // 获取向量数据
                 element_pointer = *matrix_pointer;
@@ -673,7 +673,7 @@ void MatrixTransformer_Advanced(longlong param_1, undefined8 param_2, undefined4
                 
                 // 执行变换
                 (*(code **)(*stack_pointer + 0x1d0))(stack_pointer, stack_data[0], param_3, param_1 + OFFSET_70);
-                FUN_180279640(matrix_pointer, *(undefined8 *)(element_pointer + 8), 1);
+                FUN_180279640(matrix_pointer, *(uint64_t *)(element_pointer + 8), 1);
                 
                 // 清理栈数据
                 if (stack_pointer != (longlong *)0x0) {
@@ -709,21 +709,21 @@ void MatrixTransformer_Advanced(longlong param_1, undefined8 param_2, undefined4
  * - 支持内存管理优化
  * - 包含状态检查和清理
  */
-void MatrixTransformer_Batched(undefined8 param_1, undefined4 param_2)
+void MatrixTransformer_Batched(uint64_t param_1, int32_t param_2)
 {
     // 批量处理变量
     longlong *batch_pointer[4];              // 批量指针数组
     longlong *current_pointer;               // 当前指针
     longlong *next_pointer;                   // 下一个指针
-    undefined *data_pointer;                  // 数据指针
+    void *data_pointer;                  // 数据指针
     int batch_index;                          // 批量索引
     longlong *element_pointer;                // 元素指针
     ulonglong element_count;                  // 元素计数
     
     // 栈变量
     longlong *stack_pointers[2];              // 栈指针
-    undefined8 stack_data[2];                 // 栈数据
-    undefined4 stack_params[2];               // 栈参数
+    uint64_t stack_data[2];                 // 栈数据
+    int32_t stack_params[2];               // 栈参数
     
     // 初始化批量处理参数
     stack_data[0] = 0xfffffffffffffffe;
@@ -752,11 +752,11 @@ void MatrixTransformer_Batched(undefined8 param_1, undefined4 param_2)
                 }
                 FUN_18022cb40(next_pointer, &stack_pointers[3]);
                 data_pointer = &DAT_18098bc73;
-                if ((undefined *)next_pointer[3] != (undefined *)0x0) {
-                    data_pointer = (undefined *)next_pointer[3];
+                if ((void *)next_pointer[3] != (void *)0x0) {
+                    data_pointer = (void *)next_pointer[3];
                 }
                 (*(code **)(stack_pointers[3][2] + 0x10))(stack_pointers[3] + 2, data_pointer);
-                *(undefined1 *)(stack_pointers[3] + 0x7b) = 1;
+                *(int8_t *)(stack_pointers[3] + 0x7b) = 1;
                 FUN_180076910(*element_pointer, &stack_pointers[3]);
                 if (stack_pointers[3] != (longlong *)0x0) {
                     (*(code **)(*stack_pointers[3] + 0x38))();
@@ -765,7 +765,7 @@ void MatrixTransformer_Batched(undefined8 param_1, undefined4 param_2)
                     (*(code **)(*next_pointer + 0x38))();
                 }
             }
-            FUN_18022bc30(*(undefined8 *)(*element_pointer + 0x1b8), param_2);
+            FUN_18022bc30(*(uint64_t *)(*element_pointer + 0x1b8), param_2);
             batch_index = batch_index + 1;
             element_pointer = element_pointer + 1;
         } while ((ulonglong)(longlong)batch_index < element_count);
@@ -882,7 +882,7 @@ ulonglong Counter_Accumulator(longlong param_1, longlong param_2)
     if (*(longlong *)(param_1 + OFFSET_1c8) - context_offset >> 3 != 0) {
         do {
             if ((*(char *)(param_2 + 0x11) == '\0') || ((*(byte *)(*(longlong *)(intermediate_result[0] + context_offset) + 0x2e8) & STATUS_FLAG_MASK_0x0b) == STATUS_FLAG_MASK_0x0b)) {
-                partial_result = Counter_Accumulator(*(undefined8 *)(intermediate_result[0] + context_offset), param_2);
+                partial_result = Counter_Accumulator(*(uint64_t *)(intermediate_result[0] + context_offset), param_2);
                 intermediate_result[2] = (ulonglong)(uint)((int)intermediate_result[2] + partial_result);
             }
             context_offset = *(longlong *)(param_1 + OFFSET_1c0);
@@ -989,7 +989,7 @@ ulonglong Counter_Processor(void)
     if (*(longlong *)(register_r14 + OFFSET_1c8) - context_offset >> 3 != 0) {
         do {
             if ((*(char *)(register_rsi + 0x11) == '\0') || ((*(byte *)(*(longlong *)(register_rbp + context_offset) + 0x2e8) & STATUS_FLAG_MASK_0x0b) == STATUS_FLAG_MASK_0x0b)) {
-                partial_result = Counter_Accumulator(*(undefined8 *)(register_rbp + context_offset));
+                partial_result = Counter_Accumulator(*(uint64_t *)(register_rbp + context_offset));
                 intermediate_result[0] = (ulonglong)(uint)((int)intermediate_result[0] + partial_result);
             }
             context_offset = *(longlong *)(register_r14 + OFFSET_1c0);
@@ -1022,7 +1022,7 @@ ulonglong Counter_Processor(void)
  * - 支持多级数据遍历
  * - 包含状态检查逻辑
  */
-int Counter_Validator(undefined8 param_1, longlong param_2)
+int Counter_Validator(uint64_t param_1, longlong param_2)
 {
     // 验证变量
     int validation_result;                    // 验证结果
@@ -1083,7 +1083,7 @@ int Counter_Validator(undefined8 param_1, longlong param_2)
     if (*(longlong *)(register_r14 + OFFSET_1c8) - context_offset >> 3 != 0) {
         do {
             if ((*(char *)(register_rsi + 0x11) == '\0') || ((*(byte *)(*(longlong *)(register_rbp + context_offset) + 0x2e8) & STATUS_FLAG_MASK_0x0b) == STATUS_FLAG_MASK_0x0b)) {
-                validation_result = Counter_Accumulator(*(undefined8 *)(register_rbp + context_offset));
+                validation_result = Counter_Accumulator(*(uint64_t *)(register_rbp + context_offset));
                 register_edi = register_edi + validation_result;
             }
             context_offset = *(longlong *)(register_r14 + OFFSET_1c0);
@@ -1116,7 +1116,7 @@ int Counter_Validator(undefined8 param_1, longlong param_2)
  * - 支持条件遍历
  * - 包含性能优化逻辑
  */
-int Counter_Optimizer(undefined8 param_1, undefined4 param_2)
+int Counter_Optimizer(uint64_t param_1, int32_t param_2)
 {
     // 优化变量
     int optimization_result;                  // 优化结果
@@ -1160,7 +1160,7 @@ int Counter_Optimizer(undefined8 param_1, undefined4 param_2)
         intermediate_result[2] = register_rbp;
         do {
             if ((*(char *)(register_rsi + 0x11) == '\0') || ((*(byte *)(*(longlong *)(register_rbp + context_offset) + 0x2e8) & STATUS_FLAG_MASK_0x0b) == STATUS_FLAG_MASK_0x0b)) {
-                iteration_result = Counter_Accumulator(*(undefined8 *)(register_rbp + context_offset));
+                iteration_result = Counter_Accumulator(*(uint64_t *)(register_rbp + context_offset));
                 register_edi = register_edi + iteration_result;
             }
             context_offset = *(longlong *)(register_r14 + OFFSET_1c0);
@@ -1209,7 +1209,7 @@ int Counter_Simple(void)
     if (*(longlong *)(register_r14 + OFFSET_1c8) - context_offset >> 3 != 0) {
         do {
             if ((*(char *)(register_rsi + 0x11) == '\0') || ((*(byte *)(*(longlong *)(register_rbp + context_offset) + 0x2e8) & STATUS_FLAG_MASK_0x0b) == STATUS_FLAG_MASK_0x0b)) {
-                processing_result = Counter_Accumulator(*(undefined8 *)(register_rbp + context_offset));
+                processing_result = Counter_Accumulator(*(uint64_t *)(register_rbp + context_offset));
                 register_edi = register_edi + processing_result;
             }
             context_offset = *(longlong *)(register_r14 + OFFSET_1c0);
@@ -1258,7 +1258,7 @@ int Counter_Alternative(void)
     if (*(longlong *)(register_r14 + OFFSET_1c8) - context_offset >> 3 != 0) {
         do {
             if ((*(char *)(register_rsi + 0x11) == '\0') || ((*(byte *)(*(longlong *)(register_rbp + context_offset) + 0x2e8) & STATUS_FLAG_MASK_0x0b) == STATUS_FLAG_MASK_0x0b)) {
-                processing_result = Counter_Accumulator(*(undefined8 *)(register_rbp + context_offset));
+                processing_result = Counter_Accumulator(*(uint64_t *)(register_rbp + context_offset));
                 register_edi = register_edi + processing_result;
             }
             context_offset = *(longlong *)(register_r14 + OFFSET_1c0);
@@ -1292,7 +1292,7 @@ int Counter_Alternative(void)
  * - 支持参数化处理
  * - 包含动态状态管理
  */
-int Counter_Conditional(undefined8 param_1, undefined8 param_2, longlong param_3)
+int Counter_Conditional(uint64_t param_1, uint64_t param_2, longlong param_3)
 {
     // 条件处理变量
     int condition_result;                    // 条件结果
@@ -1310,7 +1310,7 @@ int Counter_Conditional(undefined8 param_1, undefined8 param_2, longlong param_3
     intermediate_result = register_rbp;
     do {
         if ((*(char *)(register_rsi + 0x11) == '\0') || ((*(byte *)(*(longlong *)(register_rbp + param_3) + 0x2e8) & STATUS_FLAG_MASK_0x0b) == STATUS_FLAG_MASK_0x0b)) {
-            condition_result = Counter_Accumulator(*(undefined8 *)(register_rbp + param_3));
+            condition_result = Counter_Accumulator(*(uint64_t *)(register_rbp + param_3));
             register_edi = register_edi + condition_result;
         }
         param_3 = *(longlong *)(register_r14 + OFFSET_1c0);
@@ -1348,7 +1348,7 @@ void StatusUpdater(longlong param_1)
         else {
             FUN_18063ad30(*(longlong *)(param_1 + OFFSET_28), *(longlong *)(param_1 + OFFSET_28) + 0xf8, param_1 + OFFSET_70);
         }
-        *(undefined2 *)(param_1 + OFFSET_2b0) = *(undefined2 *)(param_1 + OFFSET_2b4);
+        *(int16_t *)(param_1 + OFFSET_2b0) = *(int16_t *)(param_1 + OFFSET_2b4);
     }
     return;
 }

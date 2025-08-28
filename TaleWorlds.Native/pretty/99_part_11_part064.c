@@ -86,22 +86,22 @@
  */
 void advanced_data_processor(void)
 {
-  undefined4 system_result;
+  int32_t system_result;
   longlong stack_pointer;
   longlong system_context;
-  undefined4 parameter_data;
+  int32_t parameter_data;
   
   /* 系统数据初始化 */
-  *(undefined4 *)(*(longlong *)(system_context + 8) + 0x18) = MAX_STRING_LENGTH;
+  *(int32_t *)(*(longlong *)(system_context + 8) + 0x18) = MAX_STRING_LENGTH;
   
   /* 系统资源初始化检查 */
   if (*(int *)(system_context + 0x110) == 0) {
     system_result = func_0x000180819040();
-    *(undefined4 *)(system_context + 0x110) = system_result;
+    *(int32_t *)(system_context + 0x110) = system_result;
   }
   
   /* 系统参数设置 */
-  *(undefined4 *)(system_context + 0x18) = parameter_data;
+  *(int32_t *)(system_context + 0x18) = parameter_data;
   
   /* 系统栈处理 */
   FUN_1808fc050(*(ulonglong *)(stack_pointer + 0x218) ^ (ulonglong)&stack0x00000000);
@@ -124,14 +124,14 @@ void advanced_data_processor(void)
  * @param result_pointer 结果指针
  * @return 处理状态码（0表示成功，非0表示错误）
  */
-undefined8 string_parser(longlong data_context, ulonglong buffer_address, uint data_size, undefined4 *result_pointer)
+uint64_t string_parser(longlong data_context, ulonglong buffer_address, uint data_size, int32_t *result_pointer)
 
 {
   char string_char;
-  undefined2 swap_data1;
-  undefined2 swap_data2;
-  undefined2 swap_data3;
-  undefined8 *function_pointer;
+  int16_t swap_data1;
+  int16_t swap_data2;
+  int16_t swap_data3;
+  uint64_t *function_pointer;
   uint operation_result;
   int string_length;
   longlong data_alignment;
@@ -141,7 +141,7 @@ undefined8 string_parser(longlong data_context, ulonglong buffer_address, uint d
   char *key_string;
   char *current_char;
   char *value_string;
-  undefined2 *data_buffer;
+  int16_t *data_buffer;
   ulonglong processed_count;
   
   /* 数据类型对齐大小计算 */
@@ -179,7 +179,7 @@ SKIP_ALIGNMENT_CALC:
   data_type = *(int *)(*(longlong *)(data_context + 8) + 0xc);
   if (data_type == 6) {
     if (buffer_address < processed_count + buffer_address) {
-      data_buffer = (undefined2 *)(buffer_address + 4);
+      data_buffer = (int16_t *)(buffer_address + 4);
       data_alignment = (processed_count - 1) / 0xc + 1;
       do {
         swap_data1 = data_buffer[-1];
@@ -196,7 +196,7 @@ SKIP_ALIGNMENT_CALC:
     }
   }
   else if ((data_type == 8) && (buffer_address < processed_count + buffer_address)) {
-    data_buffer = (undefined2 *)(buffer_address + 4);
+    data_buffer = (int16_t *)(buffer_address + 4);
     data_alignment = (processed_count - 1 >> 4) + 1;
     do {
       swap_data1 = data_buffer[-1];
@@ -235,7 +235,7 @@ SKIP_ALIGNMENT_CALC:
         }
         key_string = "NONAME";
 PARSE_COMPLETE:
-        function_pointer = *(undefined8 **)(data_context + 0x10);
+        function_pointer = *(uint64_t **)(data_context + 0x10);
         string_length = get_string_length_function(value_string);
         (*(code *)*function_pointer)(data_context, 3, key_string, value_string, string_length + 1, 6, 1);
         data_type = data_type + 1;
@@ -245,7 +245,7 @@ PARSE_COMPLETE:
     cleanup_string_function(data_context);
   }
   alignment_size = 0x20;
-  if (result_pointer != (undefined4 *)0x0) {
+  if (result_pointer != (int32_t *)0x0) {
     operation_result = *(uint *)(*(longlong *)(data_context + 8) + 0xc);
     if (operation_result != 0) {
       data_type = *(int *)(*(longlong *)(data_context + 8) + 8);
@@ -285,16 +285,16 @@ PARSE_COMPLETE:
  * @param result_pointer 结果指针（通过寄存器传递）
  * @return 处理状态码（0表示成功，非0表示错误）
  */
-undefined8 data_flow_controller(void)
+uint64_t data_flow_controller(void)
 
 {
   char *string_pointer;
   char string_char;
-  undefined2 swap_data1;
-  undefined2 swap_data2;
-  undefined2 swap_data3;
+  int16_t swap_data1;
+  int16_t swap_data2;
+  int16_t swap_data3;
   uint data_size;
-  undefined8 *function_pointer;
+  uint64_t *function_pointer;
   longlong system_context;
   longlong *string_array;
   longlong loop_counter;
@@ -303,7 +303,7 @@ undefined8 data_flow_controller(void)
   ulonglong alignment_size;
   char *current_char;
   char *value_string;
-  undefined2 *data_buffer;
+  int16_t *data_buffer;
   uint *result_pointer;
   longlong data_context;
   uint data_count;
@@ -312,7 +312,7 @@ undefined8 data_flow_controller(void)
   /* 数据类型6处理 */
   if (*(int *)(system_context + 0xc) == 6) {
     if (buffer_address < data_count + buffer_address) {
-      data_buffer = (undefined2 *)(buffer_address + 4);
+      data_buffer = (int16_t *)(buffer_address + 4);
       loop_counter = ((ulonglong)data_count - 1) / 0xc + 1;
       do {
         swap_data1 = data_buffer[-1];
@@ -330,7 +330,7 @@ undefined8 data_flow_controller(void)
   }
   /* 数据类型8处理 */
   else if ((*(int *)(system_context + 0xc) == 8) && (buffer_address < data_count + buffer_address)) {
-    data_buffer = (undefined2 *)(buffer_address + 4);
+    data_buffer = (int16_t *)(buffer_address + 4);
     loop_counter = ((ulonglong)data_count - 1 >> 4) + 1;
     do {
       swap_data1 = data_buffer[-1];
@@ -367,7 +367,7 @@ undefined8 data_flow_controller(void)
           current_char = current_char + 1;
           string_char = *string_pointer;
         }
-        function_pointer = *(undefined8 **)(data_context + 0x10);
+        function_pointer = *(uint64_t **)(data_context + 0x10);
         process_string_function(value_string);
         (*(code *)*function_pointer)();
         item_count = item_count + 1;
@@ -419,7 +419,7 @@ undefined8 data_flow_controller(void)
  * @param parameter_value 参数值（通过寄存器传递）
  * @return 处理状态码（0表示成功，非0表示错误）
  */
-undefined8 parameter_calculator(void)
+uint64_t parameter_calculator(void)
 
 {
   uint data_size;
@@ -467,7 +467,7 @@ undefined8 parameter_calculator(void)
  * @param validation_flag 验证标志
  * @return 验证状态码（0表示成功，非0表示错误）
  */
-undefined8 data_validator(longlong data_context, undefined8 validation_context, int validation_flag)
+uint64_t data_validator(longlong data_context, uint64_t validation_context, int validation_flag)
 
 {
   int validation_result;
@@ -510,7 +510,7 @@ void data_multiplier(longlong data_context, int multiplier, int multiplicand)
 {
   longlong operation_result;
   
-  operation_result = data_multiplication_function(*(undefined8 *)(GLOBAL_DATA_ADDRESS + 0x1a0), multiplier * multiplicand, &GLOBAL_BUFFER_ADDRESS,
+  operation_result = data_multiplication_function(*(uint64_t *)(GLOBAL_DATA_ADDRESS + 0x1a0), multiplier * multiplicand, &GLOBAL_BUFFER_ADDRESS,
                         0x22, 0);
   if ((operation_result != 0) && (data_context != 0)) {
     *(int *)(data_context + 0x4f0) = *(int *)(data_context + 0x4f0) + multiplier * multiplicand;
@@ -538,11 +538,11 @@ void data_multiplier(longlong data_context, int multiplier, int multiplicand)
  * @param data_buffer 数据缓冲区指针
  * @return 无返回值（函数不返回）
  */
-void data_handler(undefined8 operation_context, undefined8 data_buffer)
+void data_handler(uint64_t operation_context, uint64_t data_buffer)
 
 {
   /* 执行数据处理操作 - 此函数不返回 */
-  data_processing_function(*(undefined8 *)(GLOBAL_DATA_ADDRESS + 0x1a0), data_buffer, &GLOBAL_BUFFER_ADDRESS, 0x52, 1);
+  data_processing_function(*(uint64_t *)(GLOBAL_DATA_ADDRESS + 0x1a0), data_buffer, &GLOBAL_BUFFER_ADDRESS, 0x52, 1);
 }
 
 
@@ -570,7 +570,7 @@ void data_incrementer(longlong data_context, int increment_value)
 {
   longlong operation_result;
   
-  operation_result = data_increment_function(*(undefined8 *)(GLOBAL_DATA_ADDRESS + 0x1a0), increment_value, &GLOBAL_BUFFER_ADDRESS, 0x15, 0, 0, 1);
+  operation_result = data_increment_function(*(uint64_t *)(GLOBAL_DATA_ADDRESS + 0x1a0), increment_value, &GLOBAL_BUFFER_ADDRESS, 0x15, 0, 0, 1);
   if ((operation_result != 0) && (data_context != 0)) {
     *(int *)(data_context + 0x4f0) = *(int *)(data_context + 0x4f0) + increment_value;
   }
@@ -598,12 +598,12 @@ void data_incrementer(longlong data_context, int increment_value)
  * @param data_size 数据大小
  * @return 无返回值
  */
-void data_processor_advanced(longlong data_context, undefined8 data_buffer, int data_size)
+void data_processor_advanced(longlong data_context, uint64_t data_buffer, int data_size)
 
 {
   longlong operation_result;
   
-  operation_result = advanced_data_processing_function(*(undefined8 *)(GLOBAL_DATA_ADDRESS + 0x1a0), data_buffer, data_size, &GLOBAL_BUFFER_ADDRESS, 0x3c,
+  operation_result = advanced_data_processing_function(*(uint64_t *)(GLOBAL_DATA_ADDRESS + 0x1a0), data_buffer, data_size, &GLOBAL_BUFFER_ADDRESS, 0x3c,
                         0);
   if ((operation_result != 0) && (data_context != 0)) {
     *(int *)(data_context + 0x4f0) = *(int *)(data_context + 0x4f0) + data_size;
@@ -629,10 +629,10 @@ void data_processor_advanced(longlong data_context, undefined8 data_buffer, int 
  * @param content_size 内容大小指针
  * @return 解析状态码（0表示成功，非0表示错误）
  */
-undefined8 xml_parser(longlong xml_context, char *tag_buffer, int *tag_size, longlong content_buffer, int *content_size)
+uint64_t xml_parser(longlong xml_context, char *tag_buffer, int *tag_size, longlong content_buffer, int *content_size)
 
 {
-  undefined8 parse_result;
+  uint64_t parse_result;
   ulonglong char_index;
   ulonglong content_index;
   int max_content_size;
@@ -645,18 +645,18 @@ undefined8 xml_parser(longlong xml_context, char *tag_buffer, int *tag_size, lon
   
   /* 跳过空白字符 */
   do {
-    parse_result = read_char_function(*(undefined8 *)(xml_context + 0x170), whitespace_buffer);
+    parse_result = read_char_function(*(uint64_t *)(xml_context + 0x170), whitespace_buffer);
     if ((int)parse_result != 0) {
       return parse_result;
     }
   } while ((((whitespace_buffer[0] == ' ') || (whitespace_buffer[0] == '\t')) || (whitespace_buffer[0] == '\n')) ||
           (whitespace_buffer[0] == '\r'));
   
-  parse_result = set_parser_state_function(*(undefined8 *)(xml_context + 0x170), 0xffffffff, 1);
+  parse_result = set_parser_state_function(*(uint64_t *)(xml_context + 0x170), 0xffffffff, 1);
   if ((int)parse_result == 0) {
     /* 查找开始标签 '<' */
     do {
-      parse_result = read_char_function(*(undefined8 *)(xml_context + 0x170), temp_char);
+      parse_result = read_char_function(*(uint64_t *)(xml_context + 0x170), temp_char);
       if ((int)parse_result != 0) {
         return parse_result;
       }
@@ -665,7 +665,7 @@ undefined8 xml_parser(longlong xml_context, char *tag_buffer, int *tag_size, lon
     
     /* 读取标签内容 */
     do {
-      parse_result = read_char_function(*(undefined8 *)(xml_context + 0x170), temp_char);
+      parse_result = read_char_function(*(uint64_t *)(xml_context + 0x170), temp_char);
       if ((int)parse_result != 0) {
         return parse_result;
       }
@@ -687,7 +687,7 @@ undefined8 xml_parser(longlong xml_context, char *tag_buffer, int *tag_size, lon
       
       /* 读取内容直到结束标签 */
       do {
-        parse_result = read_char_function(*(undefined8 *)(xml_context + 0x170), temp_char);
+        parse_result = read_char_function(*(uint64_t *)(xml_context + 0x170), temp_char);
         if ((int)parse_result != 0) {
           return parse_result;
         }
@@ -702,19 +702,19 @@ undefined8 xml_parser(longlong xml_context, char *tag_buffer, int *tag_size, lon
         *content_size = (int)char_index + -1;
       }
       
-      parse_result = read_char_function(*(undefined8 *)(xml_context + 0x170), temp_char);
+      parse_result = read_char_function(*(uint64_t *)(xml_context + 0x170), temp_char);
       if ((int)parse_result == 0) {
         if (temp_char[0] == '/') {
           /* 跳过结束标签 */
           do {
-            parse_result = read_char_function(*(undefined8 *)(xml_context + 0x170), temp_char);
+            parse_result = read_char_function(*(uint64_t *)(xml_context + 0x170), temp_char);
             if ((int)parse_result != 0) {
               return parse_result;
             }
           } while (temp_char[0] != '>');
         }
         else {
-          parse_result = set_parser_state_function(*(undefined8 *)(xml_context + 0x170), 0xfffffffe, 1);
+          parse_result = set_parser_state_function(*(uint64_t *)(xml_context + 0x170), 0xfffffffe, 1);
           if ((int)parse_result != 0) {
             return parse_result;
           }
@@ -768,7 +768,7 @@ ulonglong config_parser(longlong config_context, char *key_buffer, int key_size,
   /* 跳过空白字符 */
   do {
     whitespace_count = buffer_index;
-    parse_result = read_char_function(*(undefined8 *)(config_context + 0x170), &line_char);
+    parse_result = read_char_function(*(uint64_t *)(config_context + 0x170), &line_char);
     if ((int)parse_result != 0) {
       return parse_result;
     }
@@ -776,12 +776,12 @@ ulonglong config_parser(longlong config_context, char *key_buffer, int key_size,
   } while ((((line_char == ' ') || (line_char == '\t')) || (line_char == '\n')) ||
           (line_char == '\r'));
   
-  parse_result = set_parser_state_function(*(undefined8 *)(config_context + 0x170), 0xffffffff, 1);
+  parse_result = set_parser_state_function(*(uint64_t *)(config_context + 0x170), 0xffffffff, 1);
   if ((int)parse_result == 0) {
     buffer_index = 0;
     do {
       do {
-        char_result = read_char_function(*(undefined8 *)(config_context + 0x170), temp_char);
+        char_result = read_char_function(*(uint64_t *)(config_context + 0x170), temp_char);
         parse_result = char_result & 0xffffffff;
         if ((int)char_result != 0) {
           return char_result;
@@ -793,16 +793,16 @@ ulonglong config_parser(longlong config_context, char *key_buffer, int key_size,
           key_buffer = key_buffer + 1;
         }
         if (temp_char[0] == '=') {
-          parse_result = set_parser_state_function(*(undefined8 *)(config_context + 0x170), (-1 - whitespace_count) - char_count, 1);
+          parse_result = set_parser_state_function(*(uint64_t *)(config_context + 0x170), (-1 - whitespace_count) - char_count, 1);
           if ((int)parse_result != 0) {
             return parse_result;
           }
-          parse_result = read_char_function(*(undefined8 *)(config_context + 0x170), temp_char);
+          parse_result = read_char_function(*(uint64_t *)(config_context + 0x170), temp_char);
           if ((int)parse_result != 0) {
             return parse_result;
           }
           line_length = char_count + -1;
-          char_result = set_parser_state_function(*(undefined8 *)(config_context + 0x170), line_length + whitespace_count + 1, 1);
+          char_result = set_parser_state_function(*(uint64_t *)(config_context + 0x170), line_length + whitespace_count + 1, 1);
           parse_result = char_result & 0xffffffff;
           if ((int)char_result != 0) {
             return char_result;
@@ -810,29 +810,29 @@ ulonglong config_parser(longlong config_context, char *key_buffer, int key_size,
           if (temp_char[0] == '\n') goto PARSE_COMPLETE;
           key_size = original_key_size;
           if (temp_char[0] == '\r') {
-            read_char_function(*(undefined8 *)(config_context + 0x170), &line_char);
-            set_parser_state_function(*(undefined8 *)(config_context + 0x170), 0xffffffff, 1);
+            read_char_function(*(uint64_t *)(config_context + 0x170), &line_char);
+            set_parser_state_function(*(uint64_t *)(config_context + 0x170), 0xffffffff, 1);
             key_size = original_key_size;
             if (line_char != '\n') goto PARSE_COMPLETE;
           }
         }
         line_length = char_count;
         if (temp_char[0] == ']') {
-          parse_result = set_parser_state_function(*(undefined8 *)(config_context + 0x170), buffer_index, 1);
+          parse_result = set_parser_state_function(*(uint64_t *)(config_context + 0x170), buffer_index, 1);
           if ((int)parse_result != 0) {
             return parse_result;
           }
-          parse_result = read_char_function(*(undefined8 *)(config_context + 0x170), temp_char);
+          parse_result = read_char_function(*(uint64_t *)(config_context + 0x170), temp_char);
           if ((int)parse_result != 0) {
             return parse_result;
           }
-          char_result = set_parser_state_function(*(undefined8 *)(config_context + 0x170), char_count + -1, 1);
+          char_result = set_parser_state_function(*(uint64_t *)(config_context + 0x170), char_count + -1, 1);
           parse_result = char_result & 0xffffffff;
           if ((int)char_result != 0) {
             return char_result;
           }
           if (temp_char[0] == '[') {
-            char_result = set_parser_state_function(*(undefined8 *)(config_context + 0x170), 2, 1);
+            char_result = set_parser_state_function(*(uint64_t *)(config_context + 0x170), 2, 1);
             parse_result = char_result & 0xffffffff;
             if ((int)char_result != 0) {
               return char_result;
@@ -842,8 +842,8 @@ ulonglong config_parser(longlong config_context, char *key_buffer, int key_size,
         }
         if (temp_char[0] == '\n') goto PARSE_COMPLETE;
       } while (temp_char[0] != '\r');
-      read_char_function(*(undefined8 *)(config_context + 0x170), line_buffer);
-      set_parser_state_function(*(undefined8 *)(config_context + 0x170), 0xffffffff, 1);
+      read_char_function(*(uint64_t *)(config_context + 0x170), line_buffer);
+      set_parser_state_function(*(uint64_t *)(config_context + 0x170), 0xffffffff, 1);
     } while (line_buffer[0] == '\n');
 PARSE_COMPLETE:
     if (original_value_size != (int *)0x0) {
@@ -892,7 +892,7 @@ ulonglong line_processor(void)
   
   buffer_index = char_count;
   do {
-    parse_result = read_char_function(*(undefined8 *)(text_context + 0x170), &current_char);
+    parse_result = read_char_function(*(uint64_t *)(text_context + 0x170), &current_char);
     char_result = parse_result & 0xffffffff;
     if ((int)parse_result != 0) {
       return parse_result;
@@ -904,16 +904,16 @@ ulonglong line_processor(void)
       line_pointer = line_pointer + 1;
     }
     if (current_char == '=') {
-      parse_result = set_parser_state_function(*(undefined8 *)(text_context + 0x170), (-1 - whitespace_count) - char_count, 1);
+      parse_result = set_parser_state_function(*(uint64_t *)(text_context + 0x170), (-1 - whitespace_count) - char_count, 1);
       if ((int)parse_result != 0) {
         return parse_result;
       }
-      parse_result = read_char_function(*(undefined8 *)(text_context + 0x170), &current_char);
+      parse_result = read_char_function(*(uint64_t *)(text_context + 0x170), &current_char);
       if ((int)parse_result != 0) {
         return parse_result;
       }
       line_length = char_count + -1;
-      parse_result = set_parser_state_function(*(undefined8 *)(text_context + 0x170), line_length + whitespace_count + 1, 1);
+      parse_result = set_parser_state_function(*(uint64_t *)(text_context + 0x170), line_length + whitespace_count + 1, 1);
       char_result = parse_result & 0xffffffff;
       if ((int)parse_result != 0) {
         return parse_result;
@@ -921,29 +921,29 @@ ulonglong line_processor(void)
       if (current_char == '\n') goto PARSE_COMPLETE;
       max_line_size = original_max_size;
       if (current_char == '\r') {
-        read_char_function(*(undefined8 *)(text_context + 0x170), &temp_char);
-        set_parser_state_function(*(undefined8 *)(text_context + 0x170), 0xffffffff, 1);
+        read_char_function(*(uint64_t *)(text_context + 0x170), &temp_char);
+        set_parser_state_function(*(uint64_t *)(text_context + 0x170), 0xffffffff, 1);
         max_line_size = original_max_size;
         if (temp_char != '\n') goto PARSE_COMPLETE;
       }
     }
     line_length = char_count;
     if (current_char == ']') {
-      parse_result = set_parser_state_function(*(undefined8 *)(text_context + 0x170), buffer_index, 1);
+      parse_result = set_parser_state_function(*(uint64_t *)(text_context + 0x170), buffer_index, 1);
       if ((int)parse_result != 0) {
         return parse_result;
       }
-      parse_result = read_char_function(*(undefined8 *)(text_context + 0x170), &current_char);
+      parse_result = read_char_function(*(uint64_t *)(text_context + 0x170), &current_char);
       if ((int)parse_result != 0) {
         return parse_result;
       }
-      parse_result = set_parser_state_function(*(undefined8 *)(text_context + 0x170), char_count + -1, 1);
+      parse_result = set_parser_state_function(*(uint64_t *)(text_context + 0x170), char_count + -1, 1);
       char_result = parse_result & 0xffffffff;
       if ((int)parse_result != 0) {
         return parse_result;
       }
       if (current_char == '[') {
-        parse_result = set_parser_state_function(*(undefined8 *)(text_context + 0x170), 2, 1);
+        parse_result = set_parser_state_function(*(uint64_t *)(text_context + 0x170), 2, 1);
         char_result = parse_result & 0xffffffff;
         if ((int)parse_result != 0) {
           return parse_result;
@@ -953,14 +953,14 @@ ulonglong line_processor(void)
     }
     if (current_char == '\n') goto PARSE_COMPLETE;
     if (current_char == '\r') {
-      read_char_function(*(undefined8 *)(text_context + 0x170), next_buffer);
-      set_parser_state_function(*(undefined8 *)(text_context + 0x170), 0xffffffff, 1);
+      read_char_function(*(uint64_t *)(text_context + 0x170), next_buffer);
+      set_parser_state_function(*(uint64_t *)(text_context + 0x170), 0xffffffff, 1);
       if (next_buffer[0] != '\n') {
 PARSE_COMPLETE:
         if (result_size_pointer != (int *)0x0) {
           *result_size_pointer = line_length;
         }
-        *(undefined1 *)(line_length + result_buffer) = 0;
+        *(int8_t *)(line_length + result_buffer) = 0;
         return char_result;
       }
     }
@@ -1003,7 +1003,7 @@ void empty_function_1(void)
  * @param check_char 要检查的字符
  * @return 检查结果（1表示行结束，0表示未结束）
  */
-undefined1 line_end_checker(longlong text_context, char check_char)
+int8_t line_end_checker(longlong text_context, char check_char)
 
 {
   char next_buffer[24];
@@ -1012,8 +1012,8 @@ undefined1 line_end_checker(longlong text_context, char check_char)
     return 1;
   }
   if (check_char == '\r') {
-    read_char_function(*(undefined8 *)(text_context + 0x170), next_buffer);
-    set_parser_state_function(*(undefined8 *)(text_context + 0x170), 0xffffffff, 1);
+    read_char_function(*(uint64_t *)(text_context + 0x170), next_buffer);
+    set_parser_state_function(*(uint64_t *)(text_context + 0x170), 0xffffffff, 1);
     if (next_buffer[0] != '\n') {
       return 1;
     }
@@ -1046,40 +1046,40 @@ void system_initializer(longlong system_context)
   int init_result;
   ulonglong parse_result;
   longlong string_length;
-  undefined1 stack_protection[32];
-  undefined8 init_flag;
+  int8_t stack_protection[32];
+  uint64_t init_flag;
   char temp_buffer[8];
   longlong temp_value1;
   longlong temp_value2;
-  undefined8 temp_value3;
+  uint64_t temp_value3;
   ulonglong stack_checksum;
   
   stack_checksum = GLOBAL_STACK_CHECKSUM ^ (ulonglong)stack_protection;
   
   /* 初始化系统参数 */
-  *(undefined4 *)(system_context + 0x28) = 0xb;
-  *(undefined8 *)(system_context + 0x120) = 0;
-  *(undefined8 *)(system_context + 0x128) = 0;
-  *(undefined8 *)(system_context + 0x130) = 0;
-  *(undefined8 *)(system_context + 0x148) = 0;
-  *(undefined8 *)(system_context + 0x138) = 0;
-  *(undefined8 *)(system_context + 0x168) = 0;
-  *(undefined4 *)(system_context + 0x18) = 0;
-  *(undefined8 *)(system_context + 8) = 0;
+  *(int32_t *)(system_context + 0x28) = 0xb;
+  *(uint64_t *)(system_context + 0x120) = 0;
+  *(uint64_t *)(system_context + 0x128) = 0;
+  *(uint64_t *)(system_context + 0x130) = 0;
+  *(uint64_t *)(system_context + 0x148) = 0;
+  *(uint64_t *)(system_context + 0x138) = 0;
+  *(uint64_t *)(system_context + 0x168) = 0;
+  *(int32_t *)(system_context + 0x18) = 0;
+  *(uint64_t *)(system_context + 8) = 0;
   
   /* 跳过空白字符 */
   do {
-    init_result = read_char_function(*(undefined8 *)(system_context + 0x170), temp_buffer);
+    init_result = read_char_function(*(uint64_t *)(system_context + 0x170), temp_buffer);
     if (init_result != 0) goto CLEANUP_AND_EXIT;
   } while ((((temp_buffer[0] == ' ') || (temp_buffer[0] == '\t')) || (temp_buffer[0] == '\n')) ||
           (temp_buffer[0] == '\r'));
   
-  init_result = set_parser_state_function(*(undefined8 *)(system_context + 0x170), 0xffffffff, 1);
+  init_result = set_parser_state_function(*(uint64_t *)(system_context + 0x170), 0xffffffff, 1);
   if (init_result == 0) {
     init_flag = 0;
     temp_value2 = 0;
     temp_value3 = 0;
-    parse_result = read_token_function(*(undefined8 *)(system_context + 0x170), &temp_value2, 0xc, 1);
+    parse_result = read_token_function(*(uint64_t *)(system_context + 0x170), &temp_value2, 0xc, 1);
     if ((parse_result & 0xffffffef) == 0) {
       init_result = string_compare_function(&GLOBAL_STRING_TABLE, &temp_value2, 7);
       if (init_result == 0) {
@@ -1106,7 +1106,7 @@ void system_initializer(longlong system_context)
                 init_result = system_init_function5();
               }
               else {
-                init_result = read_string_function(*(undefined8 *)(system_context + 0x170), &temp_value1);
+                init_result = read_string_function(*(uint64_t *)(system_context + 0x170), &temp_value1);
                 if (init_result != 0) goto CLEANUP_AND_EXIT;
                 init_result = get_string_length_function(temp_value1);
                 string_length = (longlong)(init_result + -4);
@@ -1124,20 +1124,20 @@ void system_initializer(longlong system_context)
       }
       if (init_result == 0) {
         /* 初始化系统数据结构 */
-        *(undefined8 *)(system_context + 0x178) = 0;
-        *(undefined8 *)(system_context + 0x180) = 0;
-        *(undefined8 *)(system_context + 0x188) = 0;
-        *(undefined8 *)(system_context + 400) = 0;
-        *(undefined8 *)(system_context + 0x198) = 0;
-        *(undefined8 *)(system_context + 0x1a0) = 0;
-        *(undefined8 *)(system_context + 0x1a8) = 0;
-        *(undefined8 **)(system_context + 8) = (undefined8 *)(system_context + 0x178);
-        *(undefined4 *)(system_context + 0x18) = 0;
-        init_result = system_check_function(*(undefined8 *)(system_context + 0x170));
+        *(uint64_t *)(system_context + 0x178) = 0;
+        *(uint64_t *)(system_context + 0x180) = 0;
+        *(uint64_t *)(system_context + 0x188) = 0;
+        *(uint64_t *)(system_context + 400) = 0;
+        *(uint64_t *)(system_context + 0x198) = 0;
+        *(uint64_t *)(system_context + 0x1a0) = 0;
+        *(uint64_t *)(system_context + 0x1a8) = 0;
+        *(uint64_t **)(system_context + 8) = (uint64_t *)(system_context + 0x178);
+        *(int32_t *)(system_context + 0x18) = 0;
+        init_result = system_check_function(*(uint64_t *)(system_context + 0x170));
         if (init_result == 0) {
           init_flag = CONCAT71(init_flag._1_7_, 1);
           /* 执行系统初始化 - 此函数不返回 */
-          system_data_processing_function(*(undefined8 *)(GLOBAL_DATA_ADDRESS + 0x1a0), *(undefined8 *)(system_context + 0x170),
+          system_data_processing_function(*(uint64_t *)(GLOBAL_DATA_ADDRESS + 0x1a0), *(uint64_t *)(system_context + 0x170),
                         &GLOBAL_PROCESS_BUFFER, 0xb4);
         }
       }
@@ -1173,7 +1173,7 @@ void resource_initializer(void)
 {
   int init_result;
   longlong resource_context;
-  undefined4 resource_flag;
+  int32_t resource_flag;
   longlong string_length;
   longlong temp_string;
   ulonglong stack_checksum;
@@ -1203,7 +1203,7 @@ void resource_initializer(void)
             init_result = resource_init_function5();
           }
           else {
-            init_result = read_string_function(*(undefined8 *)(resource_context + 0x170), &temp_string);
+            init_result = read_string_function(*(uint64_t *)(resource_context + 0x170), &temp_string);
             if (init_result != 0) goto CLEANUP_AND_EXIT;
             init_result = get_string_length_function(temp_string);
             string_length = (longlong)(init_result + -4);
@@ -1222,19 +1222,19 @@ void resource_initializer(void)
   }
   if (init_result == 0) {
     /* 初始化资源数据结构 */
-    *(undefined8 *)(resource_context + 0x178) = 0;
-    *(undefined8 *)(resource_context + 0x180) = 0;
-    *(undefined8 *)(resource_context + 0x188) = 0;
-    *(undefined8 *)(resource_context + 400) = 0;
-    *(undefined8 *)(resource_context + 0x198) = 0;
-    *(undefined8 *)(resource_context + 0x1a0) = 0;
-    *(undefined8 *)(resource_context + 0x1a8) = 0;
-    *(undefined8 **)(resource_context + 8) = (undefined8 *)(resource_context + 0x178);
-    *(undefined4 *)(resource_context + 0x18) = resource_flag;
-    init_result = resource_check_function(*(undefined8 *)(resource_context + 0x170));
+    *(uint64_t *)(resource_context + 0x178) = 0;
+    *(uint64_t *)(resource_context + 0x180) = 0;
+    *(uint64_t *)(resource_context + 0x188) = 0;
+    *(uint64_t *)(resource_context + 400) = 0;
+    *(uint64_t *)(resource_context + 0x198) = 0;
+    *(uint64_t *)(resource_context + 0x1a0) = 0;
+    *(uint64_t *)(resource_context + 0x1a8) = 0;
+    *(uint64_t **)(resource_context + 8) = (uint64_t *)(resource_context + 0x178);
+    *(int32_t *)(resource_context + 0x18) = resource_flag;
+    init_result = resource_check_function(*(uint64_t *)(resource_context + 0x170));
     if (init_result == 0) {
       /* 执行资源初始化 - 此函数不返回 */
-      resource_processing_function(*(undefined8 *)(GLOBAL_DATA_ADDRESS + 0x1a0), *(undefined8 *)(resource_context + 0x170),
+      resource_processing_function(*(uint64_t *)(GLOBAL_DATA_ADDRESS + 0x1a0), *(uint64_t *)(resource_context + 0x170),
                     &GLOBAL_PROCESS_BUFFER, 0xb4, 1);
     }
   }

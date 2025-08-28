@@ -63,18 +63,18 @@
  * @param render_context 渲染上下文指针
  * @return void
  */
-void RenderingSystem_InitializeRenderState(undefined8 render_context)
+void RenderingSystem_InitializeRenderState(uint64_t render_context)
 {
-    undefined1 security_buffer[RENDERING_SYSTEM_BUFFER_SIZE_32];
-    undefined4 status_flag;
-    undefined8 thread_counter;
-    undefined **callback_array[2];
-    undefined *cleanup_handler;
-    undefined1 *string_buffer;
-    undefined4 string_length;
-    undefined1 config_buffer[RENDERING_SYSTEM_BUFFER_SIZE_72];
-    undefined *resource_array[11];
-    undefined4 operation_flag;
+    int8_t security_buffer[RENDERING_SYSTEM_BUFFER_SIZE_32];
+    int32_t status_flag;
+    uint64_t thread_counter;
+    void **callback_array[2];
+    void *cleanup_handler;
+    int8_t *string_buffer;
+    int32_t string_length;
+    int8_t config_buffer[RENDERING_SYSTEM_BUFFER_SIZE_72];
+    void *resource_array[11];
+    int32_t operation_flag;
     ulonglong security_hash;
     
     thread_counter = 0xfffffffffffffffe;
@@ -111,15 +111,15 @@ void RenderingSystem_InitializeRenderState(undefined8 render_context)
  * @param context_ptr 上下文指针指针
  * @return void
  */
-void RenderingSystem_CreateRenderContext(undefined8 *context_ptr)
+void RenderingSystem_CreateRenderContext(uint64_t *context_ptr)
 {
-    undefined4 string_length;
-    undefined8 *context_data;
-    undefined *cleanup_handler;
-    undefined8 *string_buffer;
-    undefined4 buffer_length;
-    undefined8 thread_counter;
-    undefined8 magic_cookie;
+    int32_t string_length;
+    uint64_t *context_data;
+    void *cleanup_handler;
+    uint64_t *string_buffer;
+    int32_t buffer_length;
+    uint64_t thread_counter;
+    uint64_t magic_cookie;
     
     thread_counter = 0xfffffffffffffffe;
     context_data = context_ptr;
@@ -127,15 +127,15 @@ void RenderingSystem_CreateRenderContext(undefined8 *context_ptr)
     *context_data = &UNK_180a20cc0;
     cleanup_handler = &UNK_180a3c3e0;
     thread_counter = 0;
-    string_buffer = (undefined8 *)0x0;
+    string_buffer = (uint64_t *)0x0;
     buffer_length = 0;
-    context_data = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
-    *(undefined1 *)context_data = 0;
+    context_data = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+    *(int8_t *)context_data = 0;
     string_buffer = context_data;
     string_length = FUN_18064e990(context_data);
     thread_counter = CONCAT44(thread_counter._4_4_, string_length);
     *context_data = RENDERING_SYSTEM_MAGIC_COOKIE_1;
-    *(undefined4 *)(context_data + 1) = RENDERING_SYSTEM_MAGIC_COOKIE_2;
+    *(int32_t *)(context_data + 1) = RENDERING_SYSTEM_MAGIC_COOKIE_2;
     buffer_length = 0xb;
     FUN_1803460a0(context_ptr, &cleanup_handler, context_ptr + 0xe, 2);
     cleanup_handler = &UNK_180a3c3e0;
@@ -154,11 +154,11 @@ void RenderingSystem_CreateRenderContext(undefined8 *context_ptr)
  * @param allocation_flags 分配标志
  * @param size_param 大小参数
  * @param alignment_param 对齐参数
- * @return undefined8 分配的内存指针
+ * @return uint64_t 分配的内存指针
  */
-undefined8 RenderingSystem_AllocateRenderMemory(undefined8 memory_ptr, ulonglong allocation_flags, undefined8 size_param, undefined8 alignment_param)
+uint64_t RenderingSystem_AllocateRenderMemory(uint64_t memory_ptr, ulonglong allocation_flags, uint64_t size_param, uint64_t alignment_param)
 {
-    undefined8 thread_counter;
+    uint64_t thread_counter;
     
     thread_counter = 0xfffffffffffffffe;
     FUN_1803457d0();
@@ -174,37 +174,37 @@ undefined8 RenderingSystem_AllocateRenderMemory(undefined8 memory_ptr, ulonglong
 
 
 
-// 函数: void FUN_1803697f0(undefined8 param_1,undefined8 param_2)
-void FUN_1803697f0(undefined8 param_1,undefined8 param_2)
+// 函数: void FUN_1803697f0(uint64_t param_1,uint64_t param_2)
+void FUN_1803697f0(uint64_t param_1,uint64_t param_2)
 
 {
-  undefined4 uVar1;
-  undefined8 *puVar2;
-  undefined8 *puVar3;
-  undefined *puStack_108;
-  undefined8 *puStack_100;
-  undefined4 uStack_f8;
-  undefined8 uStack_f0;
-  undefined8 uStack_30;
-  undefined8 uStack_28;
+  int32_t uVar1;
+  uint64_t *puVar2;
+  uint64_t *puVar3;
+  void *puStack_108;
+  uint64_t *puStack_100;
+  int32_t uStack_f8;
+  uint64_t uStack_f0;
+  uint64_t uStack_30;
+  uint64_t uStack_28;
   
   uStack_30 = 0x18036981a;
-  puVar3 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x90,8,3);
+  puVar3 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x90,8,3);
   uStack_28 = 0xfffffffffffffffe;
   puVar2 = puVar3;
   FUN_1803456e0(puVar3,param_2,param_1);
   *puVar2 = &UNK_180a20cc0;
   puStack_108 = &UNK_180a3c3e0;
   uStack_f0 = 0;
-  puStack_100 = (undefined8 *)0x0;
+  puStack_100 = (uint64_t *)0x0;
   uStack_f8 = 0;
-  puVar2 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
-  *(undefined1 *)puVar2 = 0;
+  puVar2 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+  *(int8_t *)puVar2 = 0;
   puStack_100 = puVar2;
   uVar1 = FUN_18064e990(puVar2);
   uStack_f0 = CONCAT44(uStack_f0._4_4_,uVar1);
   *puVar2 = 0x6f4d6f54656d6954;
-  *(undefined4 *)(puVar2 + 1) = 0x416564;
+  *(int32_t *)(puVar2 + 1) = 0x416564;
   uStack_f8 = 0xb;
   FUN_1803460a0(puVar3,&puStack_108,puVar3 + 0xe,2);
   puStack_108 = &UNK_180a3c3e0;
@@ -223,9 +223,9 @@ void FUN_180369850(longlong param_1,longlong param_2)
   int iVar1;
   
   if (*(int *)(param_2 + 0x10) == 10) {
-    iVar1 = strcmp(*(undefined8 *)(param_2 + 8),&DAT_180a20c88);
+    iVar1 = strcmp(*(uint64_t *)(param_2 + 8),&DAT_180a20c88);
     if ((iVar1 == 0) && (*(float *)(param_1 + 0x88) <= 0.0 && *(float *)(param_1 + 0x88) != 0.0)) {
-      *(undefined4 *)(param_1 + 0x88) = 0;
+      *(int32_t *)(param_1 + 0x88) = 0;
     }
   }
   return;
@@ -237,44 +237,44 @@ void FUN_180369850(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180369890(undefined8 param_1)
-void FUN_180369890(undefined8 param_1)
+// 函数: void FUN_180369890(uint64_t param_1)
+void FUN_180369890(uint64_t param_1)
 
 {
-  undefined1 auStack_368 [32];
-  undefined4 uStack_348;
-  undefined **appuStack_340 [2];
-  undefined8 uStack_330;
-  undefined *apuStack_328 [11];
-  undefined4 uStack_2d0;
-  undefined *puStack_2c8;
-  undefined1 *puStack_2c0;
-  undefined4 uStack_2b8;
-  undefined1 auStack_2b0 [72];
-  undefined *puStack_268;
-  undefined1 *puStack_260;
-  undefined4 uStack_258;
-  undefined1 auStack_250 [72];
-  undefined *puStack_208;
-  undefined1 *puStack_200;
-  undefined4 uStack_1f8;
-  undefined1 auStack_1f0 [72];
-  undefined *puStack_1a8;
-  undefined1 *puStack_1a0;
-  undefined4 uStack_198;
-  undefined1 auStack_190 [72];
-  undefined *puStack_148;
-  undefined1 *puStack_140;
-  undefined4 uStack_138;
-  undefined1 auStack_130 [72];
-  undefined *puStack_e8;
-  undefined1 *puStack_e0;
-  undefined4 uStack_d8;
-  undefined1 auStack_d0 [72];
-  undefined *puStack_88;
-  undefined1 *puStack_80;
-  undefined4 uStack_78;
-  undefined1 auStack_70 [72];
+  int8_t auStack_368 [32];
+  int32_t uStack_348;
+  void **appuStack_340 [2];
+  uint64_t uStack_330;
+  void *apuStack_328 [11];
+  int32_t uStack_2d0;
+  void *puStack_2c8;
+  int8_t *puStack_2c0;
+  int32_t uStack_2b8;
+  int8_t auStack_2b0 [72];
+  void *puStack_268;
+  int8_t *puStack_260;
+  int32_t uStack_258;
+  int8_t auStack_250 [72];
+  void *puStack_208;
+  int8_t *puStack_200;
+  int32_t uStack_1f8;
+  int8_t auStack_1f0 [72];
+  void *puStack_1a8;
+  int8_t *puStack_1a0;
+  int32_t uStack_198;
+  int8_t auStack_190 [72];
+  void *puStack_148;
+  int8_t *puStack_140;
+  int32_t uStack_138;
+  int8_t auStack_130 [72];
+  void *puStack_e8;
+  int8_t *puStack_e0;
+  int32_t uStack_d8;
+  int8_t auStack_d0 [72];
+  void *puStack_88;
+  int8_t *puStack_80;
+  int32_t uStack_78;
+  int8_t auStack_70 [72];
   ulonglong uStack_28;
   
   uStack_330 = 0xfffffffffffffffe;
@@ -398,7 +398,7 @@ void FUN_180369890(undefined8 param_1)
  */
 void RenderingSystem_ColorInterpolatorBase(longlong render_context) {
     // 获取渲染对象句柄
-    longlong render_object = FUN_1802e8fb0(*(undefined8 *)(render_context + 0x18));
+    longlong render_object = FUN_1802e8fb0(*(uint64_t *)(render_context + 0x18));
     if (render_object == 0) {
         return;
     }
@@ -436,14 +436,14 @@ void RenderingSystem_ColorInterpolatorBase(longlong render_context) {
     }
     
     // 应用插值算法
-    undefined4 final_color = 0;
+    int32_t final_color = 0;
     
     if (interpolation_mode == 0) {
         // 直接使用起始颜色
-        final_color = *(undefined4 *)(render_context + 0x80);
+        final_color = *(int32_t *)(render_context + 0x80);
     } else if (interpolation_mode == 1) {
         // 使用中间颜色
-        *(undefined4 *)(render_object + 0xe4) = *(undefined4 *)(render_context + 0x84);
+        *(int32_t *)(render_object + 0xe4) = *(int32_t *)(render_context + 0x84);
         return;
     } else if (interpolation_mode == 2) {
         // 中间到结束颜色的线性插值
@@ -462,7 +462,7 @@ void RenderingSystem_ColorInterpolatorBase(longlong render_context) {
     }
     
     // 设置最终颜色
-    *(undefined4 *)(render_object + 0xe4) = final_color;
+    *(int32_t *)(render_object + 0xe4) = final_color;
 }
 
 
@@ -524,14 +524,14 @@ void RenderingSystem_ColorInterpolatorAdvanced(longlong color_index, longlong re
     }
     
     // 应用高级插值算法
-    undefined4 final_color = 0;
+    int32_t final_color = 0;
     
     if (interpolation_mode == 0) {
         // 直接使用起始颜色
-        final_color = *(undefined4 *)(register_base + 0x80);
+        final_color = *(int32_t *)(register_base + 0x80);
     } else if (interpolation_mode == 1) {
         // 使用中间颜色
-        *(undefined4 *)(dest_register + 0xe4) = *(undefined4 *)(register_base + 0x84);
+        *(int32_t *)(dest_register + 0xe4) = *(int32_t *)(register_base + 0x84);
         return;
     } else if (interpolation_mode == 2) {
         // 中间到结束颜色的线性插值
@@ -550,7 +550,7 @@ void RenderingSystem_ColorInterpolatorAdvanced(longlong color_index, longlong re
     }
     
     // 设置最终颜色到目标寄存器
-    *(undefined4 *)(dest_register + 0xe4) = final_color;
+    *(int32_t *)(dest_register + 0xe4) = final_color;
 }
 
 
@@ -576,12 +576,12 @@ void RenderingSystem_ColorInterpolatorAdvanced(longlong color_index, longlong re
  * 4. 模式3: 起始到中间颜色的线性插值
  * 5. 其他模式: 使用默认颜色
  */
-void RenderingSystem_FastColorInterpolator(int interpolation_mode, undefined4 default_color, 
+void RenderingSystem_FastColorInterpolator(int interpolation_mode, int32_t default_color, 
                                          longlong source_register, longlong dest_register, 
                                          float xmm_factor) {
     if (interpolation_mode == 1) {
         // 模式1: 直接使用中间颜色
-        *(undefined4 *)(dest_register + 0xe4) = *(undefined4 *)(source_register + 0x84);
+        *(int32_t *)(dest_register + 0xe4) = *(int32_t *)(source_register + 0x84);
         return;
     }
     
@@ -595,7 +595,7 @@ void RenderingSystem_FastColorInterpolator(int interpolation_mode, undefined4 de
             return;
         }
         // 其他模式: 使用默认颜色
-        *(undefined4 *)(dest_register + 0xe4) = default_color;
+        *(int32_t *)(dest_register + 0xe4) = default_color;
         return;
     }
     
@@ -628,57 +628,57 @@ void RenderingSystem_FastColorInterpolator(int interpolation_mode, undefined4 de
  * 5. 配置字符串处理器
  * 6. 初始化相关数据结构
  */
-void RenderingSystem_StringManagerInitializer(undefined8 *string_manager) {
+void RenderingSystem_StringManagerInitializer(uint64_t *string_manager) {
     // 调用基础初始化函数
     FUN_1803456e0();
     
     // 设置字符串管理器的基本结构
-    undefined8 *manager_ptr = string_manager;
+    uint64_t *manager_ptr = string_manager;
     *manager_ptr = &UNK_180a20f68; // 设置基础字符串表
     
-    undefined8 *processor_ptr = manager_ptr + 0xe;
+    uint64_t *processor_ptr = manager_ptr + 0xe;
     *processor_ptr = &UNK_18098bcb0; // 设置字符串处理器
     
     // 初始化基础数据结构
     manager_ptr[0xf] = 0; // 清零标志位
-    *(undefined4 *)(manager_ptr + 0x10) = 0; // 清零计数器
+    *(int32_t *)(manager_ptr + 0x10) = 0; // 清零计数器
     
     // 设置字符串处理器到内存管理器
     *processor_ptr = &UNK_180a3c3e0;
     manager_ptr[0x11] = 0; // 清零状态
     manager_ptr[0xf] = 0;  // 清零标志
-    *(undefined4 *)(manager_ptr + 0x10) = 0; // 清零计数器
+    *(int32_t *)(manager_ptr + 0x10) = 0; // 清零计数器
     
     // 初始化内存管理器结构
     longlong *memory_manager = manager_ptr + 0x16;
     *memory_manager = (longlong)&UNK_18098bcb0; // 设置内存处理器
     manager_ptr[0x17] = 0; // 清零内存状态
-    *(undefined4 *)(manager_ptr + 0x18) = 0; // 清零内存计数
+    *(int32_t *)(manager_ptr + 0x18) = 0; // 清零内存计数
     
     *memory_manager = (longlong)&UNK_180a3c3e0; // 设置内存分配器
     manager_ptr[0x19] = 0; // 清零分配状态
     manager_ptr[0x17] = 0; // 清零内存状态
-    *(undefined4 *)(manager_ptr + 0x18) = 0; // 清零内存计数
+    *(int32_t *)(manager_ptr + 0x18) = 0; // 清零内存计数
     
     // 清零扩展字段
     manager_ptr[0x1c] = 0;
     manager_ptr[0x1d] = 0;
     
     // 创建第一个字符串缓冲区
-    undefined *string_buffer = &UNK_180a3c3e0;
-    undefined8 buffer_size = 0;
-    undefined8 *buffer_ptr = (undefined8 *)0x0;
-    undefined4 buffer_length = 0;
-    undefined8 *buffer_target = processor_ptr;
+    void *string_buffer = &UNK_180a3c3e0;
+    uint64_t buffer_size = 0;
+    uint64_t *buffer_ptr = (uint64_t *)0x0;
+    int32_t buffer_length = 0;
+    uint64_t *buffer_target = processor_ptr;
     
     // 分配字符串缓冲区内存
-    undefined4 *string_data = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
-    *(undefined1 *)string_data = 0; // 清零字符串数据
-    buffer_ptr = (undefined8 *)string_data;
+    int32_t *string_data = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+    *(int8_t *)string_data = 0; // 清零字符串数据
+    buffer_ptr = (uint64_t *)string_data;
     
-    undefined4 string_hash = FUN_18064e990(string_data);
+    int32_t string_hash = FUN_18064e990(string_data);
     *string_data = 0x74736554; // 设置字符串标识 "Test"
-    *(undefined1 *)(string_data + 1) = 0; // 字符串结束符
+    *(int8_t *)(string_data + 1) = 0; // 字符串结束符
     buffer_length = 4; // 字符串长度
     buffer_size._0_4_ = string_hash; // 存储哈希值
     
@@ -687,12 +687,12 @@ void RenderingSystem_StringManagerInitializer(undefined8 *string_manager) {
     
     // 清理临时缓冲区
     string_buffer = &UNK_180a3c3e0;
-    if (buffer_ptr != (undefined8 *)0x0) {
+    if (buffer_ptr != (uint64_t *)0x0) {
         FUN_18064e900(); // 释放缓冲区内存
     }
     
     // 准备第二个字符串缓冲区
-    buffer_ptr = (undefined8 *)0x0;
+    buffer_ptr = (uint64_t *)0x0;
     buffer_size = (ulonglong)buffer_size._4_4_ << 0x20;
     string_buffer = &UNK_18098bcb0;
     
@@ -705,31 +705,31 @@ void RenderingSystem_StringManagerInitializer(undefined8 *string_manager) {
     
     // 设置字符串管理器状态
     string_manager[0x13] = 0;
-    *(undefined4 *)((longlong)string_manager + 0xa4) = 0x40200000; // 设置浮点常量
-    *(undefined1 *)(string_manager + 0x15) = 0; // 清零状态标志
+    *(int32_t *)((longlong)string_manager + 0xa4) = 0x40200000; // 设置浮点常量
+    *(int8_t *)(string_manager + 0x15) = 0; // 清零状态标志
     
     // 初始化内存管理器回调
     (**(code **)(*memory_manager + 0x10))(memory_manager, &DAT_18098bc73);
     
     // 设置字符串管理器参数
-    *(undefined2 *)(string_manager + 0x1a) = 0x100; // 设置缓冲区大小
-    *(undefined1 *)((longlong)string_manager + 0xd2) = 1; // 设置启用标志
-    *(undefined1 *)((longlong)string_manager + 0xd3) = 0; // 清零保留标志
+    *(int16_t *)(string_manager + 0x1a) = 0x100; // 设置缓冲区大小
+    *(int8_t *)((longlong)string_manager + 0xd2) = 1; // 设置启用标志
+    *(int8_t *)((longlong)string_manager + 0xd3) = 0; // 清零保留标志
     
     // 创建主字符串缓冲区
     string_buffer = &UNK_180a3c3e0;
     buffer_size = 0;
-    buffer_ptr = (undefined8 *)0x0;
+    buffer_ptr = (uint64_t *)0x0;
     buffer_length = 0;
     
-    undefined8 *main_buffer = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
-    *(undefined1 *)main_buffer = 0; // 清零主缓冲区
+    uint64_t *main_buffer = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+    *(int8_t *)main_buffer = 0; // 清零主缓冲区
     buffer_ptr = main_buffer;
     
-    undefined4 main_hash = FUN_18064e990(main_buffer);
+    int32_t main_hash = FUN_18064e990(main_buffer);
     buffer_size = CONCAT44(buffer_size._4_4_, main_hash);
     *main_buffer = 0x6d614e2068746150; // 设置主字符串 "Path Name"
-    *(undefined2 *)(main_buffer + 1) = 0x65; // 继续字符串
+    *(int16_t *)(main_buffer + 1) = 0x65; // 继续字符串
     buffer_length = 9; // 主字符串长度
     
     // 初始化主字符串处理
@@ -759,7 +759,7 @@ void RenderingSystem_StringManagerInitializer(undefined8 *string_manager) {
  * 4. 释放相关资源
  * 5. 根据标志决定是否释放管理器本身
  */
-undefined8 * RenderingSystem_ManagerCleaner(undefined8 *manager, ulonglong cleanup_flags) {
+uint64_t * RenderingSystem_ManagerCleaner(uint64_t *manager, ulonglong cleanup_flags) {
     // 重置管理器基础结构
     *manager = &UNK_180a20f68; // 设置基础表
     
@@ -794,7 +794,7 @@ undefined8 * RenderingSystem_ManagerCleaner(undefined8 *manager, ulonglong clean
         FUN_18064e900(); // 释放扩展数据内存
     }
     manager[0x17] = 0;
-    *(undefined4 *)(manager + 0x19) = 0; // 清零扩展计数
+    *(int32_t *)(manager + 0x19) = 0; // 清零扩展计数
     
     // 重置扩展数据到默认状态
     manager[0x16] = &UNK_18098bcb0; // 设置默认扩展数据
@@ -805,7 +805,7 @@ undefined8 * RenderingSystem_ManagerCleaner(undefined8 *manager, ulonglong clean
         FUN_18064e900(); // 释放主数据内存
     }
     manager[0xf] = 0;
-    *(undefined4 *)(manager + 0x11) = 0; // 清零主计数
+    *(int32_t *)(manager + 0x11) = 0; // 清零主计数
     
     // 重置主数据到默认状态
     manager[0xe] = &UNK_18098bcb0; // 设置默认主数据
@@ -845,22 +845,22 @@ undefined8 * RenderingSystem_ManagerCleaner(undefined8 *manager, ulonglong clean
  * 4. 配置浮点参数范围
  * 5. 初始化状态标志
  */
-void RenderingSystem_ParameterInitializer(longlong render_context, undefined8 param_2, 
-                                         undefined8 param_3, undefined8 param_4) {
+void RenderingSystem_ParameterInitializer(longlong render_context, uint64_t param_2, 
+                                         uint64_t param_3, uint64_t param_4) {
     // 创建测试字符串缓冲区
-    undefined *string_buffer = &UNK_180a3c3e0;
-    undefined8 buffer_hash = 0;
-    undefined4 *string_ptr = (undefined4 *)0x0;
-    undefined4 string_length = 0;
+    void *string_buffer = &UNK_180a3c3e0;
+    uint64_t buffer_hash = 0;
+    int32_t *string_ptr = (int32_t *)0x0;
+    int32_t string_length = 0;
     
     // 分配字符串内存
-    undefined4 *string_data = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13, param_4, 0xfffffffffffffffe);
-    *(undefined1 *)string_data = 0; // 清零字符串数据
+    int32_t *string_data = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13, param_4, 0xfffffffffffffffe);
+    *(int8_t *)string_data = 0; // 清零字符串数据
     string_ptr = string_data;
     
-    undefined4 hash_value = FUN_18064e990(string_data);
+    int32_t hash_value = FUN_18064e990(string_data);
     *string_data = 0x74736554; // 设置字符串 "Test"
-    *(undefined1 *)(string_data + 1) = 0; // 字符串结束符
+    *(int8_t *)(string_data + 1) = 0; // 字符串结束符
     string_length = 4; // 字符串长度
     buffer_hash._0_4_ = hash_value; // 存储哈希值
     
@@ -869,35 +869,35 @@ void RenderingSystem_ParameterInitializer(longlong render_context, undefined8 pa
     
     // 清理字符串缓冲区
     string_buffer = &UNK_180a3c3e0;
-    if (string_ptr != (undefined4 *)0x0) {
+    if (string_ptr != (int32_t *)0x0) {
         FUN_18064e900(); // 释放字符串内存
     }
     
     // 准备参数清理
-    string_ptr = (undefined4 *)0x0;
+    string_ptr = (int32_t *)0x0;
     buffer_hash = (ulonglong)buffer_hash._4_4_ << 0x20;
     string_buffer = &UNK_18098bcb0;
     
     // 清理旧的参数管理器
     longlong *old_param_manager = *(longlong **)(render_context + 0xe0);
-    *(undefined8 *)(render_context + 0xe0) = 0;
+    *(uint64_t *)(render_context + 0xe0) = 0;
     if (old_param_manager != (longlong *)0x0) {
         (**(code **)(*old_param_manager + 0x38))(); // 调用清理函数
     }
     
     // 设置基本参数值
-    *(undefined8 *)(render_context + 0x98) = 0; // 清零参数表
-    *(undefined4 *)(render_context + 0xa4) = 0x40200000; // 设置浮点常量 2.5
+    *(uint64_t *)(render_context + 0x98) = 0; // 清零参数表
+    *(int32_t *)(render_context + 0xa4) = 0x40200000; // 设置浮点常量 2.5
     
     // 设置状态标志
-    *(undefined4 *)(render_context + 0xf4) = 0xffffffff; // 设置最大值
-    *(undefined1 *)(render_context + 0xf1) = 0; // 清零状态标志
+    *(int32_t *)(render_context + 0xf4) = 0xffffffff; // 设置最大值
+    *(int8_t *)(render_context + 0xf1) = 0; // 清零状态标志
     
     // 配置浮点参数范围（4个浮点参数的默认值）
-    *(undefined8 *)(render_context + 0xf8) = 0xc97423f0c97423f0; // 参数对1: -1000000.0, -1000000.0
-    *(undefined8 *)(render_context + 0x100) = 0x7f7fffffc97423f0; // 参数对2: 最大浮点值, -1000000.0
-    *(undefined8 *)(render_context + 0x108) = 0x497423f0497423f0; // 参数对3: 1000000.0, 1000000.0
-    *(undefined8 *)(render_context + 0x110) = 0x7f7fffff497423f0; // 参数对4: 最大浮点值, 1000000.0
+    *(uint64_t *)(render_context + 0xf8) = 0xc97423f0c97423f0; // 参数对1: -1000000.0, -1000000.0
+    *(uint64_t *)(render_context + 0x100) = 0x7f7fffffc97423f0; // 参数对2: 最大浮点值, -1000000.0
+    *(uint64_t *)(render_context + 0x108) = 0x497423f0497423f0; // 参数对3: 1000000.0, 1000000.0
+    *(uint64_t *)(render_context + 0x110) = 0x7f7fffff497423f0; // 参数对4: 最大浮点值, 1000000.0
 }
 
 
@@ -925,23 +925,23 @@ void RenderingSystem_ParameterInitializer(longlong render_context, undefined8 pa
  */
 void RenderingSystem_ProcessorInitializer_Standard(longlong render_context) {
     // 设置安全栈保护
-    undefined8 stack_guard = 0xfffffffffffffffe;
-    undefined1 security_buffer[32];
+    uint64_t stack_guard = 0xfffffffffffffffe;
+    int8_t security_buffer[32];
     ulonglong security_key = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
     
     // 配置处理器模式为标准模式
-    *(undefined1 *)(render_context + 0xf0) = 0; // 标准模式
+    *(int8_t *)(render_context + 0xf0) = 0; // 标准模式
     
     // 处理字符串初始化（如果调试模式启用）
     if (DAT_180c8aa6b != '\0') {
-        undefined *string_ptr = &UNK_1809fdc18;
-        undefined1 *string_buffer = security_buffer; // 重用安全缓冲区
+        void *string_ptr = &UNK_1809fdc18;
+        int8_t *string_buffer = security_buffer; // 重用安全缓冲区
         security_buffer[0] = 0;
-        undefined4 string_length = 7;
+        int32_t string_length = 7;
         strcpy_s(security_buffer, 0x10, &UNK_180a20e68); // 复制调试字符串
         
-        undefined8 string_handle = FUN_1800b6de0(_DAT_180c86930, &string_ptr, 1);
-        *(undefined8 *)(render_context + 0x98) = string_handle;
+        uint64_t string_handle = FUN_1800b6de0(_DAT_180c86930, &string_ptr, 1);
+        *(uint64_t *)(render_context + 0x98) = string_handle;
         string_ptr = &UNK_18098bcb0; // 重置字符串指针
     }
     
@@ -949,10 +949,10 @@ void RenderingSystem_ProcessorInitializer_Standard(longlong render_context) {
     FUN_18036b140(render_context);
     
     // 设置处理器句柄
-    undefined8 *processor_handle = (undefined8 *)
+    uint64_t *processor_handle = (uint64_t *)
         FUN_180389090(*(longlong *)(*(longlong *)(render_context + 0x18) + 0x20) + 0x2970, 
                      (longlong **)&security_buffer, render_context + 0x70);
-    *(undefined8 *)(render_context + 0xd8) = *processor_handle;
+    *(uint64_t *)(render_context + 0xd8) = *processor_handle;
     
     // 清理临时内存
     if ((longlong *)security_buffer != (longlong *)0x0) {
@@ -997,23 +997,23 @@ void RenderingSystem_ProcessorInitializer_Standard(longlong render_context) {
  */
 void RenderingSystem_ProcessorInitializer_Enhanced(longlong render_context) {
     // 设置安全栈保护
-    undefined8 stack_guard = 0xfffffffffffffffe;
-    undefined1 security_buffer[32];
+    uint64_t stack_guard = 0xfffffffffffffffe;
+    int8_t security_buffer[32];
     ulonglong security_key = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
     
     // 配置处理器模式为增强模式
-    *(undefined1 *)(render_context + 0xf0) = 1; // 增强模式
+    *(int8_t *)(render_context + 0xf0) = 1; // 增强模式
     
     // 处理字符串初始化（如果调试模式启用）
     if (DAT_180c8aa6b != '\0') {
-        undefined *string_ptr = &UNK_1809fdc18;
-        undefined1 *string_buffer = security_buffer; // 重用安全缓冲区
+        void *string_ptr = &UNK_1809fdc18;
+        int8_t *string_buffer = security_buffer; // 重用安全缓冲区
         security_buffer[0] = 0;
-        undefined4 string_length = 7;
+        int32_t string_length = 7;
         strcpy_s(security_buffer, 0x10, &UNK_180a20e68); // 复制调试字符串
         
-        undefined8 string_handle = FUN_1800b6de0(_DAT_180c86930, &string_ptr, 1);
-        *(undefined8 *)(render_context + 0x98) = string_handle;
+        uint64_t string_handle = FUN_1800b6de0(_DAT_180c86930, &string_ptr, 1);
+        *(uint64_t *)(render_context + 0x98) = string_handle;
         string_ptr = &UNK_18098bcb0; // 重置字符串指针
     }
     
@@ -1021,10 +1021,10 @@ void RenderingSystem_ProcessorInitializer_Enhanced(longlong render_context) {
     FUN_18036b140(render_context);
     
     // 设置处理器句柄
-    undefined8 *processor_handle = (undefined8 *)
+    uint64_t *processor_handle = (uint64_t *)
         FUN_180389090(*(longlong *)(*(longlong *)(render_context + 0x18) + 0x20) + 0x2970, 
                      (longlong **)&security_buffer, render_context + 0x70);
-    *(undefined8 *)(render_context + 0xd8) = *processor_handle;
+    *(uint64_t *)(render_context + 0xd8) = *processor_handle;
     
     // 清理临时内存
     if ((longlong *)security_buffer != (longlong *)0x0) {
@@ -1067,12 +1067,12 @@ void RenderingSystem_ProcessorInitializer_Enhanced(longlong render_context) {
  * 5. 配置内存管理器
  * 6. 设置管理器参数
  */
-void RenderingSystem_ManagerCreator(undefined8 param_1, undefined8 param_2) {
+void RenderingSystem_ManagerCreator(uint64_t param_1, uint64_t param_2) {
     // 分配管理器内存
-    undefined8 *manager = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, 0x118, 8, 3);
-    undefined8 stack_guard = 0xfffffffffffffffe;
+    uint64_t *manager = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x118, 8, 3);
+    uint64_t stack_guard = 0xfffffffffffffffe;
     
-    undefined8 *manager_ptr = manager;
+    uint64_t *manager_ptr = manager;
     
     // 调用基础初始化函数
     FUN_1803456e0(manager, param_2, param_1);
@@ -1080,49 +1080,49 @@ void RenderingSystem_ManagerCreator(undefined8 param_1, undefined8 param_2) {
     // 设置管理器基本结构
     *manager_ptr = &UNK_180a20f68; // 设置基础表
     
-    undefined8 *processor_ptr = manager_ptr + 0xe;
+    uint64_t *processor_ptr = manager_ptr + 0xe;
     *processor_ptr = &UNK_18098bcb0; // 设置处理器
     
     // 初始化基础数据结构
     manager_ptr[0xf] = 0; // 清零标志位
-    *(undefined4 *)(manager_ptr + 0x10) = 0; // 清零计数器
+    *(int32_t *)(manager_ptr + 0x10) = 0; // 清零计数器
     
     // 设置处理器到内存管理器
     *processor_ptr = &UNK_180a3c3e0;
     manager_ptr[0x11] = 0; // 清零状态
     manager_ptr[0xf] = 0;  // 清零标志
-    *(undefined4 *)(manager_ptr + 0x10) = 0; // 清零计数器
+    *(int32_t *)(manager_ptr + 0x10) = 0; // 清零计数器
     
     // 初始化内存管理器结构
     longlong *memory_manager = manager_ptr + 0x16;
     *memory_manager = (longlong)&UNK_18098bcb0; // 设置内存处理器
     manager_ptr[0x17] = 0; // 清零内存状态
-    *(undefined4 *)(manager_ptr + 0x18) = 0; // 清零内存计数
+    *(int32_t *)(manager_ptr + 0x18) = 0; // 清零内存计数
     
     *memory_manager = (longlong)&UNK_180a3c3e0; // 设置内存分配器
     manager_ptr[0x19] = 0; // 清零分配状态
     manager_ptr[0x17] = 0; // 清零内存状态
-    *(undefined4 *)(manager_ptr + 0x18) = 0; // 清零内存计数
+    *(int32_t *)(manager_ptr + 0x18) = 0; // 清零内存计数
     
     // 清零扩展字段
     manager_ptr[0x1c] = 0;
     manager_ptr[0x1d] = 0;
     
     // 创建测试字符串缓冲区
-    undefined *string_buffer = &UNK_180a3c3e0;
-    undefined8 buffer_size = 0;
-    undefined8 *buffer_ptr = (undefined8 *)0x0;
-    undefined4 buffer_length = 0;
-    undefined8 *buffer_target = processor_ptr;
+    void *string_buffer = &UNK_180a3c3e0;
+    uint64_t buffer_size = 0;
+    uint64_t *buffer_ptr = (uint64_t *)0x0;
+    int32_t buffer_length = 0;
+    uint64_t *buffer_target = processor_ptr;
     
     // 分配字符串缓冲区内存
-    undefined4 *string_data = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
-    *(undefined1 *)string_data = 0; // 清零字符串数据
-    buffer_ptr = (undefined8 *)string_data;
+    int32_t *string_data = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+    *(int8_t *)string_data = 0; // 清零字符串数据
+    buffer_ptr = (uint64_t *)string_data;
     
-    undefined4 string_hash = FUN_18064e990(string_data);
+    int32_t string_hash = FUN_18064e990(string_data);
     *string_data = 0x74736554; // 设置字符串标识 "Test"
-    *(undefined1 *)(string_data + 1) = 0; // 字符串结束符
+    *(int8_t *)(string_data + 1) = 0; // 字符串结束符
     buffer_length = 4; // 字符串长度
     buffer_size._0_4_ = string_hash; // 存储哈希值
     
@@ -1131,12 +1131,12 @@ void RenderingSystem_ManagerCreator(undefined8 param_1, undefined8 param_2) {
     
     // 清理临时缓冲区
     string_buffer = &UNK_180a3c3e0;
-    if (buffer_ptr != (undefined8 *)0x0) {
+    if (buffer_ptr != (uint64_t *)0x0) {
         FUN_18064e900(); // 释放缓冲区内存
     }
     
     // 准备主字符串缓冲区
-    buffer_ptr = (undefined8 *)0x0;
+    buffer_ptr = (uint64_t *)0x0;
     buffer_size = (ulonglong)buffer_size._4_4_ << 0x20;
     string_buffer = &UNK_18098bcb0;
     
@@ -1149,31 +1149,31 @@ void RenderingSystem_ManagerCreator(undefined8 param_1, undefined8 param_2) {
     
     // 设置管理器状态
     manager[0x13] = 0;
-    *(undefined4 *)((longlong)manager + 0xa4) = 0x40200000; // 设置浮点常量
-    *(undefined1 *)(manager + 0x15) = 0; // 清零状态标志
+    *(int32_t *)((longlong)manager + 0xa4) = 0x40200000; // 设置浮点常量
+    *(int8_t *)(manager + 0x15) = 0; // 清零状态标志
     
     // 初始化内存管理器回调
     (**(code **)(*memory_manager + 0x10))(memory_manager, &DAT_18098bc73);
     
     // 设置管理器参数
-    *(undefined2 *)(manager + 0x1a) = 0x100; // 设置缓冲区大小
-    *(undefined1 *)((longlong)manager + 0xd2) = 1; // 设置启用标志
-    *(undefined1 *)((longlong)manager + 0xd3) = 0; // 清零保留标志
+    *(int16_t *)(manager + 0x1a) = 0x100; // 设置缓冲区大小
+    *(int8_t *)((longlong)manager + 0xd2) = 1; // 设置启用标志
+    *(int8_t *)((longlong)manager + 0xd3) = 0; // 清零保留标志
     
     // 创建主字符串缓冲区
     string_buffer = &UNK_180a3c3e0;
     buffer_size = 0;
-    buffer_ptr = (undefined8 *)0x0;
+    buffer_ptr = (uint64_t *)0x0;
     buffer_length = 0;
     
-    undefined8 *main_buffer = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
-    *(undefined1 *)main_buffer = 0; // 清零主缓冲区
+    uint64_t *main_buffer = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+    *(int8_t *)main_buffer = 0; // 清零主缓冲区
     buffer_ptr = main_buffer;
     
-    undefined4 main_hash = FUN_18064e990(main_buffer);
+    int32_t main_hash = FUN_18064e990(main_buffer);
     buffer_size = CONCAT44(buffer_size._4_4_, main_hash);
     *main_buffer = 0x6d614e2068746150; // 设置主字符串 "Path Name"
-    *(undefined2 *)(main_buffer + 1) = 0x65; // 继续字符串
+    *(int16_t *)(main_buffer + 1) = 0x65; // 继续字符串
     buffer_length = 9; // 主字符串长度
     
     // 初始化主字符串处理
@@ -1206,8 +1206,8 @@ void RenderingSystem_ManagerCreator(undefined8 param_1, undefined8 param_2) {
  * 4. 更新状态标志
  * 5. 执行回调函数
  */
-void RenderingSystem_HandleUpdater(longlong render_context, undefined8 param_2, 
-                                 undefined8 param_3, undefined8 param_4) {
+void RenderingSystem_HandleUpdater(longlong render_context, uint64_t param_2, 
+                                 uint64_t param_3, uint64_t param_4) {
     // 获取新的句柄
     longlong *new_handle = (longlong *)
         FUN_180389090(*(longlong *)(*(longlong *)(render_context + 0x18) + 0x20) + 0x2970,
@@ -1225,7 +1225,7 @@ void RenderingSystem_HandleUpdater(longlong render_context, undefined8 param_2,
     
     // 验证句柄变化
     if (handle_value != current_handle) {
-        *(undefined4 *)(render_context + 0xf4) = 0xffffffff; // 设置变化标志
+        *(int32_t *)(render_context + 0xf4) = 0xffffffff; // 设置变化标志
     }
     
     // 检查是否需要更新
@@ -1238,11 +1238,11 @@ void RenderingSystem_HandleUpdater(longlong render_context, undefined8 param_2,
         
         // 获取回调处理器
         longlong *callback_handler = (longlong *)(*(longlong *)(render_context + 0x18) + 0x288);
-        undefined *callback_param = &DAT_18098bc73;
+        void *callback_param = &DAT_18098bc73;
         
         // 检查是否有自定义回调参数
-        if (*(undefined **)(handle_value + 0x80) != (undefined *)0x0) {
-            callback_param = *(undefined **)(handle_value + 0x80);
+        if (*(void **)(handle_value + 0x80) != (void *)0x0) {
+            callback_param = *(void **)(handle_value + 0x80);
         }
         
         // 执行回调函数
@@ -1252,7 +1252,7 @@ void RenderingSystem_HandleUpdater(longlong render_context, undefined8 param_2,
         FUN_18036b380(render_context);
         
         // 更新状态值
-        *(undefined4 *)(render_context + 0xf4) = *(undefined4 *)(*(longlong *)(render_context + 0xd8) + 0x70);
+        *(int32_t *)(render_context + 0xf4) = *(int32_t *)(*(longlong *)(render_context + 0xd8) + 0x70);
     }
 }
 
@@ -1277,15 +1277,15 @@ void RenderingSystem_HandleUpdater(longlong render_context, undefined8 param_2,
  * 3. 清理临时内存
  * 4. 执行后处理
  */
-void RenderingSystem_SimpleHandleSetter(longlong render_context, undefined8 param_2, 
-                                      undefined8 param_3, undefined8 param_4) {
+void RenderingSystem_SimpleHandleSetter(longlong render_context, uint64_t param_2, 
+                                      uint64_t param_3, uint64_t param_4) {
     // 获取句柄指针
-    undefined8 *handle_ptr = (undefined8 *)
+    uint64_t *handle_ptr = (uint64_t *)
         FUN_180389090(*(longlong *)(*(longlong *)(render_context + 0x18) + 0x20) + 0x2970,
                      (longlong **)render_context, render_context + 0x70, param_4, 0xfffffffffffffffe);
     
     // 设置句柄值
-    *(undefined8 *)(render_context + 0xd8) = *handle_ptr;
+    *(uint64_t *)(render_context + 0xd8) = *handle_ptr;
     
     // 清理临时内存
     if ((longlong *)render_context != (longlong *)0x0) {
@@ -1295,7 +1295,7 @@ void RenderingSystem_SimpleHandleSetter(longlong render_context, undefined8 para
     // 如果句柄有效，执行后处理
     if (*(longlong *)(render_context + 0xd8) != 0) {
         FUN_18036b380(render_context); // 调用后处理函数
-        *(undefined4 *)(render_context + 0xf4) = *(undefined4 *)(*(longlong *)(render_context + 0xd8) + 0x70);
+        *(int32_t *)(render_context + 0xf4) = *(int32_t *)(*(longlong *)(render_context + 0xd8) + 0x70);
     }
 }
 
@@ -1317,7 +1317,7 @@ void RenderingSystem_SimpleHandleSetter(longlong render_context, undefined8 para
  * 3. 检查特定字符串模式
  * 4. 返回验证结果
  */
-undefined8 RenderingSystem_StringValidator(undefined8 param_1, longlong string_info) {
+uint64_t RenderingSystem_StringValidator(uint64_t param_1, longlong string_info) {
     int string_length;
     int compare_result;
     longlong char_index;
@@ -1341,10 +1341,10 @@ undefined8 RenderingSystem_StringValidator(undefined8 param_1, longlong string_i
     
     // 检查长度为10的字符串模式
     if (((string_length != 10) ||
-         ((compare_result = strcmp(*(undefined8 *)(string_info + 8), &DAT_180a20e30), compare_result != 0 &&
-           (compare_result = strcmp(*(undefined8 *)(string_info + 8), &DAT_180a20e80), compare_result != 0)))) &&
+         ((compare_result = strcmp(*(uint64_t *)(string_info + 8), &DAT_180a20e30), compare_result != 0 &&
+           (compare_result = strcmp(*(uint64_t *)(string_info + 8), &DAT_180a20e80), compare_result != 0)))) &&
         // 检查长度为12的字符串模式
-        ((string_length != 0xc || (string_length = strcmp(*(undefined8 *)(string_info + 8), &DAT_180a20e70), string_length != 0))))
+        ((string_length != 0xc || (string_length = strcmp(*(uint64_t *)(string_info + 8), &DAT_180a20e70), string_length != 0))))
     {
         return 1; // 验证失败
     }

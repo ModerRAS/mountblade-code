@@ -18,9 +18,9 @@
 
 // 渲染系统数据类型别名
 typedef longlong* RenderContextPtr;
-typedef undefined8 RenderParameter;
-typedef undefined8 RenderState;
-typedef undefined1* RenderBufferPtr;
+typedef uint64_t RenderParameter;
+typedef uint64_t RenderState;
+typedef int8_t* RenderBufferPtr;
 typedef int* RenderFlagPtr;
 
 // 渲染状态常量
@@ -115,30 +115,30 @@ typedef int* RenderFlagPtr;
 //   - 包含数学计算和角度处理
 //   - 实现了复杂的渲染流程控制
 //------------------------------------------------------------------------------
-void FUN_180535970(longlong *param_1,undefined8 param_2,undefined8 param_3)
+void FUN_180535970(longlong *param_1,uint64_t param_2,uint64_t param_3)
 
 {
   // 语义化变量定义
   char renderStatusFlag;                           // 渲染状态标志
-  undefined4 renderModeParam;                      // 渲染模式参数
+  int32_t renderModeParam;                      // 渲染模式参数
   longlong renderContext;                          // 渲染上下文
-  undefined1 renderConditionFlag;                  // 渲染条件标志
+  int8_t renderConditionFlag;                  // 渲染条件标志
   int *renderFlagPtr;                              // 渲染标志指针
   longlong renderLoopCounter;                      // 渲染循环计数器
-  undefined8 renderSystemParam;                     // 渲染系统参数
+  uint64_t renderSystemParam;                     // 渲染系统参数
   longlong *renderDataPtr;                          // 渲染数据指针
   float renderPositionX;                            // 渲染位置X坐标
   float renderPositionY;                            // 渲染位置Y坐标
   int renderIndexArray[2];                         // 渲染索引数组
-  undefined4 renderStackParam1;                     // 渲染堆栈参数1
+  int32_t renderStackParam1;                     // 渲染堆栈参数1
   int renderResultIndex;                            // 渲染结果索引
-  undefined8 renderStackAddress1;                   // 渲染堆栈地址1
-  undefined4 renderStackParam2;                     // 渲染堆栈参数2
-  undefined8 renderStackData1;                      // 渲染堆栈数据1
-  undefined8 renderStackData2;                      // 渲染堆栈数据2
-  undefined4 renderStackFloat1;                     // 渲染堆栈浮点数1
-  undefined4 renderStackFloat2;                     // 渲染堆栈浮点数2
-  undefined1 renderStackFlag;                       // 渲染堆栈标志
+  uint64_t renderStackAddress1;                   // 渲染堆栈地址1
+  int32_t renderStackParam2;                     // 渲染堆栈参数2
+  uint64_t renderStackData1;                      // 渲染堆栈数据1
+  uint64_t renderStackData2;                      // 渲染堆栈数据2
+  int32_t renderStackFloat1;                     // 渲染堆栈浮点数1
+  int32_t renderStackFloat2;                     // 渲染堆栈浮点数2
+  int8_t renderStackFlag;                       // 渲染堆栈标志
   
   // 步骤1：初始化渲染上下文和状态验证
   renderContext = *param_1;
@@ -160,10 +160,10 @@ void FUN_180535970(longlong *param_1,undefined8 param_2,undefined8 param_3)
   // 步骤4：计算渲染上下文偏移地址
   renderContext = (longlong)renderIndexArray[0] * 0xa60 + 0x30a0 + renderContext;
   if ((*(uint *)(lVar3 + 0x56c) >> 0xb & 1) == 0) {
-    *(undefined4 *)(*(longlong *)(lVar3 + 0x20) + 0x148) = 0xbecccccd;
+    *(int32_t *)(*(longlong *)(lVar3 + 0x20) + 0x148) = 0xbecccccd;
   }
   else {
-    *(undefined4 *)(*(longlong *)(lVar3 + 0x20) + 0x148) = 0xbe19999a;
+    *(int32_t *)(*(longlong *)(lVar3 + 0x20) + 0x148) = 0xbe19999a;
   }
   if ((*(uint *)(lVar3 + 0x56c) >> 0xb & 1) == 0) {
     uVar2 = 0xffffffff;
@@ -174,12 +174,12 @@ void FUN_180535970(longlong *param_1,undefined8 param_2,undefined8 param_3)
       uVar7 = 0xffffffff;
     }
     if (*(int *)(lVar3 + 0x564) != -1) {
-      uVar2 = *(undefined4 *)
+      uVar2 = *(int32_t *)
                (*(longlong *)
                  ((longlong)*(int *)(lVar3 + 0x564) * 0xa60 + 0x3638 + *(longlong *)(lVar3 + 0x8d8))
                + 0x20);
     }
-    iStack_34 = FUN_180557b40(*(undefined8 *)(lVar3 + 0x598),uVar2,0,uVar7,0,0,
+    iStack_34 = FUN_180557b40(*(uint64_t *)(lVar3 + 0x598),uVar2,0,uVar7,0,0,
                               1.0 < fVar10 * fVar10 + fVar9 * fVar9);
     if (*(int *)(*(longlong *)
                   ((longlong)*(int *)(*(longlong *)(lVar3 + 0x590) + 0xac) * 0xe0 + 0x78 +
@@ -187,7 +187,7 @@ void FUN_180535970(longlong *param_1,undefined8 param_2,undefined8 param_3)
       return;
     }
     if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
-      FUN_1805ed8d0(*(undefined8 *)(lVar3 + 0x8e0));
+      FUN_1805ed8d0(*(uint64_t *)(lVar3 + 0x8e0));
     }
     uStack_30 = 0;
     uStack_28 = 0;
@@ -217,17 +217,17 @@ void FUN_180535970(longlong *param_1,undefined8 param_2,undefined8 param_3)
     } while (lVar6 < 2);
   }
   if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
-    FUN_1805ed8d0(*(undefined8 *)(lVar3 + 0x8e0));
+    FUN_1805ed8d0(*(uint64_t *)(lVar3 + 0x8e0));
   }
   lVar6 = *(longlong *)(lVar3 + 0x20);
   cVar1 = func_0x000180522f60();
   if (cVar1 != '\0') {
                     // WARNING: Subroutine does not return
-    FUN_1808fd400(*(undefined4 *)(lVar6 + 0x34));
+    FUN_1808fd400(*(int32_t *)(lVar6 + 0x34));
   }
   if (-0.6 <= *(float *)(lVar6 + 0x20)) {
     if (0.7 < *(float *)(lVar6 + 0x20)) {
-      fVar9 = (float)atan2f(*(uint *)(lVar6 + 0x1c) ^ 0x80000000,*(undefined4 *)(lVar6 + 0x20));
+      fVar9 = (float)atan2f(*(uint *)(lVar6 + 0x1c) ^ 0x80000000,*(int32_t *)(lVar6 + 0x20));
       if (0.5 <= ABS(fVar9)) {
         cVar1 = (fVar9 < 0.0) + '\x03';
       }
@@ -242,12 +242,12 @@ void FUN_180535970(longlong *param_1,undefined8 param_2,undefined8 param_3)
       uStack_10 = 0x1000000;
       uStack_c = 0;
       uStack_38 = 0;
-      uVar2 = func_0x00018052dcc0(lVar3,*(undefined4 *)(lVar6 + 0x1c),
-                                  *(undefined1 *)(*(longlong *)(lVar3 + 0x590) + 0x34bc),cVar1);
+      uVar2 = func_0x00018052dcc0(lVar3,*(int32_t *)(lVar6 + 0x1c),
+                                  *(int8_t *)(*(longlong *)(lVar3 + 0x590) + 0x34bc),cVar1);
       goto LAB_18052449f;
     }
     fVar9 = *(float *)(lVar6 + 0x1c);
-    uVar7 = *(undefined8 *)(lVar3 + 0x598);
+    uVar7 = *(uint64_t *)(lVar3 + 0x598);
     uStack_30 = 0;
     uStack_10 = 0x1000000;
     uStack_c = 0;
@@ -292,7 +292,7 @@ void FUN_180535970(longlong *param_1,undefined8 param_2,undefined8 param_3)
       if (*(char *)(lVar6 + 0x34bc) == '\0') {
         return;
       }
-      *(undefined1 *)(lVar6 + 0x34bc) = 0;
+      *(int8_t *)(lVar6 + 0x34bc) = 0;
       return;
     }
     uVar2 = func_0x00018052dcc0(lVar3);
@@ -312,13 +312,13 @@ void FUN_180535970(longlong *param_1,undefined8 param_2,undefined8 param_3)
       uStack_1c = 0xbe4ccccdbe4ccccd;
     }
     else {
-      uVar2 = *(undefined4 *)
+      uVar2 = *(int32_t *)
                (*(longlong *)
                  ((longlong)*(int *)(lVar3 + 0x564) * 0xa60 + 0x3638 + *(longlong *)(lVar3 + 0x8d8))
                + 0x20);
     }
 LAB_18052449f:
-    uVar7 = *(undefined8 *)(lVar3 + 0x598);
+    uVar7 = *(uint64_t *)(lVar3 + 0x598);
   }
   iStack_34 = FUN_180557b40(uVar7,uVar2,0);
 LAB_18052490a:
@@ -357,25 +357,25 @@ LAB_18052490a:
 //   - 包含数学计算和角度处理
 //   - 使用位运算处理渲染标志
 //------------------------------------------------------------------------------
-void FUN_18053598c(undefined4 param_1)
+void FUN_18053598c(int32_t param_1)
 
 {
   // 语义化变量定义
   char render_status_valid;                        // 渲染状态有效性标志
-  undefined4 render_parameter_id;                  // 渲染参数标识符
+  int32_t render_parameter_id;                  // 渲染参数标识符
   longlong render_context_ptr;                     // 渲染上下文指针
   longlong render_base_address;                    // 渲染基地址
-  undefined1 render_condition_flag;                // 渲染条件标志
+  int8_t render_condition_flag;                // 渲染条件标志
   int *render_flag_pointer;                        // 渲染标志指针
   longlong render_loop_counter;                    // 渲染循环计数器
-  undefined8 render_mode_config;                   // 渲染模式配置
+  uint64_t render_mode_config;                   // 渲染模式配置
   longlong *render_object_array;                   // 渲染对象数组
   float render_coord_x;                            // 渲染坐标X
   float render_coord_y;                            // 渲染坐标Y
   int render_stack_index;                          // 渲染堆栈索引
-  undefined4 render_stack_param;                   // 渲染堆栈参数
+  int32_t render_stack_param;                   // 渲染堆栈参数
   int render_result_code;                          // 渲染结果代码
-  undefined8 render_stack_address;                 // 渲染堆栈地址
+  uint64_t render_stack_address;                 // 渲染堆栈地址
   
   // 步骤1：初始化渲染状态地址和参数验证
   render_stack_address = 0x18053599e;
@@ -393,10 +393,10 @@ void FUN_18053598c(undefined4 param_1)
   
   // 步骤4：根据渲染标志位设置不同的参数值
   if ((*(uint *)(render_context_ptr + 0x56c) >> 0xb & 1) == 0) {
-    *(undefined4 *)(*(longlong *)(render_context_ptr + 0x20) + 0x148) = 0xbecccccd;
+    *(int32_t *)(*(longlong *)(render_context_ptr + 0x20) + 0x148) = 0xbecccccd;
   }
   else {
-    *(undefined4 *)(*(longlong *)(render_context_ptr + 0x20) + 0x148) = 0xbe19999a;
+    *(int32_t *)(*(longlong *)(render_context_ptr + 0x20) + 0x148) = 0xbe19999a;
   }
   
   // 步骤5：根据标志位执行主处理路径
@@ -414,14 +414,14 @@ void FUN_18053598c(undefined4 param_1)
     
     // 步骤5.3：获取渲染参数标识符
     if (*(int *)(render_context_ptr + 0x564) != -1) {
-      render_parameter_id = *(undefined4 *)
+      render_parameter_id = *(int32_t *)
                (*(longlong *)
                  ((longlong)*(int *)(render_context_ptr + 0x564) * 0xa60 + 0x3638 + *(longlong *)(render_context_ptr + 0x8d8))
                + 0x20);
     }
     
     // 步骤5.4：执行渲染数据处理
-    render_result_code = FUN_180557b40(*(undefined8 *)(render_context_ptr + 0x598), render_parameter_id, 0, render_mode_config, 0, 0,
+    render_result_code = FUN_180557b40(*(uint64_t *)(render_context_ptr + 0x598), render_parameter_id, 0, render_mode_config, 0, 0,
                              1.0 < render_coord_y * render_coord_y + render_coord_x * render_coord_x);
     
     // 步骤5.5：检查渲染结果状态
@@ -433,7 +433,7 @@ void FUN_18053598c(undefined4 param_1)
     
     // 步骤5.6：执行系统调用和状态更新
     if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
-      FUN_1805ed8d0(*(undefined8 *)(render_context_ptr + 0x8e0));
+      FUN_1805ed8d0(*(uint64_t *)(render_context_ptr + 0x8e0));
     }
     
     // 步骤5.7：初始化堆栈参数并跳转到处理完成
@@ -465,7 +465,7 @@ void FUN_18053598c(undefined4 param_1)
   
   // 步骤7：执行系统状态检查和更新
   if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
-    FUN_1805ed8d0(*(undefined8 *)(render_context_ptr + 0x8e0));
+    FUN_1805ed8d0(*(uint64_t *)(render_context_ptr + 0x8e0));
   }
   
   // 步骤8：获取渲染数据指针和状态标志
@@ -473,14 +473,14 @@ void FUN_18053598c(undefined4 param_1)
   render_status_valid = func_0x000180522f60();
   if (render_status_valid != '\0') {
     // WARNING: Subroutine does not return
-    FUN_1808fd400(*(undefined4 *)(render_data_ptr + 0x34));
+    FUN_1808fd400(*(int32_t *)(render_data_ptr + 0x34));
   }
   
   // 步骤9：执行坐标范围检查和数学计算
   if (-0.6 <= *(float *)(render_data_ptr + 0x20)) {
     if (0.7 < *(float *)(render_data_ptr + 0x20)) {
       // 步骤9.1：计算角度和方向
-      render_coord_x = (float)atan2f(*(uint *)(render_data_ptr + 0x1c) ^ 0x80000000, *(undefined4 *)(render_data_ptr + 0x20));
+      render_coord_x = (float)atan2f(*(uint *)(render_data_ptr + 0x1c) ^ 0x80000000, *(int32_t *)(render_data_ptr + 0x20));
       if (0.5 <= ABS(render_coord_x)) {
         render_condition_flag = (render_coord_x < 0.0) + '\x03';
       }
@@ -491,14 +491,14 @@ void FUN_18053598c(undefined4 param_1)
       // 步骤9.2：处理角度计算结果
       render_stack_address = 0;
       render_stack_param = 0;
-      render_parameter_id = func_0x00018052dcc0(*(undefined4 *)(render_data_ptr + 0x20), *(undefined4 *)(render_data_ptr + 0x1c),
-                                  *(undefined1 *)(*(longlong *)(render_context_ptr + 0x590) + 0x34bc), render_condition_flag);
+      render_parameter_id = func_0x00018052dcc0(*(int32_t *)(render_data_ptr + 0x20), *(int32_t *)(render_data_ptr + 0x1c),
+                                  *(int8_t *)(*(longlong *)(render_context_ptr + 0x590) + 0x34bc), render_condition_flag);
       goto LAB_18052449f;
     }
     
     // 步骤9.3：处理Y坐标范围检查
     render_coord_y = *(float *)(render_data_ptr + 0x1c);
-    render_mode_config = *(undefined8 *)(render_context_ptr + 0x598);
+    render_mode_config = *(uint64_t *)(render_context_ptr + 0x598);
     render_stack_address = 0;
     render_stack_param = 0;
     render_coord_x = *(float *)(render_data_ptr + 0x20) * *(float *)(render_data_ptr + 0x20);
@@ -547,7 +547,7 @@ void FUN_18053598c(undefined4 param_1)
       if (*(char *)(render_system_ptr + 0x34bc) == '\0') {
         return;
       }
-      *(undefined1 *)(render_system_ptr + 0x34bc) = 0;
+      *(int8_t *)(render_system_ptr + 0x34bc) = 0;
       return;
     }
     
@@ -561,13 +561,13 @@ void FUN_18053598c(undefined4 param_1)
       render_parameter_id = 0xffffffff;
     }
     else {
-      render_parameter_id = *(undefined4 *)
+      render_parameter_id = *(int32_t *)
                (*(longlong *)
                  ((longlong)*(int *)(render_context_ptr + 0x564) * 0xa60 + 0x3638 + *(longlong *)(render_context_ptr + 0x8d8))
                + 0x20);
     }
 LAB_18052449f:
-    render_mode_config = *(undefined8 *)(render_context_ptr + 0x598);
+    render_mode_config = *(uint64_t *)(render_context_ptr + 0x598);
   }
   
   // 步骤10：执行最终的渲染处理
@@ -613,30 +613,30 @@ void FUN_1805359c5(void)
 {
   // 语义化变量定义
   char render_flag_status;                         // 渲染标志状态
-  undefined4 render_param_value;                    // 渲染参数值
+  int32_t render_param_value;                    // 渲染参数值
   longlong render_context_base;                     // 渲染上下文基地址
   longlong render_system_base;                      // 渲染系统基地址
-  undefined1 render_condition;                      // 渲染条件
+  int8_t render_condition;                      // 渲染条件
   int *render_flag_array;                          // 渲染标志数组
   longlong render_object_index;                     // 渲染对象索引
-  undefined8 render_mode_value;                     // 渲染模式值
+  uint64_t render_mode_value;                     // 渲染模式值
   longlong *render_object_list;                     // 渲染对象列表
   float render_position_x;                           // 渲染位置X
   float render_position_y;                           // 渲染位置Y
   int render_stack_parameter;                       // 渲染堆栈参数
-  undefined4 render_stack_value;                     // 渲染堆栈值
+  int32_t render_stack_value;                     // 渲染堆栈值
   int render_status_result;                         // 渲染状态结果
-  undefined8 render_stack_control;                  // 渲染堆栈控制
+  uint64_t render_stack_control;                  // 渲染堆栈控制
   
   // 步骤1：初始化渲染上下文和状态
   render_context_base = (longlong)in_stack_00000030 * 0xa60 + 0x30a0 + unaff_RDI;
   
   // 步骤2：根据渲染标志位设置不同的参数值
   if ((*(uint *)(render_context_base + 0x56c) >> 0xb & 1) == 0) {
-    *(undefined4 *)(*(longlong *)(render_context_base + 0x20) + 0x148) = 0xbecccccd;
+    *(int32_t *)(*(longlong *)(render_context_base + 0x20) + 0x148) = 0xbecccccd;
   }
   else {
-    *(undefined4 *)(*(longlong *)(render_context_base + 0x20) + 0x148) = 0xbe19999a;
+    *(int32_t *)(*(longlong *)(render_context_base + 0x20) + 0x148) = 0xbe19999a;
   }
   
   // 步骤3：根据标志位执行主处理路径
@@ -654,14 +654,14 @@ void FUN_1805359c5(void)
     
     // 步骤3.3：获取渲染参数标识符
     if (*(int *)(render_context_base + 0x564) != -1) {
-      render_param_value = *(undefined4 *)
+      render_param_value = *(int32_t *)
                (*(longlong *)
                  ((longlong)*(int *)(render_context_base + 0x564) * 0xa60 + 0x3638 + *(longlong *)(render_context_base + 0x8d8))
                + 0x20);
     }
     
     // 步骤3.4：执行渲染数据处理
-    render_status_result = FUN_180557b40(*(undefined8 *)(render_context_base + 0x598), render_param_value, 0, render_mode_value, 0, 0,
+    render_status_result = FUN_180557b40(*(uint64_t *)(render_context_base + 0x598), render_param_value, 0, render_mode_value, 0, 0,
                              1.0 < render_position_y * render_position_y + render_position_x * render_position_x);
     
     // 步骤3.5：检查渲染结果状态
@@ -673,7 +673,7 @@ void FUN_1805359c5(void)
     
     // 步骤3.6：执行系统调用和状态更新
     if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
-      FUN_1805ed8d0(*(undefined8 *)(render_context_base + 0x8e0));
+      FUN_1805ed8d0(*(uint64_t *)(render_context_base + 0x8e0));
     }
     
     // 步骤3.7：初始化堆栈参数并跳转到处理完成
@@ -705,7 +705,7 @@ void FUN_1805359c5(void)
   
   // 步骤5：执行系统状态检查和更新
   if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
-    FUN_1805ed8d0(*(undefined8 *)(render_context_base + 0x8e0));
+    FUN_1805ed8d0(*(uint64_t *)(render_context_base + 0x8e0));
   }
   
   // 步骤6：获取渲染数据指针和状态标志
@@ -713,14 +713,14 @@ void FUN_1805359c5(void)
   render_flag_status = func_0x000180522f60();
   if (render_flag_status != '\0') {
     // WARNING: Subroutine does not return
-    FUN_1808fd400(*(undefined4 *)(render_data_ptr + 0x34));
+    FUN_1808fd400(*(int32_t *)(render_data_ptr + 0x34));
   }
   
   // 步骤7：执行坐标范围检查和数学计算
   if (-0.6 <= *(float *)(render_data_ptr + 0x20)) {
     if (0.7 < *(float *)(render_data_ptr + 0x20)) {
       // 步骤7.1：计算角度和方向
-      render_position_x = (float)atan2f(*(uint *)(render_data_ptr + 0x1c) ^ 0x80000000, *(undefined4 *)(render_data_ptr + 0x20));
+      render_position_x = (float)atan2f(*(uint *)(render_data_ptr + 0x1c) ^ 0x80000000, *(int32_t *)(render_data_ptr + 0x20));
       if (0.5 <= ABS(render_position_x)) {
         render_condition = (render_position_x < 0.0) + '\x03';
       }
@@ -731,14 +731,14 @@ void FUN_1805359c5(void)
       // 步骤7.2：处理角度计算结果
       render_stack_parameter = 0;
       render_stack_value = 0;
-      render_param_value = func_0x00018052dcc0(render_context_base, *(undefined4 *)(render_data_ptr + 0x1c),
-                                  *(undefined1 *)(*(longlong *)(render_context_base + 0x590) + 0x34bc), render_condition);
+      render_param_value = func_0x00018052dcc0(render_context_base, *(int32_t *)(render_data_ptr + 0x1c),
+                                  *(int8_t *)(*(longlong *)(render_context_base + 0x590) + 0x34bc), render_condition);
       goto LAB_18052449f;
     }
     
     // 步骤7.3：处理Y坐标范围检查
     render_position_y = *(float *)(render_data_ptr + 0x1c);
-    render_mode_value = *(undefined8 *)(render_context_base + 0x598);
+    render_mode_value = *(uint64_t *)(render_context_base + 0x598);
     render_stack_parameter = 0;
     render_stack_value = 0;
     render_position_x = *(float *)(render_data_ptr + 0x20) * *(float *)(render_data_ptr + 0x20);
@@ -787,7 +787,7 @@ void FUN_1805359c5(void)
       if (*(char *)(render_system_ptr + 0x34bc) == '\0') {
         return;
       }
-      *(undefined1 *)(render_system_ptr + 0x34bc) = 0;
+      *(int8_t *)(render_system_ptr + 0x34bc) = 0;
       return;
     }
     
@@ -801,13 +801,13 @@ void FUN_1805359c5(void)
       render_param_value = 0xffffffff;
     }
     else {
-      render_param_value = *(undefined4 *)
+      render_param_value = *(int32_t *)
                (*(longlong *)
                  ((longlong)*(int *)(render_context_base + 0x564) * 0xa60 + 0x3638 + *(longlong *)(render_context_base + 0x8d8))
                + 0x20);
     }
 LAB_18052449f:
-    render_mode_value = *(undefined8 *)(render_context_base + 0x598);
+    render_mode_value = *(uint64_t *)(render_context_base + 0x598);
   }
   
   // 步骤8：执行最终的渲染处理
@@ -847,7 +847,7 @@ LAB_18052490a:
 //   - 包含参数验证和错误处理
 //   - 使用高效的内存访问模式
 //------------------------------------------------------------------------------
-void FUN_180535a30(longlong *param_1,undefined8 param_2,undefined8 param_3)
+void FUN_180535a30(longlong *param_1,uint64_t param_2,uint64_t param_3)
 
 {
   // 语义化变量定义
@@ -868,7 +868,7 @@ void FUN_180535a30(longlong *param_1,undefined8 param_2,undefined8 param_3)
   // 步骤3：根据状态标志执行条件更新
   if (render_status_flag != '\0') {
     // 步骤3.1：计算渲染状态地址并更新状态
-    *(undefined1 *)((longlong)render_index_array[0] * 0xa60 + 0x3628 + render_context) = 1;
+    *(int8_t *)((longlong)render_index_array[0] * 0xa60 + 0x3628 + render_context) = 1;
   }
   
   // 步骤4：完成处理并返回
@@ -918,7 +918,7 @@ void FUN_180535a48(void)
   // 步骤2：根据初始化状态执行标志设置
   if (render_init_status != '\0') {
     // 步骤2.1：计算渲染状态地址并设置标志
-    *(undefined1 *)((longlong)render_stack_parameter * 0xa60 + 0x3628 + render_context_base) = 1;
+    *(int8_t *)((longlong)render_stack_parameter * 0xa60 + 0x3628 + render_context_base) = 1;
   }
   
   // 步骤3：完成处理并返回
@@ -959,7 +959,7 @@ void FUN_180535a81(void)
   int render_stack_parameter;                       // 渲染堆栈参数
   
   // 步骤1：直接设置渲染状态标志
-  *(undefined1 *)((longlong)render_stack_parameter * 0xa60 + 0x3628 + render_context_base) = 1;
+  *(int8_t *)((longlong)render_stack_parameter * 0xa60 + 0x3628 + render_context_base) = 1;
   
   // 步骤2：完成处理并返回
   return;
@@ -995,34 +995,34 @@ void FUN_180535a81(void)
 //   - 包含内存验证和错误处理
 //   - 使用高效的内存访问模式
 //------------------------------------------------------------------------------
-void FUN_180535aa0(longlong *param_1,undefined8 param_2,undefined8 param_3)
+void FUN_180535aa0(longlong *param_1,uint64_t param_2,uint64_t param_3)
 
 {
   // 语义化变量定义
   longlong render_context;                          // 渲染上下文
   char memory_init_status;                          // 内存初始化状态
-  undefined8 simd_register;                         // SIMD寄存器值
+  uint64_t simd_register;                         // SIMD寄存器值
   int render_index_array[2];                         // 渲染索引数组
   longlong memory_ptr;                              // 内存指针
-  undefined4 memory_param_1;                         // 内存参数1
-  undefined4 memory_param_2;                         // 内存参数2
-  undefined4 memory_param_3;                         // 内存参数3
-  undefined4 memory_param_4;                         // 内存参数4
-  undefined4 memory_param_5;                         // 内存参数5
-  undefined4 memory_param_6;                         // 内存参数6
-  undefined4 memory_param_7;                         // 内存参数7
-  undefined4 memory_param_8;                         // 内存参数8
-  undefined8 memory_data_1;                          // 内存数据1
-  undefined8 memory_data_2;                          // 内存数据2
-  undefined1 memory_flag_1;                          // 内存标志1
-  undefined4 memory_flag_2;                          // 内存标志2
-  undefined1 memory_flag_3;                          // 内存标志3
-  undefined8 memory_control;                         // 内存控制
-  undefined4 memory_value_1;                         // 内存值1
-  undefined4 memory_value_2;                         // 内存值2
-  undefined8 memory_address_1;                       // 内存地址1
-  undefined8 memory_address_2;                       // 内存地址2
-  undefined2 memory_control_2;                       // 内存控制2
+  int32_t memory_param_1;                         // 内存参数1
+  int32_t memory_param_2;                         // 内存参数2
+  int32_t memory_param_3;                         // 内存参数3
+  int32_t memory_param_4;                         // 内存参数4
+  int32_t memory_param_5;                         // 内存参数5
+  int32_t memory_param_6;                         // 内存参数6
+  int32_t memory_param_7;                         // 内存参数7
+  int32_t memory_param_8;                         // 内存参数8
+  uint64_t memory_data_1;                          // 内存数据1
+  uint64_t memory_data_2;                          // 内存数据2
+  int8_t memory_flag_1;                          // 内存标志1
+  int32_t memory_flag_2;                          // 内存标志2
+  int8_t memory_flag_3;                          // 内存标志3
+  uint64_t memory_control;                         // 内存控制
+  int32_t memory_value_1;                         // 内存值1
+  int32_t memory_value_2;                         // 内存值2
+  uint64_t memory_address_1;                       // 内存地址1
+  uint64_t memory_address_2;                       // 内存地址2
+  int16_t memory_control_2;                       // 内存控制2
   
   // 步骤1：验证渲染上下文有效性
   render_context = *param_1;
@@ -1099,15 +1099,15 @@ void FUN_180535b2e(void)
 {
   // 语义化变量定义
   char memory_status;                               // 内存状态标志
-  undefined8 register_value;                        // 寄存器值
+  uint64_t register_value;                        // 寄存器值
   longlong render_context_base;                      // 渲染上下文基地址
   longlong register_control;                        // 寄存器控制
-  undefined1 *memory_ptr;                           // 内存指针
-  undefined1 memory_flag;                           // 内存标志
+  int8_t *memory_ptr;                           // 内存指针
+  int8_t memory_flag;                           // 内存标志
   int render_stack_parameter;                       // 渲染堆栈参数
   
   // 步骤1：设置寄存器值和状态
-  *(undefined8 *)(register_control + 0x10) = register_value;
+  *(uint64_t *)(register_control + 0x10) = register_value;
   
   // 步骤2：执行内存初始化和验证
   memory_status = FUN_1805ae280();
@@ -1156,7 +1156,7 @@ void FUN_180535b60(void)
 {
   // 语义化变量定义
   longlong render_context_base;                      // 渲染上下文基地址
-  undefined1 data_flag;                              // 数据标志
+  int8_t data_flag;                              // 数据标志
   int render_stack_parameter;                       // 渲染堆栈参数
   
   // 步骤1：直接执行数据处理操作
@@ -1197,7 +1197,7 @@ void FUN_180535b60(void)
 //   - 包含状态标志的综合处理
 //   - 使用高效的条件分支处理
 //------------------------------------------------------------------------------
-void FUN_180535ba0(longlong *param_1,undefined8 param_2,undefined8 param_3)
+void FUN_180535ba0(longlong *param_1,uint64_t param_2,uint64_t param_3)
 
 {
   // 语义化变量定义

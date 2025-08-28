@@ -45,7 +45,7 @@
 /*
  * 回调函数类型定义
  */
-typedef void (*CallbackFunction)(longlong, undefined8, undefined8, undefined8, undefined8);
+typedef void (*CallbackFunction)(longlong, uint64_t, uint64_t, uint64_t, uint64_t);
 
 /*
  * 函数别名定义 - 用于代码可读性和维护性
@@ -71,10 +71,10 @@ typedef void (*CallbackFunction)(longlong, undefined8, undefined8, undefined8, u
  */
 
 // 回调函数指针表
-undefined8 *callback_pointer_table;
+uint64_t *callback_pointer_table;
 
 // 系统回调状态标志
-undefined8 system_callback_status;
+uint64_t system_callback_status;
 
 // 回调执行计数器
 uint32_t callback_execution_count;
@@ -87,10 +87,10 @@ uint32_t callback_error_count;
  */
 typedef struct {
     longlong object_handle;          // 对象句柄
-    undefined8 param1;               // 参数1
-    undefined8 param2;               // 参数2
-    undefined8 param3;               // 参数3
-    undefined8 param4;               // 参数4
+    uint64_t param1;               // 参数1
+    uint64_t param2;               // 参数2
+    uint64_t param3;               // 参数3
+    uint64_t param4;               // 参数4
 } CallbackParameters;
 
 /*
@@ -128,7 +128,7 @@ typedef struct {
  * - 提供错误处理机制
  * - 支持异步回调执行
  */
-void system_callback_handler(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void system_callback_handler(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 获取回调函数指针
     CallbackFunction *callback_ptr = (CallbackFunction *)(param_1 + CALLBACK_POINTER_OFFSET);
@@ -167,7 +167,7 @@ void system_callback_handler(longlong param_1, undefined8 param_2, undefined8 pa
  * - 包含错误恢复机制
  * - 支持异步事件处理
  */
-void system_event_dispatcher(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void system_event_dispatcher(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 获取事件处理函数指针
     CallbackFunction *event_handler = (CallbackFunction *)(param_1 + 0x68);
@@ -179,7 +179,7 @@ void system_event_dispatcher(longlong param_1, undefined8 param_2, undefined8 pa
     }
     
     // 设置系统状态标志
-    *(undefined8 *)(param_1 + 0x30) = &UNK_180a3c3e0;
+    *(uint64_t *)(param_1 + 0x30) = &UNK_180a3c3e0;
     
     // 检查系统状态
     if (*(longlong *)(param_1 + 0x38) != 0) {
@@ -216,7 +216,7 @@ void system_event_dispatcher(longlong param_1, undefined8 param_2, undefined8 pa
  * - 包含内存管理功能
  * - 提供参数转换接口
  */
-void callback_parameter_processor(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4, undefined8 param_5)
+void callback_parameter_processor(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5)
 {
     // 参数处理逻辑
     // 这里添加参数验证、转换和处理的具体实现

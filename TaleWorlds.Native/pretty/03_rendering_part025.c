@@ -53,18 +53,18 @@ undefined FUN_18064e900;                           // 资源管理函数指针
 //------------------------------------------------------------------------------
 
 // 渲染系统相关类型别名
-typedef undefined8 RenderContextHandle;            // 渲染上下文句柄
-typedef undefined8 ResourceHandle;                 // 资源句柄
-typedef undefined8 BufferHandle;                   // 缓冲区句柄
-typedef undefined8 MemoryBlockHandle;             // 内存块句柄
+typedef uint64_t RenderContextHandle;            // 渲染上下文句柄
+typedef uint64_t ResourceHandle;                 // 资源句柄
+typedef uint64_t BufferHandle;                   // 缓冲区句柄
+typedef uint64_t MemoryBlockHandle;             // 内存块句柄
 
 // 内存管理相关类型别名
-typedef undefined8 MemoryPoolHandle;               // 内存池句柄
-typedef undefined8 MemoryAllocatorHandle;         // 内存分配器句柄
+typedef uint64_t MemoryPoolHandle;               // 内存池句柄
+typedef uint64_t MemoryAllocatorHandle;         // 内存分配器句柄
 
 // 状态管理相关类型别名
-typedef undefined8 RenderStateHandle;              // 渲染状态句柄
-typedef undefined8 CleanupStateHandle;             // 清理状态句柄
+typedef uint64_t RenderStateHandle;              // 渲染状态句柄
+typedef uint64_t CleanupStateHandle;             // 清理状态句柄
 
 //------------------------------------------------------------------------------
 // 函数别名定义
@@ -120,7 +120,7 @@ void FUN_18027f4d0(longlong param_1)
   ulonglong *current_resource_ptr;                // 当前资源指针
   longlong current_resource_value;                // 当前资源值
   ulonglong resource_index;                       // 资源索引
-  undefined8 *state_flag_ptr;                     // 状态标志指针
+  uint64_t *state_flag_ptr;                     // 状态标志指针
   
   // 获取渲染上下文信息
   resource_count = *(ulonglong *)(param_1 + 0x10);
@@ -139,14 +139,14 @@ void FUN_18027f4d0(longlong param_1)
         ResourceManager(current_resource_value);
       }
       // 清理资源引用
-      *(undefined8 *)(resource_array_ptr + resource_index * 8) = 0;
+      *(uint64_t *)(resource_array_ptr + resource_index * 8) = 0;
       resource_index = resource_index + 1;
     } while (resource_index < resource_count);
     resource_count = *(ulonglong *)(param_1 + 0x10);
   }
   
   // 重置状态标志
-  state_flag_ptr = (undefined8 *)(param_1 + 0x18);
+  state_flag_ptr = (uint64_t *)(param_1 + 0x18);
   *state_flag_ptr = 0;
   
   // 处理特殊情况：当资源数量大于1且资源数组存在时的特殊清理
@@ -205,7 +205,7 @@ void FUN_18027f4f0(longlong param_1)
   ulonglong *current_resource_ptr;                // 当前资源指针
   longlong current_resource_value;                // 当前资源值
   ulonglong resource_index;                       // 资源索引
-  undefined8 *state_flag_ptr;                     // 状态标志指针
+  uint64_t *state_flag_ptr;                     // 状态标志指针
   
   // 获取渲染上下文信息
   resource_count = *(ulonglong *)(param_1 + 0x10);
@@ -224,14 +224,14 @@ void FUN_18027f4f0(longlong param_1)
         ResourceManager(current_resource_value);
       }
       // 完全清理资源引用
-      *(undefined8 *)(resource_array_ptr + resource_index * 8) = 0;
+      *(uint64_t *)(resource_array_ptr + resource_index * 8) = 0;
       resource_index = resource_index + 1;
     } while (resource_index < resource_count);
     resource_count = *(ulonglong *)(param_1 + 0x10);
   }
   
   // 完全重置状态标志
-  state_flag_ptr = (undefined8 *)(param_1 + 0x18);
+  state_flag_ptr = (uint64_t *)(param_1 + 0x18);
   *state_flag_ptr = 0;
   
   // 处理特殊情况：当资源数量大于1且资源数组存在时的特殊深度清理

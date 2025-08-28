@@ -126,10 +126,10 @@ void ui_system_empty_function_1(void)
  * @param param_2 验证参数指针数组
  * @return 验证结果：0表示成功，0x1c表示失败
  */
-undefined8 ui_system_data_validator_1(longlong param_1, longlong *param_2)
+uint64_t ui_system_data_validator_1(longlong param_1, longlong *param_2)
 {
-    undefined8 validation_result;
-    undefined4 validation_stack[6];
+    uint64_t validation_result;
+    int32_t validation_stack[6];
     
     // 检查验证状态
     if (*(int *)(param_2[1] + UI_OFFSET_0x18) != 0) {
@@ -137,9 +137,9 @@ undefined8 ui_system_data_validator_1(longlong param_1, longlong *param_2)
     }
     
     // 验证第一个数据字段
-    validation_stack[0] = *(undefined4 *)(param_1 + UI_OFFSET_0x50);
-    validation_result = (**(code **)**(undefined8 **)(*param_2 + 8))
-                         (*(undefined8 **)(*param_2 + 8), validation_stack, 4);
+    validation_stack[0] = *(int32_t *)(param_1 + UI_OFFSET_0x50);
+    validation_result = (**(code **)**(uint64_t **)(*param_2 + 8))
+                         (*(uint64_t **)(*param_2 + 8), validation_stack, 4);
     
     if ((int)validation_result == 0) {
         // 验证第二个数据字段
@@ -147,9 +147,9 @@ undefined8 ui_system_data_validator_1(longlong param_1, longlong *param_2)
             return UI_VALIDATION_ERROR;
         }
         
-        validation_stack[0] = *(undefined4 *)(param_1 + UI_OFFSET_0x54);
-        validation_result = (**(code **)**(undefined8 **)(*param_2 + 8))
-                             (*(undefined8 **)(*param_2 + 8), validation_stack, 4);
+        validation_stack[0] = *(int32_t *)(param_1 + UI_OFFSET_0x54);
+        validation_result = (**(code **)**(uint64_t **)(*param_2 + 8))
+                             (*(uint64_t **)(*param_2 + 8), validation_stack, 4);
         
         if ((int)validation_result == 0) {
             // 验证第三个数据字段
@@ -157,9 +157,9 @@ undefined8 ui_system_data_validator_1(longlong param_1, longlong *param_2)
                 return UI_VALIDATION_ERROR;
             }
             
-            validation_stack[0] = *(undefined4 *)(param_1 + UI_OFFSET_0x58);
-            validation_result = (**(code **)**(undefined8 **)(*param_2 + 8))
-                                 (*(undefined8 **)(*param_2 + 8), validation_stack, 4);
+            validation_stack[0] = *(int32_t *)(param_1 + UI_OFFSET_0x58);
+            validation_result = (**(code **)**(uint64_t **)(*param_2 + 8))
+                                 (*(uint64_t **)(*param_2 + 8), validation_stack, 4);
             
             if ((int)validation_result == 0) {
                 // 验证第四个数据字段
@@ -167,9 +167,9 @@ undefined8 ui_system_data_validator_1(longlong param_1, longlong *param_2)
                     return UI_VALIDATION_ERROR;
                 }
                 
-                validation_stack[0] = *(undefined4 *)(param_1 + UI_OFFSET_0x60);
-                validation_result = (**(code **)**(undefined8 **)(*param_2 + 8))
-                                     (*(undefined8 **)(*param_2 + 8), validation_stack, 4);
+                validation_stack[0] = *(int32_t *)(param_1 + UI_OFFSET_0x60);
+                validation_result = (**(code **)**(uint64_t **)(*param_2 + 8))
+                                     (*(uint64_t **)(*param_2 + 8), validation_stack, 4);
                 
                 // 执行深度验证
                 if (((((int)validation_result == 0) && 
@@ -200,12 +200,12 @@ undefined8 ui_system_data_validator_1(longlong param_1, longlong *param_2)
  * @param param_2 验证上下文指针
  * @return 验证结果：0表示成功，0x1c表示失败
  */
-undefined8 ui_system_data_validator_2(longlong param_1, longlong *param_2)
+uint64_t ui_system_data_validator_2(longlong param_1, longlong *param_2)
 {
-    undefined8 validation_result;
-    undefined4 type_switch_stack[2];
-    undefined1 validation_buffer_64[64];
-    undefined1 validation_buffer_32[32];
+    uint64_t validation_result;
+    int32_t type_switch_stack[2];
+    int8_t validation_buffer_64[64];
+    int8_t validation_buffer_32[32];
     
     // 验证SIL数据类型
     validation_result = FUN_1808ddd30(param_2, validation_buffer_32, 1, UI_DATA_TYPE_SIL, 0x46464542);
@@ -222,7 +222,7 @@ undefined8 ui_system_data_validator_2(longlong param_1, longlong *param_2)
                 // 执行类型切换验证
                 if (*(int *)(param_2[1] + UI_OFFSET_0x18) == 0) {
                     // 根据数据类型进行切换处理
-                    switch(*(undefined4 *)(param_1 + UI_OFFSET_0x60)) {
+                    switch(*(int32_t *)(param_1 + UI_OFFSET_0x60)) {
                     default:
                         type_switch_stack[0] = 0;
                         break;
@@ -334,8 +334,8 @@ undefined8 ui_system_data_validator_2(longlong param_1, longlong *param_2)
                     case 0x24:
                         type_switch_stack[0] = 0x24;
           }
-        validation_result = (**(code **)**(undefined8 **)(*param_2 + 8))
-                             (*(undefined8 **)(*param_2 + 8), type_switch_stack, 4);
+        validation_result = (**(code **)**(uint64_t **)(*param_2 + 8))
+                             (*(uint64_t **)(*param_2 + 8), type_switch_stack, 4);
         if (((int)validation_result == 0) &&
            (validation_result = FUN_1808a7c90(param_2, param_1 + UI_OFFSET_0x40, 0x3d), (int)validation_result == 0)) {
                     // WARNING: Subroutine does not return
@@ -366,10 +366,10 @@ undefined8 ui_system_data_validator_2(longlong param_1, longlong *param_2)
  * @param data_object 数据对象指针
  * @return 验证结果：0表示成功，0x1c表示失败
  */
-undefined8 ui_system_data_validator_3(longlong validation_context, longlong data_object)
+uint64_t ui_system_data_validator_3(longlong validation_context, longlong data_object)
 {
-    undefined8 validation_result;
-    undefined4 type_switch_stack[1];
+    uint64_t validation_result;
+    int32_t type_switch_stack[1];
     
     // 检查验证状态
     if (*(int *)(validation_context + UI_OFFSET_0x18) != 0) {
@@ -384,7 +384,7 @@ undefined8 ui_system_data_validator_3(longlong validation_context, longlong data
         // 检查验证状态
         if (*(int *)(*((longlong **)(validation_context + 8) + 1) + UI_OFFSET_0x18) == 0) {
             // 根据数据类型进行切换处理
-            switch(*(undefined4 *)(data_object + UI_OFFSET_0x60)) {
+            switch(*(int32_t *)(data_object + UI_OFFSET_0x60)) {
             default:
                 type_switch_stack[0] = 0;
                 break;
@@ -496,7 +496,7 @@ undefined8 ui_system_data_validator_3(longlong validation_context, longlong data
             case 0x24:
                 type_switch_stack[0] = 0x24;
             }
-            validation_result = (**(code **)**(undefined8 **)(*((longlong **)(validation_context + 8)) + 8))
+            validation_result = (**(code **)**(uint64_t **)(*((longlong **)(validation_context + 8)) + 8))
                               (*((longlong **)(validation_context + 8)), type_switch_stack, 4);
             if (((int)validation_result == 0) && 
                (validation_result = FUN_1808a7c90(), (int)validation_result == 0)) {
@@ -537,7 +537,7 @@ void ui_system_data_processor_1(void)
     longlong *system_context;
     int processing_state;
     longlong data_context;
-    undefined4 validation_parameter;
+    int32_t validation_parameter;
     
     // 处理类型0x1b
     if (process_type == 0x1b) {
@@ -557,7 +557,7 @@ void ui_system_data_processor_1(void)
         validation_result = processing_state;
         if (*(int *)(system_context[1] + UI_OFFSET_0x18) == 0) {
             validation_parameter = 6;
-            validation_result = (**(code **)**(undefined8 **)(*system_context + 8))
+            validation_result = (**(code **)**(uint64_t **)(*system_context + 8))
                                 (*((longlong **)(*system_context + 8)), &validation_parameter, 4);
         }
         if (validation_result != 0) {
@@ -579,8 +579,8 @@ void ui_system_data_processor_1(void)
             processing_state = 0;
         }
         else if (*(int *)(system_context[1] + UI_OFFSET_0x18) == 0) {
-            validation_parameter = *(undefined4 *)(data_context + UI_OFFSET_0x5c);
-            processing_state = (**(code **)**(undefined8 **)(*system_context + 8))
+            validation_parameter = *(int32_t *)(data_context + UI_OFFSET_0x5c);
+            processing_state = (**(code **)**(uint64_t **)(*system_context + 8))
                                 (*((longlong **)(*system_context + 8)), &validation_parameter, 1);
         }
         if (processing_state != 0) {
@@ -646,13 +646,13 @@ void ui_system_empty_function_3(void)
  * @param optional_flag 可选标志
  * @return 处理结果：0表示成功，0x1c表示失败
  */
-ulonglong ui_system_data_processor_2(longlong data_object, undefined8 *context_ptr, undefined4 sil_type, undefined4 custom_type,
+ulonglong ui_system_data_processor_2(longlong data_object, uint64_t *context_ptr, int32_t sil_type, int32_t custom_type,
                                     char optional_flag)
 {
     uint validation_result;
     ulonglong processing_result;
-    undefined1 validation_buffer_64[64];
-    undefined1 validation_buffer_40[40];
+    int8_t validation_buffer_64[64];
+    int8_t validation_buffer_40[40];
     
     // 验证SIL数据类型
     processing_result = FUN_1808ddd30(context_ptr, validation_buffer_40, 1, UI_DATA_TYPE_SIL, sil_type);
@@ -690,7 +690,7 @@ ulonglong ui_system_data_processor_2(longlong data_object, undefined8 *context_p
  * @param optional_flag 可选标志
  * @return 处理结果：0表示成功，0x1c表示失败
  */
-ulonglong ui_system_data_processor_3(undefined8 *context_ptr, longlong data_object, char optional_flag)
+ulonglong ui_system_data_processor_3(uint64_t *context_ptr, longlong data_object, char optional_flag)
 {
     uint validation_result;
     ulonglong processing_result;
@@ -742,12 +742,12 @@ void ui_system_empty_function_4(void)
  * @param context_ptr 上下文指针数组
  * @return 处理结果：0表示成功，0x1c表示失败
  */
-undefined8 ui_system_data_processor_4(longlong data_object, longlong *context_ptr)
+uint64_t ui_system_data_processor_4(longlong data_object, longlong *context_ptr)
 {
-    undefined8 processing_result;
-    undefined4 validation_stack[1];
-    undefined1 validation_buffer_48[32];
-    undefined1 validation_buffer_28[32];
+    uint64_t processing_result;
+    int32_t validation_stack[1];
+    int8_t validation_buffer_48[32];
+    int8_t validation_buffer_28[32];
     
     // 验证SIL和IDMC数据类型
     processing_result = FUN_1808ddd30(context_ptr, validation_buffer_28, 1, UI_DATA_TYPE_SIL, UI_DATA_TYPE_IDMC);
@@ -766,8 +766,8 @@ undefined8 ui_system_data_processor_4(longlong data_object, longlong *context_pt
             }
             
             // 验证数据字段
-            validation_stack[0] = *(undefined4 *)(data_object + UI_OFFSET_0xd8);
-            processing_result = (**(code **)**(undefined8 **)(*context_ptr + 8))
+            validation_stack[0] = *(int32_t *)(data_object + UI_OFFSET_0xd8);
+            processing_result = (**(code **)**(uint64_t **)(*context_ptr + 8))
                                 (*((longlong **)(*context_ptr + 8)), validation_stack, 4);
             if ((int)processing_result == 0) {
                 if (*(int *)(context_ptr[1] + UI_OFFSET_0x18) != 0) {
@@ -802,19 +802,19 @@ ulonglong ui_system_data_processor_5(longlong data_object, longlong *context_ptr
 {
     longlong lVar1;
     uint uVar2;
-    undefined4 *puVar3;
+    int32_t *puVar3;
     ulonglong uVar4;
-    undefined2 auStackX_18 [4];
-    undefined2 auStackX_20 [4];
-    undefined4 auStack_58 [2];
-    undefined4 uStack_50;
-    undefined4 uStack_4c;
-    undefined4 uStack_48;
-    undefined4 uStack_44;
-    undefined1 auStack_40 [40];
+    int16_t auStackX_18 [4];
+    int16_t auStackX_20 [4];
+    int32_t auStack_58 [2];
+    int32_t uStack_50;
+    int32_t uStack_4c;
+    int32_t uStack_48;
+    int32_t uStack_44;
+    int8_t auStack_40 [40];
     
     // 获取数据验证参数
-    puVar3 = (undefined4 *)FUN_180847820();
+    puVar3 = (int32_t *)FUN_180847820();
     uStack_50 = *puVar3;
     uStack_4c = puVar3[1];
     uStack_48 = puVar3[2];
@@ -847,19 +847,19 @@ ulonglong ui_system_data_processor_5(longlong data_object, longlong *context_ptr
                     // 执行数据验证
                     auStack_58[0] = uStack_50;
                     lVar1 = *context_ptr;
-                    uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                              (*(undefined8 **)(lVar1 + 8), auStack_58, 4);
+                    uVar2 = (**(code **)**(uint64_t **)(lVar1 + 8))
+                              (*(uint64_t **)(lVar1 + 8), auStack_58, 4);
                     if (uVar2 == 0) {
-                        auStackX_18[0] = (undefined2)uStack_4c;
-                        uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                                  (*(undefined8 **)(lVar1 + 8), auStackX_18, 2);
+                        auStackX_18[0] = (int16_t)uStack_4c;
+                        uVar2 = (**(code **)**(uint64_t **)(lVar1 + 8))
+                                  (*(uint64_t **)(lVar1 + 8), auStackX_18, 2);
                         if (uVar2 == 0) {
                             auStackX_20[0] = uStack_4c._2_2_;
-                            uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                                      (*(undefined8 **)(lVar1 + 8), auStackX_20, 2);
+                            uVar2 = (**(code **)**(uint64_t **)(lVar1 + 8))
+                                      (*(uint64_t **)(lVar1 + 8), auStackX_20, 2);
                             if (uVar2 == 0) {
-                                uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                                          (*(undefined8 **)(lVar1 + 8), &uStack_48, 8);
+                                uVar2 = (**(code **)**(uint64_t **)(lVar1 + 8))
+                                          (*(uint64_t **)(lVar1 + 8), &uStack_48, 8);
                             }
                         }
                     }
@@ -911,12 +911,12 @@ ulonglong ui_system_data_processor_6(longlong validation_context, longlong data_
     longlong unaff_RBP;
     uint unaff_ESI;
     longlong *unaff_RDI;
-    undefined4 in_stack_00000030;
-    undefined4 uStack0000000000000038;
-    undefined2 uStack000000000000003c;
-    undefined2 uStack000000000000003e;
-    undefined2 in_stack_000000a0;
-    undefined2 in_stack_000000a8;
+    int32_t in_stack_00000030;
+    int32_t uStack0000000000000038;
+    int16_t uStack000000000000003c;
+    int16_t uStack000000000000003e;
+    int16_t in_stack_000000a0;
+    int16_t in_stack_000000a8;
     
     // 检查验证状态
     if (*(uint *)(in_RAX + UI_OFFSET_0x18) != status_flag) {
@@ -943,19 +943,19 @@ ulonglong ui_system_data_processor_6(longlong validation_context, longlong data_
                 // 执行数据验证
                 in_stack_00000030 = uStack0000000000000038;
                 lVar1 = *context_ptr;
-                uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                          (*(undefined8 **)(lVar1 + 8), &stack0x00000030, 4);
+                uVar2 = (**(code **)**(uint64_t **)(lVar1 + 8))
+                          (*(uint64_t **)(lVar1 + 8), &stack0x00000030, 4);
                 if (uVar2 == 0) {
                     in_stack_000000a0 = uStack000000000000003c;
-                    uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                              (*(undefined8 **)(lVar1 + 8), &stack0x000000a0, 2);
+                    uVar2 = (**(code **)**(uint64_t **)(lVar1 + 8))
+                              (*(uint64_t **)(lVar1 + 8), &stack0x000000a0, 2);
                     if (uVar2 == 0) {
                         in_stack_000000a8 = uStack000000000000003e;
-                        uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                                  (*(undefined8 **)(lVar1 + 8), &stack0x000000a8, 2);
+                        uVar2 = (**(code **)**(uint64_t **)(lVar1 + 8))
+                                  (*(uint64_t **)(lVar1 + 8), &stack0x000000a8, 2);
                         if (uVar2 == 0) {
-                            uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                                      (*(undefined8 **)(lVar1 + 8), &stack0x00000040, 8);
+                            uVar2 = (**(code **)**(uint64_t **)(lVar1 + 8))
+                                      (*(uint64_t **)(lVar1 + 8), &stack0x00000040, 8);
                         }
                     }
                 }
@@ -1003,12 +1003,12 @@ ulonglong ui_system_data_processor_7(longlong data_object, longlong *context_ptr
     longlong unaff_RBP;
     uint unaff_ESI;
     longlong *unaff_RDI;
-    undefined4 in_stack_00000030;
-    undefined4 uStack0000000000000038;
-    undefined2 uStack000000000000003c;
-    undefined2 uStack000000000000003e;
-    undefined2 in_stack_000000a0;
-    undefined2 in_stack_000000a8;
+    int32_t in_stack_00000030;
+    int32_t uStack0000000000000038;
+    int16_t uStack000000000000003c;
+    int16_t uStack000000000000003e;
+    int16_t in_stack_000000a0;
+    int16_t in_stack_000000a8;
     
     // 执行数据验证
     uVar2 = FUN_180899ef0(*context_ptr, data_object + UI_OFFSET_0x20);
@@ -1022,19 +1022,19 @@ ulonglong ui_system_data_processor_7(longlong data_object, longlong *context_ptr
             // 执行数据验证
             in_stack_00000030 = uStack0000000000000038;
             lVar1 = *context_ptr;
-            uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                      (*(undefined8 **)(lVar1 + 8), &stack0x00000030, 4);
+            uVar2 = (**(code **)**(uint64_t **)(lVar1 + 8))
+                      (*(uint64_t **)(lVar1 + 8), &stack0x00000030, 4);
             if (uVar2 == 0) {
                 in_stack_000000a0 = uStack000000000000003c;
-                uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                          (*(undefined8 **)(lVar1 + 8), &stack0x000000a0, 2);
+                uVar2 = (**(code **)**(uint64_t **)(lVar1 + 8))
+                          (*(uint64_t **)(lVar1 + 8), &stack0x000000a0, 2);
                 if (uVar2 == 0) {
                     in_stack_000000a8 = uStack000000000000003e;
-                    uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                              (*(undefined8 **)(lVar1 + 8), &stack0x000000a8, 2);
+                    uVar2 = (**(code **)**(uint64_t **)(lVar1 + 8))
+                              (*(uint64_t **)(lVar1 + 8), &stack0x000000a8, 2);
                     if (uVar2 == 0) {
-                        uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                                  (*(undefined8 **)(lVar1 + 8), &stack0x00000040, 8);
+                        uVar2 = (**(code **)**(uint64_t **)(lVar1 + 8))
+                                  (*(uint64_t **)(lVar1 + 8), &stack0x00000040, 8);
                     }
                 }
             }
@@ -1081,24 +1081,24 @@ ulonglong ui_system_data_processor_8(longlong *context_ptr, longlong data_object
     ulonglong unaff_RBX;
     longlong unaff_RBP;
     longlong *unaff_RDI;
-    undefined8 in_stack_00000038;
-    undefined2 in_stack_000000a0;
-    undefined2 in_stack_000000a8;
+    uint64_t in_stack_00000038;
+    int16_t in_stack_000000a0;
+    int16_t in_stack_000000a8;
     
     // 执行数据验证
     lVar1 = *context_ptr;
-    uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))();
+    uVar2 = (**(code **)**(uint64_t **)(lVar1 + 8))();
     if (uVar2 == 0) {
         in_stack_000000a0 = in_stack_00000038._4_2_;
-        uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                  (*(undefined8 **)(lVar1 + 8), &stack0x000000a0, 2);
+        uVar2 = (**(code **)**(uint64_t **)(lVar1 + 8))
+                  (*(uint64_t **)(lVar1 + 8), &stack0x000000a0, 2);
         if (uVar2 == 0) {
             in_stack_000000a8 = in_stack_00000038._6_2_;
-            uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                      (*(undefined8 **)(lVar1 + 8), &stack0x000000a8, 2);
+            uVar2 = (**(code **)**(uint64_t **)(lVar1 + 8))
+                      (*(uint64_t **)(lVar1 + 8), &stack0x000000a8, 2);
             if (uVar2 == 0) {
-                uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                          (*(undefined8 **)(lVar1 + 8), &stack0x00000040, 8);
+                uVar2 = (**(code **)**(uint64_t **)(lVar1 + 8))
+                          (*(uint64_t **)(lVar1 + 8), &stack0x00000040, 8);
             }
         }
     }
@@ -1135,14 +1135,14 @@ ulonglong ui_system_data_processor_8(longlong *context_ptr, longlong data_object
  * @param status_flag 状态标志
  * @return 处理结果：0表示成功，0x1c表示失败
  */
-ulonglong ui_system_data_processor_9(undefined8 *context_ptr, longlong data_object, uint status_flag)
+ulonglong ui_system_data_processor_9(uint64_t *context_ptr, longlong data_object, uint status_flag)
 {
     uint uVar1;
     ulonglong uVar2;
     ulonglong unaff_RBX;
     longlong unaff_RBP;
     uint unaff_ESI;
-    undefined8 *unaff_RDI;
+    uint64_t *unaff_RDI;
     
     // 检查状态标志
     if (status_flag != 0) {
@@ -1177,13 +1177,13 @@ ulonglong ui_system_data_processor_9(undefined8 *context_ptr, longlong data_obje
  * @param data_object 数据对象指针
  * @return 处理结果：0表示成功，0x1c表示失败
  */
-ulonglong ui_system_data_processor_10(undefined8 *context_ptr, longlong data_object)
+ulonglong ui_system_data_processor_10(uint64_t *context_ptr, longlong data_object)
 {
     uint uVar1;
     ulonglong uVar2;
     ulonglong unaff_RBX;
     longlong unaff_RBP;
-    undefined8 *unaff_RDI;
+    uint64_t *unaff_RDI;
     
     // 验证数据对象的其他字段
     if (*(int *)(context_ptr[1] + UI_OFFSET_0x18) == 0) {
@@ -1255,10 +1255,10 @@ void ui_system_empty_function_5(void)
  * @param context_ptr 上下文指针数组
  * @return 无返回值
  */
-void ui_system_data_processor_12(longlong data_object, undefined8 context_ptr)
+void ui_system_data_processor_12(longlong data_object, uint64_t context_ptr)
 {
     int iVar1;
-    undefined1 auStack_28 [32];
+    int8_t auStack_28 [32];
     
     // 执行数据验证
     iVar1 = FUN_1808ddd30(context_ptr, auStack_28, 0, UI_DATA_TYPE_CTRC, 0);
@@ -1284,10 +1284,10 @@ void ui_system_data_processor_12(longlong data_object, undefined8 context_ptr)
  * @param context_ptr 上下文指针数组
  * @return 处理结果：0表示成功，0x1c表示失败
  */
-undefined8 ui_system_data_processor_13(longlong data_object, undefined8 *context_ptr)
+uint64_t ui_system_data_processor_13(longlong data_object, uint64_t *context_ptr)
 {
-    undefined8 uVar1;
-    undefined1 auStack_28 [32];
+    uint64_t uVar1;
+    int8_t auStack_28 [32];
     
     // 执行数据验证
     uVar1 = FUN_1808ddd30(context_ptr, auStack_28, 0, UI_DATA_TYPE_VRUC, 0);
@@ -1328,11 +1328,11 @@ undefined8 ui_system_data_processor_13(longlong data_object, undefined8 *context
  * @param context_ptr 上下文指针数组
  * @return 处理结果：0表示成功，0x1c表示失败
  */
-undefined8 ui_system_data_processor_14(longlong data_object, undefined8 *context_ptr)
+uint64_t ui_system_data_processor_14(longlong data_object, uint64_t *context_ptr)
 {
-    undefined8 uVar1;
-    undefined1 auStack_48 [32];
-    undefined1 auStack_28 [32];
+    uint64_t uVar1;
+    int8_t auStack_48 [32];
+    int8_t auStack_28 [32];
     
     // 验证SIL和FIFE数据类型
     uVar1 = FUN_1808ddd30(context_ptr, auStack_28, 1, UI_DATA_TYPE_SIL, UI_DATA_TYPE_FIFE);
@@ -1374,10 +1374,10 @@ undefined8 ui_system_data_processor_14(longlong data_object, undefined8 *context
  * @param context_ptr 上下文指针数组
  * @return 处理结果：0表示成功，0x1c表示失败
  */
-undefined8 ui_system_data_processor_15(longlong data_object, longlong *context_ptr)
+uint64_t ui_system_data_processor_15(longlong data_object, longlong *context_ptr)
 {
-    undefined8 uVar1;
-    undefined4 auStackX_10 [6];
+    uint64_t uVar1;
+    int32_t auStackX_10 [6];
     
     // 根据数据大小进行不同的验证路径
     if (*(uint *)(context_ptr + 8) < UI_EXTENDED_DATA_SIZE_0x55) {
@@ -1386,9 +1386,9 @@ undefined8 ui_system_data_processor_15(longlong data_object, longlong *context_p
         }
         
         // 验证数据对象的其他字段
-        auStackX_10[0] = *(undefined4 *)(data_object + UI_OFFSET_0x50);
-        uVar1 = (**(code **)**(undefined8 **)(*context_ptr + 8))
-                  (*(undefined8 **)(*context_ptr + 8), auStackX_10, 4);
+        auStackX_10[0] = *(int32_t *)(data_object + UI_OFFSET_0x50);
+        uVar1 = (**(code **)**(uint64_t **)(*context_ptr + 8))
+                  (*(uint64_t **)(*context_ptr + 8), auStackX_10, 4);
         if ((int)uVar1 != 0) {
             return uVar1;
         }
@@ -1399,9 +1399,9 @@ undefined8 ui_system_data_processor_15(longlong data_object, longlong *context_p
         }
         
         // 验证数据对象的其他字段
-        auStackX_10[0] = *(undefined4 *)(data_object + UI_OFFSET_0x54);
-        uVar1 = (**(code **)**(undefined8 **)(*context_ptr + 8))
-                  (*(undefined8 **)(*context_ptr + 8), auStackX_10, 4);
+        auStackX_10[0] = *(int32_t *)(data_object + UI_OFFSET_0x54);
+        uVar1 = (**(code **)**(uint64_t **)(*context_ptr + 8))
+                  (*(uint64_t **)(*context_ptr + 8), auStackX_10, 4);
         if ((int)uVar1 != 0) {
             return uVar1;
         }
@@ -1412,9 +1412,9 @@ undefined8 ui_system_data_processor_15(longlong data_object, longlong *context_p
         }
         
         // 验证数据对象的其他字段
-        auStackX_10[0] = *(undefined4 *)(data_object + UI_OFFSET_0x78);
-        uVar1 = (**(code **)**(undefined8 **)(*context_ptr + 8))
-                  (*(undefined8 **)(*context_ptr + 8), auStackX_10, 4);
+        auStackX_10[0] = *(int32_t *)(data_object + UI_OFFSET_0x78);
+        uVar1 = (**(code **)**(uint64_t **)(*context_ptr + 8))
+                  (*(uint64_t **)(*context_ptr + 8), auStackX_10, 4);
         if ((int)uVar1 != 0) {
             return uVar1;
         }
@@ -1426,9 +1426,9 @@ undefined8 ui_system_data_processor_15(longlong data_object, longlong *context_p
     }
     
     // 验证数据对象的其他字段
-    auStackX_10[0] = *(undefined4 *)(data_object + UI_OFFSET_0x58);
-    uVar1 = (**(code **)**(undefined8 **)(*context_ptr + 8))
-              (*(undefined8 **)(*context_ptr + 8), auStackX_10, 4);
+    auStackX_10[0] = *(int32_t *)(data_object + UI_OFFSET_0x58);
+    uVar1 = (**(code **)**(uint64_t **)(*context_ptr + 8))
+              (*(uint64_t **)(*context_ptr + 8), auStackX_10, 4);
     if ((int)uVar1 != 0) {
         return uVar1;
     }
@@ -1439,9 +1439,9 @@ undefined8 ui_system_data_processor_15(longlong data_object, longlong *context_p
     }
     
     // 验证数据对象的其他字段
-    auStackX_10[0] = *(undefined4 *)(data_object + UI_OFFSET_0x5c);
-    uVar1 = (**(code **)**(undefined8 **)(*context_ptr + 8))
-              (*(undefined8 **)(*context_ptr + 8), auStackX_10, 4);
+    auStackX_10[0] = *(int32_t *)(data_object + UI_OFFSET_0x5c);
+    uVar1 = (**(code **)**(uint64_t **)(*context_ptr + 8))
+              (*(uint64_t **)(*context_ptr + 8), auStackX_10, 4);
     if ((int)uVar1 == 0) {
         // 根据数据大小进行不同的验证路径
         if (*(uint *)(context_ptr + 8) < UI_EXTENDED_DATA_SIZE_0x53) {
@@ -1488,11 +1488,11 @@ undefined8 ui_system_data_processor_15(longlong data_object, longlong *context_p
  * @param context_ptr 上下文指针数组
  * @return 处理结果：0表示成功，0x1c表示失败
  */
-undefined8 ui_system_data_processor_16(longlong data_object, undefined8 *context_ptr)
+uint64_t ui_system_data_processor_16(longlong data_object, uint64_t *context_ptr)
 {
-    undefined8 uVar1;
-    undefined1 auStack_48 [32];
-    undefined1 auStack_28 [32];
+    uint64_t uVar1;
+    int8_t auStack_48 [32];
+    int8_t auStack_28 [32];
     
     // 验证SIL和VIVE数据类型
     uVar1 = FUN_1808ddd30(context_ptr, auStack_28, 1, UI_DATA_TYPE_SIL, UI_DATA_TYPE_VIVE);
@@ -1536,10 +1536,10 @@ undefined8 ui_system_data_processor_16(longlong data_object, undefined8 *context
  * @param context_ptr 上下文指针数组
  * @return 处理结果：0表示成功，0x1c表示失败
  */
-undefined8 ui_system_data_processor_17(undefined8 data_object, longlong context_ptr)
+uint64_t ui_system_data_processor_17(uint64_t data_object, longlong context_ptr)
 {
-    undefined8 uVar1;
-    undefined1 auStack_28 [32];
+    uint64_t uVar1;
+    int8_t auStack_28 [32];
     
     // 根据数据大小进行不同的验证路径
     if (*(uint *)(context_ptr + UI_OFFSET_0x40) < UI_EXTENDED_DATA_SIZE_0x31) {

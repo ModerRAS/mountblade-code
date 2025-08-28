@@ -16,26 +16,26 @@
  * @param param_1 游戏引擎上下文指针
  * @param param_2 游戏对象数据指针
  */
-void update_game_object_and_render(undefined8 param_1, longlong param_2)
+void update_game_object_and_render(uint64_t param_1, longlong param_2)
 {
-    undefined2 *object_flags;
+    int16_t *object_flags;
     int *render_state;
     byte *animation_flags;
     short animation_id;
-    undefined1 *effect_data;
+    int8_t *effect_data;
     char collision_flag;
     char render_flag;
-    undefined4 color_value;
-    undefined4 texture_id;
-    undefined4 shader_id;
-    undefined4 *matrix_data;
-    undefined8 transform_data;
+    int32_t color_value;
+    int32_t texture_id;
+    int32_t shader_id;
+    int32_t *matrix_data;
+    uint64_t transform_data;
     float *position_data;
     float *velocity_data;
-    undefined8 *physics_data;
+    uint64_t *physics_data;
     longlong time_delta;
-    undefined8 frame_time;
-    undefined1 effect_type;
+    uint64_t frame_time;
+    int8_t effect_type;
     uint particle_count;
     longlong object_id;
     uint render_flags;
@@ -50,7 +50,7 @@ void update_game_object_and_render(undefined8 param_1, longlong param_2)
     longlong unaff_R26;
     char unaff_R13B;
     bool is_visible;
-    undefined4 unaff_R14D;
+    int32_t unaff_R14D;
     ulonglong unaff_R15;
     float rotation_x;
     float rotation_y;
@@ -59,7 +59,7 @@ void update_game_object_and_render(undefined8 param_1, longlong param_2)
     float scale_y;
     float scale_z;
     float unaff_XMM13_Da;
-    undefined8 *in_stack_00000020;
+    uint64_t *in_stack_00000020;
     longlong in_stack_00000040;
     char cStack0000000000000048;
     char cStack0000000000000049;
@@ -74,8 +74,8 @@ void update_game_object_and_render(undefined8 param_1, longlong param_2)
     float fStack0000000000000070;
     float fStack0000000000000074;
     float in_stack_00000078;
-    undefined8 in_stack_00000200;
-    undefined8 in_stack_00000208;
+    uint64_t in_stack_00000200;
+    uint64_t in_stack_00000208;
     
     // 检查对象是否激活
     if (*(char *)(param_2 + 0xb2) == '\0') {
@@ -130,28 +130,28 @@ void update_game_object_and_render(undefined8 param_1, longlong param_2)
     if (((cStack000000000000004a != '\0') && ((unaff_R15 & 0x6000000) != 0)) &&
        (*(uint *)(in_stack_00000040 + 0xdc) = unaff_EDI, (unaff_R15 & 0x40) != 0)) {
         if (unaff_R12B == '\0') {
-            *(undefined4 *)(in_stack_00000040 + 0x50) = unaff_R14D;
-            *(undefined4 *)(in_stack_00000040 + 0x48) = unaff_R14D;
+            *(int32_t *)(in_stack_00000040 + 0x50) = unaff_R14D;
+            *(int32_t *)(in_stack_00000040 + 0x48) = unaff_R14D;
         }
         if (unaff_R13B == '\0') {
-            *(undefined4 *)(in_stack_00000040 + 0x54) = unaff_R14D;
-            *(undefined4 *)(in_stack_00000040 + 0x4c) = unaff_R14D;
+            *(int32_t *)(in_stack_00000040 + 0x54) = unaff_R14D;
+            *(int32_t *)(in_stack_00000040 + 0x4c) = unaff_R14D;
         }
-        *(undefined8 *)(in_stack_00000040 + 0x60) = 0;
+        *(uint64_t *)(in_stack_00000040 + 0x60) = 0;
     }
     
     // 初始化渲染管线
     FUN_180130a80(in_stack_00000040);
-    func_0x00018012fb50(in_stack_00000040, *(undefined8 *)(in_stack_00000040 + 0x28));
+    func_0x00018012fb50(in_stack_00000040, *(uint64_t *)(in_stack_00000040 + 0x28));
     
     // 设置渲染参数
     if ((*(uint *)(unaff_RSI + 8) & 0x8000) == 0) {
         texture_id = 0x3f800000;  // 默认纹理
     }
     else {
-        texture_id = *(undefined4 *)(*(longlong *)(in_stack_00000040 + 0x28) + 0x18);
+        texture_id = *(int32_t *)(*(longlong *)(in_stack_00000040 + 0x28) + 0x18);
     }
-    *(undefined4 *)(in_stack_00000040 + 0x2dc) = texture_id;
+    *(int32_t *)(in_stack_00000040 + 0x2dc) = texture_id;
     
     // 执行渲染预处理
     func_0x000180123e50(in_stack_00000040);
@@ -165,19 +165,19 @@ void update_game_object_and_render(undefined8 param_1, longlong param_2)
     if ((*(byte *)(in_stack_00000040 + 0x432) & visibility_flag) == 0) {
         if (((uint)depth_info >> 0x18 & 1) == 0) {
             if ((((uint)depth_info & 0x6000000) == 0) || (((uint)depth_info >> 0x1b & 1) != 0)) {
-                texture_id = *(undefined4 *)(unaff_RSI + 0x1638);
+                texture_id = *(int32_t *)(unaff_RSI + 0x1638);
             }
             else {
-                texture_id = *(undefined4 *)(unaff_RSI + 0x1658);
+                texture_id = *(int32_t *)(unaff_RSI + 0x1658);
             }
-            *(undefined4 *)(in_stack_00000040 + 0x7c) = texture_id;
+            *(int32_t *)(in_stack_00000040 + 0x7c) = texture_id;
         }
         else {
-            *(undefined4 *)(in_stack_00000040 + 0x7c) = *(undefined4 *)(unaff_RSI + 0x1650);
+            *(int32_t *)(in_stack_00000040 + 0x7c) = *(int32_t *)(unaff_RSI + 0x1650);
         }
     }
     else {
-        *(undefined4 *)(in_stack_00000040 + 0x7c) = unaff_R14D;
+        *(int32_t *)(in_stack_00000040 + 0x7c) = unaff_R14D;
     }
     
     // 处理特殊渲染效果
@@ -185,17 +185,17 @@ void update_game_object_and_render(undefined8 param_1, longlong param_2)
         (((uint)depth_info & 0x5010000) == 0x1000000)) &&
        (unaff_XMM13_Da == *(float *)(in_stack_00000040 + 0x7c))) {
         if (((uint)depth_info >> 10 & 1) == 0) {
-            *(undefined4 *)(in_stack_00000040 + 0x70) = unaff_R14D;
+            *(int32_t *)(in_stack_00000040 + 0x70) = unaff_R14D;
             *(float *)(in_stack_00000040 + 0x74) = unaff_XMM13_Da;
         }
         else {
-            texture_id = *(undefined4 *)(unaff_RSI + 0x1630);
-            *(undefined4 *)(in_stack_00000040 + 0x70) = unaff_R14D;
-            *(undefined4 *)(in_stack_00000040 + 0x74) = texture_id;
+            texture_id = *(int32_t *)(unaff_RSI + 0x1630);
+            *(int32_t *)(in_stack_00000040 + 0x70) = unaff_R14D;
+            *(int32_t *)(in_stack_00000040 + 0x74) = texture_id;
         }
     }
     else {
-        *(undefined8 *)(in_stack_00000040 + 0x70) = *(undefined8 *)(unaff_RSI + 0x162c);
+        *(uint64_t *)(in_stack_00000040 + 0x70) = *(uint64_t *)(unaff_RSI + 0x162c);
     }
     
     // 计算渲染距离
@@ -207,7 +207,7 @@ void update_game_object_and_render(undefined8 param_1, longlong param_2)
         render_distance = *(float *)(unaff_RSI + 0x1c58);
     }
     *(float *)(in_stack_00000040 + 0x180) = render_distance;
-    *(undefined4 *)(in_stack_00000040 + 0x184) = *(undefined4 *)(unaff_RSI + 0x1c5c);
+    *(int32_t *)(in_stack_00000040 + 0x184) = *(int32_t *)(unaff_RSI + 0x1c5c);
     
     // 处理网格和材质
     if ((((uint)depth_info & 0x21) == 0) && ((*(byte *)(in_stack_00000040 + 0x432) & visibility_flag) == 0)) {
@@ -223,13 +223,13 @@ void update_game_object_and_render(undefined8 param_1, longlong param_2)
             *(bool *)(in_stack_00000040 + 0xb2) = *(char *)(in_stack_00000040 + 0xb2) == '\0';
             if (((*(uint *)(in_stack_00000040 + 0xc) & 0x100) == 0) &&
                (*(float *)(_DAT_180c8a9b0 + 0x2e04) <= unaff_XMM13_Da)) {
-                *(undefined4 *)(_DAT_180c8a9b0 + 0x2e04) = *(undefined4 *)(_DAT_180c8a9b0 + 0x1c);
+                *(int32_t *)(_DAT_180c8a9b0 + 0x2e04) = *(int32_t *)(_DAT_180c8a9b0 + 0x1c);
             }
             FUN_18012d2e0(in_stack_00000040);
         }
     }
     else {
-        *(undefined1 *)(in_stack_00000040 + 0xb2) = 0;
+        *(int8_t *)(in_stack_00000040 + 0xb2) = 0;
     }
     
     // [后续代码省略 - 继续处理动画、粒子效果、物理模拟等]
@@ -251,7 +251,7 @@ void update_game_object_and_render(undefined8 param_1, longlong param_2)
     // 处理渲染队列状态
     if (((*(byte *)(in_stack_00000040 + 0x432) & 1) != 0) &&
        ((*(byte *)(in_stack_00000040 + 0x432) & 2) == 0)) {
-        *(undefined4 *)(in_stack_00000040 + 0xd8) = 1;
+        *(int32_t *)(in_stack_00000040 + 0xd8) = 1;
     }
     
     // 根据深度信息设置渲染优先级
@@ -262,13 +262,13 @@ void update_game_object_and_render(undefined8 param_1, longlong param_2)
              *(float *)(in_stack_00000040 + 0x240) == *(float *)(in_stack_00000040 + 0x238) ||
             (*(float *)(in_stack_00000040 + 0x244) < *(float *)(in_stack_00000040 + 0x23c) ||
              *(float *)(in_stack_00000040 + 0x244) == *(float *)(in_stack_00000040 + 0x23c))))) {
-            *(undefined4 *)(in_stack_00000040 + 0xd8) = 1;
+            *(int32_t *)(in_stack_00000040 + 0xd8) = 1;
         }
     }
     
     // 最终渲染状态设置
     if (*(float *)(unaff_RSI + 0x1628) <= unaff_XMM13_Da) {
-        *(undefined4 *)(in_stack_00000040 + 0xd8) = 1;
+        *(int32_t *)(in_stack_00000040 + 0xd8) = 1;
     }
     
     // 确定是否需要重新渲染
@@ -290,7 +290,7 @@ void update_game_object_and_render(undefined8 param_1, longlong param_2)
     else {
         effect_type = 1;
     }
-    *(undefined1 *)(in_stack_00000040 + 0xb4) = effect_type;
+    *(int8_t *)(in_stack_00000040 + 0xb4) = effect_type;
     
     // 调用最终的渲染函数
     FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x24) ^ (ulonglong)&stack0x00000000);

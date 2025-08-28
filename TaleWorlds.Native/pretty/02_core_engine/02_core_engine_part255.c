@@ -7,29 +7,29 @@
 void initialize_engine_components(longlong engine_context)
 
 {
-  undefined8 temp_var1;
-  undefined8 *temp_ptr2;
-  undefined1 temp_buffer_168 [32];
-  undefined4 stack_val_148;
-  undefined4 stack_val_140;
-  undefined4 stack_val_138;
-  undefined4 stack_val_130;
-  undefined4 stack_val_128;
-  undefined8 stack_val_120;
-  undefined1 stack_val_118;
-  undefined4 stack_val_110;
+  uint64_t temp_var1;
+  uint64_t *temp_ptr2;
+  int8_t temp_buffer_168 [32];
+  int32_t stack_val_148;
+  int32_t stack_val_140;
+  int32_t stack_val_138;
+  int32_t stack_val_130;
+  int32_t stack_val_128;
+  uint64_t stack_val_120;
+  int8_t stack_val_118;
+  int32_t stack_val_110;
   longlong *resource_ptr_108;
   longlong *resource_ptr_100;
   longlong *resource_ptr_f8;
-  undefined8 stack_val_f0;
-  undefined *resource_ptr_e8;
-  undefined1 *resource_ptr_e0;
-  undefined4 stack_val_d8;
-  undefined1 temp_buffer_d0 [72];
-  undefined *resource_ptr_88;
-  undefined1 *resource_ptr_80;
-  undefined4 stack_val_78;
-  undefined1 temp_buffer_70 [72];
+  uint64_t stack_val_f0;
+  void *resource_ptr_e8;
+  int8_t *resource_ptr_e0;
+  int32_t stack_val_d8;
+  int8_t temp_buffer_d0 [72];
+  void *resource_ptr_88;
+  int8_t *resource_ptr_80;
+  int32_t stack_val_78;
+  int8_t temp_buffer_70 [72];
   ulonglong checksum_val_28;
   
   // 初始化栈变量
@@ -48,11 +48,11 @@ void initialize_engine_components(longlong engine_context)
   stack_val_138 = 0;
   stack_val_140 = 3;
   stack_val_148 = 0x220;
-  temp_ptr2 = (undefined8 *)get_engine_state();
+  temp_ptr2 = (uint64_t *)get_engine_state();
   temp_var1 = *temp_ptr2;
   *temp_ptr2 = 0;
   resource_ptr_100 = *(longlong **)(engine_context + 0x1c70);
-  *(undefined8 *)(engine_context + 0x1c70) = temp_var1;
+  *(uint64_t *)(engine_context + 0x1c70) = temp_var1;
   if (resource_ptr_100 != (longlong *)0x0) {
     (**(code **)(*resource_ptr_100 + 0x38))();
   }
@@ -73,11 +73,11 @@ void initialize_engine_components(longlong engine_context)
   stack_val_138 = 0;
   stack_val_140 = 3;
   stack_val_148 = 0x220;
-  temp_ptr2 = (undefined8 *)get_engine_state();
+  temp_ptr2 = (uint64_t *)get_engine_state();
   temp_var1 = *temp_ptr2;
   *temp_ptr2 = 0;
   resource_ptr_100 = *(longlong **)(engine_context + 0x1cb8);
-  *(undefined8 *)(engine_context + 0x1cb8) = temp_var1;
+  *(uint64_t *)(engine_context + 0x1cb8) = temp_var1;
   if (resource_ptr_100 != (longlong *)0x0) {
     (**(code **)(*resource_ptr_100 + 0x38))();
   }
@@ -98,11 +98,11 @@ void initialize_engine_components(longlong engine_context)
   stack_val_138 = 0;
   stack_val_140 = 3;
   stack_val_148 = 0x220;
-  temp_ptr2 = (undefined8 *)get_engine_state();
+  temp_ptr2 = (uint64_t *)get_engine_state();
   temp_var1 = *temp_ptr2;
   *temp_ptr2 = 0;
   resource_ptr_f8 = *(longlong **)(engine_context + 0x1c78);
-  *(undefined8 *)(engine_context + 0x1c78) = temp_var1;
+  *(uint64_t *)(engine_context + 0x1c78) = temp_var1;
   if (resource_ptr_f8 != (longlong *)0x0) {
     (**(code **)(*resource_ptr_f8 + 0x38))();
   }
@@ -123,11 +123,11 @@ void initialize_engine_components(longlong engine_context)
   stack_val_138 = 0;
   stack_val_140 = 3;
   stack_val_148 = 0x220;
-  temp_ptr2 = (undefined8 *)get_engine_state();
+  temp_ptr2 = (uint64_t *)get_engine_state();
   temp_var1 = *temp_ptr2;
   *temp_ptr2 = 0;
   resource_ptr_108 = *(longlong **)(engine_context + 0x1cb0);
-  *(undefined8 *)(engine_context + 0x1cb0) = temp_var1;
+  *(uint64_t *)(engine_context + 0x1cb0) = temp_var1;
   if (resource_ptr_108 != (longlong *)0x0) {
     (**(code **)(*resource_ptr_108 + 0x38))();
   }
@@ -148,11 +148,11 @@ void initialize_engine_components(longlong engine_context)
   stack_val_138 = 0;
   stack_val_140 = 3;
   stack_val_148 = 0x220;
-  temp_ptr2 = (undefined8 *)get_engine_state();
+  temp_ptr2 = (uint64_t *)get_engine_state();
   temp_var1 = *temp_ptr2;
   *temp_ptr2 = 0;
   resource_ptr_108 = *(longlong **)(engine_context + 0x1c80);
-  *(undefined8 *)(engine_context + 0x1c80) = temp_var1;
+  *(uint64_t *)(engine_context + 0x1c80) = temp_var1;
   if (resource_ptr_108 != (longlong *)0x0) {
     (**(code **)(*resource_ptr_108 + 0x38))();
   }
@@ -173,11 +173,11 @@ void initialize_engine_components(longlong engine_context)
   stack_val_138 = 0;
   stack_val_140 = 3;
   stack_val_148 = 0x220;
-  temp_ptr2 = (undefined8 *)get_engine_state();
+  temp_ptr2 = (uint64_t *)get_engine_state();
   temp_var1 = *temp_ptr2;
   *temp_ptr2 = 0;
   resource_ptr_108 = *(longlong **)(engine_context + 0x1c88);
-  *(undefined8 *)(engine_context + 0x1c88) = temp_var1;
+  *(uint64_t *)(engine_context + 0x1c88) = temp_var1;
   if (resource_ptr_108 != (longlong *)0x0) {
     (**(code **)(*resource_ptr_108 + 0x38))();
   }
@@ -198,11 +198,11 @@ void initialize_engine_components(longlong engine_context)
   stack_val_138 = 0;
   stack_val_140 = 3;
   stack_val_148 = 0x220;
-  temp_ptr2 = (undefined8 *)get_engine_state();
+  temp_ptr2 = (uint64_t *)get_engine_state();
   temp_var1 = *temp_ptr2;
   *temp_ptr2 = 0;
   resource_ptr_108 = *(longlong **)(engine_context + 0x1c90);
-  *(undefined8 *)(engine_context + 0x1c90) = temp_var1;
+  *(uint64_t *)(engine_context + 0x1c90) = temp_var1;
   if (resource_ptr_108 != (longlong *)0x0) {
     (**(code **)(*resource_ptr_108 + 0x38))();
   }
@@ -223,11 +223,11 @@ void initialize_engine_components(longlong engine_context)
   stack_val_138 = 0;
   stack_val_140 = 3;
   stack_val_148 = 0x220;
-  temp_ptr2 = (undefined8 *)get_engine_state();
+  temp_ptr2 = (uint64_t *)get_engine_state();
   temp_var1 = *temp_ptr2;
   *temp_ptr2 = 0;
   resource_ptr_108 = *(longlong **)(engine_context + 0x1ca0);
-  *(undefined8 *)(engine_context + 0x1ca0) = temp_var1;
+  *(uint64_t *)(engine_context + 0x1ca0) = temp_var1;
   if (resource_ptr_108 != (longlong *)0x0) {
     (**(code **)(*resource_ptr_108 + 0x38))();
   }
@@ -248,11 +248,11 @@ void initialize_engine_components(longlong engine_context)
   stack_val_138 = 0;
   stack_val_140 = 3;
   stack_val_148 = 0x220;
-  temp_ptr2 = (undefined8 *)get_engine_state();
+  temp_ptr2 = (uint64_t *)get_engine_state();
   temp_var1 = *temp_ptr2;
   *temp_ptr2 = 0;
   resource_ptr_108 = *(longlong **)(engine_context + 0x1c98);
-  *(undefined8 *)(engine_context + 0x1c98) = temp_var1;
+  *(uint64_t *)(engine_context + 0x1c98) = temp_var1;
   if (resource_ptr_108 != (longlong *)0x0) {
     (**(code **)(*resource_ptr_108 + 0x38))();
   }
@@ -273,11 +273,11 @@ void initialize_engine_components(longlong engine_context)
   stack_val_138 = 0;
   stack_val_140 = 3;
   stack_val_148 = 0x220;
-  temp_ptr2 = (undefined8 *)get_engine_state();
+  temp_ptr2 = (uint64_t *)get_engine_state();
   temp_var1 = *temp_ptr2;
   *temp_ptr2 = 0;
   resource_ptr_108 = *(longlong **)(engine_context + 0x1ca8);
-  *(undefined8 *)(engine_context + 0x1ca8) = temp_var1;
+  *(uint64_t *)(engine_context + 0x1ca8) = temp_var1;
   if (resource_ptr_108 != (longlong *)0x0) {
     (**(code **)(*resource_ptr_108 + 0x38))();
   }
@@ -298,11 +298,11 @@ void initialize_engine_components(longlong engine_context)
   stack_val_138 = 0;
   stack_val_140 = 3;
   stack_val_148 = 0x220;
-  temp_ptr2 = (undefined8 *)get_engine_state();
+  temp_ptr2 = (uint64_t *)get_engine_state();
   temp_var1 = *temp_ptr2;
   *temp_ptr2 = 0;
   resource_ptr_108 = *(longlong **)(engine_context + 0x1cc8);
-  *(undefined8 *)(engine_context + 0x1cc8) = temp_var1;
+  *(uint64_t *)(engine_context + 0x1cc8) = temp_var1;
   if (resource_ptr_108 != (longlong *)0x0) {
     (**(code **)(*resource_ptr_108 + 0x38))();
   }
@@ -323,11 +323,11 @@ void initialize_engine_components(longlong engine_context)
   stack_val_138 = 0;
   stack_val_140 = 3;
   stack_val_148 = 0x220;
-  temp_ptr2 = (undefined8 *)get_engine_state();
+  temp_ptr2 = (uint64_t *)get_engine_state();
   temp_var1 = *temp_ptr2;
   *temp_ptr2 = 0;
   resource_ptr_108 = *(longlong **)(engine_context + 0x1cc0);
-  *(undefined8 *)(engine_context + 0x1cc0) = temp_var1;
+  *(uint64_t *)(engine_context + 0x1cc0) = temp_var1;
   if (resource_ptr_108 != (longlong *)0x0) {
     (**(code **)(*resource_ptr_108 + 0x38))();
   }
@@ -348,11 +348,11 @@ void initialize_engine_components(longlong engine_context)
   stack_val_138 = 0;
   stack_val_140 = 3;
   stack_val_148 = 0x220;
-  temp_ptr2 = (undefined8 *)get_engine_state();
+  temp_ptr2 = (uint64_t *)get_engine_state();
   temp_var1 = *temp_ptr2;
   *temp_ptr2 = 0;
   resource_ptr_108 = *(longlong **)(engine_context + 0x1cd0);
-  *(undefined8 *)(engine_context + 0x1cd0) = temp_var1;
+  *(uint64_t *)(engine_context + 0x1cd0) = temp_var1;
   if (resource_ptr_108 != (longlong *)0x0) {
     (**(code **)(*resource_ptr_108 + 0x38))();
   }

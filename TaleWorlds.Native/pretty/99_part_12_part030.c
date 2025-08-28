@@ -2,9 +2,9 @@
 
 // 99_part_12_part030.c - 4 个函数
 
-// 函数: void FUN_1807ddd40(float *param_1,float *param_2,int param_3,float *param_4,undefined8 param_5,
-void FUN_1807ddd40(float *param_1,float *param_2,int param_3,float *param_4,undefined8 param_5,
-                  undefined8 param_6,int param_7)
+// 函数: void FUN_1807ddd40(float *param_1,float *param_2,int param_3,float *param_4,uint64_t param_5,
+void FUN_1807ddd40(float *param_1,float *param_2,int param_3,float *param_4,uint64_t param_5,
+                  uint64_t param_6,int param_7)
 
 {
   float fVar1;
@@ -238,9 +238,9 @@ void FUN_1807ddd40(float *param_1,float *param_2,int param_3,float *param_4,unde
 
 
 
-// 函数: void FUN_1807de660(float *param_1,float *param_2,uint param_3,float *param_4,undefined8 param_5,
-void FUN_1807de660(float *param_1,float *param_2,uint param_3,float *param_4,undefined8 param_5,
-                  undefined8 param_6,int param_7)
+// 函数: void FUN_1807de660(float *param_1,float *param_2,uint param_3,float *param_4,uint64_t param_5,
+void FUN_1807de660(float *param_1,float *param_2,uint param_3,float *param_4,uint64_t param_5,
+                  uint64_t param_6,int param_7)
 
 {
   float fVar1;
@@ -400,9 +400,9 @@ void FUN_1807de660(float *param_1,float *param_2,uint param_3,float *param_4,und
 
 
 
-// 函数: void FUN_1807dedd0(float *param_1,float *param_2,uint param_3,float *param_4,undefined8 param_5,
-void FUN_1807dedd0(float *param_1,float *param_2,uint param_3,float *param_4,undefined8 param_5,
-                  undefined8 param_6,int param_7)
+// 函数: void FUN_1807dedd0(float *param_1,float *param_2,uint param_3,float *param_4,uint64_t param_5,
+void FUN_1807dedd0(float *param_1,float *param_2,uint param_3,float *param_4,uint64_t param_5,
+                  uint64_t param_6,int param_7)
 
 {
   float fVar1;
@@ -545,8 +545,8 @@ void FUN_1807dedd0(float *param_1,float *param_2,uint param_3,float *param_4,und
 
 
 
-// 函数: void FUN_1807df470(float *param_1,float *param_2,uint param_3,float *param_4,undefined8 param_5,
-void FUN_1807df470(float *param_1,float *param_2,uint param_3,float *param_4,undefined8 param_5,
+// 函数: void FUN_1807df470(float *param_1,float *param_2,uint param_3,float *param_4,uint64_t param_5,
+void FUN_1807df470(float *param_1,float *param_2,uint param_3,float *param_4,uint64_t param_5,
                   int param_6,int param_7)
 
 {

@@ -26,13 +26,13 @@ void FUN_1805c1ed9(void)
   char unaff_R15B;
   float fVar9;
   float fVar10;
-  undefined4 uVar11;
+  int32_t uVar11;
   float extraout_XMM0_Da;
   float fVar12;
   float fVar13;
   float fVar14;
   float fVar15;
-  undefined1 auVar16 [16];
+  int8_t auVar16 [16];
   float fVar17;
   float in_XMM5_Da;
   float unaff_XMM6_Da;
@@ -47,11 +47,11 @@ void FUN_1805c1ed9(void)
   float fStack0000000000000050;
   float fStack0000000000000054;
   float fStack0000000000000058;
-  undefined4 uStack000000000000005c;
+  int32_t uStack000000000000005c;
   float fStack0000000000000060;
   float fStack0000000000000064;
   float fStack0000000000000068;
-  undefined4 uStack000000000000006c;
+  int32_t uStack000000000000006c;
   
   cVar3 = (char)unaff_RSI;
   fVar15 = (float)unaff_RSI;
@@ -122,7 +122,7 @@ void FUN_1805c1ed9(void)
         fVar15 = (float)(int)CONCAT71(uVar2,fVar15 <= 1.1754944e-38) * 1.1754944e-38 + fVar15;
         auVar16 = rsqrtss(ZEXT416((uint)fVar15),ZEXT416((uint)fVar15));
                     // WARNING: Subroutine does not return
-        FUN_1808fd400(*(undefined4 *)(lVar4 + 0x34),3.0 - fVar15 * auVar16._0_4_ * auVar16._0_4_);
+        FUN_1808fd400(*(int32_t *)(lVar4 + 0x34),3.0 - fVar15 * auVar16._0_4_ * auVar16._0_4_);
       }
     }
     in_XMM5_Da = 0.001;
@@ -361,7 +361,7 @@ LAB_1805c2964:
       }
     }
     else {
-      *(undefined4 *)((longlong)unaff_RBX + 0x172c) = 0xffffffff;
+      *(int32_t *)((longlong)unaff_RBX + 0x172c) = 0xffffffff;
     }
   }
   else if ((((int)unaff_RBX[0x403] == 2) && (*(int *)(*unaff_RBX + 0x564) != -1)) && (5.0 < fVar15))
@@ -405,7 +405,7 @@ void FUN_1805c23c2(void)
   float unaff_XMM13_Da;
   float unaff_XMM14_Da;
   float unaff_XMM15_Da;
-  undefined8 in_stack_00000040;
+  uint64_t in_stack_00000040;
   
   piVar5 = *(int **)(unaff_RBP + 0x100);
   cVar2 = (char)unaff_RSI;
@@ -535,7 +535,7 @@ LAB_1805c2964:
       }
     }
     else {
-      *(undefined4 *)((longlong)unaff_RBX + 0x172c) = 0xffffffff;
+      *(int32_t *)((longlong)unaff_RBX + 0x172c) = 0xffffffff;
     }
   }
   else if ((((int)unaff_RBX[0x403] == 2) && (*(int *)(*unaff_RBX + 0x564) != -1)) && (5.0 < fVar9))

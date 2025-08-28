@@ -29,7 +29,7 @@
  * - 管理数据指针和引用
  * - 执行复杂的数据操作逻辑
  */
-void 处理复杂数据结构(undefined8 上下文参数, undefined8 *数据指针, undefined4 操作标识)
+void 处理复杂数据结构(uint64_t 上下文参数, uint64_t *数据指针, int32_t 操作标识)
 {
     // 函数实现包含50多行代码
     // 主要功能包括：
@@ -57,7 +57,7 @@ void 处理复杂数据结构(undefined8 上下文参数, undefined8 *数据指�
  * - 处理错误情况和异常
  * - 返回验证结果
  */
-bool 验证系统状态版本1(longlong 系统句柄, undefined8 参数2, undefined8 参数3)
+bool 验证系统状态版本1(longlong 系统句柄, uint64_t 参数2, uint64_t 参数3)
 {
     // 函数实现包含80多行代码
     // 主要功能包括：
@@ -129,7 +129,7 @@ ulonglong 获取系统状态信息(void)
  * 
  * @return 返回0
  */
-undefined8 空函数1(void)
+uint64_t 空函数1(void)
 {
     // 空实现
     // 原始代码位置: src/02_core_engine_part250.c:237-241
@@ -152,7 +152,7 @@ undefined8 空函数1(void)
  * - 处理边界情况和异常
  * - 返回验证结果
  */
-bool 验证操作参数版本1(longlong 系统句柄, int 参数值, undefined8 参数3)
+bool 验证操作参数版本1(longlong 系统句柄, int 参数值, uint64_t 参数3)
 {
     // 函数实现包含80多行代码
     // 主要功能包括：
@@ -224,7 +224,7 @@ ulonglong 获取操作状态信息(void)
  * 
  * @return 返回0
  */
-undefined8 空函数2(void)
+uint64_t 空函数2(void)
 {
     // 空实现
     // 原始代码位置: src/02_core_engine_part250.c:414-418
@@ -246,7 +246,7 @@ undefined8 空函数2(void)
  * - 处理不同类型的数据
  * - 管理数据访问和修改
  */
-void 处理数据项遍历版本1(undefined8 参数1, undefined8 参数2, longlong 数据结构)
+void 处理数据项遍历版本1(uint64_t 参数1, uint64_t 参数2, longlong 数据结构)
 {
     // 函数实现包含20多行代码
     // 主要功能包括：
@@ -273,7 +273,7 @@ void 处理数据项遍历版本1(undefined8 参数1, undefined8 参数2, longlo
  * - 处理不同类型的数据
  * - 管理数据访问和修改
  */
-void 处理数据项遍历版本2(undefined8 参数1, undefined8 参数2, longlong 数据结构)
+void 处理数据项遍历版本2(uint64_t 参数1, uint64_t 参数2, longlong 数据结构)
 {
     // 函数实现包含20多行代码
     // 主要功能包括：
@@ -300,7 +300,7 @@ void 处理数据项遍历版本2(undefined8 参数1, undefined8 参数2, longlo
  * - 处理不同类型的数据
  * - 管理数据访问和修改
  */
-void 处理数据项遍历版本3(undefined8 参数1, undefined8 参数2, longlong 数据结构)
+void 处理数据项遍历版本3(uint64_t 参数1, uint64_t 参数2, longlong 数据结构)
 {
     // 函数实现包含10多行代码
     // 主要功能包括：
@@ -479,7 +479,7 @@ void 重置对象状态(longlong 对象指针)
  * - 内存管理和分配
  * - 错误处理和清理
  */
-void 处理文件加载解析(longlong 对象指针, undefined8 参数2, undefined8 参数3, undefined8 参数4)
+void 处理文件加载解析(longlong 对象指针, uint64_t 参数2, uint64_t 参数3, uint64_t 参数4)
 {
     // 函数实现包含140多行代码
     // 主要功能包括：
@@ -506,7 +506,7 @@ void 处理文件加载解析(longlong 对象指针, undefined8 参数2, undefin
  * - 更新状态标志
  * - 处理错误情况
  */
-void 执行回调操作版本1(longlong 对象指针, int 索引参数, undefined8 回调参数)
+void 执行回调操作版本1(longlong 对象指针, int 索引参数, uint64_t 回调参数)
 {
     // 函数实现包含10多行代码
     // 主要功能包括：
@@ -533,7 +533,7 @@ void 执行回调操作版本1(longlong 对象指针, int 索引参数, undefine
  * - 更新状态标志
  * - 处理错误情况
  */
-void 执行回调操作版本2(longlong 对象指针, int 索引参数, undefined8 回调参数)
+void 执行回调操作版本2(longlong 对象指针, int 索引参数, uint64_t 回调参数)
 {
     // 函数实现包含10多行代码
     // 主要功能包括：
@@ -661,7 +661,7 @@ void 设置时间参数(longlong 对象指针, int 索引参数, int 时间偏�
  * - 返回状态信息
  * - 处理错误情况
  */
-undefined8 检查操作状态(longlong 对象指针, int 索引参数)
+uint64_t 检查操作状态(longlong 对象指针, int 索引参数)
 {
     // 函数实现包含10多行代码
     // 主要功能包括：
@@ -690,7 +690,7 @@ undefined8 检查操作状态(longlong 对象指针, int 索引参数)
  * - 管理内存操作
  * - 处理错误情况
  */
-undefined8 处理数据复制操作(ulonglong 地址参数, longlong 源参数, uint 大小参数)
+uint64_t 处理数据复制操作(ulonglong 地址参数, longlong 源参数, uint 大小参数)
 {
     // 函数实现包含70多行代码
     // 主要功能包括：

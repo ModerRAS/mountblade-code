@@ -8,29 +8,29 @@ void FUN_180839208(void)
 {
   longlong in_RAX;
   longlong in_R11;
-  undefined8 unaff_R12;
-  undefined8 unaff_R13;
-  undefined8 unaff_R15;
-  undefined8 unaff_XMM6_Qa;
-  undefined8 unaff_XMM6_Qb;
-  undefined8 unaff_XMM7_Qa;
-  undefined8 unaff_XMM7_Qb;
-  undefined8 unaff_XMM8_Qa;
-  undefined8 unaff_XMM8_Qb;
-  undefined8 unaff_XMM9_Qa;
-  undefined8 unaff_XMM9_Qb;
+  uint64_t unaff_R12;
+  uint64_t unaff_R13;
+  uint64_t unaff_R15;
+  uint64_t unaff_XMM6_Qa;
+  uint64_t unaff_XMM6_Qb;
+  uint64_t unaff_XMM7_Qa;
+  uint64_t unaff_XMM7_Qb;
+  uint64_t unaff_XMM8_Qa;
+  uint64_t unaff_XMM8_Qb;
+  uint64_t unaff_XMM9_Qa;
+  uint64_t unaff_XMM9_Qb;
   
-  *(undefined8 *)(in_R11 + 0x10) = unaff_R12;
-  *(undefined8 *)(in_R11 + -0x30) = unaff_R13;
-  *(undefined8 *)(in_R11 + -0x38) = unaff_R15;
-  *(undefined8 *)(in_R11 + -0x48) = unaff_XMM6_Qa;
-  *(undefined8 *)(in_R11 + -0x40) = unaff_XMM6_Qb;
-  *(undefined8 *)(in_R11 + -0x58) = unaff_XMM7_Qa;
-  *(undefined8 *)(in_R11 + -0x50) = unaff_XMM7_Qb;
-  *(undefined8 *)(in_R11 + -0x68) = unaff_XMM8_Qa;
-  *(undefined8 *)(in_R11 + -0x60) = unaff_XMM8_Qb;
-  *(undefined8 *)(in_R11 + -0x78) = unaff_XMM9_Qa;
-  *(undefined8 *)(in_R11 + -0x70) = unaff_XMM9_Qb;
+  *(uint64_t *)(in_R11 + 0x10) = unaff_R12;
+  *(uint64_t *)(in_R11 + -0x30) = unaff_R13;
+  *(uint64_t *)(in_R11 + -0x38) = unaff_R15;
+  *(uint64_t *)(in_R11 + -0x48) = unaff_XMM6_Qa;
+  *(uint64_t *)(in_R11 + -0x40) = unaff_XMM6_Qb;
+  *(uint64_t *)(in_R11 + -0x58) = unaff_XMM7_Qa;
+  *(uint64_t *)(in_R11 + -0x50) = unaff_XMM7_Qb;
+  *(uint64_t *)(in_R11 + -0x68) = unaff_XMM8_Qa;
+  *(uint64_t *)(in_R11 + -0x60) = unaff_XMM8_Qb;
+  *(uint64_t *)(in_R11 + -0x78) = unaff_XMM9_Qa;
+  *(uint64_t *)(in_R11 + -0x70) = unaff_XMM9_Qb;
                     // WARNING: Could not recover jumptable at 0x000180839239. Too many branches
                     // WARNING: Treating indirect jump as call
   (*(code *)((ulonglong)*(uint *)(&UNK_180839720 + in_RAX * 4) + 0x180000000))
@@ -40,7 +40,7 @@ void FUN_180839208(void)
 
 
 
-undefined8 FUN_180839344(void)
+uint64_t FUN_180839344(void)
 
 {
   float fVar1;
@@ -72,9 +72,9 @@ undefined8 FUN_180839344(void)
   uint extraout_XMM0_Dc_00;
   uint extraout_XMM0_Dd;
   uint extraout_XMM0_Dd_00;
-  undefined1 auVar18 [16];
-  undefined1 auVar19 [16];
-  undefined1 auVar20 [16];
+  int8_t auVar18 [16];
+  int8_t auVar19 [16];
+  int8_t auVar20 [16];
   uint unaff_XMM11_Da;
   uint unaff_XMM11_Db;
   uint unaff_XMM11_Dc;
@@ -170,7 +170,7 @@ undefined8 FUN_180839344(void)
 
 
 
-undefined8 FUN_18083943c(void)
+uint64_t FUN_18083943c(void)
 
 {
   float *unaff_RBX;
@@ -213,7 +213,7 @@ undefined8 FUN_18083943c(void)
 
 
 
-undefined8 FUN_1808396fe(void)
+uint64_t FUN_1808396fe(void)
 
 {
   return 0;
@@ -221,7 +221,7 @@ undefined8 FUN_1808396fe(void)
 
 
 
-undefined8 FUN_180839750(uint *param_1,float *param_2,undefined8 param_3,int param_4)
+uint64_t FUN_180839750(uint *param_1,float *param_2,uint64_t param_3,int param_4)
 
 {
   float *pfVar1;
@@ -257,7 +257,7 @@ undefined8 FUN_180839750(uint *param_1,float *param_2,undefined8 param_3,int par
   uint extraout_XMM0_Dd;
   uint extraout_XMM0_Dd_00;
   uint extraout_XMM0_Dd_01;
-  undefined1 auVar22 [16];
+  int8_t auVar22 [16];
   
   uVar21 = (uint)*(char *)((longlong)param_1 + 0x66);
   uVar14 = *param_1;
@@ -380,8 +380,8 @@ undefined8 FUN_180839750(uint *param_1,float *param_2,undefined8 param_3,int par
 
 
 
-// 函数: void FUN_1808397b0(undefined8 param_1,longlong param_2)
-void FUN_1808397b0(undefined8 param_1,longlong param_2)
+// 函数: void FUN_1808397b0(uint64_t param_1,longlong param_2)
+void FUN_1808397b0(uint64_t param_1,longlong param_2)
 
 {
   longlong in_RAX;
@@ -396,7 +396,7 @@ void FUN_1808397b0(undefined8 param_1,longlong param_2)
 
 
 
-undefined8 FUN_180839883(void)
+uint64_t FUN_180839883(void)
 
 {
   float *pfVar1;
@@ -413,7 +413,7 @@ undefined8 FUN_180839883(void)
   uint extraout_XMM0_Db;
   uint extraout_XMM0_Dc;
   uint extraout_XMM0_Dd;
-  undefined1 auVar7 [16];
+  int8_t auVar7 [16];
   uint unaff_XMM6_Da;
   uint unaff_XMM6_Db;
   uint unaff_XMM6_Dc;
@@ -488,7 +488,7 @@ undefined8 FUN_180839883(void)
 
 
 
-undefined8 FUN_180839966(void)
+uint64_t FUN_180839966(void)
 
 {
   return 0;
@@ -496,7 +496,7 @@ undefined8 FUN_180839966(void)
 
 
 
-undefined8 FUN_18083996e(void)
+uint64_t FUN_18083996e(void)
 
 {
   return 0;
@@ -504,12 +504,12 @@ undefined8 FUN_18083996e(void)
 
 
 
-undefined8
-FUN_1808399b0(undefined1 (*param_1) [16],longlong *param_2,int param_3,undefined8 param_4,
-             undefined8 param_5,int param_6)
+uint64_t
+FUN_1808399b0(int8_t (*param_1) [16],longlong *param_2,int param_3,uint64_t param_4,
+             uint64_t param_5,int param_6)
 
 {
-  undefined1 auVar1 [16];
+  int8_t auVar1 [16];
   float fVar2;
   float fVar3;
   float fVar4;
@@ -522,25 +522,25 @@ FUN_1808399b0(undefined1 (*param_1) [16],longlong *param_2,int param_3,undefined
   int iVar11;
   float *pfVar12;
   uint uVar13;
-  undefined8 extraout_XMM0_Qb;
-  undefined1 auVar14 [16];
-  undefined8 extraout_XMM0_Qb_00;
-  undefined1 auVar15 [16];
-  undefined8 extraout_XMM0_Qb_01;
-  undefined8 extraout_XMM0_Qb_02;
-  undefined1 auVar16 [16];
-  undefined1 auVar17 [16];
-  undefined1 auVar18 [16];
+  uint64_t extraout_XMM0_Qb;
+  int8_t auVar14 [16];
+  uint64_t extraout_XMM0_Qb_00;
+  int8_t auVar15 [16];
+  uint64_t extraout_XMM0_Qb_01;
+  uint64_t extraout_XMM0_Qb_02;
+  int8_t auVar16 [16];
+  int8_t auVar17 [16];
+  int8_t auVar18 [16];
   int iVar20;
   int iVar21;
   int iVar22;
-  undefined1 auVar19 [16];
-  undefined1 auVar23 [16];
-  undefined1 auVar24 [16];
-  undefined1 auStack_a8 [16];
-  undefined1 auStack_98 [16];
-  undefined1 auStack_88 [16];
-  undefined1 aauStack_78 [5] [16];
+  int8_t auVar19 [16];
+  int8_t auVar23 [16];
+  int8_t auVar24 [16];
+  int8_t auStack_a8 [16];
+  int8_t auStack_98 [16];
+  int8_t auStack_88 [16];
+  int8_t aauStack_78 [5] [16];
   
   uVar13 = (uint)(char)param_1[6][6];
   auVar1 = *param_1;

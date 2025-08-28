@@ -10,15 +10,15 @@ void cleanup_engine_resources(longlong engine_context)
     int *resource_count;
     longlong *resource_array;
     int *cleanup_status;
-    undefined4 *resource_ptr;
+    int32_t *resource_ptr;
     longlong global_context;
     uint resource_index;
-    undefined8 *temp_array;
-    undefined8 *array_ptr;
-    undefined8 *working_array;
-    undefined8 *result_array;
-    undefined8 *alloc_array;
-    undefined8 *current_ptr;
+    uint64_t *temp_array;
+    uint64_t *array_ptr;
+    uint64_t *working_array;
+    uint64_t *result_array;
+    uint64_t *alloc_array;
+    uint64_t *current_ptr;
     int item_count;
     longlong item_address;
     int array_size;
@@ -28,9 +28,9 @@ void cleanup_engine_resources(longlong engine_context)
     int item_id;
     uint compare_result;
     ulonglong address_val;
-    undefined8 *ptr_var;
+    uint64_t *ptr_var;
     ulonglong temp_val;
-    undefined8 *final_array;
+    uint64_t *final_array;
     ulonglong cleanup_flag;
     
     resource_count = *(int **)(engine_context + 0x2df8);
@@ -39,7 +39,7 @@ void cleanup_engine_resources(longlong engine_context)
             trigger_resource_cleanup();
             global_context = _DAT_180c8a9b0;
             resource_count = *(int **)(_DAT_180c8a9b0 + 0x2df8);
-            temp_array = (undefined8 *)0x0;
+            temp_array = (uint64_t *)0x0;
             resource_index = 0;
             array_ptr = temp_array;
             working_array = temp_array;
@@ -68,21 +68,21 @@ void cleanup_engine_resources(longlong engine_context)
                                 if (_DAT_180c8a9b0 != 0) {
                                     *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
                                 }
-                                alloc_array = (undefined8 *)
+                                alloc_array = (uint64_t *)
                                          allocate_memory_array((longlong)(int)new_size << 3,_DAT_180c8a9a8);
-                                if (final_array != (undefined8 *)0x0) {
+                                if (final_array != (uint64_t *)0x0) {
                                     // 复制现有数组内容到新数组
                                     memcpy(alloc_array,final_array,(longlong)array_size << 3);
                                 }
-                                working_array = (undefined8 *)(ulonglong)new_size;
+                                working_array = (uint64_t *)(ulonglong)new_size;
                             }
                         }
                         alloc_array[array_size] = item_address;
-                        array_ptr = (undefined8 *)(ulonglong)(array_size + 1);
+                        array_ptr = (uint64_t *)(ulonglong)(array_size + 1);
                     }
                     resource_index = (uint)array_ptr;
                     new_size = (int)temp_array + 1;
-                    temp_array = (undefined8 *)(ulonglong)new_size;
+                    temp_array = (uint64_t *)(ulonglong)new_size;
                     result_array = result_array + 2;
                     final_array = alloc_array;
                 } while ((int)new_size < *resource_count);
@@ -95,7 +95,7 @@ void cleanup_engine_resources(longlong engine_context)
                     if ((item_id != 0) && (item_count = 0, array_ptr = alloc_array, 0 < (int)resource_index)) {
                         do {
                             if (*(int *)*array_ptr == item_id) {
-                                *(undefined4 *)(*(longlong *)(global_context + 0x2e30) + 0x28 + temp_val) = 0;
+                                *(int32_t *)(*(longlong *)(global_context + 0x2e30) + 0x28 + temp_val) = 0;
                                 break;
                             }
                             item_count = item_count + 1;
@@ -139,7 +139,7 @@ void cleanup_engine_resources(longlong engine_context)
                 // 释放资源数组内存
                 free_memory_array(global_context,_DAT_180c8a9a8);
             }
-            if (alloc_array == (undefined8 *)0x0) {
+            if (alloc_array == (uint64_t *)0x0) {
                 return;
             }
             if (_DAT_180c8a9b0 != 0) {
@@ -153,8 +153,8 @@ void cleanup_engine_resources(longlong engine_context)
         temp_val = 0;
         if ((*(char *)(engine_context + 0xc0) != '\0') && (cleanup_flag = temp_val, address_val = temp_val, 0 < *resource_count)) {
             do {
-                resource_ptr = *(undefined4 **)(address_val + 8 + *(longlong *)(resource_count + 2));
-                if ((resource_ptr != (undefined4 *)0x0) &&
+                resource_ptr = *(int32_t **)(address_val + 8 + *(longlong *)(resource_count + 2));
+                if ((resource_ptr != (int32_t *)0x0) &&
                    ((*(longlong *)(resource_ptr + 2) == 0 && (*(longlong *)(resource_ptr + 4) != 0)))) {
                     release_resource_handle(*resource_ptr);
                 }
@@ -174,16 +174,16 @@ void cleanup_engine_resources(longlong engine_context)
                 do {
                     item_address = *(longlong *)(cleanup_flag + *resource_array);
                     if (*(longlong *)(item_address + 0x408) == 0) {
-                        *(undefined4 *)(item_address + 0x418) = 0;
+                        *(int32_t *)(item_address + 0x418) = 0;
                     }
                     else {
-                        cleanup_resource_data(*(longlong *)(item_address + 0x408),item_address,*(undefined4 *)(item_address + 0x418));
+                        cleanup_resource_data(*(longlong *)(item_address + 0x408),item_address,*(int32_t *)(item_address + 0x418));
                         loop_var = _DAT_180c8a9b0;
                     }
                     *(byte *)(item_address + 0x432) = *(byte *)(item_address + 0x432) & 0xfc;
-                    *(undefined1 *)(item_address + 0xb2) = 0;
+                    *(int8_t *)(item_address + 0xb2) = 0;
                     if (*(float *)(loop_var + 0x2e04) <= 0.0) {
-                        *(undefined4 *)(loop_var + 0x2e04) = *(undefined4 *)(loop_var + 0x1c);
+                        *(int32_t *)(loop_var + 0x2e04) = *(int32_t *)(loop_var + 0x1c);
                     }
                     resource_index = (int)cleanup_flag + 1;
                     cleanup_flag = (ulonglong)resource_index;
@@ -191,9 +191,9 @@ void cleanup_engine_resources(longlong engine_context)
                 } while ((int)resource_index < *cleanup_status);
             }
             release_resource_handle(0);
-            process_resource_batch(engine_context,*(undefined8 *)(global_context + 0x28),*(undefined4 *)(global_context + 0x20));
+            process_resource_batch(engine_context,*(uint64_t *)(global_context + 0x28),*(int32_t *)(global_context + 0x20));
             finalize_resource_processing(engine_context);
-            *(undefined1 *)(resource_count + 0xc) = 0;
+            *(int8_t *)(resource_count + 0xc) = 0;
         }
         global_context = 0;
         item_id = 0;
@@ -209,16 +209,16 @@ void cleanup_engine_resources(longlong engine_context)
                     }
                     else {
                         if (*(longlong *)(item_address + 0x408) == 0) {
-                            *(undefined4 *)(item_address + 0x418) = 0;
+                            *(int32_t *)(item_address + 0x418) = 0;
                         }
                         else {
                             cleanup_resource_data(*(longlong *)(item_address + 0x408),item_address,0);
                         }
                         loop_var = _DAT_180c8a9b0;
                         *(byte *)(item_address + 0x432) = *(byte *)(item_address + 0x432) & 0xfc;
-                        *(undefined1 *)(item_address + 0xb2) = 0;
+                        *(int8_t *)(item_address + 0xb2) = 0;
                         if (*(float *)(loop_var + 0x2e04) <= 0.0) {
-                            *(undefined4 *)(loop_var + 0x2e04) = *(undefined4 *)(loop_var + 0x1c);
+                            *(int32_t *)(loop_var + 0x2e04) = *(int32_t *)(loop_var + 0x1c);
                         }
                     }
                 }
@@ -237,7 +237,7 @@ void cleanup_specific_resources(longlong context)
 {
     int *resource_ptr;
     longlong *array_ptr;
-    undefined4 *resource_data;
+    int32_t *resource_data;
     longlong item_address;
     longlong data_ptr;
     uint index;
@@ -251,8 +251,8 @@ void cleanup_specific_resources(longlong context)
     loop_counter = 0;
     if ((*(char *)(context + 0xc0) != '\0') && (array_index = loop_counter, iteration_val = loop_counter, 0 < *status_array)) {
         do {
-            resource_data = *(undefined4 **)(iteration_val + 8 + *(longlong *)(status_array + 2));
-            if ((resource_data != (undefined4 *)0x0) &&
+            resource_data = *(int32_t **)(iteration_val + 8 + *(longlong *)(status_array + 2));
+            if ((resource_data != (int32_t *)0x0) &&
                ((*(longlong *)(resource_data + 2) == 0 && (*(longlong *)(resource_data + 4) != 0)))) {
                 release_resource_handle(*resource_data);
             }
@@ -271,16 +271,16 @@ void cleanup_specific_resources(longlong context)
             do {
                 item_address = *(longlong *)(array_index + *array_ptr);
                 if (*(longlong *)(item_address + 0x408) == 0) {
-                    *(undefined4 *)(item_address + 0x418) = 0;
+                    *(int32_t *)(item_address + 0x418) = 0;
                 }
                 else {
-                    cleanup_resource_data(*(longlong *)(item_address + 0x408),item_address,*(undefined4 *)(item_address + 0x418));
+                    cleanup_resource_data(*(longlong *)(item_address + 0x408),item_address,*(int32_t *)(item_address + 0x418));
                     current_item = _DAT_180c8a9b0;
                 }
                 *(byte *)(item_address + 0x432) = *(byte *)(item_address + 0x432) & 0xfc;
-                *(undefined1 *)(item_address + 0xb2) = 0;
+                *(int8_t *)(item_address + 0xb2) = 0;
                 if (*(float *)(current_item + 0x2e04) <= 0.0) {
-                    *(undefined4 *)(current_item + 0x2e04) = *(undefined4 *)(current_item + 0x1c);
+                    *(int32_t *)(current_item + 0x2e04) = *(int32_t *)(current_item + 0x1c);
                 }
                 index = (int)loop_counter + 1;
                 loop_counter = (ulonglong)index;
@@ -290,7 +290,7 @@ void cleanup_specific_resources(longlong context)
         release_resource_handle(0);
         initialize_resource_batch();
         finalize_resource_processing();
-        *(undefined1 *)(status_array + 0xc) = 0;
+        *(int8_t *)(status_array + 0xc) = 0;
     }
     current_item = 0;
     resource_count = 0;
@@ -306,16 +306,16 @@ void cleanup_specific_resources(longlong context)
                 }
                 else {
                     if (*(longlong *)(data_ptr + 0x408) == 0) {
-                        *(undefined4 *)(data_ptr + 0x418) = 0;
+                        *(int32_t *)(data_ptr + 0x418) = 0;
                     }
                     else {
                         cleanup_resource_data(*(longlong *)(data_ptr + 0x408),data_ptr,0);
                     }
                     item_address = _DAT_180c8a9b0;
                     *(byte *)(data_ptr + 0x432) = *(byte *)(data_ptr + 0x432) & 0xfc;
-                    *(undefined1 *)(data_ptr + 0xb2) = 0;
+                    *(int8_t *)(data_ptr + 0xb2) = 0;
                     if (*(float *)(item_address + 0x2e04) <= 0.0) {
-                        *(undefined4 *)(item_address + 0x2e04) = *(undefined4 *)(item_address + 0x1c);
+                        *(int32_t *)(item_address + 0x2e04) = *(int32_t *)(item_address + 0x1c);
                     }
                 }
             }
@@ -338,7 +338,7 @@ void perform_global_resource_cleanup(void)
     ulonglong index;
     longlong context_base;
     uint loop_index;
-    undefined4 status_flag;
+    int32_t status_flag;
     ulonglong array_size;
     float time_threshold;
     
@@ -351,16 +351,16 @@ void perform_global_resource_cleanup(void)
         do {
             item_address = *(longlong *)(array_size + *resource_array);
             if (*(longlong *)(item_address + 0x408) == 0) {
-                *(undefined4 *)(item_address + 0x418) = 0;
+                *(int32_t *)(item_address + 0x418) = 0;
             }
             else {
-                cleanup_resource_data(*(longlong *)(item_address + 0x408),item_address,*(undefined4 *)(item_address + 0x418));
+                cleanup_resource_data(*(longlong *)(item_address + 0x408),item_address,*(int32_t *)(item_address + 0x418));
                 data_ptr = _DAT_180c8a9b0;
             }
             *(byte *)(item_address + 0x432) = *(byte *)(item_address + 0x432) & 0xfc;
-            *(undefined1 *)(item_address + 0xb2) = 0;
+            *(int8_t *)(item_address + 0xb2) = 0;
             if (*(float *)(data_ptr + 0x2e04) <= time_threshold) {
-                *(undefined4 *)(data_ptr + 0x2e04) = *(undefined4 *)(data_ptr + 0x1c);
+                *(int32_t *)(data_ptr + 0x2e04) = *(int32_t *)(data_ptr + 0x1c);
             }
             loop_index = (int)index + 1;
             index = (ulonglong)loop_index;
@@ -371,8 +371,8 @@ void perform_global_resource_cleanup(void)
     release_resource_handle(0);
     initialize_resource_batch();
     finalize_resource_processing();
-    *(undefined1 *)(context_base + 0x30) = 0;
-    status_flag = (undefined4)array_size;
+    *(int8_t *)(context_base + 0x30) = 0;
+    status_flag = (int32_t)array_size;
     index = array_size & 0xffffffff;
     if (0 < *(int *)(context_base + 0x10)) {
         do {
@@ -386,16 +386,16 @@ void perform_global_resource_cleanup(void)
                 }
                 else {
                     if (*(longlong *)(item_address + 0x408) == 0) {
-                        *(undefined4 *)(item_address + 0x418) = status_flag;
+                        *(int32_t *)(item_address + 0x418) = status_flag;
                     }
                     else {
                         cleanup_resource_data(*(longlong *)(item_address + 0x408),item_address,0);
                     }
                     data_ptr = _DAT_180c8a9b0;
                     *(byte *)(item_address + 0x432) = *(byte *)(item_address + 0x432) & 0xfc;
-                    *(undefined1 *)(item_address + 0xb2) = 0;
+                    *(int8_t *)(item_address + 0xb2) = 0;
                     if (*(float *)(data_ptr + 0x2e04) <= time_threshold) {
-                        *(undefined4 *)(data_ptr + 0x2e04) = *(undefined4 *)(data_ptr + 0x1c);
+                        *(int32_t *)(data_ptr + 0x2e04) = *(int32_t *)(data_ptr + 0x1c);
                     }
                 }
             }
@@ -410,7 +410,7 @@ void perform_global_resource_cleanup(void)
 
 // 函数：带参数的资源清理
 // 原始函数名: FUN_180135772
-void cleanup_resources_with_params(undefined8 param_1,longlong context)
+void cleanup_resources_with_params(uint64_t param_1,longlong context)
 {
     longlong *resource_array;
     longlong item_address;
@@ -428,16 +428,16 @@ void cleanup_resources_with_params(undefined8 param_1,longlong context)
     do {
         item_address = *(longlong *)(array_offset + *resource_array);
         if (*(longlong *)(item_address + 0x408) == 0) {
-            *(undefined4 *)(item_address + 0x418) = 0;
+            *(int32_t *)(item_address + 0x418) = 0;
         }
         else {
-            cleanup_resource_data(*(longlong *)(item_address + 0x408),item_address,*(undefined4 *)(item_address + 0x418));
+            cleanup_resource_data(*(longlong *)(item_address + 0x408),item_address,*(int32_t *)(item_address + 0x418));
             context = _DAT_180c8a9b0;
         }
         *(byte *)(item_address + 0x432) = *(byte *)(item_address + 0x432) & 0xfc;
-        *(undefined1 *)(item_address + 0xb2) = 0;
+        *(int8_t *)(item_address + 0xb2) = 0;
         if (*(float *)(context + 0x2e04) <= time_threshold) {
-            *(undefined4 *)(context + 0x2e04) = *(undefined4 *)(context + 0x1c);
+            *(int32_t *)(context + 0x2e04) = *(int32_t *)(context + 0x1c);
         }
         loop_counter = loop_counter + 1;
         array_offset = array_offset + 8;
@@ -446,7 +446,7 @@ void cleanup_resources_with_params(undefined8 param_1,longlong context)
     release_resource_handle(0);
     initialize_resource_batch();
     finalize_resource_processing();
-    *(undefined1 *)(context_base + 0x30) = 0;
+    *(int8_t *)(context_base + 0x30) = 0;
     array_index = loop_var;
     if (0 < *(int *)(context_base + 0x10)) {
         do {
@@ -460,16 +460,16 @@ void cleanup_resources_with_params(undefined8 param_1,longlong context)
                 }
                 else {
                     if (*(longlong *)(data_ptr + 0x408) == 0) {
-                        *(undefined4 *)(data_ptr + 0x418) = 0;
+                        *(int32_t *)(data_ptr + 0x418) = 0;
                     }
                     else {
                         cleanup_resource_data(*(longlong *)(data_ptr + 0x408),data_ptr,0);
                     }
                     item_address = _DAT_180c8a9b0;
                     *(byte *)(data_ptr + 0x432) = *(byte *)(data_ptr + 0x432) & 0xfc;
-                    *(undefined1 *)(data_ptr + 0xb2) = 0;
+                    *(int8_t *)(data_ptr + 0xb2) = 0;
                     if (*(float *)(item_address + 0x2e04) <= time_threshold) {
-                        *(undefined4 *)(item_address + 0x2e04) = *(undefined4 *)(item_address + 0x1c);
+                        *(int32_t *)(item_address + 0x2e04) = *(int32_t *)(item_address + 0x1c);
                     }
                 }
             }
@@ -491,15 +491,15 @@ void quick_resource_cleanup(void)
     uint index;
     ulonglong array_index;
     longlong context_base;
-    undefined4 status_flag;
+    int32_t status_flag;
     ulonglong array_offset;
     float time_threshold;
     
     release_resource_handle(0);
     initialize_resource_batch();
     finalize_resource_processing();
-    *(undefined1 *)(context_base + 0x30) = 0;
-    status_flag = (undefined4)array_offset;
+    *(int8_t *)(context_base + 0x30) = 0;
+    status_flag = (int32_t)array_offset;
     array_index = array_offset & 0xffffffff;
     if (0 < *(int *)(context_base + 0x10)) {
         do {
@@ -513,16 +513,16 @@ void quick_resource_cleanup(void)
                 }
                 else {
                     if (*(longlong *)(data_ptr + 0x408) == 0) {
-                        *(undefined4 *)(data_ptr + 0x418) = status_flag;
+                        *(int32_t *)(data_ptr + 0x418) = status_flag;
                     }
                     else {
                         cleanup_resource_data(*(longlong *)(data_ptr + 0x408),data_ptr,0);
                     }
                     item_address = _DAT_180c8a9b0;
                     *(byte *)(data_ptr + 0x432) = *(byte *)(data_ptr + 0x432) & 0xfc;
-                    *(undefined1 *)(data_ptr + 0xb2) = 0;
+                    *(int8_t *)(data_ptr + 0xb2) = 0;
                     if (*(float *)(item_address + 0x2e04) <= time_threshold) {
-                        *(undefined4 *)(item_address + 0x2e04) = *(undefined4 *)(item_address + 0x1c);
+                        *(int32_t *)(item_address + 0x2e04) = *(int32_t *)(item_address + 0x1c);
                     }
                 }
             }
@@ -544,11 +544,11 @@ void minimal_resource_cleanup(void)
     uint index;
     ulonglong array_index;
     longlong context_base;
-    undefined4 status_flag;
+    int32_t status_flag;
     ulonglong array_offset;
     float time_threshold;
     
-    status_flag = (undefined4)array_offset;
+    status_flag = (int32_t)array_offset;
     array_index = array_offset & 0xffffffff;
     if (0 < *(int *)(context_base + 0x10)) {
         do {
@@ -562,16 +562,16 @@ void minimal_resource_cleanup(void)
                 }
                 else {
                     if (*(longlong *)(data_ptr + 0x408) == 0) {
-                        *(undefined4 *)(data_ptr + 0x418) = status_flag;
+                        *(int32_t *)(data_ptr + 0x418) = status_flag;
                     }
                     else {
                         cleanup_resource_data(*(longlong *)(data_ptr + 0x408),data_ptr,0);
                     }
                     item_address = _DAT_180c8a9b0;
                     *(byte *)(data_ptr + 0x432) = *(byte *)(data_ptr + 0x432) & 0xfc;
-                    *(undefined1 *)(data_ptr + 0xb2) = 0;
+                    *(int8_t *)(data_ptr + 0xb2) = 0;
                     if (*(float *)(item_address + 0x2e04) <= time_threshold) {
-                        *(undefined4 *)(item_address + 0x2e04) = *(undefined4 *)(item_address + 0x1c);
+                        *(int32_t *)(item_address + 0x2e04) = *(int32_t *)(item_address + 0x1c);
                     }
                 }
             }
@@ -629,13 +629,13 @@ uint generate_unique_resource_id(longlong context)
 
 // 函数：创建资源对象
 // 原始函数名: FUN_180135960
-undefined4 *create_resource_object(longlong context,int resource_type,undefined8 param_3,undefined8 param_4)
+int32_t *create_resource_object(longlong context,int resource_type,uint64_t param_3,uint64_t param_4)
 {
-    undefined4 *resource_obj;
-    undefined1 stack_data [8];
-    undefined1 *stack_ptr;
+    int32_t *resource_obj;
+    int8_t stack_data [8];
+    int8_t *stack_ptr;
     longlong allocated_memory;
-    undefined8 flags;
+    uint64_t flags;
     
     flags = 0xfffffffffffffffe;
     if (resource_type == 0) {
@@ -647,59 +647,59 @@ undefined4 *create_resource_object(longlong context,int resource_type,undefined8
     allocated_memory = allocate_memory_array(0xa8,_DAT_180c8a9a8);
     stack_ptr = stack_data;
     if (allocated_memory == 0) {
-        resource_obj = (undefined4 *)0x0;
+        resource_obj = (int32_t *)0x0;
     }
     else {
-        resource_obj = (undefined4 *)initialize_resource_object(allocated_memory,resource_type);
+        resource_obj = (int32_t *)initialize_resource_object(allocated_memory,resource_type);
     }
     *(byte *)(resource_obj + 0x28) = *(byte *)(resource_obj + 0x28) | 3;
-    register_resource_object(*(undefined8 *)(context + 0x2df8),*resource_obj,resource_obj,param_4,flags);
+    register_resource_object(*(uint64_t *)(context + 0x2df8),*resource_obj,resource_obj,param_4,flags);
     return resource_obj;
 }
 
 
 // 函数：处理资源对象释放
 // 原始函数名: FUN_1801359f0
-void process_resource_release(longlong context,undefined8 *resource_obj,char release_mode)
+void process_resource_release(longlong context,uint64_t *resource_obj,char release_mode)
 {
     int *resource_count;
-    undefined4 flag1;
-    undefined4 flag2;
-    undefined4 flag3;
+    int32_t flag1;
+    int32_t flag2;
+    int32_t flag3;
     byte status_byte;
-    undefined8 resource_handle;
-    undefined4 *prev_obj;
-    undefined4 *next_obj;
-    undefined4 *current_obj;
+    uint64_t resource_handle;
+    int32_t *prev_obj;
+    int32_t *next_obj;
+    int32_t *current_obj;
     longlong link_data;
     byte link_status;
     longlong resource_data;
     uint obj_index;
     ulonglong iteration_count;
-    undefined8 *linked_obj;
+    uint64_t *linked_obj;
     ulonglong link_count;
     
-    resource_handle = *(undefined8 *)(context + 0x2df8);
+    resource_handle = *(uint64_t *)(context + 0x2df8);
     if (resource_obj[0xd] != 0) {
-        *(undefined8 *)(resource_obj[0xd] + 0x410) = 0;
+        *(uint64_t *)(resource_obj[0xd] + 0x410) = 0;
     }
-    current_obj = (undefined4 *)resource_obj[1];
+    current_obj = (int32_t *)resource_obj[1];
     if (release_mode == '\0') {
-        if (current_obj != (undefined4 *)0x0) {
+        if (current_obj != (int32_t *)0x0) {
             for (resource_data = 0x10; resource_data < 0x20; resource_data = resource_data + 8) {
-                if (*(undefined8 **)(resource_data + (longlong)current_obj) == resource_obj) {
-                    *(undefined8 *)(resource_data + resource_obj[1]) = 0;
+                if (*(uint64_t **)(resource_data + (longlong)current_obj) == resource_obj) {
+                    *(uint64_t *)(resource_data + resource_obj[1]) = 0;
                 }
             }
         }
     }
-    else if (current_obj != (undefined4 *)0x0) {
-        linked_obj = *(undefined8 **)(current_obj + 4);
+    else if (current_obj != (int32_t *)0x0) {
+        linked_obj = *(uint64_t **)(current_obj + 4);
         if (linked_obj == resource_obj) {
-            linked_obj = *(undefined8 **)(current_obj + 6);
+            linked_obj = *(uint64_t **)(current_obj + 6);
         }
-        prev_obj = *(undefined4 **)(current_obj + 4);
-        next_obj = *(undefined4 **)(current_obj + 6);
+        prev_obj = *(int32_t **)(current_obj + 4);
+        next_obj = *(int32_t **)(current_obj + 6);
         flag1 = current_obj[0x12];
         flag2 = current_obj[0x13];
         resource_data = linked_obj[2];
@@ -707,22 +707,22 @@ void process_resource_release(longlong context,undefined8 *resource_obj,char rel
         link_data = linked_obj[3];
         *(longlong *)(current_obj + 6) = link_data;
         if (resource_data != 0) {
-            *(undefined4 **)(resource_data + 8) = current_obj;
+            *(int32_t **)(resource_data + 8) = current_obj;
             link_data = *(longlong *)(current_obj + 6);
         }
         if (link_data != 0) {
-            *(undefined4 **)(link_data + 8) = current_obj;
+            *(int32_t **)(link_data + 8) = current_obj;
         }
         link_count = 0;
-        current_obj[0x14] = *(undefined4 *)(linked_obj + 10);
-        *(undefined8 *)(current_obj + 0x12) = linked_obj[9];
+        current_obj[0x14] = *(int32_t *)(linked_obj + 10);
+        *(uint64_t *)(current_obj + 0x12) = linked_obj[9];
         linked_obj[3] = 0;
         linked_obj[2] = 0;
-        if (prev_obj != (undefined4 *)0x0) {
+        if (prev_obj != (int32_t *)0x0) {
             update_resource_links(current_obj,prev_obj);
             update_resource_reference(*prev_obj,*current_obj);
         }
-        if (next_obj != (undefined4 *)0x0) {
+        if (next_obj != (int32_t *)0x0) {
             update_resource_links(current_obj,next_obj);
             update_resource_reference(*next_obj,*current_obj);
         }
@@ -732,21 +732,21 @@ void process_resource_release(longlong context,undefined8 *resource_obj,char rel
                 obj_index = (int)iteration_count + 1;
                 flag3 = current_obj[0xf];
                 resource_data = *(longlong *)(link_count + *(longlong *)(current_obj + 10));
-                *(undefined4 *)(resource_data + 0x40) = current_obj[0xe];
-                *(undefined4 *)(resource_data + 0x44) = flag3;
+                *(int32_t *)(resource_data + 0x40) = current_obj[0xe];
+                *(int32_t *)(resource_data + 0x44) = flag3;
                 flag3 = current_obj[0x11];
                 resource_data = *(longlong *)(link_count + *(longlong *)(current_obj + 10));
-                *(undefined4 *)(resource_data + 0x50) = current_obj[0x10];
-                *(undefined4 *)(resource_data + 0x54) = flag3;
+                *(int32_t *)(resource_data + 0x50) = current_obj[0x10];
+                *(int32_t *)(resource_data + 0x54) = flag3;
                 link_count = link_count + 8;
                 iteration_count = (ulonglong)obj_index;
             } while ((int)obj_index < (int)current_obj[8]);
         }
         status_byte = *(byte *)(current_obj + 0x28);
         *(byte *)(current_obj + 0x28) = status_byte & 0xfc;
-        *(undefined8 *)(current_obj + 0x1c) = linked_obj[0xe];
-        if (((prev_obj == (undefined4 *)0x0) || ((*(byte *)(prev_obj + 0x28) & 0x20) == 0)) &&
-           ((next_obj == (undefined4 *)0x0 || ((*(byte *)(next_obj + 0x28) & 0x20) == 0)))) {
+        *(uint64_t *)(current_obj + 0x1c) = linked_obj[0xe];
+        if (((prev_obj == (int32_t *)0x0) || ((*(byte *)(prev_obj + 0x28) & 0x20) == 0)) &&
+           ((next_obj == (int32_t *)0x0 || ((*(byte *)(next_obj + 0x28) & 0x20) == 0)))) {
             link_status = 0;
         }
         else {
@@ -758,11 +758,11 @@ void process_resource_release(longlong context,undefined8 *resource_obj,char rel
         current_obj[0x12] = flag1;
         current_obj[0x13] = flag2;
         *(byte *)(current_obj + 0x28) = (status_byte ^ link_status) & 0x40 ^ link_status;
-        if (prev_obj == (undefined4 *)0x0) {
-            if (next_obj == (undefined4 *)0x0) {
+        if (prev_obj == (int32_t *)0x0) {
+            if (next_obj == (int32_t *)0x0) {
                 return;
             }
-            register_resource_object(*(undefined8 *)(context + 0x2df8),*next_obj,0);
+            register_resource_object(*(uint64_t *)(context + 0x2df8),*next_obj,0);
             finalize_resource_object(next_obj);
             if (_DAT_180c8a9b0 != 0) {
                 *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
@@ -770,7 +770,7 @@ void process_resource_release(longlong context,undefined8 *resource_obj,char rel
             // 释放资源对象内存
             free_memory_array(next_obj,_DAT_180c8a9a8);
         }
-        register_resource_object(*(undefined8 *)(context + 0x2df8),*prev_obj,0);
+        register_resource_object(*(uint64_t *)(context + 0x2df8),*prev_obj,0);
         finalize_resource_object(prev_obj);
         if (_DAT_180c8a9b0 != 0) {
             *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
@@ -778,7 +778,7 @@ void process_resource_release(longlong context,undefined8 *resource_obj,char rel
         // 释放资源对象内存
         free_memory_array(prev_obj,_DAT_180c8a9a8);
     }
-    register_resource_object(resource_handle,*(undefined4 *)resource_obj,0,resource_handle,0xfffffffffffffffe);
+    register_resource_object(resource_handle,*(int32_t *)resource_obj,0,resource_handle,0xfffffffffffffffe);
     cleanup_resource_memory(resource_obj[6]);
     resource_obj[6] = 0;
     resource_obj[3] = 0;
@@ -794,14 +794,14 @@ void process_resource_release(longlong context,undefined8 *resource_obj,char rel
     if (_DAT_180c8a9b0 != 0) {
         *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
-    if (resource_obj != (undefined8 *)0x0) {
+    if (resource_obj != (uint64_t *)0x0) {
         link_count = (ulonglong)resource_obj & 0xffffffffffc00000;
         if (link_count != 0) {
             resource_data = link_count + 0x80 + ((longlong)resource_obj - link_count >> 0x10) * 0x50;
             resource_data = resource_data - (ulonglong)*(uint *)(resource_data + 4);
             if ((*(void ***)(link_count + 0x70) == &ExceptionList) && (*(char *)(resource_data + 0xe) == '\0')) {
-                *resource_obj = *(undefined8 *)(resource_data + 0x20);
-                *(undefined8 **)(resource_data + 0x20) = resource_obj;
+                *resource_obj = *(uint64_t *)(resource_data + 0x20);
+                *(uint64_t **)(resource_data + 0x20) = resource_obj;
                 resource_count = (int *)(resource_data + 0x18);
                 *resource_count = *resource_count + -1;
                 if (*resource_count == 0) {
@@ -826,19 +826,19 @@ void process_resource_batch(longlong context,longlong resource_data,int batch_si
 {
     byte status_flag;
     short coord_y;
-    undefined4 *resource_obj;
-    undefined4 *linked_obj;
+    int32_t *resource_obj;
+    int32_t *linked_obj;
     byte *byte_ptr;
-    undefined4 *temp_obj;
-    undefined4 *next_obj;
+    int32_t *temp_obj;
+    int32_t *next_obj;
     longlong resource_handle;
-    undefined8 hash_value;
+    uint64_t hash_value;
     byte byte_val;
     byte process_flag;
     uint hash_result;
     longlong loop_var;
     short *coord_ptr;
-    undefined1 stack_data [32];
+    int8_t stack_data [32];
     byte stack_byte;
     byte stack_array [23];
     ulonglong stack_checksum;
@@ -851,12 +851,12 @@ void process_resource_batch(longlong context,longlong resource_data,int batch_si
     loop_var = (longlong)batch_size;
     do {
         if (*(int *)(coord_ptr + -9) != 0) {
-            next_obj = (undefined4 *)create_resource_object();
+            next_obj = (int32_t *)create_resource_object();
             if (*(int *)(coord_ptr + -7) == 0) {
                 resource_handle = 0;
             }
             else {
-                resource_handle = get_resource_handle(*(undefined8 *)(context + 0x2df8));
+                resource_handle = get_resource_handle(*(uint64_t *)(context + 0x2df8));
             }
             *(longlong *)(next_obj + 2) = resource_handle;
             coord_y = coord_ptr[1];
@@ -870,13 +870,13 @@ void process_resource_batch(longlong context,longlong resource_data,int batch_si
             next_obj[0x13] = (float)(int)coord_y;
             if (resource_handle != 0) {
                 if (*(longlong *)(resource_handle + 0x10) == 0) {
-                    *(undefined4 **)(resource_handle + 0x10) = next_obj;
+                    *(int32_t **)(resource_handle + 0x10) = next_obj;
                 }
                 else if ((resource_handle != 0) && (*(longlong *)(resource_handle + 0x18) == 0)) {
-                    *(undefined4 **)(resource_handle + 0x18) = next_obj;
+                    *(int32_t **)(resource_handle + 0x18) = next_obj;
                 }
             }
-            next_obj[0x26] = *(undefined4 *)(coord_ptr + -5);
+            next_obj[0x26] = *(int32_t *)(coord_ptr + -5);
             next_obj[0x14] = (int)(char)coord_ptr[-3];
             status_flag = *(byte *)(next_obj + 0x28);
             byte_val = -((char)coord_ptr[-2] != '\0') & 0x10;
@@ -885,11 +885,11 @@ void process_resource_batch(longlong context,longlong resource_data,int batch_si
             *(byte *)(next_obj + 0x28) = process_flag | byte_val | status_flag & 0xcf;
             *(byte *)(next_obj + 0x28) =
                  -((char)coord_ptr[-1] != '\0') & 0x40U | process_flag | byte_val | status_flag & 0x8f;
-            temp_obj = *(undefined4 **)(next_obj + 2);
+            temp_obj = *(int32_t **)(next_obj + 2);
             linked_obj = next_obj;
-            while (resource_obj = temp_obj, resource_obj != (undefined4 *)0x0) {
+            while (resource_obj = temp_obj, resource_obj != (int32_t *)0x0) {
                 linked_obj = resource_obj;
-                temp_obj = *(undefined4 **)(resource_obj + 2);
+                temp_obj = *(int32_t **)(resource_obj + 2);
             }
             calculate_resource_hash(&stack_byte,0x14,&hash_constant,*linked_obj);
             hash_result = 0xffffffff;
@@ -905,7 +905,7 @@ void process_resource_batch(longlong context,longlong resource_data,int batch_si
                 byte_ptr = byte_ptr + 1;
             }
             hash_value = get_resource_handle(_DAT_180c8a9b0 + 0x1ae0,~hash_result);
-            *(undefined8 *)(next_obj + 0x1a) = hash_value;
+            *(uint64_t *)(next_obj + 0x1a) = hash_value;
         }
         coord_ptr = coord_ptr + 0x10;
         loop_var = loop_var + -1;

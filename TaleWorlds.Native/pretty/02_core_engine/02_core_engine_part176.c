@@ -20,7 +20,7 @@ void 清理容器元素(longlong 容器指针)
 {
   int *引用计数指针;
   longlong 元素指针;
-  undefined8 *数组指针;
+  uint64_t *数组指针;
   longlong 偏移量;
   ulonglong 元素数量;
   ulonglong 索引;
@@ -35,20 +35,20 @@ void 清理容器元素(longlong 容器指针)
                     // WARNING: Subroutine does not return
         FUN_18064e900(元素指针);
       }
-      *(undefined8 *)(元素指针 + 索引 * 8) = 0;
+      *(uint64_t *)(元素指针 + 索引 * 8) = 0;
       索引 = 索引 + 1;
     } while (索引 < 元素数量);
     元素数量 = *(ulonglong *)(容器指针 + 0x10);
   }
-  *(undefined8 *)(容器指针 + 0x18) = 0;
-  if ((1 < 元素数量) && (数组指针 = *(undefined8 **)(容器指针 + 8), 数组指针 != (undefined8 *)0x0)) {
+  *(uint64_t *)(容器指针 + 0x18) = 0;
+  if ((1 < 元素数量) && (数组指针 = *(uint64_t **)(容器指针 + 8), 数组指针 != (uint64_t *)0x0)) {
     元素数量 = (ulonglong)数组指针 & 0xffffffffffc00000;
     if (元素数量 != 0) {
       偏移量 = 元素数量 + 0x80 + ((longlong)数组指针 - 元素数量 >> 0x10) * 0x50;
       偏移量 = 偏移量 - (ulonglong)*(uint *)(偏移量 + 4);
       if ((*(void ***)(元素数量 + 0x70) == &ExceptionList) && (*(char *)(偏移量 + 0xe) == '\0')) {
-        *数组指针 = *(undefined8 *)(偏移量 + 0x20);
-        *(undefined8 **)(偏移量 + 0x20) = 数组指针;
+        *数组指针 = *(uint64_t *)(偏移量 + 0x20);
+        *(uint64_t **)(偏移量 + 0x20) = 数组指针;
         引用计数指针 = (int *)(偏移量 + 0x18);
         *引用计数指针 = *引用计数指针 + -1;
         if (*引用计数指针 == 0) {
@@ -78,7 +78,7 @@ void 销毁容器结构(longlong 容器指针)
 {
   int *引用计数指针;
   longlong 元素指针;
-  undefined8 *数组指针;
+  uint64_t *数组指针;
   longlong 偏移量;
   ulonglong 元素数量;
   ulonglong 索引;
@@ -93,20 +93,20 @@ void 销毁容器结构(longlong 容器指针)
                     // WARNING: Subroutine does not return
         FUN_18064e900(元素指针);
       }
-      *(undefined8 *)(元素指针 + 索引 * 8) = 0;
+      *(uint64_t *)(元素指针 + 索引 * 8) = 0;
       索引 = 索引 + 1;
     } while (索引 < 元素数量);
     元素数量 = *(ulonglong *)(容器指针 + 0x10);
   }
-  *(undefined8 *)(容器指针 + 0x18) = 0;
-  if ((1 < 元素数量) && (数组指针 = *(undefined8 **)(容器指针 + 8), 数组指针 != (undefined8 *)0x0)) {
+  *(uint64_t *)(容器指针 + 0x18) = 0;
+  if ((1 < 元素数量) && (数组指针 = *(uint64_t **)(容器指针 + 8), 数组指针 != (uint64_t *)0x0)) {
     元素数量 = (ulonglong)数组指针 & 0xffffffffffc00000;
     if (元素数量 != 0) {
       偏移量 = 元素数量 + 0x80 + ((longlong)数组指针 - 元素数量 >> 0x10) * 0x50;
       偏移量 = 偏移量 - (ulonglong)*(uint *)(偏移量 + 4);
       if ((*(void ***)(元素数量 + 0x70) == &ExceptionList) && (*(char *)(偏移量 + 0xe) == '\0')) {
-        *数组指针 = *(undefined8 *)(偏移量 + 0x20);
-        *(undefined8 **)(偏移量 + 0x20) = 数组指针;
+        *数组指针 = *(uint64_t *)(偏移量 + 0x20);
+        *(uint64_t **)(偏移量 + 0x20) = 数组指针;
         引用计数指针 = (int *)(偏移量 + 0x18);
         *引用计数指针 = *引用计数指针 + -1;
         if (*引用计数指针 == 0) {
@@ -139,15 +139,15 @@ void 销毁容器结构(longlong 容器指针)
  */
 void 处理游戏对象属性(longlong 对象指针,int 参数类型,int *参数数组)
 {
-  undefined8 临时数据1;
+  uint64_t 临时数据1;
   longlong *对象表指针;
-  undefined8 临时数据2;
-  undefined8 临时数据3;
-  undefined8 临时数据4;
-  undefined8 临时数据5;
-  undefined8 临时数据6;
-  undefined8 临时数据7;
-  undefined8 临时数据8;
+  uint64_t 临时数据2;
+  uint64_t 临时数据3;
+  uint64_t 临时数据4;
+  uint64_t 临时数据5;
+  uint64_t 临时数据6;
+  uint64_t 临时数据7;
+  uint64_t 临时数据8;
   bool 是否找到;
   int 临时索引;
   uint 过滤后数量;
@@ -165,7 +165,7 @@ void 处理游戏对象属性(longlong 对象指针,int 参数类型,int *参数
   int *参数指针;
   ulonglong 剩余数量;
   int 栈变量18;
-  undefined4 栈变量1c;
+  int32_t 栈变量1c;
   longlong 栈变量20;
   longlong 栈数组60 [4];
   
@@ -259,22 +259,22 @@ LAB_180160304:
   栈变量20 = 对象表指针[*(longlong *)(对象指针 + 0x60)];
   do {
     if (当前对象 == 栈变量20) {
-      临时数据1 = *(undefined8 *)参数数组;
-      临时数据2 = *(undefined8 *)(参数数组 + 2);
+      临时数据1 = *(uint64_t *)参数数组;
+      临时数据2 = *(uint64_t *)(参数数组 + 2);
       栈变量18 = CONCAT44((int)((ulonglong)参数数组 >> 0x20),参数类型);
-      临时数据3 = *(undefined8 *)(参数数组 + 4);
-      临时数据4 = *(undefined8 *)(参数数组 + 6);
-      临时数据5 = *(undefined8 *)(参数数组 + 8);
-      临时数据6 = *(undefined8 *)(参数数组 + 10);
-      临时数据7 = *(undefined8 *)(参数数组 + 0xc);
+      临时数据3 = *(uint64_t *)(参数数组 + 4);
+      临时数据4 = *(uint64_t *)(参数数组 + 6);
+      临时数据5 = *(uint64_t *)(参数数组 + 8);
+      临时数据6 = *(uint64_t *)(参数数组 + 10);
+      临时数据7 = *(uint64_t *)(参数数组 + 0xc);
       FUN_180160af0(对象指针 + 0x50,栈数组60,参数指针,&栈变量18,(longlong)参数类型);
-      *(undefined8 *)(栈数组60[0] + 4) = 临时数据1;
-      *(undefined8 *)(栈数组60[0] + 0xc) = 临时数据2;
-      *(undefined8 *)(栈数组60[0] + 0x14) = 临时数据3;
-      *(undefined8 *)(栈数组60[0] + 0x1c) = 临时数据4;
-      *(undefined8 *)(栈数组60[0] + 0x24) = 临时数据5;
-      *(undefined8 *)(栈数组60[0] + 0x2c) = 临时数据6;
-      *(undefined8 *)(栈数组60[0] + 0x34) = 临时数据7;
+      *(uint64_t *)(栈数组60[0] + 4) = 临时数据1;
+      *(uint64_t *)(栈数组60[0] + 0xc) = 临时数据2;
+      *(uint64_t *)(栈数组60[0] + 0x14) = 临时数据3;
+      *(uint64_t *)(栈数组60[0] + 0x1c) = 临时数据4;
+      *(uint64_t *)(栈数组60[0] + 0x24) = 临时数据5;
+      *(uint64_t *)(栈数组60[0] + 0x2c) = 临时数据6;
+      *(uint64_t *)(栈数组60[0] + 0x34) = 临时数据7;
       return;
     }
     比较参数 = 参数数组 + 6;
@@ -338,12 +338,12 @@ LAB_1801604e5:
  * 该函数处理对象参数匹配，在对象链表中查找匹配项并设置属性。
  * 这是一个简化实现，原始实现包含大量寄存器变量和复杂逻辑。
  */
-void 处理对象参数匹配(longlong 对象指针,undefined8 未知参数1,int *参数数组)
+void 处理对象参数匹配(longlong 对象指针,uint64_t 未知参数1,int *参数数组)
 {
   longlong *对象表指针;
-  undefined8 临时数据1;
+  uint64_t 临时数据1;
   int 临时索引;
-  undefined8 寄存器RAX;
+  uint64_t 寄存器RAX;
   int *当前参数;
   int *比较参数;
   int 循环索引;
@@ -356,14 +356,14 @@ void 处理对象参数匹配(longlong 对象指针,undefined8 未知参数1,int
   longlong 寄存器R11;
   longlong 目标对象;
   uint 寄存器R13D;
-  undefined8 *寄存器R14;
+  uint64_t *寄存器R14;
   ulonglong 剩余数量;
-  undefined8 栈变量38;
-  undefined8 栈变量40;
-  undefined8 栈变量48;
-  undefined8 栈变量50;
-  undefined8 栈变量58;
-  undefined8 栈变量60;
+  uint64_t 栈变量38;
+  uint64_t 栈变量40;
+  uint64_t 栈变量48;
+  uint64_t 栈变量50;
+  uint64_t 栈变量58;
+  uint64_t 栈变量60;
   longlong 栈变量68;
   longlong 栈变量d0;
   int 栈变量d8;
@@ -435,13 +435,13 @@ LAB_1801604e5:
   临时数据1 = 寄存器R14[6];
   栈变量e0 = 寄存器ESI;
   FUN_180160af0(寄存器RAX,&栈变量68,参数数组,&栈变量e0,(longlong)寄存器ESI);
-  *(undefined8 *)(栈变量68 + 4) = 栈变量38;
-  *(undefined8 *)(栈变量68 + 0xc) = 栈变量40;
-  *(undefined8 *)(栈变量68 + 0x14) = 栈变量48;
-  *(undefined8 *)(栈变量68 + 0x1c) = 栈变量50;
-  *(undefined8 *)(栈变量68 + 0x24) = 栈变量58;
-  *(undefined8 *)(栈变量68 + 0x2c) = 栈变量60;
-  *(undefined8 *)(栈变量68 + 0x34) = 临时数据1;
+  *(uint64_t *)(栈变量68 + 4) = 栈变量38;
+  *(uint64_t *)(栈变量68 + 0xc) = 栈变量40;
+  *(uint64_t *)(栈变量68 + 0x14) = 栈变量48;
+  *(uint64_t *)(栈变量68 + 0x1c) = 栈变量50;
+  *(uint64_t *)(栈变量68 + 0x24) = 栈变量58;
+  *(uint64_t *)(栈变量68 + 0x2c) = 栈变量60;
+  *(uint64_t *)(栈变量68 + 0x34) = 临时数据1;
   return;
 }
 
@@ -455,19 +455,19 @@ LAB_1801604e5:
  * 该函数检查指定对象的碰撞属性是否匹配给定的属性ID。
  * 包含复杂的碰撞检测逻辑和属性验证。
  */
-char 检查碰撞属性匹配(undefined4 属性ID,int 对象ID)
+char 检查碰撞属性匹配(int32_t 属性ID,int 对象ID)
 {
   float *浮点指针;
   uint 属性索引;
   char 匹配结果;
   int *对象指针;
   longlong 哈希表指针;
-  undefined8 *数组指针;
+  uint64_t *数组指针;
   ulonglong 数组大小;
   int 循环索引;
   longlong 当前对象;
   bool 条件标志;
-  undefined4 额外输出;
+  int32_t 额外输出;
   
   哈希表指针 = _DAT_180c86900[0xb];
   for (对象指针 = *(int **)(哈希表指针 + ((ulonglong)(longlong)对象ID %
@@ -485,7 +485,7 @@ LAB_180160546:
     return '\0';
   }
   if ((char)对象指针[0xe] != '\0') {
-    数组指针 = (undefined8 *)*_DAT_180c86900;
+    数组指针 = (uint64_t *)*_DAT_180c86900;
     数组大小 = _DAT_180c86900[1] - (longlong)数组指针 >> 3;
     循环索引 = 0;
     if (数组大小 != 0) {
@@ -595,24 +595,24 @@ LAB_1801606a8:
  * 该函数验证对象的碰撞属性是否符合要求。
  * 这是一个简化实现，原始实现包含复杂的寄存器变量和条件判断。
  */
-char 验证对象碰撞属性(undefined4 属性ID)
+char 验证对象碰撞属性(int32_t 属性ID)
 {
   float *浮点指针;
   uint 属性索引;
   char 验证结果;
   longlong 寄存器RAX;
   longlong 当前对象;
-  undefined8 *数组指针;
+  uint64_t *数组指针;
   longlong *寄存器RSI;
   ulonglong 数组大小;
   int 循环索引;
   longlong 哈希表指针;
   bool 寄存器ZF;
   bool 条件标志;
-  undefined4 额外输出;
+  int32_t 额外输出;
   
   if (!寄存器ZF) {
-    数组指针 = (undefined8 *)*寄存器RSI;
+    数组指针 = (uint64_t *)*寄存器RSI;
     数组大小 = 寄存器RSI[1] - (longlong)数组指针 >> 3;
     循环索引 = 0;
     if (数组大小 != 0) {
@@ -716,11 +716,11 @@ LAB_1801606a8:
 /**
  * @brief 获取常量值
  * 
- * @return undefined1 返回常量值1
+ * @return int8_t 返回常量值1
  * 
  * 这是一个简单的常量返回函数，始终返回1。
  */
-undefined1 获取常量值(void)
+int8_t 获取常量值(void)
 {
   return 1;
 }
@@ -837,7 +837,7 @@ LAB_1801606a8:
  * 该函数验证属性匹配条件，用于碰撞检测和属性验证。
  * 这是一个简化实现，原始实现包含复杂的逻辑判断。
  */
-void 验证属性匹配条件(undefined8 未知参数1,longlong 属性表指针,longlong 对象指针)
+void 验证属性匹配条件(uint64_t 未知参数1,longlong 属性表指针,longlong 对象指针)
 {
   float *浮点指针;
   uint 属性索引;

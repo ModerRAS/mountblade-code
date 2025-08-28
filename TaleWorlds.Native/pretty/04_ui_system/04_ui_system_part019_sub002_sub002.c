@@ -291,7 +291,7 @@ void UI_System_AdvancedMatrixTransformAndAnimation(
     fVar66 = fVar49 * fVar52 * 1.0 + fVar37 * fVar39 * 1.0 + fVar41 * fVar44 + fVar45 * fVar48;
     fStack_124 = fVar40 * fVar48 * -1.0 + fVar53 * fVar44 * -1.0 + fVar17 * fVar39 + fVar18 * fVar52
     ;
-    auStack_128 = (undefined1  [4])
+    auStack_128 = (int8_t  [4])
                   (fVar40 * fVar52 * 1.0 + fVar53 * fVar39 * 1.0 + fVar18 * fVar48 + fVar17 * fVar44
                   );
     uStack_120._0_4_ =
@@ -354,7 +354,7 @@ void UI_System_AdvancedMatrixTransformAndAnimation(
       uVar12 = movmskps((int)pfVar13,auVar21);
       pfVar13 = (float *)((ulonglong)(uVar12 & 1) * 2);
       lVar1 = (ulonglong)(uVar12 & 1) * 0x10;
-      auStack_108 = (undefined1  [4])(*(float *)(auStack_108 + lVar1) * fVar49);
+      auStack_108 = (int8_t  [4])(*(float *)(auStack_108 + lVar1) * fVar49);
       fStack_104 = *(float *)(auStack_108 + lVar1 + 4) * fVar37;
       uStack_100._0_4_ = *(float *)(auStack_108 + lVar1 + 8) * fVar41;
       uStack_100._4_4_ = *(float *)(auStack_108 + lVar1 + 0xc) * fVar45;
@@ -433,7 +433,7 @@ void UI_System_AdvancedMatrixTransformAndAnimation(
       uVar12 = movmskps(iVar11,auVar23);
       iVar11 = (uVar12 & 1) * 2;
       lVar1 = (ulonglong)(uVar12 & 1) * 0x10;
-      auStack_108 = (undefined1  [4])(*(float *)(auStack_108 + lVar1) * fVar49);
+      auStack_108 = (int8_t  [4])(*(float *)(auStack_108 + lVar1) * fVar49);
       fStack_104 = *(float *)(auStack_108 + lVar1 + 4) * fVar37;
       uStack_100._0_4_ = *(float *)(auStack_108 + lVar1 + 8) * fVar41;
       uStack_100._4_4_ = *(float *)(auStack_108 + lVar1 + 0xc) * fVar45;
@@ -572,10 +572,10 @@ void UI_System_AdvancedMatrixTransformAndAnimation(
       fStack_17c = fVar66;
       _auStack_188 = auStack_128._4_12_;
       fStack_150 = fVar60;
-      auStack_158 = (undefined1  [8])auStack_128._8_8_;
+      auStack_158 = (int8_t  [8])auStack_128._8_8_;
       fStack_14c = fVar64;
       fStack_104 = fVar60;
-      auStack_108 = (undefined1  [4])fVar64;
+      auStack_108 = (int8_t  [4])fVar64;
       uStack_100._0_4_ = fVar62;
       uStack_100._4_4_ = fVar60;
       fVar38 = fVar44 * fVar66 * 1.0 + fVar52 * fVar62 * 1.0 + (fVar39 * fVar60 - fVar48 * fVar64);
@@ -614,7 +614,7 @@ void UI_System_AdvancedMatrixTransformAndAnimation(
         uVar12 = movmskps(iVar11,auVar27);
         iVar11 = (uVar12 & 1) * 2;
         lVar1 = (ulonglong)(uVar12 & 1) * 0x10;
-        auStack_128 = (undefined1  [4])(*(float *)(auStack_128 + lVar1) * fVar50);
+        auStack_128 = (int8_t  [4])(*(float *)(auStack_128 + lVar1) * fVar50);
         fStack_124 = *(float *)(auStack_128 + lVar1 + 4) * fVar38;
         uStack_120._0_4_ = *(float *)(auStack_128 + lVar1 + 8) * fVar42;
         uStack_120._4_4_ = *(float *)(auStack_128 + lVar1 + 0xc) * fVar46;
@@ -699,7 +699,7 @@ void UI_System_AdvancedMatrixTransformAndAnimation(
         uVar12 = movmskps(iVar11,auVar29);
         iVar11 = (uVar12 & 1) * 2;
         lVar1 = (ulonglong)(uVar12 & 1) * 0x10;
-        auStack_128 = (undefined1  [4])(*(float *)(auStack_128 + lVar1) * fVar51);
+        auStack_128 = (int8_t  [4])(*(float *)(auStack_128 + lVar1) * fVar51);
         fStack_124 = *(float *)(auStack_128 + lVar1 + 4) * fVar68;
         uStack_120._0_4_ = *(float *)(auStack_128 + lVar1 + 8) * fVar43;
         uStack_120._4_4_ = *(float *)(auStack_128 + lVar1 + 0xc) * fVar47;
@@ -864,7 +864,7 @@ void UI_System_AdvancedMatrixTransformAndAnimation(
         ;
         fVar37 = fVar41 * fVar68 * -1.0 + fVar45 * fVar43 * -1.0 +
                  (fVar49 * fVar64 - fVar37 * fVar66);
-        auVar56 = (undefined1  [4])fVar68;
+        auVar56 = (int8_t  [4])fVar68;
         fVar39 = fVar43;
         fVar44 = fVar66;
         fVar48 = fVar43;
@@ -896,7 +896,7 @@ void UI_System_AdvancedMatrixTransformAndAnimation(
           uVar12 = movmskps(iVar11,auVar33);
           iVar11 = (uVar12 & 1) * 2;
           lVar1 = (ulonglong)(uVar12 & 1) * 0x10;
-          auStack_128 = (undefined1  [4])(*(float *)(auStack_128 + lVar1) * fVar37);
+          auStack_128 = (int8_t  [4])(*(float *)(auStack_128 + lVar1) * fVar37);
           fStack_124 = *(float *)(auStack_128 + lVar1 + 4) * fVar40;
           uStack_120._0_4_ = *(float *)(auStack_128 + lVar1 + 8) * fVar60;
           uStack_120._4_4_ = *(float *)(auStack_128 + lVar1 + 0xc) * fVar62;
@@ -943,7 +943,7 @@ void UI_System_AdvancedMatrixTransformAndAnimation(
         }
         param_13 = param_13 * 0.5;
         fStack_104 = fVar53;
-        auStack_108 = (undefined1  [4])fVar52;
+        auStack_108 = (int8_t  [4])fVar52;
         uStack_100._0_4_ = fVar17;
         uStack_100._4_4_ = fVar18;
         fVar52 = fVar61 * fStack_148 * 1.0;
@@ -1027,7 +1027,7 @@ void UI_System_AdvancedMatrixTransformAndAnimation(
           fVar54 = pfVar13[3];
         }
         fStack_124 = fVar55;
-        auStack_128 = (undefined1  [4])fVar57;
+        auStack_128 = (int8_t  [4])fVar57;
         uStack_120._0_4_ = fVar14;
         uStack_120._4_4_ = fVar54;
         pfStack_198 = (float *)auStack_128;
@@ -1042,8 +1042,8 @@ void UI_System_AdvancedMatrixTransformAndAnimation(
     FUN_1808fc050(uStack_e8 ^ (ulonglong)auStack_1b8);
   }
   FUN_18022a890(param_2,0,uVar2);
-  uStack_178 = *(undefined8 *)(param_2 + 0x400);
-  uStack_170 = *(undefined8 *)(param_2 + 0x408);
+  uStack_178 = *(uint64_t *)(param_2 + 0x400);
+  uStack_170 = *(uint64_t *)(param_2 + 0x408);
   fVar55 = *param_19 * *param_19 + -param_19[1] * -param_19[1];
   auVar20 = rsqrtss(ZEXT416((uint)fVar55),ZEXT416((uint)fVar55));
   fVar57 = auVar20._0_4_;

@@ -7,33 +7,33 @@ void initialize_render_system_component(void)
 
 {
     char is_component_found;
-    undefined8 *component_root;
+    uint64_t *component_root;
     int compare_result;
     longlong *system_context;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *previous_node;
-    undefined8 *next_node;
-    undefined8 *new_component;
-    undefined *default_callback;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_component;
+    void *default_callback;
     
     // 获取系统上下文
     system_context = (longlong *)get_system_context();
-    component_root = (undefined8 *)*system_context;
+    component_root = (uint64_t *)*system_context;
     is_component_found = *(char *)((longlong)component_root[1] + 0x19);
     default_callback = &DEFAULT_RENDER_CALLBACK;
     previous_node = component_root;
-    current_node = (undefined8 *)component_root[1];
+    current_node = (uint64_t *)component_root[1];
     
     // 在组件树中搜索特定组件
     while (is_component_found == '\0') {
         compare_result = memcmp(current_node + 4, &RENDER_COMPONENT_ID, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;
@@ -63,33 +63,33 @@ void initialize_texture_manager(void)
 
 {
     char is_manager_found;
-    undefined8 *manager_root;
+    uint64_t *manager_root;
     int compare_result;
     longlong *system_context;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *previous_node;
-    undefined8 *next_node;
-    undefined8 *new_manager;
-    undefined8 null_callback;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_manager;
+    uint64_t null_callback;
     
     // 获取系统上下文
     system_context = (longlong *)get_system_context();
-    manager_root = (undefined8 *)*system_context;
+    manager_root = (uint64_t *)*system_context;
     is_manager_found = *(char *)((longlong)manager_root[1] + 0x19);
     null_callback = 0;
     previous_node = manager_root;
-    current_node = (undefined8 *)manager_root[1];
+    current_node = (uint64_t *)manager_root[1];
     
     // 在管理器树中搜索纹理管理器
     while (is_manager_found == '\0') {
         compare_result = memcmp(current_node + 4, &TEXTURE_MANAGER_ID, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;
@@ -119,33 +119,33 @@ void initialize_shader_system(void)
 
 {
     char is_system_found;
-    undefined8 *system_root;
+    uint64_t *system_root;
     int compare_result;
     longlong *system_context;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *previous_node;
-    undefined8 *next_node;
-    undefined8 *new_system;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_system;
     code *shader_callback;
     
     // 获取系统上下文
     system_context = (longlong *)get_system_context();
-    system_root = (undefined8 *)*system_context;
+    system_root = (uint64_t *)*system_context;
     is_system_found = *(char *)((longlong)system_root[1] + 0x19);
     shader_callback = SHADER_COMPILE_CALLBACK;
     previous_node = system_root;
-    current_node = (undefined8 *)system_root[1];
+    current_node = (uint64_t *)system_root[1];
     
     // 在系统树中搜索着色器系统
     while (is_system_found == '\0') {
         compare_result = memcmp(current_node + 4, &SHADER_SYSTEM_ID, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;
@@ -175,33 +175,33 @@ void initialize_buffer_manager(void)
 
 {
     char is_manager_found;
-    undefined8 *manager_root;
+    uint64_t *manager_root;
     int compare_result;
     longlong *system_context;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *previous_node;
-    undefined8 *next_node;
-    undefined8 *new_manager;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_manager;
     code *buffer_callback;
     
     // 获取系统上下文
     system_context = (longlong *)get_system_context();
-    manager_root = (undefined8 *)*system_context;
+    manager_root = (uint64_t *)*system_context;
     is_manager_found = *(char *)((longlong)manager_root[1] + 0x19);
     buffer_callback = BUFFER_ALLOCATE_CALLBACK;
     previous_node = manager_root;
-    current_node = (undefined8 *)manager_root[1];
+    current_node = (uint64_t *)manager_root[1];
     
     // 在管理器树中搜索缓冲区管理器
     while (is_manager_found == '\0') {
         compare_result = memcmp(current_node + 4, &BUFFER_MANAGER_ID, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;
@@ -231,33 +231,33 @@ void initialize_framebuffer(void)
 
 {
     char is_framebuffer_found;
-    undefined8 *framebuffer_root;
+    uint64_t *framebuffer_root;
     int compare_result;
     longlong *system_context;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *previous_node;
-    undefined8 *next_node;
-    undefined8 *new_framebuffer;
-    undefined8 null_callback;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_framebuffer;
+    uint64_t null_callback;
     
     // 获取系统上下文
     system_context = (longlong *)get_system_context();
-    framebuffer_root = (undefined8 *)*system_context;
+    framebuffer_root = (uint64_t *)*system_context;
     is_framebuffer_found = *(char *)((longlong)framebuffer_root[1] + 0x19);
     null_callback = 0;
     previous_node = framebuffer_root;
-    current_node = (undefined8 *)framebuffer_root[1];
+    current_node = (uint64_t *)framebuffer_root[1];
     
     // 在帧缓冲区树中搜索特定帧缓冲区
     while (is_framebuffer_found == '\0') {
         compare_result = memcmp(current_node + 4, &FRAMEBUFFER_ID, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;
@@ -287,33 +287,33 @@ void initialize_render_pipeline(void)
 
 {
     char is_pipeline_found;
-    undefined8 *pipeline_root;
+    uint64_t *pipeline_root;
     int compare_result;
     longlong *system_context;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *previous_node;
-    undefined8 *next_node;
-    undefined8 *new_pipeline;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_pipeline;
     code *pipeline_callback;
     
     // 获取系统上下文
     system_context = (longlong *)get_system_context();
-    pipeline_root = (undefined8 *)*system_context;
+    pipeline_root = (uint64_t *)*system_context;
     is_pipeline_found = *(char *)((longlong)pipeline_root[1] + 0x19);
     pipeline_callback = PIPELINE_EXECUTE_CALLBACK;
     previous_node = pipeline_root;
-    current_node = (undefined8 *)pipeline_root[1];
+    current_node = (uint64_t *)pipeline_root[1];
     
     // 在管线树中搜索渲染管线
     while (is_pipeline_found == '\0') {
         compare_result = memcmp(current_node + 4, &PIPELINE_ID, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;
@@ -343,33 +343,33 @@ void initialize_render_target(void)
 
 {
     char is_target_found;
-    undefined8 *target_root;
+    uint64_t *target_root;
     int compare_result;
     longlong *system_context;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *previous_node;
-    undefined8 *next_node;
-    undefined8 *new_target;
-    undefined8 null_callback;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_target;
+    uint64_t null_callback;
     
     // 获取系统上下文
     system_context = (longlong *)get_system_context();
-    target_root = (undefined8 *)*system_context;
+    target_root = (uint64_t *)*system_context;
     is_target_found = *(char *)((longlong)target_root[1] + 0x19);
     null_callback = 0;
     previous_node = target_root;
-    current_node = (undefined8 *)target_root[1];
+    current_node = (uint64_t *)target_root[1];
     
     // 在目标树中搜索渲染目标
     while (is_target_found == '\0') {
         compare_result = memcmp(current_node + 4, &RENDER_TARGET_ID, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;
@@ -399,33 +399,33 @@ void initialize_depth_buffer(void)
 
 {
     char is_buffer_found;
-    undefined8 *buffer_root;
+    uint64_t *buffer_root;
     int compare_result;
     longlong *system_context;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *previous_node;
-    undefined8 *next_node;
-    undefined8 *new_buffer;
-    undefined *default_callback;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_buffer;
+    void *default_callback;
     
     // 获取系统上下文
     system_context = (longlong *)get_system_context();
-    buffer_root = (undefined8 *)*system_context;
+    buffer_root = (uint64_t *)*system_context;
     is_buffer_found = *(char *)((longlong)buffer_root[1] + 0x19);
     default_callback = &DEFAULT_DEPTH_CALLBACK;
     previous_node = buffer_root;
-    current_node = (undefined8 *)buffer_root[1];
+    current_node = (uint64_t *)buffer_root[1];
     
     // 在缓冲区树中搜索深度缓冲区
     while (is_buffer_found == '\0') {
         compare_result = memcmp(current_node + 4, &DEPTH_BUFFER_ID, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;
@@ -455,33 +455,33 @@ void initialize_stencil_buffer(void)
 
 {
     char is_buffer_found;
-    undefined8 *buffer_root;
+    uint64_t *buffer_root;
     int compare_result;
     longlong *system_context;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *previous_node;
-    undefined8 *next_node;
-    undefined8 *new_buffer;
-    undefined8 null_callback;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_buffer;
+    uint64_t null_callback;
     
     // 获取系统上下文
     system_context = (longlong *)get_system_context();
-    buffer_root = (undefined8 *)*system_context;
+    buffer_root = (uint64_t *)*system_context;
     is_buffer_found = *(char *)((longlong)buffer_root[1] + 0x19);
     null_callback = 0;
     previous_node = buffer_root;
-    current_node = (undefined8 *)buffer_root[1];
+    current_node = (uint64_t *)buffer_root[1];
     
     // 在缓冲区树中搜索模板缓冲区
     while (is_buffer_found == '\0') {
         compare_result = memcmp(current_node + 4, &STENCIL_BUFFER_ID, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;
@@ -511,33 +511,33 @@ void initialize_blend_state(void)
 
 {
     char is_state_found;
-    undefined8 *state_root;
+    uint64_t *state_root;
     int compare_result;
     longlong *system_context;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *previous_node;
-    undefined8 *next_node;
-    undefined8 *new_state;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_state;
     code *blend_callback;
     
     // 获取系统上下文
     system_context = (longlong *)get_system_context();
-    state_root = (undefined8 *)*system_context;
+    state_root = (uint64_t *)*system_context;
     is_state_found = *(char *)((longlong)state_root[1] + 0x19);
     blend_callback = BLEND_CALCULATE_CALLBACK;
     previous_node = state_root;
-    current_node = (undefined8 *)state_root[1];
+    current_node = (uint64_t *)state_root[1];
     
     // 在状态树中搜索混合状态
     while (is_state_found == '\0') {
         compare_result = memcmp(current_node + 4, &BLEND_STATE_ID, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;
@@ -567,33 +567,33 @@ void initialize_rasterizer_state(void)
 
 {
     char is_state_found;
-    undefined8 *state_root;
+    uint64_t *state_root;
     int compare_result;
     longlong *system_context;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *previous_node;
-    undefined8 *next_node;
-    undefined8 *new_state;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_state;
     code *raster_callback;
     
     // 获取系统上下文
     system_context = (longlong *)get_system_context();
-    state_root = (undefined8 *)*system_context;
+    state_root = (uint64_t *)*system_context;
     is_state_found = *(char *)((longlong)state_root[1] + 0x19);
     raster_callback = RASTERIZE_CALLBACK;
     previous_node = state_root;
-    current_node = (undefined8 *)state_root[1];
+    current_node = (uint64_t *)state_root[1];
     
     // 在状态树中搜索光栅化状态
     while (is_state_found == '\0') {
         compare_result = memcmp(current_node + 4, &RASTERIZER_STATE_ID, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;
@@ -623,33 +623,33 @@ void initialize_sampler_state(void)
 
 {
     char is_state_found;
-    undefined8 *state_root;
+    uint64_t *state_root;
     int compare_result;
     longlong *system_context;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *previous_node;
-    undefined8 *next_node;
-    undefined8 *new_state;
-    undefined8 null_callback;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_state;
+    uint64_t null_callback;
     
     // 获取系统上下文
     system_context = (longlong *)get_system_context();
-    state_root = (undefined8 *)*system_context;
+    state_root = (uint64_t *)*system_context;
     is_state_found = *(char *)((longlong)state_root[1] + 0x19);
     null_callback = 0;
     previous_node = state_root;
-    current_node = (undefined8 *)state_root[1];
+    current_node = (uint64_t *)state_root[1];
     
     // 在状态树中搜索采样器状态
     while (is_state_found == '\0') {
         compare_result = memcmp(current_node + 4, &SAMPLER_STATE_ID, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;
@@ -679,33 +679,33 @@ void initialize_depth_stencil_state(void)
 
 {
     char is_state_found;
-    undefined8 *state_root;
+    uint64_t *state_root;
     int compare_result;
     longlong *system_context;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *previous_node;
-    undefined8 *next_node;
-    undefined8 *new_state;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_state;
     code *depth_callback;
     
     // 获取系统上下文
     system_context = (longlong *)get_system_context();
-    state_root = (undefined8 *)*system_context;
+    state_root = (uint64_t *)*system_context;
     is_state_found = *(char *)((longlong)state_root[1] + 0x19);
     depth_callback = DEPTH_STENCIL_CALLBACK;
     previous_node = state_root;
-    current_node = (undefined8 *)state_root[1];
+    current_node = (uint64_t *)state_root[1];
     
     // 在状态树中搜索深度模板状态
     while (is_state_found == '\0') {
         compare_result = memcmp(current_node + 4, &DEPTH_STENCIL_STATE_ID, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;
@@ -735,33 +735,33 @@ void initialize_viewport_state(void)
 
 {
     char is_state_found;
-    undefined8 *state_root;
+    uint64_t *state_root;
     int compare_result;
     longlong *system_context;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *previous_node;
-    undefined8 *next_node;
-    undefined8 *new_state;
-    undefined8 null_callback;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_state;
+    uint64_t null_callback;
     
     // 获取系统上下文
     system_context = (longlong *)get_system_context();
-    state_root = (undefined8 *)*system_context;
+    state_root = (uint64_t *)*system_context;
     is_state_found = *(char *)((longlong)state_root[1] + 0x19);
     null_callback = 0;
     previous_node = state_root;
-    current_node = (undefined8 *)state_root[1];
+    current_node = (uint64_t *)state_root[1];
     
     // 在状态树中搜索视口状态
     while (is_state_found == '\0') {
         compare_result = memcmp(current_node + 4, &VIEWPORT_STATE_ID, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;
@@ -791,33 +791,33 @@ void initialize_scissor_state(void)
 
 {
     char is_state_found;
-    undefined8 *state_root;
+    uint64_t *state_root;
     int compare_result;
     longlong *system_context;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *previous_node;
-    undefined8 *next_node;
-    undefined8 *new_state;
-    undefined *default_callback;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_state;
+    void *default_callback;
     
     // 获取系统上下文
     system_context = (longlong *)get_system_context();
-    state_root = (undefined8 *)*system_context;
+    state_root = (uint64_t *)*system_context;
     is_state_found = *(char *)((longlong)state_root[1] + 0x19);
     default_callback = &DEFAULT_SCISSOR_CALLBACK;
     previous_node = state_root;
-    current_node = (undefined8 *)state_root[1];
+    current_node = (uint64_t *)state_root[1];
     
     // 在状态树中搜索裁剪状态
     while (is_state_found == '\0') {
         compare_result = memcmp(current_node + 4, &SCISSOR_STATE_ID, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;
@@ -847,33 +847,33 @@ void initialize_polygon_state(void)
 
 {
     char is_state_found;
-    undefined8 *state_root;
+    uint64_t *state_root;
     int compare_result;
     longlong *system_context;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *previous_node;
-    undefined8 *next_node;
-    undefined8 *new_state;
-    undefined8 null_callback;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_state;
+    uint64_t null_callback;
     
     // 获取系统上下文
     system_context = (longlong *)get_system_context();
-    state_root = (undefined8 *)*system_context;
+    state_root = (uint64_t *)*system_context;
     is_state_found = *(char *)((longlong)state_root[1] + 0x19);
     null_callback = 0;
     previous_node = state_root;
-    current_node = (undefined8 *)state_root[1];
+    current_node = (uint64_t *)state_root[1];
     
     // 在状态树中搜索多边形状态
     while (is_state_found == '\0') {
         compare_result = memcmp(current_node + 4, &POLYGON_STATE_ID, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;
@@ -903,33 +903,33 @@ void initialize_vertex_layout(void)
 
 {
     char is_layout_found;
-    undefined8 *layout_root;
+    uint64_t *layout_root;
     int compare_result;
     longlong *system_context;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *previous_node;
-    undefined8 *next_node;
-    undefined8 *new_layout;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_layout;
     code *layout_callback;
     
     // 获取系统上下文
     system_context = (longlong *)get_system_context();
-    layout_root = (undefined8 *)*system_context;
+    layout_root = (uint64_t *)*system_context;
     is_layout_found = *(char *)((longlong)layout_root[1] + 0x19);
     layout_callback = VERTEX_LAYOUT_CALLBACK;
     previous_node = layout_root;
-    current_node = (undefined8 *)layout_root[1];
+    current_node = (uint64_t *)layout_root[1];
     
     // 在布局树中搜索顶点布局
     while (is_layout_found == '\0') {
         compare_result = memcmp(current_node + 4, &VERTEX_LAYOUT_ID, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;
@@ -959,33 +959,33 @@ void initialize_input_assembler(void)
 
 {
     char is_assembler_found;
-    undefined8 *assembler_root;
+    uint64_t *assembler_root;
     int compare_result;
     longlong *system_context;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *previous_node;
-    undefined8 *next_node;
-    undefined8 *new_assembler;
-    undefined8 null_callback;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_assembler;
+    uint64_t null_callback;
     
     // 获取系统上下文
     system_context = (longlong *)get_system_context();
-    assembler_root = (undefined8 *)*system_context;
+    assembler_root = (uint64_t *)*system_context;
     is_assembler_found = *(char *)((longlong)assembler_root[1] + 0x19);
     null_callback = 0;
     previous_node = assembler_root;
-    current_node = (undefined8 *)assembler_root[1];
+    current_node = (uint64_t *)assembler_root[1];
     
     // 在装配器树中搜索输入装配器
     while (is_assembler_found == '\0') {
         compare_result = memcmp(current_node + 4, &INPUT_ASSEMBLER_ID, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;
@@ -1015,33 +1015,33 @@ void initialize_stream_output(void)
 
 {
     char is_output_found;
-    undefined8 *output_root;
+    uint64_t *output_root;
     int compare_result;
     longlong *system_context;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *previous_node;
-    undefined8 *next_node;
-    undefined8 *new_output;
-    undefined8 null_callback;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_output;
+    uint64_t null_callback;
     
     // 获取系统上下文
     system_context = (longlong *)get_system_context();
-    output_root = (undefined8 *)*system_context;
+    output_root = (uint64_t *)*system_context;
     is_output_found = *(char *)((longlong)output_root[1] + 0x19);
     null_callback = 0;
     previous_node = output_root;
-    current_node = (undefined8 *)output_root[1];
+    current_node = (uint64_t *)output_root[1];
     
     // 在输出树中搜索流输出阶段
     while (is_output_found == '\0') {
         compare_result = memcmp(current_node + 4, &STREAM_OUTPUT_ID, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;
@@ -1071,33 +1071,33 @@ void initialize_rasterizer_stage(void)
 
 {
     char is_stage_found;
-    undefined8 *stage_root;
+    uint64_t *stage_root;
     int compare_result;
     longlong *system_context;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *previous_node;
-    undefined8 *next_node;
-    undefined8 *new_stage;
-    undefined8 null_callback;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_stage;
+    uint64_t null_callback;
     
     // 获取系统上下文
     system_context = (longlong *)get_system_context();
-    stage_root = (undefined8 *)*system_context;
+    stage_root = (uint64_t *)*system_context;
     is_stage_found = *(char *)((longlong)stage_root[1] + 0x19);
     null_callback = 0;
     previous_node = stage_root;
-    current_node = (undefined8 *)stage_root[1];
+    current_node = (uint64_t *)stage_root[1];
     
     // 在阶段树中搜索光栅化阶段
     while (is_stage_found == '\0') {
         compare_result = memcmp(current_node + 4, &RASTERIZER_STAGE_ID, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;
@@ -1127,33 +1127,33 @@ void initialize_pixel_shader_stage(void)
 
 {
     char is_stage_found;
-    undefined8 *stage_root;
+    uint64_t *stage_root;
     int compare_result;
     longlong *system_context;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *previous_node;
-    undefined8 *next_node;
-    undefined8 *new_stage;
-    undefined8 null_callback;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_stage;
+    uint64_t null_callback;
     
     // 获取系统上下文
     system_context = (longlong *)get_system_context();
-    stage_root = (undefined8 *)*system_context;
+    stage_root = (uint64_t *)*system_context;
     is_stage_found = *(char *)((longlong)stage_root[1] + 0x19);
     null_callback = 0;
     previous_node = stage_root;
-    current_node = (undefined8 *)stage_root[1];
+    current_node = (uint64_t *)stage_root[1];
     
     // 在阶段树中搜索像素着色器阶段
     while (is_stage_found == '\0') {
         compare_result = memcmp(current_node + 4, &PIXEL_SHADER_STAGE_ID, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;
@@ -1183,33 +1183,33 @@ void initialize_output_merger_stage(void)
 
 {
     char is_stage_found;
-    undefined8 *stage_root;
+    uint64_t *stage_root;
     int compare_result;
     longlong *system_context;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *previous_node;
-    undefined8 *next_node;
-    undefined8 *new_stage;
-    undefined8 null_callback;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_stage;
+    uint64_t null_callback;
     
     // 获取系统上下文
     system_context = (longlong *)get_system_context();
-    stage_root = (undefined8 *)*system_context;
+    stage_root = (uint64_t *)*system_context;
     is_stage_found = *(char *)((longlong)stage_root[1] + 0x19);
     null_callback = 0;
     previous_node = stage_root;
-    current_node = (undefined8 *)stage_root[1];
+    current_node = (uint64_t *)stage_root[1];
     
     // 在阶段树中搜索输出合并阶段
     while (is_stage_found == '\0') {
         compare_result = memcmp(current_node + 4, &OUTPUT_MERGER_STAGE_ID, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;
@@ -1239,33 +1239,33 @@ void initialize_compute_shader_stage(void)
 
 {
     char is_stage_found;
-    undefined8 *stage_root;
+    uint64_t *stage_root;
     int compare_result;
     longlong *system_context;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *previous_node;
-    undefined8 *next_node;
-    undefined8 *new_stage;
-    undefined8 null_callback;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_stage;
+    uint64_t null_callback;
     
     // 获取系统上下文
     system_context = (longlong *)get_system_context();
-    stage_root = (undefined8 *)*system_context;
+    stage_root = (uint64_t *)*system_context;
     is_stage_found = *(char *)((longlong)stage_root[1] + 0x19);
     null_callback = 0;
     previous_node = stage_root;
-    current_node = (undefined8 *)stage_root[1];
+    current_node = (uint64_t *)stage_root[1];
     
     // 在阶段树中搜索计算着色器阶段
     while (is_stage_found == '\0') {
         compare_result = memcmp(current_node + 4, &COMPUTE_SHADER_STAGE_ID, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;
@@ -1295,33 +1295,33 @@ void initialize_geometry_shader_stage(void)
 
 {
     char is_stage_found;
-    undefined8 *stage_root;
+    uint64_t *stage_root;
     int compare_result;
     longlong *system_context;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *previous_node;
-    undefined8 *next_node;
-    undefined8 *new_stage;
-    undefined8 null_callback;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_stage;
+    uint64_t null_callback;
     
     // 获取系统上下文
     system_context = (longlong *)get_system_context();
-    stage_root = (undefined8 *)*system_context;
+    stage_root = (uint64_t *)*system_context;
     is_stage_found = *(char *)((longlong)stage_root[1] + 0x19);
     null_callback = 0;
     previous_node = stage_root;
-    current_node = (undefined8 *)stage_root[1];
+    current_node = (uint64_t *)stage_root[1];
     
     // 在阶段树中搜索几何着色器阶段
     while (is_stage_found == '\0') {
         compare_result = memcmp(current_node + 4, &GEOMETRY_SHADER_STAGE_ID, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;
@@ -1351,33 +1351,33 @@ void initialize_hull_shader_stage(void)
 
 {
     char is_stage_found;
-    undefined8 *stage_root;
+    uint64_t *stage_root;
     int compare_result;
     longlong *system_context;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *previous_node;
-    undefined8 *next_node;
-    undefined8 *new_stage;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_stage;
     code *hull_callback;
     
     // 获取系统上下文
     system_context = (longlong *)get_system_context();
-    stage_root = (undefined8 *)*system_context;
+    stage_root = (uint64_t *)*system_context;
     is_stage_found = *(char *)((longlong)stage_root[1] + 0x19);
     hull_callback = HULL_SHADER_CALLBACK;
     previous_node = stage_root;
-    current_node = (undefined8 *)stage_root[1];
+    current_node = (uint64_t *)stage_root[1];
     
     // 在阶段树中搜索外壳着色器阶段
     while (is_stage_found == '\0') {
         compare_result = memcmp(current_node + 4, &HULL_SHADER_STAGE_ID, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;
@@ -1407,33 +1407,33 @@ void initialize_domain_shader_stage(void)
 
 {
     char is_stage_found;
-    undefined8 *stage_root;
+    uint64_t *stage_root;
     int compare_result;
     longlong *system_context;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *previous_node;
-    undefined8 *next_node;
-    undefined8 *new_stage;
-    undefined8 null_callback;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_stage;
+    uint64_t null_callback;
     
     // 获取系统上下文
     system_context = (longlong *)get_system_context();
-    stage_root = (undefined8 *)*system_context;
+    stage_root = (uint64_t *)*system_context;
     is_stage_found = *(char *)((longlong)stage_root[1] + 0x19);
     null_callback = 0;
     previous_node = stage_root;
-    current_node = (undefined8 *)stage_root[1];
+    current_node = (uint64_t *)stage_root[1];
     
     // 在阶段树中搜索域着色器阶段
     while (is_stage_found == '\0') {
         compare_result = memcmp(current_node + 4, &DOMAIN_SHADER_STAGE_ID, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = previous_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         previous_node = current_node;
         current_node = next_node;

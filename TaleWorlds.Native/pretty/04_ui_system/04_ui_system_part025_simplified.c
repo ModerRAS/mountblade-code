@@ -177,13 +177,13 @@ int ui_system_advanced_data_processor(longlong *ui_context_ptr, longlong process
                 
                 // 处理特殊配置标志
                 if (((int)ui_context_ptr[0x1f] == 0) && ((*(uint *)(ui_context_ptr + 1) & 0x10000) != 0)) {
-                    *(undefined4 *)((longlong)ui_context_ptr + 0xfc) = 0x403;
+                    *(int32_t *)((longlong)ui_context_ptr + 0xfc) = 0x403;
                     ui_context_ptr[0x20] = 4;
                 }
                 
                 // 执行格式化处理
                 process_status = FUN_18066eea0(ui_context_ptr + 0x35, &config_data);
-                *(undefined4 *)((longlong)ui_context_ptr + 0xf4) = 1;
+                *(int32_t *)((longlong)ui_context_ptr + 0xf4) = 1;
             }
             
             // 更新系统状态
@@ -228,8 +228,8 @@ int ui_system_memory_manager(longlong system_ptr, longlong *resource_ptr)
         
         // 检查系统配置
         if ((*(uint *)(system_ptr + 8) & 0x10000) != 0) {
-            config_data = *(undefined4 *)(system_ptr + 0xfc);
-            result_data = *(undefined8 *)(system_ptr + 0x100);
+            config_data = *(int32_t *)(system_ptr + 0xfc);
+            result_data = *(uint64_t *)(system_ptr + 0x100);
         }
         
         // 执行资源管理初始化
@@ -239,13 +239,13 @@ int ui_system_memory_manager(longlong system_ptr, longlong *resource_ptr)
             // 配置系统参数
             *(int *)(system_ptr + 0x13c) = 0;
             *(int *)(system_ptr + 0x134) = 0;
-            *(undefined4 *)(system_ptr + 0x118) = 0x102;
+            *(int32_t *)(system_ptr + 0x118) = 0x102;
             *(uint *)(system_ptr + 0x128) = 0x4f & 0xfffffff0;
-            *(undefined4 *)(system_ptr + 0x138) = format_data;
-            *(undefined4 *)(system_ptr + 0x130) = format_data;
-            *(undefined4 *)(system_ptr + 0x124) = config_data;
-            *(undefined4 *)(system_ptr + 0x140) = 1;
-            *(undefined4 *)(system_ptr + 0x144) = 1;
+            *(int32_t *)(system_ptr + 0x138) = format_data;
+            *(int32_t *)(system_ptr + 0x130) = format_data;
+            *(int32_t *)(system_ptr + 0x124) = config_data;
+            *(int32_t *)(system_ptr + 0x140) = 1;
+            *(int32_t *)(system_ptr + 0x144) = 1;
             
             // 设置资源指针
             *resource_ptr = system_ptr + 0x118;
@@ -271,30 +271,30 @@ int ui_system_memory_manager(longlong system_ptr, longlong *resource_ptr)
 // 3. 执行格式转换处理
 // 4. 返回转换结果
 //
-int ui_system_data_format_converter(longlong system_ptr, undefined8 *data_ptr)
+int ui_system_data_format_converter(longlong system_ptr, uint64_t *data_ptr)
 {
     // 参数验证
     if (data_ptr == NULL || system_ptr == 0) {
         return UI_SYSTEM_ERROR_INVALID_PARAM;
     }
     
-    undefined4 *data_format_ptr = (undefined4 *)*data_ptr;
-    if ((data_format_ptr != (undefined4 *)0x0) && (*(int *)(system_ptr + 0x1a8) == 0)) {
+    int32_t *data_format_ptr = (int32_t *)*data_ptr;
+    if ((data_format_ptr != (int32_t *)0x0) && (*(int *)(system_ptr + 0x1a8) == 0)) {
         // 提取数据格式信息
         int format_width = data_format_ptr[9];
         int format_height = data_format_ptr[8];
-        undefined8 format_data1 = *(undefined8 *)(data_format_ptr + 0xe);
-        undefined8 format_data2 = *(undefined8 *)(data_format_ptr + 0x10);
+        uint64_t format_data1 = *(uint64_t *)(data_format_ptr + 0xe);
+        uint64_t format_data2 = *(uint64_t *)(data_format_ptr + 0x10);
         
         // 计算格式参数
         uint param1 = format_width + 1U >> 1;
         int format_offset = data_format_ptr[0x16];
         uint param2 = format_height + 1U >> 1;
-        undefined8 format_data3 = *(undefined8 *)(data_format_ptr + 0x12);
+        uint64_t format_data3 = *(uint64_t *)(data_format_ptr + 0x12);
         uint size_param = (uint)(format_offset - format_height) >> 1;
         
         // 执行格式转换
-        undefined8 result = FUN_18066f2e0(*(undefined8 *)(system_ptr + 0x1b0), *data_format_ptr, &format_height);
+        uint64_t result = FUN_18066f2e0(*(uint64_t *)(system_ptr + 0x1b0), *data_format_ptr, &format_height);
         return (int)result;
     }
     
@@ -315,30 +315,30 @@ int ui_system_data_format_converter(longlong system_ptr, undefined8 *data_ptr)
 // 3. 执行数据验证
 // 4. 返回验证结果
 //
-int ui_system_data_validator(longlong system_ptr, undefined8 *data_ptr)
+int ui_system_data_validator(longlong system_ptr, uint64_t *data_ptr)
 {
     // 参数验证
     if (data_ptr == NULL || system_ptr == 0) {
         return UI_SYSTEM_ERROR_INVALID_PARAM;
     }
     
-    undefined4 *data_format_ptr = (undefined4 *)*data_ptr;
-    if ((data_format_ptr != (undefined4 *)0x0) && (*(int *)(system_ptr + 0x1a8) == 0)) {
+    int32_t *data_format_ptr = (int32_t *)*data_ptr;
+    if ((data_format_ptr != (int32_t *)0x0) && (*(int *)(system_ptr + 0x1a8) == 0)) {
         // 提取验证参数
         int format_width = data_format_ptr[9];
         int format_height = data_format_ptr[8];
-        undefined8 format_data1 = *(undefined8 *)(data_format_ptr + 0xe);
-        undefined8 format_data2 = *(undefined8 *)(data_format_ptr + 0x10);
+        uint64_t format_data1 = *(uint64_t *)(data_format_ptr + 0xe);
+        uint64_t format_data2 = *(uint64_t *)(data_format_ptr + 0x10);
         
         // 计算验证参数
         uint param1 = format_width + 1U >> 1;
         int format_offset = data_format_ptr[0x16];
         uint param2 = format_height + 1U >> 1;
-        undefined8 format_data3 = *(undefined8 *)(data_format_ptr + 0x12);
+        uint64_t format_data3 = *(uint64_t *)(data_format_ptr + 0x12);
         uint size_param = (uint)(format_offset - format_height) >> 1;
         
         // 执行数据验证
-        undefined8 result = FUN_18066efd0(*(undefined8 *)(system_ptr + 0x1b0), *data_format_ptr, &format_height);
+        uint64_t result = FUN_18066efd0(*(uint64_t *)(system_ptr + 0x1b0), *data_format_ptr, &format_height);
         return (int)result;
     }
     
@@ -361,7 +361,7 @@ int ui_system_data_validator(longlong system_ptr, undefined8 *data_ptr)
 // 3. 配置系统参数
 // 4. 返回初始化结果
 //
-int ui_system_state_initializer(longlong system_ptr, longlong param1, int param2, undefined4 *status_ptr)
+int ui_system_state_initializer(longlong system_ptr, longlong param1, int param2, int32_t *status_ptr)
 {
     // 参数验证
     if (system_ptr == 0 || status_ptr == NULL) {
@@ -389,7 +389,7 @@ int ui_system_state_initializer(longlong system_ptr, longlong param1, int param2
             }
             
             // 重置状态
-            *(undefined4 *)(system_ptr + 700) = 0;
+            *(int32_t *)(system_ptr + 700) = 0;
             *status_ptr = 8;
             return 0xffffffff;
         }
@@ -407,7 +407,7 @@ int ui_system_state_initializer(longlong system_ptr, longlong param1, int param2
     if (current_status == 0) {
         *(longlong *)(system_ptr + 0x2c0) = param1;
         *(int *)(system_ptr + 0x308) = param2;
-        *(undefined4 *)(system_ptr + 700) = 1;
+        *(int32_t *)(system_ptr + 700) = 1;
     }
     
     return 1;
@@ -430,7 +430,7 @@ int ui_system_state_initializer(longlong system_ptr, longlong param1, int param2
 // 3. 应用配置设置
 // 4. 返回处理结果
 //
-void ui_system_config_processor(byte *config_ptr, uint config_size, longlong param1, code *param2, undefined8 param3)
+void ui_system_config_processor(byte *config_ptr, uint config_size, longlong param1, code *param2, uint64_t param3)
 {
     // 参数验证
     if (config_ptr == NULL || config_size == 0) {
@@ -450,11 +450,11 @@ void ui_system_config_processor(byte *config_ptr, uint config_size, longlong par
         }
         
         // 初始化配置参数
-        *(undefined4 *)(param1 + 0xc) = 0;
+        *(int32_t *)(param1 + 0xc) = 0;
         
         // 处理特殊配置格式
         if ((((9 < config_size) && ((*config_ptr & 1) == 0)) &&
-            (*(undefined4 *)(param1 + 0xc) = 1, config_ptr[3] == 0x9d)) &&
+            (*(int32_t *)(param1 + 0xc) = 1, config_ptr[3] == 0x9d)) &&
            ((config_ptr[4] == 1 && (config_ptr[5] == 0x2a)))) {
             *(uint *)(param1 + 4) = *(ushort *)(config_ptr + 6) & 0x3fff;
             *(uint *)(param1 + 8) = *(ushort *)(config_ptr + 8) & 0x3fff;
@@ -475,10 +475,10 @@ void ui_system_config_processor(byte *config_ptr, uint config_size, longlong par
 // 3. 执行资源清理
 // 4. 释放相关内存
 //
-int ui_system_resource_cleaner(undefined8 *resource_ptr)
+int ui_system_resource_cleaner(uint64_t *resource_ptr)
 {
     // 参数验证
-    if (resource_ptr == (undefined8 *)0x0) {
+    if (resource_ptr == (uint64_t *)0x0) {
         return UI_SYSTEM_ERROR_INVALID_PARAM;
     }
     
@@ -489,11 +489,11 @@ int ui_system_resource_cleaner(undefined8 *resource_ptr)
         resource_ptr[1] = 0;
         *resource_ptr = 0;
         resource_ptr[6] = 0;
-        *(undefined4 *)(resource_ptr + 2) = 0;
+        *(int32_t *)(resource_ptr + 2) = 0;
         return UI_SYSTEM_STATUS_SUCCESS;
     }
     
-    *(undefined4 *)(resource_ptr + 2) = 1;
+    *(int32_t *)(resource_ptr + 2) = 1;
     return UI_SYSTEM_STATUS_ERROR;
 }
 
@@ -513,7 +513,7 @@ int ui_system_resource_cleaner(undefined8 *resource_ptr)
 // 3. 执行异常处理
 // 4. 返回处理结果
 //
-void ui_system_exception_handler(undefined4 *exception_ptr, undefined4 exception_code, longlong message_ptr, undefined8 param4)
+void ui_system_exception_handler(int32_t *exception_ptr, int32_t exception_code, longlong message_ptr, uint64_t param4)
 {
     // 设置异常代码
     *exception_ptr = exception_code;
@@ -525,7 +525,7 @@ void ui_system_exception_handler(undefined4 *exception_ptr, undefined4 exception
         // 格式化错误消息
         ulonglong *format_ptr = (ulonglong *)func_0x00018004b9a0();
         __stdio_common_vsprintf(*format_ptr | 2, exception_ptr + 2, 0x4f, message_ptr, 0, &param4);
-        *(undefined1 *)((longlong)exception_ptr + 0x57) = 0;
+        *(int8_t *)((longlong)exception_ptr + 0x57) = 0;
     }
     
     // 执行异常跳转
@@ -551,7 +551,7 @@ void ui_system_exception_handler(undefined4 *exception_ptr, undefined4 exception
 // 3. 记录错误日志
 // 4. 执行错误处理
 //
-void ui_system_error_manager(undefined4 *error_ptr, undefined4 error_code, longlong message_ptr)
+void ui_system_error_manager(int32_t *error_ptr, int32_t error_code, longlong message_ptr)
 {
     // 设置错误代码
     *error_ptr = error_code;
@@ -563,7 +563,7 @@ void ui_system_error_manager(undefined4 *error_ptr, undefined4 error_code, longl
         // 格式化错误消息
         ulonglong *format_ptr = (ulonglong *)func_0x00018004b9a0();
         __stdio_common_vsprintf(*format_ptr | 2, error_ptr + 2, 0x4f, message_ptr, 0);
-        *(undefined1 *)((longlong)error_ptr + 0x57) = 0;
+        *(int8_t *)((longlong)error_ptr + 0x57) = 0;
     }
     
     // 执行错误处理
@@ -590,13 +590,13 @@ void ui_system_error_manager(undefined4 *error_ptr, undefined4 error_code, longl
 void ui_system_logger(longlong log_ptr)
 {
     // 设置日志级别
-    *(undefined4 *)(log_ptr + 4) = 1;
+    *(int32_t *)(log_ptr + 4) = 1;
     
     // 格式化日志消息
     ulonglong *format_ptr = (ulonglong *)func_0x00018004b9a0();
-    undefined4 *log_data_ptr = (undefined4 *)log_ptr;
+    int32_t *log_data_ptr = (int32_t *)log_ptr;
     __stdio_common_vsprintf(*format_ptr | 2, log_data_ptr + 2, 0x4f);
-    *(undefined1 *)((longlong)log_data_ptr + 0x57) = 0;
+    *(int8_t *)((longlong)log_data_ptr + 0x57) = 0;
     
     // 执行日志处理
     if (log_data_ptr[0x16] == 0) {
@@ -618,7 +618,7 @@ void ui_system_logger(longlong log_ptr)
 // 2. 执行异常跳转
 // 3. 恢复系统状态
 //
-void ui_system_exception_jumper(undefined4 *jump_ptr)
+void ui_system_exception_jumper(int32_t *jump_ptr)
 {
     // 检查跳转状态
     if (jump_ptr[0x16] == 0) {

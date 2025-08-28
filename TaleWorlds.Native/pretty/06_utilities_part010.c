@@ -95,7 +95,7 @@
  * @param process_flag 处理标志
  * @return 处理状态码（0表示成功，非0表示错误）
  */
-void UtilitiesSystem_AdvancedDataProcessor(undefined8 system_context, longlong data_params, uint config_data, char process_flag)
+void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, longlong data_params, uint config_data, char process_flag)
 
 {
   longlong temp_context_1;
@@ -103,27 +103,27 @@ void UtilitiesSystem_AdvancedDataProcessor(undefined8 system_context, longlong d
   int operation_result;
   int validation_result;
   int process_result;
-  undefined **handler_ptr;
+  void **handler_ptr;
   int cleanup_result;
-  undefined1 security_buffer [32];
-  undefined4 status_flag;
+  int8_t security_buffer [32];
+  int32_t status_flag;
   float transform_data [3];
-  undefined *resource_handler;
+  void *resource_handler;
   int resource_count;
-  undefined8 context_data;
+  uint64_t context_data;
   ulonglong security_cookie;
   longlong resource_manager;
-  undefined8 config_context;
-  undefined8 state_context;
-  undefined8 data_context;
-  undefined8 event_context;
-  undefined4 process_flags;
+  uint64_t config_context;
+  uint64_t state_context;
+  uint64_t data_context;
+  uint64_t event_context;
+  int32_t process_flags;
   uint timeout_value;
-  undefined *data_processor;
+  void *data_processor;
   longlong session_manager;
   longlong auth_manager;
   longlong cleanup_manager;
-  undefined1 data_buffer [520];
+  int8_t data_buffer [520];
   
   // 安全检查：设置栈保护cookie
   security_cookie = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
@@ -138,7 +138,7 @@ void UtilitiesSystem_AdvancedDataProcessor(undefined8 system_context, longlong d
       context_data = 0;
       config_context = 0;
       timeout_value = config_data;
-      func_0x00018076b450(data_buffer,*(undefined8 *)(data_params + 0x228),0x200);
+      func_0x00018076b450(data_buffer,*(uint64_t *)(data_params + 0x228),0x200);
       handler_ptr = &resource_handler;
       // 执行数据处理
       operation_result = FUN_180897520(system_context,handler_ptr);
@@ -163,8 +163,8 @@ void UtilitiesSystem_AdvancedDataProcessor(undefined8 system_context, longlong d
         // 设置数据处理器参数
         resource_handler = &UNK_180982588;
         resource_manager = (ulonglong)config_data << 0x20;
-        context_data = *(undefined8 *)(data_params + 0x228);
-        state_context = (ulonglong)CONCAT14(operation_result != 1,*(undefined4 *)(data_params + 0x230));
+        context_data = *(uint64_t *)(data_params + 0x228);
+        state_context = (ulonglong)CONCAT14(operation_result != 1,*(int32_t *)(data_params + 0x230));
         operation_result = FUN_180897520(system_context,&resource_handler);
       }
     }
@@ -174,9 +174,9 @@ void UtilitiesSystem_AdvancedDataProcessor(undefined8 system_context, longlong d
     
     // 设置处理参数
     timeout_value = *(uint *)(data_params + 0x10);
-    status_flag = *(undefined4 *)(data_params + 0x14);
+    status_flag = *(int32_t *)(data_params + 0x14);
     resource_count = *(int *)(data_params + 0x18);
-    process_flags = *(undefined4 *)(data_params + 0x1c);
+    process_flags = *(int32_t *)(data_params + 0x1c);
     data_processor = &UNK_180985a80;
     config_context = 0;
     timeout_value = config_data;
@@ -214,10 +214,10 @@ void UtilitiesSystem_AdvancedDataProcessor(undefined8 system_context, longlong d
         if (cleanup_result != 0) goto PROCESS_ERROR;
         
         // 设置处理参数
-        process_flags = *(undefined4 *)(temp_context_1 + 0x10);
+        process_flags = *(int32_t *)(temp_context_1 + 0x10);
         timeout_value = *(uint *)(temp_context_1 + 0x14);
-        config_context = *(undefined4 *)(temp_context_1 + 0x18);
-        context_data = *(undefined4 *)(temp_context_1 + 0x1c);
+        config_context = *(int32_t *)(temp_context_1 + 0x18);
+        context_data = *(int32_t *)(temp_context_1 + 0x1c);
         data_processor = &UNK_1809830b8;
         validation_result = process_result + 1;
         event_context = status_flag;
@@ -271,10 +271,10 @@ void UtilitiesSystem_AdvancedDataProcessor(undefined8 system_context, longlong d
         if (cleanup_result != 0) goto PROCESS_ERROR;
         
         // 设置处理参数
-        process_flags = *(undefined4 *)(temp_context_1 + 0x10);
+        process_flags = *(int32_t *)(temp_context_1 + 0x10);
         timeout_value = *(uint *)(temp_context_1 + 0x14);
-        config_context = *(undefined4 *)(temp_context_1 + 0x18);
-        context_data = *(undefined4 *)(temp_context_1 + 0x1c);
+        config_context = *(int32_t *)(temp_context_1 + 0x18);
+        context_data = *(int32_t *)(temp_context_1 + 0x1c);
         data_processor = &UNK_1809830b8;
         validation_result = process_result + 1;
         event_context = status_flag;
@@ -328,10 +328,10 @@ void UtilitiesSystem_AdvancedDataProcessor(undefined8 system_context, longlong d
         if (cleanup_result != 0) goto PROCESS_ERROR;
         
         // 设置处理参数
-        process_flags = *(undefined4 *)(temp_context_1 + 0x10);
+        process_flags = *(int32_t *)(temp_context_1 + 0x10);
         timeout_value = *(uint *)(temp_context_1 + 0x14);
-        config_context = *(undefined4 *)(temp_context_1 + 0x18);
-        context_data = *(undefined4 *)(temp_context_1 + 0x1c);
+        config_context = *(int32_t *)(temp_context_1 + 0x18);
+        context_data = *(int32_t *)(temp_context_1 + 0x1c);
         data_processor = &UNK_1809830b8;
         validation_result = process_result + 1;
         event_context = status_flag;
@@ -385,10 +385,10 @@ void UtilitiesSystem_AdvancedDataProcessor(undefined8 system_context, longlong d
         if (cleanup_result != 0) goto PROCESS_ERROR;
         
         // 设置处理参数
-        process_flags = *(undefined4 *)(temp_context_1 + 0x10);
+        process_flags = *(int32_t *)(temp_context_1 + 0x10);
         timeout_value = *(uint *)(temp_context_1 + 0x14);
-        config_context = *(undefined4 *)(temp_context_1 + 0x18);
-        context_data = *(undefined4 *)(temp_context_1 + 0x1c);
+        config_context = *(int32_t *)(temp_context_1 + 0x18);
+        context_data = *(int32_t *)(temp_context_1 + 0x1c);
         data_processor = &UNK_1809830b8;
         validation_result = process_result + 1;
         event_context = status_flag;
@@ -445,10 +445,10 @@ void UtilitiesSystem_AdvancedDataProcessor(undefined8 system_context, longlong d
         if (cleanup_result != 0) break;
         
         // 设置最终处理参数
-        process_flags = *(undefined4 *)(temp_context_1 + 0x10);
+        process_flags = *(int32_t *)(temp_context_1 + 0x10);
         timeout_value = *(uint *)(temp_context_1 + 0x14);
-        config_context = *(undefined4 *)(temp_context_1 + 0x18);
-        context_data = *(undefined4 *)(temp_context_1 + 0x1c);
+        config_context = *(int32_t *)(temp_context_1 + 0x18);
+        context_data = *(int32_t *)(temp_context_1 + 0x1c);
         data_processor = &UNK_180983238;
         validation_result = process_result + 1;
         event_context = status_flag;
@@ -496,25 +496,25 @@ void UtilitiesSystem_StateManager(void)
 {
   longlong context_1;
   longlong context_2;
-  undefined4 data_param_1;
-  undefined4 data_param_2;
-  undefined4 data_param_3;
-  undefined4 data_param_4;
+  int32_t data_param_1;
+  int32_t data_param_2;
+  int32_t data_param_3;
+  int32_t data_param_4;
   int operation_result;
   int validation_result;
   int process_result;
-  undefined4 unaff_param;
+  int32_t unaff_param;
   longlong unaff_context;
   int unaff_value;
   longlong unaff_data;
   char unaff_flag;
   float transform_result;
   float extra_data;
-  undefined4 stack_param;
+  int32_t stack_param;
   float stack_data;
-  undefined *stack_handler;
+  void *stack_handler;
   int stack_value;
-  undefined4 stack_config;
+  int32_t stack_config;
   float stack_transform;
   
   // 处理系统状态和资源
@@ -531,22 +531,22 @@ void UtilitiesSystem_StateManager(void)
         if (validation_result != 0) goto STATE_ERROR;
         
         // 设置状态参数
-        data_param_1 = *(undefined4 *)(context_1 + 0x10);
-        data_param_2 = *(undefined4 *)(context_1 + 0x14);
-        data_param_3 = *(undefined4 *)(context_1 + 0x18);
-        data_param_4 = *(undefined4 *)(context_1 + 0x1c);
+        data_param_1 = *(int32_t *)(context_1 + 0x10);
+        data_param_2 = *(int32_t *)(context_1 + 0x14);
+        data_param_3 = *(int32_t *)(context_1 + 0x18);
+        data_param_4 = *(int32_t *)(context_1 + 0x1c);
         
         // 配置状态管理器
-        *(undefined4 *)(unaff_context + -0x78) = 0;
+        *(int32_t *)(unaff_context + -0x78) = 0;
         *(int *)(unaff_context + -0x68) = unaff_value;
-        *(undefined **)(unaff_context + -0x80) = &UNK_1809830b8;
+        *(void **)(unaff_context + -0x80) = &UNK_1809830b8;
         unaff_value = unaff_value + 1;
-        *(undefined4 *)(unaff_context + -0x54) = stack_param;
-        *(undefined4 *)(unaff_context + -0x70) = unaff_param;
-        *(undefined4 *)(unaff_context + -100) = data_param_1;
-        *(undefined4 *)(unaff_context + -0x60) = data_param_2;
-        *(undefined4 *)(unaff_context + -0x5c) = data_param_3;
-        *(undefined4 *)(unaff_context + -0x58) = data_param_4;
+        *(int32_t *)(unaff_context + -0x54) = stack_param;
+        *(int32_t *)(unaff_context + -0x70) = unaff_param;
+        *(int32_t *)(unaff_context + -100) = data_param_1;
+        *(int32_t *)(unaff_context + -0x60) = data_param_2;
+        *(int32_t *)(unaff_context + -0x5c) = data_param_3;
+        *(int32_t *)(unaff_context + -0x58) = data_param_4;
         
         validation_result = FUN_180897520(data_param_1,unaff_context + -0x80);
         if ((validation_result != 0) || (validation_result = FUN_18088c970(context_2,&stack_data), validation_result != 0))
@@ -594,22 +594,22 @@ void UtilitiesSystem_StateManager(void)
         if (validation_result != 0) goto STATE_ERROR;
         
         // 设置状态参数
-        data_param_1 = *(undefined4 *)(context_1 + 0x10);
-        data_param_2 = *(undefined4 *)(context_1 + 0x14);
-        data_param_3 = *(undefined4 *)(context_1 + 0x18);
-        data_param_4 = *(undefined4 *)(context_1 + 0x1c);
+        data_param_1 = *(int32_t *)(context_1 + 0x10);
+        data_param_2 = *(int32_t *)(context_1 + 0x14);
+        data_param_3 = *(int32_t *)(context_1 + 0x18);
+        data_param_4 = *(int32_t *)(context_1 + 0x1c);
         
         // 配置状态管理器
-        *(undefined4 *)(unaff_context + -0x78) = 0;
+        *(int32_t *)(unaff_context + -0x78) = 0;
         *(int *)(unaff_context + -0x68) = unaff_value;
-        *(undefined **)(unaff_context + -0x80) = &UNK_1809830b8;
+        *(void **)(unaff_context + -0x80) = &UNK_1809830b8;
         unaff_value = unaff_value + 1;
-        *(undefined4 *)(unaff_context + -0x54) = stack_param;
-        *(undefined4 *)(unaff_context + -0x70) = unaff_param;
-        *(undefined4 *)(unaff_context + -100) = data_param_1;
-        *(undefined4 *)(unaff_context + -0x60) = data_param_2;
-        *(undefined4 *)(unaff_context + -0x5c) = data_param_3;
-        *(undefined4 *)(unaff_context + -0x58) = data_param_4;
+        *(int32_t *)(unaff_context + -0x54) = stack_param;
+        *(int32_t *)(unaff_context + -0x70) = unaff_param;
+        *(int32_t *)(unaff_context + -100) = data_param_1;
+        *(int32_t *)(unaff_context + -0x60) = data_param_2;
+        *(int32_t *)(unaff_context + -0x5c) = data_param_3;
+        *(int32_t *)(unaff_context + -0x58) = data_param_4;
         
         validation_result = FUN_180897520(data_param_1,unaff_context + -0x80);
         if ((validation_result != 0) || (validation_result = FUN_18088c970(context_2,&stack_data), validation_result != 0))
@@ -677,21 +677,21 @@ void UtilitiesSystem_StateManager(void)
         if (process_result != 0) break;
         
         // 设置最终状态参数
-        data_param_1 = *(undefined4 *)(context_1 + 0x10);
-        data_param_2 = *(undefined4 *)(context_1 + 0x14);
-        data_param_3 = *(undefined4 *)(context_1 + 0x18);
-        data_param_4 = *(undefined4 *)(context_1 + 0x1c);
+        data_param_1 = *(int32_t *)(context_1 + 0x10);
+        data_param_2 = *(int32_t *)(context_1 + 0x14);
+        data_param_3 = *(int32_t *)(context_1 + 0x18);
+        data_param_4 = *(int32_t *)(context_1 + 0x1c);
         
-        *(undefined4 *)(unaff_context + -0x78) = 0;
+        *(int32_t *)(unaff_context + -0x78) = 0;
         *(int *)(unaff_context + -0x68) = validation_result;
-        *(undefined **)(unaff_context + -0x80) = &UNK_180983238;
+        *(void **)(unaff_context + -0x80) = &UNK_180983238;
         validation_result = validation_result + 1;
-        *(undefined4 *)(unaff_context + -0x54) = stack_param;
-        *(undefined4 *)(unaff_context + -0x70) = unaff_param;
-        *(undefined4 *)(unaff_context + -100) = data_param_1;
-        *(undefined4 *)(unaff_context + -0x60) = data_param_2;
-        *(undefined4 *)(unaff_context + -0x5c) = data_param_3;
-        *(undefined4 *)(unaff_context + -0x58) = data_param_4;
+        *(int32_t *)(unaff_context + -0x54) = stack_param;
+        *(int32_t *)(unaff_context + -0x70) = unaff_param;
+        *(int32_t *)(unaff_context + -100) = data_param_1;
+        *(int32_t *)(unaff_context + -0x60) = data_param_2;
+        *(int32_t *)(unaff_context + -0x5c) = data_param_3;
+        *(int32_t *)(unaff_context + -0x58) = data_param_4;
         
         process_result = FUN_180897520(data_param_1,unaff_context + -0x80);
         if ((process_result != 0) || (process_result = FUN_18088cbb0(context_2,&stack_data,0), process_result != 0)) break;
@@ -755,8 +755,8 @@ void UtilitiesSystem_ParameterValidator(longlong *param_handler, longlong *valid
 {
   longlong handler_context;
   int validation_result;
-  undefined1 security_buffer [32];
-  undefined1 data_buffer [512];
+  int8_t security_buffer [32];
+  int8_t data_buffer [512];
   ulonglong security_cookie;
   
   // 安全检查：设置栈保护cookie
@@ -772,7 +772,7 @@ void UtilitiesSystem_ParameterValidator(longlong *param_handler, longlong *valid
     // 检查处理结果
     if ((validation_result == 0) &&
        (((char)handler_context == '\0' && (validation_result = (**(code **)(*param_handler + 0x18))(param_handler), validation_result == 0)))) {
-      *(undefined1 *)(param_handler + 4) = 0;
+      *(int8_t *)(param_handler + 4) = 0;
     }
   }
   
@@ -800,7 +800,7 @@ void UtilitiesSystem_EventHandler(void)
   longlong context_data;
   char system_flag;
   longlong *handler_ptr;
-  undefined1 event_buffer [8];
+  int8_t event_buffer [8];
   ulonglong security_cookie;
   
   // 处理系统事件
@@ -811,7 +811,7 @@ void UtilitiesSystem_EventHandler(void)
   // 检查事件处理结果
   if (((operation_result == 0) && (system_flag == '\0')) &&
      (operation_result = (**(code **)(*handler_ptr + 0x18))(), operation_result == 0)) {
-    *(undefined1 *)(handler_ptr + 4) = 0;
+    *(int8_t *)(handler_ptr + 4) = 0;
   }
   
   // 清理安全cookie并退出
@@ -841,7 +841,7 @@ void UtilitiesSystem_StateChecker(void)
   
   // 检查系统状态
   if ((system_flag == '\0') && (operation_result = (**(code **)(*handler_ptr + 0x18))(), operation_result == 0)) {
-    *(undefined1 *)(handler_ptr + 4) = 0;
+    *(int8_t *)(handler_ptr + 4) = 0;
   }
   
   // 清理安全cookie并退出

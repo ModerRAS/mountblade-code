@@ -5,25 +5,25 @@
 
 // 函数：链表遍历和比较函数
 // 功能：遍历链表并进行字符串比较，返回符合条件的节点
-void traverse_and_compare_list(undefined8 *param_1)
+void traverse_and_compare_list(uint64_t *param_1)
 
 {
   byte compare_result;
   bool is_match;
-  undefined8 *current_node;
+  uint64_t *current_node;
   byte *string_ptr;
   longlong base_offset;
   int compare_flag;
   uint char_value;
   int string_diff;
-  undefined8 *next_node;
-  undefined8 *target_node;
+  uint64_t *next_node;
+  uint64_t *target_node;
   longlong node_offset;
-  undefined8 *list_head;
+  uint64_t *list_head;
   
   do {
     if (compare_flag == 0) {
-      target_node = (undefined8 *)current_node[1];
+      target_node = (uint64_t *)current_node[1];
       is_match = false;
     }
     else {
@@ -41,11 +41,11 @@ void traverse_and_compare_list(undefined8 *param_1)
         } while (char_value != 0);
         is_match = 0 < string_diff;
         if (string_diff < 1) {
-          target_node = (undefined8 *)current_node[1];
+          target_node = (uint64_t *)current_node[1];
           goto MATCH_FOUND;
         }
       }
-      target_node = (undefined8 *)*current_node;
+      target_node = (uint64_t *)*current_node;
     }
 MATCH_FOUND:
     if (is_match) {
@@ -53,7 +53,7 @@ MATCH_FOUND:
     }
     list_head = current_node;
     current_node = target_node;
-  } while (target_node != (undefined8 *)0x0);
+  } while (target_node != (uint64_t *)0x0);
   if (list_head != param_1) {
     if (*(int *)(list_head + 6) == 0) {
 UPDATE_RESULT:
@@ -116,10 +116,10 @@ UPDATE_RESULT:
 
 // 函数：数据结构操作包装函数
 // 功能：调用内部函数进行数据结构操作
-void data_structure_wrapper(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void data_structure_wrapper(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  FUN_18008d810(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  FUN_18008d810(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
 
@@ -127,28 +127,28 @@ void data_structure_wrapper(longlong param_1,undefined8 param_2,undefined8 param
 
 // 函数：二叉搜索树查找函数
 // 功能：在二叉搜索树中查找指定键值的节点
-undefined8 * binary_tree_search(undefined8 *tree_root,undefined8 *result_ptr,undefined8 search_key)
+uint64_t * binary_tree_search(uint64_t *tree_root,uint64_t *result_ptr,uint64_t search_key)
 
 {
   int compare_result;
-  undefined8 *left_child;
-  undefined8 *current_node;
-  undefined8 *parent_node;
+  uint64_t *left_child;
+  uint64_t *current_node;
+  uint64_t *parent_node;
   
-  left_child = (undefined8 *)tree_root[2];
+  left_child = (uint64_t *)tree_root[2];
   parent_node = tree_root;
-  if ((undefined8 *)tree_root[2] != (undefined8 *)0x0) {
+  if ((uint64_t *)tree_root[2] != (uint64_t *)0x0) {
     do {
       compare_result = memcmp(left_child + 4,search_key,0x10);
       if (compare_result < 0) {
-        current_node = (undefined8 *)*left_child;
+        current_node = (uint64_t *)*left_child;
       }
       else {
-        current_node = (undefined8 *)left_child[1];
+        current_node = (uint64_t *)left_child[1];
         parent_node = left_child;
       }
       left_child = current_node;
-    } while (current_node != (undefined8 *)0x0);
+    } while (current_node != (uint64_t *)0x0);
     if ((parent_node != tree_root) && 
         (compare_result = memcmp(search_key,parent_node + 4,0x10), -1 < compare_result)) {
       *result_ptr = parent_node;
@@ -163,31 +163,31 @@ undefined8 * binary_tree_search(undefined8 *tree_root,undefined8 *result_ptr,und
 
 // 函数：树节点查找函数
 // 功能：在树结构中查找特定节点并返回其位置
-undefined8 * find_tree_node(undefined8 *tree_root,undefined8 search_key)
+uint64_t * find_tree_node(uint64_t *tree_root,uint64_t search_key)
 
 {
-  undefined8 *current_node;
-  undefined8 *next_node;
+  uint64_t *current_node;
+  uint64_t *next_node;
   int compare_result;
-  undefined8 *parent_node;
-  undefined1 temp_buffer [8];
+  uint64_t *parent_node;
+  int8_t temp_buffer [8];
   
-  next_node = (undefined8 *)tree_root[2];
+  next_node = (uint64_t *)tree_root[2];
   parent_node = tree_root;
-  while (current_node = next_node, current_node != (undefined8 *)0x0) {
+  while (current_node = next_node, current_node != (uint64_t *)0x0) {
     compare_result = memcmp(current_node + 4,search_key,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     else {
-      next_node = (undefined8 *)current_node[1];
+      next_node = (uint64_t *)current_node[1];
       parent_node = current_node;
     }
   }
   if ((parent_node == tree_root) || 
       (compare_result = memcmp(search_key,parent_node + 4,0x10), compare_result < 0)) {
-    parent_node = (undefined8 *)FUN_18008da10(tree_root,temp_buffer);
-    parent_node = (undefined8 *)*parent_node;
+    parent_node = (uint64_t *)FUN_18008da10(tree_root,temp_buffer);
+    parent_node = (uint64_t *)*parent_node;
   }
   return parent_node + 6;
 }
@@ -196,36 +196,36 @@ undefined8 * find_tree_node(undefined8 *tree_root,undefined8 search_key)
 
 // 函数：优先级队列插入函数
 // 功能：向优先级队列中插入新元素，维护队列顺序
-void priority_queue_insert(undefined8 *queue_head,undefined8 element,ulonglong *priority)
+void priority_queue_insert(uint64_t *queue_head,uint64_t element,ulonglong *priority)
 
 {
   ulonglong current_priority;
-  undefined8 *queue_node;
+  uint64_t *queue_node;
   longlong new_node;
-  undefined8 *insert_pos;
-  undefined8 direction;
+  uint64_t *insert_pos;
+  uint64_t direction;
   bool should_insert_left;
   
-  new_node = FUN_18062b420(_DAT_180c8ed18,0x28,*(undefined1 *)(queue_head + 5));
+  new_node = FUN_18062b420(_DAT_180c8ed18,0x28,*(int8_t *)(queue_head + 5));
   current_priority = *priority;
   should_insert_left = true;
   *(ulonglong *)(new_node + 0x20) = current_priority;
-  queue_node = (undefined8 *)queue_head[2];
+  queue_node = (uint64_t *)queue_head[2];
   insert_pos = queue_head;
-  while (queue_node != (undefined8 *)0x0) {
+  while (queue_node != (uint64_t *)0x0) {
     should_insert_left = current_priority < (ulonglong)queue_node[4];
     insert_pos = queue_node;
     if (should_insert_left) {
-      queue_node = (undefined8 *)queue_node[1];
+      queue_node = (uint64_t *)queue_node[1];
     }
     else {
-      queue_node = (undefined8 *)*queue_node;
+      queue_node = (uint64_t *)*queue_node;
     }
   }
   queue_node = insert_pos;
   if (should_insert_left) {
-    if (queue_node == (undefined8 *)queue_head[1]) goto INSERT_AT_HEAD;
-    queue_node = (undefined8 *)func_0x00018066b9a0(queue_node);
+    if (queue_node == (uint64_t *)queue_head[1]) goto INSERT_AT_HEAD;
+    queue_node = (uint64_t *)func_0x00018066b9a0(queue_node);
   }
   if (*(ulonglong *)(new_node + 0x20) <= (ulonglong)queue_node[4]) {
                     // WARNING: Subroutine does not return
@@ -246,10 +246,10 @@ INSERT_AT_HEAD:
 
 // 函数：递归数据结构清理函数
 // 功能：递归清理数据结构中的节点和内存
-void recursive_data_cleanup(undefined8 param_1,undefined8 *node_ptr,undefined8 param_3,undefined8 param_4)
+void recursive_data_cleanup(uint64_t param_1,uint64_t *node_ptr,uint64_t param_3,uint64_t param_4)
 
 {
-  if (node_ptr != (undefined8 *)0x0) {
+  if (node_ptr != (uint64_t *)0x0) {
     FUN_18008d810(param_1,*node_ptr,param_3,param_4,0xfffffffffffffffe);
     FUN_18004b730();
     FUN_180058370(node_ptr + 0xc,node_ptr[0xe]);
@@ -264,15 +264,15 @@ void recursive_data_cleanup(undefined8 param_1,undefined8 *node_ptr,undefined8 p
 
 // 函数：复杂数据结构操作函数
 // 功能：在复杂数据结构中插入或查找节点
-undefined8 *
-complex_data_structure_operation(longlong *structure_head,undefined8 *result_ptr,undefined8 search_key,
-                               longlong *compare_node,undefined8 param_5)
+uint64_t *
+complex_data_structure_operation(longlong *structure_head,uint64_t *result_ptr,uint64_t search_key,
+                               longlong *compare_node,uint64_t param_5)
 
 {
   longlong *current_node;
   int compare_result;
   longlong *temp_node;
-  undefined8 operation_flag;
+  uint64_t operation_flag;
   bool search_left;
   longlong *stack_ptr;
   
@@ -338,19 +338,19 @@ RETURN_RESULT:
 
 // 函数：数据结构节点管理函数
 // 功能：管理数据结构节点的插入和查找操作
-undefined8 *
-manage_data_structure_nodes(longlong *structure_head,undefined8 *result_ptr,undefined8 search_key,
-                            longlong *compare_node,undefined4 *node_data)
+uint64_t *
+manage_data_structure_nodes(longlong *structure_head,uint64_t *result_ptr,uint64_t search_key,
+                            longlong *compare_node,int32_t *node_data)
 
 {
-  undefined4 data_field1;
-  undefined4 data_field2;
-  undefined4 data_field3;
+  int32_t data_field1;
+  int32_t data_field2;
+  int32_t data_field3;
   longlong *current_node;
   int compare_result;
   longlong *temp_node;
   longlong allocation_size;
-  undefined8 operation_flag;
+  uint64_t operation_flag;
   bool search_left;
   
   current_node = (longlong *)*structure_head;
@@ -414,11 +414,11 @@ ALLOCATE_NEW_NODE:
   data_field1 = node_data[1];
   data_field2 = node_data[2];
   data_field3 = node_data[3];
-  *(undefined4 *)(allocation_size + 0x20) = *node_data;
-  *(undefined4 *)(allocation_size + 0x24) = data_field1;
-  *(undefined4 *)(allocation_size + 0x28) = data_field2;
-  *(undefined4 *)(allocation_size + 0x2c) = data_field3;
-  *(undefined4 *)(allocation_size + 0x30) = 0;
+  *(int32_t *)(allocation_size + 0x20) = *node_data;
+  *(int32_t *)(allocation_size + 0x24) = data_field1;
+  *(int32_t *)(allocation_size + 0x28) = data_field2;
+  *(int32_t *)(allocation_size + 0x2c) = data_field3;
+  *(int32_t *)(allocation_size + 0x30) = 0;
                     // WARNING: Subroutine does not return
   FUN_18066bdc0(allocation_size,temp_node,structure_head,operation_flag);
 }
@@ -427,29 +427,29 @@ ALLOCATE_NEW_NODE:
 
 // 函数：数据复制和初始化函数
 // 功能：复制数据并初始化新的数据结构节点
-void data_copy_and_initialize(undefined4 source_data)
+void data_copy_and_initialize(int32_t source_data)
 
 {
-  undefined4 copy_field1;
-  undefined4 copy_field2;
-  undefined4 copy_field3;
+  int32_t copy_field1;
+  int32_t copy_field2;
+  int32_t copy_field3;
   longlong new_node;
   longlong source_ptr;
-  undefined4 *data_ptr;
+  int32_t *data_ptr;
   longlong base_offset;
   
   if (source_ptr != base_offset) {
     memcmp(source_data,source_ptr + 0x20,0x10);
   }
-  new_node = FUN_18062b420(_DAT_180c8ed18,0x38,*(undefined1 *)(base_offset + 0x28));
+  new_node = FUN_18062b420(_DAT_180c8ed18,0x38,*(int8_t *)(base_offset + 0x28));
   copy_field1 = data_ptr[1];
   copy_field2 = data_ptr[2];
   copy_field3 = data_ptr[3];
-  *(undefined4 *)(new_node + 0x20) = *data_ptr;
-  *(undefined4 *)(new_node + 0x24) = copy_field1;
-  *(undefined4 *)(new_node + 0x28) = copy_field2;
-  *(undefined4 *)(new_node + 0x2c) = copy_field3;
-  *(undefined4 *)(new_node + 0x30) = 0;
+  *(int32_t *)(new_node + 0x20) = *data_ptr;
+  *(int32_t *)(new_node + 0x24) = copy_field1;
+  *(int32_t *)(new_node + 0x28) = copy_field2;
+  *(int32_t *)(new_node + 0x2c) = copy_field3;
+  *(int32_t *)(new_node + 0x30) = 0;
                     // WARNING: Subroutine does not return
   FUN_18066bdc0(new_node);
 }
@@ -461,8 +461,8 @@ void data_copy_and_initialize(undefined4 source_data)
 void simple_pointer_assignment(void)
 
 {
-  undefined8 source_value;
-  undefined8 *target_ptr;
+  uint64_t source_value;
+  uint64_t *target_ptr;
   
   *target_ptr = source_value;
   return;
@@ -582,14 +582,14 @@ void memory_region_cleanup(void)
 
 {
   longlong region_size;
-  undefined8 region_data;
+  uint64_t region_data;
   longlong array_ptr;
   
   if (region_size != 0) {
                     // WARNING: Subroutine does not return
     memset();
   }
-  *(undefined8 *)(array_ptr + 8) = region_data;
+  *(uint64_t *)(array_ptr + 8) = region_data;
   return;
 }
 
@@ -597,27 +597,27 @@ void memory_region_cleanup(void)
 
 // 函数：复杂数据结构重建函数
 // 功能：重建复杂数据结构，处理元素重新排列
-void complex_data_structure_rebuild(longlong *structure_ptr,longlong data_size,undefined8 param_3,
-                                    undefined8 param_4)
+void complex_data_structure_rebuild(longlong *structure_ptr,longlong data_size,uint64_t param_3,
+                                    uint64_t param_4)
 
 {
-  undefined8 *element_ptr;
-  undefined8 *next_element;
-  undefined1 *string_ptr;
-  undefined8 *current_element;
-  undefined8 *temp_element;
+  uint64_t *element_ptr;
+  uint64_t *next_element;
+  int8_t *string_ptr;
+  uint64_t *current_element;
+  uint64_t *temp_element;
   longlong element_offset;
-  undefined *temp_ptr;
-  undefined8 *new_structure;
+  void *temp_ptr;
+  uint64_t *new_structure;
   longlong element_count;
   longlong stack_offset;
-  undefined8 expansion_flag;
+  uint64_t expansion_flag;
   
   expansion_flag = 0xfffffffffffffffe;
-  next_element = (undefined8 *)structure_ptr[1];
-  current_element = (undefined8 *)*structure_ptr;
+  next_element = (uint64_t *)structure_ptr[1];
+  current_element = (uint64_t *)*structure_ptr;
   stack_offset = ((longlong)next_element - (longlong)current_element) / 0x60;
-  element_ptr = (undefined8 *)0x0;
+  element_ptr = (uint64_t *)0x0;
   if (stack_offset == 0) {
     stack_offset = 1;
   }
@@ -625,11 +625,11 @@ void complex_data_structure_rebuild(longlong *structure_ptr,longlong data_size,u
     stack_offset = stack_offset * 2;
     if (stack_offset == 0) goto ALLOCATION_COMPLETE;
   }
-  element_ptr = (undefined8 *)
+  element_ptr = (uint64_t *)
            FUN_18062b420(_DAT_180c8ed18,stack_offset * 0x60,(char)structure_ptr[3],param_4,
                          expansion_flag);
-  next_element = (undefined8 *)structure_ptr[1];
-  current_element = (undefined8 *)*structure_ptr;
+  next_element = (uint64_t *)structure_ptr[1];
+  current_element = (uint64_t *)*structure_ptr;
 ALLOCATION_COMPLETE:
   temp_element = element_ptr;
   if (current_element != next_element) {
@@ -637,45 +637,45 @@ ALLOCATION_COMPLETE:
     current_element = current_element + 1;
     do {
       *temp_element = &UNK_18098bcb0;
-      *(undefined8 *)(element_count + (longlong)current_element) = 0;
-      *(undefined4 *)(element_count + 8 + (longlong)current_element) = 0;
+      *(uint64_t *)(element_count + (longlong)current_element) = 0;
+      *(int32_t *)(element_count + 8 + (longlong)current_element) = 0;
       *temp_element = &UNK_180a3c3e0;
-      *(undefined8 *)(element_count + 0x10 + (longlong)current_element) = 0;
-      *(undefined8 *)(element_count + (longlong)current_element) = 0;
-      *(undefined4 *)(element_count + 8 + (longlong)current_element) = 0;
-      *(undefined4 *)(element_count + 8 + (longlong)current_element) = *(undefined4 *)(current_element + 1);
-      *(undefined8 *)(element_count + (longlong)current_element) = *current_element;
-      *(undefined4 *)(element_count + 0x14 + (longlong)current_element) = *(undefined4 *)((longlong)current_element + 0x14);
-      *(undefined4 *)(element_count + 0x10 + (longlong)current_element) = *(undefined4 *)(current_element + 2);
-      *(undefined4 *)(current_element + 1) = 0;
+      *(uint64_t *)(element_count + 0x10 + (longlong)current_element) = 0;
+      *(uint64_t *)(element_count + (longlong)current_element) = 0;
+      *(int32_t *)(element_count + 8 + (longlong)current_element) = 0;
+      *(int32_t *)(element_count + 8 + (longlong)current_element) = *(int32_t *)(current_element + 1);
+      *(uint64_t *)(element_count + (longlong)current_element) = *current_element;
+      *(int32_t *)(element_count + 0x14 + (longlong)current_element) = *(int32_t *)((longlong)current_element + 0x14);
+      *(int32_t *)(element_count + 0x10 + (longlong)current_element) = *(int32_t *)(current_element + 2);
+      *(int32_t *)(current_element + 1) = 0;
       *current_element = 0;
       current_element[2] = 0;
-      next_element = (undefined8 *)((longlong)current_element + element_count + 0x18);
+      next_element = (uint64_t *)((longlong)current_element + element_count + 0x18);
       *next_element = &UNK_18098bcb0;
-      *(undefined8 *)(element_count + 0x20 + (longlong)current_element) = 0;
-      *(undefined4 *)(element_count + 0x28 + (longlong)current_element) = 0;
+      *(uint64_t *)(element_count + 0x20 + (longlong)current_element) = 0;
+      *(int32_t *)(element_count + 0x28 + (longlong)current_element) = 0;
       *next_element = &UNK_18098bc80;
-      string_ptr = (undefined1 *)((longlong)current_element + element_count + 0x30);
-      *(undefined1 **)(element_count + 0x20 + (longlong)current_element) = string_ptr;
-      *(undefined4 *)(element_count + 0x28 + (longlong)current_element) = 0;
+      string_ptr = (int8_t *)((longlong)current_element + element_count + 0x30);
+      *(int8_t **)(element_count + 0x20 + (longlong)current_element) = string_ptr;
+      *(int32_t *)(element_count + 0x28 + (longlong)current_element) = 0;
       *string_ptr = 0;
-      *(undefined4 *)(element_count + 0x28 + (longlong)current_element) = *(undefined4 *)(current_element + 5);
+      *(int32_t *)(element_count + 0x28 + (longlong)current_element) = *(int32_t *)(current_element + 5);
       temp_ptr = &DAT_18098bc73;
-      if ((undefined *)current_element[4] != (undefined *)0x0) {
-        temp_ptr = (undefined *)current_element[4];
+      if ((void *)current_element[4] != (void *)0x0) {
+        temp_ptr = (void *)current_element[4];
       }
-      strcpy_s(*(undefined8 *)(element_count + 0x20 + (longlong)current_element),0x20,temp_ptr,param_4,expansion_flag,next_element);
-      *(undefined1 *)(element_count + 0x50 + (longlong)current_element) = *(undefined1 *)(current_element + 10);
-      *(undefined4 *)(element_count + 0x54 + (longlong)current_element) = *(undefined4 *)((longlong)current_element + 0x54);
+      strcpy_s(*(uint64_t *)(element_count + 0x20 + (longlong)current_element),0x20,temp_ptr,param_4,expansion_flag,next_element);
+      *(int8_t *)(element_count + 0x50 + (longlong)current_element) = *(int8_t *)(current_element + 10);
+      *(int32_t *)(element_count + 0x54 + (longlong)current_element) = *(int32_t *)((longlong)current_element + 0x54);
       temp_element = temp_element + 0xc;
       next_element = current_element + 0xb;
       current_element = current_element + 0xc;
-    } while (next_element != (undefined8 *)structure_ptr[1]);
+    } while (next_element != (uint64_t *)structure_ptr[1]);
   }
   FUN_180627ae0(temp_element,data_size);
   FUN_18004b640(temp_element + 4,data_size + 0x20);
-  *(undefined1 *)(temp_element + 0xb) = *(undefined1 *)(data_size + 0x58);
-  *(undefined4 *)((longlong)temp_element + 0x5c) = *(undefined4 *)(data_size + 0x5c);
+  *(int8_t *)(temp_element + 0xb) = *(int8_t *)(data_size + 0x58);
+  *(int32_t *)((longlong)temp_element + 0x5c) = *(int32_t *)(data_size + 0x5c);
   element_count = structure_ptr[1];
   element_offset = *structure_ptr;
   if (element_offset != element_count) {
@@ -699,26 +699,26 @@ ALLOCATION_COMPLETE:
 
 // 函数：数据结构节点插入函数
 // 功能：向数据结构中插入新节点
-void data_structure_node_insert(longlong structure_ptr,undefined8 param_2,longlong insert_pos,
-                                char insert_flag,undefined4 *node_data)
+void data_structure_node_insert(longlong structure_ptr,uint64_t param_2,longlong insert_pos,
+                                char insert_flag,int32_t *node_data)
 
 {
   longlong new_node;
-  undefined4 data_field1;
-  undefined4 data_field2;
-  undefined4 data_field3;
+  int32_t data_field1;
+  int32_t data_field2;
+  int32_t data_field3;
   
   if ((insert_flag == '\0') && (insert_pos != structure_ptr)) {
     memcmp(node_data,insert_pos + 0x20,0x10,0,0xfffffffffffffffe);
   }
-  new_node = FUN_18062b420(_DAT_180c8ed18,0xc0,*(undefined1 *)(structure_ptr + 0x28));
+  new_node = FUN_18062b420(_DAT_180c8ed18,0xc0,*(int8_t *)(structure_ptr + 0x28));
   data_field1 = node_data[1];
   data_field2 = node_data[2];
   data_field3 = node_data[3];
-  *(undefined4 *)(new_node + 0x20) = *node_data;
-  *(undefined4 *)(new_node + 0x24) = data_field1;
-  *(undefined4 *)(new_node + 0x28) = data_field2;
-  *(undefined4 *)(new_node + 0x2c) = data_field3;
+  *(int32_t *)(new_node + 0x20) = *node_data;
+  *(int32_t *)(new_node + 0x24) = data_field1;
+  *(int32_t *)(new_node + 0x28) = data_field2;
+  *(int32_t *)(new_node + 0x2c) = data_field3;
                     // WARNING: Subroutine does not return
   memset(new_node + 0x30,0,0x90);
 }
@@ -727,16 +727,16 @@ void data_structure_node_insert(longlong structure_ptr,undefined8 param_2,longlo
 
 // 函数：数据结构节点插入函数（变体）
 // 功能：向数据结构中插入新节点的另一种实现
-void data_structure_node_insert_variant(longlong structure_ptr,undefined8 param_2,longlong insert_pos,
-                                        char insert_flag,undefined4 *node_data)
+void data_structure_node_insert_variant(longlong structure_ptr,uint64_t param_2,longlong insert_pos,
+                                        char insert_flag,int32_t *node_data)
 
 {
-  undefined4 data_field1;
-  undefined4 data_field2;
-  undefined4 data_field3;
+  int32_t data_field1;
+  int32_t data_field2;
+  int32_t data_field3;
   int compare_result;
   longlong new_node;
-  undefined4 insert_direction;
+  int32_t insert_direction;
   
   if ((insert_flag == '\0') && (insert_pos != structure_ptr)) {
     compare_result = memcmp(node_data,insert_pos + 0x20,0x10);
@@ -747,15 +747,15 @@ void data_structure_node_insert_variant(longlong structure_ptr,undefined8 param_
   }
   insert_direction = 0;
 DETERMINE_DIRECTION:
-  new_node = FUN_18062b420(_DAT_180c8ed18,0x38,*(undefined1 *)(structure_ptr + 0x28));
+  new_node = FUN_18062b420(_DAT_180c8ed18,0x38,*(int8_t *)(structure_ptr + 0x28));
   data_field1 = node_data[1];
   data_field2 = node_data[2];
   data_field3 = node_data[3];
-  *(undefined4 *)(new_node + 0x20) = *node_data;
-  *(undefined4 *)(new_node + 0x24) = data_field1;
-  *(undefined4 *)(new_node + 0x28) = data_field2;
-  *(undefined4 *)(new_node + 0x2c) = data_field3;
-  *(undefined4 *)(new_node + 0x30) = 0;
+  *(int32_t *)(new_node + 0x20) = *node_data;
+  *(int32_t *)(new_node + 0x24) = data_field1;
+  *(int32_t *)(new_node + 0x28) = data_field2;
+  *(int32_t *)(new_node + 0x2c) = data_field3;
+  *(int32_t *)(new_node + 0x30) = 0;
                     // WARNING: Subroutine does not return
   FUN_18066bdc0(new_node,insert_pos,structure_ptr,insert_direction);
 }
@@ -764,40 +764,40 @@ DETERMINE_DIRECTION:
 
 // 函数：复杂数据结构合并函数
 // 功能：合并两个复杂数据结构
-void complex_data_structure_merge(longlong *target_ptr,undefined8 *source_ptr,longlong *range_start,
+void complex_data_structure_merge(longlong *target_ptr,uint64_t *source_ptr,longlong *range_start,
                                   longlong *range_end)
 
 {
-  undefined4 data_field1;
-  undefined4 data_field2;
-  undefined4 data_field3;
-  undefined4 data_field4;
+  int32_t data_field1;
+  int32_t data_field2;
+  int32_t data_field3;
+  int32_t data_field4;
   longlong current_pos;
   longlong next_pos;
-  undefined8 *merge_target;
-  undefined8 *merge_source;
-  undefined8 *temp_ptr;
-  undefined8 *result_ptr;
-  undefined4 *field_ptr1;
-  undefined4 *field_ptr2;
+  uint64_t *merge_target;
+  uint64_t *merge_source;
+  uint64_t *temp_ptr;
+  uint64_t *result_ptr;
+  int32_t *field_ptr1;
+  int32_t *field_ptr2;
   ulonglong total_elements;
-  undefined4 *new_array;
-  undefined4 *temp_array;
+  int32_t *new_array;
+  int32_t *temp_array;
   longlong temp_offset;
   longlong temp_buffer [2];
   
   current_pos = *range_start;
   next_pos = *range_end;
   if (current_pos != next_pos) {
-    new_array = (undefined4 *)0x0;
+    new_array = (int32_t *)0x0;
     temp_array = new_array;
     while (current_pos != next_pos) {
       current_pos = func_0x00018066bd70(current_pos);
-      temp_array = (undefined4 *)((longlong)temp_array + 1);
+      temp_array = (int32_t *)((longlong)temp_array + 1);
     }
-    field_ptr1 = (undefined4 *)target_ptr[1];
-    if ((undefined4 *)(target_ptr[2] - (longlong)field_ptr1 >> 4) < temp_array) {
-      merge_target = (undefined8 *)*target_ptr;
+    field_ptr1 = (int32_t *)target_ptr[1];
+    if ((int32_t *)(target_ptr[2] - (longlong)field_ptr1 >> 4) < temp_array) {
+      merge_target = (uint64_t *)*target_ptr;
       current_pos = (longlong)field_ptr1 - (longlong)merge_target >> 4;
       total_elements = current_pos * 2;
       if (current_pos == 0) {
@@ -808,15 +808,15 @@ void complex_data_structure_merge(longlong *target_ptr,undefined8 *source_ptr,lo
       }
       temp_array = new_array;
       if (total_elements != 0) {
-        new_array = (undefined4 *)FUN_18062b420(_DAT_180c8ed18,total_elements << 4,(char)target_ptr[3]);
-        merge_target = (undefined8 *)*target_ptr;
+        new_array = (int32_t *)FUN_18062b420(_DAT_180c8ed18,total_elements << 4,(char)target_ptr[3]);
+        merge_target = (uint64_t *)*target_ptr;
         temp_array = new_array;
       }
       for (; merge_target != source_ptr; merge_target = merge_target + 2) {
-        data_field1 = *(undefined4 *)((longlong)merge_target + 4);
-        data_field2 = *(undefined4 *)(merge_target + 1);
-        data_field3 = *(undefined4 *)((longlong)merge_target + 0xc);
-        *new_array = *(undefined4 *)merge_target;
+        data_field1 = *(int32_t *)((longlong)merge_target + 4);
+        data_field2 = *(int32_t *)(merge_target + 1);
+        data_field3 = *(int32_t *)((longlong)merge_target + 0xc);
+        *new_array = *(int32_t *)merge_target;
         new_array[1] = data_field1;
         new_array[2] = data_field2;
         new_array[3] = data_field3;
@@ -824,14 +824,14 @@ void complex_data_structure_merge(longlong *target_ptr,undefined8 *source_ptr,lo
       }
       temp_offset = *range_end;
       temp_buffer[0] = *range_start;
-      new_array = (undefined4 *)FUN_18008eaf0(temp_buffer,&temp_offset);
-      merge_target = (undefined8 *)target_ptr[1];
+      new_array = (int32_t *)FUN_18008eaf0(temp_buffer,&temp_offset);
+      merge_target = (uint64_t *)target_ptr[1];
       if (source_ptr != merge_target) {
         do {
-          data_field1 = *(undefined4 *)source_ptr;
-          data_field2 = *(undefined4 *)((longlong)source_ptr + 4);
-          data_field3 = *(undefined4 *)(source_ptr + 1);
-          data_field4 = *(undefined4 *)((longlong)source_ptr + 0xc);
+          data_field1 = *(int32_t *)source_ptr;
+          data_field2 = *(int32_t *)((longlong)source_ptr + 4);
+          data_field3 = *(int32_t *)(source_ptr + 1);
+          data_field4 = *(int32_t *)((longlong)source_ptr + 0xc);
           source_ptr = source_ptr + 2;
           *new_array = data_field1;
           new_array[1] = data_field2;
@@ -849,7 +849,7 @@ void complex_data_structure_merge(longlong *target_ptr,undefined8 *source_ptr,lo
       target_ptr[1] = (longlong)new_array;
     }
     else {
-      new_array = (undefined4 *)((longlong)field_ptr1 - (longlong)source_ptr >> 4);
+      new_array = (int32_t *)((longlong)field_ptr1 - (longlong)source_ptr >> 4);
       if (temp_array < new_array) {
         field_ptr2 = field_ptr1 + (longlong)temp_array * -4;
         new_array = field_ptr1;
@@ -866,13 +866,13 @@ void complex_data_structure_merge(longlong *target_ptr,undefined8 *source_ptr,lo
             new_array[3] = data_field4;
             new_array = new_array + 4;
           } while (field_ptr2 != field_ptr1);
-          field_ptr1 = (undefined4 *)target_ptr[1];
+          field_ptr1 = (int32_t *)target_ptr[1];
         }
         new_array = field_ptr1 + (longlong)temp_array * -4;
         for (current_pos = (longlong)(field_ptr1 + (longlong)temp_array * -4) - (longlong)source_ptr >> 4;
             0 < current_pos; current_pos = current_pos + -1) {
           field_ptr1 = new_array + -4;
-          *(undefined8 *)(field_ptr1 + (longlong)temp_array * 4) = *(undefined8 *)(new_array + -4);
+          *(uint64_t *)(field_ptr1 + (longlong)temp_array * 4) = *(uint64_t *)(new_array + -4);
           field_ptr1[(longlong)temp_array * 4 + 2] = new_array[-2];
           new_array = field_ptr1;
         }
@@ -880,8 +880,8 @@ void complex_data_structure_merge(longlong *target_ptr,undefined8 *source_ptr,lo
         next_pos = *range_start;
         if (next_pos != current_pos) {
           do {
-            *source_ptr = *(undefined8 *)(next_pos + 0x20);
-            *(undefined4 *)(source_ptr + 1) = *(undefined4 *)(next_pos + 0x28);
+            *source_ptr = *(uint64_t *)(next_pos + 0x20);
+            *(int32_t *)(source_ptr + 1) = *(int32_t *)(next_pos + 0x28);
             next_pos = func_0x00018066bd70(next_pos);
             source_ptr = source_ptr + 2;
           } while (next_pos != current_pos);
@@ -892,29 +892,29 @@ void complex_data_structure_merge(longlong *target_ptr,undefined8 *source_ptr,lo
       else {
         current_pos = *range_start;
         field_ptr2 = new_array;
-        if (new_array != (undefined4 *)0x0) {
+        if (new_array != (int32_t *)0x0) {
           do {
             current_pos = func_0x00018066bd70(current_pos);
-            field_ptr2 = (undefined4 *)((longlong)field_ptr2 + -1);
-          } while (field_ptr2 != (undefined4 *)0x0);
-          field_ptr1 = (undefined4 *)target_ptr[1];
+            field_ptr2 = (int32_t *)((longlong)field_ptr2 + -1);
+          } while (field_ptr2 != (int32_t *)0x0);
+          field_ptr1 = (int32_t *)target_ptr[1];
         }
         temp_offset = *range_end;
         temp_buffer[0] = current_pos;
         FUN_18008eaf0(temp_buffer,&temp_offset,field_ptr1);
-        merge_target = (undefined8 *)target_ptr[1];
+        merge_target = (uint64_t *)target_ptr[1];
         result_ptr = merge_target + ((longlong)temp_array - (longlong)new_array) * 2;
         merge_source = source_ptr;
         if (source_ptr != merge_target) {
           do {
-            data_field1 = *(undefined4 *)((longlong)merge_source + 4);
-            data_field2 = *(undefined4 *)(merge_source + 1);
-            data_field3 = *(undefined4 *)((longlong)merge_source + 0xc);
+            data_field1 = *(int32_t *)((longlong)merge_source + 4);
+            data_field2 = *(int32_t *)(merge_source + 1);
+            data_field3 = *(int32_t *)((longlong)merge_source + 0xc);
             temp_ptr = merge_source + 2;
-            *(undefined4 *)result_ptr = *(undefined4 *)merge_source;
-            *(undefined4 *)((longlong)result_ptr + 4) = data_field1;
-            *(undefined4 *)(result_ptr + 1) = data_field2;
-            *(undefined4 *)((longlong)result_ptr + 0xc) = data_field3;
+            *(int32_t *)result_ptr = *(int32_t *)merge_source;
+            *(int32_t *)((longlong)result_ptr + 4) = data_field1;
+            *(int32_t *)(result_ptr + 1) = data_field2;
+            *(int32_t *)((longlong)result_ptr + 0xc) = data_field3;
             merge_source = temp_ptr;
             result_ptr = result_ptr + 2;
           } while (temp_ptr != merge_target);
@@ -923,8 +923,8 @@ void complex_data_structure_merge(longlong *target_ptr,undefined8 *source_ptr,lo
         merge_target = source_ptr + (longlong)new_array * 2;
         while (next_pos != current_pos) {
           next_pos = func_0x00018066b9a0(next_pos);
-          merge_target[-2] = *(undefined8 *)(next_pos + 0x20);
-          *(undefined4 *)(merge_target + -1) = *(undefined4 *)(next_pos + 0x28);
+          merge_target[-2] = *(uint64_t *)(next_pos + 0x20);
+          *(int32_t *)(merge_target + -1) = *(int32_t *)(next_pos + 0x28);
           merge_target = merge_target + -2;
         }
       }

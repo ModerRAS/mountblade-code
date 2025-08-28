@@ -35,7 +35,7 @@ void initialize_memory_pool(void *context)
           queue_tail = *(longlong *)(queue_head + 0x28);
           do {
             *(longlong *)(pool_entry + 0x138) = queue_tail;
-            *(undefined4 *)(pool_entry + 0x130) = 1;
+            *(int32_t *)(pool_entry + 0x130) = 1;
             queue_ptr = (longlong *)(queue_head + 0x28);
             LOCK();
             current_item = *queue_ptr;
@@ -78,7 +78,7 @@ LAB_180069842:
       queue_tail = *(longlong *)(queue_head + 0x28);
       do {
         *(longlong *)(pool_entry + 0x138) = queue_tail;
-        *(undefined4 *)(pool_entry + 0x130) = 1;
+        *(int32_t *)(pool_entry + 0x130) = 1;
         queue_ptr = (longlong *)(queue_head + 0x28);
         LOCK();
         current_item = *queue_ptr;
@@ -195,7 +195,7 @@ void * get_thread_local_storage(longlong *thread_context)
             LOCK();
             thread_context[7] = thread_context[7] + -1;
             UNLOCK();
-            *(undefined4 *)(thread_context + 0x4b) = 0;
+            *(int32_t *)(thread_context + 0x4b) = 0;
             return (void *)0x0;
           }
           *thread_table = table_size;
@@ -203,13 +203,13 @@ void * get_thread_local_storage(longlong *thread_context)
           new_table = found_data;
           for (; table_size != 0; table_size = table_size - 1) {
             *(void *)((longlong)new_table + thread_table[1] + 8) = 0;
-            *(undefined4 *)((longlong)new_table + thread_table[1]) = 0;
+            *(int32_t *)((longlong)new_table + thread_table[1]) = 0;
             new_table = new_table + 2;
           }
           thread_table[2] = (ulonglong)hash_table;
           thread_context[6] = (longlong)thread_table;
         }
-        *(undefined4 *)(thread_context + 0x4b) = 0;
+        *(int32_t *)(thread_context + 0x4b) = 0;
       }
     }
     if (slot_index < (*thread_table >> 2) + (*thread_table >> 1)) break;
@@ -238,7 +238,7 @@ void * get_thread_local_storage(longlong *thread_context)
   new_table = found_data;
   if (hash_table != (void *)0x0) {
     hash_table[1] = 0;
-    *(undefined1 *)(hash_table + 2) = 0;
+    *(int8_t *)(hash_table + 2) = 0;
     hash_table[3] = 0;
     *hash_table = &THREAD_STORAGE_INIT_ADDRESS;
     hash_table[4] = 0;
@@ -246,7 +246,7 @@ void * get_thread_local_storage(longlong *thread_context)
     hash_table[6] = 0;
     hash_table[7] = 0;
     hash_table[8] = 0;
-    *(undefined1 *)(hash_table + 9) = 0;
+    *(int8_t *)(hash_table + 9) = 0;
     hash_table[10] = thread_context;
     *hash_table = &THREAD_STORAGE_ACTIVE_ADDRESS;
     hash_table[0xb] = 0x20;
@@ -376,10 +376,10 @@ initialize_event_system(void *event_context,void *event_data,void event_param1,v
   
   *event_context = &EVENT_SYSTEM_START_ADDRESS;
   *event_context = &EVENT_SYSTEM_INIT_ADDRESS;
-  *(undefined4 *)(event_context + 1) = 0;
+  *(int32_t *)(event_context + 1) = 0;
   *event_context = &EVENT_SYSTEM_HANDLER_ADDRESS;
   LOCK();
-  *(undefined1 *)(event_context + 2) = 0;
+  *(int8_t *)(event_context + 2) = 0;
   UNLOCK();
   event_context[3] = 0xffffffffffffffff;
   *event_context = &EVENT_SYSTEM_CALLBACK_ADDRESS;
@@ -407,7 +407,7 @@ initialize_callback_system(void callback_param1,void callback_param2,void callba
 
 {
   void callback_data;
-  undefined4 callback_flags;
+  int32_t callback_flags;
   void callback_result;
   
   callback_result = 0xfffffffffffffffe;
@@ -425,7 +425,7 @@ void * initialize_mutex(void *mutex_param,void *mutex_context)
   *mutex_context = 0;
   mutex_context[1] = 0;
   mutex_context[2] = 0;
-  *(undefined4 *)(mutex_context + 3) = 3;
+  *(int32_t *)(mutex_context + 3) = 3;
   return mutex_context;
 }
 
@@ -479,7 +479,7 @@ void * initialize_resource_manager(void *resource_context,ulonglong resource_fla
     trigger_system_error();
   }
   resource_context[0x19] = 0;
-  *(undefined4 *)(resource_context + 0x1b) = 0;
+  *(int32_t *)(resource_context + 0x1b) = 0;
   resource_context[0x18] = &RESOURCE_MANAGER_CLEANUP_ADDRESS;
   setup_resource_manager(resource_context);
   if ((resource_flags & 1) != 0) {
@@ -502,8 +502,8 @@ void initialize_system_components(longlong system_handle)
   char init_result;
   void system_config;
   void *module_handle;
-  undefined *module_loader;
-  undefined1 module_stack[40];
+  void *module_loader;
+  int8_t module_stack[40];
   longlong *module_stack_ptr;
   int module_flags;
   char module_status;
@@ -531,9 +531,9 @@ void initialize_system_components(longlong system_handle)
     *module_stack_ptr = (longlong)&MODULE_LOADER_ADDRESS;
     *module_stack_ptr = (longlong)&MODULE_REGISTRY_ADDRESS;
     module_stack_ptr[4] = 0;
-    *(undefined1 *)(module_stack_ptr + 1) = 0;
+    *(int8_t *)(module_stack_ptr + 1) = 0;
     module_stack_ptr[2] = 0;
-    *(undefined1 *)(module_stack_ptr + 3) = 0;
+    *(int8_t *)(module_stack_ptr + 3) = 0;
     component_manager = (longlong *)module_stack_ptr[4];
     module_stack_ptr[4] = 0;
     if (component_manager != (longlong *)0x0) {
@@ -559,26 +559,26 @@ void initialize_system_components(longlong system_handle)
   *(void *)(SYSTEM_EVENT_QUEUE + 8) = 0;
   *(void *)(SYSTEM_EVENT_QUEUE + 0x10) = 0;
   *(void *)(SYSTEM_EVENT_QUEUE + 0x18) = 0;
-  *(undefined4 *)(SYSTEM_EVENT_QUEUE + 0x20) = 3;
+  *(int32_t *)(SYSTEM_EVENT_QUEUE + 0x20) = 3;
   initialize_system_services();
   module_handle = (void *)allocate_system_memory(SYSTEM_MEMORY_ALLOCATOR,0x478,8,3);
   *module_handle = 0;
   module_handle[1] = 0;
   module_handle[2] = 0;
-  *(undefined4 *)(module_handle + 3) = 3;
+  *(int32_t *)(module_handle + 3) = 3;
   module_handle[4] = 0;
   module_handle[5] = 0;
   module_handle[6] = 0;
-  *(undefined4 *)(module_handle + 7) = 3;
+  *(int32_t *)(module_handle + 7) = 3;
   module_handle[8] = 0;
   module_handle[9] = 0;
   module_handle[10] = 0;
-  *(undefined4 *)(module_handle + 0xb) = 3;
-  *(undefined1 *)(module_handle + 0xc) = 0;
+  *(int32_t *)(module_handle + 0xb) = 3;
+  *(int8_t *)(module_handle + 0xc) = 0;
   *(void *)((longlong)module_handle + 100) = 0xffffffffffffffff;
-  *(undefined4 *)((longlong)module_handle + 0x6c) = 0;
-  *(undefined2 *)(module_handle + 0xe) = 0;
-  *(undefined1 *)((longlong)module_handle + 0x72) = 0;
+  *(int32_t *)((longlong)module_handle + 0x6c) = 0;
+  *(int16_t *)(module_handle + 0xe) = 0;
+  *(int8_t *)((longlong)module_handle + 0x72) = 0;
                     // WARNING: Subroutine does not return
   memset((longlong)module_handle + 0x74,0,0x400);
 }
@@ -595,7 +595,7 @@ void cleanup_system_components(longlong system_handle)
     trigger_system_error();
   }
   *(void *)(system_handle + 0xa8) = 0;
-  *(undefined4 *)(system_handle + 0xb8) = 0;
+  *(int32_t *)(system_handle + 0xb8) = 0;
   *(void *)(system_handle + 0xa0) = &RESOURCE_CLEANUP_ADDRESS;
   *(void *)(system_handle + 0x80) = &RESOURCE_VTABLE_ADDRESS;
   if (*(longlong *)(system_handle + 0x88) != 0) {
@@ -603,7 +603,7 @@ void cleanup_system_components(longlong system_handle)
     trigger_system_error();
   }
   *(void *)(system_handle + 0x88) = 0;
-  *(undefined4 *)(system_handle + 0x98) = 0;
+  *(int32_t *)(system_handle + 0x98) = 0;
   *(void *)(system_handle + 0x80) = &RESOURCE_CLEANUP_ADDRESS;
   *(void *)(system_handle + 0x58) = &RESOURCE_VTABLE_ADDRESS;
   if (*(longlong *)(system_handle + 0x60) != 0) {
@@ -611,7 +611,7 @@ void cleanup_system_components(longlong system_handle)
     trigger_system_error();
   }
   *(void *)(system_handle + 0x60) = 0;
-  *(undefined4 *)(system_handle + 0x70) = 0;
+  *(int32_t *)(system_handle + 0x70) = 0;
   *(void *)(system_handle + 0x58) = &RESOURCE_CLEANUP_ADDRESS;
   *(void *)(system_handle + 0x38) = &RESOURCE_VTABLE_ADDRESS;
   if (*(longlong *)(system_handle + 0x40) != 0) {
@@ -619,7 +619,7 @@ void cleanup_system_components(longlong system_handle)
     trigger_system_error();
   }
   *(void *)(system_handle + 0x40) = 0;
-  *(undefined4 *)(system_handle + 0x50) = 0;
+  *(int32_t *)(system_handle + 0x50) = 0;
   *(void *)(system_handle + 0x38) = &RESOURCE_CLEANUP_ADDRESS;
   *(void *)(system_handle + 8) = &RESOURCE_VTABLE_ADDRESS;
   if (*(longlong *)(system_handle + 0x10) != 0) {
@@ -627,7 +627,7 @@ void cleanup_system_components(longlong system_handle)
     trigger_system_error();
   }
   *(void *)(system_handle + 0x10) = 0;
-  *(undefined4 *)(system_handle + 0x20) = 0;
+  *(int32_t *)(system_handle + 0x20) = 0;
   *(void *)(system_handle + 8) = &RESOURCE_CLEANUP_ADDRESS;
   return;
 }
@@ -659,7 +659,7 @@ longlong handle_system_operation(longlong *operation_handle,longlong *operation_
       operation_result = (void *)allocate_system_memory(SYSTEM_MEMORY_ALLOCATOR,0x20,8,MEMORY_ALIGNMENT_FLAG,0xfffffffffffffffe);
       source_data = (void *)*operation_data;
       *operation_result = *source_data;
-      *(undefined4 *)(operation_result + 1) = *(undefined4 *)(source_data + 1);
+      *(int32_t *)(operation_result + 1) = *(int32_t *)(source_data + 1);
       operation_result[2] = source_data[2];
       operation_result[3] = source_data[3];
       *operation_handle = (longlong)operation_result;
@@ -676,13 +676,13 @@ longlong handle_system_operation(longlong *operation_handle,longlong *operation_
 
 
 
-// 函数: void update_system_status(longlong system_handle,undefined4 status_code)
-void update_system_status(longlong system_handle,undefined4 status_code)
+// 函数: void update_system_status(longlong system_handle,int32_t status_code)
+void update_system_status(longlong system_handle,int32_t status_code)
 
 {
   char callback_result;
-  undefined *status_handler;
-  undefined4 status_stack[6];
+  void *status_handler;
+  int32_t status_stack[6];
   
   if ((*(longlong *)(system_handle + 0x1e20) != 0) &&
      (status_stack[0] = status_code, callback_result = (**(code **)(system_handle + 0x1e28))(status_stack),
@@ -694,22 +694,22 @@ void update_system_status(longlong system_handle,undefined4 status_code)
       }
       log_system_error(&SYSTEM_ERROR_LOG_ADDRESS,status_handler);
     }
-    *(undefined4 *)(system_handle + 0x1dc0) = *(undefined4 *)(system_handle + 0x1e08);
+    *(int32_t *)(system_handle + 0x1dc0) = *(int32_t *)(system_handle + 0x1e08);
     return;
   }
-  *(undefined4 *)(system_handle + 0x1dc0) = status_code;
+  *(int32_t *)(system_handle + 0x1dc0) = status_code;
   return;
 }
 
 
 
-// 函数: void update_system_flags(longlong system_handle,undefined4 flag_code)
-void update_system_flags(longlong system_handle,undefined4 flag_code)
+// 函数: void update_system_flags(longlong system_handle,int32_t flag_code)
+void update_system_flags(longlong system_handle,int32_t flag_code)
 
 {
   char callback_result;
-  undefined *flag_handler;
-  undefined4 flag_stack[6];
+  void *flag_handler;
+  int32_t flag_stack[6];
   
   if ((*(longlong *)(system_handle + 0x1db0) != 0) &&
      (flag_stack[0] = flag_code, callback_result = (**(code **)(system_handle + 0x1db8))(flag_stack),
@@ -721,23 +721,23 @@ void update_system_flags(longlong system_handle,undefined4 flag_code)
       }
       log_system_error(&SYSTEM_ERROR_LOG_ADDRESS,flag_handler);
     }
-    *(undefined4 *)(system_handle + 0x1d50) = *(undefined4 *)(system_handle + 0x1d98);
+    *(int32_t *)(system_handle + 0x1d50) = *(int32_t *)(system_handle + 0x1d98);
     return;
   }
-  *(undefined4 *)(system_handle + 0x1d50) = flag_code;
+  *(int32_t *)(system_handle + 0x1d50) = flag_code;
   return;
 }
 
 
 
-// 函数: void update_global_status(undefined8 global_param,undefined4 global_status)
-void update_global_status(undefined8 global_param,undefined4 global_status)
+// 函数: void update_global_status(uint64_t global_param,int32_t global_status)
+void update_global_status(uint64_t global_param,int32_t global_status)
 
 {
   longlong system_context;
   char callback_result;
-  undefined *global_handler;
-  undefined4 global_stack[6];
+  void *global_handler;
+  int32_t global_stack[6];
   
   system_context = SYSTEM_CONTEXT_HANDLE;
   if ((*(longlong *)(SYSTEM_CONTEXT_HANDLE + 0x1870) != 0) &&
@@ -750,16 +750,16 @@ void update_global_status(undefined8 global_param,undefined4 global_status)
       }
       log_system_error(&SYSTEM_ERROR_LOG_ADDRESS,global_handler);
     }
-    *(undefined4 *)(system_context + 0x1810) = *(undefined4 *)(system_context + 0x1858);
+    *(int32_t *)(system_context + 0x1810) = *(int32_t *)(system_context + 0x1858);
     return;
   }
-  *(undefined4 *)(system_context + 0x1810) = global_status;
+  *(int32_t *)(system_context + 0x1810) = global_status;
   return;
 }
 
 
 
-longlong cleanup_system_context(longlong context_handle,uint cleanup_flags,undefined8 cleanup_param3,undefined8 cleanup_param4)
+longlong cleanup_system_context(longlong context_handle,uint cleanup_flags,uint64_t cleanup_param3,uint64_t cleanup_param4)
 
 {
   if (*(code **)(context_handle + 0xd0) != (code *)0x0) {
@@ -803,8 +803,8 @@ initialize_thread_context(void *thread_context,void *thread_data,void thread_par
 
 
 
-// 函数: void execute_cleanup_handlers(longlong *handler_list,undefined8 cleanup_param2,undefined8 cleanup_param3,undefined8 cleanup_param4)
-void execute_cleanup_handlers(longlong *handler_list,undefined8 cleanup_param2,undefined8 cleanup_param3,undefined8 cleanup_param4)
+// 函数: void execute_cleanup_handlers(longlong *handler_list,uint64_t cleanup_param2,uint64_t cleanup_param3,uint64_t cleanup_param4)
+void execute_cleanup_handlers(longlong *handler_list,uint64_t cleanup_param2,uint64_t cleanup_param3,uint64_t cleanup_param4)
 
 {
   void *current_handler;
@@ -825,8 +825,8 @@ void execute_cleanup_handlers(longlong *handler_list,undefined8 cleanup_param2,u
 
 
 
-// 函数: void execute_shutdown_handlers(longlong *handler_list,undefined8 shutdown_param2,undefined8 shutdown_param3,undefined8 shutdown_param4)
-void execute_shutdown_handlers(longlong *handler_list,undefined8 shutdown_param2,undefined8 shutdown_param3,undefined8 shutdown_param4)
+// 函数: void execute_shutdown_handlers(longlong *handler_list,uint64_t shutdown_param2,uint64_t shutdown_param3,uint64_t shutdown_param4)
+void execute_shutdown_handlers(longlong *handler_list,uint64_t shutdown_param2,uint64_t shutdown_param3,uint64_t shutdown_param4)
 
 {
   void *current_handler;
@@ -870,7 +870,7 @@ void setup_performance_monitor(longlong monitor_handle)
     trigger_system_error();
   }
   *(void *)(monitor_handle + 0x28) = 0;
-  *(undefined4 *)(monitor_handle + 0x38) = 0;
+  *(int32_t *)(monitor_handle + 0x38) = 0;
   *(void *)(monitor_handle + 0x20) = &PERFORMANCE_CLEANUP_ADDRESS;
   return;
 }
@@ -892,7 +892,7 @@ void initialize_system_monitor(void *monitor_context)
   void *monitor_ptr;
   longlong entry_size;
   longlong total_size;
-  undefined1 monitor_stack[48];
+  int8_t monitor_stack[48];
   void *monitor_stack_ptr;
   void *monitor_data;
   void monitor_param;
@@ -905,7 +905,7 @@ void initialize_system_monitor(void *monitor_context)
   monitor_context[1] = 0;
   monitor_data = monitor_context + 2;
   *monitor_data = 0;
-  *(undefined4 *)(monitor_context + 3) = 0;
+  *(int32_t *)(monitor_context + 3) = 0;
   monitor_context[4] = 0;
   monitor_context[7] = 0;
   monitor_ptr = monitor_context + 0xd;
@@ -919,12 +919,12 @@ void initialize_system_monitor(void *monitor_context)
     entry_size = entry_size + -1;
   } while (entry_size != 0);
   *(void *)((longlong)monitor_context + 0x26c) = 0;
-  *(undefined4 *)(monitor_context + 0x4d) = 0;
+  *(int32_t *)(monitor_context + 0x4d) = 0;
   monitor_context[9] = 0;
   monitor_context[10] = 0x20;
   monitor_context[0xb] = monitor_ptr;
   do {
-    *(undefined4 *)monitor_ptr = 0;
+    *(int32_t *)monitor_ptr = 0;
     monitor_ptr = monitor_ptr + 2;
     total_size = total_size + -1;
   } while (total_size != 0);
@@ -943,7 +943,7 @@ void initialize_system_monitor(void *monitor_context)
   monitor_size = monitor_count;
   if (monitor_index != 0) {
     do {
-      *(undefined1 *)(monitor_count + 0x141 + monitor_context[5]) = 0;
+      *(int8_t *)(monitor_count + 0x141 + monitor_context[5]) = 0;
       monitor_size = monitor_size + 1;
       monitor_count = monitor_count + 0x148;
     } while (monitor_size < (ulonglong)monitor_context[6]);
@@ -952,17 +952,17 @@ void initialize_system_monitor(void *monitor_context)
   initialize_condition_variable();
   monitor_stack_ptr = monitor_context + 0x58;
   initialize_mutex(monitor_stack_ptr,2);
-  *(undefined4 *)(monitor_context + 0x65) = 0;
-  *(undefined4 *)((longlong)monitor_context + 0x32c) = 0x80;
+  *(int32_t *)(monitor_context + 0x65) = 0;
+  *(int32_t *)((longlong)monitor_context + 0x32c) = 0x80;
   monitor_data = monitor_context + 0x66;
-  *(undefined4 *)(monitor_context + 0x6a) = 0x3f800000;
+  *(int32_t *)(monitor_context + 0x6a) = 0x3f800000;
   *(void *)((longlong)monitor_context + 0x354) = 0x40000000;
-  *(undefined4 *)((longlong)monitor_context + 0x35c) = 3;
+  *(int32_t *)((longlong)monitor_context + 0x35c) = 3;
   monitor_context[0x68] = 1;
   monitor_context[0x67] = &MONITOR_DATA_START_ADDRESS;
   monitor_context[0x69] = 0;
-  *(undefined4 *)(monitor_context + 0x6b) = 0;
-  *(undefined1 *)(monitor_context + 0x6d) = 1;
+  *(int32_t *)(monitor_context + 0x6b) = 0;
+  *(int8_t *)(monitor_context + 0x6d) = 1;
   entry_size = allocate_system_memory(SYSTEM_MEMORY_ALLOCATOR,0x140038,8,3);
                     // WARNING: Subroutine does not return
   memset(entry_size + 0x20,0,0x140000);

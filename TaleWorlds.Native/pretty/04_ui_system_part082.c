@@ -2,8 +2,8 @@
 
 // 04_ui_system_part082.c - 4 个函数
 
-// 函数: void FUN_1807141f0(longlong param_1,int param_2,int param_3,undefined8 param_4)
-void FUN_1807141f0(longlong param_1,int param_2,int param_3,undefined8 param_4)
+// 函数: void FUN_1807141f0(longlong param_1,int param_2,int param_3,uint64_t param_4)
+void FUN_1807141f0(longlong param_1,int param_2,int param_3,uint64_t param_4)
 
 {
   byte bVar1;
@@ -16,7 +16,7 @@ void FUN_1807141f0(longlong param_1,int param_2,int param_3,undefined8 param_4)
   int iStack_88;
   uint uStack_84;
   longlong lStack_80;
-  undefined8 uStack_78;
+  uint64_t uStack_78;
   int iStack_6c;
   int iStack_68;
   int iStack_60;
@@ -67,7 +67,7 @@ uint FUN_1807147f0(longlong param_1,int param_2,uint param_3,int param_4,longlon
                   longlong param_6,longlong param_7,longlong param_8,int param_9,int *param_10,
                   int param_11,uint *param_12,uint param_13,int *param_14,int param_15,
                   longlong param_16,longlong param_17,longlong param_18,int param_19,int param_20,
-                  undefined8 param_21,int param_22,int param_23,int param_24)
+                  uint64_t param_21,int param_22,int param_23,int param_24)
 
 {
   longlong *plVar1;
@@ -78,7 +78,7 @@ uint FUN_1807147f0(longlong param_1,int param_2,uint param_3,int param_4,longlon
   bool bVar6;
   int iVar7;
   longlong lVar8;
-  undefined1 (*pauVar9) [16];
+  int8_t (*pauVar9) [16];
   uint uVar10;
   int iVar11;
   int *piVar12;
@@ -94,24 +94,24 @@ uint FUN_1807147f0(longlong param_1,int param_2,uint param_3,int param_4,longlon
   ulonglong uVar22;
   longlong lVar23;
   longlong lVar24;
-  undefined1 auVar25 [16];
-  undefined1 auVar26 [16];
-  undefined1 auVar27 [16];
-  undefined1 auVar28 [16];
-  undefined1 auVar29 [16];
-  undefined1 auVar30 [16];
-  undefined1 in_XMM2 [16];
-  undefined1 auVar31 [16];
-  undefined1 auVar32 [16];
-  undefined1 auVar33 [16];
-  undefined1 auVar34 [16];
-  undefined1 auVar35 [16];
-  undefined1 auVar36 [16];
-  undefined1 auVar37 [16];
-  undefined1 auVar38 [16];
-  undefined1 auVar39 [16];
-  undefined1 auVar40 [16];
-  undefined1 auVar41 [16];
+  int8_t auVar25 [16];
+  int8_t auVar26 [16];
+  int8_t auVar27 [16];
+  int8_t auVar28 [16];
+  int8_t auVar29 [16];
+  int8_t auVar30 [16];
+  int8_t in_XMM2 [16];
+  int8_t auVar31 [16];
+  int8_t auVar32 [16];
+  int8_t auVar33 [16];
+  int8_t auVar34 [16];
+  int8_t auVar35 [16];
+  int8_t auVar36 [16];
+  int8_t auVar37 [16];
+  int8_t auVar38 [16];
+  int8_t auVar39 [16];
+  int8_t auVar40 [16];
+  int8_t auVar41 [16];
   uint uStackX_10;
   int iStack_98;
   longlong lStack_90;
@@ -316,7 +316,7 @@ LAB_180714c0e:
       if ((int)uVar20 < 0) {
         uVar20 = (uVar20 - 1 | 0xfffffff0) + 1;
       }
-      pauVar9 = (undefined1 (*) [16])(param_16 + (uVar15 + 8) * 4);
+      pauVar9 = (int8_t (*) [16])(param_16 + (uVar15 + 8) * 4);
       lVar24 = uVar15 * 2 + 8;
       uVar22 = uVar15;
       do {
@@ -425,8 +425,8 @@ LAB_180714c0e:
           iVar13 = iVar11;
         }
         *piVar12 = iVar14 - iVar13;
-        *(undefined4 *)(lVar24 + (longlong)piVar12) = 0;
-        *(undefined4 *)(lVar8 + (longlong)piVar12) = 1;
+        *(int32_t *)(lVar24 + (longlong)piVar12) = 0;
+        *(int32_t *)(lVar8 + (longlong)piVar12) = 1;
       }
       else {
         iVar13 = iVar14 - *(int *)((param_8 - param_16) + (longlong)piVar12);
@@ -548,7 +548,7 @@ LAB_18071500a:
     do {
       piVar3 = piVar12 + 1;
       *piVar12 = (*(int *)((param_16 - param_17) + (longlong)piVar12) >> bVar5) >> 3;
-      *(undefined4 *)((param_16 - param_17) + -4 + (longlong)piVar3) = 0;
+      *(int32_t *)((param_16 - param_17) + -4 + (longlong)piVar3) = 0;
       *(uint *)((param_18 - param_17) + -4 + (longlong)piVar3) = (uint)(*piVar12 < 1);
       lVar23 = lVar23 + -1;
       piVar12 = piVar3;
@@ -564,7 +564,7 @@ LAB_18071500a:
 // 函数: void FUN_1807152b0(longlong param_1,longlong param_2,longlong param_3,int param_4,int param_5,
 void FUN_1807152b0(longlong param_1,longlong param_2,longlong param_3,int param_4,int param_5,
                   int param_6,int param_7,int param_8,longlong param_9,longlong param_10,
-                  longlong param_11,longlong param_12,uint param_13,undefined4 param_14)
+                  longlong param_11,longlong param_12,uint param_13,int32_t param_14)
 
 {
   float fVar1;
@@ -588,8 +588,8 @@ void FUN_1807152b0(longlong param_1,longlong param_2,longlong param_3,int param_
   double dVar19;
   double dVar20;
   float fVar21;
-  undefined1 in_XMM1 [16];
-  undefined1 auVar22 [16];
+  int8_t in_XMM1 [16];
+  int8_t auVar22 [16];
   int iStack_e8;
   
   if (param_7 < param_8) {
@@ -691,8 +691,8 @@ void FUN_1807152b0(longlong param_1,longlong param_2,longlong param_3,int param_
 
 
 
-// 函数: void FUN_1807152e3(undefined8 param_1,longlong param_2,undefined8 param_3,byte param_4)
-void FUN_1807152e3(undefined8 param_1,longlong param_2,undefined8 param_3,byte param_4)
+// 函数: void FUN_1807152e3(uint64_t param_1,longlong param_2,uint64_t param_3,byte param_4)
+void FUN_1807152e3(uint64_t param_1,longlong param_2,uint64_t param_3,byte param_4)
 
 {
   float fVar1;
@@ -704,48 +704,48 @@ void FUN_1807152e3(undefined8 param_1,longlong param_2,undefined8 param_3,byte p
   longlong lVar6;
   int iVar7;
   longlong lVar8;
-  undefined8 unaff_RBX;
+  uint64_t unaff_RBX;
   int unaff_EBP;
   uint uVar9;
-  undefined8 unaff_RSI;
-  undefined8 unaff_RDI;
+  uint64_t unaff_RSI;
+  uint64_t unaff_RDI;
   int iVar10;
   uint uVar11;
   longlong in_R11;
   longlong unaff_R12;
   int iVar12;
-  undefined8 unaff_R13;
+  uint64_t unaff_R13;
   int iVar13;
-  undefined8 unaff_R14;
+  uint64_t unaff_R14;
   int iVar14;
-  undefined8 unaff_R15;
+  uint64_t unaff_R15;
   float fVar15;
   float fVar16;
   double dVar17;
   double dVar18;
   float fVar19;
-  undefined1 in_XMM1 [16];
-  undefined1 auVar20 [16];
-  undefined4 unaff_XMM6_Da;
-  undefined4 unaff_XMM6_Db;
-  undefined4 unaff_XMM6_Dc;
-  undefined4 unaff_XMM6_Dd;
-  undefined4 unaff_XMM7_Da;
-  undefined4 unaff_XMM7_Db;
-  undefined4 unaff_XMM7_Dc;
-  undefined4 unaff_XMM7_Dd;
-  undefined4 unaff_XMM8_Da;
-  undefined4 unaff_XMM8_Db;
-  undefined4 unaff_XMM8_Dc;
-  undefined4 unaff_XMM8_Dd;
-  undefined4 unaff_XMM9_Da;
-  undefined4 unaff_XMM9_Db;
-  undefined4 unaff_XMM9_Dc;
-  undefined4 unaff_XMM9_Dd;
-  undefined4 unaff_XMM10_Da;
-  undefined4 unaff_XMM10_Db;
-  undefined4 unaff_XMM10_Dc;
-  undefined4 unaff_XMM10_Dd;
+  int8_t in_XMM1 [16];
+  int8_t auVar20 [16];
+  int32_t unaff_XMM6_Da;
+  int32_t unaff_XMM6_Db;
+  int32_t unaff_XMM6_Dc;
+  int32_t unaff_XMM6_Dd;
+  int32_t unaff_XMM7_Da;
+  int32_t unaff_XMM7_Db;
+  int32_t unaff_XMM7_Dc;
+  int32_t unaff_XMM7_Dd;
+  int32_t unaff_XMM8_Da;
+  int32_t unaff_XMM8_Db;
+  int32_t unaff_XMM8_Dc;
+  int32_t unaff_XMM8_Dd;
+  int32_t unaff_XMM9_Da;
+  int32_t unaff_XMM9_Db;
+  int32_t unaff_XMM9_Dc;
+  int32_t unaff_XMM9_Dd;
+  int32_t unaff_XMM10_Da;
+  int32_t unaff_XMM10_Db;
+  int32_t unaff_XMM10_Dc;
+  int32_t unaff_XMM10_Dd;
   int iStackX_20;
   longlong lStack0000000000000028;
   int *piStack0000000000000030;
@@ -760,35 +760,35 @@ void FUN_1807152e3(undefined8 param_1,longlong param_2,undefined8 param_3,byte p
   longlong in_stack_00000160;
   longlong in_stack_00000168;
   uint in_stack_00000170;
-  undefined4 in_stack_00000178;
+  int32_t in_stack_00000178;
   
-  *(undefined8 *)(in_R11 + 0x18) = unaff_RBX;
+  *(uint64_t *)(in_R11 + 0x18) = unaff_RBX;
   lStack0000000000000028 = in_RAX * 2;
-  *(undefined8 *)(in_R11 + -0x18) = unaff_RSI;
-  *(undefined8 *)(in_R11 + -0x20) = unaff_RDI;
-  *(undefined8 *)(in_R11 + -0x28) = unaff_R13;
-  *(undefined8 *)(in_R11 + -0x30) = unaff_R14;
-  *(undefined8 *)(in_R11 + -0x38) = unaff_R15;
-  *(undefined4 *)(in_R11 + -0x48) = unaff_XMM6_Da;
-  *(undefined4 *)(in_R11 + -0x44) = unaff_XMM6_Db;
-  *(undefined4 *)(in_R11 + -0x40) = unaff_XMM6_Dc;
-  *(undefined4 *)(in_R11 + -0x3c) = unaff_XMM6_Dd;
-  *(undefined4 *)(in_R11 + -0x58) = unaff_XMM7_Da;
-  *(undefined4 *)(in_R11 + -0x54) = unaff_XMM7_Db;
-  *(undefined4 *)(in_R11 + -0x50) = unaff_XMM7_Dc;
-  *(undefined4 *)(in_R11 + -0x4c) = unaff_XMM7_Dd;
-  *(undefined4 *)(in_R11 + -0x68) = unaff_XMM8_Da;
-  *(undefined4 *)(in_R11 + -100) = unaff_XMM8_Db;
-  *(undefined4 *)(in_R11 + -0x60) = unaff_XMM8_Dc;
-  *(undefined4 *)(in_R11 + -0x5c) = unaff_XMM8_Dd;
-  *(undefined4 *)(in_R11 + -0x78) = unaff_XMM9_Da;
-  *(undefined4 *)(in_R11 + -0x74) = unaff_XMM9_Db;
-  *(undefined4 *)(in_R11 + -0x70) = unaff_XMM9_Dc;
-  *(undefined4 *)(in_R11 + -0x6c) = unaff_XMM9_Dd;
-  *(undefined4 *)(in_R11 + -0x88) = unaff_XMM10_Da;
-  *(undefined4 *)(in_R11 + -0x84) = unaff_XMM10_Db;
-  *(undefined4 *)(in_R11 + -0x80) = unaff_XMM10_Dc;
-  *(undefined4 *)(in_R11 + -0x7c) = unaff_XMM10_Dd;
+  *(uint64_t *)(in_R11 + -0x18) = unaff_RSI;
+  *(uint64_t *)(in_R11 + -0x20) = unaff_RDI;
+  *(uint64_t *)(in_R11 + -0x28) = unaff_R13;
+  *(uint64_t *)(in_R11 + -0x30) = unaff_R14;
+  *(uint64_t *)(in_R11 + -0x38) = unaff_R15;
+  *(int32_t *)(in_R11 + -0x48) = unaff_XMM6_Da;
+  *(int32_t *)(in_R11 + -0x44) = unaff_XMM6_Db;
+  *(int32_t *)(in_R11 + -0x40) = unaff_XMM6_Dc;
+  *(int32_t *)(in_R11 + -0x3c) = unaff_XMM6_Dd;
+  *(int32_t *)(in_R11 + -0x58) = unaff_XMM7_Da;
+  *(int32_t *)(in_R11 + -0x54) = unaff_XMM7_Db;
+  *(int32_t *)(in_R11 + -0x50) = unaff_XMM7_Dc;
+  *(int32_t *)(in_R11 + -0x4c) = unaff_XMM7_Dd;
+  *(int32_t *)(in_R11 + -0x68) = unaff_XMM8_Da;
+  *(int32_t *)(in_R11 + -100) = unaff_XMM8_Db;
+  *(int32_t *)(in_R11 + -0x60) = unaff_XMM8_Dc;
+  *(int32_t *)(in_R11 + -0x5c) = unaff_XMM8_Dd;
+  *(int32_t *)(in_R11 + -0x78) = unaff_XMM9_Da;
+  *(int32_t *)(in_R11 + -0x74) = unaff_XMM9_Db;
+  *(int32_t *)(in_R11 + -0x70) = unaff_XMM9_Dc;
+  *(int32_t *)(in_R11 + -0x6c) = unaff_XMM9_Dd;
+  *(int32_t *)(in_R11 + -0x88) = unaff_XMM10_Da;
+  *(int32_t *)(in_R11 + -0x84) = unaff_XMM10_Db;
+  *(int32_t *)(in_R11 + -0x80) = unaff_XMM10_Dc;
+  *(int32_t *)(in_R11 + -0x7c) = unaff_XMM10_Dd;
   iVar14 = 1 << (param_4 & 0x1f);
   iStackX_20 = in_stack_00000130 * (int)in_RAX;
   piStack0000000000000030 = (int *)(in_stack_00000168 + in_RAX * 4);

@@ -146,7 +146,7 @@ void ui_system_state_manager(void)
     longlong system_context;
     
     // 调用状态更新回调函数
-    FUN_180768360(*(undefined8 *)(*(longlong *)(callback_param + 0x10) + 0x168));
+    FUN_180768360(*(uint64_t *)(*(longlong *)(callback_param + 0x10) + 0x168));
     
     // 获取系统上下文数据
     context_ptr = *(longlong *)(system_context + 0x108);
@@ -154,12 +154,12 @@ void ui_system_state_manager(void)
     
     // 更新状态数据结构
     **(longlong **)(context_ptr + 0x20) = *data_ptr;
-    *(undefined8 *)(*data_ptr + 8) = *(undefined8 *)(context_ptr + 0x20);
+    *(uint64_t *)(*data_ptr + 8) = *(uint64_t *)(context_ptr + 0x20);
     *(longlong **)(context_ptr + 0x20) = data_ptr;
     *data_ptr = (longlong)data_ptr;
     
     // 调用状态处理完成回调
-    FUN_180768400(*(undefined8 *)(*(longlong *)(*(longlong *)(system_context + 0x108) + 0x10) + 0x168));
+    FUN_180768400(*(uint64_t *)(*(longlong *)(*(longlong *)(system_context + 0x108) + 0x10) + 0x168));
 }
 
 /**
@@ -169,9 +169,9 @@ void ui_system_state_manager(void)
  * 如果状态无效，等待系统恢复到有效状态。
  * 
  * @param void 无参数
- * @return undefined8 返回操作状态码，0表示成功
+ * @return uint64_t 返回操作状态码，0表示成功
  */
-undefined8 ui_system_state_validator(void)
+uint64_t ui_system_state_validator(void)
 {
     longlong system_context;
     
@@ -191,18 +191,18 @@ undefined8 ui_system_state_validator(void)
  * 
  * @param param_1 系统上下文指针
  * @param param_2 输出参数指针
- * @return undefined8 返回操作状态码，0表示成功
+ * @return uint64_t 返回操作状态码，0表示成功
  */
-undefined8 ui_system_parameter_query_handler(longlong param_1, undefined4 *param_2)
+uint64_t ui_system_parameter_query_handler(longlong param_1, int32_t *param_2)
 {
-    undefined8 result;
-    undefined8 stack_data_48;
-    undefined8 stack_data_40;
-    undefined8 stack_data_38;
-    undefined8 stack_data_30;
-    undefined8 stack_data_28;
-    undefined8 stack_data_20;
-    undefined8 stack_data_18;
+    uint64_t result;
+    uint64_t stack_data_48;
+    uint64_t stack_data_40;
+    uint64_t stack_data_38;
+    uint64_t stack_data_30;
+    uint64_t stack_data_28;
+    uint64_t stack_data_20;
+    uint64_t stack_data_18;
     
     // 初始化栈数据
     stack_data_48 = 0;
@@ -215,7 +215,7 @@ undefined8 ui_system_parameter_query_handler(longlong param_1, undefined4 *param
     
     // 调用参数查询函数
     result = (**(code **)(*(longlong *)(param_1 + 0x60) + 0x88))
-                   (*(longlong *)(param_1 + 0x60), *(undefined4 *)(param_1 + 0xc0), &stack_data_48);
+                   (*(longlong *)(param_1 + 0x60), *(int32_t *)(param_1 + 0xc0), &stack_data_48);
     
     // 处理查询结果
     if ((int)result == 0) {
@@ -236,9 +236,9 @@ undefined8 ui_system_parameter_query_handler(longlong param_1, undefined4 *param
  * @param param_3 数据类型参数
  * @param param_4 输出数据指针
  * @param param_5 数据格式参数
- * @return undefined8 返回操作状态码，0表示成功
+ * @return uint64_t 返回操作状态码，0表示成功
  */
-undefined8 ui_system_data_processor(longlong param_1, int *param_2, int param_3, uint *param_4, int param_5)
+uint64_t ui_system_data_processor(longlong param_1, int *param_2, int param_3, uint *param_4, int param_5)
 {
     int temp_value;
     uint output_value;
@@ -329,12 +329,12 @@ final_output:
  * @param param_1 目标缓冲区指针
  * @param param_2 源字符串指针
  * @param param_3 最大长度
- * @return undefined8 返回操作状态码，0表示成功
+ * @return uint64_t 返回操作状态码，0表示成功
  */
-undefined8 ui_system_string_processor(longlong param_1, longlong param_2, int param_3)
+uint64_t ui_system_string_processor(longlong param_1, longlong param_2, int param_3)
 {
     int max_length;
-    undefined *char_ptr;
+    void *char_ptr;
     
     if (param_2 == 0) {
         return 0x1f;
@@ -346,8 +346,8 @@ undefined8 ui_system_string_processor(longlong param_1, longlong param_2, int pa
     }
     
     char_ptr = &DAT_18098bc73;
-    if (*(undefined **)(param_1 + 0x30) != (undefined *)0x0) {
-        char_ptr = *(undefined **)(param_1 + 0x30);
+    if (*(void **)(param_1 + 0x30) != (void *)0x0) {
+        char_ptr = *(void **)(param_1 + 0x30);
     }
     
     func_0x00018076b450(param_2, char_ptr, max_length);
@@ -367,7 +367,7 @@ undefined8 ui_system_string_processor(longlong param_1, longlong param_2, int pa
  * @param param_5 扩展标志输出指针
  * @return uint 返回控件状态标志
  */
-uint ui_system_control_validator(undefined8 *param_1, int *param_2, undefined4 *param_3, byte *param_4, byte *param_5)
+uint ui_system_control_validator(uint64_t *param_1, int *param_2, int32_t *param_3, byte *param_4, byte *param_5)
 {
     longlong context_ptr;
     char state_flag;
@@ -436,13 +436,13 @@ uint ui_system_control_validator(undefined8 *param_1, int *param_2, undefined4 *
     *param_2 = 6;
     result2 = result1;
 skip_validation:
-    if (param_3 != (undefined4 *)0x0) {
+    if (param_3 != (int32_t *)0x0) {
         if (((param_1[0xc] == 0) || (*(longlong *)(param_1[0xc] + 0x170) == 0)) ||
            ((*(int *)(param_1 + 0x22) != 4 && (*(int *)(param_1 + 0x22) != 0)))) {
             *param_3 = 0;
         }
         else {
-            *param_3 = *(undefined4 *)(*(longlong *)(param_1[0xc] + 0x170) + 0x17c);
+            *param_3 = *(int32_t *)(*(longlong *)(param_1[0xc] + 0x170) + 0x17c);
         }
     }
     
@@ -473,27 +473,27 @@ skip_validation:
  * @param param_1 系统上下文指针
  * @param param_2 控件索引
  * @param param_3 输出控件指针
- * @return undefined8 返回操作状态码，0表示成功
+ * @return uint64_t 返回操作状态码，0表示成功
  */
-undefined8 ui_system_control_initializer(longlong param_1, int param_2, undefined8 *param_3)
+uint64_t ui_system_control_initializer(longlong param_1, int param_2, uint64_t *param_3)
 {
     uint *flag_ptr;
     longlong context_ptr1;
     longlong context_ptr2;
     uint temp_value;
     int status;
-    undefined8 result;
+    uint64_t result;
     longlong *control_ptr;
     longlong stack_ptr;
-    undefined8 stack_data_50;
-    undefined8 stack_data_48;
-    undefined8 stack_data_40;
-    undefined8 stack_data_38;
-    undefined8 stack_data_30;
-    undefined8 stack_data_28;
+    uint64_t stack_data_50;
+    uint64_t stack_data_48;
+    uint64_t stack_data_40;
+    uint64_t stack_data_38;
+    uint64_t stack_data_30;
+    uint64_t stack_data_28;
     
     // 参数验证
-    if (((param_3 == (undefined8 *)0x0) || (param_2 < 0)) || (*(int *)(param_1 + 0xb0) <= param_2)) {
+    if (((param_3 == (uint64_t *)0x0) || (param_2 < 0)) || (*(int *)(param_1 + 0xb0) <= param_2)) {
         return 0x1f;
     }
     
@@ -536,19 +536,19 @@ undefined8 ui_system_control_initializer(longlong param_1, int param_2, undefine
             }
             
             control_ptr[6] = stack_ptr;
-            *(undefined4 *)(control_ptr + 5) = (undefined4)stack_data_50;
-            *(undefined4 *)(control_ptr + 0xd) = stack_data_50._4_4_;
+            *(int32_t *)(control_ptr + 5) = (int32_t)stack_data_50;
+            *(int32_t *)(control_ptr + 0xd) = stack_data_50._4_4_;
             *(int *)((longlong)control_ptr + 0x4c) = (int)stack_data_38;
-            *(undefined4 *)((longlong)control_ptr + 0x13c) = stack_data_28._4_4_;
+            *(int32_t *)((longlong)control_ptr + 0x13c) = stack_data_28._4_4_;
             *(int *)(control_ptr + 10) = (stack_data_38._4_4_ - (int)stack_data_38) + 1;
-            *(undefined4 *)((longlong)control_ptr + 0x44) = (undefined4)stack_data_40;
+            *(int32_t *)((longlong)control_ptr + 0x44) = (int32_t)stack_data_40;
             *(float *)((longlong)control_ptr + 0x6c) = (float)(int)stack_data_48;
             
             (**(code **)(*control_ptr + 0x138))(control_ptr, stack_data_38 & 0xffffffff, 2, stack_data_38._4_4_, 2);
             
             context_ptr1 = control_ptr[0x30];
-            *(undefined4 *)(context_ptr1 + 0x13c) = stack_data_28._4_4_;
-            *(undefined4 *)(context_ptr1 + 0x68) = stack_data_50._4_4_;
+            *(int32_t *)(context_ptr1 + 0x13c) = stack_data_28._4_4_;
+            *(int32_t *)(context_ptr1 + 0x68) = stack_data_50._4_4_;
             *(int *)(context_ptr1 + 0xc0) = param_2;
             
             if (((int)control_ptr[0x18] != *(int *)(control_ptr[0xc] + 0x11c)) &&
@@ -573,31 +573,31 @@ undefined8 ui_system_control_initializer(longlong param_1, int param_2, undefine
                 ((int)control_ptr[8] != temp_value + *(int *)(control_ptr[0x17] + 0x194))) ||
                ((*(uint *)(control_ptr + 0xb) >> 4 & 1) != 0)) {
                 context_ptr1 = *(longlong *)(control_ptr[0x21] + 0x10);
-                result = *(undefined8 *)(context_ptr1 + 0x168);
+                result = *(uint64_t *)(context_ptr1 + 0x168);
                 FUN_180768360(result);
                 
                 *(int *)(control_ptr + 0x18) = param_2;
                 LOCK();
-                *(undefined4 *)(control_ptr + 0x22) = 5;
+                *(int32_t *)(control_ptr + 0x22) = 5;
                 UNLOCK();
                 LOCK();
-                *(undefined4 *)(param_1 + 0x110) = 5;
+                *(int32_t *)(param_1 + 0x110) = 5;
                 UNLOCK();
                 
                 *(longlong **)(control_ptr[0x21] + 0x28) = control_ptr;
                 context_ptr2 = control_ptr[0x21];
                 control_ptr = (longlong *)(context_ptr2 + 0x18);
-                *(undefined8 *)(context_ptr2 + 0x20) = *(undefined8 *)(context_ptr1 + 0x158);
+                *(uint64_t *)(context_ptr2 + 0x20) = *(uint64_t *)(context_ptr1 + 0x158);
                 *control_ptr = context_ptr1 + 0x150;
                 *(longlong **)(context_ptr1 + 0x158) = control_ptr;
-                **(undefined8 **)(context_ptr2 + 0x20) = control_ptr;
+                **(uint64_t **)(context_ptr2 + 0x20) = control_ptr;
                 
                 FUN_180768400(result);
             }
         }
     }
     
-    *param_3 = *(undefined8 *)(*(longlong *)(param_1 + 0xa0) + (longlong)param_2 * 8);
+    *param_3 = *(uint64_t *)(*(longlong *)(param_1 + 0xa0) + (longlong)param_2 * 8);
     return 0;
 }
 
@@ -619,12 +619,12 @@ undefined8 ui_system_control_initializer(longlong param_1, int param_2, undefine
  * @param param_10 标志参数
  * @param param_11 上下文参数
  * @param param_12 配置参数
- * @return undefined8 返回操作状态码，0表示成功
+ * @return uint64_t 返回操作状态码，0表示成功
  */
-undefined8
-ui_system_control_processor(longlong param_1, undefined8 param_2, undefined8 *param_3, undefined8 param_4,
-                           undefined8 param_5, longlong param_6, undefined8 param_7, undefined8 param_8,
-                           undefined8 param_9, ulonglong param_10, undefined8 param_11, undefined8 param_12)
+uint64_t
+ui_system_control_processor(longlong param_1, uint64_t param_2, uint64_t *param_3, uint64_t param_4,
+                           uint64_t param_5, longlong param_6, uint64_t param_7, uint64_t param_8,
+                           uint64_t param_9, ulonglong param_10, uint64_t param_11, uint64_t param_12)
 {
     uint *flag_ptr;
     longlong context_ptr1;
@@ -632,17 +632,17 @@ ui_system_control_processor(longlong param_1, undefined8 param_2, undefined8 *pa
     uint temp_value;
     int status;
     longlong callback_param;
-    undefined8 result;
+    uint64_t result;
     ulonglong stack_param;
-    undefined8 context_param1;
-    undefined8 context_param2;
+    uint64_t context_param1;
+    uint64_t context_param2;
     longlong *control_ptr;
-    undefined8 *output_ptr;
+    uint64_t *output_ptr;
     
     // 设置回调参数
-    *(undefined8 *)(callback_param + 0x10) = context_param2;
+    *(uint64_t *)(callback_param + 0x10) = context_param2;
     *param_3 = 0;
-    *(undefined8 *)(callback_param + 0x20) = context_param1;
+    *(uint64_t *)(callback_param + 0x20) = context_param1;
     
     control_ptr = *(longlong **)(*(longlong *)(param_1 + 0xa0) + stack_param * 8);
     
@@ -683,19 +683,19 @@ ui_system_control_processor(longlong param_1, undefined8 param_2, undefined8 *pa
             }
             
             control_ptr[6] = param_6;
-            *(undefined4 *)(control_ptr + 5) = (undefined4)param_7;
-            *(undefined4 *)(control_ptr + 0xd) = param_7._4_4_;
+            *(int32_t *)(control_ptr + 5) = (int32_t)param_7;
+            *(int32_t *)(control_ptr + 0xd) = param_7._4_4_;
             *(int *)((longlong)control_ptr + 0x4c) = (int)param_10;
-            *(undefined4 *)((longlong)control_ptr + 0x13c) = param_12._4_4_;
+            *(int32_t *)((longlong)control_ptr + 0x13c) = param_12._4_4_;
             *(int *)(control_ptr + 10) = (param_10._4_4_ - (int)param_10) + 1;
-            *(undefined4 *)((longlong)control_ptr + 0x44) = (undefined4)param_9;
+            *(int32_t *)((longlong)control_ptr + 0x44) = (int32_t)param_9;
             *(float *)((longlong)control_ptr + 0x6c) = (float)(int)param_8;
             
             (**(code **)(*control_ptr + 0x138))(control_ptr, param_10 & 0xffffffff, 2, param_10._4_4_, 2);
             
             context_ptr1 = control_ptr[0x30];
-            *(undefined4 *)(context_ptr1 + 0x13c) = param_12._4_4_;
-            *(undefined4 *)(context_ptr1 + 0x68) = param_7._4_4_;
+            *(int32_t *)(context_ptr1 + 0x13c) = param_12._4_4_;
+            *(int32_t *)(context_ptr1 + 0x68) = param_7._4_4_;
             *(int *)(context_ptr1 + 0xc0) = status;
             
             if (((int)control_ptr[0x18] != *(int *)(control_ptr[0xc] + 0x11c)) &&
@@ -720,31 +720,31 @@ ui_system_control_processor(longlong param_1, undefined8 param_2, undefined8 *pa
                 ((int)control_ptr[8] != temp_value + *(int *)(control_ptr[0x17] + 0x194))) ||
                ((*(uint *)(control_ptr + 0xb) >> 4 & 1) != 0)) {
                 context_ptr1 = *(longlong *)(control_ptr[0x21] + 0x10);
-                result = *(undefined8 *)(context_ptr1 + 0x168);
+                result = *(uint64_t *)(context_ptr1 + 0x168);
                 FUN_180768360(result);
                 
                 *(int *)(control_ptr + 0x18) = status;
                 LOCK();
-                *(undefined4 *)(control_ptr + 0x22) = 5;
+                *(int32_t *)(control_ptr + 0x22) = 5;
                 UNLOCK();
                 LOCK();
-                *(undefined4 *)(param_11 + 0x110) = 5;
+                *(int32_t *)(param_11 + 0x110) = 5;
                 UNLOCK();
                 
                 *(longlong **)(control_ptr[0x21] + 0x28) = control_ptr;
                 context_ptr2 = control_ptr[0x21];
                 control_ptr = (longlong *)(context_ptr2 + 0x18);
-                *(undefined8 *)(context_ptr2 + 0x20) = *(undefined8 *)(context_ptr1 + 0x158);
+                *(uint64_t *)(context_ptr2 + 0x20) = *(uint64_t *)(context_ptr1 + 0x158);
                 *control_ptr = context_ptr1 + 0x150;
                 *(longlong **)(context_ptr1 + 0x158) = control_ptr;
-                **(undefined8 **)(context_ptr2 + 0x20) = control_ptr;
+                **(uint64_t **)(context_ptr2 + 0x20) = control_ptr;
                 
                 FUN_180768400(result);
             }
         }
     }
     
-    *output_ptr = *(undefined8 *)(*(longlong *)(param_11 + 0xa0) + stack_param * 8);
+    *output_ptr = *(uint64_t *)(*(longlong *)(param_11 + 0xa0) + stack_param * 8);
     return 0;
 }
 
@@ -760,29 +760,29 @@ ui_system_control_processor(longlong param_1, undefined8 param_2, undefined8 *pa
 void ui_system_resource_cleaner(void)
 {
     longlong context_ptr;
-    undefined8 callback_param;
+    uint64_t callback_param;
     longlong cleanup_context;
     longlong system_context;
-    undefined4 state_param;
+    int32_t state_param;
     longlong resource_context;
     longlong *resource_ptr;
     
     // 获取系统上下文
     context_ptr = *(longlong *)(system_context + 0x10);
-    callback_param = *(undefined8 *)(context_ptr + 0x168);
+    callback_param = *(uint64_t *)(context_ptr + 0x168);
     
     // 调用资源清理回调
     FUN_180768360(callback_param);
     
     // 设置系统状态
-    *(undefined4 *)(resource_context + 0xc0) = state_param;
+    *(int32_t *)(resource_context + 0xc0) = state_param;
     
     // 锁定系统状态
     LOCK();
-    *(undefined4 *)(resource_context + 0x110) = 5;
+    *(int32_t *)(resource_context + 0x110) = 5;
     UNLOCK();
     LOCK();
-    *(undefined4 *)(cleanup_context + 0x110) = 5;
+    *(int32_t *)(cleanup_context + 0x110) = 5;
     UNLOCK();
     
     // 清理资源链接
@@ -790,10 +790,10 @@ void ui_system_resource_cleaner(void)
     cleanup_context = *(longlong *)(resource_context + 0x108);
     resource_ptr = (longlong *)(cleanup_context + 0x18);
     
-    *(undefined8 *)(cleanup_context + 0x20) = *(undefined8 *)(context_ptr + 0x158);
+    *(uint64_t *)(cleanup_context + 0x20) = *(uint64_t *)(context_ptr + 0x158);
     *resource_ptr = context_ptr + 0x150;
     *(longlong **)(context_ptr + 0x158) = resource_ptr;
-    **(undefined8 **)(cleanup_context + 0x20) = resource_ptr;
+    **(uint64_t **)(cleanup_context + 0x20) = resource_ptr;
     
     // 调用清理完成回调
     FUN_180768400(callback_param);
@@ -806,19 +806,19 @@ void ui_system_resource_cleaner(void)
  * 返回找到的控件指针和相关信息。
  * 
  * @param void 无参数
- * @return undefined8 返回操作状态码，0表示成功
+ * @return uint64_t 返回操作状态码，0表示成功
  */
-undefined8 ui_system_control_finder(void)
+uint64_t ui_system_control_finder(void)
 {
     longlong search_context;
     longlong system_context;
-    undefined8 *output_ptr;
+    uint64_t *output_ptr;
     
     // 初始化搜索系统
     FUN_180768910();
     
     // 查找控件并返回结果
-    *output_ptr = *(undefined8 *)(*(longlong *)(system_context + 0xa0) + search_context * 8);
+    *output_ptr = *(uint64_t *)(*(longlong *)(system_context + 0xa0) + search_context * 8);
     return 0;
 }
 
@@ -829,25 +829,25 @@ undefined8 ui_system_control_finder(void)
  * 支持批量更新和增量更新。
  * 
  * @param void 无参数
- * @return undefined8 返回操作状态码，0表示成功
+ * @return uint64_t 返回操作状态码，0表示成功
  */
-undefined8 ui_system_control_updater(void)
+uint64_t ui_system_control_updater(void)
 {
     uint *flag_ptr;
     longlong context_ptr;
     int status;
-    undefined8 result;
+    uint64_t result;
     ulonglong control_index;
     longlong *control_ptr;
-    undefined8 *output_ptr;
+    uint64_t *output_ptr;
     longlong stack_ptr;
-    undefined4 stack_data_38;
-    undefined4 stack_data_3c;
+    int32_t stack_data_38;
+    int32_t stack_data_3c;
     int stack_data_40;
-    undefined4 stack_data_48;
-    undefined8 stack_data_50;
-    undefined8 stack_data_58;
-    undefined8 stack_data_60;
+    int32_t stack_data_48;
+    uint64_t stack_data_50;
+    uint64_t stack_data_58;
+    uint64_t stack_data_60;
     
     // 更新控件标志
     LOCK();
@@ -879,19 +879,19 @@ undefined8 ui_system_control_updater(void)
     
     if ((int)result == 0) {
         control_ptr[6] = stack_ptr;
-        *(undefined4 *)(control_ptr + 5) = stack_data_50;
-        *(undefined4 *)(control_ptr + 0xd) = stack_data_3c;
+        *(int32_t *)(control_ptr + 5) = stack_data_50;
+        *(int32_t *)(control_ptr + 0xd) = stack_data_3c;
         *(int *)((longlong)control_ptr + 0x4c) = (int)stack_data_50;
-        *(undefined4 *)((longlong)control_ptr + 0x13c) = stack_data_60._4_4_;
+        *(int32_t *)((longlong)control_ptr + 0x13c) = stack_data_60._4_4_;
         *(int *)(control_ptr + 10) = (stack_data_50._4_4_ - (int)stack_data_50) + 1;
-        *(undefined4 *)((longlong)control_ptr + 0x44) = stack_data_48;
+        *(int32_t *)((longlong)control_ptr + 0x44) = stack_data_48;
         *(float *)((longlong)control_ptr + 0x6c) = (float)stack_data_40;
         
         (**(code **)(*control_ptr + 0x138))();
         
         context_ptr = control_ptr[0x30];
-        *(undefined4 *)(context_ptr + 0x13c) = stack_data_60._4_4_;
-        *(undefined4 *)(context_ptr + 0x68) = stack_data_3c;
+        *(int32_t *)(context_ptr + 0x13c) = stack_data_60._4_4_;
+        *(int32_t *)(context_ptr + 0x68) = stack_data_3c;
         *(int *)(context_ptr + 0xc0) = (int)control_index;
         
         if ((int)control_ptr[0x18] != *(int *)(control_ptr[0xc] + 0x11c)) {
@@ -901,7 +901,7 @@ undefined8 ui_system_control_updater(void)
             }
         }
         result = 0;
-        *output_ptr = *(undefined8 *)(*(longlong *)(system_context + 0xa0) + control_index * 8);
+        *output_ptr = *(uint64_t *)(*(longlong *)(system_context + 0xa0) + control_index * 8);
     }
     return result;
 }
@@ -913,9 +913,9 @@ undefined8 ui_system_control_updater(void)
  * 错误恢复等。提供统一的错误处理接口。
  * 
  * @param void 无参数
- * @return undefined8 返回错误状态码
+ * @return uint64_t 返回错误状态码
  */
-undefined8 ui_system_error_handler(void)
+uint64_t ui_system_error_handler(void)
 {
     return 0x1f;
 }
@@ -929,11 +929,11 @@ undefined8 ui_system_error_handler(void)
  * @param param_1 控件容器指针
  * @param param_2 枚举索引
  * @param param_3 输出控件指针
- * @return undefined8 返回操作状态码，0表示成功
+ * @return uint64_t 返回操作状态码，0表示成功
  */
-undefined8 ui_system_control_enumerator(longlong *param_1, int param_2, undefined8 *param_3)
+uint64_t ui_system_control_enumerator(longlong *param_1, int param_2, uint64_t *param_3)
 {
-    undefined8 result;
+    uint64_t result;
     longlong *control_ptr;
     int current_index;
     int max_count;
@@ -941,7 +941,7 @@ undefined8 ui_system_control_enumerator(longlong *param_1, int param_2, undefine
     // 验证容器有效性
     result = (**(code **)(*param_1 + 0xe8))();
     if ((int)result == 0) {
-        if (((-1 < param_2) && (param_2 < max_count)) && (param_3 != (undefined8 *)0x0)) {
+        if (((-1 < param_2) && (param_2 < max_count)) && (param_3 != (uint64_t *)0x0)) {
             current_index = 0;
             control_ptr = *(longlong **)param_1[0x1e];
             if (control_ptr == (longlong *)param_1[0x1f]) {
@@ -978,14 +978,14 @@ undefined8 ui_system_control_enumerator(longlong *param_1, int param_2, undefine
  * @param param_4 缓冲区大小
  * @param param_5 输出数据指针
  * @param param_6 转换类型
- * @return undefined8 返回操作状态码，0表示成功
+ * @return uint64_t 返回操作状态码，0表示成功
  */
-undefined8
-ui_system_data_converter(longlong param_1, longlong param_2, longlong param_3, undefined4 param_4, int *param_5,
+uint64_t
+ui_system_data_converter(longlong param_1, longlong param_2, longlong param_3, int32_t param_4, int *param_5,
                         int param_6)
 {
     int source_value;
-    undefined *char_ptr;
+    void *char_ptr;
     ulonglong calc_value;
     
     // 参数验证
@@ -1000,8 +1000,8 @@ ui_system_data_converter(longlong param_1, longlong param_2, longlong param_3, u
     }
     else {
         char_ptr = &DAT_18098bc73;
-        if (*(undefined **)(param_2 + 0x20) != (undefined *)0x0) {
-            char_ptr = *(undefined **)(param_2 + 0x20);
+        if (*(void **)(param_2 + 0x20) != (void *)0x0) {
+            char_ptr = *(void **)(param_2 + 0x20);
         }
         
         func_0x00018076b450(param_3, char_ptr, param_4);
@@ -1061,13 +1061,13 @@ ulonglong ui_system_advanced_data_processor(longlong param_1, ulonglong param_2,
     code *callback_func;
     ulonglong result;
     longlong data_context;
-    undefined8 stack_data_48;
-    undefined8 stack_data_40;
-    undefined8 stack_data_38;
-    undefined8 stack_data_30;
-    undefined8 stack_data_28;
-    undefined8 stack_data_20;
-    undefined8 stack_data_18;
+    uint64_t stack_data_48;
+    uint64_t stack_data_40;
+    uint64_t stack_data_38;
+    uint64_t stack_data_30;
+    uint64_t stack_data_28;
+    uint64_t stack_data_20;
+    uint64_t stack_data_18;
     
     data_context = 0;
     if (*(int *)(param_1 + 0xb0) == 0) {
@@ -1090,11 +1090,11 @@ ulonglong ui_system_advanced_data_processor(longlong param_1, ulonglong param_2,
                       (*(longlong *)(param_1 + 0x60), param_2, &stack_data_48);
         
         if (((int)result == 0) &&
-           (result = FUN_18078df30(*(undefined8 *)(param_1 + 0xd8), param_3, &stack_data_48, &data_context),
+           (result = FUN_18078df30(*(uint64_t *)(param_1 + 0xd8), param_3, &stack_data_48, &data_context),
            (int)result == 0)) {
             
-            *(undefined4 *)(data_context + 0x24) = *(undefined4 *)(param_1 + 0x24);
-            *(undefined8 *)(data_context + 0x60) = *(undefined8 *)(param_1 + 0x60);
+            *(int32_t *)(data_context + 0x24) = *(int32_t *)(param_1 + 0x24);
+            *(uint64_t *)(data_context + 0x60) = *(uint64_t *)(param_1 + 0x60);
             
             callback_func = *(code **)(*(longlong *)(param_1 + 0x60) + 0x80);
             if ((callback_func != (code *)0x0) &&
@@ -1103,23 +1103,23 @@ ulonglong ui_system_advanced_data_processor(longlong param_1, ulonglong param_2,
                 return result;
             }
             
-            FUN_180751ff0(*(undefined8 *)(param_1 + 0x60));
-            result = FUN_180773610(*(undefined8 *)(param_1 + 0x60), param_2 & 0xffffffff, 0, 2);
+            FUN_180751ff0(*(uint64_t *)(param_1 + 0x60));
+            result = FUN_180773610(*(uint64_t *)(param_1 + 0x60), param_2 & 0xffffffff, 0, 2);
             
             if ((int)result == 0) {
                 if (*(code **)(param_1 + 0x150) != (code *)0x0) {
-                    (**(code **)(param_1 + 0x150))(*(undefined8 *)(param_1 + 0x158), param_2 & 0xffffffff, 0, 2);
+                    (**(code **)(param_1 + 0x150))(*(uint64_t *)(param_1 + 0x158), param_2 & 0xffffffff, 0, 2);
                 }
                 
                 if (((param_3 >> 0xd & 1) == 0) &&
-                   (result = FUN_180751310(data_context, 0, *(undefined4 *)(data_context + 0x44), 0),
+                   (result = FUN_180751310(data_context, 0, *(int32_t *)(data_context + 0x44), 0),
                    (result & 0xffffffef) != 0)) {
                     return result;
                 }
                 
                 result = FUN_180752820(param_1, param_2 & 0xffffffff, data_context, 0);
                 if ((int)result == 0) {
-                    *(undefined4 *)(data_context + 0x40) = 0;
+                    *(int32_t *)(data_context + 0x40) = 0;
                     return 0;
                 }
             }
@@ -1158,15 +1158,15 @@ ulonglong ui_system_buffer_manager(longlong *param_1, int param_2, int param_3, 
     int temp_array3[2];
     uint *output_ptr;
     longlong *buffer_ptr;
-    undefined4 temp_value;
+    int32_t temp_value;
     longlong stack_ptr1;
     longlong stack_ptr2;
-    undefined8 stack_data_78;
-    undefined8 stack_data_70;
-    undefined8 stack_data_68;
-    undefined8 stack_data_60;
-    undefined8 stack_data_58;
-    undefined8 stack_data_50;
+    uint64_t stack_data_78;
+    uint64_t stack_data_70;
+    uint64_t stack_data_68;
+    uint64_t stack_data_60;
+    uint64_t stack_data_58;
+    uint64_t stack_data_50;
     
     element_size = 1;
     if ((*(uint *)((longlong)param_1 + 0x2c) & 0x200) == 0) {
@@ -1201,7 +1201,7 @@ ulonglong ui_system_buffer_manager(longlong *param_1, int param_2, int param_3, 
     
     context_ptr = param_1[0xc];
     output_ptr = param_4;
-    result = (**(code **)(context_ptr + 0x88))(context_ptr, *(undefined4 *)(context_ptr + 0x11c), &stack_ptr2);
+    result = (**(code **)(context_ptr + 0x88))(context_ptr, *(int32_t *)(context_ptr + 0x11c), &stack_ptr2);
     
     if ((int)result == 0) {
         current_size = 0;
@@ -1222,7 +1222,7 @@ ulonglong ui_system_buffer_manager(longlong *param_1, int param_2, int param_3, 
             element_size2 = (**(code **)(*param_1 + 0x28))
                           (param_1, param_2, element_size1, &stack_ptr2, buffer_ptr, temp_array3, temp_array2);
             
-            temp_value = (undefined4)((ulonglong)buffer_ptr >> 0x20);
+            temp_value = (int32_t)((ulonglong)buffer_ptr >> 0x20);
             result = element_size2 & 0xffffffff;
             
             if ((int)element_size2 != 0) {
@@ -1306,7 +1306,7 @@ ulonglong ui_system_memory_optimizer(void)
     int temp_array3[2];
     uint *output_ptr;
     longlong *buffer_ptr;
-    undefined4 temp_value;
+    int32_t temp_value;
     longlong stack_ptr1;
     longlong stack_ptr2;
     
@@ -1336,7 +1336,7 @@ ulonglong ui_system_memory_optimizer(void)
         
         if ((*(longlong *)(system_context + -0x31) != 0) && (*(int *)(system_context + 0x77) != 0)) {
             context_ptr = *system_ptr;
-            *(undefined4 *)(system_context + 0x67) = 0;
+            *(int32_t *)(system_context + 0x67) = 0;
             element_size = (**(code **)(context_ptr + 200))();
             system_param1 = (ulonglong)element_size;
             
@@ -1353,7 +1353,7 @@ ulonglong ui_system_memory_optimizer(void)
     continue_label:
         if ((*(longlong *)(system_context + -0x29) != 0) && (system_param3 != 0)) {
             context_ptr = *system_ptr;
-            *(undefined4 *)(system_context + 0x67) = 0;
+            *(int32_t *)(system_context + 0x67) = 0;
             element_size = (**(code **)(context_ptr + 200))();
             system_param1 = (ulonglong)element_size;
             

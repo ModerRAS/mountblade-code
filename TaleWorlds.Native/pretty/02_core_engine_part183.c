@@ -338,19 +338,19 @@
  * ============================================================================ */
 
 // 基础数据类型别名
-typedef undefined8 CoreEngineHandle;        // 核心引擎句柄
-typedef undefined8 DataBlockHandle;          // 数据块句柄
-typedef undefined8 StringHandle;            // 字符串句柄
-typedef undefined8 ConfigHandle;            // 配置句柄
-typedef undefined4 CoreStatus;              // 核心状态
-typedef undefined4 DataFlags;               // 数据标志
-typedef undefined1 CoreByte;                // 核心字节
+typedef uint64_t CoreEngineHandle;        // 核心引擎句柄
+typedef uint64_t DataBlockHandle;          // 数据块句柄
+typedef uint64_t StringHandle;            // 字符串句柄
+typedef uint64_t ConfigHandle;            // 配置句柄
+typedef int32_t CoreStatus;              // 核心状态
+typedef int32_t DataFlags;               // 数据标志
+typedef int8_t CoreByte;                // 核心字节
 typedef void* CoreContext;                  // 核心上下文
 
 // 指针类型别名
-typedef undefined* DataPointer;            // 数据指针
-typedef undefined8* DataBlockPointer;       // 数据块指针
-typedef undefined1* StringPointer;          // 字符串指针
+typedef void* DataPointer;            // 数据指针
+typedef uint64_t* DataBlockPointer;       // 数据块指针
+typedef int8_t* StringPointer;          // 字符串指针
 
 // 枚举类型别名
 typedef enum {
@@ -625,7 +625,7 @@ typedef struct {
  * @param data_ptr 数据指针数组
  * @return void
  */
-void core_engine_data_initializer(undefined8 *data_ptr)
+void core_engine_data_initializer(uint64_t *data_ptr)
 {
     // 初始化数据结构指针
     data_ptr[CORE_OFFSET_0x16] = &UNK_18098bcb0;
@@ -649,12 +649,12 @@ void core_engine_data_initializer(undefined8 *data_ptr)
 longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
 {
     uint data_flag;
-    undefined *string_ptr;
+    void *string_ptr;
     longlong buffer_size;
     longlong block_count;
     longlong allocated_memory;
-    undefined8 *data_block;
-    undefined *char_ptr;
+    uint64_t *data_block;
+    void *char_ptr;
     
     // 执行系统初始化
     StringInitializer();
@@ -677,7 +677,7 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
     *(longlong *)(dest_ptr + CORE_OFFSET_0x20) = allocated_memory;
     *(longlong *)(dest_ptr + CORE_OFFSET_0x28) = allocated_memory;
     *(longlong *)(dest_ptr + CORE_OFFSET_0x30) = block_count * CORE_ENGINE_BLOCK_SIZE_0x98 + allocated_memory;
-    data_block = *(undefined8 **)(dest_ptr + CORE_OFFSET_0x20);
+    data_block = *(uint64_t **)(dest_ptr + CORE_OFFSET_0x20);
     buffer_size = *(longlong *)(src_ptr + CORE_OFFSET_0x28);
     
     // 复制第一块数据
@@ -687,17 +687,17 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
             // 初始化数据块头部
             *data_block = &UNK_18098bcb0;
             data_block[1] = 0;
-            *(undefined4 *)(data_block + 2) = 0;
+            *(int32_t *)(data_block + 2) = 0;
             *data_block = &UNK_1809fcc28;
             data_block[1] = data_block + 3;
-            *(undefined4 *)(data_block + 2) = 0;
-            *(undefined1 *)(data_block + 3) = 0;
+            *(int32_t *)(data_block + 2) = 0;
+            *(int8_t *)(data_block + 3) = 0;
             
             // 复制数据字段
-            *(undefined4 *)(data_block + 2) = *(undefined4 *)(block_count + CORE_OFFSET_0x10 + (longlong)data_block);
-            string_ptr = *(undefined **)(block_count + 8 + (longlong)data_block);
+            *(int32_t *)(data_block + 2) = *(int32_t *)(block_count + CORE_OFFSET_0x10 + (longlong)data_block);
+            string_ptr = *(void **)(block_count + 8 + (longlong)data_block);
             char_ptr = &DAT_18098bc73;
-            if (string_ptr != (undefined *)0x0) {
+            if (string_ptr != (void *)0x0) {
                 char_ptr = string_ptr;
             }
             strcpy_s(data_block[1], CORE_ENGINE_STRING_SIZE_0x80, char_ptr);
@@ -706,12 +706,12 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
     }
     
     // 更新第一块数据的结束指针
-    *(undefined8 **)(dest_ptr + CORE_OFFSET_0x28) = data_block;
+    *(uint64_t **)(dest_ptr + CORE_OFFSET_0x28) = data_block;
     
     // 复制第二部分数据
     DataBlockCopier(dest_ptr + CORE_OFFSET_0x40, src_ptr + CORE_OFFSET_0x40);
-    *(undefined1 *)(dest_ptr + CORE_OFFSET_0xd8) = *(undefined1 *)(src_ptr + CORE_OFFSET_0xd8);
-    *(undefined4 *)(dest_ptr + CORE_OFFSET_0xdc) = *(undefined4 *)(src_ptr + CORE_OFFSET_0xdc);
+    *(int8_t *)(dest_ptr + CORE_OFFSET_0xd8) = *(int8_t *)(src_ptr + CORE_OFFSET_0xd8);
+    *(int32_t *)(dest_ptr + CORE_OFFSET_0xdc) = *(int32_t *)(src_ptr + CORE_OFFSET_0xdc);
     DataBlockCopier(dest_ptr + CORE_OFFSET_0xe0, src_ptr + CORE_OFFSET_0xe0);
     
     // 计算第二块数据的大小和数量
@@ -731,7 +731,7 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
     *(longlong *)(dest_ptr + CORE_OFFSET_0x178) = allocated_memory;
     *(longlong *)(dest_ptr + CORE_OFFSET_0x180) = allocated_memory;
     *(longlong *)(dest_ptr + CORE_OFFSET_0x188) = block_count * CORE_ENGINE_BLOCK_SIZE_0x98 + allocated_memory;
-    data_block = *(undefined8 **)(dest_ptr + CORE_OFFSET_0x178);
+    data_block = *(uint64_t **)(dest_ptr + CORE_OFFSET_0x178);
     buffer_size = *(longlong *)(src_ptr + CORE_OFFSET_0x180);
     
     // 复制第二块数据
@@ -741,17 +741,17 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
             // 初始化数据块头部
             *data_block = &UNK_18098bcb0;
             data_block[1] = 0;
-            *(undefined4 *)(data_block + 2) = 0;
+            *(int32_t *)(data_block + 2) = 0;
             *data_block = &UNK_1809fcc28;
             data_block[1] = data_block + 3;
-            *(undefined4 *)(data_block + 2) = 0;
-            *(undefined1 *)(data_block + 3) = 0;
+            *(int32_t *)(data_block + 2) = 0;
+            *(int8_t *)(data_block + 3) = 0;
             
             // 复制数据字段
-            *(undefined4 *)(data_block + 2) = *(undefined4 *)(block_count + CORE_OFFSET_0x10 + (longlong)data_block);
-            string_ptr = *(undefined **)(block_count + 8 + (longlong)data_block);
+            *(int32_t *)(data_block + 2) = *(int32_t *)(block_count + CORE_OFFSET_0x10 + (longlong)data_block);
+            string_ptr = *(void **)(block_count + 8 + (longlong)data_block);
             char_ptr = &DAT_18098bc73;
-            if (string_ptr != (undefined *)0x0) {
+            if (string_ptr != (void *)0x0) {
                 char_ptr = string_ptr;
             }
             strcpy_s(data_block[1], CORE_ENGINE_STRING_SIZE_0x80, char_ptr);
@@ -760,7 +760,7 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
     }
     
     // 更新第二块数据的结束指针
-    *(undefined8 **)(dest_ptr + CORE_OFFSET_0x180) = data_block;
+    *(uint64_t **)(dest_ptr + CORE_OFFSET_0x180) = data_block;
     
     // 复制第三部分数据
     DataStructureProcessor(dest_ptr + CORE_OFFSET_0x198, src_ptr + CORE_OFFSET_0x198, CORE_ENGINE_BLOCK_SIZE_0x98, 5, DataBlockCopier, DataValidator);
@@ -782,7 +782,7 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
     *(longlong *)(dest_ptr + CORE_OFFSET_0x490) = allocated_memory;
     *(longlong *)(dest_ptr + CORE_OFFSET_0x498) = allocated_memory;
     *(longlong *)(dest_ptr + CORE_OFFSET_0x4a0) = block_count * CORE_ENGINE_BLOCK_SIZE_0x98 + allocated_memory;
-    data_block = *(undefined8 **)(dest_ptr + CORE_OFFSET_0x490);
+    data_block = *(uint64_t **)(dest_ptr + CORE_OFFSET_0x490);
     buffer_size = *(longlong *)(src_ptr + CORE_OFFSET_0x498);
     
     // 复制第三块数据
@@ -792,17 +792,17 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
             // 初始化数据块头部
             *data_block = &UNK_18098bcb0;
             data_block[1] = 0;
-            *(undefined4 *)(data_block + 2) = 0;
+            *(int32_t *)(data_block + 2) = 0;
             *data_block = &UNK_1809fcc28;
             data_block[1] = data_block + 3;
-            *(undefined4 *)(data_block + 2) = 0;
-            *(undefined1 *)(data_block + 3) = 0;
+            *(int32_t *)(data_block + 2) = 0;
+            *(int8_t *)(data_block + 3) = 0;
             
             // 复制数据字段
-            *(undefined4 *)(data_block + 2) = *(undefined4 *)(block_count + CORE_OFFSET_0x10 + (longlong)data_block);
-            string_ptr = *(undefined **)(block_count + 8 + (longlong)data_block);
+            *(int32_t *)(data_block + 2) = *(int32_t *)(block_count + CORE_OFFSET_0x10 + (longlong)data_block);
+            string_ptr = *(void **)(block_count + 8 + (longlong)data_block);
             char_ptr = &DAT_18098bc73;
-            if (string_ptr != (undefined *)0x0) {
+            if (string_ptr != (void *)0x0) {
                 char_ptr = string_ptr;
             }
             strcpy_s(data_block[1], CORE_ENGINE_STRING_SIZE_0x80, char_ptr);
@@ -811,7 +811,7 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
     }
     
     // 更新第三块数据的结束指针
-    *(undefined8 **)(dest_ptr + CORE_OFFSET_0x498) = data_block;
+    *(uint64_t **)(dest_ptr + CORE_OFFSET_0x498) = data_block;
     
     // 复制剩余的数据部分
     DataStructureProcessor(dest_ptr + CORE_OFFSET_0x4b0, src_ptr + CORE_OFFSET_0x4b0, CORE_ENGINE_BLOCK_SIZE_0x58, CORE_ENGINE_BLOCK_SIZE_0x10, DataOptimizationProcessor, DataValidator);
@@ -835,7 +835,7 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
     *(longlong *)(dest_ptr + CORE_OFFSET_0x10b8) = allocated_memory;
     *(longlong *)(dest_ptr + CORE_OFFSET_0x10c0) = allocated_memory;
     *(longlong *)(dest_ptr + CORE_OFFSET_0x10c8) = buffer_size * CORE_ENGINE_BLOCK_SIZE_0x98 + allocated_memory;
-    data_block = *(undefined8 **)(dest_ptr + CORE_OFFSET_0x10b8);
+    data_block = *(uint64_t **)(dest_ptr + CORE_OFFSET_0x10b8);
     buffer_size = *(longlong *)(src_ptr + CORE_OFFSET_0x10c0);
     
     // 复制第四块数据
@@ -845,17 +845,17 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
             // 初始化数据块头部
             *data_block = &UNK_18098bcb0;
             data_block[1] = 0;
-            *(undefined4 *)(data_block + 2) = 0;
+            *(int32_t *)(data_block + 2) = 0;
             *data_block = &UNK_1809fcc28;
             data_block[1] = data_block + 3;
-            *(undefined4 *)(data_block + 2) = 0;
-            *(undefined1 *)(data_block + 3) = 0;
+            *(int32_t *)(data_block + 2) = 0;
+            *(int8_t *)(data_block + 3) = 0;
             
             // 复制数据字段
-            *(undefined4 *)(data_block + 2) = *(undefined4 *)(allocated_memory + CORE_OFFSET_0x10 + (longlong)data_block);
-            string_ptr = *(undefined **)(allocated_memory + 8 + (longlong)data_block);
+            *(int32_t *)(data_block + 2) = *(int32_t *)(allocated_memory + CORE_OFFSET_0x10 + (longlong)data_block);
+            string_ptr = *(void **)(allocated_memory + 8 + (longlong)data_block);
             char_ptr = &DAT_18098bc73;
-            if (string_ptr != (undefined *)0x0) {
+            if (string_ptr != (void *)0x0) {
                 char_ptr = string_ptr;
             }
             strcpy_s(data_block[1], CORE_ENGINE_STRING_SIZE_0x80, char_ptr);
@@ -864,12 +864,12 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
     }
     
     // 更新第四块数据的结束指针
-    *(undefined8 **)(dest_ptr + CORE_OFFSET_0x10c0) = data_block;
+    *(uint64_t **)(dest_ptr + CORE_OFFSET_0x10c0) = data_block;
     
     // 执行最终的初始化操作
     StringInitializer(dest_ptr + CORE_OFFSET_0x10d8, src_ptr + CORE_OFFSET_0x10d8);
-    *(undefined1 *)(dest_ptr + CORE_OFFSET_0x10f8) = *(undefined1 *)(src_ptr + CORE_OFFSET_0x10f8);
-    *(undefined1 *)(dest_ptr + CORE_OFFSET_0x10f9) = *(undefined1 *)(src_ptr + CORE_OFFSET_0x10f9);
+    *(int8_t *)(dest_ptr + CORE_OFFSET_0x10f8) = *(int8_t *)(src_ptr + CORE_OFFSET_0x10f8);
+    *(int8_t *)(dest_ptr + CORE_OFFSET_0x10f9) = *(int8_t *)(src_ptr + CORE_OFFSET_0x10f9);
     DataBlockCopier(dest_ptr + CORE_OFFSET_0x1100, src_ptr + CORE_OFFSET_0x1100);
     DataBlockCopier(dest_ptr + CORE_OFFSET_0x1198, src_ptr + CORE_OFFSET_0x1198);
     DataBlockCopier(dest_ptr + CORE_OFFSET_0x1230, src_ptr + CORE_OFFSET_0x1230);
@@ -894,21 +894,21 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
  * @param resource_flags 资源标志
  * @return 处理结果：成功返回资源指针，失败返回错误码
  */
-longlong *core_engine_resource_manager(undefined8 resource_type, longlong *resource_ptr, longlong config_data, undefined8 resource_flags)
+longlong *core_engine_resource_manager(uint64_t resource_type, longlong *resource_ptr, longlong config_data, uint64_t resource_flags)
 {
-    undefined8 *resource_block_1;
-    undefined8 *resource_block_2;
+    uint64_t *resource_block_1;
+    uint64_t *resource_block_2;
     longlong resource_handle;
     longlong resource_count;
-    undefined8 resource_id;
-    undefined *resource_data;
-    undefined *stack_data_1;
-    undefined1 *stack_data_2;
-    undefined4 stack_data_3;
-    undefined8 stack_data_4;
-    undefined *stack_data_5;
+    uint64_t resource_id;
+    void *resource_data;
+    void *stack_data_1;
+    int8_t *stack_data_2;
+    int32_t stack_data_3;
+    uint64_t stack_data_4;
+    void *stack_data_5;
     longlong stack_data_6;
-    undefined4 stack_data_7;
+    int32_t stack_data_7;
     
     resource_handle = _DAT_180c868f8;
     ContextInitializer(&stack_data_1, config_data, config_data, resource_flags, 0, 0xfffffffffffffffe);
@@ -916,27 +916,27 @@ longlong *core_engine_resource_manager(undefined8 resource_type, longlong *resou
     stack_data_1 = &UNK_180a3c3e0;
     
     // 检查资源分配状态
-    if (stack_data_2 != (undefined1 *)0x0) {
+    if (stack_data_2 != (int8_t *)0x0) {
         // 资源分配失败
         ErrorHandler();
     }
     
-    stack_data_2 = (undefined1 *)0x0;
+    stack_data_2 = (int8_t *)0x0;
     stack_data_4 = (ulonglong)stack_data_4._4_4_ << 0x20;
     stack_data_1 = &UNK_18098bcb0;
     *resource_ptr = (longlong)&UNK_18098bcb0;
     resource_ptr[1] = 0;
-    *(undefined4 *)(resource_ptr + 2) = 0;
+    *(int32_t *)(resource_ptr + 2) = 0;
     *resource_ptr = (longlong)&UNK_180a3c3e0;
     resource_ptr[3] = 0;
     resource_ptr[1] = 0;
-    *(undefined4 *)(resource_ptr + 2) = 0;
+    *(int32_t *)(resource_ptr + 2) = 0;
     
     // 根据资源计数处理资源
     if (resource_count == 0) {
         resource_data = &DAT_18098bc73;
-        if (*(undefined **)(config_data + 8) != (undefined *)0x0) {
-            resource_data = *(undefined **)(config_data + 8);
+        if (*(void **)(config_data + 8) != (void *)0x0) {
+            resource_data = *(void **)(config_data + 8);
         }
         ResourceRegistrar(&UNK_180a08868, resource_data);
         (**(code **)(*resource_ptr + CORE_OFFSET_0x10))(resource_ptr, &UNK_180a08850);
@@ -955,52 +955,52 @@ longlong *core_engine_resource_manager(undefined8 resource_type, longlong *resou
     
     stack_data_1 = &UNK_180a3c3e0;
     stack_data_4 = 0;
-    stack_data_2 = (undefined1 *)0x0;
+    stack_data_2 = (int8_t *)0x0;
     stack_data_3 = 0;
-    ConfigBlockInitializer(&stack_data_1, *(undefined4 *)(config_data + CORE_OFFSET_0x10));
+    ConfigBlockInitializer(&stack_data_1, *(int32_t *)(config_data + CORE_OFFSET_0x10));
     
     // 处理资源数据
     if (0 < *(int *)(config_data + CORE_OFFSET_0x10)) {
         resource_data = &DAT_18098bc73;
-        if (*(undefined **)(config_data + 8) != (undefined *)0x0) {
-            resource_data = *(undefined **)(config_data + 8);
+        if (*(void **)(config_data + 8) != (void *)0x0) {
+            resource_data = *(void **)(config_data + 8);
         }
         memcpy(stack_data_2, resource_data, (longlong)(*(int *)(config_data + CORE_OFFSET_0x10) + 1));
     }
     
     if (*(longlong *)(config_data + 8) != 0) {
         stack_data_3 = 0;
-        if (stack_data_2 != (undefined1 *)0x0) {
+        if (stack_data_2 != (int8_t *)0x0) {
             *stack_data_2 = 0;
         }
     }
     
     // 处理资源块
-    resource_block_1 = *(undefined8 **)(resource_handle + 8);
-    resource_block_2 = *(undefined8 **)(resource_handle + CORE_OFFSET_0x10);
-    if ((resource_block_2 == *(undefined8 **)(resource_handle + 0x18)) || (resource_block_1 != resource_block_2)) {
-        ResourceBlockProcessor((undefined8 *)(resource_handle + 8), resource_block_1, &stack_data_1);
+    resource_block_1 = *(uint64_t **)(resource_handle + 8);
+    resource_block_2 = *(uint64_t **)(resource_handle + CORE_OFFSET_0x10);
+    if ((resource_block_2 == *(uint64_t **)(resource_handle + 0x18)) || (resource_block_1 != resource_block_2)) {
+        ResourceBlockProcessor((uint64_t *)(resource_handle + 8), resource_block_1, &stack_data_1);
     }
     else {
         *resource_block_2 = &UNK_18098bcb0;
         resource_block_2[1] = 0;
-        *(undefined4 *)(resource_block_2 + 2) = 0;
+        *(int32_t *)(resource_block_2 + 2) = 0;
         *resource_block_2 = &UNK_180a3c3e0;
         resource_block_2[3] = 0;
         resource_block_2[1] = 0;
-        *(undefined4 *)(resource_block_2 + 2) = 0;
-        *(undefined4 *)(resource_block_2 + 2) = stack_data_3;
+        *(int32_t *)(resource_block_2 + 2) = 0;
+        *(int32_t *)(resource_block_2 + 2) = stack_data_3;
         resource_block_2[1] = stack_data_2;
         *(uint *)((longlong)resource_block_2 + 0x1c) = stack_data_4._4_4_;
-        *(undefined4 *)(resource_block_2 + 3) = (undefined4)stack_data_4;
+        *(int32_t *)(resource_block_2 + 3) = (int32_t)stack_data_4;
         stack_data_3 = 0;
-        stack_data_2 = (undefined1 *)0x0;
+        stack_data_2 = (int8_t *)0x0;
         stack_data_4 = 0;
         *(longlong *)(resource_handle + CORE_OFFSET_0x10) = *(longlong *)(resource_handle + CORE_OFFSET_0x10) + 0x20;
     }
     
     stack_data_1 = &UNK_180a3c3e0;
-    if (stack_data_2 != (undefined1 *)0x0) {
+    if (stack_data_2 != (int8_t *)0x0) {
         ErrorHandler();
     }
     return resource_ptr;
@@ -1020,26 +1020,26 @@ longlong *core_engine_resource_manager(undefined8 resource_type, longlong *resou
  */
 longlong core_engine_string_processor(longlong *context_ptr, longlong string_data)
 {
-    undefined4 format_flag;
+    int32_t format_flag;
     char *char_ptr;
     longlong string_length;
-    undefined2 *string_buffer;
-    undefined *temp_ptr;
+    int16_t *string_buffer;
+    void *temp_ptr;
     uint char_count;
-    undefined *stack_ptr_1;
-    undefined *stack_ptr_2;
+    void *stack_ptr_1;
+    void *stack_ptr_2;
     int stack_int_1;
-    undefined8 stack_data_1;
-    undefined *stack_ptr_3;
-    undefined8 stack_data_2;
-    undefined4 stack_data_3;
-    undefined8 stack_data_4;
-    undefined *stack_ptr_4;
-    undefined2 *stack_ptr_5;
-    undefined4 stack_data_5;
+    uint64_t stack_data_1;
+    void *stack_ptr_3;
+    uint64_t stack_data_2;
+    int32_t stack_data_3;
+    uint64_t stack_data_4;
+    void *stack_ptr_4;
+    int16_t *stack_ptr_5;
+    int32_t stack_data_5;
     ulonglong stack_data_6;
     longlong stack_data_7;
-    undefined8 stack_data_8;
+    uint64_t stack_data_8;
     
     stack_data_8 = 0xfffffffffffffffe;
     char_count = 0;
@@ -1052,20 +1052,20 @@ longlong core_engine_string_processor(longlong *context_ptr, longlong string_dat
             if (*char_ptr == ' ') {
                 if (char_count != 0xffffffff) {
                     string_length = StringParser(string_data, &stack_ptr_4, 0);
-                    if (stack_ptr_2 != (undefined *)0x0) {
+                    if (stack_ptr_2 != (void *)0x0) {
                         ErrorHandler();
                     }
                     stack_int_1 = *(int *)(string_length + CORE_OFFSET_0x10);
-                    stack_ptr_2 = *(undefined **)(string_length + 8);
-                    stack_data_1 = *(undefined8 *)(string_length + 0x18);
-                    *(undefined4 *)(string_length + CORE_OFFSET_0x10) = 0;
-                    *(undefined8 *)(string_length + 8) = 0;
-                    *(undefined8 *)(string_length + 0x18) = 0;
+                    stack_ptr_2 = *(void **)(string_length + 8);
+                    stack_data_1 = *(uint64_t *)(string_length + 0x18);
+                    *(int32_t *)(string_length + CORE_OFFSET_0x10) = 0;
+                    *(uint64_t *)(string_length + 8) = 0;
+                    *(uint64_t *)(string_length + 0x18) = 0;
                     stack_ptr_4 = &UNK_180a3c3e0;
-                    if (stack_ptr_5 != (undefined2 *)0x0) {
+                    if (stack_ptr_5 != (int16_t *)0x0) {
                         ErrorHandler();
                     }
-                    stack_ptr_5 = (undefined2 *)0x0;
+                    stack_ptr_5 = (int16_t *)0x0;
                     stack_data_6 = stack_data_6 & 0xffffffff00000000;
                     stack_ptr_4 = &UNK_18098bcb0;
                 }
@@ -1086,17 +1086,17 @@ longlong core_engine_string_processor(longlong *context_ptr, longlong string_dat
     if ((stack_data_7 != 0) && (0 < stack_int_1)) {
         stack_ptr_4 = &UNK_180a3c3e0;
         stack_data_6 = 0;
-        stack_ptr_5 = (undefined2 *)0x0;
+        stack_ptr_5 = (int16_t *)0x0;
         stack_data_5 = 0;
-        string_buffer = (undefined2 *)MemoryAllocator(_DAT_180c8ed18, CORE_ENGINE_BLOCK_SIZE_0x10, CORE_ENGINE_ALLOC_SIZE_0x13);
-        *(undefined1 *)string_buffer = 0;
+        string_buffer = (int16_t *)MemoryAllocator(_DAT_180c8ed18, CORE_ENGINE_BLOCK_SIZE_0x10, CORE_ENGINE_ALLOC_SIZE_0x13);
+        *(int8_t *)string_buffer = 0;
         stack_ptr_5 = string_buffer;
         format_flag = FormatProcessor(string_buffer);
         stack_data_6 = CONCAT44(stack_data_6._4_4_, format_flag);
         *string_buffer = 0x2e;
         stack_data_5 = 1;
         temp_ptr = &DAT_18098bc73;
-        if (stack_ptr_2 != (undefined *)0x0) {
+        if (stack_ptr_2 != (void *)0x0) {
             temp_ptr = stack_ptr_2;
         }
         strstr(temp_ptr, string_buffer);
@@ -1108,7 +1108,7 @@ longlong core_engine_string_processor(longlong *context_ptr, longlong string_dat
     stack_data_4 = 0;
     stack_ptr_3 = &UNK_18098bcb0;
     stack_ptr_1 = &UNK_180a3c3e0;
-    if (stack_ptr_2 != (undefined *)0x0) {
+    if (stack_ptr_2 != (void *)0x0) {
         ErrorHandler();
     }
     return stack_data_7;
@@ -1129,32 +1129,32 @@ longlong core_engine_string_processor(longlong *context_ptr, longlong string_dat
 longlong *core_engine_config_parser(longlong *config_ptr, longlong input_data)
 {
     char current_char;
-    undefined8 *config_block;
+    uint64_t *config_block;
     bool quote_flag;
     uint char_count;
-    undefined1 *string_buffer;
+    int8_t *string_buffer;
     ulonglong buffer_size;
-    undefined1 *temp_ptr_1;
-    undefined1 *temp_ptr_2;
+    int8_t *temp_ptr_1;
+    int8_t *temp_ptr_2;
     uint string_length;
     longlong buffer_offset;
     uint *flag_ptr;
     ulonglong temp_size_1;
     ulonglong temp_size_2;
-    undefined1 *heap_ptr;
+    int8_t *heap_ptr;
     char *src_ptr;
     char *dest_ptr;
-    undefined *stack_ptr_1;
-    undefined1 *stack_ptr_2;
+    void *stack_ptr_1;
+    int8_t *stack_ptr_2;
     uint stack_data_1;
-    undefined4 stack_data_2;
-    undefined4 stack_data_3;
+    int32_t stack_data_2;
+    int32_t stack_data_3;
     
     // 初始化配置结构
     *config_ptr = 0;
     config_ptr[1] = 0;
     config_ptr[2] = 0;
-    *(undefined4 *)(config_ptr + 3) = 3;
+    *(int32_t *)(config_ptr + 3) = 3;
     dest_ptr = "";
     if (*(char **)(input_data + 8) != (char *)0x0) {
         dest_ptr = *(char **)(input_data + 8);
@@ -1164,10 +1164,10 @@ longlong *core_engine_config_parser(longlong *config_ptr, longlong input_data)
     // 处理配置字符串
     if (*dest_ptr != '\0') {
         do {
-            temp_ptr_1 = (undefined1 *)0x0;
+            temp_ptr_1 = (int8_t *)0x0;
             stack_ptr_1 = &UNK_180a3c3e0;
             stack_data_2 = 0;
-            stack_ptr_2 = (undefined1 *)0x0;
+            stack_ptr_2 = (int8_t *)0x0;
             stack_data_3 = 0;
             stack_data_1 = 0;
             current_char = *dest_ptr;
@@ -1186,28 +1186,28 @@ longlong *core_engine_config_parser(longlong *config_ptr, longlong input_data)
                         string_length = (int)heap_ptr + 1;
                         if (string_length != 0) {
                             char_count = (int)heap_ptr + 2;
-                            if (temp_ptr_1 == (undefined1 *)0x0) {
+                            if (temp_ptr_1 == (int8_t *)0x0) {
                                 if ((int)char_count < CORE_ENGINE_BLOCK_SIZE_0x10) {
                                     char_count = CORE_ENGINE_BLOCK_SIZE_0x10;
                                 }
-                                temp_ptr_1 = (undefined1 *)MemoryAllocator(_DAT_180c8ed18, (longlong)(int)char_count, CORE_ENGINE_ALLOC_SIZE_0x13);
+                                temp_ptr_1 = (int8_t *)MemoryAllocator(_DAT_180c8ed18, (longlong)(int)char_count, CORE_ENGINE_ALLOC_SIZE_0x13);
                                 *temp_ptr_1 = 0;
                             }
                             else {
                                 if (char_count <= (uint)temp_ptr_2) goto SKIP_REALLOCATION;
-                                temp_ptr_1 = (undefined1 *)MemoryReallocator(_DAT_180c8ed18, temp_ptr_1, char_count, CORE_ENGINE_BLOCK_SIZE_0x10, CORE_ENGINE_ALLOC_SIZE_0x13);
+                                temp_ptr_1 = (int8_t *)MemoryReallocator(_DAT_180c8ed18, temp_ptr_1, char_count, CORE_ENGINE_BLOCK_SIZE_0x10, CORE_ENGINE_ALLOC_SIZE_0x13);
                             }
                             buffer_size = (ulonglong)temp_ptr_1 & 0xffffffffffc00000;
                             if (buffer_size == 0) {
-                                temp_ptr_2 = (undefined1 *)0x0;
+                                temp_ptr_2 = (int8_t *)0x0;
                             }
                             else {
                                 buffer_offset = ((longlong)temp_ptr_1 - buffer_size >> 0x10) * 0x50 + 0x80 + buffer_size;
                                 flag_ptr = (uint *)(buffer_offset - (ulonglong)*(uint *)(buffer_offset + 4));
                                 if ((*(byte *)((longlong)flag_ptr + 0xe) & 2) == 0) {
-                                    temp_ptr_2 = (undefined1 *)(ulonglong)flag_ptr[7];
-                                    if ((undefined1 *)0x3ffffff < temp_ptr_2) {
-                                        temp_ptr_2 = (undefined1 *)((ulonglong)*flag_ptr << 0x10);
+                                    temp_ptr_2 = (int8_t *)(ulonglong)flag_ptr[7];
+                                    if ((int8_t *)0x3ffffff < temp_ptr_2) {
+                                        temp_ptr_2 = (int8_t *)((ulonglong)*flag_ptr << 0x10);
                                     }
                                 }
                                 else {
@@ -1221,7 +1221,7 @@ longlong *core_engine_config_parser(longlong *config_ptr, longlong input_data)
                                     if (0x3ffffff < temp_size_1) {
                                         temp_size_1 = (ulonglong)*flag_ptr << 0x10;
                                     }
-                                    temp_ptr_2 = (undefined1 *)
+                                    temp_ptr_2 = (int8_t *)
                                              (temp_size_1 - ((longlong)temp_ptr_1 -
                                                       (((longlong)((longlong)flag_ptr + (-0x80 - buffer_size)) / 0x50) *
                                                        0x10000 + buffer_size)) % temp_size_2);
@@ -1233,7 +1233,7 @@ longlong *core_engine_config_parser(longlong *config_ptr, longlong input_data)
 SKIP_REALLOCATION:
                         temp_ptr_2[(longlong)temp_ptr_1] = current_char;
                         temp_ptr_1[string_length] = 0;
-                        heap_ptr = (undefined1 *)(ulonglong)string_length;
+                        heap_ptr = (int8_t *)(ulonglong)string_length;
                         stack_data_1 = string_length;
                     }
                     dest_ptr = src_ptr + 1;
@@ -1243,26 +1243,26 @@ SKIP_REALLOCATION:
             }
             
             // 将配置项添加到配置结构中
-            config_block = (undefined8 *)config_ptr[1];
-            if (config_block < (undefined8 *)config_ptr[2]) {
+            config_block = (uint64_t *)config_ptr[1];
+            if (config_block < (uint64_t *)config_ptr[2]) {
                 config_ptr[1] = (longlong)(config_block + 4);
                 *config_block = &UNK_18098bcb0;
                 config_block[1] = 0;
-                *(undefined4 *)(config_block + 2) = 0;
+                *(int32_t *)(config_block + 2) = 0;
                 *config_block = &UNK_180a3c3e0;
                 config_block[3] = 0;
                 config_block[1] = 0;
-                *(undefined4 *)(config_block + 2) = 0;
+                *(int32_t *)(config_block + 2) = 0;
                 ConfigBlockInitializer(config_block, heap_ptr);
                 if ((int)heap_ptr != 0) {
                     memcpy(config_block[1], temp_ptr_1, (int)heap_ptr + 1);
                 }
-                if (temp_ptr_1 != (undefined1 *)0x0) {
-                    *(undefined4 *)(config_block + 2) = 0;
-                    if ((undefined1 *)config_block[1] != (undefined1 *)0x0) {
-                        *(undefined1 *)config_block[1] = 0;
+                if (temp_ptr_1 != (int8_t *)0x0) {
+                    *(int32_t *)(config_block + 2) = 0;
+                    if ((int8_t *)config_block[1] != (int8_t *)0x0) {
+                        *(int8_t *)config_block[1] = 0;
                     }
-                    *(undefined4 *)((longlong)config_block + 0x1c) = 0;
+                    *(int32_t *)((longlong)config_block + 0x1c) = 0;
                 }
             }
             else {
@@ -1271,10 +1271,10 @@ SKIP_REALLOCATION:
             }
             
             stack_ptr_1 = &UNK_180a3c3e0;
-            if (temp_ptr_1 != (undefined1 *)0x0) {
+            if (temp_ptr_1 != (int8_t *)0x0) {
                 ErrorHandler(temp_ptr_1);
             }
-            stack_ptr_2 = (undefined1 *)0x0;
+            stack_ptr_2 = (int8_t *)0x0;
             stack_data_2 = 0;
             stack_ptr_1 = &UNK_18098bcb0;
         } while (*dest_ptr != '\0');
@@ -1306,10 +1306,10 @@ SKIP_REALLOCATION:
  * @param config_data 配置数据
  * @return 处理结果：成功返回数据指针，失败返回错误码
  */
-longlong *core_engine_data_manager(undefined8 manager_type, longlong *data_ptr, undefined8 config_data)
+longlong *core_engine_data_manager(uint64_t manager_type, longlong *data_ptr, uint64_t config_data)
 {
-    undefined8 *data_block_1;
-    undefined8 data_id;
+    uint64_t *data_block_1;
+    uint64_t data_id;
     longlong data_handle;
     longlong **data_array;
     longlong data_offset;
@@ -1318,38 +1318,38 @@ longlong *core_engine_data_manager(undefined8 manager_type, longlong *data_ptr, 
     uint element_index;
     longlong *element_ptr;
     int temp_int;
-    undefined8 *temp_ptr_1;
+    uint64_t *temp_ptr_1;
     longlong *temp_ptr_2;
     longlong *temp_ptr_3;
     ulonglong temp_size;
     longlong *stack_ptr_1;
     uint stack_data_1;
-    undefined *stack_ptr_2;
-    undefined1 *stack_ptr_3;
+    void *stack_ptr_2;
+    int8_t *stack_ptr_3;
     uint stack_data_2;
     ulonglong stack_data_3;
-    undefined *stack_ptr_4;
+    void *stack_ptr_4;
     longlong stack_data_5;
     ulonglong stack_data_6;
-    undefined *stack_ptr_5;
-    undefined8 stack_data_7;
-    undefined4 stack_data_8;
-    undefined *stack_ptr_6;
+    void *stack_ptr_5;
+    uint64_t stack_data_7;
+    int32_t stack_data_8;
+    void *stack_ptr_6;
     longlong stack_data_9;
     uint stack_data_10;
-    undefined8 stack_data_11;
+    uint64_t stack_data_11;
     longlong *stack_ptr_7;
     longlong *stack_ptr_8;
     longlong *stack_ptr_9;
-    undefined4 stack_data_12;
-    undefined *stack_ptr_10;
+    int32_t stack_data_12;
+    void *stack_ptr_10;
     longlong stack_data_11;
     uint stack_data_13;
     ulonglong stack_data_14;
-    undefined *stack_ptr_11;
+    void *stack_ptr_11;
     longlong stack_data_15;
-    undefined4 stack_data_16;
-    undefined8 stack_data_17;
+    int32_t stack_data_16;
+    uint64_t stack_data_17;
     
     data_id = _DAT_180c868f8;
     stack_data_17 = 0xfffffffffffffffe;
@@ -1399,10 +1399,10 @@ longlong *core_engine_data_manager(undefined8 manager_type, longlong *data_ptr, 
                     }
                     stack_data_10 = *(uint *)(data_handle + CORE_OFFSET_0x10);
                     stack_data_9 = *(longlong *)(data_handle + 8);
-                    stack_data_11 = *(undefined8 *)(data_handle + 0x18);
-                    *(undefined4 *)(data_handle + CORE_OFFSET_0x10) = 0;
-                    *(undefined8 *)(data_handle + 8) = 0;
-                    *(undefined8 *)(data_handle + 0x18) = 0;
+                    stack_data_11 = *(uint64_t *)(data_handle + 0x18);
+                    *(int32_t *)(data_handle + CORE_OFFSET_0x10) = 0;
+                    *(uint64_t *)(data_handle + 8) = 0;
+                    *(uint64_t *)(data_handle + 0x18) = 0;
                     stack_ptr_7 = (longlong *)&UNK_180a3c3e0;
                     if (stack_ptr_8 != (longlong *)0x0) {
                         ErrorHandler();
@@ -1417,9 +1417,9 @@ longlong *core_engine_data_manager(undefined8 manager_type, longlong *data_ptr, 
                     stack_data_13 = *(uint *)(data_handle + CORE_OFFSET_0x10);
                     stack_data_11 = *(longlong *)(data_handle + 8);
                     stack_data_6 = *(ulonglong *)(data_handle + 0x18);
-                    *(undefined4 *)(data_handle + CORE_OFFSET_0x10) = 0;
-                    *(undefined8 *)(data_handle + 8) = 0;
-                    *(undefined8 *)(data_handle + 0x18) = 0;
+                    *(int32_t *)(data_handle + CORE_OFFSET_0x10) = 0;
+                    *(uint64_t *)(data_handle + 8) = 0;
+                    *(uint64_t *)(data_handle + 0x18) = 0;
                     stack_ptr_7 = (longlong *)&UNK_180a3c3e0;
                     if (stack_ptr_8 != (longlong *)0x0) {
                         ErrorHandler();
@@ -1444,7 +1444,7 @@ PROCESS_DATA:
     *data_ptr = 0;
     data_ptr[1] = 0;
     data_ptr[2] = 0;
-    *(undefined4 *)(data_ptr + 3) = 3;
+    *(int32_t *)(data_ptr + 3) = 3;
     stack_data_8 = 1;
     data_handle = ResourceCounter(data_id, &stack_ptr_6);
     
@@ -1458,7 +1458,7 @@ PROCESS_DATA:
         stack_ptr_1 = (longlong *)0x0;
         temp_ptr_3 = temp_ptr_2;
         if (&stack_ptr_7 != data_array) {
-            stack_ptr_4 = (undefined *)0x0;
+            stack_ptr_4 = (void *)0x0;
             stack_data_5 = 0;
             stack_data_3 = 0;
             stack_data_7 = CONCAT44((int)((ulonglong)stack_data_7 >> 0x20), 3);
@@ -1468,13 +1468,13 @@ PROCESS_DATA:
             data_array[1] = (longlong *)0x0;
             stack_ptr_9 = data_array[2];
             data_array[2] = (longlong *)0x0;
-            stack_data_12 = *(undefined4 *)(data_array + 3);
-            *(undefined4 *)(data_array + 3) = 3;
+            stack_data_12 = *(int32_t *)(data_array + 3);
+            *(int32_t *)(data_array + 3) = 3;
             stack_ptr_7 = stack_ptr_1;
             stack_ptr_8 = temp_ptr_3;
         }
         
-        if (stack_ptr_11 != (undefined *)0x0) {
+        if (stack_ptr_11 != (void *)0x0) {
             ErrorHandler();
         }
         stack_data_1 = 0;
@@ -1488,19 +1488,19 @@ PROCESS_DATA:
                 data_handle = *stack_ptr_1;
                 stack_ptr_2 = &UNK_180a3c3e0;
                 stack_data_3 = 0;
-                stack_ptr_3 = (undefined1 *)0x0;
+                stack_ptr_3 = (int8_t *)0x0;
                 stack_data_2 = 0;
-                ConfigBlockInitializer(&stack_ptr_2, *(undefined4 *)(data_handle + CORE_OFFSET_0x10));
+                ConfigBlockInitializer(&stack_ptr_2, *(int32_t *)(data_handle + CORE_OFFSET_0x10));
                 element_index = stack_data_10;
                 
                 // 复制字符串数据
                 if (*(int *)(data_handle + CORE_OFFSET_0x10) != 0) {
-                    memcpy(stack_ptr_3, *(undefined8 *)(data_handle + 8), *(int *)(data_handle + CORE_OFFSET_0x10) + 1);
+                    memcpy(stack_ptr_3, *(uint64_t *)(data_handle + 8), *(int *)(data_handle + CORE_OFFSET_0x10) + 1);
                 }
                 
                 if (*(longlong *)(data_handle + 8) != 0) {
                     stack_data_2 = 0;
-                    if (stack_ptr_3 != (undefined1 *)0x0) {
+                    if (stack_ptr_3 != (int8_t *)0x0) {
                         *stack_ptr_3 = 0;
                     }
                     stack_data_3 = stack_data_3 & 0xffffffff;
@@ -1522,23 +1522,23 @@ PROCESS_DATA:
                     }
                     stack_data_3 = stack_data_3 & 0xffffffff00000000;
                     if (stack_data_5 != 0) {
-                        *(undefined1 *)(temp_size + stack_data_5) = 0;
+                        *(int8_t *)(temp_size + stack_data_5) = 0;
                     }
                     stack_data_7._4_4_ = stack_data_11._4_4_;
                     ConfigBlockInitializer(&stack_ptr_4, 1);
-                    *(undefined2 *)((stack_data_3 & 0xffffffff) + stack_data_5) = 0x2e;
+                    *(int16_t *)((stack_data_3 & 0xffffffff) + stack_data_5) = 0x2e;
                     stack_data_3 = CONCAT44(stack_data_3._4_4_, 1);
                     data_handle = DataContextCreator(&stack_ptr_4, &stack_ptr_11, *stack_ptr_1);
                     
-                    if (stack_ptr_3 != (undefined1 *)0x0) {
+                    if (stack_ptr_3 != (int8_t *)0x0) {
                         ErrorHandler();
                     }
                     stack_data_2 = *(uint *)(data_handle + CORE_OFFSET_0x10);
-                    stack_ptr_3 = *(undefined1 **)(data_handle + 8);
+                    stack_ptr_3 = *(int8_t **)(data_handle + 8);
                     stack_data_3 = *(ulonglong *)(data_handle + 0x18);
-                    *(undefined4 *)(data_handle + CORE_OFFSET_0x10) = 0;
-                    *(undefined8 *)(data_handle + 8) = 0;
-                    *(undefined8 *)(data_handle + 0x18) = 0;
+                    *(int32_t *)(data_handle + CORE_OFFSET_0x10) = 0;
+                    *(uint64_t *)(data_handle + 8) = 0;
+                    *(uint64_t *)(data_handle + 0x18) = 0;
                     stack_ptr_11 = &UNK_180a3c3e0;
                     if (stack_data_15 != 0) {
                         ErrorHandler();
@@ -1560,7 +1560,7 @@ PROCESS_DATA:
                 if (*(int *)(*stack_ptr_1 + 0x20) == 0) {
                     element_index = stack_data_2 + 1;
                     ConfigBlockInitializer(&stack_ptr_2, element_index);
-                    *(undefined2 *)(stack_ptr_3 + stack_data_2) = 0x2e;
+                    *(int16_t *)(stack_ptr_3 + stack_data_2) = 0x2e;
                     stack_data_2 = element_index;
                 }
                 
@@ -1584,9 +1584,9 @@ ALLOCATE_MEMORY:
                     }
                     data_size = DataSizeCalculator(*data_ptr, temp_size, data_offset);
                     StringInitializer(data_size, &stack_ptr_2);
-                    data_block_1 = (undefined8 *)data_ptr[1];
+                    data_block_1 = (uint64_t *)data_ptr[1];
                     temp_size = stack_data_14;
-                    for (temp_ptr_1 = (undefined8 *)*data_ptr; stack_data_14 = temp_size, temp_ptr_1 != data_block_1;
+                    for (temp_ptr_1 = (uint64_t *)*data_ptr; stack_data_14 = temp_size, temp_ptr_1 != data_block_1;
                          temp_ptr_1 = temp_ptr_1 + 4) {
                         (**(code **)*temp_ptr_1)(temp_ptr_1, 0);
                         temp_size = stack_data_14;
@@ -1600,10 +1600,10 @@ ALLOCATE_MEMORY:
                 }
                 
                 stack_ptr_2 = &UNK_180a3c3e0;
-                if (stack_ptr_3 != (undefined1 *)0x0) {
+                if (stack_ptr_3 != (int8_t *)0x0) {
                     ErrorHandler();
                 }
-                stack_ptr_3 = (undefined1 *)0x0;
+                stack_ptr_3 = (int8_t *)0x0;
                 stack_data_3 = stack_data_3 & 0xffffffff00000000;
                 stack_ptr_2 = &UNK_18098bcb0;
                 stack_data_1 = stack_data_1 + 1;
@@ -1647,20 +1647,20 @@ ALLOCATE_MEMORY:
  * @param init_flags 初始化标志
  * @return 处理结果：成功返回接口指针，失败返回错误码
  */
-undefined8 *
-core_engine_interface_initializer(undefined8 *interface_ptr, undefined8 *config_ptr, undefined8 init_data, undefined8 init_flags)
+uint64_t *
+core_engine_interface_initializer(uint64_t *interface_ptr, uint64_t *config_ptr, uint64_t init_data, uint64_t init_flags)
 {
-    undefined8 init_param_1;
-    undefined8 init_param_2;
-    undefined4 init_param_3;
-    undefined8 init_param_4;
-    undefined1 init_buffer[32];
+    uint64_t init_param_1;
+    uint64_t init_param_2;
+    int32_t init_param_3;
+    uint64_t init_param_4;
+    int8_t init_buffer[32];
     
     init_param_4 = 0xfffffffffffffffe;
     *config_ptr = 0;
     config_ptr[1] = 0;
     config_ptr[2] = 0;
-    *(undefined4 *)(config_ptr + 3) = 3;
+    *(int32_t *)(config_ptr + 3) = 3;
     init_param_3 = 1;
     init_param_1 = *interface_ptr;
     init_param_2 = ProcessingResultGetter();
@@ -1683,14 +1683,14 @@ core_engine_interface_initializer(undefined8 *interface_ptr, undefined8 *config_
  * @param process_flags 处理标志
  * @return 处理结果：成功返回配置指针，失败返回错误码
  */
-undefined8 *
-core_engine_parameter_handler(longlong *param_array, undefined8 *config_ptr, undefined8 config_data, undefined8 process_flags)
+uint64_t *
+core_engine_parameter_handler(longlong *param_array, uint64_t *config_ptr, uint64_t config_data, uint64_t process_flags)
 {
-    undefined8 process_result;
-    undefined *stack_ptr_1;
-    undefined8 stack_data_1;
-    undefined4 stack_data_2;
-    undefined8 stack_data_3;
+    uint64_t process_result;
+    void *stack_ptr_1;
+    uint64_t stack_data_1;
+    int32_t stack_data_2;
+    uint64_t stack_data_3;
     
     if (*param_array == 0) {
         if (param_array[1] == 0) {
@@ -1711,17 +1711,17 @@ core_engine_parameter_handler(longlong *param_array, undefined8 *config_ptr, und
             FloatDataProcessor(&stack_ptr_1, &UNK_180a0888c, (double)*(float *)param_array[1], process_flags, 0, 0xfffffffffffffffe);
             *config_ptr = &UNK_18098bcb0;
             config_ptr[1] = 0;
-            *(undefined4 *)(config_ptr + 2) = 0;
+            *(int32_t *)(config_ptr + 2) = 0;
             *config_ptr = &UNK_180a3c3e0;
-            *(undefined4 *)(config_ptr + 2) = stack_data_2;
+            *(int32_t *)(config_ptr + 2) = stack_data_2;
             config_ptr[1] = stack_data_1;
-            *(undefined4 *)((longlong)config_ptr + 0x1c) = stack_data_3._4_4_;
-            *(undefined4 *)(config_ptr + 3) = (undefined4)stack_data_3;
+            *(int32_t *)((longlong)config_ptr + 0x1c) = stack_data_3._4_4_;
+            *(int32_t *)(config_ptr + 3) = (int32_t)stack_data_3;
         }
     }
     else {
         process_result = ProcessingResultGetter();
-        ParameterProcessor(process_result, config_ptr, *(undefined4 *)*param_array);
+        ParameterProcessor(process_result, config_ptr, *(int32_t *)*param_array);
     }
     return config_ptr;
 }

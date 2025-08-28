@@ -5,7 +5,7 @@
 
 // 函数：初始化引擎核心结构
 // 原始函数名：FUN_180100b40
-void initialize_engine_core_structure(undefined8 *engine_context, undefined8 param2, undefined8 param3, undefined8 param4)
+void initialize_engine_core_structure(uint64_t *engine_context, uint64_t param2, uint64_t param3, uint64_t param4)
 
 {
   // 设置引擎上下文指针
@@ -112,7 +112,7 @@ void initialize_engine_core_structure(undefined8 *engine_context, undefined8 par
     FUN_18064e900();
   }
   engine_context[0x19] = 0;
-  *(undefined4 *)(engine_context + 0x1b) = 0;
+  *(int32_t *)(engine_context + 0x1b) = 0;
   engine_context[0x18] = &UNK_18098bcb0;
   
   // 调用核心初始化函数
@@ -147,7 +147,7 @@ void initialize_engine_core_structure(undefined8 *engine_context, undefined8 par
 // 函数：配置引擎参数
 // 原始函数名：FUN_180100ff0
 // 这是一个简化实现，原函数包含复杂的参数配置逻辑
-void configure_engine_parameters(undefined8 engine_context, int config_type)
+void configure_engine_parameters(uint64_t engine_context, int config_type)
 
 {
   // 简化实现：配置引擎参数

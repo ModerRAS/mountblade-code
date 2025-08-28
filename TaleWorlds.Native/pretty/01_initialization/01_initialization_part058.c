@@ -14,16 +14,16 @@ void FUN_18007c490(longlong *param_1, byte param_2, longlong *param_3, longlong 
   longlong *resource_4;
   code *callback_func;
   char operation_result;
-  undefined *error_handler;
-  undefined4 stack_param_1;
-  undefined4 stack_param_2;
-  undefined4 stack_param_3;
-  undefined4 stack_param_4;
+  void *error_handler;
+  int32_t stack_param_1;
+  int32_t stack_param_2;
+  int32_t stack_param_3;
+  int32_t stack_param_4;
   code *cleanup_callback_1;
-  undefined *cleanup_data_1;
-  undefined8 context_data;
-  undefined4 flag_1;
-  undefined4 flag_2;
+  void *cleanup_data_1;
+  uint64_t context_data;
+  int32_t flag_1;
+  int32_t flag_2;
   longlong *stack_resource_1;
   byte stack_byte_1;
   longlong *stack_resource_2;
@@ -32,11 +32,11 @@ void FUN_18007c490(longlong *param_1, byte param_2, longlong *param_3, longlong 
   byte stack_byte_2;
   longlong *stack_resource_5;
   longlong *stack_resource_6;
-  undefined8 stack_data;
+  uint64_t stack_data;
   longlong **resource_pointer;
-  undefined1 stack_buffer_1 [16];
+  int8_t stack_buffer_1 [16];
   code *cleanup_callback_2;
-  undefined1 stack_buffer_2 [16];
+  int8_t stack_buffer_2 [16];
   code *cleanup_callback_3;
   
   stack_data = 0xfffffffffffffffe;
@@ -52,13 +52,13 @@ void FUN_18007c490(longlong *param_1, byte param_2, longlong *param_3, longlong 
   context_data = param_1;
   
   // 根据资源类型进行不同的初始化
-  if ((undefined *)*param_1 == &UNK_180a00270) {
+  if ((void *)*param_1 == &UNK_180a00270) {
     LOCK();
     *(int *)(param_1 + 1) = (int)param_1[1] + 1;
     UNLOCK();
   }
   else {
-    (**(code **)((undefined *)*param_1 + 0x28))(param_1);
+    (**(code **)((void *)*param_1 + 0x28))(param_1);
   }
   
   // 根据操作参数执行不同的处理路径
@@ -67,7 +67,7 @@ void FUN_18007c490(longlong *param_1, byte param_2, longlong *param_3, longlong 
     callback_func = *(code **)(*resource_3 + 0x70);
     cleanup_callback_1 = (code *)&UNK_180083180;
     cleanup_data_1 = &UNK_180083170;
-    stack_param_1 = (undefined4)context_data;
+    stack_param_1 = (int32_t)context_data;
     stack_param_2 = context_data._4_4_;
     stack_param_3 = flag_1;
     stack_param_4 = flag_2;
@@ -113,8 +113,8 @@ void FUN_18007c490(longlong *param_1, byte param_2, longlong *param_3, longlong 
     // 处理操作结果
     if (operation_result == '\0') {
       error_handler = &DAT_18098bc73;
-      if ((undefined *)param_1[3] != (undefined *)0x0) {
-        error_handler = (undefined *)param_1[3];
+      if ((void *)param_1[3] != (void *)0x0) {
+        error_handler = (void *)param_1[3];
       }
       FUN_180626f80(&UNK_1809ffbb0, error_handler);
       status_flag = (char *)(param_1[0x3c] + 0x15 + (ulonglong)param_2 * 0x18);
@@ -151,11 +151,11 @@ void FUN_18007c790(longlong *param_1)
 
 {
   char *status_flag;
-  undefined *error_handler;
+  void *error_handler;
   
   error_handler = &DAT_18098bc73;
-  if (*(undefined **)(*param_1 + 0x18) != (undefined *)0x0) {
-    error_handler = *(undefined **)(*param_1 + 0x18);
+  if (*(void **)(*param_1 + 0x18) != (void *)0x0) {
+    error_handler = *(void **)(*param_1 + 0x18);
   }
   FUN_180626f80(&UNK_1809ffbb0, error_handler);
   status_flag = (char *)(*(longlong *)(*param_1 + 0x1e0) + 0x15 +
@@ -174,16 +174,16 @@ void FUN_18007c790(longlong *param_1)
 
 
 
-// 函数: undefined8 * FUN_18007c7f0(undefined8 *param_1,undefined8 *param_2)
+// 函数: uint64_t * FUN_18007c7f0(uint64_t *param_1,uint64_t *param_2)
 // 功能: 资源复制和引用管理函数
-undefined8 * FUN_18007c7f0(undefined8 *param_1, undefined8 *param_2)
+uint64_t * FUN_18007c7f0(uint64_t *param_1, uint64_t *param_2)
 
 {
   longlong *resource_ref;
   
   // 复制基本数据
   *param_1 = *param_2;
-  *(undefined1 *)(param_1 + 1) = *(undefined1 *)(param_2 + 1);
+  *(int8_t *)(param_1 + 1) = *(int8_t *)(param_2 + 1);
   
   // 处理第一个资源引用
   resource_ref = (longlong *)param_2[2];
@@ -204,9 +204,9 @@ undefined8 * FUN_18007c7f0(undefined8 *param_1, undefined8 *param_2)
 
 
 
-// 函数: void FUN_18007c860(longlong param_1,undefined1 param_2)
+// 函数: void FUN_18007c860(longlong param_1,int8_t param_2)
 // 功能: 条件性资源处理和状态更新函数
-void FUN_18007c860(longlong param_1, undefined1 param_2)
+void FUN_18007c860(longlong param_1, int8_t param_2)
 
 {
   char operation_result;
@@ -216,7 +216,7 @@ void FUN_18007c860(longlong param_1, undefined1 param_2)
   
   // 检查标志位并获取资源数据
   if ((*(byte *)(param_1 + 0xfd) & 0x20) == 0) {
-    resource_data = func_0x000180085de0(*(undefined8 *)(param_1 + 0x1b0));
+    resource_data = func_0x000180085de0(*(uint64_t *)(param_1 + 0x1b0));
   }
   
   // 如果有有效的资源计数，进行处理
@@ -249,7 +249,7 @@ void FUN_18007c8e0(longlong param_1, byte param_2, longlong *param_3, longlong *
   char *status_flag;
   int main_thread_id;
   int current_thread_id;
-  undefined8 resource_data;
+  uint64_t resource_data;
   longlong *temp_resource;
   longlong *stack_resource_1;
   longlong *stack_resource_2;
@@ -266,7 +266,7 @@ void FUN_18007c8e0(longlong param_1, byte param_2, longlong *param_3, longlong *
   longlong *resource_array [2];
   code *callback_func_1;
   code *callback_func_2;
-  undefined8 stack_data_2;
+  uint64_t stack_data_2;
   longlong *stack_resource_8;
   
   stack_data_2 = 0xfffffffffffffffe;
@@ -276,14 +276,14 @@ void FUN_18007c8e0(longlong param_1, byte param_2, longlong *param_3, longlong *
   // 根据线程ID选择不同的处理路径
   if (current_thread_id == main_thread_id) {
     resource_offset = (ulonglong)param_2 * 0x18;
-    resource_data = *(undefined8 *)(*(longlong *)(param_1 + 0x1e0) + resource_offset);
+    resource_data = *(uint64_t *)(*(longlong *)(param_1 + 0x1e0) + resource_offset);
     resource_pointer = &stack_resource_3;
     stack_resource_3 = (longlong *)*param_3;
     if (stack_resource_3 != (longlong *)0x0) {
       (**(code **)(*stack_resource_3 + 0x28))();
     }
     FUN_180255880(resource_data, &stack_resource_3);
-    resource_data = *(undefined8 *)(*(longlong *)(param_1 + 0x1e0) + 8 + resource_offset);
+    resource_data = *(uint64_t *)(*(longlong *)(param_1 + 0x1e0) + 8 + resource_offset);
     resource_pointer = &stack_resource_1;
     stack_resource_1 = (longlong *)*param_4;
     if (stack_resource_1 != (longlong *)0x0) {

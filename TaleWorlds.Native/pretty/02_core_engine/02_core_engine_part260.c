@@ -7,10 +7,10 @@
 void serialize_data_block_to_buffer(longlong data_context, longlong *buffer_context)
 
 {
-  undefined4 temp_val1;
+  int32_t temp_val1;
   longlong start_offset;
   longlong end_offset;
-  undefined4 *buffer_ptr;
+  int32_t *buffer_ptr;
   longlong block_size;
   ulonglong loop_counter;
   ulonglong total_size;
@@ -20,10 +20,10 @@ void serialize_data_block_to_buffer(longlong data_context, longlong *buffer_cont
   initialize_buffer_context(buffer_context, data_context);
   block_size = *(longlong *)(data_context + 0x28);
   start_offset = *(longlong *)(data_context + 0x20);
-  buffer_ptr = (undefined4 *)buffer_context[1];
+  buffer_ptr = (int32_t *)buffer_context[1];
   if ((ulonglong)((*buffer_context - (longlong)buffer_ptr) + buffer_context[2]) < 5) {
     expand_buffer_capacity(buffer_context, (longlong)buffer_ptr + (4 - *buffer_context));
-    buffer_ptr = (undefined4 *)buffer_context[1];
+    buffer_ptr = (int32_t *)buffer_context[1];
   }
   *buffer_ptr = (int)((block_size - start_offset) / 0xe0);
   buffer_context[1] = buffer_context[1] + 4;
@@ -36,11 +36,11 @@ void serialize_data_block_to_buffer(longlong data_context, longlong *buffer_cont
   if (end_offset / 0xe0 + start_offset != start_offset) {
     do {
       initialize_buffer_context(buffer_context, block_size + 8 + loop_counter * 0xe0);
-      buffer_ptr = (undefined4 *)buffer_context[1];
-      temp_val1 = *(undefined4 *)(total_size + *(longlong *)(data_context + 0x20));
+      buffer_ptr = (int32_t *)buffer_context[1];
+      temp_val1 = *(int32_t *)(total_size + *(longlong *)(data_context + 0x20));
       if ((ulonglong)((*buffer_context - (longlong)buffer_ptr) + buffer_context[2]) < 5) {
         expand_buffer_capacity(buffer_context, (longlong)buffer_ptr + (4 - *buffer_context));
-        buffer_ptr = (undefined4 *)buffer_context[1];
+        buffer_ptr = (int32_t *)buffer_context[1];
       }
       *buffer_ptr = temp_val1;
       buffer_context[1] = buffer_context[1] + 4;
@@ -69,8 +69,8 @@ void serialize_data_block_to_buffer(longlong data_context, longlong *buffer_cont
 void batch_process_data_serialization(void)
 
 {
-  undefined4 temp_val1;
-  undefined4 *buffer_ptr;
+  int32_t temp_val1;
+  int32_t *buffer_ptr;
   longlong data_size;
   longlong *buffer_context;
   longlong data_start;
@@ -82,11 +82,11 @@ void batch_process_data_serialization(void)
   data_offset = (ulonglong)item_count;
   do {
     initialize_buffer_context();
-    buffer_ptr = (undefined4 *)buffer_context[1];
-    temp_val1 = *(undefined4 *)(data_offset + *(longlong *)(data_start + 0x20));
+    buffer_ptr = (int32_t *)buffer_context[1];
+    temp_val1 = *(int32_t *)(data_offset + *(longlong *)(data_start + 0x20));
     if ((ulonglong)((*buffer_context - (longlong)buffer_ptr) + buffer_context[2]) < 5) {
       expand_buffer_capacity();
-      buffer_ptr = (undefined4 *)buffer_context[1];
+      buffer_ptr = (int32_t *)buffer_context[1];
     }
     *buffer_ptr = temp_val1;
     buffer_context[1] = buffer_context[1] + 4;
@@ -124,7 +124,7 @@ void process_complex_data_structure(longlong *structure_context, longlong data_p
 {
   uint data_size;
   longlong structure_offset;
-  undefined4 *data_ptr;
+  int32_t *data_ptr;
   longlong item_count;
   longlong *item_list;
   uint *uint_ptr;
@@ -157,25 +157,25 @@ void process_complex_data_structure(longlong *structure_context, longlong data_p
       }
       *(uint *)(item_index + structure_context[4]) = *uint_ptr;
       *(longlong *)(data_param + 8) = *(longlong *)(data_param + 8) + 4;
-      data_ptr = *(undefined4 **)(data_param + 8);
+      data_ptr = *(int32_t **)(data_param + 8);
       structure_offset = structure_context[4];
-      *(undefined4 *)(item_index + 0xa0 + structure_offset) = *data_ptr;
-      *(undefined4 *)(item_index + 0xa4 + structure_offset) = data_ptr[1];
-      *(undefined4 *)(item_index + 0xa8 + structure_offset) = data_ptr[2];
-      *(undefined4 *)(item_index + 0xac + structure_offset) = data_ptr[3];
-      *(undefined4 *)(item_index + 0xb0 + structure_offset) = data_ptr[4];
-      *(undefined4 *)(item_index + 0xb4 + structure_offset) = data_ptr[5];
-      *(undefined4 *)(item_index + 0xb8 + structure_offset) = data_ptr[6];
-      *(undefined4 *)(item_index + 0xbc + structure_offset) = data_ptr[7];
-      *(undefined4 *)(item_index + 0xc0 + structure_offset) = data_ptr[8];
-      *(undefined4 *)(item_index + 0xc4 + structure_offset) = data_ptr[9];
-      *(undefined4 *)(item_index + 200 + structure_offset) = data_ptr[10];
-      *(undefined4 *)(item_index + 0xcc + structure_offset) = data_ptr[0xb];
-      *(undefined4 *)(item_index + 0xd0 + structure_offset) = data_ptr[0xc];
-      *(undefined4 *)(item_index + 0xd4 + structure_offset) = data_ptr[0xd];
-      *(undefined4 *)(item_index + 0xd8 + structure_offset) = data_ptr[0xe];
+      *(int32_t *)(item_index + 0xa0 + structure_offset) = *data_ptr;
+      *(int32_t *)(item_index + 0xa4 + structure_offset) = data_ptr[1];
+      *(int32_t *)(item_index + 0xa8 + structure_offset) = data_ptr[2];
+      *(int32_t *)(item_index + 0xac + structure_offset) = data_ptr[3];
+      *(int32_t *)(item_index + 0xb0 + structure_offset) = data_ptr[4];
+      *(int32_t *)(item_index + 0xb4 + structure_offset) = data_ptr[5];
+      *(int32_t *)(item_index + 0xb8 + structure_offset) = data_ptr[6];
+      *(int32_t *)(item_index + 0xbc + structure_offset) = data_ptr[7];
+      *(int32_t *)(item_index + 0xc0 + structure_offset) = data_ptr[8];
+      *(int32_t *)(item_index + 0xc4 + structure_offset) = data_ptr[9];
+      *(int32_t *)(item_index + 200 + structure_offset) = data_ptr[10];
+      *(int32_t *)(item_index + 0xcc + structure_offset) = data_ptr[0xb];
+      *(int32_t *)(item_index + 0xd0 + structure_offset) = data_ptr[0xc];
+      *(int32_t *)(item_index + 0xd4 + structure_offset) = data_ptr[0xd];
+      *(int32_t *)(item_index + 0xd8 + structure_offset) = data_ptr[0xe];
       uint_ptr = data_ptr + 0x10;
-      *(undefined4 *)(item_index + 0xdc + structure_offset) = data_ptr[0xf];
+      *(int32_t *)(item_index + 0xdc + structure_offset) = data_ptr[0xf];
       item_index = item_index + 0xe0;
       *(uint **)(data_param + 8) = uint_ptr;
       item_count = item_count + -1;
@@ -188,12 +188,12 @@ void process_complex_data_structure(longlong *structure_context, longlong data_p
 
 // 函数: 处理数据块序列化
 // 原函数名: FUN_1802284b5
-void process_data_block_serialization(undefined8 context_param, uint *data_ptr)
+void process_data_block_serialization(uint64_t context_param, uint *data_ptr)
 
 {
   uint data_size;
   longlong base_offset;
-  undefined4 *buffer_ptr;
+  int32_t *buffer_ptr;
   longlong *item_list;
   longlong context_a;
   longlong context_b;
@@ -213,25 +213,25 @@ void process_data_block_serialization(undefined8 context_param, uint *data_ptr)
     }
     *(uint *)(item_index + *(longlong *)(context_b + 0x20)) = *data_ptr;
     *(longlong *)(context_a + 8) = *(longlong *)(context_a + 8) + 4;
-    buffer_ptr = *(undefined4 **)(context_a + 8);
+    buffer_ptr = *(int32_t **)(context_a + 8);
     base_offset = *(longlong *)(context_b + 0x20);
-    *(undefined4 *)(item_index + 0xa0 + base_offset) = *buffer_ptr;
-    *(undefined4 *)(item_index + 0xa4 + base_offset) = buffer_ptr[1];
-    *(undefined4 *)(item_index + 0xa8 + base_offset) = buffer_ptr[2];
-    *(undefined4 *)(item_index + 0xac + base_offset) = buffer_ptr[3];
-    *(undefined4 *)(item_index + 0xb0 + base_offset) = buffer_ptr[4];
-    *(undefined4 *)(item_index + 0xb4 + base_offset) = buffer_ptr[5];
-    *(undefined4 *)(item_index + 0xb8 + base_offset) = buffer_ptr[6];
-    *(undefined4 *)(item_index + 0xbc + base_offset) = buffer_ptr[7];
-    *(undefined4 *)(item_index + 0xc0 + base_offset) = buffer_ptr[8];
-    *(undefined4 *)(item_index + 0xc4 + base_offset) = buffer_ptr[9];
-    *(undefined4 *)(item_index + 200 + base_offset) = buffer_ptr[10];
-    *(undefined4 *)(item_index + 0xcc + base_offset) = buffer_ptr[0xb];
-    *(undefined4 *)(item_index + 0xd0 + base_offset) = buffer_ptr[0xc];
-    *(undefined4 *)(item_index + 0xd4 + base_offset) = buffer_ptr[0xd];
-    *(undefined4 *)(item_index + 0xd8 + base_offset) = buffer_ptr[0xe];
+    *(int32_t *)(item_index + 0xa0 + base_offset) = *buffer_ptr;
+    *(int32_t *)(item_index + 0xa4 + base_offset) = buffer_ptr[1];
+    *(int32_t *)(item_index + 0xa8 + base_offset) = buffer_ptr[2];
+    *(int32_t *)(item_index + 0xac + base_offset) = buffer_ptr[3];
+    *(int32_t *)(item_index + 0xb0 + base_offset) = buffer_ptr[4];
+    *(int32_t *)(item_index + 0xb4 + base_offset) = buffer_ptr[5];
+    *(int32_t *)(item_index + 0xb8 + base_offset) = buffer_ptr[6];
+    *(int32_t *)(item_index + 0xbc + base_offset) = buffer_ptr[7];
+    *(int32_t *)(item_index + 0xc0 + base_offset) = buffer_ptr[8];
+    *(int32_t *)(item_index + 0xc4 + base_offset) = buffer_ptr[9];
+    *(int32_t *)(item_index + 200 + base_offset) = buffer_ptr[10];
+    *(int32_t *)(item_index + 0xcc + base_offset) = buffer_ptr[0xb];
+    *(int32_t *)(item_index + 0xd0 + base_offset) = buffer_ptr[0xc];
+    *(int32_t *)(item_index + 0xd4 + base_offset) = buffer_ptr[0xd];
+    *(int32_t *)(item_index + 0xd8 + base_offset) = buffer_ptr[0xe];
     data_ptr = buffer_ptr + 0x10;
-    *(undefined4 *)(item_index + 0xdc + base_offset) = buffer_ptr[0xf];
+    *(int32_t *)(item_index + 0xdc + base_offset) = buffer_ptr[0xf];
     item_index = item_index + 0xe0;
     *(uint **)(context_a + 8) = data_ptr;
     context_b = context_b + -1;
@@ -256,34 +256,34 @@ void empty_operation_function_2(void)
 
 // 函数: 初始化引擎组件
 // 原函数名: FUN_1802285e0
-void initialize_engine_components(undefined8 param1, undefined4 param2, undefined8 param3)
+void initialize_engine_components(uint64_t param1, int32_t param2, uint64_t param3)
 
 {
-  undefined1 temp_buffer_118 [32];
-  undefined **resource_ptr_f8;
-  undefined8 stack_val_f0;
-  undefined4 stack_val_e8;
-  undefined8 stack_val_e4;
-  undefined8 stack_val_dc;
-  undefined8 stack_val_d4;
-  undefined8 stack_val_cc;
-  undefined1 stack_val_c4;
-  undefined *resource_ptr_c0;
-  undefined1 *resource_ptr_b8;
-  undefined4 stack_val_b0;
-  undefined1 temp_buffer_a8 [64];
-  undefined4 stack_val_68;
-  undefined4 stack_val_64;
-  undefined4 stack_val_60;
-  undefined4 stack_val_5c;
-  undefined8 stack_val_58;
-  undefined8 stack_val_50;
-  undefined8 stack_val_48;
-  undefined4 stack_val_40;
-  undefined8 stack_val_38;
-  undefined8 stack_val_30;
-  undefined8 stack_val_28;
-  undefined4 stack_val_20;
+  int8_t temp_buffer_118 [32];
+  void **resource_ptr_f8;
+  uint64_t stack_val_f0;
+  int32_t stack_val_e8;
+  uint64_t stack_val_e4;
+  uint64_t stack_val_dc;
+  uint64_t stack_val_d4;
+  uint64_t stack_val_cc;
+  int8_t stack_val_c4;
+  void *resource_ptr_c0;
+  int8_t *resource_ptr_b8;
+  int32_t stack_val_b0;
+  int8_t temp_buffer_a8 [64];
+  int32_t stack_val_68;
+  int32_t stack_val_64;
+  int32_t stack_val_60;
+  int32_t stack_val_5c;
+  uint64_t stack_val_58;
+  uint64_t stack_val_50;
+  uint64_t stack_val_48;
+  int32_t stack_val_40;
+  uint64_t stack_val_38;
+  uint64_t stack_val_30;
+  uint64_t stack_val_28;
+  int32_t stack_val_20;
   ulonglong checksum_val_18;
   
   stack_val_f0 = 0xfffffffffffffffe;
@@ -296,7 +296,7 @@ void initialize_engine_components(undefined8 param1, undefined4 param2, undefine
   stack_val_50 = 0;
   stack_val_48 = 0;
   stack_val_40 = 3;
-  resource_ptr_f8 = (undefined **)&stack_val_38;
+  resource_ptr_f8 = (void **)&stack_val_38;
   stack_val_38 = 0;
   stack_val_30 = 0;
   stack_val_28 = 0;
@@ -313,9 +313,9 @@ void initialize_engine_components(undefined8 param1, undefined4 param2, undefine
   stack_val_5c = 0;
   configure_engine_settings(&stack_val_e8, param1, param2);
   setup_engine_resources(&stack_val_e8, param3);
-  resource_ptr_f8 = (undefined **)&stack_val_38;
+  resource_ptr_f8 = (void **)&stack_val_38;
   initialize_engine_subsystems(&stack_val_38);
-  resource_ptr_f8 = (undefined **)&stack_val_58;
+  resource_ptr_f8 = (void **)&stack_val_58;
   setup_engine_callbacks(&stack_val_58);
   resource_ptr_f8 = &resource_ptr_c0;
   resource_ptr_c0 = &ENGINE_CALLBACK_TABLE;
@@ -327,17 +327,17 @@ void initialize_engine_components(undefined8 param1, undefined4 param2, undefine
 
 // 函数: 处理复杂数据序列化
 // 原函数名: FUN_180228730
-void process_complex_data_serialization(undefined4 *config_ptr, longlong *buffer_context)
+void process_complex_data_serialization(int32_t *config_ptr, longlong *buffer_context)
 
 {
-  undefined4 config_val1;
-  undefined1 data_byte;
+  int32_t config_val1;
+  int8_t data_byte;
   longlong data_offset;
-  undefined4 config_val4;
-  undefined4 config_val5;
+  int32_t config_val4;
+  int32_t config_val5;
   char *char_ptr;
-  undefined1 *byte_ptr;
-  undefined4 *data_ptr;
+  int8_t *byte_ptr;
+  int32_t *data_ptr;
   ulonglong lookup_index;
   int item_count;
   ulonglong loop_counter;
@@ -345,11 +345,11 @@ void process_complex_data_serialization(undefined4 *config_ptr, longlong *buffer
   longlong remaining_items;
   ulonglong data_size;
   
-  data_ptr = (undefined4 *)buffer_context[1];
+  data_ptr = (int32_t *)buffer_context[1];
   config_val1 = *config_ptr;
   if ((ulonglong)((buffer_context[2] - (longlong)data_ptr) + *buffer_context) < 5) {
     expand_buffer_capacity(buffer_context, (longlong)data_ptr + (4 - *buffer_context));
-    data_ptr = (undefined4 *)buffer_context[1];
+    data_ptr = (int32_t *)buffer_context[1];
   }
   *data_ptr = config_val1;
   buffer_context[1] = buffer_context[1] + 4;
@@ -360,17 +360,17 @@ void process_complex_data_serialization(undefined4 *config_ptr, longlong *buffer
   loop_counter = data_size;
   do {
     if (*char_ptr == *(char *)(config_ptr + 9)) {
-      write_buffer_reference(buffer_context, *(undefined8 *)((longlong)(int)loop_counter * 0x10 + 0x180bf7cf0));
+      write_buffer_reference(buffer_context, *(uint64_t *)((longlong)(int)loop_counter * 0x10 + 0x180bf7cf0));
       break;
     }
     loop_counter = (ulonglong)((int)loop_counter + 1);
     char_ptr = char_ptr + 0x10;
   } while ((longlong)char_ptr < 0x180bf7d28);
   initialize_buffer_context(buffer_context, config_ptr + 10);
-  data_ptr = (undefined4 *)buffer_context[1];
+  data_ptr = (int32_t *)buffer_context[1];
   if ((ulonglong)((buffer_context[2] - (longlong)data_ptr) + *buffer_context) < 0x11) {
     expand_buffer_capacity(buffer_context, (longlong)data_ptr + (0x10 - *buffer_context));
-    data_ptr = (undefined4 *)buffer_context[1];
+    data_ptr = (int32_t *)buffer_context[1];
   }
   config_val1 = config_ptr[0x21];
   config_val4 = config_ptr[0x22];
@@ -390,18 +390,18 @@ void process_complex_data_serialization(undefined4 *config_ptr, longlong *buffer
   }
   *int_ptr = item_count;
   buffer_context[1] = buffer_context[1] + 4;
-  data_ptr = (undefined4 *)buffer_context[1];
+  data_ptr = (int32_t *)buffer_context[1];
   remaining_items = (longlong)item_count;
   loop_counter = data_size;
   if (0 < item_count) {
     do {
       data_offset = *(longlong *)(config_ptr + 0x24);
       initialize_buffer_context(buffer_context, data_offset + 8 + loop_counter);
-      byte_ptr = (undefined1 *)buffer_context[1];
-      data_byte = *(undefined1 *)(loop_counter + data_offset);
+      byte_ptr = (int8_t *)buffer_context[1];
+      data_byte = *(int8_t *)(loop_counter + data_offset);
       if ((ulonglong)((buffer_context[2] - (longlong)byte_ptr) + *buffer_context) < 2) {
         expand_buffer_capacity(buffer_context, byte_ptr + (1 - *buffer_context));
-        byte_ptr = (undefined1 *)buffer_context[1];
+        byte_ptr = (int8_t *)buffer_context[1];
       }
       *byte_ptr = data_byte;
       buffer_context[1] = buffer_context[1] + 1;
@@ -410,96 +410,96 @@ void process_complex_data_serialization(undefined4 *config_ptr, longlong *buffer
       lookup_index = data_size;
       do {
         if (*char_ptr == *(char *)(loop_counter + 0xf8 + data_offset)) {
-          write_buffer_reference(buffer_context, *(undefined8 *)(lookup_index * 0x10 + 0x180bf7d20));
+          write_buffer_reference(buffer_context, *(uint64_t *)(lookup_index * 0x10 + 0x180bf7d20));
           break;
         }
         lookup_index = lookup_index + 1;
         char_ptr = char_ptr + 0x10;
       } while ((longlong)char_ptr < 0x180bf7e28);
-      data_ptr = (undefined4 *)buffer_context[1];
-      config_val1 = *(undefined4 *)(loop_counter + 0xfc + data_offset);
+      data_ptr = (int32_t *)buffer_context[1];
+      config_val1 = *(int32_t *)(loop_counter + 0xfc + data_offset);
       if ((ulonglong)((buffer_context[2] - (longlong)data_ptr) + *buffer_context) < 5) {
         expand_buffer_capacity(buffer_context, (longlong)data_ptr + (4 - *buffer_context));
-        data_ptr = (undefined4 *)buffer_context[1];
+        data_ptr = (int32_t *)buffer_context[1];
       }
       *data_ptr = config_val1;
       buffer_context[1] = buffer_context[1] + 4;
-      data_ptr = (undefined4 *)buffer_context[1];
+      data_ptr = (int32_t *)buffer_context[1];
       if ((ulonglong)((buffer_context[2] - (longlong)data_ptr) + *buffer_context) < 0x11) {
         expand_buffer_capacity(buffer_context, (longlong)data_ptr + (0x10 - *buffer_context));
-        data_ptr = (undefined4 *)buffer_context[1];
+        data_ptr = (int32_t *)buffer_context[1];
       }
-      *data_ptr = *(undefined4 *)(loop_counter + 0x104 + data_offset);
+      *data_ptr = *(int32_t *)(loop_counter + 0x104 + data_offset);
       buffer_context[1] = buffer_context[1] + 4;
-      *(undefined4 *)buffer_context[1] = *(undefined4 *)(loop_counter + 0x108 + data_offset);
+      *(int32_t *)buffer_context[1] = *(int32_t *)(loop_counter + 0x108 + data_offset);
       buffer_context[1] = buffer_context[1] + 4;
-      *(undefined4 *)buffer_context[1] = *(undefined4 *)(loop_counter + 0x10c + data_offset);
+      *(int32_t *)buffer_context[1] = *(int32_t *)(loop_counter + 0x10c + data_offset);
       buffer_context[1] = buffer_context[1] + 4;
-      *(undefined4 *)buffer_context[1] = 0x3f800000;
+      *(int32_t *)buffer_context[1] = 0x3f800000;
       buffer_context[1] = buffer_context[1] + 4;
-      data_ptr = (undefined4 *)buffer_context[1];
+      data_ptr = (int32_t *)buffer_context[1];
       if ((ulonglong)((buffer_context[2] - (longlong)data_ptr) + *buffer_context) < 0x11) {
         expand_buffer_capacity(buffer_context, (longlong)data_ptr + (0x10 - *buffer_context));
-        data_ptr = (undefined4 *)buffer_context[1];
+        data_ptr = (int32_t *)buffer_context[1];
       }
-      *data_ptr = *(undefined4 *)(loop_counter + 0x114 + data_offset);
+      *data_ptr = *(int32_t *)(loop_counter + 0x114 + data_offset);
       buffer_context[1] = buffer_context[1] + 4;
-      *(undefined4 *)buffer_context[1] = *(undefined4 *)(loop_counter + 0x118 + data_offset);
+      *(int32_t *)buffer_context[1] = *(int32_t *)(loop_counter + 0x118 + data_offset);
       buffer_context[1] = buffer_context[1] + 4;
-      *(undefined4 *)buffer_context[1] = *(undefined4 *)(loop_counter + 0x11c + data_offset);
+      *(int32_t *)buffer_context[1] = *(int32_t *)(loop_counter + 0x11c + data_offset);
       buffer_context[1] = buffer_context[1] + 4;
-      *(undefined4 *)buffer_context[1] = 0x3f800000;
+      *(int32_t *)buffer_context[1] = 0x3f800000;
       buffer_context[1] = buffer_context[1] + 4;
-      data_ptr = (undefined4 *)buffer_context[1];
-      config_val1 = *(undefined4 *)(loop_counter + 0x124 + data_offset);
+      data_ptr = (int32_t *)buffer_context[1];
+      config_val1 = *(int32_t *)(loop_counter + 0x124 + data_offset);
       if ((ulonglong)((buffer_context[2] - (longlong)data_ptr) + *buffer_context) < 5) {
         expand_buffer_capacity(buffer_context, (longlong)data_ptr + (4 - *buffer_context));
-        data_ptr = (undefined4 *)buffer_context[1];
+        data_ptr = (int32_t *)buffer_context[1];
       }
       *data_ptr = config_val1;
       buffer_context[1] = buffer_context[1] + 4;
-      data_ptr = (undefined4 *)buffer_context[1];
+      data_ptr = (int32_t *)buffer_context[1];
       if ((ulonglong)((buffer_context[2] - (longlong)data_ptr) + *buffer_context) < 0x11) {
         expand_buffer_capacity(buffer_context, (longlong)data_ptr + (0x10 - *buffer_context));
-        data_ptr = (undefined4 *)buffer_context[1];
+        data_ptr = (int32_t *)buffer_context[1];
       }
-      *data_ptr = *(undefined4 *)(loop_counter + 0x128 + data_offset);
+      *data_ptr = *(int32_t *)(loop_counter + 0x128 + data_offset);
       buffer_context[1] = buffer_context[1] + 4;
-      *(undefined4 *)buffer_context[1] = *(undefined4 *)(loop_counter + 300 + data_offset);
+      *(int32_t *)buffer_context[1] = *(int32_t *)(loop_counter + 300 + data_offset);
       buffer_context[1] = buffer_context[1] + 4;
-      *(undefined4 *)buffer_context[1] = *(undefined4 *)(loop_counter + 0x130 + data_offset);
+      *(int32_t *)buffer_context[1] = *(int32_t *)(loop_counter + 0x130 + data_offset);
       buffer_context[1] = buffer_context[1] + 4;
-      *(undefined4 *)buffer_context[1] = 0x3f800000;
+      *(int32_t *)buffer_context[1] = 0x3f800000;
       buffer_context[1] = buffer_context[1] + 4;
-      data_ptr = (undefined4 *)buffer_context[1];
+      data_ptr = (int32_t *)buffer_context[1];
       if ((ulonglong)((buffer_context[2] - (longlong)data_ptr) + *buffer_context) < 0x11) {
         expand_buffer_capacity(buffer_context, (longlong)data_ptr + (0x10 - *buffer_context));
-        data_ptr = (undefined4 *)buffer_context[1];
+        data_ptr = (int32_t *)buffer_context[1];
       }
-      *data_ptr = *(undefined4 *)(loop_counter + 0x138 + data_offset);
+      *data_ptr = *(int32_t *)(loop_counter + 0x138 + data_offset);
       buffer_context[1] = buffer_context[1] + 4;
-      *(undefined4 *)buffer_context[1] = *(undefined4 *)(loop_counter + 0x13c + data_offset);
+      *(int32_t *)buffer_context[1] = *(int32_t *)(loop_counter + 0x13c + data_offset);
       buffer_context[1] = buffer_context[1] + 4;
-      *(undefined4 *)buffer_context[1] = *(undefined4 *)(loop_counter + 0x140 + data_offset);
+      *(int32_t *)buffer_context[1] = *(int32_t *)(loop_counter + 0x140 + data_offset);
       buffer_context[1] = buffer_context[1] + 4;
-      *(undefined4 *)buffer_context[1] = 0x3f800000;
+      *(int32_t *)buffer_context[1] = 0x3f800000;
       buffer_context[1] = buffer_context[1] + 4;
-      data_ptr = (undefined4 *)buffer_context[1];
-      config_val1 = *(undefined4 *)(loop_counter + 0x148 + data_offset);
+      data_ptr = (int32_t *)buffer_context[1];
+      config_val1 = *(int32_t *)(loop_counter + 0x148 + data_offset);
       if ((ulonglong)((buffer_context[2] - (longlong)data_ptr) + *buffer_context) < 5) {
         expand_buffer_capacity(buffer_context, (longlong)data_ptr + (4 - *buffer_context));
-        data_ptr = (undefined4 *)buffer_context[1];
+        data_ptr = (int32_t *)buffer_context[1];
       }
       *data_ptr = config_val1;
       buffer_context[1] = buffer_context[1] + 4;
-      data_ptr = (undefined4 *)buffer_context[1];
-      config_val1 = *(undefined4 *)(loop_counter + 0x100 + data_offset);
+      data_ptr = (int32_t *)buffer_context[1];
+      config_val1 = *(int32_t *)(loop_counter + 0x100 + data_offset);
       if ((ulonglong)((buffer_context[2] - (longlong)data_ptr) + *buffer_context) < 5) {
         expand_buffer_capacity(buffer_context, (longlong)data_ptr + (4 - *buffer_context));
-        data_ptr = (undefined4 *)buffer_context[1];
+        data_ptr = (int32_t *)buffer_context[1];
       }
       *data_ptr = config_val1;
-      data_ptr = (undefined4 *)(buffer_context[1] + 4);
+      data_ptr = (int32_t *)(buffer_context[1] + 4);
       buffer_context[1] = (longlong)data_ptr;
       remaining_items = remaining_items + -1;
       loop_counter = loop_counter + 0x150;
@@ -507,7 +507,7 @@ void process_complex_data_serialization(undefined4 *config_ptr, longlong *buffer
   }
   if ((ulonglong)((buffer_context[2] - (longlong)data_ptr) + *buffer_context) < 5) {
     expand_buffer_capacity(buffer_context, (longlong)data_ptr + (4 - *buffer_context));
-    data_ptr = (undefined4 *)buffer_context[1];
+    data_ptr = (int32_t *)buffer_context[1];
   }
   *data_ptr = 0;
   int_ptr = (int *)(buffer_context[1] + 4);
@@ -537,17 +537,17 @@ void process_complex_data_serialization(undefined4 *config_ptr, longlong *buffer
 
 // 函数: 处理复杂数据序列化（变体）
 // 原函数名: FUN_18022873e
-void process_complex_data_serialization_variant(undefined4 *config_ptr, longlong buffer_param)
+void process_complex_data_serialization_variant(int32_t *config_ptr, longlong buffer_param)
 
 {
-  undefined4 config_val1;
-  undefined1 data_byte;
+  int32_t config_val1;
+  int8_t data_byte;
   longlong data_offset;
-  undefined4 config_val4;
-  undefined4 config_val5;
+  int32_t config_val4;
+  int32_t config_val5;
   char *char_ptr;
-  undefined1 *byte_ptr;
-  undefined4 *data_ptr;
+  int8_t *byte_ptr;
+  int32_t *data_ptr;
   ulonglong lookup_index;
   longlong *buffer_context;
   int item_count;
@@ -555,14 +555,14 @@ void process_complex_data_serialization_variant(undefined4 *config_ptr, longlong
   int *int_ptr;
   longlong remaining_items;
   ulonglong data_size;
-  undefined4 temp_val;
-  undefined4 config_val15;
+  int32_t temp_val;
+  int32_t config_val15;
   
-  data_ptr = *(undefined4 **)(buffer_param + 8);
+  data_ptr = *(int32_t **)(buffer_param + 8);
   config_val15 = *config_ptr;
   if ((ulonglong)((buffer_context[2] - (longlong)data_ptr) + *buffer_context) < 5) {
     temp_val = expand_buffer_capacity(temp_val, (longlong)data_ptr + (4 - *buffer_context));
-    data_ptr = (undefined4 *)buffer_context[1];
+    data_ptr = (int32_t *)buffer_context[1];
   }
   *data_ptr = config_val15;
   buffer_context[1] = buffer_context[1] + 4;
@@ -573,17 +573,17 @@ void process_complex_data_serialization_variant(undefined4 *config_ptr, longlong
   loop_counter = data_size;
   do {
     if (*char_ptr == *(char *)(config_ptr + 9)) {
-      config_val15 = write_buffer_reference(config_val15, *(undefined8 *)((longlong)(int)loop_counter * 0x10 + 0x180bf7cf0));
+      config_val15 = write_buffer_reference(config_val15, *(uint64_t *)((longlong)(int)loop_counter * 0x10 + 0x180bf7cf0));
       break;
     }
     loop_counter = (ulonglong)((int)loop_counter + 1);
     char_ptr = char_ptr + 0x10;
   } while ((longlong)char_ptr < 0x180bf7d28);
   config_val15 = initialize_buffer_context(config_val15, config_ptr + 10);
-  data_ptr = (undefined4 *)buffer_context[1];
+  data_ptr = (int32_t *)buffer_context[1];
   if ((ulonglong)((buffer_context[2] - (longlong)data_ptr) + *buffer_context) < 0x11) {
     expand_buffer_capacity(config_val15, (longlong)data_ptr + (0x10 - *buffer_context));
-    data_ptr = (undefined4 *)buffer_context[1];
+    data_ptr = (int32_t *)buffer_context[1];
   }
   config_val15 = config_ptr[0x20];
   config_val1 = config_ptr[0x21];
@@ -604,18 +604,18 @@ void process_complex_data_serialization_variant(undefined4 *config_ptr, longlong
   }
   *int_ptr = item_count;
   buffer_context[1] = buffer_context[1] + 4;
-  data_ptr = (undefined4 *)buffer_context[1];
+  data_ptr = (int32_t *)buffer_context[1];
   remaining_items = (longlong)item_count;
   loop_counter = data_size;
   if (0 < item_count) {
     do {
       data_offset = *(longlong *)(config_ptr + 0x24);
       config_val15 = initialize_buffer_context(config_val15, data_offset + 8 + loop_counter);
-      byte_ptr = (undefined1 *)buffer_context[1];
-      data_byte = *(undefined1 *)(loop_counter + data_offset);
+      byte_ptr = (int8_t *)buffer_context[1];
+      data_byte = *(int8_t *)(loop_counter + data_offset);
       if ((ulonglong)((buffer_context[2] - (longlong)byte_ptr) + *buffer_context) < 2) {
         config_val15 = expand_buffer_capacity(config_val15, byte_ptr + (1 - *buffer_context));
-        byte_ptr = (undefined1 *)buffer_context[1];
+        byte_ptr = (int8_t *)buffer_context[1];
       }
       *byte_ptr = data_byte;
       buffer_context[1] = buffer_context[1] + 1;
@@ -624,96 +624,96 @@ void process_complex_data_serialization_variant(undefined4 *config_ptr, longlong
       lookup_index = data_size;
       do {
         if (*char_ptr == *(char *)(loop_counter + 0xf8 + data_offset)) {
-          config_val15 = write_buffer_reference(config_val15, *(undefined8 *)(lookup_index * 0x10 + 0x180bf7d20));
+          config_val15 = write_buffer_reference(config_val15, *(uint64_t *)(lookup_index * 0x10 + 0x180bf7d20));
           break;
         }
         lookup_index = lookup_index + 1;
         char_ptr = char_ptr + 0x10;
       } while ((longlong)char_ptr < 0x180bf7e28);
-      data_ptr = (undefined4 *)buffer_context[1];
-      config_val1 = *(undefined4 *)(loop_counter + 0xfc + data_offset);
+      data_ptr = (int32_t *)buffer_context[1];
+      config_val1 = *(int32_t *)(loop_counter + 0xfc + data_offset);
       if ((ulonglong)((buffer_context[2] - (longlong)data_ptr) + *buffer_context) < 5) {
         config_val15 = expand_buffer_capacity(config_val15, (longlong)data_ptr + (4 - *buffer_context));
-        data_ptr = (undefined4 *)buffer_context[1];
+        data_ptr = (int32_t *)buffer_context[1];
       }
       *data_ptr = config_val1;
       buffer_context[1] = buffer_context[1] + 4;
-      data_ptr = (undefined4 *)buffer_context[1];
+      data_ptr = (int32_t *)buffer_context[1];
       if ((ulonglong)((buffer_context[2] - (longlong)data_ptr) + *buffer_context) < 0x11) {
         config_val15 = expand_buffer_capacity(config_val15, (longlong)data_ptr + (0x10 - *buffer_context));
-        data_ptr = (undefined4 *)buffer_context[1];
+        data_ptr = (int32_t *)buffer_context[1];
       }
-      *data_ptr = *(undefined4 *)(loop_counter + 0x104 + data_offset);
+      *data_ptr = *(int32_t *)(loop_counter + 0x104 + data_offset);
       buffer_context[1] = buffer_context[1] + 4;
-      *(undefined4 *)buffer_context[1] = *(undefined4 *)(loop_counter + 0x108 + data_offset);
+      *(int32_t *)buffer_context[1] = *(int32_t *)(loop_counter + 0x108 + data_offset);
       buffer_context[1] = buffer_context[1] + 4;
-      *(undefined4 *)buffer_context[1] = *(undefined4 *)(loop_counter + 0x10c + data_offset);
+      *(int32_t *)buffer_context[1] = *(int32_t *)(loop_counter + 0x10c + data_offset);
       buffer_context[1] = buffer_context[1] + 4;
-      *(undefined4 *)buffer_context[1] = 0x3f800000;
+      *(int32_t *)buffer_context[1] = 0x3f800000;
       buffer_context[1] = buffer_context[1] + 4;
-      data_ptr = (undefined4 *)buffer_context[1];
+      data_ptr = (int32_t *)buffer_context[1];
       if ((ulonglong)((buffer_context[2] - (longlong)data_ptr) + *buffer_context) < 0x11) {
         config_val15 = expand_buffer_capacity(config_val15, (longlong)data_ptr + (0x10 - *buffer_context));
-        data_ptr = (undefined4 *)buffer_context[1];
+        data_ptr = (int32_t *)buffer_context[1];
       }
-      *data_ptr = *(undefined4 *)(loop_counter + 0x114 + data_offset);
+      *data_ptr = *(int32_t *)(loop_counter + 0x114 + data_offset);
       buffer_context[1] = buffer_context[1] + 4;
-      *(undefined4 *)buffer_context[1] = *(undefined4 *)(loop_counter + 0x118 + data_offset);
+      *(int32_t *)buffer_context[1] = *(int32_t *)(loop_counter + 0x118 + data_offset);
       buffer_context[1] = buffer_context[1] + 4;
-      *(undefined4 *)buffer_context[1] = *(undefined4 *)(loop_counter + 0x11c + data_offset);
+      *(int32_t *)buffer_context[1] = *(int32_t *)(loop_counter + 0x11c + data_offset);
       buffer_context[1] = buffer_context[1] + 4;
-      *(undefined4 *)buffer_context[1] = 0x3f800000;
+      *(int32_t *)buffer_context[1] = 0x3f800000;
       buffer_context[1] = buffer_context[1] + 4;
-      data_ptr = (undefined4 *)buffer_context[1];
-      config_val1 = *(undefined4 *)(loop_counter + 0x124 + data_offset);
+      data_ptr = (int32_t *)buffer_context[1];
+      config_val1 = *(int32_t *)(loop_counter + 0x124 + data_offset);
       if ((ulonglong)((buffer_context[2] - (longlong)data_ptr) + *buffer_context) < 5) {
         config_val15 = expand_buffer_capacity(config_val15, (longlong)data_ptr + (4 - *buffer_context));
-        data_ptr = (undefined4 *)buffer_context[1];
+        data_ptr = (int32_t *)buffer_context[1];
       }
       *data_ptr = config_val1;
       buffer_context[1] = buffer_context[1] + 4;
-      data_ptr = (undefined4 *)buffer_context[1];
+      data_ptr = (int32_t *)buffer_context[1];
       if ((ulonglong)((buffer_context[2] - (longlong)data_ptr) + *buffer_context) < 0x11) {
         config_val15 = expand_buffer_capacity(config_val15, (longlong)data_ptr + (0x10 - *buffer_context));
-        data_ptr = (undefined4 *)buffer_context[1];
+        data_ptr = (int32_t *)buffer_context[1];
       }
-      *data_ptr = *(undefined4 *)(loop_counter + 0x128 + data_offset);
+      *data_ptr = *(int32_t *)(loop_counter + 0x128 + data_offset);
       buffer_context[1] = buffer_context[1] + 4;
-      *(undefined4 *)buffer_context[1] = *(undefined4 *)(loop_counter + 300 + data_offset);
+      *(int32_t *)buffer_context[1] = *(int32_t *)(loop_counter + 300 + data_offset);
       buffer_context[1] = buffer_context[1] + 4;
-      *(undefined4 *)buffer_context[1] = *(undefined4 *)(loop_counter + 0x130 + data_offset);
+      *(int32_t *)buffer_context[1] = *(int32_t *)(loop_counter + 0x130 + data_offset);
       buffer_context[1] = buffer_context[1] + 4;
-      *(undefined4 *)buffer_context[1] = 0x3f800000;
+      *(int32_t *)buffer_context[1] = 0x3f800000;
       buffer_context[1] = buffer_context[1] + 4;
-      data_ptr = (undefined4 *)buffer_context[1];
+      data_ptr = (int32_t *)buffer_context[1];
       if ((ulonglong)((buffer_context[2] - (longlong)data_ptr) + *buffer_context) < 0x11) {
         config_val15 = expand_buffer_capacity(config_val15, (longlong)data_ptr + (0x10 - *buffer_context));
-        data_ptr = (undefined4 *)buffer_context[1];
+        data_ptr = (int32_t *)buffer_context[1];
       }
-      *data_ptr = *(undefined4 *)(loop_counter + 0x138 + data_offset);
+      *data_ptr = *(int32_t *)(loop_counter + 0x138 + data_offset);
       buffer_context[1] = buffer_context[1] + 4;
-      *(undefined4 *)buffer_context[1] = *(undefined4 *)(loop_counter + 0x13c + data_offset);
+      *(int32_t *)buffer_context[1] = *(int32_t *)(loop_counter + 0x13c + data_offset);
       buffer_context[1] = buffer_context[1] + 4;
-      *(undefined4 *)buffer_context[1] = *(undefined4 *)(loop_counter + 0x140 + data_offset);
+      *(int32_t *)buffer_context[1] = *(int32_t *)(loop_counter + 0x140 + data_offset);
       buffer_context[1] = buffer_context[1] + 4;
-      *(undefined4 *)buffer_context[1] = 0x3f800000;
+      *(int32_t *)buffer_context[1] = 0x3f800000;
       buffer_context[1] = buffer_context[1] + 4;
-      data_ptr = (undefined4 *)buffer_context[1];
-      config_val1 = *(undefined4 *)(loop_counter + 0x148 + data_offset);
+      data_ptr = (int32_t *)buffer_context[1];
+      config_val1 = *(int32_t *)(loop_counter + 0x148 + data_offset);
       if ((ulonglong)((buffer_context[2] - (longlong)data_ptr) + *buffer_context) < 5) {
         config_val15 = expand_buffer_capacity(config_val15, (longlong)data_ptr + (4 - *buffer_context));
-        data_ptr = (undefined4 *)buffer_context[1];
+        data_ptr = (int32_t *)buffer_context[1];
       }
       *data_ptr = config_val1;
       buffer_context[1] = buffer_context[1] + 4;
-      data_ptr = (undefined4 *)buffer_context[1];
-      config_val1 = *(undefined4 *)(loop_counter + 0x100 + data_offset);
+      data_ptr = (int32_t *)buffer_context[1];
+      config_val1 = *(int32_t *)(loop_counter + 0x100 + data_offset);
       if ((ulonglong)((buffer_context[2] - (longlong)data_ptr) + *buffer_context) < 5) {
         config_val15 = expand_buffer_capacity(config_val15, (longlong)data_ptr + (4 - *buffer_context));
-        data_ptr = (undefined4 *)buffer_context[1];
+        data_ptr = (int32_t *)buffer_context[1];
       }
       *data_ptr = config_val1;
-      data_ptr = (undefined4 *)(buffer_context[1] + 4);
+      data_ptr = (int32_t *)(buffer_context[1] + 4);
       buffer_context[1] = (longlong)data_ptr;
       remaining_items = remaining_items + -1;
       loop_counter = loop_counter + 0x150;
@@ -721,7 +721,7 @@ void process_complex_data_serialization_variant(undefined4 *config_ptr, longlong
   }
   if ((ulonglong)((buffer_context[2] - (longlong)data_ptr) + *buffer_context) < 5) {
     config_val15 = expand_buffer_capacity(config_val15, (longlong)data_ptr + (4 - *buffer_context));
-    data_ptr = (undefined4 *)buffer_context[1];
+    data_ptr = (int32_t *)buffer_context[1];
   }
   *data_ptr = 0;
   int_ptr = (int *)(buffer_context[1] + 4);

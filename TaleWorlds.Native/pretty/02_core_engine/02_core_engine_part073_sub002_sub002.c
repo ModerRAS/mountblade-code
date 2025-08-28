@@ -12,17 +12,17 @@ void initialize_engine_parameters(longlong engine_context)
 {
   ulonglong component_ptr;
   ulonglong temp_value;
-  undefined1 temp_buffer_1 [16];
+  int8_t temp_buffer_1 [16];
   code *callback_ptr;
-  undefined8 stack_init_value;
-  undefined1 temp_buffer_2 [32];
-  undefined1 temp_buffer_3 [32];
-  undefined1 temp_buffer_4 [32];
-  undefined1 temp_buffer_5 [32];
-  undefined1 temp_buffer_6 [32];
-  undefined1 temp_buffer_7 [32];
-  undefined1 temp_buffer_8 [32];
-  undefined1 temp_buffer_9 [40];
+  uint64_t stack_init_value;
+  int8_t temp_buffer_2 [32];
+  int8_t temp_buffer_3 [32];
+  int8_t temp_buffer_4 [32];
+  int8_t temp_buffer_5 [32];
+  int8_t temp_buffer_6 [32];
+  int8_t temp_buffer_7 [32];
+  int8_t temp_buffer_8 [32];
+  int8_t temp_buffer_9 [40];
   
   // 初始化堆栈参数
   uStack_128 = 0xfffffffffffffffe;
@@ -31,7 +31,7 @@ void initialize_engine_parameters(longlong engine_context)
   func_0x00018010bf60(auStack_148,0);
   
   // 设置渲染系统参数 (值为3)
-  *(undefined4 *)(engine_context + 0x198) = 3;
+  *(int32_t *)(engine_context + 0x198) = 3;
   FUN_18010bd10(engine_context + 0x1a0, auStack_148);
   
   // 执行回调函数（如果存在）
@@ -53,7 +53,7 @@ void initialize_engine_parameters(longlong engine_context)
   func_0x00018010bf80(auStack_148, 0);
   
   // 设置UI系统参数 (值为1)
-  *(undefined4 *)(engine_context + 0x1318) = 1;
+  *(int32_t *)(engine_context + 0x1318) = 1;
   FUN_18010bd10(engine_context + 0x1320, auStack_148);
   
   // 执行回调函数（如果存在）
@@ -86,7 +86,7 @@ void initialize_engine_parameters(longlong engine_context)
   func_0x00018010bfa0(auStack_148, 0);
   
   // 设置音频系统参数 (值为0)
-  *(undefined4 *)(engine_context + 0x1778) = 0;
+  *(int32_t *)(engine_context + 0x1778) = 0;
   FUN_18010bd10(engine_context + 0x1780, auStack_148);
   
   // 执行回调函数（如果存在）
@@ -108,7 +108,7 @@ void initialize_engine_parameters(longlong engine_context)
   func_0x00018010bfc0(auStack_148, 0);
   
   // 设置动画系统参数 (值为2)
-  *(undefined4 *)(engine_context + 0x128) = 2;
+  *(int32_t *)(engine_context + 0x128) = 2;
   FUN_18010bd10(engine_context + 0x130, auStack_148);
   
   // 执行回调函数（如果存在）
@@ -131,7 +131,7 @@ void initialize_engine_parameters(longlong engine_context)
   func_0x00018010bfe0(auStack_148, 0);
   
   // 设置场景系统参数 (值为2)
-  *(undefined4 *)(engine_context + 0x2e8) = 2;
+  *(int32_t *)(engine_context + 0x2e8) = 2;
   FUN_18010bd10(engine_context + 0x2f0, auStack_148);
   
   // 执行回调函数（如果存在）
@@ -154,7 +154,7 @@ void initialize_engine_parameters(longlong engine_context)
   func_0x00018010c000(auStack_148, 0);
   
   // 设置特效系统参数 (值为1)
-  *(undefined4 *)(engine_context + 0x358) = 1;
+  *(int32_t *)(engine_context + 0x358) = 1;
   FUN_18010bd10(engine_context + 0x360, auStack_148);
   
   // 执行回调函数（如果存在）
@@ -189,7 +189,7 @@ void initialize_engine_parameters(longlong engine_context)
   func_0x00018010c020(auStack_148, 0);
   
   // 设置阴影系统参数 (值为1)
-  *(undefined4 *)(engine_context + 0x1a88) = 1;
+  *(int32_t *)(engine_context + 0x1a88) = 1;
   FUN_18010bd10(engine_context + 0x1a90, auStack_148);
   
   // 执行回调函数（如果存在）
@@ -247,7 +247,7 @@ void initialize_engine_parameters(longlong engine_context)
   func_0x00018010c040(auStack_148, 0);
   
   // 设置粒子系统参数 (值为0)
-  *(undefined4 *)(engine_context + 0x1b68) = 0;
+  *(int32_t *)(engine_context + 0x1b68) = 0;
   FUN_18010bd10(engine_context + 0x1b70, auStack_148);
   
   // 执行回调函数（如果存在）
@@ -283,7 +283,7 @@ void initialize_engine_parameters(longlong engine_context)
   func_0x00018010c060(auStack_148, 0);
   
   // 设置水面系统参数 (值为0)
-  *(undefined4 *)(engine_context + 0x1c48) = 0;
+  *(int32_t *)(engine_context + 0x1c48) = 0;
   FUN_18010bd10(engine_context + 0x1c50, auStack_148);
   
   // 执行回调函数（如果存在）
@@ -307,7 +307,7 @@ void initialize_engine_parameters(longlong engine_context)
   func_0x00018010c080(auStack_148, 0);
   
   // 设置地形系统参数 (值为0)
-  *(undefined4 *)(engine_context + 0x1cb8) = 0;
+  *(int32_t *)(engine_context + 0x1cb8) = 0;
   FUN_18010bd10(engine_context + 0x1cc0, auStack_148);
   
   // 执行回调函数（如果存在）
@@ -331,7 +331,7 @@ void initialize_engine_parameters(longlong engine_context)
   func_0x00018010c0a0(auStack_148, 0);
   
   // 设置植被系统参数 (值为1)
-  *(undefined4 *)(engine_context + 0x4a8) = 1;
+  *(int32_t *)(engine_context + 0x4a8) = 1;
   FUN_18010bd10(engine_context + 0x4b0, auStack_148);
   
   // 执行回调函数（如果存在）
@@ -414,7 +414,7 @@ void initialize_engine_parameters(longlong engine_context)
   func_0x00018010c0c0(auStack_148, 0);
   
   // 设置反射系统参数 (值为0)
-  *(undefined4 *)(engine_context + 0x1fc8) = 0;
+  *(int32_t *)(engine_context + 0x1fc8) = 0;
   FUN_18010bd10(engine_context + 0x1fd0, auStack_148);
   
   // 执行回调函数（如果存在）
@@ -438,7 +438,7 @@ void initialize_engine_parameters(longlong engine_context)
   func_0x00018010c0e0(auStack_148, 0);
   
   // 设置碰撞系统参数 (值为0)
-  *(undefined4 *)(engine_context + 0x668) = 0;
+  *(int32_t *)(engine_context + 0x668) = 0;
   FUN_18010bd10(engine_context + 0x670, auStack_148);
   
   // 执行回调函数（如果存在）
@@ -462,7 +462,7 @@ void initialize_engine_parameters(longlong engine_context)
   func_0x00018010c100(auStack_148, 0);
   
   // 设置传感器系统参数 (值为0)
-  *(undefined4 *)(engine_context + 0x6d8) = 0;
+  *(int32_t *)(engine_context + 0x6d8) = 0;
   FUN_18010bd10(engine_context + 0x6e0, auStack_148);
   
   // 执行回调函数（如果存在）
@@ -486,7 +486,7 @@ void initialize_engine_parameters(longlong engine_context)
   func_0x00018010c120(auStack_148, 0);
   
   // 设置触发器系统参数 (值为0)
-  *(undefined4 *)(engine_context + 0x748) = 0;
+  *(int32_t *)(engine_context + 0x748) = 0;
   FUN_18010bd10(engine_context + 0x750, auStack_148);
   
   // 执行回调函数（如果存在）
@@ -510,7 +510,7 @@ void initialize_engine_parameters(longlong engine_context)
   func_0x00018010c140(auStack_148, 0);
   
   // 设置关节系统参数 (值为0)
-  *(undefined4 *)(engine_context + 0x898) = 0;
+  *(int32_t *)(engine_context + 0x898) = 0;
   FUN_18010bd10(engine_context + 0x8a0, auStack_148);
   
   // 执行回调函数（如果存在）
@@ -534,7 +534,7 @@ void initialize_engine_parameters(longlong engine_context)
   func_0x00018010c160(auStack_148, 0);
   
   // 设置约束系统参数 (值为0)
-  *(undefined4 *)(engine_context + 0x7b8) = 0;
+  *(int32_t *)(engine_context + 0x7b8) = 0;
   FUN_18010bd10(engine_context + 0x7c0, auStack_148);
   
   // 执行回调函数（如果存在）
@@ -555,7 +555,7 @@ void initialize_engine_parameters(longlong engine_context)
   uStackX_8 = component_ptr;
   FUN_18005ea90(engine_context + 8, &uStackX_8);
   func_0x00018010c180(auStack_148,0);
-  *(undefined4 *)(param_1 + 0x828) = 0;
+  *(int32_t *)(param_1 + 0x828) = 0;
   FUN_18010bd10(param_1 + 0x830,auStack_148);
   if (pcStack_138 != (code *)0x0) {
     (*pcStack_138)(auStack_148,0,0);
@@ -570,7 +570,7 @@ void initialize_engine_parameters(longlong engine_context)
   uStackX_8 = uVar1;
   FUN_18005ea90(param_1 + 8,&uStackX_8);
   func_0x00018010c1a0(auStack_148,0);
-  *(undefined4 *)(param_1 + 0x908) = 0;
+  *(int32_t *)(param_1 + 0x908) = 0;
   FUN_18010bd10(param_1 + 0x910,auStack_148);
   if (pcStack_138 != (code *)0x0) {
     (*pcStack_138)(auStack_148,0,0);
@@ -585,7 +585,7 @@ void initialize_engine_parameters(longlong engine_context)
   uStackX_8 = uVar1;
   FUN_18005ea90(param_1 + 8,&uStackX_8);
   func_0x00018010c1c0(auStack_148,0);
-  *(undefined4 *)(param_1 + 0x978) = 0;
+  *(int32_t *)(param_1 + 0x978) = 0;
   FUN_18010bd10(param_1 + 0x980,auStack_148);
   if (pcStack_138 != (code *)0x0) {
     (*pcStack_138)(auStack_148,0,0);
@@ -600,7 +600,7 @@ void initialize_engine_parameters(longlong engine_context)
   uStackX_8 = uVar1;
   FUN_18005ea90(param_1 + 8,&uStackX_8);
   func_0x00018010c1e0(auStack_148,0);
-  *(undefined4 *)(param_1 + 0xf98) = 0;
+  *(int32_t *)(param_1 + 0xf98) = 0;
   FUN_18010bd10(param_1 + 4000,auStack_148);
   if (pcStack_138 != (code *)0x0) {
     (*pcStack_138)(auStack_148,0,0);
@@ -615,7 +615,7 @@ void initialize_engine_parameters(longlong engine_context)
   uStackX_8 = uVar1;
   FUN_18005ea90(param_1 + 8,&uStackX_8);
   func_0x00018010c200(auStack_148,0);
-  *(undefined4 *)(param_1 + 0x1078) = 0;
+  *(int32_t *)(param_1 + 0x1078) = 0;
   FUN_18010bd10(param_1 + 0x1080,auStack_148);
   if (pcStack_138 != (code *)0x0) {
     (*pcStack_138)(auStack_148,0,0);
@@ -630,7 +630,7 @@ void initialize_engine_parameters(longlong engine_context)
   uStackX_8 = uVar1;
   FUN_18005ea90(param_1 + 8,&uStackX_8);
   func_0x00018010c220(auStack_148,0);
-  *(undefined4 *)(param_1 + 0x10e8) = 0;
+  *(int32_t *)(param_1 + 0x10e8) = 0;
   FUN_18010bd10(param_1 + 0x10f0,auStack_148);
   if (pcStack_138 != (code *)0x0) {
     (*pcStack_138)(auStack_148,0,0);
@@ -645,7 +645,7 @@ void initialize_engine_parameters(longlong engine_context)
   uStackX_8 = uVar1;
   FUN_18005ea90(param_1 + 8,&uStackX_8);
   func_0x00018010c240(auStack_148,0);
-  *(undefined4 *)(param_1 + 0x9e8) = 0;
+  *(int32_t *)(param_1 + 0x9e8) = 0;
   FUN_18010bd10(param_1 + 0x9f0,auStack_148);
   if (pcStack_138 != (code *)0x0) {
     (*pcStack_138)(auStack_148,0,0);
@@ -660,7 +660,7 @@ void initialize_engine_parameters(longlong engine_context)
   uStackX_8 = uVar1;
   FUN_18005ea90(param_1 + 8,&uStackX_8);
   func_0x00018010c260(auStack_148,0);
-  *(undefined4 *)(param_1 + 0xf28) = 0;
+  *(int32_t *)(param_1 + 0xf28) = 0;
   FUN_18010bd10(param_1 + 0xf30,auStack_148);
   if (pcStack_138 != (code *)0x0) {
     (*pcStack_138)(auStack_148,0,0);
@@ -675,7 +675,7 @@ void initialize_engine_parameters(longlong engine_context)
   uStackX_8 = uVar1;
   FUN_18005ea90(param_1 + 8,&uStackX_8);
   func_0x00018010c280(auStack_148,0);
-  *(undefined4 *)(param_1 + 0x1008) = 0;
+  *(int32_t *)(param_1 + 0x1008) = 0;
   FUN_18010bd10(param_1 + 0x1010,auStack_148);
   if (pcStack_138 != (code *)0x0) {
     (*pcStack_138)(auStack_148,0,0);
@@ -690,7 +690,7 @@ void initialize_engine_parameters(longlong engine_context)
   uStackX_8 = uVar1;
   FUN_18005ea90(param_1 + 8,&uStackX_8);
   func_0x00018010c2a0(auStack_148,0);
-  *(undefined4 *)(param_1 + 0xa58) = 0;
+  *(int32_t *)(param_1 + 0xa58) = 0;
   FUN_18010bd10(param_1 + 0xa60,auStack_148);
   if (pcStack_138 != (code *)0x0) {
     (*pcStack_138)(auStack_148,0,0);
@@ -705,7 +705,7 @@ void initialize_engine_parameters(longlong engine_context)
   uStackX_8 = uVar1;
   FUN_18005ea90(param_1 + 8,&uStackX_8);
   func_0x00018010c2c0(auStack_148,0);
-  *(undefined4 *)(param_1 + 0xac8) = 0;
+  *(int32_t *)(param_1 + 0xac8) = 0;
   FUN_18010bd10(param_1 + 0xad0,auStack_148);
   if (pcStack_138 != (code *)0x0) {
     (*pcStack_138)(auStack_148,0,0);
@@ -720,7 +720,7 @@ void initialize_engine_parameters(longlong engine_context)
   uStackX_8 = uVar1;
   FUN_18005ea90(param_1 + 8,&uStackX_8);
   func_0x00018010c2e0(auStack_148,0);
-  *(undefined4 *)(param_1 + 0xba8) = 0;
+  *(int32_t *)(param_1 + 0xba8) = 0;
   FUN_18010bd10(param_1 + 0xbb0,auStack_148);
   if (pcStack_138 != (code *)0x0) {
     (*pcStack_138)(auStack_148,0,0);
@@ -1109,7 +1109,7 @@ void initialize_engine_parameters(longlong engine_context)
   uStackX_8 = component_ptr;
   FUN_18005ea90(engine_context + 8, &uStackX_8);
   // 设置引擎初始化完成标志
-  *(undefined4 *)(engine_context + 0x88) = 1;
+  *(int32_t *)(engine_context + 0x88) = 1;
   
   return;
 }

@@ -34,7 +34,7 @@ void ui_advanced_animation_transform(float param_1, float param_2, longlong para
     char control_flag;
     bool condition_result;
     int loop_counter;
-    undefined8 register_rax;
+    uint64_t register_rax;
     longlong temp_long_1;
     float *float_ptr_1;
     longlong register_rcx;
@@ -43,14 +43,14 @@ void ui_advanced_animation_transform(float param_1, float param_2, longlong para
     float *float_ptr_2;
     longlong register_rbp;
     int temp_int_1;
-    undefined8 register_rsi;
+    uint64_t register_rsi;
     ulonglong ulong_temp;
     longlong register_r11;
-    undefined8 register_r12;
-    undefined8 register_r13;
+    uint64_t register_r12;
+    uint64_t register_r13;
     float *register_r14;
     char temp_char_1;
-    undefined8 register_r15;
+    uint64_t register_r15;
     float temp_float_1;
     float temp_float_2;
     float temp_float_3;
@@ -62,29 +62,29 @@ void ui_advanced_animation_transform(float param_1, float param_2, longlong para
     float temp_float_9;
     float temp_float_10;
     float temp_float_11;
-    undefined1 temp_array_1 [16];
+    int8_t temp_array_1 [16];
     float temp_float_12;
     float temp_float_13;
     float register_xmm6;
     float register_xmm8;
     float register_xmm9;
     float temp_float_14;
-    undefined4 register_xmm11_a;
-    undefined4 register_xmm11_b;
-    undefined4 register_xmm11_c;
-    undefined4 register_xmm11_d;
-    undefined4 register_xmm12_a;
-    undefined4 register_xmm12_b;
-    undefined4 register_xmm12_c;
-    undefined4 register_xmm12_d;
-    undefined4 register_xmm13_a;
-    undefined4 register_xmm13_b;
-    undefined4 register_xmm13_c;
-    undefined4 register_xmm13_d;
-    undefined4 register_xmm15_a;
-    undefined4 register_xmm15_b;
-    undefined4 register_xmm15_c;
-    undefined4 register_xmm15_d;
+    int32_t register_xmm11_a;
+    int32_t register_xmm11_b;
+    int32_t register_xmm11_c;
+    int32_t register_xmm11_d;
+    int32_t register_xmm12_a;
+    int32_t register_xmm12_b;
+    int32_t register_xmm12_c;
+    int32_t register_xmm12_d;
+    int32_t register_xmm13_a;
+    int32_t register_xmm13_b;
+    int32_t register_xmm13_c;
+    int32_t register_xmm13_d;
+    int32_t register_xmm15_a;
+    int32_t register_xmm15_b;
+    int32_t register_xmm15_c;
+    int32_t register_xmm15_d;
     char stack_char_1;
     float stack_float_1;
     float stack_float_2;
@@ -95,36 +95,36 @@ void ui_advanced_animation_transform(float param_1, float param_2, longlong para
     float stack_float_7;
     float stack_float_8;
     float stack_float_9;
-    undefined8 stack_ulong_1;
+    uint64_t stack_ulong_1;
     float stack_float_10;
     float stack_float_11;
     float stack_float_12;
     float stack_float_13;
     float animation_buffer [6200];
-    undefined8 stack_return_address;
+    uint64_t stack_return_address;
     
     // 保存寄存器状态到栈
-    *(undefined8 *)(register_r11 + -0x20) = register_rsi;
-    *(undefined8 *)(register_r11 + -0x28) = register_r12;
-    *(undefined8 *)(register_r11 + -0x30) = register_r13;
+    *(uint64_t *)(register_r11 + -0x20) = register_rsi;
+    *(uint64_t *)(register_r11 + -0x28) = register_r12;
+    *(uint64_t *)(register_r11 + -0x30) = register_r13;
     loop_counter = 0;
-    *(undefined8 *)(register_r11 + -0x38) = register_r15;
-    *(undefined4 *)(register_r11 + -0x98) = register_xmm11_a;
-    *(undefined4 *)(register_r11 + -0x94) = register_xmm11_b;
-    *(undefined4 *)(register_r11 + -0x90) = register_xmm11_c;
-    *(undefined4 *)(register_r11 + -0x8c) = register_xmm11_d;
-    *(undefined4 *)(register_r11 + -0xa8) = register_xmm12_a;
-    *(undefined4 *)(register_r11 + -0xa4) = register_xmm12_b;
-    *(undefined4 *)(register_r11 + -0xa0) = register_xmm12_c;
-    *(undefined4 *)(register_r11 + -0x9c) = register_xmm12_d;
-    *(undefined4 *)(register_r11 + -0xb8) = register_xmm13_a;
-    *(undefined4 *)(register_r11 + -0xb4) = register_xmm13_b;
-    *(undefined4 *)(register_r11 + -0xb0) = register_xmm13_c;
-    *(undefined4 *)(register_r11 + -0xac) = register_xmm13_d;
-    *(undefined4 *)(register_r11 + -0xd8) = register_xmm15_a;
-    *(undefined4 *)(register_r11 + -0xd4) = register_xmm15_b;
-    *(undefined4 *)(register_r11 + -0xd0) = register_xmm15_c;
-    *(undefined4 *)(register_r11 + -0xcc) = register_xmm15_d;
+    *(uint64_t *)(register_r11 + -0x38) = register_r15;
+    *(int32_t *)(register_r11 + -0x98) = register_xmm11_a;
+    *(int32_t *)(register_r11 + -0x94) = register_xmm11_b;
+    *(int32_t *)(register_r11 + -0x90) = register_xmm11_c;
+    *(int32_t *)(register_r11 + -0x8c) = register_xmm11_d;
+    *(int32_t *)(register_r11 + -0xa8) = register_xmm12_a;
+    *(int32_t *)(register_r11 + -0xa4) = register_xmm12_b;
+    *(int32_t *)(register_r11 + -0xa0) = register_xmm12_c;
+    *(int32_t *)(register_r11 + -0x9c) = register_xmm12_d;
+    *(int32_t *)(register_r11 + -0xb8) = register_xmm13_a;
+    *(int32_t *)(register_r11 + -0xb4) = register_xmm13_b;
+    *(int32_t *)(register_r11 + -0xb0) = register_xmm13_c;
+    *(int32_t *)(register_r11 + -0xac) = register_xmm13_d;
+    *(int32_t *)(register_r11 + -0xd8) = register_xmm15_a;
+    *(int32_t *)(register_r11 + -0xd4) = register_xmm15_b;
+    *(int32_t *)(register_r11 + -0xd0) = register_xmm15_c;
+    *(int32_t *)(register_r11 + -0xcc) = register_xmm15_d;
     
     // 初始化栈变量
     stack_char_1 = param_4;
@@ -153,12 +153,12 @@ void ui_advanced_animation_transform(float param_1, float param_2, longlong para
             }
             *float_ptr_2 = temp_float_1;
             stack_return_address = 0x1806597d3;
-            FUN_18065ee60(*(undefined8 *)(float_ptr_2 + 0x495), register_rcx + 0x6150);
+            FUN_18065ee60(*(uint64_t *)(float_ptr_2 + 0x495), register_rcx + 0x6150);
             if ((*(char *)(float_ptr_2 + 0x4af) == '\0') && (*(char *)(float_ptr_2 + 0x4ce) != '\0')) {
-                *(undefined1 *)(float_ptr_2 + 0x4af) = 1;
+                *(int8_t *)(float_ptr_2 + 0x4af) = 1;
             }
             if ((*(char *)(float_ptr_2 + 0x4c8) == '\0') && (*(char *)(float_ptr_2 + 0x4d4) != '\0')) {
-                *(undefined1 *)(float_ptr_2 + 0x4c8) = 1;
+                *(int8_t *)(float_ptr_2 + 0x4c8) = 1;
             }
             register_xmm9 = register_xmm9 + *float_ptr_2;
             float_ptr_2 = float_ptr_2 + 0x4d6;
@@ -183,7 +183,7 @@ void ui_advanced_animation_transform(float param_1, float param_2, longlong para
     // 执行复杂的矩阵变换计算
     if (((register_xmm6 == register_r14[4]) && (register_xmm6 == register_r14[5])) &&
        (0.25 < register_r14[2] * register_r14[2] + register_r14[3] * register_r14[3])) {
-        *(undefined8 *)(register_r14 + 4) = *(undefined8 *)(register_r14 + 2);
+        *(uint64_t *)(register_r14 + 4) = *(uint64_t *)(register_r14 + 2);
     }
     
     if (register_r14[8] != register_xmm6) {
@@ -192,10 +192,10 @@ void ui_advanced_animation_transform(float param_1, float param_2, longlong para
     }
     
     // 进行角度归一化和范围限制
-    stack_float_3 = (float)((ulonglong)*(undefined8 *)(register_r14 + 4) >> 0x20);
-    stack_float_2 = (float)*(undefined8 *)(register_r14 + 4);
-    stack_float_7 = (float)((ulonglong)*(undefined8 *)(register_r14 + 2) >> 0x20);
-    stack_float_6 = (float)*(undefined8 *)(register_r14 + 2);
+    stack_float_3 = (float)((ulonglong)*(uint64_t *)(register_r14 + 4) >> 0x20);
+    stack_float_2 = (float)*(uint64_t *)(register_r14 + 4);
+    stack_float_7 = (float)((ulonglong)*(uint64_t *)(register_r14 + 2) >> 0x20);
+    stack_float_6 = (float)*(uint64_t *)(register_r14 + 2);
     temp_float_7 = register_r14[0x185d];
     if (((register_r14[0x10] == register_xmm6) || (register_r14[0x10] == 0.5)) || (temp_float_7 <= register_xmm6))
     {
@@ -207,7 +207,7 @@ void ui_advanced_animation_transform(float param_1, float param_2, longlong para
     
     stack_return_address = 0x1806599e0;
     temp_float_1 = (float)atan2f(*(uint *)(*(longlong *)(param_3 + 0x10) + 0x80) ^ 0x80000000,
-                         *(undefined4 *)(*(longlong *)(param_3 + 0x10) + 0x84));
+                         *(int32_t *)(*(longlong *)(param_3 + 0x10) + 0x84));
     temp_float_1 = temp_float_1 + register_r14[6];
     register_r14[0xb] = temp_float_1;
     
@@ -410,14 +410,14 @@ void ui_advanced_animation_transform(float param_1, float param_2, longlong para
             }
             temp_long_2 = *(longlong *)(register_r14 + (longlong)(int)temp_float_8 * 0x4d6 + -0x26);
             stack_return_address = 0x180659ea7;
-            temp_long_1 = FUN_18065fd40(*(undefined8 *)(temp_long_2 + 8));
+            temp_long_1 = FUN_18065fd40(*(uint64_t *)(temp_long_2 + 8));
             temp_long_3 = 0x14;
             if (register_xmm6 <= (stack_float_7 - ABS(stack_float_6)) * temp_float_1) {
                 temp_long_3 = 0x18;
             }
             temp_float_1 = *(float *)(temp_long_3 + temp_long_1);
             stack_return_address = 0x180659edd;
-            FUN_18065fd40(*(undefined8 *)(temp_long_2 + 8));
+            FUN_18065fd40(*(uint64_t *)(temp_long_2 + 8));
             register_r14[0xe] = temp_float_1;
         }
     }
@@ -817,7 +817,7 @@ FINAL_RENDER_STATE:
                 _stack_float_2 =
                      CONCAT44(temp_float_7 * temp_float_8 * temp_float_5 + (register_xmm8 - temp_float_5) * register_r14[0x185f],
                               temp_float_7 * temp_float_14 * temp_float_5 + (register_xmm8 - temp_float_5) * register_r14[0x185e]);
-                *(undefined8 *)(register_r14 + 0x185e) = _stack_float_2;
+                *(uint64_t *)(register_r14 + 0x185e) = _stack_float_2;
                 temp_float_7 = register_r14[0x185f];
                 temp_float_1 = register_r14[0x185e];
                 temp_float_5 = temp_float_1 * temp_float_1 + temp_float_7 * temp_float_7;
@@ -828,7 +828,7 @@ FINAL_RENDER_STATE:
                 register_r14[0x185e] = temp_float_5 * temp_float_1;
             }
             else {
-                *(undefined8 *)(register_r14 + 0x185e) = _stack_float_2;
+                *(uint64_t *)(register_r14 + 0x185e) = _stack_float_2;
             }
             stack_return_address = 0x18065aa9f;
             stack_float_13 = stack_float_8;

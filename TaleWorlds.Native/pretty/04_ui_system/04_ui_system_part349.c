@@ -118,11 +118,11 @@ void ui_system_control_state_manager(longlong param_1, longlong param_2)
     longlong context_ptr;
     longlong *control_list_ptr;
     longlong *current_control_ptr;
-    undefined8 operation_flag;
-    undefined4 control_id;
+    uint64_t operation_flag;
+    int32_t control_id;
     float progress_value;
     float threshold_value;
-    undefined1 local_buffer[32];
+    int8_t local_buffer[32];
     uint local_state_1;
     uint local_state_2;
     uint local_state_3;
@@ -136,7 +136,7 @@ void ui_system_control_state_manager(longlong param_1, longlong param_2)
     uint local_state_11;
     uint local_state_12;
     longlong stack_context;
-    undefined1 temp_buffer[40];
+    int8_t temp_buffer[40];
     ulonglong security_cookie;
     
     // 安全检查和初始化
@@ -252,7 +252,7 @@ progress_calculation_done:
                 operation_result = ui_system_event_dispatcher(param_2, 0x3f800000, operation_flag);
                 if (operation_result == 0) {
 event_cleanup:
-                    control_id = ui_system_state_query(context_ptr, *(undefined4 *)(param_1 + 0x24));
+                    control_id = ui_system_state_query(context_ptr, *(int32_t *)(param_1 + 0x24));
                     ui_system_event_processor(param_2, control_id);
                 }
                 goto event_dispatch_complete;
@@ -289,12 +289,12 @@ event_dispatch_complete:
  * @note 该函数包含复杂的状态检查和链表操作
  * @warning 在某些条件下可能返回特殊的状态码
  */
-undefined8 ui_system_event_handler(longlong param_1)
+uint64_t ui_system_event_handler(longlong param_1)
 {
     // 局部变量声明
-    undefined4 validation_result;
+    int32_t validation_result;
     longlong *control_ptr;
-    undefined8 operation_status;
+    uint64_t operation_status;
     longlong *list_iterator;
     longlong *current_item;
     longlong *next_item;
@@ -348,7 +348,7 @@ undefined8 ui_system_event_handler(longlong param_1)
     }
     else {
         // 第二阶段：替代处理路径
-        validation_result = *(undefined4 *)(param_1 + 0x20);
+        validation_result = *(int32_t *)(param_1 + 0x20);
         next_item = (longlong *)(param_1 + 0x118);
         current_item = (longlong *)0x0;
         list_iterator = (longlong *)(*next_item + -0x18);

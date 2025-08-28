@@ -62,19 +62,19 @@ static float ui_animation_buffer[6200];
  * @param user_data 用户数据指针
  */
 void ui_system_advanced_animation_processor(
-    undefined8 ui_context,
+    uint64_t ui_context,
     uint animation_id,
     uint frame_count,
-    undefined8 transform_matrix,
-    undefined8 animation_params,
-    undefined8 render_params,
-    undefined8 timing_params,
-    undefined8 control_params,
-    undefined8 blend_params,
-    undefined8 effect_params,
-    undefined8 state_params,
-    undefined8 callback_params,
-    undefined8 user_data)
+    uint64_t transform_matrix,
+    uint64_t animation_params,
+    uint64_t render_params,
+    uint64_t timing_params,
+    uint64_t control_params,
+    uint64_t blend_params,
+    uint64_t effect_params,
+    uint64_t state_params,
+    uint64_t callback_params,
+    uint64_t user_data)
 {
     float *animation_data_ptr;
     char status_flag;
@@ -84,10 +84,10 @@ void ui_system_advanced_animation_processor(
     int index_counter;
     longlong animation_offset;
     longlong matrix_offset;
-    undefined8 context_register;
+    uint64_t context_register;
     longlong base_pointer;
     int loop_counter;
-    undefined8 data_register;
+    uint64_t data_register;
     ulonglong iteration_count;
     longlong offset_register;
     char condition_flag;
@@ -105,7 +105,7 @@ void ui_system_advanced_animation_processor(
     float result_value;
     float delta_value;
     float matrix_value;
-    undefined1 temp_array[16];
+    int8_t temp_array[16];
     float temp_float;
     float stack_value_1;
     float stack_value_2;
@@ -113,7 +113,7 @@ void ui_system_advanced_animation_processor(
     float stack_value_4;
     float stack_value_5;
     float local_buffer[6200];
-    undefined8 stack_canary;
+    uint64_t stack_canary;
     
     // 初始化检查
     if (!zero_flag) {
@@ -141,7 +141,7 @@ void ui_system_advanced_animation_processor(
     // 计算动画角度
     current_value = (float)atan2f(
         *(uint *)(*(longlong *)(offset_register + 0x10) + 0x80) ^ frame_count,
-        *(undefined4 *)(*(longlong *)(offset_register + 0x10) + 0x84));
+        *(int32_t *)(*(longlong *)(offset_register + 0x10) + 0x84));
     current_value = current_value + animation_array[6];
     animation_array[0xb] = current_value;
     
@@ -370,7 +370,7 @@ void ui_system_advanced_animation_processor(
             
             temp_offset = *(longlong *)(animation_array + (longlong)(int)target_value * 0x4d6 + -0x26);
             stack_canary = 0x180659ea7;
-            matrix_offset = ui_system_get_animation_data(*(undefined8 *)(temp_offset + 8));
+            matrix_offset = ui_system_get_animation_data(*(uint64_t *)(temp_offset + 8));
             animation_offset = 0x14;
             
             if (time_scale <= (effect_params._4_4_ - ABS((float)effect_params)) * current_value) {
@@ -379,7 +379,7 @@ void ui_system_advanced_animation_processor(
             
             current_value = *(float *)(animation_offset + matrix_offset);
             stack_canary = 0x180659edd;
-            ui_system_get_animation_data(*(undefined8 *)(temp_offset + 8));
+            ui_system_get_animation_data(*(uint64_t *)(temp_offset + 8));
             animation_array[0xe] = current_value;
         }
     }
@@ -832,7 +832,7 @@ animation_complete:
                               (3.0f - result_value * normalized_value * normalized_value);
                 
                 // 设置动画矩阵数据
-                *(undefined8 *)(animation_array + 0x185e) = 
+                *(uint64_t *)(animation_array + 0x185e) = 
                     CONCAT44(result_value * temp_float * timing_params._4_4_ +
                             (stack_value_3 - timing_params._4_4_) * animation_array[0x185f],
                             result_value * current_value * timing_params._4_4_ +
@@ -847,7 +847,7 @@ animation_complete:
                 animation_array[0x185f] = temp_float * result_value;
                 animation_array[0x185e] = temp_float * normalized_value;
             } else {
-                *(undefined8 *)(animation_array + 0x185e) = CONCAT44(target_value, result_value);
+                *(uint64_t *)(animation_array + 0x185e) = CONCAT44(target_value, result_value);
             }
             
             // WARNING: Subroutine does not return

@@ -406,30 +406,30 @@ void FUN_1803aad40(longlong param_1, longlong param_2, char param_3)
     byte *pbVar1;
     int iVar2;
     longlong ***ppplVar3;
-    undefined4 uVar4;
-    undefined4 uVar5;
-    undefined4 *puVar6;
-    undefined8 *puVar7;
-    undefined **ppuVar8;
-    undefined8 uVar9;
+    int32_t uVar4;
+    int32_t uVar5;
+    int32_t *puVar6;
+    uint64_t *puVar7;
+    void **ppuVar8;
+    uint64_t uVar9;
     byte *pbVar10;
     longlong ***ppplVar11;
-    undefined *puVar12;
+    void *puVar12;
     ulonglong uVar13;
     uint uVar14;
-    undefined4 uVar15;
+    int32_t uVar15;
     float fVar16;
     
     // 栈变量声明
-    undefined1 auStack_5d8 [32];
+    int8_t auStack_5d8 [32];
     longlong ***ppplStack_5b8;
-    undefined1 *puStack_5b0;
+    int8_t *puStack_5b0;
     uint uStack_5a8;
-    undefined8 uStack_5a0;
-    undefined *puStack_598;
-    undefined1 *puStack_590;
-    undefined8 uStack_588;
-    undefined8 uStack_580;
+    uint64_t uStack_5a0;
+    void *puStack_598;
+    int8_t *puStack_590;
+    uint64_t uStack_588;
+    uint64_t uStack_580;
     uint uStack_578;
     longlong ***ppplStack_570;
     longlong ***ppplStack_568;
@@ -440,52 +440,52 @@ void FUN_1803aad40(longlong param_1, longlong param_2, char param_3)
     longlong ****pppplStack_540;
     longlong ***appplStack_538 [2];
     code *pcStack_528;
-    undefined *puStack_520;
-    undefined8 uStack_518;
+    void *puStack_520;
+    uint64_t uStack_518;
     longlong ***ppplStack_510;
     longlong ***ppplStack_508;
-    undefined *puStack_4f8;
-    undefined1 *puStack_4f0;
-    undefined4 uStack_4e8;
-    undefined1 auStack_4e0 [136];
-    undefined *puStack_458;
+    void *puStack_4f8;
+    int8_t *puStack_4f0;
+    int32_t uStack_4e8;
+    int8_t auStack_4e0 [136];
+    void *puStack_458;
     byte *pbStack_450;
     int iStack_448;
     byte abStack_440 [72];
-    undefined *puStack_3f8;
-    undefined *puStack_3f0;
+    void *puStack_3f8;
+    void *puStack_3f0;
     int iStack_3e8;
-    undefined *puStack_398;
-    undefined *puStack_390;
+    void *puStack_398;
+    void *puStack_390;
     int iStack_388;
-    undefined *puStack_338;
+    void *puStack_338;
     byte *pbStack_330;
     int iStack_328;
-    undefined *puStack_2d8;
+    void *puStack_2d8;
     byte *pbStack_2d0;
     int iStack_2c8;
-    undefined *puStack_278;
+    void *puStack_278;
     longlong lStack_270;
     int iStack_268;
-    undefined *puStack_218;
+    void *puStack_218;
     longlong lStack_210;
     int iStack_208;
-    undefined *puStack_1b8;
+    void *puStack_1b8;
     longlong lStack_1b0;
     int iStack_1a8;
-    undefined *apuStack_158 [12];
-    undefined *apuStack_f8 [20];
+    void *apuStack_158 [12];
+    void *apuStack_f8 [20];
     ulonglong uStack_58;
     
     // 初始化系统参数
     uStack_518 = 0xfffffffffffffffe;
     uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_5d8;
     uStack_578 = 0;
-    uVar9 = *(undefined8 *)(param_1 + 0xe20);
-    uVar15 = *(undefined4 *)(param_1 + 0xe1c);
+    uVar9 = *(uint64_t *)(param_1 + 0xe20);
+    uVar15 = *(int32_t *)(param_1 + 0xe1c);
     ppplStack_5b8 = (longlong ***)&UNK_180a3c3e0;
     uStack_5a0 = 0;
-    puStack_5b0 = (undefined1 *)0x0;
+    puStack_5b0 = (int8_t *)0x0;
     uStack_5a8 = 0;
     cStack_560 = param_3;
     
@@ -493,7 +493,7 @@ void FUN_1803aad40(longlong param_1, longlong param_2, char param_3)
     FUN_1806277c0(&ppplStack_5b8, _DAT_180bf9220);
     if (0 < _DAT_180bf9220) {
         puVar12 = &DAT_18098bc73;
-        if (_DAT_180bf9218 != (undefined *)0x0) {
+        if (_DAT_180bf9218 != (void *)0x0) {
             puVar12 = _DAT_180bf9218;
         }
         // 复制配置数据
@@ -501,40 +501,40 @@ void FUN_1803aad40(longlong param_1, longlong param_2, char param_3)
     }
     
     // 处理系统配置
-    if ((_DAT_180bf9218 != (undefined *)0x0) && (uStack_5a8 = 0, puStack_5b0 != (undefined1 *)0x0)) {
+    if ((_DAT_180bf9218 != (void *)0x0) && (uStack_5a8 = 0, puStack_5b0 != (int8_t *)0x0)) {
         *puStack_5b0 = 0;
     }
     
     // 处理系统参数
     uVar15 = FUN_180418550(uVar9, &ppplStack_5b8, uVar15);
-    *(undefined4 *)(param_2 + 0x98) = uVar15;
+    *(int32_t *)(param_2 + 0x98) = uVar15;
     *(int *)(param_2 + 0x340) = *(int *)(param_2 + 0x340) + 1;
     *(uint *)(param_2 + 0x30c) = *(uint *)(param_2 + 0x30c) & 0xfffffffe;
     
     // 清理系统资源
     ppplStack_5b8 = (longlong ***)&UNK_180a3c3e0;
-    if (puStack_5b0 != (undefined1 *)0x0) {
+    if (puStack_5b0 != (int8_t *)0x0) {
         FUN_18064e900();
     }
     
     // 重置系统状态
-    puStack_5b0 = (undefined1 *)0x0;
+    puStack_5b0 = (int8_t *)0x0;
     uStack_5a0 = uStack_5a0 & 0xffffffff00000000;
     ppplStack_5b8 = (longlong ***)&UNK_18098bcb0;
     
     // 处理系统配置和状态
-    uVar9 = *(undefined8 *)(param_1 + 0xe20);
-    uVar15 = *(undefined4 *)(param_1 + 0xe1c);
+    uVar9 = *(uint64_t *)(param_1 + 0xe20);
+    uVar15 = *(int32_t *)(param_1 + 0xe1c);
     puStack_598 = &UNK_180a3c3e0;
     uStack_580 = (code *)0x0;
-    puStack_590 = (undefined1 *)0x0;
+    puStack_590 = (int8_t *)0x0;
     uStack_588 = (code *)((ulonglong)uStack_588._4_4_ << 0x20);
     
     // 初始化系统配置
     FUN_1806277c0(&puStack_598, _DAT_180bf9460);
     if (0 < _DAT_180bf9460) {
         puVar12 = &DAT_18098bc73;
-        if (_DAT_180bf9458 != (undefined *)0x0) {
+        if (_DAT_180bf9458 != (void *)0x0) {
             puVar12 = _DAT_180bf9458;
         }
         // 复制配置数据
@@ -542,26 +542,26 @@ void FUN_1803aad40(longlong param_1, longlong param_2, char param_3)
     }
     
     // 处理系统配置
-    if ((_DAT_180bf9458 != (undefined *)0x0) &&
+    if ((_DAT_180bf9458 != (void *)0x0) &&
         (uStack_588 = (code *)((ulonglong)uStack_588 & 0xffffffff00000000),
-         puStack_590 != (undefined1 *)0x0)) {
+         puStack_590 != (int8_t *)0x0)) {
         *puStack_590 = 0;
     }
     
     // 处理系统参数
     uVar15 = FUN_180418550(uVar9, &puStack_598, uVar15);
-    *(undefined4 *)(param_2 + 0x9c) = uVar15;
+    *(int32_t *)(param_2 + 0x9c) = uVar15;
     *(uint *)(param_2 + 0x30c) = *(uint *)(param_2 + 0x30c) & 0xfffffff9;
     *(int *)(param_2 + 0x340) = *(int *)(param_2 + 0x340) + 1;
     
     // 清理系统资源
     puStack_598 = &UNK_180a3c3e0;
-    if (puStack_590 != (undefined1 *)0x0) {
+    if (puStack_590 != (int8_t *)0x0) {
         FUN_18064e900();
     }
     
     // 重置系统状态
-    puStack_590 = (undefined1 *)0x0;
+    puStack_590 = (int8_t *)0x0;
     uStack_580 = (code *)((ulonglong)uStack_580 & 0xffffffff00000000);
     puStack_598 = &UNK_18098bcb0;
     
@@ -570,30 +570,30 @@ void FUN_1803aad40(longlong param_1, longlong param_2, char param_3)
     
     // 系统时间处理和转换
     fVar16 = 0.004166667;
-    puVar6 = (undefined4 *)
+    puVar6 = (int32_t *)
              func_0x0001802bfbb0(param_1 + 8, &ppplStack_5b8, *(float *)(param_1 + 0xe1c) * 0.004166667);
     uVar15 = puVar6[1];
     uVar4 = puVar6[2];
     uVar5 = puVar6[3];
-    *(undefined4 *)(param_2 + 0xc4) = *puVar6;
-    *(undefined4 *)(param_2 + 200) = uVar15;
-    *(undefined4 *)(param_2 + 0xcc) = uVar4;
-    *(undefined4 *)(param_2 + 0xd0) = uVar5;
+    *(int32_t *)(param_2 + 0xc4) = *puVar6;
+    *(int32_t *)(param_2 + 200) = uVar15;
+    *(int32_t *)(param_2 + 0xcc) = uVar4;
+    *(int32_t *)(param_2 + 0xd0) = uVar5;
     *(int *)(param_2 + 0x340) = *(int *)(param_2 + 0x340) + 1;
     iVar2 = *(int *)(param_2 + 0x340);
     *(uint *)(param_2 + 0x30c) = *(uint *)(param_2 + 0x30c) & 0xfffffffb;
     uVar14 = *(uint *)(param_2 + 0x30c);
     
     // 处理多个系统数据转换
-    puVar6 = (undefined4 *)
+    puVar6 = (int32_t *)
              func_0x0001802bfbb0(param_1 + 0x368, &ppplStack_5b8, *(float *)(param_1 + 0xe1c) * fVar16);
     uVar15 = puVar6[1];
     uVar4 = puVar6[2];
     uVar5 = puVar6[3];
-    *(undefined4 *)(param_2 + 0xf4) = *puVar6;
-    *(undefined4 *)(param_2 + 0xf8) = uVar15;
-    *(undefined4 *)(param_2 + 0xfc) = uVar4;
-    *(undefined4 *)(param_2 + 0x100) = uVar5;
+    *(int32_t *)(param_2 + 0xf4) = *puVar6;
+    *(int32_t *)(param_2 + 0xf8) = uVar15;
+    *(int32_t *)(param_2 + 0xfc) = uVar4;
+    *(int32_t *)(param_2 + 0x100) = uVar5;
     uVar14 = uVar14 & 0xfffffffb;
     *(uint *)(param_2 + 0x30c) = uVar14;
     *(int *)(param_2 + 0x340) = iVar2 + 1;

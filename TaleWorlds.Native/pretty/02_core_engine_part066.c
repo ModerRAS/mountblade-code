@@ -2,8 +2,8 @@
 
 // 02_core_engine_part066.c - 9 个函数
 
-// 函数: void FUN_18009d7b5(undefined8 param_1,float *param_2)
-void FUN_18009d7b5(undefined8 param_1,float *param_2)
+// 函数: void FUN_18009d7b5(uint64_t param_1,float *param_2)
+void FUN_18009d7b5(uint64_t param_1,float *param_2)
 
 {
   float fVar1;
@@ -160,8 +160,8 @@ void FUN_18009d7b5(undefined8 param_1,float *param_2)
 
 
 
-// 函数: void FUN_18009d87b(undefined8 param_1,longlong param_2)
-void FUN_18009d87b(undefined8 param_1,longlong param_2)
+// 函数: void FUN_18009d87b(uint64_t param_1,longlong param_2)
+void FUN_18009d87b(uint64_t param_1,longlong param_2)
 
 {
   float fVar1;
@@ -272,8 +272,8 @@ void FUN_18009d87b(undefined8 param_1,longlong param_2)
 
 
 
-// 函数: void FUN_18009d885(undefined8 param_1,longlong param_2)
-void FUN_18009d885(undefined8 param_1,longlong param_2)
+// 函数: void FUN_18009d885(uint64_t param_1,longlong param_2)
+void FUN_18009d885(uint64_t param_1,longlong param_2)
 
 {
   float fVar1;
@@ -383,8 +383,8 @@ void FUN_18009d8f0(longlong *param_1,longlong *param_2,longlong *param_3,longlon
   float extraout_XMM0_Da;
   longlong lStackX_8;
   longlong *plStackX_10;
-  undefined1 auStackX_18 [8];
-  undefined1 auStackX_20 [8];
+  int8_t auStackX_18 [8];
+  int8_t auStackX_20 [8];
   
   lVar7 = (longlong)param_2 - (longlong)param_1 >> 3;
   plStackX_10 = param_2;
@@ -407,7 +407,7 @@ void FUN_18009d8f0(longlong *param_1,longlong *param_2,longlong *param_3,longlon
       lVar8 = *plVar12;
       lVar2 = *param_1;
       plVar4 = (longlong *)FUN_180058080(param_4 + 0x90,auStackX_18,lVar8 + 0x20);
-      plVar4 = (longlong *)FUN_180058080(*(undefined4 *)(*plVar4 + 0x40),auStackX_20,lVar2 + 0x20);
+      plVar4 = (longlong *)FUN_180058080(*(int32_t *)(*plVar4 + 0x40),auStackX_20,lVar2 + 0x20);
       if (extraout_XMM0_Da == *(float *)(*plVar4 + 0x40)) {
         if (*(int *)(lVar8 + 0x30) == 0) {
           bVar3 = false;
@@ -457,14 +457,14 @@ void FUN_18009d8f0(longlong *param_1,longlong *param_2,longlong *param_3,longlon
 
 
 
-// 函数: void FUN_18009daf0(int *param_1,int *param_2,int *param_3,undefined8 *param_4)
-void FUN_18009daf0(int *param_1,int *param_2,int *param_3,undefined8 *param_4)
+// 函数: void FUN_18009daf0(int *param_1,int *param_2,int *param_3,uint64_t *param_4)
+void FUN_18009daf0(int *param_1,int *param_2,int *param_3,uint64_t *param_4)
 
 {
   int iVar1;
-  undefined8 *puVar2;
-  undefined8 *puVar3;
-  undefined8 *puVar4;
+  uint64_t *puVar2;
+  uint64_t *puVar3;
+  uint64_t *puVar4;
   longlong lVar5;
   int *piVar6;
   longlong lVar7;
@@ -489,42 +489,42 @@ void FUN_18009daf0(int *param_1,int *param_2,int *param_3,undefined8 *param_4)
   piVar6 = param_2;
   if (uVar8 != 0) {
     do {
-      puVar4 = (undefined8 *)param_4[2];
+      puVar4 = (uint64_t *)param_4[2];
       iVar1 = *param_1;
       aiStackX_8[0] = *piVar6;
       puVar2 = puVar4;
       puVar3 = param_4;
-      if (puVar4 == (undefined8 *)0x0) {
+      if (puVar4 == (uint64_t *)0x0) {
 LAB_18009dbde:
         puVar3 = param_4;
       }
       else {
         do {
           if (*(int *)(puVar2 + 4) < iVar1) {
-            puVar2 = (undefined8 *)*puVar2;
+            puVar2 = (uint64_t *)*puVar2;
           }
           else {
             puVar3 = puVar2;
-            puVar2 = (undefined8 *)puVar2[1];
+            puVar2 = (uint64_t *)puVar2[1];
           }
-        } while (puVar2 != (undefined8 *)0x0);
+        } while (puVar2 != (uint64_t *)0x0);
         if ((puVar3 == param_4) || (iVar1 < *(int *)(puVar3 + 4))) goto LAB_18009dbde;
       }
       puVar2 = param_4;
-      if (puVar4 == (undefined8 *)0x0) {
+      if (puVar4 == (uint64_t *)0x0) {
 LAB_18009dc19:
         puVar2 = param_4;
       }
       else {
         do {
           if (*(int *)(puVar4 + 4) < aiStackX_8[0]) {
-            puVar4 = (undefined8 *)*puVar4;
+            puVar4 = (uint64_t *)*puVar4;
           }
           else {
             puVar2 = puVar4;
-            puVar4 = (undefined8 *)puVar4[1];
+            puVar4 = (uint64_t *)puVar4[1];
           }
-        } while (puVar4 != (undefined8 *)0x0);
+        } while (puVar4 != (uint64_t *)0x0);
         if ((puVar2 == param_4) || (aiStackX_8[0] < *(int *)(puVar2 + 4))) goto LAB_18009dc19;
       }
       if (*(float *)((longlong)puVar3 + 0x24) < *(float *)((longlong)puVar2 + 0x24)) {

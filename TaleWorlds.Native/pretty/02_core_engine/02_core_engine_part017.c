@@ -4,8 +4,8 @@
 // 本文件包含33个函数，主要负责内存管理、对象清理和容器操作
 
 // 全局变量声明
-undefined8 *UNDEFINED_POINTER_18098bcb0;  // 未定义指针常量
-undefined8 *UNDEFINED_POINTER_180a3c3e0;  // 未定义指针常量
+uint64_t *UNDEFINED_POINTER_18098bcb0;  // 未定义指针常量
+uint64_t *UNDEFINED_POINTER_180a3c3e0;  // 未定义指针常量
 longlong *MEMORY_ALLOCATOR_180c8ed18;     // 内存分配器
 void **EXCEPTION_LIST;                     // 异常列表
 
@@ -19,10 +19,10 @@ void cleanup_function_pointer_array(longlong *function_array)
   longlong original_value1;
   longlong original_value2;
   longlong original_value3;
-  undefined8 *function_start;
-  undefined8 *function_end;
+  uint64_t *function_start;
+  uint64_t *function_end;
   longlong original_value4;
-  undefined8 *current_function;
+  uint64_t *current_function;
   
   // 调用初始化函数
   initialize_cleanup_process();
@@ -38,9 +38,9 @@ void cleanup_function_pointer_array(longlong *function_array)
   *(int *)(function_array + 3) = (int)function_array[3];
   
   // 恢复原始值以获取函数指针范围
-  function_start = (undefined8 *)*function_array;
+  function_start = (uint64_t *)*function_array;
   *function_array = original_value1;
-  function_end = (undefined8 *)function_array[1];
+  function_end = (uint64_t *)function_array[1];
   function_array[1] = original_value2;
   function_array[2] = original_value3;
   *(int *)(function_array + 3) = (int)original_value4;
@@ -51,7 +51,7 @@ void cleanup_function_pointer_array(longlong *function_array)
   }
   
   // 释放函数指针数组内存
-  if (function_start != (undefined8 *)0x0) {
+  if (function_start != (uint64_t *)0x0) {
     release_memory_block(function_start);
   }
   return;
@@ -65,9 +65,9 @@ void cleanup_function_pointer_array(longlong *function_array)
  * @param param3 参数3
  * @param param4 参数4
  */
-void process_engine_object(longlong object_handle, undefined8 param2, undefined8 param3, undefined8 param4)
+void process_engine_object(longlong object_handle, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-  process_engine_subobject(object_handle, *(undefined8 *)(object_handle + 0x10), param3, param4, 0xfffffffffffffffe);
+  process_engine_subobject(object_handle, *(uint64_t *)(object_handle + 0x10), param3, param4, 0xfffffffffffffffe);
   return;
 }
 
@@ -79,12 +79,12 @@ void process_engine_object(longlong object_handle, undefined8 param2, undefined8
  * @param param3 参数3
  * @param param4 参数4
  */
-void destroy_engine_object(longlong object_id, undefined8 param2, undefined8 param3, undefined8 param4)
+void destroy_engine_object(longlong object_id, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-  undefined8 *object_pointer;
+  uint64_t *object_pointer;
   
-  object_pointer = *(undefined8 **)(object_id + 0x10);
-  if (object_pointer != (undefined8 *)0x0) {
+  object_pointer = *(uint64_t **)(object_id + 0x10);
+  if (object_pointer != (uint64_t *)0x0) {
     process_object_destruction(object_id, *object_pointer, param3, param4, 0xfffffffffffffffe);
     cleanup_object_references(object_pointer);
     release_memory_block(object_pointer);
@@ -100,7 +100,7 @@ void destroy_engine_object(longlong object_id, undefined8 param2, undefined8 par
  * @param search_criteria 搜索条件
  * @return 搜索结果指针
  */
-undefined8 *find_object_in_container(undefined8 *container, undefined8 *search_result, longlong search_criteria)
+uint64_t *find_object_in_container(uint64_t *container, uint64_t *search_result, longlong search_criteria)
 {
   byte comparison_byte;
   bool match_found;
@@ -108,19 +108,19 @@ undefined8 *find_object_in_container(undefined8 *container, undefined8 *search_r
   uint char_value;
   int comparison_result;
   longlong offset;
-  undefined8 *current_item;
-  undefined8 *next_item;
-  undefined8 *matched_item;
-  undefined8 *previous_item;
+  uint64_t *current_item;
+  uint64_t *next_item;
+  uint64_t *matched_item;
+  uint64_t *previous_item;
   
   // 检查容器是否为空
-  if ((undefined8 *)container[2] != (undefined8 *)0x0) {
-    current_item = (undefined8 *)container[2];
+  if ((uint64_t *)container[2] != (uint64_t *)0x0) {
+    current_item = (uint64_t *)container[2];
     previous_item = container;
     do {
       // 根据搜索条件进行匹配
       if (*(int *)(search_criteria + 0x10) == 0) {
-        next_item = (undefined8 *)current_item[1];
+        next_item = (uint64_t *)current_item[1];
         match_found = false;
       }
       else {
@@ -139,11 +139,11 @@ undefined8 *find_object_in_container(undefined8 *container, undefined8 *search_r
           } while (char_value != 0);
           match_found = 0 < comparison_result;
           if (comparison_result < 1) {
-            next_item = (undefined8 *)current_item[1];
+            next_item = (uint64_t *)current_item[1];
             goto SEARCH_COMPLETE;
           }
         }
-        next_item = (undefined8 *)*current_item;
+        next_item = (uint64_t *)*current_item;
       }
 SEARCH_COMPLETE:
       matched_item = current_item;
@@ -152,7 +152,7 @@ SEARCH_COMPLETE:
       }
       current_item = next_item;
       previous_item = matched_item;
-    } while (next_item != (undefined8 *)0x0);
+    } while (next_item != (uint64_t *)0x0);
     
     // 检查是否找到匹配项
     if (matched_item != container) {
@@ -192,7 +192,7 @@ void cleanup_ulonglong_array(ulonglong *array_pointer)
   int *reference_count;
   ulonglong original_value1;
   ulonglong original_value2;
-  undefined8 *memory_block;
+  uint64_t *memory_block;
   ulonglong original_value3;
   longlong calculated_offset;
   ulonglong base_address;
@@ -209,13 +209,13 @@ void cleanup_ulonglong_array(ulonglong *array_pointer)
   original_value1 = array_pointer[3];
   *(int *)(array_pointer + 3) = (int)array_pointer[3];
   
-  memory_block = (undefined8 *)*array_pointer;
+  memory_block = (uint64_t *)*array_pointer;
   *array_pointer = base_address;
   array_pointer[1] = original_value2;
   array_pointer[2] = original_value3;
   *(int *)(array_pointer + 3) = (int)original_value1;
   
-  if (memory_block == (undefined8 *)0x0) {
+  if (memory_block == (uint64_t *)0x0) {
     return;
   }
   
@@ -228,8 +228,8 @@ void cleanup_ulonglong_array(ulonglong *array_pointer)
     // 检查是否为异常处理块
     if ((*(void ***)(masked_address + 0x70) == &EXCEPTION_LIST) && (*(char *)(calculated_offset + 0xe) == '\0')) {
       // 执行异常处理块的清理
-      *memory_block = *(undefined8 *)(calculated_offset + 0x20);
-      *(undefined8 **)(calculated_offset + 0x20) = memory_block;
+      *memory_block = *(uint64_t *)(calculated_offset + 0x20);
+      *(uint64_t **)(calculated_offset + 0x20) = memory_block;
       reference_count = (int *)(calculated_offset + 0x18);
       *reference_count = *reference_count + -1;
       if (*reference_count == 0) {
@@ -255,9 +255,9 @@ void cleanup_ulonglong_array(ulonglong *array_pointer)
  * @param param3 参数3
  * @param param4 参数4
  */
-void cleanup_object_tree(undefined8 root_handle, undefined8 *node_pointer, undefined8 param3, undefined8 param4)
+void cleanup_object_tree(uint64_t root_handle, uint64_t *node_pointer, uint64_t param3, uint64_t param4)
 {
-  if (node_pointer != (undefined8 *)0x0) {
+  if (node_pointer != (uint64_t *)0x0) {
     cleanup_object_tree(root_handle, *node_pointer, param3, param4, 0xfffffffffffffffe);
     if ((longlong *)node_pointer[0x17] != (longlong *)0x0) {
       (**(code **)(*(longlong *)node_pointer[0x17] + 0x38))();
@@ -276,9 +276,9 @@ void cleanup_object_tree(undefined8 root_handle, undefined8 *node_pointer, undef
  * @param param3 参数3
  * @param param4 参数4
  */
-void cleanup_complex_structure(undefined8 structure_handle, undefined8 *data_pointer, undefined8 param3, undefined8 param4)
+void cleanup_complex_structure(uint64_t structure_handle, uint64_t *data_pointer, uint64_t param3, uint64_t param4)
 {
-  if (data_pointer == (undefined8 *)0x0) {
+  if (data_pointer == (uint64_t *)0x0) {
     return;
   }
   
@@ -292,7 +292,7 @@ void cleanup_complex_structure(undefined8 structure_handle, undefined8 *data_poi
     release_memory_block();
   }
   data_pointer[5] = 0;
-  *(undefined4 *)(data_pointer + 7) = 0;
+  *(int32_t *)(data_pointer + 7) = 0;
   data_pointer[4] = &UNDEFINED_POINTER_18098bcb0;
   release_memory_block(data_pointer);
 }
@@ -305,9 +305,9 @@ void cleanup_complex_structure(undefined8 structure_handle, undefined8 *data_poi
  * @param param3 参数3
  * @param param4 参数4
  */
-void cleanup_simple_structure(undefined8 structure_handle, undefined8 *data_pointer, undefined8 param3, undefined8 param4)
+void cleanup_simple_structure(uint64_t structure_handle, uint64_t *data_pointer, uint64_t param3, uint64_t param4)
 {
-  if (data_pointer == (undefined8 *)0x0) {
+  if (data_pointer == (uint64_t *)0x0) {
     return;
   }
   
@@ -320,7 +320,7 @@ void cleanup_simple_structure(undefined8 structure_handle, undefined8 *data_poin
     release_memory_block();
   }
   data_pointer[5] = 0;
-  *(undefined4 *)(data_pointer + 7) = 0;
+  *(int32_t *)(data_pointer + 7) = 0;
   data_pointer[4] = &UNDEFINED_POINTER_18098bcb0;
   release_memory_block(data_pointer);
 }
@@ -333,9 +333,9 @@ void cleanup_simple_structure(undefined8 structure_handle, undefined8 *data_poin
  * @param param3 参数3
  * @param param4 参数4
  */
-void cleanup_extended_structure(undefined8 structure_handle, undefined8 *data_pointer, undefined8 param3, undefined8 param4)
+void cleanup_extended_structure(uint64_t structure_handle, uint64_t *data_pointer, uint64_t param3, uint64_t param4)
 {
-  if (data_pointer == (undefined8 *)0x0) {
+  if (data_pointer == (uint64_t *)0x0) {
     return;
   }
   
@@ -353,7 +353,7 @@ void cleanup_extended_structure(undefined8 structure_handle, undefined8 *data_po
     release_memory_block();
   }
   data_pointer[5] = 0;
-  *(undefined4 *)(data_pointer + 7) = 0;
+  *(int32_t *)(data_pointer + 7) = 0;
   data_pointer[4] = &UNDEFINED_POINTER_18098bcb0;
   release_memory_block(data_pointer);
 }
@@ -364,23 +364,23 @@ void cleanup_extended_structure(undefined8 structure_handle, undefined8 *data_po
  * @param array_header 数组头部指针
  * @param new_item_data 新项目数据
  */
-void resize_array(undefined8 *array_header, longlong new_item_data)
+void resize_array(uint64_t *array_header, longlong new_item_data)
 {
-  undefined8 *new_array_pointer;
-  undefined8 *old_array_start;
-  undefined8 *old_array_end;
-  undefined8 *new_array_item;
+  uint64_t *new_array_pointer;
+  uint64_t *old_array_start;
+  uint64_t *old_array_end;
+  uint64_t *new_array_item;
   longlong old_size;
   longlong new_size;
-  undefined8 *current_item;
+  uint64_t *current_item;
   longlong item_offset;
-  undefined8 *item_pointer;
+  uint64_t *item_pointer;
   
   // 计算当前数组大小
-  new_array_pointer = (undefined8 *)array_header[1];
-  old_array_start = (undefined8 *)*array_header;
+  new_array_pointer = (uint64_t *)array_header[1];
+  old_array_start = (uint64_t *)*array_header;
   old_size = ((longlong)new_array_pointer - (longlong)old_array_start) / 0x28;
-  new_array_item = (undefined8 *)0x0;
+  new_array_item = (uint64_t *)0x0;
   
   // 计算新的数组大小
   if (old_size == 0) {
@@ -392,13 +392,13 @@ void resize_array(undefined8 *array_header, longlong new_item_data)
   }
   
   // 分配新的数组空间
-  new_array_item = (undefined8 *)
+  new_array_item = (uint64_t *)
                   allocate_memory(MEMORY_ALLOCATOR_180c8ed18, new_size * 0x28, 
-                                 *(undefined1 *)(array_header + 3), old_array_start, 0xfffffffffffffffe);
+                                 *(int8_t *)(array_header + 3), old_array_start, 0xfffffffffffffffe);
   
   // 重新计算指针
-  new_array_pointer = (undefined8 *)array_header[1];
-  old_array_start = (undefined8 *)*array_header;
+  new_array_pointer = (uint64_t *)array_header[1];
+  old_array_start = (uint64_t *)*array_header;
   
 ALLOCATION_COMPLETE:
   new_array_item = new_array_item;
@@ -410,24 +410,24 @@ ALLOCATION_COMPLETE:
     do {
       // 初始化新数组项
       *new_array_item = &UNDEFINED_POINTER_18098bcb0;
-      *(undefined8 *)(item_offset + (longlong)old_array_start) = 0;
-      *(undefined4 *)(item_offset + 8 + (longlong)old_array_start) = 0;
+      *(uint64_t *)(item_offset + (longlong)old_array_start) = 0;
+      *(int32_t *)(item_offset + 8 + (longlong)old_array_start) = 0;
       *new_array_item = &UNDEFINED_POINTER_180a3c3e0;
-      *(undefined8 *)(item_offset + 0x10 + (longlong)old_array_start) = 0;
-      *(undefined8 *)(item_offset + (longlong)old_array_start) = 0;
-      *(undefined4 *)(item_offset + 8 + (longlong)old_array_start) = 0;
+      *(uint64_t *)(item_offset + 0x10 + (longlong)old_array_start) = 0;
+      *(uint64_t *)(item_offset + (longlong)old_array_start) = 0;
+      *(int32_t *)(item_offset + 8 + (longlong)old_array_start) = 0;
       
       // 复制数据
-      *(undefined4 *)(item_offset + 8 + (longlong)old_array_start) = *(undefined4 *)(old_array_start + 1);
-      *(undefined8 *)(item_offset + (longlong)old_array_start) = *old_array_start;
-      *(undefined4 *)(item_offset + 0x14 + (longlong)old_array_start) = *(undefined4 *)((longlong)old_array_start + 0x14);
-      *(undefined4 *)(item_offset + 0x10 + (longlong)old_array_start) = *(undefined4 *)(old_array_start + 2);
+      *(int32_t *)(item_offset + 8 + (longlong)old_array_start) = *(int32_t *)(old_array_start + 1);
+      *(uint64_t *)(item_offset + (longlong)old_array_start) = *old_array_start;
+      *(int32_t *)(item_offset + 0x14 + (longlong)old_array_start) = *(int32_t *)((longlong)old_array_start + 0x14);
+      *(int32_t *)(item_offset + 0x10 + (longlong)old_array_start) = *(int32_t *)(old_array_start + 2);
       
       // 清理原数组项
-      *(undefined4 *)(old_array_start + 1) = 0;
+      *(int32_t *)(old_array_start + 1) = 0;
       *old_array_start = 0;
       old_array_start[2] = 0;
-      *(undefined4 *)(item_offset + 0x18 + (longlong)old_array_start) = *(undefined4 *)(old_array_start + 3);
+      *(int32_t *)(item_offset + 0x18 + (longlong)old_array_start) = *(int32_t *)(old_array_start + 3);
       
       new_array_item = new_array_item + 5;
       item_pointer = old_array_start + 4;
@@ -438,25 +438,25 @@ ALLOCATION_COMPLETE:
   // 添加新项目
   *new_array_item = &UNDEFINED_POINTER_18098bcb0;
   new_array_item[1] = 0;
-  *(undefined4 *)(new_array_item + 2) = 0;
+  *(int32_t *)(new_array_item + 2) = 0;
   *new_array_item = &UNDEFINED_POINTER_180a3c3e0;
   new_array_item[3] = 0;
   new_array_item[1] = 0;
-  *(undefined4 *)(new_array_item + 2) = 0;
-  *(undefined4 *)(new_array_item + 2) = *(undefined4 *)(new_item_data + 0x10);
-  new_array_item[1] = *(undefined8 *)(new_item_data + 8);
-  *(undefined4 *)((longlong)new_array_item + 0x1c) = *(undefined4 *)(new_item_data + 0x1c);
-  *(undefined4 *)(new_array_item + 3) = *(undefined4 *)(new_item_data + 0x18);
+  *(int32_t *)(new_array_item + 2) = 0;
+  *(int32_t *)(new_array_item + 2) = *(int32_t *)(new_item_data + 0x10);
+  new_array_item[1] = *(uint64_t *)(new_item_data + 8);
+  *(int32_t *)((longlong)new_array_item + 0x1c) = *(int32_t *)(new_item_data + 0x1c);
+  *(int32_t *)(new_array_item + 3) = *(int32_t *)(new_item_data + 0x18);
   
   // 清理源数据
-  *(undefined4 *)(new_item_data + 0x10) = 0;
-  *(undefined8 *)(new_item_data + 8) = 0;
-  *(undefined8 *)(new_item_data + 0x18) = 0;
-  *(undefined4 *)(new_array_item + 4) = *(undefined4 *)(new_item_data + 0x20);
+  *(int32_t *)(new_item_data + 0x10) = 0;
+  *(uint64_t *)(new_item_data + 8) = 0;
+  *(uint64_t *)(new_item_data + 0x18) = 0;
+  *(int32_t *)(new_array_item + 4) = *(int32_t *)(new_item_data + 0x20);
   
   // 清理旧数组
-  new_array_pointer = (undefined8 *)array_header[1];
-  old_array_start = (undefined8 *)*array_header;
+  new_array_pointer = (uint64_t *)array_header[1];
+  old_array_start = (uint64_t *)*array_header;
   if (old_array_start != new_array_pointer) {
     do {
       *old_array_start = &UNDEFINED_POINTER_180a3c3e0;
@@ -464,15 +464,15 @@ ALLOCATION_COMPLETE:
         release_memory_block();
       }
       old_array_start[1] = 0;
-      *(undefined4 *)(old_array_start + 3) = 0;
+      *(int32_t *)(old_array_start + 3) = 0;
       *old_array_start = &UNDEFINED_POINTER_18098bcb0;
       old_array_start = old_array_start + 5;
     } while (old_array_start != new_array_pointer);
-    old_array_start = (undefined8 *)*array_header;
+    old_array_start = (uint64_t *)*array_header;
   }
   
   // 更新数组头部信息
-  if (old_array_start == (undefined8 *)0x0) {
+  if (old_array_start == (uint64_t *)0x0) {
     *array_header = new_array_item;
     array_header[1] = new_array_item + 5;
     array_header[2] = new_array_item + new_size * 5;
@@ -504,9 +504,9 @@ void execute_object_callback(longlong object_pointer)
  * @param param3 参数3
  * @param param4 参数4
  */
-void process_object_destruction(undefined8 object_id, undefined8 *object_pointer, undefined8 param3, undefined8 param4)
+void process_object_destruction(uint64_t object_id, uint64_t *object_pointer, uint64_t param3, uint64_t param4)
 {
-  if (object_pointer == (undefined8 *)0x0) {
+  if (object_pointer == (uint64_t *)0x0) {
     return;
   }
   
@@ -524,7 +524,7 @@ void process_object_destruction(undefined8 object_id, undefined8 *object_pointer
     release_memory_block();
   }
   object_pointer[5] = 0;
-  *(undefined4 *)(object_pointer + 7) = 0;
+  *(int32_t *)(object_pointer + 7) = 0;
   object_pointer[4] = &UNDEFINED_POINTER_18098bcb0;
   release_memory_block(object_pointer);
 }
@@ -535,9 +535,9 @@ void process_object_destruction(undefined8 object_id, undefined8 *object_pointer
  * @param object_id 对象ID
  * @param resource_pointer 资源指针
  */
-void release_object_resources(undefined8 object_id, undefined8 *resource_pointer)
+void release_object_resources(uint64_t object_id, uint64_t *resource_pointer)
 {
-  if (resource_pointer != (undefined8 *)0x0) {
+  if (resource_pointer != (uint64_t *)0x0) {
     release_object_resources(object_id, *resource_pointer);
     cleanup_resource_handles(resource_pointer);
     release_memory_block(resource_pointer);
@@ -550,9 +550,9 @@ void release_object_resources(undefined8 object_id, undefined8 *resource_pointer
  * 清理指定的对象实例
  * @param object_id 对象ID
  */
-void cleanup_object_instance(undefined8 object_id)
+void cleanup_object_instance(uint64_t object_id)
 {
-  undefined8 *resource_pointer;
+  uint64_t *resource_pointer;
   
   release_object_resources(object_id, *resource_pointer);
   cleanup_resource_handles();
@@ -574,18 +574,18 @@ void empty_operation(void)
  * @param buffer_handle 缓冲区句柄
  * @param buffer_pointer 缓冲区指针
  */
-void cleanup_buffer(undefined8 buffer_handle, longlong buffer_pointer)
+void cleanup_buffer(uint64_t buffer_handle, longlong buffer_pointer)
 {
   if (*(longlong *)(buffer_pointer + 0x40) != 0) {
     release_memory_block();
   }
-  *(undefined8 *)(buffer_pointer + 0x20) = &UNDEFINED_POINTER_180a3c3e0;
+  *(uint64_t *)(buffer_pointer + 0x20) = &UNDEFINED_POINTER_180a3c3e0;
   if (*(longlong *)(buffer_pointer + 0x28) != 0) {
     release_memory_block();
   }
-  *(undefined8 *)(buffer_pointer + 0x28) = 0;
-  *(undefined4 *)(buffer_pointer + 0x38) = 0;
-  *(undefined8 *)(buffer_pointer + 0x20) = &UNDEFINED_POINTER_18098bcb0;
+  *(uint64_t *)(buffer_pointer + 0x28) = 0;
+  *(int32_t *)(buffer_pointer + 0x38) = 0;
+  *(uint64_t *)(buffer_pointer + 0x20) = &UNDEFINED_POINTER_18098bcb0;
   if (buffer_pointer != 0) {
     release_memory_block(buffer_pointer);
   }
@@ -601,15 +601,15 @@ void cleanup_buffer(undefined8 buffer_handle, longlong buffer_pointer)
  */
 void manage_container_space(longlong *container_header, longlong start_index, longlong end_index)
 {
-  undefined8 *item_pointer;
+  uint64_t *item_pointer;
   longlong new_memory;
-  undefined8 *new_container_start;
-  undefined8 *current_container_start;
-  undefined8 *current_container_end;
+  uint64_t *new_container_start;
+  uint64_t *current_container_start;
+  uint64_t *current_container_end;
   ulonglong required_size;
   ulonglong current_size;
   longlong item_size;
-  undefined8 *new_container_end;
+  uint64_t *new_container_end;
   
   // 计算需要的空间大小
   required_size = end_index - start_index >> 5;
@@ -631,17 +631,17 @@ void manage_container_space(longlong *container_header, longlong start_index, lo
     }
     
     // 清理旧容器
-    item_pointer = (undefined8 *)container_header[1];
-    current_container_end = (undefined8 *)*container_header;
+    item_pointer = (uint64_t *)container_header[1];
+    current_container_end = (uint64_t *)*container_header;
     if (current_container_start != current_container_end) {
       do {
         (**(code **)*current_container_start)(current_container_start, 0);
         current_container_start = current_container_start + 4;
       } while (current_container_start != current_container_end);
-      current_container_start = (undefined8 *)*container_header;
+      current_container_start = (uint64_t *)*container_header;
     }
     
-    if (current_container_start != (undefined8 *)0x0) {
+    if (current_container_start != (uint64_t *)0x0) {
       release_memory_block(current_container_start);
     }
     
@@ -661,8 +661,8 @@ void manage_container_space(longlong *container_header, longlong start_index, lo
       container_header[1] = new_memory;
     }
     else {
-      new_container_start = (undefined8 *)optimize_container_layout(start_index, end_index);
-      item_pointer = (undefined8 *)container_header[1];
+      new_container_start = (uint64_t *)optimize_container_layout(start_index, end_index);
+      item_pointer = (uint64_t *)container_header[1];
       for (current_container_start = new_container_start; current_container_start != item_pointer; current_container_start = current_container_start + 4) {
         (**(code **)*current_container_start)(current_container_start, 0);
       }

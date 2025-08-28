@@ -52,8 +52,8 @@
 
 // 系统调用参数结构
 typedef struct {
-    undefined8 param_1;                          // 主参数1
-    undefined8 *param_2;                         // 主参数2指针
+    uint64_t param_1;                          // 主参数1
+    uint64_t *param_2;                         // 主参数2指针
     int param_3;                                 // 整型参数3
     longlong param_4;                            // 长整型参数4
     uint param_5;                                // 无符号整型参数5
@@ -73,15 +73,15 @@ typedef struct {
     int iVar3;                                   // 整型变量3
     int iVar4;                                   // 整型变量4
     longlong *plVar5;                            // 长整型指针变量5
-    undefined8 *puVar6;                          // 无类型指针变量6
+    uint64_t *puVar6;                          // 无类型指针变量6
     longlong *plVar7;                             // 长整型指针变量7
-    undefined8 uVar8;                            // 无类型变量8
+    uint64_t uVar8;                            // 无类型变量8
     longlong *plVar9;                             // 长整型指针变量9
-    undefined8 *puVar10;                         // 无类型指针变量10
+    uint64_t *puVar10;                         // 无类型指针变量10
     longlong lVar11;                             // 长整型变量11
-    undefined8 *puVar12;                         // 无类型指针变量12
-    undefined *puVar13;                          // 无类型指针变量13
-    undefined8 *puVar14;                         // 无类型指针变量14
+    uint64_t *puVar12;                         // 无类型指针变量12
+    void *puVar13;                          // 无类型指针变量13
+    uint64_t *puVar14;                         // 无类型指针变量14
     longlong *plVar15;                            // 长整型指针变量15
     uint uVar16;                                 // 无符号整型变量16
     int iVar17;                                  // 整型变量17
@@ -137,7 +137,7 @@ typedef struct {
  * @warning 包含复杂的内存管理逻辑，需要谨慎处理
  * @see 相关函数：FUN_180081480, FUN_18062b1e0, FUN_1800a4010
  */
-void FUN_1800b0a10(undefined8 param_1, undefined8 *param_2, int param_3, longlong param_4, uint param_5,
+void FUN_1800b0a10(uint64_t param_1, uint64_t *param_2, int param_3, longlong param_4, uint param_5,
                   int param_6, int param_7, int param_8, int param_9, longlong *param_10, char param_11,
                   uint param_12)
 {
@@ -147,23 +147,23 @@ void FUN_1800b0a10(undefined8 param_1, undefined8 *param_2, int param_3, longlon
   int iVar3;
   int iVar4;
   longlong *plVar5;
-  undefined8 *puVar6;
+  uint64_t *puVar6;
   longlong *plVar7;
-  undefined8 uVar8;
+  uint64_t uVar8;
   longlong *plVar9;
-  undefined8 *puVar10;
+  uint64_t *puVar10;
   longlong lVar11;
-  undefined8 *puVar12;
-  undefined *puVar13;
-  undefined8 *puVar14;
+  uint64_t *puVar12;
+  void *puVar13;
+  uint64_t *puVar14;
   longlong *plVar15;
   uint uVar16;
   int iVar17;
   longlong *plVar18;
   
   // 栈变量声明
-  undefined1 auStack_2b8 [32];
-  undefined4 *puStack_298;
+  int8_t auStack_2b8 [32];
+  int32_t *puStack_298;
   uint uStack_290;
   longlong *plStack_288;
   longlong *plStack_280;
@@ -172,7 +172,7 @@ void FUN_1800b0a10(undefined8 param_1, undefined8 *param_2, int param_3, longlon
   longlong *plStack_268;
   int iStack_260;
   int iStack_25c;
-  undefined8 *puStack_258;
+  uint64_t *puStack_258;
   longlong lStack_250;
   longlong *plStack_248;
   longlong *plStack_240;
@@ -181,29 +181,29 @@ void FUN_1800b0a10(undefined8 param_1, undefined8 *param_2, int param_3, longlon
   longlong *plStack_228;
   longlong *plStack_220;
   longlong *plStack_218;
-  undefined8 *puStack_210;
-  undefined8 *puStack_208;
-  undefined **ppuStack_200;
-  undefined8 uStack_1f8;
-  undefined8 *puStack_1f0;
-  undefined8 *puStack_1e8;
-  undefined1 auStack_1e0 [8];
+  uint64_t *puStack_210;
+  uint64_t *puStack_208;
+  void **ppuStack_200;
+  uint64_t uStack_1f8;
+  uint64_t *puStack_1f0;
+  uint64_t *puStack_1e8;
+  int8_t auStack_1e0 [8];
   longlong *plStack_1d8;
-  undefined8 *puStack_1d0;
-  undefined *puStack_1c8;
-  undefined1 *puStack_1c0;
-  undefined4 uStack_1b8;
-  undefined1 auStack_1b0 [128];
-  undefined4 uStack_130;
+  uint64_t *puStack_1d0;
+  void *puStack_1c8;
+  int8_t *puStack_1c0;
+  int32_t uStack_1b8;
+  int8_t auStack_1b0 [128];
+  int32_t uStack_130;
   longlong *plStack_128;
   uint uStack_120;
   int iStack_11c;
   longlong *plStack_118;
-  undefined4 uStack_110;
-  undefined *puStack_e8;
-  undefined1 *puStack_e0;
-  undefined4 uStack_d8;
-  undefined1 auStack_d0 [136];
+  int32_t uStack_110;
+  void *puStack_e8;
+  int8_t *puStack_e0;
+  int32_t uStack_d8;
+  int8_t auStack_d0 [136];
   ulonglong uStack_48;
   
   // 初始化关键变量
@@ -219,7 +219,7 @@ void FUN_1800b0a10(undefined8 param_1, undefined8 *param_2, int param_3, longlon
   
   // 参数验证和调整
   if (1 < (int)param_12) {
-    puVar12 = (undefined8 *)((longlong)(param_9 + -1) % (longlong)(int)param_12 & 0xffffffff);
+    puVar12 = (uint64_t *)((longlong)(param_9 + -1) % (longlong)(int)param_12 & 0xffffffff);
     iVar17 = ((param_9 + -1) / (int)param_12 + 1) * param_12;
   }
   
@@ -282,31 +282,31 @@ LAB_1800b0d28:
     // 初始化资源对象结构
     *plVar7 = (longlong)&UNK_180a21690;
     *plVar7 = (longlong)&UNK_180a21720;
-    *(undefined4 *)(plVar7 + 1) = 0;
+    *(int32_t *)(plVar7 + 1) = 0;
     *plVar7 = (longlong)&UNK_180a176f8;
     plVar7[6] = 0;
     plVar7[2] = 0;
     plVar7[3] = 0;
     plVar7[4] = 0;
-    *(undefined4 *)((longlong)plVar7 + 0x2c) = 0;
+    *(int32_t *)((longlong)plVar7 + 0x2c) = 0;
     plVar7[7] = 0;
-    *(undefined4 *)(plVar7 + 8) = 0;
+    *(int32_t *)(plVar7 + 8) = 0;
     pplVar1 = (longlong **)(plVar7 + 10);
     *pplVar1 = (longlong *)&UNK_18098bcb0;
     plVar7[0xb] = 0;
-    *(undefined4 *)(plVar7 + 0xc) = 0;
+    *(int32_t *)(plVar7 + 0xc) = 0;
     *pplVar1 = (longlong *)&UNK_1809feda8;
     plVar7[0xb] = (longlong)(plVar7 + 0xd);
-    *(undefined4 *)(plVar7 + 0xc) = 0;
-    *(undefined1 *)(plVar7 + 0xd) = 0;
-    *(undefined4 *)(plVar7 + 0x2d) = 0xffffffff;
+    *(int32_t *)(plVar7 + 0xc) = 0;
+    *(int8_t *)(plVar7 + 0xd) = 0;
+    *(int32_t *)(plVar7 + 0x2d) = 0xffffffff;
     
     // 设置栈变量和执行初始化
     plStack_248 = plVar7;
     pplStack_238 = pplVar1;
     plStack_1d8 = plVar7;
     (**(code **)(*plVar7 + 0x28))(plVar7);
-    plStack_248 = (undefined8 *)0x0;
+    plStack_248 = (uint64_t *)0x0;
     
     // 配置资源对象参数
     *(uint *)(plVar7 + 7) = uVar16;
@@ -314,8 +314,8 @@ LAB_1800b0d28:
     *(int *)(plVar7 + 8) = iStack_278;
     *(int *)((longlong)plVar7 + 0x44) = param_7;
     puVar13 = &DAT_18098bc73;
-    if (*(undefined **)(lStack_250 + 8) != (undefined *)0x0) {
-      puVar13 = *(undefined **)(lStack_250 + 8);
+    if (*(void **)(lStack_250 + 8) != (void *)0x0) {
+      puVar13 = *(void **)(lStack_250 + 8);
     }
     plStack_270 = plVar7;
     (*(code *)(*pplVar1)[2])(pplVar1, puVar13);
@@ -331,10 +331,10 @@ LAB_1800b0d28:
     // 处理同线程情况
     if (iVar4 == iVar17) {
       uStack_290 = *(uint *)((longlong)plVar7 + 0x44);
-      puStack_298 = (undefined4 *)CONCAT44(puStack_298._4_4_, (int)plVar7[8]);
+      puStack_298 = (int32_t *)CONCAT44(puStack_298._4_4_, (int)plVar7[8]);
       plStack_288 = plVar18;
       plStack_280 = plVar7;
-      FUN_1800a4010(_DAT_180c86938, uVar16, iVar3, *(undefined4 *)((longlong)plVar7 + 0x3c));
+      FUN_1800a4010(_DAT_180c86938, uVar16, iVar3, *(int32_t *)((longlong)plVar7 + 0x3c));
     }
     // 处理跨线程情况
     else {
@@ -352,7 +352,7 @@ LAB_1800b0d28:
       
       // 处理引用计数
       if (plVar18 != (longlong *)0x0) {
-        uStack_110 = *(undefined4 *)((longlong)plVar18 + 0x1c);
+        uStack_110 = *(int32_t *)((longlong)plVar18 + 0x1c);
         if (*(code **)(*plVar18 + 0x28) == (code *)&UNK_180084660) {
           LOCK();
           *(int *)(plVar18 + 1) = (int)plVar18[1] + 1;
@@ -366,7 +366,7 @@ LAB_1800b0d28:
       }
       
       // 处理资源对象引用计数
-      if ((undefined *)*plVar7 == &UNK_180a176f8) {
+      if ((void *)*plVar7 == &UNK_180a176f8) {
         LOCK();
         *(int *)(plVar7 + 1) = (int)plVar7[1] + 1;
         UNLOCK();
@@ -374,13 +374,13 @@ LAB_1800b0d28:
         plVar18 = plStack_268;
       }
       else {
-        (**(code **)((undefined *)*plVar7 + 0x28))(plVar7);
+        (**(code **)((void *)*plVar7 + 0x28))(plVar7);
       }
       
       // 执行异步操作
       uVar8 = FUN_18062b1e0(_DAT_180c8ed18, 0x100, 8, 3);
       plVar9 = (longlong *)FUN_18005ce30(uVar8, &puStack_1c8);
-      ppuStack_200 = (undefined **)plVar9;
+      ppuStack_200 = (void **)plVar9;
       if (plVar9 != (longlong *)0x0) {
         (**(code **)(*plVar9 + 0x28))(plVar9);
       }
@@ -410,28 +410,28 @@ LAB_1800b0d28:
       }
       
       // 处理资源队列
-      puVar14 = (undefined8 *)plVar15[1];
-      if (puVar14 < (undefined8 *)plVar15[2]) {
+      puVar14 = (uint64_t *)plVar15[1];
+      if (puVar14 < (uint64_t *)plVar15[2]) {
         plVar15[1] = (longlong)(puVar14 + 1);
         *puVar14 = plVar7;
         (**(code **)(*plVar7 + 0x28))(plVar7);
       }
       else {
         // 处理队列扩展
-        puVar6 = (undefined8 *)*plVar15;
+        puVar6 = (uint64_t *)*plVar15;
         lVar11 = (longlong)puVar14 - (longlong)puVar6 >> 3;
         if (lVar11 == 0) {
           lVar11 = 1;
 LAB_1800b1065:
-          puVar10 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, lVar11 * 8);
-          puVar14 = (undefined8 *)plVar15[1];
-          puVar6 = (undefined8 *)*plVar15;
+          puVar10 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, lVar11 * 8);
+          puVar14 = (uint64_t *)plVar15[1];
+          puVar6 = (uint64_t *)*plVar15;
           puStack_258 = puVar10;
         }
         else {
           lVar11 = lVar11 * 2;
           if (lVar11 != 0) goto LAB_1800b1065;
-          puStack_258 = (undefined8 *)0x0;
+          puStack_258 = (uint64_t *)0x0;
           puVar10 = puStack_258;
         }
         
@@ -480,16 +480,16 @@ LAB_1800b1065:
     uVar16 = param_5;
     puVar14 = puVar12 + 0xe8;
     puVar6 = puVar14;
-    puVar12 = (undefined8 *)puVar12[0xea];
+    puVar12 = (uint64_t *)puVar12[0xea];
     
     // 搜索合适的资源位置
-    while (puVar12 != (undefined8 *)0x0) {
+    while (puVar12 != (uint64_t *)0x0) {
       if (*(uint *)(puVar12 + 4) < param_5) {
-        puVar12 = (undefined8 *)*puVar12;
+        puVar12 = (uint64_t *)*puVar12;
       }
       else {
         puVar6 = puVar12;
-        puVar12 = (undefined8 *)puVar12[1];
+        puVar12 = (uint64_t *)puVar12[1];
       }
     }
     
@@ -497,8 +497,8 @@ LAB_1800b1065:
     if ((puVar6 == puVar14) || (param_5 < *(uint *)(puVar6 + 4))) {
       puStack_298 = &param_5;
       puStack_1e8 = puVar6;
-      puVar6 = (undefined8 *)FUN_1800b90a0(puVar14, auStack_1e0, puVar14, puVar6);
-      puVar6 = (undefined8 *)*puVar6;
+      puVar6 = (uint64_t *)FUN_1800b90a0(puVar14, auStack_1e0, puVar14, puVar6);
+      puVar6 = (uint64_t *)*puVar6;
     }
     
     // 处理资源查找和匹配
@@ -529,8 +529,8 @@ LAB_1800b1065:
         }
         plStack_270 = plVar5;
         puVar13 = &DAT_18098bc73;
-        if (*(undefined **)(lStack_250 + 8) != (undefined *)0x0) {
-          puVar13 = *(undefined **)(lStack_250 + 8);
+        if (*(void **)(lStack_250 + 8) != (void *)0x0) {
+          puVar13 = *(void **)(lStack_250 + 8);
         }
         (**(code **)(plVar18[10] + 0x10))(plVar18 + 10, puVar13);
         plVar5 = plVar18;
@@ -551,13 +551,13 @@ LAB_1800b1065:
     if (plVar5 == (longlong *)0x0) goto LAB_1800b0d28;
     if (plStack_268 != (longlong *)0x0) {
       if (iVar3 == 3) {
-        FUN_18029b390(*(undefined8 *)(_DAT_180c86938 + 0x1cd8), plVar5, plStack_268);
+        FUN_18029b390(*(uint64_t *)(_DAT_180c86938 + 0x1cd8), plVar5, plStack_268);
       }
       else {
         uStack_290 = uStack_290 & 0xffffff00;
-        puStack_298 = (undefined4 *)
-                      CONCAT44(puStack_298._4_4_, *(undefined4 *)((longlong)plStack_268 + 0x1c));
-        FUN_18029b1d0(*(undefined8 *)(_DAT_180c86938 + 0x1cd8), plVar5, 0, plStack_268);
+        puStack_298 = (int32_t *)
+                      CONCAT44(puStack_298._4_4_, *(int32_t *)((longlong)plStack_268 + 0x1c));
+        FUN_18029b1d0(*(uint64_t *)(_DAT_180c86938 + 0x1cd8), plVar5, 0, plStack_268);
       }
     }
   }
@@ -566,14 +566,14 @@ LAB_1800b1065:
   puStack_e8 = &UNK_1809fcc28;
   puStack_e0 = auStack_d0;
   auStack_d0[0] = 0;
-  uStack_d8 = *(undefined4 *)(lStack_250 + 0x10);
+  uStack_d8 = *(int32_t *)(lStack_250 + 0x10);
   puVar13 = &DAT_18098bc73;
-  if (*(undefined **)(lStack_250 + 8) != (undefined *)0x0) {
-    puVar13 = *(undefined **)(lStack_250 + 8);
+  if (*(void **)(lStack_250 + 8) != (void *)0x0) {
+    puVar13 = *(void **)(lStack_250 + 8);
   }
   strcpy_s(auStack_d0, 0x80, puVar13);
   puStack_e8 = &UNK_18098bcb0;
-  *(undefined4 *)((longlong)plVar5 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+  *(int32_t *)((longlong)plVar5 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
   *puStack_208 = plVar5;
   plStack_270 = (longlong *)0x0;
   iStack_25c = 1;
@@ -597,7 +597,7 @@ LAB_1800b11f1:
  * 
  * @see FUN_1800b0a10
  */
-void system_call_processor_and_resource_manager(undefined8 param_1, undefined8 *param_2, int param_3, longlong param_4, uint param_5,
+void system_call_processor_and_resource_manager(uint64_t param_1, uint64_t *param_2, int param_3, longlong param_4, uint param_5,
                                                int param_6, int param_7, int param_8, int param_9, longlong *param_10, char param_11,
                                                uint param_12) __attribute__((alias("FUN_1800b0a10")));
 
@@ -608,7 +608,7 @@ void system_call_processor_and_resource_manager(undefined8 param_1, undefined8 *
  * 
  * @see FUN_1800b0a10
  */
-void advanced_system_call_processor(undefined8 param_1, undefined8 *param_2, int param_3, longlong param_4, uint param_5,
+void advanced_system_call_processor(uint64_t param_1, uint64_t *param_2, int param_3, longlong param_4, uint param_5,
                                     int param_6, int param_7, int param_8, int param_9, longlong *param_10, char param_11,
                                     uint param_12) __attribute__((alias("FUN_1800b0a10")));
 
@@ -619,7 +619,7 @@ void advanced_system_call_processor(undefined8 param_1, undefined8 *param_2, int
  * 
  * @see FUN_1800b0a10
  */
-void resource_manager(undefined8 param_1, undefined8 *param_2, int param_3, longlong param_4, uint param_5,
+void resource_manager(uint64_t param_1, uint64_t *param_2, int param_3, longlong param_4, uint param_5,
                       int param_6, int param_7, int param_8, int param_9, longlong *param_10, char param_11,
                       uint param_12) __attribute__((alias("FUN_1800b0a10")));
 
@@ -630,7 +630,7 @@ void resource_manager(undefined8 param_1, undefined8 *param_2, int param_3, long
  * 
  * @see FUN_1800b0a10
  */
-void thread_safe_resource_manager(undefined8 param_1, undefined8 *param_2, int param_3, longlong param_4, uint param_5,
+void thread_safe_resource_manager(uint64_t param_1, uint64_t *param_2, int param_3, longlong param_4, uint param_5,
                                    int param_6, int param_7, int param_8, int param_9, longlong *param_10, char param_11,
                                    uint param_12) __attribute__((alias("FUN_1800b0a10")));
 

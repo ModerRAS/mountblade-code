@@ -7,71 +7,71 @@
 
 // 网络系统全局变量和函数声明
 // 网络连接管理器
-undefined *network_connection_manager;
-undefined *network_socket_pool;
-undefined *network_protocol_handler;
-undefined *network_data_buffer;
-undefined *network_connection_status;
-undefined *network_error_handler;
-undefined *network_packet_queue;
-undefined *network_session_manager;
-undefined *network_security_context;
-undefined *network_bandwidth_monitor;
-undefined *network_latency_tracker;
-undefined *network_compression_engine;
-undefined *network_encryption_module;
-undefined *network_authentication_handler;
-undefined *network_discovery_service;
-undefined *network_peer_manager;
-undefined *network_message_dispatcher;
-undefined *network_event_system;
-undefined *network_statistics_collector;
-undefined *network_config_loader;
-undefined *network_debug_logger;
-undefined *network_performance_monitor;
-undefined *network_connection_validator;
-undefined *network_data_serializer;
-undefined *network_protocol_negotiator;
-undefined *network_error_recovery_manager;
-undefined *network_connection_pool;
+void *network_connection_manager;
+void *network_socket_pool;
+void *network_protocol_handler;
+void *network_data_buffer;
+void *network_connection_status;
+void *network_error_handler;
+void *network_packet_queue;
+void *network_session_manager;
+void *network_security_context;
+void *network_bandwidth_monitor;
+void *network_latency_tracker;
+void *network_compression_engine;
+void *network_encryption_module;
+void *network_authentication_handler;
+void *network_discovery_service;
+void *network_peer_manager;
+void *network_message_dispatcher;
+void *network_event_system;
+void *network_statistics_collector;
+void *network_config_loader;
+void *network_debug_logger;
+void *network_performance_monitor;
+void *network_connection_validator;
+void *network_data_serializer;
+void *network_protocol_negotiator;
+void *network_error_recovery_manager;
+void *network_connection_pool;
 
 // 网络连接初始化函数
-undefined *initialize_network_connection;
-undefined *network_connection_initializer;
-undefined *network_protocol_initializer;
-undefined *network_security_initializer;
+void *initialize_network_connection;
+void *network_connection_initializer;
+void *network_protocol_initializer;
+void *network_security_initializer;
 
 // 网络数据传输函数
-undefined *network_data_transmitter;
-undefined *network_data_receiver;
-undefined *network_packet_processor;
-undefined *network_message_builder;
-undefined *network_connection_handler;
-undefined *network_session_creator;
-undefined *network_error_processor;
-undefined *network_bandwidth_manager;
-undefined *network_latency_manager;
-undefined *network_compression_manager;
-undefined *network_encryption_manager;
-undefined *network_authentication_manager;
-undefined *network_discovery_manager;
-undefined *network_peer_handler;
-undefined *network_message_handler;
-undefined *network_event_handler;
-undefined *network_statistics_handler;
-undefined *network_config_handler;
-undefined *network_debug_handler;
-undefined *network_performance_handler;
-undefined *network_connection_validator;
-undefined *network_data_serializer;
-undefined *network_protocol_negotiator;
-undefined *network_error_recovery_handler;
-undefined *network_connection_pool_manager;
+void *network_data_transmitter;
+void *network_data_receiver;
+void *network_packet_processor;
+void *network_message_builder;
+void *network_connection_handler;
+void *network_session_creator;
+void *network_error_processor;
+void *network_bandwidth_manager;
+void *network_latency_manager;
+void *network_compression_manager;
+void *network_encryption_manager;
+void *network_authentication_manager;
+void *network_discovery_manager;
+void *network_peer_handler;
+void *network_message_handler;
+void *network_event_handler;
+void *network_statistics_handler;
+void *network_config_handler;
+void *network_debug_handler;
+void *network_performance_handler;
+void *network_connection_validator;
+void *network_data_serializer;
+void *network_protocol_negotiator;
+void *network_error_recovery_handler;
+void *network_connection_pool_manager;
 
 // 网络连接管理函数
 void network_connection_cleanup(void)
 {
-  undefined1 *connection_ptr;
+  int8_t *connection_ptr;
   int status_check;
   longlong connection_context;
   int connection_flags;
@@ -79,11 +79,11 @@ void network_connection_cleanup(void)
   ulonglong *connection_data;
   longlong network_context;
   
-  connection_ptr = (undefined1 *)(CONCAT44(connection_flags,session_id) + 0x28);
+  connection_ptr = (int8_t *)(CONCAT44(connection_flags,session_id) + 0x28);
   if (*(int *)(*(longlong *)(connection_context + 0x98) + 0x200) == session_id) {
     *connection_ptr = 0;
     *(uint *)(CONCAT44(connection_flags,session_id) + 8) = ((int)connection_ptr - session_id) + 4U & 0xfffffffc;
-    status_check = validate_network_connection(*(undefined8 *)(network_context + 0x98));
+    status_check = validate_network_connection(*(uint64_t *)(network_context + 0x98));
     if (status_check == 0) {
       *connection_data = (ulonglong)*(uint *)(CONCAT44(connection_flags,session_id) + 0x20);
     }
@@ -120,11 +120,11 @@ uint cleanup_network_buffer(longlong *buffer_handle)
     }
     if ((0 < (int)buffer_size) && (*buffer_handle != 0)) {
       // 释放网络缓冲区内存
-      free_network_buffer(*(undefined8 *)(network_memory_pool + 0x1a0),*buffer_handle,network_free_list,0x100,1);
+      free_network_buffer(*(uint64_t *)(network_memory_pool + 0x1a0),*buffer_handle,network_free_list,0x100,1);
     }
     *buffer_handle = 0;
     buffer_size = 0;
-    *(undefined4 *)((longlong)buffer_handle + 0xc) = 0;
+    *(int32_t *)((longlong)buffer_handle + 0xc) = 0;
   }
   buffer_status = (int)buffer_handle[1];
   if (buffer_status < 0) {
@@ -133,7 +133,7 @@ uint cleanup_network_buffer(longlong *buffer_handle)
       memset(*buffer_handle + (longlong)buffer_status * 0x14,0,(ulonglong)(uint)-buffer_status * 0x14);
     }
   }
-  *(undefined4 *)(buffer_handle + 1) = 0;
+  *(int32_t *)(buffer_handle + 1) = 0;
   buffer_size = (buffer_size ^ (int)buffer_size >> 0x1f) - ((int)buffer_size >> 0x1f);
   if ((int)buffer_size < 1) {
     return buffer_size;
@@ -143,42 +143,42 @@ uint cleanup_network_buffer(longlong *buffer_handle)
   }
   if ((0 < *(int *)((longlong)buffer_handle + 0xc)) && (*buffer_handle != 0)) {
     // 释放网络缓冲区内存
-    free_network_buffer(*(undefined8 *)(network_memory_pool + 0x1a0),*buffer_handle,network_free_list,0x100,1);
+    free_network_buffer(*(uint64_t *)(network_memory_pool + 0x1a0),*buffer_handle,network_free_list,0x100,1);
   }
   *buffer_handle = 0;
-  *(undefined4 *)((longlong)buffer_handle + 0xc) = 0;
+  *(int32_t *)((longlong)buffer_handle + 0xc) = 0;
   return 0;
 }
 
 // 网络连接初始化函数
-void initialize_network_system(undefined8 connection_id)
+void initialize_network_system(uint64_t connection_id)
 {
   int init_status;
   int protocol_status;
   longlong connection_data[2];
-  undefined8 *protocol_handler;
+  uint64_t *protocol_handler;
   
   connection_data[1] = 0;
   init_status = establish_network_connection(connection_id,connection_data);
   if ((((init_status != 0) ||
        (((*(uint *)(connection_data[0] + 0x24) >> 1 & 1) != 0 &&
         (protocol_status = validate_network_protocol(connection_data + 1), protocol_status == 0)))) && (init_status == 0)) &&
-     (init_status = create_protocol_handler(*(undefined8 *)(connection_data[0] + 0x98),&protocol_handler,0x18), init_status == 0))
+     (init_status = create_protocol_handler(*(uint64_t *)(connection_data[0] + 0x98),&protocol_handler,0x18), init_status == 0))
   {
     *protocol_handler = &network_protocol_table;
-    *(undefined4 *)(protocol_handler + 1) = 0x18;
+    *(int32_t *)(protocol_handler + 1) = 0x18;
     *(int *)(protocol_handler + 2) = (int)connection_id;
-    validate_network_connection(*(undefined8 *)(connection_data[0] + 0x98));
+    validate_network_connection(*(uint64_t *)(connection_data[0] + 0x98));
   }
   // 清理网络连接资源
   cleanup_network_resources(connection_data + 1);
 }
 
 // 网络连接状态检查函数
-undefined8 check_network_connection_status(longlong *connection_handle)
+uint64_t check_network_connection_status(longlong *connection_handle)
 {
   int handle_status;
-  undefined8 connection_result;
+  uint64_t connection_result;
   uint buffer_size;
   
   buffer_size = *(uint *)((longlong)connection_handle + 0xc);
@@ -188,18 +188,18 @@ undefined8 check_network_connection_status(longlong *connection_handle)
     }
     if ((0 < (int)buffer_size) && (*connection_handle != 0)) {
       // 释放网络缓冲区内存
-      free_network_buffer(*(undefined8 *)(network_memory_pool + 0x1a0),*connection_handle,network_free_list,0x100,1);
+      free_network_buffer(*(uint64_t *)(network_memory_pool + 0x1a0),*connection_handle,network_free_list,0x100,1);
     }
     *connection_handle = 0;
     buffer_size = 0;
-    *(undefined4 *)((longlong)connection_handle + 0xc) = 0;
+    *(int32_t *)((longlong)connection_handle + 0xc) = 0;
   }
   handle_status = (int)connection_handle[1];
   if (handle_status < 0) {
     // 清理连接句柄
     memset((longlong)handle_status + *connection_handle,0,(longlong)-handle_status);
   }
-  *(undefined4 *)(connection_handle + 1) = 0;
+  *(int32_t *)(connection_handle + 1) = 0;
   if ((0 < (int)((buffer_size ^ (int)buffer_size >> 0x1f) - ((int)buffer_size >> 0x1f))) &&
      (connection_result = validate_network_handle(connection_handle,0), (int)connection_result != 0)) {
     return connection_result;
@@ -213,12 +213,12 @@ void resolve_network_address(ulonglong *address_buffer,int address_type)
   int resolve_status;
   int protocol_status;
   int auth_status;
-  undefined1 auth_data[32];
-  undefined1 *auth_ptr;
+  int8_t auth_data[32];
+  int8_t *auth_ptr;
   int protocol_info[2];
   longlong resolver_context;
   uint resolved_address[4];
-  undefined1 temp_buffer[256];
+  int8_t temp_buffer[256];
   ulonglong security_key;
   
   security_key = network_security_key ^ (ulonglong)auth_data;
@@ -233,7 +233,7 @@ void resolve_network_address(ulonglong *address_buffer,int address_type)
       auth_status = create_network_resolver(&resolver_context);
       if (auth_status == 0) {
         protocol_info[0] = 0;
-        auth_status = get_protocol_info(*(undefined8 *)(resolver_context + 0x78),protocol_info);
+        auth_status = get_protocol_info(*(uint64_t *)(resolver_context + 0x78),protocol_info);
         if (auth_status == 0) {
           if (protocol_info[0] != 0x20214) {
             trigger_network_error();
@@ -267,18 +267,18 @@ resolve_success:
 }
 
 // 网络数据发送函数
-void send_network_data(undefined4 socket_handle,int data_size,longlong data_buffer)
+void send_network_data(int32_t socket_handle,int data_size,longlong data_buffer)
 {
   longlong *connection_ptr;
   int send_status;
   longlong socket_context;
   longlong network_stream;
-  undefined1 packet_data[32];
-  undefined8 security_key;
+  int8_t packet_data[32];
+  uint64_t security_key;
   longlong send_context;
   longlong recv_context;
   longlong protocol_context;
-  undefined1 compression_buffer[40];
+  int8_t compression_buffer[40];
   ulonglong encryption_key;
   
   encryption_key = network_security_key ^ (ulonglong)packet_data;
@@ -314,7 +314,7 @@ void send_network_data(undefined4 socket_handle,int data_size,longlong data_buff
 // 网络连接池清理函数
 void cleanup_network_connection_pool(void)
 {
-  undefined8 *connection_pool;
+  uint64_t *connection_pool;
   ulonglong security_key;
   
   *connection_pool = 0;
@@ -338,23 +338,23 @@ void release_network_resources(void)
 }
 
 // 网络地址查询函数
-undefined4 query_network_address(undefined4 address_id,longlong query_params,undefined8 *result_buffer)
+int32_t query_network_address(int32_t address_id,longlong query_params,uint64_t *result_buffer)
 {
-  undefined8 *address_ptr;
-  undefined8 *next_address;
+  uint64_t *address_ptr;
+  uint64_t *next_address;
   int query_status;
-  undefined *address_data;
-  undefined *address_ptr2;
+  void *address_data;
+  void *address_ptr2;
   longlong query_context[2];
-  undefined8 query_key;
-  undefined8 context_key;
+  uint64_t query_key;
+  uint64_t context_key;
   longlong context_data;
   
-  if (result_buffer == (undefined8 *)0x0) {
+  if (result_buffer == (uint64_t *)0x0) {
     return 0x1f;
   }
   if (query_params == 0) {
-    if (result_buffer != (undefined8 *)0x0) {
+    if (result_buffer != (uint64_t *)0x0) {
       *result_buffer = 0;
       result_buffer[1] = 0;
       result_buffer[2] = 0;
@@ -370,34 +370,34 @@ undefined4 query_network_address(undefined4 address_id,longlong query_params,und
     context_data = *(longlong *)(query_context[0] + 8);
   }
   else if (query_status != 0) goto query_failure;
-  address_ptr = (undefined8 *)(context_data + 0xb0);
+  address_ptr = (uint64_t *)(context_data + 0xb0);
   address_ptr2 = &network_address_table;
-  for (next_address = (undefined8 *)*address_ptr; next_address != address_ptr; next_address = (undefined8 *)*next_address) {
+  for (next_address = (uint64_t *)*address_ptr; next_address != address_ptr; next_address = (uint64_t *)*next_address) {
     if (*(int *)(next_address + 3) < 1) {
       address_data = &network_address_table;
     }
     else {
-      address_data = (undefined *)next_address[2];
+      address_data = (void *)next_address[2];
     }
     query_status = compare_network_address(address_data,query_params);
     if (query_status == 0) {
       if (0 < *(int *)(next_address + 3)) {
-        address_ptr2 = (undefined *)next_address[2];
+        address_ptr2 = (void *)next_address[2];
       }
       *result_buffer = address_ptr2;
-      *(undefined4 *)(result_buffer + 1) = 2;
-      *(undefined4 *)(result_buffer + 2) = *(undefined4 *)(next_address + 4);
+      *(int32_t *)(result_buffer + 1) = 2;
+      *(int32_t *)(result_buffer + 2) = *(int32_t *)(next_address + 4);
       goto query_failure;
     }
     if (next_address == address_ptr) goto query_failure;
   }
-  address_ptr = (undefined8 *)(context_data + 0xc0);
-  for (next_address = (undefined8 *)*address_ptr; next_address != address_ptr; next_address = (undefined8 *)*next_address) {
+  address_ptr = (uint64_t *)(context_data + 0xc0);
+  for (next_address = (uint64_t *)*address_ptr; next_address != address_ptr; next_address = (uint64_t *)*next_address) {
     if (*(int *)(next_address + 3) < 1) {
       address_data = &network_address_table;
     }
     else {
-      address_data = (undefined *)next_address[2];
+      address_data = (void *)next_address[2];
     }
     query_status = compare_network_address(address_data,query_params);
     if (query_status == 0) {
@@ -405,12 +405,12 @@ undefined4 query_network_address(undefined4 address_id,longlong query_params,und
         address_data = &network_address_table;
       }
       else {
-        address_data = (undefined *)next_address[2];
+        address_data = (void *)next_address[2];
       }
       *result_buffer = address_data;
-      *(undefined4 *)(result_buffer + 1) = 3;
+      *(int32_t *)(result_buffer + 1) = 3;
       if (0 < *(int *)(next_address + 5)) {
-        address_ptr2 = (undefined *)next_address[4];
+        address_ptr2 = (void *)next_address[4];
       }
       result_buffer[2] = address_ptr2;
       break;
@@ -423,12 +423,12 @@ query_failure:
 }
 
 // 网络查询结果清理函数
-undefined4 cleanup_network_query(void)
+int32_t cleanup_network_query(void)
 {
-  undefined8 *query_buffer;
-  undefined4 query_result;
+  uint64_t *query_buffer;
+  int32_t query_result;
   
-  if (query_buffer != (undefined8 *)0x0) {
+  if (query_buffer != (uint64_t *)0x0) {
     *query_buffer = 0;
     query_buffer[1] = 0;
     query_buffer[2] = 0;
@@ -439,27 +439,27 @@ undefined4 cleanup_network_query(void)
 // 网络连接释放函数
 void release_network_connection(void)
 {
-  undefined1 cleanup_buffer[8];
+  int8_t cleanup_buffer[8];
   
   // 清理网络连接资源
   cleanup_network_resources(cleanup_buffer);
 }
 
 // 网络端口扫描函数
-void scan_network_ports(undefined8 target_address,longlong port_range_start,longlong port_range_end,int *scan_results)
+void scan_network_ports(uint64_t target_address,longlong port_range_start,longlong port_range_end,int *scan_results)
 {
   longlong range_data;
   int scan_status;
   int port_index;
-  undefined8 port_info;
+  uint64_t port_info;
   int *result_ptr;
-  undefined *port_data;
+  void *port_data;
   ulonglong current_port;
   ulonglong max_port;
   longlong port_context;
-  undefined1 security_data[32];
-  undefined8 security_key;
-  undefined1 scan_buffer[16];
+  int8_t security_data[32];
+  uint64_t security_key;
+  int8_t scan_buffer[16];
   ulonglong scan_key;
   
   scan_key = network_security_key ^ (ulonglong)security_data;
@@ -501,7 +501,7 @@ void scan_network_ports(undefined8 target_address,longlong port_range_start,long
             port_data = &network_address_table;
           }
           else {
-            port_data = *(undefined **)(port_context + 0x50);
+            port_data = *(void **)(port_context + 0x50);
           }
           port_index = compare_port_data(port_data,port_range_end);
           if (port_index == 0) {
@@ -519,9 +519,9 @@ void scan_network_ports(undefined8 target_address,longlong port_range_start,long
 }
 
 // 网络地址索引查找函数
-undefined8 find_network_address_index(undefined8 *address_table,int *search_key,int *result_index)
+uint64_t find_network_address_index(uint64_t *address_table,int *search_key,int *result_index)
 {
-  undefined8 search_result;
+  uint64_t search_result;
   int *table_ptr;
   int table_index;
   longlong table_size;
@@ -553,9 +553,9 @@ void find_network_connection(longlong connection_pool,longlong search_pattern,in
   bool exact_match;
   int search_status;
   longlong connection_data;
-  undefined *connection_info;
+  void *connection_info;
   int conn_index;
-  undefined1 security_data[32];
+  int8_t security_data[32];
   longlong search_key;
   longlong pattern_key;
   ulonglong security_key;
@@ -593,7 +593,7 @@ void find_network_connection(longlong connection_pool,longlong search_pattern,in
             connection_info = &network_address_table;
           }
           else {
-            connection_info = *(undefined **)(connection_data + 0x50);
+            connection_info = *(void **)(connection_data + 0x50);
           }
           search_status = compare_connection_info(connection_info,search_pattern);
           if (search_status == 0) goto connection_found;
@@ -616,7 +616,7 @@ void copy_network_connection_data(longlong src_connection,longlong dest_connecti
 {
   int copy_status;
   longlong temp_buffer;
-  undefined1 security_data[32];
+  int8_t security_data[32];
   ulonglong security_key;
   
   security_key = network_security_key ^ (ulonglong)security_data;
@@ -643,7 +643,7 @@ void update_network_connection_status(longlong connection_handle,int new_status)
 {
   int update_status;
   longlong connection_data;
-  undefined1 security_data[32];
+  int8_t security_data[32];
   ulonglong security_key;
   
   security_key = network_security_key ^ (ulonglong)security_data;
@@ -670,7 +670,7 @@ void check_network_connection_timeout(longlong connection_handle,int timeout_val
   longlong connection_data;
   uint current_time;
   uint connection_time;
-  undefined1 security_data[32];
+  int8_t security_data[32];
   ulonglong security_key;
   
   security_key = network_security_key ^ (ulonglong)security_data;
@@ -698,7 +698,7 @@ void retry_network_connection(longlong connection_handle,int retry_count)
   int retry_status;
   longlong connection_data;
   int current_retry;
-  undefined1 security_data[32];
+  int8_t security_data[32];
   ulonglong security_key;
   
   security_key = network_security_key ^ (ulonglong)security_data;
@@ -726,7 +726,7 @@ void initialize_network_connection_pool(longlong pool_handle,int pool_size)
 {
   int init_status;
   longlong pool_data;
-  undefined1 security_data[32];
+  int8_t security_data[32];
   ulonglong security_key;
   
   security_key = network_security_key ^ (ulonglong)security_data;
@@ -751,7 +751,7 @@ void destroy_network_connection_pool(longlong pool_handle)
 {
   int destroy_status;
   longlong pool_data;
-  undefined1 security_data[32];
+  int8_t security_data[32];
   ulonglong security_key;
   
   security_key = network_security_key ^ (ulonglong)security_data;
@@ -779,7 +779,7 @@ longlong get_connection_from_pool(longlong pool_handle,int connection_index)
   int get_status;
   longlong pool_data;
   longlong connection_data;
-  undefined1 security_data[32];
+  int8_t security_data[32];
   ulonglong security_key;
   
   security_key = network_security_key ^ (ulonglong)security_data;
@@ -804,7 +804,7 @@ void release_connection_to_pool(longlong pool_handle,longlong connection_data)
 {
   int release_status;
   longlong pool_data;
-  undefined1 security_data[32];
+  int8_t security_data[32];
   ulonglong security_key;
   
   security_key = network_security_key ^ (ulonglong)security_data;
@@ -827,7 +827,7 @@ void get_pool_statistics(longlong pool_handle,int *total_connections,int *active
 {
   int stats_status;
   longlong pool_data;
-  undefined1 security_data[32];
+  int8_t security_data[32];
   ulonglong security_key;
   
   security_key = network_security_key ^ (ulonglong)security_data;
@@ -852,7 +852,7 @@ void send_network_packet(longlong connection_handle,longlong packet_data,int pac
 {
   int send_status;
   longlong connection_data;
-  undefined1 security_data[32];
+  int8_t security_data[32];
   ulonglong security_key;
   
   security_key = network_security_key ^ (ulonglong)security_data;
@@ -877,7 +877,7 @@ void receive_network_packet(longlong connection_handle,longlong packet_buffer,in
 {
   int recv_status;
   longlong connection_data;
-  undefined1 security_data[32];
+  int8_t security_data[32];
   ulonglong security_key;
   
   security_key = network_security_key ^ (ulonglong)security_data;
@@ -901,7 +901,7 @@ void receive_network_packet(longlong connection_handle,longlong packet_buffer,in
 void validate_network_packet(longlong packet_data,int packet_size)
 {
   int validate_status;
-  undefined1 security_data[32];
+  int8_t security_data[32];
   ulonglong security_key;
   
   security_key = network_security_key ^ (ulonglong)security_data;
@@ -922,7 +922,7 @@ void validate_network_packet(longlong packet_data,int packet_size)
 void process_network_packet(longlong packet_data,int packet_size)
 {
   int process_status;
-  undefined1 security_data[32];
+  int8_t security_data[32];
   ulonglong security_key;
   
   security_key = network_security_key ^ (ulonglong)security_data;
@@ -946,7 +946,7 @@ void manage_packet_queue(longlong queue_handle,int operation_type)
 {
   int queue_status;
   longlong queue_data;
-  undefined1 security_data[32];
+  int8_t security_data[32];
   ulonglong security_key;
   
   security_key = network_security_key ^ (ulonglong)security_data;
@@ -982,7 +982,7 @@ void manage_packet_queue(longlong queue_handle,int operation_type)
 void handle_network_event(longlong event_data,int event_type)
 {
   int event_status;
-  undefined1 security_data[32];
+  int8_t security_data[32];
   ulonglong security_key;
   
   security_key = network_security_key ^ (ulonglong)security_data;
@@ -1016,7 +1016,7 @@ void monitor_connection_status(longlong connection_handle)
 {
   int monitor_status;
   longlong connection_data;
-  undefined1 security_data[32];
+  int8_t security_data[32];
   ulonglong security_key;
   
   security_key = network_security_key ^ (ulonglong)security_data;

@@ -44,12 +44,12 @@
 //==============================================================================
 
 // 图像处理外部函数
-extern undefined2 func_0x00018069eed0(int index, unsigned int param);
-extern undefined2 func_0x00018069ee90(int index, unsigned int param);
-extern undefined2 func_0x00018069ef00(int index, unsigned int param);
-extern undefined2 func_0x00018069ee60(int index);
-extern undefined2 func_0x00018069edf0(int index, unsigned int param);
-extern undefined2 func_0x00018069ee30(int index, unsigned int param);
+extern int16_t func_0x00018069eed0(int index, unsigned int param);
+extern int16_t func_0x00018069ee90(int index, unsigned int param);
+extern int16_t func_0x00018069ef00(int index, unsigned int param);
+extern int16_t func_0x00018069ee60(int index);
+extern int16_t func_0x00018069edf0(int index, unsigned int param);
+extern int16_t func_0x00018069ee30(int index, unsigned int param);
 
 // 系统管理外部函数
 extern void FUN_18069ec80(void);
@@ -204,26 +204,26 @@ static void InitializeGlobalCriticalSection(void);
 void RenderingSystem_ImageDataProcessor(longlong param_1)
 
 {
-  undefined2 channel_data;      // 通道数据值
+  int16_t channel_data;      // 通道数据值
   int iteration_index;         // 迭代索引计数器
-  undefined2 *buffer_pointer;  // 缓冲区指针
+  int16_t *buffer_pointer;  // 缓冲区指针
   
   // 初始化缓冲区指针到渲染数据区域
-  buffer_pointer = (undefined2 *)(param_1 + RENDERING_BUFFER_SIZE);
+  buffer_pointer = (int16_t *)(param_1 + RENDERING_BUFFER_SIZE);
   iteration_index = 0;
   
   // 循环处理128个数据单元
   do {
     // 处理通道1：获取并存储到-256偏移位置
-    channel_data = func_0x00018069eed0(iteration_index, *(undefined4 *)(param_1 + 0x1e94));
+    channel_data = func_0x00018069eed0(iteration_index, *(int32_t *)(param_1 + 0x1e94));
     buffer_pointer[-0x100] = channel_data;
     
     // 处理通道2：获取并存储到当前位置
-    channel_data = func_0x00018069ee90(iteration_index, *(undefined4 *)(param_1 + 0x1e98));
+    channel_data = func_0x00018069ee90(iteration_index, *(int32_t *)(param_1 + 0x1e98));
     *buffer_pointer = channel_data;
     
     // 处理通道3：获取并存储到+256偏移位置
-    channel_data = func_0x00018069ef00(iteration_index, *(undefined4 *)(param_1 + 0x1ea0));
+    channel_data = func_0x00018069ef00(iteration_index, *(int32_t *)(param_1 + 0x1ea0));
     buffer_pointer[0x100] = channel_data;
     
     // 处理通道4：获取并存储到-255偏移位置
@@ -231,11 +231,11 @@ void RenderingSystem_ImageDataProcessor(longlong param_1)
     buffer_pointer[-0xff] = channel_data;
     
     // 处理通道5：获取并存储到+1偏移位置
-    channel_data = func_0x00018069edf0(iteration_index, *(undefined4 *)(param_1 + 0x1e9c));
+    channel_data = func_0x00018069edf0(iteration_index, *(int32_t *)(param_1 + 0x1e9c));
     buffer_pointer[1] = channel_data;
     
     // 处理通道6：获取并存储到+257偏移位置
-    channel_data = func_0x00018069ee30(iteration_index, *(undefined4 *)(param_1 + 0x1ea4));
+    channel_data = func_0x00018069ee30(iteration_index, *(int32_t *)(param_1 + 0x1ea4));
     iteration_index = iteration_index + 1;
     buffer_pointer[0x101] = channel_data;
     
@@ -668,23 +668,23 @@ void RenderingSystem_ImageTransformer(longlong param_1, unsigned long long param
   byte bVar1;
   longlong lVar2;
   code *pcVar3;
-  undefined1 auStack_68 [32];
-  undefined1 uStack_48;
-  undefined1 uStack_47;
-  undefined1 uStack_46;
-  undefined1 uStack_45;
-  undefined1 uStack_44;
-  undefined1 uStack_43;
-  undefined1 uStack_42;
-  undefined1 uStack_41;
-  undefined1 uStack_40;
-  undefined1 uStack_3f;
-  undefined1 uStack_3e;
-  undefined1 uStack_3d;
-  undefined1 uStack_3c;
-  undefined1 uStack_3b;
-  undefined1 uStack_3a;
-  undefined1 uStack_39;
+  int8_t auStack_68 [32];
+  int8_t uStack_48;
+  int8_t uStack_47;
+  int8_t uStack_46;
+  int8_t uStack_45;
+  int8_t uStack_44;
+  int8_t uStack_43;
+  int8_t uStack_42;
+  int8_t uStack_41;
+  int8_t uStack_40;
+  int8_t uStack_3f;
+  int8_t uStack_3e;
+  int8_t uStack_3d;
+  int8_t uStack_3c;
+  int8_t uStack_3b;
+  int8_t uStack_3a;
+  int8_t uStack_39;
   ulonglong uStack_38;
   
   uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
@@ -741,11 +741,11 @@ void RenderingSystem_PixelProcessor(longlong param_1, unsigned long long param_2
 
 {
   byte bVar1;
-  undefined1 uVar2;
+  int8_t uVar2;
   longlong lVar3;
   code *pcVar4;
-  undefined1 auStack_48 [32];
-  undefined1 auStack_28 [16];
+  int8_t auStack_48 [32];
+  int8_t auStack_28 [16];
   ulonglong uStack_18;
   
   uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_48;
@@ -829,16 +829,16 @@ void RenderingSystem_ImageDataValidator(int param_1, int param_2, unsigned long 
   longlong in_RAX;
   longlong in_R10;
   int in_R11D;
-  undefined8 unaff_R12;
+  uint64_t unaff_R12;
   int unaff_R13D;
-  undefined8 unaff_R15;
+  uint64_t unaff_R15;
   int in_stack_000000a0;
   int iStack00000000000000a8;
   int in_stack_000000b0;
   
-  *(undefined8 *)(in_RAX + 0x18) = unaff_R12;
+  *(uint64_t *)(in_RAX + 0x18) = unaff_R12;
   iStack00000000000000a8 = param_2 + param_1;
-  *(undefined8 *)(in_RAX + -0x38) = unaff_R15;
+  *(uint64_t *)(in_RAX + -0x38) = unaff_R15;
   if (0 < in_R11D) {
                     // WARNING: Subroutine does not return
     memset();
@@ -891,23 +891,23 @@ void RenderingSystem_TextureManager(int* param_1, int* param_2)
   
   if (0 < param_1[1]) {
                     // WARNING: Subroutine does not return
-    memcpy(*(undefined8 *)(param_2 + 0xe),*(undefined8 *)(param_1 + 0xe),(longlong)*param_1);
+    memcpy(*(uint64_t *)(param_2 + 0xe),*(uint64_t *)(param_1 + 0xe),(longlong)*param_1);
   }
   if (0 < param_1[6]) {
                     // WARNING: Subroutine does not return
-    memcpy(*(undefined8 *)(param_2 + 0x10),*(undefined8 *)(param_1 + 0x10),(longlong)param_1[5]);
+    memcpy(*(uint64_t *)(param_2 + 0x10),*(uint64_t *)(param_1 + 0x10),(longlong)param_1[5]);
   }
   if (0 < param_1[6]) {
                     // WARNING: Subroutine does not return
-    memcpy(*(undefined8 *)(param_2 + 0x12),*(undefined8 *)(param_1 + 0x12),(longlong)param_1[5]);
+    memcpy(*(uint64_t *)(param_2 + 0x12),*(uint64_t *)(param_1 + 0x12),(longlong)param_1[5]);
   }
   iVar1 = param_2[0x19];
   iVar2 = iVar1 / 2;
-  FUN_18069c3b0(*(undefined8 *)(param_2 + 0xe),param_2[4],param_2[2],param_2[3],iVar1,iVar1,
+  FUN_18069c3b0(*(uint64_t *)(param_2 + 0xe),param_2[4],param_2[2],param_2[3],iVar1,iVar1,
                 (param_2[1] - param_2[3]) + iVar1,(iVar1 - param_2[2]) + *param_2);
-  FUN_18069c3b0(*(undefined8 *)(param_2 + 0x10),param_2[9],param_2[7],param_2[8],iVar2,iVar2,
+  FUN_18069c3b0(*(uint64_t *)(param_2 + 0x10),param_2[9],param_2[7],param_2[8],iVar2,iVar2,
                 (param_2[6] - param_2[8]) + iVar2,(param_2[5] - param_2[7]) + iVar2);
-  FUN_18069c3b0(*(undefined8 *)(param_2 + 0x12),param_2[9],param_2[7],param_2[8],iVar2,iVar2,
+  FUN_18069c3b0(*(uint64_t *)(param_2 + 0x12),param_2[9],param_2[7],param_2[8],iVar2,iVar2,
                 (param_2[6] - param_2[8]) + iVar2,(param_2[5] - param_2[7]) + iVar2);
   return;
 }
@@ -930,11 +930,11 @@ void RenderingSystem_BufferOptimizer(int* param_1)
   
   iVar1 = param_1[0x19];
   iVar2 = iVar1 / 2;
-  FUN_18069c3b0(*(undefined8 *)(param_1 + 0xe),param_1[4],param_1[2],param_1[3],iVar1,iVar1,
+  FUN_18069c3b0(*(uint64_t *)(param_1 + 0xe),param_1[4],param_1[2],param_1[3],iVar1,iVar1,
                 (param_1[1] - param_1[3]) + iVar1,(iVar1 - param_1[2]) + *param_1);
-  FUN_18069c3b0(*(undefined8 *)(param_1 + 0x10),param_1[9],param_1[7],param_1[8],iVar2,iVar2,
+  FUN_18069c3b0(*(uint64_t *)(param_1 + 0x10),param_1[9],param_1[7],param_1[8],iVar2,iVar2,
                 (param_1[6] - param_1[8]) + iVar2,(param_1[5] - param_1[7]) + iVar2);
-  FUN_18069c3b0(*(undefined8 *)(param_1 + 0x12),param_1[9],param_1[7],param_1[8],iVar2,iVar2,
+  FUN_18069c3b0(*(uint64_t *)(param_1 + 0x12),param_1[9],param_1[7],param_1[8],iVar2,iVar2,
                 (param_1[6] - param_1[8]) + iVar2,(param_1[5] - param_1[7]) + iVar2);
   return;
 }
@@ -1057,11 +1057,11 @@ void RenderingSystem_ImageFormatConverter(unsigned long long param_1, longlong p
                                         int param_5, longlong param_6)
 
 {
-  func_0x00018002acc0(param_1,param_4,*(undefined8 *)(param_6 + 8),*(undefined8 *)(param_6 + 0x10),
-                      *(undefined8 *)(param_6 + 0x18),2);
+  func_0x00018002acc0(param_1,param_4,*(uint64_t *)(param_6 + 8),*(uint64_t *)(param_6 + 0x10),
+                      *(uint64_t *)(param_6 + 0x18),2);
   if (param_2 != 0) {
-    func_0x00018001a840(param_5 * 4 + param_2,param_5,*(undefined8 *)(param_6 + 8),
-                        *(undefined8 *)(param_6 + 0x10),*(undefined8 *)(param_6 + 0x18),
+    func_0x00018001a840(param_5 * 4 + param_2,param_5,*(uint64_t *)(param_6 + 8),
+                        *(uint64_t *)(param_6 + 0x10),*(uint64_t *)(param_6 + 0x18),
                         param_5 * 4 + param_3);
   }
   return;
@@ -1086,23 +1086,23 @@ void RenderingSystem_ImageFormatConverter(unsigned long long param_1, longlong p
 void RenderingSystem_ImageEnhancer(longlong param_1, int param_2, unsigned char (*param_3)[16])
 
 {
-  undefined1 auVar1 [16];
+  int8_t auVar1 [16];
   longlong lVar2;
-  undefined1 (*pauVar3) [16];
-  undefined1 auVar4 [16];
-  undefined1 auVar5 [16];
-  undefined1 auVar6 [16];
-  undefined1 auVar7 [16];
-  undefined1 auVar8 [16];
-  undefined1 auVar9 [16];
-  undefined1 auVar10 [16];
-  undefined1 auVar11 [16];
+  int8_t (*pauVar3) [16];
+  int8_t auVar4 [16];
+  int8_t auVar5 [16];
+  int8_t auVar6 [16];
+  int8_t auVar7 [16];
+  int8_t auVar8 [16];
+  int8_t auVar9 [16];
+  int8_t auVar10 [16];
+  int8_t auVar11 [16];
   
   auVar1 = _DAT_180d9e5d0;
-  pauVar3 = (undefined1 (*) [16])(param_2 * 4 + param_1);
+  pauVar3 = (int8_t (*) [16])(param_2 * 4 + param_1);
   lVar2 = (longlong)param_2;
-  auVar5 = *(undefined1 (*) [16])(*pauVar3 + lVar2);
-  auVar7 = *(undefined1 (*) [16])((longlong)pauVar3 + lVar2 * -2);
+  auVar5 = *(int8_t (*) [16])(*pauVar3 + lVar2);
+  auVar7 = *(int8_t (*) [16])((longlong)pauVar3 + lVar2 * -2);
   auVar4 = psubusb(auVar5,auVar7);
   auVar6 = psubusb(auVar7,auVar5);
   auVar4 = (auVar6 | auVar4) & _DAT_180d9e5c0;
@@ -1114,7 +1114,7 @@ void RenderingSystem_ImageEnhancer(longlong param_1, int param_2, unsigned char 
   auVar10._10_2_ = auVar4._10_2_ >> 1;
   auVar10._12_2_ = auVar4._12_2_ >> 1;
   auVar10._14_2_ = auVar4._14_2_ >> 1;
-  auVar4 = *(undefined1 (*) [16])((longlong)pauVar3 + -lVar2);
+  auVar4 = *(int8_t (*) [16])((longlong)pauVar3 + -lVar2);
   auVar6 = *pauVar3;
   auVar9 = psubusb(auVar4,auVar6);
   auVar8 = psubusb(auVar6,auVar4);
@@ -1195,7 +1195,7 @@ void RenderingSystem_ImageEnhancer(longlong param_1, int param_2, unsigned char 
   auVar6._14_2_ = auVar10._14_2_ >> 3;
   auVar7 = paddsb(auVar4 ^ _DAT_180d9e5d0,auVar6 & _DAT_180d9e650 | auVar11 & _DAT_180d9e640);
   *pauVar3 = auVar5 ^ _DAT_180d9e5d0;
-  *(undefined1 (*) [16])((longlong)pauVar3 + -lVar2) = auVar7 ^ auVar1;
+  *(int8_t (*) [16])((longlong)pauVar3 + -lVar2) = auVar7 ^ auVar1;
   return;
 }
 
@@ -1218,11 +1218,11 @@ void RenderingSystem_PostProcessor(unsigned long long param_1, longlong param_2,
                                   unsigned int param_5, longlong param_6)
 
 {
-  func_0x00018002b38a(param_1,param_4,*(undefined8 *)(param_6 + 8),*(undefined8 *)(param_6 + 0x10),
-                      *(undefined8 *)(param_6 + 0x18),2);
+  func_0x00018002b38a(param_1,param_4,*(uint64_t *)(param_6 + 8),*(uint64_t *)(param_6 + 0x10),
+                      *(uint64_t *)(param_6 + 0x18),2);
   if (param_2 != 0) {
-    func_0x00018001b1ed(param_2 + 4,param_5,*(undefined8 *)(param_6 + 8),
-                        *(undefined8 *)(param_6 + 0x10),*(undefined8 *)(param_6 + 0x18),param_3 + 4)
+    func_0x00018001b1ed(param_2 + 4,param_5,*(uint64_t *)(param_6 + 8),
+                        *(uint64_t *)(param_6 + 0x10),*(uint64_t *)(param_6 + 0x18),param_3 + 4)
     ;
   }
   return;

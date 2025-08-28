@@ -26,14 +26,14 @@ static const char *MODULE_NAME_ENTITY = "EntityModule";
  */
 void initialize_audio_module(void)
 {
-    undefined8 in_R9;
-    undefined *module_ptr;
-    undefined1 *buffer_ptr;
-    undefined4 buffer_size;
-    undefined1 buffer[136];
+    uint64_t in_R9;
+    void *module_ptr;
+    int8_t *buffer_ptr;
+    int32_t buffer_size;
+    int8_t buffer[136];
     
     // 设置模块参数
-    module_ptr = (undefined *)&UNK_1809fcc28;  // 模块注册入口点
+    module_ptr = (void *)&UNK_1809fcc28;  // 模块注册入口点
     buffer_ptr = buffer;
     buffer[0] = 0;
     buffer_size = 0x16;  // 22字节
@@ -51,7 +51,7 @@ void initialize_audio_module(void)
 int initialize_module_registry(void)
 {
     longlong result;
-    undefined8 in_R9;
+    uint64_t in_R9;
     
     // 初始化注册表指针
     module_registry_entry = (void *)&UNK_1809fcc58;
@@ -67,33 +67,33 @@ int initialize_module_registry(void)
 void register_rendering_module(void)
 {
     char is_found;
-    undefined8 *root_node;
+    uint64_t *root_node;
     int compare_result;
     longlong *registry;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *new_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
     code *module_handler;
     
     // 获取模块注册表
     registry = (longlong *)get_module_registry();
-    root_node = (undefined8 *)*registry;
+    root_node = (uint64_t *)*registry;
     is_found = *(char *)((longlong)root_node[1] + 0x19);
     module_handler = get_rendering_handler;
     parent_node = root_node;
-    current_node = (undefined8 *)root_node[1];
+    current_node = (uint64_t *)root_node[1];
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
         compare_result = memcmp(current_node + 4, &DAT_1809fc740, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -124,33 +124,33 @@ void register_rendering_module(void)
 void register_physics_module(void)
 {
     char is_found;
-    undefined8 *root_node;
+    uint64_t *root_node;
     int compare_result;
     longlong *registry;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *new_node;
-    undefined8 module_handler;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    uint64_t module_handler;
     
     // 获取模块注册表
     registry = (longlong *)get_module_registry();
-    root_node = (undefined8 *)*registry;
+    root_node = (uint64_t *)*registry;
     is_found = *(char *)((longlong)root_node[1] + 0x19);
     module_handler = 0;
     parent_node = root_node;
-    current_node = (undefined8 *)root_node[1];
+    current_node = (uint64_t *)root_node[1];
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
         compare_result = memcmp(current_node + 4, &DAT_1809fc768, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -181,33 +181,33 @@ void register_physics_module(void)
 void register_input_module(void)
 {
     char is_found;
-    undefined8 *root_node;
+    uint64_t *root_node;
     int compare_result;
     longlong *registry;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *new_node;
-    undefined8 module_handler;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    uint64_t module_handler;
     
     // 获取模块注册表
     registry = (longlong *)get_module_registry();
-    root_node = (undefined8 *)*registry;
+    root_node = (uint64_t *)*registry;
     is_found = *(char *)((longlong)root_node[1] + 0x19);
     module_handler = 0;
     parent_node = root_node;
-    current_node = (undefined8 *)root_node[1];
+    current_node = (uint64_t *)root_node[1];
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
         compare_result = memcmp(current_node + 4, &DAT_18098c9b8, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -238,33 +238,33 @@ void register_input_module(void)
 void register_network_module(void)
 {
     char is_found;
-    undefined8 *root_node;
+    uint64_t *root_node;
     int compare_result;
     longlong *registry;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *new_node;
-    undefined8 module_handler;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    uint64_t module_handler;
     
     // 获取模块注册表
     registry = (longlong *)get_module_registry();
-    root_node = (undefined8 *)*registry;
+    root_node = (uint64_t *)*registry;
     is_found = *(char *)((longlong)root_node[1] + 0x19);
     module_handler = 0;
     parent_node = root_node;
-    current_node = (undefined8 *)root_node[1];
+    current_node = (uint64_t *)root_node[1];
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
         compare_result = memcmp(current_node + 4, &DAT_18098c940, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -295,33 +295,33 @@ void register_network_module(void)
 void register_ui_module(void)
 {
     char is_found;
-    undefined8 *root_node;
+    uint64_t *root_node;
     int compare_result;
     longlong *registry;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *new_node;
-    undefined8 module_handler;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    uint64_t module_handler;
     
     // 获取模块注册表
     registry = (longlong *)get_module_registry();
-    root_node = (undefined8 *)*registry;
+    root_node = (uint64_t *)*registry;
     is_found = *(char *)((longlong)root_node[1] + 0x19);
     module_handler = 0;
     parent_node = root_node;
-    current_node = (undefined8 *)root_node[1];
+    current_node = (uint64_t *)root_node[1];
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
         compare_result = memcmp(current_node + 4, &DAT_18098c918, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -352,33 +352,33 @@ void register_ui_module(void)
 void register_resource_module(void)
 {
     char is_found;
-    undefined8 *root_node;
+    uint64_t *root_node;
     int compare_result;
     longlong *registry;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *new_node;
-    undefined8 module_handler;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    uint64_t module_handler;
     
     // 获取模块注册表
     registry = (longlong *)get_module_registry();
-    root_node = (undefined8 *)*registry;
+    root_node = (uint64_t *)*registry;
     is_found = *(char *)((longlong)root_node[1] + 0x19);
     module_handler = 0;
     parent_node = root_node;
-    current_node = (undefined8 *)root_node[1];
+    current_node = (uint64_t *)root_node[1];
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
         compare_result = memcmp(current_node + 4, &DAT_18098c968, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -409,33 +409,33 @@ void register_resource_module(void)
 void register_scripting_module(void)
 {
     char is_found;
-    undefined8 *root_node;
+    uint64_t *root_node;
     int compare_result;
     longlong *registry;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *new_node;
-    undefined8 module_handler;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    uint64_t module_handler;
     
     // 获取模块注册表
     registry = (longlong *)get_module_registry();
-    root_node = (undefined8 *)*registry;
+    root_node = (uint64_t *)*registry;
     is_found = *(char *)((longlong)root_node[1] + 0x19);
     module_handler = 0;
     parent_node = root_node;
-    current_node = (undefined8 *)root_node[1];
+    current_node = (uint64_t *)root_node[1];
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
         compare_result = memcmp(current_node + 4, &DAT_18098c990, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -466,33 +466,33 @@ void register_scripting_module(void)
 void register_scene_module(void)
 {
     char is_found;
-    undefined8 *root_node;
+    uint64_t *root_node;
     int compare_result;
     longlong *registry;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *new_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
     code *module_handler;
     
     // 获取模块注册表
     registry = (longlong *)get_module_registry();
-    root_node = (undefined8 *)*registry;
+    root_node = (uint64_t *)*registry;
     is_found = *(char *)((longlong)root_node[1] + 0x19);
     module_handler = get_scene_handler;
     parent_node = root_node;
-    current_node = (undefined8 *)root_node[1];
+    current_node = (uint64_t *)root_node[1];
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
         compare_result = memcmp(current_node + 4, &DAT_18098c8f0, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -523,33 +523,33 @@ void register_scene_module(void)
 void register_entity_module(void)
 {
     char is_found;
-    undefined8 *root_node;
+    uint64_t *root_node;
     int compare_result;
     longlong *registry;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *new_node;
-    undefined8 module_handler;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    uint64_t module_handler;
     
     // 获取模块注册表
     registry = (longlong *)get_module_registry();
-    root_node = (undefined8 *)*registry;
+    root_node = (uint64_t *)*registry;
     is_found = *(char *)((longlong)root_node[1] + 0x19);
     module_handler = 0;
     parent_node = root_node;
-    current_node = (undefined8 *)root_node[1];
+    current_node = (uint64_t *)root_node[1];
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
         compare_result = memcmp(current_node + 4, &DAT_18098c8c8, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -579,14 +579,14 @@ void register_entity_module(void)
  */
 void initialize_animation_module(void)
 {
-    undefined8 in_R9;
-    undefined *module_ptr;
-    undefined1 *buffer_ptr;
-    undefined4 buffer_size;
-    undefined1 buffer[136];
+    uint64_t in_R9;
+    void *module_ptr;
+    int8_t *buffer_ptr;
+    int32_t buffer_size;
+    int8_t buffer[136];
     
     // 设置模块参数
-    module_ptr = (undefined *)&UNK_1809fcc28;  // 模块注册入口点
+    module_ptr = (void *)&UNK_1809fcc28;  // 模块注册入口点
     buffer_ptr = buffer;
     buffer[0] = 0;
     buffer_size = 0x12;  // 18字节
@@ -603,14 +603,14 @@ void initialize_animation_module(void)
  */
 void initialize_ai_module(void)
 {
-    undefined8 in_R9;
-    undefined *module_ptr;
-    undefined1 *buffer_ptr;
-    undefined4 buffer_size;
-    undefined1 buffer[136];
+    uint64_t in_R9;
+    void *module_ptr;
+    int8_t *buffer_ptr;
+    int32_t buffer_size;
+    int8_t buffer[136];
     
     // 设置模块参数
-    module_ptr = (undefined *)&UNK_1809fcc28;  // 模块注册入口点
+    module_ptr = (void *)&UNK_1809fcc28;  // 模块注册入口点
     buffer_ptr = buffer;
     buffer[0] = 0;
     buffer_size = 8;  // 8字节
@@ -628,33 +628,33 @@ void initialize_ai_module(void)
 void register_game_logic_module(void)
 {
     char is_found;
-    undefined8 *root_node;
+    uint64_t *root_node;
     int compare_result;
     longlong *registry;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *new_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
     code *module_handler;
     
     // 获取模块注册表
     registry = (longlong *)get_module_registry();
-    root_node = (undefined8 *)*registry;
+    root_node = (uint64_t *)*registry;
     is_found = *(char *)((longlong)root_node[1] + 0x19);
     module_handler = get_game_logic_handler;
     parent_node = root_node;
-    current_node = (undefined8 *)root_node[1];
+    current_node = (uint64_t *)root_node[1];
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
         compare_result = memcmp(current_node + 4, &DAT_180a010a0, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -685,33 +685,33 @@ void register_game_logic_module(void)
 void register_sound_effects_module(void)
 {
     char is_found;
-    undefined8 *root_node;
+    uint64_t *root_node;
     int compare_result;
     longlong *registry;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *new_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
     code *module_handler;
     
     // 获取模块注册表
     registry = (longlong *)get_module_registry();
-    root_node = (undefined8 *)*registry;
+    root_node = (uint64_t *)*registry;
     is_found = *(char *)((longlong)root_node[1] + 0x19);
     module_handler = get_sound_effects_handler;
     parent_node = root_node;
-    current_node = (undefined8 *)root_node[1];
+    current_node = (uint64_t *)root_node[1];
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
         compare_result = memcmp(current_node + 4, &DAT_180a01078, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -742,33 +742,33 @@ void register_sound_effects_module(void)
 void register_music_module(void)
 {
     char is_found;
-    undefined8 *root_node;
+    uint64_t *root_node;
     int compare_result;
     longlong *registry;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *new_node;
-    undefined8 module_handler;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    uint64_t module_handler;
     
     // 获取模块注册表
     registry = (longlong *)get_module_registry();
-    root_node = (undefined8 *)*registry;
+    root_node = (uint64_t *)*registry;
     is_found = *(char *)((longlong)root_node[1] + 0x19);
     module_handler = 0;
     parent_node = root_node;
-    current_node = (undefined8 *)root_node[1];
+    current_node = (uint64_t *)root_node[1];
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
         compare_result = memcmp(current_node + 4, &DAT_180a01050, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -799,33 +799,33 @@ void register_music_module(void)
 void register_voice_module(void)
 {
     char is_found;
-    undefined8 *root_node;
+    uint64_t *root_node;
     int compare_result;
     longlong *registry;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *new_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
     code *module_handler;
     
     // 获取模块注册表
     registry = (longlong *)get_module_registry();
-    root_node = (undefined8 *)*registry;
+    root_node = (uint64_t *)*registry;
     is_found = *(char *)((longlong)root_node[1] + 0x19);
     module_handler = get_voice_handler;
     parent_node = root_node;
-    current_node = (undefined8 *)root_node[1];
+    current_node = (uint64_t *)root_node[1];
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
         compare_result = memcmp(current_node + 4, &DAT_180a01028, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -856,33 +856,33 @@ void register_voice_module(void)
 void register_environment_audio_module(void)
 {
     char is_found;
-    undefined8 *root_node;
+    uint64_t *root_node;
     int compare_result;
     longlong *registry;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *new_node;
-    undefined *module_handler;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    void *module_handler;
     
     // 获取模块注册表
     registry = (longlong *)get_module_registry();
-    root_node = (undefined8 *)*registry;
+    root_node = (uint64_t *)*registry;
     is_found = *(char *)((longlong)root_node[1] + 0x19);
     module_handler = &UNK_1800868c0;
     parent_node = root_node;
-    current_node = (undefined8 *)root_node[1];
+    current_node = (uint64_t *)root_node[1];
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
         compare_result = memcmp(current_node + 4, &DAT_180a00fd8, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -913,33 +913,33 @@ void register_environment_audio_module(void)
 void register_audio_mixer_module(void)
 {
     char is_found;
-    undefined8 *root_node;
+    uint64_t *root_node;
     int compare_result;
     longlong *registry;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *new_node;
-    undefined8 module_handler;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    uint64_t module_handler;
     
     // 获取模块注册表
     registry = (longlong *)get_module_registry();
-    root_node = (undefined8 *)*registry;
+    root_node = (uint64_t *)*registry;
     is_found = *(char *)((longlong)root_node[1] + 0x19);
     module_handler = 0;
     parent_node = root_node;
-    current_node = (undefined8 *)root_node[1];
+    current_node = (uint64_t *)root_node[1];
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
         compare_result = memcmp(current_node + 4, &DAT_180a00fb0, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -970,7 +970,7 @@ void register_audio_mixer_module(void)
 int initialize_debug_module(void)
 {
     longlong result;
-    undefined8 in_R9;
+    uint64_t in_R9;
     
     // 初始化调试模块指针
     module_registry_base = (void *)&UNK_1809fcc28;
@@ -986,33 +986,33 @@ int initialize_debug_module(void)
 void register_performance_monitor_module(void)
 {
     char is_found;
-    undefined8 *root_node;
+    uint64_t *root_node;
     int compare_result;
     longlong *registry;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *new_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
     code *module_handler;
     
     // 获取模块注册表
     registry = (longlong *)get_module_registry();
-    root_node = (undefined8 *)*registry;
+    root_node = (uint64_t *)*registry;
     is_found = *(char *)((longlong)root_node[1] + 0x19);
     module_handler = get_performance_handler;
     parent_node = root_node;
-    current_node = (undefined8 *)root_node[1];
+    current_node = (uint64_t *)root_node[1];
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
         compare_result = memcmp(current_node + 4, &DAT_180a00d48, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -1045,33 +1045,33 @@ void register_performance_monitor_module(void)
 void register_game_logic_module_alt(void)
 {
     char is_found;
-    undefined8 *root_node;
+    uint64_t *root_node;
     int compare_result;
     longlong *registry;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *new_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
     code *module_handler;
     
     // 获取模块注册表
     registry = (longlong *)get_module_registry();
-    root_node = (undefined8 *)*registry;
+    root_node = (uint64_t *)*registry;
     is_found = *(char *)((longlong)root_node[1] + 0x19);
     module_handler = get_game_logic_handler;
     parent_node = root_node;
-    current_node = (undefined8 *)root_node[1];
+    current_node = (uint64_t *)root_node[1];
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
         compare_result = memcmp(current_node + 4, &DAT_180a010a0, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -1102,33 +1102,33 @@ void register_game_logic_module_alt(void)
 void register_sound_effects_module_alt(void)
 {
     char is_found;
-    undefined8 *root_node;
+    uint64_t *root_node;
     int compare_result;
     longlong *registry;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *new_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
     code *module_handler;
     
     // 获取模块注册表
     registry = (longlong *)get_module_registry();
-    root_node = (undefined8 *)*registry;
+    root_node = (uint64_t *)*registry;
     is_found = *(char *)((longlong)root_node[1] + 0x19);
     module_handler = get_sound_effects_handler;
     parent_node = root_node;
-    current_node = (undefined8 *)root_node[1];
+    current_node = (uint64_t *)root_node[1];
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
         compare_result = memcmp(current_node + 4, &DAT_180a01078, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -1159,33 +1159,33 @@ void register_sound_effects_module_alt(void)
 void register_music_module_alt(void)
 {
     char is_found;
-    undefined8 *root_node;
+    uint64_t *root_node;
     int compare_result;
     longlong *registry;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *new_node;
-    undefined8 module_handler;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    uint64_t module_handler;
     
     // 获取模块注册表
     registry = (longlong *)get_module_registry();
-    root_node = (undefined8 *)*registry;
+    root_node = (uint64_t *)*registry;
     is_found = *(char *)((longlong)root_node[1] + 0x19);
     module_handler = 0;
     parent_node = root_node;
-    current_node = (undefined8 *)root_node[1];
+    current_node = (uint64_t *)root_node[1];
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
         compare_result = memcmp(current_node + 4, &DAT_180a01050, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -1216,33 +1216,33 @@ void register_music_module_alt(void)
 void register_voice_module_alt(void)
 {
     char is_found;
-    undefined8 *root_node;
+    uint64_t *root_node;
     int compare_result;
     longlong *registry;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *new_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
     code *module_handler;
     
     // 获取模块注册表
     registry = (longlong *)get_module_registry();
-    root_node = (undefined8 *)*registry;
+    root_node = (uint64_t *)*registry;
     is_found = *(char *)((longlong)root_node[1] + 0x19);
     module_handler = get_voice_handler;
     parent_node = root_node;
-    current_node = (undefined8 *)root_node[1];
+    current_node = (uint64_t *)root_node[1];
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
         compare_result = memcmp(current_node + 4, &DAT_180a01028, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;
@@ -1273,33 +1273,33 @@ void register_voice_module_alt(void)
 void register_environment_audio_module_alt(void)
 {
     char is_found;
-    undefined8 *root_node;
+    uint64_t *root_node;
     int compare_result;
     longlong *registry;
     longlong allocation_size;
-    undefined8 *current_node;
-    undefined8 *parent_node;
-    undefined8 *next_node;
-    undefined8 *new_node;
-    undefined *module_handler;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    void *module_handler;
     
     // 获取模块注册表
     registry = (longlong *)get_module_registry();
-    root_node = (undefined8 *)*registry;
+    root_node = (uint64_t *)*registry;
     is_found = *(char *)((longlong)root_node[1] + 0x19);
     module_handler = &UNK_1800868c0;
     parent_node = root_node;
-    current_node = (undefined8 *)root_node[1];
+    current_node = (uint64_t *)root_node[1];
     
     // 在注册表中搜索模块位置
     while (is_found == '\0') {
         compare_result = memcmp(current_node + 4, &DAT_180a00fd8, 0x10);
         if (compare_result < 0) {
-            next_node = (undefined8 *)current_node[2];
+            next_node = (uint64_t *)current_node[2];
             current_node = parent_node;
         }
         else {
-            next_node = (undefined8 *)*current_node;
+            next_node = (uint64_t *)*current_node;
         }
         parent_node = current_node;
         current_node = next_node;

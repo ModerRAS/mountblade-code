@@ -51,8 +51,8 @@
 /* 渲染系统全局变量 */
 extern longlong _DAT_180c86920;      /* 渲染系统全局数据指针 */
 extern char DAT_180c82860;           /* 渲染系统标志位 */
-extern undefined *DAT_18098bc73;     /* 渲染系统默认数据指针 */
-extern undefined8 UNK_18098bc00;     /* 渲染系统未知数据 */
+extern void *DAT_18098bc73;     /* 渲染系统默认数据指针 */
+extern uint64_t UNK_18098bc00;     /* 渲染系统未知数据 */
 extern undefined UNK_1809fcc28;      /* 渲染系统配置数据 */
 extern undefined UNK_1809fcc58;      /* 渲染系统扩展配置数据 */
 extern undefined UNK_18098bcb0;     /* 渲染系统缓冲区数据 */
@@ -68,9 +68,9 @@ void FUN_180439fb5(void)
 {
   longlong render_context;
   char status_check;
-  undefined *data_pointer;
+  void *data_pointer;
   float parameter_value;
-  undefined8 stack_data;
+  uint64_t stack_data;
   int parameter_int;
   
   render_context = _DAT_180c86920;
@@ -85,15 +85,15 @@ void FUN_180439fb5(void)
     /* 处理标志位检查 */
     if (DAT_180c82860 == '\0') {
       data_pointer = &DAT_18098bc73;
-      if (*(undefined **)(render_context + RENDERING_SYSTEM_OFFSET_470) != (undefined *)0x0) {
-        data_pointer = *(undefined **)(render_context + RENDERING_SYSTEM_OFFSET_470);
+      if (*(void **)(render_context + RENDERING_SYSTEM_OFFSET_470) != (void *)0x0) {
+        data_pointer = *(void **)(render_context + RENDERING_SYSTEM_OFFSET_470);
       }
       FUN_180626f80(&UNK_18098bc00, data_pointer);
     }
     
     /* 更新渲染参数 */
-    *(undefined4 *)(render_context + RENDERING_SYSTEM_OFFSET_460) = 
-        *(undefined4 *)(render_context + RENDERING_SYSTEM_OFFSET_4A8);
+    *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_460) = 
+        *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_4A8);
     return;
   }
   
@@ -112,9 +112,9 @@ void FUN_180439fd4(void)
 {
   longlong render_context;
   char status_check;
-  undefined *data_pointer;
+  void *data_pointer;
   float parameter_value;
-  undefined8 stack_data;
+  uint64_t stack_data;
   int parameter_int;
   
   render_context = _DAT_180c86920;
@@ -129,15 +129,15 @@ void FUN_180439fd4(void)
     /* 处理标志位检查 */
     if (DAT_180c82860 == '\0') {
       data_pointer = &DAT_18098bc73;
-      if (*(undefined **)(render_context + RENDERING_SYSTEM_OFFSET_2150) != (undefined *)0x0) {
-        data_pointer = *(undefined **)(render_context + RENDERING_SYSTEM_OFFSET_2150);
+      if (*(void **)(render_context + RENDERING_SYSTEM_OFFSET_2150) != (void *)0x0) {
+        data_pointer = *(void **)(render_context + RENDERING_SYSTEM_OFFSET_2150);
       }
       FUN_180626f80(&UNK_18098bc00, data_pointer);
     }
     
     /* 更新高级渲染参数 */
-    *(undefined4 *)(render_context + RENDERING_SYSTEM_OFFSET_2140) = 
-        *(undefined4 *)(render_context + RENDERING_SYSTEM_OFFSET_2188);
+    *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_2140) = 
+        *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_2188);
     return;
   }
   
@@ -177,7 +177,7 @@ void FUN_18043a012(void)
  * 处理渲染系统的各种条件判断，包括参数验证、状态检查和
  * 动作执行。支持多种渲染条件和操作模式。
  *=============================================================================*/
-void FUN_18043a140(undefined4 param_1, int param_2)
+void FUN_18043a140(int32_t param_1, int param_2)
 {
   switch(param_1) {
   case 0x15:
@@ -619,7 +619,7 @@ void FUN_18043a140(undefined4 param_1, int param_2)
  * 根据参数类型获取渲染系统的各种值，包括浮点数值、整数值和
  * 状态值。支持多种渲染参数和配置选项。
  *=============================================================================*/
-float FUN_18043ab40(undefined4 param_1)
+float FUN_18043ab40(int32_t param_1)
 {
   bool system_status;
   longlong render_context;
@@ -627,11 +627,11 @@ float FUN_18043ab40(undefined4 param_1)
   int temp_value1;
   int temp_value2;
   int temp_value3;
-  undefined8 temp_data;
+  uint64_t temp_data;
   float float_result;
   float temp_float1;
   float temp_float2;
-  undefined8 stack_data;
+  uint64_t stack_data;
   
   render_context = _DAT_180c86920;
   
@@ -725,7 +725,7 @@ float FUN_18043ab40(undefined4 param_1)
     int_value = *(int *)(_DAT_180c86920 + 0x1810);
     break;
   case 0x17:
-    FUN_180171f10(*(undefined8 *)(_DAT_180c86870 + 8), &stack_data);
+    FUN_180171f10(*(uint64_t *)(_DAT_180c86870 + 8), &stack_data);
     if (((float)stack_data == (float)*(int *)(_DAT_180c86920 + 0x1d50)) &&
        (stack_data._4_4_ == (float)*(int *)(_DAT_180c86920 + 0x1dc0))) {
       int_value = FUN_180438350();
@@ -940,7 +940,7 @@ FUN_18043b139:
  * 执行渲染系统的跳转表操作，支持动态函数调用和参数传递。
  * 用于处理复杂的渲染操作和系统调用。
  *=============================================================================*/
-void FUN_18043abac(undefined8 param_1, undefined8 param_2, longlong param_3)
+void FUN_18043abac(uint64_t param_1, uint64_t param_2, longlong param_3)
 {
   longlong register_data;
   code *jump_table;
@@ -968,7 +968,7 @@ void FUN_18043b139(void)
  * 处理渲染系统的各种动作，包括条件检查、状态验证和
  * 动作执行。支持多种渲染模式和操作类型。
  *=============================================================================*/
-void FUN_18043b290(undefined4 param_1)
+void FUN_18043b290(int32_t param_1)
 {
   bool system_status;
   
@@ -1167,19 +1167,19 @@ void FUN_18043b290(undefined4 param_1)
  * 系统状态的更新。支持复杂的批处理流程。
  *=============================================================================*/
 void FUN_18043b930(int param_1, int param_2, int param_3, int param_4, int param_5, int param_6,
-                  undefined8 param_7, undefined8 param_8, int param_9, int param_10)
+                  uint64_t param_7, uint64_t param_8, int param_9, int param_10)
 {
-  undefined8 temp_data;
-  undefined **pointer_ptr;
-  undefined **temp_pointer;
-  undefined ***triple_pointer;
-  undefined8 stack_data;
-  undefined **pointer_stack;
-  undefined *buffer_pointer;
-  undefined1 *buffer_data;
-  undefined4 temp_value;
-  undefined1 temp_buffer[128];
-  undefined4 buffer_value;
+  uint64_t temp_data;
+  void **pointer_ptr;
+  void **temp_pointer;
+  void ***triple_pointer;
+  uint64_t stack_data;
+  void **pointer_stack;
+  void *buffer_pointer;
+  int8_t *buffer_data;
+  int32_t temp_value;
+  int8_t temp_buffer[128];
+  int32_t buffer_value;
   ulonglong stack_guard;
   
   stack_data = 0xfffffffffffffffe;
@@ -1187,25 +1187,25 @@ void FUN_18043b930(int param_1, int param_2, int param_3, int param_4, int param
   
   /* 处理渲染参数 */
   if (param_3 != 0) {
-    FUN_18010d9f0(_DAT_180c86920, *(undefined4 *)(_DAT_180c86920 + 0x8c0));
+    FUN_18010d9f0(_DAT_180c86920, *(int32_t *)(_DAT_180c86920 + 0x8c0));
   }
   if (param_4 != 0) {
-    FUN_18010da70(_DAT_180c86920, *(undefined4 *)(_DAT_180c86920 + 0x850));
+    FUN_18010da70(_DAT_180c86920, *(int32_t *)(_DAT_180c86920 + 0x850));
   }
   if (param_5 != 0) {
-    FUN_18010d870(_DAT_180c86920, *(undefined4 *)(_DAT_180c86920 + 0xa10));
+    FUN_18010d870(_DAT_180c86920, *(int32_t *)(_DAT_180c86920 + 0xa10));
   }
   if (param_6 != 0) {
-    FUN_18010daf0(_DAT_180c86920, *(undefined4 *)(_DAT_180c86920 + 0x7e0));
+    FUN_18010daf0(_DAT_180c86920, *(int32_t *)(_DAT_180c86920 + 0x7e0));
   }
   if (param_2 != 0) {
-    FUN_18010cd70(_DAT_180c86920, *(undefined4 *)(_DAT_180c86920 + 0x2060));
+    FUN_18010cd70(_DAT_180c86920, *(int32_t *)(_DAT_180c86920 + 0x2060));
   }
   if (param_9 != 0) {
     FUN_18043be90();
   }
   if (param_10 != 0) {
-    FUN_18010cdf0(_DAT_180c86920, *(undefined4 *)(_DAT_180c86920 + 0x21b0));
+    FUN_18010cdf0(_DAT_180c86920, *(int32_t *)(_DAT_180c86920 + 0x21b0));
   }
   
   /* 执行渲染系统初始化 */
@@ -1224,10 +1224,10 @@ void FUN_18043b930(int param_1, int param_2, int param_3, int param_4, int param
   
   /* 执行批处理操作 */
   temp_data = FUN_18062b1e0(_DAT_180c8ed18, 0x100, 8, 3);
-  pointer_ptr = (undefined **)FUN_18005ce30(temp_data, &buffer_pointer);
+  pointer_ptr = (void **)FUN_18005ce30(temp_data, &buffer_pointer);
   temp_pointer = pointer_ptr;
   
-  if (pointer_ptr != (undefined **)0x0) {
+  if (pointer_ptr != (void **)0x0) {
     (**(code **)(*pointer_ptr + 0x28))(pointer_ptr);
   }
   
@@ -1235,17 +1235,17 @@ void FUN_18043b930(int param_1, int param_2, int param_3, int param_4, int param
   triple_pointer = &pointer_stack;
   pointer_stack = pointer_ptr;
   
-  if (pointer_ptr != (undefined **)0x0) {
+  if (pointer_ptr != (void **)0x0) {
     (**(code **)(*pointer_ptr + 0x28))(pointer_ptr);
   }
   
   FUN_18005e370(temp_data, &pointer_stack);
   
-  if (pointer_ptr != (undefined **)0x0) {
+  if (pointer_ptr != (void **)0x0) {
     (**(code **)(*pointer_ptr + 0x38))(pointer_ptr);
   }
   
-  triple_pointer = (undefined ***)&buffer_pointer;
+  triple_pointer = (void ***)&buffer_pointer;
   buffer_pointer = &UNK_18098bcb0;
   FUN_18004b1f0(0);
                     // WARNING: Subroutine does not return
@@ -1260,17 +1260,17 @@ void FUN_18043b930(int param_1, int param_2, int param_3, int param_4, int param
  *=============================================================================*/
 void FUN_18043bbe0(int param_1)
 {
-  undefined *data_pointer;
+  void *data_pointer;
   int string_length;
   longlong data_offset;
   longlong base_address;
-  undefined *temp_pointer;
-  undefined1 temp_buffer[32];
-  undefined8 stack_data;
-  undefined *stack_pointer;
-  undefined1 *string_buffer;
+  void *temp_pointer;
+  int8_t temp_buffer[32];
+  uint64_t stack_data;
+  void *stack_pointer;
+  int8_t *string_buffer;
   uint buffer_size;
-  undefined1 work_buffer[72];
+  int8_t work_buffer[72];
   char format_buffer[16];
   ulonglong stack_guard;
   
@@ -1282,18 +1282,18 @@ void FUN_18043bbe0(int param_1)
   string_buffer = work_buffer;
   work_buffer[0] = 0;
   buffer_size = *(uint *)(base_address + 0x10);
-  data_pointer = *(undefined **)(base_address + 8);
+  data_pointer = *(void **)(base_address + 8);
   temp_pointer = &DAT_18098bc73;
   
-  if (data_pointer != (undefined *)0x0) {
+  if (data_pointer != (void *)0x0) {
     temp_pointer = data_pointer;
   }
   
   strcpy_s(work_buffer, 0x40, temp_pointer);
   
   if (buffer_size + 2 < 0x3f) {
-    *(undefined2 *)(string_buffer + buffer_size) = 0x2820;
-    *(undefined1 *)((longlong)(string_buffer + buffer_size) + 2) = 0;
+    *(int16_t *)(string_buffer + buffer_size) = 0x2820;
+    *(int8_t *)((longlong)(string_buffer + buffer_size) + 2) = 0;
     buffer_size = buffer_size + 2;
   }
   
@@ -1313,7 +1313,7 @@ void FUN_18043bbe0(int param_1)
   }
   
   if (buffer_size + 1 < 0x3f) {
-    *(undefined2 *)(string_buffer + buffer_size) = 0x29;
+    *(int16_t *)(string_buffer + buffer_size) = 0x29;
     buffer_size = buffer_size + 1;
   }
   
@@ -1329,12 +1329,12 @@ void FUN_18043bbe0(int param_1)
  * 执行渲染系统的数据复制操作，包括字符串复制和缓冲区管理。
  * 支持安全的数据复制和内存管理。
  *=============================================================================*/
-void FUN_18043be00(longlong param_1, undefined4 param_2)
+void FUN_18043be00(longlong param_1, int32_t param_2)
 {
   longlong data_offset;
   int string_length;
   longlong temp_offset;
-  undefined1 temp_buffer[32];
+  int8_t temp_buffer[32];
   char format_buffer[16];
   ulonglong stack_guard;
   
@@ -1364,11 +1364,11 @@ void FUN_18043be00(longlong param_1, undefined4 param_2)
  * 执行渲染系统的扩展数据复制操作，包括高级缓冲区管理和
  * 数据处理。支持更复杂的复制操作。
  *=============================================================================*/
-void FUN_18043be50(undefined8 param_1, uint param_2)
+void FUN_18043be50(uint64_t param_1, uint param_2)
 {
   int copy_length;
   longlong target_address;
-  undefined1 source_buffer[8];
+  int8_t source_buffer[8];
   ulonglong stack_data;
   
   if (param_2 + copy_length < 0x3f) {
@@ -1399,12 +1399,12 @@ void FUN_18043be7b(void)
  * 处理渲染系统第三组参数设置，包括状态检查、条件验证和
  * 数据更新功能。支持高级渲染参数配置。
  *=============================================================================*/
-void FUN_18043be90(undefined8 param_1, undefined4 param_2)
+void FUN_18043be90(uint64_t param_1, int32_t param_2)
 {
   longlong render_context;
   char status_check;
-  undefined *data_pointer;
-  undefined4 temp_stack[6];
+  void *data_pointer;
+  int32_t temp_stack[6];
   
   render_context = _DAT_180c86920;
   
@@ -1415,18 +1415,18 @@ void FUN_18043be90(undefined8 param_1, undefined4 param_2)
     
     if (DAT_180c82860 == '\0') {
       data_pointer = &DAT_18098bc73;
-      if (*(undefined **)(render_context + RENDERING_SYSTEM_OFFSET_17B0) != (undefined *)0x0) {
-        data_pointer = *(undefined **)(render_context + RENDERING_SYSTEM_OFFSET_17B0);
+      if (*(void **)(render_context + RENDERING_SYSTEM_OFFSET_17B0) != (void *)0x0) {
+        data_pointer = *(void **)(render_context + RENDERING_SYSTEM_OFFSET_17B0);
       }
       FUN_180626f80(&UNK_18098bc00, data_pointer);
     }
     
-    *(undefined4 *)(render_context + RENDERING_SYSTEM_OFFSET_17A0) = 
-        *(undefined4 *)(render_context + RENDERING_SYSTEM_OFFSET_17E8);
+    *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_17A0) = 
+        *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_17E8);
     return;
   }
   
-  *(undefined4 *)(render_context + RENDERING_SYSTEM_OFFSET_17A0) = param_2;
+  *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_17A0) = param_2;
   return;
 }
 
@@ -1436,12 +1436,12 @@ void FUN_18043be90(undefined8 param_1, undefined4 param_2)
  * 处理渲染系统第四组参数设置，包括高级状态检查、数据验证和
  * 参数更新功能。支持多种渲染模式和配置选项。
  *=============================================================================*/
-void FUN_18043bf20(undefined8 param_1, undefined4 param_2)
+void FUN_18043bf20(uint64_t param_1, int32_t param_2)
 {
   longlong render_context;
   char status_check;
-  undefined *data_pointer;
-  undefined4 temp_stack[6];
+  void *data_pointer;
+  int32_t temp_stack[6];
   
   render_context = _DAT_180c86920;
   
@@ -1452,18 +1452,18 @@ void FUN_18043bf20(undefined8 param_1, undefined4 param_2)
     
     if (DAT_180c82860 == '\0') {
       data_pointer = &DAT_18098bc73;
-      if (*(undefined **)(render_context + RENDERING_SYSTEM_OFFSET_1120) != (undefined *)0x0) {
-        data_pointer = *(undefined **)(render_context + RENDERING_SYSTEM_OFFSET_1120);
+      if (*(void **)(render_context + RENDERING_SYSTEM_OFFSET_1120) != (void *)0x0) {
+        data_pointer = *(void **)(render_context + RENDERING_SYSTEM_OFFSET_1120);
       }
       FUN_180626f80(&UNK_18098bc00, data_pointer);
     }
     
-    *(undefined4 *)(render_context + RENDERING_SYSTEM_OFFSET_1110) = 
-        *(undefined4 *)(render_context + RENDERING_SYSTEM_OFFSET_1158);
+    *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_1110) = 
+        *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_1158);
     return;
   }
   
-  *(undefined4 *)(render_context + RENDERING_SYSTEM_OFFSET_1110) = param_2;
+  *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_1110) = param_2;
   return;
 }
 
@@ -1473,7 +1473,7 @@ void FUN_18043bf20(undefined8 param_1, undefined4 param_2)
  * 执行渲染系统的命令操作，包括参数传递、函数调用和
  * 系统控制。支持复杂的渲染命令处理。
  *=============================================================================*/
-void FUN_18043bfb0(undefined4 param_1, undefined8 param_2, undefined4 param_3, undefined8 param_4)
+void FUN_18043bfb0(int32_t param_1, uint64_t param_2, int32_t param_3, uint64_t param_4)
 {
   FUN_1800623b0(_DAT_180c86928, param_1, param_4, param_3, &UNK_180a29740, param_2);
   return;

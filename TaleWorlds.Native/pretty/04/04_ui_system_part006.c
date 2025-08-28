@@ -10,14 +10,14 @@
  * @param offset_ptr 偏移量指针
  * @param data_size 数据大小
  */
-void ui_data_structure_copier(longlong target_ptr, undefined8 source_ptr, undefined8 offset_ptr, longlong data_size)
+void ui_data_structure_copier(longlong target_ptr, uint64_t source_ptr, uint64_t offset_ptr, longlong data_size)
 {
   ulonglong buffer_size;
-  undefined8 max_size;
-  undefined *temp_buffer;
+  uint64_t max_size;
+  void *temp_buffer;
   longlong source_data;
   uint string_length;
-  undefined4 flags;
+  int32_t flags;
   
   max_size = 0xfffffffffffffffe;
   ui_string_buffer_initializer(&temp_buffer);
@@ -27,13 +27,13 @@ void ui_data_structure_copier(longlong target_ptr, undefined8 source_ptr, undefi
   }
   if (string_length != 0) {
     // 复制字符串数据到目标位置
-    memcpy(*(undefined8 *)(target_ptr + 0x18), source_data, buffer_size, data_size, max_size);
+    memcpy(*(uint64_t *)(target_ptr + 0x18), source_data, buffer_size, data_size, max_size);
   }
-  *(undefined4 *)(target_ptr + 0x20) = 0;
+  *(int32_t *)(target_ptr + 0x20) = 0;
   if (*(longlong *)(target_ptr + 0x18) != 0) {
-    *(undefined1 *)(buffer_size + *(longlong *)(target_ptr + 0x18)) = 0; // 字符串终止符
+    *(int8_t *)(buffer_size + *(longlong *)(target_ptr + 0x18)) = 0; // 字符串终止符
   }
-  *(undefined4 *)(target_ptr + 0x2c) = flags;
+  *(int32_t *)(target_ptr + 0x2c) = flags;
   temp_buffer = &UI_STRING_TERMINATOR;
   if (source_data != 0) {
     // 释放源数据内存
@@ -47,21 +47,21 @@ void ui_data_structure_copier(longlong target_ptr, undefined8 source_ptr, undefi
  * @param param_1 字符串内容指针，可为NULL
  * @return 返回创建的字符串对象指针
  */
-undefined8 * ui_string_object_creator(longlong param_1)
+uint64_t * ui_string_object_creator(longlong param_1)
 {
-  undefined8 *string_object;
+  uint64_t *string_object;
   ulonglong string_length;
   ulonglong char_index;
   
   // 分配字符串对象内存
-  string_object = (undefined8 *)ui_memory_allocator(GLOBAL_MEMORY_POOL, 0x20, 8, 3);
+  string_object = (uint64_t *)ui_memory_allocator(GLOBAL_MEMORY_POOL, 0x20, 8, 3);
   *string_object = &UI_VTABLE_START;
   string_object[1] = 0;
-  *(undefined4 *)(string_object + 2) = 0;
+  *(int32_t *)(string_object + 2) = 0;
   *string_object = &UI_STRING_TERMINATOR;
   string_object[3] = 0;
   string_object[1] = 0;
-  *(undefined4 *)(string_object + 2) = 0;
+  *(int32_t *)(string_object + 2) = 0;
   
   if (param_1 != 0) {
     // 计算输入字符串长度
@@ -76,9 +76,9 @@ undefined8 * ui_string_object_creator(longlong param_1)
       // 复制字符串内容
       memcpy(string_object[1], param_1, (int)char_index + 2);
     }
-    *(undefined4 *)(string_object + 2) = 0;
-    if ((undefined1 *)string_object[1] != (undefined1 *)0x0) {
-      *(undefined1 *)string_object[1] = 0; // 字符串终止符
+    *(int32_t *)(string_object + 2) = 0;
+    if ((int8_t *)string_object[1] != (int8_t *)0x0) {
+      *(int8_t *)string_object[1] = 0; // 字符串终止符
     }
   }
   return string_object;
@@ -92,15 +92,15 @@ undefined8 * ui_string_object_creator(longlong param_1)
  * @param param_4 额外参数
  * @return 返回消息框对象指针
  */
-undefined8 * ui_messagebox_creator(undefined8 param_1, undefined8 *param_2, undefined8 param_3, undefined8 param_4)
+uint64_t * ui_messagebox_creator(uint64_t param_1, uint64_t *param_2, uint64_t param_3, uint64_t param_4)
 {
   *param_2 = &UI_VTABLE_START;
   param_2[1] = 0;
-  *(undefined4 *)(param_2 + 2) = 0;
+  *(int32_t *)(param_2 + 2) = 0;
   *param_2 = &UI_COMPONENT_VTABLE;
   param_2[1] = param_2 + 3;
-  *(undefined1 *)(param_2 + 3) = 0;
-  *(undefined4 *)(param_2 + 2) = 0x17; // 消息框类型标识
+  *(int8_t *)(param_2 + 3) = 0;
+  *(int32_t *)(param_2 + 2) = 0x17; // 消息框类型标识
   strcpy_s(param_2[1], 0x80, &UI_MESSAGEBOX_TEMPLATE, param_4, 0, 0xfffffffffffffffe);
   return param_2;
 }
@@ -113,15 +113,15 @@ undefined8 * ui_messagebox_creator(undefined8 param_1, undefined8 *param_2, unde
  * @param param_4 额外参数
  * @return 返回对话框对象指针
  */
-undefined8 * ui_dialog_creator(undefined8 param_1, undefined8 *param_2, undefined8 param_3, undefined8 param_4)
+uint64_t * ui_dialog_creator(uint64_t param_1, uint64_t *param_2, uint64_t param_3, uint64_t param_4)
 {
   *param_2 = &UI_VTABLE_START;
   param_2[1] = 0;
-  *(undefined4 *)(param_2 + 2) = 0;
+  *(int32_t *)(param_2 + 2) = 0;
   *param_2 = &UI_COMPONENT_VTABLE;
   param_2[1] = param_2 + 3;
-  *(undefined1 *)(param_2 + 3) = 0;
-  *(undefined4 *)(param_2 + 2) = 0x11; // 对话框类型标识
+  *(int8_t *)(param_2 + 3) = 0;
+  *(int32_t *)(param_2 + 2) = 0x11; // 对话框类型标识
   strcpy_s(param_2[1], 0x80, &UI_DIALOG_TEMPLATE, param_4, 0, 0xfffffffffffffffe);
   return param_2;
 }
@@ -133,7 +133,7 @@ undefined8 * ui_dialog_creator(undefined8 param_1, undefined8 *param_2, undefine
  * @param param_3 事件数据
  * @param param_4 上下文信息
  */
-void ui_event_processor(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void ui_event_processor(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   ui_event_dispatcher(param_1, UI_EVENT_HANDLER, param_3, param_4, 0xfffffffffffffffe);
   return;
@@ -147,14 +147,14 @@ void ui_component_initializer(longlong *param_1)
 {
   byte comparison_result;
   bool is_less_than;
-  undefined8 *current_node;
-  undefined8 *next_node;
+  uint64_t *current_node;
+  uint64_t *next_node;
   char string_char;
   longlong node_data;
   longlong *array_ptr;
   byte *string_ptr;
   byte *temp_string;
-  undefined8 *component_ptr;
+  uint64_t *component_ptr;
   byte *processed_string;
   int string_index;
   ulonglong iteration_count;
@@ -169,23 +169,23 @@ void ui_component_initializer(longlong *param_1)
   uint new_size;
   longlong temp_size;
   longlong *temp_array_ptr;
-  undefined *stack_buffer;
+  void *stack_buffer;
   byte *local_buffer;
   uint buffer_size;
   ulonglong buffer_capacity;
-  undefined *temp_ptr;
-  undefined1 *string_buffer;
+  void *temp_ptr;
+  int8_t *string_buffer;
   uint string_length;
   ulonglong total_length;
   longlong *array_start;
   longlong *array_end;
   longlong *array_capacity;
-  undefined4 allocation_flags;
-  undefined8 *ptr1;
-  undefined8 *ptr2;
-  undefined8 temp_value;
-  undefined4 temp_flags;
-  undefined8 context;
+  int32_t allocation_flags;
+  uint64_t *ptr1;
+  uint64_t *ptr2;
+  uint64_t temp_value;
+  int32_t temp_flags;
+  uint64_t context;
   
   context = 0xfffffffffffffffe;
   GLOBAL_UI_COMPONENT = param_1;
@@ -204,8 +204,8 @@ void ui_component_initializer(longlong *param_1)
   
   current_array_ptr = array_end;
   if (GLOBAL_UI_COMPONENT != (longlong *)0x0) {
-    ptr1 = (undefined8 *)0x0;
-    ptr2 = (undefined8 *)0x0;
+    ptr1 = (uint64_t *)0x0;
+    ptr2 = (uint64_t *)0x0;
     temp_value = 0;
     temp_flags = 3;
     
@@ -225,19 +225,19 @@ void ui_component_initializer(longlong *param_1)
         // 处理每个组件项
         stack_buffer = &UI_STRING_TERMINATOR;
         buffer_capacity = 0;
-        local_buffer = (undefined1 *)0x0;
+        local_buffer = (int8_t *)0x0;
         buffer_size = 0;
         
         // 读取字符串数据
-        ui_memory_allocate(&stack_buffer, *(undefined4 *)(capacity + 0x10 + (longlong)ptr1));
+        ui_memory_allocate(&stack_buffer, *(int32_t *)(capacity + 0x10 + (longlong)ptr1));
         length = *(int *)(capacity + 0x10 + (longlong)component_ptr);
         if (length != 0) {
-          memcpy(local_buffer, *(undefined8 *)(capacity + 8 + (longlong)component_ptr), length + 1);
+          memcpy(local_buffer, *(uint64_t *)(capacity + 8 + (longlong)component_ptr), length + 1);
         }
         
         if (*(longlong *)(capacity + 8 + (longlong)component_ptr) != 0) {
           buffer_size = 0;
-          if (local_buffer != (undefined1 *)0x0) {
+          if (local_buffer != (int8_t *)0x0) {
             *local_buffer = 0;
           }
           buffer_capacity = buffer_capacity & 0xffffffff;
@@ -246,7 +246,7 @@ void ui_component_initializer(longlong *param_1)
         // 处理字符串内容
         temp_ptr = &UI_STRING_TERMINATOR;
         total_length = 0;
-        string_buffer = (undefined1 *)0x0;
+        string_buffer = (int8_t *)0x0;
         string_length = 0;
         ui_memory_allocate(&temp_ptr, buffer_size);
         
@@ -254,9 +254,9 @@ void ui_component_initializer(longlong *param_1)
           memcpy(string_buffer, local_buffer, buffer_size + 1);
         }
         
-        if (local_buffer != (undefined1 *)0x0) {
+        if (local_buffer != (int8_t *)0x0) {
           string_length = 0;
-          if (string_buffer != (undefined1 *)0x0) {
+          if (string_buffer != (int8_t *)0x0) {
             *string_buffer = 0;
           }
           total_length = total_length & 0xffffffff;
@@ -265,11 +265,11 @@ void ui_component_initializer(longlong *param_1)
         // 添加模块路径后缀
         string_length = string_length + 0xe;
         ui_memory_allocate(&temp_ptr, string_length);
-        component_ptr = (undefined8 *)(string_buffer + string_length);
+        component_ptr = (uint64_t *)(string_buffer + string_length);
         *component_ptr = 0x75646f4d6275532f; // "/SubotusMod"
-        *(undefined4 *)(component_ptr + 1) = 0x782e656c; // "le.x"
-        *(undefined2 *)((longlong)component_ptr + 0xc) = 0x6c6d; // "ml"
-        *(undefined1 *)((longlong)component_ptr + 0xe) = 0;
+        *(int32_t *)(component_ptr + 1) = 0x782e656c; // "le.x"
+        *(int16_t *)((longlong)component_ptr + 0xc) = 0x6c6d; // "ml"
+        *(int8_t *)((longlong)component_ptr + 0xe) = 0;
         string_length = string_length;
         
         // 验证字符串格式
@@ -290,7 +290,7 @@ void ui_component_initializer(longlong *param_1)
             if (array_size == 0) {
               array_size = 1;
 LAB_ARRAY_EXPANSION:
-              array_ptr = (longlong *)ui_memory_reallocator(GLOBAL_MEMORY_POOL, array_size * 8, (undefined1)allocation_flags);
+              array_ptr = (longlong *)ui_memory_reallocator(GLOBAL_MEMORY_POOL, array_size * 8, (int8_t)allocation_flags);
             }
             else {
               array_size = array_size * 2;
@@ -319,15 +319,15 @@ LAB_ARRAY_EXPANSION:
         
         // 清理临时缓冲区
         temp_ptr = &UI_STRING_TERMINATOR;
-        if (string_buffer != (undefined1 *)0x0) {
+        if (string_buffer != (int8_t *)0x0) {
           ui_memory_deallocator();
         }
-        string_buffer = (undefined1 *)0x0;
+        string_buffer = (int8_t *)0x0;
         total_length = total_length & 0xffffffff00000000;
         temp_ptr = &UI_VTABLE_START;
         stack_buffer = &UI_STRING_TERMINATOR;
         
-        if (local_buffer != (undefined1 *)0x0) {
+        if (local_buffer != (int8_t *)0x0) {
           ui_memory_deallocator();
         }
         local_buffer = (byte *)0x0;
@@ -351,11 +351,11 @@ LAB_ARRAY_EXPANSION:
       ptr2 = next_node;
     }
     
-    if (ptr1 != (undefined8 *)0x0) {
+    if (ptr1 != (uint64_t *)0x0) {
       ptr2 = current_array_ptr;
       ui_memory_deallocator();
     }
-    ptr1 = (undefined8 *)0x0;
+    ptr1 = (uint64_t *)0x0;
     current_array_ptr = ptr2;
   }
   
@@ -374,9 +374,9 @@ LAB_ARRAY_EXPANSION:
       buffer_size = 0;
       
       // 读取节点字符串数据
-      ui_memory_allocate(&stack_buffer, *(undefined4 *)(node_data + 0x10));
+      ui_memory_allocate(&stack_buffer, *(int32_t *)(node_data + 0x10));
       if (*(int *)(node_data + 0x10) != 0) {
-        memcpy(local_buffer, *(undefined8 *)(node_data + 8), *(int *)(node_data + 0x10) + 1);
+        memcpy(local_buffer, *(uint64_t *)(node_data + 8), *(int *)(node_data + 0x10) + 1);
       }
       
       if (*(longlong *)(node_data + 8) != 0) {
@@ -443,7 +443,7 @@ LAB_COMPARISON_RESULT:
         
         if (source_string == &UI_STRING_DATA_START) {
 LAB_CREATE_COMPONENT:
-          component_ptr = (undefined8 *)ui_component_factory(&stack_buffer, &temp_array_ptr, target_string, source_string, &stack_buffer);
+          component_ptr = (uint64_t *)ui_component_factory(&stack_buffer, &temp_array_ptr, target_string, source_string, &stack_buffer);
           source_string = (byte *)*component_ptr;
         }
         else if (*(int *)(source_string + 0x30) != 0) {
@@ -542,34 +542,34 @@ LAB_FINAL_PROCESS:
  */
 void ui_dynamic_array_processor(ulonglong *param_1)
 {
-  undefined8 *array_data;
-  undefined8 *array_end;
+  uint64_t *array_data;
+  uint64_t *array_end;
   char validation_result;
-  undefined8 hash_value;
+  uint64_t hash_value;
   longlong array_capacity;
-  undefined8 *array_start;
-  undefined8 *temp_ptr;
-  undefined8 *new_array;
+  uint64_t *array_start;
+  uint64_t *temp_ptr;
+  uint64_t *new_array;
   int item_count;
   int *item_size_ptr;
   int item_size;
   ulonglong total_items;
-  undefined1 stack_buffer [32];
-  undefined *buffer_ptr;
-  undefined1 *string_buffer;
+  int8_t stack_buffer [32];
+  void *buffer_ptr;
+  int8_t *string_buffer;
   uint buffer_size;
   ulonglong buffer_capacity;
-  undefined4 temp_flags;
-  undefined *temp_buffer;
+  int32_t temp_flags;
+  void *temp_buffer;
   longlong temp_offset;
   uint total_size;
-  undefined4 temp_size;
+  int32_t temp_size;
   ulonglong array_length;
-  undefined8 *current_ptr;
-  undefined8 *end_ptr;
-  undefined8 array_data_size;
-  undefined4 allocation_flags;
-  undefined8 *iterator_ptr;
+  uint64_t *current_ptr;
+  uint64_t *end_ptr;
+  uint64_t array_data_size;
+  int32_t allocation_flags;
+  uint64_t *iterator_ptr;
   int iteration_index;
   ulonglong temp_array [2];
   ulonglong security_cookie;
@@ -590,11 +590,11 @@ void ui_dynamic_array_processor(ulonglong *param_1)
   ui_memory_allocate(&string_buffer, item_size);
   
   // 构建模块路径字符串
-  *(undefined8 *)((ulonglong)total_size + temp_offset) = 0x2f73656c75646f4d; // "Module/Sub"
-  *(undefined1 *)((undefined8 *)((ulonglong)total_size + temp_offset) + 1) = 0;
+  *(uint64_t *)((ulonglong)total_size + temp_offset) = 0x2f73656c75646f4d; // "Module/Sub"
+  *(int8_t *)((uint64_t *)((ulonglong)total_size + temp_offset) + 1) = 0;
   
-  current_ptr = (undefined8 *)0x0;
-  end_ptr = (undefined8 *)0x0;
+  current_ptr = (uint64_t *)0x0;
+  end_ptr = (uint64_t *)0x0;
   array_data_size = 0;
   allocation_flags = 3;
   total_size = item_size;
@@ -616,13 +616,13 @@ void ui_dynamic_array_processor(ulonglong *param_1)
       ui_memory_allocate(&temp_buffer, *item_size_ptr);
       
       if (*item_size_ptr != 0) {
-        memcpy(iterator_ptr, *(undefined8 *)(item_size_ptr + -2), *item_size_ptr + 1);
+        memcpy(iterator_ptr, *(uint64_t *)(item_size_ptr + -2), *item_size_ptr + 1);
       }
       
       if (*(longlong *)(item_size_ptr + -2) != 0) {
         iteration_index = 0;
         if (iterator_ptr != (ulonglong *)0x0) {
-          *(undefined1 *)iterator_ptr = 0;
+          *(int8_t *)iterator_ptr = 0;
         }
         temp_array[0] = temp_array[0] & 0xffffffff;
       }
@@ -630,7 +630,7 @@ void ui_dynamic_array_processor(ulonglong *param_1)
       // 处理项目字符串
       buffer_ptr = &UI_STRING_TERMINATOR;
       buffer_capacity = 0;
-      string_buffer = (undefined1 *)0x0;
+      string_buffer = (int8_t *)0x0;
       buffer_size = 0;
       ui_memory_allocate(&buffer_ptr, iteration_index);
       
@@ -640,7 +640,7 @@ void ui_dynamic_array_processor(ulonglong *param_1)
       
       if (iterator_ptr != (ulonglong *)0x0) {
         buffer_size = 0;
-        if (string_buffer != (undefined1 *)0x0) {
+        if (string_buffer != (int8_t *)0x0) {
           *string_buffer = 0;
         }
         buffer_capacity = buffer_capacity & 0xffffffff;
@@ -649,37 +649,37 @@ void ui_dynamic_array_processor(ulonglong *param_1)
       // 添加模块路径
       buffer_size = buffer_size + 0xe;
       ui_memory_allocate(&buffer_ptr, buffer_size);
-      array_start = (undefined8 *)(string_buffer + buffer_size);
+      array_start = (uint64_t *)(string_buffer + buffer_size);
       *array_start = 0x75646f4d6275532f; // "/SubotusMod"
-      *(undefined4 *)(array_start + 1) = 0x782e656c; // "le.x"
-      *(undefined2 *)((longlong)array_start + 0xc) = 0x6c6d; // "ml"
-      *(undefined1 *)((longlong)array_start + 0xe) = 0;
+      *(int32_t *)(array_start + 1) = 0x782e656c; // "le.x"
+      *(int16_t *)((longlong)array_start + 0xc) = 0x6c6d; // "ml"
+      *(int8_t *)((longlong)array_start + 0xe) = 0;
       buffer_size = buffer_size;
       
       // 验证字符串格式
       validation_result = ui_string_validator(&buffer_ptr);
       if (validation_result != '\0') {
         hash_value = ui_component_hash_calculator(&buffer_ptr);
-        array_start = (undefined8 *)param_1[1];
-        if (array_start < (undefined8 *)param_1[2]) {
+        array_start = (uint64_t *)param_1[1];
+        if (array_start < (uint64_t *)param_1[2]) {
           param_1[1] = (ulonglong)(array_start + 1);
           *array_start = hash_value;
         }
         else {
           // 数组扩容处理
-          temp_ptr = (undefined8 *)*param_1;
+          temp_ptr = (uint64_t *)*param_1;
           array_capacity = (longlong)array_start - (longlong)temp_ptr >> 3;
           if (array_capacity == 0) {
             array_capacity = 1;
 LAB_ARRAY_RESIZE:
-            new_array = (undefined8 *)ui_memory_reallocator(GLOBAL_MEMORY_POOL, array_capacity * 8, (char)param_1[3]);
-            array_start = (undefined8 *)param_1[1];
-            temp_ptr = (undefined8 *)*param_1;
+            new_array = (uint64_t *)ui_memory_reallocator(GLOBAL_MEMORY_POOL, array_capacity * 8, (char)param_1[3]);
+            array_start = (uint64_t *)param_1[1];
+            temp_ptr = (uint64_t *)*param_1;
           }
           else {
             array_capacity = array_capacity * 2;
             if (array_capacity != 0) goto LAB_ARRAY_RESIZE;
-            new_array = (undefined8 *)0x0;
+            new_array = (uint64_t *)0x0;
           }
           
           if (temp_ptr != array_start) {
@@ -700,10 +700,10 @@ LAB_ARRAY_RESIZE:
       
       // 清理临时缓冲区
       buffer_ptr = &UI_STRING_TERMINATOR;
-      if (string_buffer != (undefined1 *)0x0) {
+      if (string_buffer != (int8_t *)0x0) {
         ui_memory_deallocator();
       }
-      string_buffer = (undefined1 *)0x0;
+      string_buffer = (int8_t *)0x0;
       buffer_capacity = buffer_capacity & 0xffffffff00000000;
       buffer_ptr = &UI_VTABLE_START;
       temp_buffer = &UI_STRING_TERMINATOR;
@@ -731,7 +731,7 @@ LAB_ARRAY_RESIZE:
     end_ptr = array_end;
   }
   
-  if (current_ptr != (undefined8 *)0x0) {
+  if (current_ptr != (uint64_t *)0x0) {
     current_ptr = temp_ptr;
     end_ptr = new_array;
     ui_memory_deallocator(array_data);
@@ -761,13 +761,13 @@ LAB_ARRAY_RESIZE:
  * @param param_4 额外参数
  * @return 找到的资源句柄
  */
-undefined8 ui_resource_finder(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+uint64_t ui_resource_finder(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   uint string_length;
-  undefined8 result;
+  uint64_t result;
   longlong string_data;
-  undefined *stack_buffer [3];
-  undefined *temp_buffer;
+  void *stack_buffer [3];
+  void *temp_buffer;
   longlong data_offset;
   uint buffer_size;
   
@@ -790,7 +790,7 @@ undefined8 ui_resource_finder(undefined8 param_1, undefined8 param_2, undefined8
     result = 0;
   }
   else {
-    result = *(undefined8 *)(stack_buffer[0] + 0x40);
+    result = *(uint64_t *)(stack_buffer[0] + 0x40);
   }
   
   temp_buffer = &UI_STRING_TERMINATOR;
@@ -807,7 +807,7 @@ undefined8 ui_resource_finder(undefined8 param_1, undefined8 param_2, undefined8
  * @param param_3 上下文信息
  * @param param_4 保留参数
  */
-void ui_cleanup_processor(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void ui_cleanup_processor(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   ui_recursive_cleanup(param_1, UI_COMPONENT_REGISTRY, param_3, param_4, 0xfffffffffffffffe);
   return;
@@ -820,7 +820,7 @@ void ui_cleanup_processor(undefined8 param_1, undefined8 param_2, undefined8 par
  * @param param_3 查找参数
  * @return 查找结果指针
  */
-undefined8 * ui_component_finder(undefined8 param_1, undefined8 *param_2, longlong param_3)
+uint64_t * ui_component_finder(uint64_t param_1, uint64_t *param_2, longlong param_3)
 {
   byte char_comparison;
   bool is_less_than;
@@ -828,17 +828,17 @@ undefined8 * ui_component_finder(undefined8 param_1, undefined8 *param_2, longlo
   uint name_length;
   int comparison_result;
   longlong name_offset;
-  undefined8 *current_component;
-  undefined8 *next_component;
-  undefined8 *previous_component;
-  undefined8 *found_component;
+  uint64_t *current_component;
+  uint64_t *next_component;
+  uint64_t *previous_component;
+  uint64_t *found_component;
   
-  if (UI_COMPONENT_REGISTRY != (undefined8 *)0x0) {
+  if (UI_COMPONENT_REGISTRY != (uint64_t *)0x0) {
     current_component = UI_COMPONENT_REGISTRY;
-    found_component = (undefined8 *)&UI_STRING_DATA_START;
+    found_component = (uint64_t *)&UI_STRING_DATA_START;
     do {
       if (*(int *)(param_3 + 0x10) == 0) {
-        next_component = (undefined8 *)current_component[1];
+        next_component = (uint64_t *)current_component[1];
         is_less_than = false;
       }
       else {
@@ -856,11 +856,11 @@ undefined8 * ui_component_finder(undefined8 param_1, undefined8 *param_2, longlo
           } while (name_length != 0);
           is_less_than = 0 < comparison_result;
           if (comparison_result < 1) {
-            next_component = (undefined8 *)current_component[1];
+            next_component = (uint64_t *)current_component[1];
             goto LAB_COMPARISON_DONE;
           }
         }
-        next_component = (undefined8 *)*current_component;
+        next_component = (uint64_t *)*current_component;
       }
 LAB_COMPARISON_DONE:
       previous_component = current_component;
@@ -869,9 +869,9 @@ LAB_COMPARISON_DONE:
       }
       current_component = next_component;
       found_component = previous_component;
-    } while (next_component != (undefined8 *)0x0);
+    } while (next_component != (uint64_t *)0x0);
     
-    if (found_component != (undefined8 *)&UI_STRING_DATA_START) {
+    if (found_component != (uint64_t *)&UI_STRING_DATA_START) {
       if (*(int *)(found_component + 6) == 0) {
 LAB_RETURN_FOUND:
         *param_2 = found_component;
@@ -902,9 +902,9 @@ LAB_RETURN_FOUND:
  * @param param_3 清理上下文
  * @param param_4 保留参数
  */
-void ui_recursive_cleanup(undefined8 param_1, undefined8 *param_2, undefined8 param_3, undefined8 param_4)
+void ui_recursive_cleanup(uint64_t param_1, uint64_t *param_2, uint64_t param_3, uint64_t param_4)
 {
-  if (param_2 == (undefined8 *)0x0) {
+  if (param_2 == (uint64_t *)0x0) {
     return;
   }
   
@@ -917,7 +917,7 @@ void ui_recursive_cleanup(undefined8 param_1, undefined8 *param_2, undefined8 pa
     ui_memory_deallocator();
   }
   param_2[5] = 0;
-  *(undefined4 *)(param_2 + 7) = 0;
+  *(int32_t *)(param_2 + 7) = 0;
   param_2[4] = &UI_VTABLE_START;
   ui_memory_deallocator(param_2);
 }
@@ -931,19 +931,19 @@ void ui_recursive_cleanup(undefined8 param_1, undefined8 *param_2, undefined8 pa
  * @param param_5 上下文信息
  * @return 新创建的组件指针
  */
-undefined8 * ui_component_factory(ulonglong param_1, undefined8 *param_2, undefined8 param_3, longlong *param_4, longlong param_5)
+uint64_t * ui_component_factory(ulonglong param_1, uint64_t *param_2, uint64_t param_3, longlong *param_4, longlong param_5)
 {
   byte char_diff;
   bool is_less_than;
-  undefined8 *component;
+  uint64_t *component;
   longlong *component_data;
   byte *name_ptr;
-  undefined8 *temp_component;
+  uint64_t *temp_component;
   uint name_length;
   longlong *name_offset;
   longlong *current_component;
   ulonglong search_result;
-  undefined8 component_data_size;
+  uint64_t component_data_size;
   
   // 检查是否为根组件或默认组件
   if ((param_4 == UI_COMPONENT_ROOT) || (param_4 == (longlong *)&UI_STRING_DATA_START)) {
@@ -1009,14 +1009,14 @@ LAB_PROCESS_COMPONENT:
 LAB_USE_EXISTING:
   // 在组件注册表中搜索
   is_less_than = true;
-  component = (undefined8 *)&UI_STRING_DATA_START;
+  component = (uint64_t *)&UI_STRING_DATA_START;
   temp_component = UI_COMPONENT_REGISTRY;
-  while (temp_component != (undefined8 *)0x0) {
+  while (temp_component != (uint64_t *)0x0) {
     component = temp_component;
     if (*(int *)(temp_component + 6) == 0) {
       is_less_than = false;
 LAB_CONTINUE_SEARCH:
-      temp_component = (undefined8 *)*temp_component;
+      temp_component = (uint64_t *)*temp_component;
     }
     else {
       if (*(int *)(param_5 + 0x10) == 0) {
@@ -1034,14 +1034,14 @@ LAB_CONTINUE_SEARCH:
         is_less_than = 0 < (int)(char_diff - name_length);
       }
       if (!is_less_than) goto LAB_CONTINUE_SEARCH;
-      temp_component = (undefined8 *)temp_component[1];
+      temp_component = (uint64_t *)temp_component[1];
     }
   }
   
   temp_component = component;
   if (is_less_than) {
     if (component != UI_COMPONENT_SENTINEL) {
-      temp_component = (undefined8 *)ui_component_specializer(component);
+      temp_component = (uint64_t *)ui_component_specializer(component);
       goto LAB_BUILD_COMPONENT;
     }
   }
@@ -1066,7 +1066,7 @@ LAB_RETURN_COMPONENT:
   }
   
   // 创建新组件
-  if (component != (undefined8 *)&UI_STRING_DATA_START) {
+  if (component != (uint64_t *)&UI_STRING_DATA_START) {
     if (*(int *)(component + 6) == 0) {
 LAB_SET_PRIORITY:
       component_data_size = 1;
@@ -1088,6 +1088,6 @@ LAB_SET_PRIORITY:
 LAB_CREATE_NEW:
   name_offset = ui_memory_reallocator(GLOBAL_MEMORY_POOL, 0x48, UI_COMPONENT_TYPE);
   ui_string_processor(name_offset + 0x20, param_5);
-  *(undefined8 *)(name_offset + 0x40) = 0;
+  *(uint64_t *)(name_offset + 0x40) = 0;
   ui_component_initializer(name_offset, component, &UI_STRING_DATA_START, component_data_size);
 }

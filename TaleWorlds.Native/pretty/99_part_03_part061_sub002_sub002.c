@@ -46,9 +46,9 @@
 #define SYSTEM_ERROR_STATE      -3             // 状态错误
 
 // 类型别名定义
-typedef undefined8 SystemHandle;              // 系统句柄
-typedef undefined8 MemoryHandle;              // 内存句柄
-typedef undefined8 StateHandle;               // 状态句柄
+typedef uint64_t SystemHandle;              // 系统句柄
+typedef uint64_t MemoryHandle;              // 内存句柄
+typedef uint64_t StateHandle;               // 状态句柄
 
 //==============================================================================
 // 核心功能实现
@@ -66,7 +66,7 @@ typedef undefined8 StateHandle;               // 状态句柄
  * @param param2 系统参数2
  * @return 系统句柄，失败返回INVALID_HANDLE_VALUE
  */
-SystemHandle SystemInitializer(undefined8 param1, undefined8 param2)
+SystemHandle SystemInitializer(uint64_t param1, uint64_t param2)
 {
     SystemHandle handle;
     int local_10;

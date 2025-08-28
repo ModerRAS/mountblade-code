@@ -107,7 +107,7 @@
 
 // UI系统安全初始化器 - 初始化UI系统中的安全机制和数据结构
 // 该函数实现了安全初始化功能，包括内存分配、参数设置和安全检查
-undefined8 *ui_system_security_initializer(undefined8 *security_context, undefined8 init_flags, undefined8 param_3, undefined8 param_4)
+uint64_t *ui_system_security_initializer(uint64_t *security_context, uint64_t init_flags, uint64_t param_3, uint64_t param_4)
 {
   // 安全上下文初始化
   *security_context = &UNK_180a19ac8;
@@ -123,7 +123,7 @@ undefined8 *ui_system_security_initializer(undefined8 *security_context, undefin
 
 // UI系统内存分配器 - 管理UI系统中的内存分配操作
 // 该函数实现了内存分配功能，包括大块内存分配和初始化
-undefined8 *ui_system_memory_allocator(undefined8 *memory_context, ulonglong allocation_flags, undefined8 param_3, undefined8 param_4)
+uint64_t *ui_system_memory_allocator(uint64_t *memory_context, ulonglong allocation_flags, uint64_t param_3, uint64_t param_4)
 {
   // 内存上下文初始化
   *memory_context = &UNK_180a19ac8;
@@ -138,16 +138,16 @@ undefined8 *ui_system_memory_allocator(undefined8 *memory_context, ulonglong all
 
 // UI系统数据验证器 - 验证UI系统中的数据完整性和有效性
 // 该函数实现了数据验证功能，包括范围检查、格式验证和完整性检查
-void ui_system_data_validator(undefined8 validation_context, undefined8 validation_flags)
+void ui_system_data_validator(uint64_t validation_context, uint64_t validation_flags)
 {
-  undefined8 temp_value_1;
-  undefined8 temp_value_2;
-  undefined8 temp_value_3;
-  undefined8 temp_value_4;
-  undefined8 temp_value_5;
-  undefined8 temp_value_6;
-  undefined8 temp_value_7;
-  undefined8 temp_value_8;
+  uint64_t temp_value_1;
+  uint64_t temp_value_2;
+  uint64_t temp_value_3;
+  uint64_t temp_value_4;
+  uint64_t temp_value_5;
+  uint64_t temp_value_6;
+  uint64_t temp_value_7;
+  uint64_t temp_value_8;
   ulonglong security_key;
   
   // 安全密钥初始化
@@ -167,16 +167,16 @@ void ui_system_data_validator(undefined8 validation_context, undefined8 validati
 
 // UI系统状态管理器 - 管理UI系统中的状态转换和状态机
 // 该函数实现了状态管理功能，包括状态转换、状态验证和状态同步
-void ui_system_state_manager(undefined8 state_context, undefined8 state_flags)
+void ui_system_state_manager(uint64_t state_context, uint64_t state_flags)
 {
-  undefined8 temp_value_1;
-  undefined8 temp_value_2;
-  undefined8 temp_value_3;
-  undefined8 temp_value_4;
-  undefined8 temp_value_5;
-  undefined8 temp_value_6;
-  undefined8 temp_value_7;
-  undefined8 temp_value_8;
+  uint64_t temp_value_1;
+  uint64_t temp_value_2;
+  uint64_t temp_value_3;
+  uint64_t temp_value_4;
+  uint64_t temp_value_5;
+  uint64_t temp_value_6;
+  uint64_t temp_value_7;
+  uint64_t temp_value_8;
   ulonglong security_key;
   
   // 安全密钥初始化
@@ -196,16 +196,16 @@ void ui_system_state_manager(undefined8 state_context, undefined8 state_flags)
 
 // UI系统资源清理器 - 清理UI系统中的资源和内存
 // 该函数实现了资源清理功能，包括内存释放、句柄清理和状态重置
-void ui_system_resource_cleaner(undefined8 cleanup_context, undefined8 cleanup_flags)
+void ui_system_resource_cleaner(uint64_t cleanup_context, uint64_t cleanup_flags)
 {
-  undefined8 temp_value_1;
-  undefined8 temp_value_2;
-  undefined8 temp_value_3;
-  undefined8 temp_value_4;
-  undefined8 temp_value_5;
-  undefined8 temp_value_6;
-  undefined8 temp_value_7;
-  undefined8 temp_value_8;
+  uint64_t temp_value_1;
+  uint64_t temp_value_2;
+  uint64_t temp_value_3;
+  uint64_t temp_value_4;
+  uint64_t temp_value_5;
+  uint64_t temp_value_6;
+  uint64_t temp_value_7;
+  uint64_t temp_value_8;
   ulonglong security_key;
   
   // 安全密钥初始化
@@ -225,7 +225,7 @@ void ui_system_resource_cleaner(undefined8 cleanup_context, undefined8 cleanup_f
 
 // UI系统参数处理器 - 处理UI系统中的参数计算和更新
 // 该函数实现了参数处理功能，包括参数计算、边界检查和参数更新
-void ui_system_parameter_processor(undefined8 param_context, float param_delta, undefined8 param_flags)
+void ui_system_parameter_processor(uint64_t param_context, float param_delta, uint64_t param_flags)
 {
   float current_param;
   float target_param;
@@ -270,16 +270,16 @@ void ui_system_parameter_processor(undefined8 param_context, float param_delta, 
 
 // UI系统数据转换器 - 转换UI系统中的数据格式和结构
 // 该函数实现了数据转换功能，包括格式转换、数据映射和结构转换
-void ui_system_data_transformer(undefined8 transform_context, undefined8 transform_flags)
+void ui_system_data_transformer(uint64_t transform_context, uint64_t transform_flags)
 {
-  undefined8 temp_value_1;
-  undefined8 temp_value_2;
-  undefined8 temp_value_3;
-  undefined8 temp_value_4;
-  undefined8 temp_value_5;
-  undefined8 temp_value_6;
-  undefined8 temp_value_7;
-  undefined8 temp_value_8;
+  uint64_t temp_value_1;
+  uint64_t temp_value_2;
+  uint64_t temp_value_3;
+  uint64_t temp_value_4;
+  uint64_t temp_value_5;
+  uint64_t temp_value_6;
+  uint64_t temp_value_7;
+  uint64_t temp_value_8;
   ulonglong security_key;
   
   // 安全密钥初始化
@@ -299,16 +299,16 @@ void ui_system_data_transformer(undefined8 transform_context, undefined8 transfo
 
 // UI系统安全检查器 - 检查UI系统中的安全性和完整性
 // 该函数实现了安全检查功能，包括权限验证、完整性检查和安全策略执行
-void ui_system_security_checker(undefined8 security_context, undefined8 security_flags)
+void ui_system_security_checker(uint64_t security_context, uint64_t security_flags)
 {
-  undefined8 temp_value_1;
-  undefined8 temp_value_2;
-  undefined8 temp_value_3;
-  undefined8 temp_value_4;
-  undefined8 temp_value_5;
-  undefined8 temp_value_6;
-  undefined8 temp_value_7;
-  undefined8 temp_value_8;
+  uint64_t temp_value_1;
+  uint64_t temp_value_2;
+  uint64_t temp_value_3;
+  uint64_t temp_value_4;
+  uint64_t temp_value_5;
+  uint64_t temp_value_6;
+  uint64_t temp_value_7;
+  uint64_t temp_value_8;
   ulonglong security_key;
   
   // 安全密钥初始化
@@ -328,7 +328,7 @@ void ui_system_security_checker(undefined8 security_context, undefined8 security
 
 // UI系统内存释放器 - 释放UI系统中的内存和资源
 // 该函数实现了内存释放功能，包括小块内存释放、资源清理和内存回收
-undefined8 *ui_system_memory_deallocator(undefined8 *memory_context, ulonglong free_flags, undefined8 param_3, undefined8 param_4)
+uint64_t *ui_system_memory_deallocator(uint64_t *memory_context, ulonglong free_flags, uint64_t param_3, uint64_t param_4)
 {
   // 内存上下文初始化
   *memory_context = &UNK_180a19ac8;

@@ -82,17 +82,17 @@
 //============================================================================
 
 typedef longlong                        network_handle_t;        // 网络句柄类型
-typedef undefined8                      network_result_t;       // 网络结果类型
-typedef undefined1                      network_flag_t;         // 网络标志类型
+typedef uint64_t                      network_result_t;       // 网络结果类型
+typedef int8_t                      network_flag_t;         // 网络标志类型
 typedef longlong *                       network_ptr_t;          // 网络指针类型
-typedef undefined8 *                     network_data_ptr_t;    // 网络数据指针类型
+typedef uint64_t *                     network_data_ptr_t;    // 网络数据指针类型
 typedef int *                           network_int_ptr_t;     // 网络整型指针类型
 typedef uint                            network_uint_t;        // 网络无符号整型
 typedef bool                            network_bool_t;        // 网络布尔类型
 typedef char                            network_char_t;        // 网络字符类型
 typedef byte                            network_byte_t;        // 网络字节类型
 typedef ulonglong                       network_ulong_t;       // 网络无符号长整型
-typedef undefined4                     network_status_t;      // 网络状态类型
+typedef int32_t                     network_status_t;      // 网络状态类型
 
 //============================================================================
 // 结构体定义
@@ -325,7 +325,7 @@ network_result_t NetworkingSystem_ConnectionProcessor(longlong param_1,longlong 
   network_result_t uVar3;
   longlong *plVar4;
   longlong *plVar5;
-  undefined8 *puVar6;
+  uint64_t *puVar6;
   longlong *plVar7;
   
   plVar7 = (longlong *)NETWORKING_POINTER_NULL;
@@ -375,13 +375,13 @@ network_result_t NetworkingSystem_ConnectionProcessor(longlong param_1,longlong 
   }
   
   // 处理资源相关操作
-  uVar3 = FUN_18073cdf0(*(undefined8 *)(param_2 + NETWORKING_OFFSET_RESOURCE_DATA),0);
+  uVar3 = FUN_18073cdf0(*(uint64_t *)(param_2 + NETWORKING_OFFSET_RESOURCE_DATA),0);
   if ((int)uVar3 == NETWORKING_ERROR_NONE) {
     
     // 处理配置数据数组
-    for (puVar6 = *(undefined8 **)(param_2 + NETWORKING_OFFSET_CONFIG_DATA);
-        (*(undefined8 **)(param_2 + NETWORKING_OFFSET_CONFIG_DATA) <= puVar6 &&
-        (puVar6 < *(undefined8 **)(param_2 + NETWORKING_OFFSET_CONFIG_DATA) + *(int *)(param_2 + 0x88))); puVar6 = puVar6 + 1
+    for (puVar6 = *(uint64_t **)(param_2 + NETWORKING_OFFSET_CONFIG_DATA);
+        (*(uint64_t **)(param_2 + NETWORKING_OFFSET_CONFIG_DATA) <= puVar6 &&
+        (puVar6 < *(uint64_t **)(param_2 + NETWORKING_OFFSET_CONFIG_DATA) + *(int *)(param_2 + 0x88))); puVar6 = puVar6 + 1
         ) {
       uVar3 = FUN_1808b4c80(*(longlong *)(param_1 + 0x10) + 0x388,*puVar6);
       if ((int)uVar3 != NETWORKING_ERROR_NONE) {
@@ -390,9 +390,9 @@ network_result_t NetworkingSystem_ConnectionProcessor(longlong param_1,longlong 
     }
     
     // 处理事件数据数组
-    for (puVar6 = *(undefined8 **)(param_2 + NETWORKING_OFFSET_EVENT_DATA);
-        (*(undefined8 **)(param_2 + NETWORKING_OFFSET_EVENT_DATA) <= puVar6 &&
-        (puVar6 < *(undefined8 **)(param_2 + NETWORKING_OFFSET_EVENT_DATA) + *(int *)(param_2 + 0x98))); puVar6 = puVar6 + 1
+    for (puVar6 = *(uint64_t **)(param_2 + NETWORKING_OFFSET_EVENT_DATA);
+        (*(uint64_t **)(param_2 + NETWORKING_OFFSET_EVENT_DATA) <= puVar6 &&
+        (puVar6 < *(uint64_t **)(param_2 + NETWORKING_OFFSET_EVENT_DATA) + *(int *)(param_2 + 0x98))); puVar6 = puVar6 + 1
         ) {
       uVar3 = FUN_1808b4c80(*(longlong *)(param_1 + 0x10) + 0x388,*puVar6);
       if ((int)uVar3 != NETWORKING_ERROR_NONE) {
@@ -408,11 +408,11 @@ network_result_t NetworkingSystem_ConnectionProcessor(longlong param_1,longlong 
       uVar3 = FUN_180851840(param_2);
       if ((((int)uVar3 == NETWORKING_ERROR_NONE) &&
           (((lVar2 == 0 ||
-            (uVar3 = FUN_1808c19d0(*(undefined8 *)(param_2 + 0x38),lVar2), (int)uVar3 == NETWORKING_ERROR_NONE)) &&
-           (uVar3 = func_0x0001808c1de0(*(undefined8 *)(param_1 + 0x10),param_2), (int)uVar3 == NETWORKING_ERROR_NONE)))
-          ) && ((uVar3 = func_0x000180853810(*(undefined8 *)(param_1 + 0x10),param_2),
+            (uVar3 = FUN_1808c19d0(*(uint64_t *)(param_2 + 0x38),lVar2), (int)uVar3 == NETWORKING_ERROR_NONE)) &&
+           (uVar3 = func_0x0001808c1de0(*(uint64_t *)(param_1 + 0x10),param_2), (int)uVar3 == NETWORKING_ERROR_NONE)))
+          ) && ((uVar3 = func_0x000180853810(*(uint64_t *)(param_1 + 0x10),param_2),
                 (int)uVar3 == NETWORKING_ERROR_NONE &&
-                (uVar3 = FUN_180853560(*(undefined8 *)(param_1 + 8),param_2), (int)uVar3 == NETWORKING_ERROR_NONE)))) {
+                (uVar3 = FUN_180853560(*(uint64_t *)(param_1 + 8),param_2), (int)uVar3 == NETWORKING_ERROR_NONE)))) {
         
         // 处理元数据链表
         plVar1 = (longlong *)(param_2 + NETWORKING_OFFSET_METADATA);
@@ -421,7 +421,7 @@ network_result_t NetworkingSystem_ConnectionProcessor(longlong param_1,longlong 
           if ((int)uVar3 != NETWORKING_ERROR_NONE) {
             return uVar3;
           }
-          uVar3 = FUN_1808c1c20(*(undefined8 *)(param_1 + 0x10));
+          uVar3 = FUN_1808c1c20(*(uint64_t *)(param_1 + 0x10));
           if ((int)uVar3 != NETWORKING_ERROR_NONE) {
             return uVar3;
           }
@@ -438,9 +438,9 @@ network_result_t NetworkingSystem_ConnectionProcessor(longlong param_1,longlong 
             FUN_18088c9b0(lVar2,0);
           }
           if (((*(short *)(*(longlong *)(param_2 + 0x40) + 0xc) != 2) ||
-              (uVar3 = FUN_180740d90(*(undefined8 *)(param_2 + 0x68)), (int)uVar3 == NETWORKING_ERROR_NONE)) &&
-             (uVar3 = FUN_18073f710(*(undefined8 *)(param_2 + NETWORKING_OFFSET_RESOURCE_DATA)), (int)uVar3 == NETWORKING_ERROR_NONE)) {
-            func_0x0001808bef10(*(undefined8 *)(param_1 + 0x10),param_2);
+              (uVar3 = FUN_180740d90(*(uint64_t *)(param_2 + 0x68)), (int)uVar3 == NETWORKING_ERROR_NONE)) &&
+             (uVar3 = FUN_18073f710(*(uint64_t *)(param_2 + NETWORKING_OFFSET_RESOURCE_DATA)), (int)uVar3 == NETWORKING_ERROR_NONE)) {
+            func_0x0001808bef10(*(uint64_t *)(param_1 + 0x10),param_2);
             uVar3 = NETWORKING_ERROR_NONE;
           }
         }
@@ -472,7 +472,7 @@ network_result_t NetworkingSystem_DataManager(longlong param_1)
 
 {
   int iVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int *piVar3;
   network_result_t uVar4;
   longlong lVar5;
@@ -490,9 +490,9 @@ network_result_t NetworkingSystem_DataManager(longlong param_1)
   }
   
   // 创建数据处理器实例
-  puVar2 = (undefined8 *)func_0x000180851be0();
-  if (puVar2 == (undefined8 *)NETWORKING_POINTER_NULL) {
-    puVar2 = (undefined8 *)func_0x000180851be0();
+  puVar2 = (uint64_t *)func_0x000180851be0();
+  if (puVar2 == (uint64_t *)NETWORKING_POINTER_NULL) {
+    puVar2 = (uint64_t *)func_0x000180851be0();
   }
   
   if (!bVar7) {
@@ -501,7 +501,7 @@ network_result_t NetworkingSystem_DataManager(longlong param_1)
   }
   
   // 处理数据队列
-  if (puVar2 != (undefined8 *)NETWORKING_POINTER_NULL) {
+  if (puVar2 != (uint64_t *)NETWORKING_POINTER_NULL) {
     iVar1 = *(int *)((longlong)puVar2 + 0x24);
     iVar6 = 0;
     if (0 < iVar1) {
@@ -548,11 +548,11 @@ network_result_t NetworkingSystem_ResourceCleaner(longlong param_1)
 
 {
   longlong lVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   network_result_t uVar3;
   bool bVar4;
-  undefined8 uStackX_8;
-  undefined8 uStackX_10;
+  uint64_t uStackX_8;
+  uint64_t uStackX_10;
   longlong *plStack_28;
   longlong *plStack_20;
   
@@ -573,7 +573,7 @@ network_result_t NetworkingSystem_ResourceCleaner(longlong param_1)
         
         // 执行资源清理操作
         uStackX_8 = 0;
-        uVar3 = FUN_18073cb70(*(undefined8 *)(param_1 + NETWORKING_OFFSET_RESOURCE_DATA),&uStackX_8);
+        uVar3 = FUN_18073cb70(*(uint64_t *)(param_1 + NETWORKING_OFFSET_RESOURCE_DATA),&uStackX_8);
         if ((int)uVar3 != NETWORKING_ERROR_NONE) {
           return uVar3;
         }
@@ -582,7 +582,7 @@ network_result_t NetworkingSystem_ResourceCleaner(longlong param_1)
         if ((int)uVar3 != NETWORKING_ERROR_NONE) {
           return uVar3;
         }
-        uVar3 = FUN_18073f130(uStackX_10,*(undefined8 *)(param_1 + NETWORKING_OFFSET_RESOURCE_DATA),1,0);
+        uVar3 = FUN_18073f130(uStackX_10,*(uint64_t *)(param_1 + NETWORKING_OFFSET_RESOURCE_DATA),1,0);
         if ((int)uVar3 != NETWORKING_ERROR_NONE) {
           return uVar3;
         }
@@ -594,30 +594,30 @@ network_result_t NetworkingSystem_ResourceCleaner(longlong param_1)
 LAB_180851913:
       // 重置连接状态
       if (*(longlong *)(param_1 + 0x48) != 0) {
-        *(undefined1 *)(*(longlong *)(param_1 + 0x48) + 0x2a) = 0;
+        *(int8_t *)(*(longlong *)(param_1 + 0x48) + 0x2a) = 0;
       }
       
       // 更新活动状态
       bVar4 = *(char *)(*(longlong *)(param_1 + 0x40) + 0x74) != '\0';
-      FUN_18073d8a0(*(undefined8 *)(param_1 + NETWORKING_OFFSET_RESOURCE_DATA),bVar4);
+      FUN_18073d8a0(*(uint64_t *)(param_1 + NETWORKING_OFFSET_RESOURCE_DATA),bVar4);
       
       // 遍历并清理所有活动连接
-      for (puVar2 = *(undefined8 **)(param_1 + 0x50);
-          (puVar2 != (undefined8 *)(param_1 + 0x50) &&
-          (FUN_180853fc0(puVar2[2],bVar4), puVar2 != (undefined8 *)(param_1 + 0x50)));
-          puVar2 = (undefined8 *)*puVar2) {
+      for (puVar2 = *(uint64_t **)(param_1 + 0x50);
+          (puVar2 != (uint64_t *)(param_1 + 0x50) &&
+          (FUN_180853fc0(puVar2[2],bVar4), puVar2 != (uint64_t *)(param_1 + 0x50)));
+          puVar2 = (uint64_t *)*puVar2) {
       }
-      *(undefined8 *)(param_1 + 0x60) = 0;
+      *(uint64_t *)(param_1 + 0x60) = 0;
     }
     
     // 处理标志位清理
     if ((*(uint *)(param_1 + 0xc0) >> 3 & 1) != 0) {
       uStackX_8 = 0;
-      uVar3 = FUN_18073cb70(*(undefined8 *)(param_1 + NETWORKING_OFFSET_RESOURCE_DATA),&uStackX_8);
+      uVar3 = FUN_18073cb70(*(uint64_t *)(param_1 + NETWORKING_OFFSET_RESOURCE_DATA),&uStackX_8);
       if ((int)uVar3 != NETWORKING_ERROR_NONE) {
         return uVar3;
       }
-      uVar3 = FUN_180739350(uStackX_8,*(undefined8 *)(param_1 + NETWORKING_OFFSET_RESOURCE_DATA));
+      uVar3 = FUN_180739350(uStackX_8,*(uint64_t *)(param_1 + NETWORKING_OFFSET_RESOURCE_DATA));
       if ((int)uVar3 != NETWORKING_ERROR_NONE) {
         return uVar3;
       }
@@ -649,17 +649,17 @@ LAB_180851913:
  * @note 此函数处理复杂的状态机逻辑
  * @warning 状态转换需要遵循预定义的规则
  */
-network_result_t NetworkingSystem_StateManager(longlong param_1,undefined8 param_2,undefined1 param_3,undefined8 param_4)
+network_result_t NetworkingSystem_StateManager(longlong param_1,uint64_t param_2,int8_t param_3,uint64_t param_4)
 
 {
-  undefined8 *puVar1;
+  uint64_t *puVar1;
   longlong *plVar2;
   network_result_t uVar3;
   longlong *plVar4;
   longlong unaff_RDI;
   bool bVar5;
-  undefined8 in_stack_00000050;
-  undefined8 in_stack_00000058;
+  uint64_t in_stack_00000050;
+  uint64_t in_stack_00000058;
   
   if (param_1 != 0) {
     plVar2 = *(longlong **)(param_1 + 0x50);
@@ -670,7 +670,7 @@ network_result_t NetworkingSystem_StateManager(longlong param_1,undefined8 param
         goto LAB_180851913;
       }
       in_stack_00000050 = 0;
-      uVar3 = FUN_18073cb70(*(undefined8 *)(unaff_RDI + NETWORKING_OFFSET_RESOURCE_DATA),&stack0x00000050,param_3,param_4,
+      uVar3 = FUN_18073cb70(*(uint64_t *)(unaff_RDI + NETWORKING_OFFSET_RESOURCE_DATA),&stack0x00000050,param_3,param_4,
                             plVar4);
       if ((int)uVar3 != NETWORKING_ERROR_NONE) {
         return uVar3;
@@ -680,7 +680,7 @@ network_result_t NetworkingSystem_StateManager(longlong param_1,undefined8 param
       if ((int)uVar3 != NETWORKING_ERROR_NONE) {
         return uVar3;
       }
-      uVar3 = FUN_18073f130(in_stack_00000058,*(undefined8 *)(unaff_RDI + NETWORKING_OFFSET_RESOURCE_DATA),1,0);
+      uVar3 = FUN_18073f130(in_stack_00000058,*(uint64_t *)(unaff_RDI + NETWORKING_OFFSET_RESOURCE_DATA),1,0);
       if ((int)uVar3 != NETWORKING_ERROR_NONE) {
         return uVar3;
       }
@@ -692,30 +692,30 @@ network_result_t NetworkingSystem_StateManager(longlong param_1,undefined8 param
 LAB_180851913:
     // 更新连接状态
     if (*(longlong *)(unaff_RDI + 0x48) != 0) {
-      *(undefined1 *)(*(longlong *)(unaff_RDI + 0x48) + 0x2a) = 0;
+      *(int8_t *)(*(longlong *)(unaff_RDI + 0x48) + 0x2a) = 0;
     }
     
     // 处理活动状态变化
     bVar5 = *(char *)(*(longlong *)(unaff_RDI + 0x40) + 0x74) != '\0';
-    FUN_18073d8a0(*(undefined8 *)(unaff_RDI + NETWORKING_OFFSET_RESOURCE_DATA),bVar5);
+    FUN_18073d8a0(*(uint64_t *)(unaff_RDI + NETWORKING_OFFSET_RESOURCE_DATA),bVar5);
     
     // 通知所有相关组件状态变化
-    for (puVar1 = *(undefined8 **)(unaff_RDI + 0x50);
-        (puVar1 != (undefined8 *)(unaff_RDI + 0x50) &&
-        (FUN_180853fc0(puVar1[2],bVar5), puVar1 != (undefined8 *)(unaff_RDI + 0x50)));
-        puVar1 = (undefined8 *)*puVar1) {
+    for (puVar1 = *(uint64_t **)(unaff_RDI + 0x50);
+        (puVar1 != (uint64_t *)(unaff_RDI + 0x50) &&
+        (FUN_180853fc0(puVar1[2],bVar5), puVar1 != (uint64_t *)(unaff_RDI + 0x50)));
+        puVar1 = (uint64_t *)*puVar1) {
     }
-    *(undefined8 *)(unaff_RDI + 0x60) = 0;
+    *(uint64_t *)(unaff_RDI + 0x60) = 0;
   }
   
   // 处理特殊标志位
   if ((*(uint *)(unaff_RDI + 0xc0) >> 3 & 1) != 0) {
     in_stack_00000050 = 0;
-    uVar3 = FUN_18073cb70(*(undefined8 *)(unaff_RDI + NETWORKING_OFFSET_RESOURCE_DATA),&stack0x00000050);
+    uVar3 = FUN_18073cb70(*(uint64_t *)(unaff_RDI + NETWORKING_OFFSET_RESOURCE_DATA),&stack0x00000050);
     if ((int)uVar3 != NETWORKING_ERROR_NONE) {
       return uVar3;
     }
-    uVar3 = FUN_180739350(in_stack_00000050,*(undefined8 *)(unaff_RDI + NETWORKING_OFFSET_RESOURCE_DATA));
+    uVar3 = FUN_180739350(in_stack_00000050,*(uint64_t *)(unaff_RDI + NETWORKING_OFFSET_RESOURCE_DATA));
     if ((int)uVar3 != NETWORKING_ERROR_NONE) {
       return uVar3;
     }
@@ -744,14 +744,14 @@ LAB_180851913:
 network_result_t NetworkingSystem_EventProcessor(void)
 
 {
-  undefined8 *puVar1;
+  uint64_t *puVar1;
   longlong in_RAX;
   network_result_t uVar2;
   longlong unaff_RDI;
   char cVar3;
-  undefined8 unaff_R14;
+  uint64_t unaff_R14;
   bool bVar4;
-  undefined8 in_stack_00000050;
+  uint64_t in_stack_00000050;
   
   cVar3 = (char)unaff_R14;
   if (in_RAX != 0) {
@@ -760,24 +760,24 @@ network_result_t NetworkingSystem_EventProcessor(void)
   
   // 处理事件状态变化
   bVar4 = *(char *)(*(longlong *)(unaff_RDI + 0x40) + 0x74) != cVar3;
-  FUN_18073d8a0(*(undefined8 *)(unaff_RDI + NETWORKING_OFFSET_RESOURCE_DATA),bVar4);
+  FUN_18073d8a0(*(uint64_t *)(unaff_RDI + NETWORKING_OFFSET_RESOURCE_DATA),bVar4);
   
   // 通知所有监听器事件变化
-  for (puVar1 = *(undefined8 **)(unaff_RDI + 0x50);
-      (puVar1 != (undefined8 *)(unaff_RDI + 0x50) &&
-      (FUN_180853fc0(puVar1[2],bVar4), puVar1 != (undefined8 *)(unaff_RDI + 0x50)));
-      puVar1 = (undefined8 *)*puVar1) {
+  for (puVar1 = *(uint64_t **)(unaff_RDI + 0x50);
+      (puVar1 != (uint64_t *)(unaff_RDI + 0x50) &&
+      (FUN_180853fc0(puVar1[2],bVar4), puVar1 != (uint64_t *)(unaff_RDI + 0x50)));
+      puVar1 = (uint64_t *)*puVar1) {
   }
-  *(undefined8 *)(unaff_RDI + 0x60) = unaff_R14;
+  *(uint64_t *)(unaff_RDI + 0x60) = unaff_R14;
   
   // 处理事件相关的标志位
   if ((*(uint *)(unaff_RDI + 0xc0) >> 3 & 1) != 0) {
     in_stack_00000050 = unaff_R14;
-    uVar2 = FUN_18073cb70(*(undefined8 *)(unaff_RDI + NETWORKING_OFFSET_RESOURCE_DATA),&stack0x00000050);
+    uVar2 = FUN_18073cb70(*(uint64_t *)(unaff_RDI + NETWORKING_OFFSET_RESOURCE_DATA),&stack0x00000050);
     if ((int)uVar2 != NETWORKING_ERROR_NONE) {
       return uVar2;
     }
-    uVar2 = FUN_180739350(in_stack_00000050,*(undefined8 *)(unaff_RDI + NETWORKING_OFFSET_RESOURCE_DATA));
+    uVar2 = FUN_180739350(in_stack_00000050,*(uint64_t *)(unaff_RDI + NETWORKING_OFFSET_RESOURCE_DATA));
     if ((int)uVar2 != NETWORKING_ERROR_NONE) {
       return uVar2;
     }
@@ -808,15 +808,15 @@ network_result_t NetworkingSystem_ErrorHandler(void)
 {
   network_result_t uVar1;
   longlong unaff_RDI;
-  undefined8 unaff_R14;
+  uint64_t unaff_R14;
   
   // 处理错误相关的标志位和资源
   if ((*(uint *)(unaff_RDI + 0xc0) >> 3 & 1) != 0) {
-    uVar1 = FUN_18073cb70(*(undefined8 *)(unaff_RDI + NETWORKING_OFFSET_RESOURCE_DATA),&stack0x00000050);
+    uVar1 = FUN_18073cb70(*(uint64_t *)(unaff_RDI + NETWORKING_OFFSET_RESOURCE_DATA),&stack0x00000050);
     if ((int)uVar1 != NETWORKING_ERROR_NONE) {
       return uVar1;
     }
-    uVar1 = FUN_180739350(unaff_R14,*(undefined8 *)(unaff_RDI + NETWORKING_OFFSET_RESOURCE_DATA));
+    uVar1 = FUN_180739350(unaff_R14,*(uint64_t *)(unaff_RDI + NETWORKING_OFFSET_RESOURCE_DATA));
     if ((int)uVar1 != NETWORKING_ERROR_NONE) {
       return uVar1;
     }
@@ -869,18 +869,18 @@ network_result_t NetworkingSystem_ConfigManager(longlong param_1)
 
 {
   int iVar1;
-  undefined8 auStackX_8 [4];
+  uint64_t auStackX_8 [4];
   
   // 尝试从缓存获取配置
   if (*(int *)(param_1 + 0x98) != 0) {
-    return *(undefined8 *)
+    return *(uint64_t *)
             (*(longlong *)
               (*(longlong *)(param_1 + 0x90) + -8 + (longlong)*(int *)(param_1 + 0x98) * 8) + 0x30);
   }
   
   // 如果缓存中没有，则从系统获取配置
   auStackX_8[0] = 0;
-  iVar1 = FUN_18073c380(*(undefined8 *)(param_1 + NETWORKING_OFFSET_RESOURCE_DATA),0xfffffffe,auStackX_8);
+  iVar1 = FUN_18073c380(*(uint64_t *)(param_1 + NETWORKING_OFFSET_RESOURCE_DATA),0xfffffffe,auStackX_8);
   if (iVar1 != 0) {
     auStackX_8[0] = 0;
   }
@@ -954,7 +954,7 @@ network_result_t NetworkingSystem_HashTableManager(longlong *param_1)
     uVar5 = uVar10;
     if (0 < iVar9) {
       do {
-        *(undefined4 *)(*param_1 + uVar5 * 4) = 0xffffffff;
+        *(int32_t *)(*param_1 + uVar5 * 4) = 0xffffffff;
         uVar5 = uVar5 + 1;
       } while ((longlong)uVar5 < (longlong)iVar9);
     }
@@ -982,7 +982,7 @@ network_result_t NetworkingSystem_HashTableManager(longlong *param_1)
         *piVar8 = (int)uVar10;
         uVar11 = uVar11 + 1;
         uVar10 = (ulonglong)((int)uVar10 + 1);
-        *(undefined4 *)(param_1[2] + 0x10 + uVar5) = 0xffffffff;
+        *(int32_t *)(param_1[2] + 0x10 + uVar5) = 0xffffffff;
         uVar5 = uVar5 + 0x20;
       } while ((longlong)uVar11 < (longlong)(int)lVar3);
     }
@@ -1052,7 +1052,7 @@ network_result_t NetworkingSystem_ArrayProcessor(void)
     uVar4 = uVar9;
     if (0 < iVar8) {
       do {
-        *(undefined4 *)(*unaff_RBX + uVar4 * 4) = 0xffffffff;
+        *(int32_t *)(*unaff_RBX + uVar4 * 4) = 0xffffffff;
         uVar4 = uVar4 + 1;
       } while ((longlong)uVar4 < (longlong)iVar8);
     }
@@ -1080,7 +1080,7 @@ network_result_t NetworkingSystem_ArrayProcessor(void)
         *piVar7 = (int)uVar9;
         uVar10 = uVar10 + 1;
         uVar9 = (ulonglong)((int)uVar9 + 1);
-        *(undefined4 *)(unaff_RBX[2] + 0x10 + uVar4) = 0xffffffff;
+        *(int32_t *)(unaff_RBX[2] + 0x10 + uVar4) = 0xffffffff;
         uVar4 = uVar4 + 0x20;
       } while ((longlong)uVar10 < (longlong)(int)lVar2);
     }
@@ -1128,7 +1128,7 @@ network_result_t NetworkingSystem_ErrorGenerator(void)
  * @note 此函数处理所有回调相关操作
  * @warning 回调函数可能阻塞，需要谨慎使用
  */
-void NetworkingSystem_CallbackHandler(longlong param_1,undefined1 param_2)
+void NetworkingSystem_CallbackHandler(longlong param_1,int8_t param_2)
 
 {
   int iVar1;
@@ -1137,7 +1137,7 @@ void NetworkingSystem_CallbackHandler(longlong param_1,undefined1 param_2)
   iVar1 = FUN_180853980();
   if (iVar1 == 0) {
     // 执行回调操作
-    FUN_18073d8a0(*(undefined8 *)(param_1 + NETWORKING_OFFSET_RESOURCE_DATA),param_2);
+    FUN_18073d8a0(*(uint64_t *)(param_1 + NETWORKING_OFFSET_RESOURCE_DATA),param_2);
   }
   return;
 }
@@ -1161,7 +1161,7 @@ void NetworkingSystem_CallbackHandler(longlong param_1,undefined1 param_2)
  * @note 此函数提供高效的查找服务
  * @warning 查找性能可能影响整体性能
  */
-network_result_t NetworkingSystem_LookupService(longlong param_1,undefined8 param_2,uint param_3)
+network_result_t NetworkingSystem_LookupService(longlong param_1,uint64_t param_2,uint param_3)
 
 {
   longlong lVar1;
@@ -1192,7 +1192,7 @@ network_result_t NetworkingSystem_LookupService(longlong param_1,undefined8 para
       do {
         lVar4 = (longlong)iVar5;
         if (*(uint *)(lVar2 + lVar4 * 0x10) == param_3) {
-          uVar6 = *(undefined8 *)(lVar2 + 8 + lVar4 * 0x10);
+          uVar6 = *(uint64_t *)(lVar2 + 8 + lVar4 * 0x10);
           goto LAB_180851ce6;
         }
         iVar5 = *(int *)(lVar2 + 4 + lVar4 * 0x10);
@@ -1234,20 +1234,20 @@ network_result_t NetworkingSystem_TransferManager(longlong param_1,longlong para
 {
   int iVar1;
   network_result_t uVar2;
-  undefined8 uStackX_10;
+  uint64_t uStackX_10;
   
   // 处理第一个传输参数
   if (param_2 != 0) {
     if (*(int *)(param_1 + 0x88) == 0) {
       uStackX_10 = 0;
-      iVar1 = FUN_18073c380(*(undefined8 *)(param_1 + NETWORKING_OFFSET_RESOURCE_DATA),0xfffffffe,&uStackX_10);
+      iVar1 = FUN_18073c380(*(uint64_t *)(param_1 + NETWORKING_OFFSET_RESOURCE_DATA),0xfffffffe,&uStackX_10);
       uVar2 = uStackX_10;
       if (iVar1 != 0) {
         uVar2 = 0;
       }
     }
     else {
-      uVar2 = *(undefined8 *)(**(longlong **)(param_1 + 0x80) + 0x30);
+      uVar2 = *(uint64_t *)(**(longlong **)(param_1 + 0x80) + 0x30);
     }
     uVar2 = FUN_1807404e0(uVar2,param_2,0);
     if ((int)uVar2 != NETWORKING_ERROR_NONE) {
@@ -1283,13 +1283,13 @@ network_result_t NetworkingSystem_TransferManager(longlong param_1,longlong para
  * @note 此函数确保连接的有效性和安全性
  * @warning 验证失败将终止连接
  */
-network_result_t NetworkingSystem_ConnectionValidator(undefined8 param_1)
+network_result_t NetworkingSystem_ConnectionValidator(uint64_t param_1)
 
 {
   int iVar1;
   network_result_t uVar2;
   longlong unaff_RDI;
-  undefined8 uStack0000000000000038;
+  uint64_t uStack0000000000000038;
   
   // 执行连接验证
   uStack0000000000000038 = 0;
@@ -1373,13 +1373,13 @@ network_result_t NetworkingSystem_ConnectionTerminator(void)
  * @warning 数据处理可能消耗大量资源
  */
 network_result_t
-NetworkingSystem_DataProcessor(longlong *param_1,longlong *param_2,longlong *param_3,undefined4 param_4,
+NetworkingSystem_DataProcessor(longlong *param_1,longlong *param_2,longlong *param_3,int32_t param_4,
              longlong *param_5,longlong *param_6)
 
 {
   longlong lVar1;
   longlong lVar2;
-  undefined1 uVar3;
+  int8_t uVar3;
   longlong *plVar4;
   network_result_t uVar5;
   int iVar6;
@@ -1390,7 +1390,7 @@ NetworkingSystem_DataProcessor(longlong *param_1,longlong *param_2,longlong *par
   int iVar11;
   longlong lStackX_10;
   longlong *plStackX_18;
-  undefined4 uStackX_20;
+  int32_t uStackX_20;
   longlong lStack_78;
   longlong lStack_70;
   longlong lStack_68;
@@ -1412,7 +1412,7 @@ LAB_180851f6d:
         lVar2 = *param_2;
         uVar3 = (**(code **)(*param_1 + 0x20))(param_1);
         uVar5 = FUN_1808b4570(lVar1 + 0x388,(longlong)iVar11 * 0x10 + lVar2,param_1[0xe],uVar3,
-                              *(undefined4 *)(lStack_78 + lVar10),&lStackX_10);
+                              *(int32_t *)(lStack_78 + lVar10),&lStackX_10);
         if ((int)uVar5 != NETWORKING_ERROR_NONE) {
           return uVar5;
         }
@@ -1421,7 +1421,7 @@ LAB_180851f6d:
       else {
         do {
           lVar1 = *param_2;
-          plVar4 = (longlong *)(**(code **)**(undefined8 **)(*param_6 + lVar10 * 8))();
+          plVar4 = (longlong *)(**(code **)**(uint64_t **)(*param_6 + lVar10 * 8))();
           (**(code **)(*plVar4 + 0x40))(plVar4,&lStack_70);
           if ((lStack_70 == *(longlong *)(lVar1 + (longlong)iVar11 * 0x10)) &&
              (lStack_68 == *(longlong *)(lVar1 + 8 + (longlong)iVar11 * 0x10))) {
@@ -1445,7 +1445,7 @@ LAB_180851f6d:
       }
       
       // 处理数据结果
-      uVar5 = FUN_18073c020(param_1[0xf],uStackX_20,*(undefined8 *)(lStackX_10 + 0x30));
+      uVar5 = FUN_18073c020(param_1[0xf],uStackX_20,*(uint64_t *)(lStackX_10 + 0x30));
       if ((int)uVar5 != NETWORKING_ERROR_NONE) {
         return uVar5;
       }

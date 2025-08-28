@@ -16,17 +16,17 @@ extern void *UNK_1809fe1f0;   // 未知数据结构指针
  * @param array_info 数组信息结构体指针 [0]=数据指针, [1]=当前大小, [2]=容量, [3]=分配标志
  * @param element 要添加的元素指针
  */
-void dynamic_array_add_element(ulonglong *array_info, undefined8 *element)
+void dynamic_array_add_element(ulonglong *array_info, uint64_t *element)
 {
   longlong current_capacity;
-  undefined8 *data_ptr;
-  undefined8 *current_end;
-  undefined8 *capacity_end;
-  undefined8 *new_data;
+  uint64_t *data_ptr;
+  uint64_t *current_end;
+  uint64_t *capacity_end;
+  uint64_t *new_data;
   
   // 获取数组当前状态
-  current_end = (undefined8 *)array_info[1];
-  capacity_end = (undefined8 *)array_info[2];
+  current_end = (uint64_t *)array_info[1];
+  capacity_end = (uint64_t *)array_info[2];
   
   // 检查是否有剩余空间
   if (current_end < capacity_end) {
@@ -37,7 +37,7 @@ void dynamic_array_add_element(ulonglong *array_info, undefined8 *element)
   }
   
   // 空间不足，需要扩容
-  data_ptr = (undefined8 *)*array_info;
+  data_ptr = (uint64_t *)*array_info;
   current_capacity = (longlong)current_end - (longlong)data_ptr >> 3;
   
   // 计算新容量（至少为1，否则加倍）
@@ -47,17 +47,17 @@ void dynamic_array_add_element(ulonglong *array_info, undefined8 *element)
   else {
     current_capacity = current_capacity * 2;
     if (current_capacity == 0) {
-      new_data = (undefined8 *)0x0;
+      new_data = (uint64_t *)0x0;
       goto reallocate_complete;
     }
   }
   
   // 分配新内存
-  new_data = (undefined8 *)memory_allocate(_DAT_180c8ed18, current_capacity * 8, (char)array_info[3]);
+  new_data = (uint64_t *)memory_allocate(_DAT_180c8ed18, current_capacity * 8, (char)array_info[3]);
   
 reallocate_complete:
-  data_ptr = (undefined8 *)*array_info;
-  current_end = (undefined8 *)array_info[1];
+  data_ptr = (uint64_t *)*array_info;
+  current_end = (uint64_t *)array_info[1];
   
   // 复制现有数据到新位置
   if (data_ptr != current_end) {
@@ -182,7 +182,7 @@ longlong thread_local_storage_get_value(longlong tls_base)
             LOCK();
             *(longlong *)(tls_base + 0x38) = *(longlong *)(tls_base + 0x38) + -1;
             UNLOCK();
-            *(undefined4 *)(tls_base + 600) = 0;
+            *(int32_t *)(tls_base + 600) = 0;
             return 0;
           }
           
@@ -191,14 +191,14 @@ longlong thread_local_storage_get_value(longlong tls_base)
           hash_table[1] = (ulonglong)(-(int)(hash_table + 3) & 7) + (longlong)(hash_table + 3);
           found_value = 0;
           for (; new_size != 0; new_size = new_size - 1) {
-            *(undefined8 *)(found_value + 8 + hash_table[1]) = 0;
-            *(undefined4 *)(found_value + hash_table[1]) = 0;
+            *(uint64_t *)(found_value + 8 + hash_table[1]) = 0;
+            *(int32_t *)(found_value + hash_table[1]) = 0;
             found_value = found_value + 0x10;
           }
           hash_table[2] = (ulonglong)current_table;
           *(ulonglong **)(tls_base + 0x30) = hash_table;
         }
-        *(undefined4 *)(tls_base + 600) = 0;
+        *(int32_t *)(tls_base + 600) = 0;
       }
     }
     
@@ -298,7 +298,7 @@ longlong thread_local_storage_get_value_internal(void)
             LOCK();
             *(longlong *)(unaff_R14 + 0x38) = *(longlong *)(unaff_R14 + 0x38) + -1;
             UNLOCK();
-            *(undefined4 *)(unaff_R14 + 600) = 0;
+            *(int32_t *)(unaff_R14 + 600) = 0;
             return 0;
           }
           
@@ -307,14 +307,14 @@ longlong thread_local_storage_get_value_internal(void)
           unaff_RDI[1] = (ulonglong)(-(int)(unaff_RDI + 3) & 7) + (longlong)(unaff_RDI + 3);
           new_value = 0;
           for (; table_size != 0; table_size = table_size - 1) {
-            *(undefined8 *)(new_value + 8 + unaff_RDI[1]) = 0;
-            *(undefined4 *)(new_value + unaff_RDI[1]) = 0;
+            *(uint64_t *)(new_value + 8 + unaff_RDI[1]) = 0;
+            *(int32_t *)(new_value + unaff_RDI[1]) = 0;
             new_value = new_value + 0x10;
           }
           unaff_RDI[2] = (ulonglong)hash_table;
           *(ulonglong **)(unaff_R14 + 0x30) = unaff_RDI;
         }
-        *(undefined4 *)(unaff_R14 + 600) = 0;
+        *(int32_t *)(unaff_R14 + 600) = 0;
       }
     }
     
@@ -362,10 +362,10 @@ longlong thread_local_storage_get_value_internal(void)
  * 在哈希表之间复制值
  * 用于线程本地存储的值迁移
  */
-undefined8 copy_hash_table_value(undefined8 param_1, undefined8 param_2, longlong *param_3)
+uint64_t copy_hash_table_value(uint64_t param_1, uint64_t param_2, longlong *param_3)
 {
   int *int_slot_ptr;
-  undefined8 value_to_copy;
+  uint64_t value_to_copy;
   longlong in_RAX;
   ulonglong unaff_RSI;
   ulonglong slot_index;
@@ -373,7 +373,7 @@ undefined8 copy_hash_table_value(undefined8 param_1, undefined8 param_2, longlon
   int unaff_R15D;
   bool slot_available;
   
-  value_to_copy = *(undefined8 *)(param_3[1] + 8 + in_RAX * 0x10);
+  value_to_copy = *(uint64_t *)(param_3[1] + 8 + in_RAX * 0x10);
   if (param_3 == unaff_RDI) {
     return value_to_copy;  // 源和目标相同，直接返回
   }
@@ -390,7 +390,7 @@ undefined8 copy_hash_table_value(undefined8 param_1, undefined8 param_2, longlon
       }
       UNLOCK();
       if (slot_available) {
-        *(undefined8 *)(unaff_RDI[1] + 8 + slot_index * 0x10) = value_to_copy;
+        *(uint64_t *)(unaff_RDI[1] + 8 + slot_index * 0x10) = value_to_copy;
         return value_to_copy;
       }
     }
@@ -415,7 +415,7 @@ longlong thread_local_storage_expand_table(void)
   ulonglong unaff_RBP;
   ulonglong unaff_RSI;
   ulonglong *unaff_RDI;
-  undefined4 uVar8;
+  int32_t uVar8;
   longlong unaff_R12;
   longlong unaff_R14;
   int unaff_R15D;
@@ -424,8 +424,8 @@ longlong thread_local_storage_expand_table(void)
   
   while( true ) {
     do {
-      uVar8 = (undefined4)unaff_R12;
-      *(undefined4 *)(unaff_R14 + 600) = uVar8;
+      uVar8 = (int32_t)unaff_R12;
+      *(int32_t *)(unaff_R14 + 600) = uVar8;
       
       do {
         do {
@@ -498,7 +498,7 @@ longlong thread_local_storage_expand_table(void)
     new_value = unaff_R12;
     for (; table_size != 0; table_size = table_size - 1) {
       *(longlong *)(new_value + 8 + unaff_RDI[1]) = unaff_R12;
-      *(undefined4 *)(new_value + unaff_RDI[1]) = uVar8;
+      *(int32_t *)(new_value + unaff_RDI[1]) = uVar8;
       new_value = new_value + 0x10;
     }
     unaff_RDI[2] = (ulonglong)hash_table;
@@ -509,7 +509,7 @@ longlong thread_local_storage_expand_table(void)
   LOCK();
   *(longlong *)(unaff_R14 + 0x38) = *(longlong *)(unaff_R14 + 0x38) + -1;
   UNLOCK();
-  *(undefined4 *)(unaff_R14 + 600) = uVar8;
+  *(int32_t *)(unaff_R14 + 600) = uVar8;
   return 0;
 }
 
@@ -517,34 +517,34 @@ longlong thread_local_storage_expand_table(void)
  * 分配线程本地存储值
  * 创建新的线程本地存储条目
  */
-undefined8 *allocate_thread_local_value(longlong *tls_base, char param_2, undefined1 *param_3)
+uint64_t *allocate_thread_local_value(longlong *tls_base, char param_2, int8_t *param_3)
 {
   longlong *next_ptr;
-  undefined8 *new_entry;
+  uint64_t *new_entry;
   longlong current_head;
   longlong old_head;
-  undefined8 *list_head;
-  undefined8 *allocated_entry;
+  uint64_t *list_head;
+  uint64_t *allocated_entry;
   ulonglong hash_value;
   ulonglong new_size;
   bool success;
   
-  allocated_entry = (undefined8 *)0x0;
-  new_entry = (undefined8 *)*tls_base;
+  allocated_entry = (uint64_t *)0x0;
+  new_entry = (uint64_t *)*tls_base;
   
   do {
-    if (new_entry == (undefined8 *)0x0) {
+    if (new_entry == (uint64_t *)0x0) {
       // 链表为空，创建新条目
       *param_3 = 0;
       if (param_2 == '\0') {
         // 创建标准条目
-        new_entry = (undefined8 *)memory_allocate(_DAT_180c8ed18, 0x68, 10, 0, 0xfffffffffffffffe);
-        if (new_entry == (undefined8 *)0x0) {
-          return (undefined8 *)0x0;
+        new_entry = (uint64_t *)memory_allocate(_DAT_180c8ed18, 0x68, 10, 0, 0xfffffffffffffffe);
+        if (new_entry == (uint64_t *)0x0) {
+          return (uint64_t *)0x0;
         }
         // 初始化标准条目
         new_entry[1] = 0;
-        *(undefined1 *)(new_entry + 2) = 0;
+        *(int8_t *)(new_entry + 2) = 0;
         new_entry[3] = 0;
         *new_entry = &UNK_1809fe210;
         new_entry[4] = 0;
@@ -552,7 +552,7 @@ undefined8 *allocate_thread_local_value(longlong *tls_base, char param_2, undefi
         new_entry[6] = 0;
         new_entry[7] = 0;
         new_entry[8] = 0;
-        *(undefined1 *)(new_entry + 9) = 0;
+        *(int8_t *)(new_entry + 9) = 0;
         new_entry[10] = tls_base;
         *new_entry = &UNK_1809fe200;
         new_entry[0xb] = 0x20;
@@ -561,13 +561,13 @@ undefined8 *allocate_thread_local_value(longlong *tls_base, char param_2, undefi
       }
       else {
         // 创建扩展条目
-        new_entry = (undefined8 *)memory_allocate(_DAT_180c8ed18, 0x88, 10, 0, 0xfffffffffffffffe);
-        if (new_entry == (undefined8 *)0x0) {
-          return (undefined8 *)0x0;
+        new_entry = (uint64_t *)memory_allocate(_DAT_180c8ed18, 0x88, 10, 0, 0xfffffffffffffffe);
+        if (new_entry == (uint64_t *)0x0) {
+          return (uint64_t *)0x0;
         }
         // 初始化扩展条目
         new_entry[1] = 0;
-        *(undefined1 *)(new_entry + 2) = 0;
+        *(int8_t *)(new_entry + 2) = 0;
         new_entry[3] = 0;
         *new_entry = &UNK_1809fe210;
         new_entry[4] = 0;
@@ -575,7 +575,7 @@ undefined8 *allocate_thread_local_value(longlong *tls_base, char param_2, undefi
         new_entry[6] = 0;
         new_entry[7] = 0;
         new_entry[8] = 0;
-        *(undefined1 *)(new_entry + 9) = 1;
+        *(int8_t *)(new_entry + 9) = 1;
         new_entry[10] = tls_base;
         *new_entry = &UNK_1809fe1f0;
         new_entry[0xb] = 0;
@@ -602,7 +602,7 @@ undefined8 *allocate_thread_local_value(longlong *tls_base, char param_2, undefi
       }
       
       list_head = allocated_entry;
-      if (new_entry != (undefined8 *)0x0) {
+      if (new_entry != (uint64_t *)0x0) {
         // 原子操作插入到链表头部
         LOCK();
         *(int *)(tls_base + 1) = (int)tls_base[1] + 1;
@@ -610,7 +610,7 @@ undefined8 *allocate_thread_local_value(longlong *tls_base, char param_2, undefi
         
         current_head = *tls_base;
         do {
-          list_head = (undefined8 *)(current_head + 8);
+          list_head = (uint64_t *)(current_head + 8);
           if (current_head == 0) {
             list_head = allocated_entry;
           }
@@ -646,7 +646,7 @@ undefined8 *allocate_thread_local_value(longlong *tls_base, char param_2, undefi
     
     // 移动到下一个条目
     next_ptr = new_entry + 1;
-    new_entry = (undefined8 *)(*next_ptr + -8);
+    new_entry = (uint64_t *)(*next_ptr + -8);
     if (*next_ptr == 0) {
       new_entry = allocated_entry;
     }
@@ -657,7 +657,7 @@ undefined8 *allocate_thread_local_value(longlong *tls_base, char param_2, undefi
  * 向事件队列添加事件
  * 管理事件队列的空间分配和事件插入
  */
-undefined8 event_queue_add_event(longlong queue_ptr, longlong *event_data, undefined8 param_3, undefined8 param_4)
+uint64_t event_queue_add_event(longlong queue_ptr, longlong *event_data, uint64_t param_3, uint64_t param_4)
 {
   ulonglong queue_index;
   char resize_result;
@@ -679,15 +679,15 @@ undefined8 event_queue_add_event(longlong queue_ptr, longlong *event_data, undef
       if ((((*(longlong *)(queue_ptr + 0x28) - queue_index) - 0x20 < 0x8000000000000001) ||
           (((*(longlong *)(queue_ptr + 0x80) == 0 ||
             (*(longlong *)(queue_ptr + 0x60) == *(longlong *)(queue_ptr + 0x68))) &&
-           (resize_result = resize_event_queue(queue_ptr, *(undefined8 *)(queue_ptr + 0x60), new_size, param_4,
+           (resize_result = resize_event_queue(queue_ptr, *(uint64_t *)(queue_ptr + 0x60), new_size, param_4,
                                   0xfffffffffffffffe), resize_result == '\0')))) ||
-         (new_block = allocate_event_block(*(undefined8 *)(queue_ptr + 0x50)), new_block == 0)) {
+         (new_block = allocate_event_block(*(uint64_t *)(queue_ptr + 0x50)), new_block == 0)) {
         return 0;
       }
       
       // 初始化新块
       do {
-        *(undefined1 *)(new_block + 0x110 + slot_index) = 0;
+        *(int8_t *)(new_block + 0x110 + slot_index) = 0;
         slot_index = slot_index + 1;
       } while (slot_index != 0x20);
       
@@ -695,7 +695,7 @@ undefined8 event_queue_add_event(longlong queue_ptr, longlong *event_data, undef
         *(longlong *)(new_block + 0x100) = new_block;
       }
       else {
-        *(undefined8 *)(new_block + 0x100) = *(undefined8 *)(*(longlong *)(queue_ptr + 0x40) + 0x100);
+        *(uint64_t *)(new_block + 0x100) = *(uint64_t *)(*(longlong *)(queue_ptr + 0x40) + 0x100);
         *(longlong *)(*(longlong *)(queue_ptr + 0x40) + 0x100) = new_block;
       }
       *(longlong *)(queue_ptr + 0x40) = new_block;
@@ -713,7 +713,7 @@ undefined8 event_queue_add_event(longlong queue_ptr, longlong *event_data, undef
       *(longlong *)(queue_ptr + 0x40) = new_block;
       
       do {
-        *(undefined1 *)(new_block + 0x110 + slot_index) = 0;
+        *(int8_t *)(new_block + 0x110 + slot_index) = 0;
         slot_index = slot_index + 1;
       } while (slot_index != 0x20);
     }
@@ -732,7 +732,7 @@ undefined8 event_queue_add_event(longlong queue_ptr, longlong *event_data, undef
              *(longlong *)(*(longlong *)(queue_ptr + 0x58) + 0x10));
     *queue_array = queue_index;
     queue_array[1] = *(ulonglong *)(queue_ptr + 0x40);
-    *(undefined8 *)(*(longlong *)(queue_ptr + 0x58) + 8) = *(undefined8 *)(queue_ptr + 0x70);
+    *(uint64_t *)(*(longlong *)(queue_ptr + 0x58) + 8) = *(uint64_t *)(queue_ptr + 0x70);
     *(ulonglong *)(queue_ptr + 0x70) =
          *(longlong *)(queue_ptr + 0x68) - 1U & *(longlong *)(queue_ptr + 0x70) + 1U;
   }
@@ -752,7 +752,7 @@ undefined8 event_queue_add_event(longlong queue_ptr, longlong *event_data, undef
 /**
  * 向事件队列添加事件的简化版本
  */
-undefined8 event_queue_add_event_simple(longlong queue_ptr, longlong *event_data)
+uint64_t event_queue_add_event_simple(longlong queue_ptr, longlong *event_data)
 {
   ulonglong queue_index;
   char resize_result;
@@ -781,7 +781,7 @@ undefined8 event_queue_add_event_simple(longlong queue_ptr, longlong *event_data
   if (0x8000000000000000 < (*(longlong *)(queue_ptr + 0x28) - queue_index) - 0x20) {
     resize_result = resize_event_queue_simple(queue_ptr, &uStackX_18, queue_index, slot_index, 0xfffffffffffffffe);
     if (resize_result != '\0') {
-      event_callback = (longlong *)allocate_event_block(*(undefined8 *)(queue_ptr + 0x50));
+      event_callback = (longlong *)allocate_event_block(*(uint64_t *)(queue_ptr + 0x50));
       if (event_callback != (longlong *)0x0) {
         event_callback[0x21] = 0;
         event_data = (longlong *)*event_data;
@@ -796,7 +796,7 @@ undefined8 event_queue_add_event_simple(longlong queue_ptr, longlong *event_data
       }
       event_callback = *(longlong **)(queue_ptr + 0x60);
       event_callback[1] = *event_callback - 1U & event_callback[1] - 1U;
-      *(undefined8 *)(uStackX_18 + 8) = 0;
+      *(uint64_t *)(uStackX_18 + 8) = 0;
     }
   }
   return 0;
@@ -806,30 +806,30 @@ undefined8 event_queue_add_event_simple(longlong queue_ptr, longlong *event_data
  * 调整事件队列大小
  * 为事件队列分配新的存储空间
  */
-undefined8 resize_event_queue(longlong queue_ptr, longlong param_2)
+uint64_t resize_event_queue(longlong queue_ptr, longlong param_2)
 {
-  undefined8 *old_array;
+  uint64_t *old_array;
   longlong old_capacity;
-  undefined8 capacity_flag;
-  undefined8 *new_array;
+  uint64_t capacity_flag;
+  uint64_t *new_array;
   ulonglong new_capacity;
   ulonglong old_size;
-  undefined8 *data_start;
-  undefined8 *src_ptr;
+  uint64_t *data_start;
+  uint64_t *src_ptr;
   ulonglong copy_index;
-  undefined8 *dst_ptr;
+  uint64_t *dst_ptr;
   longlong items_copied;
   
   old_capacity = *(longlong *)(queue_ptr + 0x68);
   *(longlong *)(queue_ptr + 0x68) = old_capacity * 2;
-  new_array = (undefined8 *)memory_allocate(_DAT_180c8ed18, old_capacity * 0x20 + 0x27, 10);
-  if (new_array == (undefined8 *)0x0) {
+  new_array = (uint64_t *)memory_allocate(_DAT_180c8ed18, old_capacity * 0x20 + 0x27, 10);
+  if (new_array == (uint64_t *)0x0) {
     *(ulonglong *)(queue_ptr + 0x68) = *(ulonglong)(queue_ptr + 0x68) >> 1;
     return 0;
   }
   
   items_copied = 0;
-  data_start = (undefined8 *)((ulonglong)(-(int)(new_array + 4) & 7) + (longlong)(new_array + 4));
+  data_start = (uint64_t *)((ulonglong)(-(int)(new_array + 4) & 7) + (longlong)(new_array + 4));
   
   // 复制现有数据
   if (*(longlong *)(queue_ptr + 0x60) != 0) {
@@ -838,7 +838,7 @@ undefined8 resize_event_queue(longlong queue_ptr, longlong param_2)
     do {
       items_copied = items_copied + 1;
       new_capacity = old_size + 1 & old_capacity - 1U;
-      old_array = (undefined8 *)(*(longlong *)(queue_ptr + 0x78) + old_size * 0x10);
+      old_array = (uint64_t *)(*(longlong *)(queue_ptr + 0x78) + old_size * 0x10);
       capacity_flag = old_array[1];
       *dst_ptr = *old_array;
       dst_ptr[1] = capacity_flag;
@@ -848,34 +848,34 @@ undefined8 resize_event_queue(longlong queue_ptr, longlong param_2)
   }
   
   // 初始化新数组
-  *new_array = *(undefined8 *)(queue_ptr + 0x68);
+  *new_array = *(uint64_t *)(queue_ptr + 0x68);
   new_array[1] = param_2 + -1;
   new_array[2] = data_start;
-  capacity_flag = *(undefined8 *)(queue_ptr + 0x80);
+  capacity_flag = *(uint64_t *)(queue_ptr + 0x80);
   new_array[3] = capacity_flag;
   *(longlong *)(queue_ptr + 0x70) = items_copied;
-  *(undefined8 **)(queue_ptr + 0x78) = data_start;
-  *(undefined8 **)(queue_ptr + 0x80) = new_array;
-  *(undefined8 **)(queue_ptr + 0x58) = new_array;
+  *(uint64_t **)(queue_ptr + 0x78) = data_start;
+  *(uint64_t **)(queue_ptr + 0x80) = new_array;
+  *(uint64_t **)(queue_ptr + 0x58) = new_array;
   return CONCAT71((int7)((ulonglong)capacity_flag >> 8), 1);
 }
 
 /**
  * 初始化线程本地存储条目
  */
-undefined8 *initialize_thread_local_entry(longlong entry_ptr)
+uint64_t *initialize_thread_local_entry(longlong entry_ptr)
 {
   longlong *old_entry_ptr;
   ulonglong entry_count;
   longlong old_capacity;
   longlong new_capacity;
-  undefined8 *new_entry;
-  undefined8 *new_data;
-  undefined8 *new_hash_table;
+  uint64_t *new_entry;
+  uint64_t *new_data;
+  uint64_t *new_hash_table;
   ulonglong hash_index;
   longlong copy_index;
-  undefined8 *src_ptr;
-  undefined8 *dst_ptr;
+  uint64_t *src_ptr;
+  uint64_t *dst_ptr;
   longlong items_to_copy;
   
   old_entry_ptr = *(longlong **)(entry_ptr + 0x60);
@@ -891,12 +891,12 @@ undefined8 *initialize_thread_local_entry(longlong entry_ptr)
   }
   
   // 分配新条目
-  new_entry = (undefined8 *)memory_allocate(_DAT_180c8ed18, (old_capacity + new_capacity * 2) * 8 + 0x36, 10);
+  new_entry = (uint64_t *)memory_allocate(_DAT_180c8ed18, (old_capacity + new_capacity * 2) * 8 + 0x36, 10);
   new_data = new_entry;
-  if (new_entry != (undefined8 *)0x0) {
+  if (new_entry != (uint64_t *)0x0) {
     // 计算对齐的哈希表位置
-    new_hash_table = (undefined8 *)((ulonglong)(-(int)(new_entry + 5) & 7) + (longlong)(new_entry + 5));
-    new_data = (undefined8 *)
+    new_hash_table = (uint64_t *)((ulonglong)(-(int)(new_entry + 5) & 7) + (longlong)(new_entry + 5));
+    new_data = (uint64_t *)
               ((ulonglong)(-(int)(new_hash_table + new_capacity * 2) & 7) + (longlong)(new_hash_table + new_capacity * 2));
     
     // 复制现有数据
@@ -906,7 +906,7 @@ undefined8 *initialize_thread_local_entry(longlong entry_ptr)
       dst_ptr = new_data;
       do {
         hash_index = *old_entry_ptr - 1U & hash_index + 1;
-        *dst_ptr = *(undefined8 *)(old_entry_ptr[3] + hash_index * 8);
+        *dst_ptr = *(uint64_t *)(old_entry_ptr[3] + hash_index * 8);
         dst_ptr = dst_ptr + 1;
       } while (hash_index != entry_count);
     }
@@ -928,10 +928,10 @@ undefined8 *initialize_thread_local_entry(longlong entry_ptr)
     new_entry[4] = old_entry_ptr;
     new_entry[2] = new_hash_table;
     new_entry[3] = new_data;
-    *new_entry = *(undefined8 *)(entry_ptr + 0x58);
+    *new_entry = *(uint64_t *)(entry_ptr + 0x58);
     new_entry[1] = *(longlong *)(entry_ptr + 0x58) - 1U & items_to_copy - 1U;
-    new_data = (undefined8 *)CONCAT71((int7)(items_to_copy - 1U >> 8), 1);
-    *(undefined8 **)(entry_ptr + 0x60) = new_entry;
+    new_data = (uint64_t *)CONCAT71((int7)(items_to_copy - 1U >> 8), 1);
+    *(uint64_t **)(entry_ptr + 0x60) = new_entry;
     *(longlong *)(entry_ptr + 0x58) = *(longlong)(entry_ptr + 0x58) << 1;
   }
   return new_data;
@@ -940,24 +940,24 @@ undefined8 *initialize_thread_local_entry(longlong entry_ptr)
 /**
  * 初始化哈希表结构的辅助函数
  */
-undefined8 initialize_hash_table_structure(void)
+uint64_t initialize_hash_table_structure(void)
 {
   ulonglong table_size;
   longlong in_RAX;
-  undefined8 *new_table;
-  undefined8 *new_data;
+  uint64_t *new_table;
+  uint64_t *new_data;
   ulonglong hash_index;
   longlong unaff_RBX;
   longlong unaff_RBP;
   longlong unaff_RSI;
   longlong *unaff_RDI;
-  undefined8 *in_R9;
-  undefined8 *src_ptr;
-  undefined8 *dst_ptr;
+  uint64_t *in_R9;
+  uint64_t *src_ptr;
+  uint64_t *dst_ptr;
   
   // 计算对齐的数据区域
-  new_data = (undefined8 *)((ulonglong)(-(int)in_RAX & 7) + in_RAX);
-  dst_ptr = (undefined8 *)
+  new_data = (uint64_t *)((ulonglong)(-(int)in_RAX & 7) + in_RAX);
+  dst_ptr = (uint64_t *)
            ((ulonglong)(-(int)(new_data + unaff_RBX * 2) & 7) + (longlong)(new_data + unaff_RBX * 2));
   
   // 复制现有数据
@@ -967,7 +967,7 @@ undefined8 initialize_hash_table_structure(void)
     src_ptr = dst_ptr;
     do {
       hash_index = *unaff_RDI - 1U & hash_index + 1;
-      *src_ptr = *(undefined8 *)(unaff_RDI[3] + hash_index * 8);
+      *src_ptr = *(uint64_t *)(unaff_RDI[3] + hash_index * 8);
       src_ptr = src_ptr + 1;
     } while (hash_index != table_size);
   }
@@ -989,9 +989,9 @@ undefined8 initialize_hash_table_structure(void)
   in_R9[4] = unaff_RDI;
   in_R9[2] = new_data;
   in_R9[3] = dst_ptr;
-  *in_R9 = *(undefined8 *)(unaff_RSI + 0x58);
+  *in_R9 = *(uint64_t *)(unaff_RSI + 0x58);
   in_R9[1] = *(longlong *)(unaff_RSI + 0x58) - 1U & unaff_RBP - 1U;
-  *(undefined8 **)(unaff_RSI + 0x60) = in_R9;
+  *(uint64_t **)(unaff_RSI + 0x60) = in_R9;
   *(longlong *)(unaff_RSI + 0x58) = *(longlong)(unaff_RSI + 0x58) << 1;
   return CONCAT71((int7)(unaff_RBP - 1U >> 8), 1);
 }
@@ -1004,6 +1004,6 @@ extern void UNLOCK(void);
 extern uint GetCurrentThreadId(void);
 extern void memmove(void *, const void *, size_t);
 extern longlong allocate_thread_local_value(void);
-extern void initialize_thread_local_entry_extended(undefined8 *, longlong);
-extern longlong allocate_event_block(undefined8);
+extern void initialize_thread_local_entry_extended(uint64_t *, longlong);
+extern longlong allocate_event_block(uint64_t);
 extern char resize_event_queue_simple(longlong, ulonglong *, ulonglong, ulonglong, ulonglong);

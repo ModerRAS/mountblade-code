@@ -137,12 +137,12 @@
  * @param param_2 连接参数标志
  * @return void
  */
-void network_connection_status_checker(undefined8 param_1, undefined1 param_2)
+void network_connection_status_checker(uint64_t param_1, int8_t param_2)
 {
     int connection_status;          // 连接状态变量
     int validation_result;          // 验证结果变量
     longlong connection_context[2]; // 连接上下文数据
-    undefined8 *connection_data[2];  // 连接数据指针
+    uint64_t *connection_data[2];  // 连接数据指针
     
     // 初始化连接上下文
     connection_context[1] = 0;
@@ -155,15 +155,15 @@ void network_connection_status_checker(undefined8 param_1, undefined1 param_2)
           (((*(uint *)(connection_context[0] + 0x24) >> 1 & 1) != 0 &&
            (validation_result = FUN_18088c740(connection_context + 1), validation_result == 0)))) && 
          (connection_status == 0)) &&
-        (connection_status = FUN_18088dec0(*(undefined8 *)(connection_context[0] + 0x98), connection_data, NETWORK_BUFFER_SIZE), connection_status == 0)) {
+        (connection_status = FUN_18088dec0(*(uint64_t *)(connection_context[0] + 0x98), connection_data, NETWORK_BUFFER_SIZE), connection_status == 0)) {
         
         // 设置连接数据
         *connection_data[0] = &UNK_180982790;
-        *(undefined4 *)(connection_data[0] + 1) = NETWORK_BUFFER_SIZE;
-        *(undefined1 *)(connection_data[0] + 2) = param_2;
+        *(int32_t *)(connection_data[0] + 1) = NETWORK_BUFFER_SIZE;
+        *(int8_t *)(connection_data[0] + 2) = param_2;
         
         // 执行连接初始化
-        func_0x00018088e0d0(*(undefined8 *)(connection_context[0] + 0x98));
+        func_0x00018088e0d0(*(uint64_t *)(connection_context[0] + 0x98));
     }
     
     // 清理连接资源
@@ -184,15 +184,15 @@ void network_connection_status_checker(undefined8 param_1, undefined1 param_2)
  * @param param_2 目标地址
  * @return void
  */
-void network_packet_sender(undefined4 *param_1, undefined8 param_2)
+void network_packet_sender(int32_t *param_1, uint64_t param_2)
 {
     // 发送数据包到目标地址
     FUN_18076b390(param_2, PACKET_TYPE_DATA, &UNK_180958180, *param_1, 
-                 *(undefined2 *)(param_1 + 1), *(undefined2 *)((longlong)param_1 + 6),
-                 *(undefined1 *)(param_1 + 2), *(undefined1 *)((longlong)param_1 + 9),
-                 *(undefined1 *)((longlong)param_1 + 10), *(undefined1 *)((longlong)param_1 + 0xb),
-                 *(undefined1 *)(param_1 + 3), *(undefined1 *)((longlong)param_1 + 0xd),
-                 *(undefined1 *)((longlong)param_1 + 0xe), *(undefined1 *)((longlong)param_1 + 0xf));
+                 *(int16_t *)(param_1 + 1), *(int16_t *)((longlong)param_1 + 6),
+                 *(int8_t *)(param_1 + 2), *(int8_t *)((longlong)param_1 + 9),
+                 *(int8_t *)((longlong)param_1 + 10), *(int8_t *)((longlong)param_1 + 0xb),
+                 *(int8_t *)(param_1 + 3), *(int8_t *)((longlong)param_1 + 0xd),
+                 *(int8_t *)((longlong)param_1 + 0xe), *(int8_t *)((longlong)param_1 + 0xf));
 }
 
 /**
@@ -208,12 +208,12 @@ void network_packet_sender(undefined4 *param_1, undefined8 param_2)
  * @param param_1 网络连接参数
  * @return void
  */
-void network_connection_initializer(undefined8 param_1)
+void network_connection_initializer(uint64_t param_1)
 {
     int initialization_status;    // 初始化状态变量
-    undefined1 protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
-    undefined1 *message_buffer;   // 消息缓冲区指针
-    undefined1 large_buffer[LARGE_BUFFER_SIZE]; // 大缓冲区
+    int8_t protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
+    int8_t *message_buffer;   // 消息缓冲区指针
+    int8_t large_buffer[LARGE_BUFFER_SIZE]; // 大缓冲区
     ulonglong stack_protection;  // 栈保护变量
     
     // 设置栈保护
@@ -248,12 +248,12 @@ void network_connection_initializer(undefined8 param_1)
  * @param param_1 网络连接句柄
  * @return void
  */
-void network_connection_processor(undefined8 param_1)
+void network_connection_processor(uint64_t param_1)
 {
     int processing_status;         // 处理状态变量
-    undefined1 protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
-    undefined1 *message_buffer;    // 消息缓冲区指针
-    undefined1 large_buffer[LARGE_BUFFER_SIZE]; // 大缓冲区
+    int8_t protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
+    int8_t *message_buffer;    // 消息缓冲区指针
+    int8_t large_buffer[LARGE_BUFFER_SIZE]; // 大缓冲区
     ulonglong stack_protection;   // 栈保护变量
     
     // 设置栈保护
@@ -288,13 +288,13 @@ void network_connection_processor(undefined8 param_1)
  * @param param_1 网络连接句柄
  * @return void
  */
-void network_connection_validator(undefined8 param_1)
+void network_connection_validator(uint64_t param_1)
 {
     int validation_status;         // 验证状态变量
-    undefined1 protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
-    undefined1 *message_buffer;    // 消息缓冲区指针
+    int8_t protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
+    int8_t *message_buffer;    // 消息缓冲区指针
     longlong connection_data[2];   // 连接数据
-    undefined1 large_buffer[LARGE_BUFFER_SIZE]; // 大缓冲区
+    int8_t large_buffer[LARGE_BUFFER_SIZE]; // 大缓冲区
     ulonglong stack_protection;   // 栈保护变量
     
     // 设置栈保护
@@ -308,7 +308,7 @@ void network_connection_validator(undefined8 param_1)
         validation_status = NETWORK_CONFIG_TIMEOUT;
     }
     else if (validation_status == 0) {
-        validation_status = FUN_18088e220(*(undefined8 *)(connection_data[0] + 0x98));
+        validation_status = FUN_18088e220(*(uint64_t *)(connection_data[0] + 0x98));
         if (validation_status == 0) {
             // 验证成功，跳转到结束
             goto validation_complete;
@@ -345,12 +345,12 @@ validation_complete:
  * @param param_3 处理器上下文
  * @return void
  */
-void network_packet_processor(undefined8 param_1, undefined8 *param_2, longlong *param_3)
+void network_packet_processor(uint64_t param_1, uint64_t *param_2, longlong *param_3)
 {
     int processing_result;         // 处理结果变量
     longlong *handler_pointer;     // 处理器指针
-    undefined4 *packet_data;       // 数据包数据指针
-    undefined1 protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
+    int32_t *packet_data;       // 数据包数据指针
+    int8_t protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
     uint packet_field_50;           // 数据包字段50
     uint packet_field_58;           // 数据包字段58
     uint packet_field_60;           // 数据包字段60
@@ -361,16 +361,16 @@ void network_packet_processor(undefined8 param_1, undefined8 *param_2, longlong 
     uint packet_field_88;           // 数据包字段88
     uint packet_field_90;           // 数据包字段90
     uint packet_field_98;           // 数据包字段98
-    undefined1 packet_buffer[40];  // 数据包缓冲区
+    int8_t packet_buffer[40];  // 数据包缓冲区
     ulonglong stack_protection;    // 栈保护变量
     
     // 设置栈保护
     stack_protection = _DAT_180bf00a8 ^ (ulonglong)protection_stack;
     
     // 遍历数据包数据
-    for (packet_data = (undefined4 *)*param_2;
-         ((undefined4 *)*param_2 <= packet_data &&
-         (packet_data < (undefined4 *)*param_2 + (longlong)*(int *)(param_2 + 1) * 4)); 
+    for (packet_data = (int32_t *)*param_2;
+         ((int32_t *)*param_2 <= packet_data &&
+         (packet_data < (int32_t *)*param_2 + (longlong)*(int *)(param_2 + 1) * 4)); 
          packet_data = packet_data + 4) {
         
         // 获取数据处理器
@@ -420,8 +420,8 @@ void network_state_manager(longlong param_1, longlong param_2)
 {
     longlong connection_handle;     // 连接句柄
     bool is_connected;             // 连接状态标志
-    undefined1 protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
-    undefined1 connection_buffer[40]; // 连接缓冲区
+    int8_t protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
+    int8_t connection_buffer[40]; // 连接缓冲区
     ulonglong stack_protection;    // 栈保护变量
     
     // 设置栈保护
@@ -442,7 +442,7 @@ void network_state_manager(longlong param_1, longlong param_2)
         }
         
         // 更新连接状态
-        FUN_180847c60(connection_handle, *(undefined8 *)(param_1 + 0x10), param_1 + 8);
+        FUN_180847c60(connection_handle, *(uint64_t *)(param_1 + 0x10), param_1 + 8);
     }
     
     // 执行清理操作
@@ -467,9 +467,9 @@ void network_data_transmitter(longlong param_1, longlong param_2)
 {
     int transmission_status;       // 传输状态变量
     longlong transmission_handle;   // 传输句柄
-    undefined1 protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
+    int8_t protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
     byte status_flags[8];         // 状态标志
-    undefined1 transmission_buffer[40]; // 传输缓冲区
+    int8_t transmission_buffer[40]; // 传输缓冲区
     ulonglong stack_protection;    // 栈保护变量
     
     // 设置栈保护
@@ -477,7 +477,7 @@ void network_data_transmitter(longlong param_1, longlong param_2)
     
     // 检查传输参数
     if (1.1920929e-07 < *(float *)(param_2 + 0x94)) {
-        *(undefined1 *)(param_1 + 8) = 1;
+        *(int8_t *)(param_1 + 8) = 1;
         FUN_1808fc050(stack_protection ^ (ulonglong)protection_stack);
     }
     
@@ -492,7 +492,7 @@ void network_data_transmitter(longlong param_1, longlong param_2)
     
     // 处理传输状态
     status_flags[0] = 0;
-    transmission_status = FUN_1808479d0(transmission_handle, *(undefined8 *)(param_1 + 0x10), status_flags);
+    transmission_status = FUN_1808479d0(transmission_handle, *(uint64_t *)(param_1 + 0x10), status_flags);
     
     if (transmission_status == 0) {
         *(byte *)(param_1 + 8) = *(byte *)(param_1 + 8) | status_flags[0];
@@ -518,10 +518,10 @@ void network_data_transmitter(longlong param_1, longlong param_2)
  */
 void network_message_processor(longlong param_1, longlong param_2)
 {
-    undefined4 *message_pointer;    // 消息指针
+    int32_t *message_pointer;    // 消息指针
     longlong *handler_pointer;     // 处理器指针
-    undefined4 *current_message;   // 当前消息
-    undefined1 protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
+    int32_t *current_message;   // 当前消息
+    int8_t protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
     uint message_field_88;          // 消息字段88
     uint message_field_80;          // 消息字段80
     uint message_field_78;          // 消息字段78
@@ -532,7 +532,7 @@ void network_message_processor(longlong param_1, longlong param_2)
     uint message_field_50;          // 消息字段50
     uint message_field_48;          // 消息字段48
     uint message_field_40;          // 消息字段40
-    undefined1 message_buffer[40];  // 消息缓冲区
+    int8_t message_buffer[40];  // 消息缓冲区
     ulonglong stack_protection;    // 栈保护变量
     
     // 设置栈保护
@@ -540,10 +540,10 @@ void network_message_processor(longlong param_1, longlong param_2)
     
     // 设置连接状态
     *(bool *)(param_1 + 8) = *(int *)(param_2 + 0xb0) != -1;
-    current_message = *(undefined4 **)(param_2 + 0xd8);
+    current_message = *(int32_t **)(param_2 + 0xd8);
     
     // 遍历消息队列
-    while (((message_pointer = *(undefined4 **)(param_2 + 0xd8), message_pointer <= current_message &&
+    while (((message_pointer = *(int32_t **)(param_2 + 0xd8), message_pointer <= current_message &&
             (current_message < message_pointer + (longlong)*(int *)(param_2 + 0xe0) * 5)) &&
            (*(char *)(param_1 + 8) != '\0'))) {
         
@@ -643,15 +643,15 @@ void network_data_manager(longlong *param_1, longlong param_2, longlong *param_3
     byte data_field_8;             // 数据字段8
     ushort data_field_9;           // 数据字段9
     ushort data_field_10;          // 数据字段10
-    undefined4 data_field_11;      // 数据字段11
+    int32_t data_field_11;      // 数据字段11
     char processing_flag;           // 处理标志
     int processing_result;         // 处理结果
     longlong data_handle_1;        // 数据句柄1
     longlong data_handle_2;        // 数据句柄2
     longlong *handler_pointer;     // 处理器指针
-    undefined4 *data_pointer;      // 数据指针
-    undefined4 *current_data;      // 当前数据
-    undefined1 protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
+    int32_t *data_pointer;      // 数据指针
+    int32_t *current_data;      // 当前数据
+    int8_t protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
     uint data_field_60;            // 数据字段60
     uint data_field_68;            // 数据字段68
     uint data_field_70;            // 数据字段70
@@ -662,7 +662,7 @@ void network_data_manager(longlong *param_1, longlong param_2, longlong *param_3
     uint data_field_98;            // 数据字段98
     uint data_field_a0;            // 数据字段a0
     uint data_field_a8;            // 数据字段a8
-    undefined1 data_buffer[40];    // 数据缓冲区
+    int8_t data_buffer[40];    // 数据缓冲区
     ulonglong stack_protection;    // 栈保护变量
     
     // 设置栈保护
@@ -674,9 +674,9 @@ void network_data_manager(longlong *param_1, longlong param_2, longlong *param_3
     
     if (processing_flag != '\0') {
         // 遍历数据集合
-        for (current_data = *(undefined4 **)(param_2 + 0x80);
-            (*(undefined4 **)(param_2 + 0x80) <= current_data &&
-            (current_data < *(undefined4 **)(param_2 + 0x80) + (longlong)*(int *)(param_2 + 0x88) * 4));
+        for (current_data = *(int32_t **)(param_2 + 0x80);
+            (*(int32_t **)(param_2 + 0x80) <= current_data &&
+            (current_data < *(int32_t **)(param_2 + 0x80) + (longlong)*(int *)(param_2 + 0x88) * 4));
             current_data = current_data + 4) {
             
             // 获取数据处理器
@@ -721,9 +721,9 @@ void network_data_manager(longlong *param_1, longlong param_2, longlong *param_3
             }
             
             // 遍历子数据集合
-            for (data_pointer = *(undefined4 **)(data_handle_1 + 0x58);
-                (*(undefined4 **)(data_handle_1 + 0x58) <= data_pointer &&
-                (data_pointer < *(undefined4 **)(data_handle_1 + 0x58) + (longlong)*(int *)(data_handle_1 + 0x60) * 4));
+            for (data_pointer = *(int32_t **)(data_handle_1 + 0x58);
+                (*(int32_t **)(data_handle_1 + 0x58) <= data_pointer &&
+                (data_pointer < *(int32_t **)(data_handle_1 + 0x58) + (longlong)*(int *)(data_handle_1 + 0x60) * 4));
                 data_pointer = data_pointer + 4) {
                 
                 // 获取子数据处理器
@@ -788,8 +788,8 @@ void network_connection_manager(longlong param_1, longlong param_2)
 {
     int management_result;          // 管理结果变量
     longlong *handler_pointer;     // 处理器指针
-    undefined4 *connection_data;   // 连接数据指针
-    undefined1 protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
+    int32_t *connection_data;   // 连接数据指针
+    int8_t protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
     uint connection_field_50;      // 连接字段50
     uint connection_field_58;      // 连接字段58
     uint connection_field_60;      // 连接字段60
@@ -800,7 +800,7 @@ void network_connection_manager(longlong param_1, longlong param_2)
     uint connection_field_88;      // 连接字段88
     uint connection_field_90;      // 连接字段90
     uint connection_field_98;      // 连接字段98
-    undefined1 connection_buffer[40]; // 连接缓冲区
+    int8_t connection_buffer[40]; // 连接缓冲区
     ulonglong stack_protection;   // 栈保护变量
     
     // 设置栈保护
@@ -809,9 +809,9 @@ void network_connection_manager(longlong param_1, longlong param_2)
     // 检查传输参数
     if (*(float *)(param_2 + 0x94) <= 1.1920929e-07) {
         // 遍历连接数据
-        for (connection_data = *(undefined4 **)(param_2 + 0xd8);
-            (*(undefined4 **)(param_2 + 0xd8) <= connection_data &&
-            (connection_data < *(undefined4 **)(param_2 + 0xd8) + (longlong)*(int *)(param_2 + 0xe0) * 5));
+        for (connection_data = *(int32_t **)(param_2 + 0xd8);
+            (*(int32_t **)(param_2 + 0xd8) <= connection_data &&
+            (connection_data < *(int32_t **)(param_2 + 0xd8) + (longlong)*(int *)(param_2 + 0xe0) * 5));
             connection_data = connection_data + 5) {
             
             // 获取连接处理器
@@ -842,7 +842,7 @@ void network_connection_manager(longlong param_1, longlong param_2)
         }
     }
     else {
-        *(undefined1 *)(param_1 + 8) = 1;
+        *(int8_t *)(param_1 + 8) = 1;
     }
     
     // 执行清理操作
@@ -863,19 +863,19 @@ void network_connection_manager(longlong param_1, longlong param_2)
  * @param param_2 接收上下文
  * @return void
  */
-void network_data_receiver(undefined8 param_1, longlong param_2)
+void network_data_receiver(uint64_t param_1, longlong param_2)
 {
     int reception_result;          // 接收结果变量
     longlong *handler_pointer;    // 处理器指针
     longlong unaff_RBX;           // 未使用的RBX寄存器
     longlong unaff_RDI;           // 未使用的RDI寄存器
-    undefined4 *data_pointer;     // 数据指针
+    int32_t *data_pointer;     // 数据指针
     ulonglong stack_protection;   // 栈保护变量
     
     // 遍历接收数据
-    for (data_pointer = *(undefined4 **)(param_2 + 0xd8);
-        (*(undefined4 **)(unaff_RBX + 0xd8) <= data_pointer &&
-        (data_pointer < *(undefined4 **)(unaff_RBX + 0xd8) + (longlong)*(int *)(unaff_RBX + 0xe0) * 5));
+    for (data_pointer = *(int32_t **)(param_2 + 0xd8);
+        (*(int32_t **)(unaff_RBX + 0xd8) <= data_pointer &&
+        (data_pointer < *(int32_t **)(unaff_RBX + 0xd8) + (longlong)*(int *)(unaff_RBX + 0xe0) * 5));
         data_pointer = data_pointer + 5) {
         
         // 获取数据处理器
@@ -885,7 +885,7 @@ void network_data_receiver(undefined8 param_1, longlong param_2)
         
         if (handler_pointer == (longlong *)0x0) {
             // 发送数据
-            FUN_18076b390(&stack0x00000070, PACKET_TYPE_DATA, &UNK_180958180, *data_pointer, *(undefined2 *)(data_pointer + 1));
+            FUN_18076b390(&stack0x00000070, PACKET_TYPE_DATA, &UNK_180958180, *data_pointer, *(int16_t *)(data_pointer + 1));
         }
         
         // 执行数据处理
@@ -983,8 +983,8 @@ void network_buffer_manager(longlong *param_1, longlong param_2, longlong *param
     longlong buffer_handle;       // 缓冲区句柄
     longlong *handler_pointer;    // 处理器指针
     ulonglong buffer_address;     // 缓冲区地址
-    undefined4 *buffer_data;      // 缓冲区数据指针
-    undefined1 protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
+    int32_t *buffer_data;      // 缓冲区数据指针
+    int8_t protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
     uint buffer_field_60;         // 缓冲区字段60
     uint buffer_field_68;         // 缓冲区字段68
     uint buffer_field_70;         // 缓冲区字段70
@@ -995,7 +995,7 @@ void network_buffer_manager(longlong *param_1, longlong param_2, longlong *param
     uint buffer_field_98;         // 缓冲区字段98
     uint buffer_field_a0;         // 缓冲区字段a0
     uint buffer_field_a8;         // 缓冲区字段a8
-    undefined1 buffer_data_buffer[40]; // 缓冲区数据缓冲区
+    int8_t buffer_data_buffer[40]; // 缓冲区数据缓冲区
     ulonglong stack_protection;   // 栈保护变量
     
     // 设置栈保护
@@ -1039,9 +1039,9 @@ void network_buffer_manager(longlong *param_1, longlong param_2, longlong *param
         processing_flag = (**(code **)(*param_1 + 0x58))(param_1);
         if (processing_flag != '\0') {
             // 遍历二级缓冲区数据
-            for (buffer_data = *(undefined4 **)(buffer_handle + 0x48);
-                (*(undefined4 **)(buffer_handle + 0x48) <= buffer_data &&
-                (buffer_data < *(undefined4 **)(buffer_handle + 0x48) + (longlong)*(int *)(buffer_handle + 0x50) * 6));
+            for (buffer_data = *(int32_t **)(buffer_handle + 0x48);
+                (*(int32_t **)(buffer_handle + 0x48) <= buffer_data &&
+                (buffer_data < *(int32_t **)(buffer_handle + 0x48) + (longlong)*(int *)(buffer_handle + 0x50) * 6));
                 buffer_data = buffer_data + 6) {
                 
                 // 获取二级缓冲区处理器
@@ -1126,44 +1126,44 @@ void network_system_terminator4(void)
  * 
  * @param param_1 字符串数据指针
  * @param param_2 解析结果指针
- * @return undefined8* 解析结果指针
+ * @return uint64_t* 解析结果指针
  */
-undefined8 * string_parser_processor(char *param_1, undefined8 *param_2)
+uint64_t * string_parser_processor(char *param_1, uint64_t *param_2)
 {
     char *string_pointer;          // 字符串指针
     char current_char;             // 当前字符
-    undefined1 validation_result;  // 验证结果
-    undefined2 length_result;      // 长度结果
+    int8_t validation_result;  // 验证结果
+    int16_t length_result;      // 长度结果
     int validation_status;        // 验证状态
     char *temp_pointer;            // 临时指针
-    undefined1 *field_pointer;     // 字段指针
-    undefined1 *temp_pointer2;     // 临时指针2
+    int8_t *field_pointer;     // 字段指针
+    int8_t *temp_pointer2;     // 临时指针2
     longlong field_index;          // 字段索引
-    undefined1 *field_array[5];    // 字段数组
-    undefined1 stack_protection_var; // 栈保护变量
-    undefined1 protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
-    undefined4 field_1;            // 字段1
-    undefined4 field_2;            // 字段2
-    undefined4 field_3;            // 字段3
-    undefined4 field_4;            // 字段4
-    undefined1 *field_array_start[5]; // 字段数组起始位置
-    undefined1 field_5;            // 字段5
-    undefined1 field_buffer_1[8];  // 字段缓冲区1
-    undefined1 field_6;            // 字段6
-    undefined1 field_buffer_2[4];  // 字段缓冲区2
-    undefined1 field_7;            // 字段7
-    undefined1 field_buffer_3[4];  // 字段缓冲区3
-    undefined1 field_8;            // 字段8
-    undefined1 field_buffer_4[4];  // 字段缓冲区4
-    undefined1 field_9;            // 字段9
-    undefined1 field_buffer_5[10]; // 字段缓冲区5
-    undefined1 final_buffer[5];    // 最终缓冲区
+    int8_t *field_array[5];    // 字段数组
+    int8_t stack_protection_var; // 栈保护变量
+    int8_t protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
+    int32_t field_1;            // 字段1
+    int32_t field_2;            // 字段2
+    int32_t field_3;            // 字段3
+    int32_t field_4;            // 字段4
+    int8_t *field_array_start[5]; // 字段数组起始位置
+    int8_t field_5;            // 字段5
+    int8_t field_buffer_1[8];  // 字段缓冲区1
+    int8_t field_6;            // 字段6
+    int8_t field_buffer_2[4];  // 字段缓冲区2
+    int8_t field_7;            // 字段7
+    int8_t field_buffer_3[4];  // 字段缓冲区3
+    int8_t field_8;            // 字段8
+    int8_t field_buffer_4[4];  // 字段缓冲区4
+    int8_t field_9;            // 字段9
+    int8_t field_buffer_5[10]; // 字段缓冲区5
+    int8_t final_buffer[5];    // 最终缓冲区
     ulonglong stack_protection;    // 栈保护变量
     
     // 设置栈保护
     stack_protection = _DAT_180bf00a8 ^ (ulonglong)protection_stack;
     
-    if (param_2 != (undefined8 *)0x0) {
+    if (param_2 != (uint64_t *)0x0) {
         // 验证输入参数
         if ((((param_1 == (char *)0x0) || (validation_status = func_0x00018076b690(), validation_status != 0x26)) ||
             (*param_1 != '{')) || (param_1[0x25] != '}')) {
@@ -1218,10 +1218,10 @@ undefined8 * string_parser_processor(char *param_1, undefined8 *param_2)
             length_result = func_0x00018076b320(field_buffer_2);
             field_2 = CONCAT22(field_2._2_2_, length_result);
             length_result = func_0x00018076b320(field_buffer_3);
-            field_2 = CONCAT22(length_result, (undefined2)field_2);
+            field_2 = CONCAT22(length_result, (int16_t)field_2);
             length_result = func_0x00018076b320(field_buffer_4);
             
-            temp_pointer2 = (undefined1 *)((longlong)&field_4 + 3);
+            temp_pointer2 = (int8_t *)((longlong)&field_4 + 3);
             field_3 = CONCAT31(CONCAT21(field_3._2_2_, (char)length_result), (char)((ushort)length_result >> 8));
             
             field_pointer = final_buffer;
@@ -1240,10 +1240,10 @@ undefined8 * string_parser_processor(char *param_1, undefined8 *param_2)
             } while (-1 < validation_status);
             
             // 设置解析结果
-            *(undefined4 *)param_2 = field_1;
-            *(undefined4 *)((longlong)param_2 + 4) = field_2;
-            *(undefined4 *)(param_2 + 1) = field_3;
-            *(undefined4 *)((longlong)param_2 + 0xc) = field_4;
+            *(int32_t *)param_2 = field_1;
+            *(int32_t *)((longlong)param_2 + 4) = field_2;
+            *(int32_t *)(param_2 + 1) = field_3;
+            *(int32_t *)((longlong)param_2 + 0xc) = field_4;
         }
     }
 
@@ -1267,12 +1267,12 @@ parsing_complete:
  * @param param_1 配置数据指针
  * @param param_2 配置参数
  * @param param_3 配置标志
- * @return undefined8* 配置结果指针
+ * @return uint64_t* 配置结果指针
  */
-undefined8 * network_config_initializer(undefined8 *param_1, undefined8 param_2, byte param_3)
+uint64_t * network_config_initializer(uint64_t *param_1, uint64_t param_2, byte param_3)
 {
-    undefined8 config_result;      // 配置结果
-    undefined8 *config_pointer;    // 配置指针
+    uint64_t config_result;      // 配置结果
+    uint64_t *config_pointer;    // 配置指针
     
     // 初始化网络配置
     FUN_1808b0200();
@@ -1281,11 +1281,11 @@ undefined8 * network_config_initializer(undefined8 *param_1, undefined8 param_2,
     param_1[7] = 0;
     param_1[8] = 0;
     param_1[9] = &UNK_180984a60;
-    *(undefined4 *)(param_1 + 10) = 0;
-    *(undefined4 *)((longlong)param_1 + 0x54) = 0xffffffff;
+    *(int32_t *)(param_1 + 10) = 0;
+    *(int32_t *)((longlong)param_1 + 0x54) = 0xffffffff;
     
     // 获取配置数据
-    config_pointer = (undefined8 *)FUN_180847820();
+    config_pointer = (uint64_t *)FUN_180847820();
     config_result = config_pointer[1];
     param_1[0xb] = *config_pointer;
     param_1[0xc] = config_result;
@@ -1294,8 +1294,8 @@ undefined8 * network_config_initializer(undefined8 *param_1, undefined8 param_2,
     *param_1 = &UNK_180984a70;
     param_1[9] = &UNK_180984aa0;
     param_1[0xd] = 0;
-    *(undefined2 *)((longlong)param_1 + 0x74) = 0;
-    *(undefined4 *)(param_1 + 0xe) = 0x3f800000;
+    *(int16_t *)((longlong)param_1 + 0x74) = 0;
+    *(int32_t *)(param_1 + 0xe) = 0x3f800000;
     param_1[0xf] = 0xffffffffffffffff;
     param_1[0x10] = 0;
     param_1[0x11] = 0;
@@ -1305,11 +1305,11 @@ undefined8 * network_config_initializer(undefined8 *param_1, undefined8 param_2,
     param_1[0x15] = 0;
     param_1[0x16] = 0;
     param_1[0x17] = 0;
-    *(undefined4 *)(param_1 + 0x18) = 0;
+    *(int32_t *)(param_1 + 0x18) = 0;
     *(uint *)((longlong)param_1 + 0xc4) = (uint)param_3;
-    *(undefined4 *)((longlong)param_1 + 0xd4) = 0;
-    *(undefined4 *)(param_1 + 0x19) = 0xffffffff;
-    *(undefined8 *)((longlong)param_1 + 0xcc) = 0x7fffffff;
+    *(int32_t *)((longlong)param_1 + 0xd4) = 0;
+    *(int32_t *)(param_1 + 0x19) = 0xffffffff;
+    *(uint64_t *)((longlong)param_1 + 0xcc) = 0x7fffffff;
     
     return param_1;
 }
@@ -1332,7 +1332,7 @@ uint network_resource_cleaner1(longlong *param_1)
     int cleanup_status;            // 清理状态变量
     uint resource_count;           // 资源计数
     ulonglong resource_index;      // 资源索引
-    undefined4 *resource_pointer;  // 资源指针
+    int32_t *resource_pointer;  // 资源指针
     uint cleanup_result;           // 清理结果
     
     // 获取资源计数
@@ -1346,23 +1346,23 @@ uint network_resource_cleaner1(longlong *param_1)
         
         if ((0 < (int)resource_count) && (*param_1 != 0)) {
             // 清理资源
-            FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), *param_1, &UNK_180957f70, 0x100, 1);
+            FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *param_1, &UNK_180957f70, 0x100, 1);
         }
         
         *param_1 = 0;
         resource_count = 0;
-        *(undefined4 *)((longlong)param_1 + 0xc) = 0;
+        *(int32_t *)((longlong)param_1 + 0xc) = 0;
     }
     
     cleanup_status = (int)param_1[1];
     if (cleanup_status < 0) {
-        resource_pointer = (undefined4 *)(*param_1 + (longlong)cleanup_status * 4);
+        resource_pointer = (int32_t *)(*param_1 + (longlong)cleanup_status * 4);
         
         if (cleanup_status < 0) {
             resource_index = (ulonglong)(uint)-cleanup_status;
             
             do {
-                if (resource_pointer != (undefined4 *)0x0) {
+                if (resource_pointer != (int32_t *)0x0) {
                     *resource_pointer = 0;
                 }
                 
@@ -1374,7 +1374,7 @@ uint network_resource_cleaner1(longlong *param_1)
         }
     }
     
-    *(undefined4 *)(param_1 + 1) = 0;
+    *(int32_t *)(param_1 + 1) = 0;
     resource_count = (resource_count ^ (int)resource_count >> 0x1f) - ((int)resource_count >> 0x1f);
     
     if ((int)resource_count < 1) {
@@ -1387,11 +1387,11 @@ uint network_resource_cleaner1(longlong *param_1)
     
     if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
         // 清理资源
-        FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), *param_1, &UNK_180957f70, 0x100, 1);
+        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *param_1, &UNK_180957f70, 0x100, 1);
     }
     
     *param_1 = 0;
-    *(undefined4 *)((longlong)param_1 + 0xc) = 0;
+    *(int32_t *)((longlong)param_1 + 0xc) = 0;
     
     return 0;
 }
@@ -1426,12 +1426,12 @@ uint network_resource_cleaner2(longlong *param_1)
         
         if ((0 < (int)resource_count) && (*param_1 != 0)) {
             // 清理资源
-            FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), *param_1, &UNK_180957f70, 0x100, 1);
+            FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *param_1, &UNK_180957f70, 0x100, 1);
         }
         
         *param_1 = 0;
         resource_count = 0;
-        *(undefined4 *)((longlong)param_1 + 0xc) = 0;
+        *(int32_t *)((longlong)param_1 + 0xc) = 0;
     }
     
     cleanup_status = (int)param_1[1];
@@ -1440,7 +1440,7 @@ uint network_resource_cleaner2(longlong *param_1)
         memset((longlong)cleanup_status * 0x10 + *param_1, 0, (longlong)-cleanup_status << 4);
     }
     
-    *(undefined4 *)(param_1 + 1) = 0;
+    *(int32_t *)(param_1 + 1) = 0;
     resource_count = (resource_count ^ (int)resource_count >> 0x1f) - ((int)resource_count >> 0x1f);
     
     if ((int)resource_count < 1) {
@@ -1453,11 +1453,11 @@ uint network_resource_cleaner2(longlong *param_1)
     
     if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
         // 清理资源
-        FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), *param_1, &UNK_180957f70, 0x100, 1);
+        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *param_1, &UNK_180957f70, 0x100, 1);
     }
     
     *param_1 = 0;
-    *(undefined4 *)((longlong)param_1 + 0xc) = 0;
+    *(int32_t *)((longlong)param_1 + 0xc) = 0;
     
     return 0;
 }

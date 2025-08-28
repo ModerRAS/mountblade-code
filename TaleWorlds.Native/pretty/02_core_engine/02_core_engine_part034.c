@@ -4,10 +4,10 @@
 // 本文件包含矩阵变换计算、渲染状态管理和骨骼动画相关功能
 
 // 全局变量声明
-undefined8 _DAT_180c86870;  // 引擎配置数据
-undefined8 _DAT_180c86928;  // 文件错误处理
-undefined8 UNK_1809fed78;  // 错误消息指针
-undefined8 UNK_1809fed40;  // 错误消息指针
+uint64_t _DAT_180c86870;  // 引擎配置数据
+uint64_t _DAT_180c86928;  // 文件错误处理
+uint64_t UNK_1809fed78;  // 错误消息指针
+uint64_t UNK_1809fed40;  // 错误消息指针
 
 /**
  * 处理骨骼动画和矩阵变换
@@ -26,11 +26,11 @@ void process_bone_animation_transform(void)
     float animation_params[16]; // 动画参数
     byte bone_state;            // 骨骼状态
     byte prev_state;            // 前一状态
-    undefined4 material_id;     // 材质ID
+    int32_t material_id;     // 材质ID
     longlong render_context;    // 渲染上下文
     longlong bone_system;       // 骨骼系统
     float *matrix_params;       // 矩阵参数
-    undefined4 shader_param;    // 着色器参数
+    int32_t shader_param;    // 着色器参数
     longlong animation_state;   // 动画状态
     
     // 获取骨骼系统指针
@@ -56,7 +56,7 @@ void process_bone_animation_transform(void)
         material_id = 0xffffffff;
     }
     else {
-        material_id = *(undefined4 *)(bone_system + 0x108);
+        material_id = *(int32_t *)(bone_system + 0x108);
     }
     
     // 设置材质参数
@@ -138,7 +138,7 @@ void process_simplified_matrix_transform(void)
     int render_flags;           // 渲染标志
     byte transform_state;       // 变换状态
     byte condition_flag;        // 条件标志
-    undefined4 default_param;   // 默认参数
+    int32_t default_param;   // 默认参数
     longlong bone_system;       // 骨骼系统
     float *animation_params;    // 动画参数
     
@@ -201,7 +201,7 @@ void process_basic_matrix_transform(void)
  * 原始实现：FUN_180077ef9
  * 简化实现：状态检查函数
  */
-undefined1 check_transform_state(void)
+int8_t check_transform_state(void)
 {
     // 简化实现：返回状态标志
     return 0;
@@ -214,9 +214,9 @@ undefined1 check_transform_state(void)
  * 原始实现：FUN_180077f20
  * 简化实现：高级矩阵变换处理
  */
-ulonglong execute_advanced_matrix_transform(longlong render_context, undefined8 transform_params,
-                                         undefined4 render_flags, float *matrix_data,
-                                         undefined4 shader_param1, undefined4 shader_param2)
+ulonglong execute_advanced_matrix_transform(longlong render_context, uint64_t transform_params,
+                                         int32_t render_flags, float *matrix_data,
+                                         int32_t shader_param1, int32_t shader_param2)
 {
     float input_matrices[16];   // 输入矩阵
     float output_matrices[16];  // 输出矩阵
@@ -225,7 +225,7 @@ ulonglong execute_advanced_matrix_transform(longlong render_context, undefined8 
     ulonglong result;          // 执行结果
     longlong bone_system;       // 骨骼系统
     byte bone_state;            // 骨骼状态
-    undefined8 local_params[2]; // 本地参数
+    uint64_t local_params[2]; // 本地参数
     ulonglong local_data[4];    // 本地数据
     
     // 获取骨骼系统
@@ -235,7 +235,7 @@ ulonglong execute_advanced_matrix_transform(longlong render_context, undefined8 
         
         // 检查是否需要特殊处理
         if (bone_state == 0) {
-            bone_system = get_special_bone_system(*(undefined8 *)(render_context + 0x1b0));
+            bone_system = get_special_bone_system(*(uint64_t *)(render_context + 0x1b0));
         }
         
         // 检查变换类型
@@ -296,7 +296,7 @@ ulonglong execute_advanced_matrix_transform(longlong render_context, undefined8 
 byte get_next_bone_state(void);
 void load_bone_transform_matrix(longlong bone_system, byte bone_state, float *matrices);
 void set_render_parameters(longlong bone_system, float *matrices);
-void set_material_parameters(undefined4 material_id);
+void set_material_parameters(int32_t material_id);
 void process_texture_parameters(longlong bone_system);
 void perform_full_matrix_transform(longlong bone_system, float *params, float *input, float *output);
 void apply_transform_to_render_context(longlong context, longlong state, float *params);
@@ -307,16 +307,16 @@ void perform_matrix_transform(float *input, float *output);
 void apply_render_transform(longlong context, float *matrix);
 void save_matrix_state(longlong system);
 void restore_matrix_state(longlong system);
-void execute_simplified_transform(longlong system, undefined4 param);
-longlong get_special_bone_system(undefined8 param);
+void execute_simplified_transform(longlong system, int32_t param);
+longlong get_special_bone_system(uint64_t param);
 bool requires_special_transform(longlong context);
-ulonglong execute_special_transform(longlong context, undefined8 params, undefined4 flags, 
-                                  float *matrix, undefined4 shader1, undefined4 shader2);
-ulonglong execute_complete_transform(longlong context, undefined8 params, undefined4 flags, 
-                                  float *matrix, undefined4 shader1, undefined4 shader2);
+ulonglong execute_special_transform(longlong context, uint64_t params, int32_t flags, 
+                                  float *matrix, int32_t shader1, int32_t shader2);
+ulonglong execute_complete_transform(longlong context, uint64_t params, int32_t flags, 
+                                  float *matrix, int32_t shader1, int32_t shader2);
 byte execute_bone_transform(longlong context, byte state, int param);
 void copy_matrix_data(float *source, float *dest);
 void perform_matrix_calculation(longlong context, float *source, float *dest);
-void setup_shader_parameters(longlong context, undefined4 param1, undefined4 param2);
-ulonglong execute_final_transform(undefined8 params, longlong context, undefined4 flags, 
-                                float *matrix, undefined4 shader1, undefined4 shader2);
+void setup_shader_parameters(longlong context, int32_t param1, int32_t param2);
+ulonglong execute_final_transform(uint64_t params, longlong context, int32_t flags, 
+                                float *matrix, int32_t shader1, int32_t shader2);

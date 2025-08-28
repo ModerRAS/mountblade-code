@@ -290,12 +290,12 @@ typedef undefined MemoryOptimizer_type;
  * @param operation_flag 操作标志
  * @param size_param 大小参数
  * @param alignment_param 对齐参数
- * @return undefined8* 内存指针
+ * @return uint64_t* 内存指针
  * 
  * @note 此函数在系统运行时被频繁调用
  * @warning 错误的内存管理可能导致系统不稳定
  */
-undefined8 * MemorySystem_Manager(undefined8 *memory_context, undefined8 operation_flag, undefined8 size_param, undefined8 alignment_param);
+uint64_t * MemorySystem_Manager(uint64_t *memory_context, uint64_t operation_flag, uint64_t size_param, uint64_t alignment_param);
 
 /* ========================================
    函数别名定义（便于代码阅读和维护）
@@ -314,25 +314,25 @@ undefined8 * MemorySystem_Manager(undefined8 *memory_context, undefined8 operati
  * @brief 内存系统上下文
  * 存储内存系统的上下文信息
  */
-static undefined8 *g_memory_system_context = NULL;
+static uint64_t *g_memory_system_context = NULL;
 
 /**
  * @brief 内存池管理器
  * 管理内存池的组件
  */
-static undefined8 *g_memory_pool_manager = NULL;
+static uint64_t *g_memory_pool_manager = NULL;
 
 /**
  * @brief 内存监控器
  * 监控内存使用的组件
  */
-static undefined8 *g_memory_monitor = NULL;
+static uint64_t *g_memory_monitor = NULL;
 
 /**
  * @brief 内存优化器
  * 优化内存使用的组件
  */
-static undefined8 *g_memory_optimizer = NULL;
+static uint64_t *g_memory_optimizer = NULL;
 
 /**
  * @brief 内存系统标志
@@ -357,12 +357,12 @@ static uint32_t g_memory_system_flags = 0;
  * @param operation_flag 操作标志
  * @param size_param 大小参数
  * @param alignment_param 对齐参数
- * @return undefined8* 内存指针
+ * @return uint64_t* 内存指针
  */
-undefined8 * MemorySystem_Manager(undefined8 *memory_context, undefined8 operation_flag, undefined8 size_param, undefined8 alignment_param)
+uint64_t * MemorySystem_Manager(uint64_t *memory_context, uint64_t operation_flag, uint64_t size_param, uint64_t alignment_param)
 
 {
-  undefined8 *memory_management_result;
+  uint64_t *memory_management_result;
   
   // 执行内存管理逻辑
   memory_management_result = FUN_1800c0da0;

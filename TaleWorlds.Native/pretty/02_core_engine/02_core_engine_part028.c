@@ -4,13 +4,13 @@
 
 // 函数：处理数据包类型1
 // 功能：处理特定类型的数据包，包含缓冲区管理和错误处理
-void process_packet_type_1(undefined8 param_1, undefined8 param_2)
+void process_packet_type_1(uint64_t param_1, uint64_t param_2)
 
 {
-  undefined *system_object;     // 系统对象指针
+  void *system_object;     // 系统对象指针
   char system_status;          // 系统状态标志
-  undefined4 packet_header[4]; // 数据包头
-  undefined *buffer_ptr;       // 缓冲区指针
+  int32_t packet_header[4]; // 数据包头
+  void *buffer_ptr;       // 缓冲区指针
   longlong buffer_size;        // 缓冲区大小
   
   // 记录调试信息并初始化数据包处理
@@ -22,12 +22,12 @@ void process_packet_type_1(undefined8 param_1, undefined8 param_2)
     initialize_buffer_manager(&buffer_ptr, param_2);  // 初始化缓冲区管理器
     
     // 获取系统对象并检查状态
-    system_object = *(undefined **)*GLOBAL_SYSTEM_TABLE;
+    system_object = *(void **)*GLOBAL_SYSTEM_TABLE;
     if (system_object == &DEFAULT_SYSTEM_OBJECT) {
       system_status = *(int *)(GLOBAL_ENGINE_CONTEXT + 0xc40) != 0;
     }
     else {
-      system_status = (**(code **)(system_object + 0x50))((undefined8 *)*GLOBAL_SYSTEM_TABLE);
+      system_status = (**(code **)(system_object + 0x50))((uint64_t *)*GLOBAL_SYSTEM_TABLE);
     }
     
     // 根据系统状态决定是否处理数据包
@@ -52,13 +52,13 @@ void process_packet_type_1(undefined8 param_1, undefined8 param_2)
 
 // 函数：处理数据包类型2
 // 功能：处理另一种类型的数据包，带有额外的参数
-void process_packet_type_2(undefined8 param_1, undefined4 param_2, undefined8 param_3)
+void process_packet_type_2(uint64_t param_1, int32_t param_2, uint64_t param_3)
 
 {
-  undefined *system_object;     // 系统对象指针
+  void *system_object;     // 系统对象指针
   char system_status;          // 系统状态标志
-  undefined4 packet_header[2]; // 数据包头
-  undefined *buffer_ptr;       // 缓冲区指针
+  int32_t packet_header[2]; // 数据包头
+  void *buffer_ptr;       // 缓冲区指针
   longlong buffer_size;        // 缓冲区大小
   
   // 记录调试信息并初始化数据包处理
@@ -70,12 +70,12 @@ void process_packet_type_2(undefined8 param_1, undefined4 param_2, undefined8 pa
     initialize_buffer_manager(&buffer_ptr, param_3);  // 初始化缓冲区管理器
     
     // 获取系统对象并检查状态
-    system_object = *(undefined **)*GLOBAL_SYSTEM_TABLE;
+    system_object = *(void **)*GLOBAL_SYSTEM_TABLE;
     if (system_object == &DEFAULT_SYSTEM_OBJECT) {
       system_status = *(int *)(GLOBAL_ENGINE_CONTEXT + 0xc40) != 0;
     }
     else {
-      system_status = (**(code **)(system_object + 0x50))((undefined8 *)*GLOBAL_SYSTEM_TABLE);
+      system_status = (**(code **)(system_object + 0x50))((uint64_t *)*GLOBAL_SYSTEM_TABLE);
     }
     
     // 根据系统状态决定是否处理数据包
@@ -100,24 +100,24 @@ void process_packet_type_2(undefined8 param_1, undefined4 param_2, undefined8 pa
 
 // 函数：处理复杂数据结构
 // 功能：处理包含多个参数的复杂数据结构
-void process_complex_data_structure(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void process_complex_data_structure(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 
 {
-  undefined *structure_ptr;    // 结构体指针
-  undefined8 data_field_1;     // 数据字段1
-  undefined4 data_field_2;     // 数据字段2
-  undefined8 data_field_3;     // 数据字段3
-  undefined8 data_field_4;     // 数据字段4
-  undefined8 data_field_5;     // 数据字段5
-  undefined8 data_field_6;     // 数据字段6
-  undefined4 data_field_7;     // 数据字段7
-  undefined8 data_field_8;     // 数据字段8
-  undefined8 data_field_9;     // 数据字段9
-  undefined2 data_field_10;    // 数据字段10
-  undefined8 data_field_11;    // 数据字段11
-  undefined8 data_field_12;    // 数据字段12
-  undefined2 data_field_13;    // 数据字段13
-  undefined8 data_field_14;    // 数据字段14
+  void *structure_ptr;    // 结构体指针
+  uint64_t data_field_1;     // 数据字段1
+  int32_t data_field_2;     // 数据字段2
+  uint64_t data_field_3;     // 数据字段3
+  uint64_t data_field_4;     // 数据字段4
+  uint64_t data_field_5;     // 数据字段5
+  uint64_t data_field_6;     // 数据字段6
+  int32_t data_field_7;     // 数据字段7
+  uint64_t data_field_8;     // 数据字段8
+  uint64_t data_field_9;     // 数据字段9
+  int16_t data_field_10;    // 数据字段10
+  uint64_t data_field_11;    // 数据字段11
+  uint64_t data_field_12;    // 数据字段12
+  int16_t data_field_13;    // 数据字段13
+  uint64_t data_field_14;    // 数据字段14
   
   // 初始化结构体指针和数据字段
   data_field_14 = 0xfffffffffffffffe;
@@ -149,7 +149,7 @@ void process_complex_data_structure(undefined8 param_1, undefined8 param_2, unde
 
 // 函数：清理结构体
 // 功能：清理和重置结构体的各个字段
-void cleanup_structure(undefined8 *param_1)
+void cleanup_structure(uint64_t *param_1)
 
 {
   // 检查并清理指针字段
@@ -157,13 +157,13 @@ void cleanup_structure(undefined8 *param_1)
                     // 严重错误：不应该有活动的指针
     system_error_handler();
   }
-  *(undefined8 *)((longlong)param_1 + 0x52) = 0;
+  *(uint64_t *)((longlong)param_1 + 0x52) = 0;
   
   if (*(longlong *)((longlong)param_1 + 0x5a) != 0) {
                     // 严重错误：不应该有活动的指针
     system_error_handler();
   }
-  *(undefined8 *)((longlong)param_1 + 0x5a) = 0;
+  *(uint64_t *)((longlong)param_1 + 0x5a) = 0;
   
   if (param_1[8] != 0) {
                     // 严重错误：不应该有活动的指针
@@ -186,7 +186,7 @@ void cleanup_structure(undefined8 *param_1)
     system_error_handler();
   }
   param_1[1] = 0;
-  *(undefined4 *)(param_1 + 3) = 0;
+  *(int32_t *)(param_1 + 3) = 0;
   *param_1 = &DEFAULT_CLEANUP_OBJECT;
   return;
 }
@@ -220,10 +220,10 @@ void validate_structure_chain(longlong *param_1)
                     // 严重错误：节点字段应该为空
       system_error_handler();
     }
-    *(undefined8 *)((longlong)current_node + 0x12) = 0;
+    *(uint64_t *)((longlong)current_node + 0x12) = 0;
     
     if (*(longlong *)((longlong)current_node + 0x1a) != 0) break;
-    *(undefined8 *)((longlong)current_node + 0x1a) = 0;
+    *(uint64_t *)((longlong)current_node + 0x1a) = 0;
     
     if (*current_node != 0) {
                     // 严重错误：节点数据应该为空
@@ -252,9 +252,9 @@ void serialize_data_to_buffer(longlong source_ptr, longlong *buffer_ptr)
 
 {
   ushort data_size;            // 数据大小
-  undefined8 data_address;    // 数据地址
+  uint64_t data_address;    // 数据地址
   int *buffer_writer;         // 缓冲区写入器
-  undefined4 *write_position;  // 写入位置
+  int32_t *write_position;  // 写入位置
   uint *size_writer;          // 大小写入器
   longlong data_length;       // 数据长度
   longlong element_count;     // 元素数量
@@ -279,7 +279,7 @@ void serialize_data_to_buffer(longlong source_ptr, longlong *buffer_ptr)
   
   // 写入项目计数
   *buffer_writer = item_count;
-  write_position = (undefined4 *)(buffer_ptr[1] + 4);
+  write_position = (int32_t *)(buffer_ptr[1] + 4);
   buffer_ptr[1] = (longlong)write_position;
   data_length = (longlong)item_count;
   
@@ -313,9 +313,9 @@ void serialize_to_global_buffer(longlong source_ptr)
 
 {
   ushort data_size;            // 数据大小
-  undefined8 data_address;    // 数据地址
+  uint64_t data_address;    // 数据地址
   int *buffer_writer;         // 缓冲区写入器
-  undefined4 *write_position;  // 写入位置
+  int32_t *write_position;  // 写入位置
   uint *size_writer;          // 大小写入器
   longlong data_length;       // 数据长度
   longlong *global_buffer;    // 全局缓冲区
@@ -341,7 +341,7 @@ void serialize_to_global_buffer(longlong source_ptr)
   
   // 写入项目计数
   *buffer_writer = item_count;
-  write_position = (undefined4 *)(global_buffer[1] + 4);
+  write_position = (int32_t *)(global_buffer[1] + 4);
   global_buffer[1] = (longlong)write_position;
   data_length = (longlong)item_count;
   
@@ -375,8 +375,8 @@ void process_data_array(uint *buffer_ptr)
 
 {
   ushort data_size;            // 数据大小
-  undefined8 data_address;    // 数据地址
-  undefined4 *temp_buffer;    // 临时缓冲区
+  uint64_t data_address;    // 数据地址
+  int32_t *temp_buffer;    // 临时缓冲区
   uint *size_writer;          // 大小写入器
   longlong *global_buffer;    // 全局缓冲区
   longlong element_offset;    // 元素偏移
@@ -408,33 +408,33 @@ void process_data_array(uint *buffer_ptr)
 
 // 函数：写入数据块到缓冲区
 // 功能：将数据块写入缓冲区，包含头部和尾部信息
-void write_data_block_to_buffer(undefined4 *buffer_ptr)
+void write_data_block_to_buffer(int32_t *buffer_ptr)
 
 {
   ushort data_size;            // 数据大小
-  undefined8 data_address;    // 数据地址
-  undefined4 *temp_buffer;    // 临时缓冲区
+  uint64_t data_address;    // 数据地址
+  int32_t *temp_buffer;    // 临时缓冲区
   uint *size_writer;          // 大小写入器
   longlong *global_buffer;    // 全局缓冲区
   longlong data_offset;       // 数据偏移
   ulonglong copy_size;        // 复制大小
-  undefined4 block_header;    // 数据块头部
+  int32_t block_header;    // 数据块头部
   longlong source_address;    // 源地址
   
   // 检查缓冲区空间并写入头部
   if ((ulonglong)((*global_buffer - (longlong)buffer_ptr) + global_buffer[2]) < 5) {
     expand_buffer_capacity();
-    buffer_ptr = (undefined4 *)global_buffer[1];
+    buffer_ptr = (int32_t *)global_buffer[1];
   }
   
   *buffer_ptr = block_header;
   global_buffer[1] = global_buffer[1] + 4;
-  temp_buffer = (undefined4 *)global_buffer[1];
+  temp_buffer = (int32_t *)global_buffer[1];
   
   // 写入数据块大小
   if ((ulonglong)((*global_buffer - (longlong)temp_buffer) + global_buffer[2]) < 5) {
     expand_buffer_capacity();
-    temp_buffer = (undefined4 *)global_buffer[1];
+    temp_buffer = (int32_t *)global_buffer[1];
   }
   *temp_buffer = 0x10;
   global_buffer[1] = global_buffer[1] + 4;
@@ -447,16 +447,16 @@ void write_data_block_to_buffer(undefined4 *buffer_ptr)
     size_writer = (uint *)global_buffer[1];
   }
   *size_writer = (uint)data_size;
-  temp_buffer = (undefined4 *)(global_buffer[1] + 4);
+  temp_buffer = (int32_t *)(global_buffer[1] + 4);
   global_buffer[1] = (longlong)temp_buffer;
   
   // 写入数据内容
   if (*(ushort *)(source_address + 0x50) != 0) {
-    data_address = *(undefined8 *)(source_address + 0x48);
+    data_address = *(uint64_t *)(source_address + 0x48);
     copy_size = (ulonglong)*(ushort *)(source_address + 0x50) * 4;
     if ((ulonglong)((*global_buffer - (longlong)temp_buffer) + global_buffer[2]) <= copy_size) {
       expand_buffer_capacity();
-      temp_buffer = (undefined4 *)global_buffer[1];
+      temp_buffer = (int32_t *)global_buffer[1];
     }
                     // 复制数据内容
     memcpy(temp_buffer, data_address, copy_size);
@@ -476,8 +476,8 @@ void write_simple_data_block(void)
 
 {
   ushort data_size;            // 数据大小
-  undefined8 data_address;    // 数据地址
-  undefined4 *temp_buffer;    // 临时缓冲区
+  uint64_t data_address;    // 数据地址
+  int32_t *temp_buffer;    // 临时缓冲区
   uint *size_writer;          // 大小写入器
   longlong *global_buffer;    // 全局缓冲区
   longlong data_offset;       // 数据偏移
@@ -488,7 +488,7 @@ void write_simple_data_block(void)
   expand_buffer_capacity();
   
   // 写入数据块标识
-  *(undefined4 *)global_buffer[1] = 0x10;
+  *(int32_t *)global_buffer[1] = 0x10;
   global_buffer[1] = global_buffer[1] + 4;
   size_writer = (uint *)global_buffer[1];
   data_size = *(ushort *)(source_address + 0x62);
@@ -504,7 +504,7 @@ void write_simple_data_block(void)
   
   // 写入数据内容
   if (*(ushort *)(source_address + 0x62) != 0) {
-    data_address = *(undefined8 *)(source_address + 0x5a);
+    data_address = *(uint64_t *)(source_address + 0x5a);
     copy_size = (ulonglong)*(ushort *)(source_address + 0x62) * 4;
     if ((ulonglong)((*global_buffer - data_offset) + global_buffer[2]) <= copy_size) {
       expand_buffer_capacity();

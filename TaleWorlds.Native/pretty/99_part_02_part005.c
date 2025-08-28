@@ -56,7 +56,7 @@ void conditional_sort_processor_type2(void) __attribute__((alias("FUN_1800eb341"
  * @param param_3 递归深度参数
  * @param param_4 比较函数指针
  */
-void quick_sort_implementation(undefined8 *param_1, undefined8 *param_2, longlong param_3) __attribute__((alias("FUN_1800eb380")));
+void quick_sort_implementation(uint64_t *param_1, uint64_t *param_2, longlong param_3) __attribute__((alias("FUN_1800eb380")));
 
 /**
  * 堆排序实现器
@@ -67,7 +67,7 @@ void quick_sort_implementation(undefined8 *param_1, undefined8 *param_2, longlon
  * @param param_3 递归深度参数
  * @param param_4 比较函数指针
  */
-void heap_sort_implementation(undefined8 *param_1, undefined8 *param_2, longlong param_3) __attribute__((alias("FUN_1800eb38b")));
+void heap_sort_implementation(uint64_t *param_1, uint64_t *param_2, longlong param_3) __attribute__((alias("FUN_1800eb38b")));
 
 /**
  * 数据排序处理器
@@ -113,15 +113,15 @@ void heap_sort_optimizer(void) __attribute__((alias("FUN_1800eb4e3")));
 void FUN_1800eb09b(void)
 
 {
-  undefined4 *puVar1;
+  int32_t *puVar1;
   longlong lVar2;
-  undefined4 uVar3;
-  undefined4 uVar4;
-  undefined4 uVar5;
-  undefined4 uVar6;
+  int32_t uVar3;
+  int32_t uVar4;
+  int32_t uVar5;
+  int32_t uVar6;
   longlong lVar7;
-  undefined8 uVar8;
-  undefined8 uVar9;
+  uint64_t uVar8;
+  uint64_t uVar9;
   longlong lVar10;
   longlong lVar11;
   char cVar12;
@@ -129,28 +129,28 @@ void FUN_1800eb09b(void)
   ulonglong uVar13;
   uint uVar14;
   longlong unaff_RBX;
-  undefined8 *puVar15;
-  undefined8 *puVar16;
-  undefined8 unaff_RBP;
-  undefined8 unaff_RSI;
-  undefined8 *puVar17;
-  undefined8 unaff_RDI;
-  undefined8 *puVar18;
+  uint64_t *puVar15;
+  uint64_t *puVar16;
+  uint64_t unaff_RBP;
+  uint64_t unaff_RSI;
+  uint64_t *puVar17;
+  uint64_t unaff_RDI;
+  uint64_t *puVar18;
   uint uVar19;
   longlong in_R10;
   int iVar20;
   ulonglong in_R11;
-  undefined8 unaff_R12;
-  undefined8 unaff_R13;
+  uint64_t unaff_R12;
+  uint64_t unaff_R13;
   longlong *unaff_R14;
   longlong *unaff_R15;
-  undefined4 unaff_XMM6_Da;
-  undefined4 unaff_XMM6_Db;
-  undefined4 unaff_XMM6_Dc;
-  undefined4 unaff_XMM6_Dd;
+  int32_t unaff_XMM6_Da;
+  int32_t unaff_XMM6_Db;
+  int32_t unaff_XMM6_Dc;
+  int32_t unaff_XMM6_Dd;
   uint uStack0000000000000028;
-  undefined8 in_stack_00000030;
-  undefined8 in_stack_00000038;
+  uint64_t in_stack_00000030;
+  uint64_t in_stack_00000038;
   longlong in_stack_00000040;
   uint uStack0000000000000048;
   longlong in_stack_00000050;
@@ -159,25 +159,25 @@ void FUN_1800eb09b(void)
   longlong in_stack_00000068;
   longlong in_stack_00000070;
   longlong in_stack_00000078;
-  undefined4 in_stack_00000080;
-  undefined4 uStack0000000000000084;
-  undefined4 in_stack_00000088;
-  undefined4 uStack000000000000008c;
+  int32_t in_stack_00000080;
+  int32_t uStack0000000000000084;
+  int32_t in_stack_00000088;
+  int32_t uStack000000000000008c;
   longlong *in_stack_000000f0;
   longlong *in_stack_000000f8;
   longlong in_stack_00000100;
   int in_stack_00000108;
   
   // 寄存器状态保存
-  *(undefined8 *)(in_RAX + -0x20) = unaff_RBP;
-  *(undefined8 *)(in_RAX + -0x28) = unaff_RSI;
-  *(undefined8 *)(in_RAX + -0x30) = unaff_RDI;
-  *(undefined8 *)(in_RAX + -0x38) = unaff_R12;
-  *(undefined8 *)(in_RAX + -0x40) = unaff_R13;
-  *(undefined4 *)(in_RAX + -0x58) = unaff_XMM6_Da;
-  *(undefined4 *)(in_RAX + -0x54) = unaff_XMM6_Db;
-  *(undefined4 *)(in_RAX + -0x50) = unaff_XMM6_Dc;
-  *(undefined4 *)(in_RAX + -0x4c) = unaff_XMM6_Dd;
+  *(uint64_t *)(in_RAX + -0x20) = unaff_RBP;
+  *(uint64_t *)(in_RAX + -0x28) = unaff_RSI;
+  *(uint64_t *)(in_RAX + -0x30) = unaff_RDI;
+  *(uint64_t *)(in_RAX + -0x38) = unaff_R12;
+  *(uint64_t *)(in_RAX + -0x40) = unaff_R13;
+  *(int32_t *)(in_RAX + -0x58) = unaff_XMM6_Da;
+  *(int32_t *)(in_RAX + -0x54) = unaff_XMM6_Db;
+  *(int32_t *)(in_RAX + -0x50) = unaff_XMM6_Dc;
+  *(int32_t *)(in_RAX + -0x4c) = unaff_XMM6_Dd;
   
   // 主排序循环
   do {
@@ -187,16 +187,16 @@ void FUN_1800eb09b(void)
     uVar19 = (int)in_R10 - 1;
     uVar14 = uVar19 >> 0xb;
     iVar20 = (int)in_R11;
-    puVar18 = (undefined8 *)
+    puVar18 = (uint64_t *)
               (*(longlong *)(*unaff_R14 + 8 + (ulonglong)uVar14 * 8) +
               (ulonglong)(uVar19 + uVar14 * -0x800) * 0x10);
     uVar14 = (int)(((longlong)(int)in_R10 - (longlong)iVar20) / 2) + iVar20;
     uVar19 = uVar14 >> 0xb;
-    puVar15 = (undefined8 *)
+    puVar15 = (uint64_t *)
               (*(longlong *)(*unaff_R15 + 8 + (ulonglong)uVar19 * 8) +
               (ulonglong)(uVar14 + uVar19 * -0x800) * 0x10);
     uVar13 = in_R11 >> 0xb & 0x1fffff;
-    puVar17 = (undefined8 *)
+    puVar17 = (uint64_t *)
               (*(longlong *)(*unaff_R15 + 8 + uVar13 * 8) +
               (ulonglong)(uint)(iVar20 + (int)uVar13 * -0x800) * 0x10);
     
@@ -232,7 +232,7 @@ LAB_1800eb177:
     lVar11 = *unaff_R15;
     lVar10 = *unaff_R15;
     uStack0000000000000028 = *(uint *)(unaff_R15 + 1);
-    uVar3 = *(undefined4 *)((longlong)unaff_R15 + 0xc);
+    uVar3 = *(int32_t *)((longlong)unaff_R15 + 0xc);
     uVar14 = uStack0000000000000048;
     in_stack_00000040 = lVar7;
     
@@ -262,19 +262,19 @@ LAB_1800eb177:
       
       // 元素交换
       uVar13 = (ulonglong)(uStack0000000000000028 + uVar19 * -0x800);
-      puVar17 = (undefined8 *)
+      puVar17 = (uint64_t *)
                 ((ulonglong)(uVar14 + (uVar14 >> 0xb) * -0x800) * 0x10 +
                 *(longlong *)(lVar7 + 8 + (ulonglong)(uVar14 >> 0xb) * 8));
       lVar2 = *(longlong *)(lVar10 + 8 + (ulonglong)uVar19 * 8);
       uStack0000000000000028 = uStack0000000000000028 + 1;
-      uVar4 = *(undefined4 *)((longlong)puVar17 + 4);
-      uVar5 = *(undefined4 *)(puVar17 + 1);
-      uVar6 = *(undefined4 *)((longlong)puVar17 + 0xc);
-      puVar15 = (undefined8 *)(lVar2 + uVar13 * 0x10);
+      uVar4 = *(int32_t *)((longlong)puVar17 + 4);
+      uVar5 = *(int32_t *)(puVar17 + 1);
+      uVar6 = *(int32_t *)((longlong)puVar17 + 0xc);
+      puVar15 = (uint64_t *)(lVar2 + uVar13 * 0x10);
       uVar8 = *puVar15;
       uVar9 = puVar15[1];
-      puVar1 = (undefined4 *)(lVar2 + uVar13 * 0x10);
-      *puVar1 = *(undefined4 *)puVar17;
+      puVar1 = (int32_t *)(lVar2 + uVar13 * 0x10);
+      *puVar1 = *(int32_t *)puVar17;
       puVar1[1] = uVar4;
       puVar1[2] = uVar5;
       puVar1[3] = uVar6;
@@ -302,10 +302,10 @@ LAB_1800eb177:
   if (unaff_RBX == 0) {
     in_stack_00000060 = *unaff_R14;
     in_stack_00000068 = unaff_R14[1];
-    in_stack_00000080 = (undefined4)*unaff_R15;
-    uStack0000000000000084 = *(undefined4 *)((longlong)unaff_R15 + 4);
-    in_stack_00000088 = (undefined4)unaff_R15[1];
-    uStack000000000000008c = *(undefined4 *)((longlong)unaff_R15 + 0xc);
+    in_stack_00000080 = (int32_t)*unaff_R15;
+    uStack0000000000000084 = *(int32_t *)((longlong)unaff_R15 + 4);
+    in_stack_00000088 = (int32_t)unaff_R15[1];
+    uStack000000000000008c = *(int32_t *)((longlong)unaff_R15 + 0xc);
     in_stack_00000070 = in_stack_00000060;
     in_stack_00000078 = in_stack_00000068;
     FUN_1800ebe90(&stack0x00000080,&stack0x00000070,&stack0x00000060);
@@ -330,16 +330,16 @@ void FUN_1800eb334(void)
 
 {
   longlong unaff_RBX;
-  undefined8 *unaff_R14;
-  undefined4 *unaff_R15;
-  undefined8 uStack0000000000000060;
-  undefined8 uStack0000000000000068;
-  undefined8 uStack0000000000000070;
-  undefined8 uStack0000000000000078;
-  undefined4 uStack0000000000000080;
-  undefined4 uStack0000000000000084;
-  undefined4 uStack0000000000000088;
-  undefined4 uStack000000000000008c;
+  uint64_t *unaff_R14;
+  int32_t *unaff_R15;
+  uint64_t uStack0000000000000060;
+  uint64_t uStack0000000000000068;
+  uint64_t uStack0000000000000070;
+  uint64_t uStack0000000000000078;
+  int32_t uStack0000000000000080;
+  int32_t uStack0000000000000084;
+  int32_t uStack0000000000000088;
+  int32_t uStack000000000000008c;
   
   // 条件检查：仅在unaff_RBX为0时执行排序
   if (unaff_RBX == 0) {
@@ -375,16 +375,16 @@ void FUN_1800eb334(void)
 void FUN_1800eb341(void)
 
 {
-  undefined8 *unaff_R14;
-  undefined4 *unaff_R15;
-  undefined8 uStack0000000000000060;
-  undefined8 uStack0000000000000068;
-  undefined8 uStack0000000000000070;
-  undefined8 uStack0000000000000078;
-  undefined4 uStack0000000000000080;
-  undefined4 uStack0000000000000084;
-  undefined4 uStack0000000000000088;
-  undefined4 uStack000000000000008c;
+  uint64_t *unaff_R14;
+  int32_t *unaff_R15;
+  uint64_t uStack0000000000000060;
+  uint64_t uStack0000000000000068;
+  uint64_t uStack0000000000000070;
+  uint64_t uStack0000000000000078;
+  int32_t uStack0000000000000080;
+  int32_t uStack0000000000000084;
+  int32_t uStack0000000000000088;
+  int32_t uStack000000000000008c;
   
   // 数据准备（无条件执行）
   uStack0000000000000060 = *unaff_R14;
@@ -426,18 +426,18 @@ void FUN_1800eb341(void)
  * - 尾递归优化
  * - 三数取中法
  */
-void FUN_1800eb380(undefined8 *param_1,undefined8 *param_2,longlong param_3)
+void FUN_1800eb380(uint64_t *param_1,uint64_t *param_2,longlong param_3)
 
 {
-  undefined8 uVar1;
-  undefined8 uVar2;
+  uint64_t uVar1;
+  uint64_t uVar2;
   char cVar3;
   ulonglong uVar4;
   longlong lVar5;
-  undefined8 *puVar6;
+  uint64_t *puVar6;
   longlong lVar7;
-  undefined8 *puVar8;
-  undefined8 *puVar9;
+  uint64_t *puVar8;
+  uint64_t *puVar9;
   longlong lVar10;
   longlong lVar11;
   longlong lVar12;
@@ -615,19 +615,19 @@ LAB_1800eb431:
  * - 内存受限环境
  * - 需要最坏情况下 O(n log n) 性能
  */
-void FUN_1800eb38b(undefined8 *param_1,undefined8 *param_2,longlong param_3)
+void FUN_1800eb38b(uint64_t *param_1,uint64_t *param_2,longlong param_3)
 
 {
-  undefined8 uVar1;
-  undefined8 uVar2;
+  uint64_t uVar1;
+  uint64_t uVar2;
   char cVar3;
   longlong in_RAX;
   ulonglong uVar4;
   longlong lVar5;
-  undefined8 *puVar6;
+  uint64_t *puVar6;
   longlong lVar7;
-  undefined8 *puVar8;
-  undefined8 *puVar9;
+  uint64_t *puVar8;
+  uint64_t *puVar9;
   longlong lVar10;
   longlong lVar11;
   longlong lVar12;
@@ -801,19 +801,19 @@ LAB_1800eb431:
 void FUN_1800eb3ac(void)
 
 {
-  undefined8 uVar1;
-  undefined8 uVar2;
+  uint64_t uVar1;
+  uint64_t uVar2;
   char cVar3;
   longlong lVar4;
-  undefined8 *puVar5;
-  undefined8 *unaff_RBP;
-  undefined8 *puVar6;
+  uint64_t *puVar5;
+  uint64_t *unaff_RBP;
+  uint64_t *puVar6;
   longlong lVar7;
-  undefined8 *puVar8;
+  uint64_t *puVar8;
   longlong lVar9;
   longlong lVar10;
   longlong lVar11;
-  undefined8 *unaff_R14;
+  uint64_t *unaff_R14;
   longlong unaff_R15;
   bool bVar12;
   
@@ -980,17 +980,17 @@ LAB_1800eb431:
 void FUN_1800eb4d9(void)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   char cVar2;
   longlong unaff_RBP;
   longlong lVar3;
   longlong lVar4;
   longlong lVar5;
   longlong lVar6;
-  undefined8 *unaff_R14;
+  uint64_t *unaff_R14;
   longlong lVar7;
   longlong unaff_R15;
-  undefined8 *puVar8;
+  uint64_t *puVar8;
   bool bVar9;
   
   // 条件检查：仅在unaff_R15为0时执行排序
@@ -1033,7 +1033,7 @@ void FUN_1800eb4d9(void)
   
   // 堆排序阶段 - 排序
   if (1 < lVar7) {
-    puVar8 = (undefined8 *)(unaff_RBP + -8);
+    puVar8 = (uint64_t *)(unaff_RBP + -8);
     do {
       lVar6 = 0;
       uVar1 = *puVar8;
@@ -1100,16 +1100,16 @@ void FUN_1800eb4d9(void)
 void FUN_1800eb4e3(void)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   char cVar2;
   longlong unaff_RBP;
   longlong lVar3;
   longlong lVar4;
   longlong lVar5;
   longlong lVar6;
-  undefined8 *unaff_R14;
+  uint64_t *unaff_R14;
   longlong lVar7;
-  undefined8 *puVar8;
+  uint64_t *puVar8;
   bool bVar9;
   
   // 堆排序阶段 - 建堆
@@ -1147,7 +1147,7 @@ void FUN_1800eb4e3(void)
   
   // 堆排序阶段 - 排序
   if (1 < lVar7) {
-    puVar8 = (undefined8 *)(unaff_RBP + -8);
+    puVar8 = (uint64_t *)(unaff_RBP + -8);
     do {
       lVar6 = 0;
       uVar1 = *puVar8;

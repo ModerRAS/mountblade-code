@@ -65,9 +65,9 @@ void FUN_18082b380(longlong param_1,float *param_2,float *param_3,float *param_4
   longlong lVar55;
   ulonglong uVar56;
   ulonglong uVar57;
-  undefined1 auVar58 [16];
-  undefined1 auVar59 [16];
-  undefined1 auVar60 [16];
+  int8_t auVar58 [16];
+  int8_t auVar59 [16];
+  int8_t auVar60 [16];
   
   uVar56 = (ulonglong)(int)(uint)param_7;
   pfVar42 = (float *)(*(longlong *)(param_1 + 0x10) + (longlong)param_5 * 4);
@@ -102,7 +102,7 @@ void FUN_18082b380(longlong param_1,float *param_2,float *param_3,float *param_4
             fVar13 = pfVar40[1];
             fVar14 = pfVar40[2];
             fVar15 = pfVar40[3];
-            auVar58 = *(undefined1 (*) [16])(pfVar42 + iVar47);
+            auVar58 = *(int8_t (*) [16])(pfVar42 + iVar47);
             iVar43 = iVar47 + 0x200;
             iVar47 = iVar47 + 0x800;
             pfVar40 = pfVar42 + iVar43;
@@ -236,7 +236,7 @@ void FUN_18082b380(longlong param_1,float *param_2,float *param_3,float *param_4
             pfVar40[1] = fVar21 * fVar8 + fVar30 * fVar13;
             pfVar40[2] = fVar24 * fVar8 + fVar33 * fVar13;
             pfVar40[3] = fVar27 * fVar8 + fVar36 * fVar13;
-            *(undefined1 (*) [16])(param_2 + (longlong)iVar49 + uVar56) = auVar58;
+            *(int8_t (*) [16])(param_2 + (longlong)iVar49 + uVar56) = auVar58;
             pfVar41 = param_2 + (longlong)iVar12 + (longlong)iVar49;
             *pfVar41 = fVar18 * fVar10 + fVar28 * fVar15;
             pfVar41[1] = fVar20 * fVar10 + fVar31 * fVar15;
@@ -370,7 +370,7 @@ void FUN_18082b380(longlong param_1,float *param_2,float *param_3,float *param_4
             pfVar40[1] = fVar19 * fVar8 - fVar35 * fVar13;
             pfVar40[2] = fVar22 * fVar8 - fVar32 * fVar13;
             pfVar40[3] = fVar25 * fVar8 - fVar38 * fVar13;
-            *(undefined1 (*) [16])(param_2 + (longlong)iVar43 + uVar56) = auVar59;
+            *(int8_t (*) [16])(param_2 + (longlong)iVar43 + uVar56) = auVar59;
             pfVar41 = param_2 + (longlong)iVar43 + (longlong)iVar12;
             *pfVar41 = fVar17 * fVar10 - fVar29 * fVar15;
             pfVar41[1] = fVar20 * fVar10 - fVar34 * fVar15;
@@ -488,7 +488,7 @@ void FUN_18082b380(longlong param_1,float *param_2,float *param_3,float *param_4
             pfVar42[1] = fVar8 * -1.0;
             pfVar42[2] = fVar15 * -1.0;
             pfVar42[3] = fVar18 * -1.0;
-            *(undefined1 (*) [16])(param_2 + (longlong)iVar12 + (longlong)iVar52) = auVar60;
+            *(int8_t (*) [16])(param_2 + (longlong)iVar12 + (longlong)iVar52) = auVar60;
             pfVar42 = param_2 + (longlong)iVar11 + (longlong)iVar52;
             *pfVar42 = fVar9 * -1.0;
             pfVar42[1] = fVar7 * -1.0;

@@ -65,15 +65,15 @@ void ui_system_empty_function_2(void);
 // 资源处理函数
 void ui_system_cleanup_resources(longlong resource_context, int resource_count);
 void ui_system_release_all_resources(void);
-void ui_system_process_resource_batch(longlong context, undefined8 parameters);
+void ui_system_process_resource_batch(longlong context, uint64_t parameters);
 int ui_system_calculate_resource_metrics(longlong system_context, longlong resource_data, 
                                         longlong buffer_info, short *position_x, short *position_y,
                                         int param_6, int param_7, int *result_count,
-                                        undefined8 *callback_functions, longlong *resource_table,
+                                        uint64_t *callback_functions, longlong *resource_table,
                                         short *texture_coords);
 
 // 系统调用包装函数
-void ui_system_call_cleanup_routine(undefined8 resource_pointer);
+void ui_system_call_cleanup_routine(uint64_t resource_pointer);
 void ui_system_call_memory_allocator(longlong size, longlong alignment);
 longlong ui_system_call_memory_allocator_ex(longlong size, longlong count, longlong alignment);
 
@@ -99,9 +99,9 @@ longlong ui_system_call_memory_allocator_ex(longlong size, longlong count, longl
 void ui_system_initialize_resource_pool(void)
 
 {
-  undefined4 allocation_granularity;
+  int32_t allocation_granularity;
   longlong memory_block;
-  undefined8 resource_pointer;
+  uint64_t resource_pointer;
   longlong system_context;
   ulonglong loop_index;
   uint resource_count;
@@ -121,11 +121,11 @@ void ui_system_initialize_resource_pool(void)
   // 根据内存大小设置分配粒度
   if ((int)resource_count < UI_MEMORY_SMALL_THRESHOLD) {
     // 小内存块：使用最小粒度
-    *(undefined4 *)(resource_context + UI_BUFFER_SIZE_OFFSET) = UI_MEMORY_GRANULARITY_SMALL;
+    *(int32_t *)(resource_context + UI_BUFFER_SIZE_OFFSET) = UI_MEMORY_GRANULARITY_SMALL;
   }
   else if ((int)resource_count < UI_MEMORY_MEDIUM_THRESHOLD) {
     // 中等内存块：使用中等粒度
-    *(undefined4 *)(resource_context + UI_BUFFER_SIZE_OFFSET) = UI_MEMORY_GRANULARITY_MEDIUM;
+    *(int32_t *)(resource_context + UI_BUFFER_SIZE_OFFSET) = UI_MEMORY_GRANULARITY_MEDIUM;
   }
   else {
     // 大内存块：根据大小选择粒度
@@ -133,7 +133,7 @@ void ui_system_initialize_resource_pool(void)
     if ((int)resource_count < UI_MEMORY_LARGE_THRESHOLD) {
       allocation_granularity = UI_MEMORY_GRANULARITY_LARGE;
     }
-    *(undefined4 *)(resource_context + UI_BUFFER_SIZE_OFFSET) = allocation_granularity;
+    *(int32_t *)(resource_context + UI_BUFFER_SIZE_OFFSET) = allocation_granularity;
   }
   
   // 分配基础缓冲区
@@ -157,7 +157,7 @@ void ui_system_initialize_resource_pool(void)
     array_index = loop_index;
     do {
       resource_pointer = ui_system_call_memory_allocator(0x10, (longlong)(int)(resource_count + 0x40));
-      *(undefined8 *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_PRIMARY_OFFSET)) = resource_pointer;
+      *(uint64_t *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_PRIMARY_OFFSET)) = resource_pointer;
       if (*(longlong *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_PRIMARY_OFFSET)) == 0) {
         ui_system_call_cleanup_routine(0);
       }
@@ -180,7 +180,7 @@ void ui_system_initialize_resource_pool(void)
     array_index = loop_index;
     do {
       resource_pointer = ui_system_call_memory_allocator(0x10, (longlong)(((int)resource_count >> 1) + 0x20));
-      *(undefined8 *)(array_index + *(longlong *)(resource_context + UI_BUFFER_SECONDARY_OFFSET)) = resource_pointer;
+      *(uint64_t *)(array_index + *(longlong *)(resource_context + UI_BUFFER_SECONDARY_OFFSET)) = resource_pointer;
       if (*(longlong *)(array_index + *(longlong *)(resource_context + UI_BUFFER_SECONDARY_OFFSET)) == 0) {
         ui_system_call_cleanup_routine(0);
       }
@@ -203,7 +203,7 @@ void ui_system_initialize_resource_pool(void)
     array_index = loop_index;
     do {
       resource_pointer = ui_system_call_memory_allocator(0x10, (longlong)(((int)resource_count >> 1) + 0x20));
-      *(undefined8 *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_TERTIARY_OFFSET)) = resource_pointer;
+      *(uint64_t *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_TERTIARY_OFFSET)) = resource_pointer;
       if (*(longlong *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_TERTIARY_OFFSET)) == 0) {
         ui_system_call_cleanup_routine(0);
       }
@@ -226,7 +226,7 @@ void ui_system_initialize_resource_pool(void)
   if (0 < *(int *)(system_context + 0xbb4)) {
     do {
       resource_pointer = ui_system_call_memory_allocator_ex(0x10, 1);
-      *(undefined8 *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_QUATERNARY_OFFSET)) = resource_pointer;
+      *(uint64_t *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_QUATERNARY_OFFSET)) = resource_pointer;
       if (*(longlong *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_QUATERNARY_OFFSET)) == 0) {
         ui_system_call_cleanup_routine(0);
       }
@@ -249,7 +249,7 @@ void ui_system_initialize_resource_pool(void)
   if (0 < *(int *)(system_context + 0xbb4)) {
     do {
       resource_pointer = ui_system_call_memory_allocator(8);
-      *(undefined8 *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_QUINARY_OFFSET)) = resource_pointer;
+      *(uint64_t *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_QUINARY_OFFSET)) = resource_pointer;
       if (*(longlong *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_QUINARY_OFFSET)) == 0) {
         ui_system_call_cleanup_routine(0);
       }
@@ -271,7 +271,7 @@ void ui_system_initialize_resource_pool(void)
   if (0 < *(int *)(system_context + 0xbb4)) {
     do {
       resource_pointer = ui_system_call_memory_allocator(8);
-      *(undefined8 *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_SENARY_OFFSET)) = resource_pointer;
+      *(uint64_t *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_SENARY_OFFSET)) = resource_pointer;
       if (*(longlong *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_SENARY_OFFSET)) == 0) {
         ui_system_call_cleanup_routine(0);
       }
@@ -293,9 +293,9 @@ void ui_system_initialize_resource_pool(void)
 void ui_system_setup_resource_buffers(void)
 
 {
-  undefined4 allocation_granularity;
+  int32_t allocation_granularity;
   longlong memory_block;
-  undefined8 resource_pointer;
+  uint64_t resource_pointer;
   longlong system_context;
   ulonglong loop_index;
   uint resource_count;
@@ -314,17 +314,17 @@ void ui_system_setup_resource_buffers(void)
   
   // 根据内存大小设置分配粒度
   if ((int)resource_count < UI_MEMORY_SMALL_THRESHOLD) {
-    *(undefined4 *)(resource_context + UI_BUFFER_SIZE_OFFSET) = UI_MEMORY_GRANULARITY_SMALL;
+    *(int32_t *)(resource_context + UI_BUFFER_SIZE_OFFSET) = UI_MEMORY_GRANULARITY_SMALL;
   }
   else if ((int)resource_count < UI_MEMORY_MEDIUM_THRESHOLD) {
-    *(undefined4 *)(resource_context + UI_BUFFER_SIZE_OFFSET) = UI_MEMORY_GRANULARITY_MEDIUM;
+    *(int32_t *)(resource_context + UI_BUFFER_SIZE_OFFSET) = UI_MEMORY_GRANULARITY_MEDIUM;
   }
   else {
     allocation_granularity = UI_MEMORY_GRANULARITY_XLARGE;
     if ((int)resource_count < UI_MEMORY_LARGE_THRESHOLD) {
       allocation_granularity = UI_MEMORY_GRANULARITY_LARGE;
     }
-    *(undefined4 *)(resource_context + UI_BUFFER_SIZE_OFFSET) = allocation_granularity;
+    *(int32_t *)(resource_context + UI_BUFFER_SIZE_OFFSET) = allocation_granularity;
   }
   
   // 分配基础缓冲区
@@ -348,7 +348,7 @@ void ui_system_setup_resource_buffers(void)
     array_index = loop_index;
     do {
       resource_pointer = ui_system_call_memory_allocator(0x10, (longlong)(int)(resource_count + 0x40));
-      *(undefined8 *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_PRIMARY_OFFSET)) = resource_pointer;
+      *(uint64_t *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_PRIMARY_OFFSET)) = resource_pointer;
       if (*(longlong *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_PRIMARY_OFFSET)) == 0) {
         ui_system_call_cleanup_routine(0);
       }
@@ -371,7 +371,7 @@ void ui_system_setup_resource_buffers(void)
     array_index = loop_index;
     do {
       resource_pointer = ui_system_call_memory_allocator(0x10, (longlong)(((int)resource_count >> 1) + 0x20));
-      *(undefined8 *)(array_index + *(longlong *)(resource_context + UI_BUFFER_SECONDARY_OFFSET)) = resource_pointer;
+      *(uint64_t *)(array_index + *(longlong *)(resource_context + UI_BUFFER_SECONDARY_OFFSET)) = resource_pointer;
       if (*(longlong *)(array_index + *(longlong *)(resource_context + UI_BUFFER_SECONDARY_OFFSET)) == 0) {
         ui_system_call_cleanup_routine(0);
       }
@@ -394,7 +394,7 @@ void ui_system_setup_resource_buffers(void)
     array_index = loop_index;
     do {
       resource_pointer = ui_system_call_memory_allocator(0x10, (longlong)(((int)resource_count >> 1) + 0x20));
-      *(undefined8 *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_TERTIARY_OFFSET)) = resource_pointer;
+      *(uint64_t *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_TERTIARY_OFFSET)) = resource_pointer;
       if (*(longlong *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_TERTIARY_OFFSET)) == 0) {
         ui_system_call_cleanup_routine(0);
       }
@@ -417,7 +417,7 @@ void ui_system_setup_resource_buffers(void)
   if (0 < *(int *)(system_context + 0xbb4)) {
     do {
       resource_pointer = ui_system_call_memory_allocator_ex(0x10, 1);
-      *(undefined8 *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_QUATERNARY_OFFSET)) = resource_pointer;
+      *(uint64_t *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_QUATERNARY_OFFSET)) = resource_pointer;
       if (*(longlong *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_QUATERNARY_OFFSET)) == 0) {
         ui_system_call_cleanup_routine(0);
       }
@@ -440,7 +440,7 @@ void ui_system_setup_resource_buffers(void)
   if (0 < *(int *)(system_context + 0xbb4)) {
     do {
       resource_pointer = ui_system_call_memory_allocator(8);
-      *(undefined8 *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_QUINARY_OFFSET)) = resource_pointer;
+      *(uint64_t *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_QUINARY_OFFSET)) = resource_pointer;
       if (*(longlong *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_QUINARY_OFFSET)) == 0) {
         ui_system_call_cleanup_routine(0);
       }
@@ -462,7 +462,7 @@ void ui_system_setup_resource_buffers(void)
   if (0 < *(int *)(system_context + 0xbb4)) {
     do {
       resource_pointer = ui_system_call_memory_allocator(8);
-      *(undefined8 *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_SENARY_OFFSET)) = resource_pointer;
+      *(uint64_t *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_SENARY_OFFSET)) = resource_pointer;
       if (*(longlong *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_SENARY_OFFSET)) == 0) {
         ui_system_call_cleanup_routine(0);
       }
@@ -491,7 +491,7 @@ void ui_system_setup_resource_buffers(void)
 void ui_system_cleanup_resource_pool(void)
 
 {
-  undefined8 resource_pointer;
+  uint64_t resource_pointer;
   longlong memory_block;
   longlong system_context;
   int buffer_index;
@@ -511,7 +511,7 @@ void ui_system_cleanup_resource_pool(void)
   if (buffer_index < *(int *)(system_context + 0xbb4)) {
     do {
       resource_pointer = ui_system_call_memory_allocator();
-      *(undefined8 *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_QUATERNARY_OFFSET)) = resource_pointer;
+      *(uint64_t *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_QUATERNARY_OFFSET)) = resource_pointer;
       if (*(ulonglong *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_QUATERNARY_OFFSET)) == resource_limit) {
         ui_system_call_cleanup_routine(0);
       }
@@ -534,7 +534,7 @@ void ui_system_cleanup_resource_pool(void)
   if (buffer_index < *(int *)(system_context + 0xbb4)) {
     do {
       resource_pointer = ui_system_call_memory_allocator(8);
-      *(undefined8 *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_QUINARY_OFFSET)) = resource_pointer;
+      *(uint64_t *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_QUINARY_OFFSET)) = resource_pointer;
       if (*(ulonglong *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_QUINARY_OFFSET)) == resource_limit) {
         ui_system_call_cleanup_routine(0);
       }
@@ -556,7 +556,7 @@ void ui_system_cleanup_resource_pool(void)
   if (buffer_index < *(int *)(system_context + 0xbb4)) {
     do {
       resource_pointer = ui_system_call_memory_allocator(8);
-      *(undefined8 *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_SENARY_OFFSET)) = resource_pointer;
+      *(uint64_t *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_SENARY_OFFSET)) = resource_pointer;
       if (*(longlong *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_SENARY_OFFSET)) == 0) {
         ui_system_call_cleanup_routine(0);
       }
@@ -580,7 +580,7 @@ void ui_system_cleanup_resource_pool(void)
 void ui_system_release_secondary_resources(void)
 
 {
-  undefined8 resource_pointer;
+  uint64_t resource_pointer;
   longlong memory_block;
   longlong system_context;
   ulonglong resource_limit;
@@ -597,7 +597,7 @@ void ui_system_release_secondary_resources(void)
   if ((int)resource_limit < *(int *)(system_context + 0xbb4)) {
     do {
       resource_pointer = ui_system_call_memory_allocator(8);
-      *(undefined8 *)(resource_pointer + *(longlong *)(resource_context + UI_BUFFER_QUINARY_OFFSET)) = resource_pointer;
+      *(uint64_t *)(resource_pointer + *(longlong *)(resource_context + UI_BUFFER_QUINARY_OFFSET)) = resource_pointer;
       if (*(ulonglong *)(resource_pointer + *(longlong *)(resource_context + UI_BUFFER_QUINARY_OFFSET)) == resource_limit) {
         ui_system_call_cleanup_routine(0);
       }
@@ -619,7 +619,7 @@ void ui_system_release_secondary_resources(void)
   if ((int)resource_limit < *(int *)(system_context + 0xbb4)) {
     do {
       resource_pointer = ui_system_call_memory_allocator(8);
-      *(undefined8 *)(resource_pointer + *(longlong *)(resource_context + UI_BUFFER_SENARY_OFFSET)) = resource_pointer;
+      *(uint64_t *)(resource_pointer + *(longlong *)(resource_context + UI_BUFFER_SENARY_OFFSET)) = resource_pointer;
       if (*(longlong *)(resource_pointer + *(longlong *)(resource_context + UI_BUFFER_SENARY_OFFSET)) == 0) {
         ui_system_call_cleanup_routine(0);
       }
@@ -642,7 +642,7 @@ void ui_system_release_secondary_resources(void)
 void ui_system_release_tertiary_resources(void)
 
 {
-  undefined8 resource_pointer;
+  uint64_t resource_pointer;
   longlong memory_block;
   longlong system_context;
   ulonglong resource_limit;
@@ -659,7 +659,7 @@ void ui_system_release_tertiary_resources(void)
   if ((int)resource_limit < *(int *)(system_context + 0xbb4)) {
     do {
       resource_pointer = ui_system_call_memory_allocator(8);
-      *(undefined8 *)(resource_pointer + *(longlong *)(resource_context + UI_BUFFER_SENARY_OFFSET)) = resource_pointer;
+      *(uint64_t *)(resource_pointer + *(longlong *)(resource_context + UI_BUFFER_SENARY_OFFSET)) = resource_pointer;
       if (*(ulonglong *)(resource_pointer + *(longlong *)(resource_context + UI_BUFFER_SENARY_OFFSET)) == resource_limit) {
         ui_system_call_cleanup_routine(0);
       }
@@ -682,7 +682,7 @@ void ui_system_release_tertiary_resources(void)
 void ui_system_release_quaternary_resources(void)
 
 {
-  undefined8 resource_pointer;
+  uint64_t resource_pointer;
   longlong system_context;
   uint iteration_count;
   ulonglong resource_limit;
@@ -697,7 +697,7 @@ void ui_system_release_quaternary_resources(void)
   if ((int)resource_limit < *(int *)(system_context + 0xbb4)) {
     do {
       resource_pointer = ui_system_call_memory_allocator(8);
-      *(undefined8 *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_SENARY_OFFSET)) = resource_pointer;
+      *(uint64_t *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_SENARY_OFFSET)) = resource_pointer;
       if (*(longlong *)(buffer_pointer + *(longlong *)(resource_context + UI_BUFFER_SENARY_OFFSET)) == 0) {
         ui_system_call_cleanup_routine(0);
       }
@@ -744,22 +744,22 @@ void ui_system_cleanup_resources(longlong resource_context, int resource_count)
   loop_counter = (longlong)resource_count;
   if (*(int *)(resource_context + UI_CONTROL_INITIALIZED) != 0) {
     // 释放基础缓冲区
-    ui_system_call_cleanup_routine(*(undefined8 *)(resource_context + UI_BUFFER_BASE_OFFSET));
+    ui_system_call_cleanup_routine(*(uint64_t *)(resource_context + UI_BUFFER_BASE_OFFSET));
     memory_pointer = 0;
-    *(undefined8 *)(resource_context + UI_BUFFER_BASE_OFFSET) = 0;
+    *(uint64_t *)(resource_context + UI_BUFFER_BASE_OFFSET) = 0;
     
     // 释放主缓冲区数组
     if (*(longlong *)(resource_context + UI_BUFFER_PRIMARY_OFFSET) != 0) {
       buffer_index = memory_pointer;
       if (0 < loop_counter) {
         do {
-          ui_system_call_cleanup_routine(*(undefined8 *)(*(longlong *)(resource_context + UI_BUFFER_PRIMARY_OFFSET) + buffer_index * 8));
-          *(undefined8 *)(*(longlong *)(resource_context + UI_BUFFER_PRIMARY_OFFSET) + buffer_index * 8) = 0;
+          ui_system_call_cleanup_routine(*(uint64_t *)(*(longlong *)(resource_context + UI_BUFFER_PRIMARY_OFFSET) + buffer_index * 8));
+          *(uint64_t *)(*(longlong *)(resource_context + UI_BUFFER_PRIMARY_OFFSET) + buffer_index * 8) = 0;
           buffer_index = buffer_index + 1;
         } while (buffer_index < loop_counter);
       }
-      ui_system_call_cleanup_routine(*(undefined8 *)(resource_context + UI_BUFFER_PRIMARY_OFFSET));
-      *(undefined8 *)(resource_context + UI_BUFFER_PRIMARY_OFFSET) = 0;
+      ui_system_call_cleanup_routine(*(uint64_t *)(resource_context + UI_BUFFER_PRIMARY_OFFSET));
+      *(uint64_t *)(resource_context + UI_BUFFER_PRIMARY_OFFSET) = 0;
     }
     
     // 释放次要缓冲区数组
@@ -767,13 +767,13 @@ void ui_system_cleanup_resources(longlong resource_context, int resource_count)
       buffer_index = memory_pointer;
       if (0 < loop_counter) {
         do {
-          ui_system_call_cleanup_routine(*(undefined8 *)(*(longlong *)(resource_context + UI_BUFFER_SECONDARY_OFFSET) + buffer_index * 8));
-          *(undefined8 *)(*(longlong *)(resource_context + UI_BUFFER_SECONDARY_OFFSET) + buffer_index * 8) = 0;
+          ui_system_call_cleanup_routine(*(uint64_t *)(*(longlong *)(resource_context + UI_BUFFER_SECONDARY_OFFSET) + buffer_index * 8));
+          *(uint64_t *)(*(longlong *)(resource_context + UI_BUFFER_SECONDARY_OFFSET) + buffer_index * 8) = 0;
           buffer_index = buffer_index + 1;
         } while (buffer_index < loop_counter);
       }
-      ui_system_call_cleanup_routine(*(undefined8 *)(resource_context + UI_BUFFER_SECONDARY_OFFSET));
-      *(undefined8 *)(resource_context + UI_BUFFER_SECONDARY_OFFSET) = 0;
+      ui_system_call_cleanup_routine(*(uint64_t *)(resource_context + UI_BUFFER_SECONDARY_OFFSET));
+      *(uint64_t *)(resource_context + UI_BUFFER_SECONDARY_OFFSET) = 0;
     }
     
     // 释放第三缓冲区数组
@@ -781,13 +781,13 @@ void ui_system_cleanup_resources(longlong resource_context, int resource_count)
       buffer_index = memory_pointer;
       if (0 < loop_counter) {
         do {
-          ui_system_call_cleanup_routine(*(undefined8 *)(*(longlong *)(resource_context + UI_BUFFER_TERTIARY_OFFSET) + buffer_index * 8));
-          *(undefined8 *)(*(longlong *)(resource_context + UI_BUFFER_TERTIARY_OFFSET) + buffer_index * 8) = 0;
+          ui_system_call_cleanup_routine(*(uint64_t *)(*(longlong *)(resource_context + UI_BUFFER_TERTIARY_OFFSET) + buffer_index * 8));
+          *(uint64_t *)(*(longlong *)(resource_context + UI_BUFFER_TERTIARY_OFFSET) + buffer_index * 8) = 0;
           buffer_index = buffer_index + 1;
         } while (buffer_index < loop_counter);
       }
-      ui_system_call_cleanup_routine(*(undefined8 *)(resource_context + UI_BUFFER_TERTIARY_OFFSET));
-      *(undefined8 *)(resource_context + UI_BUFFER_TERTIARY_OFFSET) = 0;
+      ui_system_call_cleanup_routine(*(uint64_t *)(resource_context + UI_BUFFER_TERTIARY_OFFSET));
+      *(uint64_t *)(resource_context + UI_BUFFER_TERTIARY_OFFSET) = 0;
     }
     
     // 释放第四缓冲区数组
@@ -795,13 +795,13 @@ void ui_system_cleanup_resources(longlong resource_context, int resource_count)
       buffer_index = memory_pointer;
       if (0 < loop_counter) {
         do {
-          ui_system_call_cleanup_routine(*(undefined8 *)(*(longlong *)(resource_context + UI_BUFFER_QUATERNARY_OFFSET) + buffer_index * 8));
-          *(undefined8 *)(*(longlong *)(resource_context + UI_BUFFER_QUATERNARY_OFFSET) + buffer_index * 8) = 0;
+          ui_system_call_cleanup_routine(*(uint64_t *)(*(longlong *)(resource_context + UI_BUFFER_QUATERNARY_OFFSET) + buffer_index * 8));
+          *(uint64_t *)(*(longlong *)(resource_context + UI_BUFFER_QUATERNARY_OFFSET) + buffer_index * 8) = 0;
           buffer_index = buffer_index + 1;
         } while (buffer_index < loop_counter);
       }
-      ui_system_call_cleanup_routine(*(undefined8 *)(resource_context + UI_BUFFER_QUATERNARY_OFFSET));
-      *(undefined8 *)(resource_context + UI_BUFFER_QUATERNARY_OFFSET) = 0;
+      ui_system_call_cleanup_routine(*(uint64_t *)(resource_context + UI_BUFFER_QUATERNARY_OFFSET));
+      *(uint64_t *)(resource_context + UI_BUFFER_QUATERNARY_OFFSET) = 0;
     }
     
     // 释放第五缓冲区数组
@@ -809,26 +809,26 @@ void ui_system_cleanup_resources(longlong resource_context, int resource_count)
       buffer_index = memory_pointer;
       if (0 < loop_counter) {
         do {
-          ui_system_call_cleanup_routine(*(undefined8 *)(*(longlong *)(resource_context + UI_BUFFER_QUINARY_OFFSET) + buffer_index * 8));
-          *(undefined8 *)(*(longlong *)(resource_context + UI_BUFFER_QUINARY_OFFSET) + buffer_index * 8) = 0;
+          ui_system_call_cleanup_routine(*(uint64_t *)(*(longlong *)(resource_context + UI_BUFFER_QUINARY_OFFSET) + buffer_index * 8));
+          *(uint64_t *)(*(longlong *)(resource_context + UI_BUFFER_QUINARY_OFFSET) + buffer_index * 8) = 0;
           buffer_index = buffer_index + 1;
         } while (buffer_index < loop_counter);
       }
-      ui_system_call_cleanup_routine(*(undefined8 *)(resource_context + UI_BUFFER_QUINARY_OFFSET));
-      *(undefined8 *)(resource_context + UI_BUFFER_QUINARY_OFFSET) = 0;
+      ui_system_call_cleanup_routine(*(uint64_t *)(resource_context + UI_BUFFER_QUINARY_OFFSET));
+      *(uint64_t *)(resource_context + UI_BUFFER_QUINARY_OFFSET) = 0;
     }
     
     // 释放第六缓冲区数组
     if (*(longlong *)(resource_context + UI_BUFFER_SENARY_OFFSET) != 0) {
       if (0 < loop_counter) {
         do {
-          ui_system_call_cleanup_routine(*(undefined8 *)(*(longlong *)(resource_context + UI_BUFFER_SENARY_OFFSET) + memory_pointer * 8));
-          *(undefined8 *)(*(longlong *)(resource_context + UI_BUFFER_SENARY_OFFSET) + memory_pointer * 8) = 0;
+          ui_system_call_cleanup_routine(*(uint64_t *)(*(longlong *)(resource_context + UI_BUFFER_SENARY_OFFSET) + memory_pointer * 8));
+          *(uint64_t *)(*(longlong *)(resource_context + UI_BUFFER_SENARY_OFFSET) + memory_pointer * 8) = 0;
           memory_pointer = memory_pointer + 1;
         } while (memory_pointer < loop_counter);
       }
-      ui_system_call_cleanup_routine(*(undefined8 *)(resource_context + UI_BUFFER_SENARY_OFFSET));
-      *(undefined8 *)(resource_context + UI_BUFFER_SENARY_OFFSET) = 0;
+      ui_system_call_cleanup_routine(*(uint64_t *)(resource_context + UI_BUFFER_SENARY_OFFSET));
+      *(uint64_t *)(resource_context + UI_BUFFER_SENARY_OFFSET) = 0;
     }
   }
   
@@ -861,20 +861,20 @@ void ui_system_release_all_resources(void)
   
   // 释放基础缓冲区
   loop_counter = 0;
-  *(undefined8 *)(system_context + UI_BUFFER_BASE_OFFSET) = 0;
+  *(uint64_t *)(system_context + UI_BUFFER_BASE_OFFSET) = 0;
   
   // 释放主缓冲区数组
   if (*(longlong *)(system_context + UI_BUFFER_PRIMARY_OFFSET) != 0) {
     memory_pointer = loop_counter;
     if (0 < resource_context) {
       do {
-        ui_system_call_cleanup_routine(*(undefined8 *)(*(longlong *)(system_context + UI_BUFFER_PRIMARY_OFFSET) + memory_pointer * 8));
-        *(undefined8 *)(*(longlong *)(system_context + UI_BUFFER_PRIMARY_OFFSET) + memory_pointer * 8) = 0;
+        ui_system_call_cleanup_routine(*(uint64_t *)(*(longlong *)(system_context + UI_BUFFER_PRIMARY_OFFSET) + memory_pointer * 8));
+        *(uint64_t *)(*(longlong *)(system_context + UI_BUFFER_PRIMARY_OFFSET) + memory_pointer * 8) = 0;
         memory_pointer = memory_pointer + 1;
       } while (memory_pointer < resource_context);
     }
-    ui_system_call_cleanup_routine(*(undefined8 *)(system_context + UI_BUFFER_PRIMARY_OFFSET));
-    *(undefined8 *)(system_context + UI_BUFFER_PRIMARY_OFFSET) = 0;
+    ui_system_call_cleanup_routine(*(uint64_t *)(system_context + UI_BUFFER_PRIMARY_OFFSET));
+    *(uint64_t *)(system_context + UI_BUFFER_PRIMARY_OFFSET) = 0;
   }
   
   // 释放次要缓冲区数组
@@ -882,13 +882,13 @@ void ui_system_release_all_resources(void)
     memory_pointer = loop_counter;
     if (0 < resource_context) {
       do {
-        ui_system_call_cleanup_routine(*(undefined8 *)(*(longlong *)(system_context + UI_BUFFER_SECONDARY_OFFSET) + memory_pointer * 8));
-        *(undefined8 *)(*(longlong *)(system_context + UI_BUFFER_SECONDARY_OFFSET) + memory_pointer * 8) = 0;
+        ui_system_call_cleanup_routine(*(uint64_t *)(*(longlong *)(system_context + UI_BUFFER_SECONDARY_OFFSET) + memory_pointer * 8));
+        *(uint64_t *)(*(longlong *)(system_context + UI_BUFFER_SECONDARY_OFFSET) + memory_pointer * 8) = 0;
         memory_pointer = memory_pointer + 1;
       } while (memory_pointer < resource_context);
     }
-    ui_system_call_cleanup_routine(*(undefined8 *)(system_context + UI_BUFFER_SECONDARY_OFFSET));
-    *(undefined8 *)(system_context + UI_BUFFER_SECONDARY_OFFSET) = 0;
+    ui_system_call_cleanup_routine(*(uint64_t *)(system_context + UI_BUFFER_SECONDARY_OFFSET));
+    *(uint64_t *)(system_context + UI_BUFFER_SECONDARY_OFFSET) = 0;
   }
   
   // 释放第三缓冲区数组
@@ -896,13 +896,13 @@ void ui_system_release_all_resources(void)
     memory_pointer = loop_counter;
     if (0 < resource_context) {
       do {
-        ui_system_call_cleanup_routine(*(undefined8 *)(*(longlong *)(system_context + UI_BUFFER_TERTIARY_OFFSET) + memory_pointer * 8));
-        *(undefined8 *)(*(longlong *)(system_context + UI_BUFFER_TERTIARY_OFFSET) + memory_pointer * 8) = 0;
+        ui_system_call_cleanup_routine(*(uint64_t *)(*(longlong *)(system_context + UI_BUFFER_TERTIARY_OFFSET) + memory_pointer * 8));
+        *(uint64_t *)(*(longlong *)(system_context + UI_BUFFER_TERTIARY_OFFSET) + memory_pointer * 8) = 0;
         memory_pointer = memory_pointer + 1;
       } while (memory_pointer < resource_context);
     }
-    ui_system_call_cleanup_routine(*(undefined8 *)(system_context + UI_BUFFER_TERTIARY_OFFSET));
-    *(undefined8 *)(system_context + UI_BUFFER_TERTIARY_OFFSET) = 0;
+    ui_system_call_cleanup_routine(*(uint64_t *)(system_context + UI_BUFFER_TERTIARY_OFFSET));
+    *(uint64_t *)(system_context + UI_BUFFER_TERTIARY_OFFSET) = 0;
   }
   
   // 释放第四缓冲区数组
@@ -910,13 +910,13 @@ void ui_system_release_all_resources(void)
     memory_pointer = loop_counter;
     if (0 < resource_context) {
       do {
-        ui_system_call_cleanup_routine(*(undefined8 *)(*(longlong *)(system_context + UI_BUFFER_QUATERNARY_OFFSET) + memory_pointer * 8));
-        *(undefined8 *)(*(longlong *)(system_context + UI_BUFFER_QUATERNARY_OFFSET) + memory_pointer * 8) = 0;
+        ui_system_call_cleanup_routine(*(uint64_t *)(*(longlong *)(system_context + UI_BUFFER_QUATERNARY_OFFSET) + memory_pointer * 8));
+        *(uint64_t *)(*(longlong *)(system_context + UI_BUFFER_QUATERNARY_OFFSET) + memory_pointer * 8) = 0;
         memory_pointer = memory_pointer + 1;
       } while (memory_pointer < resource_context);
     }
-    ui_system_call_cleanup_routine(*(undefined8 *)(system_context + UI_BUFFER_QUATERNARY_OFFSET));
-    *(undefined8 *)(system_context + UI_BUFFER_QUATERNARY_OFFSET) = 0;
+    ui_system_call_cleanup_routine(*(uint64_t *)(system_context + UI_BUFFER_QUATERNARY_OFFSET));
+    *(uint64_t *)(system_context + UI_BUFFER_QUATERNARY_OFFSET) = 0;
   }
   
   // 释放第五缓冲区数组
@@ -924,26 +924,26 @@ void ui_system_release_all_resources(void)
     memory_pointer = loop_counter;
     if (0 < resource_context) {
       do {
-        ui_system_call_cleanup_routine(*(undefined8 *)(*(longlong *)(system_context + UI_BUFFER_QUINARY_OFFSET) + memory_pointer * 8));
-        *(undefined8 *)(*(longlong *)(system_context + UI_BUFFER_QUINARY_OFFSET) + memory_pointer * 8) = 0;
+        ui_system_call_cleanup_routine(*(uint64_t *)(*(longlong *)(system_context + UI_BUFFER_QUINARY_OFFSET) + memory_pointer * 8));
+        *(uint64_t *)(*(longlong *)(system_context + UI_BUFFER_QUINARY_OFFSET) + memory_pointer * 8) = 0;
         memory_pointer = memory_pointer + 1;
       } while (memory_pointer < resource_context);
     }
-    ui_system_call_cleanup_routine(*(undefined8 *)(system_context + UI_BUFFER_QUINARY_OFFSET));
-    *(undefined8 *)(system_context + UI_BUFFER_QUINARY_OFFSET) = 0;
+    ui_system_call_cleanup_routine(*(uint64_t *)(system_context + UI_BUFFER_QUINARY_OFFSET));
+    *(uint64_t *)(system_context + UI_BUFFER_QUINARY_OFFSET) = 0;
   }
   
   // 释放第六缓冲区数组
   if (*(longlong *)(system_context + UI_BUFFER_SENARY_OFFSET) != 0) {
     if (0 < resource_context) {
       do {
-        ui_system_call_cleanup_routine(*(undefined8 *)(*(longlong *)(system_context + UI_BUFFER_SENARY_OFFSET) + loop_counter * 8));
-        *(undefined8 *)(*(longlong *)(system_context + UI_BUFFER_SENARY_OFFSET) + loop_counter * 8) = 0;
+        ui_system_call_cleanup_routine(*(uint64_t *)(*(longlong *)(system_context + UI_BUFFER_SENARY_OFFSET) + loop_counter * 8));
+        *(uint64_t *)(*(longlong *)(system_context + UI_BUFFER_SENARY_OFFSET) + loop_counter * 8) = 0;
         loop_counter = loop_counter + 1;
       } while (loop_counter < resource_context);
     }
-    ui_system_call_cleanup_routine(*(undefined8 *)(system_context + UI_BUFFER_SENARY_OFFSET));
-    *(undefined8 *)(system_context + UI_BUFFER_SENARY_OFFSET) = 0;
+    ui_system_call_cleanup_routine(*(uint64_t *)(system_context + UI_BUFFER_SENARY_OFFSET));
+    *(uint64_t *)(system_context + UI_BUFFER_SENARY_OFFSET) = 0;
   }
   
   return;
@@ -973,7 +973,7 @@ void ui_system_empty_function_2(void)
  * - 信号量控制
  * - 批量资源处理
  */
-void ui_system_process_resource_batch(longlong system_context, undefined8 process_parameters)
+void ui_system_process_resource_batch(longlong system_context, uint64_t process_parameters)
 
 {
   uint semaphore_index;
@@ -982,20 +982,20 @@ void ui_system_process_resource_batch(longlong system_context, undefined8 proces
   if (*(int *)(system_context + 0x2be0) == 0) {
     // 初始化批处理参数
     FUN_18069def0(*(int **)(system_context + 0x12a0));
-    FUN_180670510(system_context, process_parameters, *(undefined8 *)(system_context + 0x43e0),
-                  *(undefined4 *)(system_context + UI_CONTROL_COUNT_OFFSET));
+    FUN_180670510(system_context, process_parameters, *(uint64_t *)(system_context + 0x43e0),
+                  *(int32_t *)(system_context + UI_CONTROL_COUNT_OFFSET));
     
     // 释放所有信号量
     if (*(int *)(system_context + UI_CONTROL_COUNT_OFFSET) != 0) {
       do {
-        ReleaseSemaphore(*(undefined8 *)(*(longlong *)(system_context + UI_CONTROL_POOL_OFFSET) + (ulonglong)semaphore_index * 8), 1);
+        ReleaseSemaphore(*(uint64_t *)(*(longlong *)(system_context + UI_CONTROL_POOL_OFFSET) + (ulonglong)semaphore_index * 8), 1);
         semaphore_index = semaphore_index + 1;
       } while (semaphore_index < *(uint *)(system_context + UI_CONTROL_COUNT_OFFSET));
     }
     
     // 执行资源处理并等待完成
     FUN_18066f810(system_context, process_parameters, 0);
-    WaitForSingleObject(*(undefined8 *)(system_context + UI_CONTROL_HANDLE_OFFSET), 0xffffffff);
+    WaitForSingleObject(*(uint64_t *)(system_context + UI_CONTROL_HANDLE_OFFSET), 0xffffffff);
     return;
   }
   
@@ -1037,12 +1037,12 @@ void ui_system_process_resource_batch(longlong system_context, undefined8 proces
 int ui_system_calculate_resource_metrics(longlong system_context, longlong resource_data, 
                                         longlong buffer_info, short *position_x, short *position_y,
                                         int param_6, int param_7, int *result_count,
-                                        undefined8 *callback_functions, longlong *resource_table,
+                                        uint64_t *callback_functions, longlong *resource_table,
                                         short *texture_coords)
 
 {
   short texture_coord_x;
-  undefined4 buffer_param;
+  int32_t buffer_param;
   int resource_index;
   int buffer_size;
   short *position_ptr;
@@ -1084,7 +1084,7 @@ int ui_system_calculate_resource_metrics(longlong system_context, longlong resou
   
   // 计算缓冲区地址
   buffer_address = (longlong)*(int *)(resource_data + 0x50) + **(longlong **)(resource_data + 0x48);
-  buffer_param = *(undefined4 *)(resource_data + 0x54);
+  buffer_param = *(int32_t *)(resource_data + 0x54);
   resource_index = *(int *)(system_context + 0x1e70);
   resource_limit = *(longlong *)(system_context + 0x2398);
   lookup_table = *(longlong *)(system_context + 0x23a0);

@@ -87,7 +87,7 @@ void resize_buffer(longlong *buffer_info, ulonglong required_size)
  * @param allocation_flag 分配标志
  * @param capacity_info 容量信息
  */
-void expand_buffer_capacity(longlong current_size, ulonglong required_size, undefined8 allocation_flag, longlong *buffer_info)
+void expand_buffer_capacity(longlong current_size, ulonglong required_size, uint64_t allocation_flag, longlong *buffer_info)
 {
   longlong in_RAX;
   longlong new_buffer;
@@ -154,12 +154,12 @@ void reset_buffer_content(void)
 {
   longlong unaff_RBX;
   longlong unaff_RSI;
-  undefined8 unaff_RDI;
+  uint64_t unaff_RDI;
   
   if (unaff_RSI != 0) {
     memset();
   }
-  *(undefined8 *)(unaff_RBX + 8) = unaff_RDI;
+  *(uint64_t *)(unaff_RBX + 8) = unaff_RDI;
   return;
 }
 
@@ -170,7 +170,7 @@ void reset_buffer_content(void)
  * @param param3 参数3
  * @param new_position 新位置
  */
-void update_buffer_position(undefined8 buffer_handle, longlong offset, undefined8 param3, longlong new_position)
+void update_buffer_position(uint64_t buffer_handle, longlong offset, uint64_t param3, longlong new_position)
 {
   longlong unaff_RBX;
   
@@ -185,9 +185,9 @@ void update_buffer_position(undefined8 buffer_handle, longlong offset, undefined
  * @param param3 参数3
  * @param param4 参数4
  */
-void process_buffer_type1(longlong buffer_info, undefined8 param2, undefined8 param3, undefined8 param4)
+void process_buffer_type1(longlong buffer_info, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-  execute_buffer_operation(buffer_info, *(undefined8 *)(buffer_info + 0x10), param3, param4, 0xfffffffffffffffe);
+  execute_buffer_operation(buffer_info, *(uint64_t *)(buffer_info + 0x10), param3, param4, 0xfffffffffffffffe);
   return;
 }
 
@@ -218,9 +218,9 @@ void release_buffer_resources(longlong *buffer_info)
  * @param param3 参数3
  * @param param4 参数4
  */
-void process_buffer_type2(longlong buffer_info, undefined8 param2, undefined8 param3, undefined8 param4)
+void process_buffer_type2(longlong buffer_info, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-  execute_buffer_operation_type2(buffer_info, *(undefined8 *)(buffer_info + 0x10), param3, param4, 0xfffffffffffffffe);
+  execute_buffer_operation_type2(buffer_info, *(uint64_t *)(buffer_info + 0x10), param3, param4, 0xfffffffffffffffe);
   return;
 }
 
@@ -231,9 +231,9 @@ void process_buffer_type2(longlong buffer_info, undefined8 param2, undefined8 pa
  * @param param3 参数3
  * @param param4 参数4
  */
-void process_buffer_type3(longlong buffer_info, undefined8 param2, undefined8 param3, undefined8 param4)
+void process_buffer_type3(longlong buffer_info, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-  execute_buffer_operation_type3(buffer_info, *(undefined8 *)(buffer_info + 0x10), param3, param4, 0xfffffffffffffffe);
+  execute_buffer_operation_type3(buffer_info, *(uint64_t *)(buffer_info + 0x10), param3, param4, 0xfffffffffffffffe);
   return;
 }
 
@@ -245,7 +245,7 @@ void cleanup_pointer_array(longlong array_info)
 {
   int *piVar1;
   longlong item_ptr;
-  undefined8 *puVar3;
+  uint64_t *puVar3;
   longlong lVar4;
   ulonglong current_index;
   ulonglong array_size;
@@ -260,15 +260,15 @@ void cleanup_pointer_array(longlong array_info)
       if (item_ptr != 0) {
         release_memory(item_ptr);
       }
-      *(undefined8 *)(lVar4 + current_index * 8) = 0;
+      *(uint64_t *)(lVar4 + current_index * 8) = 0;
       current_index = current_index + 1;
     } while (current_index < array_size);
     array_size = *(ulonglong *)(array_info + 0x10);
   }
   
-  *(undefined8 *)(array_info + 0x18) = 0;
+  *(uint64_t *)(array_info + 0x18) = 0;
   
-  if ((1 < array_size) && (puVar3 = *(undefined8 **)(array_info + 8), puVar3 != (undefined8 *)0x0)) {
+  if ((1 < array_size) && (puVar3 = *(uint64_t **)(array_info + 8), puVar3 != (uint64_t *)0x0)) {
     release_array_memory(puVar3, array_size);
   }
   return;
@@ -282,7 +282,7 @@ void cleanup_pointer_array_variant1(longlong array_info)
 {
   int *piVar1;
   longlong item_ptr;
-  undefined8 *puVar3;
+  uint64_t *puVar3;
   longlong lVar4;
   ulonglong current_index;
   ulonglong array_size;
@@ -297,15 +297,15 @@ void cleanup_pointer_array_variant1(longlong array_info)
       if (item_ptr != 0) {
         release_memory(item_ptr);
       }
-      *(undefined8 *)(lVar4 + current_index * 8) = 0;
+      *(uint64_t *)(lVar4 + current_index * 8) = 0;
       current_index = current_index + 1;
     } while (current_index < array_size);
     array_size = *(ulonglong *)(array_info + 0x10);
   }
   
-  *(undefined8 *)(array_info + 0x18) = 0;
+  *(uint64_t *)(array_info + 0x18) = 0;
   
-  if ((1 < array_size) && (puVar3 = *(undefined8 **)(array_info + 8), puVar3 != (undefined8 *)0x0)) {
+  if ((1 < array_size) && (puVar3 = *(uint64_t **)(array_info + 8), puVar3 != (uint64_t *)0x0)) {
     release_array_memory(puVar3, array_size);
   }
   return;
@@ -318,28 +318,28 @@ void cleanup_pointer_array_variant1(longlong array_info)
 void cleanup_pointer_array_variant2(longlong array_info)
 {
   int *piVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   longlong lVar3;
   longlong unaff_RBP;
   ulonglong unaff_RSI;
   ulonglong unaff_RDI;
   ulonglong uVar4;
   longlong unaff_R14;
-  undefined8 unaff_R15;
+  uint64_t unaff_R15;
   
   do {
     lVar3 = *(longlong *)(unaff_R14 + unaff_RDI * 8);
     if (lVar3 != 0) {
       release_memory(lVar3);
     }
-    *(undefined8 *)(unaff_R14 + unaff_RDI * 8) = unaff_R15;
+    *(uint64_t *)(unaff_R14 + unaff_RDI * 8) = unaff_R15;
     unaff_RDI = unaff_RDI + 1;
   } while (unaff_RDI < unaff_RSI);
   
-  *(undefined8 *)(unaff_RBP + 0x18) = unaff_R15;
+  *(uint64_t *)(unaff_RBP + 0x18) = unaff_R15;
   
   if ((1 < *(ulonglong *)(unaff_RBP + 0x10)) &&
-     (puVar2 = *(undefined8 **)(unaff_RBP + 8), puVar2 != (undefined8 *)0x0)) {
+     (puVar2 = *(uint64_t **)(unaff_RBP + 8), puVar2 != (uint64_t *)0x0)) {
     release_array_memory(puVar2, *(ulonglong *)(unaff_RBP + 0x10));
   }
   return;
@@ -352,16 +352,16 @@ void cleanup_pointer_array_variant2(longlong array_info)
 void cleanup_pointer_array_variant3(longlong array_info)
 {
   int *piVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   longlong lVar3;
   longlong unaff_RBP;
   ulonglong unaff_RSI;
   ulonglong uVar4;
-  undefined8 unaff_R15;
+  uint64_t unaff_R15;
   
-  *(undefined8 *)(unaff_RBP + 0x18) = unaff_R15;
+  *(uint64_t *)(unaff_RBP + 0x18) = unaff_R15;
   
-  if ((1 < unaff_RSI) && (puVar2 = *(undefined8 **)(unaff_RBP + 8), puVar2 != (undefined8 *)0x0)) {
+  if ((1 < unaff_RSI) && (puVar2 = *(uint64_t **)(unaff_RBP + 8), puVar2 != (uint64_t *)0x0)) {
     release_array_memory(puVar2, unaff_RSI);
   }
   return;
@@ -374,13 +374,13 @@ void cleanup_pointer_array_variant3(longlong array_info)
 void cleanup_pointer_array_variant4(longlong array_info)
 {
   int *piVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   longlong lVar3;
   longlong unaff_RBP;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(unaff_RBP + 8);
-  if (puVar2 == (undefined8 *)0x0) {
+  puVar2 = *(uint64_t **)(unaff_RBP + 8);
+  if (puVar2 == (uint64_t *)0x0) {
     return;
   }
   
@@ -398,9 +398,9 @@ void cleanup_pointer_array_variant4(longlong array_info)
  * @param param3 参数3
  * @param param4 参数4
  */
-void process_buffer_type4(longlong buffer_info, undefined8 param2, undefined8 param3, undefined8 param4)
+void process_buffer_type4(longlong buffer_info, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-  execute_buffer_operation_type4(buffer_info, *(undefined8 *)(buffer_info + 0x10), param3, param4, 0xfffffffffffffffe);
+  execute_buffer_operation_type4(buffer_info, *(uint64_t *)(buffer_info + 0x10), param3, param4, 0xfffffffffffffffe);
   return;
 }
 
@@ -411,16 +411,16 @@ void process_buffer_type4(longlong buffer_info, undefined8 param2, undefined8 pa
  * @param param3 参数3
  * @param param4 参数4
  */
-void iterate_and_process_buffer_items(longlong *buffer_info, undefined8 param2, undefined8 param3, undefined8 param4)
+void iterate_and_process_buffer_items(longlong *buffer_info, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-  undefined8 *current_item;
-  undefined8 *end_item;
-  undefined8 operation_flag;
+  uint64_t *current_item;
+  uint64_t *end_item;
+  uint64_t operation_flag;
   
   operation_flag = 0xfffffffffffffffe;
-  end_item = (undefined8 *)buffer_info[1];
+  end_item = (uint64_t *)buffer_info[1];
   
-  for (current_item = (undefined8 *)*buffer_info; current_item != end_item; current_item = current_item + 0x69) {
+  for (current_item = (uint64_t *)*buffer_info; current_item != end_item; current_item = current_item + 0x69) {
     (**(code **)*current_item)(current_item, 0, param3, param4, operation_flag);
   }
   
@@ -454,13 +454,13 @@ void cleanup_object_array(longlong array_info)
         }
         release_memory(item_ptr);
       }
-      *(undefined8 *)(lVar2 + current_index * 8) = 0;
+      *(uint64_t *)(lVar2 + current_index * 8) = 0;
       current_index = current_index + 1;
     } while (current_index < array_size);
     array_size = *(ulonglong *)(array_info + 0x10);
   }
   
-  *(undefined8 *)(array_info + 0x18) = 0;
+  *(uint64_t *)(array_info + 0x18) = 0;
   
   if ((1 < array_size) && (*(longlong *)(array_info + 8) != 0)) {
     release_memory();
@@ -496,7 +496,7 @@ void cleanup_resource_array(longlong array_info)
 {
   int *piVar1;
   longlong item_ptr;
-  undefined8 *puVar3;
+  uint64_t *puVar3;
   longlong lVar4;
   ulonglong current_index;
   ulonglong array_size;
@@ -511,15 +511,15 @@ void cleanup_resource_array(longlong array_info)
       if (item_ptr != 0) {
         release_memory(item_ptr);
       }
-      *(undefined8 *)(lVar4 + current_index * 8) = 0;
+      *(uint64_t *)(lVar4 + current_index * 8) = 0;
       current_index = current_index + 1;
     } while (current_index < array_size);
     array_size = *(ulonglong *)(array_info + 0x10);
   }
   
-  *(undefined8 *)(array_info + 0x18) = 0;
+  *(uint64_t *)(array_info + 0x18) = 0;
   
-  if ((1 < array_size) && (puVar3 = *(undefined8 **)(array_info + 8), puVar3 != (undefined8 *)0x0)) {
+  if ((1 < array_size) && (puVar3 = *(uint64_t **)(array_info + 8), puVar3 != (uint64_t *)0x0)) {
     release_array_memory(puVar3, array_size);
   }
   return;
@@ -533,7 +533,7 @@ void cleanup_resource_array_variant1(longlong array_info)
 {
   int *piVar1;
   longlong item_ptr;
-  undefined8 *puVar3;
+  uint64_t *puVar3;
   longlong lVar4;
   ulonglong current_index;
   ulonglong array_size;
@@ -548,15 +548,15 @@ void cleanup_resource_array_variant1(longlong array_info)
       if (item_ptr != 0) {
         release_memory(item_ptr);
       }
-      *(undefined8 *)(lVar4 + current_index * 8) = 0;
+      *(uint64_t *)(lVar4 + current_index * 8) = 0;
       current_index = current_index + 1;
     } while (current_index < array_size);
     array_size = *(ulonglong *)(array_info + 0x10);
   }
   
-  *(undefined8 *)(array_info + 0x18) = 0;
+  *(uint64_t *)(array_info + 0x18) = 0;
   
-  if ((1 < array_size) && (puVar3 = *(undefined8 **)(array_info + 8), puVar3 != (undefined8 *)0x0)) {
+  if ((1 < array_size) && (puVar3 = *(uint64_t **)(array_info + 8), puVar3 != (uint64_t *)0x0)) {
     release_array_memory(puVar3, array_size);
   }
   return;
@@ -569,28 +569,28 @@ void cleanup_resource_array_variant1(longlong array_info)
 void cleanup_resource_array_variant2(longlong array_info)
 {
   int *piVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   longlong lVar3;
   longlong unaff_RBP;
   ulonglong unaff_RSI;
   ulonglong unaff_RDI;
   ulonglong uVar4;
   longlong unaff_R14;
-  undefined8 unaff_R15;
+  uint64_t unaff_R15;
   
   do {
     lVar3 = *(longlong *)(unaff_R14 + unaff_RDI * 8);
     if (lVar3 != 0) {
       release_memory(lVar3);
     }
-    *(undefined8 *)(unaff_R14 + unaff_RDI * 8) = unaff_R15;
+    *(uint64_t *)(unaff_R14 + unaff_RDI * 8) = unaff_R15;
     unaff_RDI = unaff_RDI + 1;
   } while (unaff_RDI < unaff_RSI);
   
-  *(undefined8 *)(unaff_RBP + 0x18) = unaff_R15;
+  *(uint64_t *)(unaff_RBP + 0x18) = unaff_R15;
   
   if ((1 < *(ulonglong *)(unaff_RBP + 0x10)) &&
-     (puVar2 = *(undefined8 **)(unaff_RBP + 8), puVar2 != (undefined8 *)0x0)) {
+     (puVar2 = *(uint64_t **)(unaff_RBP + 8), puVar2 != (uint64_t *)0x0)) {
     release_array_memory(puVar2, *(ulonglong *)(unaff_RBP + 0x10));
   }
   return;
@@ -603,16 +603,16 @@ void cleanup_resource_array_variant2(longlong array_info)
 void cleanup_resource_array_variant3(longlong array_info)
 {
   int *piVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   longlong lVar3;
   longlong unaff_RBP;
   ulonglong unaff_RSI;
   ulonglong uVar4;
-  undefined8 unaff_R15;
+  uint64_t unaff_R15;
   
-  *(undefined8 *)(unaff_RBP + 0x18) = unaff_R15;
+  *(uint64_t *)(unaff_RBP + 0x18) = unaff_R15;
   
-  if ((1 < unaff_RSI) && (puVar2 = *(undefined8 **)(unaff_RBP + 8), puVar2 != (undefined8 *)0x0)) {
+  if ((1 < unaff_RSI) && (puVar2 = *(uint64_t **)(unaff_RBP + 8), puVar2 != (uint64_t *)0x0)) {
     release_array_memory(puVar2, unaff_RSI);
   }
   return;
@@ -625,13 +625,13 @@ void cleanup_resource_array_variant3(longlong array_info)
 void cleanup_resource_array_variant4(longlong array_info)
 {
   int *piVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   longlong lVar3;
   longlong unaff_RBP;
   ulonglong uVar4;
   
-  puVar2 = *(undefined8 **)(unaff_RBP + 8);
-  if (puVar2 == (undefined8 *)0x0) {
+  puVar2 = *(uint64_t **)(unaff_RBP + 8);
+  if (puVar2 == (uint64_t *)0x0) {
     return;
   }
   
@@ -649,9 +649,9 @@ void cleanup_resource_array_variant4(longlong array_info)
  * @param param3 参数3
  * @param param4 参数4
  */
-void process_buffer_type5(longlong buffer_info, undefined8 param2, undefined8 param3, undefined8 param4)
+void process_buffer_type5(longlong buffer_info, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-  execute_buffer_operation_type5(buffer_info, *(undefined8 *)(buffer_info + 0x10), param3, param4, 0xfffffffffffffffe);
+  execute_buffer_operation_type5(buffer_info, *(uint64_t *)(buffer_info + 0x10), param3, param4, 0xfffffffffffffffe);
   return;
 }
 
@@ -662,16 +662,16 @@ void process_buffer_type5(longlong buffer_info, undefined8 param2, undefined8 pa
  * @param param3 参数3
  * @param param4 参数4
  */
-void iterate_and_process_objects(longlong *array_info, undefined8 param2, undefined8 param3, undefined8 param4)
+void iterate_and_process_objects(longlong *array_info, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-  undefined8 *current_item;
-  undefined8 *end_item;
-  undefined8 operation_flag;
+  uint64_t *current_item;
+  uint64_t *end_item;
+  uint64_t operation_flag;
   
   operation_flag = 0xfffffffffffffffe;
-  end_item = (undefined8 *)array_info[1];
+  end_item = (uint64_t *)array_info[1];
   
-  for (current_item = (undefined8 *)*array_info; current_item != end_item; current_item = current_item + 1) {
+  for (current_item = (uint64_t *)*array_info; current_item != end_item; current_item = current_item + 1) {
     if ((longlong *)*current_item != (longlong *)0x0) {
       (**(code **)(*(longlong *)*current_item + 0x38))();
     }
@@ -690,12 +690,12 @@ void iterate_and_process_objects(longlong *array_info, undefined8 param2, undefi
 void cleanup_system_resources(longlong *system_info)
 {
   int *piVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   longlong lVar3;
   ulonglong uVar4;
   
   puVar2 = system_data_pointer;
-  if (system_data_pointer == (undefined8 *)0x0) {
+  if (system_data_pointer == (uint64_t *)0x0) {
     return;
   }
   
@@ -740,16 +740,16 @@ void cleanup_system_resources(longlong *system_info)
  * @param delimiters 分隔符字符串
  * @param process_flag 处理标志
  */
-void split_and_process_string(longlong string_info, longlong delimiter_info, undefined8 delimiters, undefined8 process_flag)
+void split_and_process_string(longlong string_info, longlong delimiter_info, uint64_t delimiters, uint64_t process_flag)
 {
   char current_char;
   longlong found_position;
   char *string_start;
   char *current_position;
-  undefined8 operation_flag;
-  undefined *puStack_50;
+  uint64_t operation_flag;
+  void *puStack_50;
   longlong lStack_48;
-  undefined4 uStack_40;
+  int32_t uStack_40;
   ulonglong uStack_38;
   
   operation_flag = 0xfffffffffffffffe;
@@ -819,7 +819,7 @@ void split_and_process_string(longlong string_info, longlong delimiter_info, und
  * @param result_info 结果信息
  * @param comparison_flag 比较标志
  */
-longlong * create_and_compare_string(longlong source_info, longlong *result_info, undefined8 comparison_flag)
+longlong * create_and_compare_string(longlong source_info, longlong *result_info, uint64_t comparison_flag)
 {
   byte current_byte;
   uint comparison_byte;
@@ -827,17 +827,17 @@ longlong * create_and_compare_string(longlong source_info, longlong *result_info
   longlong existing_string;
   byte *source_ptr;
   longlong length_difference;
-  undefined8 comparison_result;
+  uint64_t comparison_result;
   char temp_buffer [8];
   
-  new_string = allocate_string_memory(_DAT_180c8ed18, 0x40, *(undefined1 *)(source_info + 0x28));
+  new_string = allocate_string_memory(_DAT_180c8ed18, 0x40, *(int8_t *)(source_info + 0x28));
   initialize_string_memory(new_string + 0x20, comparison_flag);
   existing_string = find_existing_string(source_info, temp_buffer, new_string + 0x20);
   
   if (temp_buffer[0] == '\0') {
     initialize_string_comparator();
     *result_info = existing_string;
-    *(undefined1 *)(result_info + 1) = 0;
+    *(int8_t *)(result_info + 1) = 0;
     return result_info;
   }
   
@@ -872,9 +872,9 @@ comparison_complete:
  * 释放字符串资源
  * @param string_ptr 字符串指针
  */
-void release_string_resources(undefined8 *string_ptr)
+void release_string_resources(uint64_t *string_ptr)
 {
-  if (string_ptr == (undefined8 *)0x0) {
+  if (string_ptr == (uint64_t *)0x0) {
     return;
   }
   
@@ -889,7 +889,7 @@ void release_string_resources(undefined8 *string_ptr)
   }
   
   string_ptr[5] = 0;
-  *(undefined4 *)(string_ptr + 7) = 0;
+  *(int32_t *)(string_ptr + 7) = 0;
   string_ptr[4] = &string_buffer_marker;
   *string_ptr = &empty_string_marker;
   
@@ -898,7 +898,7 @@ void release_string_resources(undefined8 *string_ptr)
   }
   
   string_ptr[1] = 0;
-  *(undefined4 *)(string_ptr + 3) = 0;
+  *(int32_t *)(string_ptr + 3) = 0;
   *string_ptr = &string_buffer_marker;
   release_memory(string_ptr);
 }
@@ -910,7 +910,7 @@ void release_string_resources(undefined8 *string_ptr)
  * @param param3 参数3
  * @param param4 参数4
  */
-undefined8 * initialize_string_processing(undefined8 *string_ptr, uint length, undefined8 param3, undefined8 param4)
+uint64_t * initialize_string_processing(uint64_t *string_ptr, uint length, uint64_t param3, uint64_t param4)
 {
   *string_ptr = &string_start_marker;
   process_string_segment(_DAT_180c82868, string_ptr[0x28], param3, param4, 0xfffffffffffffffe);
@@ -922,7 +922,7 @@ undefined8 * initialize_string_processing(undefined8 *string_ptr, uint length, u
   }
   
   string_ptr[0x2a] = 0;
-  *(undefined4 *)(string_ptr + 0x2c) = 0;
+  *(int32_t *)(string_ptr + 0x2c) = 0;
   string_ptr[0x29] = &string_buffer_marker;
   
   initialize_string_tables();
@@ -941,11 +941,11 @@ undefined8 * initialize_string_processing(undefined8 *string_ptr, uint length, u
  * @param param3 参数3
  * @param param4 参数4
  */
-void process_complex_buffer_operation(longlong *buffer_info, undefined8 param2, undefined8 param3, undefined8 param4)
+void process_complex_buffer_operation(longlong *buffer_info, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-  undefined8 *current_item;
-  undefined8 *end_item;
-  undefined8 operation_flag;
+  uint64_t *current_item;
+  uint64_t *end_item;
+  uint64_t operation_flag;
   
   operation_flag = 0xfffffffffffffffe;
   initialize_buffer_operations();
@@ -958,7 +958,7 @@ void process_complex_buffer_operation(longlong *buffer_info, undefined8 param2, 
   }
   
   buffer_info[0x124] = 0;
-  *(undefined4 *)(buffer_info + 0x126) = 0;
+  *(int32_t *)(buffer_info + 0x126) = 0;
   buffer_info[0x123] = (longlong)&string_buffer_marker;
   
   execute_buffer_operation_type3(buffer_info + 0x11d, buffer_info[0x11f], param3, param4, operation_flag);
@@ -971,8 +971,8 @@ void process_complex_buffer_operation(longlong *buffer_info, undefined8 param2, 
     buffer_info[4] = (longlong)&string_buffer_marker;
     operation_flag = 0xfffffffffffffffe;
     
-    current_item = (undefined8 *)buffer_info[1];
-    end_item = (undefined8 *)*buffer_info;
+    current_item = (uint64_t *)buffer_info[1];
+    end_item = (uint64_t *)*buffer_info;
     
     for (; end_item != current_item; end_item = end_item + 4) {
       (**(code **)*end_item)(end_item, 0, param3, param4, operation_flag);
@@ -993,9 +993,9 @@ void process_complex_buffer_operation(longlong *buffer_info, undefined8 param2, 
  * @param param3 参数3
  * @param param4 参数4
  */
-void process_buffer_type6(longlong buffer_info, undefined8 param2, undefined8 param3, undefined8 param4)
+void process_buffer_type6(longlong buffer_info, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-  execute_buffer_operation(buffer_info, *(undefined8 *)(buffer_info + 0x10), param3, param4, 0xfffffffffffffffe);
+  execute_buffer_operation(buffer_info, *(uint64_t *)(buffer_info + 0x10), param3, param4, 0xfffffffffffffffe);
   return;
 }
 
@@ -1006,12 +1006,12 @@ void process_buffer_type6(longlong buffer_info, undefined8 param2, undefined8 pa
  * @param param3 参数3
  * @param param4 参数4
  */
-void process_buffer_with_cleanup(longlong buffer_info, undefined8 param2, undefined8 param3, undefined8 param4)
+void process_buffer_with_cleanup(longlong buffer_info, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-  undefined8 *sub_buffer;
+  uint64_t *sub_buffer;
   
-  sub_buffer = *(undefined8 **)(buffer_info + 0x10);
-  if (sub_buffer != (undefined8 *)0x0) {
+  sub_buffer = *(uint64_t **)(buffer_info + 0x10);
+  if (sub_buffer != (uint64_t *)0x0) {
     execute_buffer_operation_with_cleanup(buffer_info, *sub_buffer, param3, param4, 0xfffffffffffffffe);
     cleanup_sub_buffer(sub_buffer);
     release_memory(sub_buffer);
@@ -1026,9 +1026,9 @@ void process_buffer_with_cleanup(longlong buffer_info, undefined8 param2, undefi
  * @param param3 参数3
  * @param param4 参数4
  */
-void process_buffer_type7(longlong buffer_info, undefined8 param2, undefined8 param3, undefined8 param4)
+void process_buffer_type7(longlong buffer_info, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-  execute_buffer_operation(buffer_info, *(undefined8 *)(buffer_info + 0x10), param3, param4, 0xfffffffffffffffe);
+  execute_buffer_operation(buffer_info, *(uint64_t *)(buffer_info + 0x10), param3, param4, 0xfffffffffffffffe);
   return;
 }
 
@@ -1039,12 +1039,12 @@ void process_buffer_type7(longlong buffer_info, undefined8 param2, undefined8 pa
  * @param param3 参数3
  * @param param4 参数4
  */
-void process_buffer_with_cleanup_variant1(longlong buffer_info, undefined8 param2, undefined8 param3, undefined8 param4)
+void process_buffer_with_cleanup_variant1(longlong buffer_info, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-  undefined8 *sub_buffer;
+  uint64_t *sub_buffer;
   
-  sub_buffer = *(undefined8 **)(buffer_info + 0x10);
-  if (sub_buffer != (undefined8 *)0x0) {
+  sub_buffer = *(uint64_t **)(buffer_info + 0x10);
+  if (sub_buffer != (uint64_t *)0x0) {
     execute_buffer_operation_with_cleanup(buffer_info, *sub_buffer, param3, param4, 0xfffffffffffffffe);
     cleanup_sub_buffer(sub_buffer);
     release_memory(sub_buffer);

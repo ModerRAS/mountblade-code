@@ -57,18 +57,18 @@
 // 全局变量引用
 // ============================================================================
 
-extern undefined8 _DAT_180bf00a8;     // 安全检查常量
-extern undefined8 UNK_18097c258;      // 未知数据引用258
-extern undefined8 UNK_18097c268;      // 未知数据引用268
-extern undefined8 UNK_18097c278;      // 未知数据引用278
-extern undefined8 UNK_18097c288;      // 未知数据引用288
-extern undefined8 UNK_18097c294;      // 未知数据引用294
-extern undefined8 UNK_18097c29c;      // 未知数据引用29c
-extern undefined8 UNK_18097c2a8;      // 未知数据引用2a8
-extern undefined8 UNK_18097c2b8;      // 未知数据引用2b8
-extern undefined8 UNK_18097c2c8;      // 未知数据引用2c8
-extern undefined8 UNK_18097c2d8;      // 未知数据引用2d8
-extern undefined8 DAT_180a064c8;      // 数据引用64c8
+extern uint64_t _DAT_180bf00a8;     // 安全检查常量
+extern uint64_t UNK_18097c258;      // 未知数据引用258
+extern uint64_t UNK_18097c268;      // 未知数据引用268
+extern uint64_t UNK_18097c278;      // 未知数据引用278
+extern uint64_t UNK_18097c288;      // 未知数据引用288
+extern uint64_t UNK_18097c294;      // 未知数据引用294
+extern uint64_t UNK_18097c29c;      // 未知数据引用29c
+extern uint64_t UNK_18097c2a8;      // 未知数据引用2a8
+extern uint64_t UNK_18097c2b8;      // 未知数据引用2b8
+extern uint64_t UNK_18097c2c8;      // 未知数据引用2c8
+extern uint64_t UNK_18097c2d8;      // 未知数据引用2d8
+extern uint64_t DAT_180a064c8;      // 数据引用64c8
 
 // ============================================================================
 // 核心功能实现
@@ -106,9 +106,9 @@ extern undefined8 DAT_180a064c8;      // 数据引用64c8
  * - 0xFF: 扩展数据流控制
  * - 0x00-0xEF: 普通数据处理
  */
-void FUN_1807bb100(longlong *param_1, char param_2, undefined1 param_3)
+void FUN_1807bb100(longlong *param_1, char param_2, int8_t param_3)
 {
-    undefined1 uVar1;
+    int8_t uVar1;
     char cVar2;
     longlong lVar3;
     longlong lVar4;
@@ -120,15 +120,15 @@ void FUN_1807bb100(longlong *param_1, char param_2, undefined1 param_3)
     uint uVar11;
     int iVar12;
     float fVar13;
-    undefined1 auStack_188[32];
-    undefined4 uStack_168;
-    undefined4 uStack_160;
-    undefined1 uStack_158;
+    int8_t auStack_188[32];
+    int32_t uStack_168;
+    int32_t uStack_160;
+    int8_t uStack_158;
     byte bStack_148;
     byte bStack_147;
     byte bStack_146;
     int iStack_144;
-    undefined1 auStack_138[256];
+    int8_t auStack_138[256];
     ulonglong uStack_38;
     ulonglong uVar9;
     
@@ -164,14 +164,14 @@ void FUN_1807bb100(longlong *param_1, char param_2, undefined1 param_3)
                     
                     // 更新数据流状态
                     lVar4 = *param_1;
-                    *(undefined1 *)((longlong)param_1 + 0x1c) = 0;
+                    *(int8_t *)((longlong)param_1 + 0x1c) = 0;
                     fVar13 = (float)uVar11 + *(float *)(param_1 + 4);
                     *(float *)(param_1 + 4) = fVar13;
                     goto LAB_1807bb1ea;
                 }
             LAB_1807bb1c0:
                 // 设置错误状态
-                *(undefined1 *)((longlong)param_1 + 0x24) = 1;
+                *(int8_t *)((longlong)param_1 + 0x24) = 1;
             }
             else {
             LAB_1807bb1ea:
@@ -179,7 +179,7 @@ void FUN_1807bb100(longlong *param_1, char param_2, undefined1 param_3)
                 if (fVar13 < *(float *)(lVar4 + 0x3bec) || fVar13 == *(float *)(lVar4 + 0x3bec)) {
                     uVar7 = *(uint *)(param_1 + 2);
                     uVar11 = *(uint *)((longlong)param_1 + 0x14);
-                    *(undefined1 *)((longlong)param_1 + 0x1c) = 0;
+                    *(int8_t *)((longlong)param_1 + 0x1c) = 0;
                     
                     if (uVar11 <= uVar7) goto LAB_1807bb1c0;
                     lVar3 = param_1[1];
@@ -219,11 +219,11 @@ void FUN_1807bb100(longlong *param_1, char param_2, undefined1 param_3)
                                 }
                                 uVar9 = (ulonglong)uVar7;
                             } while (uVar7 < uVar11);
-                            *(undefined1 *)((longlong)param_1 + 0x24) = 1;
+                            *(int8_t *)((longlong)param_1 + 0x24) = 1;
                         }
                         else {
                         LAB_1807bb47c:
-                            *(undefined1 *)((longlong)param_1 + 0x24) = 1;
+                            *(int8_t *)((longlong)param_1 + 0x24) = 1;
                         }
                     }
                     else if (bVar6 == 0xf7) {
@@ -239,12 +239,12 @@ void FUN_1807bb100(longlong *param_1, char param_2, undefined1 param_3)
                             if (-1 < cVar2) goto LAB_1807bb778;
                             uVar9 = (ulonglong)uVar7;
                         } while (uVar7 < uVar11);
-                        *(undefined1 *)((longlong)param_1 + 0x24) = 1;
+                        *(int8_t *)((longlong)param_1 + 0x24) = 1;
                     }
                     else if (bVar6 == 0xff) {
                         // 处理FF控制字节（扩展数据处理）
                         if (uVar8 < uVar11) {
-                            uVar1 = *(undefined1 *)(uVar9 + lVar3);
+                            uVar1 = *(int8_t *)(uVar9 + lVar3);
                             cVar10 = '\0';
                             uVar7 = uVar7 + 2;
                             uVar9 = (ulonglong)uVar7;
@@ -323,12 +323,12 @@ void FUN_1807bb100(longlong *param_1, char param_2, undefined1 param_3)
                                     case 0x21:
                                         if (uVar8 != 0) {
                                             if (uVar7 < uVar11) {
-                                                *(undefined1 *)((longlong)param_1 + 0x25) = *(undefined1 *)(uVar9 + lVar3);
+                                                *(int8_t *)((longlong)param_1 + 0x25) = *(int8_t *)(uVar9 + lVar3);
                                             code_r0x0001807bb4a3:
                                                 *(int *)(param_1 + 2) = iVar12 + 2;
                                             }
                                             else {
-                                                *(undefined1 *)((longlong)param_1 + 0x24) = 1;
+                                                *(int8_t *)((longlong)param_1 + 0x24) = 1;
                                             }
                                         }
                                         break;
@@ -345,43 +345,43 @@ void FUN_1807bb100(longlong *param_1, char param_2, undefined1 param_3)
                                     case 0x54:
                                         // 四字节数据处理
                                         if (uVar11 <= uVar7) goto LAB_1807bb47c;
-                                        *(undefined1 *)(*param_1 + 0x3bd4) = *(undefined1 *)(uVar9 + lVar3);
+                                        *(int8_t *)(*param_1 + 0x3bd4) = *(int8_t *)(uVar9 + lVar3);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
                                         if (*(uint *)((longlong)param_1 + 0x14) <= *(uint *)(param_1 + 2)) goto LAB_1807bb47c;
-                                        *(undefined1 *)(*param_1 + 0x3bd5) = *(undefined1 *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
+                                        *(int8_t *)(*param_1 + 0x3bd5) = *(int8_t *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
                                         if (*(uint *)((longlong)param_1 + 0x14) <= *(uint *)(param_1 + 2)) goto LAB_1807bb47c;
-                                        *(undefined1 *)(*param_1 + 0x3bd6) = *(undefined1 *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
+                                        *(int8_t *)(*param_1 + 0x3bd6) = *(int8_t *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
                                         if (*(uint *)((longlong)param_1 + 0x14) <= *(uint *)(param_1 + 2)) goto LAB_1807bb47c;
-                                        *(undefined1 *)(*param_1 + 0x3bd7) = *(undefined1 *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
+                                        *(int8_t *)(*param_1 + 0x3bd7) = *(int8_t *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
                                         if (*(uint *)((longlong)param_1 + 0x14) <= *(uint *)(param_1 + 2)) goto LAB_1807bb47c;
-                                        *(undefined1 *)(*param_1 + 0x3bd8) = *(undefined1 *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
+                                        *(int8_t *)(*param_1 + 0x3bd8) = *(int8_t *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
                                         break;
                                     case 0x58:
                                         // 三字节数据处理
                                         if (uVar11 <= uVar7) goto LAB_1807bb47c;
-                                        *(undefined1 *)(*param_1 + 0x3bd9) = *(undefined1 *)(uVar9 + lVar3);
+                                        *(int8_t *)(*param_1 + 0x3bd9) = *(int8_t *)(uVar9 + lVar3);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
                                         if (*(uint *)((longlong)param_1 + 0x14) <= *(uint *)(param_1 + 2)) goto LAB_1807bb47c;
-                                        *(undefined1 *)(*param_1 + 0x3bda) = *(undefined1 *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
+                                        *(int8_t *)(*param_1 + 0x3bda) = *(int8_t *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
                                         if (*(uint *)((longlong)param_1 + 0x14) <= *(uint *)(param_1 + 2)) goto LAB_1807bb47c;
-                                        *(undefined1 *)(*param_1 + 0x3bdb) = *(undefined1 *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
+                                        *(int8_t *)(*param_1 + 0x3bdb) = *(int8_t *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
                                         if (*(uint *)((longlong)param_1 + 0x14) <= *(uint *)(param_1 + 2)) goto LAB_1807bb47c;
-                                        *(undefined1 *)(*param_1 + 0x3bdc) = *(undefined1 *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
+                                        *(int8_t *)(*param_1 + 0x3bdc) = *(int8_t *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
                                         break;
                                     case 0x59:
                                         // 双字节数据处理
                                         if (uVar11 <= uVar7) goto LAB_1807bb47c;
-                                        *(undefined1 *)(*param_1 + 0x3bdd) = *(undefined1 *)(uVar9 + lVar3);
+                                        *(int8_t *)(*param_1 + 0x3bdd) = *(int8_t *)(uVar9 + lVar3);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
                                         if (*(uint *)((longlong)param_1 + 0x14) <= *(uint *)(param_1 + 2)) goto LAB_1807bb47c;
-                                        *(undefined1 *)(*param_1 + 0x3bde) = *(undefined1 *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
+                                        *(int8_t *)(*param_1 + 0x3bde) = *(int8_t *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
                                         break;
                                     case 0x7f:
@@ -392,11 +392,11 @@ void FUN_1807bb100(longlong *param_1, char param_2, undefined1 param_3)
                             }
                             goto LAB_1807bb47c;
                         }
-                        *(undefined1 *)((longlong)param_1 + 0x24) = 1;
+                        *(int8_t *)((longlong)param_1 + 0x24) = 1;
                     }
                     goto LAB_1807bb778;
                 }
-                *(undefined1 *)((longlong)param_1 + 0x1c) = 1;
+                *(int8_t *)((longlong)param_1 + 0x1c) = 1;
             }
         }
     }
@@ -407,7 +407,7 @@ code_r0x0001807bb29c:
     if (uVar11 <= uVar7) goto code_r0x0001807bb2a1;
     goto LAB_1807bb271;
 code_r0x0001807bb2a1:
-    *(undefined1 *)((longlong)param_1 + 0x24) = 1;
+    *(int8_t *)((longlong)param_1 + 0x24) = 1;
 LAB_1807bb778:
     *(byte *)((longlong)param_1 + 0x26) = bVar6;
     if (*(char *)((longlong)param_1 + 0x24) != '\0') goto LAB_1807bb79f;
@@ -433,7 +433,7 @@ LAB_1807bb778:
  * @param param_3 - 要复制的字节数
  * 
  * 返回值：
- * @return undefined8 - 操作状态码
+ * @return uint64_t - 操作状态码
  *         - 0x00: 操作成功
  *         - 0x10: 边界检查失败
  * 
@@ -450,7 +450,7 @@ LAB_1807bb778:
  * - 状态管理：设置适当的错误状态
  * - 内存安全：确保所有内存操作都在边界内
  */
-undefined8 FUN_1807bb8a0(longlong param_1, longlong param_2, int param_3)
+uint64_t FUN_1807bb8a0(longlong param_1, longlong param_2, int param_3)
 {
     uint uVar1;
     uint uVar2;
@@ -461,7 +461,7 @@ undefined8 FUN_1807bb8a0(longlong param_1, longlong param_2, int param_3)
     
     // 边界检查：验证是否有足够的空间
     if (uVar2 <= uVar1) {
-        *(undefined1 *)(param_1 + 0x24) = 1;  // 设置错误状态
+        *(int8_t *)(param_1 + 0x24) = 1;  // 设置错误状态
         return 0x10;  // 返回错误码
     }
     

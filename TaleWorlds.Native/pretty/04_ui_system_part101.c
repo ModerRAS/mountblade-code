@@ -17,11 +17,11 @@
 //------------------------------------------------------------------------------
 
 // UI系统句柄类型
-typedef undefined8 UIContextHandle;                // UI上下文句柄
-typedef undefined8 UIDataHandle;                    // UI数据句柄
-typedef undefined8 UIStateHandle;                   // UI状态句柄
-typedef undefined8 UIBufferHandle;                  // UI缓冲区句柄
-typedef undefined8 UIAlgorithmHandle;               // UI算法句柄
+typedef uint64_t UIContextHandle;                // UI上下文句柄
+typedef uint64_t UIDataHandle;                    // UI数据句柄
+typedef uint64_t UIStateHandle;                   // UI状态句柄
+typedef uint64_t UIBufferHandle;                  // UI缓冲区句柄
+typedef uint64_t UIAlgorithmHandle;               // UI算法句柄
 
 // UI系统状态常量
 #define UI_STATE_READY            0x00000001        // UI系统就绪状态
@@ -201,7 +201,7 @@ void FUN_180729270(longlong param_1, longlong param_2)
 {
     // 局部变量定义
     uint uVar1;                                  // 无符号整型变量
-    undefined2 uVar2;                            // 未定义2字节变量
+    int16_t uVar2;                            // 未定义2字节变量
     int iVar3;                                  // 整型变量
     longlong lVar4;                              // 长整型变量
     ulonglong uVar5;                             // 无符号长整型变量
@@ -238,8 +238,8 @@ void FUN_180729270(longlong param_1, longlong param_2)
                 // 更新最大值
                 if (iVar3 < iVar7) {
                     lVar4 = (longlong)((short)(*(short *)(param_1 + UI_OFFSET_DATA) - (short)iVar6) * 5 + -5);
-                    *(undefined8 *)(param_1 + UI_OFFSET_BUFFER) = *(undefined8 *)(param_2 + 0x60 + lVar4 * 2);
-                    *(undefined2 *)(param_1 + UI_OFFSET_BUFFER + 8) = *(undefined2 *)(param_2 + 0x68 + lVar4 * 2);
+                    *(uint64_t *)(param_1 + UI_OFFSET_BUFFER) = *(uint64_t *)(param_2 + 0x60 + lVar4 * 2);
+                    *(int16_t *)(param_1 + UI_OFFSET_BUFFER + 8) = *(int16_t *)(param_2 + 0x68 + lVar4 * 2);
                     *(int *)(param_1 + UI_OFFSET_RESULT) =
                          *(int *)(param_2 + -4 + (longlong)(int)(uVar1 - iVar6) * 4) << 8;
                     iVar3 = iVar7;
@@ -249,8 +249,8 @@ void FUN_180729270(longlong param_1, longlong param_2)
         }
         
         // 清空缓冲区
-        *(undefined8 *)(param_1 + UI_OFFSET_BUFFER) = 0;
-        *(undefined2 *)(param_1 + UI_OFFSET_BUFFER + 8) = 0;
+        *(uint64_t *)(param_1 + UI_OFFSET_BUFFER) = 0;
+        *(int16_t *)(param_1 + UI_OFFSET_BUFFER + 8) = 0;
         *(short *)(param_1 + UI_OFFSET_BUFFER + 4) = (short)iVar3;
         
         // 根据数值范围执行不同的缩放操作
@@ -264,7 +264,7 @@ void FUN_180729270(longlong param_1, longlong param_2)
             *(short *)(param_1 + UI_OFFSET_BUFFER + 2) = (short)(*(short *)(param_1 + UI_OFFSET_BUFFER + 2) * iVar3 >> UI_CONST_SHIFT_10);
             *(short *)(param_1 + UI_OFFSET_BUFFER + 4) = (short)(*(short *)(param_1 + UI_OFFSET_BUFFER + 4) * iVar3 >> UI_CONST_SHIFT_10);
             *(short *)(param_1 + UI_OFFSET_BUFFER + 6) = (short)(*(short *)(param_1 + UI_OFFSET_BUFFER + 6) * iVar3 >> UI_CONST_SHIFT_10);
-            uVar2 = (undefined2)(*(short *)(param_1 + UI_OFFSET_BUFFER + 8) * iVar3 >> UI_CONST_SHIFT_10);
+            uVar2 = (int16_t)(*(short *)(param_1 + UI_OFFSET_BUFFER + 8) * iVar3 >> UI_CONST_SHIFT_10);
         }
         else {
             if (iVar3 < UI_CONST_VALUE_0x3cce) {
@@ -280,18 +280,18 @@ void FUN_180729270(longlong param_1, longlong param_2)
             *(short *)(param_1 + UI_OFFSET_BUFFER + 2) = (short)(*(short *)(param_1 + UI_OFFSET_BUFFER + 2) * iVar3 >> UI_CONST_SHIFT_14);
             *(short *)(param_1 + UI_OFFSET_BUFFER + 4) = (short)(*(short *)(param_1 + UI_OFFSET_BUFFER + 4) * iVar3 >> UI_CONST_SHIFT_14);
             *(short *)(param_1 + UI_OFFSET_BUFFER + 6) = (short)(*(short *)(param_1 + UI_OFFSET_BUFFER + 6) * iVar3 >> UI_CONST_SHIFT_14);
-            uVar2 = (undefined2)(*(short *)(param_1 + UI_OFFSET_BUFFER + 8) * iVar3 >> UI_CONST_SHIFT_14);
+            uVar2 = (int16_t)(*(short *)(param_1 + UI_OFFSET_BUFFER + 8) * iVar3 >> UI_CONST_SHIFT_14);
         }
     }
     else {
         // 默认处理逻辑
         uVar2 = 0;
         *(int *)(param_1 + UI_OFFSET_RESULT) = *(short *)(param_1 + 0x90c) * UI_CONST_MULTIPLIER_0x1200;
-        *(undefined8 *)(param_1 + UI_OFFSET_BUFFER) = 0;
+        *(uint64_t *)(param_1 + UI_OFFSET_BUFFER) = 0;
     }
     
     // 设置最终结果
-    *(undefined2 *)(param_1 + UI_OFFSET_BUFFER + 8) = uVar2;
+    *(int16_t *)(param_1 + UI_OFFSET_BUFFER + 8) = uVar2;
     
 LAB_180729492:
     // 执行内存复制操作
@@ -341,11 +341,11 @@ LAB_180729492:
 //   简化实现：保持原有功能逻辑，添加详细的配置管理说明
 //   优化点：明确配置管理步骤，添加内存管理说明
 //------------------------------------------------------------------------------
-void FUN_1807294f0(longlong param_1, longlong param_2, undefined8 param_3, int param_4)
+void FUN_1807294f0(longlong param_1, longlong param_2, uint64_t param_3, int param_4)
 {
     // 局部变量定义
     longlong lVar1;                              // 长整型变量
-    undefined2 *puVar2;                          // 未定义2字节指针
+    int16_t *puVar2;                          // 未定义2字节指针
     ulonglong uVar3;                             // 无符号长整型变量
     int iVar4;                                  // 整型变量
     int iVar5;                                  // 整型变量
@@ -353,7 +353,7 @@ void FUN_1807294f0(longlong param_1, longlong param_2, undefined8 param_3, int p
     int iVar7;                                  // 整型变量
     int iVar8;                                  // 整型变量
     int *piVar9;                                // 整型指针
-    undefined1 auStack_68 [32];                  // 栈缓冲区 (32字节)
+    int8_t auStack_68 [32];                  // 栈缓冲区 (32字节)
     ulonglong uStack_48;                         // 安全检查值
     
     // 安全检查：栈保护机制
@@ -371,7 +371,7 @@ void FUN_1807294f0(longlong param_1, longlong param_2, undefined8 param_3, int p
         
         // 初始化数据结构
         if (0 < iVar5) {
-            puVar2 = (undefined2 *)(param_1 + 0xfec);
+            puVar2 = (int16_t *)(param_1 + 0xfec);
             do {
                 iVar4 = iVar4 + (int)(0x7fff / (longlong)(iVar5 + 1));
                 iVar7 = iVar7 + 1;
@@ -382,8 +382,8 @@ void FUN_1807294f0(longlong param_1, longlong param_2, undefined8 param_3, int p
         }
         
         // 设置默认配置值
-        *(undefined4 *)(param_1 + 0x104c) = 0;
-        *(undefined4 *)(param_1 + 0x1050) = 0x307880;
+        *(int32_t *)(param_1 + 0x104c) = 0;
+        *(int32_t *)(param_1 + 0x1050) = 0x307880;
         *(int *)(param_1 + 0x1054) = iVar8;
     }
     
@@ -491,8 +491,8 @@ void FUN_180729ba0(longlong param_1, longlong param_2, int param_3)
     char cVar3;                                 // 字符变量
     longlong lVar4;                             // 长整型变量
     ulonglong uVar5;                            // 无符号长整型变量
-    undefined1 auStack_a8 [32];                 // 栈缓冲区1 (32字节)
-    undefined4 uStack_88;                      // 栈变量
+    int8_t auStack_a8 [32];                 // 栈缓冲区1 (32字节)
+    int32_t uStack_88;                      // 栈变量
     short asStack_78 [16];                      // 栈数组1 (16个短整型)
     short asStack_58 [16];                      // 栈数组2 (16个短整型)
     ulonglong uStack_38;                        // 安全检查值
@@ -502,17 +502,17 @@ void FUN_180729ba0(longlong param_1, longlong param_2, int param_3)
     
     // 初始化变量
     lVar4 = 0;
-    uStack_88 = *(undefined4 *)(param_1 + 0x914);
+    uStack_88 = *(int32_t *)(param_1 + 0x914);
     
     // 执行数据处理操作
     FUN_1807249d0(param_2 + 0x10, param_1 + 0xac8, param_1 + 0x908, param_3 == 2);
-    FUN_180734390(asStack_78, param_1 + 0xad0, *(undefined8 *)(param_1 + 0xac0));
-    FUN_18072f4d0(param_2 + 0x40, asStack_78, *(undefined4 *)(param_1 + 0x924),
-                  *(undefined4 *)(param_1 + 0x1060));
+    FUN_180734390(asStack_78, param_1 + 0xad0, *(uint64_t *)(param_1 + 0xac0));
+    FUN_18072f4d0(param_2 + 0x40, asStack_78, *(int32_t *)(param_1 + 0x924),
+                  *(int32_t *)(param_1 + 0x1060));
     
     // 检查系统配置
     if (*(int *)(param_1 + 0x948) == 1) {
-        *(undefined1 *)(param_1 + 0xae7) = 4;
+        *(int8_t *)(param_1 + 0xae7) = 4;
         cVar3 = '\x04';
     }
     else {
@@ -541,7 +541,7 @@ void FUN_180729ba0(longlong param_1, longlong param_2, int param_3)
     }
     
     // 执行最终数据处理
-    FUN_18072f4d0(param_2 + 0x20, asStack_58, (longlong)(int)uVar2, *(undefined4 *)(param_1 + 0x1060));
+    FUN_18072f4d0(param_2 + 0x20, asStack_58, (longlong)(int)uVar2, *(int32_t *)(param_1 + 0x1060));
     
     // 执行内存复制操作
     memcpy(param_1 + 0x928, asStack_78, (longlong)*(int *)(param_1 + 0x924) * 2);
@@ -589,7 +589,7 @@ void FUN_180729ba0(longlong param_1, longlong param_2, int param_3)
 //   简化实现：保持原有功能逻辑，添加详细的算法说明
 //   优化点：明确算法步骤，添加计算精度说明
 //------------------------------------------------------------------------------
-void FUN_180729bbd(longlong param_1, undefined8 param_2, int param_3)
+void FUN_180729bbd(longlong param_1, uint64_t param_2, int param_3)
 {
     // 局部变量定义
     short sVar1;                                // 短整型变量
@@ -604,14 +604,14 @@ void FUN_180729bbd(longlong param_1, undefined8 param_2, int param_3)
     
     // 执行算法处理操作
     FUN_1807249d0(unaff_RSI + 0x10, param_1 + 0xac8, param_1 + 0x908, param_3 == 2,
-                  *(undefined4 *)(param_1 + 0x914));
-    FUN_180734390(&stack0x00000030, param_1 + 0xad0, *(undefined8 *)(param_1 + 0xac0));
-    FUN_18072f4d0(unaff_RSI + 0x40, &stack0x00000030, *(undefined4 *)(param_1 + 0x924),
-                  *(undefined4 *)(param_1 + 0x1060));
+                  *(int32_t *)(param_1 + 0x914));
+    FUN_180734390(&stack0x00000030, param_1 + 0xad0, *(uint64_t *)(param_1 + 0xac0));
+    FUN_18072f4d0(unaff_RSI + 0x40, &stack0x00000030, *(int32_t *)(param_1 + 0x924),
+                  *(int32_t *)(param_1 + 0x1060));
     
     // 检查系统配置
     if (*(int *)(param_1 + 0x948) == 1) {
-        *(undefined1 *)(param_1 + 0xae7) = 4;
+        *(int8_t *)(param_1 + 0xae7) = 4;
         cVar3 = '\x04';
     }
     else {
@@ -642,7 +642,7 @@ void FUN_180729bbd(longlong param_1, undefined8 param_2, int param_3)
     
     // 执行最终数据处理
     FUN_18072f4d0(unaff_RSI + 0x20, &stack0x00000050, (longlong)(int)uVar2,
-                  *(undefined4 *)(param_1 + 0x1060));
+                  *(int32_t *)(param_1 + 0x1060));
     
     // 执行内存复制操作
     memcpy(param_1 + 0x928, &stack0x00000030, (longlong)*(int *)(param_1 + 0x924) * 2);
@@ -690,7 +690,7 @@ void FUN_180729bbd(longlong param_1, undefined8 param_2, int param_3)
 //   简化实现：保持原有功能逻辑，添加详细的循环说明
 //   优化点：明确循环步骤，添加迭代控制说明
 //------------------------------------------------------------------------------
-void FUN_180729c5d(undefined8 param_1, undefined8 param_2, ulonglong param_3)
+void FUN_180729c5d(uint64_t param_1, uint64_t param_2, ulonglong param_3)
 {
     // 局部变量定义
     short sVar1;                                // 短整型变量
@@ -715,7 +715,7 @@ void FUN_180729c5d(undefined8 param_1, undefined8 param_2, ulonglong param_3)
     } while (uVar2 != 0);
     
     // 执行最终数据处理
-    FUN_18072f4d0(unaff_RSI + 0x20, &stack0x00000050, param_3, *(undefined4 *)(unaff_RBX + 0x1060));
+    FUN_18072f4d0(unaff_RSI + 0x20, &stack0x00000050, param_3, *(int32_t *)(unaff_RBX + 0x1060));
     
     // 执行内存复制操作
     memcpy(unaff_RBX + 0x928, &stack0x00000030, (longlong)*(int *)(unaff_RBX + 0x924) * 2);
@@ -763,14 +763,14 @@ void FUN_180729c5d(undefined8 param_1, undefined8 param_2, ulonglong param_3)
 //   简化实现：保持原有功能逻辑，添加详细的简化处理说明
 //   优化点：明确简化步骤，添加快速处理说明
 //------------------------------------------------------------------------------
-void FUN_180729cb8(undefined8 param_1, undefined8 param_2, undefined8 param_3)
+void FUN_180729cb8(uint64_t param_1, uint64_t param_2, uint64_t param_3)
 {
     // 局部变量定义
     longlong unaff_RBX;                         // 未使用寄存器变量
     longlong unaff_RSI;                         // 未使用寄存器变量
     
     // 执行简化的数据处理
-    FUN_18072f4d0(unaff_RSI + 0x20, &stack0x00000050, param_3, *(undefined4 *)(unaff_RBX + 0x1060));
+    FUN_18072f4d0(unaff_RSI + 0x20, &stack0x00000050, param_3, *(int32_t *)(unaff_RBX + 0x1060));
     
     // 执行内存复制操作
     memcpy(unaff_RBX + 0x928, &stack0x00000030, (longlong)*(int *)(unaff_RBX + 0x924) * 2);
@@ -830,7 +830,7 @@ void FUN_180729d55(void)
     ulonglong in_stack_00000070;                // 栈参数
     
     // 执行状态更新操作
-    FUN_1807342b0(*(undefined2 *)(unaff_RBX + 0xae2), *(undefined1 *)(unaff_RBX + 0xae4));
+    FUN_1807342b0(*(int16_t *)(unaff_RBX + 0xae2), *(int8_t *)(unaff_RBX + 0xae4));
     lVar2 = *(longlong *)(&UNK_180954878 + (longlong)*(char *)(unaff_RBX + 0xae8) * 8);
     
     // 检查并更新状态
@@ -901,14 +901,14 @@ void FUN_180729d55(void)
 //   简化实现：保持原有功能逻辑，添加详细的内存管理说明
 //   优化点：明确分配步骤，添加资源管理说明
 //------------------------------------------------------------------------------
-void FUN_180729e70(longlong param_1, undefined8 param_2, undefined8 param_3)
+void FUN_180729e70(longlong param_1, uint64_t param_2, uint64_t param_3)
 {
     // 局部变量定义
     ulonglong uVar1;                            // 无符号长整型变量
     ulonglong uVar2;                            // 无符号长整型变量
-    undefined1 auStack_108 [72];                 // 栈缓冲区 (72字节)
-    undefined8 uStack_c0;                       // 栈变量
-    undefined8 uStack_a8;                       // 栈变量
+    int8_t auStack_108 [72];                 // 栈缓冲区 (72字节)
+    uint64_t uStack_c0;                       // 栈变量
+    uint64_t uStack_a8;                       // 栈变量
     ulonglong uStack_48;                        // 安全检查值
     
     // 安全检查：栈保护机制
@@ -1473,7 +1473,7 @@ void FUN_18072aa3e(int *param_1, int *param_2, short *param_3, int param_4)
 //   简化实现：保持原有功能逻辑，添加详细的计算说明
 //   优化点：明确计算步骤，添加数学运算说明
 //------------------------------------------------------------------------------
-void FUN_18072aa86(int param_1, undefined8 param_2, uint param_3, int param_4)
+void FUN_18072aa86(int param_1, uint64_t param_2, uint param_3, int param_4)
 {
     // 局部变量定义
     short *psVar1;                              // 短整型指针
@@ -1604,7 +1604,7 @@ void FUN_18072aa86(int param_1, undefined8 param_2, uint param_3, int param_4)
 //   简化实现：保持原有功能逻辑，添加详细的并行说明
 //   优化点：明确并行步骤，添加并发处理说明
 //------------------------------------------------------------------------------
-void FUN_18072aac5(int param_1, undefined8 param_2, uint param_3, int param_4)
+void FUN_18072aac5(int param_1, uint64_t param_2, uint param_3, int param_4)
 {
     // 局部变量定义
     short *psVar1;                              // 短整型指针
@@ -1719,7 +1719,7 @@ void FUN_18072aac5(int param_1, undefined8 param_2, uint param_3, int param_4)
 //   简化实现：保持原有功能逻辑，添加详细的快速处理说明
 //   优化点：明确快速步骤，添加性能优化说明
 //------------------------------------------------------------------------------
-void FUN_18072aae3(int param_1, undefined8 param_2, uint param_3, int param_4)
+void FUN_18072aae3(int param_1, uint64_t param_2, uint param_3, int param_4)
 {
     // 局部变量定义
     short *psVar1;                              // 短整型指针
@@ -1821,14 +1821,14 @@ void FUN_18072aae3(int param_1, undefined8 param_2, uint param_3, int param_4)
 //   简化实现：保持原有功能逻辑，添加详细的简单处理说明
 //   优化点：明确简单步骤，添加基础功能说明
 //------------------------------------------------------------------------------
-void FUN_18072ab4f(undefined4 param_1, undefined8 param_2, undefined8 param_3, int param_4)
+void FUN_18072ab4f(int32_t param_1, uint64_t param_2, uint64_t param_3, int param_4)
 {
     // 局部变量定义
     int iVar1;                                  // 整型变量
     int in_R11D;                                // R11D寄存器变量
     int *unaff_R12;                             // 未使用寄存器指针
     longlong unaff_R14;                         // 未使用寄存器变量
-    undefined4 *unaff_R15;                      // 未使用寄存器指针
+    int32_t *unaff_R15;                      // 未使用寄存器指针
     
     // 执行简单处理
     iVar1 = (int)*(short *)(unaff_R14 + (longlong)in_R11D * 2);
@@ -1901,15 +1901,15 @@ ulonglong FUN_18072ab70(longlong param_1, longlong param_2, uint param_3, uint p
     int iVar19;                                 // 整型变量
     int iVar20;                                 // 整型变量
     int iVar21;                                 // 整型变量
-    undefined1 auVar16 [16];                     // 数组变量
+    int8_t auVar16 [16];                     // 数组变量
     int iVar22;                                 // 整型变量
-    undefined1 auVar17 [16];                     // 数组变量
+    int8_t auVar17 [16];                     // 数组变量
     int iVar23;                                 // 整型变量
-    undefined1 auVar24 [16];                     // 数组变量
-    undefined1 auVar25 [16];                     // 数组变量
-    undefined1 in_XMM2 [16];                     // XMM2寄存器变量
-    undefined1 auVar26 [16];                     // 数组变量
-    undefined1 auVar27 [16];                     // 数组变量
+    int8_t auVar24 [16];                     // 数组变量
+    int8_t auVar25 [16];                     // 数组变量
+    int8_t in_XMM2 [16];                     // XMM2寄存器变量
+    int8_t auVar26 [16];                     // 数组变量
+    int8_t auVar27 [16];                     // 数组变量
     ulonglong uVar10;                            // 无符号长整型变量
     
     // 初始化SIMD变量
@@ -2053,13 +2053,13 @@ ulonglong FUN_18072ab70(longlong param_1, longlong param_2, uint param_3, uint p
 //   简化实现：保持原有功能逻辑，添加详细的解码说明
 //   优化点：明确解码步骤，添加解压缩算法说明
 //------------------------------------------------------------------------------
-void FUN_18072ad20(longlong param_1, int *param_2, int *param_3, int *param_4, undefined2 *param_5,
+void FUN_18072ad20(longlong param_1, int *param_2, int *param_3, int *param_4, int16_t *param_5,
                   int param_6)
 {
     // 局部变量定义
     int iVar1;                                  // 整型变量
     int iVar2;                                  // 整型变量
-    undefined2 uVar3;                           // 未定义2字节变量
+    int16_t uVar3;                           // 未定义2字节变量
     int iVar4;                                  // 整型变量
     longlong lVar5;                              // 长整型变量
     int iVar6;                                  // 整型变量
@@ -2091,7 +2091,7 @@ void FUN_18072ad20(longlong param_1, int *param_2, int *param_3, int *param_4, u
             
             // 处理解码结果
             if (iVar4 < 0x8000) {
-                uVar3 = (undefined2)iVar4;
+                uVar3 = (int16_t)iVar4;
                 if (iVar4 < -0x8000) {
                     uVar3 = 0x8000;
                 }

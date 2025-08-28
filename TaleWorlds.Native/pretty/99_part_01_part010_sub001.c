@@ -16,9 +16,9 @@
 //------------------------------------------------------------------------------
 
 // 通用句柄类型
-typedef undefined8 DataHandle;                     // 数据句柄
-typedef undefined8 ContextHandle;                  // 上下文句柄
-typedef undefined8 UtilityHandle;                 // 工具句柄
+typedef uint64_t DataHandle;                     // 数据句柄
+typedef uint64_t ContextHandle;                  // 上下文句柄
+typedef uint64_t UtilityHandle;                 // 工具句柄
 
 // 通用状态常量
 #define UTILITY_STATE_READY        0x00000001      // 工具就绪状态
@@ -63,7 +63,7 @@ typedef undefined8 UtilityHandle;                 // 工具句柄
 //   param_2 - 操作类型或参数，标识要执行的具体操作
 //
 // 返回值：
-//   undefined8 - 操作结果或状态码
+//   uint64_t - 操作结果或状态码
 //
 // 处理流程：
 //   1. 验证输入参数的有效性
@@ -89,13 +89,13 @@ typedef undefined8 UtilityHandle;                 // 工具句柄
 //   简化实现：基于高级数据处理模块架构，创建完整的工具函数功能
 //   优化点：添加完整的数据处理、工具管理、状态监控功能
 //------------------------------------------------------------------------------
-undefined8 FUN_180012345(undefined8 param_1, undefined8 param_2)
+uint64_t FUN_180012345(uint64_t param_1, uint64_t param_2)
 {
     // 局部变量定义
-    undefined8 uVar1;                            // 操作结果
+    uint64_t uVar1;                            // 操作结果
     longlong lVar2;                              // 上下文指针
     int iVar3;                                  // 状态标志
-    undefined8 auStack_28 [4];                   // 栈缓冲区 (32字节)
+    uint64_t auStack_28 [4];                   // 栈缓冲区 (32字节)
     ulonglong uStack_8;                         // 安全检查值
     
     // 安全检查：栈保护机制

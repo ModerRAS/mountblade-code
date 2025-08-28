@@ -287,7 +287,7 @@ longlong copy_config_object(longlong dest, longlong source, void *param_3, void 
  * @param param_4 保留参数
  * @return 释放后的内存指针
  */
-undefined8 free_config_memory(undefined8 memory_ptr, ulonglong flags, undefined8 param_3, undefined8 param_4)
+uint64_t free_config_memory(uint64_t memory_ptr, ulonglong flags, uint64_t param_3, uint64_t param_4)
 {
     initialize_memory_free();
     
@@ -308,7 +308,7 @@ undefined8 free_config_memory(undefined8 memory_ptr, ulonglong flags, undefined8
  * @param param_5 保留参数
  * @return 找到的配置项
  */
-undefined8 *find_config_item(longlong *config_array, undefined8 *search_key, undefined8 param_3, 
+uint64_t *find_config_item(longlong *config_array, uint64_t *search_key, uint64_t param_3, 
                            longlong *search_item, longlong param_5)
 {
     byte *key_data, *search_data;
@@ -346,8 +346,8 @@ undefined8 *find_config_item(longlong *config_array, undefined8 *search_key, und
  * @param insert_flag 插入标志
  * @param param_5 保留参数
  */
-void insert_config_item(longlong config_array, undefined8 insert_pos, longlong config_item, 
-                       undefined8 insert_flag, longlong param_5)
+void insert_config_item(longlong config_array, uint64_t insert_pos, longlong config_item, 
+                       uint64_t insert_flag, longlong param_5)
 {
     byte *name1, *name2;
     uint char1, char2;
@@ -381,15 +381,15 @@ void insert_config_item(longlong config_array, undefined8 insert_pos, longlong c
  * @param param_4 保留参数
  * @return 复制的树结构
  */
-undefined8 *copy_config_tree(longlong dest, longlong *source_tree, undefined8 param_3, undefined8 param_4)
+uint64_t *copy_config_tree(longlong dest, longlong *source_tree, uint64_t param_3, uint64_t param_4)
 {
     longlong *current_node;
-    undefined8 *new_node;
-    undefined8 *prev_node;
-    undefined8 temp_ulong;
+    uint64_t *new_node;
+    uint64_t *prev_node;
+    uint64_t temp_ulong;
     
     // 创建根节点
-    new_node = (undefined8 *)create_config_node();
+    new_node = (uint64_t *)create_config_node();
     
     // 递归复制子节点
     if (*source_tree != 0) {
@@ -430,12 +430,12 @@ undefined8 *copy_config_tree(longlong dest, longlong *source_tree, undefined8 pa
  * @param param_4 保留参数
  * @return 新创建的节点
  */
-undefined8 *create_config_node(longlong dest, longlong *source, undefined8 param_3, undefined8 param_4)
+uint64_t *create_config_node(longlong dest, longlong *source, uint64_t param_3, uint64_t param_4)
 {
-    undefined8 *new_node;
+    uint64_t *new_node;
     
     // 分配节点内存
-    new_node = (undefined8 *)allocate_config_node(g_memory_pool, 0x68, 
+    new_node = (uint64_t *)allocate_config_node(g_memory_pool, 0x68, 
                                                  *(char *)((longlong)dest + 0x28), 
                                                  param_4, 0xfffffffffffffffe);
     
@@ -461,12 +461,12 @@ undefined8 *create_config_node(longlong dest, longlong *source, undefined8 param
  * @param param_4 保留参数
  * @return 处理结果
  */
-undefined8 *batch_process_config_items(undefined8 *result_ptr, longlong *start_range, 
-                                       longlong *end_range, undefined8 *param_4)
+uint64_t *batch_process_config_items(uint64_t *result_ptr, longlong *start_range, 
+                                       longlong *end_range, uint64_t *param_4)
 {
     longlong *current_item;
-    undefined8 *current_result;
-    undefined4 temp_uint;
+    uint64_t *current_result;
+    int32_t temp_uint;
     longlong temp_long;
     
     *result_ptr = param_4;
@@ -494,7 +494,7 @@ undefined8 *batch_process_config_items(undefined8 *result_ptr, longlong *start_r
  * @brief 初始化同步对象
  * @param sync_obj 同步对象指针
  */
-void initialize_sync_object(undefined8 *sync_obj)
+void initialize_sync_object(uint64_t *sync_obj)
 {
     *sync_obj = &g_sync_template;
     destroy_mutex_in_place();
@@ -510,7 +510,7 @@ void initialize_sync_object(undefined8 *sync_obj)
  * @param flags 清理标志
  * @return 清理后的对象指针
  */
-undefined8 cleanup_sync_object(undefined8 sync_obj, ulonglong flags)
+uint64_t cleanup_sync_object(uint64_t sync_obj, ulonglong flags)
 {
     initialize_sync_object();
     
@@ -526,7 +526,7 @@ undefined8 cleanup_sync_object(undefined8 sync_obj, ulonglong flags)
  * @param sync_obj 同步对象
  * @param state 要设置的状态
  */
-void set_sync_state(longlong sync_obj, undefined1 state)
+void set_sync_state(longlong sync_obj, int8_t state)
 {
     int lock_result;
     
@@ -537,7 +537,7 @@ void set_sync_state(longlong sync_obj, undefined1 state)
     }
     
     // 设置状态
-    *(undefined1 *)(sync_obj + 0x98) = state;
+    *(int8_t *)(sync_obj + 0x98) = state;
     
     // 释放互斥锁
     lock_result = mutex_unlock(sync_obj + 0x48);
@@ -552,7 +552,7 @@ void set_sync_state(longlong sync_obj, undefined1 state)
  * @param mutex 互斥锁
  * @param timeout 超时时间
  */
-void wait_for_condition(undefined8 condition, undefined8 *mutex, longlong *timeout)
+void wait_for_condition(uint64_t condition, uint64_t *mutex, longlong *timeout)
 {
     int wait_result;
     uint timed_wait_result;
@@ -597,11 +597,11 @@ void wait_for_condition(undefined8 condition, undefined8 *mutex, longlong *timeo
  * @param param_4 保留参数
  * @return 状态值
  */
-undefined1 wait_for_state_change(longlong sync_obj, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+int8_t wait_for_state_change(longlong sync_obj, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    undefined1 current_state;
+    int8_t current_state;
     int lock_result;
-    undefined8 wait_timeout;
+    uint64_t wait_timeout;
     longlong lock_addr;
     char lock_acquired;
     
@@ -621,11 +621,11 @@ undefined1 wait_for_state_change(longlong sync_obj, undefined8 param_2, undefine
     } else {
         wait_timeout = 1;
         wait_for_condition(sync_obj, &lock_addr, &wait_timeout, param_4);
-        current_state = *(undefined1 *)(sync_obj + 0x98);
+        current_state = *(int8_t *)(sync_obj + 0x98);
     }
     
     // 重置状态
-    *(undefined1 *)(sync_obj + 0x98) = 0;
+    *(int8_t *)(sync_obj + 0x98) = 0;
     
     // 释放锁
     if (lock_acquired != '\0') {

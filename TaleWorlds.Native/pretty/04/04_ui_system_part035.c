@@ -34,15 +34,15 @@
 // 函数声明
 void ui_system_simd_vector_processor(longlong system_context, longlong *vector_data);
 void ui_system_advanced_vector_calculator(longlong system_context, longlong *vector_data);
-void ui_system_matrix_transform_processor(longlong system_context, int param_2, int param_3, int param_4, undefined8 transform_matrix, undefined4 transform_params);
-void ui_system_vector_optimizer(longlong system_context, undefined8 vector_data, int param_3, int param_4, undefined8 optimization_params, undefined4 optimization_flags);
-void ui_system_coordinate_transformer(longlong system_context, int param_2, int param_3, int param_4, undefined8 transform_params, undefined4 transform_flags);
-void ui_system_data_processor(longlong system_context, undefined8 data_input, int param_3, int param_4, undefined8 process_params, int process_flags);
-void ui_system_batch_processor(longlong system_context, int param_2, int param_3, int param_4, undefined8 batch_params, undefined4 batch_flags);
-void ui_system_advanced_calculator(longlong system_context, undefined8 calc_data, int param_3, int param_4, undefined8 calc_params, undefined4 calc_flags);
-void ui_system_math_optimizer(longlong system_context, int param_2, int param_3, int param_4, undefined8 math_params, undefined4 math_flags);
-void ui_system_vector_calculator(longlong system_context, undefined8 vector_data, int param_3, int param_4, undefined8 calc_params, undefined4 calc_flags);
-void ui_system_block_processor(longlong system_context, undefined8 block_data, longlong block_size, undefined8 process_params, short *result_vector);
+void ui_system_matrix_transform_processor(longlong system_context, int param_2, int param_3, int param_4, uint64_t transform_matrix, int32_t transform_params);
+void ui_system_vector_optimizer(longlong system_context, uint64_t vector_data, int param_3, int param_4, uint64_t optimization_params, int32_t optimization_flags);
+void ui_system_coordinate_transformer(longlong system_context, int param_2, int param_3, int param_4, uint64_t transform_params, int32_t transform_flags);
+void ui_system_data_processor(longlong system_context, uint64_t data_input, int param_3, int param_4, uint64_t process_params, int process_flags);
+void ui_system_batch_processor(longlong system_context, int param_2, int param_3, int param_4, uint64_t batch_params, int32_t batch_flags);
+void ui_system_advanced_calculator(longlong system_context, uint64_t calc_data, int param_3, int param_4, uint64_t calc_params, int32_t calc_flags);
+void ui_system_math_optimizer(longlong system_context, int param_2, int param_3, int param_4, uint64_t math_params, int32_t math_flags);
+void ui_system_vector_calculator(longlong system_context, uint64_t vector_data, int param_3, int param_4, uint64_t calc_params, int32_t calc_flags);
+void ui_system_block_processor(longlong system_context, uint64_t block_data, longlong block_size, uint64_t process_params, short *result_vector);
 void ui_system_empty_function(void);
 
 // 函数实现
@@ -111,8 +111,8 @@ void ui_system_simd_vector_processor(longlong system_context, longlong *vector_d
   short result_component_29;
   short result_component_30;
   short result_component_31;
-  undefined1 simd_vector_abs [16];
-  undefined1 simd_vector_shift [16];
+  int8_t simd_vector_abs [16];
+  int8_t simd_vector_shift [16];
   short result_component_32;
   short result_component_33;
   short result_component_34;
@@ -122,13 +122,13 @@ void ui_system_simd_vector_processor(longlong system_context, longlong *vector_d
   short result_component_38;
   short result_component_39;
   short result_component_40;
-  undefined1 simd_vector_result [16];
-  undefined1 simd_vector_temp [16];
-  undefined1 simd_vector_output [16];
-  undefined4 stack_protection_1;
-  undefined4 stack_protection_2;
-  undefined4 stack_protection_3;
-  undefined4 stack_protection_4;
+  int8_t simd_vector_result [16];
+  int8_t simd_vector_temp [16];
+  int8_t simd_vector_output [16];
+  int32_t stack_protection_1;
+  int32_t stack_protection_2;
+  int32_t stack_protection_3;
+  int32_t stack_protection_4;
   ulonglong stack_guard;
   
   // 栈保护机制初始化
@@ -138,8 +138,8 @@ void ui_system_simd_vector_processor(longlong system_context, longlong *vector_d
   stack_protection_3 = 0xa0d0c09;
   
   // 获取SIMD指令向量
-  simd_vector_shift = (*(undefined1 (**) [16])(system_context + 8))[1];
-  simd_vector_result = **(undefined1 (**) [16])(system_context + 8);
+  simd_vector_shift = (*(int8_t (**) [16])(system_context + 8))[1];
+  simd_vector_result = **(int8_t (**) [16])(system_context + 8);
   input_vector_ptr = (short *)vector_data[3];
   
   // 执行SIMD向量绝对值计算和算术右移
@@ -179,7 +179,7 @@ void ui_system_simd_vector_processor(longlong system_context, longlong *vector_d
   simd_vector_output._14_2_ = transform_vector_ptr[7] + simd_vector_abs._14_2_;
   
   // 执行向量乘法运算
-  simd_vector_output = pmulhw(simd_vector_output, **(undefined1 (**) [16])(system_context + 0x18));
+  simd_vector_output = pmulhw(simd_vector_output, **(int8_t (**) [16])(system_context + 0x18));
   simd_vector_shift = pabsw(simd_vector_abs, simd_vector_shift);
   
   transform_vector_ptr = (short *)*vector_data;
@@ -191,7 +191,7 @@ void ui_system_simd_vector_processor(longlong system_context, longlong *vector_d
   simd_vector_abs._10_2_ = transform_vector_ptr[0xd] + simd_vector_shift._10_2_;
   simd_vector_abs._12_2_ = transform_vector_ptr[0xe] + simd_vector_shift._12_2_;
   simd_vector_abs._14_2_ = transform_vector_ptr[0xf] + simd_vector_shift._14_2_;
-  simd_vector_abs = pmulhw(simd_vector_abs, (*(undefined1 (**) [16])(system_context + 0x18))[1]);
+  simd_vector_abs = pmulhw(simd_vector_abs, (*(int8_t (**) [16])(system_context + 0x18))[1]);
   
   // 执行向量异或和减法操作
   simd_vector_shift = simd_vector_output ^ simd_vector_result;
@@ -371,7 +371,7 @@ void ui_system_advanced_vector_calculator(longlong system_context, longlong *vec
   short vector_component_20;
   short *calculation_vector_ptr;
   short *optimization_vector_ptr;
-  undefined1 direction_flag;
+  int8_t direction_flag;
   short result_component_24;
   short result_component_25;
   short result_component_26;
@@ -380,7 +380,7 @@ void ui_system_advanced_vector_calculator(longlong system_context, longlong *vec
   short result_component_29;
   short result_component_30;
   short result_component_31;
-  undefined1 simd_vector_calc [16];
+  int8_t simd_vector_calc [16];
   short result_component_33;
   short result_component_34;
   short result_component_37;
@@ -395,9 +395,9 @@ void ui_system_advanced_vector_calculator(longlong system_context, longlong *vec
   short result_component_46;
   short result_component_47;
   short result_component_48;
-  undefined1 simd_vector_opt [16];
+  int8_t simd_vector_opt [16];
   short result_component_49;
-  undefined1 simd_vector_temp [16];
+  int8_t simd_vector_temp [16];
   short result_component_50;
   short result_component_51;
   short result_component_53;
@@ -406,20 +406,20 @@ void ui_system_advanced_vector_calculator(longlong system_context, longlong *vec
   short result_component_56;
   short result_component_57;
   short result_component_58;
-  undefined1 simd_vector_input [16];
+  int8_t simd_vector_input [16];
   short result_component_59;
   short result_component_60;
   short result_component_61;
   short result_component_62;
   short result_component_63;
-  undefined1 simd_vector_shuffle [16];
-  undefined1 simd_vector_result [16];
-  undefined1 simd_vector_output [16];
+  int8_t simd_vector_shuffle [16];
+  int8_t simd_vector_result [16];
+  int8_t simd_vector_output [16];
   
   // 获取系统上下文中的向量数据
   input_vector_ptr = *(short **)(system_context + 0x30);
-  simd_vector_input = **(undefined1 (**) [16])(system_context + 8);
-  simd_vector_opt = (*(undefined1 (**) [16])(system_context + 8))[1];
+  simd_vector_input = **(int8_t (**) [16])(system_context + 8);
+  simd_vector_opt = (*(int8_t (**) [16])(system_context + 8))[1];
   transform_vector_ptr = (short *)vector_data[3];
   
   // 执行SIMD向量算术右移操作
@@ -493,7 +493,7 @@ void ui_system_advanced_vector_calculator(longlong system_context, longlong *vec
   simd_vector_calc._14_2_ = optimization_vector_ptr[0xf] + result_component_49;
   
   // 执行向量乘法运算
-  simd_vector_opt = pmulhw(**(undefined1 (**) [16])(system_context + 0x10), simd_vector_input);
+  simd_vector_opt = pmulhw(**(int8_t (**) [16])(system_context + 0x10), simd_vector_input);
   simd_vector_temp._0_2_ = simd_vector_opt._0_2_ + simd_vector_input._0_2_;
   simd_vector_temp._2_2_ = simd_vector_opt._2_2_ + simd_vector_input._2_2_;
   simd_vector_temp._4_2_ = simd_vector_opt._4_2_ + simd_vector_input._4_2_;
@@ -502,9 +502,9 @@ void ui_system_advanced_vector_calculator(longlong system_context, longlong *vec
   simd_vector_temp._10_2_ = simd_vector_opt._10_2_ + simd_vector_input._10_2_;
   simd_vector_temp._12_2_ = simd_vector_opt._12_2_ + simd_vector_input._12_2_;
   simd_vector_temp._14_2_ = simd_vector_opt._14_2_ + simd_vector_input._14_2_;
-  simd_vector_temp = pmulhw(simd_vector_temp, **(undefined1 (**) [16])(system_context + 0x20));
+  simd_vector_temp = pmulhw(simd_vector_temp, **(int8_t (**) [16])(system_context + 0x20));
   
-  simd_vector_input = pmulhw((*(undefined1 (**) [16])(system_context + 0x10))[1], simd_vector_calc);
+  simd_vector_input = pmulhw((*(int8_t (**) [16])(system_context + 0x10))[1], simd_vector_calc);
   simd_vector_temp = simd_vector_temp ^ simd_vector_result;
   simd_vector_opt._0_2_ = simd_vector_input._0_2_ + simd_vector_calc._0_2_;
   simd_vector_opt._2_2_ = simd_vector_input._2_2_ + simd_vector_calc._2_2_;
@@ -514,7 +514,7 @@ void ui_system_advanced_vector_calculator(longlong system_context, longlong *vec
   simd_vector_opt._10_2_ = simd_vector_input._10_2_ + simd_vector_calc._10_2_;
   simd_vector_opt._12_2_ = simd_vector_input._12_2_ + simd_vector_calc._12_2_;
   simd_vector_opt._14_2_ = simd_vector_input._14_2_ + simd_vector_calc._14_2_;
-  simd_vector_input = pmulhw(simd_vector_opt, (*(undefined1 (**) [16])(system_context + 0x20))[1]);
+  simd_vector_input = pmulhw(simd_vector_opt, (*(int8_t (**) [16])(system_context + 0x20))[1]);
   
   result_component_34 = simd_vector_temp._0_2_ - simd_vector_result._0_2_;
   result_component_38 = simd_vector_temp._2_2_ - simd_vector_result._2_2_;
@@ -704,7 +704,7 @@ void ui_system_advanced_vector_calculator(longlong system_context, longlong *vec
   *(short *)(context_data + 0x1c) = result_component_27 * vector_component_14;
   *(short *)(context_data + 0x1e) = result_component_30 * vector_component_15;
   
-  *(undefined1 *)vector_data[5] = direction_flag;
+  *(int8_t *)vector_data[5] = direction_flag;
   return;
 }
 

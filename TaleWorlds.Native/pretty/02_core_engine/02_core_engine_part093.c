@@ -33,7 +33,7 @@ void initialize_render_system(void)
  * @param param_2 渲染标志参数
  * @return 处理结果状态码
  */
-ulonglong process_render_context(undefined8 param_1, undefined4 param_2)
+ulonglong process_render_context(uint64_t param_1, int32_t param_2)
 {
   longlong context_ptr;
   longlong texture_ptr;
@@ -44,7 +44,7 @@ ulonglong process_render_context(undefined8 param_1, undefined4 param_2)
   
   context_ptr = *g_engine_context;
   result = *(ulonglong *)(*g_engine_context + 0x1af8);
-  *(undefined1 *)(result + 0xb1) = 1;
+  *(int8_t *)(result + 0xb1) = 1;
   texture_ptr = *(longlong *)(context_ptr + 0x1af8);
   
   // 检查纹理是否已初始化
@@ -56,11 +56,11 @@ ulonglong process_render_context(undefined8 param_1, undefined4 param_2)
       if ((buffer_size == -1) || (0xc00 < buffer_size)) {
         buffer_size = 0xc00;
       }
-      *(undefined1 *)(buffer_size + buffer_ptr) = 0;
+      *(int8_t *)(buffer_size + buffer_ptr) = 0;
     }
     
     texture_id = get_texture_id(param_1, 0,
-                                *(undefined4 *)
+                                *(int32_t *)
                                  (*(longlong *)(texture_ptr + 0x220) + -4 +
                                  (longlong)*(int *)(texture_ptr + 0x218) * 4));
     texture_ptr = *g_engine_context;
@@ -71,7 +71,7 @@ ulonglong process_render_context(undefined8 param_1, undefined4 param_2)
     }
     
     if (*(int *)(texture_ptr + 0x1b30) == texture_id) {
-      *(undefined1 *)(texture_ptr + 0x1b3f) = 1;
+      *(int8_t *)(texture_ptr + 0x1b3f) = 1;
     }
     
     result = render_text(texture_id, param_2, buffer_ptr, context_ptr + buffer_size + 0x3054);
@@ -93,7 +93,7 @@ void render_text_buffer(void)
   longlong context_ptr;
   int buffer_size;
   int texture_id;
-  undefined4 render_flags;
+  int32_t render_flags;
   longlong position_ptr;
   
   buffer_ptr = position_ptr + 0x3054;
@@ -103,7 +103,7 @@ void render_text_buffer(void)
     if ((buffer_size == -1) || (0xc00 < buffer_size)) {
       buffer_size = 0xc00;
     }
-    *(undefined1 *)(buffer_size + buffer_ptr) = 0;
+    *(int8_t *)(buffer_size + buffer_ptr) = 0;
   }
   
   texture_id = get_texture_id();
@@ -115,7 +115,7 @@ void render_text_buffer(void)
   }
   
   if (*(int *)(context_ptr + 0x1b30) == texture_id) {
-    *(undefined1 *)(context_ptr + 0x1b3f) = 1;
+    *(int8_t *)(context_ptr + 0x1b3f) = 1;
   }
   
   render_text(texture_id, render_flags, buffer_ptr, position_ptr + buffer_size + 0x3054);
@@ -145,14 +145,14 @@ ulonglong render_text(uint param_1, uint param_2, char *param_3, char *param_4)
   longlong context_ptr;
   char text_char;
   byte byte_flag;
-  undefined1 byte_val;
+  int8_t byte_val;
   int int_var;
-  undefined4 flag_var;
+  int32_t flag_var;
   float *float_ptr;
   longlong long_ptr;
   int index;
   uint texture_param;
-  undefined8 param_64;
+  uint64_t param_64;
   char char_flag;
   ulonglong result;
   char *text_ptr;
@@ -170,33 +170,33 @@ ulonglong render_text(uint param_1, uint param_2, char *param_3, char *param_4)
   float offset_y;
   float text_width;
   float text_height;
-  undefined8 stack_param_1;
-  undefined8 stack_param_2;
-  undefined4 param_val;
+  uint64_t stack_param_1;
+  uint64_t stack_param_2;
+  int32_t param_val;
   float stack_width;
   float stack_height;
   char stack_char;
   char stack_array[7];
-  undefined8 stack_64;
-  undefined4 stack_32_1;
-  undefined4 stack_32_2;
+  uint64_t stack_64;
+  int32_t stack_32_1;
+  int32_t stack_32_2;
   float stack_scale_x;
   float stack_scale_y;
   float stack_pos_x;
   float stack_pos_y;
   float stack_offset_x;
   float stack_offset_y;
-  undefined8 stack_context;
+  uint64_t stack_context;
   float stack_text_x;
   float stack_text_y;
   float stack_text_width;
   float stack_text_height;
   
   context_ptr = *g_engine_context;
-  param_val = (undefined4)((ulonglong)stack_param_2 >> 0x20);
-  flag_var = (undefined4)((ulonglong)stack_param_1 >> 0x20);
+  param_val = (int32_t)((ulonglong)stack_param_2 >> 0x20);
+  flag_var = (int32_t)((ulonglong)stack_param_1 >> 0x20);
   texture_result = *(ulonglong *)(*g_engine_context + 0x1af8);
-  *(undefined1 *)(texture_result + 0xb1) = 1;
+  *(int8_t *)(texture_result + 0xb1) = 1;
   stack_context = *(longlong *)(context_ptr + 0x1af8);
   
   // 检查渲染上下文状态
@@ -239,8 +239,8 @@ ulonglong render_text(uint param_1, uint param_2, char *param_3, char *param_4)
     param_64 = CONCAT44(flag_var, 0xbf800000);
     text_ptr = param_3;
     calculate_text_dimensions(float_ptr, &stack_width, text_height, stack_context, param_64, param_3, param_4, 0);
-    param_val = (undefined4)((ulonglong)text_ptr >> 0x20);
-    flag_var = (undefined4)((ulonglong)param_64 >> 0x20);
+    param_val = (int32_t)((ulonglong)text_ptr >> 0x20);
+    flag_var = (int32_t)((ulonglong)param_64 >> 0x20);
     
     if (0.0 < stack_width) {
       stack_width = stack_width - text_height / *float_ptr;
@@ -331,7 +331,7 @@ ulonglong render_text(uint param_1, uint param_2, char *param_3, char *param_4)
   
   if ((param_2 >> 8 & 1) == 0) {
     stack_64 = *(longlong *)(context_ptr + 0x1af8);
-    param_64 = *(undefined8 *)(stack_64 + 0x198);
+    param_64 = *(uint64_t *)(stack_64 + 0x198);
     
     if (*(uint *)(context_ptr + 0x1c64) == 0) {
       int_var = setup_texture_rendering(param_64, texture_result & 0xffffffff, param_2 >> 5 & 1);
@@ -345,10 +345,10 @@ ulonglong render_text(uint param_1, uint param_2, char *param_3, char *param_4)
         result = (ulonglong)*(byte *)(context_ptr + 0x1c60);
         update_texture_state(param_64, param_1, *(byte *)(context_ptr + 0x1c60));
         array_ptr = *g_engine_context;
-        *(undefined4 *)(context_ptr + 0x1c64) = 0;
+        *(int32_t *)(context_ptr + 0x1c64) = 0;
       }
       else {
-        *(undefined4 *)(context_ptr + 0x1c64) = 0;
+        *(int32_t *)(context_ptr + 0x1c64) = 0;
         result = (ulonglong)(int_var != 0);
       }
     }
@@ -356,7 +356,7 @@ ulonglong render_text(uint param_1, uint param_2, char *param_3, char *param_4)
       result = (ulonglong)*(byte *)(context_ptr + 0x1c60);
       update_texture_state(param_64, texture_result & 0xffffffff, *(byte *)(context_ptr + 0x1c60));
       array_ptr = *g_engine_context;
-      *(undefined4 *)(context_ptr + 0x1c64) = 0;
+      *(int32_t *)(context_ptr + 0x1c64) = 0;
     }
     
     long_ptr = stack_context;
@@ -375,7 +375,7 @@ ulonglong render_text(uint param_1, uint param_2, char *param_3, char *param_4)
   
   if (((char_flag != '\0') && (*(char *)(context_ptr + 0x1d04) == '\0')) && ((param_2 & 0x2008) == 0x2000)) {
     *(uint *)(long_ptr + 0x140) =
-         *(uint *)(long_ptr + 0x140) | 1 << ((byte)*(undefined4 *)(long_ptr + 0x13c) & 0x1f);
+         *(uint *)(long_ptr + 0x140) | 1 << ((byte)*(int32_t *)(long_ptr + 0x13c) & 0x1f);
   }
   
   stack_32_2 = render_mode;
@@ -436,7 +436,7 @@ ulonglong render_text(uint param_1, uint param_2, char *param_3, char *param_4)
     
     if ((((texture_param == param_1) && (*(char *)(context_ptr + 0x1d21) != '\0')) &&
         (*(int *)(context_ptr + 0x1d2c) == 0)) && (result != '\0')) {
-      *(undefined1 *)(array_ptr + 0x1d21) = 0;
+      *(int8_t *)(array_ptr + 0x1d21) = 0;
       texture_flag = 1;
       
       if ((*(char *)(array_ptr + 0x1d21) == '\0') && (*(char *)(array_ptr + 0x1d09) == '\0')) {
@@ -446,25 +446,25 @@ ulonglong render_text(uint param_1, uint param_2, char *param_3, char *param_4)
         byte_val = 1;
       }
       
-      *(undefined1 *)(array_ptr + 0x1d08) = byte_val;
+      *(int8_t *)(array_ptr + 0x1d08) = byte_val;
       texture_param = *(uint *)(context_ptr + 0x1ca0);
     }
     
     if (((texture_param == param_1) && (*(char *)(context_ptr + 0x1d21) != '\0')) &&
        ((*(int *)(context_ptr + 0x1d2c) == 1 && (result == '\0')))) {
-      *(undefined1 *)(array_ptr + 0x1d21) = 0;
+      *(int8_t *)(array_ptr + 0x1d21) = 0;
       
       if (*(char *)(array_ptr + 0x1d09) == '\0') {
-        *(undefined1 *)(array_ptr + 0x1d08) = 0;
+        *(int8_t *)(array_ptr + 0x1d08) = 0;
       }
       else {
-        *(undefined1 *)(array_ptr + 0x1d08) = 1;
+        *(int8_t *)(array_ptr + 0x1d08) = 1;
       }
     }
     else if (texture_flag == 0) goto skip_texture_update;
     
     result = (ulonglong)(result == '\0');
-    update_texture_state(*(undefined8 *)(stack_context + 0x198), param_1, result == '\0');
+    update_texture_state(*(uint64_t *)(stack_context + 0x198), param_1, result == '\0');
     array_ptr = *g_engine_context;
   }
   
@@ -495,7 +495,7 @@ skip_texture_update:
     if ((stack_char != '\0') || ((param_2 & 1) != 0)) {
       stack_64 = CONCAT44(text_height, text_height);
       stack_context = CONCAT44(height, stack_text_x);
-      render_to_screen(*(undefined8 *)(*(longlong *)(array_ptr + 0x1af8) + 0x2e8), &stack_context, &stack_64,
+      render_to_screen(*(uint64_t *)(*(longlong *)(array_ptr + 0x1af8) + 0x2e8), &stack_context, &stack_64,
                        flag_var, (ulonglong)render_mode << 0x20, CONCAT44(param_val, 0xf));
       
       if (param_1 == *(uint *)(*g_engine_context + 0x1ca0)) {
@@ -527,7 +527,7 @@ skip_texture_update:
   }
   else {
     render_text_quad(CONCAT44(stack_text_y, stack_text_x), CONCAT44(stack_text_height, stack_text_width), flag_var, 1,
-                     CONCAT44(render_mode, *(undefined4 *)(context_ptr + 0x1664)));
+                     CONCAT44(render_mode, *(int32_t *)(context_ptr + 0x1664)));
     
     if (param_1 == *(uint *)(*g_engine_context + 0x1ca0)) {
       update_render_state(&stack_text_x, 2);
@@ -559,7 +559,7 @@ skip_texture_update:
       }
       
       if (((int)text_ptr != (int)param_3) &&
-         (render_text_segment(*(undefined8 *)(*(longlong *)(*g_engine_context + 0x1af8) + 0x2e8), &stack_width,
+         (render_text_segment(*(uint64_t *)(*(longlong *)(*g_engine_context + 0x1af8) + 0x2e8), &stack_width,
                               &stack_text_width, param_3, text_ptr, &stack_offset_y, &stack_64, 0),
                               *(char *)(long_ptr + 0x2e38) != '\0')) {
         render_text_with_effects(&stack_width, param_3, text_ptr);
@@ -586,7 +586,7 @@ skip_texture_update:
       }
       
       if (((int)text_ptr != (int)param_3) &&
-         (render_text_segment(*(undefined8 *)(*(longlong)(*g_engine_context + 0x1af8) + 0x2e8), &stack_width,
+         (render_text_segment(*(uint64_t *)(*(longlong)(*g_engine_context + 0x1af8) + 0x2e8), &stack_width,
                               &stack_text_width, param_3, text_ptr, &stack_offset_y, &stack_64, 0),
                               *(char *)(context_ptr + 0x2e38) != '\0')) {
         render_text_with_effects(&stack_width, param_3, text_ptr);
@@ -606,26 +606,26 @@ render_complete:
 
 // 函数声明（简化实现）
 void setup_render_context(void);
-ulonglong setup_texture_rendering(undefined8 param_1, uint param_2, int param_3);
-void update_texture_state(undefined8 param_1, uint param_2, byte param_3);
+ulonglong setup_texture_rendering(uint64_t param_1, uint param_2, int param_3);
+void update_texture_state(uint64_t param_1, uint param_2, byte param_3);
 int allocate_buffer(longlong param_1, int param_2);
-uint get_texture_id(undefined8 param_1, int param_2, undefined4 param_3);
-void calculate_text_dimensions(float *param_1, float *param_2, float param_3, longlong param_4, undefined8 param_5, char *param_6, char *param_7, int param_8);
+uint get_texture_id(uint64_t param_1, int param_2, int32_t param_3);
+void calculate_text_dimensions(float *param_1, float *param_2, float param_3, longlong param_4, uint64_t param_5, char *param_6, char *param_7, int param_8);
 void apply_text_transform(float *param_1);
 uint get_render_transform(float *param_1);
 char setup_render_parameters(float *param_1, uint param_2, int param_3);
-char execute_render_pipeline(float *param_1, uint param_2, char *param_3, char *param_4, undefined8 param_5);
+char execute_render_pipeline(float *param_1, uint param_2, char *param_3, char *param_4, uint64_t param_5);
 char validate_texture_coordinates(float *param_1, longlong *param_2);
 void flush_render_buffer(void);
-void render_to_screen(undefined8 param_1, longlong *param_2, longlong *param_3, uint param_4, ulonglong param_5, undefined8 param_6);
+void render_to_screen(uint64_t param_1, longlong *param_2, longlong *param_3, uint param_4, ulonglong param_5, uint64_t param_6);
 void update_render_state(float *param_1, int param_2);
-void render_text_shadow(undefined8 param_1, uint param_2, uint param_3);
-void render_text_outline(undefined8 param_1);
+void render_text_shadow(uint64_t param_1, uint param_2, uint param_3);
+void render_text_outline(uint64_t param_1);
 void render_text_with_effects(float *param_1, void *param_2, int param_3);
-void render_text_to_buffer(undefined8 param_1, char *param_2, char *param_3, int param_4);
-void render_text_quad(undefined8 param_1, undefined8 param_2, uint param_3, int param_4, undefined8 param_5);
-char render_text_segment(undefined8 param_1, float *param_2, float *param_3, char *param_4, char *param_5, float *param_6, longlong *param_7, int param_8);
+void render_text_to_buffer(uint64_t param_1, char *param_2, char *param_3, int param_4);
+void render_text_quad(uint64_t param_1, uint64_t param_2, uint param_3, int param_4, uint64_t param_5);
+char render_text_segment(uint64_t param_1, float *param_2, float *param_3, char *param_4, char *param_5, float *param_6, longlong *param_7, int param_8);
 void cleanup_render_state(uint param_1);
 
 // 全局常量
-undefined8 g_default_text_color;  // 默认文本颜色
+uint64_t g_default_text_color;  // 默认文本颜色

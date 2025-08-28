@@ -14,26 +14,26 @@
  */
 void initialize_game_object_system(void)
 {
-    undefined8 *puVar1;
+    uint64_t *puVar1;
     int iVar2;
-    undefined4 uVar3;
+    int32_t uVar3;
     longlong lVar4;
-    undefined8 uVar5;
+    uint64_t uVar5;
     longlong in_R9;
-    undefined4 *in_R10;
+    int32_t *in_R10;
     
     // 设置游戏对象系统的启用状态
     *(bool *)(in_R9 + 0x1b3c) = *(int *)(in_R9 + 0x1b2c) != 0;
     
     // 初始化对象状态标志
-    *(undefined *)(in_R9 + 0x1b3d) = 0;
-    *(undefined *)(in_R9 + 0x1b3e) = 0;
+    *(void *)(in_R9 + 0x1b3d) = 0;
+    *(void *)(in_R9 + 0x1b3e) = 0;
     
     // 设置对象管理器的初始状态
     if (*(int *)(in_R9 + 0x1b2c) != 0) {
-        *(undefined8 *)(in_R9 + 0x1cd8) = 0;
-        *(undefined8 *)(in_R9 + 0x1ce0) = 0;
-        *(undefined *)(in_R9 + 0x1cf8) = 0;
+        *(uint64_t *)(in_R9 + 0x1cd8) = 0;
+        *(uint64_t *)(in_R9 + 0x1ce0) = 0;
+        *(void *)(in_R9 + 0x1cf8) = 0;
     }
     
     // 初始化对象选择系统
@@ -62,13 +62,13 @@ void initialize_game_object_system(void)
  */
 int update_game_object_system_state(int update_flags)
 {
-    undefined8 *puVar1;
+    uint64_t *puVar1;
     int iVar2;
-    undefined4 uVar3;
+    int32_t uVar3;
     longlong lVar4;
-    undefined8 uVar5;
+    uint64_t uVar5;
     longlong in_R9;
-    undefined4 *in_R10;
+    int32_t *in_R10;
     
     // 检查系统是否启用
     if (*(int *)(in_R9 + 0x1b2c) == 0) {
@@ -114,15 +114,15 @@ int update_game_object_system_state(int update_flags)
  * 3. 管理动画事件和回调
  * 4. 同步动画与对象的状态
  */
-void process_object_animation_update(undefined8 object_ptr, undefined8 animation_data)
+void process_object_animation_update(uint64_t object_ptr, uint64_t animation_data)
 {
-    undefined8 *puVar1;
+    uint64_t *puVar1;
     int iVar2;
-    undefined4 uVar3;
+    int32_t uVar3;
     longlong lVar4;
-    undefined8 uVar5;
+    uint64_t uVar5;
     longlong in_R9;
-    undefined4 *in_R10;
+    int32_t *in_R10;
     
     // 检查对象是否有效
     if (object_ptr == 0) {
@@ -162,13 +162,13 @@ void process_object_animation_update(undefined8 object_ptr, undefined8 animation
  */
 longlong find_available_game_object(int search_criteria, int start_index, int search_direction)
 {
-    undefined8 *puVar1;
+    uint64_t *puVar1;
     int iVar2;
-    undefined4 uVar3;
+    int32_t uVar3;
     longlong lVar4;
-    undefined8 uVar5;
+    uint64_t uVar5;
     longlong in_R9;
-    undefined4 *in_R10;
+    int32_t *in_R10;
     
     longlong result_object = 0;
     int current_index = start_index;
@@ -253,7 +253,7 @@ LAB_180133764:
             *(longlong *)(lVar2 + 0x1ce0) = lVar3;
             *(longlong *)(lVar2 + 0x1cd8) = lVar3;
         }
-        *(undefined1 *)(lVar2 + 0x1cf8) = 0;
+        *(int8_t *)(lVar2 + 0x1cf8) = 0;
     }
     return;
 }
@@ -271,7 +271,7 @@ LAB_180133764:
  * 3. 处理对象选择的各种边界条件和特殊情况
  * 4. 更新引擎状态中的当前选中对象
  */
-void update_object_selection_with_params(undefined8 engine_context, undefined8 object_manager, longlong target_object)
+void update_object_selection_with_params(uint64_t engine_context, uint64_t object_manager, longlong target_object)
 {
     longlong lVar1;
     longlong lVar2;
@@ -283,7 +283,7 @@ void update_object_selection_with_params(undefined8 engine_context, undefined8 o
     ulonglong uVar7;
     longlong in_R10;
     int in_R11D;
-    undefined4 in_register_0000009c;
+    int32_t in_register_0000009c;
     
     iVar4 = (int)in_R10 + -1;
     uVar6 = (ulonglong)iVar4;
@@ -324,7 +324,7 @@ LAB_180133764:
         *(longlong *)(unaff_RBX + 0x1ce0) = lVar2;
         *(longlong *)(unaff_RBX + 0x1cd8) = lVar2;
     }
-    *(undefined1 *)(unaff_RBX + 0x1cf8) = 0;
+    *(int8_t *)(unaff_RBX + 0x1cf8) = 0;
     return;
 }
 
@@ -363,9 +363,9 @@ void process_main_object_update(void)
     int iVar5;
     float *pfVar6;
     uint uVar7;
-    undefined1 *puVar8;
+    int8_t *puVar8;
     longlong lVar9;
-    undefined8 uVar10;
+    uint64_t uVar10;
     longlong lVar11;
     longlong lVar12;
     longlong *plVar13;
@@ -373,8 +373,8 @@ void process_main_object_update(void)
     float fVar15;
     float fVar16;
     float fVar17;
-    undefined1 auStackX_8 [8];
-    undefined1 auStackX_10 [8];
+    int8_t auStackX_8 [8];
+    int8_t auStackX_10 [8];
     
     lVar2 = _DAT_180c8a9b0;
     lVar11 = 0;
@@ -385,7 +385,7 @@ void process_main_object_update(void)
         plVar13 = (longlong *)(*(longlong *)(_DAT_180c8a9b0 + 0x1bb8) + 8 + lVar9 * 0x30);
         do {
             if ((*plVar13 != 0) && ((*(uint *)(*plVar13 + 0xc) & 0x8000000) != 0)) {
-                *(undefined8 *)(_DAT_180c8a9b0 + 0x1cd8) = 0;
+                *(uint64_t *)(_DAT_180c8a9b0 + 0x1cd8) = 0;
                 return;
             }
             plVar13 = plVar13 + -6;
@@ -401,7 +401,7 @@ void process_main_object_update(void)
         }
         *(float *)(_DAT_180c8a9b0 + 0x1cf4) = fVar15;
         if ((*pfVar6 <= 0.0) && (fVar15 <= 0.0)) {
-            *(undefined8 *)(lVar2 + 0x1ce0) = 0;
+            *(uint64_t *)(lVar2 + 0x1ce0) = 0;
         }
     }
     if (*(longlong *)(lVar2 + 0x1cd8) == 0) {
@@ -432,7 +432,7 @@ LAB_1801338ca:
         *(longlong *)(lVar2 + 0x1cd8) = lVar9;
         *(byte *)(lVar2 + 0x1cf8) = bVar4 ^ 1;
         *(uint *)(lVar2 + 0x1cc0) = (bVar4 ^ 1) + 3;
-        *(undefined8 *)(lVar2 + 0x1cf0) = 0;
+        *(uint64_t *)(lVar2 + 0x1cf0) = 0;
     }
     fVar15 = *(float *)(lVar2 + 0x18) + *(float *)(lVar2 + 0x1cf0);
     *(float *)(lVar2 + 0x1cf0) = fVar15;
@@ -454,7 +454,7 @@ LAB_1801338ca:
         fVar17 = *(float *)(lVar2 + 0x14b8);
         if (0.0 <= fVar17) {
             iVar5 = func_0x000180128180(fVar17,fVar17 - *(float *)(lVar2 + 0x18),
-                                        *(undefined4 *)(lVar2 + 0x90),
+                                        *(int32_t *)(lVar2 + 0x90),
                                         *(float *)(lVar2 + 0x94) + *(float *)(lVar2 + 0x94));
             fVar17 = (float)iVar5;
         }
@@ -464,7 +464,7 @@ LAB_1801338ca:
         fVar16 = *(float *)(lVar2 + 0x14bc);
         if (0.0 <= fVar16) {
             iVar5 = func_0x000180128180(fVar16,fVar16 - *(float *)(lVar2 + 0x18),
-                                        *(undefined4 *)(lVar2 + 0x90),
+                                        *(int32_t *)(lVar2 + 0x90),
                                         *(float *)(lVar2 + 0x94) + *(float *)(lVar2 + 0x94));
             fVar16 = (float)iVar5;
         }
@@ -473,7 +473,7 @@ LAB_1801338ca:
         }
         if (0.0 < fVar17 != 0.0 < fVar16) {
             update_object_selection_state();
-            *(undefined4 *)(lVar2 + 0x1cf4) = 0x3f800000;
+            *(int32_t *)(lVar2 + 0x1cf4) = 0x3f800000;
             fVar15 = 1.0;
         }
         if (*(float *)(lVar2 + 0x344) <= 0.0) {
@@ -488,7 +488,7 @@ LAB_1801338ca:
                 bVar1 = true;
                 lVar12 = lVar11;
             }
-            *(undefined8 *)(lVar2 + 0x1cd8) = 0;
+            *(uint64_t *)(lVar2 + 0x1cd8) = 0;
             lVar9 = lVar12;
         }
     }
@@ -522,7 +522,7 @@ LAB_1801338ca:
         }
     }
     if ((0.0 <= *(float *)(lVar2 + 0x14c8)) && (*(float *)(lVar2 + 0x14c8) == 0.0)) {
-        *(undefined1 *)(lVar2 + 0x1cf8) = 1;
+        *(int8_t *)(lVar2 + 0x1cf8) = 1;
     }
     if ((((*(int *)(lVar2 + 0x1b2c) == 0) || (*(char *)(lVar2 + 0x1b3d) != '\0')) &&
         (*(char *)(lVar2 + 0x1cf8) != '\0')) &&
@@ -567,10 +567,10 @@ LAB_180133c1e:
                     fVar17 = (float)(int)(fVar17 * *(float *)(lVar2 + 0x18) * 800.0);
                     *(float *)(lVar12 + 0x40) = *pfVar6 * fVar17 + *(float *)(lVar12 + 0x40);
                     *(float *)(lVar12 + 0x44) = fVar15 * fVar17 + *(float *)(lVar12 + 0x44);
-                    *(undefined1 *)(lVar2 + 0x1d07) = 1;
+                    *(int8_t *)(lVar2 + 0x1d07) = 1;
                     if (((*(uint *)(*(longlong *)(lVar2 + 0x1cd8) + 0xc) & 0x100) == 0) &&
                        (*(float *)(lVar2 + 0x2e04) <= 0.0)) {
-                        *(undefined4 *)(lVar2 + 0x2e04) = *(undefined4 *)(lVar2 + 0x1c);
+                        *(int32_t *)(lVar2 + 0x2e04) = *(int32_t *)(lVar2 + 0x1c);
                     }
                 }
             }
@@ -585,7 +585,7 @@ LAB_180133c1e:
     lVar12 = *(longlong *)(lVar2 + 0x1c98);
     if (lVar12 == 0) {
 LAB_180133ce2:
-        *(undefined2 *)(lVar2 + 0x1d06) = 0x100;
+        *(int16_t *)(lVar2 + 0x1d06) = 0x100;
         if (*(longlong *)(lVar9 + 0x3c0) != 0) {
             lVar9 = *(longlong *)(lVar9 + 0x3c0);
         }
@@ -595,7 +595,7 @@ LAB_180133ce2:
             func_0x000180131810(lVar9,0);
         }
         if (*(int *)(lVar9 + 0x174) == 2) {
-            *(undefined4 *)(lVar2 + 0x1cfc) = 1;
+            *(int32_t *)(lVar2 + 0x1cfc) = 1;
         }
         if ((*(longlong *)(lVar9 + 0x28) != lVar11) && (*(code **)(lVar2 + 0x1578) != (code *)0x0)) {
             (**(code **)(lVar2 + 0x1578))();
@@ -605,7 +605,7 @@ LAB_180133ce2:
         lVar11 = *(longlong *)(lVar12 + 0x28);
         goto LAB_180133ce2;
     }
-    *(undefined8 *)(lVar2 + 0x1cd8) = 0;
+    *(uint64_t *)(lVar2 + 0x1cd8) = 0;
 LAB_180133d4a:
     if ((bVar1) && (lVar12 = *(longlong *)(lVar2 + 0x1c98), lVar12 != 0)) {
         plVar13 = (longlong *)(lVar12 + 0x398);
@@ -622,14 +622,14 @@ LAB_180133d4a:
             *(longlong *)(lVar9 + 0x3c0) = lVar12;
             lVar12 = *(longlong *)(lVar2 + 0x1c98);
         }
-        *(undefined2 *)(lVar2 + 0x1d06) = 0x100;
+        *(int16_t *)(lVar2 + 0x1d06) = 0x100;
         if ((*(byte *)(lVar12 + 0x174) & 2) == 0) {
             uVar7 = 0;
         }
         else {
             uVar7 = *(uint *)(lVar2 + 0x1cfc) ^ 1;
             if ((uVar7 == 1) && (*(longlong *)(lVar9 + 0x410) == 0)) {
-                *(undefined4 *)(lVar12 + 0x3cc) = 0;
+                *(int32_t *)(lVar12 + 0x3cc) = 0;
             }
         }
         func_0x000180131750(uVar7);
@@ -659,8 +659,8 @@ void process_secondary_object_update(void)
     longlong lVar8;
     float *pfVar9;
     uint uVar10;
-    undefined1 *puVar11;
-    undefined8 uVar13;
+    int8_t *puVar11;
+    uint64_t uVar13;
     longlong unaff_RBX;
     ulonglong uVar14;
     longlong unaff_RDI;
@@ -736,7 +736,7 @@ LAB_1801338ca:
         fVar19 = *(float *)(unaff_RBX + 0x14b8);
         if (0.0 <= fVar19) {
             iVar7 = func_0x000180128180(fVar19,fVar19 - *(float *)(unaff_RBX + 0x18),
-                                        *(undefined4 *)(unaff_RBX + 0x90),
+                                        *(int32_t *)(unaff_RBX + 0x90),
                                         *(float *)(unaff_RBX + 0x94) + *(float *)(unaff_RBX + 0x94));
             fVar19 = (float)iVar7;
         }
@@ -746,7 +746,7 @@ LAB_1801338ca:
         fVar18 = *(float *)(unaff_RBX + 0x14bc);
         if (0.0 <= fVar18) {
             iVar7 = func_0x000180128180(fVar18,fVar18 - *(float *)(unaff_RBX + 0x18),
-                                        *(undefined4 *)(unaff_RBX + 0x90),
+                                        *(int32_t *)(unaff_RBX + 0x90),
                                         *(float *)(unaff_RBX + 0x94) + *(float *)(unaff_RBX + 0x94));
             fVar18 = (float)iVar7;
         }
@@ -756,7 +756,7 @@ LAB_1801338ca:
         uVar3 = (undefined7)(unaff_R15 >> 8);
         if ((int)CONCAT71(uVar3,0.0 < fVar19) != (int)CONCAT71(uVar3,0.0 < fVar18)) {
             update_object_selection_state();
-            *(undefined4 *)(unaff_RBX + 0x1cf4) = 0x3f800000;
+            *(int32_t *)(unaff_RBX + 0x1cf4) = 0x3f800000;
             fVar17 = 1.0;
         }
         if (*(float *)(unaff_RBX + 0x344) <= 0.0) {
@@ -804,7 +804,7 @@ LAB_1801338ca:
         }
     }
     if ((0.0 <= *(float *)(unaff_RBX + 0x14c8)) && (*(float *)(unaff_RBX + 0x14c8) == 0.0)) {
-        *(undefined1 *)(unaff_RBX + 0x1cf8) = 1;
+        *(int8_t *)(unaff_RBX + 0x1cf8) = 1;
     }
     if ((((*(int *)(unaff_RBX + 0x1b2c) == iVar16) || (*(char *)(unaff_RBX + 0x1b3d) != cVar15)) &&
         (*(char *)(unaff_RBX + 0x1cf8) != cVar15)) &&
@@ -850,10 +850,10 @@ LAB_180133c1e:
                     fVar19 = (float)(int)(fVar19 * *(float *)(unaff_RBX + 0x18) * 800.0);
                     *(float *)(lVar8 + 0x40) = *pfVar9 * fVar19 + *(float *)(lVar8 + 0x40);
                     *(float *)(lVar8 + 0x44) = fVar17 * fVar19 + *(float *)(lVar8 + 0x44);
-                    *(undefined1 *)(unaff_RBX + 0x1d07) = 1;
+                    *(int8_t *)(unaff_RBX + 0x1d07) = 1;
                     if (((*(uint *)(*(longlong *)(unaff_RBX + 0x1cd8) + 0xc) & 0x100) == 0) &&
                        (*(float *)(unaff_RBX + 0x2e04) <= 0.0)) {
-                        *(undefined4 *)(unaff_RBX + 0x2e04) = *(undefined4 *)(unaff_RBX + 0x1c);
+                        *(int32_t *)(unaff_RBX + 0x2e04) = *(int32_t *)(unaff_RBX + 0x1c);
                     }
                 }
             }
@@ -869,7 +869,7 @@ LAB_180133c1e:
     uVar14 = unaff_R15;
     if (lVar8 == 0) {
 LAB_180133ce2:
-        *(undefined2 *)(unaff_RBX + 0x1d06) = 0x100;
+        *(int16_t *)(unaff_RBX + 0x1d06) = 0x100;
         if (*(longlong *)(unaff_RDI + 0x3c0) != 0) {
             unaff_RDI = *(longlong *)(unaff_RDI + 0x3c0);
         }
@@ -879,7 +879,7 @@ LAB_180133ce2:
             func_0x000180131810(unaff_RDI,0);
         }
         if (*(int *)(unaff_RDI + 0x174) == 2) {
-            *(undefined4 *)(unaff_RBX + 0x1cfc) = 1;
+            *(int32_t *)(unaff_RBX + 0x1cfc) = 1;
         }
         if ((*(ulonglong *)(unaff_RDI + 0x28) != uVar14) &&
            (*(code **)(unaff_RBX + 0x1578) != (code *)0x0)) {
@@ -907,7 +907,7 @@ LAB_180133d4a:
             *(ulonglong *)(uVar2 + 0x3c0) = uVar14;
             uVar14 = *(ulonglong *)(unaff_RBX + 0x1c98);
         }
-        *(undefined2 *)(unaff_RBX + 0x1d06) = 0x100;
+        *(int16_t *)(unaff_RBX + 0x1d06) = 0x100;
         if ((*(byte *)(uVar14 + 0x174) & 2) == 0) {
             uVar12 = unaff_R15 & 0xffffffff;
         }
@@ -935,14 +935,14 @@ LAB_180133d4a:
 void reset_current_object_selection(void)
 {
     longlong unaff_RBX;
-    undefined8 unaff_R15;
+    uint64_t unaff_R15;
     
-    *(undefined8 *)(unaff_RBX + 0x1cd8) = unaff_R15;
+    *(uint64_t *)(unaff_RBX + 0x1cd8) = unaff_R15;
     return;
 }
 
 // 全局变量定义
-undefined8 _DAT_180c8a9b0 = 0;  // 全局引擎状态指针
+uint64_t _DAT_180c8a9b0 = 0;  // 全局引擎状态指针
 
 // 函数声明
 void initialize_object_selection(longlong engine_context);
@@ -950,11 +950,11 @@ void update_object_animation_state(longlong engine_context);
 void update_object_position_and_movement(longlong engine_context);
 void update_object_lifecycle(longlong engine_context);
 void process_global_object_updates(longlong engine_context);
-void update_object_animation_time(undefined8 object_ptr);
-void process_animation_state_transitions(undefined8 object_ptr, undefined8 animation_data);
-void update_animation_blending_parameters(undefined8 object_ptr);
-void process_animation_events(undefined8 object_ptr);
-void synchronize_animation_with_object_state(undefined8 object_ptr);
+void update_object_animation_time(uint64_t object_ptr);
+void process_animation_state_transitions(uint64_t object_ptr, uint64_t animation_data);
+void update_animation_blending_parameters(uint64_t object_ptr);
+void process_animation_events(uint64_t object_ptr);
+void synchronize_animation_with_object_state(uint64_t object_ptr);
 bool check_object_criteria(longlong object_ptr, int criteria);
 void initialize_object_lifecycle(longlong engine_context);
 longlong find_available_game_object(int search_criteria, int start_index, int search_direction);
@@ -963,6 +963,6 @@ void FUN_18012ed10(longlong param1);
 void FUN_18012d2e0(longlong param1);
 void func_0x000180131810(longlong param1, int param2);
 void func_0x000180131750(ulonglong param1);
-undefined8 FUN_180131aa0(undefined8 param1, undefined8 param2, int param3, int param4, int param5);
+uint64_t FUN_180131aa0(uint64_t param1, uint64_t param2, int param3, int param4, int param5);
 char func_0x0001801281d0(int param1, int param2);
-int func_0x000180128180(float param1, float param2, undefined4 param3, float param4);
+int func_0x000180128180(float param1, float param2, int32_t param3, float param4);

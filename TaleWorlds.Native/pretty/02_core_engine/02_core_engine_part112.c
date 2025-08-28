@@ -12,14 +12,14 @@
 
 // 全局变量引用
 extern longlong _DAT_180c8a9b0;  // 引擎全局上下文
-extern undefined8 FUN_1801247c0(longlong param_1);  // 渲染资源处理
-extern void FUN_180293f50(longlong param_1, longlong param_2, float *param_3, undefined4 param_4);  // 渲染效果应用
-extern undefined4 func_0x000180121e20(void *param_1);  // 参数计算
-extern longlong func_0x000180126de0(undefined8 param_1);  // 资源查找
-extern void FUN_180291b40(longlong param_1, undefined8 param_2, undefined8 param_3, int param_4);  // 渲染状态更新
-extern void FUN_180298890(longlong param_1, float *param_2, float *param_3, undefined4 param_4, undefined4 param_5);  // 高级渲染效果
-extern void FUN_1802939e0(longlong param_1, float *param_2, float *param_3, float param_4, undefined4 param_5);  // 渲染参数设置
-extern void FUN_1802923e0(longlong param_1, undefined8 param_2, undefined4 param_3, uint param_4, int param_5);  // 颜色和混合模式
+extern uint64_t FUN_1801247c0(longlong param_1);  // 渲染资源处理
+extern void FUN_180293f50(longlong param_1, longlong param_2, float *param_3, int32_t param_4);  // 渲染效果应用
+extern int32_t func_0x000180121e20(void *param_1);  // 参数计算
+extern longlong func_0x000180126de0(uint64_t param_1);  // 资源查找
+extern void FUN_180291b40(longlong param_1, uint64_t param_2, uint64_t param_3, int param_4);  // 渲染状态更新
+extern void FUN_180298890(longlong param_1, float *param_2, float *param_3, int32_t param_4, int32_t param_5);  // 高级渲染效果
+extern void FUN_1802939e0(longlong param_1, float *param_2, float *param_3, float param_4, int32_t param_5);  // 渲染参数设置
+extern void FUN_1802923e0(longlong param_1, uint64_t param_2, int32_t param_3, uint param_4, int param_5);  // 颜色和混合模式
 extern void FUN_180291950(longlong param_1);  // 渲染清理和重置
 
 /**
@@ -44,16 +44,16 @@ void process_render_queue_batch_effects(longlong context, longlong exclude_queue
                                       int queue_count, float effect_factor, int blend_mode)
 {
     float *float_ptr;
-    undefined4 *data_ptr;
+    int32_t *data_ptr;
     byte flag_byte;
     longlong resource_handle;
     bool should_process;
-    undefined4 temp_data_1;
-    undefined4 temp_data_2;
-    undefined4 temp_data_3;
-    undefined4 temp_data_4;
+    int32_t temp_data_1;
+    int32_t temp_data_2;
+    int32_t temp_data_3;
+    int32_t temp_data_4;
     uint color_value;
-    undefined8 resource_data;
+    uint64_t resource_data;
     longlong item_offset;
     int item_index;
     longlong queue_item;
@@ -100,15 +100,15 @@ void process_render_queue_batch_effects(longlong context, longlong exclude_queue
             
             // 获取基础渲染参数
             position_x = *(float *)(_DAT_180c8a9b0 + 0x1628);
-            data_ptr = (undefined4 *)(effect_context + 0x1628 + _DAT_180c8a9b0);
+            data_ptr = (int32_t *)(effect_context + 0x1628 + _DAT_180c8a9b0);
             temp_data_4 = data_ptr[1];
             temp_data_1 = data_ptr[2];
             position_w = (float)data_ptr[3];
             
             // 存储基础参数到栈
-            *(undefined4 *)(primary_handle + -0x69) = *data_ptr;
-            *(undefined4 *)(primary_handle + -0x65) = temp_data_4;
-            *(undefined4 *)(primary_handle + -0x61) = temp_data_1;
+            *(int32_t *)(primary_handle + -0x69) = *data_ptr;
+            *(int32_t *)(primary_handle + -0x65) = temp_data_4;
+            *(int32_t *)(primary_handle + -0x61) = temp_data_1;
             *(float *)(primary_handle + -0x5d) = position_w;
             
             // 获取条目位置和尺寸信息
@@ -143,7 +143,7 @@ void process_render_queue_batch_effects(longlong context, longlong exclude_queue
             queue_item = (longlong)item_index;
             do {
                 if ((*(char *)(*item_ptr + 0xaf) != '\0') && (*(char *)(*item_ptr + 0xb6) == '\0')) {
-                    item_offset = func_0x000180126de0(*(undefined8 *)
+                    item_offset = func_0x000180126de0(*(uint64_t *)
                                                   (*(longlong *)(item_offset + 400) + (longlong)item_index * 8));
                     break;
                 }
@@ -156,8 +156,8 @@ void process_render_queue_batch_effects(longlong context, longlong exclude_queue
         
         // 应用高级渲染效果
         item_offset = *(longlong *)(item_offset + 0x2e8);
-        FUN_180291b40(item_offset, *(undefined8 *)(*(longlong *)(item_offset + 0x38) + 0x18),
-                      *(undefined8 *)(*(longlong *)(item_offset + 0x38) + 0x20), 0);
+        FUN_180291b40(item_offset, *(uint64_t *)(*(longlong *)(item_offset + 0x38) + 0x18),
+                      *(uint64_t *)(*(longlong *)(item_offset + 0x38) + 0x20), 0);
         
         effect_context = *(longlong *)(effect_context + 0x3a8);
         if (((*(byte *)(effect_context + 0x432) & 1) != 0) &&
@@ -168,20 +168,20 @@ void process_render_queue_batch_effects(longlong context, longlong exclude_queue
             position_x = *(float *)(render_context + 0x1dc8);
             float_ptr = (float *)(resource_handle + 0x40);
             position_y = *float_ptr;
-            temp_data_3 = *(undefined4 *)(resource_handle + 0x44);
+            temp_data_3 = *(int32_t *)(resource_handle + 0x44);
             blend_factor = *float_ptr;
-            temp_data_2 = *(undefined4 *)(resource_handle + 0x44);
-            temp_data_4 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19cc);
-            temp_data_1 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19d0);
+            temp_data_2 = *(int32_t *)(resource_handle + 0x44);
+            temp_data_4 = *(int32_t *)(_DAT_180c8a9b0 + 0x19cc);
+            temp_data_1 = *(int32_t *)(_DAT_180c8a9b0 + 0x19d0);
             position_w = *(float *)(_DAT_180c8a9b0 + 0x19d4);
             opacity = *(float *)(_DAT_180c8a9b0 + 0x1628);
             size_x = *float_ptr + *(float *)(resource_handle + 0x48);
             size_z = *(float *)(resource_handle + 0x44) + *(float *)(resource_handle + 0x4c);
             
             // 存储颜色参数
-            *(undefined4 *)(primary_handle + -0x59) = *(undefined4 *)(_DAT_180c8a9b0 + 0x19c8);
-            *(undefined4 *)(primary_handle + -0x55) = temp_data_4;
-            *(undefined4 *)(primary_handle + -0x51) = temp_data_1;
+            *(int32_t *)(primary_handle + -0x59) = *(int32_t *)(_DAT_180c8a9b0 + 0x19c8);
+            *(int32_t *)(primary_handle + -0x55) = temp_data_4;
+            *(int32_t *)(primary_handle + -0x51) = temp_data_1;
             *(float *)(primary_handle + -0x4d) = position_w;
             
             opacity = *(float *)(effect_context + 0x44);
@@ -195,11 +195,11 @@ void process_render_queue_batch_effects(longlong context, longlong exclude_queue
             *(float *)(primary_handle + -0x61) = position_x;
             *(float *)(primary_handle + -0x5d) = position_z;
             *(float *)(primary_handle + -0x69) = blend_factor;
-            *(undefined4 *)(primary_handle + -0x65) = temp_data_2;
+            *(int32_t *)(primary_handle + -0x65) = temp_data_2;
             *(float *)(primary_handle + -0x61) = size_x;
             *(float *)(primary_handle + -0x5d) = size_z;
             *(float *)(primary_handle + -0x69) = position_y;
-            *(undefined4 *)(primary_handle + -0x65) = temp_data_3;
+            *(int32_t *)(primary_handle + -0x65) = temp_data_3;
             *(float *)(primary_handle + -0x61) = size_x;
             *(float *)(primary_handle + -0x5d) = size_z;
             *(float *)(primary_handle + -0x49) = size_y;
@@ -210,7 +210,7 @@ void process_render_queue_batch_effects(longlong context, longlong exclude_queue
             // 应用高级渲染效果
             temp_data_4 = func_0x000180121e20(primary_handle + -0x59);
             FUN_180298890(item_offset, primary_handle + -0x69, primary_handle + -0x49, temp_data_4,
-                          *(undefined4 *)(render_context + 0x1634));
+                          *(int32_t *)(render_context + 0x1634));
         }
         
         // 计算最终渲染参数
@@ -241,14 +241,14 @@ void process_render_queue_batch_effects(longlong context, longlong exclude_queue
         
         // 计算颜色值
         size_y = *(float *)(_DAT_180c8a9b0 + 0x19b8);
-        temp_data_4 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19bc);
-        temp_data_1 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19c0);
+        temp_data_4 = *(int32_t *)(_DAT_180c8a9b0 + 0x19bc);
+        temp_data_1 = *(int32_t *)(_DAT_180c8a9b0 + 0x19c0);
         position_y = *(float *)(_DAT_180c8a9b0 + 0x19c4);
         position_z = *(float *)(render_context + 0x1cf4) * *(float *)(_DAT_180c8a9b0 + 0x1628) * position_y;
         
         *(float *)(primary_handle + -0x59) = size_y;
-        *(undefined4 *)(primary_handle + -0x55) = temp_data_4;
-        *(undefined4 *)(primary_handle + -0x51) = temp_data_1;
+        *(int32_t *)(primary_handle + -0x55) = temp_data_4;
+        *(int32_t *)(primary_handle + -0x51) = temp_data_1;
         *(float *)(primary_handle + -0x4d) = position_y;
         position_y = blend_factor;
         
@@ -294,9 +294,9 @@ void process_render_queue_batch_effects(longlong context, longlong exclude_queue
             *(float *)(primary_handle + 0x67) = blend_factor;
             *(float *)(primary_handle + 0x6b) = position_w;
             FUN_1802939e0(item_offset, primary_handle + 0x6f, primary_handle + 0x67, position_x, 0xffffffff);
-            FUN_1802923e0(item_offset, *(undefined8 *)(item_offset + 0x88), *(undefined4 *)(item_offset + 0x80),
+            FUN_1802923e0(item_offset, *(uint64_t *)(item_offset + 0x88), *(int32_t *)(item_offset + 0x80),
                           alpha_value | color_value, 1);
-            *(undefined4 *)(item_offset + 0x80) = 0;
+            *(int32_t *)(item_offset + 0x80) = 0;
         }
         
         // 清理和重置
@@ -329,10 +329,10 @@ void process_primary_queue_advanced_effects(longlong context, longlong primary_q
     longlong resource_handle;
     longlong effect_context;
     bool should_process;
-    undefined4 temp_data_1;
-    undefined4 temp_data_2;
-    undefined4 temp_data_3;
-    undefined4 temp_data_4;
+    int32_t temp_data_1;
+    int32_t temp_data_2;
+    int32_t temp_data_3;
+    int32_t temp_data_4;
     uint color_value;
     longlong item_offset;
     longlong render_context;
@@ -360,7 +360,7 @@ void process_primary_queue_advanced_effects(longlong context, longlong primary_q
             render_context = (longlong)queue_item;
             do {
                 if ((*(char *)(*resource_handle + 0xaf) != '\0') && (*(char *)(*resource_handle + 0xb6) == '\0')) {
-                    item_offset = func_0x000180126de0(*(undefined8 *)
+                    item_offset = func_0x000180126de0(*(uint64_t *)
                                                   (*(longlong *)(item_offset + 400) + (longlong)queue_item * 8));
                     break;
                 }
@@ -373,8 +373,8 @@ void process_primary_queue_advanced_effects(longlong context, longlong primary_q
         
         // 应用高级渲染效果
         item_offset = *(longlong *)(item_offset + 0x2e8);
-        FUN_180291b40(item_offset, *(undefined8 *)(*(longlong *)(item_offset + 0x38) + 0x18),
-                      *(undefined8 *)(*(longlong *)(item_offset + 0x38) + 0x20), 0);
+        FUN_180291b40(item_offset, *(uint64_t *)(*(longlong *)(item_offset + 0x38) + 0x18),
+                      *(uint64_t *)(*(longlong *)(item_offset + 0x38) + 0x20), 0);
         
         render_context = *(longlong *)(effect_context + 0x3a8);
         if (((*(byte *)(render_context + 0x432) & 1) != 0) &&
@@ -385,20 +385,20 @@ void process_primary_queue_advanced_effects(longlong context, longlong primary_q
             position_x = *(float *)(context + 0x1dc8);
             float_ptr = (float *)(resource_handle + 0x40);
             position_y = *float_ptr;
-            temp_data_3 = *(undefined4 *)(resource_handle + 0x44);
+            temp_data_3 = *(int32_t *)(resource_handle + 0x44);
             blend_factor = *float_ptr;
-            temp_data_2 = *(undefined4 *)(resource_handle + 0x44);
-            temp_data_4 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19cc);
-            temp_data_1 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19d0);
+            temp_data_2 = *(int32_t *)(resource_handle + 0x44);
+            temp_data_4 = *(int32_t *)(_DAT_180c8a9b0 + 0x19cc);
+            temp_data_1 = *(int32_t *)(_DAT_180c8a9b0 + 0x19d0);
             position_z = *(float *)(_DAT_180c8a9b0 + 0x19d4);
             opacity = *(float *)(_DAT_180c8a9b0 + 0x1628);
             size_x = *float_ptr + *(float *)(resource_handle + 0x48);
             size_y = *(float *)(resource_handle + 0x44) + *(float *)(resource_handle + 0x4c);
             
             // 存储颜色参数
-            *(undefined4 *)(primary_queue + -0x59) = *(undefined4 *)(_DAT_180c8a9b0 + 0x19c8);
-            *(undefined4 *)(primary_queue + -0x55) = temp_data_4;
-            *(undefined4 *)(primary_queue + -0x51) = temp_data_1;
+            *(int32_t *)(primary_queue + -0x59) = *(int32_t *)(_DAT_180c8a9b0 + 0x19c8);
+            *(int32_t *)(primary_queue + -0x55) = temp_data_4;
+            *(int32_t *)(primary_queue + -0x51) = temp_data_1;
             *(float *)(primary_queue + -0x4d) = position_z;
             
             opacity = *(float *)(render_context + 0x44);
@@ -412,11 +412,11 @@ void process_primary_queue_advanced_effects(longlong context, longlong primary_q
             *(float *)(primary_queue + -0x61) = position_x;
             *(float *)(primary_queue + -0x5d) = size_z;
             *(float *)(primary_queue + -0x69) = blend_factor;
-            *(undefined4 *)(primary_queue + -0x65) = temp_data_2;
+            *(int32_t *)(primary_queue + -0x65) = temp_data_2;
             *(float *)(primary_queue + -0x61) = size_x;
             *(float *)(primary_queue + -0x5d) = size_y;
             *(float *)(primary_queue + -0x69) = position_y;
-            *(undefined4 *)(primary_queue + -0x65) = temp_data_3;
+            *(int32_t *)(primary_queue + -0x65) = temp_data_3;
             *(float *)(primary_queue + -0x61) = size_x;
             *(float *)(primary_queue + -0x5d) = size_y;
             *(float *)(primary_queue + -0x49) = position_w;
@@ -427,7 +427,7 @@ void process_primary_queue_advanced_effects(longlong context, longlong primary_q
             // 应用高级渲染效果
             temp_data_4 = func_0x000180121e20(primary_queue + -0x59);
             FUN_180298890(item_offset, primary_queue + -0x69, primary_queue + -0x49, temp_data_4,
-                          *(undefined4 *)(context + 0x1634));
+                          *(int32_t *)(context + 0x1634));
         }
         
         // 计算最终渲染参数
@@ -458,14 +458,14 @@ void process_primary_queue_advanced_effects(longlong context, longlong primary_q
         
         // 计算颜色值
         position_w = *(float *)(_DAT_180c8a9b0 + 0x19b8);
-        temp_data_4 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19bc);
-        temp_data_1 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19c0);
+        temp_data_4 = *(int32_t *)(_DAT_180c8a9b0 + 0x19bc);
+        temp_data_1 = *(int32_t *)(_DAT_180c8a9b0 + 0x19c0);
         position_y = *(float *)(_DAT_180c8a9b0 + 0x19c4);
         position_z = *(float *)(context + 0x1cf4) * *(float *)(_DAT_180c8a9b0 + 0x1628) * position_y;
         
         *(float *)(primary_queue + -0x59) = position_w;
-        *(undefined4 *)(primary_queue + -0x55) = temp_data_4;
-        *(undefined4 *)(primary_queue + -0x51) = temp_data_1;
+        *(int32_t *)(primary_queue + -0x55) = temp_data_4;
+        *(int32_t *)(primary_queue + -0x51) = temp_data_1;
         *(float *)(primary_queue + -0x4d) = position_y;
         position_y = blend_factor;
         
@@ -511,9 +511,9 @@ void process_primary_queue_advanced_effects(longlong context, longlong primary_q
             *(float *)(primary_queue + 0x67) = blend_factor;
             *(float *)(primary_queue + 0x6b) = position_z;
             FUN_1802939e0(item_offset, primary_queue + 0x6f, primary_queue + 0x67, position_x, 0xffffffff);
-            FUN_1802923e0(item_offset, *(undefined8 *)(item_offset + 0x88), *(undefined4 *)(item_offset + 0x80),
+            FUN_1802923e0(item_offset, *(uint64_t *)(item_offset + 0x88), *(int32_t *)(item_offset + 0x80),
                           alpha_value | color_value, 1);
-            *(undefined4 *)(item_offset + 0x80) = 0;
+            *(int32_t *)(item_offset + 0x80) = 0;
         }
         
         // 清理和重置
@@ -545,10 +545,10 @@ void process_secondary_queue_advanced_effects(longlong context, longlong seconda
     longlong resource_handle;
     longlong effect_context;
     bool should_process;
-    undefined4 temp_data_1;
-    undefined4 temp_data_2;
-    undefined4 temp_data_3;
-    undefined4 temp_data_4;
+    int32_t temp_data_1;
+    int32_t temp_data_2;
+    int32_t temp_data_3;
+    int32_t temp_data_4;
     uint color_value;
     longlong item_offset;
     longlong render_context;
@@ -575,7 +575,7 @@ void process_secondary_queue_advanced_effects(longlong context, longlong seconda
         render_context = (longlong)queue_item;
         do {
             if ((*(char *)(*resource_handle + 0xaf) != '\0') && (*(char *)(*resource_handle + 0xb6) == '\0')) {
-                item_offset = func_0x000180126de0(*(undefined8 *)
+                item_offset = func_0x000180126de0(*(uint64_t *)
                                               (*(longlong *)(item_offset + 400) + (longlong)queue_item * 8));
                 break;
             }
@@ -588,8 +588,8 @@ void process_secondary_queue_advanced_effects(longlong context, longlong seconda
     
     // 应用高级渲染效果
     item_offset = *(longlong *)(item_offset + 0x2e8);
-    FUN_180291b40(item_offset, *(undefined8 *)(*(longlong *)(item_offset + 0x38) + 0x18),
-                  *(undefined8 *)(*(longlong *)(item_offset + 0x38) + 0x20), 0);
+    FUN_180291b40(item_offset, *(uint64_t *)(*(longlong *)(item_offset + 0x38) + 0x18),
+                  *(uint64_t *)(*(longlong *)(item_offset + 0x38) + 0x20), 0);
     
     render_context = *(longlong *)(effect_context + 0x3a8);
     if (((*(byte *)(render_context + 0x432) & 1) != 0) &&
@@ -600,20 +600,20 @@ void process_secondary_queue_advanced_effects(longlong context, longlong seconda
         position_x = *(float *)(context + 0x1dc8);
         float_ptr = (float *)(resource_handle + 0x40);
         position_y = *float_ptr;
-        temp_data_3 = *(undefined4 *)(resource_handle + 0x44);
+        temp_data_3 = *(int32_t *)(resource_handle + 0x44);
         blend_factor = *float_ptr;
-        temp_data_2 = *(undefined4 *)(resource_handle + 0x44);
-        temp_data_4 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19cc);
-        temp_data_1 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19d0);
+        temp_data_2 = *(int32_t *)(resource_handle + 0x44);
+        temp_data_4 = *(int32_t *)(_DAT_180c8a9b0 + 0x19cc);
+        temp_data_1 = *(int32_t *)(_DAT_180c8a9b0 + 0x19d0);
         position_z = *(float *)(_DAT_180c8a9b0 + 0x19d4);
         opacity = *(float *)(_DAT_180c8a9b0 + 0x1628);
         size_x = *float_ptr + *(float *)(resource_handle + 0x48);
         size_y = *(float *)(resource_handle + 0x44) + *(float *)(resource_handle + 0x4c);
         
         // 存储颜色参数
-        *(undefined4 *)(secondary_queue + -0x59) = *(undefined4 *)(_DAT_180c8a9b0 + 0x19c8);
-        *(undefined4 *)(secondary_queue + -0x55) = temp_data_4;
-        *(undefined4 *)(secondary_queue + -0x51) = temp_data_1;
+        *(int32_t *)(secondary_queue + -0x59) = *(int32_t *)(_DAT_180c8a9b0 + 0x19c8);
+        *(int32_t *)(secondary_queue + -0x55) = temp_data_4;
+        *(int32_t *)(secondary_queue + -0x51) = temp_data_1;
         *(float *)(secondary_queue + -0x4d) = position_z;
         
         opacity = *(float *)(render_context + 0x44);
@@ -627,11 +627,11 @@ void process_secondary_queue_advanced_effects(longlong context, longlong seconda
         *(float *)(secondary_queue + -0x61) = position_x;
         *(float *)(secondary_queue + -0x5d) = size_z;
         *(float *)(secondary_queue + -0x69) = blend_factor;
-        *(undefined4 *)(secondary_queue + -0x65) = temp_data_2;
+        *(int32_t *)(secondary_queue + -0x65) = temp_data_2;
         *(float *)(secondary_queue + -0x61) = size_x;
         *(float *)(secondary_queue + -0x5d) = size_y;
         *(float *)(secondary_queue + -0x69) = position_y;
-        *(undefined4 *)(secondary_queue + -0x65) = temp_data_3;
+        *(int32_t *)(secondary_queue + -0x65) = temp_data_3;
         *(float *)(secondary_queue + -0x61) = size_x;
         *(float *)(secondary_queue + -0x5d) = size_y;
         *(float *)(secondary_queue + -0x49) = position_w;
@@ -642,7 +642,7 @@ void process_secondary_queue_advanced_effects(longlong context, longlong seconda
         // 应用高级渲染效果
         temp_data_4 = func_0x000180121e20(secondary_queue + -0x59);
         FUN_180298890(item_offset, secondary_queue + -0x69, secondary_queue + -0x49, temp_data_4,
-                      *(undefined4 *)(context + 0x1634));
+                      *(int32_t *)(context + 0x1634));
     }
     
     // 计算最终渲染参数
@@ -673,14 +673,14 @@ void process_secondary_queue_advanced_effects(longlong context, longlong seconda
     
     // 计算颜色值
     position_w = *(float *)(_DAT_180c8a9b0 + 0x19b8);
-    temp_data_4 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19bc);
-    temp_data_1 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19c0);
+    temp_data_4 = *(int32_t *)(_DAT_180c8a9b0 + 0x19bc);
+    temp_data_1 = *(int32_t *)(_DAT_180c8a9b0 + 0x19c0);
     position_y = *(float *)(_DAT_180c8a9b0 + 0x19c4);
     position_z = *(float *)(context + 0x1cf4) * *(float *)(_DAT_180c8a9b0 + 0x1628) * position_y;
     
     *(float *)(secondary_queue + -0x59) = position_w;
-    *(undefined4 *)(secondary_queue + -0x55) = temp_data_4;
-    *(undefined4 *)(secondary_queue + -0x51) = temp_data_1;
+    *(int32_t *)(secondary_queue + -0x55) = temp_data_4;
+    *(int32_t *)(secondary_queue + -0x51) = temp_data_1;
     *(float *)(secondary_queue + -0x4d) = position_y;
     position_y = blend_factor;
     
@@ -726,9 +726,9 @@ void process_secondary_queue_advanced_effects(longlong context, longlong seconda
         *(float *)(secondary_queue + 0x67) = blend_factor;
         *(float *)(secondary_queue + 0x6b) = position_z;
         FUN_1802939e0(item_offset, secondary_queue + 0x6f, secondary_queue + 0x67, position_x, 0xffffffff);
-        FUN_1802923e0(item_offset, *(undefined8 *)(item_offset + 0x88), *(undefined4 *)(item_offset + 0x80),
+        FUN_1802923e0(item_offset, *(uint64_t *)(item_offset + 0x88), *(int32_t *)(item_offset + 0x80),
                       alpha_value | color_value, 1);
-        *(undefined4 *)(item_offset + 0x80) = 0;
+        *(int32_t *)(item_offset + 0x80) = 0;
     }
     
     // 清理和重置
@@ -759,10 +759,10 @@ void process_special_render_effects(longlong context, longlong render_context,
     byte flag_byte;
     longlong resource_handle;
     bool should_process;
-    undefined4 temp_data_1;
-    undefined4 temp_data_2;
-    undefined4 temp_data_3;
-    undefined4 temp_data_4;
+    int32_t temp_data_1;
+    int32_t temp_data_2;
+    int32_t temp_data_3;
+    int32_t temp_data_4;
     uint color_value;
     longlong item_offset;
     longlong queue_item;
@@ -787,7 +787,7 @@ void process_special_render_effects(longlong context, longlong render_context,
         queue_item = (longlong)queue_item;
         do {
             if ((*(char *)(*resource_handle + 0xaf) != '\0') && (*(char *)(*resource_handle + 0xb6) == '\0')) {
-                item_offset = func_0x000180126de0(*(undefined8 *)
+                item_offset = func_0x000180126de0(*(uint64_t *)
                                               (*(longlong *)(item_offset + 400) + (longlong)queue_item * 8));
                 break;
             }
@@ -800,8 +800,8 @@ void process_special_render_effects(longlong context, longlong render_context,
     
     // 应用高级渲染效果
     item_offset = *(longlong *)(item_offset + 0x2e8);
-    FUN_180291b40(item_offset, *(undefined8 *)(*(longlong *)(item_offset + 0x38) + 0x18),
-                  *(undefined8 *)(*(longlong *)(item_offset + 0x38) + 0x20), 0);
+    FUN_180291b40(item_offset, *(uint64_t *)(*(longlong *)(item_offset + 0x38) + 0x18),
+                  *(uint64_t *)(*(longlong *)(item_offset + 0x38) + 0x20), 0);
     
     queue_item = *(longlong *)(render_context + 0x3a8);
     if (((*(byte *)(queue_item + 0x432) & 1) != 0) &&
@@ -812,20 +812,20 @@ void process_special_render_effects(longlong context, longlong render_context,
         position_x = *(float *)(context + 0x1dc8);
         float_ptr = (float *)(resource_handle + 0x40);
         position_y = *float_ptr;
-        temp_data_3 = *(undefined4 *)(resource_handle + 0x44);
+        temp_data_3 = *(int32_t *)(resource_handle + 0x44);
         effect_strength = *float_ptr;
-        temp_data_2 = *(undefined4 *)(resource_handle + 0x44);
-        temp_data_4 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19cc);
-        temp_data_1 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19d0);
+        temp_data_2 = *(int32_t *)(resource_handle + 0x44);
+        temp_data_4 = *(int32_t *)(_DAT_180c8a9b0 + 0x19cc);
+        temp_data_1 = *(int32_t *)(_DAT_180c8a9b0 + 0x19d0);
         position_w = *(float *)(_DAT_180c8a9b0 + 0x19d4);
         opacity = *(float *)(_DAT_180c8a9b0 + 0x1628);
         size_x = *float_ptr + *(float *)(resource_handle + 0x48);
         size_y = *(float *)(resource_handle + 0x44) + *(float *)(resource_handle + 0x4c);
         
         // 存储颜色参数
-        *(undefined4 *)(render_context + -0x59) = *(undefined4 *)(_DAT_180c8a9b0 + 0x19c8);
-        *(undefined4 *)(render_context + -0x55) = temp_data_4;
-        *(undefined4 *)(render_context + -0x51) = temp_data_1;
+        *(int32_t *)(render_context + -0x59) = *(int32_t *)(_DAT_180c8a9b0 + 0x19c8);
+        *(int32_t *)(render_context + -0x55) = temp_data_4;
+        *(int32_t *)(render_context + -0x51) = temp_data_1;
         *(float *)(render_context + -0x4d) = position_w;
         
         opacity = *(float *)(queue_item + 0x44);
@@ -839,11 +839,11 @@ void process_special_render_effects(longlong context, longlong render_context,
         *(float *)(render_context + -0x61) = position_x;
         *(float *)(render_context + -0x5d) = size_z;
         *(float *)(render_context + -0x69) = effect_strength;
-        *(undefined4 *)(render_context + -0x65) = temp_data_2;
+        *(int32_t *)(render_context + -0x65) = temp_data_2;
         *(float *)(render_context + -0x61) = size_x;
         *(float *)(render_context + -0x5d) = size_y;
         *(float *)(render_context + -0x69) = position_y;
-        *(undefined4 *)(render_context + -0x65) = temp_data_3;
+        *(int32_t *)(render_context + -0x65) = temp_data_3;
         *(float *)(render_context + -0x61) = size_x;
         *(float *)(render_context + -0x5d) = size_y;
         *(float *)(render_context + -0x49) = position_z;
@@ -854,7 +854,7 @@ void process_special_render_effects(longlong context, longlong render_context,
         // 应用高级渲染效果
         temp_data_4 = func_0x000180121e20(render_context + -0x59);
         FUN_180298890(item_offset, render_context + -0x69, render_context + -0x49, temp_data_4,
-                      *(undefined4 *)(context + 0x1634));
+                      *(int32_t *)(context + 0x1634));
     }
     
     // 计算最终渲染参数
@@ -885,14 +885,14 @@ void process_special_render_effects(longlong context, longlong render_context,
     
     // 计算颜色值
     position_z = *(float *)(_DAT_180c8a9b0 + 0x19b8);
-    temp_data_4 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19bc);
-    temp_data_1 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19c0);
+    temp_data_4 = *(int32_t *)(_DAT_180c8a9b0 + 0x19bc);
+    temp_data_1 = *(int32_t *)(_DAT_180c8a9b0 + 0x19c0);
     position_y = *(float *)(_DAT_180c8a9b0 + 0x19c4);
     position_w = *(float *)(context + 0x1cf4) * *(float *)(_DAT_180c8a9b0 + 0x1628) * position_y;
     
     *(float *)(render_context + -0x59) = position_z;
-    *(undefined4 *)(render_context + -0x55) = temp_data_4;
-    *(undefined4 *)(render_context + -0x51) = temp_data_1;
+    *(int32_t *)(render_context + -0x55) = temp_data_4;
+    *(int32_t *)(render_context + -0x51) = temp_data_1;
     *(float *)(render_context + -0x4d) = position_y;
     position_y = effect_strength;
     
@@ -938,9 +938,9 @@ void process_special_render_effects(longlong context, longlong render_context,
         *(float *)(render_context + 0x67) = effect_strength;
         *(float *)(render_context + 0x6b) = position_w;
         FUN_1802939e0(item_offset, render_context + 0x6f, render_context + 0x67, position_x, 0xffffffff);
-        FUN_1802923e0(item_offset, *(undefined8 *)(item_offset + 0x88), *(undefined4 *)(item_offset + 0x80),
+        FUN_1802923e0(item_offset, *(uint64_t *)(item_offset + 0x88), *(int32_t *)(item_offset + 0x80),
                       alpha_value | color_value, 1);
-        *(undefined4 *)(item_offset + 0x80) = 0;
+        *(int32_t *)(item_offset + 0x80) = 0;
     }
     
     // 清理和重置

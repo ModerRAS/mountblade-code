@@ -12,7 +12,7 @@ void FUN_1805baa98(void)
   uint uVar3;
   ulonglong uVar4;
   int iVar5;
-  undefined8 *puVar6;
+  uint64_t *puVar6;
   longlong lVar7;
   int unaff_EBP;
   int unaff_ESI;
@@ -58,18 +58,18 @@ void FUN_1805baa98(void)
         }
         lVar9 = (longlong)(iVar5 + -1);
         if ((longlong)uVar8 < lVar9) {
-          puVar6 = (undefined8 *)((lVar9 + 0x65) * 0x3c + (longlong)in_R9);
+          puVar6 = (uint64_t *)((lVar9 + 0x65) * 0x3c + (longlong)in_R9);
           lVar9 = lVar9 - uVar8;
           do {
-            *puVar6 = *(undefined8 *)((longlong)puVar6 + -0x3c);
-            puVar6[1] = *(undefined8 *)((longlong)puVar6 + -0x34);
-            puVar6[2] = *(undefined8 *)((longlong)puVar6 + -0x2c);
-            puVar6[3] = *(undefined8 *)((longlong)puVar6 + -0x24);
-            puVar6[4] = *(undefined8 *)((longlong)puVar6 + -0x1c);
-            puVar6[5] = *(undefined8 *)((longlong)puVar6 + -0x14);
-            puVar6[6] = *(undefined8 *)((longlong)puVar6 + -0xc);
-            *(undefined4 *)(puVar6 + 7) = *(undefined4 *)((longlong)puVar6 + -4);
-            puVar6 = (undefined8 *)((longlong)puVar6 + -0x3c);
+            *puVar6 = *(uint64_t *)((longlong)puVar6 + -0x3c);
+            puVar6[1] = *(uint64_t *)((longlong)puVar6 + -0x34);
+            puVar6[2] = *(uint64_t *)((longlong)puVar6 + -0x2c);
+            puVar6[3] = *(uint64_t *)((longlong)puVar6 + -0x24);
+            puVar6[4] = *(uint64_t *)((longlong)puVar6 + -0x1c);
+            puVar6[5] = *(uint64_t *)((longlong)puVar6 + -0x14);
+            puVar6[6] = *(uint64_t *)((longlong)puVar6 + -0xc);
+            *(int32_t *)(puVar6 + 7) = *(int32_t *)((longlong)puVar6 + -4);
+            puVar6 = (uint64_t *)((longlong)puVar6 + -0x3c);
             lVar9 = lVar9 + -1;
           } while (lVar9 != 0);
         }
@@ -79,7 +79,7 @@ void FUN_1805baa98(void)
           *(int *)(lVar9 + (longlong)in_R9) = iVar5;
           lVar7 = uVar8 * 0x3c;
           *(float *)(lVar7 + 0x17b4 + (longlong)in_R9) = fVar10;
-          *(undefined8 *)(lVar7 + 0x17e0 + (longlong)in_R9) = 0x7149f2ca;
+          *(uint64_t *)(lVar7 + 0x17e0 + (longlong)in_R9) = 0x7149f2ca;
           *(int *)(lVar7 + 0x17bc + (longlong)in_R9) = (int)unaff_R14;
         }
       }

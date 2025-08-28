@@ -21,7 +21,7 @@
  * @param allocation_size 分配大小参数
  * @param base_address 基地址参数
  */
-void optimize_memory_allocation(undefined8 memory_manager, undefined8 allocation_size, longlong base_address)
+void optimize_memory_allocation(uint64_t memory_manager, uint64_t allocation_size, longlong base_address)
 {
     longlong memory_offset;
     longlong current_address;
@@ -32,7 +32,7 @@ void optimize_memory_allocation(undefined8 memory_manager, undefined8 allocation
     longlong data_manager;
     longlong allocation_context;
     longlong size_param;
-    undefined8 stack_param;
+    uint64_t stack_param;
     
     // 计算内存偏移量
     memory_offset = calculate_aligned_offset(
@@ -49,7 +49,7 @@ void optimize_memory_allocation(undefined8 memory_manager, undefined8 allocation
         // 使用预分配的内存块
         initialize_memory_pool();
         setup_memory_block(&stack_param, block_count * 0x88 + memory_context);
-        *(undefined8 *)(allocation_context + 8) = stack_param;
+        *(uint64_t *)(allocation_context + 8) = stack_param;
     }
     else {
         // 需要分配新的内存块
@@ -117,7 +117,7 @@ longlong initialize_memory_pool(void)
  * @param block_ptr 内存块指针
  * @param block_size 内存块大小
  */
-void setup_memory_block(undefined8 *block_ptr, ulonglong block_size)
+void setup_memory_block(uint64_t *block_ptr, ulonglong block_size)
 {
     // 设置内存块的参数和属性
     // 具体实现根据上下文确定

@@ -55,16 +55,16 @@
 // 参数：connection_handle - 连接句柄，info_buffer - 输出缓冲区
 // 返回：无返回值，结果通过info_buffer返回
 // 注意：函数包含连接验证、安全检查和错误处理机制
-void validate_network_connection(undefined8 connection_handle, ulonglong *info_buffer)
+void validate_network_connection(uint64_t connection_handle, ulonglong *info_buffer)
 
 {
   int connection_result;
   int validation_result;
-  undefined1 security_buffer[32];
-  undefined1 *message_buffer;
+  int8_t security_buffer[32];
+  int8_t *message_buffer;
   longlong connection_data[2];
-  undefined8 *protocol_handlers[2];
-  undefined1 packet_buffer[NETWORK_BUFFER_SIZE];
+  uint64_t *protocol_handlers[2];
+  int8_t packet_buffer[NETWORK_BUFFER_SIZE];
   ulonglong security_key;
   
   // 安全密钥生成和验证
@@ -102,13 +102,13 @@ CONNECTION_VALIDATION_FAILED:
   
   // 设置协议处理器并获取连接信息
   if ((validation_result == 0) &&
-     (connection_result = FUN_18088dec0(*(undefined8 *)(connection_data[0] + 0x98), protocol_handlers, 0x20), connection_result == 0))
+     (connection_result = FUN_18088dec0(*(uint64_t *)(connection_data[0] + 0x98), protocol_handlers, 0x20), connection_result == 0))
   {
     *protocol_handlers[0] = NETWORK_PROTOCOL_HANDLER;
-    *(undefined4 *)(protocol_handlers[0] + 3) = 0;
-    *(undefined4 *)(protocol_handlers[0] + 1) = 0x20;
+    *(int32_t *)(protocol_handlers[0] + 3) = 0;
+    *(int32_t *)(protocol_handlers[0] + 1) = 0x20;
     *(int *)(protocol_handlers[0] + 2) = (int)connection_handle;
-    connection_result = func_0x00018088e0d0(*(undefined8 *)(connection_data[0] + 0x98), protocol_handlers[0]);
+    connection_result = func_0x00018088e0d0(*(uint64_t *)(connection_data[0] + 0x98), protocol_handlers[0]);
     if (connection_result == 0) {
       *info_buffer = (ulonglong)*(uint *)(protocol_handlers[0] + 3);
       // 清理连接数据（函数不返回）
@@ -131,15 +131,15 @@ CONNECTION_INFO_FAILED:
 // 参数：connection_handle - 连接句柄，config_data - 配置数据，extended_params - 扩展参数
 // 返回：无返回值
 // 注意：函数包含网络状态检查、数据编码和消息发送机制
-void send_network_configuration_message(undefined8 connection_handle, undefined8 config_data, undefined8 extended_params)
+void send_network_configuration_message(uint64_t connection_handle, uint64_t config_data, uint64_t extended_params)
 
 {
   int network_status;
   int encode_result1;
   int encode_result2;
-  undefined1 security_buffer[32];
-  undefined1 *message_buffer;
-  undefined1 packet_buffer[NETWORK_BUFFER_SIZE];
+  int8_t security_buffer[32];
+  int8_t *message_buffer;
+  int8_t packet_buffer[NETWORK_BUFFER_SIZE];
   ulonglong security_key;
   
   // 安全密钥生成和验证
@@ -176,7 +176,7 @@ void send_simple_network_message(void)
 {
   int encode_result1;         // 第一次编码结果
   int encode_result2;         // 第二次编码结果
-  undefined4 message_flags;   // 消息标志位
+  int32_t message_flags;   // 消息标志位
   
   // 编码消息数据到缓冲区
   encode_result1 = FUN_18074b880(&stack0x00000030, NETWORK_BUFFER_SIZE);
@@ -216,25 +216,25 @@ void cleanup_network_resources(void)
 // 参数：connection_handle - 连接句柄，data_params - 数据参数，result_buffer - 结果缓冲区
 // 返回：无返回值，结果通过result_buffer返回
 // 注意：函数包含连接验证、安全检查和数据处理机制
-void query_network_extended_data(undefined8 connection_handle, undefined4 *data_params, ulonglong *result_buffer)
+void query_network_extended_data(uint64_t connection_handle, int32_t *data_params, ulonglong *result_buffer)
 
 {
-  undefined4 param1;           // 参数1
-  undefined4 param2;           // 参数2
-  undefined4 param3;           // 参数3
+  int32_t param1;           // 参数1
+  int32_t param2;           // 参数2
+  int32_t param3;           // 参数3
   int connection_result;       // 连接结果
   int validation_result;       // 验证结果
-  undefined1 security_buffer[32]; // 安全缓冲区
-  undefined1 *message_buffer;   // 消息缓冲区
+  int8_t security_buffer[32]; // 安全缓冲区
+  int8_t *message_buffer;   // 消息缓冲区
   longlong connection_data[2];   // 连接数据
-  undefined8 *protocol_handlers[2]; // 协议处理器
-  undefined1 packet_buffer[NETWORK_BUFFER_SIZE]; // 数据包缓冲区
+  uint64_t *protocol_handlers[2]; // 协议处理器
+  int8_t packet_buffer[NETWORK_BUFFER_SIZE]; // 数据包缓冲区
   ulonglong security_key;     // 安全密钥
   
   // 生成安全密钥
   security_key = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
   // 检查参数有效性
-  if ((result_buffer == (ulonglong *)0x0) || (*result_buffer = 0, data_params == (undefined4 *)0x0)) {
+  if ((result_buffer == (ulonglong *)0x0) || (*result_buffer = 0, data_params == (int32_t *)0x0)) {
     // 检查网络状态标志
     if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) == 0) {
       // 安全验证失败，执行异常处理（函数不返回）
@@ -269,21 +269,21 @@ EXTENDED_VALIDATION_FAILED:
   
   // 设置协议处理器并获取扩展数据
   if ((validation_result == 0) &&
-     (connection_result = FUN_18088dec0(*(undefined8 *)(connection_data[0] + 0x98), protocol_handlers, 0x28), connection_result == 0))
+     (connection_result = FUN_18088dec0(*(uint64_t *)(connection_data[0] + 0x98), protocol_handlers, 0x28), connection_result == 0))
   {
     *protocol_handlers[0] = NETWORK_EXTENDED_HANDLER;
-    *(undefined4 *)(protocol_handlers[0] + 4) = 0;
-    *(undefined4 *)(protocol_handlers[0] + 1) = 0x28;
+    *(int32_t *)(protocol_handlers[0] + 4) = 0;
+    *(int32_t *)(protocol_handlers[0] + 1) = 0x28;
     // 提取参数数据
     param1 = data_params[1];
     param2 = data_params[2];
     param3 = data_params[3];
-    *(undefined4 *)(protocol_handlers[0] + 2) = *data_params;
-    *(undefined4 *)((longlong)protocol_handlers[0] + 0x14) = param1;
-    *(undefined4 *)(protocol_handlers[0] + 3) = param2;
-    *(undefined4 *)((longlong)protocol_handlers[0] + 0x1c) = param3;
+    *(int32_t *)(protocol_handlers[0] + 2) = *data_params;
+    *(int32_t *)((longlong)protocol_handlers[0] + 0x14) = param1;
+    *(int32_t *)(protocol_handlers[0] + 3) = param2;
+    *(int32_t *)((longlong)protocol_handlers[0] + 0x1c) = param3;
     // 获取扩展数据
-    connection_result = func_0x00018088e0d0(*(undefined8 *)(connection_data[0] + 0x98), protocol_handlers[0]);
+    connection_result = func_0x00018088e0d0(*(uint64_t *)(connection_data[0] + 0x98), protocol_handlers[0]);
     if (connection_result == 0) {
       *result_buffer = (ulonglong)*(uint *)(protocol_handlers[0] + 4);
       // 清理连接数据（函数不返回）
@@ -311,13 +311,13 @@ void get_network_session_statistics(ulonglong session_handle, uint *stats_buffer
   int connection_result;       // 连接结果
   longlong session_data;       // 会话数据
   uint *stats_ptr;            // 统计指针
-  undefined1 security_buffer[32]; // 安全缓冲区
-  undefined1 *message_buffer;   // 消息缓冲区
-  undefined8 security_key;     // 安全密钥
+  int8_t security_buffer[32]; // 安全缓冲区
+  int8_t *message_buffer;   // 消息缓冲区
+  uint64_t security_key;     // 安全密钥
   longlong connection_handle;  // 连接句柄
   longlong session_info;       // 会话信息
   longlong stats_data;         // 统计数据
-  undefined1 packet_buffer[NETWORK_BUFFER_SIZE]; // 数据包缓冲区
+  int8_t packet_buffer[NETWORK_BUFFER_SIZE]; // 数据包缓冲区
   ulonglong security_check;    // 安全检查
   
   // 生成安全检查密钥
@@ -354,7 +354,7 @@ void get_network_session_statistics(ulonglong session_handle, uint *stats_buffer
   }
   
   // 获取会话数据
-  session_data = FUN_18083fbf0(*(undefined8 *)(session_info + 800), session_info + 0x30);
+  session_data = FUN_18083fbf0(*(uint64_t *)(session_info + 800), session_info + 0x30);
   if (session_data != 0) {
     // 获取统计指针并计算统计数据
     stats_ptr = (uint *)FUN_18084cde0(session_data, &stats_data);
@@ -376,13 +376,13 @@ void get_network_session_statistics(ulonglong session_handle, uint *stats_buffer
 // 参数：connection_id - 连接ID，flag1 - 标志1输出，flag2 - 标志2输出
 // 返回：无返回值，结果通过flag1和flag2返回
 // 注意：函数包含连接验证、属性获取和错误处理机制
-void get_network_connection_attributes(undefined4 connection_id, undefined4 *flag1, undefined4 *flag2)
+void get_network_connection_attributes(int32_t connection_id, int32_t *flag1, int32_t *flag2)
 
 {
   int connection_result;       // 连接结果
-  undefined1 security_buffer[48]; // 安全缓冲区
-  undefined8 session_handle;    // 会话句柄
-  undefined8 connection_info;    // 连接信息
+  int8_t security_buffer[48]; // 安全缓冲区
+  uint64_t session_handle;    // 会话句柄
+  uint64_t connection_info;    // 连接信息
   longlong connection_data;     // 连接数据
   longlong session_info[33];    // 会话信息
   ulonglong security_key;       // 安全密钥
@@ -390,10 +390,10 @@ void get_network_connection_attributes(undefined4 connection_id, undefined4 *fla
   // 生成安全密钥
   security_key = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
   // 初始化输出标志
-  if (flag1 != (undefined4 *)0x0) {
+  if (flag1 != (int32_t *)0x0) {
     *flag1 = 0;
   }
-  if (flag2 != (undefined4 *)0x0) {
+  if (flag2 != (int32_t *)0x0) {
     *flag2 = 0;
   }
   
@@ -412,11 +412,11 @@ void get_network_connection_attributes(undefined4 connection_id, undefined4 *fla
   
   // 提取连接属性标志
   if (connection_data != 0) {
-    if (flag1 != (undefined4 *)0x0) {
-      *flag1 = *(undefined4 *)(connection_data + 0xf0);
+    if (flag1 != (int32_t *)0x0) {
+      *flag1 = *(int32_t *)(connection_data + 0xf0);
     }
-    if (flag2 != (undefined4 *)0x0) {
-      *flag2 = *(undefined4 *)(connection_data + 0xf4);
+    if (flag2 != (int32_t *)0x0) {
+      *flag2 = *(int32_t *)(connection_data + 0xf4);
     }
   }
 GET_FLAGS_FAILED:
@@ -434,26 +434,26 @@ GET_FLAGS_FAILED:
 // 参数：connection_handle - 连接句柄，param_data - 参数数据，param1 - 参数1输出，param2 - 参数2输出
 // 返回：无返回值，结果通过param1和param2返回
 // 注意：函数包含参数验证、配置设置和错误处理机制
-void configure_network_connection_params(undefined8 connection_handle, longlong param_data, undefined4 *param1, undefined4 *param2)
+void configure_network_connection_params(uint64_t connection_handle, longlong param_data, int32_t *param1, int32_t *param2)
 
 {
   int connection_result;       // 连接结果
   int encode_result;          // 编码结果
-  undefined1 security_buffer[32]; // 安全缓冲区
-  undefined1 *message_buffer;   // 消息缓冲区
-  undefined4 temp_params[2];   // 临时参数
-  undefined8 session_handle;    // 会话句柄
+  int8_t security_buffer[32]; // 安全缓冲区
+  int8_t *message_buffer;   // 消息缓冲区
+  int32_t temp_params[2];   // 临时参数
+  uint64_t session_handle;    // 会话句柄
   longlong connection_data[2];  // 连接数据
-  undefined1 packet_buffer[NETWORK_BUFFER_SIZE]; // 数据包缓冲区
+  int8_t packet_buffer[NETWORK_BUFFER_SIZE]; // 数据包缓冲区
   ulonglong security_key;      // 安全密钥
   
   // 生成安全密钥
   security_key = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
   // 初始化输出参数
-  if (param1 != (undefined4 *)0x0) {
+  if (param1 != (int32_t *)0x0) {
     *param1 = 0;
   }
-  if (param2 != (undefined4 *)0x0) {
+  if (param2 != (int32_t *)0x0) {
     *param2 = 0;
   }
   
@@ -525,15 +525,15 @@ SET_PARAMS_FAILED:
 // 参数：connection_handle - 连接句柄，packet_data - 数据包数据，extended_params - 扩展参数
 // 返回：无返回值
 // 注意：函数包含网络状态检查、数据编码和消息发送机制
-void send_extended_network_packet(undefined8 connection_handle, undefined4 packet_data, undefined8 extended_params)
+void send_extended_network_packet(uint64_t connection_handle, int32_t packet_data, uint64_t extended_params)
 
 {
   int connection_result;       // 连接结果
   int encode_result1;         // 第一次编码结果
   int encode_result2;         // 第二次编码结果
-  undefined1 security_buffer[32]; // 安全缓冲区
-  undefined1 *message_buffer;   // 消息缓冲区
-  undefined1 packet_buffer[NETWORK_BUFFER_SIZE]; // 数据包缓冲区
+  int8_t security_buffer[32]; // 安全缓冲区
+  int8_t *message_buffer;   // 消息缓冲区
+  int8_t packet_buffer[NETWORK_BUFFER_SIZE]; // 数据包缓冲区
   ulonglong security_key;     // 安全密钥
   
   // 生成安全密钥
@@ -568,8 +568,8 @@ void send_simple_network_packet(void)
 {
   int encode_result1;         // 第一次编码结果
   int encode_result2;         // 第二次编码结果
-  undefined4 packet_data;    // 数据包数据
-  undefined4 message_flags;  // 消息标志位
+  int32_t packet_data;    // 数据包数据
+  int32_t message_flags;  // 消息标志位
   
   // 编码数据包数据
   encode_result1 = func_0x00018074b7d0(&stack0x00000030, NETWORK_BUFFER_SIZE, packet_data);
@@ -608,23 +608,23 @@ void release_network_packet_resources(void)
 // 参数：connection_handle - 连接句柄，status_buffer - 状态缓冲区
 // 返回：无返回值，结果通过status_buffer返回
 // 注意：函数包含连接验证、状态获取和错误处理机制
-void check_network_connection_status(ulonglong connection_handle, undefined4 *status_buffer)
+void check_network_connection_status(ulonglong connection_handle, int32_t *status_buffer)
 
 {
   int connection_result;       // 连接结果
-  undefined1 security_buffer[32]; // 安全缓冲区
-  undefined1 *message_buffer;   // 消息缓冲区
-  undefined8 session_handle;    // 会话句柄
-  undefined8 connection_info;    // 连接信息
+  int8_t security_buffer[32]; // 安全缓冲区
+  int8_t *message_buffer;   // 消息缓冲区
+  uint64_t session_handle;    // 会话句柄
+  uint64_t connection_info;    // 连接信息
   longlong connection_data;     // 连接数据
   longlong status_info;         // 状态信息
-  undefined1 packet_buffer[NETWORK_BUFFER_SIZE]; // 数据包缓冲区
+  int8_t packet_buffer[NETWORK_BUFFER_SIZE]; // 数据包缓冲区
   ulonglong security_key;       // 安全密钥
   
   // 生成安全密钥
   security_key = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
   // 检查状态缓冲区有效性
-  if (status_buffer == (undefined4 *)0x0) {
+  if (status_buffer == (int32_t *)0x0) {
     // 检查网络状态标志
     if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) == 0) {
       // 安全验证失败，执行异常处理（函数不返回）
@@ -654,7 +654,7 @@ void check_network_connection_status(ulonglong connection_handle, undefined4 *st
     FUN_18088c790(&session_handle);
   }
   // 提取连接状态信息
-  *status_buffer = *(undefined4 *)(connection_data + 0x88);
+  *status_buffer = *(int32_t *)(connection_data + 0x88);
   // 清理会话句柄（函数不返回）
   FUN_18088c790(&session_handle);
 }
@@ -669,33 +669,33 @@ void check_network_connection_status(ulonglong connection_handle, undefined4 *st
 // 参数：connection_handle - 连接句柄，buffer_data - 缓冲区数据，buffer_size - 缓冲区大小，result_buffer - 结果缓冲区
 // 返回：无返回值，结果通过result_buffer返回
 // 注意：函数包含缓冲区验证、配置设置和错误处理机制
-void setup_network_connection_buffers(ulonglong connection_handle, undefined1 *buffer_data, int buffer_size, undefined4 *result_buffer)
+void setup_network_connection_buffers(ulonglong connection_handle, int8_t *buffer_data, int buffer_size, int32_t *result_buffer)
 
 {
   int connection_result;       // 连接结果
   int encode_result;          // 编码结果
-  undefined1 security_buffer[32]; // 安全缓冲区
-  undefined4 *output_buffer;   // 输出缓冲区
-  undefined8 session_handle;    // 会话句柄
-  undefined8 connection_info;    // 连接信息
+  int8_t security_buffer[32]; // 安全缓冲区
+  int32_t *output_buffer;   // 输出缓冲区
+  uint64_t session_handle;    // 会话句柄
+  uint64_t connection_info;    // 连接信息
   longlong connection_data;     // 连接数据
   longlong buffer_info;         // 缓冲区信息
-  undefined4 buffer_params[4];  // 缓冲区参数
-  undefined1 packet_buffer[NETWORK_BUFFER_SIZE]; // 数据包缓冲区
+  int32_t buffer_params[4];  // 缓冲区参数
+  int8_t packet_buffer[NETWORK_BUFFER_SIZE]; // 数据包缓冲区
   ulonglong security_key;       // 安全密钥
   
   // 生成安全密钥
   security_key = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
   // 初始化输出参数
-  if (buffer_data != (undefined1 *)0x0) {
+  if (buffer_data != (int8_t *)0x0) {
     *buffer_data = 0;
   }
-  if (result_buffer != (undefined4 *)0x0) {
+  if (result_buffer != (int32_t *)0x0) {
     *result_buffer = 0;
   }
   
   // 检查缓冲区参数有效性
-  if (((buffer_data != (undefined1 *)0x0) || (buffer_size == 0)) && (-1 < buffer_size)) {
+  if (((buffer_data != (int8_t *)0x0) || (buffer_size == 0)) && (-1 < buffer_size)) {
     // 初始化连接数据
     connection_data = 0;
     session_handle = 0;
@@ -713,10 +713,10 @@ void setup_network_connection_buffers(ulonglong connection_handle, undefined1 *b
     }
     
     // 提取缓冲区参数
-    buffer_params[0] = *(undefined4 *)(connection_data + 0x10);
-    buffer_params[1] = *(undefined4 *)(connection_data + 0x14);
-    buffer_params[2] = *(undefined4 *)(connection_data + 0x18);
-    buffer_params[3] = *(undefined4 *)(connection_data + 0x1c);
+    buffer_params[0] = *(int32_t *)(connection_data + 0x10);
+    buffer_params[1] = *(int32_t *)(connection_data + 0x14);
+    buffer_params[2] = *(int32_t *)(connection_data + 0x18);
+    buffer_params[3] = *(int32_t *)(connection_data + 0x1c);
     output_buffer = result_buffer;
     // 配置缓冲区参数
     FUN_180882160(connection_info, buffer_params, buffer_data, buffer_size);
@@ -742,7 +742,7 @@ void setup_network_connection_buffers(ulonglong connection_handle, undefined1 *b
   encode_result = FUN_18074b880(packet_buffer + connection_result, NETWORK_BUFFER_SIZE - connection_result, NETWORK_DATA_SEPARATOR);
   // 编码结果缓冲区
   FUN_18074b930(packet_buffer + (connection_result + encode_result), NETWORK_BUFFER_SIZE - (connection_result + encode_result), result_buffer);
-  output_buffer = (undefined4 *)packet_buffer;
+  output_buffer = (int32_t *)packet_buffer;
   // 发送缓冲区配置消息（函数不返回）
   FUN_180749ef0(0x1f, 0xc, connection_handle, NETWORK_BUFFER_MESSAGE);
 }
@@ -760,8 +760,8 @@ void send_buffered_network_message(void)
 {
   int connection_result;       // 连接结果
   int encode_result;          // 编码结果
-  undefined4 buffer_param;    // 缓冲区参数
-  undefined4 message_flags;   // 消息标志位
+  int32_t buffer_param;    // 缓冲区参数
+  int32_t message_flags;   // 消息标志位
   
   // 编码缓冲区数据
   connection_result = FUN_18074b880(&stack0x00000060, NETWORK_BUFFER_SIZE);
@@ -806,23 +806,23 @@ void clear_network_message_buffer(void)
 // 参数：connection_handle - 连接句柄，property_buffer - 属性缓冲区
 // 返回：无返回值，结果通过property_buffer返回
 // 注意：函数包含连接验证、属性获取和错误处理机制
-void retrieve_network_connection_property(ulonglong connection_handle, undefined1 *property_buffer)
+void retrieve_network_connection_property(ulonglong connection_handle, int8_t *property_buffer)
 
 {
   int connection_result;       // 连接结果
-  undefined1 security_buffer[32]; // 安全缓冲区
-  undefined1 *message_buffer;   // 消息缓冲区
-  undefined8 session_handle;    // 会话句柄
-  undefined8 connection_info;    // 连接信息
+  int8_t security_buffer[32]; // 安全缓冲区
+  int8_t *message_buffer;   // 消息缓冲区
+  uint64_t session_handle;    // 会话句柄
+  uint64_t connection_info;    // 连接信息
   longlong connection_data;     // 连接数据
   longlong property_info;       // 属性信息
-  undefined1 packet_buffer[NETWORK_BUFFER_SIZE]; // 数据包缓冲区
+  int8_t packet_buffer[NETWORK_BUFFER_SIZE]; // 数据包缓冲区
   ulonglong security_key;       // 安全密钥
   
   // 生成安全密钥
   security_key = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
   // 检查属性缓冲区有效性
-  if (property_buffer == (undefined1 *)0x0) {
+  if (property_buffer == (int8_t *)0x0) {
     // 检查网络状态标志
     if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) == 0) {
       // 安全验证失败，执行异常处理（函数不返回）
@@ -855,7 +855,7 @@ void retrieve_network_connection_property(ulonglong connection_handle, undefined
     FUN_18088c790(&session_handle);
   }
   // 提取连接属性信息
-  *property_buffer = *(undefined1 *)(connection_data + 0xbc);
+  *property_buffer = *(int8_t *)(connection_data + 0xbc);
   // 清理会话句柄（函数不返回）
   FUN_18088c790(&session_handle);
 }
@@ -870,13 +870,13 @@ void retrieve_network_connection_property(ulonglong connection_handle, undefined
 // 参数：config_id - 配置ID，param1 - 参数1输出，param2 - 参数2输出
 // 返回：无返回值，结果通过param1和param2返回
 // 注意：函数包含配置验证、参数获取和错误处理机制
-void get_network_configuration_settings(undefined4 config_id, undefined4 *param1, undefined4 *param2)
+void get_network_configuration_settings(int32_t config_id, int32_t *param1, int32_t *param2)
 
 {
   int connection_result;       // 连接结果
-  undefined1 security_buffer[48]; // 安全缓冲区
-  undefined8 session_handle;    // 会话句柄
-  undefined8 connection_info;    // 连接信息
+  int8_t security_buffer[48]; // 安全缓冲区
+  uint64_t session_handle;    // 会话句柄
+  uint64_t connection_info;    // 连接信息
   longlong config_data;         // 配置数据
   longlong session_info[33];    // 会话信息
   ulonglong security_key;       // 安全密钥
@@ -884,10 +884,10 @@ void get_network_configuration_settings(undefined4 config_id, undefined4 *param1
   // 生成安全密钥
   security_key = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
   // 初始化输出参数
-  if (param1 != (undefined4 *)0x0) {
+  if (param1 != (int32_t *)0x0) {
     *param1 = 0;
   }
-  if (param2 != (undefined4 *)0x0) {
+  if (param2 != (int32_t *)0x0) {
     *param2 = 0;
   }
   
@@ -924,24 +924,24 @@ GET_CONFIG_FAILED:
 // 参数：connection_handle - 连接句柄，type_buffer - 类型缓冲区
 // 返回：无返回值，结果通过type_buffer返回
 // 注意：函数包含连接验证、类型获取和错误处理机制
-void determine_network_connection_type(ulonglong connection_handle, undefined4 *type_buffer)
+void determine_network_connection_type(ulonglong connection_handle, int32_t *type_buffer)
 
 {
   int connection_result;       // 连接结果
-  undefined4 connection_type;  // 连接类型
-  undefined1 security_buffer[32]; // 安全缓冲区
-  undefined1 *message_buffer;   // 消息缓冲区
-  undefined8 session_handle;    // 会话句柄
-  undefined8 connection_info;    // 连接信息
+  int32_t connection_type;  // 连接类型
+  int8_t security_buffer[32]; // 安全缓冲区
+  int8_t *message_buffer;   // 消息缓冲区
+  uint64_t session_handle;    // 会话句柄
+  uint64_t connection_info;    // 连接信息
   longlong connection_data;     // 连接数据
   longlong type_info;           // 类型信息
-  undefined1 packet_buffer[NETWORK_BUFFER_SIZE]; // 数据包缓冲区
+  int8_t packet_buffer[NETWORK_BUFFER_SIZE]; // 数据包缓冲区
   ulonglong security_key;       // 安全密钥
   
   // 生成安全密钥
   security_key = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
   // 检查类型缓冲区有效性
-  if (type_buffer == (undefined4 *)0x0) {
+  if (type_buffer == (int32_t *)0x0) {
     // 检查网络状态标志
     if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) == 0) {
       // 安全验证失败，执行异常处理（函数不返回）
@@ -991,24 +991,24 @@ void determine_network_connection_type(ulonglong connection_handle, undefined4 *
 // 参数：connection_handle - 连接句柄，field_index - 字段索引，field_buffer - 字段缓冲区
 // 返回：无返回值，结果通过field_buffer返回
 // 注意：函数包含连接验证、字段获取和错误处理机制
-void fetch_network_connection_field(ulonglong connection_handle, uint field_index, undefined4 *field_buffer)
+void fetch_network_connection_field(ulonglong connection_handle, uint field_index, int32_t *field_buffer)
 
 {
   int connection_result;       // 连接结果
   int encode_result;          // 编码结果
-  undefined1 security_buffer[32]; // 安全缓冲区
-  undefined1 *message_buffer;   // 消息缓冲区
-  undefined8 session_handle;    // 会话句柄
-  undefined8 connection_info;    // 连接信息
+  int8_t security_buffer[32]; // 安全缓冲区
+  int8_t *message_buffer;   // 消息缓冲区
+  uint64_t session_handle;    // 会话句柄
+  uint64_t connection_info;    // 连接信息
   longlong connection_data;     // 连接数据
   longlong field_info;         // 字段信息
-  undefined1 packet_buffer[NETWORK_BUFFER_SIZE]; // 数据包缓冲区
+  int8_t packet_buffer[NETWORK_BUFFER_SIZE]; // 数据包缓冲区
   ulonglong security_key;       // 安全密钥
   
   // 生成安全密钥
   security_key = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
   // 检查字段缓冲区有效性
-  if (field_buffer != (undefined4 *)0x0) {
+  if (field_buffer != (int32_t *)0x0) {
     *field_buffer = 0;
     // 检查字段索引范围（0-5）
     if (field_index < 6) {
@@ -1031,7 +1031,7 @@ void fetch_network_connection_field(ulonglong connection_handle, uint field_inde
         FUN_18088c790(&session_handle);
       }
       // 提取指定索引的字段信息
-      *field_buffer = *(undefined4 *)(connection_data + 0xa4 + (longlong)(int)field_index * 4);
+      *field_buffer = *(int32_t *)(connection_data + 0xa4 + (longlong)(int)field_index * 4);
       // 清理会话句柄（函数不返回）
       FUN_18088c790(&session_handle);
     }
@@ -1065,22 +1065,22 @@ void fetch_network_connection_field(ulonglong connection_handle, uint field_inde
 // 参数：connection_handle - 连接句柄，state_buffer - 状态缓冲区
 // 返回：无返回值，结果通过state_buffer返回
 // 注意：函数包含连接验证、状态监控和错误处理机制
-void monitor_network_connection_state(undefined8 connection_handle, undefined4 *state_buffer)
+void monitor_network_connection_state(uint64_t connection_handle, int32_t *state_buffer)
 
 {
   int connection_result;       // 连接结果
   int validation_result;       // 验证结果
-  undefined1 security_buffer[32]; // 安全缓冲区
-  undefined1 *message_buffer;   // 消息缓冲区
+  int8_t security_buffer[32]; // 安全缓冲区
+  int8_t *message_buffer;   // 消息缓冲区
   longlong connection_data[2];   // 连接数据
-  undefined8 *protocol_handlers[2]; // 协议处理器
-  undefined1 packet_buffer[NETWORK_BUFFER_SIZE]; // 数据包缓冲区
+  uint64_t *protocol_handlers[2]; // 协议处理器
+  int8_t packet_buffer[NETWORK_BUFFER_SIZE]; // 数据包缓冲区
   ulonglong security_key;       // 安全密钥
   
   // 生成安全密钥
   security_key = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
   // 检查状态缓冲区有效性
-  if (state_buffer == (undefined4 *)0x0) {
+  if (state_buffer == (int32_t *)0x0) {
     // 检查网络状态标志
     if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) == 0) {
       // 安全验证失败，执行异常处理（函数不返回）
@@ -1112,15 +1112,15 @@ STATE_VALIDATION_FAILED:
   
   // 设置协议处理器并监控连接状态
   if ((validation_result == 0) &&
-     (connection_result = FUN_18088dec0(*(undefined8 *)(connection_data[0] + 0x98), protocol_handlers, 0x20), connection_result == 0))
+     (connection_result = FUN_18088dec0(*(uint64_t *)(connection_data[0] + 0x98), protocol_handlers, 0x20), connection_result == 0))
   {
     *protocol_handlers[0] = NETWORK_STATE_HANDLER;
-    *(undefined4 *)(protocol_handlers[0] + 1) = 0x20;
+    *(int32_t *)(protocol_handlers[0] + 1) = 0x20;
     *(int *)(protocol_handlers[0] + 2) = (int)connection_handle;
     // 获取连接状态
-    connection_result = func_0x00018088e0d0(*(undefined8 *)(connection_data[0] + 0x98), protocol_handlers[0]);
+    connection_result = func_0x00018088e0d0(*(uint64_t *)(connection_data[0] + 0x98), protocol_handlers[0]);
     if (connection_result == 0) {
-      *state_buffer = *(undefined4 *)(protocol_handlers[0] + 3);
+      *state_buffer = *(int32_t *)(protocol_handlers[0] + 3);
       // 清理连接数据（函数不返回）
       FUN_18088c790(connection_data + 1);
     }
@@ -1145,13 +1145,13 @@ void count_active_network_sessions(ulonglong session_handle, uint *count_buffer)
 {
   int connection_result;       // 连接结果
   uint session_count;         // 会话数量
-  undefined1 security_buffer[32]; // 安全缓冲区
-  undefined1 *message_buffer;   // 消息缓冲区
-  undefined8 session_key;       // 会话密钥
-  undefined8 connection_info;    // 连接信息
+  int8_t security_buffer[32]; // 安全缓冲区
+  int8_t *message_buffer;   // 消息缓冲区
+  uint64_t session_key;       // 会话密钥
+  uint64_t connection_info;    // 连接信息
   longlong session_data;         // 会话数据
   longlong count_info;           // 数量信息
-  undefined1 packet_buffer[NETWORK_BUFFER_SIZE]; // 数据包缓冲区
+  int8_t packet_buffer[NETWORK_BUFFER_SIZE]; // 数据包缓冲区
   ulonglong security_key;       // 安全密钥
   
   // 生成安全密钥
@@ -1213,23 +1213,23 @@ void count_active_network_sessions(ulonglong session_handle, uint *count_buffer)
 // 参数：session_handle - 会话句柄，data_buffer - 数据缓冲区
 // 返回：无返回值，结果通过data_buffer返回
 // 注意：函数包含会话验证、数据提取和错误处理机制
-void extract_network_session_data(ulonglong session_handle, undefined8 *data_buffer)
+void extract_network_session_data(ulonglong session_handle, uint64_t *data_buffer)
 
 {
   int connection_result;       // 连接结果
-  undefined1 security_buffer[32]; // 安全缓冲区
-  undefined1 *message_buffer;   // 消息缓冲区
-  undefined8 session_key;       // 会话密钥
-  undefined8 connection_info;    // 连接信息
+  int8_t security_buffer[32]; // 安全缓冲区
+  int8_t *message_buffer;   // 消息缓冲区
+  uint64_t session_key;       // 会话密钥
+  uint64_t connection_info;    // 连接信息
   longlong session_data;         // 会话数据
   longlong data_info;           // 数据信息
-  undefined1 packet_buffer[NETWORK_BUFFER_SIZE]; // 数据包缓冲区
+  int8_t packet_buffer[NETWORK_BUFFER_SIZE]; // 数据包缓冲区
   ulonglong security_key;       // 安全密钥
   
   // 生成安全密钥
   security_key = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
   // 检查数据缓冲区有效性
-  if (data_buffer == (undefined8 *)0x0) {
+  if (data_buffer == (uint64_t *)0x0) {
     // 检查网络状态标志
     if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) == 0) {
       // 安全验证失败，执行异常处理（函数不返回）
@@ -1260,7 +1260,7 @@ void extract_network_session_data(ulonglong session_handle, undefined8 *data_buf
   }
   
   // 提取会话数据信息
-  *data_buffer = *(undefined8 *)(*(longlong *)(session_data + 0xd0) + 0x38);
+  *data_buffer = *(uint64_t *)(*(longlong *)(session_data + 0xd0) + 0x38);
   // 清理会话密钥（函数不返回）
   FUN_18088c790(&session_key);
 }

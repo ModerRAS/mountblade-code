@@ -420,7 +420,7 @@ void ui_string_processor_internal(void)
 {
   char current_char;
   code *error_handler;
-  undefined1 uppercase_char;
+  int8_t uppercase_char;
   int parsed_value;
   longlong found_pos;
   char *string_ptr;
@@ -445,7 +445,7 @@ void ui_string_processor_internal(void)
   if (string_length != 0) {
     do {
       uppercase_char = toupper((int)*(char *)(register_rbp + -9 + char_index));
-      *(undefined1 *)(register_rbp + -0x59 + char_index) = uppercase_char;
+      *(int8_t *)(register_rbp + -0x59 + char_index) = uppercase_char;
       char_index = char_index + 1;
     } while (char_index < string_length);
   }
@@ -458,7 +458,7 @@ void ui_string_processor_internal(void)
     return;
   }
   
-  *(undefined1 *)(register_rbp + -0x59 + string_length) = 0;
+  *(int8_t *)(register_rbp + -0x59 + string_length) = 0;
   
   // 检查是否为空字符串
   if (*(char *)(register_rbp + -0x59) == '\0') {
@@ -623,7 +623,7 @@ void ui_flag_checker_internal(void)
   
   // 检查全局标志
   if (ui_env_default_flag == '\0') {
-    *(undefined4 *)(register_rsi + 4) = 1;  // 设置错误标志
+    *(int32_t *)(register_rsi + 4) = 1;  // 设置错误标志
   }
   
   // 执行栈保护检查
@@ -926,7 +926,7 @@ void ui_library_operation_wrapper(void *operation_data, void *root_node, void *p
 longlong ui_copy_library_data(library_data_t *dest_data, library_data_t *src_data)
 
 {
-  undefined8 temp_data;
+  uint64_t temp_data;
   
   // 初始化复制操作
   ui_memory_copy_init();
@@ -935,10 +935,10 @@ longlong ui_copy_library_data(library_data_t *dest_data, library_data_t *src_dat
   ui_memory_copy_init(dest_data + 0x20, src_data + 0x20);
   
   // 复制各个字段
-  *(undefined1 *)(dest_data + 0x40) = *(undefined1 *)(src_data + 0x40);  // 标志字段
-  *(undefined4 *)(dest_data + 0x44) = *(undefined4 *)(src_data + 0x44);  // 整数字段1
-  *(undefined8 *)(dest_data + 0x48) = *(undefined8 *)(src_data + 0x48);  // 长整数字段1
-  *(undefined4 *)(dest_data + 0x50) = *(undefined4 *)(src_data + 0x50);  // 整数字段2
+  *(int8_t *)(dest_data + 0x40) = *(int8_t *)(src_data + 0x40);  // 标志字段
+  *(int32_t *)(dest_data + 0x44) = *(int32_t *)(src_data + 0x44);  // 整数字段1
+  *(uint64_t *)(dest_data + 0x48) = *(uint64_t *)(src_data + 0x48);  // 长整数字段1
+  *(int32_t *)(dest_data + 0x50) = *(int32_t *)(src_data + 0x50);  // 整数字段2
   
   // 复制偏移量88处的数据
   ui_memory_copy_init(dest_data + 0x58, src_data + 0x58);
@@ -947,11 +947,11 @@ longlong ui_copy_library_data(library_data_t *dest_data, library_data_t *src_dat
   ui_memory_copy_init(dest_data + 0x78, src_data + 0x78);
   
   // 复制偏移量160处的数据
-  temp_data = *(undefined8 *)(src_data + 0xa0);
-  *(undefined8 *)(dest_data + 0x98) = *(undefined8 *)(src_data + 0x98);  // 长整数字段2
-  *(undefined8 *)(dest_data + 0xa0) = temp_data;                      // 长整数字段3
-  *(undefined4 *)(dest_data + 0xa8) = *(undefined4 *)(src_data + 0xa8);  // 整数字段3
-  *(undefined4 *)(dest_data + 0xac) = *(undefined4 *)(src_data + 0xac);  // 整数字段4
+  temp_data = *(uint64_t *)(src_data + 0xa0);
+  *(uint64_t *)(dest_data + 0x98) = *(uint64_t *)(src_data + 0x98);  // 长整数字段2
+  *(uint64_t *)(dest_data + 0xa0) = temp_data;                      // 长整数字段3
+  *(int32_t *)(dest_data + 0xa8) = *(int32_t *)(src_data + 0xa8);  // 整数字段3
+  *(int32_t *)(dest_data + 0xac) = *(int32_t *)(src_data + 0xac);  // 整数字段4
   
   return (longlong)dest_data;
 }
@@ -1044,49 +1044,49 @@ void ui_load_library_with_resource_check(longlong library_info)
 
 {
   short *library_handle;
-  undefined8 *library_node_ptr;
-  undefined8 *next_node_ptr;
-  undefined *library_path_ptr;
-  undefined8 *insert_position_ptr;
+  uint64_t *library_node_ptr;
+  uint64_t *next_node_ptr;
+  void *library_path_ptr;
+  uint64_t *insert_position_ptr;
   ulonglong path_length;
-  undefined1 stack_guard_buffer [32];
+  int8_t stack_guard_buffer [32];
   short **library_handle_ptr;
   short *loaded_library_handle;
-  undefined8 operation_flag;
-  undefined1 temp_buffer_1e8 [16];
+  uint64_t operation_flag;
+  int8_t temp_buffer_1e8 [16];
   longlong resource_data [4];
-  undefined1 temp_buffer_1b8 [8];
+  int8_t temp_buffer_1b8 [8];
   longlong pe_base_address;
   uint library_flags;
-  undefined4 pe_header_offset;
+  int32_t pe_header_offset;
   short *module_base_ptr;
-  undefined1 resource_buffer [272];
+  int8_t resource_buffer [272];
   ulonglong stack_guard_value;
   
   operation_flag = 0xfffffffffffffffe;
   // 栈保护值初始化 - 使用随机种子与栈地址异或生成保护值
   stack_guard_value = _DAT_180bf00a8 ^ (ulonglong)stack_guard_buffer;  // _DAT_180bf00a8: 栈保护随机种子
   library_path_ptr = &DAT_18098bc73;
-  if (*(undefined **)(library_info + 8) != (undefined *)0x0) {
-    library_path_ptr = *(undefined **)(library_info + 8);
+  if (*(void **)(library_info + 8) != (void *)0x0) {
+    library_path_ptr = *(void **)(library_info + 8);
   }
   library_handle = (short *)LoadLibraryA(library_path_ptr);
   if (library_handle != (short *)0x0) {
-    insert_position_ptr = (undefined8 *)&DAT_180c96790;
+    insert_position_ptr = (uint64_t *)&DAT_180c96790;
     library_node_ptr = _DAT_180c967a0;
     loaded_library_handle = library_handle;
-    if (_DAT_180c967a0 != (undefined8 *)0x0) {
+    if (_DAT_180c967a0 != (uint64_t *)0x0) {
       do {
         if ((short *)library_node_ptr[4] < library_handle) {
-          next_node_ptr = (undefined8 *)*library_node_ptr;
+          next_node_ptr = (uint64_t *)*library_node_ptr;
         }
         else {
-          next_node_ptr = (undefined8 *)library_node_ptr[1];
+          next_node_ptr = (uint64_t *)library_node_ptr[1];
           insert_position_ptr = library_node_ptr;
         }
         library_node_ptr = next_node_ptr;
-      } while (next_node_ptr != (undefined8 *)0x0);
-      if ((insert_position_ptr != (undefined8 *)&DAT_180c96790) && ((short *)insert_position_ptr[4] <= library_handle))
+      } while (next_node_ptr != (uint64_t *)0x0);
+      if ((insert_position_ptr != (uint64_t *)&DAT_180c96790) && ((short *)insert_position_ptr[4] <= library_handle))
       goto library_loaded;
     }
     ui_parse_pe_resource_section(library_info,resource_buffer);
@@ -1100,30 +1100,30 @@ void ui_load_library_with_resource_check(longlong library_info)
     }
     if (library_flags != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(pe_base_address,*(undefined8 *)(library_info + 8),path_length);
+      memcpy(pe_base_address,*(uint64_t *)(library_info + 8),path_length);
     }
     if (pe_base_address != 0) {
-      *(undefined1 *)(path_length + pe_base_address) = 0;
+      *(int8_t *)(path_length + pe_base_address) = 0;
     }
-    pe_header_offset = *(undefined4 *)(library_info + 0x1c);
+    pe_header_offset = *(int32_t *)(library_info + 0x1c);
     if (*module_base_ptr == 0x5a4d) {
       ui_parse_pe_header(resource_data,module_base_ptr,module_base_ptr);
     }
-    insert_position_ptr = (undefined8 *)&DAT_180c96790;
+    insert_position_ptr = (uint64_t *)&DAT_180c96790;
     library_node_ptr = _DAT_180c967a0;
-    while (library_node_ptr != (undefined8 *)0x0) {
+    while (library_node_ptr != (uint64_t *)0x0) {
       if ((short *)library_node_ptr[4] < library_handle) {
-        library_node_ptr = (undefined8 *)*library_node_ptr;
+        library_node_ptr = (uint64_t *)*library_node_ptr;
       }
       else {
         insert_position_ptr = library_node_ptr;
-        library_node_ptr = (undefined8 *)library_node_ptr[1];
+        library_node_ptr = (uint64_t *)library_node_ptr[1];
       }
     }
-    if ((insert_position_ptr == (undefined8 *)&DAT_180c96790) || (library_handle < (short *)insert_position_ptr[4])) {
+    if ((insert_position_ptr == (uint64_t *)&DAT_180c96790) || (library_handle < (short *)insert_position_ptr[4])) {
       library_handle_ptr = &loaded_library_handle;
-      insert_position_ptr = (undefined8 *)ui_insert_library_node(insert_position_ptr,temp_buffer_1e8);
-      insert_position_ptr = (undefined8 *)*insert_position_ptr;
+      insert_position_ptr = (uint64_t *)ui_insert_library_node(insert_position_ptr,temp_buffer_1e8);
+      insert_position_ptr = (uint64_t *)*insert_position_ptr;
     }
     ui_setup_library_resource_handlers(insert_position_ptr + 5,resource_data);
     ui_cleanup_resource_data(resource_data);
@@ -1148,13 +1148,13 @@ void ui_create_process_snapshot(void)
 
 {
   int lock_result;
-  undefined4 process_id;
-  undefined8 module_handle;
+  int32_t process_id;
+  uint64_t module_handle;
   longlong snapshot_handle;
-  undefined1 stack_guard_buffer [128];
-  undefined8 operation_flag;
-  undefined8 mutex_handle;
-  undefined1 module_entry_buffer [748];
+  int8_t stack_guard_buffer [128];
+  uint64_t operation_flag;
+  uint64_t mutex_handle;
+  int8_t module_entry_buffer [748];
   ulonglong stack_guard_value;
   
   operation_flag = 0xfffffffffffffffe;
@@ -1191,8 +1191,8 @@ void ui_create_process_snapshot(void)
 
 
 
-// 函数: void ui_tree_operation_wrapper(undefined8 operation_data, undefined8 root_node, 
-//                              undefined8 param_3, undefined8 param_4)
+// 函数: void ui_tree_operation_wrapper(uint64_t operation_data, uint64_t root_node, 
+//                              uint64_t param_3, uint64_t param_4)
 // 功能: 树操作包装函数，用于执行树节点的特定操作
 // 参数:
 //   operation_data - 操作数据
@@ -1201,8 +1201,8 @@ void ui_create_process_snapshot(void)
 //   param_4 - 参数4
 // 返回值: 无
 // 说明: 这是一个包装函数，调用树节点操作函数并传递特定标志位
-void ui_tree_operation_wrapper(undefined8 operation_data, undefined8 root_node, 
-                             undefined8 param_3, undefined8 param_4)
+void ui_tree_operation_wrapper(uint64_t operation_data, uint64_t root_node, 
+                             uint64_t param_3, uint64_t param_4)
 
 {
   ui_perform_tree_node_operation(operation_data,_DAT_180c967a0,param_3,param_4,0xfffffffffffffffe);  // _DAT_180c967a0: 库资源树根节点指针
@@ -1213,8 +1213,8 @@ void ui_tree_operation_wrapper(undefined8 operation_data, undefined8 root_node,
 
 
 
-// 函数: void ui_tree_cleanup_operation(undefined8 param_1, undefined8 *node_ptr, 
-//                                  undefined8 param_3, undefined8 param_4)
+// 函数: void ui_tree_cleanup_operation(uint64_t param_1, uint64_t *node_ptr, 
+//                                  uint64_t param_3, uint64_t param_4)
 // 功能: 树清理操作函数，用于清理树节点并释放资源
 // 参数:
 //   param_1 - 参数1
@@ -1223,11 +1223,11 @@ void ui_tree_operation_wrapper(undefined8 operation_data, undefined8 root_node,
 //   param_4 - 参数4
 // 返回值: 无
 // 说明: 此函数递归清理树节点，释放相关资源
-void ui_tree_cleanup_operation(undefined8 param_1, undefined8 *node_ptr, 
-                             undefined8 param_3, undefined8 param_4)
+void ui_tree_cleanup_operation(uint64_t param_1, uint64_t *node_ptr, 
+                             uint64_t param_3, uint64_t param_4)
 
 {
-  if (param_2 != (undefined8 *)0x0) {
+  if (param_2 != (uint64_t *)0x0) {
     ui_perform_tree_node_operation(&DAT_180c96790,*node_ptr,param_3,param_4,0xfffffffffffffffe);
     ui_cleanup_tree_node_resources(node_ptr + 5);
                     // WARNING: Subroutine does not return
@@ -1240,7 +1240,7 @@ void ui_tree_cleanup_operation(undefined8 param_1, undefined8 *node_ptr,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: undefined8 * ui_find_library_node_in_resource_tree(undefined8 param_1, undefined8 *param_2, undefined8 param_3, 
+// 函数: uint64_t * ui_find_library_node_in_resource_tree(uint64_t param_1, uint64_t *param_2, uint64_t param_3, 
 //                                     longlong *param_4, ulonglong *param_5)
 // 功能: 在库资源树中查找库节点，如果未找到则创建新节点
 // 参数:
@@ -1254,11 +1254,11 @@ void ui_tree_cleanup_operation(undefined8 param_1, undefined8 *node_ptr,
 
 {
   longlong *node_bounds_ptr;
-  undefined8 *current_node_ptr;
+  uint64_t *current_node_ptr;
   ulonglong search_key;
   longlong new_node_ptr;
-  undefined8 *insert_position_ptr;
-  undefined4 insertion_flag;
+  uint64_t *insert_position_ptr;
+  int32_t insertion_flag;
   bool should_insert_left;
   
   if ((param_4 == _DAT_180c96790) || (param_4 == (longlong *)&DAT_180c96790)) {
@@ -1280,20 +1280,20 @@ node_found:
       }
     }
   }
-  insert_position_ptr = (undefined8 *)&DAT_180c96790;
+  insert_position_ptr = (uint64_t *)&DAT_180c96790;
   should_insert_left = true;
-  if (_DAT_180c967a0 != (undefined8 *)0x0) {
+  if (_DAT_180c967a0 != (uint64_t *)0x0) {
     current_node_ptr = _DAT_180c967a0;
     do {
       insert_position_ptr = current_node_ptr;
       should_insert_left = *param_5 < (ulonglong)insert_position_ptr[4];
       if (should_insert_left) {
-        current_node_ptr = (undefined8 *)insert_position_ptr[1];
+        current_node_ptr = (uint64_t *)insert_position_ptr[1];
       }
       else {
-        current_node_ptr = (undefined8 *)*insert_position_ptr;
+        current_node_ptr = (uint64_t *)*insert_position_ptr;
       }
-    } while (current_node_ptr != (undefined8 *)0x0);
+    } while (current_node_ptr != (uint64_t *)0x0);
   }
   current_node_ptr = insert_position_ptr;
   if (should_insert_left) {
@@ -1301,7 +1301,7 @@ node_found:
       search_key = *param_5;
       goto create_new_node;
     }
-    current_node_ptr = (undefined8 *)ui_allocate_tree_node(insert_position_ptr);
+    current_node_ptr = (uint64_t *)ui_allocate_tree_node(insert_position_ptr);
   }
   search_key = *param_5;
   if (search_key <= (ulonglong)current_node_ptr[4]) {
@@ -1309,7 +1309,7 @@ node_found:
     return param_2;
   }
 create_new_node:
-  if ((insert_position_ptr == (undefined8 *)&DAT_180c96790) || (search_key < (ulonglong)insert_position_ptr[4])) {
+  if ((insert_position_ptr == (uint64_t *)&DAT_180c96790) || (search_key < (ulonglong)insert_position_ptr[4])) {
     insertion_flag = 0;
   }
   else {
@@ -1329,8 +1329,8 @@ create_new_node:
 
 
 
-// 函数: void ui_tree_node_insert(undefined8 param_1, undefined8 param_2, undefined *param_3, 
-//                           undefined8 param_4, ulonglong *param_5)
+// 函数: void ui_tree_node_insert(uint64_t param_1, uint64_t param_2, void *param_3, 
+//                           uint64_t param_4, ulonglong *param_5)
 // 功能: 在树中插入新节点，维护树的平衡和顺序
 // 参数:
 //   param_1 - 参数1
@@ -1343,7 +1343,7 @@ create_new_node:
 
 {
   longlong lVar1;
-  undefined4 uVar2;
+  int32_t uVar2;
   
   if ((((char)param_4 == '\0') && (param_3 != &DAT_180c96790)) &&
      (*(ulonglong *)(param_3 + 0x20) <= *param_5)) {
@@ -1374,57 +1374,57 @@ void ui_cleanup_resource_pointers(longlong resource_ptr)
 
 {
   // 重置资源指针为默认值
-  *(undefined8 *)(resource_ptr + 0x80) = &UNK_180a3c3e0;
+  *(uint64_t *)(resource_ptr + 0x80) = &UNK_180a3c3e0;
   if (*(longlong *)(resource_ptr + 0x88) != 0) {
     // 释放资源内存
     ui_release_resource_memory();
   }
-  *(undefined8 *)(resource_ptr + 0x88) = 0;
-  *(undefined4 *)(resource_ptr + 0x98) = 0;
-  *(undefined8 *)(resource_ptr + 0x80) = &UNK_18098bcb0;
+  *(uint64_t *)(resource_ptr + 0x88) = 0;
+  *(int32_t *)(resource_ptr + 0x98) = 0;
+  *(uint64_t *)(resource_ptr + 0x80) = &UNK_18098bcb0;
   
   // 清理第二组资源指针
-  *(undefined8 *)(resource_ptr + 0x60) = &UNK_180a3c3e0;
+  *(uint64_t *)(resource_ptr + 0x60) = &UNK_180a3c3e0;
   if (*(longlong *)(resource_ptr + 0x68) != 0) {
     // 释放资源内存
     ui_release_resource_memory();
   }
-  *(undefined8 *)(resource_ptr + 0x68) = 0;
-  *(undefined4 *)(resource_ptr + 0x78) = 0;
-  *(undefined8 *)(resource_ptr + 0x60) = &UNK_18098bcb0;
+  *(uint64_t *)(resource_ptr + 0x68) = 0;
+  *(int32_t *)(resource_ptr + 0x78) = 0;
+  *(uint64_t *)(resource_ptr + 0x60) = &UNK_18098bcb0;
   
   // 清理第三组资源指针
-  *(undefined8 *)(resource_ptr + 0x28) = &UNK_180a3c3e0;
+  *(uint64_t *)(resource_ptr + 0x28) = &UNK_180a3c3e0;
   if (*(longlong *)(resource_ptr + 0x30) != 0) {
     // 释放资源内存
     ui_release_resource_memory();
   }
-  *(undefined8 *)(resource_ptr + 0x30) = 0;
-  *(undefined4 *)(resource_ptr + 0x40) = 0;
-  *(undefined8 *)(resource_ptr + 0x28) = &UNK_18098bcb0;
+  *(uint64_t *)(resource_ptr + 0x30) = 0;
+  *(int32_t *)(resource_ptr + 0x40) = 0;
+  *(uint64_t *)(resource_ptr + 0x28) = &UNK_18098bcb0;
   
   // 清理第四组资源指针
-  *(undefined8 *)(resource_ptr + 8) = &UNK_180a3c3e0;
+  *(uint64_t *)(resource_ptr + 8) = &UNK_180a3c3e0;
   if (*(longlong *)(resource_ptr + 0x10) != 0) {
     // 释放资源内存
     ui_release_resource_memory();
   }
-  *(undefined8 *)(resource_ptr + 0x10) = 0;
-  *(undefined4 *)(resource_ptr + 0x20) = 0;
-  *(undefined8 *)(resource_ptr + 8) = &UNK_18098bcb0;
+  *(uint64_t *)(resource_ptr + 0x10) = 0;
+  *(int32_t *)(resource_ptr + 0x20) = 0;
+  *(uint64_t *)(resource_ptr + 8) = &UNK_18098bcb0;
   return;
 }
 
 
 
-// 函数: undefined8 * ui_free_managed_memory_block(undefined8 *memory_ptr, ulonglong flags)
+// 函数: uint64_t * ui_free_managed_memory_block(uint64_t *memory_ptr, ulonglong flags)
 // 功能: 释放托管内存块，根据标志决定是否真正释放
 // 参数:
 //   memory_ptr - 内存块指针
 //   flags - 释放标志位
 // 返回值: 返回内存块指针
 // 说明: 此函数释放托管内存块，根据标志位决定是否执行实际的内存释放操作
-undefined8 * ui_free_managed_memory_block(undefined8 *memory_ptr, ulonglong flags)
+uint64_t * ui_free_managed_memory_block(uint64_t *memory_ptr, ulonglong flags)
 
 {
   *memory_ptr = &UNK_180a3dca0;
@@ -1439,13 +1439,13 @@ undefined8 * ui_free_managed_memory_block(undefined8 *memory_ptr, ulonglong flag
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: void pass_managed_library_callback_method_pointers(undefined8 callback_data)
+// 函数: void pass_managed_library_callback_method_pointers(uint64_t callback_data)
 // 功能: 传递托管库回调方法指针，用于托管与非托管代码的交互
 // 参数:
 //   callback_data - 回调数据指针，包含托管方法的回调信息
 // 返回值: 无
 // 说明: 此函数通过全局函数指针表调用托管代码的回调方法，实现托管与非托管代码的交互
-void pass_managed_library_callback_method_pointers(undefined8 callback_data)
+void pass_managed_library_callback_method_pointers(uint64_t callback_data)
 
 {
   // 通过托管库函数指针表调用回调方法
@@ -1458,13 +1458,13 @@ void pass_managed_library_callback_method_pointers(undefined8 callback_data)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: void pass_controller_methods(undefined8 controller_methods)
+// 函数: void pass_controller_methods(uint64_t controller_methods)
 // 功能: 传递控制器方法指针，用于UI控制器方法的注册
 // 参数:
 //   controller_methods - 控制器方法指针，包含UI控制相关的方法信息
 // 返回值: 无
 // 说明: 此函数注册UI控制器方法到全局变量中，供UI系统调用
-void pass_controller_methods(undefined8 controller_methods)
+void pass_controller_methods(uint64_t controller_methods)
 
 {
   // 注册控制器方法到全局变量
@@ -1477,13 +1477,13 @@ void pass_controller_methods(undefined8 controller_methods)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: void pass_managed_initialize_method_pointer(undefined8 init_method_ptr)
+// 函数: void pass_managed_initialize_method_pointer(uint64_t init_method_ptr)
 // 功能: 传递托管初始化方法指针，用于UI系统的初始化
 // 参数:
 //   init_method_ptr - 初始化方法指针，包含托管代码的初始化逻辑
 // 返回值: 无
 // 说明: 此函数注册托管初始化方法到全局变量中，供UI系统初始化时调用
-void pass_managed_initialize_method_pointer(undefined8 init_method_ptr)
+void pass_managed_initialize_method_pointer(uint64_t init_method_ptr)
 
 {
   // 注册初始化方法到全局变量
@@ -1494,14 +1494,14 @@ void pass_managed_initialize_method_pointer(undefined8 init_method_ptr)
 
 
 
-// 函数: undefined8 ui_cleanup_managed_resource(undefined8 resource_ptr, ulonglong flags)
+// 函数: uint64_t ui_cleanup_managed_resource(uint64_t resource_ptr, ulonglong flags)
 // 功能: 清理托管资源，根据标志决定是否释放资源
 // 参数:
 //   resource_ptr - 资源指针
 //   flags - 清理标志位
 // 返回值: 返回资源指针
 // 说明: 此函数清理托管资源，根据标志位决定是否执行实际的资源释放操作
-undefined8 ui_cleanup_managed_resource(undefined8 resource_ptr, ulonglong flags)
+uint64_t ui_cleanup_managed_resource(uint64_t resource_ptr, ulonglong flags)
 
 {
   // 释放资源引用
@@ -1519,13 +1519,13 @@ undefined8 ui_cleanup_managed_resource(undefined8 resource_ptr, ulonglong flags)
 
 
 
-// 函数: void ui_cleanup_global_data_structure(undefined8 *global_ptr)
+// 函数: void ui_cleanup_global_data_structure(uint64_t *global_ptr)
 // 功能: 清理全局数据结构，重置为初始状态
 // 参数:
 //   global_ptr - 全局数据结构指针
 // 返回值: 无
 // 说明: 此函数清理全局数据结构，释放内存并重置指针
-void ui_cleanup_global_data_structure(undefined8 *global_ptr)
+void ui_cleanup_global_data_structure(uint64_t *global_ptr)
 
 {
   // 重置全局数据结构为默认值

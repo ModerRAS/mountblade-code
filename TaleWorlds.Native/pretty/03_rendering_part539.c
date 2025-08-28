@@ -109,11 +109,11 @@
 // 基础数据类型别名
 typedef byte* RenderDataPointer;
 typedef uint* RenderParamPointer;
-typedef undefined4* RenderValuePointer;
-typedef undefined1* RenderFlagPointer;
+typedef int32_t* RenderValuePointer;
+typedef int8_t* RenderFlagPointer;
 typedef longlong RenderStateHandle;
 typedef ulonglong RenderDataSize;
-typedef undefined8* RenderObjectPointer;
+typedef uint64_t* RenderObjectPointer;
 typedef longlong* RenderArrayPointer;
 
 // 渲染参数类型别名
@@ -127,7 +127,7 @@ typedef uint RenderMemorySize;
 typedef int RenderComparisonResult;
 typedef int RenderStringLength;
 typedef char RenderCharacter;
-typedef undefined8 RenderObjectHeader;
+typedef uint64_t RenderObjectHeader;
 
 // 渲染管理器类型别名
 typedef void* RenderDataManager;
@@ -291,14 +291,14 @@ void RenderingSystem_AdvancedDataFlowProcessor(longlong target_ptr, longlong sou
     RenderDataSize data_size_1, data_size_2;
     
     // 栈变量声明
-    undefined1 stack_buffer_1[32];    // 栈缓冲区1 - 用于数据存储
-    undefined8 *stack_ptr_1;          // 栈指针1
-    undefined8 stack_value_1;         // 栈值1
-    undefined *stack_ptr_2;           // 栈指针2
-    undefined1 *stack_ptr_3;          // 栈指针3
+    int8_t stack_buffer_1[32];    // 栈缓冲区1 - 用于数据存储
+    uint64_t *stack_ptr_1;          // 栈指针1
+    uint64_t stack_value_1;         // 栈值1
+    void *stack_ptr_2;           // 栈指针2
+    int8_t *stack_ptr_3;          // 栈指针3
     int stack_value_2;                // 栈值2
-    undefined1 stack_buffer_2[40];     // 栈缓冲区2 - 用于字符串处理
-    undefined *stack_ptr_4;            // 栈指针4
+    int8_t stack_buffer_2[40];     // 栈缓冲区2 - 用于字符串处理
+    void *stack_ptr_4;            // 栈指针4
     RenderDataPointer stack_ptr_5;    // 栈指针5
     int stack_value_3;                // 栈值3
     byte stack_buffer_3[1032];        // 栈缓冲区3 - 主要数据处理区

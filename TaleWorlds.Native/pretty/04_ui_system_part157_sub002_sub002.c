@@ -17,11 +17,11 @@
 //------------------------------------------------------------------------------
 
 // UI系统句柄类型
-typedef undefined8 UIComponentHandle;           // UI组件句柄
-typedef undefined8 UIResourceHandle;             // UI资源句柄
-typedef undefined8 UIEventHandle;                // UI事件句柄
-typedef undefined8 UIDataHandle;                 // UI数据句柄
-typedef undefined8 UIRenderHandle;               // UI渲染句柄
+typedef uint64_t UIComponentHandle;           // UI组件句柄
+typedef uint64_t UIResourceHandle;             // UI资源句柄
+typedef uint64_t UIEventHandle;                // UI事件句柄
+typedef uint64_t UIDataHandle;                 // UI数据句柄
+typedef uint64_t UIRenderHandle;               // UI渲染句柄
 
 // UI系统状态常量
 #define UI_STATE_READY           0x00000001      // UI系统就绪状态
@@ -119,23 +119,23 @@ typedef undefined8 UIRenderHandle;               // UI渲染句柄
 //   简化实现：保持原有功能逻辑，添加详细的参数说明和技术注释
 //   优化点：明确参数用途，添加状态管理说明，提高代码可读性
 //------------------------------------------------------------------------------
-void FUN_18075f1e0(longlong param_1, int param_2, undefined4 *param_3, longlong param_4,
-                  undefined4 param_5)
+void FUN_18075f1e0(longlong param_1, int param_2, int32_t *param_3, longlong param_4,
+                  int32_t param_5)
 {
     // 局部变量定义
     longlong lVar1;                              // 组件管理器指针
     int iVar2;                                  // 操作结果
-    undefined1 *puVar3;                          // 数据缓冲区指针
-    undefined1 auStack_68 [32];                  // 栈缓冲区1 (32字节)
-    undefined4 auStack_48 [2];                    // 结果缓冲区 (8字节)
-    undefined1 auStack_40 [32];                  // 栈缓冲区2 (32字节)
+    int8_t *puVar3;                          // 数据缓冲区指针
+    int8_t auStack_68 [32];                  // 栈缓冲区1 (32字节)
+    int32_t auStack_48 [2];                    // 结果缓冲区 (8字节)
+    int8_t auStack_40 [32];                  // 栈缓冲区2 (32字节)
     ulonglong uStack_20;                        // 安全检查值
     
     // 安全检查：栈保护机制
     uStack_20 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
     
     // 初始化数据缓冲区
-    puVar3 = (undefined1 *)0x0;                 // 初始化为NULL
+    puVar3 = (int8_t *)0x0;                 // 初始化为NULL
     auStack_48[0] = 0;                          // 清空结果缓冲区
     
     // 参数有效性检查
@@ -159,7 +159,7 @@ void FUN_18075f1e0(longlong param_1, int param_2, undefined4 *param_3, longlong 
         
         // 处理操作结果
         if (iVar2 == UI_ERROR_SUCCESS) {        // 检查操作是否成功
-            if (param_3 != (undefined4 *)0x0) { // 检查输出参数
+            if (param_3 != (int32_t *)0x0) { // 检查输出参数
                 *param_3 = auStack_48[0];       // 返回处理结果
             }
             if (param_4 != 0) {                  // 检查回调函数
@@ -184,7 +184,7 @@ void FUN_18075f1e0(longlong param_1, int param_2, undefined4 *param_3, longlong 
 //   无参数
 //
 // 返回值：
-//   undefined8 - 系统调用结果或状态码
+//   uint64_t - 系统调用结果或状态码
 //
 // 处理流程：
 //   1. 获取系统调用函数指针
@@ -207,7 +207,7 @@ void FUN_18075f1e0(longlong param_1, int param_2, undefined4 *param_3, longlong 
 //   简化实现：保持原有功能，添加详细的系统调用说明
 //   优化点：明确系统调用用途，添加安全性说明
 //------------------------------------------------------------------------------
-undefined8 FUN_18075f4a0(void)
+uint64_t FUN_18075f4a0(void)
 {
     // 执行系统调用
     (**(code **)(_DAT_180c0c6d0 + 8))();
@@ -267,30 +267,30 @@ ulonglong FUN_18075f4c0(longlong *param_1, ulonglong param_2, ulonglong param_3,
     int iVar3;                                  // 操作结果
     ulonglong uVar4;                             // 数据处理结果
     longlong lVar5;                              // 资源管理器指针
-    undefined8 *puVar6;                          // 数据指针
+    uint64_t *puVar6;                          // 数据指针
     ulonglong uVar7;                             // 控制参数
-    undefined8 *puVar8;                          // 缓冲区指针
-    undefined8 uVar9;                            // 数据值
+    uint64_t *puVar8;                          // 缓冲区指针
+    uint64_t uVar9;                            // 数据值
     ulonglong uVar10;                            // 状态值
     uint uVar11;                                 // 无符号整型值
     uint in_stack_fffffffffffffef0;              // 栈参数
     uint uStack_f8;                              // 栈变量
     uint auStack_f4 [3];                         // 栈数组
-    undefined8 uStack_e8;                         // 栈变量
-    undefined8 ******ppppppuStack_e0;             // 多级指针
-    undefined8 ******ppppppuStack_d8;             // 多级指针
-    undefined8 uStack_d0;                         // 栈变量
-    undefined8 ******ppppppuStack_c8;             // 多级指针
-    undefined8 ******ppppppuStack_c0;             // 多级指针
-    undefined8 uStack_b8;                         // 栈变量
-    undefined4 uStack_b0;                         // 栈变量
-    undefined8 uStack_a8;                         // 栈变量
-    undefined4 uStack_a0;                         // 栈变量
-    undefined8 uStack_98;                         // 栈变量
-    undefined8 uStack_90;                         // 栈变量
-    undefined8 uStack_88;                         // 栈变量
-    undefined4 uStack_50;                         // 栈变量
-    undefined8 uStack_48;                         // 栈变量
+    uint64_t uStack_e8;                         // 栈变量
+    uint64_t ******ppppppuStack_e0;             // 多级指针
+    uint64_t ******ppppppuStack_d8;             // 多级指针
+    uint64_t uStack_d0;                         // 栈变量
+    uint64_t ******ppppppuStack_c8;             // 多级指针
+    uint64_t ******ppppppuStack_c0;             // 多级指针
+    uint64_t uStack_b8;                         // 栈变量
+    int32_t uStack_b0;                         // 栈变量
+    uint64_t uStack_a8;                         // 栈变量
+    int32_t uStack_a0;                         // 栈变量
+    uint64_t uStack_98;                         // 栈变量
+    uint64_t uStack_90;                         // 栈变量
+    uint64_t uStack_88;                         // 栈变量
+    int32_t uStack_50;                         // 栈变量
+    uint64_t uStack_48;                         // 栈变量
     ulonglong uVar12;                             // 最终结果
     
     // 检查系统状态和权限

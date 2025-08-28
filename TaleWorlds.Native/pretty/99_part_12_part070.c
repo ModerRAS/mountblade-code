@@ -2,8 +2,8 @@
 
 // 99_part_12_part070.c - 3 个函数
 
-// 函数: void FUN_1807fa79d(undefined8 param_1,float *param_2,uint param_3,longlong param_4)
-void FUN_1807fa79d(undefined8 param_1,float *param_2,uint param_3,longlong param_4)
+// 函数: void FUN_1807fa79d(uint64_t param_1,float *param_2,uint param_3,longlong param_4)
+void FUN_1807fa79d(uint64_t param_1,float *param_2,uint param_3,longlong param_4)
 
 {
   float fVar1;
@@ -32,8 +32,8 @@ void FUN_1807fa79d(undefined8 param_1,float *param_2,uint param_3,longlong param
   longlong lVar19;
   longlong in_R10;
   longlong in_R11;
-  undefined8 unaff_R12;
-  undefined8 unaff_R13;
+  uint64_t unaff_R12;
+  uint64_t unaff_R13;
   int unaff_R14D;
   longlong unaff_R15;
   float fVar20;
@@ -45,8 +45,8 @@ void FUN_1807fa79d(undefined8 param_1,float *param_2,uint param_3,longlong param
   float unaff_XMM10_Da;
   int in_stack_000000b0;
   
-  *(undefined8 *)(in_RAX + 0x10) = unaff_R12;
-  *(undefined8 *)(in_RAX + 0x18) = unaff_R13;
+  *(uint64_t *)(in_RAX + 0x10) = unaff_R12;
+  *(uint64_t *)(in_RAX + 0x18) = unaff_R13;
   iVar17 = (int)unaff_RSI * 2;
   iVar16 = (int)unaff_RSI * 3;
   do {
@@ -284,8 +284,8 @@ void FUN_1807fa79d(undefined8 param_1,float *param_2,uint param_3,longlong param
 
 
 
-// 函数: void FUN_1807fadc7(undefined8 param_1,float *param_2,uint param_3,longlong param_4)
-void FUN_1807fadc7(undefined8 param_1,float *param_2,uint param_3,longlong param_4)
+// 函数: void FUN_1807fadc7(uint64_t param_1,float *param_2,uint param_3,longlong param_4)
+void FUN_1807fadc7(uint64_t param_1,float *param_2,uint param_3,longlong param_4)
 
 {
   float fVar1;
@@ -377,8 +377,8 @@ void FUN_1807fadc7(undefined8 param_1,float *param_2,uint param_3,longlong param
 
 
 
-// 函数: void FUN_1807fadde(undefined8 param_1,float *param_2,int param_3,longlong param_4)
-void FUN_1807fadde(undefined8 param_1,float *param_2,int param_3,longlong param_4)
+// 函数: void FUN_1807fadde(uint64_t param_1,float *param_2,int param_3,longlong param_4)
+void FUN_1807fadde(uint64_t param_1,float *param_2,int param_3,longlong param_4)
 
 {
   float fVar1;

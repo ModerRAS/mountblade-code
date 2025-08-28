@@ -16,20 +16,20 @@
 
 // 全局变量引用
 extern longlong _DAT_180c8a9b0;      // 核心引擎全局数据结构指针
-extern undefined8 _DAT_180c8a9a8;     // 内存分配器相关
+extern uint64_t _DAT_180c8a9a8;     // 内存分配器相关
 extern uint UNK_18098d290[256];       // 哈希计算查找表
-extern undefined8 UNK_180a06770;      // 字符串处理相关
-extern undefined8 UNK_180a06768;      // 字符串处理相关
+extern uint64_t UNK_180a06770;      // 字符串处理相关
+extern uint64_t UNK_180a06768;      // 字符串处理相关
 extern char DAT_18098bc73;            // 字符常量
 extern char UNK_180a06474;            // 默认字符串常量
 
 // 函数声明
-void FUN_18013c760(undefined8 *param_1, int param_2, ...);
-undefined8 FUN_1801210b0(byte *param_1);
-undefined8 func_0x000180120ce0(longlong param_1, undefined8 param_2);
-void FUN_180059ba0(undefined8 param_1, undefined8 param_2);
-longlong FUN_180121300(longlong param_1, undefined8 *param_2);
-undefined8 FUN_18013ce40(undefined8 *param_1);
+void FUN_18013c760(uint64_t *param_1, int param_2, ...);
+uint64_t FUN_1801210b0(byte *param_1);
+uint64_t func_0x000180120ce0(longlong param_1, uint64_t param_2);
+void FUN_180059ba0(uint64_t param_1, uint64_t param_2);
+longlong FUN_180121300(longlong param_1, uint64_t *param_2);
+uint64_t FUN_18013ce40(uint64_t *param_1);
 
 /**
  * 处理字符串并写入缓冲区
@@ -74,7 +74,7 @@ void process_string_and_write_buffer(longlong context, char *input_start, char *
   
   // 更新缓冲区管理器中的数值
   if (context != 0) {
-    *(undefined4 *)(buffer_manager + 0x138) = *(undefined4 *)(context + 4);
+    *(int32_t *)(buffer_manager + 0x138) = *(int32_t *)(context + 4);
   }
   
   current_count = *(int *)(global_data + 0x2e58);
@@ -131,9 +131,9 @@ void process_string_and_write_buffer(longlong context, char *input_start, char *
  * @param param_1 输入字符串指针
  * @return 新创建的哈希条目指针
  */
-undefined8 *create_string_hash_entry(byte *input_string)
+uint64_t *create_string_hash_entry(byte *input_string)
 {
-  undefined4 *data_fields;
+  int32_t *data_fields;
   byte current_char;
   int capacity;
   int count;
@@ -141,11 +141,11 @@ undefined8 *create_string_hash_entry(byte *input_string)
   byte *char_ptr;
   longlong global_data;
   int new_capacity;
-  undefined8 new_array;
+  uint64_t new_array;
   int new_size;
   longlong entry_offset;
   int current_count;
-  undefined8 *entry_ptr;
+  uint64_t *entry_ptr;
   uint hash_value;
   undefined5 stack_temp;
   
@@ -180,7 +180,7 @@ undefined8 *create_string_hash_entry(byte *input_string)
       }
       
       count = *(int *)(global_data + 0x2e28);
-      *(undefined8 *)(global_data + 0x2e30) = new_array;
+      *(uint64_t *)(global_data + 0x2e30) = new_array;
       *(int *)(global_data + 0x2e2c) = new_capacity;
     }
   }
@@ -190,14 +190,14 @@ undefined8 *create_string_hash_entry(byte *input_string)
   array_base = *(longlong *)(global_data + 0x2e30);
   
   // 初始化新条目的各个字段
-  *(undefined8 *)(entry_offset + array_base) = 0;                    // 字段1
-  ((undefined8 *)(entry_offset + array_base))[1] = 0;               // 字段2
+  *(uint64_t *)(entry_offset + array_base) = 0;                    // 字段1
+  ((uint64_t *)(entry_offset + array_base))[1] = 0;               // 字段2
   
-  entry_ptr = (undefined8 *)(entry_offset + 0x10 + array_base);
+  entry_ptr = (uint64_t *)(entry_offset + 0x10 + array_base);
   *entry_ptr = 0;                                                   // 字段3
   entry_ptr[1] = 0;                                                 // 字段4
   
-  data_fields = (undefined4 *)(entry_offset + 0x20 + array_base);
+  data_fields = (int32_t *)(entry_offset + 0x20 + array_base);
   *data_fields = 0;                                                // 数据字段1
   data_fields[1] = 0;                                              // 数据字段2
   data_fields[2] = 0;                                              // 数据字段3
@@ -210,7 +210,7 @@ undefined8 *create_string_hash_entry(byte *input_string)
   *(int *)(global_data + 0x2e28) = current_count + 1;
   
   // 获取新条目指针
-  entry_ptr = (undefined8 *)((longlong)current_count * 0x38 + *(longlong *)(global_data + 0x2e30));
+  entry_ptr = (uint64_t *)((longlong)current_count * 0x38 + *(longlong *)(global_data + 0x2e30));
   
   // 存储字符串指针
   new_array = FUN_1801210b0(input_string);
@@ -251,48 +251,48 @@ undefined8 *create_string_hash_entry(byte *input_string)
  * 
  * 注意：此函数使用栈传递的额外参数来初始化条目字段
  */
-undefined8 *create_string_hash_entry_with_params(byte *input_string)
+uint64_t *create_string_hash_entry_with_params(byte *input_string)
 {
-  undefined4 *data_fields;
+  int32_t *data_fields;
   byte current_char;
   int capacity;
   int count;
   longlong array_base;
   byte *char_ptr;
   longlong global_data;
-  undefined4 param_value;
+  int32_t param_value;
   int new_capacity;
-  undefined8 new_array;
+  uint64_t new_array;
   int new_size;
   longlong entry_offset;
-  undefined8 register_rax;
-  undefined8 array_ptr;
+  uint64_t register_rax;
+  uint64_t array_ptr;
   int current_count;
-  undefined8 *entry_ptr;
+  uint64_t *entry_ptr;
   uint hash_value;
   longlong frame_ptr;
-  undefined8 register_r14;
-  undefined8 stack_param1;
-  undefined8 stack_param2;
-  undefined8 stack_param3;
-  undefined8 stack_param4;
-  undefined4 stack_param5;
-  undefined4 stack_param6;
-  undefined4 stack_param7;
-  undefined4 stack_param8;
-  undefined8 stack_param9;
+  uint64_t register_r14;
+  uint64_t stack_param1;
+  uint64_t stack_param2;
+  uint64_t stack_param3;
+  uint64_t stack_param4;
+  int32_t stack_param5;
+  int32_t stack_param6;
+  int32_t stack_param7;
+  int32_t stack_param8;
+  uint64_t stack_param9;
   
   // 保存寄存器值到栈帧
-  *(undefined8 *)(frame_ptr + 8) = register_rbx;
+  *(uint64_t *)(frame_ptr + 8) = register_rbx;
   global_data = _DAT_180c8a9b0;
-  *(undefined8 *)(frame_ptr + -0x48) = register_rax;
-  *(undefined8 *)(frame_ptr + -0x40) = register_rax;
-  *(undefined8 *)(frame_ptr + -0x2c) = register_rax;
+  *(uint64_t *)(frame_ptr + -0x48) = register_rax;
+  *(uint64_t *)(frame_ptr + -0x40) = register_rax;
+  *(uint64_t *)(frame_ptr + -0x2c) = register_rax;
   capacity = *(int *)(global_data + 0x2e2c);
-  *(undefined8 *)(frame_ptr + -0x34) = register_rax;
-  param_value = (undefined4)register_rax;
-  *(undefined8 *)(frame_ptr + -0x20) = register_rax;
-  *(undefined8 *)(frame_ptr + 0x18) = register_r14;
+  *(uint64_t *)(frame_ptr + -0x34) = register_rax;
+  param_value = (int32_t)register_rax;
+  *(uint64_t *)(frame_ptr + -0x20) = register_rax;
+  *(uint64_t *)(frame_ptr + 0x18) = register_r14;
   array_ptr = _DAT_180c8a9a8;
   count = *(int *)(global_data + 0x2e28);
   stack_param6 = param_value;
@@ -321,7 +321,7 @@ undefined8 *create_string_hash_entry_with_params(byte *input_string)
       }
       
       count = *(int *)(global_data + 0x2e28);
-      *(undefined8 *)(global_data + 0x2e30) = array_ptr;
+      *(uint64_t *)(global_data + 0x2e30) = array_ptr;
       *(int *)(global_data + 0x2e2c) = new_capacity;
     }
   }
@@ -331,14 +331,14 @@ undefined8 *create_string_hash_entry_with_params(byte *input_string)
   array_base = *(longlong *)(global_data + 0x2e30);
   
   // 使用栈参数初始化条目字段
-  *(undefined8 *)(entry_offset + array_base) = stack_param1;         // 字段1（来自栈参数）
-  ((undefined8 *)(entry_offset + array_base))[1] = stack_param2;    // 字段2（来自栈参数）
+  *(uint64_t *)(entry_offset + array_base) = stack_param1;         // 字段1（来自栈参数）
+  ((uint64_t *)(entry_offset + array_base))[1] = stack_param2;    // 字段2（来自栈参数）
   
-  entry_ptr = (undefined8 *)(entry_offset + 0x10 + array_base);
+  entry_ptr = (uint64_t *)(entry_offset + 0x10 + array_base);
   *entry_ptr = CONCAT44(stack_param3._4_4_, param_value);              // 字段3（组合参数）
   entry_ptr[1] = stack_param4;                                        // 字段4（来自栈参数）
   
-  data_fields = (undefined4 *)(entry_offset + 0x20 + array_base);
+  data_fields = (int32_t *)(entry_offset + 0x20 + array_base);
   *data_fields = stack_param5;                                       // 数据字段1（来自栈参数）
   data_fields[1] = stack_param6;                                      // 数据字段2（来自栈参数）
   data_fields[2] = stack_param7;                                      // 数据字段3（来自栈参数）
@@ -351,7 +351,7 @@ undefined8 *create_string_hash_entry_with_params(byte *input_string)
   *(int *)(global_data + 0x2e28) = current_count + 1;
   
   // 获取新条目指针
-  entry_ptr = (undefined8 *)((longlong)current_count * 0x38 + *(longlong *)(global_data + 0x2e30));
+  entry_ptr = (uint64_t *)((longlong)current_count * 0x38 + *(longlong *)(global_data + 0x2e30));
   
   // 存储字符串指针并计算哈希值（与create_string_hash_entry相同的逻辑）
   array_ptr = FUN_1801210b0(input_string);
@@ -387,29 +387,29 @@ undefined8 *create_string_hash_entry_with_params(byte *input_string)
  * 
  * 注意：此函数使用寄存器中的值来初始化条目，而不是参数
  */
-undefined8 *create_default_string_hash_entry(void)
+uint64_t *create_default_string_hash_entry(void)
 {
-  undefined4 *data_fields;
+  int32_t *data_fields;
   byte current_char;
   int current_count;
   longlong array_base;
   byte *char_ptr;
-  undefined8 new_array;
+  uint64_t new_array;
   longlong entry_offset;
   longlong global_base;
-  undefined4 capacity_param;
-  undefined8 *entry_ptr;
+  int32_t capacity_param;
+  uint64_t *entry_ptr;
   uint hash_value;
   byte *string_ptr;
-  undefined8 stack_param1;
-  undefined8 stack_param2;
-  undefined8 stack_param3;
-  undefined8 stack_param4;
-  undefined4 stack_param5;
-  undefined4 stack_param6;
-  undefined4 stack_param7;
-  undefined4 stack_param8;
-  undefined8 stack_param9;
+  uint64_t stack_param1;
+  uint64_t stack_param2;
+  uint64_t stack_param3;
+  uint64_t stack_param4;
+  int32_t stack_param5;
+  int32_t stack_param6;
+  int32_t stack_param7;
+  int32_t stack_param8;
+  uint64_t stack_param9;
   
   // 分配新数组
   new_array = func_0x000180120ce0();
@@ -421,35 +421,35 @@ undefined8 *create_default_string_hash_entry(void)
   }
   
   // 更新全局指针
-  *(undefined8 *)(global_base + 0x2e30) = new_array;
-  *(undefined4 *)(global_base + 0x2e2c) = capacity_param;
+  *(uint64_t *)(global_base + 0x2e30) = new_array;
+  *(int32_t *)(global_base + 0x2e2c) = capacity_param;
   
   // 计算新条目偏移量
   entry_offset = (longlong)*(int *)(global_base + 0x2e28) * 0x38;
   array_base = *(longlong *)(global_base + 0x2e30);
   
   // 使用默认值初始化条目字段
-  *(undefined8 *)(entry_offset + array_base) = stack_param1;          // 字段1
-  ((undefined8 *)(entry_offset + array_base))[1] = stack_param2;     // 字段2
+  *(uint64_t *)(entry_offset + array_base) = stack_param1;          // 字段1
+  ((uint64_t *)(entry_offset + array_base))[1] = stack_param2;     // 字段2
   
-  entry_ptr = (undefined8 *)(entry_offset + 0x10 + array_base);
+  entry_ptr = (uint64_t *)(entry_offset + 0x10 + array_base);
   *entry_ptr = stack_param3;                                         // 字段3
   entry_ptr[1] = stack_param4;                                       // 字段4
   
-  data_fields = (undefined4 *)(entry_offset + 0x20 + array_base);
+  data_fields = (int32_t *)(entry_offset + 0x20 + array_base);
   *data_fields = stack_param5;                                       // 数据字段1
   data_fields[1] = stack_param6;                                      // 数据字段2
   data_fields[2] = stack_param7;                                      // 数据字段3
   data_fields[3] = stack_param8;                                      // 数据字段4
   
-  *(undefined8 *)(entry_offset + 0x30 + array_base) = stack_param9;  // 标志字段
+  *(uint64_t *)(entry_offset + 0x30 + array_base) = stack_param9;  // 标志字段
   
   // 更新计数器
   current_count = *(int *)(global_base + 0x2e28);
   *(int *)(global_base + 0x2e28) = current_count + 1;
   
   // 获取新条目指针
-  entry_ptr = (undefined8 *)((longlong)current_count * 0x38 + *(longlong *)(global_base + 0x2e30));
+  entry_ptr = (uint64_t *)((longlong)current_count * 0x38 + *(longlong *)(global_base + 0x2e30));
   
   // 存储默认字符串指针
   new_array = FUN_1801210b0();
@@ -487,55 +487,55 @@ undefined8 *create_default_string_hash_entry(void)
  * 
  * 注意：此函数在预分配的数组位置创建条目，不进行数组扩展
  */
-undefined8 *create_string_hash_entry_at_index(int entry_index)
+uint64_t *create_string_hash_entry_at_index(int entry_index)
 {
-  undefined4 *data_fields;
+  int32_t *data_fields;
   byte current_char;
   int current_count;
   longlong array_base;
   byte *char_ptr;
-  undefined8 string_ptr;
+  uint64_t string_ptr;
   longlong entry_offset;
   longlong global_base;
-  undefined8 *entry_ptr;
+  uint64_t *entry_ptr;
   uint hash_value;
   byte *default_string;
-  undefined8 stack_param1;
-  undefined8 stack_param2;
-  undefined8 stack_param3;
-  undefined8 stack_param4;
-  undefined4 stack_param5;
-  undefined4 stack_param6;
-  undefined4 stack_param7;
-  undefined4 stack_param8;
-  undefined8 stack_param9;
+  uint64_t stack_param1;
+  uint64_t stack_param2;
+  uint64_t stack_param3;
+  uint64_t stack_param4;
+  int32_t stack_param5;
+  int32_t stack_param6;
+  int32_t stack_param7;
+  int32_t stack_param8;
+  uint64_t stack_param9;
   
   // 根据索引计算条目偏移量（每个条目0x38字节）
   entry_offset = (longlong)entry_index * 0x38;
   array_base = *(longlong *)(global_base + 0x2e30);
   
   // 使用栈参数初始化条目字段
-  *(undefined8 *)(entry_offset + array_base) = stack_param1;          // 字段1
-  ((undefined8 *)(entry_offset + array_base))[1] = stack_param2;     // 字段2
+  *(uint64_t *)(entry_offset + array_base) = stack_param1;          // 字段1
+  ((uint64_t *)(entry_offset + array_base))[1] = stack_param2;     // 字段2
   
-  entry_ptr = (undefined8 *)(entry_offset + 0x10 + array_base);
+  entry_ptr = (uint64_t *)(entry_offset + 0x10 + array_base);
   *entry_ptr = stack_param3;                                         // 字段3
   entry_ptr[1] = stack_param4;                                       // 字段4
   
-  data_fields = (undefined4 *)(entry_offset + 0x20 + array_base);
+  data_fields = (int32_t *)(entry_offset + 0x20 + array_base);
   *data_fields = stack_param5;                                       // 数据字段1
   data_fields[1] = stack_param6;                                      // 数据字段2
   data_fields[2] = stack_param7;                                      // 数据字段3
   data_fields[3] = stack_param8;                                      // 数据字段4
   
-  *(undefined8 *)(entry_offset + 0x30 + array_base) = stack_param9;  // 标志字段
+  *(uint64_t *)(entry_offset + 0x30 + array_base) = stack_param9;  // 标志字段
   
   // 更新计数器
   current_count = *(int *)(global_base + 0x2e28);
   *(int *)(global_base + 0x2e28) = current_count + 1;
   
   // 获取条目指针
-  entry_ptr = (undefined8 *)((longlong)current_count * 0x38 + *(longlong *)(global_base + 0x2e30));
+  entry_ptr = (uint64_t *)((longlong)current_count * 0x38 + *(longlong *)(global_base + 0x2e30));
   
   // 存储字符串指针
   string_ptr = FUN_1801210b0();
@@ -577,7 +577,7 @@ undefined8 *create_string_hash_entry_at_index(int entry_index)
  * 
  * 注意：此函数将计算结果存储到RDI寄存器指向的位置+8偏移处
  */
-void calculate_string_hash_and_store(byte first_char, undefined8 unused_param, uint initial_hash, byte *remaining_string)
+void calculate_string_hash_and_store(byte first_char, uint64_t unused_param, uint initial_hash, byte *remaining_string)
 {
   longlong target_pointer;
   uint register_r10d;
@@ -622,7 +622,7 @@ void calculate_string_hash_and_store(byte first_char, undefined8 unused_param, u
  */
 void copy_string_to_new_memory(longlong source_string, longlong string_length)
 {
-  undefined8 new_memory;
+  uint64_t new_memory;
   
   // 如果长度为0，自动计算字符串长度
   if (string_length == 0) {
@@ -659,7 +659,7 @@ void copy_string_to_new_memory(longlong source_string, longlong string_length)
  */
 void copy_string_with_register_values(longlong source_string, longlong string_length)
 {
-  undefined8 new_memory;
+  uint64_t new_memory;
   longlong register_rbx;
   longlong global_data;
   
@@ -708,7 +708,7 @@ void parse_config_file(void)
   byte current_char;
   char *line_end;
   uint hash_value;
-  undefined1 *bracket_pos;
+  int8_t *bracket_pos;
   longlong nested_bracket;
   int entry_index;
   uint *hash_table;
@@ -744,10 +744,10 @@ void parse_config_file(void)
         *section_end = '\0';
         
         // 查找右方括号位置
-        bracket_pos = (undefined1 *)memchr(section_name, 0x5d, (longlong)section_end - (longlong)section_name);
+        bracket_pos = (int8_t *)memchr(section_name, 0x5d, (longlong)section_end - (longlong)section_name);
         
         // 检查是否有嵌套的方括号（无效格式）
-        if ((bracket_pos == (undefined1 *)0x0) ||
+        if ((bracket_pos == (int8_t *)0x0) ||
            (nested_bracket = memchr(bracket_pos + 1, 0x5b, (longlong)section_end - (longlong)(bracket_pos + 1)), nested_bracket == 0)) {
           // 如果格式无效，使用默认节名
           section_name = &UNK_180a06474;
@@ -899,7 +899,7 @@ void parse_config_file_variant(void)
   byte current_char;
   char *line_end;
   uint hash_value;
-  undefined1 *bracket_pos;
+  int8_t *bracket_pos;
   longlong nested_bracket;
   int entry_index;
   uint *hash_table;
@@ -936,10 +936,10 @@ void parse_config_file_variant(void)
           *section_end = '\0';
           
           // 查找右方括号位置
-          bracket_pos = (undefined1 *)memchr(section_name, 0x5d, (longlong)section_end - (longlong)section_name);
+          bracket_pos = (int8_t *)memchr(section_name, 0x5d, (longlong)section_end - (longlong)section_name);
           
           // 检查是否有嵌套的方括号（无效格式）
-          if ((bracket_pos == (undefined1 *)0x0) ||
+          if ((bracket_pos == (int8_t *)0x0) ||
              (nested_bracket = memchr(bracket_pos + 1, 0x5b, (longlong)section_end - (longlong)(bracket_pos + 1)), nested_bracket == 0)) {
             // 如果格式无效，使用默认节名
             section_name = &UNK_180a06474;
@@ -1035,12 +1035,12 @@ continue_parsing:
  */
 void write_data_to_file(longlong file_path)
 {
-  undefined8 data_buffer;
+  uint64_t data_buffer;
   longlong file_handle;
-  undefined8 data_size;
+  uint64_t data_size;
   
   // 重置全局标志
-  *(undefined4 *)(_DAT_180c8a9b0 + 0x2e04) = 0;
+  *(int32_t *)(_DAT_180c8a9b0 + 0x2e04) = 0;
   
   if (file_path != 0) {
     data_size = 0;
@@ -1072,9 +1072,9 @@ void write_data_to_file(longlong file_path)
  */
 void write_data_to_default_file(void)
 {
-  undefined8 data_buffer;
+  uint64_t data_buffer;
   longlong file_handle;
-  undefined8 data_size;
+  uint64_t data_size;
   
   // 准备要写入的数据
   data_buffer = FUN_18013ce40();

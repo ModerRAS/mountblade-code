@@ -21,14 +21,14 @@
  * @param array_size 数组大小参数
  * @param computation_flags 计算标志位
  */
-void execute_vector_math_operations(longlong data_array, undefined8 array_size, undefined8 computation_flags)
+void execute_vector_math_operations(longlong data_array, uint64_t array_size, uint64_t computation_flags)
 {
     float temp_float1;
-    undefined8 temp_uint8_1;
-    undefined8 temp_uint8_2;
-    undefined8 temp_uint8_3;
-    undefined8 temp_uint8_4;
-    undefined8 temp_uint8_5;
+    uint64_t temp_uint8_1;
+    uint64_t temp_uint8_2;
+    uint64_t temp_uint8_3;
+    uint64_t temp_uint8_4;
+    uint64_t temp_uint8_5;
     longlong array_offset;
     uint element_index;
     ulonglong iteration_count;
@@ -44,18 +44,18 @@ void execute_vector_math_operations(longlong data_array, undefined8 array_size, 
     float vector_component_3;
     float vector_component_4;
     float vector_component_5;
-    undefined4 temp_uint4_1;
+    int32_t temp_uint4_1;
     float temp_float2;
     float temp_float3;
-    undefined4 temp_uint4_2;
-    undefined4 computation_param_1;
-    undefined4 computation_param_2;
+    int32_t temp_uint4_2;
+    int32_t computation_param_1;
+    int32_t computation_param_2;
     float temp_float4;
     float temp_float5;
     
     // 初始化计算参数
-    temp_uint4_2 = (undefined4)((ulonglong)computation_flags >> 0x20);
-    temp_uint4_1 = (undefined4)computation_flags;
+    temp_uint4_2 = (int32_t)((ulonglong)computation_flags >> 0x20);
+    temp_uint4_1 = (int32_t)computation_flags;
     
     // 计算数组偏移量和循环计数
     loop_counter_1 = calculate_array_offset(sign_extend_16bit(array_offset) * sign_extend_16bit(data_array), 8);
@@ -128,8 +128,8 @@ void execute_vector_math_operations(longlong data_array, undefined8 array_size, 
             }
             
             // 更新最小值数组
-            *(undefined8 *)(computation_context + -0x79) = *(undefined8 *)(computation_context + -0x49);
-            *(undefined8 *)(computation_context + -0x71) = *(undefined8 *)(computation_context + -0x41);
+            *(uint64_t *)(computation_context + -0x79) = *(uint64_t *)(computation_context + -0x49);
+            *(uint64_t *)(computation_context + -0x71) = *(uint64_t *)(computation_context + -0x41);
             
             // 计算X和V分量的最大值
             if (temp_float2 <= temp_float1) {
@@ -161,10 +161,10 @@ void execute_vector_math_operations(longlong data_array, undefined8 array_size, 
             }
             
             // 保存计算结果
-            temp_uint4_1 = *(undefined4 *)(computation_context + -0x59);
-            temp_uint4_2 = *(undefined4 *)(computation_context + -0x55);
-            computation_param_1 = *(undefined4 *)(computation_context + -0x51);
-            computation_param_2 = *(undefined4 *)(computation_context + -0x4d);
+            temp_uint4_1 = *(int32_t *)(computation_context + -0x59);
+            temp_uint4_2 = *(int32_t *)(computation_context + -0x55);
+            computation_param_1 = *(int32_t *)(computation_context + -0x51);
+            computation_param_2 = *(int32_t *)(computation_context + -0x4d);
             
             // 更新迭代计数和指针
             element_index = (int)iteration_count + 1;
@@ -172,10 +172,10 @@ void execute_vector_math_operations(longlong data_array, undefined8 array_size, 
             vector_data = vector_data + 0xc;
             
             // 更新最大值数组
-            *(undefined4 *)(computation_context + -0x69) = temp_uint4_1;
-            *(undefined4 *)(computation_context + -0x65) = temp_uint4_2;
-            *(undefined4 *)(computation_context + -0x61) = computation_param_1;
-            *(undefined4 *)(computation_context + -0x5d) = computation_param_2;
+            *(int32_t *)(computation_context + -0x69) = temp_uint4_1;
+            *(int32_t *)(computation_context + -0x65) = temp_uint4_2;
+            *(int32_t *)(computation_context + -0x61) = computation_param_1;
+            *(int32_t *)(computation_context + -0x5d) = computation_param_2;
             
         } while ((ulonglong)(longlong)(int)element_index < (ulonglong)(loop_counter_2 - loop_counter_1));
     }
@@ -226,8 +226,8 @@ void execute_vector_math_operations(longlong data_array, undefined8 array_size, 
             temp_float3 = vector_component_1 + temp_float3;
             
             // 更新最小值数组
-            *(undefined8 *)(computation_context + -0x79) = *(undefined8 *)(computation_context + -0x49);
-            *(undefined8 *)(computation_context + -0x71) = *(undefined8 *)(computation_context + -0x41);
+            *(uint64_t *)(computation_context + -0x79) = *(uint64_t *)(computation_context + -0x49);
+            *(uint64_t *)(computation_context + -0x71) = *(uint64_t *)(computation_context + -0x41);
             
             // 计算并更新Y+X和的最大值
             if (temp_float3 <= *(float *)(computation_context + -0x69)) {
@@ -258,20 +258,20 @@ void execute_vector_math_operations(longlong data_array, undefined8 array_size, 
             }
             
             // 保存计算结果
-            temp_uint4_1 = *(undefined4 *)(computation_context + -0x59);
-            temp_uint4_2 = *(undefined4 *)(computation_context + -0x55);
-            computation_param_1 = *(undefined4 *)(computation_context + -0x51);
-            computation_param_2 = *(undefined4 *)(computation_context + -0x4d);
+            temp_uint4_1 = *(int32_t *)(computation_context + -0x59);
+            temp_uint4_2 = *(int32_t *)(computation_context + -0x55);
+            computation_param_1 = *(int32_t *)(computation_context + -0x51);
+            computation_param_2 = *(int32_t *)(computation_context + -0x4d);
             
             // 更新迭代计数和指针
             element_index = (int)iteration_count + 1;
             data_mask = data_mask + 0x20;
             
             // 更新最大值数组
-            *(undefined4 *)(computation_context + -0x69) = temp_uint4_1;
-            *(undefined4 *)(computation_context + -0x65) = temp_uint4_2;
-            *(undefined4 *)(computation_context + -0x61) = computation_param_1;
-            *(undefined4 *)(computation_context + -0x5d) = computation_param_2;
+            *(int32_t *)(computation_context + -0x69) = temp_uint4_1;
+            *(int32_t *)(computation_context + -0x65) = temp_uint4_2;
+            *(int32_t *)(computation_context + -0x61) = computation_param_1;
+            *(int32_t *)(computation_context + -0x5d) = computation_param_2;
             
             iteration_count = (ulonglong)element_index;
             
@@ -279,34 +279,34 @@ void execute_vector_math_operations(longlong data_array, undefined8 array_size, 
     }
     
     // 第三阶段：整理和输出结果
-    *(undefined4 *)(computation_context + -0x39) = *(undefined4 *)(computation_context + -0x79);
-    *(undefined4 *)(computation_context + -0x35) = *(undefined4 *)(computation_context + -0x75);
-    *(undefined4 *)(computation_context + -0x31) = *(undefined4 *)(computation_context + -0x71);
-    *(undefined4 *)(computation_context + -0x2d) = *(undefined4 *)(computation_context + -0x6d);
-    *(undefined4 *)(computation_context + -0x29) = temp_uint4_1;
-    *(undefined4 *)(computation_context + -0x25) = temp_uint4_2;
-    *(undefined4 *)(computation_context + -0x21) = computation_param_1;
-    *(undefined4 *)(computation_context + -0x1d) = computation_param_2;
+    *(int32_t *)(computation_context + -0x39) = *(int32_t *)(computation_context + -0x79);
+    *(int32_t *)(computation_context + -0x35) = *(int32_t *)(computation_context + -0x75);
+    *(int32_t *)(computation_context + -0x31) = *(int32_t *)(computation_context + -0x71);
+    *(int32_t *)(computation_context + -0x2d) = *(int32_t *)(computation_context + -0x6d);
+    *(int32_t *)(computation_context + -0x29) = temp_uint4_1;
+    *(int32_t *)(computation_context + -0x25) = temp_uint4_2;
+    *(int32_t *)(computation_context + -0x21) = computation_param_1;
+    *(int32_t *)(computation_context + -0x1d) = computation_param_2;
     
     // 执行最终的数学优化
     perform_mathematical_optimization(computation_context + -0x39);
     
     // 读取优化结果
-    temp_uint8_1 = *(undefined8 *)(computation_context + -0x31);
-    temp_uint4_1 = *(undefined4 *)(computation_context + -9);
-    temp_uint8_2 = *(undefined8 *)(computation_context + -0x29);
-    temp_uint8_3 = *(undefined8 *)(computation_context + -0x21);
+    temp_uint8_1 = *(uint64_t *)(computation_context + -0x31);
+    temp_uint4_1 = *(int32_t *)(computation_context + -9);
+    temp_uint8_2 = *(uint64_t *)(computation_context + -0x29);
+    temp_uint8_3 = *(uint64_t *)(computation_context + -0x21);
     
     // 输出结果到内存管理器
-    *(undefined8 *)(memory_manager + 0xf8) = *(undefined8 *)(computation_context + -0x39);
-    *(undefined8 *)(memory_manager + 0x100) = temp_uint8_1;
-    temp_uint8_1 = *(undefined8 *)(computation_context + -0x19);
-    temp_uint8_4 = *(undefined8 *)(computation_context + -0x11);
-    *(undefined8 *)(memory_manager + 0x108) = temp_uint8_2;
-    *(undefined8 *)(memory_manager + 0x110) = temp_uint8_3;
-    *(undefined8 *)(memory_manager + 0x118) = temp_uint8_1;
-    *(undefined8 *)(memory_manager + 0x120) = temp_uint8_4;
-    *(undefined4 *)(memory_manager + 0x128) = temp_uint4_1;
+    *(uint64_t *)(memory_manager + 0xf8) = *(uint64_t *)(computation_context + -0x39);
+    *(uint64_t *)(memory_manager + 0x100) = temp_uint8_1;
+    temp_uint8_1 = *(uint64_t *)(computation_context + -0x19);
+    temp_uint8_4 = *(uint64_t *)(computation_context + -0x11);
+    *(uint64_t *)(memory_manager + 0x108) = temp_uint8_2;
+    *(uint64_t *)(memory_manager + 0x110) = temp_uint8_3;
+    *(uint64_t *)(memory_manager + 0x118) = temp_uint8_1;
+    *(uint64_t *)(memory_manager + 0x120) = temp_uint8_4;
+    *(int32_t *)(memory_manager + 0x128) = temp_uint4_1;
     
     return;
 }

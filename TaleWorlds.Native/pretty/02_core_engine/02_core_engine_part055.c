@@ -17,33 +17,33 @@ void initialize_render_pipeline(void)
   int loop_counter;
   longlong *render_context_ptr;
   bool is_dirty;
-  undefined4 temp_param_1;
+  int32_t temp_param_1;
   longlong engine_instance;
-  undefined8 stack_guard;
+  uint64_t stack_guard;
   longlong *material_ptr;
-  undefined4 material_flags;
+  int32_t material_flags;
   longlong texture_handle;
   longlong *shader_ptr;
   longlong *uniform_ptr;
   longlong *buffer_ptr;
-  undefined *string_ptr;
+  void *string_ptr;
   longlong performance_counter;
   uint material_index;
   ulonglong texture_offset;
   ulonglong material_offset;
-  undefined1 local_buffer[32];
-  undefined8 stack_checksum;
+  int8_t local_buffer[32];
+  uint64_t stack_checksum;
   longlong *context_stack;
   longlong **context_ptr_ptr;
-  undefined *debug_string;
-  undefined4 *message_buffer;
-  undefined4 message_size;
-  undefined8 message_handle;
-  undefined4 debug_flags[4];
+  void *debug_string;
+  int32_t *message_buffer;
+  int32_t message_size;
+  uint64_t message_handle;
+  int32_t debug_flags[4];
   longlong transform_matrix[2];
-  undefined *vertex_buffer;
-  undefined *index_buffer;
-  undefined4 render_state;
+  void *vertex_buffer;
+  void *index_buffer;
+  int32_t render_state;
   undefined material_data[136];
   ulonglong frame_time;
   
@@ -53,7 +53,7 @@ void initialize_render_pipeline(void)
   
   // 检查是否已经初始化
   if ((char)global_render_context[1] != '\x01') {
-    *(undefined1 *)(global_render_context + 1) = 1;
+    *(int8_t *)(global_render_context + 1) = 1;
     
     // 获取引擎实例
     engine_instance = create_engine_instance();
@@ -69,7 +69,7 @@ void initialize_render_pipeline(void)
     strcpy_s(material_data, 0x80, &device_init_string);
     
     string_ptr = &device_config_path;
-    if (vertex_buffer != (undefined *)0x0) {
+    if (vertex_buffer != (void *)0x0) {
       string_ptr = vertex_buffer;
     }
     
@@ -86,13 +86,13 @@ void initialize_render_pipeline(void)
     
     // 初始化材质参数
     material_ptr = render_context_ptr + 0x2d4;
-    *(undefined1 *)(render_context_ptr + 0x2f4) = 0;
-    *(undefined4 *)((longlong)render_context_ptr + 0x17b4) = 0;
-    *(undefined4 *)(render_context_ptr + 0x2f7) = 0x43fa8000;  // 漫反射颜色
-    *(undefined4 *)((longlong)render_context_ptr + 0x17a4) = 0xbf000000;  // 环境光
-    *(undefined4 *)(render_context_ptr + 0x2f5) = 0x3f000000;  // 镜面反射
-    *(undefined4 *)(render_context_ptr + 0x2f6) = 0xbf000000;  // 自发光
-    *(undefined4 *)((longlong)render_context_ptr + 0x17ac) = 0x3f000000;  // 透明度
+    *(int8_t *)(render_context_ptr + 0x2f4) = 0;
+    *(int32_t *)((longlong)render_context_ptr + 0x17b4) = 0;
+    *(int32_t *)(render_context_ptr + 0x2f7) = 0x43fa8000;  // 漫反射颜色
+    *(int32_t *)((longlong)render_context_ptr + 0x17a4) = 0xbf000000;  // 环境光
+    *(int32_t *)(render_context_ptr + 0x2f5) = 0x3f000000;  // 镜面反射
+    *(int32_t *)(render_context_ptr + 0x2f6) = 0xbf000000;  // 自发光
+    *(int32_t *)((longlong)render_context_ptr + 0x17ac) = 0x3f000000;  // 透明度
     
     // 初始化相机参数
     initialize_camera_matrices();
@@ -103,20 +103,20 @@ void initialize_render_pipeline(void)
     debug_flags[2] = 0;
     debug_flags[3] = 0x3f800000;  // 1.0f
     
-    *(undefined4 *)(material_ptr + 0x18) = 0x3f800000;
-    *(undefined4 *)((longlong)material_ptr + 0xc4) = 0;
-    *(undefined4 *)(material_ptr + 0x19) = 0;
-    *(undefined4 *)((longlong)material_ptr + 0xcc) = 0;
-    *(undefined4 *)(material_ptr + 0x1a) = 0;
-    *(undefined4 *)((longlong)material_ptr + 0xd4) = 0x3f800000;
-    *(undefined4 *)(material_ptr + 0x1b) = 0;
-    *(undefined4 *)((longlong)material_ptr + 0xdc) = 0;
+    *(int32_t *)(material_ptr + 0x18) = 0x3f800000;
+    *(int32_t *)((longlong)material_ptr + 0xc4) = 0;
+    *(int32_t *)(material_ptr + 0x19) = 0;
+    *(int32_t *)((longlong)material_ptr + 0xcc) = 0;
+    *(int32_t *)(material_ptr + 0x1a) = 0;
+    *(int32_t *)((longlong)material_ptr + 0xd4) = 0x3f800000;
+    *(int32_t *)(material_ptr + 0x1b) = 0;
+    *(int32_t *)((longlong)material_ptr + 0xdc) = 0;
     material_ptr[0x1c] = 0;
     material_ptr[0x1d] = 0x3f800000;
-    *(undefined4 *)(material_ptr + 0x1e) = 0x3f000000;
-    *(undefined4 *)((longlong)material_ptr + 0xf4) = 0x3f000000;
-    *(undefined4 *)(material_ptr + 0x1f) = 0x43c80000;
-    *(undefined4 *)((longlong)material_ptr + 0xfc) = 0x7f7fffff;
+    *(int32_t *)(material_ptr + 0x1e) = 0x3f000000;
+    *(int32_t *)((longlong)material_ptr + 0xf4) = 0x3f000000;
+    *(int32_t *)(material_ptr + 0x1f) = 0x43c80000;
+    *(int32_t *)((longlong)material_ptr + 0xfc) = 0x7f7fffff;
     
     // 初始化投影矩阵
     initialize_camera_matrices();
@@ -165,20 +165,20 @@ void initialize_render_pipeline(void)
     performance_counter = buffer_ptr[0x13];
     shader_ptr[0x12] = buffer_ptr[0x12];
     shader_ptr[0x13] = performance_counter;
-    material_flags = *(undefined4 *)((longlong)buffer_ptr + 0xa4);
+    material_flags = *(int32_t *)((longlong)buffer_ptr + 0xa4);
     performance_counter = buffer_ptr[0x15];
-    temp_param_1 = *(undefined4 *)((longlong)buffer_ptr + 0xac);
+    temp_param_1 = *(int32_t *)((longlong)buffer_ptr + 0xac);
     *(int *)(shader_ptr + 0x14) = (int)buffer_ptr[0x14];
-    *(undefined4 *)((longlong)shader_ptr + 0xa4) = material_flags;
+    *(int32_t *)((longlong)shader_ptr + 0xa4) = material_flags;
     *(int *)(shader_ptr + 0x15) = (int)performance_counter;
-    *(undefined4 *)((longlong)shader_ptr + 0xac) = temp_param_1;
-    material_flags = *(undefined4 *)((longlong)buffer_ptr + 0xb4);
+    *(int32_t *)((longlong)shader_ptr + 0xac) = temp_param_1;
+    material_flags = *(int32_t *)((longlong)buffer_ptr + 0xb4);
     performance_counter = buffer_ptr[0x17];
-    temp_param_1 = *(undefined4 *)((longlong)buffer_ptr + 0xbc);
+    temp_param_1 = *(int32_t *)((longlong)buffer_ptr + 0xbc);
     *(int *)(shader_ptr + 0x16) = (int)buffer_ptr[0x16];
-    *(undefined4 *)((longlong)shader_ptr + 0xb4) = material_flags;
+    *(int32_t *)((longlong)shader_ptr + 0xb4) = material_flags;
     *(int *)(shader_ptr + 0x17) = (int)performance_counter;
-    *(undefined4 *)((longlong)shader_ptr + 0xbc) = temp_param_1;
+    *(int32_t *)((longlong)shader_ptr + 0xbc) = temp_param_1;
     
     // 初始化渲染后端
     initialize_render_backend(engine_instance);
@@ -199,7 +199,7 @@ void initialize_render_pipeline(void)
     
     // 清理旧的渲染上下文
     context_ptr_ptr = *(longlong ***)(*render_context_ptr + 0x96a8);
-    *(undefined8 *)(*render_context_ptr + 0x96a8) = 0;
+    *(uint64_t *)(*render_context_ptr + 0x96a8) = 0;
     if (context_ptr_ptr != (longlong **)0x0) {
       (*(code *)(*context_ptr_ptr)[7])();
     }
@@ -209,28 +209,28 @@ void initialize_render_pipeline(void)
     if (loop_counter != 0) {
       debug_string = &debug_output_prefix;
       message_handle = 0;
-      message_buffer = (undefined4 *)0x0;
+      message_buffer = (int32_t *)0x0;
       message_size = 0;
-      message_buffer = (undefined4 *)create_debug_message(debug_log_source, 0x1f, 0x13);
-      *(undefined1 *)message_buffer = 0;
+      message_buffer = (int32_t *)create_debug_message(debug_log_source, 0x1f, 0x13);
+      *(int8_t *)message_buffer = 0;
       temp_param_1 = allocate_message_buffer(message_buffer);
       *message_buffer = 0x44414853;  // "HASH"
       message_buffer[1] = 0x43205245;  // "C RE"
       message_buffer[2] = 0x49504d4f;  // "IPMO"
       message_buffer[3] = 0x4954414c;  // "ITAL"
-      *(undefined8 *)(message_buffer + 4) = 0x5250204e49204e4f;  // "RP NI NO"
+      *(uint64_t *)(message_buffer + 4) = 0x5250204e49204e4f;  // "RP NI NO"
       message_buffer[6] = 0x4552474f;  // "ERGO"
-      *(undefined2 *)(message_buffer + 7) = 0x5353;  // "SS"
-      *(undefined1 *)((longlong)message_buffer + 0x1e) = 0;
+      *(int16_t *)(message_buffer + 7) = 0x5353;  // "SS"
+      *(int8_t *)((longlong)message_buffer + 0x1e) = 0;
       message_size = 0x1e;
       message_handle._0_4_ = temp_param_1;
       send_debug_message(&debug_string, &debug_message_target, loop_counter);
       debug_string = &debug_output_prefix;
-      if (message_buffer != (undefined4 *)0x0) {
+      if (message_buffer != (int32_t *)0x0) {
         // WARNING: Subroutine does not return
         free_message_buffer();
       }
-      message_buffer = (undefined4 *)0x0;
+      message_buffer = (int32_t *)0x0;
       message_handle = (ulonglong)message_handle._4_4_ << 0x20;
       debug_string = &render_target_name;
     }
@@ -314,13 +314,13 @@ longlong performance_timer_address = _DAT_180c86870;
 longlong performance_counter_base = _DAT_180c8ed48;
 double performance_frequency = _DAT_180c8ed50;
 longlong performance_counter_value = _DAT_180c8ed58;
-undefined *debug_device_name = UNK_1809fcc28;
-undefined *device_init_string = UNK_180a01340;
-undefined *device_config_path = DAT_18098bc73;
-undefined *render_target_name = UNK_18098bcb0;
-undefined *target_config_string = UNK_180a013a8;
-undefined *debug_output_prefix = UNK_180a3c3e0;
-undefined *debug_message_target = UNK_180a013b8;
+void *debug_device_name = UNK_1809fcc28;
+void *device_init_string = UNK_180a01340;
+void *device_config_path = DAT_18098bc73;
+void *render_target_name = UNK_18098bcb0;
+void *target_config_string = UNK_180a013a8;
+void *debug_output_prefix = UNK_180a3c3e0;
+void *debug_message_target = UNK_180a013b8;
 longlong *global_render_manager = _DAT_180c86938;
 longlong *render_context_pool = _DAT_180c86890;
 longlong *render_queue_head = _DAT_180c82868;

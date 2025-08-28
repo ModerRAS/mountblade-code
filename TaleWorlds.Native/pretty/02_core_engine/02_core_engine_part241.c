@@ -4,9 +4,9 @@
 // 本文件包含2个函数，主要用于材质加载、纹理处理和资源管理
 
 // 全局变量声明
-extern undefined8 _DAT_180c8aa58;    // 材质管理器数据指针
-extern undefined8 _DAT_180a04ee4;    // 材质字符串常量
-extern undefined8 _DAT_180d48d24;    // 默认材质路径
+extern uint64_t _DAT_180c8aa58;    // 材质管理器数据指针
+extern uint64_t _DAT_180a04ee4;    // 材质字符串常量
+extern uint64_t _DAT_180d48d24;    // 默认材质路径
 
 /**
  * 处理材质加载和纹理资源管理
@@ -16,7 +16,7 @@ extern undefined8 _DAT_180d48d24;    // 默认材质路径
  * @param material_base 材质基础地址
  * @param material_count 材质数量
  */
-void process_material_loading(undefined8 material_context, longlong material_base, int material_count)
+void process_material_loading(uint64_t material_context, longlong material_base, int material_count)
 
 {
   uint texture_id;
@@ -31,32 +31,32 @@ void process_material_loading(undefined8 material_context, longlong material_bas
   longlong material_offset;
   longlong texture_offset;
   ulonglong loop_counter;
-  undefined8 *texture_data;
+  uint64_t *texture_data;
   char *default_path;
   char *temp_name;
   longlong texture_size;
   longlong path_length;
   longlong *resource_ptr;
   bool is_match;
-  undefined *stack_resource_1;
+  void *stack_resource_1;
   longlong stack_offset_1;
   code *callback_func_1;
   code *callback_func_2;
-  undefined *stack_resource_2;
+  void *stack_resource_2;
   longlong stack_offset_2;
   uint stack_flags;
-  undefined8 stack_config_1;
-  undefined *stack_resource_3;
+  uint64_t stack_config_1;
+  void *stack_resource_3;
   longlong stack_offset_3;
   int stack_index;
   ulonglong stack_counter;
-  undefined *stack_resource_4;
+  void *stack_resource_4;
   longlong stack_offset_4;
-  undefined4 stack_param_1;
+  int32_t stack_param_1;
   ulonglong stack_param_2;
-  undefined *stack_resource_5;
+  void *stack_resource_5;
   longlong stack_offset_5;
-  undefined4 stack_param_3;
+  int32_t stack_param_3;
   ulonglong stack_param_4;
   longlong *stack_ptr_1;
   longlong *stack_ptr_2;
@@ -65,7 +65,7 @@ void process_material_loading(undefined8 material_context, longlong material_bas
   longlong *stack_ptr_5;
   longlong *stack_ptr_6;
   longlong stack_value_1;
-  undefined8 stack_config_2;
+  uint64_t stack_config_2;
   
   stack_config_2 = 0xfffffffffffffffe;
   texture_size = 0;
@@ -81,8 +81,8 @@ void process_material_loading(undefined8 material_context, longlong material_bas
         texture_path = material_name;
         material_name = texture_path + 1;
       } while (*material_name != '\0');
-      texture_data = *(undefined8 **)(texture_offset + 0x30);
-      if (texture_data != (undefined8 *)0x0) {
+      texture_data = *(uint64_t **)(texture_offset + 0x30);
+      if (texture_data != (uint64_t *)0x0) {
 LAB_180209ba0:
         material_name = (char *)*texture_data;
         if (material_name == (char *)0x0) {
@@ -162,8 +162,8 @@ LAB_180209cd5:
           texture_path = material_name;
           material_name = texture_path + 1;
         } while (*material_name != '\0');
-        for (texture_data = *(undefined8 **)(texture_ext + 0x30); texture_data != (undefined8 *)0x0;
-            texture_data = (undefined8 *)texture_data[0xb]) {
+        for (texture_data = *(uint64_t **)(texture_ext + 0x30); texture_data != (uint64_t *)0x0;
+            texture_data = (uint64_t *)texture_data[0xb]) {
           material_name = (char *)*texture_data;
           if (material_name == (char *)0x0) {
             material_name = (char *)0x180d48d24;
@@ -214,8 +214,8 @@ joined_r0x000180209daf:
                   temp_name = material_name;
                   material_name = temp_name + 1;
                 } while (*material_name != '\0');
-                for (texture_data = *(undefined8 **)(texture_name + 0x40); texture_data != (undefined8 *)0x0;
-                    texture_data = (undefined8 *)texture_data[6]) {
+                for (texture_data = *(uint64_t **)(texture_name + 0x40); texture_data != (uint64_t *)0x0;
+                    texture_data = (uint64_t *)texture_data[6]) {
                   material_name = (char *)*texture_data;
                   if (material_name == (char *)0x0) {
                     material_name = (char *)0x180d48d24;
@@ -261,8 +261,8 @@ LAB_180209e40:
                     temp_name = material_name;
                     material_name = temp_name + 1;
                   } while (*material_name != '\0');
-                  for (texture_data = *(undefined8 **)(texture_name + 0x40); texture_data != (undefined8 *)0x0;
-                      texture_data = (undefined8 *)texture_data[6]) {
+                  for (texture_data = *(uint64_t **)(texture_name + 0x40); texture_data != (uint64_t *)0x0;
+                      texture_data = (uint64_t *)texture_data[6]) {
                     material_name = (char *)*texture_data;
                     if (material_name == (char *)0x0) {
                       material_name = (char *)0x180d48d24;
@@ -327,8 +327,8 @@ LAB_180209f34:
                       temp_name = material_name;
                       material_name = temp_name + 1;
                     } while (*material_name != '\0');
-                    for (texture_data = *(undefined8 **)(texture_name + 0x40); texture_data != (undefined8 *)0x0;
-                        texture_data = (undefined8 *)texture_data[6]) {
+                    for (texture_data = *(uint64_t **)(texture_name + 0x40); texture_data != (uint64_t *)0x0;
+                        texture_data = (uint64_t *)texture_data[6]) {
                       material_name = (char *)*texture_data;
                       if (material_name == (char *)0x0) {
                         material_name = (char *)0x180d48d24;
@@ -393,8 +393,8 @@ LAB_18020a094:
                         temp_name = material_name;
                         material_name = temp_name + 1;
                       } while (*material_name != '\0');
-                      for (texture_data = *(undefined8 **)(texture_name + 0x40); texture_data != (undefined8 *)0x0;
-                          texture_data = (undefined8 *)texture_data[6]) {
+                      for (texture_data = *(uint64_t **)(texture_name + 0x40); texture_data != (uint64_t *)0x0;
+                          texture_data = (uint64_t *)texture_data[6]) {
                         material_name = (char *)*texture_data;
                         if (material_name == (char *)0x0) {
                           material_name = (char *)0x180d48d24;
@@ -494,8 +494,8 @@ LAB_18020a368:
           texture_path = temp_name;
           temp_name = texture_path + 1;
         } while (*temp_name != '\0');
-        for (texture_data = *(undefined8 **)(texture_ext + 0x30); texture_data != (undefined8 *)0x0;
-            texture_data = (undefined8 *)texture_data[0xb]) {
+        for (texture_data = *(uint64_t **)(texture_ext + 0x30); texture_data != (uint64_t *)0x0;
+            texture_data = (uint64_t *)texture_data[0xb]) {
           temp_name = (char *)*texture_data;
           if (temp_name == (char *)0x0) {
             temp_name = (char *)0x180d48d24;
@@ -547,8 +547,8 @@ joined_r0x00018020a436:
                   texture_path = temp_name;
                   temp_name = texture_path + 1;
                 } while (*temp_name != '\0');
-                for (texture_data = *(undefined8 **)(texture_ext + 0x40); texture_data != (undefined8 *)0x0;
-                    texture_data = (undefined8 *)texture_data[6]) {
+                for (texture_data = *(uint64_t **)(texture_ext + 0x40); texture_data != (uint64_t *)0x0;
+                    texture_data = (uint64_t *)texture_data[6]) {
                   temp_name = (char *)*texture_data;
                   if (temp_name == (char *)0x0) {
                     temp_name = (char *)0x180d48d24;
@@ -596,11 +596,11 @@ LAB_18020a528:
                     // WARNING: Subroutine does not return
                     memcpy(*resource_ptr,stack_offset_2,loop_counter);
                   }
-                  *(undefined4 *)(material_ptr + 6) = 0;
+                  *(int32_t *)(material_ptr + 6) = 0;
                   if (*resource_ptr != 0) {
-                    *(undefined1 *)(loop_counter + *resource_ptr) = 0;
+                    *(int8_t *)(loop_counter + *resource_ptr) = 0;
                   }
-                  *(undefined4 *)((longlong)material_ptr + 0x3c) = stack_config_2._4_4_;
+                  *(int32_t *)((longlong)material_ptr + 0x3c) = stack_config_2._4_4_;
                 }
                 material_name = (char *)((ulonglong)((int)material_name + 1));
                 temp_name = "material";
@@ -652,14 +652,14 @@ LAB_18020a5e9:
 LAB_18020a626:
         for (path_length = *(longlong *)(texture_offset + 0x30); path_length != 0;
             path_length = *(longlong *)(path_length + 0x58)) {
-          *(undefined8 *)(path_length + 0x20) = 0;
+          *(uint64_t *)(path_length + 0x20) = 0;
         }
-        *(undefined8 *)(texture_offset + 0x30) = 0;
+        *(uint64_t *)(texture_offset + 0x30) = 0;
         for (path_length = *(longlong *)(texture_offset + 0x40); path_length != 0;
             path_length = *(longlong *)(path_length + 0x30)) {
-          *(undefined8 *)(path_length + 0x20) = 0;
+          *(uint64_t *)(path_length + 0x20) = 0;
         }
-        *(undefined8 *)(texture_offset + 0x40) = 0;
+        *(uint64_t *)(texture_offset + 0x40) = 0;
         FUN_180057010(texture_offset + 0x60);
       }
 LAB_18020a68a:
@@ -667,7 +667,7 @@ LAB_18020a68a:
     } while (texture_size < stack_value_1);
   }
   if (*resource_ptr != 0) {
-    stack_resource_1 = (undefined *)0x0;
+    stack_resource_1 = (void *)0x0;
     stack_offset_1 = 0;
     callback_func_1 = (code *)0x0;
     callback_func_2 = _guard_check_icall;
@@ -677,7 +677,7 @@ LAB_18020a68a:
     }
   }
   if (resource_ptr[1] != 0) {
-    stack_resource_1 = (undefined *)0x0;
+    stack_resource_1 = (void *)0x0;
     stack_offset_1 = 0;
     callback_func_1 = (code *)0x0;
     callback_func_2 = _guard_check_icall;
@@ -687,7 +687,7 @@ LAB_18020a68a:
     }
   }
   if (resource_ptr[2] != 0) {
-    stack_resource_1 = (undefined *)0x0;
+    stack_resource_1 = (void *)0x0;
     stack_offset_1 = 0;
     callback_func_1 = (code *)0x0;
     callback_func_2 = _guard_check_icall;
@@ -698,8 +698,8 @@ LAB_18020a68a:
   }
   return;
 LAB_180209c13:
-  texture_data = (undefined8 *)texture_data[0xb];
-  if (texture_data == (undefined8 *)0x0) goto LAB_18020a68a;
+  texture_data = (uint64_t *)texture_data[0xb];
+  if (texture_data == (uint64_t *)0x0) goto LAB_18020a68a;
   goto LAB_180209ba0;
 }
 
@@ -715,11 +715,11 @@ void process_vertex_position_validation(longlong vertex_context, longlong spatia
 
 {
   int *vertex_count;
-  undefined8 *vertex_data;
+  uint64_t *vertex_data;
   longlong spatial_index;
-  undefined8 position_x;
-  undefined8 position_y;
-  undefined8 position_z;
+  uint64_t position_x;
+  uint64_t position_y;
+  uint64_t position_z;
   longlong vertex_offset;
   uint vertex_id;
   uint block_index;
@@ -762,21 +762,21 @@ void process_vertex_position_validation(longlong vertex_context, longlong spatia
     // 检查是否还有空间
     if (current_count < *(int *)(vertex_context + 0xc)) {
       // 准备位置数据
-      position_x = *(undefined8 *)(target_position + 2);
+      position_x = *(uint64_t *)(target_position + 2);
       vertex_id = *(int *)(vertex_context + 0x10) + current_count;
-      position_y = *(undefined8 *)(target_position + 4);
-      position_z = *(undefined8 *)(target_position + 6);
+      position_y = *(uint64_t *)(target_position + 4);
+      position_z = *(uint64_t *)(target_position + 6);
       block_index = vertex_id >> 0xc;
       spatial_index = *(longlong *)(spatial_context + 0x1220 + (ulonglong)block_index * 8);
       vertex_offset = (ulonglong)(vertex_id + block_index * -0x1000) * 0x20;
       
       // 存储顶点位置数据（前16字节：x,y坐标）
-      vertex_data = (undefined8 *)(spatial_index + vertex_offset);
-      *vertex_data = *(undefined8 *)target_position;
+      vertex_data = (uint64_t *)(spatial_index + vertex_offset);
+      *vertex_data = *(uint64_t *)target_position;
       vertex_data[1] = position_x;
       
       // 存储顶点位置数据（后16字节：z坐标和其他数据）
-      vertex_data = (undefined8 *)(spatial_index + 0x10 + vertex_offset);
+      vertex_data = (uint64_t *)(spatial_index + 0x10 + vertex_offset);
       *vertex_data = position_y;
       vertex_data[1] = position_z;
     }

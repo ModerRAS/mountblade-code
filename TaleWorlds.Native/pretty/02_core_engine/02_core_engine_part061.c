@@ -9,43 +9,43 @@ void process_render_state(longlong render_context, longlong scene_data)
 
 {
   // 渲染状态变量
-  undefined4 render_flag1;
-  undefined4 render_flag2;
+  int32_t render_flag1;
+  int32_t render_flag2;
   ushort texture_index;
   code *render_function;
   int *object_count;
-  undefined4 shader_param1;
-  undefined4 shader_param2;
-  undefined4 shader_param3;
-  undefined4 shader_param4;
-  undefined4 shader_param5;
-  undefined4 shader_param6;
-  undefined4 shader_param7;
-  undefined4 shader_param8;
-  undefined4 shader_param9;
-  undefined4 shader_param10;
-  undefined4 shader_param11;
-  undefined4 shader_param12;
-  undefined4 shader_param13;
-  undefined4 shader_param14;
-  undefined4 shader_param15;
-  undefined4 shader_param16;
+  int32_t shader_param1;
+  int32_t shader_param2;
+  int32_t shader_param3;
+  int32_t shader_param4;
+  int32_t shader_param5;
+  int32_t shader_param6;
+  int32_t shader_param7;
+  int32_t shader_param8;
+  int32_t shader_param9;
+  int32_t shader_param10;
+  int32_t shader_param11;
+  int32_t shader_param12;
+  int32_t shader_param13;
+  int32_t shader_param14;
+  int32_t shader_param15;
+  int32_t shader_param16;
   
   // 场景数据指针
   longlong scene_data_ptr;
   longlong *object_array_ptr;
   longlong *render_queue_ptr;
   ulonglong texture_handle;
-  undefined4 render_state;
+  int32_t render_state;
   longlong *material_ptr;
-  undefined4 *vertex_buffer_ptr;
+  int32_t *vertex_buffer_ptr;
   longlong vertex_count;
   int triangle_count;
   longlong render_distance;
   longlong object_offset;
-  undefined4 *index_buffer_ptr;
+  int32_t *index_buffer_ptr;
   longlong buffer_size;
-  undefined4 *texture_coords_ptr;
+  int32_t *texture_coords_ptr;
   uint vertex_index;
   longlong frame_counter;
   int object_index;
@@ -53,12 +53,12 @@ void process_render_state(longlong render_context, longlong scene_data)
   uint texture_height;
   uint *shader_program_ptr;
   uint render_mode;
-  undefined8 matrix_data;
+  uint64_t matrix_data;
   
   // 栈变量
-  undefined1 transform_matrix [32];
+  int8_t transform_matrix [32];
   code *callback_function;
-  undefined1 *vertex_data;
+  int8_t *vertex_data;
   int vertices_processed;
   int triangles_processed;
   int batches_processed;
@@ -68,21 +68,21 @@ void process_render_state(longlong render_context, longlong scene_data)
   longlong camera_distance;
   longlong object_handle;
   longlong *light_buffer;
-  undefined8 depth_buffer;
+  uint64_t depth_buffer;
   longlong *render_target_ptr;
-  undefined4 blend_mode;
-  undefined2 cull_mode;
-  undefined8 viewport_data;
-  undefined4 clear_color_r;
-  undefined4 clear_color_g;
-  undefined4 clear_color_b;
-  undefined4 clear_color_a;
+  int32_t blend_mode;
+  int16_t cull_mode;
+  uint64_t viewport_data;
+  int32_t clear_color_r;
+  int32_t clear_color_g;
+  int32_t clear_color_b;
+  int32_t clear_color_a;
   uint viewport_width;
   uint viewport_height;
   uint viewport_x;
   uint viewport_y;
   ulonglong shader_uniforms [16];
-  undefined1 render_cache [336];
+  int8_t render_cache [336];
   ulonglong memory_checksum;
   
   // 检查场景数据是否有效
@@ -116,8 +116,8 @@ void process_render_state(longlong render_context, longlong scene_data)
     if (lVar32 + lVar29 + lVar27 != 0) {
       FUN_180099100(param_1);
       lVar17 = _DAT_180c86938;
-      uVar1 = *(undefined4 *)(_DAT_180c86950 + 0x17ec);
-      uVar2 = *(undefined4 *)(_DAT_180c86950 + 0x17f0);
+      uVar1 = *(int32_t *)(_DAT_180c86950 + 0x17ec);
+      uVar2 = *(int32_t *)(_DAT_180c86950 + 0x17f0);
       plVar19 = *(longlong **)(_DAT_180c86938 + 0x1cd8);
       plVar22 = *(longlong **)(*(longlong *)(_DAT_180c86938 + 0x121e0) + 0x1d8);
       if (plVar22 == (longlong *)0x0) {
@@ -134,10 +134,10 @@ void process_render_state(longlong render_context, longlong scene_data)
         }
       }
       plVar19[0x1077] = (longlong)plVar22;
-      FUN_18029de40(*(undefined8 *)(lVar17 + 0x1cd8),1);
-      *(undefined4 *)(param_1 + 0x84) =
-           *(undefined4 *)(*(longlong *)(_DAT_180c86938 + 0x121e0) + 0x324);
-      *(undefined4 *)(param_1 + 0xa4) = 1;
+      FUN_18029de40(*(uint64_t *)(lVar17 + 0x1cd8),1);
+      *(int32_t *)(param_1 + 0x84) =
+           *(int32_t *)(*(longlong *)(_DAT_180c86938 + 0x121e0) + 0x324);
+      *(int32_t *)(param_1 + 0xa4) = 1;
       uStack_270 = 0;
       uStack_26c = 0;
       plStack_278 = (longlong *)0x10000010001;
@@ -145,15 +145,15 @@ void process_render_state(longlong render_context, longlong scene_data)
       FUN_1808fc838(auStack_238,8,0x10,&SUB_18005d5f0);
       plStack_2b0 = (longlong *)0x0;
       puStack_2d0 = auStack_1b8;
-      FUN_180206da0(puStack_2d0,*(undefined8 *)(*(longlong *)(param_1 + 0x10) + 0x18),&plStack_278,
+      FUN_180206da0(puStack_2d0,*(uint64_t *)(*(longlong *)(param_1 + 0x10) + 0x18),&plStack_278,
                     auStack_238);
       pcStack_2d8 = (code *)&uStack_268;
-      FUN_1802072b0(pcStack_2d8,*(undefined8 *)(*(longlong *)(param_1 + 0x18) + 0x18));
+      FUN_1802072b0(pcStack_2d8,*(uint64_t *)(*(longlong *)(param_1 + 0x18) + 0x18));
       plVar19 = plStack_2b0;
-      puVar28 = *(undefined4 **)(auStack_238[*(int *)(_DAT_180c86938 + 0x8c)] + 0x10);
-      puVar30 = *(undefined4 **)(auStack_238[*(int *)(_DAT_180c86938 + 0x80)] + 0x10);
+      puVar28 = *(int32_t **)(auStack_238[*(int *)(_DAT_180c86938 + 0x8c)] + 0x10);
+      puVar30 = *(int32_t **)(auStack_238[*(int *)(_DAT_180c86938 + 0x80)] + 0x10);
       uVar20 = auStack_238[*(int *)(_DAT_180c86938 + 0x78)];
-      puVar23 = *(undefined4 **)(uVar20 + 0x10);
+      puVar23 = *(int32_t **)(uVar20 + 0x10);
       lStack_2a0 = plStack_2b0[2];
       iVar33 = 0;
       iStack_2c8 = 0;
@@ -168,33 +168,33 @@ void process_render_state(longlong render_context, longlong scene_data)
             do {
               lVar29 = (longlong)(int)uVar31;
               lVar27 = *(longlong *)(lVar24 + 0x28);
-              *puVar28 = *(undefined4 *)(lVar27 + lVar29 * 0x14);
-              puVar28[1] = *(undefined4 *)(lVar27 + 4 + lVar29 * 0x14);
+              *puVar28 = *(int32_t *)(lVar27 + lVar29 * 0x14);
+              puVar28[1] = *(int32_t *)(lVar27 + 4 + lVar29 * 0x14);
               puVar28[2] = 0;
-              *puVar30 = *(undefined4 *)(lVar27 + 8 + lVar29 * 0x14);
-              puVar30[1] = *(undefined4 *)(lVar27 + 0xc + lVar29 * 0x14);
-              *puVar23 = *(undefined4 *)(lVar27 + 0x10 + lVar29 * 0x14);
+              *puVar30 = *(int32_t *)(lVar27 + 8 + lVar29 * 0x14);
+              puVar30[1] = *(int32_t *)(lVar27 + 0xc + lVar29 * 0x14);
+              *puVar23 = *(int32_t *)(lVar27 + 0x10 + lVar29 * 0x14);
               lVar27 = *(longlong *)(lVar24 + 0x28);
-              puVar28[3] = *(undefined4 *)(lVar27 + 0x14 + lVar29 * 0x14);
-              puVar28[4] = *(undefined4 *)(lVar27 + 0x18 + lVar29 * 0x14);
+              puVar28[3] = *(int32_t *)(lVar27 + 0x14 + lVar29 * 0x14);
+              puVar28[4] = *(int32_t *)(lVar27 + 0x18 + lVar29 * 0x14);
               puVar28[5] = 0;
-              puVar30[2] = *(undefined4 *)(lVar27 + 0x1c + lVar29 * 0x14);
-              puVar30[3] = *(undefined4 *)(lVar27 + 0x20 + lVar29 * 0x14);
-              puVar23[1] = *(undefined4 *)(lVar27 + 0x24 + lVar29 * 0x14);
+              puVar30[2] = *(int32_t *)(lVar27 + 0x1c + lVar29 * 0x14);
+              puVar30[3] = *(int32_t *)(lVar27 + 0x20 + lVar29 * 0x14);
+              puVar23[1] = *(int32_t *)(lVar27 + 0x24 + lVar29 * 0x14);
               lVar27 = *(longlong *)(lVar24 + 0x28);
-              puVar28[6] = *(undefined4 *)(lVar27 + 0x28 + lVar29 * 0x14);
-              puVar28[7] = *(undefined4 *)(lVar27 + 0x2c + lVar29 * 0x14);
+              puVar28[6] = *(int32_t *)(lVar27 + 0x28 + lVar29 * 0x14);
+              puVar28[7] = *(int32_t *)(lVar27 + 0x2c + lVar29 * 0x14);
               puVar28[8] = 0;
-              puVar30[4] = *(undefined4 *)(lVar27 + 0x30 + lVar29 * 0x14);
-              puVar30[5] = *(undefined4 *)(lVar27 + 0x34 + lVar29 * 0x14);
-              puVar23[2] = *(undefined4 *)(lVar27 + 0x38 + lVar29 * 0x14);
+              puVar30[4] = *(int32_t *)(lVar27 + 0x30 + lVar29 * 0x14);
+              puVar30[5] = *(int32_t *)(lVar27 + 0x34 + lVar29 * 0x14);
+              puVar23[2] = *(int32_t *)(lVar27 + 0x38 + lVar29 * 0x14);
               lVar27 = *(longlong *)(lVar24 + 0x28);
-              puVar28[9] = *(undefined4 *)(lVar27 + 0x3c + lVar29 * 0x14);
-              puVar28[10] = *(undefined4 *)(lVar27 + 0x40 + lVar29 * 0x14);
+              puVar28[9] = *(int32_t *)(lVar27 + 0x3c + lVar29 * 0x14);
+              puVar28[10] = *(int32_t *)(lVar27 + 0x40 + lVar29 * 0x14);
               puVar28[0xb] = 0;
-              puVar30[6] = *(undefined4 *)(lVar27 + 0x44 + lVar29 * 0x14);
-              puVar30[7] = *(undefined4 *)(lVar27 + 0x48 + lVar29 * 0x14);
-              puVar23[3] = *(undefined4 *)(lVar27 + 0x4c + lVar29 * 0x14);
+              puVar30[6] = *(int32_t *)(lVar27 + 0x44 + lVar29 * 0x14);
+              puVar30[7] = *(int32_t *)(lVar27 + 0x48 + lVar29 * 0x14);
+              puVar23[3] = *(int32_t *)(lVar27 + 0x4c + lVar29 * 0x14);
               puVar23 = puVar23 + 4;
               puVar30 = puVar30 + 8;
               puVar28 = puVar28 + 0xc;
@@ -205,12 +205,12 @@ void process_render_state(longlong render_context, longlong scene_data)
           for (; uVar31 < uVar35; uVar31 = uVar31 + 1) {
             lVar29 = (longlong)(int)uVar31;
             lVar27 = *(longlong *)(lVar24 + 0x28);
-            *puVar28 = *(undefined4 *)(lVar27 + lVar29 * 0x14);
-            puVar28[1] = *(undefined4 *)(lVar27 + 4 + lVar29 * 0x14);
+            *puVar28 = *(int32_t *)(lVar27 + lVar29 * 0x14);
+            puVar28[1] = *(int32_t *)(lVar27 + 4 + lVar29 * 0x14);
             puVar28[2] = 0;
-            *puVar30 = *(undefined4 *)(lVar27 + 8 + lVar29 * 0x14);
-            puVar30[1] = *(undefined4 *)(lVar27 + 0xc + lVar29 * 0x14);
-            *puVar23 = *(undefined4 *)(lVar27 + 0x10 + lVar29 * 0x14);
+            *puVar30 = *(int32_t *)(lVar27 + 8 + lVar29 * 0x14);
+            puVar30[1] = *(int32_t *)(lVar27 + 0xc + lVar29 * 0x14);
+            *puVar23 = *(int32_t *)(lVar27 + 0x10 + lVar29 * 0x14);
             puVar23 = puVar23 + 1;
             puVar30 = puVar30 + 2;
             puVar28 = puVar28 + 3;
@@ -232,62 +232,62 @@ void process_render_state(longlong render_context, longlong scene_data)
           uStack_2b8 = uVar20;
         } while (iStack_2c8 < *(int *)(lStack_2a8 + 0x10));
       }
-      uVar38 = FUN_180207110(uVar20,*(undefined8 *)(*(longlong *)(param_1 + 0x10) + 0x18),
+      uVar38 = FUN_180207110(uVar20,*(uint64_t *)(*(longlong *)(param_1 + 0x10) + 0x18),
                              auStack_238);
-      FUN_180207400(uVar38,*(undefined8 *)(*(longlong *)(param_1 + 0x18) + 0x18),&plStack_2b0);
+      FUN_180207400(uVar38,*(uint64_t *)(*(longlong *)(param_1 + 0x18) + 0x18),&plStack_2b0);
       lVar17 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
       lVar24 = *(longlong *)(_DAT_180c86938 + 0x1ca8);
       plVar22 = *(longlong **)(lVar17 + 0x8400);
       pcVar4 = *(code **)(*plVar22 + 0x38);
-      *(undefined4 *)(lVar24 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+      *(int32_t *)(lVar24 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
       (*pcVar4)(plVar22,7,1,lVar24 + 0x10);
       plVar22 = *(longlong **)(lVar17 + 0x8400);
       pcVar4 = *(code **)(*plVar22 + 0x1f0);
-      *(undefined4 *)(lVar24 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+      *(int32_t *)(lVar24 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
       (*pcVar4)(plVar22,7,1,lVar24 + 0x10);
       plVar22 = *(longlong **)(lVar17 + 0x8400);
       pcVar4 = *(code **)(*plVar22 + 0x210);
-      *(undefined4 *)(lVar24 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+      *(int32_t *)(lVar24 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
       (*pcVar4)(plVar22,7,1,lVar24 + 0x10);
       plVar22 = *(longlong **)(lVar17 + 0x8400);
       pcVar4 = *(code **)(*plVar22 + 0x80);
-      *(undefined4 *)(lVar24 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+      *(int32_t *)(lVar24 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
       (*pcVar4)(plVar22,7,1,lVar24 + 0x10);
       plVar22 = *(longlong **)(lVar17 + 0x8400);
       pcVar4 = *(code **)(*plVar22 + 0x238);
-      *(undefined4 *)(lVar24 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+      *(int32_t *)(lVar24 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
       (*pcVar4)(plVar22,7,1,lVar24 + 0x10);
       lVar24 = _DAT_180c86938;
-      uVar38 = *(undefined8 *)(param_1 + 0x28);
-      uVar21 = *(undefined4 *)(param_1 + 0x30);
-      uVar6 = *(undefined4 *)(param_1 + 0x34);
-      uVar7 = *(undefined4 *)(param_1 + 0x38);
-      uVar8 = *(undefined4 *)(param_1 + 0x3c);
-      uVar9 = *(undefined4 *)(param_1 + 0x40);
-      uVar10 = *(undefined4 *)(param_1 + 0x44);
-      uVar11 = *(undefined4 *)(param_1 + 0x48);
-      uVar12 = *(undefined4 *)(param_1 + 0x4c);
-      uVar13 = *(undefined4 *)(param_1 + 0x50);
-      uVar14 = *(undefined4 *)(param_1 + 0x54);
-      uVar15 = *(undefined4 *)(param_1 + 0x58);
-      uVar16 = *(undefined4 *)(param_1 + 0x5c);
+      uVar38 = *(uint64_t *)(param_1 + 0x28);
+      uVar21 = *(int32_t *)(param_1 + 0x30);
+      uVar6 = *(int32_t *)(param_1 + 0x34);
+      uVar7 = *(int32_t *)(param_1 + 0x38);
+      uVar8 = *(int32_t *)(param_1 + 0x3c);
+      uVar9 = *(int32_t *)(param_1 + 0x40);
+      uVar10 = *(int32_t *)(param_1 + 0x44);
+      uVar11 = *(int32_t *)(param_1 + 0x48);
+      uVar12 = *(int32_t *)(param_1 + 0x4c);
+      uVar13 = *(int32_t *)(param_1 + 0x50);
+      uVar14 = *(int32_t *)(param_1 + 0x54);
+      uVar15 = *(int32_t *)(param_1 + 0x58);
+      uVar16 = *(int32_t *)(param_1 + 0x5c);
       lVar17 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-      *(undefined8 *)(lVar17 + 0x80) = *(undefined8 *)(param_1 + 0x20);
-      *(undefined8 *)(lVar17 + 0x88) = uVar38;
-      *(undefined4 *)(lVar17 + 0x90) = uVar21;
-      *(undefined4 *)(lVar17 + 0x94) = uVar6;
-      *(undefined4 *)(lVar17 + 0x98) = uVar7;
-      *(undefined4 *)(lVar17 + 0x9c) = uVar8;
-      *(undefined4 *)(lVar17 + 0xa0) = uVar9;
-      *(undefined4 *)(lVar17 + 0xa4) = uVar10;
-      *(undefined4 *)(lVar17 + 0xa8) = uVar11;
-      *(undefined4 *)(lVar17 + 0xac) = uVar12;
-      *(undefined4 *)(lVar17 + 0xb0) = uVar13;
-      *(undefined4 *)(lVar17 + 0xb4) = uVar14;
-      *(undefined4 *)(lVar17 + 0xb8) = uVar15;
-      *(undefined4 *)(lVar17 + 0xbc) = uVar16;
+      *(uint64_t *)(lVar17 + 0x80) = *(uint64_t *)(param_1 + 0x20);
+      *(uint64_t *)(lVar17 + 0x88) = uVar38;
+      *(int32_t *)(lVar17 + 0x90) = uVar21;
+      *(int32_t *)(lVar17 + 0x94) = uVar6;
+      *(int32_t *)(lVar17 + 0x98) = uVar7;
+      *(int32_t *)(lVar17 + 0x9c) = uVar8;
+      *(int32_t *)(lVar17 + 0xa0) = uVar9;
+      *(int32_t *)(lVar17 + 0xa4) = uVar10;
+      *(int32_t *)(lVar17 + 0xa8) = uVar11;
+      *(int32_t *)(lVar17 + 0xac) = uVar12;
+      *(int32_t *)(lVar17 + 0xb0) = uVar13;
+      *(int32_t *)(lVar17 + 0xb4) = uVar14;
+      *(int32_t *)(lVar17 + 0xb8) = uVar15;
+      *(int32_t *)(lVar17 + 0xbc) = uVar16;
       lVar17 = *(longlong *)(lVar24 + 0x1cd8);
-      FUN_18029fc10(lVar17,*(undefined8 *)(lVar24 + 0x1ca8),lVar17 + 0x80,0x80);
+      FUN_18029fc10(lVar17,*(uint64_t *)(lVar24 + 0x1ca8),lVar17 + 0x80,0x80);
       iVar33 = 0;
       iStack_2c8 = 0;
       iStack_2c4 = 0;
@@ -304,7 +304,7 @@ void process_render_state(longlong render_context, longlong scene_data)
               plVar19 = (longlong *)0x0;
               puVar36 = (uint *)(*(longlong *)(piVar5 + 2) + lStack_290);
               if ((*(uint *)(*(longlong *)(puVar36 + 6) + 0x328) >> 0xd & 1) == 0) {
-                FUN_18029cdd0(*(undefined8 *)(_DAT_180c86938 + 0x1cd8));
+                FUN_18029cdd0(*(uint64_t *)(_DAT_180c86938 + 0x1cd8));
                 lVar17 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
                 plVar18 = (longlong *)FUN_18023a940();
                 plVar22 = plVar19;
@@ -322,13 +322,13 @@ void process_render_state(longlong render_context, longlong scene_data)
                   (**(code **)(**(longlong **)(lVar17 + 0x8400) + 0x40))
                             (*(longlong **)(lVar17 + 0x8400),0,1,&plStack_278);
                   *(longlong **)(lVar17 + 0x8438) = plVar22;
-                  *(undefined4 *)(lVar17 + 0x8838) = 0xffffffff;
-                  *(undefined4 *)(lVar17 + 0x8a38) = 0x10;
+                  *(int32_t *)(lVar17 + 0x8838) = 0xffffffff;
+                  *(int32_t *)(lVar17 + 0x8a38) = 0x10;
                   *(int *)(lVar17 + 0x82b4) = *(int *)(lVar17 + 0x82b4) + 1;
                 }
               }
               else {
-                FUN_18029cdd0(*(undefined8 *)(_DAT_180c86938 + 0x1cd8),param_1 + 0xa8);
+                FUN_18029cdd0(*(uint64_t *)(_DAT_180c86938 + 0x1cd8),param_1 + 0xa8);
                 lVar17 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
                 plVar18 = (longlong *)FUN_18023a940();
                 plVar22 = plVar19;
@@ -346,8 +346,8 @@ void process_render_state(longlong render_context, longlong scene_data)
                   (**(code **)(**(longlong **)(lVar17 + 0x8400) + 0x40))
                             (*(longlong **)(lVar17 + 0x8400),0x1f,1,&plStack_288);
                   *(longlong **)(lVar17 + 0x8530) = plVar22;
-                  *(undefined4 *)(lVar17 + 0x88b4) = 0xffffffff;
-                  *(undefined4 *)(lVar17 + 0x8ab4) = 0x10;
+                  *(int32_t *)(lVar17 + 0x88b4) = 0xffffffff;
+                  *(int32_t *)(lVar17 + 0x8ab4) = 0x10;
                   *(int *)(lVar17 + 0x82b4) = *(int *)(lVar17 + 0x82b4) + 1;
                 }
                 lVar24 = _DAT_180c86938;
@@ -358,17 +358,17 @@ void process_render_state(longlong render_context, longlong scene_data)
                 *(float *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0xc0) = (float)iVar33;
                 lVar17 = *(longlong *)(lVar24 + 0x1cd8);
                 iStack_2c4 = iVar25;
-                FUN_18029fc10(lVar17,*(undefined8 *)(lVar24 + 0x1ca8),lVar17 + 0x80,0x80);
+                FUN_18029fc10(lVar17,*(uint64_t *)(lVar24 + 0x1ca8),lVar17 + 0x80,0x80);
               }
               if (*(code **)(puVar36 + 8) == (code *)0x0) {
                 lVar17 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
                 lVar24 = *(longlong *)(*(longlong *)(param_1 + 0x10) + 0x18);
                 if (*(longlong *)(lVar17 + 0x8240) != lVar24) {
                   *(longlong *)(lVar17 + 0x8240) = lVar24;
-                  puStack_2d0 = (undefined1 *)(lVar24 + 0x220);
+                  puStack_2d0 = (int8_t *)(lVar24 + 0x220);
                   pcStack_2d8 = (code *)(lVar24 + 0x260);
                   (**(code **)(**(longlong **)(lVar17 + 0x8400) + 0x90))
-                            (*(longlong **)(lVar17 + 0x8400),0,*(undefined4 *)(lVar24 + 0x188),
+                            (*(longlong **)(lVar17 + 0x8400),0,*(int32_t *)(lVar24 + 0x188),
                              lVar24 + 0x1a0);
                 }
                 lVar17 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
@@ -376,7 +376,7 @@ void process_render_state(longlong render_context, longlong scene_data)
                 if (*(longlong *)(lVar17 + 0x8238) != lVar24) {
                   *(longlong *)(lVar17 + 0x8238) = lVar24;
                   lVar27 = *(longlong *)(lVar24 + 0x18);
-                  *(undefined4 *)(lVar27 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+                  *(int32_t *)(lVar27 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
                   if ((*(byte *)(lVar24 + 4) & 1) == 0) {
                     uVar21 = 0x39;
                     iVar33 = *(int *)(lVar24 + 8) * 2;
@@ -386,7 +386,7 @@ void process_render_state(longlong render_context, longlong scene_data)
                     iVar33 = *(int *)(lVar24 + 8) * 4;
                   }
                   (**(code **)(**(longlong **)(lVar17 + 0x8400) + 0x98))
-                            (*(longlong **)(lVar17 + 0x8400),*(undefined8 *)(lVar27 + 0x10),uVar21,
+                            (*(longlong **)(lVar17 + 0x8400),*(uint64_t *)(lVar27 + 0x10),uVar21,
                              iVar33);
                 }
                 uVar35 = (uint)(float)puVar36[1];
@@ -458,7 +458,7 @@ void process_render_state(longlong render_context, longlong scene_data)
         } while (iVar33 < *(int *)(lStack_2a8 + 0x10));
       }
       plStack_278 = *(longlong **)(_DAT_180c86960 + 0x10);
-      *(undefined8 *)(_DAT_180c86960 + 0x10) = 0;
+      *(uint64_t *)(_DAT_180c86960 + 0x10) = 0;
       if (plStack_278 != (longlong *)0x0) {
         (**(code **)(*plStack_278 + 0x38))();
       }
@@ -474,9 +474,9 @@ void process_render_state(longlong render_context, longlong scene_data)
 
 
 
-// 函数: void cleanup_render_memory(undefined8 memory_block)
+// 函数: void cleanup_render_memory(uint64_t memory_block)
 // 功能：清理渲染内存资源
-void cleanup_render_memory(undefined8 memory_block)
+void cleanup_render_memory(uint64_t memory_block)
 
 {
   FUN_1808fc8a8(memory_block,8,0x10,FUN_180045af0,0xfffffffffffffffe);
@@ -487,14 +487,14 @@ void cleanup_render_memory(undefined8 memory_block)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: undefined * allocate_render_resources(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+// 函数: void * allocate_render_resources(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 // 功能：分配渲染资源
-undefined *
-allocate_render_resources(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void *
+allocate_render_resources(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 
 {
-  undefined *resource_ptr;
-  undefined8 cleanup_flag;
+  void *resource_ptr;
+  uint64_t cleanup_flag;
   
   cleanup_flag = 0xfffffffffffffffe;
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
@@ -503,15 +503,15 @@ allocate_render_resources(undefined8 param_1, undefined8 param_2, undefined8 par
     if (_DAT_180d49210 == -1) {
       _DAT_180d49218 = &UNK_180a3c3e0;
       _DAT_180d49230 = 0;
-      _DAT_180d49220 = (undefined *)0x0;
+      _DAT_180d49220 = (void *)0x0;
       _DAT_180d49228 = 0;
       FUN_1808fc820(FUN_1809419e0);
       FUN_1808fcb30(&DAT_180d49210);
     }
   }
-  FUN_1801717e0(*(undefined8 *)(_DAT_180c86870 + 8),&DAT_180d49218,param_3,param_4,cleanup_flag);
+  FUN_1801717e0(*(uint64_t *)(_DAT_180c86870 + 8),&DAT_180d49218,param_3,param_4,cleanup_flag);
   resource_ptr = &DAT_18098bc73;
-  if (_DAT_180d49220 != (undefined *)0x0) {
+  if (_DAT_180d49220 != (void *)0x0) {
     resource_ptr = _DAT_180d49220;
   }
   return resource_ptr;
@@ -519,36 +519,36 @@ allocate_render_resources(undefined8 param_1, undefined8 param_2, undefined8 par
 
 
 
-// 函数: undefined1 render_scene_objects(undefined8 param_1, longlong render_context, undefined8 param_3, undefined8 *param_4)
+// 函数: int8_t render_scene_objects(uint64_t param_1, longlong render_context, uint64_t param_3, uint64_t *param_4)
 // 功能：渲染场景对象
-undefined1 render_scene_objects(undefined8 param_1, longlong render_context, undefined8 param_3, undefined8 *param_4)
+int8_t render_scene_objects(uint64_t param_1, longlong render_context, uint64_t param_3, uint64_t *param_4)
 
 {
-  undefined1 uVar1;
-  undefined8 uVar2;
-  undefined *puVar3;
+  int8_t uVar1;
+  uint64_t uVar2;
+  void *puVar3;
   uint uVar4;
-  undefined8 uStackX_8;
-  undefined4 uStackX_10;
+  uint64_t uStackX_8;
+  int32_t uStackX_10;
   float fStackX_14;
-  undefined8 uStackX_18;
-  undefined8 *puStackX_20;
-  undefined8 uStack_40;
-  undefined8 uStack_38;
-  undefined8 uStack_30;
-  undefined8 uStack_28;
+  uint64_t uStackX_18;
+  uint64_t *puStackX_20;
+  uint64_t uStack_40;
+  uint64_t uStack_38;
+  uint64_t uStack_30;
+  uint64_t uStack_28;
   
   uStackX_8 = param_1;
   uStackX_18 = param_3;
   puStackX_20 = param_4;
-  uVar2 = func_0x000180220c90(*(undefined4 *)(param_2 + 0x324));
+  uVar2 = func_0x000180220c90(*(int32_t *)(param_2 + 0x324));
   FUN_18012e3b0();
   puVar3 = &DAT_18098bc73;
-  if ((undefined *)param_4[1] != (undefined *)0x0) {
-    puVar3 = (undefined *)param_4[1];
+  if ((void *)param_4[1] != (void *)0x0) {
+    puVar3 = (void *)param_4[1];
   }
   uVar4 = (uint)*(ushort *)(param_2 + 0x32e);
-  FUN_18010f010(&UNK_180a015f0,puVar3,uVar2,*(undefined2 *)(param_2 + 0x32c),uVar4);
+  FUN_18010f010(&UNK_180a015f0,puVar3,uVar2,*(int16_t *)(param_2 + 0x32c),uVar4);
   uStack_40 = 0x3f8000003f800000;
   uStack_38 = 0x3f8000003f800000;
   uStack_30 = 0;
@@ -565,7 +565,7 @@ undefined1 render_scene_objects(undefined8 param_1, longlong render_context, und
     FUN_18064e900();
   }
   param_4[1] = 0;
-  *(undefined4 *)(param_4 + 3) = 0;
+  *(int32_t *)(param_4 + 3) = 0;
   *param_4 = &UNK_18098bcb0;
   return uVar1;
 }
@@ -587,8 +587,8 @@ void emergency_cleanup(void)
 
 
 
-// 函数: void process_scene_rendering(undefined8 render_target, undefined8 camera_data, longlong scene_objects, longlong render_queue,
-void process_scene_rendering(undefined8 render_target, undefined8 camera_data, longlong scene_objects, longlong render_queue,
+// 函数: void process_scene_rendering(uint64_t render_target, uint64_t camera_data, longlong scene_objects, longlong render_queue,
+void process_scene_rendering(uint64_t render_target, uint64_t camera_data, longlong scene_objects, longlong render_queue,
                   longlong render_params)
 
 {
@@ -599,7 +599,7 @@ void process_scene_rendering(undefined8 render_target, undefined8 camera_data, l
   longlong lVar5;
   longlong *plVar6;
   longlong *plVar7;
-  undefined8 *puVar8;
+  uint64_t *puVar8;
   char *pcVar9;
   longlong *plVar11;
   longlong *plVar12;
@@ -608,7 +608,7 @@ void process_scene_rendering(undefined8 render_target, undefined8 camera_data, l
   longlong lVar16;
   ulonglong uVar17;
   longlong *plVar18;
-  undefined *puVar19;
+  void *puVar19;
   float fVar20;
   char *pcVar10;
   ulonglong uVar15;
@@ -618,7 +618,7 @@ void process_scene_rendering(undefined8 render_target, undefined8 camera_data, l
   if (*(longlong *)(param_5 + 0x50) - (longlong)plVar12 >> 3 != 0) {
     lVar5 = 0;
     do {
-      fVar20 = (float)FUN_18009ae50(param_2,*(undefined8 *)(lVar5 + *(longlong *)(param_5 + 0x48)));
+      fVar20 = (float)FUN_18009ae50(param_2,*(uint64_t *)(lVar5 + *(longlong *)(param_5 + 0x48)));
       iVar13 = iVar13 + 1;
       *(double *)(*(longlong *)(lVar5 + *(longlong *)(param_5 + 0x48)) + 0x40) = (double)fVar20;
       plVar12 = *(longlong **)(param_5 + 0x48);
@@ -696,12 +696,12 @@ void process_scene_rendering(undefined8 render_target, undefined8 camera_data, l
       }
     }
   }
-  puVar8 = (undefined8 *)FUN_1804c1300(param_3 + 0x60,0x60);
+  puVar8 = (uint64_t *)FUN_1804c1300(param_3 + 0x60,0x60);
   uVar15 = 0;
   *puVar8 = 0;
   puVar8[1] = 0;
   puVar8[4] = 0;
-  *(undefined4 *)(puVar8 + 5) = 1;
+  *(int32_t *)(puVar8 + 5) = 1;
   puVar8[6] = 0;
   puVar8[8] = 0;
   pcVar9 = "scope";
@@ -712,8 +712,8 @@ void process_scene_rendering(undefined8 render_target, undefined8 camera_data, l
   *puVar8 = &UNK_180a01604;
   puVar8[2] = pcVar10 + -0x180a01603;
   puVar19 = &DAT_18098bc73;
-  if (*(undefined **)(param_5 + 8) != (undefined *)0x0) {
-    puVar19 = *(undefined **)(param_5 + 8);
+  if (*(void **)(param_5 + 8) != (void *)0x0) {
+    puVar19 = *(void **)(param_5 + 8);
   }
   FUN_180630b20(param_3,puVar8,&UNK_180a015fc,puVar19);
   FUN_180630e10(param_3,puVar8,&UNK_180a01610,*(double *)(param_5 + 0x40) * 1000.0);
@@ -721,7 +721,7 @@ void process_scene_rendering(undefined8 render_target, undefined8 camera_data, l
   if (*(longlong *)(param_5 + 0x50) - *(longlong *)(param_5 + 0x48) >> 3 != 0) {
     do {
       FUN_18009a4b0(param_1,param_2,param_3,puVar8,
-                    *(undefined8 *)(uVar17 + *(longlong *)(param_5 + 0x48)));
+                    *(uint64_t *)(uVar17 + *(longlong *)(param_5 + 0x48)));
       uVar14 = (int)uVar15 + 1;
       uVar15 = (ulonglong)uVar14;
       uVar17 = uVar17 + 8;
@@ -730,13 +730,13 @@ void process_scene_rendering(undefined8 render_target, undefined8 camera_data, l
   }
   if (*(longlong *)(param_4 + 0x30) == 0) {
     puVar8[10] = 0;
-    *(undefined8 **)(param_4 + 0x30) = puVar8;
+    *(uint64_t **)(param_4 + 0x30) = puVar8;
   }
   else {
-    puVar8[10] = *(undefined8 *)(param_4 + 0x38);
-    *(undefined8 **)(*(longlong *)(param_4 + 0x38) + 0x58) = puVar8;
+    puVar8[10] = *(uint64_t *)(param_4 + 0x38);
+    *(uint64_t **)(*(longlong *)(param_4 + 0x38) + 0x58) = puVar8;
   }
-  *(undefined8 **)(param_4 + 0x38) = puVar8;
+  *(uint64_t **)(param_4 + 0x38) = puVar8;
   puVar8[4] = param_4;
   puVar8[0xb] = 0;
   return;

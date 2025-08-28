@@ -52,14 +52,14 @@ int ui_process_control_initialization(longlong control_context)
 {
   longlong resource_handle;
   longlong *resource_pointer;
-  undefined8 function_result;
+  uint64_t function_result;
   longlong *control_data;
   int operation_result;
   ulonglong stack_parameter;
-  undefined4 parameter_value;
+  int32_t parameter_value;
   
   // 获取系统资源句柄
-  resource_handle = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), 0x4d0, &UNK_180958000, 0x146,
+  resource_handle = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 0x4d0, &UNK_180958000, 0x146,
                         stack_parameter & 0xffffffff00000000, 0, 1);
   resource_pointer = (longlong *)0x0;
   if (resource_handle != 0) {
@@ -344,7 +344,7 @@ void ui_update_control_properties(longlong control_context, uint property_value)
     return;
   }
   // 更新控件属性
-  FUN_180772870(*(undefined8 *)(control_context + 0x11418), property_value, 0);
+  FUN_180772870(*(uint64_t *)(control_context + 0x11418), property_value, 0);
   return;
 }
 
@@ -359,10 +359,10 @@ void ui_update_control_properties(longlong control_context, uint property_value)
 void ui_handle_control_events(longlong control_context)
 
 {
-  undefined8 *event_handler;
-  undefined4 event_type;
-  undefined8 *render_data;
-  undefined8 render_value;
+  uint64_t *event_handler;
+  int32_t event_type;
+  uint64_t *render_data;
+  uint64_t render_value;
   int handler_result;
   longlong render_target;
   ulonglong event_timestamp;
@@ -370,30 +370,30 @@ void ui_handle_control_events(longlong control_context)
   ulonglong event_sequence;
   ulonglong event_data;
   float animation_value;
-  undefined1 stack_data [32];
+  int8_t stack_data [32];
   float *animation_pointer;
   char render_buffer [4];
   float render_param1;
   float render_param2;
   uint render_flags;
   float render_params [2];
-  undefined8 render_state1;
-  undefined8 render_state2;
-  undefined8 render_state3;
-  undefined8 render_state4;
-  undefined8 render_state5;
-  undefined8 render_state6;
-  undefined1 render_stack [16];
-  undefined8 render_control1;
-  undefined8 render_control2;
-  undefined8 render_control3;
-  undefined8 render_control4;
-  undefined8 render_control5;
-  undefined8 render_control6;
-  undefined8 render_control7;
-  undefined8 render_control8;
-  undefined8 render_control9;
-  undefined1 render_workspace [48];
+  uint64_t render_state1;
+  uint64_t render_state2;
+  uint64_t render_state3;
+  uint64_t render_state4;
+  uint64_t render_state5;
+  uint64_t render_state6;
+  int8_t render_stack [16];
+  uint64_t render_control1;
+  uint64_t render_control2;
+  uint64_t render_control3;
+  uint64_t render_control4;
+  uint64_t render_control5;
+  uint64_t render_control6;
+  uint64_t render_control7;
+  uint64_t render_control8;
+  uint64_t render_control9;
+  int8_t render_workspace [48];
   ulonglong workspace_size;
   
   workspace_size = _DAT_180bf00a8 ^ (ulonglong)stack_data;
@@ -415,8 +415,8 @@ void ui_handle_control_events(longlong control_context)
     }
     *(uint *)(control_context + 0x116b4) = render_flags;
     if ((*(longlong *)(control_context + 0x6b0) == 0) || (handler_result = func_0x000180069ee0(), handler_result == 0)) {
-      event_handler = (undefined8 *)(control_context + 0x12758);
-      render_data = (undefined8 *)*event_handler;
+      event_handler = (uint64_t *)(control_context + 0x12758);
+      render_data = (uint64_t *)*event_handler;
       animation_value = 0.0;
       render_state1 = 0;
       render_state2 = 0;
@@ -424,7 +424,7 @@ void ui_handle_control_events(longlong control_context)
       render_state4 = 0;
       render_state5 = 0;
       render_state6 = 0;
-      for (; render_data != event_handler; render_data = (undefined8 *)*render_data) {
+      for (; render_data != event_handler; render_data = (uint64_t *)*render_data) {
         render_value = render_data[2];
         func_0x0001807673f0(render_value, render_buffer);
         if (render_buffer[0] != '\0') {
@@ -450,26 +450,26 @@ void ui_handle_control_events(longlong control_context)
           }
         }
       }
-      if (((undefined8 *)*event_handler != event_handler) || (*(undefined8 **)(control_context + 0x12760) != event_handler)) {
+      if (((uint64_t *)*event_handler != event_handler) || (*(uint64_t **)(control_context + 0x12760) != event_handler)) {
         if (animation_value < 1.0) {
           render_control7 = 0;
           render_control8 = 0;
           render_control9 = 0;
-          func_0x000180746970(control_context, *(undefined4 *)(control_context + 0x11654), &render_control7);
+          func_0x000180746970(control_context, *(int32_t *)(control_context + 0x11654), &render_control7);
           FUN_180767800(&render_state1, &render_control7, 1.0 - animation_value);
           animation_value = 1.0;
         }
         FUN_180767270(render_workspace, &render_state1, 1.0 / animation_value);
-        FUN_180743940(control_context, *(undefined4 *)(control_context + 0x11654), render_workspace, 1);
+        FUN_180743940(control_context, *(int32_t *)(control_context + 0x11654), render_workspace, 1);
       }
-      event_handler = *(undefined8 **)(control_context + 0x11708);
+      event_handler = *(uint64_t **)(control_context + 0x11708);
       do {
-        if (event_handler == (undefined8 *)(control_context + 0x11708)) {
+        if (event_handler == (uint64_t *)(control_context + 0x11708)) {
           handler_result = FUN_18078baf0(control_context, event_id);
           if ((handler_result != 0) || (handler_result = FUN_18078c760(control_context, event_id), handler_result != 0)) break;
           if (*(longlong *)(control_context + 0x670) != 0) {
             FUN_180772c50(control_context + 0x11678, 1);
-            handler_result = FUN_180789300(*(undefined8 *)(control_context + 0x670));
+            handler_result = FUN_180789300(*(uint64_t *)(control_context + 0x670));
             if (handler_result != 0) break;
             FUN_180772c50(control_context + 0x11678, 0);
           }
@@ -483,7 +483,7 @@ void ui_handle_control_events(longlong control_context)
           }
           break;
         }
-        render_data = (undefined8 *)*event_handler;
+        render_data = (uint64_t *)*event_handler;
         handler_result = FUN_180754a30(event_handler[2], event_id, 0);
         event_handler = render_data;
       } while (handler_result == 0);
@@ -513,7 +513,7 @@ event_processing_complete:
   if (0 < *(int *)(control_context + 0x11400)) {
     render_target = control_context + 0x110ed;
     do {
-      *(undefined2 *)(render_target + -1) = 0;
+      *(int16_t *)(render_target + -1) = 0;
       render_target = render_target + 0x70;
       event_data = (int)event_data + 1;
       event_timestamp = (ulonglong)event_data;
@@ -529,9 +529,9 @@ event_processing_complete:
       func_0x000180743c20(control_context, 7);
       render_target = *(longlong *)(control_context + 0x670);
     }
-    event_type = *(undefined4 *)(render_target + 0x318);
-    for (event_handler = *(undefined8 **)(control_context + 0x10f58); event_handler != (undefined8 *)(control_context + 0x10f58);
-        event_handler = (undefined8 *)*event_handler) {
+    event_type = *(int32_t *)(render_target + 0x318);
+    for (event_handler = *(uint64_t **)(control_context + 0x10f58); event_handler != (uint64_t *)(control_context + 0x10f58);
+        event_handler = (uint64_t *)*event_handler) {
       render_target = event_handler[2];
       if (*(byte *)(render_target + 0x212) != '\0') {
         FUN_18075a370(render_target, event_type);
@@ -549,10 +549,10 @@ event_processing_complete:
     if (control_context != 0) {
       func_0x000180743c20(control_context, 6);
     }
-    event_handler = *(undefined8 **)(control_context + 0x10ff0);
-    while (event_handler != (undefined8 *)(control_context + 0x10ff0)) {
+    event_handler = *(uint64_t **)(control_context + 0x10ff0);
+    while (event_handler != (uint64_t *)(control_context + 0x10ff0)) {
       render_target = event_handler[2];
-      event_handler = (undefined8 *)*event_handler;
+      event_handler = (uint64_t *)*event_handler;
       if (((*(longlong *)(render_target + 0x120) != 0) && ((*(byte *)(render_target + 0x11a) & 0x40) != 0)) &&
          ((*(uint *)(render_target + 100) >> 10 & 1) == 0)) {
         (**(code **)(render_target + 0x120))(render_target + 0xb0, 0x40, 0);
@@ -564,7 +564,7 @@ event_processing_complete:
     event_handler = puRam0000000000012780;
     if ((lRam0000000000012770 == 0) ||
        (handler_result = FUN_1807d0fe0(), event_handler = puRam0000000000012780, handler_result == 0)) {
-      for (; event_handler != (undefined8 *)0x12780; event_handler = (undefined8 *)*event_handler) {
+      for (; event_handler != (uint64_t *)0x12780; event_handler = (uint64_t *)*event_handler) {
         render_target = event_handler[2];
         if ((*(code **)(render_target + 0x120) != (code *)0x0) && ((*(byte *)(render_target + 0x11a) & 4) != 0)) {
           (**(code **)(render_target + 0x120))(render_target + 0xb0, 4, 0);
@@ -605,7 +605,7 @@ int ui_validate_control_state(longlong control_context)
     control_item = 0;
     do {
       if (*(longlong *)(control_item + 0x30 + *(longlong *)(control_context + 0x6a0)) != 0) {
-        validation_result = FUN_180788e60(*(undefined8 *)(control_context + 0x670));
+        validation_result = FUN_180788e60(*(uint64_t *)(control_context + 0x670));
         if (validation_result != 0) goto validation_failed;
       }
       item_index = item_index + 1;
@@ -644,7 +644,7 @@ int ui_check_control_visibility(longlong control_context)
     control_item = 0;
     do {
       if (*(longlong *)(control_item + 0x30 + *(longlong *)(control_context + 0x6a0)) != 0) {
-        visibility_result = FUN_180788e60(*(undefined8 *)(control_context + 0x670));
+        visibility_result = FUN_180788e60(*(uint64_t *)(control_context + 0x670));
         if (visibility_result != 0) goto visibility_check_failed;
       }
       item_index = item_index + 1;
@@ -688,11 +688,11 @@ void ui_reset_control_system(longlong control_context)
   int reset_result;
   uint flag_value;
   ulonglong reset_counter;
-  undefined1 reset_buffer [64];
+  int8_t reset_buffer [64];
   int reset_params [3];
   int reset_status;
   int reset_data [8];
-  undefined1 system_data [256];
+  int8_t system_data [256];
   ulonglong system_size;
   ulonglong iteration_counter;
   

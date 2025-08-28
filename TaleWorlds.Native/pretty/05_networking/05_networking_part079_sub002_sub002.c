@@ -329,7 +329,7 @@ typedef enum {
  * @warning 如果系统状态检查失败，该函数不会返回
  * @see NetworkingSystem_StatusChecker, NetworkingSystem_ErrorHandler
  */
-void FUN_180883a30(undefined8 param_1)
+void FUN_180883a30(uint64_t param_1)
 {
     int system_status;  // 系统状态检查结果
     
@@ -343,7 +343,7 @@ void FUN_180883a30(undefined8 param_1)
         // 警告：子函数不会返回
         
         // 发送网络数据，初始化连接
-        FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), param_1, &UNK_180985b90, 0x43b, 1);
+        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), param_1, &UNK_180985b90, 0x43b, 1);
     }
     
     return;
@@ -390,7 +390,7 @@ void FUN_180883a30(undefined8 param_1)
  * @note 此函数为网络系统数据传输的核心处理器
  * @see NetworkingSystem_HashCalculator, NetworkingSystem_DataValidator
  */
-ulonglong FUN_180883a80(longlong *param_1, longlong *param_2, undefined8 *param_3, ulonglong *param_4)
+ulonglong FUN_180883a80(longlong *param_1, longlong *param_2, uint64_t *param_3, ulonglong *param_4)
 {
     longlong *data_context;          // 数据传输上下文
     longlong resource_handle;         // 资源句柄
@@ -406,7 +406,7 @@ ulonglong FUN_180883a80(longlong *param_1, longlong *param_2, undefined8 *param_
     ulonglong search_result;          // 搜索结果
     longlong *stack_pointer_8;        // 栈指针8
     longlong *stack_pointer_10;       // 栈指针10
-    undefined8 stack_data_48;         // 栈数据48
+    uint64_t stack_data_48;         // 栈数据48
     uint stack_data_40;               // 栈数据40
     uint stack_data_3c;               // 栈数据3c
     
@@ -573,7 +573,7 @@ validation_complete:
                         calculation_result = (longlong)validation_result * 0x20;
                         
                         // 更新数据节点信息
-                        *(undefined8 *)(calculation_result + 0x18 + index_result) = 0;
+                        *(uint64_t *)(calculation_result + 0x18 + index_result) = 0;
                         *validation_pointer = *(int *)(calculation_result + 0x10 + index_result);
                         *(int *)(calculation_result + 0x10 + index_result) = (int)data_context[4];
                         *(int *)((longlong)data_context + 0x24) = 

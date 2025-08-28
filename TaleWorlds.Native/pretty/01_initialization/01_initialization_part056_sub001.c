@@ -12,35 +12,35 @@ void initialize_system_component_type_ba(void)
 
 {
   char node_flag;
-  undefined8 *root_node;
+  uint64_t *root_node;
   int compare_result;
   longlong *registry_ptr;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *parent_node;
-  undefined8 *target_node;
-  undefined8 *new_node;
+  uint64_t *current_node;
+  uint64_t *parent_node;
+  uint64_t *target_node;
+  uint64_t *new_node;
   code *component_handler;
   
   // 获取全局组件注册表指针
   registry_ptr = (longlong *)get_global_registry();
-  root_node = (undefined8 *)*registry_ptr;
+  root_node = (uint64_t *)*registry_ptr;
   
   // 检查根节点的子节点标志
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
   component_handler = handle_component_type_ba;
   parent_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在组件树中遍历查找目标节点
   while (node_flag == '\0') {
     compare_result = memcmp(current_node + 4,&COMPONENT_TYPE_BA_HASH,0x10);
     if (compare_result < 0) {
-      target_node = (undefined8 *)current_node[2];
+      target_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
-      target_node = (undefined8 *)*current_node;
+      target_node = (uint64_t *)*current_node;
     }
     parent_node = current_node;
     current_node = target_node;

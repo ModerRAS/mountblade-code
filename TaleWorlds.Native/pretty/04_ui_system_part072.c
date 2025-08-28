@@ -315,13 +315,13 @@ void UISystem_MatrixMultiplier(float *matrix_a, longlong matrix_b_offset, float 
  * - 错误处理和安全检查
  * - 使用栈保护机制
  */
-void UISystem_MemoryAllocator(undefined8 context_ptr, undefined8 param2, undefined8 param3, undefined8 param4,
+void UISystem_MemoryAllocator(uint64_t context_ptr, uint64_t param2, uint64_t param3, uint64_t param4,
                               int width, int height)
 {
   int resolution_mode;
-  undefined8 stack_param3;
-  undefined8 stack_param4;
-  undefined8 stack_context;
+  uint64_t stack_param3;
+  uint64_t stack_param4;
+  uint64_t stack_context;
   longlong memory_size;
   ulonglong stack_protector;
   
@@ -388,13 +388,13 @@ void UISystem_MemoryAllocator(undefined8 context_ptr, undefined8 param2, undefin
  * - 动态性能调整
  * - 内存优化和缓存管理
  */
-void UISystem_StateManager_Main(longlong ui_context, undefined8 param2, longlong param3, uint process_flags, int process_count,
-                                undefined4 param6, undefined4 param7, undefined4 param8, int param9,
-                                undefined4 param10, undefined8 param11, undefined8 *result_data)
+void UISystem_StateManager_Main(longlong ui_context, uint64_t param2, longlong param3, uint process_flags, int process_count,
+                                int32_t param6, int32_t param7, int32_t param8, int param9,
+                                int32_t param10, uint64_t param11, uint64_t *result_data)
 {
   ulonglong loop_counter;
-  undefined8 *data_ptr;
-  undefined8 data_value;
+  uint64_t *data_ptr;
+  uint64_t data_value;
   int temp_var;
   longlong buffer_offset;
   longlong remaining_count;
@@ -437,7 +437,7 @@ void UISystem_StateManager_Main(longlong ui_context, undefined8 param2, longlong
   }
   
   // 初始化结果数据
-  *(undefined4 *)result_data = 0;
+  *(int32_t *)result_data = 0;
   buffer_head = *(int *)(ui_context + 0x2054);
   batch_size = *(int *)(ui_context + 0x2050);
   temp_var = batch_size - buffer_head;
@@ -469,21 +469,21 @@ void UISystem_StateManager_Main(longlong ui_context, undefined8 param2, longlong
   buffer_offset = processed_count * 0x38;
   
   // 从缓存中读取数据
-  data_ptr = (undefined8 *)(buffer_offset + 0x206c + ui_context);
+  data_ptr = (uint64_t *)(buffer_offset + 0x206c + ui_context);
   data_value = data_ptr[1];
   *result_data = *data_ptr;
   result_data[1] = data_value;
   
-  data_ptr = (undefined8 *)(buffer_offset + 0x207c + ui_context);
+  data_ptr = (uint64_t *)(buffer_offset + 0x207c + ui_context);
   data_value = data_ptr[1];
   result_data[2] = *data_ptr;
   result_data[3] = data_value;
   
-  data_ptr = (undefined8 *)(buffer_offset + 0x208c + ui_context);
+  data_ptr = (uint64_t *)(buffer_offset + 0x208c + ui_context);
   data_value = data_ptr[1];
   result_data[4] = *data_ptr;
   result_data[5] = data_value;
-  result_data[6] = *(undefined8 *)(buffer_offset + 0x209c + ui_context);
+  result_data[6] = *(uint64_t *)(buffer_offset + 0x209c + ui_context);
   
   // 性能统计计算
   sum_value = *(float *)((longlong)result_data + 4);
@@ -625,11 +625,11 @@ void UISystem_StateManager_Main(longlong ui_context, undefined8 param2, longlong
  * - 增强的错误处理
  * - 性能优化和缓存管理
  */
-void UISystem_StateManager_Enhanced(int batch_size, undefined8 param2, undefined8 param3, int max_iterations)
+void UISystem_StateManager_Enhanced(int batch_size, uint64_t param2, uint64_t param3, int max_iterations)
 {
   ulonglong loop_counter;
-  undefined8 *data_ptr;
-  undefined8 data_value;
+  uint64_t *data_ptr;
+  uint64_t data_value;
   int register_value;
   int temp_var;
   longlong buffer_offset;
@@ -639,40 +639,40 @@ void UISystem_StateManager_Enhanced(int batch_size, undefined8 param2, undefined
   int current_batch;
   int remaining_items;
   int cache_index;
-  undefined8 saved_rbx;
+  uint64_t saved_rbx;
   longlong context_ptr;
   int buffer_head;
   int buffer_tail;
-  undefined8 saved_rsi;
-  undefined8 saved_rdi;
+  uint64_t saved_rsi;
+  uint64_t saved_rdi;
   int cache_position;
   ulonglong iteration_index;
   uint max_process_count;
   longlong stack_ptr;
   int saved_r12d;
-  undefined8 saved_r14;
+  uint64_t saved_r14;
   bool has_more_data;
   float current_value;
   float min_value;
   float sum_value;
-  undefined4 stack_param1;
-  undefined4 stack_param2;
-  undefined4 stack_param3;
-  undefined4 stack_param4;
-  undefined8 stack_param5;
+  int32_t stack_param1;
+  int32_t stack_param2;
+  int32_t stack_param3;
+  int32_t stack_param4;
+  uint64_t stack_param5;
   int stack_param6;
-  undefined4 stack_param7;
-  undefined4 stack_param8;
-  undefined4 stack_param9;
-  undefined4 stack_param10;
-  undefined8 stack_param11;
-  undefined8 *result_ptr;
+  int32_t stack_param7;
+  int32_t stack_param8;
+  int32_t stack_param9;
+  int32_t stack_param10;
+  uint64_t stack_param11;
+  uint64_t *result_ptr;
   ulonglong sample_count;
   
   // 保存寄存器状态
-  *(undefined8 *)(stack_ptr + 8) = saved_rbx;
-  *(undefined8 *)(stack_ptr + 0x10) = saved_rsi;
-  *(undefined8 *)(stack_ptr + -0x28) = saved_r14;
+  *(uint64_t *)(stack_ptr + 8) = saved_rbx;
+  *(uint64_t *)(stack_ptr + 0x10) = saved_rsi;
+  *(uint64_t *)(stack_ptr + -0x28) = saved_r14;
   
   // 计算批处理参数
   buffer_head = (int)((ulonglong)((longlong)register_value * (longlong)(batch_size * 0x5f)) >> 0x20);
@@ -683,7 +683,7 @@ void UISystem_StateManager_Enhanced(int batch_size, undefined8 param2, undefined
   
   current_batch = buffer_head - *(int *)(context_ptr + 0x1d1c);
   if (0 < current_batch) {
-    *(undefined8 *)(stack_ptr + 0x18) = saved_rdi;
+    *(uint64_t *)(stack_ptr + 0x18) = saved_rdi;
     do {
       // 设置栈参数
       stack_param5 = stack_param11;
@@ -699,7 +699,7 @@ void UISystem_StateManager_Enhanced(int batch_size, undefined8 param2, undefined
   
   // 更新缓冲区状态
   *(int *)(context_ptr + 0x1d1c) = buffer_head - saved_r12d;
-  *(undefined4 *)result_ptr = 0;
+  *(int32_t *)result_ptr = 0;
   
   // 缓冲区管理
   buffer_head = *(int *)(context_ptr + 0x2054);
@@ -733,21 +733,21 @@ void UISystem_StateManager_Enhanced(int batch_size, undefined8 param2, undefined
   buffer_offset = processed_count * 0x38;
   
   // 从缓存中读取数据
-  data_ptr = (undefined8 *)(buffer_offset + 0x206c + context_ptr);
+  data_ptr = (uint64_t *)(buffer_offset + 0x206c + context_ptr);
   data_value = data_ptr[1];
   *result_ptr = *data_ptr;
   result_ptr[1] = data_value;
   
-  data_ptr = (undefined8 *)(buffer_offset + 0x207c + context_ptr);
+  data_ptr = (uint64_t *)(buffer_offset + 0x207c + context_ptr);
   data_value = data_ptr[1];
   result_ptr[2] = *data_ptr;
   result_ptr[3] = data_value;
   
-  data_ptr = (undefined8 *)(buffer_offset + 0x208c + context_ptr);
+  data_ptr = (uint64_t *)(buffer_offset + 0x208c + context_ptr);
   data_value = data_ptr[1];
   result_ptr[4] = *data_ptr;
   result_ptr[5] = data_value;
-  result_ptr[6] = *(undefined8 *)(buffer_offset + 0x209c + context_ptr);
+  result_ptr[6] = *(uint64_t *)(buffer_offset + 0x209c + context_ptr);
   
   // 性能统计
   sum_value = *(float *)((longlong)result_ptr + 4);
@@ -888,11 +888,11 @@ void UISystem_StateManager_Enhanced(int batch_size, undefined8 param2, undefined
  * - 内存管理和缓存优化
  * - 性能统计和监控
  */
-void UISystem_BatchProcessor(undefined8 context_ptr, int batch_param)
+void UISystem_BatchProcessor(uint64_t context_ptr, int batch_param)
 {
   ulonglong loop_counter;
-  undefined8 *data_ptr;
-  undefined8 data_value;
+  uint64_t *data_ptr;
+  uint64_t data_value;
   int temp_var;
   int batch_size;
   longlong buffer_offset;
@@ -907,7 +907,7 @@ void UISystem_BatchProcessor(undefined8 context_ptr, int batch_param)
   longlong context_base;
   int buffer_head;
   int buffer_tail;
-  undefined8 saved_rdi;
+  uint64_t saved_rdi;
   int buffer_position;
   ulonglong iteration_index;
   uint max_process_count;
@@ -916,19 +916,19 @@ void UISystem_BatchProcessor(undefined8 context_ptr, int batch_param)
   float current_value;
   float min_value;
   float sum_value;
-  undefined4 stack_param1;
-  undefined4 stack_param2;
-  undefined4 stack_param3;
+  int32_t stack_param1;
+  int32_t stack_param2;
+  int32_t stack_param3;
   int stack_param4;
   int stack_param5;
-  undefined4 stack_param6;
-  undefined4 stack_param7;
-  undefined4 stack_param8;
-  undefined8 *result_ptr;
+  int32_t stack_param6;
+  int32_t stack_param7;
+  int32_t stack_param8;
+  uint64_t *result_ptr;
   ulonglong sample_count;
   
   // 保存寄存器状态
-  *(undefined8 *)(stack_ptr + 0x18) = saved_rdi;
+  *(uint64_t *)(stack_ptr + 0x18) = saved_rdi;
   
   // 主批处理循环
   do {
@@ -942,7 +942,7 @@ void UISystem_BatchProcessor(undefined8 context_ptr, int batch_param)
   
   // 更新处理计数器
   *(int *)(context_base + 0x1d1c) = stack_param4 - stack_param5;
-  *(undefined4 *)result_ptr = 0;
+  *(int32_t *)result_ptr = 0;
   
   // 缓冲区管理
   current_batch = *(int *)(context_base + 0x2054);
@@ -976,21 +976,21 @@ void UISystem_BatchProcessor(undefined8 context_ptr, int batch_param)
   buffer_offset = processed_count * 0x38;
   
   // 从缓存中读取数据
-  data_ptr = (undefined8 *)(buffer_offset + 0x206c + context_base);
+  data_ptr = (uint64_t *)(buffer_offset + 0x206c + context_base);
   data_value = data_ptr[1];
   *result_ptr = *data_ptr;
   result_ptr[1] = data_value;
   
-  data_ptr = (undefined8 *)(buffer_offset + 0x207c + context_base);
+  data_ptr = (uint64_t *)(buffer_offset + 0x207c + context_base);
   data_value = data_ptr[1];
   result_ptr[2] = *data_ptr;
   result_ptr[3] = data_value;
   
-  data_ptr = (undefined8 *)(buffer_offset + 0x208c + context_base);
+  data_ptr = (uint64_t *)(buffer_offset + 0x208c + context_base);
   data_value = data_ptr[1];
   result_ptr[4] = *data_ptr;
   result_ptr[5] = data_value;
-  result_ptr[6] = *(undefined8 *)(buffer_offset + 0x209c + context_base);
+  result_ptr[6] = *(uint64_t *)(buffer_offset + 0x209c + context_base);
   
   // 性能统计计算
   sum_value = *(float *)((longlong)result_ptr + 4);
@@ -1131,8 +1131,8 @@ void UISystem_BatchProcessor(undefined8 context_ptr, int batch_param)
 void UISystem_StateUpdater(void)
 {
   ulonglong loop_counter;
-  undefined8 *data_ptr;
-  undefined8 data_value;
+  uint64_t *data_ptr;
+  uint64_t data_value;
   int temp_var;
   int batch_size;
   longlong buffer_offset;
@@ -1153,12 +1153,12 @@ void UISystem_StateUpdater(void)
   float current_value;
   float min_value;
   float sum_value;
-  undefined8 *result_ptr;
+  uint64_t *result_ptr;
   ulonglong sample_index;
   
   // 更新状态计数器
   *(int *)(context_ptr + 0x1d1c) = sample_count - process_count;
-  *(undefined4 *)result_ptr = 0;
+  *(int32_t *)result_ptr = 0;
   
   // 缓冲区管理
   current_batch = *(int *)(context_ptr + 0x2054);
@@ -1192,21 +1192,21 @@ void UISystem_StateUpdater(void)
   buffer_offset = processed_count * 0x38;
   
   // 从缓存中读取数据
-  data_ptr = (undefined8 *)(buffer_offset + 0x206c + context_ptr);
+  data_ptr = (uint64_t *)(buffer_offset + 0x206c + context_ptr);
   data_value = data_ptr[1];
   *result_ptr = *data_ptr;
   result_ptr[1] = data_value;
   
-  data_ptr = (undefined8 *)(buffer_offset + 0x207c + context_ptr);
+  data_ptr = (uint64_t *)(buffer_offset + 0x207c + context_ptr);
   data_value = data_ptr[1];
   result_ptr[2] = *data_ptr;
   result_ptr[3] = data_value;
   
-  data_ptr = (undefined8 *)(buffer_offset + 0x208c + context_ptr);
+  data_ptr = (uint64_t *)(buffer_offset + 0x208c + context_ptr);
   data_value = data_ptr[1];
   result_ptr[4] = *data_ptr;
   result_ptr[5] = data_value;
-  result_ptr[6] = *(undefined8 *)(buffer_offset + 0x209c + context_ptr);
+  result_ptr[6] = *(uint64_t *)(buffer_offset + 0x209c + context_ptr);
   
   // 性能统计计算
   sum_value = *(float *)((longlong)result_ptr + 4);

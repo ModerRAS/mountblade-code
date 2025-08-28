@@ -10,48 +10,48 @@
  * @param param3 参数3
  * @param param4 参数4
  */
-void process_system_queue_elements(longlong *queue_manager, undefined8 param2, undefined8 param3, undefined8 param4)
+void process_system_queue_elements(longlong *queue_manager, uint64_t param2, uint64_t param3, uint64_t param4)
 {
     char processing_result;
     int lock_result;
     int process_status;
-    undefined4 *active_elements;
-    undefined4 *filtered_elements;
-    undefined4 *pending_elements;
+    int32_t *active_elements;
+    int32_t *filtered_elements;
+    int32_t *pending_elements;
     longlong element_count;
-    undefined4 *temp_buffer;
+    int32_t *temp_buffer;
     ulonglong total_elements;
-    undefined4 *current_element;
-    undefined4 **element_pointer;
-    undefined4 *buffer_start;
+    int32_t *current_element;
+    int32_t **element_pointer;
+    int32_t *buffer_start;
     longlong buffer_offset;
-    undefined4 *queue_stack_b0;
-    undefined4 *queue_stack_a8;
-    undefined4 *queue_stack_a0;
-    undefined4 queue_size_98;
-    undefined4 *queue_stack_90;
-    undefined4 *queue_stack_88;
-    undefined4 *queue_stack_80;
-    undefined4 queue_size_78;
-    undefined4 *queue_stack_70;
-    undefined4 *queue_stack_68;
-    undefined4 *queue_stack_60;
-    undefined4 queue_size_58;
+    int32_t *queue_stack_b0;
+    int32_t *queue_stack_a8;
+    int32_t *queue_stack_a0;
+    int32_t queue_size_98;
+    int32_t *queue_stack_90;
+    int32_t *queue_stack_88;
+    int32_t *queue_stack_80;
+    int32_t queue_size_78;
+    int32_t *queue_stack_70;
+    int32_t *queue_stack_68;
+    int32_t *queue_stack_60;
+    int32_t queue_size_58;
     
     // 初始化处理标志和缓冲区
-    undefined8 process_flag = 0xfffffffffffffffe;
-    queue_stack_90 = (undefined4 *)0x0;
-    queue_stack_88 = (undefined4 *)0x0;
-    temp_buffer = (undefined4 *)0x0;
-    queue_stack_80 = (undefined4 *)0x0;
+    uint64_t process_flag = 0xfffffffffffffffe;
+    queue_stack_90 = (int32_t *)0x0;
+    queue_stack_88 = (int32_t *)0x0;
+    temp_buffer = (int32_t *)0x0;
+    queue_stack_80 = (int32_t *)0x0;
     queue_size_78 = 3;
-    queue_stack_b0 = (undefined4 *)0x0;
-    queue_stack_a8 = (undefined4 *)0x0;
-    queue_stack_a0 = (undefined4 *)0x0;
+    queue_stack_b0 = (int32_t *)0x0;
+    queue_stack_a8 = (int32_t *)0x0;
+    queue_stack_a0 = (int32_t *)0x0;
     queue_size_98 = 3;
-    queue_stack_70 = (undefined4 *)0x0;
-    queue_stack_68 = (undefined4 *)0x0;
-    queue_stack_60 = (undefined4 *)0x0;
+    queue_stack_70 = (int32_t *)0x0;
+    queue_stack_68 = (int32_t *)0x0;
+    queue_stack_60 = (int32_t *)0x0;
     queue_size_58 = 3;
     
     // 获取队列互斥锁
@@ -61,12 +61,12 @@ void process_system_queue_elements(longlong *queue_manager, undefined8 param2, u
     }
     
     // 处理队列元素指针
-    element_pointer = (undefined4 **)(queue_manager + 0x16);
+    element_pointer = (int32_t **)(queue_manager + 0x16);
     active_elements = temp_buffer;
     current_element = temp_buffer;
     
     if (&queue_stack_70 != element_pointer) {
-        buffer_start = (undefined4 *)queue_manager[0x17];
+        buffer_start = (int32_t *)queue_manager[0x17];
         buffer_offset = *element_pointer;
         element_count = (longlong)buffer_start - (longlong)buffer_offset;
         longlong element_count_div = element_count >> 2;
@@ -76,11 +76,11 @@ void process_system_queue_elements(longlong *queue_manager, undefined8 param2, u
                 // 移动元素到新位置
                 memmove(0, buffer_offset, element_count, param4, process_flag);
             }
-            queue_stack_68 = (undefined4 *)0x0;
+            queue_stack_68 = (int32_t *)0x0;
         }
         else {
             // 分配新缓冲区并移动元素
-            active_elements = (undefined4 *)allocate_system_memory(_DAT_180c8ed18, element_count_div * 4, 3);
+            active_elements = (int32_t *)allocate_system_memory(_DAT_180c8ed18, element_count_div * 4, 3);
             if (buffer_offset != buffer_start) {
                 // 移动元素到新缓冲区
                 memmove(active_elements, buffer_offset, element_count, param4, process_flag);
@@ -127,12 +127,12 @@ void process_system_queue_elements(longlong *queue_manager, undefined8 param2, u
                 if (element_count_div == 0) {
                     element_count_div = 1;
                     reallocate_buffer:
-                    pending_elements = (undefined4 *)allocate_system_memory(_DAT_180c8ed18, element_count_div * 4, (undefined1)queue_size_98);
+                    pending_elements = (int32_t *)allocate_system_memory(_DAT_180c8ed18, element_count_div * 4, (int8_t)queue_size_98);
                 }
                 else {
                     element_count_div = element_count_div * 2;
                     if (element_count_div != 0) goto reallocate_buffer;
-                    pending_elements = (undefined4 *)0x0;
+                    pending_elements = (int32_t *)0x0;
                 }
                 
                 if (queue_stack_b0 != buffer_start) {
@@ -142,7 +142,7 @@ void process_system_queue_elements(longlong *queue_manager, undefined8 param2, u
                 
                 *pending_elements = *active_elements;
                 buffer_offset = pending_elements + 1;
-                if (queue_stack_b0 != (undefined4 *)0x0) {
+                if (queue_stack_b0 != (int32_t *)0x0) {
                     // 释放旧缓冲区
                     release_system_memory(queue_stack_b0);
                 }
@@ -165,12 +165,12 @@ void process_system_queue_elements(longlong *queue_manager, undefined8 param2, u
                     if (element_count_div == 0) {
                         element_count_div = 1;
                         reallocate_failure_buffer:
-                        buffer_start = (undefined4 *)allocate_system_memory(_DAT_180c8ed18, element_count_div * 4, 3);
+                        buffer_start = (int32_t *)allocate_system_memory(_DAT_180c8ed18, element_count_div * 4, 3);
                     }
                     else {
                         element_count_div = element_count_div * 2;
                         if (element_count_div != 0) goto reallocate_failure_buffer;
-                        buffer_start = (undefined4 *)0x0;
+                        buffer_start = (int32_t *)0x0;
                     }
                     
                     if (buffer_offset != current_element) {
@@ -180,7 +180,7 @@ void process_system_queue_elements(longlong *queue_manager, undefined8 param2, u
                     
                     *buffer_start = *active_elements;
                     current_element = buffer_start + 1;
-                    if (buffer_offset != (undefined4 *)0x0) {
+                    if (buffer_offset != (int32_t *)0x0) {
                         // 释放旧缓冲区
                         release_system_memory(buffer_offset);
                     }
@@ -201,7 +201,7 @@ void process_system_queue_elements(longlong *queue_manager, undefined8 param2, u
     
     // 清理临时缓冲区
     process_status = 0;
-    if (queue_stack_70 != (undefined4 *)0x0) {
+    if (queue_stack_70 != (int32_t *)0x0) {
         release_system_memory();
     }
     
@@ -227,8 +227,8 @@ void process_system_queue_elements(longlong *queue_manager, undefined8 param2, u
     }
     
     // 最终清理
-    if (queue_stack_b0 == (undefined4 *)0x0) {
-        if (buffer_offset == (undefined4 *)0x0) {
+    if (queue_stack_b0 == (int32_t *)0x0) {
+        if (buffer_offset == (int32_t *)0x0) {
             return;
         }
         release_system_memory(buffer_offset);
@@ -244,11 +244,11 @@ void process_system_queue_elements(longlong *queue_manager, undefined8 param2, u
  * @param param4 参数4
  * @return 初始化后的资源管理器指针
  */
-undefined8 *initialize_system_resources(undefined8 *resource_manager, undefined8 param2, undefined8 param3, undefined8 param4)
+uint64_t *initialize_system_resources(uint64_t *resource_manager, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-    undefined8 init_result;
+    uint64_t init_result;
     longlong *config_pointer;
-    undefined8 *stack_config_10;
+    uint64_t *stack_config_10;
     longlong *stack_config_18;
     longlong *stack_config_20;
     
@@ -256,13 +256,13 @@ undefined8 *initialize_system_resources(undefined8 *resource_manager, undefined8
     *resource_manager = &system_config_base;
     resource_manager[3] = 0;
     resource_manager[4] = _guard_check_icall;
-    *(undefined4 *)(resource_manager + 10) = 0x3f800000;  // 1.0f
-    *(undefined8 *)((longlong)resource_manager + 0x54) = 0x40000000;  // 2.0f
-    *(undefined4 *)((longlong)resource_manager + 0x5c) = 3;
+    *(int32_t *)(resource_manager + 10) = 0x3f800000;  // 1.0f
+    *(uint64_t *)((longlong)resource_manager + 0x54) = 0x40000000;  // 2.0f
+    *(int32_t *)((longlong)resource_manager + 0x5c) = 3;
     resource_manager[8] = 1;
     resource_manager[7] = &system_data_table;
     resource_manager[9] = 0;
-    *(undefined4 *)(resource_manager + 0xb) = 0;
+    *(int32_t *)(resource_manager + 0xb) = 0;
     
     // 初始化互斥锁
     stack_config_10 = resource_manager + 0xc;
@@ -272,7 +272,7 @@ undefined8 *initialize_system_resources(undefined8 *resource_manager, undefined8
     resource_manager[0x16] = 0;
     resource_manager[0x17] = 0;
     resource_manager[0x18] = 0;
-    *(undefined4 *)(resource_manager + 0x19) = 3;
+    *(int32_t *)(resource_manager + 0x19) = 3;
     
     // 初始化处理队列
     stack_config_10 = resource_manager + 0x1a;
@@ -282,42 +282,42 @@ undefined8 *initialize_system_resources(undefined8 *resource_manager, undefined8
     resource_manager[0x24] = 0;
     resource_manager[0x25] = 0;
     resource_manager[0x26] = 0;
-    *(undefined4 *)(resource_manager + 0x27) = 3;
+    *(int32_t *)(resource_manager + 0x27) = 3;
     
     // 初始化成功队列
     resource_manager[0x28] = 0;
     resource_manager[0x29] = 0;
     resource_manager[0x2a] = 0;
-    *(undefined4 *)(resource_manager + 0x2b) = 3;
+    *(int32_t *)(resource_manager + 0x2b) = 3;
     
     // 初始化缓冲区管理
     resource_manager[0x2d] = 0;
     resource_manager[0x2e] = 0;
     resource_manager[0x2f] = 0;
-    *(undefined4 *)(resource_manager + 0x30) = 3;
+    *(int32_t *)(resource_manager + 0x30) = 3;
     resource_manager[0x3d] = 0;
-    *(undefined8 *)((longlong)resource_manager + 0x214) = 0;
-    *(undefined4 *)((longlong)resource_manager + 0x21c) = 0;
+    *(uint64_t *)((longlong)resource_manager + 0x214) = 0;
+    *(int32_t *)((longlong)resource_manager + 0x21c) = 0;
     
     // 初始化渲染配置
     stack_config_10 = resource_manager + 0x44;
-    *(undefined4 *)(resource_manager + 0x48) = 0x3f800000;  // 1.0f
-    *(undefined8 *)((longlong)resource_manager + 0x244) = 0x40000000;  // 2.0f
-    *(undefined4 *)((longlong)resource_manager + 0x24c) = 3;
+    *(int32_t *)(resource_manager + 0x48) = 0x3f800000;  // 1.0f
+    *(uint64_t *)((longlong)resource_manager + 0x244) = 0x40000000;  // 2.0f
+    *(int32_t *)((longlong)resource_manager + 0x24c) = 3;
     resource_manager[0x46] = 1;
     resource_manager[0x45] = &system_data_table;
     resource_manager[0x47] = 0;
-    *(undefined4 *)(resource_manager + 0x49) = 0;
+    *(int32_t *)(resource_manager + 0x49) = 0;
     resource_manager[0x4a] = 0;
-    *(undefined4 *)(resource_manager + 0x4b) = 0;
+    *(int32_t *)(resource_manager + 0x4b) = 0;
     
     // 设置渲染参数
-    *(undefined8 *)((longlong)resource_manager + 0x214) = 0x2ee00002ee00;
-    *(undefined4 *)((longlong)resource_manager + 0x21c) = 1;
+    *(uint64_t *)((longlong)resource_manager + 0x214) = 0x2ee00002ee00;
+    *(int32_t *)((longlong)resource_manager + 0x21c) = 1;
     
     // 初始化渲染系统
-    init_result = initialize_render_system(*(undefined4 *)(resource_manager + 0x43), 
-                                          *(undefined4 *)((longlong)resource_manager + 0x21c),
+    init_result = initialize_render_system(*(int32_t *)(resource_manager + 0x43), 
+                                          *(int32_t *)((longlong)resource_manager + 0x21c),
                                           0x800, &stack_config_10);
     resource_manager[0x4a] = init_result;
     
@@ -337,33 +337,33 @@ undefined8 *initialize_system_resources(undefined8 *resource_manager, undefined8
     configure_render_parameter(resource_manager[0x4a], 0xfb0, 0, &stack_config_10);
     configure_render_parameter(resource_manager[0x4a], 0xfae, 0, &stack_config_10);
     
-    *(undefined4 *)(resource_manager + 0x4b) = 0;
+    *(int32_t *)(resource_manager + 0x4b) = 0;
     configure_render_parameter(resource_manager[0x4a], 0xfbb, resource_manager + 0x4b, &stack_config_10);
     configure_render_parameter(resource_manager[0x4a], 0xfc4, 0x10, &stack_config_10);
     configure_render_parameter(resource_manager[0x4a], 0xfc8, 5000, &stack_config_10);
     
     // 初始化状态标志
-    *(undefined2 *)((longlong)resource_manager + 0x161) = 0;
-    *(undefined1 *)(resource_manager + 0x2c) = 0;
-    *(undefined1 *)(resource_manager + 0x42) = 1;
+    *(int16_t *)((longlong)resource_manager + 0x161) = 0;
+    *(int8_t *)(resource_manager + 0x2c) = 0;
+    *(int8_t *)(resource_manager + 0x42) = 1;
     
     // 设置浮点参数
     resource_manager[0x31] = 0x3f800000;  // 1.0f
     resource_manager[0x32] = 0;
     resource_manager[0x33] = 0x3f80000000000000;  // 1.0
     resource_manager[0x34] = 0;
-    *(undefined4 *)(resource_manager + 0x35) = 0;
-    *(undefined4 *)((longlong)resource_manager + 0x1ac) = 0;
-    *(undefined4 *)(resource_manager + 0x36) = 0x3f800000;  // 1.0f
-    *(undefined4 *)((longlong)resource_manager + 0x1b4) = 0;
-    *(undefined4 *)(resource_manager + 0x37) = 0;
-    *(undefined4 *)((longlong)resource_manager + 0x1bc) = 0;
-    *(undefined4 *)(resource_manager + 0x38) = 0;
-    *(undefined4 *)((longlong)resource_manager + 0x1c4) = 0x3f800000;  // 1.0f
-    *(undefined4 *)(resource_manager + 0x39) = 0;
-    *(undefined4 *)((longlong)resource_manager + 0x1cc) = 0;
-    *(undefined4 *)(resource_manager + 0x3a) = 0;
-    *(undefined4 *)((longlong)resource_manager + 0x1d4) = 0x3f800000;  // 1.0f
+    *(int32_t *)(resource_manager + 0x35) = 0;
+    *(int32_t *)((longlong)resource_manager + 0x1ac) = 0;
+    *(int32_t *)(resource_manager + 0x36) = 0x3f800000;  // 1.0f
+    *(int32_t *)((longlong)resource_manager + 0x1b4) = 0;
+    *(int32_t *)(resource_manager + 0x37) = 0;
+    *(int32_t *)((longlong)resource_manager + 0x1bc) = 0;
+    *(int32_t *)(resource_manager + 0x38) = 0;
+    *(int32_t *)((longlong)resource_manager + 0x1c4) = 0x3f800000;  // 1.0f
+    *(int32_t *)(resource_manager + 0x39) = 0;
+    *(int32_t *)((longlong)resource_manager + 0x1cc) = 0;
+    *(int32_t *)(resource_manager + 0x3a) = 0;
+    *(int32_t *)((longlong)resource_manager + 0x1d4) = 0x3f800000;  // 1.0f
     
     // 初始化资源管理器
     initialize_resource_manager(resource_manager);
@@ -372,12 +372,12 @@ undefined8 *initialize_system_resources(undefined8 *resource_manager, undefined8
     config_pointer = (longlong *)allocate_system_memory(_DAT_180c8ed18, 0x60, 8, 3);
     *config_pointer = (longlong)&system_config_table;
     *config_pointer = (longlong)&system_parameter_table;
-    *(undefined4 *)(config_pointer + 1) = 0;
+    *(int32_t *)(config_pointer + 1) = 0;
     *config_pointer = (longlong)&system_function_table;
     stack_config_20 = config_pointer;
     initialize_system_table(config_pointer + 2);
     *config_pointer = (longlong)&system_callback_table;
-    *(undefined4 *)(config_pointer + 10) = 0xffffffff;
+    *(int32_t *)(config_pointer + 10) = 0xffffffff;
     config_pointer[0xb] = 0;
     stack_config_18 = config_pointer;
     (**(code **)(*config_pointer + 0x28))(config_pointer);
@@ -397,11 +397,11 @@ undefined8 *initialize_system_resources(undefined8 *resource_manager, undefined8
     }
     resource_manager[3] = 0;
     resource_manager[4] = _guard_check_icall;
-    *(undefined4 *)(resource_manager + 0x40) = 0xbf800000;  // -1.0f
-    *(undefined4 *)((longlong)resource_manager + 0x204) = 0xbf800000;  // -1.0f
-    *(undefined4 *)(resource_manager + 0x41) = 0xbf800000;  // -1.0f
-    *(undefined4 *)((longlong)resource_manager + 0x20c) = 0xbf800000;  // -1.0f
-    *(undefined4 *)(resource_manager + 5) = 0;
+    *(int32_t *)(resource_manager + 0x40) = 0xbf800000;  // -1.0f
+    *(int32_t *)((longlong)resource_manager + 0x204) = 0xbf800000;  // -1.0f
+    *(int32_t *)(resource_manager + 0x41) = 0xbf800000;  // -1.0f
+    *(int32_t *)((longlong)resource_manager + 0x20c) = 0xbf800000;  // -1.0f
+    *(int32_t *)(resource_manager + 5) = 0;
     resource_manager[0x3f] = 0;
     
     return resource_manager;
@@ -413,7 +413,7 @@ undefined8 *initialize_system_resources(undefined8 *resource_manager, undefined8
  * @param flags 释放标志
  * @return 释放后的资源指针
  */
-undefined8 release_system_resources(undefined8 resource_ptr, ulonglong flags)
+uint64_t release_system_resources(uint64_t resource_ptr, ulonglong flags)
 {
     cleanup_system_resources();
     if ((flags & 1) != 0) {
@@ -429,13 +429,13 @@ undefined8 release_system_resources(undefined8 resource_ptr, ulonglong flags)
 void cleanup_system_queue(longlong queue_context)
 {
     int *reference_count;
-    undefined8 *queue_ptr;
+    uint64_t *queue_ptr;
     longlong cleanup_offset;
     ulonglong memory_mask;
     
     perform_system_cleanup();
     if ((1 < *(ulonglong *)(queue_context + 0x10)) &&
-        (queue_ptr = *(undefined8 **)(queue_context + 8), queue_ptr != (undefined8 *)0x0)) {
+        (queue_ptr = *(uint64_t **)(queue_context + 8), queue_ptr != (uint64_t *)0x0)) {
         
         memory_mask = (ulonglong)queue_ptr & 0xffffffffffc00000;
         if (memory_mask != 0) {
@@ -443,8 +443,8 @@ void cleanup_system_queue(longlong queue_context)
             cleanup_offset = cleanup_offset - (ulonglong)*(uint *)(cleanup_offset + 4);
             
             if ((*(void ***)(memory_mask + 0x70) == &ExceptionList) && (*(char *)(cleanup_offset + 0xe) == '\0')) {
-                *queue_ptr = *(undefined8 *)(cleanup_offset + 0x20);
-                *(undefined8 **)(cleanup_offset + 0x20) = queue_ptr;
+                *queue_ptr = *(uint64_t *)(cleanup_offset + 0x20);
+                *(uint64_t **)(cleanup_offset + 0x20) = queue_ptr;
                 reference_count = (int *)(cleanup_offset + 0x18);
                 *reference_count = *reference_count - 1;
                 if (*reference_count == 0) {
@@ -470,7 +470,7 @@ void cleanup_failure_queue(longlong failure_queue)
 {
     int *reference_count;
     longlong element_ptr;
-    undefined8 *queue_ptr;
+    uint64_t *queue_ptr;
     longlong cleanup_offset;
     ulonglong queue_size;
     ulonglong memory_mask;
@@ -486,22 +486,22 @@ void cleanup_failure_queue(longlong failure_queue)
             if (element_ptr != 0) {
                 release_system_memory(element_ptr);
             }
-            *(undefined8 *)(element_ptr + element_index * 8) = 0;
+            *(uint64_t *)(element_ptr + element_index * 8) = 0;
             element_index = element_index + 1;
         } while (element_index < queue_size);
         queue_size = *(ulonglong *)(failure_queue + 0x10);
     }
     
-    *(undefined8 *)(failure_queue + 0x18) = 0;
-    if ((1 < queue_size) && (queue_ptr = *(undefined8 **)(failure_queue + 8), queue_ptr != (undefined8 *)0x0)) {
+    *(uint64_t *)(failure_queue + 0x18) = 0;
+    if ((1 < queue_size) && (queue_ptr = *(uint64_t **)(failure_queue + 8), queue_ptr != (uint64_t *)0x0)) {
         memory_mask = (ulonglong)queue_ptr & 0xffffffffffc00000;
         if (memory_mask != 0) {
             cleanup_offset = memory_mask + 0x80 + ((longlong)queue_ptr - memory_mask >> 0x10) * 0x50;
             cleanup_offset = cleanup_offset - (ulonglong)*(uint *)(cleanup_offset + 4);
             
             if ((*(void ***)(memory_mask + 0x70) == &ExceptionList) && (*(char *)(cleanup_offset + 0xe) == '\0')) {
-                *queue_ptr = *(undefined8 *)(cleanup_offset + 0x20);
-                *(undefined8 **)(cleanup_offset + 0x20) = queue_ptr;
+                *queue_ptr = *(uint64_t *)(cleanup_offset + 0x20);
+                *(uint64_t **)(cleanup_offset + 0x20) = queue_ptr;
                 reference_count = (int *)(cleanup_offset + 0x18);
                 *reference_count = *reference_count - 1;
                 if (*reference_count == 0) {
@@ -526,13 +526,13 @@ void cleanup_failure_queue(longlong failure_queue)
 void cleanup_success_queue(longlong success_queue)
 {
     int *reference_count;
-    undefined8 *queue_ptr;
+    uint64_t *queue_ptr;
     longlong cleanup_offset;
     ulonglong memory_mask;
     
     perform_system_cleanup();
     if ((1 < *(ulonglong *)(success_queue + 0x10)) &&
-        (queue_ptr = *(undefined8 **)(success_queue + 8), queue_ptr != (undefined8 *)0x0)) {
+        (queue_ptr = *(uint64_t **)(success_queue + 8), queue_ptr != (uint64_t *)0x0)) {
         
         memory_mask = (ulonglong)queue_ptr & 0xffffffffffc00000;
         if (memory_mask != 0) {
@@ -540,8 +540,8 @@ void cleanup_success_queue(longlong success_queue)
             cleanup_offset = cleanup_offset - (ulonglong)*(uint *)(cleanup_offset + 4);
             
             if ((*(void ***)(memory_mask + 0x70) == &ExceptionList) && (*(char *)(cleanup_offset + 0xe) == '\0')) {
-                *queue_ptr = *(undefined8 *)(cleanup_offset + 0x20);
-                *(undefined8 **)(cleanup_offset + 0x20) = queue_ptr;
+                *queue_ptr = *(uint64_t *)(cleanup_offset + 0x20);
+                *(uint64_t **)(cleanup_offset + 0x20) = queue_ptr;
                 reference_count = (int *)(cleanup_offset + 0x18);
                 *reference_count = *reference_count - 1;
                 if (*reference_count == 0) {
@@ -567,7 +567,7 @@ void cleanup_buffer_queue(longlong buffer_queue)
 {
     int *reference_count;
     longlong element_ptr;
-    undefined8 *queue_ptr;
+    uint64_t *queue_ptr;
     longlong cleanup_offset;
     ulonglong queue_size;
     ulonglong memory_mask;
@@ -583,22 +583,22 @@ void cleanup_buffer_queue(longlong buffer_queue)
             if (element_ptr != 0) {
                 release_system_memory(element_ptr);
             }
-            *(undefined8 *)(element_ptr + element_index * 8) = 0;
+            *(uint64_t *)(element_ptr + element_index * 8) = 0;
             element_index = element_index + 1;
         } while (element_index < queue_size);
         queue_size = *(ulonglong *)(buffer_queue + 0x10);
     }
     
-    *(undefined8 *)(buffer_queue + 0x18) = 0;
-    if ((1 < queue_size) && (queue_ptr = *(undefined8 **)(buffer_queue + 8), queue_ptr != (undefined8 *)0x0)) {
+    *(uint64_t *)(buffer_queue + 0x18) = 0;
+    if ((1 < queue_size) && (queue_ptr = *(uint64_t **)(buffer_queue + 8), queue_ptr != (uint64_t *)0x0)) {
         memory_mask = (ulonglong)queue_ptr & 0xffffffffffc00000;
         if (memory_mask != 0) {
             cleanup_offset = memory_mask + 0x80 + ((longlong)queue_ptr - memory_mask >> 0x10) * 0x50;
             cleanup_offset = cleanup_offset - (ulonglong)*(uint *)(cleanup_offset + 4);
             
             if ((*(void ***)(memory_mask + 0x70) == &ExceptionList) && (*(char *)(cleanup_offset + 0xe) == '\0')) {
-                *queue_ptr = *(undefined8 *)(cleanup_offset + 0x20);
-                *(undefined8 **)(cleanup_offset + 0x20) = queue_ptr;
+                *queue_ptr = *(uint64_t *)(cleanup_offset + 0x20);
+                *(uint64_t **)(cleanup_offset + 0x20) = queue_ptr;
                 reference_count = (int *)(cleanup_offset + 0x18);
                 *reference_count = *reference_count - 1;
                 if (*reference_count == 0) {
@@ -622,7 +622,7 @@ void cleanup_buffer_queue(longlong buffer_queue)
  * @param message_data 消息数据指针
  * @param event_flag 事件标志
  */
-void process_system_message(undefined8 system_handle, longlong message_data, undefined1 event_flag)
+void process_system_message(uint64_t system_handle, longlong message_data, int8_t event_flag)
 {
     byte *message_ptr;
     uint message_size;
@@ -635,15 +635,15 @@ void process_system_message(undefined8 system_handle, longlong message_data, und
     ulonglong table_index;
     longlong message_offset;
     ulonglong table_end;
-    undefined *log_prefix;
+    void *log_prefix;
     longlong log_buffer;
     uint log_size;
-    undefined4 log_code;
-    undefined *log_message;
+    int32_t log_code;
+    void *log_message;
     longlong message_buffer;
     uint buffer_size;
-    undefined8 message_flags;
-    undefined1 message_type;
+    uint64_t message_flags;
+    int8_t message_type;
     
     system_table = _DAT_180c86878;
     log_message = &system_log_prefix;
@@ -658,14 +658,14 @@ void process_system_message(undefined8 system_handle, longlong message_data, und
     }
     
     if (message_size != 0) {
-        memcpy(message_buffer, *(undefined8 *)(message_data + 8), table_index);
+        memcpy(message_buffer, *(uint64_t *)(message_data + 8), table_index);
     }
     
     if (message_buffer != 0) {
-        *(undefined1 *)(table_index + message_buffer) = 0;
+        *(int8_t *)(table_index + message_buffer) = 0;
     }
     
-    message_flags = CONCAT44(*(undefined4 *)(message_data + 0x1c), (undefined4)message_flags);
+    message_flags = CONCAT44(*(int32_t *)(message_data + 0x1c), (int32_t)message_flags);
     message_found = false;
     table_index = system_table[0x25];
     table_end = system_table[0x24];
@@ -709,7 +709,7 @@ void process_system_message(undefined8 system_handle, longlong message_data, und
     if (table_index < (ulonglong)system_table[0x26]) {
         system_table[0x25] = table_index + 0x28;
         free_message_buffer(table_index);
-        *(undefined1 *)(table_index + 0x20) = message_type;
+        *(int8_t *)(table_index + 0x20) = message_type;
     }
     else {
         process_message_queue(system_table + 0x24, &log_message);
@@ -719,7 +719,7 @@ message_processed:
     finalize_message_processing();
     if (0 < *(int *)(message_data + 0x10)) {
         allocate_log_buffer(&log_prefix, log_size + *(int *)(message_data + 0x10));
-        memcpy((ulonglong)log_size + log_buffer, *(undefined8 *)(message_data + 8),
+        memcpy((ulonglong)log_size + log_buffer, *(uint64_t *)(message_data + 8),
                (longlong)(*(int *)(message_data + 0x10) + 1));
     }
     
@@ -745,7 +745,7 @@ message_processed:
  * @param event_data 事件数据指针
  * @param notification_type 通知类型
  */
-void process_system_event(undefined8 system_handle, longlong event_data, undefined1 notification_type)
+void process_system_event(uint64_t system_handle, longlong event_data, int8_t notification_type)
 {
     byte *event_ptr;
     uint event_size;
@@ -757,15 +757,15 @@ void process_system_event(undefined8 system_handle, longlong event_data, undefin
     int string_length;
     longlong event_offset;
     ulonglong table_end;
-    undefined *log_prefix;
+    void *log_prefix;
     longlong log_buffer;
     uint log_size;
-    undefined4 log_code;
-    undefined *log_message;
+    int32_t log_code;
+    void *log_message;
     longlong event_buffer;
     uint buffer_size;
-    undefined8 event_flags;
-    undefined1 event_type;
+    uint64_t event_flags;
+    int8_t event_type;
     
     system_table = _DAT_180c86878;
     log_message = &system_log_prefix;
@@ -780,14 +780,14 @@ void process_system_event(undefined8 system_handle, longlong event_data, undefin
     }
     
     if (event_size != 0) {
-        memcpy(event_buffer, *(undefined8 *)(event_data + 8), table_index);
+        memcpy(event_buffer, *(uint64_t *)(event_data + 8), table_index);
     }
     
     if (event_buffer != 0) {
-        *(undefined1 *)(table_index + event_buffer) = 0;
+        *(int8_t *)(table_index + event_buffer) = 0;
     }
     
-    event_flags = CONCAT44(*(undefined4 *)(event_data + 0x1c), (undefined4)event_flags);
+    event_flags = CONCAT44(*(int32_t *)(event_data + 0x1c), (int32_t)event_flags);
     table_index = system_table[0x28];
     table_end = system_table[0x29];
     buffer_size = event_size;
@@ -826,7 +826,7 @@ void process_system_event(undefined8 system_handle, longlong event_data, undefin
     if (table_end < (ulonglong)system_table[0x2a]) {
         system_table[0x29] = table_end + 0x28;
         free_message_buffer(table_end);
-        *(undefined1 *)(table_end + 0x20) = event_type;
+        *(int8_t *)(table_end + 0x20) = event_type;
     }
     else {
         process_message_queue(system_table + 0x28, &log_message);
@@ -836,7 +836,7 @@ event_processed:
     finalize_event_processing();
     if (0 < *(int *)(event_data + 0x10)) {
         allocate_log_buffer(&log_prefix, log_size + *(int *)(event_data + 0x10));
-        memcpy((ulonglong)log_size + log_buffer, *(undefined8 *)(event_data + 8),
+        memcpy((ulonglong)log_size + log_buffer, *(uint64_t *)(event_data + 8),
                (longlong)(*(int *)(event_data + 0x10) + 1));
     }
     

@@ -40,17 +40,17 @@ void validate_pointer_array(longlong *array_info)
  * @param source_data 源数据指针
  * @return 初始化后的容器指针
  */
-undefined8 *create_data_container(undefined8 *container_ptr, undefined8 *source_data)
+uint64_t *create_data_container(uint64_t *container_ptr, uint64_t *source_data)
 {
-  undefined1 byte_data;
-  undefined8 data_field1;
-  undefined8 data_field2;
-  undefined8 data_field3;
-  undefined8 *new_container;
+  int8_t byte_data;
+  uint64_t data_field1;
+  uint64_t data_field2;
+  uint64_t data_field3;
+  uint64_t *new_container;
   
   // 从源数据提取字段信息
   data_field1 = *source_data;
-  byte_data = *(undefined1 *)(source_data + 1);
+  byte_data = *(int8_t *)(source_data + 1);
   data_field2 = source_data[2];
   source_data[2] = 0;  // 清空源数据字段
   data_field3 = source_data[3];
@@ -61,11 +61,11 @@ undefined8 *create_data_container(undefined8 *container_ptr, undefined8 *source_
   container_ptr[3] = get_container_data_field2;
   
   // 分配新容器的内存
-  new_container = (undefined8 *)allocate_container_memory(memory_allocator_ptr, 0x20, 8, default_memory_flags, 0xfffffffffffffffe);
+  new_container = (uint64_t *)allocate_container_memory(memory_allocator_ptr, 0x20, 8, default_memory_flags, 0xfffffffffffffffe);
   
   // 初始化新容器
   *new_container = data_field1;
-  *(undefined1 *)(new_container + 1) = byte_data;
+  *(int8_t *)(new_container + 1) = byte_data;
   new_container[2] = data_field2;
   new_container[3] = data_field3;
   *container_ptr = new_container;
@@ -93,18 +93,18 @@ undefined8 *create_data_container(undefined8 *container_ptr, undefined8 *source_
  * @param buffer_ptr 指向缓冲区指针的指针
  * @param size 原始数据大小
  */
-void create_quad_size_buffer(undefined8 param1, longlong *buffer_ptr, int size)
+void create_quad_size_buffer(uint64_t param1, longlong *buffer_ptr, int size)
 {
-  undefined8 system_data;
-  undefined8 allocated_memory;
-  undefined1 stack_buffer[32];
-  undefined4 stack_flag;
-  undefined8 stack_param;
+  uint64_t system_data;
+  uint64_t allocated_memory;
+  int8_t stack_buffer[32];
+  int32_t stack_flag;
+  uint64_t stack_param;
   longlong *buffer_info;
-  undefined *stack_ptr1;
-  undefined1 *stack_ptr2;
-  undefined4 stack_size;
-  undefined1 stack_data[72];
+  void *stack_ptr1;
+  int8_t *stack_ptr2;
+  int32_t stack_size;
+  int8_t stack_data[72];
   ulonglong stack_guard;
   
   system_data = system_config_data;
@@ -130,10 +130,10 @@ void create_quad_size_buffer(undefined8 param1, longlong *buffer_ptr, int size)
   
   // 初始化缓冲区
   initialize_quad_buffer(system_data, buffer_ptr);
-  *(undefined8 *)(*buffer_ptr + 0x10) = allocated_memory;
+  *(uint64_t *)(*buffer_ptr + 0x10) = allocated_memory;
   *(int *)(*buffer_ptr + 0x18) = size;
   *(int *)(*buffer_ptr + 0x1c) = size;
-  *(undefined1 *)(*buffer_ptr + 0x20) = 0;
+  *(int8_t *)(*buffer_ptr + 0x20) = 0;
   stack_flag = 1;
   
   // 执行缓冲区操作（该函数不会返回）
@@ -150,18 +150,18 @@ void create_quad_size_buffer(undefined8 param1, longlong *buffer_ptr, int size)
  * @param buffer_ptr 指向缓冲区指针的指针
  * @param size 原始数据大小
  */
-void create_double_size_buffer(undefined8 param1, longlong *buffer_ptr, int size)
+void create_double_size_buffer(uint64_t param1, longlong *buffer_ptr, int size)
 {
-  undefined8 system_data;
-  undefined8 allocated_memory;
-  undefined1 stack_buffer[32];
-  undefined4 stack_flag;
-  undefined8 stack_param;
+  uint64_t system_data;
+  uint64_t allocated_memory;
+  int8_t stack_buffer[32];
+  int32_t stack_flag;
+  uint64_t stack_param;
   longlong *buffer_info;
-  undefined *stack_ptr1;
-  undefined1 *stack_ptr2;
-  undefined4 stack_size;
-  undefined1 stack_data[72];
+  void *stack_ptr1;
+  int8_t *stack_ptr2;
+  int32_t stack_size;
+  int8_t stack_data[72];
   ulonglong stack_guard;
   
   system_data = system_config_data;
@@ -187,10 +187,10 @@ void create_double_size_buffer(undefined8 param1, longlong *buffer_ptr, int size
   
   // 初始化缓冲区
   initialize_double_buffer(system_data, buffer_ptr);
-  *(undefined8 *)(*buffer_ptr + 0x10) = allocated_memory;
+  *(uint64_t *)(*buffer_ptr + 0x10) = allocated_memory;
   *(int *)(*buffer_ptr + 0x18) = size;
   *(int *)(*buffer_ptr + 0x1c) = size;
-  *(undefined1 *)(*buffer_ptr + 0x20) = 0;
+  *(int8_t *)(*buffer_ptr + 0x20) = 0;
   stack_flag = 1;
   
   // 执行缓冲区操作（该函数不会返回）
@@ -211,17 +211,17 @@ void create_double_size_buffer(undefined8 param1, longlong *buffer_ptr, int size
  * @param buffer_ptr 指向缓冲区指针的指针
  * @param size 数据大小
  */
-void create_standard_buffer(undefined8 param1, longlong *buffer_ptr, undefined4 size)
+void create_standard_buffer(uint64_t param1, longlong *buffer_ptr, int32_t size)
 {
-  undefined8 allocated_memory;
-  undefined1 stack_buffer[32];
-  undefined4 stack_flag;
-  undefined8 stack_param;
+  uint64_t allocated_memory;
+  int8_t stack_buffer[32];
+  int32_t stack_flag;
+  uint64_t stack_param;
   longlong *buffer_info;
-  undefined *stack_ptr1;
-  undefined1 *stack_ptr2;
-  undefined4 stack_size;
-  undefined1 stack_data[72];
+  void *stack_ptr1;
+  int8_t *stack_ptr2;
+  int32_t stack_size;
+  int8_t stack_data[72];
   ulonglong stack_guard;
   
   stack_param = 0xfffffffffffffffe;
@@ -246,10 +246,10 @@ void create_standard_buffer(undefined8 param1, longlong *buffer_ptr, undefined4 
   // 初始化标准缓冲区
   initialize_standard_buffer(param1, buffer_ptr);
   stack_flag = 1;
-  *(undefined8 *)(*buffer_ptr + 0x10) = allocated_memory;
-  *(undefined4 *)(*buffer_ptr + 0x18) = size;
-  *(undefined4 *)(*buffer_ptr + 0x1c) = size;
-  *(undefined1 *)(*buffer_ptr + 0x20) = 0;
+  *(uint64_t *)(*buffer_ptr + 0x10) = allocated_memory;
+  *(int32_t *)(*buffer_ptr + 0x18) = size;
+  *(int32_t *)(*buffer_ptr + 0x1c) = size;
+  *(int8_t *)(*buffer_ptr + 0x20) = 0;
   
   // 执行缓冲区操作（该函数不会返回）
   execute_buffer_operation(stack_guard ^ (ulonglong)stack_buffer);
@@ -269,18 +269,18 @@ void create_standard_buffer(undefined8 param1, longlong *buffer_ptr, undefined4 
  * @param buffer_ptr 指向缓冲区指针的指针
  * @param size 数据大小
  */
-void create_extended_buffer(undefined8 param1, longlong *buffer_ptr, undefined4 size)
+void create_extended_buffer(uint64_t param1, longlong *buffer_ptr, int32_t size)
 {
-  undefined8 system_data;
-  undefined8 allocated_memory;
-  undefined1 stack_buffer[32];
-  undefined4 stack_flag;
-  undefined8 stack_param;
+  uint64_t system_data;
+  uint64_t allocated_memory;
+  int8_t stack_buffer[32];
+  int32_t stack_flag;
+  uint64_t stack_param;
   longlong *buffer_info;
-  undefined *stack_ptr1;
-  undefined1 *stack_ptr2;
-  undefined4 stack_size;
-  undefined1 stack_data[72];
+  void *stack_ptr1;
+  int8_t *stack_ptr2;
+  int32_t stack_size;
+  int8_t stack_data[72];
   ulonglong stack_guard;
   
   system_data = system_config_data;
@@ -305,10 +305,10 @@ void create_extended_buffer(undefined8 param1, longlong *buffer_ptr, undefined4 
   
   // 初始化标准缓冲区
   initialize_standard_buffer(system_data, buffer_ptr);
-  *(undefined8 *)(*buffer_ptr + 0x10) = allocated_memory;
-  *(undefined4 *)(*buffer_ptr + 0x18) = size;
-  *(undefined4 *)(*buffer_ptr + 0x1c) = size;
-  *(undefined1 *)(*buffer_ptr + 0x20) = 0;
+  *(uint64_t *)(*buffer_ptr + 0x10) = allocated_memory;
+  *(int32_t *)(*buffer_ptr + 0x18) = size;
+  *(int32_t *)(*buffer_ptr + 0x1c) = size;
+  *(int8_t *)(*buffer_ptr + 0x20) = 0;
   stack_flag = 1;
   
   // 执行缓冲区操作（该函数不会返回）
@@ -331,18 +331,18 @@ void create_extended_buffer(undefined8 param1, longlong *buffer_ptr, undefined4 
 void expand_dynamic_array_4byte(longlong source_array, longlong *target_ptr)
 {
   int array_size;
-  undefined8 system_data;
+  uint64_t system_data;
   longlong *new_buffer;
   longlong allocated_memory;
-  undefined1 stack_buffer [32];
-  undefined4 stack_flag;
+  int8_t stack_buffer [32];
+  int32_t stack_flag;
   longlong *temp_buffer;
   longlong *old_buffer;
-  undefined8 stack_param;
-  undefined *stack_ptr1;
-  undefined1 *stack_ptr2;
-  undefined4 stack_size;
-  undefined1 stack_data [72];
+  uint64_t stack_param;
+  void *stack_ptr1;
+  int8_t *stack_ptr2;
+  int32_t stack_size;
+  int8_t stack_data [72];
   ulonglong stack_guard;
   
   stack_param = 0xfffffffffffffffe;
@@ -369,7 +369,7 @@ void expand_dynamic_array_4byte(longlong source_array, longlong *target_ptr)
     temp_buffer[2] = allocated_memory;
     *(int *)(temp_buffer + 3) = array_size;
     *(int *)((longlong)temp_buffer + 0x1c) = array_size;
-    *(undefined1 *)(temp_buffer + 4) = 0;
+    *(int8_t *)(temp_buffer + 4) = 0;
     stack_flag = 1;
     temp_buffer = (longlong *)0x0;
     old_buffer = (longlong *)*target_ptr;
@@ -382,7 +382,7 @@ void expand_dynamic_array_4byte(longlong source_array, longlong *target_ptr)
       (**(code **)(*temp_buffer + 0x38))();
     }
     // 复制数据到新缓冲区
-    memcpy(*(undefined8 *)(*target_ptr + 0x10), *(undefined8 *)(source_array + 8),
+    memcpy(*(uint64_t *)(*target_ptr + 0x10), *(uint64_t *)(source_array + 8),
            (longlong)*(int *)(*target_ptr + 0x1c));
   }
   old_buffer = (longlong *)*target_ptr;
@@ -410,18 +410,18 @@ void expand_dynamic_array_4byte(longlong source_array, longlong *target_ptr)
 void expand_dynamic_array_alt(longlong source_array, longlong *target_ptr)
 {
   int array_size;
-  undefined8 system_data;
+  uint64_t system_data;
   longlong *new_buffer;
   longlong allocated_memory;
-  undefined1 stack_buffer [32];
-  undefined4 stack_flag;
+  int8_t stack_buffer [32];
+  int32_t stack_flag;
   longlong *temp_buffer;
   longlong *old_buffer;
-  undefined8 stack_param;
-  undefined *stack_ptr1;
-  undefined1 *stack_ptr2;
-  undefined4 stack_size;
-  undefined1 stack_data [72];
+  uint64_t stack_param;
+  void *stack_ptr1;
+  int8_t *stack_ptr2;
+  int32_t stack_size;
+  int8_t stack_data [72];
   ulonglong stack_guard;
   
   stack_param = 0xfffffffffffffffe;
@@ -448,7 +448,7 @@ void expand_dynamic_array_alt(longlong source_array, longlong *target_ptr)
     temp_buffer[2] = allocated_memory;
     *(int *)(temp_buffer + 3) = array_size;
     *(int *)((longlong)temp_buffer + 0x1c) = array_size;
-    *(undefined1 *)(temp_buffer + 4) = 0;
+    *(int8_t *)(temp_buffer + 4) = 0;
     stack_flag = 1;
     temp_buffer = (longlong *)0x0;
     old_buffer = (longlong *)*target_ptr;
@@ -461,7 +461,7 @@ void expand_dynamic_array_alt(longlong source_array, longlong *target_ptr)
       (**(code **)(*temp_buffer + 0x38))();
     }
     // 复制数据到新缓冲区
-    memcpy(*(undefined8 *)(*target_ptr + 0x10), *(undefined8 *)(source_array + 8),
+    memcpy(*(uint64_t *)(*target_ptr + 0x10), *(uint64_t *)(source_array + 8),
            (longlong)*(int *)(*target_ptr + 0x1c));
   }
   old_buffer = (longlong *)*target_ptr;
@@ -488,19 +488,19 @@ void expand_dynamic_array_alt(longlong source_array, longlong *target_ptr)
  */
 void expand_dynamic_array_24byte(longlong source_array, longlong *target_ptr)
 {
-  undefined8 system_data;
+  uint64_t system_data;
   longlong *new_buffer;
   longlong allocated_memory;
   int array_size;
-  undefined1 stack_buffer [32];
-  undefined4 stack_flag;
+  int8_t stack_buffer [32];
+  int32_t stack_flag;
   longlong *temp_buffer;
   longlong *old_buffer;
-  undefined8 stack_param;
-  undefined *stack_ptr1;
-  undefined1 *stack_ptr2;
-  undefined4 stack_size;
-  undefined1 stack_data [72];
+  uint64_t stack_param;
+  void *stack_ptr1;
+  int8_t *stack_ptr2;
+  int32_t stack_size;
+  int8_t stack_data [72];
   ulonglong stack_guard;
   
   stack_param = 0xfffffffffffffffe;
@@ -527,7 +527,7 @@ void expand_dynamic_array_24byte(longlong source_array, longlong *target_ptr)
     temp_buffer[2] = allocated_memory;
     *(int *)(temp_buffer + 3) = array_size;
     *(int *)((longlong)temp_buffer + 0x1c) = array_size;
-    *(undefined1 *)(temp_buffer + 4) = 0;
+    *(int8_t *)(temp_buffer + 4) = 0;
     stack_flag = 1;
     temp_buffer = (longlong *)0x0;
     old_buffer = (longlong *)*target_ptr;
@@ -540,7 +540,7 @@ void expand_dynamic_array_24byte(longlong source_array, longlong *target_ptr)
       (**(code **)(*temp_buffer + 0x38))();
     }
     // 复制数据到新缓冲区
-    memcpy(*(undefined8 *)(*target_ptr + 0x10), *(undefined8 *)(source_array + 8),
+    memcpy(*(uint64_t *)(*target_ptr + 0x10), *(uint64_t *)(source_array + 8),
            (longlong)*(int *)(*target_ptr + 0x1c));
   }
   old_buffer = (longlong *)*target_ptr;
@@ -568,18 +568,18 @@ void expand_dynamic_array_24byte(longlong source_array, longlong *target_ptr)
 void expand_dynamic_array_8byte(longlong source_array, longlong *target_ptr)
 {
   int array_size;
-  undefined8 system_data;
+  uint64_t system_data;
   longlong *new_buffer;
   longlong allocated_memory;
-  undefined1 stack_buffer [32];
-  undefined4 stack_flag;
+  int8_t stack_buffer [32];
+  int32_t stack_flag;
   longlong *temp_buffer;
   longlong *old_buffer;
-  undefined8 stack_param;
-  undefined *stack_ptr1;
-  undefined1 *stack_ptr2;
-  undefined4 stack_size;
-  undefined1 stack_data [72];
+  uint64_t stack_param;
+  void *stack_ptr1;
+  int8_t *stack_ptr2;
+  int32_t stack_size;
+  int8_t stack_data [72];
   ulonglong stack_guard;
   
   stack_param = 0xfffffffffffffffe;
@@ -606,7 +606,7 @@ void expand_dynamic_array_8byte(longlong source_array, longlong *target_ptr)
     temp_buffer[2] = allocated_memory;
     *(int *)(temp_buffer + 3) = array_size;
     *(int *)((longlong)temp_buffer + 0x1c) = array_size;
-    *(undefined1 *)(temp_buffer + 4) = 0;
+    *(int8_t *)(temp_buffer + 4) = 0;
     stack_flag = 1;
     temp_buffer = (longlong *)0x0;
     old_buffer = (longlong *)*target_ptr;
@@ -619,7 +619,7 @@ void expand_dynamic_array_8byte(longlong source_array, longlong *target_ptr)
       (**(code **)(*temp_buffer + 0x38))();
     }
     // 复制数据到新缓冲区
-    memcpy(*(undefined8 *)(*target_ptr + 0x10), *(undefined8 *)(source_array + 8),
+    memcpy(*(uint64_t *)(*target_ptr + 0x10), *(uint64_t *)(source_array + 8),
            (longlong)*(int *)(*target_ptr + 0x1c));
   }
   old_buffer = (longlong *)*target_ptr;
@@ -647,18 +647,18 @@ void expand_dynamic_array_8byte(longlong source_array, longlong *target_ptr)
 void expand_dynamic_array_4byte_typeA(longlong source_array, longlong *target_ptr)
 {
   int array_size;
-  undefined8 system_data;
+  uint64_t system_data;
   longlong *new_buffer;
   longlong allocated_memory;
-  undefined1 stack_buffer [32];
-  undefined4 stack_flag;
+  int8_t stack_buffer [32];
+  int32_t stack_flag;
   longlong *temp_buffer;
   longlong *old_buffer;
-  undefined8 stack_param;
-  undefined *stack_ptr1;
-  undefined1 *stack_ptr2;
-  undefined4 stack_size;
-  undefined1 stack_data [72];
+  uint64_t stack_param;
+  void *stack_ptr1;
+  int8_t *stack_ptr2;
+  int32_t stack_size;
+  int8_t stack_data [72];
   ulonglong stack_guard;
   
   stack_param = 0xfffffffffffffffe;
@@ -685,7 +685,7 @@ void expand_dynamic_array_4byte_typeA(longlong source_array, longlong *target_pt
     temp_buffer[2] = allocated_memory;
     *(int *)(temp_buffer + 3) = array_size;
     *(int *)((longlong)temp_buffer + 0x1c) = array_size;
-    *(undefined1 *)(temp_buffer + 4) = 0;
+    *(int8_t *)(temp_buffer + 4) = 0;
     stack_flag = 1;
     temp_buffer = (longlong *)0x0;
     old_buffer = (longlong *)*target_ptr;
@@ -698,7 +698,7 @@ void expand_dynamic_array_4byte_typeA(longlong source_array, longlong *target_pt
       (**(code **)(*temp_buffer + 0x38))();
     }
     // 复制数据到新缓冲区
-    memcpy(*(undefined8 *)(*target_ptr + 0x10), *(undefined8 *)(source_array + 8),
+    memcpy(*(uint64_t *)(*target_ptr + 0x10), *(uint64_t *)(source_array + 8),
            (longlong)*(int *)(*target_ptr + 0x1c));
   }
   old_buffer = (longlong *)*target_ptr;
@@ -726,18 +726,18 @@ void expand_dynamic_array_4byte_typeA(longlong source_array, longlong *target_pt
 void expand_dynamic_array_4byte_typeB(longlong source_array, longlong *target_ptr)
 {
   int array_size;
-  undefined8 system_data;
+  uint64_t system_data;
   longlong *new_buffer;
   longlong allocated_memory;
-  undefined1 stack_buffer [32];
-  undefined4 stack_flag;
+  int8_t stack_buffer [32];
+  int32_t stack_flag;
   longlong *temp_buffer;
   longlong *old_buffer;
-  undefined8 stack_param;
-  undefined *stack_ptr1;
-  undefined1 *stack_ptr2;
-  undefined4 stack_size;
-  undefined1 stack_data [72];
+  uint64_t stack_param;
+  void *stack_ptr1;
+  int8_t *stack_ptr2;
+  int32_t stack_size;
+  int8_t stack_data [72];
   ulonglong stack_guard;
   
   stack_param = 0xfffffffffffffffe;
@@ -763,7 +763,7 @@ void expand_dynamic_array_4byte_typeB(longlong source_array, longlong *target_pt
     temp_buffer[2] = allocated_memory;
     *(int *)(temp_buffer + 3) = array_size;
     *(int *)((longlong)temp_buffer + 0x1c) = array_size;
-    *(undefined1 *)(temp_buffer + 4) = 0;
+    *(int8_t *)(temp_buffer + 4) = 0;
     stack_flag = 1;
     temp_buffer = (longlong *)0x0;
     old_buffer = (longlong *)*target_ptr;
@@ -776,7 +776,7 @@ void expand_dynamic_array_4byte_typeB(longlong source_array, longlong *target_pt
       (**(code **)(*temp_buffer + 0x38))();
     }
     // 复制数据到新缓冲区
-    memcpy(*(undefined8 *)(*target_ptr + 0x10), *(undefined8 *)(source_array + 8),
+    memcpy(*(uint64_t *)(*target_ptr + 0x10), *(uint64_t *)(source_array + 8),
            (longlong)*(int *)(*target_ptr + 0x1c));
   }
   old_buffer = (longlong *)*target_ptr;
@@ -804,18 +804,18 @@ void expand_dynamic_array_4byte_typeB(longlong source_array, longlong *target_pt
 void expand_dynamic_array_2byte(longlong source_array, longlong *target_ptr)
 {
   int array_size;
-  undefined8 system_data;
+  uint64_t system_data;
   longlong *new_buffer;
   longlong allocated_memory;
-  undefined1 stack_buffer [32];
-  undefined4 stack_flag;
+  int8_t stack_buffer [32];
+  int32_t stack_flag;
   longlong *temp_buffer;
   longlong *old_buffer;
-  undefined8 stack_param;
-  undefined *stack_ptr1;
-  undefined1 *stack_ptr2;
-  undefined4 stack_size;
-  undefined1 stack_data [72];
+  uint64_t stack_param;
+  void *stack_ptr1;
+  int8_t *stack_ptr2;
+  int32_t stack_size;
+  int8_t stack_data [72];
   ulonglong stack_guard;
   
   stack_param = 0xfffffffffffffffe;
@@ -842,7 +842,7 @@ void expand_dynamic_array_2byte(longlong source_array, longlong *target_ptr)
     temp_buffer[2] = allocated_memory;
     *(int *)(temp_buffer + 3) = array_size;
     *(int *)((longlong)temp_buffer + 0x1c) = array_size;
-    *(undefined1 *)(temp_buffer + 4) = 0;
+    *(int8_t *)(temp_buffer + 4) = 0;
     stack_flag = 1;
     temp_buffer = (longlong *)0x0;
     old_buffer = (longlong *)*target_ptr;
@@ -855,7 +855,7 @@ void expand_dynamic_array_2byte(longlong source_array, longlong *target_ptr)
       (**(code **)(*temp_buffer + 0x38))();
     }
     // 复制数据到新缓冲区
-    memcpy(*(undefined8 *)(*target_ptr + 0x10), *(undefined8 *)(source_array + 8),
+    memcpy(*(uint64_t *)(*target_ptr + 0x10), *(uint64_t *)(source_array + 8),
            (longlong)*(int *)(*target_ptr + 0x1c));
   }
   old_buffer = (longlong *)*target_ptr;
@@ -883,25 +883,25 @@ void expand_dynamic_array_2byte(longlong source_array, longlong *target_ptr)
  * @param allocation_type 分配类型参数
  * @param memory_flags 内存分配标志
  */
-void expand_and_manage_array_typeA(longlong *array_info, ulonglong required_space, undefined8 allocation_type, undefined8 memory_flags)
+void expand_and_manage_array_typeA(longlong *array_info, ulonglong required_space, uint64_t allocation_type, uint64_t memory_flags)
 {
-  undefined8 *current_end;
-  undefined4 temp_data;
-  undefined8 swap_value;
+  uint64_t *current_end;
+  int32_t temp_data;
+  uint64_t swap_value;
   longlong offset_diff;
-  undefined8 *new_memory;
-  undefined8 *old_start;
-  undefined8 *old_end;
-  undefined8 *new_position;
+  uint64_t *new_memory;
+  uint64_t *old_start;
+  uint64_t *old_end;
+  uint64_t *new_position;
   longlong *current_ptr;
   ulonglong new_capacity;
-  undefined8 *new_start;
+  uint64_t *new_start;
   ulonglong remaining_space;
   
-  old_end = (undefined8 *)array_info[1];
+  old_end = (uint64_t *)array_info[1];
   // 检查当前剩余空间是否足够
   if ((ulonglong)(array_info[2] - (longlong)old_end >> 5) < required_space) {
-    old_start = (undefined8 *)*array_info;
+    old_start = (uint64_t *)*array_info;
     // 计算当前已使用的块数
     offset_diff = (longlong)old_end - (longlong)old_start >> 5;
     // 计算新的容量（至少翻倍）
@@ -913,13 +913,13 @@ void expand_and_manage_array_typeA(longlong *array_info, ulonglong required_spac
     if (new_capacity < offset_diff + required_space) {
       new_capacity = offset_diff + required_space;
     }
-    new_memory = (undefined8 *)0x0;
+    new_memory = (uint64_t *)0x0;
     if (new_capacity != 0) {
       // 分配新的内存空间
-      new_memory = (undefined8 *)
+      new_memory = (uint64_t *)
                FUN_18062b420(_DAT_180c8ed18, new_capacity << 5, (char)array_info[3], memory_flags, 0xfffffffffffffffe);
-      old_end = (undefined8 *)array_info[1];
-      old_start = (undefined8 *)*array_info;
+      old_end = (uint64_t *)array_info[1];
+      old_start = (uint64_t *)*array_info;
     }
     new_position = new_memory;
     // 如果有现有数据，进行数据迁移
@@ -929,21 +929,21 @@ void expand_and_manage_array_typeA(longlong *array_info, ulonglong required_spac
       do {
         *new_position = 0;  // 清空新位置的第一个字段
         // 保存并交换复杂数据结构
-        *(undefined8 *)(offset_diff + -0x10 + (longlong)old_start) = 0;
-        *(undefined8 *)(offset_diff + -8 + (longlong)old_start) = 0;
-        *(undefined4 *)(offset_diff + (longlong)old_start) = *(undefined4 *)old_start;
+        *(uint64_t *)(offset_diff + -0x10 + (longlong)old_start) = 0;
+        *(uint64_t *)(offset_diff + -8 + (longlong)old_start) = 0;
+        *(int32_t *)(offset_diff + (longlong)old_start) = *(int32_t *)old_start;
         swap_value = *new_position;
         *new_position = old_start[-3];  // 交换第三个字段
         old_start[-3] = swap_value;
-        swap_value = *(undefined8 *)(offset_diff + -0x10 + (longlong)old_start);
-        *(undefined8 *)(offset_diff + -0x10 + (longlong)old_start) = old_start[-2];  // 交换第二个字段
+        swap_value = *(uint64_t *)(offset_diff + -0x10 + (longlong)old_start);
+        *(uint64_t *)(offset_diff + -0x10 + (longlong)old_start) = old_start[-2];  // 交换第二个字段
         old_start[-2] = swap_value;
-        swap_value = *(undefined8 *)(offset_diff + -8 + (longlong)old_start);
-        *(undefined8 *)(offset_diff + -8 + (longlong)old_start) = old_start[-1];  // 交换第一个字段
+        swap_value = *(uint64_t *)(offset_diff + -8 + (longlong)old_start);
+        *(uint64_t *)(offset_diff + -8 + (longlong)old_start) = old_start[-1];  // 交换第一个字段
         old_start[-1] = swap_value;
-        temp_data = *(undefined4 *)(offset_diff + (longlong)old_start);
-        *(undefined4 *)(offset_diff + (longlong)old_start) = *(undefined4 *)old_start;
-        *(undefined4 *)old_start = temp_data;
+        temp_data = *(int32_t *)(offset_diff + (longlong)old_start);
+        *(int32_t *)(offset_diff + (longlong)old_start) = *(int32_t *)old_start;
+        *(int32_t *)old_start = temp_data;
         new_position = new_position + 4;  // 移动到下一个块
         current_end = old_start + 1;
         old_start = old_start + 4;  // 移动到下一个块
@@ -957,7 +957,7 @@ void expand_and_manage_array_typeA(longlong *array_info, ulonglong required_spac
         old_end[-1] = 0;  // 初始化新块的各个字段
         *old_end = 0;
         old_end[1] = 0;
-        *(undefined4 *)(old_end + 2) = 3;  // 设置标志位
+        *(int32_t *)(old_end + 2) = 3;  // 设置标志位
         old_end = old_end + 4;  // 移动到下一个块
         remaining_space = remaining_space - 1;
       } while (remaining_space != 0);
@@ -991,11 +991,11 @@ void expand_and_manage_array_typeA(longlong *array_info, ulonglong required_spac
         *old_end = 0;  // 初始化新块的各个字段
         old_end[1] = 0;
         old_end[2] = 0;
-        *(undefined4 *)(old_end + 3) = 3;  // 设置标志位
+        *(int32_t *)(old_end + 3) = 3;  // 设置标志位
         old_end = old_end + 4;  // 移动到下一个块
         remaining_space = remaining_space - 1;
       } while (remaining_space != 0);
-      old_end = (undefined8 *)array_info[1];
+      old_end = (uint64_t *)array_info[1];
     }
     array_info[1] = (longlong)(old_end + required_space * 4);
   }
@@ -1019,25 +1019,25 @@ void expand_and_manage_array_typeA(longlong *array_info, ulonglong required_spac
  * @param allocation_type 分配类型参数
  * @param memory_flags 内存分配标志
  */
-void expand_and_manage_array_typeB(longlong *array_info, ulonglong required_space, undefined8 allocation_type, undefined8 memory_flags)
+void expand_and_manage_array_typeB(longlong *array_info, ulonglong required_space, uint64_t allocation_type, uint64_t memory_flags)
 {
-  undefined8 *current_end;
-  undefined4 temp_data;
-  undefined8 swap_value;
+  uint64_t *current_end;
+  int32_t temp_data;
+  uint64_t swap_value;
   longlong offset_diff;
-  undefined8 *new_memory;
-  undefined8 *old_start;
-  undefined8 *old_end;
-  undefined8 *new_position;
+  uint64_t *new_memory;
+  uint64_t *old_start;
+  uint64_t *old_end;
+  uint64_t *new_position;
   longlong *current_ptr;
   ulonglong new_capacity;
-  undefined8 *new_start;
+  uint64_t *new_start;
   ulonglong remaining_space;
   
-  old_end = (undefined8 *)array_info[1];
+  old_end = (uint64_t *)array_info[1];
   // 检查当前剩余空间是否足够
   if ((ulonglong)(array_info[2] - (longlong)old_end >> 5) < required_space) {
-    old_start = (undefined8 *)*array_info;
+    old_start = (uint64_t *)*array_info;
     // 计算当前已使用的块数
     offset_diff = (longlong)old_end - (longlong)old_start >> 5;
     // 计算新的容量（至少翻倍）
@@ -1049,13 +1049,13 @@ void expand_and_manage_array_typeB(longlong *array_info, ulonglong required_spac
     if (new_capacity < offset_diff + required_space) {
       new_capacity = offset_diff + required_space;
     }
-    new_memory = (undefined8 *)0x0;
+    new_memory = (uint64_t *)0x0;
     if (new_capacity != 0) {
       // 分配新的内存空间
-      new_memory = (undefined8 *)
+      new_memory = (uint64_t *)
                FUN_18062b420(_DAT_180c8ed18, new_capacity << 5, (char)array_info[3], memory_flags, 0xfffffffffffffffe);
-      old_end = (undefined8 *)array_info[1];
-      old_start = (undefined8 *)*array_info;
+      old_end = (uint64_t *)array_info[1];
+      old_start = (uint64_t *)*array_info;
     }
     new_position = new_memory;
     // 如果有现有数据，进行数据迁移
@@ -1065,21 +1065,21 @@ void expand_and_manage_array_typeB(longlong *array_info, ulonglong required_spac
       do {
         *new_position = 0;  // 清空新位置的第一个字段
         // 保存并交换复杂数据结构
-        *(undefined8 *)(offset_diff + -0x10 + (longlong)old_start) = 0;
-        *(undefined8 *)(offset_diff + -8 + (longlong)old_start) = 0;
-        *(undefined4 *)(offset_diff + (longlong)old_start) = *(undefined4 *)old_start;
+        *(uint64_t *)(offset_diff + -0x10 + (longlong)old_start) = 0;
+        *(uint64_t *)(offset_diff + -8 + (longlong)old_start) = 0;
+        *(int32_t *)(offset_diff + (longlong)old_start) = *(int32_t *)old_start;
         swap_value = *new_position;
         *new_position = old_start[-3];  // 交换第三个字段
         old_start[-3] = swap_value;
-        swap_value = *(undefined8 *)(offset_diff + -0x10 + (longlong)old_start);
-        *(undefined8 *)(offset_diff + -0x10 + (longlong)old_start) = old_start[-2];  // 交换第二个字段
+        swap_value = *(uint64_t *)(offset_diff + -0x10 + (longlong)old_start);
+        *(uint64_t *)(offset_diff + -0x10 + (longlong)old_start) = old_start[-2];  // 交换第二个字段
         old_start[-2] = swap_value;
-        swap_value = *(undefined8 *)(offset_diff + -8 + (longlong)old_start);
-        *(undefined8 *)(offset_diff + -8 + (longlong)old_start) = old_start[-1];  // 交换第一个字段
+        swap_value = *(uint64_t *)(offset_diff + -8 + (longlong)old_start);
+        *(uint64_t *)(offset_diff + -8 + (longlong)old_start) = old_start[-1];  // 交换第一个字段
         old_start[-1] = swap_value;
-        temp_data = *(undefined4 *)(offset_diff + (longlong)old_start);
-        *(undefined4 *)(offset_diff + (longlong)old_start) = *(undefined4 *)old_start;
-        *(undefined4 *)old_start = temp_data;
+        temp_data = *(int32_t *)(offset_diff + (longlong)old_start);
+        *(int32_t *)(offset_diff + (longlong)old_start) = *(int32_t *)old_start;
+        *(int32_t *)old_start = temp_data;
         new_position = new_position + 4;  // 移动到下一个块
         current_end = old_start + 1;
         old_start = old_start + 4;  // 移动到下一个块
@@ -1093,7 +1093,7 @@ void expand_and_manage_array_typeB(longlong *array_info, ulonglong required_spac
         old_end[-1] = 0;  // 初始化新块的各个字段
         *old_end = 0;
         old_end[1] = 0;
-        *(undefined4 *)(old_end + 2) = 3;  // 设置标志位
+        *(int32_t *)(old_end + 2) = 3;  // 设置标志位
         old_end = old_end + 4;  // 移动到下一个块
         remaining_space = remaining_space - 1;
       } while (remaining_space != 0);
@@ -1127,11 +1127,11 @@ void expand_and_manage_array_typeB(longlong *array_info, ulonglong required_spac
         *old_end = 0;  // 初始化新块的各个字段
         old_end[1] = 0;
         old_end[2] = 0;
-        *(undefined4 *)(old_end + 3) = 3;  // 设置标志位
+        *(int32_t *)(old_end + 3) = 3;  // 设置标志位
         old_end = old_end + 4;  // 移动到下一个块
         remaining_space = remaining_space - 1;
       } while (remaining_space != 0);
-      old_end = (undefined8 *)array_info[1];
+      old_end = (uint64_t *)array_info[1];
     }
     array_info[1] = (longlong)(old_end + required_space * 4);
   }

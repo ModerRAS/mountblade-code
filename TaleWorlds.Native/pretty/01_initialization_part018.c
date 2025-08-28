@@ -773,10 +773,10 @@ static void CleanupResourceManagerState(void* param_1)
 
 void FUN_18004caf0(longlong param_1) __attribute__((alias("InitializationSystem_ParameterCalculator")));
 void FUN_18004cc20(longlong *param_1) __attribute__((alias("InitializationSystem_ResourceCleaner")));
-void FUN_18004d020(undefined8 param_1, longlong param_2) __attribute__((alias("InitializationSystem_DataProcessor")));
+void FUN_18004d020(uint64_t param_1, longlong param_2) __attribute__((alias("InitializationSystem_DataProcessor")));
 void FUN_18004e5f0(longlong param_1) __attribute__((alias("InitializationSystem_StatusUpdater")));
-undefined4 FUN_18004e7a0(void) __attribute__((alias("InitializationSystem_ConfigManager")));
-void FUN_18004eb00(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4) __attribute__((alias("InitializationSystem_MemoryOptimizer")));
+int32_t FUN_18004e7a0(void) __attribute__((alias("InitializationSystem_ConfigManager")));
+void FUN_18004eb00(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4) __attribute__((alias("InitializationSystem_MemoryOptimizer")));
 void FUN_18004ef60(void) __attribute__((alias("InitializationSystem_PerformanceTuner")));
 void FUN_18004f8e0(longlong param_1) __attribute__((alias("InitializationSystem_ResourceReclaimer")));
 

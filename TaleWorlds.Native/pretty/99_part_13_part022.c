@@ -68,8 +68,8 @@
 
 // 基本类型别名
 typedef uint8_t undefined;           // 8位无符号整数
-typedef uint32_t undefined4;         // 32位无符号整数
-typedef uint64_t undefined8;         // 64位无符号整数
+typedef uint32_t int32_t;         // 32位无符号整数
+typedef uint64_t uint64_t;         // 64位无符号整数
 
 // 渲染系统常量定义
 #define MAX_RENDERING_QUEUE_SIZE    256         // 最大渲染队列大小
@@ -206,7 +206,7 @@ void rendering_system_cleanup_queue(longlong *queue_ptr);
 
 // 参数和时间管理函数
 void rendering_system_set_time_scale(float time_scale);
-void rendering_system_set_parameters(longlong render_context, undefined4 param_a, undefined4 param_b, char param_c);
+void rendering_system_set_parameters(longlong render_context, int32_t param_a, int32_t param_b, char param_c);
 
 // 矩阵处理函数
 uint64_t rendering_system_allocate_matrix(int64_t matrix_id, int64_t* matrix_data);
@@ -287,18 +287,18 @@ void rendering_system_initialize(void) {
     int parameter_type;
     longlong *command_ptr;
     int render_mode;
-    undefined4 param_a;
-    undefined4 param_b;
-    undefined4 param_c;
-    undefined4 param_d;
-    undefined4 param_e;
-    undefined4 param_f;
-    undefined4 param_g;
-    undefined4 param_h;
+    int32_t param_a;
+    int32_t param_b;
+    int32_t param_c;
+    int32_t param_d;
+    int32_t param_e;
+    int32_t param_f;
+    int32_t param_g;
+    int32_t param_h;
     char state_flag;
     longlong context_ptr;
     longlong result_value;
-    undefined8 render_context;
+    uint64_t render_context;
     longlong *next_command;
     longlong *base_context;
     longlong queue_base;
@@ -311,20 +311,20 @@ void rendering_system_initialize(void) {
     float render_time;
     float processed_value;
     float queue_time;
-    undefined4 queue_param_a;
-    undefined4 queue_param_b;
+    int32_t queue_param_a;
+    int32_t queue_param_b;
     int processing_mode;
-    undefined8 context_data;
+    uint64_t context_data;
     longlong queue_context;
     int render_parameter;
     float accumulated_time;
     float final_time;
     int matrix_index;
     ulonglong stack_ptr;
-    undefined4 stack_param_a;
-    undefined4 stack_param_b;
-    undefined4 stack_param_c;
-    undefined4 stack_param_d;
+    int32_t stack_param_a;
+    int32_t stack_param_b;
+    int32_t stack_param_c;
+    int32_t stack_param_d;
     
     render_mode = render_parameter;
     queue_ptr = (longlong *)(queue_base + 0x38);
@@ -418,7 +418,7 @@ void rendering_system_initialize(void) {
         calculated_value = *(float *)(&render_parameter + 0x12 + (longlong)base_context * 4);
         if (calculated_value != queue_time) {
             time_value = (float)rendering_system_calculate_interpolation(&render_parameter,
-                                                                         *(undefined4 *)(&render_parameter + 0x10 + (longlong)base_context * 4),
+                                                                         *(int32_t *)(&render_parameter + 0x10 + (longlong)base_context * 4),
                                                                          render_mode + 1);
             time_value = (time_value - scale_factor) * calculated_value;
             scale_factor = scale_factor + time_value;
@@ -485,18 +485,18 @@ void rendering_system_cleanup(void) {
     int parameter_type;
     longlong *command_ptr;
     int render_mode;
-    undefined4 param_a;
-    undefined4 param_b;
-    undefined4 param_c;
-    undefined4 param_d;
-    undefined4 param_e;
-    undefined4 param_f;
-    undefined4 param_g;
-    undefined4 param_h;
+    int32_t param_a;
+    int32_t param_b;
+    int32_t param_c;
+    int32_t param_d;
+    int32_t param_e;
+    int32_t param_f;
+    int32_t param_g;
+    int32_t param_h;
     char state_flag;
     longlong context_ptr;
     longlong result_value;
-    undefined8 render_context;
+    uint64_t render_context;
     longlong *next_command;
     longlong *base_context;
     longlong queue_base;
@@ -509,20 +509,20 @@ void rendering_system_cleanup(void) {
     float render_time;
     float processed_value;
     float queue_time;
-    undefined4 queue_param_a;
-    undefined4 queue_param_b;
+    int32_t queue_param_a;
+    int32_t queue_param_b;
     int processing_mode;
-    undefined8 context_data;
+    uint64_t context_data;
     longlong queue_context;
     int render_parameter;
     float accumulated_time;
     float final_time;
     int matrix_index;
     ulonglong stack_ptr;
-    undefined4 stack_param_a;
-    undefined4 stack_param_b;
-    undefined4 stack_param_c;
-    undefined4 stack_param_d;
+    int32_t stack_param_a;
+    int32_t stack_param_b;
+    int32_t stack_param_c;
+    int32_t stack_param_d;
     bool cleanup_flag;
     
     render_mode = render_parameter;
@@ -617,7 +617,7 @@ void rendering_system_cleanup(void) {
         calculated_value = *(float *)(&render_parameter + 0x12 + (longlong)base_context * 4);
         if (calculated_value != queue_time) {
             time_value = (float)rendering_system_calculate_interpolation(&render_parameter,
-                                                                         *(undefined4 *)(&render_parameter + 0x10 + (longlong)base_context * 4),
+                                                                         *(int32_t *)(&render_parameter + 0x10 + (longlong)base_context * 4),
                                                                          render_mode + 1);
             time_value = (time_value - scale_factor) * calculated_value;
             scale_factor = scale_factor + time_value;
@@ -699,7 +699,7 @@ void rendering_system_reset_state(void) {
     float render_time;
     float threshold_value;
     int processing_mode;
-    undefined8 context_data;
+    uint64_t context_data;
     longlong queue_base;
     float render_parameter;
     float accumulated_time;
@@ -760,7 +760,7 @@ void rendering_system_reset_state(void) {
         calculated_value = *(float *)(&render_parameter + 0x12 + (longlong)base_context * 4);
         if (calculated_value != queue_time) {
             time_value = (float)rendering_system_calculate_interpolation(&render_parameter,
-                                                                         *(undefined4 *)(&render_parameter + 0x10 + (longlong)base_context * 4),
+                                                                         *(int32_t *)(&render_parameter + 0x10 + (longlong)base_context * 4),
                                                                          parameter_type + 1);
             time_value = (time_value - scale_factor) * calculated_value;
             scale_factor = scale_factor + time_value;
@@ -850,7 +850,7 @@ void rendering_system_process_command(void* command_data, void* render_context) 
         calculated_value = *(float *)(&render_parameter + 0x12 + context_ptr * 4);
         if (calculated_value != queue_time) {
             scale_factor = (float)rendering_system_calculate_interpolation(&render_parameter,
-                                                                          *(undefined4 *)(&render_parameter + 0x10 + context_ptr * 4),
+                                                                          *(int32_t *)(&render_parameter + 0x10 + context_ptr * 4),
                                                                           parameter_type + 1);
             scale_factor = (scale_factor - time_value) * calculated_value;
             time_value = time_value + scale_factor;
@@ -934,7 +934,7 @@ void rendering_system_set_time_scale(float time_scale) {
         processed_value = *(float *)(&render_parameter + 0x12 + context_ptr * 4);
         if (processed_value != queue_time) {
             calculated_value = (float)rendering_system_calculate_interpolation(&render_parameter,
-                                                                               *(undefined4 *)(&render_parameter + 0x10 + context_ptr * 4),
+                                                                               *(int32_t *)(&render_parameter + 0x10 + context_ptr * 4),
                                                                                render_mode + 1);
             time_scale = (calculated_value - scale_factor) * processed_value;
             scale_factor = scale_factor + time_scale;
@@ -1057,12 +1057,12 @@ void rendering_system_update_queue(void) {
 void rendering_system_flush_commands(void) {
     char state_flag;
     longlong queue_base;
-    undefined4 queue_param;
+    int32_t queue_param;
     ulonglong stack_ptr;
     
     state_flag = rendering_system_check_state();
     if (state_flag != '\0') {
-        *(undefined4 *)(queue_base + 0x54) = queue_param;
+        *(int32_t *)(queue_base + 0x54) = queue_param;
         if ((*(uint *)(queue_base + 0x5c) >> 3 & 1) == 0) {
             func_0x0001808b20c0();
         }
@@ -1105,10 +1105,10 @@ void rendering_system_flush_commands(void) {
  */
 uint64_t rendering_system_allocate_matrix(int64_t matrix_id, int64_t* matrix_data) {
     longlong *queue_ptr;
-    undefined8 *context_ptr;
+    uint64_t *context_ptr;
     char allocation_flag;
     longlong *command_ptr;
-    undefined8 result_value;
+    uint64_t result_value;
     longlong *next_command;
     longlong *stack_ptr;
     
@@ -1132,13 +1132,13 @@ uint64_t rendering_system_allocate_matrix(int64_t matrix_id, int64_t* matrix_dat
             *stack_ptr = (longlong)stack_ptr;
             allocation_flag = func_0x0001808b22c0(matrix_id);
             if (allocation_flag == '\0') {
-                for (context_ptr = *(undefined8 **)(matrix_id + 0x20); context_ptr != (undefined8 *)(matrix_id + 0x20);
-                    context_ptr = (undefined8 *)*context_ptr) {
+                for (context_ptr = *(uint64_t **)(matrix_id + 0x20); context_ptr != (uint64_t *)(matrix_id + 0x20);
+                    context_ptr = (uint64_t *)*context_ptr) {
                     result_value = func_0x0001808b3060(context_ptr, 0);
                     if ((int)result_value != 0) {
                         return result_value;
                     }
-                    if (context_ptr == (undefined8 *)(matrix_id + 0x20)) {
+                    if (context_ptr == (uint64_t *)(matrix_id + 0x20)) {
                         return 0;
                     }
                 }
@@ -1160,13 +1160,13 @@ uint64_t rendering_system_allocate_matrix(int64_t matrix_id, int64_t* matrix_dat
                     *stack_ptr = (longlong)stack_ptr;
                     allocation_flag = func_0x0001808b22c0(matrix_id);
                     if (allocation_flag == '\0') {
-                        for (context_ptr = *(undefined8 **)(matrix_id + 0x20); context_ptr != (undefined8 *)(matrix_id + 0x20);
-                            context_ptr = (undefined8 *)*context_ptr) {
+                        for (context_ptr = *(uint64_t **)(matrix_id + 0x20); context_ptr != (uint64_t *)(matrix_id + 0x20);
+                            context_ptr = (uint64_t *)*context_ptr) {
                             result_value = func_0x0001808b3060(context_ptr, 0);
                             if ((int)result_value != 0) {
                                 return result_value;
                             }
-                            if (context_ptr == (undefined8 *)(matrix_id + 0x20)) {
+                            if (context_ptr == (uint64_t *)(matrix_id + 0x20)) {
                                 return 0;
                             }
                         }
@@ -1230,7 +1230,7 @@ uint64_t rendering_system_transform_matrix(int64_t matrix_id, int64_t transform_
     float *matrix_data;
     longlong matrix_offset;
     longlong *next_command;
-    undefined4 transform_result;
+    int32_t transform_result;
     float transform_stack[2];
     
     next_command = (longlong *)0x0;
@@ -1285,7 +1285,7 @@ uint64_t rendering_system_transform_matrix(int64_t matrix_id, int64_t transform_
                     return 0x1c;
                 }
                 *(float *)(result_value + transform_data) = transform_stack[0];
-                *(undefined4 *)((ulonglong)transform_param + transform_data) = *(undefined4 *)(transform_data + 0xc);
+                *(int32_t *)((ulonglong)transform_param + transform_data) = *(int32_t *)(transform_data + 0xc);
                 func_0x0001808b2d60(transform_data, transform_result);
                 *(int *)(transform_data + 0x28) = *(int *)(transform_data + 0x28) + -1;
             }
@@ -1517,8 +1517,8 @@ uint8_t rendering_system_check_state(longlong context, longlong parameter) {
  * @warning 参数设置可能会影响渲染行为
  * @see rendering_system_set_time_scale, rendering_system_calculate_interpolation
  */
-void rendering_system_set_parameters(longlong render_context, undefined4 param_a, undefined4 param_b, char param_c) {
-    undefined4 render_mode;
+void rendering_system_set_parameters(longlong render_context, int32_t param_a, int32_t param_b, char param_c) {
+    int32_t render_mode;
     
     render_mode = 5;
     if ((param_c != '\0') && (render_mode = 5, *(short *)(*(longlong *)(render_context + 0x20) + 0x4a) == 1)) {
@@ -1558,14 +1558,14 @@ void rendering_system_set_parameters(longlong render_context, undefined4 param_a
  * @see rendering_system_process_command, rendering_system_update_queue
  */
 void rendering_system_process_queue(longlong *queue_ptr) {
-    undefined8 *context_ptr;
+    uint64_t *context_ptr;
     longlong queue_data;
     int process_status;
-    undefined8 result_value;
+    uint64_t result_value;
     longlong process_data;
     
-    context_ptr = (undefined8 *)queue_ptr[1];
-    if ((((context_ptr != (undefined8 *)0x0) && (queue_data = *queue_ptr, queue_data != 0)) &&
+    context_ptr = (uint64_t *)queue_ptr[1];
+    if ((((context_ptr != (uint64_t *)0x0) && (queue_data = *queue_ptr, queue_data != 0)) &&
         ((context_ptr[0xb] == 0 ||
          (((*(uint *)(context_ptr + 0x11) >> 2 & 1) == 0 || (process_status = func_0x0001808b4e20(context_ptr), process_status == 0))))))
         && ((context_ptr[9] == 0 ||
@@ -1590,9 +1590,9 @@ void rendering_system_process_queue(longlong *queue_ptr) {
                 }
             }
             *(uint *)(context_ptr + 0x11) = *(uint *)(context_ptr + 0x11) | 0x80000000;
-            process_status = func_0x0001808b5780(*(undefined8 *)(queue_data + 8), context_ptr);
+            process_status = func_0x0001808b5780(*(uint64_t *)(queue_data + 8), context_ptr);
             if (process_status == 0) {
-                func_0x0001808bef30(*(undefined8 *)(queue_data + 0x10), context_ptr);
+                func_0x0001808bef30(*(uint64_t *)(queue_data + 0x10), context_ptr);
             }
         }
     }
@@ -1632,7 +1632,7 @@ void rendering_system_cleanup_queue(longlong *queue_ptr) {
     longlong queue_data;
     int process_status;
     longlong process_data;
-    undefined8 *context_ptr;
+    uint64_t *context_ptr;
     
     queue_data = *queue_ptr;
     if (queue_data != 0) {
@@ -1664,9 +1664,9 @@ void rendering_system_cleanup_queue(longlong *queue_ptr) {
                 }
             }
             *(uint *)(context_ptr + 0x11) = *(uint *)(context_ptr + 0x11) | 0x80000000;
-            process_status = func_0x0001808b5780(*(undefined8 *)(queue_data + 8));
+            process_status = func_0x0001808b5780(*(uint64_t *)(queue_data + 8));
             if (process_status == 0) {
-                func_0x0001808bef30(*(undefined8 *)(queue_data + 0x10));
+                func_0x0001808bef30(*(uint64_t *)(queue_data + 0x10));
             }
         }
     }

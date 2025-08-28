@@ -71,7 +71,7 @@
  * - 防止数组越界访问
  * - 处理浮点数精度问题
  */
-void CoordinateSpaceCalculator(longlong *param_1, float *param_2, float *param_3, undefined4 param_4)
+void CoordinateSpaceCalculator(longlong *param_1, float *param_2, float *param_3, int32_t param_4)
 {
     // 变量声明和初始化
     longlong lVar1;              // 通用长整型变量
@@ -81,9 +81,9 @@ void CoordinateSpaceCalculator(longlong *param_1, float *param_2, float *param_3
     int iVar5;                   // Y坐标索引变量
     ulonglong uVar6;             // 无符号长整型变量
     int iVar7;                   // X坐标索引变量
-    undefined4 *puVar8;          // 4字节指针变量
-    undefined4 *puVar9;          // 4字节指针变量
-    undefined4 *puVar10;         // 4字节指针变量
+    int32_t *puVar8;          // 4字节指针变量
+    int32_t *puVar9;          // 4字节指针变量
+    int32_t *puVar10;         // 4字节指针变量
     int iVar11;                  // 第一个坐标点的X索引
     int iVar12;                  // 第一个坐标点的Y索引
     
@@ -162,17 +162,17 @@ void CoordinateSpaceCalculator(longlong *param_1, float *param_2, float *param_3
             FUN_1801bb0b0(lVar1 + 8, (longlong)*(int *)(*param_1 + lVar4 * 0x28));
             
             // 获取当前点的数据指针
-            puVar9 = *(undefined4 **)(lVar1 + 0x10);
+            puVar9 = *(int32_t **)(lVar1 + 0x10);
             
             // 检查是否有足够的缓冲区空间
-            if (puVar9 < *(undefined4 **)(lVar1 + 0x18)) {
+            if (puVar9 < *(int32_t **)(lVar1 + 0x18)) {
                 // 有足够空间，直接写入数据
-                *(undefined4 **)(lVar1 + 0x10) = puVar9 + 1;  // 移动指针
+                *(int32_t **)(lVar1 + 0x10) = puVar9 + 1;  // 移动指针
                 *puVar9 = param_4;                               // 存储数据
             }
             else {
                 // 缓冲区空间不足，需要重新分配
-                puVar8 = *(undefined4 **)(lVar1 + 0x8);         // 获取缓冲区起始地址
+                puVar8 = *(int32_t **)(lVar1 + 0x8);         // 获取缓冲区起始地址
                 
                 // 计算当前缓冲区使用量
                 lVar4 = (longlong)puVar9 - (longlong)puVar8 >> 2;  // 转换为元素数量
@@ -186,20 +186,20 @@ LAB_1801b9874:
                     
                     // 计算新的内存分配大小（16字节对齐）
                     uVar6 = (longlong)((int)plVar3[2] + 0xf) & 0xfffffffffffffff0;
-                    puVar10 = (undefined4 *)(*plVar3 + uVar6);
+                    puVar10 = (int32_t *)(*plVar3 + uVar6);
                     
                     // 更新内存管理器中的分配大小
                     *(int *)(plVar3 + 2) = (int)uVar6 + (int)lVar4 * 4;
                     
                     // 重新获取指针（可能在重新分配后发生变化）
-                    puVar9 = *(undefined4 **)(lVar1 + 0x10);
-                    puVar8 = *(undefined4 **)(lVar1 + 8);
+                    puVar9 = *(int32_t **)(lVar1 + 0x10);
+                    puVar8 = *(int32_t **)(lVar1 + 8);
                 }
                 else {
                     // 扩展缓冲区大小（倍增策略）
                     lVar4 = lVar4 * 2;
                     if (lVar4 != 0) goto LAB_1801b9874;  // 继续分配流程
-                    puVar10 = (undefined4 *)0x0;         // 分配失败
+                    puVar10 = (int32_t *)0x0;         // 分配失败
                 }
                 
                 // 如果原有数据存在，需要复制到新缓冲区
@@ -212,9 +212,9 @@ LAB_1801b9874:
                 *puVar10 = param_4;
                 
                 // 更新缓冲区指针
-                *(undefined4 **)(lVar1 + 0x10) = puVar10 + 1;  // 写入指针
-                *(undefined4 **)(lVar1 + 0x18) = puVar10 + lVar4;  // 缓冲区结束指针
-                *(undefined4 **)(lVar1 + 8) = puVar10;           // 缓冲区起始指针
+                *(int32_t **)(lVar1 + 0x10) = puVar10 + 1;  // 写入指针
+                *(int32_t **)(lVar1 + 0x18) = puVar10 + lVar4;  // 缓冲区结束指针
+                *(int32_t **)(lVar1 + 8) = puVar10;           // 缓冲区起始指针
             }
         }
         

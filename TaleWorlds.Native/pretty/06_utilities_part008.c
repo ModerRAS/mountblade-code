@@ -71,15 +71,15 @@
 // ============================================================================
 
 typedef longlong UtilitiesHandle;                    // 工具系统句柄
-typedef undefined1 *UtilitiesDataPtr;                 // 工具数据指针
+typedef int8_t *UtilitiesDataPtr;                 // 工具数据指针
 typedef int *UtilitiesIntPtr;                        // 整数指针
-typedef undefined8 UtilitiesUInt64;                  // 64位无符号整数
+typedef uint64_t UtilitiesUInt64;                  // 64位无符号整数
 typedef uint *UtilitiesUIntPtr;                      // 无符号整数指针
 typedef float *UtilitiesFloatPtr;                     // 浮点数指针
-typedef undefined8 *UtilitiesVoidPtr;                // 空指针
+typedef uint64_t *UtilitiesVoidPtr;                // 空指针
 typedef longlong *UtilitiesLongPtr;                  // 长整数指针
 typedef byte *UtilitiesBytePtr;                      // 字节指针
-typedef undefined4 *UtilitiesUInt32Ptr;             // 32位无符号整数指针
+typedef int32_t *UtilitiesUInt32Ptr;             // 32位无符号整数指针
 typedef char *UtilitiesCharPtr;                      // 字符指针
 typedef bool *UtilitiesBoolPtr;                      // 布尔指针
 typedef double *UtilitiesDoublePtr;                  // 双精度指针
@@ -250,7 +250,7 @@ void UtilitiesProcessData(UtilitiesHandle systemHandle, UtilitiesDataPtr dataPtr
     longlong calculatedValue;           // 计算值
     char operationType;                 // 操作类型
     int currentIndex;                   // 当前索引
-    undefined8 callbackResult;          // 回调结果
+    uint64_t callbackResult;          // 回调结果
     longlong referenceValue;            // 引用值
     longlong adjustedValue;             // 调整值
     int limitIndex;                     // 限制索引
@@ -259,13 +259,13 @@ void UtilitiesProcessData(UtilitiesHandle systemHandle, UtilitiesDataPtr dataPtr
     float secondaryFloat;               // 次要浮点数
     
     // 栈变量声明
-    undefined1 stackBuffer_738 [68];    // 栈缓冲区738
-    undefined4 stackValue_6f4;          // 栈值6f4
+    int8_t stackBuffer_738 [68];    // 栈缓冲区738
+    int32_t stackValue_6f4;          // 栈值6f4
     int *resultCounter;                 // 结果计数器
     longlong dataTableAddress;          // 数据表地址
     longlong indexOffset;               // 索引偏移
     longlong arrayData_6b0 [13];        // 数组数据6b0
-    undefined1 dataBuffer_648 [1536];    // 数据缓冲区648
+    int8_t dataBuffer_648 [1536];    // 数据缓冲区648
     ulonglong stackGuard;               // 栈保护值
     
     // 初始化栈保护
@@ -300,8 +300,8 @@ void UtilitiesProcessData(UtilitiesHandle systemHandle, UtilitiesDataPtr dataPtr
             if (limitIndex != -1) {
                 secondaryFloat = *(float *)(systemHandle + UTILITIES_FLOAT_OFFSET);
                 limitIndex = -1;
-                *(undefined4 *)(systemHandle + UTILITIES_PARAM_OFFSET) = 0xffffffff;
-                *(undefined4 *)(systemHandle + UTILITIES_FLOAT_OFFSET) = 0xbf800000;
+                *(int32_t *)(systemHandle + UTILITIES_PARAM_OFFSET) = 0xffffffff;
+                *(int32_t *)(systemHandle + UTILITIES_FLOAT_OFFSET) = 0xbf800000;
             }
             
             // 保存浮点数值
@@ -336,8 +336,8 @@ void UtilitiesProcessData(UtilitiesHandle systemHandle, UtilitiesDataPtr dataPtr
             if (*(longlong *)(systemHandle + UTILITIES_CALLBACK_OFFSET) != 0) {
                 callbackResult = FUN_180895ef0(systemHandle);
                 currentIndex = (**(code **)(systemHandle + UTILITIES_CALLBACK_OFFSET))
-                                (callbackResult, currentIndex, *(undefined4 *)(dataPointer + 0x18), 
-                                 *(undefined8 *)(systemHandle + UTILITIES_EXTRA_OFFSET));
+                                (callbackResult, currentIndex, *(int32_t *)(dataPointer + 0x18), 
+                                 *(uint64_t *)(systemHandle + UTILITIES_EXTRA_OFFSET));
                 if (currentIndex != 0) goto cleanup_stack;
             }
             
@@ -357,7 +357,7 @@ void UtilitiesProcessData(UtilitiesHandle systemHandle, UtilitiesDataPtr dataPtr
             // 处理其他操作类型
             if (operationType == '\x06') {
                 // 处理类型6操作
-                operationType = func_0x000180881f80(*(undefined8 *)(systemHandle + 0x58));
+                operationType = func_0x000180881f80(*(uint64_t *)(systemHandle + 0x58));
                 if (operationType == '\0') {
                     memcpy(dataBuffer_648, dataPointer, (longlong)*(int *)(dataPointer + 8));
                 }
@@ -367,7 +367,7 @@ void UtilitiesProcessData(UtilitiesHandle systemHandle, UtilitiesDataPtr dataPtr
             
             if (operationType == '\a') {
                 // 处理类型7操作
-                operationType = func_0x000180881f80(*(undefined8 *)(systemHandle + 0x58));
+                operationType = func_0x000180881f80(*(uint64_t *)(systemHandle + 0x58));
                 if (operationType == '\0') {
                     if (*(int *)(*(longlong *)(*(longlong *)(*(longlong *)(systemHandle + 0x58) + 0x90) + 0x790) + 0x1c8) != 0) {
                         *dataPtr = 0;
@@ -381,7 +381,7 @@ void UtilitiesProcessData(UtilitiesHandle systemHandle, UtilitiesDataPtr dataPtr
                 if ((operationType != '\x02') || ((*(byte *)(systemHandle + UTILITIES_STATE_OFFSET) & UTILITIES_FLAG_VALID) != 0)) {
                     memcpy(dataBuffer_648, dataPointer, (longlong)*(int *)(dataPointer + 8));
                 }
-                stackValue_6f4 = *(undefined4 *)(dataPointer + 0x20);
+                stackValue_6f4 = *(int32_t *)(dataPointer + 0x20);
                 currentIndex = FUN_180895c60(systemHandle, currentIndex, &stackValue_6f4);
                 if (currentIndex != 0) goto cleanup_stack;
                 currentIndex = func_0x00018088c530(stackValue_6f4, arrayData_6b0);
@@ -417,7 +417,7 @@ cleanup_stack:
  * 
  * 功能说明：处理索引数据访问，执行浮点数计算，管理状态标志
  */
-void FUN_1808953bf(longlong param_1, undefined8 param_2, int *param_3);
+void FUN_1808953bf(longlong param_1, uint64_t param_2, int *param_3);
 
 /**
  * @brief 工具系统栈清理函数
@@ -436,7 +436,7 @@ void FUN_180895b89(void);
  * 
  * 功能说明：查找下一个匹配的数据，执行回调函数，验证数据匹配
  */
-void FUN_180895bb0(longlong param_1, int param_2, undefined8 *param_3);
+void FUN_180895bb0(longlong param_1, int param_2, uint64_t *param_3);
 
 /**
  * @brief 工具系统验证和处理器
@@ -447,7 +447,7 @@ void FUN_180895bb0(longlong param_1, int param_2, undefined8 *param_3);
  * 
  * 功能说明：验证参数有效性，执行哈希表查找，处理回调函数
  */
-undefined8 FUN_180895c60(longlong param_1, int param_2, uint *param_3);
+uint64_t FUN_180895c60(longlong param_1, int param_2, uint *param_3);
 
 /**
  * @brief 工具系统索引条目处理器
@@ -459,7 +459,7 @@ undefined8 FUN_180895c60(longlong param_1, int param_2, uint *param_3);
  * 
  * 功能说明：处理索引条目，执行哈希查找，处理回调操作
  */
-undefined8 FUN_180895c8b(longlong param_1, undefined8 param_2, longlong param_3, uint param_4);
+uint64_t FUN_180895c8b(longlong param_1, uint64_t param_2, longlong param_3, uint param_4);
 
 /**
  * @brief 工具系统直接条目处理器
@@ -470,7 +470,7 @@ undefined8 FUN_180895c8b(longlong param_1, undefined8 param_2, longlong param_3,
  * 
  * 功能说明：处理直接条目访问，执行回调函数
  */
-undefined8 FUN_180895cf1(longlong param_1, undefined8 param_2, longlong param_3);
+uint64_t FUN_180895cf1(longlong param_1, uint64_t param_2, longlong param_3);
 
 /**
  * @brief 工具系统默认错误获取器
@@ -478,7 +478,7 @@ undefined8 FUN_180895cf1(longlong param_1, undefined8 param_2, longlong param_3)
  * 
  * 功能说明：返回默认错误代码
  */
-undefined8 FUN_180895d16(void);
+uint64_t FUN_180895d16(void);
 
 /**
  * @brief 工具系统哈希条目插入器
@@ -489,7 +489,7 @@ undefined8 FUN_180895d16(void);
  * 
  * 功能说明：验证表状态，查找现有条目，插入新条目，处理表扩容
  */
-undefined8 FUN_180895d30(longlong *param_1, uint *param_2, undefined8 *param_3);
+uint64_t FUN_180895d30(longlong *param_1, uint *param_2, uint64_t *param_3);
 
 /**
  * @brief 工具系统哈希条目更新器
@@ -500,7 +500,7 @@ undefined8 FUN_180895d30(longlong *param_1, uint *param_2, undefined8 *param_3);
  * 
  * 功能说明：更新哈希条目，处理索引管理
  */
-undefined8 FUN_180895d62(undefined8 param_1, int param_2);
+uint64_t FUN_180895d62(uint64_t param_1, int param_2);
 
 /**
  * @brief 工具系统链表条目添加器
@@ -510,7 +510,7 @@ undefined8 FUN_180895d62(undefined8 param_1, int param_2);
  * 
  * 功能说明：添加链表条目，处理内存分配
  */
-undefined8 FUN_180895d9c(undefined8 param_1, undefined4 param_2);
+uint64_t FUN_180895d9c(uint64_t param_1, int32_t param_2);
 
 /**
  * @brief 工具系统直接数据更新器
@@ -521,7 +521,7 @@ undefined8 FUN_180895d9c(undefined8 param_1, undefined4 param_2);
  * 
  * 功能说明：直接更新数据，处理指针操作
  */
-undefined8 FUN_180895e00(longlong param_1, undefined8 param_2, longlong param_3);
+uint64_t FUN_180895e00(longlong param_1, uint64_t param_2, longlong param_3);
 
 /**
  * @brief 工具系统分配和插入器
@@ -534,7 +534,7 @@ undefined8 FUN_180895e00(longlong param_1, undefined8 param_2, longlong param_3)
  * 
  * 功能说明：分配内存并插入数据，处理容量管理
  */
-undefined8 FUN_180895e19(int param_1, int param_2, undefined8 param_3, undefined8 param_4, undefined8 param_5);
+uint64_t FUN_180895e19(int param_1, int param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5);
 
 // ============================================================================
 // 内部辅助函数声明
@@ -544,14 +544,14 @@ undefined8 FUN_180895e19(int param_1, int param_2, undefined8 param_3, undefined
  * @brief 内部验证函数
  * @return 验证结果
  */
-undefined8 FUN_180895210(void);
+uint64_t FUN_180895210(void);
 
 /**
  * @brief 内部回调函数
  * @param param1 参数1
  * @return 回调结果
  */
-undefined8 FUN_180895ef0(longlong param_1);
+uint64_t FUN_180895ef0(longlong param_1);
 
 /**
  * @brief 内存分配函数
@@ -559,13 +559,13 @@ undefined8 FUN_180895ef0(longlong param_1);
  * @param param2 参数2
  * @return 分配结果
  */
-undefined8 FUN_1807d3f50(longlong param_1, int param_2);
+uint64_t FUN_1807d3f50(longlong param_1, int param_2);
 
 /**
  * @brief 栈清理函数
  * @param param1 参数1
  */
-void FUN_1808fc050(undefined8 param_1);
+void FUN_1808fc050(uint64_t param_1);
 
 // ============================================================================
 // 模块总结

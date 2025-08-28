@@ -103,11 +103,11 @@ extern void func_0x000180668820(longlong param_1);
 extern void func_0x0001806689f0(longlong param_1, longlong param_2);
 extern void FUN_1808fd400(uint param_1);
 extern void FUN_1808fd200(void);
-extern void FUN_180669700(longlong param_1, void* param_2, undefined8 param_3, int param_4, undefined8 param_5);
-extern void FUN_1808fc050(undefined8 param_1);
-extern undefined8 FUN_180660070(longlong param_1, uint param_2);
-extern undefined8 FUN_18065ffa0(longlong param_1, uint param_2);
-extern undefined8 FUN_18065cec0(longlong param_1, int param_2);
+extern void FUN_180669700(longlong param_1, void* param_2, uint64_t param_3, int param_4, uint64_t param_5);
+extern void FUN_1808fc050(uint64_t param_1);
+extern uint64_t FUN_180660070(longlong param_1, uint param_2);
+extern uint64_t FUN_18065ffa0(longlong param_1, uint param_2);
+extern uint64_t FUN_18065cec0(longlong param_1, int param_2);
 
 /**
  * UI系统数据初始化器 - 初始化UI系统数据结构
@@ -325,23 +325,23 @@ void ui_system_state_initializer(longlong param_1)
     // 简化实现：状态初始化器
     // 原实现包含复杂的状态初始化和内存配置逻辑
     
-    undefined8* state_ptr = (undefined8 *)(param_1 + 0x1398);
+    uint64_t* state_ptr = (uint64_t *)(param_1 + 0x1398);
     longlong block_count = 4;
     
     do {
         // 初始化主块
-        *(undefined4 *)(state_ptr + -0x266) = UI_INITIALIZATION_VALUE;
-        undefined8* sub_block_ptr = state_ptr + -0x264;
-        *(undefined4 *)((longlong)state_ptr + -0x132c) = UI_FLOAT_DEFAULT;
+        *(int32_t *)(state_ptr + -0x266) = UI_INITIALIZATION_VALUE;
+        uint64_t* sub_block_ptr = state_ptr + -0x264;
+        *(int32_t *)((longlong)state_ptr + -0x132c) = UI_FLOAT_DEFAULT;
         longlong iteration_count = UI_ITERATION_SIZE;
         state_ptr[-0x265] = UI_FLOAT_DEFAULT;
         state_ptr[-0x1b] = 0;
         
         do {
             // 初始化子块
-            *(undefined4 *)(sub_block_ptr + 0x20) = UI_INITIALIZATION_VALUE;
+            *(int32_t *)(sub_block_ptr + 0x20) = UI_INITIALIZATION_VALUE;
             longlong sub_iteration = UI_ARRAY_SIZE;
-            undefined8* data_ptr = sub_block_ptr;
+            uint64_t* data_ptr = sub_block_ptr;
             
             do {
                 // 初始化数据块
@@ -357,63 +357,63 @@ void ui_system_state_initializer(longlong param_1)
                 data_ptr = data_ptr + 8;
             } while (sub_iteration != 0);
             
-            sub_block_ptr = (undefined8 *)((longlong)sub_block_ptr + 0x104);
+            sub_block_ptr = (uint64_t *)((longlong)sub_block_ptr + 0x104);
             iteration_count = iteration_count - 1;
         } while (iteration_count != 0);
         
         // 设置特殊标志和值
         state_ptr[-0x1a] = 0;
         state_ptr[-0x19] = 0;
-        *(undefined4 *)(state_ptr + -0x17) = UI_MAGIC_NUMBER;
-        *(undefined4 *)((longlong)state_ptr + -0xb4) = UI_MAGIC_NUMBER;
-        *(undefined4 *)(state_ptr + -0x16) = UI_MAGIC_NUMBER;
-        *(undefined4 *)((longlong)state_ptr + -0xac) = UI_FLOAT_MAX;
+        *(int32_t *)(state_ptr + -0x17) = UI_MAGIC_NUMBER;
+        *(int32_t *)((longlong)state_ptr + -0xb4) = UI_MAGIC_NUMBER;
+        *(int32_t *)(state_ptr + -0x16) = UI_MAGIC_NUMBER;
+        *(int32_t *)((longlong)state_ptr + -0xac) = UI_FLOAT_MAX;
         state_ptr[-0x18] = UI_MAGIC_NUMBER | ((longlong)UI_MAGIC_NUMBER << 32);
-        *(undefined4 *)(state_ptr + -0x15) = UI_MAGIC_NUMBER;
-        *(undefined4 *)((longlong)state_ptr + -0xa4) = UI_MAGIC_NUMBER;
-        *(undefined4 *)(state_ptr + -0x14) = UI_MAGIC_NUMBER;
-        *(undefined4 *)((longlong)state_ptr + -0x9c) = UI_FLOAT_MAX;
-        *(undefined2 *)(state_ptr + -0x13) = 0;
-        *(undefined8 *)((longlong)state_ptr + -0x94) = 0;
-        *(undefined8 *)((longlong)state_ptr + -0x8c) = 0;
-        *(undefined8 *)((longlong)state_ptr + -0x84) = 0;
-        *(undefined8 *)((longlong)state_ptr + -0x7c) = 0;
-        *(undefined4 *)((longlong)state_ptr + -0x74) = 0;
-        *(undefined1 *)(state_ptr + -0xe) = 0;
-        *(undefined8 *)((longlong)state_ptr + -0x6c) = 0;
-        *(undefined8 *)((longlong)state_ptr + -100) = 0;
-        *(undefined4 *)((longlong)state_ptr + -0x54) = UI_MAGIC_NUMBER;
-        *(undefined4 *)(state_ptr + -10) = UI_MAGIC_NUMBER;
-        *(undefined4 *)((longlong)state_ptr + -0x4c) = UI_MAGIC_NUMBER;
-        *(undefined4 *)(state_ptr + -9) = UI_FLOAT_MAX;
-        *(undefined8 *)((longlong)state_ptr + -0x5c) = UI_MAGIC_NUMBER | ((longlong)UI_MAGIC_NUMBER << 32);
-        *(undefined4 *)((longlong)state_ptr + -0x44) = UI_MAGIC_NUMBER;
-        *(undefined4 *)(state_ptr + -8) = UI_MAGIC_NUMBER;
-        *(undefined4 *)((longlong)state_ptr + -0x3c) = UI_MAGIC_NUMBER;
-        *(undefined4 *)(state_ptr + -7) = UI_FLOAT_MAX;
-        *(undefined2 *)((longlong)state_ptr + -0x34) = 0;
+        *(int32_t *)(state_ptr + -0x15) = UI_MAGIC_NUMBER;
+        *(int32_t *)((longlong)state_ptr + -0xa4) = UI_MAGIC_NUMBER;
+        *(int32_t *)(state_ptr + -0x14) = UI_MAGIC_NUMBER;
+        *(int32_t *)((longlong)state_ptr + -0x9c) = UI_FLOAT_MAX;
+        *(int16_t *)(state_ptr + -0x13) = 0;
+        *(uint64_t *)((longlong)state_ptr + -0x94) = 0;
+        *(uint64_t *)((longlong)state_ptr + -0x8c) = 0;
+        *(uint64_t *)((longlong)state_ptr + -0x84) = 0;
+        *(uint64_t *)((longlong)state_ptr + -0x7c) = 0;
+        *(int32_t *)((longlong)state_ptr + -0x74) = 0;
+        *(int8_t *)(state_ptr + -0xe) = 0;
+        *(uint64_t *)((longlong)state_ptr + -0x6c) = 0;
+        *(uint64_t *)((longlong)state_ptr + -100) = 0;
+        *(int32_t *)((longlong)state_ptr + -0x54) = UI_MAGIC_NUMBER;
+        *(int32_t *)(state_ptr + -10) = UI_MAGIC_NUMBER;
+        *(int32_t *)((longlong)state_ptr + -0x4c) = UI_MAGIC_NUMBER;
+        *(int32_t *)(state_ptr + -9) = UI_FLOAT_MAX;
+        *(uint64_t *)((longlong)state_ptr + -0x5c) = UI_MAGIC_NUMBER | ((longlong)UI_MAGIC_NUMBER << 32);
+        *(int32_t *)((longlong)state_ptr + -0x44) = UI_MAGIC_NUMBER;
+        *(int32_t *)(state_ptr + -8) = UI_MAGIC_NUMBER;
+        *(int32_t *)((longlong)state_ptr + -0x3c) = UI_MAGIC_NUMBER;
+        *(int32_t *)(state_ptr + -7) = UI_FLOAT_MAX;
+        *(int16_t *)((longlong)state_ptr + -0x34) = 0;
         state_ptr[-6] = 0;
         state_ptr[-5] = 0;
         state_ptr[-4] = 0;
         state_ptr[-3] = 0;
-        *(undefined4 *)(state_ptr + -2) = 0;
-        *(undefined1 *)((longlong)state_ptr + -0xc) = 0;
+        *(int32_t *)(state_ptr + -2) = 0;
+        *(int8_t *)((longlong)state_ptr + -0xc) = 0;
         state_ptr[-1] = 0;
         *state_ptr = 0;
-        *(undefined4 *)(state_ptr + 1) = 0;
-        *(undefined4 *)((longlong)state_ptr + 0xc) = UI_STATUS_FLAG;
+        *(int32_t *)(state_ptr + 1) = 0;
+        *(int32_t *)((longlong)state_ptr + 0xc) = UI_STATUS_FLAG;
         state_ptr[2] = 0;
         state_ptr[3] = 0;
-        *(undefined4 *)(state_ptr + 4) = 0;
-        *(undefined4 *)((longlong)state_ptr + 0x24) = UI_STATUS_FLAG;
+        *(int32_t *)(state_ptr + 4) = 0;
+        *(int32_t *)((longlong)state_ptr + 0x24) = UI_STATUS_FLAG;
         state_ptr = state_ptr + UI_STACK_OFFSET;
         block_count = block_count - 1;
     } while (block_count != 0);
     
     // 最终初始化
     func_0x000180668820(param_1 + 0x4dc8);
-    *(undefined4 *)(param_1 + 0x60) = 0;
-    *(undefined8 *)(param_1 + 0x6120) = 0;
+    *(int32_t *)(param_1 + 0x60) = 0;
+    *(uint64_t *)(param_1 + 0x6120) = 0;
 }
 
 /**
@@ -501,7 +501,7 @@ void ui_system_render_processor(longlong param_1)
                     
                     // 调用渲染函数
                     FUN_180669700(current_ptr + -0x1298, 0, 0, data_index, 0);
-                    FUN_1808fd400(*(undefined4 *)(param_1 + 0x20));
+                    FUN_1808fd400(*(int32_t *)(param_1 + 0x20));
                 }
             }
             data_index = data_index + 1;
@@ -513,7 +513,7 @@ void ui_system_render_processor(longlong param_1)
         
         // 检查完成状态
         if (*(int *)(param_1 + 0x60) <= 1) { // 简化的检查条件
-            *(undefined4 *)(param_1 + 0x58) = 0; // 简化的赋值
+            *(int32_t *)(param_1 + 0x58) = 0; // 简化的赋值
             return;
         }
     } while (true);
@@ -526,13 +526,13 @@ void ui_system_render_processor(longlong param_1)
  * @param param_1 参数1 - 参数值
  * @return void
  */
-void ui_system_parameter_setter(undefined4 param_1)
+void ui_system_parameter_setter(int32_t param_1)
 {
     // 简化实现：参数设置器
     // 原实现包含参数设置和状态更新逻辑
     
     longlong context = 0; // 简化的上下文
-    *(undefined4 *)(context + 0x58) = param_1;
+    *(int32_t *)(context + 0x58) = param_1;
 }
 
 /**
@@ -582,7 +582,7 @@ void ui_system_data_optimizer(longlong param_1)
         *(int *)(param_1 + 0x60) = optimized_count;
         return;
     }
-    *(undefined4 *)(param_1 + 0x60) = 0;
+    *(int32_t *)(param_1 + 0x60) = 0;
 }
 
 /**
@@ -630,8 +630,8 @@ void ui_system_state_updater(longlong param_1)
     // 简化实现：状态更新器
     // 原实现包含状态更新和信息管理逻辑
     
-    undefined4 state_value = 0; // 简化的状态值
-    *(undefined4 *)(param_1 + 0x60) = state_value;
+    int32_t state_value = 0; // 简化的状态值
+    *(int32_t *)(param_1 + 0x60) = state_value;
 }
 
 /**
@@ -649,9 +649,9 @@ void ui_system_resource_manager(longlong param_1)
     longlong* resource_ptr;
     ulonglong resource_index;
     uint resource_id;
-    undefined4 resource_value;
-    undefined1 security_stack[32];
-    undefined* resource_array[10];
+    int32_t resource_value;
+    int8_t security_stack[32];
+    void* resource_array[10];
     ulonglong security_hash;
     ulonglong temp_var;
     
@@ -659,32 +659,32 @@ void ui_system_resource_manager(longlong param_1)
     security_hash = _DAT_180bf00a8 ^ (ulonglong)security_stack;
     
     // 资源数组初始化
-    resource_array[0] = (undefined*)&UNK_180a34d04;
-    resource_array[1] = (undefined*)&UNK_180a34d10;
-    resource_array[2] = (undefined*)&UNK_180a34d60;
-    resource_array[3] = (undefined*)&UNK_180a34b7c;
-    resource_array[4] = (undefined*)&UNK_180a34d50;
-    resource_array[5] = (undefined*)&UNK_180a34bc8;
-    resource_array[6] = (undefined*)&UNK_180a34d80;
-    resource_array[7] = (undefined*)&UNK_180a34d70;
-    resource_array[8] = (undefined*)&UNK_180a34d20;
-    resource_array[9] = (undefined*)&UNK_180a34d18;
+    resource_array[0] = (void*)&UNK_180a34d04;
+    resource_array[1] = (void*)&UNK_180a34d10;
+    resource_array[2] = (void*)&UNK_180a34d60;
+    resource_array[3] = (void*)&UNK_180a34b7c;
+    resource_array[4] = (void*)&UNK_180a34d50;
+    resource_array[5] = (void*)&UNK_180a34bc8;
+    resource_array[6] = (void*)&UNK_180a34d80;
+    resource_array[7] = (void*)&UNK_180a34d70;
+    resource_array[8] = (void*)&UNK_180a34d20;
+    resource_array[9] = (void*)&UNK_180a34d18;
     
     // 资源分配
     resource_ptr = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00, &UNK_180a3e4a0);
-    resource_ptr = (longlong *)(**(code **)(*resource_ptr + 0x28))(resource_ptr, *(undefined4 *)(param_1 + 0x38));
+    resource_ptr = (longlong *)(**(code **)(*resource_ptr + 0x28))(resource_ptr, *(int32_t *)(param_1 + 0x38));
     (**(code **)(*resource_ptr + 0x70))(resource_ptr, &DAT_180a0fd38);
     
     resource_ptr = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00, &UNK_180a3e4b8);
-    resource_ptr = (longlong *)(**(code **)(*resource_ptr + 0x28))(resource_ptr, *(undefined4 *)(param_1 + 0x3c));
+    resource_ptr = (longlong *)(**(code **)(*resource_ptr + 0x28))(resource_ptr, *(int32_t *)(param_1 + 0x3c));
     (**(code **)(*resource_ptr + 0x70))(resource_ptr, &DAT_180a0fd38);
     
     resource_ptr = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00, &UNK_180a3e500);
-    resource_ptr = (longlong *)(**(code **)(*resource_ptr + 0x28))(resource_ptr, *(undefined4 *)(param_1 + 0x40));
+    resource_ptr = (longlong *)(**(code **)(*resource_ptr + 0x28))(resource_ptr, *(int32_t *)(param_1 + 0x40));
     (**(code **)(*resource_ptr + 0x70))(resource_ptr, &DAT_180a0fd38);
     
     resource_ptr = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00, &UNK_180a3e510);
-    resource_ptr = (longlong *)(**(code **)(*resource_ptr + 0x28))(resource_ptr, *(undefined4 *)(param_1 + 0x44));
+    resource_ptr = (longlong *)(**(code **)(*resource_ptr + 0x28))(resource_ptr, *(int32_t *)(param_1 + 0x44));
     (**(code **)(*resource_ptr + 0x70))(resource_ptr, &DAT_180a0fd38);
     
     // 批量资源处理
@@ -693,7 +693,7 @@ void ui_system_resource_manager(longlong param_1)
     if (0 < *(int *)(param_1 + 0x60)) {
         do {
             resource_ptr = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00, &UNK_180a3e4d8);
-            resource_ptr = (longlong *)(**(code **)(*resource_ptr + 0x28))(resource_ptr, *(undefined4 *)(param_1 + 4));
+            resource_ptr = (longlong *)(**(code **)(*resource_ptr + 0x28))(resource_ptr, *(int32_t *)(param_1 + 4));
             (**(code **)(*resource_ptr + 0x70))(resource_ptr, &DAT_180a0fd38);
             resource_id = (int)temp_var + 1;
             temp_var = (ulonglong)resource_id;
@@ -708,23 +708,23 @@ void ui_system_resource_manager(longlong param_1)
             resource_ptr = (longlong *)(**(code **)(*resource_ptr + 0x70))(resource_ptr, &UNK_180a3e4c8);
             
             if (resource_index == 0) {
-                resource_value = *(undefined4 *)(param_1 + 0x3c);
+                resource_value = *(int32_t *)(param_1 + 0x3c);
             }
             else if ((longlong)resource_index < 9) {
                 if (resource_index - 7 < 2) {
-                    resource_value = *(undefined4 *)(param_1 + 0x44);
+                    resource_value = *(int32_t *)(param_1 + 0x44);
                 }
                 else {
-                    resource_value = *(undefined4 *)(param_1 + 0x38);
+                    resource_value = *(int32_t *)(param_1 + 0x38);
                 }
             }
             else {
-                resource_value = *(undefined4 *)(param_1 + 0x40);
+                resource_value = *(int32_t *)(param_1 + 0x40);
             }
             
             resource_ptr = (longlong *)(**(code **)(*resource_ptr + 0x28))(resource_ptr, resource_value);
             resource_ptr = (longlong *)(**(code **)(*resource_ptr + 0x70))(resource_ptr, &DAT_180a3c248);
-            (**(code **)(*resource_ptr + 0x28))(resource_ptr, *(undefined4 *)(param_1 + 0x6150 + resource_index * 4));
+            (**(code **)(*resource_ptr + 0x28))(resource_ptr, *(int32_t *)(param_1 + 0x6150 + resource_index * 4));
         }
         resource_index = resource_index + 1;
     } while ((longlong)resource_index < 10);
@@ -741,7 +741,7 @@ void ui_system_resource_manager(longlong param_1)
  * @param param_2 参数2 - 查询索引
  * @return 查询结果
  */
-undefined8 ui_system_state_query(longlong param_1, int param_2)
+uint64_t ui_system_state_query(longlong param_1, int param_2)
 {
     // 简化实现：状态查询器
     // 原实现包含状态查询和信息检索逻辑
@@ -759,7 +759,7 @@ undefined8 ui_system_state_query(longlong param_1, int param_2)
         if ((longlong *)*state_ptr != (longlong *)0x0) {
             check_index = (**(code **)(*(longlong *)*state_ptr + 0x18))();
             if (check_index == 1) {
-                return *(undefined8 *)(state_data + 0x198 + (longlong)query_index * 8);
+                return *(uint64_t *)(state_data + 0x198 + (longlong)query_index * 8);
             }
         }
         query_index = query_index + 1;
@@ -777,7 +777,7 @@ undefined8 ui_system_state_query(longlong param_1, int param_2)
  * @param param_2 参数2 - 管理标志
  * @return 内存块指针
  */
-undefined8* ui_system_memory_manager(undefined8* param_1, ulonglong param_2)
+uint64_t* ui_system_memory_manager(uint64_t* param_1, ulonglong param_2)
 {
     // 简化实现：内存管理器
     // 原实现包含内存管理和资源释放逻辑
@@ -885,7 +885,7 @@ ulonglong ui_system_index_finder(longlong param_1, float param_2)
  * @param param_4 参数4 - 插值参数
  * @return void
  */
-void ui_system_animation_processor(longlong param_1, float param_2, undefined8 param_3, float param_4)
+void ui_system_animation_processor(longlong param_1, float param_2, uint64_t param_3, float param_4)
 {
     // 简化实现：动画处理器
     // 原实现包含复杂的动画处理和插值计算逻辑
@@ -924,7 +924,7 @@ void ui_system_animation_processor(longlong param_1, float param_2, undefined8 p
     }
     
     *(float *)(param_1 + 0x2c) = speed_factor;
-    state_flag = ui_system_index_finder(speed_factor, *(undefined4 *)(param_1 + 0x1c));
+    state_flag = ui_system_index_finder(speed_factor, *(int32_t *)(param_1 + 0x1c));
     animation_state = state_flag;
     
     if ((1 < (int)state_flag) &&
@@ -960,14 +960,14 @@ void ui_system_animation_processor(longlong param_1, float param_2, undefined8 p
             }
             else {
                 *(uint *)(param_1 + 0x10) = animation_state;
-                *(undefined4 *)(param_1 + 0x2c) = 0;
+                *(int32_t *)(param_1 + 0x2c) = 0;
                 state_flag = animation_state;
             }
         }
         else {
             *(uint *)(param_1 + 0x14) = state_flag;
             *(uint *)(param_1 + 0x10) = animation_state;
-            *(undefined4 *)(param_1 + 0x2c) = 0;
+            *(int32_t *)(param_1 + 0x2c) = 0;
             state_flag = animation_state;
         }
     }
@@ -1017,7 +1017,7 @@ void ui_system_animation_processor(longlong param_1, float param_2, undefined8 p
             
             if ((-*(float *)(param_1 + 0x20) <= final_value) || (state_flag != 1)) {
                 if ((animation_value == 0.0) && (interpolation_value == 0.0)) {
-                    *(undefined1 *)(param_1 + 0x28) = 0;
+                    *(int8_t *)(param_1 + 0x28) = 0;
                 }
             }
             else {
@@ -1027,7 +1027,7 @@ void ui_system_animation_processor(longlong param_1, float param_2, undefined8 p
         }
     }
     else if ((*(char *)(param_1 + 0x28) == '\0') || ((interpolation_value == 0.0 && (animation_value == 0.0)))) {
-        *(undefined1 *)(param_1 + 0x28) = 0;
+        *(int8_t *)(param_1 + 0x28) = 0;
         if (*(float *)(param_1 + 0x18) <= 0.0) {
         animation_complete:
             speed_factor = UI_NORMALIZATION_FACTOR;
@@ -1046,7 +1046,7 @@ void ui_system_animation_processor(longlong param_1, float param_2, undefined8 p
     }
     else {
         control_value = (float)FUN_18065ffa0((longlong)(int)state_flag * 0x30 + *(longlong *)(param_1 + 0xc78),
-                                              *(undefined4 *)(param_1 + 0x1c));
+                                              *(int32_t *)(param_1 + 0x1c));
     }
     
     if (*(int *)(param_1 + 0x14) == 1) {
@@ -1055,7 +1055,7 @@ void ui_system_animation_processor(longlong param_1, float param_2, undefined8 p
     }
     else {
         interpolation_value = (float)FUN_18065ffa0((longlong)*(int *)(param_1 + 0x14) * 0x30 +
-                                                   *(longlong *)(param_1 + 0xc78), *(undefined4 *)(param_1 + 0x1c));
+                                                   *(longlong *)(param_1 + 0xc78), *(int32_t *)(param_1 + 0x1c));
     }
     
     final_value = control_value * final_value + interpolation_value * (UI_NORMALIZATION_FACTOR - final_value);
@@ -1181,14 +1181,14 @@ update_complete:
         temp_value = fmodf(param_2 / *(float *)(*(longlong *)
                                             (*(longlong *)(param_1 + 0xc78) + 8 + (longlong)index * 0x30) + 0x188) + 
                            *(float *)(param_1 + 0x44), UI_MODULATION_FACTOR);
-        *(undefined4 *)(param_1 + 0x44) = temp_value;
+        *(int32_t *)(param_1 + 0x44) = temp_value;
     }
     else {
-        *(undefined4 *)(param_1 + 0x44) = 0;
+        *(int32_t *)(param_1 + 0x44) = 0;
     }
     
     if ((index == 1) && (*(float *)(param_1 + 0x2c) == UI_NORMALIZATION_FACTOR)) {
-        *(undefined4 *)(param_1 + 0x40) = 0;
+        *(int32_t *)(param_1 + 0x40) = 0;
     }
     else {
         final_value = (float)FUN_18065ffa0((longlong)index * 0x30 + *(longlong *)(param_1 + 0xc78),
@@ -1221,7 +1221,7 @@ update_complete:
         }
     }
     else {
-        *(undefined4 *)(param_1 + 0x24) = 0;
+        *(int32_t *)(param_1 + 0x24) = 0;
     }
     
     // 参数更新完成
@@ -1237,7 +1237,7 @@ update_complete:
             ((*(int *)(param_1 + 0x14) != 5 ||
              (UI_NORMALIZATION_FACTOR < *(float *)(param_1 + 0x2c) || *(float *)(param_1 + 0x2c) == UI_NORMALIZATION_FACTOR)))) ||
            (speed_factor = *(float *)(param_1 + 0x3c), speed_factor < UI_BASE_THRESHOLD)) {
-            *(undefined4 *)(param_1 + 0x3c) = 0;
+            *(int32_t *)(param_1 + 0x3c) = 0;
         }
         else {
             *(float *)(param_1 + 0x3c) = speed_factor - speed_factor * param_2 * UI_SPEED_FACTOR_2;
@@ -1271,7 +1271,7 @@ void FUN_18065c070(longlong param_1) __attribute__((alias("ui_system_exception_h
 
 void FUN_18065c20a(longlong param_1) __attribute__((alias("ui_system_render_processor")));
 
-void FUN_18065c8ba(undefined4 param_1) __attribute__((alias("ui_system_parameter_setter")));
+void FUN_18065c8ba(int32_t param_1) __attribute__((alias("ui_system_parameter_setter")));
 
 void FUN_18065c8f0(void) __attribute__((alias("ui_system_system_call_handler")));
 
@@ -1283,7 +1283,7 @@ void FUN_18065cbfa(longlong param_1) __attribute__((alias("ui_system_state_updat
 
 void FUN_18065cc10(longlong param_1) __attribute__((alias("ui_system_resource_manager")));
 
-void FUN_18065d0a0(longlong param_1, float param_2, undefined8 param_3, float param_4) 
+void FUN_18065d0a0(longlong param_1, float param_2, uint64_t param_3, float param_4) 
     __attribute__((alias("ui_system_animation_processor")));
 
 // 函数功能说明:
@@ -1394,7 +1394,7 @@ void FUN_18065d0a0(longlong param_1, float param_2, undefined8 param_3, float pa
  * @param param_2 参数2 - 查询索引
  * @return 查询结果
  */
-undefined8 FUN_18065cec0(longlong param_1, int param_2)
+uint64_t FUN_18065cec0(longlong param_1, int param_2)
 {
     longlong state_data;
     int check_index;
@@ -1409,7 +1409,7 @@ undefined8 FUN_18065cec0(longlong param_1, int param_2)
         if ((longlong *)*state_ptr != (longlong *)0x0) {
             check_index = (**(code **)(*(longlong *)*state_ptr + 0x18))();
             if (check_index == 1) {
-                return *(undefined8 *)(state_data + 0x198 + (longlong)query_index * 8);
+                return *(uint64_t *)(state_data + 0x198 + (longlong)query_index * 8);
             }
         }
         query_index = query_index + 1;
@@ -1426,7 +1426,7 @@ undefined8 FUN_18065cec0(longlong param_1, int param_2)
  * @param param_2 参数2 - 释放标志
  * @return 内存指针
  */
-undefined8 * FUN_18065cf30(undefined8 *param_1, ulonglong param_2)
+uint64_t * FUN_18065cf30(uint64_t *param_1, ulonglong param_2)
 {
     param_1[UI_SYSTEM_ARRAY_SIZE - 1] = 0;
     *param_1 = &UNK_180a3e530;

@@ -78,12 +78,12 @@
  * ============================================================================ */
 
 // 基础类型别名
-typedef undefined4 MutexHandle;             // 互斥锁句柄
-typedef undefined4 SystemStatus;            // 系统状态
-typedef undefined4 CleanupFlags;            // 清理标志
-typedef undefined4 ErrorCode;               // 错误代码
-typedef undefined8 SystemContext;            // 系统上下文
-typedef undefined1 SystemByte;              // 系统字节
+typedef int32_t MutexHandle;             // 互斥锁句柄
+typedef int32_t SystemStatus;            // 系统状态
+typedef int32_t CleanupFlags;            // 清理标志
+typedef int32_t ErrorCode;               // 错误代码
+typedef uint64_t SystemContext;            // 系统上下文
+typedef int8_t SystemByte;              // 系统字节
 
 // 枚举类型定义
 typedef enum {
@@ -129,10 +129,10 @@ typedef struct {
  * ============================================================================ */
 
 // 互斥锁管理数据区域
-extern undefined4 DAT_1800497f0;              // 互斥锁状态标志
-extern undefined8 UNK_1800497f8;               // 互斥锁控制块
-extern undefined *UNK_180049800;               // 互斥锁指针表
-extern undefined4 UNK_180049808;               // 互斥锁计数器
+extern int32_t DAT_1800497f0;              // 互斥锁状态标志
+extern uint64_t UNK_1800497f8;               // 互斥锁控制块
+extern void *UNK_180049800;               // 互斥锁指针表
+extern int32_t UNK_180049808;               // 互斥锁计数器
 extern undefined DAT_180049810;                // 互斥锁配置数据
 extern undefined DAT_180049830;                // 互斥锁资源数据
 

@@ -201,7 +201,7 @@ EXPAND_RESULT_ARRAY:
 }
 
 // 函数: 递归处理容器元素
-// 原始函数: void FUN_180162220(longlong param_1,longlong param_2,undefined8 *param_3,undefined8 param_4)
+// 原始函数: void FUN_180162220(longlong param_1,longlong param_2,uint64_t *param_3,uint64_t param_4)
 void process_container_elements_recursive(longlong container_ptr, longlong output_buffer, char *input_string, longlong processing_flags)
 {
   longlong string_length;
@@ -345,7 +345,7 @@ PROCESS_ELEMENTS:
 }
 
 // 函数: 构建路径字符串
-// 原始函数: undefined8 * FUN_1801624e0(longlong param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+// 原始函数: uint64_t * FUN_1801624e0(longlong param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 char * build_path_string(longlong path_info, char *output_buffer, longlong param_3, longlong param_4)
 {
   longlong parent_path;
@@ -443,7 +443,7 @@ void initialize_global_variable_table(void)
 }
 
 // 函数: 创建默认资源路径
-// 原始函数: undefined8 * FUN_180165950(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+// 原始函数: uint64_t * FUN_180165950(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 char * create_default_resource_path(longlong param_1, char *output_buffer, longlong param_3, longlong param_4)
 {
   char *path_buffer;

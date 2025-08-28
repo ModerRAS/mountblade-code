@@ -4,10 +4,10 @@
 
 // 函数：系统资源处理函数
 // 功能：处理系统资源，包括数据验证、内存分配和清理操作
-void process_system_resources(undefined8 param_1, undefined1 param_2)
+void process_system_resources(uint64_t param_1, int8_t param_2)
 
 {
-  undefined8 *resource_manager_ptr;  // 资源管理器指针
+  uint64_t *resource_manager_ptr;  // 资源管理器指针
   longlong *data_array_ptr;         // 数据数组指针
   char validation_flag;            // 验证标志
   int item_count;                  // 项目计数
@@ -17,38 +17,38 @@ void process_system_resources(undefined8 param_1, undefined1 param_2)
   longlong resource_base;           // 资源基地址
   longlong resource_limit;          // 资源限制
   longlong processed_count;         // 已处理计数
-  undefined1 *string_buffer_ptr;   // 字符串缓冲区指针
-  undefined *resource_data_ptr;    // 资源数据指针
-  undefined *alternate_data_ptr;    // 替代数据指针
+  int8_t *string_buffer_ptr;   // 字符串缓冲区指针
+  void *resource_data_ptr;    // 资源数据指针
+  void *alternate_data_ptr;    // 替代数据指针
   longlong total_items;              // 总项目数
-  undefined1 temp_buffer[32];       // 临时缓冲区
-  undefined1 param_storage;         // 参数存储
+  int8_t temp_buffer[32];       // 临时缓冲区
+  int8_t param_storage;         // 参数存储
   int processing_index;            // 处理索引
   longlong *array_base_ptr;         // 数组基地址指针
   longlong array_size;              // 数组大小
-  undefined *output_buffer_ptr;     // 输出缓冲区指针
-  undefined1 *string_ptr;          // 字符串指针
-  undefined4 buffer_size_1;         // 缓冲区大小1
+  void *output_buffer_ptr;     // 输出缓冲区指针
+  int8_t *string_ptr;          // 字符串指针
+  int32_t buffer_size_1;         // 缓冲区大小1
   ulonglong buffer_capacity_1;      // 缓冲区容量1
-  undefined *buffer_ptr_1;          // 缓冲区指针1
-  undefined1 *string_data_ptr;      // 字符串数据指针
-  undefined4 buffer_size_2;         // 缓冲区大小2
+  void *buffer_ptr_1;          // 缓冲区指针1
+  int8_t *string_data_ptr;      // 字符串数据指针
+  int32_t buffer_size_2;         // 缓冲区大小2
   ulonglong buffer_capacity_2;      // 缓冲区容量2
-  undefined *buffer_ptr_2;          // 缓冲区指针2
-  undefined *buffer_ptr_3;          // 缓冲区指针3
-  undefined4 buffer_size_3;         // 缓冲区大小3
+  void *buffer_ptr_2;          // 缓冲区指针2
+  void *buffer_ptr_3;          // 缓冲区指针3
+  int32_t buffer_size_3;         // 缓冲区大小3
   ulonglong buffer_capacity_3;      // 缓冲区容量3
-  undefined4 buffer_size_4;         // 缓冲区大小4
+  int32_t buffer_size_4;         // 缓冲区大小4
   longlong stack_data_1;            // 栈数据1
   longlong stack_data_2;            // 栈数据2
-  undefined *stack_ptr_1;           // 栈指针1
+  void *stack_ptr_1;           // 栈指针1
   longlong stack_data_3;            // 栈数据3
-  undefined4 buffer_size_5;         // 缓冲区大小5
+  int32_t buffer_size_5;         // 缓冲区大小5
   ulonglong buffer_capacity_5;      // 缓冲区容量5
-  undefined8 stack_data_4;          // 栈数据4
-  undefined8 stack_data_5;          // 栈数据5
-  undefined8 stack_data_6;          // 栈数据6
-  undefined4 buffer_size_6;         // 缓冲区大小6
+  uint64_t stack_data_4;          // 栈数据4
+  uint64_t stack_data_5;          // 栈数据5
+  uint64_t stack_data_6;          // 栈数据6
+  int32_t buffer_size_6;         // 缓冲区大小6
   ulonglong security_cookie;        // 安全cookie
   
   data_array_ptr = _DAT_180c868a8;
@@ -76,16 +76,16 @@ void process_system_resources(undefined8 param_1, undefined1 param_2)
       }
       buffer_ptr_1 = &UNK_180a3c3e0;
       buffer_capacity_1 = 0;
-      string_data_ptr = (undefined1 *)0x0;
+      string_data_ptr = (int8_t *)0x0;
       buffer_size_1 = 0;
-      FUN_1806277c0(&buffer_ptr_1, *(undefined4 *)(resource_base + 0x10));
+      FUN_1806277c0(&buffer_ptr_1, *(int32_t *)(resource_base + 0x10));
       if (*(int *)(resource_base + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(string_data_ptr, *(undefined8 *)(resource_base + 8), *(int *)(resource_base + 0x10) + 1);
+        memcpy(string_data_ptr, *(uint64_t *)(resource_base + 8), *(int *)(resource_base + 0x10) + 1);
       }
       if (*(longlong *)(resource_base + 8) != 0) {
         buffer_size_1 = 0;
-        if (string_data_ptr != (undefined1 *)0x0) {
+        if (string_data_ptr != (int8_t *)0x0) {
           *string_data_ptr = 0;
         }
         buffer_capacity_1 = buffer_capacity_1 & 0xffffffff;
@@ -94,13 +94,13 @@ void process_system_resources(undefined8 param_1, undefined1 param_2)
       buffer_capacity_5 = 0;
       stack_data_3 = 0;
       buffer_size_5 = 0;
-      resource_data_ptr = *(undefined **)(item_offset + 0x28 + total_items);
+      resource_data_ptr = *(void **)(item_offset + 0x28 + total_items);
       alternate_data_ptr = &DAT_18098bc73;
-      if (resource_data_ptr != (undefined *)0x0) {
+      if (resource_data_ptr != (void *)0x0) {
         alternate_data_ptr = resource_data_ptr;
       }
       string_buffer_ptr = &DAT_18098bc73;
-      if (string_data_ptr != (undefined1 *)0x0) {
+      if (string_data_ptr != (int8_t *)0x0) {
         string_buffer_ptr = string_data_ptr;
       }
       FUN_180628040(&stack_ptr_1, &UNK_180a0055c, string_buffer_ptr, alternate_data_ptr);
@@ -117,11 +117,11 @@ void process_system_resources(undefined8 param_1, undefined1 param_2)
       buffer_capacity_5 = buffer_capacity_5 & 0xffffffff00000000;
       stack_ptr_1 = &UNK_18098bcb0;
       buffer_ptr_1 = &UNK_180a3c3e0;
-      if (string_data_ptr != (undefined1 *)0x0) {
+      if (string_data_ptr != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
-      string_data_ptr = (undefined1 *)0x0;
+      string_data_ptr = (int8_t *)0x0;
       buffer_capacity_1 = buffer_capacity_1 & 0xffffffff00000000;
       buffer_ptr_1 = &UNK_18098bcb0;
       total_items = total_items + 0x60;
@@ -149,38 +149,38 @@ void process_system_resources(undefined8 param_1, undefined1 param_2)
       }
       output_buffer_ptr = &UNK_180a3c3e0;
       buffer_capacity_2 = 0;
-      string_ptr = (undefined1 *)0x0;
+      string_ptr = (int8_t *)0x0;
       buffer_size_2 = 0;
-      FUN_1806277c0(&output_buffer_ptr, *(undefined4 *)(resource_limit + 0x10));
+      FUN_1806277c0(&output_buffer_ptr, *(int32_t *)(resource_limit + 0x10));
       if (*(int *)(resource_limit + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(string_ptr, *(undefined8 *)(resource_limit + 8), *(int *)(resource_limit + 0x10) + 1);
+        memcpy(string_ptr, *(uint64_t *)(resource_limit + 8), *(int *)(resource_limit + 0x10) + 1);
       }
       if (*(longlong *)(resource_limit + 8) != 0) {
         buffer_size_2 = 0;
-        if (string_ptr != (undefined1 *)0x0) {
+        if (string_ptr != (int8_t *)0x0) {
           *string_ptr = 0;
         }
         buffer_capacity_2 = buffer_capacity_2 & 0xffffffff;
       }
       buffer_ptr_2 = &UNK_180a3c3e0;
       buffer_capacity_3 = 0;
-      buffer_ptr_3 = (undefined *)0x0;
+      buffer_ptr_3 = (void *)0x0;
       buffer_size_3 = 0;
-      resource_data_ptr = *(undefined **)(processed_count + 0x28 + resource_base);
+      resource_data_ptr = *(void **)(processed_count + 0x28 + resource_base);
       alternate_data_ptr = &DAT_18098bc73;
-      if (resource_data_ptr != (undefined *)0x0) {
+      if (resource_data_ptr != (void *)0x0) {
         alternate_data_ptr = resource_data_ptr;
       }
       string_buffer_ptr = &DAT_18098bc73;
-      if (string_ptr != (undefined1 *)0x0) {
+      if (string_ptr != (int8_t *)0x0) {
         string_buffer_ptr = string_ptr;
       }
       FUN_180628040(&buffer_ptr_2, &UNK_180a0055c, string_buffer_ptr, alternate_data_ptr);
       validation_flag = FUN_180624a00(&buffer_ptr_2);
       if (validation_flag != '\0') {
-        resource_manager_ptr = (undefined8 *)*data_array_ptr;
-        if (resource_manager_ptr != (undefined8 *)0x0) {
+        resource_manager_ptr = (uint64_t *)*data_array_ptr;
+        if (resource_manager_ptr != (uint64_t *)0x0) {
           (**(code **)*resource_manager_ptr)(resource_manager_ptr, &output_buffer_ptr);
         }
         processing_index = processing_index + 1;
@@ -189,26 +189,26 @@ void process_system_resources(undefined8 param_1, undefined1 param_2)
         stack_data_6 = 0;
         buffer_size_6 = 3;
         resource_data_ptr = &DAT_18098bc73;
-        if (buffer_ptr_3 != (undefined *)0x0) {
+        if (buffer_ptr_3 != (void *)0x0) {
           resource_data_ptr = buffer_ptr_3;
         }
                     // WARNING: Subroutine does not return
         FUN_180062300(_DAT_180c86928, &UNK_180a005e0, resource_data_ptr);
       }
       buffer_ptr_2 = &UNK_180a3c3e0;
-      if (buffer_ptr_3 != (undefined *)0x0) {
+      if (buffer_ptr_3 != (void *)0x0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
-      buffer_ptr_3 = (undefined *)0x0;
+      buffer_ptr_3 = (void *)0x0;
       buffer_capacity_3 = buffer_capacity_3 & 0xffffffff00000000;
       buffer_ptr_2 = &UNK_18098bcb0;
       output_buffer_ptr = &UNK_180a3c3e0;
-      if (string_ptr != (undefined1 *)0x0) {
+      if (string_ptr != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
-      string_ptr = (undefined1 *)0x0;
+      string_ptr = (int8_t *)0x0;
       buffer_capacity_2 = buffer_capacity_2 & 0xffffffff00000000;
       output_buffer_ptr = &UNK_18098bcb0;
       stack_data_2 = item_offset + 1;
@@ -243,7 +243,7 @@ LAB_180088ac9:
                  *current_item_ptr == 0x4ff90344b46528df && (current_item_ptr[1] == -0x3c033b29f31c0d80)))))) ||
               ((current_item_ptr = (longlong *)(**(code **)(*data_array_ptr + 8))(data_array_ptr),
                *current_item_ptr == 0x45ddeabbc635a3d5 && (current_item_ptr[1] == 0x136119e457aa3e88)))) &&
-             ((resource_manager_ptr = (undefined8 *)data_array_ptr[4], resource_manager_ptr != (undefined8 *)0x0 && (data_array_ptr[6] != -1))))
+             ((resource_manager_ptr = (uint64_t *)data_array_ptr[4], resource_manager_ptr != (uint64_t *)0x0 && (data_array_ptr[6] != -1))))
           {
             item_offset = __RTCastToVoid(resource_manager_ptr);
             (**(code **)*resource_manager_ptr)(resource_manager_ptr, 0);
@@ -272,27 +272,27 @@ bool validate_data_structure_integrity(longlong *param_1)
 {
   byte comparison_result;
   bool validation_result;
-  undefined8 *current_node_ptr;    // 当前节点指针
-  undefined8 *next_node_ptr;       // 下一个节点指针
+  uint64_t *current_node_ptr;    // 当前节点指针
+  uint64_t *next_node_ptr;       // 下一个节点指针
   byte *string_data_ptr;           // 字符串数据指针
   uint string_length;              // 字符串长度
   longlong base_address;           // 基地址
-  undefined8 *start_node_ptr;      // 起始节点指针
+  uint64_t *start_node_ptr;      // 起始节点指针
   int compare_result;              // 比较结果
-  undefined8 *temp_node_ptr;       // 临时节点指针
+  uint64_t *temp_node_ptr;       // 临时节点指针
   byte *comparison_buffer;         // 比较缓冲区
   int stack_int;                   // 栈整数
   
   base_address = *param_1;
-  start_node_ptr = (undefined8 *)(base_address + 0x48);
+  start_node_ptr = (uint64_t *)(base_address + 0x48);
   FUN_1806279c0();
-  current_node_ptr = *(undefined8 **)(base_address + 0x58);
+  current_node_ptr = *(uint64_t **)(base_address + 0x58);
   next_node_ptr = start_node_ptr;
-  if (current_node_ptr != (undefined8 *)0x0) {
+  if (current_node_ptr != (uint64_t *)0x0) {
     do {
       if (stack_int == 0) {
         validation_result = false;
-        temp_node_ptr = (undefined8 *)current_node_ptr[1];
+        temp_node_ptr = (uint64_t *)current_node_ptr[1];
       }
       else {
         if (*(int *)(current_node_ptr + 6) == 0) {
@@ -308,11 +308,11 @@ bool validate_data_structure_integrity(longlong *param_1)
           } while (string_length != 0);
           validation_result = 0 < compare_result;
           if (compare_result < 1) {
-            temp_node_ptr = (undefined8 *)current_node_ptr[1];
+            temp_node_ptr = (uint64_t *)current_node_ptr[1];
             goto LAB_18008913b;
           }
         }
-        temp_node_ptr = (undefined8 *)*current_node_ptr;
+        temp_node_ptr = (uint64_t *)*current_node_ptr;
       }
 LAB_18008913b:
       next_node_ptr = current_node_ptr;
@@ -321,7 +321,7 @@ LAB_18008913b:
       }
       next_node_ptr = next_node_ptr;
       current_node_ptr = temp_node_ptr;
-    } while (temp_node_ptr != (undefined8 *)0x0);
+    } while (temp_node_ptr != (uint64_t *)0x0);
     if (next_node_ptr != start_node_ptr) {
       if (*(int *)(next_node_ptr + 6) == 0) goto LAB_18008917c;
       if (stack_int != 0) {
@@ -350,7 +350,7 @@ LAB_18008917c:
 
 // 函数：数据节点查找与处理函数
 // 功能：在数据结构中查找并处理特定节点，返回处理结果
-ulonglong find_and_process_data_node(longlong *param_1, undefined8 param_2)
+ulonglong find_and_process_data_node(longlong *param_1, uint64_t param_2)
 
 {
   byte char_comparison;
@@ -366,12 +366,12 @@ ulonglong find_and_process_data_node(longlong *param_1, undefined8 param_2)
   int compare_result;              // 比较结果
   longlong *temp_node_ptr;         // 临时节点指针
   longlong *next_node_ptr;          // 下一个节点指针
-  undefined1 temp_stack[8];        // 临时栈
+  int8_t temp_stack[8];        // 临时栈
   byte *search_buffer;             // 搜索缓冲区
   int stack_int;                   // 栈整数
-  undefined *stack_ptr;            // 栈指针
+  void *stack_ptr;            // 栈指针
   longlong stack_long;              // 栈长整型
-  undefined4 buffer_size;          // 缓冲区大小
+  int32_t buffer_size;          // 缓冲区大小
   
   base_address = *param_1;
   start_node_ptr = (longlong *)(base_address + 0x48);
@@ -479,7 +479,7 @@ LAB_1800892fd:
 
 // 函数：系统清理执行函数
 // 功能：执行系统清理操作，调用各种清理函数来释放资源
-void execute_system_cleanup(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void execute_system_cleanup(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 
 {
   if (*(code **)(param_1 + 0x70) != (code *)0x0) {
@@ -514,18 +514,18 @@ void batch_process_system_data(void)
   ulonglong processed_offset;      // 已处理偏移
   longlong current_offset;          // 当前偏移
   ulonglong total_size;             // 总大小
-  undefined1 temp_buffer[32];       // 临时缓冲区
-  undefined **buffer_ptr_ptr;       // 缓冲区指针指针
-  undefined8 stack_data_1;          // 栈数据1
-  undefined *stack_ptr_1;           // 栈指针1
+  int8_t temp_buffer[32];       // 临时缓冲区
+  void **buffer_ptr_ptr;       // 缓冲区指针指针
+  uint64_t stack_data_1;          // 栈数据1
+  void *stack_ptr_1;           // 栈指针1
   longlong stack_long_1;            // 栈长整型1
   uint stack_uint;                  // 栈无符号整数
-  undefined8 stack_data_2;          // 栈数据2
-  undefined *stack_ptr_2;           // 栈指针2
-  undefined1 *string_ptr;           // 字符串指针
-  undefined4 buffer_size;           // 缓冲区大小
-  undefined1 temp_buffer_2[32];     // 临时缓冲区2
-  undefined1 temp_buffer_3[4];      // 临时缓冲区3
+  uint64_t stack_data_2;          // 栈数据2
+  void *stack_ptr_2;           // 栈指针2
+  int8_t *string_ptr;           // 字符串指针
+  int32_t buffer_size;           // 缓冲区大小
+  int8_t temp_buffer_2[32];     // 临时缓冲区2
+  int8_t temp_buffer_3[4];      // 临时缓冲区3
   int item_index;                   // 项目索引
   ulonglong security_cookie;        // 安全cookie
   
@@ -558,12 +558,12 @@ void batch_process_system_data(void)
       }
       if (data_size != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(stack_long_1, *(undefined8 *)(current_offset + 8), total_size);
+        memcpy(stack_long_1, *(uint64_t *)(current_offset + 8), total_size);
       }
       if (stack_long_1 != 0) {
-        *(undefined1 *)(total_size + stack_long_1) = 0;
+        *(int8_t *)(total_size + stack_long_1) = 0;
       }
-      stack_data_2 = CONCAT44(*(undefined4 *)(current_offset + 0x1c), (undefined4)stack_data_2);
+      stack_data_2 = CONCAT44(*(int32_t *)(current_offset + 0x1c), (int32_t)stack_data_2);
       stack_uint = data_size;
       item_index = (int)data_offset;
       processing_flag = FUN_1800873b0(data_offset, &buffer_ptr_ptr, temp_buffer_3);
@@ -571,10 +571,10 @@ void batch_process_system_data(void)
         total_size = *(ulonglong *)(data_limit + 0x10);
         if (total_size < *(ulonglong *)(data_limit + 0x18)) {
           *(ulonglong *)(data_limit + 0x10) = total_size + 0x60;
-          buffer_ptr_ptr = (undefined **)total_size;
+          buffer_ptr_ptr = (void **)total_size;
           FUN_180627ae0(total_size);
           FUN_18004b640(total_size + 0x20, &buffer_ptr_ptr);
-          *(undefined1 *)(total_size + 0x58) = temp_buffer_3[0];
+          *(int8_t *)(total_size + 0x58) = temp_buffer_3[0];
           *(int *)(total_size + 0x5c) = item_index;
         }
         else {
@@ -604,7 +604,7 @@ void batch_process_system_data(void)
 
 // 函数：数据结构指针初始化函数
 // 功能：初始化数据结构指针，设置默认值和清理状态
-void initialize_data_structure_pointers(undefined8 *param_1)
+void initialize_data_structure_pointers(uint64_t *param_1)
 
 {
   param_1[4] = &UNK_18098bcb0;
@@ -614,7 +614,7 @@ void initialize_data_structure_pointers(undefined8 *param_1)
     FUN_18064e900();
   }
   param_1[1] = 0;
-  *(undefined4 *)(param_1 + 3) = 0;
+  *(int32_t *)(param_1 + 3) = 0;
   *param_1 = &UNK_18098bcb0;
   return;
 }

@@ -125,7 +125,7 @@ void ui_system_calculate_vector_magnitudes(void *ui_context, void *vector_data, 
 void ui_system_calculate_weighted_values(void *ui_context, void *data_source)
 {
     uint data_index;
-    undefined2 temp_value;
+    int16_t temp_value;
     int weight_value;
     longlong data_offset;
     ulonglong data_count;
@@ -162,8 +162,8 @@ void ui_system_calculate_weighted_values(void *ui_context, void *data_source)
                     data_offset = (longlong)((short)(*(short *)((char *)ui_context + 0x914) - (short)iteration_count) * UI_SYSTEM_VECTOR_COMPONENTS + -UI_SYSTEM_VECTOR_COMPONENTS);
                     
                     // 更新权重数据
-                    *(undefined8 *)((char *)ui_context + 0x1068) = *(undefined8 *)((char *)data_source + 0x60 + data_offset * 2);
-                    *(undefined2 *)((char *)ui_context + 0x1070) = *(undefined2 *)((char *)data_source + 0x68 + data_offset * 2);
+                    *(uint64_t *)((char *)ui_context + 0x1068) = *(uint64_t *)((char *)data_source + 0x60 + data_offset * 2);
+                    *(int16_t *)((char *)ui_context + 0x1070) = *(int16_t *)((char *)data_source + 0x68 + data_offset * 2);
                     *(int *)((char *)ui_context + 0x1064) =
                          *(int *)((char *)data_source + -4 + (longlong)(int)(data_index - iteration_count) * 4) << 8;
                     weight_value = max_weight_value;
@@ -174,8 +174,8 @@ void ui_system_calculate_weighted_values(void *ui_context, void *data_source)
         }
         
         // 重置权重数据
-        *(undefined8 *)((char *)ui_context + 0x1068) = 0;
-        *(undefined2 *)((char *)ui_context + 0x1070) = 0;
+        *(uint64_t *)((char *)ui_context + 0x1068) = 0;
+        *(int16_t *)((char *)ui_context + 0x1070) = 0;
         *(short *)((char *)ui_context + 0x106c) = (short)weight_value;
         
         // 根据权重值选择不同的缩放因子
@@ -191,7 +191,7 @@ void ui_system_calculate_weighted_values(void *ui_context, void *data_source)
             *(short *)((char *)ui_context + 0x106a) = (short)(*(short *)((char *)ui_context + 0x106a) * weight_value >> UI_SYSTEM_SHIFT_FACTOR_HIGH);
             *(short *)((char *)ui_context + 0x106c) = (short)(*(short *)((char *)ui_context + 0x106c) * weight_value >> UI_SYSTEM_SHIFT_FACTOR_HIGH);
             *(short *)((char *)ui_context + 0x106e) = (short)(*(short *)((char *)ui_context + 0x106e) * weight_value >> UI_SYSTEM_SHIFT_FACTOR_HIGH);
-            temp_value = (undefined2)(*(short *)((char *)ui_context + 0x1070) * weight_value >> UI_SYSTEM_SHIFT_FACTOR_HIGH);
+            temp_value = (int16_t)(*(short *)((char *)ui_context + 0x1070) * weight_value >> UI_SYSTEM_SHIFT_FACTOR_HIGH);
         }
         else {
             if (weight_value < UI_SYSTEM_MEDIUM_WEIGHT_THRESHOLD) {
@@ -207,17 +207,17 @@ void ui_system_calculate_weighted_values(void *ui_context, void *data_source)
                 *(short *)((char *)ui_context + 0x106a) = (short)(*(short *)((char *)ui_context + 0x106a) * weight_value >> UI_SYSTEM_SHIFT_FACTOR_LOW);
                 *(short *)((char *)ui_context + 0x106c) = (short)(*(short *)((char *)ui_context + 0x106c) * weight_value >> UI_SYSTEM_SHIFT_FACTOR_LOW);
                 *(short *)((char *)ui_context + 0x106e) = (short)(*(short *)((char *)ui_context + 0x106e) * weight_value >> UI_SYSTEM_SHIFT_FACTOR_LOW);
-                temp_value = (undefined2)(*(short *)((char *)ui_context + 0x1070) * weight_value >> UI_SYSTEM_SHIFT_FACTOR_LOW);
+                temp_value = (int16_t)(*(short *)((char *)ui_context + 0x1070) * weight_value >> UI_SYSTEM_SHIFT_FACTOR_LOW);
             }
         }
     }
     else {
         temp_value = 0;
         *(int *)((char *)ui_context + 0x1064) = *(short *)((char *)ui_context + 0x90c) * UI_SYSTEM_DATA_SCALE_FACTOR;
-        *(undefined8 *)((char *)ui_context + 0x1068) = 0;
+        *(uint64_t *)((char *)ui_context + 0x1068) = 0;
     }
     
-    *(undefined2 *)((char *)ui_context + 0x1070) = temp_value;
+    *(int16_t *)((char *)ui_context + 0x1070) = temp_value;
     
     // 复制处理后的数据
     memcpy((char *)ui_context + 0x1072, (char *)data_source + 0x40, 
@@ -241,14 +241,14 @@ void ui_system_calculate_weighted_values(void *ui_context, void *data_source)
 void ui_system_process_data_arrays(void *ui_context, void *data_array, void *parameters, int data_type)
 {
     longlong context_offset;
-    undefined2 *data_pointer;
+    int16_t *data_pointer;
     ulonglong allocation_size;
     int array_size;
     int iteration_value;
     int max_iterations;
     short *short_pointer;
     int *int_pointer;
-    undefined1 stack_buffer[UI_SYSTEM_MEMORY_POOL_SIZE];
+    int8_t stack_buffer[UI_SYSTEM_MEMORY_POOL_SIZE];
     ulonglong stack_guard;
     
     // 栈保护机制
@@ -264,7 +264,7 @@ void ui_system_process_data_arrays(void *ui_context, void *data_array, void *par
         max_iterations = 0;
         
         if (0 < array_size) {
-            data_pointer = (undefined2 *)((char *)ui_context + 0xfec);
+            data_pointer = (int16_t *)((char *)ui_context + 0xfec);
             do {
                 max_iterations = max_iterations + (int)(0x7fff / (longlong)(array_size + 1));
                 iteration_value++;
@@ -275,8 +275,8 @@ void ui_system_process_data_arrays(void *ui_context, void *data_array, void *par
         }
         
         // 初始化处理参数
-        *(undefined4 *)((char *)ui_context + 0x104c) = 0;
-        *(undefined4 *)((char *)ui_context + 0x1050) = 0x307880;
+        *(int32_t *)((char *)ui_context + 0x104c) = 0;
+        *(int32_t *)((char *)ui_context + 0x1050) = 0x307880;
         *(int *)((char *)ui_context + 0x1054) = max_iterations;
     }
     
@@ -352,8 +352,8 @@ void ui_system_transform_data_values(void *ui_context, void *source_data, void *
     char transform_factor;
     longlong data_offset;
     ulonglong iteration_count;
-    undefined1 source_buffer[UI_SYSTEM_MEMORY_POOL_SIZE];
-    undefined4 transform_mode;
+    int8_t source_buffer[UI_SYSTEM_MEMORY_POOL_SIZE];
+    int32_t transform_mode;
     short target_buffer[UI_SYSTEM_MEMORY_POOL_SIZE / 2];
     short temp_buffer[UI_SYSTEM_MEMORY_POOL_SIZE / 2];
     ulonglong stack_guard;
@@ -361,20 +361,20 @@ void ui_system_transform_data_values(void *ui_context, void *source_data, void *
     // 栈保护机制
     stack_guard = _DAT_180bf00a8 ^ (ulonglong)source_buffer;
     data_offset = 0;
-    transform_mode = *(undefined4 *)((char *)ui_context + 0x914);
+    transform_mode = *(int32_t *)((char *)ui_context + 0x914);
     
     // 执行数据变换预处理
     FUN_1807249d0((char *)source_data + 0x10, (char *)ui_context + 0xac8, 
                    (char *)ui_context + 0x908, transform_type == 2);
     FUN_180734390(source_buffer, (char *)ui_context + 0xad0, 
-                   *(undefined8 *)((char *)ui_context + 0xac0));
+                   *(uint64_t *)((char *)ui_context + 0xac0));
     FUN_18072f4d0((char *)source_data + 0x40, source_buffer, 
-                   *(undefined4 *)((char *)ui_context + 0x924),
-                   *(undefined4 *)((char *)ui_context + 0x1060));
+                   *(int32_t *)((char *)ui_context + 0x924),
+                   *(int32_t *)((char *)ui_context + 0x1060));
     
     // 设置变换因子
     if (*(int *)((char *)ui_context + 0x948) == 1) {
-        *(undefined1 *)((char *)ui_context + 0xae7) = 4;
+        *(int8_t *)((char *)ui_context + 0xae7) = 4;
         transform_factor = '\x04';
     }
     else {
@@ -405,7 +405,7 @@ void ui_system_transform_data_values(void *ui_context, void *source_data, void *
     
     // 应用变换结果
     FUN_18072f4d0((char *)target_data + 0x20, temp_buffer, (longlong)(int)data_count, 
-                   *(undefined4 *)((char *)ui_context + 0x1060));
+                   *(int32_t *)((char *)ui_context + 0x1060));
     
     // 保存变换后的数据
     memcpy((char *)ui_context + 0x928, source_buffer, 
@@ -436,16 +436,16 @@ void ui_system_optimize_data_processing(void *ui_context, void *optimization_par
     
     // 执行优化预处理
     FUN_1807249d0((char *)unaff_RSI + 0x10, (char *)ui_context + 0xac8, 
-                   (char *)ui_context + 0x908, 0, *(undefined4 *)((char *)ui_context + 0x914));
+                   (char *)ui_context + 0x908, 0, *(int32_t *)((char *)ui_context + 0x914));
     FUN_180734390(&stack0x00000030, (char *)ui_context + 0xad0, 
-                   *(undefined8 *)((char *)ui_context + 0xac0));
+                   *(uint64_t *)((char *)ui_context + 0xac0));
     FUN_18072f4d0((char *)unaff_RSI + 0x40, &stack0x00000030, 
-                   *(undefined4 *)((char *)ui_context + 0x924),
-                   *(undefined4 *)((char *)ui_context + 0x1060));
+                   *(int32_t *)((char *)ui_context + 0x924),
+                   *(int32_t *)((char *)ui_context + 0x1060));
     
     // 设置优化因子
     if (*(int *)((char *)ui_context + 0x948) == 1) {
-        *(undefined1 *)((char *)ui_context + 0xae7) = 4;
+        *(int8_t *)((char *)ui_context + 0xae7) = 4;
         transform_factor = '\x04';
     }
     else {
@@ -476,7 +476,7 @@ void ui_system_optimize_data_processing(void *ui_context, void *optimization_par
     
     // 应用优化结果
     FUN_18072f4d0((char *)unaff_RSI + 0x20, &stack0x00000050, (longlong)(int)data_count,
-                   *(undefined4 *)((char *)ui_context + 0x1060));
+                   *(int32_t *)((char *)ui_context + 0x1060));
     
     // 保存优化后的数据
     memcpy((char *)ui_context + 0x928, &stack0x00000030, 
@@ -496,7 +496,7 @@ void ui_system_optimize_data_processing(void *ui_context, void *optimization_par
  * @param transform_data 变换数据指针
  * @param data_size 数据大小
  */
-void ui_system_perform_fast_transform(undefined8 ui_context, undefined8 transform_data, ulonglong data_size)
+void ui_system_perform_fast_transform(uint64_t ui_context, uint64_t transform_data, ulonglong data_size)
 {
     short source_value;
     char transform_factor;
@@ -517,7 +517,7 @@ void ui_system_perform_fast_transform(undefined8 ui_context, undefined8 transfor
     } while (iteration_count != 0);
     
     FUN_18072f4d0((char *)unaff_RSI + 0x20, &stack0x00000050, data_size, 
-                   *(undefined4 *)((char *)unaff_RBX + 0x1060));
+                   *(int32_t *)((char *)unaff_RBX + 0x1060));
     memcpy((char *)unaff_RBX + 0x928, &stack0x00000030, 
            (longlong)*(int *)((char *)unaff_RBX + 0x924) * 2);
 }
@@ -531,13 +531,13 @@ void ui_system_perform_fast_transform(undefined8 ui_context, undefined8 transfor
  * @param simple_data 简单数据指针
  * @param data_size 数据大小
  */
-void ui_system_execute_simple_transform(undefined8 ui_context, undefined8 simple_data, undefined8 data_size)
+void ui_system_execute_simple_transform(uint64_t ui_context, uint64_t simple_data, uint64_t data_size)
 {
     longlong unaff_RBX;
     longlong unaff_RSI;
     
     FUN_18072f4d0((char *)unaff_RSI + 0x20, &stack0x00000050, data_size, 
-                   *(undefined4 *)((char *)unaff_RBX + 0x1060));
+                   *(int32_t *)((char *)unaff_RBX + 0x1060));
     memcpy((char *)unaff_RBX + 0x928, &stack0x00000030, 
            (longlong)*(int *)((char *)unaff_RBX + 0x924) * 2);
 }
@@ -567,8 +567,8 @@ void ui_system_process_audio_signals(void *ui_context, void *audio_data, int sig
     ulonglong stack_param;
     
     // 执行音频信号初始化
-    FUN_1807342b0(*(undefined2 *)((char *)unaff_RBX + 0xae2), 
-                   *(undefined1 *)((char *)unaff_RBX + 0xae4));
+    FUN_1807342b0(*(int16_t *)((char *)unaff_RBX + 0xae2), 
+                   *(int8_t *)((char *)unaff_RBX + 0xae4));
     
     base_offset = *(longlong *)(&UNK_180954878 + (longlong)*(char *)((char *)unaff_RBX + 0xae8) * 8);
     
@@ -611,13 +611,13 @@ void ui_system_process_audio_signals(void *ui_context, void *audio_data, int sig
  * @param memory_params 内存参数指针
  * @param allocation_type 分配类型
  */
-void ui_system_handle_memory_allocation(void *ui_context, undefined8 memory_params, undefined8 data_size)
+void ui_system_handle_memory_allocation(void *ui_context, uint64_t memory_params, uint64_t data_size)
 {
     ulonglong allocation_size;
     ulonglong aligned_size;
-    undefined1 stack_buffer[72];
-    undefined8 param1;
-    undefined8 param2;
+    int8_t stack_buffer[72];
+    uint64_t param1;
+    uint64_t param2;
     ulonglong stack_guard;
     
     // 栈保护机制
@@ -828,14 +828,14 @@ ulonglong ui_system_advanced_data_encoder(longlong data_array1, longlong data_ar
     int vector_sum6;
     int vector_sum7;
     int vector_sum8;
-    undefined1 vector_data1[16];
+    int8_t vector_data1[16];
     int vector_sum9;
-    undefined1 vector_data2[16];
+    int8_t vector_data2[16];
     int vector_sum10;
-    undefined1 vector_data3[16];
-    undefined1 vector_data4[16];
-    undefined1 vector_data5[16];
-    undefined1 vector_data6[16];
+    int8_t vector_data3[16];
+    int8_t vector_data4[16];
+    int8_t vector_data5[16];
+    int8_t vector_data6[16];
     ulonglong iteration_count;
     
     total_value = 0;
@@ -958,11 +958,11 @@ ulonglong ui_system_advanced_data_encoder(longlong data_array1, longlong data_ar
  * @param data_vector 数据向量指针
  * @param element_count 元素数量
  */
-void ui_system_advanced_data_decoder(longlong ui_context, int *magnitude_result, int *scale_result, int *data_vector, undefined2 *element_count, int count)
+void ui_system_advanced_data_decoder(longlong ui_context, int *magnitude_result, int *scale_result, int *data_vector, int16_t *element_count, int count)
 {
     int decoded_value;
     int scale_value;
-    undefined2 element_data;
+    int16_t element_data;
     int vector_component;
     longlong data_offset;
     int scale_index;
@@ -994,7 +994,7 @@ void ui_system_advanced_data_decoder(longlong ui_context, int *magnitude_result,
             // 处理元素数据
             vector_component = scale_index + 0x3fff >> 0xe;
             if (vector_component < 0x8000) {
-                element_data = (undefined2)vector_component;
+                element_data = (int16_t)vector_component;
                 if (vector_component < -0x8000) {
                     element_data = 0x8000;
                 }

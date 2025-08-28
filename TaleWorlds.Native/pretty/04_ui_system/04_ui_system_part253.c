@@ -66,12 +66,12 @@ typedef uint* UIUIntPointer;
 typedef short* UIShortPointer;
 typedef longlong* UILongLongPointer;
 typedef char UIByte;
-typedef undefined4 UIFlag;
+typedef int32_t UIFlag;
 typedef int UIIndex;
 typedef uint UICoordinate;
 typedef ulonglong UIULongLong;
 typedef float UIFloat;
-typedef undefined8 UIUndefine8;
+typedef uint64_t UIUndefine8;
 
 // =============================================================================
 // 枚举定义

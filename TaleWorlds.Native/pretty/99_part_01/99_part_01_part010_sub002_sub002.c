@@ -34,9 +34,9 @@
 #define STRING_TERMINATOR 0x00              // 字符串终止符
 
 /* 函数别名定义 */
-void advanced_string_and_file_processor(undefined4 param_1, undefined8 param_2, longlong param_3, undefined1 param_4,
-                                        undefined4 param_5, undefined8 param_6, undefined8 param_7, undefined8 param_8,
-                                        undefined4 param_9, undefined8 param_10, longlong param_11) __attribute__((alias("FUN_1800a73e0")));
+void advanced_string_and_file_processor(int32_t param_1, uint64_t param_2, longlong param_3, int8_t param_4,
+                                        int32_t param_5, uint64_t param_6, uint64_t param_7, uint64_t param_8,
+                                        int32_t param_9, uint64_t param_10, longlong param_11) __attribute__((alias("FUN_1800a73e0")));
 
 /**
  * 高级字符串处理和文件操作处理器
@@ -60,25 +60,25 @@ void advanced_string_and_file_processor(undefined4 param_1, undefined8 param_2, 
  * @param param_10 扩展参数
  * @param param_11 输出参数指针
  */
-void FUN_1800a73e0(longlong param_1, undefined8 param_2, longlong param_3, undefined1 param_4,
-                  undefined4 param_5, undefined8 param_6, undefined8 param_7, undefined8 param_8,
-                  undefined4 param_9, undefined8 param_10, longlong param_11)
+void FUN_1800a73e0(longlong param_1, uint64_t param_2, longlong param_3, int8_t param_4,
+                  int32_t param_5, uint64_t param_6, uint64_t param_7, uint64_t param_8,
+                  int32_t param_9, uint64_t param_10, longlong param_11)
 {
     int *piVar1;
     int iVar2;
-    undefined4 uVar3;
+    int32_t uVar3;
     uint uVar4;
-    undefined8 uVar5;
+    uint64_t uVar5;
     longlong lVar6;
     longlong lVar7;
     longlong lVar8;
     longlong lVar9;
-    undefined4 *puVar10;
+    int32_t *puVar10;
     uint uVar11;
-    undefined1 *puVar12;
-    undefined8 *puVar13;
+    int8_t *puVar12;
+    uint64_t *puVar13;
     longlong lVar14;
-    undefined *puVar15;
+    void *puVar15;
     uint uVar16;
     int iVar17;
     uint uVar18;
@@ -88,18 +88,18 @@ void FUN_1800a73e0(longlong param_1, undefined8 param_2, longlong param_3, undef
     ulonglong uVar22;
     
     // 栈变量声明
-    undefined1 auStack_9c8[BUFFER_SIZE_32];          // 32字节缓冲区
-    undefined1 uStack_9a8;                           // 栈变量
-    undefined4 uStack_9a0;                           // 栈变量
-    undefined4 uStack_998;                           // 栈变量
-    undefined8 uStack_990;                           // 栈变量
-    undefined *puStack_988;                          // 指针变量
-    undefined1 *puStack_980;                         // 字符串指针
+    int8_t auStack_9c8[BUFFER_SIZE_32];          // 32字节缓冲区
+    int8_t uStack_9a8;                           // 栈变量
+    int32_t uStack_9a0;                           // 栈变量
+    int32_t uStack_998;                           // 栈变量
+    uint64_t uStack_990;                           // 栈变量
+    void *puStack_988;                          // 指针变量
+    int8_t *puStack_980;                         // 字符串指针
     uint uStack_978;                                 // 长度变量
-    undefined8 uStack_970;                           // 栈变量
+    uint64_t uStack_970;                           // 栈变量
     char cStack_968;                                 // 字符变量
-    undefined *puStack_960;                          // 指针变量
-    undefined1 *puStack_958;                         // 字符串指针
+    void *puStack_960;                          // 指针变量
+    int8_t *puStack_958;                         // 字符串指针
     uint uStack_950;                                 // 长度变量
     ulonglong uStack_948;                            // 长度变量
     char cStack_940;                                 // 状态标志
@@ -109,81 +109,81 @@ void FUN_1800a73e0(longlong param_1, undefined8 param_2, longlong param_3, undef
     char cStack_93c;                                 // 状态标志
     char cStack_93b;                                 // 状态标志
     char cStack_93a;                                 // 状态标志
-    undefined1 auStack_938[8];                       // 8字节缓冲区
-    undefined1 *puStack_930;                         // 字符串指针
+    int8_t auStack_938[8];                       // 8字节缓冲区
+    int8_t *puStack_930;                         // 字符串指针
     uint uStack_928;                                 // 长度变量
     uint uStack_920;                                 // 容量变量
-    undefined4 uStack_91c;                           // 栈变量
-    undefined *puStack_918;                          // 指针变量
-    undefined1 *puStack_910;                         // 字符串指针
+    int32_t uStack_91c;                           // 栈变量
+    void *puStack_918;                          // 指针变量
+    int8_t *puStack_910;                         // 字符串指针
     uint uStack_908;                                 // 长度变量
-    undefined8 uStack_900;                           // 栈变量
-    undefined *puStack_8f8;                          // 指针变量
-    undefined1 *puStack_8f0;                         // 字符串指针
+    uint64_t uStack_900;                           // 栈变量
+    void *puStack_8f8;                          // 指针变量
+    int8_t *puStack_8f0;                         // 字符串指针
     int iStack_8e8;                                  // 计数器
     ulonglong uStack_8e0;                            // 长度变量
-    undefined *puStack_8d8;                          // 指针变量
-    undefined1 *puStack_8d0;                         // 字符串指针
+    void *puStack_8d8;                          // 指针变量
+    int8_t *puStack_8d0;                         // 字符串指针
     int iStack_8c8;                                  // 计数器
     ulonglong uStack_8c0;                            // 长度变量
-    undefined *puStack_8b8;                          // 指针变量
+    void *puStack_8b8;                          // 指针变量
     longlong lStack_8b0;                             // 偏移量
     uint uStack_8a8;                                 // 长度变量
-    undefined8 uStack_8a0;                           // 栈变量
-    undefined *puStack_898;                          // 指针变量
-    undefined1 *puStack_890;                         // 字符串指针
+    uint64_t uStack_8a0;                           // 栈变量
+    void *puStack_898;                          // 指针变量
+    int8_t *puStack_890;                         // 字符串指针
     uint uStack_888;                                 // 长度变量
     ulonglong uStack_880;                            // 长度变量
-    undefined *puStack_878;                          // 指针变量
+    void *puStack_878;                          // 指针变量
     longlong lStack_870;                             // 字符串指针
     int iStack_868;                                  // 计数器
     ulonglong uStack_860;                            // 长度变量
-    undefined *puStack_858;                          // 指针变量
-    undefined8 uStack_850;                           // 栈变量
-    undefined4 uStack_848;                           // 栈变量
-    undefined8 uStack_840;                           // 栈变量
-    undefined4 uStack_838;                           // 栈变量
+    void *puStack_858;                          // 指针变量
+    uint64_t uStack_850;                           // 栈变量
+    int32_t uStack_848;                           // 栈变量
+    uint64_t uStack_840;                           // 栈变量
+    int32_t uStack_838;                           // 栈变量
     longlong lStack_810;                             // 数据指针
     longlong lStack_808;                             // 数据指针
     longlong lStack_7f0;                             // 上下文指针
-    undefined8 uStack_7e8;                           // 栈变量
+    uint64_t uStack_7e8;                           // 栈变量
     longlong alStack_7e0[2];                         // 数组变量
-    undefined *puStack_7d0;                          // 指针变量
-    undefined *puStack_7c8;                          // 指针变量
+    void *puStack_7d0;                          // 指针变量
+    void *puStack_7c8;                          // 指针变量
     int iStack_7c0;                                  // 计数器
     ulonglong uStack_7b8;                            // 长度变量
-    undefined1 auStack_7b0[8];                       // 8字节缓冲区
-    undefined *puStack_7a8;                          // 指针变量
+    int8_t auStack_7b0[8];                       // 8字节缓冲区
+    void *puStack_7a8;                          // 指针变量
     int iStack_7a0;                                  // 计数器
-    undefined8 uStack_790;                           // 栈变量
-    undefined1 auStack_788[8];                       // 8字节缓冲区
+    uint64_t uStack_790;                           // 栈变量
+    int8_t auStack_788[8];                       // 8字节缓冲区
     longlong lStack_780;                             // 字符串指针
     int iStack_778;                                  // 计数器
-    undefined8 uStack_768;                           // 栈变量
+    uint64_t uStack_768;                           // 栈变量
     longlong lStack_760;                             // 文件指针
-    undefined1 uStack_758;                           // 标志变量
-    undefined1 auStack_750[8];                       // 8字节缓冲区
-    undefined *puStack_748;                          // 指针变量
+    int8_t uStack_758;                           // 标志变量
+    int8_t auStack_750[8];                       // 8字节缓冲区
+    void *puStack_748;                          // 指针变量
     int iStack_740;                                  // 计数器
-    undefined1 auStack_730[8];                       // 8字节缓冲区
-    undefined8 uStack_728;                           // 栈变量
+    int8_t auStack_730[8];                       // 8字节缓冲区
+    uint64_t uStack_728;                           // 栈变量
     int iStack_720;                                  // 计数器
     longlong alStack_710[4];                         // 数组变量
-    undefined8 uStack_6f0;                           // 栈变量
+    uint64_t uStack_6f0;                           // 栈变量
     longlong lStack_6e8;                             // 文件指针
-    undefined1 uStack_6e0;                           // 标志变量
-    undefined *puStack_6d8;                          // 指针变量
+    int8_t uStack_6e0;                           // 标志变量
+    void *puStack_6d8;                          // 指针变量
     longlong lStack_6d0;                             // 数据指针
-    undefined4 uStack_6c0;                           // 栈变量
-    undefined8 uStack_6b8;                           // 栈变量
-    undefined1 auStack_6a8[BUFFER_SIZE_112];        // 112字节缓冲区
-    undefined *puStack_638;                          // 指针变量
-    undefined1 *puStack_630;                         // 字符串指针
+    int32_t uStack_6c0;                           // 栈变量
+    uint64_t uStack_6b8;                           // 栈变量
+    int8_t auStack_6a8[BUFFER_SIZE_112];        // 112字节缓冲区
+    void *puStack_638;                          // 指针变量
+    int8_t *puStack_630;                         // 字符串指针
     int iStack_628;                                  // 计数器
-    undefined1 auStack_620[BUFFER_SIZE_264];        // 264字节缓冲区
-    undefined *apuStack_518[36];                      // 指针数组
-    undefined *apuStack_3f8[36];                      // 指针数组
-    undefined *apuStack_2d8[68];                      // 指针数组
+    int8_t auStack_620[BUFFER_SIZE_264];        // 264字节缓冲区
+    void *apuStack_518[36];                      // 指针数组
+    void *apuStack_3f8[36];                      // 指针数组
+    void *apuStack_2d8[68];                      // 指针数组
     char acStack_b8[BUFFER_SIZE_16];                 // 16字节字符缓冲区
     char acStack_a8[BUFFER_SIZE_16];                 // 16字节字符缓冲区
     char acStack_98[BUFFER_SIZE_32];                 // 32字节字符缓冲区
@@ -289,11 +289,11 @@ LAB_1800a7660:
     // 初始化字符串缓冲区
     puStack_988 = &UNK_180a3c3e0;
     uStack_970 = 0;
-    puStack_980 = (undefined1 *)0x0;
+    puStack_980 = (int8_t *)0x0;
     uStack_978 = 0;
     puStack_918 = &UNK_180a3c3e0;
     uStack_900 = 0;
-    puStack_910 = (undefined1 *)0x0;
+    puStack_910 = (int8_t *)0x0;
     uStack_908 = 0;
     
     // 字符串处理逻辑
@@ -302,7 +302,7 @@ LAB_1800a7660:
         if (iVar2 < MIN_ALLOCATION_SIZE) {
             iVar2 = MIN_ALLOCATION_SIZE;
         }
-        puStack_910 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18, (longlong)iVar2, MEMORY_ALLOC_TYPE_STRING);
+        puStack_910 = (int8_t *)FUN_18062b420(_DAT_180c8ed18, (longlong)iVar2, MEMORY_ALLOC_TYPE_STRING);
         *puStack_910 = 0;
         uVar3 = FUN_18064e990(puStack_910);
         uStack_900 = CONCAT44(uStack_900._4_4_, uVar3);
@@ -312,9 +312,9 @@ LAB_1800a7660:
     }
     
     // 字符串清理逻辑
-    if (puStack_7a8 != (undefined *)0x0) {
+    if (puStack_7a8 != (void *)0x0) {
         uStack_908 = 0;
-        if (puStack_910 != (undefined1 *)0x0) {
+        if (puStack_910 != (int8_t *)0x0) {
             *puStack_910 = 0;
         }
         uStack_900 = uStack_900 & 0xffffffff;
@@ -329,7 +329,7 @@ LAB_1800a7660:
     auStack_620[0] = 0;
     iStack_628 = iStack_740;
     puVar15 = &DAT_18098bc73;
-    if (puStack_748 != (undefined *)0x0) {
+    if (puStack_748 != (void *)0x0) {
         puVar15 = puStack_748;
     }
     strcpy_s(auStack_620, MAX_STRING_LENGTH, puVar15);

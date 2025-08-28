@@ -208,11 +208,11 @@ void System_ComponentStateController(void* context, void* component)
   uint32_t component_flags;
   void* render_context;
   void* security_cookie;
-  undefined2 local_data[2];
-  undefined2 dimension_data;
-  undefined1 visibility_flag;
-  undefined2 state_data;
-  undefined4 render_param;
+  int16_t local_data[2];
+  int16_t dimension_data;
+  int8_t visibility_flag;
+  int16_t state_data;
+  int32_t render_param;
   uint32_t update_flags;
   ulonglong stack_protection;
   

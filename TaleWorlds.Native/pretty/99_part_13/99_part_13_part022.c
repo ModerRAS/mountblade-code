@@ -10,8 +10,8 @@
 
 // 类型定义
 typedef uint8_t undefined;
-typedef uint32_t undefined4;
-typedef uint64_t undefined8;
+typedef uint32_t int32_t;
+typedef uint64_t uint64_t;
 
 // 常量定义
 #define MAX_RENDERING_QUEUE_SIZE 256
@@ -80,7 +80,7 @@ uint64_t rendering_system_transform_matrix(int64_t matrix_id, int64_t transform_
 float rendering_system_calculate_interpolation(uint32_t* state_data, float target_value, int interpolation_mode);
 int rendering_system_set_render_target(int64_t* render_context, int64_t render_target);
 uint8_t rendering_system_check_state(longlong context, longlong parameter);
-void rendering_system_set_parameters(longlong render_context, undefined4 param_a, undefined4 param_b, char param_c);
+void rendering_system_set_parameters(longlong render_context, int32_t param_a, int32_t param_b, char param_c);
 void rendering_system_process_queue(longlong *queue_ptr);
 void rendering_system_cleanup_queue(longlong *queue_ptr);
 
@@ -118,18 +118,18 @@ void rendering_system_initialize(void) {
     int parameter_type;                 // 参数类型
     longlong *command_ptr;              // 命令指针
     int render_mode;                    // 渲染模式
-    undefined4 param_a;                 // 参数A
-    undefined4 param_b;                 // 参数B
-    undefined4 param_c;                 // 参数C
-    undefined4 param_d;                 // 参数D
-    undefined4 param_e;                 // 参数E
-    undefined4 param_f;                 // 参数F
-    undefined4 param_g;                 // 参数G
-    undefined4 param_h;                 // 参数H
+    int32_t param_a;                 // 参数A
+    int32_t param_b;                 // 参数B
+    int32_t param_c;                 // 参数C
+    int32_t param_d;                 // 参数D
+    int32_t param_e;                 // 参数E
+    int32_t param_f;                 // 参数F
+    int32_t param_g;                 // 参数G
+    int32_t param_h;                 // 参数H
     char state_flag;                    // 状态标志
     longlong context_ptr;               // 上下文指针
     longlong result_value;              // 结果值
-    undefined8 render_context;          // 渲染上下文
+    uint64_t render_context;          // 渲染上下文
     longlong *next_command;             // 下一个命令
     longlong *base_context;             // 基础上下文
     longlong queue_base;                // 队列基础地址
@@ -142,20 +142,20 @@ void rendering_system_initialize(void) {
     float render_time;                  // 渲染时间
     float processed_value;              // 处理值
     float queue_time;                   // 队列时间
-    undefined4 queue_param_a;           // 队列参数A
-    undefined4 queue_param_b;           // 队列参数B
+    int32_t queue_param_a;           // 队列参数A
+    int32_t queue_param_b;           // 队列参数B
     int processing_mode;                // 处理模式
-    undefined8 context_data;            // 上下文数据
+    uint64_t context_data;            // 上下文数据
     longlong queue_context;             // 队列上下文
     int render_parameter;               // 渲染参数
     float accumulated_time;             // 累计时间
     float final_time;                   // 最终时间
     int matrix_index;                   // 矩阵索引
     ulonglong stack_ptr;                // 栈指针
-    undefined4 stack_param_a;           // 栈参数A
-    undefined4 stack_param_b;           // 栈参数B
-    undefined4 stack_param_c;           // 栈参数C
-    undefined4 stack_param_d;           // 栈参数D
+    int32_t stack_param_a;           // 栈参数A
+    int32_t stack_param_b;           // 栈参数B
+    int32_t stack_param_c;           // 栈参数C
+    int32_t stack_param_d;           // 栈参数D
     
     // 初始化渲染模式和相关参数
     render_mode = render_parameter;
@@ -270,7 +270,7 @@ void rendering_system_initialize(void) {
         calculated_value = *(float *)(&render_parameter + 0x12 + (longlong)base_context * 4);
         if (calculated_value != queue_time) {
             time_value = (float)rendering_system_calculate_interpolation(&render_parameter,
-                                                                         *(undefined4 *)(&render_parameter + 0x10 + (longlong)base_context * 4),
+                                                                         *(int32_t *)(&render_parameter + 0x10 + (longlong)base_context * 4),
                                                                          render_mode + 1);
             time_value = (time_value - scale_factor) * calculated_value;
             scale_factor = scale_factor + time_value;
@@ -334,7 +334,7 @@ void audio_processor_alternate(longlong audio_context, int processing_mode, floa
     int audio_state;
     longlong *effect_chain_ptr;
     int volume_mode;
-    undefined4 effect_params[4];
+    int32_t effect_params[4];
     float base_volume;
     float processed_volume;
     float threshold_volume;
@@ -653,7 +653,7 @@ void audio_processor_stream(longlong *audio_stream, int processing_mode, float v
  * @param param5 音频参数5
  * @param param6 音频参数6
  */
-void audio_processor_parametric(undefined8 param1, undefined8 param2, int param3, 
+void audio_processor_parametric(uint64_t param1, uint64_t param2, int param3, 
                                uint param4, int param5, ulonglong param6)
 {
     // 变量声明和初始化
@@ -851,7 +851,7 @@ void audio_processor_simple_mix(longlong audio_context, float mix_volume,
  * @param update_value 更新值
  * @param security_token 安全验证令牌
  */
-void audio_processor_direct_update(longlong audio_context, undefined4 update_value, 
+void audio_processor_direct_update(longlong audio_context, int32_t update_value, 
                                   ulonglong security_token)
 {
     // 变量声明和初始化
@@ -861,7 +861,7 @@ void audio_processor_direct_update(longlong audio_context, undefined4 update_val
     // 直接更新处理
     audio_flag = audio_system_validation();
     if (audio_flag != '\0') {
-        *(undefined4 *)(audio_context + 0x54) = update_value;
+        *(int32_t *)(audio_context + 0x54) = update_value;
         if ((*(uint *)(audio_context + 0x5c) >> 3 & 1) == 0) {
             audio_system_configure_effect();
         }
@@ -884,14 +884,14 @@ void audio_processor_direct_update(longlong audio_context, undefined4 update_val
  * @param target_resource 目标资源指针
  * @return 操作结果状态码
  */
-undefined8 audio_system_resource_manager(longlong resource_context, longlong *target_resource)
+uint64_t audio_system_resource_manager(longlong resource_context, longlong *target_resource)
 {
     // 变量声明和初始化
     longlong *resource_ptr;
-    undefined8 *resource_data;
+    uint64_t *resource_data;
     char resource_flag;
     longlong *resource_chain;
-    undefined8 operation_result;
+    uint64_t operation_result;
     longlong *resource_stack;
     longlong *resource_list;
     
@@ -921,14 +921,14 @@ undefined8 audio_system_resource_manager(longlong resource_context, longlong *ta
             resource_flag = audio_system_cleanup_handler(resource_context);
             if (resource_flag == '\0') {
                 // 遍历资源链表
-                for (resource_data = *(undefined8 **)(resource_context + 0x20); 
-                     resource_data != (undefined8 *)(resource_context + 0x20);
-                     resource_data = (undefined8 *)*resource_data) {
+                for (resource_data = *(uint64_t **)(resource_context + 0x20); 
+                     resource_data != (uint64_t *)(resource_context + 0x20);
+                     resource_data = (uint64_t *)*resource_data) {
                     operation_result = audio_system_effect_processor(resource_data, 0);
                     if ((int)operation_result != 0) {
                         return operation_result;
                     }
-                    if (resource_data == (undefined8 *)(resource_context + 0x20)) {
+                    if (resource_data == (uint64_t *)(resource_context + 0x20)) {
                         return 0;
                     }
                 }
@@ -974,7 +974,7 @@ undefined8 audio_system_resource_manager(longlong resource_context, longlong *ta
  * @param effect_param 效果参数指针
  * @return 操作结果状态码
  */
-undefined8 audio_system_effect_processor(longlong effect_context, longlong effect_param)
+uint64_t audio_system_effect_processor(longlong effect_context, longlong effect_param)
 {
     // 变量声明和初始化
     longlong *effect_processor;
@@ -984,7 +984,7 @@ undefined8 audio_system_effect_processor(longlong effect_context, longlong effec
     longlong *effect_chain;
     float *effect_buffer;
     longlong buffer_offset;
-    undefined4 effect_value;
+    int32_t effect_value;
     float volume_params[2];
     longlong buffer_position;
     longlong *effect_list;
@@ -1057,7 +1057,7 @@ undefined8 audio_system_effect_processor(longlong effect_context, longlong effec
                 }
                 
                 *(float *)(buffer_offset + effect_param) = volume_params[0];
-                *(undefined4 *)((ulonglong)effect_config + effect_param) = *(undefined4 *)(effect_param + 0xc);
+                *(int32_t *)((ulonglong)effect_config + effect_param) = *(int32_t *)(effect_param + 0xc);
                 audio_system_configure_effect(effect_param, effect_value);
                 *(int *)(effect_param + 0x28) = *(int *)(effect_param + 0x28) + -1;
             }
@@ -1091,7 +1091,7 @@ undefined8 audio_system_effect_processor(longlong effect_context, longlong effec
  * @param sample_param 采样参数
  * @return 计算结果值
  */
-float audio_system_calculate_parameters(undefined4 *param_buffer, float volume_param, int sample_param)
+float audio_system_calculate_parameters(int32_t *param_buffer, float volume_param, int sample_param)
 {
     // 变量声明和初始化
     float calculated_value;
@@ -1205,7 +1205,7 @@ int audio_system_state_manager(longlong *state_context, longlong target_state)
  * @param validation_param 验证参数
  * @return 验证结果
  */
-undefined8 audio_system_validation(longlong validation_context, longlong validation_param)
+uint64_t audio_system_validation(longlong validation_context, longlong validation_param)
 {
     // 变量声明和初始化
     char validation_result;
@@ -1233,11 +1233,11 @@ undefined8 audio_system_validation(longlong validation_context, longlong validat
  * @param config_param2 配置参数2
  * @param config_flag 配置标志
  */
-void audio_system_configure_effect(longlong config_context, undefined4 config_param1, 
-                                   undefined4 config_param2, char config_flag)
+void audio_system_configure_effect(longlong config_context, int32_t config_param1, 
+                                   int32_t config_param2, char config_flag)
 {
     // 变量声明和初始化
-    undefined4 effect_param;
+    int32_t effect_param;
     
     // 效果配置逻辑
     effect_param = 5;
@@ -1260,15 +1260,15 @@ void audio_system_configure_effect(longlong config_context, undefined4 config_pa
 void audio_system_cleanup_handler(longlong *cleanup_context)
 {
     // 变量声明和初始化
-    undefined8 *resource_data;
+    uint64_t *resource_data;
     longlong resource_offset;
     int resource_state;
-    undefined8 resource_value;
+    uint64_t resource_value;
     longlong resource_position;
     
     // 资源清理逻辑
-    resource_data = (undefined8 *)cleanup_context[1];
-    if ((((resource_data != (undefined8 *)0x0) && (resource_offset = *cleanup_context, resource_offset != 0)) &&
+    resource_data = (uint64_t *)cleanup_context[1];
+    if ((((resource_data != (uint64_t *)0x0) && (resource_offset = *cleanup_context, resource_offset != 0)) &&
         ((resource_data[0xb] == 0 ||
           (((*(uint *)(resource_data + 0x11) >> 2 & 1) == 0 || (resource_state = audio_system_resource_manager(resource_data), resource_state == 0)))))) &&
         ((resource_data[9] == 0 ||
@@ -1297,10 +1297,10 @@ void audio_system_cleanup_handler(longlong *cleanup_context)
             }
             
             *(uint *)(resource_data + 0x11) = *(uint *)(resource_data + 0x11) | AUDIO_FLAG_VOLUME_MULTIPLIER;
-            resource_state = audio_system_effect_processor(*(undefined8 *)(resource_offset + 8), resource_data);
+            resource_state = audio_system_effect_processor(*(uint64_t *)(resource_offset + 8), resource_data);
             
             if (resource_state == 0) {
-                audio_system_resource_optimize(*(undefined8 *)(resource_offset + 0x10), resource_data);
+                audio_system_resource_optimize(*(uint64_t *)(resource_offset + 0x10), resource_data);
             }
         }
     }
@@ -1321,7 +1321,7 @@ void audio_system_process_callback(longlong *callback_context)
     longlong resource_offset;
     int resource_state;
     longlong resource_position;
-    undefined8 *resource_data;
+    uint64_t *resource_data;
     
     // 回调处理逻辑
     resource_offset = *callback_context;
@@ -1359,10 +1359,10 @@ void audio_system_process_callback(longlong *callback_context)
             }
             
             *(uint *)(resource_data + 0x11) = *(uint *)(resource_data + 0x11) | AUDIO_FLAG_VOLUME_MULTIPLIER;
-            resource_state = audio_system_effect_processor(*(undefined8 *)(resource_offset + 8));
+            resource_state = audio_system_effect_processor(*(uint64_t *)(resource_offset + 8));
             
             if (resource_state == 0) {
-                audio_system_resource_optimize(*(undefined8 *)(resource_offset + 0x10));
+                audio_system_resource_optimize(*(uint64_t *)(resource_offset + 0x10));
             }
         }
     }

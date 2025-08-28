@@ -94,9 +94,9 @@ void ui_system_conditional_render_processor(void)
 // 该函数实现了UI动画参数的复杂计算，包括动画权重、插值计算、渲染参数设置等功能
 void ui_system_animation_parameter_calculator(longlong render_context_ptr,
                                            float *animation_data_ptr,
-                                           undefined4 render_param_1,
-                                           undefined4 render_param_2,
-                                           undefined4 render_param_3,
+                                           int32_t render_param_1,
+                                           int32_t render_param_2,
+                                           int32_t render_param_3,
                                            float *output_buffer_ptr)
 {
   float weight_factor_1;
@@ -104,15 +104,15 @@ void ui_system_animation_parameter_calculator(longlong render_context_ptr,
   char control_flag;
   float *buffer_ptr;
   longlong resource_ptr;
-  undefined1 temp_flag;
-  undefined8 *resource_array_ptr;
+  int8_t temp_flag;
+  uint64_t *resource_array_ptr;
   int array_index;
   float animation_weight;
   float temp_weight_1;
   float temp_weight_2;
-  undefined4 render_param_temp;
+  int32_t render_param_temp;
   float stack_param_1;
-  undefined4 stack_param_2;
+  int32_t stack_param_2;
   
   buffer_ptr = output_buffer_ptr;
   // 初始化输出缓冲区
@@ -132,41 +132,41 @@ void ui_system_animation_parameter_calculator(longlong render_context_ptr,
   
   // 处理主要动画权重
   if (UI_ZERO_FLOAT < temp_weight_1) {
-    resource_ptr = FUN_18065fd40(*(undefined8 *)(render_context_ptr + UI_OFFSET_0X48));
+    resource_ptr = FUN_18065fd40(*(uint64_t *)(render_context_ptr + UI_OFFSET_0X48));
     weight_factor_1 = *(float *)(resource_ptr + UI_OFFSET_0X14) - *(float *)(resource_ptr + UI_OFFSET_0X1C);
     if (weight_factor_1 < UI_ZERO_FLOAT) {
       weight_factor_1 = weight_factor_1 + UI_ONE_FLOAT;
     }
     weight_factor_2 = *(float *)(resource_ptr + UI_OFFSET_0XC);
-    resource_ptr = FUN_18065fd40(*(undefined8 *)(render_context_ptr + UI_OFFSET_0X48));
+    resource_ptr = FUN_18065fd40(*(uint64_t *)(render_context_ptr + UI_OFFSET_0X48));
     temp_weight_2 = *(float *)(resource_ptr + UI_OFFSET_0X14);
-    resource_ptr = FUN_18065fd40(*(undefined8 *)(render_context_ptr + UI_OFFSET_0X48));
+    resource_ptr = FUN_18065fd40(*(uint64_t *)(render_context_ptr + UI_OFFSET_0X48));
     output_buffer_ptr._0_4_ = temp_weight_2;
     output_buffer_ptr._4_4_ = fmodf(temp_weight_2 + *(float *)(resource_ptr + UI_OFFSET_0XC), UI_NORMALIZATION_FACTOR);
-    resource_ptr = FUN_18065fd40(*(undefined8 *)(render_context_ptr + UI_OFFSET_0X48));
-    func_0x000180669850(buffer_ptr, *(undefined4 *)(resource_ptr + UI_OFFSET_0XC), &output_buffer_ptr, 
+    resource_ptr = FUN_18065fd40(*(uint64_t *)(render_context_ptr + UI_OFFSET_0X48));
+    func_0x000180669850(buffer_ptr, *(int32_t *)(resource_ptr + UI_OFFSET_0XC), &output_buffer_ptr, 
                         weight_factor_1 + weight_factor_2, render_param_2, temp_weight_1);
     
-    resource_ptr = FUN_18065fd40(*(undefined8 *)(render_context_ptr + UI_OFFSET_0X48));
+    resource_ptr = FUN_18065fd40(*(uint64_t *)(render_context_ptr + UI_OFFSET_0X48));
     weight_factor_1 = *(float *)(resource_ptr + UI_OFFSET_0X18) - *(float *)(resource_ptr + UI_OFFSET_0X20);
     if (weight_factor_1 < UI_ZERO_FLOAT) {
       weight_factor_1 = weight_factor_1 + UI_ONE_FLOAT;
     }
     weight_factor_2 = *(float *)(resource_ptr + UI_OFFSET_0X10);
-    resource_ptr = FUN_18065fd40(*(undefined8 *)(render_context_ptr + UI_OFFSET_0X48));
+    resource_ptr = FUN_18065fd40(*(uint64_t *)(render_context_ptr + UI_OFFSET_0X48));
     temp_weight_2 = *(float *)(resource_ptr + UI_OFFSET_0X18);
-    resource_ptr = FUN_18065fd40(*(undefined8 *)(render_context_ptr + UI_OFFSET_0X48));
+    resource_ptr = FUN_18065fd40(*(uint64_t *)(render_context_ptr + UI_OFFSET_0X48));
     output_buffer_ptr._0_4_ = temp_weight_2;
     output_buffer_ptr._4_4_ = fmodf(temp_weight_2 + *(float *)(resource_ptr + UI_OFFSET_0X10), UI_NORMALIZATION_FACTOR);
-    resource_ptr = FUN_18065fd40(*(undefined8 *)(render_context_ptr + UI_OFFSET_0X48));
-    func_0x000180669850(buffer_ptr + 6, *(undefined4 *)(resource_ptr + UI_OFFSET_0X10), &output_buffer_ptr, 
+    resource_ptr = FUN_18065fd40(*(uint64_t *)(render_context_ptr + UI_OFFSET_0X48));
+    func_0x000180669850(buffer_ptr + 6, *(int32_t *)(resource_ptr + UI_OFFSET_0X10), &output_buffer_ptr, 
                         weight_factor_1 + weight_factor_2, render_param_2, temp_weight_1);
   }
   
   // 处理额外的动画数据
   if (((animation_weight * UI_SMOOTH_STEP_FACTOR - UI_FIFTEEN_FLOAT) * animation_weight + UI_TEN_FLOAT) * 
       animation_weight * animation_weight * animation_weight + temp_weight_1 < UI_ONE_FLOAT) {
-    resource_array_ptr = (undefined8 *)(render_context_ptr + 8);
+    resource_array_ptr = (uint64_t *)(render_context_ptr + 8);
     array_index = 1;
     do {
       animation_data_ptr = animation_data_ptr + 1;
@@ -188,7 +188,7 @@ void ui_system_animation_parameter_calculator(longlong render_context_ptr,
         output_buffer_ptr._0_4_ = weight_factor_1;
         output_buffer_ptr._4_4_ = fmodf(weight_factor_1 + *(float *)(resource_ptr + UI_OFFSET_0XC), UI_NORMALIZATION_FACTOR);
         resource_ptr = FUN_18065fd40(*resource_array_ptr);
-        func_0x000180669850(buffer_ptr, *(undefined4 *)(resource_ptr + UI_OFFSET_0XC), &output_buffer_ptr, 
+        func_0x000180669850(buffer_ptr, *(int32_t *)(resource_ptr + UI_OFFSET_0XC), &output_buffer_ptr, 
                             temp_weight_1 + temp_weight_2, render_param_temp, animation_weight);
         
         animation_weight = *animation_data_ptr;
@@ -204,7 +204,7 @@ void ui_system_animation_parameter_calculator(longlong render_context_ptr,
         stack_param_1 = weight_factor_1;
         stack_param_2 = fmodf(weight_factor_1 + *(float *)(resource_ptr + UI_OFFSET_0X10), UI_NORMALIZATION_FACTOR);
         resource_ptr = FUN_18065fd40(*resource_array_ptr);
-        func_0x000180669850(buffer_ptr + 6, *(undefined4 *)(resource_ptr + UI_OFFSET_0X10), &stack_param_1, 
+        func_0x000180669850(buffer_ptr + 6, *(int32_t *)(resource_ptr + UI_OFFSET_0X10), &stack_param_1, 
                             temp_weight_1 + temp_weight_2, render_param_temp, animation_weight);
       }
       array_index = array_index + 1;
@@ -229,7 +229,7 @@ void ui_system_animation_parameter_calculator(longlong render_context_ptr,
   else {
     temp_flag = 1;
   }
-  *(undefined1 *)(buffer_ptr + 5) = temp_flag;
+  *(int8_t *)(buffer_ptr + 5) = temp_flag;
   
   if (control_flag != '\0') {
     animation_weight = buffer_ptr[4] * UI_POINT_ZERO_FIVE_FLOAT;
@@ -238,11 +238,11 @@ void ui_system_animation_parameter_calculator(longlong render_context_ptr,
   *(bool *)((longlong)buffer_ptr + 0x16) = weight_factor_1 <= temp_weight_2 + animation_weight;
   
   if ((weight_factor_1 <= temp_weight_1) && (*(char *)((longlong)buffer_ptr + 0x17) == '\0')) {
-    *(undefined1 *)((longlong)buffer_ptr + 0x15) = 1;
+    *(int8_t *)((longlong)buffer_ptr + 0x15) = 1;
     *(bool *)((longlong)buffer_ptr + 0x17) = weight_factor_1 <= temp_weight_1;
     return;
   }
-  *(undefined1 *)((longlong)buffer_ptr + 0x15) = 0;
+  *(int8_t *)((longlong)buffer_ptr + 0x15) = 0;
   *(bool *)((longlong)buffer_ptr + 0x17) = weight_factor_1 <= temp_weight_1;
   return;
 }
@@ -255,20 +255,20 @@ void ui_system_render_state_controller(void)
   float weight_factor_2;
   char control_flag;
   longlong resource_ptr;
-  undefined1 state_flag;
-  undefined8 *resource_array_ptr;
+  int8_t state_flag;
+  uint64_t *resource_array_ptr;
   longlong render_context_ptr;
   float *animation_data_ptr;
   int array_index;
   float *output_buffer_ptr;
   float threshold_value;
-  undefined4 render_param_1;
+  int32_t render_param_1;
   float temp_weight_1;
-  undefined4 render_param_2;
-  undefined4 render_param_3;
-  undefined4 render_param_4;
+  int32_t render_param_2;
+  int32_t render_param_3;
+  int32_t render_param_4;
   float stack_param_1;
-  undefined4 stack_param_2;
+  int32_t stack_param_2;
   
   animation_data_ptr = (float *)(render_context_ptr + 4);
   array_index = 1;
@@ -290,7 +290,7 @@ void ui_system_render_state_controller(void)
       stack_param_1 = weight_factor_1;
       stack_param_2 = fmodf(weight_factor_1 + *(float *)(resource_ptr + UI_OFFSET_0XC));
       resource_ptr = FUN_18065fd40(*resource_array_ptr);
-      func_0x000180669850(render_param_1, *(undefined4 *)(resource_ptr + UI_OFFSET_0XC), &stack_param_1, 
+      func_0x000180669850(render_param_1, *(int32_t *)(resource_ptr + UI_OFFSET_0XC), &stack_param_1, 
                           temp_weight_1 + weight_factor_2, render_param_1);
       
       resource_ptr = FUN_18065fd40(*resource_array_ptr);
@@ -305,7 +305,7 @@ void ui_system_render_state_controller(void)
       stack_param_1 = weight_factor_1;
       stack_param_2 = fmodf(weight_factor_1 + *(float *)(resource_ptr + UI_OFFSET_0X10));
       resource_ptr = FUN_18065fd40(*resource_array_ptr);
-      func_0x000180669850(output_buffer_ptr + 6, *(undefined4 *)(resource_ptr + UI_OFFSET_0X10), &stack_param_1, 
+      func_0x000180669850(output_buffer_ptr + 6, *(int32_t *)(resource_ptr + UI_OFFSET_0X10), &stack_param_1, 
                           temp_weight_1 + weight_factor_2, render_param_1);
     }
     array_index = array_index + 1;
@@ -329,7 +329,7 @@ void ui_system_render_state_controller(void)
   else {
     state_flag = 1;
   }
-  *(undefined1 *)(output_buffer_ptr + 5) = state_flag;
+  *(int8_t *)(output_buffer_ptr + 5) = state_flag;
   
   if (control_flag != '\0') {
     temp_weight_1 = output_buffer_ptr[4] * UI_POINT_ZERO_FIVE_FLOAT;
@@ -338,11 +338,11 @@ void ui_system_render_state_controller(void)
   *(bool *)((longlong)output_buffer_ptr + 0x16) = weight_factor_2 <= weight_factor_1 + temp_weight_1;
   
   if ((weight_factor_2 <= weight_factor_2) && (*(char *)((longlong)output_buffer_ptr + 0x17) == '\0')) {
-    *(undefined1 *)((longlong)output_buffer_ptr + 0x15) = 1;
+    *(int8_t *)((longlong)output_buffer_ptr + 0x15) = 1;
     *(bool *)((longlong)output_buffer_ptr + 0x17) = weight_factor_2 <= weight_factor_2;
     return;
   }
-  *(undefined1 *)((longlong)output_buffer_ptr + 0x15) = 0;
+  *(int8_t *)((longlong)output_buffer_ptr + 0x15) = 0;
   *(bool *)((longlong)output_buffer_ptr + 0x17) = weight_factor_2 <= weight_factor_2;
   return;
 }
@@ -354,7 +354,7 @@ void ui_system_animation_optimizer(void)
   float weight_factor_1;
   float weight_factor_2;
   char control_flag;
-  undefined1 state_flag;
+  int8_t state_flag;
   float *animation_buffer_ptr;
   float temp_weight_1;
   float temp_weight_2;
@@ -375,7 +375,7 @@ void ui_system_animation_optimizer(void)
   else {
     state_flag = 1;
   }
-  *(undefined1 *)(animation_buffer_ptr + 5) = state_flag;
+  *(int8_t *)(animation_buffer_ptr + 5) = state_flag;
   
   if (control_flag != '\0') {
     temp_weight_1 = animation_buffer_ptr[4] * UI_POINT_ZERO_FIVE_FLOAT;
@@ -384,11 +384,11 @@ void ui_system_animation_optimizer(void)
   *(bool *)((longlong)animation_buffer_ptr + 0x16) = weight_factor_2 <= weight_factor_1 + temp_weight_1;
   
   if ((weight_factor_2 <= temp_weight_2) && (*(char *)((longlong)animation_buffer_ptr + 0x17) == '\0')) {
-    *(undefined1 *)((longlong)animation_buffer_ptr + 0x15) = 1;
+    *(int8_t *)((longlong)animation_buffer_ptr + 0x15) = 1;
     *(bool *)((longlong)animation_buffer_ptr + 0x17) = weight_factor_2 <= temp_weight_2;
     return;
   }
-  *(undefined1 *)((longlong)animation_buffer_ptr + 0x15) = 0;
+  *(int8_t *)((longlong)animation_buffer_ptr + 0x15) = 0;
   *(bool *)((longlong)animation_buffer_ptr + 0x17) = weight_factor_2 <= temp_weight_2;
   return;
 }
@@ -404,9 +404,9 @@ void ui_system_resource_cleanup_helper(void)
 // 该函数实现了UI系统渲染的初始化处理，包括参数设置、权重计算、渲染控制等功能
 void ui_system_render_initiator(longlong *render_object_array_ptr,
                                longlong render_context_ptr,
-                               undefined8 render_param_1,
+                               uint64_t render_param_1,
                                longlong resource_manager_ptr,
-                               undefined8 render_param_2,
+                               uint64_t render_param_2,
                                float base_weight_1,
                                float base_weight_2,
                                float animation_scale,
@@ -414,30 +414,30 @@ void ui_system_render_initiator(longlong *render_object_array_ptr,
                                float weight_factor_2,
                                char control_flag)
 {
-  undefined8 resource_handle;
+  uint64_t resource_handle;
   longlong resource_ptr;
   char temp_flag;
-  undefined1 render_state;
+  int8_t render_state;
   int param_index;
   float calculated_weight;
   float weight_sum;
   float weight_difference;
-  undefined1 stack_buffer_1 [8];
-  undefined8 stack_param_1;
+  int8_t stack_buffer_1 [8];
+  uint64_t stack_param_1;
   ulonglong render_handle;
-  undefined8 resource_handle_2;
-  undefined8 stack_resource_1;
+  uint64_t resource_handle_2;
+  uint64_t stack_resource_1;
   longlong stack_context_1;
   char stack_flag_1;
-  undefined8 stack_resource_2;
+  uint64_t stack_resource_2;
   longlong stack_context_2;
   char stack_flag_2;
-  undefined8 stack_resource_3;
-  undefined1 stack_buffer_2 [32];
-  undefined1 stack_buffer_3 [96];
+  uint64_t stack_resource_3;
+  int8_t stack_buffer_2 [32];
+  int8_t stack_buffer_3 [96];
   
   stack_resource_2 = 0xfffffffffffffffe;
-  resource_handle = *(undefined8 *)(render_context_ptr + UI_OFFSET_0X208);
+  resource_handle = *(uint64_t *)(render_context_ptr + UI_OFFSET_0X208);
   weight_sum = (UI_ONE_FLOAT - weight_factor_1) - weight_factor_2;
   param_index = 0;
   stack_param_1 = render_param_1;
@@ -518,7 +518,7 @@ void ui_system_render_initiator(longlong *render_object_array_ptr,
 
 // UI系统资源获取器 - 获取UI系统资源
 // 该函数实现了UI系统资源的获取功能，包括资源查找、状态检查、资源返回等功能
-undefined8 ui_system_resource_accessor(longlong resource_context_ptr)
+uint64_t ui_system_resource_accessor(longlong resource_context_ptr)
 {
   int status_code_1;
   int status_code_2;
@@ -530,7 +530,7 @@ undefined8 ui_system_resource_accessor(longlong resource_context_ptr)
     if ((longlong *)*resource_array_ptr != (longlong *)0x0) {
       status_code_1 = (**(code **)(*(longlong *)*resource_array_ptr + 0x18))();
       if (status_code_1 == 2) {
-        return *(undefined8 *)(resource_context_ptr + UI_OFFSET_0X198 + (longlong)status_code_2 * 8);
+        return *(uint64_t *)(resource_context_ptr + UI_OFFSET_0X198 + (longlong)status_code_2 * 8);
       }
     }
     status_code_2 = status_code_2 + 1;
@@ -541,15 +541,15 @@ undefined8 ui_system_resource_accessor(longlong resource_context_ptr)
 
 // UI系统渲染管线控制器 - 控制UI系统的渲染管线
 // 该函数实现了UI系统渲染管线的控制，包括权重计算、渲染参数设置、管线控制等功能
-void ui_system_render_pipeline_controller(undefined8 *render_object_array_ptr,
-                                        undefined8 render_param_1,
-                                        undefined8 render_param_2,
-                                        undefined8 render_param_3,
-                                        undefined8 render_param_4,
-                                        undefined4 render_flag_1,
-                                        undefined4 render_flag_2,
+void ui_system_render_pipeline_controller(uint64_t *render_object_array_ptr,
+                                        uint64_t render_param_1,
+                                        uint64_t render_param_2,
+                                        uint64_t render_param_3,
+                                        uint64_t render_param_4,
+                                        int32_t render_flag_1,
+                                        int32_t render_flag_2,
                                         float render_scale,
-                                        undefined8 render_param_5,
+                                        uint64_t render_param_5,
                                         float weight_factor_1,
                                         float weight_factor_2,
                                         float weight_factor_3,
@@ -557,17 +557,17 @@ void ui_system_render_pipeline_controller(undefined8 *render_object_array_ptr,
                                         longlong context_ptr,
                                         int *output_index_ptr)
 {
-  undefined8 resource_handle;
+  uint64_t resource_handle;
   int param_index;
   float calculated_weight;
-  undefined4 render_flag_temp;
+  int32_t render_flag_temp;
   float max_weight;
   float weight_sum;
   
   max_weight = -UI_ONE_FLOAT;
   param_index = 0;
   weight_sum = (UI_ONE_FLOAT - weight_factor_3) - weight_factor_2;
-  resource_handle = *(undefined8 *)(context_ptr + UI_OFFSET_0X208);
+  resource_handle = *(uint64_t *)(context_ptr + UI_OFFSET_0X208);
   do {
     switch(param_index) {
     case 0:
@@ -738,45 +738,45 @@ longlong ui_system_memory_initializer(longlong memory_context_ptr)
     temp_ptr = temp_ptr + UI_OFFSET_0X104;
     loop_counter_2 = loop_counter_2 + -1;
   } while (loop_counter_2 != 0);
-  *(undefined8 *)(memory_context_ptr + UI_OFFSET_0XC30) = 0;
+  *(uint64_t *)(memory_context_ptr + UI_OFFSET_0XC30) = 0;
   return memory_context_ptr;
 }
 
 // UI系统高级渲染控制器 - 高级渲染控制功能
 // 该函数实现了UI系统的高级渲染控制，包括渲染参数计算、状态管理、管线控制等功能
 void ui_system_advanced_render_controller(longlong render_context_ptr,
-                                        undefined8 render_param_1,
-                                        undefined8 render_param_2,
+                                        uint64_t render_param_1,
+                                        uint64_t render_param_2,
                                         longlong resource_manager_ptr,
-                                        undefined8 render_param_3,
+                                        uint64_t render_param_3,
                                         longlong render_data_ptr)
 {
-  undefined4 render_flag_1;
-  undefined4 render_flag_2;
-  undefined4 render_flag_3;
-  undefined4 render_flag_4;
+  int32_t render_flag_1;
+  int32_t render_flag_2;
+  int32_t render_flag_3;
+  int32_t render_flag_4;
   int data_index;
   float weight_factor_1;
   float weight_factor_2;
-  undefined4 render_flag_5;
-  undefined4 render_flag_6;
-  undefined4 render_flag_7;
-  undefined4 render_flag_8;
-  undefined1 control_flag;
+  int32_t render_flag_5;
+  int32_t render_flag_6;
+  int32_t render_flag_7;
+  int32_t render_flag_8;
+  int8_t control_flag;
   
   weight_factor_1 = *(float *)(render_data_ptr + UI_OFFSET_0X2C);
   data_index = *(int *)(render_data_ptr + UI_OFFSET_0X10);
-  render_flag_6 = *(undefined4 *)(render_data_ptr + UI_OFFSET_0X40);
-  render_flag_1 = *(undefined4 *)(render_data_ptr + UI_OFFSET_0X30);
-  render_flag_2 = *(undefined4 *)(render_data_ptr + UI_OFFSET_0X34);
-  render_flag_3 = *(undefined4 *)(render_data_ptr + UI_OFFSET_0X38);
-  render_flag_4 = *(undefined4 *)(render_data_ptr + UI_OFFSET_0X44);
-  render_flag_8 = *(undefined4 *)(render_data_ptr + UI_OFFSET_0X24);
+  render_flag_6 = *(int32_t *)(render_data_ptr + UI_OFFSET_0X40);
+  render_flag_1 = *(int32_t *)(render_data_ptr + UI_OFFSET_0X30);
+  render_flag_2 = *(int32_t *)(render_data_ptr + UI_OFFSET_0X34);
+  render_flag_3 = *(int32_t *)(render_data_ptr + UI_OFFSET_0X38);
+  render_flag_4 = *(int32_t *)(render_data_ptr + UI_OFFSET_0X44);
+  render_flag_8 = *(int32_t *)(render_data_ptr + UI_OFFSET_0X24);
   weight_factor_2 = (UI_THREE_FLOAT - (weight_factor_1 + weight_factor_1)) * weight_factor_1 * weight_factor_1;
   weight_factor_1 = UI_ONE_FLOAT - weight_factor_2;
   if (UI_ZERO_FLOAT < weight_factor_1) {
     if (*(int *)(render_data_ptr + UI_OFFSET_0X14) == 1) {
-      control_flag = *(undefined1 *)(render_data_ptr + UI_OFFSET_0X28);
+      control_flag = *(int8_t *)(render_data_ptr + UI_OFFSET_0X28);
       render_flag_5 = render_flag_4;
       render_flag_7 = render_flag_8;
     }
@@ -792,7 +792,7 @@ void ui_system_advanced_render_controller(longlong render_context_ptr,
                   render_flag_3, control_flag);
   }
   if (data_index == 1) {
-    control_flag = *(undefined1 *)(render_data_ptr + UI_OFFSET_0X28);
+    control_flag = *(int8_t *)(render_data_ptr + UI_OFFSET_0X28);
     render_flag_6 = render_flag_4;
   }
   else {

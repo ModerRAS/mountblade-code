@@ -22,19 +22,19 @@
 void InitializeSystemComponent1(void)
 {
   // 寄存器变量（平台相关）
-  undefined8 register_r9;
+  uint64_t register_r9;
   
   // 指向组件基础结构的指针
-  undefined *component_base_ptr;
+  void *component_base_ptr;
   
   // 字符串缓冲区
-  undefined1 *string_buffer;
+  int8_t *string_buffer;
   
   // 字符串长度参数
-  undefined4 string_length;
+  int32_t string_length;
   
   // 工作缓冲区
-  undefined1 work_buffer[136];
+  int8_t work_buffer[136];
   
   // 初始化基础结构指针
   component_base_ptr = &SystemBaseStructure;
@@ -71,19 +71,19 @@ void InitializeSystemComponent1(void)
 void InitializeSystemComponent2(void)
 {
   // 寄存器变量（平台相关）
-  undefined8 register_r9;
+  uint64_t register_r9;
   
   // 指向组件基础结构的指针
-  undefined *component_base_ptr;
+  void *component_base_ptr;
   
   // 字符串缓冲区
-  undefined1 *string_buffer;
+  int8_t *string_buffer;
   
   // 字符串长度参数
-  undefined4 string_length;
+  int32_t string_length;
   
   // 工作缓冲区
-  undefined1 work_buffer[136];
+  int8_t work_buffer[136];
   
   // 初始化基础结构指针
   component_base_ptr = &SystemBaseStructure;
@@ -120,19 +120,19 @@ void InitializeSystemComponent2(void)
 void InitializeSystemComponent3(void)
 {
   // 寄存器变量（平台相关）
-  undefined8 register_r9;
+  uint64_t register_r9;
   
   // 指向组件基础结构的指针
-  undefined *component_base_ptr;
+  void *component_base_ptr;
   
   // 字符串缓冲区
-  undefined1 *string_buffer;
+  int8_t *string_buffer;
   
   // 字符串长度参数
-  undefined4 string_length;
+  int32_t string_length;
   
   // 工作缓冲区
-  undefined1 work_buffer[136];
+  int8_t work_buffer[136];
   
   // 初始化基础结构指针
   component_base_ptr = &SystemBaseStructure;
@@ -169,19 +169,19 @@ void InitializeSystemComponent3(void)
 void InitializeSystemComponent4(void)
 {
   // 寄存器变量（平台相关）
-  undefined8 register_r9;
+  uint64_t register_r9;
   
   // 指向组件基础结构的指针
-  undefined *component_base_ptr;
+  void *component_base_ptr;
   
   // 字符串缓冲区
-  undefined1 *string_buffer;
+  int8_t *string_buffer;
   
   // 字符串长度参数
-  undefined4 string_length;
+  int32_t string_length;
   
   // 工作缓冲区
-  undefined1 work_buffer[136];
+  int8_t work_buffer[136];
   
   // 初始化基础结构指针
   component_base_ptr = &SystemBaseStructure;
@@ -219,7 +219,7 @@ void RegisterTypeService1(void)
   char node_flag;
   
   // 树根节点指针
-  undefined8 *root_node;
+  uint64_t *root_node;
   
   // 内存比较结果
   int compare_result;
@@ -231,16 +231,16 @@ void RegisterTypeService1(void)
   longlong allocation_size;
   
   // 当前搜索节点
-  undefined8 *current_node;
+  uint64_t *current_node;
   
   // 父节点
-  undefined8 *parent_node;
+  uint64_t *parent_node;
   
   // 下一个节点
-  undefined8 *next_node;
+  uint64_t *next_node;
   
   // 新创建的节点
-  undefined8 *new_node;
+  uint64_t *new_node;
   
   // 服务处理函数
   code *service_handler;
@@ -249,7 +249,7 @@ void RegisterTypeService1(void)
   tree_structure = (longlong *)GetGlobalTreeStructure();
   
   // 获取根节点
-  root_node = (undefined8 *)*tree_structure;
+  root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
@@ -259,7 +259,7 @@ void RegisterTypeService1(void)
   
   // 初始化搜索
   parent_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在二叉树中搜索合适位置
   while (node_flag == '\0') {
@@ -268,12 +268,12 @@ void RegisterTypeService1(void)
     
     if (compare_result < 0) {
       // 转到右子树
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
       // 转到左子树
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     
     parent_node = current_node;
@@ -318,7 +318,7 @@ void RegisterTypeService2(void)
   char node_flag;
   
   // 树根节点指针
-  undefined8 *root_node;
+  uint64_t *root_node;
   
   // 内存比较结果
   int compare_result;
@@ -330,16 +330,16 @@ void RegisterTypeService2(void)
   longlong allocation_size;
   
   // 当前搜索节点
-  undefined8 *current_node;
+  uint64_t *current_node;
   
   // 父节点
-  undefined8 *parent_node;
+  uint64_t *parent_node;
   
   // 下一个节点
-  undefined8 *next_node;
+  uint64_t *next_node;
   
   // 新创建的节点
-  undefined8 *new_node;
+  uint64_t *new_node;
   
   // 服务处理函数
   code *service_handler;
@@ -348,7 +348,7 @@ void RegisterTypeService2(void)
   tree_structure = (longlong *)GetGlobalTreeStructure();
   
   // 获取根节点
-  root_node = (undefined8 *)*tree_structure;
+  root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
@@ -358,7 +358,7 @@ void RegisterTypeService2(void)
   
   // 初始化搜索
   parent_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在二叉树中搜索合适位置
   while (node_flag == '\0') {
@@ -367,12 +367,12 @@ void RegisterTypeService2(void)
     
     if (compare_result < 0) {
       // 转到右子树
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
       // 转到左子树
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     
     parent_node = current_node;
@@ -417,7 +417,7 @@ void RegisterTypeService3(void)
   char node_flag;
   
   // 树根节点指针
-  undefined8 *root_node;
+  uint64_t *root_node;
   
   // 内存比较结果
   int compare_result;
@@ -429,25 +429,25 @@ void RegisterTypeService3(void)
   longlong allocation_size;
   
   // 当前搜索节点
-  undefined8 *current_node;
+  uint64_t *current_node;
   
   // 父节点
-  undefined8 *parent_node;
+  uint64_t *parent_node;
   
   // 下一个节点
-  undefined8 *next_node;
+  uint64_t *next_node;
   
   // 新创建的节点
-  undefined8 *new_node;
+  uint64_t *new_node;
   
   // 服务处理函数（空指针）
-  undefined8 service_handler;
+  uint64_t service_handler;
   
   // 获取全局树结构
   tree_structure = (longlong *)GetGlobalTreeStructure();
   
   // 获取根节点
-  root_node = (undefined8 *)*tree_structure;
+  root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
@@ -457,7 +457,7 @@ void RegisterTypeService3(void)
   
   // 初始化搜索
   parent_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在二叉树中搜索合适位置
   while (node_flag == '\0') {
@@ -466,12 +466,12 @@ void RegisterTypeService3(void)
     
     if (compare_result < 0) {
       // 转到右子树
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
       // 转到左子树
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     
     parent_node = current_node;
@@ -516,7 +516,7 @@ void RegisterTypeService4(void)
   char node_flag;
   
   // 树根节点指针
-  undefined8 *root_node;
+  uint64_t *root_node;
   
   // 内存比较结果
   int compare_result;
@@ -528,16 +528,16 @@ void RegisterTypeService4(void)
   longlong allocation_size;
   
   // 当前搜索节点
-  undefined8 *current_node;
+  uint64_t *current_node;
   
   // 父节点
-  undefined8 *parent_node;
+  uint64_t *parent_node;
   
   // 下一个节点
-  undefined8 *next_node;
+  uint64_t *next_node;
   
   // 新创建的节点
-  undefined8 *new_node;
+  uint64_t *new_node;
   
   // 服务处理函数
   code *service_handler;
@@ -546,7 +546,7 @@ void RegisterTypeService4(void)
   tree_structure = (longlong *)GetGlobalTreeStructure();
   
   // 获取根节点
-  root_node = (undefined8 *)*tree_structure;
+  root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
@@ -556,7 +556,7 @@ void RegisterTypeService4(void)
   
   // 初始化搜索
   parent_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在二叉树中搜索合适位置
   while (node_flag == '\0') {
@@ -565,12 +565,12 @@ void RegisterTypeService4(void)
     
     if (compare_result < 0) {
       // 转到右子树
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
       // 转到左子树
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     
     parent_node = current_node;
@@ -615,7 +615,7 @@ void RegisterTypeService5(void)
   char node_flag;
   
   // 树根节点指针
-  undefined8 *root_node;
+  uint64_t *root_node;
   
   // 内存比较结果
   int compare_result;
@@ -627,25 +627,25 @@ void RegisterTypeService5(void)
   longlong allocation_size;
   
   // 当前搜索节点
-  undefined8 *current_node;
+  uint64_t *current_node;
   
   // 父节点
-  undefined8 *parent_node;
+  uint64_t *parent_node;
   
   // 下一个节点
-  undefined8 *next_node;
+  uint64_t *next_node;
   
   // 新创建的节点
-  undefined8 *new_node;
+  uint64_t *new_node;
   
   // 服务处理函数（空指针）
-  undefined8 service_handler;
+  uint64_t service_handler;
   
   // 获取全局树结构
   tree_structure = (longlong *)GetGlobalTreeStructure();
   
   // 获取根节点
-  root_node = (undefined8 *)*tree_structure;
+  root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
@@ -655,7 +655,7 @@ void RegisterTypeService5(void)
   
   // 初始化搜索
   parent_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在二叉树中搜索合适位置
   while (node_flag == '\0') {
@@ -664,12 +664,12 @@ void RegisterTypeService5(void)
     
     if (compare_result < 0) {
       // 转到右子树
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
       // 转到左子树
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     
     parent_node = current_node;
@@ -714,7 +714,7 @@ void RegisterTypeService6(void)
   char node_flag;
   
   // 树根节点指针
-  undefined8 *root_node;
+  uint64_t *root_node;
   
   // 内存比较结果
   int compare_result;
@@ -726,25 +726,25 @@ void RegisterTypeService6(void)
   longlong allocation_size;
   
   // 当前搜索节点
-  undefined8 *current_node;
+  uint64_t *current_node;
   
   // 父节点
-  undefined8 *parent_node;
+  uint64_t *parent_node;
   
   // 下一个节点
-  undefined8 *next_node;
+  uint64_t *next_node;
   
   // 新创建的节点
-  undefined8 *new_node;
+  uint64_t *new_node;
   
   // 服务处理函数指针
-  undefined *service_handler;
+  void *service_handler;
   
   // 获取全局树结构
   tree_structure = (longlong *)GetGlobalTreeStructure();
   
   // 获取根节点
-  root_node = (undefined8 *)*tree_structure;
+  root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
@@ -754,7 +754,7 @@ void RegisterTypeService6(void)
   
   // 初始化搜索
   parent_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在二叉树中搜索合适位置
   while (node_flag == '\0') {
@@ -763,12 +763,12 @@ void RegisterTypeService6(void)
     
     if (compare_result < 0) {
       // 转到右子树
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
       // 转到左子树
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     
     parent_node = current_node;
@@ -813,7 +813,7 @@ void RegisterTypeService7(void)
   char node_flag;
   
   // 树根节点指针
-  undefined8 *root_node;
+  uint64_t *root_node;
   
   // 内存比较结果
   int compare_result;
@@ -825,25 +825,25 @@ void RegisterTypeService7(void)
   longlong allocation_size;
   
   // 当前搜索节点
-  undefined8 *current_node;
+  uint64_t *current_node;
   
   // 父节点
-  undefined8 *parent_node;
+  uint64_t *parent_node;
   
   // 下一个节点
-  undefined8 *next_node;
+  uint64_t *next_node;
   
   // 新创建的节点
-  undefined8 *new_node;
+  uint64_t *new_node;
   
   // 服务处理函数（空指针）
-  undefined8 service_handler;
+  uint64_t service_handler;
   
   // 获取全局树结构
   tree_structure = (longlong *)GetGlobalTreeStructure();
   
   // 获取根节点
-  root_node = (undefined8 *)*tree_structure;
+  root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
@@ -853,7 +853,7 @@ void RegisterTypeService7(void)
   
   // 初始化搜索
   parent_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在二叉树中搜索合适位置
   while (node_flag == '\0') {
@@ -862,12 +862,12 @@ void RegisterTypeService7(void)
     
     if (compare_result < 0) {
       // 转到右子树
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
       // 转到左子树
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     
     parent_node = current_node;
@@ -912,7 +912,7 @@ void RegisterTypeService8(void)
   char node_flag;
   
   // 树根节点指针
-  undefined8 *root_node;
+  uint64_t *root_node;
   
   // 内存比较结果
   int compare_result;
@@ -924,16 +924,16 @@ void RegisterTypeService8(void)
   longlong allocation_size;
   
   // 当前搜索节点
-  undefined8 *current_node;
+  uint64_t *current_node;
   
   // 父节点
-  undefined8 *parent_node;
+  uint64_t *parent_node;
   
   // 下一个节点
-  undefined8 *next_node;
+  uint64_t *next_node;
   
   // 新创建的节点
-  undefined8 *new_node;
+  uint64_t *new_node;
   
   // 服务处理函数
   code *service_handler;
@@ -942,7 +942,7 @@ void RegisterTypeService8(void)
   tree_structure = (longlong *)GetGlobalTreeStructure();
   
   // 获取根节点
-  root_node = (undefined8 *)*tree_structure;
+  root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
@@ -952,7 +952,7 @@ void RegisterTypeService8(void)
   
   // 初始化搜索
   parent_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在二叉树中搜索合适位置
   while (node_flag == '\0') {
@@ -961,12 +961,12 @@ void RegisterTypeService8(void)
     
     if (compare_result < 0) {
       // 转到右子树
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
       // 转到左子树
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     
     parent_node = current_node;
@@ -1011,7 +1011,7 @@ void RegisterTypeService9(void)
   char node_flag;
   
   // 树根节点指针
-  undefined8 *root_node;
+  uint64_t *root_node;
   
   // 内存比较结果
   int compare_result;
@@ -1023,16 +1023,16 @@ void RegisterTypeService9(void)
   longlong allocation_size;
   
   // 当前搜索节点
-  undefined8 *current_node;
+  uint64_t *current_node;
   
   // 父节点
-  undefined8 *parent_node;
+  uint64_t *parent_node;
   
   // 下一个节点
-  undefined8 *next_node;
+  uint64_t *next_node;
   
   // 新创建的节点
-  undefined8 *new_node;
+  uint64_t *new_node;
   
   // 服务处理函数
   code *service_handler;
@@ -1041,7 +1041,7 @@ void RegisterTypeService9(void)
   tree_structure = (longlong *)GetGlobalTreeStructure();
   
   // 获取根节点
-  root_node = (undefined8 *)*tree_structure;
+  root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
@@ -1051,7 +1051,7 @@ void RegisterTypeService9(void)
   
   // 初始化搜索
   parent_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在二叉树中搜索合适位置
   while (node_flag == '\0') {
@@ -1060,12 +1060,12 @@ void RegisterTypeService9(void)
     
     if (compare_result < 0) {
       // 转到右子树
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
       // 转到左子树
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     
     parent_node = current_node;
@@ -1110,7 +1110,7 @@ void RegisterTypeService10(void)
   char node_flag;
   
   // 树根节点指针
-  undefined8 *root_node;
+  uint64_t *root_node;
   
   // 内存比较结果
   int compare_result;
@@ -1122,25 +1122,25 @@ void RegisterTypeService10(void)
   longlong allocation_size;
   
   // 当前搜索节点
-  undefined8 *current_node;
+  uint64_t *current_node;
   
   // 父节点
-  undefined8 *parent_node;
+  uint64_t *parent_node;
   
   // 下一个节点
-  undefined8 *next_node;
+  uint64_t *next_node;
   
   // 新创建的节点
-  undefined8 *new_node;
+  uint64_t *new_node;
   
   // 服务处理函数（空指针）
-  undefined8 service_handler;
+  uint64_t service_handler;
   
   // 获取全局树结构
   tree_structure = (longlong *)GetGlobalTreeStructure();
   
   // 获取根节点
-  root_node = (undefined8 *)*tree_structure;
+  root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
@@ -1150,7 +1150,7 @@ void RegisterTypeService10(void)
   
   // 初始化搜索
   parent_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在二叉树中搜索合适位置
   while (node_flag == '\0') {
@@ -1159,12 +1159,12 @@ void RegisterTypeService10(void)
     
     if (compare_result < 0) {
       // 转到右子树
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
       // 转到左子树
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     
     parent_node = current_node;
@@ -1209,7 +1209,7 @@ void RegisterTypeService11(void)
   char node_flag;
   
   // 树根节点指针
-  undefined8 *root_node;
+  uint64_t *root_node;
   
   // 内存比较结果
   int compare_result;
@@ -1221,16 +1221,16 @@ void RegisterTypeService11(void)
   longlong allocation_size;
   
   // 当前搜索节点
-  undefined8 *current_node;
+  uint64_t *current_node;
   
   // 父节点
-  undefined8 *parent_node;
+  uint64_t *parent_node;
   
   // 下一个节点
-  undefined8 *next_node;
+  uint64_t *next_node;
   
   // 新创建的节点
-  undefined8 *new_node;
+  uint64_t *new_node;
   
   // 服务处理函数
   code *service_handler;
@@ -1239,7 +1239,7 @@ void RegisterTypeService11(void)
   tree_structure = (longlong *)GetGlobalTreeStructure();
   
   // 获取根节点
-  root_node = (undefined8 *)*tree_structure;
+  root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
@@ -1249,7 +1249,7 @@ void RegisterTypeService11(void)
   
   // 初始化搜索
   parent_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在二叉树中搜索合适位置
   while (node_flag == '\0') {
@@ -1258,12 +1258,12 @@ void RegisterTypeService11(void)
     
     if (compare_result < 0) {
       // 转到右子树
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
       // 转到左子树
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     
     parent_node = current_node;
@@ -1308,7 +1308,7 @@ void RegisterTypeService12(void)
   char node_flag;
   
   // 树根节点指针
-  undefined8 *root_node;
+  uint64_t *root_node;
   
   // 内存比较结果
   int compare_result;
@@ -1320,25 +1320,25 @@ void RegisterTypeService12(void)
   longlong allocation_size;
   
   // 当前搜索节点
-  undefined8 *current_node;
+  uint64_t *current_node;
   
   // 父节点
-  undefined8 *parent_node;
+  uint64_t *parent_node;
   
   // 下一个节点
-  undefined8 *next_node;
+  uint64_t *next_node;
   
   // 新创建的节点
-  undefined8 *new_node;
+  uint64_t *new_node;
   
   // 服务处理函数（空指针）
-  undefined8 service_handler;
+  uint64_t service_handler;
   
   // 获取全局树结构
   tree_structure = (longlong *)GetGlobalTreeStructure();
   
   // 获取根节点
-  root_node = (undefined8 *)*tree_structure;
+  root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
@@ -1348,7 +1348,7 @@ void RegisterTypeService12(void)
   
   // 初始化搜索
   parent_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在二叉树中搜索合适位置
   while (node_flag == '\0') {
@@ -1357,12 +1357,12 @@ void RegisterTypeService12(void)
     
     if (compare_result < 0) {
       // 转到右子树
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
       // 转到左子树
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     
     parent_node = current_node;
@@ -1407,7 +1407,7 @@ void RegisterTypeService13(void)
   char node_flag;
   
   // 树根节点指针
-  undefined8 *root_node;
+  uint64_t *root_node;
   
   // 内存比较结果
   int compare_result;
@@ -1419,25 +1419,25 @@ void RegisterTypeService13(void)
   longlong allocation_size;
   
   // 当前搜索节点
-  undefined8 *current_node;
+  uint64_t *current_node;
   
   // 父节点
-  undefined8 *parent_node;
+  uint64_t *parent_node;
   
   // 下一个节点
-  undefined8 *next_node;
+  uint64_t *next_node;
   
   // 新创建的节点
-  undefined8 *new_node;
+  uint64_t *new_node;
   
   // 服务处理函数指针
-  undefined *service_handler;
+  void *service_handler;
   
   // 获取全局树结构
   tree_structure = (longlong *)GetGlobalTreeStructure();
   
   // 获取根节点
-  root_node = (undefined8 *)*tree_structure;
+  root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
@@ -1447,7 +1447,7 @@ void RegisterTypeService13(void)
   
   // 初始化搜索
   parent_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在二叉树中搜索合适位置
   while (node_flag == '\0') {
@@ -1456,12 +1456,12 @@ void RegisterTypeService13(void)
     
     if (compare_result < 0) {
       // 转到右子树
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
       // 转到左子树
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     
     parent_node = current_node;
@@ -1506,7 +1506,7 @@ void RegisterTypeService14(void)
   char node_flag;
   
   // 树根节点指针
-  undefined8 *root_node;
+  uint64_t *root_node;
   
   // 内存比较结果
   int compare_result;
@@ -1518,25 +1518,25 @@ void RegisterTypeService14(void)
   longlong allocation_size;
   
   // 当前搜索节点
-  undefined8 *current_node;
+  uint64_t *current_node;
   
   // 父节点
-  undefined8 *parent_node;
+  uint64_t *parent_node;
   
   // 下一个节点
-  undefined8 *next_node;
+  uint64_t *next_node;
   
   // 新创建的节点
-  undefined8 *new_node;
+  uint64_t *new_node;
   
   // 服务处理函数（空指针）
-  undefined8 service_handler;
+  uint64_t service_handler;
   
   // 获取全局树结构
   tree_structure = (longlong *)GetGlobalTreeStructure();
   
   // 获取根节点
-  root_node = (undefined8 *)*tree_structure;
+  root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
@@ -1546,7 +1546,7 @@ void RegisterTypeService14(void)
   
   // 初始化搜索
   parent_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在二叉树中搜索合适位置
   while (node_flag == '\0') {
@@ -1555,12 +1555,12 @@ void RegisterTypeService14(void)
     
     if (compare_result < 0) {
       // 转到右子树
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
       // 转到左子树
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     
     parent_node = current_node;
@@ -1605,7 +1605,7 @@ void RegisterTypeService15(void)
   char node_flag;
   
   // 树根节点指针
-  undefined8 *root_node;
+  uint64_t *root_node;
   
   // 内存比较结果
   int compare_result;
@@ -1617,16 +1617,16 @@ void RegisterTypeService15(void)
   longlong allocation_size;
   
   // 当前搜索节点
-  undefined8 *current_node;
+  uint64_t *current_node;
   
   // 父节点
-  undefined8 *parent_node;
+  uint64_t *parent_node;
   
   // 下一个节点
-  undefined8 *next_node;
+  uint64_t *next_node;
   
   // 新创建的节点
-  undefined8 *new_node;
+  uint64_t *new_node;
   
   // 服务处理函数
   code *service_handler;
@@ -1635,7 +1635,7 @@ void RegisterTypeService15(void)
   tree_structure = (longlong *)GetGlobalTreeStructure();
   
   // 获取根节点
-  root_node = (undefined8 *)*tree_structure;
+  root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
@@ -1645,7 +1645,7 @@ void RegisterTypeService15(void)
   
   // 初始化搜索
   parent_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在二叉树中搜索合适位置
   while (node_flag == '\0') {
@@ -1654,12 +1654,12 @@ void RegisterTypeService15(void)
     
     if (compare_result < 0) {
       // 转到右子树
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
       // 转到左子树
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     
     parent_node = current_node;
@@ -1704,7 +1704,7 @@ void RegisterTypeService16(void)
   char node_flag;
   
   // 树根节点指针
-  undefined8 *root_node;
+  uint64_t *root_node;
   
   // 内存比较结果
   int compare_result;
@@ -1716,16 +1716,16 @@ void RegisterTypeService16(void)
   longlong allocation_size;
   
   // 当前搜索节点
-  undefined8 *current_node;
+  uint64_t *current_node;
   
   // 父节点
-  undefined8 *parent_node;
+  uint64_t *parent_node;
   
   // 下一个节点
-  undefined8 *next_node;
+  uint64_t *next_node;
   
   // 新创建的节点
-  undefined8 *new_node;
+  uint64_t *new_node;
   
   // 服务处理函数
   code *service_handler;
@@ -1734,7 +1734,7 @@ void RegisterTypeService16(void)
   tree_structure = (longlong *)GetGlobalTreeStructure();
   
   // 获取根节点
-  root_node = (undefined8 *)*tree_structure;
+  root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
@@ -1744,7 +1744,7 @@ void RegisterTypeService16(void)
   
   // 初始化搜索
   parent_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在二叉树中搜索合适位置
   while (node_flag == '\0') {
@@ -1753,12 +1753,12 @@ void RegisterTypeService16(void)
     
     if (compare_result < 0) {
       // 转到右子树
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
       // 转到左子树
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     
     parent_node = current_node;
@@ -1803,7 +1803,7 @@ void RegisterTypeService17(void)
   char node_flag;
   
   // 树根节点指针
-  undefined8 *root_node;
+  uint64_t *root_node;
   
   // 内存比较结果
   int compare_result;
@@ -1815,25 +1815,25 @@ void RegisterTypeService17(void)
   longlong allocation_size;
   
   // 当前搜索节点
-  undefined8 *current_node;
+  uint64_t *current_node;
   
   // 父节点
-  undefined8 *parent_node;
+  uint64_t *parent_node;
   
   // 下一个节点
-  undefined8 *next_node;
+  uint64_t *next_node;
   
   // 新创建的节点
-  undefined8 *new_node;
+  uint64_t *new_node;
   
   // 服务处理函数（空指针）
-  undefined8 service_handler;
+  uint64_t service_handler;
   
   // 获取全局树结构
   tree_structure = (longlong *)GetGlobalTreeStructure();
   
   // 获取根节点
-  root_node = (undefined8 *)*tree_structure;
+  root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
@@ -1843,7 +1843,7 @@ void RegisterTypeService17(void)
   
   // 初始化搜索
   parent_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在二叉树中搜索合适位置
   while (node_flag == '\0') {
@@ -1852,12 +1852,12 @@ void RegisterTypeService17(void)
     
     if (compare_result < 0) {
       // 转到右子树
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
       // 转到左子树
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     
     parent_node = current_node;
@@ -1902,7 +1902,7 @@ void RegisterTypeService18(void)
   char node_flag;
   
   // 树根节点指针
-  undefined8 *root_node;
+  uint64_t *root_node;
   
   // 内存比较结果
   int compare_result;
@@ -1914,16 +1914,16 @@ void RegisterTypeService18(void)
   longlong allocation_size;
   
   // 当前搜索节点
-  undefined8 *current_node;
+  uint64_t *current_node;
   
   // 父节点
-  undefined8 *parent_node;
+  uint64_t *parent_node;
   
   // 下一个节点
-  undefined8 *next_node;
+  uint64_t *next_node;
   
   // 新创建的节点
-  undefined8 *new_node;
+  uint64_t *new_node;
   
   // 服务处理函数
   code *service_handler;
@@ -1932,7 +1932,7 @@ void RegisterTypeService18(void)
   tree_structure = (longlong *)GetGlobalTreeStructure();
   
   // 获取根节点
-  root_node = (undefined8 *)*tree_structure;
+  root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
@@ -1942,7 +1942,7 @@ void RegisterTypeService18(void)
   
   // 初始化搜索
   parent_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在二叉树中搜索合适位置
   while (node_flag == '\0') {
@@ -1951,12 +1951,12 @@ void RegisterTypeService18(void)
     
     if (compare_result < 0) {
       // 转到右子树
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
       // 转到左子树
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     
     parent_node = current_node;
@@ -2001,7 +2001,7 @@ void RegisterTypeService19(void)
   char node_flag;
   
   // 树根节点指针
-  undefined8 *root_node;
+  uint64_t *root_node;
   
   // 内存比较结果
   int compare_result;
@@ -2013,25 +2013,25 @@ void RegisterTypeService19(void)
   longlong allocation_size;
   
   // 当前搜索节点
-  undefined8 *current_node;
+  uint64_t *current_node;
   
   // 父节点
-  undefined8 *parent_node;
+  uint64_t *parent_node;
   
   // 下一个节点
-  undefined8 *next_node;
+  uint64_t *next_node;
   
   // 新创建的节点
-  undefined8 *new_node;
+  uint64_t *new_node;
   
   // 服务处理函数（空指针）
-  undefined8 service_handler;
+  uint64_t service_handler;
   
   // 获取全局树结构
   tree_structure = (longlong *)GetGlobalTreeStructure();
   
   // 获取根节点
-  root_node = (undefined8 *)*tree_structure;
+  root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
@@ -2041,7 +2041,7 @@ void RegisterTypeService19(void)
   
   // 初始化搜索
   parent_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在二叉树中搜索合适位置
   while (node_flag == '\0') {
@@ -2050,12 +2050,12 @@ void RegisterTypeService19(void)
     
     if (compare_result < 0) {
       // 转到右子树
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
       // 转到左子树
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     
     parent_node = current_node;
@@ -2100,7 +2100,7 @@ void RegisterTypeService20(void)
   char node_flag;
   
   // 树根节点指针
-  undefined8 *root_node;
+  uint64_t *root_node;
   
   // 内存比较结果
   int compare_result;
@@ -2112,25 +2112,25 @@ void RegisterTypeService20(void)
   longlong allocation_size;
   
   // 当前搜索节点
-  undefined8 *current_node;
+  uint64_t *current_node;
   
   // 父节点
-  undefined8 *parent_node;
+  uint64_t *parent_node;
   
   // 下一个节点
-  undefined8 *next_node;
+  uint64_t *next_node;
   
   // 新创建的节点
-  undefined8 *new_node;
+  uint64_t *new_node;
   
   // 服务处理函数指针
-  undefined *service_handler;
+  void *service_handler;
   
   // 获取全局树结构
   tree_structure = (longlong *)GetGlobalTreeStructure();
   
   // 获取根节点
-  root_node = (undefined8 *)*tree_structure;
+  root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
@@ -2140,7 +2140,7 @@ void RegisterTypeService20(void)
   
   // 初始化搜索
   parent_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在二叉树中搜索合适位置
   while (node_flag == '\0') {
@@ -2149,12 +2149,12 @@ void RegisterTypeService20(void)
     
     if (compare_result < 0) {
       // 转到右子树
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
       // 转到左子树
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     
     parent_node = current_node;
@@ -2199,7 +2199,7 @@ void RegisterTypeService21(void)
   char node_flag;
   
   // 树根节点指针
-  undefined8 *root_node;
+  uint64_t *root_node;
   
   // 内存比较结果
   int compare_result;
@@ -2211,25 +2211,25 @@ void RegisterTypeService21(void)
   longlong allocation_size;
   
   // 当前搜索节点
-  undefined8 *current_node;
+  uint64_t *current_node;
   
   // 父节点
-  undefined8 *parent_node;
+  uint64_t *parent_node;
   
   // 下一个节点
-  undefined8 *next_node;
+  uint64_t *next_node;
   
   // 新创建的节点
-  undefined8 *new_node;
+  uint64_t *new_node;
   
   // 服务处理函数（空指针）
-  undefined8 service_handler;
+  uint64_t service_handler;
   
   // 获取全局树结构
   tree_structure = (longlong *)GetGlobalTreeStructure();
   
   // 获取根节点
-  root_node = (undefined8 *)*tree_structure;
+  root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
@@ -2239,7 +2239,7 @@ void RegisterTypeService21(void)
   
   // 初始化搜索
   parent_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在二叉树中搜索合适位置
   while (node_flag == '\0') {
@@ -2248,12 +2248,12 @@ void RegisterTypeService21(void)
     
     if (compare_result < 0) {
       // 转到右子树
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
       // 转到左子树
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     
     parent_node = current_node;
@@ -2298,7 +2298,7 @@ void RegisterTypeService22(void)
   char node_flag;
   
   // 树根节点指针
-  undefined8 *root_node;
+  uint64_t *root_node;
   
   // 内存比较结果
   int compare_result;
@@ -2310,16 +2310,16 @@ void RegisterTypeService22(void)
   longlong allocation_size;
   
   // 当前搜索节点
-  undefined8 *current_node;
+  uint64_t *current_node;
   
   // 父节点
-  undefined8 *parent_node;
+  uint64_t *parent_node;
   
   // 下一个节点
-  undefined8 *next_node;
+  uint64_t *next_node;
   
   // 新创建的节点
-  undefined8 *new_node;
+  uint64_t *new_node;
   
   // 服务处理函数
   code *service_handler;
@@ -2328,7 +2328,7 @@ void RegisterTypeService22(void)
   tree_structure = (longlong *)GetGlobalTreeStructure();
   
   // 获取根节点
-  root_node = (undefined8 *)*tree_structure;
+  root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
@@ -2338,7 +2338,7 @@ void RegisterTypeService22(void)
   
   // 初始化搜索
   parent_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在二叉树中搜索合适位置
   while (node_flag == '\0') {
@@ -2347,12 +2347,12 @@ void RegisterTypeService22(void)
     
     if (compare_result < 0) {
       // 转到右子树
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
       // 转到左子树
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     
     parent_node = current_node;
@@ -2397,7 +2397,7 @@ void RegisterTypeService23(void)
   char node_flag;
   
   // 树根节点指针
-  undefined8 *root_node;
+  uint64_t *root_node;
   
   // 内存比较结果
   int compare_result;
@@ -2409,16 +2409,16 @@ void RegisterTypeService23(void)
   longlong allocation_size;
   
   // 当前搜索节点
-  undefined8 *current_node;
+  uint64_t *current_node;
   
   // 父节点
-  undefined8 *parent_node;
+  uint64_t *parent_node;
   
   // 下一个节点
-  undefined8 *next_node;
+  uint64_t *next_node;
   
   // 新创建的节点
-  undefined8 *new_node;
+  uint64_t *new_node;
   
   // 服务处理函数
   code *service_handler;
@@ -2427,7 +2427,7 @@ void RegisterTypeService23(void)
   tree_structure = (longlong *)GetGlobalTreeStructure();
   
   // 获取根节点
-  root_node = (undefined8 *)*tree_structure;
+  root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
@@ -2437,7 +2437,7 @@ void RegisterTypeService23(void)
   
   // 初始化搜索
   parent_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在二叉树中搜索合适位置
   while (node_flag == '\0') {
@@ -2446,12 +2446,12 @@ void RegisterTypeService23(void)
     
     if (compare_result < 0) {
       // 转到右子树
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
       // 转到左子树
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     
     parent_node = current_node;
@@ -2496,7 +2496,7 @@ void RegisterTypeService24(void)
   char node_flag;
   
   // 树根节点指针
-  undefined8 *root_node;
+  uint64_t *root_node;
   
   // 内存比较结果
   int compare_result;
@@ -2508,25 +2508,25 @@ void RegisterTypeService24(void)
   longlong allocation_size;
   
   // 当前搜索节点
-  undefined8 *current_node;
+  uint64_t *current_node;
   
   // 父节点
-  undefined8 *parent_node;
+  uint64_t *parent_node;
   
   // 下一个节点
-  undefined8 *next_node;
+  uint64_t *next_node;
   
   // 新创建的节点
-  undefined8 *new_node;
+  uint64_t *new_node;
   
   // 服务处理函数（空指针）
-  undefined8 service_handler;
+  uint64_t service_handler;
   
   // 获取全局树结构
   tree_structure = (longlong *)GetGlobalTreeStructure();
   
   // 获取根节点
-  root_node = (undefined8 *)*tree_structure;
+  root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
@@ -2536,7 +2536,7 @@ void RegisterTypeService24(void)
   
   // 初始化搜索
   parent_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在二叉树中搜索合适位置
   while (node_flag == '\0') {
@@ -2545,12 +2545,12 @@ void RegisterTypeService24(void)
     
     if (compare_result < 0) {
       // 转到右子树
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
     else {
       // 转到左子树
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     
     parent_node = current_node;

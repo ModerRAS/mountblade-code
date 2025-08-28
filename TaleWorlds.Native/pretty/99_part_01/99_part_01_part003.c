@@ -46,11 +46,11 @@
 void SystemInitializationProcessor(void)
 {
     longlong systemStatus;
-    undefined4 *targetBuffer;
-    undefined4 vectorData_A;
-    undefined4 vectorData_B;
-    undefined4 vectorData_C;
-    undefined4 vectorData_D;
+    int32_t *targetBuffer;
+    int32_t vectorData_A;
+    int32_t vectorData_B;
+    int32_t vectorData_C;
+    int32_t vectorData_D;
     
     // 执行系统初始化操作
     ExecuteSystemInitialization();
@@ -98,20 +98,20 @@ void SystemInitializationProcessor(void)
  * 
  * @param param_1 数据结构指针
  * @param param_2 要搜索的字符串
- * @return undefined8* 找到的数据结构指针，未找到返回NULL
+ * @return uint64_t* 找到的数据结构指针，未找到返回NULL
  */
-undefined8 * StringSearchAndCompareProcessor(longlong param_1, char *param_2)
+uint64_t * StringSearchAndCompareProcessor(longlong param_1, char *param_2)
 {
     char *currentChar;
     char searchChar;
-    undefined8 *currentNode;
+    uint64_t *currentNode;
     char *nodeString;
     longlong stringLength;
     char *compareStart;
     
     // 空指针检查
     if (param_2 == (char *)0x0) {
-        return *(undefined8 **)(param_1 + 0x40);
+        return *(uint64_t **)(param_1 + 0x40);
     }
     
     // 计算字符串长度
@@ -123,11 +123,11 @@ undefined8 * StringSearchAndCompareProcessor(longlong param_1, char *param_2)
     }
     
     // 遍历链表结构
-    currentNode = *(undefined8 **)(param_1 + 0x40);
+    currentNode = *(uint64_t **)(param_1 + 0x40);
     do {
         // 节点有效性检查
-        if (currentNode == (undefined8 *)0x0) {
-            return (undefined8 *)0x0;
+        if (currentNode == (uint64_t *)0x0) {
+            return (uint64_t *)0x0;
         }
         
         // 获取节点字符串信息
@@ -156,7 +156,7 @@ undefined8 * StringSearchAndCompareProcessor(longlong param_1, char *param_2)
             }
         }
         
-        currentNode = (undefined8 *)currentNode[6];
+        currentNode = (uint64_t *)currentNode[6];
     } while (true);
 }
 
@@ -177,9 +177,9 @@ undefined8 * StringSearchAndCompareProcessor(longlong param_1, char *param_2)
  * 
  * @param param_1 查找参数
  * @param param_2 数据结构指针
- * @return undefined8* 找到的数据结构指针，未找到返回NULL
+ * @return uint64_t* 找到的数据结构指针，未找到返回NULL
  */
-undefined8 * DataStructureLookupHandler(undefined8 param_1, undefined8 *param_2)
+uint64_t * DataStructureLookupHandler(uint64_t param_1, uint64_t *param_2)
 {
     char *currentString;
     char *compareString;
@@ -187,7 +187,7 @@ undefined8 * DataStructureLookupHandler(undefined8 param_1, undefined8 *param_2)
     longlong compareLength;
     longlong searchLength;
     
-    if (param_2 != (undefined8 *)0x0) {
+    if (param_2 != (uint64_t *)0x0) {
         do {
             compareString = (char *)*param_2;
             if (compareString == (char *)0x0) {
@@ -214,11 +214,11 @@ undefined8 * DataStructureLookupHandler(undefined8 param_1, undefined8 *param_2)
                 }
             }
             
-            param_2 = (undefined8 *)param_2[6];
-        } while (param_2 != (undefined8 *)0x0);
+            param_2 = (uint64_t *)param_2[6];
+        } while (param_2 != (uint64_t *)0x0);
     }
     
-    return (undefined8 *)0x0;
+    return (uint64_t *)0x0;
 }
 
 /**
@@ -238,9 +238,9 @@ undefined8 * DataStructureLookupHandler(undefined8 param_1, undefined8 *param_2)
  * 
  * @param param_1 查找参数
  * @param param_2 数据结构指针
- * @return undefined8* 找到的数据结构指针，未找到返回NULL
+ * @return uint64_t* 找到的数据结构指针，未找到返回NULL
  */
-undefined8 * AdvancedDataStructureLookupHandler(undefined8 param_1, undefined8 *param_2)
+uint64_t * AdvancedDataStructureLookupHandler(uint64_t param_1, uint64_t *param_2)
 {
     char *endOfString;
     char *startOfString;
@@ -251,9 +251,9 @@ undefined8 * AdvancedDataStructureLookupHandler(undefined8 param_1, undefined8 *
     
     while (true) {
         do {
-            param_2 = (undefined8 *)param_2[6];
-            if (param_2 == (undefined8 *)0x0) {
-                return (undefined8 *)0x0;
+            param_2 = (uint64_t *)param_2[6];
+            if (param_2 == (uint64_t *)0x0) {
+                return (uint64_t *)0x0;
             }
             
             // 获取字符串信息
@@ -298,11 +298,11 @@ undefined8 * AdvancedDataStructureLookupHandler(undefined8 param_1, undefined8 *
  * - 快速返回机制
  * 
  * @param param_1 数据结构指针
- * @return undefined8 查询到的数据
+ * @return uint64_t 查询到的数据
  */
-undefined8 SystemDataQueryHandler(longlong param_1)
+uint64_t SystemDataQueryHandler(longlong param_1)
 {
-    return *(undefined8 *)(param_1 + 0x40);
+    return *(uint64_t *)(param_1 + 0x40);
 }
 
 /*============================================================================*/
@@ -343,7 +343,7 @@ longlong * HTMLEscapeProcessor(longlong *param_1, char *param_2, char *param_3, 
     longlong outputLength;
     longlong outputBuffer;
     char currentChar;
-    undefined8 escapeSequence;
+    uint64_t escapeSequence;
     longlong *outputState;
     
     if (param_2 != param_3) {
@@ -493,7 +493,7 @@ void AdvancedHTMLEscapeProcessor(void)
     longlong outputLength;
     longlong outputBuffer;
     char currentChar;
-    undefined8 escapeSequence;
+    uint64_t escapeSequence;
     char *inputStart;
     char *inputEnd;
     longlong *outputState;
@@ -645,9 +645,9 @@ void AdvancedHTMLEscapeProcessor(void)
  */
 void BufferOperationHandler(void)
 {
-    undefined8 bufferState;
-    undefined8 *targetBuffer;
-    undefined8 *sourceBuffer;
+    uint64_t bufferState;
+    uint64_t *targetBuffer;
+    uint64_t *sourceBuffer;
     
     bufferState = sourceBuffer[1];
     *targetBuffer = *sourceBuffer;
@@ -678,28 +678,28 @@ void BufferOperationHandler(void)
  */
 longlong * AdvancedBufferDataProcessor(longlong *param_1, longlong *param_2, longlong param_3)
 {
-    undefined1 currentChar;
+    int8_t currentChar;
     longlong outputLength;
     longlong outputBuffer;
-    undefined1 *dataPointer;
+    int8_t *dataPointer;
     longlong dataLength;
-    undefined1 *stringStart;
-    undefined1 *currentPosition;
-    undefined4 *tempBuffer;
+    int8_t *stringStart;
+    int8_t *currentPosition;
+    int32_t *tempBuffer;
     bool hasQuotes;
     longlong stringLength;
     undefined7 truncatedString;
     longlong remainingLength;
-    undefined8 quoteChar;
+    uint64_t quoteChar;
     longlong tempLength;
-    undefined8 *dataNode;
+    uint64_t *dataNode;
     longlong stackParam1;
     longlong stackParam2;
-    undefined1 stackBuffer1[16];
-    undefined1 stackBuffer2[32];
+    int8_t stackBuffer1[16];
+    int8_t stackBuffer2[32];
     
-    dataNode = *(undefined8 **)(param_3 + 0x40);
-    if (dataNode != (undefined8 *)0x0) {
+    dataNode = *(uint64_t **)(param_3 + 0x40);
+    if (dataNode != (uint64_t *)0x0) {
         outputBuffer = param_2[1];
         outputLength = *param_2;
         
@@ -709,22 +709,22 @@ longlong * AdvancedBufferDataProcessor(longlong *param_1, longlong *param_2, lon
                 WriteStringToBuffer(outputBuffer);
             }
             
-            dataPointer = (undefined1 *)*dataNode;
+            dataPointer = (int8_t *)*dataNode;
             outputLength = *param_2;
             outputBuffer = param_2[1];
             
-            if (dataPointer == (undefined1 *)0x0) {
-                currentPosition = (undefined1 *)0x180d48d24;
+            if (dataPointer == (int8_t *)0x0) {
+                currentPosition = (int8_t *)0x180d48d24;
                 dataLength = 0;
             } else {
                 dataLength = dataNode[2];
                 currentPosition = dataPointer;
             }
             
-            stringStart = (undefined1 *)0x180d48d24;
+            stringStart = (int8_t *)0x180d48d24;
             stackParam1 = outputLength;
             stackParam2 = outputBuffer;
-            if (dataPointer != (undefined1 *)0x0) {
+            if (dataPointer != (int8_t *)0x0) {
                 stringStart = dataPointer;
             }
             
@@ -751,14 +751,14 @@ longlong * AdvancedBufferDataProcessor(longlong *param_1, longlong *param_2, lon
             // 引号处理逻辑
             stringStart = (char *)dataNode[1];
             if (stringStart == (char *)0x0) {
-                currentPosition = (undefined1 *)0x180d48d24;
+                currentPosition = (int8_t *)0x180d48d24;
                 stringLength = 0;
             } else {
                 stringLength = dataNode[3];
                 currentPosition = stringStart;
             }
             
-            stringStart = (undefined1 *)0x180d48d24;
+            stringStart = (int8_t *)0x180d48d24;
             if (stringStart != (char *)0x0) {
                 currentPosition = stringStart;
             }
@@ -799,7 +799,7 @@ longlong * AdvancedBufferDataProcessor(longlong *param_1, longlong *param_2, lon
                 
                 stackParam1 = outputLength;
                 stackParam2 = outputBuffer;
-                tempBuffer = (undefined4 *)HTMLEscapeProcessor(stackBuffer1, remainingLength, outputLength + stringLength, 0x22, &stackParam1);
+                tempBuffer = (int32_t *)HTMLEscapeProcessor(stackBuffer1, remainingLength, outputLength + stringLength, 0x22, &stackParam1);
                 quoteChar = 0x27;
             } else {
                 WriteCharacterToBuffer(dataLength, CONCAT71(truncatedString, 0x22));
@@ -822,18 +822,18 @@ longlong * AdvancedBufferDataProcessor(longlong *param_1, longlong *param_2, lon
                 
                 stackParam1 = outputLength;
                 stackParam2 = outputBuffer;
-                tempBuffer = (undefined4 *)HTMLEscapeProcessor(stackBuffer2, remainingLength, outputLength + stringLength, 0x27, &stackParam1);
+                tempBuffer = (int32_t *)HTMLEscapeProcessor(stackBuffer2, remainingLength, outputLength + stringLength, 0x27, &stackParam1);
                 quoteChar = 0x22;
             }
             
             // 复制处理后的数据
-            undefined4 tempData1 = tempBuffer[1];
-            undefined4 tempData2 = tempBuffer[2];
-            undefined4 tempData3 = tempBuffer[3];
-            *(undefined4 *)param_2 = *tempBuffer;
-            *(undefined4 *)((longlong)param_2 + 4) = tempData1;
-            *(undefined4 *)(param_2 + 1) = tempData2;
-            *(undefined4 *)((longlong)param_2 + 0xc) = tempData3;
+            int32_t tempData1 = tempBuffer[1];
+            int32_t tempData2 = tempBuffer[2];
+            int32_t tempData3 = tempBuffer[3];
+            *(int32_t *)param_2 = *tempBuffer;
+            *(int32_t *)((longlong)param_2 + 4) = tempData1;
+            *(int32_t *)(param_2 + 1) = tempData2;
+            *(int32_t *)((longlong)param_2 + 0xc) = tempData3;
             
             outputBuffer = param_2[1];
             WriteCharacterToBuffer(outputBuffer, quoteChar);
@@ -841,7 +841,7 @@ longlong * AdvancedBufferDataProcessor(longlong *param_1, longlong *param_2, lon
             if (outputLength != 0) {
                 WriteStringToBuffer(outputBuffer, outputLength);
             }
-        } while ((dataNode[4] != 0) && (dataNode = (undefined8 *)dataNode[6], dataNode != (undefined8 *)0x0));
+        } while ((dataNode[4] != 0) && (dataNode = (uint64_t *)dataNode[6], dataNode != (uint64_t *)0x0));
     }
     
     outputBuffer = param_2[1];
@@ -875,15 +875,15 @@ longlong * AdvancedBufferDataProcessor(longlong *param_1, longlong *param_2, lon
  */
 longlong * StringFormattingProcessor(longlong *param_1, longlong *param_2, longlong param_3, byte param_4, uint param_5)
 {
-    undefined1 currentChar;
+    int8_t currentChar;
     longlong outputLength;
     longlong outputBuffer;
-    undefined1 *dataPointer;
-    undefined1 *stringStart;
+    int8_t *dataPointer;
+    int8_t *stringStart;
     longlong stringLength;
-    undefined1 *currentPosition;
+    int8_t *currentPosition;
     ulonglong indentCount;
-    undefined1 *tempPointer;
+    int8_t *tempPointer;
     
     // 条件处理：根据标志决定是否处理缩进
     if ((param_4 & 1) == 0) {
@@ -928,20 +928,20 @@ longlong * StringFormattingProcessor(longlong *param_1, longlong *param_2, longl
     }
     
     // 处理数据内容
-    dataPointer = *(undefined1 **)(param_3 + 8);
+    dataPointer = *(int8_t **)(param_3 + 8);
     outputLength = *param_2;
     outputBuffer = param_2[1];
     
-    if (dataPointer == (undefined1 *)0x0) {
-        tempPointer = (undefined1 *)0x180d48d24;
+    if (dataPointer == (int8_t *)0x0) {
+        tempPointer = (int8_t *)0x180d48d24;
         stringLength = 0;
     } else {
         stringLength = *(longlong *)(param_3 + 0x18);
         tempPointer = dataPointer;
     }
     
-    currentPosition = (undefined1 *)0x180d48d24;
-    if (dataPointer != (undefined1 *)0x0) {
+    currentPosition = (int8_t *)0x180d48d24;
+    if (dataPointer != (int8_t *)0x0) {
         currentPosition = dataPointer;
     }
     
@@ -1000,17 +1000,17 @@ longlong * StringFormattingProcessor(longlong *param_1, longlong *param_2, longl
  * @param param_4 处理标志
  * @return void 无返回值
  */
-void DataOutputProcessor(undefined8 param_1, longlong *param_2, longlong param_3, byte param_4)
+void DataOutputProcessor(uint64_t param_1, longlong *param_2, longlong param_3, byte param_4)
 {
-    undefined1 currentChar;
+    int8_t currentChar;
     longlong outputLength;
     longlong outputBuffer;
-    undefined1 *dataPointer;
-    undefined1 *stringStart;
+    int8_t *dataPointer;
+    int8_t *stringStart;
     longlong stringLength;
-    undefined1 *currentPosition;
+    int8_t *currentPosition;
     ulonglong indentCount;
-    undefined1 *tempPointer;
+    int8_t *tempPointer;
     longlong *outputPointer;
     uint indentLevel;
     
@@ -1057,20 +1057,20 @@ void DataOutputProcessor(undefined8 param_1, longlong *param_2, longlong param_3
     }
     
     // 处理数据内容（与上面相同的逻辑）
-    dataPointer = *(undefined1 **)(param_3 + 8);
+    dataPointer = *(int8_t **)(param_3 + 8);
     outputLength = *param_2;
     outputBuffer = param_2[1];
     
-    if (dataPointer == (undefined1 *)0x0) {
-        tempPointer = (undefined1 *)0x180d48d24;
+    if (dataPointer == (int8_t *)0x0) {
+        tempPointer = (int8_t *)0x180d48d24;
         stringLength = 0;
     } else {
         stringLength = *(longlong *)(param_3 + 0x18);
         tempPointer = dataPointer;
     }
     
-    currentPosition = (undefined1 *)0x180d48d24;
-    if (dataPointer != (undefined1 *)0x0) {
+    currentPosition = (int8_t *)0x180d48d24;
+    if (dataPointer != (int8_t *)0x0) {
         currentPosition = dataPointer;
     }
     
@@ -1133,11 +1133,11 @@ void DataOutputProcessor(undefined8 param_1, longlong *param_2, longlong param_3
 void ContentGenerationProcessor(void)
 {
     longlong systemStatus;
-    undefined4 *targetBuffer;
-    undefined4 vectorData_A;
-    undefined4 vectorData_B;
-    undefined4 vectorData_C;
-    undefined4 vectorData_D;
+    int32_t *targetBuffer;
+    int32_t vectorData_A;
+    int32_t vectorData_B;
+    int32_t vectorData_C;
+    int32_t vectorData_D;
     
     // 执行系统初始化
     ExecuteSystemInitialization();
@@ -1184,11 +1184,11 @@ void ContentGenerationProcessor(void)
  */
 void ResourceCleanupHandler(void)
 {
-    undefined4 *targetBuffer;
-    undefined4 vectorData_A;
-    undefined4 vectorData_B;
-    undefined4 vectorData_C;
-    undefined4 vectorData_D;
+    int32_t *targetBuffer;
+    int32_t vectorData_A;
+    int32_t vectorData_B;
+    int32_t vectorData_C;
+    int32_t vectorData_D;
     
     // 执行系统清理操作
     ExecuteSystemCleanup();

@@ -114,11 +114,11 @@
 
 // UI系统链表管理器 - 管理UI系统中的链表数据结构和节点操作
 // 该函数实现了链表管理功能，包括节点插入、删除、查找和链表维护操作
-void ui_system_linked_list_manager(longlong *list_header, undefined8 *prev_node, undefined8 *next_node, int operation_type)
+void ui_system_linked_list_manager(longlong *list_header, uint64_t *prev_node, uint64_t *next_node, int operation_type)
 {
   longlong *current_node;
   longlong temp_ptr;
-  undefined8 *node_ptr;
+  uint64_t *node_ptr;
   longlong *prev_ptr;
   longlong *next_ptr;
   longlong *link_ptr;
@@ -129,13 +129,13 @@ void ui_system_linked_list_manager(longlong *list_header, undefined8 *prev_node,
   list_header[2] = (longlong)prev_node;
   *list_header = 0;
   list_header[1] = 0;
-  *(undefined1 *)(list_header + 3) = 0;
+  *(int8_t *)(list_header + 3) = 0;
   
   // 根据操作类型进行链表操作
   if (operation_type == 0) {
     prev_node[1] = list_header;
     if (prev_node != next_node) {
-      if (prev_node == (undefined8 *)next_node[1]) {
+      if (prev_node == (uint64_t *)next_node[1]) {
         next_node[1] = list_header;
       }
       goto node_inserted;
@@ -144,7 +144,7 @@ void ui_system_linked_list_manager(longlong *list_header, undefined8 *prev_node,
   }
   else {
     *prev_node = list_header;
-    if (prev_node != (undefined8 *)*next_node) goto node_inserted;
+    if (prev_node != (uint64_t *)*next_node) goto node_inserted;
   }
   *next_node = list_header;
 node_inserted:
@@ -152,7 +152,7 @@ node_inserted:
   // 链表节点处理和状态更新
   head_ptr = (longlong *)next_node[2];
   if (list_header == head_ptr) {
-    *(undefined1 *)(head_ptr + 3) = 1;
+    *(int8_t *)(head_ptr + 3) = 1;
     return;
   }
   
@@ -176,7 +176,7 @@ node_inserted:
           prev_ptr[2] = *link_ptr;
           next_ptr = prev_ptr;
           if (current_node != head_ptr) {
-            node_ptr = (undefined8 *)*link_ptr;
+            node_ptr = (uint64_t *)*link_ptr;
             next_ptr = head_ptr;
             if (current_node == (longlong *)node_ptr[1]) {
               node_ptr[1] = prev_ptr;
@@ -191,9 +191,9 @@ node_inserted:
           next_ptr = (longlong *)*link_ptr;
           list_header = current_node;
         }
-        *(undefined1 *)(next_ptr + 3) = 1;
+        *(int8_t *)(next_ptr + 3) = 1;
         head_ptr = (longlong *)tail_ptr[1];
-        *(undefined1 *)(tail_ptr + 3) = 0;
+        *(int8_t *)(tail_ptr + 3) = 0;
         link_ptr = (longlong *)next_node[2];
         tail_ptr[1] = *head_ptr;
         if (*head_ptr != 0) {
@@ -205,7 +205,7 @@ node_inserted:
           link_ptr = head_ptr;
         }
         else {
-          node_ptr = (undefined8 *)tail_ptr[2];
+          node_ptr = (uint64_t *)tail_ptr[2];
           if (tail_ptr == (longlong *)*node_ptr) {
             *node_ptr = head_ptr;
             *head_ptr = (longlong)tail_ptr;
@@ -221,9 +221,9 @@ list_processed:
         tail_ptr = list_header;
       }
       else {
-        *(undefined1 *)(current_node + 3) = 1;
-        *(undefined1 *)(temp_ptr + 0x18) = 1;
-        *(undefined1 *)(tail_ptr + 3) = 0;
+        *(int8_t *)(current_node + 3) = 1;
+        *(int8_t *)(temp_ptr + 0x18) = 1;
+        *(int8_t *)(tail_ptr + 3) = 0;
       }
     }
     else {
@@ -238,7 +238,7 @@ list_processed:
           next_ptr[2] = *link_ptr;
           prev_ptr = next_ptr;
           if (current_node != head_ptr) {
-            node_ptr = (undefined8 *)*link_ptr;
+            node_ptr = (uint64_t *)*link_ptr;
             prev_ptr = head_ptr;
             if (current_node == (longlong *)*node_ptr) {
               *node_ptr = (longlong)next_ptr;
@@ -253,9 +253,9 @@ list_processed:
           prev_ptr = (longlong *)*link_ptr;
           list_header = current_node;
         }
-        *(undefined1 *)(prev_ptr + 3) = 1;
+        *(int8_t *)(prev_ptr + 3) = 1;
         head_ptr = (longlong *)*tail_ptr;
-        *(undefined1 *)(tail_ptr + 3) = 0;
+        *(int8_t *)(tail_ptr + 3) = 0;
         current_node = (longlong *)next_node[2];
         *tail_ptr = head_ptr[1];
         if (head_ptr[1] != 0) {
@@ -264,7 +264,7 @@ list_processed:
         head_ptr[2] = tail_ptr[2];
         link_ptr = head_ptr;
         if (tail_ptr != current_node) {
-          node_ptr = (undefined8 *)tail_ptr[2];
+          node_ptr = (uint64_t *)tail_ptr[2];
           link_ptr = current_node;
           if (tail_ptr == (longlong *)*node_ptr) {
             node_ptr[1] = head_ptr;
@@ -276,23 +276,23 @@ list_processed:
         head_ptr[1] = (longlong)tail_ptr;
         goto list_processed;
       }
-      *(undefined1 *)(current_node + 3) = 1;
-      *(undefined1 *)(next_ptr + 3) = 1;
-      *(undefined1 *)(tail_ptr + 3) = 0;
+      *(int8_t *)(current_node + 3) = 1;
+      *(int8_t *)(next_ptr + 3) = 1;
+      *(int8_t *)(tail_ptr + 3) = 0;
     }
     head_ptr = (longlong *)next_node[2];
     list_header = tail_ptr;
   } while (tail_ptr != head_ptr);
-  *(undefined1 *)(head_ptr + 3) = 1;
+  *(int8_t *)(head_ptr + 3) = 1;
   return;
 }
 
 // UI系统数据结构处理器 - 处理UI系统中的复杂数据结构操作
 // 该函数实现了数据结构处理功能，包括结构体操作、数据管理和状态更新
-void ui_system_data_structure_processor(undefined8 data_context, undefined8 operation_flag, longlong *structure_data)
+void ui_system_data_structure_processor(uint64_t data_context, uint64_t operation_flag, longlong *structure_data)
 {
   longlong temp_ptr;
-  undefined8 *node_ptr;
+  uint64_t *node_ptr;
   longlong *current_node;
   longlong *next_node;
   longlong *prev_node;
@@ -322,7 +322,7 @@ void ui_system_data_structure_processor(undefined8 data_context, undefined8 oper
           prev_node[2] = *current_node;
           tail_node = prev_node;
           if (tail_node != structure_data) {
-            node_ptr = (undefined8 *)*current_node;
+            node_ptr = (uint64_t *)*current_node;
             tail_node = structure_data;
             if (tail_node == (longlong *)node_ptr[1]) {
               node_ptr[1] = prev_node;
@@ -337,9 +337,9 @@ void ui_system_data_structure_processor(undefined8 data_context, undefined8 oper
           tail_node = (longlong *)*current_node;
           context_ptr = tail_node;
         }
-        *(undefined1 *)((longlong)tail_node + 0x18) = 1;
+        *(int8_t *)((longlong)tail_node + 0x18) = 1;
         tail_node = (longlong *)head_node[1];
-        *(undefined1 *)(head_node + 3) = 0;
+        *(int8_t *)(head_node + 3) = 0;
         tail_node = *(longlong **)(context_data + 0x10);
         head_node[1] = *tail_node;
         if (*tail_node != 0) {
@@ -351,7 +351,7 @@ void ui_system_data_structure_processor(undefined8 data_context, undefined8 oper
           tail_node = tail_node;
         }
         else {
-          node_ptr = (undefined8 *)head_node[2];
+          node_ptr = (uint64_t *)head_node[2];
           if (head_node == (longlong *)*node_ptr) {
             *node_ptr = tail_node;
             *tail_node = (longlong)head_node;
@@ -367,9 +367,9 @@ data_processed:
         head_node = context_ptr;
       }
       else {
-        *(undefined1 *)(tail_node + 3) = 1;
-        *(undefined1 *)(temp_ptr + 0x18) = 1;
-        *(undefined1 *)(head_node + 3) = 0;
+        *(int8_t *)(tail_node + 3) = 1;
+        *(int8_t *)(temp_ptr + 0x18) = 1;
+        *(int8_t *)(head_node + 3) = 0;
       }
     }
     else {
@@ -399,9 +399,9 @@ data_processed:
           prev_node = (longlong *)*current_node;
           context_ptr = tail_node;
         }
-        *(undefined1 *)((longlong)prev_node + 0x18) = 1;
+        *(int8_t *)((longlong)prev_node + 0x18) = 1;
         tail_node = (longlong *)*head_node;
-        *(undefined1 *)(head_node + 3) = 0;
+        *(int8_t *)(head_node + 3) = 0;
         current_node = *(longlong **)(context_data + 0x10);
         *head_node = tail_node[1];
         if (tail_node[1] != 0) {
@@ -410,7 +410,7 @@ data_processed:
         tail_node[2] = head_node[2];
         tail_node = tail_node;
         if (head_node != current_node) {
-          node_ptr = (undefined8 *)head_node[2];
+          node_ptr = (uint64_t *)head_node[2];
           tail_node = current_node;
           if (head_node == (longlong *)*node_ptr) {
             node_ptr[1] = tail_node;
@@ -422,22 +422,22 @@ data_processed:
         tail_node[1] = (longlong)head_node;
         goto data_processed;
       }
-      *(undefined1 *)(tail_node + 3) = 1;
-      *(undefined1 *)(temp_ptr + 0x18) = 1;
-      *(undefined1 *)(head_node + 3) = 0;
+      *(int8_t *)(tail_node + 3) = 1;
+      *(int8_t *)(temp_ptr + 0x18) = 1;
+      *(int8_t *)(head_node + 3) = 0;
     }
     structure_data = *(longlong **)(context_data + 0x10);
     context_ptr = head_node;
   } while (head_node != structure_data);
-  *(undefined1 *)(structure_data + 3) = 1;
+  *(int8_t *)(structure_data + 3) = 1;
   return;
 }
 
 // UI系统状态设置器 - 设置UI系统中的状态标志
 // 该函数实现了状态设置功能，用于快速设置UI组件的状态
-void ui_system_state_setter(undefined8 context, undefined8 flags, longlong state_data)
+void ui_system_state_setter(uint64_t context, uint64_t flags, longlong state_data)
 {
-  *(undefined1 *)(state_data + 0x18) = 1;
+  *(int8_t *)(state_data + 0x18) = 1;
   return;
 }
 
@@ -501,7 +501,7 @@ uint ui_system_parameter_optimizer(float *optimization_params, uint target_value
 
 // UI系统数据转换器 - 转换UI系统中的数据格式和结构
 // 该函数实现了数据转换功能，包括格式转换、边界检查和数据验证
-undefined1 *ui_system_data_transformer(float *transform_params, undefined1 *output_buffer, uint input_value, int param_4, int param_5)
+int8_t *ui_system_data_transformer(float *transform_params, int8_t *output_buffer, uint input_value, int param_4, int param_5)
 {
   uint result;
   longlong mid_point;
@@ -515,7 +515,7 @@ undefined1 *ui_system_data_transformer(float *transform_params, undefined1 *outp
   // 边界检查和条件验证
   if ((uint)(param_5 + param_4) <= (uint)transform_params[2]) {
     *output_buffer = 0;
-    *(undefined4 *)(output_buffer + 4) = 0;
+    *(int32_t *)(output_buffer + 4) = 0;
     return output_buffer;
   }
   
@@ -531,7 +531,7 @@ undefined1 *ui_system_data_transformer(float *transform_params, undefined1 *outp
   if (comparison_value <= threshold_value) {
     base_value = (float)ceilf(threshold_value * base_value);
     *output_buffer = 0;
-    *(undefined4 *)(output_buffer + 4) = 0;
+    *(int32_t *)(output_buffer + 4) = 0;
     transform_params[2] = (float)(longlong)base_value;
     return output_buffer;
   }
@@ -569,7 +569,7 @@ void ui_system_math_processor(float param_1, float param_2, uint *lookup_table)
   longlong mid_point;
   longlong search_range;
   longlong context_ptr;
-  undefined1 *output_buffer;
+  int8_t *output_buffer;
   float ceiling_value;
   float scale_factor;
   
@@ -598,29 +598,29 @@ void ui_system_math_processor(float param_1, float param_2, uint *lookup_table)
 
 // UI系统天花板计算器 - 计算UI系统中的天花板值和数值优化
 // 该函数实现了天花板计算功能，用于向上取整和数值优化
-void ui_system_ceiling_calculator(float param_1, undefined8 param_2, float param_3)
+void ui_system_ceiling_calculator(float param_1, uint64_t param_2, float param_3)
 {
   longlong context_ptr;
-  undefined1 *output_buffer;
+  int8_t *output_buffer;
   float ceiling_value;
   
   ceiling_value = (float)ceilf(param_1 * param_3);
   *output_buffer = 0;
-  *(undefined4 *)(output_buffer + 4) = 0;
+  *(int32_t *)(output_buffer + 4) = 0;
   *(int *)(context_ptr + 8) = (int)(longlong)ceiling_value;
   return;
 }
 
 // UI系统组件验证器 - 验证UI系统中的组件状态和属性
 // 该函数实现了组件验证功能，包括状态检查、属性验证和错误处理
-int ui_system_component_validator(undefined8 *component_data, undefined8 *validation_params, undefined8 context, uint validation_flags, int check_type)
+int ui_system_component_validator(uint64_t *component_data, uint64_t *validation_params, uint64_t context, uint validation_flags, int check_type)
 {
   int result;
-  undefined8 temp_value;
+  uint64_t temp_value;
   
   // 组件验证逻辑
   if (check_type == 9) {
-    if ((component_data == (undefined8 *)0x0) || (validation_params == (undefined8 *)0x0)) {
+    if ((component_data == (uint64_t *)0x0) || (validation_params == (uint64_t *)0x0)) {
       result = 8;
     }
     else if (*(int *)(validation_params + 1) == 5) {
@@ -645,8 +645,8 @@ int ui_system_component_validator(undefined8 *component_data, undefined8 *valida
               component_data[5] = context;
               result = (*(code *)validation_params[2])(component_data, 0);
               if (result != 0) {
-                if ((undefined8 *)component_data[6] != (undefined8 *)0x0) {
-                  temp_value = *(undefined8 *)component_data[6];
+                if ((uint64_t *)component_data[6] != (uint64_t *)0x0) {
+                  temp_value = *(uint64_t *)component_data[6];
                 }
                 component_data[3] = temp_value;
                 FUN_18066d310(component_data);
@@ -673,7 +673,7 @@ int ui_system_component_validator(undefined8 *component_data, undefined8 *valida
     result = 3;
   }
   
-  if (component_data != (undefined8 *)0x0) {
+  if (component_data != (uint64_t *)0x0) {
     *(int *)(component_data + 2) = result;
   }
   return result;
@@ -681,16 +681,16 @@ int ui_system_component_validator(undefined8 *component_data, undefined8 *valida
 
 // UI系统组件检查器 - 检查UI系统中的组件状态和完整性
 // 该函数实现了组件检查功能，包括状态验证、完整性检查和错误报告
-int ui_system_component_checker(undefined8 *component_data, undefined8 *check_params, undefined8 context, uint check_flags)
+int ui_system_component_checker(uint64_t *component_data, uint64_t *check_params, uint64_t context, uint check_flags)
 {
   int result;
-  undefined8 temp_value;
+  uint64_t temp_value;
   longlong context_ptr;
   bool validation_flag;
   
   // 组件检查逻辑
   if (validation_flag) {
-    if ((component_data == (undefined8 *)0x0) || (check_params == (undefined8 *)0x0)) {
+    if ((component_data == (uint64_t *)0x0) || (check_params == (uint64_t *)0x0)) {
       result = 8;
     }
     else if (*(int *)(check_params + 1) == 5) {
@@ -715,8 +715,8 @@ int ui_system_component_checker(undefined8 *component_data, undefined8 *check_pa
               component_data[5] = context;
               result = (**(code **)(context_ptr + 0x10))(component_data, 0);
               if (result != 0) {
-                if ((undefined8 *)component_data[6] != (undefined8 *)0x0) {
-                  temp_value = *(undefined8 *)component_data[6];
+                if ((uint64_t *)component_data[6] != (uint64_t *)0x0) {
+                  temp_value = *(uint64_t *)component_data[6];
                 }
                 component_data[3] = temp_value;
                 FUN_18066d310(component_data);
@@ -743,7 +743,7 @@ int ui_system_component_checker(undefined8 *component_data, undefined8 *check_pa
     result = 3;
   }
   
-  if (component_data != (undefined8 *)0x0) {
+  if (component_data != (uint64_t *)0x0) {
     *(int *)(component_data + 2) = result;
   }
   return result;
@@ -753,10 +753,10 @@ int ui_system_component_checker(undefined8 *component_data, undefined8 *check_pa
 // 该函数实现了标志设置功能，用于快速设置UI组件的标志状态
 void ui_system_flag_setter(void)
 {
-  undefined4 flag_value;
+  int32_t flag_value;
   longlong context_ptr;
   
-  *(undefined4 *)(context_ptr + 0x10) = flag_value;
+  *(int32_t *)(context_ptr + 0x10) = flag_value;
   return;
 }
 
@@ -764,7 +764,7 @@ void ui_system_flag_setter(void)
 // 该函数实现了状态验证功能，包括条件检查、状态验证和错误处理
 void ui_system_state_validator(longlong context_ptr, longlong param_2, int validation_type)
 {
-  undefined4 result;
+  int32_t result;
   
   if (context_ptr != 0) {
     if (param_2 == 0) {
@@ -784,14 +784,14 @@ validation_check:
   result = 8;
 validation_complete:
   if (context_ptr != 0) {
-    *(undefined4 *)(context_ptr + 0x10) = result;
+    *(int32_t *)(context_ptr + 0x10) = result;
   }
   return;
 }
 
 // UI系统权限检查器 - 检查UI系统中的权限和访问控制
 // 该函数实现了权限检查功能，包括权限验证、访问控制和安全管理
-undefined8 ui_system_permission_checker(longlong security_context, longlong *permission_data)
+uint64_t ui_system_permission_checker(longlong security_context, longlong *permission_data)
 {
   uint *permission_flags;
   int permission_level_1;
@@ -813,7 +813,7 @@ undefined8 ui_system_permission_checker(longlong security_context, longlong *per
 
 // UI系统标志处理器 - 处理UI系统中的标志位和状态
 // 该函数实现了标志处理功能，包括标志计算、状态更新和权限管理
-undefined8 ui_system_flag_processor(longlong flag_context)
+uint64_t ui_system_flag_processor(longlong flag_context)
 {
   int flag_level_1;
   int flag_level_2;
@@ -831,16 +831,16 @@ undefined8 ui_system_flag_processor(longlong flag_context)
 
 // UI系统空函数 - 空操作函数，用于系统初始化和占位
 // 该函数是一个空操作函数，用于系统初始化和占位操作
-undefined8 ui_system_empty_function(void)
+uint64_t ui_system_empty_function(void)
 {
   return 8;
 }
 
 // UI系统资源初始化器 - 初始化UI系统中的资源和数据结构
 // 该函数实现了资源初始化功能，包括内存分配、数据结构初始化和资源管理
-undefined8 ui_system_resource_initializer(longlong resource_context)
+uint64_t ui_system_resource_initializer(longlong resource_context)
 {
-  undefined8 *resource_ptr;
+  uint64_t *resource_ptr;
   longlong temp_ptr;
   
   // 执行系统初始化函数
@@ -851,29 +851,29 @@ undefined8 ui_system_resource_initializer(longlong resource_context)
   if (*(longlong *)(resource_context + 0x30) == 0) {
     temp_ptr = FUN_18066e8f0(1);
     *(longlong *)(resource_context + 0x30) = temp_ptr;
-    *(undefined4 *)(temp_ptr + 8) = *(undefined4 *)(resource_context + 0x20);
-    *(undefined4 *)(temp_ptr + 0xe4) = 0x10;
-    *(undefined8 *)(temp_ptr + 0x108) = 0;
-    *(undefined8 *)(temp_ptr + 0x110) = 0;
-    resource_ptr = *(undefined8 **)(resource_context + 0x28);
-    if (resource_ptr != (undefined8 *)0x0) {
-      *(undefined8 *)(temp_ptr + 0xd8) = *resource_ptr;
-      *(undefined4 *)(temp_ptr + 0xe0) = *(undefined4 *)(resource_ptr + 1);
-      *(undefined8 **)(resource_context + 0x28) = (undefined8 *)(temp_ptr + 0xd8);
+    *(int32_t *)(temp_ptr + 8) = *(int32_t *)(resource_context + 0x20);
+    *(int32_t *)(temp_ptr + 0xe4) = 0x10;
+    *(uint64_t *)(temp_ptr + 0x108) = 0;
+    *(uint64_t *)(temp_ptr + 0x110) = 0;
+    resource_ptr = *(uint64_t **)(resource_context + 0x28);
+    if (resource_ptr != (uint64_t *)0x0) {
+      *(uint64_t *)(temp_ptr + 0xd8) = *resource_ptr;
+      *(int32_t *)(temp_ptr + 0xe0) = *(int32_t *)(resource_ptr + 1);
+      *(uint64_t **)(resource_context + 0x28) = (uint64_t *)(temp_ptr + 0xd8);
     }
     temp_ptr = *(longlong *)(resource_context + 0x30);
-    *(undefined4 *)(temp_ptr + 700) = 0;
+    *(int32_t *)(temp_ptr + 700) = 0;
     *(uint *)(temp_ptr + 0x2b8) = *(uint *)(temp_ptr + 8) & 0x40000;
-    *(undefined4 *)(temp_ptr + 0x1a8) = 0;
+    *(int32_t *)(temp_ptr + 0x1a8) = 0;
     return 0;
   }
-  *(undefined4 *)(*(longlong *)(resource_context + 0x30) + 0x1a8) = 0;
+  *(int32_t *)(*(longlong *)(resource_context + 0x30) + 0x1a8) = 0;
   return 0;
 }
 
 // UI系统资源清理器 - 清理UI系统中的资源和内存
 // 该函数实现了资源清理功能，包括内存释放、资源清理和状态重置
-undefined8 ui_system_resource_cleaner(longlong resource_context)
+uint64_t ui_system_resource_cleaner(longlong resource_context)
 {
   FUN_18066ef00(resource_context + 0x1a8);
   func_0x00018066e940(resource_context);

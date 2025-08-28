@@ -43,13 +43,13 @@
 #define ui_system_collision_validation_helper FUN_180659163
 
 // 外部函数声明
-extern undefined8 FUN_18062b420(undefined8 *param_1, longlong param_2, int param_3, longlong *param_4, undefined8 param_5);
-extern void FUN_180640330(undefined8 *param_1, undefined8 *param_2);
-extern void FUN_18063efb0(longlong *param_1, undefined8 **param_2, int param_3, int param_4);
+extern uint64_t FUN_18062b420(uint64_t *param_1, longlong param_2, int param_3, longlong *param_4, uint64_t param_5);
+extern void FUN_180640330(uint64_t *param_1, uint64_t *param_2);
+extern void FUN_18063efb0(longlong *param_1, uint64_t **param_2, int param_3, int param_4);
 extern void FUN_18033a920(longlong *param_1);
-extern void FUN_1806457f0(undefined4 *param_1, undefined4 *param_2, float *param_3, float *param_4, float *param_5);
-extern char FUN_18063e7e0(longlong *param_1, undefined8 *param_2);
-extern void FUN_18064e900(undefined8 *param_1);
+extern void FUN_1806457f0(int32_t *param_1, int32_t *param_2, float *param_3, float *param_4, float *param_5);
+extern char FUN_18063e7e0(longlong *param_1, uint64_t *param_2);
+extern void FUN_18064e900(uint64_t *param_1);
 
 // 全局变量引用
 #define GLOBAL_MEMORY_POOL _DAT_180c8ed18
@@ -78,25 +78,25 @@ extern void FUN_18064e900(undefined8 *param_1);
  */
 void ui_system_advanced_data_structure_processor(longlong *param_1, longlong *param_2, longlong *param_3)
 {
-    undefined4 uVar1;
-    undefined4 uVar2;
-    undefined8 *puVar3;
+    int32_t uVar1;
+    int32_t uVar2;
+    uint64_t *puVar3;
     int iVar4;
     longlong lVar5;
     longlong lVar6;
-    undefined8 *puVar7;
-    undefined8 *puVar8;
-    undefined8 *puVar9;
-    undefined8 *puVar10;
-    undefined8 *puVar11;
+    uint64_t *puVar7;
+    uint64_t *puVar8;
+    uint64_t *puVar9;
+    uint64_t *puVar10;
+    uint64_t *puVar11;
     uint uVar12;
     longlong lStackX_8;
-    undefined8 uStackX_18;
-    undefined8 uVar13;
-    undefined8 *puStack_60;
-    undefined8 *puStack_58;
-    undefined8 *puStack_50;
-    undefined4 uStack_48;
+    uint64_t uStackX_18;
+    uint64_t uVar13;
+    uint64_t *puStack_60;
+    uint64_t *puStack_58;
+    uint64_t *puStack_50;
+    int32_t uStack_48;
     
     // 初始化内存管理参数
     uVar13 = UI_SYSTEM_MEMORY_POOL_SIZE;
@@ -113,27 +113,27 @@ void ui_system_advanced_data_structure_processor(longlong *param_1, longlong *pa
     param_1[0xe] = lVar5;
     
     // 复制属性数据
-    uVar1 = *(undefined4 *)((longlong)param_2 + 0x34);
+    uVar1 = *(int32_t *)((longlong)param_2 + 0x34);
     lVar5 = param_2[7];
-    uVar2 = *(undefined4 *)((longlong)param_2 + 0x3c);
+    uVar2 = *(int32_t *)((longlong)param_2 + 0x3c);
     *(int *)(param_1 + 0xf) = (int)param_2[6];
-    *(undefined4 *)((longlong)param_1 + 0x7c) = uVar1;
+    *(int32_t *)((longlong)param_1 + 0x7c) = uVar1;
     *(int *)(param_1 + 0x10) = (int)lVar5;
-    *(undefined4 *)((longlong)param_1 + 0x84) = uVar2;
+    *(int32_t *)((longlong)param_1 + 0x84) = uVar2;
     
     // 计算数据块大小
     lVar5 = param_3[1] - *param_3 >> 4;
-    puStack_60 = (undefined8 *)0x0;
-    puStack_58 = (undefined8 *)0x0;
-    puVar9 = (undefined8 *)0x0;
-    puStack_50 = (undefined8 *)0x0;
+    puStack_60 = (uint64_t *)0x0;
+    puStack_58 = (uint64_t *)0x0;
+    puVar9 = (uint64_t *)0x0;
+    puStack_50 = (uint64_t *)0x0;
     uStack_48 = 3;
     iVar4 = (int)lVar5;
     lStackX_8 = (longlong)iVar4;
     
     // 分配内存池
     if (iVar4 != 0) {
-        puStack_58 = (undefined8 *)FUN_18062b420(GLOBAL_MEMORY_POOL, lStackX_8 * 8,
+        puStack_58 = (uint64_t *)FUN_18062b420(GLOBAL_MEMORY_POOL, lStackX_8 * 8,
                                                    CONCAT71((int7)(int3)((ulonglong)lVar5 >> 8), 3), param_3,
                                                    UI_SYSTEM_MEMORY_POOL_SIZE);
         puStack_50 = puStack_58 + lStackX_8;
@@ -151,7 +151,7 @@ void ui_system_advanced_data_structure_processor(longlong *param_1, longlong *pa
             puVar3 = puStack_58;
             lVar5 = *param_3;
             if (puStack_58 < puVar8) {
-                *puStack_58 = *(undefined8 *)((longlong)puVar11 + lVar5);
+                *puStack_58 = *(uint64_t *)((longlong)puVar11 + lVar5);
                 puVar7 = puVar10;
             }
             else {
@@ -159,7 +159,7 @@ void ui_system_advanced_data_structure_processor(longlong *param_1, longlong *pa
                 if (lVar6 == 0) {
                     lVar6 = 1;
 LAB_1806588f2:
-                    puVar7 = (undefined8 *)FUN_18062b420(GLOBAL_MEMORY_POOL, lVar6 * 8,
+                    puVar7 = (uint64_t *)FUN_18062b420(GLOBAL_MEMORY_POOL, lVar6 * 8,
                                                          CONCAT71((int7)((ulonglong)lStackX_8 >> 8), 3), param_3, uVar13);
                 }
                 else {
@@ -171,8 +171,8 @@ LAB_1806588f2:
                     // WARNING: Subroutine does not return
                     memmove(puVar7, puVar10, (longlong)puVar3 - (longlong)puVar10);
                 }
-                *puVar7 = *(undefined8 *)((longlong)puVar11 + lVar5);
-                if (puVar10 != (undefined8 *)0x0) {
+                *puVar7 = *(uint64_t *)((longlong)puVar11 + lVar5);
+                if (puVar10 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
                     FUN_18064e900(puVar10);
                 }
@@ -198,17 +198,17 @@ LAB_1806588f2:
     puVar8 = puVar9;
     if (param_1[1] - *param_1 >> 3 != 0) {
         do {
-            uStackX_18 = CONCAT44(*(undefined4 *)((longlong)puVar9 + *param_1 + 4),
-                                  *(undefined4 *)((longlong)puVar9 + *param_1));
-            *(undefined8 *)((longlong)puVar9 + param_1[0x11]) = uStackX_18;
+            uStackX_18 = CONCAT44(*(int32_t *)((longlong)puVar9 + *param_1 + 4),
+                                  *(int32_t *)((longlong)puVar9 + *param_1));
+            *(uint64_t *)((longlong)puVar9 + param_1[0x11]) = uStackX_18;
             uVar12 = (int)puVar8 + 1;
             puVar9 = puVar9 + 1;
-            puVar8 = (undefined8 *)(ulonglong)uVar12;
+            puVar8 = (uint64_t *)(ulonglong)uVar12;
         } while ((ulonglong)(longlong)(int)uVar12 < (ulonglong)(param_1[1] - *param_1 >> 3));
     }
     
     // 清理资源
-    if (puVar7 == (undefined8 *)0x0) {
+    if (puVar7 == (uint64_t *)0x0) {
         return;
     }
     // WARNING: Subroutine does not return
@@ -237,7 +237,7 @@ LAB_1806588f2:
  * - 优化的几何变换
  * - 可配置的检测精度
  */
-undefined8 ui_system_collision_detection_processor(longlong *param_1, float *param_2, float *param_3, float *param_4, char param_5)
+uint64_t ui_system_collision_detection_processor(longlong *param_1, float *param_2, float *param_3, float *param_4, char param_5)
 {
     float fVar1;
     float fVar2;
@@ -254,10 +254,10 @@ undefined8 ui_system_collision_detection_processor(longlong *param_1, float *par
     float *pfVar13;
     char cVar14;
     longlong lVar15;
-    undefined8 uVar16;
+    uint64_t uVar16;
     float *pfVar17;
     int iVar18;
-    undefined4 *puVar19;
+    int32_t *puVar19;
     float fVar20;
     int iVar21;
     longlong lVar22;
@@ -275,7 +275,7 @@ undefined8 ui_system_collision_detection_processor(longlong *param_1, float *par
     float fVar34;
     float fVar35;
     float fVar36;
-    undefined8 uStackX_8;
+    uint64_t uStackX_8;
     float fStackX_10;
     float fStackX_14;
     float fStackX_18;
@@ -291,25 +291,25 @@ undefined8 ui_system_collision_detection_processor(longlong *param_1, float *par
     float fStack_1ac;
     longlong lStack_1a8;
     longlong lStack_1a0;
-    undefined4 uStack_198;
-    undefined4 uStack_194;
-    undefined4 uStack_190;
-    undefined4 uStack_18c;
-    undefined4 uStack_188;
-    undefined4 uStack_184;
-    undefined4 uStack_180;
-    undefined4 uStack_17c;
+    int32_t uStack_198;
+    int32_t uStack_194;
+    int32_t uStack_190;
+    int32_t uStack_18c;
+    int32_t uStack_188;
+    int32_t uStack_184;
+    int32_t uStack_180;
+    int32_t uStack_17c;
     float fStack_178;
     float fStack_174;
     float fStack_170;
-    undefined4 uStack_168;
-    undefined4 uStack_164;
-    undefined4 uStack_160;
-    undefined4 uStack_15c;
-    undefined4 uStack_158;
-    undefined4 uStack_154;
-    undefined4 uStack_150;
-    undefined4 uStack_14c;
+    int32_t uStack_168;
+    int32_t uStack_164;
+    int32_t uStack_160;
+    int32_t uStack_15c;
+    int32_t uStack_158;
+    int32_t uStack_154;
+    int32_t uStack_150;
+    int32_t uStack_14c;
     float fStack_148;
     float fStack_144;
     float fStack_140;
@@ -419,7 +419,7 @@ undefined8 ui_system_collision_detection_processor(longlong *param_1, float *par
             lVar4 = *param_1;
             iVar24 = 1;
             uStack_190 = 0;
-            puVar19 = (undefined4 *)(lVar4 + 4);
+            puVar19 = (int32_t *)(lVar4 + 4);
             uStack_18c = 0x7f7fffff;
             uStack_180 = 0;
             uStack_17c = 0x7f7fffff;
@@ -435,19 +435,19 @@ undefined8 ui_system_collision_detection_processor(longlong *param_1, float *par
             fVar20 = fStackX_14;
             
             do {
-                uStack_198 = *(undefined4 *)((lVar23 - lVar4) + -4 + (longlong)puVar19);
-                uStack_194 = *(undefined4 *)((lVar23 - lVar4) + (longlong)puVar19);
+                uStack_198 = *(int32_t *)((lVar23 - lVar4) + -4 + (longlong)puVar19);
+                uStack_194 = *(int32_t *)((lVar23 - lVar4) + (longlong)puVar19);
                 lVar22 = (longlong)(iVar24 % iVar18);
-                uStack_188 = *(undefined4 *)(lVar23 + lVar22 * 8);
-                uStack_184 = *(undefined4 *)(lVar23 + 4 + lVar22 * 8);
+                uStack_188 = *(int32_t *)(lVar23 + lVar22 * 8);
+                uStack_184 = *(int32_t *)(lVar23 + 4 + lVar22 * 8);
                 FUN_1806457f0(&uStack_188, &uStack_198, &fStack_1b8, &fStack_1c8, &fStack_138, &fStack_178);
                 uStack_164 = *puVar19;
-                uStack_154 = *(undefined4 *)(lVar4 + 4 + lVar22 * 8);
+                uStack_154 = *(int32_t *)(lVar4 + 4 + lVar22 * 8);
                 fVar30 = (fStack_174 - fStack_134) * (fStack_174 - fStack_134) +
                          (fStack_178 - fStack_138) * (fStack_178 - fStack_138) +
                          (fStack_170 - fStack_130) * (fStack_170 - fStack_130);
                 uStack_168 = puVar19[-1];
-                uStack_158 = *(undefined4 *)(lVar4 + lVar22 * 8);
+                uStack_158 = *(int32_t *)(lVar4 + lVar22 * 8);
                 if (fVar30 < fVar26) {
                     fVar29 = fStack_178;
                     fVar31 = fStack_174;
@@ -622,7 +622,7 @@ LAB_180659172:
  * - 稳定的迭代求解
  * - 完整的错误处理
  */
-undefined8 ui_system_geometric_calculation_engine(longlong *param_1)
+uint64_t ui_system_geometric_calculation_engine(longlong *param_1)
 {
     float fVar1;
     longlong lVar2;
@@ -637,9 +637,9 @@ undefined8 ui_system_geometric_calculation_engine(longlong *param_1)
     float *pfVar11;
     int iVar12;
     longlong unaff_RBX;
-    undefined8 uVar13;
+    uint64_t uVar13;
     float *unaff_RBP;
-    undefined8 uVar14;
+    uint64_t uVar14;
     int iVar15;
     longlong lVar16;
     longlong lVar17;
@@ -666,14 +666,14 @@ undefined8 ui_system_geometric_calculation_engine(longlong *param_1)
     float fStack0000000000000044;
     longlong in_stack_00000050;
     longlong lStack0000000000000058;
-    undefined4 uStack0000000000000060;
-    undefined4 uStack0000000000000064;
-    undefined4 uStack0000000000000068;
-    undefined4 uStack000000000000006c;
-    undefined4 uStack0000000000000070;
-    undefined4 uStack0000000000000074;
-    undefined4 uStack0000000000000078;
-    undefined4 uStack000000000000007c;
+    int32_t uStack0000000000000060;
+    int32_t uStack0000000000000064;
+    int32_t uStack0000000000000068;
+    int32_t uStack000000000000006c;
+    int32_t uStack0000000000000070;
+    int32_t uStack0000000000000074;
+    int32_t uStack0000000000000078;
+    int32_t uStack000000000000007c;
     
     // 初始化几何计算参数
     fVar20 = 0.0;
@@ -683,14 +683,14 @@ undefined8 ui_system_geometric_calculation_engine(longlong *param_1)
     iVar12 = (int)(unaff_RBX - lVar17 >> 3);
     lStack0000000000000058 = (longlong)iVar12;
     unaff_RBP[0x43] = unaff_XMM15_Da;
-    uVar14 = *(undefined8 *)(unaff_RBP + 0x42);
+    uVar14 = *(uint64_t *)(unaff_RBP + 0x42);
     unaff_RBP[0x44] = 0.0;
     unaff_RBP[0x45] = 0.0;
     
     if (0 < iVar12) {
         lVar2 = *param_1;
         iVar18 = 1;
-        uVar13 = *(undefined8 *)(unaff_RBP + 0x44);
+        uVar13 = *(uint64_t *)(unaff_RBP + 0x44);
         uStack0000000000000068 = 0;
         pfVar11 = (float *)(lVar2 + 4);
         uStack000000000000006c = 0x7f7fffff;
@@ -705,11 +705,11 @@ undefined8 ui_system_geometric_calculation_engine(longlong *param_1)
         in_stack_00000050 = lStack0000000000000058;
         
         do {
-            uStack0000000000000060 = *(undefined4 *)((lVar17 - lVar2) + -4 + (longlong)pfVar11);
-            uStack0000000000000064 = *(undefined4 *)((lVar17 - lVar2) + (longlong)pfVar11);
+            uStack0000000000000060 = *(int32_t *)((lVar17 - lVar2) + -4 + (longlong)pfVar11);
+            uStack0000000000000064 = *(int32_t *)((lVar17 - lVar2) + (longlong)pfVar11);
             lVar16 = (longlong)(iVar18 % iVar12);
-            uStack0000000000000070 = *(undefined4 *)(lVar17 + lVar16 * 8);
-            uStack0000000000000074 = *(undefined4 *)(lVar17 + 4 + lVar16 * 8);
+            uStack0000000000000070 = *(int32_t *)(lVar17 + lVar16 * 8);
+            uStack0000000000000074 = *(int32_t *)(lVar17 + 4 + lVar16 * 8);
             FUN_1806457f0(&stack0x00000070, &stack0x00000060, &stack0x00000040, &stack0x00000030,
                           unaff_RBP + -0x10);
             unaff_RBP[-0x1b] = *pfVar11;
@@ -724,7 +724,7 @@ undefined8 ui_system_geometric_calculation_engine(longlong *param_1)
                 unaff_XMM10_Da = fVar21;
             }
             if (fVar19 < fVar21) {
-                uVar13 = *(undefined8 *)(unaff_RBP + -0x20);
+                uVar13 = *(uint64_t *)(unaff_RBP + -0x20);
             }
             FUN_1806457f0(unaff_RBP + -0x18, unaff_RBP + -0x1c, &stack0x00000040, &stack0x00000030,
                           unaff_RBP + -0x14);
@@ -736,7 +736,7 @@ undefined8 ui_system_geometric_calculation_engine(longlong *param_1)
                 fVar19 = fVar20;
             }
             if (fVar21 < fVar20) {
-                uVar14 = *(undefined8 *)(unaff_RBP + -0x14);
+                uVar14 = *(uint64_t *)(unaff_RBP + -0x14);
             }
             iVar18 = iVar18 + 1;
             pfVar11 = pfVar11 + 2;
@@ -746,10 +746,10 @@ undefined8 ui_system_geometric_calculation_engine(longlong *param_1)
         } while (in_stack_00000050 != 0);
         unaff_R12 = *(longlong *)(unaff_RBP + 0x40);
         unaff_R13 = *(float **)(unaff_RBP + 0x46);
-        *(undefined8 *)(unaff_RBP + 0x44) = uVar13;
+        *(uint64_t *)(unaff_RBP + 0x44) = uVar13;
         fVar21 = unaff_RBP[0x45];
         fVar20 = unaff_RBP[0x44];
-        *(undefined8 *)(unaff_RBP + 0x42) = uVar14;
+        *(uint64_t *)(unaff_RBP + 0x42) = uVar14;
         unaff_XMM15_Da = unaff_RBP[0x43];
         unaff_XMM14_Da = unaff_RBP[0x42];
         in_stack_00000050 = 0;
@@ -850,7 +850,7 @@ undefined8 ui_system_geometric_calculation_engine(longlong *param_1)
                      (fStack0000000000000040 - fStack0000000000000030) * fVar21 + fStack0000000000000030;
                 unaff_RBP[0x41] =
                      (fStack0000000000000044 - fStack0000000000000034) * fVar21 + fStack0000000000000034;
-                uVar13 = *(undefined8 *)(unaff_RBP + 0x40);
+                uVar13 = *(uint64_t *)(unaff_RBP + 0x40);
             }
             else {
                 unaff_RBP[0x40] =
@@ -859,14 +859,14 @@ undefined8 ui_system_geometric_calculation_engine(longlong *param_1)
                 unaff_RBP[0x41] =
                      (fStack0000000000000034 - fStack0000000000000044) * (unaff_XMM8_Da / fVar21) +
                      fStack0000000000000044;
-                uVar13 = *(undefined8 *)(unaff_RBP + 0x40);
+                uVar13 = *(uint64_t *)(unaff_RBP + 0x40);
             }
-            *(undefined8 *)(unaff_RBP + 0x40) = uVar13;
+            *(uint64_t *)(unaff_RBP + 0x40) = uVar13;
             cVar9 = FUN_18063e7e0(unaff_R12, unaff_RBP + 0x40);
             if (cVar9 == '\0') {
                 uVar13 = uVar14;
             }
-            *(undefined8 *)(unaff_RBP + 0x40) = uVar13;
+            *(uint64_t *)(unaff_RBP + 0x40) = uVar13;
             unaff_XMM14_Da = unaff_RBP[0x40];
             unaff_XMM15_Da = unaff_RBP[0x41];
         }
@@ -907,7 +907,7 @@ undefined8 ui_system_geometric_calculation_engine(longlong *param_1)
  * - 1: 变换成功
  * - 0: 变换失败
  */
-undefined8 ui_system_coordinate_transformer(longlong *param_1)
+uint64_t ui_system_coordinate_transformer(longlong *param_1)
 {
     // 实现坐标变换功能
     // 包含矩阵运算、几何变换和坐标转换
@@ -923,7 +923,7 @@ undefined8 ui_system_coordinate_transformer(longlong *param_1)
  * - 1: 检测到碰撞
  * - 0: 未检测到碰撞
  */
-undefined8 ui_system_advanced_collision_detector(void)
+uint64_t ui_system_advanced_collision_detector(void)
 {
     // 实现高级碰撞检测功能
     // 包含精确的碰撞检测和几何计算
@@ -939,7 +939,7 @@ undefined8 ui_system_advanced_collision_detector(void)
  * - 1: 处理成功
  * - 0: 处理失败
  */
-undefined8 ui_system_collision_result_processor(void)
+uint64_t ui_system_collision_result_processor(void)
 {
     // 实现碰撞结果处理功能
     // 包含结果验证和后处理

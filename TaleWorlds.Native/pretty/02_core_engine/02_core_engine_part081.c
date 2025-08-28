@@ -30,27 +30,27 @@ void process_text_layout_and_position_calculation(void)
   float unaff_xmm6_da;
   float temp_float_3;
   float unaff_xmm8_da;
-  undefined4 unaff_xmm9_da;
+  int32_t unaff_xmm9_da;
   float temp_float_4;
-  undefined4 unaff_xmm9_dc;
+  int32_t unaff_xmm9_dc;
   float unaff_xmm10_da;
   float unaff_xmm11_da;
-  undefined4 unaff_xmm12_da;
-  undefined4 unaff_xmm12_dc;
+  int32_t unaff_xmm12_da;
+  int32_t unaff_xmm12_dc;
   float unaff_xmm13_da;
   float unaff_xmm14_da;
-  undefined4 unaff_xmm15_da;
-  undefined4 unaff_xmm15_dc;
+  int32_t unaff_xmm15_da;
+  int32_t unaff_xmm15_dc;
   float stack_offset_50;
   float stack_offset_54;
   float in_stack_58;
   float stack_offset_5c;
-  undefined4 in_stack_60;
-  undefined4 in_stack_68;
-  undefined4 in_stack_90;
-  undefined4 in_stack_98;
-  undefined4 in_stack_c0;
-  undefined4 in_stack_c8;
+  int32_t in_stack_60;
+  int32_t in_stack_68;
+  int32_t in_stack_90;
+  int32_t in_stack_98;
+  int32_t in_stack_c0;
+  int32_t in_stack_c8;
   
   char_var = (char)unaff_r12;
   uint_var_2 = (uint)unaff_r12;
@@ -121,7 +121,7 @@ void process_text_layout_and_position_calculation(void)
         *(float *)(unaff_rbp + 0x48) = temp_float_2;
         unaff_xmm11_da = temp_float_2;
       }
-      process_text_line(*(undefined8 *)(unaff_rbp + 0x40), unaff_rdi, ulong_var_1, 0);
+      process_text_line(*(uint64_t *)(unaff_rbp + 0x40), unaff_rdi, ulong_var_1, 0);
       unaff_rsi = _DAT_180c8a9b0;
       temp_float_3 = temp_float_3 + unaff_xmm10_da;
       unaff_rdi = ulong_var_1 + 1;
@@ -232,7 +232,7 @@ void process_text_layout_simple(void)
       *(float *)(unaff_rbp + 0x48) = temp_float_2;
       unaff_xmm11_da = temp_float_2;
     }
-    process_text_line(*(undefined8 *)(unaff_rbp + 0x40), unaff_rdi, ulong_var_1, 0);
+    process_text_line(*(uint64_t *)(unaff_rbp + 0x40), unaff_rdi, ulong_var_1, 0);
     unaff_rsi = _DAT_180c8a9b0;
     unaff_xmm6_da = unaff_xmm6_da + unaff_xmm10_da;
     unaff_rdi = ulong_var_1 + 1;
@@ -292,7 +292,7 @@ void process_text_lines_batch(void)
   longlong unaff_rsi;
   ulonglong unaff_rdi;
   longlong long_var_2;
-  undefined8 unaff_r12;
+  uint64_t unaff_r12;
   int unaff_r14d;
   float unaff_xmm6_da;
   float temp_float_1;
@@ -301,7 +301,7 @@ void process_text_lines_batch(void)
   float unaff_xmm11_da;
   float unaff_xmm13_da;
   float unaff_xmm14_da;
-  undefined4 in_stack_50;
+  int32_t in_stack_50;
   float in_stack_58;
   float stack_offset_5c;
   
@@ -322,7 +322,7 @@ void process_text_lines_batch(void)
   temp_float_2 = unaff_xmm14_da + unaff_xmm11_da;
   update_render_state(unaff_rbp + 0x48);
   long_var_2 = *(longlong *)(unaff_rsi + 0x1af8);
-  *(undefined8 *)(long_var_2 + 0x144) = unaff_r12;
+  *(uint64_t *)(long_var_2 + 0x144) = unaff_r12;
   *(float *)(long_var_2 + 0x14c) = unaff_xmm14_da;
   *(float *)(long_var_2 + 0x150) = unaff_xmm13_da;
   *(float *)(long_var_2 + 0x154) = temp_float_2;
@@ -355,14 +355,14 @@ void process_text_fast(void)
   longlong unaff_rbp;
   longlong unaff_rsi;
   longlong long_var_2;
-  undefined8 unaff_r12;
+  uint64_t unaff_r12;
   float temp_float_1;
   float unaff_xmm6_da;
   float temp_float_2;
   float unaff_xmm11_da;
   float unaff_xmm13_da;
   float unaff_xmm14_da;
-  undefined4 in_stack_50;
+  int32_t in_stack_50;
   float in_stack_58;
   float stack_offset_5c;
   
@@ -371,7 +371,7 @@ void process_text_fast(void)
   temp_float_2 = unaff_xmm14_da + unaff_xmm11_da;
   update_render_state(unaff_rbp + 0x48);
   long_var_2 = *(longlong *)(unaff_rsi + 0x1af8);
-  *(undefined8 *)(long_var_2 + 0x144) = unaff_r12;
+  *(uint64_t *)(long_var_2 + 0x144) = unaff_r12;
   *(float *)(long_var_2 + 0x14c) = unaff_xmm14_da;
   *(float *)(long_var_2 + 0x150) = unaff_xmm13_da;
   *(float *)(long_var_2 + 0x154) = temp_float_2;
@@ -400,7 +400,7 @@ void process_text_fast(void)
 void validate_text_layout_bounds(void)
 {
   float *float_pointer;
-  undefined1 in_al;
+  int8_t in_al;
   char char_var;
   undefined7 in_register_1;
   longlong unaff_rsi;
@@ -439,11 +439,11 @@ void empty_function_placeholder_1(void)
  * 
  * 此函数包装了底层的文本处理功能，提供统一的接口
  */
-void text_processing_wrapper(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void text_processing_wrapper(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-  undefined8 stack_x_10;
-  undefined8 stack_x_18;
-  undefined8 stack_x_20;
+  uint64_t stack_x_10;
+  uint64_t stack_x_18;
+  uint64_t stack_x_20;
   
   stack_x_10 = param_2;
   stack_x_18 = param_3;
@@ -457,14 +457,14 @@ void text_processing_wrapper(undefined8 param_1, undefined8 param_2, undefined8 
  * 
  * 此函数处理带参数的文本处理请求，支持更灵活的配置
  */
-void process_text_with_params(undefined8 param_1, undefined8 param_2)
+void process_text_with_params(uint64_t param_1, uint64_t param_2)
 {
   longlong long_var_1;
   longlong long_var_2;
   int int_var;
   
   long_var_2 = _DAT_180c8a9b0;
-  *(undefined1 *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
+  *(int8_t *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
   if (*(char *)(*(longlong *)(long_var_2 + 0x1af8) + 0xb4) == '\0') {
     long_var_1 = long_var_2 + 0x3054;
     int_var = buffer_operation(long_var_1, 0xc01, param_1, param_2);
@@ -472,7 +472,7 @@ void process_text_with_params(undefined8 param_1, undefined8 param_2)
       if ((int_var == -1) || (0xc00 < int_var)) {
         int_var = 0xc00;
       }
-      *(undefined1 *)(int_var + long_var_1) = 0;
+      *(int8_t *)(int_var + long_var_1) = 0;
     }
     finalize_text_processing(long_var_1, long_var_2 + 0x3054 + (longlong)int_var);
   }
@@ -484,7 +484,7 @@ void process_text_with_params(undefined8 param_1, undefined8 param_2)
  * 
  * 此函数执行缓冲区相关的操作，包括写入和清理
  */
-void buffer_operation_wrapper(undefined8 param_1)
+void buffer_operation_wrapper(uint64_t param_1)
 {
   longlong long_var_1;
   int int_var;
@@ -496,7 +496,7 @@ void buffer_operation_wrapper(undefined8 param_1)
     if ((int_var == -1) || (0xc00 < int_var)) {
       int_var = 0xc00;
     }
-    *(undefined1 *)(int_var + long_var_1) = 0;
+    *(int8_t *)(int_var + long_var_1) = 0;
   }
   finalize_text_processing(long_var_1, unaff_rbx + 0x3054 + (longlong)int_var);
   return;
@@ -514,8 +514,8 @@ void empty_function_placeholder_2(void)
 
 // 以下是函数引用声明，这些函数在其他文件中定义
 void calculate_text_position(float *float_ptr, float *stack_ptr, float param_1, uint param_2, uint param_3);
-void process_text_line(undefined8 param_1, undefined8 param_2, undefined8 param_3, int param_4);
-void update_render_state(undefined8 param_1);
-char validate_text_layout(undefined8 param_1, undefined8 param_2, int param_3);
-void finalize_text_processing(undefined8 param_1, undefined8 param_2);
-int buffer_operation(undefined8 param_1, int param_2, undefined8 param_3, undefined8 param_4);
+void process_text_line(uint64_t param_1, uint64_t param_2, uint64_t param_3, int param_4);
+void update_render_state(uint64_t param_1);
+char validate_text_layout(uint64_t param_1, uint64_t param_2, int param_3);
+void finalize_text_processing(uint64_t param_1, uint64_t param_2);
+int buffer_operation(uint64_t param_1, int param_2, uint64_t param_3, uint64_t param_4);

@@ -112,8 +112,8 @@
 // 基础类型别名
 typedef longlong           RenderHandle;           // 渲染句柄
 typedef float*             RenderCoordinatePtr;    // 渲染坐标指针
-typedef undefined8         RenderDataBlock;        // 渲染数据块
-typedef undefined4         RenderFlag;             // 渲染标志
+typedef uint64_t         RenderDataBlock;        // 渲染数据块
+typedef int32_t         RenderFlag;             // 渲染标志
 typedef byte               RenderState;            // 渲染状态
 typedef uint               RenderIndex;            // 渲染索引
 typedef ulonglong          RenderMemoryAddress;    // 渲染内存地址
@@ -124,8 +124,8 @@ typedef bool               RenderCondition;        // 渲染条件
 // 指针类型别名
 typedef longlong*          RenderHandlePtr;        // 渲染句柄指针
 typedef float**            RenderCoordinatePtrPtr; // 渲染坐标指针指针
-typedef undefined8*        RenderDataBlockPtr;     // 渲染数据块指针
-typedef undefined4*        RenderFlagPtr;          // 渲染标志指针
+typedef uint64_t*        RenderDataBlockPtr;     // 渲染数据块指针
+typedef int32_t*        RenderFlagPtr;          // 渲染标志指针
 typedef byte*              RenderStatePtr;         // 渲染状态指针
 typedef uint*              RenderIndexPtr;         // 渲染索引指针
 typedef ulonglong*         RenderMemoryAddressPtr; // 渲染内存地址指针
@@ -136,10 +136,10 @@ typedef bool*              RenderConditionPtr;     // 渲染条件指针
 // 数组类型别名
 typedef float              RenderCoordinateArray[4];     // 渲染坐标数组
 typedef longlong           RenderHandleArray[2];         // 渲染句柄数组
-typedef undefined8         RenderDataBlockArray[2];      // 渲染数据块数组
+typedef uint64_t         RenderDataBlockArray[2];      // 渲染数据块数组
 typedef uint               RenderIndexArray[2];          // 渲染索引数组
 typedef float              RenderDepthArray[2];          // 渲染深度数组
-typedef undefined4         RenderFlagArray[6];          // 渲染标志数组
+typedef int32_t         RenderFlagArray[6];          // 渲染标志数组
 
 // 函数指针类型别名
 typedef void (*RenderTransformFunc)(RenderHandle, RenderCoordinatePtr);          // 渲染变换函数指针
@@ -1242,7 +1242,7 @@ void RenderSwitchMode(RenderHandle param1, int param2) {
     // 局部变量定义
     longlong               handle1, handle2, handle3, handle4;
     char                   modeFlag;
-    undefined1             stateFlag;
+    int8_t             stateFlag;
     uint                   indexValue;
     longlong               memoryAddress;
     int                    currentIndex, targetIndex;

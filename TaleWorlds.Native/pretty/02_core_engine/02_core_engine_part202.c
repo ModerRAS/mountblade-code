@@ -6,29 +6,29 @@
 // 函数：initialize_permission_request_context
 // 功能：初始化权限请求上下文结构
 // 参数：param_1 - 权限请求参数结构体指针
-void initialize_permission_request_context(undefined8 *param_1)
+void initialize_permission_request_context(uint64_t *param_1)
 {
-  undefined8 *context_ptr;
+  uint64_t *context_ptr;
   longlong size_diff;
   longlong *alloc_ptr;
   longlong start_pos;
-  undefined1 stack_buffer [48];
-  undefined4 status_flag;
+  int8_t stack_buffer [48];
+  int32_t status_flag;
   longlong *temp_ptr;
   longlong current_pos;
-  undefined8 *request_data;
+  uint64_t *request_data;
   longlong data_start;
   longlong data_end;
   ulonglong checksum;
   code *callback_func;
   longlong context_size;
-  undefined8 temp_var;
+  uint64_t temp_var;
   longlong stack_offset;
-  undefined8 guard_value;
+  uint64_t guard_value;
   longlong alloc_array [7];
   longlong *resource_ptr;
-  undefined8 resource_data;
-  undefined1 resource_buffer [288];
+  uint64_t resource_data;
+  int8_t resource_buffer [288];
   ulonglong stack_checksum;
   
   guard_value = 0xfffffffffffffffe;
@@ -46,7 +46,7 @@ void initialize_permission_request_context(undefined8 *param_1)
   stack_offset = 0;
   request_data = param_1;
   if (0xf < (ulonglong)param_1[3]) {
-    request_data = (undefined8 *)*param_1;
+    request_data = (uint64_t *)*param_1;
   }
   checksum = (ulonglong)*(byte *)(param_1 + 7);
   start_pos = param_1[4];
@@ -59,17 +59,17 @@ void initialize_permission_request_context(undefined8 *param_1)
     callback_func = FUN_180184320;
     start_pos = FUN_1808fc418(0x48);
     resource_ptr = (longlong *)0x0;
-    context_ptr = (undefined8 *)param_1[0xf];
+    context_ptr = (uint64_t *)param_1[0xf];
     temp_ptr = (longlong *)start_pos;
-    if (context_ptr != (undefined8 *)0x0) {
+    if (context_ptr != (uint64_t *)0x0) {
       resource_ptr = (longlong *)(**(code **)*context_ptr)(context_ptr,alloc_array);
     }
     resource_data = param_1[0x10];
     status_flag = 3;
-    *(undefined8 *)(start_pos + 0x38) = 0;
+    *(uint64_t *)(start_pos + 0x38) = 0;
     stack_offset = start_pos;
     FUN_1801881a0(start_pos,alloc_array);
-    *(undefined8 *)(start_pos + 0x40) = resource_data;
+    *(uint64_t *)(start_pos + 0x40) = resource_data;
     size_diff = alloc_ptr[2];
     alloc_ptr[2] = start_pos;
     if (size_diff != 0) {
@@ -85,7 +85,7 @@ void initialize_permission_request_context(undefined8 *param_1)
     }
     context_size = alloc_ptr[2];
   }
-  temp_var = CONCAT44(temp_var._4_4_,*(undefined4 *)(param_1 + 0x11));
+  temp_var = CONCAT44(temp_var._4_4_,*(int32_t *)(param_1 + 0x11));
   if ((param_1[0x14] != 0) &&
      (stack_offset = (longlong)(param_1 + 0x12), 0xf < (ulonglong)param_1[0x15])) {
     stack_offset = *(longlong *)stack_offset;
@@ -102,7 +102,7 @@ void initialize_permission_request_context(undefined8 *param_1)
 //        param_2 - 保留参数
 //        param_3 - 保留参数
 //        param_4 - 保留参数
-void cleanup_permission_handler(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void cleanup_permission_handler(longlong *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   longlong *handler_ptr;
   
@@ -126,23 +126,23 @@ void cleanup_permission_handler(longlong *param_1,undefined8 param_2,undefined8 
 //        param_2 - 权限数据指针
 //        param_3 - 权限类型指针
 //        param_4 - 回调参数
-void request_permissions_async(longlong param_1,longlong *param_2,longlong *param_3,undefined8 param_4)
+void request_permissions_async(longlong param_1,longlong *param_2,longlong *param_3,uint64_t param_4)
 {
-  undefined8 *resource_ptr;
+  uint64_t *resource_ptr;
   longlong *alloc_ptr;
   longlong data_size;
-  undefined8 callback_result;
-  undefined1 stack_buffer [32];
-  undefined4 status_flag;
+  uint64_t callback_result;
+  int8_t stack_buffer [32];
+  int32_t status_flag;
   longlong *context_ptr;
   longlong data_start;
   longlong data_end;
-  undefined8 guard_value;
+  uint64_t guard_value;
   longlong *data_ptr;
   longlong buffer_size;
   longlong alloc_array [7];
   longlong *temp_ptr;
-  undefined8 callback_param;
+  uint64_t callback_param;
   ulonglong stack_checksum;
   
   guard_value = 0xfffffffffffffffe;
@@ -153,19 +153,19 @@ void request_permissions_async(longlong param_1,longlong *param_2,longlong *para
   data_ptr = param_3;
   data_size = FUN_1808fc418(0x48);
   temp_ptr = (longlong *)0x0;
-  resource_ptr = (undefined8 *)param_3[7];
+  resource_ptr = (uint64_t *)param_3[7];
   buffer_size = data_size;
-  if (resource_ptr != (undefined8 *)0x0) {
+  if (resource_ptr != (uint64_t *)0x0) {
     temp_ptr = (longlong *)(**(code **)*resource_ptr)(resource_ptr,alloc_array);
   }
   status_flag = 3;
-  *(undefined8 *)(data_size + 0x38) = 0;
+  *(uint64_t *)(data_size + 0x38) = 0;
   context_ptr = (longlong *)data_size;
   callback_param = param_4;
   if (temp_ptr != (longlong *)0x0) {
     if (temp_ptr == alloc_array) {
       callback_result = (**(code **)(*temp_ptr + 8))(temp_ptr,data_size);
-      *(undefined8 *)(data_size + 0x38) = callback_result;
+      *(uint64_t *)(data_size + 0x38) = callback_result;
       if (temp_ptr == (longlong *)0x0) goto LAB_180183f13;
       (**(code **)(*temp_ptr + 0x20))
                 (temp_ptr,CONCAT71((int7)((ulonglong)alloc_array >> 8),temp_ptr != alloc_array));
@@ -176,8 +176,8 @@ void request_permissions_async(longlong param_1,longlong *param_2,longlong *para
     temp_ptr = (longlong *)0x0;
   }
 LAB_180183f13:
-  *(undefined8 *)(data_size + 0x40) = callback_param;
-  NVGSDK_RequestPermissionsAsync(*(undefined8 *)(param_1 + 8),&data_start,FUN_1801842a0,data_size);
+  *(uint64_t *)(data_size + 0x40) = callback_param;
+  NVGSDK_RequestPermissionsAsync(*(uint64_t *)(param_1 + 8),&data_start,FUN_1801842a0,data_size);
   status_flag = 1;
   context_ptr = alloc_array;
   if (temp_ptr != (longlong *)0x0) {
@@ -205,21 +205,21 @@ LAB_180183f13:
 // 参数：param_1 - 引擎实例指针
 //        param_2 - 语言数据指针
 //        param_3 - 回调参数
-void get_ui_language_async(longlong param_1,longlong *param_2,undefined8 param_3)
+void get_ui_language_async(longlong param_1,longlong *param_2,uint64_t param_3)
 {
-  undefined8 *resource_ptr;
+  uint64_t *resource_ptr;
   longlong *alloc_ptr;
   longlong data_size;
-  undefined8 callback_result;
-  undefined1 stack_buffer [32];
-  undefined4 status_flag;
+  uint64_t callback_result;
+  int8_t stack_buffer [32];
+  int32_t status_flag;
   longlong *context_ptr;
-  undefined8 callback_param;
+  uint64_t callback_param;
   longlong *data_ptr;
   longlong buffer_size;
   longlong alloc_array [7];
   longlong *temp_ptr;
-  undefined8 callback_data;
+  uint64_t callback_data;
   ulonglong stack_checksum;
   
   callback_param = 0xfffffffffffffffe;
@@ -228,19 +228,19 @@ void get_ui_language_async(longlong param_1,longlong *param_2,undefined8 param_3
   data_ptr = param_2;
   data_size = FUN_1808fc418(0x48);
   temp_ptr = (longlong *)0x0;
-  resource_ptr = (undefined8 *)param_2[7];
+  resource_ptr = (uint64_t *)param_2[7];
   buffer_size = data_size;
-  if (resource_ptr != (undefined8 *)0x0) {
+  if (resource_ptr != (uint64_t *)0x0) {
     temp_ptr = (longlong *)(**(code **)*resource_ptr)(resource_ptr,alloc_array);
   }
   status_flag = 3;
-  *(undefined8 *)(data_size + 0x38) = 0;
+  *(uint64_t *)(data_size + 0x38) = 0;
   context_ptr = (longlong *)data_size;
   callback_data = param_3;
   if (temp_ptr != (longlong *)0x0) {
     if (temp_ptr == alloc_array) {
       callback_result = (**(code **)(*temp_ptr + 8))(temp_ptr,data_size);
-      *(undefined8 *)(data_size + 0x38) = callback_result;
+      *(uint64_t *)(data_size + 0x38) = callback_result;
       if (temp_ptr == (longlong *)0x0) goto LAB_180184089;
       (**(code **)(*temp_ptr + 0x20))
                 (temp_ptr,CONCAT71((int7)((ulonglong)alloc_array >> 8),temp_ptr != alloc_array));
@@ -251,8 +251,8 @@ void get_ui_language_async(longlong param_1,longlong *param_2,undefined8 param_3
     temp_ptr = (longlong *)0x0;
   }
 LAB_180184089:
-  *(undefined8 *)(data_size + 0x40) = callback_data;
-  NVGSDK_GetUILanguageAsync(*(undefined8 *)(param_1 + 8),&UNK_180184260,data_size);
+  *(uint64_t *)(data_size + 0x40) = callback_data;
+  NVGSDK_GetUILanguageAsync(*(uint64_t *)(param_1 + 8),&UNK_180184260,data_size);
   status_flag = 1;
   context_ptr = alloc_array;
   if (temp_ptr != (longlong *)0x0) {
@@ -281,19 +281,19 @@ LAB_180184089:
 //        param_2 - 状态码
 //        param_3 - 数据指针
 //        param_4 - 上下文指针
-void process_permission_callback(undefined8 param_1,int param_2,longlong *param_3,longlong *param_4)
+void process_permission_callback(uint64_t param_1,int param_2,longlong *param_3,longlong *param_4)
 {
   longlong *handler_ptr;
   code *callback_func;
   longlong string_length;
-  undefined1 stack_buffer [32];
+  int8_t stack_buffer [32];
   int status_array [2];
   longlong *context_ptr;
-  undefined1 *string_ptr;
+  int8_t *string_ptr;
   longlong result_array [2];
-  undefined1 temp_buffer [16];
-  undefined8 temp_var1;
-  undefined8 temp_var2;
+  int8_t temp_buffer [16];
+  uint64_t temp_var1;
+  uint64_t temp_var2;
   ulonglong stack_checksum;
   
   result_array[1] = 0xfffffffffffffffe;
@@ -303,7 +303,7 @@ void process_permission_callback(undefined8 param_1,int param_2,longlong *param_
   if (handler_ptr != (longlong *)0x0) {
     status_array[0] = param_2;
     if (param_2 < 0) {
-      string_ptr = (undefined1 *)param_4[8];
+      string_ptr = (int8_t *)param_4[8];
       result_array[0] = 0;
       (**(code **)(*handler_ptr + 0x10))(handler_ptr,status_array,result_array,&string_ptr);
     }
@@ -362,7 +362,7 @@ void cleanup_string_resources(void)
 //        param_2 - 数据指针
 //        param_3 - 回调参数
 //        param_4 - 上下文指针
-void handle_permission_result(undefined4 param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
+void handle_permission_result(int32_t param_1,longlong *param_2,uint64_t param_3,uint64_t param_4)
 {
   longlong *handler_ptr;
   longlong *temp_ptr;
@@ -405,24 +405,24 @@ void process_permission_data(int param_1,longlong param_2,longlong param_3)
   char node_flag;
   int data_value;
   longlong *context_ptr;
-  undefined8 ***tree_ptr;
+  uint64_t ***tree_ptr;
   code *error_func;
-  undefined8 ***current_node;
-  undefined8 ***parent_node;
-  undefined8 ****node_array;
-  undefined8 ****temp_array;
-  undefined8 ****result_node;
+  uint64_t ***current_node;
+  uint64_t ***parent_node;
+  uint64_t ****node_array;
+  uint64_t ****temp_array;
+  uint64_t ****result_node;
   ulonglong loop_counter;
-  undefined1 stack_buffer [32];
+  int8_t stack_buffer [32];
   longlong temp_value;
-  undefined8 temp_var1;
-  undefined8 temp_var2;
-  undefined8 ***stack_node;
-  undefined8 temp_var3;
-  undefined8 temp_var4;
-  undefined8 ***resource_ptr;
-  undefined1 byte_value;
-  undefined4 int_value;
+  uint64_t temp_var1;
+  uint64_t temp_var2;
+  uint64_t ***stack_node;
+  uint64_t temp_var3;
+  uint64_t temp_var4;
+  uint64_t ***resource_ptr;
+  int8_t byte_value;
+  int32_t int_value;
   ulonglong stack_checksum;
   
   temp_var4 = 0xfffffffffffffffe;
@@ -432,28 +432,28 @@ void process_permission_data(int param_1,longlong param_2,longlong param_3)
     if (param_1 == 0) {
       resource_ptr = &stack_node;
       loop_counter = 0;
-      stack_node = (undefined8 ***)0x0;
+      stack_node = (uint64_t ***)0x0;
       temp_var3 = 0;
-      stack_node = (undefined8 ***)FUN_180188560();
-      temp_var2 = *(undefined8 *)(param_3 + 0x40);
+      stack_node = (uint64_t ***)FUN_180188560();
+      temp_var2 = *(uint64_t *)(param_3 + 0x40);
       if (*(longlong *)(param_2 + 0x10) != 0) {
         do {
           data_ptr = (int *)(*(longlong *)(param_2 + 8) + loop_counter * 8);
           data_value = data_ptr[1];
-          node_array = (undefined8 ****)stack_node;
+          node_array = (uint64_t ****)stack_node;
           if (*(char *)((longlong)stack_node[1] + 0x19) == '\0') {
-            result_node = (undefined8 ****)stack_node[1];
+            result_node = (uint64_t ****)stack_node[1];
             do {
               if (*(int *)((longlong)result_node + 0x1c) < *data_ptr) {
-                temp_array = (undefined8 ****)result_node[2];
+                temp_array = (uint64_t ****)result_node[2];
               }
               else {
-                temp_array = (undefined8 ****)*result_node;
+                temp_array = (uint64_t ****)*result_node;
                 node_array = result_node;
               }
               result_node = temp_array;
             } while (*(char *)((longlong)temp_array + 0x19) == '\0');
-            if ((node_array == (undefined8 ****)stack_node) ||
+            if ((node_array == (uint64_t ****)stack_node) ||
                (*data_ptr < *(int *)((longlong)node_array + 0x1c))) goto LAB_180184411;
           }
           else {
@@ -461,7 +461,7 @@ LAB_180184411:
             temp_var1 = data_ptr;
             temp_value = FUN_18018a610(&stack_node,stack_node,&temp_var1);
             FUN_18018a660(&stack_node,&resource_ptr,node_array,temp_value + 0x1c);
-            node_array = (undefined8 ****)resource_ptr;
+            node_array = (uint64_t ****)resource_ptr;
           }
           *(int *)(node_array + 4) = data_value;
           loop_counter = loop_counter + 1;
@@ -479,24 +479,24 @@ LAB_180184411:
       parent_node = stack_node;
       resource_ptr = &stack_node;
       node_flag = *(char *)((longlong)stack_node[1] + 0x19);
-      current_node = (undefined8 ***)stack_node[1];
+      current_node = (uint64_t ***)stack_node[1];
       while (node_flag == '\0') {
         FUN_1801885a0(&stack_node,current_node[2]);
-        tree_ptr = (undefined8 ***)*current_node;
+        tree_ptr = (uint64_t ***)*current_node;
         free(current_node,0x28);
         current_node = tree_ptr;
         node_flag = *(char *)((longlong)tree_ptr + 0x19);
       }
-      ((undefined8 ****)stack_node)[1] = parent_node;
+      ((uint64_t ****)stack_node)[1] = parent_node;
       *stack_node = parent_node;
-      ((undefined8 ****)stack_node)[2] = parent_node;
+      ((uint64_t ****)stack_node)[2] = parent_node;
       temp_var3 = 0;
       free(stack_node,0x28);
     }
     else if (param_1 == 1) {
-      resource_ptr = *(undefined8 ****)(param_3 + 0x40);
-      byte_value = *(undefined1 *)(param_2 + 8);
-      int_value = *(undefined4 *)(param_2 + 0xc);
+      resource_ptr = *(uint64_t ****)(param_3 + 0x40);
+      byte_value = *(int8_t *)(param_2 + 8);
+      int_value = *(int32_t *)(param_2 + 0xc);
       temp_var1 = (int *)CONCAT44(temp_var1._4_4_,1);
       (**(code **)(*context_ptr + 0x10))(context_ptr,&temp_var1,&resource_ptr);
     }
@@ -515,14 +515,14 @@ LAB_180184411:
 //        param_2 - 保留参数
 //        param_3 - 回调参数
 //        param_4 - 保留参数
-void cleanup_resource_tree(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void cleanup_resource_tree(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   longlong *root_ptr;
   longlong current_pos;
   longlong *node_ptr;
   longlong start_pos;
   longlong *child_ptr;
-  undefined8 guard_value;
+  uint64_t guard_value;
   
   guard_value = 0xfffffffffffffffe;
   root_ptr = (longlong *)(param_1 + 8);
@@ -541,7 +541,7 @@ void cleanup_resource_tree(longlong param_1,undefined8 param_2,undefined8 param_
   *(longlong *)(start_pos + 8) = current_pos;
   *(longlong *)*root_ptr = current_pos;
   *(longlong *)(*root_ptr + 0x10) = current_pos;
-  *(undefined8 *)(param_1 + 0x10) = 0;
+  *(uint64_t *)(param_1 + 0x10) = 0;
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
   free(*root_ptr,0x28);
@@ -558,13 +558,13 @@ void cleanup_resource_tree(longlong param_1,undefined8 param_2,undefined8 param_
 //        param_2 - 保留参数
 //        param_3 - 回调参数
 //        param_4 - 保留参数
-void free_resource_node(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void free_resource_node(longlong *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   longlong node_value;
   longlong *node_ptr;
   longlong current_pos;
   longlong *child_ptr;
-  undefined8 guard_value;
+  uint64_t guard_value;
   
   guard_value = 0xfffffffffffffffe;
   node_value = *param_1;
@@ -599,12 +599,12 @@ void free_resource_node(longlong *param_1,undefined8 param_2,undefined8 param_3,
 //        param_2 - 保留参数
 //        param_3 - 回调参数
 //        param_4 - 保留参数
-void destroy_resource_node(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void destroy_resource_node(longlong *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   longlong node_value;
   
   node_value = *param_1;
-  FUN_1801884d0(param_1,*(undefined8 *)(node_value + 8),param_3,param_4,0xfffffffffffffffe);
+  FUN_1801884d0(param_1,*(uint64_t *)(node_value + 8),param_3,param_4,0xfffffffffffffffe);
   *(longlong *)(*param_1 + 8) = node_value;
   *(longlong *)*param_1 = node_value;
   *(longlong *)(*param_1 + 0x10) = node_value;
@@ -621,7 +621,7 @@ void destroy_resource_node(longlong *param_1,undefined8 param_2,undefined8 param
 // 功能：创建资源指针
 // 参数：param_1 - 指针变量
 //        param_2 - 标志位
-undefined8 * create_resource_pointer(undefined8 *param_1,ulonglong param_2)
+uint64_t * create_resource_pointer(uint64_t *param_1,ulonglong param_2)
 {
   *param_1 = &UNK_180a0ac88;
   if ((param_2 & 1) != 0) {
@@ -632,8 +632,8 @@ undefined8 * create_resource_pointer(undefined8 *param_1,ulonglong param_2)
 
 
 
-undefined8 *
-create_resource_pointer_extended(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+uint64_t *
+create_resource_pointer_extended(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
 {
   *param_1 = &UNK_180a0ac88;
   if ((param_2 & 1) != 0) {
@@ -654,56 +654,56 @@ create_resource_pointer_extended(undefined8 *param_1,ulonglong param_2,undefined
 //        param_2 - 高亮数据指针
 //        param_3 - 上下文指针
 //        param_4 - 回调参数
-void configure_highlights_async(longlong param_1,longlong *param_2,longlong *param_3,undefined8 param_4)
+void configure_highlights_async(longlong param_1,longlong *param_2,longlong *param_3,uint64_t param_4)
 {
   char node_flag;
-  undefined4 *data_ptr;
+  int32_t *data_ptr;
   longlong array_size;
-  undefined8 *current_item;
+  uint64_t *current_item;
   longlong *item_ptr;
   longlong *temp_ptr;
   longlong data_offset;
-  undefined8 callback_result;
+  uint64_t callback_result;
   ulonglong alloc_size;
   longlong *resource_ptr;
-  undefined8 *item_data;
-  undefined8 *next_item;
-  undefined1 stack_buffer [32];
-  undefined4 status_flag;
+  uint64_t *item_data;
+  uint64_t *next_item;
+  int8_t stack_buffer [32];
+  int32_t status_flag;
   longlong buffer_pos;
-  undefined8 *buffer_ptr;
-  undefined8 *buffer_end;
+  uint64_t *buffer_ptr;
+  uint64_t *buffer_end;
   longlong buffer_offset;
-  undefined8 temp_var1;
+  uint64_t temp_var1;
   longlong temp_offset;
-  undefined8 temp_var2;
+  uint64_t temp_var2;
   longlong buffer_size;
   longlong temp_var3;
-  undefined8 *item_start;
-  undefined4 flag1;
-  undefined4 flag2;
-  undefined4 flag3;
-  undefined4 flag4;
-  undefined8 config_data;
+  uint64_t *item_start;
+  int32_t flag1;
+  int32_t flag2;
+  int32_t flag3;
+  int32_t flag4;
+  uint64_t config_data;
   longlong item_count;
-  undefined8 **resource_array;
-  undefined8 callback_param;
+  uint64_t **resource_array;
+  uint64_t callback_param;
   ulonglong stack_checksum;
   
   config_data = 0xfffffffffffffffe;
   stack_checksum = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
-  next_item = (undefined8 *)0x0;
+  next_item = (uint64_t *)0x0;
   status_flag = 0;
   item_count = 0;
-  buffer_ptr = (undefined8 *)0x0;
-  buffer_end = (undefined8 *)0x0;
+  buffer_ptr = (uint64_t *)0x0;
+  buffer_end = (uint64_t *)0x0;
   buffer_pos = 0;
-  buffer_ptr = (undefined8 *)0x0;
-  buffer_end = (undefined8 *)0x0;
-  item_data = (undefined8 *)*param_2;
+  buffer_ptr = (uint64_t *)0x0;
+  buffer_end = (uint64_t *)0x0;
+  item_data = (uint64_t *)*param_2;
   buffer_size = param_1;
   resource_ptr = param_3;
-  if (item_data != (undefined8 *)param_2[1]) {
+  if (item_data != (uint64_t *)param_2[1]) {
     do {
       current_item = buffer_ptr;
       buffer_offset = 0;
@@ -748,20 +748,20 @@ void configure_highlights_async(longlong param_1,longlong *param_2,longlong *par
           if (0xf < (ulonglong)resource_ptr[0xb]) {
             temp_ptr = (longlong *)*temp_ptr;
           }
-          data_ptr = (undefined4 *)buffer_ptr[-2];
-          temp_var2 = (undefined8 **)item_ptr;
+          data_ptr = (int32_t *)buffer_ptr[-2];
+          temp_var2 = (uint64_t **)item_ptr;
           temp_var3 = (longlong)temp_ptr;
-          if ((undefined4 *)buffer_ptr[-1] == data_ptr) {
+          if ((int32_t *)buffer_ptr[-1] == data_ptr) {
             FUN_1801887a0();
           }
           else {
             temp_var2._0_4_ = SUB84(item_ptr,0);
-            temp_var2._4_4_ = (undefined4)((ulonglong)item_ptr >> 0x20);
+            temp_var2._4_4_ = (int32_t)((ulonglong)item_ptr >> 0x20);
             temp_var3._0_4_ = SUB84(temp_ptr,0);
-            temp_var3._4_4_ = (undefined4)((ulonglong)temp_ptr >> 0x20);
-            *data_ptr = (undefined4)temp_var2;
+            temp_var3._4_4_ = (int32_t)((ulonglong)temp_ptr >> 0x20);
+            *data_ptr = (int32_t)temp_var2;
             data_ptr[1] = temp_var2._4_4_;
-            data_ptr[2] = (undefined4)temp_var3;
+            data_ptr[2] = (int32_t)temp_var3;
             data_ptr[3] = temp_var3._4_4_;
             buffer_ptr[-2] = buffer_ptr[-2] + 0x10;
           }
@@ -790,11 +790,11 @@ void configure_highlights_async(longlong param_1,longlong *param_2,longlong *par
       }
       item_start = item_data;
       if (0xf < (ulonglong)item_data[3]) {
-        item_start = (undefined8 *)*item_data;
+        item_start = (uint64_t *)*item_data;
       }
-      flag1 = CONCAT31(flag1._1_3_,*(undefined1 *)(item_data + 4));
-      flag2 = *(undefined4 *)((longlong)item_data + 0x24);
-      flag3 = *(undefined4 *)(item_data + 5);
+      flag1 = CONCAT31(flag1._1_3_,*(int8_t *)(item_data + 4));
+      flag2 = *(int32_t *)((longlong)item_data + 0x24);
+      flag3 = *(int32_t *)(item_data + 5);
       item_count = item_data[7];
       if (item_count == 0) {
         config_data = 0;
@@ -815,7 +815,7 @@ void configure_highlights_async(longlong param_1,longlong *param_2,longlong *par
         buffer_ptr = current_item + 5;
       }
       item_data = item_data + 8;
-    } while (item_data != (undefined8 *)param_2[1]);
+    } while (item_data != (uint64_t *)param_2[1]);
   }
   array_size = item_count;
   buffer_size = item_count;
@@ -825,40 +825,40 @@ void configure_highlights_async(longlong param_1,longlong *param_2,longlong *par
     temp_offset = *(longlong *)temp_offset;
   }
   data_offset = FUN_1808fc418(0x48);
-  resource_array = (undefined8 **)0x0;
-  item_data = (undefined8 *)param_3[7];
+  resource_array = (uint64_t **)0x0;
+  item_data = (uint64_t *)param_3[7];
   item_count = data_offset;
-  if (item_data != (undefined8 *)0x0) {
-    resource_array = (undefined8 **)(**(code **)*item_data)(item_data,&item_start);
+  if (item_data != (uint64_t *)0x0) {
+    resource_array = (uint64_t **)(**(code **)*item_data)(item_data,&item_start);
   }
   status_flag = 3;
-  *(undefined8 *)(data_offset + 0x38) = 0;
-  temp_var2 = (undefined8 **)data_offset;
+  *(uint64_t *)(data_offset + 0x38) = 0;
+  temp_var2 = (uint64_t **)data_offset;
   callback_param = param_4;
-  if (resource_array != (undefined8 **)0x0) {
+  if (resource_array != (uint64_t **)0x0) {
     if (resource_array == &item_start) {
       callback_result = (*(code *)(*resource_array)[1])(resource_array,data_offset);
-      *(undefined8 *)(data_offset + 0x38) = callback_result;
-      if (resource_array == (undefined8 **)0x0) goto LAB_180184aa5;
+      *(uint64_t *)(data_offset + 0x38) = callback_result;
+      if (resource_array == (uint64_t **)0x0) goto LAB_180184aa5;
       (*(code *)(*resource_array)[4])
                 (resource_array,
                  CONCAT71((int7)((ulonglong)&item_start >> 8),resource_array != &item_start));
     }
     else {
-      *(undefined8 ***)(data_offset + 0x38) = resource_array;
+      *(uint64_t ***)(data_offset + 0x38) = resource_array;
     }
-    resource_array = (undefined8 **)0x0;
+    resource_array = (uint64_t **)0x0;
   }
 LAB_180184aa5:
-  *(undefined8 *)(data_offset + 0x40) = callback_param;
-  NVGSDK_Highlights_ConfigureAsync(*(undefined8 *)(buffer_size + 8),&buffer_size,FUN_1801842a0,data_offset);
+  *(uint64_t *)(data_offset + 0x40) = callback_param;
+  NVGSDK_Highlights_ConfigureAsync(*(uint64_t *)(buffer_size + 8),&buffer_size,FUN_1801842a0,data_offset);
   status_flag = 1;
   temp_var2 = &item_start;
-  if (resource_array != (undefined8 **)0x0) {
+  if (resource_array != (uint64_t **)0x0) {
     (*(code *)(*resource_array)[4])
               (resource_array,CONCAT71((int7)((ulonglong)&item_start >> 8),resource_array != &item_start))
     ;
-    resource_array = (undefined8 **)0x0;
+    resource_array = (uint64_t **)0x0;
   }
   if (buffer_pos != 0) {
     FUN_180189900(buffer_pos,buffer_ptr);
@@ -874,8 +874,8 @@ LAB_180184aa5:
     }
     free(data_offset,alloc_size);
     buffer_pos = 0;
-    buffer_ptr = (undefined8 *)0x0;
-    buffer_end = (undefined8 *)0x0;
+    buffer_ptr = (uint64_t *)0x0;
+    buffer_end = (uint64_t *)0x0;
   }
   if (array_size != 0) {
     alloc_size = (((longlong)next_item - array_size) / 0x28) * 0x28;
@@ -890,8 +890,8 @@ LAB_180184aa5:
     }
     free(data_offset,alloc_size);
     item_count = 0;
-    buffer_ptr = (undefined8 *)0x0;
-    buffer_end = (undefined8 *)0x0;
+    buffer_ptr = (uint64_t *)0x0;
+    buffer_end = (uint64_t *)0x0;
   }
   resource_ptr = (longlong *)param_3[7];
   if (resource_ptr != (longlong *)0x0) {
@@ -913,21 +913,21 @@ LAB_180184aa5:
 // 参数：param_1 - 引擎实例指针
 //        param_2 - 设置数据指针
 //        param_3 - 回调参数
-void get_highlights_user_settings_async(longlong param_1,longlong *param_2,undefined8 param_3)
+void get_highlights_user_settings_async(longlong param_1,longlong *param_2,uint64_t param_3)
 {
-  undefined8 *resource_ptr;
+  uint64_t *resource_ptr;
   longlong *alloc_ptr;
   longlong data_size;
-  undefined8 callback_result;
-  undefined1 stack_buffer [32];
-  undefined4 status_flag;
+  uint64_t callback_result;
+  int8_t stack_buffer [32];
+  int32_t status_flag;
   longlong *context_ptr;
-  undefined8 callback_param;
+  uint64_t callback_param;
   longlong *data_ptr;
   longlong buffer_size;
   longlong alloc_array [7];
   longlong *temp_ptr;
-  undefined8 callback_data;
+  uint64_t callback_data;
   ulonglong stack_checksum;
   
   callback_param = 0xfffffffffffffffe;
@@ -936,19 +936,19 @@ void get_highlights_user_settings_async(longlong param_1,longlong *param_2,undef
   data_ptr = param_2;
   data_size = FUN_1808fc418(0x48);
   temp_ptr = (longlong *)0x0;
-  resource_ptr = (undefined8 *)param_2[7];
+  resource_ptr = (uint64_t *)param_2[7];
   buffer_size = data_size;
-  if (resource_ptr != (undefined8 *)0x0) {
+  if (resource_ptr != (uint64_t *)0x0) {
     temp_ptr = (longlong *)(**(code **)*resource_ptr)(resource_ptr,alloc_array);
   }
   status_flag = 3;
-  *(undefined8 *)(data_size + 0x38) = 0;
+  *(uint64_t *)(data_size + 0x38) = 0;
   context_ptr = (longlong *)data_size;
   callback_data = param_3;
   if (temp_ptr != (longlong *)0x0) {
     if (temp_ptr == alloc_array) {
       callback_result = (**(code **)(*temp_ptr + 8))(temp_ptr,data_size);
-      *(undefined8 *)(data_size + 0x38) = callback_result;
+      *(uint64_t *)(data_size + 0x38) = callback_result;
       if (temp_ptr == (longlong *)0x0) goto LAB_180184d09;
       (**(code **)(*temp_ptr + 0x20))
                 (temp_ptr,CONCAT71((int7)((ulonglong)alloc_array >> 8),temp_ptr != alloc_array));
@@ -959,8 +959,8 @@ void get_highlights_user_settings_async(longlong param_1,longlong *param_2,undef
     temp_ptr = (longlong *)0x0;
   }
 LAB_180184d09:
-  *(undefined8 *)(data_size + 0x40) = callback_data;
-  NVGSDK_Highlights_GetUserSettingsAsync(*(undefined8 *)(param_1 + 8),&UNK_180185030,data_size);
+  *(uint64_t *)(data_size + 0x40) = callback_data;
+  NVGSDK_Highlights_GetUserSettingsAsync(*(uint64_t *)(param_1 + 8),&UNK_180185030,data_size);
   status_flag = 1;
   context_ptr = alloc_array;
   if (temp_ptr != (longlong *)0x0) {

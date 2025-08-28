@@ -15,34 +15,34 @@
 // 功能：处理资源清理和管理任务
 // 参数：context_ptr - 上下文指针
 // 说明：该函数负责处理资源的清理工作，包括定时器管理、内存分配和线程同步
-void process_resource_cleanup_and_management(undefined8 *context_ptr)
+void process_resource_cleanup_and_management(uint64_t *context_ptr)
 
 {
   longlong temp_var1;
-  undefined8 *resource_ptr;
+  uint64_t *resource_ptr;
   char status_flag;
   uint current_time;
   int loop_counter;
-  undefined4 operation_result;
+  int32_t operation_result;
   longlong *cleanup_ptr;
   longlong *resource_array;
-  undefined8 *task_queue;
+  uint64_t *task_queue;
   int sync_status;
   longlong timeout_value;
   ulonglong stack_cookie;
-  undefined8 local_buffer[32];
-  undefined8 stack_guard1;
+  uint64_t local_buffer[32];
+  uint64_t stack_guard1;
   char status_flag1;
   char status_flag2;
   longlong *mutex_ptr;
   longlong *resource_ptr1;
   longlong *resource_ptr2;
-  undefined8 *pending_tasks;
-  undefined8 *active_tasks;
-  undefined8 task_param;
-  undefined4 operation_flags;
-  undefined8 context_data;
-  undefined1 large_buffer[224];
+  uint64_t *pending_tasks;
+  uint64_t *active_tasks;
+  uint64_t task_param;
+  int32_t operation_flags;
+  uint64_t context_data;
+  int8_t large_buffer[224];
   ulonglong security_cookie;
   
   context_data = 0xfffffffffffffffe;
@@ -82,18 +82,18 @@ void process_resource_cleanup_and_management(undefined8 *context_ptr)
     process_system_tasks(context_ptr[0x6d],&UNK_180a108b0,&resource_ptr2);
     execute_task_queue(resource_ptr2,&resource_ptr1);
     if (resource_ptr1 == (longlong *)0x0) {
-      *(undefined1 *)((longlong)context_ptr + 0x401) = 1;
+      *(int8_t *)((longlong)context_ptr + 0x401) = 1;
     }
     else if (*(char *)((longlong)context_ptr + 0x401) != '\0') {
-      *(undefined1 *)((longlong)context_ptr + 0x401) = 0;
+      *(int8_t *)((longlong)context_ptr + 0x401) = 0;
                     // WARNING: Subroutine does not return
       memset(large_buffer,0,0xd8);
     }
   }
-  if ((undefined *)*context_ptr == &UNK_180a10cd8) {
+  if ((void *)*context_ptr == &UNK_180a10cd8) {
     initialize_system_state();
-    pending_tasks = (undefined8 *)0x0;
-    active_tasks = (undefined8 *)0x0;
+    pending_tasks = (uint64_t *)0x0;
+    active_tasks = (uint64_t *)0x0;
     task_param = 0;
     operation_flags = 3;
     resource_array = context_ptr + 0xc;
@@ -102,16 +102,16 @@ void process_resource_cleanup_and_management(undefined8 *context_ptr)
     if (sync_status != 0) {
       __Throw_C_error_std__YAXH_Z(sync_status);
     }
-    resource_ptr = (undefined8 *)context_ptr[0x82];
+    resource_ptr = (uint64_t *)context_ptr[0x82];
     context_ptr[0x82] = 0;
     timeout_value = context_ptr[0x83];
     context_ptr[0x83] = 0;
     task_param = context_ptr[0x84];
     context_ptr[0x84] = 0;
-    operation_flags = *(undefined4 *)(context_ptr + 0x85);
-    *(undefined4 *)(context_ptr + 0x85) = 3;
+    operation_flags = *(int32_t *)(context_ptr + 0x85);
+    *(int32_t *)(context_ptr + 0x85) = 3;
     pending_tasks = resource_ptr;
-    active_tasks = (undefined8 *)timeout_value;
+    active_tasks = (uint64_t *)timeout_value;
     sync_status = _Mtx_unlock(resource_array);
     if (sync_status != 0) {
       __Throw_C_error_std__YAXH_Z(sync_status);
@@ -127,13 +127,13 @@ void process_resource_cleanup_and_management(undefined8 *context_ptr)
       } while ((ulonglong)(longlong)loop_counter < stack_cookie);
     }
     active_tasks = resource_ptr;
-    if (resource_ptr != (undefined8 *)0x0) {
+    if (resource_ptr != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       release_task_resources(resource_ptr);
     }
   }
   else {
-    (**(code **)((undefined *)*context_ptr + 0x200))(context_ptr);
+    (**(code **)((void *)*context_ptr + 0x200))(context_ptr);
   }
   if (*(char *)(context_ptr + 0x42) == '\0') {
     operation_result = get_system_status(context_ptr[0x6d]);
@@ -153,8 +153,8 @@ void process_resource_cleanup_and_management(undefined8 *context_ptr)
 //        optimization_flags - 优化标志
 // 返回值：处理结果状态码
 // 说明：该函数对浮点数数组进行优化处理，包括数据复制和性能优化
-undefined8
-process_float_array_optimization(undefined8 target_ptr,int array_size,longlong source_ptr1,longlong source_ptr2,int optimization_flags)
+uint64_t
+process_float_array_optimization(uint64_t target_ptr,int array_size,longlong source_ptr1,longlong source_ptr2,int optimization_flags)
 
 {
   float *float_array1;
@@ -173,11 +173,11 @@ process_float_array_optimization(undefined8 target_ptr,int array_size,longlong s
   float current_max;
   float optimization_factor;
   
-  if (((optimization_flags == 0) && (*(undefined8 **)(source_ptr1 + 0x18) != (undefined8 *)0x0)) &&
-     (*(undefined8 **)(source_ptr2 + 0x18) != (undefined8 *)0x0)) {
+  if (((optimization_flags == 0) && (*(uint64_t **)(source_ptr1 + 0x18) != (uint64_t *)0x0)) &&
+     (*(uint64_t **)(source_ptr2 + 0x18) != (uint64_t *)0x0)) {
     current_max = 0.0;
-    float_array2 = (float *)**(undefined8 **)(source_ptr1 + 0x18);
-    float_array3 = (float *)**(undefined8 **)(source_ptr2 + 0x18);
+    float_array2 = (float *)**(uint64_t **)(source_ptr1 + 0x18);
+    float_array3 = (float *)**(uint64_t **)(source_ptr2 + 0x18);
     element_count = **(int **)(source_ptr1 + 8);
     optimization_factor = 1.0;
     if (array_size != 0) {
@@ -245,7 +245,7 @@ process_float_array_optimization(undefined8 target_ptr,int array_size,longlong s
     else if ((element_count == 2) || (element_count == 4)) {
       optimization_factor = 0.05;
     }
-    *(undefined1 *)(temp_var1 + 0x80) = 1;
+    *(int8_t *)(temp_var1 + 0x80) = 1;
     *(float *)(temp_var1 + 0x84) = optimization_factor * current_max;
     *(float *)(temp_var1 + 0x88) = optimization_factor * current_max;
   }
@@ -259,7 +259,7 @@ process_float_array_optimization(undefined8 target_ptr,int array_size,longlong s
 //        output_array - 输出数组
 // 返回值：处理结果状态码
 // 说明：该函数对浮点数数组进行优化处理，使用向量化操作提高性能
-undefined8 optimized_float_array_processing(float *input_array,float *output_array)
+uint64_t optimized_float_array_processing(float *input_array,float *output_array)
 
 {
   float *temp_float_ptr;
@@ -345,7 +345,7 @@ undefined8 optimized_float_array_processing(float *input_array,float *output_arr
   else if ((array_size == 2) || (array_size == 4)) {
     optimization_factor = 0.05;
   }
-  *(undefined1 *)(system_context + 0x80) = 1;
+  *(int8_t *)(system_context + 0x80) = 1;
   *(float *)(system_context + 0x84) = optimization_factor * current_max;
   *(float *)(system_context + 0x88) = optimization_factor * current_max;
   return 0;
@@ -358,7 +358,7 @@ undefined8 optimized_float_array_processing(float *input_array,float *output_arr
 //        destination_array - 目标数组
 // 返回值：处理结果状态码
 // 说明：该函数实现高级的浮点数数组优化算法，包含多重循环优化
-undefined8 advanced_float_array_optimization(float *source_array,float *destination_array)
+uint64_t advanced_float_array_optimization(float *source_array,float *destination_array)
 
 {
   float *temp_float_ptr;
@@ -439,7 +439,7 @@ undefined8 advanced_float_array_optimization(float *source_array,float *destinat
   else if ((processed_elements == 2) || (processed_elements == 4)) {
     optimization_factor = 0.05;
   }
-  *(undefined1 *)(system_context + 0x80) = 1;
+  *(int8_t *)(system_context + 0x80) = 1;
   *(float *)(system_context + 0x84) = optimization_factor * current_max;
   *(float *)(system_context + 0x88) = optimization_factor * current_max;
   return 0;
@@ -450,7 +450,7 @@ undefined8 advanced_float_array_optimization(float *source_array,float *destinat
 // 功能：应用优化设置
 // 返回值：设置结果状态码
 // 说明：该函数根据系统配置应用相应的优化设置
-undefined8 apply_optimization_settings(void)
+uint64_t apply_optimization_settings(void)
 
 {
   int config_value;
@@ -466,7 +466,7 @@ undefined8 apply_optimization_settings(void)
   else if ((config_value == 2) || (config_value == 4)) {
     optimization_factor = 0.05;
   }
-  *(undefined1 *)(system_context + 0x80) = 1;
+  *(int8_t *)(system_context + 0x80) = 1;
   *(float *)(system_context + 0x84) = optimization_factor * current_max;
   *(float *)(system_context + 0x88) = optimization_factor * current_max;
   return 0;
@@ -477,7 +477,7 @@ undefined8 apply_optimization_settings(void)
 // 功能：初始化优化模块
 // 返回值：初始化结果状态码
 // 说明：该函数初始化系统优化模块
-undefined8 initialize_optimization_module(void)
+uint64_t initialize_optimization_module(void)
 
 {
   return 0;
@@ -489,13 +489,13 @@ undefined8 initialize_optimization_module(void)
 // 参数：task_context - 任务上下文
 // 返回值：任务执行结果
 // 说明：该函数执行指定的优化任务
-undefined4 execute_optimization_task(longlong task_context)
+int32_t execute_optimization_task(longlong task_context)
 
 {
-  undefined4 task_result;
-  undefined4 task_params[8];
+  int32_t task_result;
+  int32_t task_params[8];
   
-  task_result = process_optimization_request(*(undefined8 *)(task_context + 0x370),task_params,0,0);
+  task_result = process_optimization_request(*(uint64_t *)(task_context + 0x370),task_params,0,0);
   register_task_result(task_result,&DAT_18098bc73);
   return task_params[0];
 }
@@ -506,13 +506,13 @@ undefined4 execute_optimization_task(longlong task_context)
 // 参数：system_context - 系统上下文
 // 返回值：优化处理结果
 // 说明：该函数处理系统级别的优化任务
-undefined4 process_system_optimization(longlong system_context)
+int32_t process_system_optimization(longlong system_context)
 
 {
-  undefined4 optimization_result;
-  undefined4 optimization_params[8];
+  int32_t optimization_result;
+  int32_t optimization_params[8];
   
-  optimization_result = execute_optimization_algorithm(*(undefined8 *)(system_context + 0x370),optimization_params,0);
+  optimization_result = execute_optimization_algorithm(*(uint64_t *)(system_context + 0x370),optimization_params,0);
   register_task_result(optimization_result,&DAT_18098bc73);
   return optimization_params[0];
 }
@@ -525,82 +525,82 @@ undefined4 process_system_optimization(longlong system_context)
 void generate_error_report(longlong error_context)
 
 {
-  undefined4 report_id;
+  int32_t report_id;
   uint buffer_size;
   int error_code;
   longlong system_data;
-  undefined8 *message_buffer;
+  uint64_t *message_buffer;
   longlong error_offset;
   uint message_length;
   uint required_size;
   int char_count;
-  undefined *output_stream;
-  undefined8 *report_buffer;
+  void *output_stream;
+  uint64_t *report_buffer;
   uint buffer_capacity;
-  undefined8 report_handle;
-  undefined8 system_handle;
+  uint64_t report_handle;
+  uint64_t system_handle;
   longlong temp_var;
   
   report_handle = 0x180214cd0;
-  error_code = get_error_information(*(undefined8 *)(error_context + 0x370));
+  error_code = get_error_information(*(uint64_t *)(error_context + 0x370));
   if (error_code == 0) {
     return;
   }
   output_stream = &UNK_180a3c3e0;
   system_handle = 0;
-  report_buffer = (undefined8 *)0x0;
+  report_buffer = (uint64_t *)0x0;
   buffer_capacity = 0;
-  report_buffer = (undefined8 *)allocate_report_buffer(_DAT_180c8ed18,0x10,0x13);
-  *(undefined1 *)report_buffer = 0;
+  report_buffer = (uint64_t *)allocate_report_buffer(_DAT_180c8ed18,0x10,0x13);
+  *(int8_t *)report_buffer = 0;
   report_id = get_buffer_size(report_buffer);
   system_handle = CONCAT44(system_handle._4_4_,report_id);
   *report_buffer = 0x726520444f4d460a;
-  *(undefined4 *)(report_buffer + 1) = 0x21726f72;
-  *(undefined2 *)((longlong)report_buffer + 0xc) = 0x2820;
-  *(undefined1 *)((longlong)report_buffer + 0xe) = 0;
+  *(int32_t *)(report_buffer + 1) = 0x21726f72;
+  *(int16_t *)((longlong)report_buffer + 0xc) = 0x2820;
+  *(int8_t *)((longlong)report_buffer + 0xe) = 0;
   buffer_capacity = 0xe;
   format_error_message(&output_stream,error_code);
   buffer_size = buffer_capacity;
   required_size = buffer_capacity + 2;
   if (required_size != 0) {
     message_length = buffer_capacity + 3;
-    if (report_buffer == (undefined8 *)0x0) {
+    if (report_buffer == (uint64_t *)0x0) {
       if ((int)message_length < 0x10) {
         message_length = 0x10;
       }
-      report_buffer = (undefined8 *)allocate_report_buffer(_DAT_180c8ed18,(longlong)(int)message_length,0x13);
-      *(undefined1 *)report_buffer = 0;
+      report_buffer = (uint64_t *)allocate_report_buffer(_DAT_180c8ed18,(longlong)(int)message_length,0x13);
+      *(int8_t *)report_buffer = 0;
     }
     else {
       if (message_length <= (uint)system_handle) goto CONTINUE_PROCESSING;
-      report_buffer = (undefined8 *)resize_report_buffer(_DAT_180c8ed18,report_buffer,message_length,0x10,0x13);
+      report_buffer = (uint64_t *)resize_report_buffer(_DAT_180c8ed18,report_buffer,message_length,0x10,0x13);
     }
     report_id = get_buffer_size(report_buffer);
     system_handle = CONCAT44(system_handle._4_4_,report_id);
   }
 CONTINUE_PROCESSING:
-  *(undefined2 *)((ulonglong)buffer_capacity + (longlong)report_buffer) = 0x2029;
-  *(undefined1 *)((undefined2 *)((ulonglong)buffer_capacity + (longlong)report_buffer) + 1) = 0;
+  *(int16_t *)((ulonglong)buffer_capacity + (longlong)report_buffer) = 0x2029;
+  *(int8_t *)((int16_t *)((ulonglong)buffer_capacity + (longlong)report_buffer) + 1) = 0;
   message_length = buffer_size + 3;
   buffer_capacity = required_size;
   if (message_length != 0) {
     required_size = buffer_size + 4;
-    if (report_buffer == (undefined8 *)0x0) {
+    if (report_buffer == (uint64_t *)0x0) {
       if ((int)required_size < 0x10) {
         required_size = 0x10;
       }
-      report_buffer = (undefined8 *)allocate_report_buffer(_DAT_180c8ed18,(longlong)(int)required_size,0x13);
-      *(undefined1 *)report_buffer = 0;
+      report_buffer = (uint64_t *)allocate_report_buffer(_DAT_180c8ed18,(longlong)(int)required_size,0x13);
+      *(int8_t *)report_buffer = 0;
     }
     else {
       if (required_size <= (uint)system_handle) goto APPEND_ERROR_CODE;
-      report_buffer = (undefined8 *)resize_report_buffer(_DAT_180c8ed18,report_buffer,required_size,0x10,0x13);
+      report_buffer = (uint64_t *)resize_report_buffer(_DAT_180c8ed18,report_buffer,required_size,0x10,0x13);
     }
     report_id = get_buffer_size(report_buffer);
     system_handle = CONCAT44(system_handle._4_4_,report_id);
   }
 APPEND_ERROR_CODE:
-  *(undefined2 *)((ulonglong)buffer_capacity + (longlong)report_buffer) = 0x22;
+  *(int16_t *)((ulonglong)buffer_capacity + (longlong)report_buffer) = 0x22;
   error_offset = -1;
   do {
     system_data = error_offset;
@@ -612,45 +612,45 @@ APPEND_ERROR_CODE:
     char_count = message_length + char_count;
     if (char_count != 0) {
       buffer_size = char_count + 1;
-      if (report_buffer == (undefined8 *)0x0) {
+      if (report_buffer == (uint64_t *)0x0) {
         if ((int)buffer_size < 0x10) {
           buffer_size = 0x10;
         }
-        report_buffer = (undefined8 *)allocate_report_buffer(_DAT_180c8ed18,(longlong)(int)buffer_size,0x13);
-        *(undefined1 *)report_buffer = 0;
+        report_buffer = (uint64_t *)allocate_report_buffer(_DAT_180c8ed18,(longlong)(int)buffer_size,0x13);
+        *(int8_t *)report_buffer = 0;
       }
       else {
         if (buffer_size <= (uint)system_handle) goto COPY_ERROR_MESSAGE;
-        report_buffer = (undefined8 *)resize_report_buffer(_DAT_180c8ed18,report_buffer,buffer_size,0x10,0x13);
+        report_buffer = (uint64_t *)resize_report_buffer(_DAT_180c8ed18,report_buffer,buffer_size,0x10,0x13);
       }
       report_id = get_buffer_size(report_buffer);
       system_handle = CONCAT44(system_handle._4_4_,report_id);
     }
 COPY_ERROR_MESSAGE:
                     // WARNING: Subroutine does not return
-    memcpy((undefined1 *)((ulonglong)buffer_capacity + (longlong)report_buffer),&DAT_18098bc73,
+    memcpy((int8_t *)((ulonglong)buffer_capacity + (longlong)report_buffer),&DAT_18098bc73,
            (longlong)((int)system_data + 2));
   }
   required_size = buffer_size + 5;
   if (required_size != 0) {
     buffer_size = buffer_size + 6;
-    if (report_buffer == (undefined8 *)0x0) {
+    if (report_buffer == (uint64_t *)0x0) {
       if ((int)buffer_size < 0x10) {
         buffer_size = 0x10;
       }
-      report_buffer = (undefined8 *)allocate_report_buffer(_DAT_180c8ed18,(longlong)(int)buffer_size,0x13);
-      *(undefined1 *)report_buffer = 0;
+      report_buffer = (uint64_t *)allocate_report_buffer(_DAT_180c8ed18,(longlong)(int)buffer_size,0x13);
+      *(int8_t *)report_buffer = 0;
     }
     else {
       if (buffer_size <= (uint)system_handle) goto ADD_FORMATTING;
-      report_buffer = (undefined8 *)resize_report_buffer(_DAT_180c8ed18,report_buffer,buffer_size,0x10,0x13);
+      report_buffer = (uint64_t *)resize_report_buffer(_DAT_180c8ed18,report_buffer,buffer_size,0x10,0x13);
     }
     report_id = get_buffer_size(report_buffer);
     system_handle = CONCAT44(system_handle._4_4_,report_id);
   }
 ADD_FORMATTING:
-  *(undefined2 *)((ulonglong)buffer_capacity + (longlong)report_buffer) = 0x2022;
-  *(undefined1 *)((undefined2 *)((ulonglong)buffer_capacity + (longlong)report_buffer) + 1) = 0;
+  *(int16_t *)((ulonglong)buffer_capacity + (longlong)report_buffer) = 0x2022;
+  *(int8_t *)((int16_t *)((ulonglong)buffer_capacity + (longlong)report_buffer) + 1) = 0;
   buffer_capacity = required_size;
   system_data = get_error_details(error_code);
   error_offset = -1;
@@ -663,53 +663,53 @@ ADD_FORMATTING:
       error_code = required_size + (int)error_offset;
       if (error_code != 0) {
         buffer_size = error_code + 1;
-        if (report_buffer == (undefined8 *)0x0) {
+        if (report_buffer == (uint64_t *)0x0) {
           if ((int)buffer_size < 0x10) {
             buffer_size = 0x10;
           }
-          report_buffer = (undefined8 *)allocate_report_buffer(_DAT_180c8ed18,(longlong)(int)buffer_size,0x13);
-          *(undefined1 *)report_buffer = 0;
+          report_buffer = (uint64_t *)allocate_report_buffer(_DAT_180c8ed18,(longlong)(int)buffer_size,0x13);
+          *(int8_t *)report_buffer = 0;
         }
         else {
           if (buffer_size <= (uint)system_handle) goto COPY_ERROR_DETAILS;
-          report_buffer = (undefined8 *)resize_report_buffer(_DAT_180c8ed18,report_buffer,buffer_size,0x10,0x13);
+          report_buffer = (uint64_t *)resize_report_buffer(_DAT_180c8ed18,report_buffer,buffer_size,0x10,0x13);
         }
         report_id = get_buffer_size(report_buffer);
         system_handle = CONCAT44(system_handle._4_4_,report_id);
       }
 COPY_ERROR_DETAILS:
                     // WARNING: Subroutine does not return
-      memcpy((undefined1 *)((ulonglong)buffer_capacity + (longlong)report_buffer),system_data,
+      memcpy((int8_t *)((ulonglong)buffer_capacity + (longlong)report_buffer),system_data,
              (longlong)((int)temp_var + 2));
     }
   }
   error_code = buffer_capacity + 1;
   if (error_code != 0) {
     buffer_size = buffer_capacity + 2;
-    if (report_buffer == (undefined8 *)0x0) {
+    if (report_buffer == (uint64_t *)0x0) {
       if ((int)buffer_size < 0x10) {
         buffer_size = 0x10;
       }
-      report_buffer = (undefined8 *)allocate_report_buffer(_DAT_180c8ed18,(longlong)(int)buffer_size,0x13);
-      *(undefined1 *)report_buffer = 0;
+      report_buffer = (uint64_t *)allocate_report_buffer(_DAT_180c8ed18,(longlong)(int)buffer_size,0x13);
+      *(int8_t *)report_buffer = 0;
     }
     else {
       if (buffer_size <= (uint)system_handle) goto FINALIZE_REPORT;
-      report_buffer = (undefined8 *)resize_report_buffer(_DAT_180c8ed18,report_buffer,buffer_size,0x10,0x13);
+      report_buffer = (uint64_t *)resize_report_buffer(_DAT_180c8ed18,report_buffer,buffer_size,0x10,0x13);
     }
     report_id = get_buffer_size(report_buffer);
     system_handle = CONCAT44(system_handle._4_4_,report_id);
   }
 FINALIZE_REPORT:
-  *(undefined2 *)((ulonglong)buffer_capacity + (longlong)report_buffer) = 10;
-  message_buffer = (undefined8 *)&DAT_18098bc73;
-  if (report_buffer != (undefined8 *)0x0) {
+  *(int16_t *)((ulonglong)buffer_capacity + (longlong)report_buffer) = 10;
+  message_buffer = (uint64_t *)&DAT_18098bc73;
+  if (report_buffer != (uint64_t *)0x0) {
     message_buffer = report_buffer;
   }
   buffer_capacity = error_code;
   log_error_message(_DAT_180c86928,0,0x1000000000000,3,message_buffer);
   output_stream = &UNK_180a3c3e0;
-  if (report_buffer == (undefined8 *)0x0) {
+  if (report_buffer == (uint64_t *)0x0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -722,13 +722,13 @@ FINALIZE_REPORT:
 // 参数：diagnostic_context - 诊断上下文
 // 返回值：诊断结果
 // 说明：该函数处理系统级别的诊断任务
-undefined4 process_system_diagnostics(longlong diagnostic_context)
+int32_t process_system_diagnostics(longlong diagnostic_context)
 
 {
-  undefined4 diagnostic_result[2];
-  undefined1 diagnostic_data[24];
+  int32_t diagnostic_result[2];
+  int8_t diagnostic_data[24];
   
-  run_diagnostic_tests(*(undefined8 *)(diagnostic_context + 0x370),diagnostic_result,diagnostic_data);
+  run_diagnostic_tests(*(uint64_t *)(diagnostic_context + 0x370),diagnostic_result,diagnostic_data);
   return diagnostic_result[0];
 }
 

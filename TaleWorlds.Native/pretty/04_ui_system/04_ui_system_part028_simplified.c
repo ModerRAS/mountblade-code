@@ -47,21 +47,21 @@
 void ui_system_advanced_render_batch_processor(longlong ui_context, longlong render_context, int batch_index)
 {
     // 变量声明和初始化
-    undefined4 *texture_data_ptr;
-    undefined4 *vertex_data_ptr;
+    int32_t *texture_data_ptr;
+    int32_t *vertex_data_ptr;
     longlong resource_offset;
     byte texture_flag;
     int current_index;
-    undefined8 *render_data_ptr;
-    undefined1 *texture_ptr;
-    undefined1 *vertex_ptr;
+    uint64_t *render_data_ptr;
+    int8_t *texture_ptr;
+    int8_t *vertex_ptr;
     byte *data_buffer;
-    undefined4 texture_width;
-    undefined4 texture_height;
-    undefined4 texture_depth;
+    int32_t texture_width;
+    int32_t texture_height;
+    int32_t texture_depth;
     uint texture_count;
     int *index_buffer;
-    undefined1 *flag_ptr;
+    int8_t *flag_ptr;
     longlong buffer_offset;
     uint vertex_stride;
     longlong texture_base;
@@ -73,7 +73,7 @@ void ui_system_advanced_render_batch_processor(longlong ui_context, longlong ren
     uint batch_counter;
     
     // 栈变量声明
-    undefined1 stack_buffer[32];
+    int8_t stack_buffer[32];
     uint stack_texture_count;
     longlong *stack_ptr;
     longlong stack_offset;
@@ -103,12 +103,12 @@ void ui_system_advanced_render_batch_processor(longlong ui_context, longlong ren
     longlong stack_state;
     uint stack_flags[4];
     longlong stack_array[6];
-    undefined8 stack_param1;
-    undefined8 stack_param2;
-    undefined8 stack_param3;
-    undefined8 stack_param4;
-    undefined8 stack_param5;
-    undefined8 stack_param6;
+    uint64_t stack_param1;
+    uint64_t stack_param2;
+    uint64_t stack_param3;
+    uint64_t stack_param4;
+    uint64_t stack_param5;
+    uint64_t stack_param6;
     ulonglong stack_security;
     
     // 安全检查和初始化
@@ -120,25 +120,25 @@ void ui_system_advanced_render_batch_processor(longlong ui_context, longlong ren
     stack_texture_count = *(uint *)(stack_vertex + 0x24);
     vertex_size = (ulonglong)(int)stack_texture_count;
     index_buffer = *(int **)(ui_context + 0x12a8);
-    stack_flag = 1 << ((byte)*(undefined4 *)(ui_context + 0x34e4) & UI_FLAG_MASK);
+    stack_flag = 1 << ((byte)*(int32_t *)(ui_context + 0x34e4) & UI_FLAG_MASK);
     
     // 加载纹理数据
-    stack_array[3] = *(undefined8 *)(index_buffer + 0xe);
-    stack_array[4] = *(undefined8 *)(index_buffer + 0x10);
-    stack_array[5] = *(undefined8 *)(index_buffer + 0x12);
+    stack_array[3] = *(uint64_t *)(index_buffer + 0xe);
+    stack_array[4] = *(uint64_t *)(index_buffer + 0x10);
+    stack_array[5] = *(uint64_t *)(index_buffer + 0x12);
     resource_offset = *(longlong *)(ui_context + 0x12b0);
     stack_flags[1] = index_buffer[0x22];
     stack_param = *(uint *)(stack_vertex + 0x10);
-    stack_param1 = *(undefined8 *)(resource_offset + 0x38);
-    stack_param2 = *(undefined8 *)(resource_offset + 0x40);
-    stack_param3 = *(undefined8 *)(resource_offset + 0x48);
+    stack_param1 = *(uint64_t *)(resource_offset + 0x38);
+    stack_param2 = *(uint64_t *)(resource_offset + 0x40);
+    stack_param3 = *(uint64_t *)(resource_offset + 0x48);
     stack_memory = *(longlong *)(ui_context + 0x12b8);
-    stack_flags[2] = *(undefined4 *)(resource_offset + 0x88);
+    stack_flags[2] = *(int32_t *)(resource_offset + 0x88);
     stack_flags[0] = 0;
-    stack_param4 = *(undefined8 *)(stack_memory + 0x38);
-    stack_param5 = *(undefined8 *)(stack_memory + 0x40);
-    stack_param6 = *(undefined8 *)(stack_memory + 0x48);
-    stack_flags[3] = *(undefined4 *)(stack_memory + 0x88);
+    stack_param4 = *(uint64_t *)(stack_memory + 0x38);
+    stack_param5 = *(uint64_t *)(stack_memory + 0x40);
+    stack_param6 = *(uint64_t *)(stack_memory + 0x48);
+    stack_flags[3] = *(int32_t *)(stack_memory + 0x88);
     stack_data = *(longlong *)(stack_vertex + 0x38);
     stack_resource = *(longlong *)(stack_vertex + 0x40);
     stack_texture = *(longlong *)(stack_vertex + 0x48);
@@ -165,7 +165,7 @@ void ui_system_advanced_render_batch_processor(longlong ui_context, longlong ren
     
     // 释放信号量
     if (batch_index == *(int *)(ui_context + 0x1e74) + -1) {
-        ReleaseSemaphore(*(undefined8 *)(ui_context + 0x4400), UI_SEMAPHORE_COUNT);
+        ReleaseSemaphore(*(uint64_t *)(ui_context + 0x4400), UI_SEMAPHORE_COUNT);
     }
     
     // 安全退出

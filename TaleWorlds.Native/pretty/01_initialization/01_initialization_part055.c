@@ -15,11 +15,11 @@ void initialize_empty(void)
 
 // 函数：状态检查函数
 // 功能：循环检查特定状态，最多检查16次，返回状态值
-undefined1 check_system_status(void)
+int8_t check_system_status(void)
 
 {
-  undefined1 *status_ptr;
-  undefined1 status_value;
+  int8_t *status_ptr;
+  int8_t status_value;
   longlong index_offset;
   longlong base_ptr;
   int counter;
@@ -33,7 +33,7 @@ undefined1 check_system_status(void)
       array_offset = array_offset + 0x18;
       counter = counter + 1;
       LOCK();
-      status_ptr = (undefined1 *)(*(longlong *)(base_ptr + 0x1e0) + index_offset * 0x18 + 0x15);
+      status_ptr = (int8_t *)(*(longlong *)(base_ptr + 0x1e0) + index_offset * 0x18 + 0x15);
       status_value = *status_ptr;
       *status_ptr = 0;
       UNLOCK();
@@ -68,28 +68,28 @@ float * calculate_bounding_box(float *object_ptr)
   float stack_temp_b8;
   float stack_temp_b4;
   float stack_temp_b0;
-  undefined4 stack_temp_ac;
+  int32_t stack_temp_ac;
   float stack_temp_a8;
   float stack_temp_a4;
   float stack_temp_a0;
-  undefined4 stack_temp_9c;
+  int32_t stack_temp_9c;
   float *mesh_data_ptr;
-  undefined4 stack_temp_90;
+  int32_t stack_temp_90;
   longlong stack_temp_88;
-  undefined8 stack_temp_80;
-  undefined8 stack_temp_78;
-  undefined8 stack_temp_70;
-  undefined8 stack_temp_68;
-  undefined8 stack_temp_60;
-  undefined *stack_temp_58;
+  uint64_t stack_temp_80;
+  uint64_t stack_temp_78;
+  uint64_t stack_temp_70;
+  uint64_t stack_temp_68;
+  uint64_t stack_temp_60;
+  void *stack_temp_58;
   float stack_temp_50;
   float stack_temp_4c;
-  undefined *stack_temp_48;
-  undefined8 stack_temp_40;
-  undefined8 stack_temp_38;
-  undefined1 stack_temp_30 [8];
+  void *stack_temp_48;
+  uint64_t stack_temp_40;
+  uint64_t stack_temp_38;
+  int8_t stack_temp_30 [8];
   float *vertex_array_ptr;
-  undefined4 stack_temp_20;
+  int32_t stack_temp_20;
   
   stack_temp_38 = 0xfffffffffffffffe;
   if (((uint)object_ptr[0x40] & 0x10000) == 0) {
@@ -104,10 +104,10 @@ float * calculate_bounding_box(float *object_ptr)
        ((int)(*(int *)(*(longlong *)(object_ptr + 0x84) + 0x88) +
              (*(int *)(*(longlong *)(object_ptr + 0x84) + 0x88) >> 0x1f & 3U)) >> 2 < (int)time_value)) {
       stack_temp_48 = &DAT_18098bc73;
-      if (*(undefined **)(object_ptr + 6) != (undefined *)0x0) {
-        stack_temp_48 = *(undefined **)(object_ptr + 6);
+      if (*(void **)(object_ptr + 6) != (void *)0x0) {
+        stack_temp_48 = *(void **)(object_ptr + 6);
       }
-      stack_temp_40 = CONCAT44(stack_temp_40._4_4_,*(undefined4 *)(*(longlong *)(object_ptr + 0x84) + 0x60));
+      stack_temp_40 = CONCAT44(stack_temp_40._4_4_,*(int32_t *)(*(longlong *)(object_ptr + 0x84) + 0x60));
       stack_temp_58 = &UNK_1809ffb30;
       stack_temp_80 = 0x18007967a;
       stack_temp_50 = time_value;
@@ -120,7 +120,7 @@ float * calculate_bounding_box(float *object_ptr)
   stack_temp_38 = 0xfffffffffffffffe;
   transform_ptr = object_ptr;
   if ((*(byte *)((longlong)object_ptr + 0xfd) & 0x20) == 0) {
-    transform_ptr = (float *)func_0x000180085de0(*(undefined8 *)(object_ptr + 0x6c));
+    transform_ptr = (float *)func_0x000180085de0(*(uint64_t *)(object_ptr + 0x6c));
   }
   if ((*(longlong *)(transform_ptr + 0x84) != 0) && (((uint)object_ptr[0x40] & 0x80) == 0)) {
     min_bounds_ptr = object_ptr + 0x9d;
@@ -177,39 +177,39 @@ float * calculate_bounding_box(float *object_ptr)
     }
     transform_ptr = *(float **)(object_ptr + 0x6e);
     if ((transform_ptr != (float *)0x0) && (((uint)transform_ptr[0x4e] & 0x3000) != 0)) {
-      stack_temp_78 = *(undefined8 *)(object_ptr + 0x48);
-      stack_temp_70 = *(undefined8 *)(object_ptr + 0x4a);
-      stack_temp_68 = *(undefined8 *)(object_ptr + 0x4c);
-      stack_temp_60 = *(undefined8 *)(object_ptr + 0x4e);
-      stack_temp_58 = *(undefined **)(object_ptr + 0x50);
+      stack_temp_78 = *(uint64_t *)(object_ptr + 0x48);
+      stack_temp_70 = *(uint64_t *)(object_ptr + 0x4a);
+      stack_temp_68 = *(uint64_t *)(object_ptr + 0x4c);
+      stack_temp_60 = *(uint64_t *)(object_ptr + 0x4e);
+      stack_temp_58 = *(void **)(object_ptr + 0x50);
       stack_temp_50 = object_ptr[0x52];
       stack_temp_4c = object_ptr[0x53];
-      stack_temp_48 = *(undefined **)(object_ptr + 0x54);
-      stack_temp_40 = *(undefined8 *)(object_ptr + 0x56);
+      stack_temp_48 = *(void **)(object_ptr + 0x54);
+      stack_temp_40 = *(uint64_t *)(object_ptr + 0x56);
       FUN_180085c10(&stack_temp_78);
       FUN_18063a240(min_bounds_ptr,min_bounds_ptr,&stack_temp_78);
       transform_ptr = *(float **)(object_ptr + 0x6e);
       if (((uint)transform_ptr[0x4e] & 0x3000) == 0x2000) {
-        stack_temp_78 = *(undefined8 *)(object_ptr + 0x48);
-        stack_temp_70 = *(undefined8 *)(object_ptr + 0x4a);
-        stack_temp_68 = *(undefined8 *)(object_ptr + 0x4c);
-        stack_temp_60 = *(undefined8 *)(object_ptr + 0x4e);
-        stack_temp_58 = *(undefined **)(object_ptr + 0x50);
+        stack_temp_78 = *(uint64_t *)(object_ptr + 0x48);
+        stack_temp_70 = *(uint64_t *)(object_ptr + 0x4a);
+        stack_temp_68 = *(uint64_t *)(object_ptr + 0x4c);
+        stack_temp_60 = *(uint64_t *)(object_ptr + 0x4e);
+        stack_temp_58 = *(void **)(object_ptr + 0x50);
         stack_temp_50 = object_ptr[0x52];
         stack_temp_4c = object_ptr[0x53];
-        stack_temp_48 = *(undefined **)(object_ptr + 0x54);
-        stack_temp_40 = *(undefined8 *)(object_ptr + 0x56);
+        stack_temp_48 = *(void **)(object_ptr + 0x54);
+        stack_temp_40 = *(uint64_t *)(object_ptr + 0x56);
         FUN_180085ac0(&stack_temp_78,0x3fc90fdb);
         FUN_18063a240(min_bounds_ptr,min_bounds_ptr,&stack_temp_78);
-        stack_temp_78 = *(undefined8 *)(object_ptr + 0x48);
-        stack_temp_70 = *(undefined8 *)(object_ptr + 0x4a);
-        stack_temp_68 = *(undefined8 *)(object_ptr + 0x4c);
-        stack_temp_60 = *(undefined8 *)(object_ptr + 0x4e);
-        stack_temp_58 = *(undefined **)(object_ptr + 0x50);
+        stack_temp_78 = *(uint64_t *)(object_ptr + 0x48);
+        stack_temp_70 = *(uint64_t *)(object_ptr + 0x4a);
+        stack_temp_68 = *(uint64_t *)(object_ptr + 0x4c);
+        stack_temp_60 = *(uint64_t *)(object_ptr + 0x4e);
+        stack_temp_58 = *(void **)(object_ptr + 0x50);
         stack_temp_50 = object_ptr[0x52];
         stack_temp_4c = object_ptr[0x53];
-        stack_temp_48 = *(undefined **)(object_ptr + 0x54);
-        stack_temp_40 = *(undefined8 *)(object_ptr + 0x56);
+        stack_temp_48 = *(void **)(object_ptr + 0x54);
+        stack_temp_40 = *(uint64_t *)(object_ptr + 0x56);
         FUN_180085970(&stack_temp_78);
         transform_ptr = (float *)FUN_18063a240(min_bounds_ptr,min_bounds_ptr,&stack_temp_78);
       }

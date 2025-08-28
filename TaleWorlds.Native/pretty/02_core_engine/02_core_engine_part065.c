@@ -3,17 +3,17 @@
 // 02_core_engine_part065.c - 核心引擎排序和搜索算法模块
 // 本文件包含各种排序、搜索和数据处理算法
 
-// 函数: void insertion_sort_int_array(int *array_start, int *array_end, undefined8 *comparison_context)
+// 函数: void insertion_sort_int_array(int *array_start, int *array_end, uint64_t *comparison_context)
 // 功能: 对整数数组进行插入排序
 // 参数: array_start - 数组起始指针, array_end - 数组结束指针, comparison_context - 比较上下文
-void insertion_sort_int_array(int *array_start, int *array_end, undefined8 *comparison_context)
+void insertion_sort_int_array(int *array_start, int *array_end, uint64_t *comparison_context)
 
 {
   int current_value;
   int compare_value;
-  undefined8 *left_node;
-  undefined8 *right_node;
-  undefined8 *middle_node;
+  uint64_t *left_node;
+  uint64_t *right_node;
+  uint64_t *middle_node;
   int *current_ptr;
   int *search_ptr;
   int *insert_ptr;
@@ -27,42 +27,42 @@ void insertion_sort_int_array(int *array_start, int *array_end, undefined8 *comp
     search_ptr = insert_ptr;
     current_ptr = insert_ptr;
     while (current_ptr != array_start) {
-      middle_node = (undefined8 *)comparison_context[2];
+      middle_node = (uint64_t *)comparison_context[2];
       current_ptr = current_ptr + -1;
       compare_value = *current_ptr;
       left_node = middle_node;
       right_node = comparison_context;
-      if (middle_node == (undefined8 *)0x0) {
+      if (middle_node == (uint64_t *)0x0) {
 LAB_18009d31f:
         right_node = comparison_context;
       }
       else {
         do {
           if (*(int *)(left_node + 4) < compare_value) {
-            left_node = (undefined8 *)*left_node;
+            left_node = (uint64_t *)*left_node;
           }
           else {
             right_node = left_node;
-            left_node = (undefined8 *)left_node[1];
+            left_node = (uint64_t *)left_node[1];
           }
-        } while (left_node != (undefined8 *)0x0);
+        } while (left_node != (uint64_t *)0x0);
         if ((right_node == comparison_context) || (compare_value < *(int *)(right_node + 4))) goto LAB_18009d31f;
       }
       left_node = comparison_context;
-      if (middle_node == (undefined8 *)0x0) {
+      if (middle_node == (uint64_t *)0x0) {
 LAB_18009d358:
         left_node = comparison_context;
       }
       else {
         do {
           if (*(int *)(middle_node + 4) < current_value) {
-            middle_node = (undefined8 *)*middle_node;
+            middle_node = (uint64_t *)*middle_node;
           }
           else {
             left_node = middle_node;
-            middle_node = (undefined8 *)middle_node[1];
+            middle_node = (uint64_t *)middle_node[1];
           }
-        } while (middle_node != (undefined8 *)0x0);
+        } while (middle_node != (uint64_t *)0x0);
         if ((left_node == comparison_context) || (current_value < *(int *)(left_node + 4))) goto LAB_18009d358;
       }
       if (*(float *)((longlong)left_node + 0x24) <= *(float *)((longlong)right_node + 0x24)) break;
@@ -76,17 +76,17 @@ LAB_18009d358:
 
 
 
-// 函数: void optimized_insertion_sort_int(undefined8 param_1, undefined8 param_2, undefined8 *comparison_context)
+// 函数: void optimized_insertion_sort_int(uint64_t param_1, uint64_t param_2, uint64_t *comparison_context)
 // 功能: 优化的整数数组插入排序算法
 // 参数: param_1 - 起始参数, param_2 - 结束参数, comparison_context - 比较上下文
-void optimized_insertion_sort_int(undefined8 param_1, undefined8 param_2, undefined8 *comparison_context)
+void optimized_insertion_sort_int(uint64_t param_1, uint64_t param_2, uint64_t *comparison_context)
 
 {
   int current_value;
   int compare_value;
-  undefined8 *left_node;
-  undefined8 *right_node;
-  undefined8 *middle_node;
+  uint64_t *left_node;
+  uint64_t *right_node;
+  uint64_t *middle_node;
   int *base_ptr;
   int *current_ptr;
   int *insert_ptr;
@@ -98,42 +98,42 @@ void optimized_insertion_sort_int(undefined8 param_1, undefined8 param_2, undefi
     current_ptr = start_ptr;
     insert_ptr = start_ptr;
     while (current_ptr != base_ptr) {
-      middle_node = (undefined8 *)comparison_context[2];
+      middle_node = (uint64_t *)comparison_context[2];
       current_ptr = current_ptr + -1;
       compare_value = *current_ptr;
       left_node = middle_node;
       right_node = comparison_context;
-      if (middle_node == (undefined8 *)0x0) {
+      if (middle_node == (uint64_t *)0x0) {
 LAB_18009d31f:
         right_node = comparison_context;
       }
       else {
         do {
           if (*(int *)(left_node + 4) < compare_value) {
-            left_node = (undefined8 *)*left_node;
+            left_node = (uint64_t *)*left_node;
           }
           else {
             right_node = left_node;
-            left_node = (undefined8 *)left_node[1];
+            left_node = (uint64_t *)left_node[1];
           }
-        } while (left_node != (undefined8 *)0x0);
+        } while (left_node != (uint64_t *)0x0);
         if ((right_node == comparison_context) || (compare_value < *(int *)(right_node + 4))) goto LAB_18009d31f;
       }
       left_node = comparison_context;
-      if (middle_node == (undefined8 *)0x0) {
+      if (middle_node == (uint64_t *)0x0) {
 LAB_18009d358:
         left_node = comparison_context;
       }
       else {
         do {
           if (*(int *)(middle_node + 4) < current_value) {
-            middle_node = (undefined8 *)*middle_node;
+            middle_node = (uint64_t *)*middle_node;
           }
           else {
             left_node = middle_node;
-            middle_node = (undefined8 *)middle_node[1];
+            middle_node = (uint64_t *)middle_node[1];
           }
-        } while (middle_node != (undefined8 *)0x0);
+        } while (middle_node != (uint64_t *)0x0);
         if ((left_node == comparison_context) || (current_value < *(int *)(left_node + 4))) goto LAB_18009d358;
       }
       if (*(float *)((longlong)left_node + 0x24) <= *(float *)((longlong)right_node + 0x24)) break;
@@ -170,21 +170,21 @@ void cleanup_sort_helper(void)
 
 
 
-// 函数: void quick_sort_64bit(undefined8 *array_start, longlong array_end, longlong depth, undefined8 sort_context)
+// 函数: void quick_sort_64bit(uint64_t *array_start, longlong array_end, longlong depth, uint64_t sort_context)
 // 功能: 64位快速排序算法
 // 参数: array_start - 数组起始指针, array_end - 数组结束位置, depth - 递归深度, sort_context - 排序上下文
-void quick_sort_64bit(undefined8 *array_start, longlong array_end, longlong depth, undefined8 sort_context)
+void quick_sort_64bit(uint64_t *array_start, longlong array_end, longlong depth, uint64_t sort_context)
 
 {
-  undefined8 first_element;
-  undefined8 last_element;
+  uint64_t first_element;
+  uint64_t last_element;
   char comparison_result;
   ulonglong array_size;
   longlong middle_index;
-  undefined8 middle_element;
-  undefined8 pivot_element;
-  undefined8 selected_pivot;
-  undefined8 stack_context;
+  uint64_t middle_element;
+  uint64_t pivot_element;
+  uint64_t selected_pivot;
+  uint64_t stack_context;
   
   array_size = array_end - (longlong)array_start;
   do {
@@ -199,7 +199,7 @@ void quick_sort_64bit(undefined8 *array_start, longlong array_end, longlong dept
       middle_index = middle_index + 1;
     }
     first_element = *array_start;
-    last_element = *(undefined8 *)(array_end + -8);
+    last_element = *(uint64_t *)(array_end + -8);
     middle_element = array_start[middle_index >> 1];
     stack_context = sort_context;
     comparison_result = compare_elements_64bit(&stack_context, first_element, middle_element);
@@ -235,22 +235,22 @@ LAB_18009d46c:
 
 
 
-// 函数: void quick_sort_64bit_optimized(undefined8 *array_start, longlong array_end, longlong depth, undefined8 sort_context)
+// 函数: void quick_sort_64bit_optimized(uint64_t *array_start, longlong array_end, longlong depth, uint64_t sort_context)
 // 功能: 优化的64位快速排序算法
 // 参数: array_start - 数组起始指针, array_end - 数组结束位置, depth - 递归深度, sort_context - 排序上下文
-void quick_sort_64bit_optimized(undefined8 *array_start, longlong array_end, longlong depth, undefined8 sort_context)
+void quick_sort_64bit_optimized(uint64_t *array_start, longlong array_end, longlong depth, uint64_t sort_context)
 
 {
-  undefined8 first_element;
-  undefined8 last_element;
+  uint64_t first_element;
+  uint64_t last_element;
   char comparison_result;
   longlong current_position;
   ulonglong array_size;
   longlong middle_index;
-  undefined8 middle_element;
-  undefined8 pivot_element;
-  undefined8 selected_pivot;
-  undefined8 stack_param;
+  uint64_t middle_element;
+  uint64_t pivot_element;
+  uint64_t selected_pivot;
+  uint64_t stack_param;
   
   array_size = current_position - (longlong)array_start;
   do {
@@ -265,7 +265,7 @@ void quick_sort_64bit_optimized(undefined8 *array_start, longlong array_end, lon
       middle_index = middle_index + 1;
     }
     first_element = *array_start;
-    last_element = *(undefined8 *)(array_end + -8);
+    last_element = *(uint64_t *)(array_end + -8);
     middle_element = array_start[middle_index >> 1];
     stack_param = sort_context;
     comparison_result = compare_elements_64bit(&stack_param, first_element, middle_element);
@@ -306,15 +306,15 @@ LAB_18009d46c:
 void iterative_quick_sort_64bit(void)
 
 {
-  undefined8 first_element;
-  undefined8 last_element;
+  uint64_t first_element;
+  uint64_t last_element;
   char comparison_result;
   longlong partition_index;
-  undefined8 middle_element;
+  uint64_t middle_element;
   longlong recursion_depth;
-  undefined8 *array_start;
+  uint64_t *array_start;
   longlong array_end;
-  undefined8 stack_param;
+  uint64_t stack_param;
   
   do {
     if (recursion_depth < 1) break;
@@ -323,7 +323,7 @@ void iterative_quick_sort_64bit(void)
       partition_index = partition_index + 1;
     }
     first_element = *array_start;
-    last_element = *(undefined8 *)(array_end + -8);
+    last_element = *(uint64_t *)(array_end + -8);
     middle_element = array_start[partition_index >> 1];
     comparison_result = compare_elements_64bit(&param_param, first_element, middle_element);
     if (comparison_result == '\0') {
@@ -386,20 +386,20 @@ void direct_final_sort_64bit(void)
 
 
 
-// 函数: void quick_sort_32bit(undefined4 *array_start, longlong array_end, longlong depth, undefined8 sort_context)
+// 函数: void quick_sort_32bit(int32_t *array_start, longlong array_end, longlong depth, uint64_t sort_context)
 // 功能: 32位快速排序算法
 // 参数: array_start - 数组起始指针, array_end - 数组结束位置, depth - 递归深度, sort_context - 排序上下文
-void quick_sort_32bit(undefined4 *array_start, longlong array_end, longlong depth, undefined8 sort_context)
+void quick_sort_32bit(int32_t *array_start, longlong array_end, longlong depth, uint64_t sort_context)
 
 {
-  undefined4 first_element;
-  undefined4 last_element;
+  int32_t first_element;
+  int32_t last_element;
   char comparison_result;
   ulonglong array_size;
   longlong middle_index;
-  undefined4 middle_element;
-  undefined4 selected_pivot;
-  undefined8 stack_context;
+  int32_t middle_element;
+  int32_t selected_pivot;
+  uint64_t stack_context;
   
   array_size = array_end - (longlong)array_start;
   do {
@@ -414,7 +414,7 @@ void quick_sort_32bit(undefined4 *array_start, longlong array_end, longlong dept
       middle_index = middle_index + 1;
     }
     first_element = *array_start;
-    last_element = *(undefined4 *)(array_end + -4);
+    last_element = *(int32_t *)(array_end + -4);
     middle_element = array_start[middle_index >> 1];
     stack_context = sort_context;
     comparison_result = compare_elements_32bit(&stack_context, first_element, middle_element);
@@ -450,21 +450,21 @@ LAB_18009d5b5:
 
 
 
-// 函数: void quick_sort_32bit_optimized(undefined4 *array_start, longlong array_end, longlong depth, undefined8 sort_context)
+// 函数: void quick_sort_32bit_optimized(int32_t *array_start, longlong array_end, longlong depth, uint64_t sort_context)
 // 功能: 优化的32位快速排序算法
 // 参数: array_start - 数组起始指针, array_end - 数组结束位置, depth - 递归深度, sort_context - 排序上下文
-void quick_sort_32bit_optimized(undefined4 *array_start, longlong array_end, longlong depth, undefined8 sort_context)
+void quick_sort_32bit_optimized(int32_t *array_start, longlong array_end, longlong depth, uint64_t sort_context)
 
 {
-  undefined4 first_element;
-  undefined4 last_element;
+  int32_t first_element;
+  int32_t last_element;
   char comparison_result;
   longlong current_position;
   ulonglong array_size;
   longlong middle_index;
-  undefined4 middle_element;
-  undefined4 selected_pivot;
-  undefined8 stack_param;
+  int32_t middle_element;
+  int32_t selected_pivot;
+  uint64_t stack_param;
   
   array_size = current_position - (longlong)array_start;
   do {
@@ -479,7 +479,7 @@ void quick_sort_32bit_optimized(undefined4 *array_start, longlong array_end, lon
       middle_index = middle_index + 1;
     }
     first_element = *array_start;
-    last_element = *(undefined4 *)(array_end + -4);
+    last_element = *(int32_t *)(array_end + -4);
     middle_element = array_start[middle_index >> 1];
     stack_param = sort_context;
     comparison_result = compare_elements_32bit(&param_param, first_element, middle_element);
@@ -520,17 +520,17 @@ LAB_18009d5b5:
 void iterative_quick_sort_32bit(void)
 
 {
-  undefined4 first_element;
-  undefined4 last_element;
+  int32_t first_element;
+  int32_t last_element;
   char comparison_result;
   longlong partition_index;
-  undefined8 context_param;
-  undefined4 middle_element;
-  undefined4 selected_pivot;
+  uint64_t context_param;
+  int32_t middle_element;
+  int32_t selected_pivot;
   longlong recursion_depth;
-  undefined4 *array_start;
+  int32_t *array_start;
   longlong array_end;
-  undefined8 stack_param;
+  uint64_t stack_param;
   
   do {
     if (recursion_depth < 1) break;
@@ -539,7 +539,7 @@ void iterative_quick_sort_32bit(void)
       partition_index = partition_index + 1;
     }
     first_element = *array_start;
-    last_element = *(undefined4 *)(array_end + -4);
+    last_element = *(int32_t *)(array_end + -4);
     middle_element = array_start[partition_index >> 1];
     stack_param._4_4_ = (int)((ulonglong)context_param >> 0x20);
     comparison_result = compare_elements_32bit(&param_param, first_element, middle_element);
@@ -604,10 +604,10 @@ void direct_final_sort_32bit(void)
 
 
 
-// 函数: void quick_sort_double(longlong *array_start, longlong *array_end, longlong depth, undefined1 sort_flag)
+// 函数: void quick_sort_double(longlong *array_start, longlong *array_end, longlong depth, int8_t sort_flag)
 // 功能: 双精度浮点数快速排序算法
 // 参数: array_start - 数组起始指针, array_end - 数组结束指针, depth - 递归深度, sort_flag - 排序标志
-void quick_sort_double(longlong *array_start, longlong *array_end, longlong depth, undefined1 sort_flag)
+void quick_sort_double(longlong *array_start, longlong *array_end, longlong depth, int8_t sort_flag)
 
 {
   longlong *temp_ptr;
@@ -682,10 +682,10 @@ void quick_sort_double(longlong *array_start, longlong *array_end, longlong dept
 
 
 
-// 函数: void quick_sort_double_optimized(longlong *array_start, longlong *array_end, longlong depth, undefined1 sort_flag)
+// 函数: void quick_sort_double_optimized(longlong *array_start, longlong *array_end, longlong depth, int8_t sort_flag)
 // 功能: 优化的双精度浮点数快速排序算法
 // 参数: array_start - 数组起始指针, array_end - 数组结束指针, depth - 递归深度, sort_flag - 排序标志
-void quick_sort_double_optimized(longlong *array_start, longlong *array_end, longlong depth, undefined1 sort_flag)
+void quick_sort_double_optimized(longlong *array_start, longlong *array_end, longlong depth, int8_t sort_flag)
 
 {
   longlong *temp_ptr;
@@ -761,10 +761,10 @@ void quick_sort_double_optimized(longlong *array_start, longlong *array_end, lon
 
 
 
-// 函数: void iterative_quick_sort_double(undefined8 sort_context)
+// 函数: void iterative_quick_sort_double(uint64_t sort_context)
 // 功能: 迭代式双精度浮点数快速排序算法
 // 参数: sort_context - 排序上下文
-void iterative_quick_sort_double(undefined8 sort_context)
+void iterative_quick_sort_double(uint64_t sort_context)
 
 {
   longlong *temp_ptr;
@@ -777,7 +777,7 @@ void iterative_quick_sort_double(undefined8 sort_context)
   longlong first_index;
   longlong *left_ptr;
   longlong *swap_ptr;
-  undefined1 sort_flag;
+  int8_t sort_flag;
   longlong recursion_depth;
   longlong *array_start;
   longlong *array_end;

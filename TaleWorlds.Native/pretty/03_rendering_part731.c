@@ -112,21 +112,21 @@ void FUN_180697dd0(void)
  * @brief 渲染系统资源清理器
  * @details 清理渲染系统资源，释放内存
  * @param param_1 渲染系统资源指针
- * @return undefined8 清理状态码
+ * @return uint64_t 清理状态码
  * 功能：
  * - 检查资源指针有效性
  * - 释放渲染资源内存
  * - 清理相关数据结构
  * @note 如果资源计数大于0，会先调用资源释放函数
  */
-undefined8 FUN_180697e60(longlong param_1)
+uint64_t FUN_180697e60(longlong param_1)
 {
   // 检查资源指针有效性
   if (param_1 != 0) {
     // 检查资源计数
     if (0 < *(int *)(param_1 + 0x60)) {
       // 调用资源释放函数
-      func_0x00018066e940(*(undefined8 *)(param_1 + 0x58));
+      func_0x00018066e940(*(uint64_t *)(param_1 + 0x58));
     }
     // 清理资源内存（警告：该函数不会返回）
     memset(param_1, 0, RENDERING_RESOURCE_SIZE);
@@ -143,21 +143,21 @@ undefined8 FUN_180697e60(longlong param_1)
  * @brief 渲染系统内存管理器
  * @details 管理渲染系统内存分配和释放
  * @param param_1 渲染系统内存指针
- * @return undefined8 内存管理状态码
+ * @return uint64_t 内存管理状态码
  * 功能：
  * - 检查内存指针有效性
  * - 释放内存资源
  * - 清理内存数据结构
  * @note 与资源清理器类似，但返回不同的错误码
  */
-undefined8 FUN_180697ed0(longlong param_1)
+uint64_t FUN_180697ed0(longlong param_1)
 {
   // 检查内存指针有效性
   if (param_1 != 0) {
     // 检查内存引用计数
     if (0 < *(int *)(param_1 + 0x60)) {
       // 调用内存释放函数
-      func_0x00018066e940(*(undefined8 *)(param_1 + 0x58));
+      func_0x00018066e940(*(uint64_t *)(param_1 + 0x58));
     }
     // 清理内存（警告：该函数不会返回）
     memset(param_1, 0, RENDERING_RESOURCE_SIZE);
@@ -177,7 +177,7 @@ undefined8 FUN_180697ed0(longlong param_1)
  * @param param_2 缓冲区宽度
  * @param param_3 缓冲区高度
  * @param param_4 缓冲区深度
- * @return undefined8 分配状态码
+ * @return uint64_t 分配状态码
  * 功能：
  * - 计算缓冲区对齐大小
  * - 分配内存资源
@@ -185,9 +185,9 @@ undefined8 FUN_180697ed0(longlong param_1)
  * - 验证分配结果
  * @note 缓冲区大小必须按16字节对齐
  */
-undefined8 FUN_180697f10(uint *param_1, uint param_2, uint param_3, uint param_4)
+uint64_t FUN_180697f10(uint *param_1, uint param_2, uint param_3, uint param_4)
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   longlong lVar2;
   uint uVar3;
   uint uVar4;
@@ -212,7 +212,7 @@ undefined8 FUN_180697f10(uint *param_1, uint param_2, uint param_3, uint param_4
     if (*(longlong *)(param_1 + 0x16) == 0) {
       // 分配缓冲区内存
       uVar1 = FUN_18066e960(0x20, (longlong)(int)uVar3);
-      *(undefined8 *)(param_1 + 0x16) = uVar1;
+      *(uint64_t *)(param_1 + 0x16) = uVar1;
       param_1[0x18] = uVar3;
     }
     
@@ -267,7 +267,7 @@ undefined8 FUN_180697f10(uint *param_1, uint param_2, uint param_3, uint param_4
  * @param param_1 纹理配置指针
  * @param param_2 纹理宽度
  * @param param_3 纹理高度
- * @return undefined8 初始化状态码
+ * @return uint64_t 初始化状态码
  * 功能：
  * - 计算纹理尺寸和对齐
  * - 分配纹理内存
@@ -275,42 +275,42 @@ undefined8 FUN_180697f10(uint *param_1, uint param_2, uint param_3, uint param_4
  * - 初始化纹理状态
  * @note 使用寄存器传递参数，优化性能
  */
-undefined8 FUN_180697f32(undefined8 param_1, uint param_2, int param_3)
+uint64_t FUN_180697f32(uint64_t param_1, uint param_2, int param_3)
 {
   uint uVar1;
   longlong in_RAX;
-  undefined8 uVar2;
+  uint64_t uVar2;
   longlong lVar3;
   uint *unaff_RBX;
   uint uVar4;
-  undefined8 unaff_RBP;
+  uint64_t unaff_RBP;
   uint uVar5;
-  undefined8 unaff_RSI;
+  uint64_t unaff_RSI;
   ulonglong unaff_RDI;
   int iVar6;
   uint in_R11D;
   uint uVar7;
-  undefined8 unaff_R12;
+  uint64_t unaff_R12;
   int iVar8;
-  undefined8 unaff_R13;
+  uint64_t unaff_R13;
   uint uVar9;
-  undefined8 unaff_R14;
+  uint64_t unaff_R14;
   uint uVar10;
-  undefined8 unaff_R15;
+  uint64_t unaff_R15;
   uint uStack0000000000000070;
   uint in_stack_00000078;
   uint in_stack_00000080;
   
   // 保存寄存器状态
-  *(undefined8 *)(in_RAX + 0x20) = unaff_RBP;
-  *(undefined8 *)(in_RAX + -0x18) = unaff_RSI;
-  *(undefined8 *)(in_RAX + -0x20) = unaff_R12;
-  *(undefined8 *)(in_RAX + -0x28) = unaff_R13;
-  *(undefined8 *)(in_RAX + -0x30) = unaff_R14;
+  *(uint64_t *)(in_RAX + 0x20) = unaff_RBP;
+  *(uint64_t *)(in_RAX + -0x18) = unaff_RSI;
+  *(uint64_t *)(in_RAX + -0x20) = unaff_R12;
+  *(uint64_t *)(in_RAX + -0x28) = unaff_R13;
+  *(uint64_t *)(in_RAX + -0x30) = unaff_R14;
   
   // 计算对齐后的纹理尺寸
   uVar9 = param_2 + 0xf & 0xfffffff0;        // 宽度16字节对齐
-  *(undefined8 *)(in_RAX + -0x38) = unaff_R15;
+  *(uint64_t *)(in_RAX + -0x38) = unaff_R15;
   uVar10 = param_3 + 0xfU & 0xfffffff0;       // 高度16字节对齐
   uVar1 = (uint)unaff_RDI;                   // 纹理深度
   uStack0000000000000070 = (int)uVar10 >> 1; // 半高度
@@ -324,7 +324,7 @@ undefined8 FUN_180697f32(undefined8 param_1, uint param_2, int param_3)
   if (*(longlong *)(unaff_RBX + 0x16) == 0) {
     // 分配纹理内存
     uVar2 = FUN_18066e960(0x20, (longlong)(int)uVar4);
-    *(undefined8 *)(unaff_RBX + 0x16) = uVar2;
+    *(uint64_t *)(unaff_RBX + 0x16) = uVar2;
     unaff_RBX[0x18] = uVar4;
     param_2 = in_stack_00000078;
     in_R11D = in_stack_00000080;
@@ -380,7 +380,7 @@ undefined8 FUN_180697f32(undefined8 param_1, uint param_2, int param_3)
  * @param param_2 宽度参数
  * @param param_3 高度参数
  * @param param_4 基础指针
- * @return undefined8 设置状态码
+ * @return uint64_t 设置状态码
  * 功能：
  * - 设置渲染缓冲区尺寸
  * - 计算缓冲区偏移量
@@ -388,20 +388,20 @@ undefined8 FUN_180697f32(undefined8 param_1, uint param_2, int param_3)
  * - 配置内存布局
  * @note 使用寄存器传递参数，优化性能
  */
-undefined8 FUN_18069801e(undefined4 param_1, int param_2, int param_3, longlong param_4)
+uint64_t FUN_18069801e(int32_t param_1, int param_2, int param_3, longlong param_4)
 {
   longlong lVar1;
-  undefined4 *unaff_RBX;
-  undefined4 unaff_EBP;
+  int32_t *unaff_RBX;
+  int32_t unaff_EBP;
   int unaff_ESI;
   int iVar2;
   longlong unaff_RDI;
-  undefined4 in_R10D;
+  int32_t in_R10D;
   int in_R11D;
   int unaff_R12D;
   int unaff_R13D;
-  undefined4 unaff_R14D;
-  undefined4 unaff_R15D;
+  int32_t unaff_R14D;
+  int32_t unaff_R15D;
   
   // 设置渲染缓冲区参数
   unaff_RBX[6] = param_1;                   // 渲染参数值
@@ -418,14 +418,14 @@ undefined8 FUN_18069801e(undefined4 param_1, int param_2, int param_3, longlong 
   *(longlong *)(unaff_RBX + 0xe) = unaff_ESI * iVar2 + param_4 + unaff_RDI;
   unaff_RBX[1] = unaff_R15D;                 // 对齐高度
   unaff_RBX[9] = unaff_R12D;                 // 半宽度
-  *(undefined8 *)(unaff_RBX + 10) = 0;      // 标志位
+  *(uint64_t *)(unaff_RBX + 10) = 0;      // 标志位
   unaff_RBX[0xc] = 0;                       // 标志位
   
   // 计算缓冲区指针
   lVar1 = (iVar2 / 2) * unaff_R12D + param_4 + (longlong)(iVar2 / 2);
   unaff_RBX[0x19] = iVar2;                  // 深度
   unaff_RBX[0x1a] = unaff_EBP;              // 总大小
-  *(undefined8 *)(unaff_RBX + 0x14) = 0;    // 偏移量
+  *(uint64_t *)(unaff_RBX + 0x14) = 0;    // 偏移量
   unaff_RBX[0x22] = 0;                      // 偏移量
   *(longlong *)(unaff_RBX + 0x10) = unaff_R13D + lVar1;
   *(longlong *)(unaff_RBX + 0x12) = (longlong)param_3 + (longlong)unaff_R13D + lVar1;
@@ -441,13 +441,13 @@ undefined8 FUN_18069801e(undefined4 param_1, int param_2, int param_3, longlong 
 /**
  * @brief 渲染系统错误检查器
  * @details 检查渲染系统错误状态
- * @return undefined8 错误状态码
+ * @return uint64_t 错误状态码
  * 功能：
  * - 返回渲染系统错误状态
  * - 提供错误诊断信息
  * @note 简化实现，直接返回错误码
  */
-undefined8 FUN_1806980bd(void)
+uint64_t FUN_1806980bd(void)
 {
   return RENDERING_ERROR_INVALID_PARAM;
 }
@@ -480,7 +480,7 @@ uint FUN_180698140(longlong param_1)
   uint uVar7;
   uint uVar8;
   uint in_XCR0;
-  undefined1 auStack_38 [32];
+  int8_t auStack_38 [32];
   int iStack_18;
   
   // 获取系统信息
@@ -565,28 +565,28 @@ uint FUN_180698140(longlong param_1)
 void FUN_1806982a0(longlong param_1, longlong param_2, int param_3)
 {
   int iVar1;
-  undefined1 uVar2;
+  int8_t uVar2;
   int iVar3;
-  undefined1 *puVar4;
-  undefined1 *puVar5;
-  undefined1 *puVar6;
+  int8_t *puVar4;
+  int8_t *puVar5;
+  int8_t *puVar6;
   longlong lVar7;
   longlong lVar8;
   int iVar9;
   int iVar10;
-  undefined1 *puVar11;
+  int8_t *puVar11;
   longlong lVar12;
   
   // 检查渲染状态变化
   if (*(int *)(param_1 + RENDERING_OFFSET_1924) != *(int *)(param_1 + RENDERING_OFFSET_1928)) {
     FUN_180698800(param_1 + RENDERING_OFFSET_C10);
-    *(undefined4 *)(param_1 + RENDERING_OFFSET_1924) = *(undefined4 *)(param_1 + RENDERING_OFFSET_1928);
+    *(int32_t *)(param_1 + RENDERING_OFFSET_1924) = *(int32_t *)(param_1 + RENDERING_OFFSET_1928);
   }
   
   // 初始化缓冲区指针
   lVar7 = 0;
-  puVar11 = (undefined1 *)(param_1 + RENDERING_OFFSET_1857);
-  puVar5 = (undefined1 *)(param_1 + RENDERING_OFFSET_1850);
+  puVar11 = (int8_t *)(param_1 + RENDERING_OFFSET_1857);
+  puVar5 = (int8_t *)(param_1 + RENDERING_OFFSET_1850);
   lVar12 = 4;
   iVar10 = MAX_TEXTURE_DIMENSION;
   puVar6 = puVar5;
@@ -623,7 +623,7 @@ void FUN_1806982a0(longlong param_1, longlong param_2, int param_3)
       if (MAX_TEXTURE_DIMENSION < iVar3) {
         iVar3 = iVar10;
       }
-      uVar2 = (undefined1)iVar3;
+      uVar2 = (int8_t)iVar3;
     }
     *puVar6 = uVar2;
     
@@ -635,7 +635,7 @@ void FUN_1806982a0(longlong param_1, longlong param_2, int param_3)
       if (MAX_TEXTURE_DIMENSION < iVar1) {
         iVar1 = iVar10;
       }
-      uVar2 = (undefined1)iVar1;
+      uVar2 = (int8_t)iVar1;
     }
     puVar6[1] = uVar2;
     
@@ -653,7 +653,7 @@ void FUN_1806982a0(longlong param_1, longlong param_2, int param_3)
         if (MAX_TEXTURE_DIMENSION < iVar3) {
           iVar3 = iVar10;
         }
-        uVar2 = (undefined1)iVar3;
+        uVar2 = (int8_t)iVar3;
       }
       puVar4[-2] = uVar2;
       
@@ -666,7 +666,7 @@ void FUN_1806982a0(longlong param_1, longlong param_2, int param_3)
         if (MAX_TEXTURE_DIMENSION < iVar3) {
           iVar3 = iVar10;
         }
-        uVar2 = (undefined1)iVar3;
+        uVar2 = (int8_t)iVar3;
       }
       puVar4[-1] = uVar2;
       
@@ -679,7 +679,7 @@ void FUN_1806982a0(longlong param_1, longlong param_2, int param_3)
         if (MAX_TEXTURE_DIMENSION < iVar1) {
           iVar1 = iVar10;
         }
-        uVar2 = (undefined1)iVar1;
+        uVar2 = (int8_t)iVar1;
       }
       *puVar4 = uVar2;
       
@@ -719,10 +719,10 @@ void FUN_1806982a0(longlong param_1, longlong param_2, int param_3)
 void FUN_180698440(longlong param_1)
 {
   // 初始化渲染缓冲区
-  FUN_180698800(param_1 + RENDERING_OFFSET_C10, *(undefined4 *)(param_1 + RENDERING_OFFSET_1928));
+  FUN_180698800(param_1 + RENDERING_OFFSET_C10, *(int32_t *)(param_1 + RENDERING_OFFSET_1928));
   
   // 更新渲染状态
-  *(undefined4 *)(param_1 + RENDERING_OFFSET_1924) = *(undefined4 *)(param_1 + RENDERING_OFFSET_1928);
+  *(int32_t *)(param_1 + RENDERING_OFFSET_1924) = *(int32_t *)(param_1 + RENDERING_OFFSET_1928);
   
   // 调用缓冲区处理函数
   func_0x000180698220(param_1 + RENDERING_OFFSET_C10);
@@ -756,7 +756,7 @@ void FUN_180698440(longlong param_1)
  * - 更新缓冲区数据
  * @note 支持多种渲染效果和纹理类型
  */
-void FUN_1806984b0(longlong param_1, byte *param_2, int param_3, undefined4 param_4, undefined4 param_5,
+void FUN_1806984b0(longlong param_1, byte *param_2, int param_3, int32_t param_4, int32_t param_5,
                   longlong param_6, longlong param_7, longlong param_8)
 {
   longlong lVar1;
@@ -850,23 +850,23 @@ void FUN_1806984f1(void)
 {
   byte bVar1;
   bool bVar2;
-  undefined4 uVar3;
+  int32_t uVar3;
   longlong in_RAX;
   ulonglong uVar4;
-  undefined8 unaff_RBX;
+  uint64_t unaff_RBX;
   longlong lVar5;
-  undefined8 unaff_RBP;
-  undefined8 unaff_RSI;
+  uint64_t unaff_RBP;
+  uint64_t unaff_RSI;
   longlong lVar6;
-  undefined8 unaff_RDI;
+  uint64_t unaff_RDI;
   longlong lVar7;
   longlong in_R9;
   longlong in_R10;
-  undefined4 unaff_R12D;
-  undefined8 unaff_R13;
+  int32_t unaff_R12D;
+  uint64_t unaff_R13;
   byte *unaff_R14;
   int unaff_R15D;
-  undefined1 *puStack0000000000000028;
+  int8_t *puStack0000000000000028;
   longlong in_stack_00000030;
   longlong lStack0000000000000038;
   longlong lStack0000000000000040;
@@ -875,18 +875,18 @@ void FUN_1806984f1(void)
   longlong lStack0000000000000058;
   longlong in_stack_000000a0;
   int in_stack_000000b0;
-  undefined4 in_stack_000000c0;
+  int32_t in_stack_000000c0;
   longlong in_stack_000000c8;
   longlong in_stack_000000d0;
   longlong in_stack_000000d8;
   
   // 初始化参数
   uVar3 = in_stack_000000c0;
-  *(undefined8 *)(in_RAX + 0x10) = unaff_RBX;
-  *(undefined8 *)(in_RAX + -0x28) = unaff_RSI;
-  *(undefined8 *)(in_RAX + -0x30) = unaff_RDI;
-  *(undefined8 *)(in_RAX + -0x38) = unaff_R13;
-  *(undefined8 *)(in_RAX + -0x20) = unaff_RBP;
+  *(uint64_t *)(in_RAX + 0x10) = unaff_RBX;
+  *(uint64_t *)(in_RAX + -0x28) = unaff_RSI;
+  *(uint64_t *)(in_RAX + -0x30) = unaff_RDI;
+  *(uint64_t *)(in_RAX + -0x38) = unaff_R13;
+  *(uint64_t *)(in_RAX + -0x20) = unaff_RBP;
   lVar5 = in_stack_000000d0;
   lVar6 = in_stack_000000c8;
   lVar7 = in_stack_000000d8;
@@ -918,15 +918,15 @@ void FUN_1806984f1(void)
       
       // 应用渲染效果
       if (0 < unaff_R15D) {
-        puStack0000000000000028 = (undefined1 *)&stack0x00000040;
+        puStack0000000000000028 = (int8_t *)&stack0x00000040;
         FUN_18069cb40(lVar6, lVar5, lVar7, unaff_R12D, uVar3);
       }
       if (!bVar2) {
-        puStack0000000000000028 = (undefined1 *)&stack0x00000040;
+        puStack0000000000000028 = (int8_t *)&stack0x00000040;
         FUN_18069ca00(lVar6, lVar5, lVar7, unaff_R12D, uVar3);
       }
       if (0 < in_stack_000000b0) {
-        puStack0000000000000028 = (undefined1 *)&stack0x00000040;
+        puStack0000000000000028 = (int8_t *)&stack0x00000040;
         FUN_18069cad0(lVar6, lVar5, lVar7, unaff_R12D, uVar3);
       }
       
@@ -935,7 +935,7 @@ void FUN_1806984f1(void)
       in_R10 = lStack0000000000000038;
       
       if (!bVar2) {
-        puStack0000000000000028 = (undefined1 *)&stack0x00000040;
+        puStack0000000000000028 = (int8_t *)&stack0x00000040;
         FUN_18069c900(lVar6, lVar5, lVar7, unaff_R12D, uVar3);
         in_R10 = lStack0000000000000038;
       }
@@ -995,7 +995,7 @@ void FUN_1806986b7(void)
  * - 更新缓冲区
  * @note 支持不同类型的纹理处理
  */
-void FUN_1806986d0(longlong param_1, byte *param_2, int param_3, undefined4 param_4, undefined8 param_5,
+void FUN_1806986d0(longlong param_1, byte *param_2, int param_3, int32_t param_4, uint64_t param_5,
                   longlong param_6)
 {
   longlong lVar1;
@@ -1076,7 +1076,7 @@ void FUN_1806986ff(void)
   bool bVar2;
   byte *unaff_RBX;
   int unaff_EBP;
-  undefined4 unaff_R12D;
+  int32_t unaff_R12D;
   longlong unaff_R13;
   uint uVar3;
   longlong unaff_R15;
@@ -1216,7 +1216,7 @@ void FUN_1806988d0(int *param_1, int param_2, int param_3)
   char *pcVar10;
   double dVar11;
   double dVar12;
-  undefined1 auStack_1d8 [32];
+  int8_t auStack_1d8 [32];
   char acStack_1b8 [304];
   ulonglong uStack_88;
   
@@ -1326,60 +1326,60 @@ void FUN_1806988f5(int *param_1, int param_2, int param_3)
   int iVar7;
   int iVar8;
   int iVar9;
-  undefined8 unaff_RSI;
+  uint64_t unaff_RSI;
   char *pcVar10;
   longlong in_R11;
   double dVar11;
   double dVar12;
-  undefined8 unaff_XMM6_Qa;
-  undefined8 unaff_XMM6_Qb;
-  undefined4 unaff_XMM7_Da;
-  undefined4 unaff_XMM7_Db;
-  undefined4 unaff_XMM7_Dc;
-  undefined4 unaff_XMM7_Dd;
-  undefined4 unaff_XMM8_Da;
-  undefined4 unaff_XMM8_Db;
-  undefined4 unaff_XMM8_Dc;
-  undefined4 unaff_XMM8_Dd;
-  undefined4 unaff_XMM9_Da;
-  undefined4 unaff_XMM9_Db;
-  undefined4 unaff_XMM9_Dc;
-  undefined4 unaff_XMM9_Dd;
-  undefined4 unaff_XMM10_Da;
-  undefined4 unaff_XMM10_Db;
-  undefined4 unaff_XMM10_Dc;
-  undefined4 unaff_XMM10_Dd;
-  undefined4 unaff_XMM11_Da;
-  undefined4 unaff_XMM11_Db;
-  undefined4 unaff_XMM11_Dc;
-  undefined4 unaff_XMM11_Dd;
+  uint64_t unaff_XMM6_Qa;
+  uint64_t unaff_XMM6_Qb;
+  int32_t unaff_XMM7_Da;
+  int32_t unaff_XMM7_Db;
+  int32_t unaff_XMM7_Dc;
+  int32_t unaff_XMM7_Dd;
+  int32_t unaff_XMM8_Da;
+  int32_t unaff_XMM8_Db;
+  int32_t unaff_XMM8_Dc;
+  int32_t unaff_XMM8_Dd;
+  int32_t unaff_XMM9_Da;
+  int32_t unaff_XMM9_Db;
+  int32_t unaff_XMM9_Dc;
+  int32_t unaff_XMM9_Dd;
+  int32_t unaff_XMM10_Da;
+  int32_t unaff_XMM10_Db;
+  int32_t unaff_XMM10_Dc;
+  int32_t unaff_XMM10_Dd;
+  int32_t unaff_XMM11_Da;
+  int32_t unaff_XMM11_Db;
+  int32_t unaff_XMM11_Dc;
+  int32_t unaff_XMM11_Dd;
   char acStackX_20 [8];
   ulonglong in_stack_00000150;
   
   // 保存SIMD寄存器状态
-  *(undefined8 *)(in_R11 + 0x10) = unaff_RSI;
-  *(undefined8 *)(in_R11 + -0x28) = unaff_XMM6_Qa;
-  *(undefined8 *)(in_R11 + -0x20) = unaff_XMM6_Qb;
-  *(undefined4 *)(in_R11 + -0x38) = unaff_XMM7_Da;
-  *(undefined4 *)(in_R11 + -0x34) = unaff_XMM7_Db;
-  *(undefined4 *)(in_R11 + -0x30) = unaff_XMM7_Dc;
-  *(undefined4 *)(in_R11 + -0x2c) = unaff_XMM7_Dd;
-  *(undefined4 *)(in_R11 + -0x48) = unaff_XMM8_Da;
-  *(undefined4 *)(in_R11 + -0x44) = unaff_XMM8_Db;
-  *(undefined4 *)(in_R11 + -0x40) = unaff_XMM8_Dc;
-  *(undefined4 *)(in_R11 + -0x3c) = unaff_XMM8_Dd;
-  *(undefined4 *)(in_R11 + -0x58) = unaff_XMM9_Da;
-  *(undefined4 *)(in_R11 + -0x54) = unaff_XMM9_Db;
-  *(undefined4 *)(in_R11 + -0x50) = unaff_XMM9_Dc;
-  *(undefined4 *)(in_R11 + -0x4c) = unaff_XMM9_Dd;
-  *(undefined4 *)(in_R11 + -0x68) = unaff_XMM10_Da;
-  *(undefined4 *)(in_R11 + -100) = unaff_XMM10_Db;
-  *(undefined4 *)(in_R11 + -0x60) = unaff_XMM10_Dc;
-  *(undefined4 *)(in_R11 + -0x5c) = unaff_XMM10_Dd;
-  *(undefined4 *)(in_R11 + -0x78) = unaff_XMM11_Da;
-  *(undefined4 *)(in_R11 + -0x74) = unaff_XMM11_Db;
-  *(undefined4 *)(in_R11 + -0x70) = unaff_XMM11_Dc;
-  *(undefined4 *)(in_R11 + -0x6c) = unaff_XMM11_Dd;
+  *(uint64_t *)(in_R11 + 0x10) = unaff_RSI;
+  *(uint64_t *)(in_R11 + -0x28) = unaff_XMM6_Qa;
+  *(uint64_t *)(in_R11 + -0x20) = unaff_XMM6_Qb;
+  *(int32_t *)(in_R11 + -0x38) = unaff_XMM7_Da;
+  *(int32_t *)(in_R11 + -0x34) = unaff_XMM7_Db;
+  *(int32_t *)(in_R11 + -0x30) = unaff_XMM7_Dc;
+  *(int32_t *)(in_R11 + -0x2c) = unaff_XMM7_Dd;
+  *(int32_t *)(in_R11 + -0x48) = unaff_XMM8_Da;
+  *(int32_t *)(in_R11 + -0x44) = unaff_XMM8_Db;
+  *(int32_t *)(in_R11 + -0x40) = unaff_XMM8_Dc;
+  *(int32_t *)(in_R11 + -0x3c) = unaff_XMM8_Dd;
+  *(int32_t *)(in_R11 + -0x58) = unaff_XMM9_Da;
+  *(int32_t *)(in_R11 + -0x54) = unaff_XMM9_Db;
+  *(int32_t *)(in_R11 + -0x50) = unaff_XMM9_Dc;
+  *(int32_t *)(in_R11 + -0x4c) = unaff_XMM9_Dd;
+  *(int32_t *)(in_R11 + -0x68) = unaff_XMM10_Da;
+  *(int32_t *)(in_R11 + -100) = unaff_XMM10_Db;
+  *(int32_t *)(in_R11 + -0x60) = unaff_XMM10_Dc;
+  *(int32_t *)(in_R11 + -0x5c) = unaff_XMM10_Dd;
+  *(int32_t *)(in_R11 + -0x78) = unaff_XMM11_Da;
+  *(int32_t *)(in_R11 + -0x74) = unaff_XMM11_Db;
+  *(int32_t *)(in_R11 + -0x70) = unaff_XMM11_Dc;
+  *(int32_t *)(in_R11 + -0x6c) = unaff_XMM11_Dd;
   
   // 初始化随机数生成器
   func_0x000180001000();
@@ -1479,9 +1479,9 @@ void FUN_180698a50(void)
   ulonglong in_RAX;
   char *pcVar3;
   longlong lVar4;
-  undefined4 unaff_EBP;
-  undefined4 *unaff_R14;
-  undefined4 unaff_R15D;
+  int32_t unaff_EBP;
+  int32_t *unaff_R14;
+  int32_t unaff_R15D;
   char acStackX_20 [8];
   ulonglong in_stack_00000150;
   
@@ -1546,7 +1546,7 @@ void FUN_180698a50(void)
  * - 平衡质量和性能
  * @note 使用复杂的质量计算算法
  */
-void FUN_180698b00(undefined4 *param_1, int param_2)
+void FUN_180698b00(int32_t *param_1, int param_2)
 {
   int iVar1;
   
@@ -1562,7 +1562,7 @@ void FUN_180698b00(undefined4 *param_1, int param_2)
   iVar1 = iVar1 * iVar1;
   
   // 调用第一个质量调整函数
-  func_0x000180028ade(*(undefined8 *)(param_1 + 0xe), param_1[4], param_1[1], *param_1,
+  func_0x000180028ade(*(uint64_t *)(param_1 + 0xe), param_1[4], param_1[1], *param_1,
                       iVar1 / 3 + (iVar1 >> 0x1f) +
                       (int)(((longlong)iVar1 / 3 + ((longlong)iVar1 >> 0x3f) & 0xffffffffU) >> 0x1f)
                      );
@@ -1576,7 +1576,7 @@ void FUN_180698b00(undefined4 *param_1, int param_2)
   iVar1 = iVar1 * iVar1;
   
   // 调用第二个质量调整函数
-  func_0x000180028893(*(undefined8 *)(param_1 + 0xe), param_1[4], param_1[1], *param_1,
+  func_0x000180028893(*(uint64_t *)(param_1 + 0xe), param_1[4], param_1[1], *param_1,
                       iVar1 / 3 + (iVar1 >> 0x1f) +
                       (int)(((longlong)iVar1 / 3 + ((longlong)iVar1 >> 0x3f) & 0xffffffffU) >> 0x1f)
                      );
@@ -1605,7 +1605,7 @@ void FUN_180698b00(undefined4 *param_1, int param_2)
  * - 优化效果性能
  * @note 使用复杂的效果计算算法
  */
-void FUN_180698bb0(longlong param_1, undefined4 *param_2, longlong param_3, int param_4)
+void FUN_180698bb0(longlong param_1, int32_t *param_2, longlong param_3, int param_4)
 {
   longlong lVar1;
   byte bVar2;

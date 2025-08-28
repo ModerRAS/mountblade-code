@@ -217,7 +217,7 @@ void EntityPhysicsProcessor(longlong *entity, longlong target, float distance_th
  * - 处理复杂的碰撞场景
  */
 void AdvancedCollisionDetector(longlong object1, longlong object2, float *collision_point, 
-                               undefined8 collision_flags, undefined8 additional_params) {
+                               uint64_t collision_flags, uint64_t additional_params) {
     if (!object1 || !object2 || !collision_point) {
         return;
     }
@@ -345,7 +345,7 @@ float AnimationStateQuery(void) {
  * - 处理能量转换
  * - 优化物理计算
  */
-float PhysicsParameterCalculator(float *param1, float *param2, undefined4 *param3, float param4) {
+float PhysicsParameterCalculator(float *param1, float *param2, int32_t *param3, float param4) {
     if (!param1 || !param2 || !param3) {
         return 0.0f;
     }
@@ -372,13 +372,13 @@ float PhysicsParameterCalculator(float *param1, float *param2, undefined4 *param
  * - 3D变换和矩阵运算
  * - 实时物理更新
  */
-undefined8 AdvancedPhysicsSimulator(longlong *entity, longlong target, int simulation_params, undefined8 transform_flags) {
+uint64_t AdvancedPhysicsSimulator(longlong *entity, longlong target, int simulation_params, uint64_t transform_flags) {
     if (!entity || !target) {
         return 0;
     }
     
     // 执行物理模拟
-    undefined8 result = ExecutePhysicsSimulation(entity, target, simulation_params);
+    uint64_t result = ExecutePhysicsSimulation(entity, target, simulation_params);
     
     // 应用变换
     if (transform_flags != 0) {
@@ -401,13 +401,13 @@ undefined8 AdvancedPhysicsSimulator(longlong *entity, longlong target, int simul
  * - 距离计算优化
  * - 速度调整
  */
-undefined8 PathOptimizer(longlong path_data, undefined8 optimization_params, float distance_factor, float speed_factor) {
+uint64_t PathOptimizer(longlong path_data, uint64_t optimization_params, float distance_factor, float speed_factor) {
     if (!path_data) {
         return 0;
     }
     
     // 执行路径优化
-    undefined8 result = OptimizePath(path_data, optimization_params);
+    uint64_t result = OptimizePath(path_data, optimization_params);
     
     // 应用距离和速度因子
     ApplyOptimizationFactors(result, distance_factor, speed_factor);
@@ -424,9 +424,9 @@ undefined8 PathOptimizer(longlong path_data, undefined8 optimization_params, flo
  * - 初始化数据结构
  * - 配置检测算法
  */
-undefined8 CollisionSystemInitializer(void) {
+uint64_t CollisionSystemInitializer(void) {
     // 初始化碰撞检测系统
-    undefined8 result = InitializeCollisionSystem();
+    uint64_t result = InitializeCollisionSystem();
     
     // 配置检测参数
     ConfigureCollisionParameters();
@@ -482,7 +482,7 @@ float AnimationSpeedController(void) {
  * - 多物体碰撞处理
  * - 特殊效果应用
  */
-void AdvancedCollisionResponseHandler(longlong *entity, longlong target, int response_params, undefined8 collision_flags) {
+void AdvancedCollisionResponseHandler(longlong *entity, longlong target, int response_params, uint64_t collision_flags) {
     if (!entity || !target) {
         return;
     }
@@ -540,7 +540,7 @@ void IntegratedPhysicsAnimationProcessor(void) {
     longlong target_entity;
     longlong reference_entity;
     float speed_factor;
-    undefined8 system_result;
+    uint64_t system_result;
     float unaff_XMM6_Da;
     float unaff_XMM7_Da;
     
@@ -651,7 +651,7 @@ static void ApplyCollisionResponse(PhysicsProperties *props1, PhysicsProperties 
  * @param object2 对象2
  * @param flags 标志
  */
-static void HandleSpecialCollisionEffects(longlong object1, longlong object2, undefined8 flags) {
+static void HandleSpecialCollisionEffects(longlong object1, longlong object2, uint64_t flags) {
     // 实现特殊碰撞效果处理逻辑
     // ...
 }
@@ -704,7 +704,7 @@ static float ApplyAnimationTransition(float current_state) {
  * @param param4 参数4
  * @return 计算结果
  */
-static float CalculatePhysicsParameters(float *param1, float *param2, undefined4 *param3, float param4) {
+static float CalculatePhysicsParameters(float *param1, float *param2, int32_t *param3, float param4) {
     // 实现物理参数计算逻辑
     return 0.0f;
 }
@@ -726,7 +726,7 @@ static float ApplyPhysicsConstraints(float value) {
  * @param params 参数
  * @return 执行结果
  */
-static undefined8 ExecutePhysicsSimulation(longlong *entity, longlong target, int params) {
+static uint64_t ExecutePhysicsSimulation(longlong *entity, longlong target, int params) {
     // 实现物理模拟执行逻辑
     return 0;
 }
@@ -737,7 +737,7 @@ static undefined8 ExecutePhysicsSimulation(longlong *entity, longlong target, in
  * @param target 目标指针
  * @param flags 标志
  */
-static void ApplyTransformations(longlong *entity, longlong target, undefined8 flags) {
+static void ApplyTransformations(longlong *entity, longlong target, uint64_t flags) {
     // 实现变换应用逻辑
     // ...
 }
@@ -748,7 +748,7 @@ static void ApplyTransformations(longlong *entity, longlong target, undefined8 f
  * @param params 参数
  * @return 优化结果
  */
-static undefined8 OptimizePath(longlong path_data, undefined8 params) {
+static uint64_t OptimizePath(longlong path_data, uint64_t params) {
     // 实现路径优化逻辑
     return 0;
 }
@@ -759,7 +759,7 @@ static undefined8 OptimizePath(longlong path_data, undefined8 params) {
  * @param distance_factor 距离因子
  * @param speed_factor 速度因子
  */
-static void ApplyOptimizationFactors(undefined8 result, float distance_factor, float speed_factor) {
+static void ApplyOptimizationFactors(uint64_t result, float distance_factor, float speed_factor) {
     // 实现优化因子应用逻辑
     // ...
 }
@@ -768,7 +768,7 @@ static void ApplyOptimizationFactors(undefined8 result, float distance_factor, f
  * @brief 碰撞系统初始化函数
  * @return 初始化结果
  */
-static undefined8 InitializeCollisionSystem(void) {
+static uint64_t InitializeCollisionSystem(void) {
     // 实现碰撞系统初始化逻辑
     return 0;
 }
@@ -847,7 +847,7 @@ static void ApplyCollisionPhysics(longlong *entity, longlong target, CollisionIn
  * @param target 目标指针
  * @param flags 标志
  */
-static void HandleSpecialEffects(longlong *entity, longlong target, undefined8 flags) {
+static void HandleSpecialEffects(longlong *entity, longlong target, uint64_t flags) {
     // 实现特殊效果处理逻辑
     // ...
 }
@@ -889,7 +889,7 @@ static char CheckAnimationCondition(void) {
  * @brief 碰撞系统结果获取函数
  * @return 系统结果
  */
-static undefined8 GetCollisionSystemResult(void) {
+static uint64_t GetCollisionSystemResult(void) {
     // 实现碰撞系统结果获取逻辑
     return 0;
 }
@@ -902,7 +902,7 @@ static undefined8 GetCollisionSystemResult(void) {
  * @param param3 参数3
  * @param param4 参数4
  */
-static void ExecuteIntegratedProcessing(undefined8 system_result, float param1, float param2, int param3, float param4) {
+static void ExecuteIntegratedProcessing(uint64_t system_result, float param1, float param2, int param3, float param4) {
     // 实现综合处理执行逻辑
     // ...
 }

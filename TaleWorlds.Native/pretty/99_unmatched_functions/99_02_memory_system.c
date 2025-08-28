@@ -47,7 +47,7 @@
  * 本函数为简化实现，保留了核心的内存处理逻辑。
  * 原始代码包含更复杂的内存管理算法、错误处理和性能优化逻辑。
  */
-void memory_system_core_processor(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4, undefined8 param_5, undefined8 param_6) {
+void memory_system_core_processor(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5, uint64_t param_6) {
     // 变量重命名以提高可读性：
     // 原始变量名 -> 语义化名称：描述变量的实际用途
     
@@ -235,228 +235,228 @@ void memory_system_core_processor(undefined8 param_1, undefined8 param_2, undefi
  * 内存系统状态变量
  * 用于跟踪内存系统的运行状态和统计信息
  */
-static undefined* memory_system_state_ptr = (undefined*)0x180a037a0;  // 内存系统状态指针
-static undefined* memory_system_config_ptr = (undefined*)0x180a037c0;  // 内存系统配置指针
-static undefined* memory_system_pool_ptr = (undefined*)0x180a037e0;    // 内存池指针
-static undefined* memory_system_allocator_ptr = (undefined*)0x180a03810; // 内存分配器指针
+static void* memory_system_state_ptr = (void*)0x180a037a0;  // 内存系统状态指针
+static void* memory_system_config_ptr = (void*)0x180a037c0;  // 内存系统配置指针
+static void* memory_system_pool_ptr = (void*)0x180a037e0;    // 内存池指针
+static void* memory_system_allocator_ptr = (void*)0x180a03810; // 内存分配器指针
 
 /**
  * 内存系统数据存储区
  * 用于存储内存系统的运行时数据和配置信息
  */
-static undefined* memory_system_data_storage = (undefined*)0x180c86970;  // 数据存储区
-static undefined* memory_system_temp_buffer = (undefined*)0x180a03870;   // 临时缓冲区
-static undefined* memory_system_debug_info = (undefined*)0x180a03888;   // 调试信息区
-static undefined* memory_system_stats_data = (undefined*)0x180a03898;    // 统计数据区
+static void* memory_system_data_storage = (void*)0x180c86970;  // 数据存储区
+static void* memory_system_temp_buffer = (void*)0x180a03870;   // 临时缓冲区
+static void* memory_system_debug_info = (void*)0x180a03888;   // 调试信息区
+static void* memory_system_stats_data = (void*)0x180a03898;    // 统计数据区
 
 /**
  * 内存系统控制变量
  * 用于控制内存系统的行为和特性
  */
-static undefined* memory_system_control_flags = (undefined*)0x180a038b0;  // 控制标志
-static undefined* memory_system_error_handler = (undefined*)0x180a038c8;  // 错误处理器
-static undefined* memory_system_callback_table = (undefined*)0x180a038d8; // 回调表
+static void* memory_system_control_flags = (void*)0x180a038b0;  // 控制标志
+static void* memory_system_error_handler = (void*)0x180a038c8;  // 错误处理器
+static void* memory_system_callback_table = (void*)0x180a038d8; // 回调表
 
 /**
  * 内存系统性能监控变量
  * 用于监控内存系统的性能指标
  */
-static undefined* memory_system_perf_counters = (undefined*)0x180a038e8; // 性能计数器
-static undefined* memory_system_timing_data = (undefined*)0x180a038f8;    // 时间数据
-static undefined* memory_system_usage_stats = (undefined*)0x180a03908;    // 使用统计
+static void* memory_system_perf_counters = (void*)0x180a038e8; // 性能计数器
+static void* memory_system_timing_data = (void*)0x180a038f8;    // 时间数据
+static void* memory_system_usage_stats = (void*)0x180a03908;    // 使用统计
 
 /**
  * 内存系统内存管理变量
  * 用于管理内存系统的内存分配和释放
  */
-static undefined* memory_system_heap_manager = (undefined*)0x180a03930;  // 堆管理器
-static undefined* memory_system_allocator_config = (undefined*)0x180a03988; // 分配器配置
-static undefined* memory_system_free_list = (undefined*)0x180a03948;     // 空闲列表
-static undefined* memory_system_allocated_blocks = (undefined*)0x180a039a0; // 已分配块
+static void* memory_system_heap_manager = (void*)0x180a03930;  // 堆管理器
+static void* memory_system_allocator_config = (void*)0x180a03988; // 分配器配置
+static void* memory_system_free_list = (void*)0x180a03948;     // 空闲列表
+static void* memory_system_allocated_blocks = (void*)0x180a039a0; // 已分配块
 
 /**
  * 内存系统系统调用变量
  * 用于与操作系统进行交互
  */
-static undefined* memory_system_syscall_table = (undefined*)0x180a035d0;  // 系统调用表
-static undefined* memory_system_os_interface = (undefined*)0x180a03a48;   // 操作系统接口
-static undefined* memory_system_driver_handles = (undefined*)0x180a07218;  // 驱动句柄
+static void* memory_system_syscall_table = (void*)0x180a035d0;  // 系统调用表
+static void* memory_system_os_interface = (void*)0x180a03a48;   // 操作系统接口
+static void* memory_system_driver_handles = (void*)0x180a07218;  // 驱动句柄
 
 /**
  * 内存系统缓存和优化变量
  * 用于优化内存系统的性能
  */
-static undefined* memory_system_cache_manager = (undefined*)0x180a189d0;  // 缓存管理器
-static undefined* memory_system_optimization_data = (undefined*)0x180a189e0; // 优化数据
+static void* memory_system_cache_manager = (void*)0x180a189d0;  // 缓存管理器
+static void* memory_system_optimization_data = (void*)0x180a189e0; // 优化数据
 
 /**
  * 内存系统安全性和验证变量
  * 用于确保内存系统的安全性和正确性
  */
-static undefined* memory_system_security_flags = (undefined*)0x180c86978; // 安全标志
-static undefined* memory_system_validation_data = (undefined*)0x180a03ad8; // 验证数据
-static undefined* memory_system_checksum_table = (undefined*)0x180a03aa0; // 校验和表
+static void* memory_system_security_flags = (void*)0x180c86978; // 安全标志
+static void* memory_system_validation_data = (void*)0x180a03ad8; // 验证数据
+static void* memory_system_checksum_table = (void*)0x180a03aa0; // 校验和表
 
 /**
  * 内存系统配置和参数变量
  * 用于配置内存系统的各种参数
  */
-static undefined* memory_system_parameter_block = (undefined*)0x180a03ac8; // 参数块
-static undefined* memory_system_settings_data = (undefined*)0x180a03ae0;  // 设置数据
-static undefined* memory_system_configuration = (undefined*)0x180a03af8;  // 配置数据
+static void* memory_system_parameter_block = (void*)0x180a03ac8; // 参数块
+static void* memory_system_settings_data = (void*)0x180a03ae0;  // 设置数据
+static void* memory_system_configuration = (void*)0x180a03af8;  // 配置数据
 
 /**
  * 内存系统资源管理变量
  * 用于管理内存系统的资源
  */
-static undefined* memory_system_resource_pool = (undefined*)0x180a03b10;  // 资源池
-static undefined* memory_system_handle_table = (undefined*)0x180a03b30;    // 句柄表
-static undefined* memory_system_resource_tracker = (undefined*)0x180a03b40; // 资源跟踪器
+static void* memory_system_resource_pool = (void*)0x180a03b10;  // 资源池
+static void* memory_system_handle_table = (void*)0x180a03b30;    // 句柄表
+static void* memory_system_resource_tracker = (void*)0x180a03b40; // 资源跟踪器
 
 /**
  * 内存系统高级功能变量
  * 用于支持内存系统的高级功能
  */
-static undefined* memory_system_advanced_features = (undefined*)0x180a03b80; // 高级功能
-static undefined* memory_system_extension_data = (undefined*)0x180a17358;  // 扩展数据
-static undefined* memory_system_plugin_interface = (undefined*)0x180a03bb8; // 插件接口
+static void* memory_system_advanced_features = (void*)0x180a03b80; // 高级功能
+static void* memory_system_extension_data = (void*)0x180a17358;  // 扩展数据
+static void* memory_system_plugin_interface = (void*)0x180a03bb8; // 插件接口
 
 /**
  * 内存系统诊断和调试变量
  * 用于诊断和调试内存系统
  */
-static undefined* memory_system_diagnostics_data = (undefined*)0x180c8695c; // 诊断数据
-static undefined* memory_system_debug_symbols = (undefined*)0x180c86968;  // 调试符号
-static undefined* memory_system_log_buffer = (undefined*)0x180a035e0;    // 日志缓冲区
+static void* memory_system_diagnostics_data = (void*)0x180c8695c; // 诊断数据
+static void* memory_system_debug_symbols = (void*)0x180c86968;  // 调试符号
+static void* memory_system_log_buffer = (void*)0x180a035e0;    // 日志缓冲区
 
 /**
  * 内存系统线程安全变量
  * 用于确保内存系统的线程安全性
  */
-static undefined* memory_system_thread_safety = (undefined*)0x180a03b60;  // 线程安全
-static undefined* memory_system_lock_manager = (undefined*)0x180a03b98;    // 锁管理器
-static undefined* memory_system_synchronization = (undefined*)0x180a03bdc; // 同步机制
+static void* memory_system_thread_safety = (void*)0x180a03b60;  // 线程安全
+static void* memory_system_lock_manager = (void*)0x180a03b98;    // 锁管理器
+static void* memory_system_synchronization = (void*)0x180a03bdc; // 同步机制
 
 /**
  * 内存系统内存保护变量
  * 用于保护内存系统免受非法访问
  */
-static undefined* memory_system_protection_flags = (undefined*)0x180a03be8; // 保护标志
-static undefined* memory_system_access_control = (undefined*)0x180a03bf8;  // 访问控制
-static undefined* memory_system_memory_guard = (undefined*)0x180a03c00;    // 内存保护
+static void* memory_system_protection_flags = (void*)0x180a03be8; // 保护标志
+static void* memory_system_access_control = (void*)0x180a03bf8;  // 访问控制
+static void* memory_system_memory_guard = (void*)0x180a03c00;    // 内存保护
 
 /**
  * 内存系统性能优化变量
  * 用于优化内存系统的性能
  */
-static undefined* memory_system_optimization_flags = (undefined*)0x180a03c10; // 优化标志
-static undefined* memory_system_performance_data = (undefined*)0x180a03c28; // 性能数据
-static undefined* memory_system_tuning_parameters = (undefined*)0x180a03c5c; // 调优参数
+static void* memory_system_optimization_flags = (void*)0x180a03c10; // 优化标志
+static void* memory_system_performance_data = (void*)0x180a03c28; // 性能数据
+static void* memory_system_tuning_parameters = (void*)0x180a03c5c; // 调优参数
 
 /**
  * 内存系统监控和统计变量
  * 用于监控内存系统的运行状态
  */
-static undefined* memory_system_monitoring_data = (undefined*)0x180a03d78; // 监控数据
-static undefined* memory_system_statistics_block = (undefined*)0x180a03d88; // 统计块
-static undefined* memory_system_metrics_data = (undefined*)0x180a03d90;   // 指标数据
+static void* memory_system_monitoring_data = (void*)0x180a03d78; // 监控数据
+static void* memory_system_statistics_block = (void*)0x180a03d88; // 统计块
+static void* memory_system_metrics_data = (void*)0x180a03d90;   // 指标数据
 
 /**
  * 内存系统历史记录变量
  * 用于记录内存系统的历史操作
  */
-static undefined* memory_system_history_buffer = (undefined*)0x180a03da0; // 历史缓冲区
-static undefined* memory_system_operation_log = (undefined*)0x180a03db0;  // 操作日志
-static undefined* memory_system_event_tracker = (undefined*)0x180a03180;  // 事件跟踪器
+static void* memory_system_history_buffer = (void*)0x180a03da0; // 历史缓冲区
+static void* memory_system_operation_log = (void*)0x180a03db0;  // 操作日志
+static void* memory_system_event_tracker = (void*)0x180a03180;  // 事件跟踪器
 
 /**
  * 内存系统备份和恢复变量
  * 用于备份和恢复内存系统状态
  */
-static undefined* memory_system_backup_data = (undefined*)0x180a03df0;   // 备份数据
-static undefined* memory_system_restore_point = (undefined*)0x180a03de0;  // 恢复点
-static undefined* memory_system_snapshot_data = (undefined*)0x180a03e04;  // 快照数据
+static void* memory_system_backup_data = (void*)0x180a03df0;   // 备份数据
+static void* memory_system_restore_point = (void*)0x180a03de0;  // 恢复点
+static void* memory_system_snapshot_data = (void*)0x180a03e04;  // 快照数据
 
 /**
  * 内存系统压缩和优化变量
  * 用于压缩和优化内存使用
  */
-static undefined* memory_system_compression_data = (undefined*)0x180a03e10; // 压缩数据
-static undefined* memory_system_optimization_engine = (undefined*)0x180a03e30; // 优化引擎
-static undefined* memory_system_compression_ratio = (undefined*)0x180a03e48; // 压缩比率
+static void* memory_system_compression_data = (void*)0x180a03e10; // 压缩数据
+static void* memory_system_optimization_engine = (void*)0x180a03e30; // 优化引擎
+static void* memory_system_compression_ratio = (void*)0x180a03e48; // 压缩比率
 
 /**
  * 内存系统数据完整性变量
  * 用于确保内存数据的完整性
  */
-static undefined* memory_system_integrity_data = (undefined*)0x180a03e50; // 完整性数据
-static undefined* memory_system_checksum_storage = (undefined*)0x180a03e88; // 校验和存储
-static undefined* memory_system_validation_cache = (undefined*)0x180a03ea0; // 验证缓存
+static void* memory_system_integrity_data = (void*)0x180a03e50; // 完整性数据
+static void* memory_system_checksum_storage = (void*)0x180a03e88; // 校验和存储
+static void* memory_system_validation_cache = (void*)0x180a03ea0; // 验证缓存
 
 /**
  * 内存系统配置持久化变量
  * 用于持久化内存系统配置
  */
-static undefined* memory_system_config_storage = (undefined*)0x180a03ea8; // 配置存储
-static undefined* memory_system_persistence_data = (undefined*)0x180a03ec0; // 持久化数据
-static undefined* memory_system_settings_backup = (undefined*)0x180a03f00; // 设置备份
+static void* memory_system_config_storage = (void*)0x180a03ea8; // 配置存储
+static void* memory_system_persistence_data = (void*)0x180a03ec0; // 持久化数据
+static void* memory_system_settings_backup = (void*)0x180a03f00; // 设置备份
 
 /**
  * 内存系统高级管理变量
  * 用于高级内存管理功能
  */
-static undefined* memory_system_advanced_manager = (undefined*)0x180a03f18; // 高级管理器
-static undefined* memory_system_smart_allocator = (undefined*)0x180a03f40; // 智能分配器
-static undefined* memory_system_adaptive_controller = (undefined*)0x180a03f58; // 自适应控制器
+static void* memory_system_advanced_manager = (void*)0x180a03f18; // 高级管理器
+static void* memory_system_smart_allocator = (void*)0x180a03f40; // 智能分配器
+static void* memory_system_adaptive_controller = (void*)0x180a03f58; // 自适应控制器
 
 /**
  * 内存系统动态调整变量
  * 用于动态调整内存系统参数
  */
-static undefined* memory_system_dynamic_flags = (undefined*)0x180a03f64; // 动态标志
-static undefined* memory_system_adaptive_parameters = (undefined*)0x180a03f70; // 自适应参数
-static undefined* memory_system_runtime_config = (undefined*)0x180a03f80; // 运行时配置
+static void* memory_system_dynamic_flags = (void*)0x180a03f64; // 动态标志
+static void* memory_system_adaptive_parameters = (void*)0x180a03f70; // 自适应参数
+static void* memory_system_runtime_config = (void*)0x180a03f80; // 运行时配置
 
 /**
  * 内存系统资源调度变量
  * 用于调度内存系统资源
  */
-static undefined* memory_system_scheduler_data = (undefined*)0x180a03fa0; // 调度器数据
-static undefined* memory_system_resource_scheduler = (undefined*)0x180a03638; // 资源调度器
-static undefined* memory_system_task_manager = (undefined*)0x180a03650;  // 任务管理器
+static void* memory_system_scheduler_data = (void*)0x180a03fa0; // 调度器数据
+static void* memory_system_resource_scheduler = (void*)0x180a03638; // 资源调度器
+static void* memory_system_task_manager = (void*)0x180a03650;  // 任务管理器
 
 /**
  * 内存系统数据存储变量
  * 用于存储内存系统的数据
  */
-static undefined* memory_system_storage_area = (undefined*)0x18098d7b0;  // 存储区域
-static undefined* memory_system_data_manager = (undefined*)0x180a03670;  // 数据管理器
-static undefined* memory_system_storage_controller = (undefined*)0x180a03688; // 存储控制器
+static void* memory_system_storage_area = (void*)0x18098d7b0;  // 存储区域
+static void* memory_system_data_manager = (void*)0x180a03670;  // 数据管理器
+static void* memory_system_storage_controller = (void*)0x180a03688; // 存储控制器
 
 /**
  * 内存系统缓存管理变量
  * 用于管理内存系统缓存
  */
-static undefined* memory_system_cache_controller = (undefined*)0x180a036a8; // 缓存控制器
-static undefined* memory_system_buffer_manager = (undefined*)0x180a03fc8;  // 缓冲区管理器
-static undefined* memory_system_cache_optimizer = (undefined*)0x180a00320; // 缓存优化器
+static void* memory_system_cache_controller = (void*)0x180a036a8; // 缓存控制器
+static void* memory_system_buffer_manager = (void*)0x180a03fc8;  // 缓冲区管理器
+static void* memory_system_cache_optimizer = (void*)0x180a00320; // 缓存优化器
 
 /**
  * 内存系统状态标志
  * 用于表示内存系统的状态
  */
 static char memory_system_status_flag = (char)0x0;  // 状态标志
-static undefined* memory_system_runtime_data = (undefined*)0x180c8aa40; // 运行时数据
-static undefined* memory_system_system_info = (undefined*)0x1809fe1b0;   // 系统信息
-static undefined* memory_system_version_data = (undefined*)0x1809fe1c8;  // 版本数据
-static undefined* memory_system_build_info = (undefined*)0x1809fe1d8;   // 构建信息
+static void* memory_system_runtime_data = (void*)0x180c8aa40; // 运行时数据
+static void* memory_system_system_info = (void*)0x1809fe1b0;   // 系统信息
+static void* memory_system_version_data = (void*)0x1809fe1c8;  // 版本数据
+static void* memory_system_build_info = (void*)0x1809fe1d8;   // 构建信息
 
 /**
  * 内存系统扩展功能变量
  * 用于支持内存系统的扩展功能
  */
-static undefined* memory_system_extension_manager = (undefined*)0x180a04910; // 扩展管理器
-static undefined* memory_system_plugin_loader = (undefined*)0x1800ea740;   // 插件加载器
+static void* memory_system_extension_manager = (void*)0x180a04910; // 扩展管理器
+static void* memory_system_plugin_loader = (void*)0x1800ea740;   // 插件加载器
 
 /**
  * 内存系统函数指针表

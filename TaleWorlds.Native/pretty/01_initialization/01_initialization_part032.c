@@ -12,7 +12,7 @@ void 执行线程同步资源清理(longlong *obj)
   longlong *thread_local_ptr;
   char cleanup_result;
   int lock_result;
-  undefined8 operation_code;
+  uint64_t operation_code;
   longlong *queue_ptr;
   char lock_acquired;
   
@@ -21,7 +21,7 @@ void 执行线程同步资源清理(longlong *obj)
     do {
       cleanup_result = (**(code **)(*obj + 0x20))(obj,1);
       if (cleanup_result == '\0') {
-        FUN_18064e0d0(*(undefined8 *)(*thread_local_ptr + 0x10),0);
+        FUN_18064e0d0(*(uint64_t *)(*thread_local_ptr + 0x10),0);
         queue_ptr = obj + 0x33;
         lock_acquired = 0;
         lock_result = _Mtx_lock();
@@ -30,12 +30,12 @@ void 执行线程同步资源清理(longlong *obj)
         }
         lock_acquired = '\x01';
         if ((char)obj[0x3d] == '\x01') {
-          *(undefined1 *)(obj + 0x3d) = 0;
+          *(int8_t *)(obj + 0x3d) = 0;
         }
         else {
           operation_code = 0x32;
           FUN_1800495d0(obj + 0x2a,&queue_ptr,&operation_code);
-          *(undefined1 *)(obj + 0x3d) = 0;
+          *(int8_t *)(obj + 0x3d) = 0;
           if (lock_acquired == '\0') goto LAB_1800607cc;
         }
         lock_result = _Mtx_unlock(queue_ptr);
@@ -58,12 +58,12 @@ LAB_1800607cc:
  * @param should_process 是否处理队列的标志
  * @return 成功处理返回1，否则返回0
  */
-undefined8 处理对象队列出队(longlong queue_obj,char should_process)
+uint64_t 处理对象队列出队(longlong queue_obj,char should_process)
 {
   longlong buffer_size;
   int lock_result;
   longlong *head_ptr;
-  undefined8 result;
+  uint64_t result;
   longlong *dequeued_obj;
   
   dequeued_obj = (longlong *)0x0;
@@ -98,7 +98,7 @@ undefined8 处理对象队列出队(longlong queue_obj,char should_process)
           buffer_size = *head_ptr;
           *(longlong *)(queue_obj + 0xb0) = buffer_size;
           *(longlong *)(queue_obj + 0xb8) = buffer_size + 0x100;
-          *(undefined8 *)(queue_obj + 0xa8) = *(undefined8 *)(queue_obj + 0xb0);
+          *(uint64_t *)(queue_obj + 0xa8) = *(uint64_t *)(queue_obj + 0xb0);
         }
         else {
           *(longlong **)(queue_obj + 0xa8) = head_ptr + 1;
@@ -143,15 +143,15 @@ LAB_180060993:
  * @param param4 参数4
  * @return 操作成功返回true，否则返回false
  */
-bool 等待对象并处理队列(longlong wait_obj,undefined8 param2,undefined8 timeout,undefined8 param4)
+bool 等待对象并处理队列(longlong wait_obj,uint64_t param2,uint64_t timeout,uint64_t param4)
 {
   longlong *processed_obj;
   char process_result;
   longlong *queue_obj;
   
   queue_obj = (longlong *)0x0;
-  WaitForSingleObject(**(undefined8 **)(wait_obj + 0x1f0),1,timeout,param4,0xfffffffffffffffe);
-  process_result = FUN_180060e40(*(undefined8 *)(wait_obj + 0x60),wait_obj + 0x78,&queue_obj);
+  WaitForSingleObject(**(uint64_t **)(wait_obj + 0x1f0),1,timeout,param4,0xfffffffffffffffe);
+  process_result = FUN_180060e40(*(uint64_t *)(wait_obj + 0x60),wait_obj + 0x78,&queue_obj);
   processed_obj = queue_obj;
   if (process_result != '\0') {
     (**(code **)(*queue_obj + 0x60))(queue_obj);
@@ -311,7 +311,7 @@ longlong * 释放链表头节点(longlong *head_ptr)
  * @param data_obj 数据对象
  * @return 成功插入返回1，否则返回0
  */
-undefined8 处理缓冲区插入操作(longlong buffer_obj,undefined8 data_obj)
+uint64_t 处理缓冲区插入操作(longlong buffer_obj,uint64_t data_obj)
 {
   longlong *position_ptr;
   ulonglong *index_ptr;
@@ -357,8 +357,8 @@ undefined8 处理缓冲区插入操作(longlong buffer_obj,undefined8 data_obj)
       *position_ptr = *position_ptr + 1;
       UNLOCK();
       if (slot_count == 0x1f) {
-        *(undefined8 *)(current_pos + 8) = 0;
-        func_0x000180060c10(*(undefined8 *)(buffer_obj + 0x50),base_addr);
+        *(uint64_t *)(current_pos + 8) = 0;
+        func_0x000180060c10(*(uint64_t *)(buffer_obj + 0x50),base_addr);
       }
       return 1;
     }
@@ -393,7 +393,7 @@ undefined8 处理缓冲区插入操作(longlong buffer_obj,undefined8 data_obj)
       if (position_ptr != (longlong *)0x0) {
         (**(code **)(*position_ptr + 0x38))();
       }
-      *(undefined1 *)((current_pos - slot_offset) + 0x12f) = 1;
+      *(int8_t *)((current_pos - slot_offset) + 0x12f) = 1;
       return 1;
     }
   }
@@ -412,7 +412,7 @@ undefined8 处理缓冲区插入操作(longlong buffer_obj,undefined8 data_obj)
  * @param buffer_ptr 缓冲区指针
  * @return 处理结果
  */
-undefined8 批量处理缓冲区槽位(void)
+uint64_t 批量处理缓冲区槽位(void)
 {
   ulonglong *index_ptr;
   ulonglong start_index;
@@ -445,8 +445,8 @@ undefined8 批量处理缓冲区槽位(void)
   *buffer_info = *buffer_info + unaff_RSI;
   UNLOCK();
   if (slot_count == 0x1f) {
-    *(undefined8 *)(current_pos + 8) = 0;
-    func_0x000180060c10(*(undefined8 *)(unaff_RDI + 0x50),base_addr);
+    *(uint64_t *)(current_pos + 8) = 0;
+    func_0x000180060c10(*(uint64_t *)(unaff_RDI + 0x50),base_addr);
   }
   return 1;
 }
@@ -460,7 +460,7 @@ undefined8 批量处理缓冲区槽位(void)
  * @param buffer_ptr 缓冲区指针
  * @return 操作结果
  */
-undefined1 更新缓冲区位置(void)
+int8_t 更新缓冲区位置(void)
 {
   longlong offset;
   longlong buffer_ptr;
@@ -481,7 +481,7 @@ undefined1 更新缓冲区位置(void)
  * @param data_obj 数据对象
  * @return 成功插入返回1，否则返回0
  */
-undefined8 尝试插入缓冲区(undefined8 *buffer_info,longlong queue_info,undefined8 data_obj)
+uint64_t 尝试插入缓冲区(uint64_t *buffer_info,longlong queue_info,uint64_t data_obj)
 {
   char insert_result;
   longlong *current_node;
@@ -527,7 +527,7 @@ undefined8 尝试插入缓冲区(undefined8 *buffer_info,longlong queue_info,und
       if (insert_result != '\0') break;
       node_value = next_node[1];
     }
-    *(undefined4 *)(queue_info + 8) = 1;
+    *(int32_t *)(queue_info + 8) = 1;
     start_node = next_node + 1;
     if (next_node == (longlong *)0x0) {
       start_node = target_node;
@@ -556,14 +556,14 @@ undefined8 尝试插入缓冲区(undefined8 *buffer_info,longlong queue_info,und
  * @param param4 参数4
  * @return 成功插入返回true，否则返回false
  */
-bool 尝试插入队列(longlong queue_obj,undefined8 param2,undefined8 param3,undefined8 param4)
+bool 尝试插入队列(longlong queue_obj,uint64_t param2,uint64_t param3,uint64_t param4)
 {
   longlong *inserted_obj;
   char insert_result;
   longlong *queue_item;
   
   queue_item = (longlong *)0x0;
-  insert_result = FUN_180060e40(*(undefined8 *)(queue_obj + 0x60),queue_obj + 0x78,&queue_item,param4,
+  insert_result = FUN_180060e40(*(uint64_t *)(queue_obj + 0x60),queue_obj + 0x78,&queue_item,param4,
                         0xfffffffffffffffe);
   inserted_obj = queue_item;
   if (insert_result != '\0') {
@@ -595,7 +595,7 @@ void FUN_180060fc0(longlong *param_1,longlong *param_2)
   longlong lVar7;
   longlong lVar8;
   ulonglong uVar9;
-  undefined8 uVar10;
+  uint64_t uVar10;
   
   uVar10 = 0xfffffffffffffffe;
   plVar3 = (longlong *)param_1[6];
@@ -643,7 +643,7 @@ void FUN_180060fc0(longlong *param_1,longlong *param_2)
       param_1[8] = lVar7 + 0x100;
     }
     uVar10 = FUN_18062b420(_DAT_180c8ed18,0x100,(char)param_1[10]);
-    *(undefined8 *)(param_1[9] + 8) = uVar10;
+    *(uint64_t *)(param_1[9] + 8) = uVar10;
     *(longlong **)param_1[6] = param_2;
     lVar7 = param_1[9];
     param_1[9] = lVar7 + 8;
@@ -669,17 +669,17 @@ void FUN_180060fc0(longlong *param_1,longlong *param_2)
 
 
 
-// 函数: void FUN_1800611a0(longlong param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1800611a0(longlong param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void FUN_1800611a0(longlong param_1,longlong *param_2,uint64_t param_3,uint64_t param_4)
+void FUN_1800611a0(longlong param_1,longlong *param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  undefined8 *puVar1;
+  uint64_t *puVar1;
   longlong lVar2;
   longlong lVar3;
   int iVar4;
   longlong lVar5;
-  undefined8 uVar6;
-  undefined1 uVar7;
+  uint64_t uVar6;
+  int8_t uVar7;
   
   uVar6 = 0xfffffffffffffffe;
   lVar5 = param_1 + 0xf0;
@@ -692,7 +692,7 @@ void FUN_1800611a0(longlong param_1,longlong *param_2,undefined8 param_3,undefin
   LOCK();
   *(int *)(param_1 + 0x140) = *(int *)(param_1 + 0x140) + 1;
   UNLOCK();
-  puVar1 = *(undefined8 **)(param_1 + 0x1f0);
+  puVar1 = *(uint64_t **)(param_1 + 0x1f0);
   lVar2 = *(longlong *)(_DAT_180c82868 + 0x10);
   lVar3 = *(longlong *)(_DAT_180c82868 + 8);
   do {
@@ -718,7 +718,7 @@ void FUN_1800611a0(longlong param_1,longlong *param_2,undefined8 param_3,undefin
  * 关闭指定的句柄
  * @param handle_ptr 句柄指针
  */
-void 关闭句柄(undefined8 *handle_ptr)
+void 关闭句柄(uint64_t *handle_ptr)
 
 {
   CloseHandle(*handle_ptr);
@@ -734,7 +734,7 @@ void 关闭句柄(undefined8 *handle_ptr)
  * 销毁互斥锁并清理相关资源
  * @param mutex_ptr 互斥锁指针
  */
-void 销毁互斥锁清理资源(undefined8 *mutex_ptr)
+void 销毁互斥锁清理资源(uint64_t *mutex_ptr)
 
 {
   *mutex_ptr = &UNK_180a3cf50;
@@ -749,7 +749,7 @@ void 销毁互斥锁清理资源(undefined8 *mutex_ptr)
     FUN_18064e900();
   }
   mutex_ptr[8] = 0;
-  *(undefined4 *)(mutex_ptr + 10) = 0;
+  *(int32_t *)(mutex_ptr + 10) = 0;
   mutex_ptr[7] = &UNK_18098bcb0;
   mutex_ptr[1] = &UNK_180a3c3e0;
   if (mutex_ptr[2] != 0) {
@@ -757,7 +757,7 @@ void 销毁互斥锁清理资源(undefined8 *mutex_ptr)
     FUN_18064e900();
   }
   mutex_ptr[2] = 0;
-  *(undefined4 *)(mutex_ptr + 4) = 0;
+  *(int32_t *)(mutex_ptr + 4) = 0;
   mutex_ptr[1] = &UNK_18098bcb0;
   return;
 }
@@ -773,11 +773,11 @@ void 销毁互斥锁清理资源(undefined8 *mutex_ptr)
  * @param param4 参数4
  * @return 互斥锁指针
  */
-undefined8 *
-释放互斥锁和内存(undefined8 *mutex_ptr,ulonglong flags,undefined8 param3,undefined8 param4)
+uint64_t *
+释放互斥锁和内存(uint64_t *mutex_ptr,ulonglong flags,uint64_t param3,uint64_t param4)
 
 {
-  undefined8 alloc_flags;
+  uint64_t alloc_flags;
   
   alloc_flags = 0xfffffffffffffffe;
   *mutex_ptr = &UNK_180a3cf50;
@@ -804,26 +804,26 @@ undefined8 *
  * @param param1 参数1
  * @param config_ptr 配置指针
  */
-void 初始化线程池资源(undefined8 param1,longlong config_ptr)
+void 初始化线程池资源(uint64_t param1,longlong config_ptr)
 
 {
   longlong lVar1;
   longlong lVar2;
-  undefined8 *puVar3;
-  undefined1 auStack_268 [32];
+  uint64_t *puVar3;
+  int8_t auStack_268 [32];
   longlong lStack_248;
-  undefined8 *puStack_238;
-  undefined1 auStack_230 [8];
+  uint64_t *puStack_238;
+  int8_t auStack_230 [8];
   longlong lStack_228;
   uint uStack_220;
   longlong lStack_210;
-  undefined1 auStack_208 [80];
-  undefined8 uStack_1b8;
-  undefined *puStack_1a8;
-  undefined1 *puStack_1a0;
-  undefined4 uStack_198;
-  undefined1 auStack_190 [88];
-  undefined1 auStack_138 [256];
+  int8_t auStack_208 [80];
+  uint64_t uStack_1b8;
+  void *puStack_1a8;
+  int8_t *puStack_1a0;
+  int32_t uStack_198;
+  int8_t auStack_190 [88];
+  int8_t auStack_138 [256];
   ulonglong uStack_38;
   
   lVar2 = _DAT_180c86928;
@@ -836,7 +836,7 @@ void 初始化线程池资源(undefined8 param1,longlong config_ptr)
   auStack_190[0] = 0;
   uStack_198 = 6;
   strcpy_s(auStack_190,0x10,&UNK_1809fe2c0);
-  puVar3 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x208,8,3);
+  puVar3 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x208,8,3);
   lStack_248 = lVar1 + 0x70;
   puStack_238 = puVar3;
   FUN_18020e0e0(puVar3,&puStack_1a8,3,lVar1 + 0x2e0);
@@ -844,13 +844,13 @@ void 初始化线程池资源(undefined8 param1,longlong config_ptr)
   puStack_238 = puVar3;
   FUN_18020e840(puVar3);
   FUN_18005ea90(lVar1 + 0x48,&puStack_238);
-  *(undefined8 **)(lVar2 + 400) = puVar3;
+  *(uint64_t **)(lVar2 + 400) = puVar3;
   puStack_1a8 = &UNK_18098bcb0;
   FUN_180627e10(_DAT_180c86870 + 0x170,auStack_230,&DAT_1809fc8c8);
   if (0 < *(int *)(param_2 + 0x10)) {
     FUN_1806277c0(auStack_230,uStack_220 + *(int *)(param_2 + 0x10));
                     // WARNING: Subroutine does not return
-    memcpy((ulonglong)uStack_220 + lStack_228,*(undefined8 *)(param_2 + 8),
+    memcpy((ulonglong)uStack_220 + lStack_228,*(uint64_t *)(param_2 + 8),
            (longlong)(*(int *)(param_2 + 0x10) + 1));
   }
   FUN_18062c100(auStack_208,auStack_230);
@@ -873,10 +873,10 @@ void 初始化线程池资源(undefined8 param1,longlong config_ptr)
 void 处理线程池任务类型4(longlong *task_ptr)
 
 {
-  undefined8 *puVar1;
+  uint64_t *puVar1;
   code *pcVar2;
   longlong lVar3;
-  undefined8 uVar4;
+  uint64_t uVar4;
   longlong *plVar5;
   longlong *plVar6;
   longlong *plVar7;
@@ -893,7 +893,7 @@ void 处理线程池任务类型4(longlong *task_ptr)
   if (plVar5 != (longlong *)0x0) {
     (**(code **)(*plVar5 + 0x28))(plVar5);
   }
-  puVar1 = *(undefined8 **)(lVar3 + 400);
+  puVar1 = *(uint64_t **)(lVar3 + 400);
   pcVar2 = *(code **)*puVar1;
   pplStackX_10 = &plStackX_8;
   plStackX_8 = plVar5;
@@ -907,7 +907,7 @@ void 处理线程池任务类型4(longlong *task_ptr)
   if (plVar6 != (longlong *)0x0) {
     (**(code **)(*plVar6 + 0x28))(plVar6);
   }
-  puVar1 = *(undefined8 **)(lVar3 + 400);
+  puVar1 = *(uint64_t **)(lVar3 + 400);
   pcVar2 = *(code **)*puVar1;
   pplStackX_10 = &plStackX_8;
   plStackX_8 = plVar6;
@@ -926,7 +926,7 @@ void 处理线程池任务类型4(longlong *task_ptr)
     pplStackX_10 = (longlong **)plVar5;
     (**(code **)(*plVar5 + 0x38))(plVar5);
   }
-  puVar1 = *(undefined8 **)(lVar3 + 400);
+  puVar1 = *(uint64_t **)(lVar3 + 400);
   pcVar2 = *(code **)*puVar1;
   pplStackX_10 = &plStackX_8;
   plStackX_8 = plVar7;
@@ -934,7 +934,7 @@ void 处理线程池任务类型4(longlong *task_ptr)
     (**(code **)(*plVar7 + 0x28))(plVar7);
   }
   (*pcVar2)(puVar1,&plStackX_8);
-  FUN_18020f150(*(undefined8 *)(lVar3 + 400));
+  FUN_18020f150(*(uint64_t *)(lVar3 + 400));
   if (plVar6 != (longlong *)0x0) {
     (**(code **)(*plVar6 + 0x38))(plVar6);
   }
@@ -958,10 +958,10 @@ void 处理线程池任务类型4(longlong *task_ptr)
 void 处理线程池任务类型3(longlong *task_ptr)
 
 {
-  undefined8 *puVar1;
+  uint64_t *puVar1;
   code *pcVar2;
   longlong lVar3;
-  undefined8 uVar4;
+  uint64_t uVar4;
   longlong *plVar5;
   longlong *plVar6;
   longlong *plVar7;
@@ -978,7 +978,7 @@ void 处理线程池任务类型3(longlong *task_ptr)
   if (plVar5 != (longlong *)0x0) {
     (**(code **)(*plVar5 + 0x28))(plVar5);
   }
-  puVar1 = *(undefined8 **)(lVar3 + 400);
+  puVar1 = *(uint64_t **)(lVar3 + 400);
   pcVar2 = *(code **)*puVar1;
   pplStackX_10 = &plStackX_8;
   plStackX_8 = plVar5;
@@ -992,7 +992,7 @@ void 处理线程池任务类型3(longlong *task_ptr)
   if (plVar6 != (longlong *)0x0) {
     (**(code **)(*plVar6 + 0x28))(plVar6);
   }
-  puVar1 = *(undefined8 **)(lVar3 + 400);
+  puVar1 = *(uint64_t **)(lVar3 + 400);
   pcVar2 = *(code **)*puVar1;
   pplStackX_10 = &plStackX_8;
   plStackX_8 = plVar6;
@@ -1011,7 +1011,7 @@ void 处理线程池任务类型3(longlong *task_ptr)
     pplStackX_10 = (longlong **)plVar5;
     (**(code **)(*plVar5 + 0x38))(plVar5);
   }
-  puVar1 = *(undefined8 **)(lVar3 + 400);
+  puVar1 = *(uint64_t **)(lVar3 + 400);
   pcVar2 = *(code **)*puVar1;
   pplStackX_10 = &plStackX_8;
   plStackX_8 = plVar7;
@@ -1019,7 +1019,7 @@ void 处理线程池任务类型3(longlong *task_ptr)
     (**(code **)(*plVar7 + 0x28))(plVar7);
   }
   (*pcVar2)(puVar1,&plStackX_8);
-  FUN_18020f150(*(undefined8 *)(lVar3 + 400));
+  FUN_18020f150(*(uint64_t *)(lVar3 + 400));
   if (plVar6 != (longlong *)0x0) {
     (**(code **)(*plVar6 + 0x38))(plVar6);
   }
@@ -1056,7 +1056,7 @@ void 执行核心线程池函数(void)
  * @param param3 参数3
  * @param param4 参数4
  */
-void 执行线程池任务包装器1(undefined8 param1,undefined8 param2,undefined4 param3,undefined8 param4)
+void 执行线程池任务包装器1(uint64_t param1,uint64_t param2,int32_t param3,uint64_t param4)
 
 {
   FUN_180061f80(param1,param2,0xffffffff00000000,param3,param4,&stack0x00000028);
@@ -1075,11 +1075,11 @@ void 执行线程池任务包装器1(undefined8 param1,undefined8 param2,undefin
  * @param param3 参数3
  * @param param4 参数4
  */
-void 执行线程池任务包装器2(undefined8 param1,undefined8 param2,undefined8 param3,undefined8 param4)
+void 执行线程池任务包装器2(uint64_t param1,uint64_t param2,uint64_t param3,uint64_t param4)
 
 {
-  undefined8 uStackX_18;
-  undefined8 uStackX_20;
+  uint64_t uStackX_18;
+  uint64_t uStackX_20;
   
   uStackX_18 = param_3;
   uStackX_20 = param_4;
@@ -1099,10 +1099,10 @@ void 执行线程池任务包装器2(undefined8 param1,undefined8 param2,undefin
  * @param param3 参数3
  * @param param4 参数4
  */
-void 执行线程池任务包装器3(undefined8 param1,undefined8 param2,undefined8 param3,undefined8 param4)
+void 执行线程池任务包装器3(uint64_t param1,uint64_t param2,uint64_t param3,uint64_t param4)
 
 {
-  undefined8 uStackX_20;
+  uint64_t uStackX_20;
   
   uStackX_20 = param_4;
   FUN_180061f80(param_1,param_2,0xffffffff00000000,0xd,param_3,&uStackX_20);
@@ -1153,10 +1153,10 @@ void 执行线程池任务包装器5(void)
 void 处理线程池任务类型6(longlong *task_ptr)
 
 {
-  undefined8 *puVar1;
+  uint64_t *puVar1;
   code *pcVar2;
   longlong lVar3;
-  undefined8 uVar4;
+  uint64_t uVar4;
   longlong *plVar5;
   longlong *plStackX_8;
   longlong *plStackX_10;
@@ -1171,7 +1171,7 @@ void 处理线程池任务类型6(longlong *task_ptr)
     if (plVar5 != (longlong *)0x0) {
       (**(code **)(*plVar5 + 0x28))(plVar5);
     }
-    puVar1 = *(undefined8 **)(lVar3 + 400);
+    puVar1 = *(uint64_t **)(lVar3 + 400);
     pcVar2 = *(code **)*puVar1;
     pplStackX_18 = &plStackX_8;
     plStackX_8 = plVar5;
@@ -1179,7 +1179,7 @@ void 处理线程池任务类型6(longlong *task_ptr)
       (**(code **)(*plVar5 + 0x28))(plVar5);
     }
     (*pcVar2)(puVar1,&plStackX_8);
-    FUN_18020f150(*(undefined8 *)(lVar3 + 400));
+    FUN_18020f150(*(uint64_t *)(lVar3 + 400));
     if (plVar5 != (longlong *)0x0) {
       (**(code **)(*plVar5 + 0x38))(plVar5);
     }
@@ -1200,13 +1200,13 @@ void 处理线程池任务类型6(longlong *task_ptr)
 void 初始化时间相关资源(void)
 
 {
-  undefined1 auStack_208 [48];
-  undefined4 uStack_1d8;
-  undefined8 uStack_190;
-  undefined8 uStack_188;
-  undefined8 uStack_180;
-  undefined8 uStack_178;
-  undefined1 auStack_138 [256];
+  int8_t auStack_208 [48];
+  int32_t uStack_1d8;
+  uint64_t uStack_190;
+  uint64_t uStack_188;
+  uint64_t uStack_180;
+  uint64_t uStack_178;
+  int8_t auStack_138 [256];
   ulonglong uStack_38;
   
   uStack_178 = 0xfffffffffffffffe;

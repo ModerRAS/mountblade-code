@@ -2,8 +2,8 @@
 
 // 99_part_01_part024_sub002.c - 2 个函数
 
-// 函数: void FUN_1800b8911(longlong param_1,undefined8 param_2,longlong *param_3)
-void FUN_1800b8911(longlong param_1,undefined8 param_2,longlong *param_3)
+// 函数: void FUN_1800b8911(longlong param_1,uint64_t param_2,longlong *param_3)
+void FUN_1800b8911(longlong param_1,uint64_t param_2,longlong *param_3)
 
 {
   longlong *plVar1;

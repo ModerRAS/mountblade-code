@@ -10,13 +10,13 @@
  * @param callback_param1 回调参数1
  * @param callback_param2 回调参数2
  */
-void process_engine_state_update(undefined8 *engine_context, longlong state_offset, undefined8 callback_param1, undefined8 callback_param_2)
+void process_engine_state_update(uint64_t *engine_context, longlong state_offset, uint64_t callback_param1, uint64_t callback_param_2)
 
 {
   longlong *callback_ptr;
   longlong callback_params[3];
-  undefined8 cleanup_param1;
-  undefined8 cleanup_param2;
+  uint64_t cleanup_param1;
+  uint64_t cleanup_param2;
   code *cleanup_func1;
   code *cleanup_func2;
   
@@ -55,7 +55,7 @@ void process_engine_state_update(undefined8 *engine_context, longlong state_offs
  * @param flags 释放标志位
  * @return 返回资源指针
  */
-undefined8 * release_engine_resources(undefined8 *resource_ptr, ulonglong flags)
+uint64_t * release_engine_resources(uint64_t *resource_ptr, ulonglong flags)
 {
   // 设置资源指针指向全局资源管理器
   *resource_ptr = &global_resource_manager;
@@ -92,7 +92,7 @@ void process_engine_data_statistics(longlong context_ptr)
   ulonglong max_items;
   ulonglong temp_sum;
   longlong data_buffer;
-  undefined8 *temp_array;
+  uint64_t *temp_array;
   
   // 获取数据缓冲区和结果指针
   data_buffer = *(longlong *)(context_ptr + 0x98d8);
@@ -106,7 +106,7 @@ void process_engine_data_statistics(longlong context_ptr)
     // 初始化统计变量
     temp_sum = 0;
     // 获取数据数组
-    get_data_array(*(undefined8 *)(global_data_table + 0x1cd8), data_buffer, 0, 0, &temp_array, 0);
+    get_data_array(*(uint64_t *)(global_data_table + 0x1cd8), data_buffer, 0, 0, &temp_array, 0);
     
     total_count = 0;
     max_items = (longlong)(int)((uint)height * (uint)width);
@@ -138,15 +138,15 @@ void process_engine_data_statistics(longlong context_ptr)
     result_ptr[1] = total_count;
     
     // 清理临时数组
-    if (temp_array != (undefined8 *)0x0) {
+    if (temp_array != (uint64_t *)0x0) {
       temp_sum = (ulonglong)temp_array & 0xffffffffffc00000;
       if (temp_sum != 0) {
         data_buffer = temp_sum + 0x80 + ((longlong)temp_array - temp_sum >> 0x10) * 0x50;
         data_buffer = data_buffer - (ulonglong)*(uint *)(data_buffer + 4);
         if ((*(void ***)(temp_sum + 0x70) == &ExceptionList) && (*(char *)(data_buffer + 0xe) == '\0')) {
           // 标准清理流程
-          *temp_array = *(undefined8 *)(data_buffer + 0x20);
-          *(undefined8 **)(data_buffer + 0x20) = temp_array;
+          *temp_array = *(uint64_t *)(data_buffer + 0x20);
+          *(uint64_t **)(data_buffer + 0x20) = temp_array;
           counter_ptr = (int *)(data_buffer + 0x18);
           *counter_ptr = *counter_ptr + -1;
           if (*counter_ptr == 0) {
@@ -189,15 +189,15 @@ void process_engine_data_statistics_variant(longlong context_ptr, longlong data_
   ulonglong index;
   ulonglong max_items;
   longlong total_items;
-  undefined8 temp_param;
-  undefined8 *data_array;
+  uint64_t temp_param;
+  uint64_t *data_array;
   
   // 获取高度信息
   height = *(ushort *)(data_ptr + 0x32e);
   temp_sum = 0;
   temp_param = 0;
   // 获取数据数组
-  get_data_array(*(undefined8 *)(context_ptr + 0x1cd8));
+  get_data_array(*(uint64_t *)(context_ptr + 0x1cd8));
   
   valid_count = 0;
   total_items = (longlong)(int)((uint)height * width);
@@ -229,7 +229,7 @@ void process_engine_data_statistics_variant(longlong context_ptr, longlong data_
   result_ptr[1] = sum_result;
   
   // 清理数据数组
-  if (data_array == (undefined8 *)0x0) {
+  if (data_array == (uint64_t *)0x0) {
     return;
   }
   
@@ -239,8 +239,8 @@ void process_engine_data_statistics_variant(longlong context_ptr, longlong data_
     total_items = total_items - (ulonglong)*(uint *)(total_items + 4);
     if ((*(void ***)(temp_sum + 0x70) == &ExceptionList) && (*(char *)(total_items + 0xe) == '\0')) {
       // 标准清理流程
-      *data_array = *(undefined8 *)(total_items + 0x20);
-      *(undefined8 **)(total_items + 0x20) = data_array;
+      *data_array = *(uint64_t *)(total_items + 0x20);
+      *(uint64_t **)(total_items + 0x20) = data_array;
       counter_ptr = (int *)(total_items + 0x18);
       *counter_ptr = *counter_ptr + -1;
       if (*counter_ptr == 0) {
@@ -268,7 +268,7 @@ void process_engine_data_statistics_variant(longlong context_ptr, longlong data_
  * @param param3 参数3（未使用）
  * @param data_array 数据数组指针
  */
-void process_data_accumulation(undefined8 param1, uint initial_value, undefined8 param3, undefined8 *data_array)
+void process_data_accumulation(uint64_t param1, uint initial_value, uint64_t param3, uint64_t *data_array)
 {
   int *counter_ptr;
   int data_value;
@@ -302,15 +302,15 @@ void process_data_accumulation(undefined8 param1, uint initial_value, undefined8
   result_ptr[1] = initial_value;
   
   // 清理数据数组
-  if (data_array != (undefined8 *)0x0) {
+  if (data_array != (uint64_t *)0x0) {
     index = (ulonglong)data_array & 0xffffffffffc00000;
     if (index != 0) {
       memory_block = index + 0x80 + ((longlong)data_array - index >> 0x10) * 0x50;
       memory_block = memory_block - (ulonglong)*(uint *)(memory_block + 4);
       if ((*(void ***)(index + 0x70) == &ExceptionList) && (*(char *)(memory_block + 0xe) == '\0')) {
         // 标准清理流程
-        *data_array = *(undefined8 *)(memory_block + 0x20);
-        *(undefined8 **)(memory_block + 0x20) = data_array;
+        *data_array = *(uint64_t *)(memory_block + 0x20);
+        *(uint64_t **)(memory_block + 0x20) = data_array;
         counter_ptr = (int *)(memory_block + 0x18);
         *counter_ptr = *counter_ptr + -1;
         if (*counter_ptr == 0) {
@@ -340,7 +340,7 @@ void cleanup_memory_resources(void)
 {
   int *counter_ptr;
   longlong memory_block;
-  undefined8 *resource_ptr;
+  uint64_t *resource_ptr;
   ulonglong base_address;
   
   // 获取资源的基础地址
@@ -352,8 +352,8 @@ void cleanup_memory_resources(void)
     
     if ((*(void ***)(base_address + 0x70) == &ExceptionList) && (*(char *)(memory_block + 0xe) == '\0')) {
       // 标准清理流程
-      *resource_ptr = *(undefined8 *)(memory_block + 0x20);
-      *(undefined8 **)(memory_block + 0x20) = resource_ptr;
+      *resource_ptr = *(uint64_t *)(memory_block + 0x20);
+      *(uint64_t **)(memory_block + 0x20) = resource_ptr;
       counter_ptr = (int *)(memory_block + 0x18);
       *counter_ptr = *counter_ptr + -1;
       if (*counter_ptr == 0) {
@@ -381,41 +381,41 @@ void cleanup_memory_resources(void)
  * @param context_ptr 引擎上下文指针
  * @param callback_data 回调数据指针
  */
-void initialize_engine_context(longlong context_ptr, undefined1 *callback_data)
+void initialize_engine_context(longlong context_ptr, int8_t *callback_data)
 {
   longlong *callback_chain;
   code *callback_func;
-  undefined8 *context_data;
+  uint64_t *context_data;
   code *resource_callback;
-  undefined1 cleanup_buffer1 [16];
+  int8_t cleanup_buffer1 [16];
   code *cleanup_func1;
   code *cleanup_func2;
   longlong context_param;
-  undefined1 cleanup_buffer2 [16];
+  int8_t cleanup_buffer2 [16];
   code *resource_cleanup1;
   code *resource_cleanup2;
   longlong context_handle;
-  undefined1 *resource_data [2];
+  int8_t *resource_data [2];
   code *resource_handler1;
   code *resource_handler2;
-  undefined1 cleanup_buffer3 [16];
+  int8_t cleanup_buffer3 [16];
   code *final_cleanup1;
   code *final_cleanup2;
-  undefined8 cleanup_flags;
-  undefined1 *resource_ptr;
+  uint64_t cleanup_flags;
+  int8_t *resource_ptr;
   
   cleanup_flags = 0xfffffffffffffffe;
   
   // 检查是否已经初始化
   if (*(longlong *)(context_ptr + 0xc0) == 0) {
     // 分配上下文数据
-    context_data = (undefined8 *)allocate_memory_block(global_memory_pool, 0x60, 8, 3);
+    context_data = (uint64_t *)allocate_memory_block(global_memory_pool, 0x60, 8, 3);
     
     // 初始化上下文数据结构
     initialize_context_data(context_data);
     
     // 设置上下文数据指针
-    *(undefined8 **)(context_ptr + 0xc0) = context_data;
+    *(uint64_t **)(context_ptr + 0xc0) = context_data;
     
     // 设置清理函数
     final_cleanup1 = (code *)&engine_cleanup_handler;
@@ -454,7 +454,7 @@ void initialize_engine_context(longlong context_ptr, undefined1 *callback_data)
     resource_handler2 = engine_resource_handler2;
     
     // 分配资源数据
-    resource_data[0] = (undefined1 *)allocate_memory_block(global_memory_pool, 0x28, 8, memory_allocation_flags);
+    resource_data[0] = (int8_t *)allocate_memory_block(global_memory_pool, 0x28, 8, memory_allocation_flags);
     initialize_resource_data(resource_data[0]);
     resource_ptr = resource_data[0];
     
@@ -556,32 +556,32 @@ void cleanup_callback_chain(longlong *chain_ptr)
  * @param callback_data 回调数据
  * @param float_data 浮点数据数组
  */
-void process_float_data_and_initialize_context(longlong context_ptr, undefined1 *callback_data, float *float_data)
+void process_float_data_and_initialize_context(longlong context_ptr, int8_t *callback_data, float *float_data)
 {
   int *counter_ptr;
   longlong *callback_chain;
   code *callback_func;
   int dimension_flags;
-  undefined8 *context_data;
+  uint64_t *context_data;
   longlong render_data;
-  undefined8 render_param;
+  uint64_t render_param;
   code *render_callback;
   int axis_flags;
   uint total_dimensions;
-  undefined1 cleanup_buffer1 [16];
+  int8_t cleanup_buffer1 [16];
   code *cleanup_func1;
   code *cleanup_func2;
   uint dimension_count;
   longlong context_handle;
   float *float_ptr;
-  undefined8 render_params [2];
+  uint64_t render_params [2];
   code *render_handler1;
   code *render_handler2;
-  undefined1 cleanup_buffer2 [16];
+  int8_t cleanup_buffer2 [16];
   code *context_handler1;
   code *context_handler2;
-  undefined8 cleanup_flags;
-  undefined1 render_buffer [72];
+  uint64_t cleanup_flags;
+  int8_t render_buffer [72];
   ulonglong dimension_index;
   
   cleanup_flags = 0xfffffffffffffffe;
@@ -604,13 +604,13 @@ void process_float_data_and_initialize_context(longlong context_ptr, undefined1 
   // 检查是否已经初始化
   if (*(longlong *)(context_ptr + 200 + dimension_index * 8) == 0) {
     // 分配上下文数据
-    context_data = (undefined8 *)allocate_memory_block(global_memory_pool, 0x60, 8, 3);
+    context_data = (uint64_t *)allocate_memory_block(global_memory_pool, 0x60, 8, 3);
     
     // 初始化上下文数据结构
     initialize_render_context(context_data);
     
     // 设置上下文数据指针
-    *(undefined8 **)(context_ptr + 200 + dimension_index * 8) = context_data;
+    *(uint64_t **)(context_ptr + 200 + dimension_index * 8) = context_data;
     
     // 设置上下文处理器
     context_handler1 = (code *)&render_context_handler1;
@@ -696,28 +696,28 @@ void process_float_data_and_initialize_context(longlong context_ptr, undefined1 
  * @param resource_ptr 资源指针
  * @return 返回资源指针
  */
-undefined8 * initialize_engine_resource_manager(undefined8 *resource_ptr)
+uint64_t * initialize_engine_resource_manager(uint64_t *resource_ptr)
 {
   // 设置资源管理器的各个组件
   *resource_ptr = &engine_resource_table;
   *resource_ptr = &engine_resource_config;
-  *(undefined4 *)(resource_ptr + 1) = 0;
+  *(int32_t *)(resource_ptr + 1) = 0;
   *resource_ptr = &engine_memory_pool;
   resource_ptr[2] = &engine_resource_pool;
   resource_ptr[3] = 0;
-  *(undefined4 *)(resource_ptr + 4) = 0;
+  *(int32_t *)(resource_ptr + 4) = 0;
   resource_ptr[2] = &engine_callback_table;
   resource_ptr[3] = resource_ptr + 5;
-  *(undefined4 *)(resource_ptr + 4) = 0;
-  *(undefined1 *)(resource_ptr + 5) = 0;
-  *(undefined1 *)((longlong)resource_ptr + 0xb2) = 0;
-  *(undefined4 *)(resource_ptr + 1) = 0;
-  *(undefined2 *)(resource_ptr + 0x16) = 0;
+  *(int32_t *)(resource_ptr + 4) = 0;
+  *(int8_t *)(resource_ptr + 5) = 0;
+  *(int8_t *)((longlong)resource_ptr + 0xb2) = 0;
+  *(int32_t *)(resource_ptr + 1) = 0;
+  *(int16_t *)(resource_ptr + 0x16) = 0;
   resource_ptr[0x15] = 0;
   *resource_ptr = &global_resource_manager;
   resource_ptr[0x15] = 0;
   resource_ptr[0x17] = 0;
-  *(undefined1 *)((longlong)resource_ptr + 300) = 0;
+  *(int8_t *)((longlong)resource_ptr + 300) = 0;
   resource_ptr[0x18] = 0;
   resource_ptr[0x19] = 0;
   resource_ptr[0x1a] = 0;
@@ -727,7 +727,7 @@ undefined8 * initialize_engine_resource_manager(undefined8 *resource_ptr)
   resource_ptr[0x1e] = 0;
   resource_ptr[0x1f] = 0;
   resource_ptr[0x20] = 0;
-  *(undefined4 *)(resource_ptr + 0x25) = 0;
+  *(int32_t *)(resource_ptr + 0x25) = 0;
   resource_ptr[0x21] = 0;
   resource_ptr[0x22] = 0;
   resource_ptr[0x23] = 0;
@@ -737,7 +737,7 @@ undefined8 * initialize_engine_resource_manager(undefined8 *resource_ptr)
 
 
 
-undefined8 *
+uint64_t *
 /**
  * 清理引擎资源管理器
  * @param resource_ptr 资源指针
@@ -746,9 +746,9 @@ undefined8 *
  * @param param4 参数4
  * @return 返回资源指针
  */
-undefined8 * cleanup_engine_resource_manager(undefined8 *resource_ptr, ulonglong flags, undefined8 param3, undefined8 param4)
+uint64_t * cleanup_engine_resource_manager(uint64_t *resource_ptr, ulonglong flags, uint64_t param3, uint64_t param4)
 {
-  undefined8 cleanup_flags;
+  uint64_t cleanup_flags;
   
   cleanup_flags = 0xfffffffffffffffe;
   
@@ -785,31 +785,31 @@ undefined8 * cleanup_engine_resource_manager(undefined8 *resource_ptr, ulonglong
  * @param state_flag 状态标志
  * @param callback_data 回调数据指针
  */
-void process_engine_state_callback(longlong context_ptr, char state_flag, undefined1 *callback_data)
+void process_engine_state_callback(longlong context_ptr, char state_flag, int8_t *callback_data)
 {
   longlong *callback_chain;
   char callback_result;
-  undefined8 cleanup_result;
+  uint64_t cleanup_result;
   longlong context_handle;
   longlong state_data;
   code *callback_func;
-  undefined8 *context_data;
+  uint64_t *context_data;
   longlong render_data;
-  undefined8 render_param;
+  uint64_t render_param;
   code *render_callback;
-  undefined1 cleanup_buffer1 [16];
+  int8_t cleanup_buffer1 [16];
   code *cleanup_func1;
   code *cleanup_func2;
-  undefined8 render_params [2];
+  uint64_t render_params [2];
   code *render_handler1;
-  undefined *render_target;
+  void *render_target;
   longlong cleanup_data;
-  undefined1 cleanup_buffer2 [16];
+  int8_t cleanup_buffer2 [16];
   code *final_cleanup1;
   code *final_cleanup2;
-  undefined1 init_buffer [40];
-  undefined1 temp_buffer [40];
-  undefined1 final_buffer [48];
+  int8_t init_buffer [40];
+  int8_t temp_buffer [40];
+  int8_t final_buffer [48];
   
   // 设置清理标志
   cleanup_result = 0xfffffffffffffffe;
@@ -945,7 +945,7 @@ void process_engine_state_callback(longlong context_ptr, char state_flag, undefi
  */
 void initialize_engine_system(void)
 {
-  undefined8 system_handle;
+  uint64_t system_handle;
   
   // 分配系统内存
   system_handle = allocate_memory_block(global_memory_pool, 0x130, 8, 3);
@@ -960,33 +960,33 @@ void initialize_engine_system(void)
  * @param resource_ptr 资源指针
  * @return 返回资源指针
  */
-undefined8 * initialize_engine_resource_table(undefined8 *resource_ptr)
+uint64_t * initialize_engine_resource_table(uint64_t *resource_ptr)
 {
   // 初始化资源表的基本结构
   *resource_ptr = 0;
   resource_ptr[1] = 0;
   resource_ptr[2] = 0;
-  *(undefined4 *)(resource_ptr + 3) = 3;
+  *(int32_t *)(resource_ptr + 3) = 3;
   resource_ptr[4] = 0;
   resource_ptr[5] = 0;
   resource_ptr[6] = 0;
-  *(undefined4 *)(resource_ptr + 7) = 3;
+  *(int32_t *)(resource_ptr + 7) = 3;
   resource_ptr[8] = 0;
   resource_ptr[9] = 0;
   resource_ptr[10] = 0;
-  *(undefined4 *)(resource_ptr + 0xb) = 3;
+  *(int32_t *)(resource_ptr + 0xb) = 3;
   
   // 设置资源表项
   resource_ptr[0xc] = &engine_resource_entry1;
   resource_ptr[0xd] = 0;
-  *(undefined4 *)(resource_ptr + 0xe) = 0;
+  *(int32_t *)(resource_ptr + 0xe) = 0;
   resource_ptr[0xc] = &engine_resource_entry2;
   resource_ptr[0xd] = resource_ptr + 0xf;
-  *(undefined4 *)(resource_ptr + 0xe) = 0;
-  *(undefined1 *)(resource_ptr + 0xf) = 0;
+  *(int32_t *)(resource_ptr + 0xe) = 0;
+  *(int8_t *)(resource_ptr + 0xf) = 0;
   
   // 清理和初始化其他字段
-  *(undefined4 *)(resource_ptr + 0x25) = 0;
+  *(int32_t *)(resource_ptr + 0x25) = 0;
   resource_ptr[0x1f] = 0;
   resource_ptr[0x20] = 0;
   resource_ptr[0x21] = 0;
@@ -1004,7 +1004,7 @@ undefined8 * initialize_engine_resource_table(undefined8 *resource_ptr)
  * 清理引擎资源并重置状态
  * @param resource_ptr 资源指针
  */
-void cleanup_engine_resources_and_reset(undefined8 *resource_ptr)
+void cleanup_engine_resources_and_reset(uint64_t *resource_ptr)
 {
   // 执行清理操作
   cleanup_engine_system();
@@ -1022,7 +1022,7 @@ void cleanup_engine_resources_and_reset(undefined8 *resource_ptr)
   
   // 重置资源状态
   resource_ptr[1] = 0;
-  *(undefined4 *)(resource_ptr + 3) = 0;
+  *(int32_t *)(resource_ptr + 3) = 0;
   *resource_ptr = &engine_resource_entry1;
   return;
 }
@@ -1037,7 +1037,7 @@ void cleanup_engine_resources_and_reset(undefined8 *resource_ptr)
  * @param param4 参数4
  * @return 返回目标指针
  */
-undefined8 * copy_engine_context_data(undefined8 *dest_ptr, undefined8 *src_ptr, undefined8 param3, undefined8 param4)
+uint64_t * copy_engine_context_data(uint64_t *dest_ptr, uint64_t *src_ptr, uint64_t param3, uint64_t param4)
 {
   code *copy_func;
   
@@ -1136,7 +1136,7 @@ void cleanup_engine_data_structure(longlong *data_ptr)
   // 遍历数据结构进行清理
   for (current_item = *data_ptr; current_item != data_end; current_item = current_item + 0x48) {
     // 设置清理标记
-    *(undefined8 *)(current_item + 0x28) = &engine_cleanup_target;
+    *(uint64_t *)(current_item + 0x28) = &engine_cleanup_target;
     
     // 检查资源状态
     if (*(longlong *)(current_item + 0x30) != 0) {
@@ -1145,9 +1145,9 @@ void cleanup_engine_data_structure(longlong *data_ptr)
     }
     
     // 清理资源
-    *(undefined8 *)(current_item + 0x30) = 0;
-    *(undefined4 *)(current_item + 0x40) = 0;
-    *(undefined8 *)(current_item + 0x28) = &engine_resource_entry1;
+    *(uint64_t *)(current_item + 0x30) = 0;
+    *(int32_t *)(current_item + 0x40) = 0;
+    *(uint64_t *)(current_item + 0x28) = &engine_resource_entry1;
   }
   
   // 检查数据指针是否有效
@@ -1176,7 +1176,7 @@ void cleanup_engine_memory_blocks(longlong *memory_ptr)
   // 遍历内存块进行清理
   for (current_block = *memory_ptr; current_block != memory_end; current_block = current_block + 0x38) {
     // 设置清理标记
-    *(undefined8 *)(current_block + 0x18) = &engine_cleanup_target;
+    *(uint64_t *)(current_block + 0x18) = &engine_cleanup_target;
     
     // 检查内存状态
     if (*(longlong *)(current_block + 0x20) != 0) {
@@ -1185,9 +1185,9 @@ void cleanup_engine_memory_blocks(longlong *memory_ptr)
     }
     
     // 清理内存
-    *(undefined8 *)(current_block + 0x20) = 0;
-    *(undefined4 *)(current_block + 0x30) = 0;
-    *(undefined8 *)(current_block + 0x18) = &engine_resource_entry1;
+    *(uint64_t *)(current_block + 0x20) = 0;
+    *(int32_t *)(current_block + 0x30) = 0;
+    *(uint64_t *)(current_block + 0x18) = &engine_resource_entry1;
   }
   
   // 检查内存指针是否有效
@@ -1209,28 +1209,28 @@ void cleanup_engine_memory_blocks(longlong *memory_ptr)
  * @param resource_ptr 资源指针
  * @param callback_param 回调参数
  */
-void process_engine_resources_and_callback(undefined8 *resource_ptr, undefined8 callback_param)
+void process_engine_resources_and_callback(uint64_t *resource_ptr, uint64_t callback_param)
 {
   longlong resource_table;
   int resource_index;
   longlong resource_data;
-  undefined *cleanup_target;
+  void *cleanup_target;
   longlong cleanup_handle;
-  undefined4 cleanup_flags;
-  undefined8 resource_param1;
-  undefined8 resource_param2;
-  undefined8 resource_param3;
-  undefined8 resource_param4;
-  undefined4 alloc_flags1;
-  undefined8 alloc_param1;
-  undefined8 alloc_param2;
-  undefined8 alloc_param3;
-  undefined4 alloc_flags2;
-  undefined8 cleanup_param1;
-  undefined8 cleanup_param2;
-  undefined8 cleanup_param3;
-  undefined4 alloc_flags3;
-  undefined8 cleanup_param4;
+  int32_t cleanup_flags;
+  uint64_t resource_param1;
+  uint64_t resource_param2;
+  uint64_t resource_param3;
+  uint64_t resource_param4;
+  int32_t alloc_flags1;
+  uint64_t alloc_param1;
+  uint64_t alloc_param2;
+  uint64_t alloc_param3;
+  int32_t alloc_flags2;
+  uint64_t cleanup_param1;
+  uint64_t cleanup_param2;
+  uint64_t cleanup_param3;
+  int32_t alloc_flags3;
+  uint64_t cleanup_param4;
   
   // 获取资源表
   resource_table = global_resource_table;
@@ -1268,7 +1268,7 @@ void process_engine_resources_and_callback(undefined8 *resource_ptr, undefined8 
   
   // 处理回调参数
   process_callback_parameters(&cleanup_target, callback_param);
-  execute_resource_callback(*(undefined8 *)(resource_ptr[1] + 0xb8), &cleanup_target, resource_data);
+  execute_resource_callback(*(uint64_t *)(resource_ptr[1] + 0xb8), &cleanup_target, resource_data);
   
   // 清理资源
   cleanup_resource_system(&cleanup_param1);
@@ -1299,11 +1299,11 @@ void process_engine_resources_and_callback(undefined8 *resource_ptr, undefined8 
 longlong * clone_engine_context(longlong source_ptr, longlong *dest_ptr)
 {
   longlong context_data;
-  undefined8 context_handle;
+  uint64_t context_handle;
   longlong *cloned_context;
-  undefined *name_ptr;
-  undefined4 init_flag;
-  undefined8 cleanup_flags;
+  void *name_ptr;
+  int32_t init_flag;
+  uint64_t cleanup_flags;
   
   cleanup_flags = 0xfffffffffffffffe;
   
@@ -1320,19 +1320,19 @@ longlong * clone_engine_context(longlong source_ptr, longlong *dest_ptr)
   init_flag = 1;
   
   // 复制上下文数据
-  *(undefined8 *)(*dest_ptr + 0xa8) = *(undefined8 *)(source_ptr + 0xa8);
+  *(uint64_t *)(*dest_ptr + 0xa8) = *(uint64_t *)(source_ptr + 0xa8);
   context_data = *dest_ptr;
-  *(undefined4 *)(context_data + 0x20) = *(undefined4 *)(source_ptr + 0x20);
+  *(int32_t *)(context_data + 0x20) = *(int32_t *)(source_ptr + 0x20);
   
   // 复制名称
   name_ptr = &default_context_name;
-  if (*(undefined **)(source_ptr + 0x18) != (undefined *)0x0) {
-    name_ptr = *(undefined **)(source_ptr + 0x18);
+  if (*(void **)(source_ptr + 0x18) != (void *)0x0) {
+    name_ptr = *(void **)(source_ptr + 0x18);
   }
-  strcpy_s(*(undefined8 *)(context_data + 0x18), 0x80, name_ptr);
+  strcpy_s(*(uint64_t *)(context_data + 0x18), 0x80, name_ptr);
   
   // 设置清理标志
-  *(undefined8 *)(*dest_ptr + 0xb8) = 0;
+  *(uint64_t *)(*dest_ptr + 0xb8) = 0;
   
   // 如果需要额外的初始化
   if (*(longlong *)(source_ptr + 0xb8) != 0) {
@@ -1358,12 +1358,12 @@ void copy_engine_data_structure(longlong *dest_ptr, longlong *src_ptr)
 {
   longlong data_field1;
   ulonglong available_size;
-  undefined4 field_value1;
-  undefined4 field_value2;
+  int32_t field_value1;
+  int32_t field_value2;
   longlong src_start;
   longlong src_end;
   ulonglong required_size;
-  undefined *name_ptr;
+  void *name_ptr;
   longlong data_size;
   
   // 复制基本字段
@@ -1372,22 +1372,22 @@ void copy_engine_data_structure(longlong *dest_ptr, longlong *src_ptr)
   dest_ptr[0x20] = data_field1;
   
   // 复制配置字段
-  field_value1 = *(undefined4 *)((longlong)src_ptr + 0x10c);
+  field_value1 = *(int32_t *)((longlong)src_ptr + 0x10c);
   data_field1 = src_ptr[0x22];
-  field_value2 = *(undefined4 *)((longlong)src_ptr + 0x114);
+  field_value2 = *(int32_t *)((longlong)src_ptr + 0x114);
   *(int *)(dest_ptr + 0x21) = (int)src_ptr[0x21];
-  *(undefined4 *)((longlong)dest_ptr + 0x10c) = field_value1;
+  *(int32_t *)((longlong)dest_ptr + 0x10c) = field_value1;
   *(int *)(dest_ptr + 0x22) = (int)data_field1;
-  *(undefined4 *)((longlong)dest_ptr + 0x114) = field_value2;
+  *(int32_t *)((longlong)dest_ptr + 0x114) = field_value2;
   
   // 复制更多配置字段
-  field_value1 = *(undefined4 *)((longlong)src_ptr + 0x11c);
+  field_value1 = *(int32_t *)((longlong)src_ptr + 0x11c);
   data_field1 = src_ptr[0x24];
-  field_value2 = *(undefined4 *)((longlong)src_ptr + 0x124);
+  field_value2 = *(int32_t *)((longlong)src_ptr + 0x124);
   *(int *)(dest_ptr + 0x23) = (int)src_ptr[0x23];
-  *(undefined4 *)((longlong)dest_ptr + 0x11c) = field_value1;
+  *(int32_t *)((longlong)dest_ptr + 0x11c) = field_value1;
   *(int *)(dest_ptr + 0x24) = (int)data_field1;
-  *(undefined4 *)((longlong)dest_ptr + 0x124) = field_value2;
+  *(int32_t *)((longlong)dest_ptr + 0x124) = field_value2;
   *(int *)(dest_ptr + 0x25) = (int)src_ptr[0x25];
   
   // 如果需要深度复制
@@ -1454,8 +1454,8 @@ void copy_engine_data_structure(longlong *dest_ptr, longlong *src_ptr)
   
   // 复制名称
   name_ptr = &default_data_name;
-  if ((undefined *)src_ptr[0xd] != (undefined *)0x0) {
-    name_ptr = (undefined *)src_ptr[0xd];
+  if ((void *)src_ptr[0xd] != (void *)0x0) {
+    name_ptr = (void *)src_ptr[0xd];
   }
   strcpy_s(dest_ptr[0xd], 0x80, name_ptr);
   return;

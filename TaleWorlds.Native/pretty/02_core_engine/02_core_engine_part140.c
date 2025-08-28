@@ -16,14 +16,14 @@ void update_ui_component_with_float(float value)
   float *float_ptr;
   char temp_char;
   uint temp_uint;
-  undefined1 *data_ptr;
-  undefined4 temp_int;
+  int8_t *data_ptr;
+  int32_t temp_int;
   longlong base_ptr;
   longlong context_ptr;
   ulonglong object_id;
   longlong target_ptr;
   char control_flag;
-  undefined4 render_flag;
+  int32_t render_flag;
   char update_flag;
   int component_id;
   ulonglong entity_id;
@@ -80,7 +80,7 @@ LAB_render_update:
           *(char *)(base_ptr + 0x1d07) = status_flag;
           if (((*(uint *)(*(longlong *)(base_ptr + 0x1cd8) + 0xc) & 0x100) == 0) &&
              (*(float *)(base_ptr + 0x2e04) <= scale_value)) {
-            *(undefined4 *)(base_ptr + 0x2e04) = *(undefined4 *)(base_ptr + 0x1c);
+            *(int32_t *)(base_ptr + 0x2e04) = *(int32_t *)(base_ptr + 0x1c);
           }
         }
       }
@@ -96,7 +96,7 @@ LAB_render_update:
   object_id = entity_id;
   if (temp_long == 0) {
 LAB_entity_cleanup:
-    *(undefined2 *)(base_ptr + 0x1d06) = 0x100;
+    *(int16_t *)(base_ptr + 0x1d06) = 0x100;
     if (*(longlong *)(target_ptr + 0x3c0) != 0) {
       target_ptr = *(longlong *)(target_ptr + 0x3c0);
     }
@@ -106,7 +106,7 @@ LAB_entity_cleanup:
       set_entity_property(target_ptr,0);
     }
     if (*(int *)(target_ptr + 0x174) == 2) {
-      *(undefined4 *)(base_ptr + 0x1cfc) = render_flag;
+      *(int32_t *)(base_ptr + 0x1cfc) = render_flag;
     }
     if ((*(ulonglong *)(target_ptr + 0x28) != object_id) &&
        (*(code **)(base_ptr + 0x1578) != (code *)0x0)) {
@@ -134,7 +134,7 @@ LAB_cleanup_complete:
       *(ulonglong *)(temp_ulong + 0x3c0) = object_id;
       object_id = *(ulonglong *)(base_ptr + 0x1c98);
     }
-    *(undefined2 *)(base_ptr + 0x1d06) = 0x100;
+    *(int16_t *)(base_ptr + 0x1d06) = 0x100;
     if ((*(byte *)(object_id + 0x174) & 2) == 0) {
       link_ptr = entity_id & 0xffffffff;
     }
@@ -163,7 +163,7 @@ void cleanup_entity_components(void)
   longlong base_ptr;
   ulonglong context_id;
   longlong target_ptr;
-  undefined4 render_flag;
+  int32_t render_flag;
   char update_flag;
   ulonglong object_id;
   ulonglong link_ptr;
@@ -174,7 +174,7 @@ void cleanup_entity_components(void)
     if (target_ptr == *(longlong *)(entity_ptr + 0x3a8)) goto LAB_skip_cleanup;
     context_id = *(ulonglong *)(entity_ptr + 0x28);
   }
-  *(undefined2 *)(base_ptr + 0x1d06) = 0x100;
+  *(int16_t *)(base_ptr + 0x1d06) = 0x100;
   if (*(longlong *)(target_ptr + 0x3c0) != 0) {
     target_ptr = *(longlong *)(target_ptr + 0x3c0);
   }
@@ -184,7 +184,7 @@ void cleanup_entity_components(void)
     set_entity_property(target_ptr,0);
   }
   if (*(int *)(target_ptr + 0x174) == 2) {
-    *(undefined4 *)(base_ptr + 0x1cfc) = render_flag;
+    *(int32_t *)(base_ptr + 0x1cfc) = render_flag;
   }
   if ((*(ulonglong *)(target_ptr + 0x28) != context_id) && (*(code **)(base_ptr + 0x1578) != (code *)0x0)
      ) {
@@ -207,7 +207,7 @@ LAB_skip_cleanup:
       *(ulonglong *)(entity_id + 0x3c0) = context_id;
       context_id = *(ulonglong *)(base_ptr + 0x1c98);
     }
-    *(undefined2 *)(base_ptr + 0x1d06) = 0x100;
+    *(int16_t *)(base_ptr + 0x1d06) = 0x100;
     if ((*(byte *)(context_id + 0x174) & 2) == 0) {
       link_ptr = object_id & 0xffffffff;
     }
@@ -253,7 +253,7 @@ void update_entity_state_simple(void)
       *(ulonglong *)(entity_id + 0x3c0) = context_id;
       context_id = *(ulonglong *)(base_ptr + 0x1c98);
     }
-    *(undefined2 *)(base_ptr + 0x1d06) = 0x100;
+    *(int16_t *)(base_ptr + 0x1d06) = 0x100;
     if ((*(byte *)(context_id + 0x174) & 2) == 0) {
       link_ptr = object_id & 0xffffffff;
     }
@@ -283,54 +283,54 @@ void render_ui_menu_system(void)
   float menu_width;
   float menu_height;
   uint menu_flags;
-  undefined8 *menu_data;
+  uint64_t *menu_data;
   longlong engine_ptr;
   int menu_count;
-  undefined8 window_handle;
+  uint64_t window_handle;
   char *menu_title;
   longlong menu_list_ptr;
   longlong menu_item_ptr;
   longlong current_menu;
   ulonglong menu_id;
   char *display_name;
-  undefined8 temp_stack1;
-  undefined4 stack_param1;
-  undefined4 stack_param2;
-  undefined4 stack_param3;
-  undefined4 stack_param4;
+  uint64_t temp_stack1;
+  int32_t stack_param1;
+  int32_t stack_param2;
+  int32_t stack_param3;
+  int32_t stack_param4;
   
   engine_ptr = global_engine_context;
   if (0.15 < *(float *)(global_engine_context + 0x1cf0) || *(float *)(global_engine_context + 0x1cf0) == 0.15) {
     if (*(longlong *)(global_engine_context + 0x1ce8) == 0) {
       window_handle = create_window_handle(&global_window_manager);
-      *(undefined8 *)(engine_ptr + 0x1ce8) = window_handle;
+      *(uint64_t *)(engine_ptr + 0x1ce8) = window_handle;
     }
     current_menu = **(longlong **)(engine_ptr + 0x1c70);
     menu_x = *(float *)(current_menu + 0x10);
     menu_y = *(float *)(current_menu + 0x14);
-    *(undefined4 *)(engine_ptr + 0x1be0) = 1;
-    *(undefined8 *)(engine_ptr + 0x1c28) = 0;
-    *(undefined8 *)(engine_ptr + 0x1c30) = 0;
+    *(int32_t *)(engine_ptr + 0x1be0) = 1;
+    *(uint64_t *)(engine_ptr + 0x1c28) = 0;
+    *(uint64_t *)(engine_ptr + 0x1c30) = 0;
     *(float *)(engine_ptr + 0x1c18) = menu_x * 0.2;
     *(float *)(engine_ptr + 0x1c1c) = menu_y * 0.2;
-    *(undefined4 *)(engine_ptr + 0x1c20) = 0x7f7fffff;
-    *(undefined4 *)(engine_ptr + 0x1c24) = 0x7f7fffff;
+    *(int32_t *)(engine_ptr + 0x1c20) = 0x7f7fffff;
+    *(int32_t *)(engine_ptr + 0x1c24) = 0x7f7fffff;
     menu_x = *(float *)(current_menu + 0x14);
     menu_y = *(float *)(current_menu + 0x10);
     menu_width = *(float *)(current_menu + 0xc);
     stack_param4 = 0x7f7fffff;
     stack_param1 = 1;
     menu_height = *(float *)(current_menu + 8);
-    *(undefined4 *)(engine_ptr + 0x1bfc) = 0x3f000000;
+    *(int32_t *)(engine_ptr + 0x1bfc) = 0x3f000000;
     *(float *)(engine_ptr + 0x1bf8) = menu_x * 0.5 + menu_width;
-    *(undefined4 *)(engine_ptr + 0x1c00) = 0x3f000000;
-    *(undefined4 *)(engine_ptr + 0x1bd0) = 1;
+    *(int32_t *)(engine_ptr + 0x1c00) = 0x3f000000;
+    *(int32_t *)(engine_ptr + 0x1bd0) = 1;
     *(float *)(engine_ptr + 0x1bf4) = menu_y * 0.5 + menu_height;
-    *(undefined1 *)(engine_ptr + 0x1c14) = 1;
+    *(int8_t *)(engine_ptr + 0x1c14) = 1;
     menu_x = *(float *)(engine_ptr + 0x162c);
     menu_y = *(float *)(engine_ptr + 0x1630);
-    stack_param2 = *(undefined4 *)(engine_ptr + 0x162c);
-    stack_param3 = *(undefined4 *)(engine_ptr + 0x1630);
+    stack_param2 = *(int32_t *)(engine_ptr + 0x162c);
+    stack_param3 = *(int32_t *)(engine_ptr + 0x1630);
     render_menu_items(engine_ptr + 0x1b90,&stack_param1);
     *(float *)(engine_ptr + 0x162c) = menu_x + menu_x;
     *(float *)(engine_ptr + 0x1630) = menu_y + menu_y;
@@ -339,8 +339,8 @@ void render_ui_menu_system(void)
     current_menu = (longlong)menu_count;
     if (-1 < menu_count) {
       do {
-        menu_data = *(undefined8 **)(*(longlong *)(engine_ptr + 0x1ab8) + current_menu * 8);
-        if ((*(char *)((longlong)menu_data + 0xaf) != '\0') && (menu_data == (undefined8 *)menu_data[0x75]))
+        menu_data = *(uint64_t **)(*(longlong *)(engine_ptr + 0x1ab8) + current_menu * 8);
+        if ((*(char *)((longlong)menu_data + 0xaf) != '\0') && (menu_data == (uint64_t *)menu_data[0x75]))
         {
           menu_flags = *(uint *)((longlong)menu_data + 0xc);
           if ((menu_flags >> 0x13 & 1) == 0) {
@@ -374,7 +374,7 @@ LAB_name_processing:
             }
 LAB_display_name:
             temp_stack1 = 0;
-            display_menu_item(display_name,*(undefined8 **)(engine_ptr + 0x1cd8) == menu_data,0,&temp_stack1);
+            display_menu_item(display_name,*(uint64_t **)(engine_ptr + 0x1cd8) == menu_data,0,&temp_stack1);
           }
         }
         current_menu = current_menu + -1;
@@ -388,15 +388,15 @@ LAB_display_name:
     menu_id = (ulonglong)*(uint *)(&global_menu_id_table + menu_item_ptr * 0xc);
     if (*(int *)(&global_menu_type_table + menu_item_ptr * 0xc) == 4) {
       if (*(int *)(&global_menu_subtype_table + menu_item_ptr * 0xc) == 1) {
-        *(undefined4 *)(menu_id + 0x1628 + global_engine_context) =
-             *(undefined4 *)(engine_ptr + -8 + menu_list_ptr * 0xc);
+        *(int32_t *)(menu_id + 0x1628 + global_engine_context) =
+             *(int32_t *)(engine_ptr + -8 + menu_list_ptr * 0xc);
         *(int *)(current_menu + 0x1b90) = *(int *)(current_menu + 0x1b90) + -1;
         return;
       }
       if (*(int *)(&global_menu_subtype_table + menu_item_ptr * 0xc) == 2) {
-        *(undefined4 *)(menu_id + 0x1628 + global_engine_context) =
-             *(undefined4 *)(engine_ptr + -8 + menu_list_ptr * 0xc);
-        *(undefined4 *)(menu_id + 0x162c + current_menu) = *(undefined4 *)(engine_ptr + -4 + menu_list_ptr * 0xc);
+        *(int32_t *)(menu_id + 0x1628 + global_engine_context) =
+             *(int32_t *)(engine_ptr + -8 + menu_list_ptr * 0xc);
+        *(int32_t *)(menu_id + 0x162c + current_menu) = *(int32_t *)(engine_ptr + -4 + menu_list_ptr * 0xc);
       }
     }
     *(int *)(current_menu + 0x1b90) = *(int *)(current_menu + 0x1b90) + -1;
@@ -418,10 +418,10 @@ void render_ui_menu_system_alt(void)
   float menu_width;
   float menu_height;
   uint menu_flags;
-  undefined8 *menu_data;
+  uint64_t *menu_data;
   longlong engine_ptr;
   int menu_count;
-  undefined8 window_handle;
+  uint64_t window_handle;
   char *menu_title;
   longlong menu_list_ptr;
   longlong menu_item_ptr;
@@ -430,36 +430,36 @@ void render_ui_menu_system_alt(void)
   ulonglong menu_id;
   char *display_name;
   bool should_render;
-  undefined4 render_param;
-  undefined4 stack_param1;
-  undefined8 temp_stack;
+  int32_t render_param;
+  int32_t stack_param1;
+  uint64_t temp_stack;
   
   if (should_render) {
     window_handle = create_window_handle(&global_window_manager);
-    *(undefined8 *)(context_ptr + 0x1ce8) = window_handle;
+    *(uint64_t *)(context_ptr + 0x1ce8) = window_handle;
   }
   current_menu = **(longlong **)(context_ptr + 0x1c70);
   menu_x = *(float *)(current_menu + 0x10);
   menu_y = *(float *)(current_menu + 0x14);
-  *(undefined4 *)(context_ptr + 0x1be0) = 1;
-  *(undefined8 *)(context_ptr + 0x1c28) = 0;
-  *(undefined8 *)(context_ptr + 0x1c30) = 0;
+  *(int32_t *)(context_ptr + 0x1be0) = 1;
+  *(uint64_t *)(context_ptr + 0x1c28) = 0;
+  *(uint64_t *)(context_ptr + 0x1c30) = 0;
   *(float *)(context_ptr + 0x1c18) = menu_x * 0.2;
   *(float *)(context_ptr + 0x1c1c) = menu_y * 0.2;
-  *(undefined4 *)(context_ptr + 0x1c20) = 0x7f7fffff;
-  *(undefined4 *)(context_ptr + 0x1c24) = 0x7f7fffff;
+  *(int32_t *)(context_ptr + 0x1c20) = 0x7f7fffff;
+  *(int32_t *)(context_ptr + 0x1c24) = 0x7f7fffff;
   menu_x = *(float *)(current_menu + 0x14);
   menu_y = *(float *)(current_menu + 0x10);
   menu_width = *(float *)(current_menu + 0xc);
   stack_param1 = 0x7f7fffff;
   render_param = 1;
   menu_height = *(float *)(current_menu + 8);
-  *(undefined4 *)(context_ptr + 0x1bfc) = 0x3f000000;
+  *(int32_t *)(context_ptr + 0x1bfc) = 0x3f000000;
   *(float *)(context_ptr + 0x1bf8) = menu_x * 0.5 + menu_width;
-  *(undefined4 *)(context_ptr + 0x1c00) = 0x3f000000;
-  *(undefined4 *)(context_ptr + 0x1bd0) = 1;
+  *(int32_t *)(context_ptr + 0x1c00) = 0x3f000000;
+  *(int32_t *)(context_ptr + 0x1bd0) = 1;
   *(float *)(context_ptr + 0x1bf4) = menu_y * 0.5 + menu_height;
-  *(undefined1 *)(context_ptr + 0x1c14) = 1;
+  *(int8_t *)(context_ptr + 0x1c14) = 1;
   menu_x = *(float *)(context_ptr + 0x162c);
   menu_y = *(float *)(context_ptr + 0x1630);
   render_menu_items(context_ptr + 0x1b90,&stack0x00000020);
@@ -470,8 +470,8 @@ void render_ui_menu_system_alt(void)
   current_menu = (longlong)menu_count;
   if (-1 < menu_count) {
     do {
-      menu_data = *(undefined8 **)(*(longlong *)(context_ptr + 0x1ab8) + current_menu * 8);
-      if ((*(char *)((longlong)menu_data + 0xaf) != '\0') && (menu_data == (undefined8 *)menu_data[0x75])) {
+      menu_data = *(uint64_t **)(*(longlong *)(context_ptr + 0x1ab8) + current_menu * 8);
+      if ((*(char *)((longlong)menu_data + 0xaf) != '\0') && (menu_data == (uint64_t *)menu_data[0x75])) {
         menu_flags = *(uint *)((longlong)menu_data + 0xc);
         if ((menu_flags >> 0x13 & 1) == 0) {
           display_name = (char *)*menu_data;
@@ -504,7 +504,7 @@ LAB_name_processing:
           }
 LAB_display_name:
           temp_stack = 0;
-          display_menu_item(display_name,*(undefined8 **)(context_ptr + 0x1cd8) == menu_data,0,&stack0x00000060,
+          display_menu_item(display_name,*(uint64_t **)(context_ptr + 0x1cd8) == menu_data,0,&stack0x00000060,
                         render_param);
         }
       }
@@ -519,15 +519,15 @@ LAB_display_name:
   menu_id = (ulonglong)*(uint *)(&global_menu_id_table + menu_item_ptr * 0xc);
   if (*(int *)(&global_menu_type_table + menu_item_ptr * 0xc) == 4) {
     if (*(int *)(&global_menu_subtype_table + menu_item_ptr * 0xc) == 1) {
-      *(undefined4 *)(menu_id + 0x1628 + global_engine_context) =
-           *(undefined4 *)(current_menu + -8 + menu_list_ptr * 0xc);
+      *(int32_t *)(menu_id + 0x1628 + global_engine_context) =
+           *(int32_t *)(current_menu + -8 + menu_list_ptr * 0xc);
       *(int *)(engine_ptr + 0x1b90) = *(int *)(engine_ptr + 0x1b90) + -1;
       return;
     }
     if (*(int *)(&global_menu_subtype_table + menu_item_ptr * 0xc) == 2) {
-      *(undefined4 *)(menu_id + 0x1628 + global_engine_context) =
-           *(undefined4 *)(current_menu + -8 + menu_list_ptr * 0xc);
-      *(undefined4 *)(menu_id + 0x162c + engine_ptr) = *(undefined4 *)(current_menu + -4 + menu_list_ptr * 0xc);
+      *(int32_t *)(menu_id + 0x1628 + global_engine_context) =
+           *(int32_t *)(current_menu + -8 + menu_list_ptr * 0xc);
+      *(int32_t *)(menu_id + 0x162c + engine_ptr) = *(int32_t *)(current_menu + -4 + menu_list_ptr * 0xc);
     }
   }
   *(int *)(engine_ptr + 0x1b90) = *(int *)(engine_ptr + 0x1b90) + -1;
@@ -548,10 +548,10 @@ void render_ui_menu_system_alt2(void)
   float menu_width;
   float menu_height;
   uint menu_flags;
-  undefined8 *menu_data;
+  uint64_t *menu_data;
   longlong engine_ptr;
   int menu_count;
-  undefined8 window_handle;
+  uint64_t window_handle;
   char *menu_title;
   longlong menu_list_ptr;
   longlong menu_item_ptr;
@@ -560,36 +560,36 @@ void render_ui_menu_system_alt2(void)
   ulonglong menu_id;
   char *display_name;
   bool should_render;
-  undefined4 render_param;
-  undefined4 stack_param1;
-  undefined8 temp_stack;
+  int32_t render_param;
+  int32_t stack_param1;
+  uint64_t temp_stack;
   
   if (should_render) {
     window_handle = create_window_handle(&global_window_manager);
-    *(undefined8 *)(context_ptr + 0x1ce8) = window_handle;
+    *(uint64_t *)(context_ptr + 0x1ce8) = window_handle;
   }
   current_menu = **(longlong **)(context_ptr + 0x1c70);
   menu_x = *(float *)(current_menu + 0x10);
   menu_y = *(float *)(current_menu + 0x14);
-  *(undefined4 *)(context_ptr + 0x1be0) = 1;
-  *(undefined8 *)(context_ptr + 0x1c28) = 0;
-  *(undefined8 *)(context_ptr + 0x1c30) = 0;
+  *(int32_t *)(context_ptr + 0x1be0) = 1;
+  *(uint64_t *)(context_ptr + 0x1c28) = 0;
+  *(uint64_t *)(context_ptr + 0x1c30) = 0;
   *(float *)(context_ptr + 0x1c18) = menu_x * 0.2;
   *(float *)(context_ptr + 0x1c1c) = menu_y * 0.2;
-  *(undefined4 *)(context_ptr + 0x1c20) = 0x7f7fffff;
-  *(undefined4 *)(context_ptr + 0x1c24) = 0x7f7fffff;
+  *(int32_t *)(context_ptr + 0x1c20) = 0x7f7fffff;
+  *(int32_t *)(context_ptr + 0x1c24) = 0x7f7fffff;
   menu_x = *(float *)(current_menu + 0x14);
   menu_y = *(float *)(current_menu + 0x10);
   menu_width = *(float *)(current_menu + 0xc);
   stack_param1 = 0x7f7fffff;
   render_param = 1;
   menu_height = *(float *)(current_menu + 8);
-  *(undefined4 *)(context_ptr + 0x1bfc) = 0x3f000000;
+  *(int32_t *)(context_ptr + 0x1bfc) = 0x3f000000;
   *(float *)(context_ptr + 0x1bf8) = menu_x * 0.5 + menu_width;
-  *(undefined4 *)(context_ptr + 0x1c00) = 0x3f000000;
-  *(undefined4 *)(context_ptr + 0x1bd0) = 1;
+  *(int32_t *)(context_ptr + 0x1c00) = 0x3f000000;
+  *(int32_t *)(context_ptr + 0x1bd0) = 1;
   *(float *)(context_ptr + 0x1bf4) = menu_y * 0.5 + menu_height;
-  *(undefined1 *)(context_ptr + 0x1c14) = 1;
+  *(int8_t *)(context_ptr + 0x1c14) = 1;
   menu_x = *(float *)(context_ptr + 0x162c);
   menu_y = *(float *)(context_ptr + 0x1630);
   render_menu_items(context_ptr + 0x1b90,&stack0x00000020);
@@ -600,8 +600,8 @@ void render_ui_menu_system_alt2(void)
   current_menu = (longlong)menu_count;
   if (-1 < menu_count) {
     do {
-      menu_data = *(undefined8 **)(*(longlong *)(context_ptr + 0x1ab8) + current_menu * 8);
-      if ((*(char *)((longlong)menu_data + 0xaf) != '\0') && (menu_data == (undefined8 *)menu_data[0x75])) {
+      menu_data = *(uint64_t **)(*(longlong *)(context_ptr + 0x1ab8) + current_menu * 8);
+      if ((*(char *)((longlong)menu_data + 0xaf) != '\0') && (menu_data == (uint64_t *)menu_data[0x75])) {
         menu_flags = *(uint *)((longlong)menu_data + 0xc);
         if ((menu_flags >> 0x13 & 1) == 0) {
           display_name = (char *)*menu_data;
@@ -634,7 +634,7 @@ LAB_name_processing:
           }
 LAB_display_name:
           temp_stack = 0;
-          display_menu_item(display_name,*(undefined8 **)(context_ptr + 0x1cd8) == menu_data,0,&stack0x00000060,
+          display_menu_item(display_name,*(uint64_t **)(context_ptr + 0x1cd8) == menu_data,0,&stack0x00000060,
                         render_param);
         }
       }
@@ -649,15 +649,15 @@ LAB_display_name:
   menu_id = (ulonglong)*(uint *)(&global_menu_id_table + menu_item_ptr * 0xc);
   if (*(int *)(&global_menu_type_table + menu_item_ptr * 0xc) == 4) {
     if (*(int *)(&global_menu_subtype_table + menu_item_ptr * 0xc) == 1) {
-      *(undefined4 *)(menu_id + 0x1628 + global_engine_context) =
-           *(undefined4 *)(current_menu + -8 + menu_list_ptr * 0xc);
+      *(int32_t *)(menu_id + 0x1628 + global_engine_context) =
+           *(int32_t *)(current_menu + -8 + menu_list_ptr * 0xc);
       *(int *)(engine_ptr + 0x1b90) = *(int *)(engine_ptr + 0x1b90) + -1;
       return;
     }
     if (*(int *)(&global_menu_subtype_table + menu_item_ptr * 0xc) == 2) {
-      *(undefined4 *)(menu_id + 0x1628 + global_engine_context) =
-           *(undefined4 *)(current_menu + -8 + menu_list_ptr * 0xc);
-      *(undefined4 *)(menu_id + 0x162c + engine_ptr) = *(undefined4 *)(current_menu + -4 + menu_list_ptr * 0xc);
+      *(int32_t *)(menu_id + 0x1628 + global_engine_context) =
+           *(int32_t *)(current_menu + -8 + menu_list_ptr * 0xc);
+      *(int32_t *)(menu_id + 0x162c + engine_ptr) = *(int32_t *)(current_menu + -4 + menu_list_ptr * 0xc);
     }
   }
   *(int *)(engine_ptr + 0x1b90) = *(int *)(engine_ptr + 0x1b90) + -1;
@@ -674,7 +674,7 @@ void process_menu_items_loop(void)
 
 {
   uint menu_flags;
-  undefined8 *menu_data;
+  uint64_t *menu_data;
   longlong engine_ptr;
   longlong menu_list_ptr;
   longlong menu_item_ptr;
@@ -684,11 +684,11 @@ void process_menu_items_loop(void)
   longlong context_ptr;
   ulonglong menu_id;
   char *display_name;
-  undefined8 temp_stack;
+  uint64_t temp_stack;
   
   do {
-    menu_data = *(undefined8 **)(*(longlong *)(context_ptr + 0x1ab8) + current_menu * 8);
-    if ((*(char *)((longlong)menu_data + 0xaf) != '\0') && (menu_data == (undefined8 *)menu_data[0x75])) {
+    menu_data = *(uint64_t **)(*(longlong *)(context_ptr + 0x1ab8) + current_menu * 8);
+    if ((*(char *)((longlong)menu_data + 0xaf) != '\0') && (menu_data == (uint64_t *)menu_data[0x75])) {
       menu_flags = *(uint *)((longlong)menu_data + 0xc);
       if ((menu_flags >> 0x13 & 1) == 0) {
         display_name = (char *)*menu_data;
@@ -721,7 +721,7 @@ LAB_name_processing:
         }
 LAB_display_name:
         temp_stack = 0;
-        display_menu_item(display_name,*(undefined8 **)(context_ptr + 0x1cd8) == menu_data,0,&stack0x00000060);
+        display_menu_item(display_name,*(uint64_t **)(context_ptr + 0x1cd8) == menu_data,0,&stack0x00000060);
       }
     }
     current_menu = current_menu + -1;
@@ -734,15 +734,15 @@ LAB_display_name:
       menu_id = (ulonglong)*(uint *)(&global_menu_id_table + menu_item_ptr * 0xc);
       if (*(int *)(&global_menu_type_table + menu_item_ptr * 0xc) == 4) {
         if (*(int *)(&global_menu_subtype_table + menu_item_ptr * 0xc) == 1) {
-          *(undefined4 *)(menu_id + 0x1628 + global_engine_context) =
-               *(undefined4 *)(current_menu + -8 + engine_ptr * 0xc);
+          *(int32_t *)(menu_id + 0x1628 + global_engine_context) =
+               *(int32_t *)(current_menu + -8 + engine_ptr * 0xc);
           *(int *)(menu_list_ptr + 0x1b90) = *(int *)(menu_list_ptr + 0x1b90) + -1;
           return;
         }
         if (*(int *)(&global_menu_subtype_table + menu_item_ptr * 0xc) == 2) {
-          *(undefined4 *)(menu_id + 0x1628 + global_engine_context) =
-               *(undefined4 *)(current_menu + -8 + engine_ptr * 0xc);
-          *(undefined4 *)(menu_id + 0x162c + menu_list_ptr) = *(undefined4 *)(current_menu + -4 + engine_ptr * 0xc);
+          *(int32_t *)(menu_id + 0x1628 + global_engine_context) =
+               *(int32_t *)(current_menu + -8 + engine_ptr * 0xc);
+          *(int32_t *)(menu_id + 0x162c + menu_list_ptr) = *(int32_t *)(current_menu + -4 + engine_ptr * 0xc);
         }
       }
       *(int *)(menu_list_ptr + 0x1b90) = *(int *)(menu_list_ptr + 0x1b90) + -1;
@@ -774,13 +774,13 @@ void finalize_menu_rendering(void)
   menu_id = (ulonglong)*(uint *)(&global_menu_id_table + menu_item_ptr * 0xc);
   if (*(int *)(&global_menu_type_table + menu_item_ptr * 0xc) == 4) {
     if (*(int *)(&global_menu_subtype_table + menu_item_ptr * 0xc) == 1) {
-      *(undefined4 *)(menu_id + 0x1628 + global_engine_context) = *(undefined4 *)(current_menu + -8 + engine_ptr * 0xc);
+      *(int32_t *)(menu_id + 0x1628 + global_engine_context) = *(int32_t *)(current_menu + -8 + engine_ptr * 0xc);
       *(int *)(menu_list_ptr + 0x1b90) = *(int *)(menu_list_ptr + 0x1b90) + -1;
       return;
     }
     if (*(int *)(&global_menu_subtype_table + menu_item_ptr * 0xc) == 2) {
-      *(undefined4 *)(menu_id + 0x1628 + global_engine_context) = *(undefined4 *)(current_menu + -8 + engine_ptr * 0xc);
-      *(undefined4 *)(menu_id + 0x162c + menu_list_ptr) = *(undefined4 *)(current_menu + -4 + engine_ptr * 0xc);
+      *(int32_t *)(menu_id + 0x1628 + global_engine_context) = *(int32_t *)(current_menu + -8 + engine_ptr * 0xc);
+      *(int32_t *)(menu_id + 0x162c + menu_list_ptr) = *(int32_t *)(current_menu + -4 + engine_ptr * 0xc);
     }
   }
   *(int *)(menu_list_ptr + 0x1b90) = *(int *)(menu_list_ptr + 0x1b90) + -1;
@@ -799,13 +799,13 @@ void update_menu_data_structure(longlong context,longlong list_ptr,longlong item
   
   menu_type = *(int *)(data_ptr + 4 + index_ptr * 4);
   if (menu_type == 1) {
-    *(undefined4 *)(menu_id + 0x1628 + context) = *(undefined4 *)(item_ptr + -8 + list_ptr * 4);
+    *(int32_t *)(menu_id + 0x1628 + context) = *(int32_t *)(item_ptr + -8 + list_ptr * 4);
     *(int *)(context + 0x1b90) = *(int *)(context + 0x1b90) + -1;
     return;
   }
   if (menu_type == 2) {
-    *(undefined4 *)(menu_id + 0x1628 + context) = *(undefined4 *)(item_ptr + -8 + list_ptr * 4);
-    *(undefined4 *)(menu_id + 0x162c + context) = *(undefined4 *)(item_ptr + -4 + list_ptr * 4);
+    *(int32_t *)(menu_id + 0x1628 + context) = *(int32_t *)(item_ptr + -8 + list_ptr * 4);
+    *(int32_t *)(menu_id + 0x162c + context) = *(int32_t *)(item_ptr + -4 + list_ptr * 4);
   }
   *(int *)(context + 0x1b90) = *(int *)(context + 0x1b90) + -1;
   return;
@@ -824,11 +824,11 @@ void update_animation_system(void)
   longlong animation_ptr;
   int frame_count;
   longlong timeline_ptr;
-  undefined8 timeline_handle;
+  uint64_t timeline_handle;
   float current_time;
   
   entity_ptr = global_engine_context;
-  *(undefined1 *)(*(longlong *)(global_engine_context + 0x1af8) + 0xb1) = 1;
+  *(int8_t *)(*(longlong *)(global_engine_context + 0x1af8) + 0xb1) = 1;
   animation_ptr = *(longlong *)(entity_ptr + 0x1af8);
   if ((*(char *)(animation_ptr + 0xb4) == '\0') && (*(longlong *)(animation_ptr + 0x210) != 0)) {
     initialize_animation_system();
@@ -845,19 +845,19 @@ void update_animation_system(void)
     if (frame_count < *(int *)(timeline_ptr + 0x10)) {
       current_time = (float)get_animation_timestamp();
       *(float *)(animation_ptr + 0x20c) = (current_time - *(float *)(animation_ptr + 0x204)) + *(float *)(entity_ptr + 0x166c);
-      update_animation_frame(*(undefined8 *)(animation_ptr + 0x2e8),*(undefined4 *)(timeline_ptr + 0xc));
+      update_animation_frame(*(uint64_t *)(animation_ptr + 0x2e8),*(int32_t *)(timeline_ptr + 0xc));
     }
     else {
-      *(undefined4 *)(animation_ptr + 0x20c) = 0;
-      update_animation_frame(*(undefined8 *)(animation_ptr + 0x2e8),0);
-      *(undefined4 *)(timeline_ptr + 0x1c) = *(undefined4 *)(timeline_ptr + 0x20);
+      *(int32_t *)(animation_ptr + 0x20c) = 0;
+      update_animation_frame(*(uint64_t *)(animation_ptr + 0x2e8),0);
+      *(int32_t *)(timeline_ptr + 0x1c) = *(int32_t *)(timeline_ptr + 0x20);
       *(int *)(timeline_ptr + 0xc) = (int)timeline_handle;
     }
     *(float *)(animation_ptr + 0x100) =
          (float)(int)(*(float *)(animation_ptr + 0x204) + *(float *)(animation_ptr + 0x40) +
                      *(float *)(animation_ptr + 0x20c));
-    *(undefined4 *)(animation_ptr + 0x104) = *(undefined4 *)(timeline_ptr + 0x1c);
-    *(undefined8 *)(animation_ptr + 0x120) = timeline_handle;
+    *(int32_t *)(animation_ptr + 0x104) = *(int32_t *)(timeline_ptr + 0x1c);
+    *(uint64_t *)(animation_ptr + 0x120) = timeline_handle;
     *(int *)(animation_ptr + 0x128) = (int)timeline_handle;
     finalize_animation_update();
     animation_ptr = *(longlong *)(*(longlong *)(global_engine_context + 0x1af8) + 0x210);

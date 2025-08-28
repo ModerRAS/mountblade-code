@@ -2,8 +2,8 @@
 
 // 99_part_12_part074.c - 1 个函数
 
-// 函数: void FUN_1807fbbbf(undefined8 param_1,undefined8 param_2,longlong param_3,longlong param_4)
-void FUN_1807fbbbf(undefined8 param_1,undefined8 param_2,longlong param_3,longlong param_4)
+// 函数: void FUN_1807fbbbf(uint64_t param_1,uint64_t param_2,longlong param_3,longlong param_4)
+void FUN_1807fbbbf(uint64_t param_1,uint64_t param_2,longlong param_3,longlong param_4)
 
 {
   float fVar1;

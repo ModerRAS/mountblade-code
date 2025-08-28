@@ -25,7 +25,7 @@ void normalize_ui_vector_array(longlong *vector_array, float scale_factor)
   float x_component, y_component;
   float magnitude;
   float inverse_magnitude;
-  undefined1 simd_buffer [16];
+  int8_t simd_buffer [16];
   float normalized_x, normalized_y;
   
   // 获取向量数组的起始地址和元素数量
@@ -40,8 +40,8 @@ void normalize_ui_vector_array(longlong *vector_array, float scale_factor)
       element_count = (int)current_index + 1;
       
       // 提取向量的X和Y分量
-      y_component = (float)((ulonglong)*(undefined8 *)(iteration_index + array_start) >> 0x20);
-      x_component = (float)*(undefined8 *)(iteration_index + array_start);
+      y_component = (float)((ulonglong)*(uint64_t *)(iteration_index + array_start) >> 0x20);
+      x_component = (float)*(uint64_t *)(iteration_index + array_start);
       
       // 计算向量长度
       magnitude = y_component * y_component + x_component * x_component;
@@ -77,14 +77,14 @@ void normalize_ui_vector_array(longlong *vector_array, float scale_factor)
  * @param source_data 源数据指针
  * @param data_offset 数据偏移量
  */
-void apply_ui_vector_transform(undefined8 transform_matrix, longlong *target_array, undefined8 source_data, longlong data_offset)
+void apply_ui_vector_transform(uint64_t transform_matrix, longlong *target_array, uint64_t source_data, longlong data_offset)
 {
   ulonglong iteration_index;
   uint element_counter;
   float x_component, y_component;
   float magnitude;
   float inverse_magnitude;
-  undefined1 simd_buffer [16];
+  int8_t simd_buffer [16];
   float transform_factor;
   float normalized_x, normalized_y;
   
@@ -95,8 +95,8 @@ void apply_ui_vector_transform(undefined8 transform_matrix, longlong *target_arr
     element_counter = element_counter + 1;
     
     // 提取向量分量
-    y_component = (float)((ulonglong)*(undefined8 *)(iteration_index + data_offset) >> 0x20);
-    x_component = (float)*(undefined8 *)(iteration_index + data_offset);
+    y_component = (float)((ulonglong)*(uint64_t *)(iteration_index + data_offset) >> 0x20);
+    x_component = (float)*(uint64_t *)(iteration_index + data_offset);
     
     // 计算向量长度
     magnitude = y_component * y_component + x_component * x_component;
@@ -149,10 +149,10 @@ void initialize_ui_animation_system(void)
  * @param additional_params 附加参数
  */
 void update_ui_animation_parameters(float *animation_data, float time_delta, longlong context_ptr, char enable_interpolation, 
-                                  char enable_smoothing, char enable_damping, undefined8 effect_params, 
-                                  undefined8 color_params, float intensity, undefined8 additional_params)
+                                  char enable_smoothing, char enable_damping, uint64_t effect_params, 
+                                  uint64_t color_params, float intensity, uint64_t additional_params)
 {
-  undefined8 transform_param1, transform_param2;
+  uint64_t transform_param1, transform_param2;
   bool use_complex_animation;
   char interpolation_flag;
   int element_index;
@@ -177,7 +177,7 @@ void update_ui_animation_parameters(float *animation_data, float time_delta, lon
   float animation_speed;
   float blend_weight;
   float weight_sum;
-  undefined1 simd_buffer [16];
+  int8_t simd_buffer [16];
   float normalized_magnitude;
   float temp_value1, temp_value2;
   float temp_value3, temp_value4;
@@ -186,22 +186,22 @@ void update_ui_animation_parameters(float *animation_data, float time_delta, lon
   float temp_value9, temp_value10;
   float temp_value11, temp_value12;
   float local_buffer [6200];
-  undefined8 stack_param1;
-  undefined1 stack_buffer [32];
+  uint64_t stack_param1;
+  int8_t stack_buffer [32];
   float base_intensity;
   float *current_element_ptr;
   char smoothing_enabled;
   float interpolation_threshold;
-  undefined8 stack_param2;
+  uint64_t stack_param2;
   float rotation_speed;
-  undefined8 stack_param3;
+  uint64_t stack_param3;
   float blend_speed;
-  undefined8 stack_param4;
+  uint64_t stack_param4;
   float smooth_factor1;
   float smooth_factor2;
   float smooth_factor3;
   float smooth_factor4;
-  undefined8 stack_param5;
+  uint64_t stack_param5;
   float blend_alpha;
   float blend_beta;
   float blend_gamma;
@@ -254,14 +254,14 @@ void update_ui_animation_parameters(float *animation_data, float time_delta, lon
       stack_param1 = 0x1806597d3;
       
       // 调用动画处理函数
-      FUN_18065ee60(*(undefined8 *)(next_element_ptr + 0x495), animation_data + 0x1854);
+      FUN_18065ee60(*(uint64_t *)(next_element_ptr + 0x495), animation_data + 0x1854);
       
       // 更新动画标志
       if ((*(char *)(next_element_ptr + 0x4af) == '\0') && (*(char *)(next_element_ptr + 0x4ce) != '\0')) {
-        *(undefined1 *)(next_element_ptr + 0x4af) = 1;
+        *(int8_t *)(next_element_ptr + 0x4af) = 1;
       }
       if ((*(char *)(next_element_ptr + 0x4c8) == '\0') && (*(char *)(next_element_ptr + 0x4d4) != '\0')) {
-        *(undefined1 *)(next_element_ptr + 0x4c8) = 1;
+        *(int8_t *)(next_element_ptr + 0x4c8) = 1;
       }
       
       // 累加权重
@@ -288,12 +288,12 @@ void update_ui_animation_parameters(float *animation_data, float time_delta, lon
   // 检查位置约束
   if (((animation_data[4] == 0.0) && (animation_data[5] == 0.0)) &&
      (0.25 < animation_data[2] * animation_data[2] + animation_data[3] * animation_data[3])) {
-    *(undefined8 *)(animation_data + 4) = *(undefined8 *)(animation_data + 2);
+    *(uint64_t *)(animation_data + 4) = *(uint64_t *)(animation_data + 2);
   }
   
   // 获取变换参数
-  transform_param1 = *(undefined8 *)(animation_data + 4);
-  transform_param2 = *(undefined8 *)(animation_data + 2);
+  transform_param1 = *(uint64_t *)(animation_data + 4);
+  transform_param2 = *(uint64_t *)(animation_data + 2);
   stack_param2 = transform_param1;
   stack_param3 = transform_param2;
   
@@ -326,7 +326,7 @@ void update_ui_animation_parameters(float *animation_data, float time_delta, lon
   // 计算旋转角度
   stack_param1 = 0x1806599e0;
   rotation_angle = (float)atan2f(*(uint *)(*(longlong *)(context_ptr + 0x10) + 0x80) ^ 0x80000000,
-                               *(undefined4 *)(*(longlong *)(context_ptr + 0x10) + 0x84));
+                               *(int32_t *)(*(longlong *)(context_ptr + 0x10) + 0x84));
   rotation_angle = rotation_angle + animation_data[6];
   animation_data[0xb] = rotation_angle;
   
@@ -555,14 +555,14 @@ COMPLEX_ANIMATION_ENABLED:
       }
       context_offset = *(longlong *)(animation_data + (longlong)(int)weight_sum * 0x4d6 + -0x26);
       stack_param1 = 0x180659ea7;
-      array_base = FUN_18065fd40(*(undefined8 *)(context_offset + 8));
+      array_base = FUN_18065fd40(*(uint64_t *)(context_offset + 8));
       element_offset = 0x14;
       if (0.0 <= (angle_y - ABS(scale_x)) * rotation_angle) {
         element_offset = 0x18;
       }
       weight_sum = *(float *)(element_offset + array_base);
       stack_param1 = 0x180659edd;
-      FUN_18065fd40(*(undefined8 *)(context_offset + 8));
+      FUN_18065fd40(*(uint64_t *)(context_offset + 8));
       animation_data[0xe] = weight_sum;
     }
   }
@@ -995,7 +995,7 @@ FINAL_WEIGHT_PROCESSING:
         weight_sum = current_value * 0.5 * (3.0 - weight_sum * current_value * current_value);
         stack_param2 = CONCAT44(weight_sum * scale_x * blend_speed + (1.0 - blend_speed) * animation_data[0x185f],
                               weight_sum * angle_y * blend_speed + (1.0 - blend_speed) * animation_data[0x185e]);
-        *(undefined8 *)(animation_data + 0x185e) = stack_param2;
+        *(uint64_t *)(animation_data + 0x185e) = stack_param2;
         weight_sum = animation_data[0x185f];
         current_value = animation_data[0x185e];
         velocity_y = current_value * current_value + weight_sum * weight_sum;
@@ -1006,7 +1006,7 @@ FINAL_WEIGHT_PROCESSING:
         animation_data[0x185e] = velocity_y * current_value;
       }
       else {
-        *(undefined8 *)(animation_data + 0x185e) = stack_param2;
+        *(uint64_t *)(animation_data + 0x185e) = stack_param2;
       }
       
       // 返回最终结果

@@ -12,7 +12,7 @@ void merge_duplicate_resource_entries(longlong resource_manager_ptr)
   char char1;
   char char2;
   int index;
-  undefined8 *resource_ptr;
+  uint64_t *resource_ptr;
   ulonglong offset;
   int resource_count;
   char *string_ptr1;
@@ -93,21 +93,21 @@ void merge_duplicate_resource_entries(longlong resource_manager_ptr)
         if (string_ptr2 != *(longlong **)(start_offset + 0x50)) {
           end_offset = *(longlong *)(resource_manager_ptr + 0x48);
           do {
-            *(undefined8 *)(*string_ptr2 + 0x68) = *(undefined8 *)(comparison_offset + end_offset);
+            *(uint64_t *)(*string_ptr2 + 0x68) = *(uint64_t *)(comparison_offset + end_offset);
             string_ptr2 = string_ptr2 + 1;
             end_offset = *(longlong *)(resource_manager_ptr + 0x48);
           } while (string_ptr2 != *(longlong **)(*(longlong *)(end_offset + current_offset * 8) + 0x50));
         }
         start_offset = *(longlong *)(end_offset + current_offset * 8);
         merge_resource_data(*(longlong *)(comparison_offset + end_offset) + 0x48,
-                      *(undefined8 *)(*(longlong *)(comparison_offset + end_offset) + 0x50),
-                      *(undefined8 *)(start_offset + 0x48),*(undefined8 *)(start_offset + 0x50));
+                      *(uint64_t *)(*(longlong *)(comparison_offset + end_offset) + 0x50),
+                      *(uint64_t *)(start_offset + 0x48),*(uint64_t *)(start_offset + 0x50));
         start_offset = *(longlong *)(*(longlong *)(resource_manager_ptr + 0x48) + current_offset * 8);
-        *(undefined8 *)(start_offset + 0x50) = *(undefined8 *)(start_offset + 0x48);
-        merge_duplicate_resource_entries(*(undefined8 *)(comparison_offset + *(longlong *)(resource_manager_ptr + 0x48)));
-        cleanup_resource_entry(*(undefined8 *)(*(longlong *)(resource_manager_ptr + 0x48) + current_offset * 8));
-        resource_ptr = *(undefined8 **)(*(longlong *)(resource_manager_ptr + 0x48) + current_offset * 8);
-        if (resource_ptr != (undefined8 *)0x0) {
+        *(uint64_t *)(start_offset + 0x50) = *(uint64_t *)(start_offset + 0x48);
+        merge_duplicate_resource_entries(*(uint64_t *)(comparison_offset + *(longlong *)(resource_manager_ptr + 0x48)));
+        cleanup_resource_entry(*(uint64_t *)(*(longlong *)(resource_manager_ptr + 0x48) + current_offset * 8));
+        resource_ptr = *(uint64_t **)(*(longlong *)(resource_manager_ptr + 0x48) + current_offset * 8);
+        if (resource_ptr != (uint64_t *)0x0) {
           if (resource_ptr[9] != 0) {
                     // WARNING: Subroutine does not return
             handle_critical_error();
@@ -115,12 +115,12 @@ void merge_duplicate_resource_entries(longlong resource_manager_ptr)
           resource_ptr[4] = &default_resource_handler;
           if (resource_ptr[5] == 0) {
             resource_ptr[5] = 0;
-            *(undefined4 *)(resource_ptr + 7) = 0;
+            *(int32_t *)(resource_ptr + 7) = 0;
             resource_ptr[4] = &alternate_resource_handler;
             *resource_ptr = &default_resource_handler;
             if (resource_ptr[1] == 0) {
               resource_ptr[1] = 0;
-              *(undefined4 *)(resource_ptr + 3) = 0;
+              *(int32_t *)(resource_ptr + 3) = 0;
               *resource_ptr = &alternate_resource_handler;
                     // WARNING: Subroutine does not return
               handle_critical_error(resource_ptr);
@@ -131,7 +131,7 @@ void merge_duplicate_resource_entries(longlong resource_manager_ptr)
                     // WARNING: Subroutine does not return
           handle_critical_error();
         }
-        *(undefined8 *)(*(longlong *)(resource_manager_ptr + 0x48) + current_offset * 8) = 0;
+        *(uint64_t *)(*(longlong *)(resource_manager_ptr + 0x48) + current_offset * 8) = 0;
         start_offset = *(longlong *)(resource_manager_ptr + 0x48) + current_offset * 8;
         offset = start_offset + 8;
         end_offset = *(ulonglong *)(resource_manager_ptr + 0x50);
@@ -158,11 +158,11 @@ void merge_duplicate_resource_entries(longlong resource_manager_ptr)
 
 // 函数: 清理资源管理器
 // 原始函数名: FUN_180056410
-void cleanup_resource_manager(longlong manager_ptr, undefined8 param2, undefined8 param3, undefined8 param4)
+void cleanup_resource_manager(longlong manager_ptr, uint64_t param2, uint64_t param3, uint64_t param4)
 
 {
   ulonglong *resource_array_ptr;
-  undefined8 *resource_entry;
+  uint64_t *resource_entry;
   ulonglong array_start;
   ulonglong array_end;
   ulonglong current_offset;
@@ -170,7 +170,7 @@ void cleanup_resource_manager(longlong manager_ptr, undefined8 param2, undefined
   uint resource_index;
   ulonglong processed_count;
   longlong array_size;
-  undefined8 cleanup_flag;
+  uint64_t cleanup_flag;
   
   cleanup_flag = 0xfffffffffffffffe;
   current_offset = 0;
@@ -180,9 +180,9 @@ void cleanup_resource_manager(longlong manager_ptr, undefined8 param2, undefined
   processed_count = current_offset;
   if ((longlong)(*(longlong *)(manager_ptr + 0x50) - array_start) >> 3 != 0) {
     do {
-      cleanup_resource_manager(*(undefined8 *)(array_start + array_end));
-      resource_entry = *(undefined8 **)(*resource_array_ptr + array_end);
-      if (resource_entry != (undefined8 *)0x0) {
+      cleanup_resource_manager(*(uint64_t *)(array_start + array_end));
+      resource_entry = *(uint64_t **)(*resource_array_ptr + array_end);
+      if (resource_entry != (uint64_t *)0x0) {
         if (resource_entry[9] != 0) {
                     // WARNING: Subroutine does not return
           handle_critical_error();
@@ -190,12 +190,12 @@ void cleanup_resource_manager(longlong manager_ptr, undefined8 param2, undefined
         resource_entry[4] = &default_resource_handler;
         if (resource_entry[5] == 0) {
           resource_entry[5] = 0;
-          *(undefined4 *)(resource_entry + 7) = 0;
+          *(int32_t *)(resource_entry + 7) = 0;
           resource_entry[4] = &alternate_resource_handler;
           *resource_entry = &default_resource_handler;
           if (resource_entry[1] == 0) {
             resource_entry[1] = 0;
-            *(undefined4 *)(resource_entry + 3) = 0;
+            *(int32_t *)(resource_entry + 3) = 0;
             *resource_entry = &alternate_resource_handler;
                     // WARNING: Subroutine does not return
             handle_critical_error(resource_entry);
@@ -206,7 +206,7 @@ void cleanup_resource_manager(longlong manager_ptr, undefined8 param2, undefined
                     // WARNING: Subroutine does not return
         handle_critical_error();
       }
-      *(undefined8 *)(*resource_array_ptr + array_end) = 0;
+      *(uint64_t *)(*resource_array_ptr + array_end) = 0;
       resource_index = (int)processed_count + 1;
       array_start = *resource_array_ptr;
       array_end = array_end + 8;
@@ -245,19 +245,19 @@ void cleanup_resource_manager(longlong manager_ptr, undefined8 param2, undefined
 void initialize_resource_manager_list(longlong *list_head_ptr)
 
 {
-  undefined8 *new_node;
+  uint64_t *new_node;
   code *init_function;
   longlong old_head;
   longlong *node_ptr;
-  undefined1 stack_data [32];
+  int8_t stack_data [32];
   longlong stack_value;
   longlong *temp_ptr;
   longlong **node_ptr_ptr;
-  undefined8 stack_param1;
-  undefined *stack_param2;
-  undefined1 *stack_param3;
-  undefined4 stack_param4;
-  undefined1 stack_data2 [16];
+  uint64_t stack_param1;
+  void *stack_param2;
+  int8_t *stack_param3;
+  int32_t stack_param4;
+  int8_t stack_data2 [16];
   ulonglong stack_checksum;
   
   stack_param1 = 0xfffffffffffffffe;
@@ -267,7 +267,7 @@ void initialize_resource_manager_list(longlong *list_head_ptr)
   initialize_resource_node(node_ptr);
   *node_ptr = (longlong)&resource_manager_vtable;
   node_ptr[0x18] = 0;
-  *(undefined4 *)(node_ptr + 0x19) = 0;
+  *(int32_t *)(node_ptr + 0x19) = 0;
   temp_ptr = node_ptr;
   (**(code **)(*node_ptr + 0x28))(node_ptr);
   temp_ptr = (longlong *)*list_head_ptr;
@@ -291,7 +291,7 @@ void initialize_resource_manager_list(longlong *list_head_ptr)
   register_resource_manager(old_head + 0x48,&temp_ptr);
   list_head_ptr[1] = (longlong)node_ptr;
   stack_param2 = &alternate_resource_handler;
-  new_node = (undefined8 *)list_head_ptr[1];
+  new_node = (uint64_t *)list_head_ptr[1];
   init_function = *(code **)*new_node;
   node_ptr_ptr = &temp_ptr;
   temp_ptr = (longlong *)*list_head_ptr;
@@ -305,10 +305,10 @@ void initialize_resource_manager_list(longlong *list_head_ptr)
 
 // 函数: 释放资源管理器内存
 // 原始函数名: FUN_1800567c0
-undefined8 free_resource_manager_memory(undefined8 memory_ptr, ulonglong flags, undefined8 param3, undefined8 param4)
+uint64_t free_resource_manager_memory(uint64_t memory_ptr, ulonglong flags, uint64_t param3, uint64_t param4)
 
 {
-  undefined8 cleanup_flag;
+  uint64_t cleanup_flag;
   
   cleanup_flag = 0xfffffffffffffffe;
   initialize_memory_manager();
@@ -327,12 +327,12 @@ void start_engine_performance_monitor(longlong engine_context)
   double elapsed_time;
   uint frame_count;
   longlong performance_counter;
-  undefined4 *debug_string_ptr;
-  undefined8 *message_buffer;
+  int32_t *debug_string_ptr;
+  uint64_t *message_buffer;
   int wait_iterations;
   longlong temp_counter;
-  undefined *message_ptr;
-  undefined *string_ptr;
+  void *message_ptr;
+  void *string_ptr;
   uint message_size;
   ulonglong buffer_size;
   longlong stack_value;
@@ -349,10 +349,10 @@ void start_engine_performance_monitor(longlong engine_context)
   }
   *(double *)(engine_context + 0xc0) = (double)(performance_counter - performance_counter_base) * performance_frequency;
   LOCK();
-  *(undefined4 *)(engine_context + 200) = 0;
+  *(int32_t *)(engine_context + 200) = 0;
   UNLOCK();
   LOCK();
-  *(undefined4 *)(engine_context + 0xcc) = 1;
+  *(int32_t *)(engine_context + 0xcc) = 1;
   UNLOCK();
   while( true ) {
     do {
@@ -369,24 +369,24 @@ void start_engine_performance_monitor(longlong engine_context)
       elapsed_time = (double)(performance_counter - performance_counter_base) * performance_frequency;
     } while ((performance_debug_enabled == '\0') || (elapsed_time - *(double *)(engine_context + 0xc0) <= 900.0));
     LOCK();
-    *(undefined4 *)(engine_context + 200) = 1;
+    *(int32_t *)(engine_context + 200) = 1;
     UNLOCK();
     message_ptr = &default_resource_handler;
     buffer_size = 0;
-    string_ptr = (undefined *)0x0;
+    string_ptr = (void *)0x0;
     message_size = 0;
     create_debug_message(&message_ptr,0x1c);
-    debug_string_ptr = (undefined4 *)(string_ptr + message_size);
+    debug_string_ptr = (int32_t *)(string_ptr + message_size);
     *debug_string_ptr = 0x73736f50; // "Poss"
     debug_string_ptr[1] = 0x656c6269; // "ible"
     debug_string_ptr[2] = 0x61656420; // "ead "
     debug_string_ptr[3] = 0x636f6c64; // "cold"
-    *(undefined8 *)(debug_string_ptr + 4) = 0x746365746564206b; // "k detected"
+    *(uint64_t *)(debug_string_ptr + 4) = 0x746365746564206b; // "k detected"
     debug_string_ptr[6] = 0x202c6465; // "de, "
-    *(undefined1 *)(debug_string_ptr + 7) = 0;
+    *(int8_t *)(debug_string_ptr + 7) = 0;
     message_size = 0x1c;
     create_debug_message(&message_ptr,0x3e);
-    debug_string_ptr = (undefined4 *)(string_ptr + message_size);
+    debug_string_ptr = (int32_t *)(string_ptr + message_size);
     *debug_string_ptr = 0x69676e65; // "engine"
     debug_string_ptr[1] = 0x6420656e; // "en d"
     debug_string_ptr[2] = 0x6e206469; // "in re"
@@ -395,8 +395,8 @@ void start_engine_performance_monitor(longlong engine_context)
     debug_string_ptr[5] = 0x20612072; // "r a "
     debug_string_ptr[6] = 0x6d617266; // "fram"
     debug_string_ptr[7] = 0x6f662065; // "e of"
-    *(undefined2 *)(debug_string_ptr + 8) = 0x2072; // "r "
-    *(undefined1 *)((longlong)debug_string_ptr + 0x22) = 0;
+    *(int16_t *)(debug_string_ptr + 8) = 0x2072; // "r "
+    *(int8_t *)((longlong)debug_string_ptr + 0x22) = 0;
     message_size = 0x3e;
     generate_error_message(error_message,&error_template,900);
     frame_count = message_size;
@@ -409,13 +409,13 @@ void start_engine_performance_monitor(longlong engine_context)
     if (0 < wait_iterations) break;
     current_time = message_size + 10;
     create_debug_message(&message_ptr,current_time);
-    message_buffer = (undefined8 *)(string_ptr + message_size);
+    message_buffer = (uint64_t *)(string_ptr + message_size);
     *message_buffer = 0x73646e6f63657320; // " seconds"
-    *(undefined2 *)(message_buffer + 1) = 0x2021; // "! "
-    *(undefined1 *)((longlong)message_buffer + 10) = 0;
+    *(int16_t *)(message_buffer + 1) = 0x2021; // "! "
+    *(int8_t *)((longlong)message_buffer + 10) = 0;
     message_size = current_time;
     create_debug_message(&message_ptr,frame_count + 0x2b);
-    debug_string_ptr = (undefined4 *)(string_ptr + message_size);
+    debug_string_ptr = (int32_t *)(string_ptr + message_size);
     *debug_string_ptr = 0x65766544; // "Deve"
     debug_string_ptr[1] = 0x65706f6c; // "lope"
     debug_string_ptr[2] = 0x6e692072; // "in r"
@@ -424,9 +424,9 @@ void start_engine_performance_monitor(longlong engine_context)
     debug_string_ptr[5] = 0x73206e6f; // "ons "
     debug_string_ptr[6] = 0x65676775; // "ggu"
     debug_string_ptr[7] = 0x64657473; // "test"
-    *(undefined2 *)(debug_string_ptr + 8) = 0x2e; // "."
+    *(int16_t *)(debug_string_ptr + 8) = 0x2e; // "."
     message_ptr = &debug_string_suffix;
-    if (string_ptr != (undefined *)0x0) {
+    if (string_ptr != (void *)0x0) {
       message_ptr = string_ptr;
     }
     stack_data[0] = 0;
@@ -436,11 +436,11 @@ void start_engine_performance_monitor(longlong engine_context)
               ((longlong *)*global_debug_logger,&debug_log_message,0x175c,message_ptr);
     *(double *)(engine_context + 0xc0) = elapsed_time;
     message_ptr = &default_resource_handler;
-    if (string_ptr != (undefined *)0x0) {
+    if (string_ptr != (void *)0x0) {
                     // WARNING: Subroutine does not return
       handle_critical_error();
     }
-    string_ptr = (undefined *)0x0;
+    string_ptr = (void *)0x0;
     buffer_size = buffer_size & 0xffffffff00000000;
     message_ptr = &alternate_resource_handler;
   }
@@ -451,14 +451,14 @@ void start_engine_performance_monitor(longlong engine_context)
 
 // 函数: 初始化引擎子系统
 // 原始函数名: FUN_180056b30
-void initialize_engine_subsystems(undefined8 param1, undefined8 param2, undefined8 param3, undefined8 param4)
+void initialize_engine_subsystems(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4)
 
 {
   longlong system_status;
   char init_result;
-  undefined1 stack_data [16];
-  undefined *stack_ptr1;
-  undefined *stack_ptr2;
+  int8_t stack_data [16];
+  void *stack_ptr1;
+  void *stack_ptr2;
   
   initialize_graphics_system(param1,1,1,param4,0xfffffffffffffffe);
   if (global_graphics_manager != (longlong *)0x0) {
@@ -470,7 +470,7 @@ void initialize_engine_subsystems(undefined8 param1, undefined8 param2, undefine
   stack_ptr1 = &graphics_init_function;
   stack_ptr2 = &graphics_init_data;
   initialize_window_manager(stack_data);
-  *(undefined1 *)(global_window_manager + 0x3a0) = 1;
+  *(int8_t *)(global_window_manager + 0x3a0) = 1;
   initialize_audio_system(global_engine_context);
   initialize_audio_system(global_engine_context);
   if (global_input_manager != 0) {
@@ -479,31 +479,31 @@ void initialize_engine_subsystems(undefined8 param1, undefined8 param2, undefine
   initialize_audio_system(global_engine_context);
   initialize_graphics_system();
   system_status = global_system_state;
-  *(undefined1 *)(global_system_state + 0x1504) = 0;
-  *(undefined1 *)(system_status + 0x1506) = 0;
+  *(int8_t *)(global_system_state + 0x1504) = 0;
+  *(int8_t *)(system_status + 0x1506) = 0;
   return;
 }
 
 // 函数: 处理引擎初始化回调
 // 原始函数名: FUN_180056c50
-void handle_engine_initialization_callback(undefined8 param1, undefined8 *callback_ptr, undefined4 callback_id)
+void handle_engine_initialization_callback(uint64_t param1, uint64_t *callback_ptr, int32_t callback_id)
 
 {
-  undefined8 callback_data;
-  undefined **callback_function_ptr;
-  undefined1 stack_data [32];
-  undefined **callback_ptr_ptr;
-  undefined ***callback_ptr_ptr_ptr;
-  undefined8 stack_param1;
-  undefined8 *stack_param2;
-  undefined **stack_param3;
-  undefined *stack_param4;
-  undefined1 *stack_param5;
-  undefined4 stack_param6;
-  undefined1 stack_data2 [128];
-  undefined4 stack_param7;
-  undefined8 stack_param8;
-  undefined4 stack_param9;
+  uint64_t callback_data;
+  void **callback_function_ptr;
+  int8_t stack_data [32];
+  void **callback_ptr_ptr;
+  void ***callback_ptr_ptr_ptr;
+  uint64_t stack_param1;
+  uint64_t *stack_param2;
+  void **stack_param3;
+  void *stack_param4;
+  int8_t *stack_param5;
+  int32_t stack_param6;
+  int8_t stack_data2 [128];
+  int32_t stack_param7;
+  uint64_t stack_param8;
+  int32_t stack_param9;
   ulonglong stack_checksum;
   
   stack_param1 = 0xfffffffffffffffe;
@@ -519,22 +519,22 @@ void handle_engine_initialization_callback(undefined8 param1, undefined8 *callba
   stack_param8 = process_callback_data(callback_data,callback_ptr);
   stack_param9 = callback_id;
   callback_data = allocate_memory(global_memory_allocator,0x100,8,3);
-  callback_function_ptr = (undefined **)create_callback_object(callback_data,&stack_param4);
+  callback_function_ptr = (void **)create_callback_object(callback_data,&stack_param4);
   stack_param3 = callback_function_ptr;
-  if (callback_function_ptr != (undefined **)0x0) {
+  if (callback_function_ptr != (void **)0x0) {
     (**(code **)(*callback_function_ptr + 0x28))(callback_function_ptr);
   }
   callback_data = global_engine_context;
   callback_ptr_ptr_ptr = &callback_ptr_ptr;
   callback_ptr_ptr = callback_function_ptr;
-  if (callback_function_ptr != (undefined **)0x0) {
+  if (callback_function_ptr != (void **)0x0) {
     (**(code **)(*callback_function_ptr + 0x28))(callback_function_ptr);
   }
   register_engine_callback(callback_data,&callback_ptr_ptr);
-  if (callback_function_ptr != (undefined **)0x0) {
+  if (callback_function_ptr != (void **)0x0) {
     (**(code **)(*callback_function_ptr + 0x38))(callback_function_ptr);
   }
-  callback_ptr_ptr_ptr = (undefined ***)&stack_param4;
+  callback_ptr_ptr_ptr = (void ***)&stack_param4;
   stack_param4 = &alternate_resource_handler;
   *callback_ptr = &default_resource_handler;
   if (callback_ptr[1] != 0) {
@@ -542,7 +542,7 @@ void handle_engine_initialization_callback(undefined8 param1, undefined8 *callba
     handle_critical_error();
   }
   callback_ptr[1] = 0;
-  *(undefined4 *)(callback_ptr + 3) = 0;
+  *(int32_t *)(callback_ptr + 3) = 0;
   *callback_ptr = &alternate_resource_handler;
                     // WARNING: Subroutine does not return
   validate_stack_checksum(stack_checksum ^ (ulonglong)stack_data);
@@ -550,25 +550,25 @@ void handle_engine_initialization_callback(undefined8 param1, undefined8 *callba
 
 // 函数: 重置资源数据结构
 // 原始函数名: FUN_180056de0
-undefined8 * reset_resource_data_structure(undefined8 *resource_ptr)
+uint64_t * reset_resource_data_structure(uint64_t *resource_ptr)
 
 {
   *resource_ptr = 0;
   resource_ptr[1] = 0;
   resource_ptr[2] = 0;
-  *(undefined4 *)(resource_ptr + 3) = 3;
+  *(int32_t *)(resource_ptr + 3) = 3;
   return resource_ptr;
 }
 
 // 函数: 初始化资源数据结构
 // 原始函数名: FUN_180056e10
-undefined8 * initialize_resource_data_structure(undefined8 *resource_ptr)
+uint64_t * initialize_resource_data_structure(uint64_t *resource_ptr)
 
 {
   *resource_ptr = 0;
   resource_ptr[1] = 0;
   resource_ptr[2] = 0;
-  *(undefined4 *)(resource_ptr + 3) = 3;
+  *(int32_t *)(resource_ptr + 3) = 3;
   return resource_ptr;
 }
 
@@ -583,27 +583,27 @@ void start_engine_initialization_sequence(void)
 
 // 函数: 设置资源数据结构
 // 原始函数名: FUN_180056e60
-undefined8 * setup_resource_data_structure(undefined8 *resource_ptr)
+uint64_t * setup_resource_data_structure(uint64_t *resource_ptr)
 
 {
   *resource_ptr = 0;
   resource_ptr[1] = 0;
   resource_ptr[2] = 0;
-  *(undefined4 *)(resource_ptr + 3) = 10;
+  *(int32_t *)(resource_ptr + 3) = 10;
   return resource_ptr;
 }
 
 // 函数: 配置资源管理器
 // 原始函数名: FUN_180056e90
-undefined8 * configure_resource_manager(undefined8 *manager_ptr)
+uint64_t * configure_resource_manager(uint64_t *manager_ptr)
 
 {
-  undefined8 *temp_ptr;
+  uint64_t *temp_ptr;
   
   *manager_ptr = 0;
   manager_ptr[1] = 0;
   manager_ptr[4] = 0;
-  *(undefined4 *)(manager_ptr + 5) = 0;
+  *(int32_t *)(manager_ptr + 5) = 0;
   manager_ptr[6] = 0;
   manager_ptr[8] = 0;
   manager_ptr[0x60f] = 0;
@@ -641,15 +641,15 @@ void copy_resource_name(longlong dest_ptr, longlong src_ptr)
 
 {
   longlong name_length;
-  undefined *name_ptr;
+  void *name_ptr;
   
   name_ptr = &empty_string;
-  if (*(undefined **)(src_ptr + 8) != (undefined *)0x0) {
-    name_ptr = *(undefined **)(src_ptr + 8);
+  if (*(void **)(src_ptr + 8) != (void *)0x0) {
+    name_ptr = *(void **)(src_ptr + 8);
   }
-  if (name_ptr == (undefined *)0x0) {
-    *(undefined4 *)(dest_ptr + 0x10) = 0;
-    **(undefined1 **)(dest_ptr + 8) = 0;
+  if (name_ptr == (void *)0x0) {
+    *(int32_t *)(dest_ptr + 0x10) = 0;
+    **(int8_t **)(dest_ptr + 8) = 0;
     return;
   }
   name_length = -1;
@@ -660,12 +660,12 @@ void copy_resource_name(longlong dest_ptr, longlong src_ptr)
     *(int *)(dest_ptr + 0x10) = (int)name_length;
                     // WARNING: Could not recover jumptable at 0x000180056fc2. Too many branches
                     // WARNING: Treating indirect jump as call
-    strcpy_s(*(undefined8 *)(dest_ptr + 8),0x400);
+    strcpy_s(*(uint64_t *)(dest_ptr + 8),0x400);
     return;
   }
   allocate_string_buffer(&string_buffer_address,0x400);
-  *(undefined4 *)(dest_ptr + 0x10) = 0;
-  **(undefined1 **)(dest_ptr + 8) = 0;
+  *(int32_t *)(dest_ptr + 0x10) = 0;
+  **(int8_t **)(dest_ptr + 8) = 0;
   return;
 }
 
@@ -735,19 +735,19 @@ void reset_resource_manager_pointers(void)
 
 // 函数: 初始化资源字符串
 // 原始函数名: FUN_180057090
-undefined8 *
-initialize_resource_string(undefined8 *string_ptr, longlong name_ptr, undefined8 param3, undefined8 param4)
+uint64_t *
+initialize_resource_string(uint64_t *string_ptr, longlong name_ptr, uint64_t param3, uint64_t param4)
 
 {
   longlong name_length;
   
   *string_ptr = &alternate_resource_handler;
   string_ptr[1] = 0;
-  *(undefined4 *)(string_ptr + 2) = 0;
+  *(int32_t *)(string_ptr + 2) = 0;
   *string_ptr = &resource_string_data;
   string_ptr[1] = string_ptr + 3;
-  *(undefined4 *)(string_ptr + 2) = 0;
-  *(undefined1 *)(string_ptr + 3) = 0;
+  *(int32_t *)(string_ptr + 2) = 0;
+  *(int8_t *)(string_ptr + 3) = 0;
   if (name_ptr != 0) {
     name_length = -1;
     do {
@@ -764,11 +764,11 @@ initialize_resource_string(undefined8 *string_ptr, longlong name_ptr, undefined8
 void cleanup_resource_string_array(longlong *array_ptr)
 
 {
-  undefined8 *current_ptr;
-  undefined8 *end_ptr;
+  uint64_t *current_ptr;
+  uint64_t *end_ptr;
   
-  current_ptr = (undefined8 *)array_ptr[1];
-  end_ptr = (undefined8 *)*array_ptr;
+  current_ptr = (uint64_t *)array_ptr[1];
+  end_ptr = (uint64_t *)*array_ptr;
   if (end_ptr != current_ptr) {
     do {
       (**(code **)*end_ptr)(end_ptr,0);
@@ -783,16 +783,16 @@ void cleanup_resource_string_array(longlong *array_ptr)
 
 // 函数: 处理资源字符串回调
 // 原始函数名: FUN_180057170
-void process_resource_string_callbacks(longlong *array_ptr, undefined8 param2, undefined8 param3, undefined8 param4)
+void process_resource_string_callbacks(longlong *array_ptr, uint64_t param2, uint64_t param3, uint64_t param4)
 
 {
-  undefined8 *current_ptr;
-  undefined8 *end_ptr;
-  undefined8 callback_flag;
+  uint64_t *current_ptr;
+  uint64_t *end_ptr;
+  uint64_t callback_flag;
   
   callback_flag = 0xfffffffffffffffe;
-  current_ptr = (undefined8 *)array_ptr[1];
-  for (end_ptr = (undefined8 *)*array_ptr; end_ptr != current_ptr; end_ptr = end_ptr + 0xb) {
+  current_ptr = (uint64_t *)array_ptr[1];
+  for (end_ptr = (uint64_t *)*array_ptr; end_ptr != current_ptr; end_ptr = end_ptr + 0xb) {
     (**(code **)*end_ptr)(end_ptr,0,param3,param4,callback_flag);
   }
   if (*array_ptr == 0) {
@@ -804,22 +804,22 @@ void process_resource_string_callbacks(longlong *array_ptr, undefined8 param2, u
 
 // 函数: 添加资源到数组
 // 原始函数名: FUN_1800571e0
-void add_resource_to_array(longlong *array_ptr, undefined4 *resource_data)
+void add_resource_to_array(longlong *array_ptr, int32_t *resource_data)
 
 {
   longlong current_size;
-  undefined4 *new_array;
-  undefined4 *old_start;
-  undefined4 *old_end;
-  undefined4 *current_end;
+  int32_t *new_array;
+  int32_t *old_start;
+  int32_t *old_end;
+  int32_t *current_end;
   
-  current_end = (undefined4 *)array_ptr[1];
-  if (current_end < (undefined4 *)array_ptr[2]) {
+  current_end = (int32_t *)array_ptr[1];
+  if (current_end < (int32_t *)array_ptr[2]) {
     array_ptr[1] = (longlong)(current_end + 1);
     *current_end = *resource_data;
     return;
   }
-  old_start = (undefined4 *)*array_ptr;
+  old_start = (int32_t *)*array_ptr;
   current_size = (longlong)current_end - (longlong)old_start >> 2;
   if (current_size == 0) {
     current_size = 1;
@@ -827,13 +827,13 @@ void add_resource_to_array(longlong *array_ptr, undefined4 *resource_data)
   else {
     current_size = current_size * 2;
     if (current_size == 0) {
-      new_array = (undefined4 *)0x0;
+      new_array = (int32_t *)0x0;
       goto array_allocated;
     }
   }
-  new_array = (undefined4 *)allocate_memory(global_memory_allocator,current_size * 4,(char)array_ptr[3]);
-  old_start = (undefined4 *)*array_ptr;
-  current_end = (undefined4 *)array_ptr[1];
+  new_array = (int32_t *)allocate_memory(global_memory_allocator,current_size * 4,(char)array_ptr[3]);
+  old_start = (int32_t *)*array_ptr;
+  current_end = (int32_t *)array_ptr[1];
 array_allocated:
   if (old_start != current_end) {
                     // WARNING: Subroutine does not return
@@ -855,18 +855,18 @@ array_allocated:
 void cleanup_resource_handle(longlong handle_ptr)
 
 {
-  undefined8 *resource_ptr;
+  uint64_t *resource_ptr;
   
-  resource_ptr = *(undefined8 **)(handle_ptr + 0x10);
-  if (resource_ptr != (undefined8 *)0x0) {
+  resource_ptr = *(uint64_t **)(handle_ptr + 0x10);
+  if (resource_ptr != (uint64_t *)0x0) {
     release_resource_data(handle_ptr,*resource_ptr);
                     // WARNING: Subroutine does not return
     handle_critical_error(resource_ptr);
   }
   *(longlong *)handle_ptr = handle_ptr;
-  *(undefined8 *)(handle_ptr + 0x10) = 0;
-  *(undefined1 *)(handle_ptr + 0x18) = 0;
-  *(undefined8 *)(handle_ptr + 0x20) = 0;
+  *(uint64_t *)(handle_ptr + 0x10) = 0;
+  *(int8_t *)(handle_ptr + 0x18) = 0;
+  *(uint64_t *)(handle_ptr + 0x20) = 0;
   *(longlong *)(handle_ptr + 8) = handle_ptr;
   return;
 }
@@ -889,9 +889,9 @@ void reset_resource_handle(void)
   longlong unaff_RBX;
   
   *(longlong *)unaff_RBX = unaff_RBX;
-  *(undefined8 *)(unaff_RBX + 0x10) = 0;
-  *(undefined1 *)(unaff_RBX + 0x18) = 0;
-  *(undefined8 *)(unaff_RBX + 0x20) = 0;
+  *(uint64_t *)(unaff_RBX + 0x10) = 0;
+  *(int8_t *)(unaff_RBX + 0x18) = 0;
+  *(uint64_t *)(unaff_RBX + 0x20) = 0;
   *(longlong *)(unaff_RBX + 8) = unaff_RBX;
   return;
 }
@@ -960,7 +960,7 @@ void resize_array(longlong *array_ptr, ulonglong new_size)
 
 // 函数: 扩展数组容量
 // 原始函数名: FUN_18005736b
-void expand_array_capacity(longlong current_size, ulonglong requested_size, undefined8 param3, longlong array_ptr)
+void expand_array_capacity(longlong current_size, ulonglong requested_size, uint64_t param3, longlong array_ptr)
 
 {
   longlong in_RAX;
@@ -1019,19 +1019,19 @@ void cleanup_array_memory(void)
 {
   longlong unaff_RBX;
   longlong unaff_RSI;
-  undefined8 unaff_RDI;
+  uint64_t unaff_RDI;
   
   if (unaff_RSI != 0) {
                     // WARNING: Subroutine does not return
     memset();
   }
-  *(undefined8 *)(unaff_RBX + 8) = unaff_RDI;
+  *(uint64_t *)(unaff_RBX + 8) = unaff_RDI;
   return;
 }
 
 // 函数: 设置数组指针
 // 原始函数名: FUN_180057479
-void set_array_pointer(undefined8 param1, longlong param2, undefined8 param3, longlong param4)
+void set_array_pointer(uint64_t param1, longlong param2, uint64_t param3, longlong param4)
 
 {
   longlong unaff_RBX;
@@ -1042,10 +1042,10 @@ void set_array_pointer(undefined8 param1, longlong param2, undefined8 param3, lo
 
 // 函数: 初始化资源缓存
 // 原始函数名: FUN_180057490
-void initialize_resource_cache(longlong cache_ptr, undefined8 param2, undefined8 param3, undefined8 param4)
+void initialize_resource_cache(longlong cache_ptr, uint64_t param2, uint64_t param3, uint64_t param4)
 
 {
-  initialize_cache_system(cache_ptr,*(undefined8 *)(cache_ptr + 0x10),param3,param4,0xfffffffffffffffe);
+  initialize_cache_system(cache_ptr,*(uint64_t *)(cache_ptr + 0x10),param3,param4,0xfffffffffffffffe);
   return;
 }
 
@@ -1070,19 +1070,19 @@ void cleanup_resource_cache(longlong *cache_ptr)
 
 // 函数: 初始化资源池
 // 原始函数名: FUN_180057510
-void initialize_resource_pool(longlong pool_ptr, undefined8 param2, undefined8 param3, undefined8 param4)
+void initialize_resource_pool(longlong pool_ptr, uint64_t param2, uint64_t param3, uint64_t param4)
 
 {
-  initialize_pool_system(pool_ptr,*(undefined8 *)(pool_ptr + 0x10),param3,param4,0xfffffffffffffffe);
+  initialize_pool_system(pool_ptr,*(uint64_t *)(pool_ptr + 0x10),param3,param4,0xfffffffffffffffe);
   return;
 }
 
 // 函数: 初始化资源队列
 // 原始函数名: FUN_180057530
-void initialize_resource_queue(longlong queue_ptr, undefined8 param2, undefined8 param3, undefined8 param4)
+void initialize_resource_queue(longlong queue_ptr, uint64_t param2, uint64_t param3, uint64_t param4)
 
 {
-  initialize_queue_system(queue_ptr,*(undefined8 *)(queue_ptr + 0x10),param3,param4,0xfffffffffffffffe);
+  initialize_queue_system(queue_ptr,*(uint64_t *)(queue_ptr + 0x10),param3,param4,0xfffffffffffffffe);
   return;
 }
 
@@ -1091,25 +1091,25 @@ void initialize_resource_queue(longlong queue_ptr, undefined8 param2, undefined8
 // 这些函数在其他文件中定义，这里仅作引用
 
 // 外部函数引用
-void merge_resource_data(longlong param1, undefined8 param2, undefined8 param3, undefined8 param4);
-void cleanup_resource_entry(undefined8 param1);
+void merge_resource_data(longlong param1, uint64_t param2, uint64_t param3, uint64_t param4);
+void cleanup_resource_entry(uint64_t param1);
 void initialize_resource_node(longlong param1);
-void create_resource_manager(longlong param1, undefined8 *param2, long param3, longlong param4);
+void create_resource_manager(longlong param1, uint64_t *param2, long param3, longlong param4);
 void setup_resource_manager(longlong param1);
 void register_resource_manager(longlong param1, longlong *param2);
-void initialize_graphics_system(undefined8 param1, long param2, long param3, undefined8 param4, undefined8 param5);
-void initialize_window_manager(undefined8 param1);
+void initialize_graphics_system(uint64_t param1, long param2, long param3, uint64_t param4, uint64_t param5);
+void initialize_window_manager(uint64_t param1);
 void initialize_audio_system(longlong param1);
 void initialize_input_system(void);
 void initialize_engine_components(void);
-void process_callback_data(undefined8 param1, undefined8 *param2);
-void create_callback_object(undefined8 param1, undefined8 *param2);
-void register_engine_callback(longlong param1, undefined8 **param2);
-void release_resource_data(undefined8 param1, undefined8 param2);
-void initialize_cache_system(longlong param1, undefined8 param2, undefined8 param3, undefined8 param4, undefined8 param5);
+void process_callback_data(uint64_t param1, uint64_t *param2);
+void create_callback_object(uint64_t param1, uint64_t *param2);
+void register_engine_callback(longlong param1, uint64_t **param2);
+void release_resource_data(uint64_t param1, uint64_t param2);
+void initialize_cache_system(longlong param1, uint64_t param2, uint64_t param3, uint64_t param4, uint64_t param5);
 void cleanup_cache_entry(longlong param1);
-void initialize_pool_system(longlong param1, undefined8 param2, undefined8 param3, undefined8 param4, undefined8 param5);
-void initialize_queue_system(longlong param1, undefined8 param2, undefined8 param3, undefined8 param4, undefined8 param5);
+void initialize_pool_system(longlong param1, uint64_t param2, uint64_t param3, uint64_t param4, uint64_t param5);
+void initialize_queue_system(longlong param1, uint64_t param2, uint64_t param3, uint64_t param4, uint64_t param5);
 
 // 全局变量引用
 extern longlong global_memory_allocator;
@@ -1125,21 +1125,21 @@ extern char performance_debug_enabled;
 extern longlong global_stack_cookie;
 
 // 常量引用
-extern undefined8 default_resource_handler;
-extern undefined8 alternate_resource_handler;
-extern undefined8 resource_manager_vtable;
-extern undefined8 resource_manager_vtable2;
-extern undefined8 resource_manager_init_data;
-extern undefined8 resource_manager_name;
-extern undefined8 resource_handler_function;
-extern undefined8 resource_cleanup_function;
-extern undefined8 empty_string;
-extern undefined8 string_buffer_address;
-extern undefined8 resource_string_data;
-extern undefined8 error_template;
-extern undefined8 debug_string_suffix;
-extern undefined8 debug_log_message;
-extern undefined8 graphics_init_function;
-extern undefined8 graphics_init_data;
-extern undefined8 callback_data_address;
-extern undefined8 global_window_manager;
+extern uint64_t default_resource_handler;
+extern uint64_t alternate_resource_handler;
+extern uint64_t resource_manager_vtable;
+extern uint64_t resource_manager_vtable2;
+extern uint64_t resource_manager_init_data;
+extern uint64_t resource_manager_name;
+extern uint64_t resource_handler_function;
+extern uint64_t resource_cleanup_function;
+extern uint64_t empty_string;
+extern uint64_t string_buffer_address;
+extern uint64_t resource_string_data;
+extern uint64_t error_template;
+extern uint64_t debug_string_suffix;
+extern uint64_t debug_log_message;
+extern uint64_t graphics_init_function;
+extern uint64_t graphics_init_data;
+extern uint64_t callback_data_address;
+extern uint64_t global_window_manager;

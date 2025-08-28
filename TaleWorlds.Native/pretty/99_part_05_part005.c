@@ -278,8 +278,8 @@ void FUN_1802d77a0(longlong param_1,longlong param_2,uint param_3)
 
 
 
-// 函数: void FUN_1802d78b5(undefined8 param_1,undefined8 param_2,undefined8 param_3,char param_4)
-void FUN_1802d78b5(undefined8 param_1,undefined8 param_2,undefined8 param_3,char param_4)
+// 函数: void FUN_1802d78b5(uint64_t param_1,uint64_t param_2,uint64_t param_3,char param_4)
+void FUN_1802d78b5(uint64_t param_1,uint64_t param_2,uint64_t param_3,char param_4)
 
 {
   longlong lVar1;
@@ -301,7 +301,7 @@ void FUN_1802d78b5(undefined8 param_1,undefined8 param_2,undefined8 param_3,char
   uint uVar17;
   ulonglong uVar18;
   uint uVar19;
-  undefined8 in_R10;
+  uint64_t in_R10;
   int in_R11D;
   longlong unaff_R12;
   longlong unaff_R13;
@@ -324,8 +324,8 @@ void FUN_1802d78b5(undefined8 param_1,undefined8 param_2,undefined8 param_3,char
   char cStack0000000000000044;
   char in_stack_00000048;
   longlong in_stack_00000050;
-  undefined8 in_stack_00000058;
-  undefined8 uStack0000000000000060;
+  uint64_t in_stack_00000058;
+  uint64_t uStack0000000000000060;
   char in_stack_00000160;
   char in_stack_00000168;
   int in_stack_00000170;

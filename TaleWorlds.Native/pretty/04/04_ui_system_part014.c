@@ -42,9 +42,9 @@ extern const void* _DAT_180bf00a8;     // UI系统配置数据
  * @param param_12 参数12 - 速度因子
  * @return void
  */
-void ui_system_interpolation_processor(undefined8 param_1, float param_2, undefined8 param_3, float param_4,
-                                      undefined8 param_5, undefined8 param_6, float param_7, float param_8, float param_9,
-                                      undefined8 param_10, undefined8 param_11, float param_12)
+void ui_system_interpolation_processor(uint64_t param_1, float param_2, uint64_t param_3, float param_4,
+                                      uint64_t param_5, uint64_t param_6, float param_7, float param_8, float param_9,
+                                      uint64_t param_10, uint64_t param_11, float param_12)
 {
     // 简化实现：插值处理器
     // 原实现包含复杂的插值计算和平滑过渡逻辑
@@ -234,22 +234,22 @@ void ui_system_normalization_processor(void)
  * @param position_data 位置数据
  * @return void
  */
-void ui_system_vector_assignment(undefined8 transform_data, undefined8 position_data)
+void ui_system_vector_assignment(uint64_t transform_data, uint64_t position_data)
 {
     // 简化实现：向量赋值
     // 原实现包含基本的向量赋值操作
     
     // 直接应用变换数据
-    *(undefined8*)((longlong)transform_data + 0x6178) = position_data;
+    *(uint64_t*)((longlong)transform_data + 0x6178) = position_data;
     
     // 注意：原实现包含更多的向量赋值逻辑
     // 这里只保留了基本的结构框架
 }
 
 // 函数别名定义 - 保持与原函数名的兼容性
-void FUN_18065a472(undefined8 param_1, float param_2, undefined8 param_3, float param_4, 
-                   undefined8 param_5, undefined8 param_6, float param_7, float param_8, 
-                   float param_9, undefined8 param_10, undefined8 param_11, float param_12) 
+void FUN_18065a472(uint64_t param_1, float param_2, uint64_t param_3, float param_4, 
+                   uint64_t param_5, uint64_t param_6, float param_7, float param_8, 
+                   float param_9, uint64_t param_10, uint64_t param_11, float param_12) 
     __attribute__((alias("ui_system_interpolation_processor")));
 
 void FUN_18065a7dc(void) __attribute__((alias("ui_system_normalization_processor")));

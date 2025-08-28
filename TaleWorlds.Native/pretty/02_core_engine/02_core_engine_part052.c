@@ -7,44 +7,44 @@
 void process_engine_memory_allocation(void)
 
 {
-  undefined4 *temp_ptr1;
-  undefined4 *temp_ptr2;
-  undefined4 uVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  undefined4 uVar4;
+  int32_t *temp_ptr1;
+  int32_t *temp_ptr2;
+  int32_t uVar1;
+  int32_t uVar2;
+  int32_t uVar3;
+  int32_t uVar4;
   longlong base_ptr;
   longlong length_counter;
-  undefined8 *src_ptr;
-  undefined8 *dest_ptr;
-  undefined8 *current_ptr;
+  uint64_t *src_ptr;
+  uint64_t *dest_ptr;
+  uint64_t *current_ptr;
   longlong offset;
-  undefined8 *target_ptr;
-  undefined4 *data_ptr;
-  undefined8 *context_ptr;
+  uint64_t *target_ptr;
+  int32_t *data_ptr;
+  uint64_t *context_ptr;
   longlong *buffer_ptr;
-  undefined4 *write_ptr;
-  undefined4 *read_ptr;
+  int32_t *write_ptr;
+  int32_t *read_ptr;
   ulonglong new_size;
   longlong context_value;
   longlong *iter_ptr1;
   longlong *iter_ptr2;
-  undefined4 *temp_ptr3;
-  undefined4 *temp_ptr4;
+  int32_t *temp_ptr3;
+  int32_t *temp_ptr4;
   longlong stack_param1;
   longlong stack_param2;
   
-  temp_ptr1 = (undefined4 *)0x0;
+  temp_ptr1 = (int32_t *)0x0;
   temp_ptr2 = temp_ptr1;
   if (base_ptr != context_value) {
     do {
       base_ptr = traverse_linked_list(base_ptr);
-      temp_ptr2 = (undefined4 *)((longlong)temp_ptr2 + 1);
+      temp_ptr2 = (int32_t *)((longlong)temp_ptr2 + 1);
     } while (base_ptr != context_value);
   }
-  data_ptr = (undefined4 *)buffer_ptr[1];
-  if ((undefined4 *)(buffer_ptr[2] - (longlong)data_ptr >> 4) < temp_ptr2) {
-    dest_ptr = (undefined8 *)*buffer_ptr;
+  data_ptr = (int32_t *)buffer_ptr[1];
+  if ((int32_t *)(buffer_ptr[2] - (longlong)data_ptr >> 4) < temp_ptr2) {
+    dest_ptr = (uint64_t *)*buffer_ptr;
     offset = (longlong)data_ptr - (longlong)dest_ptr >> 4;
     new_size = offset * 2;
     if (offset == 0) {
@@ -55,15 +55,15 @@ void process_engine_memory_allocation(void)
     }
     temp_ptr2 = temp_ptr1;
     if (new_size != 0) {
-      temp_ptr1 = (undefined4 *)allocate_memory(_DAT_180c8ed18,new_size << 4,(char)buffer_ptr[3]);
-      dest_ptr = (undefined8 *)*buffer_ptr;
+      temp_ptr1 = (int32_t *)allocate_memory(_DAT_180c8ed18,new_size << 4,(char)buffer_ptr[3]);
+      dest_ptr = (uint64_t *)*buffer_ptr;
       temp_ptr2 = temp_ptr1;
     }
     for (; dest_ptr != context_ptr; dest_ptr = dest_ptr + 2) {
-      uVar1 = *(undefined4 *)((longlong)dest_ptr + 4);
-      uVar2 = *(undefined4 *)(dest_ptr + 1);
-      uVar3 = *(undefined4 *)((longlong)dest_ptr + 0xc);
-      *temp_ptr1 = *(undefined4 *)dest_ptr;
+      uVar1 = *(int32_t *)((longlong)dest_ptr + 4);
+      uVar2 = *(int32_t *)(dest_ptr + 1);
+      uVar3 = *(int32_t *)((longlong)dest_ptr + 0xc);
+      *temp_ptr1 = *(int32_t *)dest_ptr;
       temp_ptr1[1] = uVar1;
       temp_ptr1[2] = uVar2;
       temp_ptr1[3] = uVar3;
@@ -71,14 +71,14 @@ void process_engine_memory_allocation(void)
     }
     stack_param1 = *iter_ptr2;
     stack_param2 = *iter_ptr1;
-    temp_ptr1 = (undefined4 *)merge_data_arrays(&stack0x00000070,&stack0x00000068);
-    dest_ptr = (undefined8 *)buffer_ptr[1];
+    temp_ptr1 = (int32_t *)merge_data_arrays(&stack0x00000070,&stack0x00000068);
+    dest_ptr = (uint64_t *)buffer_ptr[1];
     if (context_ptr != dest_ptr) {
       do {
-        uVar1 = *(undefined4 *)context_ptr;
-        uVar2 = *(undefined4 *)((longlong)context_ptr + 4);
-        uVar3 = *(undefined4 *)(context_ptr + 1);
-        uVar4 = *(undefined4 *)((longlong)context_ptr + 0xc);
+        uVar1 = *(int32_t *)context_ptr;
+        uVar2 = *(int32_t *)((longlong)context_ptr + 4);
+        uVar3 = *(int32_t *)(context_ptr + 1);
+        uVar4 = *(int32_t *)((longlong)context_ptr + 0xc);
         context_ptr = context_ptr + 2;
         *temp_ptr1 = uVar1;
         temp_ptr1[1] = uVar2;
@@ -96,7 +96,7 @@ void process_engine_memory_allocation(void)
     buffer_ptr[1] = (longlong)temp_ptr1;
   }
   else {
-    temp_ptr1 = (undefined4 *)((longlong)data_ptr - (longlong)context_ptr >> 4);
+    temp_ptr1 = (int32_t *)((longlong)data_ptr - (longlong)context_ptr >> 4);
     if (temp_ptr2 < temp_ptr1) {
       read_ptr = data_ptr + (longlong)temp_ptr2 * -4;
       temp_ptr1 = data_ptr;
@@ -113,13 +113,13 @@ void process_engine_memory_allocation(void)
           temp_ptr1[3] = uVar4;
           temp_ptr1 = temp_ptr1 + 4;
         } while (read_ptr != data_ptr);
-        data_ptr = (undefined4 *)buffer_ptr[1];
+        data_ptr = (int32_t *)buffer_ptr[1];
       }
       temp_ptr1 = data_ptr + (longlong)temp_ptr2 * -4;
       for (offset = (longlong)(data_ptr + (longlong)temp_ptr2 * -4) - (longlong)context_ptr >> 4;
           0 < offset; offset = offset + -1) {
         data_ptr = temp_ptr1 + -4;
-        *(undefined8 *)(data_ptr + (longlong)temp_ptr2 * 4) = *(undefined8 *)(temp_ptr1 + -4);
+        *(uint64_t *)(data_ptr + (longlong)temp_ptr2 * 4) = *(uint64_t *)(temp_ptr1 + -4);
         data_ptr[(longlong)temp_ptr2 * 4 + 2] = temp_ptr1[-2];
         temp_ptr1 = data_ptr;
       }
@@ -127,8 +127,8 @@ void process_engine_memory_allocation(void)
       length_counter = *iter_ptr1;
       if (length_counter != offset) {
         do {
-          *context_ptr = *(undefined8 *)(length_counter + 0x20);
-          *(undefined4 *)(context_ptr + 1) = *(undefined4 *)(length_counter + 0x28);
+          *context_ptr = *(uint64_t *)(length_counter + 0x20);
+          *(int32_t *)(context_ptr + 1) = *(int32_t *)(length_counter + 0x28);
           length_counter = traverse_linked_list(length_counter);
           context_ptr = context_ptr + 2;
         } while (length_counter != offset);
@@ -139,29 +139,29 @@ void process_engine_memory_allocation(void)
     else {
       offset = *iter_ptr1;
       read_ptr = temp_ptr1;
-      if (temp_ptr1 != (undefined4 *)0x0) {
+      if (temp_ptr1 != (int32_t *)0x0) {
         do {
           offset = traverse_linked_list(offset);
-          read_ptr = (undefined4 *)((longlong)read_ptr + -1);
-        } while (read_ptr != (undefined4 *)0x0);
-        data_ptr = (undefined4 *)buffer_ptr[1];
+          read_ptr = (int32_t *)((longlong)read_ptr + -1);
+        } while (read_ptr != (int32_t *)0x0);
+        data_ptr = (int32_t *)buffer_ptr[1];
       }
       stack_param1 = *iter_ptr2;
       stack_param2 = offset;
       merge_data_arrays(&stack0x00000070,&stack0x00000068,data_ptr);
-      dest_ptr = (undefined8 *)buffer_ptr[1];
+      dest_ptr = (uint64_t *)buffer_ptr[1];
       target_ptr = dest_ptr + ((longlong)temp_ptr2 - (longlong)temp_ptr1) * 2;
       src_ptr = context_ptr;
       if (context_ptr != dest_ptr) {
         do {
-          uVar1 = *(undefined4 *)((longlong)src_ptr + 4);
-          uVar2 = *(undefined4 *)(src_ptr + 1);
-          uVar3 = *(undefined4 *)((longlong)src_ptr + 0xc);
+          uVar1 = *(int32_t *)((longlong)src_ptr + 4);
+          uVar2 = *(int32_t *)(src_ptr + 1);
+          uVar3 = *(int32_t *)((longlong)src_ptr + 0xc);
           current_ptr = src_ptr + 2;
-          *(undefined4 *)target_ptr = *(undefined4 *)src_ptr;
-          *(undefined4 *)((longlong)target_ptr + 4) = uVar1;
-          *(undefined4 *)(target_ptr + 1) = uVar2;
-          *(undefined4 *)((longlong)target_ptr + 0xc) = uVar3;
+          *(int32_t *)target_ptr = *(int32_t *)src_ptr;
+          *(int32_t *)((longlong)target_ptr + 4) = uVar1;
+          *(int32_t *)(target_ptr + 1) = uVar2;
+          *(int32_t *)((longlong)target_ptr + 0xc) = uVar3;
           src_ptr = current_ptr;
           target_ptr = target_ptr + 2;
         } while (current_ptr != dest_ptr);
@@ -170,8 +170,8 @@ void process_engine_memory_allocation(void)
       dest_ptr = context_ptr + (longlong)temp_ptr1 * 2;
       while (length_counter != offset) {
         offset = reverse_traverse_list(length_counter);
-        dest_ptr[-2] = *(undefined8 *)(offset + 0x20);
-        *(undefined4 *)(dest_ptr + -1) = *(undefined4 *)(offset + 0x28);
+        dest_ptr[-2] = *(uint64_t *)(offset + 0x20);
+        *(int32_t *)(dest_ptr + -1) = *(int32_t *)(offset + 0x28);
         dest_ptr = dest_ptr + -2;
       }
     }
@@ -560,17 +560,17 @@ void placeholder_function_5(void)
 
 
 // 函数：引擎资源清理函数
-void cleanup_engine_resources(longlong context_ptr,undefined8 param2,undefined8 param3,undefined8 param4)
+void cleanup_engine_resources(longlong context_ptr,uint64_t param2,uint64_t param3,uint64_t param4)
 
 {
-  undefined8 *resource_ptr;
-  undefined8 cleanup_flag;
+  uint64_t *resource_ptr;
+  uint64_t cleanup_flag;
   
   cleanup_flag = 0xfffffffffffffffe;
   initialize_cleanup_process();
-  cleanup_subsystem(context_ptr + 0x40,*(undefined8 *)(context_ptr + 0x50),param3,param4,cleanup_flag);
-  resource_ptr = *(undefined8 **)(context_ptr + 0x20);
-  if (resource_ptr != (undefined8 *)0x0) {
+  cleanup_subsystem(context_ptr + 0x40,*(uint64_t *)(context_ptr + 0x50),param3,param4,cleanup_flag);
+  resource_ptr = *(uint64_t **)(context_ptr + 0x20);
+  if (resource_ptr != (uint64_t *)0x0) {
     cleanup_resource_handler(context_ptr + 0x10,*resource_ptr,param3,param4,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     safe_free_memory(resource_ptr);
@@ -581,17 +581,17 @@ void cleanup_engine_resources(longlong context_ptr,undefined8 param2,undefined8 
 
 
 // 函数：引擎子系统清理函数
-void cleanup_engine_subsystem(longlong context_ptr,undefined8 param2,undefined8 param3,undefined8 param4)
+void cleanup_engine_subsystem(longlong context_ptr,uint64_t param2,uint64_t param3,uint64_t param4)
 
 {
-  undefined8 *resource_ptr;
-  undefined8 cleanup_flag;
+  uint64_t *resource_ptr;
+  uint64_t cleanup_flag;
   
   cleanup_flag = 0xfffffffffffffffe;
   initialize_cleanup_process();
-  cleanup_subsystem(context_ptr + 0x30,*(undefined8 *)(context_ptr + 0x40),param3,param4,cleanup_flag);
-  resource_ptr = *(undefined8 **)(context_ptr + 0x10);
-  if (resource_ptr != (undefined8 *)0x0) {
+  cleanup_subsystem(context_ptr + 0x30,*(uint64_t *)(context_ptr + 0x40),param3,param4,cleanup_flag);
+  resource_ptr = *(uint64_t **)(context_ptr + 0x10);
+  if (resource_ptr != (uint64_t *)0x0) {
     cleanup_resource_handler(context_ptr,*resource_ptr,param3,param4,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     safe_free_memory(resource_ptr);
@@ -602,15 +602,15 @@ void cleanup_engine_subsystem(longlong context_ptr,undefined8 param2,undefined8 
 
 
 // 函数：处理引擎缓冲区操作
-void process_engine_buffer(longlong *buffer_ptr,undefined8 param2,longlong *handler_ptr)
+void process_engine_buffer(longlong *buffer_ptr,uint64_t param2,longlong *handler_ptr)
 
 {
-  undefined8 *callback_ptr;
+  uint64_t *callback_ptr;
   ulonglong available_space;
   longlong buffer_pos;
   
   buffer_pos = buffer_ptr[1];
-  callback_ptr = (undefined8 *)*handler_ptr;
+  callback_ptr = (uint64_t *)*handler_ptr;
   available_space = callback_ptr[6];
   if ((ulonglong)((buffer_ptr[2] - buffer_pos) + *buffer_ptr) <= available_space) {
     expand_buffer_capacity(buffer_ptr,(buffer_pos - *buffer_ptr) + available_space);
@@ -619,7 +619,7 @@ void process_engine_buffer(longlong *buffer_ptr,undefined8 param2,longlong *hand
   buffer_ptr[1] = buffer_pos + available_space;
                     // WARNING: Could not recover jumptable at 0x00018008e6fa. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)callback_ptr[4])(buffer_ptr,*callback_ptr,*(undefined4 *)(callback_ptr + 5),callback_ptr + 1);
+  (*(code *)callback_ptr[4])(buffer_ptr,*callback_ptr,*(int32_t *)(callback_ptr + 5),callback_ptr + 1);
   return;
 }
 
@@ -628,7 +628,7 @@ void process_engine_buffer(longlong *buffer_ptr,undefined8 param2,longlong *hand
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 函数：引擎对象管理器
-longlong engine_object_manager(longlong *object_ptr,longlong *param2,int operation_code,undefined8 param4)
+longlong engine_object_manager(longlong *object_ptr,longlong *param2,int operation_code,uint64_t param4)
 
 {
   longlong object_handle;
@@ -668,7 +668,7 @@ longlong engine_object_manager(longlong *object_ptr,longlong *param2,int operati
 
 
 // 函数：引擎哈希查找器
-ulonglong engine_hash_lookup(undefined8 hash_key,undefined8 *hash_table)
+ulonglong engine_hash_lookup(uint64_t hash_key,uint64_t *hash_table)
 
 {
   longlong *bucket_ptr;
@@ -691,8 +691,8 @@ ulonglong engine_hash_lookup(undefined8 hash_key,undefined8 *hash_table)
 
 
 // 函数：对象复制器
-undefined8 *
-object_copier(undefined8 *dest_ptr,undefined8 *src_ptr,undefined8 param3,undefined8 param4)
+uint64_t *
+object_copier(uint64_t *dest_ptr,uint64_t *src_ptr,uint64_t param3,uint64_t param4)
 
 {
   code *copy_callback;
@@ -709,7 +709,7 @@ object_copier(undefined8 *dest_ptr,undefined8 *src_ptr,undefined8 param3,undefin
     dest_ptr[3] = copy_callback;
     dest_ptr[4] = src_ptr[4];
   }
-  *(undefined4 *)(dest_ptr + 5) = *(undefined4 *)(src_ptr + 5);
+  *(int32_t *)(dest_ptr + 5) = *(int32_t *)(src_ptr + 5);
   dest_ptr[6] = src_ptr[6];
   return dest_ptr;
 }
@@ -717,17 +717,17 @@ object_copier(undefined8 *dest_ptr,undefined8 *src_ptr,undefined8 param3,undefin
 
 
 // 函数：内存区域初始化器
-void initialize_memory_region(undefined8 param1,longlong param2)
+void initialize_memory_region(uint64_t param1,longlong param2)
 
 {
-  *(undefined8 *)(param2 + 0x20) = &UNK_180a3c3e0;
+  *(uint64_t *)(param2 + 0x20) = &UNK_180a3c3e0;
   if (*(longlong *)(param2 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     trigger_critical_error();
   }
-  *(undefined8 *)(param2 + 0x28) = 0;
-  *(undefined4 *)(param2 + 0x38) = 0;
-  *(undefined8 *)(param2 + 0x20) = &UNK_18098bcb0;
+  *(uint64_t *)(param2 + 0x28) = 0;
+  *(int32_t *)(param2 + 0x38) = 0;
+  *(uint64_t *)(param2 + 0x20) = &UNK_18098bcb0;
   if (param2 != 0) {
                     // WARNING: Subroutine does not return
     safe_free_memory(param2);
@@ -738,7 +738,7 @@ void initialize_memory_region(undefined8 param1,longlong param2)
 
 
 // 函数：链表数据复制器
-undefined8 * linked_list_data_copier(longlong *list_start,longlong *list_end,undefined8 *dest_ptr)
+uint64_t * linked_list_data_copier(longlong *list_start,longlong *list_end,uint64_t *dest_ptr)
 
 {
   longlong current_node;
@@ -747,8 +747,8 @@ undefined8 * linked_list_data_copier(longlong *list_start,longlong *list_end,und
   current_node = *list_end;
   end_node = *list_start;
   while (end_node != current_node) {
-    *dest_ptr = *(undefined8 *)(end_node + 0x20);
-    *(undefined4 *)(dest_ptr + 1) = *(undefined4 *)(end_node + 0x28);
+    *dest_ptr = *(uint64_t *)(end_node + 0x20);
+    *(int32_t *)(dest_ptr + 1) = *(int32_t *)(end_node + 0x28);
     end_node = traverse_linked_list(end_node);
     dest_ptr = dest_ptr + 2;
   }
@@ -758,12 +758,12 @@ undefined8 * linked_list_data_copier(longlong *list_start,longlong *list_end,und
 
 
 // 函数：快速排序实现
-void quicksort_implementation(longlong *array_start,longlong *array_end,longlong recursion_depth,undefined1 stability_flag)
+void quicksort_implementation(longlong *array_start,longlong *array_end,longlong recursion_depth,int8_t stability_flag)
 
 {
   byte bVar1;
   bool is_less;
-  undefined4 uVar3;
+  int32_t uVar3;
   int pivot_key;
   ulonglong array_size;
   longlong *partition_ptr;
@@ -873,13 +873,13 @@ LAB_18008ebc0:
     } while (is_less);
     if (partition_ptr < temp_ptr) {
       right_ptr = *partition_ptr;
-      uVar3 = *(undefined4 *)((longlong)partition_ptr + 4);
+      uVar3 = *(int32_t *)((longlong)partition_ptr + 4);
       left_ptr = partition_ptr[1];
       *partition_ptr = *temp_ptr;
       *(int *)(partition_ptr + 1) = (int)temp_ptr[-1];
       partition_ptr = partition_ptr + 2;
       *(int *)temp_ptr = (int)right_ptr;
-      *(undefined4 *)((longlong)temp_ptr + -0xc) = uVar3;
+      *(int32_t *)((longlong)temp_ptr + -0xc) = uVar3;
       *(int *)(temp_ptr + -1) = (int)left_ptr;
       goto LAB_18008ebc0;
     }
@@ -896,36 +896,36 @@ LAB_18008ebc0:
 void heapsort_implementation(void)
 
 {
-  undefined8 *heap_array;
+  uint64_t *heap_array;
   longlong array_size;
   longlong element_count;
   longlong heap_size;
-  undefined8 *end_ptr;
-  undefined4 uStack0000000000000030;
-  undefined4 uStack0000000000000034;
-  undefined4 uStack0000000000000038;
-  undefined4 uStack000000000000003c;
+  uint64_t *end_ptr;
+  int32_t uStack0000000000000030;
+  int32_t uStack0000000000000034;
+  int32_t uStack0000000000000038;
+  int32_t uStack000000000000003c;
   
   element_count = (array_size + -2 >> 1) + 1;
   heap_array = end_ptr + element_count * 2;
   do {
-    uStack0000000000000030 = *(undefined4 *)(heap_array + -2);
-    uStack0000000000000034 = *(undefined4 *)((longlong)heap_array + -0xc);
-    uStack0000000000000038 = *(undefined4 *)(heap_array + -1);
-    uStack000000000000003c = *(undefined4 *)((longlong)heap_array + -4);
+    uStack0000000000000030 = *(int32_t *)(heap_array + -2);
+    uStack0000000000000034 = *(int32_t *)((longlong)heap_array + -0xc);
+    uStack0000000000000038 = *(int32_t *)(heap_array + -1);
+    uStack000000000000003c = *(int32_t *)((longlong)heap_array + -4);
     element_count = element_count + -1;
     heap_array = heap_array + -2;
     heapify_array(uStack0000000000000030,element_count);
   } while (element_count != 0);
   if (1 < array_size) {
-    heap_array = (undefined8 *)(heap_size + -0x10);
+    heap_array = (uint64_t *)(heap_size + -0x10);
     do {
-      uStack0000000000000030 = *(undefined4 *)heap_array;
-      uStack0000000000000034 = *(undefined4 *)((longlong)heap_array + 4);
-      uStack0000000000000038 = *(undefined4 *)(heap_array + 1);
-      uStack000000000000003c = *(undefined4 *)((longlong)heap_array + 0xc);
+      uStack0000000000000030 = *(int32_t *)heap_array;
+      uStack0000000000000034 = *(int32_t *)((longlong)heap_array + 4);
+      uStack0000000000000038 = *(int32_t *)(heap_array + 1);
+      uStack000000000000003c = *(int32_t *)((longlong)heap_array + 0xc);
       *heap_array = *end_ptr;
-      *(undefined4 *)(heap_array + 1) = *(undefined4 *)(end_ptr + 1);
+      *(int32_t *)(heap_array + 1) = *(int32_t *)(end_ptr + 1);
       heapify_array(uStack0000000000000030,0,array_size + -1,0,&stack0x00000030);
       heap_array = heap_array + -2;
       array_size = (0x10 - (longlong)end_ptr) + (longlong)heap_array >> 4;
@@ -941,23 +941,23 @@ void optimized_heapsort_implementation(void)
 
 {
   longlong array_size;
-  undefined8 *heap_array;
+  uint64_t *heap_array;
   longlong heap_size;
-  undefined8 *end_ptr;
-  undefined4 uStack0000000000000030;
-  undefined4 uStack0000000000000034;
-  undefined4 uStack0000000000000038;
-  undefined4 uStack000000000000003c;
+  uint64_t *end_ptr;
+  int32_t uStack0000000000000030;
+  int32_t uStack0000000000000034;
+  int32_t uStack0000000000000038;
+  int32_t uStack000000000000003c;
   
   if (1 < array_size) {
-    heap_array = (undefined8 *)(heap_size + -0x10);
+    heap_array = (uint64_t *)(heap_size + -0x10);
     do {
-      uStack0000000000000030 = *(undefined4 *)heap_array;
-      uStack0000000000000034 = *(undefined4 *)((longlong)heap_array + 4);
-      uStack0000000000000038 = *(undefined4 *)(heap_array + 1);
-      uStack000000000000003c = *(undefined4 *)((longlong)heap_array + 0xc);
+      uStack0000000000000030 = *(int32_t *)heap_array;
+      uStack0000000000000034 = *(int32_t *)((longlong)heap_array + 4);
+      uStack0000000000000038 = *(int32_t *)(heap_array + 1);
+      uStack000000000000003c = *(int32_t *)((longlong)heap_array + 0xc);
       *heap_array = *end_ptr;
-      *(undefined4 *)(heap_array + 1) = *(undefined4 *)(end_ptr + 1);
+      *(int32_t *)(heap_array + 1) = *(int32_t *)(end_ptr + 1);
       heapify_array(uStack0000000000000030,0,array_size + -1,0,&stack0x00000030);
       heap_array = heap_array + -2;
       array_size = (0x10 - (longlong)end_ptr) + (longlong)heap_array >> 4;
@@ -969,7 +969,7 @@ void optimized_heapsort_implementation(void)
 
 
 // 函数：字符串快速排序实现
-void string_quicksort_implementation(longlong *array_start,longlong *array_end,longlong recursion_depth,undefined1 stability_flag)
+void string_quicksort_implementation(longlong *array_start,longlong *array_end,longlong recursion_depth,int8_t stability_flag)
 
 {
   byte bVar1;

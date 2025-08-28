@@ -32,7 +32,7 @@
  */
 
 // 全局变量声明
-undefined4 UNK_180d49150;          // 未知数据常量 - 可能是配置参数
+int32_t UNK_180d49150;          // 未知数据常量 - 可能是配置参数
 undefined UNK_1800a0f67;          // 未知数据常量 - 可能是状态标志
 undefined UNK_1800a127e;          // 未知数据常量 - 可能是控制标志
 
@@ -50,7 +50,7 @@ undefined UNK_1800a127e;          // 未知数据常量 - 可能是控制标志
  * 3. 应用权重系数2.5
  * 4. 限制最大权重值
  */
-undefined8 calculate_weights(void)
+uint64_t calculate_weights(void)
 {
   float fVar1;
   float fVar2;
@@ -75,7 +75,7 @@ undefined8 calculate_weights(void)
   uint uVar15;
   uint uVar16;
   float fVar17;
-  undefined1 auVar18 [16];
+  int8_t auVar18 [16];
   float fVar19;
   int in_XMM5_Da;
   float fVar20;
@@ -84,7 +84,7 @@ undefined8 calculate_weights(void)
   int in_XMM5_Dc;
   float fVar23;
   int in_XMM5_Dd;
-  undefined1 auVar21 [16];
+  int8_t auVar21 [16];
   float fVar24;
   float unaff_XMM6_Da;
   float fVar25;
@@ -287,7 +287,7 @@ undefined8 calculate_weights(void)
  * 
  * @return 成功返回0，失败返回非0值
  */
-undefined8 calculate_weighted_average(void)
+uint64_t calculate_weighted_average(void)
 {
   float fVar1;
   float fVar2;
@@ -309,7 +309,7 @@ undefined8 calculate_weighted_average(void)
   uint uVar14;
   uint uVar15;
   uint uVar16;
-  undefined1 auVar17 [16];
+  int8_t auVar17 [16];
   float fVar18;
   int in_XMM5_Da;
   float fVar19;
@@ -318,7 +318,7 @@ undefined8 calculate_weighted_average(void)
   int in_XMM5_Dc;
   float fVar22;
   int in_XMM5_Dd;
-  undefined1 auVar20 [16];
+  int8_t auVar20 [16];
   float fVar23;
   float unaff_XMM6_Da;
   float fVar24;
@@ -499,7 +499,7 @@ undefined8 calculate_weighted_average(void)
  * @param param_4 数据长度
  * @return 成功返回0，失败返回非0值
  */
-undefined8 process_complex_data(int param_1,undefined8 param_2,undefined8 param_3,uint param_4)
+uint64_t process_complex_data(int param_1,uint64_t param_2,uint64_t param_3,uint param_4)
 {
   float fVar1;
   float fVar2;
@@ -519,7 +519,7 @@ undefined8 process_complex_data(int param_1,undefined8 param_2,undefined8 param_
   uint uVar13;
   uint uVar14;
   uint uVar15;
-  undefined1 auVar16 [16];
+  int8_t auVar16 [16];
   float fVar17;
   int in_XMM5_Da;
   float fVar18;
@@ -528,7 +528,7 @@ undefined8 process_complex_data(int param_1,undefined8 param_2,undefined8 param_
   int in_XMM5_Dc;
   float fVar21;
   int in_XMM5_Dd;
-  undefined1 auVar19 [16];
+  int8_t auVar19 [16];
   float fVar22;
   float fVar23;
   float fVar24;
@@ -701,7 +701,7 @@ undefined8 process_complex_data(int param_1,undefined8 param_2,undefined8 param_
  * @param param_4 初始值参数
  * @return 成功返回0，失败返回非0值
  */
-undefined8 calculate_weighted_average_simple(int param_1,undefined8 param_2,undefined8 param_3,float param_4)
+uint64_t calculate_weighted_average_simple(int param_1,uint64_t param_2,uint64_t param_3,float param_4)
 {
   float fVar1;
   float *pfVar2;
@@ -779,7 +779,7 @@ undefined8 calculate_weighted_average_simple(int param_1,undefined8 param_2,unde
  * @param param_2 变换参数
  * @return 成功返回0，失败返回非0值
  */
-undefined8 perform_matrix_transform(longlong param_1,uint param_2)
+uint64_t perform_matrix_transform(longlong param_1,uint param_2)
 {
   float fVar1;
   float fVar2;
@@ -803,7 +803,7 @@ undefined8 perform_matrix_transform(longlong param_1,uint param_2)
   float fVar20;
   float fVar21;
   float fVar22;
-  undefined4 uStackX_10;
+  int32_t uStackX_10;
   
   uVar8 = (ulonglong)param_2;
   uStackX_10 = 1;
@@ -976,7 +976,7 @@ undefined8 perform_matrix_transform(longlong param_1,uint param_2)
  * @param param_3 处理参数
  * @return 成功返回0，失败返回非0值
  */
-undefined8 perform_signal_processing(undefined8 param_1,undefined8 param_2,uint param_3)
+uint64_t perform_signal_processing(uint64_t param_1,uint64_t param_2,uint param_3)
 {
   float fVar1;
   float fVar2;
@@ -1166,7 +1166,7 @@ undefined8 perform_signal_processing(undefined8 param_1,undefined8 param_2,uint 
  * 
  * @return 成功返回0，失败返回非0值
  */
-undefined8 initialize_math_module(void)
+uint64_t initialize_math_module(void)
 {
   return 0;
 }

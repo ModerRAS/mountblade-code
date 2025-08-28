@@ -19,7 +19,7 @@ void process_render_collision_detection(longlong engine_context, float *position
                                      longlong text_start, longlong text_end, longlong *collision_data,
                                      float *scale_x, float *scale_y)
 {
-  undefined8 *transform_data;
+  uint64_t *transform_data;
   float temp_x;
   float temp_y;
   float scale_factor;
@@ -32,12 +32,12 @@ void process_render_collision_detection(longlong engine_context, float *position
   float adjusted_x;
   float adjusted_y;
   float boundary_width;
-  undefined8 stack_temp_x;
-  undefined8 stack_transform_x;
-  undefined8 stack_transform_y;
+  uint64_t stack_temp_x;
+  uint64_t stack_transform_x;
+  uint64_t stack_transform_y;
   
   engine_base = _DAT_180c8a9b0;  // 获取引擎基础地址
-  stack_temp_x = *(undefined8 *)position_x;
+  stack_temp_x = *(uint64_t *)position_x;
   adjusted_x = (float)stack_temp_x;
   adjusted_y = (float)((ulonglong)stack_temp_x >> 0x20);
   
@@ -116,9 +116,9 @@ void process_render_collision_detection(longlong engine_context, float *position
   }
   
   // 获取变换矩阵数据
-  stack_transform_x = *(undefined8 *)(engine_base + 0x16c8);
+  stack_transform_x = *(uint64_t *)(engine_base + 0x16c8);
   stack_transform_y = CONCAT44(*(float *)(engine_base + 0x16d4) * *(float *)(engine_base + 0x1628),
-                              *(undefined4 *)(engine_base + 0x16d0));
+                              *(int32_t *)(engine_base + 0x16d0));
   
   // 处理碰撞响应
   if (is_colliding) {
@@ -160,8 +160,8 @@ void process_render_collision_detection(longlong engine_context, float *position
           stack_transform_y._4_4_ = temp_y;
         }
         
-        render_text_element(*(undefined8 *)(*(longlong *)(engine_context + 0x38) + 8), 
-                           engine_context, *(undefined4 *)(*(longlong *)(engine_context + 0x38) + 0x10),
+        render_text_element(*(uint64_t *)(*(longlong *)(engine_context + 0x38) + 8), 
+                           engine_context, *(int32_t *)(*(longlong *)(engine_context + 0x38) + 0x10),
                            CONCAT44(adjusted_y, adjusted_x), render_flags, &stack_transform_x, 
                            text_start, text_end, 0, 1);
       }
@@ -180,15 +180,15 @@ void process_render_collision_detection(longlong engine_context, float *position
       }
       
       if (text_start != text_end) {
-        transform_data = (undefined8 *)
+        transform_data = (uint64_t *)
                  (*(longlong *)(engine_context + 0x68) + -0x10 + 
                   (longlong)*(int *)(engine_context + 0x60) * 0x10);
         
         stack_transform_x = *transform_data;
         stack_transform_y = transform_data[1];
         
-        render_text_element(*(undefined8 *)(*(longlong *)(engine_context + 0x38) + 8), 
-                           engine_context, *(undefined4 *)(*(longlong *)(engine_context + 0x38) + 0x10),
+        render_text_element(*(uint64_t *)(*(longlong *)(engine_context + 0x38) + 8), 
+                           engine_context, *(int32_t *)(*(longlong *)(engine_context + 0x38) + 0x10),
                            CONCAT44(adjusted_y, adjusted_x), render_flags, &stack_transform_x, 
                            text_start, text_end, 0, 0);
       }
@@ -205,20 +205,20 @@ void process_render_collision_detection(longlong engine_context, float *position
  * @param position_x X坐标位置
  * @param position_y Y坐标位置
  */
-void render_text_element_advanced(undefined8 render_context, float *position_x, float *position_y)
+void render_text_element_advanced(uint64_t render_context, float *position_x, float *position_y)
 {
-  undefined8 *transform_data;
+  uint64_t *transform_data;
   float temp_x;
   float temp_y;
   float *dimension_ptr;
-  undefined8 render_flags;
-  undefined4 texture_id;
-  undefined4 shader_id;
+  uint64_t render_flags;
+  int32_t texture_id;
+  int32_t shader_id;
   float width;
   float height;
   float depth;
   float scale;
-  undefined8 transform_matrix;
+  uint64_t transform_matrix;
   bool needs_clipping;
   byte clip_flag;
   uint render_state;
@@ -227,29 +227,29 @@ void render_text_element_advanced(undefined8 render_context, float *position_x, 
   longlong text_start;
   longlong text_end;
   float *font_height;
-  undefined8 texture_handle;
+  uint64_t texture_handle;
   longlong engine_context;
   longlong render_target;
-  undefined8 shader_program;
+  uint64_t shader_program;
   float boundary_width;
   float boundary_height;
   float font_scale;
-  undefined4 texture_coords_x;
-  undefined4 texture_coords_y;
+  int32_t texture_coords_x;
+  int32_t texture_coords_y;
   
   // 设置渲染上下文状态
-  *(undefined8 *)(frame_buffer + 0x18) = texture_handle;
-  *(undefined8 *)(frame_buffer + 0x20) = shader_program;
+  *(uint64_t *)(frame_buffer + 0x18) = texture_handle;
+  *(uint64_t *)(frame_buffer + 0x20) = shader_program;
   *(ulonglong *)(render_target + 0x4f) = CONCAT44(texture_coords_y, texture_coords_x);
   
   // 处理文本尺寸计算
-  if (*(undefined8 **)(render_target + 0x6f) == (undefined8 *)0x0) {
+  if (*(uint64_t **)(render_target + 0x6f) == (uint64_t *)0x0) {
     temp_x = *(float *)(engine_context + 0x19f8);
     dimension_ptr = *(float **)(engine_context + 0x19f0);
     
     if (text_start == text_end) {
       *(float *)(render_target + 0x73) = temp_x;
-      *(undefined4 *)(render_target + 0x6f) = 0;
+      *(int32_t *)(render_target + 0x6f) = 0;
     }
     else {
       calculate_text_dimensions(dimension_ptr, render_target + -0x59, temp_x, 0x7f7fffff);
@@ -259,12 +259,12 @@ void render_text_element_advanced(undefined8 render_context, float *position_x, 
         boundary_width = boundary_width - temp_x / *dimension_ptr;
       }
       
-      *(undefined4 *)(render_target + 0x73) = *(undefined4 *)(render_target + -0x55);
+      *(int32_t *)(render_target + 0x73) = *(int32_t *)(render_target + -0x55);
       *(float *)(render_target + 0x6f) = (float)(int)(boundary_width + 0.95);
     }
   }
   else {
-    *(undefined8 *)(render_target + 0x6f) = **(undefined8 **)(render_target + 0x6f);
+    *(uint64_t *)(render_target + 0x6f) = **(uint64_t **)(render_target + 0x6f);
   }
   
   // 设置字体尺寸指针
@@ -308,17 +308,17 @@ void render_text_element_advanced(undefined8 render_context, float *position_x, 
      (boundary_height = ((*position_y - temp_x) - *(float *)(render_target + 0x6f)) * 
                        **(float **)(render_target + 0x77) + temp_x, temp_x < boundary_height)) {
     *(ulonglong *)(render_target + 0x4f) =
-         CONCAT44((int)((ulonglong)*(undefined8 *)(render_target + 0x4f) >> 0x20), boundary_height);
+         CONCAT44((int)((ulonglong)*(uint64_t *)(render_target + 0x4f) >> 0x20), boundary_height);
   }
   
   // 获取渲染状态
-  texture_id = *(undefined4 *)(engine_context + 0x16cc);
-  shader_id = *(undefined4 *)(engine_context + 0x16d0);
+  texture_id = *(int32_t *)(engine_context + 0x16cc);
+  shader_id = *(int32_t *)(engine_context + 0x16d0);
   temp_x = *(float *)(engine_context + 0x16d4);
   
-  *(undefined4 *)(render_target + -0x59) = *(undefined4 *)(engine_context + 0x16c8);
-  *(undefined4 *)(render_target + -0x55) = texture_id;
-  *(undefined4 *)(render_target + -0x51) = shader_id;
+  *(int32_t *)(render_target + -0x59) = *(int32_t *)(engine_context + 0x16c8);
+  *(int32_t *)(render_target + -0x55) = texture_id;
+  *(int32_t *)(render_target + -0x51) = shader_id;
   *(float *)(render_target + -0x4d) = temp_x;
   *(float *)(render_target + -0x4d) = temp_x * *(float *)(engine_context + 0x1628);
   
@@ -366,7 +366,7 @@ void render_text_element_advanced(undefined8 render_context, float *position_x, 
           *(float *)(render_target + -0x4d) = boundary_height;
         }
         
-        render_text_element(*(undefined8 *)(engine_context + 8));
+        render_text_element(*(uint64_t *)(engine_context + 8));
       }
     }
   }
@@ -383,15 +383,15 @@ void render_text_element_advanced(undefined8 render_context, float *position_x, 
       }
       
       if (text_start != text_end) {
-        transform_data = (undefined8 *)
+        transform_data = (uint64_t *)
                  (*(longlong *)(render_target + 0x68) + -0x10 +
                  (longlong)*(int *)(render_target + 0x60) * 0x10);
         
         transform_matrix = transform_data[1];
-        render_flags = *(undefined8 *)(*(longlong *)(render_target + 0x38) + 8);
+        render_flags = *(uint64_t *)(*(longlong *)(render_target + 0x38) + 8);
         
-        *(undefined8 *)(render_target + -0x59) = *transform_data;
-        *(undefined8 *)(render_target + -0x51) = transform_matrix;
+        *(uint64_t *)(render_target + -0x59) = *transform_data;
+        *(uint64_t *)(render_target + -0x51) = transform_matrix;
         
         render_text_element(render_flags);
       }
@@ -407,20 +407,20 @@ void render_text_element_advanced(undefined8 render_context, float *position_x, 
  * @param render_context 渲染上下文
  * @param position 位置指针
  */
-void process_2d_render_transform(undefined8 render_context, float *position)
+void process_2d_render_transform(uint64_t render_context, float *position)
 {
-  undefined8 *transform_data;
+  uint64_t *transform_data;
   float temp_x;
   float temp_y;
   float *dimension_ptr;
-  undefined8 render_flags;
-  undefined4 texture_id;
-  undefined4 shader_id;
+  uint64_t render_flags;
+  int32_t texture_id;
+  int32_t shader_id;
   float width;
   float height;
   float depth;
   float scale;
-  undefined8 transform_matrix;
+  uint64_t transform_matrix;
   bool needs_clipping;
   byte clip_flag;
   uint render_state;
@@ -431,25 +431,25 @@ void process_2d_render_transform(undefined8 render_context, float *position)
   float *font_height;
   float *texture_coords;
   longlong engine_context;
-  undefined8 shader_program;
+  uint64_t shader_program;
   float boundary_width;
   float boundary_height;
   float font_scale;
-  undefined4 texture_coords_x;
-  undefined4 texture_coords_y;
+  int32_t texture_coords_x;
+  int32_t texture_coords_y;
   
   // 设置渲染状态
-  *(undefined8 *)(frame_buffer + 0x20) = shader_program;
+  *(uint64_t *)(frame_buffer + 0x20) = shader_program;
   *(ulonglong *)(render_context + 0x4f) = CONCAT44(texture_coords_y, texture_coords_x);
   
   // 处理文本尺寸计算
-  if (*(undefined8 **)(render_context + 0x6f) == (undefined8 *)0x0) {
+  if (*(uint64_t **)(render_context + 0x6f) == (uint64_t *)0x0) {
     temp_x = *(float *)(engine_context + 0x19f8);
     dimension_ptr = *(float **)(engine_context + 0x19f0);
     
     if (text_start == text_end) {
       *(float *)(render_context + 0x73) = temp_x;
-      *(undefined4 *)(render_context + 0x6f) = 0;
+      *(int32_t *)(render_context + 0x6f) = 0;
     }
     else {
       calculate_text_dimensions(dimension_ptr, render_context + -0x59, temp_x, 0x7f7fffff);
@@ -459,12 +459,12 @@ void process_2d_render_transform(undefined8 render_context, float *position)
         boundary_width = boundary_width - temp_x / *dimension_ptr;
       }
       
-      *(undefined4 *)(render_context + 0x73) = *(undefined4 *)(render_context + -0x55);
+      *(int32_t *)(render_context + 0x73) = *(int32_t *)(render_context + -0x55);
       *(float *)(render_context + 0x6f) = (float)(int)(boundary_width + 0.95);
     }
   }
   else {
-    *(undefined8 *)(render_context + 0x6f) = **(undefined8 **)(render_context + 0x6f);
+    *(uint64_t *)(render_context + 0x6f) = **(uint64_t **)(render_context + 0x6f);
   }
   
   // 设置字体尺寸指针
@@ -508,17 +508,17 @@ void process_2d_render_transform(undefined8 render_context, float *position)
      (boundary_height = ((*texture_coords - temp_x) - *(float *)(render_context + 0x6f)) * 
                        **(float **)(render_context + 0x77) + temp_x, temp_x < boundary_height)) {
     *(ulonglong *)(render_context + 0x4f) =
-         CONCAT44((int)((ulonglong)*(undefined8 *)(render_context + 0x4f) >> 0x20), boundary_height);
+         CONCAT44((int)((ulonglong)*(uint64_t *)(render_context + 0x4f) >> 0x20), boundary_height);
   }
   
   // 获取渲染状态
-  texture_id = *(undefined4 *)(engine_context + 0x16cc);
-  shader_id = *(undefined4 *)(engine_context + 0x16d0);
+  texture_id = *(int32_t *)(engine_context + 0x16cc);
+  shader_id = *(int32_t *)(engine_context + 0x16d0);
   temp_x = *(float *)(engine_context + 0x16d4);
   
-  *(undefined4 *)(render_context + -0x59) = *(undefined4 *)(engine_context + 0x16c8);
-  *(undefined4 *)(render_context + -0x55) = texture_id;
-  *(undefined4 *)(render_context + -0x51) = shader_id;
+  *(int32_t *)(render_context + -0x59) = *(int32_t *)(engine_context + 0x16c8);
+  *(int32_t *)(render_context + -0x55) = texture_id;
+  *(int32_t *)(render_context + -0x51) = shader_id;
   *(float *)(render_context + -0x4d) = temp_x;
   *(float *)(render_context + -0x4d) = temp_x * *(float *)(engine_context + 0x1628);
   
@@ -566,7 +566,7 @@ void process_2d_render_transform(undefined8 render_context, float *position)
           *(float *)(render_context + -0x4d) = boundary_height;
         }
         
-        render_text_element(*(undefined8 *)(engine_context + 8));
+        render_text_element(*(uint64_t *)(engine_context + 8));
       }
     }
   }
@@ -583,15 +583,15 @@ void process_2d_render_transform(undefined8 render_context, float *position)
       }
       
       if (text_start != text_end) {
-        transform_data = (undefined8 *)
+        transform_data = (uint64_t *)
                  (*(longlong *)(render_context + 0x68) + -0x10 +
                  (longlong)*(int *)(render_context + 0x60) * 0x10);
         
         transform_matrix = transform_data[1];
-        render_flags = *(undefined8 *)(*(longlong *)(render_context + 0x38) + 8);
+        render_flags = *(uint64_t *)(*(longlong *)(render_context + 0x38) + 8);
         
-        *(undefined8 *)(render_context + -0x59) = *transform_data;
-        *(undefined8 *)(render_context + -0x51) = transform_matrix;
+        *(uint64_t *)(render_context + -0x59) = *transform_data;
+        *(uint64_t *)(render_context + -0x51) = transform_matrix;
         
         render_text_element(render_flags);
       }
@@ -608,20 +608,20 @@ void process_2d_render_transform(undefined8 render_context, float *position)
  * @param transform_matrix 变换矩阵
  * @param scale_factor 缩放因子
  */
-void process_3d_render_transform(undefined8 render_context, undefined8 transform_matrix, undefined8 scale_factor)
+void process_3d_render_transform(uint64_t render_context, uint64_t transform_matrix, uint64_t scale_factor)
 {
-  undefined8 *transform_data;
+  uint64_t *transform_data;
   float temp_x;
   float temp_y;
   float *dimension_ptr;
-  undefined8 render_flags;
-  undefined4 texture_id;
-  undefined4 shader_id;
+  uint64_t render_flags;
+  int32_t texture_id;
+  int32_t shader_id;
   float width;
   float height;
   float depth;
   float scale;
-  undefined8 matrix_data;
+  uint64_t matrix_data;
   bool needs_clipping;
   byte clip_flag;
   uint render_state;
@@ -639,7 +639,7 @@ void process_3d_render_transform(undefined8 render_context, undefined8 transform
   
   if (text_start == text_end) {
     *(float *)(render_context + 0x73) = model_scale;
-    *(undefined4 *)(render_context + 0x6f) = 0;
+    *(int32_t *)(render_context + 0x6f) = 0;
   }
   else {
     calculate_text_dimensions(dimension_ptr, render_context + -0x59, scale_factor, 0x7f7fffff);
@@ -649,7 +649,7 @@ void process_3d_render_transform(undefined8 render_context, undefined8 transform
       width = width - model_scale / *dimension_ptr;
     }
     
-    *(undefined4 *)(render_context + 0x73) = *(undefined4 *)(render_context + -0x55);
+    *(int32_t *)(render_context + 0x73) = *(int32_t *)(render_context + -0x55);
     *(float *)(render_context + 0x6f) = (float)(int)(width + 0.95);
   }
   
@@ -694,17 +694,17 @@ void process_3d_render_transform(undefined8 render_context, undefined8 transform
      (temp_y = ((*texture_coords - width) - *(float *)(render_context + 0x6f)) * 
                **(float **)(render_context + 0x77) + width, width < temp_y)) {
     *(ulonglong *)(render_context + 0x4f) =
-         CONCAT44((int)((ulonglong)*(undefined8 *)(render_context + 0x4f) >> 0x20), temp_y);
+         CONCAT44((int)((ulonglong)*(uint64_t *)(render_context + 0x4f) >> 0x20), temp_y);
   }
   
   // 获取渲染状态
-  texture_id = *(undefined4 *)(engine_context + 0x16cc);
-  shader_id = *(undefined4 *)(engine_context + 0x16d0);
+  texture_id = *(int32_t *)(engine_context + 0x16cc);
+  shader_id = *(int32_t *)(engine_context + 0x16d0);
   width = *(float *)(engine_context + 0x16d4);
   
-  *(undefined4 *)(render_context + -0x59) = *(undefined4 *)(engine_context + 0x16c8);
-  *(undefined4 *)(render_context + -0x55) = texture_id;
-  *(undefined4 *)(render_context + -0x51) = shader_id;
+  *(int32_t *)(render_context + -0x59) = *(int32_t *)(engine_context + 0x16c8);
+  *(int32_t *)(render_context + -0x55) = texture_id;
+  *(int32_t *)(render_context + -0x51) = shader_id;
   *(float *)(render_context + -0x4d) = width;
   *(float *)(render_context + -0x4d) = width * *(float *)(engine_context + 0x1628);
   
@@ -752,7 +752,7 @@ void process_3d_render_transform(undefined8 render_context, undefined8 transform
           *(float *)(render_context + -0x4d) = temp_y;
         }
         
-        render_text_element(*(undefined8 *)(engine_context + 8));
+        render_text_element(*(uint64_t *)(engine_context + 8));
       }
     }
   }
@@ -769,15 +769,15 @@ void process_3d_render_transform(undefined8 render_context, undefined8 transform
       }
       
       if (text_start != text_end) {
-        transform_data = (undefined8 *)
+        transform_data = (uint64_t *)
                  (*(longlong *)(render_context + 0x68) + -0x10 +
                  (longlong)*(int *)(render_context + 0x60) * 0x10);
         
         matrix_data = transform_data[1];
-        render_flags = *(undefined8 *)(*(longlong *)(render_context + 0x38) + 8);
+        render_flags = *(uint64_t *)(*(longlong *)(render_context + 0x38) + 8);
         
-        *(undefined8 *)(render_context + -0x59) = *transform_data;
-        *(undefined8 *)(render_context + -0x51) = matrix_data;
+        *(uint64_t *)(render_context + -0x59) = *transform_data;
+        *(uint64_t *)(render_context + -0x51) = matrix_data;
         
         render_text_element(render_flags);
       }
@@ -792,19 +792,19 @@ void process_3d_render_transform(undefined8 render_context, undefined8 transform
  */
 void process_sprite_rendering(void)
 {
-  undefined4 *sprite_data;
+  int32_t *sprite_data;
   float temp_x;
   float temp_y;
   float sprite_width;
   float *dimension_ptr;
-  undefined8 render_flags;
-  undefined4 texture_id;
-  undefined4 shader_id;
+  uint64_t render_flags;
+  int32_t texture_id;
+  int32_t shader_id;
   float width;
   float height;
   float depth;
   float scale;
-  undefined4 sprite_info;
+  int32_t sprite_info;
   bool needs_clipping;
   byte clip_flag;
   uint render_state;
@@ -858,17 +858,17 @@ void process_sprite_rendering(void)
      (sprite_width = ((*texture_coords - temp_x) - *(float *)(engine_context + 0x6f)) * 
                **(float **)(engine_context + 0x77) + temp_x, temp_x < sprite_width)) {
     *(ulonglong *)(engine_context + 0x4f) =
-         CONCAT44((int)((ulonglong)*(undefined8 *)(engine_context + 0x4f) >> 0x20), sprite_width);
+         CONCAT44((int)((ulonglong)*(uint64_t *)(engine_context + 0x4f) >> 0x20), sprite_width);
   }
   
   // 获取渲染状态
-  texture_id = *(undefined4 *)(engine_context + 0x16cc);
-  shader_id = *(undefined4 *)(engine_context + 0x16d0);
+  texture_id = *(int32_t *)(engine_context + 0x16cc);
+  shader_id = *(int32_t *)(engine_context + 0x16d0);
   temp_x = *(float *)(engine_context + 0x16d4);
   
-  *(undefined4 *)(engine_context + -0x59) = *(undefined4 *)(engine_context + 0x16c8);
-  *(undefined4 *)(engine_context + -0x55) = texture_id;
-  *(undefined4 *)(engine_context + -0x51) = shader_id;
+  *(int32_t *)(engine_context + -0x59) = *(int32_t *)(engine_context + 0x16c8);
+  *(int32_t *)(engine_context + -0x55) = texture_id;
+  *(int32_t *)(engine_context + -0x51) = shader_id;
   *(float *)(engine_context + -0x4d) = temp_x;
   *(float *)(engine_context + -0x4d) = temp_x * *(float *)(engine_context + 0x1628);
   
@@ -916,7 +916,7 @@ void process_sprite_rendering(void)
           *(float *)(engine_context + -0x4d) = sprite_width;
         }
         
-        render_text_element(*(undefined8 *)(engine_context + 8));
+        render_text_element(*(uint64_t *)(engine_context + 8));
       }
     }
   }
@@ -933,19 +933,19 @@ void process_sprite_rendering(void)
       }
       
       if (text_start != text_end) {
-        sprite_data = (undefined4 *)
+        sprite_data = (int32_t *)
                  (*(longlong *)(engine_context + 0x68) + -0x10 +
                  (longlong)*(int *)(engine_context + 0x60) * 0x10);
         
         texture_id = sprite_data[1];
         shader_id = sprite_data[2];
         sprite_info = sprite_data[3];
-        render_flags = *(undefined8 *)(*(longlong *)(engine_context + 0x38) + 8);
+        render_flags = *(uint64_t *)(*(longlong *)(engine_context + 0x38) + 8);
         
-        *(undefined4 *)(engine_context + -0x59) = *sprite_data;
-        *(undefined4 *)(engine_context + -0x55) = texture_id;
-        *(undefined4 *)(engine_context + -0x51) = shader_id;
-        *(undefined4 *)(engine_context + -0x4d) = sprite_info;
+        *(int32_t *)(engine_context + -0x59) = *sprite_data;
+        *(int32_t *)(engine_context + -0x55) = texture_id;
+        *(int32_t *)(engine_context + -0x51) = shader_id;
+        *(int32_t *)(engine_context + -0x4d) = sprite_info;
         
         render_text_element(render_flags);
       }
@@ -961,21 +961,21 @@ void process_sprite_rendering(void)
  * @param render_context 渲染上下文
  * @param texture_data 纹理数据指针
  */
-void process_texture_rendering(undefined8 render_context, float *texture_data)
+void process_texture_rendering(uint64_t render_context, float *texture_data)
 {
   float *dimension_ptr;
-  undefined4 *texture_info;
+  int32_t *texture_info;
   float temp_x;
   float temp_y;
   float sprite_width;
-  undefined8 render_flags;
-  undefined4 texture_id;
-  undefined4 shader_id;
+  uint64_t render_flags;
+  int32_t texture_id;
+  int32_t shader_id;
   float width;
   float height;
   float depth;
   float scale;
-  undefined4 sprite_info;
+  int32_t sprite_info;
   bool needs_clipping;
   byte clip_flag;
   uint render_state;
@@ -1016,17 +1016,17 @@ void process_texture_rendering(undefined8 render_context, float *texture_data)
      (sprite_width = ((*texture_data - temp_x) - texture_width) * 
                **(float **)(render_target + 0x77) + temp_x, temp_x < sprite_width)) {
     *(ulonglong *)(render_target + 0x4f) =
-         CONCAT44((int)((ulonglong)*(undefined8 *)(render_target + 0x4f) >> 0x20), sprite_width);
+         CONCAT44((int)((ulonglong)*(uint64_t *)(render_target + 0x4f) >> 0x20), sprite_width);
   }
   
   // 获取渲染状态
-  texture_id = *(undefined4 *)(engine_context + 0x16cc);
-  shader_id = *(undefined4 *)(engine_context + 0x16d0);
+  texture_id = *(int32_t *)(engine_context + 0x16cc);
+  shader_id = *(int32_t *)(engine_context + 0x16d0);
   temp_x = *(float *)(engine_context + 0x16d4);
   
-  *(undefined4 *)(render_target + -0x59) = *(undefined4 *)(engine_context + 0x16c8);
-  *(undefined4 *)(render_target + -0x55) = texture_id;
-  *(undefined4 *)(render_target + -0x51) = shader_id;
+  *(int32_t *)(render_target + -0x59) = *(int32_t *)(engine_context + 0x16c8);
+  *(int32_t *)(render_target + -0x55) = texture_id;
+  *(int32_t *)(render_target + -0x51) = shader_id;
   *(float *)(render_target + -0x4d) = temp_x;
   *(float *)(render_target + -0x4d) = temp_x * *(float *)(engine_context + 0x1628);
   
@@ -1074,7 +1074,7 @@ void process_texture_rendering(undefined8 render_context, float *texture_data)
           *(float *)(render_target + -0x4d) = sprite_width;
         }
         
-        render_text_element(*(undefined8 *)(engine_context + 8));
+        render_text_element(*(uint64_t *)(engine_context + 8));
       }
     }
   }
@@ -1091,19 +1091,19 @@ void process_texture_rendering(undefined8 render_context, float *texture_data)
       }
       
       if (text_start != text_end) {
-        texture_info = (undefined4 *)
+        texture_info = (int32_t *)
                  (*(longlong *)(render_target + 0x68) + -0x10 +
                  (longlong)*(int *)(render_target + 0x60) * 0x10);
         
         texture_id = texture_info[1];
         shader_id = texture_info[2];
         sprite_info = texture_info[3];
-        render_flags = *(undefined8 *)(*(longlong *)(render_target + 0x38) + 8);
+        render_flags = *(uint64_t *)(*(longlong *)(render_target + 0x38) + 8);
         
-        *(undefined4 *)(render_target + -0x59) = *texture_info;
-        *(undefined4 *)(render_target + -0x55) = texture_id;
-        *(undefined4 *)(render_target + -0x51) = shader_id;
-        *(undefined4 *)(render_target + -0x4d) = sprite_info;
+        *(int32_t *)(render_target + -0x59) = *texture_info;
+        *(int32_t *)(render_target + -0x55) = texture_id;
+        *(int32_t *)(render_target + -0x51) = shader_id;
+        *(int32_t *)(render_target + -0x4d) = sprite_info;
         
         render_text_element(render_flags);
       }
@@ -1120,7 +1120,7 @@ void process_texture_rendering(undefined8 render_context, float *texture_data)
  * @param ui_data UI数据指针
  * @param element_id 元素ID
  */
-void process_ui_element_rendering(undefined8 render_context, float *ui_data, longlong element_id)
+void process_ui_element_rendering(uint64_t render_context, float *ui_data, longlong element_id)
 {
   float *dimension_ptr;
   float temp_x;
@@ -1180,7 +1180,7 @@ void process_ui_element_rendering(undefined8 render_context, float *ui_data, lon
         *(float *)(render_target + -0x4d) = temp_y;
       }
       
-      render_text_element(*(undefined8 *)(engine_context + 8));
+      render_text_element(*(uint64_t *)(engine_context + 8));
     }
   }
   

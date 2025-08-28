@@ -16,8 +16,8 @@ void FUN_1802d6c70(longlong param_1,longlong param_2,int param_3,float *param_4)
   ulonglong *puVar8;
   longlong lVar9;
   longlong lVar10;
-  undefined8 *puVar11;
-  undefined8 uVar12;
+  uint64_t *puVar11;
+  uint64_t uVar12;
   float fVar13;
   float fVar14;
   bool bVar15;
@@ -31,16 +31,16 @@ void FUN_1802d6c70(longlong param_1,longlong param_2,int param_3,float *param_4)
   longlong lVar23;
   int iVar24;
   uint uVar25;
-  undefined8 *puVar26;
+  uint64_t *puVar26;
   longlong lVar27;
   ulonglong *puVar28;
-  undefined8 *puVar29;
+  uint64_t *puVar29;
   float *pfVar30;
   uint uVar31;
   ulonglong uVar32;
   uint uVar33;
   ulonglong *puVar34;
-  undefined8 *puVar35;
+  uint64_t *puVar35;
   float *pfVar36;
   ulonglong *puVar37;
   longlong lVar38;
@@ -128,8 +128,8 @@ void FUN_1802d6c70(longlong param_1,longlong param_2,int param_3,float *param_4)
         lVar23 = lVar23 + 1;
       } while (lVar23 < lVar38);
     }
-    puVar11 = *(undefined8 **)(param_2 + 0x100);
-    puVar35 = (undefined8 *)*plVar1;
+    puVar11 = *(uint64_t **)(param_2 + 0x100);
+    puVar35 = (uint64_t *)*plVar1;
     if (puVar35 != puVar11) {
       iVar24 = 0;
       lVar22 = (longlong)puVar11 - (longlong)puVar35 >> 3;
@@ -153,7 +153,7 @@ void FUN_1802d6c70(longlong param_1,longlong param_2,int param_3,float *param_4)
             if (*pfVar30 <= fStack_f4 && fStack_f4 != *pfVar30) {
               do {
                 pfVar30 = pfVar30 + -2;
-                *puVar26 = *(undefined8 *)
+                *puVar26 = *(uint64_t *)
                             ((longlong)puVar26 + ((longlong)puVar35 - (longlong)puVar29));
                 puVar26 = puVar26 + -1;
               } while (*pfVar30 <= fStack_f4 && fStack_f4 != *pfVar30);

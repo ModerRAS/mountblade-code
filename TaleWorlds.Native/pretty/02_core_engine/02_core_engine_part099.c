@@ -58,10 +58,10 @@ void remove_object_from_array(int *object_array, int object_id)
 int * process_object_collision(int *object_data)
 {
   longlong engine_base;
-  undefined8 *collision_data;
-  undefined4 *render_params;
-  undefined8 *transform_data;
-  undefined4 *vertex_data;
+  uint64_t *collision_data;
+  int32_t *render_params;
+  uint64_t *transform_data;
+  int32_t *vertex_data;
   float position_x;
   float position_y;
   float position_z;
@@ -70,16 +70,16 @@ int * process_object_collision(int *object_data)
   float depth;
   float velocity_x;
   float velocity_y;
-  undefined4 temp_param1;
-  undefined4 temp_param2;
+  int32_t temp_param1;
+  int32_t temp_param2;
   int collision_flags;
   longlong object_transform;
   longlong camera_data;
   int *collision_result;
-  undefined4 render_state1;
-  undefined4 render_state2;
-  undefined4 render_state3;
-  undefined8 matrix_data;
+  int32_t render_state1;
+  int32_t render_state2;
+  int32_t render_state3;
+  uint64_t matrix_data;
   bool is_colliding;
   longlong temp_offset;
   char collision_result_char;
@@ -90,11 +90,11 @@ int * process_object_collision(int *object_data)
   int *array_item;
   float collision_width;
   float collision_height;
-  undefined4 stack_param1;
-  undefined4 stack_param2;
-  undefined4 stack_param3;
-  undefined4 stack_param4;
-  undefined4 stack_param5;
+  int32_t stack_param1;
+  int32_t stack_param2;
+  int32_t stack_param3;
+  int32_t stack_param4;
+  int32_t stack_param5;
   
   engine_base = _DAT_180c8a9b0;
   position_x = *(float *)(_DAT_180c8a9b0 + 0x1660);
@@ -110,51 +110,51 @@ int * process_object_collision(int *object_data)
     is_colliding = true;
     velocity_x = (float)object_data[0xc];
     boundary_check = object_data[0xd];
-    *(undefined1 *)(object_transform + 0xb1) = 1;
+    *(int8_t *)(object_transform + 0xb1) = 1;
     camera_data = *(longlong *)(engine_base + 0x1af8);
-    FUN_180291b40(*(undefined8 *)(camera_data + 0x2e8), *(undefined8 *)(object_data + 10),
+    FUN_180291b40(*(uint64_t *)(camera_data + 0x2e8), *(uint64_t *)(object_data + 10),
                   CONCAT44(boundary_check, depth + velocity_x), 1);
-    collision_data = (undefined8 *)
+    collision_data = (uint64_t *)
              (*(longlong *)(*(longlong *)(camera_data + 0x2e8) + 0x68) + -0x10 +
              (longlong)*(int *)(*(longlong *)(camera_data + 0x2e8) + 0x60) * 0x10);
     matrix_data = collision_data[1];
-    *(undefined8 *)(camera_data + 0x228) = *collision_data;
-    *(undefined8 *)(camera_data + 0x230) = matrix_data;
+    *(uint64_t *)(camera_data + 0x228) = *collision_data;
+    *(uint64_t *)(camera_data + 0x230) = matrix_data;
   }
   else {
     is_colliding = false;
   }
   camera_data = _DAT_180c8a9b0;
-  temp_param1 = *(undefined4 *)(engine_base + 0x16c8);
-  temp_param2 = *(undefined4 *)(engine_base + 0x16cc);
-  render_state1 = *(undefined4 *)(engine_base + 0x16d0);
+  temp_param1 = *(int32_t *)(engine_base + 0x16c8);
+  temp_param2 = *(int32_t *)(engine_base + 0x16cc);
+  render_state1 = *(int32_t *)(engine_base + 0x16d0);
   velocity_x = *(float *)(engine_base + 0x16d4);
   collision_result = (int *)0x0;
   boundary_check = 0;
   stack_param1 = 0;
-  stack_param2 = *(undefined4 *)(_DAT_180c8a9b0 + 0x16c8);
-  stack_param3 = *(undefined4 *)(_DAT_180c8a9b0 + 0x16cc);
-  stack_param4 = *(undefined4 *)(_DAT_180c8a9b0 + 0x16d0);
-  stack_param5 = *(undefined4 *)(_DAT_180c8a9b0 + 0x16d4);
+  stack_param2 = *(int32_t *)(_DAT_180c8a9b0 + 0x16c8);
+  stack_param3 = *(int32_t *)(_DAT_180c8a9b0 + 0x16cc);
+  stack_param4 = *(int32_t *)(_DAT_180c8a9b0 + 0x16d0);
+  stack_param5 = *(int32_t *)(_DAT_180c8a9b0 + 0x16d4);
   FUN_18013e100(_DAT_180c8a9b0 + 0x1b80, &stack_param1);
   stack_param1 = 0x15;
-  *(undefined4 *)(camera_data + 0x16c8) = temp_param1;
-  *(undefined4 *)(camera_data + 0x16cc) = temp_param2;
-  *(undefined4 *)(camera_data + 0x16d0) = render_state1;
+  *(int32_t *)(camera_data + 0x16c8) = temp_param1;
+  *(int32_t *)(camera_data + 0x16cc) = temp_param2;
+  *(int32_t *)(camera_data + 0x16d0) = render_state1;
   *(float *)(camera_data + 0x16d4) = velocity_x * 0.5;
   camera_data = _DAT_180c8a9b0;
-  stack_param2 = *(undefined4 *)(_DAT_180c8a9b0 + 0x1818);
-  stack_param3 = *(undefined4 *)(_DAT_180c8a9b0 + 0x181c);
-  stack_param4 = *(undefined4 *)(_DAT_180c8a9b0 + 0x1820);
-  stack_param5 = *(undefined4 *)(_DAT_180c8a9b0 + 0x1824);
+  stack_param2 = *(int32_t *)(_DAT_180c8a9b0 + 0x1818);
+  stack_param3 = *(int32_t *)(_DAT_180c8a9b0 + 0x181c);
+  stack_param4 = *(int32_t *)(_DAT_180c8a9b0 + 0x1820);
+  stack_param5 = *(int32_t *)(_DAT_180c8a9b0 + 0x1824);
   FUN_18013e100(_DAT_180c8a9b0 + 0x1b80, &stack_param1);
-  *(undefined8 *)(camera_data + 0x1818) = 0;
-  *(undefined8 *)(camera_data + 0x1820) = 0;
-  temp_param1 = *(undefined4 *)(engine_base + 0x90);
-  temp_param2 = *(undefined4 *)(engine_base + 0x94);
+  *(uint64_t *)(camera_data + 0x1818) = 0;
+  *(uint64_t *)(camera_data + 0x1820) = 0;
+  temp_param1 = *(int32_t *)(engine_base + 0x90);
+  temp_param2 = *(int32_t *)(engine_base + 0x94);
   matrix_data = CONCAT44(position_x + position_x + position_y, collision_height);
-  *(undefined4 *)(engine_base + 0x90) = 0x3e800000;
-  *(undefined4 *)(engine_base + 0x94) = 0x3e4ccccd;
+  *(int32_t *)(engine_base + 0x90) = 0x3e800000;
+  *(int32_t *)(engine_base + 0x94) = 0x3e4ccccd;
   position_x = (float)object_data[0xc];
   *(int *)(object_transform + 0x104) = object_data[0xb];
   *(float *)(object_transform + 0x100) = position_x - collision_width;
@@ -170,11 +170,11 @@ int * process_object_collision(int *object_data)
   if (collision_result_char != '\0') {
     boundary_check = 1;
   }
-  collision_data = (undefined8 *)
+  collision_data = (uint64_t *)
            (*(longlong *)(_DAT_180c8a9b0 + 0x1b88) + -0x10 +
            (longlong)*(int *)(_DAT_180c8a9b0 + 0x1b80) * 0x14);
   matrix_data = collision_data[1];
-  transform_data = (undefined8 *)
+  transform_data = (uint64_t *)
            (_DAT_180c8a9b0 + 0x16c8 +
            (longlong)
            *(int *)(*(longlong *)(_DAT_180c8a9b0 + 0x1b88) + -0x14 +
@@ -184,11 +184,11 @@ int * process_object_collision(int *object_data)
   collision_flags = *(int *)(camera_data + 0x1b80);
   *(int *)(camera_data + 0x1b80) = collision_flags + -1;
   temp_offset = (longlong)collision_flags + -2;
-  render_params = (undefined4 *)(*(longlong *)(camera_data + 0x1b88) + 4 + temp_offset * 0x14);
+  render_params = (int32_t *)(*(longlong *)(camera_data + 0x1b88) + 4 + temp_offset * 0x14);
   render_state1 = render_params[1];
   render_state2 = render_params[2];
   render_state3 = render_params[3];
-  vertex_data = (undefined4 *)
+  vertex_data = (int32_t *)
            (camera_data + 0x16c8 +
            (longlong)*(int *)(*(longlong *)(camera_data + 0x1b88) + temp_offset * 0x14) * 0x10);
   *vertex_data = *render_params;
@@ -196,8 +196,8 @@ int * process_object_collision(int *object_data)
   vertex_data[2] = render_state2;
   vertex_data[3] = render_state3;
   *(int *)(camera_data + 0x1b80) = *(int *)(camera_data + 0x1b80) + -1;
-  *(undefined4 *)(engine_base + 0x94) = temp_param2;
-  *(undefined4 *)(engine_base + 0x90) = temp_param1;
+  *(int32_t *)(engine_base + 0x94) = temp_param2;
+  *(int32_t *)(engine_base + 0x90) = temp_param1;
   if (is_colliding) {
     FUN_180126d80();
   }
@@ -239,35 +239,35 @@ int * process_object_collision(int *object_data)
 ulonglong update_object_position(int *object_data)
 {
   longlong engine_base;
-  undefined8 *position_data;
-  undefined4 *render_params;
-  undefined8 *transform_data;
-  undefined4 *vertex_data;
-  undefined4 position_x;
-  undefined4 position_y;
+  uint64_t *position_data;
+  int32_t *render_params;
+  uint64_t *transform_data;
+  int32_t *vertex_data;
+  int32_t position_x;
+  int32_t position_y;
   int array_size;
   longlong object_transform;
-  undefined4 render_state1;
-  undefined4 render_state2;
-  undefined4 render_state3;
-  undefined8 matrix_data;
+  int32_t render_state1;
+  int32_t render_state2;
+  int32_t render_state3;
+  uint64_t matrix_data;
   longlong camera_offset;
   char update_flag;
   uint loop_counter;
   ulonglong result_flag;
   ulonglong temp_result;
   float position_z;
-  undefined4 stack_param1;
-  undefined4 stack_param2;
-  undefined4 stack_param3;
-  undefined4 stack_param4;
-  undefined4 stack_param5;
+  int32_t stack_param1;
+  int32_t stack_param2;
+  int32_t stack_param3;
+  int32_t stack_param4;
+  int32_t stack_param5;
   ulonglong collision_result;
   
   engine_base = _DAT_180c8a9b0;
   object_transform = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
-  position_x = *(undefined4 *)(object_transform + 0x100);
-  position_y = *(undefined4 *)(object_transform + 0x104);
+  position_x = *(int32_t *)(object_transform + 0x100);
+  position_y = *(int32_t *)(object_transform + 0x104);
   position_z = (float)object_data[0xc] -
            (*(float *)(_DAT_180c8a9b0 + 0x1660) + *(float *)(_DAT_180c8a9b0 + 0x1660) +
            *(float *)(_DAT_180c8a9b0 + 0x19f8));
@@ -279,36 +279,36 @@ ulonglong update_object_position(int *object_data)
   *(int *)(object_transform + 0x104) = object_data[0xb];
   *(float *)(object_transform + 0x100) = position_z;
   collision_result = 0;
-  render_state1 = *(undefined4 *)(engine_base + 0x16c8);
-  render_state2 = *(undefined4 *)(engine_base + 0x16cc);
-  render_state3 = *(undefined4 *)(engine_base + 0x16d0);
+  render_state1 = *(int32_t *)(engine_base + 0x16c8);
+  render_state2 = *(int32_t *)(engine_base + 0x16cc);
+  render_state3 = *(int32_t *)(engine_base + 0x16d0);
   position_z = *(float *)(engine_base + 0x16d4);
   stack_param1 = 0;
-  stack_param2 = *(undefined4 *)(engine_base + 0x16c8);
-  stack_param3 = *(undefined4 *)(engine_base + 0x16cc);
-  stack_param4 = *(undefined4 *)(engine_base + 0x16d0);
-  stack_param5 = *(undefined4 *)(engine_base + 0x16d4);
+  stack_param2 = *(int32_t *)(engine_base + 0x16c8);
+  stack_param3 = *(int32_t *)(engine_base + 0x16cc);
+  stack_param4 = *(int32_t *)(engine_base + 0x16d0);
+  stack_param5 = *(int32_t *)(engine_base + 0x16d4);
   FUN_18013e100(engine_base + 0x1b80, &stack_param1);
   stack_param1 = 0x15;
-  *(undefined4 *)(engine_base + 0x16c8) = render_state1;
-  *(undefined4 *)(engine_base + 0x16cc) = render_state2;
-  *(undefined4 *)(engine_base + 0x16d0) = render_state3;
+  *(int32_t *)(engine_base + 0x16c8) = render_state1;
+  *(int32_t *)(engine_base + 0x16cc) = render_state2;
+  *(int32_t *)(engine_base + 0x16d0) = render_state3;
   *(float *)(engine_base + 0x16d4) = position_z * 0.5;
   engine_base = _DAT_180c8a9b0;
-  stack_param2 = *(undefined4 *)(_DAT_180c8a9b0 + 0x1818);
-  stack_param3 = *(undefined4 *)(_DAT_180c8a9b0 + 0x181c);
-  stack_param4 = *(undefined4 *)(_DAT_180c8a9b0 + 0x1820);
-  stack_param5 = *(undefined4 *)(_DAT_180c8a9b0 + 0x1824);
+  stack_param2 = *(int32_t *)(_DAT_180c8a9b0 + 0x1818);
+  stack_param3 = *(int32_t *)(_DAT_180c8a9b0 + 0x181c);
+  stack_param4 = *(int32_t *)(_DAT_180c8a9b0 + 0x1820);
+  stack_param5 = *(int32_t *)(_DAT_180c8a9b0 + 0x1824);
   FUN_18013e100(_DAT_180c8a9b0 + 0x1b80, &stack_param1);
-  *(undefined8 *)(engine_base + 0x1818) = 0;
-  *(undefined8 *)(engine_base + 0x1820) = 0;
+  *(uint64_t *)(engine_base + 0x1818) = 0;
+  *(uint64_t *)(engine_base + 0x1820) = 0;
   update_flag = FUN_1801129b0(&UNK_180a063b0, 0, 0x41);
   camera_offset = _DAT_180c8a9b0;
-  position_data = (undefined8 *)
+  position_data = (uint64_t *)
            (*(longlong *)(_DAT_180c8a9b0 + 0x1b88) + -0x10 +
            (longlong)*(int *)(_DAT_180c8a9b0 + 0x1b80) * 0x14);
   matrix_data = position_data[1];
-  transform_data = (undefined8 *)
+  transform_data = (uint64_t *)
            (_DAT_180c8a9b0 + 0x16c8 +
            (longlong)
            *(int *)(*(longlong *)(_DAT_180c8a9b0 + 0x1b88) + -0x14 +
@@ -318,11 +318,11 @@ ulonglong update_object_position(int *object_data)
   array_size = *(int *)(camera_offset + 0x1b80);
   *(int *)(camera_offset + 0x1b80) = array_size + -1;
   engine_base = (longlong)array_size + -2;
-  render_params = (undefined4 *)(*(longlong *)(camera_offset + 0x1b88) + 4 + engine_base * 0x14);
+  render_params = (int32_t *)(*(longlong *)(camera_offset + 0x1b88) + 4 + engine_base * 0x14);
   render_state1 = render_params[1];
   render_state2 = render_params[2];
   render_state3 = render_params[3];
-  vertex_data = (undefined4 *)
+  vertex_data = (int32_t *)
            (camera_offset + 0x16c8 +
            (longlong)*(int *)(*(longlong *)(camera_offset + 0x1b88) + engine_base * 0x14) * 0x10);
   *vertex_data = *render_params;
@@ -336,7 +336,7 @@ ulonglong update_object_position(int *object_data)
     if (0 < *object_data) {
       do {
         engine_base = *(longlong *)(object_data + 2);
-        update_flag = FUN_18011aad0(**(undefined8 **)(engine_base + temp_result + 8));
+        update_flag = FUN_18011aad0(**(uint64_t **)(engine_base + temp_result + 8));
         if (update_flag != '\0') {
           result_flag = engine_base + temp_result;
         }
@@ -347,8 +347,8 @@ ulonglong update_object_position(int *object_data)
     }
     FUN_18012f0c0();
   }
-  *(undefined4 *)(object_transform + 0x100) = position_x;
-  *(undefined4 *)(object_transform + 0x104) = position_y;
+  *(int32_t *)(object_transform + 0x100) = position_x;
+  *(int32_t *)(object_transform + 0x104) = position_y;
   return result_flag;
 }
 
@@ -363,17 +363,17 @@ ulonglong update_object_position(int *object_data)
 ulonglong calculate_object_distance(float distance_x, float distance_y)
 {
   longlong engine_base;
-  undefined8 *distance_data;
-  undefined4 *render_params;
-  undefined8 *transform_data;
-  undefined4 *vertex_data;
-  undefined4 position_x;
-  undefined4 position_y;
+  uint64_t *distance_data;
+  int32_t *render_params;
+  uint64_t *transform_data;
+  int32_t *vertex_data;
+  int32_t position_x;
+  int32_t position_y;
   int array_size;
-  undefined4 render_state1;
-  undefined4 render_state2;
-  undefined4 render_state3;
-  undefined8 matrix_data;
+  int32_t render_state1;
+  int32_t render_state2;
+  int32_t render_state3;
+  uint64_t matrix_data;
   longlong camera_offset;
   char update_flag;
   longlong register_RCX;
@@ -384,54 +384,54 @@ ulonglong calculate_object_distance(float distance_x, float distance_y)
   ulonglong temp_result;
   longlong register_R15;
   float calculated_distance;
-  undefined4 stack_param1;
+  int32_t stack_param1;
   float stack_param2;
-  undefined4 stack_param3;
-  undefined4 stack_param4;
-  undefined4 stack_param5;
-  undefined4 stack_param6;
+  int32_t stack_param3;
+  int32_t stack_param4;
+  int32_t stack_param5;
+  int32_t stack_param6;
   ulonglong distance_result;
   
-  position_x = *(undefined4 *)(register_R15 + 0x100);
-  position_y = *(undefined4 *)(register_R15 + 0x104);
+  position_x = *(int32_t *)(register_R15 + 0x100);
+  position_y = *(int32_t *)(register_R15 + 0x104);
   distance_y = distance_y - (distance_x + *(float *)(register_RBX + 0x19f8));
   *(float *)(register_RCX + 0x30) = distance_y;
   if (*(char *)(register_R15 + 0xb7) != '\0') {
     distance_y = distance_y + *(float *)(register_RBX + 0x1674);
     *(float *)(register_RCX + 0x30) = distance_y;
   }
-  *(undefined4 *)(register_R15 + 0x104) = *(undefined4 *)(register_RCX + 0x2c);
+  *(int32_t *)(register_R15 + 0x104) = *(int32_t *)(register_RCX + 0x2c);
   *(float *)(register_R15 + 0x100) = distance_y;
   distance_result = 0;
-  render_state1 = *(undefined4 *)(register_RBX + 0x16c8);
-  render_state2 = *(undefined4 *)(register_RBX + 0x16cc);
-  stack_param3 = *(undefined4 *)(register_RBX + 0x16d0);
+  render_state1 = *(int32_t *)(register_RBX + 0x16c8);
+  render_state2 = *(int32_t *)(register_RBX + 0x16cc);
+  stack_param3 = *(int32_t *)(register_RBX + 0x16d0);
   stack_param2 = *(float *)(register_RBX + 0x16d4);
   stack_param1 = 0;
   calculated_distance = stack_param2 * 0.5;
-  stack_param4 = *(undefined4 *)(register_RBX + 0x16c8);
-  stack_param5 = *(undefined4 *)(register_RBX + 0x16cc);
-  stack_param6 = *(undefined4 *)(register_RBX + 0x16d0);
+  stack_param4 = *(int32_t *)(register_RBX + 0x16c8);
+  stack_param5 = *(int32_t *)(register_RBX + 0x16cc);
+  stack_param6 = *(int32_t *)(register_RBX + 0x16d0);
   FUN_18013e100(register_RBX + 0x1b80, &stack0x00000030);
   stack_param1 = 0x15;
-  *(undefined4 *)(register_RBX + 0x16c8) = render_state1;
-  *(undefined4 *)(register_RBX + 0x16cc) = render_state2;
-  *(undefined4 *)(register_RBX + 0x16d0) = stack_param3;
+  *(int32_t *)(register_RBX + 0x16c8) = render_state1;
+  *(int32_t *)(register_RBX + 0x16cc) = render_state2;
+  *(int32_t *)(register_RBX + 0x16d0) = stack_param3;
   *(float *)(register_RBX + 0x16d4) = calculated_distance;
   engine_base = _DAT_180c8a9b0;
-  stack_param4 = *(undefined4 *)(_DAT_180c8a9b0 + 0x1818);
-  stack_param5 = *(undefined4 *)(_DAT_180c8a9b0 + 0x181c);
-  stack_param6 = *(undefined4 *)(_DAT_180c8a9b0 + 0x1820);
+  stack_param4 = *(int32_t *)(_DAT_180c8a9b0 + 0x1818);
+  stack_param5 = *(int32_t *)(_DAT_180c8a9b0 + 0x181c);
+  stack_param6 = *(int32_t *)(_DAT_180c8a9b0 + 0x1820);
   FUN_18013e100(_DAT_180c8a9b0 + 0x1b80, &stack0x00000030);
-  *(undefined8 *)(engine_base + 0x1818) = 0;
-  *(undefined8 *)(engine_base + 0x1820) = 0;
+  *(uint64_t *)(engine_base + 0x1818) = 0;
+  *(uint64_t *)(engine_base + 0x1820) = 0;
   update_flag = FUN_1801129b0(&UNK_180a063b0, 0, 0x41);
   camera_offset = _DAT_180c8a9b0;
-  distance_data = (undefined8 *)
+  distance_data = (uint64_t *)
            (*(longlong *)(_DAT_180c8a9b0 + 0x1b88) + -0x10 +
            (longlong)*(int *)(_DAT_180c8a9b0 + 0x1b80) * 0x14);
   matrix_data = distance_data[1];
-  transform_data = (undefined8 *)
+  transform_data = (uint64_t *)
            (_DAT_180c8a9b0 + 0x16c8 +
            (longlong)
            *(int *)(*(longlong *)(_DAT_180c8a9b0 + 0x1b88) + -0x14 +
@@ -441,11 +441,11 @@ ulonglong calculate_object_distance(float distance_x, float distance_y)
   array_size = *(int *)(camera_offset + 0x1b80);
   *(int *)(camera_offset + 0x1b80) = array_size + -1;
   engine_base = (longlong)array_size + -2;
-  render_params = (undefined4 *)(*(longlong *)(camera_offset + 0x1b88) + 4 + engine_base * 0x14);
+  render_params = (int32_t *)(*(longlong *)(camera_offset + 0x1b88) + 4 + engine_base * 0x14);
   render_state1 = render_params[1];
   render_state2 = render_params[2];
   render_state3 = render_params[3];
-  vertex_data = (undefined4 *)
+  vertex_data = (int32_t *)
            (camera_offset + 0x16c8 +
            (longlong)*(int *)(*(longlong *)(camera_offset + 0x1b88) + engine_base * 0x14) * 0x10);
   *vertex_data = *render_params;
@@ -459,7 +459,7 @@ ulonglong calculate_object_distance(float distance_x, float distance_y)
     if (0 < *register_RSI) {
       do {
         engine_base = *(longlong *)(register_RSI + 2);
-        update_flag = FUN_18011aad0(**(undefined8 **)(engine_base + temp_result + 8));
+        update_flag = FUN_18011aad0(**(uint64_t **)(engine_base + temp_result + 8));
         if (update_flag != '\0') {
           result_flag = engine_base + temp_result;
         }
@@ -470,8 +470,8 @@ ulonglong calculate_object_distance(float distance_x, float distance_y)
     }
     FUN_18012f0c0();
   }
-  *(undefined4 *)(register_R15 + 0x100) = position_x;
-  *(undefined4 *)(register_R15 + 0x104) = position_y;
+  *(int32_t *)(register_R15 + 0x100) = position_x;
+  *(int32_t *)(register_R15 + 0x104) = position_y;
   return result_flag;
 }
 
@@ -481,7 +481,7 @@ ulonglong calculate_object_distance(float distance_x, float distance_y)
  * @param search_param2 搜索参数2
  * @return 返回找到的对象指针
  */
-ulonglong find_matching_object(undefined8 search_param1, undefined8 search_param2)
+ulonglong find_matching_object(uint64_t search_param1, uint64_t search_param2)
 {
   longlong object_pointer;
   char match_found;
@@ -490,15 +490,15 @@ ulonglong find_matching_object(undefined8 search_param1, undefined8 search_param
   int *object_array;
   ulonglong search_index;
   longlong transform_data;
-  undefined4 render_param1;
-  undefined4 render_param2;
+  int32_t render_param1;
+  int32_t render_param2;
   
   current_index = search_index & 0xffffffff;
   if ((int)search_index < *object_array) {
     search_index = search_index & 0xffffffff;
     do {
       object_pointer = *(longlong *)(object_array + 2);
-      match_found = FUN_18011aad0(**(undefined8 **)(object_pointer + search_index + 8), search_param2, 0);
+      match_found = FUN_18011aad0(**(uint64_t **)(object_pointer + search_index + 8), search_param2, 0);
       if (match_found != '\0') {
         search_index = object_pointer + search_index;
       }
@@ -508,8 +508,8 @@ ulonglong find_matching_object(undefined8 search_param1, undefined8 search_param
     } while ((int)loop_counter < *object_array);
   }
   FUN_18012f0c0();
-  *(undefined4 *)(transform_data + 0x100) = render_param1;
-  *(undefined4 *)(transform_data + 0x104) = render_param2;
+  *(int32_t *)(transform_data + 0x100) = render_param1;
+  *(int32_t *)(transform_data + 0x104) = render_param2;
   return search_index;
 }
 
@@ -519,7 +519,7 @@ ulonglong find_matching_object(undefined8 search_param1, undefined8 search_param
  * @param search_param2 搜索参数2
  * @return 返回找到的对象指针
  */
-ulonglong traverse_object_array(undefined8 search_param1, undefined8 search_param2)
+ulonglong traverse_object_array(uint64_t search_param1, uint64_t search_param2)
 {
   longlong object_pointer;
   char match_found;
@@ -527,13 +527,13 @@ ulonglong traverse_object_array(undefined8 search_param1, undefined8 search_para
   int *object_array;
   ulonglong current_index;
   longlong transform_data;
-  undefined4 render_param1;
-  undefined4 render_param2;
+  int32_t render_param1;
+  int32_t render_param2;
   
   current_index = search_index & 0xffffffff;
   do {
     object_pointer = *(longlong *)(object_array + 2);
-    match_found = FUN_18011aad0(**(undefined8 **)(object_pointer + current_index + 8), search_param2, 0);
+    match_found = FUN_18011aad0(**(uint64_t **)(object_pointer + current_index + 8), search_param2, 0);
     if (match_found != '\0') {
       search_index = object_pointer + current_index;
     }
@@ -541,8 +541,8 @@ ulonglong traverse_object_array(undefined8 search_param1, undefined8 search_para
     current_index = current_index + 0x28;
   } while (loop_counter < *object_array);
   FUN_18012f0c0();
-  *(undefined4 *)(transform_data + 0x100) = render_param1;
-  *(undefined4 *)(transform_data + 0x104) = render_param2;
+  *(int32_t *)(transform_data + 0x100) = render_param1;
+  *(int32_t *)(transform_data + 0x104) = render_param2;
   return search_index;
 }
 
@@ -553,12 +553,12 @@ ulonglong traverse_object_array(undefined8 search_param1, undefined8 search_para
 void reset_render_state(void)
 {
   longlong transform_data;
-  undefined4 render_param1;
-  undefined4 render_param2;
+  int32_t render_param1;
+  int32_t render_param2;
   
   FUN_18012f0c0();
-  *(undefined4 *)(transform_data + 0x100) = render_param1;
-  *(undefined4 *)(transform_data + 0x104) = render_param2;
+  *(int32_t *)(transform_data + 0x100) = render_param1;
+  *(int32_t *)(transform_data + 0x104) = render_param2;
   return;
 }
 

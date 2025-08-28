@@ -20,19 +20,19 @@
  * 3. 在目标位置写入字符串结束符（0字节）
  * 4. 初始化目标结构体的长度字段为0
  */
-void SafeCopyAndInitializeMemory(longlong targetPtr, undefined8 sourceData, int dataLength)
+void SafeCopyAndInitializeMemory(longlong targetPtr, uint64_t sourceData, int dataLength)
 {
     // 检查数据长度是否在安全范围内
     if (dataLength + 1 < MAX_SAFE_COPY_SIZE) {
         // 执行内存拷贝操作
-        memcpy(*(undefined1 **)(targetPtr + 8), sourceData, (longlong)dataLength);
+        memcpy(*(int8_t **)(targetPtr + 8), sourceData, (longlong)dataLength);
     }
     
     // 在目标数据末尾写入字符串结束符
-    **(undefined1 **)(targetPtr + 8) = 0;
+    **(int8_t **)(targetPtr + 8) = 0;
     
     // 初始化数据长度字段为0
-    *(undefined4 *)(targetPtr + 0x10) = 0;
+    *(int32_t *)(targetPtr + 0x10) = 0;
     
     return;
 }

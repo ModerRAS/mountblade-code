@@ -16,10 +16,10 @@
 //------------------------------------------------------------------------------
 
 // 多媒体处理句柄类型
-typedef undefined8 MediaHandle;                    // 多媒体处理句柄
-typedef undefined8 RenderHandle;                   // 渲染处理句柄
-typedef undefined8 AudioHandle;                    // 音频处理句柄
-typedef undefined8 ResourceHandle;                 // 资源管理句柄
+typedef uint64_t MediaHandle;                    // 多媒体处理句柄
+typedef uint64_t RenderHandle;                   // 渲染处理句柄
+typedef uint64_t AudioHandle;                    // 音频处理句柄
+typedef uint64_t ResourceHandle;                 // 资源管理句柄
 
 // 多媒体状态常量
 #define MEDIA_STATE_READY           0x00000001     // 多媒体就绪状态
@@ -69,7 +69,7 @@ typedef undefined8 ResourceHandle;                 // 资源管理句柄
 //   param_2 - 操作类型或参数，标识要执行的多媒体操作
 //
 // 返回值：
-//   undefined8 - 操作结果或状态码
+//   uint64_t - 操作结果或状态码
 //
 // 处理流程：
 //   1. 验证输入参数的有效性
@@ -96,13 +96,13 @@ typedef undefined8 ResourceHandle;                 // 资源管理句柄
 //   简化实现：基于高级多媒体模块架构，创建完整的多媒体处理功能
 //   优化点：添加完整的多媒体处理、渲染、音频管理功能
 //------------------------------------------------------------------------------
-undefined8 FUN_180012350(undefined8 param_1, undefined8 param_2)
+uint64_t FUN_180012350(uint64_t param_1, uint64_t param_2)
 {
     // 局部变量定义
-    undefined8 uVar1;                            // 操作结果
+    uint64_t uVar1;                            // 操作结果
     longlong lVar2;                              // 上下文指针
     int iVar3;                                  // 状态标志
-    undefined8 auStack_28 [4];                   // 栈缓冲区 (32字节)
+    uint64_t auStack_28 [4];                   // 栈缓冲区 (32字节)
     ulonglong uStack_8;                         // 安全检查值
     
     // 安全检查：栈保护机制

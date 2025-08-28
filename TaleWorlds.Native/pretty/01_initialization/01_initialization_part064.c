@@ -13,19 +13,19 @@ undefined setup_graphics_device_params;
 undefined render_status_flag;
 
 // 常量：图形设备配置参数
-undefined8 GRAPHICS_DEVICE_CONFIG;
-undefined4 GRAPHICS_DEVICE_VERSION;
-undefined *graphics_device_ptr;
-undefined1 *graphics_device_buffer;
-undefined4 graphics_device_mode;
+uint64_t GRAPHICS_DEVICE_CONFIG;
+int32_t GRAPHICS_DEVICE_VERSION;
+void *graphics_device_ptr;
+int8_t *graphics_device_buffer;
+int32_t graphics_device_mode;
 
 // 全局变量：渲染缓冲区参数
 longlong render_buffer_size;
 longlong render_buffer_offset;
 longlong frame_buffer_size;
 longlong frame_buffer_offset;
-undefined4 buffer_width;
-undefined4 buffer_height;
+int32_t buffer_width;
+int32_t buffer_height;
 
 // 数据变量：纹理映射数据
 undefined texture_mapping_data;
@@ -38,7 +38,7 @@ undefined video_mode_data;
 // 常量：渲染管线配置
 undefined render_pipeline_config;
 longlong render_pipeline_state;
-undefined8 render_pipeline_flags;
+uint64_t render_pipeline_flags;
 longlong render_shader_params;
 longlong *render_texture_ptr;
 

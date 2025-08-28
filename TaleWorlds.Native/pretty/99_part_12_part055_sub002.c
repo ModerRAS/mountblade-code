@@ -2,8 +2,8 @@
 
 // 99_part_12_part055_sub002.c - 1 个函数
 
-// 函数: void FUN_1807ef55b(undefined4 param_1,int param_2)
-void FUN_1807ef55b(undefined4 param_1,int param_2)
+// 函数: void FUN_1807ef55b(int32_t param_1,int param_2)
+void FUN_1807ef55b(int32_t param_1,int param_2)
 
 {
   longlong lVar1;

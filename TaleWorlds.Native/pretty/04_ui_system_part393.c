@@ -12,7 +12,7 @@ void FUN_18087c319(void)
 
 
 
-undefined8 FUN_18087c32f(void)
+uint64_t FUN_18087c32f(void)
 
 {
   longlong in_RAX;
@@ -22,7 +22,7 @@ undefined8 FUN_18087c32f(void)
                     // WARNING: Subroutine does not return
     FUN_180768400();
   }
-  return *(undefined8 *)(in_RAX + 0x18);
+  return *(uint64_t *)(in_RAX + 0x18);
 }
 
 
@@ -86,7 +86,7 @@ LAB_18087c41f:
 
 
 
-longlong FUN_18087c37a(longlong param_1,undefined8 param_2,char param_3)
+longlong FUN_18087c37a(longlong param_1,uint64_t param_2,char param_3)
 
 {
   longlong lVar1;
@@ -148,7 +148,7 @@ void FUN_18087c429(void)
 
 
 
-undefined8 FUN_18087c43f(void)
+uint64_t FUN_18087c43f(void)
 
 {
   longlong in_RAX;
@@ -158,7 +158,7 @@ undefined8 FUN_18087c43f(void)
                     // WARNING: Subroutine does not return
     FUN_180768400();
   }
-  return *(undefined8 *)(in_RAX + 0x18);
+  return *(uint64_t *)(in_RAX + 0x18);
 }
 
 
@@ -209,7 +209,7 @@ LAB_18087c526:
 
 
 
-longlong FUN_18087c493(undefined8 param_1,undefined8 param_2,char param_3)
+longlong FUN_18087c493(uint64_t param_1,uint64_t param_2,char param_3)
 
 {
   longlong lVar1;
@@ -265,7 +265,7 @@ void FUN_18087c530(void)
 
 
 
-undefined8 FUN_18087c54b(void)
+uint64_t FUN_18087c54b(void)
 
 {
   longlong in_RAX;
@@ -275,7 +275,7 @@ undefined8 FUN_18087c54b(void)
                     // WARNING: Subroutine does not return
     FUN_180768400();
   }
-  return *(undefined8 *)(in_RAX + 0x18);
+  return *(uint64_t *)(in_RAX + 0x18);
 }
 
 
@@ -326,7 +326,7 @@ LAB_18087c636:
 
 
 
-longlong FUN_18087c5a3(undefined8 param_1,undefined8 param_2,char param_3)
+longlong FUN_18087c5a3(uint64_t param_1,uint64_t param_2,char param_3)
 
 {
   longlong lVar1;
@@ -382,7 +382,7 @@ void FUN_18087c640(void)
 
 
 
-undefined8 FUN_18087c65b(void)
+uint64_t FUN_18087c65b(void)
 
 {
   longlong in_RAX;
@@ -392,7 +392,7 @@ undefined8 FUN_18087c65b(void)
                     // WARNING: Subroutine does not return
     FUN_180768400();
   }
-  return *(undefined8 *)(in_RAX + 0x18);
+  return *(uint64_t *)(in_RAX + 0x18);
 }
 
 
@@ -443,7 +443,7 @@ LAB_18087c746:
 
 
 
-longlong FUN_18087c6b3(undefined8 param_1,undefined8 param_2,char param_3)
+longlong FUN_18087c6b3(uint64_t param_1,uint64_t param_2,char param_3)
 
 {
   longlong lVar1;
@@ -499,7 +499,7 @@ void FUN_18087c750(void)
 
 
 
-undefined8 FUN_18087c76b(void)
+uint64_t FUN_18087c76b(void)
 
 {
   longlong in_RAX;
@@ -509,7 +509,7 @@ undefined8 FUN_18087c76b(void)
                     // WARNING: Subroutine does not return
     FUN_180768400();
   }
-  return *(undefined8 *)(in_RAX + 0x18);
+  return *(uint64_t *)(in_RAX + 0x18);
 }
 
 
@@ -560,7 +560,7 @@ LAB_18087c856:
 
 
 
-longlong FUN_18087c7c3(undefined8 param_1,undefined8 param_2,char param_3)
+longlong FUN_18087c7c3(uint64_t param_1,uint64_t param_2,char param_3)
 
 {
   longlong lVar1;
@@ -616,7 +616,7 @@ void FUN_18087c860(void)
 
 
 
-undefined8 FUN_18087c87b(void)
+uint64_t FUN_18087c87b(void)
 
 {
   longlong in_RAX;
@@ -626,7 +626,7 @@ undefined8 FUN_18087c87b(void)
                     // WARNING: Subroutine does not return
     FUN_180768400();
   }
-  return *(undefined8 *)(in_RAX + 0x18);
+  return *(uint64_t *)(in_RAX + 0x18);
 }
 
 
@@ -677,7 +677,7 @@ LAB_18087c966:
 
 
 
-longlong FUN_18087c8d3(undefined8 param_1,undefined8 param_2,char param_3)
+longlong FUN_18087c8d3(uint64_t param_1,uint64_t param_2,char param_3)
 
 {
   longlong lVar1;
@@ -733,7 +733,7 @@ void FUN_18087c970(void)
 
 
 
-undefined8 FUN_18087c98b(void)
+uint64_t FUN_18087c98b(void)
 
 {
   longlong in_RAX;
@@ -743,7 +743,7 @@ undefined8 FUN_18087c98b(void)
                     // WARNING: Subroutine does not return
     FUN_180768400();
   }
-  return *(undefined8 *)(in_RAX + 0x18);
+  return *(uint64_t *)(in_RAX + 0x18);
 }
 
 

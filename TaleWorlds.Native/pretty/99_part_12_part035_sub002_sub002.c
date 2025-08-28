@@ -2,8 +2,8 @@
 
 // 99_part_12_part035_sub002_sub002.c - 1 个函数
 
-// 函数: void FUN_1807e184f(undefined8 param_1,undefined8 param_2,uint param_3,undefined8 param_4)
-void FUN_1807e184f(undefined8 param_1,undefined8 param_2,uint param_3,undefined8 param_4)
+// 函数: void FUN_1807e184f(uint64_t param_1,uint64_t param_2,uint param_3,uint64_t param_4)
+void FUN_1807e184f(uint64_t param_1,uint64_t param_2,uint param_3,uint64_t param_4)
 
 {
   uint uVar1;
@@ -135,7 +135,7 @@ void FUN_1807e184f(undefined8 param_1,undefined8 param_2,uint param_3,undefined8
   float fVar127;
   float fVar128;
   float fVar129;
-  undefined4 uVar130;
+  int32_t uVar130;
   int iVar131;
   float *pfVar132;
   float *pfVar133;
@@ -146,7 +146,7 @@ void FUN_1807e184f(undefined8 param_1,undefined8 param_2,uint param_3,undefined8
   longlong in_R9;
   ulonglong uVar135;
   int in_R11D;
-  undefined4 unaff_R12D;
+  int32_t unaff_R12D;
   float *unaff_R14;
   uint uVar136;
   uint uVar137;
@@ -246,11 +246,11 @@ void FUN_1807e184f(undefined8 param_1,undefined8 param_2,uint param_3,undefined8
           fVar158 = pfVar133[1];
           fVar162 = pfVar133[2];
           fVar166 = pfVar133[3];
-          uVar130 = *(undefined4 *)(unaff_RBP + 0x7f);
+          uVar130 = *(int32_t *)(unaff_RBP + 0x7f);
           if (in_R11D != 0) {
             uVar130 = unaff_R12D;
           }
-          *(undefined4 *)(unaff_RBP + 0x7f) = uVar130;
+          *(int32_t *)(unaff_RBP + 0x7f) = uVar130;
           pfVar133 = pfVar133 + 0x20;
           *pfVar132 = fVar154 * fVar138 + fVar158 * fVar142 + fVar162 * fVar146 + fVar166 * fVar150
                       + *(float *)(unaff_RBP + 0x7f);
@@ -339,12 +339,12 @@ void FUN_1807e184f(undefined8 param_1,undefined8 param_2,uint param_3,undefined8
           fVar143 = pfVar133[1];
           fVar147 = pfVar133[2];
           fVar151 = pfVar133[3];
-          uVar130 = *(undefined4 *)(unaff_RBP + 0x7f);
+          uVar130 = *(int32_t *)(unaff_RBP + 0x7f);
           if (in_R11D != 0) {
             uVar130 = unaff_R12D;
           }
           pfVar133 = pfVar133 + 0x20;
-          *(undefined4 *)(unaff_RBP + 0x7f) = uVar130;
+          *(int32_t *)(unaff_RBP + 0x7f) = uVar130;
           *pfVar132 = fVar155 * fVar154 + fVar139 * fVar138 + fVar159 * fVar158 + fVar143 * fVar142
                       + fVar163 * fVar162 + fVar147 * fVar146 +
                         fVar167 * fVar166 + fVar151 * fVar150 + *(float *)(unaff_RBP + 0x7f);
@@ -458,11 +458,11 @@ void FUN_1807e184f(undefined8 param_1,undefined8 param_2,uint param_3,undefined8
             fVar144 = pfVar132[-7];
             fVar148 = pfVar132[-6];
             fVar152 = pfVar132[-5];
-            uVar130 = *(undefined4 *)(unaff_RBP + 0x7f);
+            uVar130 = *(int32_t *)(unaff_RBP + 0x7f);
             if (in_R11D != 0) {
               uVar130 = unaff_R12D;
             }
-            *(undefined4 *)(unaff_RBP + 0x7f) = uVar130;
+            *(int32_t *)(unaff_RBP + 0x7f) = uVar130;
             fVar156 = *pfVar132;
             pfVar2 = pfVar132 + 1;
             pfVar3 = pfVar132 + 2;
@@ -609,11 +609,11 @@ void FUN_1807e184f(undefined8 param_1,undefined8 param_2,uint param_3,undefined8
             fVar160 = pfVar132[-7];
             fVar164 = pfVar132[-6];
             fVar168 = pfVar132[-5];
-            uVar130 = *(undefined4 *)(unaff_RBP + 0x7f);
+            uVar130 = *(int32_t *)(unaff_RBP + 0x7f);
             if (in_R11D != 0) {
               uVar130 = unaff_R12D;
             }
-            *(undefined4 *)(unaff_RBP + 0x7f) = uVar130;
+            *(int32_t *)(unaff_RBP + 0x7f) = uVar130;
             fVar157 = *pfVar132;
             pfVar3 = pfVar132 + 1;
             pfVar4 = pfVar132 + 2;
@@ -799,11 +799,11 @@ void FUN_1807e184f(undefined8 param_1,undefined8 param_2,uint param_3,undefined8
             fVar161 = pfVar132[-7];
             fVar165 = pfVar132[-6];
             fVar169 = pfVar132[-5];
-            uVar130 = *(undefined4 *)(unaff_RBP + 0x7f);
+            uVar130 = *(int32_t *)(unaff_RBP + 0x7f);
             if (in_R11D != 0) {
               uVar130 = unaff_R12D;
             }
-            *(undefined4 *)(unaff_RBP + 0x7f) = uVar130;
+            *(int32_t *)(unaff_RBP + 0x7f) = uVar130;
             fVar141 = *pfVar132;
             pfVar4 = pfVar132 + 1;
             pfVar5 = pfVar132 + 2;
@@ -1013,11 +1013,11 @@ void FUN_1807e184f(undefined8 param_1,undefined8 param_2,uint param_3,undefined8
             fVar145 = pfVar133[-7];
             fVar149 = pfVar133[-6];
             fVar153 = pfVar133[-5];
-            uVar130 = *(undefined4 *)(unaff_RBP + 0x7f);
+            uVar130 = *(int32_t *)(unaff_RBP + 0x7f);
             if (in_R11D != 0) {
               uVar130 = unaff_R12D;
             }
-            *(undefined4 *)(unaff_RBP + 0x7f) = uVar130;
+            *(int32_t *)(unaff_RBP + 0x7f) = uVar130;
             fVar9 = *pfVar133;
             pfVar5 = pfVar133 + 1;
             pfVar6 = pfVar133 + 2;
@@ -1255,11 +1255,11 @@ void FUN_1807e184f(undefined8 param_1,undefined8 param_2,uint param_3,undefined8
             fVar11 = pfVar133[-7];
             fVar12 = pfVar133[-6];
             fVar13 = pfVar133[-5];
-            uVar130 = *(undefined4 *)(unaff_RBP + 0x7f);
+            uVar130 = *(int32_t *)(unaff_RBP + 0x7f);
             if (in_R11D != 0) {
               uVar130 = unaff_R12D;
             }
-            *(undefined4 *)(unaff_RBP + 0x7f) = uVar130;
+            *(int32_t *)(unaff_RBP + 0x7f) = uVar130;
             fVar14 = *pfVar133;
             pfVar6 = pfVar133 + 1;
             pfVar7 = pfVar133 + 2;
@@ -1529,11 +1529,11 @@ void FUN_1807e184f(undefined8 param_1,undefined8 param_2,uint param_3,undefined8
             fVar18 = pfVar133[-7];
             fVar19 = pfVar133[-6];
             fVar20 = pfVar133[-5];
-            uVar130 = *(undefined4 *)(unaff_RBP + 0x7f);
+            uVar130 = *(int32_t *)(unaff_RBP + 0x7f);
             if (in_R11D != 0) {
               uVar130 = unaff_R12D;
             }
-            *(undefined4 *)(unaff_RBP + 0x7f) = uVar130;
+            *(int32_t *)(unaff_RBP + 0x7f) = uVar130;
             fVar21 = *pfVar133;
             pfVar7 = pfVar133 + 1;
             pfVar8 = pfVar133 + 2;

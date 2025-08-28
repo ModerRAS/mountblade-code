@@ -4,8 +4,8 @@
 
 // 函数: void FUN_1806f88a0(int *param_1,float *param_2,int param_3,byte *param_4,int param_5,int param_6,
 void FUN_1806f88a0(int *param_1,float *param_2,int param_3,byte *param_4,int param_5,int param_6,
-                  undefined8 param_7,undefined4 param_8,undefined4 param_9,undefined4 param_10,
-                  undefined4 param_11,undefined8 param_12,undefined4 param_13)
+                  uint64_t param_7,int32_t param_8,int32_t param_9,int32_t param_10,
+                  int32_t param_11,uint64_t param_12,int32_t param_13)
 
 {
   byte bVar1;
@@ -28,7 +28,7 @@ void FUN_1806f88a0(int *param_1,float *param_2,int param_3,byte *param_4,int par
   int iVar18;
   byte bVar19;
   float fVar20;
-  undefined1 auVar21 [16];
+  int8_t auVar21 [16];
   float fVar22;
   float fVar23;
   ulonglong in_stack_fffffffffffffd28;
@@ -45,20 +45,20 @@ void FUN_1806f88a0(int *param_1,float *param_2,int param_3,byte *param_4,int par
   byte *pbStack_260;
   int iStack_258;
   int iStack_248;
-  undefined4 uStack_240;
+  int32_t uStack_240;
   float *pfStack_238;
   int iStack_230;
-  undefined4 uStack_22c;
-  undefined4 uStack_228;
+  int32_t uStack_22c;
+  int32_t uStack_228;
   longlong lStack_220;
-  undefined8 uStack_210;
-  undefined1 auStack_208 [56];
+  uint64_t uStack_210;
+  int8_t auStack_208 [56];
   byte *pbStack_1d0;
   int aiStack_1c8 [5];
   float fStack_1b4;
   int iStack_1ac;
   float fStack_1a8;
-  undefined1 auStack_188 [112];
+  int8_t auStack_188 [112];
   int iStack_118;
   int iStack_114;
   int iStack_110;
@@ -689,7 +689,7 @@ void FUN_1806faf00(int *param_1,int param_2,int *param_3)
   int iVar1;
   longlong lVar2;
   uint uStackX_18;
-  undefined1 auStack_c8 [144];
+  int8_t auStack_c8 [144];
   ulonglong uStack_38;
   
   uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;

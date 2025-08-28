@@ -153,32 +153,32 @@
  * ============================================================================ */
 
 // 基础类型别名
-typedef undefined8 NetworkHandle;           // 网络句柄
-typedef undefined8 ConnectionHandle;       // 连接句柄
-typedef undefined8 SessionHandle;          // 会话句柄
-typedef undefined8 ResourceHandle;         // 资源句柄
-typedef undefined8 ConfigHandle;           // 配置句柄
-typedef undefined8 SecurityHandle;         // 安全句柄
-typedef undefined8 ProtocolHandle;         // 协议句柄
-typedef undefined8 BufferHandle;           // 缓冲区句柄
+typedef uint64_t NetworkHandle;           // 网络句柄
+typedef uint64_t ConnectionHandle;       // 连接句柄
+typedef uint64_t SessionHandle;          // 会话句柄
+typedef uint64_t ResourceHandle;         // 资源句柄
+typedef uint64_t ConfigHandle;           // 配置句柄
+typedef uint64_t SecurityHandle;         // 安全句柄
+typedef uint64_t ProtocolHandle;         // 协议句柄
+typedef uint64_t BufferHandle;           // 缓冲区句柄
 
 // 状态类型别名
-typedef undefined4 NetworkStatus;         // 网络状态
-typedef undefined4 ConnectionStatus;      // 连接状态
-typedef undefined4 SessionStatus;         // 会话状态
-typedef undefined4 ResourceStatus;        // 资源状态
-typedef undefined4 SecurityStatus;        // 安全状态
+typedef int32_t NetworkStatus;         // 网络状态
+typedef int32_t ConnectionStatus;      // 连接状态
+typedef int32_t SessionStatus;         // 会话状态
+typedef int32_t ResourceStatus;        // 资源状态
+typedef int32_t SecurityStatus;        // 安全状态
 
 // 标志类型别名
-typedef undefined4 NetworkFlags;          // 网络标志
-typedef undefined4 ConnectionFlags;       // 连接标志
-typedef undefined4 SecurityFlags;         // 安全标志
-typedef undefined4 ProtocolFlags;         // 协议标志
+typedef int32_t NetworkFlags;          // 网络标志
+typedef int32_t ConnectionFlags;       // 连接标志
+typedef int32_t SecurityFlags;         // 安全标志
+typedef int32_t ProtocolFlags;         // 协议标志
 
 // 数据类型别名
-typedef undefined1 NetworkByte;           // 网络字节
-typedef undefined2 NetworkWord;           // 网络字
-typedef undefined4 NetworkDword;          // 网络双字
+typedef int8_t NetworkByte;           // 网络字节
+typedef int16_t NetworkWord;           // 网络字
+typedef int32_t NetworkDword;          // 网络双字
 
 // 指针类型别名
 typedef void* NetworkContext;            // 网络上下文

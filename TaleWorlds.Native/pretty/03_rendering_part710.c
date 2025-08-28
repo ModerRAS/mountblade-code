@@ -6,10 +6,10 @@
 void FUN_180675b7b(void)
 
 {
-  undefined1 *puVar1;
-  undefined1 *puVar2;
-  undefined1 *puVar3;
-  undefined1 *puVar4;
+  int8_t *puVar1;
+  int8_t *puVar2;
+  int8_t *puVar3;
+  int8_t *puVar4;
   short sVar5;
   short sVar6;
   short sVar7;
@@ -18,60 +18,60 @@ void FUN_180675b7b(void)
   short sVar10;
   short sVar11;
   short sVar12;
-  undefined1 auVar13 [16];
+  int8_t auVar13 [16];
   uint in_EAX;
   longlong lVar14;
-  undefined1 (*pauVar15) [16];
+  int8_t (*pauVar15) [16];
   longlong unaff_RBX;
-  undefined8 unaff_RBP;
+  uint64_t unaff_RBP;
   char *unaff_RSI;
   uint unaff_EDI;
   char *pcVar16;
   ulonglong uVar17;
   longlong in_R11;
   longlong unaff_R12;
-  undefined8 unaff_R13;
-  undefined8 unaff_R14;
+  uint64_t unaff_R13;
+  uint64_t unaff_R14;
   ulonglong uVar18;
   longlong unaff_R15;
-  undefined1 auVar20 [16];
-  undefined1 auVar22 [16];
-  undefined1 auVar23 [16];
-  undefined1 auVar31 [16];
-  undefined1 auVar39 [16];
-  undefined1 auVar40 [16];
-  undefined1 auVar48 [16];
-  undefined1 auVar49 [16];
-  undefined1 auVar57 [16];
-  undefined1 auVar58 [16];
-  undefined8 unaff_XMM6_Qa;
-  undefined8 unaff_XMM6_Qb;
-  undefined1 auVar59 [16];
-  undefined8 unaff_XMM7_Qa;
-  undefined8 unaff_XMM7_Qb;
-  undefined1 auVar60 [16];
-  undefined1 auVar61 [16];
-  undefined8 unaff_XMM8_Qa;
-  undefined8 unaff_XMM8_Qb;
-  undefined1 auVar62 [16];
-  undefined1 auVar63 [16];
-  undefined8 unaff_XMM9_Qa;
-  undefined8 unaff_XMM9_Qb;
-  undefined1 auVar64 [16];
-  undefined1 auVar65 [16];
-  undefined1 auVar66 [16];
-  undefined8 unaff_XMM10_Qa;
-  undefined8 unaff_XMM10_Qb;
-  undefined1 auVar67 [16];
-  undefined1 auVar68 [16];
-  undefined1 auVar69 [16];
-  undefined1 auVar70 [16];
+  int8_t auVar20 [16];
+  int8_t auVar22 [16];
+  int8_t auVar23 [16];
+  int8_t auVar31 [16];
+  int8_t auVar39 [16];
+  int8_t auVar40 [16];
+  int8_t auVar48 [16];
+  int8_t auVar49 [16];
+  int8_t auVar57 [16];
+  int8_t auVar58 [16];
+  uint64_t unaff_XMM6_Qa;
+  uint64_t unaff_XMM6_Qb;
+  int8_t auVar59 [16];
+  uint64_t unaff_XMM7_Qa;
+  uint64_t unaff_XMM7_Qb;
+  int8_t auVar60 [16];
+  int8_t auVar61 [16];
+  uint64_t unaff_XMM8_Qa;
+  uint64_t unaff_XMM8_Qb;
+  int8_t auVar62 [16];
+  int8_t auVar63 [16];
+  uint64_t unaff_XMM9_Qa;
+  uint64_t unaff_XMM9_Qb;
+  int8_t auVar64 [16];
+  int8_t auVar65 [16];
+  int8_t auVar66 [16];
+  uint64_t unaff_XMM10_Qa;
+  uint64_t unaff_XMM10_Qb;
+  int8_t auVar67 [16];
+  int8_t auVar68 [16];
+  int8_t auVar69 [16];
+  int8_t auVar70 [16];
   longlong in_stack_000000f8;
   longlong in_stack_00000100;
   int in_stack_00000110;
   int in_stack_00000118;
   short sVar19;
-  undefined1 auVar21 [16];
+  int8_t auVar21 [16];
   short sVar24;
   short sVar25;
   short sVar26;
@@ -79,42 +79,42 @@ void FUN_180675b7b(void)
   short sVar28;
   short sVar29;
   short sVar30;
-  undefined1 auVar32 [16];
-  undefined1 auVar33 [16];
-  undefined1 auVar34 [16];
-  undefined1 auVar35 [16];
-  undefined1 auVar36 [16];
-  undefined1 auVar37 [16];
-  undefined1 auVar38 [16];
-  undefined1 auVar41 [16];
-  undefined1 auVar42 [16];
-  undefined1 auVar43 [16];
-  undefined1 auVar44 [16];
-  undefined1 auVar45 [16];
-  undefined1 auVar46 [16];
-  undefined1 auVar47 [16];
-  undefined1 auVar50 [16];
-  undefined1 auVar51 [16];
-  undefined1 auVar52 [16];
-  undefined1 auVar53 [16];
-  undefined1 auVar54 [16];
-  undefined1 auVar55 [16];
-  undefined1 auVar56 [16];
+  int8_t auVar32 [16];
+  int8_t auVar33 [16];
+  int8_t auVar34 [16];
+  int8_t auVar35 [16];
+  int8_t auVar36 [16];
+  int8_t auVar37 [16];
+  int8_t auVar38 [16];
+  int8_t auVar41 [16];
+  int8_t auVar42 [16];
+  int8_t auVar43 [16];
+  int8_t auVar44 [16];
+  int8_t auVar45 [16];
+  int8_t auVar46 [16];
+  int8_t auVar47 [16];
+  int8_t auVar50 [16];
+  int8_t auVar51 [16];
+  int8_t auVar52 [16];
+  int8_t auVar53 [16];
+  int8_t auVar54 [16];
+  int8_t auVar55 [16];
+  int8_t auVar56 [16];
   
-  *(undefined8 *)(in_R11 + 8) = unaff_RBP;
-  *(undefined8 *)(in_R11 + 0x10) = unaff_R13;
-  *(undefined8 *)(in_R11 + 0x18) = unaff_R14;
+  *(uint64_t *)(in_R11 + 8) = unaff_RBP;
+  *(uint64_t *)(in_R11 + 0x10) = unaff_R13;
+  *(uint64_t *)(in_R11 + 0x18) = unaff_R14;
   uVar18 = (ulonglong)in_EAX;
-  *(undefined8 *)(in_R11 + -0x38) = unaff_XMM6_Qa;
-  *(undefined8 *)(in_R11 + -0x30) = unaff_XMM6_Qb;
-  *(undefined8 *)(in_R11 + -0x48) = unaff_XMM7_Qa;
-  *(undefined8 *)(in_R11 + -0x40) = unaff_XMM7_Qb;
-  *(undefined8 *)(in_R11 + -0x58) = unaff_XMM8_Qa;
-  *(undefined8 *)(in_R11 + -0x50) = unaff_XMM8_Qb;
-  *(undefined8 *)(in_R11 + -0x68) = unaff_XMM9_Qa;
-  *(undefined8 *)(in_R11 + -0x60) = unaff_XMM9_Qb;
-  *(undefined8 *)(in_R11 + -0x78) = unaff_XMM10_Qa;
-  *(undefined8 *)(in_R11 + -0x70) = unaff_XMM10_Qb;
+  *(uint64_t *)(in_R11 + -0x38) = unaff_XMM6_Qa;
+  *(uint64_t *)(in_R11 + -0x30) = unaff_XMM6_Qb;
+  *(uint64_t *)(in_R11 + -0x48) = unaff_XMM7_Qa;
+  *(uint64_t *)(in_R11 + -0x40) = unaff_XMM7_Qb;
+  *(uint64_t *)(in_R11 + -0x58) = unaff_XMM8_Qa;
+  *(uint64_t *)(in_R11 + -0x50) = unaff_XMM8_Qb;
+  *(uint64_t *)(in_R11 + -0x68) = unaff_XMM9_Qa;
+  *(uint64_t *)(in_R11 + -0x60) = unaff_XMM9_Qb;
+  *(uint64_t *)(in_R11 + -0x78) = unaff_XMM10_Qa;
+  *(uint64_t *)(in_R11 + -0x70) = unaff_XMM10_Qb;
   do {
     auVar13 = _DAT_180946f30;
     lVar14 = ((longlong)(int)unaff_EDI >> 4) * unaff_RBX + unaff_R12;
@@ -122,23 +122,23 @@ void FUN_180675b7b(void)
                     // WARNING: Subroutine does not return
       memcpy(unaff_RSI,unaff_R15 + lVar14,(longlong)in_stack_00000118);
     }
-    auVar67 = *(undefined1 (*) [16])((ulonglong)(unaff_EDI & 0xf) * 0x10 + in_stack_00000100);
+    auVar67 = *(int8_t (*) [16])((ulonglong)(unaff_EDI & 0xf) * 0x10 + in_stack_00000100);
     auVar68 = pshufb(auVar67,_DAT_180946f40);
     auVar69 = pshufb(auVar67,_DAT_180946f70);
     auVar70 = pshufb(auVar67,_DAT_180946f90);
     auVar67 = pshufb(auVar67,_DAT_180946fa0);
     if (0 < in_stack_00000118) {
-      pauVar15 = (undefined1 (*) [16])(lVar14 + unaff_RBX * 2);
+      pauVar15 = (int8_t (*) [16])(lVar14 + unaff_RBX * 2);
       uVar17 = (ulonglong)((in_stack_00000118 - 1U >> 4) + 1);
       pcVar16 = unaff_RSI;
       do {
         puVar1 = *pauVar15 + unaff_RBX;
         puVar2 = *pauVar15 + unaff_R15;
         auVar22 = *pauVar15;
-        auVar39 = *(undefined1 (*) [16])(*pauVar15 + unaff_RBX * 2);
-        auVar23 = *(undefined1 (*) [16])(unaff_RBX * -2 + (longlong)pauVar15);
-        auVar48 = *(undefined1 (*) [16])(*pauVar15 + unaff_RBX * 4);
-        puVar3 = (undefined1 *)((longlong)pauVar15 - unaff_RBX);
+        auVar39 = *(int8_t (*) [16])(*pauVar15 + unaff_RBX * 2);
+        auVar23 = *(int8_t (*) [16])(unaff_RBX * -2 + (longlong)pauVar15);
+        auVar48 = *(int8_t (*) [16])(*pauVar15 + unaff_RBX * 4);
+        puVar3 = (int8_t *)((longlong)pauVar15 - unaff_RBX);
         puVar4 = *pauVar15 + unaff_RBX * 5;
         pauVar15 = pauVar15 + 1;
         auVar64[1] = puVar1[8];
@@ -465,15 +465,15 @@ void FUN_180675dd9(void)
 
 
 
-// 函数: void FUN_180675df0(longlong param_1,longlong param_2,undefined4 *param_3,longlong param_4,
-void FUN_180675df0(longlong param_1,longlong param_2,undefined4 *param_3,longlong param_4,
+// 函数: void FUN_180675df0(longlong param_1,longlong param_2,int32_t *param_3,longlong param_4,
+void FUN_180675df0(longlong param_1,longlong param_2,int32_t *param_3,longlong param_4,
                   longlong param_5,uint param_6,int param_7,int param_8,uint param_9)
 
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  undefined4 uVar4;
+  int32_t uVar1;
+  int32_t uVar2;
+  int32_t uVar3;
+  int32_t uVar4;
   short sVar5;
   short sVar6;
   short sVar7;
@@ -482,9 +482,9 @@ void FUN_180675df0(longlong param_1,longlong param_2,undefined4 *param_3,longlon
   short sVar10;
   short sVar11;
   short sVar12;
-  undefined4 *puVar13;
+  int32_t *puVar13;
   ulonglong uVar14;
-  undefined4 *puVar15;
+  int32_t *puVar15;
   short sVar16;
   short sVar18;
   short sVar19;
@@ -492,25 +492,25 @@ void FUN_180675df0(longlong param_1,longlong param_2,undefined4 *param_3,longlon
   short sVar21;
   short sVar22;
   short sVar23;
-  undefined1 auVar17 [16];
+  int8_t auVar17 [16];
   short sVar24;
-  undefined1 auVar25 [16];
-  undefined1 auVar26 [16];
-  undefined1 auVar27 [16];
-  undefined1 auVar28 [16];
-  undefined1 auVar29 [16];
+  int8_t auVar25 [16];
+  int8_t auVar26 [16];
+  int8_t auVar27 [16];
+  int8_t auVar28 [16];
+  int8_t auVar29 [16];
   
   if (0 < (int)param_9) {
     uVar14 = (ulonglong)param_9;
     puVar15 = param_3;
     do {
-      puVar13 = (undefined4 *)(((longlong)(int)param_6 >> 4) * param_2 + param_1 + param_2 * -3);
+      puVar13 = (int32_t *)(((longlong)(int)param_6 >> 4) * param_2 + param_1 + param_2 * -3);
       if ((param_6 & 0xf) == 0) {
                     // WARNING: Subroutine does not return
         memcpy(puVar15,(longlong)puVar13 + param_2 * 3,(longlong)param_8);
       }
-      uVar1 = *(undefined4 *)((longlong)puVar13 + param_2 * 3);
-      uVar2 = *(undefined4 *)((longlong)puVar13 + param_2 * 2);
+      uVar1 = *(int32_t *)((longlong)puVar13 + param_2 * 3);
+      uVar2 = *(int32_t *)((longlong)puVar13 + param_2 * 2);
       uVar3 = puVar13[param_2];
       uVar4 = *puVar13;
       auVar28._4_4_ =
@@ -519,46 +519,46 @@ void FUN_180675df0(longlong param_1,longlong param_2,undefined4 *param_3,longlon
                           CONCAT14((char)((uint)uVar2 >> 0x10),uVar2)) >> 0x20);
       auVar28[3] = (char)((uint)uVar1 >> 8);
       auVar28[2] = (char)((uint)uVar2 >> 8);
-      auVar28[0] = (undefined1)uVar2;
+      auVar28[0] = (int8_t)uVar2;
       auVar28[1] = (char)uVar1;
       auVar28._8_8_ = 0;
-      auVar26 = *(undefined1 (*) [16])((ulonglong)(param_6 & 0xf) * 0x10 + param_5);
+      auVar26 = *(int8_t (*) [16])((ulonglong)(param_6 & 0xf) * 0x10 + param_5);
       auVar17 = pshufb(auVar26,_DAT_180946f70);
       auVar29 = pmaddubsw(auVar28,auVar17);
-      uVar1 = *(undefined4 *)((longlong)puVar13 + param_2 * 5);
-      uVar2 = *(undefined4 *)((longlong)puVar13 + param_2 * 6);
+      uVar1 = *(int32_t *)((longlong)puVar13 + param_2 * 5);
+      uVar2 = *(int32_t *)((longlong)puVar13 + param_2 * 6);
       auVar27._4_4_ =
            (int)(CONCAT35(CONCAT21(CONCAT11((char)((uint)uVar1 >> 0x18),(char)((uint)uVar3 >> 0x18))
                                    ,(char)((uint)uVar1 >> 0x10)),
                           CONCAT14((char)((uint)uVar3 >> 0x10),uVar3)) >> 0x20);
       auVar27[3] = (char)((uint)uVar1 >> 8);
       auVar27[2] = (char)((uint)uVar3 >> 8);
-      auVar27[0] = (undefined1)uVar3;
+      auVar27[0] = (int8_t)uVar3;
       auVar27[1] = (char)uVar1;
       auVar27._8_8_ = 0;
       auVar17 = pshufb(auVar26,_DAT_180946f90);
       auVar27 = pmaddubsw(auVar27,auVar17);
-      uVar1 = *(undefined4 *)(param_2 * 7 + (longlong)puVar13);
+      uVar1 = *(int32_t *)(param_2 * 7 + (longlong)puVar13);
       auVar25._4_4_ =
            (int)(CONCAT35(CONCAT21(CONCAT11((char)((uint)uVar1 >> 0x18),(char)((uint)uVar2 >> 0x18))
                                    ,(char)((uint)uVar1 >> 0x10)),
                           CONCAT14((char)((uint)uVar2 >> 0x10),uVar2)) >> 0x20);
       auVar25[3] = (char)((uint)uVar1 >> 8);
       auVar25[2] = (char)((uint)uVar2 >> 8);
-      auVar25[0] = (undefined1)uVar2;
+      auVar25[0] = (int8_t)uVar2;
       auVar25[1] = (char)uVar1;
       auVar25._8_8_ = 0;
       auVar17 = pshufb(auVar26,_DAT_180946fa0);
       auVar26 = pshufb(auVar26,_DAT_180946f40);
       auVar25 = pmaddubsw(auVar25,auVar17);
-      uVar1 = *(undefined4 *)((longlong)puVar13 + param_2);
+      uVar1 = *(int32_t *)((longlong)puVar13 + param_2);
       auVar17._4_4_ =
            (int)(CONCAT35(CONCAT21(CONCAT11((char)((uint)uVar1 >> 0x18),(char)((uint)uVar4 >> 0x18))
                                    ,(char)((uint)uVar1 >> 0x10)),
                           CONCAT14((char)((uint)uVar4 >> 0x10),uVar4)) >> 0x20);
       auVar17[3] = (char)((uint)uVar1 >> 8);
       auVar17[2] = (char)((uint)uVar4 >> 8);
-      auVar17[0] = (undefined1)uVar4;
+      auVar17[0] = (int8_t)uVar4;
       auVar17[1] = (char)uVar1;
       auVar17._8_8_ = 0;
       auVar17 = pmaddubsw(auVar17,auVar26);
@@ -609,8 +609,8 @@ void FUN_180675df0(longlong param_1,longlong param_2,undefined4 *param_3,longlon
                                             (0 < sVar5) * (sVar5 < 0x100) * auVar26[0] -
                                             (0xff < sVar5))));
       param_6 = param_6 + param_7;
-      puVar15 = (undefined4 *)((longlong)puVar15 + param_4);
-      param_3 = (undefined4 *)((longlong)param_3 + param_4);
+      puVar15 = (int32_t *)((longlong)puVar15 + param_4);
+      param_3 = (int32_t *)((longlong)param_3 + param_4);
       uVar14 = uVar14 - 1;
     } while (uVar14 != 0);
   }

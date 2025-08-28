@@ -2,9 +2,9 @@
 
 // 03_rendering_part054.c - 6 个函数
 
-// 函数: void FUN_18029777a(undefined4 param_1,undefined8 param_2,int param_3,undefined8 param_4,
-void FUN_18029777a(undefined4 param_1,undefined8 param_2,int param_3,undefined8 param_4,
-                  undefined8 param_5,float param_6)
+// 函数: void FUN_18029777a(int32_t param_1,uint64_t param_2,int param_3,uint64_t param_4,
+void FUN_18029777a(int32_t param_1,uint64_t param_2,int param_3,uint64_t param_4,
+                  uint64_t param_5,float param_6)
 
 {
   int *piVar1;
@@ -449,7 +449,7 @@ void FUN_180297b6f(void)
   ulonglong uVar5;
   longlong unaff_RSI;
   longlong unaff_R15;
-  undefined8 in_stack_00000030;
+  uint64_t in_stack_00000030;
   int *in_stack_00000138;
   
   FUN_18013e800(in_stack_00000138 + 8,(unaff_RSI - *(longlong *)(in_stack_00000138 + 10)) / 0x14);
@@ -507,8 +507,8 @@ void FUN_180297c3d(void)
 
 
 
-// 函数: void FUN_180297c60(undefined8 param_1,float param_2,uint param_3)
-void FUN_180297c60(undefined8 param_1,float param_2,uint param_3)
+// 函数: void FUN_180297c60(uint64_t param_1,float param_2,uint param_3)
+void FUN_180297c60(uint64_t param_1,float param_2,uint param_3)
 
 {
   float fVar1;
@@ -524,10 +524,10 @@ void FUN_180297c60(undefined8 param_1,float param_2,uint param_3)
   float fVar11;
   float fVar12;
   float fVar13;
-  undefined1 auStack_148 [32];
+  int8_t auStack_148 [32];
   float *pfStack_128;
-  undefined4 uStack_120;
-  undefined8 uStack_118;
+  int32_t uStack_120;
+  uint64_t uStack_118;
   float fStack_110;
   float fStack_10c;
   float fStack_108;

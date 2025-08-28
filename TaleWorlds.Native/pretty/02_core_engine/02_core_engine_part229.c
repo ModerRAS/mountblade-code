@@ -262,13 +262,13 @@ void process_spatial_query_and_collision_detection(
                                     
                                     // 检查是否需要初始化碰撞数据
                                     if ((int)(*child_object)[99] == -1) {
-                                        *(undefined4 *)((longlong)*child_object + 0x314) = 0x10;
-                                        undefined4 init_result = initialize_collision_data(
+                                        *(int32_t *)((longlong)*child_object + 0x314) = 0x10;
+                                        int32_t init_result = initialize_collision_data(
                                             child_offset + 0x51d0, 0x10);
-                                        *(undefined4 *)(*child_object + 99) = init_result;
+                                        *(int32_t *)(*child_object + 99) = init_result;
                                         
                                         LOCK();
-                                        *(undefined4 *)(*child_object + 0x62) = 0;
+                                        *(int32_t *)(*child_object + 0x62) = 0;
                                         UNLOCK();
                                         child_offset = *(longlong *)(object_offset + 0x20);
                                     }
@@ -341,8 +341,8 @@ void process_spatial_query_and_collision_detection(
                         } while ((collision_flags & 1) != 0);
                         
                         // 获取碰撞信息
-                        ulonglong collision_data_1 = *(undefined8 *)(collision_info + 1);
-                        ulonglong collision_data_2 = *(undefined8 *)(collision_info + 3);
+                        ulonglong collision_data_1 = *(uint64_t *)(collision_info + 1);
+                        ulonglong collision_data_2 = *(uint64_t *)(collision_info + 3);
                         float collision_x = (float)collision_info[5];
                         float collision_y = (float)collision_info[6];
                         float collision_z = (float)collision_info[7];
@@ -448,13 +448,13 @@ void process_spatial_query_and_collision_detection(
                         
                         // 检查是否需要初始化碰撞系统
                         if (*(int *)(collision_system + 0x170) == -1) {
-                            *(undefined4 *)(collision_system + 0x16c) = 0x10;
-                            undefined4 init_result = initialize_collision_data(
+                            *(int32_t *)(collision_system + 0x16c) = 0x10;
+                            int32_t init_result = initialize_collision_data(
                                 context_base + 0x51d0, 0x10);
-                            *(undefined4 *)(collision_system + 0x170) = init_result;
+                            *(int32_t *)(collision_system + 0x170) = init_result;
                             
                             LOCK();
-                            *(undefined4 *)(collision_system + 0x168) = 0;
+                            *(int32_t *)(collision_system + 0x168) = 0;
                             UNLOCK();
                         }
                         
@@ -488,12 +488,12 @@ void process_spatial_query_and_collision_detection(
 
 // 辅助函数声明
 ulonglong get_stack_guard_value(void);
-undefined4 initialize_collision_data(longlong param_1, int param_2);
+int32_t initialize_collision_data(longlong param_1, int param_2);
 void LOCK(void);
 void UNLOCK(void);
 void process_collision_result(longlong param_1, longlong param_2, float *param_3);
 char perform_precise_collision_detection(longlong param_1, float *param_2, float *param_3, float *param_4);
-void process_collision_response(float *param_1, undefined8 *param_2);
+void process_collision_response(float *param_1, uint64_t *param_2);
 void process_collision_depth(float *param_1, float *param_2);
 float *calculate_final_collision_point(float *param_1, float *param_2, float *param_3);
 void cleanup_collision_detection(ulonglong param_1);

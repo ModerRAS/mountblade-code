@@ -25,10 +25,10 @@
 #define ui_system_system_cleanup_handler FUN_180657fa0         // UI系统系统清理处理器
 
 // 函数声明
-undefined8 * ui_system_memory_manager_cleanup(undefined8 *memory_ptr, ulonglong cleanup_flag);
-void ui_system_steam_interface_initializer(undefined8 *interface_ptr);
-void ui_system_steam_interface_secondary(undefined8 *interface_ptr);
-undefined8 * ui_system_memory_allocator(undefined8 *memory_ptr, ulonglong alloc_flag, undefined8 param_3, undefined8 param_4);
+uint64_t * ui_system_memory_manager_cleanup(uint64_t *memory_ptr, ulonglong cleanup_flag);
+void ui_system_steam_interface_initializer(uint64_t *interface_ptr);
+void ui_system_steam_interface_secondary(uint64_t *interface_ptr);
+uint64_t * ui_system_memory_allocator(uint64_t *memory_ptr, ulonglong alloc_flag, uint64_t param_3, uint64_t param_4);
 void ui_system_system_call_handler(void);
 void ui_system_system_cleanup_handler(void);
 
@@ -51,16 +51,16 @@ void ui_system_system_cleanup_handler(void);
  * 4. 调用系统函数进行数据处理
  * 5. 返回处理结果
  */
-void ui_system_advanced_data_processor(undefined8 system_context, undefined8 data_flags, undefined *data_ptr, undefined8 process_flag, longlong data_offset)
+void ui_system_advanced_data_processor(uint64_t system_context, uint64_t data_flags, void *data_ptr, uint64_t process_flag, longlong data_offset)
 {
     byte comparison_result;
     byte *source_data_ptr;
     uint target_data_value;
-    undefined4 process_status;
+    int32_t process_status;
     longlong data_difference;
     
     // 检查处理标志和数据指针有效性
-    if (((char)process_flag == '\0') && (data_ptr != (undefined *)UI_SYSTEM_GLOBAL_DATA_1)) {
+    if (((char)process_flag == '\0') && (data_ptr != (void *)UI_SYSTEM_GLOBAL_DATA_1)) {
         if (*(int *)(data_ptr + 0x30) == 0) {
         LAB_1806579e7:
             process_status = 1;
@@ -87,10 +87,10 @@ LAB_1806579f0:
     // 分配内存并初始化系统资源
     data_difference = FUN_18062b420(UI_SYSTEM_CONTEXT_DATA, 0x48, UI_SYSTEM_GLOBAL_DATA_2, process_flag, 0xfffffffffffffffe);
     FUN_180627ae0(data_difference + 0x20, data_offset);
-    *(undefined8 *)(data_difference + 0x40) = 0;
+    *(uint64_t *)(data_difference + 0x40) = 0;
     
     // 调用UI系统处理函数（该函数不返回）
-    FUN_18066bdc0(data_difference, data_ptr, (undefined *)UI_SYSTEM_GLOBAL_DATA_1, process_status);
+    FUN_18066bdc0(data_difference, data_ptr, (void *)UI_SYSTEM_GLOBAL_DATA_1, process_status);
 }
 
 /**
@@ -107,10 +107,10 @@ LAB_1806579f0:
  * 2. 根据清理标志决定是否释放内存
  * 3. 返回处理后的内存指针
  */
-undefined8 * ui_system_memory_manager_cleanup(undefined8 *memory_ptr, ulonglong cleanup_flag)
+uint64_t * ui_system_memory_manager_cleanup(uint64_t *memory_ptr, ulonglong cleanup_flag)
 {
     // 重置内存指针到预定义位置
-    *memory_ptr = (undefined8 *)UI_SYSTEM_MEMORY_BLOCK_1;
+    *memory_ptr = (uint64_t *)UI_SYSTEM_MEMORY_BLOCK_1;
     
     // 根据清理标志释放内存
     if ((cleanup_flag & 1) != 0) {
@@ -132,14 +132,14 @@ undefined8 * ui_system_memory_manager_cleanup(undefined8 *memory_ptr, ulonglong 
  * 2. 查找或创建用户接口
  * 3. 将接口指针存储到指定位置
  */
-void ui_system_steam_interface_initializer(undefined8 *interface_ptr)
+void ui_system_steam_interface_initializer(uint64_t *interface_ptr)
 {
-    undefined8 steam_interface;
-    undefined4 steam_user_handle;
+    uint64_t steam_interface;
+    int32_t steam_user_handle;
     
     // 获取Steam用户句柄和接口
     steam_user_handle = SteamAPI_GetHSteamUser();
-    steam_interface = SteamInternal_FindOrCreateUserInterface(steam_user_handle, (undefined8 *)UI_SYSTEM_STEAM_INTERFACE_FLAG_1);
+    steam_interface = SteamInternal_FindOrCreateUserInterface(steam_user_handle, (uint64_t *)UI_SYSTEM_STEAM_INTERFACE_FLAG_1);
     *interface_ptr = steam_interface;
     return;
 }
@@ -156,14 +156,14 @@ void ui_system_steam_interface_initializer(undefined8 *interface_ptr)
  * 2. 查找或创建二级用户接口
  * 3. 将接口指针存储到指定位置
  */
-void ui_system_steam_interface_secondary(undefined8 *interface_ptr)
+void ui_system_steam_interface_secondary(uint64_t *interface_ptr)
 {
-    undefined8 steam_interface;
-    undefined4 steam_user_handle;
+    uint64_t steam_interface;
+    int32_t steam_user_handle;
     
     // 获取Steam用户句柄和二级接口
     steam_user_handle = SteamAPI_GetHSteamUser();
-    steam_interface = SteamInternal_FindOrCreateUserInterface(steam_user_handle, (undefined8 *)UI_SYSTEM_STEAM_INTERFACE_FLAG_2);
+    steam_interface = SteamInternal_FindOrCreateUserInterface(steam_user_handle, (uint64_t *)UI_SYSTEM_STEAM_INTERFACE_FLAG_2);
     *interface_ptr = steam_interface;
     return;
 }
@@ -184,16 +184,16 @@ void ui_system_steam_interface_secondary(undefined8 *interface_ptr)
  * 3. 执行系统初始化调用
  * 4. 根据标志决定是否释放内存
  */
-undefined8 * ui_system_memory_allocator(undefined8 *memory_ptr, ulonglong alloc_flag, undefined8 param_3, undefined8 param_4)
+uint64_t * ui_system_memory_allocator(uint64_t *memory_ptr, ulonglong alloc_flag, uint64_t param_3, uint64_t param_4)
 {
-    undefined8 allocation_flag;
+    uint64_t allocation_flag;
     
     allocation_flag = 0xfffffffffffffffe;
-    *memory_ptr = (undefined8 *)UI_SYSTEM_MEMORY_BLOCK_2;
+    *memory_ptr = (uint64_t *)UI_SYSTEM_MEMORY_BLOCK_2;
     
     // 执行系统初始化
     FUN_18005d580();
-    *memory_ptr = (undefined8 *)UI_SYSTEM_MEMORY_BLOCK_1;
+    *memory_ptr = (uint64_t *)UI_SYSTEM_MEMORY_BLOCK_1;
     
     // 根据分配标志释放内存
     if ((alloc_flag & 1) != 0) {
@@ -232,17 +232,17 @@ void ui_system_system_call_handler(void)
  * 4. 管理数据结构和内存分配
  * 5. 清理资源并返回结果
  */
-void ui_system_data_structure_processor(longlong data_source, longlong data_target, undefined8 process_param_3, undefined8 process_param_4)
+void ui_system_data_structure_processor(longlong data_source, longlong data_target, uint64_t process_param_3, uint64_t process_param_4)
 {
     int data_length;
-    undefined8 *structure_ptr;
+    uint64_t *structure_ptr;
     longlong source_offset;
     ulonglong iteration_count;
     uint processed_count;
     ulonglong block_count;
-    undefined8 process_flag;
-    undefined *stack_data_ptr;
-    undefined1 *memory_block_ptr;
+    uint64_t process_flag;
+    void *stack_data_ptr;
+    int8_t *memory_block_ptr;
     int memory_block_size;
     ulonglong memory_block_flag;
     
@@ -255,40 +255,40 @@ void ui_system_data_structure_processor(longlong data_source, longlong data_targ
     if (*(longlong *)(data_source + 0x10) - source_offset >> 5 != 0) {
         do {
             // 初始化数据结构
-            stack_data_ptr = (undefined *)UI_SYSTEM_DATA_STRUCTURE_1;
+            stack_data_ptr = (void *)UI_SYSTEM_DATA_STRUCTURE_1;
             memory_block_flag = 0;
-            memory_block_ptr = (undefined1 *)0x0;
+            memory_block_ptr = (int8_t *)0x0;
             memory_block_size = 0;
             
             // 处理数据块
-            FUN_1806277c0(&stack_data_ptr, *(undefined4 *)(iteration_count + 0x10 + source_offset));
+            FUN_1806277c0(&stack_data_ptr, *(int32_t *)(iteration_count + 0x10 + source_offset));
             data_length = *(int *)(iteration_count + 0x10 + source_offset);
             
             if (data_length != 0) {
                 // 复制数据到内存块（该操作不返回）
-                memcpy(memory_block_ptr, *(undefined8 *)(iteration_count + 8 + source_offset), data_length + 1, process_param_4, process_flag);
+                memcpy(memory_block_ptr, *(uint64_t *)(iteration_count + 8 + source_offset), data_length + 1, process_param_4, process_flag);
             }
             
             // 处理内存块数据
             if (*(longlong *)(iteration_count + 8 + source_offset) != 0) {
                 memory_block_size = 0;
-                if (memory_block_ptr != (undefined1 *)0x0) {
+                if (memory_block_ptr != (int8_t *)0x0) {
                     *memory_block_ptr = 0;
                 }
                 memory_block_flag = memory_block_flag & 0xffffffff;
             }
             
             // 管理目标数据结构
-            structure_ptr = *(undefined8 **)(data_target + 8);
-            if (structure_ptr < *(undefined8 **)(data_target + 0x10)) {
-                *(undefined8 **)(data_target + 8) = structure_ptr + 4;
-                *structure_ptr = (undefined8 *)UI_SYSTEM_INTERFACE_POINTER;
+            structure_ptr = *(uint64_t **)(data_target + 8);
+            if (structure_ptr < *(uint64_t **)(data_target + 0x10)) {
+                *(uint64_t **)(data_target + 8) = structure_ptr + 4;
+                *structure_ptr = (uint64_t *)UI_SYSTEM_INTERFACE_POINTER;
                 structure_ptr[1] = 0;
-                *(undefined4 *)(structure_ptr + 2) = 0;
-                *structure_ptr = (undefined8 *)UI_SYSTEM_DATA_STRUCTURE_1;
+                *(int32_t *)(structure_ptr + 2) = 0;
+                *structure_ptr = (uint64_t *)UI_SYSTEM_DATA_STRUCTURE_1;
                 structure_ptr[3] = 0;
                 structure_ptr[1] = 0;
-                *(undefined4 *)(structure_ptr + 2) = 0;
+                *(int32_t *)(structure_ptr + 2) = 0;
                 FUN_1806277c0(structure_ptr, memory_block_size);
                 
                 if (memory_block_size != 0) {
@@ -297,12 +297,12 @@ void ui_system_data_structure_processor(longlong data_source, longlong data_targ
                 }
                 
                 // 清理内存块
-                if (memory_block_ptr != (undefined1 *)0x0) {
-                    *(undefined4 *)(structure_ptr + 2) = 0;
-                    if ((undefined1 *)structure_ptr[1] != (undefined1 *)0x0) {
-                        *(undefined1 *)structure_ptr[1] = 0;
+                if (memory_block_ptr != (int8_t *)0x0) {
+                    *(int32_t *)(structure_ptr + 2) = 0;
+                    if ((int8_t *)structure_ptr[1] != (int8_t *)0x0) {
+                        *(int8_t *)structure_ptr[1] = 0;
                     }
-                    *(undefined4 *)((longlong)structure_ptr + 0x1c) = 0;
+                    *(int32_t *)((longlong)structure_ptr + 0x1c) = 0;
                 }
             }
             else {
@@ -311,8 +311,8 @@ void ui_system_data_structure_processor(longlong data_source, longlong data_targ
             }
             
             // 重置数据结构指针
-            stack_data_ptr = (undefined *)UI_SYSTEM_DATA_STRUCTURE_1;
-            if (memory_block_ptr != (undefined1 *)0x0) {
+            stack_data_ptr = (void *)UI_SYSTEM_DATA_STRUCTURE_1;
+            if (memory_block_ptr != (int8_t *)0x0) {
                 // 清理内存块（该操作不返回）
                 FUN_18064e900();
             }

@@ -6,76 +6,76 @@
 // 将变换数据序列化到缓冲区中，包括位置、旋转、缩放等信息
 void SerializeTransformData(longlong source_buffer, longlong *target_buffer)
 
-  undefined1 *byte_data_ptr;
-  undefined4 *word_data_ptr;
-  undefined4 temp_word1;
-  undefined4 temp_word2;
-  undefined4 temp_word3;
-  undefined4 temp_word4;
-  undefined4 *buffer_ptr;
+  int8_t *byte_data_ptr;
+  int32_t *word_data_ptr;
+  int32_t temp_word1;
+  int32_t temp_word2;
+  int32_t temp_word3;
+  int32_t temp_word4;
+  int32_t *buffer_ptr;
   
-  buffer_ptr = (undefined4 *)target_buffer[1];
+  buffer_ptr = (int32_t *)target_buffer[1];
   if ((ulonglong)((*target_buffer - (longlong)buffer_ptr) + target_buffer[2]) < 5) {
     FUN_180639bf0(target_buffer,(longlong)buffer_ptr + (4 - *target_buffer));
-    buffer_ptr = (undefined4 *)target_buffer[1];
+    buffer_ptr = (int32_t *)target_buffer[1];
   }
   *buffer_ptr = 1;
-  buffer_ptr = (undefined4 *)(target_buffer[1] + 4);
+  buffer_ptr = (int32_t *)(target_buffer[1] + 4);
   target_buffer[1] = (longlong)buffer_ptr;
   if ((ulonglong)((*target_buffer - (longlong)buffer_ptr) + target_buffer[2]) < 0x11) {
     FUN_180639bf0(target_buffer,(longlong)buffer_ptr + (0x10 - *target_buffer));
-    buffer_ptr = (undefined4 *)target_buffer[1];
+    buffer_ptr = (int32_t *)target_buffer[1];
   }
-  temp_word1 = *(undefined4 *)(source_buffer + 0x1c);
-  temp_word2 = *(undefined4 *)(source_buffer + 0x20);
-  temp_word3 = *(undefined4 *)(source_buffer + 0x24);
-  *buffer_ptr = *(undefined4 *)(source_buffer + 0x18);
+  temp_word1 = *(int32_t *)(source_buffer + 0x1c);
+  temp_word2 = *(int32_t *)(source_buffer + 0x20);
+  temp_word3 = *(int32_t *)(source_buffer + 0x24);
+  *buffer_ptr = *(int32_t *)(source_buffer + 0x18);
   buffer_ptr[1] = temp_word1;
   buffer_ptr[2] = temp_word2;
   buffer_ptr[3] = temp_word3;
-  byte_data_ptr = (undefined1 *)(target_buffer[1] + 0x10);
+  byte_data_ptr = (int8_t *)(target_buffer[1] + 0x10);
   target_buffer[1] = (longlong)byte_data_ptr;
-  temp_word1 = *(undefined1 *)(source_buffer + 0x28);
+  temp_word1 = *(int8_t *)(source_buffer + 0x28);
   if ((ulonglong)((*target_buffer - (longlong)byte_data_ptr) + target_buffer[2]) < 2) {
     FUN_180639bf0(target_buffer,byte_data_ptr + (1 - *target_buffer));
-    byte_data_ptr = (undefined1 *)target_buffer[1];
+    byte_data_ptr = (int8_t *)target_buffer[1];
   }
   *byte_data_ptr = temp_word1;
-  buffer_ptr = (undefined4 *)(target_buffer[1] + 1);
+  buffer_ptr = (int32_t *)(target_buffer[1] + 1);
   target_buffer[1] = (longlong)buffer_ptr;
   if ((ulonglong)((*target_buffer - (longlong)buffer_ptr) + target_buffer[2]) < 0x11) {
     FUN_180639bf0(target_buffer,(longlong)buffer_ptr + (0x10 - *target_buffer));
-    buffer_ptr = (undefined4 *)target_buffer[1];
+    buffer_ptr = (int32_t *)target_buffer[1];
   }
-  temp_word1 = *(undefined4 *)(source_buffer + 0xc);
-  temp_word2 = *(undefined4 *)(source_buffer + 0x10);
-  temp_word3 = *(undefined4 *)(source_buffer + 0x14);
-  *buffer_ptr = *(undefined4 *)(source_buffer + 8);
+  temp_word1 = *(int32_t *)(source_buffer + 0xc);
+  temp_word2 = *(int32_t *)(source_buffer + 0x10);
+  temp_word3 = *(int32_t *)(source_buffer + 0x14);
+  *buffer_ptr = *(int32_t *)(source_buffer + 8);
   buffer_ptr[1] = temp_word1;
   buffer_ptr[2] = temp_word2;
   buffer_ptr[3] = temp_word3;
-  buffer_ptr = (undefined4 *)(target_buffer[1] + 0x10);
+  buffer_ptr = (int32_t *)(target_buffer[1] + 0x10);
   target_buffer[1] = (longlong)buffer_ptr;
-  temp_word1 = *(undefined4 *)(source_buffer + 0x2c);
+  temp_word1 = *(int32_t *)(source_buffer + 0x2c);
   if ((ulonglong)((*target_buffer - (longlong)buffer_ptr) + target_buffer[2]) < 5) {
     FUN_180639bf0(target_buffer,(longlong)buffer_ptr + (4 - *target_buffer));
-    buffer_ptr = (undefined4 *)target_buffer[1];
+    buffer_ptr = (int32_t *)target_buffer[1];
   }
   *buffer_ptr = temp_word1;
-  buffer_ptr = (undefined4 *)(target_buffer[1] + 4);
+  buffer_ptr = (int32_t *)(target_buffer[1] + 4);
   target_buffer[1] = (longlong)buffer_ptr;
-  temp_word1 = *(undefined4 *)(source_buffer + 0x30);
+  temp_word1 = *(int32_t *)(source_buffer + 0x30);
   if ((ulonglong)((*target_buffer - (longlong)buffer_ptr) + target_buffer[2]) < 5) {
     FUN_180639bf0(target_buffer,(longlong)buffer_ptr + (4 - *target_buffer));
-    buffer_ptr = (undefined4 *)target_buffer[1];
+    buffer_ptr = (int32_t *)target_buffer[1];
   }
   *buffer_ptr = temp_word1;
-  buffer_ptr = (undefined4 *)(target_buffer[1] + 4);
+  buffer_ptr = (int32_t *)(target_buffer[1] + 4);
   target_buffer[1] = (longlong)buffer_ptr;
-  temp_word1 = *(undefined4 *)(source_buffer + 0x34);
+  temp_word1 = *(int32_t *)(source_buffer + 0x34);
   if ((ulonglong)((*target_buffer - (longlong)buffer_ptr) + target_buffer[2]) < 5) {
     FUN_180639bf0(target_buffer,(longlong)buffer_ptr + (4 - *target_buffer));
-    *(undefined4 *)target_buffer[1] = temp_word1;
+    *(int32_t *)target_buffer[1] = temp_word1;
   }
   else {
     *buffer_ptr = temp_word1;
@@ -110,9 +110,9 @@ void ClearTransformArray(longlong *array_container)
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
-    *(undefined8 *)((longlong)current_element + 0x12) = 0;
+    *(uint64_t *)((longlong)current_element + 0x12) = 0;
     if (*(longlong *)((longlong)current_element + 0x1a) != 0) break;
-    *(undefined8 *)((longlong)current_element + 0x1a) = 0;
+    *(uint64_t *)((longlong)current_element + 0x1a) = 0;
     if (*current_element != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
@@ -159,12 +159,12 @@ void ResizeTransformArray(longlong *array_container, ulonglong new_size)
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
-        *(undefined8 *)((longlong)new_end + 0x12) = 0;
+        *(uint64_t *)((longlong)new_end + 0x12) = 0;
         if (*(longlong *)((longlong)new_end + 0x1a) != 0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
-        *(undefined8 *)((longlong)new_end + 0x1a) = 0;
+        *(uint64_t *)((longlong)new_end + 0x1a) = 0;
         if (*new_end != 0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
@@ -192,22 +192,22 @@ void ResizeTransformArray(longlong *array_container, ulonglong new_size)
 
 // 函数: void ReallocateTransformArray - 重新分配变换数组内存
 // 重新分配变换数组的内存，处理数据的复制和清理
-void ReallocateTransformArray(undefined8 *array_container, ulonglong additional_elements)
+void ReallocateTransformArray(uint64_t *array_container, ulonglong additional_elements)
 
 {
   longlong *new_array;
   longlong *old_array;
-  undefined8 *old_start;
+  uint64_t *old_start;
   longlong *copy_source;
   longlong *copy_dest;
   ulonglong current_capacity;
-  undefined8 *current_end;
+  uint64_t *current_end;
   longlong current_used;
   ulonglong new_capacity;
   
-  current_end = (undefined8 *)array_container[1];
+  current_end = (uint64_t *)array_container[1];
   if ((ulonglong)((array_container[2] - (longlong)current_end) / 0x24) < additional_elements) {
-    old_start = (undefined8 *)*array_container;
+    old_start = (uint64_t *)*array_container;
     current_used = ((longlong)current_end - (longlong)old_start) / 0x24;
     new_capacity = current_used * 2;
     if (current_used == 0) {
@@ -219,67 +219,67 @@ void ReallocateTransformArray(undefined8 *array_container, ulonglong additional_
     new_array = (longlong *)0x0;
     if (new_capacity != 0) {
       new_array = (longlong *)
-               FUN_18062b420(_DAT_180c8ed18,new_capacity * 0x24,*(undefined1 *)(array_container + 3),current_end,
+               FUN_18062b420(_DAT_180c8ed18,new_capacity * 0x24,*(int8_t *)(array_container + 3),current_end,
                              0xfffffffffffffffe);
-      current_end = (undefined8 *)array_container[1];
-      old_start = (undefined8 *)*array_container;
+      current_end = (uint64_t *)array_container[1];
+      old_start = (uint64_t *)*array_container;
     }
     copy_dest = new_array;
     if (old_start != current_end) {
       current_used = (longlong)new_array - (longlong)old_start;
       copy_source = (longlong *)((longlong)old_start + 0x1a);
       do {
-        *(undefined2 *)(current_used + -10 + (longlong)copy_source) = *(undefined2 *)((longlong)copy_source + -10);
+        *(int16_t *)(current_used + -10 + (longlong)copy_source) = *(int16_t *)((longlong)copy_source + -10);
         if (*(longlong *)((longlong)copy_source + -0x12) == 0) {
-          *(undefined8 *)(current_used + -0x12 + (longlong)copy_source) = 0;
+          *(uint64_t *)(current_used + -0x12 + (longlong)copy_source) = 0;
         }
         else {
           *(longlong *)(current_used + -0x12 + (longlong)copy_source) = *(longlong *)((longlong)copy_source + -0x12);
-          *(undefined8 *)((longlong)copy_source + -0x12) = 0;
+          *(uint64_t *)((longlong)copy_source + -0x12) = 0;
         }
         if (*(longlong *)((longlong)copy_source + -0x1a) == 0) {
           *copy_dest = 0;
         }
         else {
           *copy_dest = *(longlong *)((longlong)copy_source + -0x1a);
-          *(undefined8 *)((longlong)copy_source + -0x1a) = 0;
+          *(uint64_t *)((longlong)copy_source + -0x1a) = 0;
         }
-        *(undefined2 *)((longlong)copy_source + -10) = 0;
+        *(int16_t *)((longlong)copy_source + -10) = 0;
         *(short *)(current_used + 8 + (longlong)copy_source) = (short)copy_source[1];
         if (*copy_source == 0) {
-          *(undefined8 *)((longlong)copy_source + current_used) = 0;
+          *(uint64_t *)((longlong)copy_source + current_used) = 0;
         }
         else {
           *(longlong *)((longlong)copy_source + current_used) = *copy_source;
           *copy_source = 0;
         }
         if (copy_source[-1] == 0) {
-          *(undefined8 *)(current_used + -8 + (longlong)copy_source) = 0;
+          *(uint64_t *)(current_used + -8 + (longlong)copy_source) = 0;
         }
         else {
           *(longlong *)(current_used + -8 + (longlong)copy_source) = copy_source[-1];
           copy_source[-1] = 0;
         }
-        *(undefined2 *)(copy_source + 1) = 0;
+        *(int16_t *)(copy_source + 1) = 0;
         copy_dest = (longlong *)((longlong)copy_dest + 0x24);
-        old_start = (undefined8 *)((longlong)copy_source + 10);
+        old_start = (uint64_t *)((longlong)copy_source + 10);
         copy_source = (longlong *)((longlong)copy_source + 0x24);
       } while (old_start != current_end);
     }
     if (additional_elements != 0) {
-      current_end = (undefined8 *)((longlong)copy_dest + 0x1a);
+      current_end = (uint64_t *)((longlong)copy_dest + 0x1a);
       current_capacity = additional_elements;
       do {
         current_end[-1] = 0;
         *current_end = 0;
-        *(undefined2 *)(current_end + 1) = 0;
-        *(undefined2 *)((longlong)current_end + -10) = 0;
-        *(undefined8 *)((longlong)current_end + -0x1a) = 0;
-        *(undefined8 *)((longlong)current_end + -0x12) = 0;
-        *(undefined2 *)(current_end + 1) = 0;
+        *(int16_t *)(current_end + 1) = 0;
+        *(int16_t *)((longlong)current_end + -10) = 0;
+        *(uint64_t *)((longlong)current_end + -0x1a) = 0;
+        *(uint64_t *)((longlong)current_end + -0x12) = 0;
+        *(int16_t *)(current_end + 1) = 0;
         current_end[-1] = 0;
         *current_end = 0;
-        current_end = (undefined8 *)((longlong)current_end + 0x24);
+        current_end = (uint64_t *)((longlong)current_end + 0x24);
         current_capacity = current_capacity - 1;
       } while (current_capacity != 0);
     }
@@ -291,12 +291,12 @@ void ReallocateTransformArray(undefined8 *array_container, ulonglong additional_
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
-        *(undefined8 *)((longlong)old_array + 0x12) = 0;
+        *(uint64_t *)((longlong)old_array + 0x12) = 0;
         if (*(longlong *)((longlong)old_array + 0x1a) != 0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
-        *(undefined8 *)((longlong)old_array + 0x1a) = 0;
+        *(uint64_t *)((longlong)old_array + 0x1a) = 0;
         if (*old_array != 0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
@@ -321,24 +321,24 @@ void ReallocateTransformArray(undefined8 *array_container, ulonglong additional_
   }
   else {
     if (additional_elements != 0) {
-      old_start = (undefined8 *)((longlong)current_end + 0x1a);
+      old_start = (uint64_t *)((longlong)current_end + 0x1a);
       new_capacity = additional_elements;
       do {
         current_end[1] = 0;
         current_end[2] = 0;
         current_end[3] = 0;
-        *(undefined4 *)(current_end + 4) = 0;
-        *(undefined2 *)((longlong)old_start + -10) = 0;
+        *(int32_t *)(current_end + 4) = 0;
+        *(int16_t *)((longlong)old_start + -10) = 0;
         *current_end = 0;
-        *(undefined8 *)((longlong)old_start + -0x12) = 0;
-        *(undefined2 *)(old_start + 1) = 0;
+        *(uint64_t *)((longlong)old_start + -0x12) = 0;
+        *(int16_t *)(old_start + 1) = 0;
         old_start[-1] = 0;
         *old_start = 0;
-        current_end = (undefined8 *)((longlong)current_end + 0x24);
-        old_start = (undefined8 *)((longlong)old_start + 0x24);
+        current_end = (uint64_t *)((longlong)current_end + 0x24);
+        old_start = (uint64_t *)((longlong)old_start + 0x24);
         new_capacity = new_capacity - 1;
       } while (new_capacity != 0);
-      current_end = (undefined8 *)array_container[1];
+      current_end = (uint64_t *)array_container[1];
     }
     array_container[1] = (longlong)current_end + additional_elements * 0x24;
   }
@@ -369,9 +369,9 @@ void ResetTransformPointers(longlong *transform_data)
 
 
 
-// 函数: undefined8 * InitializeTransformVTable - 初始化变换虚函数表
+// 函数: uint64_t * InitializeTransformVTable - 初始化变换虚函数表
 // 初始化变换对象的虚函数表指针
-undefined8 * InitializeTransformVTable(undefined8 *object, ulonglong flags, undefined8 param3, undefined8 param_4)
+uint64_t * InitializeTransformVTable(uint64_t *object, ulonglong flags, uint64_t param3, uint64_t param_4)
 
 {
   *object = &VTABLE_TransformObject;
@@ -383,9 +383,9 @@ undefined8 * InitializeTransformVTable(undefined8 *object, ulonglong flags, unde
 
 
 
-// 函数: undefined8 * CleanupTransformMemory - 清理变换内存
+// 函数: uint64_t * CleanupTransformMemory - 清理变换内存
 // 清理变换对象的内存，根据标志决定是否释放
-undefined8 * CleanupTransformMemory(undefined8 *object, ulonglong flags)
+uint64_t * CleanupTransformMemory(uint64_t *object, ulonglong flags)
 
 {
   *object = &VTABLE_TransformObject;
@@ -397,18 +397,18 @@ undefined8 * CleanupTransformMemory(undefined8 *object, ulonglong flags)
 
 
 
-// 函数: undefined8 * SetTransformString - 设置变换字符串
+// 函数: uint64_t * SetTransformString - 设置变换字符串
 // 为变换对象设置字符串值
-undefined8 * SetTransformString(undefined8 param1, undefined8 *string_ptr, undefined8 param3, undefined8 param_4)
+uint64_t * SetTransformString(uint64_t param1, uint64_t *string_ptr, uint64_t param3, uint64_t param_4)
 
 {
   *string_ptr = &STRING_Empty;
   string_ptr[1] = 0;
-  *(undefined4 *)(string_ptr + 2) = 0;
+  *(int32_t *)(string_ptr + 2) = 0;
   *string_ptr = &STRING_Constant;
   string_ptr[1] = string_ptr + 3;
-  *(undefined1 *)(string_ptr + 3) = 0;
-  *(undefined4 *)(string_ptr + 2) = 7;
+  *(int8_t *)(string_ptr + 3) = 0;
+  *(int32_t *)(string_ptr + 2) = 7;
   strcpy_s(string_ptr[1],0x80,&STRING_DefaultValue,param_4,0,0xfffffffffffffffe);
   return string_ptr;
 }
@@ -417,9 +417,9 @@ undefined8 * SetTransformString(undefined8 param1, undefined8 *string_ptr, undef
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: undefined8 * InitializeComplexTransformObject - 初始化复杂变换对象
+// 函数: uint64_t * InitializeComplexTransformObject - 初始化复杂变换对象
 // 初始化一个复杂的变换对象，包含多个属性和状态
-undefined8 * InitializeComplexTransformObject(undefined8 *object, char param2, char param3)
+uint64_t * InitializeComplexTransformObject(uint64_t *object, char param2, char param3)
 
 {
   longlong *temp_ptr;
@@ -429,29 +429,29 @@ undefined8 * InitializeComplexTransformObject(undefined8 *object, char param2, c
   
   *param_1 = &UNK_180a21690;
   *param_1 = &UNK_180a21720;
-  *(undefined4 *)(param_1 + 1) = 0;
+  *(int32_t *)(param_1 + 1) = 0;
   *param_1 = &UNK_180a02e68;
   param_1[2] = &UNK_18098bcb0;
   param_1[3] = 0;
-  *(undefined4 *)(param_1 + 4) = 0;
+  *(int32_t *)(param_1 + 4) = 0;
   param_1[2] = &UNK_1809fcc28;
   param_1[3] = param_1 + 5;
-  *(undefined4 *)(param_1 + 4) = 0;
-  *(undefined1 *)(param_1 + 5) = 0;
-  *(undefined1 *)((longlong)param_1 + 0xb2) = 0;
-  *(undefined4 *)(param_1 + 1) = 0;
-  *(undefined2 *)(param_1 + 0x16) = 0;
+  *(int32_t *)(param_1 + 4) = 0;
+  *(int8_t *)(param_1 + 5) = 0;
+  *(int8_t *)((longlong)param_1 + 0xb2) = 0;
+  *(int32_t *)(param_1 + 1) = 0;
+  *(int16_t *)(param_1 + 0x16) = 0;
   param_1[0x15] = 0;
   *param_1 = &UNK_180a00270;
   func_0x000180086550(param_1 + 0x19);
-  *(undefined4 *)(param_1 + 0x1e) = 0;
+  *(int32_t *)(param_1 + 0x1e) = 0;
   LOCK();
-  *(undefined4 *)(param_1 + 0x1d) = 0;
+  *(int32_t *)(param_1 + 0x1d) = 0;
   UNLOCK();
   LOCK();
-  *(undefined1 *)((longlong)param_1 + 0xec) = 0;
+  *(int8_t *)((longlong)param_1 + 0xec) = 0;
   UNLOCK();
-  *(undefined4 *)(param_1 + 0x1e) = 0;
+  *(int32_t *)(param_1 + 0x1e) = 0;
   param_1[0x23] = 0;
   param_1[0x36] = 0;
   param_1[0x37] = 0;
@@ -462,30 +462,30 @@ undefined8 * InitializeComplexTransformObject(undefined8 *object, char param2, c
   param_1[0x43] = 0;
   param_1[0x44] = 0;
   param_1[0x45] = 0;
-  *(undefined4 *)(param_1 + 0x46) = 3;
+  *(int32_t *)(param_1 + 0x46) = 3;
   param_1[0x4d] = 0;
-  *(undefined4 *)((longlong)param_1 + 0x2a4) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x274) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x27c) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x284) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x28c) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x294) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x29c) = 0;
-  *(undefined2 *)(param_1 + 0x5d) = 0;
+  *(int32_t *)((longlong)param_1 + 0x2a4) = 0;
+  *(uint64_t *)((longlong)param_1 + 0x274) = 0;
+  *(uint64_t *)((longlong)param_1 + 0x27c) = 0;
+  *(uint64_t *)((longlong)param_1 + 0x284) = 0;
+  *(uint64_t *)((longlong)param_1 + 0x28c) = 0;
+  *(uint64_t *)((longlong)param_1 + 0x294) = 0;
+  *(uint64_t *)((longlong)param_1 + 0x29c) = 0;
+  *(int16_t *)(param_1 + 0x5d) = 0;
   param_1[0x5c] = 0;
-  *(undefined4 *)((longlong)param_1 + 0x2ec) = 0xffffffff;
-  *(undefined2 *)(param_1 + 0x5f) = 0;
+  *(int32_t *)((longlong)param_1 + 0x2ec) = 0xffffffff;
+  *(int16_t *)(param_1 + 0x5f) = 0;
   param_1[0x5e] = 0;
-  *(undefined4 *)((longlong)param_1 + 0x2fc) = 0xffffffff;
+  *(int32_t *)((longlong)param_1 + 0x2fc) = 0xffffffff;
   *(byte *)((longlong)param_1 + 0xfd) = *(byte *)((longlong)param_1 + 0xfd) & 0xfb;
   *(byte *)((longlong)param_1 + 0xfd) = *(byte *)((longlong)param_1 + 0xfd) | param_2 << 2;
   param_1[0x15] = 0;
-  *(undefined4 *)(param_1 + 0x17) = 0;
-  *(undefined4 *)((longlong)param_1 + 0xbc) = 0;
-  *(undefined4 *)(param_1 + 0x18) = 0;
-  *(undefined4 *)((longlong)param_1 + 0xc4) = 0;
+  *(int32_t *)(param_1 + 0x17) = 0;
+  *(int32_t *)((longlong)param_1 + 0xbc) = 0;
+  *(int32_t *)(param_1 + 0x18) = 0;
+  *(int32_t *)((longlong)param_1 + 0xc4) = 0;
   *(byte *)((longlong)param_1 + 0xfe) = *(byte *)((longlong)param_1 + 0xfe) & 0xfe;
-  *(undefined1 *)((longlong)param_1 + 0xfc) = 0;
+  *(int8_t *)((longlong)param_1 + 0xfc) = 0;
   plVar4 = (longlong *)param_1[0x36];
   param_1[0x36] = 0;
   if (plVar4 != (longlong *)0x0) {
@@ -500,15 +500,15 @@ undefined8 * InitializeComplexTransformObject(undefined8 *object, char param2, c
     *(byte *)((longlong)param_1 + 0xfd) = *(byte *)((longlong)param_1 + 0xfd) | 0x20;
   }
   *(byte *)((longlong)param_1 + 0xfd) = *(byte *)((longlong)param_1 + 0xfd) & 0xbf;
-  *(undefined1 *)((longlong)param_1 + 0xff) = 1;
+  *(int8_t *)((longlong)param_1 + 0xff) = 1;
   plVar4 = (longlong *)param_1[0x37];
   param_1[0x37] = 0;
   if (plVar4 != (longlong *)0x0) {
     (**(code **)(*plVar4 + 0x38))();
   }
-  *(undefined1 *)((longlong)param_1 + 0xf4) = 0;
-  *(undefined4 *)(param_1 + 0x20) = 0;
-  *(undefined1 *)((longlong)param_1 + 0xf7) = 0;
+  *(int8_t *)((longlong)param_1 + 0xf4) = 0;
+  *(int32_t *)(param_1 + 0x20) = 0;
+  *(int8_t *)((longlong)param_1 + 0xf7) = 0;
   *(byte *)((longlong)param_1 + 0xfd) = *(byte *)((longlong)param_1 + 0xfd) & 0x6d;
   plVar3 = (longlong *)param_1[0x38];
   param_1[0x38] = 0;
@@ -521,7 +521,7 @@ undefined8 * InitializeComplexTransformObject(undefined8 *object, char param2, c
   param_1[0x48] = 0x3f8000003f800000;
   param_1[0x49] = 0x3f8000003f800000;
   param_1[0x4a] = 0x3f8000003f800000;
-  *(undefined4 *)(param_1 + 0x4c) = 0x3f800000;
+  *(int32_t *)(param_1 + 0x4c) = 0x3f800000;
   param_1[0x24] = 0x3f800000;
   param_1[0x25] = 0;
   param_1[0x26] = 0x3f80000000000000;
@@ -540,28 +540,28 @@ undefined8 * InitializeComplexTransformObject(undefined8 *object, char param2, c
   param_1[0x33] = 0x3f80000000000000;
   *(byte *)((longlong)param_1 + 0xfd) = bVar2 | 1;
   *(byte *)((longlong)param_1 + 0xfe) = *(byte *)((longlong)param_1 + 0xfe) | 2;
-  *(undefined4 *)(param_1 + 0x4e) = 0x21;
-  *(undefined4 *)((longlong)param_1 + 0x104) = 0x80;
-  *(undefined1 *)((longlong)param_1 + 0xf6) = 0;
-  *(undefined2 *)((longlong)param_1 + 0xfa) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x204) = 0;
+  *(int32_t *)(param_1 + 0x4e) = 0x21;
+  *(int32_t *)((longlong)param_1 + 0x104) = 0x80;
+  *(int8_t *)((longlong)param_1 + 0xf6) = 0;
+  *(int16_t *)((longlong)param_1 + 0xfa) = 0;
+  *(uint64_t *)((longlong)param_1 + 0x204) = 0;
   param_1[0x3f] = 0;
-  *(undefined4 *)(param_1 + 0x40) = 0;
-  *(undefined4 *)(param_1 + 0x5b) = 0xbf800000;
-  *(undefined4 *)((longlong)param_1 + 0x2dc) = 0xbf800000;
+  *(int32_t *)(param_1 + 0x40) = 0;
+  *(int32_t *)(param_1 + 0x5b) = 0xbf800000;
+  *(int32_t *)((longlong)param_1 + 0x2dc) = 0xbf800000;
   param_1[0x55] = 0;
   param_1[0x56] = 0;
   param_1[0x57] = 0;
   param_1[0x58] = 0;
-  *(undefined4 *)(param_1 + 0x19) = 0;
-  *(undefined4 *)((longlong)param_1 + 0xcc) = 0;
-  *(undefined4 *)(param_1 + 0x1a) = 0;
-  *(undefined4 *)((longlong)param_1 + 0xd4) = 0x7f7fffff;
-  *(undefined4 *)(param_1 + 0x1b) = 0;
-  *(undefined4 *)((longlong)param_1 + 0xdc) = 0;
-  *(undefined4 *)(param_1 + 0x1c) = 0;
-  *(undefined4 *)((longlong)param_1 + 0xe4) = 0x7f7fffff;
-  *(undefined4 *)(param_1 + 0x21) = 0xffffffff;
+  *(int32_t *)(param_1 + 0x19) = 0;
+  *(int32_t *)((longlong)param_1 + 0xcc) = 0;
+  *(int32_t *)(param_1 + 0x1a) = 0;
+  *(int32_t *)((longlong)param_1 + 0xd4) = 0x7f7fffff;
+  *(int32_t *)(param_1 + 0x1b) = 0;
+  *(int32_t *)((longlong)param_1 + 0xdc) = 0;
+  *(int32_t *)(param_1 + 0x1c) = 0;
+  *(int32_t *)((longlong)param_1 + 0xe4) = 0x7f7fffff;
+  *(int32_t *)(param_1 + 0x21) = 0xffffffff;
   param_1[0x5a] = 0;
   if (param_2 == '\0') {
     plVar1 = (longlong *)param_1[0x42];
@@ -570,40 +570,40 @@ undefined8 * InitializeComplexTransformObject(undefined8 *object, char param2, c
       (**(code **)(*plVar1 + 0x38))(plVar1,0);
     }
   }
-  *(undefined1 *)(param_1 + 0x1f) = 0;
-  *(undefined4 *)(param_1 + 0x34) = 0x3f800000;
-  *(undefined4 *)((longlong)param_1 + 0x1a4) = 0x3f800000;
-  *(undefined4 *)(param_1 + 0x35) = 0x3f800000;
-  *(undefined4 *)((longlong)param_1 + 0x1ac) = 0x7f7fffff;
-  *(undefined4 *)(param_1 + 0x3a) = 0xffffffff;
+  *(int8_t *)(param_1 + 0x1f) = 0;
+  *(int32_t *)(param_1 + 0x34) = 0x3f800000;
+  *(int32_t *)((longlong)param_1 + 0x1a4) = 0x3f800000;
+  *(int32_t *)(param_1 + 0x35) = 0x3f800000;
+  *(int32_t *)((longlong)param_1 + 0x1ac) = 0x7f7fffff;
+  *(int32_t *)(param_1 + 0x3a) = 0xffffffff;
   plVar3 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x70,8,9,plVar4,plVar3);
   *plVar3 = (longlong)&UNK_180a21690;
   *plVar3 = (longlong)&UNK_180a21720;
-  *(undefined4 *)(plVar3 + 1) = 0;
+  *(int32_t *)(plVar3 + 1) = 0;
   *plVar3 = (longlong)&UNK_180a00208;
   plVar3[4] = (longlong)&UNK_18098bcb0;
   plVar3[5] = 0;
-  *(undefined4 *)(plVar3 + 6) = 0;
+  *(int32_t *)(plVar3 + 6) = 0;
   plVar3[4] = (longlong)&UNK_180a3c3e0;
   plVar3[7] = 0;
   plVar3[5] = 0;
-  *(undefined4 *)(plVar3 + 6) = 0;
-  *(undefined4 *)(plVar3 + 8) = 0xffffffff;
-  *(undefined4 *)((longlong)plVar3 + 0x44) = 0x3f000000;
-  *(undefined4 *)(plVar3 + 9) = 0x3f000000;
-  *(undefined4 *)((longlong)plVar3 + 0x4c) = 0x3f4ccccd;
-  *(undefined4 *)(plVar3 + 10) = 0x3f000000;
-  *(undefined4 *)((longlong)plVar3 + 0x54) = 0x3e99999a;
-  *(undefined4 *)(plVar3 + 0xb) = 0x411cf5c3;
-  *(undefined4 *)((longlong)plVar3 + 0x5c) = 0x3f800000;
-  *(undefined4 *)(plVar3 + 0xc) = 0xbf800000;
-  *(undefined4 *)((longlong)plVar3 + 100) = 0x3f800000;
-  *(undefined4 *)(plVar3 + 0xd) = 0x3f000000;
-  *(undefined4 *)((longlong)plVar3 + 0x6c) = 0x3f800000;
-  *(undefined4 *)(plVar3 + 2) = 0x3f800000;
-  *(undefined4 *)((longlong)plVar3 + 0x14) = 0x78;
-  *(undefined2 *)(plVar3 + 3) = 0;
-  *(undefined1 *)((longlong)plVar3 + 0x1a) = 0;
+  *(int32_t *)(plVar3 + 6) = 0;
+  *(int32_t *)(plVar3 + 8) = 0xffffffff;
+  *(int32_t *)((longlong)plVar3 + 0x44) = 0x3f000000;
+  *(int32_t *)(plVar3 + 9) = 0x3f000000;
+  *(int32_t *)((longlong)plVar3 + 0x4c) = 0x3f4ccccd;
+  *(int32_t *)(plVar3 + 10) = 0x3f000000;
+  *(int32_t *)((longlong)plVar3 + 0x54) = 0x3e99999a;
+  *(int32_t *)(plVar3 + 0xb) = 0x411cf5c3;
+  *(int32_t *)((longlong)plVar3 + 0x5c) = 0x3f800000;
+  *(int32_t *)(plVar3 + 0xc) = 0xbf800000;
+  *(int32_t *)((longlong)plVar3 + 100) = 0x3f800000;
+  *(int32_t *)(plVar3 + 0xd) = 0x3f000000;
+  *(int32_t *)((longlong)plVar3 + 0x6c) = 0x3f800000;
+  *(int32_t *)(plVar3 + 2) = 0x3f800000;
+  *(int32_t *)((longlong)plVar3 + 0x14) = 0x78;
+  *(int16_t *)(plVar3 + 3) = 0;
+  *(int8_t *)((longlong)plVar3 + 0x1a) = 0;
   (**(code **)(*plVar3 + 0x28))(plVar3);
   plVar4 = (longlong *)param_1[0x4d];
   param_1[0x4d] = plVar3;
@@ -613,19 +613,19 @@ undefined8 * InitializeComplexTransformObject(undefined8 *object, char param2, c
   *(byte *)((longlong)param_1 + 0xfe) = *(byte *)((longlong)param_1 + 0xfe) & 0xf3;
   param_1[0x3b] = 0;
   LOCK();
-  *(undefined1 *)((longlong)param_1 + 0xf9) = 0;
+  *(int8_t *)((longlong)param_1 + 0xf9) = 0;
   UNLOCK();
   param_1[0x59] = 0;
-  *(undefined1 *)((longlong)param_1 + 0xf5) = 0;
+  *(int8_t *)((longlong)param_1 + 0xf5) = 0;
   param_1[0x4b] = 0;
   return param_1;
 }
 
 
 
-// 函数: undefined8 ReleaseTransformResources - 释放变换资源
+// 函数: uint64_t ReleaseTransformResources - 释放变换资源
 // 释放变换对象相关的资源，根据标志决定是否释放内存
-undefined8 ReleaseTransformResources(undefined8 object, ulonglong flags)
+uint64_t ReleaseTransformResources(uint64_t object, ulonglong flags)
 
 {
   FUN_1800756e0();
@@ -637,14 +637,14 @@ undefined8 ReleaseTransformResources(undefined8 object, ulonglong flags)
 
 
 
-// 函数: undefined1 CheckTransformStatus - 检查变换状态
+// 函数: int8_t CheckTransformStatus - 检查变换状态
 // 检查变换对象的状态，返回状态信息
-undefined1 CheckTransformStatus(longlong transform_data, undefined8 param2, undefined8 param3, undefined8 param_4)
+int8_t CheckTransformStatus(longlong transform_data, uint64_t param2, uint64_t param3, uint64_t param_4)
 
 {
-  undefined1 status_result;
-  undefined8 error_code;
-  undefined *stack_data;
+  int8_t status_result;
+  uint64_t error_code;
+  void *stack_data;
   longlong check_result;
   
   error_code = 0xfffffffffffffffe;
@@ -666,16 +666,16 @@ undefined1 CheckTransformStatus(longlong transform_data, undefined8 param2, unde
 
 // 函数: void ProcessTransformData - 处理变换数据
 // 处理变换数据，计算边界框和相关信息
-void ProcessTransformData(longlong transform_data, undefined8 *data_source)
+void ProcessTransformData(longlong transform_data, uint64_t *data_source)
 
 {
-  undefined8 *transform_array;
+  uint64_t *transform_array;
   longlong *transform_manager;
   longlong element_data;
-  undefined4 word_data1;
-  undefined4 word_data2;
-  undefined4 word_data3;
-  undefined8 quad_data;
+  int32_t word_data1;
+  int32_t word_data2;
+  int32_t word_data3;
+  uint64_t quad_data;
   char has_transform;
   longlong transform_address;
   longlong *array_iterator;
@@ -685,8 +685,8 @@ void ProcessTransformData(longlong transform_data, undefined8 *data_source)
   float fVar16;
   float fVar17;
   float fVar18;
-  undefined1 auStack_e8 [184];
-  undefined8 uStack_30;
+  int8_t auStack_e8 [184];
+  uint64_t uStack_30;
   
   uVar11 = *(uint *)(param_1 + 0x100) & 0xfbffffff;
   *(uint *)(param_1 + 0x100) = uVar11;
@@ -697,46 +697,46 @@ void ProcessTransformData(longlong transform_data, undefined8 *data_source)
   }
   uVar7 = param_2[1];
   plVar2 = *(longlong **)(param_1 + 0x1c8);
-  *(undefined8 *)(param_1 + 0x120) = *param_2;
-  *(undefined8 *)(param_1 + 0x128) = uVar7;
+  *(uint64_t *)(param_1 + 0x120) = *param_2;
+  *(uint64_t *)(param_1 + 0x128) = uVar7;
   uVar7 = param_2[3];
-  *(undefined8 *)(param_1 + 0x130) = param_2[2];
-  *(undefined8 *)(param_1 + 0x138) = uVar7;
-  uVar4 = *(undefined4 *)((longlong)param_2 + 0x24);
-  uVar5 = *(undefined4 *)(param_2 + 5);
-  uVar6 = *(undefined4 *)((longlong)param_2 + 0x2c);
-  *(undefined4 *)(param_1 + 0x140) = *(undefined4 *)(param_2 + 4);
-  *(undefined4 *)(param_1 + 0x144) = uVar4;
-  *(undefined4 *)(param_1 + 0x148) = uVar5;
-  *(undefined4 *)(param_1 + 0x14c) = uVar6;
-  uVar4 = *(undefined4 *)((longlong)param_2 + 0x34);
-  uVar5 = *(undefined4 *)(param_2 + 7);
-  uVar6 = *(undefined4 *)((longlong)param_2 + 0x3c);
-  *(undefined4 *)(param_1 + 0x150) = *(undefined4 *)(param_2 + 6);
-  *(undefined4 *)(param_1 + 0x154) = uVar4;
-  *(undefined4 *)(param_1 + 0x158) = uVar5;
-  *(undefined4 *)(param_1 + 0x15c) = uVar6;
+  *(uint64_t *)(param_1 + 0x130) = param_2[2];
+  *(uint64_t *)(param_1 + 0x138) = uVar7;
+  uVar4 = *(int32_t *)((longlong)param_2 + 0x24);
+  uVar5 = *(int32_t *)(param_2 + 5);
+  uVar6 = *(int32_t *)((longlong)param_2 + 0x2c);
+  *(int32_t *)(param_1 + 0x140) = *(int32_t *)(param_2 + 4);
+  *(int32_t *)(param_1 + 0x144) = uVar4;
+  *(int32_t *)(param_1 + 0x148) = uVar5;
+  *(int32_t *)(param_1 + 0x14c) = uVar6;
+  uVar4 = *(int32_t *)((longlong)param_2 + 0x34);
+  uVar5 = *(int32_t *)(param_2 + 7);
+  uVar6 = *(int32_t *)((longlong)param_2 + 0x3c);
+  *(int32_t *)(param_1 + 0x150) = *(int32_t *)(param_2 + 6);
+  *(int32_t *)(param_1 + 0x154) = uVar4;
+  *(int32_t *)(param_1 + 0x158) = uVar5;
+  *(int32_t *)(param_1 + 0x15c) = uVar6;
   if (plVar2 != (longlong *)0x0) {
     if (*(code **)(*plVar2 + 0x160) == (code *)&UNK_180277350) {
-      puVar1 = (undefined8 *)((longlong)plVar2 + 0x214);
-      *(undefined4 *)((longlong)plVar2 + 0x244) = 0;
+      puVar1 = (uint64_t *)((longlong)plVar2 + 0x214);
+      *(int32_t *)((longlong)plVar2 + 0x244) = 0;
       if (plVar2[8] - plVar2[7] >> 4 == 0) {
         *puVar1 = 0;
-        *(undefined8 *)((longlong)plVar2 + 0x21c) = 0;
-        *(undefined8 *)((longlong)plVar2 + 0x224) = 0;
-        *(undefined8 *)((longlong)plVar2 + 0x22c) = 0;
-        *(undefined8 *)((longlong)plVar2 + 0x234) = 0;
-        *(undefined8 *)((longlong)plVar2 + 0x23c) = 0;
+        *(uint64_t *)((longlong)plVar2 + 0x21c) = 0;
+        *(uint64_t *)((longlong)plVar2 + 0x224) = 0;
+        *(uint64_t *)((longlong)plVar2 + 0x22c) = 0;
+        *(uint64_t *)((longlong)plVar2 + 0x234) = 0;
+        *(uint64_t *)((longlong)plVar2 + 0x23c) = 0;
       }
       else {
         *puVar1 = 0x4cbebc204cbebc20;
-        *(undefined8 *)((longlong)plVar2 + 0x21c) = 0x7f7fffff4cbebc20;
-        *(undefined4 *)((longlong)plVar2 + 0x234) = 0;
-        *(undefined4 *)(plVar2 + 0x47) = 0;
-        *(undefined4 *)((longlong)plVar2 + 0x23c) = 0;
-        *(undefined4 *)(plVar2 + 0x48) = 0x7f7fffff;
-        *(undefined8 *)((longlong)plVar2 + 0x224) = 0xccbebc20ccbebc20;
-        *(undefined8 *)((longlong)plVar2 + 0x22c) = 0x7f7fffffccbebc20;
+        *(uint64_t *)((longlong)plVar2 + 0x21c) = 0x7f7fffff4cbebc20;
+        *(int32_t *)((longlong)plVar2 + 0x234) = 0;
+        *(int32_t *)(plVar2 + 0x47) = 0;
+        *(int32_t *)((longlong)plVar2 + 0x23c) = 0;
+        *(int32_t *)(plVar2 + 0x48) = 0x7f7fffff;
+        *(uint64_t *)((longlong)plVar2 + 0x224) = 0xccbebc20ccbebc20;
+        *(uint64_t *)((longlong)plVar2 + 0x22c) = 0x7f7fffffccbebc20;
         plVar10 = (longlong *)plVar2[7];
         if (plVar10 < (longlong *)plVar2[8]) {
           do {
@@ -753,11 +753,11 @@ void ProcessTransformData(longlong transform_data, undefined8 *data_source)
         }
         if (((plVar2[8] - plVar2[7] & 0xfffffffffffffff0U) == 0x10) &&
            (lVar3 = *(longlong *)plVar2[7], (*(uint *)(lVar3 + 0x100) & 0x4000000) == 0)) {
-          uVar7 = *(undefined8 *)(lVar3 + 0x29c);
-          *(undefined8 *)((longlong)plVar2 + 0x234) = *(undefined8 *)(lVar3 + 0x294);
-          *(undefined8 *)((longlong)plVar2 + 0x23c) = uVar7;
-          *(undefined4 *)((longlong)plVar2 + 0x244) =
-               *(undefined4 *)(*(longlong *)plVar2[7] + 0x2a4);
+          uVar7 = *(uint64_t *)(lVar3 + 0x29c);
+          *(uint64_t *)((longlong)plVar2 + 0x234) = *(uint64_t *)(lVar3 + 0x294);
+          *(uint64_t *)((longlong)plVar2 + 0x23c) = uVar7;
+          *(int32_t *)((longlong)plVar2 + 0x244) =
+               *(int32_t *)(*(longlong *)plVar2[7] + 0x2a4);
         }
         else {
           FUN_1800b9f60(puVar1);
@@ -841,13 +841,13 @@ void ProcessTransformData(longlong transform_data, undefined8 *data_source)
 
 // 函数: void DestroyTransformObject - 销毁变换对象
 // 销毁变换对象，释放所有相关资源
-void DestroyTransformObject(undefined8 *object)
+void DestroyTransformObject(uint64_t *object)
 
 {
   byte *flag_byte;
   longlong *resource_ptr;
   longlong resource_handle;
-  undefined8 error_code;
+  uint64_t error_code;
   
   uVar4 = 0xfffffffffffffffe;
   *param_1 = &UNK_180a00270;
@@ -901,7 +901,7 @@ void DestroyTransformObject(undefined8 *object)
     }
     param_1[0x3b] = 0;
     LOCK();
-    *(undefined1 *)((longlong)param_1 + 0xf9) = 0;
+    *(int8_t *)((longlong)param_1 + 0xf9) = 0;
     UNLOCK();
   }
   if (param_1[0x3d] != 0) {

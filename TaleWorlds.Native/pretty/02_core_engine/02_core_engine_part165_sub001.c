@@ -6,8 +6,8 @@
 // 全局变量和常量定义
 extern longlong* _DAT_180c8ed18;  // 内存分配器实例
 extern longlong _DAT_180c8aa00;    // 默认数据模板
-extern undefined8 UNK_180a3c3e0;    // 虚函数表指针
-extern undefined8 UNK_18098bcb0;    // 空对象引用
+extern uint64_t UNK_180a3c3e0;    // 虚函数表指针
+extern uint64_t UNK_18098bcb0;    // 空对象引用
 
 /**
  * 复制数据块到目标缓冲区
@@ -15,13 +15,13 @@ extern undefined8 UNK_18098bcb0;    // 空对象引用
  * @param param_2 上下文参数  
  * @param param_3 源数据指针
  */
-void copy_data_block(undefined8 param_1, undefined8 param_2, undefined4 *param_3)
+void copy_data_block(uint64_t param_1, uint64_t param_2, int32_t *param_3)
 {
-    undefined4 data_value;
+    int32_t data_value;
     longlong copy_count;
     longlong source_data;
     longlong target_buffer;
-    undefined4 *target_ptr;
+    int32_t *target_ptr;
     
     if (source_data != 0) {
         data_value = *param_3;
@@ -29,9 +29,9 @@ void copy_data_block(undefined8 param_1, undefined8 param_2, undefined4 *param_3
             *target_ptr = data_value;
             target_ptr = target_ptr + 1;
         }
-        target_ptr = *(undefined4 **)(target_buffer + 8);
+        target_ptr = *(int32_t **)(target_buffer + 8);
     }
-    *(undefined4 **)(target_buffer + 8) = target_ptr + source_data;
+    *(int32_t **)(target_buffer + 8) = target_ptr + source_data;
     return;
 }
 
@@ -373,13 +373,13 @@ void reset_container_state(longlong *container_ptr)
     
     end_pos = container_ptr[1];
     for (current_pos = *container_ptr; current_pos != end_pos; current_pos = current_pos + 0x48) {
-        *(undefined8 *)(current_pos + 0x28) = &UNK_180a3c3e0;
+        *(uint64_t *)(current_pos + 0x28) = &UNK_180a3c3e0;
         if (*(longlong *)(current_pos + 0x30) != 0) {
             release_memory();
         }
-        *(undefined8 *)(current_pos + 0x30) = 0;
-        *(undefined4 *)(current_pos + 0x40) = 0;
-        *(undefined8 *)(current_pos + 0x28) = &UNK_18098bcb0;
+        *(uint64_t *)(current_pos + 0x30) = 0;
+        *(int32_t *)(current_pos + 0x40) = 0;
+        *(uint64_t *)(current_pos + 0x28) = &UNK_18098bcb0;
     }
     
     if (*container_ptr != 0) {
@@ -400,13 +400,13 @@ void cleanup_smart_pointer_container(longlong *container_ptr)
     
     end_pos = container_ptr[1];
     for (current_pos = *container_ptr; current_pos != end_pos; current_pos = current_pos + 0x38) {
-        *(undefined8 *)(current_pos + 0x18) = &UNK_180a3c3e0;
+        *(uint64_t *)(current_pos + 0x18) = &UNK_180a3c3e0;
         if (*(longlong *)(current_pos + 0x20) != 0) {
             release_memory();
         }
-        *(undefined8 *)(current_pos + 0x20) = 0;
-        *(undefined4 *)(current_pos + 0x30) = 0;
-        *(undefined8 *)(current_pos + 0x18) = &UNK_18098bcb0;
+        *(uint64_t *)(current_pos + 0x20) = 0;
+        *(int32_t *)(current_pos + 0x30) = 0;
+        *(uint64_t *)(current_pos + 0x18) = &UNK_18098bcb0;
     }
     
     if (*container_ptr != 0) {
@@ -469,11 +469,11 @@ void destruct_container_object(longlong *container_ptr)
  * @param context_ptr 上下文指针
  * @return 初始化后的数组指针
  */
-undefined8* initialize_array_object(undefined8 *array_ptr, longlong context_ptr)
+uint64_t* initialize_array_object(uint64_t *array_ptr, longlong context_ptr)
 {
     longlong context_data;
-    undefined8 allocation_flag;
-    undefined1 temp_buffer[40];
+    uint64_t allocation_flag;
+    int8_t temp_buffer[40];
     
     allocation_flag = 0xfffffffffffffffe;
     context_data = initialize_context(temp_buffer);
@@ -505,8 +505,8 @@ undefined8* initialize_array_object(undefined8 *array_ptr, longlong context_ptr)
 void resize_triple_array(longlong *array_ptr, ulonglong new_capacity)
 {
     longlong start_pos;
-    undefined4 *new_buffer;
-    undefined4 *copy_ptr;
+    int32_t *new_buffer;
+    int32_t *copy_ptr;
     longlong end_pos;
     longlong current_pos;
     
@@ -514,9 +514,9 @@ void resize_triple_array(longlong *array_ptr, ulonglong new_capacity)
     
     if ((ulonglong)((array_ptr[2] - start_pos) / 0xc) < new_capacity) {
         if (new_capacity == 0) {
-            new_buffer = (undefined4 *)0x0;
+            new_buffer = (int32_t *)0x0;
         } else {
-            new_buffer = (undefined4 *)allocate_memory(_DAT_180c8ed18, new_capacity * 0xc, (char)array_ptr[3]);
+            new_buffer = (int32_t *)allocate_memory(_DAT_180c8ed18, new_capacity * 0xc, (char)array_ptr[3]);
             start_pos = *array_ptr;
         }
         
@@ -526,9 +526,9 @@ void resize_triple_array(longlong *array_ptr, ulonglong new_capacity)
         if (start_pos != end_pos) {
             start_pos = start_pos - (longlong)new_buffer;
             do {
-                *copy_ptr = *(undefined4 *)(start_pos + (longlong)copy_ptr);
-                copy_ptr[1] = *(undefined4 *)(start_pos + 4 + (longlong)copy_ptr);
-                copy_ptr[2] = *(undefined4 *)(start_pos + 8 + (longlong)copy_ptr);
+                *copy_ptr = *(int32_t *)(start_pos + (longlong)copy_ptr);
+                copy_ptr[1] = *(int32_t *)(start_pos + 4 + (longlong)copy_ptr);
+                copy_ptr[2] = *(int32_t *)(start_pos + 8 + (longlong)copy_ptr);
                 copy_ptr = copy_ptr + 3;
             } while (start_pos + (longlong)copy_ptr != end_pos);
             start_pos = *array_ptr;
@@ -552,18 +552,18 @@ void resize_triple_array(longlong *array_ptr, ulonglong new_capacity)
  * @param src_ptr 源指针
  * @param count 复制数量
  */
-void batch_copy_triples(longlong dest_ptr, undefined8 src_ptr, undefined8 count, longlong context)
+void batch_copy_triples(longlong dest_ptr, uint64_t src_ptr, uint64_t count, longlong context)
 {
     longlong start_pos;
-    undefined4 *dest_buffer;
-    undefined4 *src_buffer;
+    int32_t *dest_buffer;
+    int32_t *src_buffer;
     longlong end_pos;
     longlong current_pos;
     
     if (count == 0) {
-        dest_buffer = (undefined4 *)0x0;
+        dest_buffer = (int32_t *)0x0;
     } else {
-        dest_buffer = (undefined4 *)allocate_memory(_DAT_180c8ed18, count * 0xc, *(undefined1 *)(dest_ptr + 0x18));
+        dest_buffer = (int32_t *)allocate_memory(_DAT_180c8ed18, count * 0xc, *(int8_t *)(dest_ptr + 0x18));
         context = *src_ptr;
     }
     
@@ -573,9 +573,9 @@ void batch_copy_triples(longlong dest_ptr, undefined8 src_ptr, undefined8 count,
     if (context != end_pos) {
         context = context - (longlong)dest_buffer;
         do {
-            *src_buffer = *(undefined4 *)(context + (longlong)src_buffer);
-            src_buffer[1] = *(undefined4 *)(context + 4 + (longlong)src_buffer);
-            src_buffer[2] = *(undefined4 *)(context + 8 + (longlong)src_buffer);
+            *src_buffer = *(int32_t *)(context + (longlong)src_buffer);
+            src_buffer[1] = *(int32_t *)(context + 4 + (longlong)src_buffer);
+            src_buffer[2] = *(int32_t *)(context + 8 + (longlong)src_buffer);
             src_buffer = src_buffer + 3;
         } while (context + (longlong)src_buffer != end_pos);
         context = *src_ptr;
@@ -683,16 +683,16 @@ void another_placeholder_function(void)
  */
 longlong copy_construct_object(longlong dest_ptr, longlong src_ptr)
 {
-    *(undefined8 *)(dest_ptr + 0x10) = 0;
+    *(uint64_t *)(dest_ptr + 0x10) = 0;
     *(code **)(dest_ptr + 0x18) = _guard_check_icall;
     
     if (dest_ptr != src_ptr) {
         perform_object_copy();
     }
     
-    *(undefined4 *)(dest_ptr + 0x20) = *(undefined4 *)(src_ptr + 0x20);
-    *(undefined8 *)(dest_ptr + 0x28) = *(undefined8 *)(src_ptr + 0x28);
-    *(undefined8 *)(dest_ptr + 0x30) = *(undefined8 *)(src_ptr + 0x30);
+    *(int32_t *)(dest_ptr + 0x20) = *(int32_t *)(src_ptr + 0x20);
+    *(uint64_t *)(dest_ptr + 0x28) = *(uint64_t *)(src_ptr + 0x28);
+    *(uint64_t *)(dest_ptr + 0x30) = *(uint64_t *)(src_ptr + 0x30);
     
     return dest_ptr;
 }
@@ -708,7 +708,7 @@ void resize_object_array(longlong *array_ptr, ulonglong new_capacity)
     longlong current_end;
     longlong current_size;
     ulonglong required_capacity;
-    undefined8 *object_ptr;
+    uint64_t *object_ptr;
     longlong start_pos;
     longlong new_start;
     ulonglong allocated_capacity;
@@ -718,10 +718,10 @@ void resize_object_array(longlong *array_ptr, ulonglong new_capacity)
     
     if (new_capacity <= (ulonglong)((array_ptr[2] - current_end) / 0x30)) {
         if (new_capacity != 0) {
-            object_ptr = (undefined8 *)(current_end + 0x28);
+            object_ptr = (uint64_t *)(current_end + 0x28);
             required_capacity = new_capacity;
             do {
-                *object_ptr = *(undefined8 *)(template_data + 0x28);
+                *object_ptr = *(uint64_t *)(template_data + 0x28);
                 object_ptr = object_ptr + 6;
                 required_capacity = required_capacity - 1;
             } while (required_capacity != 0);
@@ -755,10 +755,10 @@ void resize_object_array(longlong *array_ptr, ulonglong new_capacity)
     
     if (start_pos == current_end) {
         if (new_capacity != 0) {
-            object_ptr = (undefined8 *)(current_size + 0x28);
+            object_ptr = (uint64_t *)(current_size + 0x28);
             required_capacity = new_capacity;
             do {
-                *object_ptr = *(undefined8 *)(template_data + 0x28);
+                *object_ptr = *(uint64_t *)(template_data + 0x28);
                 object_ptr = object_ptr + 6;
                 required_capacity = required_capacity - 1;
             } while (required_capacity != 0);
@@ -782,13 +782,13 @@ void resize_object_array(longlong *array_ptr, ulonglong new_capacity)
  * @param array_ptr 数组指针
  * @param extension_size 扩展大小
  */
-void extend_object_array(longlong array_ptr, undefined8 base_ptr, undefined8 context_ptr, longlong extension_size)
+void extend_object_array(longlong array_ptr, uint64_t base_ptr, uint64_t context_ptr, longlong extension_size)
 {
     longlong array_start;
     longlong base_size;
     longlong current_size;
     longlong new_size;
-    undefined8 *object_ptr;
+    uint64_t *object_ptr;
     longlong *array_data;
     longlong array_end;
     ulonglong required_capacity;
@@ -821,10 +821,10 @@ void extend_object_array(longlong array_ptr, undefined8 base_ptr, undefined8 con
     }
     
     if (insert_count != 0) {
-        object_ptr = (undefined8 *)(new_size + 0x28);
+        object_ptr = (uint64_t *)(new_size + 0x28);
         current_size = insert_count;
         do {
-            *object_ptr = *(undefined8 *)(array_start + 0x28);
+            *object_ptr = *(uint64_t *)(array_start + 0x28);
             object_ptr = object_ptr + 6;
             current_size = current_size + -1;
         } while (current_size != 0);
@@ -848,7 +848,7 @@ void append_to_object_array(void)
 {
     longlong template_data;
     longlong current_size;
-    undefined8 *object_ptr;
+    uint64_t *object_ptr;
     longlong array_offset;
     longlong array_end;
     longlong element_count;
@@ -856,10 +856,10 @@ void append_to_object_array(void)
     template_data = _DAT_180c8aa00;
     
     if (element_count != 0) {
-        object_ptr = (undefined8 *)(array_end + 0x28);
+        object_ptr = (uint64_t *)(array_end + 0x28);
         current_size = element_count;
         do {
-            *object_ptr = *(undefined8 *)(template_data + 0x28);
+            *object_ptr = *(uint64_t *)(template_data + 0x28);
             object_ptr = object_ptr + 6;
             current_size = current_size + -1;
         } while (current_size != 0);
@@ -882,7 +882,7 @@ void resize_struct_array(longlong *array_ptr, ulonglong new_capacity)
     longlong current_size;
     ulonglong required_capacity;
     longlong new_start;
-    undefined8 *struct_ptr;
+    uint64_t *struct_ptr;
     ulonglong allocated_capacity;
     longlong start_pos;
     
@@ -891,10 +891,10 @@ void resize_struct_array(longlong *array_ptr, ulonglong new_capacity)
     
     if (new_capacity <= (ulonglong)(array_ptr[2] - current_end >> 5)) {
         if (new_capacity != 0) {
-            struct_ptr = (undefined8 *)(current_end + 0x18);
+            struct_ptr = (uint64_t *)(current_end + 0x18);
             required_capacity = new_capacity;
             do {
-                *struct_ptr = *(undefined8 *)(template_data + 0x28);
+                *struct_ptr = *(uint64_t *)(template_data + 0x28);
                 struct_ptr = struct_ptr + 4;
                 required_capacity = required_capacity - 1;
             } while (required_capacity != 0);
@@ -928,10 +928,10 @@ void resize_struct_array(longlong *array_ptr, ulonglong new_capacity)
     
     if (start_pos == current_end) {
         if (new_capacity != 0) {
-            struct_ptr = (undefined8 *)(current_size + 0x18);
+            struct_ptr = (uint64_t *)(current_size + 0x18);
             allocated_capacity = new_capacity;
             do {
-                *struct_ptr = *(undefined8 *)(template_data + 0x28);
+                *struct_ptr = *(uint64_t *)(template_data + 0x28);
                 struct_ptr = struct_ptr + 4;
                 allocated_capacity = allocated_capacity - 1;
             } while (allocated_capacity != 0);
@@ -955,12 +955,12 @@ void resize_struct_array(longlong *array_ptr, ulonglong new_capacity)
  * @param array_ptr 数组指针
  * @param extension_size 扩展大小
  */
-void extend_struct_array(longlong array_ptr, undefined8 base_ptr, undefined8 context_ptr, longlong extension_size)
+void extend_struct_array(longlong array_ptr, uint64_t base_ptr, uint64_t context_ptr, longlong extension_size)
 {
     longlong base_size;
     longlong current_size;
     longlong new_size;
-    undefined8 *struct_ptr;
+    uint64_t *struct_ptr;
     longlong array_data;
     ulonglong required_capacity;
     longlong insert_count;
@@ -981,7 +981,7 @@ void extend_struct_array(longlong array_ptr, undefined8 base_ptr, undefined8 con
     if (required_capacity == 0) {
         current_size = 0;
     } else {
-        current_size = allocate_memory(_DAT_180c8ed18, required_capacity << 5, *(undefined1 *)(array_ptr + 0x18));
+        current_size = allocate_memory(_DAT_180c8ed18, required_capacity << 5, *(int8_t *)(array_ptr + 0x18));
         extension_size = *array_data;
         array_end = array_data[1];
     }
@@ -993,10 +993,10 @@ void extend_struct_array(longlong array_ptr, undefined8 base_ptr, undefined8 con
     }
     
     if (extension_size != 0) {
-        struct_ptr = (undefined8 *)(current_size + 0x18);
+        struct_ptr = (uint64_t *)(current_size + 0x18);
         new_size = extension_size;
         do {
-            *struct_ptr = *(undefined8 *)(array_start + 0x28);
+            *struct_ptr = *(uint64_t *)(array_start + 0x28);
             struct_ptr = struct_ptr + 4;
             new_size = new_size + -1;
         } while (new_size != 0);
@@ -1020,7 +1020,7 @@ void append_to_struct_array(void)
 {
     longlong template_data;
     longlong current_size;
-    undefined8 *struct_ptr;
+    uint64_t *struct_ptr;
     longlong array_offset;
     longlong array_end;
     longlong element_count;
@@ -1028,10 +1028,10 @@ void append_to_struct_array(void)
     template_data = _DAT_180c8aa00;
     
     if (element_count != 0) {
-        struct_ptr = (undefined8 *)(array_end + 0x18);
+        struct_ptr = (uint64_t *)(array_end + 0x18);
         current_size = element_count;
         do {
-            *struct_ptr = *(undefined8 *)(template_data + 0x28);
+            *struct_ptr = *(uint64_t *)(template_data + 0x28);
             struct_ptr = struct_ptr + 4;
             current_size = current_size + -1;
         } while (current_size != 0);
@@ -1047,10 +1047,10 @@ void append_to_struct_array(void)
  * @param container_ptr 容器指针
  * @param extension_size 扩展大小
  */
-void expand_compound_container(undefined8 *container_ptr, ulonglong extension_size)
+void expand_compound_container(uint64_t *container_ptr, ulonglong extension_size)
 {
     uint element_flags;
-    undefined8 element_ptr;
+    uint64_t element_ptr;
     longlong *current_element;
     longlong element_start;
     longlong *element_end;
@@ -1060,7 +1060,7 @@ void expand_compound_container(undefined8 *container_ptr, ulonglong extension_si
     ulonglong new_capacity;
     longlong *temp_element;
     longlong element_offset;
-    undefined8 *sub_element_ptr;
+    uint64_t *sub_element_ptr;
     ulonglong sub_element_count;
     longlong *sub_element_start;
     longlong sub_element_size;
@@ -1083,7 +1083,7 @@ void expand_compound_container(undefined8 *container_ptr, ulonglong extension_si
         current_element = (longlong *)0x0;
         
         if (new_capacity != 0) {
-            current_element = (longlong *)allocate_memory(_DAT_180c8ed18, new_capacity * 0x38, *(undefined1 *)(container_ptr + 3), 0x4924924924924925, 0xfffffffffffffffe);
+            current_element = (longlong *)allocate_memory(_DAT_180c8ed18, new_capacity * 0x38, *(int8_t *)(container_ptr + 3), 0x4924924924924925, 0xfffffffffffffffe);
             element_end = (longlong *)container_ptr[1];
             element_start = (longlong *)*container_ptr;
         }
@@ -1098,7 +1098,7 @@ void expand_compound_container(undefined8 *container_ptr, ulonglong extension_si
                 *new_container = element_start[-4];
                 *(longlong *)(element_offset + -0x18 + (longlong)element_start) = element_start[-3];
                 *(int *)(element_offset + -0x10 + (longlong)element_start) = (int)element_start[-2];
-                sub_element_ptr = (undefined8 *)((longlong)element_start + element_offset + -8);
+                sub_element_ptr = (uint64_t *)((longlong)element_start + element_offset + -8);
                 sub_element_size = *element_start - element_start[-1] >> 3;
                 element_flags = *(uint *)(element_start + 2);
                 *(uint *)(element_offset + 0x10 + (longlong)element_start) = element_flags;
@@ -1118,7 +1118,7 @@ void expand_compound_container(undefined8 *container_ptr, ulonglong extension_si
                     memmove(element_ptr, sub_element_size, *element_start - sub_element_size);
                 }
                 
-                *(undefined8 *)(element_offset + (longlong)element_start) = element_ptr;
+                *(uint64_t *)(element_offset + (longlong)element_start) = element_ptr;
                 new_container = new_container + 7;
                 temp_element = element_start + 3;
                 element_start = element_start + 7;
@@ -1132,11 +1132,11 @@ void expand_compound_container(undefined8 *container_ptr, ulonglong extension_si
                 element_end[-4] = 0;
                 element_end[-3] = 0;
                 element_end[-2] = 0;
-                *(undefined4 *)((longlong)element_end + 0x14) = 0;
+                *(int32_t *)((longlong)element_end + 0x14) = 0;
                 element_end[-1] = 0;
                 *element_end = 0;
                 element_end[1] = 0;
-                *(undefined4 *)(element_end + 2) = 3;
+                *(int32_t *)(element_end + 2) = 3;
                 element_end = element_end + 7;
                 sub_element_count = sub_element_count - 1;
             } while (sub_element_count != 0);
@@ -1181,7 +1181,7 @@ void expand_compound_container(undefined8 *container_ptr, ulonglong extension_si
                 element_start[-1] = 0;
                 *element_start = 0;
                 element_start[1] = 0;
-                *(undefined4 *)(element_start + 2) = 3;
+                *(int32_t *)(element_start + 2) = 3;
                 element_end = element_end + 7;
                 element_start = element_start + 7;
                 new_capacity = new_capacity - 1;
@@ -1312,10 +1312,10 @@ extern void release_memory(void);
 extern void cleanup_element(longlong);
 extern void destroy_element(longlong);
 extern void initialize_context(void*, longlong);
-extern longlong initialize_context(undefined8*);
-extern undefined8 allocate_memory_with_flags(longlong*, ulonglong, ulonglong, longlong, undefined8);
+extern longlong initialize_context(uint64_t*);
+extern uint64_t allocate_memory_with_flags(longlong*, ulonglong, ulonglong, longlong, uint64_t);
 extern void array_element_destructor(void);
-extern undefined8 array_vtable;
+extern uint64_t array_vtable;
 extern code _guard_check_icall;
 extern void perform_object_copy(void);
 extern longlong calculate_size_difference(longlong, longlong);

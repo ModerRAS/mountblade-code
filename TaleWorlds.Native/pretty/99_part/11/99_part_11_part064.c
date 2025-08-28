@@ -75,9 +75,9 @@ void system_initializer_and_config_handler(void);
  * @param param_2 配置数据
  * @param param_3 配置选项
  * @param param_4 输出参数
- * @return undefined8 操作结果码
+ * @return uint64_t 操作结果码
  */
-undefined8 system_config_validator_and_initializer(longlong param_1, ulonglong param_2, uint param_3, undefined4 *param_4);
+uint64_t system_config_validator_and_initializer(longlong param_1, ulonglong param_2, uint param_3, int32_t *param_4);
 
 /**
  * @brief 系统状态更新和同步器
@@ -85,9 +85,9 @@ undefined8 system_config_validator_and_initializer(longlong param_1, ulonglong p
  * 更新系统状态信息，同步系统各组件状态。
  * 处理状态变更、数据同步和组件协调。
  * 
- * @return undefined8 操作结果码
+ * @return uint64_t 操作结果码
  */
-undefined8 system_state_updater_and_synchronizer(void);
+uint64_t system_state_updater_and_synchronizer(void);
 
 /**
  * @brief 系统参数计算器
@@ -95,9 +95,9 @@ undefined8 system_state_updater_and_synchronizer(void);
  * 根据系统配置计算运行参数，优化系统性能。
  * 处理参数计算、性能优化和资源配置。
  * 
- * @return undefined8 计算结果
+ * @return uint64_t 计算结果
  */
-undefined8 system_parameter_calculator(void);
+uint64_t system_parameter_calculator(void);
 
 /** @} */
 
@@ -120,9 +120,9 @@ undefined8 system_parameter_calculator(void);
  * @param param_1 数据处理器
  * @param param_2 输入数据
  * @param param_3 处理选项
- * @return undefined8 处理结果码
+ * @return uint64_t 处理结果码
  */
-undefined8 data_validator_and_processor(longlong param_1, undefined8 param_2, int param_3);
+uint64_t data_validator_and_processor(longlong param_1, uint64_t param_2, int param_3);
 
 /**
  * @brief 数据分配和初始化器
@@ -147,7 +147,7 @@ void data_allocator_and_initializer(longlong param_1, int param_2, int param_3);
  * @param param_2 目标位置
  * @return void 无返回值
  */
-void data_transmitter_and_copier(undefined8 param_1, undefined8 param_2);
+void data_transmitter_and_copier(uint64_t param_1, uint64_t param_2);
 
 /**
  * @brief 数据读取和处理器
@@ -184,9 +184,9 @@ void data_reader_and_processor(longlong param_1, int param_2);
  * @param param_3 缓冲区大小
  * @param param_4 输出参数
  * @param param_5 状态指针
- * @return undefined8 解析结果码
+ * @return uint64_t 解析结果码
  */
-undefined8 protocol_data_parser(longlong param_1, char *param_2, int *param_3, longlong param_4, int *param_5);
+uint64_t protocol_data_parser(longlong param_1, char *param_2, int *param_3, longlong param_4, int *param_5);
 
 /**
  * @brief 数据包读取和解析器
@@ -242,9 +242,9 @@ void buffer_initializer_and_cleaner(void);
  * 
  * @param param_1 处理器上下文
  * @param param_2 输入字符
- * @return undefined1 处理结果
+ * @return int8_t 处理结果
  */
-undefined1 character_processor_and_converter(longlong param_1, char param_2);
+int8_t character_processor_and_converter(longlong param_1, char param_2);
 
 /**
  * @brief 数据流处理器
@@ -302,8 +302,8 @@ void exception_termination_handler(void);
 /** @{ */
 
 /** 系统配置数据 */
-extern undefined8 _DAT_180be12f0;        /**< 系统配置基地址 */
-extern undefined8 _DAT_180bf00a8;        /**< 安全配置数据 */
+extern uint64_t _DAT_180be12f0;        /**< 系统配置基地址 */
+extern uint64_t _DAT_180bf00a8;        /**< 安全配置数据 */
 
 /** 内存管理数据 */
 extern undefined UNK_18097c540;          /**< 内存池指针 */

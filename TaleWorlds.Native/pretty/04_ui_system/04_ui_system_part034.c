@@ -55,7 +55,7 @@
  * @param param_9 输出坐标指针
  */
 void ui_system_advanced_path_optimizer(longlong param_1, longlong param_2, longlong param_3, short *param_4, int param_5,
-                                     int param_6, undefined8 *param_7, undefined8 param_8, short *param_9)
+                                     int param_6, uint64_t *param_7, uint64_t param_8, short *param_9)
 {
     // 局部变量声明
     int iteration_count;
@@ -79,7 +79,7 @@ void ui_system_advanced_path_optimizer(longlong param_1, longlong param_2, longl
     longlong saved_grid_data_y;
     longlong saved_grid_width;
     longlong saved_grid_height;
-    undefined8 *function_ptr_array;
+    uint64_t *function_ptr_array;
     longlong saved_context_ptr;
     longlong saved_base_coordinate;
     longlong saved_offset_x;
@@ -93,7 +93,7 @@ void ui_system_advanced_path_optimizer(longlong param_1, longlong param_2, longl
     grid_data_x = *(longlong *)(param_1 + 0x2398);
     
     // 渲染参数提取
-    param_8 = *(undefined4 *)(param_2 + 0x54);
+    param_8 = *(int32_t *)(param_2 + 0x54);
     grid_data_y = (longlong)*(int *)(param_2 + 0x50) + **(longlong **)(param_2 + 0x48);
     
     // 输出坐标设置
@@ -275,7 +275,7 @@ void ui_system_movement_processor_advanced(longlong param_1, longlong *param_2)
     short vector_component_15;
     short vector_component_16;
     undefined6 transform_result;
-    undefined1 vector_data_1[16];
+    int8_t vector_data_1[16];
     ushort weight_1;
     ushort weight_2;
     ushort weight_3;
@@ -294,31 +294,31 @@ void ui_system_movement_processor_advanced(longlong param_1, longlong *param_2)
     ushort weight_16;
     ushort weight_17;
     ushort weight_18;
-    undefined1 vector_data_2[16];
+    int8_t vector_data_2[16];
     short result_component_1;
     short result_component_2;
     short result_component_3;
     short result_component_4;
     short result_component_5;
     short result_component_6;
-    undefined1 vector_data_3[16];
-    undefined1 vector_data_4[16];
+    int8_t vector_data_3[16];
+    int8_t vector_data_4[16];
     short result_component_7;
     short result_component_8;
     short result_component_9;
     short result_component_10;
     short result_component_11;
     short result_component_12;
-    undefined1 vector_data_5[16];
-    undefined1 vector_data_6[16];
+    int8_t vector_data_5[16];
+    int8_t vector_data_6[16];
     short result_component_13;
     short result_component_14;
     short result_component_15;
     short result_component_16;
     
     // 向量数据加载
-    vector_data_5 = **(undefined1 (**) [16])(param_1 + 8);
-    vector_data_3 = (*(undefined1 (**) [16])(param_1 + 8))[1];
+    vector_data_5 = **(int8_t (**) [16])(param_1 + 8);
+    vector_data_3 = (*(int8_t (**) [16])(param_1 + 8))[1];
     source_vector = (short *)param_2[3];
     
     // 向量变换处理
@@ -356,7 +356,7 @@ void ui_system_movement_processor_advanced(longlong param_1, longlong *param_2)
     vector_data_6._14_2_ = (vector_data_5._14_2_ - vector_data_1._14_2_) + source_vector[7];
     
     // 矩阵乘法
-    vector_data_6 = pmulhw(vector_data_6, **(undefined1 (**) [16])(param_1 + 0x18));
+    vector_data_6 = pmulhw(vector_data_6, **(int8_t (**) [16])(param_1 + 0x18));
     vector_data_3 = vector_data_2 ^ vector_data_3;
     
     // 第二组向量变换
@@ -370,7 +370,7 @@ void ui_system_movement_processor_advanced(longlong param_1, longlong *param_2)
     vector_data_4._14_2_ = (vector_data_3._14_2_ - vector_data_2._14_2_) + source_vector[15];
     
     // 矩阵乘法
-    vector_data_5 = pmulhw(vector_data_4, (*(undefined1 (**) [16])(param_1 + 0x18))[1]);
+    vector_data_5 = pmulhw(vector_data_4, (*(int8_t (**) [16])(param_1 + 0x18))[1]);
     source_vector = (short *)*param_2;
     
     // 结果计算
@@ -545,7 +545,7 @@ void ui_system_movement_processor_advanced(longlong param_1, longlong *param_2)
 void ui_system_coordinate_transformer(longlong param_1, longlong *param_2)
 {
     // 变换数据声明
-    undefined1 transform_data_1[16];
+    int8_t transform_data_1[16];
     short *coordinate_ptr;
     longlong matrix_ptr;
     bool comparison_result;
@@ -579,19 +579,19 @@ void ui_system_coordinate_transformer(longlong param_1, longlong *param_2)
     short coord_28;
     short *temp_ptr_1;
     short *temp_ptr_2;
-    undefined1 transform_flag;
-    undefined1 transform_data_2[16];
+    int8_t transform_flag;
+    int8_t transform_data_2[16];
     short result_coord_1;
     short result_coord_2;
     short result_coord_3;
     short result_coord_4;
-    undefined1 transform_data_3[16];
-    undefined1 transform_data_4[16];
-    undefined1 transform_data_5[16];
-    undefined1 transform_data_6[16];
-    undefined1 transform_data_7[16];
-    undefined1 transform_data_8[16];
-    undefined1 stack_protection[16];
+    int8_t transform_data_3[16];
+    int8_t transform_data_4[16];
+    int8_t transform_data_5[16];
+    int8_t transform_data_6[16];
+    int8_t transform_data_7[16];
+    int8_t transform_data_8[16];
+    int8_t stack_protection[16];
     short stack_coord_1;
     short stack_coord_2;
     short stack_coord_3;
@@ -627,10 +627,10 @@ void ui_system_coordinate_transformer(longlong param_1, longlong *param_2)
     coordinate_ptr = (short *)*param_2;
     
     // 变换数据加载
-    transform_data_2 = **(undefined1 (**) [16])(param_1 + 0x20);
-    transform_data_1 = (*(undefined1 (**) [16])(param_1 + 0x20))[1];
-    transform_data_5 = **(undefined1 (**) [16])(param_1 + 8);
-    transform_data_7 = (*(undefined1 (**) [16])(param_1 + 8))[1];
+    transform_data_2 = **(int8_t (**) [16])(param_1 + 0x20);
+    transform_data_1 = (*(int8_t (**) [16])(param_1 + 0x20))[1];
+    transform_data_5 = **(int8_t (**) [16])(param_1 + 8);
+    transform_data_7 = (*(int8_t (**) [16])(param_1 + 8))[1];
     
     // 数据预处理
     transform_data_6 = psraw(transform_data_5, 0xf);
@@ -687,12 +687,12 @@ void ui_system_coordinate_transformer(longlong param_1, longlong *param_2)
     transform_data_4._14_2_ = stack_coord_8 + temp_ptr_1[7];
     
     // 矩阵数据加载
-    transform_data_5 = **(undefined1 (**) [16])(param_1 + 0x10);
-    transform_data_7 = (*(undefined1 (**) [16])(param_1 + 0x10))[1];
+    transform_data_5 = **(int8_t (**) [16])(param_1 + 0x10);
+    transform_data_7 = (*(int8_t (**) [16])(param_1 + 0x10))[1];
     temp_ptr_2 = (short *)param_2[3];
     
     // 栈保护数据
-    stack_protection = *(undefined1 (*) [16])(temp_ptr_2 + 8);
+    stack_protection = *(int8_t (*) [16])(temp_ptr_2 + 8);
     coord_17 = *temp_ptr_2;
     coord_18 = temp_ptr_2[1];
     coord_19 = temp_ptr_2[2];
@@ -970,7 +970,7 @@ void ui_system_coordinate_transformer(longlong param_1, longlong *param_2)
     *(short *)(matrix_ptr + 0x1e) = coord_15 * stack_protection._14_2_;
     
     // 存储变换标志
-    *(undefined1 *)param_2[5] = transform_flag;
+    *(int8_t *)param_2[5] = transform_flag;
     
     // 栈保护清理
     FUN_1808fc050(stack_protection_var ^ (ulonglong)stack_protection);

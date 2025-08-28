@@ -12,9 +12,9 @@
  * 该函数递归清理资源，并在清理完成后调用销毁函数。
  * 如果资源数组中的第0x17个元素不为空，则调用其虚函数表中的销毁函数。
  */
-void cleanup_and_destroy_resources(undefined8 param_1, undefined8 *param_2, undefined8 param_3, undefined8 param_4)
+void cleanup_and_destroy_resources(uint64_t param_1, uint64_t *param_2, uint64_t param_3, uint64_t param_4)
 {
-  if (param_2 != (undefined8 *)0x0) {
+  if (param_2 != (uint64_t *)0x0) {
     cleanup_and_destroy_resources(param_1, *param_2, param_3, param_4, 0xfffffffffffffffe);
     if ((longlong *)param_2[0x17] != (longlong *)0x0) {
       (**(code **)(*(longlong *)param_2[0x17] + 0x38))();
@@ -36,9 +36,9 @@ void cleanup_and_destroy_resources(undefined8 param_1, undefined8 *param_2, unde
  * 该函数递归释放资源，然后调用资源清理函数，最后重置资源状态。
  * 包含对资源引用计数的检查和清理。
  */
-void release_and_reset_resources(undefined8 param_1, undefined8 *param_2, undefined8 param_3, undefined8 param_4)
+void release_and_reset_resources(uint64_t param_1, uint64_t *param_2, uint64_t param_3, uint64_t param_4)
 {
-  if (param_2 == (undefined8 *)0x0) {
+  if (param_2 == (uint64_t *)0x0) {
     return;
   }
   release_and_reset_resources(param_1, *param_2, param_3, param_4, 0xfffffffffffffffe);
@@ -49,7 +49,7 @@ void release_and_reset_resources(undefined8 param_1, undefined8 *param_2, undefi
     deallocate_resource_memory();
   }
   param_2[5] = 0;
-  *(undefined4 *)(param_2 + 7) = 0;
+  *(int32_t *)(param_2 + 7) = 0;
   param_2[4] = &GLOBAL_RESOURCE_CLEANUP_HANDLER;
   // 警告：子函数不返回
   deallocate_resource_memory(param_2);
@@ -64,9 +64,9 @@ void release_and_reset_resources(undefined8 param_1, undefined8 *param_2, undefi
  * 
  * 该函数在资源初始化完成后执行清理，重置资源状态并释放内存。
  */
-void post_init_cleanup(undefined8 param_1, undefined8 *param_2, undefined8 param_3, undefined8 param_4)
+void post_init_cleanup(uint64_t param_1, uint64_t *param_2, uint64_t param_3, uint64_t param_4)
 {
-  if (param_2 == (undefined8 *)0x0) {
+  if (param_2 == (uint64_t *)0x0) {
     return;
   }
   post_init_cleanup(param_1, *param_2, param_3, param_4, 0xfffffffffffffffe);
@@ -76,7 +76,7 @@ void post_init_cleanup(undefined8 param_1, undefined8 *param_2, undefined8 param
     deallocate_resource_memory();
   }
   param_2[5] = 0;
-  *(undefined4 *)(param_2 + 7) = 0;
+  *(int32_t *)(param_2 + 7) = 0;
   param_2[4] = &GLOBAL_RESOURCE_CLEANUP_HANDLER;
   // 警告：子函数不返回
   deallocate_resource_memory(param_2);
@@ -92,9 +92,9 @@ void post_init_cleanup(undefined8 param_1, undefined8 *param_2, undefined8 param
  * 该函数验证资源状态，然后执行清理操作。
  * 特别检查第8个元素的状态。
  */
-void validate_and_cleanup_resources(undefined8 param_1, undefined8 *param_2, undefined8 param_3, undefined8 param_4)
+void validate_and_cleanup_resources(uint64_t param_1, uint64_t *param_2, uint64_t param_3, uint64_t param_4)
 {
-  if (param_2 == (undefined8 *)0x0) {
+  if (param_2 == (uint64_t *)0x0) {
     return;
   }
   validate_and_cleanup_resources(param_1, *param_2, param_3, param_4, 0xfffffffffffffffe);
@@ -108,7 +108,7 @@ void validate_and_cleanup_resources(undefined8 param_1, undefined8 *param_2, und
     deallocate_resource_memory();
   }
   param_2[5] = 0;
-  *(undefined4 *)(param_2 + 7) = 0;
+  *(int32_t *)(param_2 + 7) = 0;
   param_2[4] = &GLOBAL_RESOURCE_CLEANUP_HANDLER;
   // 警告：子函数不返回
   deallocate_resource_memory(param_2);
@@ -124,20 +124,20 @@ void validate_and_cleanup_resources(undefined8 param_1, undefined8 *param_2, und
  * 该函数重新分配资源数组内存，并将现有资源复制到新的内存位置。
  * 支持动态扩容，容量按需增长。
  */
-void reallocate_and_copy_resources(undefined8 *param_1, longlong param_2)
+void reallocate_and_copy_resources(uint64_t *param_1, longlong param_2)
 {
-  undefined8 *puVar1;
-  undefined8 *puVar2;
-  undefined8 *puVar3;
-  undefined8 *puVar4;
+  uint64_t *puVar1;
+  uint64_t *puVar2;
+  uint64_t *puVar3;
+  uint64_t *puVar4;
   longlong lVar5;
   longlong lVar6;
-  undefined8 *puVar7;
+  uint64_t *puVar7;
   
-  puVar7 = (undefined8 *)param_1[1];
-  puVar4 = (undefined8 *)*param_1;
+  puVar7 = (uint64_t *)param_1[1];
+  puVar4 = (uint64_t *)*param_1;
   lVar5 = ((longlong)puVar7 - (longlong)puVar4) / 0x28;
-  puVar2 = (undefined8 *)0x0;
+  puVar2 = (uint64_t *)0x0;
   if (lVar5 == 0) {
     lVar5 = 1;
   }
@@ -145,11 +145,11 @@ void reallocate_and_copy_resources(undefined8 *param_1, longlong param_2)
     lVar5 = lVar5 * 2;
     if (lVar5 == 0) goto LAB_18005856a;
   }
-  puVar2 = (undefined8 *)
-           allocate_memory_block(GLOBAL_MEMORY_ALLOCATOR, lVar5 * 0x28, *(undefined1 *)(param_1 + 3), puVar4,
+  puVar2 = (uint64_t *)
+           allocate_memory_block(GLOBAL_MEMORY_ALLOCATOR, lVar5 * 0x28, *(int8_t *)(param_1 + 3), puVar4,
                          0xfffffffffffffffe);
-  puVar7 = (undefined8 *)param_1[1];
-  puVar4 = (undefined8 *)*param_1;
+  puVar7 = (uint64_t *)param_1[1];
+  puVar4 = (uint64_t *)*param_1;
 LAB_18005856a:
   puVar3 = puVar2;
   if (puVar4 != puVar7) {
@@ -157,20 +157,20 @@ LAB_18005856a:
     puVar4 = puVar4 + 1;
     do {
       *puVar3 = &GLOBAL_RESOURCE_CLEANUP_HANDLER;
-      *(undefined8 *)(lVar6 + (longlong)puVar4) = 0;
-      *(undefined4 *)(lVar6 + 8 + (longlong)puVar4) = 0;
+      *(uint64_t *)(lVar6 + (longlong)puVar4) = 0;
+      *(int32_t *)(lVar6 + 8 + (longlong)puVar4) = 0;
       *puVar3 = &GLOBAL_RESOURCE_RELEASE_HANDLER;
-      *(undefined8 *)(lVar6 + 0x10 + (longlong)puVar4) = 0;
-      *(undefined8 *)(lVar6 + (longlong)puVar4) = 0;
-      *(undefined4 *)(lVar6 + 8 + (longlong)puVar4) = 0;
-      *(undefined4 *)(lVar6 + 8 + (longlong)puVar4) = *(undefined4 *)(puVar4 + 1);
-      *(undefined8 *)(lVar6 + (longlong)puVar4) = *puVar4;
-      *(undefined4 *)(lVar6 + 0x14 + (longlong)puVar4) = *(undefined4 *)((longlong)puVar4 + 0x14);
-      *(undefined4 *)(lVar6 + 0x10 + (longlong)puVar4) = *(undefined4 *)(puVar4 + 2);
-      *(undefined4 *)(puVar4 + 1) = 0;
+      *(uint64_t *)(lVar6 + 0x10 + (longlong)puVar4) = 0;
+      *(uint64_t *)(lVar6 + (longlong)puVar4) = 0;
+      *(int32_t *)(lVar6 + 8 + (longlong)puVar4) = 0;
+      *(int32_t *)(lVar6 + 8 + (longlong)puVar4) = *(int32_t *)(puVar4 + 1);
+      *(uint64_t *)(lVar6 + (longlong)puVar4) = *puVar4;
+      *(int32_t *)(lVar6 + 0x14 + (longlong)puVar4) = *(int32_t *)((longlong)puVar4 + 0x14);
+      *(int32_t *)(lVar6 + 0x10 + (longlong)puVar4) = *(int32_t *)(puVar4 + 2);
+      *(int32_t *)(puVar4 + 1) = 0;
       *puVar4 = 0;
       puVar4[2] = 0;
-      *(undefined4 *)(lVar6 + 0x18 + (longlong)puVar4) = *(undefined4 *)(puVar4 + 3);
+      *(int32_t *)(lVar6 + 0x18 + (longlong)puVar4) = *(int32_t *)(puVar4 + 3);
       puVar3 = puVar3 + 5;
       puVar1 = puVar4 + 4;
       puVar4 = puVar4 + 5;
@@ -178,21 +178,21 @@ LAB_18005856a:
   }
   *puVar3 = &GLOBAL_RESOURCE_CLEANUP_HANDLER;
   puVar3[1] = 0;
-  *(undefined4 *)(puVar3 + 2) = 0;
+  *(int32_t *)(puVar3 + 2) = 0;
   *puVar3 = &GLOBAL_RESOURCE_RELEASE_HANDLER;
   puVar3[3] = 0;
   puVar3[1] = 0;
-  *(undefined4 *)(puVar3 + 2) = 0;
-  *(undefined4 *)(puVar3 + 2) = *(undefined4 *)(param_2 + 0x10);
-  puVar3[1] = *(undefined8 *)(param_2 + 8);
-  *(undefined4 *)((longlong)puVar3 + 0x1c) = *(undefined4 *)(param_2 + 0x1c);
-  *(undefined4 *)(puVar3 + 3) = *(undefined4 *)(param_2 + 0x18);
-  *(undefined4 *)(param_2 + 0x10) = 0;
-  *(undefined8 *)(param_2 + 8) = 0;
-  *(undefined8 *)(param_2 + 0x18) = 0;
-  *(undefined4 *)(puVar3 + 4) = *(undefined4 *)(param_2 + 0x20);
-  puVar7 = (undefined8 *)param_1[1];
-  puVar4 = (undefined8 *)*param_1;
+  *(int32_t *)(puVar3 + 2) = 0;
+  *(int32_t *)(puVar3 + 2) = *(int32_t *)(param_2 + 0x10);
+  puVar3[1] = *(uint64_t *)(param_2 + 8);
+  *(int32_t *)((longlong)puVar3 + 0x1c) = *(int32_t *)(param_2 + 0x1c);
+  *(int32_t *)(puVar3 + 3) = *(int32_t *)(param_2 + 0x18);
+  *(int32_t *)(param_2 + 0x10) = 0;
+  *(uint64_t *)(param_2 + 8) = 0;
+  *(uint64_t *)(param_2 + 0x18) = 0;
+  *(int32_t *)(puVar3 + 4) = *(int32_t *)(param_2 + 0x20);
+  puVar7 = (uint64_t *)param_1[1];
+  puVar4 = (uint64_t *)*param_1;
   if (puVar4 != puVar7) {
     do {
       *puVar4 = &GLOBAL_RESOURCE_RELEASE_HANDLER;
@@ -201,13 +201,13 @@ LAB_18005856a:
         deallocate_resource_memory();
       }
       puVar4[1] = 0;
-      *(undefined4 *)(puVar4 + 3) = 0;
+      *(int32_t *)(puVar4 + 3) = 0;
       *puVar4 = &GLOBAL_RESOURCE_CLEANUP_HANDLER;
       puVar4 = puVar4 + 5;
     } while (puVar4 != puVar7);
-    puVar4 = (undefined8 *)*param_1;
+    puVar4 = (uint64_t *)*param_1;
   }
-  if (puVar4 == (undefined8 *)0x0) {
+  if (puVar4 == (uint64_t *)0x0) {
     *param_1 = puVar2;
     param_1[1] = puVar3 + 5;
     param_1[2] = puVar2 + lVar5 * 5;
@@ -241,9 +241,9 @@ void perform_system_cleanup(longlong param_1)
  * 
  * 该函数验证资源状态，然后执行系统清理操作。
  */
-void validate_and_system_cleanup(undefined8 param_1, undefined8 *param_2, undefined8 param_3, undefined8 param_4)
+void validate_and_system_cleanup(uint64_t param_1, uint64_t *param_2, uint64_t param_3, uint64_t param_4)
 {
-  if (param_2 == (undefined8 *)0x0) {
+  if (param_2 == (uint64_t *)0x0) {
     return;
   }
   validate_and_system_cleanup(param_1, *param_2, param_3, param_4, 0xfffffffffffffffe);
@@ -257,7 +257,7 @@ void validate_and_system_cleanup(undefined8 param_1, undefined8 *param_2, undefi
     deallocate_resource_memory();
   }
   param_2[5] = 0;
-  *(undefined4 *)(param_2 + 7) = 0;
+  *(int32_t *)(param_2 + 7) = 0;
   param_2[4] = &GLOBAL_RESOURCE_CLEANUP_HANDLER;
   // 警告：子函数不返回
   deallocate_resource_memory(param_2);
@@ -270,9 +270,9 @@ void validate_and_system_cleanup(undefined8 param_1, undefined8 *param_2, undefi
  * 
  * 该函数递归释放资源，并调用回调清理函数。
  */
-void release_and_callback_cleanup(undefined8 param_1, undefined8 *param_2)
+void release_and_callback_cleanup(uint64_t param_1, uint64_t *param_2)
 {
-  if (param_2 != (undefined8 *)0x0) {
+  if (param_2 != (uint64_t *)0x0) {
     release_and_callback_cleanup(param_1, *param_2);
     cleanup_callback_function(param_2);
     // 警告：子函数不返回
@@ -287,9 +287,9 @@ void release_and_callback_cleanup(undefined8 param_1, undefined8 *param_2)
  * 
  * 该函数是资源回调清理的包装器，使用未绑定的寄存器变量。
  */
-void callback_cleanup_wrapper(undefined8 param_1)
+void callback_cleanup_wrapper(uint64_t param_1)
 {
-  undefined8 *unaff_RBX;
+  uint64_t *unaff_RBX;
   
   release_and_callback_cleanup(param_1, *unaff_RBX);
   cleanup_callback_function();
@@ -314,20 +314,20 @@ void empty_operation(void)
  * 
  * 该函数清理内存块，重置相关指针和计数器。
  */
-void cleanup_memory_block(undefined8 param_1, longlong param_2)
+void cleanup_memory_block(uint64_t param_1, longlong param_2)
 {
   if (*(longlong *)(param_2 + 0x40) != 0) {
     // 警告：子函数不返回
     deallocate_resource_memory();
   }
-  *(undefined8 *)(param_2 + 0x20) = &GLOBAL_RESOURCE_RELEASE_HANDLER;
+  *(uint64_t *)(param_2 + 0x20) = &GLOBAL_RESOURCE_RELEASE_HANDLER;
   if (*(longlong *)(param_2 + 0x28) != 0) {
     // 警告：子函数不返回
     deallocate_resource_memory();
   }
-  *(undefined8 *)(param_2 + 0x28) = 0;
-  *(undefined4 *)(param_2 + 0x38) = 0;
-  *(undefined8 *)(param_2 + 0x20) = &GLOBAL_RESOURCE_CLEANUP_HANDLER;
+  *(uint64_t *)(param_2 + 0x28) = 0;
+  *(int32_t *)(param_2 + 0x38) = 0;
+  *(uint64_t *)(param_2 + 0x20) = &GLOBAL_RESOURCE_CLEANUP_HANDLER;
   if (param_2 != 0) {
     // 警告：子函数不返回
     deallocate_resource_memory(param_2);
@@ -347,10 +347,10 @@ void cleanup_memory_block(undefined8 param_1, longlong param_2)
  */
 void batch_process_resource_array(longlong *param_1, longlong param_2, longlong param_3)
 {
-  undefined8 *puVar1;
+  uint64_t *puVar1;
   longlong lVar2;
-  undefined8 *puVar3;
-  undefined8 *puVar4;
+  uint64_t *puVar3;
+  uint64_t *puVar4;
   ulonglong uVar5;
   ulonglong uVar6;
   longlong lVar7;
@@ -370,16 +370,16 @@ void batch_process_resource_array(longlong *param_1, longlong param_2, longlong 
         param_2 = param_2 + 0x20;
       } while (param_2 != param_3);
     }
-    puVar1 = (undefined8 *)param_1[1];
-    puVar4 = (undefined8 *)*param_1;
+    puVar1 = (uint64_t *)param_1[1];
+    puVar4 = (uint64_t *)*param_1;
     if (puVar4 != puVar1) {
       do {
         (**(code **)*puVar4)(puVar4, 0);
         puVar4 = puVar4 + 4;
       } while (puVar4 != puVar1);
-      puVar4 = (undefined8 *)*param_1;
+      puVar4 = (uint64_t *)*param_1;
     }
-    if (puVar4 != (undefined8 *)0x0) {
+    if (puVar4 != (uint64_t *)0x0) {
       // 警告：子函数不返回
       deallocate_resource_memory(puVar4);
     }
@@ -397,8 +397,8 @@ void batch_process_resource_array(longlong *param_1, longlong param_2, longlong 
       param_1[1] = lVar2;
     }
     else {
-      puVar3 = (undefined8 *)process_resource_range(param_2, param_3);
-      puVar1 = (undefined8 *)param_1[1];
+      puVar3 = (uint64_t *)process_resource_range(param_2, param_3);
+      puVar1 = (uint64_t *)param_1[1];
       for (puVar4 = puVar3; puVar4 != puVar1; puVar4 = puVar4 + 4) {
         (**(code **)*puVar4)(puVar4, 0);
       }
@@ -418,10 +418,10 @@ void batch_process_resource_array(longlong *param_1, longlong param_2, longlong 
  */
 void reallocate_resource_memory_block(longlong param_1)
 {
-  undefined8 *puVar1;
+  uint64_t *puVar1;
   longlong lVar2;
   longlong unaff_RBX;
-  undefined8 *puVar3;
+  uint64_t *puVar3;
   longlong unaff_RSI;
   longlong *unaff_RDI;
   longlong lVar4;
@@ -431,7 +431,7 @@ void reallocate_resource_memory_block(longlong param_1)
     lVar2 = 0;
   }
   else {
-    lVar2 = allocate_memory_block(GLOBAL_MEMORY_ALLOCATOR, unaff_RSI << 5, *(undefined1 *)(param_1 + 0x18));
+    lVar2 = allocate_memory_block(GLOBAL_MEMORY_ALLOCATOR, unaff_RSI << 5, *(int8_t *)(param_1 + 0x18));
   }
   if (unaff_RBX != unaff_R15) {
     lVar4 = lVar2 - unaff_RBX;
@@ -440,16 +440,16 @@ void reallocate_resource_memory_block(longlong param_1)
       unaff_RBX = unaff_RBX + 0x20;
     } while (unaff_RBX != unaff_R15);
   }
-  puVar1 = (undefined8 *)unaff_RDI[1];
-  puVar3 = (undefined8 *)*unaff_RDI;
+  puVar1 = (uint64_t *)unaff_RDI[1];
+  puVar3 = (uint64_t *)*unaff_RDI;
   if (puVar3 != puVar1) {
     do {
       (**(code **)*puVar3)(puVar3, 0);
       puVar3 = puVar3 + 4;
     } while (puVar3 != puVar1);
-    puVar3 = (undefined8 *)*unaff_RDI;
+    puVar3 = (uint64_t *)*unaff_RDI;
   }
-  if (puVar3 == (undefined8 *)0x0) {
+  if (puVar3 == (uint64_t *)0x0) {
     *unaff_RDI = lVar2;
     lVar2 = unaff_RSI * 0x20 + lVar2;
     unaff_RDI[2] = lVar2;
@@ -468,9 +468,9 @@ void reallocate_resource_memory_block(longlong param_1)
  */
 void execute_resource_copy(void)
 {
-  undefined8 *puVar1;
+  uint64_t *puVar1;
   longlong unaff_RBX;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   longlong unaff_RSI;
   longlong *unaff_RDI;
   longlong unaff_R12;
@@ -482,16 +482,16 @@ void execute_resource_copy(void)
     copy_memory_block(lVar3 + unaff_RBX, unaff_RBX);
     unaff_RBX = unaff_RBX + 0x20;
   } while (unaff_RBX != unaff_R15);
-  puVar1 = (undefined8 *)unaff_RDI[1];
-  puVar2 = (undefined8 *)*unaff_RDI;
+  puVar1 = (uint64_t *)unaff_RDI[1];
+  puVar2 = (uint64_t *)*unaff_RDI;
   if (puVar2 != puVar1) {
     do {
       (**(code **)*puVar2)(puVar2, 0);
       puVar2 = puVar2 + 4;
     } while (puVar2 != puVar1);
-    puVar2 = (undefined8 *)*unaff_RDI;
+    puVar2 = (uint64_t *)*unaff_RDI;
   }
-  if (puVar2 != (undefined8 *)0x0) {
+  if (puVar2 != (uint64_t *)0x0) {
     // 警告：子函数不返回
     deallocate_resource_memory(puVar2);
   }
@@ -511,22 +511,22 @@ void execute_resource_copy(void)
 void cleanup_and_reset_resource_array(void)
 {
   longlong lVar1;
-  undefined8 *puVar2;
-  undefined8 *puVar3;
+  uint64_t *puVar2;
+  uint64_t *puVar3;
   longlong unaff_RSI;
   longlong *unaff_RDI;
   longlong unaff_R12;
   
-  puVar2 = (undefined8 *)unaff_RDI[1];
-  puVar3 = (undefined8 *)*unaff_RDI;
+  puVar2 = (uint64_t *)unaff_RDI[1];
+  puVar3 = (uint64_t *)*unaff_RDI;
   if (puVar3 != puVar2) {
     do {
       (**(code **)*puVar3)(puVar3, 0);
       puVar3 = puVar3 + 4;
     } while (puVar3 != puVar2);
-    puVar3 = (undefined8 *)*unaff_RDI;
+    puVar3 = (uint64_t *)*unaff_RDI;
   }
-  if (puVar3 != (undefined8 *)0x0) {
+  if (puVar3 != (uint64_t *)0x0) {
     // 警告：子函数不返回
     deallocate_resource_memory(puVar3);
   }
@@ -545,13 +545,13 @@ void cleanup_and_reset_resource_array(void)
  * 
  * 该函数处理指定范围内的资源操作。
  */
-void process_resource_range_operation(longlong param_1, undefined8 param_2, longlong param_3)
+void process_resource_range_operation(longlong param_1, uint64_t param_2, longlong param_3)
 {
-  undefined8 *puVar1;
-  undefined8 *puVar2;
-  undefined8 uVar3;
+  uint64_t *puVar1;
+  uint64_t *puVar2;
+  uint64_t uVar3;
   longlong unaff_RBX;
-  undefined8 *puVar4;
+  uint64_t *puVar4;
   ulonglong uVar5;
   ulonglong unaff_RSI;
   longlong unaff_RDI;
@@ -560,15 +560,15 @@ void process_resource_range_operation(longlong param_1, undefined8 param_2, long
   if (uVar5 < unaff_RSI) {
     process_resource_range();
     uVar3 = finalize_resource_processing(uVar5 * 0x20 + unaff_RBX);
-    *(undefined8 *)(unaff_RDI + 8) = uVar3;
+    *(uint64_t *)(unaff_RDI + 8) = uVar3;
   }
   else {
-    puVar2 = (undefined8 *)process_resource_range();
-    puVar1 = *(undefined8 **)(unaff_RDI + 8);
+    puVar2 = (uint64_t *)process_resource_range();
+    puVar1 = *(uint64_t **)(unaff_RDI + 8);
     for (puVar4 = puVar2; puVar4 != puVar1; puVar4 = puVar4 + 4) {
       (**(code **)*puVar4)(puVar4, 0);
     }
-    *(undefined8 **)(unaff_RDI + 8) = puVar2;
+    *(uint64_t **)(unaff_RDI + 8) = puVar2;
   }
   return;
 }
@@ -586,7 +586,7 @@ void process_resource_range_operation(longlong param_1, undefined8 param_2, long
  */
 void reallocate_and_manage_resource_array(longlong *param_1, longlong param_2, longlong param_3, longlong param_4)
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   longlong lVar2;
   longlong lVar3;
   ulonglong uVar4;
@@ -657,7 +657,7 @@ void reallocate_and_manage_resource_array(longlong *param_1, longlong param_2, l
  */
 void manage_resource_array_allocation(longlong *param_1, longlong param_2, longlong param_3, longlong param_4)
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   longlong lVar2;
   longlong lVar3;
   ulonglong uVar4;
@@ -723,7 +723,7 @@ void manage_resource_array_allocation(longlong *param_1, longlong param_2, longl
  */
 void expand_resource_array_capacity(longlong param_1, longlong param_2)
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   longlong unaff_RBP;
   longlong unaff_RSI;
   longlong *unaff_RDI;
@@ -781,14 +781,14 @@ void empty_operation3(void)
 void cleanup_memory_block_state(longlong param_1)
 {
   initialize_memory_block();
-  *(undefined8 *)(param_1 + 8) = &GLOBAL_RESOURCE_RELEASE_HANDLER;
+  *(uint64_t *)(param_1 + 8) = &GLOBAL_RESOURCE_RELEASE_HANDLER;
   if (*(longlong *)(param_1 + 0x10) != 0) {
     // 警告：子函数不返回
     deallocate_resource_memory();
   }
-  *(undefined8 *)(param_1 + 0x10) = 0;
-  *(undefined4 *)(param_1 + 0x20) = 0;
-  *(undefined8 *)(param_1 + 8) = &GLOBAL_RESOURCE_CLEANUP_HANDLER;
+  *(uint64_t *)(param_1 + 0x10) = 0;
+  *(int32_t *)(param_1 + 0x20) = 0;
+  *(uint64_t *)(param_1 + 8) = &GLOBAL_RESOURCE_CLEANUP_HANDLER;
   return;
 }
 
@@ -798,7 +798,7 @@ void cleanup_memory_block_state(longlong param_1)
  * 
  * 该函数清理资源结构，调用相关的清理函数。
  */
-void cleanup_resource_structure(undefined8 *param_1)
+void cleanup_resource_structure(uint64_t *param_1)
 {
   if ((longlong *)param_1[0x13] != (longlong *)0x0) {
     (**(code **)(*(longlong *)param_1[0x13] + 0x38))();
@@ -813,7 +813,7 @@ void cleanup_resource_structure(undefined8 *param_1)
  * 
  * 该函数释放资源数组中的元素，清理相关资源。
  */
-void release_resource_array_element(undefined8 *param_1)
+void release_resource_array_element(uint64_t *param_1)
 {
   cleanup_resource_array(param_1 + 4);
   *param_1 = &GLOBAL_RESOURCE_RELEASE_HANDLER;
@@ -822,7 +822,7 @@ void release_resource_array_element(undefined8 *param_1)
     deallocate_resource_memory();
   }
   param_1[1] = 0;
-  *(undefined4 *)(param_1 + 3) = 0;
+  *(int32_t *)(param_1 + 3) = 0;
   *param_1 = &GLOBAL_RESOURCE_CLEANUP_HANDLER;
   return;
 }
@@ -833,7 +833,7 @@ void release_resource_array_element(undefined8 *param_1)
  * 
  * 该函数重置资源数组中的元素，清理相关资源。
  */
-void reset_resource_array_element(undefined8 *param_1)
+void reset_resource_array_element(uint64_t *param_1)
 {
   if (param_1[4] != 0) {
     // 警告：子函数不返回
@@ -845,7 +845,7 @@ void reset_resource_array_element(undefined8 *param_1)
     deallocate_resource_memory();
   }
   param_1[1] = 0;
-  *(undefined4 *)(param_1 + 3) = 0;
+  *(int32_t *)(param_1 + 3) = 0;
   *param_1 = &GLOBAL_RESOURCE_CLEANUP_HANDLER;
   return;
 }
@@ -881,18 +881,18 @@ void cleanup_resource_block(longlong *param_1)
  * 
  * 该函数执行资源的清理操作，包括销毁互斥锁和清理各个资源层级。
  */
-void execute_resource_cleanup(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void execute_resource_cleanup(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
   destroy_mutex_in_place();
-  post_init_cleanup(param_1 + 0xf0, *(undefined8 *)(param_1 + 0x100), param_3, param_4, uVar1);
-  post_init_cleanup(param_1 + 0xc0, *(undefined8 *)(param_1 + 0xd0));
-  post_init_cleanup(param_1 + 0x90, *(undefined8 *)(param_1 + 0xa0));
-  cleanup_resource_range(param_1 + 0x60, *(undefined8 *)(param_1 + 0x70));
-  validate_and_system_cleanup(param_1 + 0x30, *(undefined8 *)(param_1 + 0x40));
-  cleanup_resource_range(param_1, *(undefined8 *)(param_1 + 0x10));
+  post_init_cleanup(param_1 + 0xf0, *(uint64_t *)(param_1 + 0x100), param_3, param_4, uVar1);
+  post_init_cleanup(param_1 + 0xc0, *(uint64_t *)(param_1 + 0xd0));
+  post_init_cleanup(param_1 + 0x90, *(uint64_t *)(param_1 + 0xa0));
+  cleanup_resource_range(param_1 + 0x60, *(uint64_t *)(param_1 + 0x70));
+  validate_and_system_cleanup(param_1 + 0x30, *(uint64_t *)(param_1 + 0x40));
+  cleanup_resource_range(param_1, *(uint64_t *)(param_1 + 0x10));
   return;
 }
 
@@ -905,9 +905,9 @@ void execute_resource_cleanup(longlong param_1, undefined8 param_2, undefined8 p
  * 
  * 该函数执行指定范围内的资源清理操作。
  */
-void cleanup_resource_range(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void cleanup_resource_range(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-  cleanup_resource_range(param_1, *(undefined8 *)(param_1 + 0x10), param_3, param_4, 0xfffffffffffffffe);
+  cleanup_resource_range(param_1, *(uint64_t *)(param_1 + 0x10), param_3, param_4, 0xfffffffffffffffe);
   return;
 }
 
@@ -920,9 +920,9 @@ void cleanup_resource_range(longlong param_1, undefined8 param_2, undefined8 par
  * 
  * 该函数执行资源状态的清理操作。
  */
-void cleanup_resource_state(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void cleanup_resource_state(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-  cleanup_resource_range(param_1, *(undefined8 *)(param_1 + 0x10), param_3, param_4, 0xfffffffffffffffe);
+  cleanup_resource_range(param_1, *(uint64_t *)(param_1 + 0x10), param_3, param_4, 0xfffffffffffffffe);
   return;
 }
 
@@ -933,7 +933,7 @@ void cleanup_resource_state(longlong param_1, undefined8 param_2, undefined8 par
  * 
  * 该函数调用指定的资源函数。
  */
-void call_resource_function(undefined8 param_1, undefined8 *param_2)
+void call_resource_function(uint64_t param_1, uint64_t *param_2)
 {
   (*(code *)*param_2)();
   return;

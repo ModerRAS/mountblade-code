@@ -57,39 +57,39 @@
  * @param param_3 包含插入数据的整数指针
  * @return void
  */
-void DataStructureProcessor(undefined8 *param_1, undefined8 param_2, int *param_3)
+void DataStructureProcessor(uint64_t *param_1, uint64_t param_2, int *param_3)
 {
     int iVar1;
     bool bVar2;
-    undefined8 *puVar3;
+    uint64_t *puVar3;
     longlong lVar4;
-    undefined8 *puVar5;
-    undefined8 uVar6;
+    uint64_t *puVar5;
+    uint64_t uVar6;
     
     // 分配内存并初始化数据结构节点
-    lVar4 = FUN_18062b420(_DAT_180c8ed18, MEMORY_POOL_SIZE_0x30, *(undefined1 *)(param_1 + 5));
+    lVar4 = FUN_18062b420(_DAT_180c8ed18, MEMORY_POOL_SIZE_0x30, *(int8_t *)(param_1 + 5));
     iVar1 = *param_3;
     bVar2 = true;
     *(int *)(lVar4 + COMPARISON_THRESHOLD) = iVar1;
-    *(undefined8 *)(lVar4 + MULTI_FIELD_OFFSET_0x28) = *(undefined8 *)(param_3 + 2);
-    puVar5 = (undefined8 *)param_1[2];
+    *(uint64_t *)(lVar4 + MULTI_FIELD_OFFSET_0x28) = *(uint64_t *)(param_3 + 2);
+    puVar5 = (uint64_t *)param_1[2];
     puVar3 = param_1;
     
     // 在有序数据结构中查找插入位置
-    while (puVar5 != (undefined8 *)0x0) {
+    while (puVar5 != (uint64_t *)0x0) {
         bVar2 = iVar1 < *(int *)(puVar5 + 4);
         puVar3 = puVar5;
         if (iVar1 < *(int *)(puVar5 + 4)) {
-            puVar5 = (undefined8 *)puVar5[1];
+            puVar5 = (uint64_t *)puVar5[1];
         }
         else {
-            puVar5 = (undefined8 *)*puVar5;
+            puVar5 = (uint64_t *)*puVar5;
         }
     }
     puVar5 = puVar3;
     if (bVar2) {
-        if (puVar3 == (undefined8 *)param_1[1]) goto LAB_1801e8d7c;
-        puVar5 = (undefined8 *)func_0x00018066b9a0(puVar3);
+        if (puVar3 == (uint64_t *)param_1[1]) goto LAB_1801e8d7c;
+        puVar5 = (uint64_t *)func_0x00018066b9a0(puVar3);
     }
     if (*(int *)(lVar4 + COMPARISON_THRESHOLD) <= *(int *)(puVar5 + 4)) {
         FUN_18064e900(lVar4);
@@ -117,29 +117,29 @@ LAB_1801e8d7c:
  * @param param_1 数据结构指针数组
  * @param param_2 返回找到的节点指针
  * @param param_3 包含搜索键值的多字段数组
- * @return undefined8* 返回找到的节点指针或新创建的节点
+ * @return uint64_t* 返回找到的节点指针或新创建的节点
  */
-undefined8 * MultiFieldDataSearcher(undefined8 *param_1, undefined8 *param_2, undefined4 *param_3)
+uint64_t * MultiFieldDataSearcher(uint64_t *param_1, uint64_t *param_2, int32_t *param_3)
 {
     ushort uVar1;
     uint uVar2;
     ulonglong uVar3;
-    undefined8 *puVar4;
-    undefined8 *puVar5;
+    uint64_t *puVar4;
+    uint64_t *puVar5;
     longlong lVar6;
     bool bVar7;
-    undefined8 uVar8;
+    uint64_t uVar8;
     ushort uStack_38;
     
     uVar2 = param_3[1];
     uVar3 = *(ulonglong *)(param_3 + 2);
     bVar7 = true;
     uStack_38 = (ushort)*param_3;
-    puVar5 = (undefined8 *)param_1[2];
+    puVar5 = (uint64_t *)param_1[2];
     puVar4 = param_1;
     
     // 多字段复合搜索算法
-    while (puVar5 != (undefined8 *)0x0) {
+    while (puVar5 != (uint64_t *)0x0) {
         uVar1 = *(ushort *)(puVar5 + 4);
         puVar4 = puVar5;
         if ((uStack_38 < uVar1) ||
@@ -148,17 +148,17 @@ undefined8 * MultiFieldDataSearcher(undefined8 *param_1, undefined8 *param_2, un
              (((uStack_38 <= uVar1 && (uVar2 <= *(uint *)((longlong)puVar5 + MULTI_FIELD_OFFSET_0x24))) &&
               (uVar3 < (ulonglong)puVar5[5])))))))) {
             bVar7 = true;
-            puVar5 = (undefined8 *)puVar5[1];
+            puVar5 = (uint64_t *)puVar5[1];
         }
         else {
             bVar7 = false;
-            puVar5 = (undefined8 *)*puVar5;
+            puVar5 = (uint64_t *)*puVar5;
         }
     }
     puVar5 = puVar4;
     if (bVar7) {
-        if (puVar4 == (undefined8 *)param_1[1]) goto LAB_1801e8eaa;
-        puVar5 = (undefined8 *)func_0x00018066b9a0(puVar4);
+        if (puVar4 == (uint64_t *)param_1[1]) goto LAB_1801e8eaa;
+        puVar5 = (uint64_t *)func_0x00018066b9a0(puVar4);
     }
     uVar1 = *(ushort *)(puVar5 + 4);
     if ((uStack_38 <= uVar1) &&
@@ -167,14 +167,14 @@ undefined8 * MultiFieldDataSearcher(undefined8 *param_1, undefined8 *param_2, un
          (((uStack_38 < uVar1 || (uVar2 < *(uint *)((longlong)puVar5 + MULTI_FIELD_OFFSET_0x24))) ||
           (uVar3 <= (ulonglong)puVar5[5])))))))) {
         *param_2 = puVar5;
-        *(undefined1 *)(param_2 + 1) = 0;
+        *(int8_t *)(param_2 + 1) = 0;
         return param_2;
     }
 LAB_1801e8eaa:
-    lVar6 = FUN_18062b420(_DAT_180c8ed18, MEMORY_POOL_SIZE_0x30, *(undefined1 *)(param_1 + 5));
-    *(undefined2 *)(lVar6 + MULTI_FIELD_OFFSET_0x20) = *(undefined2 *)param_3;
-    *(undefined4 *)(lVar6 + MULTI_FIELD_OFFSET_0x24) = param_3[1];
-    *(undefined8 *)(lVar6 + MULTI_FIELD_OFFSET_0x28) = *(undefined8 *)(param_3 + 2);
+    lVar6 = FUN_18062b420(_DAT_180c8ed18, MEMORY_POOL_SIZE_0x30, *(int8_t *)(param_1 + 5));
+    *(int16_t *)(lVar6 + MULTI_FIELD_OFFSET_0x20) = *(int16_t *)param_3;
+    *(int32_t *)(lVar6 + MULTI_FIELD_OFFSET_0x24) = param_3[1];
+    *(uint64_t *)(lVar6 + MULTI_FIELD_OFFSET_0x28) = *(uint64_t *)(param_3 + 2);
     if (((puVar4 == param_1) || (uVar1 = *(ushort *)(puVar4 + 4), uStack_38 < uVar1)) ||
        ((uStack_38 <= uVar1 &&
         ((uVar2 < *(uint *)((longlong)puVar4 + MULTI_FIELD_OFFSET_0x24) ||
@@ -202,20 +202,20 @@ LAB_1801e8eaa:
  * @param param_2 扩展参数
  * @return void
  */
-void DynamicArrayExpander(undefined8 *param_1, undefined8 param_2)
+void DynamicArrayExpander(uint64_t *param_1, uint64_t param_2)
 {
-    undefined8 *puVar1;
-    undefined8 *puVar2;
-    undefined8 *puVar3;
+    uint64_t *puVar1;
+    uint64_t *puVar2;
+    uint64_t *puVar3;
     longlong lVar4;
-    undefined8 *puVar5;
+    uint64_t *puVar5;
     longlong lVar6;
-    undefined8 *puVar7;
+    uint64_t *puVar7;
     
-    puVar7 = (undefined8 *)param_1[1];
-    puVar3 = (undefined8 *)*param_1;
+    puVar7 = (uint64_t *)param_1[1];
+    puVar3 = (uint64_t *)*param_1;
     lVar6 = ((longlong)puVar7 - (longlong)puVar3) / DATA_STRUCTURE_SIZE;
-    puVar2 = (undefined8 *)0x0;
+    puVar2 = (uint64_t *)0x0;
     if (lVar6 == 0) {
         lVar6 = 1;
     }
@@ -223,11 +223,11 @@ void DynamicArrayExpander(undefined8 *param_1, undefined8 param_2)
         lVar6 = lVar6 * ARRAY_EXPANSION_FACTOR;
         if (lVar6 == 0) goto LAB_1801e8fdf;
     }
-    puVar2 = (undefined8 *)
-             FUN_18062b420(_DAT_180c8ed18, lVar6 * DATA_STRUCTURE_SIZE, *(undefined1 *)(param_1 + 3), puVar3,
+    puVar2 = (uint64_t *)
+             FUN_18062b420(_DAT_180c8ed18, lVar6 * DATA_STRUCTURE_SIZE, *(int8_t *)(param_1 + 3), puVar3,
                            0xfffffffffffffffe);
-    puVar7 = (undefined8 *)param_1[1];
-    puVar3 = (undefined8 *)*param_1;
+    puVar7 = (uint64_t *)param_1[1];
+    puVar3 = (uint64_t *)*param_1;
 LAB_1801e8fdf:
     puVar5 = puVar2;
     if (puVar3 != puVar7) {
@@ -235,29 +235,29 @@ LAB_1801e8fdf:
         puVar3 = puVar3 + 1;
         do {
             *puVar5 = &UNK_18098bcb0;
-            *(undefined8 *)(lVar4 + (longlong)puVar3) = 0;
-            *(undefined4 *)(lVar4 + 8 + (longlong)puVar3) = 0;
+            *(uint64_t *)(lVar4 + (longlong)puVar3) = 0;
+            *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = 0;
             *puVar5 = &UNK_180a3c3e0;
-            *(undefined8 *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = 0;
-            *(undefined8 *)(lVar4 + (longlong)puVar3) = 0;
-            *(undefined4 *)(lVar4 + 8 + (longlong)puVar3) = 0;
-            *(undefined4 *)(lVar4 + 8 + (longlong)puVar3) = *(undefined4 *)(puVar3 + 1);
-            *(undefined8 *)(lVar4 + (longlong)puVar3) = *puVar3;
-            *(undefined4 *)(lVar4 + MULTI_FIELD_OFFSET_0x14 + (longlong)puVar3) = *(undefined4 *)((longlong)puVar3 + MULTI_FIELD_OFFSET_0x14);
-            *(undefined4 *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = *(undefined4 *)(puVar3 + 2);
-            *(undefined4 *)(puVar3 + 1) = 0;
+            *(uint64_t *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = 0;
+            *(uint64_t *)(lVar4 + (longlong)puVar3) = 0;
+            *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = 0;
+            *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = *(int32_t *)(puVar3 + 1);
+            *(uint64_t *)(lVar4 + (longlong)puVar3) = *puVar3;
+            *(int32_t *)(lVar4 + MULTI_FIELD_OFFSET_0x14 + (longlong)puVar3) = *(int32_t *)((longlong)puVar3 + MULTI_FIELD_OFFSET_0x14);
+            *(int32_t *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = *(int32_t *)(puVar3 + 2);
+            *(int32_t *)(puVar3 + 1) = 0;
             *puVar3 = 0;
             puVar3[2] = 0;
-            *(undefined8 *)(lVar4 + MULTI_FIELD_OFFSET_0x18 + (longlong)puVar3) = puVar3[3];
-            *(undefined1 *)(lVar4 + MULTI_FIELD_OFFSET_0x20 + (longlong)puVar3) = *(undefined1 *)(puVar3 + 4);
+            *(uint64_t *)(lVar4 + MULTI_FIELD_OFFSET_0x18 + (longlong)puVar3) = puVar3[3];
+            *(int8_t *)(lVar4 + MULTI_FIELD_OFFSET_0x20 + (longlong)puVar3) = *(int8_t *)(puVar3 + 4);
             puVar5 = puVar5 + 6;
             puVar1 = puVar3 + 5;
             puVar3 = puVar3 + 6;
         } while (puVar1 != puVar7);
     }
     FUN_1801eb800(puVar5, param_2, 0x1800467e0);
-    puVar7 = (undefined8 *)param_1[1];
-    puVar3 = (undefined8 *)*param_1;
+    puVar7 = (uint64_t *)param_1[1];
+    puVar3 = (uint64_t *)*param_1;
     if (puVar3 != puVar7) {
         do {
             *puVar3 = &UNK_180a3c3e0;
@@ -265,13 +265,13 @@ LAB_1801e8fdf:
                 FUN_18064e900();
             }
             puVar3[1] = 0;
-            *(undefined4 *)(puVar3 + 3) = 0;
+            *(int32_t *)(puVar3 + 3) = 0;
             *puVar3 = &UNK_18098bcb0;
             puVar3 = puVar3 + 6;
         } while (puVar3 != puVar7);
-        puVar3 = (undefined8 *)*param_1;
+        puVar3 = (uint64_t *)*param_1;
     }
-    if (puVar3 == (undefined8 *)0x0) {
+    if (puVar3 == (uint64_t *)0x0) {
         *param_1 = puVar2;
         param_1[1] = puVar5 + 6;
         param_1[2] = puVar2 + lVar6 * 6;
@@ -294,20 +294,20 @@ LAB_1801e8fdf:
  * @param param_2 重分配参数
  * @return void
  */
-void OptimizedArrayResizer(undefined8 *param_1, undefined8 param_2)
+void OptimizedArrayResizer(uint64_t *param_1, uint64_t param_2)
 {
-    undefined8 *puVar1;
-    undefined8 *puVar2;
-    undefined8 *puVar3;
+    uint64_t *puVar1;
+    uint64_t *puVar2;
+    uint64_t *puVar3;
     longlong lVar4;
-    undefined8 *puVar5;
+    uint64_t *puVar5;
     longlong lVar6;
-    undefined8 *puVar7;
+    uint64_t *puVar7;
     
-    puVar7 = (undefined8 *)param_1[1];
-    puVar3 = (undefined8 *)*param_1;
+    puVar7 = (uint64_t *)param_1[1];
+    puVar3 = (uint64_t *)*param_1;
     lVar6 = ((longlong)puVar7 - (longlong)puVar3) / DATA_STRUCTURE_SIZE;
-    puVar2 = (undefined8 *)0x0;
+    puVar2 = (uint64_t *)0x0;
     if (lVar6 == 0) {
         lVar6 = 1;
     }
@@ -315,11 +315,11 @@ void OptimizedArrayResizer(undefined8 *param_1, undefined8 param_2)
         lVar6 = lVar6 * ARRAY_EXPANSION_FACTOR;
         if (lVar6 == 0) goto LAB_1801e91cf;
     }
-    puVar2 = (undefined8 *)
-             FUN_18062b420(_DAT_180c8ed18, lVar6 * DATA_STRUCTURE_SIZE, *(undefined1 *)(param_1 + 3), puVar3,
+    puVar2 = (uint64_t *)
+             FUN_18062b420(_DAT_180c8ed18, lVar6 * DATA_STRUCTURE_SIZE, *(int8_t *)(param_1 + 3), puVar3,
                            0xfffffffffffffffe);
-    puVar7 = (undefined8 *)param_1[1];
-    puVar3 = (undefined8 *)*param_1;
+    puVar7 = (uint64_t *)param_1[1];
+    puVar3 = (uint64_t *)*param_1;
 LAB_1801e91cf:
     puVar5 = puVar2;
     if (puVar3 != puVar7) {
@@ -327,29 +327,29 @@ LAB_1801e91cf:
         puVar3 = puVar3 + 1;
         do {
             *puVar5 = &UNK_18098bcb0;
-            *(undefined8 *)(lVar4 + (longlong)puVar3) = 0;
-            *(undefined4 *)(lVar4 + 8 + (longlong)puVar3) = 0;
+            *(uint64_t *)(lVar4 + (longlong)puVar3) = 0;
+            *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = 0;
             *puVar5 = &UNK_180a3c3e0;
-            *(undefined8 *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = 0;
-            *(undefined8 *)(lVar4 + (longlong)puVar3) = 0;
-            *(undefined4 *)(lVar4 + 8 + (longlong)puVar3) = 0;
-            *(undefined4 *)(lVar4 + 8 + (longlong)puVar3) = *(undefined4 *)(puVar3 + 1);
-            *(undefined8 *)(lVar4 + (longlong)puVar3) = *puVar3;
-            *(undefined4 *)(lVar4 + MULTI_FIELD_OFFSET_0x14 + (longlong)puVar3) = *(undefined4 *)((longlong)puVar3 + MULTI_FIELD_OFFSET_0x14);
-            *(undefined4 *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = *(undefined4 *)(puVar3 + 2);
-            *(undefined4 *)(puVar3 + 1) = 0;
+            *(uint64_t *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = 0;
+            *(uint64_t *)(lVar4 + (longlong)puVar3) = 0;
+            *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = 0;
+            *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = *(int32_t *)(puVar3 + 1);
+            *(uint64_t *)(lVar4 + (longlong)puVar3) = *puVar3;
+            *(int32_t *)(lVar4 + MULTI_FIELD_OFFSET_0x14 + (longlong)puVar3) = *(int32_t *)((longlong)puVar3 + MULTI_FIELD_OFFSET_0x14);
+            *(int32_t *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = *(int32_t *)(puVar3 + 2);
+            *(int32_t *)(puVar3 + 1) = 0;
             *puVar3 = 0;
             puVar3[2] = 0;
-            *(undefined8 *)(lVar4 + MULTI_FIELD_OFFSET_0x18 + (longlong)puVar3) = puVar3[3];
-            *(undefined1 *)(lVar4 + MULTI_FIELD_OFFSET_0x20 + (longlong)puVar3) = *(undefined1 *)(puVar3 + 4);
+            *(uint64_t *)(lVar4 + MULTI_FIELD_OFFSET_0x18 + (longlong)puVar3) = puVar3[3];
+            *(int8_t *)(lVar4 + MULTI_FIELD_OFFSET_0x20 + (longlong)puVar3) = *(int8_t *)(puVar3 + 4);
             puVar5 = puVar5 + 6;
             puVar1 = puVar3 + 5;
             puVar3 = puVar3 + 6;
         } while (puVar1 != puVar7);
     }
     FUN_1801eb800(puVar5, param_2, FUN_1801cfab0);
-    puVar7 = (undefined8 *)param_1[1];
-    puVar3 = (undefined8 *)*param_1;
+    puVar7 = (uint64_t *)param_1[1];
+    puVar3 = (uint64_t *)*param_1;
     if (puVar3 != puVar7) {
         do {
             *puVar3 = &UNK_180a3c3e0;
@@ -357,13 +357,13 @@ LAB_1801e91cf:
                 FUN_18064e900();
             }
             puVar3[1] = 0;
-            *(undefined4 *)(puVar3 + 3) = 0;
+            *(int32_t *)(puVar3 + 3) = 0;
             *puVar3 = &UNK_18098bcb0;
             puVar3 = puVar3 + 6;
         } while (puVar3 != puVar7);
-        puVar3 = (undefined8 *)*param_1;
+        puVar3 = (uint64_t *)*param_1;
     }
-    if (puVar3 == (undefined8 *)0x0) {
+    if (puVar3 == (uint64_t *)0x0) {
         *param_1 = puVar2;
         param_1[1] = puVar5 + 6;
         param_1[2] = puVar2 + lVar6 * 6;
@@ -386,20 +386,20 @@ LAB_1801e91cf:
  * @param param_2 扩展参数
  * @return void
  */
-void MemoryPoolExpander(undefined8 *param_1, undefined8 param_2)
+void MemoryPoolExpander(uint64_t *param_1, uint64_t param_2)
 {
-    undefined8 *puVar1;
-    undefined8 *puVar2;
-    undefined8 *puVar3;
+    uint64_t *puVar1;
+    uint64_t *puVar2;
+    uint64_t *puVar3;
     longlong lVar4;
-    undefined8 *puVar5;
+    uint64_t *puVar5;
     longlong lVar6;
-    undefined8 *puVar7;
+    uint64_t *puVar7;
     
-    puVar7 = (undefined8 *)param_1[1];
-    puVar3 = (undefined8 *)*param_1;
+    puVar7 = (uint64_t *)param_1[1];
+    puVar3 = (uint64_t *)*param_1;
     lVar6 = ((longlong)puVar7 - (longlong)puVar3) / DATA_STRUCTURE_SIZE;
-    puVar2 = (undefined8 *)0x0;
+    puVar2 = (uint64_t *)0x0;
     if (lVar6 == 0) {
         lVar6 = 1;
     }
@@ -407,11 +407,11 @@ void MemoryPoolExpander(undefined8 *param_1, undefined8 param_2)
         lVar6 = lVar6 * ARRAY_EXPANSION_FACTOR;
         if (lVar6 == 0) goto LAB_1801e93bf;
     }
-    puVar2 = (undefined8 *)
-             FUN_18062b420(_DAT_180c8ed18, lVar6 * DATA_STRUCTURE_SIZE, *(undefined1 *)(param_1 + 3), puVar3,
+    puVar2 = (uint64_t *)
+             FUN_18062b420(_DAT_180c8ed18, lVar6 * DATA_STRUCTURE_SIZE, *(int8_t *)(param_1 + 3), puVar3,
                            0xfffffffffffffffe);
-    puVar7 = (undefined8 *)param_1[1];
-    puVar3 = (undefined8 *)*param_1;
+    puVar7 = (uint64_t *)param_1[1];
+    puVar3 = (uint64_t *)*param_1;
 LAB_1801e93bf:
     puVar5 = puVar2;
     if (puVar3 != puVar7) {
@@ -419,29 +419,29 @@ LAB_1801e93bf:
         puVar3 = puVar3 + 1;
         do {
             *puVar5 = &UNK_18098bcb0;
-            *(undefined8 *)(lVar4 + (longlong)puVar3) = 0;
-            *(undefined4 *)(lVar4 + 8 + (longlong)puVar3) = 0;
+            *(uint64_t *)(lVar4 + (longlong)puVar3) = 0;
+            *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = 0;
             *puVar5 = &UNK_180a3c3e0;
-            *(undefined8 *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = 0;
-            *(undefined8 *)(lVar4 + (longlong)puVar3) = 0;
-            *(undefined4 *)(lVar4 + 8 + (longlong)puVar3) = 0;
-            *(undefined4 *)(lVar4 + 8 + (longlong)puVar3) = *(undefined4 *)(puVar3 + 1);
-            *(undefined8 *)(lVar4 + (longlong)puVar3) = *puVar3;
-            *(undefined4 *)(lVar4 + MULTI_FIELD_OFFSET_0x14 + (longlong)puVar3) = *(undefined4 *)((longlong)puVar3 + MULTI_FIELD_OFFSET_0x14);
-            *(undefined4 *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = *(undefined4 *)(puVar3 + 2);
-            *(undefined4 *)(puVar3 + 1) = 0;
+            *(uint64_t *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = 0;
+            *(uint64_t *)(lVar4 + (longlong)puVar3) = 0;
+            *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = 0;
+            *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = *(int32_t *)(puVar3 + 1);
+            *(uint64_t *)(lVar4 + (longlong)puVar3) = *puVar3;
+            *(int32_t *)(lVar4 + MULTI_FIELD_OFFSET_0x14 + (longlong)puVar3) = *(int32_t *)((longlong)puVar3 + MULTI_FIELD_OFFSET_0x14);
+            *(int32_t *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = *(int32_t *)(puVar3 + 2);
+            *(int32_t *)(puVar3 + 1) = 0;
             *puVar3 = 0;
             puVar3[2] = 0;
-            *(undefined8 *)(lVar4 + MULTI_FIELD_OFFSET_0x18 + (longlong)puVar3) = puVar3[3];
-            *(undefined1 *)(lVar4 + MULTI_FIELD_OFFSET_0x20 + (longlong)puVar3) = *(undefined1 *)(puVar3 + 4);
+            *(uint64_t *)(lVar4 + MULTI_FIELD_OFFSET_0x18 + (longlong)puVar3) = puVar3[3];
+            *(int8_t *)(lVar4 + MULTI_FIELD_OFFSET_0x20 + (longlong)puVar3) = *(int8_t *)(puVar3 + 4);
             puVar5 = puVar5 + 6;
             puVar1 = puVar3 + 5;
             puVar3 = puVar3 + 6;
         } while (puVar1 != puVar7);
     }
     FUN_1801eb800(puVar5, param_2, FUN_1801cfb90);
-    puVar7 = (undefined8 *)param_1[1];
-    puVar3 = (undefined8 *)*param_1;
+    puVar7 = (uint64_t *)param_1[1];
+    puVar3 = (uint64_t *)*param_1;
     if (puVar3 != puVar7) {
         do {
             *puVar3 = &UNK_180a3c3e0;
@@ -449,13 +449,13 @@ LAB_1801e93bf:
                 FUN_18064e900();
             }
             puVar3[1] = 0;
-            *(undefined4 *)(puVar3 + 3) = 0;
+            *(int32_t *)(puVar3 + 3) = 0;
             *puVar3 = &UNK_18098bcb0;
             puVar3 = puVar3 + 6;
         } while (puVar3 != puVar7);
-        puVar3 = (undefined8 *)*param_1;
+        puVar3 = (uint64_t *)*param_1;
     }
-    if (puVar3 == (undefined8 *)0x0) {
+    if (puVar3 == (uint64_t *)0x0) {
         *param_1 = puVar2;
         param_1[1] = puVar5 + 6;
         param_1[2] = puVar2 + lVar6 * 6;
@@ -478,20 +478,20 @@ LAB_1801e93bf:
  * @param param_2 扩展参数
  * @return void
  */
-void ResourceArrayExpander(undefined8 *param_1, undefined8 param_2)
+void ResourceArrayExpander(uint64_t *param_1, uint64_t param_2)
 {
-    undefined8 *puVar1;
-    undefined8 *puVar2;
-    undefined8 *puVar3;
+    uint64_t *puVar1;
+    uint64_t *puVar2;
+    uint64_t *puVar3;
     longlong lVar4;
-    undefined8 *puVar5;
+    uint64_t *puVar5;
     longlong lVar6;
-    undefined8 *puVar7;
+    uint64_t *puVar7;
     
-    puVar7 = (undefined8 *)param_1[1];
-    puVar3 = (undefined8 *)*param_1;
+    puVar7 = (uint64_t *)param_1[1];
+    puVar3 = (uint64_t *)*param_1;
     lVar6 = ((longlong)puVar7 - (longlong)puVar3) / DATA_STRUCTURE_SIZE;
-    puVar2 = (undefined8 *)0x0;
+    puVar2 = (uint64_t *)0x0;
     if (lVar6 == 0) {
         lVar6 = 1;
     }
@@ -499,11 +499,11 @@ void ResourceArrayExpander(undefined8 *param_1, undefined8 param_2)
         lVar6 = lVar6 * ARRAY_EXPANSION_FACTOR;
         if (lVar6 == 0) goto LAB_1801e95af;
     }
-    puVar2 = (undefined8 *)
-             FUN_18062b420(_DAT_180c8ed18, lVar6 * DATA_STRUCTURE_SIZE, *(undefined1 *)(param_1 + 3), puVar3,
+    puVar2 = (uint64_t *)
+             FUN_18062b420(_DAT_180c8ed18, lVar6 * DATA_STRUCTURE_SIZE, *(int8_t *)(param_1 + 3), puVar3,
                            0xfffffffffffffffe);
-    puVar7 = (undefined8 *)param_1[1];
-    puVar3 = (undefined8 *)*param_1;
+    puVar7 = (uint64_t *)param_1[1];
+    puVar3 = (uint64_t *)*param_1;
 LAB_1801e95af:
     puVar5 = puVar2;
     if (puVar3 != puVar7) {
@@ -511,29 +511,29 @@ LAB_1801e95af:
         puVar3 = puVar3 + 1;
         do {
             *puVar5 = &UNK_18098bcb0;
-            *(undefined8 *)(lVar4 + (longlong)puVar3) = 0;
-            *(undefined4 *)(lVar4 + 8 + (longlong)puVar3) = 0;
+            *(uint64_t *)(lVar4 + (longlong)puVar3) = 0;
+            *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = 0;
             *puVar5 = &UNK_180a3c3e0;
-            *(undefined8 *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = 0;
-            *(undefined8 *)(lVar4 + (longlong)puVar3) = 0;
-            *(undefined4 *)(lVar4 + 8 + (longlong)puVar3) = 0;
-            *(undefined4 *)(lVar4 + 8 + (longlong)puVar3) = *(undefined4 *)(puVar3 + 1);
-            *(undefined8 *)(lVar4 + (longlong)puVar3) = *puVar3;
-            *(undefined4 *)(lVar4 + MULTI_FIELD_OFFSET_0x14 + (longlong)puVar3) = *(undefined4 *)((longlong)puVar3 + MULTI_FIELD_OFFSET_0x14);
-            *(undefined4 *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = *(undefined4 *)(puVar3 + 2);
-            *(undefined4 *)(puVar3 + 1) = 0;
+            *(uint64_t *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = 0;
+            *(uint64_t *)(lVar4 + (longlong)puVar3) = 0;
+            *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = 0;
+            *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = *(int32_t *)(puVar3 + 1);
+            *(uint64_t *)(lVar4 + (longlong)puVar3) = *puVar3;
+            *(int32_t *)(lVar4 + MULTI_FIELD_OFFSET_0x14 + (longlong)puVar3) = *(int32_t *)((longlong)puVar3 + MULTI_FIELD_OFFSET_0x14);
+            *(int32_t *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = *(int32_t *)(puVar3 + 2);
+            *(int32_t *)(puVar3 + 1) = 0;
             *puVar3 = 0;
             puVar3[2] = 0;
-            *(undefined8 *)(lVar4 + MULTI_FIELD_OFFSET_0x18 + (longlong)puVar3) = puVar3[3];
-            *(undefined1 *)(lVar4 + MULTI_FIELD_OFFSET_0x20 + (longlong)puVar3) = *(undefined1 *)(puVar3 + 4);
+            *(uint64_t *)(lVar4 + MULTI_FIELD_OFFSET_0x18 + (longlong)puVar3) = puVar3[3];
+            *(int8_t *)(lVar4 + MULTI_FIELD_OFFSET_0x20 + (longlong)puVar3) = *(int8_t *)(puVar3 + 4);
             puVar5 = puVar5 + 6;
             puVar1 = puVar3 + 5;
             puVar3 = puVar3 + 6;
         } while (puVar1 != puVar7);
     }
     FUN_1801eb800(puVar5, param_2, FUN_1801cfcb0);
-    puVar7 = (undefined8 *)param_1[1];
-    puVar3 = (undefined8 *)*param_1;
+    puVar7 = (uint64_t *)param_1[1];
+    puVar3 = (uint64_t *)*param_1;
     if (puVar3 != puVar7) {
         do {
             *puVar3 = &UNK_180a3c3e0;
@@ -541,13 +541,13 @@ LAB_1801e95af:
                 FUN_18064e900();
             }
             puVar3[1] = 0;
-            *(undefined4 *)(puVar3 + 3) = 0;
+            *(int32_t *)(puVar3 + 3) = 0;
             *puVar3 = &UNK_18098bcb0;
             puVar3 = puVar3 + 6;
         } while (puVar3 != puVar7);
-        puVar3 = (undefined8 *)*param_1;
+        puVar3 = (uint64_t *)*param_1;
     }
-    if (puVar3 == (undefined8 *)0x0) {
+    if (puVar3 == (uint64_t *)0x0) {
         *param_1 = puVar2;
         param_1[1] = puVar5 + 6;
         param_1[2] = puVar2 + lVar6 * 6;
@@ -570,20 +570,20 @@ LAB_1801e95af:
  * @param param_2 扩展参数
  * @return void
  */
-void AdvancedMemoryExpander(undefined8 *param_1, undefined8 param_2)
+void AdvancedMemoryExpander(uint64_t *param_1, uint64_t param_2)
 {
-    undefined8 *puVar1;
-    undefined8 *puVar2;
-    undefined8 *puVar3;
+    uint64_t *puVar1;
+    uint64_t *puVar2;
+    uint64_t *puVar3;
     longlong lVar4;
-    undefined8 *puVar5;
+    uint64_t *puVar5;
     longlong lVar6;
-    undefined8 *puVar7;
+    uint64_t *puVar7;
     
-    puVar7 = (undefined8 *)param_1[1];
-    puVar3 = (undefined8 *)*param_1;
+    puVar7 = (uint64_t *)param_1[1];
+    puVar3 = (uint64_t *)*param_1;
     lVar6 = ((longlong)puVar7 - (longlong)puVar3) / DATA_STRUCTURE_SIZE;
-    puVar2 = (undefined8 *)0x0;
+    puVar2 = (uint64_t *)0x0;
     if (lVar6 == 0) {
         lVar6 = 1;
     }
@@ -591,11 +591,11 @@ void AdvancedMemoryExpander(undefined8 *param_1, undefined8 param_2)
         lVar6 = lVar6 * ARRAY_EXPANSION_FACTOR;
         if (lVar6 == 0) goto LAB_1801e979f;
     }
-    puVar2 = (undefined8 *)
-             FUN_18062b420(_DAT_180c8ed18, lVar6 * DATA_STRUCTURE_SIZE, *(undefined1 *)(param_1 + 3), puVar3,
+    puVar2 = (uint64_t *)
+             FUN_18062b420(_DAT_180c8ed18, lVar6 * DATA_STRUCTURE_SIZE, *(int8_t *)(param_1 + 3), puVar3,
                            0xfffffffffffffffe);
-    puVar7 = (undefined8 *)param_1[1];
-    puVar3 = (undefined8 *)*param_1;
+    puVar7 = (uint64_t *)param_1[1];
+    puVar3 = (uint64_t *)*param_1;
 LAB_1801e979f:
     puVar5 = puVar2;
     if (puVar3 != puVar7) {
@@ -603,29 +603,29 @@ LAB_1801e979f:
         puVar3 = puVar3 + 1;
         do {
             *puVar5 = &UNK_18098bcb0;
-            *(undefined8 *)(lVar4 + (longlong)puVar3) = 0;
-            *(undefined4 *)(lVar4 + 8 + (longlong)puVar3) = 0;
+            *(uint64_t *)(lVar4 + (longlong)puVar3) = 0;
+            *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = 0;
             *puVar5 = &UNK_180a3c3e0;
-            *(undefined8 *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = 0;
-            *(undefined8 *)(lVar4 + (longlong)puVar3) = 0;
-            *(undefined4 *)(lVar4 + 8 + (longlong)puVar3) = 0;
-            *(undefined4 *)(lVar4 + 8 + (longlong)puVar3) = *(undefined4 *)(puVar3 + 1);
-            *(undefined8 *)(lVar4 + (longlong)puVar3) = *puVar3;
-            *(undefined4 *)(lVar4 + MULTI_FIELD_OFFSET_0x14 + (longlong)puVar3) = *(undefined4 *)((longlong)puVar3 + MULTI_FIELD_OFFSET_0x14);
-            *(undefined4 *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = *(undefined4 *)(puVar3 + 2);
-            *(undefined4 *)(puVar3 + 1) = 0;
+            *(uint64_t *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = 0;
+            *(uint64_t *)(lVar4 + (longlong)puVar3) = 0;
+            *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = 0;
+            *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = *(int32_t *)(puVar3 + 1);
+            *(uint64_t *)(lVar4 + (longlong)puVar3) = *puVar3;
+            *(int32_t *)(lVar4 + MULTI_FIELD_OFFSET_0x14 + (longlong)puVar3) = *(int32_t *)((longlong)puVar3 + MULTI_FIELD_OFFSET_0x14);
+            *(int32_t *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = *(int32_t *)(puVar3 + 2);
+            *(int32_t *)(puVar3 + 1) = 0;
             *puVar3 = 0;
             puVar3[2] = 0;
-            *(undefined8 *)(lVar4 + MULTI_FIELD_OFFSET_0x18 + (longlong)puVar3) = puVar3[3];
-            *(undefined1 *)(lVar4 + MULTI_FIELD_OFFSET_0x20 + (longlong)puVar3) = *(undefined1 *)(puVar3 + 4);
+            *(uint64_t *)(lVar4 + MULTI_FIELD_OFFSET_0x18 + (longlong)puVar3) = puVar3[3];
+            *(int8_t *)(lVar4 + MULTI_FIELD_OFFSET_0x20 + (longlong)puVar3) = *(int8_t *)(puVar3 + 4);
             puVar5 = puVar5 + 6;
             puVar1 = puVar3 + 5;
             puVar3 = puVar3 + 6;
         } while (puVar1 != puVar7);
     }
     FUN_1801eb800(puVar5, param_2, FUN_1801cfcf0);
-    puVar7 = (undefined8 *)param_1[1];
-    puVar3 = (undefined8 *)*param_1;
+    puVar7 = (uint64_t *)param_1[1];
+    puVar3 = (uint64_t *)*param_1;
     if (puVar3 != puVar7) {
         do {
             *puVar3 = &UNK_180a3c3e0;
@@ -633,13 +633,13 @@ LAB_1801e979f:
                 FUN_18064e900();
             }
             puVar3[1] = 0;
-            *(undefined4 *)(puVar3 + 3) = 0;
+            *(int32_t *)(puVar3 + 3) = 0;
             *puVar3 = &UNK_18098bcb0;
             puVar3 = puVar3 + 6;
         } while (puVar3 != puVar7);
-        puVar3 = (undefined8 *)*param_1;
+        puVar3 = (uint64_t *)*param_1;
     }
-    if (puVar3 == (undefined8 *)0x0) {
+    if (puVar3 == (uint64_t *)0x0) {
         *param_1 = puVar2;
         param_1[1] = puVar5 + 6;
         param_1[2] = puVar2 + lVar6 * 6;
@@ -662,20 +662,20 @@ LAB_1801e979f:
  * @param param_2 扩展参数
  * @return void
  */
-void ComplexDataExpander(undefined8 *param_1, undefined8 param_2)
+void ComplexDataExpander(uint64_t *param_1, uint64_t param_2)
 {
-    undefined8 *puVar1;
-    undefined8 *puVar2;
-    undefined8 *puVar3;
+    uint64_t *puVar1;
+    uint64_t *puVar2;
+    uint64_t *puVar3;
     longlong lVar4;
-    undefined8 *puVar5;
+    uint64_t *puVar5;
     longlong lVar6;
-    undefined8 *puVar7;
+    uint64_t *puVar7;
     
-    puVar7 = (undefined8 *)param_1[1];
-    puVar3 = (undefined8 *)*param_1;
+    puVar7 = (uint64_t *)param_1[1];
+    puVar3 = (uint64_t *)*param_1;
     lVar6 = ((longlong)puVar7 - (longlong)puVar3) / DATA_STRUCTURE_SIZE;
-    puVar2 = (undefined8 *)0x0;
+    puVar2 = (uint64_t *)0x0;
     if (lVar6 == 0) {
         lVar6 = 1;
     }
@@ -683,11 +683,11 @@ void ComplexDataExpander(undefined8 *param_1, undefined8 param_2)
         lVar6 = lVar6 * ARRAY_EXPANSION_FACTOR;
         if (lVar6 == 0) goto LAB_1801e998f;
     }
-    puVar2 = (undefined8 *)
-             FUN_18062b420(_DAT_180c8ed18, lVar6 * DATA_STRUCTURE_SIZE, *(undefined1 *)(param_1 + 3), puVar3,
+    puVar2 = (uint64_t *)
+             FUN_18062b420(_DAT_180c8ed18, lVar6 * DATA_STRUCTURE_SIZE, *(int8_t *)(param_1 + 3), puVar3,
                            0xfffffffffffffffe);
-    puVar7 = (undefined8 *)param_1[1];
-    puVar3 = (undefined8 *)*param_1;
+    puVar7 = (uint64_t *)param_1[1];
+    puVar3 = (uint64_t *)*param_1;
 LAB_1801e998f:
     puVar5 = puVar2;
     if (puVar3 != puVar7) {
@@ -695,29 +695,29 @@ LAB_1801e998f:
         puVar3 = puVar3 + 1;
         do {
             *puVar5 = &UNK_18098bcb0;
-            *(undefined8 *)(lVar4 + (longlong)puVar3) = 0;
-            *(undefined4 *)(lVar4 + 8 + (longlong)puVar3) = 0;
+            *(uint64_t *)(lVar4 + (longlong)puVar3) = 0;
+            *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = 0;
             *puVar5 = &UNK_180a3c3e0;
-            *(undefined8 *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = 0;
-            *(undefined8 *)(lVar4 + (longlong)puVar3) = 0;
-            *(undefined4 *)(lVar4 + 8 + (longlong)puVar3) = 0;
-            *(undefined4 *)(lVar4 + 8 + (longlong)puVar3) = *(undefined4 *)(puVar3 + 1);
-            *(undefined8 *)(lVar4 + (longlong)puVar3) = *puVar3;
-            *(undefined4 *)(lVar4 + MULTI_FIELD_OFFSET_0x14 + (longlong)puVar3) = *(undefined4 *)((longlong)puVar3 + MULTI_FIELD_OFFSET_0x14);
-            *(undefined4 *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = *(undefined4 *)(puVar3 + 2);
-            *(undefined4 *)(puVar3 + 1) = 0;
+            *(uint64_t *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = 0;
+            *(uint64_t *)(lVar4 + (longlong)puVar3) = 0;
+            *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = 0;
+            *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = *(int32_t *)(puVar3 + 1);
+            *(uint64_t *)(lVar4 + (longlong)puVar3) = *puVar3;
+            *(int32_t *)(lVar4 + MULTI_FIELD_OFFSET_0x14 + (longlong)puVar3) = *(int32_t *)((longlong)puVar3 + MULTI_FIELD_OFFSET_0x14);
+            *(int32_t *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = *(int32_t *)(puVar3 + 2);
+            *(int32_t *)(puVar3 + 1) = 0;
             *puVar3 = 0;
             puVar3[2] = 0;
-            *(undefined8 *)(lVar4 + MULTI_FIELD_OFFSET_0x18 + (longlong)puVar3) = puVar3[3];
-            *(undefined1 *)(lVar4 + MULTI_FIELD_OFFSET_0x20 + (longlong)puVar3) = *(undefined1 *)(puVar3 + 4);
+            *(uint64_t *)(lVar4 + MULTI_FIELD_OFFSET_0x18 + (longlong)puVar3) = puVar3[3];
+            *(int8_t *)(lVar4 + MULTI_FIELD_OFFSET_0x20 + (longlong)puVar3) = *(int8_t *)(puVar3 + 4);
             puVar5 = puVar5 + 6;
             puVar1 = puVar3 + 5;
             puVar3 = puVar3 + 6;
         } while (puVar1 != puVar7);
     }
     FUN_1801eb800(puVar5, param_2, FUN_1801cfd30);
-    puVar7 = (undefined8 *)param_1[1];
-    puVar3 = (undefined8 *)*param_1;
+    puVar7 = (uint64_t *)param_1[1];
+    puVar3 = (uint64_t *)*param_1;
     if (puVar3 != puVar7) {
         do {
             *puVar3 = &UNK_180a3c3e0;
@@ -725,13 +725,13 @@ LAB_1801e998f:
                 FUN_18064e900();
             }
             puVar3[1] = 0;
-            *(undefined4 *)(puVar3 + 3) = 0;
+            *(int32_t *)(puVar3 + 3) = 0;
             *puVar3 = &UNK_18098bcb0;
             puVar3 = puVar3 + 6;
         } while (puVar3 != puVar7);
-        puVar3 = (undefined8 *)*param_1;
+        puVar3 = (uint64_t *)*param_1;
     }
-    if (puVar3 == (undefined8 *)0x0) {
+    if (puVar3 == (uint64_t *)0x0) {
         *param_1 = puVar2;
         param_1[1] = puVar5 + 6;
         param_1[2] = puVar2 + lVar6 * 6;
@@ -754,20 +754,20 @@ LAB_1801e998f:
  * @param param_2 扩展参数
  * @return void
  */
-void MultiFieldDataExpander(undefined8 *param_1, undefined8 param_2)
+void MultiFieldDataExpander(uint64_t *param_1, uint64_t param_2)
 {
-    undefined8 *puVar1;
-    undefined8 *puVar2;
-    undefined8 *puVar3;
+    uint64_t *puVar1;
+    uint64_t *puVar2;
+    uint64_t *puVar3;
     longlong lVar4;
-    undefined8 *puVar5;
+    uint64_t *puVar5;
     longlong lVar6;
-    undefined8 *puVar7;
+    uint64_t *puVar7;
     
-    puVar7 = (undefined8 *)param_1[1];
-    puVar3 = (undefined8 *)*param_1;
+    puVar7 = (uint64_t *)param_1[1];
+    puVar3 = (uint64_t *)*param_1;
     lVar6 = ((longlong)puVar7 - (longlong)puVar3) / DATA_STRUCTURE_SIZE;
-    puVar2 = (undefined8 *)0x0;
+    puVar2 = (uint64_t *)0x0;
     if (lVar6 == 0) {
         lVar6 = 1;
     }
@@ -775,11 +775,11 @@ void MultiFieldDataExpander(undefined8 *param_1, undefined8 param_2)
         lVar6 = lVar6 * ARRAY_EXPANSION_FACTOR;
         if (lVar6 == 0) goto LAB_1801e9b7f;
     }
-    puVar2 = (undefined8 *)
-             FUN_18062b420(_DAT_180c8ed18, lVar6 * DATA_STRUCTURE_SIZE, *(undefined1 *)(param_1 + 3), puVar3,
+    puVar2 = (uint64_t *)
+             FUN_18062b420(_DAT_180c8ed18, lVar6 * DATA_STRUCTURE_SIZE, *(int8_t *)(param_1 + 3), puVar3,
                            0xfffffffffffffffe);
-    puVar7 = (undefined8 *)param_1[1];
-    puVar3 = (undefined8 *)*param_1;
+    puVar7 = (uint64_t *)param_1[1];
+    puVar3 = (uint64_t *)*param_1;
 LAB_1801e9b7f:
     puVar5 = puVar2;
     if (puVar3 != puVar7) {
@@ -787,29 +787,29 @@ LAB_1801e9b7f:
         puVar3 = puVar3 + 1;
         do {
             *puVar5 = &UNK_18098bcb0;
-            *(undefined8 *)(lVar4 + (longlong)puVar3) = 0;
-            *(undefined4 *)(lVar4 + 8 + (longlong)puVar3) = 0;
+            *(uint64_t *)(lVar4 + (longlong)puVar3) = 0;
+            *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = 0;
             *puVar5 = &UNK_180a3c3e0;
-            *(undefined8 *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = 0;
-            *(undefined8 *)(lVar4 + (longlong)puVar3) = 0;
-            *(undefined4 *)(lVar4 + 8 + (longlong)puVar3) = 0;
-            *(undefined4 *)(lVar4 + 8 + (longlong)puVar3) = *(undefined4 *)(puVar3 + 1);
-            *(undefined8 *)(lVar4 + (longlong)puVar3) = *puVar3;
-            *(undefined4 *)(lVar4 + MULTI_FIELD_OFFSET_0x14 + (longlong)puVar3) = *(undefined4 *)((longlong)puVar3 + MULTI_FIELD_OFFSET_0x14);
-            *(undefined4 *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = *(undefined4 *)(puVar3 + 2);
-            *(undefined4 *)(puVar3 + 1) = 0;
+            *(uint64_t *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = 0;
+            *(uint64_t *)(lVar4 + (longlong)puVar3) = 0;
+            *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = 0;
+            *(int32_t *)(lVar4 + 8 + (longlong)puVar3) = *(int32_t *)(puVar3 + 1);
+            *(uint64_t *)(lVar4 + (longlong)puVar3) = *puVar3;
+            *(int32_t *)(lVar4 + MULTI_FIELD_OFFSET_0x14 + (longlong)puVar3) = *(int32_t *)((longlong)puVar3 + MULTI_FIELD_OFFSET_0x14);
+            *(int32_t *)(lVar4 + MULTI_FIELD_OFFSET_0x10 + (longlong)puVar3) = *(int32_t *)(puVar3 + 2);
+            *(int32_t *)(puVar3 + 1) = 0;
             *puVar3 = 0;
             puVar3[2] = 0;
-            *(undefined8 *)(lVar4 + MULTI_FIELD_OFFSET_0x18 + (longlong)puVar3) = puVar3[3];
-            *(undefined1 *)(lVar4 + MULTI_FIELD_OFFSET_0x20 + (longlong)puVar3) = *(undefined1 *)(puVar3 + 4);
+            *(uint64_t *)(lVar4 + MULTI_FIELD_OFFSET_0x18 + (longlong)puVar3) = puVar3[3];
+            *(int8_t *)(lVar4 + MULTI_FIELD_OFFSET_0x20 + (longlong)puVar3) = *(int8_t *)(puVar3 + 4);
             puVar5 = puVar5 + 6;
             puVar1 = puVar3 + 5;
             puVar3 = puVar3 + 6;
         } while (puVar1 != puVar7);
     }
     FUN_1801eb800(puVar5, param_2, FUN_1801cfe20);
-    puVar7 = (undefined8 *)param_1[1];
-    puVar3 = (undefined8 *)*param_1;
+    puVar7 = (uint64_t *)param_1[1];
+    puVar3 = (uint64_t *)*param_1;
     if (puVar3 != puVar7) {
         do {
             *puVar3 = &UNK_180a3c3e0;
@@ -817,13 +817,13 @@ LAB_1801e9b7f:
                 FUN_18064e900();
             }
             puVar3[1] = 0;
-            *(undefined4 *)(puVar3 + 3) = 0;
+            *(int32_t *)(puVar3 + 3) = 0;
             *puVar3 = &UNK_18098bcb0;
             puVar3 = puVar3 + 6;
         } while (puVar3 != puVar7);
-        puVar3 = (undefined8 *)*param_1;
+        puVar3 = (uint64_t *)*param_1;
     }
-    if (puVar3 == (undefined8 *)0x0) {
+    if (puVar3 == (uint64_t *)0x0) {
         *param_1 = puVar2;
         param_1[1] = puVar5 + 6;
         param_1[2] = puVar2 + lVar6 * 6;
@@ -849,28 +849,28 @@ LAB_1801e9b7f:
  * @param param_5 插入数据指针
  * @return void
  */
-void DataStructureInserter(longlong param_1, undefined8 param_2, longlong param_3, char param_4,
-                           undefined4 *param_5)
+void DataStructureInserter(longlong param_1, uint64_t param_2, longlong param_3, char param_4,
+                           int32_t *param_5)
 {
-    undefined4 uVar1;
-    undefined4 uVar2;
-    undefined4 uVar3;
-    undefined4 uVar4;
+    int32_t uVar1;
+    int32_t uVar2;
+    int32_t uVar3;
+    int32_t uVar4;
     char cVar5;
     longlong lVar6;
-    undefined8 uVar7;
+    uint64_t uVar7;
     longlong lStack_78;
     longlong lStack_70;
     longlong lStack_68;
     longlong lStack_60;
     longlong lStack_58;
     longlong lStack_50;
-    undefined4 *puStack_48;
-    undefined4 *puStack_40;
-    undefined4 *puStack_38;
-    undefined4 *puStack_30;
-    undefined4 *puStack_28;
-    undefined4 *puStack_20;
+    int32_t *puStack_48;
+    int32_t *puStack_40;
+    int32_t *puStack_38;
+    int32_t *puStack_30;
+    int32_t *puStack_28;
+    int32_t *puStack_20;
     
     if ((param_4 == '\0') && (param_3 != param_1)) {
         lStack_50 = param_3 + MULTI_FIELD_OFFSET_0x20;
@@ -893,23 +893,23 @@ void DataStructureInserter(longlong param_1, undefined8 param_2, longlong param_
     }
     uVar7 = 0;
 LAB_1801e9d8e:
-    lVar6 = FUN_18062b420(_DAT_180c8ed18, MEMORY_POOL_SIZE_0x48, *(undefined1 *)(param_1 + MULTI_FIELD_OFFSET_0x28));
+    lVar6 = FUN_18062b420(_DAT_180c8ed18, MEMORY_POOL_SIZE_0x48, *(int8_t *)(param_1 + MULTI_FIELD_OFFSET_0x28));
     uVar1 = param_5[1];
     uVar2 = param_5[2];
     uVar3 = param_5[3];
-    *(undefined4 *)(lVar6 + MULTI_FIELD_OFFSET_0x20) = *param_5;
-    *(undefined4 *)(lVar6 + MULTI_FIELD_OFFSET_0x24) = uVar1;
-    *(undefined4 *)(lVar6 + MULTI_FIELD_OFFSET_0x28) = uVar2;
-    *(undefined4 *)(lVar6 + MULTI_FIELD_OFFSET_0x2c) = uVar3;
+    *(int32_t *)(lVar6 + MULTI_FIELD_OFFSET_0x20) = *param_5;
+    *(int32_t *)(lVar6 + MULTI_FIELD_OFFSET_0x24) = uVar1;
+    *(int32_t *)(lVar6 + MULTI_FIELD_OFFSET_0x28) = uVar2;
+    *(int32_t *)(lVar6 + MULTI_FIELD_OFFSET_0x2c) = uVar3;
     uVar1 = param_5[4];
     uVar2 = param_5[5];
     uVar3 = param_5[6];
     uVar4 = param_5[7];
-    *(undefined4 *)(lVar6 + MULTI_FIELD_OFFSET_0x40) = 0;
-    *(undefined4 *)(lVar6 + MULTI_FIELD_OFFSET_0x30) = uVar1;
-    *(undefined4 *)(lVar6 + MULTI_FIELD_OFFSET_0x34) = uVar2;
-    *(undefined4 *)(lVar6 + MULTI_FIELD_OFFSET_0x38) = uVar3;
-    *(undefined4 *)(lVar6 + MULTI_FIELD_OFFSET_0x3c) = uVar4;
+    *(int32_t *)(lVar6 + MULTI_FIELD_OFFSET_0x40) = 0;
+    *(int32_t *)(lVar6 + MULTI_FIELD_OFFSET_0x30) = uVar1;
+    *(int32_t *)(lVar6 + MULTI_FIELD_OFFSET_0x34) = uVar2;
+    *(int32_t *)(lVar6 + MULTI_FIELD_OFFSET_0x38) = uVar3;
+    *(int32_t *)(lVar6 + MULTI_FIELD_OFFSET_0x3c) = uVar4;
     FUN_18066bdc0(lVar6, param_3, param_1, uVar7);
 }
 
@@ -929,7 +929,7 @@ LAB_1801e9d8e:
  * @param param_4 搜索范围参数
  * @return longlong* 返回搜索结果指针
  */
-longlong * EnhancedDataSearcher(longlong *param_1, longlong *param_2, undefined1 *param_3, longlong param_4)
+longlong * EnhancedDataSearcher(longlong *param_1, longlong *param_2, int8_t *param_3, longlong param_4)
 {
     char cVar1;
     longlong *plVar2;
@@ -1029,11 +1029,11 @@ LAB_1801e9faa:
  * @param param_5 插入数据指针
  * @return void
  */
-void OptimizedDataInserter(longlong param_1, undefined8 param_2, longlong param_3, undefined8 param_4,
+void OptimizedDataInserter(longlong param_1, uint64_t param_2, longlong param_3, uint64_t param_4,
                            int *param_5)
 {
     longlong lVar1;
-    undefined4 uVar2;
+    int32_t uVar2;
     
     if ((((char)param_4 == '\0') && (param_3 != param_1)) && (*(int *)(param_3 + MULTI_FIELD_OFFSET_0x20) <= *param_5)) {
         uVar2 = 1;
@@ -1041,13 +1041,13 @@ void OptimizedDataInserter(longlong param_1, undefined8 param_2, longlong param_
     else {
         uVar2 = 0;
     }
-    lVar1 = FUN_18062b420(_DAT_180c8ed18, MEMORY_POOL_SIZE_0x48, *(undefined1 *)(param_1 + MULTI_FIELD_OFFSET_0x28), param_4,
+    lVar1 = FUN_18062b420(_DAT_180c8ed18, MEMORY_POOL_SIZE_0x48, *(int8_t *)(param_1 + MULTI_FIELD_OFFSET_0x28), param_4,
                           0xfffffffffffffffe);
     *(int *)(lVar1 + MULTI_FIELD_OFFSET_0x20) = *param_5;
-    *(undefined8 *)(lVar1 + MULTI_FIELD_OFFSET_0x28) = 0;
-    *(undefined8 *)(lVar1 + MULTI_FIELD_OFFSET_0x30) = 0;
-    *(undefined8 *)(lVar1 + MULTI_FIELD_OFFSET_0x38) = 0;
-    *(undefined4 *)(lVar1 + MULTI_FIELD_OFFSET_0x40) = 3;
+    *(uint64_t *)(lVar1 + MULTI_FIELD_OFFSET_0x28) = 0;
+    *(uint64_t *)(lVar1 + MULTI_FIELD_OFFSET_0x30) = 0;
+    *(uint64_t *)(lVar1 + MULTI_FIELD_OFFSET_0x38) = 0;
+    *(int32_t *)(lVar1 + MULTI_FIELD_OFFSET_0x40) = 3;
     FUN_18066bdc0(lVar1, param_3, param_1, uVar2);
 }
 

@@ -5,81 +5,81 @@
 
 // 函数: 处理三维网格数据
 // 参数: data_context - 数据结构指针, process_flag - 处理标志
-void process_mesh_data(longlong data_context, undefined8 process_flag)
+void process_mesh_data(longlong data_context, uint64_t process_flag)
 {
-    undefined4 temp_var1;
-    undefined4 temp_var2;
-    undefined4 temp_var3;
-    undefined2 temp_var4;
-    undefined2 *ptr_var5;
-    undefined4 *ptr_var6;
-    undefined4 *ptr_var7;
-    undefined4 *ptr_var8;
-    undefined4 *ptr_var9;
-    undefined4 *ptr_var10;
-    undefined4 *ptr_var11;
-    undefined2 *ptr_var12;
+    int32_t temp_var1;
+    int32_t temp_var2;
+    int32_t temp_var3;
+    int16_t temp_var4;
+    int16_t *ptr_var5;
+    int32_t *ptr_var6;
+    int32_t *ptr_var7;
+    int32_t *ptr_var8;
+    int32_t *ptr_var9;
+    int32_t *ptr_var10;
+    int32_t *ptr_var11;
+    int16_t *ptr_var12;
     longlong temp_var13;
     longlong temp_var14;
-    undefined4 *ptr_var15;
+    int32_t *ptr_var15;
     longlong stack_offset_18;
     int stack_offset_20;
-    undefined4 *stack_ptr_1a0;
-    undefined4 *stack_ptr_198;
-    undefined4 *stack_ptr_190;
-    undefined4 stack_value_188;
-    undefined4 *stack_ptr_180;
-    undefined4 *stack_ptr_178;
-    undefined4 *stack_ptr_170;
-    undefined4 stack_value_168;
-    undefined2 *stack_ptr_160;
-    undefined2 *stack_ptr_158;
-    undefined2 *stack_ptr_150;
-    undefined4 stack_value_148;
+    int32_t *stack_ptr_1a0;
+    int32_t *stack_ptr_198;
+    int32_t *stack_ptr_190;
+    int32_t stack_value_188;
+    int32_t *stack_ptr_180;
+    int32_t *stack_ptr_178;
+    int32_t *stack_ptr_170;
+    int32_t stack_value_168;
+    int16_t *stack_ptr_160;
+    int16_t *stack_ptr_158;
+    int16_t *stack_ptr_150;
+    int32_t stack_value_148;
     longlong stack_value_140;
-    undefined4 *stack_ptr_138;
-    undefined4 *stack_ptr_130;
-    undefined4 *stack_ptr_128;
+    int32_t *stack_ptr_138;
+    int32_t *stack_ptr_130;
+    int32_t *stack_ptr_128;
     longlong stack_value_120;
     longlong stack_value_118;
-    undefined4 stack_value_108;
-    undefined4 stack_value_104;
-    undefined4 *stack_ptr_100;
-    undefined4 stack_value_f8;
-    undefined4 stack_value_f4;
-    undefined4 stack_value_f0;
-    undefined4 stack_value_ec;
-    undefined4 *stack_ptr_e8;
-    undefined4 stack_value_e0;
-    undefined4 stack_value_dc;
-    undefined2 stack_value_d8;
-    undefined4 stack_value_d0;
-    undefined2 *stack_ptr_c8;
-    undefined4 stack_value_b8;
-    undefined4 stack_value_b4;
-    undefined8 stack_value_b0;
-    undefined4 stack_value_a8;
-    undefined4 stack_value_a4;
-    undefined4 stack_value_a0;
-    undefined4 stack_value_9c;
-    undefined8 stack_value_98;
-    undefined4 stack_value_90;
-    undefined4 stack_value_8c;
-    undefined8 stack_value_80;
+    int32_t stack_value_108;
+    int32_t stack_value_104;
+    int32_t *stack_ptr_100;
+    int32_t stack_value_f8;
+    int32_t stack_value_f4;
+    int32_t stack_value_f0;
+    int32_t stack_value_ec;
+    int32_t *stack_ptr_e8;
+    int32_t stack_value_e0;
+    int32_t stack_value_dc;
+    int16_t stack_value_d8;
+    int32_t stack_value_d0;
+    int16_t *stack_ptr_c8;
+    int32_t stack_value_b8;
+    int32_t stack_value_b4;
+    uint64_t stack_value_b0;
+    int32_t stack_value_a8;
+    int32_t stack_value_a4;
+    int32_t stack_value_a0;
+    int32_t stack_value_9c;
+    uint64_t stack_value_98;
+    int32_t stack_value_90;
+    int32_t stack_value_8c;
+    uint64_t stack_value_80;
     
     // 初始化栈变量
     stack_value_80 = 0xfffffffffffffffe;
-    stack_ptr_1a0 = (undefined4 *)0x0;
-    stack_ptr_198 = (undefined4 *)0x0;
-    stack_ptr_190 = (undefined4 *)0x0;
+    stack_ptr_1a0 = (int32_t *)0x0;
+    stack_ptr_198 = (int32_t *)0x0;
+    stack_ptr_190 = (int32_t *)0x0;
     stack_value_188 = 3;
-    stack_ptr_180 = (undefined4 *)0x0;
-    stack_ptr_178 = (undefined4 *)0x0;
-    stack_ptr_170 = (undefined4 *)0x0;
+    stack_ptr_180 = (int32_t *)0x0;
+    stack_ptr_178 = (int32_t *)0x0;
+    stack_ptr_170 = (int32_t *)0x0;
     stack_value_168 = 3;
-    stack_ptr_160 = (undefined2 *)0x0;
-    stack_ptr_158 = (undefined2 *)0x0;
-    stack_ptr_150 = (undefined2 *)0x0;
+    stack_ptr_160 = (int16_t *)0x0;
+    stack_ptr_158 = (int16_t *)0x0;
+    stack_ptr_150 = (int16_t *)0x0;
     stack_value_148 = 3;
     
     // 分配缓冲区空间
@@ -93,7 +93,7 @@ void process_mesh_data(longlong data_context, undefined8 process_flag)
     
     // 如果有数据需要处理
     if (temp_var14 != 0) {
-        stack_ptr_160 = (undefined2 *)
+        stack_ptr_160 = (int16_t *)
                       allocate_memory(_memory_pool_180c8ed18, temp_var14 * 2, 
                                    CONCAT71((int7)((ulonglong)temp_var13 >> 8), 3));
         stack_ptr_150 = stack_ptr_160 + temp_var14;
@@ -114,13 +114,13 @@ void process_mesh_data(longlong data_context, undefined8 process_flag)
         stack_value_140 = 0;
         do {
             ptr_var5 = stack_ptr_158;
-            ptr_var7 = (undefined4 *)0x0;
+            ptr_var7 = (int32_t *)0x0;
             temp_var13 = *(longlong *)(data_context + 0x28);
-            stack_ptr_138 = (undefined4 *)
+            stack_ptr_138 = (int32_t *)
                           ((longlong)*(int *)(stack_value_120 + 4 + stack_value_140 * 0x18) * 0x10 + temp_var13);
-            stack_ptr_130 = (undefined4 *)
+            stack_ptr_130 = (int32_t *)
                           ((longlong)*(int *)(stack_value_120 + 8 + stack_value_140 * 0x18) * 0x10 + temp_var13);
-            stack_ptr_128 = (undefined4 *)
+            stack_ptr_128 = (int32_t *)
                           ((longlong)*(int *)(stack_value_120 + 0xc + stack_value_140 * 0x18) * 0x10 + temp_var13);
             
             // 计算中间值
@@ -138,8 +138,8 @@ void process_mesh_data(longlong data_context, undefined8 process_flag)
                 if (stack_value_118 >> 2 == 0) {
                     stack_offset_18 = 1;
 LAB_REALLOC_1:
-                    ptr_var7 = (undefined4 *)allocate_memory(_memory_pool_180c8ed18, 
-                                                            stack_offset_18 * 4, (undefined1)stack_value_168);
+                    ptr_var7 = (int32_t *)allocate_memory(_memory_pool_180c8ed18, 
+                                                            stack_offset_18 * 4, (int8_t)stack_value_168);
                 }
                 else {
                     stack_offset_18 = (stack_value_118 >> 2) * 2;
@@ -151,7 +151,7 @@ LAB_REALLOC_1:
                 }
                 *ptr_var7 = (int)temp_var13;
                 
-                if (ptr_var9 != (undefined4 *)0x0) {
+                if (ptr_var9 != (int32_t *)0x0) {
                     release_memory(ptr_var9);
                 }
                 stack_ptr_170 = ptr_var7 + stack_offset_18;
@@ -161,7 +161,7 @@ LAB_REALLOC_1:
             
             // 处理顶点数据
             ptr_var8 = ptr_var15 + 1;
-            ptr_var9 = (undefined4 *)0x0;
+            ptr_var9 = (int32_t *)0x0;
             temp_var1 = stack_ptr_138[2];
             temp_var2 = stack_ptr_138[1];
             temp_var3 = *stack_ptr_138;
@@ -179,8 +179,8 @@ LAB_REALLOC_1:
                 if (temp_var13 == 0) {
                     temp_var13 = 1;
 LAB_REALLOC_2:
-                    ptr_var9 = (undefined4 *)allocate_memory(_memory_pool_180c8ed18, 
-                                                            temp_var13 * 0xc, (undefined1)stack_value_188);
+                    ptr_var9 = (int32_t *)allocate_memory(_memory_pool_180c8ed18, 
+                                                            temp_var13 * 0xc, (int8_t)stack_value_188);
                 }
                 else {
                     temp_var13 = temp_var13 * 2;
@@ -191,18 +191,18 @@ LAB_REALLOC_2:
                 if (ptr_var10 != ptr_var11) {
                     temp_var14 = (longlong)ptr_var10 - (longlong)ptr_var9;
                     do {
-                        *ptr_var6 = *(undefined4 *)(temp_var14 + (longlong)ptr_var6);
-                        ptr_var6[1] = *(undefined4 *)((longlong)ptr_var6 + temp_var14 + 4);
-                        ptr_var6[2] = *(undefined4 *)((longlong)ptr_var6 + temp_var14 + 8);
+                        *ptr_var6 = *(int32_t *)(temp_var14 + (longlong)ptr_var6);
+                        ptr_var6[1] = *(int32_t *)((longlong)ptr_var6 + temp_var14 + 4);
+                        ptr_var6[2] = *(int32_t *)((longlong)ptr_var6 + temp_var14 + 8);
                         ptr_var6 = ptr_var6 + 3;
-                    } while ((undefined4 *)(temp_var14 + (longlong)ptr_var6) != ptr_var11);
+                    } while ((int32_t *)(temp_var14 + (longlong)ptr_var6) != ptr_var11);
                 }
                 
                 *ptr_var6 = temp_var3;
                 ptr_var6[1] = temp_var2;
                 ptr_var6[2] = temp_var1;
                 
-                if (ptr_var10 != (undefined4 *)0x0) {
+                if (ptr_var10 != (int32_t *)0x0) {
                     release_memory(ptr_var10);
                 }
                 stack_ptr_190 = ptr_var9 + temp_var13 * 3;
@@ -222,18 +222,18 @@ LAB_REALLOC_2:
             }
             else {
                 // 处理索引数据
-                stack_ptr_138 = (undefined4 *)((longlong)ptr_var8 - (longlong)ptr_var7);
+                stack_ptr_138 = (int32_t *)((longlong)ptr_var8 - (longlong)ptr_var7);
                 if ((longlong)stack_ptr_138 >> 2 == 0) {
                     stack_offset_18 = 1;
 LAB_REALLOC_3:
-                    ptr_var10 = (undefined4 *)
+                    ptr_var10 = (int32_t *)
                               allocate_memory(_memory_pool_180c8ed18, stack_offset_18 * 4, 
-                                            (undefined1)stack_value_168);
+                                            (int8_t)stack_value_168);
                 }
                 else {
                     stack_offset_18 = ((longlong)stack_ptr_138 >> 2) * 2;
                     if (stack_offset_18 != 0) goto LAB_REALLOC_3;
-                    ptr_var10 = (undefined4 *)0x0;
+                    ptr_var10 = (int32_t *)0x0;
                 }
                 
                 if (ptr_var7 != ptr_var8) {
@@ -242,7 +242,7 @@ LAB_REALLOC_3:
                 *ptr_var10 = (int)temp_var13;
                 ptr_var15 = ptr_var10 + 1;
                 
-                if (ptr_var7 != (undefined4 *)0x0) {
+                if (ptr_var7 != (int32_t *)0x0) {
                     release_memory(ptr_var7);
                 }
                 stack_ptr_170 = ptr_var10 + stack_offset_18;
@@ -267,24 +267,24 @@ LAB_REALLOC_3:
                 if (temp_var13 == 0) {
                     temp_var13 = 1;
 LAB_REALLOC_4:
-                    ptr_var7 = (undefined4 *)allocate_memory(_memory_pool_180c8ed18, 
-                                                            temp_var13 * 0xc, (undefined1)stack_value_188);
+                    ptr_var7 = (int32_t *)allocate_memory(_memory_pool_180c8ed18, 
+                                                            temp_var13 * 0xc, (int8_t)stack_value_188);
                 }
                 else {
                     temp_var13 = temp_var13 * 2;
                     if (temp_var13 != 0) goto LAB_REALLOC_4;
-                    ptr_var7 = (undefined4 *)0x0;
+                    ptr_var7 = (int32_t *)0x0;
                 }
                 
                 ptr_var8 = ptr_var7;
                 if (ptr_var9 != ptr_var11) {
                     temp_var14 = (longlong)ptr_var9 - (longlong)ptr_var7;
                     do {
-                        *ptr_var8 = *(undefined4 *)(temp_var14 + (longlong)ptr_var8);
-                        ptr_var8[1] = *(undefined4 *)(temp_var14 + 4 + (longlong)ptr_var8);
-                        ptr_var8[2] = *(undefined4 *)(temp_var14 + 8 + (longlong)ptr_var8);
+                        *ptr_var8 = *(int32_t *)(temp_var14 + (longlong)ptr_var8);
+                        ptr_var8[1] = *(int32_t *)(temp_var14 + 4 + (longlong)ptr_var8);
+                        ptr_var8[2] = *(int32_t *)(temp_var14 + 8 + (longlong)ptr_var8);
                         ptr_var8 = ptr_var8 + 3;
-                    } while ((undefined4 *)(temp_var14 + (longlong)ptr_var8) != ptr_var11);
+                    } while ((int32_t *)(temp_var14 + (longlong)ptr_var8) != ptr_var11);
                 }
                 
                 *ptr_var8 = temp_var3;
@@ -292,7 +292,7 @@ LAB_REALLOC_4:
                 ptr_var8[2] = temp_var1;
                 ptr_var8 = ptr_var8 + 3;
                 
-                if (ptr_var9 != (undefined4 *)0x0) {
+                if (ptr_var9 != (int32_t *)0x0) {
                     release_memory(ptr_var9);
                 }
                 stack_ptr_190 = ptr_var7 + temp_var13 * 3;
@@ -310,17 +310,17 @@ LAB_REALLOC_4:
                 ptr_var9 = ptr_var10;
             }
             else {
-                stack_ptr_130 = (undefined4 *)((longlong)ptr_var15 - (longlong)ptr_var10);
+                stack_ptr_130 = (int32_t *)((longlong)ptr_var15 - (longlong)ptr_var10);
                 if ((longlong)stack_ptr_130 >> 2 == 0) {
                     stack_offset_18 = 1;
 LAB_REALLOC_5:
-                    ptr_var9 = (undefined4 *)allocate_memory(_memory_pool_180c8ed18, 
-                                                            stack_offset_18 * 4, (undefined1)stack_value_168);
+                    ptr_var9 = (int32_t *)allocate_memory(_memory_pool_180c8ed18, 
+                                                            stack_offset_18 * 4, (int8_t)stack_value_168);
                 }
                 else {
                     stack_offset_18 = ((longlong)stack_ptr_130 >> 2) * 2;
                     if (stack_offset_18 != 0) goto LAB_REALLOC_5;
-                    ptr_var9 = (undefined4 *)0x0;
+                    ptr_var9 = (int32_t *)0x0;
                 }
                 
                 if (ptr_var10 != ptr_var15) {
@@ -328,7 +328,7 @@ LAB_REALLOC_5:
                 }
                 *ptr_var9 = (int)temp_var13;
                 
-                if (ptr_var10 != (undefined4 *)0x0) {
+                if (ptr_var10 != (int32_t *)0x0) {
                     release_memory(ptr_var10);
                 }
                 stack_ptr_170 = ptr_var9 + stack_offset_18;
@@ -354,31 +354,31 @@ LAB_REALLOC_5:
                 if (temp_var13 == 0) {
                     temp_var13 = 1;
 LAB_REALLOC_6:
-                    ptr_var10 = (undefined4 *)allocate_memory(_memory_pool_180c8ed18, 
-                                                            temp_var13 * 0xc, (undefined1)stack_value_188);
+                    ptr_var10 = (int32_t *)allocate_memory(_memory_pool_180c8ed18, 
+                                                            temp_var13 * 0xc, (int8_t)stack_value_188);
                 }
                 else {
                     temp_var13 = temp_var13 * 2;
                     if (temp_var13 != 0) goto LAB_REALLOC_6;
-                    ptr_var10 = (undefined4 *)0x0;
+                    ptr_var10 = (int32_t *)0x0;
                 }
                 
                 ptr_var11 = ptr_var10;
                 if (ptr_var7 != ptr_var8) {
                     temp_var14 = (longlong)ptr_var7 - (longlong)ptr_var10;
                     do {
-                        *ptr_var11 = *(undefined4 *)(temp_var14 + (longlong)ptr_var11);
-                        ptr_var11[1] = *(undefined4 *)(temp_var14 + 4 + (longlong)ptr_var11);
-                        ptr_var11[2] = *(undefined4 *)(temp_var14 + 8 + (longlong)ptr_var11);
+                        *ptr_var11 = *(int32_t *)(temp_var14 + (longlong)ptr_var11);
+                        ptr_var11[1] = *(int32_t *)(temp_var14 + 4 + (longlong)ptr_var11);
+                        ptr_var11[2] = *(int32_t *)(temp_var14 + 8 + (longlong)ptr_var11);
                         ptr_var11 = ptr_var11 + 3;
-                    } while ((undefined4 *)(temp_var14 + (longlong)ptr_var11) != ptr_var8);
+                    } while ((int32_t *)(temp_var14 + (longlong)ptr_var11) != ptr_var8);
                 }
                 
                 *ptr_var11 = temp_var3;
                 ptr_var11[1] = temp_var2;
                 ptr_var11[2] = temp_var1;
                 
-                if (ptr_var7 != (undefined4 *)0x0) {
+                if (ptr_var7 != (int32_t *)0x0) {
                     release_memory(ptr_var7);
                 }
                 stack_ptr_190 = ptr_var10 + temp_var13 * 3;
@@ -386,7 +386,7 @@ LAB_REALLOC_6:
             }
             
             ptr_var11 = ptr_var11 + 3;
-            temp_var4 = *(undefined2 *)(stack_value_120 + 0x14 + stack_value_140 * 0x18);
+            temp_var4 = *(int16_t *)(stack_value_120 + 0x14 + stack_value_140 * 0x18);
             stack_ptr_198 = ptr_var11;
             
             if (ptr_var5 < stack_ptr_150) {
@@ -395,17 +395,17 @@ LAB_REALLOC_6:
             }
             else {
                 // 处理材质索引
-                stack_ptr_128 = (undefined4 *)((longlong)ptr_var5 - (longlong)stack_ptr_160);
+                stack_ptr_128 = (int32_t *)((longlong)ptr_var5 - (longlong)stack_ptr_160);
                 if ((longlong)stack_ptr_128 >> 1 == 0) {
                     temp_var13 = 1;
 LAB_REALLOC_7:
-                    ptr_var12 = (undefined2 *)allocate_memory(_memory_pool_180c8ed18, 
+                    ptr_var12 = (int16_t *)allocate_memory(_memory_pool_180c8ed18, 
                                                             temp_var13 * 2, 3);
                 }
                 else {
                     temp_var13 = ((longlong)stack_ptr_128 >> 1) * 2;
                     if (temp_var13 != 0) goto LAB_REALLOC_7;
-                    ptr_var12 = (undefined2 *)0x0;
+                    ptr_var12 = (int16_t *)0x0;
                 }
                 
                 if (stack_ptr_160 != ptr_var5) {
@@ -413,7 +413,7 @@ LAB_REALLOC_7:
                 }
                 *ptr_var12 = temp_var4;
                 
-                if (stack_ptr_160 != (undefined2 *)0x0) {
+                if (stack_ptr_160 != (int16_t *)0x0) {
                     release_memory(stack_ptr_160);
                 }
                 stack_ptr_150 = ptr_var12 + temp_var13;
@@ -455,11 +455,11 @@ LAB_REALLOC_7:
               (*(longlong **)(_global_table_180c8a990 + 0x28), &stack_value_108, process_flag, 0);
     
     // 释放内存
-    if (ptr_var5 != (undefined2 *)0x0) {
+    if (ptr_var5 != (int16_t *)0x0) {
         release_memory(ptr_var5);
     }
-    if (ptr_var9 == (undefined4 *)0x0) {
-        if (ptr_var10 == (undefined4 *)0x0) {
+    if (ptr_var9 == (int32_t *)0x0) {
+        if (ptr_var10 == (int32_t *)0x0) {
             return;
         }
         release_memory(ptr_var10);
@@ -470,47 +470,47 @@ LAB_REALLOC_7:
 
 // 函数: 处理顶点缓冲区数据
 // 参数: data_context - 数据上下文, process_flag - 处理标志, param_3/param_4 - 附加参数
-undefined1 process_vertex_buffer(longlong data_context, undefined8 process_flag, 
-                                undefined8 param_3, undefined8 param_4)
+int8_t process_vertex_buffer(longlong data_context, uint64_t process_flag, 
+                                uint64_t param_3, uint64_t param_4)
 {
-    undefined4 temp_var1;
-    undefined4 temp_var2;
-    undefined4 temp_var3;
-    undefined4 *ptr_var4;
-    undefined1 result;
-    undefined4 *ptr_var6;
-    undefined4 *ptr_var7;
+    int32_t temp_var1;
+    int32_t temp_var2;
+    int32_t temp_var3;
+    int32_t *ptr_var4;
+    int8_t result;
+    int32_t *ptr_var6;
+    int32_t *ptr_var7;
     longlong temp_var8;
-    undefined4 *ptr_var9;
+    int32_t *ptr_var9;
     longlong temp_var10;
-    undefined4 *ptr_var11;
+    int32_t *ptr_var11;
     uint temp_var12;
     ulonglong loop_counter;
     ulonglong temp_var14;
     int temp_array[2];
-    undefined8 saved_param_2;
-    undefined4 *stack_ptr_e0;
-    undefined4 *stack_ptr_d8;
-    undefined4 *stack_ptr_d0;
-    undefined4 stack_value_c8;
-    undefined4 temp_array_b8[2];
-    undefined4 *stack_ptr_b0;
-    undefined4 stack_value_a8;
-    undefined4 stack_value_a0;
-    undefined8 stack_value_98;
-    undefined4 stack_value_90;
-    undefined4 stack_value_88;
-    undefined8 stack_value_80;
-    undefined4 stack_value_78;
+    uint64_t saved_param_2;
+    int32_t *stack_ptr_e0;
+    int32_t *stack_ptr_d8;
+    int32_t *stack_ptr_d0;
+    int32_t stack_value_c8;
+    int32_t temp_array_b8[2];
+    int32_t *stack_ptr_b0;
+    int32_t stack_value_a8;
+    int32_t stack_value_a0;
+    uint64_t stack_value_98;
+    int32_t stack_value_90;
+    int32_t stack_value_88;
+    uint64_t stack_value_80;
+    int32_t stack_value_78;
     ushort stack_value_70;
-    undefined4 stack_value_6e;
+    int32_t stack_value_6e;
     ulonglong temp_var13;
     
     // 初始化栈变量
-    stack_ptr_e0 = (undefined4 *)0x0;
-    stack_ptr_d8 = (undefined4 *)0x0;
+    stack_ptr_e0 = (int32_t *)0x0;
+    stack_ptr_d8 = (int32_t *)0x0;
     temp_var13 = 0;
-    stack_ptr_d0 = (undefined4 *)0x0;
+    stack_ptr_d0 = (int32_t *)0x0;
     stack_value_c8 = 3;
     saved_param_2 = process_flag;
     
@@ -529,10 +529,10 @@ undefined1 process_vertex_buffer(longlong data_context, undefined8 process_flag,
     if (*(longlong *)(data_context + 0x30) - temp_var8 >> 4 != 0) {
         do {
             ptr_var4 = stack_ptr_d8;
-            ptr_var6 = (undefined4 *)0x0;
-            temp_var1 = *(undefined4 *)(temp_var8 + 8 + temp_var14);
-            temp_var2 = *(undefined4 *)(temp_var8 + 4 + temp_var14);
-            temp_var3 = *(undefined4 *)(temp_var8 + temp_var14);
+            ptr_var6 = (int32_t *)0x0;
+            temp_var1 = *(int32_t *)(temp_var8 + 8 + temp_var14);
+            temp_var2 = *(int32_t *)(temp_var8 + 4 + temp_var14);
+            temp_var3 = *(int32_t *)(temp_var8 + temp_var14);
             
             if (stack_ptr_d8 < ptr_var11) {
                 *stack_ptr_d8 = temp_var3;
@@ -547,8 +547,8 @@ undefined1 process_vertex_buffer(longlong data_context, undefined8 process_flag,
                 if (temp_var8 == 0) {
                     temp_var8 = 1;
 LAB_REALLOC_VERTEX:
-                    ptr_var6 = (undefined4 *)allocate_memory(_memory_pool_180c8ed18, 
-                                                            temp_var8 * 0xc, (undefined1)stack_value_c8);
+                    ptr_var6 = (int32_t *)allocate_memory(_memory_pool_180c8ed18, 
+                                                            temp_var8 * 0xc, (int8_t)stack_value_c8);
                 }
                 else {
                     temp_var8 = temp_var8 * 2;
@@ -559,18 +559,18 @@ LAB_REALLOC_VERTEX:
                 if (ptr_var9 != ptr_var4) {
                     temp_var10 = (longlong)ptr_var9 - (longlong)ptr_var6;
                     do {
-                        *ptr_var7 = *(undefined4 *)(temp_var10 + (longlong)ptr_var7);
-                        ptr_var7[1] = *(undefined4 *)((longlong)ptr_var7 + temp_var10 + 4);
-                        ptr_var7[2] = *(undefined4 *)((longlong)ptr_var7 + temp_var10 + 8);
+                        *ptr_var7 = *(int32_t *)(temp_var10 + (longlong)ptr_var7);
+                        ptr_var7[1] = *(int32_t *)((longlong)ptr_var7 + temp_var10 + 4);
+                        ptr_var7[2] = *(int32_t *)((longlong)ptr_var7 + temp_var10 + 8);
                         ptr_var7 = ptr_var7 + 3;
-                    } while ((undefined4 *)(temp_var10 + (longlong)ptr_var7) != ptr_var4);
+                    } while ((int32_t *)(temp_var10 + (longlong)ptr_var7) != ptr_var4);
                 }
                 
                 *ptr_var7 = temp_var3;
                 ptr_var7[1] = temp_var2;
                 ptr_var7[2] = temp_var1;
                 
-                if (ptr_var9 != (undefined4 *)0x0) {
+                if (ptr_var9 != (int32_t *)0x0) {
                     release_memory(ptr_var9);
                 }
                 ptr_var11 = ptr_var6 + temp_var8 * 3;
@@ -597,7 +597,7 @@ LAB_REALLOC_VERTEX:
     stack_value_80 = 0;
     stack_value_78 = 0;
     stack_value_6e = 0xff00ff;
-    stack_value_a8 = (undefined4)(((longlong)stack_ptr_d8 - (longlong)ptr_var6) / 0xc);
+    stack_value_a8 = (int32_t)(((longlong)stack_ptr_d8 - (longlong)ptr_var6) / 0xc);
     temp_array_b8[0] = 0xc;
     stack_value_70 = 6;
     stack_ptr_b0 = ptr_var6;
@@ -619,7 +619,7 @@ LAB_REALLOC_VERTEX:
     }
     
     // 清理内存
-    if (ptr_var6 == (undefined4 *)0x0) {
+    if (ptr_var6 == (int32_t *)0x0) {
         return result;
     }
     release_memory(ptr_var6);
@@ -628,8 +628,8 @@ LAB_REALLOC_VERTEX:
 
 // 函数: 统计顶点使用频率
 // 参数: vertex_array - 顶点数据数组, process_flag - 处理标志, param_3/param_4 - 附加参数
-void count_vertex_usage(longlong *vertex_array, undefined8 process_flag, 
-                       undefined8 param_3, undefined8 param_4)
+void count_vertex_usage(longlong *vertex_array, uint64_t process_flag, 
+                       uint64_t param_3, uint64_t param_4)
 {
     int temp_var1;
     longlong temp_var2;
@@ -641,11 +641,11 @@ void count_vertex_usage(longlong *vertex_array, undefined8 process_flag,
     int temp_var8;
     ulonglong loop_counter3;
     int *ptr_var10;
-    undefined4 temp_array[2];
+    int32_t temp_array[2];
     int *stack_ptr_30;
     longlong stack_value_28;
-    undefined8 stack_value_20;
-    undefined4 stack_value_18;
+    uint64_t stack_value_20;
+    int32_t stack_value_18;
     
     // 初始化统计数组
     stack_ptr_30 = (int *)0x0;
@@ -714,13 +714,13 @@ void count_vertex_usage(longlong *vertex_array, undefined8 process_flag,
 // 函数: 复制数据结构
 // 参数: dest_structure - 目标数据结构, src_structure - 源数据结构, param_3/param_4 - 附加参数
 longlong * copy_data_structure(longlong *dest_structure, longlong *src_structure, 
-                              undefined8 param_3, undefined8 param_4)
+                              uint64_t param_3, uint64_t param_4)
 {
     uint temp_var1;
     longlong temp_var2;
     longlong temp_var3;
     longlong data_size;
-    undefined8 memory_flags;
+    uint64_t memory_flags;
     
     memory_flags = 0xfffffffffffffffe;
     data_size = src_structure[1] - *src_structure >> 3;
@@ -821,7 +821,7 @@ longlong * copy_data_structure(longlong *dest_structure, longlong *src_structure
 void release_data_structure(ulonglong *data_structure)
 {
     int *ptr_var1;
-    undefined8 *ptr_var2;
+    uint64_t *ptr_var2;
     longlong temp_var3;
     ulonglong memory_flag;
     
@@ -841,8 +841,8 @@ void release_data_structure(ulonglong *data_structure)
     }
     
     // 释放主数据
-    ptr_var2 = (undefined8 *)*data_structure;
-    if (ptr_var2 != (undefined8 *)0x0) {
+    ptr_var2 = (uint64_t *)*data_structure;
+    if (ptr_var2 != (uint64_t *)0x0) {
         memory_flag = (ulonglong)ptr_var2 & 0xffffffffffc00000;
         if (memory_flag != 0) {
             temp_var3 = memory_flag + 0x80 + ((longlong)ptr_var2 - memory_flag >> 0x10) * 0x50;
@@ -850,8 +850,8 @@ void release_data_structure(ulonglong *data_structure)
             
             if ((*(void ***)(memory_flag + 0x70) == &ExceptionList) && 
                 (*(char *)(temp_var3 + 0xe) == '\0')) {
-                *ptr_var2 = *(undefined8 *)(temp_var3 + 0x20);
-                *(undefined8 **)(temp_var3 + 0x20) = ptr_var2;
+                *ptr_var2 = *(uint64_t *)(temp_var3 + 0x20);
+                *(uint64_t **)(temp_var3 + 0x20) = ptr_var2;
                 ptr_var1 = (int *)(temp_var3 + 0x18);
                 *ptr_var1 = *ptr_var1 + -1;
                 
@@ -875,17 +875,17 @@ void release_data_structure(ulonglong *data_structure)
 
 // 函数: 交换数据结构内容
 // 参数: structure1 - 第一个数据结构, structure2 - 第二个数据结构
-undefined8 * swap_data_structures(undefined8 *structure1, undefined8 *structure2)
+uint64_t * swap_data_structures(uint64_t *structure1, uint64_t *structure2)
 {
-    undefined8 *result_ptr;
-    undefined4 temp_var2;
-    undefined8 temp_var3;
+    uint64_t *result_ptr;
+    int32_t temp_var2;
+    uint64_t temp_var3;
     
     // 交换主数据指针
     *structure1 = 0;
     structure1[1] = 0;
     structure1[2] = 0;
-    *(undefined4 *)(structure1 + 3) = *(undefined4 *)(structure2 + 3);
+    *(int32_t *)(structure1 + 3) = *(int32_t *)(structure2 + 3);
     temp_var3 = *structure1;
     *structure1 = *structure2;
     *structure2 = temp_var3;
@@ -896,9 +896,9 @@ undefined8 * swap_data_structures(undefined8 *structure1, undefined8 *structure2
     temp_var3 = structure1[2];
     structure1[2] = structure2[2];
     structure2[2] = temp_var3;
-    temp_var2 = *(undefined4 *)(structure1 + 3);
-    *(undefined4 *)(structure1 + 3) = *(undefined4 *)(structure2 + 3);
-    *(undefined4 *)(structure2 + 3) = temp_var2;
+    temp_var2 = *(int32_t *)(structure1 + 3);
+    *(int32_t *)(structure1 + 3) = *(int32_t *)(structure2 + 3);
+    *(int32_t *)(structure2 + 3) = temp_var2;
     
     // 交换其他字段
     structure1[4] = structure2[4];
@@ -906,7 +906,7 @@ undefined8 * swap_data_structures(undefined8 *structure1, undefined8 *structure2
     *result_ptr = 0;
     structure1[6] = 0;
     structure1[7] = 0;
-    *(undefined4 *)(structure1 + 8) = *(undefined4 *)(structure2 + 8);
+    *(int32_t *)(structure1 + 8) = *(int32_t *)(structure2 + 8);
     temp_var3 = *result_ptr;
     *result_ptr = structure2[5];
     structure2[5] = temp_var3;
@@ -917,16 +917,16 @@ undefined8 * swap_data_structures(undefined8 *structure1, undefined8 *structure2
     temp_var3 = structure1[7];
     structure1[7] = structure2[7];
     structure2[7] = temp_var3;
-    temp_var2 = *(undefined4 *)(structure1 + 8);
-    *(undefined4 *)(structure1 + 8) = *(undefined4 *)(structure2 + 8);
-    *(undefined4 *)(structure2 + 8) = temp_var2;
+    temp_var2 = *(int32_t *)(structure1 + 8);
+    *(int32_t *)(structure1 + 8) = *(int32_t *)(structure2 + 8);
+    *(int32_t *)(structure2 + 8) = temp_var2;
     
     // 交换索引数据
     result_ptr = structure1 + 9;
     *result_ptr = 0;
     structure1[10] = 0;
     structure1[0xb] = 0;
-    *(undefined4 *)(structure1 + 0xc) = *(undefined4 *)(structure2 + 0xc);
+    *(int32_t *)(structure1 + 0xc) = *(int32_t *)(structure2 + 0xc);
     temp_var3 = *result_ptr;
     *result_ptr = structure2[9];
     structure2[9] = temp_var3;
@@ -937,16 +937,16 @@ undefined8 * swap_data_structures(undefined8 *structure1, undefined8 *structure2
     temp_var3 = structure1[0xb];
     structure1[0xb] = structure2[0xb];
     structure2[0xb] = temp_var3;
-    temp_var2 = *(undefined4 *)(structure1 + 0xc);
-    *(undefined4 *)(structure1 + 0xc) = *(undefined4 *)(structure2 + 0xc);
-    *(undefined4 *)(structure2 + 0xc) = temp_var2;
+    temp_var2 = *(int32_t *)(structure1 + 0xc);
+    *(int32_t *)(structure1 + 0xc) = *(int32_t *)(structure2 + 0xc);
+    *(int32_t *)(structure2 + 0xc) = temp_var2;
     
     // 交换面数据
     result_ptr = structure1 + 0xd;
     *result_ptr = 0;
     structure1[0xe] = 0;
     structure1[0xf] = 0;
-    *(undefined4 *)(structure1 + 0x10) = *(undefined4 *)(structure2 + 0x10);
+    *(int32_t *)(structure1 + 0x10) = *(int32_t *)(structure2 + 0x10);
     temp_var3 = *result_ptr;
     *result_ptr = structure2[0xd];
     structure2[0xd] = temp_var3;
@@ -957,9 +957,9 @@ undefined8 * swap_data_structures(undefined8 *structure1, undefined8 *structure2
     temp_var3 = structure1[0xf];
     structure1[0xf] = structure2[0xf];
     structure2[0xf] = temp_var3;
-    temp_var2 = *(undefined4 *)(structure1 + 0x10);
-    *(undefined4 *)(structure1 + 0x10) = *(undefined4 *)(structure2 + 0x10);
-    *(undefined4 *)(structure2 + 0x10) = temp_var2;
+    temp_var2 = *(int32_t *)(structure1 + 0x10);
+    *(int32_t *)(structure1 + 0x10) = *(int32_t *)(structure2 + 0x10);
+    *(int32_t *)(structure2 + 0x10) = temp_var2;
     
     return structure1;
 }
@@ -967,7 +967,7 @@ undefined8 * swap_data_structures(undefined8 *structure1, undefined8 *structure2
 
 // 函数: 更新资源使用统计
 // 参数: resource_manager - 资源管理器, resource_data - 资源数据
-void update_resource_statistics(undefined8 resource_manager, longlong resource_data)
+void update_resource_statistics(uint64_t resource_manager, longlong resource_data)
 {
     longlong mutex_handle;
     longlong temp_var1;
@@ -976,8 +976,8 @@ void update_resource_statistics(undefined8 resource_manager, longlong resource_d
     longlong temp_var4;
     longlong *resource_ptr;
     longlong total_size;
-    undefined8 stack_value_30;
-    undefined8 stack_value_28;
+    uint64_t stack_value_30;
+    uint64_t stack_value_28;
     code *callback_func;
     code *guard_func;
     

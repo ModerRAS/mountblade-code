@@ -3,11 +3,11 @@
 // 02_core_engine_part238.c - 核心引擎内存管理和资源处理模块 (9个函数)
 
 // 全局变量声明
-extern undefined8 _DAT_180c86920;    // 引擎全局数据结构指针
-extern undefined8 _DAT_180c8ed18;    // 内存池标识符
-extern undefined8 _DAT_180c86890;    // 资源管理器数据指针
-extern undefined8 _DAT_180c86870;    // 渲染配置数据指针
-extern undefined1 UNK_180a0fec0;      // 格式化字符串常量
+extern uint64_t _DAT_180c86920;    // 引擎全局数据结构指针
+extern uint64_t _DAT_180c8ed18;    // 内存池标识符
+extern uint64_t _DAT_180c86890;    // 资源管理器数据指针
+extern uint64_t _DAT_180c86870;    // 渲染配置数据指针
+extern int8_t UNK_180a0fec0;      // 格式化字符串常量
 
 /**
  * 处理引擎资源管理器初始化和配置
@@ -16,7 +16,7 @@ extern undefined1 UNK_180a0fec0;      // 格式化字符串常量
  * @param engine_context 引擎上下文指针
  * @param resource_manager 资源管理器指针
  */
-void initialize_engine_resource_manager(undefined8 engine_context, longlong *resource_manager)
+void initialize_engine_resource_manager(uint64_t engine_context, longlong *resource_manager)
 
 {
   uint *status_flag_ptr;
@@ -29,25 +29,25 @@ void initialize_engine_resource_manager(undefined8 engine_context, longlong *res
   uint item_count;
   ulonglong total_items;
   longlong *stack_resource_ptr;
-  undefined8 stack_config_1;
+  uint64_t stack_config_1;
   longlong *stack_resource_ptr2;
-  undefined8 stack_config_2;
-  undefined8 stack_config_3;
-  undefined8 stack_config_4;
-  undefined8 stack_config_5;
-  undefined4 stack_config_6;
-  undefined4 stack_config_7;
-  undefined4 stack_config_8;
-  undefined4 stack_config_9;
-  undefined4 stack_config_10;
-  undefined4 stack_config_11;
-  undefined4 stack_config_12;
-  undefined4 stack_config_13;
+  uint64_t stack_config_2;
+  uint64_t stack_config_3;
+  uint64_t stack_config_4;
+  uint64_t stack_config_5;
+  int32_t stack_config_6;
+  int32_t stack_config_7;
+  int32_t stack_config_8;
+  int32_t stack_config_9;
+  int32_t stack_config_10;
+  int32_t stack_config_11;
+  int32_t stack_config_12;
+  int32_t stack_config_13;
   longlong stack_config_14;
-  undefined8 stack_config_15;
-  undefined8 stack_config_16;
-  undefined4 stack_config_17;
-  undefined8 stack_config_18;
+  uint64_t stack_config_15;
+  uint64_t stack_config_16;
+  int32_t stack_config_17;
+  uint64_t stack_config_18;
   
   loop_counter = 0;
   stack_config_18 = 0xfffffffffffffffe;
@@ -125,8 +125,8 @@ void initialize_engine_resource_manager(undefined8 engine_context, longlong *res
       status_flag_ptr = (uint *)(*(longlong *)(loop_counter + stack_resource_ptr[7]) + 0x100);
       *status_flag_ptr = *status_flag_ptr & 0xfffff7ff;
       resource_offset = *(longlong *)(loop_counter + stack_resource_ptr[7]);
-      *(undefined8 *)(resource_offset + 0x108) = 0xffffffffffffffff;
-      *(undefined4 *)(resource_offset + 0x110) = 0xffffffff;
+      *(uint64_t *)(resource_offset + 0x108) = 0xffffffffffffffff;
+      *(int32_t *)(resource_offset + 0x110) = 0xffffffff;
       loop_counter = loop_counter + 0x10;
       temp_value = temp_value + -1;
     } while (temp_value != 0);
@@ -183,9 +183,9 @@ void initialize_engine_resource_manager(undefined8 engine_context, longlong *res
  * @param secondary_manager 次要资源管理器指针
  * @param config_params 配置参数数组
  */
-void process_engine_resource_manager_advanced(undefined8 engine_context, longlong *primary_manager, 
-                                            undefined8 config_data, longlong *secondary_manager,
-                                            undefined8 *config_params)
+void process_engine_resource_manager_advanced(uint64_t engine_context, longlong *primary_manager, 
+                                            uint64_t config_data, longlong *secondary_manager,
+                                            uint64_t *config_params)
 
 {
   uint *status_flag_ptr;
@@ -198,25 +198,25 @@ void process_engine_resource_manager_advanced(undefined8 engine_context, longlon
   uint item_count;
   ulonglong total_items;
   longlong *stack_resource_ptr;
-  undefined8 stack_config_1;
+  uint64_t stack_config_1;
   longlong *stack_resource_ptr2;
-  undefined8 stack_config_2;
-  undefined8 stack_config_3;
-  undefined8 stack_config_4;
-  undefined8 stack_config_5;
-  undefined4 stack_config_6;
-  undefined4 stack_config_7;
-  undefined4 stack_config_8;
-  undefined4 stack_config_9;
-  undefined4 stack_config_10;
-  undefined4 stack_config_11;
-  undefined4 stack_config_12;
-  undefined4 stack_config_13;
+  uint64_t stack_config_2;
+  uint64_t stack_config_3;
+  uint64_t stack_config_4;
+  uint64_t stack_config_5;
+  int32_t stack_config_6;
+  int32_t stack_config_7;
+  int32_t stack_config_8;
+  int32_t stack_config_9;
+  int32_t stack_config_10;
+  int32_t stack_config_11;
+  int32_t stack_config_12;
+  int32_t stack_config_13;
   longlong stack_config_14;
-  undefined8 stack_config_15;
-  undefined8 stack_config_16;
-  undefined4 stack_config_17;
-  undefined8 stack_config_18;
+  uint64_t stack_config_15;
+  uint64_t stack_config_16;
+  int32_t stack_config_17;
+  uint64_t stack_config_18;
   
   loop_counter = 0;
   stack_config_18 = 0xfffffffffffffffe;
@@ -256,14 +256,14 @@ void process_engine_resource_manager_advanced(undefined8 engine_context, longlon
   stack_config_4 = config_params[1];
   stack_config_5 = config_params[2];
   stack_config_6 = config_params[3];
-  stack_config_7 = *(undefined4 *)(config_params + 4);
-  stack_config_8 = *(undefined4 *)((longlong)config_params + 0x24);
-  stack_config_9 = *(undefined4 *)(config_params + 5);
-  stack_config_10 = *(undefined4 *)((longlong)config_params + 0x2c);
-  stack_config_11 = *(undefined4 *)(config_params + 6);
-  stack_config_12 = *(undefined4 *)((longlong)config_params + 0x34);
-  stack_config_13 = *(undefined4 *)(config_params + 7);
-  stack_config_1 = *(undefined4 *)((longlong)config_params + 0x3c);
+  stack_config_7 = *(int32_t *)(config_params + 4);
+  stack_config_8 = *(int32_t *)((longlong)config_params + 0x24);
+  stack_config_9 = *(int32_t *)(config_params + 5);
+  stack_config_10 = *(int32_t *)((longlong)config_params + 0x2c);
+  stack_config_11 = *(int32_t *)(config_params + 6);
+  stack_config_12 = *(int32_t *)((longlong)config_params + 0x34);
+  stack_config_13 = *(int32_t *)(config_params + 7);
+  stack_config_1 = *(int32_t *)((longlong)config_params + 0x3c);
   
   // 调用资源管理配置函数
   configure_resource_manager(&stack_resource_ptr);
@@ -294,8 +294,8 @@ void process_engine_resource_manager_advanced(undefined8 engine_context, longlon
       status_flag_ptr = (uint *)(*(longlong *)(loop_counter + stack_resource_ptr[7]) + 0x100);
       *status_flag_ptr = *status_flag_ptr & 0xfffff7ff;
       resource_offset = *(longlong *)(loop_counter + stack_resource_ptr[7]);
-      *(undefined8 *)(resource_offset + 0x108) = 0xffffffffffffffff;
-      *(undefined4 *)(resource_offset + 0x110) = 0xffffffff;
+      *(uint64_t *)(resource_offset + 0x108) = 0xffffffffffffffff;
+      *(int32_t *)(resource_offset + 0x110) = 0xffffffff;
       loop_counter = loop_counter + 0x10;
       temp_value = temp_value + -1;
     } while (temp_value != 0);
@@ -328,15 +328,15 @@ void process_engine_resource_manager_advanced(undefined8 engine_context, longlon
  * @param resource_data 资源数据指针
  * @param process_flag 处理标志
  */
-void create_engine_resource_processor(undefined8 engine_context, undefined8 resource_data, undefined1 process_flag)
+void create_engine_resource_processor(uint64_t engine_context, uint64_t resource_data, int8_t process_flag)
 
 {
-  undefined8 resource_handle;
-  undefined8 *resource_ptr;
+  uint64_t resource_handle;
+  uint64_t *resource_ptr;
   longlong *temp_resource_ptr;
   
   // 创建资源处理器
-  resource_ptr = (undefined8 *)create_resource_processor(engine_context, &temp_resource_ptr, resource_data, 0);
+  resource_ptr = (uint64_t *)create_resource_processor(engine_context, &temp_resource_ptr, resource_data, 0);
   resource_handle = *resource_ptr;
   
   // 清理临时资源
@@ -363,7 +363,7 @@ void create_engine_resource_processor(undefined8 engine_context, undefined8 reso
  * @param config_param 配置参数
  */
 void initialize_resource_processor(longlong processor_ptr, longlong *resource_manager, 
-                                 undefined1 process_flag, undefined8 config_param)
+                                 int8_t process_flag, uint64_t config_param)
 
 {
   longlong *old_resource_manager;
@@ -371,9 +371,9 @@ void initialize_resource_processor(longlong processor_ptr, longlong *resource_ma
   // 处理现有资源
   if (*(longlong *)(processor_ptr + 0x38) != 0) {
     process_resource_data(processor_ptr + 0x20, processor_ptr + 0x38, process_flag, config_param, 0xfffffffffffffffe);
-    *(undefined4 *)(processor_ptr + 0x28) = *(undefined4 *)(processor_ptr + 0x848);
-    *(undefined4 *)(processor_ptr + 0x2c) = 0x3f800000;
-    *(undefined1 *)(processor_ptr + 0x30) = *(undefined1 *)(processor_ptr + 0x40);
+    *(int32_t *)(processor_ptr + 0x28) = *(int32_t *)(processor_ptr + 0x848);
+    *(int32_t *)(processor_ptr + 0x2c) = 0x3f800000;
+    *(int8_t *)(processor_ptr + 0x30) = *(int8_t *)(processor_ptr + 0x40);
   }
   
   // 初始化新的资源管理器
@@ -389,9 +389,9 @@ void initialize_resource_processor(longlong processor_ptr, longlong *resource_ma
   }
   
   // 设置处理器状态
-  *(undefined1 *)(processor_ptr + 0x40) = process_flag;
-  *(undefined4 *)(processor_ptr + 0x848) = 0;
-  *(undefined1 *)(processor_ptr + 0x41) = 0;
+  *(int8_t *)(processor_ptr + 0x40) = process_flag;
+  *(int32_t *)(processor_ptr + 0x848) = 0;
+  *(int8_t *)(processor_ptr + 0x41) = 0;
   return;
 }
 
@@ -426,7 +426,7 @@ void cleanup_resource_manager_state(longlong *resource_manager_ptr)
   
   // 检查是否有资源需要处理
   if (resource_count >> 6 == resource_count >> 0x3f) {
-    *(undefined1 *)((longlong)resource_manager_ptr + 0x41) = 1;
+    *(int8_t *)((longlong)resource_manager_ptr + 0x41) = 1;
     return;
   }
   
@@ -443,8 +443,8 @@ void cleanup_resource_manager_state(longlong *resource_manager_ptr)
         status_flag_ptr = (uint *)(*(longlong *)(resource_count + resource_offset) + 0x100);
         *status_flag_ptr = *status_flag_ptr & 0xfffff7ff;
         resource_offset = *(longlong *)(resource_count + *(longlong *)(base_address + 0x38));
-        *(undefined8 *)(resource_offset + 0x108) = 0xffffffffffffffff;
-        *(undefined4 *)(resource_offset + 0x110) = 0xffffffff;
+        *(uint64_t *)(resource_offset + 0x108) = 0xffffffffffffffff;
+        *(int32_t *)(resource_offset + 0x110) = 0xffffffff;
         
         // 检查资源是否已被清理
         if (*(longlong *)(*(longlong *)(resource_count + *(longlong *)(base_address + 0x38)) + 0x2d0) != 0) {
@@ -453,7 +453,7 @@ void cleanup_resource_manager_state(longlong *resource_manager_ptr)
         }
         
         inner_item_count = (int)inner_counter + 1;
-        *(undefined8 *)(*(longlong *)(resource_count + *(longlong *)(base_address + 0x38)) + 0x2d0) = 0;
+        *(uint64_t *)(*(longlong *)(resource_count + *(longlong *)(base_address + 0x38)) + 0x2d0) = 0;
         resource_offset = *(longlong *)(base_address + 0x38);
         inner_counter = (ulonglong)inner_item_count;
         resource_count = resource_count + 0x10;
@@ -469,7 +469,7 @@ void cleanup_resource_manager_state(longlong *resource_manager_ptr)
   } while ((ulonglong)(longlong)(int)inner_item_count < (ulonglong)((resource_count >> 6) - (resource_count >> 0x3f)));
   
   // 标记清理完成
-  *(undefined1 *)((longlong)resource_manager_ptr + 0x41) = 1;
+  *(int8_t *)((longlong)resource_manager_ptr + 0x41) = 1;
   return;
 }
 
@@ -509,8 +509,8 @@ void batch_cleanup_resource_managers(void)
         status_flag_ptr = (uint *)(*(longlong *)(chunk_offset + resource_offset) + 0x100);
         *status_flag_ptr = *status_flag_ptr & 0xfffff7ff;
         resource_offset = *(longlong *)(chunk_offset + *(longlong *)(resource_base + 0x38));
-        *(undefined8 *)(resource_offset + 0x108) = 0xffffffffffffffff;
-        *(undefined4 *)(resource_offset + 0x110) = 0xffffffff;
+        *(uint64_t *)(resource_offset + 0x108) = 0xffffffffffffffff;
+        *(int32_t *)(resource_offset + 0x110) = 0xffffffff;
         
         // 检查资源状态
         if (*(longlong *)(*(longlong *)(chunk_offset + *(longlong *)(resource_base + 0x38)) + 0x2d0) != 0) {
@@ -534,7 +534,7 @@ void batch_cleanup_resource_managers(void)
   } while ((ulonglong)(longlong)process_counter < (ulonglong)((resource_base >> 6) - (resource_base >> 0x3f)));
   
   // 标记批量清理完成
-  *(undefined1 *)((longlong)manager_ptr + 0x41) = 1;
+  *(int8_t *)((longlong)manager_ptr + 0x41) = 1;
   return;
 }
 
@@ -551,7 +551,7 @@ void batch_cleanup_resource_managers(void)
 void set_resource_manager_complete(longlong manager_ptr)
 
 {
-  *(undefined1 *)(manager_ptr + 0x41) = 1;
+  *(int8_t *)(manager_ptr + 0x41) = 1;
   return;
 }
 
@@ -615,11 +615,11 @@ void update_resource_manager_time(longlong manager_ptr, float time_delta)
     *(float *)(manager_ptr + 0x2c) = accumulated_time;
     if (accumulated_time <= 0.0) {
       resource_manager = *(longlong **)(manager_ptr + 0x20);
-      *(undefined8 *)(manager_ptr + 0x20) = 0;
+      *(uint64_t *)(manager_ptr + 0x20) = 0;
       if (resource_manager != (longlong *)0x0) {
         (**(code **)(*resource_manager + 0x38))();
       }
-      *(undefined4 *)(manager_ptr + 0x2c) = 0;
+      *(int32_t *)(manager_ptr + 0x2c) = 0;
     }
   }
   return;
@@ -663,12 +663,12 @@ void process_resource_manager_advanced_data(longlong *resource_manager, ulonglon
 
 {
   float temp_float;
-  undefined4 temp_uint1;
-  undefined4 temp_uint2;
-  undefined8 temp_ullong;
+  int32_t temp_uint1;
+  int32_t temp_uint2;
+  uint64_t temp_ullong;
   char temp_char;
   byte temp_byte;
-  undefined8 *ptr_ullong;
+  uint64_t *ptr_ullong;
   longlong temp_long1;
   float *ptr_float;
   longlong temp_long2;
@@ -678,7 +678,7 @@ void process_resource_manager_advanced_data(longlong *resource_manager, ulonglon
   int temp_int;
   char *char_ptr;
   longlong temp_long3;
-  undefined4 temp_uint3;
+  int32_t temp_uint3;
   uint *ptr_uint;
   uint temp_uint4;
   longlong temp_long4;
@@ -691,8 +691,8 @@ void process_resource_manager_advanced_data(longlong *resource_manager, ulonglon
   uint *ptr_uint2;
   bool bool_flag;
   float max_float;
-  undefined8 xmm0_out1;
-  undefined8 xmm0_out2;
+  uint64_t xmm0_out1;
+  uint64_t xmm0_out2;
   float normalization_factor;
   ulonglong stack_data;
   uint stack_uint1;
@@ -722,10 +722,10 @@ void process_resource_manager_advanced_data(longlong *resource_manager, ulonglon
             if (((*(byte *)(*(longlong *)(temp_long4 + 0x38) + 8 + data_offset) & 1) != 0) &&
                (temp_long3 = *(longlong *)(*(longlong *)(temp_long4 + 0x38) + data_offset),
                (*(uint *)(temp_long3 + 0x100) & 0x800) != 0)) {
-              *(undefined4 *)(*(longlong *)(temp_long3 + 0x2d0) + 0x10) = 0;
-              *(undefined4 *)(*(longlong *)(temp_long3 + 0x2d0) + 0xc) = 0;
-              *(undefined4 *)(*(longlong *)(temp_long3 + 0x2d0) + 0x14) = 0;
-              *(undefined4 *)(*(longlong *)(temp_long3 + 0x2d0) + 0x18) = 0;
+              *(int32_t *)(*(longlong *)(temp_long3 + 0x2d0) + 0x10) = 0;
+              *(int32_t *)(*(longlong *)(temp_long3 + 0x2d0) + 0xc) = 0;
+              *(int32_t *)(*(longlong *)(temp_long3 + 0x2d0) + 0x14) = 0;
+              *(int32_t *)(*(longlong *)(temp_long3 + 0x2d0) + 0x18) = 0;
               temp_long4 = *(longlong *)(resource_base + ullong_counter4);
             }
             temp_uint4 = (int)ullong_counter2 + 1;
@@ -755,7 +755,7 @@ void process_resource_manager_advanced_data(longlong *resource_manager, ulonglon
     }
     if (resource_manager[4] != 0) {
       process_resource_float_data(resource_manager, resource_manager[4], &stack_data, (longlong)resource_manager + 0x44,
-                    *(undefined4 *)((longlong)resource_manager + 0x2c));
+                    *(int32_t *)((longlong)resource_manager + 0x2c));
       ullong_counter3 = stack_data & 0xffffffff;
     }
     ullong_counter1 = ullong_counter4;
@@ -801,7 +801,7 @@ void process_resource_manager_advanced_data(longlong *resource_manager, ulonglon
           do {
             ullong_counter1 = ullong_counter4;
             if (3 < resource_base) {
-              ptr_ullong = (undefined8 *)((longlong)resource_manager + 0x44);
+              ptr_ullong = (uint64_t *)((longlong)resource_manager + 0x44);
               temp_long4 = (resource_base - 4U >> 2) + 1;
               ullong_counter1 = temp_long4 * 4;
               do {
@@ -835,7 +835,7 @@ void process_resource_manager_advanced_data(longlong *resource_manager, ulonglon
               } while (temp_long4 != 0);
             }
             if ((longlong)ullong_counter1 < resource_base) {
-              ptr_ullong = (undefined8 *)((longlong)resource_manager + ullong_counter1 * 8 + 0x44);
+              ptr_ullong = (uint64_t *)((longlong)resource_manager + ullong_counter1 * 8 + 0x44);
               temp_long4 = resource_base - ullong_counter1;
               do {
                 if (*(float *)((longlong)ptr_ullong + 4) <= *(float *)((longlong)ptr_ullong + 0xc) &&
@@ -887,7 +887,7 @@ void process_resource_manager_advanced_data(longlong *resource_manager, ulonglon
                     temp_uint4 = stack_uint1;
                     if ((temp_long3 == 0) || (temp_int2 = *(int *)(temp_long3 + 0x18), temp_int2 == 0))
                     goto resource_skip_label;
-                    temp_uint3 = *(undefined4 *)(temp_long3 + 0x2c);
+                    temp_uint3 = *(int32_t *)(temp_long3 + 0x2c);
                   }
                   else {
                     temp_char = validate_resource_data(temp_long3, temp_long2, temp_long1);
@@ -898,32 +898,32 @@ void process_resource_manager_advanced_data(longlong *resource_manager, ulonglon
                       goto resource_skip_label;
                     }
                     temp_long3 = process_resource_data(xmm0_out1, temp_long2, temp_long1);
-                    temp_uint3 = *(undefined4 *)(temp_long3 + 0x2c);
+                    temp_uint3 = *(int32_t *)(temp_long3 + 0x2c);
                     temp_long3 = lookup_resource_data(xmm0_out2, temp_long1);
                     temp_int2 = *(int *)(temp_long3 + 0x18);
                   }
-                  temp_uint1 = *(undefined4 *)(temp_long3 + 0x24);
-                  temp_uint2 = *(undefined4 *)(temp_long3 + 0x28);
+                  temp_uint1 = *(int32_t *)(temp_long3 + 0x24);
+                  temp_uint2 = *(int32_t *)(temp_long3 + 0x28);
                   *(int *)(temp_long4 + 4 + stack_long3) = temp_int2;
-                  *(undefined4 *)(temp_long4 + 8 + stack_long3) = *(undefined4 *)(temp_long3 + 0x1c);
+                  *(int32_t *)(temp_long4 + 8 + stack_long3) = *(int32_t *)(temp_long3 + 0x1c);
                   *(byte *)(temp_long2 + 0xfe) = *(byte *)(temp_long2 + 0xfe) & 0xf7;
                   *(uint *)(temp_long2 + 0x100) = *(uint *)(temp_long2 + 0x100) | 0x800;
                   temp_ullong = _DAT_180c8ed18;
-                  *(undefined4 *)(temp_long2 + 0x10c) = temp_uint1;
+                  *(int32_t *)(temp_long2 + 0x10c) = temp_uint1;
                   if (temp_long1 == 0) {
                     temp_byte = 8;
                   }
-                  *(undefined4 *)(temp_long2 + 0x110) = temp_uint2;
+                  *(int32_t *)(temp_long2 + 0x110) = temp_uint2;
                   *(byte *)(temp_long2 + 0xfe) = *(byte *)(temp_long2 + 0xfe) | temp_byte;
-                  *(undefined4 *)(temp_long2 + 0x108) = temp_uint3;
-                  ptr_ullong = (undefined8 *)allocate_resource_memory(temp_ullong, 0x20, 8, 3);
+                  *(int32_t *)(temp_long2 + 0x108) = temp_uint3;
+                  ptr_ullong = (uint64_t *)allocate_resource_memory(temp_ullong, 0x20, 8, 3);
                   *ptr_ullong = 0;
-                  *(undefined4 *)(ptr_ullong + 1) = 0;
-                  *(undefined4 *)((longlong)ptr_ullong + 0xc) = 0xffffffff;
+                  *(int32_t *)(ptr_ullong + 1) = 0;
+                  *(int32_t *)((longlong)ptr_ullong + 0xc) = 0xffffffff;
                   ptr_ullong[2] = 0;
-                  *(undefined4 *)(ptr_ullong + 3) = 0;
-                  *(undefined8 **)(temp_long2 + 0x2d0) = ptr_ullong;
-                  *(undefined4 *)(temp_long4 + stack_long3) = 0;
+                  *(int32_t *)(ptr_ullong + 3) = 0;
+                  *(uint64_t **)(temp_long2 + 0x2d0) = ptr_ullong;
+                  *(int32_t *)(temp_long4 + stack_long3) = 0;
                 }
                 else {
 resource_skip_label:
@@ -959,12 +959,12 @@ resource_skip_label:
                           temp_uint4 = temp_int * 0x800;
                           temp_int2 = temp_uint4 + 0x800;
                           for (; (int)temp_uint4 < temp_int2; temp_uint4 = temp_uint4 + 1) {
-                            *(undefined8 *)
+                            *(uint64_t *)
                              (*(longlong *)(ptr_uint + (ulonglong)(temp_uint4 >> 0xb) * 2 + 2) +
                              (longlong)(int)(temp_uint4 + (temp_uint4 >> 0xb) * -0x800) * 8) = 0;
                           }
                           LOCK();
-                          *(undefined1 *)((longlong)temp_int + 0x408 + (longlong)ptr_uint) = 0;
+                          *(int8_t *)((longlong)temp_int + 0x408 + (longlong)ptr_uint) = 0;
                           UNLOCK();
                         }
                         else {
@@ -988,12 +988,12 @@ resource_skip_label:
                   }
                   ullong_counter3 = (ulonglong)(uint)stack_data;
                 }
-                *(undefined4 *)(*(longlong *)(temp_long2 + 0x2d0) + 0x10) =
-                     *(undefined4 *)(temp_long4 + 8 + stack_long3);
+                *(int32_t *)(*(longlong *)(temp_long2 + 0x2d0) + 0x10) =
+                     *(int32_t *)(temp_long4 + 8 + stack_long3);
                 *(int *)(*(longlong *)(temp_long2 + 0x2d0) + 0x14) = (int)ullong_counter3;
                 *(uint *)(*(longlong *)(temp_long2 + 0x2d0) + 0x18) = temp_uint5;
-                *(undefined4 *)(*(longlong *)(temp_long2 + 0x2d0) + 0xc) =
-                     *(undefined4 *)(_DAT_180c86870 + 0x224);
+                *(int32_t *)(*(longlong *)(temp_long2 + 0x2d0) + 0xc) =
+                     *(int32_t *)(_DAT_180c86870 + 0x224);
                 temp_uint4 = stack_uint1;
                 if (0 < (int)ullong_counter3) {
                   ptr_float = (float *)(resource_manager + 9);

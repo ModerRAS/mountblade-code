@@ -17,11 +17,11 @@
 //------------------------------------------------------------------------------
 
 // 网络系统句柄类型
-typedef undefined8 NetworkConnectionHandle;          // 网络连接句柄
-typedef undefined8 NetworkDataHandle;                // 网络数据句柄
-typedef undefined8 NetworkSocketHandle;              // 网络套接字句柄
-typedef undefined8 NetworkBufferHandle;              // 网络缓冲区句柄
-typedef undefined8 NetworkContextHandle;             // 网络上下文句柄
+typedef uint64_t NetworkConnectionHandle;          // 网络连接句柄
+typedef uint64_t NetworkDataHandle;                // 网络数据句柄
+typedef uint64_t NetworkSocketHandle;              // 网络套接字句柄
+typedef uint64_t NetworkBufferHandle;              // 网络缓冲区句柄
+typedef uint64_t NetworkContextHandle;             // 网络上下文句柄
 
 // 网络系统状态常量
 #define NETWORK_STATE_READY           0x00000001      // 网络系统就绪状态
@@ -122,21 +122,21 @@ typedef undefined8 NetworkContextHandle;             // 网络上下文句柄
 //   简化实现：保持原有功能逻辑，添加详细的参数说明和技术注释
 //   优化点：明确网络处理步骤，添加状态管理说明
 //------------------------------------------------------------------------------
-void FUN_180852090(undefined8 *param_1, undefined8 *param_2)
+void FUN_180852090(uint64_t *param_1, uint64_t *param_2)
 {
     // 网络系统计算变量
-    undefined8 uVar1;                                // 网络数据变量1
-    undefined1 *puVar2;                              // 网络数据指针
+    uint64_t uVar1;                                // 网络数据变量1
+    int8_t *puVar2;                              // 网络数据指针
     char cVar3;                                      // 字符状态变量
     short sVar4;                                      // 短整型网络变量
     int iVar5;                                       // 整型网络变量
     longlong lVar6;                                   // 长整型网络变量
     longlong lVar7;                                   // 长整型网络变量
-    undefined8 *puVar8;                               // 网络数据指针
-    undefined8 *puVar9;                               // 网络数据指针
+    uint64_t *puVar8;                               // 网络数据指针
+    uint64_t *puVar9;                               // 网络数据指针
     int iVar10;                                      // 整型索引变量
-    undefined8 *puVar11;                              // 网络数据指针
-    undefined8 *puVar12;                              // 网络数据指针
+    uint64_t *puVar11;                              // 网络数据指针
+    uint64_t *puVar12;                              // 网络数据指针
     longlong *plVar13;                                // 网络长整型指针
     ulonglong uVar14;                                 // 无符号长整型变量
     ulonglong uVar15;                                 // 无符号长整型变量
@@ -144,15 +144,15 @@ void FUN_180852090(undefined8 *param_1, undefined8 *param_2)
     uint uVar17;                                     // 无符号整型变量
     int iVar18;                                      // 整型索引变量
     ulonglong uVar19;                                 // 无符号长整型变量
-    undefined8 *puVar20;                              // 网络数据指针
+    uint64_t *puVar20;                              // 网络数据指针
     code *pcVar21;                                    // 代码指针变量
     uint uVar22;                                     // 无符号整型变量
     ulonglong uVar23;                                 // 无符号长整型变量
     
     // 网络系统栈变量
-    undefined1 auStack_338 [32];                     // 32字节网络栈缓冲区
+    int8_t auStack_338 [32];                     // 32字节网络栈缓冲区
     longlong *plStack_318;                            // 网络长整型栈指针
-    undefined8 *puStack_310;                          // 网络数据栈指针
+    uint64_t *puStack_310;                          // 网络数据栈指针
     uint uStack_308;                                  // 无符号整型栈变量
     uint uStack_300;                                  // 无符号整型栈变量
     uint uStack_2f8;                                  // 无符号整型栈变量
@@ -161,18 +161,18 @@ void FUN_180852090(undefined8 *param_1, undefined8 *param_2)
     uint uStack_2e0;                                  // 无符号整型栈变量
     uint uStack_2d8;                                  // 无符号整型栈变量
     uint uStack_2d0;                                  // 无符号整型栈变量
-    undefined8 uStack_2c8;                            // 8字节网络栈变量
-    undefined8 uStack_2c0;                            // 8字节网络栈变量
+    uint64_t uStack_2c8;                            // 8字节网络栈变量
+    uint64_t uStack_2c0;                            // 8字节网络栈变量
     ulonglong uStack_2b8;                            // 无符号长整型栈变量
-    undefined8 *puStack_2b0;                          // 网络数据栈指针
+    uint64_t *puStack_2b0;                          // 网络数据栈指针
     longlong lStack_2a8;                              // 长整型栈变量
     longlong lStack_2a0;                              // 长整型栈变量
-    undefined8 auStack_298 [2];                       // 16字节网络栈数组
-    undefined1 *puStack_288;                          // 网络数据栈指针
+    uint64_t auStack_298 [2];                       // 16字节网络栈数组
+    int8_t *puStack_288;                          // 网络数据栈指针
     int iStack_280;                                   // 整型栈变量
-    undefined4 uStack_27c;                            // 4字节网络栈变量
-    undefined1 auStack_278 [512];                     // 512字节网络栈缓冲区
-    undefined1 auStack_78 [40];                        // 40字节网络栈缓冲区
+    int32_t uStack_27c;                            // 4字节网络栈变量
+    int8_t auStack_278 [512];                     // 512字节网络栈缓冲区
+    int8_t auStack_78 [40];                        // 40字节网络栈缓冲区
     ulonglong uStack_50;                              // 无符号长整型栈变量
     
     // 第一阶段：网络系统初始化和安全检查
@@ -187,7 +187,7 @@ void FUN_180852090(undefined8 *param_1, undefined8 *param_2)
     // 检查网络连接是否有效
     if (lVar6 != 0) {
         // 获取网络连接配置信息
-        uStack_2c8 = *(undefined8 **)(lVar6 + 0x10);   // 获取连接配置指针
+        uStack_2c8 = *(uint64_t **)(lVar6 + 0x10);   // 获取连接配置指针
         uStack_2c0 = *(ulonglong *)(lVar6 + 0x18);     // 获取连接配置大小
         
         // 执行网络连接配置操作
@@ -204,7 +204,7 @@ void FUN_180852090(undefined8 *param_1, undefined8 *param_2)
             uStack_2f8 = (uint)uStack_2c0._2_1_;        // 提取配置状态位
             uStack_300 = (uint)uStack_2c0._1_1_;        // 提取配置状态位
             uStack_308 = (uint)(byte)uStack_2c0;         // 提取配置状态位
-            puStack_310 = (undefined8 *)CONCAT44(puStack_310._4_4_, (uint)uStack_2c8._6_2_);
+            puStack_310 = (uint64_t *)CONCAT44(puStack_310._4_4_, (uint)uStack_2c8._6_2_);
             plStack_318 = (longlong *)CONCAT44(plStack_318._4_4_, (uint)uStack_2c8._4_2_);
             
             // 调用网络错误处理函数
@@ -233,7 +233,7 @@ void FUN_180852090(undefined8 *param_1, undefined8 *param_2)
         // 第五阶段：网络资源管理和分配
         // 管理网络资源的分配和释放
         iVar5 = FUN_180744d60(param_1 + 0x1f);         // 检查网络资源状态
-        puVar11 = (undefined8 *)0x0;                     // 初始化资源指针
+        puVar11 = (uint64_t *)0x0;                     // 初始化资源指针
         
         if (iVar5 == 0) {
             // 资源状态正常，执行资源管理操作
@@ -311,23 +311,23 @@ LAB_180852302:
         
         // 第九阶段：网络连接配置验证
         // 验证网络连接配置的有效性和兼容性
-        if ((undefined8 *)param_1[0xc] == (undefined8 *)0x0) {
+        if ((uint64_t *)param_1[0xc] == (uint64_t *)0x0) {
             // 创建新的网络连接配置
-            puVar8 = (undefined8 *)FUN_180847820();      // 创建配置对象
-            uStack_2c8 = (undefined8 *)*puVar8;          // 获取配置数据
+            puVar8 = (uint64_t *)FUN_180847820();      // 创建配置对象
+            uStack_2c8 = (uint64_t *)*puVar8;          // 获取配置数据
             uStack_2c0 = puVar8[1];                       // 获取配置大小
         }
         else {
             // 使用现有的网络连接配置
-            lVar6 = (*(code *)**(undefined8 **)param_1[0xc])();  // 获取现有配置
-            uStack_2c8 = *(undefined8 **)(lVar6 + 0x10);        // 获取配置数据
+            lVar6 = (*(code *)**(uint64_t **)param_1[0xc])();  // 获取现有配置
+            uStack_2c8 = *(uint64_t **)(lVar6 + 0x10);        // 获取配置数据
             uStack_2c0 = *(ulonglong *)(lVar6 + 0x18);          // 获取配置大小
         }
         
         // 第十阶段：网络连接状态同步
         // 同步网络连接状态和配置信息
         lVar6 = param_1[8];                               // 获取网络连接句柄
-        if ((*(undefined8 **)(lVar6 + 0x58) != uStack_2c8) ||
+        if ((*(uint64_t **)(lVar6 + 0x58) != uStack_2c8) ||
             (*(ulonglong *)(lVar6 + 0x60) != uStack_2c0)) {
             // 连接状态需要同步
             if ((*(int *)(lVar6 + 0x58) == 0) &&
@@ -353,7 +353,7 @@ LAB_180852302:
         if ((sVar4 != 4) || (iVar5 = FUN_18084edf0(param_1), iVar5 == 0)) {
             // 连接状态正常，执行连接管理操作
             puVar8 = param_1 + 0x16;                     // 获取连接管理器
-            puVar12 = (undefined8 *)*puVar8;              // 获取连接列表
+            puVar12 = (uint64_t *)*puVar8;              // 获取连接列表
             
             // 第十二阶段：网络连接列表处理
             // 处理网络连接列表和执行连接操作
@@ -362,14 +362,14 @@ joined_r0x0001808523af:
                 // 检查连接列表是否到达末尾
                 if (puVar12 == puVar8) {
                     lVar6 = param_1[8];                   // 获取网络连接句柄
-                    puVar12 = *(undefined8 **)(lVar6 + 0x38);  // 获取下一个连接
+                    puVar12 = *(uint64_t **)(lVar6 + 0x38);  // 获取下一个连接
                     goto LAB_18085243e;                   // 跳转到连接处理
                 }
                 
                 // 处理当前连接
-                puVar9 = (undefined8 *)puVar12[2];       // 获取连接数据
+                puVar9 = (uint64_t *)puVar12[2];       // 获取连接数据
                 if (puVar12 != puVar8) {
-                    puVar12 = (undefined8 *)*puVar12;     // 移动到下一个连接
+                    puVar12 = (uint64_t *)*puVar12;     // 移动到下一个连接
                 }
                 
                 // 执行连接操作
@@ -389,7 +389,7 @@ joined_r0x0001808523af:
                             (*(longlong *)(lVar7 + 8 + (longlong)iVar18 * 0x10) == *(longlong *)(lVar6 + 0x18))) {
                             goto joined_r0x0001808523af;   // 连接已存在，跳转到连接处理
                         }
-                        puVar20 = (undefined8 *)(ulonglong)(iVar18 + 1U);  // 移动到下一个连接
+                        puVar20 = (uint64_t *)(ulonglong)(iVar18 + 1U);  // 移动到下一个连接
                     } while ((int)(iVar18 + 1U) < iVar5);
                 }
                 
@@ -405,17 +405,17 @@ joined_r0x0001808523af:
     // 第十三阶段：网络数据批量处理
     // 执行网络数据的批量处理和验证
 LAB_180852a22:
-    for (puVar11 = (undefined8 *)param_1[0x10];         // 获取数据指针
-         ((undefined8 *)param_1[0x10] <= puVar11 &&
-         (puVar11 < (undefined8 *)param_1[0x10] + *(int *)(param_1 + 0x11))); puVar11 = puVar11 + 1) {
+    for (puVar11 = (uint64_t *)param_1[0x10];         // 获取数据指针
+         ((uint64_t *)param_1[0x10] <= puVar11 &&
+         (puVar11 < (uint64_t *)param_1[0x10] + *(int *)(param_1 + 0x11))); puVar11 = puVar11 + 1) {
         iVar5 = FUN_1808b50d0(*puVar11, param_2);       // 处理每个数据项
         if (iVar5 != 0) goto FUN_180852aaa;             // 数据处理失败，跳转到错误处理
     }
     
     // 继续处理下一批数据
-    puVar11 = (undefined8 *)param_1[0x12];              // 获取下一批数据指针
-    while ((((undefined8 *)param_1[0x12] <= puVar11 &&
-            (puVar11 < (undefined8 *)param_1[0x12] + *(int *)(param_1 + 0x13))) &&
+    puVar11 = (uint64_t *)param_1[0x12];              // 获取下一批数据指针
+    while ((((uint64_t *)param_1[0x12] <= puVar11 &&
+            (puVar11 < (uint64_t *)param_1[0x12] + *(int *)(param_1 + 0x13))) &&
            (iVar5 = FUN_1808b50d0(*puVar11, param_2), iVar5 == 0))) {
         puVar11 = puVar11 + 1;                           // 移动到下一个数据项
     }
@@ -429,29 +429,29 @@ FUN_180852aaa:
     // 第十五阶段：网络连接处理和验证
     // 处理网络连接和执行连接验证操作
 LAB_18085243e:
-    if ((puVar12 < *(undefined8 **)(lVar6 + 0x38)) ||
-        (*(undefined8 **)(lVar6 + 0x38) + (longlong)*(int *)(lVar6 + 0x40) * 2 <= puVar12)) {
+    if ((puVar12 < *(uint64_t **)(lVar6 + 0x38)) ||
+        (*(uint64_t **)(lVar6 + 0x38) + (longlong)*(int *)(lVar6 + 0x40) * 2 <= puVar12)) {
         goto LAB_180852518;                               // 连接无效，跳转到状态检查
     }
     
     // 获取连接配置信息
-    uStack_2c8 = (undefined8 *)*puVar12;                // 获取连接配置
+    uStack_2c8 = (uint64_t *)*puVar12;                // 获取连接配置
     uStack_2c0 = puVar12[1];                            // 获取连接大小
-    puVar9 = (undefined8 *)*puVar8;                     // 获取连接管理器
+    puVar9 = (uint64_t *)*puVar8;                     // 获取连接管理器
     
     // 验证连接配置的兼容性
     if (puVar9 != puVar8) {
-        while ((lVar7 = (*(code *)**(undefined8 **)puVar9[2])(),  // 执行连接验证
-               uStack_2c8 != *(undefined8 **)(lVar7 + 0x10) ||
+        while ((lVar7 = (*(code *)**(uint64_t **)puVar9[2])(),  // 执行连接验证
+               uStack_2c8 != *(uint64_t **)(lVar7 + 0x10) ||
                (uStack_2c0 != *(ulonglong *)(lVar7 + 0x18)))) {
-            if ((puVar9 == puVar8) || (puVar9 = (undefined8 *)*puVar9, puVar9 == puVar8)) {
+            if ((puVar9 == puVar8) || (puVar9 = (uint64_t *)*puVar9, puVar9 == puVar8)) {
                 goto LAB_1808524b7;                       // 连接验证完成，跳转到状态检查
             }
         }
         
         // 创建新的连接配置
-        puVar9 = (undefined8 *)FUN_180847820();          // 创建配置对象
-        uStack_2c8 = (undefined8 *)*puVar9;              // 获取配置数据
+        puVar9 = (uint64_t *)FUN_180847820();          // 创建配置对象
+        uStack_2c8 = (uint64_t *)*puVar9;              // 获取配置数据
         uStack_2c0 = puVar9[1];                           // 获取配置大小
     }
     
@@ -488,7 +488,7 @@ LAB_180852518:
         // 第十八阶段：网络数据缓冲区管理
         // 管理网络数据缓冲区和执行数据操作
         uVar14 = 0;                                      // 初始化数据计数器
-        uStack_2c8 = (undefined8 *)0x0;                  // 初始化数据缓冲区
+        uStack_2c8 = (uint64_t *)0x0;                  // 初始化数据缓冲区
         uStack_2c0 = 0;                                  // 初始化数据大小
         uVar15 = uVar14;                                 // 初始化循环变量
         
@@ -505,7 +505,7 @@ LAB_180852518:
                 iVar18 = (int)uVar15;                    // 获取数据索引
                 // 处理当前数据项
                 iVar5 = FUN_18073cdf0(param_1[0xf],
-                                      *(undefined8 *)(*(longlong *)(param_1[0x10] + lStack_2a0) + 0x30));
+                                      *(uint64_t *)(*(longlong *)(param_1[0x10] + lStack_2a0) + 0x30));
                 if (iVar5 != 0) goto LAB_180852943;     // 数据处理失败，跳转到清理
                 
                 // 获取数据源信息
@@ -561,7 +561,7 @@ LAB_180852518:
                 
                 // 复制数据到缓冲区
                 lStack_2a0 = lStack_2a0 + 8;             // 移动到下一个数据项
-                puVar11[iVar16] = *(undefined8 *)(lStack_2a8 + (longlong)iVar5 * 8);  // 复制数据
+                puVar11[iVar16] = *(uint64_t *)(lStack_2a8 + (longlong)iVar5 * 8);  // 复制数据
             } while ((int)uVar22 < *(int *)(param_1 + 0x11));  // 继续处理数据
         }
         
@@ -579,12 +579,12 @@ LAB_180852518:
                 if ((0 < (int)uVar17) && (*plVar13 != 0)) {
                     plStack_318 = (longlong *)CONCAT71(plStack_318._1_7_, 1);  // 设置验证标志
                     // 执行数据验证操作
-                    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), *plVar13, &UNK_180957f70, 0x100);
+                    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *plVar13, &UNK_180957f70, 0x100);
                 }
                 
                 // 清理数据指针
                 *plVar13 = 0;
-                *(undefined4 *)((longlong)param_1 + 0x8c) = 0;
+                *(int32_t *)((longlong)param_1 + 0x8c) = 0;
                 goto LAB_1808526bf;                       // 跳转到下一阶段
             }
             
@@ -604,7 +604,7 @@ LAB_1808526bf:
         }
         
         // 重置数据计数器
-        *(undefined4 *)(param_1 + 0x11) = 0;
+        *(int32_t *)(param_1 + 0x11) = 0;
         uVar19 = uVar23;                                 // 重置循环变量
         
         // 检查是否有更多数据需要处理
@@ -615,7 +615,7 @@ LAB_1808526bf:
                 iVar18 = (int)uVar15;                    // 获取数据索引
                 // 处理当前数据项
                 iVar5 = FUN_18073cdf0(param_1[0xf],
-                                      *(undefined8 *)(*(longlong *)(param_1[0x12] + uVar23) + 0x30));
+                                      *(uint64_t *)(*(longlong *)(param_1[0x12] + uVar23) + 0x30));
                 if (iVar5 != 0) goto LAB_180852943;     // 数据处理失败，跳转到清理
                 
                 // 获取数据源信息
@@ -667,7 +667,7 @@ LAB_1808526bf:
                 uStack_2c0 = CONCAT44(uStack_2c0._4_4_, iVar16 + 1U);  // 更新缓冲区大小
                 
                 // 复制数据到缓冲区
-                puVar11[iVar16] = *(undefined8 *)(lStack_2a8 + (longlong)(int)uVar19 * 8);  // 复制数据
+                puVar11[iVar16] = *(uint64_t *)(lStack_2a8 + (longlong)(int)uVar19 * 8);  // 复制数据
                 uVar19 = (ulonglong)uVar17;               // 更新数据计数
             } while ((int)uVar17 < *(int *)(param_1 + 0x13));  // 继续处理数据
         }
@@ -685,12 +685,12 @@ LAB_1808526bf:
             if ((0 < (int)uVar17) && (*plVar13 != 0)) {
                 plStack_318 = (longlong *)CONCAT71(plStack_318._1_7_, 1);  // 设置验证标志
                 // 执行数据验证操作
-                FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), *plVar13, &UNK_180957f70, 0x100);
+                FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *plVar13, &UNK_180957f70, 0x100);
             }
             
             // 清理第二组数据指针
             *plVar13 = 0;
-            *(undefined4 *)((longlong)param_1 + 0x9c) = 0;
+            *(int32_t *)((longlong)param_1 + 0x9c) = 0;
         }
         
         // 第二十三阶段：第二组数据清理和重置
@@ -702,7 +702,7 @@ LAB_1808526bf:
         }
         
         // 重置第二组数据计数器
-        *(undefined4 *)(param_1 + 0x13) = 0;
+        *(int32_t *)(param_1 + 0x13) = 0;
         
         // 第二十四阶段：网络数据最终处理
         // 执行网络数据的最终处理和验证操作
@@ -778,8 +778,8 @@ LAB_180852980:
     if (0 < *(int *)(param_1 + 0x11)) {
         do {
             // 处理每个数据项
-            FUN_1808b5c90(*(undefined8 *)(param_1[0x10] + uVar19),
-                          *(undefined4 *)(*(longlong *)(param_1[8] + 0xa0) + uVar23));
+            FUN_1808b5c90(*(uint64_t *)(param_1[0x10] + uVar19),
+                          *(int32_t *)(*(longlong *)(param_1[8] + 0xa0) + uVar23));
             uVar17 = (int)uVar14 + 1;                     // 更新计数器
             uVar14 = (ulonglong)uVar17;                  // 更新数据计数
             uVar23 = uVar23 + 4;                          // 更新循环计数器
@@ -797,8 +797,8 @@ LAB_180852980:
     if (0 < *(int *)(param_1 + 0x13)) {
         do {
             // 处理每个数据项
-            FUN_1808b5c90(*(undefined8 *)(param_1[0x12] + uVar15),
-                          *(undefined4 *)(*(longlong *)(param_1[8] + 0xb0) + uVar14));
+            FUN_1808b5c90(*(uint64_t *)(param_1[0x12] + uVar15),
+                          *(int32_t *)(*(longlong *)(param_1[8] + 0xb0) + uVar14));
             uVar17 = (int)uVar23 + 1;                     // 更新计数器
             uVar15 = uVar15 + 8;                          // 更新数据索引
             uVar14 = uVar14 + 4;                          // 更新数据计数

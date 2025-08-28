@@ -8,7 +8,7 @@ void Engine_SetStateFlags(uint32_t state_flags)
 {
   longlong context_ptr;
   char flag_result;
-  undefined1 state_enable;
+  int8_t state_enable;
   longlong engine_base;
   longlong state_struct;
   
@@ -92,7 +92,7 @@ void Engine_CleanupResources(void)
       file_handle = *(longlong *)(temp_ptr + 0x2e50);
       if ((file_handle != 0) && (1 < *resource_count + -1)) {
         if (*(code **)(g_EngineInstance + 0x100) != (code *)0x0) {
-          (**(code **)(g_EngineInstance + 0x100))(*(undefined8 *)(g_EngineInstance + 0x108),file_handle);
+          (**(code **)(g_EngineInstance + 0x100))(*(uint64_t *)(g_EngineInstance + 0x108),file_handle);
           file_handle = *(longlong *)(temp_ptr + 0x2e50);
         }
         temp_ptr = g_EngineInstance;
@@ -203,7 +203,7 @@ void Engine_CleanupResourcesWithParams(void)
     file_handle = *(longlong *)(engine_params + 0x2e50);
     if ((file_handle != 0) && (1 < *resource_count + -1)) {
       if (*(code **)(g_EngineInstance + 0x100) != (code *)0x0) {
-        (**(code **)(g_EngineInstance + 0x100))(*(undefined8 *)(g_EngineInstance + 0x108),file_handle);
+        (**(code **)(g_EngineInstance + 0x100))(*(uint64_t *)(g_EngineInstance + 0x108),file_handle);
         file_handle = *(longlong *)(engine_params + 0x2e50);
       }
       temp_ptr = g_EngineInstance;
@@ -305,7 +305,7 @@ void Engine_ProcessLogBufferAndCleanupResources(longlong engine_instance, longlo
     if ((file_handle != 0) && (1 < *(int *)(engine_instance + 0x2e48) + -1)) {
       if (*(code **)(g_EngineInstance + 0x100) != (code *)0x0) {
         // 调用资源处理回调函数
-        (**(code **)(g_EngineInstance + 0x100))(*(undefined8 *)(g_EngineInstance + 0x108), file_handle);
+        (**(code **)(g_EngineInstance + 0x100))(*(uint64_t *)(g_EngineInstance + 0x108), file_handle);
         file_handle = *(longlong *)(engine_instance + 0x2e50);
       }
       current_context = g_EngineInstance;
@@ -413,7 +413,7 @@ void Engine_UpdateStateAndManageResources(longlong engine_instance, longlong con
   if ((file_handle != 0) && (1 < *(int *)(engine_instance + 0x2e48) + -1)) {
     if (*(code **)(g_EngineInstance + 0x100) != (code *)0x0) {
       // 调用资源处理回调函数
-      (**(code **)(g_EngineInstance + 0x100))(*(undefined8 *)(g_EngineInstance + 0x108), file_handle);
+      (**(code **)(g_EngineInstance + 0x100))(*(uint64_t *)(g_EngineInstance + 0x108), file_handle);
       file_handle = *(longlong *)(engine_instance + 0x2e50);
     }
     current_context = g_EngineInstance;
@@ -971,8 +971,8 @@ void Engine_UpdateArrayFinalValue(int array_index, longlong context_obj)
 void Engine_AddRenderDataToBuffer(longlong render_data)
 
 {
-  undefined8 *data_ptr;
-  undefined8 data_value;
+  uint64_t *data_ptr;
+  uint64_t data_value;
   int *buffer_info;
   longlong render_context;
   int buffer_index;
@@ -988,8 +988,8 @@ void Engine_AddRenderDataToBuffer(longlong render_data)
   int *prev_entry;
   int *next_entry;
   longlong current_data;
-  undefined4 render_mode;
-  undefined8 render_params;
+  int32_t render_mode;
+  uint64_t render_params;
   
   texture_handle = g_EngineInstance;
   current_data = render_data;
@@ -999,14 +999,14 @@ void Engine_AddRenderDataToBuffer(longlong render_data)
   render_context = current_data;
   Engine_InitializeRenderContext(current_data);
   Engine_UpdateRenderState(texture_handle + 0x1ba0, &current_data);
-  data_value = *(undefined8 *)(*(longlong *)(render_context + 0x58) + 8);
+  data_value = *(uint64_t *)(*(longlong *)(render_context + 0x58) + 8);
   buffer_info = *(int **)(*(longlong *)(texture_handle + 0x1af8) + 0x2e8);
   buffer_capacity = buffer_info[0x1c];
   if (buffer_capacity == buffer_info[0x1d]) {
     Engine_ExpandRenderBuffer(buffer_info + 0x1c);
     buffer_capacity = buffer_info[0x1c];
   }
-  *(undefined8 *)(*(longlong *)(buffer_info + 0x1e) + (longlong)buffer_capacity * 8) = data_value;
+  *(uint64_t *)(*(longlong *)(buffer_info + 0x1e) + (longlong)buffer_capacity * 8) = data_value;
   buffer_info[0x1c] = buffer_info[0x1c] + 1;
   next_entry = (int *)0x0;
   if (buffer_info[0x1c] != 0) {
@@ -1053,7 +1053,7 @@ void Engine_AddRenderDataToBuffer(longlong render_data)
     render_params = 0;
   }
   else {
-    render_params = *(undefined8 *)(*(longlong *)(buffer_info + 0x1e) + -8 + (longlong)buffer_info[0x1c] * 8);
+    render_params = *(uint64_t *)(*(longlong *)(buffer_info + 0x1e) + -8 + (longlong)buffer_info[0x1c] * 8);
   }
   buffer_capacity = *buffer_info;
   max_capacity = buffer_info[1];
@@ -1076,10 +1076,10 @@ void Engine_AddRenderDataToBuffer(longlong render_data)
   render_buffer = (longlong *)(render_context + current_data * 0x30);
   *render_buffer = (ulonglong)texture_flags << 0x20;
   render_buffer[1] = render_context;
-  data_ptr = (undefined8 *)(render_context + 0x10 + current_data * 0x30);
+  data_ptr = (uint64_t *)(render_context + 0x10 + current_data * 0x30);
   *data_ptr = CONCAT44(render_mode, render_flags);
   data_ptr[1] = render_params;
-  data_ptr = (undefined8 *)(render_context + 0x20 + current_data * 0x30);
+  data_ptr = (uint64_t *)(render_context + 0x20 + current_data * 0x30);
   *data_ptr = 0;
   data_ptr[1] = 0;
   *buffer_info = *buffer_info + 1;

@@ -6,10 +6,10 @@
 void FUN_1801a5ca0(longlong param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  uint64_t *puVar1;
   char *pcVar2;
   longlong lVar3;
-  undefined8 *puVar4;
+  uint64_t *puVar4;
   float *pfVar5;
   char *pcVar6;
   char *pcVar7;
@@ -19,8 +19,8 @@ void FUN_1801a5ca0(longlong param_1,longlong param_2)
     pcVar7 = pcVar6;
     pcVar6 = pcVar7 + 1;
   } while (*pcVar6 != '\0');
-  puVar4 = *(undefined8 **)(param_2 + 0x30);
-  if (puVar4 == (undefined8 *)0x0) {
+  puVar4 = *(uint64_t **)(param_2 + 0x30);
+  if (puVar4 == (uint64_t *)0x0) {
     return;
   }
   do {
@@ -41,8 +41,8 @@ FUN_1801a5d17:
           pcVar7 = pcVar6;
           pcVar6 = pcVar7 + 1;
         } while (*pcVar6 != '\0');
-        for (puVar1 = (undefined8 *)puVar4[8]; puVar1 != (undefined8 *)0x0;
-            puVar1 = (undefined8 *)puVar1[6]) {
+        for (puVar1 = (uint64_t *)puVar4[8]; puVar1 != (uint64_t *)0x0;
+            puVar1 = (uint64_t *)puVar1[6]) {
           pcVar6 = (char *)*puVar1;
           if (pcVar6 == (char *)0x0) {
             pcVar2 = (char *)0x0;
@@ -79,9 +79,9 @@ LAB_1801a5db1:
           pcVar7 = pcVar6;
           pcVar6 = pcVar7 + 1;
         } while (*pcVar6 != '\0');
-        puVar4 = (undefined8 *)puVar4[8];
+        puVar4 = (uint64_t *)puVar4[8];
         do {
-          if (puVar4 == (undefined8 *)0x0) {
+          if (puVar4 == (uint64_t *)0x0) {
             lVar3 = 0;
 LAB_1801a5e49:
             if ((pfVar5 != (float *)0x0) && (lVar3 != 0)) {
@@ -117,7 +117,7 @@ LAB_1801a5e31:
               if (pcVar2 <= pcVar6) goto LAB_1801a5e31;
             }
           }
-          puVar4 = (undefined8 *)puVar4[6];
+          puVar4 = (uint64_t *)puVar4[6];
         } while( true );
       }
       lVar3 = (longlong)&UNK_180a0b640 - (longlong)pcVar6;
@@ -126,8 +126,8 @@ LAB_1801a5e31:
         if (pcVar2 <= pcVar6) goto FUN_1801a5d17;
       }
     }
-    puVar4 = (undefined8 *)puVar4[0xb];
-    if (puVar4 == (undefined8 *)0x0) {
+    puVar4 = (uint64_t *)puVar4[0xb];
+    if (puVar4 == (uint64_t *)0x0) {
       return;
     }
   } while( true );

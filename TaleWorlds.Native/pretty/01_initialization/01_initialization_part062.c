@@ -12,7 +12,7 @@ void process_buffer_with_offset(void* context, longlong buffer_base)
   longlong *temp_ptr;
   byte *byte_ptr;
   char char_val;
-  undefined4 uint_val;
+  int32_t uint_val;
   uint size_val;
   longlong *alloc_ptr;
   longlong mem_ptr;
@@ -22,12 +22,12 @@ void process_buffer_with_offset(void* context, longlong buffer_base)
   ulonglong count;
   char *char_array_ptr;
   uint *uint_ptr;
-  undefined4 esi_val;
+  int32_t esi_val;
   uint array_size;
   longlong context_ptr;
   int loop_counter;
   int temp_counter;
-  undefined4 *data_ptr;
+  int32_t *data_ptr;
   int capacity;
   uint *temp_uint_ptr;
   ulonglong block_start;
@@ -37,13 +37,13 @@ void process_buffer_with_offset(void* context, longlong buffer_base)
   // 计算缓冲区偏移量
   buffer_base = (longlong)*(int *)(buffer_base + 0x250) * 0x128 + buffer_base;
   uint_val = FUN_180080380(buffer_base, esi_val);
-  *(undefined4 *)(context_ptr + 0x30) = uint_val;
+  *(int32_t *)(context_ptr + 0x30) = uint_val;
   FUN_1800802e0(buffer_base, uint_val);
   
   // 检查是否有数据源
   if (*(longlong *)(context_ptr + 0x10) == 0) {
     if (*(int *)(context_ptr + 0x18) != 0) {
-      *(undefined4 *)(context_ptr + 0x2c) = *(undefined4 *)(context_ptr + 0x30);
+      *(int32_t *)(context_ptr + 0x2c) = *(int32_t *)(context_ptr + 0x30);
       return;
     }
   }
@@ -181,7 +181,7 @@ void process_buffer_with_offset(void* context, longlong buffer_base)
             
             if (is_allocated) {
               LOCK();
-              *(undefined1 *)((longlong)temp_counter + 0x108 + (longlong)uint_ptr) = 0;
+              *(int8_t *)((longlong)temp_counter + 0x108 + (longlong)uint_ptr) = 0;
               UNLOCK();
             }
             else {
@@ -206,7 +206,7 @@ void process_buffer_with_offset(void* context, longlong buffer_base)
     }
     
     // 复制数据到目标缓冲区
-    data_ptr = *(undefined4 **)(context_ptr + 0x38);
+    data_ptr = *(int32_t **)(context_ptr + 0x38);
     size_val = array_size >> 0xb;
     *(uint *)(context_ptr + 0x2c) = array_size;
     
@@ -221,7 +221,7 @@ void process_buffer_with_offset(void* context, longlong buffer_base)
       do {
         uint_val = *data_ptr;
         data_ptr = data_ptr + 1;
-        *(undefined4 *)
+        *(int32_t *)
          (*(longlong *)(uint_ptr + (ulonglong)(array_size >> 0xb) * 2 + 2) +
          (ulonglong)(array_size + (array_size >> 0xb) * -0x800) * 4) = uint_val;
         count = count - 1;
@@ -242,7 +242,7 @@ void initialize_buffer_data(void* context, ulonglong size)
   longlong *buffer_ptr;
   longlong *temp_ptr;
   byte *byte_ptr;
-  undefined4 uint_val;
+  int32_t uint_val;
   uint buffer_size;
   uint remaining_size;
   longlong *alloc_ptr;
@@ -257,7 +257,7 @@ void initialize_buffer_data(void* context, ulonglong size)
   longlong context_ptr;
   int loop_counter;
   int temp_counter;
-  undefined4 *data_ptr;
+  int32_t *data_ptr;
   ulonglong block_start;
   uint *block_ptr;
   ulonglong block_end;
@@ -393,7 +393,7 @@ void initialize_buffer_data(void* context, ulonglong size)
           
           if (is_allocated) {
             LOCK();
-            *(undefined1 *)((longlong)temp_counter + 0x108 + (longlong)global_ptr) = 0;
+            *(int8_t *)((longlong)temp_counter + 0x108 + (longlong)global_ptr) = 0;
             UNLOCK();
           }
           else {
@@ -418,7 +418,7 @@ void initialize_buffer_data(void* context, ulonglong size)
   }
   
   // 复制数据到目标缓冲区
-  data_ptr = *(undefined4 **)(context_ptr + 0x38);
+  data_ptr = *(int32_t **)(context_ptr + 0x38);
   buffer_size = remaining_size >> 0xb;
   *(uint *)(context_ptr + 0x2c) = remaining_size;
   
@@ -433,7 +433,7 @@ void initialize_buffer_data(void* context, ulonglong size)
     do {
       uint_val = *data_ptr;
       data_ptr = data_ptr + 1;
-      *(undefined4 *)
+      *(int32_t *)
        (*(longlong *)(global_ptr + (ulonglong)(remaining_size >> 0xb) * 2 + 2) +
        (ulonglong)(remaining_size + (remaining_size >> 0xb) * -0x800) * 4) = uint_val;
       data_size = data_size - 1;
@@ -453,7 +453,7 @@ void process_buffer_with_size(void* context, int size_param, ulonglong data_size
   longlong *buffer_ptr;
   longlong *temp_ptr;
   byte *byte_ptr;
-  undefined4 uint_val;
+  int32_t uint_val;
   uint buffer_size;
   uint remaining_size;
   longlong *alloc_ptr;
@@ -467,7 +467,7 @@ void process_buffer_with_size(void* context, int size_param, ulonglong data_size
   longlong context_ptr;
   int loop_counter;
   int temp_counter;
-  undefined4 *data_ptr;
+  int32_t *data_ptr;
   ulonglong block_start;
   uint array_size;
   ulonglong r12_val;
@@ -605,7 +605,7 @@ void process_buffer_with_size(void* context, int size_param, ulonglong data_size
           
           if (is_allocated) {
             LOCK();
-            *(undefined1 *)((longlong)temp_counter + 0x108 + (longlong)global_ptr) = 0;
+            *(int8_t *)((longlong)temp_counter + 0x108 + (longlong)global_ptr) = 0;
             UNLOCK();
           }
           else {
@@ -630,7 +630,7 @@ void process_buffer_with_size(void* context, int size_param, ulonglong data_size
   }
   
   // 复制数据到目标缓冲区
-  data_ptr = *(undefined4 **)(context_ptr + 0x38);
+  data_ptr = *(int32_t **)(context_ptr + 0x38);
   buffer_size = remaining_size >> 0xb;
   *(uint *)(context_ptr + 0x2c) = remaining_size;
   
@@ -645,7 +645,7 @@ void process_buffer_with_size(void* context, int size_param, ulonglong data_size
     do {
       uint_val = *data_ptr;
       data_ptr = data_ptr + 1;
-      *(undefined4 *)
+      *(int32_t *)
        (*(longlong *)(global_ptr + (ulonglong)(remaining_size >> 0xb) * 2 + 2) +
        (ulonglong)(remaining_size + (remaining_size >> 0xb) * -0x800) * 4) = uint_val;
       copy_size = copy_size - 1;
@@ -662,17 +662,17 @@ void process_buffer_with_size(void* context, int size_param, ulonglong data_size
 void allocate_and_copy_buffer(void* context, uint *global_buffer, uint data_size)
 
 {
-  undefined4 uint_val;
+  int32_t uint_val;
   longlong mem_ptr;
   uint buffer_offset;
   char *char_ptr;
   uint *buffer_ptr;
   uint current_offset;
   longlong context_ptr;
-  undefined4 *data_ptr;
+  int32_t *data_ptr;
   ulonglong block_start;
   uint r12d_val;
-  undefined8 *r13_ptr;
+  uint64_t *r13_ptr;
   uint *block_ptr;
   int block_index;
   ulonglong block_end;
@@ -709,7 +709,7 @@ void allocate_and_copy_buffer(void* context, uint *global_buffer, uint data_size
         
         if (is_allocated) {
           LOCK();
-          *(undefined1 *)((longlong)block_index + 0x108 + (longlong)global_buffer) = 0;
+          *(int8_t *)((longlong)block_index + 0x108 + (longlong)global_buffer) = 0;
           UNLOCK();
         }
         else {
@@ -731,11 +731,11 @@ void allocate_and_copy_buffer(void* context, uint *global_buffer, uint data_size
       index = index + -1;
     } while (index != 0);
     
-    r13_ptr = (undefined8 *)(context_ptr + 0x38);
+    r13_ptr = (uint64_t *)(context_ptr + 0x38);
   }
   
   // 复制数据到缓冲区
-  data_ptr = (undefined4 *)*r13_ptr;
+  data_ptr = (int32_t *)*r13_ptr;
   buffer_offset = current_offset >> 0xb;
   *(uint *)(context_ptr + 0x2c) = current_offset;
   
@@ -745,7 +745,7 @@ void allocate_and_copy_buffer(void* context, uint *global_buffer, uint data_size
       do {
         uint_val = *data_ptr;
         data_ptr = data_ptr + 1;
-        *(undefined4 *)
+        *(int32_t *)
          (*(longlong *)(global_buffer + (ulonglong)(current_offset >> 0xb) * 2 + 2) +
          (ulonglong)(current_offset + (current_offset >> 0xb) * -0x800) * 4) = uint_val;
         copy_size = copy_size - 1;
@@ -767,17 +767,17 @@ void allocate_and_copy_buffer(void* context, uint *global_buffer, uint data_size
 void copy_to_buffer_with_offset(void* context, longlong buffer_base, uint esi_val, uint data_size)
 
 {
-  undefined4 uint_val;
+  int32_t uint_val;
   uint buffer_offset;
   longlong base_ptr;
   uint esi_offset;
   longlong context_ptr;
-  undefined4 *data_ptr;
+  int32_t *data_ptr;
   ulonglong copy_size;
   uint r12d_val;
-  undefined8 *r13_ptr;
+  uint64_t *r13_ptr;
   
-  data_ptr = (undefined4 *)*r13_ptr;
+  data_ptr = (int32_t *)*r13_ptr;
   buffer_offset = esi_val >> 0xb;
   *(uint *)(context_ptr + 0x2c) = esi_val;
   
@@ -787,7 +787,7 @@ void copy_to_buffer_with_offset(void* context, longlong buffer_base, uint esi_va
       do {
         uint_val = *data_ptr;
         data_ptr = data_ptr + 1;
-        *(undefined4 *)
+        *(int32_t *)
          (*(longlong *)(base_ptr + 8 + (ulonglong)(esi_val >> 0xb) * 8) +
          (ulonglong)(esi_val + (esi_val >> 0xb) * -0x800) * 4) = uint_val;
         copy_size = copy_size - 1;
@@ -804,9 +804,9 @@ void copy_to_buffer_with_offset(void* context, longlong buffer_base, uint esi_va
 
 
 
-// 函数: void memcpy_with_params(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 data_ptr)
+// 函数: void memcpy_with_params(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t data_ptr)
 // 使用参数进行内存复制操作
-void memcpy_with_params(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 data_ptr)
+void memcpy_with_params(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t data_ptr)
 
 {
   longlong base_ptr;
@@ -850,15 +850,15 @@ void empty_function_3(void)
 
 
 
-// 函数: void copy_data_to_buffer(void* context, uint esi_val, undefined4 *data_ptr, uint data_size)
+// 函数: void copy_data_to_buffer(void* context, uint esi_val, int32_t *data_ptr, uint data_size)
 // 将数据复制到缓冲区，处理偏移量和大小
-void copy_data_to_buffer(void* context, uint esi_val, undefined4 *data_ptr, uint data_size)
+void copy_data_to_buffer(void* context, uint esi_val, int32_t *data_ptr, uint data_size)
 
 {
-  undefined4 uint_val;
+  int32_t uint_val;
   longlong base_ptr;
   uint esi_offset;
-  undefined4 *source_ptr;
+  int32_t *source_ptr;
   ulonglong copy_size;
   uint r12d_val;
   
@@ -867,7 +867,7 @@ void copy_data_to_buffer(void* context, uint esi_val, undefined4 *data_ptr, uint
     do {
       uint_val = *source_ptr;
       source_ptr = source_ptr + 1;
-      *(undefined4 *)
+      *(int32_t *)
        (*(longlong *)(base_ptr + 8 + (ulonglong)(esi_val >> 0xb) * 8) +
        (ulonglong)(esi_val + (esi_val >> 0xb) * -0x800) * 4) = uint_val;
       copy_size = copy_size - 1;
@@ -887,7 +887,7 @@ void update_buffer_if_needed(void* context)
   longlong context_ptr;
   
   if (*(int *)(context_ptr + 0x18) != 0) {
-    *(undefined4 *)(context_ptr + 0x2c) = *(undefined4 *)(context_ptr + 0x30);
+    *(int32_t *)(context_ptr + 0x2c) = *(int32_t *)(context_ptr + 0x30);
     return;
   }
   return;
@@ -895,12 +895,12 @@ void update_buffer_if_needed(void* context)
 
 
 
-// 函数: void create_and_initialize_object(undefined8 param_1, undefined8 param_2, undefined8 param_3)
+// 函数: void create_and_initialize_object(uint64_t param_1, uint64_t param_2, uint64_t param_3)
 // 创建并初始化对象，处理内存分配和初始化
-void create_and_initialize_object(undefined8 param_1, undefined8 param_2, undefined8 param_3)
+void create_and_initialize_object(uint64_t param_1, uint64_t param_2, uint64_t param_3)
 
 {
-  undefined8 object_ptr;
+  uint64_t object_ptr;
   longlong *instance_ptr;
   
   // 创建对象
@@ -925,17 +925,17 @@ void create_and_initialize_object(undefined8 param_1, undefined8 param_2, undefi
 
 
 
-// 函数: void process_data_with_buffers(undefined8 param_1, longlong param_2, undefined8 param_3, longlong param_4)
+// 函数: void process_data_with_buffers(uint64_t param_1, longlong param_2, uint64_t param_3, longlong param_4)
 // 使用缓冲区处理数据，进行复杂的内存操作
-void process_data_with_buffers(undefined8 param_1, longlong param_2, undefined8 param_3, longlong param_4)
+void process_data_with_buffers(uint64_t param_1, longlong param_2, uint64_t param_3, longlong param_4)
 
 {
   longlong *buffer_ptr;
   int data_size;
-  undefined1 stack_data [32];
+  int8_t stack_data [32];
   longlong *stack_buffer;
   longlong *buffer_array[2];
-  undefined8 stack_param;
+  uint64_t stack_param;
   ulonglong stack_hash;
   
   stack_param = 0xfffffffffffffffe;
@@ -972,7 +972,7 @@ void process_data_with_buffers(undefined8 param_1, longlong param_2, undefined8 
   }
   
   // 复制数据
-  memcpy(*(undefined8 *)(*(longlong *)(param_2 + 0x20) + 0x10), *(undefined8 *)(param_4 + 8),
+  memcpy(*(uint64_t *)(*(longlong *)(param_2 + 0x20) + 0x10), *(uint64_t *)(param_4 + 8),
          (longlong)data_size);
 }
 

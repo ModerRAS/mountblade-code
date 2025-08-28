@@ -187,7 +187,7 @@ typedef enum {
  * @param connection_handle 连接句柄
  * @param network_context 网络上下文
  */
-void network_connection_initializer(longlong connection_handle, undefined8 network_context)
+void network_connection_initializer(longlong connection_handle, uint64_t network_context)
 {
     int result;
     
@@ -216,10 +216,10 @@ void network_connection_initializer(longlong connection_handle, undefined8 netwo
  * @param connection_handle 连接句柄
  * @param network_context 网络上下文
  */
-void network_data_sender(longlong connection_handle, undefined8 network_context)
+void network_data_sender(longlong connection_handle, uint64_t network_context)
 {
     int result;
-    undefined4 stack_buffer[2];
+    int32_t stack_buffer[2];
     
     // 验证连接状态
     result = FUN_18088ee60(network_context, connection_handle + 0x10);
@@ -228,7 +228,7 @@ void network_data_sender(longlong connection_handle, undefined8 network_context)
         result = FUN_18088ee20(network_context, stack_buffer);
         if (result == 0) {
             // 设置发送参数
-            *(undefined4 *)(connection_handle + 0x18) = stack_buffer[0];
+            *(int32_t *)(connection_handle + 0x18) = stack_buffer[0];
             // 执行发送操作
             FUN_18088eea0(network_context, connection_handle + 0x1c);
         }
@@ -244,7 +244,7 @@ void network_data_sender(longlong connection_handle, undefined8 network_context)
  * @param connection_handle 连接句柄
  * @param network_context 网络上下文
  */
-void network_data_receiver(longlong connection_handle, undefined8 network_context)
+void network_data_receiver(longlong connection_handle, uint64_t network_context)
 {
     int result;
     
@@ -269,7 +269,7 @@ void network_data_receiver(longlong connection_handle, undefined8 network_contex
  * @param connection_handle 连接句柄
  * @param network_context 网络上下文
  */
-void network_connection_manager(longlong connection_handle, undefined8 network_context)
+void network_connection_manager(longlong connection_handle, uint64_t network_context)
 {
     int result;
     
@@ -290,7 +290,7 @@ void network_connection_manager(longlong connection_handle, undefined8 network_c
  * @param connection_handle 连接句柄
  * @param network_context 网络上下文
  */
-void network_message_processor(longlong connection_handle, undefined8 network_context)
+void network_message_processor(longlong connection_handle, uint64_t network_context)
 {
     int result;
     
@@ -311,7 +311,7 @@ void network_message_processor(longlong connection_handle, undefined8 network_co
  * @param connection_handle 连接句柄
  * @param network_context 网络上下文
  */
-void network_status_query(longlong connection_handle, undefined8 network_context)
+void network_status_query(longlong connection_handle, uint64_t network_context)
 {
     int result;
     
@@ -332,7 +332,7 @@ void network_status_query(longlong connection_handle, undefined8 network_context
  * @param connection_handle 连接句柄
  * @param network_context 网络上下文
  */
-void network_data_validator(longlong connection_handle, undefined8 network_context)
+void network_data_validator(longlong connection_handle, uint64_t network_context)
 {
     int result;
     
@@ -357,7 +357,7 @@ void network_data_validator(longlong connection_handle, undefined8 network_conte
  * @param connection_handle 连接句柄
  * @param network_context 网络上下文
  */
-void network_resource_manager(longlong connection_handle, undefined8 network_context)
+void network_resource_manager(longlong connection_handle, uint64_t network_context)
 {
     int result;
     
@@ -382,10 +382,10 @@ void network_resource_manager(longlong connection_handle, undefined8 network_con
  * @param connection_handle 连接句柄
  * @param network_context 网络上下文
  */
-void network_config_manager(longlong connection_handle, undefined8 network_context)
+void network_config_manager(longlong connection_handle, uint64_t network_context)
 {
     int result;
-    undefined4 stack_buffer[2];
+    int32_t stack_buffer[2];
     
     // 验证配置权限
     result = FUN_18088f010(network_context, connection_handle + 0x10);
@@ -397,7 +397,7 @@ void network_config_manager(longlong connection_handle, undefined8 network_conte
             result = FUN_18088ee20(network_context, stack_buffer);
             if (result == 0) {
                 // 应用配置设置
-                *(undefined4 *)(connection_handle + 0x1c) = stack_buffer[0];
+                *(int32_t *)(connection_handle + 0x1c) = stack_buffer[0];
                 // 设置网络参数
                 result = FUN_18088ee60(network_context, connection_handle + 0x20);
                 if (result == 0) {
@@ -417,7 +417,7 @@ void network_config_manager(longlong connection_handle, undefined8 network_conte
  * @param connection_handle 连接句柄
  * @param network_context 网络上下文
  */
-void network_error_handler(longlong connection_handle, undefined8 network_context)
+void network_error_handler(longlong connection_handle, uint64_t network_context)
 {
     int result;
     
@@ -446,7 +446,7 @@ void network_error_handler(longlong connection_handle, undefined8 network_contex
  * @param connection_handle 连接句柄
  * @param network_context 网络上下文
  */
-void network_heartbeat_manager(longlong connection_handle, undefined8 network_context)
+void network_heartbeat_manager(longlong connection_handle, uint64_t network_context)
 {
     int result;
     
@@ -467,7 +467,7 @@ void network_heartbeat_manager(longlong connection_handle, undefined8 network_co
  * @param connection_handle 连接句柄
  * @param network_context 网络上下文
  */
-void network_connection_authenticator(longlong connection_handle, undefined8 network_context)
+void network_connection_authenticator(longlong connection_handle, uint64_t network_context)
 {
     int result;
     
@@ -492,7 +492,7 @@ void network_connection_authenticator(longlong connection_handle, undefined8 net
  * @param connection_handle 连接句柄
  * @param network_context 网络上下文
  */
-void network_data_encryptor(longlong connection_handle, undefined8 network_context)
+void network_data_encryptor(longlong connection_handle, uint64_t network_context)
 {
     int result;
     
@@ -517,7 +517,7 @@ void network_data_encryptor(longlong connection_handle, undefined8 network_conte
  * @param connection_handle 连接句柄
  * @param network_context 网络上下文
  */
-void network_data_decryptor(longlong connection_handle, undefined8 network_context)
+void network_data_decryptor(longlong connection_handle, uint64_t network_context)
 {
     int result;
     
@@ -542,7 +542,7 @@ void network_data_decryptor(longlong connection_handle, undefined8 network_conte
  * @param connection_handle 连接句柄
  * @param network_context 网络上下文
  */
-void network_data_compressor(longlong connection_handle, undefined8 network_context)
+void network_data_compressor(longlong connection_handle, uint64_t network_context)
 {
     int result;
     
@@ -568,7 +568,7 @@ void network_data_compressor(longlong connection_handle, undefined8 network_cont
  * @param queue_size 队列大小
  * @param network_context 网络上下文
  */
-void network_message_queue_manager(longlong *message_queue, uint queue_size, undefined8 network_context)
+void network_message_queue_manager(longlong *message_queue, uint queue_size, uint64_t network_context)
 {
     int result;
     
@@ -584,7 +584,7 @@ void network_message_queue_manager(longlong *message_queue, uint queue_size, und
                 result = FUN_18088eea0(network_context, message_queue + 3);
                 if (result == 0) {
                     // 完成队列初始化
-                    *(undefined1 *)((longlong)message_queue + 0x1c) = 0;
+                    *(int8_t *)((longlong)message_queue + 0x1c) = 0;
                     return;
                 }
             }
@@ -606,16 +606,16 @@ void network_message_queue_manager(longlong *message_queue, uint queue_size, und
  * @param pool_size 池大小
  * @param network_context 网络上下文
  */
-void network_connection_pool_manager(longlong *connection_pool, uint pool_size, undefined8 network_context)
+void network_connection_pool_manager(longlong *connection_pool, uint pool_size, uint64_t network_context)
 {
     int result;
-    undefined8 stack_buffer;
-    undefined1 stack_buffer2[8];
+    uint64_t stack_buffer;
+    int8_t stack_buffer2[8];
     
     // 验证池大小
     if (pool_size < MAX_CONNECTIONS) {
         // 初始化连接池
-        *(undefined4 *)(connection_pool + 2) = 0;
+        *(int32_t *)(connection_pool + 2) = 0;
         // 设置池参数
         result = FUN_18088f710(network_context, stack_buffer2);
         if ((result == 0) && (result = FUN_18088f710(stack_buffer2, &stack_buffer), result == 0)) {
@@ -644,9 +644,9 @@ void network_connection_pool_manager(longlong *connection_pool, uint pool_size, 
     }
     if (pool_size < HEARTBEAT_INTERVAL) {
         // 设置心跳参数
-        *(undefined1 *)(connection_pool + 10) = 0;
-        *(undefined8 *)((longlong)connection_pool + 0x44) = 0;
-        *(undefined4 *)((longlong)connection_pool + 0x4c) = 0;
+        *(int8_t *)(connection_pool + 10) = 0;
+        *(uint64_t *)((longlong)connection_pool + 0x44) = 0;
+        *(int32_t *)((longlong)connection_pool + 0x4c) = 0;
         result = FUN_18088ee20(network_context, connection_pool + 2);
         if (result == 0) goto pool_setup;
     }
@@ -668,40 +668,40 @@ pool_setup:
  * @param string_data 字符串数据
  * @param parsed_data 解析后的数据
  */
-void network_string_parser(char *string_data, undefined8 *parsed_data)
+void network_string_parser(char *string_data, uint64_t *parsed_data)
 {
     char *current_char;
     char char_value;
-    undefined1 byte_value;
-    undefined2 short_value;
+    int8_t byte_value;
+    int16_t short_value;
     int validation_result;
     char *string_ptr;
-    undefined1 *ptr1;
-    undefined1 *ptr2;
+    int8_t *ptr1;
+    int8_t *ptr2;
     longlong index;
-    undefined1 *ptr3;
-    undefined1 stack_buffer[32];
-    undefined4 value1;
-    undefined4 value2;
-    undefined4 value3;
-    undefined4 value4;
-    undefined1 *ptr_array[5];
-    undefined1 stack_byte;
-    undefined1 buffer1[8];
-    undefined1 stack_byte2;
-    undefined1 buffer2[4];
-    undefined1 stack_byte3;
-    undefined1 buffer3[4];
-    undefined1 stack_byte4;
-    undefined1 buffer4[4];
-    undefined1 stack_byte5;
-    undefined1 buffer5[10];
-    undefined1 buffer6[5];
+    int8_t *ptr3;
+    int8_t stack_buffer[32];
+    int32_t value1;
+    int32_t value2;
+    int32_t value3;
+    int32_t value4;
+    int8_t *ptr_array[5];
+    int8_t stack_byte;
+    int8_t buffer1[8];
+    int8_t stack_byte2;
+    int8_t buffer2[4];
+    int8_t stack_byte3;
+    int8_t buffer3[4];
+    int8_t stack_byte4;
+    int8_t buffer4[4];
+    int8_t stack_byte5;
+    int8_t buffer5[10];
+    int8_t buffer6[5];
     ulonglong security_cookie;
     
     // 安全检查
     security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
-    if (parsed_data != (undefined8 *)0x0) {
+    if (parsed_data != (uint64_t *)0x0) {
         if ((((string_data == (char *)0x0) || (validation_result = func_0x00018076b690(), validation_result != 0x26)) ||
             (*string_data != '{')) || (string_data[0x25] != '}')) {
         parse_failed:
@@ -741,9 +741,9 @@ void network_string_parser(char *string_data, undefined8 *parsed_data)
             short_value = func_0x00018076b320(buffer2);
             value2 = CONCAT22(value2._2_2_, short_value);
             short_value = func_0x00018076b320(buffer3);
-            value2 = CONCAT22(short_value, (undefined2)value2);
+            value2 = CONCAT22(short_value, (int16_t)value2);
             short_value = func_0x00018076b320(buffer4);
-            ptr2 = (undefined1 *)((longlong)&value4 + 3);
+            ptr2 = (int8_t *)((longlong)&value4 + 3);
             value3 = CONCAT31(CONCAT21(value3._2_2_, (char)short_value), (char)((ushort)short_value >> 8));
             ptr1 = buffer6;
             validation_result = 5;
@@ -758,10 +758,10 @@ void network_string_parser(char *string_data, undefined8 *parsed_data)
                 ptr1 = ptr1 + -2;
             } while (-1 < validation_result);
             // 设置解析结果
-            *(undefined4 *)parsed_data = value1;
-            *(undefined4 *)((longlong)parsed_data + 4) = value2;
-            *(undefined4 *)(parsed_data + 1) = value3;
-            *(undefined4 *)((longlong)parsed_data + 0xc) = value4;
+            *(int32_t *)parsed_data = value1;
+            *(int32_t *)((longlong)parsed_data + 4) = value2;
+            *(int32_t *)(parsed_data + 1) = value3;
+            *(int32_t *)((longlong)parsed_data + 0xc) = value4;
         }
     }
     // 安全清理
@@ -777,19 +777,19 @@ void network_data_serializer(void)
 {
     char *current_char;
     char char_value;
-    undefined4 value1;
-    undefined4 value2;
-    undefined1 byte_value;
-    undefined2 short_value;
+    int32_t value1;
+    int32_t value2;
+    int8_t byte_value;
+    int16_t short_value;
     int index;
-    undefined4 value3;
+    int32_t value3;
     char *string_ptr;
     char *unaff_ptr;
     longlong unaff_long;
-    undefined1 *ptr1;
-    undefined1 *ptr2;
+    int8_t *ptr1;
+    int8_t *ptr2;
     longlong counter;
-    undefined8 *unaff_ptr8;
+    uint64_t *unaff_ptr8;
     
     if ((((unaff_ptr == (char *)0x0) || (index = func_0x00018076b690(), index != 0x26)) ||
         (*unaff_ptr != '{')) || (unaff_ptr[0x25] != '}')) {
@@ -801,17 +801,17 @@ void network_data_serializer(void)
     else {
         // 初始化序列化缓冲区
         func_0x00018076b450(unaff_long + -1);
-        *(undefined1 *)(unaff_long + 8) = 0;
+        *(int8_t *)(unaff_long + 8) = 0;
         *(longlong *)(unaff_long + -0x29) = unaff_long;
         counter = 0;
-        *(undefined1 *)(unaff_long + 0xd) = 0;
+        *(int8_t *)(unaff_long + 0xd) = 0;
         *(longlong *)(unaff_long + -0x21) = unaff_long + 9;
-        *(undefined1 *)(unaff_long + 0x12) = 0;
+        *(int8_t *)(unaff_long + 0x12) = 0;
         *(longlong *)(unaff_long + -0x19) = unaff_long + 0xe;
         *(longlong *)(unaff_long + -0x11) = unaff_long + 0x13;
         *(longlong *)(unaff_long + -9) = unaff_long + 0x18;
-        *(undefined1 *)(unaff_long + 0x17) = 0;
-        *(undefined1 *)(unaff_long + 0x24) = 0;
+        *(int8_t *)(unaff_long + 0x17) = 0;
+        *(int8_t *)(unaff_long + 0x24) = 0;
         do {
             // 验证序列化数据
             string_ptr = *(char **)(unaff_long + -0x29 + counter * 8);
@@ -827,16 +827,16 @@ void network_data_serializer(void)
         } while (counter < 5);
         // 执行序列化操作
         value3 = func_0x00018076b320();
-        *(undefined4 *)(unaff_long + -0x39) = value3;
+        *(int32_t *)(unaff_long + -0x39) = value3;
         short_value = func_0x00018076b320(unaff_long + 9);
-        *(undefined2 *)(unaff_long + -0x35) = short_value;
+        *(int16_t *)(unaff_long + -0x35) = short_value;
         short_value = func_0x00018076b320(unaff_long + 0xe);
-        *(undefined2 *)(unaff_long + -0x33) = short_value;
+        *(int16_t *)(unaff_long + -0x33) = short_value;
         short_value = func_0x00018076b320(unaff_long + 0x13);
         *(char *)(unaff_long + -0x30) = (char)short_value;
-        ptr2 = (undefined1 *)(unaff_long + -0x2a);
+        ptr2 = (int8_t *)(unaff_long + -0x2a);
         *(char *)(unaff_long + -0x31) = (char)((ushort)short_value >> 8);
-        ptr1 = (undefined1 *)(unaff_long + 0x22);
+        ptr1 = (int8_t *)(unaff_long + 0x22);
         index = 5;
         counter = unaff_long + 0x22;
         do {
@@ -849,13 +849,13 @@ void network_data_serializer(void)
             ptr1 = ptr1 + -2;
         } while (-1 < index);
         // 设置序列化结果
-        value3 = *(undefined4 *)(unaff_long + -0x35);
-        value1 = *(undefined4 *)(unaff_long + -0x31);
-        value2 = *(undefined4 *)(unaff_long + -0x2d);
-        *(undefined4 *)unaff_ptr8 = *(undefined4 *)(unaff_long + -0x39);
-        *(undefined4 *)((longlong)unaff_ptr8 + 4) = value3;
-        *(undefined4 *)(unaff_ptr8 + 1) = value1;
-        *(undefined4 *)((longlong)unaff_ptr8 + 0xc) = value2;
+        value3 = *(int32_t *)(unaff_long + -0x35);
+        value1 = *(int32_t *)(unaff_long + -0x31);
+        value2 = *(int32_t *)(unaff_long + -0x2d);
+        *(int32_t *)unaff_ptr8 = *(int32_t *)(unaff_long + -0x39);
+        *(int32_t *)((longlong)unaff_ptr8 + 4) = value3;
+        *(int32_t *)(unaff_ptr8 + 1) = value1;
+        *(int32_t *)((longlong)unaff_ptr8 + 0xc) = value2;
     }
     // 安全清理
     FUN_1808fc050(*(ulonglong *)(unaff_long + 0x27) ^ (ulonglong)&stack0x00000000);
@@ -868,31 +868,31 @@ void network_data_serializer(void)
  */
 void network_data_deserializer(void)
 {
-    undefined4 value1;
-    undefined4 value2;
-    undefined1 byte_value;
-    undefined2 short_value;
-    undefined4 value3;
+    int32_t value1;
+    int32_t value2;
+    int8_t byte_value;
+    int16_t short_value;
+    int32_t value3;
     int index;
     longlong unaff_long;
-    undefined1 *ptr1;
-    undefined1 *ptr2;
-    undefined1 unaff_byte;
+    int8_t *ptr1;
+    int8_t *ptr2;
+    int8_t unaff_byte;
     longlong counter;
-    undefined4 *unaff_ptr4;
+    int32_t *unaff_ptr4;
     
     // 执行反序列化操作
     value3 = func_0x00018076b320();
-    *(undefined4 *)(unaff_long + -0x39) = value3;
+    *(int32_t *)(unaff_long + -0x39) = value3;
     short_value = func_0x00018076b320(unaff_long + 9);
-    *(undefined2 *)(unaff_long + -0x35) = short_value;
+    *(int16_t *)(unaff_long + -0x35) = short_value;
     short_value = func_0x00018076b320(unaff_long + 0xe);
-    *(undefined2 *)(unaff_long + -0x33) = short_value;
+    *(int16_t *)(unaff_long + -0x33) = short_value;
     short_value = func_0x00018076b320(unaff_long + 0x13);
     *(char *)(unaff_long + -0x30) = (char)short_value;
-    ptr2 = (undefined1 *)(unaff_long + -0x2a);
+    ptr2 = (int8_t *)(unaff_long + -0x2a);
     *(char *)(unaff_long + -0x31) = (char)((ushort)short_value >> 8);
-    ptr1 = (undefined1 *)(unaff_long + 0x22);
+    ptr1 = (int8_t *)(unaff_long + 0x22);
     index = 5;
     counter = unaff_long + 0x22;
     do {
@@ -905,10 +905,10 @@ void network_data_deserializer(void)
         ptr1 = ptr1 + -2;
     } while (-1 < index);
     // 设置反序列化结果
-    value3 = *(undefined4 *)(unaff_long + -0x35);
-    value1 = *(undefined4 *)(unaff_long + -0x31);
-    value2 = *(undefined4 *)(unaff_long + -0x2d);
-    *unaff_ptr4 = *(undefined4 *)(unaff_long + -0x39);
+    value3 = *(int32_t *)(unaff_long + -0x35);
+    value1 = *(int32_t *)(unaff_long + -0x31);
+    value2 = *(int32_t *)(unaff_long + -0x2d);
+    *unaff_ptr4 = *(int32_t *)(unaff_long + -0x39);
     unaff_ptr4[1] = value3;
     unaff_ptr4[2] = value1;
     unaff_ptr4[3] = value2;
@@ -924,7 +924,7 @@ void network_data_deserializer(void)
 void network_resource_cleaner(void)
 {
     longlong unaff_long;
-    undefined8 *unaff_ptr8;
+    uint64_t *unaff_ptr8;
     
     // 清理资源
     *unaff_ptr8 = 0;
@@ -955,7 +955,7 @@ void network_system_initializer(void)
  * @param size 分配大小
  * @return 分配结果状态码
  */
-undefined8 network_memory_allocator(longlong *memory_ptr, undefined8 size)
+uint64_t network_memory_allocator(longlong *memory_ptr, uint64_t size)
 {
     longlong allocated_memory;
     int result;
@@ -967,7 +967,7 @@ undefined8 network_memory_allocator(longlong *memory_ptr, undefined8 size)
     allocated_memory = 0;
     if (result != 0) {
         if (result - 1U < 0x3fffffff) {
-            allocated_memory = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), size, &UNK_180957f70, NETWORK_HEADER_SIZE, 0, 0,
+            allocated_memory = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), size, &UNK_180957f70, NETWORK_HEADER_SIZE, 0, 0,
                                         1);
             if (allocated_memory != 0) {
                 if ((int)memory_ptr[1] != 0) {
@@ -982,7 +982,7 @@ undefined8 network_memory_allocator(longlong *memory_ptr, undefined8 size)
 allocation_complete:
     if ((0 < *(int *)((longlong)memory_ptr + 0xc)) && (*memory_ptr != 0)) {
         // 释放旧内存
-        FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), *memory_ptr, &UNK_180957f70, BUFFER_SIZE, 1);
+        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *memory_ptr, &UNK_180957f70, BUFFER_SIZE, 1);
     }
     *memory_ptr = allocated_memory;
     *(int *)((longlong)memory_ptr + 0xc) = result;
@@ -998,7 +998,7 @@ allocation_complete:
  * @param size 释放大小
  * @return 释放结果状态码
  */
-undefined8 network_memory_deallocator(undefined8 param1, undefined8 size)
+uint64_t network_memory_deallocator(uint64_t param1, uint64_t size)
 {
     longlong allocated_memory;
     longlong *memory_ptr;
@@ -1009,14 +1009,14 @@ undefined8 network_memory_deallocator(undefined8 param1, undefined8 size)
     release_complete:
         if ((0 < *(int *)((longlong)memory_ptr + 0xc)) && (*memory_ptr != 0)) {
             // 释放内存
-            FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), *memory_ptr, &UNK_180957f70, BUFFER_SIZE, 1);
+            FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *memory_ptr, &UNK_180957f70, BUFFER_SIZE, 1);
         }
         *memory_ptr = allocated_memory;
         *(int *)((longlong)memory_ptr + 0xc) = size_int;
         return NETWORK_ERROR_NONE;
     }
     if ((int)size - 1U < 0x3fffffff) {
-        allocated_memory = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), size, &UNK_180957f70, NETWORK_HEADER_SIZE, 0);
+        allocated_memory = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), size, &UNK_180957f70, NETWORK_HEADER_SIZE, 0);
         if (allocated_memory != 0) {
             if ((int)memory_ptr[1] != 0) {
                 // 复制数据到新内存
@@ -1035,7 +1035,7 @@ undefined8 network_memory_deallocator(undefined8 param1, undefined8 size)
  * 
  * @return 错误代码
  */
-undefined8 network_error_code_getter(void)
+uint64_t network_error_code_getter(void)
 {
     return NETWORK_ERROR_TIMEOUT;
 }
@@ -1049,35 +1049,35 @@ undefined8 network_error_code_getter(void)
  * @param array_size 数组大小
  * @return 管理结果状态码
  */
-undefined8 network_connection_array_manager(longlong *connection_array, int array_size)
+uint64_t network_connection_array_manager(longlong *connection_array, int array_size)
 {
-    undefined4 *array_ptr;
+    int32_t *array_ptr;
     int current_size;
     longlong source_ptr;
-    undefined4 value1;
-    undefined4 value2;
-    undefined4 value3;
-    undefined4 *src_ptr;
+    int32_t value1;
+    int32_t value2;
+    int32_t value3;
+    int32_t *src_ptr;
     longlong counter;
-    undefined4 *dest_ptr;
+    int32_t *dest_ptr;
     
     if (array_size < (int)connection_array[1]) {
         return NETWORK_ERROR_CONNECTION_FAILED;
     }
-    dest_ptr = (undefined4 *)0x0;
+    dest_ptr = (int32_t *)0x0;
     if (array_size != 0) {
         if (array_size * 0x14 - 1U < 0x3fffffff) {
-            dest_ptr = (undefined4 *)
-                     FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), array_size * 0x14, &UNK_180957f70,
+            dest_ptr = (int32_t *)
+                     FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), array_size * 0x14, &UNK_180957f70,
                                    NETWORK_HEADER_SIZE, 0, 0, 1);
-            if (dest_ptr != (undefined4 *)0x0) {
+            if (dest_ptr != (int32_t *)0x0) {
                 current_size = (int)connection_array[1];
                 counter = (longlong)current_size;
                 if ((current_size != 0) && (source_ptr = *connection_array, 0 < current_size)) {
                     src_ptr = dest_ptr;
                     do {
                         // 复制连接数据
-                        array_ptr = (undefined4 *)((source_ptr - (longlong)dest_ptr) + (longlong)src_ptr);
+                        array_ptr = (int32_t *)((source_ptr - (longlong)dest_ptr) + (longlong)src_ptr);
                         value1 = array_ptr[1];
                         value2 = array_ptr[2];
                         value3 = array_ptr[3];
@@ -1085,7 +1085,7 @@ undefined8 network_connection_array_manager(longlong *connection_array, int arra
                         src_ptr[1] = value1;
                         src_ptr[2] = value2;
                         src_ptr[3] = value3;
-                        src_ptr[4] = *(undefined4 *)((source_ptr - (longlong)dest_ptr) + -4 + (longlong)(src_ptr + 5));
+                        src_ptr[4] = *(int32_t *)((source_ptr - (longlong)dest_ptr) + -4 + (longlong)(src_ptr + 5));
                         counter = counter + -1;
                         src_ptr = src_ptr + 5;
                     } while (counter != 0);
@@ -1098,7 +1098,7 @@ undefined8 network_connection_array_manager(longlong *connection_array, int arra
 array_management_complete:
     if ((0 < *(int *)((longlong)connection_array + 0xc)) && (*connection_array != 0)) {
         // 清理旧数组
-        FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), *connection_array, &UNK_180957f70, BUFFER_SIZE, 1);
+        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *connection_array, &UNK_180957f70, BUFFER_SIZE, 1);
     }
     *connection_array = (longlong)dest_ptr;
     *(int *)((longlong)connection_array + 0xc) = array_size;
@@ -1114,43 +1114,43 @@ array_management_complete:
  * @param array_size 数组大小
  * @return 清理结果状态码
  */
-undefined8 network_connection_array_cleaner(undefined8 param1, int array_size)
+uint64_t network_connection_array_cleaner(uint64_t param1, int array_size)
 {
-    undefined4 *array_ptr;
+    int32_t *array_ptr;
     int current_size;
     longlong source_ptr;
-    undefined4 value1;
-    undefined4 value2;
-    undefined4 value3;
-    undefined4 *src_ptr;
+    int32_t value1;
+    int32_t value2;
+    int32_t value3;
+    int32_t *src_ptr;
     longlong counter;
-    undefined4 *dest_ptr;
+    int32_t *dest_ptr;
     longlong *memory_ptr;
     int size_int;
     
-    dest_ptr = (undefined4 *)0x0;
+    dest_ptr = (int32_t *)0x0;
     if (size_int == 0) {
     array_clean_complete:
         if ((0 < *(int *)((longlong)memory_ptr + 0xc)) && (*memory_ptr != 0)) {
             // 清理数组内存
-            FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), *memory_ptr, &UNK_180957f70, BUFFER_SIZE, 1);
+            FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), *memory_ptr, &UNK_180957f70, BUFFER_SIZE, 1);
         }
         *memory_ptr = (longlong)dest_ptr;
         *(int *)((longlong)memory_ptr + 0xc) = size_int;
         return NETWORK_ERROR_NONE;
     }
     if (array_size * 0x14 - 1U < 0x3fffffff) {
-        dest_ptr = (undefined4 *)
-                 FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), array_size * 0x14, &UNK_180957f70,
+        dest_ptr = (int32_t *)
+                 FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), array_size * 0x14, &UNK_180957f70,
                                NETWORK_HEADER_SIZE, 0);
-        if (dest_ptr != (undefined4 *)0x0) {
+        if (dest_ptr != (int32_t *)0x0) {
             current_size = (int)memory_ptr[1];
             counter = (longlong)current_size;
             if ((current_size != 0) && (source_ptr = *memory_ptr, 0 < current_size)) {
                 src_ptr = dest_ptr;
                 do {
                     // 复制数组数据
-                    array_ptr = (undefined4 *)((source_ptr - (longlong)dest_ptr) + (longlong)src_ptr);
+                    array_ptr = (int32_t *)((source_ptr - (longlong)dest_ptr) + (longlong)src_ptr);
                     value1 = array_ptr[1];
                     value2 = array_ptr[2];
                     value3 = array_ptr[3];
@@ -1158,7 +1158,7 @@ undefined8 network_connection_array_cleaner(undefined8 param1, int array_size)
                     src_ptr[1] = value1;
                     src_ptr[2] = value2;
                     src_ptr[3] = value3;
-                    src_ptr[4] = *(undefined4 *)((source_ptr - (longlong)dest_ptr) + -4 + (longlong)(src_ptr + 5));
+                    src_ptr[4] = *(int32_t *)((source_ptr - (longlong)dest_ptr) + -4 + (longlong)(src_ptr + 5));
                     counter = counter + -1;
                     src_ptr = src_ptr + 5;
                 } while (counter != 0);
@@ -1176,7 +1176,7 @@ undefined8 network_connection_array_cleaner(undefined8 param1, int array_size)
  * 
  * @return 错误代码
  */
-undefined8 network_array_error_code_getter(void)
+uint64_t network_array_error_code_getter(void)
 {
     return NETWORK_ERROR_TIMEOUT;
 }
@@ -1188,13 +1188,13 @@ undefined8 network_array_error_code_getter(void)
  * 
  * @param message_id 消息ID
  */
-void network_message_broadcaster(undefined8 message_id)
+void network_message_broadcaster(uint64_t message_id)
 {
     int result;
     int status;
-    undefined1 stack_buffer[48];
+    int8_t stack_buffer[48];
     longlong stack_array[2];
-    undefined8 *ptr_array[34];
+    uint64_t *ptr_array[34];
     ulonglong security_cookie;
     
     // 安全检查
@@ -1211,13 +1211,13 @@ void network_message_broadcaster(undefined8 message_id)
         status = result;
     }
     if ((status == 0) &&
-       (result = FUN_18088dec0(*(undefined8 *)(stack_array[0] + 0x98), ptr_array, 0x18), result == 0))
+       (result = FUN_18088dec0(*(uint64_t *)(stack_array[0] + 0x98), ptr_array, 0x18), result == 0))
     {
         // 设置广播消息
         *ptr_array[0] = &UNK_180983cf8;
-        *(undefined4 *)(ptr_array[0] + 1) = 0x18;
+        *(int32_t *)(ptr_array[0] + 1) = 0x18;
         *(int *)(ptr_array[0] + 2) = (int)message_id;
-        func_0x00018088e0d0(*(undefined8 *)(stack_array[0] + 0x98));
+        func_0x00018088e0d0(*(uint64_t *)(stack_array[0] + 0x98));
     }
 broadcast_complete:
     // 清理资源
@@ -1235,10 +1235,10 @@ void network_connection_closer(ulonglong connection_id)
 {
     int result;
     int status;
-    undefined1 stack_buffer[32];
-    undefined1 *stack_ptr;
+    int8_t stack_buffer[32];
+    int8_t *stack_ptr;
     longlong stack_array[4];
-    undefined1 large_buffer[256];
+    int8_t large_buffer[256];
     ulonglong security_cookie;
     
     // 安全检查
@@ -1253,7 +1253,7 @@ void network_connection_closer(ulonglong connection_id)
             if (((result != 0) ||
                 (((*(uint *)(stack_array[0] + 0x24) >> 1 & 1) != 0 &&
                  (status = FUN_18088c740(stack_array + 1), status == 0)))) && (result == 0)) {
-                FUN_18088da50(*(undefined8 *)(stack_array[0] + 0x98));
+                FUN_18088da50(*(uint64_t *)(stack_array[0] + 0x98));
             }
             // 清理资源
             FUN_18088c790(stack_array + 1);
@@ -1280,25 +1280,25 @@ connection_close_complete:
  * @param config_id 配置ID
  * @param config_data 配置数据
  */
-void network_config_setter(undefined8 config_id, undefined8 *config_data)
+void network_config_setter(uint64_t config_id, uint64_t *config_data)
 {
-    undefined4 value1;
-    undefined4 value2;
-    undefined4 value3;
-    undefined8 value4;
+    int32_t value1;
+    int32_t value2;
+    int32_t value3;
+    uint64_t value4;
     int result;
     int status;
-    undefined1 stack_buffer[32];
-    undefined1 *stack_ptr;
-    undefined8 stack_value;
+    int8_t stack_buffer[32];
+    int8_t *stack_ptr;
+    uint64_t stack_value;
     longlong stack_long;
-    undefined8 *ptr_array[2];
-    undefined1 large_buffer[256];
+    uint64_t *ptr_array[2];
+    int8_t large_buffer[256];
     ulonglong security_cookie;
     
     // 安全检查
     security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
-    if (config_data == (undefined8 *)0x0) {
+    if (config_data == (uint64_t *)0x0) {
         if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
             // 安全清理
             FUN_1808fc050(security_cookie ^ (ulonglong)stack_buffer);
@@ -1320,29 +1320,29 @@ void network_config_setter(undefined8 config_id, undefined8 *config_data)
         status = result;
     }
     if ((status == 0) &&
-       (result = FUN_18088dec0(*(undefined8 *)(stack_long + 0x98), ptr_array, 0x48), result == 0)) {
+       (result = FUN_18088dec0(*(uint64_t *)(stack_long + 0x98), ptr_array, 0x48), result == 0)) {
         // 设置配置数据
         *ptr_array[0] = &UNK_180983840;
-        *(undefined4 *)(ptr_array[0] + 1) = 0x48;
+        *(int32_t *)(ptr_array[0] + 1) = 0x48;
         *(int *)(ptr_array[0] + 2) = (int)config_id;
         value4 = config_data[1];
         ptr_array[0][3] = *config_data;
         ptr_array[0][4] = value4;
-        value1 = *(undefined4 *)((longlong)config_data + 0x14);
-        value2 = *(undefined4 *)(config_data + 3);
-        value3 = *(undefined4 *)((longlong)config_data + 0x1c);
-        *(undefined4 *)(ptr_array[0] + 5) = *(undefined4 *)(config_data + 2);
-        *(undefined4 *)((longlong)ptr_array[0] + 0x2c) = value1;
-        *(undefined4 *)(ptr_array[0] + 6) = value2;
-        *(undefined4 *)((longlong)ptr_array[0] + 0x34) = value3;
-        value1 = *(undefined4 *)((longlong)config_data + 0x24);
-        value2 = *(undefined4 *)(config_data + 5);
-        value3 = *(undefined4 *)((longlong)config_data + 0x2c);
-        *(undefined4 *)(ptr_array[0] + 7) = *(undefined4 *)(config_data + 4);
-        *(undefined4 *)((longlong)ptr_array[0] + 0x3c) = value1;
-        *(undefined4 *)(ptr_array[0] + 8) = value2;
-        *(undefined4 *)((longlong)ptr_array[0] + 0x44) = value3;
-        func_0x00018088e0d0(*(undefined8 *)(stack_long + 0x98));
+        value1 = *(int32_t *)((longlong)config_data + 0x14);
+        value2 = *(int32_t *)(config_data + 3);
+        value3 = *(int32_t *)((longlong)config_data + 0x1c);
+        *(int32_t *)(ptr_array[0] + 5) = *(int32_t *)(config_data + 2);
+        *(int32_t *)((longlong)ptr_array[0] + 0x2c) = value1;
+        *(int32_t *)(ptr_array[0] + 6) = value2;
+        *(int32_t *)((longlong)ptr_array[0] + 0x34) = value3;
+        value1 = *(int32_t *)((longlong)config_data + 0x24);
+        value2 = *(int32_t *)(config_data + 5);
+        value3 = *(int32_t *)((longlong)config_data + 0x2c);
+        *(int32_t *)(ptr_array[0] + 7) = *(int32_t *)(config_data + 4);
+        *(int32_t *)((longlong)ptr_array[0] + 0x3c) = value1;
+        *(int32_t *)(ptr_array[0] + 8) = value2;
+        *(int32_t *)((longlong)ptr_array[0] + 0x44) = value3;
+        func_0x00018088e0d0(*(uint64_t *)(stack_long + 0x98));
         // 清理资源
         FUN_18088c790(&stack_value);
     }
@@ -1359,13 +1359,13 @@ config_set_complete:
  * @param connection_id 连接ID
  * @param validation_data 验证数据
  */
-void network_connection_validator(undefined8 connection_id, undefined8 validation_data)
+void network_connection_validator(uint64_t connection_id, uint64_t validation_data)
 {
     int result;
-    undefined1 stack_buffer[32];
-    undefined1 *stack_ptr;
-    undefined8 stack_array[2];
-    undefined1 large_buffer[256];
+    int8_t stack_buffer[32];
+    int8_t *stack_ptr;
+    uint64_t stack_array[2];
+    int8_t large_buffer[256];
     ulonglong security_cookie;
     
     // 安全检查
@@ -1391,14 +1391,14 @@ void network_connection_validator(undefined8 connection_id, undefined8 validatio
  * @param param_value 参数值
  * @param param_size 参数大小
  */
-void network_parameter_setter(undefined4 param_id, longlong param_value, undefined4 param_size)
+void network_parameter_setter(int32_t param_id, longlong param_value, int32_t param_size)
 {
     longlong config_ptr;
     int result;
-    undefined4 final_value;
-    undefined1 stack_buffer[48];
-    undefined8 stack_value1;
-    undefined8 stack_value2;
+    int32_t final_value;
+    int8_t stack_buffer[48];
+    uint64_t stack_value1;
+    uint64_t stack_value2;
     longlong stack_long;
     longlong stack_array[33];
     ulonglong security_cookie;
@@ -1420,7 +1420,7 @@ void network_parameter_setter(undefined4 param_id, longlong param_value, undefin
         final_value = param_size;
     }
     // 设置参数值
-    *(undefined4 *)(config_ptr + 0x48) = final_value;
+    *(int32_t *)(config_ptr + 0x48) = final_value;
     *(longlong *)(config_ptr + 0x40) = param_value;
 param_set_complete:
     // 清理资源
@@ -1436,8 +1436,8 @@ void network_logger(void)
 {
     int result;
     int length;
-    undefined4 param1;
-    undefined4 param2;
+    int32_t param1;
+    int32_t param2;
     
     // 格式化日志消息
     result = func_0x00018074bda0(&stack0x00000050, 0x100);

@@ -11,20 +11,20 @@
 #define INVALID_HANDLE 0xfffffffffffffffe  // 无效句柄
 
 /* 全局变量引用 */
-extern undefined8 _DAT_180bf00a8;    // XOR加密密钥
-extern undefined8 DAT_180bf6680;     // 队列管理数据
-extern undefined8 UNK_180a3c3e0;     // 空字符串指针
-extern undefined8 UNK_1809feda8;     // 字符串操作对象
-extern undefined8 UNK_1809fdc18;     // 字符串构造器
-extern undefined8 UNK_180a3c07c;     // 路径分隔符
-extern undefined8 UNK_18098bcb0;     // 字符串清理对象
-extern undefined8 DAT_18098bc73;     // 默认空指针
-extern undefined8 _DAT_180c8ed18;    // 内存分配器
-extern undefined8 _DAT_180c86870;    // 资源管理器
-extern undefined8 UNK_180a00550;     // 资源标识符
-extern undefined8 UNK_180a006f0;     // 错误处理对象
-extern undefined8 _DAT_180bf6658;    // 默认路径前缀
-extern undefined8 _DAT_180c86928;    // 系统调用接口
+extern uint64_t _DAT_180bf00a8;    // XOR加密密钥
+extern uint64_t DAT_180bf6680;     // 队列管理数据
+extern uint64_t UNK_180a3c3e0;     // 空字符串指针
+extern uint64_t UNK_1809feda8;     // 字符串操作对象
+extern uint64_t UNK_1809fdc18;     // 字符串构造器
+extern uint64_t UNK_180a3c07c;     // 路径分隔符
+extern uint64_t UNK_18098bcb0;     // 字符串清理对象
+extern uint64_t DAT_18098bc73;     // 默认空指针
+extern uint64_t _DAT_180c8ed18;    // 内存分配器
+extern uint64_t _DAT_180c86870;    // 资源管理器
+extern uint64_t UNK_180a00550;     // 资源标识符
+extern uint64_t UNK_180a006f0;     // 错误处理对象
+extern uint64_t _DAT_180bf6658;    // 默认路径前缀
+extern uint64_t _DAT_180c86928;    // 系统调用接口
 
 /**
  * 处理路径和资源队列的主要函数
@@ -40,18 +40,18 @@ extern undefined8 _DAT_180c86928;    // 系统调用接口
  * 
  * 简化实现：原始实现包含复杂的路径解析和资源管理逻辑
  */
-void process_path_and_resource_queue(undefined8 *context)
+void process_path_and_resource_queue(uint64_t *context)
 {
-    undefined8 *path_start;
-    undefined8 *path_end;
-    undefined8 **queue_ptr;
-    undefined1 path_char;
+    uint64_t *path_start;
+    uint64_t *path_end;
+    uint64_t **queue_ptr;
+    int8_t path_char;
     ulonglong *resource_ptr;
     bool is_valid_path;
-    undefined8 *current_path;
-    undefined8 *next_path;
-    undefined8 *temp_path1;
-    undefined8 *temp_path2;
+    uint64_t *current_path;
+    uint64_t *next_path;
+    uint64_t *temp_path1;
+    uint64_t *temp_path2;
     char result_flag;
     int path_index;
     longlong resource_count;
@@ -59,79 +59,79 @@ void process_path_and_resource_queue(undefined8 *context)
     longlong *resource_array;
     ulonglong path_length;
     char *path_string;
-    undefined1 *string_ptr;
+    int8_t *string_ptr;
     int string_length;
-    undefined *temp_ptr;
+    void *temp_ptr;
     longlong *temp_resource;
     int compare_result;
     code *callback_func;
-    undefined4 temp_uint;
+    int32_t temp_uint;
     uint loop_counter;
-    undefined8 *path_iterator;
+    uint64_t *path_iterator;
     longlong *iterator_ptr;
-    undefined *stack_ptr;
+    void *stack_ptr;
     
-    undefined1 local_buffer[32];      // 局部缓冲区，用于XOR计算
-    undefined *stack_ptr1;
-    undefined4 queue_size;
-    undefined8 **callback_target;
-    undefined *stack_ptr2;
-    undefined *stack_ptr3;
+    int8_t local_buffer[32];      // 局部缓冲区，用于XOR计算
+    void *stack_ptr1;
+    int32_t queue_size;
+    uint64_t **callback_target;
+    void *stack_ptr2;
+    void *stack_ptr3;
     uint buffer_size;
     ulonglong total_size;
-    undefined8 *result_ptr;
-    undefined8 *data_ptr;
+    uint64_t *result_ptr;
+    uint64_t *data_ptr;
     ulonglong data_length;
-    undefined8 data_header;
-    undefined *ptr1;
-    undefined1 *ptr2;
-    undefined4 size_field;
-    undefined8 data_block;
-    undefined8 *return_ptr;
-    undefined8 return_value;
-    undefined8 alignment_block[2];
+    uint64_t data_header;
+    void *ptr1;
+    int8_t *ptr2;
+    int32_t size_field;
+    uint64_t data_block;
+    uint64_t *return_ptr;
+    uint64_t return_value;
+    uint64_t alignment_block[2];
     code *guard_check1;
     code *callback1;
-    undefined8 callback_data[2];
+    uint64_t callback_data[2];
     code *callback2;
     code *callback3;
-    undefined8 callback_info[2];
+    uint64_t callback_info[2];
     code *callback4;
     code *callback5;
     longlong stack_long;
-    undefined8 *stack_ptr4;
-    undefined8 *stack_ptr5;
-    undefined8 stack_value1;
-    undefined4 stack_value2;
+    uint64_t *stack_ptr4;
+    uint64_t *stack_ptr5;
+    uint64_t stack_value1;
+    int32_t stack_value2;
     longlong stack_long1;
     longlong stack_long2;
-    undefined8 *stack_ptr6;
-    undefined *stack_ptr7;
-    undefined *stack_ptr8;
-    undefined4 stack_value3;
-    undefined *stack_ptr9;
+    uint64_t *stack_ptr6;
+    void *stack_ptr7;
+    void *stack_ptr8;
+    int32_t stack_value3;
+    void *stack_ptr9;
     longlong stack_long3;
-    undefined4 stack_value4;
-    undefined8 stack_value5;
-    undefined **indirect_ptr;
-    undefined *stack_ptr10;
-    undefined1 *stack_ptr11;
+    int32_t stack_value4;
+    uint64_t stack_value5;
+    void **indirect_ptr;
+    void *stack_ptr10;
+    int8_t *stack_ptr11;
     uint stack_uint1;
-    undefined1 local_buffer1[16];
-    undefined *stack_ptr12;
-    undefined1 *stack_ptr13;
-    undefined4 stack_value5_1;
-    undefined1 local_buffer2[16];
-    undefined *stack_ptr14;
-    undefined *stack_ptr15;
+    int8_t local_buffer1[16];
+    void *stack_ptr12;
+    int8_t *stack_ptr13;
+    int32_t stack_value5_1;
+    int8_t local_buffer2[16];
+    void *stack_ptr14;
+    void *stack_ptr15;
     uint stack_uint2;
     undefined local_buffer3[264];
-    undefined *stack_ptr16;
-    undefined *stack_ptr17;
+    void *stack_ptr16;
+    void *stack_ptr17;
     int stack_int1;
     undefined local_buffer4[264];
-    undefined *stack_ptr18;
-    undefined *stack_ptr19;
+    void *stack_ptr18;
+    void *stack_ptr19;
     uint stack_uint3;
     undefined local_buffer5[264];
     ulonglong xor_key;                // XOR加密密钥
@@ -142,8 +142,8 @@ void process_path_and_resource_queue(undefined8 *context)
     
     // 检查上下文状态
     if ((context[10] == 0) || (result_flag = (*(code *)context[0xb])(*context), result_flag != '\0')) {
-        path_start = (undefined8 *)0x0;
-        path_end = (undefined8 *)0x0;
+        path_start = (uint64_t *)0x0;
+        path_end = (uint64_t *)0x0;
         data_header = 0;
         stack_value2 = DEFAULT_QUEUE_SIZE;
         
@@ -153,7 +153,7 @@ void process_path_and_resource_queue(undefined8 *context)
         // 设置字符串处理对象
         return_ptr = &UNK_180a3c3e0;
         total_size = 0;
-        ptr2 = (undefined1 *)0x0;
+        ptr2 = (int8_t *)0x0;
         size_field = 0;
         
         resource_count = (longlong)(int)((longlong)path_end - (longlong)path_start >> 5);
@@ -229,8 +229,8 @@ found_separator:
                     queue_size = 0;
                     temp_long = process_path_component(path_iterator, &stack_ptr9, temp_uint, compare_result);
                     temp_ptr = &DAT_18098bc73;
-                    if (*(undefined **)(temp_long + 8) != (undefined *)0x0) {
-                        temp_ptr = *(undefined **)(temp_long + 8);
+                    if (*(void **)(temp_long + 8) != (void *)0x0) {
+                        temp_ptr = *(void **)(temp_long + 8);
                     }
                     (**(code **)(stack_ptr16 + 0x10))(&stack_ptr16, temp_ptr);
                     
@@ -249,7 +249,7 @@ found_separator:
                 compare_result = *(int *)(path_iterator + 2);
                 stack_ptr19 = &UNK_180a3c3e0;
                 total_size = 0;
-                stack_ptr2 = (undefined *)0x0;
+                stack_ptr2 = (void *)0x0;
                 stack_uint3 = 0;
                 queue_size = 4;
                 
@@ -265,7 +265,7 @@ found_separator:
                 temp_long = (longlong)(int)loop_counter;
                 for (; (temp_long < compare_result && (loop_counter < *(uint *)(path_iterator + 2))); 
                      loop_counter = loop_counter + 1) {
-                    path_char = *(undefined1 *)(temp_long + path_iterator[1]);
+                    path_char = *(int8_t *)(temp_long + path_iterator[1]);
                     allocate_string_buffer(&stack_ptr19, stack_uint3 + 1);
                     stack_ptr2[stack_uint3] = path_char;
                     stack_ptr2[stack_uint3 + 1] = 0;
@@ -278,7 +278,7 @@ found_separator:
                 stack_ptr19 = local_buffer5;
                 local_buffer5[0] = 0;
                 temp_ptr = &DAT_18098bc73;
-                if (stack_ptr2 != (undefined *)0x0) {
+                if (stack_ptr2 != (void *)0x0) {
                     temp_ptr = stack_ptr2;
                 }
                 stack_uint3 = stack_uint3;
@@ -308,7 +308,7 @@ found_separator:
                 
                 stack_uint2 = stack_uint3;
                 temp_ptr = &DAT_18098bc73;
-                if (stack_ptr19 != (undefined *)0x0) {
+                if (stack_ptr19 != (void *)0x0) {
                     temp_ptr = stack_ptr19;
                 }
                 strcpy_s(stack_ptr15, MAX_PATH_LENGTH, temp_ptr);
@@ -316,77 +316,77 @@ found_separator:
                 stack_ptr18 = &UNK_18098bcb0;
                 queue_size = 0;
                 stack_ptr19 = &UNK_180a3c3e0;
-                if (stack_ptr2 != (undefined *)0x0) {
+                if (stack_ptr2 != (void *)0x0) {
                     // 内存清理
                     cleanup_memory();
                 }
-                stack_ptr2 = (undefined *)0x0;
+                stack_ptr2 = (void *)0x0;
                 total_size = total_size & 0xffffffff00000000;
                 stack_ptr19 = &UNK_18098bcb0;
                 size_field = 0;
-                if (ptr2 != (undefined1 *)0x0) {
+                if (ptr2 != (int8_t *)0x0) {
                     *ptr2 = 0;
                 }
                 
                 // 处理资源注册
                 if (context[0xe] == 0) {
                 process_resource:
-                    path_char = *(undefined1 *)((longlong)context + 0x1c);
+                    path_char = *(int8_t *)((longlong)context + 0x1c);
                     indirect_ptr = &stack_ptr10;
                     stack_ptr10 = &UNK_180a3c3e0;
                     return_value = 0;
-                    ptr2 = (undefined1 *)0x0;
+                    ptr2 = (int8_t *)0x0;
                     size_field = 0;
                     
                     allocate_string_buffer(&stack_ptr10, stack_uint2);
                     if (0 < (int)stack_uint2) {
                         temp_ptr = &DAT_18098bc73;
-                        if (stack_ptr15 != (undefined *)0x0) {
+                        if (stack_ptr15 != (void *)0x0) {
                             temp_ptr = stack_ptr15;
                         }
                         memcpy(ptr2, temp_ptr, (longlong)(int)(stack_uint2 + 1));
                     }
                     
-                    if ((stack_ptr15 != (undefined *)0x0) &&
-                        (size_field = 0, ptr2 != (undefined1 *)0x0)) {
+                    if ((stack_ptr15 != (void *)0x0) &&
+                        (size_field = 0, ptr2 != (int8_t *)0x0)) {
                         *ptr2 = 0;
                     }
                     
                     callback_target = &stack_ptr5;
-                    stack_ptr5 = (undefined8 *)&UNK_180a3c3e0;
+                    stack_ptr5 = (uint64_t *)&UNK_180a3c3e0;
                     data_block = 0;
-                    stack_ptr7 = (undefined8 *)0x0;
+                    stack_ptr7 = (uint64_t *)0x0;
                     data_length = data_length & 0xffffffff00000000;
                     allocate_string_buffer(&stack_ptr5, stack_int1);
                     
                     if (0 < stack_int1) {
                         temp_ptr = &DAT_18098bc73;
-                        if (stack_ptr17 != (undefined *)0x0) {
+                        if (stack_ptr17 != (void *)0x0) {
                             temp_ptr = stack_ptr17;
                         }
                         memcpy(stack_ptr7, temp_ptr, (longlong)(stack_int1 + 1));
                     }
                     
-                    if ((stack_ptr17 != (undefined *)0x0) &&
-                        (data_length = data_length & 0xffffffff00000000, stack_ptr7 != (undefined8 *)0x0)) {
-                        *(undefined1 *)stack_ptr7 = 0;
+                    if ((stack_ptr17 != (void *)0x0) &&
+                        (data_length = data_length & 0xffffffff00000000, stack_ptr7 != (uint64_t *)0x0)) {
+                        *(int8_t *)stack_ptr7 = 0;
                     }
                     
-                    stack_ptr1 = (undefined *)CONCAT71(stack_ptr1._1_7_, path_char);
+                    stack_ptr1 = (void *)CONCAT71(stack_ptr1._1_7_, path_char);
                     result_flag = register_resource(&stack_long1, &stack_ptr5, &stack_ptr10, &return_ptr);
                     temp_long = stack_long1;
                     
                     if (result_flag == '\0') {
                         // 资源注册失败，清理内存
                         ptr1 = &DAT_18098bc73;
-                        if (ptr2 != (undefined1 *)0x0) {
+                        if (ptr2 != (int8_t *)0x0) {
                             ptr1 = ptr2;
                         }
                         free_string_memory(ptr1);
                     }
                     else {
                         // 资源注册成功，添加到队列
-                        *(undefined4 *)(stack_long1 + 4) = *(undefined4 *)(context + 3);
+                        *(int32_t *)(stack_long1 + 4) = *(int32_t *)(context + 3);
                         resource_ptr = (ulonglong *)context[1];
                         iterator_ptr = (longlong *)resource_ptr[1];
                         
@@ -433,49 +433,49 @@ found_separator:
                     // 使用外部资源处理器
                     stack_ptr8 = &UNK_180a3c3e0;
                     data_block = 0;
-                    ptr2 = (undefined1 *)0x0;
+                    ptr2 = (int8_t *)0x0;
                     stack_value5 = 0;
                     process_external_resource(*_DAT_180c86870, &stack_ptr7, &stack_ptr16);
                     stack_value5 = 0;
-                    if (ptr2 != (undefined1 *)0x0) {
+                    if (ptr2 != (int8_t *)0x0) {
                         *ptr2 = 0;
                     }
                     stack_ptr1 = &DAT_18098bc73;
-                    if (_DAT_180bf6658 != (undefined *)0x0) {
+                    if (_DAT_180bf6658 != (void *)0x0) {
                         stack_ptr1 = _DAT_180bf6658;
                     }
                     temp_ptr = &DAT_18098bc73;
-                    if (stack_ptr15 != (undefined *)0x0) {
+                    if (stack_ptr15 != (void *)0x0) {
                         temp_ptr = stack_ptr15;
                     }
                     ptr1 = &DAT_18098bc73;
-                    if (stack_ptr8 != (undefined *)0x0) {
+                    if (stack_ptr8 != (void *)0x0) {
                         ptr1 = stack_ptr8;
                     }
                     create_resource_handle(&stack_ptr8, &UNK_180a00550, ptr1, temp_ptr);
                     stack_ptr7 = &UNK_180a3c3e0;
-                    if (stack_ptr8 != (undefined *)0x0) {
+                    if (stack_ptr8 != (void *)0x0) {
                         cleanup_memory();
                     }
-                    stack_ptr8 = (undefined *)0x0;
+                    stack_ptr8 = (void *)0x0;
                     stack_value3 = 0;
                     stack_ptr7 = &UNK_18098bcb0;
                     
                     result_flag = (*(code *)context[0xf])(&stack_ptr8);
                     stack_ptr8 = &UNK_180a3c3e0;
                     if (result_flag != '\0') {
-                        if (ptr2 != (undefined1 *)0x0) {
+                        if (ptr2 != (int8_t *)0x0) {
                             cleanup_memory();
                         }
-                        ptr2 = (undefined1 *)0x0;
+                        ptr2 = (int8_t *)0x0;
                         data_block = (ulonglong)data_block._4_4_ << 0x20;
                         stack_ptr8 = &UNK_18098bcb0;
                         goto process_resource;
                     }
-                    if (ptr2 != (undefined1 *)0x0) {
+                    if (ptr2 != (int8_t *)0x0) {
                         cleanup_memory();
                     }
-                    ptr2 = (undefined1 *)0x0;
+                    ptr2 = (int8_t *)0x0;
                     data_block = (ulonglong)data_block._4_4_ << 0x20;
                     stack_ptr8 = &UNK_18098bcb0;
                 }
@@ -488,8 +488,8 @@ found_separator:
         }
         
         // 清理队列资源
-        stack_ptr5 = (undefined8 *)0x0;
-        stack_ptr7 = (undefined8 *)0x0;
+        stack_ptr5 = (uint64_t *)0x0;
+        stack_ptr7 = (uint64_t *)0x0;
         data_length = 0;
         data_block = CONCAT44(data_block._4_4_, 3);
         cleanup_queue(*context, &stack_ptr5);
@@ -504,13 +504,13 @@ found_separator:
         if (0 < (int)total_size) {
             path_start = stack_ptr6 + 8;
             path_end = stack_ptr6 + 0xc;
-            queue_ptr = (undefined8 **)(stack_ptr6 + 4);
+            queue_ptr = (uint64_t **)(stack_ptr6 + 4);
             total_size = total_size & 0xffffffff;
             next_path = stack_ptr5;
             
             do {
                 return_value = current_path[1];
-                callback_target = (undefined8 **)callback_data;
+                callback_target = (uint64_t **)callback_data;
                 callback3 = _guard_check_icall;
                 callback2 = (code *)0x0;
                 callback5 = _guard_check_icall;
@@ -518,8 +518,8 @@ found_separator:
                 callback1 = (code *)0x0;
                 callback_func = _guard_check_icall;
                 data_header = 0;
-                stack_value3 = *(undefined4 *)(current_path + 3);
-                path_char = *(undefined1 *)((longlong)current_path + 0x1c);
+                stack_value3 = *(int32_t *)(current_path + 3);
+                path_char = *(int8_t *)((longlong)current_path + 0x1c);
                 return_ptr = next_path;
                 
                 if (callback_info != path_start) {
@@ -567,11 +567,11 @@ found_separator:
                 
                 // 递归处理子路径
                 process_path_and_resource_queue(&return_ptr);
-                callback_target = (undefined8 **)callback_data;
+                callback_target = (uint64_t **)callback_data;
                 if (callback1 != (code *)0x0) {
                     (*callback1)(callback_data, 0);
                 }
-                callback_target = (undefined8 **)callback_info;
+                callback_target = (uint64_t **)callback_info;
                 if (callback2 != (code *)0x0) {
                     (*callback2)(callback_info, 0);
                 }
@@ -603,19 +603,19 @@ found_separator:
             stack_ptr5 = current_path;
         }
         
-        if (stack_ptr5 != (undefined8 *)0x0) {
+        if (stack_ptr5 != (uint64_t *)0x0) {
             stack_ptr5 = temp_path1;
             stack_ptr7 = temp_path2;
             cleanup_memory(current_path);
         }
         
         return_ptr = &UNK_180a3c3e0;
-        if (ptr2 != (undefined1 *)0x0) {
+        if (ptr2 != (int8_t *)0x0) {
             stack_ptr5 = temp_path1;
             stack_ptr7 = temp_path2;
             cleanup_memory();
         }
-        ptr2 = (undefined1 *)0x0;
+        ptr2 = (int8_t *)0x0;
         total_size = total_size & 0xffffffff00000000;
         return_ptr = &UNK_18098bcb0;
         stack_ptr5 = temp_path1;
@@ -625,7 +625,7 @@ found_separator:
             (**(code **)*path_iterator)(path_iterator, 0);
         }
         
-        if (temp_path1 != (undefined8 *)0x0) {
+        if (temp_path1 != (uint64_t *)0x0) {
             cleanup_memory(temp_path1);
         }
     }
@@ -651,30 +651,30 @@ found_separator:
  * 
  * 简化实现：原始实现包含复杂的资源统计算法
  */
-ulonglong calculate_resource_statistics(undefined8 param1, undefined8 param2, undefined8 param3, undefined8 param4)
+ulonglong calculate_resource_statistics(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-    undefined8 *resource_start;
-    undefined8 *resource_end;
-    undefined8 *temp_ptr1;
-    undefined8 *temp_ptr2;
-    undefined8 *temp_ptr3;
-    undefined8 *temp_ptr4;
-    undefined8 *temp_ptr5;
+    uint64_t *resource_start;
+    uint64_t *resource_end;
+    uint64_t *temp_ptr1;
+    uint64_t *temp_ptr2;
+    uint64_t *temp_ptr3;
+    uint64_t *temp_ptr4;
+    uint64_t *temp_ptr5;
     int count_result;
     ulonglong total_count;
-    undefined8 *iterator;
+    uint64_t *iterator;
     ulonglong final_count;
-    undefined8 *stack_ptr1;
-    undefined8 *stack_ptr2;
-    undefined8 stack_value1;
-    undefined4 stack_value2;
-    undefined8 *stack_ptr3;
-    undefined8 *stack_ptr4;
-    undefined8 stack_value3;
-    undefined4 stack_value4;
+    uint64_t *stack_ptr1;
+    uint64_t *stack_ptr2;
+    uint64_t stack_value1;
+    int32_t stack_value2;
+    uint64_t *stack_ptr3;
+    uint64_t *stack_ptr4;
+    uint64_t stack_value3;
+    int32_t stack_value4;
     
-    stack_ptr1 = (undefined8 *)0x0;
-    stack_ptr2 = (undefined8 *)0x0;
+    stack_ptr1 = (uint64_t *)0x0;
+    stack_ptr2 = (uint64_t *)0x0;
     stack_value1 = 0;
     stack_value2 = DEFAULT_QUEUE_SIZE;
     initialize_statistics_queue(0, &stack_ptr1, &DAT_180bf6680, param4, INVALID_HANDLE);
@@ -683,8 +683,8 @@ ulonglong calculate_resource_statistics(undefined8 param1, undefined8 param2, un
     temp_ptr2 = stack_ptr1;
     final_count = (longlong)stack_ptr2 - (longlong)stack_ptr1 >> 5;
     
-    stack_ptr3 = (undefined8 *)0x0;
-    stack_ptr4 = (undefined8 *)0x0;
+    stack_ptr3 = (uint64_t *)0x0;
+    stack_ptr4 = (uint64_t *)0x0;
     stack_value3 = 0;
     stack_value4 = DEFAULT_QUEUE_SIZE;
     initialize_resource_queue(param1, &stack_ptr3);
@@ -711,7 +711,7 @@ ulonglong calculate_resource_statistics(undefined8 param1, undefined8 param2, un
     }
     
     temp_ptr1 = temp_ptr2;
-    if (temp_ptr4 != (undefined8 *)0x0) {
+    if (temp_ptr4 != (uint64_t *)0x0) {
         cleanup_memory(temp_ptr4);
     }
     
@@ -720,7 +720,7 @@ ulonglong calculate_resource_statistics(undefined8 param1, undefined8 param2, un
         (**(code **)*temp_ptr1)(temp_ptr1, 0);
     }
     
-    if (temp_ptr2 != (undefined8 *)0x0) {
+    if (temp_ptr2 != (uint64_t *)0x0) {
         cleanup_memory(temp_ptr2);
     }
     
@@ -742,29 +742,29 @@ ulonglong calculate_resource_statistics(undefined8 param1, undefined8 param2, un
  * 
  * 简化实现：原始实现包含复杂的缓存优先级管理算法
  */
-void update_cache_priority(ulonglong resource_id, int new_priority, undefined8 *cache_manager)
+void update_cache_priority(ulonglong resource_id, int new_priority, uint64_t *cache_manager)
 {
-    undefined8 *cache_node;
+    uint64_t *cache_node;
     longlong search_result;
-    undefined8 *current_node;
+    uint64_t *current_node;
     uint current_priority;
     uint max_priority;
     
     max_priority = new_priority + 1;
-    cache_node = (undefined8 *)cache_manager[2];
+    cache_node = (uint64_t *)cache_manager[2];
     current_node = cache_manager;
     
     // 在缓存树中查找资源节点
-    if (cache_node != (undefined8 *)0x0) {
+    if (cache_node != (uint64_t *)0x0) {
         do {
             if ((ulonglong)cache_node[4] < resource_id) {
-                cache_node = (undefined8 *)*cache_node;
+                cache_node = (uint64_t *)*cache_node;
             }
             else {
                 current_node = cache_node;
-                cache_node = (undefined8 *)cache_node[1];
+                cache_node = (uint64_t *)cache_node[1];
             }
-        } while (cache_node != (undefined8 *)0x0);
+        } while (cache_node != (uint64_t *)0x0);
         
         if ((current_node != cache_manager) && ((ulonglong)current_node[4] <= resource_id)) {
             goto priority_update;
@@ -782,7 +782,7 @@ priority_update:
     // 递归更新子节点优先级
     for (search_result = *(longlong *)(resource_id + 0x40); search_result != resource_id + 0x38;
          search_result = traverse_cache_tree(search_result)) {
-        update_cache_priority(*(undefined8 *)(search_result + 0x20), current_priority, cache_manager);
+        update_cache_priority(*(uint64_t *)(search_result + 0x20), current_priority, cache_manager);
     }
     
     return;
@@ -805,13 +805,13 @@ priority_update:
  * 
  * 简化实现：原始实现包含复杂的缓存释放和内存管理逻辑
  */
-ulonglong release_resource_cache(longlong heap_handle, longlong *cache_ptr, undefined8 flags, undefined8 options)
+ulonglong release_resource_cache(longlong heap_handle, longlong *cache_ptr, uint64_t flags, uint64_t options)
 {
     longlong *resource_array;
     longlong cache_size;
     int item_count;
     ulonglong result;
-    undefined *temp_ptr;
+    void *temp_ptr;
     longlong total_items;
     longlong used_items;
     longlong free_items;
@@ -827,8 +827,8 @@ ulonglong release_resource_cache(longlong heap_handle, longlong *cache_ptr, unde
     
     if ((char)stack_used_items == '\0') {
         temp_ptr = &DAT_18098bc73;
-        if (*(undefined **)(stack_temp + 0x40) != (undefined *)0x0) {
-            temp_ptr = *(undefined **)(stack_temp + 0x40);
+        if (*(void **)(stack_temp + 0x40) != (void *)0x0) {
+            temp_ptr = *(void **)(stack_temp + 0x40);
         }
         result = free_string_memory(&UNK_180a006f0, temp_ptr);
         result = result & 0xffffffffffffff00;
@@ -864,17 +864,17 @@ ulonglong release_resource_cache(longlong heap_handle, longlong *cache_ptr, unde
             do {
                 resource_array = *(longlong **)(*(longlong *)(heap_handle + 0x110) + used_items);
                 (**(code **)(*resource_array + 0x20))
-                          (resource_array, *(undefined8 *)(*(longlong *)(heap_handle + 0x110) + 8 + used_items));
+                          (resource_array, *(uint64_t *)(*(longlong *)(heap_handle + 0x110) + 8 + used_items));
                 used_items = used_items + 0x10;
                 total_items = total_items + -1;
             } while (total_items != 0);
         }
         
-        *(undefined8 *)(heap_handle + 0x118) = *(undefined8 *)(heap_handle + 0x110);
+        *(uint64_t *)(heap_handle + 0x118) = *(uint64_t *)(heap_handle + 0x110);
         if (cache_size != 0) {
             cleanup_memory(cache_size);
         }
-        result = CONCAT71((int7)((ulonglong)*(undefined8 *)(heap_handle + 0x110) >> 8), 1);
+        result = CONCAT71((int7)((ulonglong)*(uint64_t *)(heap_handle + 0x110) >> 8), 1);
     }
     
     return result;
@@ -896,25 +896,25 @@ ulonglong release_resource_cache(longlong heap_handle, longlong *cache_ptr, unde
  */
 void process_resource_batch(longlong heap_handle, longlong *queue_ptr)
 {
-    undefined8 *resource_ptr;
+    uint64_t *resource_ptr;
     ulonglong resource_id;
-    undefined8 *cache_node;
+    uint64_t *cache_node;
     int queue_size;
-    undefined8 *temp_ptr1;
-    undefined8 *temp_ptr2;
-    undefined8 *temp_ptr3;
+    uint64_t *temp_ptr1;
+    uint64_t *temp_ptr2;
+    uint64_t *temp_ptr3;
     longlong item_count;
     longlong total_items;
     longlong processed_items;
     bool insert_before;
-    undefined8 stack_value1;
+    uint64_t stack_value1;
     longlong stack_item_count;
-    undefined8 stack_value2;
-    undefined4 stack_value3;
-    undefined8 stack_value4;
+    uint64_t stack_value2;
+    int32_t stack_value3;
+    uint64_t stack_value4;
     longlong stack_total_items;
     longlong stack_processed_items;
-    undefined4 stack_queue_size;
+    int32_t stack_queue_size;
     ulonglong stack_resource_id;
     
     stack_value4 = INVALID_HANDLE;
@@ -944,7 +944,7 @@ void process_resource_batch(longlong heap_handle, longlong *queue_ptr)
         
         if (0 < queue_size) {
             do {
-                process_single_resource(heap_handle, *(undefined8 *)(item_count * 8));
+                process_single_resource(heap_handle, *(uint64_t *)(item_count * 8));
                 item_count = item_count + 1;
             } while (item_count < queue_size);
         }
@@ -954,35 +954,35 @@ void process_resource_batch(longlong heap_handle, longlong *queue_ptr)
     }
     
     stack_value4 = 0;
-    resource_ptr = (undefined8 *)(heap_handle + 0xb0);
+    resource_ptr = (uint64_t *)(heap_handle + 0xb0);
     resource_id = *(ulonglong *)*queue_ptr;
     stack_item_count = stack_total_items;
     stack_resource_id = resource_id;
     
-    total_items = allocate_memory(_DAT_180c8ed18, 0x28, *(undefined1 *)(heap_handle + 0xd8));
+    total_items = allocate_memory(_DAT_180c8ed18, 0x28, *(int8_t *)(heap_handle + 0xd8));
     *(ulonglong *)(total_items + 0x20) = resource_id;
     insert_before = true;
     cache_node = resource_ptr;
-    temp_ptr3 = *(undefined8 **)(heap_handle + 0xc0);
+    temp_ptr3 = *(uint64_t **)(heap_handle + 0xc0);
     
     // 在缓存树中查找插入位置
-    while (temp_ptr3 != (undefined8 *)0x0) {
+    while (temp_ptr3 != (uint64_t *)0x0) {
         insert_before = resource_id < (ulonglong)temp_ptr3[4];
         cache_node = temp_ptr3;
         if (insert_before) {
-            temp_ptr3 = (undefined8 *)temp_ptr3[1];
+            temp_ptr3 = (uint64_t *)temp_ptr3[1];
         }
         else {
-            temp_ptr3 = (undefined8 *)*temp_ptr3;
+            temp_ptr3 = (uint64_t *)*temp_ptr3;
         }
     }
     
     temp_ptr3 = cache_node;
     if (insert_before) {
-        if (cache_node == *(undefined8 **)(heap_handle + 0xb8)) {
+        if (cache_node == *(uint64_t **)(heap_handle + 0xb8)) {
             goto insert_position;
         }
-        temp_ptr3 = (undefined8 *)find_cache_position(cache_node);
+        temp_ptr3 = (uint64_t *)find_cache_position(cache_node);
     }
     
     if (*(ulonglong *)(total_items + 0x20) <= (ulonglong)temp_ptr3[4]) {

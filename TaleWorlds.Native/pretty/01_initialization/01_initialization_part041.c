@@ -36,29 +36,29 @@ void check_component_initialization(longlong component_ptr)
  * @param param4 参数4（用途未知）
  * @return 返回配置结构体指针
  */
-undefined8 *
-initialize_debug_output_system(undefined8 *output_config, undefined8 param2, undefined8 param3, undefined8 param4)
+uint64_t *
+initialize_debug_output_system(uint64_t *output_config, uint64_t param2, uint64_t param3, uint64_t param4)
 {
   // 检查是否启用调试模式
   if (debug_mode_enabled == '\0') {
     // 初始化第一个输出通道
     *output_config = &debug_output_channel_1;
     output_config[1] = 0;
-    *(undefined4 *)(output_config + 2) = 0;
+    *(int32_t *)(output_config + 2) = 0;
     
     // 初始化第二个输出通道
     *output_config = &debug_output_channel_2;
     output_config[3] = 0;
     output_config[1] = 0;
-    *(undefined4 *)(output_config + 2) = 0;
+    *(int32_t *)(output_config + 2) = 0;
     
     // 调用底层初始化函数
     initialize_output_channels(output_config, 0, param3, param4, 0, 0xfffffffffffffffe);
-    *(undefined4 *)(output_config + 2) = 0;
+    *(int32_t *)(output_config + 2) = 0;
     
     // 清理输出缓冲区
-    if ((undefined1 *)output_config[1] != (undefined1 *)0x0) {
-      *(undefined1 *)output_config[1] = 0;
+    if ((int8_t *)output_config[1] != (int8_t *)0x0) {
+      *(int8_t *)output_config[1] = 0;
     }
   }
   else {
@@ -78,7 +78,7 @@ initialize_debug_output_system(undefined8 *output_config, undefined8 param2, und
  * @param error_message 错误消息字符串
  * @return 返回错误代码
  */
-ulonglong handle_critical_error(undefined8 param1, undefined8 error_message)
+ulonglong handle_critical_error(uint64_t param1, uint64_t error_message)
 {
   code *pcVar1;
   bool is_debug_mode;
@@ -87,14 +87,14 @@ ulonglong handle_critical_error(undefined8 param1, undefined8 error_message)
   int debugger_present;
   int thread_id;
   ulonglong wait_result;
-  undefined *error_buffer;
+  void *error_buffer;
   bool is_main_thread;
-  undefined *local_stack_50;
-  undefined *local_stack_48;
-  undefined4 local_stack_40;
-  undefined8 local_stack_38;
-  undefined1 local_buffer_30[8];
-  undefined *local_stack_28;
+  void *local_stack_50;
+  void *local_stack_48;
+  int32_t local_stack_40;
+  uint64_t local_stack_38;
+  int8_t local_buffer_30[8];
+  void *local_stack_28;
   
   thread_context = global_thread_context;
   wait_result = check_process_state(error_message);
@@ -111,7 +111,7 @@ ulonglong handle_critical_error(undefined8 param1, undefined8 error_message)
   }
   
   is_main_thread = true;
-  check_result = (**(code **)**(undefined8 **)(global_debug_system + 0x18))();
+  check_result = (**(code **)**(uint64_t **)(global_debug_system + 0x18))();
   if ((check_result == '\0') && (debugger_present = IsDebuggerPresent(), debugger_present != 0)) {
     is_debug_mode = true;
   }
@@ -130,7 +130,7 @@ ulonglong handle_critical_error(undefined8 param1, undefined8 error_message)
   initialize_error_buffer(local_buffer_30, 0);
   local_stack_50 = &debug_output_channel_2;
   local_stack_38 = 0;
-  local_stack_48 = (undefined *)0x0;
+  local_stack_48 = (void *)0x0;
   local_stack_40 = 0;
   
   // 格式化错误消息
@@ -139,7 +139,7 @@ ulonglong handle_critical_error(undefined8 param1, undefined8 error_message)
   
   // 选择错误输出源
   error_buffer = &default_error_buffer;
-  if (local_stack_48 != (undefined *)0x0) {
+  if (local_stack_48 != (void *)0x0) {
     error_buffer = local_stack_48;
   }
   
@@ -147,7 +147,7 @@ ulonglong handle_critical_error(undefined8 param1, undefined8 error_message)
   log_error_message(global_log_system, 5, 0xffffffff00000000, &error_detail_string, error_buffer);
   
   error_buffer = &default_error_buffer;
-  if (local_stack_28 != (undefined *)0x0) {
+  if (local_stack_28 != (void *)0x0) {
     error_buffer = local_stack_28;
   }
   
@@ -157,7 +157,7 @@ ulonglong handle_critical_error(undefined8 param1, undefined8 error_message)
   
   // 输出调试字符串
   error_buffer = &default_error_buffer;
-  if (local_stack_48 != (undefined *)0x0) {
+  if (local_stack_48 != (void *)0x0) {
     error_buffer = local_stack_48;
   }
   OutputDebugStringA(error_buffer);
@@ -170,10 +170,10 @@ ulonglong handle_critical_error(undefined8 param1, undefined8 error_message)
   // 如果是主线程且错误处理器可用，执行错误处理
   if (((is_main_thread) && (global_error_handler != 0)) && 
       (*(char *)(global_error_handler + 0x1609) != '\x01')) {
-    execute_error_recovery(*(undefined8 *)(global_system_object + 8),
+    execute_error_recovery(*(uint64_t *)(global_system_object + 8),
                           *(char *)(global_config_data + 0x2028) != '\0',
-                          *(undefined4 *)(global_error_handler + 0x160c));
-    *(undefined1 *)(thread_context + 0x1609) = 1;
+                          *(int32_t *)(global_error_handler + 0x160c));
+    *(int8_t *)(thread_context + 0x1609) = 1;
   }
   
   // 显示错误对话框
@@ -190,7 +190,7 @@ ulonglong handle_critical_error(undefined8 param1, undefined8 error_message)
   }
   else if (error_silent_mode == '\0') {
     error_buffer = &default_error_buffer;
-    if (local_stack_48 != (undefined *)0x0) {
+    if (local_stack_48 != (void *)0x0) {
       error_buffer = local_stack_48;
     }
     display_error_message(error_buffer);
@@ -231,41 +231,41 @@ ulonglong handle_critical_error(undefined8 param1, undefined8 error_message)
  * @param error_type 错误类型标志
  * @return 返回处理结果标志
  */
-ulonglong handle_application_error(undefined8 param1, undefined8 error_message, char error_type)
+ulonglong handle_application_error(uint64_t param1, uint64_t error_message, char error_type)
 {
-  undefined1 local_flag;
+  int8_t local_flag;
   code *pcVar2;
   bool is_debug_mode;
   longlong thread_context;
-  undefined *error_buffer;
+  void *error_buffer;
   char check_result;
   int debugger_present;
   int thread_id;
-  undefined4 format_result;
+  int32_t format_result;
   ulonglong process_state;
   longlong buffer_pointer;
-  undefined *buffer_data;
+  void *buffer_data;
   ulonglong string_result;
-  undefined8 string_pointer;
-  undefined8 *alloc_pointer;
+  uint64_t string_pointer;
+  uint64_t *alloc_pointer;
   bool should_generate_report;
   byte report_generated;
-  undefined *local_stack_e0;
-  undefined8 *local_stack_d8;
-  undefined4 local_stack_d0;
+  void *local_stack_e0;
+  uint64_t *local_stack_d8;
+  int32_t local_stack_d0;
   ulonglong local_stack_c8;
-  undefined *local_stack_c0;
-  undefined *local_stack_b8;
-  undefined4 local_stack_b0;
-  undefined8 local_stack_a8;
-  undefined *local_stack_a0;
-  undefined *local_stack_98;
-  undefined4 local_stack_90;
+  void *local_stack_c0;
+  void *local_stack_b8;
+  int32_t local_stack_b0;
+  uint64_t local_stack_a8;
+  void *local_stack_a0;
+  void *local_stack_98;
+  int32_t local_stack_90;
   ulonglong local_stack_88;
-  undefined *local_stack_80;
+  void *local_stack_80;
   longlong local_stack_78;
-  undefined4 local_stack_68;
-  undefined8 local_stack_40;
+  int32_t local_stack_68;
+  uint64_t local_stack_40;
   
   thread_context = global_thread_context;
   local_stack_40 = 0xfffffffffffffffe;
@@ -284,7 +284,7 @@ ulonglong handle_application_error(undefined8 param1, undefined8 error_message, 
     }
     
     should_generate_report = true;
-    check_result = (**(code **)**(undefined8 **)(global_debug_system + 0x18))();
+    check_result = (**(code **)**(uint64_t **)(global_debug_system + 0x18))();
     if ((check_result == '\0') && (debugger_present = IsDebuggerPresent(), debugger_present != 0)) {
       is_debug_mode = true;
     }
@@ -302,26 +302,26 @@ ulonglong handle_application_error(undefined8 param1, undefined8 error_message, 
     // 初始化错误报告缓冲区
     local_stack_c0 = &debug_output_channel_2;
     local_stack_a8 = 0;
-    local_stack_b8 = (undefined *)0x0;
+    local_stack_b8 = (void *)0x0;
     local_stack_b0 = 0;
     
     if (!is_debug_mode) {
       buffer_pointer = initialize_error_buffer(&local_stack_e0, 0);
-      local_stack_b0 = *(undefined4 *)(buffer_pointer + 0x10);
-      local_stack_b8 = *(undefined **)(buffer_pointer + 8);
-      local_stack_a8 = *(undefined8 *)(buffer_pointer + 0x18);
+      local_stack_b0 = *(int32_t *)(buffer_pointer + 0x10);
+      local_stack_b8 = *(void **)(buffer_pointer + 8);
+      local_stack_a8 = *(uint64_t *)(buffer_pointer + 0x18);
       
       // 清理缓冲区
-      *(undefined4 *)(buffer_pointer + 0x10) = 0;
-      *(undefined8 *)(buffer_pointer + 8) = 0;
-      *(undefined8 *)(buffer_pointer + 0x18) = 0;
+      *(int32_t *)(buffer_pointer + 0x10) = 0;
+      *(uint64_t *)(buffer_pointer + 8) = 0;
+      *(uint64_t *)(buffer_pointer + 0x18) = 0;
       
       local_stack_e0 = &debug_output_channel_2;
-      if (local_stack_d8 != (undefined8 *)0x0) {
+      if (local_stack_d8 != (uint64_t *)0x0) {
         // 触发内存错误
         trigger_memory_error();
       }
-      local_stack_d8 = (undefined8 *)0x0;
+      local_stack_d8 = (uint64_t *)0x0;
       local_stack_c8 = local_stack_c8 & 0xffffffff00000000;
       local_stack_e0 = &debug_output_channel_1;
     }
@@ -329,7 +329,7 @@ ulonglong handle_application_error(undefined8 param1, undefined8 error_message, 
     error_buffer = local_stack_b8;
     local_stack_a0 = &debug_output_channel_2;
     local_stack_88 = 0;
-    local_stack_98 = (undefined *)0x0;
+    local_stack_98 = (void *)0x0;
     local_stack_90 = 0;
     
     // 格式化应用程序错误消息
@@ -338,14 +338,14 @@ ulonglong handle_application_error(undefined8 param1, undefined8 error_message, 
     
     // 选择错误输出源
     buffer_data = &default_error_buffer;
-    if (local_stack_98 != (undefined *)0x0) {
+    if (local_stack_98 != (void *)0x0) {
       buffer_data = local_stack_98;
     }
     
     log_error_message(global_log_system, 2, 0xffffffff00000000, &error_detail_string, buffer_data);
     
     buffer_data = &default_error_buffer;
-    if (error_buffer != (undefined *)0x0) {
+    if (error_buffer != (void *)0x0) {
       buffer_data = error_buffer;
     }
     
@@ -354,7 +354,7 @@ ulonglong handle_application_error(undefined8 param1, undefined8 error_message, 
     
     // 输出调试信息
     buffer_data = &default_error_buffer;
-    if (local_stack_98 != (undefined *)0x0) {
+    if (local_stack_98 != (void *)0x0) {
       buffer_data = local_stack_98;
     }
     OutputDebugStringA(buffer_data);
@@ -384,28 +384,28 @@ ulonglong handle_application_error(undefined8 param1, undefined8 error_message, 
         thread_context = global_error_handler;
         if ((global_error_handler != 0) && 
             (*(char *)(global_error_handler + 0x1609) != '\x01')) {
-          execute_error_recovery(*(undefined8 *)(global_system_object + 8),
+          execute_error_recovery(*(uint64_t *)(global_system_object + 8),
                                 *(char *)(global_config_data + 0x2028) != '\0',
-                                *(undefined4 *)(global_error_handler + 0x160c));
-          *(undefined1 *)(thread_context + 0x1609) = 1;
+                                *(int32_t *)(global_error_handler + 0x160c));
+          *(int8_t *)(thread_context + 0x1609) = 1;
         }
       }
       
       // 创建错误报告标题
       local_stack_e0 = &debug_output_channel_2;
       local_stack_c8 = 0;
-      local_stack_d8 = (undefined8 *)0x0;
+      local_stack_d8 = (uint64_t *)0x0;
       local_stack_d0 = 0;
       
-      alloc_pointer = (undefined8 *)allocate_error_report_buffer(global_error_report_system, 0x10, 0x13);
-      *(undefined1 *)alloc_pointer = 0;
+      alloc_pointer = (uint64_t *)allocate_error_report_buffer(global_error_report_system, 0x10, 0x13);
+      *(int8_t *)alloc_pointer = 0;
       local_stack_d8 = alloc_pointer;
       
       format_result = format_error_title(alloc_pointer);
       local_stack_c8 = CONCAT44(local_stack_c8._4_4_, format_result);
       
       *alloc_pointer = 0x4e524157204c4752;  // "WALR LGR"
-      *(undefined4 *)(alloc_pointer + 1) = 0x474e49;  // "ING"
+      *(int32_t *)(alloc_pointer + 1) = 0x474e49;  // "ING"
       local_stack_d0 = 0xb;
       
       // 显示错误对话框
@@ -433,7 +433,7 @@ ulonglong handle_application_error(undefined8 param1, undefined8 error_message, 
     debugger_present = check_debug_break_required(error_message);
     if (((!is_debug_mode) && (debugger_present == 0)) && 
         (*(char *)(global_system_object + 0x2a) != '\0')) {
-      local_flag = *(undefined1 *)(global_system_object + 0x141);
+      local_flag = *(int8_t *)(global_system_object + 0x141);
       string_pointer = build_error_description(&local_stack_80, global_system_object + 0x148);
       string_pointer = build_error_description(&local_stack_e0, string_pointer);
       
@@ -448,19 +448,19 @@ ulonglong handle_application_error(undefined8 param1, undefined8 error_message, 
       local_stack_80 = &debug_output_channel_1;
       
       buffer_data = &default_error_buffer;
-      if (error_buffer != (undefined *)0x0) {
+      if (error_buffer != (void *)0x0) {
         buffer_data = error_buffer;
       }
       
       generate_error_report(string_pointer, &local_stack_e0, local_flag, 0, buffer_data);
       
       local_stack_e0 = &debug_output_channel_2;
-      if (local_stack_d8 != (undefined8 *)0x0) {
+      if (local_stack_d8 != (uint64_t *)0x0) {
         // 触发内存错误
         trigger_memory_error();
       }
       
-      local_stack_d8 = (undefined8 *)0x0;
+      local_stack_d8 = (uint64_t *)0x0;
       local_stack_c8 = local_stack_c8 & 0xffffffff00000000;
       local_stack_e0 = &debug_output_channel_1;
     }
@@ -497,7 +497,7 @@ ulonglong handle_application_error(undefined8 param1, undefined8 error_message, 
       
       if (global_error_handler != 0) {
         cleanup_error_handler(global_error_handler, 
-                             *(undefined1 *)(global_error_handler + 0x160a));
+                             *(int8_t *)(global_error_handler + 0x160a));
       }
     }
     
@@ -513,17 +513,17 @@ ulonglong handle_application_error(undefined8 param1, undefined8 error_message, 
     
     // 清理栈内存
     local_stack_a0 = &debug_output_channel_2;
-    if (local_stack_98 != (undefined *)0x0) {
+    if (local_stack_98 != (void *)0x0) {
       // 触发内存错误
       trigger_memory_error();
     }
     
-    local_stack_98 = (undefined *)0x0;
+    local_stack_98 = (void *)0x0;
     local_stack_88 = local_stack_88 & 0xffffffff00000000;
     local_stack_a0 = &debug_output_channel_1;
     
     local_stack_c0 = &debug_output_channel_2;
-    if (error_buffer != (undefined *)0x0) {
+    if (error_buffer != (void *)0x0) {
       // 触发内存错误
       trigger_memory_error(error_buffer);
     }
@@ -545,50 +545,50 @@ ulonglong handle_application_error(undefined8 param1, undefined8 error_message, 
  * @param error_type 错误类型标志
  * @return 返回处理结果标志
  */
-ulonglong handle_module_loading_error(undefined8 param1, undefined8 error_message, char error_type)
+ulonglong handle_module_loading_error(uint64_t param1, uint64_t error_message, char error_type)
 {
   code *pcVar1;
   longlong thread_context;
   char check_result;
   int debugger_present;
   int thread_id;
-  undefined1 *process_result;
+  int8_t *process_result;
   longlong buffer_pointer;
-  undefined **buffer_pointer_ptr;
-  undefined8 *alloc_pointer;
-  undefined *buffer_data;
+  void **buffer_pointer_ptr;
+  uint64_t *alloc_pointer;
+  void *buffer_data;
   ulonglong error_flag;
-  undefined *error_buffer;
-  undefined1 local_flag;
+  void *error_buffer;
+  int8_t local_flag;
   bool is_debug_mode;
   bool should_handle_error;
-  undefined4 format_result;
+  int32_t format_result;
   byte report_generated;
-  undefined *local_stack_b0;
-  undefined *local_stack_a8;
-  undefined4 local_stack_a0;
+  void *local_stack_b0;
+  void *local_stack_a8;
+  int32_t local_stack_a0;
   ulonglong local_stack_98;
-  undefined *local_stack_90;
-  undefined8 *local_stack_88;
-  undefined4 local_stack_80;
+  void *local_stack_90;
+  uint64_t *local_stack_88;
+  int32_t local_stack_80;
   ulonglong local_stack_78;
-  undefined *local_stack_70;
+  void *local_stack_70;
   longlong local_stack_68;
-  undefined4 local_stack_58;
-  undefined *local_stack_50;
+  int32_t local_stack_58;
+  void *local_stack_50;
   longlong local_stack_48;
-  undefined4 local_stack_38;
-  undefined8 local_stack_30;
+  int32_t local_stack_38;
+  uint64_t local_stack_30;
   
   thread_context = global_thread_context;
   local_stack_30 = 0xfffffffffffffffe;
   report_generated = 0;
-  process_result = (undefined1 *)register0x00000020;
+  process_result = (int8_t *)register0x00000020;
   
   // 检查进程状态和信号量
   if (((error_silent_mode == '\0') ||
-      (process_result = (undefined1 *)check_process_state(error_message), (char)process_result != '\0')) ||
-     (process_result = (undefined1 *)WaitForSingleObject(global_semaphore_handle, 0), (int)process_result != 0)) {
+      (process_result = (int8_t *)check_process_state(error_message), (char)process_result != '\0')) ||
+     (process_result = (int8_t *)WaitForSingleObject(global_semaphore_handle, 0), (int)process_result != 0)) {
     return (ulonglong)process_result & 0xffffffffffffff00;
   }
   
@@ -598,7 +598,7 @@ ulonglong handle_module_loading_error(undefined8 param1, undefined8 error_messag
   }
   
   should_handle_error = true;
-  check_result = (**(code **)**(undefined8 **)(global_debug_system + 0x18))();
+  check_result = (**(code **)**(uint64_t **)(global_debug_system + 0x18))();
   if ((check_result == '\0') && (debugger_present = IsDebuggerPresent(), debugger_present != 0)) {
     is_debug_mode = true;
   }
@@ -613,15 +613,15 @@ ulonglong handle_module_loading_error(undefined8 param1, undefined8 error_messag
     should_handle_error = thread_id == debugger_present;
   }
   
-  error_buffer = (undefined *)0x0;
+  error_buffer = (void *)0x0;
   if (!is_debug_mode) {
     buffer_pointer = initialize_error_buffer(&local_stack_70, 0);
-    error_buffer = *(undefined **)(buffer_pointer + 8);
+    error_buffer = *(void **)(buffer_pointer + 8);
     
     // 清理缓冲区
-    *(undefined4 *)(buffer_pointer + 0x10) = 0;
-    *(undefined8 *)(buffer_pointer + 8) = 0;
-    *(undefined8 *)(buffer_pointer + 0x18) = 0;
+    *(int32_t *)(buffer_pointer + 0x10) = 0;
+    *(uint64_t *)(buffer_pointer + 8) = 0;
+    *(uint64_t *)(buffer_pointer + 0x18) = 0;
     
     local_stack_70 = &debug_output_channel_2;
     if (local_stack_68 != 0) {
@@ -637,7 +637,7 @@ ulonglong handle_module_loading_error(undefined8 param1, undefined8 error_messag
   // 初始化错误处理栈
   local_stack_b0 = &debug_output_channel_2;
   local_stack_98 = 0;
-  local_stack_a8 = (undefined *)0x0;
+  local_stack_a8 = (void *)0x0;
   local_stack_a0 = 0;
   
   // 格式化模块加载错误消息
@@ -646,7 +646,7 @@ ulonglong handle_module_loading_error(undefined8 param1, undefined8 error_messag
   
   // 选择错误输出源
   buffer_data = &default_error_buffer;
-  if (local_stack_a8 != (undefined *)0x0) {
+  if (local_stack_a8 != (void *)0x0) {
     buffer_data = local_stack_a8;
   }
   
@@ -655,7 +655,7 @@ ulonglong handle_module_loading_error(undefined8 param1, undefined8 error_messag
   // 如果启用了详细日志，记录更多错误信息
   if (detailed_logging_enabled != '\0') {
     buffer_data = &default_error_buffer;
-    if (error_buffer != (undefined *)0x0) {
+    if (error_buffer != (void *)0x0) {
       buffer_data = error_buffer;
     }
     log_error_level(global_log_system, 2, 0xffffffff00000000, 3, buffer_data);
@@ -665,7 +665,7 @@ ulonglong handle_module_loading_error(undefined8 param1, undefined8 error_messag
   
   // 输出调试信息
   buffer_data = &default_error_buffer;
-  if (local_stack_a8 != (undefined *)0x0) {
+  if (local_stack_a8 != (void *)0x0) {
     buffer_data = local_stack_a8;
   }
   OutputDebugStringA(buffer_data);
@@ -703,10 +703,10 @@ skip_error_dialog:
         buffer_pointer = global_error_handler;
         if ((global_error_handler != 0) && 
             (*(char *)(global_error_handler + 0x1609) != '\x01')) {
-          execute_error_recovery(*(undefined8 *)(global_system_object + 8),
+          execute_error_recovery(*(uint64_t *)(global_system_object + 8),
                                 *(char *)(global_config_data + 0x2028) != '\0',
-                                *(undefined4 *)(global_error_handler + 0x160c));
-          *(undefined1 *)(buffer_pointer + 0x1609) = 1;
+                                *(int32_t *)(global_error_handler + 0x160c));
+          *(int8_t *)(buffer_pointer + 0x1609) = 1;
         }
       }
       
@@ -733,12 +733,12 @@ skip_error_dialog:
         local_flag = 0;
         local_stack_90 = &debug_output_channel_2;
         local_stack_78 = 0;
-        local_stack_88 = (undefined8 *)0x0;
+        local_stack_88 = (uint64_t *)0x0;
         local_stack_80 = 0;
         
         // 创建模块路径字符串
-        alloc_pointer = (undefined8 *)allocate_error_report_buffer(global_error_report_system, 0x34, 0x13);
-        *(undefined1 *)alloc_pointer = 0;
+        alloc_pointer = (uint64_t *)allocate_error_report_buffer(global_error_report_system, 0x34, 0x13);
+        *(int8_t *)alloc_pointer = 0;
         local_stack_88 = alloc_pointer;
         
         format_result = format_error_title(alloc_pointer);
@@ -748,28 +748,28 @@ skip_error_dialog:
         alloc_pointer[1] = 0x2e726f737365636f;  // "ocessor."
         alloc_pointer[2] = 0x6c726f77656c6174;  // "taleworl"
         alloc_pointer[3] = 0x445c6d6f632e7364;  // "ds.Code\\D"
-        *(undefined4 *)(alloc_pointer + 4) = 0x50706d75;  // "umpP"
-        *(undefined4 *)((longlong)alloc_pointer + 0x24) = 0x65636f72;  // "roce"
-        *(undefined4 *)(alloc_pointer + 5) = 0x6e697373;  // "ssin"
-        *(undefined4 *)((longlong)alloc_pointer + 0x2c) = 0x6c6f4667;  // "gFol"
-        *(undefined4 *)(alloc_pointer + 6) = 0x726564;  // "der"
+        *(int32_t *)(alloc_pointer + 4) = 0x50706d75;  // "umpP"
+        *(int32_t *)((longlong)alloc_pointer + 0x24) = 0x65636f72;  // "roce"
+        *(int32_t *)(alloc_pointer + 5) = 0x6e697373;  // "ssin"
+        *(int32_t *)((longlong)alloc_pointer + 0x2c) = 0x6c6f4667;  // "gFol"
+        *(int32_t *)(alloc_pointer + 6) = 0x726564;  // "der"
         local_stack_80 = 0x33;
         buffer_pointer_ptr = &local_stack_90;
       }
       else {
-        local_flag = *(undefined1 *)(global_system_object + 0x141);
-        buffer_pointer_ptr = (undefined **)build_error_description(&local_stack_50, global_system_object + 0x148);
+        local_flag = *(int8_t *)(global_system_object + 0x141);
+        buffer_pointer_ptr = (void **)build_error_description(&local_stack_50, global_system_object + 0x148);
         alloc_pointer = local_stack_88;
       }
       
       format_result = build_error_description(&local_stack_70, buffer_pointer_ptr);
       if (is_debug_mode) {
         local_stack_90 = &debug_output_channel_2;
-        if (alloc_pointer != (undefined8 *)0x0) {
+        if (alloc_pointer != (uint64_t *)0x0) {
           // 触发内存错误
           trigger_memory_error(alloc_pointer);
         }
-        local_stack_88 = (undefined8 *)0x0;
+        local_stack_88 = (uint64_t *)0x0;
         local_stack_78 = local_stack_78 & 0xffffffff00000000;
         local_stack_90 = &debug_output_channel_1;
       }
@@ -786,7 +786,7 @@ skip_error_dialog:
       }
       
       buffer_data = &default_error_buffer;
-      if (error_buffer != (undefined *)0x0) {
+      if (error_buffer != (void *)0x0) {
         buffer_data = error_buffer;
       }
       
@@ -834,7 +834,7 @@ skip_error_dialog:
       
       if (global_error_handler != 0) {
         cleanup_error_handler(global_error_handler, 
-                             *(undefined1 *)(global_error_handler + 0x160a));
+                             *(int8_t *)(global_error_handler + 0x160a));
       }
     }
     
@@ -850,16 +850,16 @@ skip_error_dialog:
     
     // 清理栈内存
     local_stack_b0 = &debug_output_channel_2;
-    if (local_stack_a8 != (undefined *)0x0) {
+    if (local_stack_a8 != (void *)0x0) {
       // 触发内存错误
       trigger_memory_error();
     }
     
-    local_stack_a8 = (undefined *)0x0;
+    local_stack_a8 = (void *)0x0;
     local_stack_98 = local_stack_98 & 0xffffffff00000000;
     local_stack_b0 = &debug_output_channel_1;
     
-    if (error_buffer != (undefined *)0x0) {
+    if (error_buffer != (void *)0x0) {
       // 触发内存错误
       trigger_memory_error(error_buffer);
     }
@@ -873,16 +873,16 @@ skip_error_dialog:
     }
     
     local_stack_b0 = &debug_output_channel_2;
-    if (local_stack_a8 != (undefined *)0x0) {
+    if (local_stack_a8 != (void *)0x0) {
       // 触发内存错误
       trigger_memory_error();
     }
     
-    local_stack_a8 = (undefined *)0x0;
+    local_stack_a8 = (void *)0x0;
     local_stack_98 = local_stack_98 & 0xffffffff00000000;
     local_stack_b0 = &debug_output_channel_1;
     
-    if (error_buffer != (undefined *)0x0) {
+    if (error_buffer != (void *)0x0) {
       // 触发内存错误
       trigger_memory_error(error_buffer);
     }
@@ -900,24 +900,24 @@ skip_error_dialog:
  * @param param1 参数1（用途未知）
  * @param error_message 错误消息字符串
  */
-void perform_emergency_exit(undefined8 param1, undefined8 error_message)
+void perform_emergency_exit(uint64_t param1, uint64_t error_message)
 {
   bool is_main_thread;
   char check_result;
   int debugger_present;
   int thread_id;
   longlong thread_context;
-  undefined *error_buffer;
-  undefined8 error_info;
-  undefined *buffer_data;
+  void *error_buffer;
+  uint64_t error_info;
+  void *buffer_data;
   bool is_debug_mode;
-  undefined *local_stack_70;
-  undefined *local_stack_68;
-  undefined4 local_stack_60;
-  undefined8 local_stack_58;
-  undefined *local_stack_50;
+  void *local_stack_70;
+  void *local_stack_68;
+  int32_t local_stack_60;
+  uint64_t local_stack_58;
+  void *local_stack_50;
   longlong local_stack_48;
-  undefined4 local_stack_38;
+  int32_t local_stack_38;
   
   // 等待信号量
   thread_id = WaitForSingleObject(global_semaphore_handle, 0);
@@ -926,7 +926,7 @@ void perform_emergency_exit(undefined8 param1, undefined8 error_message)
   }
   
   is_main_thread = true;
-  check_result = (**(code **)**(undefined8 **)(global_debug_system + 0x18))();
+  check_result = (**(code **)**(uint64_t **)(global_debug_system + 0x18))();
   if ((check_result == '\0') && (thread_id = IsDebuggerPresent(), thread_id != 0)) {
     is_debug_mode = true;
   }
@@ -941,15 +941,15 @@ void perform_emergency_exit(undefined8 param1, undefined8 error_message)
     is_main_thread = debugger_present == thread_id;
   }
   
-  error_buffer = (undefined *)0x0;
+  error_buffer = (void *)0x0;
   if (!is_debug_mode) {
     thread_context = initialize_error_buffer(&local_stack_50, 0);
-    error_buffer = *(undefined **)(thread_context + 8);
+    error_buffer = *(void **)(thread_context + 8);
     
     // 清理缓冲区
-    *(undefined4 *)(thread_context + 0x10) = 0;
-    *(undefined8 *)(thread_context + 8) = 0;
-    *(undefined8 *)(thread_context + 0x18) = 0;
+    *(int32_t *)(thread_context + 0x10) = 0;
+    *(uint64_t *)(thread_context + 8) = 0;
+    *(uint64_t *)(thread_context + 0x18) = 0;
     
     local_stack_50 = &debug_output_channel_2;
     if (local_stack_48 != 0) {
@@ -965,7 +965,7 @@ void perform_emergency_exit(undefined8 param1, undefined8 error_message)
   // 初始化错误处理栈
   local_stack_70 = &debug_output_channel_2;
   local_stack_58 = 0;
-  local_stack_68 = (undefined *)0x0;
+  local_stack_68 = (void *)0x0;
   local_stack_60 = 0;
   
   // 格式化紧急退出消息
@@ -974,14 +974,14 @@ void perform_emergency_exit(undefined8 param1, undefined8 error_message)
   
   // 选择错误输出源
   buffer_data = &default_error_buffer;
-  if (local_stack_68 != (undefined *)0x0) {
+  if (local_stack_68 != (void *)0x0) {
     buffer_data = local_stack_68;
   }
   
   log_error_message(global_log_system, 5, 0xffffffff00000000, &error_detail_string, buffer_data);
   
   buffer_data = &default_error_buffer;
-  if (error_buffer != (undefined *)0x0) {
+  if (error_buffer != (void *)0x0) {
     buffer_data = error_buffer;
   }
   
@@ -990,7 +990,7 @@ void perform_emergency_exit(undefined8 param1, undefined8 error_message)
   
   // 输出调试信息
   error_buffer = &default_error_buffer;
-  if (local_stack_68 != (undefined *)0x0) {
+  if (local_stack_68 != (void *)0x0) {
     error_buffer = local_stack_68;
   }
   OutputDebugStringA(error_buffer);
@@ -999,10 +999,10 @@ void perform_emergency_exit(undefined8 param1, undefined8 error_message)
   thread_context = global_error_handler;
   if (((is_main_thread) && (global_error_handler != 0)) && 
       (*(char *)(global_error_handler + 0x1609) != '\x01')) {
-    execute_error_recovery(*(undefined8 *)(global_system_object + 8),
+    execute_error_recovery(*(uint64_t *)(global_system_object + 8),
                           *(char *)(global_config_data + 0x2028) != '\0',
-                          *(undefined4 *)(global_error_handler + 0x160c));
-    *(undefined1 *)(thread_context + 0x1609) = 1;
+                          *(int32_t *)(global_error_handler + 0x160c));
+    *(int8_t *)(thread_context + 0x1609) = 1;
   }
   
   // 根据配置显示错误信息

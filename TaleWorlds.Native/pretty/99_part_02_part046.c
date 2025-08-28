@@ -8,30 +8,30 @@ void FUN_1801b84e0(uint *param_1,longlong param_2)
 {
   byte *pbVar1;
   uint uVar2;
-  undefined8 *puVar3;
-  undefined8 *puVar4;
+  uint64_t *puVar3;
+  uint64_t *puVar4;
   byte *pbVar5;
   uint uVar6;
   uint uVar7;
   int iVar8;
   uint *puVar9;
-  undefined8 *puVar10;
+  uint64_t *puVar10;
   ulonglong uVar11;
   longlong lVar12;
   uint *puVar13;
   uint uVar14;
-  undefined8 *puVar15;
-  undefined8 *puVar16;
+  uint64_t *puVar15;
+  uint64_t *puVar16;
   ulonglong uVar17;
   uint uVar18;
-  undefined8 *puStack_50;
+  uint64_t *puStack_50;
   
-  puStack_50 = (undefined8 *)0x0;
-  puVar10 = (undefined8 *)0x0;
+  puStack_50 = (uint64_t *)0x0;
+  puVar10 = (uint64_t *)0x0;
   uVar18 = 0;
   puVar9 = param_1 + 2;
-  puVar15 = (undefined8 *)0x0;
-  puVar16 = (undefined8 *)0x0;
+  puVar15 = (uint64_t *)0x0;
+  puVar16 = (uint64_t *)0x0;
   do {
     puVar3 = puVar16;
     if (puVar9[4] != 0) {
@@ -44,19 +44,19 @@ void FUN_1801b84e0(uint *param_1,longlong param_2)
         if (lVar12 == 0) {
           lVar12 = 1;
 LAB_1801b8583:
-          puVar3 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,lVar12 << 5,3);
+          puVar3 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,lVar12 << 5,3);
         }
         else {
           lVar12 = lVar12 * 2;
           if (lVar12 != 0) goto LAB_1801b8583;
-          puVar3 = (undefined8 *)0x0;
+          puVar3 = (uint64_t *)0x0;
         }
-        puVar4 = (undefined8 *)FUN_180059780(puVar16,puVar15,puVar3);
+        puVar4 = (uint64_t *)FUN_180059780(puVar16,puVar15,puVar3);
         FUN_180627ae0(puVar4,puVar9);
         for (puVar10 = puVar16; puVar10 != puVar15; puVar10 = puVar10 + 4) {
           (**(code **)*puVar10)(puVar10,0);
         }
-        if (puVar16 != (undefined8 *)0x0) {
+        if (puVar16 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900(puVar16);
         }
@@ -121,7 +121,7 @@ LAB_1801b86ae:
       for (; puVar16 != puVar15; puVar16 = puVar16 + 4) {
         (**(code **)*puVar16)(puVar16,0);
       }
-      if (puVar3 == (undefined8 *)0x0) {
+      if (puVar3 == (uint64_t *)0x0) {
         return;
       }
                     // WARNING: Subroutine does not return

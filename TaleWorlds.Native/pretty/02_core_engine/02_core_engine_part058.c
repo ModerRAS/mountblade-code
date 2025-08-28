@@ -73,24 +73,24 @@ void calculate_screen_projection_offset(longlong object_context)
  * @param element 要添加的元素数据
  * 该函数实现动态数组的功能，当空间不足时会自动扩容
  */
-void array_container_add_element(longlong* container, undefined8* element)
+void array_container_add_element(longlong* container, uint64_t* element)
 {
-    undefined8* current_position;
-    undefined8* container_start;
-    undefined4 element_data_1;
-    undefined4 element_data_2;
-    undefined4 element_data_3;
-    undefined8 element_value;
-    undefined8* new_buffer;
-    undefined8* source_ptr;
-    undefined8* dest_ptr;
+    uint64_t* current_position;
+    uint64_t* container_start;
+    int32_t element_data_1;
+    int32_t element_data_2;
+    int32_t element_data_3;
+    uint64_t element_value;
+    uint64_t* new_buffer;
+    uint64_t* source_ptr;
+    uint64_t* dest_ptr;
     longlong element_count;
-    undefined8* current_end;
+    uint64_t* current_end;
     longlong buffer_offset;
     longlong old_buffer_size;
     
-    current_end = (undefined8*)container[1];
-    if (current_end < (undefined8*)container[2]) {
+    current_end = (uint64_t*)container[1];
+    if (current_end < (uint64_t*)container[2]) {
         // 容器中还有空间，直接添加
         container[1] = (longlong)(current_end + 6);
         current_end[4] = 0xffffffffffffffff;  // 标记为有效元素
@@ -104,30 +104,30 @@ void array_container_add_element(longlong* container, undefined8* element)
         current_end[3] = element_value;
         
         // 复制附加数据
-        *(undefined4*)(current_end + 4) = *(undefined4*)(element + 4);
-        *(undefined4*)((longlong)current_end + 0x24) = *(undefined4*)((longlong)element + 0x24);
-        *(undefined4*)((longlong)current_end + 0x2c) = *(undefined4*)((longlong)element + 0x2c);
-        *(undefined4*)(current_end + 5) = *(undefined4*)(element + 5);
+        *(int32_t*)(current_end + 4) = *(int32_t*)(element + 4);
+        *(int32_t*)((longlong)current_end + 0x24) = *(int32_t*)((longlong)element + 0x24);
+        *(int32_t*)((longlong)current_end + 0x2c) = *(int32_t*)((longlong)element + 0x2c);
+        *(int32_t*)(current_end + 5) = *(int32_t*)(element + 5);
         return;
     }
     
     // 容器空间不足，需要扩容
-    container_start = (undefined8*)*container;
+    container_start = (uint64_t*)*container;
     element_count = ((longlong)current_end - (longlong)container_start) / 0x30;
     if (element_count == 0) {
         element_count = 1;
     } else {
         element_count = element_count * 2;  // 双倍扩容
         if (element_count == 0) {
-            new_buffer = (undefined8*)0x0;
+            new_buffer = (uint64_t*)0x0;
             goto copy_data;
         }
     }
     
     // 分配新的缓冲区
-    new_buffer = (undefined8*)allocate_memory(g_memory_allocator, element_count * 0x30, (char)container[3]);
-    current_end = (undefined8*)container[1];
-    container_start = (undefined8*)*container;
+    new_buffer = (uint64_t*)allocate_memory(g_memory_allocator, element_count * 0x30, (char)container[3]);
+    current_end = (uint64_t*)container[1];
+    container_start = (uint64_t*)*container;
 
 copy_data:
     dest_ptr = new_buffer;
@@ -136,22 +136,22 @@ copy_data:
         buffer_offset = (longlong)dest_ptr - (longlong)container_start;
         container_start = container_start + 4;
         do {
-            *(undefined8*)(buffer_offset + (longlong)container_start) = 0xffffffffffffffff;
+            *(uint64_t*)(buffer_offset + (longlong)container_start) = 0xffffffffffffffff;
             element_value = container_start[-3];
             source_ptr = container_start + 6;
             *dest_ptr = container_start[-4];
             dest_ptr[1] = element_value;
             dest_ptr = dest_ptr + 6;
             element_value = container_start[-1];
-            source_ptr = (undefined8*)(buffer_offset + -0x40 + (longlong)source_ptr);
+            source_ptr = (uint64_t*)(buffer_offset + -0x40 + (longlong)source_ptr);
             *source_ptr = container_start[-2];
             source_ptr[1] = element_value;
             
             // 复制附加数据
-            *(undefined4*)(buffer_offset + -0x30 + (longlong)source_ptr) = *(undefined4*)container_start;
-            *(undefined4*)(buffer_offset + -0x2c + (longlong)source_ptr) = *(undefined4*)((longlong)container_start + 4);
-            *(undefined4*)(buffer_offset + -0x24 + (longlong)source_ptr) = *(undefined4*)((longlong)container_start + 0xc);
-            *(undefined4*)((longlong)container_start + buffer_offset + 8) = *(undefined4*)(container_start + 1);
+            *(int32_t*)(buffer_offset + -0x30 + (longlong)source_ptr) = *(int32_t*)container_start;
+            *(int32_t*)(buffer_offset + -0x2c + (longlong)source_ptr) = *(int32_t*)((longlong)container_start + 4);
+            *(int32_t*)(buffer_offset + -0x24 + (longlong)source_ptr) = *(int32_t*)((longlong)container_start + 0xc);
+            *(int32_t*)((longlong)container_start + buffer_offset + 8) = *(int32_t*)(container_start + 1);
             source_ptr = container_start + 2;
             container_start = source_ptr;
         } while (source_ptr != current_end);
@@ -162,17 +162,17 @@ copy_data:
     element_value = element[1];
     *dest_ptr = *element;
     dest_ptr[1] = element_value;
-    element_data_1 = *(undefined4*)((longlong)element + 0x14);
-    element_data_2 = *(undefined4*)(element + 3);
-    element_data_3 = *(undefined4*)((longlong)element + 0x1c);
-    *(undefined4*)(dest_ptr + 2) = *(undefined4*)(element + 2);
-    *(undefined4*)((longlong)dest_ptr + 0x14) = element_data_1;
-    *(undefined4*)(dest_ptr + 3) = element_data_2;
-    *(undefined4*)((longlong)dest_ptr + 0x1c) = element_data_3;
-    *(undefined4*)(dest_ptr + 4) = *(undefined4*)(element + 4);
-    *(undefined4*)((longlong)dest_ptr + 0x24) = *(undefined4*)((longlong)element + 0x24);
-    *(undefined4*)((longlong)dest_ptr + 0x2c) = *(undefined4*)((longlong)element + 0x2c);
-    *(undefined4*)(dest_ptr + 5) = *(undefined4*)(element + 5);
+    element_data_1 = *(int32_t*)((longlong)element + 0x14);
+    element_data_2 = *(int32_t*)(element + 3);
+    element_data_3 = *(int32_t*)((longlong)element + 0x1c);
+    *(int32_t*)(dest_ptr + 2) = *(int32_t*)(element + 2);
+    *(int32_t*)((longlong)dest_ptr + 0x14) = element_data_1;
+    *(int32_t*)(dest_ptr + 3) = element_data_2;
+    *(int32_t*)((longlong)dest_ptr + 0x1c) = element_data_3;
+    *(int32_t*)(dest_ptr + 4) = *(int32_t*)(element + 4);
+    *(int32_t*)((longlong)dest_ptr + 0x24) = *(int32_t*)((longlong)element + 0x24);
+    *(int32_t*)((longlong)dest_ptr + 0x2c) = *(int32_t*)((longlong)element + 0x2c);
+    *(int32_t*)(dest_ptr + 5) = *(int32_t*)(element + 5);
     
     // 释放旧缓冲区
     if (*container != 0) {
@@ -191,15 +191,15 @@ copy_data:
  * @param key_value 键值数据
  * 该函数实现类似map的功能，支持自动扩容
  */
-void map_container_add_entry(longlong* container, undefined8 key_value)
+void map_container_add_entry(longlong* container, uint64_t key_value)
 {
-    undefined4* key_ptr;
-    undefined4 key_data_1;
-    undefined4 key_data_2;
-    undefined4 key_data_3;
-    undefined1* new_buffer;
-    undefined8* entry_ptr;
-    undefined1* buffer_end;
+    int32_t* key_ptr;
+    int32_t key_data_1;
+    int32_t key_data_2;
+    int32_t key_data_3;
+    int8_t* new_buffer;
+    uint64_t* entry_ptr;
+    int8_t* buffer_end;
     longlong container_start;
     longlong container_end;
     longlong entry_count;
@@ -207,7 +207,7 @@ void map_container_add_entry(longlong* container, undefined8 key_value)
     container_end = container[1];
     container_start = *container;
     entry_count = (container_end - container_start) / 0x50;
-    new_buffer = (undefined1*)0x0;
+    new_buffer = (int8_t*)0x0;
     
     if (entry_count == 0) {
         entry_count = 1;
@@ -217,7 +217,7 @@ void map_container_add_entry(longlong* container, undefined8 key_value)
     }
     
     // 分配新的缓冲区
-    new_buffer = (undefined1*)allocate_memory(g_memory_allocator, entry_count * 0x50, 
+    new_buffer = (int8_t*)allocate_memory(g_memory_allocator, entry_count * 0x50, 
                                            (char)container[3], container_start, 0xfffffffffffffffe);
     container_end = container[1];
     container_start = *container;
@@ -226,43 +226,43 @@ allocate_new_buffer:
     buffer_end = new_buffer;
     if (container_start != container_end) {
         // 复制现有数据到新缓冲区
-        entry_ptr = (undefined8*)(new_buffer + 0x20);
+        entry_ptr = (uint64_t*)(new_buffer + 0x20);
         container_start = container_start - (longlong)new_buffer;
         do {
-            *buffer_end = *(undefined1*)((longlong)entry_ptr + container_start + -0x20);
-            key_ptr = (undefined4*)(container_start + -0x1c + (longlong)entry_ptr);
+            *buffer_end = *(int8_t*)((longlong)entry_ptr + container_start + -0x20);
+            key_ptr = (int32_t*)(container_start + -0x1c + (longlong)entry_ptr);
             key_data_1 = key_ptr[1];
             key_data_2 = key_ptr[2];
             key_data_3 = key_ptr[3];
-            *(undefined4*)((longlong)entry_ptr + -0x1c) = *key_ptr;
-            *(undefined4*)(entry_ptr + -3) = key_data_1;
-            *(undefined4*)((longlong)entry_ptr + -0x14) = key_data_2;
-            *(undefined4*)(entry_ptr + -2) = key_data_3;
+            *(int32_t*)((longlong)entry_ptr + -0x1c) = *key_ptr;
+            *(int32_t*)(entry_ptr + -3) = key_data_1;
+            *(int32_t*)((longlong)entry_ptr + -0x14) = key_data_2;
+            *(int32_t*)(entry_ptr + -2) = key_data_3;
             
             // 设置虚函数表
             entry_ptr[-1] = &VTABLE_18098bcb0;
             *entry_ptr = 0;
-            *(undefined4*)(entry_ptr + 1) = 0;
+            *(int32_t*)(entry_ptr + 1) = 0;
             entry_ptr[-1] = &VTABLE_180a3c3e0;
             entry_ptr[2] = 0;
             *entry_ptr = 0;
-            *(undefined4*)(entry_ptr + 1) = 0;
+            *(int32_t*)(entry_ptr + 1) = 0;
             
             // 复制键值数据
-            *(undefined4*)(entry_ptr + 1) = *(undefined4*)(container_start + 8 + (longlong)entry_ptr);
-            *entry_ptr = *(undefined8*)(container_start + (longlong)entry_ptr);
-            *(undefined4*)((longlong)entry_ptr + 0x14) = *(undefined4*)(container_start + 0x14 + (longlong)entry_ptr);
-            *(undefined4*)(entry_ptr + 2) = *(undefined4*)(container_start + 0x10 + (longlong)entry_ptr);
+            *(int32_t*)(entry_ptr + 1) = *(int32_t*)(container_start + 8 + (longlong)entry_ptr);
+            *entry_ptr = *(uint64_t*)(container_start + (longlong)entry_ptr);
+            *(int32_t*)((longlong)entry_ptr + 0x14) = *(int32_t*)(container_start + 0x14 + (longlong)entry_ptr);
+            *(int32_t*)(entry_ptr + 2) = *(int32_t*)(container_start + 0x10 + (longlong)entry_ptr);
             
             // 清理旧数据
-            *(undefined4*)(container_start + 8 + (longlong)entry_ptr) = 0;
-            *(undefined8*)(container_start + (longlong)entry_ptr) = 0;
-            *(undefined8*)(container_start + 0x10 + (longlong)entry_ptr) = 0;
+            *(int32_t*)(container_start + 8 + (longlong)entry_ptr) = 0;
+            *(uint64_t*)(container_start + (longlong)entry_ptr) = 0;
+            *(uint64_t*)(container_start + 0x10 + (longlong)entry_ptr) = 0;
             
-            *(undefined4*)(entry_ptr + 3) = *(undefined4*)(container_start + 0x18 + (longlong)entry_ptr);
-            *(undefined8*)((longlong)entry_ptr + 0x1c) = *(undefined8*)(container_start + 0x1c + (longlong)entry_ptr);
-            *(undefined4*)((longlong)entry_ptr + 0x24) = *(undefined4*)((longlong)entry_ptr + container_start + 0x24);
-            *(undefined4*)(entry_ptr + 5) = *(undefined4*)((longlong)entry_ptr + container_start + 0x28);
+            *(int32_t*)(entry_ptr + 3) = *(int32_t*)(container_start + 0x18 + (longlong)entry_ptr);
+            *(uint64_t*)((longlong)entry_ptr + 0x1c) = *(uint64_t*)(container_start + 0x1c + (longlong)entry_ptr);
+            *(int32_t*)((longlong)entry_ptr + 0x24) = *(int32_t*)((longlong)entry_ptr + container_start + 0x24);
+            *(int32_t*)(entry_ptr + 5) = *(int32_t*)((longlong)entry_ptr + container_start + 0x28);
             
             buffer_end = buffer_end + 0x50;
             entry_ptr = entry_ptr + 10;
@@ -277,13 +277,13 @@ allocate_new_buffer:
     container_start = *container;
     if (container_start != container_end) {
         do {
-            *(undefined8*)(container_start + 0x18) = &VTABLE_180a3c3e0;
+            *(uint64_t*)(container_start + 0x18) = &VTABLE_180a3c3e0;
             if (*(longlong*)(container_start + 0x20) != 0) {
                 free_memory();
             }
-            *(undefined8*)(container_start + 0x20) = 0;
-            *(undefined4*)(container_start + 0x30) = 0;
-            *(undefined8*)(container_start + 0x18) = &VTABLE_18098bcb0;
+            *(uint64_t*)(container_start + 0x20) = 0;
+            *(int32_t*)(container_start + 0x30) = 0;
+            *(uint64_t*)(container_start + 0x18) = &VTABLE_18098bcb0;
             container_start = container_start + 0x50;
         } while (container_start != container_end);
         container_start = *container;
@@ -305,41 +305,41 @@ allocate_new_buffer:
  * @param source 源位置
  * @return 目标位置指针
  */
-undefined1* copy_key_value_data(undefined1* destination, undefined1* source)
+int8_t* copy_key_value_data(int8_t* destination, int8_t* source)
 {
-    undefined8 key_value;
+    uint64_t key_value;
     
     // 复制基本数据
     *destination = *source;
-    key_value = *(undefined8*)(source + 0xc);
-    *(undefined8*)(destination + 4) = *(undefined8*)(source + 4);
-    *(undefined8*)(destination + 0xc) = key_value;
+    key_value = *(uint64_t*)(source + 0xc);
+    *(uint64_t*)(destination + 4) = *(uint64_t*)(source + 4);
+    *(uint64_t*)(destination + 0xc) = key_value;
     
     // 设置虚函数表
-    *(undefined**)(destination + 0x18) = &VTABLE_18098bcb0;
-    *(undefined8*)(destination + 0x20) = 0;
-    *(undefined4*)(destination + 0x28) = 0;
-    *(undefined**)(destination + 0x18) = &VTABLE_180a3c3e0;
-    *(undefined8*)(destination + 0x30) = 0;
-    *(undefined8*)(destination + 0x20) = 0;
-    *(undefined4*)(destination + 0x28) = 0;
+    *(void**)(destination + 0x18) = &VTABLE_18098bcb0;
+    *(uint64_t*)(destination + 0x20) = 0;
+    *(int32_t*)(destination + 0x28) = 0;
+    *(void**)(destination + 0x18) = &VTABLE_180a3c3e0;
+    *(uint64_t*)(destination + 0x30) = 0;
+    *(uint64_t*)(destination + 0x20) = 0;
+    *(int32_t*)(destination + 0x28) = 0;
     
     // 复制键值数据
-    *(undefined4*)(destination + 0x28) = *(undefined4*)(source + 0x28);
-    *(undefined8*)(destination + 0x20) = *(undefined8*)(source + 0x20);
-    *(undefined4*)(destination + 0x34) = *(undefined4*)(source + 0x34);
-    *(undefined4*)(destination + 0x30) = *(undefined4*)(source + 0x30);
+    *(int32_t*)(destination + 0x28) = *(int32_t*)(source + 0x28);
+    *(uint64_t*)(destination + 0x20) = *(uint64_t*)(source + 0x20);
+    *(int32_t*)(destination + 0x34) = *(int32_t*)(source + 0x34);
+    *(int32_t*)(destination + 0x30) = *(int32_t*)(source + 0x30);
     
     // 清理源数据
-    *(undefined4*)(source + 0x28) = 0;
-    *(undefined8*)(source + 0x20) = 0;
-    *(undefined8*)(source + 0x30) = 0;
+    *(int32_t*)(source + 0x28) = 0;
+    *(uint64_t*)(source + 0x20) = 0;
+    *(uint64_t*)(source + 0x30) = 0;
     
     // 复制剩余数据
-    *(undefined4*)(destination + 0x38) = *(undefined4*)(source + 0x38);
-    *(undefined8*)(destination + 0x3c) = *(undefined8*)(source + 0x3c);
-    *(undefined4*)(destination + 0x44) = *(undefined4*)(source + 0x44);
-    *(undefined4*)(destination + 0x48) = *(undefined4*)(source + 0x48);
+    *(int32_t*)(destination + 0x38) = *(int32_t*)(source + 0x38);
+    *(uint64_t*)(destination + 0x3c) = *(uint64_t*)(source + 0x3c);
+    *(int32_t*)(destination + 0x44) = *(int32_t*)(source + 0x44);
+    *(int32_t*)(destination + 0x48) = *(int32_t*)(source + 0x48);
     return destination;
 }
 
@@ -351,30 +351,30 @@ undefined1* copy_key_value_data(undefined1* destination, undefined1* source)
  * @param param4 参数4
  * @return 缓冲区指针
  */
-undefined1* map_entry_create(undefined1* buffer, undefined1* key_data, undefined8 param3, undefined8 param4)
+int8_t* map_entry_create(int8_t* buffer, int8_t* key_data, uint64_t param3, uint64_t param4)
 {
-    undefined4 key_data_1;
-    undefined4 key_data_2;
-    undefined4 key_data_3;
+    int32_t key_data_1;
+    int32_t key_data_2;
+    int32_t key_data_3;
     
     // 复制键数据
     *buffer = *key_data;
-    key_data_1 = *(undefined4*)(key_data + 8);
-    key_data_2 = *(undefined4*)(key_data + 0xc);
-    key_data_3 = *(undefined4*)(key_data + 0x10);
-    *(undefined4*)(buffer + 4) = *(undefined4*)(key_data + 4);
-    *(undefined4*)(buffer + 8) = key_data_1;
-    *(undefined4*)(buffer + 0xc) = key_data_2;
-    *(undefined4*)(buffer + 0x10) = key_data_3;
+    key_data_1 = *(int32_t*)(key_data + 8);
+    key_data_2 = *(int32_t*)(key_data + 0xc);
+    key_data_3 = *(int32_t*)(key_data + 0x10);
+    *(int32_t*)(buffer + 4) = *(int32_t*)(key_data + 4);
+    *(int32_t*)(buffer + 8) = key_data_1;
+    *(int32_t*)(buffer + 0xc) = key_data_2;
+    *(int32_t*)(buffer + 0x10) = key_data_3;
     
     // 复制对象数据
     copy_object_data(buffer + 0x18, key_data + 0x18, param3, param4, 0xfffffffffffffffe);
     
     // 复制值数据
-    *(undefined4*)(buffer + 0x38) = *(undefined4*)(key_data + 0x38);
-    *(undefined8*)(buffer + 0x3c) = *(undefined8*)(key_data + 0x3c);
-    *(undefined4*)(buffer + 0x44) = *(undefined4*)(key_data + 0x44);
-    *(undefined4*)(buffer + 0x48) = *(undefined4*)(key_data + 0x48);
+    *(int32_t*)(buffer + 0x38) = *(int32_t*)(key_data + 0x38);
+    *(uint64_t*)(buffer + 0x3c) = *(uint64_t*)(key_data + 0x3c);
+    *(int32_t*)(buffer + 0x44) = *(int32_t*)(key_data + 0x44);
+    *(int32_t*)(buffer + 0x48) = *(int32_t*)(key_data + 0x48);
     return buffer;
 }
 
@@ -563,12 +563,12 @@ float* multiply_matrices(float* matrix_a, float* matrix_b, float* result)
 void set_debug_info(longlong debug_context, longlong message)
 {
     longlong message_length;
-    undefined* message_ptr;
-    undefined1 stack_buffer[32];
-    undefined8 stack_guard_1;
-    undefined* stack_ptr_1;
-    undefined* stack_ptr_2;
-    undefined4 stack_size;
+    void* message_ptr;
+    int8_t stack_buffer[32];
+    uint64_t stack_guard_1;
+    void* stack_ptr_1;
+    void* stack_ptr_2;
+    int32_t stack_size;
     undefined stack_buffer_2[72];
     ulonglong stack_guard_2;
     
@@ -584,16 +584,16 @@ void set_debug_info(longlong debug_context, longlong message)
         do {
             message_length = message_length + 1;
         } while (*(char*)(message + message_length) != '\0');
-        stack_size = (undefined4)message_length;
+        stack_size = (int32_t)message_length;
         strcpy_s(stack_buffer_2, 0x40, message);
     }
     
-    *(undefined4*)(debug_context + 0x3530) = stack_size;
+    *(int32_t*)(debug_context + 0x3530) = stack_size;
     message_ptr = &DEFAULT_MESSAGE_18098bc73;
-    if (stack_ptr_2 != (undefined*)0x0) {
+    if (stack_ptr_2 != (void*)0x0) {
         message_ptr = stack_ptr_2;
     }
-    strcpy_s(*(undefined8*)(debug_context + 0x3528), 0x40, message_ptr);
+    strcpy_s(*(uint64_t*)(debug_context + 0x3528), 0x40, message_ptr);
     stack_ptr_1 = &VTABLE_18098bcb0;
     security_check(stack_guard_2 ^ (ulonglong)stack_buffer);
 }
@@ -617,32 +617,32 @@ longlong initialize_render_object(longlong render_object)
     } while (loop_counter != 0);
     
     // 设置默认值
-    *(undefined8*)(render_object + 0xc0) = 0x3f800000;  // 1.0f
-    *(undefined8*)(render_object + 200) = 0;
-    *(undefined8*)(render_object + 0xd0) = 0x3f80000000000000;  // 1.0
-    *(undefined8*)(render_object + 0xd8) = 0;
-    *(undefined4*)(render_object + 0xe0) = 0;
-    *(undefined4*)(render_object + 0xe4) = 0;
-    *(undefined4*)(render_object + 0xe8) = 0x3f800000;  // 1.0f
-    *(undefined4*)(render_object + 0xec) = 0;
-    *(undefined4*)(render_object + 0xf0) = 0;
-    *(undefined4*)(render_object + 0xf4) = 0;
-    *(undefined4*)(render_object + 0xf8) = 0;
-    *(undefined4*)(render_object + 0xfc) = 0x3f800000;  // 1.0f
-    *(undefined1*)(render_object + 0x100) = 1;
-    *(undefined4*)(render_object + 0x104) = 0xbf800000;  // -1.0f
-    *(undefined4*)(render_object + 0x108) = 0x3f800000;  // 1.0f
-    *(undefined4*)(render_object + 0x110) = 0xbf800000;  // -1.0f
-    *(undefined4*)(render_object + 0x10c) = 0x3f800000;  // 1.0f
-    *(undefined4*)(render_object + 0x114) = 0x3f800000;  // 1.0f
-    *(undefined8*)(render_object + 0x118) = 0x447a0000;  // 1000.0f
-    *(undefined4*)(render_object + 0x120) = 0x3f800000;  // 1.0f
+    *(uint64_t*)(render_object + 0xc0) = 0x3f800000;  // 1.0f
+    *(uint64_t*)(render_object + 200) = 0;
+    *(uint64_t*)(render_object + 0xd0) = 0x3f80000000000000;  // 1.0
+    *(uint64_t*)(render_object + 0xd8) = 0;
+    *(int32_t*)(render_object + 0xe0) = 0;
+    *(int32_t*)(render_object + 0xe4) = 0;
+    *(int32_t*)(render_object + 0xe8) = 0x3f800000;  // 1.0f
+    *(int32_t*)(render_object + 0xec) = 0;
+    *(int32_t*)(render_object + 0xf0) = 0;
+    *(int32_t*)(render_object + 0xf4) = 0;
+    *(int32_t*)(render_object + 0xf8) = 0;
+    *(int32_t*)(render_object + 0xfc) = 0x3f800000;  // 1.0f
+    *(int8_t*)(render_object + 0x100) = 1;
+    *(int32_t*)(render_object + 0x104) = 0xbf800000;  // -1.0f
+    *(int32_t*)(render_object + 0x108) = 0x3f800000;  // 1.0f
+    *(int32_t*)(render_object + 0x110) = 0xbf800000;  // -1.0f
+    *(int32_t*)(render_object + 0x10c) = 0x3f800000;  // 1.0f
+    *(int32_t*)(render_object + 0x114) = 0x3f800000;  // 1.0f
+    *(uint64_t*)(render_object + 0x118) = 0x447a0000;  // 1000.0f
+    *(int32_t*)(render_object + 0x120) = 0x3f800000;  // 1.0f
     
     setup_render_pipeline(render_object);
     
-    *(undefined8*)(render_object + 0x128) = 0;
-    *(undefined8*)(render_object + 0x130) = 0x7f7fffff00000000;  // 最大float值
-    *(undefined1*)(render_object + 0x124) = 0;
+    *(uint64_t*)(render_object + 0x128) = 0;
+    *(uint64_t*)(render_object + 0x130) = 0x7f7fffff00000000;  // 最大float值
+    *(int8_t*)(render_object + 0x124) = 0;
     return render_object;
 }
 
@@ -651,14 +651,14 @@ longlong initialize_render_object(longlong render_object)
  * @param render_object 渲染对象指针
  * @param render_params 渲染参数
  */
-void process_render_object(longlong* render_object, undefined8 render_params)
+void process_render_object(longlong* render_object, uint64_t render_params)
 {
     longlong* object_manager;
-    undefined8 params_copy;
+    uint64_t params_copy;
     longlong* stack_ptr_1;
     longlong* stack_ptr_2;
-    undefined1 stack_buffer[8];
-    undefined8 stack_guard;
+    int8_t stack_buffer[8];
+    uint64_t stack_guard;
     longlong* stack_ptr_3;
     char cleanup_flag_1;
     char cleanup_flag_2;
@@ -718,19 +718,19 @@ void process_render_object(longlong* render_object, undefined8 render_params)
  * @param event_data 事件数据
  * @param context 上下文
  */
-void log_render_event(undefined8 event_type, undefined8 event_data, longlong context)
+void log_render_event(uint64_t event_type, uint64_t event_data, longlong context)
 {
-    undefined8 manager_ptr;
+    uint64_t manager_ptr;
     longlong string_length;
-    undefined1 stack_buffer[32];
-    undefined8 stack_guard_1;
-    undefined4 stack_size;
-    undefined8 stack_data_1;
-    undefined8 stack_data_2;
-    undefined* stack_ptr_1;
-    undefined1* stack_ptr_2;
-    undefined4 stack_data_3;
-    undefined1 stack_buffer_2[72];
+    int8_t stack_buffer[32];
+    uint64_t stack_guard_1;
+    int32_t stack_size;
+    uint64_t stack_data_1;
+    uint64_t stack_data_2;
+    void* stack_ptr_1;
+    int8_t* stack_ptr_2;
+    int32_t stack_data_3;
+    int8_t stack_buffer_2[72];
     ulonglong stack_guard_2;
     
     manager_ptr = g_global_manager;
@@ -748,7 +748,7 @@ void log_render_event(undefined8 event_type, undefined8 event_data, longlong con
         do {
             string_length = string_length + 1;
         } while (*(char*)(context + string_length) != '\0');
-        stack_data_3 = (undefined4)string_length;
+        stack_data_3 = (int32_t)string_length;
         strcpy_s(stack_buffer_2, 0x40);
     }
     
@@ -780,19 +780,19 @@ void set_object_color(longlong object, uint color)
  * @param context 上下文
  * @param flags 标志
  */
-void register_render_callback(undefined8 callback_type, undefined8 callback_data, 
-                             longlong context, undefined1 flags)
+void register_render_callback(uint64_t callback_type, uint64_t callback_data, 
+                             longlong context, int8_t flags)
 {
-    undefined8 manager_ptr;
+    uint64_t manager_ptr;
     longlong string_length;
-    undefined1 stack_buffer[32];
-    undefined4 stack_size;
-    undefined8 stack_data_1;
-    undefined8 stack_data_2;
-    undefined* stack_ptr_1;
-    undefined1* stack_ptr_2;
-    undefined4 stack_data_3;
-    undefined1 stack_buffer_2[72];
+    int8_t stack_buffer[32];
+    int32_t stack_size;
+    uint64_t stack_data_1;
+    uint64_t stack_data_2;
+    void* stack_ptr_1;
+    int8_t* stack_ptr_2;
+    int32_t stack_data_3;
+    int8_t stack_buffer_2[72];
     ulonglong stack_guard;
     
     manager_ptr = g_global_manager;
@@ -810,7 +810,7 @@ void register_render_callback(undefined8 callback_type, undefined8 callback_data
         do {
             string_length = string_length + 1;
         } while (*(char*)(context + string_length) != '\0');
-        stack_data_3 = (undefined4)string_length;
+        stack_data_3 = (int32_t)string_length;
         strcpy_s(stack_buffer_2, 0x40);
     }
     
@@ -826,14 +826,14 @@ void register_render_callback(undefined8 callback_type, undefined8 callback_data
  * @param param1 参数1
  * @param param2 参数2
  */
-void execute_render_operation(longlong* render_context, undefined8 param1, undefined8 param2)
+void execute_render_operation(longlong* render_context, uint64_t param1, uint64_t param2)
 {
     longlong* object_manager;
-    undefined4 color_r, color_g, color_b, color_a;
+    int32_t color_r, color_g, color_b, color_a;
     longlong* stack_ptr_1;
     longlong* stack_ptr_2;
-    undefined1 stack_buffer[8];
-    undefined8 stack_guard;
+    int8_t stack_buffer[8];
+    uint64_t stack_guard;
     longlong* stack_ptr_3;
     char cleanup_flag_1;
     char cleanup_flag_2;
@@ -900,14 +900,14 @@ void execute_render_operation(longlong* render_context, undefined8 param1, undef
  */
 longlong cleanup_container_elements(longlong container, longlong start_pos)
 {
-    undefined8* element_ptr;
+    uint64_t* element_ptr;
     longlong element_count;
     ulonglong container_size;
     
     container_size = *(ulonglong*)(container + 8);
     if ((start_pos + 0x20U < container_size) && 
         (element_count = (longlong)(container_size - (start_pos + 0x20U)) >> 5, 0 < element_count)) {
-        element_ptr = (undefined8*)(start_pos + 0x28);
+        element_ptr = (uint64_t*)(start_pos + 0x28);
         do {
             if (element_ptr[-4] != 0) {
                 free_memory();
@@ -915,12 +915,12 @@ longlong cleanup_container_elements(longlong container, longlong start_pos)
             element_ptr[-2] = 0;
             element_count = element_count + -1;
             element_ptr[-4] = 0;
-            *(undefined4*)(element_ptr + -3) = 0;
-            *(undefined4*)(element_ptr + -3) = *(undefined4*)(element_ptr + 1);
+            *(int32_t*)(element_ptr + -3) = 0;
+            *(int32_t*)(element_ptr + -3) = *(int32_t*)(element_ptr + 1);
             element_ptr[-4] = *element_ptr;
-            *(undefined4*)((longlong)element_ptr + -0xc) = *(undefined4*)((longlong)element_ptr + 0x14);
-            *(undefined4*)(element_ptr + -2) = *(undefined4*)(element_ptr + 2);
-            *(undefined4*)(element_ptr + 1) = 0;
+            *(int32_t*)((longlong)element_ptr + -0xc) = *(int32_t*)((longlong)element_ptr + 0x14);
+            *(int32_t*)(element_ptr + -2) = *(int32_t*)(element_ptr + 2);
+            *(int32_t*)(element_ptr + 1) = 0;
             *element_ptr = 0;
             element_ptr[2] = 0;
             element_ptr = element_ptr + 4;
@@ -928,9 +928,9 @@ longlong cleanup_container_elements(longlong container, longlong start_pos)
         container_size = *(ulonglong*)(container + 8);
     }
     
-    element_ptr = (undefined8*)(container_size - 0x20);
-    *(undefined8**)(container + 8) = element_ptr;
-    ((void (*)(undefined8*, longlong))(*element_ptr))(element_ptr, 0);
+    element_ptr = (uint64_t*)(container_size - 0x20);
+    *(uint64_t**)(container + 8) = element_ptr;
+    ((void (*)(uint64_t*, longlong))(*element_ptr))(element_ptr, 0);
     return start_pos;
 }
 
@@ -942,13 +942,13 @@ longlong cleanup_container_elements(longlong container, longlong start_pos)
 void batch_cleanup_container_elements(longlong container, longlong start_pos)
 {
     longlong in_RAX;
-    undefined8* element_ptr;
+    uint64_t* element_ptr;
     longlong container_base;
     longlong element_count;
     
     element_count = container - in_RAX >> 5;
     if (0 < element_count) {
-        element_ptr = (undefined8*)(start_pos + 0x28);
+        element_ptr = (uint64_t*)(start_pos + 0x28);
         do {
             if (element_ptr[-4] != 0) {
                 free_memory();
@@ -956,12 +956,12 @@ void batch_cleanup_container_elements(longlong container, longlong start_pos)
             element_ptr[-2] = 0;
             element_count = element_count + -1;
             element_ptr[-4] = 0;
-            *(undefined4*)(element_ptr + -3) = 0;
-            *(undefined4*)(element_ptr + -3) = *(undefined4*)(element_ptr + 1);
+            *(int32_t*)(element_ptr + -3) = 0;
+            *(int32_t*)(element_ptr + -3) = *(int32_t*)(element_ptr + 1);
             element_ptr[-4] = *element_ptr;
-            *(undefined4*)((longlong)element_ptr + -0xc) = *(undefined4*)((longlong)element_ptr + 0x14);
-            *(undefined4*)(element_ptr + -2) = *(undefined4*)(element_ptr + 2);
-            *(undefined4*)(element_ptr + 1) = 0;
+            *(int32_t*)((longlong)element_ptr + -0xc) = *(int32_t*)((longlong)element_ptr + 0x14);
+            *(int32_t*)(element_ptr + -2) = *(int32_t*)(element_ptr + 2);
+            *(int32_t*)(element_ptr + 1) = 0;
             *element_ptr = 0;
             element_ptr[2] = 0;
             element_ptr = element_ptr + 4;
@@ -969,9 +969,9 @@ void batch_cleanup_container_elements(longlong container, longlong start_pos)
         container = *(longlong*)(container_base + 8);
     }
     
-    element_ptr = (undefined8*)(container + -0x20);
-    *(undefined8**)(container_base + 8) = element_ptr;
-    ((void (*)(undefined8*, longlong))(*element_ptr))(element_ptr, 0);
+    element_ptr = (uint64_t*)(container + -0x20);
+    *(uint64_t**)(container_base + 8) = element_ptr;
+    ((void (*)(uint64_t*, longlong))(*element_ptr))(element_ptr, 0);
 }
 
 /**
@@ -979,13 +979,13 @@ void batch_cleanup_container_elements(longlong container, longlong start_pos)
  * @param param1 参数1
  * @param start_pos 开始位置
  */
-void quick_cleanup_container_elements(undefined8 param1, longlong start_pos)
+void quick_cleanup_container_elements(uint64_t param1, longlong start_pos)
 {
-    undefined8* element_ptr;
+    uint64_t* element_ptr;
     longlong container_base;
     longlong element_count;
     
-    element_ptr = (undefined8*)(start_pos + 0x28);
+    element_ptr = (uint64_t*)(start_pos + 0x28);
     do {
         if (element_ptr[-4] != 0) {
             free_memory();
@@ -993,20 +993,20 @@ void quick_cleanup_container_elements(undefined8 param1, longlong start_pos)
         element_ptr[-2] = 0;
         element_count = element_count + -1;
         element_ptr[-4] = 0;
-        *(undefined4*)(element_ptr + -3) = 0;
-        *(undefined4*)(element_ptr + -3) = *(undefined4*)(element_ptr + 1);
+        *(int32_t*)(element_ptr + -3) = 0;
+        *(int32_t*)(element_ptr + -3) = *(int32_t*)(element_ptr + 1);
         element_ptr[-4] = *element_ptr;
-        *(undefined4*)((longlong)element_ptr + -0xc) = *(undefined4*)((longlong)element_ptr + 0x14);
-        *(undefined4*)(element_ptr + -2) = *(undefined4*)(element_ptr + 2);
-        *(undefined4*)(element_ptr + 1) = 0;
+        *(int32_t*)((longlong)element_ptr + -0xc) = *(int32_t*)((longlong)element_ptr + 0x14);
+        *(int32_t*)(element_ptr + -2) = *(int32_t*)(element_ptr + 2);
+        *(int32_t*)(element_ptr + 1) = 0;
         *element_ptr = 0;
         element_ptr[2] = 0;
         element_ptr = element_ptr + 4;
     } while (0 < element_count);
     
-    element_ptr = (undefined8*)(*(longlong*)(container_base + 8) + -0x20);
-    *(undefined8**)(container_base + 8) = element_ptr;
-    ((void (*)(undefined8*, longlong))(*element_ptr))(element_ptr, 0);
+    element_ptr = (uint64_t*)(*(longlong*)(container_base + 8) + -0x20);
+    *(uint64_t**)(container_base + 8) = element_ptr;
+    ((void (*)(uint64_t*, longlong))(*element_ptr))(element_ptr, 0);
 }
 
 /**
@@ -1015,12 +1015,12 @@ void quick_cleanup_container_elements(undefined8 param1, longlong start_pos)
  */
 void release_container_resources(longlong position)
 {
-    undefined8* element_ptr;
+    uint64_t* element_ptr;
     longlong container_base;
     
-    element_ptr = (undefined8*)(position + -0x20);
-    *(undefined8**)(container_base + 8) = element_ptr;
-    ((void (*)(undefined8*, longlong))(*element_ptr))(element_ptr, 0);
+    element_ptr = (uint64_t*)(position + -0x20);
+    *(uint64_t**)(container_base + 8) = element_ptr;
+    ((void (*)(uint64_t*, longlong))(*element_ptr))(element_ptr, 0);
 }
 
 /**
@@ -1029,12 +1029,12 @@ void release_container_resources(longlong position)
  */
 void destroy_container_element(longlong position)
 {
-    undefined8* element_ptr;
+    uint64_t* element_ptr;
     longlong container_base;
     
-    element_ptr = (undefined8*)(position + -0x20);
-    *(undefined8**)(container_base + 8) = element_ptr;
-    ((void (*)(undefined8*, longlong))(*element_ptr))(element_ptr, 0);
+    element_ptr = (uint64_t*)(position + -0x20);
+    *(uint64_t**)(container_base + 8) = element_ptr;
+    ((void (*)(uint64_t*, longlong))(*element_ptr))(element_ptr, 0);
 }
 
 /**
@@ -1043,39 +1043,39 @@ void destroy_container_element(longlong position)
  * @param device_desc 设备描述
  * @return 设备指针
  */
-undefined8* initialize_render_device(undefined8* device, undefined8 device_desc)
+uint64_t* initialize_render_device(uint64_t* device, uint64_t device_desc)
 {
     // 初始化设备基本参数
     device[2] = 0;
     device[3] = 0;
     device[0xc] = 0;
     device[0xd] = 0;
-    *(undefined4*)(device + 0xe) = 0x1060101;  // 设备标志
-    *(undefined4*)((longlong)device + 0x74) = 0xff000000;  // Alpha掩码
-    *(undefined4*)(device + 0xf) = 0x40300ff;   // 设备能力
-    *(undefined8*)((longlong)device + 0x7c) = 0x30503;    // 设备版本
+    *(int32_t*)(device + 0xe) = 0x1060101;  // 设备标志
+    *(int32_t*)((longlong)device + 0x74) = 0xff000000;  // Alpha掩码
+    *(int32_t*)(device + 0xf) = 0x40300ff;   // 设备能力
+    *(uint64_t*)((longlong)device + 0x7c) = 0x30503;    // 设备版本
     
     // 初始化扩展参数
-    *(undefined8*)((longlong)device + 0x84) = 0;
-    *(undefined8*)((longlong)device + 0x8c) = 0;
-    *(undefined8*)((longlong)device + 0x94) = 0;
-    *(undefined4*)((longlong)device + 0x9c) = 0;
+    *(uint64_t*)((longlong)device + 0x84) = 0;
+    *(uint64_t*)((longlong)device + 0x8c) = 0;
+    *(uint64_t*)((longlong)device + 0x94) = 0;
+    *(int32_t*)((longlong)device + 0x9c) = 0;
     
     // 设置主设备参数
     device[0x14] = 0x900;  // 分辨率宽度
     device[0x15] = 0;       // 保留
-    *(undefined4*)(device + 0x16) = 0x1060101;  // 设备标志
-    *(undefined4*)((longlong)device + 0xb4) = 0xff000000;  // Alpha掩码
-    *(undefined4*)(device + 0x17) = 0x40300ff;   // 设备能力
-    *(undefined8*)((longlong)device + 0xbc) = 0x30503;    // 设备版本
+    *(int32_t*)(device + 0x16) = 0x1060101;  // 设备标志
+    *(int32_t*)((longlong)device + 0xb4) = 0xff000000;  // Alpha掩码
+    *(int32_t*)(device + 0x17) = 0x40300ff;   // 设备能力
+    *(uint64_t*)((longlong)device + 0xbc) = 0x30503;    // 设备版本
     
     // 初始化次级设备参数
-    *(undefined8*)((longlong)device + 0xc4) = 0;
-    *(undefined8*)((longlong)device + 0xcc) = 0;
-    *(undefined8*)((longlong)device + 0xd4) = 0;
-    *(undefined4*)((longlong)device + 0xdc) = 0;
+    *(uint64_t*)((longlong)device + 0xc4) = 0;
+    *(uint64_t*)((longlong)device + 0xcc) = 0;
+    *(uint64_t*)((longlong)device + 0xd4) = 0;
+    *(int32_t*)((longlong)device + 0xdc) = 0;
     device[0x1c] = 0x900;  // 分辨率高度
     *device = device_desc;  // 设置设备描述符
-    *(undefined1*)(device + 1) = 0;  // 清零状态
+    *(int8_t*)(device + 1) = 0;  // 清零状态
     return device;
 }

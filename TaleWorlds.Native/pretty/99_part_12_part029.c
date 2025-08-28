@@ -115,8 +115,8 @@ void FUN_1807dc8f5(void)
 
 
 
-// 函数: void FUN_1807dc910(float *param_1,float *param_2,int param_3,longlong param_4,undefined8 param_5,
-void FUN_1807dc910(float *param_1,float *param_2,int param_3,longlong param_4,undefined8 param_5,
+// 函数: void FUN_1807dc910(float *param_1,float *param_2,int param_3,longlong param_4,uint64_t param_5,
+void FUN_1807dc910(float *param_1,float *param_2,int param_3,longlong param_4,uint64_t param_5,
                   int param_6,int param_7)
 
 {
@@ -128,7 +128,7 @@ void FUN_1807dc910(float *param_1,float *param_2,int param_3,longlong param_4,un
   longlong lVar6;
   float *pfVar7;
   float *pfVar8;
-  undefined1 auStack_d8 [32];
+  int8_t auStack_d8 [32];
   float afStack_b8 [32];
   ulonglong uStack_38;
   
@@ -562,9 +562,9 @@ void FUN_1807dc910(float *param_1,float *param_2,int param_3,longlong param_4,un
 
 
 
-// 函数: void FUN_1807dd240(float *param_1,float *param_2,uint param_3,float *param_4,undefined8 param_5,
-void FUN_1807dd240(float *param_1,float *param_2,uint param_3,float *param_4,undefined8 param_5,
-                  undefined8 param_6,int param_7)
+// 函数: void FUN_1807dd240(float *param_1,float *param_2,uint param_3,float *param_4,uint64_t param_5,
+void FUN_1807dd240(float *param_1,float *param_2,uint param_3,float *param_4,uint64_t param_5,
+                  uint64_t param_6,int param_7)
 
 {
   float fVar1;
@@ -692,9 +692,9 @@ void FUN_1807dd240(float *param_1,float *param_2,uint param_3,float *param_4,und
 
 
 
-// 函数: void FUN_1807dd6c0(float *param_1,float *param_2,uint param_3,float *param_4,undefined8 param_5,
-void FUN_1807dd6c0(float *param_1,float *param_2,uint param_3,float *param_4,undefined8 param_5,
-                  undefined8 param_6,int param_7)
+// 函数: void FUN_1807dd6c0(float *param_1,float *param_2,uint param_3,float *param_4,uint64_t param_5,
+void FUN_1807dd6c0(float *param_1,float *param_2,uint param_3,float *param_4,uint64_t param_5,
+                  uint64_t param_6,int param_7)
 
 {
   float fVar1;

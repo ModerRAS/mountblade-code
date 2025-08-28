@@ -14,8 +14,8 @@ void check_and_update_entity_bounds(float param_1, float param_2, float param_3,
 {
   int *piVar1;
   longlong lVar2;
-  undefined4 uVar3;
-  undefined4 uVar4;
+  int32_t uVar3;
+  int32_t uVar4;
   float fVar5;
   bool bVar6;
   longlong lVar7;
@@ -52,20 +52,20 @@ void check_and_update_entity_bounds(float param_1, float param_2, float param_3,
   
   // 如果超出边界，调用边界处理函数
   if (!bVar6) {
-    FUN_180291b40(*(undefined8 *)(unaff_RBX + 0x2e8), CONCAT44(param_1, unaff_XMM9_Da),
+    FUN_180291b40(*(uint64_t *)(unaff_RBX + 0x2e8), CONCAT44(param_1, unaff_XMM9_Da),
                   CONCAT44(fVar9, fVar10), 0);
   }
   
   // 获取全局数据结构指针
   lVar7 = _DAT_180c8a9b0;
-  uVar3 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19ac);
-  uVar4 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19b0);
+  uVar3 = *(int32_t *)(_DAT_180c8a9b0 + 0x19ac);
+  uVar4 = *(int32_t *)(_DAT_180c8a9b0 + 0x19b0);
   fVar5 = *(float *)(_DAT_180c8a9b0 + 0x19b4);
   
   // 保存当前边界参数到栈缓冲区
-  *(undefined4 *)(unaff_RBP + -0x59) = *(undefined4 *)(_DAT_180c8a9b0 + 0x19a8);
-  *(undefined4 *)(unaff_RBP + -0x55) = uVar3;
-  *(undefined4 *)(unaff_RBP + -0x51) = uVar4;
+  *(int32_t *)(unaff_RBP + -0x59) = *(int32_t *)(_DAT_180c8a9b0 + 0x19a8);
+  *(int32_t *)(unaff_RBP + -0x55) = uVar3;
+  *(int32_t *)(unaff_RBP + -0x51) = uVar4;
   *(float *)(unaff_RBP + -0x4d) = fVar5;
   
   // 应用缩放因子到边界值
@@ -80,7 +80,7 @@ void check_and_update_entity_bounds(float param_1, float param_2, float param_3,
   
   // 如果需要处理扩展边界，调用相应的处理函数
   if ((uVar8 & 0xff000000) != 0) {
-    FUN_180293e80(*(undefined8 *)(unaff_RBX + 0x2e8), unaff_RBP + 0x7f, unaff_RBP + 0x77, uVar8);
+    FUN_180293e80(*(uint64_t *)(unaff_RBX + 0x2e8), unaff_RBP + 0x7f, unaff_RBP + 0x77, uVar8);
   }
   
   // 如果超出边界，减少引用计数并清理
@@ -94,12 +94,12 @@ void check_and_update_entity_bounds(float param_1, float param_2, float param_3,
   lVar7 = _DAT_180c8a9b0;
   if ((unaff_RDI & 2) != 0) {
     lVar2 = *(longlong *)(unaff_RBX + 0x2e8);
-    uVar3 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19ac);
-    uVar4 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19b0);
+    uVar3 = *(int32_t *)(_DAT_180c8a9b0 + 0x19ac);
+    uVar4 = *(int32_t *)(_DAT_180c8a9b0 + 0x19b0);
     fVar5 = *(float *)(_DAT_180c8a9b0 + 0x19b4);
-    *(undefined4 *)(unaff_RBP + -0x59) = *(undefined4 *)(_DAT_180c8a9b0 + 0x19a8);
-    *(undefined4 *)(unaff_RBP + -0x55) = uVar3;
-    *(undefined4 *)(unaff_RBP + -0x51) = uVar4;
+    *(int32_t *)(unaff_RBP + -0x59) = *(int32_t *)(_DAT_180c8a9b0 + 0x19a8);
+    *(int32_t *)(unaff_RBP + -0x55) = uVar3;
+    *(int32_t *)(unaff_RBP + -0x51) = uVar4;
     *(float *)(unaff_RBP + -0x4d) = fVar5;
     *(float *)(unaff_RBP + -0x4d) = fVar5 * *(float *)(lVar7 + 0x1628);
     uVar8 = func_0x000180121e20(unaff_RBP + -0x59);
@@ -126,8 +126,8 @@ void check_and_update_entity_bounds(float param_1, float param_2, float param_3,
       
       // 调用渲染更新函数
       FUN_1802939e0(lVar2, unaff_RBP + 0x7f, unaff_RBP + 0x77);
-      FUN_1802923e0(lVar2, *(undefined8 *)(lVar2 + 0x88), *(undefined4 *)(lVar2 + 0x80), uVar8, 1);
-      *(undefined4 *)(lVar2 + 0x80) = 0;
+      FUN_1802923e0(lVar2, *(uint64_t *)(lVar2 + 0x88), *(int32_t *)(lVar2 + 0x80), uVar8, 1);
+      *(int32_t *)(lVar2 + 0x80) = 0;
     }
   }
   return;
@@ -141,10 +141,10 @@ void perform_bounds_check_and_render_update(void)
 {
   int *piVar1;
   longlong lVar2;
-  undefined4 uVar3;
-  undefined4 uVar4;
+  int32_t uVar3;
+  int32_t uVar4;
   longlong lVar5;
-  undefined4 in_EAX;
+  int32_t in_EAX;
   uint uVar6;
   longlong unaff_RBX;
   longlong unaff_RBP;
@@ -156,15 +156,15 @@ void perform_bounds_check_and_render_update(void)
   float fVar8;
   float unaff_XMM8_Da;
   float unaff_XMM9_Da;
-  undefined4 uStack0000000000000028;
-  undefined4 uStack0000000000000030;
+  int32_t uStack0000000000000028;
+  int32_t uStack0000000000000030;
   
   // 设置渲染参数
   uStack0000000000000030 = 0x40000000;
   uStack0000000000000028 = 0xf;
   
   // 调用渲染更新函数
-  FUN_180293e80(*(undefined8 *)(unaff_RBX + 0x2e8), unaff_RBP + 0x7f, unaff_RBP + 0x77, in_EAX);
+  FUN_180293e80(*(uint64_t *)(unaff_RBX + 0x2e8), unaff_RBP + 0x7f, unaff_RBP + 0x77, in_EAX);
   
   // 如果SIL寄存器为0，减少引用计数并清理
   if (unaff_SIL == '\0') {
@@ -179,12 +179,12 @@ void perform_bounds_check_and_render_update(void)
   // 处理特殊的渲染模式（RDI寄存器的第2位被设置）
   if ((unaff_RDI & 2) != 0) {
     lVar2 = *(longlong *)(unaff_RBX + 0x2e8);
-    uVar3 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19ac);
-    uVar4 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19b0);
+    uVar3 = *(int32_t *)(_DAT_180c8a9b0 + 0x19ac);
+    uVar4 = *(int32_t *)(_DAT_180c8a9b0 + 0x19b0);
     fVar7 = *(float *)(_DAT_180c8a9b0 + 0x19b4);
-    *(undefined4 *)(unaff_RBP + -0x59) = *(undefined4 *)(_DAT_180c8a9b0 + 0x19a8);
-    *(undefined4 *)(unaff_RBP + -0x55) = uVar3;
-    *(undefined4 *)(unaff_RBP + -0x51) = uVar4;
+    *(int32_t *)(unaff_RBP + -0x59) = *(int32_t *)(_DAT_180c8a9b0 + 0x19a8);
+    *(int32_t *)(unaff_RBP + -0x55) = uVar3;
+    *(int32_t *)(unaff_RBP + -0x51) = uVar4;
     *(float *)(unaff_RBP + -0x4d) = fVar7;
     *(float *)(unaff_RBP + -0x4d) = fVar7 * *(float *)(lVar5 + 0x1628);
     uVar6 = func_0x000180121e20(unaff_RBP + -0x59);
@@ -211,8 +211,8 @@ void perform_bounds_check_and_render_update(void)
       
       // 调用渲染更新函数
       FUN_1802939e0(lVar2, unaff_RBP + 0x7f, unaff_RBP + 0x77);
-      FUN_1802923e0(lVar2, *(undefined8 *)(lVar2 + 0x88), *(undefined4 *)(lVar2 + 0x80), uVar6, 1);
-      *(undefined4 *)(lVar2 + 0x80) = 0;
+      FUN_1802923e0(lVar2, *(uint64_t *)(lVar2 + 0x88), *(int32_t *)(lVar2 + 0x80), uVar6, 1);
+      *(int32_t *)(lVar2 + 0x80) = 0;
     }
   }
   return;
@@ -226,8 +226,8 @@ void simplified_render_update(void)
 {
   int *piVar1;
   longlong lVar2;
-  undefined4 uVar3;
-  undefined4 uVar4;
+  int32_t uVar3;
+  int32_t uVar4;
   longlong lVar5;
   uint uVar6;
   longlong unaff_RBX;
@@ -251,12 +251,12 @@ void simplified_render_update(void)
   // 处理特殊的渲染模式（RDI寄存器的第2位被设置）
   if ((unaff_RDI & 2) != 0) {
     lVar2 = *(longlong *)(unaff_RBX + 0x2e8);
-    uVar3 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19ac);
-    uVar4 = *(undefined4 *)(_DAT_180c8a9b0 + 0x19b0);
+    uVar3 = *(int32_t *)(_DAT_180c8a9b0 + 0x19ac);
+    uVar4 = *(int32_t *)(_DAT_180c8a9b0 + 0x19b0);
     fVar7 = *(float *)(_DAT_180c8a9b0 + 0x19b4);
-    *(undefined4 *)(unaff_RBP + -0x59) = *(undefined4 *)(_DAT_180c8a9b0 + 0x19a8);
-    *(undefined4 *)(unaff_RBP + -0x55) = uVar3;
-    *(undefined4 *)(unaff_RBP + -0x51) = uVar4;
+    *(int32_t *)(unaff_RBP + -0x59) = *(int32_t *)(_DAT_180c8a9b0 + 0x19a8);
+    *(int32_t *)(unaff_RBP + -0x55) = uVar3;
+    *(int32_t *)(unaff_RBP + -0x51) = uVar4;
     *(float *)(unaff_RBP + -0x4d) = fVar7;
     *(float *)(unaff_RBP + -0x4d) = fVar7 * *(float *)(lVar5 + 0x1628);
     uVar6 = func_0x000180121e20(unaff_RBP + -0x59);
@@ -283,8 +283,8 @@ void simplified_render_update(void)
       
       // 调用渲染更新函数
       FUN_1802939e0(lVar2, unaff_RBP + 0x7f, unaff_RBP + 0x77);
-      FUN_1802923e0(lVar2, *(undefined8 *)(lVar2 + 0x88), *(undefined4 *)(lVar2 + 0x80), uVar6, 1);
-      *(undefined4 *)(lVar2 + 0x80) = 0;
+      FUN_1802923e0(lVar2, *(uint64_t *)(lVar2 + 0x88), *(int32_t *)(lVar2 + 0x80), uVar6, 1);
+      *(int32_t *)(lVar2 + 0x80) = 0;
     }
   }
   return;
@@ -316,21 +316,21 @@ void another_empty_function(void)
  * @param param_3 - 名称字符串指针
  * @return 初始化后的数据结构指针
  */
-undefined8 *initialize_entity_data_structure(undefined8 *param_1, longlong param_2, byte *param_3)
+uint64_t *initialize_entity_data_structure(uint64_t *param_1, longlong param_2, byte *param_3)
 {
   byte bVar1;
   byte *pbVar2;
   int iVar3;
-  undefined8 uVar4;
+  uint64_t uVar4;
   longlong lVar5;
-  undefined8 *puVar6;
+  uint64_t *puVar6;
   uint uVar7;
   
   // 初始化基本字段为0
-  *(undefined8 *)((longlong)param_1 + 0x14) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x1c) = 0;
-  *(undefined1 *)((longlong)param_1 + 0x24) = 1;
-  *(undefined8 *)((longlong)param_1 + 0x34) = 0;
+  *(uint64_t *)((longlong)param_1 + 0x14) = 0;
+  *(uint64_t *)((longlong)param_1 + 0x1c) = 0;
+  *(int8_t *)((longlong)param_1 + 0x24) = 1;
+  *(uint64_t *)((longlong)param_1 + 0x34) = 0;
   param_1[8] = 0;
   param_1[9] = 0;
   param_1[10] = 0;
@@ -340,10 +340,10 @@ undefined8 *initialize_entity_data_structure(undefined8 *param_1, longlong param
   param_1[0xe] = 0;
   
   // 初始化更多的指针和计数器字段
-  *(undefined8 *)((longlong)param_1 + 0x8c) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x94) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x9c) = 0;
-  *(undefined8 *)((longlong)param_1 + 0xa4) = 0;
+  *(uint64_t *)((longlong)param_1 + 0x8c) = 0;
+  *(uint64_t *)((longlong)param_1 + 0x94) = 0;
+  *(uint64_t *)((longlong)param_1 + 0x9c) = 0;
+  *(uint64_t *)((longlong)param_1 + 0xa4) = 0;
   param_1[0x1e] = 0;
   param_1[0x1f] = 0;
   
@@ -353,27 +353,27 @@ undefined8 *initialize_entity_data_structure(undefined8 *param_1, longlong param
   // 初始化浮点边界值（最大和最小浮点值）
   param_1[0x43] = 0;
   param_1[0x44] = 0;
-  *(undefined4 *)(param_1 + 0x45) = 0x7f7fffff;  // 最大正浮点数
-  *(undefined4 *)((longlong)param_1 + 0x22c) = 0x7f7fffff;
-  *(undefined4 *)(param_1 + 0x46) = 0xff7fffff;  // 最小负浮点数
-  *(undefined4 *)((longlong)param_1 + 0x234) = 0xff7fffff;
-  *(undefined4 *)(param_1 + 0x47) = 0x7f7fffff;
-  *(undefined4 *)((longlong)param_1 + 0x23c) = 0x7f7fffff;
-  *(undefined4 *)(param_1 + 0x48) = 0xff7fffff;
-  *(undefined4 *)((longlong)param_1 + 0x244) = 0xff7fffff;
-  *(undefined4 *)(param_1 + 0x49) = 0x7f7fffff;
-  *(undefined4 *)((longlong)param_1 + 0x24c) = 0x7f7fffff;
-  *(undefined4 *)(param_1 + 0x4a) = 0xff7fffff;
-  *(undefined4 *)((longlong)param_1 + 0x254) = 0xff7fffff;
-  *(undefined4 *)(param_1 + 0x4b) = 0x7f7fffff;
-  *(undefined4 *)((longlong)param_1 + 0x25c) = 0x7f7fffff;
-  *(undefined4 *)(param_1 + 0x4c) = 0xff7fffff;
-  *(undefined4 *)((longlong)param_1 + 0x264) = 0xff7fffff;
+  *(int32_t *)(param_1 + 0x45) = 0x7f7fffff;  // 最大正浮点数
+  *(int32_t *)((longlong)param_1 + 0x22c) = 0x7f7fffff;
+  *(int32_t *)(param_1 + 0x46) = 0xff7fffff;  // 最小负浮点数
+  *(int32_t *)((longlong)param_1 + 0x234) = 0xff7fffff;
+  *(int32_t *)(param_1 + 0x47) = 0x7f7fffff;
+  *(int32_t *)((longlong)param_1 + 0x23c) = 0x7f7fffff;
+  *(int32_t *)(param_1 + 0x48) = 0xff7fffff;
+  *(int32_t *)((longlong)param_1 + 0x244) = 0xff7fffff;
+  *(int32_t *)(param_1 + 0x49) = 0x7f7fffff;
+  *(int32_t *)((longlong)param_1 + 0x24c) = 0x7f7fffff;
+  *(int32_t *)(param_1 + 0x4a) = 0xff7fffff;
+  *(int32_t *)((longlong)param_1 + 0x254) = 0xff7fffff;
+  *(int32_t *)(param_1 + 0x4b) = 0x7f7fffff;
+  *(int32_t *)((longlong)param_1 + 0x25c) = 0x7f7fffff;
+  *(int32_t *)(param_1 + 0x4c) = 0xff7fffff;
+  *(int32_t *)((longlong)param_1 + 0x264) = 0xff7fffff;
   param_1[0x4d] = 0;
-  *(undefined4 *)(param_1 + 0x4e) = 0x7f7fffff;
-  *(undefined4 *)((longlong)param_1 + 0x274) = 0x7f7fffff;
-  *(undefined4 *)(param_1 + 0x4f) = 0xff7fffff;
-  *(undefined4 *)((longlong)param_1 + 0x27c) = 0xff7fffff;
+  *(int32_t *)(param_1 + 0x4e) = 0x7f7fffff;
+  *(int32_t *)((longlong)param_1 + 0x274) = 0x7f7fffff;
+  *(int32_t *)(param_1 + 0x4f) = 0xff7fffff;
+  *(int32_t *)((longlong)param_1 + 0x27c) = 0xff7fffff;
   
   // 初始化更多的计数器和状态字段
   param_1[0x51] = 0;
@@ -400,10 +400,10 @@ undefined8 *initialize_entity_data_structure(undefined8 *param_1, longlong param
   } while (lVar5 != 0);
   
   // 初始化边界值
-  *(undefined4 *)(param_1 + 0x84) = 0x7f7fffff;
-  *(undefined4 *)((longlong)param_1 + 0x424) = 0x7f7fffff;
-  *(undefined4 *)(param_1 + 0x85) = 0xff7fffff;
-  *(undefined4 *)((longlong)param_1 + 0x42c) = 0xff7fffff;
+  *(int32_t *)(param_1 + 0x84) = 0x7f7fffff;
+  *(int32_t *)((longlong)param_1 + 0x424) = 0x7f7fffff;
+  *(int32_t *)(param_1 + 0x85) = 0xff7fffff;
+  *(int32_t *)((longlong)param_1 + 0x42c) = 0xff7fffff;
   
   // 处理名称字符串并生成哈希值
   uVar4 = FUN_1801210b0(param_3);
@@ -429,12 +429,12 @@ undefined8 *initialize_entity_data_structure(undefined8 *param_1, longlong param
   FUN_18011d940(param_1 + 0x43);
   
   // 重置更多的字段
-  *(undefined8 *)((longlong)param_1 + 0xc) = 0;
+  *(uint64_t *)((longlong)param_1 + 0xc) = 0;
   param_1[5] = 0;
-  *(undefined4 *)(param_1 + 6) = 0;
-  *(undefined4 *)((longlong)param_1 + 0x3c) = 0xffffffff;
-  *(undefined4 *)((longlong)param_1 + 0x34) = 0x7f7fffff;
-  *(undefined4 *)(param_1 + 7) = 0x7f7fffff;
+  *(int32_t *)(param_1 + 6) = 0;
+  *(int32_t *)((longlong)param_1 + 0x3c) = 0xffffffff;
+  *(int32_t *)((longlong)param_1 + 0x34) = 0x7f7fffff;
+  *(int32_t *)(param_1 + 7) = 0x7f7fffff;
   param_1[8] = 0;
   param_1[10] = 0;
   param_1[9] = 0;
@@ -452,51 +452,51 @@ undefined8 *initialize_entity_data_structure(undefined8 *param_1, longlong param
   
   // 获取材质索引并更新全局状态
   iVar3 = FUN_180121250(&UNK_180a0644c, 0,
-                        *(undefined4 *)(param_1[0x44] + -4 + (longlong)*(int *)(param_1 + 0x43) * 4));
+                        *(int32_t *)(param_1[0x44] + -4 + (longlong)*(int *)(param_1 + 0x43) * 4));
   lVar5 = _DAT_180c8a9b0;
   if (*(int *)(_DAT_180c8a9b0 + 0x1b2c) == iVar3) {
     *(int *)(_DAT_180c8a9b0 + 0x1b34) = iVar3;
   }
   if (*(int *)(lVar5 + 0x1b30) == iVar3) {
-    *(undefined1 *)(lVar5 + 0x1b3f) = 1;
+    *(int8_t *)(lVar5 + 0x1b3f) = 1;
   }
   *(int *)((longlong)param_1 + 0x84) = iVar3;
   
   // 初始化渲染相关字段
   param_1[0x11] = 0;
-  *(undefined4 *)(param_1 + 0x12) = 0;
-  *(undefined4 *)((longlong)param_1 + 0x94) = 0x7f7fffff;
-  *(undefined4 *)(param_1 + 0x13) = 0x7f7fffff;
-  *(undefined4 *)((longlong)param_1 + 0x9c) = 0x3f000000;  // 0.5
+  *(int32_t *)(param_1 + 0x12) = 0;
+  *(int32_t *)((longlong)param_1 + 0x94) = 0x7f7fffff;
+  *(int32_t *)(param_1 + 0x13) = 0x7f7fffff;
+  *(int32_t *)((longlong)param_1 + 0x9c) = 0x3f000000;  // 0.5
   param_1[0x14] = 0x3f000000;  // 0.5
   param_1[0x15] = 0;
-  *(undefined4 *)(param_1 + 0x16) = 0;
-  *(undefined2 *)((longlong)param_1 + 0xb4) = 0;
-  *(undefined4 *)((longlong)param_1 + 0xb6) = 0;
-  *(undefined4 *)((longlong)param_1 + 0xba) = 0xffffffff;
-  *(undefined4 *)(param_1 + 0x18) = 0;
-  *(undefined8 *)((longlong)param_1 + 0xc4) = 0xffffffffffffffff;
-  *(undefined1 *)((longlong)param_1 + 0xcc) = 0;
-  *(undefined4 *)(param_1 + 0x1a) = 0;
-  *(undefined4 *)((longlong)param_1 + 0xd4) = 0xffffffff;
+  *(int32_t *)(param_1 + 0x16) = 0;
+  *(int16_t *)((longlong)param_1 + 0xb4) = 0;
+  *(int32_t *)((longlong)param_1 + 0xb6) = 0;
+  *(int32_t *)((longlong)param_1 + 0xba) = 0xffffffff;
+  *(int32_t *)(param_1 + 0x18) = 0;
+  *(uint64_t *)((longlong)param_1 + 0xc4) = 0xffffffffffffffff;
+  *(int8_t *)((longlong)param_1 + 0xcc) = 0;
+  *(int32_t *)(param_1 + 0x1a) = 0;
+  *(int32_t *)((longlong)param_1 + 0xd4) = 0xffffffff;
   param_1[0x1b] = 0;
-  *(undefined4 *)((longlong)param_1 + 0xec) = 0xf;
-  *(undefined4 *)(param_1 + 0x1d) = 0xf;
-  *(undefined4 *)((longlong)param_1 + 0xe4) = 0xf;
-  *(undefined4 *)(param_1 + 0x1c) = 0xf;
+  *(int32_t *)((longlong)param_1 + 0xec) = 0xf;
+  *(int32_t *)(param_1 + 0x1d) = 0xf;
+  *(int32_t *)((longlong)param_1 + 0xe4) = 0xf;
+  *(int32_t *)(param_1 + 0x1c) = 0xf;
   
   // 初始化更多的浮点值
-  *(undefined4 *)(param_1 + 0x1f) = 0x7f7fffff;
-  *(undefined4 *)((longlong)param_1 + 0xfc) = 0x7f7fffff;
-  *(undefined4 *)(param_1 + 0x1e) = 0x7f7fffff;
-  *(undefined4 *)((longlong)param_1 + 0xf4) = 0x7f7fffff;
+  *(int32_t *)(param_1 + 0x1f) = 0x7f7fffff;
+  *(int32_t *)((longlong)param_1 + 0xfc) = 0x7f7fffff;
+  *(int32_t *)(param_1 + 0x1e) = 0x7f7fffff;
+  *(int32_t *)((longlong)param_1 + 0xf4) = 0x7f7fffff;
   
   // 初始化标志和计数器
-  *(undefined4 *)(param_1 + 0x50) = 0xffffffff;
-  *(undefined4 *)((longlong)param_1 + 0x284) = 0;
-  *(undefined4 *)((longlong)param_1 + 0x2dc) = 0x3f800000;  // 1.0
-  *(undefined4 *)(param_1 + 0x5b) = 0x3f800000;  // 1.0
-  *(undefined4 *)(param_1 + 0x5c) = 0xffffffff;
+  *(int32_t *)(param_1 + 0x50) = 0xffffffff;
+  *(int32_t *)((longlong)param_1 + 0x284) = 0;
+  *(int32_t *)((longlong)param_1 + 0x2dc) = 0x3f800000;  // 1.0
+  *(int32_t *)(param_1 + 0x5b) = 0x3f800000;  // 1.0
+  *(int32_t *)(param_1 + 0x5c) = 0xffffffff;
   param_1[0x5d] = param_1 + 0x5e;
   param_1[0x66] = *param_1;
   param_1[0x73] = 0;
@@ -513,16 +513,16 @@ undefined8 *initialize_entity_data_structure(undefined8 *param_1, longlong param
   param_1[0x7b] = 0xff7fffffff7fffff;
   param_1[0x78] = 0;
   param_1[0x7e] = 0xffffffffffffffff;
-  *(undefined4 *)((longlong)param_1 + 0x3fc) = 0x7fffffff;
-  *(undefined4 *)(param_1 + 0x7f) = 0x7fffffff;
-  *(undefined4 *)((longlong)param_1 + 0x404) = 0x7fffffff;
-  *(undefined4 *)(param_1 + 0x80) = 0x7fffffff;
+  *(int32_t *)((longlong)param_1 + 0x3fc) = 0x7fffffff;
+  *(int32_t *)(param_1 + 0x7f) = 0x7fffffff;
+  *(int32_t *)((longlong)param_1 + 0x404) = 0x7fffffff;
+  *(int32_t *)(param_1 + 0x80) = 0x7fffffff;
   param_1[0x82] = 0;
   param_1[0x81] = 0;
   param_1[0x83] = 0;
   
   // 初始化最后的标志字段
-  *(undefined2 *)(param_1 + 0x86) = 0xffff;
+  *(int16_t *)(param_1 + 0x86) = 0xffff;
   *(byte *)((longlong)param_1 + 0x432) = *(byte *)((longlong)param_1 + 0x432) & 0xf8;
   
   return param_1;
@@ -536,7 +536,7 @@ undefined8 *initialize_entity_data_structure(undefined8 *param_1, longlong param
  * @param param_3 - 清理参数2
  * @param param_4 - 清理参数3
  */
-void cleanup_multiple_entity_structures(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void cleanup_multiple_entity_structures(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   longlong lVar1;
   
@@ -600,12 +600,12 @@ void cleanup_multiple_entity_structures(longlong param_1, undefined8 param_2, un
  * @param param_3 - 清理参数2
  * @param param_4 - 清理参数3
  */
-void cleanup_all_entities_in_complex_structure(longlong *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void cleanup_all_entities_in_complex_structure(longlong *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   longlong lVar1;
   longlong lVar2;
   int iVar3;
-  undefined8 uVar4;
+  uint64_t uVar4;
   
   uVar4 = 0xfffffffffffffffe;
   
@@ -730,7 +730,7 @@ void cleanup_all_entities_in_complex_structure(longlong *param_1, undefined8 par
  * @param param_3 - 清理参数2
  * @param param_4 - 清理参数3
  */
-void cleanup_single_entity_structure(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void cleanup_single_entity_structure(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   longlong lVar1;
   
@@ -752,14 +752,14 @@ void cleanup_single_entity_structure(longlong param_1, undefined8 param_2, undef
  * @param param_1 - 实体数据结构指针
  * @param param_2 - 材质参数
  */
-void update_material_index_status(longlong param_1, undefined8 param_2)
+void update_material_index_status(longlong param_1, uint64_t param_2)
 {
   longlong lVar1;
   int iVar2;
   
   // 获取材质索引
   iVar2 = FUN_180121250(param_2, 0,
-                        *(undefined4 *)
+                        *(int32_t *)
                          (*(longlong *)(param_1 + 0x220) + -4 +
                          (longlong)*(int *)(param_1 + 0x218) * 4));
   
@@ -771,7 +771,7 @@ void update_material_index_status(longlong param_1, undefined8 param_2)
     *(int *)(_DAT_180c8a9b0 + 0x1b34) = iVar2;
   }
   if (*(int *)(lVar1 + 0x1b30) == iVar2) {
-    *(undefined1 *)(lVar1 + 0x1b3f) = 1;
+    *(int8_t *)(lVar1 + 0x1b3f) = 1;
   }
   return;
 }

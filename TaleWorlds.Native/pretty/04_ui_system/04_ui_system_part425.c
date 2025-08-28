@@ -125,7 +125,7 @@ void ui_system_state_manager(void);
  * @param result_pointer 结果指针
  * @return ulonglong 处理结果码
  */
-ulonglong ui_event_processor_and_validator(longlong ui_context, undefined8 *event_buffer, uint data_size, undefined4 *result_pointer);
+ulonglong ui_event_processor_and_validator(longlong ui_context, uint64_t *event_buffer, uint data_size, int32_t *result_pointer);
 
 /**
  * @brief UI事件响应处理器
@@ -187,9 +187,9 @@ ulonglong ui_event_simplified_processor(void);
  * 
  * @param ui_context UI系统上下文
  * @param data_buffer 数据缓冲区
- * @return undefined8 处理结果码
+ * @return uint64_t 处理结果码
  */
-undefined8 ui_data_validator_and_converter(longlong ui_context, undefined8 *data_buffer);
+uint64_t ui_data_validator_and_converter(longlong ui_context, uint64_t *data_buffer);
 
 /**
  * @brief UI数据状态检查器
@@ -197,9 +197,9 @@ undefined8 ui_data_validator_and_converter(longlong ui_context, undefined8 *data
  * 检查UI系统数据状态，验证数据完整性。
  * 处理状态监控和错误检测。
  * 
- * @return undefined8 状态信息
+ * @return uint64_t 状态信息
  */
-undefined8 ui_data_state_checker(void);
+uint64_t ui_data_state_checker(void);
 
 /**
  * @brief UI数据流处理器
@@ -207,9 +207,9 @@ undefined8 ui_data_state_checker(void);
  * 处理UI系统数据流，执行数据转换和验证。
  * 支持流式处理和缓冲区管理。
  * 
- * @return undefined8 处理结果
+ * @return uint64_t 处理结果
  */
-undefined8 ui_data_flow_processor(void);
+uint64_t ui_data_flow_processor(void);
 
 /**
  * @brief UI数据优化处理器
@@ -217,9 +217,9 @@ undefined8 ui_data_flow_processor(void);
  * 优化UI系统数据处理，提高性能和效率。
  * 支持数据压缩和缓存管理。
  * 
- * @return undefined8 处理结果
+ * @return uint64_t 处理结果
  */
-undefined8 ui_data_optimization_processor(void);
+uint64_t ui_data_optimization_processor(void);
 
 /** @} */
 

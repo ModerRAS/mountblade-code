@@ -925,11 +925,11 @@ void register_game_log_management_components(void)
 void register_game_module_loader_components(void)
 
 {
-  undefined8 module_param;
-  undefined *module_info_ptr;
-  undefined1 *module_buffer;
-  undefined4 module_type;
-  undefined1 module_name_buffer [136];
+  uint64_t module_param;
+  void *module_info_ptr;
+  int8_t *module_buffer;
+  int32_t module_type;
+  int8_t module_name_buffer [136];
   
   // 初始化模块加载参数
   module_info_ptr = &MODULE_INFO_TABLE;
@@ -952,7 +952,7 @@ int initialize_game_debug_system(void)
 
 {
   longlong debug_handle;
-  undefined8 debug_param;
+  uint64_t debug_param;
   
   // 设置调试系统数据表
   DEBUG_SYSTEM_TABLE = &DEBUG_CORE_TABLE;
@@ -966,11 +966,11 @@ int initialize_game_debug_system(void)
 void register_game_debug_components(void)
 
 {
-  undefined8 debug_param;
-  undefined *debug_info_ptr;
-  undefined1 *debug_buffer;
-  undefined4 debug_type;
-  undefined1 debug_name_buffer [136];
+  uint64_t debug_param;
+  void *debug_info_ptr;
+  int8_t *debug_buffer;
+  int32_t debug_type;
+  int8_t debug_name_buffer [136];
   
   // 初始化调试组件参数
   debug_info_ptr = &DEBUG_INFO_TABLE;
@@ -994,11 +994,11 @@ void register_game_debug_components(void)
 void register_game_performance_monitoring_components(void)
 
 {
-  undefined8 perf_param;
-  undefined *perf_info_ptr;
-  undefined1 *perf_buffer;
-  undefined4 perf_type;
-  undefined1 perf_name_buffer [136];
+  uint64_t perf_param;
+  void *perf_info_ptr;
+  int8_t *perf_buffer;
+  int32_t perf_type;
+  int8_t perf_name_buffer [136];
   
   // 初始化性能监控组件参数
   perf_info_ptr = &PERFORMANCE_INFO_TABLE;
@@ -1494,11 +1494,11 @@ void register_game_multiplayer_system_components(void)
 void register_game_mod_system_components(void)
 
 {
-  undefined8 mod_param;
-  undefined *mod_info_ptr;
-  undefined1 *mod_buffer;
-  undefined4 mod_type;
-  undefined1 mod_name_buffer [136];
+  uint64_t mod_param;
+  void *mod_info_ptr;
+  int8_t *mod_buffer;
+  int32_t mod_type;
+  int8_t mod_name_buffer [136];
   
   // 初始化模组系统参数
   mod_info_ptr = &MOD_INFO_TABLE;

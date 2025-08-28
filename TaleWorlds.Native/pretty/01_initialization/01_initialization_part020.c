@@ -12,7 +12,7 @@
  * @param param3 未使用参数
  * @param param4 未使用参数
  */
-void calculate_render_quality_parameters(longlong render_context, float quality_param, undefined8 param3, undefined8 param4)
+void calculate_render_quality_parameters(longlong render_context, float quality_param, uint64_t param3, uint64_t param4)
 {
   ulonglong temp_ulong1;
   float temp_float1;
@@ -33,7 +33,7 @@ void calculate_render_quality_parameters(longlong render_context, float quality_
   float quality_factor4;
   float quality_factor5;
   float quality_factor6;
-  undefined4 temp_uint5;
+  int32_t temp_uint5;
   float quality_adjusted;
   float stack_float1;
   float stack_float2;
@@ -93,10 +93,10 @@ void calculate_render_quality_parameters(longlong render_context, float quality_
       }
       *(float *)(render_context + 0x238) = quality_base;
       temp_uint5 = log2f();
-      *(undefined4 *)(render_context + 0x248) = temp_uint5;
+      *(int32_t *)(render_context + 0x248) = temp_uint5;
       *(float *)(render_context + 0x250) = global_quality_value;
       temp_long1 = global_render_state;
-      *(undefined1 *)(global_render_state + 0x162b) = 1;
+      *(int8_t *)(global_render_state + 0x162b) = 1;
       temp_long1 = global_render_config;
     }
     else {
@@ -106,7 +106,7 @@ void calculate_render_quality_parameters(longlong render_context, float quality_
     }
   }
   else {
-    *(undefined4 *)(render_context + 0x238) = 0x3f800000;  // 1.0f
+    *(int32_t *)(render_context + 0x238) = 0x3f800000;  // 1.0f
     temp_long1 = global_render_state;
   }
   
@@ -152,7 +152,7 @@ void calculate_render_quality_parameters(longlong render_context, float quality_
       quality_base = quality_base + 0.01;
       *(float *)(render_context + 0x234) = quality_base;
     } while (quality_base <= 1.0);
-    *(undefined4 *)(render_context + 0x234) = 0x3f800000;  // 1.0f
+    *(int32_t *)(render_context + 0x234) = 0x3f800000;  // 1.0f
 LAB_QUALITY_CALC_DONE:
     stack_float1 = (float)(int)temp_uint2 / stack_float1;
     stack_float2 = (float)(int)temp_uint1 / (float)(int)temp_uint4;
@@ -188,7 +188,7 @@ LAB_QUALITY_CALC_DONE:
       quality_base = quality_base + 0.01;
       *(float *)(render_context + 0x238) = quality_base;
     } while (quality_base <= 1.0);
-    *(undefined4 *)(render_context + 0x238) = 0x3f800000;  // 1.0f
+    *(int32_t *)(render_context + 0x238) = 0x3f800000;  // 1.0f
 LAB_QUALITY_FINAL_DONE:
     stack_float1 = (float)(int)temp_uint1 / (float)(int)temp_uint2;
     stack_float2 = (float)(int)temp_ulong1 / (float)(int)temp_uint4;
@@ -206,12 +206,12 @@ LAB_QUALITY_FINAL_DONE:
  * @param param3 未使用参数
  * @param param4 未使用参数
  */
-void initialize_system_configuration(longlong *config_ptr, undefined8 param2, undefined8 param3, undefined1 param4)
+void initialize_system_configuration(longlong *config_ptr, uint64_t param2, uint64_t param3, int8_t param4)
 {
   int temp_int1;
   longlong temp_long1;
   longlong temp_long2;
-  undefined8 temp_ulong1;
+  uint64_t temp_ulong1;
   longlong *temp_ptr1;
   int *temp_ptr2;
   longlong temp_long3;
@@ -224,11 +224,11 @@ void initialize_system_configuration(longlong *config_ptr, undefined8 param2, un
   longlong *stack_ptr2;
   longlong **stack_ptr3;
   longlong stack_array1 [2];
-  undefined *stack_ptr4;
-  undefined *stack_ptr5;
+  void *stack_ptr4;
+  void *stack_ptr5;
   longlong stack_array2 [2];
-  undefined *stack_ptr6;
-  undefined *stack_ptr7;
+  void *stack_ptr6;
+  void *stack_ptr7;
   
   temp_long1 = global_system_base;
   stack_ptr1 = config_ptr;
@@ -306,12 +306,12 @@ void initialize_system_configuration(longlong *config_ptr, undefined8 param2, un
     temp_float1 = 1.0;
   }
   *(float *)(temp_long1 + 0x234) = temp_float1;
-  *(undefined4 *)(temp_long1 + 0x238) = 0x3f800000;  // 1.0f
+  *(int32_t *)(temp_long1 + 0x238) = 0x3f800000;  // 1.0f
   temp_float2 = 1.0;
   
   if (*(int *)(temp_long2 + 0x1ea0) == 1) {
     temp_int1 = *(int *)(temp_long2 + 0x1d50);
-    temp_ptr2 = (int *)get_system_info(*(undefined8 *)(global_system_base + 8), &stack_ptr2);
+    temp_ptr2 = (int *)get_system_info(*(uint64_t *)(global_system_base + 8), &stack_ptr2);
     temp_float2 = (float)temp_int1 / (float)*temp_ptr2;
     temp_float1 = temp_float2 * *(float *)(temp_long1 + 0x234);
     temp_float2 = temp_float2 * *(float *)(temp_long1 + 0x238);
@@ -334,7 +334,7 @@ void initialize_system_configuration(longlong *config_ptr, undefined8 param2, un
     *(float *)(temp_long1 + 0x238) = temp_float2;
   }
   else {
-    *(undefined4 *)(temp_long1 + 0x238) = 0x3e4ccccd;  // 0.2f
+    *(int32_t *)(temp_long1 + 0x238) = 0x3e4ccccd;  // 0.2f
   }
   return;
 }
@@ -346,20 +346,20 @@ void initialize_system_configuration(longlong *config_ptr, undefined8 param2, un
  * @param param1 未使用参数
  * @param buffer_ptr 输出缓冲区指针
  */
-void format_system_info_string(undefined8 param1, longlong buffer_ptr)
+void format_system_info_string(uint64_t param1, longlong buffer_ptr)
 {
-  undefined4 *temp_ptr1;
+  int32_t *temp_ptr1;
   int temp_int1;
   int temp_int2;
-  undefined1 stack_array1 [32];
-  undefined **stack_ptr1;
-  undefined8 stack_ulong1;
-  undefined *stack_ptr2;
-  undefined8 stack_ulong2;
+  int8_t stack_array1 [32];
+  void **stack_ptr1;
+  uint64_t stack_ulong1;
+  void *stack_ptr2;
+  uint64_t stack_ulong2;
   int stack_int1;
-  undefined1 stack_array2 [16];
-  undefined *stack_ptr3;
-  undefined8 stack_ulong3;
+  int8_t stack_array2 [16];
+  void *stack_ptr3;
+  uint64_t stack_ulong3;
   int stack_int2;
   ulonglong stack_ulong4;
   
@@ -373,19 +373,19 @@ void format_system_info_string(undefined8 param1, longlong buffer_ptr)
   create_string_buffer(&stack_ptr2);
   
   temp_int1 = 0;
-  *(undefined4 *)(buffer_ptr + 0x10) = 0;
+  *(int32_t *)(buffer_ptr + 0x10) = 0;
   
-  if (*(undefined1 **)(buffer_ptr + 8) != (undefined1 *)0x0) {
-    **(undefined1 **)(buffer_ptr + 8) = 0;
+  if (*(int8_t **)(buffer_ptr + 8) != (int8_t *)0x0) {
+    **(int8_t **)(buffer_ptr + 8) = 0;
     temp_int1 = *(int *)(buffer_ptr + 0x10);
   }
   
   temp_int2 = temp_int1 + 5;
   expand_buffer_capacity(buffer_ptr, temp_int2);
   
-  temp_ptr1 = (undefined4 *)((ulonglong)*(uint *)(buffer_ptr + 0x10) + *(longlong *)(buffer_ptr + 8));
+  temp_ptr1 = (int32_t *)((ulonglong)*(uint *)(buffer_ptr + 0x10) + *(longlong *)(buffer_ptr + 8));
   *temp_ptr1 = 0x3a757067;  // ":gup"
-  *(undefined2 *)(temp_ptr1 + 1) = 0x20;  // " "
+  *(int16_t *)(temp_ptr1 + 1) = 0x20;  // " "
   *(int *)(buffer_ptr + 0x10) = temp_int2;
   
   if (0 < stack_int2) {
@@ -395,15 +395,15 @@ void format_system_info_string(undefined8 param1, longlong buffer_ptr)
   }
   
   expand_buffer_capacity(buffer_ptr, temp_int1 + 6);
-  *(undefined2 *)((ulonglong)*(uint *)(buffer_ptr + 0x10) + *(longlong *)(buffer_ptr + 8)) = 10;  // '\n'
+  *(int16_t *)((ulonglong)*(uint *)(buffer_ptr + 0x10) + *(longlong *)(buffer_ptr + 8)) = 10;  // '\n'
   *(int *)(buffer_ptr + 0x10) = temp_int1 + 6;
   
   temp_int2 = temp_int1 + 0xb;
   expand_buffer_capacity(buffer_ptr, temp_int2);
   
-  temp_ptr1 = (undefined4 *)((ulonglong)*(uint *)(buffer_ptr + 0x10) + *(longlong *)(buffer_ptr + 8));
+  temp_ptr1 = (int32_t *)((ulonglong)*(uint *)(buffer_ptr + 0x10) + *(longlong *)(buffer_ptr + 8));
   *temp_ptr1 = 0x3a757063;  // ":cup"
-  *(undefined2 *)(temp_ptr1 + 1) = 0x20;  // " "
+  *(int16_t *)(temp_ptr1 + 1) = 0x20;  // " "
   *(int *)(buffer_ptr + 0x10) = temp_int2;
   
   if (0 < stack_int1) {
@@ -413,7 +413,7 @@ void format_system_info_string(undefined8 param1, longlong buffer_ptr)
   }
   
   expand_buffer_capacity(buffer_ptr, temp_int1 + 0xc);
-  *(undefined2 *)((ulonglong)*(uint *)(buffer_ptr + 0x10) + *(longlong *)(buffer_ptr + 8)) = 10;  // '\n'
+  *(int16_t *)((ulonglong)*(uint *)(buffer_ptr + 0x10) + *(longlong *)(buffer_ptr + 8)) = 10;  // '\n'
   *(int *)(buffer_ptr + 0x10) = temp_int1 + 0xc;
   
   stack_ptr2 = &global_format_string;
@@ -432,46 +432,46 @@ void format_system_info_string(undefined8 param1, longlong buffer_ptr)
  * @param param2 参数数据
  * @param param3 参数长度
  */
-void process_system_parameters(undefined8 param1, undefined8 param2, longlong param3)
+void process_system_parameters(uint64_t param1, uint64_t param2, longlong param3)
 {
   longlong temp_long1;
   longlong temp_long2;
-  undefined4 temp_uint1;
+  int32_t temp_uint1;
   int temp_int1;
   uint temp_uint2;
   uint temp_uint3;
-  undefined1 *temp_ptr1;
+  int8_t *temp_ptr1;
   ulonglong temp_ulong1;
-  undefined *temp_ptr2;
+  void *temp_ptr2;
   longlong temp_long3;
   uint temp_uint4;
-  undefined1 stack_array1 [32];
-  undefined1 stack_byte1;
-  undefined4 stack_uint1;
-  undefined4 stack_uint2;
-  undefined *stack_ptr1;
-  undefined1 *stack_ptr2;
+  int8_t stack_array1 [32];
+  int8_t stack_byte1;
+  int32_t stack_uint1;
+  int32_t stack_uint2;
+  void *stack_ptr1;
+  int8_t *stack_ptr2;
   uint stack_uint3;
-  undefined8 stack_ulong1;
-  undefined *stack_ptr3;
+  uint64_t stack_ulong1;
+  void *stack_ptr3;
   longlong stack_long1;
   uint stack_uint4;
-  undefined8 stack_ulong2;
-  undefined8 stack_ulong3;
-  undefined *stack_ptr4;
-  undefined8 stack_ulong4;
-  undefined4 stack_uint3;
-  undefined8 stack_ulong5;
-  undefined1 stack_array2 [32];
-  undefined8 stack_ulong6;
-  undefined8 stack_ulong7;
+  uint64_t stack_ulong2;
+  uint64_t stack_ulong3;
+  void *stack_ptr4;
+  uint64_t stack_ulong4;
+  int32_t stack_uint3;
+  uint64_t stack_ulong5;
+  int8_t stack_array2 [32];
+  uint64_t stack_ulong6;
+  uint64_t stack_ulong7;
   char stack_char1 [16];
   ulonglong stack_ulong8;
   
   stack_ulong6 = 0xfffffffffffffffe;
   stack_ulong8 = global_security_key ^ (ulonglong)stack_array1;
   
-  temp_ptr1 = (undefined1 *)0x0;
+  temp_ptr1 = (int8_t *)0x0;
   stack_uint1 = 0;
   stack_ulong3 = param2;
   stack_ulong7 = param2;
@@ -486,9 +486,9 @@ void process_system_parameters(undefined8 param1, undefined8 param2, longlong pa
   temp_long1 = stack_long1;
   temp_ulong1 = (ulonglong)stack_uint4;
   
-  *(undefined4 *)(temp_ulong1 + stack_long1) = 0x44495020;  // "DIP "
-  *(undefined2 *)(temp_ulong1 + 4 + stack_long1) = 0x203a;  // ": "
-  *(undefined1 *)(temp_ulong1 + 6 + stack_long1) = 0;
+  *(int32_t *)(temp_ulong1 + stack_long1) = 0x44495020;  // "DIP "
+  *(int16_t *)(temp_ulong1 + 4 + stack_long1) = 0x203a;  // ": "
+  *(int8_t *)(temp_ulong1 + 6 + stack_long1) = 0;
   stack_uint4 = 6;
   
   convert_process_id_to_string(stack_char1, &global_process_id_format, temp_uint1);
@@ -518,7 +518,7 @@ void process_system_parameters(undefined8 param1, undefined8 param2, longlong pa
   stack_ptr1 = &global_debug_string;
   temp_uint4 = 0;
   stack_ulong1 = 0;
-  stack_ptr2 = (undefined1 *)0x0;
+  stack_ptr2 = (int8_t *)0x0;
   stack_uint3 = 0;
   stack_uint1 = 2;
   
@@ -530,7 +530,7 @@ void process_system_parameters(undefined8 param1, undefined8 param2, longlong pa
 LAB_PROCESS_PARAMS:
     temp_uint4 = temp_uint2;
     if (temp_uint3 != 0) {
-      memcpy(temp_ptr1, *(undefined8 *)(param3 + 8), temp_ulong1);
+      memcpy(temp_ptr1, *(uint64_t *)(param3 + 8), temp_ulong1);
     }
   }
   else if (temp_uint3 != 0) {
@@ -538,7 +538,7 @@ LAB_PROCESS_PARAMS:
     if (temp_int1 < 0x10) {
       temp_int1 = 0x10;
     }
-    temp_ptr1 = (undefined1 *)allocate_parameter_buffer(global_memory_pool, (longlong)temp_int1, 0x13);
+    temp_ptr1 = (int8_t *)allocate_parameter_buffer(global_memory_pool, (longlong)temp_int1, 0x13);
     *temp_ptr1 = 0;
     stack_ptr2 = temp_ptr1;
     temp_uint2 = calculate_parameter_hash(temp_ptr1);
@@ -546,27 +546,27 @@ LAB_PROCESS_PARAMS:
     goto LAB_PROCESS_PARAMS;
   }
   
-  if (temp_ptr1 != (undefined1 *)0x0) {
+  if (temp_ptr1 != (int8_t *)0x0) {
     temp_ptr1[temp_ulong1] = 0;
   }
   
-  stack_uint2 = *(undefined4 *)(param3 + 0x1c);
-  stack_ulong1 = CONCAT44(stack_uint2, (undefined4)stack_ulong1);
+  stack_uint2 = *(int32_t *)(param3 + 0x1c);
+  stack_ulong1 = CONCAT44(stack_uint2, (int32_t)stack_ulong1);
   stack_uint3 = temp_uint3;
   
   if (temp_uint3 != 0xfffffffa) {
     temp_uint3 = temp_uint3 + 7;
-    if (temp_ptr1 == (undefined1 *)0x0) {
+    if (temp_ptr1 == (int8_t *)0x0) {
       if ((int)temp_uint3 < 0x10) {
         temp_uint3 = 0x10;
       }
-      temp_ptr1 = (undefined1 *)allocate_parameter_buffer(global_memory_pool, (longlong)(int)temp_uint3, 0x13);
+      temp_ptr1 = (int8_t *)allocate_parameter_buffer(global_memory_pool, (longlong)(int)temp_uint3, 0x13);
       *temp_ptr1 = 0;
     }
     else {
       if (temp_uint3 <= temp_uint4) goto LAB_PARAMETER_DONE;
       stack_byte1 = 0x13;
-      temp_ptr1 = (undefined1 *)reallocate_parameter_buffer(global_memory_pool, temp_ptr1, temp_uint3, 0x10);
+      temp_ptr1 = (int8_t *)reallocate_parameter_buffer(global_memory_pool, temp_ptr1, temp_uint3, 0x10);
     }
     stack_ptr2 = temp_ptr1;
     temp_uint1 = calculate_parameter_hash(temp_ptr1);
@@ -586,36 +586,36 @@ LAB_PARAMETER_DONE:
  * @param param3 参数数量
  * @param param4 未使用参数
  */
-undefined8 process_command_line_arguments(undefined8 param1, undefined8 param2, undefined8 param3, undefined8 param4)
+uint64_t process_command_line_arguments(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4)
 {
   char temp_char1;
   char temp_char2;
-  undefined8 *temp_ptr1;
-  undefined8 *temp_ptr2;
-  undefined8 *temp_ptr3;
+  uint64_t *temp_ptr1;
+  uint64_t *temp_ptr2;
+  uint64_t *temp_ptr3;
   longlong temp_long1;
   char *temp_ptr4;
   uint temp_uint1;
   int *temp_ptr5;
   ulonglong temp_ulong1;
-  undefined8 temp_ulong2;
+  uint64_t temp_ulong2;
   ulonglong temp_ulong2;
   ulonglong temp_ulong3;
   longlong temp_long2;
-  undefined8 *temp_ptr6;
+  uint64_t *temp_ptr6;
   ulonglong temp_ulong4;
-  undefined *stack_ptr1;
-  undefined1 *stack_ptr2;
+  void *stack_ptr1;
+  int8_t *stack_ptr2;
   uint stack_uint1;
-  undefined8 stack_ulong1;
-  undefined8 *stack_ptr3;
-  undefined8 *stack_ptr4;
-  undefined8 stack_ulong2;
-  undefined4 stack_uint2;
+  uint64_t stack_ulong1;
+  uint64_t *stack_ptr3;
+  uint64_t *stack_ptr4;
+  uint64_t stack_ulong2;
+  int32_t stack_uint2;
   ulonglong temp_ulong5;
   
-  stack_ptr3 = (undefined8 *)0x0;
-  stack_ptr4 = (undefined8 *)0x0;
+  stack_ptr3 = (uint64_t *)0x0;
+  stack_ptr4 = (uint64_t *)0x0;
   temp_ulong4 = 0;
   stack_ulong2 = 0;
   stack_uint2 = 3;
@@ -634,7 +634,7 @@ LAB_EXECUTE_CALLBACKS:
     for (; temp_ptr1 != temp_ptr3; temp_ptr1 = temp_ptr1 + 4) {
       (**(code **)*temp_ptr1)(temp_ptr1, 0);
     }
-    if (temp_ptr2 != (undefined8 *)0x0) {
+    if (temp_ptr2 != (uint64_t *)0x0) {
       free_allocated_memory(temp_ptr2);
     }
     return temp_ulong2;
@@ -645,18 +645,18 @@ LAB_EXECUTE_CALLBACKS:
 LAB_PROCESS_ARGUMENTS:
   stack_ptr1 = &global_debug_string;
   stack_ulong1 = 0;
-  stack_ptr2 = (undefined1 *)0x0;
+  stack_ptr2 = (int8_t *)0x0;
   stack_uint1 = 0;
   
   expand_debug_buffer(&stack_ptr1, *temp_ptr5);
   
   if (*temp_ptr5 != 0) {
-    memcpy(stack_ptr2, *(undefined8 *)(temp_ptr5 + -2), *temp_ptr5 + 1);
+    memcpy(stack_ptr2, *(uint64_t *)(temp_ptr5 + -2), *temp_ptr5 + 1);
   }
   
   if (*(longlong *)(temp_ptr5 + -2) != 0) {
     stack_uint1 = 0;
-    if (stack_ptr2 != (undefined1 *)0x0) {
+    if (stack_ptr2 != (int8_t *)0x0) {
       *stack_ptr2 = 0;
     }
     stack_ulong1 = stack_ulong1 & 0xffffffff;
@@ -677,7 +677,7 @@ LAB_PROCESS_ARGUMENTS:
   }
   
   temp_long1 = calculate_argument_hash(&stack_ptr1);
-  temp_ptr6 = (undefined8 *)&global_command_table;
+  temp_ptr6 = (uint64_t *)&global_command_table;
   
   do {
     temp_ptr4 = (char *)*temp_ptr6;
@@ -692,10 +692,10 @@ LAB_PROCESS_ARGUMENTS:
     temp_ptr6 = temp_ptr6 + 1;
     if (0x1809fde87 < (longlong)temp_ptr6) {
       stack_ptr1 = &global_debug_string;
-      if (stack_ptr2 != (undefined1 *)0x0) {
+      if (stack_ptr2 != (int8_t *)0x0) {
         free_allocated_memory();
       }
-      stack_ptr2 = (undefined1 *)0x0;
+      stack_ptr2 = (int8_t *)0x0;
       stack_ulong1 = (ulonglong)stack_ulong1._4_4_ << 0x20;
       stack_ptr1 = &global_error_string;
       temp_ulong2 = 1;
@@ -704,10 +704,10 @@ LAB_PROCESS_ARGUMENTS:
   } while( true );
   
   stack_ptr1 = &global_debug_string;
-  if (stack_ptr2 != (undefined1 *)0x0) {
+  if (stack_ptr2 != (int8_t *)0x0) {
     free_allocated_memory();
   }
-  stack_ptr2 = (undefined1 *)0x0;
+  stack_ptr2 = (int8_t *)0x0;
   stack_ulong1 = (ulonglong)stack_ulong1._4_4_ << 0x20;
   stack_ptr1 = &global_success_string;
   
@@ -752,22 +752,22 @@ static longlong global_success_string = 0;
 // 函数指针声明（简化实现）
 static void (*check_quality_threshold)(void*) = 0;
 static void (*update_quality_threshold)(void*) = 0;
-static void (*initialize_render_params)(void*, undefined8, undefined8, undefined8, undefined8) = 0;
-static undefined8 (*allocate_config_memory)(void*, longlong, longlong, longlong) = 0;
-static longlong (*create_config_object)(undefined8, void*) = 0;
-static void (*process_config_data)(undefined8, void**) = 0;
-static int (*get_system_info)(undefined8, void**) = 0;
+static void (*initialize_render_params)(void*, uint64_t, uint64_t, uint64_t, uint64_t) = 0;
+static uint64_t (*allocate_config_memory)(void*, longlong, longlong, longlong) = 0;
+static longlong (*create_config_object)(uint64_t, void*) = 0;
+static void (*process_config_data)(uint64_t, void**) = 0;
+static int (*get_system_info)(uint64_t, void**) = 0;
 static void (*initialize_buffer_structure)(void*, longlong) = 0;
 static void (*create_string_buffer)(void**) = 0;
 static void (*expand_buffer_capacity)(void*, int) = 0;
 static void (*cleanup_string_operations)(ulonglong) = 0;
 static void (*initialize_debug_buffer)(void**, int) = 0;
 static void (*expand_debug_buffer)(void**, int) = 0;
-static void (*convert_process_id_to_string)(char*, void*, undefined4) = 0;
+static void (*convert_process_id_to_string)(char*, void*, int32_t) = 0;
 static void (*format_debug_string)(void*, void*) = 0;
-static undefined1 (*allocate_parameter_buffer)(void*, longlong, longlong) = 0;
-static uint (*calculate_parameter_hash)(undefined1*) = 0;
-static undefined1 (*reallocate_parameter_buffer)(void*, undefined1*, ulonglong, longlong) = 0;
+static int8_t (*allocate_parameter_buffer)(void*, longlong, longlong) = 0;
+static uint (*calculate_parameter_hash)(int8_t*) = 0;
+static int8_t (*reallocate_parameter_buffer)(void*, int8_t*, ulonglong, longlong) = 0;
 static longlong (*calculate_argument_hash)(void**) = 0;
 static void (*free_allocated_memory)(void*) = 0;
 

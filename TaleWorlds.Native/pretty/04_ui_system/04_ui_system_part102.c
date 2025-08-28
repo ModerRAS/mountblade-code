@@ -51,10 +51,10 @@
 //   param_3 - 输出数据指针（变换后向量数据）
 //   param_4 - 变换参数2（变换矩阵参数）
 // 算法说明: 使用16.16定点数格式进行矩阵运算，支持向量的线性变换和范围限制
-void UIProcessVectorTransform(uint param_1, undefined8 param_2, undefined8 param_3, short param_4)
+void UIProcessVectorTransform(uint param_1, uint64_t param_2, uint64_t param_3, short param_4)
 {
   short transform_AX;
-  undefined2 temp_result;
+  int16_t temp_result;
   int matrix_index;
   longlong scale_factor;
   int *input_buffer;
@@ -65,7 +65,7 @@ void UIProcessVectorTransform(uint param_1, undefined8 param_2, undefined8 param
   longlong loop_counter;
   ulonglong scale_param;
   longlong iteration_count;
-  undefined2 *output_pointer;
+  int16_t *output_pointer;
   
   // 计算缓冲区偏移量
   temp_offset = buffer_offset - (longlong)output_pointer;
@@ -88,7 +88,7 @@ void UIProcessVectorTransform(uint param_1, undefined8 param_2, undefined8 param
     // 处理结果值范围限制
     result_value = matrix_index + 0x3fff >> 0xe;
     if (result_value < 0x8000) {
-      temp_result = (undefined2)result_value;
+      temp_result = (int16_t)result_value;
       if (result_value < -0x8000) {
         temp_result = 0x8000;  // 最小值限制
       }
@@ -139,7 +139,7 @@ void UIMatrixInverseTransform(longlong param_1, longlong param_2, int param_3)
   double matrix_val1;
   double matrix_val2;
   double result_val;
-  undefined1 conversion_buffer [16];
+  int8_t conversion_buffer [16];
   longlong element_index;
   double *matrix_pointer;
   longlong row_count;
@@ -147,13 +147,13 @@ void UIMatrixInverseTransform(longlong param_1, longlong param_2, int param_3)
   ulonglong element_count;
   ulonglong remaining_elements;
   longlong batch_size;
-  undefined1 (*buffer_ptr) [16];
+  int8_t (*buffer_ptr) [16];
   longlong processed_elements;
   longlong matrix_offset;
-  undefined4 float_part1;
-  undefined4 float_part2;
+  int32_t float_part1;
+  int32_t float_part2;
   double scale_factor;
-  undefined1 stack_protector [8];
+  int8_t stack_protector [8];
   double matrix_stack [49];
   ulonglong security_cookie;
   
@@ -161,7 +161,7 @@ void UIMatrixInverseTransform(longlong param_1, longlong param_2, int param_3)
   security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_protector;
   element_count = (ulonglong)param_3;
   element_index = 0;
-  buffer_ptr = (undefined1 (*) [16])stack_protector;
+  buffer_ptr = (int8_t (*) [16])stack_protector;
   
   // 预处理：将输入数据转换为双精度浮点数
   do {
@@ -182,7 +182,7 @@ void UIMatrixInverseTransform(longlong param_1, longlong param_2, int param_3)
     do {
       // 处理矩阵元素，进行数值范围检查
       float_part1 = SUB84(matrix_stack[0], 0);
-      float_part2 = (undefined4)((ulonglong)matrix_stack[0] >> 0x20);
+      float_part2 = (int32_t)((ulonglong)matrix_stack[0] >> 0x20);
       if (matrix_stack[0] <= 9.999999717180685e-10) {
         float_part1 = 0xe0000000;  // 极小值处理
         float_part2 = 0x3e112e0b;
@@ -357,7 +357,7 @@ void UIAdvancedMatrixProcessor(void)
 // 错误处理: 检测到栈破坏时调用系统安全处理函数
 void UIStackProtectionHandler(void)
 {
-  undefined8 stack_cookie;
+  uint64_t stack_cookie;
   
   // 安全检查：函数不会返回
   FUN_1808fc050((float)stack_cookie);
@@ -472,7 +472,7 @@ void UIFloatMatrixTransformer(longlong param_1, float *param_2, int param_3)
 // 加密算法: 使用XOR操作对变换后的数据进行加密保护
 // 安全机制: 通过地址计算和密钥XOR操作保护敏感数据
 // 应用场景: UI敏感数据处理、加密动画参数、安全配置存储
-void UIEncryptedMatrixTransformer(longlong param_1, longlong param_2, undefined8 param_3, longlong param_4)
+void UIEncryptedMatrixTransformer(longlong param_1, longlong param_2, uint64_t param_3, longlong param_4)
 {
   float transform_factor;
   float matrix_val1;
@@ -679,13 +679,13 @@ double UIVectorSquareSumCalculator(longlong param_1, int param_2)
   float *vector_ptr1;
   float *vector_ptr2;
   float *vector_ptr3;
-  undefined8 *data_ptr;
+  uint64_t *data_ptr;
   float element_val;
   uint batch_count;
   longlong remaining_elements;
   float *vector_array;
   int processed_elements;
-  undefined8 *batch_ptr;
+  uint64_t *batch_ptr;
   ulonglong batch_iterations;
   double square_val1;
   double square_val2;
@@ -731,7 +731,7 @@ double UIVectorSquareSumCalculator(longlong param_1, int param_2)
       sum_part2 = 0.0;
       sum_part3 = 0.0;
       temp_sum2 = 0.0;
-      batch_ptr = (undefined8 *)(param_1 + (longlong)processed_elements * 4);
+      batch_ptr = (uint64_t *)(param_1 + (longlong)processed_elements * 4);
       do {
         processed_elements = processed_elements + 4;
         square_val1 = (double)(float)*batch_ptr;
@@ -909,7 +909,7 @@ void UIDoubleArrayProcessor(double *param_1, longlong param_2, float param_3, in
   // 批量输出处理（8字节对齐优化）
   if (((0 < (int)output_size) && (element_count = 0, 7 < output_size)) &&
      ((filter_buffer1 + filter_order < param_1 ||
-      ((undefined1 *)((longlong)param_1 + filter_order * 4) < filter_buffer1)))) {
+      ((int8_t *)((longlong)param_1 + filter_order * 4) < filter_buffer1)))) {
     alignment_mask = output_size & 0x80000007;
     if ((int)alignment_mask < 0) {
       alignment_mask = (alignment_mask - 1 | 0xfffffff8) + 1;
@@ -1045,34 +1045,34 @@ void UITrigonometricGenerator(longlong param_1, longlong param_2, int param_3, i
 // 安全机制: 包含栈保护cookie检查，防止栈溢出攻击
 // 应用场景: UI数据编码、字符映射、数据压缩、格式转换
 void UIEncodedDataProcessor(longlong param_1, longlong param_2, int param_3, ulonglong param_4, uint param_5,
-                            int param_6, undefined4 param_7)
+                            int param_6, int32_t param_7)
 {
   char encoding_char;
-  undefined4 data_word;
+  int32_t data_word;
   longlong range_start;
   longlong range_end;
-  undefined4 *data_ptr;
-  undefined4 *output_ptr;
+  int32_t *data_ptr;
+  int32_t *output_ptr;
   int element_count;
   longlong batch_counter;
   longlong range_size;
   char *encoding_table;
   longlong element_index;
   int mapping_index;
-  undefined *mapping_table;
-  undefined4 *output_buffer;
-  undefined4 temp_buffer [231];
-  undefined1 stack_guard [32];
+  void *mapping_table;
+  int32_t *output_buffer;
+  int32_t temp_buffer [231];
+  int8_t stack_guard [32];
   int buffer_size;
-  undefined4 process_flag;
+  int32_t process_flag;
   int mapping_size;
   uint data_size;
   ulonglong iteration_count;
   longlong element_stride;
   longlong data_stride;
   longlong offset_val;
-  undefined4 work_buffer [22];
-  undefined4 conversion_buffer [26];
+  int32_t work_buffer [22];
+  int32_t conversion_buffer [26];
   ulonglong security_cookie;
   
   // 安全检查：栈保护cookie
@@ -1100,7 +1100,7 @@ void UIEncodedDataProcessor(longlong param_1, longlong param_2, int param_3, ulo
     data_stride = (longlong)(int)data_size << 2;
     offset_val = (longlong)param_3;
     element_count = 0;
-    output_buffer = (undefined4 *)(param_1 + 8);
+    output_buffer = (int32_t *)(param_1 + 8);
     iteration_count = (ulonglong)param_5;
     do {
       range_start = (longlong)encoding_table[1];
@@ -1201,15 +1201,15 @@ void UIEncodedDataProcessor(longlong param_1, longlong param_2, int param_3, ulo
 // 性能优化: 寄存器变量优化，减少内存访问开销，提高处理效率
 // 安全机制: 包含栈保护cookie检查，防止栈溢出攻击
 // 应用场景: 高性能数据编码、批量数据处理、实时编码转换
-void UIAdvancedEncodedDataProcessor(undefined8 param_1, undefined8 param_2, int param_3, ulonglong param_4,
-                                   undefined8 param_5, ulonglong param_6, undefined8 param_7, longlong param_8)
+void UIAdvancedEncodedDataProcessor(uint64_t param_1, uint64_t param_2, int param_3, ulonglong param_4,
+                                   uint64_t param_5, ulonglong param_6, uint64_t param_7, longlong param_8)
 {
   char encoding_char;
-  undefined4 data_word;
+  int32_t data_word;
   longlong range_start;
   longlong range_end;
-  undefined4 *data_ptr;
-  undefined4 *output_ptr;
+  int32_t *data_ptr;
+  int32_t *output_ptr;
   longlong batch_counter;
   longlong base_pointer;
   longlong range_size;
@@ -1220,18 +1220,18 @@ void UIAdvancedEncodedDataProcessor(undefined8 param_1, undefined8 param_2, int 
   longlong output_base;
   longlong mapping_table;
   int iteration_count;
-  undefined4 *output_buffer;
+  int32_t *output_buffer;
   longlong data_stride;
   longlong offset_val;
   ulonglong stack_cookie;
-  undefined4 process_flag;
-  undefined4 work_buffer [231];
+  int32_t process_flag;
+  int32_t work_buffer [231];
   
   // 计算数据步长和偏移量
   data_stride = (longlong)(int)param_4 << 2;
   offset_val = (longlong)param_3;
   iteration_count = 0;
-  output_buffer = (undefined4 *)(base_pointer + 8);
+  output_buffer = (int32_t *)(base_pointer + 8);
   param_7 = input_buffer;
   
   do {
@@ -1249,13 +1249,13 @@ void UIAdvancedEncodedDataProcessor(undefined8 param_1, undefined8 param_2, int 
       if (3 < range_end + 1) {
         batch_counter = ((range_start - range_size) - 3U >> 2) + 1;
         range_size = range_size + batch_counter * 4;
-        data_ptr = (undefined4 *)(&stack0x000000b8 + range_end * 4);
+        data_ptr = (int32_t *)(&stack0x000000b8 + range_end * 4);
         do {
           // 批量复制数据到工作缓冲区
-          *(undefined4 *)(&stack0x00000060 + element_index * 4) = data_ptr[2];
-          *(undefined4 *)(&stack0x00000064 + element_index * 4) = data_ptr[1];
-          *(undefined4 *)(&stack0x00000068 + element_index * 4) = *data_ptr;
-          *(undefined4 *)(&stack0x0000006c + element_index * 4) = data_ptr[-1];
+          *(int32_t *)(&stack0x00000060 + element_index * 4) = data_ptr[2];
+          *(int32_t *)(&stack0x00000064 + element_index * 4) = data_ptr[1];
+          *(int32_t *)(&stack0x00000068 + element_index * 4) = *data_ptr;
+          *(int32_t *)(&stack0x0000006c + element_index * 4) = data_ptr[-1];
           element_index = element_index + 4;
           batch_counter = batch_counter + -1;
           data_ptr = data_ptr + -4;
@@ -1263,9 +1263,9 @@ void UIAdvancedEncodedDataProcessor(undefined8 param_1, undefined8 param_2, int 
       }
       
       if (range_size <= range_start) {
-        output_ptr = (undefined4 *)(&stack0x00000060 + element_index * 4);
+        output_ptr = (int32_t *)(&stack0x00000060 + element_index * 4);
         element_index = (range_start - range_size) + 1;
-        data_ptr = (undefined4 *)(&stack0x000000c0 + (range_start - range_size) * 4);
+        data_ptr = (int32_t *)(&stack0x000000c0 + (range_start - range_size) * 4);
         do {
           data_word = *data_ptr;
           data_ptr = data_ptr + -1;
@@ -1285,11 +1285,11 @@ void UIAdvancedEncodedDataProcessor(undefined8 param_1, undefined8 param_2, int 
       do {
         // 根据映射表进行高级数据转换
         range_start = (longlong)((int)*(char *)(mapping_index + mapping_table) - (int)encoding_char);
-        data_ptr[-2] = *(undefined4 *)(&stack0x00000060 + range_start * 4);
-        data_ptr[-1] = *(undefined4 *)(&stack0x00000064 + range_start * 4);
-        *data_ptr = *(undefined4 *)(&stack0x00000068 + range_start * 4);
-        data_ptr[1] = *(undefined4 *)(&stack0x0000006c + range_start * 4);
-        data_ptr[2] = *(undefined4 *)(&stack0x00000070 + range_start * 4);
+        data_ptr[-2] = *(int32_t *)(&stack0x00000060 + range_start * 4);
+        data_ptr[-1] = *(int32_t *)(&stack0x00000064 + range_start * 4);
+        *data_ptr = *(int32_t *)(&stack0x00000068 + range_start * 4);
+        data_ptr[1] = *(int32_t *)(&stack0x0000006c + range_start * 4);
+        data_ptr[2] = *(int32_t *)(&stack0x00000070 + range_start * 4);
         range_size = range_size + -1;
         data_ptr = data_ptr + 5;
         mapping_index = mapping_index + 1;

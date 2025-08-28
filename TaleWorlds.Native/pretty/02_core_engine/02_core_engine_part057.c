@@ -4,41 +4,41 @@
 // 包含4个函数：渲染状态更新、资源管理、事件处理和系统初始化
 
 // 函数：更新渲染状态和资源管理
-void update_render_state_and_resources(longlong render_context, longlong scene_manager, undefined8 render_params, undefined8 resource_flags)
+void update_render_state_and_resources(longlong render_context, longlong scene_manager, uint64_t render_params, uint64_t resource_flags)
 {
-    undefined4 *temp_ptr1;
-    undefined8 *temp_ptr2;
+    int32_t *temp_ptr1;
+    uint64_t *temp_ptr2;
     float distance_threshold;
-    undefined4 temp_uint1;
-    undefined4 temp_uint2;
-    undefined4 temp_uint3;
-    undefined8 temp_ulong1;
-    undefined8 *temp_ptr3;
+    int32_t temp_uint1;
+    int32_t temp_uint2;
+    int32_t temp_uint3;
+    uint64_t temp_ulong1;
+    uint64_t *temp_ptr3;
     uint temp_counter;
     int temp_int;
-    undefined8 *resource_array;
+    uint64_t *resource_array;
     longlong temp_long1;
-    undefined8 *temp_ptr4;
+    uint64_t *temp_ptr4;
     longlong *object_list;
     longlong temp_long2;
-    undefined8 *temp_ptr5;
-    undefined8 *temp_ptr6;
-    undefined8 *temp_ptr7;
+    uint64_t *temp_ptr5;
+    uint64_t *temp_ptr6;
+    uint64_t *temp_ptr7;
     longlong scene_offset;
     ulonglong object_count;
-    undefined8 *temp_ptr8;
+    uint64_t *temp_ptr8;
     longlong temp_long3;
     longlong temp_long4;
     float render_distance;
     longlong stack_offset1;
     longlong *stack_ptr1;
     longlong stack_offset2;
-    undefined8 stack_value1;
-    undefined4 stack_value2;
+    uint64_t stack_value1;
+    int32_t stack_value2;
     
     stack_ptr1 = (longlong *)0x0;
     stack_offset2 = 0;
-    temp_ptr6 = (undefined8 *)0x0;
+    temp_ptr6 = (uint64_t *)0x0;
     stack_value1 = 0;
     stack_value2 = 3;
     
@@ -58,7 +58,7 @@ void update_render_state_and_resources(longlong render_context, longlong scene_m
                 break;
             }
             temp_counter = (int)resource_array + 1;
-            resource_array = (undefined8 *)(ulonglong)temp_counter;
+            resource_array = (uint64_t *)(ulonglong)temp_counter;
             object_list = object_list + 1;
         } while ((ulonglong)(longlong)(int)temp_counter < object_count);
     }
@@ -113,9 +113,9 @@ LAB_180092c16:
             }
             temp_counter = (int)temp_ptr7 + 1;
             temp_long2 = *(longlong *)(scene_offset + 0x178);
-            resource_array = (undefined8 *)(longlong)(int)temp_counter;
-            temp_ptr7 = (undefined8 *)(ulonglong)temp_counter;
-        } while ((undefined8 *)(longlong)(int)temp_counter < (undefined8 *)((*(longlong *)(scene_offset + 0x180) - temp_long2) / 0x50));
+            resource_array = (uint64_t *)(longlong)(int)temp_counter;
+            temp_ptr7 = (uint64_t *)(ulonglong)temp_counter;
+        } while ((uint64_t *)(longlong)(int)temp_counter < (uint64_t *)((*(longlong *)(scene_offset + 0x180) - temp_long2) / 0x50));
     }
     
     // 解锁资源
@@ -146,36 +146,36 @@ LAB_180092c16:
                 temp_long2 = _DAT_180c8ed68;
                 distance_threshold = *(float *)(scene_offset + 0x2c + (longlong)resource_array);
                 if ((distance_threshold != 0.0) && (render_distance - *(float *)(scene_offset + 0x28 + (longlong)resource_array) < distance_threshold)) {
-                    temp_ptr8 = *(undefined8 **)(_DAT_180c8ed68 + 0xa0);
-                    if (temp_ptr8 < *(undefined8 **)(_DAT_180c8ed68 + 0xa8)) {
-                        *(undefined8 **)(_DAT_180c8ed68 + 0xa0) = temp_ptr8 + 6;
+                    temp_ptr8 = *(uint64_t **)(_DAT_180c8ed68 + 0xa0);
+                    if (temp_ptr8 < *(uint64_t **)(_DAT_180c8ed68 + 0xa8)) {
+                        *(uint64_t **)(_DAT_180c8ed68 + 0xa0) = temp_ptr8 + 6;
                         temp_ptr8[4] = 0xffffffffffffffff;
-                        temp_ulong1 = ((undefined8 *)(scene_offset + (longlong)resource_array))[1];
-                        *temp_ptr8 = *(undefined8 *)(scene_offset + (longlong)resource_array);
+                        temp_ulong1 = ((uint64_t *)(scene_offset + (longlong)resource_array))[1];
+                        *temp_ptr8 = *(uint64_t *)(scene_offset + (longlong)resource_array);
                         temp_ptr8[1] = temp_ulong1;
-                        temp_ptr1 = (undefined4 *)(scene_offset + 0x10 + (longlong)resource_array);
+                        temp_ptr1 = (int32_t *)(scene_offset + 0x10 + (longlong)resource_array);
                         temp_uint1 = temp_ptr1[1];
                         temp_uint2 = temp_ptr1[2];
                         temp_uint3 = temp_ptr1[3];
-                        *(undefined4 *)(temp_ptr8 + 2) = *temp_ptr1;
-                        *(undefined4 *)((longlong)temp_ptr8 + 0x14) = temp_uint1;
-                        *(undefined4 *)(temp_ptr8 + 3) = temp_uint2;
-                        *(undefined4 *)((longlong)temp_ptr8 + 0x1c) = temp_uint3;
-                        *(undefined4 *)(temp_ptr8 + 4) = *(undefined4 *)(scene_offset + 0x20 + (longlong)resource_array);
-                        *(undefined4 *)((longlong)temp_ptr8 + 0x24) = *(undefined4 *)(scene_offset + 0x24 + (longlong)resource_array);
-                        *(undefined4 *)((longlong)temp_ptr8 + 0x2c) = *(undefined4 *)(scene_offset + 0x2c + (longlong)resource_array);
-                        *(undefined4 *)(temp_ptr8 + 5) = *(undefined4 *)(scene_offset + 0x28 + (longlong)resource_array);
+                        *(int32_t *)(temp_ptr8 + 2) = *temp_ptr1;
+                        *(int32_t *)((longlong)temp_ptr8 + 0x14) = temp_uint1;
+                        *(int32_t *)(temp_ptr8 + 3) = temp_uint2;
+                        *(int32_t *)((longlong)temp_ptr8 + 0x1c) = temp_uint3;
+                        *(int32_t *)(temp_ptr8 + 4) = *(int32_t *)(scene_offset + 0x20 + (longlong)resource_array);
+                        *(int32_t *)((longlong)temp_ptr8 + 0x24) = *(int32_t *)(scene_offset + 0x24 + (longlong)resource_array);
+                        *(int32_t *)((longlong)temp_ptr8 + 0x2c) = *(int32_t *)(scene_offset + 0x2c + (longlong)resource_array);
+                        *(int32_t *)(temp_ptr8 + 5) = *(int32_t *)(scene_offset + 0x28 + (longlong)resource_array);
                     }
                     else {
                         // 扩展可见对象缓冲区
-                        temp_ptr5 = *(undefined8 **)(_DAT_180c8ed68 + 0x98);
+                        temp_ptr5 = *(uint64_t **)(_DAT_180c8ed68 + 0x98);
                         temp_long1 = ((longlong)temp_ptr8 - (longlong)temp_ptr5) / 0x30;
                         if (temp_long1 == 0) {
                             temp_long1 = 1;
 LAB_180092e59:
-                            temp_ptr3 = (undefined8 *)allocate_memory(_DAT_180c8ed18, temp_long1 * 0x30, *(undefined1 *)(_DAT_180c8ed68 + 0xb0));
-                            temp_ptr8 = *(undefined8 **)(temp_long2 + 0xa0);
-                            temp_ptr5 = *(undefined8 **)(temp_long2 + 0x98);
+                            temp_ptr3 = (uint64_t *)allocate_memory(_DAT_180c8ed18, temp_long1 * 0x30, *(int8_t *)(_DAT_180c8ed68 + 0xb0));
+                            temp_ptr8 = *(uint64_t **)(temp_long2 + 0xa0);
+                            temp_ptr5 = *(uint64_t **)(temp_long2 + 0x98);
                         }
                         else {
                             temp_long1 = temp_long1 * 2;
@@ -189,18 +189,18 @@ LAB_180092e59:
                             temp_long4 = (longlong)temp_ptr3 - (longlong)temp_ptr5;
                             temp_ptr5 = temp_ptr5 + 4;
                             do {
-                                *(undefined8 *)(temp_long4 + (longlong)temp_ptr5) = 0xffffffffffffffff;
+                                *(uint64_t *)(temp_long4 + (longlong)temp_ptr5) = 0xffffffffffffffff;
                                 temp_ulong1 = temp_ptr5[-3];
                                 *temp_ptr4 = temp_ptr5[-4];
                                 temp_ptr4[1] = temp_ulong1;
                                 temp_ulong1 = temp_ptr5[-1];
-                                temp_ptr2 = (undefined8 *)(temp_long4 + -0x10 + (longlong)temp_ptr5);
+                                temp_ptr2 = (uint64_t *)(temp_long4 + -0x10 + (longlong)temp_ptr5);
                                 *temp_ptr2 = temp_ptr5[-2];
                                 temp_ptr2[1] = temp_ulong1;
-                                *(undefined4 *)(temp_long4 + (longlong)temp_ptr5) = *(undefined4 *)temp_ptr5;
-                                *(undefined4 *)(temp_long4 + 4 + (longlong)temp_ptr5) = *(undefined4 *)((longlong)temp_ptr5 + 4);
-                                *(undefined4 *)(temp_long4 + 0xc + (longlong)temp_ptr5) = *(undefined4 *)((longlong)temp_ptr5 + 0xc);
-                                *(undefined4 *)(temp_long4 + 8 + (longlong)temp_ptr5) = *(undefined4 *)(temp_ptr5 + 1);
+                                *(int32_t *)(temp_long4 + (longlong)temp_ptr5) = *(int32_t *)temp_ptr5;
+                                *(int32_t *)(temp_long4 + 4 + (longlong)temp_ptr5) = *(int32_t *)((longlong)temp_ptr5 + 4);
+                                *(int32_t *)(temp_long4 + 0xc + (longlong)temp_ptr5) = *(int32_t *)((longlong)temp_ptr5 + 0xc);
+                                *(int32_t *)(temp_long4 + 8 + (longlong)temp_ptr5) = *(int32_t *)(temp_ptr5 + 1);
                                 temp_ptr4 = temp_ptr4 + 6;
                                 temp_ptr2 = temp_ptr5 + 2;
                                 temp_ptr5 = temp_ptr5 + 6;
@@ -209,36 +209,36 @@ LAB_180092e59:
                         
                         // 添加新对象
                         temp_ptr4[4] = 0xffffffffffffffff;
-                        temp_ulong1 = ((undefined8 *)(scene_offset + (longlong)resource_array))[1];
-                        *temp_ptr4 = *(undefined8 *)(scene_offset + (longlong)resource_array);
+                        temp_ulong1 = ((uint64_t *)(scene_offset + (longlong)resource_array))[1];
+                        *temp_ptr4 = *(uint64_t *)(scene_offset + (longlong)resource_array);
                         temp_ptr4[1] = temp_ulong1;
-                        temp_ptr1 = (undefined4 *)(scene_offset + 0x10 + (longlong)resource_array);
+                        temp_ptr1 = (int32_t *)(scene_offset + 0x10 + (longlong)resource_array);
                         temp_uint1 = temp_ptr1[1];
                         temp_uint2 = temp_ptr1[2];
                         temp_uint3 = temp_ptr1[3];
-                        *(undefined4 *)(temp_ptr4 + 2) = *temp_ptr1;
-                        *(undefined4 *)((longlong)temp_ptr4 + 0x14) = temp_uint1;
-                        *(undefined4 *)(temp_ptr4 + 3) = temp_uint2;
-                        *(undefined4 *)((longlong)temp_ptr4 + 0x1c) = temp_uint3;
-                        *(undefined4 *)(temp_ptr4 + 4) = *(undefined4 *)(scene_offset + 0x20 + (longlong)resource_array);
-                        *(undefined4 *)((longlong)temp_ptr4 + 0x24) = *(undefined4 *)(scene_offset + 0x24 + (longlong)resource_array);
-                        *(undefined4 *)((longlong)temp_ptr4 + 0x2c) = *(undefined4 *)(scene_offset + 0x2c + (longlong)resource_array);
-                        *(undefined4 *)(temp_ptr4 + 5) = *(undefined4 *)(scene_offset + 0x28 + (longlong)resource_array);
+                        *(int32_t *)(temp_ptr4 + 2) = *temp_ptr1;
+                        *(int32_t *)((longlong)temp_ptr4 + 0x14) = temp_uint1;
+                        *(int32_t *)(temp_ptr4 + 3) = temp_uint2;
+                        *(int32_t *)((longlong)temp_ptr4 + 0x1c) = temp_uint3;
+                        *(int32_t *)(temp_ptr4 + 4) = *(int32_t *)(scene_offset + 0x20 + (longlong)resource_array);
+                        *(int32_t *)((longlong)temp_ptr4 + 0x24) = *(int32_t *)(scene_offset + 0x24 + (longlong)resource_array);
+                        *(int32_t *)((longlong)temp_ptr4 + 0x2c) = *(int32_t *)(scene_offset + 0x2c + (longlong)resource_array);
+                        *(int32_t *)(temp_ptr4 + 5) = *(int32_t *)(scene_offset + 0x28 + (longlong)resource_array);
                         
                         if (*(longlong *)(temp_long2 + 0x98) != 0) {
                             // 警告：子程序不返回
                             FUN_18064e900();
                         }
-                        *(undefined8 **)(temp_long2 + 0x98) = temp_ptr3;
-                        *(undefined8 **)(temp_long2 + 0xa0) = temp_ptr4 + 6;
-                        *(undefined8 **)(temp_long2 + 0xa8) = temp_ptr3 + temp_long1 * 6;
+                        *(uint64_t **)(temp_long2 + 0x98) = temp_ptr3;
+                        *(uint64_t **)(temp_long2 + 0xa0) = temp_ptr4 + 6;
+                        *(uint64_t **)(temp_long2 + 0xa8) = temp_ptr3 + temp_long1 * 6;
                     }
                 }
                 
                 temp_counter = (int)temp_ptr7 + 1;
                 scene_offset = *(longlong *)(temp_long3 + 0x11ae8);
                 resource_array = resource_array + 6;
-                temp_ptr7 = (undefined8 *)(ulonglong)temp_counter;
+                temp_ptr7 = (uint64_t *)(ulonglong)temp_counter;
             } while ((ulonglong)(longlong)(int)temp_counter < (ulonglong)((*(longlong *)(temp_long3 + 0x11af0) - scene_offset) / 0x30));
         }
         
@@ -268,13 +268,13 @@ LAB_180092e59:
                 temp_counter = (int)temp_ptr7 + 1;
                 temp_ptr6 = temp_ptr6 + 10;
                 temp_long3 = *(longlong *)(stack_offset1 + 0x11bc8);
-                resource_array = (undefined8 *)(longlong)(int)temp_counter;
-                temp_ptr7 = (undefined8 *)(ulonglong)temp_counter;
-            } while ((undefined8 *)(longlong)(int)temp_counter < (undefined8 *)((*(longlong *)(stack_offset1 + 0x11bd0) - temp_long3) / 0x50));
+                resource_array = (uint64_t *)(longlong)(int)temp_counter;
+                temp_ptr7 = (uint64_t *)(ulonglong)temp_counter;
+            } while ((uint64_t *)(longlong)(int)temp_counter < (uint64_t *)((*(longlong *)(stack_offset1 + 0x11bd0) - temp_long3) / 0x50));
         }
     }
     else {
-        *(undefined1 *)(render_context + 0x1610) = 0;
+        *(int8_t *)(render_context + 0x1610) = 0;
     }
     
     if (stack_ptr1 == (longlong *)0x0) {
@@ -286,7 +286,7 @@ LAB_180092e59:
 
 
 // 函数：获取场景对象信息
-longlong * get_scene_object_info(undefined8 scene_context, longlong *object_info, ulonglong object_index)
+longlong * get_scene_object_info(uint64_t scene_context, longlong *object_info, ulonglong object_index)
 {
     longlong *object_ptr;
     
@@ -307,11 +307,11 @@ longlong * get_scene_object_info(undefined8 scene_context, longlong *object_info
 
 
 // 函数：处理渲染事件
-void process_render_event(undefined8 event_context, int event_x, int event_y)
+void process_render_event(uint64_t event_context, int event_x, int event_y)
 {
     longlong render_state1;
     longlong render_state2;
-    undefined8 *event_data;
+    uint64_t *event_data;
     code *event_handler;
     uint delta_x;
     uint delta_y;
@@ -320,7 +320,7 @@ void process_render_event(undefined8 event_context, int event_x, int event_y)
     longlong *event_queue;
     uint clip_x;
     uint clip_y;
-    undefined8 event_params;
+    uint64_t event_params;
     longlong *event_result;
     
     render_state1 = *(longlong *)(_DAT_180c86870 + 8);
@@ -343,18 +343,18 @@ void process_render_event(undefined8 event_context, int event_x, int event_y)
         // 设置事件队列
         *event_queue = (longlong)&UNK_180a21690;
         *event_queue = (longlong)&UNK_180a21720;
-        *(undefined4 *)(event_queue + 1) = 0;
+        *(int32_t *)(event_queue + 1) = 0;
         *event_queue = (longlong)&UNK_18098bdc8;
         LOCK();
-        *(undefined1 *)(event_queue + 2) = 0;
+        *(int8_t *)(event_queue + 2) = 0;
         UNLOCK();
         event_queue[3] = -1;
         *event_queue = (longlong)&UNK_180a08c60;
-        *(undefined4 *)(event_queue + 5) = 5;
+        *(int32_t *)(event_queue + 5) = 5;
         event_queue[4] = render_state2;
         (**(code **)(*event_queue + 0x28))(event_queue);
         event_queue[6] = event_params;
-        event_data = *(undefined8 **)(render_state2 + 0x140);
+        event_data = *(uint64_t **)(render_state2 + 0x140);
         event_handler = *(code **)*event_data;
         event_result = event_queue;
         (**(code **)(*event_queue + 0x28))(event_queue);
@@ -373,7 +373,7 @@ void initialize_render_system(void)
     int lock_result;
     longlong render_config;
     longlong system_state;
-    undefined8 init_params;
+    uint64_t init_params;
     
     system_base = _DAT_180c86950;
     init_params = 0xfffffffffffffffe;
@@ -384,7 +384,7 @@ void initialize_render_system(void)
     }
     
     render_config = _DAT_180c86870;
-    *(undefined1 *)(_DAT_180c86870 + 0x1ec) = 0;
+    *(int8_t *)(_DAT_180c86870 + 0x1ec) = 0;
     system_state = *(longlong *)(system_base + 0x1800);
     
     // 初始化渲染缓冲区
@@ -397,8 +397,8 @@ void initialize_render_system(void)
     }
     
     // 设置渲染参数
-    *(undefined4 *)(render_config + 0x200) = 0x3d088889;  // 渲染精度设置
-    *(undefined1 *)(system_state + 0xdd) = 1;  // 启用渲染
+    *(int32_t *)(render_config + 0x200) = 0x3d088889;  // 渲染精度设置
+    *(int8_t *)(system_state + 0xdd) = 1;  // 启用渲染
     
     lock_result = _Mtx_unlock(mutex_handle);
     if (lock_result != 0) {
@@ -409,7 +409,7 @@ void initialize_render_system(void)
 
 
 // 函数：关闭渲染系统
-void shutdown_render_system(undefined8 system_context, undefined8 shutdown_param1, undefined8 shutdown_param2, undefined8 shutdown_param3)
+void shutdown_render_system(uint64_t system_context, uint64_t shutdown_param1, uint64_t shutdown_param2, uint64_t shutdown_param3)
 {
     longlong system_base;
     longlong *render_buffer;
@@ -425,14 +425,14 @@ void shutdown_render_system(undefined8 system_context, undefined8 shutdown_param
     }
     
     render_config = _DAT_180c86870;
-    *(undefined1 *)(_DAT_180c86870 + 0x1ec) = 1;  // 标记为关闭状态
+    *(int8_t *)(_DAT_180c86870 + 0x1ec) = 1;  // 标记为关闭状态
     
     // 清理渲染缓冲区
     render_buffer = *(longlong **)(system_base + 0x1800);
     if (render_buffer != (longlong *)0x0) {
-        *(undefined1 *)((longlong)render_buffer + 0xdd) = 0;  // 禁用渲染
+        *(int8_t *)((longlong)render_buffer + 0xdd) = 0;  // 禁用渲染
         (**(code **)(*render_buffer + 0xc0))();  // 调用清理函数
-        *(undefined1 *)(*(longlong *)(system_base + 0x1800) + 0xf0) = 1;  // 标记已清理
+        *(int8_t *)(*(longlong *)(system_base + 0x1800) + 0xf0) = 1;  // 标记已清理
         render_config = _DAT_180c86870;
     }
     

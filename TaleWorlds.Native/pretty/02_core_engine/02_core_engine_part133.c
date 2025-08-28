@@ -11,11 +11,11 @@
 void process_render_element_boundary_conditions(void)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   bool bVar2;
   bool bVar3;
   float *pfVar4;
-  undefined8 *puVar5;
+  uint64_t *puVar5;
   float *pfVar6;
   longlong unaff_RBX;
   uint unaff_EBP;
@@ -30,12 +30,12 @@ void process_render_element_boundary_conditions(void)
   
   // 根据标志选择不同的指针计算方式
   if ((unaff_EBP & 0x2000000) == 0) {
-    puVar5 = (undefined8 *)
+    puVar5 = (uint64_t *)
              ((longlong)(*(int *)(unaff_RDI + 0x1bc0) + -1) * 0x30 + 0x28 +
              *(longlong *)(unaff_RDI + 0x1bc8));
   }
   else {
-    puVar5 = (undefined8 *)(unaff_RDI + 0x118);
+    puVar5 = (uint64_t *)(unaff_RDI + 0x118);
   }
   uVar1 = *puVar5;
   cVar7 = (char)unaff_RSI;
@@ -96,8 +96,8 @@ LAB_180130dd5:
   
   // 设置元素的边界状态和引用
   *(bool *)(unaff_RBX + 0xae) =
-       unaff_RBX == *(longlong *)(*(undefined4 **)(unaff_RBX + 0x28) + 0x1e);
-  *(undefined4 *)(unaff_RBX + 0x30) = **(undefined4 **)(unaff_RBX + 0x28);
+       unaff_RBX == *(longlong *)(*(int32_t **)(unaff_RBX + 0x28) + 0x1e);
+  *(int32_t *)(unaff_RBX + 0x30) = **(int32_t **)(unaff_RBX + 0x28);
   return;
 }
 
@@ -397,7 +397,7 @@ LAB_18013148a:
  * 优化的区域匹配处理函数
  * 与上一个函数功能类似，但使用了不同的参数传递方式和优化策略
  */
-ulonglong optimized_region_matching(undefined8 param_1,undefined8 param_2,longlong param_3,longlong param_4)
+ulonglong optimized_region_matching(uint64_t param_1,uint64_t param_2,longlong param_3,longlong param_4)
 
 {
   float fVar1;
@@ -584,7 +584,7 @@ LAB_18013148a:
  * 简单的状态检查函数
  * 返回固定值0，可能用于初始化或重置操作
  */
-undefined1 perform_simple_status_check(void)
+int8_t perform_simple_status_check(void)
 
 {
   return 0;
@@ -759,7 +759,7 @@ LAB_18013148a:
  * 高级区域匹配优化函数
  * 使用多个浮点参数进行复杂的区域匹配和优化计算
  */
-ulonglong advanced_region_matching(undefined8 param_1,float param_2,float param_3,float param_4)
+ulonglong advanced_region_matching(uint64_t param_1,float param_2,float param_3,float param_4)
 
 {
   uint uVar1;
@@ -872,11 +872,11 @@ LAB_18013148a:
  * 最终的区域匹配优化函数
  * 综合所有参数进行最终的匹配度计算和优化
  */
-undefined1 final_region_matching_optimization(undefined8 param_1,undefined1 param_2,float param_3,float param_4)
+int8_t final_region_matching_optimization(uint64_t param_1,int8_t param_2,float param_3,float param_4)
 
 {
   int iVar1;
-  undefined1 unaff_10000014;
+  int8_t unaff_10000014;
   int in_EAX;
   longlong in_R8;
   longlong in_R11;
@@ -1000,7 +1000,7 @@ void update_element_spatial_bounds(longlong param_1,float *param_2,int param_3)
       *(float *)(lVar10 + 0x1d1c) = fVar15;
     }
     if (uVar7 == 0) {
-      *(undefined1 *)(lVar10 + 0x1d09) = 0;
+      *(int8_t *)(lVar10 + 0x1d09) = 0;
       *(bool *)(lVar10 + 0x1d08) = *(char *)(lVar10 + 0x1d21) != '\0';
     }
   }
@@ -1066,9 +1066,9 @@ void update_element_spatial_bounds(longlong param_1,float *param_2,int param_3)
   // 更新当前活动元素的信息
   if (*(int *)(lVar10 + 0x1ca0) == param_3) {
     *(longlong *)(lVar10 + 0x1c98) = param_1;
-    *(undefined4 *)(lVar10 + 0x1cfc) = *(undefined4 *)(param_1 + 0x16c);
-    *(undefined1 *)(lVar10 + 0x1d04) = 1;
-    *(undefined4 *)(lVar10 + 0x1d00) = *(undefined4 *)(param_1 + 0x3f4);
+    *(int32_t *)(lVar10 + 0x1cfc) = *(int32_t *)(param_1 + 0x16c);
+    *(int8_t *)(lVar10 + 0x1d04) = 1;
+    *(int32_t *)(lVar10 + 0x1d00) = *(int32_t *)(param_1 + 0x3f4);
     pfVar1 = (float *)(param_1 + ((longlong)*(int *)(param_1 + 0x16c) + 0x3d) * 0x10);
     *pfVar1 = fVar16;
     pfVar1[1] = fVar11;
@@ -1120,7 +1120,7 @@ void update_element_bounds_with_integers(int param_1,float *param_2,int param_3,
       *(int *)(lVar7 + 0x1d1c) = param_4;
     }
     if ((in_ECX & 0x10) == 0) {
-      *(undefined1 *)(lVar7 + 0x1d09) = 0;
+      *(int8_t *)(lVar7 + 0x1d09) = 0;
       *(bool *)(lVar7 + 0x1d08) = *(char *)(lVar7 + 0x1d21) != '\0';
     }
   }
@@ -1184,9 +1184,9 @@ void update_element_bounds_with_integers(int param_1,float *param_2,int param_3,
   // 更新当前活动元素的信息
   if (*(int *)(lVar7 + 0x1ca0) == in_R8D) {
     *(longlong *)(lVar7 + 0x1c98) = unaff_RBX;
-    *(undefined4 *)(lVar7 + 0x1cfc) = *(undefined4 *)(unaff_RBX + 0x16c);
-    *(undefined1 *)(lVar7 + 0x1d04) = 1;
-    *(undefined4 *)(lVar7 + 0x1d00) = *(undefined4 *)(unaff_RBX + 0x3f4);
+    *(int32_t *)(lVar7 + 0x1cfc) = *(int32_t *)(unaff_RBX + 0x16c);
+    *(int8_t *)(lVar7 + 0x1d04) = 1;
+    *(int32_t *)(lVar7 + 0x1d00) = *(int32_t *)(unaff_RBX + 0x3f4);
     piVar6 = (int *)(unaff_RBX + ((longlong)*(int *)(unaff_RBX + 0x16c) + 0x3d) * 0x10);
     *piVar6 = unaff_XMM6_Da;
     piVar6[1] = param_1;

@@ -234,12 +234,12 @@ RenderingResult RenderingSystem_AdvancedStateManager(RenderingSystemHandle syste
     uint uVar5;
     uint uVar6;
     longlong unaff_R13;
-    undefined1 unaff_R14B;
+    int8_t unaff_R14B;
     longlong lVar7;
     bool bVar8;
     
     /* 设置系统状态标志 */
-    *(undefined1 *)(unaff_R13 + 0x4416) = unaff_R14B;
+    *(int8_t *)(unaff_R13 + 0x4416) = unaff_R14B;
     
     /* 检查系统状态 */
     iVar2 = FUN_18069bbd0();
@@ -515,16 +515,16 @@ LAB_18069f85f:
  */
 void RenderingSystem_ParameterProcessor(longlong param_1, char *param_2)
 {
-    undefined1 uVar1;
-    undefined4 uVar2;
-    undefined4 *puVar3;
+    int8_t uVar1;
+    int32_t uVar2;
+    int32_t *puVar3;
     int iVar4;
     longlong unaff_RDI;
     
     /* 初始化参数处理 */
     iVar4 = 0;
-    puVar3 = (undefined4 *)(unaff_RDI + 8);
-    *(undefined1 *)(unaff_RDI + 3) = 1;
+    puVar3 = (int32_t *)(unaff_RDI + 8);
+    *(int8_t *)(unaff_RDI + 3) = 1;
     
     /* 参数处理主循环 */
     do {
@@ -536,7 +536,7 @@ void RenderingSystem_ParameterProcessor(longlong param_1, char *param_2)
     
     /* 完成参数处理 */
     uVar1 = FUN_1806a02d0();
-    *(undefined1 *)(unaff_RDI + 1) = uVar1;
+    *(int8_t *)(unaff_RDI + 1) = uVar1;
     return;
 }
 
@@ -552,12 +552,12 @@ void RenderingSystem_ParameterProcessor(longlong param_1, char *param_2)
  */
 void RenderingSystem_StateSynchronizer(longlong param_1)
 {
-    undefined1 uVar1;
+    int8_t uVar1;
     longlong unaff_RDI;
     
     /* 执行状态同步 */
     uVar1 = FUN_1806a02d0();
-    *(undefined1 *)(unaff_RDI + 1) = uVar1;
+    *(int8_t *)(unaff_RDI + 1) = uVar1;
     return;
 }
 
@@ -640,30 +640,30 @@ void RenderingSystem_AdvancedPipelineManager(longlong param_1, longlong param_2,
     int iVar8;
     int iVar9;
     int iVar10;
-    undefined4 uVar11;
+    int32_t uVar11;
     longlong lVar12;
     int iVar13;
-    undefined4 *puVar14;
+    int32_t *puVar14;
     uint uVar15;
     uint uVar16;
     int *piVar17;
-    undefined1 auStack_f8 [32];
+    int8_t auStack_f8 [32];
     char *pcStack_d8;
-    undefined4 uStack_d0;
+    int32_t uStack_d0;
     longlong lStack_c8;
     int iStack_c0;
-    undefined4 uStack_b8;
+    int32_t uStack_b8;
     int iStack_b0;
     int iStack_a8;
-    undefined8 uStack_98;
+    uint64_t uStack_98;
     uint *puStack_90;
     int iStack_88;
     char *pcStack_80;
     char *pcStack_78;
     longlong lStack_70;
-    undefined4 uStack_68;
-    undefined8 uStack_64;
-    undefined8 uStack_58;
+    int32_t uStack_68;
+    uint64_t uStack_64;
+    uint64_t uStack_58;
     int iStack_50;
     int iStack_4c;
     ulonglong uStack_48;
@@ -674,7 +674,7 @@ void RenderingSystem_AdvancedPipelineManager(longlong param_1, longlong param_2,
     lStack_70 = param_2;
     
     /* 获取管线状态 */
-    cVar6 = FUN_18069bbd0(lVar1, *(undefined1 *)(param_1 + 0x4414));
+    cVar6 = FUN_18069bbd0(lVar1, *(int8_t *)(param_1 + 0x4414));
     param_3[2] = cVar6;
     
     /* 处理管线状态 */
@@ -688,7 +688,7 @@ void RenderingSystem_AdvancedPipelineManager(longlong param_1, longlong param_2,
         
         if (cVar6 == '\x04') {
             param_3[3] = '\x01';
-            puVar14 = (undefined4 *)(param_2 + 0xc);
+            puVar14 = (int32_t *)(param_2 + 0xc);
             lVar12 = 0x10;
             
             /* 管线配置处理 */
@@ -712,10 +712,10 @@ void RenderingSystem_AdvancedPipelineManager(longlong param_1, longlong param_2,
     piVar17 = (int *)&uStack_58;
     param_3[10] = '\0';
     pcStack_78 = (char *)(param_2 + (longlong)iVar8 * -0x4c);
-    iVar8 = FUN_18069bbd0(lVar1, *(undefined1 *)(param_1 + 0x4415));
+    iVar8 = FUN_18069bbd0(lVar1, *(int8_t *)(param_1 + 0x4415));
     
     if (iVar8 != 0) {
-        cVar6 = FUN_18069bbd0(lVar1, *(undefined1 *)(param_1 + 0x4416));
+        cVar6 = FUN_18069bbd0(lVar1, *(int8_t *)(param_1 + 0x4416));
         param_3[2] = cVar6 + '\x02';
     }
     
@@ -807,7 +807,7 @@ LAB_18069fbb4:
     }
     
     /* 管线执行 */
-    iVar9 = FUN_18069bbd0(lVar1, *(undefined4 *)(&UNK_18094a000 + (longlong)iVar8 * 0x10));
+    iVar9 = FUN_18069bbd0(lVar1, *(int32_t *)(&UNK_18094a000 + (longlong)iVar8 * 0x10));
     if (iVar9 == 0) {
         *param_3 = '\a';
         param_3[4] = '\0';
@@ -828,14 +828,14 @@ LAB_18069fbb4:
         iVar13 = iVar10;
     }
     uStack_98 = CONCAT44(uStack_98._4_4_, iVar13);
-    iVar10 = FUN_18069bbd0(lVar1, *(undefined4 *)(&UNK_18094a004 + (longlong)iVar13 * 0x10));
+    iVar10 = FUN_18069bbd0(lVar1, *(int32_t *)(&UNK_18094a004 + (longlong)iVar13 * 0x10));
     
     if (iVar10 == 0) {
         *param_3 = '\x05';
         *(uint *)(param_3 + 4) = uVar16;
     }
     else {
-        iVar10 = FUN_18069bbd0(lVar1, *(undefined4 *)(&UNK_18094a008 + (longlong)iVar9 * 0x10));
+        iVar10 = FUN_18069bbd0(lVar1, *(int32_t *)(&UNK_18094a008 + (longlong)iVar9 * 0x10));
         pcVar4 = pcStack_78;
         pcVar3 = pcStack_80;
         if (iVar10 != 0) {
@@ -872,7 +872,7 @@ LAB_18069fcfe:
             }
             
             /* 渲染数据计算 */
-            iVar8 = FUN_18069bbd0(lVar1, *(undefined4 *)
+            iVar8 = FUN_18069bbd0(lVar1, *(int32_t *)
                                  (&UNK_18094a00c +
                                  ((ulonglong)(pcStack_78[-0x4c] == '\t') +
                                  ((ulonglong)(*pcStack_80 == '\t') +
@@ -897,7 +897,7 @@ LAB_18069fcfe:
             }
             else {
                 /* 高级渲染处理 */
-                uStack_d0 = *(undefined4 *)((longlong)&uStack_68 + uStack_98);
+                uStack_d0 = *(int32_t *)((longlong)&uStack_68 + uStack_98);
                 uStack_b8 = (int)puStack_90;
                 iStack_c0 = iStack_88;
                 lStack_c8 = uStack_58;
@@ -905,7 +905,7 @@ LAB_18069fcfe:
                 iStack_b0 = iVar9;
                 iStack_a8 = iVar13;
                 FUN_18069ef30(lVar1, lStack_70, pcVar3, pcVar4);
-                *(undefined4 *)(param_3 + 4) = *(undefined4 *)(lVar12 + 0x48);
+                *(int32_t *)(param_3 + 4) = *(int32_t *)(lVar12 + 0x48);
                 *param_3 = '\t';
                 param_3[3] = '\x01';
             }
@@ -948,7 +948,7 @@ LAB_18069fefd:
  * @param param_2 纹理数据指针
  * @return uint 采样结果
  */
-uint RenderingSystem_AdvancedTextureSampler(longlong param_1, undefined1 *param_2)
+uint RenderingSystem_AdvancedTextureSampler(longlong param_1, int8_t *param_2)
 {
     byte bVar1;
     char cVar2;
@@ -1087,7 +1087,7 @@ LAB_1806a011c:
  * @param param_2 纹理数据指针
  * @return uint 映射结果
  */
-uint RenderingSystem_AdvancedTextureMapper(longlong param_1, undefined1 *param_2)
+uint RenderingSystem_AdvancedTextureMapper(longlong param_1, int8_t *param_2)
 {
     byte bVar1;
     char cVar2;

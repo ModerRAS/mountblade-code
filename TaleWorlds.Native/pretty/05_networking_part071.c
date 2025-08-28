@@ -6,7 +6,7 @@
 void FUN_180879cb0(longlong *param_1)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   uVar1 = FUN_180847820();
                     // WARNING: Could not recover jumptable at 0x000180879ccf. Too many branches
@@ -23,7 +23,7 @@ void FUN_180879cb0(longlong *param_1)
 void FUN_180879ce0(longlong *param_1)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   uVar1 = FUN_180847820();
                     // WARNING: Could not recover jumptable at 0x000180879cff. Too many branches
@@ -40,7 +40,7 @@ void FUN_180879ce0(longlong *param_1)
 void FUN_180879d10(longlong *param_1)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   uVar1 = FUN_180847820();
                     // WARNING: Could not recover jumptable at 0x000180879d2f. Too many branches
@@ -57,7 +57,7 @@ void FUN_180879d10(longlong *param_1)
 void FUN_180879d40(longlong *param_1)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   uVar1 = FUN_180847820();
                     // WARNING: Could not recover jumptable at 0x000180879d5f. Too many branches
@@ -74,7 +74,7 @@ void FUN_180879d40(longlong *param_1)
 void FUN_180879d70(longlong *param_1)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   uVar1 = FUN_180847820();
                     // WARNING: Could not recover jumptable at 0x000180879d8f. Too many branches
@@ -91,7 +91,7 @@ void FUN_180879d70(longlong *param_1)
 void FUN_180879da0(longlong *param_1)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   uVar1 = FUN_180847820();
                     // WARNING: Could not recover jumptable at 0x000180879dbf. Too many branches
@@ -108,7 +108,7 @@ void FUN_180879da0(longlong *param_1)
 void FUN_180879dd0(longlong *param_1)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   uVar1 = FUN_180847820();
                     // WARNING: Could not recover jumptable at 0x000180879def. Too many branches
@@ -125,7 +125,7 @@ void FUN_180879dd0(longlong *param_1)
 void FUN_180879e00(longlong *param_1)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   uVar1 = FUN_180847820();
                     // WARNING: Could not recover jumptable at 0x000180879e1f. Too many branches
@@ -142,7 +142,7 @@ void FUN_180879e00(longlong *param_1)
 void FUN_180879e30(longlong *param_1)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   uVar1 = FUN_180847820();
                     // WARNING: Could not recover jumptable at 0x000180879e4f. Too many branches
@@ -159,7 +159,7 @@ void FUN_180879e30(longlong *param_1)
 void FUN_180879e60(longlong *param_1)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   uVar1 = FUN_180847820();
                     // WARNING: Could not recover jumptable at 0x000180879e7f. Too many branches
@@ -176,7 +176,7 @@ void FUN_180879e60(longlong *param_1)
 void FUN_180879e90(longlong *param_1)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   uVar1 = FUN_180847820();
                     // WARNING: Could not recover jumptable at 0x000180879eaf. Too many branches
@@ -193,7 +193,7 @@ void FUN_180879e90(longlong *param_1)
 void FUN_180879ec0(longlong *param_1)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   uVar1 = FUN_180847820();
                     // WARNING: Could not recover jumptable at 0x000180879edf. Too many branches
@@ -210,7 +210,7 @@ void FUN_180879ec0(longlong *param_1)
 void FUN_180879ef0(longlong *param_1)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   uVar1 = FUN_180847820();
                     // WARNING: Could not recover jumptable at 0x000180879f0f. Too many branches
@@ -227,7 +227,7 @@ void FUN_180879ef0(longlong *param_1)
 void FUN_180879f20(longlong *param_1)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   uVar1 = FUN_180847820();
                     // WARNING: Could not recover jumptable at 0x000180879f3f. Too many branches
@@ -244,7 +244,7 @@ void FUN_180879f20(longlong *param_1)
 void FUN_180879f50(longlong *param_1)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   uVar1 = FUN_180847820();
                     // WARNING: Could not recover jumptable at 0x000180879f6f. Too many branches
@@ -261,7 +261,7 @@ void FUN_180879f50(longlong *param_1)
 void FUN_180879f80(longlong *param_1)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   uVar1 = FUN_180847820();
                     // WARNING: Could not recover jumptable at 0x000180879f9f. Too many branches
@@ -278,7 +278,7 @@ void FUN_180879f80(longlong *param_1)
 void FUN_180879fb0(longlong *param_1)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   uVar1 = FUN_180847820();
                     // WARNING: Could not recover jumptable at 0x000180879fcf. Too many branches
@@ -295,7 +295,7 @@ void FUN_180879fb0(longlong *param_1)
 void FUN_180879fe0(longlong *param_1)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   uVar1 = FUN_180847820();
                     // WARNING: Could not recover jumptable at 0x000180879fff. Too many branches
@@ -312,7 +312,7 @@ void FUN_180879fe0(longlong *param_1)
 void FUN_18087a010(longlong *param_1)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   uVar1 = FUN_180847820();
                     // WARNING: Could not recover jumptable at 0x00018087a02f. Too many branches
@@ -329,7 +329,7 @@ void FUN_18087a010(longlong *param_1)
 void FUN_18087a040(longlong *param_1)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   uVar1 = FUN_180847820();
                     // WARNING: Could not recover jumptable at 0x00018087a05f. Too many branches
@@ -340,7 +340,7 @@ void FUN_18087a040(longlong *param_1)
 
 
 
-longlong FUN_18087a070(longlong param_1,undefined8 param_2)
+longlong FUN_18087a070(longlong param_1,uint64_t param_2)
 
 {
   longlong lVar1;
@@ -394,8 +394,8 @@ longlong FUN_18087a070(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_18087a150(longlong param_1,undefined8 param_2)
-void FUN_18087a150(longlong param_1,undefined8 param_2)
+// 函数: void FUN_18087a150(longlong param_1,uint64_t param_2)
+void FUN_18087a150(longlong param_1,uint64_t param_2)
 
 {
   longlong lVar1;
@@ -412,8 +412,8 @@ void FUN_18087a150(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_18087a1a0(longlong param_1,undefined8 param_2)
-void FUN_18087a1a0(longlong param_1,undefined8 param_2)
+// 函数: void FUN_18087a1a0(longlong param_1,uint64_t param_2)
+void FUN_18087a1a0(longlong param_1,uint64_t param_2)
 
 {
   longlong lVar1;
@@ -430,8 +430,8 @@ void FUN_18087a1a0(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_18087a1f0(longlong param_1,undefined8 param_2)
-void FUN_18087a1f0(longlong param_1,undefined8 param_2)
+// 函数: void FUN_18087a1f0(longlong param_1,uint64_t param_2)
+void FUN_18087a1f0(longlong param_1,uint64_t param_2)
 
 {
   longlong lVar1;
@@ -448,8 +448,8 @@ void FUN_18087a1f0(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_18087a240(longlong param_1,undefined8 param_2)
-void FUN_18087a240(longlong param_1,undefined8 param_2)
+// 函数: void FUN_18087a240(longlong param_1,uint64_t param_2)
+void FUN_18087a240(longlong param_1,uint64_t param_2)
 
 {
   longlong lVar1;
@@ -466,8 +466,8 @@ void FUN_18087a240(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_18087a290(longlong param_1,undefined8 param_2)
-void FUN_18087a290(longlong param_1,undefined8 param_2)
+// 函数: void FUN_18087a290(longlong param_1,uint64_t param_2)
+void FUN_18087a290(longlong param_1,uint64_t param_2)
 
 {
   longlong lVar1;
@@ -484,8 +484,8 @@ void FUN_18087a290(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_18087a2e0(longlong param_1,undefined8 param_2)
-void FUN_18087a2e0(longlong param_1,undefined8 param_2)
+// 函数: void FUN_18087a2e0(longlong param_1,uint64_t param_2)
+void FUN_18087a2e0(longlong param_1,uint64_t param_2)
 
 {
   longlong lVar1;
@@ -502,8 +502,8 @@ void FUN_18087a2e0(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_18087a330(longlong param_1,undefined8 param_2)
-void FUN_18087a330(longlong param_1,undefined8 param_2)
+// 函数: void FUN_18087a330(longlong param_1,uint64_t param_2)
+void FUN_18087a330(longlong param_1,uint64_t param_2)
 
 {
   longlong lVar1;
@@ -520,8 +520,8 @@ void FUN_18087a330(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_18087a380(longlong param_1,undefined8 param_2)
-void FUN_18087a380(longlong param_1,undefined8 param_2)
+// 函数: void FUN_18087a380(longlong param_1,uint64_t param_2)
+void FUN_18087a380(longlong param_1,uint64_t param_2)
 
 {
   longlong lVar1;
@@ -538,8 +538,8 @@ void FUN_18087a380(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_18087a3d0(longlong param_1,undefined8 param_2)
-void FUN_18087a3d0(longlong param_1,undefined8 param_2)
+// 函数: void FUN_18087a3d0(longlong param_1,uint64_t param_2)
+void FUN_18087a3d0(longlong param_1,uint64_t param_2)
 
 {
   longlong lVar1;
@@ -556,8 +556,8 @@ void FUN_18087a3d0(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_18087a420(longlong param_1,undefined8 param_2)
-void FUN_18087a420(longlong param_1,undefined8 param_2)
+// 函数: void FUN_18087a420(longlong param_1,uint64_t param_2)
+void FUN_18087a420(longlong param_1,uint64_t param_2)
 
 {
   longlong lVar1;
@@ -574,8 +574,8 @@ void FUN_18087a420(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_18087a470(longlong param_1,undefined8 param_2)
-void FUN_18087a470(longlong param_1,undefined8 param_2)
+// 函数: void FUN_18087a470(longlong param_1,uint64_t param_2)
+void FUN_18087a470(longlong param_1,uint64_t param_2)
 
 {
   longlong lVar1;
@@ -592,8 +592,8 @@ void FUN_18087a470(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_18087a4c0(longlong param_1,undefined8 param_2)
-void FUN_18087a4c0(longlong param_1,undefined8 param_2)
+// 函数: void FUN_18087a4c0(longlong param_1,uint64_t param_2)
+void FUN_18087a4c0(longlong param_1,uint64_t param_2)
 
 {
   longlong lVar1;
@@ -610,8 +610,8 @@ void FUN_18087a4c0(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_18087a510(longlong param_1,undefined8 param_2)
-void FUN_18087a510(longlong param_1,undefined8 param_2)
+// 函数: void FUN_18087a510(longlong param_1,uint64_t param_2)
+void FUN_18087a510(longlong param_1,uint64_t param_2)
 
 {
   longlong lVar1;
@@ -628,8 +628,8 @@ void FUN_18087a510(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_18087a560(longlong param_1,undefined8 param_2)
-void FUN_18087a560(longlong param_1,undefined8 param_2)
+// 函数: void FUN_18087a560(longlong param_1,uint64_t param_2)
+void FUN_18087a560(longlong param_1,uint64_t param_2)
 
 {
   longlong lVar1;
@@ -646,8 +646,8 @@ void FUN_18087a560(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_18087a5b0(longlong param_1,undefined8 param_2)
-void FUN_18087a5b0(longlong param_1,undefined8 param_2)
+// 函数: void FUN_18087a5b0(longlong param_1,uint64_t param_2)
+void FUN_18087a5b0(longlong param_1,uint64_t param_2)
 
 {
   longlong lVar1;
@@ -664,8 +664,8 @@ void FUN_18087a5b0(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_18087a600(longlong param_1,undefined8 param_2)
-void FUN_18087a600(longlong param_1,undefined8 param_2)
+// 函数: void FUN_18087a600(longlong param_1,uint64_t param_2)
+void FUN_18087a600(longlong param_1,uint64_t param_2)
 
 {
   longlong lVar1;
@@ -682,8 +682,8 @@ void FUN_18087a600(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_18087a650(longlong param_1,undefined8 param_2)
-void FUN_18087a650(longlong param_1,undefined8 param_2)
+// 函数: void FUN_18087a650(longlong param_1,uint64_t param_2)
+void FUN_18087a650(longlong param_1,uint64_t param_2)
 
 {
   longlong lVar1;
@@ -700,8 +700,8 @@ void FUN_18087a650(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_18087a6a0(longlong param_1,undefined8 param_2)
-void FUN_18087a6a0(longlong param_1,undefined8 param_2)
+// 函数: void FUN_18087a6a0(longlong param_1,uint64_t param_2)
+void FUN_18087a6a0(longlong param_1,uint64_t param_2)
 
 {
   longlong lVar1;
@@ -718,8 +718,8 @@ void FUN_18087a6a0(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_18087a6f0(longlong param_1,undefined8 param_2)
-void FUN_18087a6f0(longlong param_1,undefined8 param_2)
+// 函数: void FUN_18087a6f0(longlong param_1,uint64_t param_2)
+void FUN_18087a6f0(longlong param_1,uint64_t param_2)
 
 {
   longlong lVar1;
@@ -736,8 +736,8 @@ void FUN_18087a6f0(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_18087a740(longlong param_1,undefined8 param_2)
-void FUN_18087a740(longlong param_1,undefined8 param_2)
+// 函数: void FUN_18087a740(longlong param_1,uint64_t param_2)
+void FUN_18087a740(longlong param_1,uint64_t param_2)
 
 {
   longlong lVar1;
@@ -756,13 +756,13 @@ void FUN_18087a740(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_18087a790(longlong param_1,undefined8 param_2)
-void FUN_18087a790(longlong param_1,undefined8 param_2)
+// 函数: void FUN_18087a790(longlong param_1,uint64_t param_2)
+void FUN_18087a790(longlong param_1,uint64_t param_2)
 
 {
   longlong lVar1;
-  undefined1 auStack_58 [32];
-  undefined1 auStack_38 [40];
+  int8_t auStack_58 [32];
+  int8_t auStack_38 [40];
   ulonglong uStack_10;
   
   uStack_10 = _DAT_180bf00a8 ^ (ulonglong)auStack_58;
@@ -779,8 +779,8 @@ void FUN_18087a790(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_18087a7f0(longlong param_1,undefined8 param_2)
-void FUN_18087a7f0(longlong param_1,undefined8 param_2)
+// 函数: void FUN_18087a7f0(longlong param_1,uint64_t param_2)
+void FUN_18087a7f0(longlong param_1,uint64_t param_2)
 
 {
   longlong lVar1;
@@ -797,8 +797,8 @@ void FUN_18087a7f0(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_18087a840(longlong param_1,undefined8 param_2)
-void FUN_18087a840(longlong param_1,undefined8 param_2)
+// 函数: void FUN_18087a840(longlong param_1,uint64_t param_2)
+void FUN_18087a840(longlong param_1,uint64_t param_2)
 
 {
   longlong lVar1;
@@ -815,8 +815,8 @@ void FUN_18087a840(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_18087a890(longlong param_1,undefined8 param_2)
-void FUN_18087a890(longlong param_1,undefined8 param_2)
+// 函数: void FUN_18087a890(longlong param_1,uint64_t param_2)
+void FUN_18087a890(longlong param_1,uint64_t param_2)
 
 {
   longlong lVar1;
@@ -833,8 +833,8 @@ void FUN_18087a890(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_18087a8e0(longlong param_1,undefined8 param_2)
-void FUN_18087a8e0(longlong param_1,undefined8 param_2)
+// 函数: void FUN_18087a8e0(longlong param_1,uint64_t param_2)
+void FUN_18087a8e0(longlong param_1,uint64_t param_2)
 
 {
   longlong lVar1;
@@ -851,8 +851,8 @@ void FUN_18087a8e0(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_18087a930(longlong param_1,undefined8 param_2)
-void FUN_18087a930(longlong param_1,undefined8 param_2)
+// 函数: void FUN_18087a930(longlong param_1,uint64_t param_2)
+void FUN_18087a930(longlong param_1,uint64_t param_2)
 
 {
   longlong lVar1;
@@ -869,8 +869,8 @@ void FUN_18087a930(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_18087a980(longlong param_1,undefined8 param_2)
-void FUN_18087a980(longlong param_1,undefined8 param_2)
+// 函数: void FUN_18087a980(longlong param_1,uint64_t param_2)
+void FUN_18087a980(longlong param_1,uint64_t param_2)
 
 {
   longlong lVar1;
@@ -887,8 +887,8 @@ void FUN_18087a980(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_18087a9d0(longlong param_1,undefined8 param_2)
-void FUN_18087a9d0(longlong param_1,undefined8 param_2)
+// 函数: void FUN_18087a9d0(longlong param_1,uint64_t param_2)
+void FUN_18087a9d0(longlong param_1,uint64_t param_2)
 
 {
   longlong lVar1;
@@ -905,8 +905,8 @@ void FUN_18087a9d0(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_18087aa20(longlong param_1,undefined8 param_2)
-void FUN_18087aa20(longlong param_1,undefined8 param_2)
+// 函数: void FUN_18087aa20(longlong param_1,uint64_t param_2)
+void FUN_18087aa20(longlong param_1,uint64_t param_2)
 
 {
   longlong lVar1;
@@ -967,7 +967,7 @@ LAB_18087ab46:
 
 
 
-longlong FUN_18087aab3(undefined8 param_1,undefined8 param_2,char param_3)
+longlong FUN_18087aab3(uint64_t param_1,uint64_t param_2,char param_3)
 
 {
   longlong lVar1;
@@ -1023,7 +1023,7 @@ void FUN_18087ab50(void)
 
 
 
-undefined8 FUN_18087ab6b(void)
+uint64_t FUN_18087ab6b(void)
 
 {
   longlong in_RAX;
@@ -1033,7 +1033,7 @@ undefined8 FUN_18087ab6b(void)
                     // WARNING: Subroutine does not return
     FUN_180768400();
   }
-  return *(undefined8 *)(in_RAX + 0x18);
+  return *(uint64_t *)(in_RAX + 0x18);
 }
 
 
@@ -1097,7 +1097,7 @@ LAB_18087ac5f:
 
 
 
-longlong FUN_18087abba(longlong param_1,undefined8 param_2,char param_3)
+longlong FUN_18087abba(longlong param_1,uint64_t param_2,char param_3)
 
 {
   longlong lVar1;
@@ -1159,7 +1159,7 @@ void FUN_18087ac69(void)
 
 
 
-undefined8 FUN_18087ac7f(void)
+uint64_t FUN_18087ac7f(void)
 
 {
   longlong in_RAX;
@@ -1169,7 +1169,7 @@ undefined8 FUN_18087ac7f(void)
                     // WARNING: Subroutine does not return
     FUN_180768400();
   }
-  return *(undefined8 *)(in_RAX + 0x18);
+  return *(uint64_t *)(in_RAX + 0x18);
 }
 
 
@@ -1220,7 +1220,7 @@ LAB_18087ad66:
 
 
 
-longlong FUN_18087acd3(undefined8 param_1,undefined8 param_2,char param_3)
+longlong FUN_18087acd3(uint64_t param_1,uint64_t param_2,char param_3)
 
 {
   longlong lVar1;

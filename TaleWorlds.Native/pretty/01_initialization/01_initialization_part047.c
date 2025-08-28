@@ -28,12 +28,12 @@ void update_object_reference(longlong object_ptr, longlong *reference_ptr)
 
 {
   longlong *old_reference;
-  undefined8 cleanup_context_1;
-  undefined4 cleanup_context_2;
+  uint64_t cleanup_context_1;
+  int32_t cleanup_context_2;
   longlong stack_temp_1;
-  undefined1 cleanup_context_3 [8];
+  int8_t cleanup_context_3 [8];
   longlong stack_temp_2;
-  undefined4 cleanup_context_4;
+  int32_t cleanup_context_4;
   longlong *reference_manager;
   
   // 检查是否需要更新引用
@@ -49,7 +49,7 @@ void update_object_reference(longlong object_ptr, longlong *reference_ptr)
       // 检查是否有活动状态标志
       if ((*(int *)(object_ptr + STATUS_FLAG_1_OFFSET) != 0) || 
           (*(int *)(object_ptr + STATUS_FLAG_2_OFFSET) != 0)) {
-        cleanup_context_1 = *(undefined8 *)(object_ptr + OBJECT_REFERENCE_OFFSET);
+        cleanup_context_1 = *(uint64_t *)(object_ptr + OBJECT_REFERENCE_OFFSET);
         cleanup_context_2 = 0;
         FUN_18007f770(&cleanup_context_1);
         old_reference = reference_manager;
@@ -99,7 +99,7 @@ longlong calculate_memory_requirement(longlong object_ptr)
   
   // 如果没有动画标志，通过引用获取实际对象
   if (has_animation_flag == 0) {
-    target_object = func_0x000180085de0(*(undefined8 *)(object_ptr + OBJECT_REFERENCE_OFFSET));
+    target_object = func_0x000180085de0(*(uint64_t *)(object_ptr + OBJECT_REFERENCE_OFFSET));
   }
   
   // 根据引用数量确定大小因子
@@ -110,7 +110,7 @@ longlong calculate_memory_requirement(longlong object_ptr)
   
   // 再次获取实际对象（如果需要）
   if (has_animation_flag == 0) {
-    object_ptr = func_0x000180085de0(*(undefined8 *)(object_ptr + OBJECT_REFERENCE_OFFSET));
+    object_ptr = func_0x000180085de0(*(uint64_t *)(object_ptr + OBJECT_REFERENCE_OFFSET));
   }
   
   // 计算总内存需求：基础大小 * 3 * 大小因子
@@ -147,32 +147,32 @@ float * calculate_bounding_box(float *mesh_ptr)
   float stack_b8;
   float stack_b4;
   float stack_b0;
-  undefined4 stack_ac;
+  int32_t stack_ac;
   float stack_a8;
   float stack_a4;
   float stack_a0;
-  undefined4 stack_9c;
+  int32_t stack_9c;
   float *mesh_reference;
-  undefined4 stack_90;
+  int32_t stack_90;
   longlong stack_88;
-  undefined8 stack_78;
-  undefined8 stack_70;
-  undefined8 stack_68;
-  undefined8 stack_60;
+  uint64_t stack_78;
+  uint64_t stack_70;
+  uint64_t stack_68;
+  uint64_t stack_60;
   float stack_58;
   float stack_54;
   float stack_50;
   float stack_4c;
-  undefined8 stack_48;
-  undefined8 stack_40;
-  undefined8 stack_38;
+  uint64_t stack_48;
+  uint64_t stack_40;
+  uint64_t stack_38;
   
   stack_38 = 0xfffffffffffffffe;
   current_vertex = mesh_ptr;
   
   // 检查是否有动画标志，决定使用哪个几何数据引用
   if ((*(byte *)((longlong)mesh_ptr + OBJECT_FLAG_OFFSET) & ANIMATION_FLAG_MASK) == 0) {
-    current_vertex = (float *)func_0x000180085de0(*(undefined8 *)(mesh_ptr + 0x6c));
+    current_vertex = (float *)func_0x000180085de0(*(uint64_t *)(mesh_ptr + 0x6c));
   }
   
   // 检查几何数据是否有效且可见
@@ -254,16 +254,16 @@ float * calculate_bounding_box(float *mesh_ptr)
     current_vertex = *(float **)(mesh_ptr + 0x6e);
     if ((current_vertex != (float *)0x0) && (((uint)current_vertex[0x4e] & 0x3000) != 0)) {
       // 应用变换矩阵
-      stack_78 = *(undefined8 *)(mesh_ptr + 0x48);
-      stack_70 = *(undefined8 *)(mesh_ptr + 0x4a);
-      stack_68 = *(undefined8 *)(mesh_ptr + 0x4c);
-      stack_60 = *(undefined8 *)(mesh_ptr + 0x4e);
+      stack_78 = *(uint64_t *)(mesh_ptr + 0x48);
+      stack_70 = *(uint64_t *)(mesh_ptr + 0x4a);
+      stack_68 = *(uint64_t *)(mesh_ptr + 0x4c);
+      stack_60 = *(uint64_t *)(mesh_ptr + 0x4e);
       stack_58 = mesh_ptr[0x50];
       stack_54 = mesh_ptr[0x51];
       stack_50 = mesh_ptr[0x52];
       stack_4c = mesh_ptr[0x53];
-      stack_48 = *(undefined8 *)(mesh_ptr + 0x54);
-      stack_40 = *(undefined8 *)(mesh_ptr + 0x56);
+      stack_48 = *(uint64_t *)(mesh_ptr + 0x54);
+      stack_40 = *(uint64_t *)(mesh_ptr + 0x56);
       
       FUN_180085c10(&stack_78);
       FUN_18063a240(bounding_box_ptr, bounding_box_ptr, &stack_78);
@@ -271,30 +271,30 @@ float * calculate_bounding_box(float *mesh_ptr)
       current_vertex = *(float **)(mesh_ptr + 0x6e);
       if (((uint)current_vertex[0x4e] & 0x3000) == 0x2000) {
         // 应用缩放变换
-        stack_78 = *(undefined8 *)(mesh_ptr + 0x48);
-        stack_70 = *(undefined8 *)(mesh_ptr + 0x4a);
-        stack_68 = *(undefined8 *)(mesh_ptr + 0x4c);
-        stack_60 = *(undefined8 *)(mesh_ptr + 0x4e);
+        stack_78 = *(uint64_t *)(mesh_ptr + 0x48);
+        stack_70 = *(uint64_t *)(mesh_ptr + 0x4a);
+        stack_68 = *(uint64_t *)(mesh_ptr + 0x4c);
+        stack_60 = *(uint64_t *)(mesh_ptr + 0x4e);
         stack_58 = mesh_ptr[0x50];
         stack_54 = mesh_ptr[0x51];
         stack_50 = mesh_ptr[0x52];
         stack_4c = mesh_ptr[0x53];
-        stack_48 = *(undefined8 *)(mesh_ptr + 0x54);
-        stack_40 = *(undefined8 *)(mesh_ptr + 0x56);
+        stack_48 = *(uint64_t *)(mesh_ptr + 0x54);
+        stack_40 = *(uint64_t *)(mesh_ptr + 0x56);
         
         FUN_180085ac0(&stack_78, 0x3fc90fdb);  // 缩放因子
         FUN_18063a240(bounding_box_ptr, bounding_box_ptr, &stack_78);
         
-        stack_78 = *(undefined8 *)(mesh_ptr + 0x48);
-        stack_70 = *(undefined8 *)(mesh_ptr + 0x4a);
-        stack_68 = *(undefined8 *)(mesh_ptr + 0x4c);
-        stack_60 = *(undefined8 *)(mesh_ptr + 0x4e);
+        stack_78 = *(uint64_t *)(mesh_ptr + 0x48);
+        stack_70 = *(uint64_t *)(mesh_ptr + 0x4a);
+        stack_68 = *(uint64_t *)(mesh_ptr + 0x4c);
+        stack_60 = *(uint64_t *)(mesh_ptr + 0x4e);
         stack_58 = mesh_ptr[0x50];
         stack_54 = mesh_ptr[0x51];
         stack_50 = mesh_ptr[0x52];
         stack_4c = mesh_ptr[0x53];
-        stack_48 = *(undefined8 *)(mesh_ptr + 0x54);
-        stack_40 = *(undefined8 *)(mesh_ptr + 0x56);
+        stack_48 = *(uint64_t *)(mesh_ptr + 0x54);
+        stack_40 = *(uint64_t *)(mesh_ptr + 0x56);
         
         FUN_180085970(&stack_78);
         current_vertex = (float *)FUN_18063a240(bounding_box_ptr, bounding_box_ptr, &stack_78);
@@ -415,24 +415,24 @@ void update_animation_state(longlong *animation_object)
   float current_time;
   float target_time;
   float interpolation_factor;
-  undefined1 context_138 [8];
+  int8_t context_138 [8];
   longlong *frame_data;
-  undefined4 context_128;
+  int32_t context_128;
   longlong *animation_ptr;
   longlong *blend_data;
-  undefined4 context_110;
+  int32_t context_110;
   longlong context_108;
-  undefined8 context_100;
-  undefined8 context_f8;
-  undefined1 context_f0;
-  undefined8 context_e8;
-  undefined8 context_d8;
-  undefined8 context_c8;
-  undefined8 context_c0;
-  undefined1 context_b8;
-  undefined8 context_b0;
-  undefined8 context_a0;
-  undefined8 context_90;
+  uint64_t context_100;
+  uint64_t context_f8;
+  int8_t context_f0;
+  uint64_t context_e8;
+  uint64_t context_d8;
+  uint64_t context_c8;
+  uint64_t context_c0;
+  int8_t context_b8;
+  uint64_t context_b0;
+  uint64_t context_a0;
+  uint64_t context_90;
   
   context_90 = 0xfffffffffffffffe;
   
@@ -599,7 +599,7 @@ void update_animation_state(longlong *animation_object)
       }
       
       // 更新动画时间
-      *(undefined4 *)(animation_object + 0x5b) = *(undefined4 *)((longlong)animation_object + 0x2dc);
+      *(int32_t *)(animation_object + 0x5b) = *(int32_t *)((longlong)animation_object + 0x2dc);
     }
     
     // 检查是否完成动画处理
@@ -618,17 +618,17 @@ longlong * clone_object(longlong *source_object, longlong *target_object)
 
 {
   byte *property_flags;
-  undefined4 property_1;
+  int32_t property_1;
   longlong offset_1;
-  undefined4 property_2;
-  undefined4 property_3;
-  undefined4 property_4;
-  undefined8 property_5;
-  undefined8 property_6;
-  undefined8 property_7;
-  undefined8 property_8;
-  undefined8 property_9;
-  undefined8 property_10;
+  int32_t property_2;
+  int32_t property_3;
+  int32_t property_4;
+  uint64_t property_5;
+  uint64_t property_6;
+  uint64_t property_7;
+  uint64_t property_8;
+  uint64_t property_9;
+  uint64_t property_10;
   longlong field_1;
   longlong field_2;
   longlong field_3;
@@ -636,12 +636,12 @@ longlong * clone_object(longlong *source_object, longlong *target_object)
   longlong field_5;
   longlong field_6;
   longlong field_7;
-  undefined8 memory_block;
+  uint64_t memory_block;
   longlong *cloned_object;
-  undefined *resource_ptr;
+  void *resource_ptr;
   longlong *temp_ptr_1;
   longlong *temp_ptr_2;
-  undefined4 clone_flag;
+  int32_t clone_flag;
   
   temp_ptr_2 = target_object;
   
@@ -670,23 +670,23 @@ longlong * clone_object(longlong *source_object, longlong *target_object)
     *(byte *)(*target_object + OBJECT_FLAG_OFFSET) & 0xbf;
   
   // 复制尺寸和位置属性
-  property_1 = *(undefined4 *)((longlong)source_object + 0xcc);
+  property_1 = *(int32_t *)((longlong)source_object + 0xcc);
   field_1 = source_object[0x1a];
-  property_2 = *(undefined4 *)((longlong)source_object + 0xd4);
+  property_2 = *(int32_t *)((longlong)source_object + 0xd4);
   field_2 = source_object[0x1b];
-  property_3 = *(undefined4 *)((longlong)source_object + 0xdc);
+  property_3 = *(int32_t *)((longlong)source_object + 0xdc);
   field_3 = source_object[0x1c];
-  property_4 = *(undefined4 *)((longlong)source_object + 0xe4);
+  property_4 = *(int32_t *)((longlong)source_object + 0xe4);
   offset_1 = *target_object;
   
   *(int *)(offset_1 + 200) = (int)source_object[0x19];
-  *(undefined4 *)(offset_1 + 0xcc) = property_1;
+  *(int32_t *)(offset_1 + 0xcc) = property_1;
   *(int *)(offset_1 + 0xd0) = (int)field_1;
-  *(undefined4 *)(offset_1 + 0xd4) = property_2;
+  *(int32_t *)(offset_1 + 0xd4) = property_2;
   *(int *)(offset_1 + 0xd8) = (int)field_2;
-  *(undefined4 *)(offset_1 + 0xdc) = property_3;
+  *(int32_t *)(offset_1 + 0xdc) = property_3;
   *(int *)(offset_1 + 0xe0) = (int)field_3;
-  *(undefined4 *)(offset_1 + 0xe4) = property_4;
+  *(int32_t *)(offset_1 + 0xe4) = property_4;
   
   // 复制对象引用关系
   if ((*(byte *)((longlong)source_object + OBJECT_FLAG_OFFSET) & ANIMATION_FLAG_MASK) == 0) {
@@ -719,23 +719,23 @@ longlong * clone_object(longlong *source_object, longlong *target_object)
   *(longlong *)(offset_1 + 0x250) = field_1;
   
   // 复制纹理和材质属性
-  property_1 = *(undefined4 *)((longlong)source_object + 0x2ac);
+  property_1 = *(int32_t *)((longlong)source_object + 0x2ac);
   field_1 = source_object[0x56];
-  property_2 = *(undefined4 *)((longlong)source_object + 0x2b4);
+  property_2 = *(int32_t *)((longlong)source_object + 0x2b4);
   offset_1 = *target_object;
   *(int *)(offset_1 + 0x2a8) = (int)source_object[0x55];
-  *(undefined4 *)(offset_1 + 0x2ac) = property_1;
+  *(int32_t *)(offset_1 + 0x2ac) = property_1;
   *(int *)(offset_1 + 0x2b0) = (int)field_1;
-  *(undefined4 *)(offset_1 + 0x2b4) = property_2;
+  *(int32_t *)(offset_1 + 0x2b4) = property_2;
   
-  property_1 = *(undefined4 *)((longlong)source_object + 700);
+  property_1 = *(int32_t *)((longlong)source_object + 700);
   field_1 = source_object[0x58];
-  property_2 = *(undefined4 *)((longlong)source_object + 0x2c4);
+  property_2 = *(int32_t *)((longlong)source_object + 0x2c4);
   offset_1 = *target_object;
   *(int *)(offset_1 + 0x2b8) = (int)source_object[0x57];
-  *(undefined4 *)(offset_1 + 700) = property_1;
+  *(int32_t *)(offset_1 + 700) = property_1;
   *(int *)(offset_1 + 0x2c0) = (int)field_1;
-  *(undefined4 *)(offset_1 + 0x2c4) = property_2;
+  *(int32_t *)(offset_1 + 0x2c4) = property_2;
   
   // 复制状态属性
   *(int *)(*target_object + 0x108) = (int)source_object[0x21];
@@ -747,34 +747,34 @@ longlong * clone_object(longlong *source_object, longlong *target_object)
   
   // 复制资源引用
   resource_ptr = &DAT_18098bc73;
-  if ((undefined *)source_object[3] != (undefined *)0x0) {
-    resource_ptr = (undefined *)source_object[3];
+  if ((void *)source_object[3] != (void *)0x0) {
+    resource_ptr = (void *)source_object[3];
   }
   (**(code **)(*(longlong *)(*target_object + 0x10) + 0x10))
     ((longlong *)(*target_object + 0x10), resource_ptr);
   
   // 复制可见性标志
-  *(undefined1 *)(*target_object + 0xf6) = *(undefined1 *)((longlong)source_object + 0xf6);
+  *(int8_t *)(*target_object + 0xf6) = *(int8_t *)((longlong)source_object + 0xf6);
   
   // 复制变换矩阵数据
-  property_5 = *(undefined8 *)((longlong)source_object + 0x27c);
-  property_6 = *(undefined8 *)((longlong)source_object + 0x284);
-  property_7 = *(undefined8 *)((longlong)source_object + 0x28c);
-  property_8 = *(undefined8 *)((longlong)source_object + 0x294);
-  property_9 = *(undefined8 *)((longlong)source_object + 0x29c);
-  property_10 = *(undefined8 *)((longlong)source_object + 0x2a4);
+  property_5 = *(uint64_t *)((longlong)source_object + 0x27c);
+  property_6 = *(uint64_t *)((longlong)source_object + 0x284);
+  property_7 = *(uint64_t *)((longlong)source_object + 0x28c);
+  property_8 = *(uint64_t *)((longlong)source_object + 0x294);
+  property_9 = *(uint64_t *)((longlong)source_object + 0x29c);
+  property_10 = *(uint64_t *)((longlong)source_object + 0x2a4);
   offset_1 = *target_object;
   
-  *(undefined8 *)(offset_1 + 0x274) = *(undefined8 *)((longlong)source_object + 0x274);
-  *(undefined8 *)(offset_1 + 0x27c) = property_5;
-  *(undefined8 *)(offset_1 + 0x284) = property_6;
-  *(undefined8 *)(offset_1 + 0x28c) = property_7;
-  *(undefined8 *)(offset_1 + 0x294) = property_8;
-  *(undefined8 *)(offset_1 + 0x29c) = property_9;
-  *(undefined4 *)(offset_1 + 0x2a4) = property_10;
+  *(uint64_t *)(offset_1 + 0x274) = *(uint64_t *)((longlong)source_object + 0x274);
+  *(uint64_t *)(offset_1 + 0x27c) = property_5;
+  *(uint64_t *)(offset_1 + 0x284) = property_6;
+  *(uint64_t *)(offset_1 + 0x28c) = property_7;
+  *(uint64_t *)(offset_1 + 0x294) = property_8;
+  *(uint64_t *)(offset_1 + 0x29c) = property_9;
+  *(int32_t *)(offset_1 + 0x2a4) = property_10;
   
   // 复制更多标志位
-  *(undefined1 *)(*target_object + 0xff) = *(undefined1 *)((longlong)source_object + 0xff);
+  *(int8_t *)(*target_object + 0xff) = *(int8_t *)((longlong)source_object + 0xff);
   *(int *)(*target_object + 0x270) = (int)source_object[0x4e];
   
   // 复制动画相关属性
@@ -801,13 +801,13 @@ longlong * clone_object(longlong *source_object, longlong *target_object)
   field_2 = source_object[0x2e];
   field_3 = source_object[0x2f];
   field_4 = source_object[0x30];
-  property_1 = *(undefined4 *)((longlong)source_object + 0x184);
+  property_1 = *(int32_t *)((longlong)source_object + 0x184);
   field_5 = source_object[0x31];
-  property_2 = *(undefined4 *)((longlong)source_object + 0x18c);
+  property_2 = *(int32_t *)((longlong)source_object + 0x18c);
   field_6 = source_object[0x32];
-  property_3 = *(undefined4 *)((longlong)source_object + 0x194);
+  property_3 = *(int32_t *)((longlong)source_object + 0x194);
   field_7 = source_object[0x33];
-  property_4 = *(undefined4 *)((longlong)source_object + 0x19c);
+  property_4 = *(int32_t *)((longlong)source_object + 0x19c);
   offset_1 = *target_object;
   
   *(longlong *)(offset_1 + 0x160) = source_object[0x2c];
@@ -815,13 +815,13 @@ longlong * clone_object(longlong *source_object, longlong *target_object)
   *(longlong *)(offset_1 + 0x170) = field_2;
   *(longlong *)(offset_1 + 0x178) = field_3;
   *(int *)(offset_1 + 0x180) = (int)field_4;
-  *(undefined4 *)(offset_1 + 0x184) = property_1;
+  *(int32_t *)(offset_1 + 0x184) = property_1;
   *(int *)(offset_1 + 0x188) = (int)field_5;
-  *(undefined4 *)(offset_1 + 0x18c) = property_2;
+  *(int32_t *)(offset_1 + 0x18c) = property_2;
   *(int *)(offset_1 + 400) = (int)field_6;
-  *(undefined4 *)(offset_1 + 0x194) = property_3;
+  *(int32_t *)(offset_1 + 0x194) = property_3;
   *(int *)(offset_1 + 0x198) = (int)field_7;
-  *(undefined4 *)(offset_1 + 0x19c) = property_4;
+  *(int32_t *)(offset_1 + 0x19c) = property_4;
   
   // 更新标志位
   property_flags = (byte *)(*target_object + OBJECT_FLAG_OFFSET);
@@ -829,15 +829,15 @@ longlong * clone_object(longlong *source_object, longlong *target_object)
     (*(byte *)(*target_object + OBJECT_FLAG_OFFSET) ^ *(byte *)((longlong)source_object + OBJECT_FLAG_OFFSET)) & 1;
   
   // 复制其他属性
-  *(undefined1 *)(*target_object + 0xf7) = *(undefined1 *)((longlong)source_object + 0xf7);
+  *(int8_t *)(*target_object + 0xf7) = *(int8_t *)((longlong)source_object + 0xf7);
   *(int *)(*target_object + 0x208) = (int)source_object[0x41];
   *(int *)(*target_object + 0x1f8) = (int)source_object[0x3f];
-  *(undefined4 *)(*target_object + 0x1fc) = *(undefined4 *)((longlong)source_object + 0x1fc);
+  *(int32_t *)(*target_object + 0x1fc) = *(int32_t *)((longlong)source_object + 0x1fc);
   *(int *)(*target_object + 0x200) = (int)source_object[0x40];
-  *(undefined4 *)(*target_object + 0x204) = *(undefined4 *)((longlong)source_object + 0x204);
+  *(int32_t *)(*target_object + 0x204) = *(int32_t *)((longlong)source_object + 0x204);
   *(int *)(*target_object + 0x2d8) = (int)source_object[0x5b];
-  property_1 = *(undefined4 *)((longlong)source_object + 0x2dc);
-  *(undefined4 *)(*target_object + 0x2dc) = property_1;
+  property_1 = *(int32_t *)((longlong)source_object + 0x2dc);
+  *(int32_t *)(*target_object + 0x2dc) = property_1;
   
   offset_1 = *target_object;
   cloned_object = (longlong *)source_object[0x4d];
@@ -861,22 +861,22 @@ longlong * clone_object(longlong *source_object, longlong *target_object)
   return target_object;
 }
 
-// 函数: void cleanup_object_resources(longlong *object_ptr, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+// 函数: void cleanup_object_resources(longlong *object_ptr, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 // 功能: 清理对象资源，释放内存和解除引用关系
 // 
 // 原始实现：FUN_180076760
 // 简化实现：资源清理函数（完整版）
-void cleanup_object_resources(longlong *object_ptr, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void cleanup_object_resources(longlong *object_ptr, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 
 {
   longlong *resource_manager;
-  undefined8 cleanup_context;
+  uint64_t cleanup_context;
   longlong *temp_ptr_1;
   longlong *temp_ptr_2;
-  undefined1 cleanup_buffer_1 [8];
-  undefined8 cleanup_buffer_2;
+  int8_t cleanup_buffer_1 [8];
+  uint64_t cleanup_buffer_2;
   longlong *cleanup_manager;
-  undefined2 cleanup_flag;
+  int16_t cleanup_flag;
   char cleanup_status;
   
   cleanup_context = 0xfffffffffffffffe;
@@ -885,7 +885,7 @@ void cleanup_object_resources(longlong *object_ptr, undefined8 param_2, undefine
     // 重置对象状态
     object_ptr[0x3f] = 0;
     object_ptr[0x40] = 0;
-    *(undefined4 *)(object_ptr + 0x41) = 0;
+    *(int32_t *)(object_ptr + 0x41) = 0;
     FUN_180079520();
   }
   else {
@@ -905,11 +905,11 @@ void cleanup_object_resources(longlong *object_ptr, undefined8 param_2, undefine
     resource_manager = temp_ptr_2;
     
     // 清理资源管理器状态
-    *(undefined4 *)(temp_ptr_2 + 2) = 0;
-    *(undefined4 *)(temp_ptr_2 + 7) = 0;
-    *(undefined4 *)(temp_ptr_2 + 0x11) = 0;
-    *(undefined4 *)(temp_ptr_2 + 0xc) = 0;
-    *(undefined2 *)(temp_ptr_2 + 0x18) = 0;
+    *(int32_t *)(temp_ptr_2 + 2) = 0;
+    *(int32_t *)(temp_ptr_2 + 7) = 0;
+    *(int32_t *)(temp_ptr_2 + 0x11) = 0;
+    *(int32_t *)(temp_ptr_2 + 0xc) = 0;
+    *(int16_t *)(temp_ptr_2 + 0x18) = 0;
     
     if (temp_ptr_2[0x17] != 0) {
       // 错误：资源管理器状态异常
@@ -919,7 +919,7 @@ void cleanup_object_resources(longlong *object_ptr, undefined8 param_2, undefine
     temp_ptr_2[0x17] = 0;
     FUN_180085530(temp_ptr_2[0x16]);
     resource_manager[0x16] = 0;
-    *(undefined4 *)(resource_manager + 0x19) = 0;
+    *(int32_t *)(resource_manager + 0x19) = 0;
     
     cleanup_flag = 0x101;
     
@@ -975,7 +975,7 @@ void update_object_dependencies(longlong object_ptr, longlong *dependency_ptr)
 {
   byte dependency_flag;
   longlong resource_handle;
-  undefined1 resource_type;
+  int8_t resource_type;
   byte dependency_state;
   uint dependency_flags;
   longlong resource_data;
@@ -998,21 +998,21 @@ void update_object_dependencies(longlong object_ptr, longlong *dependency_ptr)
       dependency_flag = *(byte *)(object_ptr + OBJECT_FLAG_OFFSET);
       
       // 更新依赖状态标志
-      dependency_state = (byte)((uint)*(undefined4 *)
+      dependency_state = (byte)((uint)*(int32_t *)
         (*(longlong *)(resource_handle + 0x1e0) + 0x1588) >> 0x1b) << 7;
       *(byte *)(object_ptr + OBJECT_FLAG_OFFSET) = dependency_state | dependency_flag & 0x7f;
       
       // 处理依赖类型标志
       dependency_flags = *(uint *)(resource_handle + 0x138) & 0x3000;
       if (dependency_flags == 0x1000) {
-        *(undefined1 *)(object_ptr + 0xf7) = 1;
+        *(int8_t *)(object_ptr + 0xf7) = 1;
       }
       else {
         resource_type = 0;
         if (dependency_flags == 0x2000) {
           resource_type = 2;
         }
-        *(undefined1 *)(object_ptr + 0xf7) = resource_type;
+        *(int8_t *)(object_ptr + 0xf7) = resource_type;
       }
       
       // 更新依赖状态

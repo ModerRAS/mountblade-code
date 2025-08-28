@@ -373,13 +373,13 @@ void FUN_18081f420(float *param_1,uint param_2,longlong param_3,int param_4,ulon
           uVar17 = (ulonglong)uVar10;
           lVar16 = param_3 + uVar17 * 2;
           fVar38 = (float)(uint)*param_5 * 2.3283064e-10;
-          fVar20 = (float)((int)((uint)CONCAT21(CONCAT11(*(undefined1 *)((uVar17 - 1) + lVar16),
-                                                         *(undefined1 *)((uVar17 - 2) + lVar16)),
-                                                *(undefined1 *)((uVar17 - 3) + lVar16)) << 8) >> 8)
+          fVar20 = (float)((int)((uint)CONCAT21(CONCAT11(*(int8_t *)((uVar17 - 1) + lVar16),
+                                                         *(int8_t *)((uVar17 - 2) + lVar16)),
+                                                *(int8_t *)((uVar17 - 3) + lVar16)) << 8) >> 8)
                    * 1.1920929e-07;
-          fVar23 = (float)((int)((uint)CONCAT21(CONCAT11(*(undefined1 *)(uVar17 + 2 + lVar16),
-                                                         *(undefined1 *)(uVar17 + 1 + lVar16)),
-                                                *(undefined1 *)(uVar17 + lVar16)) << 8) >> 8) *
+          fVar23 = (float)((int)((uint)CONCAT21(CONCAT11(*(int8_t *)(uVar17 + 2 + lVar16),
+                                                         *(int8_t *)(uVar17 + 1 + lVar16)),
+                                                *(int8_t *)(uVar17 + lVar16)) << 8) >> 8) *
                    1.1920929e-07;
           fVar22 = (float)((int)((uint)*(uint3 *)((ulonglong)(uVar10 + 1) +
                                                  param_3 + (ulonglong)(uVar10 + 1) * 2) << 8) >> 8)

@@ -8,20 +8,20 @@ ulonglong g_string_buffer_size = _DAT_180bf00a8;  // 字符串缓冲区大小
 longlong g_memory_allocator = _DAT_180c868e8;     // 内存分配器
 longlong g_string_constants = _DAT_180c8ed18;     // 字符串常量池
 char g_empty_string[] = "";                       // 空字符串常量
-undefined8 g_string_suffix = UNK_180a3c3e0;        // 字符串后缀标记
-undefined8 g_string_prefix = UNK_180a0ffc0;        // 字符串前缀标记
-undefined8 g_null_terminator = UNK_18098bcb0;      // 空终止符标记
+uint64_t g_string_suffix = UNK_180a3c3e0;        // 字符串后缀标记
+uint64_t g_string_prefix = UNK_180a0ffc0;        // 字符串前缀标记
+uint64_t g_null_terminator = UNK_18098bcb0;      // 空终止符标记
 
-// 函数: void process_string_batch(undefined8 param_1, longlong *param_2)
+// 函数: void process_string_batch(uint64_t param_1, longlong *param_2)
 // 功能: 批量处理字符串数据，进行字符串格式化、编码转换和内存管理
 // 参数: param_1 - 上下文参数, param_2 - 字符串数组指针
-void process_string_batch(undefined8 param_1, longlong *param_2)
+void process_string_batch(uint64_t param_1, longlong *param_2)
 {
   char *pcVar1;
   char cVar2;
   int iVar3;
-  undefined4 uVar4;
-  undefined1 *puVar5;
+  int32_t uVar4;
+  int8_t *puVar5;
   char *pcVar6;
   longlong lVar7;
   int iVar8;
@@ -30,20 +30,20 @@ void process_string_batch(undefined8 param_1, longlong *param_2)
   ulonglong uVar11;
   uint uVar12;
   ulonglong uVar13;
-  undefined1 auStack_2c8 [32];
-  undefined *puStack_2a8;
+  int8_t auStack_2c8 [32];
+  void *puStack_2a8;
   char *pcStack_2a0;
   uint uStack_298;
   ulonglong uStack_290;
-  undefined *puStack_288;
-  undefined1 *puStack_280;
-  undefined4 uStack_278;
+  void *puStack_288;
+  int8_t *puStack_280;
+  int32_t uStack_278;
   ulonglong uStack_270;
-  undefined *puStack_268;
-  undefined1 *puStack_260;
-  undefined4 uStack_258;
+  void *puStack_268;
+  int8_t *puStack_260;
+  int32_t uStack_258;
   ulonglong uStack_250;
-  undefined8 uStack_248;
+  uint64_t uStack_248;
   char acStack_238 [512];
   ulonglong uStack_38;
   
@@ -59,11 +59,11 @@ void process_string_batch(undefined8 param_1, longlong *param_2)
       uStack_290 = 0;
       pcStack_2a0 = (char *)0x0;
       uStack_298 = 0;
-      allocate_string_buffer(&puStack_2a8, *(undefined4 *)(lVar9 + 0x298));
+      allocate_string_buffer(&puStack_2a8, *(int32_t *)(lVar9 + 0x298));
       pcVar1 = pcStack_2a0;
       if (*(int *)(lVar9 + 0x298) != 0) {
         // 复制字符串内容
-        memcpy(pcStack_2a0, *(undefined8 *)(lVar9 + 0x290), *(int *)(lVar9 + 0x298) + 1);
+        memcpy(pcStack_2a0, *(uint64_t *)(lVar9 + 0x290), *(int *)(lVar9 + 0x298) + 1);
       }
       if (*(longlong *)(lVar9 + 0x290) != 0) {
         uStack_298 = 0;
@@ -92,7 +92,7 @@ void process_string_batch(undefined8 param_1, longlong *param_2)
       format_string_with_prefix(acStack_238, 0x200, &g_string_prefix, pcVar6);
       puStack_288 = &g_string_suffix;
       uStack_270 = 0;
-      puStack_280 = (undefined1 *)0x0;
+      puStack_280 = (int8_t *)0x0;
       uStack_278 = 0;
       lVar9 = -1;
       do {
@@ -105,7 +105,7 @@ void process_string_batch(undefined8 param_1, longlong *param_2)
         if (iVar8 < 0x10) {
           iVar3 = 0x10;
         }
-        puVar5 = (undefined1 *)allocate_memory_from_pool(g_string_constants, (longlong)iVar3, 0x13);
+        puVar5 = (int8_t *)allocate_memory_from_pool(g_string_constants, (longlong)iVar3, 0x13);
         *puVar5 = 0;
         puStack_280 = puVar5;
         uVar4 = calculate_string_hash(puVar5);
@@ -116,16 +116,16 @@ void process_string_batch(undefined8 param_1, longlong *param_2)
       uStack_278 = 0;
       cVar2 = validate_string_checksum(&puStack_288);
       puStack_288 = &g_string_suffix;
-      if (puStack_280 != (undefined1 *)0x0) {
+      if (puStack_280 != (int8_t *)0x0) {
         release_memory_buffer();
       }
-      puStack_280 = (undefined1 *)0x0;
+      puStack_280 = (int8_t *)0x0;
       uStack_270 = uStack_270 & 0xffffffff00000000;
       puStack_288 = &g_null_terminator;
       if (cVar2 != '\0') {
         puStack_268 = &g_string_suffix;
         uStack_250 = 0;
-        puStack_260 = (undefined1 *)0x0;
+        puStack_260 = (int8_t *)0x0;
         uStack_258 = 0;
         lVar9 = -1;
         do {
@@ -138,7 +138,7 @@ void process_string_batch(undefined8 param_1, longlong *param_2)
           if (iVar8 < 0x10) {
             iVar3 = 0x10;
           }
-          puVar5 = (undefined1 *)allocate_memory_from_pool(g_string_constants, (longlong)iVar3, 0x13);
+          puVar5 = (int8_t *)allocate_memory_from_pool(g_string_constants, (longlong)iVar3, 0x13);
           *puVar5 = 0;
           puStack_260 = puVar5;
           uVar4 = calculate_string_hash(puVar5);
@@ -149,10 +149,10 @@ void process_string_batch(undefined8 param_1, longlong *param_2)
         uStack_258 = 0;
         process_string_validation(&puStack_268);
         puStack_268 = &g_string_suffix;
-        if (puStack_260 != (undefined1 *)0x0) {
+        if (puStack_260 != (int8_t *)0x0) {
           release_memory_buffer();
         }
-        puStack_260 = (undefined1 *)0x0;
+        puStack_260 = (int8_t *)0x0;
         uStack_250 = uStack_250 & 0xffffffff00000000;
         puStack_268 = &g_null_terminator;
       }
@@ -173,11 +173,11 @@ void process_string_batch(undefined8 param_1, longlong *param_2)
   execute_cleanup_routine(uStack_38 ^ (ulonglong)auStack_2c8);
 }
 
-// 函数: undefined8 find_string_in_data_structure(longlong param_1, longlong param_2)
+// 函数: uint64_t find_string_in_data_structure(longlong param_1, longlong param_2)
 // 功能: 在复杂数据结构中查找匹配的字符串项
 // 参数: param_1 - 数据结构起始地址, param_2 - 查找参数结构
 // 返回: 找到的项的地址，未找到返回0
-undefined8 find_string_in_data_structure(longlong param_1, longlong param_2)
+uint64_t find_string_in_data_structure(longlong param_1, longlong param_2)
 {
   longlong *plVar1;
   byte *pbVar2;
@@ -221,13 +221,13 @@ undefined8 find_string_in_data_structure(longlong param_1, longlong param_2)
             }
             // 找到匹配项
             if (iVar6 == 0) {
-              return *(undefined8 *)(*(longlong *)(lVar4 + 0x28) + (longlong)iVar10 * 8);
+              return *(uint64_t *)(*(longlong *)(lVar4 + 0x28) + (longlong)iVar10 * 8);
             }
           }
           else if (iVar3 == 0) {
             // 空字符串匹配
             if (iVar6 == 0) {
-              return *(undefined8 *)(*(longlong *)(lVar4 + 0x28) + (longlong)iVar10 * 8);
+              return *(uint64_t *)(*(longlong *)(lVar4 + 0x28) + (longlong)iVar10 * 8);
             }
           }
           plVar11 = plVar11 + 1;
@@ -240,11 +240,11 @@ undefined8 find_string_in_data_structure(longlong param_1, longlong param_2)
   return 0;
 }
 
-// 函数: longlong * search_and_process_data_items(undefined8 param_1, longlong *param_2, longlong param_3)
+// 函数: longlong * search_and_process_data_items(uint64_t param_1, longlong *param_2, longlong param_3)
 // 功能: 搜索并处理数据项，进行复杂的匹配和处理操作
 // 参数: param_1 - 上下文参数, param_2 - 输出参数, param_3 - 搜索条件
 // 返回: 处理结果的指针
-longlong * search_and_process_data_items(undefined8 param_1, longlong *param_2, longlong param_3)
+longlong * search_and_process_data_items(uint64_t param_1, longlong *param_2, longlong param_3)
 {
   byte *pbVar1;
   int iVar2;
@@ -252,31 +252,31 @@ longlong * search_and_process_data_items(undefined8 param_1, longlong *param_2, 
   longlong lVar4;
   byte *pbVar5;
   longlong lVar6;
-  undefined8 *puVar7;
+  uint64_t *puVar7;
   longlong *plVar8;
-  undefined8 *puVar9;
+  uint64_t *puVar9;
   int iVar10;
-  undefined8 *puVar11;
+  uint64_t *puVar11;
   longlong lVar12;
   longlong *plVar13;
   int iVar14;
   int *piVar15;
   ulonglong uVar16;
   longlong lVar17;
-  undefined8 *puVar18;
-  undefined8 *puVar19;
+  uint64_t *puVar18;
+  uint64_t *puVar19;
   int iVar20;
   bool bVar21;
   longlong lStackX_18;
   ulonglong uStackX_20;
   int iStack_138;
   int iStack_134;
-  undefined8 *puStack_128;
-  undefined8 *puStack_120;
+  uint64_t *puStack_128;
+  uint64_t *puStack_120;
   longlong *plStack_108;
   longlong *plStack_100;
   longlong *plStack_f8;
-  undefined4 uStack_f0;
+  int32_t uStack_f0;
   longlong lStack_e8;
   longlong lStack_e0;
   longlong lStack_d8;
@@ -284,19 +284,19 @@ longlong * search_and_process_data_items(undefined8 param_1, longlong *param_2, 
   longlong lStack_c8;
   longlong lStack_c0;
   longlong lStack_b8;
-  undefined8 *puStack_b0;
-  undefined8 *puStack_a8;
-  undefined8 *puStack_a0;
-  undefined4 uStack_98;
+  uint64_t *puStack_b0;
+  uint64_t *puStack_a8;
+  uint64_t *puStack_a0;
+  int32_t uStack_98;
   longlong lStack_90;
   longlong lStack_88;
-  undefined8 uStack_80;
-  undefined4 uStack_78;
+  uint64_t uStack_80;
+  int32_t uStack_78;
   longlong lStack_70;
   longlong lStack_68;
   ulonglong uStack_60;
   longlong lStack_58;
-  undefined8 uStack_50;
+  uint64_t uStack_50;
   
   uStack_50 = 0xfffffffffffffffe;
   lStack_d8 = g_memory_allocator;
@@ -337,7 +337,7 @@ longlong * search_and_process_data_items(undefined8 param_1, longlong *param_2, 
               if (iVar10 == 0) {
                 lVar6 = get_data_structure_head(lVar6);
                 *param_2 = lVar3;
-                *(undefined4 *)(param_2 + 1) = *(undefined4 *)(lVar6 + 0x20);
+                *(int32_t *)(param_2 + 1) = *(int32_t *)(lVar6 + 0x20);
                 return param_2;
               }
             }
@@ -346,7 +346,7 @@ longlong * search_and_process_data_items(undefined8 param_1, longlong *param_2, 
               if (iVar10 == 0) {
                 lVar6 = get_data_structure_head(lVar6);
                 *param_2 = lVar3;
-                *(undefined4 *)(param_2 + 1) = *(undefined4 *)(lVar6 + 0x20);
+                *(int32_t *)(param_2 + 1) = *(int32_t *)(lVar6 + 0x20);
                 return param_2;
               }
             }
@@ -366,7 +366,7 @@ longlong * search_and_process_data_items(undefined8 param_1, longlong *param_2, 
               if (iVar10 == 0) {
                 lVar6 = get_data_structure_head(lVar6);
                 *param_2 = lVar3;
-                *(undefined4 *)(param_2 + 1) = *(undefined4 *)(lVar6 + 0x20);
+                *(int32_t *)(param_2 + 1) = *(int32_t *)(lVar6 + 0x20);
                 return param_2;
               }
             }
@@ -375,7 +375,7 @@ longlong * search_and_process_data_items(undefined8 param_1, longlong *param_2, 
               if (iVar10 == 0) {
                 lVar6 = get_data_structure_head(lVar6);
                 *param_2 = lVar3;
-                *(undefined4 *)(param_2 + 1) = *(undefined4 *)(lVar6 + 0x20);
+                *(int32_t *)(param_2 + 1) = *(int32_t *)(lVar6 + 0x20);
                 return param_2;
               }
             }
@@ -401,9 +401,9 @@ longlong * search_and_process_data_items(undefined8 param_1, longlong *param_2, 
   uStack_78 = 3;
   initialize_search_context(&lStack_90, &lStackX_18);
   process_search_parameters(param_3, &lStack_90);
-  puStack_128 = (undefined8 *)0x0;
-  puStack_120 = (undefined8 *)0x0;
-  puVar19 = (undefined8 *)0x0;
+  puStack_128 = (uint64_t *)0x0;
+  puStack_120 = (uint64_t *)0x0;
+  puVar19 = (uint64_t *)0x0;
   iVar14 = 0;
   if (lStack_88 - lStack_90 >> 3 != 0) {
     uStackX_20 = 0;
@@ -430,15 +430,15 @@ longlong * search_and_process_data_items(undefined8 param_1, longlong *param_2, 
               lVar6 = (longlong)puStack_120 - (longlong)puStack_128 >> 5;
               if (lVar6 == 0) {
                 lVar6 = 1;
-                puVar7 = (undefined8 *)allocate_memory_from_pool(g_string_constants, lVar6 << 5, 3);
+                puVar7 = (uint64_t *)allocate_memory_from_pool(g_string_constants, lVar6 << 5, 3);
               }
               else {
                 lVar6 = lVar6 * 2;
                 if (lVar6 != 0) {
-                  puVar7 = (undefined8 *)allocate_memory_from_pool(g_string_constants, lVar6 << 5, 3);
+                  puVar7 = (uint64_t *)allocate_memory_from_pool(g_string_constants, lVar6 << 5, 3);
                 }
                 else {
-                  puVar7 = (undefined8 *)0x0;
+                  puVar7 = (uint64_t *)0x0;
                 }
               }
               lVar3 = expand_result_array(puStack_128, puStack_120, puVar7);
@@ -446,12 +446,12 @@ longlong * search_and_process_data_items(undefined8 param_1, longlong *param_2, 
               for (puVar19 = puStack_128; puVar19 != puStack_120; puVar19 = puVar19 + 4) {
                 (*(void (*)(void *, int))*puVar19)(puVar19, 0);
               }
-              if (puStack_128 != (undefined8 *)0x0) {
+              if (puStack_128 != (uint64_t *)0x0) {
                 release_memory_buffer(puStack_128);
               }
               puVar19 = puVar7 + lVar6 * 4;
               puStack_128 = puVar7;
-              puStack_120 = (undefined8 *)(lVar3 + 0x20);
+              puStack_120 = (uint64_t *)(lVar3 + 0x20);
             }
           }
           lVar17 = lVar17 + 1;
@@ -506,17 +506,17 @@ longlong * search_and_process_data_items(undefined8 param_1, longlong *param_2, 
               plStack_108 = plVar8;
               plStack_100 = plVar8 + 1;
               process_search_parameters(lVar4, &plStack_108);
-              puStack_b0 = (undefined8 *)0x0;
-              puStack_a8 = (undefined8 *)0x0;
-              puVar7 = (undefined8 *)0x0;
-              puStack_a0 = (undefined8 *)0x0;
+              puStack_b0 = (uint64_t *)0x0;
+              puStack_a8 = (uint64_t *)0x0;
+              puVar7 = (uint64_t *)0x0;
+              puStack_a0 = (uint64_t *)0x0;
               uStack_98 = 3;
               iVar14 = 0;
-              puVar19 = (undefined8 *)0x0;
+              puVar19 = (uint64_t *)0x0;
               if ((longlong)plStack_100 - (longlong)plStack_108 >> 3 != 0) {
                 lStack_c8 = 0;
                 plVar8 = plStack_108;
-                puVar11 = (undefined8 *)0x0;
+                puVar11 = (uint64_t *)0x0;
                 plVar13 = plStack_100;
                 puVar18 = puVar19;
                 do {
@@ -546,24 +546,24 @@ longlong * search_and_process_data_items(undefined8 param_1, longlong *param_2, 
                           lVar3 = (longlong)puVar18 - (longlong)puVar11 >> 5;
                           if (lVar3 == 0) {
                             lVar3 = 1;
-                            puVar9 = (undefined8 *)allocate_memory_from_pool(g_string_constants, lVar3 << 5, 3);
+                            puVar9 = (uint64_t *)allocate_memory_from_pool(g_string_constants, lVar3 << 5, 3);
                           }
                           else {
                             lVar3 = lVar3 * 2;
                             if (lVar3 != 0) {
-                              puVar9 = (undefined8 *)allocate_memory_from_pool(g_string_constants, lVar3 << 5, 3);
+                              puVar9 = (uint64_t *)allocate_memory_from_pool(g_string_constants, lVar3 << 5, 3);
                             }
                             else {
-                              puVar9 = (undefined8 *)0x0;
+                              puVar9 = (uint64_t *)0x0;
                             }
                           }
                           lVar17 = expand_result_array(puVar11, puVar18, puVar9);
                           add_item_to_result_list(lVar17, plVar8 + 0x3e);
-                          puVar19 = (undefined8 *)(lVar17 + 0x20);
+                          puVar19 = (uint64_t *)(lVar17 + 0x20);
                           for (puVar7 = puVar11; puVar7 != puVar18; puVar7 = puVar7 + 4) {
                             (*(void (*)(void *, int))*puVar7)(puVar7, 0);
                           }
-                          if (puVar11 != (undefined8 *)0x0) {
+                          if (puVar11 != (uint64_t *)0x0) {
                             release_memory_buffer(puVar11);
                           }
                           puVar7 = puVar9 + lVar3 * 4;
@@ -633,7 +633,7 @@ longlong * search_and_process_data_items(undefined8 param_1, longlong *param_2, 
                 lVar12 = lStack_e8;
                 lStack_e8 = lVar4;
               }
-              if (puVar11 != (undefined8 *)0x0) {
+              if (puVar11 != (uint64_t *)0x0) {
                 lStack_e8 = lVar12;
                 release_memory_buffer(puVar11);
               }
@@ -661,11 +661,11 @@ longlong * search_and_process_data_items(undefined8 param_1, longlong *param_2, 
     } while (lVar6 != lVar4);
   }
   *param_2 = lVar17;
-  *(undefined4 *)(param_2 + 1) = *(undefined4 *)(lVar3 + 0x20);
+  *(int32_t *)(param_2 + 1) = *(int32_t *)(lVar3 + 0x20);
   for (puVar19 = puStack_128; puVar19 != puStack_120; puVar19 = puVar19 + 4) {
     (*(void (*)(void *, int))*puVar19)(puVar19, 0);
   }
-  if (puStack_128 == (undefined8 *)0x0) {
+  if (puStack_128 == (uint64_t *)0x0) {
     if (lStack_90 == 0) {
       return param_2;
     }
@@ -679,12 +679,12 @@ longlong * search_and_process_data_items(undefined8 param_1, longlong *param_2, 
 // 参数: param_1 - 数据结构起始地址, param_2 - 结果数组参数
 void collect_data_from_structure(longlong param_1, ulonglong *param_2)
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   longlong lVar2;
-  undefined8 *puVar3;
+  uint64_t *puVar3;
   longlong lVar4;
-  undefined8 *puVar5;
-  undefined8 *puVar6;
+  uint64_t *puVar5;
+  uint64_t *puVar6;
   longlong lVar7;
   longlong lVar8;
   int iStackX_18;
@@ -705,28 +705,28 @@ void collect_data_from_structure(longlong param_1, ulonglong *param_2)
             *(longlong *)(*(longlong *)(lVar2 + lVar8) + 0x28) >> 3 != 0) {
           lVar7 = 0;
           do {
-            puVar6 = (undefined8 *)param_2[1];
-            uVar1 = *(undefined8 *)(lVar7 + *(longlong *)(*(longlong *)(lVar2 + lVar8) + 0x28));
-            if (puVar6 < (undefined8 *)param_2[2]) {
+            puVar6 = (uint64_t *)param_2[1];
+            uVar1 = *(uint64_t *)(lVar7 + *(longlong *)(*(longlong *)(lVar2 + lVar8) + 0x28));
+            if (puVar6 < (uint64_t *)param_2[2]) {
               param_2[1] = (ulonglong)(puVar6 + 1);
               *puVar6 = uVar1;
             }
             else {
-              puVar5 = (undefined8 *)*param_2;
+              puVar5 = (uint64_t *)*param_2;
               lVar2 = (longlong)puVar6 - (longlong)puVar5 >> 3;
               if (lVar2 == 0) {
                 lVar2 = 1;
-                puVar3 = (undefined8 *)allocate_memory_from_pool(g_string_constants, lVar2 * 8, (char)param_2[3]);
-                puVar5 = (undefined8 *)*param_2;
-                puVar6 = (undefined8 *)param_2[1];
+                puVar3 = (uint64_t *)allocate_memory_from_pool(g_string_constants, lVar2 * 8, (char)param_2[3]);
+                puVar5 = (uint64_t *)*param_2;
+                puVar6 = (uint64_t *)param_2[1];
               }
               else {
                 lVar2 = lVar2 * 2;
                 if (lVar2 != 0) {
-                  puVar3 = (undefined8 *)allocate_memory_from_pool(g_string_constants, lVar2 * 8, (char)param_2[3]);
+                  puVar3 = (uint64_t *)allocate_memory_from_pool(g_string_constants, lVar2 * 8, (char)param_2[3]);
                 }
                 else {
-                  puVar3 = (undefined8 *)0x0;
+                  puVar3 = (uint64_t *)0x0;
                 }
               }
               if (puVar5 != puVar6) {
@@ -761,32 +761,32 @@ void collect_data_from_structure(longlong param_1, ulonglong *param_2)
 // 功能: 优化版本的数据结构收集函数，使用寄存器变量提高性能
 void collect_data_from_structure_optimized(void)
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   longlong in_RAX;
   longlong lVar2;
-  undefined8 *puVar3;
-  undefined8 *puVar4;
+  uint64_t *puVar3;
+  uint64_t *puVar4;
   longlong unaff_RBX;
-  undefined8 unaff_RBP;
-  undefined8 unaff_RSI;
-  undefined8 *puVar5;
+  uint64_t unaff_RBP;
+  uint64_t unaff_RSI;
+  uint64_t *puVar5;
   ulonglong *unaff_RDI;
-  undefined8 unaff_R12;
+  uint64_t unaff_R12;
   longlong lVar6;
-  undefined8 unaff_R13;
+  uint64_t unaff_R13;
   longlong lVar7;
-  undefined8 unaff_R14;
-  undefined8 unaff_R15;
+  uint64_t unaff_R14;
+  uint64_t unaff_R15;
   longlong in_stack_00000060;
   int iStack0000000000000070;
   int iStack0000000000000078;
   
-  *(undefined8 *)(in_RAX + 0x10) = unaff_RBP;
-  *(undefined8 *)(in_RAX + -0x18) = unaff_RSI;
-  *(undefined8 *)(in_RAX + -0x20) = unaff_R12;
-  *(undefined8 *)(in_RAX + -0x28) = unaff_R13;
-  *(undefined8 *)(in_RAX + -0x30) = unaff_R14;
-  *(undefined8 *)(in_RAX + -0x38) = unaff_R15;
+  *(uint64_t *)(in_RAX + 0x10) = unaff_RBP;
+  *(uint64_t *)(in_RAX + -0x18) = unaff_RSI;
+  *(uint64_t *)(in_RAX + -0x20) = unaff_R12;
+  *(uint64_t *)(in_RAX + -0x28) = unaff_R13;
+  *(uint64_t *)(in_RAX + -0x30) = unaff_R14;
+  *(uint64_t *)(in_RAX + -0x38) = unaff_R15;
   do {
     lVar2 = *(longlong *)(unaff_RBX + 0x28);
     iStack0000000000000078 = 0;
@@ -798,28 +798,28 @@ void collect_data_from_structure_optimized(void)
             *(longlong *)(*(longlong *)(lVar2 + lVar7) + 0x28) >> 3 != 0) {
           lVar6 = 0;
           do {
-            puVar5 = (undefined8 *)unaff_RDI[1];
-            uVar1 = *(undefined8 *)(lVar6 + *(longlong *)(*(longlong *)(lVar2 + lVar7) + 0x28));
-            if (puVar5 < (undefined8 *)unaff_RDI[2]) {
+            puVar5 = (uint64_t *)unaff_RDI[1];
+            uVar1 = *(uint64_t *)(lVar6 + *(longlong *)(*(longlong *)(lVar2 + lVar7) + 0x28));
+            if (puVar5 < (uint64_t *)unaff_RDI[2]) {
               unaff_RDI[1] = (ulonglong)(puVar5 + 1);
               *puVar5 = uVar1;
             }
             else {
-              puVar4 = (undefined8 *)*unaff_RDI;
+              puVar4 = (uint64_t *)*unaff_RDI;
               lVar2 = (longlong)puVar5 - (longlong)puVar4 >> 3;
               if (lVar2 == 0) {
                 lVar2 = 1;
-                puVar3 = (undefined8 *)allocate_memory_from_pool(g_string_constants, lVar2 * 8, (char)unaff_RDI[3]);
-                puVar4 = (undefined8 *)*unaff_RDI;
-                puVar5 = (undefined8 *)unaff_RDI[1];
+                puVar3 = (uint64_t *)allocate_memory_from_pool(g_string_constants, lVar2 * 8, (char)unaff_RDI[3]);
+                puVar4 = (uint64_t *)*unaff_RDI;
+                puVar5 = (uint64_t *)unaff_RDI[1];
               }
               else {
                 lVar2 = lVar2 * 2;
                 if (lVar2 != 0) {
-                  puVar3 = (undefined8 *)allocate_memory_from_pool(g_string_constants, lVar2 * 8, (char)unaff_RDI[3]);
+                  puVar3 = (uint64_t *)allocate_memory_from_pool(g_string_constants, lVar2 * 8, (char)unaff_RDI[3]);
                 }
                 else {
-                  puVar3 = (undefined8 *)0x0;
+                  puVar3 = (uint64_t *)0x0;
                 }
               }
               if (puVar4 != puVar5) {

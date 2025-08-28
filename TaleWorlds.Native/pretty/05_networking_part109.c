@@ -184,11 +184,11 @@ void NetworkingSystem_EmptyOperation1(void)
  * @param param_2 连接参数指针数组
  * @return 验证状态码（0表示成功，0x1c表示错误）
  */
-undefined8 NetworkingSystem_ProtocolValidator(longlong param_1,longlong *param_2)
+uint64_t NetworkingSystem_ProtocolValidator(longlong param_1,longlong *param_2)
 
 {
-  undefined8 uVar1;
-  undefined4 auStackX_10 [6];
+  uint64_t uVar1;
+  int32_t auStackX_10 [6];
   
   // 检查连接状态
   if (*(int *)(param_2[1] + 0x18) != 0) {
@@ -196,30 +196,30 @@ undefined8 NetworkingSystem_ProtocolValidator(longlong param_1,longlong *param_2
   }
   
   // 验证连接参数
-  auStackX_10[0] = *(undefined4 *)(param_1 + 0x50);
-  uVar1 = (**(code **)**(undefined8 **)(*param_2 + 8))(*(undefined8 **)(*param_2 + 8),auStackX_10,4)
+  auStackX_10[0] = *(int32_t *)(param_1 + 0x50);
+  uVar1 = (**(code **)**(uint64_t **)(*param_2 + 8))(*(uint64_t **)(*param_2 + 8),auStackX_10,4)
   ;
   if ((int)uVar1 == 0) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
-    auStackX_10[0] = *(undefined4 *)(param_1 + 0x54);
-    uVar1 = (**(code **)**(undefined8 **)(*param_2 + 8))
-                      (*(undefined8 **)(*param_2 + 8),auStackX_10,4);
+    auStackX_10[0] = *(int32_t *)(param_1 + 0x54);
+    uVar1 = (**(code **)**(uint64_t **)(*param_2 + 8))
+                      (*(uint64_t **)(*param_2 + 8),auStackX_10,4);
     if ((int)uVar1 == 0) {
       if (*(int *)(param_2[1] + 0x18) != 0) {
         return 0x1c;
       }
-      auStackX_10[0] = *(undefined4 *)(param_1 + 0x58);
-      uVar1 = (**(code **)**(undefined8 **)(*param_2 + 8))
-                        (*(undefined8 **)(*param_2 + 8),auStackX_10,4);
+      auStackX_10[0] = *(int32_t *)(param_1 + 0x58);
+      uVar1 = (**(code **)**(uint64_t **)(*param_2 + 8))
+                        (*(uint64_t **)(*param_2 + 8),auStackX_10,4);
       if ((int)uVar1 == 0) {
         if (*(int *)(param_2[1] + 0x18) != 0) {
           return 0x1c;
         }
-        auStackX_10[0] = *(undefined4 *)(param_1 + 0x60);
-        uVar1 = (**(code **)**(undefined8 **)(*param_2 + 8))
-                          (*(undefined8 **)(*param_2 + 8),auStackX_10,4);
+        auStackX_10[0] = *(int32_t *)(param_1 + 0x60);
+        uVar1 = (**(code **)**(uint64_t **)(*param_2 + 8))
+                          (*(uint64_t **)(*param_2 + 8),auStackX_10,4);
         if (((((int)uVar1 == 0) && (uVar1 = FUN_180898eb0(param_2,param_1 + 100), (int)uVar1 == 0))
             && (uVar1 = FUN_180898eb0(param_2,param_1 + 0x68), (int)uVar1 == 0)) &&
            (((uVar1 = FUN_180898eb0(param_2,param_1 + 0x6c), (int)uVar1 == 0 &&
@@ -249,13 +249,13 @@ undefined8 NetworkingSystem_ProtocolValidator(longlong param_1,longlong *param_2
  * @param param_2 连接参数指针数组
  * @return 连接管理状态码（0表示成功，0x1c表示错误）
  */
-undefined8 NetworkingSystem_ConnectionManager(longlong param_1,longlong *param_2)
+uint64_t NetworkingSystem_ConnectionManager(longlong param_1,longlong *param_2)
 
 {
-  undefined8 uVar1;
-  undefined4 auStackX_18 [2];
-  undefined1 auStack_68 [64];
-  undefined1 auStack_28 [32];
+  uint64_t uVar1;
+  int32_t auStackX_18 [2];
+  int8_t auStack_68 [64];
+  int8_t auStack_28 [32];
   
   // 验证协议标识符
   uVar1 = FUN_1808ddd30(param_2,auStack_28,1,PROTOCOL_ID_LIST,PROTOCOL_ID_BEFB);
@@ -268,7 +268,7 @@ undefined8 NetworkingSystem_ConnectionManager(longlong param_1,longlong *param_2
           (uVar1 = FUN_1808afd90(param_2,param_1 + 0x44), (int)uVar1 == 0)))) {
         if (*(int *)(param_2[1] + 0x18) == 0) {
           // 处理连接类型映射
-          switch(*(undefined4 *)(param_1 + 0x60)) {
+          switch(*(int32_t *)(param_1 + 0x60)) {
           default:
             auStackX_18[0] = 0;
             break;
@@ -380,8 +380,8 @@ undefined8 NetworkingSystem_ConnectionManager(longlong param_1,longlong *param_2
           case 0x24:
             auStackX_18[0] = 0x24;
             }
-          uVar1 = (**(code **)**(undefined8 **)(*param_2 + 8))
-                            (*(undefined8 **)(*param_2 + 8),auStackX_18,4);
+          uVar1 = (**(code **)**(uint64_t **)(*param_2 + 8))
+                            (*(uint64_t **)(*param_2 + 8),auStackX_18,4);
           if (((int)uVar1 == 0) &&
              (uVar1 = FUN_1808a7c90(param_2,param_1 + 0x40,0x3d), (int)uVar1 == 0)) {
                     // 连接管理成功，执行后续操作
@@ -413,14 +413,14 @@ undefined8 NetworkingSystem_ConnectionManager(longlong param_1,longlong *param_2
  * @param 使用栈传递的上下文信息
  * @return 状态处理结果（通过栈返回）
  */
-undefined8 NetworkingSystem_StateProcessor(void)
+uint64_t NetworkingSystem_StateProcessor(void)
 
 {
   longlong in_RAX;
-  undefined8 uVar1;
+  uint64_t uVar1;
   longlong *unaff_RBX;
   longlong unaff_RSI;
-  undefined4 in_stack_000000b0;
+  int32_t in_stack_000000b0;
   
   // 检查连接状态
   if (*(int *)(in_RAX + 0x18) == 0) {
@@ -429,7 +429,7 @@ undefined8 NetworkingSystem_StateProcessor(void)
        ((NETWORKING_MAX_CONNECTIONS < *(uint *)(unaff_RBX + 8) || (uVar1 = FUN_1808afd90(), (int)uVar1 == 0)))) {
       if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
         // 处理状态类型映射
-        switch(*(undefined4 *)(unaff_RSI + 0x60)) {
+        switch(*(int32_t *)(unaff_RSI + 0x60)) {
         default:
           in_stack_000000b0 = 0;
           break;
@@ -541,8 +541,8 @@ undefined8 NetworkingSystem_StateProcessor(void)
         case 0x24:
           in_stack_000000b0 = 0x24;
           }
-        uVar1 = (**(code **)**(undefined8 **)(*unaff_RBX + 8))
-                          (*(undefined8 **)(*unaff_RBX + 8),&stack0x000000b0,4);
+        uVar1 = (**(code **)**(uint64_t **)(*unaff_RBX + 8))
+                          (*(uint64_t **)(*unaff_RBX + 8),&stack0x000000b0,4);
         if (((int)uVar1 == 0) && (uVar1 = FUN_1808a7c90(), (int)uVar1 == 0)) {
                     // 状态处理成功，执行后续操作
           FUN_1808de000();
@@ -581,7 +581,7 @@ void NetworkingSystem_ErrorHandler(void)
   longlong *unaff_RBX;
   int unaff_EBP;
   longlong unaff_RSI;
-  undefined4 in_stack_000000b0;
+  int32_t in_stack_000000b0;
   
   // 处理错误类型
   if (in_EAX == 0x1b) {
@@ -601,8 +601,8 @@ void NetworkingSystem_ErrorHandler(void)
     iVar1 = unaff_EBP;
     if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
       in_stack_000000b0 = 6;
-      iVar1 = (**(code **)**(undefined8 **)(*unaff_RBX + 8))
-                        (*(undefined8 **)(*unaff_RBX + 8),&stack0x000000b0,4);
+      iVar1 = (**(code **)**(uint64_t **)(*unaff_RBX + 8))
+                        (*(uint64_t **)(*unaff_RBX + 8),&stack0x000000b0,4);
     }
     if (iVar1 != 0) {
       return;
@@ -619,9 +619,9 @@ void NetworkingSystem_ErrorHandler(void)
       unaff_EBP = 0;
     }
     else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-      in_stack_000000b0 = CONCAT31(in_stack_000000b0._1_3_,*(undefined1 *)(unaff_RSI + 0x5c));
-      unaff_EBP = (**(code **)**(undefined8 **)(*unaff_RBX + 8))
-                            (*(undefined8 **)(*unaff_RBX + 8),&stack0x000000b0,1);
+      in_stack_000000b0 = CONCAT31(in_stack_000000b0._1_3_,*(int8_t *)(unaff_RSI + 0x5c));
+      unaff_EBP = (**(code **)**(uint64_t **)(*unaff_RBX + 8))
+                            (*(uint64_t **)(*unaff_RBX + 8),&stack0x000000b0,1);
     }
     if (unaff_EBP != 0) {
       return;
@@ -689,14 +689,14 @@ void NetworkingSystem_EmptyOperation3(void)
  * @param param_5 处理标志
  * @return 数据包处理状态码（0表示成功，0x1c表示错误）
  */
-ulonglong NetworkingSystem_PacketProcessor(longlong param_1,undefined8 *param_2,undefined4 param_3,undefined4 param_4,
+ulonglong NetworkingSystem_PacketProcessor(longlong param_1,uint64_t *param_2,int32_t param_3,int32_t param_4,
                        char param_5)
 
 {
   uint uVar1;
   ulonglong uVar2;
-  undefined1 auStack_70 [64];
-  undefined1 auStack_30 [40];
+  int8_t auStack_70 [64];
+  int8_t auStack_30 [40];
   
   // 验证协议标识符
   uVar2 = FUN_1808ddd30(param_2,auStack_30,1,PROTOCOL_ID_LIST,param_3);
@@ -736,7 +736,7 @@ ulonglong NetworkingSystem_RouteManager(void)
 {
   uint uVar1;
   ulonglong uVar2;
-  undefined8 *unaff_RBX;
+  uint64_t *unaff_RBX;
   longlong unaff_RBP;
   char in_stack_000000d0;
   
@@ -791,13 +791,13 @@ void NetworkingSystem_EmptyOperation4(void)
  * @param param_2 协议参数指针数组
  * @return 协议管理状态码（0表示成功，0x1c表示错误）
  */
-undefined8 NetworkingSystem_ProtocolManager(longlong param_1,longlong *param_2)
+uint64_t NetworkingSystem_ProtocolManager(longlong param_1,longlong *param_2)
 
 {
-  undefined8 uVar1;
-  undefined4 auStackX_18 [4];
-  undefined1 auStack_48 [32];
-  undefined1 auStack_28 [32];
+  uint64_t uVar1;
+  int32_t auStackX_18 [4];
+  int8_t auStack_48 [32];
+  int8_t auStack_28 [32];
   
   // 验证协议标识符
   uVar1 = FUN_1808ddd30(param_2,auStack_28,1,PROTOCOL_ID_LIST,PROTOCOL_ID_IDMC);
@@ -811,9 +811,9 @@ undefined8 NetworkingSystem_ProtocolManager(longlong param_1,longlong *param_2)
       if (*(int *)(param_2[1] + 0x18) != 0) {
         return 0x1c;
       }
-      auStackX_18[0] = *(undefined4 *)(param_1 + 0xd8);
-      uVar1 = (**(code **)**(undefined8 **)(*param_2 + 8))
-                        (*(undefined8 **)(*param_2 + 8),auStackX_18,4);
+      auStackX_18[0] = *(int32_t *)(param_1 + 0xd8);
+      uVar1 = (**(code **)**(uint64_t **)(*param_2 + 8))
+                        (*(uint64_t **)(*param_2 + 8),auStackX_18,4);
       if ((int)uVar1 == 0) {
         if (*(int *)(param_2[1] + 0x18) != 0) {
           return 0x1c;
@@ -849,19 +849,19 @@ ulonglong NetworkingSystem_ConnectionProcessor(longlong param_1,longlong *param_
 {
   longlong lVar1;
   uint uVar2;
-  undefined4 *puVar3;
+  int32_t *puVar3;
   ulonglong uVar4;
-  undefined2 auStackX_18 [4];
-  undefined2 auStackX_20 [4];
-  undefined4 auStack_58 [2];
-  undefined4 uStack_50;
-  undefined4 uStack_4c;
-  undefined4 uStack_48;
-  undefined4 uStack_44;
-  undefined1 auStack_40 [40];
+  int16_t auStackX_18 [4];
+  int16_t auStackX_20 [4];
+  int32_t auStack_58 [2];
+  int32_t uStack_50;
+  int32_t uStack_4c;
+  int32_t uStack_48;
+  int32_t uStack_44;
+  int8_t auStack_40 [40];
   
   // 获取连接配置
-  puVar3 = (undefined4 *)FUN_180847820();
+  puVar3 = (int32_t *)FUN_180847820();
   uStack_50 = *puVar3;
   uStack_4c = puVar3[1];
   uStack_48 = puVar3[2];
@@ -887,19 +887,19 @@ ulonglong NetworkingSystem_ConnectionProcessor(longlong param_1,longlong *param_
         if ((*(uint *)(param_2 + 8) < NETWORKING_MAX_CONNECTIONS) && (uVar2 = 0x1c, *(int *)(param_2[1] + 0x18) == 0)) {
           auStack_58[0] = uStack_50;
           lVar1 = *param_2;
-          uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                            (*(undefined8 **)(lVar1 + 8),auStack_58,4);
+          uVar2 = (**(code **)**(uint64_t **)(lVar1 + 8))
+                            (*(uint64_t **)(lVar1 + 8),auStack_58,4);
           if (uVar2 == 0) {
-            auStackX_18[0] = (undefined2)uStack_4c;
-            uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                              (*(undefined8 **)(lVar1 + 8),auStackX_18,2);
+            auStackX_18[0] = (int16_t)uStack_4c;
+            uVar2 = (**(code **)**(uint64_t **)(lVar1 + 8))
+                              (*(uint64_t **)(lVar1 + 8),auStackX_18,2);
             if (uVar2 == 0) {
               auStackX_20[0] = uStack_4c._2_2_;
-              uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                                (*(undefined8 **)(lVar1 + 8),auStackX_20,2);
+              uVar2 = (**(code **)**(uint64_t **)(lVar1 + 8))
+                                (*(uint64_t **)(lVar1 + 8),auStackX_20,2);
               if (uVar2 == 0) {
-                uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                                  (*(undefined8 **)(lVar1 + 8),&uStack_48,8);
+                uVar2 = (**(code **)**(uint64_t **)(lVar1 + 8))
+                                  (*(uint64_t **)(lVar1 + 8),&uStack_48,8);
               }
             }
           }
@@ -949,12 +949,12 @@ ulonglong NetworkingSystem_StateChecker(void)
   longlong unaff_RBP;
   uint unaff_ESI;
   longlong *unaff_RDI;
-  undefined4 in_stack_00000030;
-  undefined4 uStack0000000000000038;
-  undefined2 uStack000000000000003c;
-  undefined2 uStack000000000000003e;
-  undefined2 in_stack_000000a0;
-  undefined2 in_stack_000000a8;
+  int32_t in_stack_00000030;
+  int32_t uStack0000000000000038;
+  int16_t uStack000000000000003c;
+  int16_t uStack000000000000003e;
+  int16_t in_stack_000000a0;
+  int16_t in_stack_000000a8;
   
   // 检查连接状态
   if (*(uint *)(in_RAX + 0x18) != unaff_ESI) {
@@ -975,19 +975,19 @@ ulonglong NetworkingSystem_StateChecker(void)
          (uVar2 = 0x1c, *(uint *)(unaff_RDI[1] + 0x18) == unaff_ESI)) {
         in_stack_00000030 = uStack0000000000000038;
         lVar1 = *unaff_RDI;
-        uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                          (*(undefined8 **)(lVar1 + 8),&stack0x00000030,4);
+        uVar2 = (**(code **)**(uint64_t **)(lVar1 + 8))
+                          (*(uint64_t **)(lVar1 + 8),&stack0x00000030,4);
         if (uVar2 == 0) {
           in_stack_000000a0 = uStack000000000000003c;
-          uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                            (*(undefined8 **)(lVar1 + 8),&stack0x000000a0,2);
+          uVar2 = (**(code **)**(uint64_t **)(lVar1 + 8))
+                            (*(uint64_t **)(lVar1 + 8),&stack0x000000a0,2);
           if (uVar2 == 0) {
             in_stack_000000a8 = uStack000000000000003e;
-            uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                              (*(undefined8 **)(lVar1 + 8),&stack0x000000a8,2);
+            uVar2 = (**(code **)**(uint64_t **)(lVar1 + 8))
+                              (*(uint64_t **)(lVar1 + 8),&stack0x000000a8,2);
             if (uVar2 == 0) {
-              uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                                (*(undefined8 **)(lVar1 + 8),&stack0x00000040,8);
+              uVar2 = (**(code **)**(uint64_t **)(lVar1 + 8))
+                                (*(uint64_t **)(lVar1 + 8),&stack0x00000040,8);
             }
           }
         }
@@ -1034,12 +1034,12 @@ ulonglong NetworkingSystem_ConnectionValidator(void)
   longlong unaff_RBP;
   uint unaff_ESI;
   longlong *unaff_RDI;
-  undefined4 in_stack_00000030;
-  undefined4 uStack0000000000000038;
-  undefined2 uStack000000000000003c;
-  undefined2 uStack000000000000003e;
-  undefined2 in_stack_000000a0;
-  undefined2 in_stack_000000a8;
+  int32_t in_stack_00000030;
+  int32_t uStack0000000000000038;
+  int16_t uStack000000000000003c;
+  int16_t uStack000000000000003e;
+  int16_t in_stack_000000a0;
+  int16_t in_stack_000000a8;
   
   // 验证连接配置
   uVar2 = FUN_180899ef0(*unaff_RDI,unaff_RBP + 0x20);
@@ -1051,19 +1051,19 @@ ulonglong NetworkingSystem_ConnectionValidator(void)
        (uVar2 = 0x1c, *(uint *)(unaff_RDI[1] + 0x18) == unaff_ESI)) {
       in_stack_00000030 = uStack0000000000000038;
       lVar1 = *unaff_RDI;
-      uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                        (*(undefined8 **)(lVar1 + 8),&stack0x00000030,4);
+      uVar2 = (**(code **)**(uint64_t **)(lVar1 + 8))
+                        (*(uint64_t **)(lVar1 + 8),&stack0x00000030,4);
       if (uVar2 == 0) {
         in_stack_000000a0 = uStack000000000000003c;
-        uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                          (*(undefined8 **)(lVar1 + 8),&stack0x000000a0,2);
+        uVar2 = (**(code **)**(uint64_t **)(lVar1 + 8))
+                          (*(uint64_t **)(lVar1 + 8),&stack0x000000a0,2);
         if (uVar2 == 0) {
           in_stack_000000a8 = uStack000000000000003e;
-          uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                            (*(undefined8 **)(lVar1 + 8),&stack0x000000a8,2);
+          uVar2 = (**(code **)**(uint64_t **)(lVar1 + 8))
+                            (*(uint64_t **)(lVar1 + 8),&stack0x000000a8,2);
           if (uVar2 == 0) {
-            uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                              (*(undefined8 **)(lVar1 + 8),&stack0x00000040,8);
+            uVar2 = (**(code **)**(uint64_t **)(lVar1 + 8))
+                              (*(uint64_t **)(lVar1 + 8),&stack0x00000040,8);
           }
         }
       }
@@ -1109,24 +1109,24 @@ ulonglong NetworkingSystem_DataSender(void)
   ulonglong unaff_RBX;
   longlong unaff_RBP;
   longlong *unaff_RDI;
-  undefined8 in_stack_00000038;
-  undefined2 in_stack_000000a0;
-  undefined2 in_stack_000000a8;
+  uint64_t in_stack_00000038;
+  int16_t in_stack_000000a0;
+  int16_t in_stack_000000a8;
   
   // 执行数据发送操作
   lVar1 = *unaff_RDI;
-  uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))();
+  uVar2 = (**(code **)**(uint64_t **)(lVar1 + 8))();
   if (uVar2 == 0) {
     in_stack_000000a0 = in_stack_00000038._4_2_;
-    uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                      (*(undefined8 **)(lVar1 + 8),&stack0x000000a0,2);
+    uVar2 = (**(code **)**(uint64_t **)(lVar1 + 8))
+                      (*(uint64_t **)(lVar1 + 8),&stack0x000000a0,2);
     if (uVar2 == 0) {
       in_stack_000000a8 = in_stack_00000038._6_2_;
-      uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                        (*(undefined8 **)(lVar1 + 8),&stack0x000000a8,2);
+      uVar2 = (**(code **)**(uint64_t **)(lVar1 + 8))
+                        (*(uint64_t **)(lVar1 + 8),&stack0x000000a8,2);
       if (uVar2 == 0) {
-        uVar2 = (**(code **)**(undefined8 **)(lVar1 + 8))
-                          (*(undefined8 **)(lVar1 + 8),&stack0x00000040,8);
+        uVar2 = (**(code **)**(uint64_t **)(lVar1 + 8))
+                          (*(uint64_t **)(lVar1 + 8),&stack0x00000040,8);
       }
     }
   }
@@ -1169,7 +1169,7 @@ ulonglong NetworkingSystem_DataReceiver(void)
   ulonglong unaff_RBX;
   longlong unaff_RBP;
   uint unaff_ESI;
-  undefined8 *unaff_RDI;
+  uint64_t *unaff_RDI;
   
   // 检查错误状态
   if (unaff_ESI != 0) {
@@ -1210,7 +1210,7 @@ ulonglong NetworkingSystem_SessionManager(void)
   ulonglong uVar2;
   ulonglong unaff_RBX;
   longlong unaff_RBP;
-  undefined8 *unaff_RDI;
+  uint64_t *unaff_RDI;
   
   // 管理会话状态
   if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
@@ -1286,11 +1286,11 @@ void NetworkingSystem_EmptyOperation5(void)
  * @param param_2 清理参数
  * @return 无返回值
  */
-void NetworkingSystem_ConnectionCleaner(longlong param_1,undefined8 param_2)
+void NetworkingSystem_ConnectionCleaner(longlong param_1,uint64_t param_2)
 
 {
   int iVar1;
-  undefined1 auStack_28 [32];
+  int8_t auStack_28 [32];
   
   // 执行连接清理
   iVar1 = FUN_1808ddd30(param_2,auStack_28,0,PROTOCOL_ID_ORTC,0);
@@ -1318,11 +1318,11 @@ void NetworkingSystem_ConnectionCleaner(longlong param_1,undefined8 param_2)
  * @param param_2 验证参数指针数组
  * @return 验证处理结果（0表示成功，0x1c表示错误）
  */
-undefined8 NetworkingSystem_ValidationProcessor(longlong param_1,undefined8 *param_2)
+uint64_t NetworkingSystem_ValidationProcessor(longlong param_1,uint64_t *param_2)
 
 {
-  undefined8 uVar1;
-  undefined1 auStack_28 [32];
+  uint64_t uVar1;
+  int8_t auStack_28 [32];
   
   // 执行验证处理
   uVar1 = FUN_1808ddd30(param_2,auStack_28,0,PROTOCOL_ID_VRUC,0);
@@ -1360,12 +1360,12 @@ undefined8 NetworkingSystem_ValidationProcessor(longlong param_1,undefined8 *par
  * @param param_2 协议参数指针数组
  * @return 协议处理结果（0表示成功，0x1c表示错误）
  */
-undefined8 NetworkingSystem_ProtocolHandler(longlong param_1,undefined8 *param_2)
+uint64_t NetworkingSystem_ProtocolHandler(longlong param_1,uint64_t *param_2)
 
 {
-  undefined8 uVar1;
-  undefined1 auStack_48 [32];
-  undefined1 auStack_28 [32];
+  uint64_t uVar1;
+  int8_t auStack_48 [32];
+  int8_t auStack_28 [32];
   
   // 验证协议标识符
   uVar1 = FUN_1808ddd30(param_2,auStack_28,1,PROTOCOL_ID_LIST,PROTOCOL_ID_TIFE);
@@ -1403,29 +1403,29 @@ undefined8 NetworkingSystem_ProtocolHandler(longlong param_1,undefined8 *param_2
  * @param param_2 配置参数指针数组
  * @return 配置管理结果（0表示成功，0x1c表示错误）
  */
-undefined8 NetworkingSystem_ConfigManager(longlong param_1,longlong *param_2)
+uint64_t NetworkingSystem_ConfigManager(longlong param_1,longlong *param_2)
 
 {
-  undefined8 uVar1;
-  undefined4 auStackX_10 [6];
+  uint64_t uVar1;
+  int32_t auStackX_10 [6];
   
   // 处理配置参数
   if (*(uint *)(param_2 + 8) < 0x55) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
-    auStackX_10[0] = *(undefined4 *)(param_1 + 0x50);
-    uVar1 = (**(code **)**(undefined8 **)(*param_2 + 8))
-                      (*(undefined8 **)(*param_2 + 8),auStackX_10,4);
+    auStackX_10[0] = *(int32_t *)(param_1 + 0x50);
+    uVar1 = (**(code **)**(uint64_t **)(*param_2 + 8))
+                      (*(uint64_t **)(*param_2 + 8),auStackX_10,4);
     if ((int)uVar1 != 0) {
       return uVar1;
     }
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
-    auStackX_10[0] = *(undefined4 *)(param_1 + 0x54);
-    uVar1 = (**(code **)**(undefined8 **)(*param_2 + 8))
-                      (*(undefined8 **)(*param_2 + 8),auStackX_10,4);
+    auStackX_10[0] = *(int32_t *)(param_1 + 0x54);
+    uVar1 = (**(code **)**(uint64_t **)(*param_2 + 8))
+                      (*(uint64_t **)(*param_2 + 8),auStackX_10,4);
     if ((int)uVar1 != 0) {
       return uVar1;
     }
@@ -1434,9 +1434,9 @@ undefined8 NetworkingSystem_ConfigManager(longlong param_1,longlong *param_2)
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
-    auStackX_10[0] = *(undefined4 *)(param_1 + 0x78);
-    uVar1 = (**(code **)**(undefined8 **)(*param_2 + 8))
-                      (*(undefined8 **)(*param_2 + 8),auStackX_10,4);
+    auStackX_10[0] = *(int32_t *)(param_1 + 0x78);
+    uVar1 = (**(code **)**(uint64_t **)(*param_2 + 8))
+                      (*(uint64_t **)(*param_2 + 8),auStackX_10,4);
     if ((int)uVar1 != 0) {
       return uVar1;
     }
@@ -1444,8 +1444,8 @@ undefined8 NetworkingSystem_ConfigManager(longlong param_1,longlong *param_2)
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
   }
-  auStackX_10[0] = *(undefined4 *)(param_1 + 0x58);
-  uVar1 = (**(code **)**(undefined8 **)(*param_2 + 8))(*(undefined8 **)(*param_2 + 8),auStackX_10,4)
+  auStackX_10[0] = *(int32_t *)(param_1 + 0x58);
+  uVar1 = (**(code **)**(uint64_t **)(*param_2 + 8))(*(uint64_t **)(*param_2 + 8),auStackX_10,4)
   ;
   if ((int)uVar1 != 0) {
     return uVar1;
@@ -1453,8 +1453,8 @@ undefined8 NetworkingSystem_ConfigManager(longlong param_1,longlong *param_2)
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
   }
-  auStackX_10[0] = *(undefined4 *)(param_1 + 0x5c);
-  uVar1 = (**(code **)**(undefined8 **)(*param_2 + 8))(*(undefined8 **)(*param_2 + 8),auStackX_10,4)
+  auStackX_10[0] = *(int32_t *)(param_1 + 0x5c);
+  uVar1 = (**(code **)**(uint64_t **)(*param_2 + 8))(*(uint64_t **)(*param_2 + 8),auStackX_10,4)
   ;
   if ((int)uVar1 == 0) {
     if (*(uint *)(param_2 + 8) < 0x53) {
@@ -1496,12 +1496,12 @@ undefined8 NetworkingSystem_ConfigManager(longlong param_1,longlong *param_2)
  * @param param_2 协议栈参数指针数组
  * @return 协议栈管理结果（0表示成功，0x1c表示错误）
  */
-undefined8 NetworkingSystem_ProtocolStackManager(longlong param_1,undefined8 *param_2)
+uint64_t NetworkingSystem_ProtocolStackManager(longlong param_1,uint64_t *param_2)
 
 {
-  undefined8 uVar1;
-  undefined1 auStack_48 [32];
-  undefined1 auStack_28 [32];
+  uint64_t uVar1;
+  int8_t auStack_48 [32];
+  int8_t auStack_28 [32];
   
   // 验证协议栈标识符
   uVar1 = FUN_1808ddd30(param_2,auStack_28,1,PROTOCOL_ID_LIST,PROTOCOL_ID_TIVE);
@@ -1540,11 +1540,11 @@ undefined8 NetworkingSystem_ProtocolStackManager(longlong param_1,undefined8 *pa
  * @param param_2 事件上下文指针
  * @return 事件处理结果（0表示成功，错误码表示失败）
  */
-undefined8 NetworkingSystem_EventHandler(undefined8 param_1,longlong param_2)
+uint64_t NetworkingSystem_EventHandler(uint64_t param_1,longlong param_2)
 
 {
-  undefined8 uVar1;
-  undefined1 auStack_28 [32];
+  uint64_t uVar1;
+  int8_t auStack_28 [32];
   
   // 处理网络事件
   if (*(uint *)(param_2 + 0x40) < NETWORKING_MAX_SESSIONS) {

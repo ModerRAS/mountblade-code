@@ -41,22 +41,22 @@
  * 5. 管理信号量同步
  * 6. 清理资源
  */
-void FUN_18066f94e(undefined8 param_1, undefined8 param_2, int param_3)
+void FUN_18066f94e(uint64_t param_1, uint64_t param_2, int param_3)
 {
-  undefined4 *data_ptr_1;
-  undefined4 *data_ptr_2;
+  int32_t *data_ptr_1;
+  int32_t *data_ptr_2;
   longlong temp_var_1;
   byte byte_var;
   int int_var;
-  undefined8 *ptr_var;
-  undefined1 *byte_ptr_1;
-  undefined1 *byte_ptr_2;
+  uint64_t *ptr_var;
+  int8_t *byte_ptr_1;
+  int8_t *byte_ptr_2;
   byte *byte_ptr_3;
-  undefined4 uint_var_1;
-  undefined4 uint_var_2;
-  undefined4 uint_var_3;
+  int32_t uint_var_1;
+  int32_t uint_var_2;
+  int32_t uint_var_3;
   bool bool_var;
-  undefined1 *byte_ptr_4;
+  int8_t *byte_ptr_4;
   longlong context_base;
   longlong stack_base;
   int index_var;
@@ -108,15 +108,15 @@ void FUN_18066f94e(undefined8 param_1, undefined8 param_2, int param_3)
     stack_var_1 = (longlong)index_var;
     *(int **)(stack_base + -0x78) = int_ptr;
     *(longlong *)(stack_base + -0x70) = temp_var_2 + stack_var_1 * 4;
-    *(undefined8 *)(context_base + 0xf50) = *(undefined8 *)(data_base + 0x2c18);
-    ptr_var = *(undefined8 **)(context_base + 0xf58);
+    *(uint64_t *)(context_base + 0xf50) = *(uint64_t *)(data_base + 0x2c18);
+    ptr_var = *(uint64_t **)(context_base + 0xf58);
     stack_var_4 = index_var * (int)size_var_2 * UI_SYSTEM_OFFSET_0X10;
     stack_var_5 = index_var * (int)size_param * 8;
     
     // 初始化缓冲区
     *ptr_var = 0;
-    *(undefined1 *)(ptr_var + 1) = 0;
-    *(undefined4 *)(context_base + 0xf14) = 0;
+    *(int8_t *)(ptr_var + 1) = 0;
+    *(int32_t *)(context_base + 0xf14) = 0;
     *(int *)(context_base + 0xf8c) = index_var * -UI_SYSTEM_BUFFER_SIZE;
     *(int *)(context_base + 0xf90) = ((*(int *)(data_base + 0x1e74) - index_var) + -1) * UI_SYSTEM_BUFFER_SIZE;
     
@@ -128,17 +128,17 @@ void FUN_18066f94e(undefined8 param_1, undefined8 param_2, int param_3)
       *(longlong *)(context_base + 0xf28) = *(longlong *)(stack_base + -0x58) + (longlong)stack_var_5;
       *(longlong *)(context_base + 0xf30) = *(longlong *)(context_base + 0xf18) + -1;
       *(longlong *)(context_base + 0xf38) = *(longlong *)(context_base + 0xf20) + -1;
-      byte_ptr_1 = *(undefined1 **)(context_base + 0xf38);
+      byte_ptr_1 = *(int8_t **)(context_base + 0xf38);
       *(longlong *)(context_base + 0xf40) = *(longlong *)(context_base + 0xf28) + -1;
-      byte_ptr_2 = *(undefined1 **)(context_base + 0xf40);
+      byte_ptr_2 = *(int8_t **)(context_base + 0xf40);
       *(longlong *)(context_base + 0xf18) = *(longlong *)(context_base + 0xf18) - (longlong)*(int *)(context_base + 0xe80);
       temp_var_2 = UI_SYSTEM_OFFSET_0X10;
       *(longlong *)(context_base + 0xf20) = *(longlong *)(context_base + 0xf20) - (longlong)*(int *)(context_base + 0xe94);
       *(longlong *)(context_base + 0xf28) = *(longlong *)(context_base + 0xf28) - (longlong)*(int *)(context_base + 0xe94);
-      *(undefined4 *)(context_base + 0xf48) = *(undefined4 *)(context_base + 0xe80);
-      *(undefined4 *)(context_base + 0xf4c) = *(undefined4 *)(context_base + 0xe94);
+      *(int32_t *)(context_base + 0xf48) = *(int32_t *)(context_base + 0xe80);
+      *(int32_t *)(context_base + 0xf4c) = *(int32_t *)(context_base + 0xe94);
       temp_var_4 = (longlong)*(int *)(context_base + 0xe94);
-      byte_ptr_4 = *(undefined1 **)(context_base + 0xf30);
+      byte_ptr_4 = *(int8_t **)(context_base + 0xf30);
       int_var = *(int *)(context_base + 0xe80);
       
       // 初始化数据块
@@ -172,11 +172,11 @@ void FUN_18066f94e(undefined8 param_1, undefined8 param_2, int param_3)
       *(longlong *)(context_base + 0xf18) = *(longlong *)(*(longlong *)(data_base + 0x43b0) + stack_var_1 * 8) + UI_SYSTEM_OFFSET_0X20;
       *(longlong *)(context_base + 0xf20) = *(longlong *)(*(longlong *)(data_base + 0x43b8) + stack_var_1 * 8) + UI_SYSTEM_OFFSET_0X10;
       *(longlong *)(context_base + 0xf28) = *(longlong *)(*(longlong *)(data_base + 0x43c0) + stack_var_1 * 8) + UI_SYSTEM_OFFSET_0X10;
-      *(undefined8 *)(context_base + 0xf30) = *(undefined8 *)(*(longlong *)(data_base + 0x43c8) + stack_var_1 * 8);
-      *(undefined8 *)(context_base + 0xf38) = *(undefined8 *)(*(longlong *)(data_base + 0x43d0) + stack_var_1 * 8);
-      *(undefined8 *)(context_base + 0xf40) = *(undefined8 *)(*(longlong *)(data_base + 0x43d8) + stack_var_1 * 8);
-      *(undefined4 *)(context_base + 0xf48) = 1;
-      *(undefined4 *)(context_base + 0xf4c) = 1;
+      *(uint64_t *)(context_base + 0xf30) = *(uint64_t *)(*(longlong *)(data_base + 0x43c8) + stack_var_1 * 8);
+      *(uint64_t *)(context_base + 0xf38) = *(uint64_t *)(*(longlong *)(data_base + 0x43d0) + stack_var_1 * 8);
+      *(uint64_t *)(context_base + 0xf40) = *(uint64_t *)(*(longlong *)(data_base + 0x43d8) + stack_var_1 * 8);
+      *(int32_t *)(context_base + 0xf48) = 1;
+      *(int32_t *)(context_base + 0xf4c) = 1;
     }
     
     // 处理数据块
@@ -213,7 +213,7 @@ void FUN_18066f94e(undefined8 param_1, undefined8 param_2, int param_3)
         
         // 调用处理函数
         FUN_18066f3e0();
-        *(undefined4 *)(context_base + 0xf14) = 1;
+        *(int32_t *)(context_base + 0xf14) = 1;
         *(uint *)(context_base + 0xfc0) = *(uint *)(context_base + 0xfc0) | (uint)(*(int *)(*(longlong *)(context_base + 0xfb8) + 0x18) - 0x41U < UI_SYSTEM_MASK_0X3FFFFFBF);
         
         // 更新数据指针
@@ -240,18 +240,18 @@ LAB_18066fdc2:
           
           if (stack_var_3 != *(int *)(data_base + 0x1e74) + -1) {
             // 处理数据块
-            data_ptr_1 = (undefined4 *)(size_var_1 * UI_SYSTEM_MULTIPLIER_0XF + *(longlong *)(context_base + 0xea8));
+            data_ptr_1 = (int32_t *)(size_var_1 * UI_SYSTEM_MULTIPLIER_0XF + *(longlong *)(context_base + 0xea8));
             uint_var_1 = data_ptr_1[1];
             uint_var_2 = data_ptr_1[2];
             uint_var_3 = data_ptr_1[3];
             temp_var_2 = *(longlong *)(stack_base + -0x80) * 7;
-            data_ptr_2 = (undefined4 *)(*(longlong *)(*(longlong *)(data_base + 0x43b0) + 8 + stack_var_1 * 8) + stack_param_3);
+            data_ptr_2 = (int32_t *)(*(longlong *)(*(longlong *)(data_base + 0x43b0) + 8 + stack_var_1 * 8) + stack_param_3);
             *data_ptr_2 = *data_ptr_1;
             data_ptr_2[1] = uint_var_1;
             data_ptr_2[2] = uint_var_2;
             data_ptr_2[3] = uint_var_3;
-            *(undefined8 *)(stack_param_4 + *(longlong *)(*(longlong *)(data_base + 0x43b8) + 8 + stack_var_1 * 8)) = *(undefined8 *)(temp_var_2 + *(longlong *)(context_base + 0xeb0));
-            *(undefined8 *)(stack_param_4 + *(longlong *)(*(longlong *)(data_base + 0x43c0) + 8 + stack_var_1 * 8)) = *(undefined8 *)(temp_var_2 + *(longlong *)(context_base + 0xeb8));
+            *(uint64_t *)(stack_param_4 + *(longlong *)(*(longlong *)(data_base + 0x43b8) + 8 + stack_var_1 * 8)) = *(uint64_t *)(temp_var_2 + *(longlong *)(context_base + 0xeb0));
+            *(uint64_t *)(stack_param_4 + *(longlong *)(*(longlong *)(data_base + 0x43c0) + 8 + stack_var_1 * 8)) = *(uint64_t *)(temp_var_2 + *(longlong *)(context_base + 0xeb8));
           }
           
           // 处理数据块复制
@@ -260,33 +260,33 @@ LAB_18066fdc2:
             temp_var_2 = unaff_var * 2;
             do {
               temp_var_3 = temp_var_2 + unaff_var;
-              *(undefined1 *)(temp_var_4 + *(longlong *)(*(longlong *)(data_base + 0x43c8) + stack_var_1 * 8)) = *(undefined1 *)(temp_var_2 + unaff_var * -2 + 0xf + *(longlong *)(context_base + 0xea8));
-              *(undefined1 *)(*(longlong *)(*(longlong *)(data_base + 0x43c8) + stack_var_1 * 8) + 1 + temp_var_4) = *(undefined1 *)((*(longlong *)(context_base + 0xea8) + temp_var_2 + 0xf) - unaff_var);
+              *(int8_t *)(temp_var_4 + *(longlong *)(*(longlong *)(data_base + 0x43c8) + stack_var_1 * 8)) = *(int8_t *)(temp_var_2 + unaff_var * -2 + 0xf + *(longlong *)(context_base + 0xea8));
+              *(int8_t *)(*(longlong *)(*(longlong *)(data_base + 0x43c8) + stack_var_1 * 8) + 1 + temp_var_4) = *(int8_t *)((*(longlong *)(context_base + 0xea8) + temp_var_2 + 0xf) - unaff_var);
               temp_var_2 = temp_var_2 + 0xf;
               temp_var_2 = temp_var_2 + unaff_var * 4;
-              *(undefined1 *)(*(longlong *)(*(longlong *)(data_base + 0x43c8) + stack_var_1 * 8) + 2 + temp_var_4) = *(undefined1 *)(temp_var_2 + *(longlong *)(context_base + 0xea8));
-              *(undefined1 *)(*(longlong *)(*(longlong *)(data_base + 0x43c8) + stack_var_1 * 8) + 3 + temp_var_4) = *(undefined1 *)(temp_var_3 + 0xf + *(longlong *)(context_base + 0xea8));
+              *(int8_t *)(*(longlong *)(*(longlong *)(data_base + 0x43c8) + stack_var_1 * 8) + 2 + temp_var_4) = *(int8_t *)(temp_var_2 + *(longlong *)(context_base + 0xea8));
+              *(int8_t *)(*(longlong *)(*(longlong *)(data_base + 0x43c8) + stack_var_1 * 8) + 3 + temp_var_4) = *(int8_t *)(temp_var_3 + 0xf + *(longlong *)(context_base + 0xea8));
               temp_var_4 = temp_var_4 + 4;
             } while (temp_var_4 < UI_SYSTEM_OFFSET_0X10);
             
             temp_var_2 = *(longlong *)(stack_base + -0x80);
-            **(undefined1 **)(*(longlong *)(data_base + 0x43d0) + stack_var_1 * 8) = *(undefined1 *)(*(longlong *)(context_base + 0xeb0) + 7);
-            **(undefined1 **)(*(longlong *)(data_base + 0x43d8) + stack_var_1 * 8) = *(undefined1 *)(*(longlong *)(context_base + 0xeb8) + 7);
-            *(undefined1 *)(*(longlong *)(*(longlong *)(data_base + 0x43d0) + stack_var_1 * 8) + 1) = *(undefined1 *)(temp_var_2 + 7 + *(longlong *)(context_base + 0xeb0));
-            *(undefined1 *)(*(longlong *)(*(longlong *)(data_base + 0x43d8) + stack_var_1 * 8) + 1) = *(undefined1 *)(*(longlong *)(context_base + 0xeb8) + 7 + temp_var_2);
-            *(undefined1 *)(*(longlong *)(*(longlong *)(data_base + 0x43d0) + stack_var_1 * 8) + 2) = *(undefined1 *)(*(longlong *)(context_base + 0xeb0) + 7 + temp_var_2 * 2);
-            *(undefined1 *)(*(longlong *)(*(longlong *)(data_base + 0x43d8) + stack_var_1 * 8) + 2) = *(undefined1 *)(*(longlong *)(context_base + 0xeb8) + 7 + temp_var_2 * 2);
-            *(undefined1 *)(*(longlong *)(*(longlong *)(data_base + 0x43d0) + stack_var_1 * 8) + 3) = *(undefined1 *)(temp_var_2 * 3 + 7 + *(longlong *)(context_base + 0xeb0));
-            *(undefined1 *)(*(longlong *)(*(longlong *)(data_base + 0x43d8) + stack_var_1 * 8) + 3) = *(undefined1 *)(*(longlong *)(context_base + 0xeb8) + 7 + temp_var_2 * 3);
-            *(undefined1 *)(*(longlong *)(*(longlong *)(data_base + 0x43d0) + stack_var_1 * 8) + 4) = *(undefined1 *)(*(longlong *)(context_base + 0xeb0) + 7 + temp_var_2 * 4);
-            *(undefined1 *)(*(longlong *)(*(longlong *)(data_base + 0x43d8) + stack_var_1 * 8) + 4) = *(undefined1 *)(*(longlong *)(context_base + 0xeb8) + 7 + temp_var_2 * 4);
-            *(undefined1 *)(*(longlong *)(*(longlong *)(data_base + 0x43d0) + stack_var_1 * 8) + 5) = *(undefined1 *)(temp_var_2 * 5 + 7 + *(longlong *)(context_base + 0xeb0));
-            *(undefined1 *)(*(longlong *)(*(longlong *)(data_base + 0x43d8) + stack_var_1 * 8) + 5) = *(undefined1 *)(*(longlong *)(context_base + 0xeb8) + 7 + temp_var_2 * 5);
-            *(undefined1 *)(*(longlong *)(*(longlong *)(data_base + 0x43d0) + stack_var_1 * 8) + 6) = *(undefined1 *)(temp_var_2 * 6 + 7 + *(longlong *)(context_base + 0xeb0));
-            *(undefined1 *)(*(longlong *)(*(longlong *)(data_base + 0x43d8) + stack_var_1 * 8) + 6) = *(undefined1 *)(*(longlong *)(context_base + 0xeb8) + 7 + temp_var_2 * 6);
+            **(int8_t **)(*(longlong *)(data_base + 0x43d0) + stack_var_1 * 8) = *(int8_t *)(*(longlong *)(context_base + 0xeb0) + 7);
+            **(int8_t **)(*(longlong *)(data_base + 0x43d8) + stack_var_1 * 8) = *(int8_t *)(*(longlong *)(context_base + 0xeb8) + 7);
+            *(int8_t *)(*(longlong *)(*(longlong *)(data_base + 0x43d0) + stack_var_1 * 8) + 1) = *(int8_t *)(temp_var_2 + 7 + *(longlong *)(context_base + 0xeb0));
+            *(int8_t *)(*(longlong *)(*(longlong *)(data_base + 0x43d8) + stack_var_1 * 8) + 1) = *(int8_t *)(*(longlong *)(context_base + 0xeb8) + 7 + temp_var_2);
+            *(int8_t *)(*(longlong *)(*(longlong *)(data_base + 0x43d0) + stack_var_1 * 8) + 2) = *(int8_t *)(*(longlong *)(context_base + 0xeb0) + 7 + temp_var_2 * 2);
+            *(int8_t *)(*(longlong *)(*(longlong *)(data_base + 0x43d8) + stack_var_1 * 8) + 2) = *(int8_t *)(*(longlong *)(context_base + 0xeb8) + 7 + temp_var_2 * 2);
+            *(int8_t *)(*(longlong *)(*(longlong *)(data_base + 0x43d0) + stack_var_1 * 8) + 3) = *(int8_t *)(temp_var_2 * 3 + 7 + *(longlong *)(context_base + 0xeb0));
+            *(int8_t *)(*(longlong *)(*(longlong *)(data_base + 0x43d8) + stack_var_1 * 8) + 3) = *(int8_t *)(*(longlong *)(context_base + 0xeb8) + 7 + temp_var_2 * 3);
+            *(int8_t *)(*(longlong *)(*(longlong *)(data_base + 0x43d0) + stack_var_1 * 8) + 4) = *(int8_t *)(*(longlong *)(context_base + 0xeb0) + 7 + temp_var_2 * 4);
+            *(int8_t *)(*(longlong *)(*(longlong *)(data_base + 0x43d8) + stack_var_1 * 8) + 4) = *(int8_t *)(*(longlong *)(context_base + 0xeb8) + 7 + temp_var_2 * 4);
+            *(int8_t *)(*(longlong *)(*(longlong *)(data_base + 0x43d0) + stack_var_1 * 8) + 5) = *(int8_t *)(temp_var_2 * 5 + 7 + *(longlong *)(context_base + 0xeb0));
+            *(int8_t *)(*(longlong *)(*(longlong *)(data_base + 0x43d8) + stack_var_1 * 8) + 5) = *(int8_t *)(*(longlong *)(context_base + 0xeb8) + 7 + temp_var_2 * 5);
+            *(int8_t *)(*(longlong *)(*(longlong *)(data_base + 0x43d0) + stack_var_1 * 8) + 6) = *(int8_t *)(temp_var_2 * 6 + 7 + *(longlong *)(context_base + 0xeb0));
+            *(int8_t *)(*(longlong *)(*(longlong *)(data_base + 0x43d8) + stack_var_1 * 8) + 6) = *(int8_t *)(*(longlong *)(context_base + 0xeb8) + 7 + temp_var_2 * 6);
             size_var_2 = (ulonglong)stack_var_8;
-            *(undefined1 *)(*(longlong *)(*(longlong *)(data_base + 0x43d0) + stack_var_1 * 8) + 7) = *(undefined1 *)(temp_var_2 * 7 + 7 + *(longlong *)(context_base + 0xeb0));
-            *(undefined1 *)(*(longlong *)(*(longlong *)(data_base + 0x43d8) + stack_var_1 * 8) + 7) = *(undefined1 *)(*(longlong *)(context_base + 0xeb8) + 7 + temp_var_2 * 7);
+            *(int8_t *)(*(longlong *)(*(longlong *)(data_base + 0x43d0) + stack_var_1 * 8) + 7) = *(int8_t *)(temp_var_2 * 7 + 7 + *(longlong *)(context_base + 0xeb0));
+            *(int8_t *)(*(longlong *)(*(longlong *)(data_base + 0x43d8) + stack_var_1 * 8) + 7) = *(int8_t *)(*(longlong *)(context_base + 0xeb8) + 7 + temp_var_2 * 7);
           }
           
           uint_var_4 = (uint)byte_var;
@@ -301,31 +301,31 @@ LAB_18066fdc2:
               *(ulonglong *)(stack_base + -0x28) = ((ulonglong)*(byte *)(((longlong)*(int *)(data_base + 0x1e64) + 0x32) * 0x40 + temp_var_4 + temp_var_2) + 0xc0) * UI_SYSTEM_OFFSET_0X10 + temp_var_2;
               
               if (0 < (int)counter) {
-                FUN_18069cb40(*(undefined8 *)(context_base + 0xea8), *(undefined8 *)(context_base + 0xeb0), *(undefined8 *)(context_base + 0xeb8), size_var_2 & 0xffffffff, stack_param_1);
+                FUN_18069cb40(*(uint64_t *)(context_base + 0xea8), *(uint64_t *)(context_base + 0xeb0), *(uint64_t *)(context_base + 0xeb8), size_var_2 & 0xffffffff, stack_param_1);
               }
               if (!bool_var) {
-                FUN_18069ca00(*(undefined8 *)(context_base + 0xea8), *(undefined8 *)(context_base + 0xeb0), *(undefined8 *)(context_base + 0xeb8), size_var_2 & 0xffffffff, stack_param_1);
+                FUN_18069ca00(*(uint64_t *)(context_base + 0xea8), *(uint64_t *)(context_base + 0xeb0), *(uint64_t *)(context_base + 0xeb8), size_var_2 & 0xffffffff, stack_param_1);
               }
               if (0 < stack_var_1) {
-                FUN_18069cad0(*(undefined8 *)(context_base + 0xea8), *(undefined8 *)(context_base + 0xeb0), *(undefined8 *)(context_base + 0xeb8), size_var_2 & 0xffffffff, stack_param_1);
+                FUN_18069cad0(*(uint64_t *)(context_base + 0xea8), *(uint64_t *)(context_base + 0xeb0), *(uint64_t *)(context_base + 0xeb8), size_var_2 & 0xffffffff, stack_param_1);
               }
               if (!bool_var) {
-                FUN_18069c900(*(undefined8 *)(context_base + 0xea8), *(undefined8 *)(context_base + 0xeb0), *(undefined8 *)(context_base + 0xeb8), size_var_2 & 0xffffffff, stack_param_1);
+                FUN_18069c900(*(uint64_t *)(context_base + 0xea8), *(uint64_t *)(context_base + 0xeb0), *(uint64_t *)(context_base + 0xeb8), size_var_2 & 0xffffffff, stack_param_1);
               }
             }
             else {
               // 处理替代数据路径
               if (0 < (int)counter) {
-                func_0x00018001c253(*(undefined8 *)(context_base + 0xea8), size_var_2 & 0xffffffff, (longlong)(int)uint_var_4 * UI_SYSTEM_OFFSET_0X10 + temp_var_2);
+                func_0x00018001c253(*(uint64_t *)(context_base + 0xea8), size_var_2 & 0xffffffff, (longlong)(int)uint_var_4 * UI_SYSTEM_OFFSET_0X10 + temp_var_2);
               }
               if (!bool_var) {
-                FUN_18069ca80(*(undefined8 *)(context_base + 0xea8), size_var_2 & 0xffffffff, ((longlong)(int)uint_var_4 + 0x40) * UI_SYSTEM_OFFSET_0X10 + temp_var_2);
+                FUN_18069ca80(*(uint64_t *)(context_base + 0xea8), size_var_2 & 0xffffffff, ((longlong)(int)uint_var_4 + 0x40) * UI_SYSTEM_OFFSET_0X10 + temp_var_2);
               }
               if (0 < stack_var_1) {
-                func_0x00018001c10b(*(undefined8 *)(context_base + 0xea8), size_var_2 & 0xffffffff, (longlong)(int)uint_var_4 * UI_SYSTEM_OFFSET_0X10 + temp_var_2);
+                func_0x00018001c10b(*(uint64_t *)(context_base + 0xea8), size_var_2 & 0xffffffff, (longlong)(int)uint_var_4 * UI_SYSTEM_OFFSET_0X10 + temp_var_2);
               }
               if (!bool_var) {
-                FUN_18069c990(*(undefined8 *)(context_base + 0xea8), size_var_2 & 0xffffffff, ((longlong)(int)uint_var_4 + 0x40) * UI_SYSTEM_OFFSET_0X10 + temp_var_2);
+                FUN_18069c990(*(uint64_t *)(context_base + 0xea8), size_var_2 & 0xffffffff, ((longlong)(int)uint_var_4 + 0x40) * UI_SYSTEM_OFFSET_0X10 + temp_var_2);
               }
             }
           }
@@ -349,7 +349,7 @@ LAB_18066fdc2:
     
     // 清理资源
     if (*(int *)(data_base + 0x2be0) == 0) {
-      func_0x00018069cbd0(*(undefined8 *)(stack_base + -0x48), *(longlong *)(context_base + 0xea8) + UI_SYSTEM_OFFSET_0X10, *(longlong *)(context_base + 0xeb0) + 8, *(longlong *)(context_base + 0xeb8) + 8);
+      func_0x00018069cbd0(*(uint64_t *)(stack_base + -0x48), *(longlong *)(context_base + 0xea8) + UI_SYSTEM_OFFSET_0X10, *(longlong *)(context_base + 0xeb0) + 8, *(longlong *)(context_base + 0xeb8) + 8);
     }
     else if (stack_var_3 != *(int *)(data_base + 0x1e74) + -1) {
       temp_var_2 = 0;
@@ -357,11 +357,11 @@ LAB_18066fdc2:
       temp_var_4 = (longlong)((int_var >> 1) + UI_SYSTEM_OFFSET_0X10);
       do {
         temp_var_3 = *(longlong *)(*(longlong *)(data_base + 0x43b0) + 8 + stack_var_1 * 8) + (longlong)(int_var + UI_SYSTEM_OFFSET_0X20);
-        *(undefined1 *)(temp_var_3 + temp_var_2) = *(undefined1 *)(temp_var_3 + -1);
+        *(int8_t *)(temp_var_3 + temp_var_2) = *(int8_t *)(temp_var_3 + -1);
         temp_var_3 = *(longlong *)(*(longlong *)(data_base + 0x43b8) + 8 + stack_var_1 * 8) + temp_var_4;
-        *(undefined1 *)(temp_var_3 + temp_var_2) = *(undefined1 *)(temp_var_3 + -1);
+        *(int8_t *)(temp_var_3 + temp_var_2) = *(int8_t *)(temp_var_3 + -1);
         temp_var_3 = *(longlong *)(*(longlong *)(data_base + 0x43c0) + 8 + stack_var_1 * 8) + temp_var_4;
-        *(undefined1 *)(temp_var_3 + temp_var_2) = *(undefined1 *)(temp_var_3 + -1);
+        *(int8_t *)(temp_var_3 + temp_var_2) = *(int8_t *)(temp_var_3 + -1);
         temp_var_2 = temp_var_2 + 1;
       } while (temp_var_2 < 4);
     }
@@ -370,7 +370,7 @@ LAB_18066fdc2:
     size_param = (ulonglong)stack_param_1;
     **(int **)(stack_base + -0x70) = counter + stack_var_2;
     *(longlong *)(context_base + 0xf00) = *(longlong *)(context_base + 0xf00) + UI_SYSTEM_OFFSET_0X4C;
-    *(undefined4 *)(context_base + 0xf10) = 1;
+    *(int32_t *)(context_base + 0xf10) = 1;
     *(longlong *)(context_base + 0xf00) = *(longlong *)(context_base + 0xf00) + (ulonglong)(uint)(*(int *)(context_base + 0xf08) * *(int *)(data_base + 0x438c)) * UI_SYSTEM_OFFSET_0X4C;
     index_var = stack_var_3 + 1 + *(int *)(data_base + 0x438c);
     divisor_param = stack_param_2;
@@ -379,7 +379,7 @@ LAB_18066fdc2:
     
     if (*(int *)(data_base + 0x1e74) <= index_var) {
       if (stack_var_9 == *(int *)(data_base + 0x1e74) + -1) {
-        ReleaseSemaphore(*(undefined8 *)(data_base + 0x4400), 1);
+        ReleaseSemaphore(*(uint64_t *)(data_base + 0x4400), 1);
       }
       // 函数不返回
       FUN_1808fc050(*(ulonglong *)(stack_base + 0x50) ^ (ulonglong)&stack0x00000000);
@@ -406,7 +406,7 @@ void FUN_1806704b6(void)
   
   // 检查条件并释放信号量
   if (index_param == *(int *)(data_base + 0x1e74) + -1) {
-    ReleaseSemaphore(*(undefined8 *)(data_base + 0x4400), 1);
+    ReleaseSemaphore(*(uint64_t *)(data_base + 0x4400), 1);
   }
   // 函数不返回
   FUN_1808fc050(*(ulonglong *)(stack_base + 0x50) ^ (ulonglong)&stack0x00000000);
@@ -428,7 +428,7 @@ void FUN_1806704db(void)
   longlong data_base;
   
   // 释放信号量
-  ReleaseSemaphore(*(undefined8 *)(data_base + 0x4400), 1);
+  ReleaseSemaphore(*(uint64_t *)(data_base + 0x4400), 1);
   // 函数不返回
   FUN_1808fc050(*(ulonglong *)(stack_base + 0x50) ^ (ulonglong)&stack0x00000000);
 }
@@ -453,129 +453,129 @@ void FUN_1806704db(void)
  */
 void FUN_180670510(longlong param_1, longlong param_2, longlong param_3, int param_4)
 {
-  undefined4 uint_var_1;
-  undefined8 data_var_1;
-  undefined8 data_var_2;
-  undefined8 *ptr_var;
+  int32_t uint_var_1;
+  uint64_t data_var_1;
+  uint64_t data_var_2;
+  uint64_t *ptr_var;
   int int_var;
   longlong temp_var;
   
   temp_var = (longlong)param_4;
   if (0 < temp_var) {
     int_var = 1;
-    ptr_var = (undefined8 *)(param_3 + 4000);
+    ptr_var = (uint64_t *)(param_3 + 4000);
     
     do {
       // 复制数据结构
-      ptr_var[-1] = *(undefined8 *)(param_2 + 0xf98);
-      *ptr_var = *(undefined8 *)(param_2 + 4000);
-      ptr_var[1] = *(undefined8 *)(param_2 + 0xfa8);
-      ptr_var[2] = *(undefined8 *)(param_2 + 0xfb0);
+      ptr_var[-1] = *(uint64_t *)(param_2 + 0xf98);
+      *ptr_var = *(uint64_t *)(param_2 + 4000);
+      ptr_var[1] = *(uint64_t *)(param_2 + 0xfa8);
+      ptr_var[2] = *(uint64_t *)(param_2 + 0xfb0);
       ptr_var[-0x14] = (longlong)(*(int *)(param_1 + 0x1e7c) * int_var) * UI_SYSTEM_OFFSET_0X4C + *(longlong *)(param_1 + 0x1eb0);
-      *(undefined4 *)(ptr_var + -0x13) = *(undefined4 *)(param_1 + 0x1e7c);
-      *(undefined4 *)((longlong)ptr_var + -0x94) = *(undefined4 *)(param_1 + 0x1e64);
+      *(int32_t *)(ptr_var + -0x13) = *(int32_t *)(param_1 + 0x1e7c);
+      *(int32_t *)((longlong)ptr_var + -0x94) = *(int32_t *)(param_1 + 0x1e64);
       
       // 复制数据块
-      data_var_1 = *(undefined8 *)(param_2 + 0xde8);
-      ptr_var[-0x38] = *(undefined8 *)(param_2 + 0xde0);
+      data_var_1 = *(uint64_t *)(param_2 + 0xde8);
+      ptr_var[-0x38] = *(uint64_t *)(param_2 + 0xde0);
       ptr_var[-0x37] = data_var_1;
-      data_var_1 = *(undefined8 *)(param_2 + 0xdf8);
-      ptr_var[-0x36] = *(undefined8 *)(param_2 + 0xdf0);
+      data_var_1 = *(uint64_t *)(param_2 + 0xdf8);
+      ptr_var[-0x36] = *(uint64_t *)(param_2 + 0xdf0);
       ptr_var[-0x35] = data_var_1;
-      data_var_1 = *(undefined8 *)(param_2 + 0xe08);
-      ptr_var[-0x34] = *(undefined8 *)(param_2 + 0xe00);
+      data_var_1 = *(uint64_t *)(param_2 + 0xe08);
+      ptr_var[-0x34] = *(uint64_t *)(param_2 + 0xe00);
       ptr_var[-0x33] = data_var_1;
-      data_var_1 = *(undefined8 *)(param_2 + 0xe18);
-      ptr_var[-0x32] = *(undefined8 *)(param_2 + 0xe10);
+      data_var_1 = *(uint64_t *)(param_2 + 0xe18);
+      ptr_var[-0x32] = *(uint64_t *)(param_2 + 0xe10);
       ptr_var[-0x31] = data_var_1;
-      data_var_1 = *(undefined8 *)(param_2 + 0xe28);
-      ptr_var[-0x30] = *(undefined8 *)(param_2 + 0xe20);
+      data_var_1 = *(uint64_t *)(param_2 + 0xe28);
+      ptr_var[-0x30] = *(uint64_t *)(param_2 + 0xe20);
       ptr_var[-0x2f] = data_var_1;
-      data_var_1 = *(undefined8 *)(param_2 + 0xe38);
-      ptr_var[-0x2e] = *(undefined8 *)(param_2 + 0xe30);
+      data_var_1 = *(uint64_t *)(param_2 + 0xe38);
+      ptr_var[-0x2e] = *(uint64_t *)(param_2 + 0xe30);
       ptr_var[-0x2d] = data_var_1;
-      data_var_1 = *(undefined8 *)(param_2 + 0xe48);
-      ptr_var[-0x2c] = *(undefined8 *)(param_2 + 0xe40);
+      data_var_1 = *(uint64_t *)(param_2 + 0xe48);
+      ptr_var[-0x2c] = *(uint64_t *)(param_2 + 0xe40);
       ptr_var[-0x2b] = data_var_1;
-      data_var_1 = *(undefined8 *)(param_2 + 0xe58);
-      ptr_var[-0x2a] = *(undefined8 *)(param_2 + 0xe50);
+      data_var_1 = *(uint64_t *)(param_2 + 0xe58);
+      ptr_var[-0x2a] = *(uint64_t *)(param_2 + 0xe50);
       ptr_var[-0x29] = data_var_1;
-      data_var_1 = *(undefined8 *)(param_2 + 0xe68);
-      ptr_var[-0x28] = *(undefined8 *)(param_2 + 0xe60);
+      data_var_1 = *(uint64_t *)(param_2 + 0xe68);
+      ptr_var[-0x28] = *(uint64_t *)(param_2 + 0xe60);
       ptr_var[-0x27] = data_var_1;
-      data_var_1 = *(undefined8 *)(param_2 + 0xe78);
-      ptr_var[-0x26] = *(undefined8 *)(param_2 + 0xe70);
+      data_var_1 = *(uint64_t *)(param_2 + 0xe78);
+      ptr_var[-0x26] = *(uint64_t *)(param_2 + 0xe70);
       ptr_var[-0x25] = data_var_1;
-      data_var_1 = *(undefined8 *)(param_2 + 0xe88);
-      ptr_var[-0x24] = *(undefined8 *)(param_2 + 0xe80);
+      data_var_1 = *(uint64_t *)(param_2 + 0xe88);
+      ptr_var[-0x24] = *(uint64_t *)(param_2 + 0xe80);
       ptr_var[-0x23] = data_var_1;
-      data_var_1 = *(undefined8 *)(param_2 + 0xe98);
-      ptr_var[-0x22] = *(undefined8 *)(param_2 + 0xe90);
+      data_var_1 = *(uint64_t *)(param_2 + 0xe98);
+      ptr_var[-0x22] = *(uint64_t *)(param_2 + 0xe90);
       ptr_var[-0x21] = data_var_1;
-      data_var_1 = *(undefined8 *)(param_2 + 0xea8);
-      ptr_var[-0x20] = *(undefined8 *)(param_2 + 0xea0);
+      data_var_1 = *(uint64_t *)(param_2 + 0xea8);
+      ptr_var[-0x20] = *(uint64_t *)(param_2 + 0xea0);
       ptr_var[-0x1f] = data_var_1;
-      data_var_1 = *(undefined8 *)(param_2 + 0xeb8);
-      ptr_var[-0x1e] = *(undefined8 *)(param_2 + 0xeb0);
+      data_var_1 = *(uint64_t *)(param_2 + 0xeb8);
+      ptr_var[-0x1e] = *(uint64_t *)(param_2 + 0xeb0);
       ptr_var[-0x1d] = data_var_1;
-      data_var_1 = *(undefined8 *)(param_2 + 0xec8);
-      ptr_var[-0x1c] = *(undefined8 *)(param_2 + 0xec0);
+      data_var_1 = *(uint64_t *)(param_2 + 0xec8);
+      ptr_var[-0x1c] = *(uint64_t *)(param_2 + 0xec0);
       ptr_var[-0x1b] = data_var_1;
-      data_var_1 = *(undefined8 *)(param_2 + 0xed8);
-      ptr_var[-0x1a] = *(undefined8 *)(param_2 + 0xed0);
+      data_var_1 = *(uint64_t *)(param_2 + 0xed8);
+      ptr_var[-0x1a] = *(uint64_t *)(param_2 + 0xed0);
       ptr_var[-0x19] = data_var_1;
-      data_var_1 = *(undefined8 *)(param_2 + 0xee8);
-      ptr_var[-0x18] = *(undefined8 *)(param_2 + 0xee0);
+      data_var_1 = *(uint64_t *)(param_2 + 0xee8);
+      ptr_var[-0x18] = *(uint64_t *)(param_2 + 0xee0);
       ptr_var[-0x17] = data_var_1;
-      data_var_1 = *(undefined8 *)(param_2 + 0xef8);
-      ptr_var[-0x16] = *(undefined8 *)(param_2 + 0xef0);
+      data_var_1 = *(uint64_t *)(param_2 + 0xef8);
+      ptr_var[-0x16] = *(uint64_t *)(param_2 + 0xef0);
       ptr_var[-0x15] = data_var_1;
       
       // 设置标志位
-      *(undefined1 *)(ptr_var + -8) = *(undefined1 *)(param_2 + 0xf60);
-      *(undefined1 *)((longlong)ptr_var + -0x3d) = *(undefined1 *)(param_2 + 0xf63);
-      *(undefined8 *)((longlong)ptr_var + -0x39) = *(undefined8 *)(param_2 + 0xf67);
-      *(undefined4 *)((longlong)ptr_var + -0x2b) = *(undefined4 *)(param_2 + 0xf75);
-      *(undefined4 *)((longlong)ptr_var + -0x23) = *(undefined4 *)(param_2 + 0xf7d);
-      *(undefined1 *)((longlong)ptr_var + -0x31) = *(undefined1 *)(param_2 + 0xf6f);
-      *(undefined1 *)(ptr_var + -6) = *(undefined1 *)(param_2 + 0xf70);
+      *(int8_t *)(ptr_var + -8) = *(int8_t *)(param_2 + 0xf60);
+      *(int8_t *)((longlong)ptr_var + -0x3d) = *(int8_t *)(param_2 + 0xf63);
+      *(uint64_t *)((longlong)ptr_var + -0x39) = *(uint64_t *)(param_2 + 0xf67);
+      *(int32_t *)((longlong)ptr_var + -0x2b) = *(int32_t *)(param_2 + 0xf75);
+      *(int32_t *)((longlong)ptr_var + -0x23) = *(int32_t *)(param_2 + 0xf7d);
+      *(int8_t *)((longlong)ptr_var + -0x31) = *(int8_t *)(param_2 + 0xf6f);
+      *(int8_t *)(ptr_var + -6) = *(int8_t *)(param_2 + 0xf70);
       ptr_var[3] = param_1 + 0x4140;
       
       // 复制更多数据块
-      data_var_1 = *(undefined8 *)(param_2 + 0x808);
-      ptr_var[-0xf4] = *(undefined8 *)(param_2 + 0x800);
+      data_var_1 = *(uint64_t *)(param_2 + 0x808);
+      ptr_var[-0xf4] = *(uint64_t *)(param_2 + 0x800);
       ptr_var[-0xf3] = data_var_1;
-      data_var_1 = *(undefined8 *)(param_2 + 0x818);
-      ptr_var[-0xf2] = *(undefined8 *)(param_2 + 0x810);
+      data_var_1 = *(uint64_t *)(param_2 + 0x818);
+      ptr_var[-0xf2] = *(uint64_t *)(param_2 + 0x810);
       ptr_var[-0xf1] = data_var_1;
-      data_var_1 = *(undefined8 *)(param_2 + 0x7e8);
-      ptr_var[-0xf8] = *(undefined8 *)(param_2 + 0x7e0);
+      data_var_1 = *(uint64_t *)(param_2 + 0x7e8);
+      ptr_var[-0xf8] = *(uint64_t *)(param_2 + 0x7e0);
       ptr_var[-0xf7] = data_var_1;
-      data_var_1 = *(undefined8 *)(param_2 + 0x7f8);
-      ptr_var[-0xf6] = *(undefined8 *)(param_2 + 0x7f0);
+      data_var_1 = *(uint64_t *)(param_2 + 0x7f8);
+      ptr_var[-0xf6] = *(uint64_t *)(param_2 + 0x7f0);
       ptr_var[-0xf5] = data_var_1;
-      data_var_1 = *(undefined8 *)(param_2 + 0x828);
-      ptr_var[-0xf0] = *(undefined8 *)(param_2 + 0x820);
+      data_var_1 = *(uint64_t *)(param_2 + 0x828);
+      ptr_var[-0xf0] = *(uint64_t *)(param_2 + 0x820);
       ptr_var[-0xef] = data_var_1;
-      data_var_1 = *(undefined8 *)(param_2 + 0x838);
-      ptr_var[-0xee] = *(undefined8 *)(param_2 + 0x830);
+      data_var_1 = *(uint64_t *)(param_2 + 0x838);
+      ptr_var[-0xee] = *(uint64_t *)(param_2 + 0x830);
       ptr_var[-0xed] = data_var_1;
-      data_var_1 = *(undefined8 *)(param_2 + 0x848);
-      ptr_var[-0xec] = *(undefined8 *)(param_2 + 0x840);
+      data_var_1 = *(uint64_t *)(param_2 + 0x848);
+      ptr_var[-0xec] = *(uint64_t *)(param_2 + 0x840);
       ptr_var[-0xeb] = data_var_1;
-      data_var_1 = *(undefined8 *)(param_2 + 0x850);
-      data_var_2 = *(undefined8 *)(param_2 + 0x858);
-      *(undefined4 *)(ptr_var + -0x39) = UI_SYSTEM_PROCESSING_FLAG;
+      data_var_1 = *(uint64_t *)(param_2 + 0x850);
+      data_var_2 = *(uint64_t *)(param_2 + 0x858);
+      *(int32_t *)(ptr_var + -0x39) = UI_SYSTEM_PROCESSING_FLAG;
       ptr_var[-0xea] = data_var_1;
       ptr_var[-0xe9] = data_var_2;
-      uint_var_1 = *(undefined4 *)(ptr_var + -0x39);
+      uint_var_1 = *(int32_t *)(ptr_var + -0x39);
       
       // 设置特殊标志
       if (*(int *)(param_1 + 0x1e8c) != 0) {
         uint_var_1 = 0xfffffff8;
       }
       int_var = int_var + 1;
-      *(undefined4 *)(ptr_var + -0x39) = uint_var_1;
+      *(int32_t *)(ptr_var + -0x39) = uint_var_1;
       temp_var = temp_var + -1;
       ptr_var = ptr_var + 0x254;
     } while (temp_var != 0);
@@ -587,7 +587,7 @@ void FUN_180670510(longlong param_1, longlong param_2, longlong param_3, int par
     temp_var = 0;
     do {
       int_var = int_var + 1;
-      *(undefined4 *)(temp_var + *(longlong *)(param_1 + 0x43a8)) = UI_SYSTEM_PROCESSING_FLAG;
+      *(int32_t *)(temp_var + *(longlong *)(param_1 + 0x43a8)) = UI_SYSTEM_PROCESSING_FLAG;
       temp_var = temp_var + 4;
     } while (int_var < *(int *)(param_1 + 0x1e74));
   }

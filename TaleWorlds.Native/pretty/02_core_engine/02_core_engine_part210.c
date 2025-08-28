@@ -10,16 +10,16 @@ void process_atmosphere_parameters(longlong atmosphere_system, longlong param_2,
   byte *byte_ptr1;
   int int_var1;
   longlong long_var1;
-  undefined4 uint_var1;
-  undefined4 uint_var2;
-  undefined4 uint_var3;
-  undefined8 ulong_var1;
+  int32_t uint_var1;
+  int32_t uint_var2;
+  int32_t uint_var3;
+  uint64_t ulong_var1;
   char *char_ptr1;
   byte *byte_ptr2;
-  undefined8 *ulong_ptr1;
-  undefined8 *ulong_ptr2;
-  undefined4 *uint_ptr1;
-  undefined1 *byte_ptr3;
+  uint64_t *ulong_ptr1;
+  uint64_t *ulong_ptr2;
+  int32_t *uint_ptr1;
+  int8_t *byte_ptr3;
   char *char_ptr2;
   longlong long_var2;
   int int_var2;
@@ -29,14 +29,14 @@ void process_atmosphere_parameters(longlong atmosphere_system, longlong param_2,
   longlong long_var4;
   uint uint_var4;
   char *char_ptr4;
-  undefined1 local_array1[16];
+  int8_t local_array1[16];
   longlong local_long1;
   int local_int1;
   int local_int2;
-  undefined1 local_array2[8];
+  int8_t local_array2[8];
   longlong local_long2;
   uint local_uint1;
-  undefined4 local_uint2;
+  int32_t local_uint2;
   char *char_ptr5;
   char *char_ptr6;
   
@@ -76,12 +76,12 @@ LAB_18018cfa6:
   }
   if (local_uint1 != 0) {
                     // WARNING: Subroutine does not return
-    memcpy(local_long2,*(undefined8 *)(param_3 + 8),ulong_var2);
+    memcpy(local_long2,*(uint64_t *)(param_3 + 8),ulong_var2);
   }
   if (local_long2 != 0) {
-    *(undefined1 *)(ulong_var2 + local_long2) = 0;
+    *(int8_t *)(ulong_var2 + local_long2) = 0;
   }
-  local_uint2 = *(undefined4 *)(param_3 + 0x1c);
+  local_uint2 = *(int32_t *)(param_3 + 0x1c);
   FUN_180143610(local_array1,char_ptr3);
   long_var3 = *(longlong *)(param_1 + 0x3a0);
   long_var1 = *(longlong *)(param_1 + 0x3a8) - long_var3;
@@ -113,58 +113,58 @@ LAB_18018d08e:
                 5) <= (ulonglong)(longlong)param_4)) {
               FUN_180628ca0();
             }
-            ulong_ptr1 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x36,0x13);
-            *(undefined1 *)ulong_ptr1 = 0;
+            ulong_ptr1 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x36,0x13);
+            *(int8_t *)ulong_ptr1 = 0;
             FUN_18064e990(ulong_ptr1);
             *ulong_ptr1 = 0x6576616820756f59;
             ulong_ptr1[1] = 0x68742065726f6d20;
-            *(undefined4 *)(ulong_ptr1 + 2) = 0x6f206e61;
-            *(undefined4 *)((longlong)ulong_ptr1 + 0x14) = 0x6120656e;
-            *(undefined4 *)(ulong_ptr1 + 3) = 0x736f6d74;
-            *(undefined4 *)((longlong)ulong_ptr1 + 0x1c) = 0x72656870;
-            *(undefined4 *)(ulong_ptr1 + 4) = 0x69662065;
-            *(undefined4 *)((longlong)ulong_ptr1 + 0x24) = 0x2073656c;
-            *(undefined4 *)(ulong_ptr1 + 5) = 0x69766168;
-            *(undefined4 *)((longlong)ulong_ptr1 + 0x2c) = 0x6e20676e;
-            *(undefined4 *)(ulong_ptr1 + 6) = 0x20656d61;
-            *(undefined2 *)((longlong)ulong_ptr1 + 0x34) = 0x22;
-            ulong_ptr2 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x36,0x13);
-            *(undefined1 *)ulong_ptr2 = 0;
+            *(int32_t *)(ulong_ptr1 + 2) = 0x6f206e61;
+            *(int32_t *)((longlong)ulong_ptr1 + 0x14) = 0x6120656e;
+            *(int32_t *)(ulong_ptr1 + 3) = 0x736f6d74;
+            *(int32_t *)((longlong)ulong_ptr1 + 0x1c) = 0x72656870;
+            *(int32_t *)(ulong_ptr1 + 4) = 0x69662065;
+            *(int32_t *)((longlong)ulong_ptr1 + 0x24) = 0x2073656c;
+            *(int32_t *)(ulong_ptr1 + 5) = 0x69766168;
+            *(int32_t *)((longlong)ulong_ptr1 + 0x2c) = 0x6e20676e;
+            *(int32_t *)(ulong_ptr1 + 6) = 0x20656d61;
+            *(int16_t *)((longlong)ulong_ptr1 + 0x34) = 0x22;
+            ulong_ptr2 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x36,0x13);
+            *(int8_t *)ulong_ptr2 = 0;
             uint_var4 = FUN_18064e990(ulong_ptr2);
             ulong_var1 = ulong_ptr1[1];
             *ulong_ptr2 = *ulong_ptr1;
             ulong_ptr2[1] = ulong_var1;
-            uint_var1 = *(undefined4 *)((longlong)ulong_ptr1 + 0x14);
-            uint_var2 = *(undefined4 *)(ulong_ptr1 + 3);
-            uint_var3 = *(undefined4 *)((longlong)ulong_ptr1 + 0x1c);
-            *(undefined4 *)(ulong_ptr2 + 2) = *(undefined4 *)(ulong_ptr1 + 2);
-            *(undefined4 *)((longlong)ulong_ptr2 + 0x14) = uint_var1;
-            *(undefined4 *)(ulong_ptr2 + 3) = uint_var2;
-            *(undefined4 *)((longlong)ulong_ptr2 + 0x1c) = uint_var3;
-            uint_var1 = *(undefined4 *)((longlong)ulong_ptr1 + 0x24);
-            uint_var2 = *(undefined4 *)(ulong_ptr1 + 5);
-            uint_var3 = *(undefined4 *)((longlong)ulong_ptr1 + 0x2c);
-            *(undefined4 *)(ulong_ptr2 + 4) = *(undefined4 *)(ulong_ptr1 + 4);
-            *(undefined4 *)((longlong)ulong_ptr2 + 0x24) = uint_var1;
-            *(undefined4 *)(ulong_ptr2 + 5) = uint_var2;
-            *(undefined4 *)((longlong)ulong_ptr2 + 0x2c) = uint_var3;
-            *(undefined4 *)(ulong_ptr2 + 6) = *(undefined4 *)(ulong_ptr1 + 6);
-            *(undefined1 *)((longlong)ulong_ptr2 + 0x34) = *(undefined1 *)((longlong)ulong_ptr1 + 0x34);
-            *(undefined1 *)((longlong)ulong_ptr2 + 0x35) = 0;
+            uint_var1 = *(int32_t *)((longlong)ulong_ptr1 + 0x14);
+            uint_var2 = *(int32_t *)(ulong_ptr1 + 3);
+            uint_var3 = *(int32_t *)((longlong)ulong_ptr1 + 0x1c);
+            *(int32_t *)(ulong_ptr2 + 2) = *(int32_t *)(ulong_ptr1 + 2);
+            *(int32_t *)((longlong)ulong_ptr2 + 0x14) = uint_var1;
+            *(int32_t *)(ulong_ptr2 + 3) = uint_var2;
+            *(int32_t *)((longlong)ulong_ptr2 + 0x1c) = uint_var3;
+            uint_var1 = *(int32_t *)((longlong)ulong_ptr1 + 0x24);
+            uint_var2 = *(int32_t *)(ulong_ptr1 + 5);
+            uint_var3 = *(int32_t *)((longlong)ulong_ptr1 + 0x2c);
+            *(int32_t *)(ulong_ptr2 + 4) = *(int32_t *)(ulong_ptr1 + 4);
+            *(int32_t *)((longlong)ulong_ptr2 + 0x24) = uint_var1;
+            *(int32_t *)(ulong_ptr2 + 5) = uint_var2;
+            *(int32_t *)((longlong)ulong_ptr2 + 0x2c) = uint_var3;
+            *(int32_t *)(ulong_ptr2 + 6) = *(int32_t *)(ulong_ptr1 + 6);
+            *(int8_t *)((longlong)ulong_ptr2 + 0x34) = *(int8_t *)((longlong)ulong_ptr1 + 0x34);
+            *(int8_t *)((longlong)ulong_ptr2 + 0x35) = 0;
             if (local_int1 < 1) {
-              uint_ptr1 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18,0x1e,0x13,0x10);
-              *(undefined1 *)uint_ptr1 = 0;
+              uint_ptr1 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,0x1e,0x13,0x10);
+              *(int8_t *)uint_ptr1 = 0;
               FUN_18064e990(uint_ptr1);
               *uint_ptr1 = 0x54202e22;
               uint_ptr1[1] = 0x61206568;
               uint_ptr1[2] = 0x736f6d74;
               uint_ptr1[3] = 0x72656870;
-              *(undefined8 *)(uint_ptr1 + 4) = 0x646f6d2074612065;
+              *(uint64_t *)(uint_ptr1 + 4) = 0x646f6d2074612065;
               uint_ptr1[6] = 0x20656c75;
-              *(undefined2 *)(uint_ptr1 + 7) = 0x22;
-              byte_ptr3 = (undefined1 *)0x0;
-              if (ulong_ptr2 != (undefined8 *)0x0) {
-                byte_ptr3 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,0x36,0x13);
+              *(int16_t *)(uint_ptr1 + 7) = 0x22;
+              byte_ptr3 = (int8_t *)0x0;
+              if (ulong_ptr2 != (uint64_t *)0x0) {
+                byte_ptr3 = (int8_t *)FUN_18062b420(_DAT_180c8ed18,0x36,0x13);
                 *byte_ptr3 = 0;
                 FUN_18064e990(byte_ptr3);
               }
@@ -172,12 +172,12 @@ LAB_18018d08e:
               memcpy(byte_ptr3,ulong_ptr2,0x35);
             }
             if ((local_int1 != -0x35) && (uint_var4 < local_int1 + 0x36U)) {
-              ulong_ptr2 = (undefined8 *)
+              ulong_ptr2 = (uint64_t *)
                         FUN_18062b8b0(_DAT_180c8ed18,ulong_ptr2,local_int1 + 0x36U,0x10,0x13);
               FUN_18064e990(ulong_ptr2);
             }
                     // WARNING: Subroutine does not return
-            memcpy((undefined1 *)((longlong)ulong_ptr2 + 0x35),local_long1,(longlong)(local_int1 + 1));
+            memcpy((int8_t *)((longlong)ulong_ptr2 + 0x35),local_long1,(longlong)(local_int1 + 1));
           }
           break;
         }
@@ -195,27 +195,27 @@ LAB_18018d08e:
 
 
 
-// 函数: longlong FUN_18018d8f0(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+// 函数: longlong FUN_18018d8f0(longlong param_1,longlong param_2,uint64_t param_3,uint64_t param_4)
 // 复制场景对象数据，包括材质、纹理、变换矩阵等属性
-longlong copy_scene_object_data(longlong dest_object, longlong src_object, undefined8 param_3, undefined8 param_4)
+longlong copy_scene_object_data(longlong dest_object, longlong src_object, uint64_t param_3, uint64_t param_4)
 
 {
   longlong *long_ptr1;
   longlong *long_ptr2;
-  undefined4 uint_var1;
-  undefined4 uint_var2;
-  undefined4 uint_var3;
-  undefined8 ulong_var1;
+  int32_t uint_var1;
+  int32_t uint_var2;
+  int32_t uint_var3;
+  uint64_t ulong_var1;
   
   ulong_var1 = 0xfffffffffffffffe;
   FUN_180627be0(dest_object + 8,src_object + 8,param_3,param_4,0xfffffffffffffffe);
-  *(undefined4 *)(dest_object + 0x28) = *(undefined4 *)(src_object + 0x28);
-  *(undefined4 *)(dest_object + 0x2c) = *(undefined4 *)(src_object + 0x2c);
-  *(undefined4 *)(dest_object + 0x30) = *(undefined4 *)(src_object + 0x30);
-  *(undefined4 *)(dest_object + 0x34) = *(undefined4 *)(src_object + 0x34);
-  *(undefined4 *)(dest_object + 0x38) = *(undefined4 *)(src_object + 0x38);
-  *(undefined4 *)(dest_object + 0x3c) = *(undefined4 *)(src_object + 0x3c);
-  *(undefined4 *)(dest_object + 0x40) = *(undefined4 *)(src_object + 0x40);
+  *(int32_t *)(dest_object + 0x28) = *(int32_t *)(src_object + 0x28);
+  *(int32_t *)(dest_object + 0x2c) = *(int32_t *)(src_object + 0x2c);
+  *(int32_t *)(dest_object + 0x30) = *(int32_t *)(src_object + 0x30);
+  *(int32_t *)(dest_object + 0x34) = *(int32_t *)(src_object + 0x34);
+  *(int32_t *)(dest_object + 0x38) = *(int32_t *)(src_object + 0x38);
+  *(int32_t *)(dest_object + 0x3c) = *(int32_t *)(src_object + 0x3c);
+  *(int32_t *)(dest_object + 0x40) = *(int32_t *)(src_object + 0x40);
   FUN_180627be0(dest_object + 0x48,src_object + 0x48);
   long_ptr1 = *(longlong **)(src_object + 0x68);
   if (long_ptr1 != (longlong *)0x0) {
@@ -236,43 +236,43 @@ longlong copy_scene_object_data(longlong dest_object, longlong src_object, undef
   if (long_ptr2 != (longlong *)0x0) {
     (**(code **)(*long_ptr2 + 0x38))();
   }
-  *(undefined4 *)(dest_object + 0x98) = *(undefined4 *)(src_object + 0x98);
-  *(undefined4 *)(dest_object + 0x9c) = *(undefined4 *)(src_object + 0x9c);
-  *(undefined4 *)(dest_object + 0xa0) = *(undefined4 *)(src_object + 0xa0);
-  *(undefined4 *)(dest_object + 0xa4) = *(undefined4 *)(src_object + 0xa4);
-  *(undefined4 *)(dest_object + 0xa8) = *(undefined4 *)(src_object + 0xa8);
-  *(undefined4 *)(dest_object + 0xac) = *(undefined4 *)(src_object + 0xac);
-  *(undefined4 *)(dest_object + 0xb0) = *(undefined4 *)(src_object + 0xb0);
-  *(undefined4 *)(dest_object + 0xb4) = *(undefined4 *)(src_object + 0xb4);
-  *(undefined4 *)(dest_object + 0xb8) = *(undefined4 *)(src_object + 0xb8);
-  *(undefined4 *)(dest_object + 0xbc) = *(undefined4 *)(src_object + 0xbc);
-  *(undefined4 *)(dest_object + 0xc0) = *(undefined4 *)(src_object + 0xc0);
-  ulong_var1 = *(undefined8 *)(src_object + 0xcc);
-  *(undefined8 *)(dest_object + 0xc4) = *(undefined8 *)(src_object + 0xc4);
-  *(undefined8 *)(dest_object + 0xcc) = ulong_var1;
-  ulong_var1 = *(undefined8 *)(src_object + 0xdc);
-  *(undefined8 *)(dest_object + 0xd4) = *(undefined8 *)(src_object + 0xd4);
-  *(undefined8 *)(dest_object + 0xdc) = ulong_var1;
-  ulong_var1 = *(undefined8 *)(src_object + 0xec);
-  *(undefined8 *)(dest_object + 0xe4) = *(undefined8 *)(src_object + 0xe4);
-  *(undefined8 *)(dest_object + 0xec) = ulong_var1;
-  ulong_var1 = *(undefined8 *)(src_object + 0xfc);
-  *(undefined8 *)(dest_object + 0xf4) = *(undefined8 *)(src_object + 0xf4);
-  *(undefined8 *)(dest_object + 0xfc) = ulong_var1;
-  uint_var1 = *(undefined4 *)(src_object + 0x108);
-  uint_var2 = *(undefined4 *)(src_object + 0x10c);
-  uint_var3 = *(undefined4 *)(src_object + 0x110);
-  *(undefined4 *)(dest_object + 0x104) = *(undefined4 *)(src_object + 0x104);
-  *(undefined4 *)(dest_object + 0x108) = uint_var1;
-  *(undefined4 *)(dest_object + 0x10c) = uint_var2;
-  *(undefined4 *)(dest_object + 0x110) = uint_var3;
-  *(undefined4 *)(dest_object + 0x114) = *(undefined4 *)(src_object + 0x114);
-  *(undefined4 *)(dest_object + 0x118) = *(undefined4 *)(src_object + 0x118);
-  *(undefined4 *)(dest_object + 0x11c) = *(undefined4 *)(src_object + 0x11c);
-  *(undefined4 *)(dest_object + 0x120) = *(undefined4 *)(src_object + 0x120);
-  *(undefined4 *)(dest_object + 0x124) = *(undefined4 *)(src_object + 0x124);
-  *(undefined4 *)(dest_object + 0x128) = *(undefined4 *)(src_object + 0x128);
-  *(undefined4 *)(dest_object + 300) = *(undefined4 *)(src_object + 300);
+  *(int32_t *)(dest_object + 0x98) = *(int32_t *)(src_object + 0x98);
+  *(int32_t *)(dest_object + 0x9c) = *(int32_t *)(src_object + 0x9c);
+  *(int32_t *)(dest_object + 0xa0) = *(int32_t *)(src_object + 0xa0);
+  *(int32_t *)(dest_object + 0xa4) = *(int32_t *)(src_object + 0xa4);
+  *(int32_t *)(dest_object + 0xa8) = *(int32_t *)(src_object + 0xa8);
+  *(int32_t *)(dest_object + 0xac) = *(int32_t *)(src_object + 0xac);
+  *(int32_t *)(dest_object + 0xb0) = *(int32_t *)(src_object + 0xb0);
+  *(int32_t *)(dest_object + 0xb4) = *(int32_t *)(src_object + 0xb4);
+  *(int32_t *)(dest_object + 0xb8) = *(int32_t *)(src_object + 0xb8);
+  *(int32_t *)(dest_object + 0xbc) = *(int32_t *)(src_object + 0xbc);
+  *(int32_t *)(dest_object + 0xc0) = *(int32_t *)(src_object + 0xc0);
+  ulong_var1 = *(uint64_t *)(src_object + 0xcc);
+  *(uint64_t *)(dest_object + 0xc4) = *(uint64_t *)(src_object + 0xc4);
+  *(uint64_t *)(dest_object + 0xcc) = ulong_var1;
+  ulong_var1 = *(uint64_t *)(src_object + 0xdc);
+  *(uint64_t *)(dest_object + 0xd4) = *(uint64_t *)(src_object + 0xd4);
+  *(uint64_t *)(dest_object + 0xdc) = ulong_var1;
+  ulong_var1 = *(uint64_t *)(src_object + 0xec);
+  *(uint64_t *)(dest_object + 0xe4) = *(uint64_t *)(src_object + 0xe4);
+  *(uint64_t *)(dest_object + 0xec) = ulong_var1;
+  ulong_var1 = *(uint64_t *)(src_object + 0xfc);
+  *(uint64_t *)(dest_object + 0xf4) = *(uint64_t *)(src_object + 0xf4);
+  *(uint64_t *)(dest_object + 0xfc) = ulong_var1;
+  uint_var1 = *(int32_t *)(src_object + 0x108);
+  uint_var2 = *(int32_t *)(src_object + 0x10c);
+  uint_var3 = *(int32_t *)(src_object + 0x110);
+  *(int32_t *)(dest_object + 0x104) = *(int32_t *)(src_object + 0x104);
+  *(int32_t *)(dest_object + 0x108) = uint_var1;
+  *(int32_t *)(dest_object + 0x10c) = uint_var2;
+  *(int32_t *)(dest_object + 0x110) = uint_var3;
+  *(int32_t *)(dest_object + 0x114) = *(int32_t *)(src_object + 0x114);
+  *(int32_t *)(dest_object + 0x118) = *(int32_t *)(src_object + 0x118);
+  *(int32_t *)(dest_object + 0x11c) = *(int32_t *)(src_object + 0x11c);
+  *(int32_t *)(dest_object + 0x120) = *(int32_t *)(src_object + 0x120);
+  *(int32_t *)(dest_object + 0x124) = *(int32_t *)(src_object + 0x124);
+  *(int32_t *)(dest_object + 0x128) = *(int32_t *)(src_object + 0x128);
+  *(int32_t *)(dest_object + 300) = *(int32_t *)(src_object + 300);
   FUN_180627be0(dest_object + 0x130,src_object + 0x130);
   long_ptr1 = *(longlong **)(src_object + 0x150);
   if (long_ptr1 != (longlong *)0x0) {
@@ -293,7 +293,7 @@ longlong copy_scene_object_data(longlong dest_object, longlong src_object, undef
   if (long_ptr2 != (longlong *)0x0) {
     (**(code **)(*long_ptr2 + 0x38))();
   }
-  *(undefined4 *)(dest_object + 0x180) = *(undefined4 *)(src_object + 0x180);
+  *(int32_t *)(dest_object + 0x180) = *(int32_t *)(src_object + 0x180);
   FUN_180627be0(dest_object + 0x188,src_object + 0x188);
   long_ptr1 = *(longlong **)(src_object + 0x1a8);
   if (long_ptr1 != (longlong *)0x0) {
@@ -313,41 +313,41 @@ longlong copy_scene_object_data(longlong dest_object, longlong src_object, undef
   if (long_ptr2 != (longlong *)0x0) {
     (**(code **)(*long_ptr2 + 0x38))();
   }
-  *(undefined4 *)(dest_object + 0x1b8) = *(undefined4 *)(src_object + 0x1b8);
-  *(undefined4 *)(dest_object + 0x1bc) = *(undefined4 *)(src_object + 0x1bc);
-  uint_var1 = *(undefined4 *)(src_object + 0x1c4);
-  uint_var2 = *(undefined4 *)(src_object + 0x1c8);
-  uint_var3 = *(undefined4 *)(src_object + 0x1cc);
-  *(undefined4 *)(dest_object + 0x1c0) = *(undefined4 *)(src_object + 0x1c0);
-  *(undefined4 *)(dest_object + 0x1c4) = uint_var1;
-  *(undefined4 *)(dest_object + 0x1c8) = uint_var2;
-  *(undefined4 *)(dest_object + 0x1cc) = uint_var3;
-  *(undefined4 *)(dest_object + 0x1d0) = *(undefined4 *)(src_object + 0x1d0);
-  *(undefined4 *)(dest_object + 0x1d4) = *(undefined4 *)(src_object + 0x1d4);
-  *(undefined4 *)(dest_object + 0x1d8) = *(undefined4 *)(src_object + 0x1d8);
-  *(undefined4 *)(dest_object + 0x1dc) = *(undefined4 *)(src_object + 0x1dc);
-  *(undefined4 *)(dest_object + 0x1e0) = *(undefined4 *)(src_object + 0x1e0);
-  *(undefined4 *)(dest_object + 0x1e4) = *(undefined4 *)(src_object + 0x1e4);
-  *(undefined4 *)(dest_object + 0x1e8) = *(undefined4 *)(src_object + 0x1e8);
-  *(undefined4 *)(dest_object + 0x1ec) = *(undefined4 *)(src_object + 0x1ec);
-  *(undefined4 *)(dest_object + 0x1f0) = *(undefined4 *)(src_object + 0x1f0);
-  *(undefined4 *)(dest_object + 500) = *(undefined4 *)(src_object + 500);
-  *(undefined4 *)(dest_object + 0x1f8) = *(undefined4 *)(src_object + 0x1f8);
-  *(undefined4 *)(dest_object + 0x1fc) = *(undefined4 *)(src_object + 0x1fc);
-  *(undefined4 *)(dest_object + 0x200) = *(undefined4 *)(src_object + 0x200);
-  *(undefined4 *)(dest_object + 0x204) = *(undefined4 *)(src_object + 0x204);
-  *(undefined4 *)(dest_object + 0x208) = *(undefined4 *)(src_object + 0x208);
-  *(undefined4 *)(dest_object + 0x20c) = *(undefined4 *)(src_object + 0x20c);
-  *(undefined4 *)(dest_object + 0x210) = *(undefined4 *)(src_object + 0x210);
-  *(undefined4 *)(dest_object + 0x214) = *(undefined4 *)(src_object + 0x214);
-  *(undefined4 *)(dest_object + 0x218) = *(undefined4 *)(src_object + 0x218);
-  *(undefined4 *)(dest_object + 0x21c) = *(undefined4 *)(src_object + 0x21c);
-  *(undefined4 *)(dest_object + 0x220) = *(undefined4 *)(src_object + 0x220);
-  *(undefined4 *)(dest_object + 0x224) = *(undefined4 *)(src_object + 0x224);
-  *(undefined4 *)(dest_object + 0x228) = *(undefined4 *)(src_object + 0x228);
-  *(undefined4 *)(dest_object + 0x22c) = *(undefined4 *)(src_object + 0x22c);
-  *(undefined4 *)(dest_object + 0x230) = *(undefined4 *)(src_object + 0x230);
-  *(undefined4 *)(dest_object + 0x234) = *(undefined4 *)(src_object + 0x234);
+  *(int32_t *)(dest_object + 0x1b8) = *(int32_t *)(src_object + 0x1b8);
+  *(int32_t *)(dest_object + 0x1bc) = *(int32_t *)(src_object + 0x1bc);
+  uint_var1 = *(int32_t *)(src_object + 0x1c4);
+  uint_var2 = *(int32_t *)(src_object + 0x1c8);
+  uint_var3 = *(int32_t *)(src_object + 0x1cc);
+  *(int32_t *)(dest_object + 0x1c0) = *(int32_t *)(src_object + 0x1c0);
+  *(int32_t *)(dest_object + 0x1c4) = uint_var1;
+  *(int32_t *)(dest_object + 0x1c8) = uint_var2;
+  *(int32_t *)(dest_object + 0x1cc) = uint_var3;
+  *(int32_t *)(dest_object + 0x1d0) = *(int32_t *)(src_object + 0x1d0);
+  *(int32_t *)(dest_object + 0x1d4) = *(int32_t *)(src_object + 0x1d4);
+  *(int32_t *)(dest_object + 0x1d8) = *(int32_t *)(src_object + 0x1d8);
+  *(int32_t *)(dest_object + 0x1dc) = *(int32_t *)(src_object + 0x1dc);
+  *(int32_t *)(dest_object + 0x1e0) = *(int32_t *)(src_object + 0x1e0);
+  *(int32_t *)(dest_object + 0x1e4) = *(int32_t *)(src_object + 0x1e4);
+  *(int32_t *)(dest_object + 0x1e8) = *(int32_t *)(src_object + 0x1e8);
+  *(int32_t *)(dest_object + 0x1ec) = *(int32_t *)(src_object + 0x1ec);
+  *(int32_t *)(dest_object + 0x1f0) = *(int32_t *)(src_object + 0x1f0);
+  *(int32_t *)(dest_object + 500) = *(int32_t *)(src_object + 500);
+  *(int32_t *)(dest_object + 0x1f8) = *(int32_t *)(src_object + 0x1f8);
+  *(int32_t *)(dest_object + 0x1fc) = *(int32_t *)(src_object + 0x1fc);
+  *(int32_t *)(dest_object + 0x200) = *(int32_t *)(src_object + 0x200);
+  *(int32_t *)(dest_object + 0x204) = *(int32_t *)(src_object + 0x204);
+  *(int32_t *)(dest_object + 0x208) = *(int32_t *)(src_object + 0x208);
+  *(int32_t *)(dest_object + 0x20c) = *(int32_t *)(src_object + 0x20c);
+  *(int32_t *)(dest_object + 0x210) = *(int32_t *)(src_object + 0x210);
+  *(int32_t *)(dest_object + 0x214) = *(int32_t *)(src_object + 0x214);
+  *(int32_t *)(dest_object + 0x218) = *(int32_t *)(src_object + 0x218);
+  *(int32_t *)(dest_object + 0x21c) = *(int32_t *)(src_object + 0x21c);
+  *(int32_t *)(dest_object + 0x220) = *(int32_t *)(src_object + 0x220);
+  *(int32_t *)(dest_object + 0x224) = *(int32_t *)(src_object + 0x224);
+  *(int32_t *)(dest_object + 0x228) = *(int32_t *)(src_object + 0x228);
+  *(int32_t *)(dest_object + 0x22c) = *(int32_t *)(src_object + 0x22c);
+  *(int32_t *)(dest_object + 0x230) = *(int32_t *)(src_object + 0x230);
+  *(int32_t *)(dest_object + 0x234) = *(int32_t *)(src_object + 0x234);
   FUN_180627be0(dest_object + 0x238,src_object + 0x238);
   long_ptr1 = *(longlong **)(src_object + 600);
   if (long_ptr1 != (longlong *)0x0) {
@@ -368,58 +368,58 @@ longlong copy_scene_object_data(longlong dest_object, longlong src_object, undef
   if (long_ptr2 != (longlong *)0x0) {
     (**(code **)(*long_ptr2 + 0x38))();
   }
-  *(undefined4 *)(dest_object + 0x288) = *(undefined4 *)(src_object + 0x288);
-  *(undefined4 *)(dest_object + 0x28c) = *(undefined4 *)(src_object + 0x28c);
-  *(undefined4 *)(dest_object + 0x290) = *(undefined4 *)(src_object + 0x290);
-  *(undefined4 *)(dest_object + 0x294) = *(undefined4 *)(src_object + 0x294);
-  *(undefined4 *)(dest_object + 0x298) = *(undefined4 *)(src_object + 0x298);
-  uint_var1 = *(undefined4 *)(src_object + 0x2a0);
-  uint_var2 = *(undefined4 *)(src_object + 0x2a4);
-  uint_var3 = *(undefined4 *)(src_object + 0x2a8);
-  *(undefined4 *)(dest_object + 0x29c) = *(undefined4 *)(src_object + 0x29c);
-  *(undefined4 *)(dest_object + 0x2a0) = uint_var1;
-  *(undefined4 *)(dest_object + 0x2a4) = uint_var2;
-  *(undefined4 *)(dest_object + 0x2a8) = uint_var3;
-  *(undefined4 *)(dest_object + 0x2ac) = *(undefined4 *)(src_object + 0x2ac);
-  *(undefined4 *)(dest_object + 0x2b0) = *(undefined4 *)(src_object + 0x2b0);
-  *(undefined4 *)(dest_object + 0x2b4) = *(undefined4 *)(src_object + 0x2b4);
-  *(undefined4 *)(dest_object + 0x2b8) = *(undefined4 *)(src_object + 0x2b8);
-  *(undefined4 *)(dest_object + 700) = *(undefined4 *)(src_object + 700);
-  *(undefined4 *)(dest_object + 0x2c0) = *(undefined4 *)(src_object + 0x2c0);
-  *(undefined4 *)(dest_object + 0x2c4) = *(undefined4 *)(src_object + 0x2c4);
-  *(undefined4 *)(dest_object + 0x2c8) = *(undefined4 *)(src_object + 0x2c8);
-  *(undefined4 *)(dest_object + 0x2cc) = *(undefined4 *)(src_object + 0x2cc);
-  *(undefined4 *)(dest_object + 0x2d0) = *(undefined4 *)(src_object + 0x2d0);
-  *(undefined4 *)(dest_object + 0x2d4) = *(undefined4 *)(src_object + 0x2d4);
-  *(undefined4 *)(dest_object + 0x2d8) = *(undefined4 *)(src_object + 0x2d8);
-  *(undefined4 *)(dest_object + 0x2dc) = *(undefined4 *)(src_object + 0x2dc);
-  *(undefined4 *)(dest_object + 0x2e0) = *(undefined4 *)(src_object + 0x2e0);
-  *(undefined4 *)(dest_object + 0x2e4) = *(undefined4 *)(src_object + 0x2e4);
-  *(undefined4 *)(dest_object + 0x2e8) = *(undefined4 *)(src_object + 0x2e8);
-  *(undefined4 *)(dest_object + 0x2ec) = *(undefined4 *)(src_object + 0x2ec);
-  *(undefined4 *)(dest_object + 0x2f0) = *(undefined4 *)(src_object + 0x2f0);
-  *(undefined4 *)(dest_object + 0x2f4) = *(undefined4 *)(src_object + 0x2f4);
-  *(undefined4 *)(dest_object + 0x2f8) = *(undefined4 *)(src_object + 0x2f8);
-  *(undefined4 *)(dest_object + 0x2fc) = *(undefined4 *)(src_object + 0x2fc);
-  *(undefined4 *)(dest_object + 0x300) = *(undefined4 *)(src_object + 0x300);
-  *(undefined1 *)(dest_object + 0x304) = *(undefined1 *)(src_object + 0x304);
-  *(undefined1 *)(dest_object + 0x305) = *(undefined1 *)(src_object + 0x305);
-  *(undefined1 *)(dest_object + 0x306) = *(undefined1 *)(src_object + 0x306);
-  *(undefined4 *)(dest_object + 0x308) = *(undefined4 *)(src_object + 0x308);
-  *(undefined4 *)(dest_object + 0x30c) = *(undefined4 *)(src_object + 0x30c);
-  *(undefined4 *)(dest_object + 0x310) = *(undefined4 *)(src_object + 0x310);
-  *(undefined4 *)(dest_object + 0x314) = *(undefined4 *)(src_object + 0x314);
-  *(undefined1 *)(dest_object + 0x318) = *(undefined1 *)(src_object + 0x318);
+  *(int32_t *)(dest_object + 0x288) = *(int32_t *)(src_object + 0x288);
+  *(int32_t *)(dest_object + 0x28c) = *(int32_t *)(src_object + 0x28c);
+  *(int32_t *)(dest_object + 0x290) = *(int32_t *)(src_object + 0x290);
+  *(int32_t *)(dest_object + 0x294) = *(int32_t *)(src_object + 0x294);
+  *(int32_t *)(dest_object + 0x298) = *(int32_t *)(src_object + 0x298);
+  uint_var1 = *(int32_t *)(src_object + 0x2a0);
+  uint_var2 = *(int32_t *)(src_object + 0x2a4);
+  uint_var3 = *(int32_t *)(src_object + 0x2a8);
+  *(int32_t *)(dest_object + 0x29c) = *(int32_t *)(src_object + 0x29c);
+  *(int32_t *)(dest_object + 0x2a0) = uint_var1;
+  *(int32_t *)(dest_object + 0x2a4) = uint_var2;
+  *(int32_t *)(dest_object + 0x2a8) = uint_var3;
+  *(int32_t *)(dest_object + 0x2ac) = *(int32_t *)(src_object + 0x2ac);
+  *(int32_t *)(dest_object + 0x2b0) = *(int32_t *)(src_object + 0x2b0);
+  *(int32_t *)(dest_object + 0x2b4) = *(int32_t *)(src_object + 0x2b4);
+  *(int32_t *)(dest_object + 0x2b8) = *(int32_t *)(src_object + 0x2b8);
+  *(int32_t *)(dest_object + 700) = *(int32_t *)(src_object + 700);
+  *(int32_t *)(dest_object + 0x2c0) = *(int32_t *)(src_object + 0x2c0);
+  *(int32_t *)(dest_object + 0x2c4) = *(int32_t *)(src_object + 0x2c4);
+  *(int32_t *)(dest_object + 0x2c8) = *(int32_t *)(src_object + 0x2c8);
+  *(int32_t *)(dest_object + 0x2cc) = *(int32_t *)(src_object + 0x2cc);
+  *(int32_t *)(dest_object + 0x2d0) = *(int32_t *)(src_object + 0x2d0);
+  *(int32_t *)(dest_object + 0x2d4) = *(int32_t *)(src_object + 0x2d4);
+  *(int32_t *)(dest_object + 0x2d8) = *(int32_t *)(src_object + 0x2d8);
+  *(int32_t *)(dest_object + 0x2dc) = *(int32_t *)(src_object + 0x2dc);
+  *(int32_t *)(dest_object + 0x2e0) = *(int32_t *)(src_object + 0x2e0);
+  *(int32_t *)(dest_object + 0x2e4) = *(int32_t *)(src_object + 0x2e4);
+  *(int32_t *)(dest_object + 0x2e8) = *(int32_t *)(src_object + 0x2e8);
+  *(int32_t *)(dest_object + 0x2ec) = *(int32_t *)(src_object + 0x2ec);
+  *(int32_t *)(dest_object + 0x2f0) = *(int32_t *)(src_object + 0x2f0);
+  *(int32_t *)(dest_object + 0x2f4) = *(int32_t *)(src_object + 0x2f4);
+  *(int32_t *)(dest_object + 0x2f8) = *(int32_t *)(src_object + 0x2f8);
+  *(int32_t *)(dest_object + 0x2fc) = *(int32_t *)(src_object + 0x2fc);
+  *(int32_t *)(dest_object + 0x300) = *(int32_t *)(src_object + 0x300);
+  *(int8_t *)(dest_object + 0x304) = *(int8_t *)(src_object + 0x304);
+  *(int8_t *)(dest_object + 0x305) = *(int8_t *)(src_object + 0x305);
+  *(int8_t *)(dest_object + 0x306) = *(int8_t *)(src_object + 0x306);
+  *(int32_t *)(dest_object + 0x308) = *(int32_t *)(src_object + 0x308);
+  *(int32_t *)(dest_object + 0x30c) = *(int32_t *)(src_object + 0x30c);
+  *(int32_t *)(dest_object + 0x310) = *(int32_t *)(src_object + 0x310);
+  *(int32_t *)(dest_object + 0x314) = *(int32_t *)(src_object + 0x314);
+  *(int8_t *)(dest_object + 0x318) = *(int8_t *)(src_object + 0x318);
   FUN_180627be0(dest_object + 800,src_object + 800);
-  *(undefined4 *)(dest_object + 0x340) = *(undefined4 *)(src_object + 0x340);
+  *(int32_t *)(dest_object + 0x340) = *(int32_t *)(src_object + 0x340);
   return dest_object;
 }
 
 
 
-// 函数: longlong FUN_18018dff0(undefined8 param_1,longlong param_2)
+// 函数: longlong FUN_18018dff0(uint64_t param_1,longlong param_2)
 // 在场景对象数组中查找指定名称的对象
-longlong find_scene_object_by_name(undefined8 param_1, longlong name_data)
+longlong find_scene_object_by_name(uint64_t param_1, longlong name_data)
 
 {
   byte *byte_ptr1;
@@ -430,7 +430,7 @@ longlong find_scene_object_by_name(undefined8 param_1, longlong name_data)
   byte *byte_ptr2;
   int int_var4;
   longlong long_var2;
-  undefined8 *ulong_ptr1;
+  uint64_t *ulong_ptr1;
   ulonglong ulong_var1;
   ulonglong ulong_var2;
   
@@ -439,7 +439,7 @@ longlong find_scene_object_by_name(undefined8 param_1, longlong name_data)
   int_var3 = (int)((*(longlong *)(_DAT_180c8a9f8 + 0x3a8) - long_var1) / 0x348);
   if (0 < int_var3) {
     int_var1 = *(int *)(name_data + 0x10);
-    ulong_ptr1 = (undefined8 *)(long_var1 + 0x10);
+    ulong_ptr1 = (uint64_t *)(long_var1 + 0x10);
     ulong_var2 = ulong_var1;
     do {
       int_var2 = *(int *)(ulong_ptr1 + 1);

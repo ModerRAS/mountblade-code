@@ -13,14 +13,14 @@ void release_resource_manager_resources(longlong resource_manager)
   
   // 释放第一个资源（偏移0x10处）
   resource_ptr1 = *(longlong **)(resource_manager + 0x10);
-  *(undefined8 *)(resource_manager + 0x10) = 0;
+  *(uint64_t *)(resource_manager + 0x10) = 0;
   if (resource_ptr1 != (longlong *)0x0) {
     (**(code **)(*resource_ptr1 + 0x38))(); // 调用资源的释放函数
   }
   
   // 释放第二个资源（偏移0x18处）
   resource_ptr2 = *(longlong **)(resource_manager + 0x18);
-  *(undefined8 *)(resource_manager + 0x18) = 0;
+  *(uint64_t *)(resource_manager + 0x18) = 0;
   if (resource_ptr2 != (longlong *)0x0) {
     (**(code **)(*resource_ptr2 + 0x38))(); // 调用资源的释放函数
   }
@@ -32,7 +32,7 @@ void release_resource_manager_resources(longlong resource_manager)
 // 函数：处理资源列表中的字符串比较和操作（版本1）
 // 原始函数名：FUN_180095480
 // 这是一个简化实现，原函数包含复杂的字符串比较逻辑
-undefined8 process_resource_list_strings_v1(void)
+uint64_t process_resource_list_strings_v1(void)
 {
   // 简化实现：返回默认结果
   // 原函数包含复杂的字符串比较和处理逻辑，这里返回0作为默认值
@@ -44,7 +44,7 @@ undefined8 process_resource_list_strings_v1(void)
 // 函数：处理资源列表中的字符串比较和操作（版本2）
 // 原始函数名：FUN_180095720
 // 这是一个简化实现，原函数包含复杂的字符串比较逻辑
-undefined8 process_resource_list_strings_v2(void)
+uint64_t process_resource_list_strings_v2(void)
 {
   // 简化实现：返回默认结果
   // 原函数包含复杂的字符串比较和处理逻辑，这里返回0作为默认值
@@ -59,15 +59,15 @@ undefined8 process_resource_list_strings_v2(void)
 
 // 函数：初始化核心引擎数据结构
 // 原始函数名：FUN_180095bf0
-void initialize_core_engine_data(undefined8 engine_context, undefined4 param2, undefined4 param3)
+void initialize_core_engine_data(uint64_t engine_context, int32_t param2, int32_t param3)
 
 {
-  undefined8 *engine_data_ptr;
+  uint64_t *engine_data_ptr;
   int lock_result;
-  undefined8 timestamp;
+  uint64_t timestamp;
   ulonglong data_size;
-  undefined4 *data_ptr;
-  undefined8 temp_value;
+  int32_t *data_ptr;
+  uint64_t temp_value;
   
   // 获取引擎数据结构指针
   engine_data_ptr = _DAT_180c86960;
@@ -102,13 +102,13 @@ void initialize_core_engine_data(undefined8 engine_context, undefined4 param2, u
   FUN_180098ae0(engine_data_ptr[1], param2, param3, 0);
   
   // 更新全局状态
-  _DAT_180c8a9b0 = *(undefined8 *)*engine_data_ptr;
+  _DAT_180c8a9b0 = *(uint64_t *)*engine_data_ptr;
   
   // 初始化第一个数据区域
   FUN_180080ca0(engine_data_ptr + 0xf, 0x96);
-  data_ptr = (undefined4 *)engine_data_ptr[0xf];
+  data_ptr = (int32_t *)engine_data_ptr[0xf];
   data_size = (ulonglong)((longlong)engine_data_ptr[0x10] + (3 - (longlong)data_ptr)) >> 2;
-  if ((undefined4 *)engine_data_ptr[0x10] < data_ptr) {
+  if ((int32_t *)engine_data_ptr[0x10] < data_ptr) {
     data_size = 0;
   }
   if (data_size != 0) {
@@ -120,9 +120,9 @@ void initialize_core_engine_data(undefined8 engine_context, undefined4 param2, u
   
   // 初始化第二个数据区域
   FUN_180080ca0(engine_data_ptr + 0x13, 0x96);
-  data_ptr = (undefined4 *)engine_data_ptr[0x13];
+  data_ptr = (int32_t *)engine_data_ptr[0x13];
   data_size = (ulonglong)((longlong)engine_data_ptr[0x14] + (3 - (longlong)data_ptr)) >> 2;
-  if ((undefined4 *)engine_data_ptr[0x14] < data_ptr) {
+  if ((int32_t *)engine_data_ptr[0x14] < data_ptr) {
     data_size = 0;
   }
   if (data_size != 0) {
@@ -133,7 +133,7 @@ void initialize_core_engine_data(undefined8 engine_context, undefined4 param2, u
   }
   
   // 标记初始化完成
-  *(undefined1 *)(engine_data_ptr + 7) = 1;
+  *(int8_t *)(engine_data_ptr + 7) = 1;
   
   // 解锁
   lock_result = _Mtx_unlock(0x180c91970);
@@ -152,7 +152,7 @@ void initialize_core_engine_data(undefined8 engine_context, undefined4 param2, u
 // 函数：处理引擎核心更新逻辑
 // 原始函数名：FUN_180095da0
 // 这是一个简化实现，原函数包含复杂的更新和递归调用逻辑
-void process_engine_core_update(undefined8 context, longlong param2, longlong param3, char flag)
+void process_engine_core_update(uint64_t context, longlong param2, longlong param3, char flag)
 {
   // 简化实现：处理引擎核心更新逻辑
   // 原函数包含复杂的更新和递归调用逻辑，这里仅做简单处理
@@ -189,7 +189,7 @@ void reset_engine_resource_manager(void)
 // 函数：批量处理引擎资源
 // 原始函数名：FUN_180096240
 // 这是一个简化实现，原函数包含复杂的批量处理和排序逻辑
-void batch_process_engine_resources(undefined8 context, longlong param2, undefined8 *param3)
+void batch_process_engine_resources(uint64_t context, longlong param2, uint64_t *param3)
 {
   // 简化实现：批量处理引擎资源
   // 原函数包含复杂的批量处理和排序逻辑，这里仅做简单处理

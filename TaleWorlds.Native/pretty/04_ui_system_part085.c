@@ -11,7 +11,7 @@ void FUN_180718e92(void)
 
 
 
-uint FUN_180718ead(undefined8 param_1,undefined8 param_2)
+uint FUN_180718ead(uint64_t param_1,uint64_t param_2)
 
 {
   int iVar1;
@@ -21,10 +21,10 @@ uint FUN_180718ead(undefined8 param_1,undefined8 param_2)
   float unaff_XMM6_Da;
   float unaff_XMM7_Da;
   float unaff_XMM8_Da;
-  undefined8 uStack0000000000000028;
+  uint64_t uStack0000000000000028;
   float fStack0000000000000038;
   int iStack0000000000000040;
-  undefined8 in_stack_00000118;
+  uint64_t in_stack_00000118;
   int in_stack_00000130;
   
   iStack0000000000000040 = in_stack_00000130 >> (unaff_DIL & 0x1f);
@@ -250,7 +250,7 @@ ulonglong FUN_180718f58(void)
 
 
 
-undefined1
+int8_t
 FUN_1807193b0(longlong param_1,longlong param_2,int *param_3,int param_4,int *param_5,uint *param_6,
              int param_7,uint param_8,int param_9,int param_10)
 
@@ -258,7 +258,7 @@ FUN_1807193b0(longlong param_1,longlong param_2,int *param_3,int param_4,int *pa
   longlong lVar1;
   short sVar2;
   short *psVar3;
-  undefined1 uVar4;
+  int8_t uVar4;
   uint uVar5;
   ulonglong uVar6;
   float *pfVar7;
@@ -449,7 +449,7 @@ FUN_1807193b0(longlong param_1,longlong param_2,int *param_3,int param_4,int *pa
 
 
 
-undefined1 FUN_18071943e(int param_1,int param_2,float param_3,float param_4)
+int8_t FUN_18071943e(int param_1,int param_2,float param_3,float param_4)
 
 {
   longlong lVar1;
@@ -463,9 +463,9 @@ undefined1 FUN_18071943e(int param_1,int param_2,float param_3,float param_4)
   short *unaff_RBP;
   short *psVar7;
   int iVar8;
-  undefined8 unaff_RSI;
+  uint64_t unaff_RSI;
   longlong unaff_RDI;
-  undefined1 uVar9;
+  int8_t uVar9;
   int in_R8D;
   int iVar10;
   uint in_R9D;
@@ -474,10 +474,10 @@ undefined1 FUN_18071943e(int param_1,int param_2,float param_3,float param_4)
   int iVar12;
   uint uVar13;
   longlong in_R11;
-  undefined8 unaff_R12;
+  uint64_t unaff_R12;
   uint unaff_R13D;
-  undefined8 unaff_R14;
-  undefined8 unaff_R15;
+  uint64_t unaff_R14;
+  uint64_t unaff_R15;
   float fVar14;
   float fVar15;
   float in_XMM4_Da;
@@ -498,10 +498,10 @@ undefined1 FUN_18071943e(int param_1,int param_2,float param_3,float param_4)
   int in_stack_000000c0;
   int in_stack_000000c8;
   
-  *(undefined8 *)(in_R11 + -0x28) = unaff_RSI;
-  *(undefined8 *)(in_R11 + -0x30) = unaff_R12;
-  *(undefined8 *)(in_R11 + -0x38) = unaff_R14;
-  *(undefined8 *)(in_R11 + -0x40) = unaff_R15;
+  *(uint64_t *)(in_R11 + -0x28) = unaff_RSI;
+  *(uint64_t *)(in_R11 + -0x30) = unaff_R12;
+  *(uint64_t *)(in_R11 + -0x38) = unaff_R14;
+  *(uint64_t *)(in_R11 + -0x40) = unaff_R15;
   iStackX_c = in_EAX;
   iStackX_10 = param_2;
   do {
@@ -672,7 +672,7 @@ undefined1 FUN_18071943e(int param_1,int param_2,float param_3,float param_4)
 
 
 
-uint FUN_1807196d4(int param_1,undefined8 param_2,uint param_3,uint param_4)
+uint FUN_1807196d4(int param_1,uint64_t param_2,uint param_3,uint param_4)
 
 {
   int iVar1;

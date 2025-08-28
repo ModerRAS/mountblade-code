@@ -11,33 +11,33 @@ void register_physics_system(void)
 
 {
   char component_status;
-  undefined8 *component_root;
+  uint64_t *component_root;
   int compare_result;
   longlong *system_manager;
   longlong component_id;
-  undefined8 *current_component;
-  undefined8 *parent_component;
-  undefined8 *next_component;
-  undefined8 *new_component;
-  undefined8 component_flags;
+  uint64_t *current_component;
+  uint64_t *parent_component;
+  uint64_t *next_component;
+  uint64_t *new_component;
+  uint64_t component_flags;
   
   // 获取系统管理器
   system_manager = (longlong *)get_system_manager();
-  component_root = (undefined8 *)*system_manager;
+  component_root = (uint64_t *)*system_manager;
   component_status = *(char *)((longlong)component_root[1] + 0x19);
   component_flags = 0;
   parent_component = component_root;
-  current_component = (undefined8 *)component_root[1];
+  current_component = (uint64_t *)component_root[1];
   
   // 遍历组件树，查找物理系统组件
   while (component_status == '\0') {
     compare_result = memcmp(current_component + 4,&PHYSICS_SYSTEM_ID,0x10);
     if (compare_result < 0) {
-      next_component = (undefined8 *)current_component[2];
+      next_component = (uint64_t *)current_component[2];
       current_component = parent_component;
     }
     else {
-      next_component = (undefined8 *)*current_component;
+      next_component = (uint64_t *)*current_component;
     }
     parent_component = current_component;
     current_component = next_component;
@@ -71,33 +71,33 @@ void register_render_system(void)
 
 {
   char component_status;
-  undefined8 *component_root;
+  uint64_t *component_root;
   int compare_result;
   longlong *system_manager;
   longlong component_id;
-  undefined8 *current_component;
-  undefined8 *parent_component;
-  undefined8 *next_component;
-  undefined8 *new_component;
-  undefined8 component_flags;
+  uint64_t *current_component;
+  uint64_t *parent_component;
+  uint64_t *next_component;
+  uint64_t *new_component;
+  uint64_t component_flags;
   
   // 获取系统管理器
   system_manager = (longlong *)get_system_manager();
-  component_root = (undefined8 *)*system_manager;
+  component_root = (uint64_t *)*system_manager;
   component_status = *(char *)((longlong)component_root[1] + 0x19);
   component_flags = 0;
   parent_component = component_root;
-  current_component = (undefined8 *)component_root[1];
+  current_component = (uint64_t *)component_root[1];
   
   // 遍历组件树，查找渲染系统组件
   while (component_status == '\0') {
     compare_result = memcmp(current_component + 4,&RENDER_SYSTEM_ID,0x10);
     if (compare_result < 0) {
-      next_component = (undefined8 *)current_component[2];
+      next_component = (uint64_t *)current_component[2];
       current_component = parent_component;
     }
     else {
-      next_component = (undefined8 *)*current_component;
+      next_component = (uint64_t *)*current_component;
     }
     parent_component = current_component;
     current_component = next_component;
@@ -131,33 +131,33 @@ void register_audio_system(void)
 
 {
   char component_status;
-  undefined8 *component_root;
+  uint64_t *component_root;
   int compare_result;
   longlong *system_manager;
   longlong component_id;
-  undefined8 *current_component;
-  undefined8 *parent_component;
-  undefined8 *next_component;
-  undefined8 *new_component;
-  undefined8 component_flags;
+  uint64_t *current_component;
+  uint64_t *parent_component;
+  uint64_t *next_component;
+  uint64_t *new_component;
+  uint64_t component_flags;
   
   // 获取系统管理器
   system_manager = (longlong *)get_system_manager();
-  component_root = (undefined8 *)*system_manager;
+  component_root = (uint64_t *)*system_manager;
   component_status = *(char *)((longlong)component_root[1] + 0x19);
   component_flags = 0;
   parent_component = component_root;
-  current_component = (undefined8 *)component_root[1];
+  current_component = (uint64_t *)component_root[1];
   
   // 遍历组件树，查找音频系统组件
   while (component_status == '\0') {
     compare_result = memcmp(current_component + 4,&PHYSICS_SYSTEM_ID,0x10);
     if (compare_result < 0) {
-      next_component = (undefined8 *)current_component[2];
+      next_component = (uint64_t *)current_component[2];
       current_component = parent_component;
     }
     else {
-      next_component = (undefined8 *)*current_component;
+      next_component = (uint64_t *)*current_component;
     }
     parent_component = current_component;
     current_component = next_component;
@@ -191,33 +191,33 @@ void register_input_system(void)
 
 {
   char component_status;
-  undefined8 *component_root;
+  uint64_t *component_root;
   int compare_result;
   longlong *system_manager;
   longlong component_id;
-  undefined8 *current_component;
-  undefined8 *parent_component;
-  undefined8 *next_component;
-  undefined8 *new_component;
-  undefined8 component_flags;
+  uint64_t *current_component;
+  uint64_t *parent_component;
+  uint64_t *next_component;
+  uint64_t *new_component;
+  uint64_t component_flags;
   
   // 获取系统管理器
   system_manager = (longlong *)get_system_manager();
-  component_root = (undefined8 *)*system_manager;
+  component_root = (uint64_t *)*system_manager;
   component_status = *(char *)((longlong)component_root[1] + 0x19);
   component_flags = 0;
   parent_component = component_root;
-  current_component = (undefined8 *)component_root[1];
+  current_component = (uint64_t *)component_root[1];
   
   // 遍历组件树，查找输入系统组件
   while (component_status == '\0') {
     compare_result = memcmp(current_component + 4,&RENDER_SYSTEM_ID,0x10);
     if (compare_result < 0) {
-      next_component = (undefined8 *)current_component[2];
+      next_component = (uint64_t *)current_component[2];
       current_component = parent_component;
     }
     else {
-      next_component = (undefined8 *)*current_component;
+      next_component = (uint64_t *)*current_component;
     }
     parent_component = current_component;
     current_component = next_component;

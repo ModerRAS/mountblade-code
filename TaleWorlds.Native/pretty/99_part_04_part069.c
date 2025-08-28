@@ -2,20 +2,20 @@
 
 // 99_part_04_part069.c - 3 个函数
 
-// 函数: void FUN_1802c70b0(undefined4 *param_1,longlong param_2,longlong param_3,undefined8 param_4)
-void FUN_1802c70b0(undefined4 *param_1,longlong param_2,longlong param_3,undefined8 param_4)
+// 函数: void FUN_1802c70b0(int32_t *param_1,longlong param_2,longlong param_3,uint64_t param_4)
+void FUN_1802c70b0(int32_t *param_1,longlong param_2,longlong param_3,uint64_t param_4)
 
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
+  int32_t uVar1;
+  int32_t uVar2;
+  int32_t uVar3;
   longlong lVar4;
   longlong lVar5;
-  undefined4 *puVar6;
-  undefined4 uStack_28;
-  undefined4 uStack_24;
-  undefined4 uStack_20;
-  undefined4 uStack_1c;
+  int32_t *puVar6;
+  int32_t uStack_28;
+  int32_t uStack_24;
+  int32_t uStack_20;
+  int32_t uStack_1c;
   
   lVar4 = param_2 - (longlong)param_1;
   do {
@@ -34,7 +34,7 @@ LAB_1802c7170:
         if (lVar4 < 2) {
           return;
         }
-        puVar6 = (undefined4 *)(param_2 + -0x10);
+        puVar6 = (int32_t *)(param_2 + -0x10);
         if (lVar4 < 2) goto LAB_1802c71f9;
         do {
           uStack_28 = *puVar6;
@@ -58,7 +58,7 @@ LAB_1802c71f9:
     }
     FUN_1802c7220(&uStack_28,param_1,param_2,param_4);
     lVar5 = CONCAT44(uStack_24,uStack_28);
-    puVar6 = (undefined4 *)CONCAT44(uStack_1c,uStack_20);
+    puVar6 = (int32_t *)CONCAT44(uStack_1c,uStack_20);
     param_3 = (param_3 >> 1) + (param_3 >> 2);
     if ((longlong)(lVar5 - (longlong)param_1 & 0xfffffffffffffff0U) <
         (longlong)(param_2 - (longlong)puVar6 & 0xfffffffffffffff0U)) {
@@ -76,12 +76,12 @@ LAB_1802c71f9:
 
 
 
-undefined8 * FUN_1802c7220(undefined8 *param_1,float *param_2,float *param_3,longlong param_4)
+uint64_t * FUN_1802c7220(uint64_t *param_1,float *param_2,float *param_3,longlong param_4)
 
 {
-  undefined8 uVar1;
-  undefined8 uVar2;
-  undefined8 uVar3;
+  uint64_t uVar1;
+  uint64_t uVar2;
+  uint64_t uVar3;
   float *pfVar4;
   longlong lVar5;
   float *pfVar6;
@@ -169,13 +169,13 @@ joined_r0x0001802c74ce:
           if (fVar13 < fVar14) break;
           pfVar11 = pfVar10 + -4;
           if (pfVar11 != pfVar8) {
-            uVar1 = *(undefined8 *)(pfVar9 + -2);
-            uVar2 = *(undefined8 *)pfVar11;
-            uVar3 = *(undefined8 *)(pfVar10 + -2);
-            *(undefined8 *)pfVar11 = *(undefined8 *)pfVar8;
-            *(undefined8 *)(pfVar10 + -2) = uVar1;
-            *(undefined8 *)pfVar8 = uVar2;
-            *(undefined8 *)(pfVar9 + -2) = uVar3;
+            uVar1 = *(uint64_t *)(pfVar9 + -2);
+            uVar2 = *(uint64_t *)pfVar11;
+            uVar3 = *(uint64_t *)(pfVar10 + -2);
+            *(uint64_t *)pfVar11 = *(uint64_t *)pfVar8;
+            *(uint64_t *)(pfVar10 + -2) = uVar1;
+            *(uint64_t *)pfVar8 = uVar2;
+            *(uint64_t *)(pfVar9 + -2) = uVar3;
           }
         }
         pfVar9 = pfVar8;
@@ -188,21 +188,21 @@ joined_r0x0001802c74ce:
           return param_1;
         }
         if (pfVar7 != pfVar6) {
-          uVar1 = *(undefined8 *)(pfVar7 + 2);
-          uVar2 = *(undefined8 *)pfVar10;
-          uVar3 = *(undefined8 *)(pfVar10 + 2);
-          *(undefined8 *)pfVar10 = *(undefined8 *)pfVar7;
-          *(undefined8 *)(pfVar10 + 2) = uVar1;
-          *(undefined8 *)pfVar7 = uVar2;
-          *(undefined8 *)(pfVar7 + 2) = uVar3;
+          uVar1 = *(uint64_t *)(pfVar7 + 2);
+          uVar2 = *(uint64_t *)pfVar10;
+          uVar3 = *(uint64_t *)(pfVar10 + 2);
+          *(uint64_t *)pfVar10 = *(uint64_t *)pfVar7;
+          *(uint64_t *)(pfVar10 + 2) = uVar1;
+          *(uint64_t *)pfVar7 = uVar2;
+          *(uint64_t *)(pfVar7 + 2) = uVar3;
         }
-        uVar1 = *(undefined8 *)(pfVar6 + 2);
-        uVar2 = *(undefined8 *)pfVar10;
-        uVar3 = *(undefined8 *)(pfVar10 + 2);
-        *(undefined8 *)pfVar10 = *(undefined8 *)pfVar6;
-        *(undefined8 *)(pfVar10 + 2) = uVar1;
-        *(undefined8 *)pfVar6 = uVar2;
-        *(undefined8 *)(pfVar6 + 2) = uVar3;
+        uVar1 = *(uint64_t *)(pfVar6 + 2);
+        uVar2 = *(uint64_t *)pfVar10;
+        uVar3 = *(uint64_t *)(pfVar10 + 2);
+        *(uint64_t *)pfVar10 = *(uint64_t *)pfVar6;
+        *(uint64_t *)(pfVar10 + 2) = uVar1;
+        *(uint64_t *)pfVar6 = uVar2;
+        *(uint64_t *)(pfVar6 + 2) = uVar3;
         pfVar6 = pfVar6 + 4;
         pfVar7 = pfVar7 + 4;
         pfVar9 = pfVar4;
@@ -213,33 +213,33 @@ joined_r0x0001802c74ce:
         if (pfVar6 == param_3) {
           pfVar11 = pfVar10 + -4;
           if (pfVar9 != pfVar11) {
-            uVar1 = *(undefined8 *)(pfVar10 + -2);
-            uVar2 = *(undefined8 *)pfVar9;
-            uVar3 = *(undefined8 *)(pfVar4 + -2);
-            *(undefined8 *)pfVar9 = *(undefined8 *)pfVar11;
-            *(undefined8 *)(pfVar4 + -2) = uVar1;
-            *(undefined8 *)pfVar11 = uVar2;
-            *(undefined8 *)(pfVar10 + -2) = uVar3;
+            uVar1 = *(uint64_t *)(pfVar10 + -2);
+            uVar2 = *(uint64_t *)pfVar9;
+            uVar3 = *(uint64_t *)(pfVar4 + -2);
+            *(uint64_t *)pfVar9 = *(uint64_t *)pfVar11;
+            *(uint64_t *)(pfVar4 + -2) = uVar1;
+            *(uint64_t *)pfVar11 = uVar2;
+            *(uint64_t *)(pfVar10 + -2) = uVar3;
           }
-          uVar1 = *(undefined8 *)(pfVar7 + -2);
-          uVar2 = *(undefined8 *)pfVar11;
-          uVar3 = *(undefined8 *)(pfVar10 + -2);
-          *(undefined8 *)pfVar11 = *(undefined8 *)(pfVar7 + -4);
-          *(undefined8 *)(pfVar10 + -2) = uVar1;
-          *(undefined8 *)(pfVar7 + -4) = uVar2;
-          *(undefined8 *)(pfVar7 + -2) = uVar3;
+          uVar1 = *(uint64_t *)(pfVar7 + -2);
+          uVar2 = *(uint64_t *)pfVar11;
+          uVar3 = *(uint64_t *)(pfVar10 + -2);
+          *(uint64_t *)pfVar11 = *(uint64_t *)(pfVar7 + -4);
+          *(uint64_t *)(pfVar10 + -2) = uVar1;
+          *(uint64_t *)(pfVar7 + -4) = uVar2;
+          *(uint64_t *)(pfVar7 + -2) = uVar3;
           pfVar7 = pfVar7 + -4;
           pfVar10 = pfVar11;
         }
         else {
-          uVar1 = *(undefined8 *)pfVar6;
-          uVar2 = *(undefined8 *)(pfVar6 + 2);
-          uVar3 = *(undefined8 *)(pfVar4 + -2);
-          *(undefined8 *)pfVar6 = *(undefined8 *)pfVar9;
-          *(undefined8 *)(pfVar6 + 2) = uVar3;
+          uVar1 = *(uint64_t *)pfVar6;
+          uVar2 = *(uint64_t *)(pfVar6 + 2);
+          uVar3 = *(uint64_t *)(pfVar4 + -2);
+          *(uint64_t *)pfVar6 = *(uint64_t *)pfVar9;
+          *(uint64_t *)(pfVar6 + 2) = uVar3;
           pfVar6 = pfVar6 + 4;
-          *(undefined8 *)pfVar9 = uVar1;
-          *(undefined8 *)(pfVar4 + -2) = uVar2;
+          *(uint64_t *)pfVar9 = uVar1;
+          *(uint64_t *)(pfVar4 + -2) = uVar2;
         }
       }
       goto joined_r0x0001802c7423;
@@ -255,13 +255,13 @@ joined_r0x0001802c74ce:
     if (fVar13 <= fVar14) {
       if (fVar13 < fVar14) goto joined_r0x0001802c74ce;
       if (pfVar7 != pfVar6) {
-        uVar1 = *(undefined8 *)(pfVar6 + 2);
-        uVar2 = *(undefined8 *)pfVar7;
-        uVar3 = *(undefined8 *)(pfVar7 + 2);
-        *(undefined8 *)pfVar7 = *(undefined8 *)pfVar6;
-        *(undefined8 *)(pfVar7 + 2) = uVar1;
-        *(undefined8 *)pfVar6 = uVar2;
-        *(undefined8 *)(pfVar6 + 2) = uVar3;
+        uVar1 = *(uint64_t *)(pfVar6 + 2);
+        uVar2 = *(uint64_t *)pfVar7;
+        uVar3 = *(uint64_t *)(pfVar7 + 2);
+        *(uint64_t *)pfVar7 = *(uint64_t *)pfVar6;
+        *(uint64_t *)(pfVar7 + 2) = uVar1;
+        *(uint64_t *)pfVar6 = uVar2;
+        *(uint64_t *)(pfVar6 + 2) = uVar3;
       }
       pfVar7 = pfVar7 + 4;
     }
@@ -271,12 +271,12 @@ joined_r0x0001802c74ce:
 
 
 
-undefined8 * FUN_1802c7238(undefined8 *param_1,float *param_2,float *param_3,longlong param_4)
+uint64_t * FUN_1802c7238(uint64_t *param_1,float *param_2,float *param_3,longlong param_4)
 
 {
-  undefined8 uVar1;
-  undefined8 uVar2;
-  undefined8 uVar3;
+  uint64_t uVar1;
+  uint64_t uVar2;
+  uint64_t uVar3;
   float *pfVar4;
   longlong lVar5;
   float *pfVar6;
@@ -365,13 +365,13 @@ joined_r0x0001802c74ce:
           if (fVar13 < fVar14) break;
           pfVar11 = pfVar10 + -4;
           if (pfVar11 != pfVar8) {
-            uVar1 = *(undefined8 *)(pfVar9 + -2);
-            uVar2 = *(undefined8 *)pfVar11;
-            uVar3 = *(undefined8 *)(pfVar10 + -2);
-            *(undefined8 *)pfVar11 = *(undefined8 *)pfVar8;
-            *(undefined8 *)(pfVar10 + -2) = uVar1;
-            *(undefined8 *)pfVar8 = uVar2;
-            *(undefined8 *)(pfVar9 + -2) = uVar3;
+            uVar1 = *(uint64_t *)(pfVar9 + -2);
+            uVar2 = *(uint64_t *)pfVar11;
+            uVar3 = *(uint64_t *)(pfVar10 + -2);
+            *(uint64_t *)pfVar11 = *(uint64_t *)pfVar8;
+            *(uint64_t *)(pfVar10 + -2) = uVar1;
+            *(uint64_t *)pfVar8 = uVar2;
+            *(uint64_t *)(pfVar9 + -2) = uVar3;
           }
         }
         pfVar9 = pfVar8;
@@ -384,21 +384,21 @@ joined_r0x0001802c74ce:
           return param_1;
         }
         if (pfVar7 != pfVar6) {
-          uVar1 = *(undefined8 *)(pfVar7 + 2);
-          uVar2 = *(undefined8 *)pfVar10;
-          uVar3 = *(undefined8 *)(pfVar10 + 2);
-          *(undefined8 *)pfVar10 = *(undefined8 *)pfVar7;
-          *(undefined8 *)(pfVar10 + 2) = uVar1;
-          *(undefined8 *)pfVar7 = uVar2;
-          *(undefined8 *)(pfVar7 + 2) = uVar3;
+          uVar1 = *(uint64_t *)(pfVar7 + 2);
+          uVar2 = *(uint64_t *)pfVar10;
+          uVar3 = *(uint64_t *)(pfVar10 + 2);
+          *(uint64_t *)pfVar10 = *(uint64_t *)pfVar7;
+          *(uint64_t *)(pfVar10 + 2) = uVar1;
+          *(uint64_t *)pfVar7 = uVar2;
+          *(uint64_t *)(pfVar7 + 2) = uVar3;
         }
-        uVar1 = *(undefined8 *)(pfVar6 + 2);
-        uVar2 = *(undefined8 *)pfVar10;
-        uVar3 = *(undefined8 *)(pfVar10 + 2);
-        *(undefined8 *)pfVar10 = *(undefined8 *)pfVar6;
-        *(undefined8 *)(pfVar10 + 2) = uVar1;
-        *(undefined8 *)pfVar6 = uVar2;
-        *(undefined8 *)(pfVar6 + 2) = uVar3;
+        uVar1 = *(uint64_t *)(pfVar6 + 2);
+        uVar2 = *(uint64_t *)pfVar10;
+        uVar3 = *(uint64_t *)(pfVar10 + 2);
+        *(uint64_t *)pfVar10 = *(uint64_t *)pfVar6;
+        *(uint64_t *)(pfVar10 + 2) = uVar1;
+        *(uint64_t *)pfVar6 = uVar2;
+        *(uint64_t *)(pfVar6 + 2) = uVar3;
         pfVar6 = pfVar6 + 4;
         pfVar7 = pfVar7 + 4;
         pfVar9 = pfVar4;
@@ -409,33 +409,33 @@ joined_r0x0001802c74ce:
         if (pfVar6 == param_3) {
           pfVar11 = pfVar10 + -4;
           if (pfVar9 != pfVar11) {
-            uVar1 = *(undefined8 *)(pfVar10 + -2);
-            uVar2 = *(undefined8 *)pfVar9;
-            uVar3 = *(undefined8 *)(pfVar4 + -2);
-            *(undefined8 *)pfVar9 = *(undefined8 *)pfVar11;
-            *(undefined8 *)(pfVar4 + -2) = uVar1;
-            *(undefined8 *)pfVar11 = uVar2;
-            *(undefined8 *)(pfVar10 + -2) = uVar3;
+            uVar1 = *(uint64_t *)(pfVar10 + -2);
+            uVar2 = *(uint64_t *)pfVar9;
+            uVar3 = *(uint64_t *)(pfVar4 + -2);
+            *(uint64_t *)pfVar9 = *(uint64_t *)pfVar11;
+            *(uint64_t *)(pfVar4 + -2) = uVar1;
+            *(uint64_t *)pfVar11 = uVar2;
+            *(uint64_t *)(pfVar10 + -2) = uVar3;
           }
-          uVar1 = *(undefined8 *)(pfVar7 + -2);
-          uVar2 = *(undefined8 *)pfVar11;
-          uVar3 = *(undefined8 *)(pfVar10 + -2);
-          *(undefined8 *)pfVar11 = *(undefined8 *)(pfVar7 + -4);
-          *(undefined8 *)(pfVar10 + -2) = uVar1;
-          *(undefined8 *)(pfVar7 + -4) = uVar2;
-          *(undefined8 *)(pfVar7 + -2) = uVar3;
+          uVar1 = *(uint64_t *)(pfVar7 + -2);
+          uVar2 = *(uint64_t *)pfVar11;
+          uVar3 = *(uint64_t *)(pfVar10 + -2);
+          *(uint64_t *)pfVar11 = *(uint64_t *)(pfVar7 + -4);
+          *(uint64_t *)(pfVar10 + -2) = uVar1;
+          *(uint64_t *)(pfVar7 + -4) = uVar2;
+          *(uint64_t *)(pfVar7 + -2) = uVar3;
           pfVar7 = pfVar7 + -4;
           pfVar10 = pfVar11;
         }
         else {
-          uVar1 = *(undefined8 *)pfVar6;
-          uVar2 = *(undefined8 *)(pfVar6 + 2);
-          uVar3 = *(undefined8 *)(pfVar4 + -2);
-          *(undefined8 *)pfVar6 = *(undefined8 *)pfVar9;
-          *(undefined8 *)(pfVar6 + 2) = uVar3;
+          uVar1 = *(uint64_t *)pfVar6;
+          uVar2 = *(uint64_t *)(pfVar6 + 2);
+          uVar3 = *(uint64_t *)(pfVar4 + -2);
+          *(uint64_t *)pfVar6 = *(uint64_t *)pfVar9;
+          *(uint64_t *)(pfVar6 + 2) = uVar3;
           pfVar6 = pfVar6 + 4;
-          *(undefined8 *)pfVar9 = uVar1;
-          *(undefined8 *)(pfVar4 + -2) = uVar2;
+          *(uint64_t *)pfVar9 = uVar1;
+          *(uint64_t *)(pfVar4 + -2) = uVar2;
         }
       }
       goto joined_r0x0001802c7423;
@@ -451,13 +451,13 @@ joined_r0x0001802c74ce:
     if (fVar13 <= fVar14) {
       if (fVar13 < fVar14) goto joined_r0x0001802c74ce;
       if (pfVar7 != pfVar6) {
-        uVar1 = *(undefined8 *)(pfVar6 + 2);
-        uVar2 = *(undefined8 *)pfVar7;
-        uVar3 = *(undefined8 *)(pfVar7 + 2);
-        *(undefined8 *)pfVar7 = *(undefined8 *)pfVar6;
-        *(undefined8 *)(pfVar7 + 2) = uVar1;
-        *(undefined8 *)pfVar6 = uVar2;
-        *(undefined8 *)(pfVar6 + 2) = uVar3;
+        uVar1 = *(uint64_t *)(pfVar6 + 2);
+        uVar2 = *(uint64_t *)pfVar7;
+        uVar3 = *(uint64_t *)(pfVar7 + 2);
+        *(uint64_t *)pfVar7 = *(uint64_t *)pfVar6;
+        *(uint64_t *)(pfVar7 + 2) = uVar1;
+        *(uint64_t *)pfVar6 = uVar2;
+        *(uint64_t *)(pfVar6 + 2) = uVar3;
       }
       pfVar7 = pfVar7 + 4;
     }
@@ -470,13 +470,13 @@ joined_r0x0001802c74ce:
 
 
 
-// 函数: void FUN_1802c72de(float *param_1,undefined8 param_2,undefined8 param_3,longlong param_4)
-void FUN_1802c72de(float *param_1,undefined8 param_2,undefined8 param_3,longlong param_4)
+// 函数: void FUN_1802c72de(float *param_1,uint64_t param_2,uint64_t param_3,longlong param_4)
+void FUN_1802c72de(float *param_1,uint64_t param_2,uint64_t param_3,longlong param_4)
 
 {
-  undefined8 uVar1;
-  undefined8 uVar2;
-  undefined8 uVar3;
+  uint64_t uVar1;
+  uint64_t uVar2;
+  uint64_t uVar3;
   float *pfVar4;
   float *pfVar5;
   float *pfVar6;
@@ -485,7 +485,7 @@ void FUN_1802c72de(float *param_1,undefined8 param_2,undefined8 param_3,longlong
   float *pfVar8;
   float *unaff_RSI;
   float *unaff_RDI;
-  undefined8 *unaff_R14;
+  uint64_t *unaff_R14;
   float fVar9;
   float fVar10;
   float fVar11;
@@ -545,13 +545,13 @@ joined_r0x0001802c74ce:
           if (fVar9 < fVar10) break;
           pfVar8 = pfVar7 + -4;
           if (pfVar8 != pfVar6) {
-            uVar1 = *(undefined8 *)(unaff_RBX + -2);
-            uVar2 = *(undefined8 *)pfVar8;
-            uVar3 = *(undefined8 *)(pfVar7 + -2);
-            *(undefined8 *)pfVar8 = *(undefined8 *)pfVar6;
-            *(undefined8 *)(pfVar7 + -2) = uVar1;
-            *(undefined8 *)pfVar6 = uVar2;
-            *(undefined8 *)(unaff_RBX + -2) = uVar3;
+            uVar1 = *(uint64_t *)(unaff_RBX + -2);
+            uVar2 = *(uint64_t *)pfVar8;
+            uVar3 = *(uint64_t *)(pfVar7 + -2);
+            *(uint64_t *)pfVar8 = *(uint64_t *)pfVar6;
+            *(uint64_t *)(pfVar7 + -2) = uVar1;
+            *(uint64_t *)pfVar6 = uVar2;
+            *(uint64_t *)(unaff_RBX + -2) = uVar3;
           }
         }
         unaff_RBX = pfVar6;
@@ -564,21 +564,21 @@ joined_r0x0001802c74ce:
           return;
         }
         if (pfVar5 != param_1) {
-          uVar1 = *(undefined8 *)(pfVar5 + 2);
-          uVar2 = *(undefined8 *)pfVar7;
-          uVar3 = *(undefined8 *)(pfVar7 + 2);
-          *(undefined8 *)pfVar7 = *(undefined8 *)pfVar5;
-          *(undefined8 *)(pfVar7 + 2) = uVar1;
-          *(undefined8 *)pfVar5 = uVar2;
-          *(undefined8 *)(pfVar5 + 2) = uVar3;
+          uVar1 = *(uint64_t *)(pfVar5 + 2);
+          uVar2 = *(uint64_t *)pfVar7;
+          uVar3 = *(uint64_t *)(pfVar7 + 2);
+          *(uint64_t *)pfVar7 = *(uint64_t *)pfVar5;
+          *(uint64_t *)(pfVar7 + 2) = uVar1;
+          *(uint64_t *)pfVar5 = uVar2;
+          *(uint64_t *)(pfVar5 + 2) = uVar3;
         }
-        uVar1 = *(undefined8 *)(param_1 + 2);
-        uVar2 = *(undefined8 *)pfVar7;
-        uVar3 = *(undefined8 *)(pfVar7 + 2);
-        *(undefined8 *)pfVar7 = *(undefined8 *)param_1;
-        *(undefined8 *)(pfVar7 + 2) = uVar1;
-        *(undefined8 *)param_1 = uVar2;
-        *(undefined8 *)(param_1 + 2) = uVar3;
+        uVar1 = *(uint64_t *)(param_1 + 2);
+        uVar2 = *(uint64_t *)pfVar7;
+        uVar3 = *(uint64_t *)(pfVar7 + 2);
+        *(uint64_t *)pfVar7 = *(uint64_t *)param_1;
+        *(uint64_t *)(pfVar7 + 2) = uVar1;
+        *(uint64_t *)param_1 = uVar2;
+        *(uint64_t *)(param_1 + 2) = uVar3;
         param_1 = param_1 + 4;
         pfVar5 = pfVar5 + 4;
         unaff_RBX = pfVar4;
@@ -589,33 +589,33 @@ joined_r0x0001802c74ce:
         if (param_1 == unaff_RDI) {
           pfVar8 = pfVar7 + -4;
           if (unaff_RBX != pfVar8) {
-            uVar1 = *(undefined8 *)(pfVar7 + -2);
-            uVar2 = *(undefined8 *)unaff_RBX;
-            uVar3 = *(undefined8 *)(pfVar4 + -2);
-            *(undefined8 *)unaff_RBX = *(undefined8 *)pfVar8;
-            *(undefined8 *)(pfVar4 + -2) = uVar1;
-            *(undefined8 *)pfVar8 = uVar2;
-            *(undefined8 *)(pfVar7 + -2) = uVar3;
+            uVar1 = *(uint64_t *)(pfVar7 + -2);
+            uVar2 = *(uint64_t *)unaff_RBX;
+            uVar3 = *(uint64_t *)(pfVar4 + -2);
+            *(uint64_t *)unaff_RBX = *(uint64_t *)pfVar8;
+            *(uint64_t *)(pfVar4 + -2) = uVar1;
+            *(uint64_t *)pfVar8 = uVar2;
+            *(uint64_t *)(pfVar7 + -2) = uVar3;
           }
-          uVar1 = *(undefined8 *)(pfVar5 + -2);
-          uVar2 = *(undefined8 *)pfVar8;
-          uVar3 = *(undefined8 *)(pfVar7 + -2);
-          *(undefined8 *)pfVar8 = *(undefined8 *)(pfVar5 + -4);
-          *(undefined8 *)(pfVar7 + -2) = uVar1;
-          *(undefined8 *)(pfVar5 + -4) = uVar2;
-          *(undefined8 *)(pfVar5 + -2) = uVar3;
+          uVar1 = *(uint64_t *)(pfVar5 + -2);
+          uVar2 = *(uint64_t *)pfVar8;
+          uVar3 = *(uint64_t *)(pfVar7 + -2);
+          *(uint64_t *)pfVar8 = *(uint64_t *)(pfVar5 + -4);
+          *(uint64_t *)(pfVar7 + -2) = uVar1;
+          *(uint64_t *)(pfVar5 + -4) = uVar2;
+          *(uint64_t *)(pfVar5 + -2) = uVar3;
           pfVar5 = pfVar5 + -4;
           pfVar7 = pfVar8;
         }
         else {
-          uVar1 = *(undefined8 *)param_1;
-          uVar2 = *(undefined8 *)(param_1 + 2);
-          uVar3 = *(undefined8 *)(pfVar4 + -2);
-          *(undefined8 *)param_1 = *(undefined8 *)unaff_RBX;
-          *(undefined8 *)(param_1 + 2) = uVar3;
+          uVar1 = *(uint64_t *)param_1;
+          uVar2 = *(uint64_t *)(param_1 + 2);
+          uVar3 = *(uint64_t *)(pfVar4 + -2);
+          *(uint64_t *)param_1 = *(uint64_t *)unaff_RBX;
+          *(uint64_t *)(param_1 + 2) = uVar3;
           param_1 = param_1 + 4;
-          *(undefined8 *)unaff_RBX = uVar1;
-          *(undefined8 *)(pfVar4 + -2) = uVar2;
+          *(uint64_t *)unaff_RBX = uVar1;
+          *(uint64_t *)(pfVar4 + -2) = uVar2;
         }
       }
       goto joined_r0x0001802c7423;
@@ -631,13 +631,13 @@ joined_r0x0001802c74ce:
     if (fVar9 <= fVar10) {
       if (fVar9 < fVar10) goto joined_r0x0001802c74ce;
       if (pfVar5 != param_1) {
-        uVar1 = *(undefined8 *)(param_1 + 2);
-        uVar2 = *(undefined8 *)pfVar5;
-        uVar3 = *(undefined8 *)(pfVar5 + 2);
-        *(undefined8 *)pfVar5 = *(undefined8 *)param_1;
-        *(undefined8 *)(pfVar5 + 2) = uVar1;
-        *(undefined8 *)param_1 = uVar2;
-        *(undefined8 *)(param_1 + 2) = uVar3;
+        uVar1 = *(uint64_t *)(param_1 + 2);
+        uVar2 = *(uint64_t *)pfVar5;
+        uVar3 = *(uint64_t *)(pfVar5 + 2);
+        *(uint64_t *)pfVar5 = *(uint64_t *)param_1;
+        *(uint64_t *)(pfVar5 + 2) = uVar1;
+        *(uint64_t *)param_1 = uVar2;
+        *(uint64_t *)(param_1 + 2) = uVar3;
       }
       pfVar5 = pfVar5 + 4;
     }
@@ -650,13 +650,13 @@ joined_r0x0001802c74ce:
 
 
 
-// 函数: void FUN_1802c72ee(float *param_1,undefined8 param_2,undefined8 param_3,longlong param_4)
-void FUN_1802c72ee(float *param_1,undefined8 param_2,undefined8 param_3,longlong param_4)
+// 函数: void FUN_1802c72ee(float *param_1,uint64_t param_2,uint64_t param_3,longlong param_4)
+void FUN_1802c72ee(float *param_1,uint64_t param_2,uint64_t param_3,longlong param_4)
 
 {
-  undefined8 uVar1;
-  undefined8 uVar2;
-  undefined8 uVar3;
+  uint64_t uVar1;
+  uint64_t uVar2;
+  uint64_t uVar3;
   float *pfVar4;
   float *in_RAX;
   float *pfVar5;
@@ -666,7 +666,7 @@ void FUN_1802c72ee(float *param_1,undefined8 param_2,undefined8 param_3,longlong
   float *pfVar8;
   float *unaff_RSI;
   float *unaff_RDI;
-  undefined8 *unaff_R14;
+  uint64_t *unaff_R14;
   float fVar9;
   float fVar10;
   float fVar11;
@@ -725,13 +725,13 @@ joined_r0x0001802c74ce:
           if (fVar9 < fVar10) break;
           pfVar8 = pfVar7 + -4;
           if (pfVar8 != pfVar6) {
-            uVar1 = *(undefined8 *)(unaff_RBX + -2);
-            uVar2 = *(undefined8 *)pfVar8;
-            uVar3 = *(undefined8 *)(pfVar7 + -2);
-            *(undefined8 *)pfVar8 = *(undefined8 *)pfVar6;
-            *(undefined8 *)(pfVar7 + -2) = uVar1;
-            *(undefined8 *)pfVar6 = uVar2;
-            *(undefined8 *)(unaff_RBX + -2) = uVar3;
+            uVar1 = *(uint64_t *)(unaff_RBX + -2);
+            uVar2 = *(uint64_t *)pfVar8;
+            uVar3 = *(uint64_t *)(pfVar7 + -2);
+            *(uint64_t *)pfVar8 = *(uint64_t *)pfVar6;
+            *(uint64_t *)(pfVar7 + -2) = uVar1;
+            *(uint64_t *)pfVar6 = uVar2;
+            *(uint64_t *)(unaff_RBX + -2) = uVar3;
           }
         }
         unaff_RBX = pfVar6;
@@ -744,21 +744,21 @@ joined_r0x0001802c74ce:
           return;
         }
         if (pfVar5 != param_1) {
-          uVar1 = *(undefined8 *)(pfVar5 + 2);
-          uVar2 = *(undefined8 *)pfVar7;
-          uVar3 = *(undefined8 *)(pfVar7 + 2);
-          *(undefined8 *)pfVar7 = *(undefined8 *)pfVar5;
-          *(undefined8 *)(pfVar7 + 2) = uVar1;
-          *(undefined8 *)pfVar5 = uVar2;
-          *(undefined8 *)(pfVar5 + 2) = uVar3;
+          uVar1 = *(uint64_t *)(pfVar5 + 2);
+          uVar2 = *(uint64_t *)pfVar7;
+          uVar3 = *(uint64_t *)(pfVar7 + 2);
+          *(uint64_t *)pfVar7 = *(uint64_t *)pfVar5;
+          *(uint64_t *)(pfVar7 + 2) = uVar1;
+          *(uint64_t *)pfVar5 = uVar2;
+          *(uint64_t *)(pfVar5 + 2) = uVar3;
         }
-        uVar1 = *(undefined8 *)(param_1 + 2);
-        uVar2 = *(undefined8 *)pfVar7;
-        uVar3 = *(undefined8 *)(pfVar7 + 2);
-        *(undefined8 *)pfVar7 = *(undefined8 *)param_1;
-        *(undefined8 *)(pfVar7 + 2) = uVar1;
-        *(undefined8 *)param_1 = uVar2;
-        *(undefined8 *)(param_1 + 2) = uVar3;
+        uVar1 = *(uint64_t *)(param_1 + 2);
+        uVar2 = *(uint64_t *)pfVar7;
+        uVar3 = *(uint64_t *)(pfVar7 + 2);
+        *(uint64_t *)pfVar7 = *(uint64_t *)param_1;
+        *(uint64_t *)(pfVar7 + 2) = uVar1;
+        *(uint64_t *)param_1 = uVar2;
+        *(uint64_t *)(param_1 + 2) = uVar3;
         param_1 = param_1 + 4;
         pfVar5 = pfVar5 + 4;
         unaff_RBX = pfVar4;
@@ -769,33 +769,33 @@ joined_r0x0001802c74ce:
         if (param_1 == unaff_RDI) {
           pfVar8 = pfVar7 + -4;
           if (unaff_RBX != pfVar8) {
-            uVar1 = *(undefined8 *)(pfVar7 + -2);
-            uVar2 = *(undefined8 *)unaff_RBX;
-            uVar3 = *(undefined8 *)(pfVar4 + -2);
-            *(undefined8 *)unaff_RBX = *(undefined8 *)pfVar8;
-            *(undefined8 *)(pfVar4 + -2) = uVar1;
-            *(undefined8 *)pfVar8 = uVar2;
-            *(undefined8 *)(pfVar7 + -2) = uVar3;
+            uVar1 = *(uint64_t *)(pfVar7 + -2);
+            uVar2 = *(uint64_t *)unaff_RBX;
+            uVar3 = *(uint64_t *)(pfVar4 + -2);
+            *(uint64_t *)unaff_RBX = *(uint64_t *)pfVar8;
+            *(uint64_t *)(pfVar4 + -2) = uVar1;
+            *(uint64_t *)pfVar8 = uVar2;
+            *(uint64_t *)(pfVar7 + -2) = uVar3;
           }
-          uVar1 = *(undefined8 *)(pfVar5 + -2);
-          uVar2 = *(undefined8 *)pfVar8;
-          uVar3 = *(undefined8 *)(pfVar7 + -2);
-          *(undefined8 *)pfVar8 = *(undefined8 *)(pfVar5 + -4);
-          *(undefined8 *)(pfVar7 + -2) = uVar1;
-          *(undefined8 *)(pfVar5 + -4) = uVar2;
-          *(undefined8 *)(pfVar5 + -2) = uVar3;
+          uVar1 = *(uint64_t *)(pfVar5 + -2);
+          uVar2 = *(uint64_t *)pfVar8;
+          uVar3 = *(uint64_t *)(pfVar7 + -2);
+          *(uint64_t *)pfVar8 = *(uint64_t *)(pfVar5 + -4);
+          *(uint64_t *)(pfVar7 + -2) = uVar1;
+          *(uint64_t *)(pfVar5 + -4) = uVar2;
+          *(uint64_t *)(pfVar5 + -2) = uVar3;
           pfVar5 = pfVar5 + -4;
           pfVar7 = pfVar8;
         }
         else {
-          uVar1 = *(undefined8 *)param_1;
-          uVar2 = *(undefined8 *)(param_1 + 2);
-          uVar3 = *(undefined8 *)(pfVar4 + -2);
-          *(undefined8 *)param_1 = *(undefined8 *)unaff_RBX;
-          *(undefined8 *)(param_1 + 2) = uVar3;
+          uVar1 = *(uint64_t *)param_1;
+          uVar2 = *(uint64_t *)(param_1 + 2);
+          uVar3 = *(uint64_t *)(pfVar4 + -2);
+          *(uint64_t *)param_1 = *(uint64_t *)unaff_RBX;
+          *(uint64_t *)(param_1 + 2) = uVar3;
           param_1 = param_1 + 4;
-          *(undefined8 *)unaff_RBX = uVar1;
-          *(undefined8 *)(pfVar4 + -2) = uVar2;
+          *(uint64_t *)unaff_RBX = uVar1;
+          *(uint64_t *)(pfVar4 + -2) = uVar2;
         }
       }
       goto joined_r0x0001802c7423;
@@ -811,13 +811,13 @@ joined_r0x0001802c74ce:
     if (fVar9 <= fVar10) {
       if (fVar9 < fVar10) goto joined_r0x0001802c74ce;
       if (pfVar5 != param_1) {
-        uVar1 = *(undefined8 *)(param_1 + 2);
-        uVar2 = *(undefined8 *)pfVar5;
-        uVar3 = *(undefined8 *)(pfVar5 + 2);
-        *(undefined8 *)pfVar5 = *(undefined8 *)param_1;
-        *(undefined8 *)(pfVar5 + 2) = uVar1;
-        *(undefined8 *)param_1 = uVar2;
-        *(undefined8 *)(param_1 + 2) = uVar3;
+        uVar1 = *(uint64_t *)(param_1 + 2);
+        uVar2 = *(uint64_t *)pfVar5;
+        uVar3 = *(uint64_t *)(pfVar5 + 2);
+        *(uint64_t *)pfVar5 = *(uint64_t *)param_1;
+        *(uint64_t *)(pfVar5 + 2) = uVar1;
+        *(uint64_t *)param_1 = uVar2;
+        *(uint64_t *)(param_1 + 2) = uVar3;
       }
       pfVar5 = pfVar5 + 4;
     }

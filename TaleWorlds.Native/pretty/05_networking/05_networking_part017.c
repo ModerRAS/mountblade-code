@@ -76,11 +76,11 @@
  * 
  * @note 这是一个复杂的网络连接处理函数，包含多个状态检查和资源管理操作
  */
-void network_connection_handler(undefined8 *param_1, undefined8 param_2, longlong param_3, undefined8 *param_4)
+void network_connection_handler(uint64_t *param_1, uint64_t param_2, longlong param_3, uint64_t *param_4)
 {
-    undefined8 uVar1;
+    uint64_t uVar1;
     longlong *plVar2;
-    undefined1 uVar3;
+    int8_t uVar3;
     short sVar4;
     int iVar5;
     int iVar6;
@@ -89,9 +89,9 @@ void network_connection_handler(undefined8 *param_1, undefined8 param_2, longlon
     longlong lVar9;
     ulonglong uVar10;
     uint uVar11;
-    undefined *puVar12;
+    void *puVar12;
     longlong lVar13;
-    undefined4 uVar14;
+    int32_t uVar14;
     longlong lVar15;
     longlong lVar16;
     longlong lVar17;
@@ -100,7 +100,7 @@ void network_connection_handler(undefined8 *param_1, undefined8 param_2, longlon
     longlong *plVar20;
     
     // 栈变量声明
-    undefined1 auStack_148[32];
+    int8_t auStack_148[32];
     longlong lStack_128;
     longlong *plStack_120;
     longlong *plStack_118;
@@ -119,14 +119,14 @@ void network_connection_handler(undefined8 *param_1, undefined8 param_2, longlon
     longlong lStack_c0;
     longlong lStack_b8;
     longlong lStack_b0;
-    undefined8 *puStack_a8;
+    uint64_t *puStack_a8;
     longlong lStack_a0;
-    undefined8 uStack_98;
-    undefined4 uStack_90;
-    undefined4 uStack_8c;
+    uint64_t uStack_98;
+    int32_t uStack_90;
+    int32_t uStack_8c;
     longlong *plStack_88;
-    undefined8 *puStack_80;
-    undefined1 auStack_78[40];
+    uint64_t *puStack_80;
+    int8_t auStack_78[40];
     ulonglong uStack_50;
     
     // 初始化栈保护和参数
@@ -136,7 +136,7 @@ void network_connection_handler(undefined8 *param_1, undefined8 param_2, longlon
     puStack_80 = param_4;
     
     // 参数验证
-    if (param_4 == (undefined8 *)0x0) goto LAB_180851437;
+    if (param_4 == (uint64_t *)0x0) goto LAB_180851437;
     *param_4 = 0;
     
     // 初始化网络连接
@@ -150,7 +150,7 @@ void network_connection_handler(undefined8 *param_1, undefined8 param_2, longlon
     // 检查连接状态
     if ((*(byte *)(lVar8 + 0xc4) & 1) == 0) {
         if (param_3 == 0) goto LAB_180851437;
-        uVar14 = *(undefined4 *)(param_3 + 0x2dc);
+        uVar14 = *(int32_t *)(param_3 + 0x2dc);
     } else {
         uVar14 = 0xffffffff;
         lStack_c0 = 0;
@@ -295,9 +295,9 @@ LAB_180850d9b:
 LAB_180850eb0:
         // 处理网络连接状态
         lVar8 = (**(code **)*plStack_118)();
-        uStack_98 = *(undefined8 *)(lVar8 + 0x10);
-        uStack_90 = *(undefined4 *)(lVar8 + 0x18);
-        uStack_8c = *(undefined4 *)(lVar8 + 0x1c);
+        uStack_98 = *(uint64_t *)(lVar8 + 0x10);
+        uStack_90 = *(int32_t *)(lVar8 + 0x18);
+        uStack_8c = *(int32_t *)(lVar8 + 0x1c);
         iVar5 = FUN_180852d40(param_1[1], &uStack_98, plStack_118);
         lVar13 = lStack_b0;
         lVar15 = lStack_d8;
@@ -344,7 +344,7 @@ LAB_180850eb0:
                         lVar16 = puStack_a8[2];
                         uVar3 = (**(code **)(*plStack_118 + 0x20))(plStack_118);
                         plStack_120 = &lStack_110;
-                        lStack_128 = CONCAT44(lStack_128._4_4_, *(undefined4 *)(lVar8 + uVar19 * 4));
+                        lStack_128 = CONCAT44(lStack_128._4_4_, *(int32_t *)(lVar8 + uVar19 * 4));
                         iVar7 = FUN_1808b4570(lVar16 + 0x388, (longlong)(int)uVar10 * 0x10 + lVar9, lStack_c0,
                                               uVar3);
                         lVar13 = lStack_b0;
@@ -354,7 +354,7 @@ LAB_180850eb0:
                         plVar20 = plStack_88;
                         if (iVar7 != 0) goto LAB_1808513ac;
                         FUN_180853260(plStack_118 + 0x10, &lStack_110);
-                        iVar7 = FUN_18073c020(plStack_118[0xf], iStack_100 + 1, *(undefined8 *)(lStack_110 + 0x30)
+                        iVar7 = FUN_18073c020(plStack_118[0xf], iStack_100 + 1, *(uint64_t *)(lStack_110 + 0x30)
                                              );
                         lVar13 = lStack_b0;
                         lVar15 = lStack_d8;
@@ -384,7 +384,7 @@ LAB_180850eb0:
                             lVar16 = puStack_a8[2];
                             uVar3 = (**(code **)(*plStack_118 + 0x20))(plStack_118);
                             plStack_120 = &lStack_110;
-                            lStack_128 = CONCAT44(lStack_128._4_4_, *(undefined4 *)(lVar8 + uVar19 * 4));
+                            lStack_128 = CONCAT44(lStack_128._4_4_, *(int32_t *)(lVar8 + uVar19 * 4));
                             iVar5 = FUN_1808b4570(lVar16 + 0x388, (longlong)(int)uVar10 * 0x10 + lVar9, lStack_c0,
                                                   uVar3);
                             lVar13 = lStack_b0;
@@ -394,7 +394,7 @@ LAB_180850eb0:
                             plVar20 = plStack_88;
                             if (iVar5 != 0) goto LAB_1808513ac;
                             FUN_180853260(plStack_118 + 0x12, &lStack_110);
-                            iVar5 = FUN_18073c020(plStack_118[0xf], iStack_100, *(undefined8 *)(lStack_110 + 0x30));
+                            iVar5 = FUN_18073c020(plStack_118[0xf], iStack_100, *(uint64_t *)(lStack_110 + 0x30));
                             lVar13 = lStack_b0;
                             lVar15 = lStack_d8;
                             lVar17 = lStack_b8;
@@ -519,19 +519,19 @@ LAB_1808513a8:
     
     // 清理网络资源
     if ((char)uStack_fc == '\0') {
-        *(undefined4 *)(lVar15 + 0x60) = 0;
+        *(int32_t *)(lVar15 + 0x60) = 0;
         FUN_18084f560(lVar15 + 0x30);
     }
     if ((char)uStack_f8 == '\0') {
-        *(undefined4 *)(lVar13 + 0x60) = 0;
+        *(int32_t *)(lVar13 + 0x60) = 0;
         FUN_18084f040(lVar13 + 0x30);
     }
     if ((char)uStack_f4 == '\0') {
-        *(undefined4 *)(lVar18 + 0x1d0) = 0;
+        *(int32_t *)(lVar18 + 0x1d0) = 0;
         FUN_18084f040(lVar18 + 0x1a0);
     }
     if ((char)uStack_f0 == '\0') {
-        *(undefined4 *)(lVar17 + 0x60) = 0;
+        *(int32_t *)(lVar17 + 0x60) = 0;
         FUN_18084f2d0(lVar17 + 0x30);
     }
 LAB_180851437:
@@ -554,11 +554,11 @@ LAB_180851437:
  */
 void network_resource_cleaner(longlong param_1)
 {
-    undefined8 uVar1;
-    undefined4 uVar2;
-    undefined4 uVar3;
-    undefined4 uVar4;
-    undefined1 uVar5;
+    uint64_t uVar1;
+    int32_t uVar2;
+    int32_t uVar3;
+    int32_t uVar4;
+    int8_t uVar5;
     short sVar6;
     int iVar7;
     int iVar8;
@@ -567,11 +567,11 @@ void network_resource_cleaner(longlong param_1)
     longlong lVar10;
     ulonglong uVar11;
     uint uVar12;
-    undefined *puVar13;
+    void *puVar13;
     longlong unaff_RBP;
     longlong unaff_RSI;
     longlong lVar14;
-    undefined1 unaff_R12B;
+    int8_t unaff_R12B;
     longlong lVar15;
     longlong lVar16;
     longlong unaff_R14;
@@ -605,7 +605,7 @@ void network_resource_cleaner(longlong param_1)
     *(int *)(in_RAX + 0x60) = *(int *)(in_RAX + 0x60) + 1;
     lStack0000000000000070 = param_1 + 0x1d8;
     *(int *)(param_1 + 0x238) = *(int *)(param_1 + 0x238) + 1;
-    uVar1 = *(undefined8 *)(unaff_R15 + 0x18);
+    uVar1 = *(uint64_t *)(unaff_R15 + 0x18);
     lStack0000000000000040 = 0;
     lStack0000000000000078 = 0;
     *(longlong *)(unaff_RBP + -0x70) = lVar16;
@@ -686,7 +686,7 @@ LAB_180850d9b:
                 ((longlong)*(int *)(lVar10 + 0x40) * 0x10 + *(ulonglong *)(lVar10 + 0x38) <= uVar18))
                 goto LAB_180850eb0;
             in_stack_00000038 = 0;
-            iVar7 = FUN_1808bc240(*(undefined8 *)(unaff_R15 + 0x10), uVar18, 0xffffffff, &stack0x00000038);
+            iVar7 = FUN_1808bc240(*(uint64_t *)(unaff_R15 + 0x10), uVar18, 0xffffffff, &stack0x00000038);
             if ((iVar7 != 0) ||
                 ((in_stack_00000038 != 0 &&
                  (iVar7 = FUN_1808c2ec0(in_stack_00000038, in_stack_00000030, 1), iVar7 != 0)))) break;
@@ -696,17 +696,17 @@ LAB_180850d9b:
 LAB_180850eb0:
         // 处理网络连接状态
         lVar10 = (**(code **)*in_stack_00000030)();
-        uVar1 = *(undefined8 *)(unaff_R15 + 8);
-        uVar2 = *(undefined4 *)(lVar10 + 0x14);
-        uVar3 = *(undefined4 *)(lVar10 + 0x18);
-        uVar4 = *(undefined4 *)(lVar10 + 0x1c);
-        *(undefined4 *)(unaff_RBP + -0x50) = *(undefined4 *)(lVar10 + 0x10);
-        *(undefined4 *)(unaff_RBP + -0x4c) = uVar2;
-        *(undefined4 *)(unaff_RBP + -0x48) = uVar3;
-        *(undefined4 *)(unaff_RBP + -0x44) = uVar4;
+        uVar1 = *(uint64_t *)(unaff_R15 + 8);
+        uVar2 = *(int32_t *)(lVar10 + 0x14);
+        uVar3 = *(int32_t *)(lVar10 + 0x18);
+        uVar4 = *(int32_t *)(lVar10 + 0x1c);
+        *(int32_t *)(unaff_RBP + -0x50) = *(int32_t *)(lVar10 + 0x10);
+        *(int32_t *)(unaff_RBP + -0x4c) = uVar2;
+        *(int32_t *)(unaff_RBP + -0x48) = uVar3;
+        *(int32_t *)(unaff_RBP + -0x44) = uVar4;
         iVar7 = FUN_180852d40(uVar1, unaff_RBP + -0x50, in_stack_00000030);
         if ((((iVar7 != 0) ||
-             (iVar7 = FUN_1808c18c0(*(undefined8 *)(unaff_R15 + 0x10), in_stack_00000030), iVar7 != 0))
+             (iVar7 = FUN_1808c18c0(*(uint64_t *)(unaff_R15 + 0x10), in_stack_00000030), iVar7 != 0))
             || (iVar7 = FUN_18084e4b0(in_stack_00000030), iVar7 != 0)) ||
            (iVar7 = FUN_18084ead0(in_stack_00000030, 0), lVar10 = in_stack_00000060, iVar7 != 0))
             goto LAB_180851223;
@@ -717,10 +717,10 @@ LAB_180850eb0:
         *(int *)(unaff_RBP + -0x80) = iVar9;
         if ((iVar7 != 0) || (iVar9 != 0)) {
             iStack0000000000000048 = 0;
-            *(undefined8 *)(unaff_RBP + -0x50) = 0;
+            *(uint64_t *)(unaff_RBP + -0x50) = 0;
             iVar8 = FUN_18073c380(in_stack_00000030[0xf], 0xfffffffe, unaff_RBP + -0x50);
             if (((iVar8 == 0) &&
-                (iVar8 = FUN_18073c5f0(in_stack_00000030[0xf], *(undefined8 *)(unaff_RBP + -0x50),
+                (iVar8 = FUN_18073c5f0(in_stack_00000030[0xf], *(uint64_t *)(unaff_RBP + -0x50),
                                        &stack0x00000048), iVar8 == 0)) &&
                ((uVar12 = (int)*(uint *)((longlong)in_stack_00000030 + 0x8c) >> 0x1f,
                 iVar7 <= (int)((*(uint *)((longlong)in_stack_00000030 + 0x8c) ^ uVar12) - uVar12) ||
@@ -735,12 +735,12 @@ LAB_180850eb0:
                         lVar10 = *(longlong *)(*(longlong *)(unaff_RBP + -0x60) + 0x10);
                         uVar5 = (**(code **)(*in_stack_00000030 + 0x20))(in_stack_00000030);
                         iVar9 = FUN_1808b4570(lVar10 + 0x388, (longlong)(int)uVar11 * 0x10 + lVar15,
-                                              *(undefined8 *)(unaff_RBP + -0x78), uVar5,
-                                              *(undefined4 *)(lVar16 + uVar18 * 4));
+                                              *(uint64_t *)(unaff_RBP + -0x78), uVar5,
+                                              *(int32_t *)(lVar16 + uVar18 * 4));
                         if (iVar9 != 0) goto LAB_180851223;
                         FUN_180853260(in_stack_00000030 + 0x10, &stack0x00000038);
                         iVar9 = FUN_18073c020(in_stack_00000030[0xf], iStack0000000000000048 + 1,
-                                              *(undefined8 *)(in_stack_00000038 + 0x30));
+                                              *(uint64_t *)(in_stack_00000038 + 0x30));
                         if (iVar9 != 0) goto LAB_180851223;
                         uVar11 = (ulonglong)((int)uVar11 + 1);
                         uVar18 = uVar18 + 1;
@@ -761,12 +761,12 @@ LAB_180850eb0:
                             lVar10 = *(longlong *)(*(longlong *)(unaff_RBP + -0x60) + 0x10);
                             uVar5 = (**(code **)(*in_stack_00000030 + 0x20))(in_stack_00000030);
                             iVar7 = FUN_1808b4570(lVar10 + 0x388, (longlong)(int)uVar11 * 0x10 + lVar15,
-                                                  *(undefined8 *)(unaff_RBP + -0x78), uVar5,
-                                                  *(undefined4 *)(lVar16 + uVar18 * 4));
+                                                  *(uint64_t *)(unaff_RBP + -0x78), uVar5,
+                                                  *(int32_t *)(lVar16 + uVar18 * 4));
                             if (iVar7 != 0) goto LAB_180851223;
                             FUN_180853260(in_stack_00000030 + 0x12, &stack0x00000038);
                             iVar7 = FUN_18073c020(in_stack_00000030[0xf], iStack0000000000000048,
-                                                  *(undefined8 *)(in_stack_00000038 + 0x30));
+                                                  *(uint64_t *)(in_stack_00000038 + 0x30));
                             if (iVar7 != 0) goto LAB_180851223;
                             uVar11 = (ulonglong)((int)uVar11 + 1);
                             uVar18 = uVar18 + 1;
@@ -876,7 +876,7 @@ LAB_1808511a4:
 LAB_1808513a8:
             if (iVar9 == 0) {
 FUN_180851421:
-                **(undefined8 **)(unaff_RBP + -0x38) = in_stack_00000030;
+                **(uint64_t **)(unaff_RBP + -0x38) = in_stack_00000030;
                 goto LAB_1808513bf;
             }
         }
@@ -889,19 +889,19 @@ FUN_180851421:
 LAB_1808513bf:
     // 释放网络资源
     if (cStack000000000000004c == '\0') {
-        *(undefined4 *)(lVar14 + 0x60) = 0;
+        *(int32_t *)(lVar14 + 0x60) = 0;
         FUN_18084f560(lVar14 + 0x30);
     }
     if (cStack0000000000000050 == '\0') {
-        *(undefined4 *)(lVar10 + 0x60) = 0;
+        *(int32_t *)(lVar10 + 0x60) = 0;
         FUN_18084f040(lVar10 + 0x30);
     }
     if (cStack0000000000000054 == '\0') {
-        *(undefined4 *)(lVar17 + 0x1d0) = 0;
+        *(int32_t *)(lVar17 + 0x1d0) = 0;
         FUN_18084f040(lVar17 + 0x1a0);
     }
     if (cStack0000000000000058 == '\0') {
-        *(undefined4 *)(lVar16 + 0x60) = 0;
+        *(int32_t *)(lVar16 + 0x60) = 0;
         FUN_18084f2d0(lVar16 + 0x30);
     }
     // 栈保护清理
@@ -924,33 +924,33 @@ void network_state_cleaner(void)
     longlong unaff_RBP;
     longlong unaff_RSI;
     longlong unaff_RDI;
-    undefined4 unaff_R12D;
+    int32_t unaff_R12D;
     longlong unaff_R13;
     longlong unaff_R14;
-    undefined8 in_stack_00000030;
-    undefined8 in_stack_00000048;
+    uint64_t in_stack_00000030;
+    uint64_t in_stack_00000048;
     char cStack0000000000000050;
     char cStack0000000000000054;
     char in_stack_00000058;
     
     // 设置网络状态清理参数
-    **(undefined8 **)(unaff_RBP + -0x38) = in_stack_00000030;
+    **(uint64_t **)(unaff_RBP + -0x38) = in_stack_00000030;
     
     // 清理网络状态资源
     if (in_stack_00000048._4_1_ == '\0') {
-        *(undefined4 *)(unaff_RDI + 0x60) = unaff_R12D;
+        *(int32_t *)(unaff_RDI + 0x60) = unaff_R12D;
         FUN_18084f560(unaff_RDI + 0x30);
     }
     if (cStack0000000000000050 == '\0') {
-        *(undefined4 *)(unaff_RSI + 0x60) = unaff_R12D;
+        *(int32_t *)(unaff_RSI + 0x60) = unaff_R12D;
         FUN_18084f040(unaff_RSI + 0x30);
     }
     if (cStack0000000000000054 == '\0') {
-        *(undefined4 *)(unaff_R14 + 0x1d0) = unaff_R12D;
+        *(int32_t *)(unaff_R14 + 0x1d0) = unaff_R12D;
         FUN_18084f040(unaff_R14 + 0x1a0);
     }
     if (in_stack_00000058 == '\0') {
-        *(undefined4 *)(unaff_R13 + 0x60) = unaff_R12D;
+        *(int32_t *)(unaff_R13 + 0x60) = unaff_R12D;
         FUN_18084f2d0(unaff_R13 + 0x30);
     }
     

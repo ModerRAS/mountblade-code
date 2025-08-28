@@ -9,7 +9,7 @@ void FUN_180892011(void)
   int iVar1;
   longlong unaff_RBP;
   longlong unaff_RSI;
-  undefined8 in_stack_00000030;
+  uint64_t in_stack_00000030;
   
   iVar1 = func_0x0001808c8710(in_stack_00000030);
   if (iVar1 < 1) {
@@ -19,7 +19,7 @@ void FUN_180892011(void)
   else {
     iVar1 = func_0x0001808c8700(in_stack_00000030);
     if (iVar1 < 1) {
-      *(undefined4 *)(unaff_RSI + 0x18) = 2;
+      *(int32_t *)(unaff_RSI + 0x18) = 2;
     }
     else {
       iVar1 = FUN_1808c7f30(in_stack_00000030,unaff_RSI + 0x18);
@@ -28,7 +28,7 @@ void FUN_180892011(void)
       }
     }
   }
-  FUN_18088d7c0(*(undefined8 *)(unaff_RBP + 0x98));
+  FUN_18088d7c0(*(uint64_t *)(unaff_RBP + 0x98));
   return;
 }
 

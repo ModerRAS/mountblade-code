@@ -2,8 +2,8 @@
 
 // 03_rendering_part622_sub002.c - 1 个函数
 
-// 函数: void FUN_1806133ea(longlong param_1,uint param_2,undefined8 param_3,float param_4)
-void FUN_1806133ea(longlong param_1,uint param_2,undefined8 param_3,float param_4)
+// 函数: void FUN_1806133ea(longlong param_1,uint param_2,uint64_t param_3,float param_4)
+void FUN_1806133ea(longlong param_1,uint param_2,uint64_t param_3,float param_4)
 
 {
   float fVar1;
@@ -22,21 +22,21 @@ void FUN_1806133ea(longlong param_1,uint param_2,undefined8 param_3,float param_
   int iVar13;
   longlong *plVar14;
   longlong in_R11;
-  undefined8 unaff_R14;
-  undefined8 unaff_R15;
+  uint64_t unaff_R14;
+  uint64_t unaff_R15;
   float fVar15;
   float fVar16;
   
-  *(undefined8 *)(in_R11 + -0x30) = unaff_R14;
+  *(uint64_t *)(in_R11 + -0x30) = unaff_R14;
   piVar9 = *(int **)(unaff_RBP + 0x7f);
-  *(undefined8 *)(in_R11 + -0x38) = unaff_R15;
+  *(uint64_t *)(in_R11 + -0x38) = unaff_R15;
   piVar10 = *(int **)(unaff_RBP + 0x77);
-  *(undefined8 *)(unaff_RBP + -0x49) = param_3;
+  *(uint64_t *)(unaff_RBP + -0x49) = param_3;
   *piVar9 = 0;
   *piVar10 = 0;
-  *(undefined8 *)(unaff_RBP + 0x57) = param_3;
-  *(undefined8 *)(unaff_RBP + -0x21) = 0;
-  *(undefined8 *)(unaff_RBP + -0x41) = 0;
+  *(uint64_t *)(unaff_RBP + 0x57) = param_3;
+  *(uint64_t *)(unaff_RBP + -0x21) = 0;
+  *(uint64_t *)(unaff_RBP + -0x41) = 0;
   FUN_1804ff330(param_1 + 0x98d230,unaff_RBP + -0x49,param_4,unaff_RBP + -0x41);
   plVar14 = *(longlong **)(unaff_RBP + -0x41);
   if (plVar14 == (longlong *)0x0) {
@@ -83,7 +83,7 @@ LAB_1806134a0:
     *(int *)(unaff_RBP + -0x39) = iVar12;
     plVar14 = *(longlong **)
                ((longlong)
-                ((int)((ulonglong)*(undefined8 *)(unaff_RBP + -0x39) >> 0x20) *
+                ((int)((ulonglong)*(uint64_t *)(unaff_RBP + -0x39) >> 0x20) *
                  *(int *)(param_1 + 0x98d238) + iVar12) * 9 + *(longlong *)(param_1 + 0x98d248));
   }
   do {
@@ -105,7 +105,7 @@ LAB_1806134a0:
       *(int *)(unaff_RBP + -0x39) = iVar12;
       plVar14 = *(longlong **)
                  ((longlong)
-                  ((int)((ulonglong)*(undefined8 *)(unaff_RBP + -0x39) >> 0x20) *
+                  ((int)((ulonglong)*(uint64_t *)(unaff_RBP + -0x39) >> 0x20) *
                    *(int *)(param_1 + 0x98d238) + iVar12) * 9 + *(longlong *)(param_1 + 0x98d248));
     }
   } while( true );

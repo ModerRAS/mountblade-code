@@ -166,7 +166,7 @@ struct ui_memory_pool {
  * 
  * @return void
  */
-void FUN_18082e110(undefined8 param_1, undefined8 *param_2)
+void FUN_18082e110(uint64_t param_1, uint64_t *param_2)
 {
     // 验证数据结构状态标志
     if (*(int *)(param_2 + 6) != 0) {
@@ -217,7 +217,7 @@ void FUN_18082e110(undefined8 param_1, undefined8 *param_2)
  * 
  * @return void
  */
-void FUN_18082e170(undefined8 param_1, undefined8 *param_2)
+void FUN_18082e170(uint64_t param_1, uint64_t *param_2)
 {
     // 验证数据结构状态
     if (*(int *)(param_2 + 6) == 0) {
@@ -278,16 +278,16 @@ void FUN_18082e1e0(uint *param_1)
 {
     uint uVar1;                         // 变量1：参数值
     uint uVar2;                         // 变量2：目标值
-    undefined4 uVar3;                  // 变量3：浮点结果
+    int32_t uVar3;                  // 变量3：浮点结果
     uint uVar4;                         // 变量4：掩码结果
     int iVar5;                         // 整数变量5：当前值
     int iVar6;                         // 整数变量6：乘积结果
     int iVar7;                         // 整数变量7：乘积结果
     ulonglong uVar8;                    // 无符号长整型变量8：循环计数器
-    undefined8 extraout_XMM0_Qa;       // XMM0寄存器输出
-    undefined1 auVar9 [16];             // 数组变量9：SIMD数据
-    undefined1 auVar10 [16];            // 数组变量10：SIMD数据
-    undefined4 uVar11;                  // 变量11：高位部分
+    uint64_t extraout_XMM0_Qa;       // XMM0寄存器输出
+    int8_t auVar9 [16];             // 数组变量9：SIMD数据
+    int8_t auVar10 [16];            // 数组变量10：SIMD数据
+    int32_t uVar11;                  // 变量11：高位部分
     
     // 获取参数值
     uVar1 = *param_1;                   // 基础参数
@@ -301,7 +301,7 @@ void FUN_18082e1e0(uint *param_1)
     // 精度验证和调整
     if ((iVar5 != -0x80000000) && ((float)iVar5 != auVar9._0_4_)) {
         // 提取高位部分
-        uVar11 = (undefined4)((ulonglong)extraout_XMM0_Qa >> 0x20);
+        uVar11 = (int32_t)((ulonglong)extraout_XMM0_Qa >> 0x20);
         auVar10._8_4_ = uVar11;
         auVar10._0_8_ = extraout_XMM0_Qa;
         auVar10._12_4_ = uVar11;
@@ -368,11 +368,11 @@ void FUN_18082e1e0(uint *param_1)
  * 
  * @return longlong 处理结果句柄，失败返回0
  */
-longlong FUN_18082e290(undefined8 param_1, uint *param_2, int param_3, int *param_4)
+longlong FUN_18082e290(uint64_t param_1, uint *param_2, int param_3, int *param_4)
 {
     uint uVar1;                         // 变量1：数据大小
     int iVar2;                         // 整数变量2：临时计算值
-    undefined4 uVar3;                  // 变量3：浮点结果
+    int32_t uVar3;                  // 变量3：浮点结果
     uint uVar4;                         // 变量4：掩码结果
     int iVar5;                         // 整数变量5：索引值
     longlong lVar6;                     // 长整型变量6：结果句柄
@@ -388,10 +388,10 @@ longlong FUN_18082e290(undefined8 param_1, uint *param_2, int param_3, int *para
     float fVar16;                       // 浮点变量16：计算结果
     double dVar17;                      // 双精度变量17：缩放因子1
     double dVar18;                      // 双精度变量18：缩放因子2
-    undefined8 extraout_XMM0_Qa;       // XMM0寄存器输出
-    undefined1 auVar19 [16];            // 数组变量19：SIMD数据
-    undefined1 auVar20 [16];            // 数组变量20：SIMD数据
-    undefined4 uVar21;                  // 变量21：高位部分
+    uint64_t extraout_XMM0_Qa;       // XMM0寄存器输出
+    int8_t auVar19 [16];            // 数组变量19：SIMD数据
+    int8_t auVar20 [16];            // 数组变量20：SIMD数据
+    int32_t uVar21;                  // 变量21：高位部分
     
     // 初始化状态计数器
     iVar10 = 0;
@@ -421,7 +421,7 @@ longlong FUN_18082e290(undefined8 param_1, uint *param_2, int param_3, int *para
             
             // 精度验证和调整
             if ((iVar12 != -0x80000000) && ((float)iVar12 != auVar19._0_4_)) {
-                uVar21 = (undefined4)((ulonglong)extraout_XMM0_Qa >> 0x20);
+                uVar21 = (int32_t)((ulonglong)extraout_XMM0_Qa >> 0x20);
                 auVar20._8_4_ = uVar21;
                 auVar20._0_8_ = extraout_XMM0_Qa;
                 auVar20._12_4_ = uVar21;
@@ -589,7 +589,7 @@ longlong FUN_18082e290(undefined8 param_1, uint *param_2, int param_3, int *para
 void FUN_18082e42e(void)
 {
     uint uVar1;                         // 变量1：状态参数
-    undefined4 uVar2;                  // 变量2：浮点结果
+    int32_t uVar2;                  // 变量2：浮点结果
     uint uVar3;                         // 变量3：掩码结果
     int iVar4;                         // 整数变量4：乘积结果
     int iVar5;                         // 整数变量5：当前值
@@ -605,12 +605,12 @@ void FUN_18082e42e(void)
     int *unaff_R14;                     // 未使用的R14寄存器
     longlong lVar11;                    // 长整型变量11：偏移量
     float fVar12;                       // 浮点变量12：计算结果
-    undefined8 extraout_XMM0_Qa;       // XMM0寄存器输出
-    undefined1 auVar13 [16];            // 数组变量13：SIMD数据
+    uint64_t extraout_XMM0_Qa;       // XMM0寄存器输出
+    int8_t auVar13 [16];            // 数组变量13：SIMD数据
     float unaff_XMM6_Da;               // 未使用的XMM6寄存器
     float unaff_XMM7_Da;               // 未使用的XMM7寄存器
-    undefined1 auVar14 [16];            // 数组变量14：SIMD数据
-    undefined4 uVar15;                  // 变量15：高位部分
+    int8_t auVar14 [16];            // 数组变量14：SIMD数据
+    int32_t uVar15;                  // 变量15：高位部分
     
     // 获取状态参数
     uVar1 = unaff_RDI[1];
@@ -622,7 +622,7 @@ void FUN_18082e42e(void)
     
     // 精度验证和调整
     if ((iVar6 != -0x80000000) && ((float)iVar6 != auVar13._0_4_)) {
-        uVar15 = (undefined4)((ulonglong)extraout_XMM0_Qa >> 0x20);
+        uVar15 = (int32_t)((ulonglong)extraout_XMM0_Qa >> 0x20);
         auVar14._8_4_ = uVar15;
         auVar14._0_8_ = extraout_XMM0_Qa;
         auVar14._12_4_ = uVar15;
@@ -758,11 +758,11 @@ void FUN_18082e592(void)
  * 
  * @return void
  */
-void FUN_18082e5c0(undefined8 param_1, undefined8 param_2, int param_3, int param_4)
+void FUN_18082e5c0(uint64_t param_1, uint64_t param_2, int param_3, int param_4)
 {
     longlong lVar1;                     // 长整型变量1：内存句柄
-    undefined1 auStack_f8 [32];         // 栈数组变量f8
-    undefined1 auStack_d8 [144];        // 栈数组变量d8
+    int8_t auStack_f8 [32];         // 栈数组变量f8
+    int8_t auStack_d8 [144];        // 栈数组变量d8
     ulonglong uStack_48;                // 栈变量48：异或值
     
     // 计算异或值
@@ -807,9 +807,9 @@ void FUN_18082e5c0(undefined8 param_1, undefined8 param_2, int param_3, int para
  * 
  * @return void
  */
-void FUN_18082e60c(undefined8 param_1, undefined8 param_2)
+void FUN_18082e60c(uint64_t param_1, uint64_t param_2)
 {
-    undefined1 auStackX_20 [8];          // 栈数组变量X_20
+    int8_t auStackX_20 [8];          // 栈数组变量X_20
     
     // WARNING: 子程序不返回
     // 分配并初始化内存区域
@@ -889,9 +889,9 @@ void FUN_18082e7ab(void)
  * - 状态转换检查
  * - 状态依赖检查
  * 
- * @return undefined4 状态值，失败返回0xffffffff
+ * @return int32_t 状态值，失败返回0xffffffff
  */
-undefined4 FUN_18082e7c0(longlong param_1)
+int32_t FUN_18082e7c0(longlong param_1)
 {
     int iVar1;                         // 整数变量1：状态索引
     
@@ -900,7 +900,7 @@ undefined4 FUN_18082e7c0(longlong param_1)
         iVar1 = FUN_18082f650();
         if (-1 < iVar1) {
             // 返回有效状态值
-            return *(undefined4 *)(*(longlong *)(param_1 + 0x28) + (longlong)iVar1 * 4);
+            return *(int32_t *)(*(longlong *)(param_1 + 0x28) + (longlong)iVar1 * 4);
         }
     }
     
@@ -930,9 +930,9 @@ undefined4 FUN_18082e7c0(longlong param_1)
  * - 资源生命周期管理
  * - 错误恢复机制
  * 
- * @return undefined8 成功返回0，失败返回0xffffffff
+ * @return uint64_t 成功返回0，失败返回0xffffffff
  */
-undefined8 FUN_18082e800(int *param_1, longlong param_2, undefined8 param_3, uint param_4)
+uint64_t FUN_18082e800(int *param_1, longlong param_2, uint64_t param_3, uint param_4)
 {
     int iVar1;                         // 整数变量1：资源类型
     float fVar2;                       // 浮点变量2：资源值

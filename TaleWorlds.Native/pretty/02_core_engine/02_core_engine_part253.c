@@ -252,14 +252,14 @@ longlong batch_copy_string_data(longlong source_ptr, longlong target_ptr, longlo
                 allocate_string_buffer(target_ptr, total_size);
             }
             if (string_length != 0) {
-                memcpy(*(undefined8 *)(source_ptr + (longlong)element_ptr), *element_ptr, total_size);
+                memcpy(*(uint64_t *)(source_ptr + (longlong)element_ptr), *element_ptr, total_size);
             }
-            *(undefined4 *)(source_ptr + 8 + (longlong)element_ptr) = 0;
+            *(int32_t *)(source_ptr + 8 + (longlong)element_ptr) = 0;
             if (*(longlong *)(source_ptr + (longlong)element_ptr) != 0) {
-                *(undefined1 *)(total_size + *(longlong *)(source_ptr + (longlong)element_ptr)) = 0;
+                *(int8_t *)(total_size + *(longlong *)(source_ptr + (longlong)element_ptr)) = 0;
             }
             total_size = total_size + -1;
-            *(undefined4 *)(source_ptr + 0x14 + (longlong)element_ptr) = *(undefined4 *)((longlong)element_ptr + 0x14);
+            *(int32_t *)(source_ptr + 0x14 + (longlong)element_ptr) = *(int32_t *)((longlong)element_ptr + 0x14);
             target_ptr = target_ptr + 0x28;
             *(int *)(source_ptr + 0x18 + (longlong)element_ptr) = (int)element_ptr[3];
             element_ptr = element_ptr + 5;
@@ -274,7 +274,7 @@ longlong batch_copy_string_data(longlong source_ptr, longlong target_ptr, longlo
  * @param callback_param 回调参数
  * @param target_ptr 目标数据指针
  */
-longlong batch_copy_string_data_with_callback(longlong source_ptr, undefined8 callback_param, longlong target_ptr)
+longlong batch_copy_string_data_with_callback(longlong source_ptr, uint64_t callback_param, longlong target_ptr)
 {
     uint string_length;
     longlong *element_ptr;
@@ -290,14 +290,14 @@ longlong batch_copy_string_data_with_callback(longlong source_ptr, undefined8 ca
             allocate_string_buffer(callback_result, total_size);
         }
         if (string_length != 0) {
-            memcpy(*(undefined8 *)(target_ptr + (longlong)element_ptr), *element_ptr, total_size);
+            memcpy(*(uint64_t *)(target_ptr + (longlong)element_ptr), *element_ptr, total_size);
         }
-        *(undefined4 *)(target_ptr + 8 + (longlong)element_ptr) = 0;
+        *(int32_t *)(target_ptr + 8 + (longlong)element_ptr) = 0;
         if (*(longlong *)(target_ptr + (longlong)element_ptr) != 0) {
-            *(undefined1 *)(total_size + *(longlong *)(target_ptr + (longlong)element_ptr)) = 0;
+            *(int8_t *)(total_size + *(longlong *)(target_ptr + (longlong)element_ptr)) = 0;
         }
         callback_result = callback_result + -1;
-        *(undefined4 *)(target_ptr + 0x14 + (longlong)element_ptr) = *(undefined4 *)((longlong)element_ptr + 0x14);
+        *(int32_t *)(target_ptr + 0x14 + (longlong)element_ptr) = *(int32_t *)((longlong)element_ptr + 0x14);
         callback_param = callback_param + 0x28;
         *(int *)(target_ptr + 0x18 + (longlong)element_ptr) = (int)element_ptr[3];
         element_ptr = element_ptr + 5;
@@ -331,7 +331,7 @@ longlong copy_string_elements(longlong source_ptr, longlong target_ptr, longlong
         do {
             allocate_string_buffer(target_ptr, source_ptr);
             current_ptr = source_ptr + offset2;
-            *(undefined4 *)(current_ptr + 0x20) = *(undefined4 *)(current_ptr + 0x20 + offset1);
+            *(int32_t *)(current_ptr + 0x20) = *(int32_t *)(current_ptr + 0x20 + offset1);
             target_ptr = target_ptr + 0x28;
             source_ptr = source_ptr + 0x28;
         } while (source_ptr != target_ptr);
@@ -380,13 +380,13 @@ void insert_into_binary_heap(longlong heap_ptr, longlong insert_ptr, ulonglong h
                 }
                 right_child = current_index * 2 + 1;
             }
-            *(undefined8 *)(heap_ptr + current_index * 8) = *(undefined8 *)(heap_ptr + right_child * 8);
+            *(uint64_t *)(heap_ptr + current_index * 8) = *(uint64_t *)(heap_ptr + right_child * 8);
             current_index = right_child;
         } while (right_child < parent_index);
     }
     
     if ((right_child == parent_index) && ((heap_size & 1) == 0)) {
-        *(undefined8 *)(heap_ptr + right_child * 8) = *(undefined8 *)(heap_ptr + -8 + heap_size * 8);
+        *(uint64_t *)(heap_ptr + right_child * 8) = *(uint64_t *)(heap_ptr + -8 + heap_size * 8);
         right_child = heap_size - 1;
     }
     
@@ -422,7 +422,7 @@ void insert_into_binary_heap(longlong heap_ptr, longlong insert_ptr, ulonglong h
  * 清理字符串容器
  * @param container_ptr 容器指针
  */
-void cleanup_string_container(undefined8 *container_ptr)
+void cleanup_string_container(uint64_t *container_ptr)
 {
     cleanup_resource_manager(container_ptr + 4);
     *container_ptr = &default_empty_string;
@@ -430,7 +430,7 @@ void cleanup_string_container(undefined8 *container_ptr)
         release_memory(container_ptr[1]);
     }
     container_ptr[1] = 0;
-    *(undefined4 *)(container_ptr + 3) = 0;
+    *(int32_t *)(container_ptr + 3) = 0;
     *container_ptr = &default_null_terminator;
     return;
 }
@@ -517,9 +517,9 @@ void swap_string_elements(longlong *element_ptr1, longlong *element_ptr2, longlo
  * @param param3 参数3
  * @param param4 参数4
  */
-undefined8 release_string_resource(undefined8 resource_ptr, ulonglong flags, undefined8 param3, undefined8 param4)
+uint64_t release_string_resource(uint64_t resource_ptr, ulonglong flags, uint64_t param3, uint64_t param4)
 {
-    undefined8 cleanup_flag;
+    uint64_t cleanup_flag;
     
     cleanup_flag = 0xfffffffffffffffe;
     initialize_system_components();
@@ -544,10 +544,10 @@ void process_config_file_reading(longlong config_ptr)
     int line_number;
     longlong buffer_size;
     ulonglong string_size;
-    undefined *file_content;
-    undefined *string_ptr;
+    void *file_content;
+    void *string_ptr;
     uint string_length;
-    undefined4 line_flag;
+    int32_t line_flag;
     undefined line_buffer[512];
     char file_path_buffer[1024];
     undefined processed_buffer[512];
@@ -560,7 +560,7 @@ void process_config_file_reading(longlong config_ptr)
     initialize_file_buffers(line_buffer);
     
     file_content = &default_null_char;
-    if (string_ptr != (undefined *)0x0) {
+    if (string_ptr != (void *)0x0) {
         file_content = string_ptr;
     }
     
@@ -646,29 +646,29 @@ void process_config_file_reading(longlong config_ptr)
  * @param param3 参数3
  * @param param4 参数4
  */
-void process_resource_package_loading(longlong resource_ptr, undefined8 param2, undefined8 param3, undefined8 param4)
+void process_resource_package_loading(longlong resource_ptr, uint64_t param2, uint64_t param3, uint64_t param4)
 {
     ulonglong package_size;
     longlong file_handle;
-    undefined8 package_header;
-    undefined8 package_data;
-    undefined *content_ptr;
+    uint64_t package_header;
+    uint64_t package_data;
+    void *content_ptr;
     uint chunk_size;
     uint *chunk_ptr;
-    undefined4 *chunk_header;
+    int32_t *chunk_header;
     ulonglong total_size;
-    undefined4 chunk_flag;
-    undefined *temp_ptr;
+    int32_t chunk_flag;
+    void *temp_ptr;
     longlong buffer_offset;
-    undefined4 buffer_flag;
+    int32_t buffer_flag;
     ulonglong buffer_size;
-    undefined8 buffer_header;
+    uint64_t buffer_header;
     longlong file_offset;
     uint *file_ptr;
-    undefined8 file_data;
+    uint64_t file_data;
     uint file_flag;
-    undefined *file_content;
-    undefined *string_ptr;
+    void *file_content;
+    void *string_ptr;
     ulonglong stack_guard;
     
     stack_guard = 0xfffffffffffffffe;
@@ -676,7 +676,7 @@ void process_resource_package_loading(longlong resource_ptr, undefined8 param2, 
     file_data = 0;
     file_offset = 0;
     content_ptr = &default_null_char;
-    if (file_content != (undefined *)0x0) {
+    if (file_content != (void *)0x0) {
         content_ptr = file_content;
     }
     
@@ -686,15 +686,15 @@ void process_resource_package_loading(longlong resource_ptr, undefined8 param2, 
         file_handle = create_file_handle(chunk_flag, &string_ptr);
         file_flag = chunk_flag + 0x13;
         allocate_string_buffer(&string_ptr, file_flag);
-        chunk_header = (undefined4 *)((ulonglong)file_flag + file_offset);
+        chunk_header = (int32_t *)((ulonglong)file_flag + file_offset);
         *chunk_header = 0x6e756f53;  // "Soun"
         chunk_header[1] = 0x74614464;  // "dDat"
         chunk_header[2] = 0x672e7361;  // "as.g"
         chunk_header[3] = 0x732e6e65;  // "ens."
         chunk_header[4] = 0x666465;    // "edf"
         content_ptr = &default_null_char;
-        if (*(undefined **)(file_handle + 8) != (undefined *)0x0) {
-            content_ptr = *(undefined **)(file_handle + 8);
+        if (*(void **)(file_handle + 8) != (void *)0x0) {
+            content_ptr = *(void **)(file_handle + 8);
         }
         file_flag = chunk_flag;
         process_resource_metadata(&resource_metadata_path, content_ptr);
@@ -738,14 +738,14 @@ void process_resource_package_loading(longlong resource_ptr, undefined8 param2, 
                     allocate_string_buffer(&temp_ptr, chunk_ptr, chunk_size);
                     chunk_ptr = (uint *)((longlong)chunk_ptr + (ulonglong)chunk_size);
                 }
-                buffer_header = *(undefined8 *)chunk_ptr;
+                buffer_header = *(uint64_t *)chunk_ptr;
                 chunk_ptr = chunk_ptr + 2;
                 file_ptr = chunk_ptr;
                 total_size = *(ulonglong *)(resource_ptr + 0x288);
                 if (total_size < *(ulonglong *)(resource_ptr + 0x290)) {
                     *(ulonglong *)(resource_ptr + 0x288) = total_size + 0x28;
                     allocate_resource_buffer(total_size);
-                    *(undefined8 *)(total_size + 0x20) = buffer_header;
+                    *(uint64_t *)(total_size + 0x20) = buffer_header;
                 } else {
                     insert_into_resource_queue(resource_ptr + 0x280, &temp_ptr);
                 }
@@ -766,7 +766,7 @@ void process_resource_package_loading(longlong resource_ptr, undefined8 param2, 
     }
     
     file_content = &default_empty_string;
-    if (file_content != (undefined *)0x0) {
+    if (file_content != (void *)0x0) {
         release_memory(file_content);
     }
     return;
@@ -802,14 +802,14 @@ int find_resource_index(longlong resource_ptr, longlong search_key)
     int comparison_result;
     longlong resource_table;
     byte *table_entry;
-    undefined *error_message;
+    void *error_message;
     int entry_count;
     int current_index;
     int key_length;
     longlong *table_ptr;
     longlong key_offset;
     
-    resource_table = get_resource_handle(*(undefined8 *)(resource_ptr + 0x1f8));
+    resource_table = get_resource_handle(*(uint64_t *)(resource_ptr + 0x1f8));
     if (resource_table != 0) {
         return *(int *)(resource_table + 0x54);
     }
@@ -844,8 +844,8 @@ int find_resource_index(longlong resource_ptr, longlong search_key)
     }
     
     error_message = &default_null_char;
-    if (*(undefined **)(search_key + 8) != (undefined *)0x0) {
-        error_message = *(undefined **)(search_key + 8);
+    if (*(void **)(search_key + 8) != (void *)0x0) {
+        error_message = *(void **)(search_key + 8);
     }
     log_error_message(_DAT_180c86928, 0, 0x1000000000000, 3, &error_not_found_template, error_message);
     return -1;
@@ -859,14 +859,14 @@ int find_resource_index(longlong resource_ptr, longlong search_key)
  * @param table_ptr 表指针
  * @return 找到的索引或-1
  */
-int find_extended_resource_index(longlong resource_ptr, undefined8 param2, undefined8 param3, longlong table_ptr)
+int find_extended_resource_index(longlong resource_ptr, uint64_t param2, uint64_t param3, longlong table_ptr)
 {
     byte *key_ptr1;
     byte *key_ptr2;
     int comparison_result;
     longlong search_range;
     byte *table_entry;
-    undefined *error_message;
+    void *error_message;
     int entry_count;
     int current_index;
     int key_length;
@@ -904,8 +904,8 @@ int find_extended_resource_index(longlong resource_ptr, undefined8 param2, undef
     }
     
     error_message = &default_null_char;
-    if (*(undefined **)(param2 + 8) != (undefined *)0x0) {
-        error_message = *(undefined **)(param2 + 8);
+    if (*(void **)(param2 + 8) != (void *)0x0) {
+        error_message = *(void **)(param2 + 8);
     }
     log_error_message(_DAT_180c86928, 0, 0x1000000000000, 3, &error_not_found_template);
     return -1;
@@ -915,9 +915,9 @@ int find_extended_resource_index(longlong resource_ptr, undefined8 param2, undef
  * 获取错误状态标志
  * @return 错误状态标志
  */
-undefined4 get_error_status_flag(void)
+int32_t get_error_status_flag(void)
 {
-    undefined4 error_flag;
+    int32_t error_flag;
     
     return error_flag;
 }
@@ -933,7 +933,7 @@ int find_sub_resource_index(longlong resource_ptr, longlong search_key)
     byte *key_ptr1;
     byte *key_ptr2;
     int comparison_result;
-    undefined *error_message;
+    void *error_message;
     int entry_count;
     int current_index;
     int key_length;
@@ -970,8 +970,8 @@ int find_sub_resource_index(longlong resource_ptr, longlong search_key)
     }
     
     error_message = &default_null_char;
-    if (*(undefined **)(search_key + 8) != (undefined *)0x0) {
-        error_message = *(undefined **)(search_key + 8);
+    if (*(void **)(search_key + 8) != (void *)0x0) {
+        error_message = *(void **)(search_key + 8);
     }
     log_error_message(_DAT_180c86928, 0, 0x1000000000000, 3, &sub_resource_error_template, error_message);
     return -1;
@@ -1015,35 +1015,35 @@ void empty_cleanup_placeholder(void)
  */
 void initialize_resource_manager(void)
 {
-    undefined4 init_flag;
+    int32_t init_flag;
     longlong resource_count;
-    undefined8 *resource_ptr;
-    undefined4 *resource_header;
-    undefined *resource_content;
-    undefined8 resource_data;
+    uint64_t *resource_ptr;
+    int32_t *resource_header;
+    void *resource_content;
+    uint64_t resource_data;
     longlong table_size;
-    undefined4 resource_flag;
-    undefined *string_ptr;
+    int32_t resource_flag;
+    void *string_ptr;
     uint string_length;
     undefined resource_stack[48];
-    undefined4 stack_flags[2];
-    undefined *temp_ptr;
-    undefined8 *temp_resource;
-    undefined4 temp_flag;
+    int32_t stack_flags[2];
+    void *temp_ptr;
+    uint64_t *temp_resource;
+    int32_t temp_flag;
     ulonglong stack_guard;
     
     stack_guard = 0xfffffffffffffffe;
     init_flag = 0;
     _DAT_180c8aa60 = allocate_memory(g_memory_allocator, 0x30, 8, 3);
-    *(undefined4 *)(_DAT_180c8aa60 + 0x19) = 0;
-    *(undefined2 *)(_DAT_180c8aa60 + 0x1d) = 0;
-    *(undefined1 *)(_DAT_180c8aa60 + 0x1f) = 0;
-    *(undefined4 *)(_DAT_180c8aa60 + 0x28) = 3;
+    *(int32_t *)(_DAT_180c8aa60 + 0x19) = 0;
+    *(int16_t *)(_DAT_180c8aa60 + 0x1d) = 0;
+    *(int8_t *)(_DAT_180c8aa60 + 0x1f) = 0;
+    *(int32_t *)(_DAT_180c8aa60 + 0x28) = 3;
     *(longlong *)_DAT_180c8aa60 = _DAT_180c8aa60;
     *(longlong *)(_DAT_180c8aa60 + 8) = _DAT_180c8aa60;
-    *(undefined8 *)(_DAT_180c8aa60 + 0x10) = 0;
-    *(undefined1 *)(_DAT_180c8aa60 + 0x18) = 0;
-    *(undefined8 *)(_DAT_180c8aa60 + 0x20) = 0;
+    *(uint64_t *)(_DAT_180c8aa60 + 0x10) = 0;
+    *(int8_t *)(_DAT_180c8aa60 + 0x18) = 0;
+    *(uint64_t *)(_DAT_180c8aa60 + 0x20) = 0;
     table_size = *(longlong *)(*_DAT_180c86870 + 0x890) - *(longlong *)(*_DAT_180c86870 + 0x888) >> 5;
     resource_flag = 0;
     if (0 < (int)table_size) {
@@ -1053,17 +1053,17 @@ void initialize_resource_manager(void)
         }
         resource_content = &default_empty_string;
         resource_data = 0;
-        temp_resource = (undefined8 *)0x0;
+        temp_resource = (uint64_t *)0x0;
         resource_flag = 0;
-        resource_ptr = (undefined8 *)allocate_memory(g_memory_allocator, 0x10, 0x13);
-        *(undefined1 *)resource_ptr = 0;
+        resource_ptr = (uint64_t *)allocate_memory(g_memory_allocator, 0x10, 0x13);
+        *(int8_t *)resource_ptr = 0;
         temp_resource = resource_ptr;
         string_length = generate_resource_id(resource_ptr);
         resource_data = CONCAT44(resource_data._4_4_, string_length);
         *resource_ptr = 0x506873654d76614e;  // "NativeMesh"
-        *(undefined4 *)(resource_ptr + 1) = 0x61666572;  // "refa"
-        *(undefined2 *)((longlong)resource_ptr + 0xc) = 0x7362;  // "bs"
-        *(undefined1 *)((longlong)resource_ptr + 0xe) = 0;
+        *(int32_t *)(resource_ptr + 1) = 0x61666572;  // "refa"
+        *(int16_t *)((longlong)resource_ptr + 0xc) = 0x7362;  // "bs"
+        *(int8_t *)((longlong)resource_ptr + 0xe) = 0;
         resource_flag = 0xe;
         process_resource_data(resource_count, resource_stack, &resource_content);
         resource_content = &default_empty_string;
@@ -1092,7 +1092,7 @@ void empty_initializer_placeholder(void)
 void swap_elements(longlong *ptr1, longlong *ptr2, longlong *ptr3);
 void allocate_string_buffer(longlong ptr, ulonglong size);
 void memcpy(void *dest, const void *src, size_t n);
-void cleanup_resource_manager(undefined8 *ptr);
+void cleanup_resource_manager(uint64_t *ptr);
 void initialize_system_components(void);
 void cleanup_file_system(void);
 void initialize_graphics_engine(longlong ptr);
@@ -1111,15 +1111,15 @@ longlong cleanup_string_buffer(void *ptr);
 void memset(void *ptr, int value, size_t num);
 longlong allocate_memory(void *allocator, size_t size, int flags, ...);
 void initialize_resource_system(longlong ptr, void **content, void *param3, void *param4, int flags);
-longlong create_file_handle(undefined4 flag, void **content);
+longlong create_file_handle(int32_t flag, void **content);
 void process_resource_metadata(void *prefix, void *content);
 void decrement_resource_counter(void);
-void allocate_package_buffer(void **size_ptr, undefined8 size);
+void allocate_package_buffer(void **size_ptr, uint64_t size);
 void read_file_data(void *ptr, size_t size, size_t count, void *stream);
 void close_file_handle(void *stream);
 void insert_into_resource_queue(longlong ptr, void **content);
 void cleanup_resource_queue(longlong ptr);
-longlong get_resource_handle(undefined8 param);
+longlong get_resource_handle(uint64_t param);
 void log_error_message(longlong param1, int param2, longlong param3, int flags, void *template, void *message);
 void initialize_graphics_system(void);
 void trigger_system_error(void);

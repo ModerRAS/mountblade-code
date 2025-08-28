@@ -128,31 +128,31 @@ undefined FUN_1800637f0;                           // 状态管理函数指针 -
 //------------------------------------------------------------------------------
 
 // 系统初始化相关类型别名
-typedef undefined8 SystemHandle;                   // 系统句柄 - 用于标识系统实例
-typedef undefined8 ModuleHandle;                   // 模块句柄 - 用于标识系统模块
-typedef undefined8 ConfigHandle;                   // 配置句柄 - 用于标识配置对象
-typedef undefined8 StateHandle;                    // 状态句柄 - 用于标识状态对象
-typedef undefined8 ResourceHandle;                 // 资源句柄 - 用于标识系统资源
+typedef uint64_t SystemHandle;                   // 系统句柄 - 用于标识系统实例
+typedef uint64_t ModuleHandle;                   // 模块句柄 - 用于标识系统模块
+typedef uint64_t ConfigHandle;                   // 配置句柄 - 用于标识配置对象
+typedef uint64_t StateHandle;                    // 状态句柄 - 用于标识状态对象
+typedef uint64_t ResourceHandle;                 // 资源句柄 - 用于标识系统资源
 
 // 内存管理相关类型别名
-typedef undefined8 MemoryPoolHandle;               // 内存池句柄 - 用于标识内存池
-typedef undefined8 MemoryBlockHandle;             // 内存块句柄 - 用于标识内存块
-typedef undefined8 MemoryAllocatorHandle;         // 内存分配器句柄 - 用于标识分配器
+typedef uint64_t MemoryPoolHandle;               // 内存池句柄 - 用于标识内存池
+typedef uint64_t MemoryBlockHandle;             // 内存块句柄 - 用于标识内存块
+typedef uint64_t MemoryAllocatorHandle;         // 内存分配器句柄 - 用于标识分配器
 
 // 系统配置相关类型别名
-typedef undefined8 ConfigSectionHandle;           // 配置节句柄 - 用于标识配置节
-typedef undefined8 ConfigKeyHandle;                // 配置键句柄 - 用于标识配置键
-typedef undefined8 ConfigValueHandle;              // 配置值句柄 - 用于标识配置值
+typedef uint64_t ConfigSectionHandle;           // 配置节句柄 - 用于标识配置节
+typedef uint64_t ConfigKeyHandle;                // 配置键句柄 - 用于标识配置键
+typedef uint64_t ConfigValueHandle;              // 配置值句柄 - 用于标识配置值
 
 // 系统状态相关类型别名
-typedef undefined8 StateContextHandle;             // 状态上下文句柄 - 用于标识状态上下文
-typedef undefined8 StateVariableHandle;            // 状态变量句柄 - 用于标识状态变量
-typedef undefined8 StateTransitionHandle;         // 状态转换句柄 - 用于标识状态转换
+typedef uint64_t StateContextHandle;             // 状态上下文句柄 - 用于标识状态上下文
+typedef uint64_t StateVariableHandle;            // 状态变量句柄 - 用于标识状态变量
+typedef uint64_t StateTransitionHandle;         // 状态转换句柄 - 用于标识状态转换
 
 // 错误处理相关类型别名
-typedef undefined8 ErrorContextHandle;            // 错误上下文句柄 - 用于标识错误上下文
-typedef undefined8 ErrorHandlerHandle;             // 错误处理器句柄 - 用于标识错误处理器
-typedef undefined8 LogHandle;                       // 日志句柄 - 用于标识日志对象
+typedef uint64_t ErrorContextHandle;            // 错误上下文句柄 - 用于标识错误上下文
+typedef uint64_t ErrorHandlerHandle;             // 错误处理器句柄 - 用于标识错误处理器
+typedef uint64_t LogHandle;                       // 日志句柄 - 用于标识日志对象
 
 //------------------------------------------------------------------------------
 // 函数别名定义

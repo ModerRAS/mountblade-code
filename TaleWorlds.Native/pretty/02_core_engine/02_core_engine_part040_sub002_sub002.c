@@ -9,12 +9,12 @@ void process_bone_animation_weights(longlong animation_context)
 {
   int *bone_count_ptr;
   uint *vertex_count_ptr;
-  undefined8 *matrix_ptr;
-  undefined8 *transform_ptr;
+  uint64_t *matrix_ptr;
+  uint64_t *transform_ptr;
   float weight_value;
-  undefined8 matrix_data;
-  undefined8 transform_data;
-  undefined1 bone_id [16];
+  uint64_t matrix_data;
+  uint64_t transform_data;
+  int8_t bone_id [16];
   bool has_influence;
   int *vertex_index_ptr;
   int vertex_index;
@@ -35,20 +35,20 @@ void process_bone_animation_weights(longlong animation_context)
   int *temp_ptr;
   int temp_index;
   ulonglong memory_size;
-  undefined4 *data_ptr;
+  int32_t *data_ptr;
   ulonglong alloc_size;
   longlong buffer_address;
   uint *flag_ptr;
   uint flag_value;
   int *vertex_ptr;
-  undefined1 (*bone_array) [16];
+  int8_t (*bone_array) [16];
   ulonglong array_size;
-  undefined1 (*temp_bone_array) [16];
+  int8_t (*temp_bone_array) [16];
   ulonglong temp_array_size;
   longlong *offset_ptr;
   longlong temp_offset;
   ulonglong total_size;
-  undefined1 (*final_bone_array) [16];
+  int8_t (*final_bone_array) [16];
   longlong loop_index;
   bool needs_normalization;
   float normal_x;
@@ -78,50 +78,50 @@ void process_bone_animation_weights(longlong animation_context)
   int *stack_ptr_218;
   int *stack_ptr_210;
   int *stack_ptr_208;
-  undefined4 stack_var_200;
+  int32_t stack_var_200;
   int *stack_ptr_1f8;
   int *stack_ptr_1f0;
   int stack_var_1e8;
-  undefined1 (*stack_bone_array) [16];
+  int8_t (*stack_bone_array) [16];
   ulonglong stack_var_1d8;
   longlong stack_var_1d0;
   uint stack_var_1c8;
   uint stack_var_1c0;
-  undefined4 stack_var_1bc;
-  undefined8 stack_var_1b8;
+  int32_t stack_var_1bc;
+  uint64_t stack_var_1b8;
   int *stack_ptr_1b0;
-  undefined4 stack_var_1a8;
-  undefined8 stack_var_1a0;
-  undefined8 stack_var_198;
+  int32_t stack_var_1a8;
+  uint64_t stack_var_1a0;
+  uint64_t stack_var_198;
   int *stack_ptr_190;
-  undefined4 stack_var_188;
-  undefined8 stack_var_180;
+  int32_t stack_var_188;
+  uint64_t stack_var_180;
   float stack_var_178;
   float stack_var_174;
   longlong stack_var_170;
   longlong *stack_ptr_168;
   longlong *stack_ptr_160;
-  undefined4 stack_var_158;
-  undefined1 stack_bone_buffer [16];
-  undefined8 stack_var_140;
-  undefined4 stack_var_138;
-  undefined4 *stack_ptr_130;
-  undefined8 stack_var_128;
-  undefined8 stack_var_120;
-  undefined4 stack_var_118;
-  undefined8 stack_var_110;
-  undefined8 stack_var_108;
-  undefined8 stack_var_100;
-  undefined8 stack_var_f8;
-  undefined8 stack_var_f0;
-  undefined8 stack_var_e8;
-  undefined8 stack_var_e0;
-  undefined8 stack_var_d8;
-  undefined8 stack_var_d0;
-  undefined8 stack_var_c8;
-  undefined8 stack_var_c0;
-  undefined8 stack_var_b8;
-  undefined4 stack_var_b0;
+  int32_t stack_var_158;
+  int8_t stack_bone_buffer [16];
+  uint64_t stack_var_140;
+  int32_t stack_var_138;
+  int32_t *stack_ptr_130;
+  uint64_t stack_var_128;
+  uint64_t stack_var_120;
+  int32_t stack_var_118;
+  uint64_t stack_var_110;
+  uint64_t stack_var_108;
+  uint64_t stack_var_100;
+  uint64_t stack_var_f8;
+  uint64_t stack_var_f0;
+  uint64_t stack_var_e8;
+  uint64_t stack_var_e0;
+  uint64_t stack_var_d8;
+  uint64_t stack_var_d0;
+  uint64_t stack_var_c8;
+  uint64_t stack_var_c0;
+  uint64_t stack_var_b8;
+  int32_t stack_var_b0;
   
   // 初始化栈变量
   stack_var_110 = 0xfffffffffffffffe;
@@ -130,7 +130,7 @@ void process_bone_animation_weights(longlong animation_context)
   vertex_index = *(int *)(animation_context + 0x88);
   memory_size = (ulonglong)vertex_index;
   stack_var_1e8 = *(int *)(animation_context + 0x10);
-  stack_ptr_130 = (undefined4 *)0x0;
+  stack_ptr_130 = (int32_t *)0x0;
   stack_var_128 = 0;
   stack_var_120 = 0;
   stack_var_118 = 3;
@@ -163,7 +163,7 @@ void process_bone_animation_weights(longlong animation_context)
   }
   
   // 处理每个骨骼的变换
-  stack_bone_array = (undefined1 (*) [16])(ulonglong)*(ushort *)(animation_context + 0xc0);
+  stack_bone_array = (int8_t (*) [16])(ulonglong)*(ushort *)(animation_context + 0xc0);
   loop_index = -1;
   do {
     longlong current_bone = loop_index + 1;
@@ -189,7 +189,7 @@ void process_bone_animation_weights(longlong animation_context)
           bone_offset = 0;
         }
         else {
-          bone_offset = allocate_transform_matrix(MATRIX_ALLOCATOR, total_size << 4, *(undefined1 *)(transform_offset + 0x18 + bone_matrix_offset));
+          bone_offset = allocate_transform_matrix(MATRIX_ALLOCATOR, total_size << 4, *(int8_t *)(transform_offset + 0x18 + bone_matrix_offset));
           transform_start = *(longlong *)(transform_offset + 8 + bone_matrix_offset);
           transform_end = *(longlong *)(transform_offset + bone_matrix_offset);
         }
@@ -343,7 +343,7 @@ void process_bone_animation_weights(longlong animation_context)
         if (bone_address == 0) {
           bone_address = 1;
 LAB_REALLOC_FIRST_ARRAY:
-          influence_count_ptr = (int *)allocate_vertex_index(VERTEX_INDEX_ALLOCATOR, bone_address * 4, *(undefined1 *)(bone_address + 0x18 + stack_var_170));
+          influence_count_ptr = (int *)allocate_vertex_index(VERTEX_INDEX_ALLOCATOR, bone_address * 4, *(int8_t *)(bone_address + 0x18 + stack_var_170));
           vertex_ptr = *(int **)(bone_address + 8 + loop_index);
           old_start = *(int **)(bone_address + loop_index);
         }
@@ -382,7 +382,7 @@ LAB_REALLOC_FIRST_ARRAY:
         if (bone_address == 0) {
           bone_address = 1;
 LAB_REALLOC_SECOND_ARRAY:
-          influence_count_ptr = (int *)allocate_vertex_index(VERTEX_INDEX_ALLOCATOR, bone_address * 4, *(undefined1 *)(bone_address + 0x18 + stack_var_170));
+          influence_count_ptr = (int *)allocate_vertex_index(VERTEX_INDEX_ALLOCATOR, bone_address * 4, *(int8_t *)(bone_address + 0x18 + stack_var_170));
           vertex_ptr = *(int **)(bone_address + 8 + loop_index);
           old_start = *(int **)(bone_address + loop_index);
         }
@@ -416,7 +416,7 @@ LAB_REALLOC_SECOND_ARRAY:
         if (bone_address == 0) {
           bone_address = 1;
 LAB_REALLOC_THIRD_ARRAY:
-          vertex_start_ptr = (int *)allocate_vertex_index(VERTEX_INDEX_ALLOCATOR, bone_address * 4, *(undefined1 *)(transform_offset + 0x18 + stack_var_170));
+          vertex_start_ptr = (int *)allocate_vertex_index(VERTEX_INDEX_ALLOCATOR, bone_address * 4, *(int8_t *)(transform_offset + 0x18 + stack_var_170));
           vertex_ptr = *(int **)(transform_offset + 8 + loop_index);
           influence_count_ptr = *(int **)(transform_offset + loop_index);
         }
@@ -481,12 +481,12 @@ LAB_CLEANUP_AND_RETURN:
               if (stack_var_18 == -1) {
                 // 使用全局变换矩阵
                 bone_address = (longlong)*(int *)(stack_var_180 + bone_address * 4) * 0x5c + *(longlong *)(animation_context + 0x68);
-                matrix_data = ((undefined8 *)(loop_index + *offset_ptr))[1];
-                *(undefined8 *)(bone_address + 4) = *(undefined8 *)(loop_index + *offset_ptr);
-                *(undefined8 *)(bone_address + 0xc) = matrix_data;
-                matrix_data = ((undefined8 *)(loop_index + *offset_ptr))[1];
-                *(undefined8 *)(bone_address + 0x34) = *(undefined8 *)(loop_index + *offset_ptr);
-                *(undefined8 *)(bone_address + 0x3c) = matrix_data;
+                matrix_data = ((uint64_t *)(loop_index + *offset_ptr))[1];
+                *(uint64_t *)(bone_address + 4) = *(uint64_t *)(loop_index + *offset_ptr);
+                *(uint64_t *)(bone_address + 0xc) = matrix_data;
+                matrix_data = ((uint64_t *)(loop_index + *offset_ptr))[1];
+                *(uint64_t *)(bone_address + 0x34) = *(uint64_t *)(loop_index + *offset_ptr);
+                *(uint64_t *)(bone_address + 0x3c) = matrix_data;
                 
                 // 标准化法向量
                 blend_x = *(float *)(bone_address + 8);
@@ -513,11 +513,11 @@ LAB_CLEANUP_AND_RETURN:
               }
               else {
                 // 使用骨骼特定的变换矩阵
-                matrix_data = ((undefined8 *)(loop_index + *offset_ptr))[1];
-                matrix_ptr = (undefined8 *)
+                matrix_data = ((uint64_t *)(loop_index + *offset_ptr))[1];
+                matrix_ptr = (uint64_t *)
                             (*(longlong *)(*(longlong *)(animation_context + 0xb0) + 0x30 + stack_var_18 * 0x50) +
                             (longlong)*(int *)(stack_var_180 + bone_address * 4) * 0x10);
-                *matrix_ptr = *(undefined8 *)(loop_index + *offset_ptr);
+                *matrix_ptr = *(uint64_t *)(loop_index + *offset_ptr);
                 matrix_ptr[1] = matrix_data;
                 weight_array = (float *)((longlong)*(int *)(stack_var_180 + bone_address * 4) * 0x10 +
                                        *(longlong *)
@@ -609,7 +609,7 @@ LAB_CLEANUP_AND_RETURN:
               }
               
               // 处理剩余的影响
-              temp_bone_array = (undefined1 (*) [16])0x0;
+              temp_bone_array = (int8_t (*) [16])0x0;
               if (bone_address < transform_offset) {
                 bone_address = bone_address * 0x14;
                 transform_offset = transform_offset - bone_address;
@@ -634,35 +634,35 @@ LAB_CLEANUP_AND_RETURN:
               // 如果没有找到匹配的影响，添加新的影响记录
               if (!needs_normalization) {
                 transform_offset = *offset_ptr;
-                stack_var_1b8._4_4_ = *(undefined4 *)(loop_index + 8 + transform_offset);
-                stack_var_1b8._0_4_ = *(undefined4 *)(loop_index + 4 + transform_offset);
-                stack_var_1bc = *(undefined4 *)(loop_index + transform_offset);
-                stack_var_1a0 = (int *)CONCAT44((undefined4)stack_var_1b8, stack_var_1bc);
+                stack_var_1b8._4_4_ = *(int32_t *)(loop_index + 8 + transform_offset);
+                stack_var_1b8._0_4_ = *(int32_t *)(loop_index + 4 + transform_offset);
+                stack_var_1bc = *(int32_t *)(loop_index + transform_offset);
+                stack_var_1a0 = (int *)CONCAT44((int32_t)stack_var_1b8, stack_var_1bc);
                 stack_var_198 = (int *)CONCAT44(0x7f7fffff, stack_var_1b8._4_4_);
                 stack_ptr_1b0 = (int *)CONCAT44(stack_ptr_1b0._4_4_, 0x7f7fffff);
                 total_size = (ulonglong)*flag_ptr;
-                temp_bone_array = *(undefined1 (**) [16])(stack_ptr_218 + total_size * 8 + 2);
+                temp_bone_array = *(int8_t (**) [16])(stack_ptr_218 + total_size * 8 + 2);
                 stack_var_1c0 = flag_value;
-                if (temp_bone_array < *(undefined1 (**) [16])(stack_ptr_218 + total_size * 8 + 4)) {
-                  *(undefined1 **)(stack_ptr_218 + total_size * 8 + 2) = temp_bone_array[1] + 4;
+                if (temp_bone_array < *(int8_t (**) [16])(stack_ptr_218 + total_size * 8 + 4)) {
+                  *(int8_t **)(stack_ptr_218 + total_size * 8 + 2) = temp_bone_array[1] + 4;
                   bone_id._4_4_ = stack_var_1bc;
                   bone_id._0_4_ = flag_value;
-                  bone_id._8_4_ = (undefined4)stack_var_1b8;
+                  bone_id._8_4_ = (int32_t)stack_var_1b8;
                   bone_id._12_4_ = stack_var_1b8._4_4_;
                   *temp_bone_array = bone_id;
-                  *(undefined4 *)temp_bone_array[1] = 0x7f7fffff;
+                  *(int32_t *)temp_bone_array[1] = 0x7f7fffff;
                 }
                 else {
                   // 重新分配更大的数组
-                  temp_bone_array = *(undefined1 (**) [16])(stack_ptr_218 + total_size * 8);
+                  temp_bone_array = *(int8_t (**) [16])(stack_ptr_218 + total_size * 8);
                   transform_offset = ((longlong)temp_bone_array - (longlong)temp_bone_array) / 0x14;
                   if (transform_offset == 0) {
                     stack_var_20 = 1;
 LAB_REALLOC_INFLUENCE_ARRAY:
-                    temp_bone_array = (undefined1 (*) [16])
+                    temp_bone_array = (int8_t (*) [16])
                                     allocate_vertex_index(VERTEX_INDEX_ALLOCATOR, stack_var_20 * 0x14, (char)stack_ptr_218[total_size * 8 + 6]);
-                    temp_bone_array = *(undefined1 (**) [16])(bone_count_ptr + total_size * 8 + 2);
-                    temp_bone_array = *(undefined1 (**) [16])(bone_count_ptr + total_size * 8);
+                    temp_bone_array = *(int8_t (**) [16])(bone_count_ptr + total_size * 8 + 2);
+                    temp_bone_array = *(int8_t (**) [16])(bone_count_ptr + total_size * 8);
                   }
                   else {
                     stack_var_20 = transform_offset * 2;
@@ -674,15 +674,15 @@ LAB_REALLOC_INFLUENCE_ARRAY:
                   }
                   bone_id._4_4_ = stack_var_1bc;
                   bone_id._0_4_ = stack_var_1c0;
-                  bone_id._8_4_ = (undefined4)stack_var_1b8;
+                  bone_id._8_4_ = (int32_t)stack_var_1b8;
                   bone_id._12_4_ = stack_var_1b8._4_4_;
                   *temp_bone_array = bone_id;
-                  *(undefined4 *)temp_bone_array[1] = stack_ptr_1b0._0_4_;
+                  *(int32_t *)temp_bone_array[1] = stack_ptr_1b0._0_4_;
                   if (*(longlong *)(bone_count_ptr + total_size * 8) != 0) {
                     free_vertex_index();
                   }
-                  *(undefined1 (**) [16])(bone_count_ptr + total_size * 8) = temp_bone_array;
-                  *(undefined1 **)(bone_count_ptr + total_size * 8 + 2) = temp_bone_array[1] + 4;
+                  *(int8_t (**) [16])(bone_count_ptr + total_size * 8) = temp_bone_array;
+                  *(int8_t **)(bone_count_ptr + total_size * 8 + 2) = temp_bone_array[1] + 4;
                   *(ulonglong *)(bone_count_ptr + total_size * 8 + 4) = (longlong)temp_bone_array + stack_var_20 * 0x14;
                 }
               }
@@ -713,7 +713,7 @@ LAB_REALLOC_INFLUENCE_ARRAY:
               cross_x = *(float *)(bone_offset + 0xc + bone_address);
               magnitude = cross_z * cross_z + blend_x * blend_x + cross_x * cross_x;
               if (SQRT(magnitude) == 0.0) {
-                *(undefined1 (*) [16])(bone_offset + 4 + bone_address) = ZERO_VECTOR;
+                *(int8_t (*) [16])(bone_offset + 4 + bone_address) = ZERO_VECTOR;
               }
               else {
                 bone_id = rsqrtss(ZEXT416((uint)magnitude), ZEXT416((uint)magnitude));
@@ -755,22 +755,22 @@ LAB_REALLOC_INFLUENCE_ARRAY:
               } while (bone_address < temp_index);
             }
             bone_address = *(longlong *)(stack_ptr_218 + transform_offset * 8);
-            matrix_ptr = (undefined8 *)(bone_address + 4 + bone_offset * 0x14);
+            matrix_ptr = (uint64_t *)(bone_address + 4 + bone_offset * 0x14);
             matrix_data = *matrix_ptr;
             transform_data = matrix_ptr[1];
             if (stack_var_18 == -1) {
-              matrix_ptr = (undefined8 *)(*(longlong *)(animation_context + 0x68) + 4 + bone_offset);
+              matrix_ptr = (uint64_t *)(*(longlong *)(animation_context + 0x68) + 4 + bone_offset);
               *matrix_ptr = matrix_data;
               matrix_ptr[1] = transform_data;
-              matrix_ptr = (undefined8 *)(bone_address + 4 + bone_offset * 0x14);
+              matrix_ptr = (uint64_t *)(bone_address + 4 + bone_offset * 0x14);
               matrix_data = matrix_ptr[1];
-              transform_ptr = (undefined8 *)
+              transform_ptr = (uint64_t *)
                               ((longlong)*(int *)(loop_index + bone_address) * 0x5c + 0x34 + *(longlong *)(animation_context + 0x68));
               *transform_ptr = *matrix_ptr;
               transform_ptr[1] = matrix_data;
             }
             else {
-              matrix_ptr = (undefined8 *)
+              matrix_ptr = (uint64_t *)
                             (*(longlong *)(*(longlong *)(animation_context + 0xb0) + 0x30 + stack_var_18 * 0x50) +
                             (longlong)*(int *)(loop_index + bone_address) * 0x10);
               *matrix_ptr = matrix_data;
@@ -795,22 +795,22 @@ LAB_REALLOC_INFLUENCE_ARRAY:
               } while (bone_address < temp_index);
             }
             bone_address = *(longlong *)(stack_ptr_218 + transform_offset * 8);
-            matrix_ptr = (undefined8 *)(bone_address + 4 + bone_offset * 0x14);
+            matrix_ptr = (uint64_t *)(bone_address + 4 + bone_offset * 0x14);
             matrix_data = *matrix_ptr;
             transform_data = matrix_ptr[1];
             if (stack_var_18 == -1) {
-              matrix_ptr = (undefined8 *)(*(longlong *)(animation_context + 0x68) + 4 + bone_offset);
+              matrix_ptr = (uint64_t *)(*(longlong *)(animation_context + 0x68) + 4 + bone_offset);
               *matrix_ptr = matrix_data;
               matrix_ptr[1] = transform_data;
-              matrix_ptr = (undefined8 *)(bone_address + 4 + bone_offset * 0x14);
+              matrix_ptr = (uint64_t *)(bone_address + 4 + bone_offset * 0x14);
               matrix_data = matrix_ptr[1];
-              transform_ptr = (undefined8 *)
+              transform_ptr = (uint64_t *)
                               ((longlong)*(int *)(loop_index + 4 + bone_address) * 0x5c + 0x34 + *(longlong *)(animation_context + 0x68));
               *transform_ptr = *matrix_ptr;
               transform_ptr[1] = matrix_data;
             }
             else {
-              matrix_ptr = (undefined8 *)
+              matrix_ptr = (uint64_t *)
                             (*(longlong *)(*(longlong *)(animation_context + 0xb0) + 0x30 + stack_var_18 * 0x50) +
                             temp_offset * 0x10);
               *matrix_ptr = matrix_data;
@@ -836,18 +836,18 @@ LAB_REALLOC_INFLUENCE_ARRAY:
               } while (bone_address < transform_offset);
             }
             bone_address = *(longlong *)(stack_ptr_218 + bone_offset * 8);
-            bone_id = *(undefined1 (*) [16])(bone_address + 4 + bone_offset * 0x14);
+            bone_id = *(int8_t (*) [16])(bone_address + 4 + bone_offset * 0x14);
             if (stack_var_18 == -1) {
-              *(undefined1 (*) [16])(transform_offset + 4 + *(longlong *)(animation_context + 0x68)) = bone_id;
-              matrix_ptr = (undefined8 *)(bone_address + 4 + bone_offset * 0x14);
+              *(int8_t (*) [16])(transform_offset + 4 + *(longlong *)(animation_context + 0x68)) = bone_id;
+              matrix_ptr = (uint64_t *)(bone_address + 4 + bone_offset * 0x14);
               matrix_data = matrix_ptr[1];
-              transform_ptr = (undefined8 *)
+              transform_ptr = (uint64_t *)
                               ((longlong)*(int *)(loop_index + 8 + bone_address) * 0x5c + 0x34 + *(longlong *)(animation_context + 0x68));
               *transform_ptr = *matrix_ptr;
               transform_ptr[1] = matrix_data;
             }
             else {
-              *(undefined1 (*) [16])
+              *(int8_t (*) [16])
                  (*(longlong *)(*(longlong *)(animation_context + 0xb0) + 0x30 + stack_var_18 * 0x50) +
                  temp_offset * 0x10) = bone_id;
             }
@@ -863,7 +863,7 @@ LAB_REALLOC_INFLUENCE_ARRAY:
       stack_var_18 = stack_var_18 + 1;
       if ((longlong)stack_var_1d8 <= (longlong)stack_var_18) {
         cleanup_bone_id_array(stack_bone_buffer);
-        if (stack_ptr_130 != (undefined4 *)0x0) {
+        if (stack_ptr_130 != (int32_t *)0x0) {
           free_influence_flags(stack_ptr_130);
         }
         return;
@@ -874,7 +874,7 @@ LAB_REALLOC_INFLUENCE_ARRAY:
   // 处理剩余的骨骼
   stack_var_1d0 = 0;
 LAB_PROCESS_REMAINING_BONES:
-  temp_bone_array = (undefined1 (*) [16])(stack_var_1d0 * 0x20);
+  temp_bone_array = (int8_t (*) [16])(stack_var_1d0 * 0x20);
   vertex_ptr = *(int **)(*temp_bone_array + stack_var_170);
   total_size = *(longlong)(*temp_bone_array + stack_var_170 + 8) - (longlong)vertex_ptr >> 2;
   stack_bone_array = temp_bone_array;
@@ -1003,7 +1003,7 @@ LAB_REALLOC_VERTEX_BUFFER:
                   free_vertex_index();
                 }
                 stack_var_1c0 = (uint)vertex_ptr;
-                stack_var_1bc = (undefined4)((ulonglong)vertex_ptr >> 0x20);
+                stack_var_1bc = (int32_t)((ulonglong)vertex_ptr >> 0x20);
                 influence_count_ptr = vertex_ptr + transform_offset;
                 stack_ptr_1b0 = influence_count_ptr;
                 vertex_ptr = vertex_ptr;
@@ -1063,9 +1063,9 @@ LAB_REALLOC_VERTEX_LIST:
         // 更新指针和标志
         offset_ptr = stack_ptr_168;
         stack_var_1c0 = (uint)stack_ptr_218;
-        stack_var_1bc = (undefined4)((ulonglong)stack_ptr_218 >> 0x20);
+        stack_var_1bc = (int32_t)((ulonglong)stack_ptr_218 >> 0x20);
         stack_var_1b8._0_4_ = SUB84(stack_ptr_1f8, 0);
-        stack_var_1b8._4_4_ = (undefined4)((ulonglong)stack_ptr_1f8 >> 0x20);
+        stack_var_1b8._4_4_ = (int32_t)((ulonglong)stack_ptr_1f8 >> 0x20);
         stack_ptr_1b0 = stack_ptr_208;
         stack_var_200 = 3;
         stack_var_1a8 = 3;
@@ -1096,12 +1096,12 @@ LAB_SKIP_VERTEX_UPDATE:
     *(int **)(*stack_bone_array + stack_var_170 + 8) = vertex_ptr;
     stack_ptr_190 = *(int **)(stack_bone_array[1] + stack_var_170);
     *(int **)(stack_bone_array[1] + stack_var_170) = vertex_end_ptr;
-    stack_var_188 = *(undefined4 *)(stack_bone_array[1] + stack_var_170 + 8);
-    *(undefined4 *)(stack_bone_array[1] + stack_var_170 + 8) = 3;
+    stack_var_188 = *(int32_t *)(stack_bone_array[1] + stack_var_170 + 8);
+    *(int32_t *)(stack_bone_array[1] + stack_var_170 + 8) = 3;
     stack_var_1a0 = influence_count_ptr;
     if (stack_ptr_168 < stack_ptr_160) {
       total_size = (longlong)vertex_ptr - (longlong)vertex_ptr;
-      *(undefined4 *)(stack_ptr_168 + 3) = 3;
+      *(int32_t *)(stack_ptr_168 + 3) = 3;
       if (total_size < 4) {
         transform_offset = 0;
         stack_ptr_168 = stack_ptr_168 + 4;
@@ -1129,22 +1129,22 @@ LAB_SKIP_VERTEX_UPDATE:
     temp_index = *bone_count_ptr;
     transform_offset = stack_var_1d0 * 0x5c;
     bone_address = *(longlong *)(animation_context + 0x68);
-    stack_var_108 = *(undefined8 *)(transform_offset + bone_address);
-    stack_var_100 = ((undefined8 *)(transform_offset + bone_address))[1];
-    matrix_ptr = (undefined8 *)(transform_offset + 0x10 + bone_address);
+    stack_var_108 = *(uint64_t *)(transform_offset + bone_address);
+    stack_var_100 = ((uint64_t *)(transform_offset + bone_address))[1];
+    matrix_ptr = (uint64_t *)(transform_offset + 0x10 + bone_address);
     stack_var_f8 = *matrix_ptr;
     stack_var_f0 = matrix_ptr[1];
-    matrix_ptr = (undefined8 *)(transform_offset + 0x20 + bone_address);
+    matrix_ptr = (uint64_t *)(transform_offset + 0x20 + bone_address);
     stack_var_e8 = *matrix_ptr;
     stack_var_e0 = matrix_ptr[1];
-    matrix_ptr = (undefined8 *)(transform_offset + 0x30 + bone_address);
+    matrix_ptr = (uint64_t *)(transform_offset + 0x30 + bone_address);
     stack_var_d8 = *matrix_ptr;
     stack_var_d0 = matrix_ptr[1];
-    matrix_ptr = (undefined8 *)(transform_offset + 0x40 + bone_address);
+    matrix_ptr = (uint64_t *)(transform_offset + 0x40 + bone_address);
     stack_var_c8 = *matrix_ptr;
     stack_var_c0 = matrix_ptr[1];
-    stack_var_b8 = *(undefined8 *)(transform_offset + 0x50 + bone_address);
-    stack_var_b0 = *(undefined4 *)(transform_offset + 0x58 + bone_address);
+    stack_var_b8 = *(uint64_t *)(transform_offset + 0x50 + bone_address);
+    stack_var_b0 = *(int32_t *)(transform_offset + 0x58 + bone_address);
     update_bone_mapping(bone_count_ptr, &stack_var_108);
     
     temp_array_size = (longlong)vertex_ptr - (longlong)vertex_ptr >> 2;
@@ -1176,14 +1176,14 @@ LAB_SKIP_VERTEX_UPDATE:
       do {
         bone_address = alloc_size + *(longlong *)(animation_context + 0xb0);
         transform_offset = *(longlong *)(alloc_size + 0x30 + *(longlong *)(animation_context + 0xb0));
-        matrix_ptr = (undefined8 *)(transform_offset + loop_index * 0x10);
+        matrix_ptr = (uint64_t *)(transform_offset + loop_index * 0x10);
         matrix_data = *matrix_ptr;
         transform_data = matrix_ptr[1];
         temp_index = *(int *)(bone_address + 0x2c);
         vertex_index = *(int *)(bone_address + 0x28);
         if (temp_index <= vertex_index) {
           if (temp_index < 2) {
-            *(undefined4 *)(bone_address + 0x2c) = 8;
+            *(int32_t *)(bone_address + 0x2c) = 8;
           }
           else {
             *(int *)(bone_address + 0x2c) = (temp_index >> 1) + temp_index;
@@ -1192,7 +1192,7 @@ LAB_SKIP_VERTEX_UPDATE:
           vertex_index = *(int *)(bone_address + 0x28);
           transform_offset = *(longlong *)(bone_address + 0x30);
         }
-        matrix_ptr = (undefined8 *)(transform_offset + (longlong)vertex_index * 0x10);
+        matrix_ptr = (uint64_t *)(transform_offset + (longlong)vertex_index * 0x10);
         *matrix_ptr = matrix_data;
         matrix_ptr[1] = transform_data;
         *(int *)(bone_address + 0x28) = *(int *)(bone_address + 0x28) + 1;

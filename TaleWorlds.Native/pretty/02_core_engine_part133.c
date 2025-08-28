@@ -6,11 +6,11 @@
 void FUN_180130ca8(void)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   bool bVar2;
   bool bVar3;
   float *pfVar4;
-  undefined8 *puVar5;
+  uint64_t *puVar5;
   float *pfVar6;
   longlong unaff_RBX;
   uint unaff_EBP;
@@ -24,12 +24,12 @@ void FUN_180130ca8(void)
   float fStack0000000000000064;
   
   if ((unaff_EBP & 0x2000000) == 0) {
-    puVar5 = (undefined8 *)
+    puVar5 = (uint64_t *)
              ((longlong)(*(int *)(unaff_RDI + 0x1bc0) + -1) * 0x30 + 0x28 +
              *(longlong *)(unaff_RDI + 0x1bc8));
   }
   else {
-    puVar5 = (undefined8 *)(unaff_RDI + 0x118);
+    puVar5 = (uint64_t *)(unaff_RDI + 0x118);
   }
   uVar1 = *puVar5;
   cVar7 = (char)unaff_RSI;
@@ -80,8 +80,8 @@ LAB_180130dd5:
     *(int *)(unaff_RBX + 0x3c) = iVar8;
   }
   *(bool *)(unaff_RBX + 0xae) =
-       unaff_RBX == *(longlong *)(*(undefined4 **)(unaff_RBX + 0x28) + 0x1e);
-  *(undefined4 *)(unaff_RBX + 0x30) = **(undefined4 **)(unaff_RBX + 0x28);
+       unaff_RBX == *(longlong *)(*(int32_t **)(unaff_RBX + 0x28) + 0x1e);
+  *(int32_t *)(unaff_RBX + 0x30) = **(int32_t **)(unaff_RBX + 0x28);
   return;
 }
 
@@ -351,7 +351,7 @@ LAB_18013148a:
 
 
 
-ulonglong FUN_1801310d5(undefined8 param_1,undefined8 param_2,longlong param_3,longlong param_4)
+ulonglong FUN_1801310d5(uint64_t param_1,uint64_t param_2,longlong param_3,longlong param_4)
 
 {
   float fVar1;
@@ -525,7 +525,7 @@ LAB_18013148a:
 
 
 
-undefined1 FUN_18013113e(void)
+int8_t FUN_18013113e(void)
 
 {
   return 0;
@@ -683,7 +683,7 @@ LAB_18013148a:
 
 
 
-ulonglong FUN_180131331(undefined8 param_1,float param_2,float param_3,float param_4)
+ulonglong FUN_180131331(uint64_t param_1,float param_2,float param_3,float param_4)
 
 {
   uint uVar1;
@@ -787,11 +787,11 @@ LAB_18013148a:
 
 
 
-undefined1 FUN_1801313c6(undefined8 param_1,undefined1 param_2,float param_3,float param_4)
+int8_t FUN_1801313c6(uint64_t param_1,int8_t param_2,float param_3,float param_4)
 
 {
   int iVar1;
-  undefined1 unaff_10000014;
+  int8_t unaff_10000014;
   int in_EAX;
   longlong in_R8;
   longlong in_R11;
@@ -907,7 +907,7 @@ void FUN_1801314c0(longlong param_1,float *param_2,int param_3)
       *(float *)(lVar10 + 0x1d1c) = fVar15;
     }
     if (uVar7 == 0) {
-      *(undefined1 *)(lVar10 + 0x1d09) = 0;
+      *(int8_t *)(lVar10 + 0x1d09) = 0;
       *(bool *)(lVar10 + 0x1d08) = *(char *)(lVar10 + 0x1d21) != '\0';
     }
   }
@@ -967,9 +967,9 @@ void FUN_1801314c0(longlong param_1,float *param_2,int param_3)
   }
   if (*(int *)(lVar10 + 0x1ca0) == param_3) {
     *(longlong *)(lVar10 + 0x1c98) = param_1;
-    *(undefined4 *)(lVar10 + 0x1cfc) = *(undefined4 *)(param_1 + 0x16c);
-    *(undefined1 *)(lVar10 + 0x1d04) = 1;
-    *(undefined4 *)(lVar10 + 0x1d00) = *(undefined4 *)(param_1 + 0x3f4);
+    *(int32_t *)(lVar10 + 0x1cfc) = *(int32_t *)(param_1 + 0x16c);
+    *(int8_t *)(lVar10 + 0x1d04) = 1;
+    *(int32_t *)(lVar10 + 0x1d00) = *(int32_t *)(param_1 + 0x3f4);
     pfVar1 = (float *)(param_1 + ((longlong)*(int *)(param_1 + 0x16c) + 0x3d) * 0x10);
     *pfVar1 = fVar16;
     pfVar1[1] = fVar11;
@@ -1016,7 +1016,7 @@ void FUN_1801314fb(int param_1,float *param_2,int param_3,int param_4)
       *(int *)(lVar7 + 0x1d1c) = param_4;
     }
     if ((in_ECX & 0x10) == 0) {
-      *(undefined1 *)(lVar7 + 0x1d09) = 0;
+      *(int8_t *)(lVar7 + 0x1d09) = 0;
       *(bool *)(lVar7 + 0x1d08) = *(char *)(lVar7 + 0x1d21) != '\0';
     }
   }
@@ -1074,9 +1074,9 @@ void FUN_1801314fb(int param_1,float *param_2,int param_3,int param_4)
   }
   if (*(int *)(lVar7 + 0x1ca0) == in_R8D) {
     *(longlong *)(lVar7 + 0x1c98) = unaff_RBX;
-    *(undefined4 *)(lVar7 + 0x1cfc) = *(undefined4 *)(unaff_RBX + 0x16c);
-    *(undefined1 *)(lVar7 + 0x1d04) = 1;
-    *(undefined4 *)(lVar7 + 0x1d00) = *(undefined4 *)(unaff_RBX + 0x3f4);
+    *(int32_t *)(lVar7 + 0x1cfc) = *(int32_t *)(unaff_RBX + 0x16c);
+    *(int8_t *)(lVar7 + 0x1d04) = 1;
+    *(int32_t *)(lVar7 + 0x1d00) = *(int32_t *)(unaff_RBX + 0x3f4);
     piVar6 = (int *)(unaff_RBX + ((longlong)*(int *)(unaff_RBX + 0x16c) + 0x3d) * 0x10);
     *piVar6 = unaff_XMM6_Da;
     piVar6[1] = param_1;

@@ -6,7 +6,7 @@
 // 函数: 处理引擎组件初始化和事件分发
 // 参数: engine_instance - 引擎实例指针, event_type - 事件类型, event_data - 事件数据, process_flag - 处理标志
 // 功能: 初始化引擎组件，分配事件缓冲区，处理组件列表和事件分发
-void process_engine_component_initialization(longlong engine_instance, undefined8 event_type, undefined8 event_data, undefined1 process_flag)
+void process_engine_component_initialization(longlong engine_instance, uint64_t event_type, uint64_t event_data, int8_t process_flag)
 {
   // 栈变量声明
   byte *temp_buffer_ptr;
@@ -28,14 +28,14 @@ void process_engine_component_initialization(longlong engine_instance, undefined
   ulonglong checksum;
   longlong *current_component;
   longlong *next_component;
-  undefined1 stack_buffer[32];
-  undefined1 flag_stack;
+  int8_t stack_buffer[32];
+  int8_t flag_stack;
   uint stack_size;
-  undefined *heap_ptr;
+  void *heap_ptr;
   byte *memory_buffer;
   uint memory_size;
   ulonglong memory_offset;
-  undefined *global_ptr;
+  void *global_ptr;
   byte *global_buffer;
   uint global_size;
   ulonglong global_checksum;
@@ -43,12 +43,12 @@ void process_engine_component_initialization(longlong engine_instance, undefined
   longlong *stack_component_ptr2;
   longlong *stack_component_ptr3;
   longlong *stack_component_ptr4;
-  undefined4 operation_flag;
+  int32_t operation_flag;
   longlong instance_offset;
   longlong temp_address;
-  undefined8 param2_copy;
-  undefined8 param2_copy2;
-  undefined8 event_data_copy;
+  uint64_t param2_copy;
+  uint64_t param2_copy2;
+  uint64_t event_data_copy;
   char string_buffer1[16];
   char string_buffer2[16];
   char string_buffer3[16];
@@ -149,14 +149,14 @@ LAB_180198f21:
 // 函数: 创建引擎事件处理器
 // 参数: engine_instance - 引擎实例, event_params - 事件参数, event_data - 事件数据, process_mode - 处理模式
 // 功能: 根据处理模式创建和配置事件处理器
-longlong * create_engine_event_handler(undefined8 engine_instance, longlong *event_params, undefined8 event_data, char process_mode)
+longlong * create_engine_event_handler(uint64_t engine_instance, longlong *event_params, uint64_t event_data, char process_mode)
 {
   longlong temp_value;
-  undefined8 temp_address;
+  uint64_t temp_address;
   longlong *event_handler;
   longlong *stack_handler_ptr;
   longlong *stack_handler_ptr2;
-  undefined8 stack_cookie;
+  uint64_t stack_cookie;
   longlong **handler_ptr_ptr;
   
   stack_cookie = 0xfffffffffffffffe;
@@ -227,7 +227,7 @@ void update_engine_state(longlong engine_instance, float float_param, char updat
   ulonglong offset2;
   float float_value;
   uint stack_array[4];
-  undefined8 stack_cookie;
+  uint64_t stack_cookie;
   
   stack_cookie = 0xfffffffffffffffe;
   
@@ -244,7 +244,7 @@ void update_engine_state(longlong engine_instance, float float_param, char updat
   *(float *)(*(longlong *)(engine_instance + 0x58) + (longlong)*(int *)(engine_instance + 0x68) * 4) = float_param;
   *(int *)(engine_instance + 0x68) = (*(int *)(engine_instance + 0x68) + 1) % *(int *)(engine_instance + 0x50);
   offset1 = 0;
-  *(undefined4 *)(engine_instance + 0x60) = 0;
+  *(int32_t *)(engine_instance + 0x60) = 0;
   array_index = *(uint *)(engine_instance + 100);
   float_value = 0.0;
   
@@ -285,7 +285,7 @@ void update_engine_state(longlong engine_instance, float float_param, char updat
 // 函数: 处理引擎回调事件
 // 参数: engine_instance - 引擎实例, callback_param - 回调参数
 // 功能: 遍历并执行所有注册的回调函数
-void process_engine_callback(longlong engine_instance, undefined4 callback_param)
+void process_engine_callback(longlong engine_instance, int32_t callback_param)
 {
   longlong *callback_ptr;
   ulonglong callback_offset;

@@ -11,33 +11,33 @@
 void initialize_base_rendering_registry(void)
 {
   char registry_flag;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_entry;
-  undefined8 callback_parameter;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_entry;
+  uint64_t callback_parameter;
   
   // 获取注册表管理器实例
   registry_manager = (longlong *)get_registry_manager();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
   callback_parameter = 0;
   previous_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找匹配的条目
   while (registry_flag == '\0') {
     compare_result = memcmp(current_node + 4, &BASE_RENDERING_SIGNATURE, 0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -73,33 +73,33 @@ void initialize_base_rendering_registry(void)
 void initialize_material_rendering_registry(void)
 {
   char registry_flag;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_entry;
-  undefined8 callback_parameter;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_entry;
+  uint64_t callback_parameter;
   
   // 获取注册表管理器实例
   registry_manager = (longlong *)get_registry_manager();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
   callback_parameter = 0;
   previous_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找匹配的条目
   while (registry_flag == '\0') {
     compare_result = memcmp(current_node + 4, &MATERIAL_RENDERING_SIGNATURE, 0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -135,33 +135,33 @@ void initialize_material_rendering_registry(void)
 void initialize_texture_rendering_registry(void)
 {
   char registry_flag;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_entry;
-  undefined8 callback_parameter;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_entry;
+  uint64_t callback_parameter;
   
   // 获取注册表管理器实例
   registry_manager = (longlong *)get_registry_manager();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
   callback_parameter = 0;
   previous_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找匹配的条目
   while (registry_flag == '\0') {
     compare_result = memcmp(current_node + 4, &TEXTURE_RENDERING_SIGNATURE, 0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -198,11 +198,11 @@ void initialize_texture_rendering_registry(void)
  */
 void initialize_game_system_config_registry(void)
 {
-  undefined8 system_config;
-  undefined8 *config_manager;
-  undefined1 *config_buffer;
-  undefined4 config_size;
-  undefined1 temp_buffer[136];
+  uint64_t system_config;
+  uint64_t *config_manager;
+  int8_t *config_buffer;
+  int32_t config_size;
+  int8_t temp_buffer[136];
   
   // 设置配置管理器和缓冲区
   config_manager = &GAME_CONFIG_MANAGER;
@@ -230,7 +230,7 @@ void initialize_game_system_config_registry(void)
 int initialize_system_data_pointers(void)
 {
   longlong system_data;
-  undefined8 config_param;
+  uint64_t config_param;
   
   // 设置系统数据指针
   SYSTEM_DATA_POINTER_1 = &SYSTEM_DATA_START;
@@ -247,11 +247,11 @@ int initialize_system_data_pointers(void)
  */
 void initialize_network_config_registry(void)
 {
-  undefined8 network_config;
-  undefined8 *config_manager;
-  undefined1 *config_buffer;
-  undefined4 config_size;
-  undefined1 temp_buffer[136];
+  uint64_t network_config;
+  uint64_t *config_manager;
+  int8_t *config_buffer;
+  int32_t config_size;
+  int8_t temp_buffer[136];
   
   // 设置网络配置管理器和缓冲区
   config_manager = &NETWORK_CONFIG_MANAGER;
@@ -280,11 +280,11 @@ void initialize_network_config_registry(void)
  */
 void initialize_audio_system_config_registry(void)
 {
-  undefined8 audio_config;
-  undefined8 *config_manager;
-  undefined1 *config_buffer;
-  undefined4 config_size;
-  undefined1 temp_buffer[136];
+  uint64_t audio_config;
+  uint64_t *config_manager;
+  int8_t *config_buffer;
+  int32_t config_size;
+  int8_t temp_buffer[136];
   
   // 设置音频配置管理器和缓冲区
   config_manager = &AUDIO_CONFIG_MANAGER;
@@ -312,33 +312,33 @@ void initialize_audio_system_config_registry(void)
 void initialize_input_system_registry(void)
 {
   char registry_flag;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_entry;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_entry;
   void *input_callback;
   
   // 获取注册表管理器实例
   registry_manager = (longlong *)get_registry_manager();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
   input_callback = input_system_callback;
   previous_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找匹配的条目
   while (registry_flag == '\0') {
     compare_result = memcmp(current_node + 4, &INPUT_SYSTEM_SIGNATURE, 0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -374,33 +374,33 @@ void initialize_input_system_registry(void)
 void initialize_physics_system_registry(void)
 {
   char registry_flag;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_entry;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_entry;
   void *physics_callback;
   
   // 获取注册表管理器实例
   registry_manager = (longlong *)get_registry_manager();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
   physics_callback = physics_system_callback;
   previous_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找匹配的条目
   while (registry_flag == '\0') {
     compare_result = memcmp(current_node + 4, &PHYSICS_SYSTEM_SIGNATURE, 0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -436,33 +436,33 @@ void initialize_physics_system_registry(void)
 void initialize_animation_system_registry(void)
 {
   char registry_flag;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_entry;
-  undefined8 callback_parameter;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_entry;
+  uint64_t callback_parameter;
   
   // 获取注册表管理器实例
   registry_manager = (longlong *)get_registry_manager();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
   callback_parameter = 0;
   previous_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找匹配的条目
   while (registry_flag == '\0') {
     compare_result = memcmp(current_node + 4, &ANIMATION_SYSTEM_SIGNATURE, 0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -498,33 +498,33 @@ void initialize_animation_system_registry(void)
 void initialize_ai_system_registry(void)
 {
   char registry_flag;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_entry;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_entry;
   void *ai_callback;
   
   // 获取注册表管理器实例
   registry_manager = (longlong *)get_registry_manager();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
   ai_callback = ai_system_callback;
   previous_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找匹配的条目
   while (registry_flag == '\0') {
     compare_result = memcmp(current_node + 4, &AI_SYSTEM_SIGNATURE, 0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -560,33 +560,33 @@ void initialize_ai_system_registry(void)
 void initialize_scene_management_registry(void)
 {
   char registry_flag;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_entry;
-  undefined8 callback_parameter;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_entry;
+  uint64_t callback_parameter;
   
   // 获取注册表管理器实例
   registry_manager = (longlong *)get_registry_manager();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
   callback_parameter = 0;
   previous_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找匹配的条目
   while (registry_flag == '\0') {
     compare_result = memcmp(current_node + 4, &SCENE_MANAGEMENT_SIGNATURE, 0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -622,33 +622,33 @@ void initialize_scene_management_registry(void)
 void initialize_particle_system_registry(void)
 {
   char registry_flag;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_entry;
-  undefined8 callback_parameter;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_entry;
+  uint64_t callback_parameter;
   
   // 获取注册表管理器实例
   registry_manager = (longlong *)get_registry_manager();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
   callback_parameter = 0;
   previous_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找匹配的条目
   while (registry_flag == '\0') {
     compare_result = memcmp(current_node + 4, &PARTICLE_SYSTEM_SIGNATURE, 0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -684,33 +684,33 @@ void initialize_particle_system_registry(void)
 void initialize_lighting_system_registry(void)
 {
   char registry_flag;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_entry;
-  undefined8 callback_parameter;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_entry;
+  uint64_t callback_parameter;
   
   // 获取注册表管理器实例
   registry_manager = (longlong *)get_registry_manager();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
   callback_parameter = 0;
   previous_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找匹配的条目
   while (registry_flag == '\0') {
     compare_result = memcmp(current_node + 4, &LIGHTING_SYSTEM_SIGNATURE, 0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -746,33 +746,33 @@ void initialize_lighting_system_registry(void)
 void initialize_post_processing_registry(void)
 {
   char registry_flag;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_entry;
-  undefined8 callback_parameter;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_entry;
+  uint64_t callback_parameter;
   
   // 获取注册表管理器实例
   registry_manager = (longlong *)get_registry_manager();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
   callback_parameter = 0;
   previous_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找匹配的条目
   while (registry_flag == '\0') {
     compare_result = memcmp(current_node + 4, &POST_PROCESSING_SIGNATURE, 0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -809,11 +809,11 @@ void initialize_post_processing_registry(void)
  */
 void initialize_ui_system_config_registry(void)
 {
-  undefined8 ui_config;
-  undefined8 *config_manager;
-  undefined1 *config_buffer;
-  undefined4 config_size;
-  undefined1 temp_buffer[136];
+  uint64_t ui_config;
+  uint64_t *config_manager;
+  int8_t *config_buffer;
+  int32_t config_size;
+  int8_t temp_buffer[136];
   
   // 设置UI配置管理器和缓冲区
   config_manager = &UI_CONFIG_MANAGER;
@@ -841,33 +841,33 @@ void initialize_ui_system_config_registry(void)
 void initialize_audio_management_registry(void)
 {
   char registry_flag;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_entry;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_entry;
   void *audio_callback;
   
   // 获取注册表管理器实例
   registry_manager = (longlong *)get_registry_manager();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
   audio_callback = audio_management_callback;
   previous_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找匹配的条目
   while (registry_flag == '\0') {
     compare_result = memcmp(current_node + 4, &AUDIO_MANAGEMENT_SIGNATURE, 0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -903,33 +903,33 @@ void initialize_audio_management_registry(void)
 void initialize_sound_effect_registry(void)
 {
   char registry_flag;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_entry;
-  undefined8 callback_parameter;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_entry;
+  uint64_t callback_parameter;
   
   // 获取注册表管理器实例
   registry_manager = (longlong *)get_registry_manager();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
   callback_parameter = 0;
   previous_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找匹配的条目
   while (registry_flag == '\0') {
     compare_result = memcmp(current_node + 4, &SOUND_EFFECT_SIGNATURE, 0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -965,33 +965,33 @@ void initialize_sound_effect_registry(void)
 void initialize_music_system_registry(void)
 {
   char registry_flag;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_entry;
-  undefined8 callback_parameter;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_entry;
+  uint64_t callback_parameter;
   
   // 获取注册表管理器实例
   registry_manager = (longlong *)get_registry_manager();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
   callback_parameter = 0;
   previous_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找匹配的条目
   while (registry_flag == '\0') {
     compare_result = memcmp(current_node + 4, &MUSIC_SYSTEM_SIGNATURE, 0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -1027,33 +1027,33 @@ void initialize_music_system_registry(void)
 void initialize_voice_system_registry(void)
 {
   char registry_flag;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_entry;
-  undefined8 callback_parameter;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_entry;
+  uint64_t callback_parameter;
   
   // 获取注册表管理器实例
   registry_manager = (longlong *)get_registry_manager();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
   callback_parameter = 0;
   previous_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找匹配的条目
   while (registry_flag == '\0') {
     compare_result = memcmp(current_node + 4, &VOICE_SYSTEM_SIGNATURE, 0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -1089,33 +1089,33 @@ void initialize_voice_system_registry(void)
 void initialize_video_playback_registry(void)
 {
   char registry_flag;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_entry;
-  undefined8 callback_parameter;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_entry;
+  uint64_t callback_parameter;
   
   // 获取注册表管理器实例
   registry_manager = (longlong *)get_registry_manager();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
   callback_parameter = 0;
   previous_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找匹配的条目
   while (registry_flag == '\0') {
     compare_result = memcmp(current_node + 4, &VIDEO_PLAYBACK_SIGNATURE, 0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -1151,33 +1151,33 @@ void initialize_video_playback_registry(void)
 void initialize_audio_stream_registry(void)
 {
   char registry_flag;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_entry;
-  undefined8 callback_parameter;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_entry;
+  uint64_t callback_parameter;
   
   // 获取注册表管理器实例
   registry_manager = (longlong *)get_registry_manager();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
   callback_parameter = 0;
   previous_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找匹配的条目
   while (registry_flag == '\0') {
     compare_result = memcmp(current_node + 4, &AUDIO_STREAM_SIGNATURE, 0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -1213,33 +1213,33 @@ void initialize_audio_stream_registry(void)
 void initialize_resource_management_registry(void)
 {
   char registry_flag;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_entry;
-  undefined8 callback_parameter;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_entry;
+  uint64_t callback_parameter;
   
   // 获取注册表管理器实例
   registry_manager = (longlong *)get_registry_manager();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
   callback_parameter = 0;
   previous_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找匹配的条目
   while (registry_flag == '\0') {
     compare_result = memcmp(current_node + 4, &RESOURCE_MANAGEMENT_SIGNATURE, 0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -1275,33 +1275,33 @@ void initialize_resource_management_registry(void)
 void initialize_memory_management_registry(void)
 {
   char registry_flag;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_entry;
-  undefined8 callback_parameter;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_entry;
+  uint64_t callback_parameter;
   
   // 获取注册表管理器实例
   registry_manager = (longlong *)get_registry_manager();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
   callback_parameter = 0;
   previous_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找匹配的条目
   while (registry_flag == '\0') {
     compare_result = memcmp(current_node + 4, &MEMORY_MANAGEMENT_SIGNATURE, 0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -1337,33 +1337,33 @@ void initialize_memory_management_registry(void)
 void initialize_thread_management_registry(void)
 {
   char registry_flag;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_entry;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_entry;
   void *thread_callback;
   
   // 获取注册表管理器实例
   registry_manager = (longlong *)get_registry_manager();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
   thread_callback = thread_management_callback;
   previous_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找匹配的条目
   while (registry_flag == '\0') {
     compare_result = memcmp(current_node + 4, &THREAD_MANAGEMENT_SIGNATURE, 0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -1399,33 +1399,33 @@ void initialize_thread_management_registry(void)
 void initialize_sync_management_registry(void)
 {
   char registry_flag;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_entry;
-  undefined8 callback_parameter;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_entry;
+  uint64_t callback_parameter;
   
   // 获取注册表管理器实例
   registry_manager = (longlong *)get_registry_manager();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
   callback_parameter = 0;
   previous_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找匹配的条目
   while (registry_flag == '\0') {
     compare_result = memcmp(current_node + 4, &SYNC_MANAGEMENT_SIGNATURE, 0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -1461,33 +1461,33 @@ void initialize_sync_management_registry(void)
 void initialize_network_sync_registry(void)
 {
   char registry_flag;
-  undefined8 *registry_root;
+  uint64_t *registry_root;
   int compare_result;
   longlong *registry_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_entry;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_entry;
   void *network_callback;
   
   // 获取注册表管理器实例
   registry_manager = (longlong *)get_registry_manager();
-  registry_root = (undefined8 *)*registry_manager;
+  registry_root = (uint64_t *)*registry_manager;
   registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
   network_callback = network_sync_callback;
   previous_node = registry_root;
-  current_node = (undefined8 *)registry_root[1];
+  current_node = (uint64_t *)registry_root[1];
   
   // 在注册表中查找匹配的条目
   while (registry_flag == '\0') {
     compare_result = memcmp(current_node + 4, &NETWORK_SYNC_SIGNATURE, 0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -1524,11 +1524,11 @@ void initialize_network_sync_registry(void)
  */
 void initialize_game_save_config(void)
 {
-  undefined8 config_param;
-  undefined8 *config_manager;
-  undefined1 *config_buffer;
-  undefined4 config_size;
-  undefined1 temp_buffer[136];
+  uint64_t config_param;
+  uint64_t *config_manager;
+  int8_t *config_buffer;
+  int32_t config_size;
+  int8_t temp_buffer[136];
   
   // 设置存档配置管理器和缓冲区
   config_manager = &GAME_SAVE_CONFIG_MANAGER;
@@ -1557,11 +1557,11 @@ void initialize_game_save_config(void)
  */
 void initialize_game_settings_config(void)
 {
-  undefined8 config_param;
-  undefined8 *config_manager;
-  undefined1 *config_buffer;
-  undefined4 config_size;
-  undefined1 temp_buffer[136];
+  uint64_t config_param;
+  uint64_t *config_manager;
+  int8_t *config_buffer;
+  int32_t config_size;
+  int8_t temp_buffer[136];
   
   // 设置游戏配置管理器和缓冲区
   config_manager = &GAME_SETTINGS_CONFIG_MANAGER;
@@ -1590,11 +1590,11 @@ void initialize_game_settings_config(void)
  */
 void initialize_controller_config(void)
 {
-  undefined8 config_param;
-  undefined8 *config_manager;
-  undefined1 *config_buffer;
-  undefined4 config_size;
-  undefined1 temp_buffer[136];
+  uint64_t config_param;
+  uint64_t *config_manager;
+  int8_t *config_buffer;
+  int32_t config_size;
+  int8_t temp_buffer[136];
   
   // 设置控制器配置管理器和缓冲区
   config_manager = &CONTROLLER_CONFIG_MANAGER;
@@ -1623,11 +1623,11 @@ void initialize_controller_config(void)
  */
 void initialize_keyboard_config(void)
 {
-  undefined8 config_param;
-  undefined8 *config_manager;
-  undefined1 *config_buffer;
-  undefined4 config_size;
-  undefined1 temp_buffer[136];
+  uint64_t config_param;
+  uint64_t *config_manager;
+  int8_t *config_buffer;
+  int32_t config_size;
+  int8_t temp_buffer[136];
   
   // 设置键盘配置管理器和缓冲区
   config_manager = &KEYBOARD_CONFIG_MANAGER;
@@ -1656,11 +1656,11 @@ void initialize_keyboard_config(void)
  */
 void initialize_mouse_config(void)
 {
-  undefined8 config_param;
-  undefined8 *config_manager;
-  undefined1 *config_buffer;
-  undefined4 config_size;
-  undefined1 temp_buffer[136];
+  uint64_t config_param;
+  uint64_t *config_manager;
+  int8_t *config_buffer;
+  int32_t config_size;
+  int8_t temp_buffer[136];
   
   // 设置鼠标配置管理器和缓冲区
   config_manager = &MOUSE_CONFIG_MANAGER;

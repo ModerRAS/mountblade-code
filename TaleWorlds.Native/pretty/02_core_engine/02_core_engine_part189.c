@@ -4,24 +4,24 @@
 // 包含14个函数，主要处理窗口管理、光标操作和消息传递
 
 // 全局变量
-undefined8 _DAT_180bf00a8;  // 栈保护变量
-undefined8 _DAT_180c8ed18;  // 内存分配器
-undefined8 _DAT_180c82868;  // 引擎上下文
-undefined8 _DAT_180c86920;  // 系统配置
-undefined8 _DAT_180c86950;  // 渲染配置
-undefined8 _DAT_180c868d0;  // 线程状态
+uint64_t _DAT_180bf00a8;  // 栈保护变量
+uint64_t _DAT_180c8ed18;  // 内存分配器
+uint64_t _DAT_180c82868;  // 引擎上下文
+uint64_t _DAT_180c86920;  // 系统配置
+uint64_t _DAT_180c86950;  // 渲染配置
+uint64_t _DAT_180c868d0;  // 线程状态
 
 // 函数指针和常量
-undefined8 UNK_1809fdc18;   // 虚函数表
-undefined8 UNK_180a089f0;   // 字符串常量
-undefined8 UNK_1809fe220;   // 回调函数
-undefined8 UNK_180a08d78;   // 事件处理器
-undefined8 UNK_18098bcb0;   // 空指针常量
-undefined8 UNK_180a08ce8;   // 初始化函数
-undefined8 UNK_180a21690;   // 对象虚函数表
-undefined8 UNK_180a21720;   // 方法指针
-undefined8 UNK_18098bdc8;   // 析构函数
-undefined8 UNK_180a08c60;   // 消息处理器
+uint64_t UNK_1809fdc18;   // 虚函数表
+uint64_t UNK_180a089f0;   // 字符串常量
+uint64_t UNK_1809fe220;   // 回调函数
+uint64_t UNK_180a08d78;   // 事件处理器
+uint64_t UNK_18098bcb0;   // 空指针常量
+uint64_t UNK_180a08ce8;   // 初始化函数
+uint64_t UNK_180a21690;   // 对象虚函数表
+uint64_t UNK_180a21720;   // 方法指针
+uint64_t UNK_18098bdc8;   // 析构函数
+uint64_t UNK_180a08c60;   // 消息处理器
 
 /**
  * 初始化系统光标
@@ -29,14 +29,14 @@ undefined8 UNK_180a08c60;   // 消息处理器
  */
 void initialize_system_cursor(void)
 {
-  undefined8 cursor_handle;
+  uint64_t cursor_handle;
   longlong system_context;
   ulonglong stack_protector;
   
   // 从文件加载光标资源
   cursor_handle = LoadCursorFromFileA();
   // 将光标句柄存储到系统上下文中
-  *(undefined8 *)(system_context + 0x50) = cursor_handle;
+  *(uint64_t *)(system_context + 0x50) = cursor_handle;
   
   // 调用栈保护函数
   execute_stack_protection(stack_protector ^ (ulonglong)&stack0x00000000);
@@ -60,9 +60,9 @@ void handle_window_initialization(longlong window_context)
   callback_address = window_data + 0x18;
   
   // 设置窗口回调函数
-  setup_window_callbacks(window_data, *(undefined4 *)(system_registry + 0x30), 
-                         *(undefined4 *)(system_registry + 0x34),
-                         *(undefined1 *)(system_registry + 0x38), window_data + 0x38);
+  setup_window_callbacks(window_data, *(int32_t *)(system_registry + 0x30), 
+                         *(int32_t *)(system_registry + 0x34),
+                         *(int8_t *)(system_registry + 0x38), window_data + 0x38);
   
   // 调用栈保护函数
   execute_stack_protection(stack_protector ^ (ulonglong)&stack0x00000000);
@@ -76,22 +76,22 @@ void handle_window_initialization(longlong window_context)
  */
 void update_window_focus_state(longlong window_context)
 {
-  undefined8 *window_rect;
-  undefined4 *client_rect;
+  uint64_t *window_rect;
+  int32_t *client_rect;
   longlong focus_window;
   ulonglong cursor_pos;
-  undefined1 stack_buffer[32];
-  undefined8 focus_state;
-  undefined8 window_handle;
-  undefined4 cursor_x;
-  undefined4 cursor_y;
-  undefined4 width;
-  undefined4 height;
-  undefined8 console_rect[2];
-  undefined8 client_size[2];
-  undefined8 point_data[2];
-  undefined4 has_focus;
-  undefined4 is_hovering;
+  int8_t stack_buffer[32];
+  uint64_t focus_state;
+  uint64_t window_handle;
+  int32_t cursor_x;
+  int32_t cursor_y;
+  int32_t width;
+  int32_t height;
+  uint64_t console_rect[2];
+  uint64_t client_size[2];
+  uint64_t point_data[2];
+  int32_t has_focus;
+  int32_t is_hovering;
   
   // 栈保护初始化
   stack_protector_init(&stack_buffer);
@@ -114,40 +114,40 @@ void update_window_focus_state(longlong window_context)
   }
   
   // 转换窗口坐标到屏幕坐标
-  MapWindowPoints(*(undefined8 *)(window_context + 8), 0, client_size, 2);
+  MapWindowPoints(*(uint64_t *)(window_context + 8), 0, client_size, 2);
   point_data[0] = CONCAT44(client_size[1], client_size[0]);
   
   // 获取客户区大小
-  GetClientRect(*(undefined8 *)(window_context + 8), client_size);
+  GetClientRect(*(uint64_t *)(window_context + 8), client_size);
   
   // 获取当前鼠标位置
   GetCursorPos(&cursor_x);
   
   // 根据索引选择存储位置
   cursor_pos = (ulonglong)(*(int *)(window_context + 0x13c) - 1U & 1);
-  window_rect = (undefined8 *)(window_context + 0xac + cursor_pos * 0x48);
+  window_rect = (uint64_t *)(window_context + 0xac + cursor_pos * 0x48);
   *window_rect = client_size[0];
   window_rect[1] = client_size[1];
   
   // 存储窗口位置信息
-  window_rect = (undefined8 *)(window_context + 0xbc + cursor_pos * 0x48);
+  window_rect = (uint64_t *)(window_context + 0xbc + cursor_pos * 0x48);
   *window_rect = CONCAT44(cursor_y, cursor_x);
   window_rect[1] = CONCAT44(is_hovering, cursor_x);
   
   // 存储窗口矩形信息
-  window_rect = (undefined8 *)(window_context + 0xcc + cursor_pos * 0x48);
+  window_rect = (uint64_t *)(window_context + 0xcc + cursor_pos * 0x48);
   *window_rect = point_data[0];
   window_rect[1] = point_data[1];
   
   // 存储控制台窗口信息
-  client_rect = (undefined4 *)(window_context + 0xdc + cursor_pos * 0x48);
-  *client_rect = (undefined4)console_rect[0];
+  client_rect = (int32_t *)(window_context + 0xdc + cursor_pos * 0x48);
+  *client_rect = (int32_t)console_rect[0];
   client_rect[1] = console_rect[0]._4_4_;
-  client_rect[2] = (undefined4)console_rect[1];
+  client_rect[2] = (int32_t)console_rect[1];
   client_rect[3] = console_rect[1]._4_4_;
   
   // 存储映射后的点
-  *(undefined8 *)(window_context + 0xec + cursor_pos * 0x48) = point_data[0];
+  *(uint64_t *)(window_context + 0xec + cursor_pos * 0x48) = point_data[0];
   
   // 原子操作更新索引
   LOCK();
@@ -165,7 +165,7 @@ void update_window_focus_state(longlong window_context)
  * @param render_context 渲染上下文指针
  * @param init_params 初始化参数
  */
-void initialize_render_system(longlong render_context, undefined8 *init_params)
+void initialize_render_system(longlong render_context, uint64_t *init_params)
 {
   longlong allocator;
   longlong vtable_ptr;
@@ -187,7 +187,7 @@ void initialize_render_system(longlong render_context, undefined8 *init_params)
   *(longlong **)(render_context + 0x140) = message_handler;
   
   // 设置渲染回调
-  setup_render_callback(*(undefined8 *)(render_context + 0x140));
+  setup_render_callback(*(uint64_t *)(render_context + 0x140));
   
   // 注册事件处理器
   register_event_handler(_DAT_180c82868 + 0x48, &handler_array);
@@ -203,10 +203,10 @@ void initialize_render_system(longlong render_context, undefined8 *init_params)
   start_renderer(message_handler);
   
   // 注册渲染器到系统
-  register_renderer_to_system(*(undefined8 *)(render_context + 0x140));
+  register_renderer_to_system(*(uint64_t *)(render_context + 0x140));
   
   // 标记渲染系统为已初始化
-  *(undefined1 *)(_DAT_180c868d0 + 0x2028) = 1;
+  *(int8_t *)(_DAT_180c868d0 + 0x2028) = 1;
   
   // 执行渲染器初始化完成回调
   complete_renderer_initialization(message_handler);
@@ -223,13 +223,13 @@ void initialize_render_system(longlong render_context, undefined8 *init_params)
  */
 void enumerate_display_monitors(longlong display_context)
 {
-  undefined8 *monitor_start;
-  undefined8 *monitor_end;
-  undefined8 device_context;
+  uint64_t *monitor_start;
+  uint64_t *monitor_end;
+  uint64_t device_context;
   
   // 获取监视器列表范围
-  monitor_start = *(undefined8 **)(display_context + 0x20);
-  monitor_end = *(undefined8 **)(display_context + 0x18);
+  monitor_start = *(uint64_t **)(display_context + 0x20);
+  monitor_end = *(uint64_t **)(display_context + 0x18);
   
   // 初始化监视器列表
   if (monitor_end != monitor_start) {
@@ -237,11 +237,11 @@ void enumerate_display_monitors(longlong display_context)
       *monitor_end = &UNK_18098bcb0;  // 设置为空指针
       monitor_end = monitor_end + 0xe;  // 移动到下一个监视器
     } while (monitor_end != monitor_start);
-    monitor_end = *(undefined8 **)(display_context + 0x18);
+    monitor_end = *(uint64_t **)(display_context + 0x18);
   }
   
   // 重置监视器列表指针
-  *(undefined8 **)(display_context + 0x20) = monitor_end;
+  *(uint64_t **)(display_context + 0x20) = monitor_end;
   
   // 获取设备上下文
   device_context = GetDC(0);
@@ -260,9 +260,9 @@ void enumerate_display_monitors(longlong display_context)
  * @param monitor_info 监视器信息
  * @return 成功返回1，失败返回0
  */
-undefined8 add_monitor_to_system(longlong display_context, longlong monitor_info)
+uint64_t add_monitor_to_system(longlong display_context, longlong monitor_info)
 {
-  undefined8 *system_handler;
+  uint64_t *system_handler;
   code *monitor_callback;
   longlong *monitor_object;
   longlong *object_ptr;
@@ -283,13 +283,13 @@ undefined8 add_monitor_to_system(longlong display_context, longlong monitor_info
   set_monitor_info(monitor_object, display_context, monitor_info);
   
   // 注册监视器到系统
-  register_monitor_to_system(*(undefined8 **)(display_context + 0x140));
+  register_monitor_to_system(*(uint64_t **)(display_context + 0x140));
   
   // 执行监视器添加回调
-  execute_monitor_add_callback(*(undefined8 **)(display_context + 0x140));
+  execute_monitor_add_callback(*(uint64_t **)(display_context + 0x140));
   
   // 清理临时对象
-  cleanup_temporary_object(*(undefined8 *)(display_context + 0x140));
+  cleanup_temporary_object(*(uint64_t *)(display_context + 0x140));
   
   // 完成监视器添加
   complete_monitor_addition(monitor_object);
@@ -305,9 +305,9 @@ undefined8 add_monitor_to_system(longlong display_context, longlong monitor_info
  * @param config_data 配置数据
  * @return 成功返回1，失败返回0
  */
-undefined8 update_monitor_configuration(longlong display_context, undefined8 config_data)
+uint64_t update_monitor_configuration(longlong display_context, uint64_t config_data)
 {
-  undefined8 *system_handler;
+  uint64_t *system_handler;
   code *update_callback;
   longlong *config_object;
   longlong *object_array[2];
@@ -330,13 +330,13 @@ undefined8 update_monitor_configuration(longlong display_context, undefined8 con
   set_config_params(config_object, display_context, config_data);
   
   // 注册配置到系统
-  register_config_to_system(*(undefined8 **)(display_context + 0x140));
+  register_config_to_system(*(uint64_t **)(display_context + 0x140));
   
   // 执行配置更新
-  execute_config_update(*(undefined8 **)(display_context + 0x140), object_array);
+  execute_config_update(*(uint64_t **)(display_context + 0x140), object_array);
   
   // 清理临时对象
-  cleanup_temporary_object(*(undefined8 *)(display_context + 0x140));
+  cleanup_temporary_object(*(uint64_t *)(display_context + 0x140));
   
   // 应用配置更新
   apply_config_update(config_data, display_context + 0x148);
@@ -355,7 +355,7 @@ undefined8 update_monitor_configuration(longlong display_context, undefined8 con
  */
 void refresh_monitor_display(longlong display_context)
 {
-  undefined8 *system_handler;
+  uint64_t *system_handler;
   code *refresh_callback;
   longlong *refresh_object;
   longlong *object_ptr;
@@ -372,13 +372,13 @@ void refresh_monitor_display(longlong display_context)
   set_refresh_params(refresh_object, display_context);
   
   // 注册刷新到系统
-  register_refresh_to_system(*(undefined8 **)(display_context + 0x140));
+  register_refresh_to_system(*(uint64_t **)(display_context + 0x140));
   
   // 执行刷新操作
-  execute_refresh_operation(*(undefined8 **)(display_context + 0x140), &object_ptr);
+  execute_refresh_operation(*(uint64_t **)(display_context + 0x140), &object_ptr);
   
   // 清理临时对象
-  cleanup_temporary_object(*(undefined8 *)(display_context + 0x140));
+  cleanup_temporary_object(*(uint64_t *)(display_context + 0x140));
   
   // 完成刷新操作
   complete_refresh_operation(refresh_object);
@@ -394,7 +394,7 @@ void refresh_monitor_display(longlong display_context)
  */
 void reset_monitor_state(longlong display_context)
 {
-  undefined8 *system_handler;
+  uint64_t *system_handler;
   code *reset_callback;
   longlong *reset_object;
   longlong *object_ptr;
@@ -411,13 +411,13 @@ void reset_monitor_state(longlong display_context)
   set_reset_params(reset_object, display_context);
   
   // 注册重置到系统
-  register_reset_to_system(*(undefined8 **)(display_context + 0x140));
+  register_reset_to_system(*(uint64_t **)(display_context + 0x140));
   
   // 执行重置操作
-  execute_reset_operation(*(undefined8 **)(display_context + 0x140), &object_ptr);
+  execute_reset_operation(*(uint64_t **)(display_context + 0x140), &object_ptr);
   
   // 清理临时对象
-  cleanup_temporary_object(*(undefined8 *)(display_context + 0x140));
+  cleanup_temporary_object(*(uint64_t *)(display_context + 0x140));
   
   // 完成重置操作
   complete_reset_operation(reset_object);
@@ -433,7 +433,7 @@ void reset_monitor_state(longlong display_context)
  */
 void calibrate_monitor_color(longlong display_context)
 {
-  undefined8 *system_handler;
+  uint64_t *system_handler;
   code *calibrate_callback;
   longlong *calibrate_object;
   longlong *object_ptr;
@@ -450,13 +450,13 @@ void calibrate_monitor_color(longlong display_context)
   set_calibrate_params(calibrate_object, display_context);
   
   // 注册校准到系统
-  register_calibrate_to_system(*(undefined8 **)(display_context + 0x140));
+  register_calibrate_to_system(*(uint64_t **)(display_context + 0x140));
   
   // 执行校准操作
-  execute_calibrate_operation(*(undefined8 **)(display_context + 0x140), &object_ptr);
+  execute_calibrate_operation(*(uint64_t **)(display_context + 0x140), &object_ptr);
   
   // 清理临时对象
-  cleanup_temporary_object(*(undefined8 *)(display_context + 0x140));
+  cleanup_temporary_object(*(uint64_t *)(display_context + 0x140));
   
   // 完成校准操作
   complete_calibrate_operation(calibrate_object);
@@ -472,16 +472,16 @@ void calibrate_monitor_color(longlong display_context)
  * @param mode_data 模式数据
  * @return 成功返回1，失败返回0
  */
-undefined8 set_monitor_mode(longlong display_context, undefined8 *mode_data)
+uint64_t set_monitor_mode(longlong display_context, uint64_t *mode_data)
 {
-  undefined4 *rect_data;
+  int32_t *rect_data;
   uint buffer_index;
-  undefined4 left;
-  undefined4 top;
-  undefined4 right;
-  undefined4 bottom;
-  undefined4 width;
-  undefined4 height;
+  int32_t left;
+  int32_t top;
+  int32_t right;
+  int32_t bottom;
+  int32_t width;
+  int32_t height;
   ulonglong data_offset;
   
   // 获取当前缓冲区索引
@@ -495,17 +495,17 @@ undefined8 set_monitor_mode(longlong display_context, undefined8 *mode_data)
   data_offset = (ulonglong)(buffer_index & 1);
   
   // 获取窗口矩形数据
-  rect_data = (undefined4 *)(display_context + 0xcc + data_offset * 0x48);
+  rect_data = (int32_t *)(display_context + 0xcc + data_offset * 0x48);
   left = *rect_data;
   top = rect_data[1];
   right = rect_data[2];
   bottom = rect_data[3];
   
   // 存储矩形数据到输出
-  *(undefined4 *)mode_data = left;
-  *(undefined4 *)(mode_data + 1) = right;
-  *(undefined4 *)((longlong)mode_data + 4) = top;
-  *(undefined4 *)((longlong)mode_data + 0xc) = bottom;
+  *(int32_t *)mode_data = left;
+  *(int32_t *)(mode_data + 1) = right;
+  *(int32_t *)((longlong)mode_data + 4) = top;
+  *(int32_t *)((longlong)mode_data + 0xc) = bottom;
   
   return mode_data;
 }
@@ -518,13 +518,13 @@ undefined8 set_monitor_mode(longlong display_context, undefined8 *mode_data)
  * @param setting_id 设置标识符
  * @param setting_data 设置数据
  */
-void apply_monitor_settings(longlong display_context, undefined4 setting_id, undefined4 *setting_data)
+void apply_monitor_settings(longlong display_context, int32_t setting_id, int32_t *setting_data)
 {
-  undefined8 *system_handler;
+  uint64_t *system_handler;
   code *apply_callback;
-  undefined4 data1;
-  undefined4 data2;
-  undefined4 data3;
+  int32_t data1;
+  int32_t data2;
+  int32_t data3;
   longlong *setting_object;
   longlong *object_ptr;
   
@@ -542,19 +542,19 @@ void apply_monitor_settings(longlong display_context, undefined4 setting_id, und
   data1 = setting_data[1];
   data2 = setting_data[2];
   data3 = setting_data[3];
-  *(undefined4 *)((longlong)setting_object + 0x34) = *setting_data;
-  *(undefined4 *)(setting_object + 7) = data1;
-  *(undefined4 *)((longlong)setting_object + 0x3c) = data2;
-  *(undefined4 *)(setting_object + 8) = data3;
+  *(int32_t *)((longlong)setting_object + 0x34) = *setting_data;
+  *(int32_t *)(setting_object + 7) = data1;
+  *(int32_t *)((longlong)setting_object + 0x3c) = data2;
+  *(int32_t *)(setting_object + 8) = data3;
   
   // 注册设置到系统
-  register_setting_to_system(*(undefined8 **)(display_context + 0x140));
+  register_setting_to_system(*(uint64_t **)(display_context + 0x140));
   
   // 执行设置应用
-  execute_setting_application(*(undefined8 **)(display_context + 0x140), &object_ptr);
+  execute_setting_application(*(uint64_t **)(display_context + 0x140), &object_ptr);
   
   // 清理临时对象
-  cleanup_temporary_object(*(undefined8 *)(display_context + 0x140));
+  cleanup_temporary_object(*(uint64_t *)(display_context + 0x140));
   
   // 完成设置应用
   complete_setting_application(setting_object);
@@ -611,13 +611,13 @@ int * get_system_metrics(longlong display_context, int *metrics_output)
  * @param config_data 配置数据
  * @return 成功返回1，失败返回0
  */
-undefined8 configure_monitor_parameters(longlong display_context, undefined4 *config_data)
+uint64_t configure_monitor_parameters(longlong display_context, int32_t *config_data)
 {
-  undefined8 *system_handler;
+  uint64_t *system_handler;
   code *config_callback;
-  undefined4 param1;
-  undefined4 param2;
-  undefined4 param3;
+  int32_t param1;
+  int32_t param2;
+  int32_t param3;
   longlong *config_object;
   longlong *object_ptr;
   longlong **ptr_array;
@@ -634,25 +634,25 @@ undefined8 configure_monitor_parameters(longlong display_context, undefined4 *co
   set_config_params(config_object, display_context);
   
   // 检查是否有配置数据
-  if (config_data == (undefined4 *)0x0) {
-    *(undefined1 *)(config_object + 6) = 0;
+  if (config_data == (int32_t *)0x0) {
+    *(int8_t *)(config_object + 6) = 0;
   }
   else {
-    *(undefined1 *)(config_object + 6) = 1;
+    *(int8_t *)(config_object + 6) = 1;
     param1 = config_data[1];
     param2 = config_data[2];
     param3 = config_data[3];
-    *(undefined4 *)((longlong)config_object + 0x34) = *config_data;
-    *(undefined4 *)(config_object + 7) = param1;
-    *(undefined4 *)((longlong)config_object + 0x3c) = param2;
-    *(undefined4 *)(config_object + 8) = param3;
+    *(int32_t *)((longlong)config_object + 0x34) = *config_data;
+    *(int32_t *)(config_object + 7) = param1;
+    *(int32_t *)((longlong)config_object + 0x3c) = param2;
+    *(int32_t *)(config_object + 8) = param3;
   }
   
   // 注册配置到系统
-  register_config_to_system(*(undefined8 **)(display_context + 0x140));
+  register_config_to_system(*(uint64_t **)(display_context + 0x140));
   
   // 执行配置操作
-  execute_configuration(*(undefined8 **)(display_context + 0x140), &object_ptr);
+  execute_configuration(*(uint64_t **)(display_context + 0x140), &object_ptr);
   
   // 完成配置操作
   complete_configuration(config_object);
@@ -668,18 +668,18 @@ undefined8 configure_monitor_parameters(longlong display_context, undefined4 *co
  * @param cursor_type 光标类型
  * @return 成功返回1，失败返回0
  */
-undefined1 set_cursor_shape(longlong display_context, undefined4 cursor_type)
+int8_t set_cursor_shape(longlong display_context, int32_t cursor_type)
 {
-  undefined1 result;
+  int8_t result;
   int main_thread_id;
-  undefined8 *system_handler;
+  uint64_t *system_handler;
   code *cursor_callback;
   int handler_thread_id;
   longlong *cursor_object;
-  undefined8 cursor_pos;
+  uint64_t cursor_pos;
   longlong *object_ptr;
   ulonglong screen_pos;
-  undefined8 thread_id;
+  uint64_t thread_id;
   
   thread_id = 0xfffffffffffffffe;
   
@@ -699,13 +699,13 @@ undefined1 set_cursor_shape(longlong display_context, undefined4 cursor_type)
     set_cursor_params(cursor_object, display_context, cursor_type);
     
     // 注册光标到系统
-    register_cursor_to_system(*(undefined8 **)(display_context + 0x140));
+    register_cursor_to_system(*(uint64_t **)(display_context + 0x140));
     
     // 执行光标设置
-    execute_cursor_setting(*(undefined8 **)(display_context + 0x140), &object_ptr);
+    execute_cursor_setting(*(uint64_t **)(display_context + 0x140), &object_ptr);
     
     // 获取设置结果
-    result = *(undefined1 *)(display_context + 0x168);
+    result = *(int8_t *)(display_context + 0x168);
     
     // 完成光标设置
     complete_cursor_setting(cursor_object);
@@ -716,7 +716,7 @@ undefined1 set_cursor_shape(longlong display_context, undefined4 cursor_type)
   // 在主线程中直接设置光标
   GetCursorPos(&screen_pos);
   cursor_pos = (longlong **)screen_pos;
-  ScreenToClient(*(undefined8 *)(display_context + 8), &cursor_pos);
+  ScreenToClient(*(uint64_t *)(display_context + 8), &cursor_pos);
   
   // 检查鼠标是否在窗口范围内
   if ((-1 < (int)cursor_pos) && ((float)(int)cursor_pos < *(float *)(_DAT_180c86950 + 0x17ec))) {
@@ -724,40 +724,40 @@ undefined1 set_cursor_shape(longlong display_context, undefined4 cursor_type)
       // 根据光标类型设置相应的光标
       switch(cursor_type) {
       case 0:
-        SetCursor(*(undefined8 *)(display_context + 0x88));
+        SetCursor(*(uint64_t *)(display_context + 0x88));
         return 1;
       case 1:
-        SetCursor(*(undefined8 *)(display_context + 0x40));
+        SetCursor(*(uint64_t *)(display_context + 0x40));
         return 1;
       case 2:
-        SetCursor(*(undefined8 *)(display_context + 0x50));
+        SetCursor(*(uint64_t *)(display_context + 0x50));
         return 1;
       case 3:
-        SetCursor(*(undefined8 *)(display_context + 0x58));
+        SetCursor(*(uint64_t *)(display_context + 0x58));
         return 1;
       case 4:
-        SetCursor(*(undefined8 *)(display_context + 0x60));
+        SetCursor(*(uint64_t *)(display_context + 0x60));
         return 1;
       case 5:
-        SetCursor(*(undefined8 *)(display_context + 0x68));
+        SetCursor(*(uint64_t *)(display_context + 0x68));
         return 1;
       case 6:
-        SetCursor(*(undefined8 *)(display_context + 0x70));
+        SetCursor(*(uint64_t *)(display_context + 0x70));
         return 1;
       case 7:
-        SetCursor(*(undefined8 *)(display_context + 0x78));
+        SetCursor(*(uint64_t *)(display_context + 0x78));
         return 1;
       case 8:
-        SetCursor(*(undefined8 *)(display_context + 0x80));
+        SetCursor(*(uint64_t *)(display_context + 0x80));
         return 1;
       case 9:
-        SetCursor(*(undefined8 *)(display_context + 0x90));
+        SetCursor(*(uint64_t *)(display_context + 0x90));
         return 1;
       case 10:
-        SetCursor(*(undefined8 *)(display_context + 0x98));
+        SetCursor(*(uint64_t *)(display_context + 0x98));
         return 1;
       case 0xb:
-        SetCursor(*(undefined8 *)(display_context + 0x48));
+        SetCursor(*(uint64_t *)(display_context + 0x48));
       }
       return 1;
     }
@@ -774,15 +774,15 @@ undefined1 set_cursor_shape(longlong display_context, undefined4 cursor_type)
  * @param show_flag 显示标志（0=隐藏，1=显示）
  * @param cursor_type 光标类型
  */
-void control_cursor_visibility(longlong display_context, char show_flag, undefined4 cursor_type)
+void control_cursor_visibility(longlong display_context, char show_flag, int32_t cursor_type)
 {
-  undefined8 *system_handler;
+  uint64_t *system_handler;
   code *cursor_callback;
   int main_thread_id;
   int handler_thread_id;
   longlong *cursor_object;
   longlong *object_ptr;
-  undefined8 thread_id;
+  uint64_t thread_id;
   
   thread_id = 0xfffffffffffffffe;
   
@@ -821,10 +821,10 @@ void control_cursor_visibility(longlong display_context, char show_flag, undefin
     set_cursor_control_params(cursor_object, display_context, show_flag, cursor_type);
     
     // 注册光标控制到系统
-    register_cursor_control_to_system(*(undefined8 **)(display_context + 0x140));
+    register_cursor_control_to_system(*(uint64_t **)(display_context + 0x140));
     
     // 执行光标控制
-    execute_cursor_control(*(undefined8 **)(display_context + 0x140), &object_ptr);
+    execute_cursor_control(*(uint64_t **)(display_context + 0x140), &object_ptr);
     
     // 完成光标控制
     complete_cursor_control(cursor_object);
@@ -841,9 +841,9 @@ void control_cursor_visibility(longlong display_context, char show_flag, undefin
  * @param property_id 属性标识符
  * @param property_value 属性值
  */
-void set_monitor_property(longlong display_context, undefined4 property_id, longlong property_value)
+void set_monitor_property(longlong display_context, int32_t property_id, longlong property_value)
 {
-  undefined8 *system_handler;
+  uint64_t *system_handler;
   code *property_callback;
   longlong *property_object;
   longlong *object_ptr;
@@ -862,13 +862,13 @@ void set_monitor_property(longlong display_context, undefined4 property_id, long
   set_property_value(property_object, property_value);
   
   // 注册属性到系统
-  register_property_to_system(*(undefined8 **)(display_context + 0x140));
+  register_property_to_system(*(uint64_t **)(display_context + 0x140));
   
   // 执行属性设置
-  execute_property_setting(*(undefined8 **)(display_context + 0x140), &object_ptr);
+  execute_property_setting(*(uint64_t **)(display_context + 0x140), &object_ptr);
   
   // 清理临时对象
-  cleanup_temporary_object(*(undefined8 *)(display_context + 0x140));
+  cleanup_temporary_object(*(uint64_t *)(display_context + 0x140));
   
   // 完成属性设置
   complete_property_setting(property_object);
@@ -885,9 +885,9 @@ void set_monitor_property(longlong display_context, undefined4 property_id, long
  * @param state_value 状态值
  * @param update_flag 更新标志
  */
-void update_monitor_status(longlong display_context, undefined4 state_id, undefined4 state_value, undefined1 update_flag)
+void update_monitor_status(longlong display_context, int32_t state_id, int32_t state_value, int8_t update_flag)
 {
-  undefined8 *system_handler;
+  uint64_t *system_handler;
   code *status_callback;
   longlong *status_object;
   longlong *object_ptr;
@@ -909,13 +909,13 @@ void update_monitor_status(longlong display_context, undefined4 state_id, undefi
   set_update_flag(status_object, update_flag);
   
   // 注册状态到系统
-  register_status_to_system(*(undefined8 **)(display_context + 0x140));
+  register_status_to_system(*(uint64_t **)(display_context + 0x140));
   
   // 执行状态更新
-  execute_status_update(*(undefined8 **)(display_context + 0x140), &object_ptr);
+  execute_status_update(*(uint64_t **)(display_context + 0x140), &object_ptr);
   
   // 清理临时对象
-  cleanup_temporary_object(*(undefined8 *)(display_context + 0x140));
+  cleanup_temporary_object(*(uint64_t *)(display_context + 0x140));
   
   // 完成状态更新
   complete_status_update(status_object);
@@ -930,9 +930,9 @@ void update_monitor_status(longlong display_context, undefined4 state_id, undefi
  * @param display_context 显示上下文指针
  * @param event_data 事件数据
  */
-void register_monitor_event(longlong display_context, undefined8 event_data)
+void register_monitor_event(longlong display_context, uint64_t event_data)
 {
-  undefined8 *system_handler;
+  uint64_t *system_handler;
   code *event_callback;
   longlong *event_object;
   longlong *object_array[2];
@@ -953,10 +953,10 @@ void register_monitor_event(longlong display_context, undefined8 event_data)
   apply_event_data(display_context + 0x148, event_data);
   
   // 注册事件到系统
-  register_event_to_system(*(undefined8 **)(display_context + 0x140));
+  register_event_to_system(*(uint64_t **)(display_context + 0x140));
   
   // 执行事件注册
-  execute_event_registration(*(undefined8 **)(display_context + 0x140), object_array);
+  execute_event_registration(*(uint64_t **)(display_context + 0x140), object_array);
   
   // 完成事件注册
   complete_event_registration(event_object);

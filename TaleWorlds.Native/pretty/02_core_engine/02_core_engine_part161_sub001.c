@@ -18,7 +18,7 @@ void resize_and_copy_array(longlong param_1, longlong *param_2, longlong param_3
   ulonglong uVar5;
   longlong unaff_RSI;
   longlong *unaff_RDI;
-  undefined *puVar6;
+  void *puVar6;
   
   lVar2 = *param_2;
   lVar1 = param_2[1];
@@ -60,12 +60,12 @@ void resize_and_copy_array(longlong param_1, longlong *param_2, longlong param_3
   }
   FUN_18014e160(unaff_RDI + 4, unaff_RSI + 0x20);
   if (unaff_RDI + 8 != (longlong *)(unaff_RSI + 0x40)) {
-    FUN_18014eff0(unaff_RDI + 8, *(longlong *)(unaff_RSI + 0x40), *(undefined8 *)(unaff_RSI + 0x48));
+    FUN_18014eff0(unaff_RDI + 8, *(longlong *)(unaff_RSI + 0x40), *(uint64_t *)(unaff_RSI + 0x48));
   }
-  *(undefined4 *)(unaff_RDI + 0xe) = *(undefined4 *)(unaff_RSI + 0x70);
+  *(int32_t *)(unaff_RDI + 0xe) = *(int32_t *)(unaff_RSI + 0x70);
   puVar6 = &DAT_18098bc73;
-  if (*(undefined **)(unaff_RSI + 0x68) != (undefined *)0x0) {
-    puVar6 = *(undefined **)(unaff_RSI + 0x68);
+  if (*(void **)(unaff_RSI + 0x68) != (void *)0x0) {
+    puVar6 = *(void **)(unaff_RSI + 0x68);
   }
   // WARNING: Could not recover jumptable at 0x00018014afdc. Too many branches
   // WARNING: Treating indirect jump as call
@@ -88,7 +88,7 @@ void initialize_array_with_defaults(void)
   longlong unaff_RBX;
   longlong unaff_RSI;
   longlong *unaff_RDI;
-  undefined *puVar2;
+  void *puVar2;
   longlong unaff_R14;
   longlong unaff_R15;
   
@@ -112,12 +112,12 @@ void initialize_array_with_defaults(void)
   unaff_RDI[2] = lVar1;
   FUN_18014e160(unaff_RDI + 4, unaff_RSI + 0x20);
   if (unaff_RDI + 8 != (longlong *)(unaff_RSI + 0x40)) {
-    FUN_18014eff0(unaff_RDI + 8, *(longlong *)(unaff_RSI + 0x40), *(undefined8 *)(unaff_RSI + 0x48));
+    FUN_18014eff0(unaff_RDI + 8, *(longlong *)(unaff_RSI + 0x40), *(uint64_t *)(unaff_RSI + 0x48));
   }
-  *(undefined4 *)(unaff_RDI + 0xe) = *(undefined4 *)(unaff_RSI + 0x70);
+  *(int32_t *)(unaff_RDI + 0xe) = *(int32_t *)(unaff_RSI + 0x70);
   puVar2 = &DAT_18098bc73;
-  if (*(undefined **)(unaff_RSI + 0x68) != (undefined *)0x0) {
-    puVar2 = *(undefined **)(unaff_RSI + 0x68);
+  if (*(void **)(unaff_RSI + 0x68) != (void *)0x0) {
+    puVar2 = *(void **)(unaff_RSI + 0x68);
   }
   // WARNING: Could not recover jumptable at 0x00018014afdc. Too many branches
   // WARNING: Treating indirect jump as call
@@ -129,18 +129,18 @@ void initialize_array_with_defaults(void)
 
 
 
-// 函数: void FUN_18014af28(undefined8 param_1,undefined8 param_2,longlong param_3,longlong param_4)
+// 函数: void FUN_18014af28(uint64_t param_1,uint64_t param_2,longlong param_3,longlong param_4)
 // 功能: 调整缓冲区大小并处理数据迁移
-void adjust_buffer_size(undefined8 param_1, undefined8 param_2, longlong param_3, longlong param_4)
+void adjust_buffer_size(uint64_t param_1, uint64_t param_2, longlong param_3, longlong param_4)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   longlong lVar2;
   ulonglong uVar3;
   ulonglong unaff_RBX;
   longlong unaff_RSI;
   longlong unaff_RDI;
-  undefined *puVar4;
+  void *puVar4;
   longlong unaff_R14;
   
   lVar2 = SUB168(SEXT816(param_4) * SEXT816(*(longlong *)(unaff_RDI + 8) - param_3), 8);
@@ -152,20 +152,20 @@ void adjust_buffer_size(undefined8 param_1, undefined8 param_2, longlong param_3
   else {
     uVar1 = FUN_18014fb60();
   }
-  *(undefined8 *)(unaff_RDI + 8) = uVar1;
+  *(uint64_t *)(unaff_RDI + 8) = uVar1;
   FUN_18014e160(unaff_RDI + 0x20, unaff_RSI + 0x20);
-  if ((undefined8 *)(unaff_RDI + 0x40) != (undefined8 *)(unaff_RSI + 0x40)) {
-    FUN_18014eff0((undefined8 *)(unaff_RDI + 0x40), *(undefined8 *)(unaff_RSI + 0x40),
-                  *(undefined8 *)(unaff_RSI + 0x48));
+  if ((uint64_t *)(unaff_RDI + 0x40) != (uint64_t *)(unaff_RSI + 0x40)) {
+    FUN_18014eff0((uint64_t *)(unaff_RDI + 0x40), *(uint64_t *)(unaff_RSI + 0x40),
+                  *(uint64_t *)(unaff_RSI + 0x48));
   }
-  *(undefined4 *)(unaff_RDI + 0x70) = *(undefined4 *)(unaff_RSI + 0x70);
+  *(int32_t *)(unaff_RDI + 0x70) = *(int32_t *)(unaff_RSI + 0x70);
   puVar4 = &DAT_18098bc73;
-  if (*(undefined **)(unaff_RSI + 0x68) != (undefined *)0x0) {
-    puVar4 = *(undefined **)(unaff_RSI + 0x68);
+  if (*(void **)(unaff_RSI + 0x68) != (void *)0x0) {
+    puVar4 = *(void **)(unaff_RSI + 0x68);
   }
   // WARNING: Could not recover jumptable at 0x00018014afdc. Too many branches
   // WARNING: Treating indirect jump as call
-  strcpy_s(*(undefined8 *)(unaff_RDI + 0x68), 0x80, puVar4);
+  strcpy_s(*(uint64_t *)(unaff_RDI + 0x68), 0x80, puVar4);
   return;
 }
 
@@ -180,21 +180,21 @@ void copy_structure_data(void)
 {
   longlong unaff_RSI;
   longlong unaff_RDI;
-  undefined *puVar1;
+  void *puVar1;
   
   FUN_18014e160(unaff_RDI + 0x20, unaff_RSI + 0x20);
-  if ((undefined8 *)(unaff_RDI + 0x40) != (undefined8 *)(unaff_RSI + 0x40)) {
-    FUN_18014eff0((undefined8 *)(unaff_RDI + 0x40), *(undefined8 *)(unaff_RSI + 0x40),
-                  *(undefined8 *)(unaff_RSI + 0x48));
+  if ((uint64_t *)(unaff_RDI + 0x40) != (uint64_t *)(unaff_RSI + 0x40)) {
+    FUN_18014eff0((uint64_t *)(unaff_RDI + 0x40), *(uint64_t *)(unaff_RSI + 0x40),
+                  *(uint64_t *)(unaff_RSI + 0x48));
   }
-  *(undefined4 *)(unaff_RDI + 0x70) = *(undefined4 *)(unaff_RSI + 0x70);
+  *(int32_t *)(unaff_RDI + 0x70) = *(int32_t *)(unaff_RSI + 0x70);
   puVar1 = &DAT_18098bc73;
-  if (*(undefined **)(unaff_RSI + 0x68) != (undefined *)0x0) {
-    puVar1 = *(undefined **)(unaff_RSI + 0x68);
+  if (*(void **)(unaff_RSI + 0x68) != (void *)0x0) {
+    puVar1 = *(void **)(unaff_RSI + 0x68);
   }
   // WARNING: Could not recover jumptable at 0x00018014afdc. Too many branches
   // WARNING: Treating indirect jump as call
-  strcpy_s(*(undefined8 *)(unaff_RDI + 0x68), 0x80, puVar1);
+  strcpy_s(*(uint64_t *)(unaff_RDI + 0x68), 0x80, puVar1);
   return;
 }
 
@@ -202,9 +202,9 @@ void copy_structure_data(void)
 
 
 
-// 函数: void FUN_18014aff0(undefined8 *param_1)
+// 函数: void FUN_18014aff0(uint64_t *param_1)
 // 功能: 计算边界框并更新相关数据
-void calculate_bounding_box(undefined8 *param_1)
+void calculate_bounding_box(uint64_t *param_1)
 
 {
   float fVar1;
@@ -224,29 +224,29 @@ void calculate_bounding_box(undefined8 *param_1)
   float fStack_d8;
   float fStack_d4;
   float fStack_d0;
-  undefined4 uStack_cc;
+  int32_t uStack_cc;
   float fStack_c8;
   float fStack_c4;
   float fStack_c0;
   float fStack_b8;
   float fStack_b4;
   float fStack_b0;
-  undefined4 uStack_ac;
+  int32_t uStack_ac;
   float fStack_a8;
   float fStack_a4;
   float fStack_a0;
-  undefined4 uStack_9c;
+  int32_t uStack_9c;
   float fStack_98;
   float fStack_94;
   float fStack_90;
-  undefined4 uStack_8c;
+  int32_t uStack_8c;
   float fStack_88;
   float fStack_84;
   float fStack_80;
-  undefined4 uStack_7c;
-  undefined8 uStack_78;
-  undefined8 uStack_70;
-  undefined4 uStack_68;
+  int32_t uStack_7c;
+  uint64_t uStack_78;
+  uint64_t uStack_70;
+  int32_t uStack_68;
   ulonglong uVar11;
   
   uVar9 = 0;
@@ -453,7 +453,7 @@ void calculate_bounding_box(undefined8 *param_1)
   param_1[0x22] = CONCAT44(uStack_7c, fStack_80);
   param_1[0x23] = uStack_78;
   param_1[0x24] = uStack_70;
-  *(undefined4 *)(param_1 + 0x25) = uStack_68;
+  *(int32_t *)(param_1 + 0x25) = uStack_68;
   return;
 }
 
@@ -461,29 +461,29 @@ void calculate_bounding_box(undefined8 *param_1)
 
 
 
-// 函数: void FUN_18014b01e(undefined8 param_1,longlong param_2,undefined8 param_3)
+// 函数: void FUN_18014b01e(uint64_t param_1,longlong param_2,uint64_t param_3)
 // 功能: 处理边界框数据的详细计算和更新
-void process_bounding_box_data(undefined8 param_1, longlong param_2, undefined8 param_3)
+void process_bounding_box_data(uint64_t param_1, longlong param_2, uint64_t param_3)
 
 {
   float fVar1;
   longlong lVar2;
   longlong lVar3;
-  undefined8 uVar4;
-  undefined8 uVar5;
-  undefined8 uVar6;
-  undefined8 uVar7;
+  uint64_t uVar4;
+  uint64_t uVar5;
+  uint64_t uVar6;
+  uint64_t uVar7;
   longlong in_RAX;
   longlong in_RCX;
   float *pfVar8;
   uint uVar9;
   longlong lVar10;
   ulonglong uVar11;
-  undefined8 unaff_RBX;
+  uint64_t unaff_RBX;
   longlong lVar12;
   longlong unaff_RBP;
-  undefined8 *unaff_RSI;
-  undefined8 unaff_RDI;
+  uint64_t *unaff_RSI;
+  uint64_t unaff_RDI;
   ulonglong uVar13;
   ulonglong uVar14;
   int in_R10D;
@@ -491,32 +491,32 @@ void process_bounding_box_data(undefined8 param_1, longlong param_2, undefined8 
   float fVar15;
   float fVar16;
   float fVar17;
-  undefined4 in_XMM0_Dc;
-  undefined4 in_XMM0_Dd;
+  int32_t in_XMM0_Dc;
+  int32_t in_XMM0_Dd;
   float fVar18;
   float fVar19;
-  undefined4 uVar20;
+  int32_t uVar20;
   float fVar21;
   float fVar22;
-  undefined4 uVar23;
-  undefined4 in_XMM2_Dc;
-  undefined4 in_XMM2_Dd;
+  int32_t uVar23;
+  int32_t in_XMM2_Dc;
+  int32_t in_XMM2_Dd;
   float fVar24;
   float fVar25;
   
-  uVar23 = (undefined4)((ulonglong)param_3 >> 0x20);
-  uVar20 = (undefined4)param_3;
-  *(undefined8 *)(in_RAX + 8) = unaff_RBX;
-  *(undefined8 *)(in_RAX + 0x10) = unaff_RDI;
+  uVar23 = (int32_t)((ulonglong)param_3 >> 0x20);
+  uVar20 = (int32_t)param_3;
+  *(uint64_t *)(in_RAX + 8) = unaff_RBX;
+  *(uint64_t *)(in_RAX + 0x10) = unaff_RDI;
   lVar2 = *(longlong *)(in_RCX + 0x40);
-  *(undefined4 *)(unaff_RBP + -0x69) = uVar20;
-  *(undefined4 *)(unaff_RBP + -0x65) = uVar23;
-  *(undefined4 *)(unaff_RBP + -0x61) = in_XMM2_Dc;
-  *(undefined4 *)(unaff_RBP + -0x5d) = in_XMM2_Dd;
+  *(int32_t *)(unaff_RBP + -0x69) = uVar20;
+  *(int32_t *)(unaff_RBP + -0x65) = uVar23;
+  *(int32_t *)(unaff_RBP + -0x61) = in_XMM2_Dc;
+  *(int32_t *)(unaff_RBP + -0x5d) = in_XMM2_Dd;
   *(int *)(unaff_RBP + -0x79) = (int)param_1;
   *(int *)(unaff_RBP + -0x75) = (int)((ulonglong)param_1 >> 0x20);
-  *(undefined4 *)(unaff_RBP + -0x71) = in_XMM0_Dc;
-  *(undefined4 *)(unaff_RBP + -0x6d) = in_XMM0_Dd;
+  *(int32_t *)(unaff_RBP + -0x71) = in_XMM0_Dc;
+  *(int32_t *)(unaff_RBP + -0x6d) = in_XMM0_Dd;
   lVar10 = param_2 - lVar2 >> 0x3f;
   lVar12 = (param_2 - lVar2) / 0x88 + lVar10;
   if (lVar12 != lVar10) {
@@ -549,8 +549,8 @@ void process_bounding_box_data(undefined8 param_1, longlong param_2, undefined8 
           else {
             *(float *)(unaff_RBP + -0x51) = fVar17;
           }
-          *(undefined8 *)(unaff_RBP + -0x79) = *(undefined8 *)(unaff_RBP + -0x59);
-          *(undefined8 *)(unaff_RBP + -0x71) = *(undefined8 *)(unaff_RBP + -0x51);
+          *(uint64_t *)(unaff_RBP + -0x79) = *(uint64_t *)(unaff_RBP + -0x59);
+          *(uint64_t *)(unaff_RBP + -0x71) = *(uint64_t *)(unaff_RBP + -0x51);
           if (fVar18 <= *(float *)(unaff_RBP + -0x69)) {
             *(float *)(unaff_RBP + -0x49) = *(float *)(unaff_RBP + -0x69);
           }
@@ -569,17 +569,17 @@ void process_bounding_box_data(undefined8 param_1, longlong param_2, undefined8 
           else {
             *(float *)(unaff_RBP + -0x41) = fVar17;
           }
-          uVar20 = *(undefined4 *)(unaff_RBP + -0x49);
-          uVar23 = *(undefined4 *)(unaff_RBP + -0x45);
-          in_XMM2_Dc = *(undefined4 *)(unaff_RBP + -0x41);
-          in_XMM2_Dd = *(undefined4 *)(unaff_RBP + -0x3d);
+          uVar20 = *(int32_t *)(unaff_RBP + -0x49);
+          uVar23 = *(int32_t *)(unaff_RBP + -0x45);
+          in_XMM2_Dc = *(int32_t *)(unaff_RBP + -0x41);
+          in_XMM2_Dd = *(int32_t *)(unaff_RBP + -0x3d);
           uVar9 = (int)uVar11 + 1;
           uVar11 = (ulonglong)uVar9;
           pfVar8 = pfVar8 + 4;
-          *(undefined4 *)(unaff_RBP + -0x69) = uVar20;
-          *(undefined4 *)(unaff_RBP + -0x65) = uVar23;
-          *(undefined4 *)(unaff_RBP + -0x61) = in_XMM2_Dc;
-          *(undefined4 *)(unaff_RBP + -0x5d) = in_XMM2_Dd;
+          *(int32_t *)(unaff_RBP + -0x69) = uVar20;
+          *(int32_t *)(unaff_RBP + -0x65) = uVar23;
+          *(int32_t *)(unaff_RBP + -0x61) = in_XMM2_Dc;
+          *(int32_t *)(unaff_RBP + -0x5d) = in_XMM2_Dd;
         } while ((ulonglong)(longlong)(int)uVar9 < uVar13);
       }
       in_R10D = in_R10D + 1;
@@ -635,8 +635,8 @@ void process_bounding_box_data(undefined8 param_1, longlong param_2, undefined8 
       if (fVar19 <= fVar25) {
         fVar19 = fVar25;
       }
-      *(undefined8 *)(unaff_RBP + -0x79) = *(undefined8 *)(unaff_RBP + -0x49);
-      *(undefined8 *)(unaff_RBP + -0x71) = *(undefined8 *)(unaff_RBP + -0x41);
+      *(uint64_t *)(unaff_RBP + -0x79) = *(uint64_t *)(unaff_RBP + -0x49);
+      *(uint64_t *)(unaff_RBP + -0x71) = *(uint64_t *)(unaff_RBP + -0x41);
       if (fVar21 <= fVar1) {
         fVar21 = fVar1;
       }
@@ -658,17 +658,17 @@ void process_bounding_box_data(undefined8 param_1, longlong param_2, undefined8 
       else {
         *(float *)(unaff_RBP + -0x51) = fVar19 + fVar18;
       }
-      uVar20 = *(undefined4 *)(unaff_RBP + -0x59);
-      uVar23 = *(undefined4 *)(unaff_RBP + -0x55);
-      in_XMM2_Dc = *(undefined4 *)(unaff_RBP + -0x51);
-      in_XMM2_Dd = *(undefined4 *)(unaff_RBP + -0x4d);
+      uVar20 = *(int32_t *)(unaff_RBP + -0x59);
+      uVar23 = *(int32_t *)(unaff_RBP + -0x55);
+      in_XMM2_Dc = *(int32_t *)(unaff_RBP + -0x51);
+      in_XMM2_Dd = *(int32_t *)(unaff_RBP + -0x4d);
       uVar9 = (int)uVar14 + 1;
       uVar14 = (ulonglong)uVar9;
       pfVar8 = pfVar8 + 0xc;
-      *(undefined4 *)(unaff_RBP + -0x69) = uVar20;
-      *(undefined4 *)(unaff_RBP + -0x65) = uVar23;
-      *(undefined4 *)(unaff_RBP + -0x61) = in_XMM2_Dc;
-      *(undefined4 *)(unaff_RBP + -0x5d) = in_XMM2_Dd;
+      *(int32_t *)(unaff_RBP + -0x69) = uVar20;
+      *(int32_t *)(unaff_RBP + -0x65) = uVar23;
+      *(int32_t *)(unaff_RBP + -0x61) = in_XMM2_Dc;
+      *(int32_t *)(unaff_RBP + -0x5d) = in_XMM2_Dd;
     } while ((ulonglong)(longlong)(int)uVar9 < (ulonglong)(lVar10 - lVar2));
   }
   lVar2 = unaff_RSI[4];
@@ -702,8 +702,8 @@ void process_bounding_box_data(undefined8 param_1, longlong param_2, undefined8 
         *(float *)(unaff_RBP + -0x41) = fVar21;
       }
       fVar22 = fVar18 + fVar22;
-      *(undefined8 *)(unaff_RBP + -0x79) = *(undefined8 *)(unaff_RBP + -0x49);
-      *(undefined8 *)(unaff_RBP + -0x71) = *(undefined8 *)(unaff_RBP + -0x41);
+      *(uint64_t *)(unaff_RBP + -0x79) = *(uint64_t *)(unaff_RBP + -0x49);
+      *(uint64_t *)(unaff_RBP + -0x71) = *(uint64_t *)(unaff_RBP + -0x41);
       if (fVar22 <= *(float *)(unaff_RBP + -0x69)) {
         *(float *)(unaff_RBP + -0x59) = *(float *)(unaff_RBP + -0x69);
       }
@@ -724,41 +724,41 @@ void process_bounding_box_data(undefined8 param_1, longlong param_2, undefined8 
       else {
         *(float *)(unaff_RBP + -0x51) = fVar18;
       }
-      uVar20 = *(undefined4 *)(unaff_RBP + -0x59);
-      uVar23 = *(undefined4 *)(unaff_RBP + -0x55);
-      in_XMM2_Dc = *(undefined4 *)(unaff_RBP + -0x51);
-      in_XMM2_Dd = *(undefined4 *)(unaff_RBP + -0x4d);
+      uVar20 = *(int32_t *)(unaff_RBP + -0x59);
+      uVar23 = *(int32_t *)(unaff_RBP + -0x55);
+      in_XMM2_Dc = *(int32_t *)(unaff_RBP + -0x51);
+      in_XMM2_Dd = *(int32_t *)(unaff_RBP + -0x4d);
       uVar9 = (int)uVar14 + 1;
       in_R11 = in_R11 + 0x20;
-      *(undefined4 *)(unaff_RBP + -0x69) = uVar20;
-      *(undefined4 *)(unaff_RBP + -0x65) = uVar23;
-      *(undefined4 *)(unaff_RBP + -0x61) = in_XMM2_Dc;
-      *(undefined4 *)(unaff_RBP + -0x5d) = in_XMM2_Dd;
+      *(int32_t *)(unaff_RBP + -0x69) = uVar20;
+      *(int32_t *)(unaff_RBP + -0x65) = uVar23;
+      *(int32_t *)(unaff_RBP + -0x61) = in_XMM2_Dc;
+      *(int32_t *)(unaff_RBP + -0x5d) = in_XMM2_Dd;
       uVar14 = (ulonglong)uVar9;
     } while ((ulonglong)(longlong)(int)uVar9 < uVar11);
   }
-  *(undefined4 *)(unaff_RBP + -0x39) = *(undefined4 *)(unaff_RBP + -0x79);
-  *(undefined4 *)(unaff_RBP + -0x35) = *(undefined4 *)(unaff_RBP + -0x75);
-  *(undefined4 *)(unaff_RBP + -0x31) = *(undefined4 *)(unaff_RBP + -0x71);
-  *(undefined4 *)(unaff_RBP + -0x2d) = *(undefined4 *)(unaff_RBP + -0x6d);
-  *(undefined4 *)(unaff_RBP + -0x29) = uVar20;
-  *(undefined4 *)(unaff_RBP + -0x25) = uVar23;
-  *(undefined4 *)(unaff_RBP + -0x21) = in_XMM2_Dc;
-  *(undefined4 *)(unaff_RBP + -0x1d) = in_XMM2_Dd;
+  *(int32_t *)(unaff_RBP + -0x39) = *(int32_t *)(unaff_RBP + -0x79);
+  *(int32_t *)(unaff_RBP + -0x35) = *(int32_t *)(unaff_RBP + -0x75);
+  *(int32_t *)(unaff_RBP + -0x31) = *(int32_t *)(unaff_RBP + -0x71);
+  *(int32_t *)(unaff_RBP + -0x2d) = *(int32_t *)(unaff_RBP + -0x6d);
+  *(int32_t *)(unaff_RBP + -0x29) = uVar20;
+  *(int32_t *)(unaff_RBP + -0x25) = uVar23;
+  *(int32_t *)(unaff_RBP + -0x21) = in_XMM2_Dc;
+  *(int32_t *)(unaff_RBP + -0x1d) = in_XMM2_Dd;
   FUN_1800b9f60(unaff_RBP + -0x39);
-  uVar4 = *(undefined8 *)(unaff_RBP + -0x31);
-  uVar20 = *(undefined4 *)(unaff_RBP + -9);
-  uVar5 = *(undefined8 *)(unaff_RBP + -0x29);
-  uVar6 = *(undefined8 *)(unaff_RBP + -0x21);
-  unaff_RSI[0x1f] = *(undefined8 *)(unaff_RBP + -0x39);
+  uVar4 = *(uint64_t *)(unaff_RBP + -0x31);
+  uVar20 = *(int32_t *)(unaff_RBP + -9);
+  uVar5 = *(uint64_t *)(unaff_RBP + -0x29);
+  uVar6 = *(uint64_t *)(unaff_RBP + -0x21);
+  unaff_RSI[0x1f] = *(uint64_t *)(unaff_RBP + -0x39);
   unaff_RSI[0x20] = uVar4;
-  uVar4 = *(undefined8 *)(unaff_RBP + -0x19);
-  uVar7 = *(undefined8 *)(unaff_RBP + -0x11);
+  uVar4 = *(uint64_t *)(unaff_RBP + -0x19);
+  uVar7 = *(uint64_t *)(unaff_RBP + -0x11);
   unaff_RSI[0x21] = uVar5;
   unaff_RSI[0x22] = uVar6;
   unaff_RSI[0x23] = uVar4;
   unaff_RSI[0x24] = uVar7;
-  *(undefined4 *)(unaff_RSI + 0x25) = uVar20;
+  *(int32_t *)(unaff_RSI + 0x25) = uVar20;
   return;
 }
 

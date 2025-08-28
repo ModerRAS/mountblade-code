@@ -10,10 +10,10 @@
 void process_game_object_list_filter(void)
 {
     int *piVar1;
-    undefined4 uVar2;
+    int32_t uVar2;
     longlong lVar3;
     longlong lVar4;
-    undefined8 uVar5;
+    uint64_t uVar5;
     int iVar6;
     int iVar7;
     int iVar8;
@@ -21,9 +21,9 @@ void process_game_object_list_filter(void)
     longlong lVar9;
     int *unaff_RSI;
     char unaff_R12B;
-    undefined1 unaff_000000a1;
-    undefined2 unaff_000000a2;
-    undefined4 unaff_000000a4;
+    int8_t unaff_000000a1;
+    int16_t unaff_000000a2;
+    int32_t unaff_000000a4;
     longlong unaff_R14;
     int unaff_R15D;
     
@@ -32,7 +32,7 @@ void process_game_object_list_filter(void)
     do {
         // 获取当前游戏对象的指针
         lVar3 = *(longlong *)(*(longlong *)(unaff_R14 + 0x1c70) + lVar9 * 8);
-        *(undefined8 *)(lVar3 + 100) = *(undefined8 *)(lVar3 + 8);
+        *(uint64_t *)(lVar3 + 100) = *(uint64_t *)(lVar3 + 8);
         
         // 检查游戏对象是否满足筛选条件
         if (((((*(int *)(unaff_R14 + 0x1a90) <= *(int *)(lVar3 + 0x54)) &&
@@ -54,7 +54,7 @@ void process_game_object_list_filter(void)
                 if (iVar8 + 1 < iVar7) {
                     iVar6 = iVar7;
                 }
-                resize_array_capacity(*(undefined8 *)(lVar3 + 8),iVar6);
+                resize_array_capacity(*(uint64_t *)(lVar3 + 8),iVar6);
                 iVar8 = *unaff_RSI;
             }
             
@@ -85,7 +85,7 @@ void process_game_object_list_filter(void)
     
     // 执行数组操作和状态更新
     *piVar1 = CONCAT22(unaff_000000a2,CONCAT11(unaff_000000a1,unaff_R12B));
-    resize_array_capacity(piVar1,*(undefined4 *)(unaff_RBX + 0x1aa0));
+    resize_array_capacity(piVar1,*(int32_t *)(unaff_RBX + 0x1aa0));
     iVar8 = *(int *)(unaff_RBX + 0x1aa0);
     iVar7 = CONCAT22(unaff_000000a2,CONCAT11(unaff_000000a1,unaff_R12B));
     if (iVar8 != 0) {
@@ -105,13 +105,13 @@ void process_game_object_list_filter(void)
     iVar7 = *piVar1;
     *piVar1 = iVar8;
     *(int *)(unaff_RBX + 0x1aa0) = iVar7;
-    uVar2 = *(undefined4 *)(unaff_RBX + 0x1ac4);
-    *(undefined4 *)(unaff_RBX + 0x1ac4) = *(undefined4 *)(unaff_RBX + 0x1aa4);
-    *(undefined4 *)(unaff_RBX + 0x1aa4) = uVar2;
-    uVar5 = *(undefined8 *)(unaff_RBX + 0x1ac8);
-    *(undefined8 *)(unaff_RBX + 0x1ac8) = *(undefined8 *)(unaff_RBX + 0x1aa8);
-    *(undefined8 *)(unaff_RBX + 0x1aa8) = uVar5;
-    *(undefined4 *)(unaff_RBX + 0x3a4) = *(undefined4 *)(unaff_RBX + 0x1af0);
+    uVar2 = *(int32_t *)(unaff_RBX + 0x1ac4);
+    *(int32_t *)(unaff_RBX + 0x1ac4) = *(int32_t *)(unaff_RBX + 0x1aa4);
+    *(int32_t *)(unaff_RBX + 0x1aa4) = uVar2;
+    uVar5 = *(uint64_t *)(unaff_RBX + 0x1ac8);
+    *(uint64_t *)(unaff_RBX + 0x1ac8) = *(uint64_t *)(unaff_RBX + 0x1aa8);
+    *(uint64_t *)(unaff_RBX + 0x1aa8) = uVar5;
+    *(int32_t *)(unaff_RBX + 0x3a4) = *(int32_t *)(unaff_RBX + 0x1af0);
     **(char **)(unaff_RBX + 0xa0) = unaff_R12B;
     *(ulonglong *)(unaff_RBX + 0x128) =
          CONCAT44(unaff_000000a4,CONCAT22(unaff_000000a2,CONCAT11(unaff_000000a1,unaff_R12B)));
@@ -138,17 +138,17 @@ void process_game_object_list_filter(void)
 void update_game_object_status(void)
 {
     int *piVar1;
-    undefined4 uVar2;
+    int32_t uVar2;
     longlong lVar3;
-    undefined8 uVar4;
+    uint64_t uVar4;
     int iVar5;
     longlong unaff_RBX;
     int iVar6;
     longlong lVar7;
     char unaff_R12B;
-    undefined1 unaff_000000a1;
-    undefined2 unaff_000000a2;
-    undefined4 unaff_000000a4;
+    int8_t unaff_000000a1;
+    int16_t unaff_000000a2;
+    int32_t unaff_000000a4;
     longlong unaff_R14;
     
     // 获取对象状态指针
@@ -170,7 +170,7 @@ void update_game_object_status(void)
     
     // 执行数组操作
     *piVar1 = CONCAT22(unaff_000000a2,CONCAT11(unaff_000000a1,unaff_R12B));
-    resize_array_capacity(piVar1,*(undefined4 *)(unaff_RBX + 0x1aa0));
+    resize_array_capacity(piVar1,*(int32_t *)(unaff_RBX + 0x1aa0));
     iVar5 = *(int *)(unaff_RBX + 0x1aa0);
     iVar6 = CONCAT22(unaff_000000a2,CONCAT11(unaff_000000a1,unaff_R12B));
     if (iVar5 != 0) {
@@ -190,13 +190,13 @@ void update_game_object_status(void)
     iVar6 = *piVar1;
     *piVar1 = iVar5;
     *(int *)(unaff_RBX + 0x1aa0) = iVar6;
-    uVar2 = *(undefined4 *)(unaff_RBX + 0x1ac4);
-    *(undefined4 *)(unaff_RBX + 0x1ac4) = *(undefined4 *)(unaff_RBX + 0x1aa4);
-    *(undefined4 *)(unaff_RBX + 0x1aa4) = uVar2;
-    uVar4 = *(undefined8 *)(unaff_RBX + 0x1ac8);
-    *(undefined8 *)(unaff_RBX + 0x1ac8) = *(undefined8 *)(unaff_RBX + 0x1aa8);
-    *(undefined8 *)(unaff_RBX + 0x1aa8) = uVar4;
-    *(undefined4 *)(unaff_RBX + 0x3a4) = *(undefined4 *)(unaff_RBX + 0x1af0);
+    uVar2 = *(int32_t *)(unaff_RBX + 0x1ac4);
+    *(int32_t *)(unaff_RBX + 0x1ac4) = *(int32_t *)(unaff_RBX + 0x1aa4);
+    *(int32_t *)(unaff_RBX + 0x1aa4) = uVar2;
+    uVar4 = *(uint64_t *)(unaff_RBX + 0x1ac8);
+    *(uint64_t *)(unaff_RBX + 0x1ac8) = *(uint64_t *)(unaff_RBX + 0x1aa8);
+    *(uint64_t *)(unaff_RBX + 0x1aa8) = uVar4;
+    *(int32_t *)(unaff_RBX + 0x3a4) = *(int32_t *)(unaff_RBX + 0x1af0);
     **(char **)(unaff_RBX + 0xa0) = unaff_R12B;
     *(ulonglong *)(unaff_RBX + 0x128) =
          CONCAT44(unaff_000000a4,CONCAT22(unaff_000000a2,CONCAT11(unaff_000000a1,unaff_R12B)));
@@ -223,13 +223,13 @@ void update_game_object_status(void)
 void handle_object_state_transition(void)
 {
     longlong lVar1;
-    undefined8 uVar2;
+    uint64_t uVar2;
     int iVar3;
     longlong unaff_RBX;
     int iVar4;
     longlong lVar5;
     int unaff_R12D;
-    undefined4 unaff_000000a4;
+    int32_t unaff_000000a4;
     int *unaff_R14;
     
     // 初始化数组容量
@@ -261,10 +261,10 @@ void handle_object_state_transition(void)
     iVar3 = unaff_R14[1];
     unaff_R14[1] = *(int *)(unaff_RBX + 0x1aa4);
     *(int *)(unaff_RBX + 0x1aa4) = iVar3;
-    uVar2 = *(undefined8 *)(unaff_R14 + 2);
-    *(undefined8 *)(unaff_R14 + 2) = *(undefined8 *)(unaff_RBX + 0x1aa8);
-    *(undefined8 *)(unaff_RBX + 0x1aa8) = uVar2;
-    *(undefined4 *)(unaff_RBX + 0x3a4) = *(undefined4 *)(unaff_RBX + 0x1af0);
+    uVar2 = *(uint64_t *)(unaff_R14 + 2);
+    *(uint64_t *)(unaff_R14 + 2) = *(uint64_t *)(unaff_RBX + 0x1aa8);
+    *(uint64_t *)(unaff_RBX + 0x1aa8) = uVar2;
+    *(int32_t *)(unaff_RBX + 0x3a4) = *(int32_t *)(unaff_RBX + 0x1af0);
     **(char **)(unaff_RBX + 0xa0) = (char)unaff_R12D;
     *(ulonglong *)(unaff_RBX + 0x128) = CONCAT44(unaff_000000a4,unaff_R12D);
     
@@ -327,9 +327,9 @@ void initialize_game_object_system(void)
     int iVar6;
     int iVar7;
     int *piVar8;
-    undefined8 uVar9;
+    uint64_t uVar9;
     ulonglong uVar10;
-    undefined4 *puVar11;
+    int32_t *puVar11;
     ulonglong *puVar12;
     int iVar13;
     ulonglong uVar14;
@@ -351,8 +351,8 @@ void initialize_game_object_system(void)
     // 初始化系统状态
     uVar17 = 0;
     *(int *)(lVar4 + 0x1a9c) = iVar7;
-    *(undefined8 *)(lVar4 + 0x39c) = 0;
-    *(undefined4 *)(lVar4 + 0x398) = 0;
+    *(uint64_t *)(lVar4 + 0x39c) = 0;
+    *(int32_t *)(lVar4 + 0x398) = 0;
     lVar19 = 2;
     uVar18 = uVar17;
     uVar14 = uVar17;
@@ -360,7 +360,7 @@ void initialize_game_object_system(void)
     // 清理所有游戏对象的缓冲区
     if (*(int *)(lVar4 + 0x1c68) != 0) {
         do {
-            puVar11 = (undefined4 *)(*(longlong *)(uVar14 + *(longlong *)(lVar4 + 0x1c70)) + 0xb8);
+            puVar11 = (int32_t *)(*(longlong *)(uVar14 + *(longlong *)(lVar4 + 0x1c70)) + 0xb8);
             lVar15 = lVar19;
             do {
                 iVar7 = puVar11[1];
@@ -426,10 +426,10 @@ void initialize_game_object_system(void)
     
     // 处理特殊对象状态
     if (*(char *)(lVar4 + 200) != '\0') {
-        update_special_object_state(*(undefined8 *)(lVar4 + 0x118),*(undefined4 *)(lVar4 + 0x16bc));
+        update_special_object_state(*(uint64_t *)(lVar4 + 0x118),*(int32_t *)(lVar4 + 0x16bc));
     }
     
-    *(undefined8 *)(lVar4 + 0x398) = 0;
+    *(uint64_t *)(lVar4 + 0x398) = 0;
     uVar18 = uVar17;
     if (0 < *(int *)(lVar4 + 0x1c68)) {
         do {
@@ -453,7 +453,7 @@ void initialize_game_object_system(void)
             }
             *piVar1 = iVar13;
             if (*(int *)(lVar19 + 200) != 0) {
-                memcpy(*(longlong *)(lVar19 + 0xc0) + (longlong)iVar7 * 8,*(undefined8 *)(lVar19 + 0xd0),
+                memcpy(*(longlong *)(lVar19 + 0xc0) + (longlong)iVar7 * 8,*(uint64_t *)(lVar19 + 0xd0),
                        (longlong)*(int *)(lVar19 + 200) << 3);
             }
             if (*(longlong *)(lVar19 + 0x80) != 0) {
@@ -484,20 +484,20 @@ void initialize_game_object_system(void)
                     }
                 }
             }
-            *(undefined1 **)(lVar19 + 0x20) = (undefined1 *)(lVar19 + 0x88);
-            *(undefined1 *)(lVar19 + 0x88) = 1;
+            *(int8_t **)(lVar19 + 0x20) = (int8_t *)(lVar19 + 0x88);
+            *(int8_t *)(lVar19 + 0x88) = 1;
             if (*piVar1 < 1) {
                 uVar9 = 0;
             }
             else {
-                uVar9 = *(undefined8 *)(lVar19 + 0xc0);
+                uVar9 = *(uint64_t *)(lVar19 + 0xc0);
             }
-            *(undefined8 *)(lVar19 + 0x90) = uVar9;
+            *(uint64_t *)(lVar19 + 0x90) = uVar9;
             iVar7 = 0;
             *(int *)(lVar19 + 0x98) = *piVar1;
-            *(undefined8 *)(lVar19 + 0x9c) = 0;
-            *(undefined8 *)(lVar19 + 0xa4) = *(undefined8 *)(lVar19 + 8);
-            *(undefined8 *)(lVar19 + 0xac) = *(undefined8 *)(lVar19 + 0x10);
+            *(uint64_t *)(lVar19 + 0x9c) = 0;
+            *(uint64_t *)(lVar19 + 0xa4) = *(uint64_t *)(lVar19 + 8);
+            *(uint64_t *)(lVar19 + 0xac) = *(uint64_t *)(lVar19 + 0x10);
             if (0 < *piVar1) {
                 iVar6 = 0;
                 iVar13 = 0;
@@ -543,9 +543,9 @@ void update_game_object_system_state(void)
     int iVar5;
     int iVar6;
     int *piVar7;
-    undefined8 uVar8;
+    uint64_t uVar8;
     ulonglong uVar9;
-    undefined4 *puVar10;
+    int32_t *puVar10;
     ulonglong *puVar11;
     int iVar12;
     ulonglong uVar13;
@@ -567,8 +567,8 @@ void update_game_object_system_state(void)
     // 初始化系统变量
     uVar16 = 0;
     *(int *)(unaff_RDI + 0x1a9c) = iVar6;
-    *(undefined8 *)(unaff_RDI + 0x39c) = 0;
-    *(undefined4 *)(unaff_RDI + 0x398) = 0;
+    *(uint64_t *)(unaff_RDI + 0x39c) = 0;
+    *(int32_t *)(unaff_RDI + 0x398) = 0;
     lVar18 = 2;
     uVar17 = uVar16;
     uVar13 = uVar16;
@@ -576,7 +576,7 @@ void update_game_object_system_state(void)
     // 清理对象缓冲区
     if (*(int *)(unaff_RDI + 0x1c68) != 0) {
         do {
-            puVar10 = (undefined4 *)(*(longlong *)(uVar13 + *(longlong *)(unaff_RDI + 0x1c70)) + 0xb8);
+            puVar10 = (int32_t *)(*(longlong *)(uVar13 + *(longlong *)(unaff_RDI + 0x1c70)) + 0xb8);
             lVar14 = lVar18;
             do {
                 iVar6 = puVar10[1];
@@ -641,10 +641,10 @@ void update_game_object_system_state(void)
     
     // 处理特殊对象
     if (*(char *)(unaff_RDI + 200) != '\0') {
-        update_special_object_state(*(undefined8 *)(unaff_RDI + 0x118),*(undefined4 *)(unaff_RDI + 0x16bc));
+        update_special_object_state(*(uint64_t *)(unaff_RDI + 0x118),*(int32_t *)(unaff_RDI + 0x16bc));
     }
     
-    *(undefined8 *)(unaff_RDI + 0x398) = 0;
+    *(uint64_t *)(unaff_RDI + 0x398) = 0;
     uVar17 = uVar16;
     if (0 < *(int *)(unaff_RDI + 0x1c68)) {
         do {
@@ -668,7 +668,7 @@ void update_game_object_system_state(void)
             }
             *piVar1 = iVar12;
             if (*(int *)(lVar18 + 200) != 0) {
-                memcpy(*(longlong *)(lVar18 + 0xc0) + (longlong)iVar6 * 8,*(undefined8 *)(lVar18 + 0xd0),
+                memcpy(*(longlong *)(lVar18 + 0xc0) + (longlong)iVar6 * 8,*(uint64_t *)(lVar18 + 0xd0),
                        (longlong)*(int *)(lVar18 + 200) << 3);
             }
             if (*(longlong *)(lVar18 + 0x80) != 0) {
@@ -699,20 +699,20 @@ void update_game_object_system_state(void)
                     }
                 }
             }
-            *(undefined1 **)(lVar18 + 0x20) = (undefined1 *)(lVar18 + 0x88);
-            *(undefined1 *)(lVar18 + 0x88) = 1;
+            *(int8_t **)(lVar18 + 0x20) = (int8_t *)(lVar18 + 0x88);
+            *(int8_t *)(lVar18 + 0x88) = 1;
             if (*piVar1 < 1) {
                 uVar8 = 0;
             }
             else {
-                uVar8 = *(undefined8 *)(lVar18 + 0xc0);
+                uVar8 = *(uint64_t *)(lVar18 + 0xc0);
             }
-            *(undefined8 *)(lVar18 + 0x90) = uVar8;
+            *(uint64_t *)(lVar18 + 0x90) = uVar8;
             iVar6 = 0;
             *(int *)(lVar18 + 0x98) = *piVar1;
-            *(undefined8 *)(lVar18 + 0x9c) = 0;
-            *(undefined8 *)(lVar18 + 0xa4) = *(undefined8 *)(lVar18 + 8);
-            *(undefined8 *)(lVar18 + 0xac) = *(undefined8 *)(lVar18 + 0x10);
+            *(uint64_t *)(lVar18 + 0x9c) = 0;
+            *(uint64_t *)(lVar18 + 0xa4) = *(uint64_t *)(lVar18 + 8);
+            *(uint64_t *)(lVar18 + 0xac) = *(uint64_t *)(lVar18 + 0x10);
             if (0 < *piVar1) {
                 iVar5 = 0;
                 iVar12 = 0;
@@ -764,13 +764,13 @@ void execute_system_callback(void)
  * 处理字符串解析和数值计算
  * 解析字符串中的数值信息并进行计算
  */
-undefined8 *parse_string_and_calculate(undefined8 *param_1,char *param_2,char *param_3,char param_4,undefined4 param_5)
+uint64_t *parse_string_and_calculate(uint64_t *param_1,char *param_2,char *param_3,char param_4,int32_t param_5)
 {
     float fVar1;
     float *pfVar2;
     char *pcVar3;
     float fStackX_10;
-    undefined4 uStackX_14;
+    int32_t uStackX_14;
     
     // 处理字符串参数
     if (param_4 != '\0') {
@@ -799,7 +799,7 @@ undefined8 *parse_string_and_calculate(undefined8 *param_1,char *param_2,char *p
         return param_1;
     }
     *(float *)((longlong)param_1 + 4) = fVar1;
-    *(undefined4 *)param_1 = 0;
+    *(int32_t *)param_1 = 0;
     return param_1;
 }
 
@@ -842,7 +842,7 @@ void process_object_selection_and_collision(void)
     }
     else {
         lVar5 = *(longlong *)(lVar14 + 0x28);
-        *(undefined8 *)(lVar14 + 0x28) = *(undefined8 *)(_DAT_180c8a9b0 + 0x1c80);
+        *(uint64_t *)(lVar14 + 0x28) = *(uint64_t *)(_DAT_180c8a9b0 + 0x1c80);
         lVar14 = *(longlong *)(lVar7 + 0x1b78);
     }
     lVar8 = lVar10;
@@ -879,10 +879,10 @@ void process_object_selection_and_collision(void)
                (*(longlong *)(lVar6 + 0x28) == *(longlong *)(lVar7 + 0x1c80))) {
                 
                 // 获取对象的位置和尺寸信息
-                fStack_68 = (float)*(undefined8 *)(lVar6 + 0x238);
-                fStack_64 = (float)((ulonglong)*(undefined8 *)(lVar6 + 0x238) >> 0x20);
-                fStack_60 = (float)*(undefined8 *)(lVar6 + 0x240);
-                fStack_5c = (float)((ulonglong)*(undefined8 *)(lVar6 + 0x240) >> 0x20);
+                fStack_68 = (float)*(uint64_t *)(lVar6 + 0x238);
+                fStack_64 = (float)((ulonglong)*(uint64_t *)(lVar6 + 0x238) >> 0x20);
+                fStack_60 = (float)*(uint64_t *)(lVar6 + 0x240);
+                fStack_5c = (float)((ulonglong)*(uint64_t *)(lVar6 + 0x240) >> 0x20);
                 fVar3 = fVar1;
                 fVar4 = fVar2;
                 if ((*(uint *)(lVar6 + 0xc) & 0x1000002) == 0) {

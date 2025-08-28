@@ -2,9 +2,9 @@
 
 // 03_rendering_part221.c - 3 个函数
 
-// 函数: void FUN_180391f2f(int param_1,undefined8 param_2,undefined8 param_3,int param_4,longlong param_5,
-void FUN_180391f2f(int param_1,undefined8 param_2,undefined8 param_3,int param_4,longlong param_5,
-                  undefined8 param_6,undefined8 param_7,longlong param_8)
+// 函数: void FUN_180391f2f(int param_1,uint64_t param_2,uint64_t param_3,int param_4,longlong param_5,
+void FUN_180391f2f(int param_1,uint64_t param_2,uint64_t param_3,int param_4,longlong param_5,
+                  uint64_t param_6,uint64_t param_7,longlong param_8)
 
 {
   byte bVar1;
@@ -21,7 +21,7 @@ void FUN_180391f2f(int param_1,undefined8 param_2,undefined8 param_3,int param_4
   uint uVar11;
   ulonglong uVar12;
   uint uVar13;
-  undefined8 *puVar14;
+  uint64_t *puVar14;
   longlong lVar15;
   ulonglong unaff_RBP;
   int unaff_ESI;
@@ -99,7 +99,7 @@ void FUN_180391f2f(int param_1,undefined8 param_2,undefined8 param_3,int param_4
                       plVar17[3] = unaff_RBP;
                       *(char *)(plVar17 + 4) = (char)unaff_RBP;
                       if (plVar17[2] != unaff_RBP) {
-                        *(undefined1 *)(plVar17 + 4) = 1;
+                        *(int8_t *)(plVar17 + 4) = 1;
                       }
                       FUN_18038b160(plVar17[2]);
                     }
@@ -129,7 +129,7 @@ void FUN_180391f2f(int param_1,undefined8 param_2,undefined8 param_3,int param_4
                     else {
                       lVar19 = plVar17[1];
                     }
-                    puVar14 = *(undefined8 **)(unaff_R14 + 0x458);
+                    puVar14 = *(uint64_t **)(unaff_R14 + 0x458);
                     uVar12 = unaff_RBP & 0xffffffff;
                     uVar20 = *(longlong *)(unaff_R14 + 0x460) - (longlong)puVar14 >> 3;
                     if (uVar20 != 0) {
@@ -137,7 +137,7 @@ void FUN_180391f2f(int param_1,undefined8 param_2,undefined8 param_3,int param_4
                         plVar8 = (longlong *)*puVar14;
                         if (((*plVar8 == *plVar21) && (plVar8[1] == lVar19)) ||
                            ((*plVar8 == lVar19 && (plVar8[1] == *plVar21)))) {
-                          *(undefined1 *)(plVar8 + 4) = 2;
+                          *(int8_t *)(plVar8 + 4) = 2;
                           plVar8[3] = param_8;
                           *plVar18 = (longlong)plVar8;
                           FUN_18038b160(plVar8[2]);
@@ -173,7 +173,7 @@ void FUN_180391f2f(int param_1,undefined8 param_2,undefined8 param_3,int param_4
                     plVar8 = (longlong *)FUN_18038c180(in_stack_00000150);
                     plVar8[1] = lVar19;
                     *plVar8 = lVar3;
-                    *(undefined1 *)(plVar8 + 4) = 1;
+                    *(int8_t *)(plVar8 + 4) = 1;
                     plVar8[2] = param_8;
                     *plVar18 = (longlong)plVar8;
                     lVar19 = lStack0000000000000050;
@@ -193,11 +193,11 @@ LAB_1803922c3:
             }
             plVar8[2] = in_stack_00000068;
           }
-          *(undefined1 *)(plVar8 + 4) = 1;
+          *(int8_t *)(plVar8 + 4) = 1;
           plVar8[3] = unaff_RBP;
           func_0x00018038ac80(plVar8);
           *plVar18 = lVar2;
-          *(undefined1 *)(lVar2 + 0x20) = 2;
+          *(int8_t *)(lVar2 + 0x20) = 2;
           *(longlong *)(lVar2 + 0x18) = in_R10;
         }
 LAB_180392028:
@@ -217,7 +217,7 @@ LAB_180392028:
         *(char *)(lVar15 + 0x20) = (char)unaff_RBP;
         cVar22 = *(ulonglong *)(lVar15 + 0x10) != unaff_RBP;
         if ((bool)cVar22) {
-          *(undefined1 *)(lVar15 + 0x20) = 1;
+          *(int8_t *)(lVar15 + 0x20) = 1;
         }
         if (*(ulonglong *)(lVar15 + 0x18) != unaff_RBP) {
           cVar22 = cVar22 + '\x01';
@@ -255,7 +255,7 @@ LAB_180392028:
         if (uVar10 == 0) {
           uVar9 = 8;
         }
-        *(undefined8 *)(param_8 + 0x80 + uVar7 * 8) = *(undefined8 *)(uVar9 + (longlong)plVar18);
+        *(uint64_t *)(param_8 + 0x80 + uVar7 * 8) = *(uint64_t *)(uVar9 + (longlong)plVar18);
         bVar1 = *(byte *)(param_8 + 0xa8);
         uVar7 = uVar7 + 1;
         in_R10 = param_8;

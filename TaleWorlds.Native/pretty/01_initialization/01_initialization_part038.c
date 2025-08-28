@@ -14,9 +14,9 @@ void Initialization_MainLoop(longlong context)
   longlong *buffer_ptr;
   int *counter_ptr;
   byte *byte_ptr;
-  undefined8 temp_value;
-  undefined8 *ptr_array;
-  undefined8 *ptr_array2;
+  uint64_t temp_value;
+  uint64_t *ptr_array;
+  uint64_t *ptr_array2;
   bool has_work;
   longlong temp_long;
   char status_flag;
@@ -30,47 +30,47 @@ void Initialization_MainLoop(longlong context)
   uint hash_value;
   int loop_counter;
   longlong *resource_ptr;
-  undefined8 *manager_ptr;
+  uint64_t *manager_ptr;
   longlong alloc_size;
   code *callback_func;
   longlong *data_ptr;
-  undefined *temp_ptr;
+  void *temp_ptr;
   ulonglong checksum;
-  undefined1 stack_buffer[32];
+  int8_t stack_buffer[32];
   ulonglong security_cookie;
-  undefined **callback_ptr;
+  void **callback_ptr;
   longlong *lock_ptr;
   longlong lock_timeout;
   longlong wait_duration;
-  undefined1 cleanup_flag;
-  undefined8 timespec_data;
+  int8_t cleanup_flag;
+  uint64_t timespec_data;
   int wait_seconds;
-  undefined4 temp_data;
-  undefined8 thread_id;
-  undefined *cleanup_ptr;
+  int32_t temp_data;
+  uint64_t thread_id;
+  void *cleanup_ptr;
   byte *name_buffer;
   int name_length;
   byte name_storage[256];
-  undefined8 resource_data;
+  uint64_t resource_data;
   ulonglong resource_size;
   longlong resource_offset;
   longlong resource_count;
   longlong resource_capacity;
-  undefined1 resource_flag;
-  undefined1 cleanup_buffer[16];
+  int8_t resource_flag;
+  int8_t cleanup_buffer[16];
   code *destructor1;
   code *guard_check1;
-  undefined1 callback_buffer[16];
+  int8_t callback_buffer[16];
   code *destructor2;
   code *guard_check2;
-  undefined8 metadata1;
-  undefined8 metadata2;
-  undefined8 metadata3;
-  undefined8 metadata4;
+  uint64_t metadata1;
+  uint64_t metadata2;
+  uint64_t metadata3;
+  uint64_t metadata4;
   int active_count;
-  undefined4 status_word;
+  int32_t status_word;
   int allocation_limit;
-  undefined4 memory_flag;
+  int32_t memory_flag;
   ulonglong allocated_size;
   ulonglong total_processed;
   
@@ -92,7 +92,7 @@ void Initialization_MainLoop(longlong context)
     name_storage[0] = 0;
     destructor1 = (code *)0x0;
     guard_check1 = _guard_check_icall;
-    callback_ptr = (undefined **)callback_buffer;
+    callback_ptr = (void **)callback_buffer;
     destructor2 = (code *)0x0;
     guard_check2 = _guard_check_icall;
     resource_capacity = -1;
@@ -124,7 +124,7 @@ void Initialization_MainLoop(longlong context)
         time_value = time_limit / 1000000000;
         active_count = (int)time_value;
         wait_seconds = (int)time_limit + active_count * -1000000000;
-        timespec_data._4_4_ = (undefined4)((ulonglong)time_value >> 0x20);
+        timespec_data._4_4_ = (int32_t)((ulonglong)time_value >> 0x20);
         status_word = timespec_data._4_4_;
         memory_flag = temp_data;
         timespec_data = time_value;
@@ -161,56 +161,56 @@ void Initialization_MainLoop(longlong context)
       // 处理队列中的资源
       name_length = *(int *)(offset + 0x10);
       temp_ptr = &DAT_18098bc73;
-      if (*(undefined **)(offset + 8) != (undefined *)0x0) {
-        temp_ptr = *(undefined **)(offset + 8);
+      if (*(void **)(offset + 8) != (void *)0x0) {
+        temp_ptr = *(void **)(offset + 8);
       }
       strcpy_s(name_buffer,0x100,temp_ptr);
-      resource_data = *(undefined8 *)(offset + 0x118);
+      resource_data = *(uint64_t *)(offset + 0x118);
       resource_size = *(ulonglong *)(offset + 0x120);
       resource_offset = *(longlong *)(offset + 0x128);
       resource_count = *(longlong *)(offset + 0x130);
       resource_capacity = *(longlong *)(offset + 0x138);
-      resource_flag = *(undefined1 *)(offset + 0x140);
-      if (cleanup_buffer != (undefined1 *)(offset + 0x148)) {
+      resource_flag = *(int8_t *)(offset + 0x140);
+      if (cleanup_buffer != (int8_t *)(offset + 0x148)) {
         if (destructor1 != (code *)0x0) {
           (*destructor1)(cleanup_buffer,0,0);
         }
         callback_func = *(code **)(offset + 0x158);
         if (callback_func != (code *)0x0) {
-          (*callback_func)(cleanup_buffer,(undefined1 *)(offset + 0x148),1);
+          (*callback_func)(cleanup_buffer,(int8_t *)(offset + 0x148),1);
           callback_func = *(code **)(offset + 0x158);
         }
         guard_check1 = *(code **)(offset + 0x160);
         destructor1 = callback_func;
       }
-      if (callback_buffer != (undefined1 *)(offset + 0x168)) {
+      if (callback_buffer != (int8_t *)(offset + 0x168)) {
         if (destructor2 != (code *)0x0) {
           (*destructor2)(callback_buffer,0,0);
         }
         callback_func = *(code **)(offset + 0x178);
         if (callback_func != (code *)0x0) {
-          (*callback_func)(callback_buffer,(undefined1 *)(offset + 0x168),1);
+          (*callback_func)(callback_buffer,(int8_t *)(offset + 0x168),1);
           callback_func = *(code **)(offset + 0x178);
         }
         guard_check2 = *(code **)(offset + 0x180);
         destructor2 = callback_func;
       }
-      metadata1 = *(undefined8 *)(offset + 0x188);
-      metadata2 = *(undefined8 *)(offset + 400);
-      metadata3 = *(undefined8 *)(offset + 0x198);
-      metadata4 = *(undefined8 *)(offset + 0x1a0);
+      metadata1 = *(uint64_t *)(offset + 0x188);
+      metadata2 = *(uint64_t *)(offset + 400);
+      metadata3 = *(uint64_t *)(offset + 0x198);
+      metadata4 = *(uint64_t *)(offset + 0x1a0);
       *(longlong *)(context + 0x3d0) = *(longlong *)(context + 0x3d0) + -0x1a8;
       FUN_180069530();
       has_work = true;
     }
     // 处理内存管理器任务
-    manager_ptr = *(undefined8 **)(context + 0xc0);
-    if ((undefined *)*manager_ptr == &UNK_1809fee70) {
+    manager_ptr = *(uint64_t **)(context + 0xc0);
+    if ((void *)*manager_ptr == &UNK_1809fee70) {
       status_flag = FUN_180068a90(manager_ptr + 2,&lock_ptr);
       while (status_flag != '\0') {
         data_ptr = (longlong *)manager_ptr[99];
         if (lock_ptr != (longlong *)0x0) {
-          *(undefined1 *)(lock_ptr + 4) = 0;
+          *(int8_t *)(lock_ptr + 4) = 0;
           *data_ptr = *data_ptr - lock_ptr[1];
           data_ptr[2] = data_ptr[2] + lock_ptr[1];
           resource_ptr = (longlong *)lock_ptr[3];
@@ -252,7 +252,7 @@ void Initialization_MainLoop(longlong context)
       }
     }
     else {
-      (**(code **)((undefined *)*manager_ptr + 0x18))(manager_ptr);
+      (**(code **)((void *)*manager_ptr + 0x18))(manager_ptr);
     }
     if (has_work) {
       // 计算资源名称的哈希值
@@ -324,7 +324,7 @@ LAB_18006c852:
         UNLOCK();
         
         // 检查内存限制
-        manager_ptr = *(undefined8 **)(context + 0xc0);
+        manager_ptr = *(uint64_t **)(context + 0xc0);
         security_cookie = manager_ptr[0x6c];
         if (security_cookie < total_processed) {
           string_buffer = &DAT_18098bc73;
@@ -365,20 +365,20 @@ LAB_18006ca44:
       }
       // 清理过期资源
       if (*(int *)((longlong)data_ptr + 0x32c) < (int)data_ptr[0x65]) {
-        manager_ptr = (undefined8 *)*resource_ptr;
+        manager_ptr = (uint64_t *)*resource_ptr;
         sync_ptr = resource_ptr;
-        if (manager_ptr == (undefined8 *)0x0) {
+        if (manager_ptr == (uint64_t *)0x0) {
           sync_ptr = resource_ptr + 1;
-          manager_ptr = (undefined8 *)*sync_ptr;
-          if (manager_ptr == (undefined8 *)0x0) {
+          manager_ptr = (uint64_t *)*sync_ptr;
+          if (manager_ptr == (uint64_t *)0x0) {
             do {
               sync_ptr = sync_ptr + 1;
-              manager_ptr = (undefined8 *)*sync_ptr;
-            } while (manager_ptr == (undefined8 *)0x0);
+              manager_ptr = (uint64_t *)*sync_ptr;
+            } while (manager_ptr == (uint64_t *)0x0);
             time_value = data_ptr[0x68];
           }
         }
-        if (manager_ptr != (undefined8 *)resource_ptr[time_value]) {
+        if (manager_ptr != (uint64_t *)resource_ptr[time_value]) {
           do {
             if (*(int *)(manager_ptr[0x23] + 0x120) == 0) {
               temp_value = manager_ptr[0x23];
@@ -390,28 +390,28 @@ LAB_18006ca44:
                 data_ptr = data_ptr + 1;
                 offset = *data_ptr;
               }
-              ptr_array = (undefined8 *)*sync_ptr;
-              ptr_array2 = (undefined8 *)ptr_array[0x24];
+              ptr_array = (uint64_t *)*sync_ptr;
+              ptr_array2 = (uint64_t *)ptr_array[0x24];
               if (ptr_array == manager_ptr) {
                 *sync_ptr = (longlong)ptr_array2;
               }
               else {
-                for (; ptr_array2 != manager_ptr; ptr_array2 = (undefined8 *)ptr_array2[0x24]) {
+                for (; ptr_array2 != manager_ptr; ptr_array2 = (uint64_t *)ptr_array2[0x24]) {
                   ptr_array = ptr_array2;
                 }
                 ptr_array[0x24] = ptr_array2[0x24];
               }
               *manager_ptr = &UNK_18098bcb0;
-              callback_ptr = (undefined **)manager_ptr;
+              callback_ptr = (void **)manager_ptr;
                     // WARNING: Subroutine does not return
               FUN_18064e900(manager_ptr);
             }
-            manager_ptr = (undefined8 *)manager_ptr[0x24];
-            while (manager_ptr == (undefined8 *)0x0) {
+            manager_ptr = (uint64_t *)manager_ptr[0x24];
+            while (manager_ptr == (uint64_t *)0x0) {
               sync_ptr = sync_ptr + 1;
-              manager_ptr = (undefined8 *)*sync_ptr;
+              manager_ptr = (uint64_t *)*sync_ptr;
             }
-          } while (manager_ptr != *(undefined8 **)(data_ptr[0x67] + data_ptr[0x68] * 8));
+          } while (manager_ptr != *(uint64_t **)(data_ptr[0x67] + data_ptr[0x68] * 8));
         }
       }
       
@@ -431,7 +431,7 @@ LAB_18006ca44:
         if (capacity == 0) {
           capacity = 1;
 LAB_18006c9ac:
-          offset = FUN_18062b420(_DAT_180c8ed18,capacity * 0x1a8,*(undefined1 *)(context + 0x3e0));
+          offset = FUN_18062b420(_DAT_180c8ed18,capacity * 0x1a8,*(int8_t *)(context + 0x3e0));
           total_processed = *(ulonglong *)(context + 0x3d0);
           time_value = *resource_ptr;
         }
@@ -466,11 +466,11 @@ LAB_18006c9ac:
       offset = (**(code **)(*data_ptr + 8))(data_ptr,&cleanup_ptr);
       if (offset != 0) goto LAB_18006c852;
       (*guard_check2)(callback_buffer);
-      callback_ptr = (undefined **)callback_buffer;
+      callback_ptr = (void **)callback_buffer;
       if (destructor2 != (code *)0x0) {
         (*destructor2)(callback_buffer,0,0);
       }
-      callback_ptr = (undefined **)cleanup_buffer;
+      callback_ptr = (void **)cleanup_buffer;
       if (destructor1 != (code *)0x0) {
         (*destructor1)(cleanup_buffer,0,0);
       }
@@ -483,11 +483,11 @@ LAB_18006c9ac:
       }
 LAB_18006ca95:
       // 清理回调函数
-      callback_ptr = (undefined **)callback_buffer;
+      callback_ptr = (void **)callback_buffer;
       if (destructor2 != (code *)0x0) {
         (*destructor2)(callback_buffer,0,0);
       }
-      callback_ptr = (undefined **)cleanup_buffer;
+      callback_ptr = (void **)cleanup_buffer;
       if (destructor1 != (code *)0x0) {
         (*destructor1)(cleanup_buffer,0,0);
       }
@@ -513,7 +513,7 @@ void ResourcePool_Cleanup(longlong pool_handle)
 
 {
   longlong pool_base;
-  undefined8 *resource_ptr;
+  uint64_t *resource_ptr;
   ulonglong resource_count;
   ulonglong index;
   
@@ -522,18 +522,18 @@ void ResourcePool_Cleanup(longlong pool_handle)
   index = 0;
   if (resource_count != 0) {
     do {
-      resource_ptr = *(undefined8 **)(pool_base + index * 8);
-      if (resource_ptr != (undefined8 *)0x0) {
+      resource_ptr = *(uint64_t **)(pool_base + index * 8);
+      if (resource_ptr != (uint64_t *)0x0) {
         *resource_ptr = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
         FUN_18064e900(resource_ptr);
       }
-      *(undefined8 *)(pool_base + index * 8) = 0;
+      *(uint64_t *)(pool_base + index * 8) = 0;
       index = index + 1;
     } while (index < resource_count);
     resource_count = *(ulonglong *)(pool_handle + 0x10);
   }
-  *(undefined8 *)(pool_handle + 0x18) = 0;
+  *(uint64_t *)(pool_handle + 0x18) = 0;
   if ((1 < resource_count) && (*(longlong *)(pool_handle + 8) != 0)) {
                     // WARNING: Subroutine does not return
     FUN_18064e900(pool_base);
@@ -566,13 +566,13 @@ ulonglong ResourceQueue_Allocate(longlong *queue_ptr,longlong resource_data)
     queue_ptr[1] = current_pos + 0x1a8;
     new_position = current_pos;
     FUN_180068ff0();
-    *(undefined8 *)(current_pos + 0x118) = *(undefined8 *)(resource_data + 0x118);
-    *(undefined8 *)(current_pos + 0x120) = *(undefined8 *)(resource_data + 0x120);
-    *(undefined8 *)(current_pos + 0x128) = *(undefined8 *)(resource_data + 0x128);
-    *(undefined8 *)(current_pos + 0x130) = *(undefined8 *)(resource_data + 0x130);
-    *(undefined8 *)(current_pos + 0x138) = *(undefined8 *)(resource_data + 0x138);
-    *(undefined1 *)(current_pos + 0x140) = *(undefined1 *)(resource_data + 0x140);
-    *(undefined8 *)(current_pos + 0x158) = 0;
+    *(uint64_t *)(current_pos + 0x118) = *(uint64_t *)(resource_data + 0x118);
+    *(uint64_t *)(current_pos + 0x120) = *(uint64_t *)(resource_data + 0x120);
+    *(uint64_t *)(current_pos + 0x128) = *(uint64_t *)(resource_data + 0x128);
+    *(uint64_t *)(current_pos + 0x130) = *(uint64_t *)(resource_data + 0x130);
+    *(uint64_t *)(current_pos + 0x138) = *(uint64_t *)(resource_data + 0x138);
+    *(int8_t *)(current_pos + 0x140) = *(int8_t *)(resource_data + 0x140);
+    *(uint64_t *)(current_pos + 0x158) = 0;
     *(code **)(current_pos + 0x160) = _guard_check_icall;
     if (current_pos + 0x148 != resource_data + 0x148) {
       callback_func = *(code **)(resource_data + 0x158);
@@ -581,9 +581,9 @@ ulonglong ResourceQueue_Allocate(longlong *queue_ptr,longlong resource_data)
         callback_func = *(code **)(resource_data + 0x158);
       }
       *(code **)(current_pos + 0x158) = callback_func;
-      *(undefined8 *)(current_pos + 0x160) = *(undefined8 *)(resource_data + 0x160);
+      *(uint64_t *)(current_pos + 0x160) = *(uint64_t *)(resource_data + 0x160);
     }
-    *(undefined8 *)(current_pos + 0x178) = 0;
+    *(uint64_t *)(current_pos + 0x178) = 0;
     *(code **)(current_pos + 0x180) = _guard_check_icall;
     if (current_pos + 0x168 != resource_data + 0x168) {
       callback_func = *(code **)(resource_data + 0x178);
@@ -592,12 +592,12 @@ ulonglong ResourceQueue_Allocate(longlong *queue_ptr,longlong resource_data)
         callback_func = *(code **)(resource_data + 0x178);
       }
       *(code **)(current_pos + 0x178) = callback_func;
-      *(undefined8 *)(current_pos + 0x180) = *(undefined8 *)(resource_data + 0x180);
+      *(uint64_t *)(current_pos + 0x180) = *(uint64_t *)(resource_data + 0x180);
     }
-    *(undefined8 *)(current_pos + 0x188) = *(undefined8 *)(resource_data + 0x188);
-    *(undefined8 *)(current_pos + 400) = *(undefined8 *)(resource_data + 400);
-    *(undefined8 *)(current_pos + 0x198) = *(undefined8 *)(resource_data + 0x198);
-    *(undefined8 *)(current_pos + 0x1a0) = *(undefined8 *)(resource_data + 0x1a0);
+    *(uint64_t *)(current_pos + 0x188) = *(uint64_t *)(resource_data + 0x188);
+    *(uint64_t *)(current_pos + 400) = *(uint64_t *)(resource_data + 400);
+    *(uint64_t *)(current_pos + 0x198) = *(uint64_t *)(resource_data + 0x198);
+    *(uint64_t *)(current_pos + 0x1a0) = *(uint64_t *)(resource_data + 0x1a0);
     return current_pos;
   }
   
@@ -649,7 +649,7 @@ expand_queue:
  * @param param2 未使用参数  
  * @param queue_ptr 资源队列指针
  */
-void ResourceQueue_Expand(undefined8 param1,undefined8 param2,longlong *queue_ptr)
+void ResourceQueue_Expand(uint64_t param1,uint64_t param2,longlong *queue_ptr)
 
 {
   longlong old_buffer;
@@ -729,21 +729,21 @@ void Resource_Release(void)
  * @param param4 未使用参数
  * @return 目标位置指针
  */
-longlong Resource_Copy_Callback(longlong dest_ptr,longlong src_ptr,longlong param3,undefined8 param4)
+longlong Resource_Copy_Callback(longlong dest_ptr,longlong src_ptr,longlong param3,uint64_t param4)
 
 {
   code *callback_func;
-  undefined8 temp_value;
+  uint64_t temp_value;
   
   temp_value = 0xfffffffffffffffe;
   FUN_180068ff0();
-  *(undefined8 *)(dest_ptr + 0x118) = *(undefined8 *)(src_ptr + 0x118);
-  *(undefined8 *)(dest_ptr + 0x120) = *(undefined8 *)(src_ptr + 0x120);
-  *(undefined8 *)(dest_ptr + 0x128) = *(undefined8 *)(src_ptr + 0x128);
-  *(undefined8 *)(dest_ptr + 0x130) = *(undefined8 *)(src_ptr + 0x130);
-  *(undefined8 *)(dest_ptr + 0x138) = *(undefined8 *)(src_ptr + 0x138);
-  *(undefined1 *)(dest_ptr + 0x140) = *(undefined1 *)(src_ptr + 0x140);
-  *(undefined8 *)(dest_ptr + 0x158) = 0;
+  *(uint64_t *)(dest_ptr + 0x118) = *(uint64_t *)(src_ptr + 0x118);
+  *(uint64_t *)(dest_ptr + 0x120) = *(uint64_t *)(src_ptr + 0x120);
+  *(uint64_t *)(dest_ptr + 0x128) = *(uint64_t *)(src_ptr + 0x128);
+  *(uint64_t *)(dest_ptr + 0x130) = *(uint64_t *)(src_ptr + 0x130);
+  *(uint64_t *)(dest_ptr + 0x138) = *(uint64_t *)(src_ptr + 0x138);
+  *(int8_t *)(dest_ptr + 0x140) = *(int8_t *)(src_ptr + 0x140);
+  *(uint64_t *)(dest_ptr + 0x158) = 0;
   *(code **)(dest_ptr + 0x160) = _guard_check_icall;
   if (dest_ptr + 0x148 != src_ptr + 0x148) {
     callback_func = *(code **)(src_ptr + 0x158);
@@ -752,9 +752,9 @@ longlong Resource_Copy_Callback(longlong dest_ptr,longlong src_ptr,longlong para
       callback_func = *(code **)(src_ptr + 0x158);
     }
     *(code **)(dest_ptr + 0x158) = callback_func;
-    *(undefined8 *)(dest_ptr + 0x160) = *(undefined8 *)(src_ptr + 0x160);
+    *(uint64_t *)(dest_ptr + 0x160) = *(uint64_t *)(src_ptr + 0x160);
   }
-  *(undefined8 *)(dest_ptr + 0x178) = 0;
+  *(uint64_t *)(dest_ptr + 0x178) = 0;
   *(code **)(dest_ptr + 0x180) = _guard_check_icall;
   if (dest_ptr + 0x168 != src_ptr + 0x168) {
     callback_func = *(code **)(src_ptr + 0x178);
@@ -763,12 +763,12 @@ longlong Resource_Copy_Callback(longlong dest_ptr,longlong src_ptr,longlong para
       callback_func = *(code **)(src_ptr + 0x178);
     }
     *(code **)(dest_ptr + 0x178) = callback_func;
-    *(undefined8 *)(dest_ptr + 0x180) = *(undefined8 *)(src_ptr + 0x180);
+    *(uint64_t *)(dest_ptr + 0x180) = *(uint64_t *)(src_ptr + 0x180);
   }
-  *(undefined8 *)(dest_ptr + 0x188) = *(undefined8 *)(src_ptr + 0x188);
-  *(undefined8 *)(dest_ptr + 400) = *(undefined8 *)(src_ptr + 400);
-  *(undefined8 *)(dest_ptr + 0x198) = *(undefined8 *)(src_ptr + 0x198);
-  *(undefined8 *)(dest_ptr + 0x1a0) = *(undefined8 *)(src_ptr + 0x1a0);
+  *(uint64_t *)(dest_ptr + 0x188) = *(uint64_t *)(src_ptr + 0x188);
+  *(uint64_t *)(dest_ptr + 400) = *(uint64_t *)(src_ptr + 400);
+  *(uint64_t *)(dest_ptr + 0x198) = *(uint64_t *)(src_ptr + 0x198);
+  *(uint64_t *)(dest_ptr + 0x1a0) = *(uint64_t *)(src_ptr + 0x1a0);
   return dest_ptr;
 }
 

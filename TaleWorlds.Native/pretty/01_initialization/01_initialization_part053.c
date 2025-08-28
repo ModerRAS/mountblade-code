@@ -11,20 +11,20 @@ void FUN_180079270(longlong param_1,longlong param_2)
     int *counter_ptr;
     longlong *temp_ptr1;
     byte *byte_ptr;
-    undefined8 *data_ptr;
+    uint64_t *data_ptr;
     float matrix_row1_x, matrix_row1_y, matrix_row1_z;
     float matrix_row2_x, matrix_row2_y, matrix_row2_z;
     float matrix_row3_x, matrix_row3_y, matrix_row3_z;
     float result_matrix[12];
-    undefined1 flag_byte;
+    int8_t flag_byte;
     char index_char;
     longlong temp_long;
     float *transform_matrix;
     float temp_float1, temp_float2, temp_float3, temp_float4;
     float temp_float5, temp_float6, temp_float7, temp_float8;
     float temp_float9, temp_float10, temp_float11, temp_float12;
-    undefined8 temp_undefined8;
-    undefined4 temp_undefined4;
+    uint64_t temp_uint64_t;
+    int32_t temp_int32_t;
     longlong offset_value;
     longlong *array_ptr;
     longlong loop_counter;
@@ -38,7 +38,7 @@ void FUN_180079270(longlong param_1,longlong param_2)
     int item_count;
     int array_size;
     int loop_index;
-    undefined4 *data_array;
+    int32_t *data_array;
     uint *chunk_ptr;
     ulonglong chunk_start;
     ulonglong chunk_end;
@@ -50,7 +50,7 @@ void FUN_180079270(longlong param_1,longlong param_2)
     
     // 检查对象标志位
     if ((*(byte *)(param_1 + 0xfd) & 0x20) == 0) {
-        offset_value = func_0x000180085de0(*(undefined8 *)(param_1 + 0x1b0));
+        offset_value = func_0x000180085de0(*(uint64_t *)(param_1 + 0x1b0));
     }
     
     // 更新全局计数器
@@ -62,16 +62,16 @@ void FUN_180079270(longlong param_1,longlong param_2)
     
     // 获取游戏对象数据
     temp_long = *(longlong *)(param_1 + 600);
-    flag_byte = *(undefined1 *)(param_2 + 0x24);
-    temp_undefined4 = *(undefined4 *)(param_2 + 0x20);
+    flag_byte = *(int8_t *)(param_2 + 0x24);
+    temp_int32_t = *(int32_t *)(param_2 + 0x20);
     index_char = *(char *)(param_2 + 0xd);
     
     // 保存当前状态
-    *(undefined4 *)(temp_long + 0x48) = *(undefined4 *)(temp_long + 0x2c);
-    *(undefined4 *)(temp_long + 0x50) = *(undefined4 *)(temp_long + 0x4c);
+    *(int32_t *)(temp_long + 0x48) = *(int32_t *)(temp_long + 0x2c);
+    *(int32_t *)(temp_long + 0x50) = *(int32_t *)(temp_long + 0x4c);
     *(int *)(temp_long + 0x4c) = item_count;
-    *(undefined1 *)(temp_long + 0x44) = flag_byte;
-    *(undefined4 *)(temp_long + 0x2c) = temp_undefined4;
+    *(int8_t *)(temp_long + 0x44) = flag_byte;
+    *(int32_t *)(temp_long + 0x2c) = temp_int32_t;
     
     // 处理矩阵变换
     if (index_char != -1) {
@@ -86,27 +86,27 @@ void FUN_180079270(longlong param_1,longlong param_2)
         offset_value = (ulonglong)(temp_uint1 + chunk_index * -0x2000) * 0x40;
         
         // 加载矩阵数据
-        temp_undefined8 = ((undefined8 *)(temp_long + offset_value))[1];
-        *(undefined8 *)transform_matrix = *(undefined8 *)(temp_long + offset_value);
-        *(undefined8 *)(transform_matrix + 2) = temp_undefined8;
+        temp_uint64_t = ((uint64_t *)(temp_long + offset_value))[1];
+        *(uint64_t *)transform_matrix = *(uint64_t *)(temp_long + offset_value);
+        *(uint64_t *)(transform_matrix + 2) = temp_uint64_t;
         
         // 加载第二行矩阵数据
-        data_ptr = (undefined8 *)(temp_long + 0x10 + offset_value);
-        temp_undefined8 = data_ptr[1];
-        *(undefined8 *)(transform_matrix + 4) = *data_ptr;
-        *(undefined8 *)(transform_matrix + 6) = temp_undefined8;
+        data_ptr = (uint64_t *)(temp_long + 0x10 + offset_value);
+        temp_uint64_t = data_ptr[1];
+        *(uint64_t *)(transform_matrix + 4) = *data_ptr;
+        *(uint64_t *)(transform_matrix + 6) = temp_uint64_t;
         
         // 加载第三行矩阵数据
-        data_ptr = (undefined8 *)(temp_long + 0x20 + offset_value);
-        temp_undefined8 = data_ptr[1];
-        *(undefined8 *)(transform_matrix + 8) = *data_ptr;
-        *(undefined8 *)(transform_matrix + 10) = temp_undefined8;
+        data_ptr = (uint64_t *)(temp_long + 0x20 + offset_value);
+        temp_uint64_t = data_ptr[1];
+        *(uint64_t *)(transform_matrix + 8) = *data_ptr;
+        *(uint64_t *)(transform_matrix + 10) = temp_uint64_t;
         
         // 加载第四行矩阵数据
-        data_ptr = (undefined8 *)(temp_long + 0x30 + offset_value);
-        temp_undefined8 = data_ptr[1];
-        *(undefined8 *)(transform_matrix + 0xc) = *data_ptr;
-        *(undefined8 *)(transform_matrix + 0xe) = temp_undefined8;
+        data_ptr = (uint64_t *)(temp_long + 0x30 + offset_value);
+        temp_uint64_t = data_ptr[1];
+        *(uint64_t *)(transform_matrix + 0xc) = *data_ptr;
+        *(uint64_t *)(transform_matrix + 0xe) = temp_uint64_t;
         
         // 获取变换矩阵数据
         temp_long = *(longlong *)(param_2 + 0x10);
@@ -158,14 +158,14 @@ void FUN_180079270(longlong param_1,longlong param_2)
         if (0 < item_count) {
             // 分配内存
             offset_value = (longlong)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc28;
-            temp_undefined4 = FUN_180080380(offset_value, item_count);
-            *(undefined4 *)(temp_long + 0x30) = temp_undefined4;
-            FUN_1800802e0(offset_value, temp_undefined4);
+            temp_int32_t = FUN_180080380(offset_value, item_count);
+            *(int32_t *)(temp_long + 0x30) = temp_int32_t;
+            FUN_1800802e0(offset_value, temp_int32_t);
             
             // 检查数据指针
             if (*(longlong *)(temp_long + 0x10) == 0) {
                 if (*(int *)(temp_long + 0x18) != 0) {
-                    *(undefined4 *)(temp_long + 0x2c) = *(undefined4 *)(temp_long + 0x30);
+                    *(int32_t *)(temp_long + 0x2c) = *(int32_t *)(temp_long + 0x30);
                     return;
                 }
             }
@@ -300,7 +300,7 @@ void FUN_180079270(longlong param_1,longlong param_2)
                                 
                                 if (is_allocated) {
                                     LOCK();
-                                    *(undefined1 *)((longlong)loop_index + 0x108 + (longlong)uint_ptr) = 0;
+                                    *(int8_t *)((longlong)loop_index + 0x108 + (longlong)uint_ptr) = 0;
                                     UNLOCK();
                                 }
                                 else {
@@ -324,7 +324,7 @@ void FUN_180079270(longlong param_1,longlong param_2)
                 }
                 
                 // 复制数据到内存块
-                data_array = *(undefined4 **)(temp_long + 0x38);
+                data_array = *(int32_t **)(temp_long + 0x38);
                 temp_uint1 = temp_uint1 >> 0xb;
                 *(uint *)(temp_long + 0x2c) = temp_uint1;
                 
@@ -336,11 +336,11 @@ void FUN_180079270(longlong param_1,longlong param_2)
                 if (item_count != 0) {
                     temp_ulong1 = temp_ulong1 & 0xffffffff;
                     do {
-                        temp_undefined4 = *data_array;
+                        temp_int32_t = *data_array;
                         data_array = data_array + 1;
-                        *(undefined4 *)
+                        *(int32_t *)
                          (*(longlong *)(uint_ptr + (ulonglong)(temp_uint1 >> 0xb) * 2 + 2) +
-                         (ulonglong)(temp_uint1 + (temp_uint1 >> 0xb) * -0x800) * 4) = temp_undefined4;
+                         (ulonglong)(temp_uint1 + (temp_uint1 >> 0xb) * -0x800) * 4) = temp_int32_t;
                         temp_ulong1 = temp_ulong1 - 1;
                         temp_uint1 = temp_uint1 + 1;
                     } while (temp_ulong1 != 0);
@@ -366,20 +366,20 @@ void FUN_180079284(longlong param_1)
     int *counter_ptr;
     longlong *temp_ptr1;
     byte *byte_ptr;
-    undefined8 *data_ptr;
+    uint64_t *data_ptr;
     float matrix_row1_x, matrix_row1_y, matrix_row1_z;
     float matrix_row2_x, matrix_row2_y, matrix_row2_z;
     float matrix_row3_x, matrix_row3_y, matrix_row3_z;
     float result_matrix[12];
-    undefined1 flag_byte;
+    int8_t flag_byte;
     char index_char;
     longlong temp_long;
     float *transform_matrix;
     float temp_float1, temp_float2, temp_float3, temp_float4;
     float temp_float5, temp_float6, temp_float7, temp_float8;
     float temp_float9, temp_float10, temp_float11, temp_float12;
-    undefined8 temp_undefined8;
-    undefined4 temp_undefined4;
+    uint64_t temp_uint64_t;
+    int32_t temp_int32_t;
     longlong offset_value;
     longlong *array_ptr;
     longlong loop_counter;
@@ -394,7 +394,7 @@ void FUN_180079284(longlong param_1)
     longlong unaff_RDI;
     int array_size;
     int loop_index;
-    undefined4 *data_array;
+    int32_t *data_array;
     uint *chunk_ptr;
     ulonglong chunk_start;
     ulonglong chunk_end;
@@ -407,7 +407,7 @@ void FUN_180079284(longlong param_1)
     
     // 根据标志位决定是否使用偏移地址
     if (in_ZF) {
-        offset_value = func_0x000180085de0(*(undefined8 *)(param_1 + 0x1b0));
+        offset_value = func_0x000180085de0(*(uint64_t *)(param_1 + 0x1b0));
     }
     
     // 更新全局计数器
@@ -419,16 +419,16 @@ void FUN_180079284(longlong param_1)
     
     // 获取游戏对象数据
     temp_long = *(longlong *)(param_1 + 600);
-    flag_byte = *(undefined1 *)(unaff_RDI + 0x24);
-    temp_undefined4 = *(undefined4 *)(unaff_RDI + 0x20);
+    flag_byte = *(int8_t *)(unaff_RDI + 0x24);
+    temp_int32_t = *(int32_t *)(unaff_RDI + 0x20);
     index_char = *(char *)(unaff_RDI + 0xd);
     
     // 保存当前状态
-    *(undefined4 *)(temp_long + 0x48) = *(undefined4 *)(temp_long + 0x2c);
-    *(undefined4 *)(temp_long + 0x50) = *(undefined4 *)(temp_long + 0x4c);
+    *(int32_t *)(temp_long + 0x48) = *(int32_t *)(temp_long + 0x2c);
+    *(int32_t *)(temp_long + 0x50) = *(int32_t *)(temp_long + 0x4c);
     *(int *)(temp_long + 0x4c) = item_count;
-    *(undefined1 *)(temp_long + 0x44) = flag_byte;
-    *(undefined4 *)(temp_long + 0x2c) = temp_undefined4;
+    *(int8_t *)(temp_long + 0x44) = flag_byte;
+    *(int32_t *)(temp_long + 0x2c) = temp_int32_t;
     
     // 处理矩阵变换
     if (index_char != -1) {
@@ -443,27 +443,27 @@ void FUN_180079284(longlong param_1)
         offset_value = (ulonglong)(temp_uint1 + chunk_index * -0x2000) * 0x40;
         
         // 加载矩阵数据
-        temp_undefined8 = ((undefined8 *)(temp_long + offset_value))[1];
-        *(undefined8 *)transform_matrix = *(undefined8 *)(temp_long + offset_value);
-        *(undefined8 *)(transform_matrix + 2) = temp_undefined8;
+        temp_uint64_t = ((uint64_t *)(temp_long + offset_value))[1];
+        *(uint64_t *)transform_matrix = *(uint64_t *)(temp_long + offset_value);
+        *(uint64_t *)(transform_matrix + 2) = temp_uint64_t;
         
         // 加载第二行矩阵数据
-        data_ptr = (undefined8 *)(temp_long + 0x10 + offset_value);
-        temp_undefined8 = data_ptr[1];
-        *(undefined8 *)(transform_matrix + 4) = *data_ptr;
-        *(undefined8 *)(transform_matrix + 6) = temp_undefined8;
+        data_ptr = (uint64_t *)(temp_long + 0x10 + offset_value);
+        temp_uint64_t = data_ptr[1];
+        *(uint64_t *)(transform_matrix + 4) = *data_ptr;
+        *(uint64_t *)(transform_matrix + 6) = temp_uint64_t;
         
         // 加载第三行矩阵数据
-        data_ptr = (undefined8 *)(temp_long + 0x20 + offset_value);
-        temp_undefined8 = data_ptr[1];
-        *(undefined8 *)(transform_matrix + 8) = *data_ptr;
-        *(undefined8 *)(transform_matrix + 10) = temp_undefined8;
+        data_ptr = (uint64_t *)(temp_long + 0x20 + offset_value);
+        temp_uint64_t = data_ptr[1];
+        *(uint64_t *)(transform_matrix + 8) = *data_ptr;
+        *(uint64_t *)(transform_matrix + 10) = temp_uint64_t;
         
         // 加载第四行矩阵数据
-        data_ptr = (undefined8 *)(temp_long + 0x30 + offset_value);
-        temp_undefined8 = data_ptr[1];
-        *(undefined8 *)(transform_matrix + 0xc) = *data_ptr;
-        *(undefined8 *)(transform_matrix + 0xe) = temp_undefined8;
+        data_ptr = (uint64_t *)(temp_long + 0x30 + offset_value);
+        temp_uint64_t = data_ptr[1];
+        *(uint64_t *)(transform_matrix + 0xc) = *data_ptr;
+        *(uint64_t *)(transform_matrix + 0xe) = temp_uint64_t;
         
         // 获取变换矩阵数据
         temp_long = *(longlong *)(unaff_RDI + 0x10);
@@ -515,14 +515,14 @@ void FUN_180079284(longlong param_1)
         if (0 < item_count) {
             // 分配内存
             offset_value = (longlong)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc28;
-            temp_undefined4 = FUN_180080380(offset_value, item_count);
-            *(undefined4 *)(temp_long + 0x30) = temp_undefined4;
-            FUN_1800802e0(offset_value, temp_undefined4);
+            temp_int32_t = FUN_180080380(offset_value, item_count);
+            *(int32_t *)(temp_long + 0x30) = temp_int32_t;
+            FUN_1800802e0(offset_value, temp_int32_t);
             
             // 检查数据指针
             if (*(longlong *)(temp_long + 0x10) == 0) {
                 if (*(int *)(temp_long + 0x18) != 0) {
-                    *(undefined4 *)(temp_long + 0x2c) = *(undefined4 *)(temp_long + 0x30);
+                    *(int32_t *)(temp_long + 0x2c) = *(int32_t *)(temp_long + 0x30);
                     return;
                 }
             }
@@ -657,7 +657,7 @@ void FUN_180079284(longlong param_1)
                                 
                                 if (is_allocated) {
                                     LOCK();
-                                    *(undefined1 *)((longlong)loop_index + 0x108 + (longlong)uint_ptr) = 0;
+                                    *(int8_t *)((longlong)loop_index + 0x108 + (longlong)uint_ptr) = 0;
                                     UNLOCK();
                                 }
                                 else {
@@ -681,7 +681,7 @@ void FUN_180079284(longlong param_1)
                 }
                 
                 // 复制数据到内存块
-                data_array = *(undefined4 **)(temp_long + 0x38);
+                data_array = *(int32_t **)(temp_long + 0x38);
                 temp_uint1 = temp_uint1 >> 0xb;
                 *(uint *)(temp_long + 0x2c) = temp_uint1;
                 
@@ -693,11 +693,11 @@ void FUN_180079284(longlong param_1)
                 if (item_count != 0) {
                     temp_ulong1 = temp_ulong1 & 0xffffffff;
                     do {
-                        temp_undefined4 = *data_array;
+                        temp_int32_t = *data_array;
                         data_array = data_array + 1;
-                        *(undefined4 *)
+                        *(int32_t *)
                          (*(longlong *)(uint_ptr + (ulonglong)(temp_uint1 >> 0xb) * 2 + 2) +
-                         (ulonglong)(temp_uint1 + (temp_uint1 >> 0xb) * -0x800) * 4) = temp_undefined4;
+                         (ulonglong)(temp_uint1 + (temp_uint1 >> 0xb) * -0x800) * 4) = temp_int32_t;
                         temp_ulong1 = temp_ulong1 - 1;
                         temp_uint1 = temp_uint1 + 1;
                     } while (temp_ulong1 != 0);

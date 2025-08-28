@@ -86,14 +86,14 @@
 // ============================================================================
 
 typedef longlong UIHandle;                    // UI句柄类型
-typedef undefined8 UIResourceHandle;          // UI资源句柄类型
-typedef undefined1 UIStateFlag;               // UI状态标志类型
+typedef uint64_t UIResourceHandle;          // UI资源句柄类型
+typedef int8_t UIStateFlag;               // UI状态标志类型
 typedef byte UIStatusCode;                    // UI状态码类型
 typedef uint UIEventID;                       // UI事件ID类型
 typedef ulonglong UIMemoryAddress;            // UI内存地址类型
-typedef undefined8* UIPointer;               // UI指针类型
+typedef uint64_t* UIPointer;               // UI指针类型
 typedef longlong* UILongPointer;             // UI长整型指针类型
-typedef undefined4* UIFloatPointer;          // UI浮点型指针类型
+typedef int32_t* UIFloatPointer;          // UI浮点型指针类型
 typedef int* UIIntPointer;                    // UI整型指针类型
 typedef void* UIVoidPointer;                  // UI空指针类型
 
@@ -307,40 +307,40 @@ void UISystemAdvancedControlStateManager(UIHandle system_handle, UIResourceHandl
     UIStateFlag current_state;
     
     // 栈变量声明和初始化
-    undefined1 state_buffer[32];         // 状态缓冲区
+    int8_t state_buffer[32];         // 状态缓冲区
     UILongPointer stack_ptr;             // 栈指针
-    undefined1 stack_flag_1;              // 栈标志1
-    undefined1 stack_flag_2;              // 栈标志2
+    int8_t stack_flag_1;              // 栈标志1
+    int8_t stack_flag_2;              // 栈标志2
     longlong stack_data_1;               // 栈数据1
-    undefined4 stack_value_1;            // 栈值1
+    int32_t stack_value_1;            // 栈值1
     uint stack_uint_1;                   // 栈无符号整数1
     int stack_int_array[2];               // 栈整数数组
     longlong stack_long_1;               // 栈长整数1
     longlong stack_long_2;               // 栈长整数2
-    undefined8 stack_resource_1;         // 栈资源1
-    undefined8 stack_resource_2;         // 栈资源2
-    undefined8 stack_resource_3;         // 栈资源3
-    undefined8 stack_resource_4;         // 栈资源4
-    undefined4 stack_value_2;            // 栈值2
-    undefined4 stack_value_3;            // 栈值3
-    undefined4 stack_value_array[2];     // 栈值数组
-    undefined8 stack_handle_1;           // 栈句柄1
-    undefined8 stack_data_array[48];     // 栈数据数组
+    uint64_t stack_resource_1;         // 栈资源1
+    uint64_t stack_resource_2;         // 栈资源2
+    uint64_t stack_resource_3;         // 栈资源3
+    uint64_t stack_resource_4;         // 栈资源4
+    int32_t stack_value_2;            // 栈值2
+    int32_t stack_value_3;            // 栈值3
+    int32_t stack_value_array[2];     // 栈值数组
+    uint64_t stack_handle_1;           // 栈句柄1
+    uint64_t stack_data_array[48];     // 栈数据数组
     uint stack_uint_2;                   // 栈无符号整数2
-    undefined1 stack_padding[4];        // 栈填充
+    int8_t stack_padding[4];        // 栈填充
     int stack_int_1;                     // 栈整数1
     int stack_int_2;                     // 栈整数2
     int stack_int_3;                     // 栈整数3
-    undefined8 stack_data_1;             // 栈数据1
-    undefined8 stack_data_2;             // 栈数据2
-    undefined4 stack_value_4;            // 栈值4
-    undefined4 stack_value_5;            // 栈值5
-    undefined4 stack_value_6;            // 栈值6
+    uint64_t stack_data_1;             // 栈数据1
+    uint64_t stack_data_2;             // 栈数据2
+    int32_t stack_value_4;            // 栈值4
+    int32_t stack_value_5;            // 栈值5
+    int32_t stack_value_6;            // 栈值6
     longlong stack_long_3;               // 栈长整数3
     longlong stack_long_4;               // 栈长整数4
     longlong stack_long_5;               // 栈长整数5
-    undefined8 stack_data_3;             // 栈数据3
-    undefined4 stack_value_7;            // 栈值7
+    uint64_t stack_data_3;             // 栈数据3
+    int32_t stack_value_7;            // 栈值7
     ulonglong stack_memory_addr;         // 栈内存地址
     
     // 内存保护初始化
@@ -348,11 +348,11 @@ void UISystemAdvancedControlStateManager(UIHandle system_handle, UIResourceHandl
     
     // 系统状态验证
     if ((((((*(uint *)(system_handle + 0x24) >> 1 & 1) == 0) ||       // 检查系统状态标志
-           (validation_result = FUN_1808673a0(*(undefined8 *)(system_handle + 0x80)), validation_result != 0)) ||  // 验证系统初始化状态
+           (validation_result = FUN_1808673a0(*(uint64_t *)(system_handle + 0x80)), validation_result != 0)) ||  // 验证系统初始化状态
           (validation_result = FUN_180882400(system_handle), validation_result != 0)) ||  // 验证系统配置状态
          ((*(longlong *)(system_handle + 0x90) == 0 ||                // 检查主控句柄
            (validation_result = FUN_1808c26e0(*(longlong *)(system_handle + 0x90),resource_handle,state_flag,  // 验证主控状态
-                                          *(undefined8 *)(system_handle + 0xad0)), validation_result != 0))))) {
+                                          *(uint64_t *)(system_handle + 0xad0)), validation_result != 0))))) {
         goto error_handler;  // 跳转到错误处理器
     }
     
@@ -374,8 +374,8 @@ void UISystemAdvancedControlStateManager(UIHandle system_handle, UIResourceHandl
     if ((*(char *)(system_data + 0x5d) != '\0') || (*(char *)(system_data + 100) != '\0')) {
         // 初始化状态数据
         stack_value_array[0] = 5;
-        stack_handle_1 = func_0x0001808e3470(*(undefined8 *)(*(longlong *)(system_handle + 0x90) + 0x4d0),
-                                            *(undefined4 *)(*(longlong *)(system_handle + 0x90) + 0x774));
+        stack_handle_1 = func_0x0001808e3470(*(uint64_t *)(*(longlong *)(system_handle + 0x90) + 0x4d0),
+                                            *(int32_t *)(*(longlong *)(system_handle + 0x90) + 0x774));
         
         // 获取控件数据
         system_data = *(longlong *)(system_handle + 0x90);
@@ -384,7 +384,7 @@ void UISystemAdvancedControlStateManager(UIHandle system_handle, UIResourceHandl
         // 处理控件数据数组
         if (0 < stack_int_3) {
             resource_ptr = stack_data_array;
-            resource_data_ptr = (undefined8 *)(system_data + 0x554);
+            resource_data_ptr = (uint64_t *)(system_data + 0x554);
             
             // 循环处理控件数据
             do {
@@ -399,7 +399,7 @@ void UISystemAdvancedControlStateManager(UIHandle system_handle, UIResourceHandl
                 resource_ptr[4] = resource_data_ptr[4];
                 resource_ptr[5] = resource_value;
                 resource_ptr = resource_ptr + 6;
-                resource_data_ptr = (undefined8 *)((longlong)resource_data_ptr + 0x44);
+                resource_data_ptr = (uint64_t *)((longlong)resource_data_ptr + 0x44);
             } while (validation_result < stack_int_3);
         }
         
@@ -409,8 +409,8 @@ void UISystemAdvancedControlStateManager(UIHandle system_handle, UIResourceHandl
         
         // 验证数据处理结果
         if (((validation_result != 0) ||
-            (validation_result = func_0x00018088e470(*(undefined8 *)(system_handle + 0x98),&stack_value_1), validation_result != 0)) ||
-           (validation_result = FUN_180739890(*(undefined8 *)(system_handle + 0x78),&stack_resource_3), validation_result != 0)) {
+            (validation_result = func_0x00018088e470(*(uint64_t *)(system_handle + 0x98),&stack_value_1), validation_result != 0)) ||
+           (validation_result = FUN_180739890(*(uint64_t *)(system_handle + 0x78),&stack_resource_3), validation_result != 0)) {
             goto error_handler;
         }
         
@@ -425,7 +425,7 @@ void UISystemAdvancedControlStateManager(UIHandle system_handle, UIResourceHandl
         stack_data_1 = 0;
         
         // 处理系统数据更新
-        validation_result = FUN_18073a0c0(*(undefined8 *)(system_handle + 0x78),&stack_long_1,&stack_long_2,&stack_data_1);
+        validation_result = FUN_18073a0c0(*(uint64_t *)(system_handle + 0x78),&stack_long_1,&stack_long_2,&stack_data_1);
         if (validation_result != 0) goto error_handler;
         
         // 计算数据偏移
@@ -439,9 +439,9 @@ void UISystemAdvancedControlStateManager(UIHandle system_handle, UIResourceHandl
         *(longlong *)(system_handle + 0xd0) = stack_long_2;
         
         // 处理状态参数
-        validation_result = FUN_18073a840(*(undefined8 *)(system_handle + 0x78),stack_int_array,0,0);
+        validation_result = FUN_18073a840(*(uint64_t *)(system_handle + 0x78),stack_int_array,0,0);
         if ((validation_result != 0) ||
-           (validation_result = FUN_180739a50(*(undefined8 *)(system_handle + 0x78),&stack_uint_1,0), validation_result != 0)) {
+           (validation_result = FUN_180739a50(*(uint64_t *)(system_handle + 0x78),&stack_uint_1,0), validation_result != 0)) {
             goto error_handler;
         }
         
@@ -454,7 +454,7 @@ void UISystemAdvancedControlStateManager(UIHandle system_handle, UIResourceHandl
         // 处理状态数据
         validation_result = FUN_1808e3830(stack_value_array,&stack_resource_1);
         if ((validation_result != 0) ||
-           (validation_result = FUN_1808e30d0(*(undefined8 *)(system_handle + 0xa8),stack_resource_1), validation_result != 0)) {
+           (validation_result = FUN_1808e30d0(*(uint64_t *)(system_handle + 0xa8),stack_resource_1), validation_result != 0)) {
             goto error_handler;
         }
     }
@@ -466,9 +466,9 @@ void UISystemAdvancedControlStateManager(UIHandle system_handle, UIResourceHandl
         func_0x0001808e3b80(stack_value_array);
         validation_result = FUN_1808e55b0(stack_value_array,system_handle,current_state);
         if ((validation_result != 0) ||
-           (((validation_result = FUN_1808bc3a0(*(undefined8 *)(system_handle + 0x90),stack_value_array), validation_result != 0 ||
+           (((validation_result = FUN_1808bc3a0(*(uint64_t *)(system_handle + 0x90),stack_value_array), validation_result != 0 ||
              (validation_result = func_0x0001808e57e0(stack_value_array,&stack_resource_1), validation_result != 0)) ||
-            (validation_result = FUN_1808e30d0(*(undefined8 *)(system_handle + 0xa8),stack_resource_1), validation_result != 0)))) {
+            (validation_result = FUN_1808e30d0(*(uint64_t *)(system_handle + 0xa8),stack_resource_1), validation_result != 0)))) {
             FUN_180872ef0(&stack_handle_1);
             goto error_handler;
         }
@@ -481,9 +481,9 @@ void UISystemAdvancedControlStateManager(UIHandle system_handle, UIResourceHandl
         FUN_1808e3be0(stack_value_array);
         validation_result = FUN_1808e5790(stack_value_array,system_handle,current_state);
         if (((validation_result != 0) ||
-            ((validation_result = FUN_1808bc650(*(undefined8 *)(system_handle + 0x90),stack_value_array), validation_result != 0 ||
+            ((validation_result = FUN_1808bc650(*(uint64_t *)(system_handle + 0x90),stack_value_array), validation_result != 0 ||
              (validation_result = thunk_FUN_1808e3970(stack_value_array,&stack_resource_1), validation_result != 0)))) ||
-           (validation_result = FUN_1808e30d0(*(undefined8 *)(system_handle + 0xa8),stack_resource_1), validation_result != 0)) {
+           (validation_result = FUN_1808e30d0(*(uint64_t *)(system_handle + 0xa8),stack_resource_1), validation_result != 0)) {
             FUN_180874340(stack_data_array);
             goto error_handler;
         }
@@ -496,7 +496,7 @@ void UISystemAdvancedControlStateManager(UIHandle system_handle, UIResourceHandl
         if (*(longlong *)(system_handle + 0xb8) != 0) {
             validation_result = FUN_1808e5eb0();
             if (validation_result != 0) goto error_handler;
-            *(undefined8 *)(system_handle + 0xb8) = 0;
+            *(uint64_t *)(system_handle + 0xb8) = 0;
         }
     }
     else if (*(longlong *)(system_handle + 0xb8) == 0) {
@@ -504,11 +504,11 @@ void UISystemAdvancedControlStateManager(UIHandle system_handle, UIResourceHandl
         stack_data_1 = 0;
         stack_resource_1 = 0;
         stack_resource_2 = 0;
-        validation_result = FUN_18073a200(*(undefined8 *)(system_handle + 0x78),&stack_data_1);
+        validation_result = FUN_18073a200(*(uint64_t *)(system_handle + 0x78),&stack_data_1);
         if ((validation_result != 0) ||
            (stack_ptr = (longlong *)(system_handle + 0xb8),
-           validation_result = FUN_1808e5d30(*(undefined8 *)(system_handle + 0xa8),&stack_resource_1,
-                                         *(undefined8 *)(system_handle + 0x78),stack_data_1), validation_result != 0)) {
+           validation_result = FUN_1808e5d30(*(uint64_t *)(system_handle + 0xa8),&stack_resource_1,
+                                         *(uint64_t *)(system_handle + 0x78),stack_data_1), validation_result != 0)) {
             goto error_handler;
         }
     }
@@ -517,11 +517,11 @@ void UISystemAdvancedControlStateManager(UIHandle system_handle, UIResourceHandl
     if ((*(char *)(*(longlong *)(system_handle + 0xa8) + 0x61) == '\0') &&
         (*(char *)(*(longlong *)(system_handle + 0xa8) + 0x68) == '\0')) {
         if ((*(longlong *)(system_handle + 0xb0) != 0) &&
-           (validation_result = FUN_18088e8b0(*(undefined8 *)(system_handle + 0x98)), validation_result == 0)) {
-            resource_ptr = *(undefined8 **)(system_handle + 0xb0);
+           (validation_result = FUN_18088e8b0(*(uint64_t *)(system_handle + 0x98)), validation_result == 0)) {
+            resource_ptr = *(uint64_t **)(system_handle + 0xb0);
             (**(code **)*resource_ptr)(resource_ptr,0);
             stack_ptr = (longlong *)CONCAT71(stack_ptr._1_7_,1);
-            FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),resource_ptr,&UNK_180985b90,0x17a);
+            FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),resource_ptr,&UNK_180985b90,0x17a);
         }
     }
     else if (*(longlong *)(system_handle + 0xb0) == 0) {
@@ -530,11 +530,11 @@ void UISystemAdvancedControlStateManager(UIHandle system_handle, UIResourceHandl
         stack_flag_2 = 1;
         stack_flag_1 = 0;
         stack_ptr = (longlong *)((ulonglong)stack_ptr & 0xffffffff00000000);
-        system_data = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x38,&UNK_180985b90,0x171);
+        system_data = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x38,&UNK_180985b90,0x171);
         if (system_data != 0) {
             resource_value = func_0x0001808967b0(system_data,system_handle,(status_code & 1) << 0x18);
-            *(undefined8 *)(system_handle + 0xb0) = resource_value;
-            FUN_18088cee0(*(undefined8 *)(system_handle + 0x98),resource_value,0);
+            *(uint64_t *)(system_handle + 0xb0) = resource_value;
+            FUN_18088cee0(*(uint64_t *)(system_handle + 0x98),resource_value,0);
         }
     }
 
@@ -584,15 +584,15 @@ void UISystemAdvancedEventHandler(void)
     longlong *stack_ptr_1;
     longlong *stack_ptr_2;
     longlong stack_data_1;
-    undefined4 stack_value_1;
+    int32_t stack_value_1;
     uint stack_uint_1;
     int stack_int_1;
     longlong stack_long_1;
     longlong stack_long_2;
-    undefined8 stack_resource_1;
-    undefined8 stack_resource_2;
-    undefined8 stack_resource_3;
-    undefined8 stack_resource_4;
+    uint64_t stack_resource_1;
+    uint64_t stack_resource_2;
+    uint64_t stack_resource_3;
+    uint64_t stack_resource_4;
     
     // 初始化循环计数器
     loop_counter = 0;
@@ -601,10 +601,10 @@ void UISystemAdvancedEventHandler(void)
     if ((*(char *)(system_data + 0x5d) != '\0') || (*(char *)(system_data + 100) != '\0')) {
         // 获取控制数据
         control_data = *(longlong *)(unaff_RDI + 0x90);
-        *(undefined4 *)(unaff_RBP + -0x70) = 5;
-        resource_value = func_0x0001808e3470(*(undefined8 *)(control_data + 0x4d0),*(undefined4 *)(control_data + 0x774));
+        *(int32_t *)(unaff_RBP + -0x70) = 5;
+        resource_value = func_0x0001808e3470(*(uint64_t *)(control_data + 0x4d0),*(int32_t *)(control_data + 0x774));
         control_data = *(longlong *)(unaff_RDI + 0x90);
-        *(undefined8 *)(unaff_RBP + -0x68) = resource_value;
+        *(uint64_t *)(unaff_RBP + -0x68) = resource_value;
         
         // 获取控件数量
         status_code = *(int *)(control_data + 0x550);
@@ -612,8 +612,8 @@ void UISystemAdvancedEventHandler(void)
         
         // 处理控件数据数组
         if (0 < status_code) {
-            resource_ptr = (undefined8 *)(unaff_RBP + -0x60);
-            data_ptr = (undefined8 *)(control_data + 0x554);
+            resource_ptr = (uint64_t *)(unaff_RBP + -0x60);
+            data_ptr = (uint64_t *)(control_data + 0x554);
             
             // 循环处理控件数据
             do {
@@ -628,30 +628,30 @@ void UISystemAdvancedEventHandler(void)
                 resource_ptr[4] = data_ptr[4];
                 resource_ptr[5] = resource_value;
                 resource_ptr = resource_ptr + 6;
-                data_ptr = (undefined8 *)((longlong)data_ptr + 0x44);
+                data_ptr = (uint64_t *)((longlong)data_ptr + 0x44);
             } while (loop_counter < *(int *)(unaff_RBP + 0x130));
         }
         
         // 设置状态标志
-        *(undefined4 *)(unaff_RBP + 0x120) = 0;
+        *(int32_t *)(unaff_RBP + 0x120) = 0;
         *(uint *)(unaff_RBP + 0x120) = (uint)(*(char *)(control_data + 0x781) != '\0');
         loop_counter = FUN_180738630(unaff_RBP + 0x124,0,0);
         
         // 验证数据处理结果
         if (((loop_counter != 0) ||
-            (loop_counter = func_0x00018088e470(*(undefined8 *)(unaff_RDI + 0x98),&stack_value_1), loop_counter != 0)) ||
-           (loop_counter = FUN_180739890(*(undefined8 *)(unaff_RDI + 0x78),&stack_resource_3), loop_counter != 0)) {
+            (loop_counter = func_0x00018088e470(*(uint64_t *)(unaff_RDI + 0x98),&stack_value_1), loop_counter != 0)) ||
+           (loop_counter = FUN_180739890(*(uint64_t *)(unaff_RDI + 0x78),&stack_resource_3), loop_counter != 0)) {
             goto error_handler;
         }
         
         // 更新系统数据
-        resource_value = *(undefined8 *)(unaff_RDI + 0x78);
-        *(undefined8 *)(unaff_RBP + 0x134) = stack_resource_3;
-        *(undefined8 *)(unaff_RBP + 0x13c) = stack_resource_4;
+        resource_value = *(uint64_t *)(unaff_RDI + 0x78);
+        *(uint64_t *)(unaff_RBP + 0x134) = stack_resource_3;
+        *(uint64_t *)(unaff_RBP + 0x13c) = stack_resource_4;
         stack_long_1 = 0;
-        *(undefined4 *)(unaff_RBP + 0x144) = *(undefined4 *)(unaff_RBP + -0x78);
-        *(undefined4 *)(unaff_RBP + 0x14c) = stack_value_1;
-        *(undefined4 *)(unaff_RBP + 0x148) = *(undefined4 *)(unaff_RBP + -0x74);
+        *(int32_t *)(unaff_RBP + 0x144) = *(int32_t *)(unaff_RBP + -0x78);
+        *(int32_t *)(unaff_RBP + 0x14c) = stack_value_1;
+        *(int32_t *)(unaff_RBP + 0x148) = *(int32_t *)(unaff_RBP + -0x74);
         stack_long_2 = 0;
         stack_data_1 = 0;
         
@@ -664,7 +664,7 @@ void UISystemAdvancedEventHandler(void)
         *(longlong *)(unaff_RBP + 0x160) = stack_long_2 - *(longlong *)(unaff_RDI + 0xd0);
         control_data = *(longlong *)(unaff_RDI + 0xd8);
         *(longlong *)(unaff_RDI + 0xd8) = stack_data_1;
-        resource_value = *(undefined8 *)(unaff_RDI + 0x78);
+        resource_value = *(uint64_t *)(unaff_RDI + 0x78);
         *(longlong *)(unaff_RDI + 200) = stack_long_1;
         *(longlong *)(unaff_RDI + 0xd0) = stack_long_2;
         *(longlong *)(unaff_RBP + 0x150) = stack_data_1 - control_data;
@@ -672,13 +672,13 @@ void UISystemAdvancedEventHandler(void)
         // 处理状态参数
         loop_counter = FUN_18073a840(resource_value,&stack_int_1,0,0);
         if ((loop_counter != 0) ||
-           (loop_counter = FUN_180739a50(*(undefined8 *)(unaff_RDI + 0x78),(longlong)&stack_value_1 + 4,0), loop_counter != 0)) {
+           (loop_counter = FUN_180739a50(*(uint64_t *)(unaff_RDI + 0x78),(longlong)&stack_value_1 + 4,0), loop_counter != 0)) {
             goto error_handler;
         }
         
         // 设置处理结果
-        *(undefined8 *)(unaff_RBP + 0x168) = 0;
-        *(undefined4 *)(unaff_RBP + 0x170) = 0;
+        *(uint64_t *)(unaff_RBP + 0x168) = 0;
+        *(int32_t *)(unaff_RBP + 0x170) = 0;
         loop_counter = *(int *)(unaff_RDI + 0x2cc);
         *(int *)(unaff_RBP + 0x128) = (int)(((float)stack_uint_1 / (float)stack_int_1) * 1e+06);
         *(int *)(unaff_RBP + 300) = (int)((float)loop_counter * 1000.0);
@@ -686,7 +686,7 @@ void UISystemAdvancedEventHandler(void)
         // 处理事件数据
         loop_counter = FUN_1808e3830(unaff_RBP + -0x70,&stack_resource_1);
         if ((loop_counter != 0) ||
-           (loop_counter = FUN_1808e30d0(*(undefined8 *)(unaff_RDI + 0xa8),stack_resource_1), loop_counter != 0)) {
+           (loop_counter = FUN_1808e30d0(*(uint64_t *)(unaff_RDI + 0xa8),stack_resource_1), loop_counter != 0)) {
             goto error_handler;
         }
     }
@@ -698,9 +698,9 @@ void UISystemAdvancedEventHandler(void)
         func_0x0001808e3b80(unaff_RBP + -0x70);
         loop_counter = FUN_1808e55b0(unaff_RBP + -0x70);
         if ((loop_counter != 0) ||
-           (((loop_counter = FUN_1808bc3a0(*(undefined8 *)(unaff_RDI + 0x90),unaff_RBP + -0x70), loop_counter != 0 ||
+           (((loop_counter = FUN_1808bc3a0(*(uint64_t *)(unaff_RDI + 0x90),unaff_RBP + -0x70), loop_counter != 0 ||
              (loop_counter = func_0x0001808e57e0(unaff_RBP + -0x70,&stack_resource_1), loop_counter != 0)) ||
-            (loop_counter = FUN_1808e30d0(*(undefined8 *)(unaff_RDI + 0xa8),stack_resource_1), loop_counter != 0)))) {
+            (loop_counter = FUN_1808e30d0(*(uint64_t *)(unaff_RDI + 0xa8),stack_resource_1), loop_counter != 0)))) {
             FUN_180872ef0(unaff_RBP + -0x68);
             goto error_handler;
         }
@@ -713,9 +713,9 @@ void UISystemAdvancedEventHandler(void)
         FUN_1808e3be0(unaff_RBP + -0x70);
         loop_counter = FUN_1808e5790(unaff_RBP + -0x70);
         if (((loop_counter != 0) ||
-            ((loop_counter = FUN_1808bc650(*(undefined8 *)(unaff_RDI + 0x90),unaff_RBP + -0x70), loop_counter != 0 ||
+            ((loop_counter = FUN_1808bc650(*(uint64_t *)(unaff_RDI + 0x90),unaff_RBP + -0x70), loop_counter != 0 ||
              (loop_counter = thunk_FUN_1808e3970(unaff_RBP + -0x70,&stack_resource_1), loop_counter != 0)))) ||
-           (loop_counter = FUN_1808e30d0(*(undefined8 *)(unaff_RDI + 0xa8),stack_resource_1), loop_counter != 0)) {
+           (loop_counter = FUN_1808e30d0(*(uint64_t *)(unaff_RDI + 0xa8),stack_resource_1), loop_counter != 0)) {
             FUN_180874340(unaff_RBP + -0x60);
             goto error_handler;
         }
@@ -728,7 +728,7 @@ void UISystemAdvancedEventHandler(void)
         if (*(longlong *)(unaff_RDI + 0xb8) != 0) {
             loop_counter = FUN_1808e5eb0();
             if (loop_counter != 0) goto error_handler;
-            *(undefined8 *)(unaff_RDI + 0xb8) = 0;
+            *(uint64_t *)(unaff_RDI + 0xb8) = 0;
         }
     }
     else {
@@ -737,10 +737,10 @@ void UISystemAdvancedEventHandler(void)
             stack_data_1 = 0;
             stack_resource_1 = 0;
             stack_resource_2 = 0;
-            loop_counter = FUN_18073a200(*(undefined8 *)(unaff_RDI + 0x78),&stack_data_1);
+            loop_counter = FUN_18073a200(*(uint64_t *)(unaff_RDI + 0x78),&stack_data_1);
             if ((loop_counter != 0) ||
-               (loop_counter = FUN_1808e5d30(*(undefined8 *)(unaff_RDI + 0xa8),&stack_resource_1,
-                                      *(undefined8 *)(unaff_RDI + 0x78),stack_data_1,stack_ptr_2),
+               (loop_counter = FUN_1808e5d30(*(uint64_t *)(unaff_RDI + 0xa8),&stack_resource_1,
+                                      *(uint64_t *)(unaff_RDI + 0x78),stack_data_1,stack_ptr_2),
                stack_ptr_1 = stack_ptr_2, loop_counter != 0)) {
                 goto error_handler;
             }
@@ -751,18 +751,18 @@ void UISystemAdvancedEventHandler(void)
     if ((*(char *)(*(longlong *)(unaff_RDI + 0xa8) + 0x61) == '\0') &&
         (*(char *)(*(longlong *)(unaff_RDI + 0xa8) + 0x68) == '\0')) {
         if ((*(longlong *)(unaff_RDI + 0xb0) != 0) &&
-           (loop_counter = FUN_18088e8b0(*(undefined8 *)(unaff_RDI + 0x98)), loop_counter == 0)) {
-            resource_ptr = *(undefined8 **)(unaff_RDI + 0xb0);
+           (loop_counter = FUN_18088e8b0(*(uint64_t *)(unaff_RDI + 0x98)), loop_counter == 0)) {
+            resource_ptr = *(uint64_t **)(unaff_RDI + 0xb0);
             (**(code **)*resource_ptr)(resource_ptr,0);
-            FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),resource_ptr,&UNK_180985b90,0x17a,1);
+            FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),resource_ptr,&UNK_180985b90,0x17a,1);
         }
     }
     else if ((*(longlong *)(unaff_RDI + 0xb0) == 0) &&
-            (control_data = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x38,&UNK_180985b90,0x171,
+            (control_data = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x38,&UNK_180985b90,0x171,
                                    (ulonglong)stack_ptr_1 & 0xffffffff00000000), control_data != 0)) {
         resource_value = func_0x0001808967b0(control_data);
-        *(undefined8 *)(unaff_RDI + 0xb0) = resource_value;
-        FUN_18088cee0(*(undefined8 *)(unaff_RDI + 0x98),resource_value,0);
+        *(uint64_t *)(unaff_RDI + 0xb0) = resource_value;
+        FUN_18088cee0(*(uint64_t *)(unaff_RDI + 0x98),resource_value,0);
     }
 
 error_handler:

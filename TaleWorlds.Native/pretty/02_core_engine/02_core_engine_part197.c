@@ -86,9 +86,9 @@ void noop_function(void)
 
 // 函数: 处理窗口消息
 // 原始实现: FUN_18017b380
-void process_window_message(longlong window_handle, undefined8 message_type, undefined8 wparam, undefined8 lparam)
+void process_window_message(longlong window_handle, uint64_t message_type, uint64_t wparam, uint64_t lparam)
 {
-    dispatch_message_to_handler(window_handle, *(undefined8 *)(window_handle + 0x10), wparam, lparam, 0xfffffffffffffffe);
+    dispatch_message_to_handler(window_handle, *(uint64_t *)(window_handle + 0x10), wparam, lparam, 0xfffffffffffffffe);
     return;
 }
 
@@ -113,9 +113,9 @@ void cleanup_object_chain(longlong *chain_header)
 
 // 函数: 递归释放资源
 // 原始实现: FUN_18017b400
-void release_resources_recursively(undefined8 resource_handle, undefined8 *resource_ptr, undefined8 param3, undefined8 param4)
+void release_resources_recursively(uint64_t resource_handle, uint64_t *resource_ptr, uint64_t param3, uint64_t param4)
 {
-    if (resource_ptr != (undefined8 *)0x0) {
+    if (resource_ptr != (uint64_t *)0x0) {
         release_resources_recursively(resource_handle, *resource_ptr, param3, param4, 0xfffffffffffffffe);
         if ((longlong *)resource_ptr[4] != (longlong *)0x0) {
             (**(code **)(*(longlong *)resource_ptr[4] + 0x38))();
@@ -228,7 +228,7 @@ void process_object_collection(longlong collection_info)
         new_memory = 0;
     }
     else {
-        new_memory = allocate_memory_from_pool(g_memory_pool_base, collection_size * 8, *(undefined1 *)(collection_info + 0x18));
+        new_memory = allocate_memory_from_pool(g_memory_pool_base, collection_size * 8, *(int8_t *)(collection_info + 0x18));
     }
     
     // 复制对象数据
@@ -278,7 +278,7 @@ void adjust_buffer_size(longlong buffer_handle, longlong new_size, longlong alig
     longlong *object_ptr;
     ulonglong size_diff;
     longlong *temp_ptr;
-    undefined8 new_buffer;
+    uint64_t new_buffer;
     longlong *end_ptr;
     longlong buffer_info;
     ulonglong capacity;
@@ -287,7 +287,7 @@ void adjust_buffer_size(longlong buffer_handle, longlong new_size, longlong alig
     if (size_diff < capacity) {
         move_objects_to_front();
         new_buffer = append_objects_to_end(new_size + size_diff * 8);
-        *(undefined8 *)(buffer_info + 8) = new_buffer;
+        *(uint64_t *)(buffer_info + 8) = new_buffer;
     }
     else {
         temp_ptr = (longlong *)move_objects_to_front();
@@ -352,72 +352,72 @@ longlong * append_objects_to_end(longlong *source_start, longlong *source_end, l
 
 // 函数: 复制和转换数据结构
 // 原始实现: FUN_18017b6e0
-longlong * copy_and_convert_structures(longlong *destination, undefined4 *source_start, undefined4 *source_end, longlong param4)
+longlong * copy_and_convert_structures(longlong *destination, int32_t *source_start, int32_t *source_end, longlong param4)
 {
-    undefined8 *dest_ptr;
-    undefined4 *source_ptr;
-    undefined4 temp_value;
-    undefined8 *struct_ptr;
-    undefined8 temp_data;
-    undefined4 *next_source;
+    uint64_t *dest_ptr;
+    int32_t *source_ptr;
+    int32_t temp_value;
+    uint64_t *struct_ptr;
+    uint64_t temp_data;
+    int32_t *next_source;
     
     *destination = param4;
     if (source_start != source_end) {
         next_source = source_start + 0x10;
         do {
-            struct_ptr = (undefined8 *)*destination;
-            *struct_ptr = *(undefined8 *)(next_source + -0x10);
-            *(undefined8 *)(next_source + -0x10) = 0;
+            struct_ptr = (uint64_t *)*destination;
+            *struct_ptr = *(uint64_t *)(next_source + -0x10);
+            *(uint64_t *)(next_source + -0x10) = 0;
             dest_ptr = struct_ptr + 1;
             *dest_ptr = 0;
             struct_ptr[2] = 0;
             struct_ptr[3] = 0;
-            *(undefined4 *)(struct_ptr + 4) = next_source[-8];
+            *(int32_t *)(struct_ptr + 4) = next_source[-8];
             temp_data = *dest_ptr;
-            *dest_ptr = *(undefined8 *)(next_source + -0xe);
-            *(undefined8 *)(next_source + -0xe) = temp_data;
+            *dest_ptr = *(uint64_t *)(next_source + -0xe);
+            *(uint64_t *)(next_source + -0xe) = temp_data;
             temp_data = struct_ptr[2];
-            struct_ptr[2] = *(undefined8 *)(next_source + -0xc);
-            *(undefined8 *)(next_source + -0xc) = temp_data;
+            struct_ptr[2] = *(uint64_t *)(next_source + -0xc);
+            *(uint64_t *)(next_source + -0xc) = temp_data;
             temp_data = struct_ptr[3];
-            struct_ptr[3] = *(undefined8 *)(next_source + -10);
-            *(undefined8 *)(next_source + -10) = temp_data;
-            temp_value = *(undefined4 *)(struct_ptr + 4);
-            *(undefined4 *)(struct_ptr + 4) = next_source[-8];
+            struct_ptr[3] = *(uint64_t *)(next_source + -10);
+            *(uint64_t *)(next_source + -10) = temp_data;
+            temp_value = *(int32_t *)(struct_ptr + 4);
+            *(int32_t *)(struct_ptr + 4) = next_source[-8];
             next_source[-8] = temp_value;
             dest_ptr = struct_ptr + 5;
             *dest_ptr = 0;
             struct_ptr[6] = 0;
             struct_ptr[7] = 0;
-            *(undefined4 *)(struct_ptr + 8) = *next_source;
+            *(int32_t *)(struct_ptr + 8) = *next_source;
             temp_data = *dest_ptr;
-            *dest_ptr = *(undefined8 *)(next_source + -6);
-            *(undefined8 *)(next_source + -6) = temp_data;
+            *dest_ptr = *(uint64_t *)(next_source + -6);
+            *(uint64_t *)(next_source + -6) = temp_data;
             temp_data = struct_ptr[6];
-            struct_ptr[6] = *(undefined8 *)(next_source + -4);
-            *(undefined8 *)(next_source + -4) = temp_data;
+            struct_ptr[6] = *(uint64_t *)(next_source + -4);
+            *(uint64_t *)(next_source + -4) = temp_data;
             temp_data = struct_ptr[7];
-            struct_ptr[7] = *(undefined8 *)(next_source + -2);
-            *(undefined8 *)(next_source + -2) = temp_data;
-            temp_value = *(undefined4 *)(struct_ptr + 8);
-            *(undefined4 *)(struct_ptr + 8) = *next_source;
+            struct_ptr[7] = *(uint64_t *)(next_source + -2);
+            *(uint64_t *)(next_source + -2) = temp_data;
+            temp_value = *(int32_t *)(struct_ptr + 8);
+            *(int32_t *)(struct_ptr + 8) = *next_source;
             *next_source = temp_value;
             dest_ptr = struct_ptr + 9;
             *dest_ptr = 0;
             struct_ptr[10] = 0;
             struct_ptr[0xb] = 0;
-            *(undefined4 *)(struct_ptr + 0xc) = next_source[8];
+            *(int32_t *)(struct_ptr + 0xc) = next_source[8];
             temp_data = *dest_ptr;
-            *dest_ptr = *(undefined8 *)(next_source + 2);
-            *(undefined8 *)(next_source + 2) = temp_data;
+            *dest_ptr = *(uint64_t *)(next_source + 2);
+            *(uint64_t *)(next_source + 2) = temp_data;
             temp_data = struct_ptr[10];
-            struct_ptr[10] = *(undefined8 *)(next_source + 4);
-            *(undefined8 *)(next_source + 4) = temp_data;
+            struct_ptr[10] = *(uint64_t *)(next_source + 4);
+            *(uint64_t *)(next_source + 4) = temp_data;
             temp_data = struct_ptr[0xb];
-            struct_ptr[0xb] = *(undefined8 *)(next_source + 6);
-            *(undefined8 *)(next_source + 6) = temp_data;
-            temp_value = *(undefined4 *)(struct_ptr + 0xc);
-            *(undefined4 *)(struct_ptr + 0xc) = next_source[8];
+            struct_ptr[0xb] = *(uint64_t *)(next_source + 6);
+            *(uint64_t *)(next_source + 6) = temp_data;
+            temp_value = *(int32_t *)(struct_ptr + 0xc);
+            *(int32_t *)(struct_ptr + 0xc) = next_source[8];
             next_source[8] = temp_value;
             *destination = (longlong)(struct_ptr + 0xd);
             source_ptr = next_source + 10;
@@ -436,24 +436,24 @@ void initialize_render_system(longlong system_handle)
     char texture_loaded;
     longlong shader_program;
     longlong vertex_buffer;
-    undefined8 render_state;
-    undefined *render_target;
+    uint64_t render_state;
+    void *render_target;
     longlong *resource_manager;
     longlong *graphics_device;
     longlong *shader_manager;
-    undefined *texture_cache;
+    void *texture_cache;
     
     // 初始化各种渲染组件
-    initialize_render_component(g_render_device, *(undefined4 *)(g_render_device + 0x8c0));
-    initialize_render_component(g_render_device, *(undefined4 *)(g_render_device + 0x850));
-    initialize_render_component(g_render_device, *(undefined4 *)(g_render_device + 0x930));
-    initialize_render_component(g_render_device, *(undefined4 *)(g_render_device + 0xf50));
-    initialize_render_component(g_render_device, *(undefined4 *)(g_render_device + 0x10a0));
-    initialize_render_component(g_render_device, *(undefined4 *)(g_render_device + 0x9a0));
-    initialize_render_component(g_render_device, *(undefined4 *)(g_render_device + 0xee0));
-    initialize_render_component(g_render_device, *(undefined4 *)(g_render_device + 0xfc0));
-    initialize_render_component(g_render_device, *(undefined4 *)(g_render_device + 0xa10));
-    initialize_render_component(g_render_device, *(undefined4 *)(g_texture_cache + 0xe00));
+    initialize_render_component(g_render_device, *(int32_t *)(g_render_device + 0x8c0));
+    initialize_render_component(g_render_device, *(int32_t *)(g_render_device + 0x850));
+    initialize_render_component(g_render_device, *(int32_t *)(g_render_device + 0x930));
+    initialize_render_component(g_render_device, *(int32_t *)(g_render_device + 0xf50));
+    initialize_render_component(g_render_device, *(int32_t *)(g_render_device + 0x10a0));
+    initialize_render_component(g_render_device, *(int32_t *)(g_render_device + 0x9a0));
+    initialize_render_component(g_render_device, *(int32_t *)(g_render_device + 0xee0));
+    initialize_render_component(g_render_device, *(int32_t *)(g_render_device + 0xfc0));
+    initialize_render_component(g_render_device, *(int32_t *)(g_render_device + 0xa10));
+    initialize_render_component(g_render_device, *(int32_t *)(g_texture_cache + 0xe00));
     
     resource_manager = g_resource_manager;
     initialize_resource_manager(g_resource_manager);
@@ -461,7 +461,7 @@ void initialize_render_system(longlong system_handle)
     prepare_resource_loading(resource_manager);
     
     // 检查资源类型并执行相应初始化
-    if ((undefined *)*resource_manager == &g_default_resource_type) {
+    if ((void *)*resource_manager == &g_default_resource_type) {
         initialize_default_resources();
         setup_resource_callbacks(resource_manager);
         configure_resource_system(resource_manager);
@@ -470,16 +470,16 @@ void initialize_render_system(longlong system_handle)
         initialize_shader_system();
         initialize_geometry_system();
         setup_render_pipeline(resource_manager, 
-                             *(undefined4 *)(g_render_device + 0x1d50),
-                             *(undefined4 *)(g_render_device + 0x1dc0), 0);
+                             *(int32_t *)(g_render_device + 0x1d50),
+                             *(int32_t *)(g_render_device + 0x1dc0), 0);
     }
     else {
-        (**(code **)((undefined *)*resource_manager + 0xa8))(resource_manager);
+        (**(code **)((void *)*resource_manager + 0xa8))(resource_manager);
     }
     
     // 执行额外的初始化步骤
-    if ((undefined *)*resource_manager != &g_default_resource_type) {
-        (**(code **)((undefined *)*resource_manager + 0x80))(resource_manager);
+    if ((void *)*resource_manager != &g_default_resource_type) {
+        (**(code **)((void *)*resource_manager + 0x80))(resource_manager);
     }
     
     // 初始化图形设备
@@ -504,7 +504,7 @@ void initialize_render_system(longlong system_handle)
     
     // 配置渲染状态
     shader_manager[0x1077] = (longlong)shader_manager;
-    *(undefined8 *)(resource_manager[0x39b] + 0x83f0) = 0;
+    *(uint64_t *)(resource_manager[0x39b] + 0x83f0) = 0;
     configure_render_state(resource_manager[0x39b], 1);
     setup_render_parameters(resource_manager[0x39b], 3, 0xff0000ff, 0x3f800000, 0x8a, 0);
     
@@ -547,12 +547,12 @@ void initialize_render_system(longlong system_handle)
                 vertex_buffer = *graphics_device;
                 if ((vertex_buffer != 0) && (texture_loaded = check_texture_loaded(texture_manager, vertex_buffer), texture_loaded == '\0')) {
                     texture_cache = &g_default_texture_name;
-                    if (*(undefined **)(vertex_buffer + 0x18) != (undefined *)0x0) {
-                        texture_cache = *(undefined **)(vertex_buffer + 0x18);
+                    if (*(void **)(vertex_buffer + 0x18) != (void *)0x0) {
+                        texture_cache = *(void **)(vertex_buffer + 0x18);
                     }
                     render_target = &g_default_texture_name;
-                    if (*(undefined **)(texture_manager + 0x18) != (undefined *)0x0) {
-                        render_target = *(undefined **)(texture_manager + 0x18);
+                    if (*(void **)(texture_manager + 0x18) != (void *)0x0) {
+                        render_target = *(void **)(texture_manager + 0x18);
                     }
                     log_texture_loading_error(&g_error_log, render_target, texture_cache);
                 }
@@ -564,24 +564,24 @@ void initialize_render_system(longlong system_handle)
     }
     
     // 标记系统为已初始化
-    *(undefined1 *)(system_handle + 0x1fc) = 1;
+    *(int8_t *)(system_handle + 0x1fc) = 1;
     return;
 }
 
 // 函数: 处理UI事件
 // 原始实现: FUN_18017bc20
-void process_ui_event(undefined8 event_handle)
+void process_ui_event(uint64_t event_handle)
 {
-    undefined1 event_data[32];
-    undefined4 event_type;
-    undefined8 event_flags;
-    undefined **event_handlers[2];
-    undefined *event_source;
-    undefined1 *event_buffer;
-    undefined4 buffer_size;
-    undefined1 callback_data[72];
-    undefined *callback_params[11];
-    undefined4 callback_id;
+    int8_t event_data[32];
+    int32_t event_type;
+    uint64_t event_flags;
+    void **event_handlers[2];
+    void *event_source;
+    int8_t *event_buffer;
+    int32_t buffer_size;
+    int8_t callback_data[72];
+    void *callback_params[11];
+    int32_t callback_id;
     ulonglong security_cookie;
     
     event_flags = 0xfffffffffffffffe;
@@ -606,62 +606,62 @@ void process_ui_event(undefined8 event_handle)
 
 // 函数: 处理复杂UI事件序列
 // 原始实现: FUN_18017bd30
-void process_complex_ui_events(undefined8 event_sequence)
+void process_complex_ui_events(uint64_t event_sequence)
 {
-    undefined1 security_buffer[32];
-    undefined4 sequence_flags;
-    undefined **event_handlers[2];
-    undefined8 sequence_id;
-    undefined *callback_params[11];
-    undefined4 event_type;
-    undefined *event_source;
-    undefined1 *event_buffer;
-    undefined4 buffer_size;
-    undefined1 event_data[72];
-    undefined *data_source;
-    undefined1 *data_buffer;
-    undefined4 data_size;
-    undefined1 data_chunk[72];
-    undefined *chunk_source;
-    undefined1 *chunk_buffer;
-    undefined4 chunk_size;
-    undefined1 chunk_data[72];
-    undefined *segment_source;
-    undefined1 *segment_buffer;
-    undefined4 segment_size;
-    undefined1 segment_data[72];
-    undefined *block_source;
-    undefined1 *block_buffer;
-    undefined4 block_size;
-    undefined1 block_data[72];
-    undefined *region_source;
-    undefined1 *region_buffer;
-    undefined4 region_size;
-    undefined1 region_data[72];
-    undefined *area_source;
-    undefined1 *area_buffer;
-    undefined4 area_size;
-    undefined1 area_data[72];
-    undefined *zone_source;
-    undefined1 *zone_buffer;
-    undefined4 zone_size;
-    undefined1 zone_data[72];
-    undefined *sector_source;
-    undefined1 *sector_buffer;
-    undefined4 sector_size;
-    undefined1 sector_data[72];
-    undefined *part_source;
-    undefined1 *part_buffer;
-    undefined4 part_size;
-    undefined1 part_data[72];
-    undefined *unit_source;
-    undefined1 *unit_buffer;
-    undefined4 unit_size;
-    undefined1 unit_data[72];
-    undefined *element_source;
-    undefined1 *element_buffer;
-    undefined4 element_size;
-    undefined1 element_data[72];
+    int8_t security_buffer[32];
+    int32_t sequence_flags;
+    void **event_handlers[2];
+    uint64_t sequence_id;
+    void *callback_params[11];
+    int32_t event_type;
+    void *event_source;
+    int8_t *event_buffer;
+    int32_t buffer_size;
+    int8_t event_data[72];
+    void *data_source;
+    int8_t *data_buffer;
+    int32_t data_size;
+    int8_t data_chunk[72];
+    void *chunk_source;
+    int8_t *chunk_buffer;
+    int32_t chunk_size;
+    int8_t chunk_data[72];
+    void *segment_source;
+    int8_t *segment_buffer;
+    int32_t segment_size;
+    int8_t segment_data[72];
+    void *block_source;
+    int8_t *block_buffer;
+    int32_t block_size;
+    int8_t block_data[72];
+    void *region_source;
+    int8_t *region_buffer;
+    int32_t region_size;
+    int8_t region_data[72];
+    void *area_source;
+    int8_t *area_buffer;
+    int32_t area_size;
+    int8_t area_data[72];
+    void *zone_source;
+    int8_t *zone_buffer;
+    int32_t zone_size;
+    int8_t zone_data[72];
+    void *sector_source;
+    int8_t *sector_buffer;
+    int32_t sector_size;
+    int8_t sector_data[72];
+    void *part_source;
+    int8_t *part_buffer;
+    int32_t part_size;
+    int8_t part_data[72];
+    void *unit_source;
+    int8_t *unit_buffer;
+    int32_t unit_size;
+    int8_t unit_data[72];
+    void *element_source;
+    int8_t *element_buffer;
+    int32_t element_size;
+    int8_t element_data[72];
     ulonglong security_cookie;
     
     sequence_id = 0xfffffffffffffffe;
@@ -869,18 +869,18 @@ void process_complex_ui_events(undefined8 event_sequence)
 
 // 函数: 创建音频资源
 // 原始实现: FUN_18017c750
-void create_audio_resource(undefined8 resource_id, undefined8 audio_data)
+void create_audio_resource(uint64_t resource_id, uint64_t audio_data)
 {
-    undefined4 format_type;
-    undefined8 *audio_buffer;
-    undefined8 *buffer_header;
-    undefined8 buffer_flags;
-    undefined *audio_manager;
-    undefined8 *stream_ptr;
-    undefined4 stream_info;
-    undefined8 stream_handle;
+    int32_t format_type;
+    uint64_t *audio_buffer;
+    uint64_t *buffer_header;
+    uint64_t buffer_flags;
+    void *audio_manager;
+    uint64_t *stream_ptr;
+    int32_t stream_info;
+    uint64_t stream_handle;
     
-    audio_buffer = (undefined8 *)allocate_audio_buffer(g_memory_pool_base, 0xa8, 8, 3);
+    audio_buffer = (uint64_t *)allocate_audio_buffer(g_memory_pool_base, 0xa8, 8, 3);
     buffer_flags = 0xfffffffffffffffe;
     buffer_header = audio_buffer;
     initialize_audio_buffer(audio_buffer, audio_data, resource_id);
@@ -888,21 +888,21 @@ void create_audio_resource(undefined8 resource_id, undefined8 audio_data)
     buffer_header[0x11] = 0;
     buffer_header[0x12] = 0;
     buffer_header[0x13] = 0;
-    *(undefined4 *)(buffer_header + 0x14) = 3;
+    *(int32_t *)(buffer_header + 0x14) = 3;
     buffer_header[0xf] = 0x4024000000000000;
     buffer_header[0xe] = 0x3fe0000000000000;
-    *(undefined1 *)((longlong)buffer_header + 0x81) = 0;
+    *(int8_t *)((longlong)buffer_header + 0x81) = 0;
     audio_manager = &g_audio_manager_interface;
     stream_handle = 0;
-    stream_ptr = (undefined8 *)0x0;
+    stream_ptr = (uint64_t *)0x0;
     stream_info = 0;
-    buffer_header = (undefined8 *)allocate_memory_from_pool(g_memory_pool_base, 0x10, 0x13);
-    *(undefined1 *)buffer_header = 0;
+    buffer_header = (uint64_t *)allocate_memory_from_pool(g_memory_pool_base, 0x10, 0x13);
+    *(int8_t *)buffer_header = 0;
     stream_ptr = buffer_header;
     format_type = get_audio_format_info(buffer_header);
     stream_handle = CONCAT44(stream_handle._4_4_, format_type);
     *buffer_header = 0x6f6d4120646e6542;
-    *(undefined4 *)(buffer_header + 1) = 0x746e75;
+    *(int32_t *)(buffer_header + 1) = 0x746e75;
     stream_info = 0xb;
     setup_audio_stream(audio_buffer, &audio_manager, audio_buffer + 0xf, 1, buffer_flags);
     audio_manager = &g_audio_manager_interface;
@@ -912,37 +912,37 @@ void create_audio_resource(undefined8 resource_id, undefined8 audio_data)
 
 // 函数: 创建材质资源
 // 原始实现: FUN_18017c7a0
-void create_material_resource(undefined8 resource_id, undefined8 material_data)
+void create_material_resource(uint64_t resource_id, uint64_t material_data)
 {
-    undefined4 material_type;
-    undefined8 *material_buffer;
-    undefined8 *buffer_header;
-    undefined8 buffer_flags;
-    undefined *material_manager;
-    undefined8 *property_ptr;
-    undefined4 property_info;
-    undefined8 property_handle;
-    undefined8 material_function;
+    int32_t material_type;
+    uint64_t *material_buffer;
+    uint64_t *buffer_header;
+    uint64_t buffer_flags;
+    void *material_manager;
+    uint64_t *property_ptr;
+    int32_t property_info;
+    uint64_t property_handle;
+    uint64_t material_function;
     
     material_function = 0x18017c7c8;
-    material_buffer = (undefined8 *)allocate_material_buffer(g_memory_pool_base, 0x80, 8, 3);
+    material_buffer = (uint64_t *)allocate_material_buffer(g_memory_pool_base, 0x80, 8, 3);
     buffer_flags = 0xfffffffffffffffe;
     buffer_header = material_buffer;
     initialize_material_buffer(material_buffer, material_data, resource_id);
     *buffer_header = &g_material_resource_template;
     buffer_header[0xe] = 0;
-    *(undefined4 *)(buffer_header + 0xf) = 0x3f800000;
+    *(int32_t *)(buffer_header + 0xf) = 0x3f800000;
     material_manager = &g_material_manager_interface;
     property_handle = 0;
-    property_ptr = (undefined8 *)0x0;
+    property_ptr = (uint64_t *)0x0;
     property_info = 0;
-    buffer_header = (undefined8 *)allocate_memory_from_pool(g_memory_pool_base, 0x10, 0x13);
-    *(undefined1 *)buffer_header = 0;
+    buffer_header = (uint64_t *)allocate_memory_from_pool(g_memory_pool_base, 0x10, 0x13);
+    *(int8_t *)buffer_header = 0;
     property_ptr = buffer_header;
     material_type = get_material_property_info(buffer_header);
     property_handle = CONCAT44(property_handle._4_4_, material_type);
     *buffer_header = 0x6c6169726574614d;
-    *(undefined1 *)(buffer_header + 1) = 0;
+    *(int8_t *)(buffer_header + 1) = 0;
     property_info = 8;
     setup_material_properties(material_buffer, &material_manager, material_buffer + 0xe, 10, buffer_flags);
     material_manager = &g_material_manager_interface;
@@ -952,56 +952,56 @@ void create_material_resource(undefined8 resource_id, undefined8 material_data)
 
 // 函数: 创建复杂资源对象
 // 原始实现: FUN_18017c7e0
-void create_complex_resource(undefined8 resource_id, longlong resource_data)
+void create_complex_resource(uint64_t resource_id, longlong resource_data)
 {
-    undefined8 *resource_buffer;
-    undefined8 *buffer_header;
-    undefined1 security_buffer[32];
-    undefined8 buffer_flags;
-    undefined8 *buffer_ptr;
-    undefined *resource_manager;
-    undefined1 *manager_buffer;
-    undefined4 manager_size;
-    undefined1 manager_data[16];
-    undefined *property_source;
-    undefined1 *property_buffer;
-    undefined4 property_size;
-    undefined1 property_data[32];
-    undefined *attribute_source;
-    undefined1 *attribute_buffer;
-    undefined4 attribute_size;
-    undefined1 attribute_data[32];
-    undefined *component_source;
-    undefined1 *component_buffer;
-    undefined4 component_size;
-    undefined1 component_data[32];
-    undefined *element_source;
-    undefined1 *element_buffer;
-    undefined4 element_size;
-    undefined1 element_data[32];
-    undefined *feature_source;
-    undefined1 *feature_buffer;
-    undefined4 feature_size;
-    undefined1 feature_data[32];
+    uint64_t *resource_buffer;
+    uint64_t *buffer_header;
+    int8_t security_buffer[32];
+    uint64_t buffer_flags;
+    uint64_t *buffer_ptr;
+    void *resource_manager;
+    int8_t *manager_buffer;
+    int32_t manager_size;
+    int8_t manager_data[16];
+    void *property_source;
+    int8_t *property_buffer;
+    int32_t property_size;
+    int8_t property_data[32];
+    void *attribute_source;
+    int8_t *attribute_buffer;
+    int32_t attribute_size;
+    int8_t attribute_data[32];
+    void *component_source;
+    int8_t *component_buffer;
+    int32_t component_size;
+    int8_t component_data[32];
+    void *element_source;
+    int8_t *element_buffer;
+    int32_t element_size;
+    int8_t element_data[32];
+    void *feature_source;
+    int8_t *feature_buffer;
+    int32_t feature_size;
+    int8_t feature_data[32];
     ulonglong security_cookie;
     
     security_cookie = 0x18017c80a;
-    resource_buffer = (undefined8 *)allocate_resource_buffer(g_memory_pool_base, 0xe0, 8, 3);
+    resource_buffer = (uint64_t *)allocate_resource_buffer(g_memory_pool_base, 0xe0, 8, 3);
     buffer_flags = 0xfffffffffffffffe;
     security_cookie = g_security_cookie ^ (ulonglong)security_buffer;
     buffer_header = resource_buffer;
     buffer_ptr = resource_buffer;
     initialize_resource_buffer(resource_buffer, resource_data, resource_id);
     *buffer_header = &g_complex_resource_template;
-    *(undefined2 *)(buffer_header + 0x12) = 0;
-    *(undefined1 *)((longlong)buffer_header + 0x92) = 0;
+    *(int16_t *)(buffer_header + 0x12) = 0;
+    *(int8_t *)((longlong)buffer_header + 0x92) = 0;
     *(bool *)((longlong)buffer_header + 0x93) = *(char *)(resource_data + 0x2e5) == '\0';
-    *(undefined4 *)(buffer_header + 0x13) = 0;
-    *(undefined1 *)((longlong)buffer_header + 0x94) = 0;
-    *(undefined4 *)((longlong)buffer_header + 0x8c) = 0x3f800000;
+    *(int32_t *)(buffer_header + 0x13) = 0;
+    *(int8_t *)((longlong)buffer_header + 0x94) = 0;
+    *(int32_t *)((longlong)buffer_header + 0x8c) = 0x3f800000;
     buffer_header[0xf] = 0;
     buffer_header[0x10] = 0;
-    *(undefined4 *)(buffer_header + 0x11) = 0x41a00000;
+    *(int32_t *)(buffer_header + 0x11) = 0x41a00000;
     resource_manager = &g_resource_manager_interface;
     manager_buffer = manager_data;
     manager_data[0] = 0;
@@ -1044,42 +1044,42 @@ void create_complex_resource(undefined8 resource_id, longlong resource_data)
 // 全局变量声明
 // 注意：以下全局变量在原始代码中被引用，具体定义在其他文件中
 extern longlong *g_memory_pool_base;           // 内存池基地址
-extern undefined8 *g_render_device;            // 渲染设备指针
-extern undefined8 *g_texture_cache;            // 纹理缓存
+extern uint64_t *g_render_device;            // 渲染设备指针
+extern uint64_t *g_texture_cache;            // 纹理缓存
 extern longlong *g_resource_manager;           // 资源管理器
-extern undefined8 *g_default_resource_type;   // 默认资源类型
+extern uint64_t *g_default_resource_type;   // 默认资源类型
 extern longlong *g_material_manager;           // 材质管理器
 extern longlong *g_shader_system_active;       // 着色器系统活动标志
-extern undefined8 *g_ui_event_source;          // UI事件源
-extern undefined8 *g_ui_callback_target;       // UI回调目标
-extern undefined8 *g_ui_event_template;        // UI事件模板
-extern undefined8 *g_security_cookie;          // 安全cookie
-extern undefined8 *g_audio_manager_interface;  // 音频管理器接口
-extern undefined8 *g_audio_resource_template;  // 音频资源模板
-extern undefined8 *g_material_manager_interface; // 材质管理器接口
-extern undefined8 *g_material_resource_template; // 材质资源模板
-extern undefined8 *g_complex_resource_template; // 复杂资源模板
-extern undefined8 *g_resource_manager_interface; // 资源管理器接口
-extern undefined8 *g_resource_name_template;   // 资源名称模板
-extern undefined8 *g_property_source_template; // 属性源模板
-extern undefined8 *g_property_description;     // 属性描述
-extern undefined8 *g_attribute_source_template; // 属性源模板
-extern undefined8 *g_attribute_description;   // 属性描述
-extern undefined8 *g_component_source_template; // 组件源模板
-extern undefined8 *g_component_description;   // 组件描述
-extern undefined8 *g_element_source_template; // 元素源模板
-extern undefined8 *g_element_description;      // 元素描述
-extern undefined8 *g_error_log;                // 错误日志
-extern undefined8 *g_default_texture_name;     // 默认纹理名称
+extern uint64_t *g_ui_event_source;          // UI事件源
+extern uint64_t *g_ui_callback_target;       // UI回调目标
+extern uint64_t *g_ui_event_template;        // UI事件模板
+extern uint64_t *g_security_cookie;          // 安全cookie
+extern uint64_t *g_audio_manager_interface;  // 音频管理器接口
+extern uint64_t *g_audio_resource_template;  // 音频资源模板
+extern uint64_t *g_material_manager_interface; // 材质管理器接口
+extern uint64_t *g_material_resource_template; // 材质资源模板
+extern uint64_t *g_complex_resource_template; // 复杂资源模板
+extern uint64_t *g_resource_manager_interface; // 资源管理器接口
+extern uint64_t *g_resource_name_template;   // 资源名称模板
+extern uint64_t *g_property_source_template; // 属性源模板
+extern uint64_t *g_property_description;     // 属性描述
+extern uint64_t *g_attribute_source_template; // 属性源模板
+extern uint64_t *g_attribute_description;   // 属性描述
+extern uint64_t *g_component_source_template; // 组件源模板
+extern uint64_t *g_component_description;   // 组件描述
+extern uint64_t *g_element_source_template; // 元素源模板
+extern uint64_t *g_element_description;      // 元素描述
+extern uint64_t *g_error_log;                // 错误日志
+extern uint64_t *g_default_texture_name;     // 默认纹理名称
 
 // 函数声明
 // 注意：以下函数在原始代码中被调用，具体实现在其他文件中
 extern longlong allocate_memory_from_pool(longlong pool_base, longlong size, char flags);
 extern void execute_critical_operation(void);
 extern void memmove(void *dest, void *src, size_t size);
-extern void dispatch_message_to_handler(longlong window, undefined8 *msg_ptr, undefined8 wparam, undefined8 lparam, undefined8 flags);
+extern void dispatch_message_to_handler(longlong window, uint64_t *msg_ptr, uint64_t wparam, uint64_t lparam, uint64_t flags);
 extern void release_object_resources(longlong object);
-extern void initialize_render_component(undefined8 *device, undefined4 component_id);
+extern void initialize_render_component(uint64_t *device, int32_t component_id);
 extern void initialize_resource_manager(longlong *manager);
 extern void setup_resource_pipeline(longlong *manager);
 extern void prepare_resource_loading(longlong *manager);
@@ -1090,12 +1090,12 @@ extern void initialize_resource_allocator(longlong *manager);
 extern void initialize_texture_system(void);
 extern void initialize_shader_system(void);
 extern void initialize_geometry_system(void);
-extern void setup_render_pipeline(longlong *manager, undefined4 param1, undefined4 param2, undefined4 param3);
+extern void setup_render_pipeline(longlong *manager, int32_t param1, int32_t param2, int32_t param3);
 extern void initialize_graphics_device(longlong device);
 extern void setup_graphics_pipeline(longlong device);
 extern longlong load_texture_from_cache(longlong cache, longlong texture_info);
-extern undefined8 allocate_texture_memory(longlong pool, undefined8 size, undefined8 align, undefined8 flags);
-extern longlong create_texture_object(undefined8 buffer, longlong texture_info);
+extern uint64_t allocate_texture_memory(longlong pool, uint64_t size, uint64_t align, uint64_t flags);
+extern longlong create_texture_object(uint64_t buffer, longlong texture_info);
 extern void cache_texture(longlong cache, longlong texture);
 extern void initialize_graphics_system(longlong context);
 extern void initialize_shader_compiler(void);
@@ -1103,20 +1103,20 @@ extern void initialize_texture_manager(void);
 extern void initialize_geometry_buffer(void);
 extern void initialize_render_queue(void);
 extern char check_texture_loaded(longlong material, longlong texture);
-extern void log_texture_loading_error(undefined8 *log, undefined8 *material_name, undefined8 *texture_name);
-extern void setup_event_callback(undefined8 **params, undefined8 **source);
-extern void dispatch_ui_event(undefined8 event, undefined8 **handlers, undefined8 **params);
+extern void log_texture_loading_error(uint64_t *log, uint64_t *material_name, uint64_t *texture_name);
+extern void setup_event_callback(uint64_t **params, uint64_t **source);
+extern void dispatch_ui_event(uint64_t event, uint64_t **handlers, uint64_t **params);
 extern void validate_security_cookie(ulonglong cookie);
-extern undefined8 allocate_audio_buffer(longlong pool, undefined8 size, undefined8 align, undefined8 flags);
-extern void initialize_audio_buffer(undefined8 *buffer, undefined8 data, undefined8 id);
-extern undefined4 get_audio_format_info(undefined8 *buffer);
-extern void setup_audio_stream(undefined8 *buffer, undefined8 **manager, undefined8 *params, undefined4 flags, undefined8 buffer_flags);
-extern undefined8 allocate_material_buffer(longlong pool, undefined8 size, undefined8 align, undefined8 flags);
-extern void initialize_material_buffer(undefined8 *buffer, undefined8 data, undefined8 id);
-extern undefined4 get_material_property_info(undefined8 *buffer);
-extern void setup_material_properties(undefined8 *buffer, undefined8 **manager, undefined8 *params, undefined4 flags, undefined8 buffer_flags);
-extern undefined8 allocate_resource_buffer(longlong pool, undefined8 size, undefined8 align, undefined8 flags);
-extern void initialize_resource_buffer(undefined8 *buffer, undefined8 data, undefined8 id);
-extern void setup_resource_properties(undefined8 *buffer, undefined8 **source, undefined8 *params, undefined4 flags);
-extern void configure_render_state(longlong device, undefined4 state);
-extern void setup_render_parameters(longlong device, undefined4 param1, undefined4 param2, undefined4 param3, undefined4 param4, undefined4 param5);
+extern uint64_t allocate_audio_buffer(longlong pool, uint64_t size, uint64_t align, uint64_t flags);
+extern void initialize_audio_buffer(uint64_t *buffer, uint64_t data, uint64_t id);
+extern int32_t get_audio_format_info(uint64_t *buffer);
+extern void setup_audio_stream(uint64_t *buffer, uint64_t **manager, uint64_t *params, int32_t flags, uint64_t buffer_flags);
+extern uint64_t allocate_material_buffer(longlong pool, uint64_t size, uint64_t align, uint64_t flags);
+extern void initialize_material_buffer(uint64_t *buffer, uint64_t data, uint64_t id);
+extern int32_t get_material_property_info(uint64_t *buffer);
+extern void setup_material_properties(uint64_t *buffer, uint64_t **manager, uint64_t *params, int32_t flags, uint64_t buffer_flags);
+extern uint64_t allocate_resource_buffer(longlong pool, uint64_t size, uint64_t align, uint64_t flags);
+extern void initialize_resource_buffer(uint64_t *buffer, uint64_t data, uint64_t id);
+extern void setup_resource_properties(uint64_t *buffer, uint64_t **source, uint64_t *params, int32_t flags);
+extern void configure_render_state(longlong device, int32_t state);
+extern void setup_render_parameters(longlong device, int32_t param1, int32_t param2, int32_t param3, int32_t param4, int32_t param5);

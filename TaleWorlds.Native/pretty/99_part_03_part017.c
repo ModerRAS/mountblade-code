@@ -119,31 +119,31 @@
  * ============================================================================ */
 
 // 基础类型别名
-typedef undefined8 DataHandle;           // 数据句柄
-typedef undefined8 StructureHandle;     // 结构句柄
-typedef undefined8 NodeHandle;          // 节点句柄
-typedef undefined8 SearchHandle;        // 搜索句柄
-typedef undefined8 MemoryHandle;        // 内存句柄
-typedef undefined8 StringHandle;        // 字符串句柄
-typedef undefined8 ResourceHandle;      // 资源句柄
+typedef uint64_t DataHandle;           // 数据句柄
+typedef uint64_t StructureHandle;     // 结构句柄
+typedef uint64_t NodeHandle;          // 节点句柄
+typedef uint64_t SearchHandle;        // 搜索句柄
+typedef uint64_t MemoryHandle;        // 内存句柄
+typedef uint64_t StringHandle;        // 字符串句柄
+typedef uint64_t ResourceHandle;      // 资源句柄
 
 // 状态类型别名
-typedef undefined4 ProcessingStatus;    // 处理状态
-typedef undefined4 SearchStatus;        // 搜索状态
-typedef undefined4 MemoryStatus;        // 内存状态
-typedef undefined4 ValidationStatus;    // 验证状态
+typedef int32_t ProcessingStatus;    // 处理状态
+typedef int32_t SearchStatus;        // 搜索状态
+typedef int32_t MemoryStatus;        // 内存状态
+typedef int32_t ValidationStatus;    // 验证状态
 
 // 标志类型别名
-typedef undefined4 ProcessingFlags;     // 处理标志
-typedef undefined4 SearchFlags;         // 搜索标志
-typedef undefined4 MemoryFlags;         // 内存标志
-typedef undefined4 StructureFlags;      // 结构标志
+typedef int32_t ProcessingFlags;     // 处理标志
+typedef int32_t SearchFlags;         // 搜索标志
+typedef int32_t MemoryFlags;         // 内存标志
+typedef int32_t StructureFlags;      // 结构标志
 
 // 数据类型别名
-typedef undefined1 DataByte;            // 数据字节
-typedef undefined2 DataWord;            // 数据字
-typedef undefined4 DataDword;           // 数据双字
-typedef undefined8 DataQword;           // 数据四字
+typedef int8_t DataByte;            // 数据字节
+typedef int16_t DataWord;            // 数据字
+typedef int32_t DataDword;           // 数据双字
+typedef uint64_t DataQword;           // 数据四字
 
 // 指针类型别名
 typedef void* ProcessingContext;        // 处理上下文

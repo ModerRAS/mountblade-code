@@ -164,16 +164,16 @@ longlong * compare_and_sort_longlong_array(longlong *array1, longlong *array2, l
   longlong long_val4;
   float float_val1;
   float float_val2;
-  undefined1 stack_buffer1[8];
-  undefined1 stack_buffer2[8];
-  undefined1 stack_buffer3[8];
-  undefined1 stack_buffer4[8];
+  int8_t stack_buffer1[8];
+  int8_t stack_buffer2[8];
+  int8_t stack_buffer3[8];
+  int8_t stack_buffer4[8];
   
   long_val2 = *array3;
   do {
     long_val1 = *array1;
     temp_ptr = (longlong *)get_object_property(context + 0x90, stack_buffer1, long_val1 + 0x20);
-    temp_ptr = (longlong *)get_object_property(*(undefined4 *)(*temp_ptr + 0x40), stack_buffer2, long_val2 + 0x20);
+    temp_ptr = (longlong *)get_object_property(*(int32_t *)(*temp_ptr + 0x40), stack_buffer2, long_val2 + 0x20);
     
     // 比较浮点数值
     if (float_val1 == *(float *)(*temp_ptr + 0x40)) {
@@ -208,7 +208,7 @@ longlong * compare_and_sort_longlong_array(longlong *array1, longlong *array2, l
         long_val3 = array2[-1];
         array2 = array2 - 1;
         temp_ptr = (longlong *)get_object_property(context + 0x90, stack_buffer3, long_val2 + 0x20);
-        temp_ptr = (longlong *)get_object_property(*(undefined4 *)(*temp_ptr + 0x40), stack_buffer4, long_val3 + 0x20);
+        temp_ptr = (longlong *)get_object_property(*(int32_t *)(*temp_ptr + 0x40), stack_buffer4, long_val3 + 0x20);
         
         if (float_val2 == *(float *)(*temp_ptr + 0x40)) {
           if (*(int *)(long_val2 + 0x30) == 0) {
@@ -254,55 +254,55 @@ longlong * compare_and_sort_longlong_array(longlong *array1, longlong *array2, l
  * @param context 上下文指针数组
  * @return 排序后的数组指针
  */
-int * insertion_sort_int_array(int *array1, int *array2, int *array3, undefined8 *context)
+int * insertion_sort_int_array(int *array1, int *array2, int *array3, uint64_t *context)
 {
   int int_val1;
   int int_val2;
   int int_val3;
-  undefined8 *node_ptr1;
-  undefined8 *node_ptr2;
-  undefined8 *node_ptr3;
-  undefined8 *node_ptr4;
+  uint64_t *node_ptr1;
+  uint64_t *node_ptr2;
+  uint64_t *node_ptr3;
+  uint64_t *node_ptr4;
   
   int_val1 = *array3;
   do {
-    node_ptr1 = (undefined8 *)context[2];
+    node_ptr1 = (uint64_t *)context[2];
     int_val2 = *array1;
     node_ptr2 = node_ptr1;
     node_ptr4 = context;
-    if (node_ptr1 == (undefined8 *)0x0) {
+    if (node_ptr1 == (uint64_t *)0x0) {
 FIND_POSITION1:
       node_ptr4 = context;
     }
     else {
       do {
         if (*(int *)(node_ptr2 + 4) < int_val2) {
-          node_ptr2 = (undefined8 *)*node_ptr2;
+          node_ptr2 = (uint64_t *)*node_ptr2;
         }
         else {
           node_ptr4 = node_ptr2;
-          node_ptr2 = (undefined8 *)node_ptr2[1];
+          node_ptr2 = (uint64_t *)node_ptr2[1];
         }
-      } while (node_ptr2 != (undefined8 *)0x0);
+      } while (node_ptr2 != (uint64_t *)0x0);
       if ((node_ptr4 == context) || (int_val2 < *(int *)(node_ptr4 + 4))) goto FIND_POSITION1;
     }
     
     node_ptr3 = context;
     node_ptr2 = node_ptr1;
-    if (node_ptr1 == (undefined8 *)0x0) {
+    if (node_ptr1 == (uint64_t *)0x0) {
 FIND_POSITION2:
       node_ptr3 = context;
     }
     else {
       do {
         if (*(int *)(node_ptr2 + 4) < int_val2) {
-          node_ptr2 = (undefined8 *)*node_ptr2;
+          node_ptr2 = (uint64_t *)*node_ptr2;
         }
         else {
           node_ptr3 = node_ptr2;
-          node_ptr2 = (undefined8 *)node_ptr2[1];
+          node_ptr2 = (uint64_t *)node_ptr2[1];
         }
-      } while (node_ptr2 != (undefined8 *)0x0);
+      } while (node_ptr2 != (uint64_t *)0x0);
       if ((node_ptr3 == context) || (int_val2 < *(int *)(node_ptr3 + 4))) goto FIND_POSITION2;
     }
     
@@ -313,39 +313,39 @@ FIND_POSITION2:
         array2 = array2 - 1;
         node_ptr2 = node_ptr1;
         node_ptr4 = context;
-        if (node_ptr1 == (undefined8 *)0x0) {
+        if (node_ptr1 == (uint64_t *)0x0) {
 FIND_POSITION3:
           node_ptr4 = context;
         }
         else {
           do {
             if (*(int *)(node_ptr2 + 4) < int_val3) {
-              node_ptr2 = (undefined8 *)*node_ptr2;
+              node_ptr2 = (uint64_t *)*node_ptr2;
             }
             else {
               node_ptr4 = node_ptr2;
-              node_ptr2 = (undefined8 *)node_ptr2[1];
+              node_ptr2 = (uint64_t *)node_ptr2[1];
             }
-          } while (node_ptr2 != (undefined8 *)0x0);
+          } while (node_ptr2 != (uint64_t *)0x0);
           if ((node_ptr4 == context) || (int_val3 < *(int *)(node_ptr4 + 4))) goto FIND_POSITION3;
         }
         
         node_ptr3 = context;
         node_ptr2 = node_ptr1;
-        if (node_ptr1 == (undefined8 *)0x0) {
+        if (node_ptr1 == (uint64_t *)0x0) {
 FIND_POSITION4:
           node_ptr3 = context;
         }
         else {
           do {
             if (*(int *)(node_ptr2 + 4) < int_val1) {
-              node_ptr2 = (undefined8 *)*node_ptr2;
+              node_ptr2 = (uint64_t *)*node_ptr2;
             }
             else {
               node_ptr3 = node_ptr2;
-              node_ptr2 = (undefined8 *)node_ptr2[1];
+              node_ptr2 = (uint64_t *)node_ptr2[1];
             }
-          } while (node_ptr2 != (undefined8 *)0x0);
+          } while (node_ptr2 != (uint64_t *)0x0);
           if ((node_ptr3 == context) || (int_val1 < *(int *)(node_ptr3 + 4))) goto FIND_POSITION4;
         }
       } while (*(float *)((size_t)node_ptr4 + 0x24) < *(float *)((size_t)node_ptr3 + 0x24));
@@ -390,7 +390,7 @@ void heap_sort_longlong_array(longlong array, longlong start, longlong end, long
   longlong long_val4;
   float float_val1;
   float float_val2;
-  undefined1 stack_buffer[8];
+  int8_t stack_buffer[8];
   longlong stack_val;
   
   long_val2 = context;
@@ -431,7 +431,7 @@ void heap_sort_longlong_array(longlong array, longlong start, longlong end, long
       long_val3 = long_val1;
     }
     
-    *(undefined8 *)(array + heap_size * 8) = *(undefined8 *)(array + long_val3 * 8);
+    *(uint64_t *)(array + heap_size * 8) = *(uint64_t *)(array + long_val3 * 8);
     start = stack_val;
     heap_size = long_val3;
     ptr1 = temp_array;
@@ -439,7 +439,7 @@ void heap_sort_longlong_array(longlong array, longlong start, longlong end, long
   }
   
   if (long_val1 == end) {
-    *(undefined8 *)(array + heap_size * 8) = *(undefined8 *)(array + -8 + long_val1 * 8);
+    *(uint64_t *)(array + heap_size * 8) = *(uint64_t *)(array + -8 + long_val1 * 8);
     heap_size = temp_val + 1;
   }
   
@@ -501,59 +501,59 @@ void heap_sort_longlong_array(longlong array, longlong start, longlong end, long
  * @param context 上下文指针数组
  */
 void heap_sort_int_array(longlong array, longlong start, longlong end, longlong heap_size,
-                        int *temp_array, undefined8 *context)
+                        int *temp_array, uint64_t *context)
 {
   int int_val1;
-  undefined8 *node_ptr1;
+  uint64_t *node_ptr1;
   longlong long_val;
   int int_val2;
-  undefined8 *node_ptr2;
-  undefined8 *node_ptr3;
+  uint64_t *node_ptr2;
+  uint64_t *node_ptr3;
   longlong long_val1;
-  undefined8 *node_ptr4;
+  uint64_t *node_ptr4;
   longlong long_val2;
   
   long_val2 = heap_size * 2;
   while (long_val = long_val2 + 2, long_val < end) {
-    node_ptr4 = (undefined8 *)context[2];
+    node_ptr4 = (uint64_t *)context[2];
     int_val2 = *(int *)(array + -4 + long_val * 4);
     int_val1 = *(int *)(array + long_val * 4);
     node_ptr2 = node_ptr4;
     node_ptr3 = context;
     
-    if (node_ptr4 == (undefined8 *)0x0) {
+    if (node_ptr4 == (uint64_t *)0x0) {
 FIND_NODE1:
       node_ptr3 = context;
     }
     else {
       do {
         if (*(int *)(node_ptr2 + 4) < int_val2) {
-          node_ptr1 = (undefined8 *)*node_ptr2;
+          node_ptr1 = (uint64_t *)*node_ptr2;
         }
         else {
-          node_ptr1 = (undefined8 *)node_ptr2[1];
+          node_ptr1 = (uint64_t *)node_ptr2[1];
           node_ptr3 = node_ptr2;
         }
         node_ptr2 = node_ptr1;
-      } while (node_ptr1 != (undefined8 *)0x0);
+      } while (node_ptr1 != (uint64_t *)0x0);
       if ((node_ptr3 == context) || (int_val2 < *(int *)(node_ptr3 + 4))) goto FIND_NODE1;
     }
     
     node_ptr2 = context;
-    if (node_ptr4 == (undefined8 *)0x0) {
+    if (node_ptr4 == (uint64_t *)0x0) {
 FIND_NODE2:
       node_ptr2 = context;
     }
     else {
       do {
         if (*(int *)(node_ptr4 + 4) < int_val1) {
-          node_ptr4 = (undefined8 *)*node_ptr4;
+          node_ptr4 = (uint64_t *)*node_ptr4;
         }
         else {
           node_ptr2 = node_ptr4;
-          node_ptr4 = (undefined8 *)node_ptr4[1];
+          node_ptr4 = (uint64_t *)node_ptr4[1];
         }
-      } while (node_ptr4 != (undefined8 *)0x0);
+      } while (node_ptr4 != (uint64_t *)0x0);
       if ((node_ptr2 == context) || (int_val1 < *(int *)(node_ptr2 + 4))) goto FIND_NODE2;
     }
     
@@ -563,57 +563,57 @@ FIND_NODE2:
       long_val1 = long_val;
     }
     
-    *(undefined4 *)(array + heap_size * 4) = *(undefined4 *)(array + long_val1 * 4);
+    *(int32_t *)(array + heap_size * 4) = *(int32_t *)(array + long_val1 * 4);
     heap_size = long_val1;
     long_val2 = long_val1 * 2;
   }
   
   if (long_val == end) {
-    *(undefined4 *)(array + heap_size * 4) = *(undefined4 *)(array + -4 + long_val * 4);
+    *(int32_t *)(array + heap_size * 4) = *(int32_t *)(array + -4 + long_val * 4);
     heap_size = long_val2 + 1;
   }
   
   if (start < heap_size) {
     do {
       long_val2 = heap_size + -1 >> 1;
-      node_ptr4 = (undefined8 *)context[2];
+      node_ptr4 = (uint64_t *)context[2];
       int_val2 = *temp_array;
       int_val1 = *(int *)(array + long_val2 * 4);
       node_ptr2 = node_ptr4;
       node_ptr3 = context;
       
-      if (node_ptr4 == (undefined8 *)0x0) {
+      if (node_ptr4 == (uint64_t *)0x0) {
 FIND_NODE3:
         node_ptr3 = context;
       }
       else {
         do {
           if (*(int *)(node_ptr2 + 4) < int_val2) {
-            node_ptr2 = (undefined8 *)*node_ptr2;
+            node_ptr2 = (uint64_t *)*node_ptr2;
           }
           else {
             node_ptr3 = node_ptr2;
-            node_ptr2 = (undefined8 *)node_ptr2[1];
+            node_ptr2 = (uint64_t *)node_ptr2[1];
           }
-        } while (node_ptr2 != (undefined8 *)0x0);
+        } while (node_ptr2 != (uint64_t *)0x0);
         if ((node_ptr3 == context) || (int_val2 < *(int *)(node_ptr3 + 4))) goto FIND_NODE3;
       }
       
       node_ptr2 = context;
-      if (node_ptr4 == (undefined8 *)0x0) {
+      if (node_ptr4 == (uint64_t *)0x0) {
 FIND_NODE4:
         node_ptr2 = context;
       }
       else {
         do {
           if (*(int *)(node_ptr4 + 4) < int_val1) {
-            node_ptr4 = (undefined8 *)*node_ptr4;
+            node_ptr4 = (uint64_t *)*node_ptr4;
           }
           else {
             node_ptr2 = node_ptr4;
-            node_ptr4 = (undefined8 *)node_ptr4[1];
+            node_ptr4 = (uint64_t *)node_ptr4[1];
           }
-        } while (node_ptr4 != (undefined8 *)0x0);
+        } while (node_ptr4 != (uint64_t *)0x0);
         if ((node_ptr2 == context) || (int_val1 < *(int *)(node_ptr2 + 4))) goto FIND_NODE4;
       }
       
@@ -643,24 +643,24 @@ FIND_NODE4:
  * @param param4 第四个参数
  * @return 目标指针
  */
-undefined8 * copy_unknown_structure(undefined8 *dest, undefined8 *src, undefined8 param3, undefined8 param4)
+uint64_t * copy_unknown_structure(uint64_t *dest, uint64_t *src, uint64_t param3, uint64_t param4)
 {
   longlong *ptr;
-  undefined4 val1;
-  undefined4 val2;
-  undefined4 val3;
-  undefined8 val5;
+  int32_t val1;
+  int32_t val2;
+  int32_t val3;
+  uint64_t val5;
   
   val5 = 0xfffffffffffffffe;
   *dest = *src;
-  val1 = *(undefined4 *)((size_t)src + 0xc);
-  val2 = *(undefined4 *)(src + 2);
-  val3 = *(undefined4 *)((size_t)src + 0x14);
-  *(undefined4 *)(dest + 1) = *(undefined4 *)(src + 1);
-  *(undefined4 *)((size_t)dest + 0xc) = val1;
-  *(undefined4 *)(dest + 2) = val2;
-  *(undefined4 *)((size_t)dest + 0x14) = val3;
-  *(undefined4 *)(dest + 3) = *(undefined4 *)(src + 3);
+  val1 = *(int32_t *)((size_t)src + 0xc);
+  val2 = *(int32_t *)(src + 2);
+  val3 = *(int32_t *)((size_t)src + 0x14);
+  *(int32_t *)(dest + 1) = *(int32_t *)(src + 1);
+  *(int32_t *)((size_t)dest + 0xc) = val1;
+  *(int32_t *)(dest + 2) = val2;
+  *(int32_t *)((size_t)dest + 0x14) = val3;
+  *(int32_t *)(dest + 3) = *(int32_t *)(src + 3);
   ptr = (longlong *)src[4];
   dest[4] = ptr;
   if (ptr != (longlong *)0x0) {
@@ -668,13 +668,13 @@ undefined8 * copy_unknown_structure(undefined8 *dest, undefined8 *src, undefined
     (**(code **)(*ptr + 0x28))();
   }
   copy_memory_block(dest + 5, src + 5, param3, param4, val5);
-  val1 = *(undefined4 *)((size_t)src + 0x4c);
-  val2 = *(undefined4 *)(src + 10);
-  val3 = *(undefined4 *)((size_t)src + 0x54);
-  *(undefined4 *)(dest + 9) = *(undefined4 *)(src + 9);
-  *(undefined4 *)((size_t)dest + 0x4c) = val1;
-  *(undefined4 *)(dest + 10) = val2;
-  *(undefined4 *)((size_t)dest + 0x54) = val3;
+  val1 = *(int32_t *)((size_t)src + 0x4c);
+  val2 = *(int32_t *)(src + 10);
+  val3 = *(int32_t *)((size_t)src + 0x54);
+  *(int32_t *)(dest + 9) = *(int32_t *)(src + 9);
+  *(int32_t *)((size_t)dest + 0x4c) = val1;
+  *(int32_t *)(dest + 10) = val2;
+  *(int32_t *)((size_t)dest + 0x54) = val3;
   ptr = (longlong *)src[0xb];
   dest[0xb] = ptr;
   if (ptr != (longlong *)0x0) {
@@ -696,14 +696,14 @@ void release_object_resources(longlong object_ptr)
     // 调用对象的释放方法
     (**(code **)(**(longlong **)(object_ptr + 0x58) + 0x38))();
   }
-  *(undefined8 *)(object_ptr + 0x28) = &GLOBAL_UNKNOWN_CONSTANT_1;
+  *(uint64_t *)(object_ptr + 0x28) = &GLOBAL_UNKNOWN_CONSTANT_1;
   if (*(longlong *)(object_ptr + 0x30) != 0) {
     // 此函数不会返回
     trigger_error_handler();
   }
-  *(undefined8 *)(object_ptr + 0x30) = 0;
-  *(undefined4 *)(object_ptr + 0x40) = 0;
-  *(undefined8 *)(object_ptr + 0x28) = &GLOBAL_UNKNOWN_CONSTANT_2;
+  *(uint64_t *)(object_ptr + 0x30) = 0;
+  *(int32_t *)(object_ptr + 0x40) = 0;
+  *(uint64_t *)(object_ptr + 0x28) = &GLOBAL_UNKNOWN_CONSTANT_2;
   if (*(longlong **)(object_ptr + 0x20) != (longlong *)0x0) {
     // 调用对象的释放方法
     (**(code **)(**(longlong **)(object_ptr + 0x20) + 0x38))();
@@ -719,18 +719,18 @@ void release_object_resources(longlong object_ptr)
  * @param param2 第二个参数
  * @param param3 第三个参数
  */
-void process_unknown_operation(undefined8 param1, undefined8 param2, longlong param3)
+void process_unknown_operation(uint64_t param1, uint64_t param2, longlong param3)
 {
-  undefined8 val1;
+  uint64_t val1;
   longlong long_val;
-  undefined1 stack_buffer1[32];
-  undefined4 stack_val1;
-  undefined8 stack_val2;
-  undefined8 stack_val3;
-  undefined *stack_ptr1;
-  undefined1 *stack_ptr2;
-  undefined4 stack_val4;
-  undefined1 stack_buffer2[72];
+  int8_t stack_buffer1[32];
+  int32_t stack_val1;
+  uint64_t stack_val2;
+  uint64_t stack_val3;
+  void *stack_ptr1;
+  int8_t *stack_ptr2;
+  int32_t stack_val4;
+  int8_t stack_buffer2[72];
   ulonglong stack_val5;
   
   val1 = GLOBAL_DATA_VARIABLE_1;
@@ -748,7 +748,7 @@ void process_unknown_operation(undefined8 param1, undefined8 param2, longlong pa
     do {
       long_val = long_val + 1;
     } while (*(char *)(param3 + long_val) != '\0');
-    stack_val4 = (undefined4)long_val;
+    stack_val4 = (int32_t)long_val;
     copy_string_s(stack_buffer2, 0x40);
   }
   
@@ -767,7 +767,7 @@ void process_unknown_operation(undefined8 param1, undefined8 param2, longlong pa
  * @param src 源指针
  * @return 目标指针
  */
-undefined4 * copy_float_data_structure(undefined4 *dest, undefined4 *src)
+int32_t * copy_float_data_structure(int32_t *dest, int32_t *src)
 {
   longlong *ptr;
   
@@ -779,10 +779,10 @@ undefined4 * copy_float_data_structure(undefined4 *dest, undefined4 *src)
   dest[5] = src[5];
   dest[6] = src[6];
   dest[7] = src[7];
-  *(undefined1 *)(dest + 8) = *(undefined1 *)(src + 8);
-  *(undefined1 *)((size_t)dest + 0x21) = *(undefined1 *)((size_t)src + 0x21);
-  *(undefined1 *)((size_t)dest + 0x22) = *(undefined1 *)((size_t)src + 0x22);
-  *(undefined1 *)((size_t)dest + 0x23) = *(undefined1 *)((size_t)src + 0x23);
+  *(int8_t *)(dest + 8) = *(int8_t *)(src + 8);
+  *(int8_t *)((size_t)dest + 0x21) = *(int8_t *)((size_t)src + 0x21);
+  *(int8_t *)((size_t)dest + 0x22) = *(int8_t *)((size_t)src + 0x22);
+  *(int8_t *)((size_t)dest + 0x23) = *(int8_t *)((size_t)src + 0x23);
   ptr = *(longlong **)(src + 10);
   *(longlong **)(dest + 10) = ptr;
   if (ptr != (longlong *)0x0) {
@@ -790,7 +790,7 @@ undefined4 * copy_float_data_structure(undefined4 *dest, undefined4 *src)
     (**(code **)(*ptr + 0x28))();
   }
   dest[0xc] = src[0xc];
-  *(undefined1 *)(dest + 0xd) = *(undefined1 *)(src + 0xd);
+  *(int8_t *)(dest + 0xd) = *(int8_t *)(src + 0xd);
   return dest;
 }
 
@@ -816,25 +816,25 @@ void release_object_resources2(longlong object_ptr)
  * @param struct_ptr 结构体指针
  * @return 结构体指针
  */
-undefined8 * initialize_unknown_structure(undefined8 *struct_ptr)
+uint64_t * initialize_unknown_structure(uint64_t *struct_ptr)
 {
   longlong *ptr;
   
   struct_ptr[5] = 0;
   *struct_ptr = 0;
-  *(undefined4 *)(struct_ptr + 1) = 1;
-  *(undefined8 *)((size_t)struct_ptr + 0xc) = 1;
-  *(undefined8 *)((size_t)struct_ptr + 0x14) = 0;
-  *(undefined4 *)((size_t)struct_ptr + 0x1c) = 0;
-  *(undefined4 *)(struct_ptr + 4) = 1;
+  *(int32_t *)(struct_ptr + 1) = 1;
+  *(uint64_t *)((size_t)struct_ptr + 0xc) = 1;
+  *(uint64_t *)((size_t)struct_ptr + 0x14) = 0;
+  *(int32_t *)((size_t)struct_ptr + 0x1c) = 0;
+  *(int32_t *)(struct_ptr + 4) = 1;
   ptr = (longlong *)struct_ptr[5];
   struct_ptr[5] = 0;
   if (ptr != (longlong *)0x0) {
     // 调用对象的释放方法
     (**(code **)(*ptr + 0x38))();
   }
-  *(undefined4 *)(struct_ptr + 6) = 0xffffffff;
-  *(undefined1 *)((size_t)struct_ptr + 0x34) = 0;
+  *(int32_t *)(struct_ptr + 6) = 0xffffffff;
+  *(int8_t *)((size_t)struct_ptr + 0x34) = 0;
   return struct_ptr;
 }
 
@@ -845,15 +845,15 @@ undefined8 * initialize_unknown_structure(undefined8 *struct_ptr)
  * @param stream_ptr 流指针
  * @return 流指针
  */
-undefined8 * initialize_stream_buffer(undefined8 *stream_ptr)
+uint64_t * initialize_stream_buffer(uint64_t *stream_ptr)
 {
   initialize_basic_streambuf();
   *stream_ptr = &GLOBAL_STREAM_CONSTANT;
-  *(undefined1 *)((size_t)stream_ptr + 0x7c) = 0;
-  *(undefined1 *)((size_t)stream_ptr + 0x71) = 0;
+  *(int8_t *)((size_t)stream_ptr + 0x7c) = 0;
+  *(int8_t *)((size_t)stream_ptr + 0x71) = 0;
   initialize_streambuf();
   stream_ptr[0x10] = 0;
-  *(undefined8 *)((size_t)stream_ptr + 0x74) = GLOBAL_DATA_VARIABLE_3;
+  *(uint64_t *)((size_t)stream_ptr + 0x74) = GLOBAL_DATA_VARIABLE_3;
   stream_ptr[0xd] = 0;
   return stream_ptr;
 }
@@ -868,13 +868,13 @@ undefined8 * initialize_stream_buffer(undefined8 *stream_ptr)
  * @param param4 第四个参数
  * @return 流指针（成功）或NULL（失败）
  */
-longlong open_file_stream(longlong stream_ptr, undefined8 filename, undefined4 mode)
+longlong open_file_stream(longlong stream_ptr, uint64_t filename, int32_t mode)
 {
   char char_val;
   longlong file_handle;
-  undefined8 locale_val;
-  undefined8 *ptr;
-  undefined1 stack_buffer[8];
+  uint64_t locale_val;
+  uint64_t *ptr;
+  int8_t stack_buffer[8];
   longlong *stack_ptr;
   
   if (*(longlong *)(stream_ptr + 0x80) == 0) {
@@ -885,15 +885,15 @@ longlong open_file_stream(longlong stream_ptr, undefined8 filename, undefined4 m
       locale_val = process_locale_data(locale_val);
       char_val = check_codecvt_conversion(locale_val);
       if (char_val == '\0') {
-        *(undefined8 *)(stream_ptr + 0x68) = locale_val;
+        *(uint64_t *)(stream_ptr + 0x68) = locale_val;
         initialize_streambuf(stream_ptr);
       }
       else {
-        *(undefined8 *)(stream_ptr + 0x68) = 0;
+        *(uint64_t *)(stream_ptr + 0x68) = 0;
       }
       if (stack_ptr != (longlong *)0x0) {
-        ptr = (undefined8 *)(**(code **)(*stack_ptr + 0x10))();
-        if (ptr != (undefined8 *)0x0) {
+        ptr = (uint64_t *)(**(code **)(*stack_ptr + 0x10))();
+        if (ptr != (uint64_t *)0x0) {
           (**(code **)*ptr)(ptr, 1);
         }
       }
@@ -929,7 +929,7 @@ longlong close_and_free_stream(longlong stream_ptr, ulonglong flags)
  * @param flags 标志位
  * @return 流指针
  */
-undefined8 free_stream_object(undefined8 stream_ptr, ulonglong flags)
+uint64_t free_stream_object(uint64_t stream_ptr, ulonglong flags)
 {
   cleanup_stream_buffer();
   if ((flags & 1) != 0) {
@@ -948,9 +948,9 @@ undefined8 free_stream_object(undefined8 stream_ptr, ulonglong flags)
  */
 uint write_character_to_stream(longlong stream_ptr, uint character)
 {
-  undefined1 *ptr1;
+  int8_t *ptr1;
   ulonglong buffer_size;
-  undefined1 *ptr2;
+  int8_t *ptr2;
   int result;
   
   buffer_size = **(ulonglong **)(stream_ptr + 0x38);
@@ -968,12 +968,12 @@ uint write_character_to_stream(longlong stream_ptr, uint character)
     if ((*(longlong *)(stream_ptr + 0x68) == 0) && (result = ungetc(character & 0xff), result != -1)) {
       return character;
     }
-    ptr1 = (undefined1 *)(stream_ptr + 0x70);
-    if ((undefined1 *)**(longlong **)(stream_ptr + 0x38) != ptr1) {
+    ptr1 = (int8_t *)(stream_ptr + 0x70);
+    if ((int8_t *)**(longlong **)(stream_ptr + 0x38) != ptr1) {
       *ptr1 = (char)character;
-      ptr2 = (undefined1 *)**(longlong **)(stream_ptr + 0x18);
+      ptr2 = (int8_t *)**(longlong **)(stream_ptr + 0x18);
       if (ptr2 != ptr1) {
-        *(undefined1 **)(stream_ptr + 0x88) = ptr2;
+        *(int8_t **)(stream_ptr + 0x88) = ptr2;
         *(longlong *)(stream_ptr + 0x90) =
              (longlong)**(int **)(stream_ptr + 0x50) + **(longlong **)(stream_ptr + 0x38);
       }
@@ -995,16 +995,16 @@ uint write_character_to_stream(longlong stream_ptr, uint character)
  */
 ulonglong read_character_from_stream(longlong stream_ptr)
 {
-  undefined1 *ptr1;
+  int8_t *ptr1;
   byte *buffer_ptr;
   ulonglong char_val;
-  undefined1 *ptr2;
+  int8_t *ptr2;
   int result;
   ulonglong buffer_pos;
   ulonglong buffer_size;
   ulonglong final_char;
   
-  buffer_ptr = (byte *)**(undefined8 **)(stream_ptr + 0x38);
+  buffer_ptr = (byte *)**(uint64_t **)(stream_ptr + 0x38);
   if ((buffer_ptr != (byte *)0x0) && (buffer_ptr < buffer_ptr + **(int **)(stream_ptr + 0x50))) {
     return (ulonglong)*buffer_ptr;
   }
@@ -1027,12 +1027,12 @@ ulonglong read_character_from_stream(longlong stream_ptr)
     if ((*(longlong *)(stream_ptr + 0x68) == 0) && (result = ungetc(buffer_pos & 0xff), result != -1)) {
       return final_char;
     }
-    ptr1 = (undefined1 *)(stream_ptr + 0x70);
-    if ((undefined1 *)**(longlong **)(stream_ptr + 0x38) != ptr1) {
+    ptr1 = (int8_t *)(stream_ptr + 0x70);
+    if ((int8_t *)**(longlong **)(stream_ptr + 0x38) != ptr1) {
       *ptr1 = (char)final_char;
-      ptr2 = (undefined1 *)**(longlong **)(stream_ptr + 0x18);
+      ptr2 = (int8_t *)**(longlong **)(stream_ptr + 0x18);
       if (ptr2 != ptr1) {
-        *(undefined1 **)(stream_ptr + 0x88) = ptr2;
+        *(int8_t **)(stream_ptr + 0x88) = ptr2;
         *(longlong *)(stream_ptr + 0x90) =
              (longlong)**(int **)(stream_ptr + 0x50) + **(longlong **)(stream_ptr + 0x38);
       }
@@ -1052,9 +1052,9 @@ ulonglong read_character_from_stream(longlong stream_ptr)
  */
 ulonglong read_character_from_stdin(void)
 {
-  undefined1 *ptr1;
+  int8_t *ptr1;
   ulonglong buffer_size;
-  undefined1 *ptr2;
+  int8_t *ptr2;
   int result;
   ulonglong char_val;
   ulonglong buffer_pos;
@@ -1079,12 +1079,12 @@ ulonglong read_character_from_stdin(void)
     if ((*(longlong *)(stdin_ptr + 0x68) == 0) && (result = ungetc(char_val & 0xff), result != -1)) {
       return final_char;
     }
-    ptr1 = (undefined1 *)(stdin_ptr + 0x70);
-    if ((undefined1 *)**(longlong **)(stdin_ptr + 0x38) != ptr1) {
+    ptr1 = (int8_t *)(stdin_ptr + 0x70);
+    if ((int8_t *)**(longlong **)(stdin_ptr + 0x38) != ptr1) {
       *ptr1 = (char)final_char;
-      ptr2 = (undefined1 *)**(longlong **)(stdin_ptr + 0x18);
+      ptr2 = (int8_t *)**(longlong **)(stdin_ptr + 0x18);
       if (ptr2 != ptr1) {
-        *(undefined1 **)(stdin_ptr + 0x88) = ptr2;
+        *(int8_t **)(stdin_ptr + 0x88) = ptr2;
         *(longlong *)(stdin_ptr + 0x90) =
              (longlong)**(int **)(stdin_ptr + 0x50) + **(longlong **)(stdin_ptr + 0x38);
       }
@@ -1104,9 +1104,9 @@ ulonglong read_character_from_stdin(void)
  */
 uint check_and_unget_character(void)
 {
-  undefined1 *ptr1;
+  int8_t *ptr1;
   ulonglong buffer_size;
-  undefined1 *ptr2;
+  int8_t *ptr2;
   int result;
   longlong stdin_ptr;
   uint character;
@@ -1123,12 +1123,12 @@ uint check_and_unget_character(void)
     if ((*(longlong *)(stdin_ptr + 0x68) == 0) && (result = ungetc(character & 0xff), result != -1)) {
       return character;
     }
-    ptr1 = (undefined1 *)(stdin_ptr + 0x70);
-    if ((undefined1 *)**(longlong **)(stdin_ptr + 0x38) != ptr1) {
+    ptr1 = (int8_t *)(stdin_ptr + 0x70);
+    if ((int8_t *)**(longlong **)(stdin_ptr + 0x38) != ptr1) {
       *ptr1 = (char)character;
-      ptr2 = (undefined1 *)**(longlong **)(stdin_ptr + 0x18);
+      ptr2 = (int8_t *)**(longlong **)(stdin_ptr + 0x18);
       if (ptr2 != ptr1) {
-        *(undefined1 **)(stdin_ptr + 0x88) = ptr2;
+        *(int8_t **)(stdin_ptr + 0x88) = ptr2;
         *(longlong *)(stdin_ptr + 0x90) =
              (longlong)**(int **)(stdin_ptr + 0x50) + **(longlong **)(stdin_ptr + 0x38);
       }
@@ -1148,8 +1148,8 @@ uint check_and_unget_character(void)
  */
 uint force_unget_character(void)
 {
-  undefined1 *ptr1;
-  undefined1 *ptr2;
+  int8_t *ptr1;
+  int8_t *ptr2;
   int result;
   longlong stdin_ptr;
   uint character;
@@ -1158,12 +1158,12 @@ uint force_unget_character(void)
     if ((*(longlong *)(stdin_ptr + 0x68) == 0) && (result = ungetc(character & 0xff), result != -1)) {
       return character;
     }
-    ptr1 = (undefined1 *)(stdin_ptr + 0x70);
-    if ((undefined1 *)**(longlong **)(stdin_ptr + 0x38) != ptr1) {
+    ptr1 = (int8_t *)(stdin_ptr + 0x70);
+    if ((int8_t *)**(longlong **)(stdin_ptr + 0x38) != ptr1) {
       *ptr1 = (char)character;
-      ptr2 = (undefined1 *)**(longlong **)(stdin_ptr + 0x18);
+      ptr2 = (int8_t *)**(longlong **)(stdin_ptr + 0x18);
       if (ptr2 != ptr1) {
-        *(undefined1 **)(stdin_ptr + 0x88) = ptr2;
+        *(int8_t **)(stdin_ptr + 0x88) = ptr2;
         *(longlong *)(stdin_ptr + 0x90) =
              (longlong)**(int **)(stdin_ptr + 0x50) + **(longlong **)(stdin_ptr + 0x38);
       }

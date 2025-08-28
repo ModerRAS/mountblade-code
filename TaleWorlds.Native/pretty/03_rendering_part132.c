@@ -2,9 +2,9 @@
 
 // 03_rendering_part132.c - 6 个函数
 
-// 函数: void FUN_1803472a9(undefined8 param_1,undefined8 param_2,float param_3,float *param_4,float param_5,
-void FUN_1803472a9(undefined8 param_1,undefined8 param_2,float param_3,float *param_4,float param_5,
-                  undefined8 param_6,float param_7)
+// 函数: void FUN_1803472a9(uint64_t param_1,uint64_t param_2,float param_3,float *param_4,float param_5,
+void FUN_1803472a9(uint64_t param_1,uint64_t param_2,float param_3,float *param_4,float param_5,
+                  uint64_t param_6,float param_7)
 
 {
   float fVar1;

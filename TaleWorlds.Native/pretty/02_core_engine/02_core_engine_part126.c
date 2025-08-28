@@ -13,22 +13,22 @@ void initialize_render_pipeline(void)
     float transform_y;
     uint render_flags;
     longlong context_ptr;
-    undefined1 *texture_ptr;
+    int8_t *texture_ptr;
     longlong camera_ptr;
     char is_visible;
-    undefined4 color_value;
+    int32_t color_value;
     longlong render_context;
-    undefined8 matrix_data;
-    undefined4 *shader_params;
+    uint64_t matrix_data;
+    int32_t *shader_params;
     longlight vertex_buffer;
     float *position_ptr;
-    undefined8 texture_data;
-    undefined8 *render_target;
-    undefined1 depth_test;
+    uint64_t texture_data;
+    uint64_t *render_target;
+    int8_t depth_test;
     float *camera_matrix;
     longlong scene_manager;
-    undefined4 ambient_light;
-    undefined8 world_matrix;
+    int32_t ambient_light;
+    uint64_t world_matrix;
     float *viewport_ptr;
     char shadow_enabled;
     uint render_mode;
@@ -41,7 +41,7 @@ void initialize_render_pipeline(void)
     float camera_far;
     
     // 设置基础渲染参数
-    color_value = (undefined4)((ulonglong)world_matrix >> 0x20);
+    color_value = (int32_t)((ulonglong)world_matrix >> 0x20);
     *(float *)(render_context + 0x278) =
          ((*(float *)(render_context + 0x40) - *(float *)(render_context + 0x8c)) - *(float *)(render_context + 0x70)) +
          (*(float *)(render_context + 0x48) - *(float *)(render_context + 0xa4));
@@ -58,9 +58,9 @@ void initialize_render_pipeline(void)
     
     // 设置投影矩阵
     *(float *)(camera_ptr + 0x204) = *(float *)(camera_ptr + 0x70) - *(float *)(camera_ptr + 0x8c);
-    ambient_light = (undefined4)world_matrix;
-    *(undefined4 *)(camera_ptr + 0x208) = ambient_light;
-    *(undefined4 *)(camera_ptr + 0x20c) = ambient_light;
+    ambient_light = (int32_t)world_matrix;
+    *(int32_t *)(camera_ptr + 0x208) = ambient_light;
+    *(int32_t *)(camera_ptr + 0x20c) = ambient_light;
     
     // 初始化渲染管线
     setup_render_pipeline(camera_ptr);
@@ -72,34 +72,34 @@ void initialize_render_pipeline(void)
                               *(float *)(camera_ptr + 0x204));
     
     // 设置着色器参数
-    shader_params = (undefined4 *)setup_vertex_shader(camera_matrix + -0xe,camera_ptr + 0x40,matrix_data);
+    shader_params = (int32_t *)setup_vertex_shader(camera_matrix + -0xe,camera_ptr + 0x40,matrix_data);
     color_value = shader_params[1];
-    *(undefined4 *)(camera_ptr + 0x110) = *shader_params;
-    *(undefined4 *)(camera_ptr + 0x114) = color_value;
+    *(int32_t *)(camera_ptr + 0x110) = *shader_params;
+    *(int32_t *)(camera_ptr + 0x114) = color_value;
     
     // 复制矩阵数据
-    *(undefined8 *)(camera_ptr + 0x100) = *(undefined8 *)(camera_ptr + 0x110);
-    *(undefined8 *)(camera_ptr + 0x108) = *(undefined8 *)(camera_ptr + 0x110);
-    *(undefined8 *)(camera_ptr + 0x118) = *(undefined8 *)(camera_ptr + 0x110);
+    *(uint64_t *)(camera_ptr + 0x100) = *(uint64_t *)(camera_ptr + 0x110);
+    *(uint64_t *)(camera_ptr + 0x108) = *(uint64_t *)(camera_ptr + 0x110);
+    *(uint64_t *)(camera_ptr + 0x118) = *(uint64_t *)(camera_ptr + 0x110);
     
     // 设置投影矩阵
-    shader_params = (undefined4 *)calculate_world_matrix(camera_matrix + -0x18);
+    shader_params = (int32_t *)calculate_world_matrix(camera_matrix + -0x18);
     color_value = shader_params[1];
-    *(undefined4 *)(camera_ptr + 300) = *shader_params;
-    *(undefined4 *)(camera_ptr + 0x130) = color_value;
-    *(undefined8 *)(camera_ptr + 0x120) = *(undefined8 *)(camera_ptr + 300);
-    *(undefined4 *)(camera_ptr + 0x134) = ambient_light;
-    *(undefined4 *)(camera_ptr + 0x128) = ambient_light;
+    *(int32_t *)(camera_ptr + 300) = *shader_params;
+    *(int32_t *)(camera_ptr + 0x130) = color_value;
+    *(uint64_t *)(camera_ptr + 0x120) = *(uint64_t *)(camera_ptr + 300);
+    *(int32_t *)(camera_ptr + 0x134) = ambient_light;
+    *(int32_t *)(camera_ptr + 0x128) = ambient_light;
     
     // 启用深度测试
-    *(undefined1 *)(camera_ptr + 0x17c) = 0;
+    *(int8_t *)(camera_ptr + 0x17c) = 0;
     view_distance = (float)calculate_lod_distance(camera_ptr);
     *(bool *)(camera_ptr + 0x17d) = camera_near < view_distance;
     
     // 设置雾效参数
-    *(undefined4 *)(camera_ptr + 0x174) = *(undefined4 *)(camera_ptr + 0x178);
-    *(undefined4 *)(camera_ptr + 0x178) = ambient_light;
-    *(undefined1 *)(camera_ptr + 0x17e) = 0;
+    *(int32_t *)(camera_ptr + 0x174) = *(int32_t *)(camera_ptr + 0x178);
+    *(int32_t *)(camera_ptr + 0x178) = ambient_light;
+    *(int8_t *)(camera_ptr + 0x17e) = 0;
     
     // 计算裁剪平面
     *(float *)(camera_ptr + 0x138) = *(float *)(camera_ptr + 0x104) - 9999.0;
@@ -107,31 +107,31 @@ void initialize_render_pipeline(void)
     
     // 设置渲染状态
     context_ptr = *(longlong *)(camera_matrix + 8);
-    *(undefined4 *)(camera_ptr + 0x1a0) = 1;
+    *(int32_t *)(camera_ptr + 0x1a0) = 1;
     if (context_ptr == 0) {
         color_value = 1;
     }
     else {
-        color_value = *(undefined4 *)(context_ptr + 0x1a0);
+        color_value = *(int32_t *)(context_ptr + 0x1a0);
     }
-    *(undefined4 *)(camera_ptr + 0x1a4) = color_value;
+    *(int32_t *)(camera_ptr + 0x1a4) = color_value;
     
     color_value = ambient_light;
     if (context_ptr != 0) {
-        color_value = *(undefined4 *)(context_ptr + 0x1a8);
+        color_value = *(int32_t *)(context_ptr + 0x1a8);
     }
-    *(undefined4 *)(camera_ptr + 0x1a8) = color_value;
-    *(undefined4 *)(camera_ptr + 0x1ac) = *(undefined4 *)(camera_ptr + 0x284);
-    *(undefined4 *)(camera_ptr + 0x1b0) = 0xbf800000;
+    *(int32_t *)(camera_ptr + 0x1a8) = color_value;
+    *(int32_t *)(camera_ptr + 0x1ac) = *(int32_t *)(camera_ptr + 0x284);
+    *(int32_t *)(camera_ptr + 0x1b0) = 0xbf800000;
     
     // 初始化渲染目标
     setup_render_target(camera_ptr + 0x1b8,0);
     setup_depth_buffer(camera_ptr + 0x1c8,0);
     setup_stencil_buffer(camera_ptr + 0x1d8,0);
     
-    *(undefined8 *)(camera_ptr + 0x210) = world_matrix;
-    *(undefined4 *)(camera_ptr + 0x13c) = ambient_light;
-    *(undefined4 *)(camera_ptr + 0x140) = ambient_light;
+    *(uint64_t *)(camera_ptr + 0x210) = world_matrix;
+    *(int32_t *)(camera_ptr + 0x13c) = ambient_light;
+    *(int32_t *)(camera_ptr + 0x140) = ambient_light;
     *(longlong *)(camera_ptr + 0x198) = camera_ptr + 0x2b8;
     
     // 设置纹理采样器
@@ -160,14 +160,14 @@ void initialize_render_pipeline(void)
     }
     
     // 处理纹理更新
-    texture_ptr = *(undefined1 **)(camera_matrix + 10);
-    if ((((texture_ptr != (undefined1 *)0x0) &&
+    texture_ptr = *(int8_t **)(camera_matrix + 10);
+    if ((((texture_ptr != (int8_t *)0x0) &&
          (vertex_buffer = *(longlong *)(camera_ptr + 0x28), *(char *)(vertex_buffer + 0x48) != '\0')) &&
         (context_ptr = get_current_texture(), vertex_buffer != context_ptr)) &&
        (((*(byte *)(camera_ptr + 0x432) & 1) == 0 ||
         ((*(byte *)(camera_ptr + 0x432) & 2) != 0)))) {
-        *(undefined1 *)(vertex_buffer + 0x48) = 0;
-        *(undefined1 *)(scene_manager + 0x1cf8) = 0;
+        *(int8_t *)(vertex_buffer + 0x48) = 0;
+        *(int8_t *)(scene_manager + 0x1cf8) = 0;
         *texture_ptr = 0;
     }
     
@@ -175,15 +175,15 @@ void initialize_render_pipeline(void)
     if (((render_mode & 1) == 0) && ((*(byte *)(camera_ptr + 0x432) & 1) == 0)) {
         render_flags = *(uint *)(camera_ptr + 0x1a8);
         *(uint *)(camera_ptr + 0x1a8) = render_flags | 0x10;
-        *(undefined4 *)(camera_ptr + 0x16c) = 1;
-        *(undefined4 *)(camera_ptr + 0x170) = 2;
+        *(int32_t *)(camera_ptr + 0x16c) = 1;
+        *(int32_t *)(camera_ptr + 0x170) = 2;
         
         // 处理透明度混合
         if ((render_mode & 0x20) == 0) {
             color_value = setup_alpha_blending(camera_ptr,&GLOBAL_RENDER_STATE,0);
             is_visible = check_visibility(color_value,camera_ptr + 0x40,0);
             if (is_visible != '\0') {
-                *(undefined1 *)(camera_ptr + 0xb3) = 1;
+                *(int8_t *)(camera_ptr + 0xb3) = 1;
             }
         }
         
@@ -199,12 +199,12 @@ void initialize_render_pipeline(void)
             color_value = setup_alpha_blending(camera_ptr,&GLOBAL_REFLECTION_STATE,0);
             is_visible = render_reflection(color_value,matrix_data);
             if (is_visible != '\0') {
-                **(undefined1 **)(camera_matrix + 10) = 0;
+                **(int8_t **)(camera_matrix + 10) = 0;
             }
         }
         
-        *(undefined4 *)(camera_ptr + 0x16c) = 0;
-        *(undefined4 *)(camera_ptr + 0x170) = 1;
+        *(int32_t *)(camera_ptr + 0x16c) = 0;
+        *(int32_t *)(camera_ptr + 0x170) = 1;
         *(uint *)(camera_ptr + 0x1a8) = render_flags;
         view_distance = camera_near;
         
@@ -212,13 +212,13 @@ void initialize_render_pipeline(void)
         if ((render_mode & 0x100000) != 0) {
             matrix_data = CONCAT44(color_value,0xbf800000);
             position_ptr = (float *)setup_post_processing(camera_matrix + -0x18,&GLOBAL_POSTPROCESS_DATA,0,0,matrix_data);
-            color_value = (undefined4)((ulonglong)matrix_data >> 0x20);
+            color_value = (int32_t)((ulonglong)matrix_data >> 0x20);
             view_distance = *position_ptr;
         }
         
         // 计算最终变换矩阵
         matrix_data = calculate_world_matrix(camera_matrix + -0x18);
-        texture_data = setup_post_processing(camera_matrix + -0xe,*(undefined8 *)(camera_matrix + 0x1e),0,1,
+        texture_data = setup_post_processing(camera_matrix + -0xe,*(uint64_t *)(camera_matrix + 0x1e),0,1,
                            CONCAT44(color_value,0xbf800000));
         setup_vertex_shader(&render_target,texture_data,matrix_data);
         
@@ -274,7 +274,7 @@ void initialize_render_pipeline(void)
         }
         
         camera_matrix[-6] = (*(float *)(camera_ptr + 0x48) + *(float *)(camera_ptr + 0x40)) - fog_density;
-        render_scene(camera_matrix + -0x1c,camera_matrix + -0x1a,*(undefined8 *)(camera_matrix + 0x1e),0,&render_target);
+        render_scene(camera_matrix + -0x1c,camera_matrix + -0x1a,*(uint64_t *)(camera_matrix + 0x1e),0,&render_target);
         
         // 处理后处理效果
         if ((render_mode & 0x100000) == 0) {
@@ -300,10 +300,10 @@ void initialize_render_pipeline(void)
     *(short *)(camera_ptr + 0x268) = (short)world_matrix;
     
     // 处理渲染目标
-    render_target = (undefined8 *)get_render_target(camera_ptr,camera_matrix + 0x20);
+    render_target = (uint64_t *)get_render_target(camera_ptr,camera_matrix + 0x20);
     matrix_data = render_target[1];
-    *(undefined8 *)(camera_ptr + 0x238) = *render_target;
-    *(undefined8 *)(camera_ptr + 0x240) = matrix_data;
+    *(uint64_t *)(camera_ptr + 0x238) = *render_target;
+    *(uint64_t *)(camera_ptr + 0x240) = matrix_data;
     
     // 处理运动模糊
     if ((*(byte *)(camera_ptr + 0x432) & 1) != 0) {
@@ -358,20 +358,20 @@ void initialize_render_pipeline(void)
     
     // 处理渲染状态
     if ((*(byte *)(camera_ptr + 0x432) & 1) == 0) {
-        *(undefined4 *)(camera_ptr + 0x144) = *(undefined4 *)(camera_ptr + 0x84);
+        *(int32_t *)(camera_ptr + 0x144) = *(int32_t *)(camera_ptr + 0x84);
         is_visible = check_shader_status(camera_matrix + -2);
         view_distance = camera_matrix[-0x10];
         *(uint *)(camera_ptr + 0x148) = (uint)(is_visible != '\0');
-        matrix_data = *(undefined8 *)camera_matrix;
-        *(undefined8 *)(camera_ptr + 0x14c) = *(undefined8 *)(camera_matrix + -2);
-        *(undefined8 *)(camera_ptr + 0x154) = matrix_data;
+        matrix_data = *(uint64_t *)camera_matrix;
+        *(uint64_t *)(camera_ptr + 0x14c) = *(uint64_t *)(camera_matrix + -2);
+        *(uint64_t *)(camera_ptr + 0x154) = matrix_data;
     }
     else {
         view_distance = camera_matrix[-0x10];
-        *(undefined4 *)(camera_ptr + 0x144) = *(undefined4 *)(camera_ptr + 8);
-        *(undefined4 *)(camera_ptr + 0x148) = *(undefined4 *)(camera_ptr + 0x41c);
-        *(undefined8 *)(camera_ptr + 0x14c) = *(undefined8 *)(camera_ptr + 0x420);
-        *(undefined8 *)(camera_ptr + 0x154) = *(undefined8 *)(camera_ptr + 0x428);
+        *(int32_t *)(camera_ptr + 0x144) = *(int32_t *)(camera_ptr + 8);
+        *(int32_t *)(camera_ptr + 0x148) = *(int32_t *)(camera_ptr + 0x41c);
+        *(uint64_t *)(camera_ptr + 0x14c) = *(uint64_t *)(camera_ptr + 0x420);
+        *(uint64_t *)(camera_ptr + 0x154) = *(uint64_t *)(camera_ptr + 0x428);
     }
     
     fog_density = render_target;
@@ -379,7 +379,7 @@ void initialize_render_pipeline(void)
         apply_depth_of_field(camera_ptr + 600,camera_ptr + 0x260,1);
     }
     if (fog_density != view_distance) {
-        *(undefined1 *)(camera_ptr + 0xb1) = 0;
+        *(int8_t *)(camera_ptr + 0xb1) = 0;
     }
     
     // 更新帧计数器
@@ -389,7 +389,7 @@ void initialize_render_pipeline(void)
     // 处理渲染模式
     if (((*(byte *)(camera_ptr + 0x432) & 1) != 0) &&
        ((*(byte *)(camera_ptr + 0x432) & 2) == 0)) {
-        *(undefined4 *)(camera_ptr + 0xd8) = 1;
+        *(int32_t *)(camera_ptr + 0xd8) = 1;
     }
     
     // 处理渲染质量设置
@@ -400,16 +400,16 @@ void initialize_render_pipeline(void)
              *(float *)(camera_ptr + 0x240) == *(float *)(camera_ptr + 0x238) ||
             (*(float *)(camera_ptr + 0x244) < *(float *)(camera_ptr + 0x23c) ||
              *(float *)(camera_ptr + 0x244) == *(float *)(camera_ptr + 0x23c))))) {
-            *(undefined4 *)(camera_ptr + 0xd8) = 1;
+            *(int32_t *)(camera_ptr + 0xd8) = 1;
         }
         if ((context_ptr != 0) && ((*(char *)(context_ptr + 0xb2) != '\0' || (*(char *)(context_ptr + 0xb6) != '\0')))) {
-            *(undefined4 *)(camera_ptr + 0xd8) = 1;
+            *(int32_t *)(camera_ptr + 0xd8) = 1;
         }
     }
     
     // 处理性能优化
     if (*(float *)(scene_manager + 0x1628) <= camera_near) {
-        *(undefined4 *)(camera_ptr + 0xd8) = 1;
+        *(int32_t *)(camera_ptr + 0xd8) = 1;
     }
     
     // 确定是否需要渲染
@@ -431,7 +431,7 @@ void initialize_render_pipeline(void)
     else {
         depth_test = 1;
     }
-    *(undefined1 *)(camera_ptr + 0xb4) = depth_test;
+    *(int8_t *)(camera_ptr + 0xb4) = depth_test;
     
     // 执行最终渲染
     execute_render_pipeline(*(ulonglong *)(camera_matrix + 0x24) ^ (ulonglong)&render_target);
@@ -444,11 +444,11 @@ void initialize_render_pipeline(void)
  */
 void update_render_pipeline_state(void)
 {
-    undefined8 render_data;
+    uint64_t render_data;
     char state_flag;
-    undefined1 render_enabled;
+    int8_t render_enabled;
     int frame_count;
-    undefined8 *render_context;
+    uint64_t *render_context;
     longlong scene_manager;
     float *viewport;
     longlong camera_params;
@@ -513,20 +513,20 @@ void update_render_pipeline_state(void)
     
     // 处理渲染状态
     if ((*(byte *)(render_target + 0x432) & 1) == 0) {
-        *(undefined4 *)(render_target + 0x144) = *(undefined4 *)(render_target + 0x84);
+        *(int32_t *)(render_target + 0x144) = *(int32_t *)(render_target + 0x84);
         state_flag = check_shader_status(render_context + -1);
         frame_count = *(int *)(render_context + -8);
         *(uint *)(render_target + 0x148) = (uint)(state_flag != '\0');
         render_data = *render_context;
-        *(undefined8 *)(render_target + 0x14c) = render_context[-1];
-        *(undefined8 *)(render_target + 0x154) = render_data;
+        *(uint64_t *)(render_target + 0x14c) = render_context[-1];
+        *(uint64_t *)(render_target + 0x154) = render_data;
     }
     else {
         frame_count = *(int *)(render_context + -8);
-        *(undefined4 *)(render_target + 0x144) = *(undefined4 *)(render_target + 8);
-        *(undefined4 *)(render_target + 0x148) = *(undefined4 *)(render_target + 0x41c);
-        *(undefined8 *)(render_target + 0x14c) = *(undefined8 *)(render_target + 0x420);
-        *(undefined8 *)(render_target + 0x154) = *(undefined8 *)(render_target + 0x428);
+        *(int32_t *)(render_target + 0x144) = *(int32_t *)(render_target + 8);
+        *(int32_t *)(render_target + 0x148) = *(int32_t *)(render_target + 0x41c);
+        *(uint64_t *)(render_target + 0x14c) = *(uint64_t *)(render_target + 0x420);
+        *(uint64_t *)(render_target + 0x154) = *(uint64_t *)(render_target + 0x428);
     }
     
     // 应用后处理效果
@@ -536,7 +536,7 @@ void update_render_pipeline_state(void)
     
     // 检查渲染状态变化
     if (render_pass != frame_count) {
-        *(undefined1 *)(render_target + 0xb1) = 0;
+        *(int8_t *)(render_target + 0xb1) = 0;
     }
     
     // 更新帧计数器
@@ -546,7 +546,7 @@ void update_render_pipeline_state(void)
     // 处理渲染模式
     if (((*(byte *)(render_target + 0x432) & 1) != 0) &&
        ((*(byte *)(render_target + 0x432) & 2) == 0)) {
-        *(undefined4 *)(render_target + 0xd8) = 1;
+        *(int32_t *)(render_target + 0xd8) = 1;
     }
     
     // 处理渲染质量设置
@@ -557,17 +557,17 @@ void update_render_pipeline_state(void)
              *(float *)(render_target + 0x240) == *(float *)(render_target + 0x238) ||
             (*(float *)(render_target + 0x244) < *(float *)(render_target + 0x23c) ||
              *(float *)(render_target + 0x244) == *(float *)(render_target + 0x23c))))) {
-            *(undefined4 *)(render_target + 0xd8) = 1;
+            *(int32_t *)(render_target + 0xd8) = 1;
         }
         if ((camera_params != 0) &&
            ((*(char *)(camera_params + 0xb2) != '\0' || (*(char *)(camera_params + 0xb6) != '\0')))) {
-            *(undefined4 *)(render_target + 0xd8) = 1;
+            *(int32_t *)(render_target + 0xd8) = 1;
         }
     }
     
     // 处理性能优化
     if (*(float *)(scene_manager + 0x1628) <= camera_near) {
-        *(undefined4 *)(render_target + 0xd8) = 1;
+        *(int32_t *)(render_target + 0xd8) = 1;
     }
     
     // 确定是否需要渲染
@@ -589,7 +589,7 @@ void update_render_pipeline_state(void)
     else {
         render_enabled = 1;
     }
-    *(undefined1 *)(render_target + 0xb4) = render_enabled;
+    *(int8_t *)(render_target + 0xb4) = render_enabled;
     
     // 执行最终渲染
     execute_render_pipeline(render_context[0x12] ^ (ulonglong)&render_target);
@@ -602,13 +602,13 @@ void update_render_pipeline_state(void)
  */
 void process_special_effects(longlong render_context)
 {
-    undefined4 effect_param1;
-    undefined4 effect_param2;
-    undefined4 effect_param3;
+    int32_t effect_param1;
+    int32_t effect_param2;
+    int32_t effect_param3;
     char effect_active;
-    undefined1 effect_enabled;
+    int8_t effect_enabled;
     int effect_id;
-    undefined4 *effect_data;
+    int32_t *effect_data;
     longlong scene_manager;
     longlong camera_params;
     uint render_mode;
@@ -636,26 +636,26 @@ void process_special_effects(longlong render_context)
     
     // 处理渲染状态
     if ((*(byte *)(render_context + 0x432) & 1) == 0) {
-        *(undefined4 *)(render_context + 0x144) = *(undefined4 *)(render_context + 0x84);
+        *(int32_t *)(render_context + 0x144) = *(int32_t *)(render_context + 0x84);
         effect_active = check_shader_status(effect_data + -2);
         effect_id = effect_data[-0x10];
         *(uint *)(target_context + 0x148) = (uint)(effect_active != '\0');
         effect_param1 = effect_data[-1];
         effect_param2 = *effect_data;
         effect_param3 = effect_data[1];
-        *(undefined4 *)(target_context + 0x14c) = effect_data[-2];
-        *(undefined4 *)(target_context + 0x150) = effect_param1;
-        *(undefined4 *)(target_context + 0x154) = effect_param2;
-        *(undefined4 *)(target_context + 0x158) = effect_param3;
+        *(int32_t *)(target_context + 0x14c) = effect_data[-2];
+        *(int32_t *)(target_context + 0x150) = effect_param1;
+        *(int32_t *)(target_context + 0x154) = effect_param2;
+        *(int32_t *)(target_context + 0x158) = effect_param3;
     }
     else {
         effect_id = effect_data[-0x10];
-        *(undefined4 *)(render_context + 0x144) = *(undefined4 *)(render_context + 8);
-        *(undefined4 *)(target_context + 0x148) = *(undefined4 *)(target_context + 0x41c);
-        *(undefined4 *)(target_context + 0x14c) = *(undefined4 *)(target_context + 0x420);
-        *(undefined4 *)(target_context + 0x150) = *(undefined4 *)(target_context + 0x424);
-        *(undefined4 *)(target_context + 0x154) = *(undefined4 *)(target_context + 0x428);
-        *(undefined4 *)(target_context + 0x158) = *(undefined4 *)(target_context + 0x42c);
+        *(int32_t *)(render_context + 0x144) = *(int32_t *)(render_context + 8);
+        *(int32_t *)(target_context + 0x148) = *(int32_t *)(target_context + 0x41c);
+        *(int32_t *)(target_context + 0x14c) = *(int32_t *)(target_context + 0x420);
+        *(int32_t *)(target_context + 0x150) = *(int32_t *)(target_context + 0x424);
+        *(int32_t *)(target_context + 0x154) = *(int32_t *)(target_context + 0x428);
+        *(int32_t *)(target_context + 0x158) = *(int32_t *)(target_context + 0x42c);
     }
     
     // 应用后处理效果
@@ -665,7 +665,7 @@ void process_special_effects(longlong render_context)
     
     // 检查效果状态变化
     if (effect_priority != effect_id) {
-        *(undefined1 *)(target_context + 0xb1) = 0;
+        *(int8_t *)(target_context + 0xb1) = 0;
     }
     
     // 更新效果计数器
@@ -675,7 +675,7 @@ void process_special_effects(longlong render_context)
     // 处理效果模式
     if (((*(byte *)(target_context + 0x432) & 1) != 0) &&
        ((*(byte *)(target_context + 0x432) & 2) == 0)) {
-        *(undefined4 *)(target_context + 0xd8) = 1;
+        *(int32_t *)(target_context + 0xd8) = 1;
     }
     
     // 处理效果质量设置
@@ -686,17 +686,17 @@ void process_special_effects(longlong render_context)
              *(float *)(target_context + 0x240) == *(float *)(target_context + 0x238) ||
             (*(float *)(target_context + 0x244) < *(float *)(target_context + 0x23c) ||
              *(float *)(target_context + 0x244) == *(float *)(target_context + 0x23c))))) {
-            *(undefined4 *)(target_context + 0xd8) = 1;
+            *(int32_t *)(target_context + 0xd8) = 1;
         }
         if ((camera_params != 0) &&
            ((*(char *)(camera_params + 0xb2) != '\0' || (*(char *)(camera_params + 0xb6) != '\0')))) {
-            *(undefined4 *)(target_context + 0xd8) = 1;
+            *(int32_t *)(target_context + 0xd8) = 1;
         }
     }
     
     // 处理性能优化
     if (*(float *)(scene_manager + 0x1628) <= camera_near) {
-        *(undefined4 *)(target_context + 0xd8) = 1;
+        *(int32_t *)(target_context + 0xd8) = 1;
     }
     
     // 确定是否需要渲染效果
@@ -718,7 +718,7 @@ void process_special_effects(longlong render_context)
     else {
         effect_enabled = 1;
     }
-    *(undefined1 *)(target_context + 0xb4) = effect_enabled;
+    *(int8_t *)(target_context + 0xb4) = effect_enabled;
     
     // 执行效果渲染
     execute_render_pipeline(*(ulonglong *)(effect_data + 0x24) ^ (ulonglong)&target_context);
@@ -732,7 +732,7 @@ void process_special_effects(longlong render_context)
 void apply_postprocessing_effects(void)
 {
     char effect_enabled;
-    undefined1 render_skip;
+    int8_t render_skip;
     int previous_frame;
     longlong render_context;
     longlong scene_manager;
@@ -747,7 +747,7 @@ void apply_postprocessing_effects(void)
     
     // 检查帧变化
     if (current_frame != previous_frame) {
-        *(undefined1 *)(render_target + 0xb1) = 0;
+        *(int8_t *)(render_target + 0xb1) = 0;
     }
     
     // 更新帧计数器
@@ -757,7 +757,7 @@ void apply_postprocessing_effects(void)
     // 处理渲染模式
     if (((*(byte *)(render_target + 0x432) & 1) != 0) &&
        ((*(byte *)(render_target + 0x432) & 2) == 0)) {
-        *(undefined4 *)(render_target + 0xd8) = 1;
+        *(int32_t *)(render_target + 0xd8) = 1;
     }
     
     // 处理渲染质量设置
@@ -768,17 +768,17 @@ void apply_postprocessing_effects(void)
              *(float *)(render_target + 0x240) == *(float *)(render_target + 0x238) ||
             (*(float *)(render_target + 0x244) < *(float *)(render_target + 0x23c) ||
              *(float *)(render_target + 0x244) == *(float *)(render_target + 0x23c))))) {
-            *(undefined4 *)(render_target + 0xd8) = 1;
+            *(int32_t *)(render_target + 0xd8) = 1;
         }
         if ((camera_params != 0) &&
            ((*(char *)(camera_params + 0xb2) != '\0' || (*(char *)(camera_params + 0xb6) != '\0')))) {
-            *(undefined4 *)(render_target + 0xd8) = 1;
+            *(int32_t *)(render_target + 0xd8) = 1;
         }
     }
     
     // 处理性能优化
     if (*(float *)(scene_manager + 0x1628) <= camera_near) {
-        *(undefined4 *)(render_target + 0xd8) = 1;
+        *(int32_t *)(render_target + 0xd8) = 1;
     }
     
     // 确定是否需要渲染
@@ -800,7 +800,7 @@ void apply_postprocessing_effects(void)
     else {
         render_skip = 1;
     }
-    *(undefined1 *)(render_target + 0xb4) = render_skip;
+    *(int8_t *)(render_target + 0xb4) = render_skip;
     
     // 执行最终渲染
     execute_render_pipeline(*(ulonglong *)(render_context + 0x90) ^ (ulonglong)&render_target);
@@ -814,7 +814,7 @@ void apply_postprocessing_effects(void)
 void cleanup_render_state(void)
 {
     char render_enabled;
-    undefined1 render_skip;
+    int8_t render_skip;
     longlong render_context;
     longlong scene_manager;
     longlong camera_params;
@@ -823,7 +823,7 @@ void cleanup_render_state(void)
     longlong render_target;
     
     // 重置渲染状态
-    *(undefined1 *)(render_target + 0xb1) = 0;
+    *(int8_t *)(render_target + 0xb1) = 0;
     
     // 更新帧计数器
     *(short *)(render_target + 0xb8) = *(short *)(render_target + 0xb8) + 1;
@@ -832,7 +832,7 @@ void cleanup_render_state(void)
     // 处理渲染模式
     if (((*(byte *)(render_target + 0x432) & 1) != 0) &&
        ((*(byte *)(render_target + 0x432) & 2) == 0)) {
-        *(undefined4 *)(render_target + 0xd8) = 1;
+        *(int32_t *)(render_target + 0xd8) = 1;
     }
     
     // 处理渲染质量设置
@@ -843,17 +843,17 @@ void cleanup_render_state(void)
              *(float *)(render_target + 0x240) == *(float *)(render_target + 0x238) ||
             (*(float *)(render_target + 0x244) < *(float *)(render_target + 0x23c) ||
              *(float *)(render_target + 0x244) == *(float *)(render_target + 0x23c))))) {
-            *(undefined4 *)(render_target + 0xd8) = 1;
+            *(int32_t *)(render_target + 0xd8) = 1;
         }
         if ((camera_params != 0) &&
            ((*(char *)(camera_params + 0xb2) != '\0' || (*(char *)(camera_params + 0xb6) != '\0')))) {
-            *(undefined4 *)(render_target + 0xd8) = 1;
+            *(int32_t *)(render_target + 0xd8) = 1;
         }
     }
     
     // 处理性能优化
     if (*(float *)(scene_manager + 0x1628) <= camera_near) {
-        *(undefined4 *)(render_target + 0xd8) = 1;
+        *(int32_t *)(render_target + 0xd8) = 1;
     }
     
     // 确定是否需要渲染
@@ -875,7 +875,7 @@ void cleanup_render_state(void)
     else {
         render_skip = 1;
     }
-    *(undefined1 *)(render_target + 0xb4) = render_skip;
+    *(int8_t *)(render_target + 0xb4) = render_skip;
     
     // 执行最终渲染
     execute_render_pipeline(*(ulonglong *)(render_context + 0x90) ^ (ulonglong)&render_target);

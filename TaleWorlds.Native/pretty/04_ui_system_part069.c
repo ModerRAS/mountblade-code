@@ -2,8 +2,8 @@
 
 // 04_ui_system_part069.c - 6 个函数
 
-// 函数: void FUN_180700fc3(undefined4 param_1,undefined8 param_2,longlong param_3)
-void FUN_180700fc3(undefined4 param_1,undefined8 param_2,longlong param_3)
+// 函数: void FUN_180700fc3(int32_t param_1,uint64_t param_2,longlong param_3)
+void FUN_180700fc3(int32_t param_1,uint64_t param_2,longlong param_3)
 
 {
   float fVar1;
@@ -175,8 +175,8 @@ void FUN_180700fc3(undefined4 param_1,undefined8 param_2,longlong param_3)
 
 
 
-// 函数: void FUN_180701270(undefined8 param_1,undefined8 param_2,longlong param_3)
-void FUN_180701270(undefined8 param_1,undefined8 param_2,longlong param_3)
+// 函数: void FUN_180701270(uint64_t param_1,uint64_t param_2,longlong param_3)
+void FUN_180701270(uint64_t param_1,uint64_t param_2,longlong param_3)
 
 {
   float fVar1;
@@ -221,7 +221,7 @@ void FUN_180701270(undefined8 param_1,undefined8 param_2,longlong param_3)
 
 // 函数: void FUN_180701330(longlong param_1,int param_2,longlong param_3,longlong param_4,int param_5,
 void FUN_180701330(longlong param_1,int param_2,longlong param_3,longlong param_4,int param_5,
-                  int param_6,int param_7,int param_8,undefined4 param_9)
+                  int param_6,int param_7,int param_8,int32_t param_9)
 
 {
   int iVar1;
@@ -261,7 +261,7 @@ void FUN_180701330(longlong param_1,int param_2,longlong param_3,longlong param_
         FUN_180711810(param_1 + 0x50,
                       param_3 + ((longlong)(iVar1 * iVar6) +
                                 (longlong)((iVar12 + iVar7) * iStack_58)) * 4,lVar8,
-                      *(undefined8 *)(param_1 + 0x48),iVar7,iVar10,param_2,param_9);
+                      *(uint64_t *)(param_1 + 0x48),iVar7,iVar10,param_2,param_9);
         iVar6 = iVar6 + 1;
         lVar8 = lVar8 + 4;
       } while (iVar6 < param_2);
@@ -437,14 +437,14 @@ int FUN_180701650(longlong param_1,int *param_2,int param_3,byte param_4,int par
 
 
 
-// 函数: void FUN_180701920(undefined8 param_1,undefined8 param_2,undefined4 param_3,undefined4 param_4)
-void FUN_180701920(undefined8 param_1,undefined8 param_2,undefined4 param_3,undefined4 param_4)
+// 函数: void FUN_180701920(uint64_t param_1,uint64_t param_2,int32_t param_3,int32_t param_4)
+void FUN_180701920(uint64_t param_1,uint64_t param_2,int32_t param_3,int32_t param_4)
 
 {
-  undefined4 uStack_f8;
-  undefined4 uStack_f4;
-  undefined8 uStack_e0;
-  undefined8 uStack_d0;
+  int32_t uStack_f8;
+  int32_t uStack_f4;
+  uint64_t uStack_e0;
+  uint64_t uStack_d0;
   ulonglong uStack_b8;
   
   uStack_b8 = _DAT_180bf00a8 ^ (ulonglong)&uStack_f8;
@@ -541,7 +541,7 @@ float FUN_180702f80(longlong param_1,uint param_2,int param_3,float param_4)
 
 
 
-undefined8 FUN_1807030d0(longlong *param_1,int param_2,longlong *param_3)
+uint64_t FUN_1807030d0(longlong *param_1,int param_2,longlong *param_3)
 
 {
   longlong lVar1;
@@ -712,13 +712,13 @@ void FUN_180703200(void)
 
 
 
-undefined8 FUN_1807032d3(undefined8 param_1,undefined8 param_2,undefined8 *param_3)
+uint64_t FUN_1807032d3(uint64_t param_1,uint64_t param_2,uint64_t *param_3)
 
 {
   longlong unaff_RBX;
   
-  if ((undefined4 *)*param_3 != (undefined4 *)0x0) {
-    *(undefined4 *)*param_3 = *(undefined4 *)(unaff_RBX + 0x50);
+  if ((int32_t *)*param_3 != (int32_t *)0x0) {
+    *(int32_t *)*param_3 = *(int32_t *)(unaff_RBX + 0x50);
     return 0;
   }
   return 0xffffffff;

@@ -69,7 +69,7 @@
  * 原始函数名: FUN_1806917c0
  * 简化说明：此为简化实现，原始代码使用大量SIMD指令进行优化
  */
-void ui_system_advanced_simd_image_processor(undefined1 (*param_1) [16], ulonglong *param_2, int param_3)
+void ui_system_advanced_simd_image_processor(int8_t (*param_1) [16], ulonglong *param_2, int param_3)
 
 {
   // =============================================================================
@@ -90,7 +90,7 @@ void ui_system_advanced_simd_image_processor(undefined1 (*param_1) [16], ulonglo
   // 简化实现使用标准的内存操作
   
   // 第一阶段：像素数据加载
-  undefined1 pixel_data[16];
+  int8_t pixel_data[16];
   for (int i = 0; i < 16; i++) {
     pixel_data[i] = (*param_1)[i];
   }
@@ -135,9 +135,9 @@ void ui_system_advanced_simd_image_processor(undefined1 (*param_1) [16], ulonglo
     v = (v < 0.0f) ? 0.0f : (v > 255.0f) ? 255.0f : v;
     
     // 存储处理结果
-    pixel_data[offset] = (undefined1)y;
-    pixel_data[offset + 1] = (undefined1)u;
-    pixel_data[offset + 2] = (undefined1)v;
+    pixel_data[offset] = (int8_t)y;
+    pixel_data[offset + 1] = (int8_t)u;
+    pixel_data[offset + 2] = (int8_t)v;
     pixel_data[offset + 3] = a; // Alpha通道保持不变
   }
   
@@ -157,7 +157,7 @@ void ui_system_advanced_simd_image_processor(undefined1 (*param_1) [16], ulonglo
   };
   
   // 应用高斯滤波（边缘处理简化）
-  undefined1 filtered_data[16];
+  int8_t filtered_data[16];
   for (int pixel = 0; pixel < 4; pixel++) {
     int offset = pixel * 4;
     
@@ -180,7 +180,7 @@ void ui_system_advanced_simd_image_processor(undefined1 (*param_1) [16], ulonglo
       
       // 饱和运算
       sum = (sum < 0.0f) ? 0.0f : (sum > 255.0f) ? 255.0f : sum;
-      filtered_data[offset + channel] = (undefined1)sum;
+      filtered_data[offset + channel] = (int8_t)sum;
     }
     
     // Alpha通道保持不变
@@ -242,7 +242,7 @@ void ui_system_advanced_simd_image_processor(undefined1 (*param_1) [16], ulonglo
  * @param dest 目标缓冲区
  * @param size 数据大小
  */
-static void ui_system_simd_data_loader(const undefined1* src, undefined1* dest, int size) {
+static void ui_system_simd_data_loader(const int8_t* src, int8_t* dest, int size) {
   // 简化的数据加载实现
   for (int i = 0; i < size && i < 16; i++) {
     dest[i] = src[i];
@@ -258,7 +258,7 @@ static void ui_system_simd_data_loader(const undefined1* src, undefined1* dest, 
  * @param dest 目标缓冲区
  * @param size 数据大小
  */
-static void ui_system_simd_data_storer(const undefined1* src, undefined1* dest, int size) {
+static void ui_system_simd_data_storer(const int8_t* src, int8_t* dest, int size) {
   // 简化的数据存储实现
   for (int i = 0; i < size && i < 16; i++) {
     dest[i] = src[i];
@@ -273,7 +273,7 @@ static void ui_system_simd_data_storer(const undefined1* src, undefined1* dest, 
  * @param rgb_data RGB数据
  * @param yuv_data YUV数据输出
  */
-static void ui_system_color_space_converter(const undefined1* rgb_data, undefined1* yuv_data) {
+static void ui_system_color_space_converter(const int8_t* rgb_data, int8_t* yuv_data) {
   // RGB到YUV转换矩阵
   float matrix[3][3] = {
     {0.299f, 0.587f, 0.114f},
@@ -288,9 +288,9 @@ static void ui_system_color_space_converter(const undefined1* rgb_data, undefine
     float g = (float)rgb_data[offset + 1];
     float b = (float)rgb_data[offset + 2];
     
-    yuv_data[offset] = (undefined1)(matrix[0][0] * r + matrix[0][1] * g + matrix[0][2] * b);
-    yuv_data[offset + 1] = (undefined1)(matrix[1][0] * r + matrix[1][1] * g + matrix[1][2] * b);
-    yuv_data[offset + 2] = (undefined1)(matrix[2][0] * r + matrix[2][1] * g + matrix[2][2] * b);
+    yuv_data[offset] = (int8_t)(matrix[0][0] * r + matrix[0][1] * g + matrix[0][2] * b);
+    yuv_data[offset + 1] = (int8_t)(matrix[1][0] * r + matrix[1][1] * g + matrix[1][2] * b);
+    yuv_data[offset + 2] = (int8_t)(matrix[2][0] * r + matrix[2][1] * g + matrix[2][2] * b);
     yuv_data[offset + 3] = rgb_data[offset + 3]; // Alpha保持不变
   }
 }
@@ -304,7 +304,7 @@ static void ui_system_color_space_converter(const undefined1* rgb_data, undefine
  * @param output_data 输出数据
  * @param kernel 滤波器核
  */
-static void ui_system_image_filter(const undefined1* input_data, undefined1* output_data, 
+static void ui_system_image_filter(const int8_t* input_data, int8_t* output_data, 
                                   const float kernel[3][3]) {
   // 简化的滤波实现
   for (int i = 0; i < 4; i++) {
@@ -331,7 +331,7 @@ static void ui_system_image_filter(const undefined1* input_data, undefined1* out
         sum /= weight_sum;
       }
       sum = (sum < 0.0f) ? 0.0f : (sum > 255.0f) ? 255.0f : sum;
-      output_data[offset + channel] = (undefined1)sum;
+      output_data[offset + channel] = (int8_t)sum;
     }
     
     output_data[offset + 3] = input_data[offset + 3]; // Alpha保持不变

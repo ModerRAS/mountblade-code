@@ -42,9 +42,9 @@ typedef int SystemInt32;                          // 系统32位整数类型
 typedef uint32_t SystemUInt32;                    // 系统32位无符号整数类型
 typedef ulonglong SystemUInt64;                   // 系统64位无符号整数类型
 typedef code* SystemCodePointer;                  // 系统代码指针类型
-typedef undefined* SystemDataPointer;             // 系统数据指针类型
-typedef undefined1* SystemBufferPointer;           // 系统缓冲区指针类型
-typedef undefined4 SystemFlagType;                // 系统标志类型
+typedef void* SystemDataPointer;             // 系统数据指针类型
+typedef int8_t* SystemBufferPointer;           // 系统缓冲区指针类型
+typedef int32_t SystemFlagType;                // 系统标志类型
 
 // ============================================================================
 // 枚举定义

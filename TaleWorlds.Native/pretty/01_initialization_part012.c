@@ -60,63 +60,63 @@
  * 系统全局数据区域
  * 存储系统运行时的重要全局变量和状态信息
  */
-extern undefined8 UNK_180943070;            /* 系统全局指针1 */
-extern undefined8 UNK_180943080;            /* 系统全局指针2 */
-extern undefined8 UNK_180943090;            /* 系统全局指针3 */
-extern undefined8 UNK_1809430a0;            /* 系统全局指针4 */
-extern undefined8 UNK_1809430b0;            /* 系统全局指针5 */
-extern undefined8 UNK_1809430c0;            /* 系统全局指针6 */
-extern undefined8 UNK_1809430d0;            /* 系统全局指针7 */
-extern undefined8 UNK_1809430e0;            /* 系统全局指针8 */
-extern undefined8 UNK_1809430f0;            /* 系统全局指针9 */
-extern undefined8 UNK_180943100;            /* 系统全局指针10 */
-extern undefined8 UNK_180943110;            /* 系统全局指针11 */
-extern undefined8 UNK_180943120;            /* 系统全局指针12 */
-extern undefined8 UNK_180943130;            /* 系统全局指针13 */
-extern undefined8 UNK_180943140;            /* 系统全局指针14 */
-extern undefined8 UNK_180943150;            /* 系统全局指针15 */
-extern undefined8 UNK_180943160;            /* 系统全局指针16 */
-extern undefined8 UNK_180943170;            /* 系统全局指针17 */
-extern undefined8 UNK_180943180;            /* 系统全局指针18 */
+extern uint64_t UNK_180943070;            /* 系统全局指针1 */
+extern uint64_t UNK_180943080;            /* 系统全局指针2 */
+extern uint64_t UNK_180943090;            /* 系统全局指针3 */
+extern uint64_t UNK_1809430a0;            /* 系统全局指针4 */
+extern uint64_t UNK_1809430b0;            /* 系统全局指针5 */
+extern uint64_t UNK_1809430c0;            /* 系统全局指针6 */
+extern uint64_t UNK_1809430d0;            /* 系统全局指针7 */
+extern uint64_t UNK_1809430e0;            /* 系统全局指针8 */
+extern uint64_t UNK_1809430f0;            /* 系统全局指针9 */
+extern uint64_t UNK_180943100;            /* 系统全局指针10 */
+extern uint64_t UNK_180943110;            /* 系统全局指针11 */
+extern uint64_t UNK_180943120;            /* 系统全局指针12 */
+extern uint64_t UNK_180943130;            /* 系统全局指针13 */
+extern uint64_t UNK_180943140;            /* 系统全局指针14 */
+extern uint64_t UNK_180943150;            /* 系统全局指针15 */
+extern uint64_t UNK_180943160;            /* 系统全局指针16 */
+extern uint64_t UNK_180943170;            /* 系统全局指针17 */
+extern uint64_t UNK_180943180;            /* 系统全局指针18 */
 
 /**
  * 系统互斥锁和同步变量
  * 用于线程同步和资源访问控制
  */
-extern undefined8 DAT_180c95ecc;            /* 系统互斥锁1 */
-extern undefined8 DAT_180c9606c;            /* 系统互斥锁2 */
-extern undefined8 DAT_180c96218;            /* 进程句柄存储 */
-extern undefined8 DAT_180c96690;            /* 互斥锁区域1 */
-extern undefined8 DAT_180c966f0;            /* 互斥锁区域2 */
-extern undefined8 DAT_180c96740;            /* 互斥锁区域3 */
-extern undefined8 DAT_180c96790;            /* 互斥锁数据区域 */
-extern undefined8 DAT_180c967b8;            /* 互斥锁状态标志 */
+extern uint64_t DAT_180c95ecc;            /* 系统互斥锁1 */
+extern uint64_t DAT_180c9606c;            /* 系统互斥锁2 */
+extern uint64_t DAT_180c96218;            /* 进程句柄存储 */
+extern uint64_t DAT_180c96690;            /* 互斥锁区域1 */
+extern uint64_t DAT_180c966f0;            /* 互斥锁区域2 */
+extern uint64_t DAT_180c96740;            /* 互斥锁区域3 */
+extern uint64_t DAT_180c96790;            /* 互斥锁数据区域 */
+extern uint64_t DAT_180c967b8;            /* 互斥锁状态标志 */
 
 /**
  * 系统常量和标识符
  * 用于系统标识和配置
  */
-extern undefined8 DAT_180a2d660;            /* 系统标识符1 */
-extern undefined8 DAT_180a2d590;            /* 系统标识符2 */
-extern undefined8 DAT_1809ff9e8;            /* 系统标识符3 */
-extern undefined8 DAT_1809ff9c0;            /* 系统标识符4 */
-extern undefined8 DAT_180a010a0;            /* 系统标识符5 */
-extern undefined8 DAT_180a01078;            /* 系统标识符6 */
-extern undefined8 DAT_180a01050;            /* 系统标识符7 */
-extern undefined8 DAT_180a01028;            /* 系统标识符8 */
-extern undefined8 DAT_180a01000;            /* 系统标识符9 */
-extern undefined8 DAT_180a00fd8;            /* 系统标识符10 */
-extern undefined8 DAT_180a00fb0;            /* 系统标识符11 */
-extern undefined8 DAT_1809fc740;            /* 系统标识符12 */
-extern undefined8 DAT_1809fc768;            /* 系统标识符13 */
-extern undefined8 DAT_18098c9b8;            /* 系统标识符14 */
-extern undefined8 DAT_18098c940;            /* 系统标识符15 */
-extern undefined8 DAT_18098c918;            /* 系统标识符16 */
-extern undefined8 DAT_18098c968;            /* 系统标识符17 */
-extern undefined8 DAT_18098c990;            /* 系统标识符18 */
-extern undefined8 DAT_18098c9e0;            /* 系统标识符19 */
-extern undefined8 DAT_18098c8f0;            /* 系统标识符20 */
-extern undefined8 DAT_18098c8c8;            /* 系统标识符21 */
+extern uint64_t DAT_180a2d660;            /* 系统标识符1 */
+extern uint64_t DAT_180a2d590;            /* 系统标识符2 */
+extern uint64_t DAT_1809ff9e8;            /* 系统标识符3 */
+extern uint64_t DAT_1809ff9c0;            /* 系统标识符4 */
+extern uint64_t DAT_180a010a0;            /* 系统标识符5 */
+extern uint64_t DAT_180a01078;            /* 系统标识符6 */
+extern uint64_t DAT_180a01050;            /* 系统标识符7 */
+extern uint64_t DAT_180a01028;            /* 系统标识符8 */
+extern uint64_t DAT_180a01000;            /* 系统标识符9 */
+extern uint64_t DAT_180a00fd8;            /* 系统标识符10 */
+extern uint64_t DAT_180a00fb0;            /* 系统标识符11 */
+extern uint64_t DAT_1809fc740;            /* 系统标识符12 */
+extern uint64_t DAT_1809fc768;            /* 系统标识符13 */
+extern uint64_t DAT_18098c9b8;            /* 系统标识符14 */
+extern uint64_t DAT_18098c940;            /* 系统标识符15 */
+extern uint64_t DAT_18098c918;            /* 系统标识符16 */
+extern uint64_t DAT_18098c968;            /* 系统标识符17 */
+extern uint64_t DAT_18098c990;            /* 系统标识符18 */
+extern uint64_t DAT_18098c9e0;            /* 系统标识符19 */
+extern uint64_t DAT_18098c8f0;            /* 系统标识符20 */
+extern uint64_t DAT_18098c8c8;            /* 系统标识符21 */
 
 /**
  * 系统回调函数指针
@@ -129,41 +129,41 @@ extern code *FUN_18025cc00;                /* 系统回调函数4 */
 extern code *FUN_18025c000;                /* 系统回调函数5 */
 extern code *FUN_18025d270;                /* 系统回调函数6 */
 extern code *FUN_180073930;                /* 系统回调函数7 */
-extern undefined *FUN_1800868c0;           /* 系统函数指针1 */
+extern void *FUN_1800868c0;           /* 系统函数指针1 */
 
 /**
  * 系统数据引用
  * 指向系统数据区域的指针
  */
-extern undefined8 UNK_180a2ca90;            /* 系统数据引用1 */
-extern undefined8 UNK_180a2cab0;            /* 系统数据引用2 */
-extern undefined8 UNK_1809ff978;            /* 系统数据引用3 */
-extern undefined8 UNK_1809ff990;            /* 系统数据引用4 */
-extern undefined8 UNK_180a00370;            /* 系统数据引用5 */
-extern undefined8 UNK_180a00388;            /* 系统数据引用6 */
-extern undefined8 UNK_180a003a0;            /* 系统数据引用7 */
-extern undefined8 UNK_180a003b8;            /* 系统数据引用8 */
-extern undefined8 UNK_180a003d0;            /* 系统数据引用9 */
-extern undefined8 UNK_180a003e8;            /* 系统数据引用10 */
-extern undefined8 UNK_180a00400;            /* 系统数据引用11 */
-extern undefined8 UNK_18098c790;            /* 系统数据引用12 */
-extern undefined8 UNK_18098c7a0;            /* 系统数据引用13 */
-extern undefined8 UNK_18098c7b8;            /* 系统数据引用14 */
-extern undefined8 UNK_18098c7c8;            /* 系统数据引用15 */
-extern undefined8 UNK_18098c7d8;            /* 系统数据引用16 */
-extern undefined8 UNK_18098c7f0;            /* 系统数据引用17 */
-extern undefined8 UNK_18098c810;            /* 系统数据引用18 */
-extern undefined8 UNK_18098c870;            /* 系统数据引用19 */
-extern undefined8 UNK_18098c880;            /* 系统数据引用20 */
-extern undefined8 UNK_18098c898;            /* 系统数据引用21 */
+extern uint64_t UNK_180a2ca90;            /* 系统数据引用1 */
+extern uint64_t UNK_180a2cab0;            /* 系统数据引用2 */
+extern uint64_t UNK_1809ff978;            /* 系统数据引用3 */
+extern uint64_t UNK_1809ff990;            /* 系统数据引用4 */
+extern uint64_t UNK_180a00370;            /* 系统数据引用5 */
+extern uint64_t UNK_180a00388;            /* 系统数据引用6 */
+extern uint64_t UNK_180a003a0;            /* 系统数据引用7 */
+extern uint64_t UNK_180a003b8;            /* 系统数据引用8 */
+extern uint64_t UNK_180a003d0;            /* 系统数据引用9 */
+extern uint64_t UNK_180a003e8;            /* 系统数据引用10 */
+extern uint64_t UNK_180a00400;            /* 系统数据引用11 */
+extern uint64_t UNK_18098c790;            /* 系统数据引用12 */
+extern uint64_t UNK_18098c7a0;            /* 系统数据引用13 */
+extern uint64_t UNK_18098c7b8;            /* 系统数据引用14 */
+extern uint64_t UNK_18098c7c8;            /* 系统数据引用15 */
+extern uint64_t UNK_18098c7d8;            /* 系统数据引用16 */
+extern uint64_t UNK_18098c7f0;            /* 系统数据引用17 */
+extern uint64_t UNK_18098c810;            /* 系统数据引用18 */
+extern uint64_t UNK_18098c870;            /* 系统数据引用19 */
+extern uint64_t UNK_18098c880;            /* 系统数据引用20 */
+extern uint64_t UNK_18098c898;            /* 系统数据引用21 */
 
 /**
  * 系统字符串常量
  * 用于系统配置和标识
  */
-extern undefined8 UNK_1809fcc28;            /* 系统字符串1 */
-extern undefined8 UNK_180a33fb0;            /* 系统字符串2 */
-extern undefined8 UNK_180a3c028;            /* 系统字符串3 */
+extern uint64_t UNK_1809fcc28;            /* 系统字符串1 */
+extern uint64_t UNK_180a33fb0;            /* 系统字符串2 */
+extern uint64_t UNK_180a3c028;            /* 系统字符串3 */
 
 /*=============================================================================
  * 函数别名定义
@@ -297,32 +297,32 @@ extern undefined8 UNK_180a3c028;            /* 系统字符串3 */
 undefined SystemCallbackRegister_1(void)
 {
     char cVar1;
-    undefined8 *puVar2;
+    uint64_t *puVar2;
     int iVar3;
     longlong *plVar4;
     longlong lVar5;
-    undefined8 *puVar6;
-    undefined8 *puVar7;
-    undefined8 *puVar8;
-    undefined8 *puStackX_10;
-    undefined8 uStackX_18;
+    uint64_t *puVar6;
+    uint64_t *puVar7;
+    uint64_t *puVar8;
+    uint64_t *puStackX_10;
+    uint64_t uStackX_18;
     
     // 获取系统管理器指针
     plVar4 = (longlong *)SystemCoreFunction_1();
-    puVar2 = (undefined8 *)*plVar4;
+    puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
     uStackX_18 = 0;
     puVar7 = puVar2;
-    puVar6 = (undefined8 *)puVar2[1];
+    puVar6 = (uint64_t *)puVar2[1];
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &DAT_180a2d660, 0x10);
         if (iVar3 < 0) {
-            puVar8 = (undefined8 *)puVar6[2];
+            puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
         } else {
-            puVar8 = (undefined8 *)*puVar6;
+            puVar8 = (uint64_t *)*puVar6;
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
@@ -362,32 +362,32 @@ undefined SystemCallbackRegister_1(void)
 undefined SystemCallbackRegister_2(void)
 {
     char cVar1;
-    undefined8 *puVar2;
+    uint64_t *puVar2;
     int iVar3;
     longlong *plVar4;
     longlong lVar5;
-    undefined8 *puVar6;
-    undefined8 *puVar7;
-    undefined8 *puVar8;
-    undefined8 *puStackX_10;
-    undefined8 uStackX_18;
+    uint64_t *puVar6;
+    uint64_t *puVar7;
+    uint64_t *puVar8;
+    uint64_t *puStackX_10;
+    uint64_t uStackX_18;
     
     // 获取系统管理器指针
     plVar4 = (longlong *)SystemCoreFunction_1();
-    puVar2 = (undefined8 *)*plVar4;
+    puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
     uStackX_18 = 0;
     puVar7 = puVar2;
-    puVar6 = (undefined8 *)puVar2[1];
+    puVar6 = (uint64_t *)puVar2[1];
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &DAT_180a2d590, 0x10);
         if (iVar3 < 0) {
-            puVar8 = (undefined8 *)puVar6[2];
+            puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
         } else {
-            puVar8 = (undefined8 *)*puVar6;
+            puVar8 = (uint64_t *)*puVar6;
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
@@ -427,32 +427,32 @@ undefined SystemCallbackRegister_2(void)
 undefined SystemCallbackRegister_3(void)
 {
     char cVar1;
-    undefined8 *puVar2;
+    uint64_t *puVar2;
     int iVar3;
     longlong *plVar4;
     longlong lVar5;
-    undefined8 *puVar6;
-    undefined8 *puVar7;
-    undefined8 *puVar8;
-    undefined8 *puStackX_10;
-    undefined8 uStackX_18;
+    uint64_t *puVar6;
+    uint64_t *puVar7;
+    uint64_t *puVar8;
+    uint64_t *puStackX_10;
+    uint64_t uStackX_18;
     
     // 获取系统管理器指针
     plVar4 = (longlong *)SystemCoreFunction_1();
-    puVar2 = (undefined8 *)*plVar4;
+    puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
     uStackX_18 = 0;
     puVar7 = puVar2;
-    puVar6 = (undefined8 *)puVar2[1];
+    puVar6 = (uint64_t *)puVar2[1];
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &DAT_180a2d660, 0x10);
         if (iVar3 < 0) {
-            puVar8 = (undefined8 *)puVar6[2];
+            puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
         } else {
-            puVar8 = (undefined8 *)*puVar6;
+            puVar8 = (uint64_t *)*puVar6;
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
@@ -492,32 +492,32 @@ undefined SystemCallbackRegister_3(void)
 undefined SystemCallbackRegister_4(void)
 {
     char cVar1;
-    undefined8 *puVar2;
+    uint64_t *puVar2;
     int iVar3;
     longlong *plVar4;
     longlong lVar5;
-    undefined8 *puVar6;
-    undefined8 *puVar7;
-    undefined8 *puVar8;
-    undefined8 *puStackX_10;
-    undefined8 uStackX_18;
+    uint64_t *puVar6;
+    uint64_t *puVar7;
+    uint64_t *puVar8;
+    uint64_t *puStackX_10;
+    uint64_t uStackX_18;
     
     // 获取系统管理器指针
     plVar4 = (longlong *)SystemCoreFunction_1();
-    puVar2 = (undefined8 *)*plVar4;
+    puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
     uStackX_18 = 0;
     puVar7 = puVar2;
-    puVar6 = (undefined8 *)puVar2[1];
+    puVar6 = (uint64_t *)puVar2[1];
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &DAT_180a2d590, 0x10);
         if (iVar3 < 0) {
-            puVar8 = (undefined8 *)puVar6[2];
+            puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
         } else {
-            puVar8 = (undefined8 *)*puVar6;
+            puVar8 = (uint64_t *)*puVar6;
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
@@ -557,32 +557,32 @@ undefined SystemCallbackRegister_4(void)
 undefined SystemCallbackRegister_5(void)
 {
     char cVar1;
-    undefined8 *puVar2;
+    uint64_t *puVar2;
     int iVar3;
     longlong *plVar4;
     longlong lVar5;
-    undefined8 *puVar6;
-    undefined8 *puVar7;
-    undefined8 *puVar8;
-    undefined8 *puStackX_10;
+    uint64_t *puVar6;
+    uint64_t *puVar7;
+    uint64_t *puVar8;
+    uint64_t *puStackX_10;
     code *pcStackX_18;
     
     // 获取系统管理器指针
     plVar4 = (longlong *)SystemCoreFunction_1();
-    puVar2 = (undefined8 *)*plVar4;
+    puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
     pcStackX_18 = FUN_1802281a0;
     puVar7 = puVar2;
-    puVar6 = (undefined8 *)puVar2[1];
+    puVar6 = (uint64_t *)puVar2[1];
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &DAT_1809ff9e8, 0x10);
         if (iVar3 < 0) {
-            puVar8 = (undefined8 *)puVar6[2];
+            puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
         } else {
-            puVar8 = (undefined8 *)*puVar6;
+            puVar8 = (uint64_t *)*puVar6;
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
@@ -622,32 +622,32 @@ undefined SystemCallbackRegister_5(void)
 undefined SystemCallbackRegister_6(void)
 {
     char cVar1;
-    undefined8 *puVar2;
+    uint64_t *puVar2;
     int iVar3;
     longlong *plVar4;
     longlong lVar5;
-    undefined8 *puVar6;
-    undefined8 *puVar7;
-    undefined8 *puVar8;
-    undefined8 *puStackX_10;
+    uint64_t *puVar6;
+    uint64_t *puVar7;
+    uint64_t *puVar8;
+    uint64_t *puStackX_10;
     code *pcStackX_18;
     
     // 获取系统管理器指针
     plVar4 = (longlong *)SystemCoreFunction_1();
-    puVar2 = (undefined8 *)*plVar4;
+    puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
     pcStackX_18 = FUN_1802285e0;
     puVar7 = puVar2;
-    puVar6 = (undefined8 *)puVar2[1];
+    puVar6 = (uint64_t *)puVar2[1];
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &DAT_1809ff9c0, 0x10);
         if (iVar3 < 0) {
-            puVar8 = (undefined8 *)puVar6[2];
+            puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
         } else {
-            puVar8 = (undefined8 *)*puVar6;
+            puVar8 = (uint64_t *)*puVar6;
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
@@ -687,32 +687,32 @@ undefined SystemCallbackRegister_6(void)
 undefined SystemCallbackRegister_7(void)
 {
     char cVar1;
-    undefined8 *puVar2;
+    uint64_t *puVar2;
     int iVar3;
     longlong *plVar4;
     longlong lVar5;
-    undefined8 *puVar6;
-    undefined8 *puVar7;
-    undefined8 *puVar8;
-    undefined8 *puStackX_10;
+    uint64_t *puVar6;
+    uint64_t *puVar7;
+    uint64_t *puVar8;
+    uint64_t *puStackX_10;
     code *pcStackX_18;
     
     // 获取系统管理器指针
     plVar4 = (longlong *)SystemCoreFunction_1();
-    puVar2 = (undefined8 *)*plVar4;
+    puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
     pcStackX_18 = FUN_18025cc00;
     puVar7 = puVar2;
-    puVar6 = (undefined8 *)puVar2[1];
+    puVar6 = (uint64_t *)puVar2[1];
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &DAT_180a010a0, 0x10);
         if (iVar3 < 0) {
-            puVar8 = (undefined8 *)puVar6[2];
+            puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
         } else {
-            puVar8 = (undefined8 *)*puVar6;
+            puVar8 = (uint64_t *)*puVar6;
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
@@ -752,32 +752,32 @@ undefined SystemCallbackRegister_7(void)
 undefined SystemCallbackRegister_8(void)
 {
     char cVar1;
-    undefined8 *puVar2;
+    uint64_t *puVar2;
     int iVar3;
     longlong *plVar4;
     longlong lVar5;
-    undefined8 *puVar6;
-    undefined8 *puVar7;
-    undefined8 *puVar8;
-    undefined8 *puStackX_10;
+    uint64_t *puVar6;
+    uint64_t *puVar7;
+    uint64_t *puVar8;
+    uint64_t *puStackX_10;
     code *pcStackX_18;
     
     // 获取系统管理器指针
     plVar4 = (longlong *)SystemCoreFunction_1();
-    puVar2 = (undefined8 *)*plVar4;
+    puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
     pcStackX_18 = FUN_18025c000;
     puVar7 = puVar2;
-    puVar6 = (undefined8 *)puVar2[1];
+    puVar6 = (uint64_t *)puVar2[1];
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &DAT_180a01078, 0x10);
         if (iVar3 < 0) {
-            puVar8 = (undefined8 *)puVar6[2];
+            puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
         } else {
-            puVar8 = (undefined8 *)*puVar6;
+            puVar8 = (uint64_t *)*puVar6;
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
@@ -817,32 +817,32 @@ undefined SystemCallbackRegister_8(void)
 undefined SystemCallbackRegister_9(void)
 {
     char cVar1;
-    undefined8 *puVar2;
+    uint64_t *puVar2;
     int iVar3;
     longlong *plVar4;
     longlong lVar5;
-    undefined8 *puVar6;
-    undefined8 *puVar7;
-    undefined8 *puVar8;
-    undefined8 *puStackX_10;
-    undefined8 uStackX_18;
+    uint64_t *puVar6;
+    uint64_t *puVar7;
+    uint64_t *puVar8;
+    uint64_t *puStackX_10;
+    uint64_t uStackX_18;
     
     // 获取系统管理器指针
     plVar4 = (longlong *)SystemCoreFunction_1();
-    puVar2 = (undefined8 *)*plVar4;
+    puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
     uStackX_18 = 0;
     puVar7 = puVar2;
-    puVar6 = (undefined8 *)puVar2[1];
+    puVar6 = (uint64_t *)puVar2[1];
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &DAT_180a01050, 0x10);
         if (iVar3 < 0) {
-            puVar8 = (undefined8 *)puVar6[2];
+            puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
         } else {
-            puVar8 = (undefined8 *)*puVar6;
+            puVar8 = (uint64_t *)*puVar6;
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
@@ -882,32 +882,32 @@ undefined SystemCallbackRegister_9(void)
 undefined SystemCallbackRegister_10(void)
 {
     char cVar1;
-    undefined8 *puVar2;
+    uint64_t *puVar2;
     int iVar3;
     longlong *plVar4;
     longlong lVar5;
-    undefined8 *puVar6;
-    undefined8 *puVar7;
-    undefined8 *puVar8;
-    undefined8 *puStackX_10;
+    uint64_t *puVar6;
+    uint64_t *puVar7;
+    uint64_t *puVar8;
+    uint64_t *puStackX_10;
     code *pcStackX_18;
     
     // 获取系统管理器指针
     plVar4 = (longlong *)SystemCoreFunction_1();
-    puVar2 = (undefined8 *)*plVar4;
+    puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
     pcStackX_18 = FUN_18025d270;
     puVar7 = puVar2;
-    puVar6 = (undefined8 *)puVar2[1];
+    puVar6 = (uint64_t *)puVar2[1];
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &DAT_180a01028, 0x10);
         if (iVar3 < 0) {
-            puVar8 = (undefined8 *)puVar6[2];
+            puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
         } else {
-            puVar8 = (undefined8 *)*puVar6;
+            puVar8 = (uint64_t *)*puVar6;
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
@@ -947,32 +947,32 @@ undefined SystemCallbackRegister_10(void)
 undefined SystemCallbackRegister_11(void)
 {
     char cVar1;
-    undefined8 *puVar2;
+    uint64_t *puVar2;
     int iVar3;
     longlong *plVar4;
     longlong lVar5;
-    undefined8 *puVar6;
-    undefined8 *puVar7;
-    undefined8 *puVar8;
-    undefined8 *puStackX_10;
-    undefined8 uStackX_18;
+    uint64_t *puVar6;
+    uint64_t *puVar7;
+    uint64_t *puVar8;
+    uint64_t *puStackX_10;
+    uint64_t uStackX_18;
     
     // 获取系统管理器指针
     plVar4 = (longlong *)SystemCoreFunction_1();
-    puVar2 = (undefined8 *)*plVar4;
+    puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
     uStackX_18 = 0;
     puVar7 = puVar2;
-    puVar6 = (undefined8 *)puVar2[1];
+    puVar6 = (uint64_t *)puVar2[1];
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &DAT_180a01000, 0x10);
         if (iVar3 < 0) {
-            puVar8 = (undefined8 *)puVar6[2];
+            puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
         } else {
-            puVar8 = (undefined8 *)*puVar6;
+            puVar8 = (uint64_t *)*puVar6;
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
@@ -1012,32 +1012,32 @@ undefined SystemCallbackRegister_11(void)
 undefined SystemCallbackRegister_12(void)
 {
     char cVar1;
-    undefined8 *puVar2;
+    uint64_t *puVar2;
     int iVar3;
     longlong *plVar4;
     longlong lVar5;
-    undefined8 *puVar6;
-    undefined8 *puVar7;
-    undefined8 *puVar8;
-    undefined8 *puStackX_10;
-    undefined *puStackX_18;
+    uint64_t *puVar6;
+    uint64_t *puVar7;
+    uint64_t *puVar8;
+    uint64_t *puStackX_10;
+    void *puStackX_18;
     
     // 获取系统管理器指针
     plVar4 = (longlong *)SystemCoreFunction_1();
-    puVar2 = (undefined8 *)*plVar4;
+    puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
     puStackX_18 = &UNK_1800868c0;
     puVar7 = puVar2;
-    puVar6 = (undefined8 *)puVar2[1];
+    puVar6 = (uint64_t *)puVar2[1];
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &DAT_180a00fd8, 0x10);
         if (iVar3 < 0) {
-            puVar8 = (undefined8 *)puVar6[2];
+            puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
         } else {
-            puVar8 = (undefined8 *)*puVar6;
+            puVar8 = (uint64_t *)*puVar6;
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
@@ -1077,32 +1077,32 @@ undefined SystemCallbackRegister_12(void)
 undefined SystemCallbackRegister_13(void)
 {
     char cVar1;
-    undefined8 *puVar2;
+    uint64_t *puVar2;
     int iVar3;
     longlong *plVar4;
     longlong lVar5;
-    undefined8 *puVar6;
-    undefined8 *puVar7;
-    undefined8 *puVar8;
-    undefined8 *puStackX_10;
-    undefined8 uStackX_18;
+    uint64_t *puVar6;
+    uint64_t *puVar7;
+    uint64_t *puVar8;
+    uint64_t *puStackX_10;
+    uint64_t uStackX_18;
     
     // 获取系统管理器指针
     plVar4 = (longlong *)SystemCoreFunction_1();
-    puVar2 = (undefined8 *)*plVar4;
+    puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
     uStackX_18 = 0;
     puVar7 = puVar2;
-    puVar6 = (undefined8 *)puVar2[1];
+    puVar6 = (uint64_t *)puVar2[1];
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &DAT_180a00fb0, 0x10);
         if (iVar3 < 0) {
-            puVar8 = (undefined8 *)puVar6[2];
+            puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
         } else {
-            puVar8 = (undefined8 *)*puVar6;
+            puVar8 = (uint64_t *)*puVar6;
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
@@ -1142,32 +1142,32 @@ undefined SystemCallbackRegister_13(void)
 undefined SystemCallbackRegister_14(void)
 {
     char cVar1;
-    undefined8 *puVar2;
+    uint64_t *puVar2;
     int iVar3;
     longlong *plVar4;
     longlong lVar5;
-    undefined8 *puVar6;
-    undefined8 *puVar7;
-    undefined8 *puVar8;
-    undefined8 *puStackX_10;
+    uint64_t *puVar6;
+    uint64_t *puVar7;
+    uint64_t *puVar8;
+    uint64_t *puStackX_10;
     code *pcStackX_18;
     
     // 获取系统管理器指针
     plVar4 = (longlong *)SystemCoreFunction_1();
-    puVar2 = (undefined8 *)*plVar4;
+    puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
     pcStackX_18 = FUN_18007fcd0;
     puVar7 = puVar2;
-    puVar6 = (undefined8 *)puVar2[1];
+    puVar6 = (uint64_t *)puVar2[1];
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &DAT_1809fc740, 0x10);
         if (iVar3 < 0) {
-            puVar8 = (undefined8 *)puVar6[2];
+            puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
         } else {
-            puVar8 = (undefined8 *)*puVar6;
+            puVar8 = (uint64_t *)*puVar6;
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
@@ -1207,32 +1207,32 @@ undefined SystemCallbackRegister_14(void)
 undefined SystemCallbackRegister_15(void)
 {
     char cVar1;
-    undefined8 *puVar2;
+    uint64_t *puVar2;
     int iVar3;
     longlong *plVar4;
     longlong lVar5;
-    undefined8 *puVar6;
-    undefined8 *puVar7;
-    undefined8 *puVar8;
-    undefined8 *puStackX_10;
-    undefined8 uStackX_18;
+    uint64_t *puVar6;
+    uint64_t *puVar7;
+    uint64_t *puVar8;
+    uint64_t *puStackX_10;
+    uint64_t uStackX_18;
     
     // 获取系统管理器指针
     plVar4 = (longlong *)SystemCoreFunction_1();
-    puVar2 = (undefined8 *)*plVar4;
+    puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
     uStackX_18 = 0;
     puVar7 = puVar2;
-    puVar6 = (undefined8 *)puVar2[1];
+    puVar6 = (uint64_t *)puVar2[1];
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &DAT_1809fc768, 0x10);
         if (iVar3 < 0) {
-            puVar8 = (undefined8 *)puVar6[2];
+            puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
         } else {
-            puVar8 = (undefined8 *)*puVar6;
+            puVar8 = (uint64_t *)*puVar6;
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
@@ -1272,32 +1272,32 @@ undefined SystemCallbackRegister_15(void)
 undefined SystemCallbackRegister_16(void)
 {
     char cVar1;
-    undefined8 *puVar2;
+    uint64_t *puVar2;
     int iVar3;
     longlong *plVar4;
     longlong lVar5;
-    undefined8 *puVar6;
-    undefined8 *puVar7;
-    undefined8 *puVar8;
-    undefined8 *puStackX_10;
-    undefined8 uStackX_18;
+    uint64_t *puVar6;
+    uint64_t *puVar7;
+    uint64_t *puVar8;
+    uint64_t *puStackX_10;
+    uint64_t uStackX_18;
     
     // 获取系统管理器指针
     plVar4 = (longlong *)SystemCoreFunction_1();
-    puVar2 = (undefined8 *)*plVar4;
+    puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
     uStackX_18 = 0;
     puVar7 = puVar2;
-    puVar6 = (undefined8 *)puVar2[1];
+    puVar6 = (uint64_t *)puVar2[1];
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &DAT_18098c9b8, 0x10);
         if (iVar3 < 0) {
-            puVar8 = (undefined8 *)puVar6[2];
+            puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
         } else {
-            puVar8 = (undefined8 *)*puVar6;
+            puVar8 = (uint64_t *)*puVar6;
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
@@ -1337,32 +1337,32 @@ undefined SystemCallbackRegister_16(void)
 undefined SystemCallbackRegister_17(void)
 {
     char cVar1;
-    undefined8 *puVar2;
+    uint64_t *puVar2;
     int iVar3;
     longlong *plVar4;
     longlong lVar5;
-    undefined8 *puVar6;
-    undefined8 *puVar7;
-    undefined8 *puVar8;
-    undefined8 *puStackX_10;
-    undefined8 uStackX_18;
+    uint64_t *puVar6;
+    uint64_t *puVar7;
+    uint64_t *puVar8;
+    uint64_t *puStackX_10;
+    uint64_t uStackX_18;
     
     // 获取系统管理器指针
     plVar4 = (longlong *)SystemCoreFunction_1();
-    puVar2 = (undefined8 *)*plVar4;
+    puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
     uStackX_18 = 0;
     puVar7 = puVar2;
-    puVar6 = (undefined8 *)puVar2[1];
+    puVar6 = (uint64_t *)puVar2[1];
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &DAT_18098c940, 0x10);
         if (iVar3 < 0) {
-            puVar8 = (undefined8 *)puVar6[2];
+            puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
         } else {
-            puVar8 = (undefined8 *)*puVar6;
+            puVar8 = (uint64_t *)*puVar6;
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
@@ -1402,32 +1402,32 @@ undefined SystemCallbackRegister_17(void)
 undefined SystemCallbackRegister_18(void)
 {
     char cVar1;
-    undefined8 *puVar2;
+    uint64_t *puVar2;
     int iVar3;
     longlong *plVar4;
     longlong lVar5;
-    undefined8 *puVar6;
-    undefined8 *puVar7;
-    undefined8 *puVar8;
-    undefined8 *puStackX_10;
-    undefined8 uStackX_18;
+    uint64_t *puVar6;
+    uint64_t *puVar7;
+    uint64_t *puVar8;
+    uint64_t *puStackX_10;
+    uint64_t uStackX_18;
     
     // 获取系统管理器指针
     plVar4 = (longlong *)SystemCoreFunction_1();
-    puVar2 = (undefined8 *)*plVar4;
+    puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
     uStackX_18 = 0;
     puVar7 = puVar2;
-    puVar6 = (undefined8 *)puVar2[1];
+    puVar6 = (uint64_t *)puVar2[1];
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &DAT_18098c918, 0x10);
         if (iVar3 < 0) {
-            puVar8 = (undefined8 *)puVar6[2];
+            puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
         } else {
-            puVar8 = (undefined8 *)*puVar6;
+            puVar8 = (uint64_t *)*puVar6;
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
@@ -1467,32 +1467,32 @@ undefined SystemCallbackRegister_18(void)
 undefined SystemCallbackRegister_19(void)
 {
     char cVar1;
-    undefined8 *puVar2;
+    uint64_t *puVar2;
     int iVar3;
     longlong *plVar4;
     longlong lVar5;
-    undefined8 *puVar6;
-    undefined8 *puVar7;
-    undefined8 *puVar8;
-    undefined8 *puStackX_10;
-    undefined8 uStackX_18;
+    uint64_t *puVar6;
+    uint64_t *puVar7;
+    uint64_t *puVar8;
+    uint64_t *puStackX_10;
+    uint64_t uStackX_18;
     
     // 获取系统管理器指针
     plVar4 = (longlong *)SystemCoreFunction_1();
-    puVar2 = (undefined8 *)*plVar4;
+    puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
     uStackX_18 = 0;
     puVar7 = puVar2;
-    puVar6 = (undefined8 *)puVar2[1];
+    puVar6 = (uint64_t *)puVar2[1];
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &DAT_18098c968, 0x10);
         if (iVar3 < 0) {
-            puVar8 = (undefined8 *)puVar6[2];
+            puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
         } else {
-            puVar8 = (undefined8 *)*puVar6;
+            puVar8 = (uint64_t *)*puVar6;
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
@@ -1532,32 +1532,32 @@ undefined SystemCallbackRegister_19(void)
 undefined SystemCallbackRegister_20(void)
 {
     char cVar1;
-    undefined8 *puVar2;
+    uint64_t *puVar2;
     int iVar3;
     longlong *plVar4;
     longlong lVar5;
-    undefined8 *puVar6;
-    undefined8 *puVar7;
-    undefined8 *puVar8;
-    undefined8 *puStackX_10;
-    undefined8 uStackX_18;
+    uint64_t *puVar6;
+    uint64_t *puVar7;
+    uint64_t *puVar8;
+    uint64_t *puStackX_10;
+    uint64_t uStackX_18;
     
     // 获取系统管理器指针
     plVar4 = (longlong *)SystemCoreFunction_1();
-    puVar2 = (undefined8 *)*plVar4;
+    puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
     uStackX_18 = 0;
     puVar7 = puVar2;
-    puVar6 = (undefined8 *)puVar2[1];
+    puVar6 = (uint64_t *)puVar2[1];
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &DAT_18098c990, 0x10);
         if (iVar3 < 0) {
-            puVar8 = (undefined8 *)puVar6[2];
+            puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
         } else {
-            puVar8 = (undefined8 *)*puVar6;
+            puVar8 = (uint64_t *)*puVar6;
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
@@ -1597,32 +1597,32 @@ undefined SystemCallbackRegister_20(void)
 undefined SystemCallbackRegister_21(void)
 {
     char cVar1;
-    undefined8 *puVar2;
+    uint64_t *puVar2;
     int iVar3;
     longlong *plVar4;
     longlong lVar5;
-    undefined8 *puVar6;
-    undefined8 *puVar7;
-    undefined8 *puVar8;
-    undefined8 *puStackX_10;
-    undefined8 uStackX_18;
+    uint64_t *puVar6;
+    uint64_t *puVar7;
+    uint64_t *puVar8;
+    uint64_t *puStackX_10;
+    uint64_t uStackX_18;
     
     // 获取系统管理器指针
     plVar4 = (longlong *)SystemCoreFunction_1();
-    puVar2 = (undefined8 *)*plVar4;
+    puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
     uStackX_18 = 0;
     puVar7 = puVar2;
-    puVar6 = (undefined8 *)puVar2[1];
+    puVar6 = (uint64_t *)puVar2[1];
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &DAT_18098c9e0, 0x10);
         if (iVar3 < 0) {
-            puVar8 = (undefined8 *)puVar6[2];
+            puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
         } else {
-            puVar8 = (undefined8 *)*puVar6;
+            puVar8 = (uint64_t *)*puVar6;
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
@@ -1662,32 +1662,32 @@ undefined SystemCallbackRegister_21(void)
 undefined SystemCallbackRegister_22(void)
 {
     char cVar1;
-    undefined8 *puVar2;
+    uint64_t *puVar2;
     int iVar3;
     longlong *plVar4;
     longlong lVar5;
-    undefined8 *puVar6;
-    undefined8 *puVar7;
-    undefined8 *puVar8;
-    undefined8 *puStackX_10;
+    uint64_t *puVar6;
+    uint64_t *puVar7;
+    uint64_t *puVar8;
+    uint64_t *puStackX_10;
     code *pcStackX_18;
     
     // 获取系统管理器指针
     plVar4 = (longlong *)SystemCoreFunction_1();
-    puVar2 = (undefined8 *)*plVar4;
+    puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
     pcStackX_18 = FUN_180073930;
     puVar7 = puVar2;
-    puVar6 = (undefined8 *)puVar2[1];
+    puVar6 = (uint64_t *)puVar2[1];
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &DAT_18098c8f0, 0x10);
         if (iVar3 < 0) {
-            puVar8 = (undefined8 *)puVar6[2];
+            puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
         } else {
-            puVar8 = (undefined8 *)*puVar6;
+            puVar8 = (uint64_t *)*puVar6;
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
@@ -1727,32 +1727,32 @@ undefined SystemCallbackRegister_22(void)
 undefined SystemCallbackRegister_23(void)
 {
     char cVar1;
-    undefined8 *puVar2;
+    uint64_t *puVar2;
     int iVar3;
     longlong *plVar4;
     longlong lVar5;
-    undefined8 *puVar6;
-    undefined8 *puVar7;
-    undefined8 *puVar8;
-    undefined8 *puStackX_10;
-    undefined8 uStackX_18;
+    uint64_t *puVar6;
+    uint64_t *puVar7;
+    uint64_t *puVar8;
+    uint64_t *puStackX_10;
+    uint64_t uStackX_18;
     
     // 获取系统管理器指针
     plVar4 = (longlong *)SystemCoreFunction_1();
-    puVar2 = (undefined8 *)*plVar4;
+    puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
     uStackX_18 = 0;
     puVar7 = puVar2;
-    puVar6 = (undefined8 *)puVar2[1];
+    puVar6 = (uint64_t *)puVar2[1];
     
     // 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &DAT_18098c8c8, 0x10);
         if (iVar3 < 0) {
-            puVar8 = (undefined8 *)puVar6[2];
+            puVar8 = (uint64_t *)puVar6[2];
             puVar6 = puVar7;
         } else {
-            puVar8 = (undefined8 *)*puVar6;
+            puVar8 = (uint64_t *)*puVar6;
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
@@ -1793,11 +1793,11 @@ undefined SystemCallbackRegister_23(void)
  */
 undefined SystemEventProcessor_1(void)
 {
-    undefined8 in_R9;
-    undefined *puStack_a0;
-    undefined1 *puStack_98;
-    undefined4 uStack_90;
-    undefined1 auStack_88 [136];
+    uint64_t in_R9;
+    void *puStack_a0;
+    int8_t *puStack_98;
+    int32_t uStack_90;
+    int8_t auStack_88 [136];
     
     // 设置事件处理参数
     puStack_a0 = &UNK_1809fcc28;
@@ -1825,11 +1825,11 @@ undefined SystemEventProcessor_1(void)
  */
 undefined SystemEventProcessor_2(void)
 {
-    undefined8 in_R9;
-    undefined *puStack_a0;
-    undefined1 *puStack_98;
-    undefined4 uStack_90;
-    undefined1 auStack_88 [136];
+    uint64_t in_R9;
+    void *puStack_a0;
+    int8_t *puStack_98;
+    int32_t uStack_90;
+    int8_t auStack_88 [136];
     
     // 设置事件处理参数
     puStack_a0 = &UNK_1809fcc28;
@@ -1955,7 +1955,7 @@ int SystemInitializer_4(void)
  * @param param_4 互斥锁参数4
  * @return int 初始化结果状态
  */
-int MutexInitializer_1(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+int MutexInitializer_1(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     longlong lVar1;
     
@@ -1982,7 +1982,7 @@ int MutexInitializer_1(undefined8 param_1, undefined8 param_2, undefined8 param_
  * @param param_4 互斥锁参数4
  * @return int 初始化结果状态
  */
-int MutexInitializer_2(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+int MutexInitializer_2(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     longlong lVar1;
     
@@ -2009,7 +2009,7 @@ int MutexInitializer_2(undefined8 param_1, undefined8 param_2, undefined8 param_
  * @param param_4 互斥锁参数4
  * @return int 初始化结果状态
  */
-int MutexInitializer_3(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+int MutexInitializer_3(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     longlong lVar1;
     

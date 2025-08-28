@@ -85,13 +85,13 @@ extern int ImageProcessor_FlipMode;  // 图像处理器翻转模式
 // 渲染系统图像处理核心函数
 void rendering_system_image_data_processor(longlong src_data, int stride, int width, int height, 
                                          int x_offset, int y_offset, int mode, longlong dst_data);
-void rendering_system_filter_effect_processor(undefined8 param_1, undefined8 param_2, int param_3);
-void rendering_system_pixel_data_optimizer(undefined8 param_1, longlong param_2);
-void rendering_system_advanced_image_compressor(undefined8 param_1, undefined8 param_2, int param_3, int param_4, int param_5, int *param_6);
+void rendering_system_filter_effect_processor(uint64_t param_1, uint64_t param_2, int param_3);
+void rendering_system_pixel_data_optimizer(uint64_t param_1, longlong param_2);
+void rendering_system_advanced_image_compressor(uint64_t param_1, uint64_t param_2, int param_3, int param_4, int param_5, int *param_6);
 void rendering_system_memory_cleanup(void);
-void rendering_system_data_encoder(undefined8 *param_1, uint *param_2, uint *param_3, ushort *param_4);
+void rendering_system_data_encoder(uint64_t *param_1, uint *param_2, uint *param_3, ushort *param_4);
 void rendering_system_data_stream_processor(void);
-void rendering_system_parameter_setter(undefined8 param_1, undefined4 *param_2, undefined4 *param_3);
+void rendering_system_parameter_setter(uint64_t param_1, int32_t *param_2, int32_t *param_3);
 void rendering_system_fft_processor(float *param_1, float *param_2, float *param_3, float *param_4, float *param_5,
                                  float *param_6, float *param_7, float *param_8);
 
@@ -374,7 +374,7 @@ SKIP_PROCESSING:
  * - 灵活的参数配置
  * - 优化的性能表现
  */
-void rendering_system_filter_effect_processor(undefined8 param_1, undefined8 param_2, int param_3) {
+void rendering_system_filter_effect_processor(uint64_t param_1, uint64_t param_2, int param_3) {
     // 变量重命名以提高可读性：
     // pbVar1 -> temp_byte_ptr: 临时字节指针
     // bVar2 -> temp_byte: 临时字节值
@@ -541,7 +541,7 @@ void rendering_system_filter_effect_processor(undefined8 param_1, undefined8 par
  * 本函数为简化实现，主要展示像素数据优化的核心逻辑。
  * 原始代码包含更复杂的数据处理算法和错误处理机制。
  */
-void rendering_system_pixel_data_optimizer(undefined8 param_1, longlong param_2) {
+void rendering_system_pixel_data_optimizer(uint64_t param_1, longlong param_2) {
     // 变量重命名以提高可读性：
     // pcVar1 -> data_ptr: 数据指针
     // pcVar2 -> code_ptr: 代码指针
@@ -557,7 +557,7 @@ void rendering_system_pixel_data_optimizer(undefined8 param_1, longlong param_2)
     
     char *data_ptr;
     code *code_ptr;
-    undefined2 port_value;
+    int16_t port_value;
     char input_data;
     uint sum_value;
     char temp_byte;
@@ -567,7 +567,7 @@ void rendering_system_pixel_data_optimizer(undefined8 param_1, longlong param_2)
     longlong base_addr;
     longlong index_val;
     
-    port_value = (undefined2)param_2;
+    port_value = (int16_t)param_2;
     input_data = in(port_value);  // 从端口读取数据
     
     // 更新数据缓冲区
@@ -621,7 +621,7 @@ void rendering_system_pixel_data_optimizer(undefined8 param_1, longlong param_2)
  * 本函数为简化实现，保留了核心的压缩处理逻辑。
  * 原始代码包含更复杂的压缩算法、错误处理和性能优化逻辑。
  */
-void rendering_system_advanced_image_compressor(undefined8 param_1, undefined8 param_2, int param_3, int param_4, int param_5, int *param_6) {
+void rendering_system_advanced_image_compressor(uint64_t param_1, uint64_t param_2, int param_3, int param_4, int param_5, int *param_6) {
     // 变量重命名以提高可读性：
     // lVar1 -> temp_offset: 临时偏移量
     // uVar2 -> pixel_value: 像素值
@@ -662,7 +662,7 @@ void rendering_system_advanced_image_compressor(undefined8 param_1, undefined8 p
     
     longlong temp_offset;
     uint pixel_value;
-    undefined1 *output_buffer;
+    int8_t *output_buffer;
     longlong temp_buffer;
     ulonglong loop_counter;
     ulonglong pixel_index;
@@ -676,8 +676,8 @@ void rendering_system_advanced_image_compressor(undefined8 param_1, undefined8 p
     ulonglong best_quality_index;
     longlong temp_buffer_size;
     int abs_total;
-    undefined1 stack_data[32];
-    undefined4 compression_flags;
+    int8_t stack_data[32];
+    int32_t compression_flags;
     int quality_param;
     uint frame_index;
     longlong temp_buffer_ptr;
@@ -685,16 +685,16 @@ void rendering_system_advanced_image_compressor(undefined8 param_1, undefined8 p
     int quality_level;
     int image_width;
     int buffer_size;
-    undefined1 *main_buffer;
-    undefined8 input_data;
-    undefined1 *frame_buffer;
+    int8_t *main_buffer;
+    uint64_t input_data;
+    int8_t *frame_buffer;
     longlong frame_buffer_size;
     int *output_size_ptr;
-    undefined8 max_value;
-    undefined8 format_flags;
-    undefined4 compression_type;
-    undefined4 png_signature;
-    undefined4 png_header;
+    uint64_t max_value;
+    uint64_t format_flags;
+    int32_t compression_type;
+    int32_t png_signature;
+    int32_t png_header;
     ulonglong security_cookie;
   
   uStack_40 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
@@ -710,9 +710,9 @@ void rendering_system_advanced_image_compressor(undefined8 param_1, undefined8 p
   iStack_98 = param_4;
   iStack_90 = param_3;
   uStack_80 = param_1;
-  puVar3 = (undefined1 *)malloc((longlong)iStack_8c);
+  puVar3 = (int8_t *)malloc((longlong)iStack_8c);
   puStack_88 = puVar3;
-  if (puVar3 != (undefined1 *)0x0) {
+  if (puVar3 != (int8_t *)0x0) {
     lVar15 = (longlong)(int)uVar9;
     lVar4 = malloc(lVar15);
     if (lVar4 == 0) {
@@ -910,20 +910,20 @@ void rendering_system_simd_optimizer(void) {
     int quality_param;
     longlong data_buffer;
     longlong buffer_size;
-    undefined1 simd_reg1[16];
-    undefined1 simd_data1[16];
-    undefined1 simd_reg2[16];
-    undefined1 simd_abs1[16];
-    undefined1 simd_sum1[16];
-    undefined1 simd_sum2[16];
-    undefined1 simd_total[16];
+    int8_t simd_reg1[16];
+    int8_t simd_data1[16];
+    int8_t simd_reg2[16];
+    int8_t simd_abs1[16];
+    int8_t simd_sum1[16];
+    int8_t simd_sum2[16];
+    int8_t simd_total[16];
     int iteration_count;
     int result_size;
     uint width_param;
     uint height_param;
-    undefined1 *output_buffer;
-    undefined8 input_data;
-    undefined1 *result_ptr;
+    int8_t *output_buffer;
+    uint64_t input_data;
+    int8_t *result_ptr;
     longlong config_offset;
     int *output_size_ptr;
     ulonglong security_cookie;
@@ -1078,8 +1078,8 @@ void rendering_system_memory_cleanup(void) {
     
     longlong allocated_memory;
     longlong cleanup_flag;
-    undefined8 resource_size;
-    undefined8 memory_ptr;
+    uint64_t resource_size;
+    uint64_t memory_ptr;
     int *output_size;
     ulonglong security_token;
     
@@ -1132,7 +1132,7 @@ void rendering_system_memory_cleanup(void) {
  * 本函数为简化实现，主要展示数据编码的核心逻辑。
  * 原始代码包含更复杂的编码算法、错误处理和性能优化逻辑。
  */
-void rendering_system_data_encoder(undefined8 *param_1, uint *param_2, uint *param_3, ushort *param_4) {
+void rendering_system_data_encoder(uint64_t *param_1, uint *param_2, uint *param_3, ushort *param_4) {
     // 变量重命名以提高可读性：
     // uVar1 -> encoded_data: 编码后的数据
     // uVar2 -> byte_count: 字节计数
@@ -1222,7 +1222,7 @@ void rendering_system_data_stream_processor(void) {
     
     int data_stream;
     ulonglong byte_counter;
-    undefined8 *callback_ptr;
+    uint64_t *callback_ptr;
     char current_byte;
     uint stream_length;
     int *remaining_length;
@@ -1278,13 +1278,13 @@ void rendering_system_data_stream_processor(void) {
  * 本函数为简化实现，主要展示参数设置的核心逻辑。
  * 原始代码可能包含更复杂的参数验证、错误处理和配置管理逻辑。
  */
-void rendering_system_parameter_setter(undefined8 param_1, undefined4 *param_2, undefined4 *param_3) {
+void rendering_system_parameter_setter(uint64_t param_1, int32_t *param_2, int32_t *param_3) {
     // 变量重命名以提高可读性：
     // unaff_EBX -> parameter_value1: 参数值1
     // in_R10D -> parameter_value2: 参数值2
     
-    undefined4 parameter_value1;
-    undefined4 parameter_value2;
+    int32_t parameter_value1;
+    int32_t parameter_value2;
     
     // 设置输出参数
     *param_2 = parameter_value1;

@@ -33,22 +33,22 @@
 //==============================================================================
 
 // 外部调用函数
-extern void func_0x00018011f7e0(undefined8 param1, int param2, int param3, int param4);
-extern void func_0x00018011f830(undefined8 param1, uint param2, uint param3, uint param4);
-extern void func_0x00018011f880(undefined8 param1, longlong param2, longlong param3, longlong param4);
-extern void func_0x00018011f8d0(undefined8 param1, ulonglong param2, ulonglong param3, ulonglong param4);
-extern void func_0x00018011f940(undefined8 param1, float param2, float param3, float param4);
-extern void func_0x00018011f9b0(undefined8 param1, double param2, float param3, undefined4 param4);
+extern void func_0x00018011f7e0(uint64_t param1, int param2, int param3, int param4);
+extern void func_0x00018011f830(uint64_t param1, uint param2, uint param3, uint param4);
+extern void func_0x00018011f880(uint64_t param1, longlong param2, longlong param3, longlong param4);
+extern void func_0x00018011f8d0(uint64_t param1, ulonglong param2, ulonglong param3, ulonglong param4);
+extern void func_0x00018011f940(uint64_t param1, float param2, float param3, float param4);
+extern void func_0x00018011f9b0(uint64_t param1, double param2, float param3, int32_t param4);
 
 // 数值获取函数
-extern int func_0x0001801140c0(undefined8 param1);
-extern undefined8 FUN_180131aa0(float param1, int param2, int param3, int param4, int param5);
-extern int FUN_18011f3e0(undefined8 param1);
-extern uint FUN_18011f480(undefined8 param1);
-extern longlong FUN_18011f520(undefined8 param1);
-extern ulonglong FUN_18011f5c0(undefined8 param1, int param2, longlong param3);
-extern float FUN_18011f690(undefined8 param1, float param2, float param3);
-extern double FUN_18011f740(undefined8 param1, float param2, double param3);
+extern int func_0x0001801140c0(uint64_t param1);
+extern uint64_t FUN_180131aa0(float param1, int param2, int param3, int param4, int param5);
+extern int FUN_18011f3e0(uint64_t param1);
+extern uint FUN_18011f480(uint64_t param1);
+extern longlong FUN_18011f520(uint64_t param1);
+extern ulonglong FUN_18011f5c0(uint64_t param1, int param2, longlong param3);
+extern float FUN_18011f690(uint64_t param1, float param2, float param3);
+extern double FUN_18011f740(uint64_t param1, float param2, double param3);
 
 //==============================================================================
 // 函数实现
@@ -82,9 +82,9 @@ void initialize_empty_function(void)
  * 
  * 此函数根据给定的范围和当前值计算插值，并更新边界坐标
  */
-uint8_t calculate_integer_interpolation_bounds(float *rect_coords, int type_id, undefined8 param3, 
+uint8_t calculate_integer_interpolation_bounds(float *rect_coords, int type_id, uint64_t param3, 
                                                int *current_value, int range_start, int range_end,
-                                               undefined8 param7, undefined8 param8, undefined8 param9,
+                                               uint64_t param7, uint64_t param8, uint64_t param9,
                                                float *result_coords)
 {
     float width, max_width, half_width, center_x;
@@ -122,14 +122,14 @@ uint8_t calculate_integer_interpolation_bounds(float *rect_coords, int type_id, 
             // 重置状态标志
             *(bool *)(global_context + BOOL_FLAG_OFFSET) = current_type != 0;
             if (current_type != 0) {
-                *(undefined4 *)(global_context + VALUE_1_OFFSET) = 0;
-                *(undefined1 *)(global_context + VALUE_2_OFFSET) = 0;
+                *(int32_t *)(global_context + VALUE_1_OFFSET) = 0;
+                *(int8_t *)(global_context + VALUE_2_OFFSET) = 0;
             }
             // 清零相关值
-            *(undefined4 *)(global_context + RENDER_STATE_OFFSET) = 0;
-            *(undefined4 *)(global_context + VALUE_3_OFFSET) = 0;
-            *(undefined1 *)(global_context + VALUE_4_OFFSET) = 0;
-            *(undefined8 *)(global_context + VALUE_5_OFFSET) = 0;
+            *(int32_t *)(global_context + RENDER_STATE_OFFSET) = 0;
+            *(int32_t *)(global_context + VALUE_3_OFFSET) = 0;
+            *(int8_t *)(global_context + VALUE_4_OFFSET) = 0;
+            *(uint64_t *)(global_context + VALUE_5_OFFSET) = 0;
             goto process_interpolation;
         }
     }
@@ -143,14 +143,14 @@ uint8_t calculate_integer_interpolation_bounds(float *rect_coords, int type_id, 
             // 重置状态标志
             *(bool *)(global_context + BOOL_FLAG_OFFSET) = *(int *)(global_context + RENDER_STATE_OFFSET) != 0;
             if (*(int *)(global_context + RENDER_STATE_OFFSET) != 0) {
-                *(undefined4 *)(global_context + VALUE_1_OFFSET) = 0;
-                *(undefined1 *)(global_context + VALUE_2_OFFSET) = 0;
+                *(int32_t *)(global_context + VALUE_1_OFFSET) = 0;
+                *(int8_t *)(global_context + VALUE_2_OFFSET) = 0;
             }
             // 清零相关值
-            *(undefined4 *)(global_context + RENDER_STATE_OFFSET) = 0;
-            *(undefined4 *)(global_context + VALUE_3_OFFSET) = 0;
-            *(undefined1 *)(global_context + VALUE_4_OFFSET) = 0;
-            *(undefined8 *)(global_context + VALUE_5_OFFSET) = 0;
+            *(int32_t *)(global_context + RENDER_STATE_OFFSET) = 0;
+            *(int32_t *)(global_context + VALUE_3_OFFSET) = 0;
+            *(int8_t *)(global_context + VALUE_4_OFFSET) = 0;
+            *(uint64_t *)(global_context + VALUE_5_OFFSET) = 0;
             goto process_interpolation;
         }
         
@@ -247,9 +247,9 @@ process_interpolation:
  * @param result_coords - 结果坐标数组
  * @return uint8_t - 返回操作状态标志
  */
-uint8_t calculate_uint_interpolation_bounds(float *rect_coords, int type_id, undefined8 param3,
+uint8_t calculate_uint_interpolation_bounds(float *rect_coords, int type_id, uint64_t param3,
                                            uint *current_value, uint range_start, uint range_end,
-                                           undefined8 param7, undefined8 param8, undefined8 param9,
+                                           uint64_t param7, uint64_t param8, uint64_t param9,
                                            float *result_coords)
 {
     float width, max_width, half_width, center_x;
@@ -288,14 +288,14 @@ uint8_t calculate_uint_interpolation_bounds(float *rect_coords, int type_id, und
             // 重置状态标志
             *(bool *)(global_context + BOOL_FLAG_OFFSET) = current_type != 0;
             if (current_type != 0) {
-                *(undefined4 *)(global_context + VALUE_1_OFFSET) = 0;
-                *(undefined1 *)(global_context + VALUE_2_OFFSET) = 0;
+                *(int32_t *)(global_context + VALUE_1_OFFSET) = 0;
+                *(int8_t *)(global_context + VALUE_2_OFFSET) = 0;
             }
             // 清零相关值
-            *(undefined4 *)(global_context + RENDER_STATE_OFFSET) = 0;
-            *(undefined4 *)(global_context + VALUE_3_OFFSET) = 0;
-            *(undefined1 *)(global_context + VALUE_4_OFFSET) = 0;
-            *(undefined8 *)(global_context + VALUE_5_OFFSET) = 0;
+            *(int32_t *)(global_context + RENDER_STATE_OFFSET) = 0;
+            *(int32_t *)(global_context + VALUE_3_OFFSET) = 0;
+            *(int8_t *)(global_context + VALUE_4_OFFSET) = 0;
+            *(uint64_t *)(global_context + VALUE_5_OFFSET) = 0;
             goto process_uint_interpolation;
         }
     }
@@ -309,14 +309,14 @@ uint8_t calculate_uint_interpolation_bounds(float *rect_coords, int type_id, und
             // 重置状态标志
             *(bool *)(global_context + BOOL_FLAG_OFFSET) = *(int *)(global_context + RENDER_STATE_OFFSET) != 0;
             if (*(int *)(global_context + RENDER_STATE_OFFSET) != 0) {
-                *(undefined4 *)(global_context + VALUE_1_OFFSET) = 0;
-                *(undefined1 *)(global_context + VALUE_2_OFFSET) = 0;
+                *(int32_t *)(global_context + VALUE_1_OFFSET) = 0;
+                *(int8_t *)(global_context + VALUE_2_OFFSET) = 0;
             }
             // 清零相关值
-            *(undefined4 *)(global_context + RENDER_STATE_OFFSET) = 0;
-            *(undefined4 *)(global_context + VALUE_3_OFFSET) = 0;
-            *(undefined1 *)(global_context + VALUE_4_OFFSET) = 0;
-            *(undefined8 *)(global_context + VALUE_5_OFFSET) = 0;
+            *(int32_t *)(global_context + RENDER_STATE_OFFSET) = 0;
+            *(int32_t *)(global_context + VALUE_3_OFFSET) = 0;
+            *(int8_t *)(global_context + VALUE_4_OFFSET) = 0;
+            *(uint64_t *)(global_context + VALUE_5_OFFSET) = 0;
             goto process_uint_interpolation;
         }
         
@@ -413,9 +413,9 @@ process_uint_interpolation:
  * @param result_coords - 结果坐标数组
  * @return uint8_t - 返回操作状态标志
  */
-uint8_t calculate_longlong_interpolation_bounds(float *rect_coords, int type_id, undefined8 param3,
+uint8_t calculate_longlong_interpolation_bounds(float *rect_coords, int type_id, uint64_t param3,
                                                longlong *current_value, longlong range_start, longlong range_end,
-                                               undefined8 param7, undefined8 param8, undefined8 param9,
+                                               uint64_t param7, uint64_t param8, uint64_t param9,
                                                float *result_coords)
 {
     float width, max_width, half_width, center_x;
@@ -423,7 +423,7 @@ uint8_t calculate_longlong_interpolation_bounds(float *rect_coords, int type_id,
     int current_type;
     longlong range_diff, new_value, clamped_value, global_context;
     float temp_value;
-    undefined8 temp_param;
+    uint64_t temp_param;
     uint8_t status_flag = 0;
     
     range_end = range_end;
@@ -455,14 +455,14 @@ uint8_t calculate_longlong_interpolation_bounds(float *rect_coords, int type_id,
             // 重置状态标志
             *(bool *)(global_context + BOOL_FLAG_OFFSET) = current_type != 0;
             if (current_type != 0) {
-                *(undefined4 *)(global_context + VALUE_1_OFFSET) = 0;
-                *(undefined1 *)(global_context + VALUE_2_OFFSET) = 0;
+                *(int32_t *)(global_context + VALUE_1_OFFSET) = 0;
+                *(int8_t *)(global_context + VALUE_2_OFFSET) = 0;
             }
             // 清零相关值
-            *(undefined4 *)(global_context + RENDER_STATE_OFFSET) = 0;
-            *(undefined4 *)(global_context + VALUE_3_OFFSET) = 0;
-            *(undefined1 *)(global_context + VALUE_4_OFFSET) = 0;
-            *(undefined8 *)(global_context + VALUE_5_OFFSET) = 0;
+            *(int32_t *)(global_context + RENDER_STATE_OFFSET) = 0;
+            *(int32_t *)(global_context + VALUE_3_OFFSET) = 0;
+            *(int8_t *)(global_context + VALUE_4_OFFSET) = 0;
+            *(uint64_t *)(global_context + VALUE_5_OFFSET) = 0;
             goto process_longlong_interpolation;
         }
     }
@@ -476,14 +476,14 @@ uint8_t calculate_longlong_interpolation_bounds(float *rect_coords, int type_id,
             // 重置状态标志
             *(bool *)(global_context + BOOL_FLAG_OFFSET) = *(int *)(global_context + RENDER_STATE_OFFSET) != 0;
             if (*(int *)(global_context + RENDER_STATE_OFFSET) != 0) {
-                *(undefined4 *)(global_context + VALUE_1_OFFSET) = 0;
-                *(undefined1 *)(global_context + VALUE_2_OFFSET) = 0;
+                *(int32_t *)(global_context + VALUE_1_OFFSET) = 0;
+                *(int8_t *)(global_context + VALUE_2_OFFSET) = 0;
             }
             // 清零相关值
-            *(undefined4 *)(global_context + RENDER_STATE_OFFSET) = 0;
-            *(undefined4 *)(global_context + VALUE_3_OFFSET) = 0;
-            *(undefined1 *)(global_context + VALUE_4_OFFSET) = 0;
-            *(undefined8 *)(global_context + VALUE_5_OFFSET) = 0;
+            *(int32_t *)(global_context + RENDER_STATE_OFFSET) = 0;
+            *(int32_t *)(global_context + VALUE_3_OFFSET) = 0;
+            *(int8_t *)(global_context + VALUE_4_OFFSET) = 0;
+            *(uint64_t *)(global_context + VALUE_5_OFFSET) = 0;
             goto process_longlong_interpolation;
         }
         
@@ -580,9 +580,9 @@ process_longlong_interpolation:
  * @param result_coords - 结果坐标数组
  * @return uint8_t - 返回操作状态标志
  */
-uint8_t calculate_ulonglong_interpolation_bounds(float *rect_coords, int type_id, undefined8 param3,
+uint8_t calculate_ulonglong_interpolation_bounds(float *rect_coords, int type_id, uint64_t param3,
                                                 ulonglong *current_value, ulonglong range_start, ulonglong range_end,
-                                                undefined8 param7, undefined8 param8, undefined8 param9,
+                                                uint64_t param7, uint64_t param8, uint64_t param9,
                                                 float *result_coords)
 {
     float width, max_width, half_width, center_x;
@@ -591,7 +591,7 @@ uint8_t calculate_ulonglong_interpolation_bounds(float *rect_coords, int type_id
     longlong range_diff, global_context;
     ulonglong current_ulong, clamped_value, new_value;
     float temp_value, range_start_float, range_end_float;
-    undefined8 temp_param;
+    uint64_t temp_param;
     double range_diff_double, range_total_double, clamped_diff_double;
     uint8_t status_flag = 0;
     
@@ -634,14 +634,14 @@ uint8_t calculate_ulonglong_interpolation_bounds(float *rect_coords, int type_id
             // 重置状态标志
             *(bool *)(global_context + BOOL_FLAG_OFFSET) = current_type != 0;
             if (current_type != 0) {
-                *(undefined4 *)(global_context + VALUE_1_OFFSET) = 0;
-                *(undefined1 *)(global_context + VALUE_2_OFFSET) = 0;
+                *(int32_t *)(global_context + VALUE_1_OFFSET) = 0;
+                *(int8_t *)(global_context + VALUE_2_OFFSET) = 0;
             }
             // 清零相关值
-            *(undefined4 *)(global_context + RENDER_STATE_OFFSET) = 0;
-            *(undefined4 *)(global_context + VALUE_3_OFFSET) = 0;
-            *(undefined1 *)(global_context + VALUE_4_OFFSET) = 0;
-            *(undefined8 *)(global_context + VALUE_5_OFFSET) = 0;
+            *(int32_t *)(global_context + RENDER_STATE_OFFSET) = 0;
+            *(int32_t *)(global_context + VALUE_3_OFFSET) = 0;
+            *(int8_t *)(global_context + VALUE_4_OFFSET) = 0;
+            *(uint64_t *)(global_context + VALUE_5_OFFSET) = 0;
             goto process_ulonglong_interpolation;
         }
         
@@ -671,14 +671,14 @@ uint8_t calculate_ulonglong_interpolation_bounds(float *rect_coords, int type_id
             // 重置状态标志
             *(bool *)(global_context + BOOL_FLAG_OFFSET) = *(int *)(global_context + RENDER_STATE_OFFSET) != 0;
             if (*(int *)(global_context + RENDER_STATE_OFFSET) != 0) {
-                *(undefined4 *)(global_context + VALUE_1_OFFSET) = 0;
-                *(undefined1 *)(global_context + VALUE_2_OFFSET) = 0;
+                *(int32_t *)(global_context + VALUE_1_OFFSET) = 0;
+                *(int8_t *)(global_context + VALUE_2_OFFSET) = 0;
             }
             // 清零相关值
-            *(undefined4 *)(global_context + RENDER_STATE_OFFSET) = 0;
-            *(undefined4 *)(global_context + VALUE_3_OFFSET) = 0;
-            *(undefined1 *)(global_context + VALUE_4_OFFSET) = 0;
-            *(undefined8 *)(global_context + VALUE_5_OFFSET) = 0;
+            *(int32_t *)(global_context + RENDER_STATE_OFFSET) = 0;
+            *(int32_t *)(global_context + VALUE_3_OFFSET) = 0;
+            *(int8_t *)(global_context + VALUE_4_OFFSET) = 0;
+            *(uint64_t *)(global_context + VALUE_5_OFFSET) = 0;
             goto process_ulonglong_interpolation;
         }
         
@@ -811,9 +811,9 @@ process_ulonglong_interpolation:
  * @param result_coords - 结果坐标数组
  * @return uint8_t - 返回操作状态标志
  */
-uint8_t calculate_float_interpolation_bounds(float param1, int type_id, undefined8 param3,
+uint8_t calculate_float_interpolation_bounds(float param1, int type_id, uint64_t param3,
                                             float *current_value, float range_start, float range_end,
-                                            undefined8 param7, undefined8 param8, undefined8 param9,
+                                            uint64_t param7, uint64_t param8, uint64_t param9,
                                             float *result_coords)
 {
     float width, max_width, half_width, center_x;
@@ -821,7 +821,7 @@ uint8_t calculate_float_interpolation_bounds(float param1, int type_id, undefine
     int current_type;
     longlong global_context;
     float *rect_coords;
-    undefined1 status_flag = 0;
+    int8_t status_flag = 0;
     float temp_array[2];
     
     global_context = _DAT_180c8a9b0;
@@ -858,14 +858,14 @@ uint8_t calculate_float_interpolation_bounds(float param1, int type_id, undefine
             // 重置状态标志
             *(bool *)(global_context + BOOL_FLAG_OFFSET) = current_type != 0;
             if (current_type != 0) {
-                *(undefined4 *)(global_context + VALUE_1_OFFSET) = 0;
-                *(undefined1 *)(global_context + VALUE_2_OFFSET) = 0;
+                *(int32_t *)(global_context + VALUE_1_OFFSET) = 0;
+                *(int8_t *)(global_context + VALUE_2_OFFSET) = 0;
             }
             // 清零相关值
-            *(undefined4 *)(global_context + RENDER_STATE_OFFSET) = 0;
-            *(undefined4 *)(global_context + VALUE_3_OFFSET) = 0;
-            *(undefined1 *)(global_context + VALUE_4_OFFSET) = 0;
-            *(undefined8 *)(global_context + VALUE_5_OFFSET) = 0;
+            *(int32_t *)(global_context + RENDER_STATE_OFFSET) = 0;
+            *(int32_t *)(global_context + VALUE_3_OFFSET) = 0;
+            *(int8_t *)(global_context + VALUE_4_OFFSET) = 0;
+            *(uint64_t *)(global_context + VALUE_5_OFFSET) = 0;
             goto process_float_interpolation;
         }
         
@@ -888,14 +888,14 @@ uint8_t calculate_float_interpolation_bounds(float param1, int type_id, undefine
             // 重置状态标志
             *(bool *)(global_context + BOOL_FLAG_OFFSET) = current_type != 0;
             if (current_type != 0) {
-                *(undefined4 *)(global_context + VALUE_1_OFFSET) = 0;
-                *(undefined1 *)(global_context + VALUE_2_OFFSET) = 0;
+                *(int32_t *)(global_context + VALUE_1_OFFSET) = 0;
+                *(int8_t *)(global_context + VALUE_2_OFFSET) = 0;
             }
             // 清零相关值
-            *(undefined4 *)(global_context + RENDER_STATE_OFFSET) = 0;
-            *(undefined4 *)(global_context + VALUE_3_OFFSET) = 0;
-            *(undefined1 *)(global_context + VALUE_4_OFFSET) = 0;
-            *(undefined8 *)(global_context + VALUE_5_OFFSET) = 0;
+            *(int32_t *)(global_context + RENDER_STATE_OFFSET) = 0;
+            *(int32_t *)(global_context + VALUE_3_OFFSET) = 0;
+            *(int8_t *)(global_context + VALUE_4_OFFSET) = 0;
+            *(uint64_t *)(global_context + VALUE_5_OFFSET) = 0;
             goto process_float_interpolation;
         }
         
@@ -984,9 +984,9 @@ char process_float_interpolation_helper(float param1, float param2)
     longlong context_value;
     char status_flag;
     float scale_factor, temp_float;
-    undefined8 temp_param;
+    uint64_t temp_param;
     float temp_stack_value;
-    undefined8 param7;
+    uint64_t param7;
     float *result_ptr;
     
     // 获取运行时参数
@@ -996,14 +996,14 @@ char process_float_interpolation_helper(float param1, float param2)
             // 重置状态标志
             *(bool *)(context_value + BOOL_FLAG_OFFSET) = current_type != 0;
             if (current_type != 0) {
-                *(undefined4 *)(context_value + VALUE_1_OFFSET) = 0;
-                *(undefined1 *)(context_value + VALUE_2_OFFSET) = 0;
+                *(int32_t *)(context_value + VALUE_1_OFFSET) = 0;
+                *(int8_t *)(context_value + VALUE_2_OFFSET) = 0;
             }
             // 清零相关值
-            *(undefined4 *)(context_value + RENDER_STATE_OFFSET) = 0;
-            *(undefined4 *)(context_value + VALUE_3_OFFSET) = 0;
-            *(undefined1 *)(context_value + VALUE_4_OFFSET) = 0;
-            *(undefined8 *)(context_value + VALUE_5_OFFSET) = 0;
+            *(int32_t *)(context_value + RENDER_STATE_OFFSET) = 0;
+            *(int32_t *)(context_value + VALUE_3_OFFSET) = 0;
+            *(int8_t *)(context_value + VALUE_4_OFFSET) = 0;
+            *(uint64_t *)(context_value + VALUE_5_OFFSET) = 0;
             goto process_float_helper_end;
         }
         
@@ -1026,14 +1026,14 @@ char process_float_interpolation_helper(float param1, float param2)
             // 重置状态标志
             *(bool *)(context_value + BOOL_FLAG_OFFSET) = current_type != 0;
             if (current_type != 0) {
-                *(undefined4 *)(context_value + VALUE_1_OFFSET) = 0;
-                *(undefined1 *)(context_value + VALUE_2_OFFSET) = 0;
+                *(int32_t *)(context_value + VALUE_1_OFFSET) = 0;
+                *(int8_t *)(context_value + VALUE_2_OFFSET) = 0;
             }
             // 清零相关值
-            *(undefined4 *)(context_value + RENDER_STATE_OFFSET) = 0;
-            *(undefined4 *)(context_value + VALUE_3_OFFSET) = 0;
-            *(undefined1 *)(context_value + VALUE_4_OFFSET) = 0;
-            *(undefined8 *)(context_value + VALUE_5_OFFSET) = 0;
+            *(int32_t *)(context_value + RENDER_STATE_OFFSET) = 0;
+            *(int32_t *)(context_value + VALUE_3_OFFSET) = 0;
+            *(int8_t *)(context_value + VALUE_4_OFFSET) = 0;
+            *(uint64_t *)(context_value + VALUE_5_OFFSET) = 0;
             goto process_float_helper_end;
         }
         
@@ -1113,12 +1113,12 @@ process_float_helper_end:
  * 
  * 这是一个简化的边界计算函数，用于处理特定的浮点数值边界计算
  */
-uint8_t calculate_float_bounds_simple(undefined8 param1)
+uint8_t calculate_float_bounds_simple(uint64_t param1)
 {
     float interpolation_factor, width, height;
-    undefined8 *current_value_ptr;
+    uint64_t *current_value_ptr;
     longlong context_value;
-    undefined1 status_flag;
+    int8_t status_flag;
     float center_x, temp_value;
     float *result_ptr;
     
@@ -1149,9 +1149,9 @@ uint8_t calculate_float_bounds_simple(undefined8 param1)
  * @param result_coords - 结果坐标数组
  * @return uint8_t - 返回操作状态标志
  */
-uint8_t calculate_double_interpolation_bounds(float *rect_coords, int type_id, undefined8 param3,
+uint8_t calculate_double_interpolation_bounds(float *rect_coords, int type_id, uint64_t param3,
                                              double *current_value, double range_start, double range_end,
-                                             undefined8 param7, undefined8 param8, undefined8 param9,
+                                             uint64_t param7, uint64_t param8, uint64_t param9,
                                              float *result_coords)
 {
     float width, max_width, half_width, center_x;
@@ -1159,9 +1159,9 @@ uint8_t calculate_double_interpolation_bounds(float *rect_coords, int type_id, u
     double range_diff, dVar5, dVar6;
     int current_type;
     longlong global_context;
-    undefined1 status_flag = 0;
+    int8_t status_flag = 0;
     double temp_value;
-    undefined4 temp_param;
+    int32_t temp_param;
     float temp_float1, temp_float2;
     
     range_end = range_end;
@@ -1201,14 +1201,14 @@ uint8_t calculate_double_interpolation_bounds(float *rect_coords, int type_id, u
             // 重置状态标志
             *(bool *)(global_context + BOOL_FLAG_OFFSET) = current_type != 0;
             if (current_type != 0) {
-                *(undefined4 *)(global_context + VALUE_1_OFFSET) = 0;
-                *(undefined1 *)(global_context + VALUE_2_OFFSET) = 0;
+                *(int32_t *)(global_context + VALUE_1_OFFSET) = 0;
+                *(int8_t *)(global_context + VALUE_2_OFFSET) = 0;
             }
             // 清零相关值
-            *(undefined4 *)(global_context + RENDER_STATE_OFFSET) = 0;
-            *(undefined4 *)(global_context + VALUE_3_OFFSET) = 0;
-            *(undefined1 *)(global_context + VALUE_4_OFFSET) = 0;
-            *(undefined8 *)(global_context + VALUE_5_OFFSET) = 0;
+            *(int32_t *)(global_context + RENDER_STATE_OFFSET) = 0;
+            *(int32_t *)(global_context + VALUE_3_OFFSET) = 0;
+            *(int8_t *)(global_context + VALUE_4_OFFSET) = 0;
+            *(uint64_t *)(global_context + VALUE_5_OFFSET) = 0;
             goto process_double_interpolation;
         }
         
@@ -1231,14 +1231,14 @@ uint8_t calculate_double_interpolation_bounds(float *rect_coords, int type_id, u
             // 重置状态标志
             *(bool *)(global_context + BOOL_FLAG_OFFSET) = current_type != 0;
             if (current_type != 0) {
-                *(undefined4 *)(global_context + VALUE_1_OFFSET) = 0;
-                *(undefined1 *)(global_context + VALUE_2_OFFSET) = 0;
+                *(int32_t *)(global_context + VALUE_1_OFFSET) = 0;
+                *(int8_t *)(global_context + VALUE_2_OFFSET) = 0;
             }
             // 清零相关值
-            *(undefined4 *)(global_context + RENDER_STATE_OFFSET) = 0;
-            *(undefined4 *)(global_context + VALUE_3_OFFSET) = 0;
-            *(undefined1 *)(global_context + VALUE_4_OFFSET) = 0;
-            *(undefined8 *)(global_context + VALUE_5_OFFSET) = 0;
+            *(int32_t *)(global_context + RENDER_STATE_OFFSET) = 0;
+            *(int32_t *)(global_context + VALUE_3_OFFSET) = 0;
+            *(int8_t *)(global_context + VALUE_4_OFFSET) = 0;
+            *(uint64_t *)(global_context + VALUE_5_OFFSET) = 0;
             goto process_double_interpolation;
         }
         
@@ -1321,7 +1321,7 @@ process_double_interpolation:
  * 
  * 这是一个简化的双精度插值处理函数，用于处理特定的双精度数值计算
  */
-char process_double_interpolation_helper(double param1, undefined8 param2)
+char process_double_interpolation_helper(double param1, uint64_t param2)
 {
     int render_mode, temp_int;
     longlong global_context;
@@ -1330,9 +1330,9 @@ char process_double_interpolation_helper(double param1, undefined8 param2)
     longlong context_value;
     char status_flag;
     float scale_factor, temp_float;
-    undefined4 temp_param;
+    int32_t temp_param;
     float temp_stack_value;
-    undefined8 param7;
+    uint64_t param7;
     float *result_ptr;
     
     // 获取运行时参数
@@ -1342,14 +1342,14 @@ char process_double_interpolation_helper(double param1, undefined8 param2)
             // 重置状态标志
             *(bool *)(context_value + BOOL_FLAG_OFFSET) = temp_int != 0;
             if (temp_int != 0) {
-                *(undefined4 *)(context_value + VALUE_1_OFFSET) = 0;
-                *(undefined1 *)(context_value + VALUE_2_OFFSET) = 0;
+                *(int32_t *)(context_value + VALUE_1_OFFSET) = 0;
+                *(int8_t *)(context_value + VALUE_2_OFFSET) = 0;
             }
             // 清零相关值
-            *(undefined4 *)(context_value + RENDER_STATE_OFFSET) = 0;
-            *(undefined4 *)(context_value + VALUE_3_OFFSET) = 0;
-            *(undefined1 *)(context_value + VALUE_4_OFFSET) = 0;
-            *(undefined8 *)(context_value + VALUE_5_OFFSET) = 0;
+            *(int32_t *)(context_value + RENDER_STATE_OFFSET) = 0;
+            *(int32_t *)(context_value + VALUE_3_OFFSET) = 0;
+            *(int8_t *)(context_value + VALUE_4_OFFSET) = 0;
+            *(uint64_t *)(context_value + VALUE_5_OFFSET) = 0;
             goto process_double_helper_end;
         }
         
@@ -1372,14 +1372,14 @@ char process_double_interpolation_helper(double param1, undefined8 param2)
             // 重置状态标志
             *(bool *)(context_value + BOOL_FLAG_OFFSET) = temp_int != 0;
             if (temp_int != 0) {
-                *(undefined4 *)(context_value + VALUE_1_OFFSET) = 0;
-                *(undefined1 *)(context_value + VALUE_2_OFFSET) = 0;
+                *(int32_t *)(context_value + VALUE_1_OFFSET) = 0;
+                *(int8_t *)(context_value + VALUE_2_OFFSET) = 0;
             }
             // 清零相关值
-            *(undefined4 *)(context_value + RENDER_STATE_OFFSET) = 0;
-            *(undefined4 *)(context_value + VALUE_3_OFFSET) = 0;
-            *(undefined1 *)(context_value + VALUE_4_OFFSET) = 0;
-            *(undefined8 *)(context_value + VALUE_5_OFFSET) = 0;
+            *(int32_t *)(context_value + RENDER_STATE_OFFSET) = 0;
+            *(int32_t *)(context_value + VALUE_3_OFFSET) = 0;
+            *(int8_t *)(context_value + VALUE_4_OFFSET) = 0;
+            *(uint64_t *)(context_value + VALUE_5_OFFSET) = 0;
             goto process_double_helper_end;
         }
         
@@ -1467,12 +1467,12 @@ process_double_helper_end:
  * 
  * 这是一个简化的双精度边界计算函数，用于处理特定的双精度数值边界计算
  */
-uint8_t calculate_double_bounds_simple(undefined8 param1)
+uint8_t calculate_double_bounds_simple(uint64_t param1)
 {
     float interpolation_factor, width, height;
-    undefined8 *current_value_ptr;
+    uint64_t *current_value_ptr;
     longlong context_value;
-    undefined1 status_flag;
+    int8_t status_flag;
     float center_x, temp_value;
     float *result_ptr;
     

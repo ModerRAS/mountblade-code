@@ -1066,7 +1066,7 @@ void FUN_1807fa710(float *param_1, float *param_2, uint param_3, int param_4, in
  * 
  * 映射到高级版本的数据处理引擎
  */
-void FUN_1807fa774(undefined8 param_1, float *param_2, uint param_3, int param_4)
+void FUN_1807fa774(uint64_t param_1, float *param_2, uint param_3, int param_4)
 {
     DataProcessingEngine_Advanced(param_1, param_2, param_3, param_4);
 }

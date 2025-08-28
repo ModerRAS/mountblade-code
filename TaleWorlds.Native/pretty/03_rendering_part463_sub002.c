@@ -2,8 +2,8 @@
 
 // 03_rendering_part463_sub002.c - 1 个函数
 
-// 函数: void FUN_180516bd0(longlong param_1,ushort param_2,undefined2 param_3)
-void FUN_180516bd0(longlong param_1,ushort param_2,undefined2 param_3)
+// 函数: void FUN_180516bd0(longlong param_1,ushort param_2,int16_t param_3)
+void FUN_180516bd0(longlong param_1,ushort param_2,int16_t param_3)
 
 {
   ushort *puVar1;
@@ -29,7 +29,7 @@ void FUN_180516bd0(longlong param_1,ushort param_2,undefined2 param_3)
         (lVar3 = *(longlong *)(lVar3 + 0x210), lVar3 == 0)))) {
       lVar3 = 0;
     }
-    FUN_1805778d0(*(undefined8 *)(param_1 + 0x590),lVar3);
+    FUN_1805778d0(*(uint64_t *)(param_1 + 0x590),lVar3);
   }
   return;
 }

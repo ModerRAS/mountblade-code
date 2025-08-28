@@ -21,10 +21,10 @@ void process_render_element_boundary_conditions(void)
 {
   int iVar1;
   longlong lVar2;
-  undefined4 uVar3;
-  undefined4 uVar4;
-  undefined4 uVar5;
-  undefined4 uVar6;
+  int32_t uVar3;
+  int32_t uVar4;
+  int32_t uVar5;
+  int32_t uVar6;
   longlong lVar7;
   char cVar8;
   longlong unaff_RBX;
@@ -39,17 +39,17 @@ void process_render_element_boundary_conditions(void)
   lVar7 = _DAT_180c8a9b0;
   if ((*(char *)(unaff_RBX + 0x17d) == '\0') || ((*(uint *)(unaff_RBX + 0xc) & 0x800000) != 0)) {
     // 获取边界矩形参数
-    uVar3 = *(undefined4 *)(unaff_RBP + -0x50);
-    uVar4 = *(undefined4 *)(unaff_RBP + -0x4c);
-    uVar5 = *(undefined4 *)(unaff_RBP + -0x48);
-    uVar6 = *(undefined4 *)(unaff_RBP + -0x44);
+    uVar3 = *(int32_t *)(unaff_RBP + -0x50);
+    uVar4 = *(int32_t *)(unaff_RBP + -0x4c);
+    uVar5 = *(int32_t *)(unaff_RBP + -0x48);
+    uVar6 = *(int32_t *)(unaff_RBP + -0x44);
     lVar9 = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
     // 初始化渲染队列项
-    *(undefined8 *)(lVar9 + 0x144) = 0;
-    *(undefined4 *)(lVar9 + 0x14c) = uVar3;
-    *(undefined4 *)(lVar9 + 0x150) = uVar4;
-    *(undefined4 *)(lVar9 + 0x154) = uVar5;
-    *(undefined4 *)(lVar9 + 0x158) = uVar6;
+    *(uint64_t *)(lVar9 + 0x144) = 0;
+    *(int32_t *)(lVar9 + 0x14c) = uVar3;
+    *(int32_t *)(lVar9 + 0x150) = uVar4;
+    *(int32_t *)(lVar9 + 0x154) = uVar5;
+    *(int32_t *)(lVar9 + 0x158) = uVar6;
     lVar2 = *(longlong *)(lVar7 + 0x1af8);
     // 检查边界条件
     if (((*(float *)(lVar2 + 0x22c) <= unaff_XMM9_Da && unaff_XMM9_Da != *(float *)(lVar2 + 0x22c))
@@ -66,7 +66,7 @@ void process_render_element_boundary_conditions(void)
   }
   else {
     // 执行渲染操作
-    FUN_180124190(unaff_RBP + -0x50,*(undefined4 *)(unaff_RBX + 0x88),0);
+    FUN_180124190(unaff_RBP + -0x50,*(int32_t *)(unaff_RBX + 0x88),0);
     if (*(int *)(unaff_RBX + 0x88) == *(int *)(_DAT_180c8a9b0 + 0x1ca0)) {
       FUN_1801230e0(unaff_RBP + -0x50,1);
     }
@@ -102,40 +102,40 @@ void process_render_element_boundary_conditions(void)
  * 2. 同步渲染数据
  * 3. 管理渲染队列的生命周期
  */
-undefined1 update_render_queue_status(undefined4 param_1,undefined8 param_2)
+int8_t update_render_queue_status(int32_t param_1,uint64_t param_2)
 {
-  undefined8 *puVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar1;
+  uint64_t *puVar2;
   int iVar3;
   longlong lVar4;
-  undefined8 uVar5;
+  uint64_t uVar5;
   longlong lVar6;
-  undefined1 uVar7;
+  int8_t uVar7;
   longlong lVar8;
   longlong lVar9;
   ulonglong uVar10;
-  undefined4 uStack_28;
-  undefined4 uStack_24;
-  undefined4 uStack_20;
-  undefined4 uStack_1c;
-  undefined4 uStack_18;
+  int32_t uStack_28;
+  int32_t uStack_24;
+  int32_t uStack_20;
+  int32_t uStack_1c;
+  int32_t uStack_18;
   
   lVar4 = _DAT_180c8a9b0;
   // 初始化渲染参数
   uStack_28 = 3;
-  uStack_24 = *(undefined4 *)(_DAT_180c8a9b0 + 0x16f8);
-  uStack_20 = *(undefined4 *)(_DAT_180c8a9b0 + 0x16fc);
-  uStack_1c = *(undefined4 *)(_DAT_180c8a9b0 + 0x1700);
-  uStack_18 = *(undefined4 *)(_DAT_180c8a9b0 + 0x1704);
+  uStack_24 = *(int32_t *)(_DAT_180c8a9b0 + 0x16f8);
+  uStack_20 = *(int32_t *)(_DAT_180c8a9b0 + 0x16fc);
+  uStack_1c = *(int32_t *)(_DAT_180c8a9b0 + 0x1700);
+  uStack_18 = *(int32_t *)(_DAT_180c8a9b0 + 0x1704);
   FUN_18013e100(_DAT_180c8a9b0 + 0x1b80,&uStack_28);
   // 更新渲染状态
-  *(undefined4 *)(lVar4 + 0x16f8) = *(undefined4 *)(lVar4 + 0x1738);
-  *(undefined4 *)(lVar4 + 0x16fc) = *(undefined4 *)(lVar4 + 0x173c);
-  *(undefined4 *)(lVar4 + 0x1700) = *(undefined4 *)(lVar4 + 0x1740);
-  *(undefined4 *)(lVar4 + 0x1704) = *(undefined4 *)(lVar4 + 0x1744);
+  *(int32_t *)(lVar4 + 0x16f8) = *(int32_t *)(lVar4 + 0x1738);
+  *(int32_t *)(lVar4 + 0x16fc) = *(int32_t *)(lVar4 + 0x173c);
+  *(int32_t *)(lVar4 + 0x1700) = *(int32_t *)(lVar4 + 0x1740);
+  *(int32_t *)(lVar4 + 0x1704) = *(int32_t *)(lVar4 + 0x1744);
   // 执行渲染状态更新
-  FUN_18012d9c0(6,*(undefined4 *)(lVar4 + 0x1664));
-  FUN_18012d9c0(7,*(undefined4 *)(lVar4 + 0x1668));
+  FUN_18012d9c0(6,*(int32_t *)(lVar4 + 0x1664));
+  FUN_18012d9c0(7,*(int32_t *)(lVar4 + 0x1668));
   FUN_18012da40(1,lVar4 + 0x165c);
   uVar7 = FUN_1801283f0(0,param_1,param_2);
   lVar6 = _DAT_180c8a9b0;
@@ -146,11 +146,11 @@ undefined1 update_render_queue_status(undefined4 param_1,undefined8 param_2)
   // 处理渲染队列项
   if (*(int *)(&UNK_18098d180 + lVar9 * 0xc) == 4) {
     if (*(int *)(&UNK_18098d184 + lVar9 * 0xc) == 1) {
-      *(undefined4 *)(uVar10 + 0x1628 + _DAT_180c8a9b0) = *(undefined4 *)(lVar4 + -8 + lVar8 * 0xc);
+      *(int32_t *)(uVar10 + 0x1628 + _DAT_180c8a9b0) = *(int32_t *)(lVar4 + -8 + lVar8 * 0xc);
     }
     else if (*(int *)(&UNK_18098d184 + lVar9 * 0xc) == 2) {
-      *(undefined4 *)(uVar10 + 0x1628 + _DAT_180c8a9b0) = *(undefined4 *)(lVar4 + -8 + lVar8 * 0xc);
-      *(undefined4 *)(uVar10 + 0x162c + lVar6) = *(undefined4 *)(lVar4 + -4 + lVar8 * 0xc);
+      *(int32_t *)(uVar10 + 0x1628 + _DAT_180c8a9b0) = *(int32_t *)(lVar4 + -8 + lVar8 * 0xc);
+      *(int32_t *)(uVar10 + 0x162c + lVar6) = *(int32_t *)(lVar4 + -4 + lVar8 * 0xc);
     }
   }
   // 更新队列计数器
@@ -163,11 +163,11 @@ undefined1 update_render_queue_status(undefined4 param_1,undefined8 param_2)
   // 处理第二个队列项
   if (*(int *)(&UNK_18098d180 + lVar9 * 0xc) == 4) {
     if (*(int *)(&UNK_18098d184 + lVar9 * 0xc) == 1) {
-      *(undefined4 *)(uVar10 + 0x1628 + lVar6) = *(undefined4 *)(lVar8 + 4 + lVar4 * 0xc);
+      *(int32_t *)(uVar10 + 0x1628 + lVar6) = *(int32_t *)(lVar8 + 4 + lVar4 * 0xc);
     }
     else if (*(int *)(&UNK_18098d184 + lVar9 * 0xc) == 2) {
-      *(undefined4 *)(uVar10 + 0x1628 + lVar6) = *(undefined4 *)(lVar8 + 4 + lVar4 * 0xc);
-      *(undefined4 *)(uVar10 + 0x162c + lVar6) = *(undefined4 *)(lVar8 + 8 + lVar4 * 0xc);
+      *(int32_t *)(uVar10 + 0x1628 + lVar6) = *(int32_t *)(lVar8 + 4 + lVar4 * 0xc);
+      *(int32_t *)(uVar10 + 0x162c + lVar6) = *(int32_t *)(lVar8 + 8 + lVar4 * 0xc);
     }
   }
   // 继续更新队列状态
@@ -180,19 +180,19 @@ undefined1 update_render_queue_status(undefined4 param_1,undefined8 param_2)
   // 处理第三个队列项
   if (*(int *)(&UNK_18098d180 + lVar9 * 0xc) == 4) {
     if (*(int *)(&UNK_18098d184 + lVar9 * 0xc) == 1) {
-      *(undefined4 *)(uVar10 + 0x1628 + lVar6) = *(undefined4 *)(lVar8 + 4 + lVar4 * 0xc);
+      *(int32_t *)(uVar10 + 0x1628 + lVar6) = *(int32_t *)(lVar8 + 4 + lVar4 * 0xc);
     }
     else if (*(int *)(&UNK_18098d184 + lVar9 * 0xc) == 2) {
-      *(undefined4 *)(uVar10 + 0x1628 + lVar6) = *(undefined4 *)(lVar8 + 4 + lVar4 * 0xc);
-      *(undefined4 *)(uVar10 + 0x162c + lVar6) = *(undefined4 *)(lVar8 + 8 + lVar4 * 0xc);
+      *(int32_t *)(uVar10 + 0x1628 + lVar6) = *(int32_t *)(lVar8 + 4 + lVar4 * 0xc);
+      *(int32_t *)(uVar10 + 0x162c + lVar6) = *(int32_t *)(lVar8 + 8 + lVar4 * 0xc);
     }
   }
   *(int *)(lVar6 + 0x1b90) = *(int *)(lVar6 + 0x1b90) + -1;
   // 清理队列项
-  puVar1 = (undefined8 *)
+  puVar1 = (uint64_t *)
            (*(longlong *)(lVar6 + 0x1b88) + -0x10 + (longlong)*(int *)(lVar6 + 0x1b80) * 0x14);
   uVar5 = puVar1[1];
-  puVar2 = (undefined8 *)
+  puVar2 = (uint64_t *)
            (lVar6 + 0x16c8 +
            (longlong)
            *(int *)(*(longlong *)(lVar6 + 0x1b88) + -0x14 +
@@ -222,12 +222,12 @@ undefined1 update_render_queue_status(undefined4 param_1,undefined8 param_2)
  * 3. 设置元素位置和状态
  * 4. 将元素添加到相应的管理结构中
  */
-ulonglong create_render_element_instance(undefined8 param_1,undefined8 param_2,ulonglong param_3,undefined8 param_4)
+ulonglong create_render_element_instance(uint64_t param_1,uint64_t param_2,ulonglong param_3,uint64_t param_4)
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   int iVar2;
   longlong lVar3;
-  undefined1 uVar4;
+  int8_t uVar4;
   int iVar5;
   int iVar6;
   longlong lVar7;
@@ -241,7 +241,7 @@ ulonglong create_render_element_instance(undefined8 param_1,undefined8 param_2,u
   uint uVar15;
   float fVar16;
   float fVar17;
-  undefined8 uStackX_20;
+  uint64_t uStackX_20;
   
   lVar3 = _DAT_180c8a9b0;
   if (_DAT_180c8a9b0 != 0) {
@@ -257,7 +257,7 @@ ulonglong create_render_element_instance(undefined8 param_1,undefined8 param_2,u
   }
   uVar15 = (uint)param_3;
   *(uint *)(uVar8 + 0xc) = uVar15;
-  FUN_180122160(lVar3 + 0x1ae0,*(undefined4 *)(uVar8 + 8),uVar8);
+  FUN_180122160(lVar3 + 0x1ae0,*(int32_t *)(uVar8 + 8),uVar8);
   lVar14 = _DAT_180c8a9b0;
   lVar7 = **(longlong **)(_DAT_180c8a9b0 + 0x1c70);
   fVar16 = *(float *)(lVar7 + 0xc);
@@ -280,25 +280,25 @@ ulonglong create_render_element_instance(undefined8 param_1,undefined8 param_2,u
           *(uint *)(uVar8 + 0xe8) = *(uint *)(uVar8 + 0xe8) & 0xfffffffb;
           *(uint *)(uVar8 + 0xec) = *(uint *)(uVar8 + 0xec) & 0xfffffffb;
           if (*(int *)(lVar14 + 0x24) == 0) {
-            uVar1 = *(undefined8 *)(lVar7 + 8);
+            uVar1 = *(uint64_t *)(lVar7 + 8);
           }
           else {
             *(int *)(uVar8 + 0x30) = *(int *)(lVar14 + 0x24);
-            uVar1 = *(undefined8 *)(lVar14 + 0x1c);
+            uVar1 = *(uint64_t *)(lVar14 + 0x1c);
           }
-          *(undefined8 *)(uVar8 + 0x34) = uVar1;
+          *(uint64_t *)(uVar8 + 0x34) = uVar1;
           fVar16 = *(float *)(lVar14 + 0x10);
           *(float *)(uVar8 + 0x40) =
                (float)(int)(*(float *)(uVar8 + 0x34) + *(float *)(lVar14 + 0xc));
           *(float *)(uVar8 + 0x44) = (float)(int)(*(float *)(uVar8 + 0x38) + fVar16);
-          *(undefined1 *)(uVar8 + 0xb2) = *(undefined1 *)(lVar14 + 0x32);
+          *(int8_t *)(uVar8 + 0xb2) = *(int8_t *)(lVar14 + 0x32);
           fVar16 = *(float *)(lVar14 + 0x18);
           fVar17 = *(float *)(lVar14 + 0x14);
           if (1e-05 < fVar17 * fVar17 + fVar16 * fVar16) {
             uStackX_20 = CONCAT44((float)(int)fVar16,(float)(int)fVar17);
           }
-          *(undefined4 *)(uVar8 + 0x418) = *(undefined4 *)(lVar14 + 0x28);
-          *(undefined2 *)(uVar8 + 0x430) = *(undefined2 *)(lVar14 + 0x30);
+          *(int32_t *)(uVar8 + 0x418) = *(int32_t *)(lVar14 + 0x28);
+          *(int16_t *)(uVar8 + 0x430) = *(int16_t *)(lVar14 + 0x30);
         }
         break;
       }
@@ -316,14 +316,14 @@ ulonglong create_render_element_instance(undefined8 param_1,undefined8 param_2,u
   *(float *)(uVar8 + 0x54) = fVar16;
   *(float *)(uVar8 + 0x48) = fVar17;
   *(float *)(uVar8 + 0x4c) = fVar16;
-  *(undefined8 *)(uVar8 + 0x118) = *(undefined8 *)(uVar8 + 0x40);
+  *(uint64_t *)(uVar8 + 0x118) = *(uint64_t *)(uVar8 + 0x40);
   // 处理边界检查
   if ((param_3 & 0x40) == 0) {
     if (fVar17 <= 0.0) {
-      *(undefined4 *)(uVar8 + 0xc4) = 2;
+      *(int32_t *)(uVar8 + 0xc4) = 2;
     }
     if (*(float *)(uVar8 + 0x4c) <= 0.0) {
-      *(undefined4 *)(uVar8 + 200) = 2;
+      *(int32_t *)(uVar8 + 200) = 2;
     }
     if ((*(int *)(uVar8 + 0xc4) < 1) && (*(int *)(uVar8 + 200) < 1)) {
       uVar4 = 0;
@@ -331,12 +331,12 @@ ulonglong create_render_element_instance(undefined8 param_1,undefined8 param_2,u
     else {
       uVar4 = 1;
     }
-    *(undefined1 *)(uVar8 + 0xcc) = uVar4;
+    *(int8_t *)(uVar8 + 0xcc) = uVar4;
   }
   else {
-    *(undefined4 *)(uVar8 + 200) = 2;
-    *(undefined4 *)(uVar8 + 0xc4) = 2;
-    *(undefined1 *)(uVar8 + 0xcc) = 0;
+    *(int32_t *)(uVar8 + 200) = 2;
+    *(int32_t *)(uVar8 + 0xc4) = 2;
+    *(int8_t *)(uVar8 + 0xcc) = 0;
   }
   // 添加到管理结构
   piVar13 = (int *)(lVar3 + 0x1ab0);
@@ -425,23 +425,23 @@ LAB_180128faf:
  * 3. 计算变换后的边界框
  * 4. 处理边界约束条件
  */
-undefined8 * calculate_transform_bounds(undefined8 *param_1,longlong param_2,undefined8 param_3)
+uint64_t * calculate_transform_bounds(uint64_t *param_1,longlong param_2,uint64_t param_3)
 {
   longlong lVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   longlong lVar3;
   float fVar4;
   float fVar5;
   float fVar6;
   float fVar7;
   float fVar8;
-  undefined8 uStackX_8;
-  undefined8 uStack_48;
-  undefined4 uStack_40;
-  undefined4 uStack_3c;
-  undefined4 uStack_38;
-  undefined4 uStack_34;
-  undefined8 uStack_30;
+  uint64_t uStackX_8;
+  uint64_t uStack_48;
+  int32_t uStack_40;
+  int32_t uStack_3c;
+  int32_t uStack_38;
+  int32_t uStack_34;
+  uint64_t uStack_30;
   
   lVar1 = _DAT_180c8a9b0;
   uStackX_8._0_4_ = (float)param_3;
@@ -491,11 +491,11 @@ undefined8 * calculate_transform_bounds(undefined8 *param_1,longlong param_2,und
     uVar2 = uStackX_8;
     // 调用变换回调
     if (*(code **)(_DAT_180c8a9b0 + 0x1c28) != (code *)0x0) {
-      uStack_40 = *(undefined4 *)(param_2 + 0x40);
-      uStack_3c = *(undefined4 *)(param_2 + 0x44);
-      uStack_48 = *(undefined8 *)(_DAT_180c8a9b0 + 0x1c30);
-      uStack_38 = *(undefined4 *)(param_2 + 0x50);
-      uStack_34 = *(undefined4 *)(param_2 + 0x54);
+      uStack_40 = *(int32_t *)(param_2 + 0x40);
+      uStack_3c = *(int32_t *)(param_2 + 0x44);
+      uStack_48 = *(uint64_t *)(_DAT_180c8a9b0 + 0x1c30);
+      uStack_38 = *(int32_t *)(param_2 + 0x50);
+      uStack_34 = *(int32_t *)(param_2 + 0x54);
       uStack_30 = uStackX_8;
       (**(code **)(_DAT_180c8a9b0 + 0x1c28))(&uStack_48);
       uVar2 = uStack_30;
@@ -568,7 +568,7 @@ undefined8 * calculate_transform_bounds(undefined8 *param_1,longlong param_2,und
  * 3. 处理裁剪约束
  * 4. 返回最终的裁剪区域
  */
-undefined8 * calculate_clipping_area(undefined8 *param_1,longlong param_2,float *param_3)
+uint64_t * calculate_clipping_area(uint64_t *param_1,longlong param_2,float *param_3)
 {
   float fVar1;
   int iVar2;
@@ -669,7 +669,7 @@ float * calculate_position_offset(float *param_1,longlong param_2,char param_3)
   
   lVar2 = _DAT_180c8a9b0;
   fVar5 = *(float *)(param_2 + 0x94);
-  *(undefined8 *)param_1 = *(undefined8 *)(param_2 + 0x8c);
+  *(uint64_t *)param_1 = *(uint64_t *)(param_2 + 0x8c);
   if (fVar5 < 3.4028235e+38) {
     *param_1 = fVar5 - (*(float *)(param_2 + 0x50) - *(float *)(param_2 + 0xa4)) *
                        *(float *)(param_2 + 0x9c);
@@ -861,7 +861,7 @@ float * apply_element_transform(float *param_1,longlong param_2,float param_3,fl
  * 3. 计算最终位置
  * 4. 返回约束结果
  */
-float * set_position_constraint(float *param_1,longlong param_2,undefined8 param_3,float param_4)
+float * set_position_constraint(float *param_1,longlong param_2,uint64_t param_3,float param_4)
 {
   float fVar1;
   float fVar2;
@@ -922,7 +922,7 @@ float * set_position_constraint(float *param_1,longlong param_2,undefined8 param
  * 3. 计算变换后的位置
  * 4. 返回变换结果
  */
-void calculate_transform_matrix(longlong param_1,float *param_2,float *param_3,float *param_4,undefined8 *param_5)
+void calculate_transform_matrix(longlong param_1,float *param_2,float *param_3,float *param_4,uint64_t *param_5)
 {
   float fVar1;
   float fVar2;

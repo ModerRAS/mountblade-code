@@ -8,7 +8,7 @@ void FUN_18076c270(longlong param_1,longlong param_2,uint *param_3)
 {
   longlong *plVar1;
   ulonglong *puVar2;
-  undefined8 *puVar3;
+  uint64_t *puVar3;
   ulonglong uVar4;
   ulonglong *puVar5;
   uint *puVar6;
@@ -34,15 +34,15 @@ void FUN_18076c270(longlong param_1,longlong param_2,uint *param_3)
   puVar18 = (ulonglong *)(param_2 + -0x10);
   uVar10 = 0;
   if ((plVar1 != (longlong *)0x0) && (*(longlong *)(param_1 + 0x390) == 0)) {
-    *(undefined8 *)(param_1 + 0x3a0) = 0xffffffffffffffff;
-    *(undefined8 *)(param_1 + 0x3a8) = 0xffffffffffffffff;
-    *(undefined4 *)(param_1 + 0x3b0) = 0;
+    *(uint64_t *)(param_1 + 0x3a0) = 0xffffffffffffffff;
+    *(uint64_t *)(param_1 + 0x3a8) = 0xffffffffffffffff;
+    *(int32_t *)(param_1 + 0x3b0) = 0;
     if (*plVar1 == 0) {
       *plVar1 = 0x58585858;
       _DAT_180c0cab0 = 0;
     }
-    *(undefined8 *)(param_1 + 0x390) = 0x1000;
-    *(undefined8 *)(param_1 + 0x398) = 0x1000;
+    *(uint64_t *)(param_1 + 0x390) = 0x1000;
+    *(uint64_t *)(param_1 + 0x398) = 0x1000;
   }
   puVar16 = *(ulonglong **)(param_1 + 0x18);
   if (puVar18 < puVar16) {
@@ -345,14 +345,14 @@ LAB_18076c6e6:
       return;
     }
     lVar11 = 4 - (lVar9 >> 0x3f);
-    puVar3 = (undefined8 *)(uVar7 + lVar11 * 8);
+    puVar3 = (uint64_t *)(uVar7 + lVar11 * 8);
     uVar8 = *(ulonglong *)(uVar7 + lVar11 * 8);
     if (uVar8 == 0) break;
     uVar4 = *(ulonglong *)(uVar8 + 8);
     uVar7 = uVar8;
     lVar9 = lVar9 * 2;
   }
-  if (puVar3 < *(undefined8 **)(param_3 + 6)) {
+  if (puVar3 < *(uint64_t **)(param_3 + 6)) {
     return;
   }
   *puVar3 = puVar18;
@@ -665,8 +665,8 @@ LAB_18076c6e6:
 
 
 
-// 函数: void FUN_18076c414(undefined8 param_1,ulonglong param_2,uint *param_3,ulonglong param_4)
-void FUN_18076c414(undefined8 param_1,ulonglong param_2,uint *param_3,ulonglong param_4)
+// 函数: void FUN_18076c414(uint64_t param_1,ulonglong param_2,uint *param_3,ulonglong param_4)
+void FUN_18076c414(uint64_t param_1,ulonglong param_2,uint *param_3,ulonglong param_4)
 
 {
   ulonglong *puVar1;

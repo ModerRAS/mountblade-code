@@ -37,8 +37,8 @@
  * 
  * 注意: 此函数实现包含900多行代码，逻辑复杂
  */
-void 处理复杂数据结构(undefined8 上下文参数, undefined8 数据输入参数, longlong 操作类型参数, undefined8 数据结构参数,
-                       undefined8 辅助参数1, undefined8 辅助参数2, undefined8 辅助参数3, undefined8 辅助参数4,
+void 处理复杂数据结构(uint64_t 上下文参数, uint64_t 数据输入参数, longlong 操作类型参数, uint64_t 数据结构参数,
+                       uint64_t 辅助参数1, uint64_t 辅助参数2, uint64_t 辅助参数3, uint64_t 辅助参数4,
                        longlong 计数参数)
 {
     // 函数实现包含900多行代码
@@ -123,7 +123,7 @@ void 处理浮点数数据插值(longlong 数据源1, longlong 数据源2, int *
  * - 执行阈值比较操作
  * - 存储处理结果
  */
-void 处理浮点数数组版本1(undefined8 数组指针, float 阈值1, float 阈值2)
+void 处理浮点数数组版本1(uint64_t 数组指针, float 阈值1, float 阈值2)
 {
     // 函数实现包含100多行代码
     // 主要功能包括：
@@ -149,7 +149,7 @@ void 处理浮点数数组版本1(undefined8 数组指针, float 阈值1, float 
  * - 执行阈值比较操作
  * - 存储处理结果
  */
-void 处理浮点数数组版本2(undefined8 数组指针1, undefined8 数组指针2, float 阈值1, float 阈值2)
+void 处理浮点数数组版本2(uint64_t 数组指针1, uint64_t 数组指针2, float 阈值1, float 阈值2)
 {
     // 函数实现包含100多行代码
     // 主要功能包括：
@@ -286,7 +286,7 @@ longlong 初始化数据结构(longlong 初始参数)
  * - 进行数据比较和验证
  * - 处理链表操作和节点管理
  */
-void 处理未定义数据(undefined8 *数据指针, longlong 大小参数, undefined8 操作参数)
+void 处理未定义数据(uint64_t *数据指针, longlong 大小参数, uint64_t 操作参数)
 {
     // 函数实现包含60多行代码
     // 主要功能包括：
@@ -312,7 +312,7 @@ void 处理未定义数据(undefined8 *数据指针, longlong 大小参数, unde
  * - 清理相关的内存资源
  * - 释放分配的资源
  */
-void 处理数据引用(longlong 数据参数1, undefined8 引用参数1, undefined8 引用参数2, undefined8 引用参数3)
+void 处理数据引用(longlong 数据参数1, uint64_t 引用参数1, uint64_t 引用参数2, uint64_t 引用参数3)
 {
     // 函数实现包含10多行代码
     // 主要功能包括：

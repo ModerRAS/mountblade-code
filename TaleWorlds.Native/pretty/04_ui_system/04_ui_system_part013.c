@@ -48,10 +48,10 @@ void ui_system_advanced_animation_controller(void)
   float *animation_data_ptr;
   int loop_counter;
   int element_index;
-  undefined8 animation_state;
+  uint64_t animation_state;
   longlong context_ptr;
   char control_flag;
-  undefined4 render_flag;
+  int32_t render_flag;
   char state_flag_1;
   longlong resource_ptr;
   char state_flag_2;
@@ -66,7 +66,7 @@ void ui_system_advanced_animation_controller(void)
   float temp_value_7;
   float temp_value_8;
   float temp_value_9;
-  undefined1 conversion_buffer [16];
+  int8_t conversion_buffer [16];
   float smooth_value_1;
   float smooth_value_2;
   float base_parameter_1;
@@ -87,7 +87,7 @@ void ui_system_advanced_animation_controller(void)
   float temp_storage_4;
   float temp_storage_5;
   float animation_buffer [6200];
-  undefined8 return_address;
+  uint64_t return_address;
   
   // 初始化动画参数
   *(float *)(resource_ptr + 0x4c) = base_parameter_1;
@@ -156,8 +156,8 @@ void ui_system_advanced_animation_controller(void)
 LAB_18065a17c:
     if ((*(float *)(resource_ptr + 0x44) <= base_parameter_1) ||
        (base_parameter_3 <= *(float *)(resource_ptr + 0x44))) {
-      *(undefined4 *)(resource_ptr + 0x44) = render_flag;
-      *(undefined4 *)(resource_ptr + 0x48) = 0xbf800000;
+      *(int32_t *)(resource_ptr + 0x44) = render_flag;
+      *(int32_t *)(resource_ptr + 0x48) = 0xbf800000;
       goto LAB_18065a2e9;
     }
   }
@@ -449,7 +449,7 @@ LAB_18065a765:
       temp_value_2 = base_parameter_3 - ((temp_value_2 * UI_SIX_FLOAT - UI_FIFTEEN_FLOAT) * temp_value_2 + UI_TEN_FLOAT) * temp_value_2 * temp_value_2 * temp_value_2;
       if (angle_value != temp_value_2) {
         if (angle_value <= base_parameter_1) {
-          *(undefined4 *)(resource_ptr + 0x6150) = 0x3f800000;
+          *(int32_t *)(resource_ptr + 0x6150) = 0x3f800000;
         }
         else {
           temp_value_2 = temp_value_2 / angle_value;
@@ -518,9 +518,9 @@ LAB_18065a765:
 
 // UI系统参数化动画处理器 - 处理参数化的UI动画和变换
 // 该函数实现了基于参数的UI动画处理，包括动画参数控制、插值计算、矩阵变换和状态管理
-void ui_system_parameterized_animation_processor(undefined8 param_1,undefined8 param_2,float param_3,float param_4,
-                  undefined8 param_5,undefined8 param_6,float param_7,float param_8,float param_9,
-                  undefined8 param_10,undefined8 param_11,float param_12)
+void ui_system_parameterized_animation_processor(uint64_t param_1,uint64_t param_2,float param_3,float param_4,
+                  uint64_t param_5,uint64_t param_6,float param_7,float param_8,float param_9,
+                  uint64_t param_10,uint64_t param_11,float param_12)
 {
   undefined3 conversion_flag;
   float *animation_data_ptr;
@@ -529,7 +529,7 @@ void ui_system_parameterized_animation_processor(undefined8 param_1,undefined8 p
   float *base_animation_ptr;
   longlong context_ptr;
   char control_flag;
-  undefined4 render_flag;
+  int32_t render_flag;
   longlong resource_ptr;
   float weight_value;
   float interpolation_value;
@@ -538,7 +538,7 @@ void ui_system_parameterized_animation_processor(undefined8 param_1,undefined8 p
   float temp_value_3;
   float temp_value_4;
   float temp_value_5;
-  undefined1 conversion_buffer [16];
+  int8_t conversion_buffer [16];
   uint abs_mask;
   float smooth_value;
   float base_parameter_1;
@@ -549,7 +549,7 @@ void ui_system_parameterized_animation_processor(undefined8 param_1,undefined8 p
   float base_parameter_6;
   float temp_storage;
   float animation_buffer [6200];
-  undefined8 return_address;
+  uint64_t return_address;
   
   // 参数化动画控制逻辑
   if (base_parameter_1 < base_parameter_2) {
@@ -755,7 +755,7 @@ LAB_18065a765:
       interpolation_value = base_parameter_3 - ((interpolation_value * UI_SIX_FLOAT - UI_FIFTEEN_FLOAT) * interpolation_value + UI_TEN_FLOAT) * interpolation_value * interpolation_value * interpolation_value;
       if (base_parameter_4 != interpolation_value) {
         if (base_parameter_4 <= base_parameter_1) {
-          *(undefined4 *)(resource_ptr + 0x6150) = 0x3f800000;
+          *(int32_t *)(resource_ptr + 0x6150) = 0x3f800000;
         }
         else {
           interpolation_value = interpolation_value / base_parameter_4;

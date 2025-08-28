@@ -64,19 +64,19 @@
 #define apply_encryption_params apply_network_encryption_params
 #define initialize_protocol_params func_0x00018088ecd0
 
-// 函数: void process_network_packet(undefined8 packet_ptr)
+// 函数: void process_network_packet(uint64_t packet_ptr)
 // 处理网络数据包的接收和解析
 // 参数: packet_ptr - 网络数据包指针
 // 功能: 验证连接状态，处理数据包头部信息，管理连接数据
-void process_network_packet(undefined8 packet_ptr)
+void process_network_packet(uint64_t packet_ptr)
 
 {
   int processing_result;
-  undefined1 security_buffer [32];
-  undefined1 *error_data_ptr;
+  int8_t security_buffer [32];
+  int8_t *error_data_ptr;
   longlong connection_context [2];
-  undefined8 *packet_header [2];
-  undefined1 packet_buffer [256];
+  uint64_t *packet_header [2];
+  int8_t packet_buffer [256];
   ulonglong security_cookie;
   
   // 栈保护cookie
@@ -93,18 +93,18 @@ LAB_packet_processing_error:
   }
   else if (processing_result == 0) {
     // 处理有效数据包
-    processing_result = validate_packet_data(*(undefined8 *)(connection_context[0] + 0x98), 1);
+    processing_result = validate_packet_data(*(uint64_t *)(connection_context[0] + 0x98), 1);
     if (processing_result == 0) {
       // 检查是否有活动连接
       if (*(int *)(*(longlong *)(connection_context[0] + 0x98) + 0x200) != 0) {
         connection_context[1] = 0;
         processing_result = process_connection_data(connection_context + 1);
         if ((processing_result == 0) &&
-           (processing_result = extract_packet_header(*(undefined8 *)(connection_context[0] + 0x98), packet_header, 0x10),
+           (processing_result = extract_packet_header(*(uint64_t *)(connection_context[0] + 0x98), packet_header, 0x10),
            processing_result == 0)) {
           *packet_header[0] = &PACKET_HEADER_PTR;
-          *(undefined4 *)(packet_header[0] + 1) = 0x10;
-          finalize_packet_header(*(undefined8 *)(connection_context[0] + 0x98));
+          *(int32_t *)(packet_header[0] + 1) = 0x10;
+          finalize_packet_header(*(uint64_t *)(connection_context[0] + 0x98));
                     // WARNING: Subroutine does not return
           cleanup_connection_data(connection_context + 1);
         }
@@ -136,30 +136,30 @@ LAB_packet_processing_success:
 int calculate_network_checksum(longlong data_ptr, longlong offset, int length)
 
 {
-  undefined4 packet_header_value;
+  int32_t packet_header_value;
   int checksum_total;
   int bytes_processed;
   
   // 获取数据包头值
-  packet_header_value = *(undefined4 *)(data_ptr + 0x18);
+  packet_header_value = *(int32_t *)(data_ptr + 0x18);
   
   // 计算初始校验和
-  checksum_total = initialize_checksum(offset, length, *(undefined4 *)(data_ptr + 0x10));
+  checksum_total = initialize_checksum(offset, length, *(int32_t *)(data_ptr + 0x10));
   bytes_processed = process_checksum_data(offset + checksum_total, length - checksum_total, &DATA_BUFFER_PTR);
   checksum_total = checksum_total + bytes_processed;
   
   // 处理剩余数据并应用校验和
   bytes_processed = apply_checksum(checksum_total + offset, length - checksum_total, packet_header_value);
   return bytes_processed + checksum_total;
-// 函数: void send_network_packet(longlong connection_ptr, undefined8 packet_data, undefined4 packet_size)
+// 函数: void send_network_packet(longlong connection_ptr, uint64_t packet_data, int32_t packet_size)
 // 发送网络数据包
 // 参数: connection_ptr - 连接指针, packet_data - 数据包数据, packet_size - 数据包大小
 // 功能: 通过指定的连接发送网络数据包
-void send_network_packet(longlong connection_ptr, undefined8 packet_data, undefined4 packet_size)
+void send_network_packet(longlong connection_ptr, uint64_t packet_data, int32_t packet_size)
 
 {
-  send_packet_data(packet_data, packet_size, *(undefined4 *)(connection_ptr + 0x10), *(undefined4 *)(connection_ptr + 0x18),
-                   *(undefined4 *)(connection_ptr + 0x1c));
+  send_packet_data(packet_data, packet_size, *(int32_t *)(connection_ptr + 0x10), *(int32_t *)(connection_ptr + 0x18),
+                   *(int32_t *)(connection_ptr + 0x1c));
   return;
 }
 // 函数: int process_encrypted_data(longlong encryption_info, longlong data_ptr, int data_size)
@@ -169,25 +169,25 @@ void send_network_packet(longlong connection_ptr, undefined8 packet_data, undefi
 int process_encrypted_data(longlong encryption_info, longlong data_ptr, int data_size)
 
 {
-  undefined4 encryption_key;
-  undefined4 encryption_method;
+  int32_t encryption_key;
+  int32_t encryption_method;
   int bytes_processed;
   int bytes_remaining;
-  undefined4 data_padding;
-  undefined4 initialization_vector;
-  undefined4 salt_value;
-  undefined4 hmac_key;
+  int32_t data_padding;
+  int32_t initialization_vector;
+  int32_t salt_value;
+  int32_t hmac_key;
   
   // 获取加密参数
-  data_padding = *(undefined4 *)(encryption_info + 0x1c);
-  initialization_vector = *(undefined4 *)(encryption_info + 0x20);
-  salt_value = *(undefined4 *)(encryption_info + 0x24);
-  hmac_key = *(undefined4 *)(encryption_info + 0x28);
-  encryption_key = *(undefined4 *)(encryption_info + 0x2c);
-  encryption_method = *(undefined4 *)(encryption_info + 0x18);
+  data_padding = *(int32_t *)(encryption_info + 0x1c);
+  initialization_vector = *(int32_t *)(encryption_info + 0x20);
+  salt_value = *(int32_t *)(encryption_info + 0x24);
+  hmac_key = *(int32_t *)(encryption_info + 0x28);
+  encryption_key = *(int32_t *)(encryption_info + 0x2c);
+  encryption_method = *(int32_t *)(encryption_info + 0x18);
   
   // 处理数据头部
-  bytes_processed = initialize_checksum(data_ptr, data_size, *(undefined4 *)(encryption_info + 0x10));
+  bytes_processed = initialize_checksum(data_ptr, data_size, *(int32_t *)(encryption_info + 0x10));
   bytes_remaining = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
   bytes_processed = bytes_processed + bytes_remaining;
   
@@ -216,15 +216,15 @@ int process_encrypted_data(longlong encryption_info, longlong data_ptr, int data
 int compress_network_data(longlong compression_info, longlong data_ptr, int data_size)
 
 {
-  undefined8 compression_algorithm;
+  uint64_t compression_algorithm;
   int compressed_size;
   int processed_bytes;
   
   // 获取压缩算法信息
-  compression_algorithm = *(undefined8 *)(compression_info + 0x18);
+  compression_algorithm = *(uint64_t *)(compression_info + 0x18);
   
   // 初始化压缩
-  compressed_size = func_0x00018074b800(data_ptr, data_size, *(undefined4 *)(compression_info + 0x10));
+  compressed_size = func_0x00018074b800(data_ptr, data_size, *(int32_t *)(compression_info + 0x10));
   processed_bytes = process_compression(data_ptr + compressed_size, data_size - compressed_size, &DAT_180a06434);
   compressed_size = compressed_size + processed_bytes;
   
@@ -237,15 +237,15 @@ int compress_network_data(longlong compression_info, longlong data_ptr, int data
 int validate_packet_signature(longlong signature_info, longlong data_ptr, int data_size)
 
 {
-  undefined1 signature_key;
+  int8_t signature_key;
   int signature_size;
   int validated_bytes;
   
   // 获取签名密钥
-  signature_key = *(undefined1 *)(signature_info + 0x18);
+  signature_key = *(int8_t *)(signature_info + 0x18);
   
   // 读取签名数据
-  signature_size = func_0x00018074b800(data_ptr, data_size, *(undefined4 *)(signature_info + 0x10));
+  signature_size = func_0x00018074b800(data_ptr, data_size, *(int32_t *)(signature_info + 0x10));
   validated_bytes = process_compression(data_ptr + signature_size, data_size - signature_size, &DAT_180a06434);
   signature_size = signature_size + validated_bytes;
   
@@ -258,15 +258,15 @@ int validate_packet_signature(longlong signature_info, longlong data_ptr, int da
 int encode_network_data(longlong encoding_info, longlong data_ptr, int data_size)
 
 {
-  undefined4 encoding_type;
+  int32_t encoding_type;
   int encoded_size;
   int processed_bytes;
   
   // 获取编码类型
-  encoding_type = *(undefined4 *)(encoding_info + 0x18);
+  encoding_type = *(int32_t *)(encoding_info + 0x18);
   
   // 初始化编码
-  encoded_size = func_0x00018074b800(data_ptr, data_size, *(undefined4 *)(encoding_info + 0x10));
+  encoded_size = func_0x00018074b800(data_ptr, data_size, *(int32_t *)(encoding_info + 0x10));
   processed_bytes = process_compression(data_ptr + encoded_size, data_size - encoded_size, &DAT_180a06434);
   encoded_size = encoded_size + processed_bytes;
   
@@ -279,15 +279,15 @@ int encode_network_data(longlong encoding_info, longlong data_ptr, int data_size
 int verify_data_integrity(longlong integrity_info, longlong data_ptr, int data_size)
 
 {
-  undefined4 integrity_key;
+  int32_t integrity_key;
   int verified_size;
   int processed_bytes;
   
   // 获取完整性密钥
-  integrity_key = *(undefined4 *)(integrity_info + 0x18);
+  integrity_key = *(int32_t *)(integrity_info + 0x18);
   
   // 初始化验证
-  verified_size = func_0x00018074b800(data_ptr, data_size, *(undefined4 *)(integrity_info + 0x10));
+  verified_size = func_0x00018074b800(data_ptr, data_size, *(int32_t *)(integrity_info + 0x10));
   processed_bytes = process_compression(data_ptr + verified_size, data_size - verified_size, &DAT_180a06434);
   verified_size = verified_size + processed_bytes;
   
@@ -300,17 +300,17 @@ int verify_data_integrity(longlong integrity_info, longlong data_ptr, int data_s
 int process_secure_connection(longlong security_info, longlong data_ptr, int data_size)
 
 {
-  undefined4 secondary_key;
-  undefined4 primary_key;
+  int32_t secondary_key;
+  int32_t primary_key;
   int secure_size;
   int processed_bytes;
   
   // 获取安全密钥
-  secondary_key = *(undefined4 *)(security_info + 0x1c);
-  primary_key = *(undefined4 *)(security_info + 0x18);
+  secondary_key = *(int32_t *)(security_info + 0x1c);
+  primary_key = *(int32_t *)(security_info + 0x18);
   
   // 初始化安全处理
-  secure_size = func_0x00018074b800(data_ptr, data_size, *(undefined4 *)(security_info + 0x10));
+  secure_size = func_0x00018074b800(data_ptr, data_size, *(int32_t *)(security_info + 0x10));
   processed_bytes = process_compression(secure_size + data_ptr, data_size - secure_size, &DAT_180a06434);
   secure_size = secure_size + processed_bytes;
   
@@ -331,17 +331,17 @@ int process_secure_connection(longlong security_info, longlong data_ptr, int dat
 int handle_network_handshake(longlong handshake_info, longlong data_ptr, int data_size)
 
 {
-  undefined4 client_key;
-  undefined4 server_key;
+  int32_t client_key;
+  int32_t server_key;
   int handshake_size;
   int processed_bytes;
   
   // 获取握手密钥
-  client_key = *(undefined4 *)(handshake_info + 0x1c);
-  server_key = *(undefined4 *)(handshake_info + 0x18);
+  client_key = *(int32_t *)(handshake_info + 0x1c);
+  server_key = *(int32_t *)(handshake_info + 0x18);
   
   // 初始化握手过程
-  handshake_size = func_0x00018074b800(data_ptr, data_size, *(undefined4 *)(handshake_info + 0x10));
+  handshake_size = func_0x00018074b800(data_ptr, data_size, *(int32_t *)(handshake_info + 0x10));
   processed_bytes = process_compression(handshake_size + data_ptr, data_size - handshake_size, &DAT_180a06434);
   handshake_size = handshake_size + processed_bytes;
   
@@ -364,31 +364,31 @@ int initialize_network_protocol(longlong protocol_info, longlong data_ptr, int d
 {
   int protocol_size;
   int processed_bytes;
-  undefined8 protocol_version;
-  undefined8 protocol_flags;
-  undefined4 header_format;
-  undefined4 data_format;
-  undefined4 compression_level;
-  undefined4 encryption_level;
-  undefined4 timeout_value;
-  undefined4 retry_count;
-  undefined4 buffer_size;
-  undefined4 checksum_type;
+  uint64_t protocol_version;
+  uint64_t protocol_flags;
+  int32_t header_format;
+  int32_t data_format;
+  int32_t compression_level;
+  int32_t encryption_level;
+  int32_t timeout_value;
+  int32_t retry_count;
+  int32_t buffer_size;
+  int32_t checksum_type;
   
   // 获取协议参数
-  protocol_version = *(undefined8 *)(protocol_info + 0x18);
-  protocol_flags = *(undefined8 *)(protocol_info + 0x20);
-  header_format = *(undefined4 *)(protocol_info + 0x28);
-  data_format = *(undefined4 *)(protocol_info + 0x2c);
-  compression_level = *(undefined4 *)(protocol_info + 0x30);
-  encryption_level = *(undefined4 *)(protocol_info + 0x34);
-  timeout_value = *(undefined4 *)(protocol_info + 0x38);
-  retry_count = *(undefined4 *)(protocol_info + 0x3c);
-  buffer_size = *(undefined4 *)(protocol_info + 0x40);
-  checksum_type = *(undefined4 *)(protocol_info + 0x44);
+  protocol_version = *(uint64_t *)(protocol_info + 0x18);
+  protocol_flags = *(uint64_t *)(protocol_info + 0x20);
+  header_format = *(int32_t *)(protocol_info + 0x28);
+  data_format = *(int32_t *)(protocol_info + 0x2c);
+  compression_level = *(int32_t *)(protocol_info + 0x30);
+  encryption_level = *(int32_t *)(protocol_info + 0x34);
+  timeout_value = *(int32_t *)(protocol_info + 0x38);
+  retry_count = *(int32_t *)(protocol_info + 0x3c);
+  buffer_size = *(int32_t *)(protocol_info + 0x40);
+  checksum_type = *(int32_t *)(protocol_info + 0x44);
   
   // 初始化协议头
-  protocol_size = func_0x00018074b800(data_ptr, data_size, *(undefined4 *)(protocol_info + 0x10));
+  protocol_size = func_0x00018074b800(data_ptr, data_size, *(int32_t *)(protocol_info + 0x10));
   processed_bytes = process_compression(data_ptr + protocol_size, data_size - protocol_size, &DAT_180a06434);
   protocol_size = protocol_size + processed_bytes;
   
@@ -406,15 +406,15 @@ int initialize_network_protocol(longlong protocol_info, longlong data_ptr, int d
 int process_basic_data_validation(longlong config_info, longlong data_ptr, int data_size)
 
 {
-  undefined4 validation_key;
+  int32_t validation_key;
   int bytes_processed;
   int bytes_validated;
   
   // 获取验证密钥
-  validation_key = *(undefined4 *)(config_info + 0x18);
+  validation_key = *(int32_t *)(config_info + 0x18);
   
   // 初始化数据校验
-  bytes_processed = initialize_checksum(data_ptr, data_size, *(undefined4 *)(config_info + 0x10));
+  bytes_processed = initialize_checksum(data_ptr, data_size, *(int32_t *)(config_info + 0x10));
   bytes_validated = process_checksum_data(data_ptr + bytes_processed, data_size - bytes_processed, &DATA_BUFFER_PTR);
   bytes_processed = bytes_processed + bytes_validated;
   
@@ -432,19 +432,19 @@ int process_basic_data_validation(longlong config_info, longlong data_ptr, int d
 int process_encrypted_packet_validation(longlong encryption_config, longlong data_ptr, int data_size)
 
 {
-  undefined4 encoding_method;
-  undefined1 signature_key;
+  int32_t encoding_method;
+  int8_t signature_key;
   int bytes_processed;
   int bytes_validated;
-  undefined8 encryption_params;
+  uint64_t encryption_params;
   
   // 获取加密参数
-  encryption_params = *(undefined8 *)(encryption_config + 0x18);
-  signature_key = *(undefined1 *)(encryption_config + 0x24);
-  encoding_method = *(undefined4 *)(encryption_config + 0x20);
+  encryption_params = *(uint64_t *)(encryption_config + 0x18);
+  signature_key = *(int8_t *)(encryption_config + 0x24);
+  encoding_method = *(int32_t *)(encryption_config + 0x20);
   
   // 初始化加密处理
-  bytes_processed = initialize_checksum(data_ptr, data_size, *(undefined4 *)(encryption_config + 0x10));
+  bytes_processed = initialize_checksum(data_ptr, data_size, *(int32_t *)(encryption_config + 0x10));
   bytes_validated = process_checksum_data(data_ptr + bytes_processed, data_size - bytes_processed, &DATA_BUFFER_PTR);
   bytes_processed = bytes_processed + bytes_validated;
   
@@ -478,17 +478,17 @@ int process_encrypted_packet_validation(longlong encryption_config, longlong dat
 int process_secure_data_validation(longlong security_config, longlong data_ptr, int data_size)
 
 {
-  undefined1 signature_key;
+  int8_t signature_key;
   int bytes_processed;
   int bytes_validated;
-  undefined8 security_params;
+  uint64_t security_params;
   
   // 获取安全参数
-  security_params = *(undefined8 *)(security_config + 0x18);
-  signature_key = *(undefined1 *)(security_config + 0x24);
+  security_params = *(uint64_t *)(security_config + 0x18);
+  signature_key = *(int8_t *)(security_config + 0x24);
   
   // 初始化安全处理
-  bytes_processed = initialize_checksum(data_ptr, data_size, *(undefined4 *)(security_config + 0x10));
+  bytes_processed = initialize_checksum(data_ptr, data_size, *(int32_t *)(security_config + 0x10));
   bytes_validated = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
   bytes_processed = bytes_processed + bytes_validated;
   
@@ -522,17 +522,17 @@ int process_secure_data_validation(longlong security_config, longlong data_ptr, 
 int process_composite_data_validation(longlong validation_config, longlong data_ptr, int data_size)
 
 {
-  undefined4 encoding_method;
-  undefined1 signature_key;
+  int32_t encoding_method;
+  int8_t signature_key;
   int bytes_processed;
   int bytes_validated;
   
   // 获取验证参数
-  signature_key = *(undefined1 *)(validation_config + 0x1c);
-  encoding_method = *(undefined4 *)(validation_config + 0x18);
+  signature_key = *(int8_t *)(validation_config + 0x1c);
+  encoding_method = *(int32_t *)(validation_config + 0x18);
   
   // 初始化验证处理
-  bytes_processed = initialize_checksum(data_ptr, data_size, *(undefined4 *)(validation_config + 0x10));
+  bytes_processed = initialize_checksum(data_ptr, data_size, *(int32_t *)(validation_config + 0x10));
   bytes_validated = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
   bytes_processed = bytes_processed + bytes_validated;
   
@@ -566,15 +566,15 @@ int process_composite_data_validation(longlong validation_config, longlong data_
 int process_extended_data_validation(longlong extended_config, longlong data_ptr, int data_size)
 
 {
-  undefined1 signature_key;
+  int8_t signature_key;
   int bytes_processed;
   int bytes_validated;
   
   // 获取签名密钥
-  signature_key = *(undefined1 *)(extended_config + 0x1c);
+  signature_key = *(int8_t *)(extended_config + 0x1c);
   
   // 初始化扩展验证
-  bytes_processed = initialize_checksum(data_ptr, data_size, *(undefined4 *)(extended_config + 0x10));
+  bytes_processed = initialize_checksum(data_ptr, data_size, *(int32_t *)(extended_config + 0x10));
   bytes_validated = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
   bytes_processed = bytes_processed + bytes_validated;
   
@@ -608,17 +608,17 @@ int process_extended_data_validation(longlong extended_config, longlong data_ptr
 int process_dual_layer_data_validation(longlong dual_config, longlong data_ptr, int data_size)
 
 {
-  undefined4 primary_key;
-  undefined4 secondary_key;
+  int32_t primary_key;
+  int32_t secondary_key;
   int bytes_processed;
   int bytes_validated;
   
   // 获取双层验证密钥
-  primary_key = *(undefined4 *)(dual_config + 0x18);
-  secondary_key = *(undefined4 *)(dual_config + 0x1c);
+  primary_key = *(int32_t *)(dual_config + 0x18);
+  secondary_key = *(int32_t *)(dual_config + 0x1c);
   
   // 初始化双层验证
-  bytes_processed = initialize_checksum(data_ptr, data_size, *(undefined4 *)(dual_config + 0x10));
+  bytes_processed = initialize_checksum(data_ptr, data_size, *(int32_t *)(dual_config + 0x10));
   bytes_validated = process_checksum_data(data_ptr + bytes_processed, data_size - bytes_processed, &DATA_BUFFER_PTR);
   bytes_processed = bytes_processed + bytes_validated;
   
@@ -644,20 +644,20 @@ int process_dual_layer_data_validation(longlong dual_config, longlong data_ptr, 
 int process_multi_param_data_validation(longlong multi_config, longlong data_ptr, int data_size)
 
 {
-  undefined4 final_key;
+  int32_t final_key;
   int bytes_processed;
   int bytes_validated;
-  undefined4 param1;
-  undefined4 param2;
-  undefined4 param3;
-  undefined4 param4;
+  int32_t param1;
+  int32_t param2;
+  int32_t param3;
+  int32_t param4;
   
   // 获取多参数配置
-  param1 = *(undefined4 *)(multi_config + 0x10);
-  param2 = *(undefined4 *)(multi_config + 0x14);
-  param3 = *(undefined4 *)(multi_config + 0x18);
-  param4 = *(undefined4 *)(multi_config + 0x1c);
-  final_key = *(undefined4 *)(multi_config + 0x20);
+  param1 = *(int32_t *)(multi_config + 0x10);
+  param2 = *(int32_t *)(multi_config + 0x14);
+  param3 = *(int32_t *)(multi_config + 0x18);
+  param4 = *(int32_t *)(multi_config + 0x1c);
+  final_key = *(int32_t *)(multi_config + 0x20);
   
   // 应用多参数填充处理
   bytes_processed = apply_data_padding(data_ptr, data_size, &param1);
@@ -678,15 +678,15 @@ int process_multi_param_data_validation(longlong multi_config, longlong data_ptr
 int process_double_encryption_validation(longlong encryption_config, longlong data_ptr, int data_size)
 
 {
-  undefined4 secondary_key;
+  int32_t secondary_key;
   int bytes_processed;
   int bytes_encrypted;
   
   // 获取次要加密密钥
-  secondary_key = *(undefined4 *)(encryption_config + 0x14);
+  secondary_key = *(int32_t *)(encryption_config + 0x14);
   
   // 应用初次加密
-  bytes_processed = process_encryption(data_ptr, data_size, *(undefined4 *)(encryption_config + 0x10));
+  bytes_processed = process_encryption(data_ptr, data_size, *(int32_t *)(encryption_config + 0x10));
   bytes_encrypted = process_checksum_data(data_ptr + bytes_processed, data_size - bytes_processed, &DATA_BUFFER_PTR);
   bytes_processed = bytes_processed + bytes_encrypted;
   
@@ -704,15 +704,15 @@ int process_double_encryption_validation(longlong encryption_config, longlong da
 int process_encrypted_checksum_validation(longlong checksum_config, longlong data_ptr, int data_size)
 
 {
-  undefined4 checksum_key;
+  int32_t checksum_key;
   int bytes_processed;
   int bytes_checksummed;
   
   // 获取校验和密钥
-  checksum_key = *(undefined4 *)(checksum_config + 0x14);
+  checksum_key = *(int32_t *)(checksum_config + 0x14);
   
   // 应用加密处理
-  bytes_processed = process_encryption(data_ptr, data_size, *(undefined4 *)(checksum_config + 0x10));
+  bytes_processed = process_encryption(data_ptr, data_size, *(int32_t *)(checksum_config + 0x10));
   bytes_checksummed = process_checksum_data(data_ptr + bytes_processed, data_size - bytes_processed, &DATA_BUFFER_PTR);
   bytes_processed = bytes_processed + bytes_checksummed;
   
@@ -730,32 +730,32 @@ int process_encrypted_checksum_validation(longlong checksum_config, longlong dat
 int process_protocol_data_validation(longlong protocol_config, longlong data_ptr, int data_size)
 
 {
-  undefined4 primary_param;
-  undefined4 secondary_param;
+  int32_t primary_param;
+  int32_t secondary_param;
   int bytes_processed;
   int bytes_validated;
-  undefined8 base_addr;
-  undefined8 version_info;
-  undefined8 header_format;
-  undefined8 data_format;
-  undefined4 timeout_val;
-  undefined4 retry_count;
-  undefined4 buffer_size;
-  undefined4 compression_level;
-  undefined8 encryption_info;
+  uint64_t base_addr;
+  uint64_t version_info;
+  uint64_t header_format;
+  uint64_t data_format;
+  int32_t timeout_val;
+  int32_t retry_count;
+  int32_t buffer_size;
+  int32_t compression_level;
+  uint64_t encryption_info;
   
   // 获取协议配置参数
-  base_addr = *(undefined8 *)(protocol_config + 0x10);
-  version_info = *(undefined8 *)(protocol_config + 0x18);
-  primary_param = *(undefined4 *)(protocol_config + 0x4c);
-  header_format = *(undefined8 *)(protocol_config + 0x20);
-  data_format = *(undefined8 *)(protocol_config + 0x28);
-  secondary_param = *(undefined4 *)(protocol_config + 0x48);
-  timeout_val = *(undefined4 *)(protocol_config + 0x30);
-  retry_count = *(undefined4 *)(protocol_config + 0x34);
-  buffer_size = *(undefined4 *)(protocol_config + 0x38);
-  compression_level = *(undefined4 *)(protocol_config + 0x3c);
-  encryption_info = *(undefined8 *)(protocol_config + 0x40);
+  base_addr = *(uint64_t *)(protocol_config + 0x10);
+  version_info = *(uint64_t *)(protocol_config + 0x18);
+  primary_param = *(int32_t *)(protocol_config + 0x4c);
+  header_format = *(uint64_t *)(protocol_config + 0x20);
+  data_format = *(uint64_t *)(protocol_config + 0x28);
+  secondary_param = *(int32_t *)(protocol_config + 0x48);
+  timeout_val = *(int32_t *)(protocol_config + 0x30);
+  retry_count = *(int32_t *)(protocol_config + 0x34);
+  buffer_size = *(int32_t *)(protocol_config + 0x38);
+  compression_level = *(int32_t *)(protocol_config + 0x3c);
+  encryption_info = *(uint64_t *)(protocol_config + 0x40);
   
   // 初始化协议处理
   bytes_processed = initialize_protocol_params(data_ptr, data_size, &base_addr);
@@ -784,14 +784,14 @@ int process_protocol_data_validation(longlong protocol_config, longlong data_ptr
 int process_buffered_data_validation(longlong buffer_config, longlong data_ptr, int data_size)
 
 {
-  undefined4 primary_key;
-  undefined4 secondary_key;
+  int32_t primary_key;
+  int32_t secondary_key;
   int bytes_processed;
   int bytes_buffered;
   
   // 获取缓冲区验证密钥
-  primary_key = *(undefined4 *)(buffer_config + 0x10);
-  secondary_key = *(undefined4 *)(buffer_config + 0x14);
+  primary_key = *(int32_t *)(buffer_config + 0x10);
+  secondary_key = *(int32_t *)(buffer_config + 0x14);
   
   // 处理缓冲区数据
   bytes_processed = process_checksum_data(data_ptr, data_size, buffer_config + 0x18);
@@ -820,21 +820,21 @@ int process_buffered_data_validation(longlong buffer_config, longlong data_ptr, 
 int process_quad_layer_data_validation(longlong quad_config, longlong data_ptr, int data_size)
 
 {
-  undefined4 final_key;
-  undefined4 tertiary_key;
-  undefined4 secondary_key;
-  undefined4 primary_key;
+  int32_t final_key;
+  int32_t tertiary_key;
+  int32_t secondary_key;
+  int32_t primary_key;
   int bytes_processed;
   int bytes_validated;
   
   // 获取四层验证密钥
-  final_key = *(undefined4 *)(quad_config + 0x24);
-  tertiary_key = *(undefined4 *)(quad_config + 0x20);
-  secondary_key = *(undefined4 *)(quad_config + 0x1c);
-  primary_key = *(undefined4 *)(quad_config + 0x18);
+  final_key = *(int32_t *)(quad_config + 0x24);
+  tertiary_key = *(int32_t *)(quad_config + 0x20);
+  secondary_key = *(int32_t *)(quad_config + 0x1c);
+  primary_key = *(int32_t *)(quad_config + 0x18);
   
   // 初始化四层验证（压缩）
-  bytes_processed = func_0x00018074bda0(data_ptr, data_size, *(undefined8 *)(quad_config + 0x10));
+  bytes_processed = func_0x00018074bda0(data_ptr, data_size, *(uint64_t *)(quad_config + 0x10));
   bytes_validated = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
   bytes_processed = bytes_processed + bytes_validated;
   
@@ -876,35 +876,35 @@ int process_quad_layer_data_validation(longlong quad_config, longlong data_ptr, 
 int process_extended_security_validation(longlong security_config, longlong data_ptr, int data_size)
 
 {
-  undefined1 signature_flag;
+  int8_t signature_flag;
   int bytes_processed;
   int bytes_secured;
-  undefined8 security_params;
-  undefined4 integrity_key;
-  undefined8 connection_info;
-  undefined8 protocol_info;
-  undefined4 timeout_val;
-  undefined4 retry_count;
-  undefined4 buffer_size;
-  undefined4 compression_level;
-  undefined4 encryption_level;
-  undefined4 checksum_type;
+  uint64_t security_params;
+  int32_t integrity_key;
+  uint64_t connection_info;
+  uint64_t protocol_info;
+  int32_t timeout_val;
+  int32_t retry_count;
+  int32_t buffer_size;
+  int32_t compression_level;
+  int32_t encryption_level;
+  int32_t checksum_type;
   
   // 获取扩展安全参数
-  security_params = *(undefined8 *)(security_config + 0x44);
-  timeout_val = *(undefined4 *)(security_config + 0x24);
-  retry_count = *(undefined4 *)(security_config + 0x28);
-  buffer_size = *(undefined4 *)(security_config + 0x2c);
-  compression_level = *(undefined4 *)(security_config + 0x30);
-  integrity_key = *(undefined4 *)(security_config + 0x4c);
-  signature_flag = *(undefined1 *)(security_config + 0x50);
-  connection_info = *(undefined8 *)(security_config + 0x14);
-  protocol_info = *(undefined8 *)(security_config + 0x1c);
-  encryption_level = *(undefined4 *)(security_config + 0x34);
-  checksum_type = *(undefined4 *)(security_config + 0x38);
+  security_params = *(uint64_t *)(security_config + 0x44);
+  timeout_val = *(int32_t *)(security_config + 0x24);
+  retry_count = *(int32_t *)(security_config + 0x28);
+  buffer_size = *(int32_t *)(security_config + 0x2c);
+  compression_level = *(int32_t *)(security_config + 0x30);
+  integrity_key = *(int32_t *)(security_config + 0x4c);
+  signature_flag = *(int8_t *)(security_config + 0x50);
+  connection_info = *(uint64_t *)(security_config + 0x14);
+  protocol_info = *(uint64_t *)(security_config + 0x1c);
+  encryption_level = *(int32_t *)(security_config + 0x34);
+  checksum_type = *(int32_t *)(security_config + 0x38);
   
   // 初始化安全处理
-  bytes_processed = apply_checksum(data_ptr, data_size, *(undefined4 *)(security_config + 0x10));
+  bytes_processed = apply_checksum(data_ptr, data_size, *(int32_t *)(security_config + 0x10));
   bytes_secured = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
   bytes_processed = bytes_processed + bytes_secured;
   
@@ -938,15 +938,15 @@ int process_extended_security_validation(longlong security_config, longlong data
 int process_simple_encryption_validation(longlong encryption_config, longlong data_ptr, int data_size)
 
 {
-  undefined4 encryption_key;
+  int32_t encryption_key;
   int bytes_processed;
   int bytes_encrypted;
   
   // 获取加密密钥
-  encryption_key = *(undefined4 *)(encryption_config + 0x14);
+  encryption_key = *(int32_t *)(encryption_config + 0x14);
   
   // 应用加密处理
-  bytes_processed = apply_checksum(data_ptr, data_size, *(undefined4 *)(encryption_config + 0x10));
+  bytes_processed = apply_checksum(data_ptr, data_size, *(int32_t *)(encryption_config + 0x10));
   bytes_encrypted = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
   bytes_processed = bytes_processed + bytes_encrypted;
   
@@ -964,16 +964,16 @@ int process_simple_encryption_validation(longlong encryption_config, longlong da
 int process_secure_connection_validation(longlong connection_config, longlong data_ptr, int data_size)
 
 {
-  undefined4 encoding_key;
-  undefined1 signature_flag;
+  int32_t encoding_key;
+  int8_t signature_flag;
   int bytes_processed;
   int bytes_validated;
-  undefined8 connection_params;
+  uint64_t connection_params;
   
   // 获取连接参数
-  connection_params = *(undefined8 *)(connection_config + 0x10);
-  signature_flag = *(undefined1 *)(connection_config + 0x1c);
-  encoding_key = *(undefined4 *)(connection_config + 0x18);
+  connection_params = *(uint64_t *)(connection_config + 0x10);
+  signature_flag = *(int8_t *)(connection_config + 0x1c);
+  encoding_key = *(int32_t *)(connection_config + 0x18);
   
   // 应用连接参数
   bytes_processed = apply_encryption_params(data_ptr, data_size, &connection_params);
@@ -1002,14 +1002,14 @@ int process_secure_connection_validation(longlong connection_config, longlong da
 int process_extended_connection_validation(longlong connection_config, longlong data_ptr, int data_size)
 
 {
-  undefined1 signature_flag;
+  int8_t signature_flag;
   int bytes_processed;
   int bytes_validated;
-  undefined8 connection_params;
+  uint64_t connection_params;
   
   // 获取连接参数
-  connection_params = *(undefined8 *)(connection_config + 0x10);
-  signature_flag = *(undefined1 *)(connection_config + 0x1c);
+  connection_params = *(uint64_t *)(connection_config + 0x10);
+  signature_flag = *(int8_t *)(connection_config + 0x1c);
   
   // 应用连接参数
   bytes_processed = apply_encryption_params(data_ptr, data_size, &connection_params);
@@ -1038,14 +1038,14 @@ int process_extended_connection_validation(longlong connection_config, longlong 
 int process_data_stream_validation(longlong stream_config, longlong data_ptr, int data_size)
 
 {
-  undefined4 stream_key;
-  undefined1 signature_flag;
+  int32_t stream_key;
+  int8_t signature_flag;
   int bytes_processed;
   int bytes_streamed;
   
   // 获取流参数
-  signature_flag = *(undefined1 *)(stream_config + 0x14);
-  stream_key = *(undefined4 *)(stream_config + 0x10);
+  signature_flag = *(int8_t *)(stream_config + 0x14);
+  stream_key = *(int32_t *)(stream_config + 0x10);
   
   // 处理流数据
   bytes_processed = process_checksum_data(data_ptr, data_size, stream_config + 0x20);
@@ -1074,12 +1074,12 @@ int process_data_stream_validation(longlong stream_config, longlong data_ptr, in
 int process_extended_stream_validation(longlong stream_config, longlong data_ptr, int data_size)
 
 {
-  undefined1 signature_flag;
+  int8_t signature_flag;
   int bytes_processed;
   int bytes_streamed;
   
   // 获取流参数
-  signature_flag = *(undefined1 *)(stream_config + 0x14);
+  signature_flag = *(int8_t *)(stream_config + 0x14);
   
   // 处理初始流数据
   bytes_processed = process_checksum_data(data_ptr, data_size, stream_config + 0x20);
@@ -1103,15 +1103,15 @@ int process_extended_stream_validation(longlong stream_config, longlong data_ptr
 
 
 
-// 函数: void send_basic_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
+// 函数: void send_basic_network_packet(longlong connection_info, uint64_t packet_data, int32_t packet_size)
 // 发送基础网络数据包
 // 参数: connection_info - 连接信息, packet_data - 数据包数据, packet_size - 数据包大小
 // 功能: 发送基础网络数据包，使用连接信息和数据包参数
-void send_basic_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
+void send_basic_network_packet(longlong connection_info, uint64_t packet_data, int32_t packet_size)
 
 {
-  send_basic_packet(packet_data, packet_size, &BASIC_PACKET_CONFIG, *(undefined4 *)(connection_info + 0x10),
-                *(undefined4 *)(connection_info + 0x18));
+  send_basic_packet(packet_data, packet_size, &BASIC_PACKET_CONFIG, *(int32_t *)(connection_info + 0x10),
+                *(int32_t *)(connection_info + 0x18));
   return;
 }
 
@@ -1119,15 +1119,15 @@ void send_basic_network_packet(longlong connection_info, undefined8 packet_data,
 
 
 
-// 函数: void send_extended_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
+// 函数: void send_extended_network_packet(longlong connection_info, uint64_t packet_data, int32_t packet_size)
 // 发送扩展网络数据包
 // 参数: connection_info - 连接信息, packet_data - 数据包数据, packet_size - 数据包大小
 // 功能: 发送扩展网络数据包，使用三重连接参数
-void send_extended_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
+void send_extended_network_packet(longlong connection_info, uint64_t packet_data, int32_t packet_size)
 
 {
-  send_extended_packet(packet_data, packet_size, &EXTENDED_PACKET_CONFIG, *(undefined4 *)(connection_info + 0x10),
-                *(undefined4 *)(connection_info + 0x18), *(undefined4 *)(connection_info + 0x1c));
+  send_extended_packet(packet_data, packet_size, &EXTENDED_PACKET_CONFIG, *(int32_t *)(connection_info + 0x10),
+                *(int32_t *)(connection_info + 0x18), *(int32_t *)(connection_info + 0x1c));
   return;
 }
 
@@ -1140,25 +1140,25 @@ void send_extended_network_packet(longlong connection_info, undefined8 packet_da
 int process_comprehensive_data_validation(longlong comprehensive_config, longlong data_ptr, int data_size)
 
 {
-  undefined4 final_key;
-  undefined4 tertiary_key;
-  undefined4 secondary_key;
-  undefined4 primary_key;
+  int32_t final_key;
+  int32_t tertiary_key;
+  int32_t secondary_key;
+  int32_t primary_key;
   int bytes_processed;
   int bytes_validated;
-  undefined4 padding_param1;
-  undefined4 padding_param2;
-  undefined4 padding_param3;
-  undefined4 padding_param4;
+  int32_t padding_param1;
+  int32_t padding_param2;
+  int32_t padding_param3;
+  int32_t padding_param4;
   
   // 获取综合验证参数
-  padding_param1 = *(undefined4 *)(comprehensive_config + 0x1c);
-  padding_param2 = *(undefined4 *)(comprehensive_config + 0x20);
-  padding_param3 = *(undefined4 *)(comprehensive_config + 0x24);
-  padding_param4 = *(undefined4 *)(comprehensive_config + 0x28);
-  final_key = *(undefined4 *)(comprehensive_config + 0x2c);
-  tertiary_key = *(undefined4 *)(comprehensive_config + 0x18);
-  primary_key = *(undefined4 *)(comprehensive_config + 0x10);
+  padding_param1 = *(int32_t *)(comprehensive_config + 0x1c);
+  padding_param2 = *(int32_t *)(comprehensive_config + 0x20);
+  padding_param3 = *(int32_t *)(comprehensive_config + 0x24);
+  padding_param4 = *(int32_t *)(comprehensive_config + 0x28);
+  final_key = *(int32_t *)(comprehensive_config + 0x2c);
+  tertiary_key = *(int32_t *)(comprehensive_config + 0x18);
+  primary_key = *(int32_t *)(comprehensive_config + 0x10);
   
   // 处理初始数据
   bytes_processed = process_checksum_data(data_ptr, data_size, &COMPREHENSIVE_DATA_HANDLER);
@@ -1198,15 +1198,15 @@ int process_comprehensive_data_validation(longlong comprehensive_config, longlon
 
 
 
-// 函数: void send_alternate_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
+// 函数: void send_alternate_network_packet(longlong connection_info, uint64_t packet_data, int32_t packet_size)
 // 发送备用网络数据包
 // 参数: connection_info - 连接信息, packet_data - 数据包数据, packet_size - 数据包大小
 // 功能: 发送备用网络数据包，使用备用连接参数
-void send_alternate_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
+void send_alternate_network_packet(longlong connection_info, uint64_t packet_data, int32_t packet_size)
 
 {
-  send_basic_packet(packet_data, packet_size, &ALTERNATE_PACKET_CONFIG, *(undefined4 *)(connection_info + 0x10),
-                *(undefined4 *)(connection_info + 0x18));
+  send_basic_packet(packet_data, packet_size, &ALTERNATE_PACKET_CONFIG, *(int32_t *)(connection_info + 0x10),
+                *(int32_t *)(connection_info + 0x18));
   return;
 }
 
@@ -1214,15 +1214,15 @@ void send_alternate_network_packet(longlong connection_info, undefined8 packet_d
 
 
 
-// 函数: void send_secondary_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
+// 函数: void send_secondary_network_packet(longlong connection_info, uint64_t packet_data, int32_t packet_size)
 // 发送次要网络数据包
 // 参数: connection_info - 连接信息, packet_data - 数据包数据, packet_size - 数据包大小
 // 功能: 发送次要网络数据包，使用次要连接参数
-void send_secondary_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
+void send_secondary_network_packet(longlong connection_info, uint64_t packet_data, int32_t packet_size)
 
 {
-  send_extended_packet(packet_data, packet_size, &SECONDARY_PACKET_CONFIG, *(undefined4 *)(connection_info + 0x10),
-                *(undefined4 *)(connection_info + 0x18), *(undefined4 *)(connection_info + 0x1c));
+  send_extended_packet(packet_data, packet_size, &SECONDARY_PACKET_CONFIG, *(int32_t *)(connection_info + 0x10),
+                *(int32_t *)(connection_info + 0x18), *(int32_t *)(connection_info + 0x1c));
   return;
 }
 
@@ -1235,25 +1235,25 @@ void send_secondary_network_packet(longlong connection_info, undefined8 packet_d
 int process_alternate_comprehensive_validation(longlong alternate_config, longlong data_ptr, int data_size)
 
 {
-  undefined4 final_key;
-  undefined4 tertiary_key;
-  undefined4 secondary_key;
-  undefined4 primary_key;
+  int32_t final_key;
+  int32_t tertiary_key;
+  int32_t secondary_key;
+  int32_t primary_key;
   int bytes_processed;
   int bytes_validated;
-  undefined4 padding_param1;
-  undefined4 padding_param2;
-  undefined4 padding_param3;
-  undefined4 padding_param4;
+  int32_t padding_param1;
+  int32_t padding_param2;
+  int32_t padding_param3;
+  int32_t padding_param4;
   
   // 获取备用验证参数
-  padding_param1 = *(undefined4 *)(alternate_config + 0x1c);
-  padding_param2 = *(undefined4 *)(alternate_config + 0x20);
-  padding_param3 = *(undefined4 *)(alternate_config + 0x24);
-  padding_param4 = *(undefined4 *)(alternate_config + 0x28);
-  final_key = *(undefined4 *)(alternate_config + 0x2c);
-  tertiary_key = *(undefined4 *)(alternate_config + 0x18);
-  primary_key = *(undefined4 *)(alternate_config + 0x10);
+  padding_param1 = *(int32_t *)(alternate_config + 0x1c);
+  padding_param2 = *(int32_t *)(alternate_config + 0x20);
+  padding_param3 = *(int32_t *)(alternate_config + 0x24);
+  padding_param4 = *(int32_t *)(alternate_config + 0x28);
+  final_key = *(int32_t *)(alternate_config + 0x2c);
+  tertiary_key = *(int32_t *)(alternate_config + 0x18);
+  primary_key = *(int32_t *)(alternate_config + 0x10);
   
   // 处理备用数据
   bytes_processed = process_checksum_data(data_ptr, data_size, &ALTERNATE_DATA_HANDLER);
@@ -1293,15 +1293,15 @@ int process_alternate_comprehensive_validation(longlong alternate_config, longlo
 
 
 
-// 函数: void send_primary_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
+// 函数: void send_primary_network_packet(longlong connection_info, uint64_t packet_data, int32_t packet_size)
 // 发送主要网络数据包
 // 参数: connection_info - 连接信息, packet_data - 数据包数据, packet_size - 数据包大小
 // 功能: 发送主要网络数据包，使用主要连接参数
-void send_primary_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
+void send_primary_network_packet(longlong connection_info, uint64_t packet_data, int32_t packet_size)
 
 {
-  send_basic_packet(packet_data, packet_size, &PRIMARY_PACKET_CONFIG, *(undefined4 *)(connection_info + 0x10),
-                *(undefined4 *)(connection_info + 0x18));
+  send_basic_packet(packet_data, packet_size, &PRIMARY_PACKET_CONFIG, *(int32_t *)(connection_info + 0x10),
+                *(int32_t *)(connection_info + 0x18));
   return;
 }
 
@@ -1309,15 +1309,15 @@ void send_primary_network_packet(longlong connection_info, undefined8 packet_dat
 
 
 
-// 函数: void send_urgent_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
+// 函数: void send_urgent_network_packet(longlong connection_info, uint64_t packet_data, int32_t packet_size)
 // 发送紧急网络数据包
 // 参数: connection_info - 连接信息, packet_data - 数据包数据, packet_size - 数据包大小
 // 功能: 发送紧急网络数据包，使用紧急连接参数
-void send_urgent_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
+void send_urgent_network_packet(longlong connection_info, uint64_t packet_data, int32_t packet_size)
 
 {
-  send_basic_packet(packet_data, packet_size, &URGENT_PACKET_CONFIG, *(undefined4 *)(connection_info + 0x10),
-                *(undefined4 *)(connection_info + 0x18));
+  send_basic_packet(packet_data, packet_size, &URGENT_PACKET_CONFIG, *(int32_t *)(connection_info + 0x10),
+                *(int32_t *)(connection_info + 0x18));
   return;
 }
 
@@ -1325,15 +1325,15 @@ void send_urgent_network_packet(longlong connection_info, undefined8 packet_data
 
 
 
-// 函数: void send_final_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
+// 函数: void send_final_network_packet(longlong connection_info, uint64_t packet_data, int32_t packet_size)
 // 发送最终网络数据包
 // 参数: connection_info - 连接信息, packet_data - 数据包数据, packet_size - 数据包大小
 // 功能: 发送最终网络数据包，使用最终连接参数
-void send_final_network_packet(longlong connection_info, undefined8 packet_data, undefined4 packet_size)
+void send_final_network_packet(longlong connection_info, uint64_t packet_data, int32_t packet_size)
 
 {
-  send_basic_packet(packet_data, packet_size, &FINAL_PACKET_CONFIG, *(undefined4 *)(connection_info + 0x10),
-                *(undefined4 *)(connection_info + 0x18));
+  send_basic_packet(packet_data, packet_size, &FINAL_PACKET_CONFIG, *(int32_t *)(connection_info + 0x10),
+                *(int32_t *)(connection_info + 0x18));
   return;
 }
 

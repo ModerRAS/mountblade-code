@@ -12,29 +12,29 @@
 #define CONDITION_DESTROY_TIMEOUT 0x2a
 
 // 全局变量引用
-extern undefined8 UNK_180a10098;    // 虚函数表指针
-extern undefined8 UNK_18098bcb0;    // 线程局部存储
-extern undefined8 UNK_1809fdc18;    // 内存管理器
-extern undefined8 UNK_180a3c3e0;    // 线程调度器
+extern uint64_t UNK_180a10098;    // 虚函数表指针
+extern uint64_t UNK_18098bcb0;    // 线程局部存储
+extern uint64_t UNK_1809fdc18;    // 内存管理器
+extern uint64_t UNK_180a3c3e0;    // 线程调度器
 extern longlong _DAT_180c8ed18;     // 内存池标识符
 extern longlong _DAT_180c82868;     // 同步对象标识符
 extern longlong _DAT_180c86938;     // 锁管理器
 extern longlong __tls_index;        // 线程局部存储索引
-extern undefined8 ThreadLocalStoragePointer; // 线程局部存储指针
+extern uint64_t ThreadLocalStoragePointer; // 线程局部存储指针
 
 // 函数声明
-void FUN_18020f940(undefined8 param_1);  // 线程启动函数
+void FUN_18020f940(uint64_t param_1);  // 线程启动函数
 void FUN_18064e900(void);               // 错误处理函数
 void FUN_18020f530(void);               // 清理函数
 void FUN_1800466d0(longlong param_1);    // 初始化函数
-void FUN_18005ee30(longlong param_1, int param_2, undefined8 *param_3, undefined4 param_4, longlong param_5); // 内存分配
+void FUN_18005ee30(longlong param_1, int param_2, uint64_t *param_3, int32_t param_4, longlong param_5); // 内存分配
 void FUN_180060fc0(longlong param_1, longlong *param_2); // 任务队列操作
-void FUN_1806279c0(undefined8 *param_1, longlong *param_2, undefined8 param_3, undefined8 param_4, undefined8 param_5); // 线程创建
-void FUN_180623fd0(longlong param_1, undefined8 *param_2); // 线程设置
+void FUN_1806279c0(uint64_t *param_1, longlong *param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5); // 线程创建
+void FUN_180623fd0(longlong param_1, uint64_t *param_2); // 线程设置
 void FUN_18062b1e0(longlong param_1, int param_2, int param_3, int param_4, longlong param_5); // 对象创建
 void FUN_1808fc418(int param_1);        // 内存分配
-void FUN_180060e40(undefined8 param_1, longlong param_2, longlong **param_3); // 任务获取
-void FUN_18005e110(undefined8 param_1, longlong ***param_2); // 任务处理
+void FUN_180060e40(uint64_t param_1, longlong param_2, longlong **param_3); // 任务获取
+void FUN_18005e110(uint64_t param_1, longlong ***param_2); // 任务处理
 void FUN_180060c60(longlong *param_1, longlong **param_2, longlong *param_3, longlong *param_4, longlong param_5); // 任务调度
 void FUN_18020ee40(void);               // 事件检查
 void FUN_180049830(longlong *param_1);  // 对象初始化
@@ -43,11 +43,11 @@ void FUN_1808fc050(longlong param_1);   // 栈清理
 
 // 线程控制块结构体
 typedef struct {
-    undefined8 *vtable_ptr;          // 虚函数表指针 (0x00)
-    undefined8 thread_local_storage; // 线程局部存储 (0x08)
-    undefined8 *memory_manager;      // 内存管理器 (0x10)
-    undefined8 *data_ptr;            // 数据指针 (0x18)
-    undefined8 *next_ptr;           // 下一个指针 (0x20)
+    uint64_t *vtable_ptr;          // 虚函数表指针 (0x00)
+    uint64_t thread_local_storage; // 线程局部存储 (0x08)
+    uint64_t *memory_manager;      // 内存管理器 (0x10)
+    uint64_t *data_ptr;            // 数据指针 (0x18)
+    uint64_t *next_ptr;           // 下一个指针 (0x20)
     int reference_count;             // 引用计数 (0x28)
     int flags;                       // 标志位 (0x2C)
     longlong thread_id;              // 线程ID (0x30)
@@ -58,7 +58,7 @@ typedef struct {
     longlong *queue_tail;            // 队列尾 (0x50)
     int queue_size;                  // 队列大小 (0x58)
     int active_threads;              // 活动线程数 (0x5C)
-    undefined8 *sync_object;         // 同步对象 (0x60)
+    uint64_t *sync_object;         // 同步对象 (0x60)
     longlong *task_pool;             // 任务池 (0x68)
     int pool_size;                   // 池大小 (0x70)
     int pool_capacity;               // 池容量 (0x74)
@@ -119,8 +119,8 @@ typedef struct {
 
 // 任务结构体
 typedef struct {
-    undefined8 *task_function;       // 任务函数指针
-    undefined8 *task_data;           // 任务数据
+    uint64_t *task_function;       // 任务函数指针
+    uint64_t *task_data;           // 任务数据
     longlong task_id;                 // 任务ID
     int task_priority;               // 任务优先级
     int task_status;                 // 任务状态
@@ -130,7 +130,7 @@ typedef struct {
     longlong context_size;           // 上下文大小
     int context_flags;               // 上下文标志
     int reference_count;             // 引用计数
-    undefined8 *sync_object;         // 同步对象
+    uint64_t *sync_object;         // 同步对象
     longlong creation_time;           // 创建时间
     longlong execution_time;          // 执行时间
     longlong completion_time;        // 完成时间
@@ -140,8 +140,8 @@ typedef struct {
 
 // 同步对象结构体
 typedef struct {
-    undefined8 *sync_function;       // 同步函数指针
-    undefined8 *sync_data;           // 同步数据
+    uint64_t *sync_function;       // 同步函数指针
+    uint64_t *sync_data;           // 同步数据
     longlong sync_id;                 // 同步ID
     int sync_type;                   // 同步类型
     int sync_status;                 // 同步状态
@@ -151,7 +151,7 @@ typedef struct {
     longlong context_size;           // 上下文大小
     int context_flags;               // 上下文标志
     int reference_count;             // 引用计数
-    undefined8 *wait_object;          // 等待对象
+    uint64_t *wait_object;          // 等待对象
     longlong wait_timeout;           // 等待超时
     longlong signal_count;           // 信号计数
     char sync_mode;                  // 同步模式
@@ -166,28 +166,28 @@ typedef struct {
  * @param thread_id 线程ID
  */
 void initialize_thread_control_block(ThreadControlBlock *thread_block, longlong context_size, 
-                                   undefined8 *memory_pool, longlong thread_id)
+                                   uint64_t *memory_pool, longlong thread_id)
 {
     int *piVar1;
     int iVar2;
     longlong lVar3;
     longlong lVar4;
-    undefined8 *puStackX_10;
-    undefined8 uStackX_18;
-    undefined8 *puStackX_20;
+    uint64_t *puStackX_10;
+    uint64_t uStackX_18;
+    uint64_t *puStackX_20;
     
     // 初始化虚函数表
     thread_block->vtable_ptr = &UNK_180a10098;
-    puStackX_10 = (undefined8 *)((longlong)thread_block + 0x10);
+    puStackX_10 = (uint64_t *)((longlong)thread_block + 0x10);
     *puStackX_10 = &UNK_18098bcb0;
     lVar4 = 0;
     thread_block->data_ptr = 0;
-    *(undefined4 *)((longlong)thread_block + 0x20) = 0;
+    *(int32_t *)((longlong)thread_block + 0x20) = 0;
     *puStackX_10 = &UNK_1809fdc18;
-    thread_block->data_ptr = (undefined8 *)((longlong)thread_block + 0x28);
-    *(undefined4 *)((longlong)thread_block + 0x20) = 0;
-    *(undefined1 *)((longlong)thread_block + 0x28) = 0;
-    *(undefined4 *)((longlong)thread_block + 0x48) = 0;
+    thread_block->data_ptr = (uint64_t *)((longlong)thread_block + 0x28);
+    *(int32_t *)((longlong)thread_block + 0x20) = 0;
+    *(int8_t *)((longlong)thread_block + 0x28) = 0;
+    *(int32_t *)((longlong)thread_block + 0x48) = 0;
     thread_block->context_size = context_size;
     thread_block->data_capacity = 0;
     lVar3 = FUN_18005ee30(context_size, 1, &puStackX_10, context_size, DEFAULT_TIMEOUT);
@@ -196,9 +196,9 @@ void initialize_thread_control_block(ThreadControlBlock *thread_block, longlong 
     }
     thread_block->data_capacity = lVar4;
     if (lVar4 != 0) {
-        *(undefined8 **)(lVar4 + 0x10) = (undefined8 *)((longlong)thread_block + 0xe0);
+        *(uint64_t **)(lVar4 + 0x10) = (uint64_t *)((longlong)thread_block + 0xe0);
     }
-    *(undefined4 *)((longlong)thread_block + 0x80) = 0;
+    *(int32_t *)((longlong)thread_block + 0x80) = 0;
     thread_block->context_reference_count = 0;
     thread_block->context_flags = 0;
     LOCK();
@@ -207,8 +207,8 @@ void initialize_thread_control_block(ThreadControlBlock *thread_block, longlong 
     *piVar1 = *piVar1 + 1;
     UNLOCK();
     *(int *)((longlong)thread_block + 0x78) = iVar2;
-    *(undefined4 *)((longlong)thread_block + 0x7c) = 0xffffffff;
-    puStackX_20 = (undefined8 *)((longlong)thread_block + 0x98);
+    *(int32_t *)((longlong)thread_block + 0x7c) = 0xffffffff;
+    puStackX_20 = (uint64_t *)((longlong)thread_block + 0x98);
     memset(puStackX_20, 0, MUTEX_DESTROY_TIMEOUT);
 }
 
@@ -218,7 +218,7 @@ void initialize_thread_control_block(ThreadControlBlock *thread_block, longlong 
  * @param flags 释放标志
  * @return 释放后的线程句柄
  */
-undefined8 release_thread_resources(undefined8 thread_handle, ulonglong flags)
+uint64_t release_thread_resources(uint64_t thread_handle, ulonglong flags)
 {
     FUN_18020e6c0();
     if ((flags & 1) != 0) {
@@ -236,11 +236,11 @@ void cleanup_task_queue(longlong *task_queue)
     longlong lVar1;
     longlong *plVar2;
     longlong *plVar3;
-    undefined8 *puVar4;
+    uint64_t *puVar4;
     
     plVar2 = (longlong *)task_queue[2];
     plVar3 = (longlong *)task_queue[4];
-    puVar4 = (undefined8 *)task_queue[5];
+    puVar4 = (uint64_t *)task_queue[5];
     if (plVar2 != (longlong *)task_queue[6]) {
         do {
             if ((longlong *)*plVar2 != (longlong *)0x0) {
@@ -279,11 +279,11 @@ void cleanup_sync_queue(longlong *sync_queue)
     longlong lVar1;
     longlong *plVar2;
     longlong *plVar3;
-    undefined8 *puVar4;
+    uint64_t *puVar4;
     
     plVar2 = (longlong *)sync_queue[2];
     plVar3 = (longlong *)sync_queue[4];
-    puVar4 = (undefined8 *)sync_queue[5];
+    puVar4 = (uint64_t *)sync_queue[5];
     if (plVar2 != (longlong *)sync_queue[6]) {
         do {
             if ((longlong *)*plVar2 != (longlong *)0x0) {
@@ -322,11 +322,11 @@ void cleanup_memory_pool(longlong *memory_pool)
     longlong lVar1;
     longlong *plVar2;
     longlong *plVar3;
-    undefined8 *puVar4;
+    uint64_t *puVar4;
     
     plVar2 = (longlong *)memory_pool[2];
     plVar3 = (longlong *)memory_pool[4];
-    puVar4 = (undefined8 *)memory_pool[5];
+    puVar4 = (uint64_t *)memory_pool[5];
     if (plVar2 != (longlong *)memory_pool[6]) {
         do {
             if ((longlong *)*plVar2 != (longlong *)0x0) {
@@ -365,9 +365,9 @@ void cleanup_memory_pool(longlong *memory_pool)
  * @param task_id 任务ID
  * @param parent_task 父任务
  */
-void create_task_control_block(undefined8 *task_block, undefined8 context_size, 
-                              undefined8 priority, undefined4 flags,
-                              longlong task_id, undefined8 *parent_task)
+void create_task_control_block(uint64_t *task_block, uint64_t context_size, 
+                              uint64_t priority, int32_t flags,
+                              longlong task_id, uint64_t *parent_task)
 {
     int *piVar1;
     int iVar2;
@@ -380,12 +380,12 @@ void create_task_control_block(undefined8 *task_block, undefined8 context_size,
     task_block[2] = &UNK_18098bcb0;
     lVar5 = 0;
     task_block[3] = 0;
-    *(undefined4 *)(task_block + 4) = 0;
+    *(int32_t *)(task_block + 4) = 0;
     task_block[2] = &UNK_1809fdc18;
     task_block[3] = task_block + 5;
-    *(undefined4 *)(task_block + 4) = 0;
-    *(undefined1 *)(task_block + 5) = 0;
-    *(undefined4 *)(task_block + 9) = 0;
+    *(int32_t *)(task_block + 4) = 0;
+    *(int8_t *)(task_block + 5) = 0;
+    *(int32_t *)(task_block + 9) = 0;
     task_block[0xc] = task_id;
     task_block[0xd] = (longlong)parent_task;
     lVar4 = FUN_18005ee30(task_id, 1, &task_id, flags, DEFAULT_TIMEOUT);
@@ -394,9 +394,9 @@ void create_task_control_block(undefined8 *task_block, undefined8 context_size,
     }
     task_block[0xe] = lVar5;
     if (lVar5 != 0) {
-        *(undefined8 **)(lVar5 + 0x10) = task_block + 0xe;
+        *(uint64_t **)(lVar5 + 0x10) = task_block + 0xe;
     }
-    *(undefined4 *)(task_block + 0x10) = 0;
+    *(int32_t *)(task_block + 0x10) = 0;
     task_block[0x11] = 0;
     task_block[0x12] = 0;
     LOCK();
@@ -405,7 +405,7 @@ void create_task_control_block(undefined8 *task_block, undefined8 context_size,
     *piVar1 = *piVar1 + 1;
     UNLOCK();
     *(int *)(task_block + 0xf) = iVar2;
-    *(undefined4 *)((longlong)task_block + 0x7c) = 0xffffffff;
+    *(int32_t *)((longlong)task_block + 0x7c) = 0xffffffff;
     parent_task = task_block + 0x13;
     memset(parent_task, 0, MUTEX_DESTROY_TIMEOUT);
 }
@@ -417,10 +417,10 @@ void create_task_control_block(undefined8 *task_block, undefined8 context_size,
  * @param param3 参数3
  * @param param4 参数4
  */
-void destroy_task_manager(undefined8 *task_manager, undefined8 param2, undefined8 param3, undefined8 param4)
+void destroy_task_manager(uint64_t *task_manager, uint64_t param2, uint64_t param3, uint64_t param4)
 {
     char cVar1;
-    undefined8 uVar2;
+    uint64_t uVar2;
     
     uVar2 = DEFAULT_TIMEOUT;
     *task_manager = &UNK_180a10098;
@@ -435,8 +435,8 @@ void destroy_task_manager(undefined8 *task_manager, undefined8 param2, undefined
         _Mtx_destroy_in_situ();
         FUN_18020f530();
         if (task_manager[0xe] != 0) {
-            *(undefined8 *)(task_manager[0xe] + 0x10) = 0;
-            *(undefined1 *)(task_manager[0xe] + 8) = 1;
+            *(uint64_t *)(task_manager[0xe] + 0x10) = 0;
+            *(int8_t *)(task_manager[0xe] + 8) = 1;
         }
         task_manager[2] = &UNK_18098bcb0;
         return;
@@ -453,16 +453,16 @@ void destroy_task_manager(undefined8 *task_manager, undefined8 param2, undefined
  */
 void wait_for_thread_completion(longlong thread_handle)
 {
-    undefined8 *puVar1;
+    uint64_t *puVar1;
     int iVar2;
-    undefined4 uStack_18;
-    undefined4 uStack_14;
-    undefined4 uStack_10;
-    undefined4 uStack_c;
+    int32_t uStack_18;
+    int32_t uStack_14;
+    int32_t uStack_10;
+    int32_t uStack_c;
     
-    *(undefined1 *)(thread_handle + 0x58) = 0;
+    *(int8_t *)(thread_handle + 0x58) = 0;
     FUN_1800466d0(thread_handle + 0x150);
-    puVar1 = *(undefined8 **)(thread_handle + 8);
+    puVar1 = *(uint64_t **)(thread_handle + 8);
     if (*(int *)(puVar1 + 1) == 0) {
         __Throw_Cpp_error_std__YAXH_Z(1);
         if (*(int *)(puVar1 + 1) == 0) {
@@ -473,15 +473,15 @@ void wait_for_thread_completion(longlong thread_handle)
     if (*(int *)(puVar1 + 1) == iVar2) {
         __Throw_Cpp_error_std__YAXH_Z(5);
     }
-    uStack_18 = *(undefined4 *)puVar1;
-    uStack_14 = *(undefined4 *)((longlong)puVar1 + 4);
-    uStack_10 = *(undefined4 *)(puVar1 + 1);
-    uStack_c = *(undefined4 *)((longlong)puVar1 + 0xc);
+    uStack_18 = *(int32_t *)puVar1;
+    uStack_14 = *(int32_t *)((longlong)puVar1 + 4);
+    uStack_10 = *(int32_t *)(puVar1 + 1);
+    uStack_c = *(int32_t *)((longlong)puVar1 + 0xc);
     iVar2 = _Thrd_join(&uStack_18, 0);
     if (iVar2 != 0) {
         __Throw_Cpp_error_std__YAXH_Z(2);
     }
-    *(undefined4 *)(puVar1 + 1) = 0;
+    *(int32_t *)(puVar1 + 1) = 0;
     *puVar1 = 0;
 }
 
@@ -491,11 +491,11 @@ void wait_for_thread_completion(longlong thread_handle)
  */
 void start_thread_execution(longlong thread_handle)
 {
-    undefined8 uVar1;
+    uint64_t uVar1;
     int iVar2;
     longlong *plVar3;
     
-    *(undefined1 *)(thread_handle + 0x58) = 1;
+    *(int8_t *)(thread_handle + 0x58) = 1;
     uVar1 = FUN_18062b1e0(_DAT_180c8ed18, 0x10, 8, 3, DEFAULT_TIMEOUT);
     plVar3 = (longlong *)FUN_1808fc418(0x10);
     *plVar3 = thread_handle;
@@ -504,12 +504,12 @@ void start_thread_execution(longlong thread_handle)
     if (plVar3 != (longlong *)0x0) {
         free();
     }
-    *(undefined8 *)(thread_handle + 8) = uVar1;
+    *(uint64_t *)(thread_handle + 8) = uVar1;
     iVar2 = _Mtx_lock(thread_handle + 0x198);
     if (iVar2 != 0) {
         __Throw_C_error_std__YAXH_Z(iVar2);
     }
-    *(undefined1 *)(thread_handle + 0x1e8) = 0;
+    *(int8_t *)(thread_handle + 0x1e8) = 0;
     iVar2 = _Mtx_unlock(thread_handle + 0x198);
     if (iVar2 != 0) {
         __Throw_C_error_std__YAXH_Z(iVar2);
@@ -523,13 +523,13 @@ void start_thread_execution(longlong thread_handle)
  * @param param3 参数3
  * @param param4 参数4
  */
-void assign_task_to_thread(longlong thread_handle, longlong *task, undefined8 param3, undefined8 param4)
+void assign_task_to_thread(longlong thread_handle, longlong *task, uint64_t param3, uint64_t param4)
 {
-    undefined8 *puVar1;
+    uint64_t *puVar1;
     int iVar2;
     longlong lVar3;
-    undefined8 uVar4;
-    undefined1 uVar5;
+    uint64_t uVar4;
+    int8_t uVar5;
     
     uVar4 = DEFAULT_TIMEOUT;
     lVar3 = thread_handle + 0xf0;
@@ -542,7 +542,7 @@ void assign_task_to_thread(longlong thread_handle, longlong *task, undefined8 pa
     LOCK();
     *(int *)(thread_handle + 0x140) = *(int *)(thread_handle + 0x140) + 1;
     UNLOCK();
-    puVar1 = *(undefined8 **)(thread_handle + 0x1f0);
+    puVar1 = *(uint64_t **)(thread_handle + 0x1f0);
     do {
         iVar2 = ReleaseSemaphore(*puVar1, 1, 0, param4, uVar4, lVar3, uVar5);
     } while (iVar2 == 0);
@@ -563,14 +563,14 @@ void assign_task_to_thread(longlong thread_handle, longlong *task, undefined8 pa
  * @param param3 参数3
  * @param param4 参数4
  */
-void create_worker_thread(longlong *thread_block, undefined8 param2, undefined8 param3, undefined8 param4)
+void create_worker_thread(longlong *thread_block, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-    undefined4 uVar1;
+    int32_t uVar1;
     longlong lVar2;
-    undefined8 uVar3;
-    undefined *puStack_30;
+    uint64_t uVar3;
+    void *puStack_30;
     longlong lStack_28;
-    undefined4 uStack_18;
+    int32_t uStack_18;
     
     uVar3 = DEFAULT_TIMEOUT;
     lVar2 = GetCurrentThread();
@@ -598,9 +598,9 @@ void create_worker_thread(longlong *thread_block, undefined8 param2, undefined8 
     }
     SetThreadPriority(thread_block[8], uVar3);
     uVar1 = GetThreadId(thread_block[8]);
-    *(undefined4 *)(thread_block + 7) = uVar1;
+    *(int32_t *)(thread_block + 7) = uVar1;
     uVar1 = _Thrd_id();
-    *(undefined4 *)(thread_block + 9) = uVar1;
+    *(int32_t *)(thread_block + 9) = uVar1;
     ((void (*)(longlong *))(*(code **)(*thread_block + 0x10)))(thread_block);
 }
 
@@ -630,18 +630,18 @@ void execute_task_loop(longlong *task_queue)
  * @param param4 参数4
  * @return 处理结果
  */
-undefined8 process_task_request(longlong task_manager, undefined8 param2, undefined8 param3, undefined8 param4)
+uint64_t process_task_request(longlong task_manager, uint64_t param2, uint64_t param3, uint64_t param4)
 {
     longlong *plVar1;
     char cVar2;
-    undefined8 uVar3;
+    uint64_t uVar3;
     longlong *plStackX_8;
     longlong *plStackX_10;
     longlong **pplStackX_18;
     
     plStackX_8 = (longlong *)0x0;
-    WaitForSingleObject(**(undefined8 **)(task_manager + 0x1f0), 1, param3, param4, DEFAULT_TIMEOUT);
-    cVar2 = FUN_180060e40(*(undefined8 *)(task_manager + 0x60), task_manager + 0x78, &plStackX_8);
+    WaitForSingleObject(**(uint64_t **)(task_manager + 0x1f0), 1, param3, param4, DEFAULT_TIMEOUT);
+    cVar2 = FUN_180060e40(*(uint64_t *)(task_manager + 0x60), task_manager + 0x78, &plStackX_8);
     plVar1 = plStackX_8;
     uVar3 = _DAT_180c82868;
     if (cVar2 != '\0') {
@@ -670,7 +670,7 @@ LAB_18020eb6e:
  * @param force 强制标志
  * @return 调度结果
  */
-undefined8 execute_task_scheduling(longlong task_manager, char force)
+uint64_t execute_task_scheduling(longlong task_manager, char force)
 {
     longlong lVar1;
     longlong lVar2;
@@ -679,14 +679,14 @@ undefined8 execute_task_scheduling(longlong task_manager, char force)
     longlong *plVar5;
     longlong ****pppplVar6;
     longlong ****pppplVar7;
-    undefined8 uVar8;
+    uint64_t uVar8;
     longlong ***ppplStackX_18;
     longlong ***ppplStackX_20;
     longlong ***ppplStack_48;
     longlong ***ppplStack_40;
-    undefined8 uStack_38;
+    uint64_t uStack_38;
     longlong lStack_30;
-    undefined1 uStack_28;
+    int8_t uStack_28;
     
     uStack_38 = DEFAULT_TIMEOUT;
     ppplStackX_18 = (longlong ***)0x0;
@@ -697,7 +697,7 @@ undefined8 execute_task_scheduling(longlong task_manager, char force)
             uVar8 = 1;
             goto LAB_18020ed62;
         }
-        cVar3 = FUN_180060e40(*(undefined8 *)(task_manager + 0x60), task_manager + 0x78, &ppplStackX_18);
+        cVar3 = FUN_180060e40(*(uint64_t *)(task_manager + 0x60), task_manager + 0x78, &ppplStackX_18);
         pppplVar7 = (longlong ****)ppplStackX_18;
         uVar8 = _DAT_180c82868;
         if (cVar3 != '\0') {
@@ -747,7 +747,7 @@ undefined8 execute_task_scheduling(longlong task_manager, char force)
                 lVar2 = *plVar5;
                 *(longlong *)(task_manager + 0xb0) = lVar2;
                 *(longlong *)(task_manager + 0xb8) = lVar2 + 0x100;
-                *(undefined8 *)(task_manager + 0xa8) = *(undefined8 *)(task_manager + 0xb0);
+                *(uint64_t *)(task_manager + 0xa8) = *(uint64_t *)(task_manager + 0xb0);
             }
             else {
                 *(longlong **)(task_manager + 0xa8) = plVar5 + 1;
@@ -798,7 +798,7 @@ ulonglong check_task_events(longlong task_manager)
     ulonglong *puVar1;
     longlong lVar2;
     longlong lVar3;
-    undefined8 *puVar4;
+    uint64_t *puVar4;
     longlong lVar5;
     longlong *plVar6;
     bool bVar7;
@@ -822,10 +822,10 @@ ulonglong check_task_events(longlong task_manager)
     }
     plVar17 = (longlong *)0x0;
     plStackX_8 = (longlong *)0x0;
-    puVar4 = *(undefined8 **)(task_manager + 0x68);
+    puVar4 = *(uint64_t **)(task_manager + 0x68);
     plVar10 = plVar17;
     plVar6 = plStackX_18;
-    if (puVar4 != (undefined8 *)0x0) {
+    if (puVar4 != (uint64_t *)0x0) {
         plVar12 = (longlong *)*puVar4;
         plVar14 = plVar17;
         plVar15 = plVar17;
@@ -904,7 +904,7 @@ LAB_18020f107:
                         *plVar10 = *plVar10 + 1;
                         UNLOCK();
                         if (lVar3 == 0x1f) {
-                            *(undefined8 *)(lVar5 + 8) = 0;
+                            *(uint64_t *)(lVar5 + 8) = 0;
                             func_0x000180060c10(plVar12[10], lVar2);
                         }
                         bVar7 = true;
@@ -931,7 +931,7 @@ LAB_18020f107:
                                          *plVar10 - 1U) * 0x10);
                                 uVar11 = (ulonglong)((uint)uVar11 & 0x1f);
                                 plVar10 = *(longlong **)(lVar5 + uVar11 * 8);
-                                *(undefined8 *)(lVar5 + uVar11 * 8) = 0;
+                                *(uint64_t *)(lVar5 + uVar11 * 8) = 0;
                                 plStackX_8 = plVar10;
                                 plStackX_10 = plStackX_18;
                                 if (plStackX_18 != (longlong *)0x0) {
@@ -945,7 +945,7 @@ LAB_18020f107:
                                 if (plVar6 != (longlong *)0x0) {
                                     ((void (*)(void))(*(code **)(*plVar6 + 0x38)))(plVar6);
                                 }
-                                *(undefined1 *)((lVar5 - uVar11) + 0x12f) = 1;
+                                *(int8_t *)((lVar5 - uVar11) + 0x12f) = 1;
                                 bVar7 = true;
                                 goto LAB_18020f0e4;
                             }
@@ -988,18 +988,18 @@ LAB_18020f126:
  * 创建任务执行环境
  * @param context_ptr 上下文指针
  */
-void create_task_execution_environment(undefined8 *context_ptr)
+void create_task_execution_environment(uint64_t *context_ptr)
 {
     code *pcVar1;
     longlong *plVar2;
-    undefined1 auStack_f8 [32];
+    int8_t auStack_f8 [32];
     longlong *plStack_d8;
     longlong **pplStack_d0;
-    undefined8 uStack_c8;
+    uint64_t uStack_c8;
     longlong *plStack_c0;
     longlong alStack_b8 [9];
     longlong alStack_70 [10];
-    undefined1 uStack_20;
+    int8_t uStack_20;
     ulonglong uStack_18;
     
     uStack_c8 = DEFAULT_TIMEOUT;
@@ -1036,20 +1036,20 @@ void create_task_execution_environment(undefined8 *context_ptr)
  * @param force 强制标志
  * @return 处理结果
  */
-undefined8 process_task_completion(longlong task_manager, char force)
+uint64_t process_task_completion(longlong task_manager, char force)
 {
     char cVar1;
     int iVar2;
     longlong *plVar3;
     longlong *plVar4;
     longlong lVar5;
-    undefined8 uVar6;
+    uint64_t uVar6;
     longlong *plStackX_18;
     longlong *plStackX_20;
     
     plStackX_18 = (longlong *)0x0;
     if (force == '\0') {
-        cVar1 = FUN_180060e40(*(undefined8 *)(task_manager + 0x60), task_manager + 0x78, &plStackX_18);
+        cVar1 = FUN_180060e40(*(uint64_t *)(task_manager + 0x60), task_manager + 0x78, &plStackX_18);
         plVar4 = plStackX_18;
         uVar6 = _DAT_180c82868;
         if (cVar1 != '\0') {
@@ -1093,7 +1093,7 @@ undefined8 process_task_completion(longlong task_manager, char force)
                     lVar5 = *plVar3;
                     *(longlong *)(task_manager + 0xb0) = lVar5;
                     *(longlong *)(task_manager + 0xb8) = lVar5 + 0x100;
-                    *(undefined8 *)(task_manager + 0xa8) = *(undefined8 *)(task_manager + 0xb0);
+                    *(uint64_t *)(task_manager + 0xa8) = *(uint64_t *)(task_manager + 0xb0);
                 }
                 else {
                     *(longlong **)(task_manager + 0xa8) = plVar3 + 1;
@@ -1144,11 +1144,11 @@ void cleanup_task_manager_resources(longlong *task_manager)
     longlong lVar1;
     longlong *plVar2;
     longlong *plVar3;
-    undefined8 *puVar4;
+    uint64_t *puVar4;
     
     plVar2 = (longlong *)task_manager[2];
     plVar3 = (longlong *)task_manager[4];
-    puVar4 = (undefined8 *)task_manager[5];
+    puVar4 = (uint64_t *)task_manager[5];
     if (plVar2 != (longlong *)task_manager[6]) {
         do {
             if ((longlong *)*plVar2 != (longlong *)0x0) {
@@ -1185,16 +1185,16 @@ void cleanup_task_manager_resources(longlong *task_manager)
  * @param param3 参数3
  * @param param4 参数4
  */
-void start_thread_task(undefined8 thread_func, longlong *task_data, undefined8 param3, undefined8 param4)
+void start_thread_task(uint64_t thread_func, longlong *task_data, uint64_t param3, uint64_t param4)
 {
     int iVar1;
     int iVar2;
-    undefined8 uVar3;
-    undefined8 uVar4;
-    undefined8 uVar5;
-    undefined *puStack_30;
-    undefined8 uStack_28;
-    undefined8 uStack_20;
+    uint64_t uVar3;
+    uint64_t uVar4;
+    uint64_t uVar5;
+    void *puStack_30;
+    uint64_t uStack_28;
+    uint64_t uStack_20;
     char cStack_18;
     longlong lStack_10;
     

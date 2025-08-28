@@ -16,7 +16,7 @@ void FUN_1808f7cc0(longlong param_1)
 
 
 int FUN_1808f7ec0(int *param_1,short param_2,short param_3,short param_4,float *param_5,
-                 undefined8 param_6)
+                 uint64_t param_6)
 
 {
   ushort uVar1;
@@ -28,7 +28,7 @@ int FUN_1808f7ec0(int *param_1,short param_2,short param_3,short param_4,float *
   int iVar7;
   int iVar8;
   int iVar9;
-  undefined8 uVar10;
+  uint64_t uVar10;
   float fVar11;
   float fVar12;
   float fVar13;
@@ -213,7 +213,7 @@ ulonglong FUN_1808f7fdb(longlong param_1,float param_2,int param_3,int param_4)
   ulonglong unaff_RBP;
   int unaff_ESI;
   int unaff_EDI;
-  undefined8 uVar4;
+  uint64_t uVar4;
   int in_R10D;
   ulonglong uVar5;
   int in_R11D;
@@ -227,7 +227,7 @@ ulonglong FUN_1808f7fdb(longlong param_1,float param_2,int param_3,int param_4)
   float fVar10;
   float fVar11;
   float *in_stack_00000080;
-  undefined8 in_stack_00000088;
+  uint64_t in_stack_00000088;
   
   fVar6 = (float)unaff_EBX;
   fVar10 = (float)*(int *)(param_1 + 0x84) / fVar6;
@@ -313,33 +313,33 @@ LAB_1808f823c:
       goto LAB_1808f823c;
     }
   }
-  *(undefined8 *)(param_1 + 0x3c) = 0;
-  *(undefined8 *)(param_1 + 0x44) = 0;
+  *(uint64_t *)(param_1 + 0x3c) = 0;
+  *(uint64_t *)(param_1 + 0x44) = 0;
   *(int *)(param_1 + 0x4c) = (int)uVar4;
 LAB_1808f826b:
   *(short *)(param_1 + 0x92) = (short)uVar4;
-  *(undefined8 *)(param_1 + 0x6c) = 0;
-  *(undefined4 *)(param_1 + 0x74) = 0;
-  *(undefined8 *)(param_1 + 0x78) = 0;
-  *(undefined4 *)(param_1 + 0x80) = 0;
-  *(undefined8 *)(param_1 + 0x84) = 0;
-  *(undefined4 *)(param_1 + 0x8c) = 0;
+  *(uint64_t *)(param_1 + 0x6c) = 0;
+  *(int32_t *)(param_1 + 0x74) = 0;
+  *(uint64_t *)(param_1 + 0x78) = 0;
+  *(int32_t *)(param_1 + 0x80) = 0;
+  *(uint64_t *)(param_1 + 0x84) = 0;
+  *(int32_t *)(param_1 + 0x8c) = 0;
   return unaff_RBP & 0xffffffff;
 }
 
 
 
-undefined4 FUN_1808f829d(void)
+int32_t FUN_1808f829d(void)
 
 {
-  undefined4 unaff_EBP;
+  int32_t unaff_EBP;
   
   return unaff_EBP;
 }
 
 
 
-void NVSDK_NGX_Parameter_GetD(longlong *param_1,undefined8 param_2,undefined8 param_3)
+void NVSDK_NGX_Parameter_GetD(longlong *param_1,uint64_t param_2,uint64_t param_3)
 
 {
   code *UNRECOVERED_JUMPTABLE;
@@ -355,7 +355,7 @@ void NVSDK_NGX_Parameter_GetD(longlong *param_1,undefined8 param_2,undefined8 pa
 
 
 
-void NVSDK_NGX_Parameter_GetD3d11Resource(longlong *param_1,undefined8 param_2,undefined8 param_3)
+void NVSDK_NGX_Parameter_GetD3d11Resource(longlong *param_1,uint64_t param_2,uint64_t param_3)
 
 {
   code *UNRECOVERED_JUMPTABLE;
@@ -371,7 +371,7 @@ void NVSDK_NGX_Parameter_GetD3d11Resource(longlong *param_1,undefined8 param_2,u
 
 
 
-void NVSDK_NGX_Parameter_GetD3d12Resource(longlong *param_1,undefined8 param_2,undefined8 param_3)
+void NVSDK_NGX_Parameter_GetD3d12Resource(longlong *param_1,uint64_t param_2,uint64_t param_3)
 
 {
   code *UNRECOVERED_JUMPTABLE;
@@ -387,7 +387,7 @@ void NVSDK_NGX_Parameter_GetD3d12Resource(longlong *param_1,undefined8 param_2,u
 
 
 
-void NVSDK_NGX_Parameter_GetF(longlong *param_1,undefined8 param_2,undefined8 param_3)
+void NVSDK_NGX_Parameter_GetF(longlong *param_1,uint64_t param_2,uint64_t param_3)
 
 {
   code *UNRECOVERED_JUMPTABLE;
@@ -403,7 +403,7 @@ void NVSDK_NGX_Parameter_GetF(longlong *param_1,undefined8 param_2,undefined8 pa
 
 
 
-void NVSDK_NGX_Parameter_GetI(longlong *param_1,undefined8 param_2,undefined8 param_3)
+void NVSDK_NGX_Parameter_GetI(longlong *param_1,uint64_t param_2,uint64_t param_3)
 
 {
   code *UNRECOVERED_JUMPTABLE;
@@ -419,7 +419,7 @@ void NVSDK_NGX_Parameter_GetI(longlong *param_1,undefined8 param_2,undefined8 pa
 
 
 
-void NVSDK_NGX_Parameter_GetUI(longlong *param_1,undefined8 param_2,undefined8 param_3)
+void NVSDK_NGX_Parameter_GetUI(longlong *param_1,uint64_t param_2,uint64_t param_3)
 
 {
   code *UNRECOVERED_JUMPTABLE;
@@ -435,7 +435,7 @@ void NVSDK_NGX_Parameter_GetUI(longlong *param_1,undefined8 param_2,undefined8 p
 
 
 
-void NVSDK_NGX_Parameter_GetULL(longlong *param_1,undefined8 param_2,undefined8 param_3)
+void NVSDK_NGX_Parameter_GetULL(longlong *param_1,uint64_t param_2,uint64_t param_3)
 
 {
   code *UNRECOVERED_JUMPTABLE;
@@ -451,7 +451,7 @@ void NVSDK_NGX_Parameter_GetULL(longlong *param_1,undefined8 param_2,undefined8 
 
 
 
-void NVSDK_NGX_Parameter_GetVoidPointer(longlong *param_1,undefined8 param_2,undefined8 param_3)
+void NVSDK_NGX_Parameter_GetVoidPointer(longlong *param_1,uint64_t param_2,uint64_t param_3)
 
 {
   code *UNRECOVERED_JUMPTABLE;
@@ -467,7 +467,7 @@ void NVSDK_NGX_Parameter_GetVoidPointer(longlong *param_1,undefined8 param_2,und
 
 
 
-void NVSDK_NGX_Parameter_SetD(longlong *param_1,undefined8 param_2,undefined4 param_3)
+void NVSDK_NGX_Parameter_SetD(longlong *param_1,uint64_t param_2,int32_t param_3)
 
 {
   code *UNRECOVERED_JUMPTABLE;
@@ -483,7 +483,7 @@ void NVSDK_NGX_Parameter_SetD(longlong *param_1,undefined8 param_2,undefined4 pa
 
 
 
-void NVSDK_NGX_Parameter_SetD3d11Resource(longlong *param_1,undefined8 param_2,undefined8 param_3)
+void NVSDK_NGX_Parameter_SetD3d11Resource(longlong *param_1,uint64_t param_2,uint64_t param_3)
 
 {
   code *UNRECOVERED_JUMPTABLE;
@@ -499,7 +499,7 @@ void NVSDK_NGX_Parameter_SetD3d11Resource(longlong *param_1,undefined8 param_2,u
 
 
 
-void NVSDK_NGX_Parameter_SetD3d12Resource(longlong *param_1,undefined8 param_2,undefined8 param_3)
+void NVSDK_NGX_Parameter_SetD3d12Resource(longlong *param_1,uint64_t param_2,uint64_t param_3)
 
 {
   code *UNRECOVERED_JUMPTABLE;
@@ -515,7 +515,7 @@ void NVSDK_NGX_Parameter_SetD3d12Resource(longlong *param_1,undefined8 param_2,u
 
 
 
-void NVSDK_NGX_Parameter_SetF(longlong *param_1,undefined8 param_2,undefined4 param_3)
+void NVSDK_NGX_Parameter_SetF(longlong *param_1,uint64_t param_2,int32_t param_3)
 
 {
   code *UNRECOVERED_JUMPTABLE;
@@ -531,7 +531,7 @@ void NVSDK_NGX_Parameter_SetF(longlong *param_1,undefined8 param_2,undefined4 pa
 
 
 
-void NVSDK_NGX_Parameter_SetI(longlong *param_1,undefined8 param_2,undefined4 param_3)
+void NVSDK_NGX_Parameter_SetI(longlong *param_1,uint64_t param_2,int32_t param_3)
 
 {
   code *UNRECOVERED_JUMPTABLE;
@@ -547,7 +547,7 @@ void NVSDK_NGX_Parameter_SetI(longlong *param_1,undefined8 param_2,undefined4 pa
 
 
 
-void NVSDK_NGX_Parameter_SetUI(longlong *param_1,undefined8 param_2,undefined4 param_3)
+void NVSDK_NGX_Parameter_SetUI(longlong *param_1,uint64_t param_2,int32_t param_3)
 
 {
   code *UNRECOVERED_JUMPTABLE;
@@ -563,7 +563,7 @@ void NVSDK_NGX_Parameter_SetUI(longlong *param_1,undefined8 param_2,undefined4 p
 
 
 
-void NVSDK_NGX_Parameter_SetULL(longlong *param_1,undefined8 param_2,undefined8 param_3)
+void NVSDK_NGX_Parameter_SetULL(longlong *param_1,uint64_t param_2,uint64_t param_3)
 
 {
   code *UNRECOVERED_JUMPTABLE;
@@ -579,7 +579,7 @@ void NVSDK_NGX_Parameter_SetULL(longlong *param_1,undefined8 param_2,undefined8 
 
 
 
-void NVSDK_NGX_Parameter_SetVoidPointer(undefined8 *param_1,undefined8 param_2,undefined8 param_3)
+void NVSDK_NGX_Parameter_SetVoidPointer(uint64_t *param_1,uint64_t param_2,uint64_t param_3)
 
 {
   code *UNRECOVERED_JUMPTABLE;
@@ -600,8 +600,8 @@ void NVSDK_NGX_Parameter_SetVoidPointer(undefined8 *param_1,undefined8 param_2,u
 
 
 
-// 函数: void FUN_1808f88b0(code *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-void FUN_1808f88b0(code *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
+// 函数: void FUN_1808f88b0(code *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4,
+void FUN_1808f88b0(code *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4,
                   longlong param_5)
 
 {
@@ -628,18 +628,18 @@ void FUN_1808f88b0(code *param_1,undefined8 param_2,undefined8 param_3,undefined
 
 
 
-// 函数: void FUN_1808f8940(undefined8 *param_1,undefined8 *param_2)
-void FUN_1808f8940(undefined8 *param_1,undefined8 *param_2)
+// 函数: void FUN_1808f8940(uint64_t *param_1,uint64_t *param_2)
+void FUN_1808f8940(uint64_t *param_1,uint64_t *param_2)
 
 {
   code *pcVar1;
   longlong *plVar2;
   int iVar3;
-  undefined1 auStack_188 [32];
+  int8_t auStack_188 [32];
   longlong *plStack_168;
   longlong *plStack_160;
-  undefined1 auStack_158 [296];
-  undefined8 uStack_30;
+  int8_t auStack_158 [296];
+  uint64_t uStack_30;
   ulonglong uStack_28;
   
   uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
@@ -701,10 +701,10 @@ void FUN_1808f89b5(void)
   code *pcVar1;
   int iVar2;
   longlong *unaff_RDI;
-  undefined8 *unaff_R14;
+  uint64_t *unaff_R14;
   longlong *plStackX_20;
   longlong *in_stack_00000028;
-  undefined8 in_stack_00000158;
+  uint64_t in_stack_00000158;
   ulonglong in_stack_00000160;
   
   pcVar1 = *(code **)(*unaff_RDI + 0x38);
@@ -765,8 +765,8 @@ void FUN_1808f8add(void)
 
 
 
-// 函数: void FUN_1808f8b00(undefined4 param_1,undefined8 param_2)
-void FUN_1808f8b00(undefined4 param_1,undefined8 param_2)
+// 函数: void FUN_1808f8b00(int32_t param_1,uint64_t param_2)
+void FUN_1808f8b00(int32_t param_1,uint64_t param_2)
 
 {
   code *pcVar1;
@@ -784,11 +784,11 @@ void FUN_1808f8b00(undefined4 param_1,undefined8 param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 NVSDK_NGX_D3D11_AllocateParameters(undefined8 param_1)
+uint64_t NVSDK_NGX_D3D11_AllocateParameters(uint64_t param_1)
 
 {
   code *UNRECOVERED_JUMPTABLE;
-  undefined8 uVar1;
+  uint64_t uVar1;
   
                     // 0x8f8b60  1  NVSDK_NGX_D3D11_AllocateParameters
   UNRECOVERED_JUMPTABLE = _DAT_180c69ec0;
@@ -809,11 +809,11 @@ undefined8 NVSDK_NGX_D3D11_AllocateParameters(undefined8 param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1808f8b7e(void)
+uint64_t FUN_1808f8b7e(void)
 
 {
   code *UNRECOVERED_JUMPTABLE;
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   UNRECOVERED_JUMPTABLE = _DAT_180c69ec0;
   if (_DAT_180c69ec0 == (code *)0x0) {
@@ -848,13 +848,13 @@ void FUN_1808f8b9f(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8
+uint64_t
 NVSDK_NGX_D3D11_CreateFeature
-          (undefined8 param_1,undefined4 param_2,undefined8 param_3,undefined8 param_4)
+          (uint64_t param_1,int32_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   code *pcVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   
                     // 0x8f8bc0  2  NVSDK_NGX_D3D11_CreateFeature
   pcVar1 = _DAT_180c69ea8;
@@ -872,11 +872,11 @@ NVSDK_NGX_D3D11_CreateFeature
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 NVSDK_NGX_D3D11_DestroyParameters(undefined8 param_1)
+uint64_t NVSDK_NGX_D3D11_DestroyParameters(uint64_t param_1)
 
 {
   code *UNRECOVERED_JUMPTABLE;
-  undefined8 uVar1;
+  uint64_t uVar1;
   
                     // 0x8f8c30  3  NVSDK_NGX_D3D11_DestroyParameters
   UNRECOVERED_JUMPTABLE = _DAT_180c69ed0;
@@ -897,11 +897,11 @@ undefined8 NVSDK_NGX_D3D11_DestroyParameters(undefined8 param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1808f8c4e(void)
+uint64_t FUN_1808f8c4e(void)
 
 {
   code *UNRECOVERED_JUMPTABLE;
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   UNRECOVERED_JUMPTABLE = _DAT_180c69ed0;
   if (_DAT_180c69ed0 == (code *)0x0) {
@@ -936,13 +936,13 @@ void FUN_1808f8c6f(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8
+uint64_t
 NVSDK_NGX_D3D11_EvaluateFeature
-          (undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+          (uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   code *pcVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   
                     // 0x8f8c90  4  NVSDK_NGX_D3D11_EvaluateFeature
   pcVar1 = _DAT_180c69eb0;
@@ -960,12 +960,12 @@ NVSDK_NGX_D3D11_EvaluateFeature
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8
+uint64_t
 NVSDK_NGX_D3D11_EvaluateFeature_C
-          (undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+          (uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
                     // 0x8f8d00  5  NVSDK_NGX_D3D11_EvaluateFeature_C
   if (_DAT_180c69eb0 == 0) {
@@ -979,11 +979,11 @@ NVSDK_NGX_D3D11_EvaluateFeature_C
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 NVSDK_NGX_D3D11_GetCapabilityParameters(undefined8 param_1)
+uint64_t NVSDK_NGX_D3D11_GetCapabilityParameters(uint64_t param_1)
 
 {
   code *UNRECOVERED_JUMPTABLE;
-  undefined8 uVar1;
+  uint64_t uVar1;
   
                     // 0x8f8d40  6  NVSDK_NGX_D3D11_GetCapabilityParameters
   UNRECOVERED_JUMPTABLE = _DAT_180c69ec8;
@@ -1004,11 +1004,11 @@ undefined8 NVSDK_NGX_D3D11_GetCapabilityParameters(undefined8 param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1808f8d5e(void)
+uint64_t FUN_1808f8d5e(void)
 
 {
   code *UNRECOVERED_JUMPTABLE;
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   UNRECOVERED_JUMPTABLE = _DAT_180c69ec8;
   if (_DAT_180c69ec8 == (code *)0x0) {

@@ -68,7 +68,7 @@ typedef struct {
 // 参数：param_1 - 系统上下文，param_2 - 状态参数
 // 返回值：无
 // =============================================================================
-void FUN_18094136c(undefined8 param_1,longlong param_2)
+void FUN_18094136c(uint64_t param_1,longlong param_2)
 
 {
   char cVar1;
@@ -105,7 +105,7 @@ void FUN_18094136c(undefined8 param_1,longlong param_2)
 // 参数：param_1 - 系统上下文，param_2 - 状态参数
 // 返回值：无
 // =============================================================================
-void FUN_180941383(undefined8 param_1,longlong param_2)
+void FUN_180941383(uint64_t param_1,longlong param_2)
 
 {
   char cVar1;
@@ -143,15 +143,15 @@ void FUN_180941383(undefined8 param_1,longlong param_2)
 // 参数：param_1 - 函数参数数组指针，param_2 - 系统状态参数
 // 返回值：无
 // =============================================================================
-void FUN_18094139f(undefined8 *param_1,longlong param_2)
+void FUN_18094139f(uint64_t *param_1,longlong param_2)
 
 {
   // 调用系统函数并传递相关参数
-  FUN_1808fc51c(*(undefined8 *)(param_2 + 0x60),    // 资源指针1
-                *(undefined4 *)(param_2 + 0x68),    // 状态标志
-                *(undefined8 *)(param_2 + 0x70),    // 资源指针2
+  FUN_1808fc51c(*(uint64_t *)(param_2 + 0x60),    // 资源指针1
+                *(int32_t *)(param_2 + 0x68),    // 状态标志
+                *(uint64_t *)(param_2 + 0x70),    // 资源指针2
                 FUN_1808fc074,                      // 回调函数
-                *(undefined4 *)*param_1,            // 函数参数
+                *(int32_t *)*param_1,            // 函数参数
                 param_1);                           // 参数数组指针
   return;
 }
@@ -165,7 +165,7 @@ void FUN_18094139f(undefined8 *param_1,longlong param_2)
 // 参数：param_1 - 系统状态指针
 // 返回值：bool - 验证结果（true表示状态有效，false表示状态无效）
 // =============================================================================
-bool FUN_1809413d5(undefined8 *param_1)
+bool FUN_1809413d5(uint64_t *param_1)
 
 {
   // 检查系统状态是否为预定义的负数标志
@@ -183,16 +183,16 @@ bool FUN_1809413d5(undefined8 *param_1)
 // 参数：param_1 - 系统上下文，param_2 - 资源参数
 // 返回值：无
 // =============================================================================
-void FUN_1809413ed(undefined8 param_1,longlong param_2)
+void FUN_1809413ed(uint64_t param_1,longlong param_2)
 
 {
   // 检查资源状态是否为空闲
   if (*(char *)(param_2 + 0x20) == '\0') {
     // 调用系统资源处理函数
-    FUN_1808fc914(*(undefined8 *)(param_2 + 0x50),    // 资源指针1
-                  *(undefined8 *)(param_2 + 0x58),    // 资源指针2
-                  *(undefined8 *)(param_2 + 0x28),    // 资源指针3
-                  *(undefined8 *)(param_2 + 0x70));   // 资源指针4
+    FUN_1808fc914(*(uint64_t *)(param_2 + 0x50),    // 资源指针1
+                  *(uint64_t *)(param_2 + 0x58),    // 资源指针2
+                  *(uint64_t *)(param_2 + 0x28),    // 资源指针3
+                  *(uint64_t *)(param_2 + 0x70));   // 资源指针4
   }
   return;
 }
@@ -208,16 +208,16 @@ void FUN_1809413ed(undefined8 param_1,longlong param_2)
 // 参数：param_1 - 系统上下文，param_2 - 数据参数
 // 返回值：无
 // =============================================================================
-void FUN_180941419(undefined8 param_1,longlong param_2)
+void FUN_180941419(uint64_t param_1,longlong param_2)
 
 {
   // 检查数据状态是否为空闲
   if (*(char *)(param_2 + 0x20) == '\0') {
     // 调用系统数据处理函数
-    FUN_1808fc914(*(undefined8 *)(param_2 + 0x60),    // 数据指针1
-                  *(undefined8 *)(param_2 + 0x68),    // 数据指针2
-                  *(undefined8 *)(param_2 + 0x70),    // 数据指针3
-                  *(undefined8 *)(param_2 + 0x78));   // 数据指针4
+    FUN_1808fc914(*(uint64_t *)(param_2 + 0x60),    // 数据指针1
+                  *(uint64_t *)(param_2 + 0x68),    // 数据指针2
+                  *(uint64_t *)(param_2 + 0x70),    // 数据指针3
+                  *(uint64_t *)(param_2 + 0x78));   // 数据指针4
   }
   return;
 }
@@ -229,21 +229,21 @@ void FUN_180941419(undefined8 param_1,longlong param_2)
 // =============================================================================
 // 功能：初始化系统状态并设置相关参数
 // 参数：param_1 - 系统上下文，param_2 - 状态参数
-// 返回值：undefined4 - 状态码（0表示成功）
+// 返回值：int32_t - 状态码（0表示成功）
 // =============================================================================
-undefined4 FUN_180941445(undefined8 param_1,longlong param_2)
+int32_t FUN_180941445(uint64_t param_1,longlong param_2)
 
 {
   // 设置系统状态参数
-  *(undefined8 *)(param_2 + 0x40) = param_1;    // 设置状态指针
-  *(undefined8 *)(param_2 + 0x30) = param_1;    // 设置上下文指针
-  *(undefined8 *)(param_2 + 0x38) = **(undefined8 **)(param_2 + 0x30);  // 获取间接指针
+  *(uint64_t *)(param_2 + 0x40) = param_1;    // 设置状态指针
+  *(uint64_t *)(param_2 + 0x30) = param_1;    // 设置上下文指针
+  *(uint64_t *)(param_2 + 0x38) = **(uint64_t **)(param_2 + 0x30);  // 获取间接指针
   
   // 验证系统状态
   if (**(int **)(param_2 + 0x38) != -0x1f928c9d) {
     // 状态有效，设置成功标志
-    *(undefined4 *)(param_2 + 0x20) = 0;
-    return *(undefined4 *)(param_2 + 0x20);
+    *(int32_t *)(param_2 + 0x20) = 0;
+    return *(int32_t *)(param_2 + 0x20);
   }
   
   // 状态无效，终止程序
@@ -261,16 +261,16 @@ undefined4 FUN_180941445(undefined8 param_1,longlong param_2)
 // 参数：param_1 - 系统上下文，param_2 - 配置参数
 // 返回值：无
 // =============================================================================
-void FUN_180941486(undefined8 param_1,longlong param_2)
+void FUN_180941486(uint64_t param_1,longlong param_2)
 
 {
   // 检查配置状态是否为空闲
   if (*(char *)(param_2 + 0x20) == '\0') {
     // 调用系统配置处理函数
-    FUN_1808fc914(*(undefined8 *)(param_2 + 0x60),    // 配置指针1
-                  *(undefined8 *)(param_2 + 0x70),    // 配置指针2
-                  *(undefined8 *)(param_2 + 0x28),    // 配置指针3
-                  *(undefined8 *)(param_2 + 0x88));   // 配置指针4
+    FUN_1808fc914(*(uint64_t *)(param_2 + 0x60),    // 配置指针1
+                  *(uint64_t *)(param_2 + 0x70),    // 配置指针2
+                  *(uint64_t *)(param_2 + 0x28),    // 配置指针3
+                  *(uint64_t *)(param_2 + 0x88));   // 配置指针4
   }
   return;
 }
@@ -286,11 +286,11 @@ void FUN_180941486(undefined8 param_1,longlong param_2)
 // 参数：param_1 - 函数参数数组指针
 // 返回值：无
 // =============================================================================
-void FUN_1809414b5(undefined8 *param_1)
+void FUN_1809414b5(uint64_t *param_1)
 
 {
   // 执行系统函数并传递参数
-  func_0x0001808fd024(*(undefined4 *)*param_1);  // 传递函数参数
+  func_0x0001808fd024(*(int32_t *)*param_1);  // 传递函数参数
   return;
 }
 
@@ -850,7 +850,7 @@ void FUN_180941900(void)
 // 参数：param_1 - 内存参数1，param_2 - 内存参数2，param_3 - 内存参数3，param_4 - 内存参数4
 // 返回值：无
 // =============================================================================
-void FUN_180941920(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void FUN_180941920(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   longlong *plVar1;
@@ -1027,7 +1027,7 @@ void FUN_180941ad0(void)
 
 {
   int *piVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   longlong lVar3;
   ulonglong uVar4;
   
@@ -1039,7 +1039,7 @@ void FUN_180941ad0(void)
   
   // 获取异常指针
   exception_ptr = _DAT_180d493f8;
-  if (_DAT_180d493f8 == (undefined8 *)0x0) {
+  if (_DAT_180d493f8 == (uint64_t *)0x0) {
     return;
   }
   
@@ -1053,8 +1053,8 @@ void FUN_180941ad0(void)
     // 检查异常列表状态
     if ((*(void ***)(exception_mask + 0x70) == &ExceptionList) && (*(char *)(exception_offset + 0xe) == '\0')) {
       // 处理异常链表
-      *_DAT_180d493f8 = *(undefined8 *)(exception_offset + 0x20);
-      *(undefined8 **)(exception_offset + 0x20) = exception_ptr;
+      *_DAT_180d493f8 = *(uint64_t *)(exception_offset + 0x20);
+      *(uint64_t **)(exception_offset + 0x20) = exception_ptr;
       exception_count = (int *)(exception_offset + 0x18);
       *exception_count = *exception_count + -1;
       
@@ -1962,13 +1962,13 @@ void FUN_1809424a0(void)
 
 
 
-// 函数: void FUN_1809424c0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1809424c0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void FUN_1809424c0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void FUN_1809424c0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  undefined8 *puVar1;
-  undefined8 *puVar2;
-  undefined8 uVar3;
+  uint64_t *puVar1;
+  uint64_t *puVar2;
+  uint64_t uVar3;
   
   puVar1 = _DAT_180bfa2f0;
   uVar3 = 0xfffffffffffffffe;
@@ -1979,7 +1979,7 @@ void FUN_1809424c0(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
       puVar2 = puVar2 + 0xb;
     } while (puVar2 != puVar1);
   }
-  if (_DAT_180bfa2e8 == (undefined8 *)0x0) {
+  if (_DAT_180bfa2e8 == (uint64_t *)0x0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -1992,13 +1992,13 @@ void FUN_1809424c0(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 
 
 
-// 函数: void FUN_180942520(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180942520(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void FUN_180942520(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void FUN_180942520(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  undefined8 *puVar1;
-  undefined8 *puVar2;
-  undefined8 uVar3;
+  uint64_t *puVar1;
+  uint64_t *puVar2;
+  uint64_t uVar3;
   
   puVar1 = _DAT_180bfa310;
   uVar3 = 0xfffffffffffffffe;
@@ -2009,7 +2009,7 @@ void FUN_180942520(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
       puVar2 = puVar2 + 0xb;
     } while (puVar2 != puVar1);
   }
-  if (_DAT_180bfa308 == (undefined8 *)0x0) {
+  if (_DAT_180bfa308 == (uint64_t *)0x0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -2022,13 +2022,13 @@ void FUN_180942520(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 
 
 
-// 函数: void FUN_180942580(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180942580(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void FUN_180942580(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void FUN_180942580(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  undefined8 *puVar1;
-  undefined8 *puVar2;
-  undefined8 uVar3;
+  uint64_t *puVar1;
+  uint64_t *puVar2;
+  uint64_t uVar3;
   
   puVar1 = _DAT_180bfa330;
   uVar3 = 0xfffffffffffffffe;
@@ -2039,7 +2039,7 @@ void FUN_180942580(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
       puVar2 = puVar2 + 0xb;
     } while (puVar2 != puVar1);
   }
-  if (_DAT_180bfa328 == (undefined8 *)0x0) {
+  if (_DAT_180bfa328 == (uint64_t *)0x0) {
     return;
   }
                     // WARNING: Subroutine does not return

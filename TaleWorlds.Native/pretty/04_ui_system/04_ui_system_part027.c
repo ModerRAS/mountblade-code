@@ -71,9 +71,9 @@
 
 // UI系统全局数据
 extern ulonglong _DAT_180bf00a8;                 // UI系统全局数据指针
-extern undefined8 _DAT_180946ae0;               // UI系统配置数据
-extern undefined8 _DAT_180946af8;               // UI系统状态数据
-extern undefined8 _DAT_180946b10;               // UI系统控制数据
+extern uint64_t _DAT_180946ae0;               // UI系统配置数据
+extern uint64_t _DAT_180946af8;               // UI系统状态数据
+extern uint64_t _DAT_180946b10;               // UI系统控制数据
 
 // ==================== UI系统事件处理器 ====================
 // 
@@ -112,15 +112,15 @@ void ui_system_event_handler(longlong ui_event_context, longlong ui_event_data)
   longlong ui_temp_ptr1;                 // 临时指针1
   char *ui_buffer_ptr;                   // UI缓冲区指针
   longlong ui_temp_ptr2;                 // 临时指针2
-  undefined8 *ui_config_ptr;             // UI配置指针
+  uint64_t *ui_config_ptr;             // UI配置指针
   longlong ui_stack_offset;              // 栈偏移
-  undefined8 ui_stack_data;              // 栈数据
+  uint64_t ui_stack_data;              // 栈数据
   longlong ui_processor_ptr;             // 处理器指针
-  undefined8 ui_result_data;             // 结果数据
-  undefined4 ui_flag_data;               // 标志数据
+  uint64_t ui_result_data;             // 结果数据
+  int32_t ui_flag_data;               // 标志数据
   
   // 初始化标志数据
-  ui_flag_data = (undefined4)((ulonglong)ui_stack_data >> 0x20);
+  ui_flag_data = (int32_t)((ulonglong)ui_stack_data >> 0x20);
   
   // 检查事件初始化状态
   if (*(char *)(*(longlong *)(ui_event_data + UI_CONFIG_OFFSET) + 9) == '\0') {
@@ -147,10 +147,10 @@ void ui_system_event_handler(longlong ui_event_context, longlong ui_event_data)
   // 检查事件处理状态
   if (*(char *)(*(longlong *)(ui_event_data + UI_CONFIG_OFFSET) + 2) == '\0') {
     // 执行事件配置
-    ui_system_configurator(ui_event_data, *(undefined8 *)(ui_event_data + 0xf20), *(undefined8 *)(ui_event_data + 0xf28),
-                           *(undefined8 *)(ui_event_data + 0xf38), *(undefined8 *)(ui_event_data + 0xf40),
-                           *(undefined4 *)(ui_event_data + 0xf4c), *(undefined8 *)(ui_event_data + 0xeb0),
-                           *(undefined8 *)(ui_event_data + 0xeb8), *(undefined4 *)(ui_event_data + 0xe94));
+    ui_system_configurator(ui_event_data, *(uint64_t *)(ui_event_data + 0xf20), *(uint64_t *)(ui_event_data + 0xf28),
+                           *(uint64_t *)(ui_event_data + 0xf38), *(uint64_t *)(ui_event_data + 0xf40),
+                           *(int32_t *)(ui_event_data + 0xf4c), *(uint64_t *)(ui_event_data + 0xeb0),
+                           *(uint64_t *)(ui_event_data + 0xeb8), *(int32_t *)(ui_event_data + 0xe94));
     
     // 处理特定事件类型
     if (ui_event_type == UI_EVENT_FLAG_PROCESSING) {
@@ -159,26 +159,26 @@ void ui_system_event_handler(longlong ui_event_context, longlong ui_event_data)
       // 检查事件初始化状态
       if (*(char *)(*(longlong *)(ui_event_data + UI_CONFIG_OFFSET) + 9) != '\0') {
         // 初始化事件内存池
-        *(undefined8 *)(ui_event_data + UI_MEMORY_POOL_SIZE) = 0;
-        *(undefined8 *)(ui_event_data + UI_MEMORY_POOL_SIZE + 8) = 0;
-        *(undefined8 *)(ui_event_data + 2000) = 0;
-        *(undefined1 *)(ui_event_data + UI_MEMORY_POOL_SIZE + 24) = 0;
+        *(uint64_t *)(ui_event_data + UI_MEMORY_POOL_SIZE) = 0;
+        *(uint64_t *)(ui_event_data + UI_MEMORY_POOL_SIZE + 8) = 0;
+        *(uint64_t *)(ui_event_data + 2000) = 0;
+        *(int8_t *)(ui_event_data + UI_MEMORY_POOL_SIZE + 24) = 0;
       }
       
       // 设置处理参数
       ui_data_ptr = *(longlong *)(ui_event_data + 0xf18);
       ui_buffer_ptr = (char *)(ui_event_data + UI_MEMORY_POOL_SIZE);
       ui_context_ptr = (longlong)*(int *)(ui_event_data + 0xe80);
-      ui_config_ptr = (undefined8 *)(ui_event_data + 0x860);
+      ui_config_ptr = (uint64_t *)(ui_event_data + 0x860);
       ui_loop_counter = 0;
       ui_temp_ptr1 = *(longlong *)(ui_event_data + 0xea8) - ui_context_ptr;
       ui_temp_ptr2 = 0xc;
       
       // 初始化处理数据
-      *(undefined4 *)(ui_temp_ptr1 + 0x10 + ui_context_ptr * 4) = *(undefined4 *)(ui_data_ptr + 0x10);
-      *(undefined4 *)(ui_temp_ptr1 + 0x10 + ui_context_ptr * 8) = *(undefined4 *)(ui_data_ptr + 0x10);
+      *(int32_t *)(ui_temp_ptr1 + 0x10 + ui_context_ptr * 4) = *(int32_t *)(ui_data_ptr + 0x10);
+      *(int32_t *)(ui_temp_ptr1 + 0x10 + ui_context_ptr * 8) = *(int32_t *)(ui_data_ptr + 0x10);
       ui_stack_offset = 0;
-      *(undefined4 *)(ui_temp_ptr1 + 0x10 + ui_context_ptr * 0xc) = *(undefined4 *)(ui_data_ptr + 0x10);
+      *(int32_t *)(ui_temp_ptr1 + 0x10 + ui_context_ptr * 0xc) = *(int32_t *)(ui_data_ptr + 0x10);
       
       // 执行事件处理循环
       do {
@@ -212,9 +212,9 @@ void ui_system_event_handler(longlong ui_event_context, longlong ui_event_data)
         }
         
         ui_processor_ptr = ui_data_ptr;
-        ui_system_dispatcher(ui_context_ptr, ui_temp_ptr1, ui_param1, *(undefined4 *)(*(longlong *)(ui_event_data + UI_CONFIG_OFFSET) + ui_temp_ptr2),
+        ui_system_dispatcher(ui_context_ptr, ui_temp_ptr1, ui_param1, *(int32_t *)(*(longlong *)(ui_event_data + UI_CONFIG_OFFSET) + ui_temp_ptr2),
                             ui_data_ptr, ui_status_code, ui_event_subtype);
-        ui_flag_data = (undefined4)((ulonglong)ui_processor_ptr >> 0x20);
+        ui_flag_data = (int32_t)((ulonglong)ui_processor_ptr >> 0x20);
         
         // 处理事件结果
         if (*ui_buffer_ptr != '\0') {
@@ -222,8 +222,8 @@ void ui_system_event_handler(longlong ui_event_context, longlong ui_event_data)
             ui_result_data = CONCAT44(ui_flag_data, ui_status_code);
             ui_system_system_call_3((int)*(short *)*ui_config_ptr * (int)*(short *)(ui_event_data + 0x7e0), ui_data_ptr,
                                     ui_status_code, ui_data_ptr, ui_result_data);
-            ui_flag_data = (undefined4)((ulonglong)ui_result_data >> 0x20);
-            *(undefined4 *)*ui_config_ptr = 0;
+            ui_flag_data = (int32_t)((ulonglong)ui_result_data >> 0x20);
+            *(int32_t *)*ui_config_ptr = 0;
           }
           else {
             ui_system_system_call_4(*ui_config_ptr, ui_event_data + 0x7e0, ui_data_ptr, ui_status_code);
@@ -240,10 +240,10 @@ void ui_system_event_handler(longlong ui_event_context, longlong ui_event_data)
     }
     else {
       // 处理其他事件类型
-      ui_result_data = *(undefined8 *)(ui_event_data + 0xea8);
-      ui_system_renderer(ui_event_data, *(undefined8 *)(ui_event_data + 0xf18), *(undefined8 *)(ui_event_data + 0xf30),
-                         *(undefined4 *)(ui_event_data + 0xf48), ui_result_data, *(undefined4 *)(ui_event_data + 0xe80));
-      ui_flag_data = (undefined4)((ulonglong)ui_result_data >> 0x20);
+      ui_result_data = *(uint64_t *)(ui_event_data + 0xea8);
+      ui_system_renderer(ui_event_data, *(uint64_t *)(ui_event_data + 0xf18), *(uint64_t *)(ui_event_data + 0xf30),
+                         *(int32_t *)(ui_event_data + 0xf48), ui_result_data, *(int32_t *)(ui_event_data + 0xe80));
+      ui_flag_data = (int32_t)((ulonglong)ui_result_data >> 0x20);
     }
   }
   else {
@@ -256,16 +256,16 @@ void ui_system_event_handler(longlong ui_event_context, longlong ui_event_data)
     if (ui_event_type != UI_EVENT_FLAG_PROCESSING) {
       ui_data_ptr = ui_event_data + 0x7e0;
       if (ui_event_type != '\t') {
-        ui_config_ptr = (undefined8 *)(ui_event_data + 0xda0);
+        ui_config_ptr = (uint64_t *)(ui_event_data + 0xda0);
         if (*(char *)(ui_event_data + UI_MEMORY_POOL_SIZE + 24) < '\x02') {
           **(short **)(ui_event_data + 0xda8) = *(short *)(ui_event_data + 0x820) * *(short *)*ui_config_ptr;
-          ui_system_buffer_manager(*(undefined8 *)(ui_event_data + 0xda8), ui_event_data + 0x180);
-          *(undefined4 *)*ui_config_ptr = 0;
+          ui_system_buffer_manager(*(uint64_t *)(ui_event_data + 0xda8), ui_event_data + 0x180);
+          *(int32_t *)*ui_config_ptr = 0;
         }
         else {
           ui_system_allocator(ui_config_ptr, ui_event_data + 0x820);
-          ui_system_system_call_5(*(undefined8 *)(ui_event_data + 0xda8), ui_event_data + 0x180);
-          ui_config_ptr = (undefined8 *)*ui_config_ptr;
+          ui_system_system_call_5(*(uint64_t *)(ui_event_data + 0xda8), ui_event_data + 0x180);
+          ui_config_ptr = (uint64_t *)*ui_config_ptr;
           *ui_config_ptr = 0;
           ui_config_ptr[1] = 0;
           ui_config_ptr[2] = 0;
@@ -274,12 +274,12 @@ void ui_system_event_handler(longlong ui_event_context, longlong ui_event_data)
         ui_data_ptr = ui_event_data + 0x800;
       }
       ui_context_ptr = ui_event_data + UI_MEMORY_POOL_SIZE;
-      ui_system_optimizer(ui_event_data + 0x180, ui_data_ptr, *(undefined8 *)(ui_event_data + 0xea8),
-                          *(undefined4 *)(ui_event_data + 0xe80), ui_context_ptr);
-      ui_flag_data = (undefined4)((ulonglong)ui_context_ptr >> 0x20);
+      ui_system_optimizer(ui_event_data + 0x180, ui_data_ptr, *(uint64_t *)(ui_event_data + 0xea8),
+                          *(int32_t *)(ui_event_data + 0xe80), ui_context_ptr);
+      ui_flag_data = (int32_t)((ulonglong)ui_context_ptr >> 0x20);
     }
-    ui_system_synchronizer(ui_event_data + 0x380, ui_event_data + 0x840, *(undefined8 *)(ui_event_data + 0xeb0),
-                          *(undefined8 *)(ui_event_data + 0xeb8), CONCAT44(ui_flag_data, *(undefined4 *)(ui_event_data + 0xe94))
+    ui_system_synchronizer(ui_event_data + 0x380, ui_event_data + 0x840, *(uint64_t *)(ui_event_data + 0xeb0),
+                          *(uint64_t *)(ui_event_data + 0xeb8), CONCAT44(ui_flag_data, *(int32_t *)(ui_event_data + 0xe94))
                           , ui_event_data + 2000);
   }
   
@@ -320,15 +320,15 @@ void ui_system_event_processor(longlong ui_event_context, longlong ui_event_data
   longlong ui_temp_ptr1;                 // 临时指针1
   char *ui_buffer_ptr;                   // UI缓冲区指针
   longlong ui_temp_ptr2;                 // 临时指针2
-  undefined8 *ui_config_ptr;             // UI配置指针
-  undefined8 ui_stack_data;              // 栈数据
+  uint64_t *ui_config_ptr;             // UI配置指针
+  uint64_t ui_stack_data;              // 栈数据
   longlong ui_processor_ptr;             // 处理器指针
-  undefined8 ui_result_data;             // 结果数据
-  undefined4 ui_flag_data;               // 标志数据
+  uint64_t ui_result_data;             // 结果数据
+  int32_t ui_flag_data;               // 标志数据
   longlong ui_stack_offset;              // 栈偏移
   
   // 初始化标志数据
-  ui_flag_data = (undefined4)((ulonglong)ui_stack_data >> 0x20);
+  ui_flag_data = (int32_t)((ulonglong)ui_stack_data >> 0x20);
   
   // 检查事件初始化状态
   if (*(char *)(ui_event_context + 9) == '\0') {
@@ -364,26 +364,26 @@ void ui_system_event_processor(longlong ui_event_context, longlong ui_event_data
       // 检查事件初始化状态
       if (*(char *)(*(longlong *)(ui_event_data + UI_CONFIG_OFFSET) + 9) != '\0') {
         // 初始化事件内存池
-        *(undefined8 *)(ui_event_data + UI_MEMORY_POOL_SIZE) = 0;
-        *(undefined8 *)(ui_event_data + UI_MEMORY_POOL_SIZE + 8) = 0;
-        *(undefined8 *)(ui_event_data + 2000) = 0;
-        *(undefined1 *)(ui_event_data + UI_MEMORY_POOL_SIZE + 24) = 0;
+        *(uint64_t *)(ui_event_data + UI_MEMORY_POOL_SIZE) = 0;
+        *(uint64_t *)(ui_event_data + UI_MEMORY_POOL_SIZE + 8) = 0;
+        *(uint64_t *)(ui_event_data + 2000) = 0;
+        *(int8_t *)(ui_event_data + UI_MEMORY_POOL_SIZE + 24) = 0;
       }
       
       // 设置处理参数
       ui_data_ptr = *(longlong *)(ui_event_data + 0xf18);
       ui_buffer_ptr = (char *)(ui_event_data + UI_MEMORY_POOL_SIZE);
       ui_context_ptr = (longlong)*(int *)(ui_event_data + 0xe80);
-      ui_config_ptr = (undefined8 *)(ui_event_data + 0x860);
+      ui_config_ptr = (uint64_t *)(ui_event_data + 0x860);
       ui_loop_counter = 0;
       ui_temp_ptr1 = *(longlong *)(ui_event_data + 0xea8) - ui_context_ptr;
       ui_temp_ptr2 = 0xc;
       
       // 初始化处理数据
-      *(undefined4 *)(ui_temp_ptr1 + 0x10 + ui_context_ptr * 4) = *(undefined4 *)(ui_data_ptr + 0x10);
-      *(undefined4 *)(ui_temp_ptr1 + 0x10 + ui_context_ptr * 8) = *(undefined4 *)(ui_data_ptr + 0x10);
+      *(int32_t *)(ui_temp_ptr1 + 0x10 + ui_context_ptr * 4) = *(int32_t *)(ui_data_ptr + 0x10);
+      *(int32_t *)(ui_temp_ptr1 + 0x10 + ui_context_ptr * 8) = *(int32_t *)(ui_data_ptr + 0x10);
       ui_stack_offset = 0;
-      *(undefined4 *)(ui_temp_ptr1 + 0x10 + ui_context_ptr * 0xc) = *(undefined4 *)(ui_data_ptr + 0x10);
+      *(int32_t *)(ui_temp_ptr1 + 0x10 + ui_context_ptr * 0xc) = *(int32_t *)(ui_data_ptr + 0x10);
       
       // 执行事件处理循环
       do {
@@ -408,9 +408,9 @@ void ui_system_event_processor(longlong ui_event_context, longlong ui_event_data
         }
         
         ui_processor_ptr = ui_data_ptr;
-        ui_system_dispatcher(ui_context_ptr, ui_temp_ptr1, ui_param1, *(undefined4 *)(*(longlong *)(ui_event_data + UI_CONFIG_OFFSET) + ui_temp_ptr2),
+        ui_system_dispatcher(ui_context_ptr, ui_temp_ptr1, ui_param1, *(int32_t *)(*(longlong *)(ui_event_data + UI_CONFIG_OFFSET) + ui_temp_ptr2),
                             ui_data_ptr);
-        ui_flag_data = (undefined4)((ulonglong)ui_processor_ptr >> 0x20);
+        ui_flag_data = (int32_t)((ulonglong)ui_processor_ptr >> 0x20);
         
         // 处理事件结果
         if (*ui_buffer_ptr != '\0') {
@@ -418,8 +418,8 @@ void ui_system_event_processor(longlong ui_event_context, longlong ui_event_data
             ui_result_data = CONCAT44(ui_flag_data, ui_status_code);
             ui_system_system_call_3((int)*(short *)*ui_config_ptr * (int)*(short *)(ui_event_data + 0x7e0), ui_data_ptr,
                                     ui_status_code, ui_data_ptr, ui_result_data);
-            ui_flag_data = (undefined4)((ulonglong)ui_result_data >> 0x20);
-            *(undefined4 *)*ui_config_ptr = 0;
+            ui_flag_data = (int32_t)((ulonglong)ui_result_data >> 0x20);
+            *(int32_t *)*ui_config_ptr = 0;
           }
           else {
             ui_system_system_call_4(*ui_config_ptr, ui_event_data + 0x7e0, ui_data_ptr, ui_status_code);
@@ -436,7 +436,7 @@ void ui_system_event_processor(longlong ui_event_context, longlong ui_event_data
     }
     else {
       // 处理其他事件类型
-      ui_flag_data = (undefined4)((ulonglong)*(undefined8 *)(ui_event_data + 0xea8) >> 0x20);
+      ui_flag_data = (int32_t)((ulonglong)*(uint64_t *)(ui_event_data + 0xea8) >> 0x20);
       ui_system_renderer();
     }
   }
@@ -450,16 +450,16 @@ void ui_system_event_processor(longlong ui_event_context, longlong ui_event_data
     if (ui_event_type != UI_EVENT_FLAG_PROCESSING) {
       ui_data_ptr = ui_event_data + 0x7e0;
       if (ui_event_type != '\t') {
-        ui_config_ptr = (undefined8 *)(ui_event_data + 0xda0);
+        ui_config_ptr = (uint64_t *)(ui_event_data + 0xda0);
         if (*(char *)(ui_event_data + UI_MEMORY_POOL_SIZE + 24) < '\x02') {
           **(short **)(ui_event_data + 0xda8) = *(short *)(ui_event_data + 0x820) * *(short *)*ui_config_ptr;
-          ui_system_buffer_manager(*(undefined8 *)(ui_event_data + 0xda8), ui_event_data + 0x180);
-          *(undefined4 *)*ui_config_ptr = 0;
+          ui_system_buffer_manager(*(uint64_t *)(ui_event_data + 0xda8), ui_event_data + 0x180);
+          *(int32_t *)*ui_config_ptr = 0;
         }
         else {
           ui_system_allocator(ui_config_ptr, ui_event_data + 0x820);
-          ui_system_system_call_5(*(undefined8 *)(ui_event_data + 0xda8), ui_event_data + 0x180);
-          ui_config_ptr = (undefined8 *)*ui_config_ptr;
+          ui_system_system_call_5(*(uint64_t *)(ui_event_data + 0xda8), ui_event_data + 0x180);
+          ui_config_ptr = (uint64_t *)*ui_config_ptr;
           *ui_config_ptr = 0;
           ui_config_ptr[1] = 0;
           ui_config_ptr[2] = 0;
@@ -468,12 +468,12 @@ void ui_system_event_processor(longlong ui_event_context, longlong ui_event_data
         ui_data_ptr = ui_event_data + 0x800;
       }
       ui_context_ptr = ui_event_data + UI_MEMORY_POOL_SIZE;
-      ui_system_optimizer(ui_event_data + 0x180, ui_data_ptr, *(undefined8 *)(ui_event_data + 0xea8),
-                          *(undefined4 *)(ui_event_data + 0xe80), ui_context_ptr);
-      ui_flag_data = (undefined4)((ulonglong)ui_context_ptr >> 0x20);
+      ui_system_optimizer(ui_event_data + 0x180, ui_data_ptr, *(uint64_t *)(ui_event_data + 0xea8),
+                          *(int32_t *)(ui_event_data + 0xe80), ui_context_ptr);
+      ui_flag_data = (int32_t)((ulonglong)ui_context_ptr >> 0x20);
     }
-    ui_system_synchronizer(ui_event_data + 0x380, ui_event_data + 0x840, *(undefined8 *)(ui_event_data + 0xeb0),
-                          *(undefined8 *)(ui_event_data + 0xeb8), CONCAT44(ui_flag_data, *(undefined4 *)(ui_event_data + 0xe94)));
+    ui_system_synchronizer(ui_event_data + 0x380, ui_event_data + 0x840, *(uint64_t *)(ui_event_data + 0xeb0),
+                          *(uint64_t *)(ui_event_data + 0xeb8), CONCAT44(ui_flag_data, *(int32_t *)(ui_event_data + 0xe94)));
   }
   
   return;
@@ -508,11 +508,11 @@ void ui_system_state_manager(void)
   longlong ui_temp_ptr1;                 // 临时指针1
   char *ui_buffer_ptr;                   // UI缓冲区指针
   longlong ui_temp_ptr2;                 // 临时指针2
-  undefined8 *ui_config_ptr;             // UI配置指针
+  uint64_t *ui_config_ptr;             // UI配置指针
   char ui_event_subtype;                 // UI事件子类型
   longlong ui_processor_ptr;             // 处理器指针
-  undefined8 ui_result_data;             // 结果数据
-  undefined4 ui_flag_data;               // 标志数据
+  uint64_t ui_result_data;             // 结果数据
+  int32_t ui_flag_data;               // 标志数据
   longlong ui_stack_offset;              // 栈偏移
   longlong ui_buffer_offset;             // 缓冲区偏移
   int ui_event_type;                     // UI事件类型
@@ -523,27 +523,27 @@ void ui_system_state_manager(void)
   // 检查状态初始化标志
   if (*(char *)(ui_event_context + 9) != '\0') {
     // 初始化状态内存池
-    *(undefined8 *)(ui_event_data + UI_MEMORY_POOL_SIZE) = 0;
-    *(undefined8 *)(ui_event_data + UI_MEMORY_POOL_SIZE + 8) = 0;
-    *(undefined8 *)(ui_event_data + 2000) = 0;
-    *(undefined1 *)(ui_event_data + UI_MEMORY_POOL_SIZE + 24) = 0;
+    *(uint64_t *)(ui_event_data + UI_MEMORY_POOL_SIZE) = 0;
+    *(uint64_t *)(ui_event_data + UI_MEMORY_POOL_SIZE + 8) = 0;
+    *(uint64_t *)(ui_event_data + 2000) = 0;
+    *(int8_t *)(ui_event_data + UI_MEMORY_POOL_SIZE + 24) = 0;
   }
   
   // 设置处理参数
   ui_data_ptr = *(longlong *)(ui_event_data + 0xf18);
   ui_buffer_ptr = (char *)(ui_event_data + UI_MEMORY_POOL_SIZE);
   ui_context_ptr = (longlong)*(int *)(ui_event_data + 0xe80);
-  ui_config_ptr = (undefined8 *)(ui_event_data + 0x860);
+  ui_config_ptr = (uint64_t *)(ui_event_data + 0x860);
   ui_loop_counter = 0;
   ui_temp_ptr1 = *(longlong *)(ui_event_data + 0xea8) - ui_context_ptr;
   ui_buffer_offset = -UI_MEMORY_POOL_SIZE - ui_event_data;
   ui_temp_ptr2 = 0xc;
   
   // 初始化处理数据
-  *(undefined4 *)(ui_temp_ptr1 + 0x10 + ui_context_ptr * 4) = *(undefined4 *)(ui_data_ptr + 0x10);
-  *(undefined4 *)(ui_temp_ptr1 + 0x10 + ui_context_ptr * 8) = *(undefined4 *)(ui_data_ptr + 0x10);
+  *(int32_t *)(ui_temp_ptr1 + 0x10 + ui_context_ptr * 4) = *(int32_t *)(ui_data_ptr + 0x10);
+  *(int32_t *)(ui_temp_ptr1 + 0x10 + ui_context_ptr * 8) = *(int32_t *)(ui_data_ptr + 0x10);
   ui_stack_offset = 0;
-  *(undefined4 *)(ui_temp_ptr1 + 0x10 + ui_context_ptr * 0xc) = *(undefined4 *)(ui_data_ptr + 0x10);
+  *(int32_t *)(ui_temp_ptr1 + 0x10 + ui_context_ptr * 0xc) = *(int32_t *)(ui_data_ptr + 0x10);
   
   // 执行状态处理循环
   do {
@@ -577,9 +577,9 @@ void ui_system_state_manager(void)
     }
     
     ui_processor_ptr = ui_data_ptr;
-    ui_system_dispatcher(ui_context_ptr, ui_temp_ptr1, ui_param1, *(undefined4 *)(*(longlong *)(ui_event_data + UI_CONFIG_OFFSET) + ui_temp_ptr2),
+    ui_system_dispatcher(ui_context_ptr, ui_temp_ptr1, ui_param1, *(int32_t *)(*(longlong *)(ui_event_data + UI_CONFIG_OFFSET) + ui_temp_ptr2),
                         ui_data_ptr);
-    ui_flag_data = (undefined4)((ulonglong)ui_processor_ptr >> 0x20);
+    ui_flag_data = (int32_t)((ulonglong)ui_processor_ptr >> 0x20);
     
     // 处理状态结果
     if (*ui_buffer_ptr != '\0') {
@@ -587,8 +587,8 @@ void ui_system_state_manager(void)
         ui_result_data = CONCAT44(ui_flag_data, ui_status_code);
         ui_system_system_call_3((int)*(short *)*ui_config_ptr * (int)*(short *)(ui_event_data + 0x7e0), ui_data_ptr,
                                 ui_status_code, ui_data_ptr, ui_result_data);
-        ui_flag_data = (undefined4)((ulonglong)ui_result_data >> 0x20);
-        *(undefined4 *)*ui_config_ptr = 0;
+        ui_flag_data = (int32_t)((ulonglong)ui_result_data >> 0x20);
+        *(int32_t *)*ui_config_ptr = 0;
       }
       else {
         ui_system_system_call_4(*ui_config_ptr, ui_event_data + 0x7e0, ui_data_ptr, ui_status_code);
@@ -608,16 +608,16 @@ void ui_system_state_manager(void)
     if (ui_event_type != UI_EVENT_FLAG_PROCESSING) {
       ui_data_ptr = ui_event_data + 0x7e0;
       if (ui_event_type != 9) {
-        ui_config_ptr = (undefined8 *)(ui_event_data + 0xda0);
+        ui_config_ptr = (uint64_t *)(ui_event_data + 0xda0);
         if (*(char *)(ui_event_data + UI_MEMORY_POOL_SIZE + 24) < '\x02') {
           **(short **)(ui_event_data + 0xda8) = *(short *)(ui_event_data + 0x820) * *(short *)*ui_config_ptr;
-          ui_system_buffer_manager(*(undefined8 *)(ui_event_data + 0xda8), ui_event_data + 0x180);
-          *(undefined4 *)*ui_config_ptr = 0;
+          ui_system_buffer_manager(*(uint64_t *)(ui_event_data + 0xda8), ui_event_data + 0x180);
+          *(int32_t *)*ui_config_ptr = 0;
         }
         else {
           ui_system_allocator(ui_config_ptr, ui_event_data + 0x820);
-          ui_system_system_call_5(*(undefined8 *)(ui_event_data + 0xda8), ui_event_data + 0x180);
-          ui_config_ptr = (undefined8 *)*ui_config_ptr;
+          ui_system_system_call_5(*(uint64_t *)(ui_event_data + 0xda8), ui_event_data + 0x180);
+          ui_config_ptr = (uint64_t *)*ui_config_ptr;
           *ui_config_ptr = 0;
           ui_config_ptr[1] = 0;
           ui_config_ptr[2] = 0;
@@ -626,12 +626,12 @@ void ui_system_state_manager(void)
         ui_data_ptr = ui_event_data + 0x800;
       }
       ui_context_ptr = ui_event_data + UI_MEMORY_POOL_SIZE;
-      ui_system_optimizer(ui_event_data + 0x180, ui_data_ptr, *(undefined8 *)(ui_event_data + 0xea8),
-                          *(undefined4 *)(ui_event_data + 0xe80), ui_context_ptr);
-      ui_flag_data = (undefined4)((ulonglong)ui_context_ptr >> 0x20);
+      ui_system_optimizer(ui_event_data + 0x180, ui_data_ptr, *(uint64_t *)(ui_event_data + 0xea8),
+                          *(int32_t *)(ui_event_data + 0xe80), ui_context_ptr);
+      ui_flag_data = (int32_t)((ulonglong)ui_context_ptr >> 0x20);
     }
-    ui_system_synchronizer(ui_event_data + 0x380, ui_event_data + 0x840, *(undefined8 *)(ui_event_data + 0xeb0),
-                          *(undefined8 *)(ui_event_data + 0xeb8), CONCAT44(ui_flag_data, *(undefined4 *)(ui_event_data + 0xe94)));
+    ui_system_synchronizer(ui_event_data + 0x380, ui_event_data + 0x840, *(uint64_t *)(ui_event_data + 0xeb0),
+                          *(uint64_t *)(ui_event_data + 0xeb8), CONCAT44(ui_flag_data, *(int32_t *)(ui_event_data + 0xe94)));
   }
   
   return;
@@ -658,15 +658,15 @@ void ui_system_resource_cleaner(void)
 
 {
   // 资源清理变量
-  undefined8 *ui_config_ptr;             // UI配置指针
+  uint64_t *ui_config_ptr;             // UI配置指针
   longlong ui_data_ptr;                  // UI数据指针
   longlong ui_context_ptr;               // UI上下文指针
   int ui_event_type;                     // UI事件类型
-  undefined4 ui_flag_data;               // 标志数据
-  undefined8 ui_stack_data;              // 栈数据
+  int32_t ui_flag_data;               // 标志数据
+  uint64_t ui_stack_data;              // 栈数据
   
   // 初始化标志数据
-  ui_flag_data = (undefined4)((ulonglong)ui_stack_data >> 0x20);
+  ui_flag_data = (int32_t)((ulonglong)ui_stack_data >> 0x20);
   
   // 执行资源结束处理
   ui_system_finalizer();
@@ -676,16 +676,16 @@ void ui_system_resource_cleaner(void)
     if (ui_event_type != UI_EVENT_FLAG_PROCESSING) {
       ui_data_ptr = ui_event_data + 0x7e0;
       if (ui_event_type != 9) {
-        ui_config_ptr = (undefined8 *)(ui_event_data + 0xda0);
+        ui_config_ptr = (uint64_t *)(ui_event_data + 0xda0);
         if (*(char *)(ui_event_data + UI_MEMORY_POOL_SIZE + 24) < '\x02') {
           **(short **)(ui_event_data + 0xda8) = *(short *)(ui_event_data + 0x820) * *(short *)*ui_config_ptr;
-          ui_system_buffer_manager(*(undefined8 *)(ui_event_data + 0xda8), ui_event_data + 0x180);
-          *(undefined4 *)*ui_config_ptr = 0;
+          ui_system_buffer_manager(*(uint64_t *)(ui_event_data + 0xda8), ui_event_data + 0x180);
+          *(int32_t *)*ui_config_ptr = 0;
         }
         else {
           ui_system_allocator(ui_config_ptr, ui_event_data + 0x820);
-          ui_system_system_call_5(*(undefined8 *)(ui_event_data + 0xda8), ui_event_data + 0x180);
-          ui_config_ptr = (undefined8 *)*ui_config_ptr;
+          ui_system_system_call_5(*(uint64_t *)(ui_event_data + 0xda8), ui_event_data + 0x180);
+          ui_config_ptr = (uint64_t *)*ui_config_ptr;
           *ui_config_ptr = 0;
           ui_config_ptr[1] = 0;
           ui_config_ptr[2] = 0;
@@ -694,12 +694,12 @@ void ui_system_resource_cleaner(void)
         ui_data_ptr = ui_event_data + 0x800;
       }
       ui_context_ptr = ui_event_data + UI_MEMORY_POOL_SIZE;
-      ui_system_optimizer(ui_event_data + 0x180, ui_data_ptr, *(undefined8 *)(ui_event_data + 0xea8),
-                          *(undefined4 *)(ui_event_data + 0xe80), ui_context_ptr);
-      ui_flag_data = (undefined4)((ulonglong)ui_context_ptr >> 0x20);
+      ui_system_optimizer(ui_event_data + 0x180, ui_data_ptr, *(uint64_t *)(ui_event_data + 0xea8),
+                          *(int32_t *)(ui_event_data + 0xe80), ui_context_ptr);
+      ui_flag_data = (int32_t)((ulonglong)ui_context_ptr >> 0x20);
     }
-    ui_system_synchronizer(ui_event_data + 0x380, ui_event_data + 0x840, *(undefined8 *)(ui_event_data + 0xeb0),
-                          *(undefined8 *)(ui_event_data + 0xeb8), CONCAT44(ui_flag_data, *(undefined4 *)(ui_event_data + 0xe94)));
+    ui_system_synchronizer(ui_event_data + 0x380, ui_event_data + 0x840, *(uint64_t *)(ui_event_data + 0xeb0),
+                          *(uint64_t *)(ui_event_data + 0xeb8), CONCAT44(ui_flag_data, *(int32_t *)(ui_event_data + 0xe94)));
   }
   
   return;
@@ -726,7 +726,7 @@ void ui_system_memory_manager(void)
 
 {
   // 内存管理变量
-  undefined8 *ui_config_ptr;             // UI配置指针
+  uint64_t *ui_config_ptr;             // UI配置指针
   longlong ui_data_ptr;                  // UI数据指针
   int ui_event_type;                     // UI事件类型
   
@@ -734,16 +734,16 @@ void ui_system_memory_manager(void)
   if (ui_event_type != UI_EVENT_FLAG_PROCESSING) {
     ui_data_ptr = ui_event_data + 0x7e0;
     if (ui_event_type != 9) {
-      ui_config_ptr = (undefined8 *)(ui_event_data + 0xda0);
+      ui_config_ptr = (uint64_t *)(ui_event_data + 0xda0);
       if (*(char *)(ui_event_data + UI_MEMORY_POOL_SIZE + 24) < '\x02') {
         **(short **)(ui_event_data + 0xda8) = *(short *)(ui_event_data + 0x820) * *(short *)*ui_config_ptr;
-        ui_system_buffer_manager(*(undefined8 *)(ui_event_data + 0xda8), ui_event_data + 0x180);
-        *(undefined4 *)*ui_config_ptr = 0;
+        ui_system_buffer_manager(*(uint64_t *)(ui_event_data + 0xda8), ui_event_data + 0x180);
+        *(int32_t *)*ui_config_ptr = 0;
       }
       else {
         ui_system_allocator(ui_config_ptr, ui_event_data + 0x820);
-        ui_system_system_call_5(*(undefined8 *)(ui_event_data + 0xda8), ui_event_data + 0x180);
-        ui_config_ptr = (undefined8 *)*ui_config_ptr;
+        ui_system_system_call_5(*(uint64_t *)(ui_event_data + 0xda8), ui_event_data + 0x180);
+        ui_config_ptr = (uint64_t *)*ui_config_ptr;
         *ui_config_ptr = 0;
         ui_config_ptr[1] = 0;
         ui_config_ptr[2] = 0;
@@ -751,11 +751,11 @@ void ui_system_memory_manager(void)
       }
       ui_data_ptr = ui_event_data + 0x800;
     }
-    ui_system_optimizer(ui_event_data + 0x180, ui_data_ptr, *(undefined8 *)(ui_event_data + 0xea8),
-                        *(undefined4 *)(ui_event_data + 0xe80), ui_event_data + UI_MEMORY_POOL_SIZE);
+    ui_system_optimizer(ui_event_data + 0x180, ui_data_ptr, *(uint64_t *)(ui_event_data + 0xea8),
+                        *(int32_t *)(ui_event_data + 0xe80), ui_event_data + UI_MEMORY_POOL_SIZE);
   }
-  ui_system_synchronizer(ui_event_data + 0x380, ui_event_data + 0x840, *(undefined8 *)(ui_event_data + 0xeb0),
-                        *(undefined8 *)(ui_event_data + 0xeb8), *(undefined4 *)(ui_event_data + 0xe94));
+  ui_system_synchronizer(ui_event_data + 0x380, ui_event_data + 0x840, *(uint64_t *)(ui_event_data + 0xeb0),
+                        *(uint64_t *)(ui_event_data + 0xeb8), *(int32_t *)(ui_event_data + 0xe94));
   
   return;
 }

@@ -36,10 +36,10 @@
 // ============================================================================
 
 typedef longlong*                      ArrayPointer;            // 数组指针类型
-typedef undefined8*                    DataBuffer;             // 数据缓冲区类型
-typedef undefined4*                    UInt32Buffer;           // 32位无符号整数缓冲区
+typedef uint64_t*                    DataBuffer;             // 数据缓冲区类型
+typedef int32_t*                    UInt32Buffer;           // 32位无符号整数缓冲区
 typedef char*                          CharBuffer;             // 字符缓冲区类型
-typedef undefined2*                    UInt16Buffer;           // 16位无符号整数缓冲区
+typedef int16_t*                    UInt16Buffer;           // 16位无符号整数缓冲区
 typedef longlong                       MemorySize;             // 内存大小类型
 typedef uint                            UInt32;                 // 32位无符号整数
 typedef ushort                          UInt16;                 // 16位无符号整数
@@ -98,9 +98,9 @@ typedef struct {
 // 函数声明
 // ============================================================================
 
-void DynamicArrayProcessor_104ByteElements(ArrayControlBlock* array_control, undefined8 param_2);
-void DynamicArrayProcessor_26ByteElements(ArrayControlBlock* array_control, undefined8 param_2);
-void DynamicArrayProcessor_48ByteElements(ArrayControlBlock* array_control, undefined8 param_2);
+void DynamicArrayProcessor_104ByteElements(ArrayControlBlock* array_control, uint64_t param_2);
+void DynamicArrayProcessor_26ByteElements(ArrayControlBlock* array_control, uint64_t param_2);
+void DynamicArrayProcessor_48ByteElements(ArrayControlBlock* array_control, uint64_t param_2);
 void SortProcessor_BitmaskIndexed(longlong param_1, longlong param_2);
 void SortProcessor_BitmaskOptimized(void);
 void EmptyOperationHandler(void);
@@ -177,7 +177,7 @@ void UInt16InsertionSortProcessor(void);
  * - 智能内存分配和释放
  * - 完整的错误处理机制
  */
-void DynamicArrayProcessor_104ByteElements(ArrayControlBlock* array_control, undefined8 param_2)
+void DynamicArrayProcessor_104ByteElements(ArrayControlBlock* array_control, uint64_t param_2)
 {
     DataBuffer new_buffer = NULL;
     DataBuffer old_buffer;
@@ -223,38 +223,38 @@ capacity_calculation_complete:
         
         do {
             // 高效的数据块复制和清零操作
-            undefined8 temp_data_1 = old_buffer[-8];
+            uint64_t temp_data_1 = old_buffer[-8];
             *write_position = old_buffer[-9];
             write_position[1] = temp_data_1;
             
-            undefined8 temp_data_2 = old_buffer[-6];
+            uint64_t temp_data_2 = old_buffer[-6];
             write_position[2] = old_buffer[-7];
             write_position[3] = temp_data_2;
             
-            undefined4 temp_data_3 = *(undefined4 *)((longlong)old_buffer + -0x24);
-            undefined4 temp_data_4 = *(undefined4 *)(old_buffer + -4);
-            undefined4 temp_data_5 = *(undefined4 *)((longlong)old_buffer + -0x1c);
+            int32_t temp_data_3 = *(int32_t *)((longlong)old_buffer + -0x24);
+            int32_t temp_data_4 = *(int32_t *)(old_buffer + -4);
+            int32_t temp_data_5 = *(int32_t *)((longlong)old_buffer + -0x1c);
             
-            *(undefined4 *)(write_position + 4) = *(undefined4 *)(old_buffer + -5);
-            *(undefined4 *)((longlong)write_position + 0x24) = temp_data_3;
-            *(undefined4 *)(write_position + 5) = temp_data_4;
-            *(undefined4 *)((longlong)write_position + 0x2c) = temp_data_5;
+            *(int32_t *)(write_position + 4) = *(int32_t *)(old_buffer + -5);
+            *(int32_t *)((longlong)write_position + 0x24) = temp_data_3;
+            *(int32_t *)(write_position + 5) = temp_data_4;
+            *(int32_t *)((longlong)write_position + 0x2c) = temp_data_5;
             
-            undefined8 temp_data_6 = old_buffer[-2];
+            uint64_t temp_data_6 = old_buffer[-2];
             write_position[6] = old_buffer[-3];
             write_position[7] = temp_data_6;
             
             // 迁移并清零复杂数据结构
-            *(undefined8 *)(offset + -8 + (longlong)old_buffer) = old_buffer[-1];
+            *(uint64_t *)(offset + -8 + (longlong)old_buffer) = old_buffer[-1];
             old_buffer[-1] = 0;
-            *(undefined8 *)(offset + (longlong)old_buffer) = *old_buffer;
+            *(uint64_t *)(offset + (longlong)old_buffer) = *old_buffer;
             *old_buffer = 0;
-            *(undefined1 *)(offset + 8 + (longlong)old_buffer) = *(undefined1 *)(old_buffer + 1);
-            *(undefined4 *)(offset + 0xc + (longlong)old_buffer) = *(undefined4 *)((longlong)old_buffer + 0xc);
-            *(undefined4 *)((longlong)old_buffer + offset + 0x10) = *(undefined4 *)(old_buffer + 2);
-            *(undefined4 *)((longlong)old_buffer + offset + 0x14) = *(undefined4 *)((longlong)old_buffer + 0x14);
-            *(undefined4 *)((longlong)old_buffer + offset + 0x18) = *(undefined4 *)(old_buffer + 3);
-            *(undefined1 *)((longlong)old_buffer + offset + 0x1c) = *(undefined1 *)((longlong)old_buffer + 0x1c);
+            *(int8_t *)(offset + 8 + (longlong)old_buffer) = *(int8_t *)(old_buffer + 1);
+            *(int32_t *)(offset + 0xc + (longlong)old_buffer) = *(int32_t *)((longlong)old_buffer + 0xc);
+            *(int32_t *)((longlong)old_buffer + offset + 0x10) = *(int32_t *)(old_buffer + 2);
+            *(int32_t *)((longlong)old_buffer + offset + 0x14) = *(int32_t *)((longlong)old_buffer + 0x14);
+            *(int32_t *)((longlong)old_buffer + offset + 0x18) = *(int32_t *)(old_buffer + 3);
+            *(int8_t *)((longlong)old_buffer + offset + 0x1c) = *(int8_t *)((longlong)old_buffer + 0x1c);
             
             write_position = write_position + ARRAY_ELEMENT_SIZE_13;
             current_position = (longlong)old_buffer + 4;
@@ -316,7 +316,7 @@ capacity_calculation_complete:
  * - 智能内存分配和释放
  * - 完整的错误处理机制
  */
-void DynamicArrayProcessor_26ByteElements(ArrayControlBlock* array_control, undefined8 param_2)
+void DynamicArrayProcessor_26ByteElements(ArrayControlBlock* array_control, uint64_t param_2)
 {
     DataBuffer new_buffer = NULL;
     DataBuffer old_buffer;
@@ -361,42 +361,42 @@ capacity_calculation_complete:
         
         do {
             // 高效的数据块复制和清零操作
-            *write_position = *(undefined4 *)(old_buffer + -1);
-            *(undefined1 *)((longlong)old_buffer + offset + -4) = *(undefined1 *)((longlong)old_buffer + -4);
-            *(undefined1 *)((longlong)old_buffer + offset + -3) = *(undefined1 *)((longlong)old_buffer + -3);
-            *(undefined8 *)((longlong)old_buffer + offset) = *old_buffer;
+            *write_position = *(int32_t *)(old_buffer + -1);
+            *(int8_t *)((longlong)old_buffer + offset + -4) = *(int8_t *)((longlong)old_buffer + -4);
+            *(int8_t *)((longlong)old_buffer + offset + -3) = *(int8_t *)((longlong)old_buffer + -3);
+            *(uint64_t *)((longlong)old_buffer + offset) = *old_buffer;
             *old_buffer = 0;
-            *(undefined8 *)((longlong)old_buffer + offset + 8) = old_buffer[1];
+            *(uint64_t *)((longlong)old_buffer + offset + 8) = old_buffer[1];
             old_buffer[1] = 0;
-            *(undefined4 *)((longlong)old_buffer + offset + 0x10) = *(undefined4 *)(old_buffer + 2);
+            *(int32_t *)((longlong)old_buffer + offset + 0x10) = *(int32_t *)(old_buffer + 2);
             
-            undefined8 temp_data = *(undefined8 *)((longlong)old_buffer + 0x1c);
+            uint64_t temp_data = *(uint64_t *)((longlong)old_buffer + 0x1c);
             DataBuffer temp_ptr = (DataBuffer)((longlong)old_buffer + offset + 0x14);
-            *temp_ptr = *(undefined8 *)((longlong)old_buffer + 0x14);
+            *temp_ptr = *(uint64_t *)((longlong)old_buffer + 0x14);
             temp_ptr[1] = temp_data;
             
-            temp_data = *(undefined8 *)((longlong)old_buffer + 0x2c);
+            temp_data = *(uint64_t *)((longlong)old_buffer + 0x2c);
             temp_ptr = (DataBuffer)((longlong)old_buffer + offset + 0x24);
-            *temp_ptr = *(undefined8 *)((longlong)old_buffer + 0x24);
+            *temp_ptr = *(uint64_t *)((longlong)old_buffer + 0x24);
             temp_ptr[1] = temp_data;
             
-            undefined4 temp_data_1 = *(undefined4 *)(old_buffer + 7);
-            undefined4 temp_data_2 = *(undefined4 *)((longlong)old_buffer + 0x3c);
-            undefined4 temp_data_3 = *(undefined4 *)(old_buffer + 8);
+            int32_t temp_data_1 = *(int32_t *)(old_buffer + 7);
+            int32_t temp_data_2 = *(int32_t *)((longlong)old_buffer + 0x3c);
+            int32_t temp_data_3 = *(int32_t *)(old_buffer + 8);
             UInt32Buffer temp_ptr_2 = (UInt32Buffer)((longlong)old_buffer + offset + 0x34);
-            *temp_ptr_2 = *(undefined4 *)((longlong)old_buffer + 0x34);
+            *temp_ptr_2 = *(int32_t *)((longlong)old_buffer + 0x34);
             temp_ptr_2[1] = temp_data_1;
             temp_ptr_2[2] = temp_data_2;
             temp_ptr_2[3] = temp_data_3;
             
-            temp_data = *(undefined8 *)((longlong)old_buffer + 0x4c);
+            temp_data = *(uint64_t *)((longlong)old_buffer + 0x4c);
             temp_ptr = (DataBuffer)((longlong)old_buffer + offset + 0x44);
-            *temp_ptr = *(undefined8 *)((longlong)old_buffer + 0x44);
+            *temp_ptr = *(uint64_t *)((longlong)old_buffer + 0x44);
             temp_ptr[1] = temp_data;
             
-            *(undefined4 *)((longlong)old_buffer + offset + 0x54) = *(undefined4 *)((longlong)old_buffer + 0x54);
-            *(undefined4 *)((longlong)old_buffer + offset + 0x58) = *(undefined4 *)(old_buffer + 0xb);
-            *(undefined4 *)((longlong)old_buffer + offset + 0x5c) = *(undefined4 *)((longlong)old_buffer + 0x5c);
+            *(int32_t *)((longlong)old_buffer + offset + 0x54) = *(int32_t *)((longlong)old_buffer + 0x54);
+            *(int32_t *)((longlong)old_buffer + offset + 0x58) = *(int32_t *)(old_buffer + 0xb);
+            *(int32_t *)((longlong)old_buffer + offset + 0x5c) = *(int32_t *)((longlong)old_buffer + 0x5c);
             
             write_position = write_position + ARRAY_ELEMENT_SIZE_26;
             current_position = (longlong)old_buffer + 0xc;
@@ -458,7 +458,7 @@ capacity_calculation_complete:
  * - 智能内存分配和释放
  * - 完整的错误处理机制
  */
-void DynamicArrayProcessor_48ByteElements(ArrayControlBlock* array_control, undefined8 param_2)
+void DynamicArrayProcessor_48ByteElements(ArrayControlBlock* array_control, uint64_t param_2)
 {
     DataBuffer new_buffer = NULL;
     DataBuffer old_buffer;
@@ -503,16 +503,16 @@ capacity_calculation_complete:
         
         do {
             // 高效的数据块复制和清零操作
-            *write_position = *(undefined4 *)(old_buffer + -2);
-            *(undefined8 *)(offset + -8 + (longlong)old_buffer) = old_buffer[-1];
+            *write_position = *(int32_t *)(old_buffer + -2);
+            *(uint64_t *)(offset + -8 + (longlong)old_buffer) = old_buffer[-1];
             old_buffer[-1] = 0;
-            *(undefined8 *)(offset + (longlong)old_buffer) = *old_buffer;
+            *(uint64_t *)(offset + (longlong)old_buffer) = *old_buffer;
             *old_buffer = 0;
-            *(undefined8 *)(offset + 8 + (longlong)old_buffer) = old_buffer[1];
+            *(uint64_t *)(offset + 8 + (longlong)old_buffer) = old_buffer[1];
             old_buffer[1] = 0;
-            *(undefined4 *)(offset + 0x10 + (longlong)old_buffer) = *(undefined4 *)(old_buffer + 2);
-            *(undefined4 *)(offset + 0x14 + (longlong)old_buffer) = *(undefined4 *)((longlong)old_buffer + 0x14);
-            *(undefined4 *)(offset + 0x18 + (longlong)old_buffer) = *(undefined4 *)(old_buffer + 3);
+            *(int32_t *)(offset + 0x10 + (longlong)old_buffer) = *(int32_t *)(old_buffer + 2);
+            *(int32_t *)(offset + 0x14 + (longlong)old_buffer) = *(int32_t *)((longlong)old_buffer + 0x14);
+            *(int32_t *)(offset + 0x18 + (longlong)old_buffer) = *(int32_t *)(old_buffer + 3);
             
             write_position = write_position + ARRAY_ELEMENT_SIZE_48;
             current_position = (longlong)old_buffer + 4;
@@ -600,7 +600,7 @@ void SortProcessor_BitmaskIndexed(longlong param_1, longlong param_2)
                     // 获取辅助键值
                     secondary_key = *(UInt32 *)(hash_table_ptr + 0x18 + index_offset);
                     // 执行排序操作
-                    SortingOperation_Execute(*(undefined8 *)
+                    SortingOperation_Execute(*(uint64_t *)
                                    (*(longlong *)
                                      (*(longlong *)(param_2 + 0x698) + (longlong)((int)bitmask_value >> 10) * 8) + 8 +
                                    (longlong)(int)(*(UInt32 *)(param_2 + 0x6b8) & bitmask_value) * SORT_ELEMENT_SIZE_24),
@@ -656,7 +656,7 @@ void SortProcessor_BitmaskOptimized(void)
                 // 获取辅助键值
                 secondary_key = *(UInt32 *)(hash_table_ptr + 0x18 + index_offset);
                 // 执行优化的排序操作
-                SortingOperation_Execute(*(undefined8 *)
+                SortingOperation_Execute(*(uint64_t *)
                                (*(longlong *)
                                  (*(longlong *)(data_source + 0x698) + (longlong)((int)bitmask_value >> 10) * 8) + 8 +
                                (longlong)(int)(*(UInt32 *)(data_source + 0x6b8) & bitmask_value) * SORT_ELEMENT_SIZE_24),
@@ -1197,7 +1197,7 @@ void StringInsertionSortProcessor_Secondary(void)
  */
 void UInt16InsertionSortProcessor(void)
 {
-    undefined1 low_byte;
+    int8_t low_byte;
     char compare_char;
     UInt16 current_value;
     char temp_char;
@@ -1219,7 +1219,7 @@ void UInt16InsertionSortProcessor(void)
             return;
         }
         current_value = *loop_ptr;
-        low_byte = *(undefined1 *)(loop_ptr + 1);
+        low_byte = *(int8_t *)(loop_ptr + 1);
         insert_ptr = loop_ptr;
         if (loop_ptr != start_bound) {
             high_byte = (char)((ushort)current_value >> 8);
@@ -1239,14 +1239,14 @@ void UInt16InsertionSortProcessor(void)
                 }
                 if (equal_flag || borrow_flag != temp_char < '\0') break;
                 *insert_ptr = *scan_ptr;
-                *(undefined1 *)(insert_ptr + 1) = *(undefined1 *)((longlong)current_ptr + -1);
+                *(int8_t *)(insert_ptr + 1) = *(int8_t *)((longlong)current_ptr + -1);
                 insert_ptr = (UInt16Buffer)((longlong)insert_ptr + -3);
                 current_ptr = scan_ptr;
             } while (scan_ptr != start_bound);
         }
         loop_ptr = (UInt16Buffer)((longlong)loop_ptr + 3);
         *insert_ptr = current_value;
-        *(undefined1 *)(insert_ptr + 1) = low_byte;
+        *(int8_t *)(insert_ptr + 1) = low_byte;
     } while( true );
 }
 

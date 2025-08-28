@@ -213,7 +213,7 @@ typedef struct {
  * 
  * @return void 无返回值，直接修改输入向量
  */
-void MathVector3D_Normalizer(float *param_1, undefined4 *param_2, float *param_3, undefined1 param_4)
+void MathVector3D_Normalizer(float *param_1, int32_t *param_2, float *param_3, int8_t param_4)
 {
     // 语义化变量定义
     float vector_x;              /**< 向量X分量 */
@@ -288,7 +288,7 @@ void MathVector3D_Normalizer(float *param_1, undefined4 *param_2, float *param_3
  * 
  * @return void 无返回值，结果存储在param_3中
  */
-void MathMatrix_Multiplier(undefined4 *param_1, undefined4 *param_2, undefined4 *param_3, undefined1 param_4)
+void MathMatrix_Multiplier(int32_t *param_1, int32_t *param_2, int32_t *param_3, int8_t param_4)
 {
     // 语义化变量定义
     float *matrix_a;            /**< 矩阵A指针 */
@@ -355,7 +355,7 @@ void MathMatrix_Multiplier(undefined4 *param_1, undefined4 *param_2, undefined4 
  * 
  * @return void 无返回值，直接修改输入坐标
  */
-void CoordinateSystem_Transformer(undefined4 *param_1, undefined4 *param_2, undefined4 *param_3, undefined4 *param_4)
+void CoordinateSystem_Transformer(int32_t *param_1, int32_t *param_2, int32_t *param_3, int32_t *param_4)
 {
     // 语义化变量定义
     float *source_coords;       /**< 源坐标指针 */
@@ -428,7 +428,7 @@ void CoordinateSystem_Transformer(undefined4 *param_1, undefined4 *param_2, unde
  * 
  * @return void 无返回值，结果存储在param_3中
  */
-void GeometryCalculator(undefined4 *param_1, undefined4 *param_2, undefined4 *param_3, undefined1 param_4)
+void GeometryCalculator(int32_t *param_1, int32_t *param_2, int32_t *param_3, int8_t param_4)
 {
     // 语义化变量定义
     float *geometry_data;       /**< 几何数据指针 */
@@ -497,7 +497,7 @@ void GeometryCalculator(undefined4 *param_1, undefined4 *param_2, undefined4 *pa
  * 
  * @return void 无返回值，结果存储在param_3中
  */
-void CollisionDetector(undefined4 *param_1, undefined4 *param_2, undefined4 *param_3, undefined1 param_4)
+void CollisionDetector(int32_t *param_1, int32_t *param_2, int32_t *param_3, int8_t param_4)
 {
     // 语义化变量定义
     float *geometry_a;          /**< 几何体A指针 */
@@ -578,7 +578,7 @@ void CollisionDetector(undefined4 *param_1, undefined4 *param_2, undefined4 *par
  * 
  * @return void 无返回值，结果存储在param_3中
  */
-void TrigonometryProcessor(undefined4 *param_1, undefined4 *param_2, undefined4 *param_3, undefined1 param_4)
+void TrigonometryProcessor(int32_t *param_1, int32_t *param_2, int32_t *param_3, int8_t param_4)
 {
     // 语义化变量定义
     float *input_angle;         /**< 输入角度指针 */
@@ -654,7 +654,7 @@ void TrigonometryProcessor(undefined4 *param_1, undefined4 *param_2, undefined4 
  * 
  * @return void 无返回值，结果存储在param_3中
  */
-void VectorOperationsProcessor(undefined4 *param_1, undefined4 *param_2, undefined4 *param_3, undefined1 param_4)
+void VectorOperationsProcessor(int32_t *param_1, int32_t *param_2, int32_t *param_3, int8_t param_4)
 {
     // 语义化变量定义
     float *vector_a;            /**< 向量A指针 */
@@ -728,7 +728,7 @@ void VectorOperationsProcessor(undefined4 *param_1, undefined4 *param_2, undefin
  * 
  * @return void 无返回值，结果存储在param_3中
  */
-void MatrixTransformer(undefined4 *param_1, undefined4 *param_2, undefined4 *param_3, undefined1 param_4)
+void MatrixTransformer(int32_t *param_1, int32_t *param_2, int32_t *param_3, int8_t param_4)
 {
     // 语义化变量定义
     float *input_matrix;        /**< 输入矩阵指针 */
@@ -809,7 +809,7 @@ void MatrixTransformer(undefined4 *param_1, undefined4 *param_2, undefined4 *par
  * 
  * @return void 无返回值，结果存储在param_3中
  */
-void NumericalOptimizer(undefined4 *param_1, undefined4 *param_2, undefined4 *param_3, undefined1 param_4)
+void NumericalOptimizer(int32_t *param_1, int32_t *param_2, int32_t *param_3, int8_t param_4)
 {
     // 语义化变量定义
     float *input_data;          /**< 输入数据指针 */
@@ -878,7 +878,7 @@ void NumericalOptimizer(undefined4 *param_1, undefined4 *param_2, undefined4 *pa
  * 
  * @return void 无返回值，结果存储在param_3中
  */
-void GeometryPrimitiveProcessor(undefined4 *param_1, undefined4 *param_2, undefined4 *param_3, undefined1 param_4)
+void GeometryPrimitiveProcessor(int32_t *param_1, int32_t *param_2, int32_t *param_3, int8_t param_4)
 {
     // 语义化变量定义
     float *primitive_data;       /**< 图元数据指针 */
@@ -943,7 +943,7 @@ void GeometryPrimitiveProcessor(undefined4 *param_1, undefined4 *param_2, undefi
  * 
  * @return void 无返回值，结果存储在param_3中
  */
-void PrecisionController(undefined4 *param_1, undefined4 *param_2, undefined4 *param_3, undefined1 param_4)
+void PrecisionController(int32_t *param_1, int32_t *param_2, int32_t *param_3, int8_t param_4)
 {
     // 语义化变量定义
     float *input_value;         /**< 输入数值指针 */
@@ -1007,7 +1007,7 @@ void PrecisionController(undefined4 *param_1, undefined4 *param_2, undefined4 *p
  * 
  * @return void 无返回值，验证结果存储在param_3中
  */
-void MathCalculationValidator(undefined4 *param_1, undefined4 *param_2, undefined4 *param_3, undefined1 param_4)
+void MathCalculationValidator(int32_t *param_1, int32_t *param_2, int32_t *param_3, int8_t param_4)
 {
     // 语义化变量定义
     float *calculation_result;  /**< 计算结果指针 */
@@ -1067,7 +1067,7 @@ void MathCalculationValidator(undefined4 *param_1, undefined4 *param_2, undefine
  * 
  * @return void 无返回值，结果存储在param_3中
  */
-void CoordinateSystemManager(undefined4 *param_1, undefined4 *param_2, undefined4 *param_3, undefined1 param_4)
+void CoordinateSystemManager(int32_t *param_1, int32_t *param_2, int32_t *param_3, int8_t param_4)
 {
     // 语义化变量定义
     float *coord_system_data;   /**< 坐标系数据指针 */
@@ -1141,7 +1141,7 @@ void CoordinateSystemManager(undefined4 *param_1, undefined4 *param_2, undefined
  * 
  * @return void 无返回值，结果存储在param_3中
  */
-void GeometryTransformManager(undefined4 *param_1, undefined4 *param_2, undefined4 *param_3, undefined1 param_4)
+void GeometryTransformManager(int32_t *param_1, int32_t *param_2, int32_t *param_3, int8_t param_4)
 {
     // 语义化变量定义
     float *transform_data;      /**< 变换数据指针 */
@@ -1226,7 +1226,7 @@ void GeometryTransformManager(undefined4 *param_1, undefined4 *param_2, undefine
  * 
  * @return void 无返回值，结果存储在param_3中
  */
-void VectorAnalyzer(undefined4 *param_1, undefined4 *param_2, undefined4 *param_3, undefined1 param_4)
+void VectorAnalyzer(int32_t *param_1, int32_t *param_2, int32_t *param_3, int8_t param_4)
 {
     // 语义化变量定义
     float *vector_data;         /**< 向量数据指针 */
@@ -1320,7 +1320,7 @@ void VectorAnalyzer(undefined4 *param_1, undefined4 *param_2, undefined4 *param_
  * 
  * @return void 无返回值，结果存储在param_3中
  */
-void MatrixAnalyzer(undefined4 *param_1, undefined4 *param_2, undefined4 *param_3, undefined1 param_4)
+void MatrixAnalyzer(int32_t *param_1, int32_t *param_2, int32_t *param_3, int8_t param_4)
 {
     // 语义化变量定义
     float *matrix_data;         /**< 矩阵数据指针 */
@@ -1402,7 +1402,7 @@ void MatrixAnalyzer(undefined4 *param_1, undefined4 *param_2, undefined4 *param_
  * 
  * @return void 无返回值，结果存储在param_3中
  */
-void GeometryAnalyzer(undefined4 *param_1, undefined4 *param_2, undefined4 *param_3, undefined1 param_4)
+void GeometryAnalyzer(int32_t *param_1, int32_t *param_2, int32_t *param_3, int8_t param_4)
 {
     // 语义化变量定义
     float *geometry_data;       /**< 几何数据指针 */
@@ -1474,7 +1474,7 @@ void GeometryAnalyzer(undefined4 *param_1, undefined4 *param_2, undefined4 *para
  * 
  * @return void 无返回值，结果存储在param_3中
  */
-void NumericalAnalyzer(undefined4 *param_1, undefined4 *param_2, undefined4 *param_3, undefined1 param_4)
+void NumericalAnalyzer(int32_t *param_1, int32_t *param_2, int32_t *param_3, int8_t param_4)
 {
     // 语义化变量定义
     float *numerical_data;       /**< 数值数据指针 */
@@ -1576,7 +1576,7 @@ void NumericalAnalyzer(undefined4 *param_1, undefined4 *param_2, undefined4 *par
  * 
  * @return void 无返回值，结果存储在param_3中
  */
-void MathOperationsCoreProcessor(undefined4 *param_1, undefined4 *param_2, undefined4 *param_3, undefined1 param_4)
+void MathOperationsCoreProcessor(int32_t *param_1, int32_t *param_2, int32_t *param_3, int8_t param_4)
 {
     // 语义化变量定义
     float *operation_data;       /**< 运算数据指针 */
@@ -1641,7 +1641,7 @@ void MathOperationsCoreProcessor(undefined4 *param_1, undefined4 *param_2, undef
  * 
  * @return void 无返回值，结果存储在param_3中
  */
-void AdvancedMathCalculator(undefined4 *param_1, undefined4 *param_2, undefined4 *param_3, undefined1 param_4)
+void AdvancedMathCalculator(int32_t *param_1, int32_t *param_2, int32_t *param_3, int8_t param_4)
 {
     // 语义化变量定义
     float *calculation_data;    /**< 计算数据指针 */
@@ -1713,7 +1713,7 @@ void AdvancedMathCalculator(undefined4 *param_1, undefined4 *param_2, undefined4
  * 
  * @return void 无返回值，结果存储在param_3中
  */
-void GeometryCoreProcessor(undefined4 *param_1, undefined4 *param_2, undefined4 *param_3, undefined1 param_4)
+void GeometryCoreProcessor(int32_t *param_1, int32_t *param_2, int32_t *param_3, int8_t param_4)
 {
     // 语义化变量定义
     float *geometry_data;       /**< 几何数据指针 */
@@ -1785,7 +1785,7 @@ void GeometryCoreProcessor(undefined4 *param_1, undefined4 *param_2, undefined4 
  * 
  * @return void 无返回值，初始化状态存储在param_3中
  */
-void MathSystemInitializer(undefined4 *param_1, undefined4 *param_2, undefined4 *param_3, undefined1 param_4)
+void MathSystemInitializer(int32_t *param_1, int32_t *param_2, int32_t *param_3, int8_t param_4)
 {
     // 语义化变量定义
     float *system_config;       /**< 系统配置指针 */
@@ -1853,7 +1853,7 @@ void MathSystemInitializer(undefined4 *param_1, undefined4 *param_2, undefined4 
  * 
  * @return void 无返回值，清理状态存储在param_3中
  */
-void MathSystemCleanupHandler(undefined4 *param_1, undefined4 *param_2, undefined4 *param_3, undefined1 param_4)
+void MathSystemCleanupHandler(int32_t *param_1, int32_t *param_2, int32_t *param_3, int8_t param_4)
 {
     // 语义化变量定义
     float *system_data;         /**< 系统数据指针 */
@@ -1912,25 +1912,25 @@ void MathSystemCleanupHandler(undefined4 *param_1, undefined4 *param_2, undefine
  =============================================================================*/
 
 // 系统数据区域
-extern undefined4 DAT_180d49830;
-extern undefined8 UNK_180d498a0;
-extern undefined4 UNK_180d498a8;
-extern undefined *UNK_180d498b0;
-extern undefined1 *UNK_180d498b8;
-extern undefined4 UNK_180d498c0;
+extern int32_t DAT_180d49830;
+extern uint64_t UNK_180d498a0;
+extern int32_t UNK_180d498a8;
+extern void *UNK_180d498b0;
+extern int8_t *UNK_180d498b8;
+extern int32_t UNK_180d498c0;
 extern longlong UNK_180d49908;
 extern longlong UNK_180d49910;
 extern longlong UNK_180d49928;
 extern longlong UNK_180d49930;
-extern undefined4 UNK_180d49948;
-extern undefined4 UNK_180d4994c;
+extern int32_t UNK_180d49948;
+extern int32_t UNK_180d4994c;
 extern undefined DAT_180d49950;
 extern undefined DAT_180d49970;
 extern undefined DAT_180bfc140;
 extern undefined DAT_1803f48b2;
 extern undefined UNK_180d49d58;
 extern longlong UNK_180d49d68;
-extern undefined8 UNK_180d49d70;
+extern uint64_t UNK_180d49d70;
 extern longlong UNK_180d49d78;
 extern longlong *UNK_180c96358;
 

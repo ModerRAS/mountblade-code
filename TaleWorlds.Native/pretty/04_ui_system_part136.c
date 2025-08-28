@@ -93,17 +93,17 @@
 // 类型别名定义
 // ============================================================================
 
-typedef undefined8 UIComponentHandle;          // UI组件句柄
-typedef undefined8 UIResourceHandle;            // UI资源句柄
-typedef undefined8 UIEventHandle;               // UI事件句柄
-typedef undefined8 UIDataHandle;                // UI数据句柄
-typedef undefined8 UIRenderHandle;              // UI渲染句柄
-typedef undefined8 UIStateHandle;               // UI状态句柄
-typedef undefined8 UICallbackHandle;            // UI回调句柄
-typedef undefined4 UIStatus;                    // UI状态
-typedef undefined4 UIErrorCode;                 // UI错误码
-typedef undefined1 UIStateFlag;                 // UI状态标志
-typedef undefined8 UIContext;                  // UI上下文
+typedef uint64_t UIComponentHandle;          // UI组件句柄
+typedef uint64_t UIResourceHandle;            // UI资源句柄
+typedef uint64_t UIEventHandle;               // UI事件句柄
+typedef uint64_t UIDataHandle;                // UI数据句柄
+typedef uint64_t UIRenderHandle;              // UI渲染句柄
+typedef uint64_t UIStateHandle;               // UI状态句柄
+typedef uint64_t UICallbackHandle;            // UI回调句柄
+typedef int32_t UIStatus;                    // UI状态
+typedef int32_t UIErrorCode;                 // UI错误码
+typedef int8_t UIStateFlag;                 // UI状态标志
+typedef uint64_t UIContext;                  // UI上下文
 
 // ============================================================================
 // 数据结构定义
@@ -198,7 +198,7 @@ typedef struct {
 // 参数：context - UI上下文, stateValue - 状态值
 // 返回值：无
 void UISystem_ComponentStateHandler(void);                    // UI系统组件状态处理器1
-void UISystem_ComponentStateHandler_SetState(longlong context, undefined4 stateValue); // UI系统组件状态设置器
+void UISystem_ComponentStateHandler_SetState(longlong context, int32_t stateValue); // UI系统组件状态设置器
 
 // UI系统资源初始化器 (UISystem_ResourceInitializer)
 // 功能：初始化UI系统资源并管理资源生命周期
@@ -279,7 +279,7 @@ void UISystem_CleanupManager(longlong context);                // UI系统清理
  * - 提供详细的状态错误信息
  * - 支持状态回滚机制
  */
-void UISystem_ComponentStateHandler(longlong context, undefined4 stateValue)
+void UISystem_ComponentStateHandler(longlong context, int32_t stateValue)
 {
     int validation_result;
     
@@ -287,8 +287,8 @@ void UISystem_ComponentStateHandler(longlong context, undefined4 stateValue)
     validation_result = FUN_18078ae40(context, stateValue, 0);
     if (validation_result == 0) {
         // 状态验证通过，更新组件状态
-        *(undefined4 *)(context + UI_OFFSET_116C4) = stateValue;
-        *(undefined4 *)(context + UI_OFFSET_116C8) = 0;
+        *(int32_t *)(context + UI_OFFSET_116C4) = stateValue;
+        *(int32_t *)(context + UI_OFFSET_116C8) = 0;
     }
     return;
 }
@@ -324,14 +324,14 @@ int UISystem_ResourceInitializer(longlong context)
 {
     longlong resourceHandle;
     longlong *resourcePtr;
-    undefined8 eventHandle;
+    uint64_t eventHandle;
     longlong *statePtr;
     int result;
     ulonglong stack_param;
-    undefined4 tempValue;
+    int32_t tempValue;
     
     // 创建主资源句柄
-    resourceHandle = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), UI_CONST_0X4D0, &UNK_180958000, UI_CONST_0X146,
+    resourceHandle = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), UI_CONST_0X4D0, &UNK_180958000, UI_CONST_0X146,
                                   stack_param & 0xffffffff00000000, 0, 1);
     resourcePtr = (longlong *)0x0;
     if (resourceHandle != 0) {
@@ -518,7 +518,7 @@ int UISystem_ResourceInitializer(longlong context)
                                                                                                                                                                                                                             result = FUN_180772160(*statePtr, eventHandle, 0, 0, 0);
                                                                                                                                                                                                                             if (result == 0) {
                                                                                                                                                                                                                                 // 初始化成功，设置状态标志
-                                                                                                                                                                                                                                *(undefined1 *)(context + 9) = 1;
+                                                                                                                                                                                                                                *(int8_t *)(context + 9) = 1;
                                                                                                                                                                                                                                 return UI_SYSTEM_SUCCESS;
                                                                                                                                                                                                                             }
                                                                                                                                                                                                                         }
@@ -603,7 +603,7 @@ int UISystem_ResourceInitializer(longlong context)
  * - 初始化失败时跳过事件处理
  * - 提供事件处理状态反馈
  */
-void UISystem_EventProcessor(longlong context, undefined4 eventValue)
+void UISystem_EventProcessor(longlong context, int32_t eventValue)
 {
     int result;
     
@@ -613,7 +613,7 @@ void UISystem_EventProcessor(longlong context, undefined4 eventValue)
     }
     
     // 分发事件到事件处理器
-    FUN_180772870(*(undefined8 *)(context + UI_OFFSET_11418), eventValue, 0);
+    FUN_180772870(*(uint64_t *)(context + UI_OFFSET_11418), eventValue, 0);
     return;
 }
 
@@ -639,10 +639,10 @@ void UISystem_EventProcessor(longlong context, undefined4 eventValue)
  */
 void UISystem_DataManager(longlong context)
 {
-    undefined8 *componentPtr;
-    undefined4 renderValue;
-    undefined8 *resourcePtr;
-    undefined8 resourceHandle;
+    uint64_t *componentPtr;
+    int32_t renderValue;
+    uint64_t *resourcePtr;
+    uint64_t resourceHandle;
     int result;
     longlong stateHandle;
     ulonglong stackVar;
@@ -650,34 +650,34 @@ void UISystem_DataManager(longlong context)
     ulonglong indexVar;
     ulonglong dataVar;
     float floatVar;
-    undefined1 stackBuffer[32];
+    int8_t stackBuffer[32];
     float *floatPtr;
     char charBuffer[4];
     float float1;
     float float2;
     uint eventValue;
     float floatArray[2];
-    undefined8 stackVar1;
-    undefined8 stackVar2;
-    undefined8 stackVar3;
-    undefined8 stackVar4;
-    undefined8 stackVar5;
-    undefined8 stackVar6;
-    undefined8 stackVar7;
-    undefined8 stackVar8;
-    undefined8 stackVar9;
-    undefined8 stackVar10;
-    undefined8 stackVar11;
-    undefined8 stackVar12;
-    undefined8 stackVar13;
-    undefined8 stackVar14;
-    undefined8 stackVar15;
-    undefined8 stackVar16;
-    undefined8 stackVar17;
-    undefined8 stackVar18;
-    undefined8 stackVar19;
-    undefined8 stackVar20;
-    undefined1 stackBuffer2[48];
+    uint64_t stackVar1;
+    uint64_t stackVar2;
+    uint64_t stackVar3;
+    uint64_t stackVar4;
+    uint64_t stackVar5;
+    uint64_t stackVar6;
+    uint64_t stackVar7;
+    uint64_t stackVar8;
+    uint64_t stackVar9;
+    uint64_t stackVar10;
+    uint64_t stackVar11;
+    uint64_t stackVar12;
+    uint64_t stackVar13;
+    uint64_t stackVar14;
+    uint64_t stackVar15;
+    uint64_t stackVar16;
+    uint64_t stackVar17;
+    uint64_t stackVar18;
+    uint64_t stackVar19;
+    uint64_t stackVar20;
+    int8_t stackBuffer2[48];
     ulonglong stackVar21;
     
     stackVar21 = _DAT_180bf00a8 ^ (ulonglong)stackBuffer;
@@ -698,8 +698,8 @@ void UISystem_DataManager(longlong context)
         }
         *(uint *)(context + UI_OFFSET_116B4) = eventValue;
         if ((*(longlong *)(context + 0x6b0) == 0) || (result = func_0x000180069ee0(), result == 0)) {
-            componentPtr = (undefined8 *)(context + 0x12758);
-            resourcePtr = (undefined8 *)*componentPtr;
+            componentPtr = (uint64_t *)(context + 0x12758);
+            resourcePtr = (uint64_t *)*componentPtr;
             floatVar = 0.0;
             stackVar1 = 0;
             stackVar2 = 0;
@@ -707,7 +707,7 @@ void UISystem_DataManager(longlong context)
             stackVar4 = 0;
             stackVar5 = 0;
             stackVar6 = 0;
-            for (; resourcePtr != componentPtr; resourcePtr = (undefined8 *)*resourcePtr) {
+            for (; resourcePtr != componentPtr; resourcePtr = (uint64_t *)*resourcePtr) {
                 resourceHandle = resourcePtr[2];
                 func_0x0001807673f0(resourceHandle, charBuffer);
                 if (charBuffer[0] != '\0') {
@@ -733,7 +733,7 @@ void UISystem_DataManager(longlong context)
                     }
                 }
             }
-            if (((undefined8 *)*componentPtr != componentPtr) || (*(undefined8 **)(context + 0x12760) != componentPtr)) {
+            if (((uint64_t *)*componentPtr != componentPtr) || (*(uint64_t **)(context + 0x12760) != componentPtr)) {
                 if (floatVar < 1.0) {
                     stackVar13 = 0;
                     stackVar14 = 0;
@@ -741,21 +741,21 @@ void UISystem_DataManager(longlong context)
                     stackVar16 = 0;
                     stackVar17 = 0;
                     stackVar18 = 0;
-                    func_0x000180746970(context, *(undefined4 *)(context + UI_OFFSET_11654), &stackVar13);
+                    func_0x000180746970(context, *(int32_t *)(context + UI_OFFSET_11654), &stackVar13);
                     FUN_180767800(&stackVar1, &stackVar13, 1.0 - floatVar);
                     floatVar = 1.0;
                 }
                 FUN_180767270(stackBuffer2, &stackVar1, 1.0 / floatVar);
-                FUN_180743940(context, *(undefined4 *)(context + UI_OFFSET_11654), stackBuffer2, 1);
+                FUN_180743940(context, *(int32_t *)(context + UI_OFFSET_11654), stackBuffer2, 1);
             }
-            componentPtr = *(undefined8 **)(context + 0x11708);
+            componentPtr = *(uint64_t **)(context + 0x11708);
             do {
-                if (componentPtr == (undefined8 *)(context + 0x11708)) {
+                if (componentPtr == (uint64_t *)(context + 0x11708)) {
                     result = FUN_18078baf0(context, eventCount);
                     if ((result != 0) || (result = FUN_18078c760(context, eventCount), result != 0)) break;
                     if (*(longlong *)(context + 0x670) != 0) {
                         FUN_180772c50(context + UI_OFFSET_11678, 1);
-                        result = FUN_180789300(*(undefined8 *)(context + 0x670));
+                        result = FUN_180789300(*(uint64_t *)(context + 0x670));
                         if (result != 0) break;
                         FUN_180772c50(context + UI_OFFSET_11678, 0);
                     }
@@ -769,7 +769,7 @@ void UISystem_DataManager(longlong context)
                     }
                     break;
                 }
-                resourcePtr = (undefined8 *)*componentPtr;
+                resourcePtr = (uint64_t *)*componentPtr;
                 result = FUN_180754a30(componentPtr[2], eventCount, 0);
                 componentPtr = resourcePtr;
             } while (result == 0);
@@ -792,20 +792,20 @@ LAB_18078c477:
         if (result != 0) goto FUN_18078c746;
         if (*(char *)(context + 0x6a8) != '\0') {
             floatPtr = *(float **)(context + UI_OFFSET_11670);
-            *(undefined1 *)(context + 0x6a8) = 0;
+            *(int8_t *)(context + 0x6a8) = 0;
             (**(code **)(context + UI_OFFSET_11838))(context, UI_CONST_0X1000, 0, 0);
         }
     }
     if (0 < *(int *)(context + 0x11400)) {
         stateHandle = context + 0x110ed;
         do {
-            *(undefined2 *)(stateHandle + -1) = 0;
+            *(int16_t *)(stateHandle + -1) = 0;
             stateHandle = stateHandle + 0x70;
             eventCount = (int)dataVar + 1;
             dataVar = (ulonglong)eventCount;
         } while ((int)eventCount < *(int *)(context + 0x11400));
     }
-    *(undefined1 *)(context + 0x12440) = 0;
+    *(int8_t *)(context + 0x12440) = 0;
     if ((*(byte *)(context + 0x78) & 1) != 0) {
         FUN_18078c950(context);
     }
@@ -815,9 +815,9 @@ LAB_18078c477:
             func_0x000180743c20(context, UI_CONST_0X7);
             stateHandle = *(longlong *)(context + 0x670);
         }
-        renderValue = *(undefined4 *)(stateHandle + 0x318);
-        for (componentPtr = *(undefined8 **)(context + 0x10f58); componentPtr != (undefined8 *)(context + 0x10f58);
-             componentPtr = (undefined8 *)*componentPtr) {
+        renderValue = *(int32_t *)(stateHandle + 0x318);
+        for (componentPtr = *(uint64_t **)(context + 0x10f58); componentPtr != (uint64_t *)(context + 0x10f58);
+             componentPtr = (uint64_t *)*componentPtr) {
             stateHandle = componentPtr[2];
             if (*(char *)(stateHandle + 0x212) != '\0') {
                 FUN_18075a370(stateHandle, renderValue);
@@ -835,10 +835,10 @@ LAB_18078c477:
         if (context != 0) {
             func_0x000180743c20(context, UI_CONST_0X6);
         }
-        componentPtr = *(undefined8 **)(context + 0x10ff0);
-        while (componentPtr != (undefined8 *)(context + 0x10ff0)) {
+        componentPtr = *(uint64_t **)(context + 0x10ff0);
+        while (componentPtr != (uint64_t *)(context + 0x10ff0)) {
             stateHandle = componentPtr[2];
-            componentPtr = (undefined8 *)*componentPtr;
+            componentPtr = (uint64_t *)*componentPtr;
             if (((*(longlong *)(stateHandle + 0x120) != 0) && ((*(byte *)(stateHandle + 0x11a) & 0x40) != 0)) &&
                ((*(uint *)(stateHandle + 100) >> 10 & 1) == 0)) {
                 (**(code **)(stateHandle + 0x120))(stateHandle + 0xb0, 0x40, 0);
@@ -850,7 +850,7 @@ LAB_18078c477:
         componentPtr = puRam0000000000012780;
         if ((lRam0000000000012770 == 0) ||
            (result = FUN_1807d0fe0(), componentPtr = puRam0000000000012780, result == 0)) {
-            for (; componentPtr != (undefined8 *)0x12780; componentPtr = (undefined8 *)*componentPtr) {
+            for (; componentPtr != (uint64_t *)0x12780; componentPtr = (uint64_t *)*componentPtr) {
                 stateHandle = componentPtr[2];
                 if ((*(code **)(stateHandle + 0x120) != (code *)0x0) && ((*(byte *)(stateHandle + 0x11a) & 4) != 0)) {
                     (**(code **)(stateHandle + 0x120))(stateHandle + 0xb0, 4, 0);
@@ -901,7 +901,7 @@ int UISystem_RenderController(longlong context)
         stateHandle = 0;
         do {
             if (*(longlong *)(stateHandle + 0x30 + *(longlong *)(context + 0x6a0)) != 0) {
-                result = FUN_180788e60(*(undefined8 *)(context + 0x670));
+                result = FUN_180788e60(*(uint64_t *)(context + 0x670));
                 if (result != 0) goto LAB_1807499b3;
             }
             index = index + 1;
@@ -951,7 +951,7 @@ int UISystem_StateValidator_Validate(longlong context)
         stateHandle = 0;
         do {
             if (*(longlong *)(stateHandle + 0x30 + *(longlong *)(context + 0x6a0)) != 0) {
-                result = FUN_180788e60(*(undefined8 *)(context + 0x670));
+                result = FUN_180788e60(*(uint64_t *)(context + 0x670));
                 if (result != 0) goto LAB_1807499b3;
             }
             index = index + 1;
@@ -1014,11 +1014,11 @@ void UISystem_CleanupManager(longlong context)
     int result;
     uint eventValue;
     ulonglong dataVar;
-    undefined1 stackBuffer[64];
+    int8_t stackBuffer[64];
     int intArray[3];
     int intVar;
     int intArray2[8];
-    undefined1 stackBuffer2[256];
+    int8_t stackBuffer2[256];
     ulonglong stackVar;
     ulonglong indexVar;
     
@@ -1063,7 +1063,7 @@ LAB_180749ae6:
     if (0 < intVar) {
         memset(stackBuffer2, 0, 0x100);
     }
-    *(undefined1 *)(context + 0x6a8) = 1;
+    *(int8_t *)(context + 0x6a8) = 1;
 FUN_180749e0b:
     FUN_1808fc050(stackVar ^ (ulonglong)stackBuffer);
 }

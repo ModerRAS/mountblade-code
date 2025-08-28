@@ -15,20 +15,20 @@
  * @param depth 当前递归深度，用于优化递归调用
  * @param sort_flags 排序标志位，控制排序行为
  */
-void quick_sort_16byte_elements(undefined1 (*data_array) [16], undefined1 (*end_ptr) [16], 
-                              longlong depth, undefined1 sort_flags)
+void quick_sort_16byte_elements(int8_t (*data_array) [16], int8_t (*end_ptr) [16], 
+                              longlong depth, int8_t sort_flags)
 {
   bool comparison_result;
-  undefined8 temp_data_8bytes;
+  uint64_t temp_data_8bytes;
   longlong element_count;
-  undefined1 (*current_ptr) [16];
+  int8_t (*current_ptr) [16];
   int compare_value;
-  undefined1 (*insertion_ptr) [16];
-  undefined1 (*prev_ptr) [16];
-  undefined1 (*next_ptr) [16];
-  undefined1 temp_buffer_8bytes[8];
-  undefined1 current_element[16];
-  undefined1 comparison_element[16];
+  int8_t (*insertion_ptr) [16];
+  int8_t (*prev_ptr) [16];
+  int8_t (*next_ptr) [16];
+  int8_t temp_buffer_8bytes[8];
+  int8_t current_element[16];
+  int8_t comparison_element[16];
   
   // 计算数组中的元素数量（每个元素16字节）
   element_count = (longlong)end_ptr - (longlong)data_array;
@@ -77,9 +77,9 @@ small_array_sort:
             if (!comparison_result) break;
             
             // 交换元素位置
-            temp_data_8bytes = *(undefined8 *)(current_ptr[-1] + 8);
-            *(undefined8 *)*current_ptr = *(undefined8 *)current_ptr[-1];
-            *(undefined8 *)(*current_ptr + 8) = temp_data_8bytes;
+            temp_data_8bytes = *(uint64_t *)(current_ptr[-1] + 8);
+            *(uint64_t *)*current_ptr = *(uint64_t *)current_ptr[-1];
+            *(uint64_t *)(*current_ptr + 8) = temp_data_8bytes;
             current_ptr = current_ptr + -1;
           }
           *current_ptr = current_element;
@@ -103,9 +103,9 @@ small_array_sort:
         end_ptr = end_ptr + -1;
         do {
           current_element = *end_ptr;
-          temp_data_8bytes = *(undefined8 *)(*data_array + 8);
-          *(undefined8 *)*end_ptr = *(undefined8 *)*data_array;
-          *(undefined8 *)(*end_ptr + 8) = temp_data_8bytes;
+          temp_data_8bytes = *(uint64_t *)(*data_array + 8);
+          *(uint64_t *)*end_ptr = *(uint64_t *)*data_array;
+          *(uint64_t *)(*end_ptr + 8) = temp_data_8bytes;
           
           // 递归调用排序函数
           FUN_180204870(data_array, 0, (longlong)end_ptr - (longlong)data_array >> 4, 
@@ -119,7 +119,7 @@ small_array_sort:
     
     // 选择基准点（三数取中法）
     FUN_180204420(current_element, data_array, end_ptr, sort_flags);
-    insertion_ptr = (undefined1 (*) [16])current_element._0_8_;
+    insertion_ptr = (int8_t (*) [16])current_element._0_8_;
     temp_data_8bytes = current_element._8_8_;
     depth = (depth >> 1) + (depth >> 2);  // 优化递归深度
     
@@ -129,7 +129,7 @@ small_array_sort:
       // 递归处理左子数组
       FUN_1802041f0(data_array, current_element._0_8_, depth, sort_flags);
       insertion_ptr = end_ptr;
-      data_array = (undefined1 (*) [16])temp_data_8bytes;
+      data_array = (int8_t (*) [16])temp_data_8bytes;
     }
     else {
       // 递归处理右子数组
@@ -152,24 +152,24 @@ small_array_sort:
  * @param end_ptr 分区结束指针
  * @return 返回基准点信息的指针
  */
-undefined8 * select_pivot_element(undefined8 *pivot_info, undefined8 *start_ptr, undefined8 *end_ptr)
+uint64_t * select_pivot_element(uint64_t *pivot_info, uint64_t *start_ptr, uint64_t *end_ptr)
 {
   int left_compare_value;
   int right_compare_value;
   bool comparison_result;
-  undefined8 temp_data_1;
-  undefined8 temp_data_2;
-  undefined8 temp_data_3;
-  undefined8 *left_ptr;
-  undefined8 *right_ptr;
-  undefined8 *middle_ptr;
-  undefined8 *pivot_candidate;
-  undefined8 *scan_ptr;
-  undefined8 *compare_ptr;
-  undefined8 *swap_ptr;
+  uint64_t temp_data_1;
+  uint64_t temp_data_2;
+  uint64_t temp_data_3;
+  uint64_t *left_ptr;
+  uint64_t *right_ptr;
+  uint64_t *middle_ptr;
+  uint64_t *pivot_candidate;
+  uint64_t *scan_ptr;
+  uint64_t *compare_ptr;
+  uint64_t *swap_ptr;
   longlong partition_size;
   longlong block_size;
-  undefined8 *temp_ptr;
+  uint64_t *temp_ptr;
   
   // 选择中间候选点（使用位移操作优化计算）
   pivot_candidate = start_ptr + ((longlong)end_ptr - (longlong)start_ptr >> 5) * 2;
@@ -421,25 +421,25 @@ final_partition_phase:
  * @param r10_register 寄存器R10的值，用于优化计算
  * @return 返回基准点信息的指针
  */
-undefined8 * optimized_pivot_selection(undefined8 *pivot_info, undefined8 *start_ptr, 
-                                      undefined8 *end_ptr, longlong r10_register)
+uint64_t * optimized_pivot_selection(uint64_t *pivot_info, uint64_t *start_ptr, 
+                                      uint64_t *end_ptr, longlong r10_register)
 {
   int left_compare_value;
   int right_compare_value;
   bool comparison_result;
-  undefined8 temp_data_1;
-  undefined8 temp_data_2;
-  undefined8 temp_data_3;
-  undefined8 *left_ptr;
-  undefined8 *right_ptr;
-  undefined8 *middle_ptr;
-  undefined8 *pivot_candidate;
-  undefined8 *scan_ptr;
-  undefined8 *compare_ptr;
-  undefined8 *swap_ptr;
+  uint64_t temp_data_1;
+  uint64_t temp_data_2;
+  uint64_t temp_data_3;
+  uint64_t *left_ptr;
+  uint64_t *right_ptr;
+  uint64_t *middle_ptr;
+  uint64_t *pivot_candidate;
+  uint64_t *scan_ptr;
+  uint64_t *compare_ptr;
+  uint64_t *swap_ptr;
   longlong partition_size;
   longlong block_size;
-  undefined8 *temp_ptr;
+  uint64_t *temp_ptr;
   
   // 使用R10寄存器优化基准点选择
   pivot_candidate = start_ptr + (r10_register - (longlong)start_ptr >> 5) * 2;
@@ -689,25 +689,25 @@ optimized_final_phase:
  * @param rbp_register RBP寄存器值，用于起始位置
  * @param r15_register R15寄存器值，用于结果存储
  */
-void optimized_partition_sort(undefined8 base_ptr, longlong size_param, longlong r11_register,
-                             undefined8 *r10_register, undefined8 *rsi_register, 
-                             undefined8 *rbp_register, undefined8 *r15_register)
+void optimized_partition_sort(uint64_t base_ptr, longlong size_param, longlong r11_register,
+                             uint64_t *r10_register, uint64_t *rsi_register, 
+                             uint64_t *rbp_register, uint64_t *r15_register)
 {
   longlong block_size;
   int left_compare_value;
   int right_compare_value;
   bool comparison_result;
-  undefined8 temp_data_1;
-  undefined8 temp_data_2;
-  undefined8 temp_data_3;
-  undefined8 *left_ptr;
-  undefined8 *right_ptr;
-  undefined8 *middle_ptr;
-  undefined8 *pivot_candidate;
-  undefined8 *scan_ptr;
-  undefined8 *compare_ptr;
-  undefined8 *swap_ptr;
-  undefined8 *temp_ptr;
+  uint64_t temp_data_1;
+  uint64_t temp_data_2;
+  uint64_t temp_data_3;
+  uint64_t *left_ptr;
+  uint64_t *right_ptr;
+  uint64_t *middle_ptr;
+  uint64_t *pivot_candidate;
+  uint64_t *scan_ptr;
+  uint64_t *compare_ptr;
+  uint64_t *swap_ptr;
+  uint64_t *temp_ptr;
   longlong partition_size;
   longlong block_offset;
   
@@ -951,24 +951,24 @@ r11_final_phase:
  * @param rbp_register RBP寄存器值，用于起始位置
  * @param r15_register R15寄存器值，用于结果存储
  */
-void simplified_sort_function(undefined8 base_ptr, undefined4 range_param, longlong end_param,
-                             undefined8 *r10_register, undefined8 *rsi_register, 
-                             undefined8 *rbp_register, undefined8 *r15_register)
+void simplified_sort_function(uint64_t base_ptr, int32_t range_param, longlong end_param,
+                             uint64_t *r10_register, uint64_t *rsi_register, 
+                             uint64_t *rbp_register, uint64_t *r15_register)
 {
   int left_compare_value;
   int right_compare_value;
   bool comparison_result;
-  undefined8 temp_data_1;
-  undefined8 temp_data_2;
-  undefined8 temp_data_3;
-  undefined8 *left_ptr;
-  undefined8 *right_ptr;
-  undefined8 *middle_ptr;
-  undefined8 *pivot_candidate;
-  undefined8 *scan_ptr;
-  undefined8 *compare_ptr;
-  undefined8 *swap_ptr;
-  undefined8 *temp_ptr;
+  uint64_t temp_data_1;
+  uint64_t temp_data_2;
+  uint64_t temp_data_3;
+  uint64_t *left_ptr;
+  uint64_t *right_ptr;
+  uint64_t *middle_ptr;
+  uint64_t *pivot_candidate;
+  uint64_t *scan_ptr;
+  uint64_t *compare_ptr;
+  uint64_t *swap_ptr;
+  uint64_t *temp_ptr;
   
   // 简化的初始化处理
   func_0x000180204980(base_ptr, range_param, end_param + -0x10);

@@ -7,14 +7,14 @@
 // 参数:
 //   param_1: 未使用的参数
 //   param_2: 待排序的浮点数数组指针
-void quick_sort_float_array(undefined4 param_1, float *param_2)
+void quick_sort_float_array(int32_t param_1, float *param_2)
 {
   float pivot_value;
   float temp_value;
   longlong middle_index;
   float *left_ptr;
   float *right_ptr;
-  undefined1 temp_byte;
+  int8_t temp_byte;
   longlong array_size;
   float *array_start;
   float left_value;

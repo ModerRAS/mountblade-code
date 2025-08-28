@@ -10,7 +10,7 @@
  * @param param_3 变换参数1
  * @param param_4 变换参数2
  */
-void matrix_transform_4x4(undefined8 param_1, undefined8 param_2, float param_3, float param_4)
+void matrix_transform_4x4(uint64_t param_1, uint64_t param_2, float param_3, float param_4)
 {
     float matrix_element_1;
     float matrix_element_2;
@@ -23,32 +23,32 @@ void matrix_transform_4x4(undefined8 param_1, undefined8 param_2, float param_3,
     float matrix_element_9;
     longlong matrix_base_ptr;
     float *matrix_data_ptr;
-    undefined4 transform_flag;
+    int32_t transform_flag;
     float xmm0_value;
     float xmm1_value;
     float xmm4_x;
     float xmm4_y;
     float xmm4_z;
     float xmm5_value;
-    undefined4 stack_padding_1;
+    int32_t stack_padding_1;
     float result_x;
     float result_y;
     float result_z;
-    undefined4 stack_padding_2;
+    int32_t stack_padding_2;
     float temp_1_x;
     float temp_1_y;
     float temp_1_z;
-    undefined4 stack_padding_3;
+    int32_t stack_padding_3;
     float temp_2_x;
     float temp_2_y;
     float temp_2_z;
-    undefined4 stack_padding_4;
+    int32_t stack_padding_4;
     float temp_3_x;
     float temp_3_y;
     float temp_3_z;
-    undefined4 stack_padding_5;
-    undefined4 input_param_1;
-    undefined4 input_param_2;
+    int32_t stack_padding_5;
+    int32_t input_param_1;
+    int32_t input_param_2;
     
     // 从矩阵指针加载数据
     matrix_element_1 = *matrix_data_ptr;
@@ -101,29 +101,29 @@ void matrix_transform_4x4(undefined8 param_1, undefined8 param_2, float param_3,
  */
 void initialize_render_state(void)
 {
-    undefined8 *state_ptr;
-    undefined4 state_flag;
-    undefined4 stack_padding_1;
-    undefined8 state_value_1;
+    uint64_t *state_ptr;
+    int32_t state_flag;
+    int32_t stack_padding_1;
+    uint64_t state_value_1;
     ulonglong state_value_2;
-    undefined8 state_value_3;
+    uint64_t state_value_3;
     ulonglong state_value_4;
-    undefined8 state_value_5;
+    uint64_t state_value_5;
     ulonglong state_value_6;
-    undefined4 state_value_7;
-    undefined4 state_value_8;
-    undefined4 state_value_9;
-    undefined4 state_value_10;
-    undefined4 input_param_1;
-    undefined4 input_param_2;
+    int32_t state_value_7;
+    int32_t state_value_8;
+    int32_t state_value_9;
+    int32_t state_value_10;
+    int32_t input_param_1;
+    int32_t input_param_2;
     
     // 从状态指针加载值
     state_value_1 = *state_ptr;
     state_value_3 = state_ptr[2];
     state_value_5 = state_ptr[4];
-    state_value_7 = *(undefined4 *)(state_ptr + 6);
-    state_value_8 = *(undefined4 *)((longlong)state_ptr + 0x34);
-    state_value_9 = *(undefined4 *)(state_ptr + 7);
+    state_value_7 = *(int32_t *)(state_ptr + 6);
+    state_value_8 = *(int32_t *)((longlong)state_ptr + 0x34);
+    state_value_9 = *(int32_t *)(state_ptr + 7);
     stack_padding_1 = input_param_2;
     stack_padding_10 = 0x3f800000; // 1.0f
     state_value_6 = state_ptr[5] & 0xffffffff;
@@ -140,12 +140,12 @@ void initialize_render_state(void)
 void update_object_state(longlong param_1)
 {
     longlong transform_ptr;
-    undefined4 temp_value_1;
-    undefined4 temp_value_2;
-    undefined4 temp_value_3;
+    int32_t temp_value_1;
+    int32_t temp_value_2;
+    int32_t temp_value_3;
     char visibility_flag;
-    undefined1 render_mode;
-    undefined8 *object_ptr;
+    int8_t render_mode;
+    uint64_t *object_ptr;
     longlong object_base;
     uint object_flags;
     bool collision_state;
@@ -190,49 +190,49 @@ apply_visibility:
     
     // 设置渲染模式
     if (object_flags == 0x1000) {
-        *(undefined1 *)(param_1 + 0xf7) = 1;
+        *(int8_t *)(param_1 + 0xf7) = 1;
     }
     else {
         if (object_flags == 0x2000) {
             render_mode = 2;
         }
-        *(undefined1 *)(param_1 + 0xf7) = render_mode;
+        *(int8_t *)(param_1 + 0xf7) = render_mode;
     }
     
     // 更新位置信息
     if ((((*(float *)(transform_ptr + 0x288) != 0.0) || (*(float *)(transform_ptr + 0x28c) != 0.0)) ||
          (*(float *)(transform_ptr + 0x290) != 0.0)) || (*(float *)(transform_ptr + 0x294) != 0.0)) {
-        temp_value_1 = *(undefined4 *)(transform_ptr + 0x28c);
-        temp_value_2 = *(undefined4 *)(transform_ptr + 0x290);
-        temp_value_3 = *(undefined4 *)(transform_ptr + 0x294);
-        *(undefined4 *)(param_1 + 0x2a8) = *(undefined4 *)(transform_ptr + 0x288);
-        *(undefined4 *)(param_1 + 0x2ac) = temp_value_1;
-        *(undefined4 *)(param_1 + 0x2b0) = temp_value_2;
-        *(undefined4 *)(param_1 + 0x2b4) = temp_value_3;
+        temp_value_1 = *(int32_t *)(transform_ptr + 0x28c);
+        temp_value_2 = *(int32_t *)(transform_ptr + 0x290);
+        temp_value_3 = *(int32_t *)(transform_ptr + 0x294);
+        *(int32_t *)(param_1 + 0x2a8) = *(int32_t *)(transform_ptr + 0x288);
+        *(int32_t *)(param_1 + 0x2ac) = temp_value_1;
+        *(int32_t *)(param_1 + 0x2b0) = temp_value_2;
+        *(int32_t *)(param_1 + 0x2b4) = temp_value_3;
     }
     
     // 更新旋转信息
     if (((*(float *)(transform_ptr + 0x298) != 0.0) || (*(float *)(transform_ptr + 0x29c) != 0.0)) ||
          ((*(float *)(transform_ptr + 0x2a0) != 0.0 || (*(float *)(transform_ptr + 0x2a4) != 0.0)))) {
-        temp_value_1 = *(undefined4 *)(transform_ptr + 0x29c);
-        temp_value_2 = *(undefined4 *)(transform_ptr + 0x2a0);
-        temp_value_3 = *(undefined4 *)(transform_ptr + 0x2a4);
-        *(undefined4 *)(param_1 + 0x2b8) = *(undefined4 *)(transform_ptr + 0x298);
-        *(undefined4 *)(param_1 + 700) = temp_value_1;
-        *(undefined4 *)(param_1 + 0x2c0) = temp_value_2;
-        *(undefined4 *)(param_1 + 0x2c4) = temp_value_3;
+        temp_value_1 = *(int32_t *)(transform_ptr + 0x29c);
+        temp_value_2 = *(int32_t *)(transform_ptr + 0x2a0);
+        temp_value_3 = *(int32_t *)(transform_ptr + 0x2a4);
+        *(int32_t *)(param_1 + 0x2b8) = *(int32_t *)(transform_ptr + 0x298);
+        *(int32_t *)(param_1 + 700) = temp_value_1;
+        *(int32_t *)(param_1 + 0x2c0) = temp_value_2;
+        *(int32_t *)(param_1 + 0x2c4) = temp_value_3;
     }
     
     // 重置变换标志
-    *(undefined2 *)(transform_ptr + 0x3c0) = 0xffff;
+    *(int16_t *)(transform_ptr + 0x3c0) = 0xffff;
     process_object_transforms(param_1);
     
     // 初始化对象数据结构
     if ((*(longlong *)(param_1 + 600) == 0) &&
          ((*(uint *)(*(longlong *)(param_1 + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
-        object_ptr = (undefined8 *)allocate_object_data(global_memory_pool, 0x58, 8, 9);
+        object_ptr = (uint64_t *)allocate_object_data(global_memory_pool, 0x58, 8, 9);
         initialize_object_structure(object_ptr);
-        *(undefined8 **)(param_1 + 600) = object_ptr;
+        *(uint64_t **)(param_1 + 600) = object_ptr;
     }
     return;
 }
@@ -244,13 +244,13 @@ apply_visibility:
 void update_object_state_optimized(longlong param_1)
 {
     longlong transform_ptr;
-    undefined4 temp_value_1;
-    undefined4 temp_value_2;
-    undefined4 temp_value_3;
+    int32_t temp_value_1;
+    int32_t temp_value_2;
+    int32_t temp_value_3;
     char visibility_flag;
-    undefined1 render_mode;
+    int8_t render_mode;
     longlong input_param;
-    undefined8 *object_ptr;
+    uint64_t *object_ptr;
     uint object_flags;
     longlong object_base;
     bool collision_state;
@@ -291,27 +291,27 @@ apply_visibility_opt:
     render_mode = 0;
     
     if (object_flags == 0x1000) {
-        *(undefined1 *)(object_base + 0xf7) = 1;
+        *(int8_t *)(object_base + 0xf7) = 1;
     }
     else {
         if (object_flags == 0x2000) {
             render_mode = 2;
         }
-        *(undefined1 *)(object_base + 0xf7) = render_mode;
+        *(int8_t *)(object_base + 0xf7) = render_mode;
     }
     
     // 更新位置和旋转信息
     update_transform_data(transform_ptr, object_base);
     
-    *(undefined2 *)(transform_ptr + 0x3c0) = 0xffff;
+    *(int16_t *)(transform_ptr + 0x3c0) = 0xffff;
     process_object_transforms();
     
     // 初始化对象数据
     if ((*(longlong *)(object_base + 600) == 0) &&
          ((*(uint *)(*(longlong *)(object_base + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
-        object_ptr = (undefined8 *)allocate_object_data(global_memory_pool, 0x58, 8, 9);
+        object_ptr = (uint64_t *)allocate_object_data(global_memory_pool, 0x58, 8, 9);
         initialize_object_structure(object_ptr);
-        *(undefined8 **)(object_base + 600) = object_ptr;
+        *(uint64_t **)(object_base + 600) = object_ptr;
     }
     return;
 }
@@ -326,13 +326,13 @@ apply_visibility_opt:
 void update_object_state_with_params(float param_1, float param_2, float param_3, float param_4)
 {
     longlong transform_ptr;
-    undefined4 temp_value_1;
-    undefined4 temp_value_2;
-    undefined4 temp_value_3;
+    int32_t temp_value_1;
+    int32_t temp_value_2;
+    int32_t temp_value_3;
     char visibility_flag;
-    undefined1 render_mode;
+    int8_t render_mode;
     longlong input_param_1;
-    undefined8 *object_ptr;
+    uint64_t *object_ptr;
     longlong input_param_2;
     uint object_flags;
     longlong object_base;
@@ -372,13 +372,13 @@ apply_visibility_param:
     render_mode = 0;
     
     if (object_flags == 0x1000) {
-        *(undefined1 *)(object_base + 0xf7) = 1;
+        *(int8_t *)(object_base + 0xf7) = 1;
     }
     else {
         if (object_flags == 0x2000) {
             render_mode = 2;
         }
-        *(undefined1 *)(object_base + 0xf7) = render_mode;
+        *(int8_t *)(object_base + 0xf7) = render_mode;
     }
     
     // 使用阈值检查更新变换数据
@@ -394,15 +394,15 @@ apply_visibility_param:
         update_rotation_data(transform_ptr, object_base);
     }
     
-    *(undefined2 *)(transform_ptr + 0x3c0) = 0xffff;
+    *(int16_t *)(transform_ptr + 0x3c0) = 0xffff;
     process_object_transforms();
     
     // 初始化对象数据
     if ((*(longlong *)(object_base + 600) == 0) &&
          ((*(uint *)(*(longlong *)(object_base + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
-        object_ptr = (undefined8 *)allocate_object_data(global_memory_pool, 0x58, 8, 9);
+        object_ptr = (uint64_t *)allocate_object_data(global_memory_pool, 0x58, 8, 9);
         initialize_object_structure(object_ptr);
-        *(undefined8 **)(object_base + 600) = object_ptr;
+        *(uint64_t **)(object_base + 600) = object_ptr;
     }
     return;
 }
@@ -414,12 +414,12 @@ apply_visibility_param:
 void update_object_state_simple(longlong param_1)
 {
     longlong transform_ptr;
-    undefined4 temp_value_1;
-    undefined4 temp_value_2;
-    undefined4 temp_value_3;
+    int32_t temp_value_1;
+    int32_t temp_value_2;
+    int32_t temp_value_3;
     char visibility_flag;
-    undefined1 render_mode;
-    undefined8 *object_ptr;
+    int8_t render_mode;
+    uint64_t *object_ptr;
     uint object_flags;
     longlong object_base;
     bool collision_state;
@@ -448,27 +448,27 @@ apply_visibility_simple:
     render_mode = 0;
     
     if (object_flags == 0x1000) {
-        *(undefined1 *)(object_base + 0xf7) = 1;
+        *(int8_t *)(object_base + 0xf7) = 1;
     }
     else {
         if (object_flags == 0x2000) {
             render_mode = 2;
         }
-        *(undefined1 *)(object_base + 0xf7) = render_mode;
+        *(int8_t *)(object_base + 0xf7) = render_mode;
     }
     
     // 使用阈值更新变换数据
     update_transform_with_threshold(transform_ptr, object_base, threshold_value);
     
-    *(undefined2 *)(transform_ptr + 0x3c0) = 0xffff;
+    *(int16_t *)(transform_ptr + 0x3c0) = 0xffff;
     process_object_transforms();
     
     // 初始化对象数据
     if ((*(longlong *)(object_base + 600) == 0) &&
          ((*(uint *)(*(longlong *)(object_base + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
-        object_ptr = (undefined8 *)allocate_object_data(global_memory_pool, 0x58, 8, 9);
+        object_ptr = (uint64_t *)allocate_object_data(global_memory_pool, 0x58, 8, 9);
         initialize_object_structure(object_ptr);
-        *(undefined8 **)(object_base + 600) = object_ptr;
+        *(uint64_t **)(object_base + 600) = object_ptr;
     }
     return;
 }
@@ -478,15 +478,15 @@ apply_visibility_simple:
  */
 void initialize_object_data(void)
 {
-    undefined8 *object_ptr;
+    uint64_t *object_ptr;
     longlong object_base;
-    undefined8 object_reference;
+    uint64_t object_reference;
     
     // 检查是否需要初始化对象数据
     if ((*(uint *)(*(longlong *)(object_base + 0x1b8) + 0x388) >> 0x19 & 1) != 0) {
-        object_ptr = (undefined8 *)allocate_object_data(global_memory_pool, 0x58, 8, 9);
+        object_ptr = (uint64_t *)allocate_object_data(global_memory_pool, 0x58, 8, 9);
         initialize_object_structure_with_reference(object_ptr, object_reference);
-        *(undefined8 **)(object_base + 600) = object_ptr;
+        *(uint64_t **)(object_base + 600) = object_ptr;
     }
     return;
 }
@@ -497,9 +497,9 @@ void initialize_object_data(void)
  * @param param_2 创建标志
  * @return 创建的对象指针
  */
-undefined8 * create_game_object(undefined8 *param_1, ulonglong param_2)
+uint64_t * create_game_object(uint64_t *param_1, ulonglong param_2)
 {
-    undefined8 object_type;
+    uint64_t object_type;
     
     object_type = 0xfffffffffffffffe;
     *param_1 = &global_object_template;
@@ -520,19 +520,19 @@ undefined8 * create_game_object(undefined8 *param_1, ulonglong param_2)
  * @param param_3 初始化参数2
  * @param param_4 初始化参数3
  */
-void initialize_object_template(undefined8 *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void initialize_object_template(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     longlong *callback_ptr;
     longlong *callback_list;
     longlong callback_count;
-    undefined4 init_flag;
-    undefined8 template_id;
+    int32_t init_flag;
+    uint64_t template_id;
     
     template_id = 0xfffffffffffffffe;
     
     // 如果存在全局配置，则加载配置
     if (0 < *(int *)(global_config_data + 0x40)) {
-        param_1[0x26] = *(undefined8 *)(global_config_data + 0x38);
+        param_1[0x26] = *(uint64_t *)(global_config_data + 0x38);
     }
     
     // 清理回调函数列表
@@ -553,14 +553,14 @@ void initialize_object_template(undefined8 *param_1, undefined8 param_2, undefin
     initialize_template_data(param_1);
     
     // 根据模板类型进行特定初始化
-    if ((undefined *)*param_1 == &global_object_template) {
+    if ((void *)*param_1 == &global_object_template) {
         copy_default_values(param_1);
         init_flag = get_render_config();
         setup_render_state(init_flag, param_1 + 0x18);
     }
     else {
         // 调用自定义初始化函数
-        (**(code **)((undefined *)*param_1 + 0x10))(param_1, 0, param_3, param_4, template_id);
+        (**(code **)((void *)*param_1 + 0x10))(param_1, 0, param_3, param_4, template_id);
     }
     return;
 }

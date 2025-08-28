@@ -156,8 +156,8 @@ void SystemResourceCleanupAndReleaseFunc(longlong param_1, longlong param_2)
     longlong lStackX_8;
     longlong lStack_40;
     longlong lStack_38;
-    undefined8 uStack_30;
-    undefined4 uStack_28;
+    uint64_t uStack_30;
+    int32_t uStack_28;
     
     // 初始化栈变量
     lStack_40 = 0;
@@ -203,7 +203,7 @@ void SystemResourceCleanupAndReleaseFunc(longlong param_1, longlong param_2)
         // 清理附加资源列表
         if (*(longlong *)(param_1 + 0x1c8) - *(longlong *)(param_1 + 0x1c0) >> 3 != 0) {
             do {
-                FUN_1803a01a0(param_2, *(undefined8 *)(uVar2 + *(longlong *)(param_1 + 0x1c0)),
+                FUN_1803a01a0(param_2, *(uint64_t *)(uVar2 + *(longlong *)(param_1 + 0x1c0)),
                               (byte)uVar5 & 1);
                 uVar3 = (int)uVar4 + 1;
                 uVar4 = (ulonglong)uVar3;
@@ -237,7 +237,7 @@ void SystemResourceCleanupAndReleaseFunc(longlong param_1, longlong param_2)
  * @param param_4 标志位
  * @return BADSPACEBASE* 分配的空间基址
  */
-BADSPACEBASE *SpaceBaseAddressAllocatorFunc(longlong param_1, longlong param_2, undefined8 param_3, undefined8 param_4)
+BADSPACEBASE *SpaceBaseAddressAllocatorFunc(longlong param_1, longlong param_2, uint64_t param_3, uint64_t param_4)
 {
     longlong *plVar1;
     longlong lVar2;
@@ -253,7 +253,7 @@ BADSPACEBASE *SpaceBaseAddressAllocatorFunc(longlong param_1, longlong param_2, 
     longlong lStack_40;
     longlong lStack_38;
     longlong lStack_30;
-    undefined4 uStack_28;
+    int32_t uStack_28;
     
     // 检查系统标志
     if ((*(uint *)(param_1 + 0x2ac) & 0x2000) == 0) {
@@ -288,7 +288,7 @@ BADSPACEBASE *SpaceBaseAddressAllocatorFunc(longlong param_1, longlong param_2, 
         // 验证空间配置
         if (uVar8 != 0) {
             do {
-                cVar3 = FUN_1802f23a0(*(undefined8 *)(lStack_40 + uVar9 * 8), param_2);
+                cVar3 = FUN_1802f23a0(*(uint64_t *)(lStack_40 + uVar9 * 8), param_2);
                 if (cVar3 != '\0') goto LAB_1802f26b3;
                 uVar9 = uVar9 + 1;
             } while (uVar9 < uVar8);
@@ -408,16 +408,16 @@ LAB_1802f26b3:
  * @param param_4 上下文参数
  * @return void
  */
-void SystemStateProcessorFunc(longlong param_1, char param_2, undefined8 param_3, undefined8 param_4)
+void SystemStateProcessorFunc(longlong param_1, char param_2, uint64_t param_3, uint64_t param_4)
 {
     byte bVar1;
     longlong *plVar2;
     longlong lVar3;
-    undefined8 uVar4;
+    uint64_t uVar4;
     longlong lVar5;
     byte bVar6;
     longlong lVar7;
-    undefined8 uVar8;
+    uint64_t uVar8;
     uint uVar9;
     ulonglong uVar10;
     ulonglong uVar11;
@@ -452,22 +452,22 @@ void SystemStateProcessorFunc(longlong param_1, char param_2, undefined8 param_3
                 plStackX_8 = plVar2;
                 (**(code **)(*plVar2 + 0x28))();
                 uVar4 = FUN_180389a90(lVar7 + 0x29a0, &plStackX_8);
-                *(undefined8 *)(*(longlong *)(param_1 + 0x28) + 0x170) = uVar4;
+                *(uint64_t *)(*(longlong *)(param_1 + 0x28) + 0x170) = uVar4;
                 lVar7 = *(longlong *)(param_1 + 0x20);
                 plVar2 = *(longlong **)(lVar7 + 0x29a8);
                 
                 // 处理资源配置
                 if (plVar2 != (longlong *)0x0) {
                     (**(code **)(*plVar2 + 0x18))
-                            (plVar2, *(undefined8 *)(*(longlong *)(param_1 + 0x28) + 0x170), param_1 + 0x70);
+                            (plVar2, *(uint64_t *)(*(longlong *)(param_1 + 0x28) + 0x170), param_1 + 0x70);
                     lVar7 = *(longlong *)(param_1 + 0x20);
                 }
                 
                 plVar2 = *(longlong **)(lVar7 + 0x29a8);
                 if (plVar2 != (longlong *)0x0) {
                     (**(code **)(*plVar2 + 0x20))
-                            (plVar2, *(undefined8 *)(*(longlong *)(param_1 + 0x28) + 0x170),
-                             *(undefined4 *)(param_1 + 0x18));
+                            (plVar2, *(uint64_t *)(*(longlong *)(param_1 + 0x28) + 0x170),
+                             *(int32_t *)(param_1 + 0x18));
                 }
             }
         }
@@ -480,7 +480,7 @@ void SystemStateProcessorFunc(longlong param_1, char param_2, undefined8 param_3
                     (**(code **)(*plVar2 + 0x10))(plVar2, lVar3, lVar3, param_4, 0xfffffffffffffffe);
                     lVar5 = *(longlong *)(param_1 + 0x28);
                 }
-                *(undefined8 *)(lVar5 + 0x170) = 0;
+                *(uint64_t *)(lVar5 + 0x170) = 0;
             }
         }
     }
@@ -490,7 +490,7 @@ void SystemStateProcessorFunc(longlong param_1, char param_2, undefined8 param_3
     // 处理子系统状态
     if (*(longlong *)(param_1 + 0x1c8) - *(longlong *)(param_1 + 0x1c0) >> 3 != 0) {
         do {
-            FUN_1802f2700(*(undefined8 *)(uVar11 + *(longlong *)(param_1 + 0x1c0)), uVar8);
+            FUN_1802f2700(*(uint64_t *)(uVar11 + *(longlong *)(param_1 + 0x1c0)), uVar8);
             uVar9 = (int)uVar10 + 1;
             uVar10 = (ulonglong)uVar9;
             uVar11 = uVar11 + 8;
@@ -545,22 +545,22 @@ bool SystemStateValidatorFunc(longlong param_1)
 void DataStructureTraversalFunc(longlong *param_1, longlong param_2)
 {
     float fVar1;
-    undefined4 uVar2;
-    undefined4 uVar3;
+    int32_t uVar2;
+    int32_t uVar3;
     bool bVar4;
     longlong *plVar5;
     char cVar6;
     int iVar7;
-    undefined4 *puVar8;
+    int32_t *puVar8;
     longlong lVar9;
-    undefined8 *puVar10;
-    undefined8 *puVar11;
+    uint64_t *puVar10;
+    uint64_t *puVar11;
     longlong *plVar12;
-    undefined8 *puVar13;
+    uint64_t *puVar13;
     longlong *plStackX_8;
     longlong *plStackX_18;
     longlong lStackX_20;
-    undefined1 auStack_50 [24];
+    int8_t auStack_50 [24];
     
     // 检查数据结构状态
     if ((*(uint *)((longlong)param_1 + 0x2ac) & 0x8000) != 0) {
@@ -584,16 +584,16 @@ void DataStructureTraversalFunc(longlong *param_1, longlong param_2)
     
     // 获取数据结构信息
     plVar12 = param_1 + 0xe;
-    puVar8 = (undefined4 *)FUN_180085020(plVar12, auStack_50);
+    puVar8 = (int32_t *)FUN_180085020(plVar12, auStack_50);
     
     // 处理数据
     fVar1 = (float)puVar8[1];
     uVar2 = puVar8[2];
     uVar3 = puVar8[3];
-    *(undefined4 *)(param_1 + 0x27) = *puVar8;
+    *(int32_t *)(param_1 + 0x27) = *puVar8;
     *(float *)((longlong)param_1 + 0x13c) = fVar1;
-    *(undefined4 *)(param_1 + 0x28) = uVar2;
-    *(undefined4 *)((longlong)param_1 + 0x144) = uVar3;
+    *(int32_t *)(param_1 + 0x28) = uVar2;
+    *(int32_t *)((longlong)param_1 + 0x144) = uVar3;
     
     // 验证数据
     if ((fVar1 <= -1e-06) || (1e-06 <= fVar1)) {
@@ -626,27 +626,27 @@ void DataStructureTraversalFunc(longlong *param_1, longlong param_2)
     }
     
     // 处理数据插入
-    puVar13 = *(undefined8 **)(param_2 + 0x78);
-    if (puVar13 < *(undefined8 **)(param_2 + 0x80)) {
-        *(undefined8 **)(param_2 + 0x78) = puVar13 + 1;
+    puVar13 = *(uint64_t **)(param_2 + 0x78);
+    if (puVar13 < *(uint64_t **)(param_2 + 0x80)) {
+        *(uint64_t **)(param_2 + 0x78) = puVar13 + 1;
         *puVar13 = plVar5;
         goto LAB_1802f2aba;
     }
     
     // 处理内存分配
-    puVar11 = *(undefined8 **)(param_2 + 0x70);
+    puVar11 = *(uint64_t **)(param_2 + 0x70);
     lVar9 = (longlong)puVar13 - (longlong)puVar11 >> 3;
     if (lVar9 == 0) {
         lVar9 = 1;
 LAB_1802f2a4b:
-        puVar10 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, lVar9 * 8, *(undefined1 *)(param_2 + 0x88));
-        puVar13 = *(undefined8 **)(param_2 + 0x78);
-        puVar11 = *(undefined8 **)(param_2 + 0x70);
+        puVar10 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, lVar9 * 8, *(int8_t *)(param_2 + 0x88));
+        puVar13 = *(uint64_t **)(param_2 + 0x78);
+        puVar11 = *(uint64_t **)(param_2 + 0x70);
     }
     else {
         lVar9 = lVar9 * 2;
         if (lVar9 != 0) goto LAB_1802f2a4b;
-        puVar10 = (undefined8 *)0x0;
+        puVar10 = (uint64_t *)0x0;
     }
     
     // 内存移动
@@ -659,9 +659,9 @@ LAB_1802f2a4b:
         FUN_18064e900();
     }
     
-    *(undefined8 **)(param_2 + 0x70) = puVar10;
-    *(undefined8 **)(param_2 + 0x78) = puVar10 + 1;
-    *(undefined8 **)(param_2 + 0x80) = puVar10 + lVar9;
+    *(uint64_t **)(param_2 + 0x70) = puVar10;
+    *(uint64_t **)(param_2 + 0x78) = puVar10 + 1;
+    *(uint64_t **)(param_2 + 0x80) = puVar10 + lVar9;
     
 LAB_1802f2aba:
     // 线程解锁
@@ -672,7 +672,7 @@ LAB_1802f2aba:
     
     // 处理数据生命周期
     plVar12 = plStackX_8;
-    *(undefined8 *)(param_2 + 0x98) = 0;
+    *(uint64_t *)(param_2 + 0x98) = 0;
     if (plStackX_8 != (longlong *)0x0) {
         plStackX_8[2] = (longlong)param_1;
         plStackX_18 = plStackX_8;
@@ -736,27 +736,27 @@ LAB_1802f2aba:
  * @param param_3 输出参数
  * @return void
  */
-void VariableProcessorAndStringOperatorFunc(undefined8 param_1, longlong param_2, longlong *param_3)
+void VariableProcessorAndStringOperatorFunc(uint64_t param_1, longlong param_2, longlong *param_3)
 {
     char *pcVar1;
     char *pcVar2;
     char *pcVar3;
     longlong lVar4;
-    undefined8 *puVar5;
+    uint64_t *puVar5;
     char *pcVar6;
     char *pcVar7;
     char *pcVar8;
-    undefined1 auStack_4e8 [88];
-    undefined *puStack_490;
+    int8_t auStack_4e8 [88];
+    void *puStack_490;
     longlong lStack_488;
-    undefined4 uStack_480;
+    int32_t uStack_480;
     ulonglong uStack_478;
-    undefined *puStack_3b0;
-    undefined8 uStack_3a8;
-    undefined4 uStack_3a0;
+    void *puStack_3b0;
+    uint64_t uStack_3a8;
+    int32_t uStack_3a0;
     ulonglong uStack_398;
-    undefined8 uStack_368;
-    undefined1 auStack_278 [544];
+    uint64_t uStack_368;
+    int8_t auStack_278 [544];
     ulonglong uStack_58;
     
     // 初始化处理参数
@@ -771,11 +771,11 @@ void VariableProcessorAndStringOperatorFunc(undefined8 param_1, longlong param_2
         pcVar6 = pcVar7 + 1;
     } while (*pcVar6 != '\0');
     
-    puVar5 = *(undefined8 **)(param_2 + 0x30);
+    puVar5 = *(uint64_t **)(param_2 + 0x30);
     
     // 遍历变量列表
     do {
-        if (puVar5 == (undefined8 *)0x0) goto LAB_1802f3a4a;
+        if (puVar5 == (uint64_t *)0x0) goto LAB_1802f3a4a;
         pcVar6 = (char *)*puVar5;
         if (pcVar6 == (char *)0x0) {
             pcVar6 = (char *)0x180d48d24;
@@ -842,11 +842,11 @@ LAB_1802f2d05:
                         pcVar6 = pcVar7 + 1;
                     } while (*pcVar6 != '\0');
                     
-                    puVar5 = *(undefined8 **)(pcVar2 + 0x40);
+                    puVar5 = *(uint64_t **)(pcVar2 + 0x40);
                     
                     // 处理变量名输出
                     do {
-                        if (puVar5 == (undefined8 *)0x0) {
+                        if (puVar5 == (uint64_t *)0x0) {
 LAB_1802f2de0:
                             (**(code **)(*param_3 + 0x140))(param_3, &puStack_490);
                             memset(auStack_278, 0, 0x200);
@@ -881,7 +881,7 @@ LAB_1802f2dc5:
                             }
                         }
                         
-                        puVar5 = (undefined8 *)puVar5[6];
+                        puVar5 = (uint64_t *)puVar5[6];
                     } while( true );
                 }
                 
@@ -910,7 +910,7 @@ LAB_1802f3a4a:
             }
         }
         
-        puVar5 = (undefined8 *)puVar5[0xb];
+        puVar5 = (uint64_t *)puVar5[0xb];
     } while( true );
 }
 
@@ -929,13 +929,13 @@ LAB_1802f3a4a:
  * @param param_4 上下文参数
  * @return int* 插入的数据项指针
  */
-int * HashTableOperationAndDataInsertionFunc(longlong param_1, int param_2, undefined8 param_3, longlong param_4)
+int * HashTableOperationAndDataInsertionFunc(longlong param_1, int param_2, uint64_t param_3, longlong param_4)
 {
     longlong *plVar1;
     longlong lVar2;
     longlong lVar3;
     longlong *plVar4;
-    undefined8 uVar5;
+    uint64_t uVar5;
     int *piVar6;
     longlong lVar7;
     ulonglong uVar8;
@@ -956,7 +956,7 @@ int * HashTableOperationAndDataInsertionFunc(longlong param_1, int param_2, unde
     
     // 验证哈希表状态
     if (*(longlong *)(param_1 + 0x28) != param_4) {
-        lVar7 = FUN_18039fda0(*(undefined8 *)(param_1 + 0x20), param_4);
+        lVar7 = FUN_18039fda0(*(uint64_t *)(param_1 + 0x20), param_4);
     }
     
     lVar3 = *(longlong *)(param_1 + 0x20);
@@ -978,7 +978,7 @@ int * HashTableOperationAndDataInsertionFunc(longlong param_1, int param_2, unde
         piVar10 = (int *)(*plVar4 + uVar9);
     }
     
-    uVar5 = *(undefined8 *)(lVar3 + 0x50);
+    uVar5 = *(uint64_t *)(lVar3 + 0x50);
     piVar6 = piVar10 + 2;
     uVar12 = (ulonglong)iStackX_10;
     
@@ -987,12 +987,12 @@ int * HashTableOperationAndDataInsertionFunc(longlong param_1, int param_2, unde
     piVar6[1] = 0;
     piVar10[4] = 0;
     piVar10[5] = 0;
-    *(undefined8 *)(piVar10 + 6) = uVar5;
+    *(uint64_t *)(piVar10 + 6) = uVar5;
     piVar10[8] = 0;
     piVar10[9] = 0;
     *(int **)piVar6 = piVar6;
     *(int **)(piVar10 + 4) = piVar6;
-    *(undefined8 *)piVar10 = param_3;
+    *(uint64_t *)piVar10 = param_3;
     
     // 计算哈希值
     uVar9 = uVar12 % (ulonglong)*(uint *)(lVar7 + 0x10);
@@ -1025,15 +1025,15 @@ int * HashTableOperationAndDataInsertionFunc(longlong param_1, int param_2, unde
             piVar11[5] = 0;
             
             // 处理哈希表扩容
-            FUN_18066c220(lVar7 + 0x20, acStackX_8, *(undefined4 *)(lVar7 + 0x10),
-                          *(undefined4 *)(lVar7 + 0x18), 1);
+            FUN_18066c220(lVar7 + 0x20, acStackX_8, *(int32_t *)(lVar7 + 0x10),
+                          *(int32_t *)(lVar7 + 0x18), 1);
             
             if (acStackX_8[0] != '\0') {
                 uVar9 = uVar12 % (ulonglong)uStackX_c;
                 FUN_1802f5a20(lVar7, uStackX_c);
             }
             
-            *(undefined8 *)(piVar11 + 4) = *(undefined8 *)(*(longlong *)(lVar7 + 8) + uVar9 * 8);
+            *(uint64_t *)(piVar11 + 4) = *(uint64_t *)(*(longlong *)(lVar7 + 8) + uVar9 * 8);
             *(int **)(*(longlong *)(lVar7 + 8) + uVar9 * 8) = piVar11;
             *(longlong *)(lVar7 + 0x18) = *(longlong *)(lVar7 + 0x18) + 1;
             
@@ -1141,7 +1141,7 @@ void SystemCleanupAndResourceManagementFunc(longlong param_1)
     iVar2 = (int)(*(longlong *)(param_1 + 0x1c8) - *(longlong *)(param_1 + 0x1c0) >> 3);
     if (0 < iVar2) {
         do {
-            FUN_1802f3c20(*(undefined8 *)(*(longlong *)(param_1 + 0x1c0) + uVar5 * 8));
+            FUN_1802f3c20(*(uint64_t *)(*(longlong *)(param_1 + 0x1c0) + uVar5 * 8));
             uVar5 = uVar5 + 1;
         } while ((longlong)uVar5 < (longlong)iVar2);
     }
@@ -1189,7 +1189,7 @@ void DataRemovalAndArrayManagementFunc(longlong param_1, longlong param_2)
         do {
             if (*(longlong *)(lVar5 + uVar7) == param_2) {
                 // 移除数据项
-                *(undefined8 *)(lVar5 + uVar7) = *(undefined8 *)(lVar5 + -8 + (lVar6 - lVar5 >> 3) * 8);
+                *(uint64_t *)(lVar5 + uVar7) = *(uint64_t *)(lVar5 + -8 + (lVar6 - lVar5 >> 3) * 8);
                 lVar5 = *(longlong *)(param_1 + 0x228);
                 lVar6 = *(longlong *)(param_1 + 0x220);
                 uVar9 = lVar5 - lVar6 >> 3;
@@ -1213,7 +1213,7 @@ void DataRemovalAndArrayManagementFunc(longlong param_1, longlong param_2)
                     }
                     
                     if (uVar9 != 0) {
-                        uVar2 = FUN_18062b420(_DAT_180c8ed18, uVar9 * 8, *(undefined1 *)(param_1 + 0x238));
+                        uVar2 = FUN_18062b420(_DAT_180c8ed18, uVar9 * 8, *(int8_t *)(param_1 + 0x238));
                         lVar6 = *(longlong *)(param_1 + 0x220);
                         lVar5 = *(longlong *)(param_1 + 0x228);
                     }
@@ -1258,8 +1258,8 @@ void DataRemovalAndArrayManagementFunc(longlong param_1, longlong param_2)
             // 移除引用
             plVar3 = (longlong *)(lVar5 + 0x5c98);
             uVar7 = (longlong)iVar11 - 1;
-            *(undefined8 *)(*(longlong *)(lVar5 + 0x5c98) + (longlong)(int)uVar4 * 8) =
-                 *(undefined8 *)(*(longlong *)(lVar5 + 0x5c98) + uVar7 * 8);
+            *(uint64_t *)(*(longlong *)(lVar5 + 0x5c98) + (longlong)(int)uVar4 * 8) =
+                 *(uint64_t *)(*(longlong *)(lVar5 + 0x5c98) + uVar7 * 8);
             
             lVar10 = *(longlong *)(lVar5 + 0x5ca0);
             lVar6 = *plVar3;
@@ -1292,7 +1292,7 @@ void DataRemovalAndArrayManagementFunc(longlong param_1, longlong param_2)
                 lVar1 = 0;
             }
             else {
-                lVar1 = FUN_18062b420(_DAT_180c8ed18, uVar8 * 8, *(undefined1 *)(lVar5 + 0x5cb0));
+                lVar1 = FUN_18062b420(_DAT_180c8ed18, uVar8 * 8, *(int8_t *)(lVar5 + 0x5cb0));
                 lVar6 = *plVar3;
                 lVar10 = *(longlong *)(lVar5 + 0x5ca0);
             }

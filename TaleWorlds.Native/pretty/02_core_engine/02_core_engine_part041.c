@@ -27,27 +27,27 @@ void release_engine_resources(longlong *resource_ptr)
     // 原始实现包含复杂的资源管理和同步逻辑
     
     longlong ref_count;
-    undefined8 resource_handle;
-    undefined **resource_interface;
+    uint64_t resource_handle;
+    void **resource_interface;
     longlong *resource_manager;
-    undefined1 stack_buffer [32];
-    undefined ***interface_ptr;
-    undefined **resource_list;
+    int8_t stack_buffer [32];
+    void ***interface_ptr;
+    void **resource_list;
     longlong *resource_data;
-    undefined8 cleanup_flag;
-    undefined **temp_interface;
+    uint64_t cleanup_flag;
+    void **temp_interface;
     longlong *temp_resource;
-    undefined *resource_type;
-    undefined1 *resource_info;
-    undefined4 buffer_size;
-    undefined1 resource_cache [128];
-    undefined4 operation_type;
+    void *resource_type;
+    int8_t *resource_info;
+    int32_t buffer_size;
+    int8_t resource_cache [128];
+    int32_t operation_type;
     longlong resource_id;
-    undefined *resource_properties;
-    undefined1 *resource_metadata;
-    undefined4 metadata_size;
-    undefined1 metadata_buffer [128];
-    undefined4 alloc_size;
+    void *resource_properties;
+    int8_t *resource_metadata;
+    int32_t metadata_size;
+    int8_t metadata_buffer [128];
+    int32_t alloc_size;
     longlong heap_buffer;
     ulonglong security_cookie;
     
@@ -77,19 +77,19 @@ void release_engine_resources(longlong *resource_ptr)
             operation_type = 0x24;
             resource_id = ref_count;
             resource_handle = FUN_18062b1e0(_DAT_180c8ed18, ENGINE_RESOURCE_TABLE_SIZE, 8, 3);
-            resource_interface = (undefined **)FUN_18005ce30(resource_handle, &resource_type);
+            resource_interface = (void **)FUN_18005ce30(resource_handle, &resource_type);
             temp_interface = resource_interface;
-            if (resource_interface != (undefined **)0x0) {
+            if (resource_interface != (void **)0x0) {
                 (**(code **)(*resource_interface + 0x28))(resource_interface);
             }
             resource_handle = _DAT_180c82868;
             interface_ptr = &resource_list;
             resource_list = resource_interface;
-            if (resource_interface != (undefined **)0x0) {
+            if (resource_interface != (void **)0x0) {
                 (**(code **)(*resource_interface + 0x28))(resource_interface);
             }
             FUN_18005e370(resource_handle, &resource_list);
-            if (resource_interface != (undefined **)0x0) {
+            if (resource_interface != (void **)0x0) {
                 (**(code **)(*resource_interface + 0x38))(resource_interface);
             }
             resource_type = &UNK_18098bcb0;
@@ -97,7 +97,7 @@ void release_engine_resources(longlong *resource_ptr)
             LOCK();
             *(int *)(heap_buffer + 0x10) = *(int *)(heap_buffer + 0x10) + 1;
             UNLOCK();
-            interface_ptr = (undefined ***)&resource_properties;
+            interface_ptr = (void ***)&resource_properties;
             resource_properties = &UNK_1809fcc28;
             resource_metadata = metadata_buffer;
             metadata_size = 0;
@@ -110,7 +110,7 @@ void release_engine_resources(longlong *resource_ptr)
                 (**(code **)(*resource_data + 0x28))(resource_data);
             }
             resource_handle = _DAT_180c82868;
-            interface_ptr = (undefined ***)&resource_manager;
+            interface_ptr = (void ***)&resource_manager;
             resource_manager = resource_data;
             if (resource_data != (longlong *)0x0) {
                 (**(code **)(*resource_data + 0x28))(resource_data);
@@ -119,11 +119,11 @@ void release_engine_resources(longlong *resource_ptr)
             if (resource_data != (longlong *)0x0) {
                 (**(code **)(*resource_data + 0x38))(resource_data);
             }
-            interface_ptr = (undefined ***)&resource_properties;
+            interface_ptr = (void ***)&resource_properties;
             resource_properties = &UNK_18098bcb0;
         }
         LOCK();
-        *(undefined1 *)((longlong)resource_ptr + 0x15) = 0;
+        *(int8_t *)((longlong)resource_ptr + 0x15) = 0;
         UNLOCK();
     }
 LAB_1800802aa:
@@ -140,16 +140,16 @@ LAB_1800802aa:
  * 原始实现: FUN_1800802e0
  * 简化实现: 简化了内存块复制逻辑
  */
-void copy_memory_blocks(longlong dest_base, uint src_offset, undefined8 *src_data, uint size)
+void copy_memory_blocks(longlong dest_base, uint src_offset, uint64_t *src_data, uint size)
 {
     // 简化实现：复制内存块数据
     // 原始实现包含复杂的内存管理和边界检查逻辑
     
-    undefined8 *data_ptr;
+    uint64_t *data_ptr;
     longlong page_table;
     ulonglong page_index;
-    undefined8 data_words [8];
-    undefined8 data_words_ext [8];
+    uint64_t data_words [8];
+    uint64_t data_words_ext [8];
     longlong dest_page;
     longlong block_offset;
     
@@ -178,15 +178,15 @@ void copy_memory_blocks(longlong dest_base, uint src_offset, undefined8 *src_dat
             page_table = *(longlong *)(dest_base + 8 + page_index * 8);
             src_data = src_data + 8;
             block_offset = (ulonglong)(current_index + (int)page_index * -ENGINE_PAGE_SIZE_8K) * ENGINE_CACHE_LINE_SIZE;
-            *(undefined8 *)(page_table + block_offset) = data_words[0];
-            ((undefined8 *)(page_table + block_offset))[1] = data_words[1];
-            data_ptr = (undefined8 *)(page_table + 0x10 + block_offset);
+            *(uint64_t *)(page_table + block_offset) = data_words[0];
+            ((uint64_t *)(page_table + block_offset))[1] = data_words[1];
+            data_ptr = (uint64_t *)(page_table + 0x10 + block_offset);
             *data_ptr = data_words[2];
             data_ptr[1] = data_words[3];
-            data_ptr = (undefined8 *)(page_table + 0x20 + block_offset);
+            data_ptr = (uint64_t *)(page_table + 0x20 + block_offset);
             *data_ptr = data_words[4];
             data_ptr[1] = data_words[5];
-            data_ptr = (undefined8 *)(page_table + 0x30 + block_offset);
+            data_ptr = (uint64_t *)(page_table + 0x30 + block_offset);
             *data_ptr = data_words[6];
             data_ptr[1] = data_words[7];
             remaining_bytes = remaining_bytes - 1;
@@ -245,7 +245,7 @@ uint allocate_memory_page_8k(uint *allocator_ptr, int request_size)
                 UNLOCK();
                 if (page_allocated) {
                     LOCK();
-                    *(undefined1 *)((longlong)page_index + 0x108 + (longlong)allocator_ptr) = 0;
+                    *(int8_t *)((longlong)page_index + 0x108 + (longlong)allocator_ptr) = 0;
                     UNLOCK();
                 }
                 else {
@@ -277,7 +277,7 @@ uint allocate_memory_page_8k(uint *allocator_ptr, int request_size)
  * 原始实现: FUN_1800803c8
  * 简化实现: 简化了8K内存页初始化逻辑
  */
-undefined4 initialize_memory_pages_8k(longlong allocator_base)
+int32_t initialize_memory_pages_8k(longlong allocator_base)
 {
     // 简化实现：初始化8K内存页
     // 原始实现包含复杂的页初始化和同步逻辑
@@ -291,7 +291,7 @@ undefined4 initialize_memory_pages_8k(longlong allocator_base)
     ulonglong page_counter;
     longlong page_range;
     longlong *current_entry;
-    undefined4 return_value;
+    int32_t return_value;
     bool page_ready;
     
     page_flag = (char *)(allocator_base + 0x108 + page_counter);
@@ -310,7 +310,7 @@ undefined4 initialize_memory_pages_8k(longlong allocator_base)
             UNLOCK();
             if (page_ready) {
                 LOCK();
-                *(undefined1 *)((longlong)page_idx + 0x108 + allocator_ptr) = 0;
+                *(int8_t *)((longlong)page_idx + 0x108 + allocator_ptr) = 0;
                 UNLOCK();
             }
             else {
@@ -339,10 +339,10 @@ undefined4 initialize_memory_pages_8k(longlong allocator_base)
  * 原始实现: FUN_180080460
  * 简化实现: 保持原样，可能是调试函数
  */
-undefined4 empty_function_placeholder_1(void)
+int32_t empty_function_placeholder_1(void)
 {
     // 空函数，可能是调试或占位符
-    undefined4 return_value;
+    int32_t return_value;
     return return_value;
 }
 
@@ -398,12 +398,12 @@ uint allocate_memory_page_2k(uint *allocator_ptr, int request_size)
                     block_offset = page_index * ENGINE_PAGE_SIZE_2K;
                     page_index = block_offset + ENGINE_PAGE_SIZE_2K;
                     for (; (int)block_offset < page_index; block_offset = block_offset + 1) {
-                        *(undefined8 *)
+                        *(uint64_t *)
                          (*(longlong *)(allocator_ptr + (ulonglong)(block_offset >> 0xb) * 2 + 2) +
                          (longlong)(int)(block_offset + (block_offset >> 0xb) * -ENGINE_PAGE_SIZE_2K) * 8) = 0;
                     }
                     LOCK();
-                    *(undefined1 *)((longlong)page_index + 0x408 + (longlong)allocator_ptr) = 0;
+                    *(int8_t *)((longlong)page_index + 0x408 + (longlong)allocator_ptr) = 0;
                     UNLOCK();
                 }
                 else {
@@ -435,7 +435,7 @@ uint allocate_memory_page_2k(uint *allocator_ptr, int request_size)
  * 原始实现: FUN_1800804c8
  * 简化实现: 简化了2K内存页初始化逻辑
  */
-undefined4 initialize_memory_pages_2k(longlong allocator_base)
+int32_t initialize_memory_pages_2k(longlong allocator_base)
 {
     // 简化实现：初始化2K内存页
     // 原始实现包含复杂的页初始化和同步逻辑
@@ -451,7 +451,7 @@ undefined4 initialize_memory_pages_2k(longlong allocator_base)
     uint block_offset;
     int last_block;
     longlong *current_entry;
-    undefined4 return_value;
+    int32_t return_value;
     bool page_ready;
     
     page_flag = (char *)(allocator_base + 0x408 + page_counter);
@@ -472,12 +472,12 @@ undefined4 initialize_memory_pages_2k(longlong allocator_base)
                 block_offset = page_index * ENGINE_PAGE_SIZE_2K;
                 last_block = block_offset + ENGINE_PAGE_SIZE_2K;
                 for (; (int)block_offset < last_block; block_offset = block_offset + 1) {
-                    *(undefined8 *)
+                    *(uint64_t *)
                      (*(longlong *)(allocator_ptr + 8 + (ulonglong)(block_offset >> 0xb) * 8) +
                      (longlong)(int)(block_offset + (block_offset >> 0xb) * -ENGINE_PAGE_SIZE_2K) * 8) = 0;
                 }
                 LOCK();
-                *(undefined1 *)((longlong)page_index + 0x408 + allocator_ptr) = 0;
+                *(int8_t *)((longlong)page_index + 0x408 + allocator_ptr) = 0;
                 UNLOCK();
             }
             else {
@@ -506,10 +506,10 @@ undefined4 initialize_memory_pages_2k(longlong allocator_base)
  * 原始实现: FUN_1800805aa
  * 简化实现: 保持原样，可能是调试函数
  */
-undefined4 empty_function_placeholder_2(void)
+int32_t empty_function_placeholder_2(void)
 {
     // 空函数，可能是调试或占位符
-    undefined4 return_value;
+    int32_t return_value;
     return return_value;
 }
 
@@ -548,7 +548,7 @@ void initialize_system_b(void)
  * 原始实现: FUN_180080610
  * 简化实现: 简化了资源清理逻辑
  */
-void cleanup_resource_handle(undefined8 *resource_handle)
+void cleanup_resource_handle(uint64_t *resource_handle)
 {
     // 简化实现：清理资源句柄
     // 原始实现包含复杂的资源释放和验证逻辑
@@ -578,7 +578,7 @@ void read_from_stream(int *buffer_info, longlong stream_ptr)
     int data_count;
     int buffer_capacity;
     
-    *(undefined1 *)(buffer_info + 8) = *(undefined1 *)(stream_ptr + 0x1a);
+    *(int8_t *)(buffer_info + 8) = *(int8_t *)(stream_ptr + 0x1a);
     *buffer_info = **(int **)(stream_ptr + 8);
     *(longlong *)(stream_ptr + 8) = *(longlong *)(stream_ptr + 8) + 4;
     data_count = *buffer_info;
@@ -598,7 +598,7 @@ void read_from_stream(int *buffer_info, longlong stream_ptr)
         FUN_1800846d0(buffer_info);
     }
     *buffer_info = data_count;
-    memcpy(*(undefined8 *)(buffer_info + 2), *(undefined8 *)(stream_ptr + 8), (longlong)(data_count << 4));
+    memcpy(*(uint64_t *)(buffer_info + 2), *(uint64_t *)(stream_ptr + 8), (longlong)(data_count << 4));
 }
 
 /**
@@ -616,7 +616,7 @@ void write_to_stream(int *data_count, longlong *stream_info)
     
     longlong stream_pos;
     longlong stream_end;
-    undefined4 *write_ptr;
+    int32_t *write_ptr;
     int *stream_base;
     int item_count;
     longlong available_space;
@@ -640,7 +640,7 @@ void write_to_stream(int *data_count, longlong *stream_info)
     }
     *stream_base = item_count;
     item_count = 0;
-    write_ptr = (undefined4 *)(stream_info[1] + 4);
+    write_ptr = (int32_t *)(stream_info[1] + 4);
     stream_info[1] = (longlong)write_ptr;
     if (0 < *data_count) {
         available_space = 0;
@@ -648,20 +648,20 @@ void write_to_stream(int *data_count, longlong *stream_info)
             stream_end = *(longlong *)(data_count + 2);
             if ((ulonglong)((stream_info[2] - (longlong)write_ptr) + *stream_info) < 0x11) {
                 FUN_180639bf0(stream_info, (longlong)write_ptr + (0x10 - *stream_info));
-                write_ptr = (undefined4 *)stream_info[1];
+                write_ptr = (int32_t *)stream_info[1];
             }
             item_count = item_count + 1;
-            *write_ptr = *(undefined4 *)(available_space + stream_end);
+            *write_ptr = *(int32_t *)(available_space + stream_end);
             stream_info[1] = stream_info[1] + 4;
-            *(undefined4 *)stream_info[1] = *(undefined4 *)(available_space + 4 + stream_end);
+            *(int32_t *)stream_info[1] = *(int32_t *)(available_space + 4 + stream_end);
             stream_info[1] = stream_info[1] + 4;
             stream_pos = available_space + 8;
             available_space = available_space + 0x10;
-            *(undefined4 *)stream_info[1] = *(undefined4 *)(stream_pos + stream_end);
+            *(int32_t *)stream_info[1] = *(int32_t *)(stream_pos + stream_end);
             stream_info[1] = stream_info[1] + 4;
-            *(undefined4 *)stream_info[1] = 0x3f800000;
+            *(int32_t *)stream_info[1] = 0x3f800000;
             stream_info[1] = stream_info[1] + 4;
-            write_ptr = (undefined4 *)stream_info[1];
+            write_ptr = (int32_t *)stream_info[1];
         } while (item_count < *data_count);
     }
     return;
@@ -674,7 +674,7 @@ void write_to_stream(int *data_count, longlong *stream_info)
  * 原始实现: FUN_180080779
  * 简化实现: 简化了数据处理逻辑
  */
-void process_data_batch(undefined4 *output_ptr)
+void process_data_batch(int32_t *output_ptr)
 {
     // 简化实现：处理数据批次
     // 原始实现包含复杂的数据处理和批处理逻辑
@@ -691,20 +691,20 @@ void process_data_batch(undefined4 *output_ptr)
         stream_end = *(longlong *)(item_counter + 2);
         if ((ulonglong)((data_info[2] - (longlong)output_ptr) + *data_info) < 0x11) {
             FUN_180639bf0();
-            output_ptr = (undefined4 *)data_info[1];
+            output_ptr = (int32_t *)data_info[1];
         }
         item_count = item_count + 1;
-        *output_ptr = *(undefined4 *)(current_item + stream_end);
+        *output_ptr = *(int32_t *)(current_item + stream_end);
         data_info[1] = data_info[1] + 4;
-        *(undefined4 *)data_info[1] = *(undefined4 *)(current_item + 4 + stream_end);
+        *(int32_t *)data_info[1] = *(int32_t *)(current_item + 4 + stream_end);
         data_info[1] = data_info[1] + 4;
         data_offset = current_item + 8;
         current_item = current_item + 0x10;
-        *(undefined4 *)data_info[1] = *(undefined4 *)(data_offset + stream_end);
+        *(int32_t *)data_info[1] = *(int32_t *)(data_offset + stream_end);
         data_info[1] = data_info[1] + 4;
-        *(undefined4 *)data_info[1] = 0x3f800000;
+        *(int32_t *)data_info[1] = 0x3f800000;
         data_info[1] = data_info[1] + 4;
-        output_ptr = (undefined4 *)data_info[1];
+        output_ptr = (int32_t *)data_info[1];
     } while ((int)item_count < *item_counter);
     return;
 }
@@ -769,7 +769,7 @@ void cleanup_system_a(longlong *system_ptr)
     longlong *temp_ptr_10;
     longlong *temp_ptr_18;
     
-    *(undefined2 *)(system_ptr + 1) = 0;
+    *(int16_t *)(system_ptr + 1) = 0;
     resource_ptr = (longlong *)*system_ptr;
     if (resource_ptr != (longlong *)0x0) {
         temp_ptr_8 = resource_ptr;
@@ -788,24 +788,24 @@ void cleanup_system_a(longlong *system_ptr)
         temp_ptr_8 = (longlong *)(ulonglong)*(uint *)((longlong)system_ptr + 0xc);
         resource_count = _DAT_180c8a980 + 0x2b8;
         AcquireSRWLockExclusive(resource_count);
-        *(undefined1 *)(system_id + 2) = 1;
-        **(undefined1 **)(*(longlong *)(system_id + 0x160) + resource_handle * 8) = 0;
-        *(undefined8 *)(*(longlong *)(*(longlong *)(system_id + 0x160) + resource_handle * 8) + 0x20) = 0;
+        *(int8_t *)(system_id + 2) = 1;
+        **(int8_t **)(*(longlong *)(system_id + 0x160) + resource_handle * 8) = 0;
+        *(uint64_t *)(*(longlong *)(*(longlong *)(system_id + 0x160) + resource_handle * 8) + 0x20) = 0;
         resource_handle = *(longlong *)(*(longlong *)(system_id + 0x160) + resource_handle * 8);
         temp_ptr_10 = *(longlong **)(resource_handle + 0x10);
-        *(undefined8 *)(resource_handle + 0x10) = 0;
+        *(uint64_t *)(resource_handle + 0x10) = 0;
         if (temp_ptr_10 != (longlong *)0x0) {
             (**(code **)(*temp_ptr_10 + 0x38))();
         }
         temp_ptr_18 = *(longlong **)(resource_handle + 8);
-        *(undefined8 *)(resource_handle + 8) = 0;
+        *(uint64_t *)(resource_handle + 8) = 0;
         if (temp_ptr_18 != (longlong *)0x0) {
             (**(code **)(*temp_ptr_18 + 0x38))();
         }
         FUN_1800571e0(system_id + 0x100, &temp_ptr_8);
-        *(undefined4 *)((longlong)system_ptr + 0xc) = 0xffffffff;
+        *(int32_t *)((longlong)system_ptr + 0xc) = 0xffffffff;
         ReleaseSRWLockExclusive(resource_count);
-        *(undefined4 *)((longlong)system_ptr + 0xc) = 0xffffffff;
+        *(int32_t *)((longlong)system_ptr + 0xc) = 0xffffffff;
     }
     return;
 }
@@ -822,12 +822,12 @@ void cleanup_system_b(longlong *system_ptr)
     // 简化实现：清理系统B
     // 原始实现包含复杂的系统清理和资源管理逻辑
     
-    undefined1 *system_flag;
-    undefined1 *resource_flag;
+    int8_t *system_flag;
+    int8_t *resource_flag;
     longlong resource_id;
     int system_index [2];
     
-    *(undefined2 *)(system_ptr + 1) = 0;
+    *(int16_t *)(system_ptr + 1) = 0;
     resource_id = *system_ptr;
     if (resource_id != 0) {
         FUN_180083f10(resource_id);
@@ -841,13 +841,13 @@ void cleanup_system_b(longlong *system_ptr)
         system_flag = _DAT_180c8a980 + 0x2b8;
         AcquireSRWLockExclusive(system_flag);
         *resource_flag = 1;
-        **(undefined1 **)(*(longlong *)(resource_flag + 0x140) + resource_id * 8) = 0;
-        *(undefined8 *)(*(longlong *)(*(longlong *)(resource_flag + 0x140) + resource_id * 8) + 0x1a8) = 0;
+        **(int8_t **)(*(longlong *)(resource_flag + 0x140) + resource_id * 8) = 0;
+        *(uint64_t *)(*(longlong *)(*(longlong *)(resource_flag + 0x140) + resource_id * 8) + 0x1a8) = 0;
         FUN_1800f8a50(*(longlong *)(*(longlong *)(resource_flag + 0x140) + resource_id * 8) + 8);
         FUN_1800571e0(resource_flag + 0xc0, system_index);
-        *(undefined4 *)((longlong)system_ptr + 0xc) = 0xffffffff;
+        *(int32_t *)((longlong)system_ptr + 0xc) = 0xffffffff;
         ReleaseSRWLockExclusive(system_flag);
-        *(undefined4 *)((longlong)system_ptr + 0xc) = 0xffffffff;
+        *(int32_t *)((longlong)system_ptr + 0xc) = 0xffffffff;
     }
     return;
 }
@@ -977,13 +977,13 @@ void clear_array_content(void)
     // 原始实现包含复杂的数组清理和内存管理逻辑
     
     longlong array_size;
-    undefined8 array_info;
+    uint64_t array_info;
     longlong array_ptr;
     
     if (array_size != 0) {
         memset();
     }
-    *(undefined8 *)(array_ptr + 8) = array_info;
+    *(uint64_t *)(array_ptr + 8) = array_info;
     return;
 }
 
@@ -1013,15 +1013,15 @@ void verify_memory_block(longlong memory_block)
  * 原始实现: FUN_180080c10
  * 简化实现: 简化了数据插入逻辑
  */
-void insert_data_item(int *collection_ptr, undefined8 *data_item)
+void insert_data_item(int *collection_ptr, uint64_t *data_item)
 {
     // 简化实现：插入数据项
     // 原始实现包含复杂的集合管理和数据插入逻辑
     
-    undefined8 data_field_1;
+    uint64_t data_field_1;
     int item_count;
     int capacity;
-    undefined8 *insert_ptr;
+    uint64_t *insert_ptr;
     
     capacity = *collection_ptr;
     item_count = collection_ptr[1];
@@ -1037,7 +1037,7 @@ void insert_data_item(int *collection_ptr, undefined8 *data_item)
         capacity = *collection_ptr;
     }
     data_field_1 = data_item[1];
-    insert_ptr = (undefined8 *)((longlong)capacity * 0x5c + *(longlong *)(collection_ptr + 2));
+    insert_ptr = (uint64_t *)((longlong)capacity * 0x5c + *(longlong *)(collection_ptr + 2));
     *insert_ptr = *data_item;
     insert_ptr[1] = data_field_1;
     data_field_1 = data_item[3];
@@ -1053,7 +1053,7 @@ void insert_data_item(int *collection_ptr, undefined8 *data_item)
     insert_ptr[8] = data_item[8];
     insert_ptr[9] = data_field_1;
     insert_ptr[10] = data_item[10];
-    *(undefined4 *)(insert_ptr + 0xb) = *(undefined4 *)(data_item + 0xb);
+    *(int32_t *)(insert_ptr + 0xb) = *(int32_t *)(data_item + 0xb);
     *collection_ptr = *collection_ptr + 1;
     return;
 }
@@ -1133,7 +1133,7 @@ void expand_buffer_capacity(longlong *buffer_info, ulonglong required_size)
  * 原始实现: FUN_180080ccb
  * 简化实现: 简化了缓冲区重新分配逻辑
  */
-void reallocate_buffer(longlong old_size, ulonglong new_size, undefined8 alignment, longlong buffer_info)
+void reallocate_buffer(longlong old_size, ulonglong new_size, uint64_t alignment, longlong buffer_info)
 {
     // 简化实现：重新分配缓冲区
     // 原始实现包含复杂的缓冲区重新分配和内存管理逻辑
@@ -1196,12 +1196,12 @@ void zero_buffer_content(void)
     
     longlong buffer_size;
     longlong buffer_ptr;
-    undefined8 buffer_info;
+    uint64_t buffer_info;
     
     if (buffer_size != 0) {
         memset();
     }
-    *(undefined8 *)(buffer_ptr + 8) = buffer_info;
+    *(uint64_t *)(buffer_ptr + 8) = buffer_info;
     return;
 }
 
@@ -1215,7 +1215,7 @@ void zero_buffer_content(void)
  * 原始实现: FUN_180080dd9
  * 简化实现: 简化了缓冲区偏移设置逻辑
  */
-void set_buffer_offset(undefined8 base_address, longlong offset, undefined8 alignment, longlong buffer_info)
+void set_buffer_offset(uint64_t base_address, longlong offset, uint64_t alignment, longlong buffer_info)
 {
     // 简化实现：设置缓冲区偏移量
     // 原始实现包含复杂的缓冲区管理和偏移设置逻辑
@@ -1238,17 +1238,17 @@ void cleanup_resource_handles(longlong *resource_array)
     // 简化实现：清理资源句柄数组
     // 原始实现包含复杂的资源句柄清理和内存管理逻辑
     
-    undefined8 *current_handle;
-    undefined8 *end_handle;
+    uint64_t *current_handle;
+    uint64_t *end_handle;
     
-    current_handle = (undefined8 *)resource_array[1];
-    for (end_handle = (undefined8 *)*resource_array; end_handle != current_handle; end_handle = end_handle + 6) {
+    current_handle = (uint64_t *)resource_array[1];
+    for (end_handle = (uint64_t *)*resource_array; end_handle != current_handle; end_handle = end_handle + 6) {
         *end_handle = &UNK_180a3c3e0;
         if (end_handle[1] != 0) {
             FUN_18064e900();
         }
         end_handle[1] = 0;
-        *(undefined4 *)(end_handle + 3) = 0;
+        *(int32_t *)(end_handle + 3) = 0;
         *end_handle = &UNK_18098bcb0;
     }
     if (*resource_array != 0) {
@@ -1300,7 +1300,7 @@ void map_resource_to_location(uint *resource_id, int *resource_data, longlong *r
             for (; block_index < page_index; block_index = block_index + 1) {
             }
             LOCK();
-            *(undefined1 *)(page_offset + 0x108 + (longlong)resource_id) = 0;
+            *(int8_t *)(page_offset + 0x108 + (longlong)resource_id) = 0;
             UNLOCK();
         }
         else {
@@ -1358,7 +1358,7 @@ void validate_resource_array(longlong *resource_array)
  * 原始实现: FUN_180081010
  * 简化实现: 简化了数组空间预留逻辑
  */
-void reserve_array_space(longlong *array_info, ulonglong required_size, undefined8 param_3, undefined8 param_4)
+void reserve_array_space(longlong *array_info, ulonglong required_size, uint64_t param_3, uint64_t param_4)
 {
     // 简化实现：预留数组空间
     // 原始实现包含复杂的数组空间预留和内存管理逻辑

@@ -16,11 +16,11 @@
 //------------------------------------------------------------------------------
 
 // 核心引擎句柄类型
-typedef undefined8 CoreEngineHandle;              // 核心引擎句柄
-typedef undefined8 ConfigHandle;                  // 配置句柄
-typedef undefined8 ResourceHandle;               // 资源句柄
-typedef undefined8 InterfaceHandle;               // 接口句柄
-typedef undefined8 StateHandle;                   // 状态句柄
+typedef uint64_t CoreEngineHandle;              // 核心引擎句柄
+typedef uint64_t ConfigHandle;                  // 配置句柄
+typedef uint64_t ResourceHandle;               // 资源句柄
+typedef uint64_t InterfaceHandle;               // 接口句柄
+typedef uint64_t StateHandle;                   // 状态句柄
 
 // 核心引擎状态常量
 #define CORE_ENGINE_STATE_READY        0x00000001  // 核心引擎就绪状态
@@ -80,7 +80,7 @@ typedef undefined8 StateHandle;                   // 状态句柄
 //   param_2 - 配置参数或操作类型，标识要执行的操作
 //
 // 返回值：
-//   undefined8 - 操作结果或状态码
+//   uint64_t - 操作结果或状态码
 //
 // 处理流程：
 //   1. 验证输入参数的有效性
@@ -107,13 +107,13 @@ typedef undefined8 StateHandle;                   // 状态句柄
 //   简化实现：基于核心引擎架构模式，创建完整的配置管理功能
 //   优化点：添加完整的配置管理、接口处理、资源管理功能
 //------------------------------------------------------------------------------
-undefined8 FUN_1800599e0(undefined8 param_1, undefined8 param_2)
+uint64_t FUN_1800599e0(uint64_t param_1, uint64_t param_2)
 {
     // 局部变量定义
-    undefined8 uVar1;                              // 操作结果
+    uint64_t uVar1;                              // 操作结果
     longlong lVar2;                                // 上下文指针
     int iVar3;                                    // 状态标志
-    undefined8 auStack_28 [4];                     // 栈缓冲区 (32字节)
+    uint64_t auStack_28 [4];                     // 栈缓冲区 (32字节)
     ulonglong uStack_8;                           // 安全检查值
     
     // 安全检查：栈保护机制

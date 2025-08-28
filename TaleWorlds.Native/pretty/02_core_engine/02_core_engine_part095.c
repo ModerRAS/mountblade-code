@@ -7,20 +7,20 @@
 // 参数：render_context - 渲染上下文，text_label - 文本标签，position_data - 位置数据，size_data - 尺寸数据，
 //       count - 数量，index - 索引，font_name - 字体名称，x_coord - X坐标，y_coord - Y坐标，additional_data - 附加数据
 // 功能：渲染带有各种效果的文本标签，支持颜色渐变、阴影等高级渲染特性
-void render_text_label(undefined8 render_context, char *text_label, undefined8 position_data, undefined8 size_data,
-                     int count, int index, char *font_name, float x_coord, float y_coord, undefined8 additional_data)
+void render_text_label(uint64_t render_context, char *text_label, uint64_t position_data, uint64_t size_data,
+                     int count, int index, char *font_name, float x_coord, float y_coord, uint64_t additional_data)
 {
   float *font_metrics;
   longlong global_base;
-  undefined8 temp_data1;
+  uint64_t temp_data1;
   bool use_special_rendering;
-  undefined8 temp_data2;
+  uint64_t temp_data2;
   char comment_end;
-  undefined4 temp_value;
+  int32_t temp_value;
   char *comment_start;
   int current_index;
   int total_chars;
-  undefined8 temp_data3;
+  uint64_t temp_data3;
   longlong render_state;
   uint char_count;
   ulonglong text_length;
@@ -35,10 +35,10 @@ void render_text_label(undefined8 render_context, char *text_label, undefined8 p
   float border_width;
   float gradient_start;
   float gradient_end;
-  undefined8 dimensions;
-  undefined8 size_info;
-  undefined8 stack_data;
-  undefined4 temp_register;
+  uint64_t dimensions;
+  uint64_t size_info;
+  uint64_t stack_data;
+  int32_t temp_register;
   double temp_double;
   float render_width;
   float render_height;
@@ -48,18 +48,18 @@ void render_text_label(undefined8 render_context, char *text_label, undefined8 p
   longlong stack_offset;
   float render_x;
   float render_y;
-  undefined8 temp_buffer;
+  uint64_t temp_buffer;
   longlong buffer_offset;
-  undefined8 stack_buffer;
+  uint64_t stack_buffer;
   float shadow_x;
   float shadow_y;
-  undefined1 color_data [16];
+  int8_t color_data [16];
   
   global_base = GLOBAL_ENGINE_BASE;
   stack_offset = GLOBAL_ENGINE_BASE;
   
   // 启用特殊渲染模式
-  *(undefined1 *)(*(longlong *)(GLOBAL_ENGINE_BASE + 0x1af8) + 0xb1) = 1;
+  *(int8_t *)(*(longlong *)(GLOBAL_ENGINE_BASE + 0x1af8) + 0xb1) = 1;
   buffer_offset = *(longlong *)(global_base + 0x1af8);
   
   if (*(char *)(buffer_offset + 0xb4) == '\0') {
@@ -111,8 +111,8 @@ void render_text_label(undefined8 render_context, char *text_label, undefined8 p
     line_height = *font_metrics;
     gradient_end = *(float *)(font_data + 0x104);
     gradient_start = *font_metrics;
-    temp_data1 = *(undefined8 *)font_metrics;
-    temp_data3 = *(undefined8 *)font_metrics;
+    temp_data1 = *(uint64_t *)font_metrics;
+    temp_data3 = *(uint64_t *)font_metrics;
     
     shadow_x = line_height + (float)additional_data;
     additional_data._4_4_ = gradient_end + additional_data._4_4_;
@@ -143,13 +143,13 @@ void render_text_label(undefined8 render_context, char *text_label, undefined8 p
     shadow_y = baseline_offset;
     
     // 计算布局参数
-    calculate_layout_parameters(&render_height, *(undefined4 *)(global_base + 0x1660));
+    calculate_layout_parameters(&render_height, *(int32_t *)(global_base + 0x1660));
     render_state = *(longlong *)(global_base + 0x1af8);
     
     // 保存渲染状态
-    *(undefined8 *)(render_state + 0x144) = 0;
+    *(uint64_t *)(render_state + 0x144) = 0;
     *(float *)(render_state + 0x14c) = gradient_start;
-    *(undefined4 *)(render_state + 0x150) = temp_value;
+    *(int32_t *)(render_state + 0x150) = temp_value;
     *(float *)(render_state + 0x154) = text_width;
     *(float *)(render_state + 0x158) = additional_data._4_4_;
     
@@ -180,16 +180,16 @@ void render_text_label(undefined8 render_context, char *text_label, undefined8 p
             ((*(char *)(global_base + 0x1d07) == '\0' &&
              (comment_end = check_render_capability(render_state, 0), comment_end != '\0')))))) &&
           ((*(byte *)(render_state + 0x1a8) & 4) == 0)))) {
-        *(undefined4 *)(global_base + 0x1b18) = 0;
+        *(int32_t *)(global_base + 0x1b18) = 0;
         use_special_rendering = true;
-        *(undefined1 *)(global_base + 0x1b1c) = 0;
+        *(int8_t *)(global_base + 0x1b1c) = 0;
       }
       else {
         use_special_rendering = false;
       }
       
       temp_data2 = size_info;
-      temp_register = (undefined4)((ulonglong)stack_data >> 0x20);
+      temp_register = (int32_t)((ulonglong)stack_data >> 0x20);
       font_data = global_base;
       
       // 计算渲染边界
@@ -200,7 +200,7 @@ void render_text_label(undefined8 render_context, char *text_label, undefined8 p
         if (0 < count) {
           do {
             calculated_width = (float)get_character_width(temp_data2, current_index);
-            temp_register = (undefined4)((ulonglong)stack_data >> 0x20);
+            temp_register = (int32_t)((ulonglong)stack_data >> 0x20);
             
             if (calculated_width <= gradient_start) {
               gradient_start = calculated_width;
@@ -232,7 +232,7 @@ void render_text_label(undefined8 render_context, char *text_label, undefined8 p
       char_spacing = *(float *)(global_base + 0x1744) * *(float *)(global_base + 0x1628);
       temp_value = get_render_color(&render_height);
       
-      temp_double = (double)CONCAT44(temp_register, *(undefined4 *)(font_data + 0x1664));
+      temp_double = (double)CONCAT44(temp_register, *(int32_t *)(font_data + 0x1664));
       stack_buffer = temp_data1;
       
       // 执行渲染操作
@@ -323,7 +323,7 @@ void render_text_label(undefined8 render_context, char *text_label, undefined8 p
           dimensions = CONCAT44(dimensions._4_4_, (float)dimensions - baseline_offset);
           
           do {
-            temp_register = (undefined4)((ulonglong)temp_double >> 0x20);
+            temp_register = (int32_t)((ulonglong)temp_double >> 0x20);
             calculated_width = (float)(count + -1) * gradient_end;
             gradient_end = gradient_end + 1.0 / (float)(int)char_count;
             total_chars = (int)(calculated_width + 0.5);
@@ -355,7 +355,7 @@ void render_text_label(undefined8 render_context, char *text_label, undefined8 p
             dimensions = (float)dimensions * gradient_end + baseline_offset;
             
             // 执行最终渲染
-            perform_final_render(*(undefined8 *)(buffer_offset + 0x2e8), &char_spacing, &dimensions, calculated_width, temp_double);
+            perform_final_render(*(uint64_t *)(buffer_offset + 0x2e8), &char_spacing, &dimensions, calculated_width, temp_double);
             
             text_length = text_length - 1;
             global_base = GLOBAL_ENGINE_BASE;
@@ -382,7 +382,7 @@ void render_text_label(undefined8 render_context, char *text_label, undefined8 p
         }
         
         if (((int)comment_start != (int)font_name) &&
-           (render_text_with_effects(*(undefined8 *)(*(longlong *)(global_base + 0x1af8) + 0x2e8), &dimensions,
+           (render_text_with_effects(*(uint64_t *)(*(longlong *)(global_base + 0x1af8) + 0x2e8), &dimensions,
                           &shadow_x, font_name, comment_start, 0, &stack_offset, 0),
            *(char *)(global_base + 0x2e38) != '\0')) {
           apply_text_effects(&dimensions, font_name, comment_start);
@@ -401,20 +401,20 @@ void render_text_label(undefined8 render_context, char *text_label, undefined8 p
 // 函数：高级文本渲染处理
 // 参数：render_context - 渲染上下文，text_content - 文本内容，render_data - 渲染数据，render_params - 渲染参数
 // 功能：处理复杂的文本渲染，包括多层渲染、效果合成等高级功能
-void process_advanced_text_rendering(undefined8 render_context, char *text_content, undefined8 render_data, longlong render_params)
+void process_advanced_text_rendering(uint64_t render_context, char *text_content, uint64_t render_data, longlong render_params)
 {
   int char_index;
   float *font_table;
   longlong engine_state;
-  undefined8 temp_data1;
-  undefined8 temp_data2;
+  uint64_t temp_data1;
+  uint64_t temp_data2;
   bool enable_advanced_effects;
   char effect_status;
-  undefined4 temp_value;
+  int32_t temp_value;
   char *text_pointer;
   int current_pos;
   int total_length;
-  undefined8 render_buffer;
+  uint64_t render_buffer;
   char *comment_end;
   longlong frame_buffer;
   int texture_index;
@@ -423,7 +423,7 @@ void process_advanced_text_rendering(undefined8 render_context, char *text_conte
   longlong render_target;
   ulonglong index_count;
   longlong context_data;
-  undefined8 texture_coords;
+  uint64_t texture_coords;
   float font_size;
   float text_metrics;
   float render_width;
@@ -432,25 +432,25 @@ void process_advanced_text_rendering(undefined8 render_context, char *text_conte
   float blend_factor;
   float alpha_value;
   float texture_scale;
-  undefined4 reg_xmm6;
+  int32_t reg_xmm6;
   float color_r;
-  undefined4 reg_xmm7;
-  undefined4 reg_xmm8;
-  undefined4 reg_xmm10;
-  undefined4 reg_xmm11;
-  undefined4 reg_xmm13;
+  int32_t reg_xmm7;
+  int32_t reg_xmm8;
+  int32_t reg_xmm10;
+  int32_t reg_xmm11;
+  int32_t reg_xmm13;
   float color_g;
-  undefined4 reg_xmm13_db;
-  undefined4 reg_xmm13_dc;
-  undefined4 reg_xmm13_dd;
+  int32_t reg_xmm13_db;
+  int32_t reg_xmm13_dc;
+  int32_t reg_xmm13_dd;
   float color_b;
-  undefined8 reg_xmm14;
-  undefined4 reg_xmm15;
-  undefined4 reg_xmm15_db;
-  undefined4 reg_xmm15_dc;
-  undefined4 reg_xmm15_dd;
-  undefined8 stack_data;
-  undefined4 temp_register;
+  uint64_t reg_xmm14;
+  int32_t reg_xmm15;
+  int32_t reg_xmm15_db;
+  int32_t reg_xmm15_dc;
+  int32_t reg_xmm15_dd;
+  uint64_t stack_data;
+  int32_t temp_register;
   double temp_double;
   float stack_height;
   float stack_width;
@@ -460,45 +460,45 @@ void process_advanced_text_rendering(undefined8 render_context, char *text_conte
   float stack_scale;
   longlong stack_offset;
   float stack_texture;
-  undefined8 stack_buffer;
-  undefined4 stack_e0;
-  undefined4 stack_e8;
-  undefined4 stack_110;
-  undefined4 stack_118;
+  uint64_t stack_buffer;
+  int32_t stack_e0;
+  int32_t stack_e8;
+  int32_t stack_110;
+  int32_t stack_118;
   
   // 保存寄存器状态
-  *(undefined8 *)(context_data + -0x28) = render_buffer;
-  *(undefined8 *)(context_data + -0x38) = texture_coords;
-  *(undefined4 *)(context_data + -0x58) = reg_xmm6;
-  *(undefined4 *)(context_data + -0x54) = reg_xmm6_db;
-  *(undefined4 *)(context_data + -0x50) = reg_xmm6_dc;
-  *(undefined4 *)(context_data + -0x4c) = reg_xmm6_dd;
-  *(undefined4 *)(context_data + -0x68) = reg_xmm7;
-  *(undefined4 *)(context_data + -100) = reg_xmm7_db;
-  *(undefined4 *)(context_data + -0x60) = reg_xmm7_dc;
-  *(undefined4 *)(context_data + -0x5c) = reg_xmm7_dd;
-  *(undefined4 *)(context_data + -0x78) = reg_xmm8;
-  *(undefined4 *)(context_data + -0x74) = reg_xmm8_db;
-  *(undefined4 *)(context_data + -0x70) = reg_xmm8_dc;
-  *(undefined4 *)(context_data + -0x6c) = reg_xmm8_dd;
-  *(undefined4 *)(context_data + -0x98) = reg_xmm10;
-  *(undefined4 *)(context_data + -0x94) = reg_xmm10_db;
-  *(undefined4 *)(context_data + -0x90) = reg_xmm10_dc;
-  *(undefined4 *)(context_data + -0x8c) = reg_xmm10_dd;
-  *(undefined4 *)(context_data + -0xa8) = reg_xmm11;
-  *(undefined4 *)(context_data + -0xa4) = reg_xmm11_db;
-  *(undefined4 *)(context_data + -0xa0) = reg_xmm11_dc;
-  *(undefined4 *)(context_data + -0x9c) = reg_xmm11_dd;
-  *(undefined4 *)(context_data + -200) = reg_xmm13;
-  *(undefined4 *)(context_data + -0xc4) = reg_xmm13_db;
-  *(undefined4 *)(context_data + -0xc0) = reg_xmm13_dc;
-  *(undefined4 *)(context_data + -0xbc) = reg_xmm13_dd;
-  *(undefined8 *)(context_data + -0xd8) = reg_xmm14;
-  *(undefined8 *)(context_data + -0xd0) = reg_xmm14;
-  *(undefined4 *)(context_data + -0xe8) = reg_xmm15;
-  *(undefined4 *)(context_data + -0xe4) = reg_xmm15_db;
-  *(undefined4 *)(context_data + -0xe0) = reg_xmm15_dc;
-  *(undefined4 *)(context_data + -0xdc) = reg_xmm15_dd;
+  *(uint64_t *)(context_data + -0x28) = render_buffer;
+  *(uint64_t *)(context_data + -0x38) = texture_coords;
+  *(int32_t *)(context_data + -0x58) = reg_xmm6;
+  *(int32_t *)(context_data + -0x54) = reg_xmm6_db;
+  *(int32_t *)(context_data + -0x50) = reg_xmm6_dc;
+  *(int32_t *)(context_data + -0x4c) = reg_xmm6_dd;
+  *(int32_t *)(context_data + -0x68) = reg_xmm7;
+  *(int32_t *)(context_data + -100) = reg_xmm7_db;
+  *(int32_t *)(context_data + -0x60) = reg_xmm7_dc;
+  *(int32_t *)(context_data + -0x5c) = reg_xmm7_dd;
+  *(int32_t *)(context_data + -0x78) = reg_xmm8;
+  *(int32_t *)(context_data + -0x74) = reg_xmm8_db;
+  *(int32_t *)(context_data + -0x70) = reg_xmm8_dc;
+  *(int32_t *)(context_data + -0x6c) = reg_xmm8_dd;
+  *(int32_t *)(context_data + -0x98) = reg_xmm10;
+  *(int32_t *)(context_data + -0x94) = reg_xmm10_db;
+  *(int32_t *)(context_data + -0x90) = reg_xmm10_dc;
+  *(int32_t *)(context_data + -0x8c) = reg_xmm10_dd;
+  *(int32_t *)(context_data + -0xa8) = reg_xmm11;
+  *(int32_t *)(context_data + -0xa4) = reg_xmm11_db;
+  *(int32_t *)(context_data + -0xa0) = reg_xmm11_dc;
+  *(int32_t *)(context_data + -0x9c) = reg_xmm11_dd;
+  *(int32_t *)(context_data + -200) = reg_xmm13;
+  *(int32_t *)(context_data + -0xc4) = reg_xmm13_db;
+  *(int32_t *)(context_data + -0xc0) = reg_xmm13_dc;
+  *(int32_t *)(context_data + -0xbc) = reg_xmm13_dd;
+  *(uint64_t *)(context_data + -0xd8) = reg_xmm14;
+  *(uint64_t *)(context_data + -0xd0) = reg_xmm14;
+  *(int32_t *)(context_data + -0xe8) = reg_xmm15;
+  *(int32_t *)(context_data + -0xe4) = reg_xmm15_db;
+  *(int32_t *)(context_data + -0xe0) = reg_xmm15_dc;
+  *(int32_t *)(context_data + -0xdc) = reg_xmm15_dd;
   
   // 查找文本注释结束位置
   text_pointer = text_content;
@@ -548,15 +548,15 @@ void process_advanced_text_rendering(undefined8 render_context, char *text_conte
   text_metrics = *font_table;
   color_g = *(float *)(render_params + 0x104);
   color_r = *font_table;
-  temp_value = *(undefined4 *)(render_params + 0x104);
-  temp_data2 = *(undefined8 *)font_table;
-  render_buffer = *(undefined8 *)font_table;
+  temp_value = *(int32_t *)(render_params + 0x104);
+  temp_data2 = *(uint64_t *)font_table;
+  render_buffer = *(uint64_t *)font_table;
   
   stack_width = *(float *)(engine_state + 0x1660);
   render_height = text_metrics + depth_value;
   blend_factor = color_g + blend_factor;
   
-  *(undefined1 (*) [16])(frame_buffer + -0x60) = ZEXT416((uint)text_metrics);
+  *(int8_t (*) [16])(frame_buffer + -0x60) = ZEXT416((uint)text_metrics);
   
   color_b = *(float *)(engine_state + 0x165c);
   alpha_value = text_metrics + color_b;
@@ -586,12 +586,12 @@ void process_advanced_text_rendering(undefined8 render_context, char *text_conte
   stack_texture = stack_width;
   
   // 计算布局
-  calculate_layout_parameters(&depth_value, *(undefined4 *)(engine_state + 0x1660));
+  calculate_layout_parameters(&depth_value, *(int32_t *)(engine_state + 0x1660));
   
   buffer_base = *(longlong *)(engine_state + 0x1af8);
-  *(undefined8 *)(buffer_base + 0x144) = 0;
+  *(uint64_t *)(buffer_base + 0x144) = 0;
   *(float *)(buffer_base + 0x14c) = color_r;
-  *(undefined4 *)(buffer_base + 0x150) = temp_value;
+  *(int32_t *)(buffer_base + 0x150) = temp_value;
   *(float *)(buffer_base + 0x154) = render_height;
   *(float *)(buffer_base + 0x158) = blend_factor;
   
@@ -622,15 +622,15 @@ void process_advanced_text_rendering(undefined8 render_context, char *text_conte
           ((*(char *)(engine_state + 0x1d07) == '\0' &&
            (effect_status = check_render_capability(buffer_base, 0), effect_status != '\0')))))) &&
         ((*(byte *)(buffer_base + 0x1a8) & 4) == 0)))) {
-      *(undefined4 *)(engine_state + 0x1b18) = 0;
+      *(int32_t *)(engine_state + 0x1b18) = 0;
       enable_advanced_effects = true;
-      *(undefined1 *)(engine_state + 0x1b1c) = 0;
+      *(int8_t *)(engine_state + 0x1b1c) = 0;
     }
     else {
       enable_advanced_effects = false;
     }
     
-    temp_register = (undefined4)((ulonglong)stack_data >> 0x20);
+    temp_register = (int32_t)((ulonglong)stack_data >> 0x20);
     color_b = *(float *)(frame_buffer + 0xd8);
     char_index = *(int *)(frame_buffer + 0xc0);
     color_g = *(float *)(frame_buffer + 0xe0);
@@ -641,10 +641,10 @@ void process_advanced_text_rendering(undefined8 render_context, char *text_conte
       alpha_value = 3.4028235e+38;
       
       if (0 < char_index) {
-        temp_data1 = *(undefined8 *)(frame_buffer + 0xb8);
+        temp_data1 = *(uint64_t *)(frame_buffer + 0xb8);
         do {
           render_height = (float)get_character_width(temp_data1, current_pos);
-          temp_register = (undefined4)((ulonglong)stack_data >> 0x20);
+          temp_register = (int32_t)((ulonglong)stack_data >> 0x20);
           
           if (render_height <= alpha_value) {
             alpha_value = render_height;
@@ -677,9 +677,9 @@ void process_advanced_text_rendering(undefined8 render_context, char *text_conte
     stack_depth = *(float *)(engine_state + 0x1744) * *(float *)(engine_state + 0x1628);
     temp_value = get_render_color(&depth_value);
     
-    temp_double = (double)CONCAT44(temp_register, *(undefined4 *)(buffer_base + 0x1664));
-    *(undefined8 *)(frame_buffer + -0x78) = temp_data2;
-    execute_render_operation(render_buffer, *(undefined8 *)(frame_buffer + -0x70), temp_value, 1, temp_double);
+    temp_double = (double)CONCAT44(temp_register, *(int32_t *)(buffer_base + 0x1664));
+    *(uint64_t *)(frame_buffer + -0x78) = temp_data2;
+    execute_render_operation(render_buffer, *(uint64_t *)(frame_buffer + -0x70), temp_value, 1, temp_double);
     
     buffer_base = GLOBAL_ENGINE_BASE;
     
@@ -711,9 +711,9 @@ void process_advanced_text_rendering(undefined8 render_context, char *text_conte
         texture_index = (int)((float)(char_index + -1) * text_metrics);
         stack_index = texture_index;
         
-        text_metrics = (float)get_character_width(*(undefined8 *)(frame_buffer + 0xb8),
+        text_metrics = (float)get_character_width(*(uint64_t *)(frame_buffer + 0xb8),
                                         (longlong)(texture_index + current_pos) % (longlong)char_index & 0xffffffff);
-        render_buffer = *(undefined8 *)(frame_buffer + 0xb8);
+        render_buffer = *(uint64_t *)(frame_buffer + 0xb8);
         color_g = (float)get_character_width(render_buffer, (longlong)(texture_index + current_pos + 1) % (longlong)char_index & 0xffffffff);
         temp_double = (double)color_g;
         
@@ -721,7 +721,7 @@ void process_advanced_text_rendering(undefined8 render_context, char *text_conte
         perform_interpolation_calculation(&INTERPOLATION_DATA, texture_index, (double)text_metrics, texture_index + 1, temp_double);
       }
       else {
-        render_buffer = *(undefined8 *)(frame_buffer + 0xb8);
+        render_buffer = *(uint64_t *)(frame_buffer + 0xb8);
       }
       
       // 计算缩放因子
@@ -771,12 +771,12 @@ void process_advanced_text_rendering(undefined8 render_context, char *text_conte
         *(float *)(frame_buffer + 0xb0) = *(float *)(frame_buffer + 0xb0) - *(float *)(frame_buffer + 0xa0);
         
         do {
-          temp_register = (undefined4)((ulonglong)temp_double >> 0x20);
+          temp_register = (int32_t)((ulonglong)temp_double >> 0x20);
           color_g = (float)(char_index + -1) * blend_factor;
           blend_factor = blend_factor + 1.0 / (float)(int)vertex_count;
           total_length = (int)(color_g + 0.5);
           
-          color_g = (float)get_character_width(*(undefined8 *)(frame_buffer + 0xb8),
+          color_g = (float)get_character_width(*(uint64_t *)(frame_buffer + 0xb8),
                                           (longlong)(total_length + current_pos + 1) % (longlong)char_index & 0xffffffff);
           color_g = (color_g - color_b) * text_metrics;
           
@@ -804,7 +804,7 @@ void process_advanced_text_rendering(undefined8 render_context, char *text_conte
           depth_value = *(float *)(frame_buffer + 0xb0) * blend_factor + *(float *)(frame_buffer + 0xa0);
           
           // 执行最终渲染
-          perform_final_render(*(undefined8 *)(*(longlong *)(render_params + 0x2e8)), &stack_width, &depth_value, color_g, temp_double);
+          perform_final_render(*(uint64_t *)(*(longlong *)(render_params + 0x2e8)), &stack_width, &depth_value, color_g, temp_double);
           
           index_count = index_count - 1;
           buffer_base = GLOBAL_ENGINE_BASE;
@@ -813,7 +813,7 @@ void process_advanced_text_rendering(undefined8 render_context, char *text_conte
         } while (index_count != 0);
       }
       
-      texture_coords = *(undefined8 *)(frame_buffer + 0xa8);
+      texture_coords = *(uint64_t *)(frame_buffer + 0xa8);
       color_b = *(float *)(frame_buffer + -0x60);
       color_g = stack_texture;
     }
@@ -834,7 +834,7 @@ void process_advanced_text_rendering(undefined8 render_context, char *text_conte
       }
       
       if (((int)text_pointer != (int)comment_end) &&
-         (render_text_with_effects(*(undefined8 *)(*(longlong *)(buffer_base + 0x1af8) + 0x2e8), frame_buffer + 0xb0,
+         (render_text_with_effects(*(uint64_t *)(*(longlong *)(buffer_base + 0x1af8) + 0x2e8), frame_buffer + 0xb0,
                         frame_buffer + -0x70, comment_end, text_pointer), *(char *)(buffer_base + 0x2e38) != '\0')) {
         apply_text_effects(frame_buffer + 0xb0, comment_end, text_pointer);
       }

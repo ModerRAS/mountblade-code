@@ -22,8 +22,8 @@ void FUN_1805b3e21(longlong param_1)
   ulonglong uVar11;
   double dVar12;
   double unaff_XMM6_Qa;
-  undefined4 unaff_XMM7_Da;
-  undefined4 unaff_XMM7_Db;
+  int32_t unaff_XMM7_Da;
+  int32_t unaff_XMM7_Db;
   ulonglong *in_stack_00000080;
   
   do {
@@ -87,7 +87,7 @@ void FUN_1805b3e21(longlong param_1)
   } while( true );
 LAB_1805b3e92:
   if ((*piVar4 == iVar9) && (piVar4[1] == piVar1[1])) {
-    *(undefined1 *)(piVar4 + 7) = 1;
+    *(int8_t *)(piVar4 + 7) = 1;
     goto LAB_1805b3eb4;
   }
   uVar6 = (int)uVar7 + 1;
@@ -123,7 +123,7 @@ LAB_1805b3eb4:
           uVar11 = uVar7;
         }
         if (uVar11 != 0) {
-          unaff_RDI = FUN_18062b420(_DAT_180c8ed18,uVar11 * 8,*(undefined1 *)(unaff_RBX + 0x5860));
+          unaff_RDI = FUN_18062b420(_DAT_180c8ed18,uVar11 * 8,*(int8_t *)(unaff_RBX + 0x5860));
           lVar5 = *(longlong *)(unaff_RBX + 0x5848);
           lVar8 = *(longlong *)(unaff_RBX + 0x5850);
         }
@@ -160,9 +160,9 @@ void FUN_1805b40d1(void)
   longlong unaff_RBX;
   uint unaff_EDI;
   double dVar5;
-  undefined4 unaff_XMM7_Da;
-  undefined4 unaff_XMM7_Db;
-  undefined8 uStack0000000000000080;
+  int32_t unaff_XMM7_Da;
+  int32_t unaff_XMM7_Db;
+  uint64_t uStack0000000000000080;
   
   lVar3 = *(longlong *)(unaff_RBX + 0x5868);
   if ((int)(*(longlong *)(unaff_RBX + 0x5870) - lVar3 >> 3) != 0) {
@@ -172,7 +172,7 @@ void FUN_1805b40d1(void)
       if (dVar5 <= (double)CONCAT44(unaff_XMM7_Db,unaff_XMM7_Da) &&
           (double)CONCAT44(unaff_XMM7_Db,unaff_XMM7_Da) != dVar5) {
         lVar1 = *(longlong *)(unaff_RBX + 0x5868) + uVar4 * 8;
-        uStack0000000000000080 = *(undefined8 *)(*(longlong *)(unaff_RBX + 0x5868) + uVar4 * 8);
+        uStack0000000000000080 = *(uint64_t *)(*(longlong *)(unaff_RBX + 0x5868) + uVar4 * 8);
         lVar3 = lVar1 + 8;
         if (lVar1 != lVar3) {
           lVar2 = *(longlong *)(unaff_RBX + 0x5870);
@@ -208,9 +208,9 @@ void FUN_1805b40f3(longlong param_1)
   longlong unaff_RBX;
   uint unaff_EDI;
   double dVar5;
-  undefined4 unaff_XMM7_Da;
-  undefined4 unaff_XMM7_Db;
-  undefined8 uStack0000000000000080;
+  int32_t unaff_XMM7_Da;
+  int32_t unaff_XMM7_Db;
+  uint64_t uStack0000000000000080;
   
   do {
     uVar4 = (ulonglong)unaff_EDI;
@@ -218,7 +218,7 @@ void FUN_1805b40f3(longlong param_1)
     if (dVar5 <= (double)CONCAT44(unaff_XMM7_Db,unaff_XMM7_Da) &&
         (double)CONCAT44(unaff_XMM7_Db,unaff_XMM7_Da) != dVar5) {
       lVar2 = *(longlong *)(unaff_RBX + 0x5868) + uVar4 * 8;
-      uStack0000000000000080 = *(undefined8 *)(*(longlong *)(unaff_RBX + 0x5868) + uVar4 * 8);
+      uStack0000000000000080 = *(uint64_t *)(*(longlong *)(unaff_RBX + 0x5868) + uVar4 * 8);
       lVar1 = lVar2 + 8;
       if (lVar2 != lVar1) {
         lVar3 = *(longlong *)(unaff_RBX + 0x5870);

@@ -7,12 +7,12 @@
 void update_render_objects(void)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   longlong lVar2;
   longlong lVar3;
   bool bVar4;
-  undefined2 uVar5;
-  undefined8 *puVar6;
+  int16_t uVar5;
+  uint64_t *puVar6;
   ulonglong uVar7;
   longlong lVar8;
   ulonglong uVar9;
@@ -22,7 +22,7 @@ void update_render_objects(void)
   ulonglong iterator;
   uint uVar12;
   int iVar13;
-  undefined8 render_state;
+  uint64_t render_state;
   ulonglong uVar14;
   float fVar15;
   float fVar16;
@@ -71,16 +71,16 @@ void update_render_objects(void)
     if ((*(uint *)(engine_context + 0x19e8) & 0x400) != 0) {
       if ((*(char *)(lVar2 + 0x77) == cVar10) && (bVar4)) {
         if (*(char *)(lVar2 + 0x49) != cVar10) {
-          puVar6 = (undefined8 *)(**(code **)(engine_context + 0x1560))(&stack0x000000b0,lVar2);
+          puVar6 = (uint64_t *)(**(code **)(engine_context + 0x1560))(&stack0x000000b0,lVar2);
           uVar1 = *puVar6;
-          *(undefined8 *)(lVar2 + 0xd8) = uVar1;
-          *(undefined8 *)(lVar2 + 8) = uVar1;
+          *(uint64_t *)(lVar2 + 0xd8) = uVar1;
+          *(uint64_t *)(lVar2 + 8) = uVar1;
         }
         if (*(char *)(lVar2 + 0x4a) != cVar10) {
-          puVar6 = (undefined8 *)(**(code **)(engine_context + 0x1570))(&stack0x000000b8,lVar2);
+          puVar6 = (uint64_t *)(**(code **)(engine_context + 0x1570))(&stack0x000000b8,lVar2);
           uVar1 = *puVar6;
-          *(undefined8 *)(lVar2 + 0xe0) = uVar1;
-          *(undefined8 *)(lVar2 + 0x10) = uVar1;
+          *(uint64_t *)(lVar2 + 0xe0) = uVar1;
+          *(uint64_t *)(lVar2 + 0x10) = uVar1;
         }
       }
       fStack0000000000000030 = *(float *)(lVar2 + 8);
@@ -88,9 +88,9 @@ void update_render_objects(void)
       fStack0000000000000038 = fStack0000000000000030 + *(float *)(lVar2 + 0x10);
       fStack000000000000003c = fStack0000000000000034 + *(float *)(lVar2 + 0x14);
       uVar5 = calculate_bounding_box(&stack0x00000030);
-      *(undefined2 *)(lVar2 + 0x74) = uVar5;
+      *(int16_t *)(lVar2 + 0x74) = uVar5;
     }
-    *(undefined4 *)(lVar2 + 0x6c) = 0x3f800000;
+    *(int32_t *)(lVar2 + 0x6c) = 0x3f800000;
     fVar16 = *(float *)(lVar2 + 8) - *(float *)(lVar2 + 100);
     fVar15 = *(float *)(lVar2 + 0xc) - *(float *)(lVar2 + 0x68);
     if (((*(uint *)(lVar2 + 4) & 0x400) != 0) &&
@@ -178,12 +178,12 @@ void update_render_objects(void)
     uVar14 = uVar14 + 8;
   } while (object_index < *(int *)(engine_context + 0x1c68));
   if ((*(uint *)(engine_context + 0x19e8) & 0x400) == 0) {
-    *(undefined8 *)(engine_context + 0x1c80) = render_state;
+    *(uint64_t *)(engine_context + 0x1c80) = render_state;
     return;
   }
   if ((*(uint *)(engine_context + 0xc) & 0x800) == 0) {
 LAB_180130765:
-    uVar14 = get_render_context(*(undefined8 *)(engine_context + 0x118));
+    uVar14 = get_render_context(*(uint64_t *)(engine_context + 0x118));
 LAB_180130774:
     uVar7 = uVar14;
     if (uVar14 == 0) goto LAB_18013078e;
@@ -194,11 +194,11 @@ LAB_180130774:
     if (*(int *)(engine_context + 0x130) != 0) {
       uVar7 = iterator & 0xffffffff;
       if (0 < *(int *)(_DAT_180c8a9b0 + 0x1c68)) {
-        puVar6 = *(undefined8 **)(_DAT_180c8a9b0 + 0x1c70);
+        puVar6 = *(uint64_t **)(_DAT_180c8a9b0 + 0x1c70);
         uVar9 = iterator;
         do {
           if (*(int *)*puVar6 == *(int *)(engine_context + 0x130)) {
-            uVar14 = (*(undefined8 **)(_DAT_180c8a9b0 + 0x1c70))[(int)uVar7];
+            uVar14 = (*(uint64_t **)(_DAT_180c8a9b0 + 0x1c70))[(int)uVar7];
             break;
           }
           uVar7 = (ulonglong)((int)uVar7 + 1);
@@ -259,20 +259,20 @@ void update_render_context(void)
 
 {
   ulonglong uVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   ulonglong uVar3;
   ulonglong uVar4;
   longlong engine_context;
   ulonglong iterator;
-  undefined8 render_state;
+  uint64_t render_state;
   
   if ((*(uint *)(engine_context + 0x19e8) & 0x400) == 0) {
-    *(undefined8 *)(engine_context + 0x1c80) = render_state;
+    *(uint64_t *)(engine_context + 0x1c80) = render_state;
     return;
   }
   if ((*(uint *)(engine_context + 0xc) & 0x800) == 0) {
 LAB_180130765:
-    uVar1 = get_render_context(*(undefined8 *)(engine_context + 0x118));
+    uVar1 = get_render_context(*(uint64_t *)(engine_context + 0x118));
 LAB_180130774:
     uVar3 = uVar1;
     if (uVar1 == 0) goto LAB_18013078e;
@@ -283,11 +283,11 @@ LAB_180130774:
     if (*(int *)(engine_context + 0x130) != 0) {
       uVar3 = iterator & 0xffffffff;
       if (0 < *(int *)(_DAT_180c8a9b0 + 0x1c68)) {
-        puVar2 = *(undefined8 **)(_DAT_180c8a9b0 + 0x1c70);
+        puVar2 = *(uint64_t **)(_DAT_180c8a9b0 + 0x1c70);
         uVar4 = iterator;
         do {
           if (*(int *)*puVar2 == *(int *)(engine_context + 0x130)) {
-            uVar1 = (*(undefined8 **)(_DAT_180c8a9b0 + 0x1c70))[(int)uVar3];
+            uVar1 = (*(uint64_t **)(_DAT_180c8a9b0 + 0x1c70))[(int)uVar3];
             break;
           }
           uVar3 = (ulonglong)((int)uVar3 + 1);
@@ -346,9 +346,9 @@ void reset_render_state(void)
 
 {
   longlong engine_context;
-  undefined8 render_state;
+  uint64_t render_state;
   
-  *(undefined8 *)(engine_context + 0x1c80) = render_state;
+  *(uint64_t *)(engine_context + 0x1c80) = render_state;
   return;
 }
 
@@ -356,20 +356,20 @@ void reset_render_state(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: int * FUN_180130830(longlong param_1,int param_2,undefined8 *param_3,undefined8 *param_4,
+// 函数: int * FUN_180130830(longlong param_1,int param_2,uint64_t *param_3,uint64_t *param_4,
 //                    uint param_5)
 // 创建或获取渲染对象
-int * create_render_object(longlong render_context,int object_id,undefined8 *position,undefined8 *orientation,
+int * create_render_object(longlong render_context,int object_id,uint64_t *position,uint64_t *orientation,
                    uint render_flags)
 
 {
   int iVar1;
   uint uVar2;
   longlong lVar3;
-  undefined2 uVar4;
+  int16_t uVar4;
   int *render_object;
   int iVar6;
-  undefined8 *puVar7;
+  uint64_t *puVar7;
   float fVar8;
   int *piStackX_8;
   int *piStack_38;
@@ -394,10 +394,10 @@ int * create_render_object(longlong render_context,int object_id,undefined8 *pos
   iVar6 = 0;
   iVar1 = *(int *)(_DAT_180c8a9b0 + 0x1c68);
   if (0 < iVar1) {
-    puVar7 = *(undefined8 **)(_DAT_180c8a9b0 + 0x1c70);
+    puVar7 = *(uint64_t **)(_DAT_180c8a9b0 + 0x1c70);
     do {
       if (*(int *)*puVar7 == object_id) {
-        render_object = (int *)(*(undefined8 **)(_DAT_180c8a9b0 + 0x1c70))[iVar6];
+        render_object = (int *)(*(uint64_t **)(_DAT_180c8a9b0 + 0x1c70))[iVar6];
         goto LAB_1801308eb;
       }
       iVar6 = iVar6 + 1;
@@ -420,15 +420,15 @@ LAB_1801308eb:
     }
     *render_object = object_id;
     render_object[0x14] = *(int *)(lVar3 + 0x1c68);
-    *(undefined8 *)(render_object + 0x19) = *position;
-    *(undefined8 *)(render_object + 2) = *position;
-    *(undefined8 *)(render_object + 4) = *orientation;
+    *(uint64_t *)(render_object + 0x19) = *position;
+    *(uint64_t *)(render_object + 2) = *position;
+    *(uint64_t *)(render_object + 4) = *orientation;
     piStack_38 = *(int **)(render_object + 2);
     fStack_30 = (float)render_object[2] + (float)render_object[4];
     fStack_2c = (float)render_object[3] + (float)render_object[5];
     piStackX_8 = render_object;
     uVar4 = calculate_bounding_box(&piStack_38);
-    *(undefined2 *)(render_object + 0x1d) = uVar4;
+    *(int16_t *)(render_object + 0x1d) = uVar4;
     add_to_render_list(lVar3 + 0x1c68,&piStackX_8);
     fVar8 = (float)render_object[4] + (float)render_object[2];
     if ((float)render_object[4] + (float)render_object[2] <= *(float *)(lVar3 + 0x1a20)) {
@@ -447,17 +447,17 @@ LAB_1801308eb:
   }
   else {
     if (*(char *)((longlong)render_object + 0x49) == '\0') {
-      *(undefined8 *)(render_object + 2) = *position;
+      *(uint64_t *)(render_object + 2) = *position;
     }
     if (*(char *)((longlong)render_object + 0x4a) == '\0') {
-      *(undefined8 *)(render_object + 4) = *orientation;
+      *(uint64_t *)(render_object + 4) = *orientation;
     }
   }
   *(longlong *)(render_object + 0x1e) = render_context;
   render_object[1] = render_flags;
   render_object[0x15] = *(int *)(lVar3 + 0x1a90);
   if (render_context != 0) {
-    *(undefined1 *)(render_context + 0xae) = 1;
+    *(int8_t *)(render_context + 0xae) = 1;
   }
   return render_object;
 }
@@ -474,38 +474,38 @@ void initialize_render_attributes(longlong render_object)
 
 {
   uint uVar1;
-  undefined4 *puVar2;
+  int32_t *puVar2;
   bool bVar3;
   bool bVar4;
   longlong lVar5;
   char cVar6;
   longlong lVar7;
-  undefined8 uVar8;
-  undefined4 *puVar9;
+  uint64_t uVar8;
+  int32_t *puVar9;
   float *pfVar10;
-  undefined8 *puVar11;
+  uint64_t *puVar11;
   float *pfVar12;
   ulonglong uVar13;
   int iVar14;
   ulonglong uVar15;
-  undefined8 extraout_XMM0_Qa;
-  undefined8 uStackX_8;
+  uint64_t extraout_XMM0_Qa;
+  uint64_t uStackX_8;
   
   lVar5 = _DAT_180c8a9b0;
   uVar1 = *(uint *)(render_object + 0xc);
-  *(undefined4 *)(render_object + 0x3c) = 0xffffffff;
-  puVar2 = (undefined4 *)**(undefined8 **)(lVar5 + 0x1c70);
+  *(int32_t *)(render_object + 0x3c) = 0xffffffff;
+  puVar2 = (int32_t *)**(uint64_t **)(lVar5 + 0x1c70);
   if ((*(uint *)(lVar5 + 0x19e8) & 0x400) == 0) {
-    *(undefined4 **)(render_object + 0x28) = puVar2;
-    *(undefined4 *)(render_object + 0x30) = *puVar2;
+    *(int32_t **)(render_object + 0x28) = puVar2;
+    *(int32_t *)(render_object + 0x30) = *puVar2;
     *(bool *)(render_object + 0xae) = *(longlong *)(puVar2 + 0x1e) == render_object;
     return;
   }
   uVar13 = 0;
-  *(undefined1 *)(render_object + 0xae) = 0;
+  *(int8_t *)(render_object + 0xae) = 0;
   if (((uVar1 & 0x6000000) != 0) && (*(char *)(render_object + 0xb5) != '\0')) {
-    *(undefined8 *)(render_object + 0x28) = 0;
-    *(undefined4 *)(render_object + 0x30) = 0;
+    *(uint64_t *)(render_object + 0x28) = 0;
+    *(int32_t *)(render_object + 0x30) = 0;
   }
   if ((((*(int *)(lVar5 + 0x1bec) == 0) && (*(longlong *)(render_object + 0x28) == 0)) &&
       ((*(longlong *)(render_object + 0x398) == 0 ||
@@ -516,29 +516,29 @@ void initialize_render_attributes(longlong render_object)
     if (lVar7 == 0) {
       if ((*(float *)(render_object + 0x34) != 3.4028235e+38) &&
          (*(float *)(render_object + 0x38) != 3.4028235e+38)) {
-        uVar8 = create_render_object(render_object,*(undefined4 *)(render_object + 8),(float *)(render_object + 0x34),
+        uVar8 = create_render_object(render_object,*(int32_t *)(render_object + 8),(float *)(render_object + 0x34),
                               render_object + 0x48,0);
-        *(undefined8 *)(render_object + 0x28) = uVar8;
+        *(uint64_t *)(render_object + 0x28) = uVar8;
       }
     }
   }
   if (*(int *)(lVar5 + 0x1bec) != 0) {
-    puVar9 = (undefined4 *)allocate_render_buffer(*(undefined4 *)(lVar5 + 0x1c3c));
-    *(undefined4 **)(render_object + 0x28) = puVar9;
-    *(undefined4 *)(render_object + 0x30) = *(undefined4 *)(lVar5 + 0x1c3c);
+    puVar9 = (int32_t *)allocate_render_buffer(*(int32_t *)(lVar5 + 0x1c3c));
+    *(int32_t **)(render_object + 0x28) = puVar9;
+    *(int32_t *)(render_object + 0x30) = *(int32_t *)(lVar5 + 0x1c3c);
     goto LAB_180130c8e;
   }
   if ((uVar1 & 0x11000000) == 0) {
     if ((uVar1 >> 0x19 & 1) != 0) {
-      puVar9 = *(undefined4 **)(lVar5 + 0x1c80);
+      puVar9 = *(int32_t **)(lVar5 + 0x1c80);
       goto LAB_180130c8a;
     }
     cVar6 = check_render_state();
     if (cVar6 != '\0') {
-      puVar9 = (undefined4 *)
-               create_render_object(extraout_XMM0_Qa,*(undefined4 *)(render_object + 8),render_object + 0x40,
+      puVar9 = (int32_t *)
+               create_render_object(extraout_XMM0_Qa,*(int32_t *)(render_object + 8),render_object + 0x40,
                              render_object + 0x48,0);
-      *(undefined4 **)(render_object + 0x28) = puVar9;
+      *(int32_t **)(render_object + 0x28) = puVar9;
       goto LAB_180130c8e;
     }
     if ((((*(longlong *)(lVar5 + 0x1b78) != 0) &&
@@ -549,34 +549,34 @@ void initialize_render_attributes(longlong render_object)
         *(float *)(_DAT_180c8a9b0 + 0x11c) == -256000.0)) {
       if ((*(longlong *)(render_object + 0x28) != 0) &&
          (*(longlong *)(*(longlong *)(render_object + 0x28) + 0x78) == render_object)) {
-        uVar8 = create_render_object(extraout_XMM0_Qa,*(undefined4 *)(render_object + 8),render_object + 0x40,
+        uVar8 = create_render_object(extraout_XMM0_Qa,*(int32_t *)(render_object + 8),render_object + 0x40,
                               render_object + 0x48,0);
-        *(undefined8 *)(render_object + 0x28) = uVar8;
+        *(uint64_t *)(render_object + 0x28) = uVar8;
       }
-      puVar9 = *(undefined4 **)(render_object + 0x28);
+      puVar9 = *(int32_t **)(render_object + 0x28);
       goto LAB_180130c8e;
     }
-    puVar9 = *(undefined4 **)(render_object + 0x28);
-    if (puVar9 != (undefined4 *)0x0) {
+    puVar9 = *(int32_t **)(render_object + 0x28);
+    if (puVar9 != (int32_t *)0x0) {
       if ((render_object == *(longlong *)(puVar9 + 0x1e)) && (*(int *)(lVar5 + 0x1b2c) == 0)) {
-        update_render_state(extraout_XMM0_Qa,**(undefined8 **)(lVar5 + 0x1c70));
-        puVar9 = *(undefined4 **)(render_object + 0x28);
+        update_render_state(extraout_XMM0_Qa,**(uint64_t **)(lVar5 + 0x1c70));
+        puVar9 = *(int32_t **)(render_object + 0x28);
       }
       goto LAB_180130c8e;
     }
 LAB_180130c93:
-    *(undefined4 **)(render_object + 0x28) = puVar2;
+    *(int32_t **)(render_object + 0x28) = puVar2;
     puVar9 = puVar2;
   }
   else {
-    puVar9 = *(undefined4 **)(*(longlong *)(render_object + 0x398) + 0x28);
+    puVar9 = *(int32_t **)(*(longlong *)(render_object + 0x398) + 0x28);
 LAB_180130c8a:
-    *(undefined4 **)(render_object + 0x28) = puVar9;
+    *(int32_t **)(render_object + 0x28) = puVar9;
 LAB_180130c8e:
-    if (puVar9 == (undefined4 *)0x0) goto LAB_180130c93;
+    if (puVar9 == (int32_t *)0x0) goto LAB_180130c93;
   }
   if ((uVar1 & 0x6000000) == 0) {
-    if ((((puVar9 == (undefined4 *)0x0) || (render_object == *(longlong *)(puVar9 + 0x1e))) ||
+    if ((((puVar9 == (int32_t *)0x0) || (render_object == *(longlong *)(puVar9 + 0x1e))) ||
         (*(longlong *)(puVar9 + 0x1e) == 0)) || ((uVar1 >> 0x18 & 1) != 0)) {
       if ((*(int *)(render_object + 0x3c) < 0) && ((uVar1 >> 0x18 & 1) == 0)) {
         *(int *)(render_object + 0x3c) = (int)*(short *)(puVar9 + 0x1d);
@@ -591,28 +591,28 @@ LAB_180130c8e:
       }
       if ((((*(uint *)(render_object + 0xc) & 0x20000000) == 0) ||
           (*(int *)(lVar5 + 0x1a90) <= (int)puVar9[0x15])) || (!bVar3)) {
-        cVar6 = update_render_state(render_object,**(undefined8 **)(lVar5 + 0x1c70));
+        cVar6 = update_render_state(render_object,**(uint64_t **)(lVar5 + 0x1c70));
         if (cVar6 == '\0') {
-          uVar8 = create_render_object(render_object,*(undefined4 *)(render_object + 8),render_object + 0x40,render_object + 0x48,4
+          uVar8 = create_render_object(render_object,*(int32_t *)(render_object + 8),render_object + 0x40,render_object + 0x48,4
                                );
-          *(undefined8 *)(render_object + 0x28) = uVar8;
+          *(uint64_t *)(render_object + 0x28) = uVar8;
         }
       }
       else {
         *(longlong *)(puVar9 + 0x1e) = render_object;
-        **(undefined4 **)(render_object + 0x28) = *(undefined4 *)(render_object + 8);
-        *(undefined4 *)(*(longlong *)(render_object + 0x28) + 0x60) = 0;
+        **(int32_t **)(render_object + 0x28) = *(int32_t *)(render_object + 8);
+        *(int32_t *)(*(longlong *)(render_object + 0x28) + 0x60) = 0;
       }
     }
     goto LAB_180130e8e;
   }
   if ((uVar1 & 0x2000000) == 0) {
-    puVar11 = (undefined8 *)
+    puVar11 = (uint64_t *)
               ((longlong)(*(int *)(lVar5 + 0x1bc0) + -1) * 0x30 + 0x28 +
               *(longlong *)(lVar5 + 0x1bc8));
   }
   else {
-    puVar11 = (undefined8 *)(lVar5 + 0x118);
+    puVar11 = (uint64_t *)(lVar5 + 0x118);
   }
   uVar8 = *puVar11;
   if (((*(char *)(lVar5 + 0x1d06) == '\0') && (*(char *)(lVar5 + 0x1d07) != '\0')) &&
@@ -662,8 +662,8 @@ LAB_180130dd5:
     *(int *)(render_object + 0x3c) = iVar14;
   }
 LAB_180130e8e:
-  *(bool *)(render_object + 0xae) = render_object == *(longlong *)(*(undefined4 **)(render_object + 0x28) + 0x1e);
-  *(undefined4 *)(render_object + 0x30) = **(undefined4 **)(render_object + 0x28);
+  *(bool *)(render_object + 0xae) = render_object == *(longlong *)(*(int32_t **)(render_object + 0x28) + 0x1e);
+  *(int32_t *)(render_object + 0x30) = **(int32_t **)(render_object + 0x28);
   return;
 }
 
@@ -673,9 +673,9 @@ LAB_180130e8e:
 
 
 
-// 函数: void FUN_180130ae3(undefined8 param_1)
+// 函数: void FUN_180130ae3(uint64_t param_1)
 // 更新渲染对象变换
-void update_render_transform(undefined8 render_object)
+void update_render_transform(uint64_t render_object)
 
 {
   bool bVar1;
@@ -683,10 +683,10 @@ void update_render_transform(undefined8 render_object)
   char cVar3;
   char cVar4;
   longlong lVar5;
-  undefined8 uVar6;
+  uint64_t uVar6;
   float *pfVar7;
   longlong in_RCX;
-  undefined8 *puVar8;
+  uint64_t *puVar8;
   float *pfVar9;
   longlong engine_context;
   uint render_flags;
@@ -694,17 +694,17 @@ void update_render_transform(undefined8 render_object)
   ulonglong iterator;
   ulonglong uVar11;
   longlong render_context;
-  undefined8 extraout_XMM0_Qa;
-  undefined8 extraout_XMM0_Qa_00;
-  undefined8 extraout_XMM0_Qa_01;
-  undefined8 extraout_XMM0_Qa_02;
-  undefined8 extraout_XMM0_Qa_03;
-  undefined8 extraout_XMM0_Qa_04;
-  undefined8 extraout_XMM0_Qa_05;
+  uint64_t extraout_XMM0_Qa;
+  uint64_t extraout_XMM0_Qa_00;
+  uint64_t extraout_XMM0_Qa_01;
+  uint64_t extraout_XMM0_Qa_02;
+  uint64_t extraout_XMM0_Qa_03;
+  uint64_t extraout_XMM0_Qa_04;
+  uint64_t extraout_XMM0_Qa_05;
   float fStack0000000000000060;
   float fStack0000000000000064;
   
-  *(undefined1 *)(in_RCX + 0xae) = 0;
+  *(int8_t *)(in_RCX + 0xae) = 0;
   cVar4 = (char)iterator;
   iVar10 = (int)iterator;
   if (((render_flags & 0x6000000) != 0) && (*(char *)(in_RCX + 0xb5) != cVar4)) {
@@ -722,17 +722,17 @@ void update_render_transform(undefined8 render_object)
       render_object = 0x7f7fffff;
       if ((*(float *)(engine_context + 0x34) != 3.4028235e+38) &&
          (*(float *)(engine_context + 0x38) != 3.4028235e+38)) {
-        uVar6 = create_render_object(0x7f7fffff,*(undefined4 *)(engine_context + 8),(float *)(engine_context + 0x34),
+        uVar6 = create_render_object(0x7f7fffff,*(int32_t *)(engine_context + 8),(float *)(engine_context + 0x34),
                               engine_context + 0x48);
-        *(undefined8 *)(engine_context + 0x28) = uVar6;
+        *(uint64_t *)(engine_context + 0x28) = uVar6;
         render_object = extraout_XMM0_Qa_00;
       }
     }
   }
   if (*(int *)(render_context + 0x1bec) != iVar10) {
-    lVar5 = allocate_render_buffer(*(undefined4 *)(render_context + 0x1c3c));
+    lVar5 = allocate_render_buffer(*(int32_t *)(render_context + 0x1c3c));
     *(longlong *)(engine_context + 0x28) = lVar5;
-    *(undefined4 *)(engine_context + 0x30) = *(undefined4 *)(render_context + 0x1c3c);
+    *(int32_t *)(engine_context + 0x30) = *(int32_t *)(render_context + 0x1c3c);
     render_object = extraout_XMM0_Qa_01;
     goto LAB_180130c8e;
   }
@@ -743,7 +743,7 @@ void update_render_transform(undefined8 render_object)
     }
     cVar3 = check_render_state();
     if (cVar3 != '\0') {
-      lVar5 = create_render_object(extraout_XMM0_Qa_02,*(undefined4 *)(engine_context + 8),engine_context + 0x40,
+      lVar5 = create_render_object(extraout_XMM0_Qa_02,*(int32_t *)(engine_context + 8),engine_context + 0x40,
                             engine_context + 0x48);
       *(longlong *)(engine_context + 0x28) = lVar5;
       render_object = extraout_XMM0_Qa_03;
@@ -758,9 +758,9 @@ void update_render_transform(undefined8 render_object)
         *(float *)(_DAT_180c8a9b0 + 0x11c) == -256000.0)) {
       if ((*(longlong *)(engine_context + 0x28) != 0) &&
          (*(longlong *)(*(longlong *)(engine_context + 0x28) + 0x78) == engine_context)) {
-        uVar6 = create_render_object(extraout_XMM0_Qa_02,*(undefined4 *)(engine_context + 8),engine_context + 0x40,
+        uVar6 = create_render_object(extraout_XMM0_Qa_02,*(int32_t *)(engine_context + 8),engine_context + 0x40,
                               engine_context + 0x48);
-        *(undefined8 *)(engine_context + 0x28) = uVar6;
+        *(uint64_t *)(engine_context + 0x28) = uVar6;
         render_object = extraout_XMM0_Qa_04;
       }
       lVar5 = *(longlong *)(engine_context + 0x28);
@@ -769,7 +769,7 @@ void update_render_transform(undefined8 render_object)
     lVar5 = *(longlong *)(engine_context + 0x28);
     if (lVar5 != 0) {
       if ((engine_context == *(longlong *)(lVar5 + 0x78)) && (*(int *)(render_context + 0x1b2c) == iVar10)) {
-        render_object = update_render_state(extraout_XMM0_Qa_02,**(undefined8 **)(render_context + 0x1c70));
+        render_object = update_render_state(extraout_XMM0_Qa_02,**(uint64_t **)(render_context + 0x1c70));
         lVar5 = *(longlong *)(engine_context + 0x28);
       }
       goto LAB_180130c8e;
@@ -801,28 +801,28 @@ LAB_180130c8e:
       }
       if ((((*(uint *)(engine_context + 0xc) & 0x20000000) == 0) ||
           (*(int *)(render_context + 0x1a90) <= *(int *)(lVar5 + 0x54))) || (!bVar1)) {
-        cVar4 = update_render_state(render_object,**(undefined8 **)(render_context + 0x1c70));
+        cVar4 = update_render_state(render_object,**(uint64_t **)(render_context + 0x1c70));
         if (cVar4 == '\0') {
-          uVar6 = create_render_object(extraout_XMM0_Qa_05,*(undefined4 *)(engine_context + 8),engine_context + 0x40,
+          uVar6 = create_render_object(extraout_XMM0_Qa_05,*(int32_t *)(engine_context + 8),engine_context + 0x40,
                                 engine_context + 0x48,4);
-          *(undefined8 *)(engine_context + 0x28) = uVar6;
+          *(uint64_t *)(engine_context + 0x28) = uVar6;
         }
       }
       else {
         *(longlong *)(lVar5 + 0x78) = engine_context;
-        **(undefined4 **)(engine_context + 0x28) = *(undefined4 *)(engine_context + 8);
+        **(int32_t **)(engine_context + 0x28) = *(int32_t *)(engine_context + 8);
         *(int *)(*(longlong *)(engine_context + 0x28) + 0x60) = iVar10;
       }
     }
     goto LAB_180130e8e;
   }
   if ((render_flags & 0x2000000) == 0) {
-    puVar8 = (undefined8 *)
+    puVar8 = (uint64_t *)
              ((longlong)(*(int *)(render_context + 0x1bc0) + -1) * 0x30 + 0x28 +
              *(longlong *)(render_context + 0x1bc8));
   }
   else {
-    puVar8 = (undefined8 *)(render_context + 0x118);
+    puVar8 = (uint64_t *)(render_context + 0x118);
   }
   uVar6 = *puVar8;
   if (((*(char *)(render_context + 0x1d06) == cVar4) && (*(char *)(render_context + 0x1d07) != cVar4)) &&
@@ -873,8 +873,8 @@ LAB_180130dd5:
   }
 LAB_180130e8e:
   *(bool *)(engine_context + 0xae) =
-       engine_context == *(longlong *)(*(undefined4 **)(engine_context + 0x28) + 0x1e);
-  *(undefined4 *)(engine_context + 0x30) = **(undefined4 **)(engine_context + 0x28);
+       engine_context == *(longlong *)(*(int32_t **)(engine_context + 0x28) + 0x1e);
+  *(int32_t *)(engine_context + 0x30) = **(int32_t **)(engine_context + 0x28);
   return;
 }
 
@@ -885,17 +885,17 @@ LAB_180130e8e:
 
 
 // 外部函数声明
-extern undefined2 FUN_180130ec0(undefined8 *param_1);
-extern void FUN_18013d860(longlong param_1, undefined8 *param_2);
+extern int16_t FUN_180130ec0(uint64_t *param_1);
+extern void FUN_18013d860(longlong param_1, uint64_t *param_2);
 extern void func_0x000180124d50(longlong param_1, float param_2);
-extern undefined8 FUN_18012fe00(undefined8 param_1);
+extern uint64_t FUN_18012fe00(uint64_t param_1);
 extern int * FUN_18011fd90(int *param_1);
-extern int * func_0x000180120ce0(int param_1, undefined8 param_2, int param_3, undefined8 *param_4, longlong param_5);
-extern char FUN_18012fbd0(undefined8 param_1, undefined8 param_2);
+extern int * func_0x000180120ce0(int param_1, uint64_t param_2, int param_3, uint64_t *param_4, longlong param_5);
+extern char FUN_18012fbd0(uint64_t param_1, uint64_t param_2);
 extern char func_0x00018012fb90(void);
 extern longlong func_0x00018012fb00(void);
 extern longlong func_0x00018012fb00(int param_1);
-extern undefined8 func_0x000180131890(undefined8 *param_1);
+extern uint64_t func_0x000180131890(uint64_t *param_1);
 
 // 全局变量
 extern longlong _DAT_180c8a9b0;

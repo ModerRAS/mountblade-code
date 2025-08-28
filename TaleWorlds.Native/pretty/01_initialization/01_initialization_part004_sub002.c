@@ -9,35 +9,35 @@ void initialize_system_component(void)
 
 {
   char component_status;
-  undefined8 *component_ptr;
+  uint64_t *component_ptr;
   int comparison_result;
   longlong *system_handle;
   longlong config_offset;
-  undefined8 *next_component;
-  undefined8 *current_component;
-  undefined8 *search_component;
-  undefined8 *new_component;
-  undefined *default_config;
+  uint64_t *next_component;
+  uint64_t *current_component;
+  uint64_t *search_component;
+  uint64_t *new_component;
+  void *default_config;
   
   // 获取系统句柄
   system_handle = (longlong *)get_system_handle();
-  component_ptr = (undefined8 *)*system_handle;
+  component_ptr = (uint64_t *)*system_handle;
   
   // 检查组件状态
   component_status = *(char *)((longlong)component_ptr[1] + 0x19);
   default_config = &DEFAULT_COMPONENT_CONFIG;
   current_component = component_ptr;
-  search_component = (undefined8 *)component_ptr[1];
+  search_component = (uint64_t *)component_ptr[1];
   
   // 遍历组件链表查找目标组件
   while (component_status == '\0') {
     comparison_result = memcmp(search_component + 4,&TARGET_COMPONENT_ID,0x10);
     if (comparison_result < 0) {
-      next_component = (undefined8 *)search_component[2];
+      next_component = (uint64_t *)search_component[2];
       search_component = current_component;
     }
     else {
-      next_component = (undefined8 *)*search_component;
+      next_component = (uint64_t *)*search_component;
     }
     current_component = search_component;
     search_component = next_component;

@@ -10,28 +10,28 @@ void initialize_console_output_system(int *output_counter)
 {
   char cVar1;
   char cVar2;
-  undefined4 uVar3;
+  int32_t uVar3;
   longlong lVar4;
-  undefined4 *puVar5;
+  int32_t *puVar5;
   char *pcVar6;
-  undefined8 *puVar7;
+  uint64_t *puVar7;
   int iVar8;
   ulonglong uVar9;
-  undefined1 auStack_1f8 [64];
-  undefined2 auStack_1b8 [4];
-  undefined *puStack_1b0;
-  undefined4 *puStack_1a8;
-  undefined4 uStack_1a0;
-  undefined8 uStack_198;
-  undefined4 uStack_190;
-  undefined *puStack_188;
+  int8_t auStack_1f8 [64];
+  int16_t auStack_1b8 [4];
+  void *puStack_1b0;
+  int32_t *puStack_1a8;
+  int32_t uStack_1a0;
+  uint64_t uStack_198;
+  int32_t uStack_190;
+  void *puStack_188;
   longlong lStack_180;
-  undefined4 uStack_170;
+  int32_t uStack_170;
   longlong lStack_168;
   longlong lStack_160;
-  undefined8 uStack_158;
-  undefined4 uStack_150;
-  undefined8 uStack_148;
+  uint64_t uStack_158;
+  int32_t uStack_150;
+  uint64_t uStack_148;
   ulonglong uStack_38;
   
   uStack_148 = 0xfffffffffffffffe;
@@ -64,10 +64,10 @@ void initialize_console_output_system(int *output_counter)
   puStack_188 = &UNK_18098bcb0;
   puStack_1b0 = &UNK_180a3c3e0;
   uStack_198 = 0;
-  puStack_1a8 = (undefined4 *)0x0;
+  puStack_1a8 = (int32_t *)0x0;
   uStack_1a0 = 0;
   string_buffer = allocate_string_buffer(_STRING_BUFFER_CONFIG,0x13,0x13);
-  *(undefined1 *)string_buffer = 0;
+  *(int8_t *)string_buffer = 0;
   buffer_ptr = string_buffer;
   buffer_flags = set_buffer_flags(string_buffer);
   output_config = CONCAT44(output_config._4_4_,buffer_flags);
@@ -75,12 +75,12 @@ void initialize_console_output_system(int *output_counter)
   string_buffer[1] = 0x65726170;
   string_buffer[2] = 0x635f746e;
   string_buffer[3] = 0x6f736e6f;
-  *(undefined2 *)(string_buffer + 4) = 0x656c;
-  *(undefined1 *)((longlong)string_buffer + 0x12) = 0;
+  *(int16_t *)(string_buffer + 4) = 0x656c;
+  *(int8_t *)((longlong)string_buffer + 0x12) = 0;
   buffer_length = 0x12;
   uVar9 = lStack_160 - lStack_168 >> 5;
   if (uVar9 != 0) {
-    puVar7 = (undefined8 *)(lStack_168 + 8);
+    puVar7 = (uint64_t *)(lStack_168 + 8);
     do {
       if (*(int *)(puVar7 + 1) == 0x12) {
         pcVar6 = (char *)*puVar7;
@@ -111,7 +111,7 @@ void initialize_console_output_system(int *output_counter)
 bool set_console_color_theme(unsigned long console_handle, unsigned int color_index)
 
 {
-  undefined2 uVar1;
+  int16_t uVar1;
   int iVar2;
   
   switch(color_index) {
@@ -178,21 +178,21 @@ void process_initialization_command(longlong command_data)
 {
   uint uVar1;
   uint uVar2;
-  undefined4 uVar3;
+  int32_t uVar3;
   int iVar4;
-  undefined8 *puVar5;
+  uint64_t *puVar5;
   longlong lVar6;
   longlong *plVar7;
   int iVar8;
-  undefined *puVar9;
-  undefined *puVar10;
+  void *puVar9;
+  void *puVar10;
   uint auStackX_8 [4];
-  undefined1 auStackX_18 [8];
+  int8_t auStackX_18 [8];
   uint auStackX_20 [2];
-  undefined *puStack_70;
-  undefined8 *puStack_68;
-  undefined4 uStack_60;
-  undefined8 uStack_58;
+  void *puStack_70;
+  uint64_t *puStack_68;
+  int32_t uStack_60;
+  uint64_t uStack_58;
   
   command_type = *(uint *)(command_data + 0x28);
   if (command_type < 9) {
@@ -200,8 +200,8 @@ void process_initialization_command(longlong command_data)
     case 1:  // 初始化日志系统
       log_config[0] = log_config[0] & 0xffffff00;
       log_message = &DEFAULT_LOG_MESSAGE;
-      if (*(undefined **)(command_data + 0x38) != (undefined *)0x0) {
-        log_message = *(undefined **)(command_data + 0x38);
+      if (*(void **)(command_data + 0x38) != (void *)0x0) {
+        log_message = *(void **)(command_data + 0x38);
       }
       initialize_logging_system(*(longlong *)(command_data + 0x20) + 0x20,log_message,log_config);
       log_system = (longlong *)(*(longlong *)(command_data + 0x20) + 0x20);
@@ -210,10 +210,10 @@ void process_initialization_command(longlong command_data)
       (**(code **)(*log_system + 0x70))(log_system,&LOG_SYSTEM_CONFIG);
       puStack_70 = &UNK_180a3c3e0;
       uStack_58 = 0;
-      puStack_68 = (undefined8 *)0x0;
+      puStack_68 = (uint64_t *)0x0;
       uStack_60 = 0;
-      puVar5 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
-      *(undefined1 *)puVar5 = 0;
+      puVar5 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+      *(int8_t *)puVar5 = 0;
       puStack_68 = puVar5;
       uVar3 = FUN_18064e990(puVar5);
       uStack_58 = CONCAT44(uStack_58._4_4_,uVar3);
@@ -250,10 +250,10 @@ code_r0x0001800630e9:
         UNLOCK();
         FreeConsole();
       }
-      *(undefined4 *)(*(longlong *)(param_1 + 0x20) + 8) = 0xe;
-      *(undefined8 *)(*(longlong *)(param_1 + 0x20) + 0x10) = 0xffffffff00000000;
-      *(undefined1 *)(*(longlong *)(param_1 + 0x20) + 0x18) = 0;
-      **(undefined8 **)(param_1 + 0x20) = 0;
+      *(int32_t *)(*(longlong *)(param_1 + 0x20) + 8) = 0xe;
+      *(uint64_t *)(*(longlong *)(param_1 + 0x20) + 0x10) = 0xffffffff00000000;
+      *(int8_t *)(*(longlong *)(param_1 + 0x20) + 0x18) = 0;
+      **(uint64_t **)(param_1 + 0x20) = 0;
       break;
     case 3:
       plVar7 = (longlong *)(*(longlong *)(param_1 + 0x20) + 0xd8);
@@ -263,9 +263,9 @@ code_r0x0001800630e9:
       break;
     case 4:
       auStackX_18[0] = 0;
-      puVar9 = *(undefined **)(*(longlong *)(param_1 + 0x20) + 0xe8);
+      puVar9 = *(void **)(*(longlong *)(param_1 + 0x20) + 0xe8);
       puVar10 = &DAT_18098bc73;
-      if (puVar9 != (undefined *)0x0) {
+      if (puVar9 != (void *)0x0) {
         puVar10 = puVar9;
       }
       FUN_1806391a0(*(longlong *)(param_1 + 0x20) + 0xd8,puVar10,auStackX_18);
@@ -277,16 +277,16 @@ code_r0x0001800630e9:
     case 5:
       iVar8 = *(int *)(param_1 + 0x58);
       if ((*(int *)(_DAT_180c8a9c8 + 0x150) <= iVar8) &&
-         (puVar5 = *(undefined8 **)(param_1 + 0x20),
+         (puVar5 = *(uint64_t **)(param_1 + 0x20),
          (*(ulonglong *)(param_1 + 0x60) & puVar5[2]) != 0)) {
         uVar2 = *(uint *)(param_1 + 0x40);
         puVar9 = &DAT_18098bc73;
-        if (*(undefined **)(param_1 + 0x38) != (undefined *)0x0) {
-          puVar9 = *(undefined **)(param_1 + 0x38);
+        if (*(void **)(param_1 + 0x38) != (void *)0x0) {
+          puVar9 = *(void **)(param_1 + 0x38);
         }
         if ((*(byte *)(puVar5 + 1) & 2) != 0) {
           FUN_180062ee0((ulonglong)*(uint *)(&DAT_180063480 + (longlong)(int)uVar1 * 4) +
-                        0x180000000,*(undefined4 *)(param_1 + 0x50));
+                        0x180000000,*(int32_t *)(param_1 + 0x50));
           iVar4 = WriteConsoleA(_DAT_180c912f0,puVar9,uVar2,auStackX_20,0);
           if ((iVar4 == 0) || (auStackX_20[0] < uVar2)) {
             FUN_18005d3a0(&UNK_1809fe62c,puVar9);
@@ -314,7 +314,7 @@ code_r0x0001800630e9:
       }
       break;
     case 7:
-      *(undefined8 *)(*(longlong *)(param_1 + 0x20) + 0x10) = *(undefined8 *)(param_1 + 0x60);
+      *(uint64_t *)(*(longlong *)(param_1 + 0x20) + 0x10) = *(uint64_t *)(param_1 + 0x60);
       break;
     case 8:
       if ((_DAT_180c912f0 != 0) && (lRam0000000180c912e8 != 0)) {
@@ -337,11 +337,11 @@ int format_string_with_args(void *buffer, void *format, void *arg_list, void *ex
 
 {
   int result;
-  undefined8 *stdio_config;
-  undefined8 extra_param;
+  uint64_t *stdio_config;
+  uint64_t extra_param;
   
   extra_param = extra_arg;
-  stdio_config = (undefined8 *)get_stdio_common_config();
+  stdio_config = (uint64_t *)get_stdio_common_config();
   result = __stdio_common_vsprintf_s(*stdio_config,buffer,format,arg_list,0,&extra_param);
   if (result < 0) {
     result = -1;
@@ -436,9 +436,9 @@ int format_string_unsafe(void *buffer, void *format, void *arg_list, void *extra
 
 
 
-// 函数: undefined8 *cleanup_string_buffer(undefined8 *buffer_ptr, ulonglong flags, undefined8 param3, undefined8 param4)
+// 函数: uint64_t *cleanup_string_buffer(uint64_t *buffer_ptr, ulonglong flags, uint64_t param3, uint64_t param4)
 // 功能: 清理字符串缓冲区，根据标志决定是否释放内存
-undefined8 *cleanup_string_buffer(undefined8 *buffer_ptr, ulonglong flags, undefined8 param3, undefined8 param4)
+uint64_t *cleanup_string_buffer(uint64_t *buffer_ptr, ulonglong flags, uint64_t param3, uint64_t param4)
 
 {
   buffer_ptr[6] = &UNK_180a3c3e0;
@@ -447,7 +447,7 @@ undefined8 *cleanup_string_buffer(undefined8 *buffer_ptr, ulonglong flags, undef
     release_string_buffer();
   }
   buffer_ptr[7] = 0;
-  *(undefined4 *)(buffer_ptr + 9) = 0;
+  *(int32_t *)(buffer_ptr + 9) = 0;
   buffer_ptr[6] = &UNK_18098bcb0;
   *buffer_ptr = &UNK_18098bdc8;
   *buffer_ptr = &UNK_180a21720;
@@ -460,37 +460,37 @@ undefined8 *cleanup_string_buffer(undefined8 *buffer_ptr, ulonglong flags, undef
 
 
 
-// 函数: undefined8 *initialize_string_buffer_with_config(undefined8 *buffer_ptr, undefined4 config, undefined8 param3, undefined8 param4)
+// 函数: uint64_t *initialize_string_buffer_with_config(uint64_t *buffer_ptr, int32_t config, uint64_t param3, uint64_t param4)
 // 功能: 使用配置初始化字符串缓冲区
-undefined8 *initialize_string_buffer_with_config(undefined8 *buffer_ptr, undefined4 config, undefined8 param3, undefined8 param4)
+uint64_t *initialize_string_buffer_with_config(uint64_t *buffer_ptr, int32_t config, uint64_t param3, uint64_t param4)
 
 {
   longlong *buffer_manager;
   
   *buffer_ptr = &UNK_180a21690;
   *buffer_ptr = &UNK_180a21720;
-  *(undefined4 *)(buffer_ptr + 1) = 0;
+  *(int32_t *)(buffer_ptr + 1) = 0;
   *buffer_ptr = &UNK_18098bdc8;
   LOCK();
-  *(undefined1 *)(buffer_ptr + 2) = 0;
+  *(int8_t *)(buffer_ptr + 2) = 0;
   UNLOCK();
   buffer_ptr[3] = 0xffffffffffffffff;
   *buffer_ptr = &UNK_1809fe650;
   buffer_manager = buffer_ptr + 6;
   *buffer_manager = (longlong)&UNK_18098bcb0;
   buffer_ptr[7] = 0;
-  *(undefined4 *)(buffer_ptr + 8) = 0;
+  *(int32_t *)(buffer_ptr + 8) = 0;
   *buffer_manager = (longlong)&UNK_180a3c3e0;
   buffer_ptr[9] = 0;
   buffer_ptr[7] = 0;
-  *(undefined4 *)(buffer_ptr + 8) = 0;
-  *(undefined4 *)(buffer_ptr + 5) = config;
+  *(int32_t *)(buffer_ptr + 8) = 0;
+  *(int32_t *)(buffer_ptr + 5) = config;
   buffer_ptr[4] = param3;
   (**(code **)(*buffer_manager + 0x10))(buffer_manager,&DAT_18098bc73,param3,param4,0xfffffffffffffffe);
-  *(undefined4 *)(buffer_ptr + 10) = 0xd;
-  *(undefined8 *)((longlong)buffer_ptr + 0x54) = 0xe;
+  *(int32_t *)(buffer_ptr + 10) = 0xd;
+  *(uint64_t *)((longlong)buffer_ptr + 0x54) = 0xe;
   buffer_ptr[0xc] = 0xffffffff00000000;
-  *(undefined4 *)(buffer_ptr + 0xd) = 0;
+  *(int32_t *)(buffer_ptr + 0xd) = 0;
   return buffer_ptr;
 }
 
@@ -501,7 +501,7 @@ undefined8 *initialize_string_buffer_with_config(undefined8 *buffer_ptr, undefin
 longlong setup_function_pointer_table(longlong table_ptr)
 
 {
-  *(undefined8 *)(table_ptr + 0x10) = 0;
+  *(uint64_t *)(table_ptr + 0x10) = 0;
   *(code **)(table_ptr + 0x18) = initialize_module_functions;
   return table_ptr;
 }
@@ -513,7 +513,7 @@ longlong setup_function_pointer_table(longlong table_ptr)
 longlong setup_security_function_pointer(longlong table_ptr)
 
 {
-  *(undefined8 *)(table_ptr + 0x10) = 0;
+  *(uint64_t *)(table_ptr + 0x10) = 0;
   *(code **)(table_ptr + 0x18) = _guard_check_icall;
   return table_ptr;
 }
@@ -524,16 +524,16 @@ longlong setup_security_function_pointer(longlong table_ptr)
 
 
 
-// 函数: void initialize_system_buffers(undefined8 system_param)
+// 函数: void initialize_system_buffers(uint64_t system_param)
 // 功能: 初始化系统缓冲区，包括安全检查和内存清零
-void initialize_system_buffers(undefined8 system_param)
+void initialize_system_buffers(uint64_t system_param)
 
 {
-  undefined1 security_buffer [96];
-  undefined1 config_buffer [64];
-  undefined8 stack_cookie;
-  undefined8 param_value;
-  undefined1 zero_buffer [512];
+  int8_t security_buffer [96];
+  int8_t config_buffer [64];
+  uint64_t stack_cookie;
+  uint64_t param_value;
+  int8_t zero_buffer [512];
   ulonglong security_check;
   
   stack_cookie = 0xfffffffffffffffe;
@@ -550,28 +550,28 @@ void initialize_system_buffers(undefined8 system_param)
 
 
 
-// 函数: void write_log_to_file(undefined8 file_handle, longlong message_data)
+// 函数: void write_log_to_file(uint64_t file_handle, longlong message_data)
 // 功能: 将日志消息写入文件，包括系统信息和自定义消息
-void write_log_to_file(undefined8 file_handle, longlong message_data)
+void write_log_to_file(uint64_t file_handle, longlong message_data)
 
 {
   char *message_ptr;
-  undefined *default_message;
+  void *default_message;
   longlong message_length;
   longlong system_prefix_length;
   longlong temp_var1;
   longlong temp_var2;
-  undefined8 log_buffer;
+  uint64_t log_buffer;
   longlong file_stream;
-  undefined *message_ptr2;
-  undefined *message_ptr3;
-  undefined4 stack_var;
+  void *message_ptr2;
+  void *message_ptr3;
+  int32_t stack_var;
   
   log_buffer = 0;
   file_stream = 0;
   initialize_file_stream(file_handle,&message_ptr2,&UNK_1809fe800);
   default_message = &DAT_18098bc73;
-  if (message_ptr3 != (undefined *)0x0) {
+  if (message_ptr3 != (void *)0x0) {
     default_message = message_ptr3;
   }
   initialize_log_buffer(&log_buffer,default_message,&UNK_1809fe80c);
@@ -606,37 +606,37 @@ void write_log_to_file(undefined8 file_handle, longlong message_data)
 void scan_file_system(void)
 
 {
-  undefined *file_path;
+  void *file_path;
   bool is_match;
-  undefined8 *file_list1;
-  undefined8 *file_list2;
-  undefined8 *file_list3;
+  uint64_t *file_list1;
+  uint64_t *file_list2;
+  uint64_t *file_list3;
   int file_length;
   longlong char_index1;
   longlong char_index2;
-  undefined *file_name;
+  void *file_name;
   uint file_count;
-  undefined8 *current_file;
+  uint64_t *current_file;
   ulonglong scan_index;
   int best_match_index;
   longlong latest_time;
   uint total_files;
-  undefined1 security_buffer [32];
-  undefined8 *file_array1;
-  undefined8 *file_array2;
-  undefined8 array1_size;
-  undefined4 array1_flags;
-  undefined8 *file_array3;
-  undefined8 *file_array4;
-  undefined8 array2_size;
-  undefined4 array2_flags;
-  undefined *file_scanner;
+  int8_t security_buffer [32];
+  uint64_t *file_array1;
+  uint64_t *file_array2;
+  uint64_t array1_size;
+  int32_t array1_flags;
+  uint64_t *file_array3;
+  uint64_t *file_array4;
+  uint64_t array2_size;
+  int32_t array2_flags;
+  void *file_scanner;
   longlong scanner_handle;
-  undefined4 scanner_flags;
-  undefined8 stack_cookie;
-  undefined1 stat_buffer [32];
+  int32_t scanner_flags;
+  uint64_t stack_cookie;
+  int8_t stat_buffer [32];
   longlong file_time;
-  undefined1 zero_buffer [512];
+  int8_t zero_buffer [512];
   ulonglong security_check;
   ulonglong file_index;
   
@@ -644,12 +644,12 @@ void scan_file_system(void)
   security_check = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
   file_index = 0;
   initialize_file_scanner(&file_scanner);
-  file_array1 = (undefined8 *)0x0;
-  file_array2 = (undefined8 *)0x0;
+  file_array1 = (uint64_t *)0x0;
+  file_array2 = (uint64_t *)0x0;
   array1_size = 0;
   array1_flags = 3;
-  file_array3 = (undefined8 *)0x0;
-  file_array4 = (undefined8 *)0x0;
+  file_array3 = (uint64_t *)0x0;
+  file_array4 = (uint64_t *)0x0;
   array2_size = 0;
   array2_flags = 3;
   populate_file_arrays(&file_scanner,&file_array1,&file_array3);
@@ -678,9 +678,9 @@ not_found:
         is_match = true;
       }
       if (is_match) {
-        file_path = *(undefined **)((longlong)file_array1 + scan_index + 8);
+        file_path = *(void **)((longlong)file_array1 + scan_index + 8);
         file_name = &DAT_18098bc73;
-        if (file_path != (undefined *)0x0) {
+        if (file_path != (void *)0x0) {
           file_name = file_path;
         }
         file_length = _stat64i32(file_name,stat_buffer);
@@ -709,13 +709,13 @@ not_found:
     puVar4 = puStack_2a8;
     puStack_2a8 = puVar5;
   }
-  if (puStack_2b0 == (undefined8 *)0x0) {
-    puStack_2b0 = (undefined8 *)0x0;
+  if (puStack_2b0 == (uint64_t *)0x0) {
+    puStack_2b0 = (uint64_t *)0x0;
     puStack_2a8 = puVar4;
     for (puVar12 = puStack_2d8; puVar12 != puVar3; puVar12 = puVar12 + 4) {
       (**(code **)*puVar12)(puVar12,0);
     }
-    if (puStack_2d8 != (undefined8 *)0x0) {
+    if (puStack_2d8 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
@@ -741,49 +741,49 @@ not_found:
 
 
 
-// 函数: void FUN_180064010(undefined8 param_1)
-void FUN_180064010(undefined8 param_1)
+// 函数: void FUN_180064010(uint64_t param_1)
+void FUN_180064010(uint64_t param_1)
 
 {
-  undefined8 *puVar1;
-  undefined8 *puVar2;
-  undefined *puVar3;
-  undefined8 *puVar4;
-  undefined1 auStack_358 [64];
-  undefined8 *puStack_318;
-  undefined8 *puStack_310;
-  undefined8 uStack_308;
-  undefined4 uStack_300;
-  undefined8 uStack_2f8;
+  uint64_t *puVar1;
+  uint64_t *puVar2;
+  void *puVar3;
+  uint64_t *puVar4;
+  int8_t auStack_358 [64];
+  uint64_t *puStack_318;
+  uint64_t *puStack_310;
+  uint64_t uStack_308;
+  int32_t uStack_300;
+  uint64_t uStack_2f8;
   longlong lStack_2f0;
-  undefined8 uStack_2e0;
+  uint64_t uStack_2e0;
   longlong lStack_2d8;
-  undefined8 *puStack_2c0;
-  undefined8 *puStack_2b8;
-  undefined8 uStack_2b0;
-  undefined4 uStack_2a8;
-  undefined *puStack_2a0;
+  uint64_t *puStack_2c0;
+  uint64_t *puStack_2b8;
+  uint64_t uStack_2b0;
+  int32_t uStack_2a8;
+  void *puStack_2a0;
   longlong lStack_298;
-  undefined4 uStack_288;
-  undefined *puStack_280;
-  undefined *puStack_278;
-  undefined4 uStack_268;
-  undefined *puStack_260;
-  undefined *puStack_258;
-  undefined4 uStack_248;
-  undefined8 uStack_240;
-  undefined1 auStack_238 [512];
+  int32_t uStack_288;
+  void *puStack_280;
+  void *puStack_278;
+  int32_t uStack_268;
+  void *puStack_260;
+  void *puStack_258;
+  int32_t uStack_248;
+  uint64_t uStack_240;
+  int8_t auStack_238 [512];
   ulonglong uStack_38;
   
   uStack_240 = 0xfffffffffffffffe;
   uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_358;
   FUN_1800ba940(&puStack_2a0);
-  puStack_318 = (undefined8 *)0x0;
-  puStack_310 = (undefined8 *)0x0;
+  puStack_318 = (uint64_t *)0x0;
+  puStack_310 = (uint64_t *)0x0;
   uStack_308 = 0;
   uStack_300 = 3;
-  puStack_2c0 = (undefined8 *)0x0;
-  puStack_2b8 = (undefined8 *)0x0;
+  puStack_2c0 = (uint64_t *)0x0;
+  puStack_2b8 = (uint64_t *)0x0;
   uStack_2b0 = 0;
   uStack_2a8 = 3;
   FUN_18062d3b0(&puStack_2a0,&puStack_318,&puStack_2c0);
@@ -798,15 +798,15 @@ void FUN_180064010(undefined8 param_1)
     (**(code **)*puVar4)(puVar4,0);
     puVar1 = puStack_310;
   }
-  if (puStack_2c0 != (undefined8 *)0x0) {
+  if (puStack_2c0 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  puStack_2c0 = (undefined8 *)0x0;
+  puStack_2c0 = (uint64_t *)0x0;
   for (puVar4 = puStack_318; puVar4 != puVar1; puVar4 = puVar4 + 4) {
     (**(code **)*puVar4)(puVar4,0);
   }
-  if (puStack_318 != (undefined8 *)0x0) {
+  if (puStack_318 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
@@ -822,7 +822,7 @@ void FUN_180064010(undefined8 param_1)
   lStack_2f0 = 0;
   FUN_180627e10(param_1,&puStack_280,&UNK_1809fe868);
   puVar3 = &DAT_18098bc73;
-  if (puStack_278 != (undefined *)0x0) {
+  if (puStack_278 != (void *)0x0) {
     puVar3 = puStack_278;
   }
   FUN_18062dee0(&uStack_2f8,puVar3,&UNK_1809fe80c);
@@ -835,11 +835,11 @@ void FUN_180064010(undefined8 param_1)
     UNLOCK();
   }
   puStack_280 = &UNK_180a3c3e0;
-  if (puStack_278 != (undefined *)0x0) {
+  if (puStack_278 != (void *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  puStack_278 = (undefined *)0x0;
+  puStack_278 = (void *)0x0;
   uStack_268 = 0;
   puStack_280 = &UNK_18098bcb0;
   if (lStack_2f0 != 0) {
@@ -853,7 +853,7 @@ void FUN_180064010(undefined8 param_1)
   lStack_2d8 = 0;
   FUN_180627e10(param_1,&puStack_260,&UNK_1809fe880);
   puVar3 = &DAT_18098bc73;
-  if (puStack_258 != (undefined *)0x0) {
+  if (puStack_258 != (void *)0x0) {
     puVar3 = puStack_258;
   }
   FUN_18062dee0(&uStack_2e0,puVar3,&UNK_1809fe80c);
@@ -866,11 +866,11 @@ void FUN_180064010(undefined8 param_1)
     UNLOCK();
   }
   puStack_260 = &UNK_180a3c3e0;
-  if (puStack_258 != (undefined *)0x0) {
+  if (puStack_258 != (void *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  puStack_258 = (undefined *)0x0;
+  puStack_258 = (void *)0x0;
   uStack_248 = 0;
   puStack_260 = &UNK_18098bcb0;
   if (lStack_2d8 != 0) {
@@ -901,36 +901,36 @@ void initialize_system_resources(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: ulonglong process_file_operations(undefined8 file_handle)
+// 函数: ulonglong process_file_operations(uint64_t file_handle)
 // 功能: 处理文件操作，包括文件读取、写入和资源管理
-ulonglong process_file_operations(undefined8 file_handle)
+ulonglong process_file_operations(uint64_t file_handle)
 
 {
   char status_char;
   ulonglong operation_result;
-  undefined *default_path;
-  undefined8 *file_list1;
+  void *default_path;
+  uint64_t *file_list1;
   longlong file_handle2;
-  undefined8 *file_list2;
-  undefined8 *file_list3;
-  undefined *output_buffer;
+  uint64_t *file_list2;
+  uint64_t *file_list3;
+  void *output_buffer;
   longlong stream_handle;
   int buffer_size;
   ulonglong buffer_pos;
-  undefined8 *file_array1;
-  undefined8 *file_array2;
-  undefined8 array1_size;
-  undefined4 array1_flags;
-  undefined8 log_buffer;
+  uint64_t *file_array1;
+  uint64_t *file_array2;
+  uint64_t array1_size;
+  int32_t array1_flags;
+  uint64_t log_buffer;
   longlong log_handle;
-  undefined *message_ptr;
-  undefined *custom_message;
-  undefined4 message_flags;
-  undefined8 stack_cookie;
+  void *message_ptr;
+  void *custom_message;
+  int32_t message_flags;
+  uint64_t stack_cookie;
   
   stack_cookie = 0xfffffffffffffffe;
-  file_array1 = (undefined8 *)0x0;
-  file_array2 = (undefined8 *)0x0;
+  file_array1 = (uint64_t *)0x0;
+  file_array2 = (uint64_t *)0x0;
   array1_size = 0;
   array1_flags = 3;
   status_char = initialize_system_resources(&file_array1);
@@ -946,7 +946,7 @@ ulonglong process_file_operations(undefined8 file_handle)
     log_handle = 0;
     initialize_file_stream(file_handle,&message_ptr,&UNK_1809fe898);
     default_path = &DAT_18098bc73;
-    if (custom_message != (undefined *)0x0) {
+    if (custom_message != (void *)0x0) {
       default_path = custom_message;
     }
     initialize_log_buffer(&log_buffer,default_path,&UNK_1809fe80c);
@@ -960,8 +960,8 @@ ulonglong process_file_operations(undefined8 file_handle)
       operation_result = operation_result & 0xffffffff;
       do {
         default_path = &DAT_18098bc73;
-        if ((undefined *)*file_list1 != (undefined *)0x0) {
-          default_path = (undefined *)*file_list1;
+        if ((void *)*file_list1 != (void *)0x0) {
+          default_path = (void *)*file_list1;
         }
         write_error_message(&output_buffer,&UNK_1809fe62c,default_path);
         file_list1 = file_list1 + 4;
@@ -990,11 +990,11 @@ ulonglong process_file_operations(undefined8 file_handle)
     buffer_pos = buffer_pos & 0xffffffff00000000;
     output_buffer = &UNK_18098bcb0;
     message_ptr = &UNK_180a3c3e0;
-    if (custom_message != (undefined *)0x0) {
+    if (custom_message != (void *)0x0) {
                     // WARNING: Subroutine does not return
       release_string_buffer();
     }
-    custom_message = (undefined *)0x0;
+    custom_message = (void *)0x0;
     message_flags = 0;
     message_ptr = &UNK_18098bcb0;
     file_list1 = file_list2;
@@ -1012,7 +1012,7 @@ ulonglong process_file_operations(undefined8 file_handle)
   for (; file_list2 != file_list3; file_list2 = file_list2 + 4) {
     operation_result = (**(code **)*file_list2)(file_list2,0);
   }
-  if (file_list1 != (undefined8 *)0x0) {
+  if (file_list1 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
     release_string_buffer(file_list1);
   }

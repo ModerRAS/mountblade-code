@@ -7,27 +7,27 @@
  * @param object_ptr 对象指针
  * @param animation_id 动画ID
  */
-void process_object_animation_data(undefined8 object_ptr, ulonglong animation_id)
+void process_object_animation_data(uint64_t object_ptr, ulonglong animation_id)
 
 {
   float position_x;
   float position_y;
   short animation_flag;
   longlong data_offset;
-  undefined1 animation_data [16];
+  int8_t animation_data [16];
   int *frame_count_ptr;
   ulonglong current_offset;
   longlong animation_length;
   int current_frame;
-  undefined8 *object_table;
+  uint64_t *object_table;
   longlong timeline_offset;
   uint animation_index;
   ulonglong timeline_base;
   longlong timeline_position;
   int timeline_frame;
   longlong in_R10;
-  undefined8 extraout_XMM0_Qa;
-  undefined8 texture_id;
+  uint64_t extraout_XMM0_Qa;
+  uint64_t texture_id;
   ulonglong render_param;
   
 code_r0x00018013d378:
@@ -46,14 +46,14 @@ code_r0x00018013d378:
         *(float *)(current_offset + 0x10) =
              *(float *)((longlong)object_table + 0x44) - *(float *)(object_table + 7);
         *(float *)(current_offset + 0xc) = position_x - position_y;
-        *(undefined8 *)(current_offset + 0x14) = object_table[10];
-        *(undefined4 *)(current_offset + 0x24) = *(undefined4 *)(object_table + 6);
-        texture_id = *(undefined8 *)((longlong)object_table + 0x34);
-        *(undefined8 *)(current_offset + 0x1c) = texture_id;
-        *(undefined4 *)(current_offset + 0x28) = *(undefined4 *)(object_table + 0x83);
-        *(undefined4 *)(current_offset + 0x2c) = *(undefined4 *)((longlong)object_table + 0x14);
-        *(undefined2 *)(current_offset + 0x30) = *(undefined2 *)(object_table + 0x86);
-        *(undefined1 *)(current_offset + 0x32) = *(undefined1 *)((longlong)object_table + 0xb2);
+        *(uint64_t *)(current_offset + 0x14) = object_table[10];
+        *(int32_t *)(current_offset + 0x24) = *(int32_t *)(object_table + 6);
+        texture_id = *(uint64_t *)((longlong)object_table + 0x34);
+        *(uint64_t *)(current_offset + 0x1c) = texture_id;
+        *(int32_t *)(current_offset + 0x28) = *(int32_t *)(object_table + 0x83);
+        *(int32_t *)(current_offset + 0x2c) = *(int32_t *)((longlong)object_table + 0x14);
+        *(int16_t *)(current_offset + 0x30) = *(int16_t *)(object_table + 0x86);
+        *(int8_t *)(current_offset + 0x32) = *(int8_t *)((longlong)object_table + 0xb2);
         do {
           timeline_frame = timeline_frame + 1;
           timeline_position = timeline_position + 8;
@@ -77,7 +77,7 @@ code_r0x00018013d378:
                 if ((current_frame != 0) && (current_frame != 0x11111111)) {
                   texture_id = render_texture_data(texture_id,&POSITION_DATA_TABLE,(int)*(float *)(current_offset + 0x1c + data_offset)
                                          ,(int)*(float *)(current_offset + 0x20 + data_offset));
-                  render_texture_data(texture_id,&FRAME_DATA_TABLE,*(undefined4 *)(current_offset + 0x24 + data_offset));
+                  render_texture_data(texture_id,&FRAME_DATA_TABLE,*(int32_t *)(current_offset + 0x24 + data_offset));
                 }
                 position_x = *(float *)(current_offset + 0xc + data_offset);
                 if (((position_x != 0.0) || (*(float *)(current_offset + 0x10 + data_offset) != 0.0)) ||
@@ -91,7 +91,7 @@ code_r0x00018013d378:
                   render_param = render_texture_data(render_param,&RENDER_PARAMS_TABLE,(int)position_x,
                                          (int)*(float *)(current_offset + 0x18 + data_offset));
                 }
-                texture_id = render_texture_data(render_param,&TEXTURE_PARAMS_TABLE,*(undefined1 *)(current_offset + 0x32 + data_offset));
+                texture_id = render_texture_data(render_param,&TEXTURE_PARAMS_TABLE,*(int8_t *)(current_offset + 0x32 + data_offset));
                 current_frame = *(int *)(current_offset + 0x28 + data_offset);
                 if (current_frame != 0) {
                   animation_flag = *(short *)(current_offset + 0x30 + data_offset);
@@ -113,7 +113,7 @@ code_r0x00018013d378:
             }
             return;
           }
-          object_table = *(undefined8 **)(timeline_position + *(longlong *)(object_table + 0x1aa8));
+          object_table = *(uint64_t **)(timeline_position + *(longlong *)(object_table + 0x1aa8));
         } while ((*(uint *)((longlong)object_table + 0xc) & 0x100) != 0);
         if (*(int *)(object_table + 0x5c) == -1) break;
         current_offset = (longlong)*(int *)(object_table + 0x5c) * 0x38 + *(longlong *)(object_table + 0x2e30);
@@ -137,7 +137,7 @@ code_r0x00018013d378:
  * 处理动画帧渲染
  * @param render_param 渲染参数
  */
-void render_animation_frame_data(undefined4 render_param)
+void render_animation_frame_data(int32_t render_param)
 
 {
   short animation_flag;
@@ -147,10 +147,10 @@ void render_animation_frame_data(undefined4 render_param)
   longlong animation_length;
   uint current_index;
   ulonglong timeline_base;
-  undefined8 *object_table;
+  uint64_t *object_table;
   longlong object_data;
-  undefined4 texture_data;
-  undefined8 render_result;
+  int32_t texture_data;
+  uint64_t render_result;
   float position_data;
   float render_value;
   
@@ -170,7 +170,7 @@ void render_animation_frame_data(undefined4 render_param)
       if ((frame_index != 0) && (frame_index != 0x11111111)) {
         texture_data = render_texture_data(texture_data,&POSITION_DATA_TABLE,(int)*(float *)(current_index + 0x1c + data_offset),
                               (int)*(float *)(current_index + 0x20 + data_offset));
-        render_texture_data(texture_data,&FRAME_DATA_TABLE,*(undefined4 *)(current_index + 0x24 + data_offset));
+        render_texture_data(texture_data,&FRAME_DATA_TABLE,*(int32_t *)(current_index + 0x24 + data_offset));
       }
       position_data = *(float *)(current_index + 0xc + data_offset);
       if (((position_data != 0.0) || (*(float *)(current_index + 0x10 + data_offset) != 0.0)) ||
@@ -183,7 +183,7 @@ void render_animation_frame_data(undefined4 render_param)
         position_data = (float)render_texture_data(position_data,&RENDER_PARAMS_TABLE,(int)position_data,
                              (int)*(float *)(current_index + 0x18 + data_offset));
       }
-      texture_data = render_texture_data(position_data,&TEXTURE_PARAMS_TABLE,*(undefined1 *)(current_index + 0x32 + data_offset));
+      texture_data = render_texture_data(position_data,&TEXTURE_PARAMS_TABLE,*(int8_t *)(current_index + 0x32 + data_offset));
       frame_index = *(int *)(current_index + 0x28 + data_offset);
       if (frame_index != 0) {
         animation_flag = *(short *)(current_index + 0x30 + data_offset);
@@ -220,10 +220,10 @@ void process_animation_data_loop(void)
   longlong animation_length;
   uint current_index;
   ulonglong timeline_base;
-  undefined8 *object_table;
+  uint64_t *object_table;
   longlong object_data;
-  undefined4 texture_data;
-  undefined8 render_result;
+  int32_t texture_data;
+  uint64_t render_result;
   float position_data;
   float render_value;
   
@@ -240,7 +240,7 @@ void process_animation_data_loop(void)
     if ((frame_index != 0) && (frame_index != 0x11111111)) {
       texture_data = render_texture_data(texture_data,&POSITION_DATA_TABLE,(int)*(float *)(current_index + 0x1c + data_offset),
                             (int)*(float *)(current_index + 0x20 + data_offset));
-      render_texture_data(texture_data,&FRAME_DATA_TABLE,*(undefined4 *)(current_index + 0x24 + data_offset));
+      render_texture_data(texture_data,&FRAME_DATA_TABLE,*(int32_t *)(current_index + 0x24 + data_offset));
     }
     position_data = *(float *)(current_index + 0xc + data_offset);
     if (((position_data != 0.0) || (*(float *)(current_index + 0x10 + data_offset) != 0.0)) ||
@@ -253,7 +253,7 @@ void process_animation_data_loop(void)
       position_data = (float)render_texture_data(position_data,&RENDER_PARAMS_TABLE,(int)position_data,
                            (int)*(float *)(current_index + 0x18 + data_offset));
     }
-    texture_data = render_texture_data(position_data,&TEXTURE_PARAMS_TABLE,*(undefined1 *)(current_index + 0x32 + data_offset));
+    texture_data = render_texture_data(position_data,&TEXTURE_PARAMS_TABLE,*(int8_t *)(current_index + 0x32 + data_offset));
     frame_index = *(int *)(current_index + 0x28 + data_offset);
     if (frame_index != 0) {
       animation_flag = *(short *)(current_index + 0x30 + data_offset);
@@ -387,10 +387,10 @@ longlong read_clipboard_unicode_text(void)
  * @param param3 保留参数
  * @param param4 保留参数
  */
-void write_clipboard_unicode_text(undefined8 param1,undefined8 param2,undefined8 param3,undefined8 param4)
+void write_clipboard_unicode_text(uint64_t param1,uint64_t param2,uint64_t param3,uint64_t param4)
 
 {
-  undefined8 clipboard_handle;
+  uint64_t clipboard_handle;
   longlong memory_handle;
   int text_length;
   longlong result;
@@ -423,7 +423,7 @@ void write_default_clipboard_text(void)
 {
   int text_length;
   longlong memory_handle;
-  undefined8 clipboard_handle;
+  uint64_t clipboard_handle;
   longlong result;
   
   text_length = FUN_1801219c0();
@@ -456,12 +456,12 @@ void clipboard_processing_placeholder(void)
  * @param array_ptr 数组指针
  * @param element_ptr 元素指针
  */
-void add_pointer_to_array(int *array_ptr,undefined8 *element_ptr)
+void add_pointer_to_array(int *array_ptr,uint64_t *element_ptr)
 
 {
   int current_size;
   int new_size;
-  undefined8 new_buffer;
+  uint64_t new_buffer;
   int required_size;
   
   current_size = array_ptr[1];
@@ -484,11 +484,11 @@ void add_pointer_to_array(int *array_ptr,undefined8 *element_ptr)
       if (*(longlong *)(array_ptr + 2) != 0) {
         memcpy(new_buffer,*(longlong *)(array_ptr + 2),(longlong)*array_ptr << 3);
       }
-      *(undefined8 *)(array_ptr + 2) = new_buffer;
+      *(uint64_t *)(array_ptr + 2) = new_buffer;
       array_ptr[1] = required_size;
     }
   }
-  *(undefined8 *)(*(longlong *)(array_ptr + 2) + (longlong)*array_ptr * 8) = *element_ptr;
+  *(uint64_t *)(*(longlong *)(array_ptr + 2) + (longlong)*array_ptr * 8) = *element_ptr;
   *array_ptr = *array_ptr + 1;
   return;
 }
@@ -501,10 +501,10 @@ void add_pointer_to_array_reg(void)
 
 {
   longlong memory_tracker;
-  undefined8 new_buffer;
+  uint64_t new_buffer;
   int *array_ptr;
   int new_capacity;
-  undefined8 *element_ptr;
+  uint64_t *element_ptr;
   
   if (memory_tracker != 0) {
     *(int *)(memory_tracker + 0x3a8) = *(int *)(memory_tracker + 0x3a8) + 1;
@@ -513,9 +513,9 @@ void add_pointer_to_array_reg(void)
   if (*(longlong *)(array_ptr + 2) != 0) {
     memcpy(new_buffer,*(longlong *)(array_ptr + 2),(longlong)*array_ptr << 3);
   }
-  *(undefined8 *)(array_ptr + 2) = new_buffer;
+  *(uint64_t *)(array_ptr + 2) = new_buffer;
   array_ptr[1] = new_capacity;
-  *(undefined8 *)(*(longlong *)(array_ptr + 2) + (longlong)*array_ptr * 8) = *element_ptr;
+  *(uint64_t *)(*(longlong *)(array_ptr + 2) + (longlong)*array_ptr * 8) = *element_ptr;
   *array_ptr = *array_ptr + 1;
   return;
 }
@@ -528,9 +528,9 @@ void add_pointer_to_array_simple(void)
 
 {
   int *array_ptr;
-  undefined8 *element_ptr;
+  uint64_t *element_ptr;
   
-  *(undefined8 *)(*(longlong *)(array_ptr + 2) + (longlong)*array_ptr * 8) = *element_ptr;
+  *(uint64_t *)(*(longlong *)(array_ptr + 2) + (longlong)*array_ptr * 8) = *element_ptr;
   *array_ptr = *array_ptr + 1;
   return;
 }
@@ -542,7 +542,7 @@ void add_pointer_to_array_simple(void)
  * @param param3 保留参数
  * @param param4 保留参数
  */
-void release_object_resources(undefined8 *object_ptr,undefined8 param2,undefined8 param3,undefined8 param4)
+void release_object_resources(uint64_t *object_ptr,uint64_t param2,uint64_t param3,uint64_t param4)
 
 {
   longlong resource_ptr;
@@ -563,7 +563,7 @@ void release_object_resources(undefined8 *object_ptr,undefined8 param2,undefined
     }
     FUN_180059ba0(resource_ptr,_DAT_180c8a9a8,param3,param4,0xfffffffffffffffe);
   }
-  *(undefined4 *)(object_ptr + 4) = 0;
+  *(int32_t *)(object_ptr + 4) = 0;
   resource_ptr = object_ptr[3];
   if (resource_ptr != 0) {
     if (_DAT_180c8a9b0 != 0) {
@@ -589,7 +589,7 @@ void release_object_resources(undefined8 *object_ptr,undefined8 param2,undefined
 void resize_array_capacity(int *array_ptr,int new_capacity)
 
 {
-  undefined8 new_buffer;
+  uint64_t new_buffer;
   
   if (array_ptr[1] < new_capacity) {
     if (_DAT_180c8a9b0 != 0) {
@@ -599,7 +599,7 @@ void resize_array_capacity(int *array_ptr,int new_capacity)
     if (*(longlong *)(array_ptr + 2) != 0) {
       memcpy(new_buffer,*(longlong *)(array_ptr + 2),(longlong)*array_ptr << 5);
     }
-    *(undefined8 *)(array_ptr + 2) = new_buffer;
+    *(uint64_t *)(array_ptr + 2) = new_buffer;
     array_ptr[1] = new_capacity;
   }
   return;
@@ -613,7 +613,7 @@ void resize_array_capacity_reg(void)
 
 {
   longlong memory_tracker;
-  undefined8 new_buffer;
+  uint64_t new_buffer;
   int *array_ptr;
   longlong new_capacity;
   
@@ -624,7 +624,7 @@ void resize_array_capacity_reg(void)
   if (*(longlong *)(array_ptr + 2) != 0) {
     memcpy(new_buffer,*(longlong *)(array_ptr + 2),(longlong)*array_ptr << 5);
   }
-  *(undefined8 *)(array_ptr + 2) = new_buffer;
+  *(uint64_t *)(array_ptr + 2) = new_buffer;
   array_ptr[1] = (int)new_capacity;
   return;
 }
@@ -642,7 +642,7 @@ void array_processing_placeholder(void)
  * 初始化数组元素
  * @param array_ptr 数组指针
  */
-void initialize_array_element(undefined4 *array_ptr)
+void initialize_array_element(int32_t *array_ptr)
 
 {
   int current_size;
@@ -678,7 +678,7 @@ void set_array_size(int *array_ptr,int new_size)
 {
   int current_size;
   int expanded_size;
-  undefined8 new_buffer;
+  uint64_t new_buffer;
   int required_size;
   
   current_size = array_ptr[1];
@@ -704,7 +704,7 @@ void set_array_size(int *array_ptr,int new_size)
     if (*(longlong *)(array_ptr + 2) != 0) {
       memcpy(new_buffer,*(longlong *)(array_ptr + 2),(longlong)*array_ptr * 0x30);
     }
-    *(undefined8 *)(array_ptr + 2) = new_buffer;
+    *(uint64_t *)(array_ptr + 2) = new_buffer;
     array_ptr[1] = required_size;
     *array_ptr = new_size;
     return;
@@ -721,7 +721,7 @@ void set_array_size_reg(int current_size)
 
 {
   int expanded_size;
-  undefined8 new_buffer;
+  uint64_t new_buffer;
   int *array_ptr;
   int required_size;
   int new_size;
@@ -744,7 +744,7 @@ void set_array_size_reg(int current_size)
     if (*(longlong *)(array_ptr + 2) != 0) {
       memcpy(new_buffer,*(longlong *)(array_ptr + 2),(longlong)*array_ptr * 0x30);
     }
-    *(undefined8 *)(array_ptr + 2) = new_buffer;
+    *(uint64_t *)(array_ptr + 2) = new_buffer;
     array_ptr[1] = required_size;
     *array_ptr = new_size;
     return;
@@ -760,8 +760,8 @@ void set_array_size_reg(int current_size)
 void set_uint_array_element(void)
 
 {
-  undefined4 *array_ptr;
-  undefined4 element_value;
+  int32_t *array_ptr;
+  int32_t element_value;
   
   *array_ptr = element_value;
   return;
@@ -774,8 +774,8 @@ void set_uint_array_element(void)
 void set_uint_array_element_simple(void)
 
 {
-  undefined4 *array_ptr;
-  undefined4 element_value;
+  int32_t *array_ptr;
+  int32_t element_value;
   
   *array_ptr = element_value;
   return;
@@ -786,14 +786,14 @@ void set_uint_array_element_simple(void)
  * @param array_ptr 数组指针
  * @param element_ptr 元素指针
  */
-void add_struct_to_array(int *array_ptr,undefined8 *element_ptr)
+void add_struct_to_array(int *array_ptr,uint64_t *element_ptr)
 
 {
-  undefined8 *dest_ptr;
+  uint64_t *dest_ptr;
   int current_size;
   longlong data_offset;
   int new_size;
-  undefined8 new_buffer;
+  uint64_t new_buffer;
   longlong base_offset;
   int required_size;
   
@@ -817,22 +817,22 @@ void add_struct_to_array(int *array_ptr,undefined8 *element_ptr)
       if (*(longlong *)(array_ptr + 2) != 0) {
         memcpy(new_buffer,*(longlong *)(array_ptr + 2),(longlong)*array_ptr * 0x30);
       }
-      *(undefined8 *)(array_ptr + 2) = new_buffer;
+      *(uint64_t *)(array_ptr + 2) = new_buffer;
       array_ptr[1] = required_size;
     }
   }
   base_offset = (longlong)*array_ptr;
   new_buffer = element_ptr[1];
   data_offset = *(longlong *)(array_ptr + 2);
-  dest_ptr = (undefined8 *)(data_offset + base_offset * 0x30);
+  dest_ptr = (uint64_t *)(data_offset + base_offset * 0x30);
   *dest_ptr = *element_ptr;
   dest_ptr[1] = new_buffer;
   new_buffer = element_ptr[3];
-  dest_ptr = (undefined8 *)(data_offset + 0x10 + base_offset * 0x30);
+  dest_ptr = (uint64_t *)(data_offset + 0x10 + base_offset * 0x30);
   *dest_ptr = element_ptr[2];
   dest_ptr[1] = new_buffer;
   new_buffer = element_ptr[5];
-  dest_ptr = (undefined8 *)(data_offset + 0x20 + base_offset * 0x30);
+  dest_ptr = (uint64_t *)(data_offset + 0x20 + base_offset * 0x30);
   *dest_ptr = element_ptr[4];
   dest_ptr[1] = new_buffer;
   *array_ptr = *array_ptr + 1;
@@ -846,13 +846,13 @@ void add_struct_to_array(int *array_ptr,undefined8 *element_ptr)
 void add_struct_to_array_reg(void)
 
 {
-  undefined8 *dest_ptr;
+  uint64_t *dest_ptr;
   longlong data_offset;
   longlong memory_tracker;
-  undefined8 new_buffer;
+  uint64_t new_buffer;
   longlong base_offset;
   int *array_ptr;
-  undefined8 *element_ptr;
+  uint64_t *element_ptr;
   int new_capacity;
   
   if (memory_tracker != 0) {
@@ -862,20 +862,20 @@ void add_struct_to_array_reg(void)
   if (*(longlong *)(array_ptr + 2) != 0) {
     memcpy(new_buffer,*(longlong *)(array_ptr + 2),(longlong)*array_ptr * 0x30);
   }
-  *(undefined8 *)(array_ptr + 2) = new_buffer;
+  *(uint64_t *)(array_ptr + 2) = new_buffer;
   array_ptr[1] = new_capacity;
   base_offset = (longlong)*array_ptr;
   new_buffer = element_ptr[1];
   data_offset = *(longlong *)(array_ptr + 2);
-  dest_ptr = (undefined8 *)(data_offset + base_offset * 0x30);
+  dest_ptr = (uint64_t *)(data_offset + base_offset * 0x30);
   *dest_ptr = *element_ptr;
   dest_ptr[1] = new_buffer;
   new_buffer = element_ptr[3];
-  dest_ptr = (undefined8 *)(data_offset + 0x10 + base_offset * 0x30);
+  dest_ptr = (uint64_t *)(data_offset + 0x10 + base_offset * 0x30);
   *dest_ptr = element_ptr[2];
   dest_ptr[1] = new_buffer;
   new_buffer = element_ptr[5];
-  dest_ptr = (undefined8 *)(data_offset + 0x20 + base_offset * 0x30);
+  dest_ptr = (uint64_t *)(data_offset + 0x20 + base_offset * 0x30);
   *dest_ptr = element_ptr[4];
   dest_ptr[1] = new_buffer;
   *array_ptr = *array_ptr + 1;
@@ -889,25 +889,25 @@ void add_struct_to_array_reg(void)
 void add_struct_to_array_simple(void)
 
 {
-  undefined8 *dest_ptr;
+  uint64_t *dest_ptr;
   longlong data_offset;
-  undefined8 new_buffer;
+  uint64_t new_buffer;
   longlong base_offset;
   int *array_ptr;
-  undefined8 *element_ptr;
+  uint64_t *element_ptr;
   
   base_offset = (longlong)*array_ptr;
   new_buffer = element_ptr[1];
   data_offset = *(longlong *)(array_ptr + 2);
-  dest_ptr = (undefined8 *)(data_offset + base_offset * 0x30);
+  dest_ptr = (uint64_t *)(data_offset + base_offset * 0x30);
   *dest_ptr = *element_ptr;
   dest_ptr[1] = new_buffer;
   new_buffer = element_ptr[3];
-  dest_ptr = (undefined8 *)(data_offset + 0x10 + base_offset * 0x30);
+  dest_ptr = (uint64_t *)(data_offset + 0x10 + base_offset * 0x30);
   *dest_ptr = element_ptr[2];
   dest_ptr[1] = new_buffer;
   new_buffer = element_ptr[5];
-  dest_ptr = (undefined8 *)(data_offset + 0x20 + base_offset * 0x30);
+  dest_ptr = (uint64_t *)(data_offset + 0x20 + base_offset * 0x30);
   *dest_ptr = element_ptr[4];
   dest_ptr[1] = new_buffer;
   *array_ptr = *array_ptr + 1;
@@ -921,7 +921,7 @@ void add_struct_to_array_simple(void)
  * @param param3 保留参数
  * @param param4 保留参数
  */
-void release_container_resources(undefined8 *container_ptr,undefined8 param2,undefined8 param3,undefined8 param4)
+void release_container_resources(uint64_t *container_ptr,uint64_t param2,uint64_t param3,uint64_t param4)
 
 {
   int *size_ptr;
@@ -960,7 +960,7 @@ void release_container_resources(undefined8 *container_ptr,undefined8 param2,und
   }
   resource_ptr = container_ptr[1];
   if (resource_ptr == 0) {
-    *(undefined4 *)(container_ptr + 4) = 0;
+    *(int32_t *)(container_ptr + 4) = 0;
     resource_ptr = container_ptr[3];
     if (resource_ptr != 0) {
       if (_DAT_180c8a9b0 != 0) {
@@ -994,7 +994,7 @@ void set_simple_array_size(int *array_ptr,int new_size)
 {
   int current_size;
   int expanded_size;
-  undefined8 new_buffer;
+  uint64_t new_buffer;
   int required_size;
   
   current_size = array_ptr[1];
@@ -1020,7 +1020,7 @@ void set_simple_array_size(int *array_ptr,int new_size)
     if (*(longlong *)(array_ptr + 2) != 0) {
       memcpy(new_buffer,*(longlong *)(array_ptr + 2),(longlong)*array_ptr);
     }
-    *(undefined8 *)(array_ptr + 2) = new_buffer;
+    *(uint64_t *)(array_ptr + 2) = new_buffer;
     array_ptr[1] = required_size;
     *array_ptr = new_size;
     return;
@@ -1037,7 +1037,7 @@ void set_simple_array_size_reg(int current_size)
 
 {
   int expanded_size;
-  undefined8 new_buffer;
+  uint64_t new_buffer;
   int *array_ptr;
   int required_size;
   int new_size;
@@ -1060,7 +1060,7 @@ void set_simple_array_size_reg(int current_size)
     if (*(longlong *)(array_ptr + 2) != 0) {
       memcpy(new_buffer,*(longlong *)(array_ptr + 2),(longlong)*array_ptr);
     }
-    *(undefined8 *)(array_ptr + 2) = new_buffer;
+    *(uint64_t *)(array_ptr + 2) = new_buffer;
     array_ptr[1] = required_size;
     *array_ptr = new_size;
     return;
@@ -1076,8 +1076,8 @@ void set_simple_array_size_reg(int current_size)
 void set_int_array_element(void)
 
 {
-  undefined4 *array_ptr;
-  undefined4 element_value;
+  int32_t *array_ptr;
+  int32_t element_value;
   
   *array_ptr = element_value;
   return;
@@ -1090,8 +1090,8 @@ void set_int_array_element(void)
 void set_int_array_element_simple(void)
 
 {
-  undefined4 *array_ptr;
-  undefined4 element_value;
+  int32_t *array_ptr;
+  int32_t element_value;
   
   *array_ptr = element_value;
   return;

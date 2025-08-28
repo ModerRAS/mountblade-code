@@ -3,42 +3,42 @@
 // 02_core_engine_part237.c - 核心引擎模块第237部分
 // 本文件包含13个函数，主要处理内存管理、数据结构和系统资源管理
 
-// 函数: void initialize_entity_manager(undefined8 context_id, longlong *entity_data, longlong initialization_flags)
+// 函数: void initialize_entity_manager(uint64_t context_id, longlong *entity_data, longlong initialization_flags)
 // 功能: 初始化实体管理器，分配内存并设置初始状态
 // 参数:
 //   context_id: 上下文标识符
 //   entity_data: 实体数据指针
 //   initialization_flags: 初始化标志
-void initialize_entity_manager(undefined8 context_id, longlong *entity_data, longlong initialization_flags)
+void initialize_entity_manager(uint64_t context_id, longlong *entity_data, longlong initialization_flags)
 {
   int *manager_ptr;
   char entity_type;
   int entity_size;
   int entity_capacity;
   longlong entity_offset;
-  undefined8 resource_handle;
+  uint64_t resource_handle;
   longlong base_address;
   int *memory_block;
-  undefined8 *resource_ptr;
+  uint64_t *resource_ptr;
   ulonglong checksum;
-  undefined *temp_ptr;
+  void *temp_ptr;
   int allocation_result;
-  undefined1 temp_buffer[32];
+  int8_t temp_buffer[32];
   int stack_var1;
-  undefined1 stack_flag;
+  int8_t stack_flag;
   byte stack_byte1;
   byte stack_byte2;
-  undefined8 stack_var2;
-  undefined8 stack_var3;
+  uint64_t stack_var2;
+  uint64_t stack_var3;
   longlong *stack_ptr1;
   int *stack_ptr2;
   int *stack_ptr3;
-  undefined1 stack_buffer[16];
+  int8_t stack_buffer[16];
   longlong *stack_ptr4;
-  undefined *stack_ptr5;
-  undefined1 *stack_ptr6;
-  undefined4 stack_var4;
-  undefined1 stack_buffer2[136];
+  void *stack_ptr5;
+  int8_t *stack_ptr6;
+  int32_t stack_var4;
+  int8_t stack_buffer2[136];
   ulonglong stack_checksum;
   
   base_address = GLOBAL_ENGINE_BASE_ADDRESS;
@@ -60,20 +60,20 @@ void initialize_entity_manager(undefined8 context_id, longlong *entity_data, lon
   memory_block[7] = 0;
   *memory_block = -1;
   *(byte *)(memory_block + 1) = *(byte *)(memory_block + 1) & 0xfe;
-  *(undefined1 *)(memory_block + 8) = 0;
+  *(int8_t *)(memory_block + 8) = 0;
   stack_byte1 = *(byte *)(*entity_data + 0x28) & 1;
   stack_flag = 1;
   stack_var1 = entity_capacity;
   stack_ptr2 = memory_block;
   stack_ptr3 = manager_ptr;
-  resource_ptr = (undefined8 *)create_resource_handle(base_address, stack_buffer, (entity_size == 4) + '\x0e', entity_type);
-  *(undefined8 *)manager_ptr = *resource_ptr;
+  resource_ptr = (uint64_t *)create_resource_handle(base_address, stack_buffer, (entity_size == 4) + '\x0e', entity_type);
+  *(uint64_t *)manager_ptr = *resource_ptr;
   memory_block[4] = *(int *)(resource_ptr + 1);
   memory_block[5] = *(int *)((longlong)resource_ptr + 0xc);
   resource_handle = resource_ptr[2];
   resource_ptr[2] = 0;
   stack_var2 = *(longlong **)(memory_block + 6);
-  *(undefined8 *)(memory_block + 6) = resource_handle;
+  *(uint64_t *)(memory_block + 6) = resource_handle;
   if (stack_var2 != (longlong *)0x0) {
     (**(code **)(*stack_var2 + 0x38))();
   }
@@ -91,14 +91,14 @@ void initialize_entity_manager(undefined8 context_id, longlong *entity_data, lon
   entity_offset = *(longlong *)(*entity_data + 0x20);
   if (entity_offset != 0) {
     if (entity_type == '\x01') {
-      register_resource_global(GLOBAL_RESOURCE_MANAGER, *(undefined8 *)(memory_block + 6), entity_offset);
+      register_resource_global(GLOBAL_RESOURCE_MANAGER, *(uint64_t *)(memory_block + 6), entity_offset);
       stack_ptr5 = &GLOBAL_CONSTANT_PTR;
       stack_ptr6 = stack_buffer2;
       stack_buffer2[0] = 0;
-      stack_var4 = *(undefined4 *)(initialization_flags + 0x10);
+      stack_var4 = *(int32_t *)(initialization_flags + 0x10);
       temp_ptr = &GLOBAL_STRING_CONSTANT;
-      if (*(undefined **)(initialization_flags + 8) != (undefined *)0x0) {
-        temp_ptr = *(undefined **)(initialization_flags + 8);
+      if (*(void **)(initialization_flags + 8) != (void *)0x0) {
+        temp_ptr = *(void **)(initialization_flags + 8);
       }
       strcpy_s(stack_buffer2, 0x80, temp_ptr);
       stack_ptr5 = &GLOBAL_STRING_PTR2;
@@ -107,28 +107,28 @@ void initialize_entity_manager(undefined8 context_id, longlong *entity_data, lon
     stack_var1 = allocation_result * entity_capacity;
     stack_flag = 1;
     allocate_resource_memory(GLOBAL_RESOURCE_MANAGER,
-                           *(undefined8 *)
+                           *(uint64_t *)
                            ((*(longlong)(((longlong)memory_block[5] + 0x25) * 0x20 + base_address) + 8 +
                            (longlong)memory_block[4] * 0x18)), *manager_ptr * allocation_result, entity_offset);
   }
   if (entity_type == '\0') {
     checksum = (ulonglong)memory_block % (ulonglong)*(uint *)(base_address + 0x40);
-    for (resource_ptr = *(undefined8 **)(*(longlong *)(base_address + 0x38) + checksum * 8);
-        resource_ptr != (undefined8 *)0x0; resource_ptr = (undefined8 *)resource_ptr[1]) {
+    for (resource_ptr = *(uint64_t **)(*(longlong *)(base_address + 0x38) + checksum * 8);
+        resource_ptr != (uint64_t *)0x0; resource_ptr = (uint64_t *)resource_ptr[1]) {
       if (memory_block == (int *)*resource_ptr) goto resource_cleanup;
     }
-    resource_ptr = (undefined8 *)allocate_memory_block(GLOBAL_MEMORY_POOL, 0x10, *(undefined1 *)(base_address + 0x5c));
+    resource_ptr = (uint64_t *)allocate_memory_block(GLOBAL_MEMORY_POOL, 0x10, *(int8_t *)(base_address + 0x5c));
     *resource_ptr = memory_block;
     resource_ptr[1] = 0;
     stack_var1 = 1;
-    update_resource_hash(base_address + 0x50, &stack_var2, *(undefined4 *)(base_address + 0x40),
-                         *(undefined4 *)(base_address + 0x48));
+    update_resource_hash(base_address + 0x50, &stack_var2, *(int32_t *)(base_address + 0x40),
+                         *(int32_t *)(base_address + 0x48));
     if ((char)stack_var2 != '\0') {
       checksum = (ulonglong)memory_block % (ulonglong)stack_var2._4_4_;
       update_hash_table(base_address + 0x30, stack_var2._4_4_);
     }
-    resource_ptr[1] = *(undefined8 *)(*(longlong *)(base_address + 0x38) + checksum * 8);
-    *(undefined8 **)(*(longlong *)(base_address + 0x38) + checksum * 8) = resource_ptr;
+    resource_ptr[1] = *(uint64_t *)(*(longlong *)(base_address + 0x38) + checksum * 8);
+    *(uint64_t **)(*(longlong *)(base_address + 0x38) + checksum * 8) = resource_ptr;
     *(longlong *)(base_address + 0x48) = *(longlong *)(base_address + 0x48) + 1;
   }
 resource_cleanup:
@@ -139,9 +139,9 @@ resource_cleanup:
   cleanup_resource(stack_checksum ^ (ulonglong)temp_buffer);
 }
 
-// 函数: void cleanup_entity_manager(undefined8 context_id, ulonglong entity_handle, longlong cleanup_flags, undefined8 cleanup_param)
+// 函数: void cleanup_entity_manager(uint64_t context_id, ulonglong entity_handle, longlong cleanup_flags, uint64_t cleanup_param)
 // 功能: 清理实体管理器，释放资源并清理内存
-void cleanup_entity_manager(undefined8 context_id, ulonglong entity_handle, longlong cleanup_flags, undefined8 cleanup_param)
+void cleanup_entity_manager(uint64_t context_id, ulonglong entity_handle, longlong cleanup_flags, uint64_t cleanup_param)
 {
   ulonglong *hash_entry_ptr;
   ulonglong *current_ptr;
@@ -188,10 +188,10 @@ void cleanup_entity_manager(undefined8 context_id, ulonglong entity_handle, long
   return;
 }
 
-// 函数: void process_entity_batch(undefined8 context_id, longlong entity_base, char *entity_flags, longlong batch_size,
+// 函数: void process_entity_batch(uint64_t context_id, longlong entity_base, char *entity_flags, longlong batch_size,
 // 功能: 批量处理实体，根据标志位进行不同的操作
-void process_entity_batch(undefined8 context_id, longlong entity_base, char *entity_flags, longlong batch_size,
-                         undefined8 process_param, longlong output_buffer)
+void process_entity_batch(uint64_t context_id, longlong entity_base, char *entity_flags, longlong batch_size,
+                         uint64_t process_param, longlong output_buffer)
 {
   longlong system_offset;
   int entity_count;
@@ -200,17 +200,17 @@ void process_entity_batch(undefined8 context_id, longlong entity_base, char *ent
   longlong entity_type_offset;
   longlong flag_offset;
   int *flag_ptr;
-  undefined8 *resource_ptr;
-  undefined1 temp_buffer[32];
-  undefined4 temp_var1;
-  undefined8 *temp_ptr2;
-  undefined4 temp_var2;
+  uint64_t *resource_ptr;
+  int8_t temp_buffer[32];
+  int32_t temp_var1;
+  uint64_t *temp_ptr2;
+  int32_t temp_var2;
   longlong *stack_ptr1;
   longlong *stack_ptr2;
   longlong stack_var1;
   longlong stack_var2;
-  undefined8 stack_var3;
-  undefined8 stack_buffer[2];
+  uint64_t stack_var3;
+  uint64_t stack_buffer[2];
   char flag_array[16];
   ulonglong stack_checksum;
   
@@ -282,18 +282,18 @@ void process_entity_batch(undefined8 context_id, longlong entity_base, char *ent
   stack_var2 = batch_size;
   if (*(char *)(entity_base + 0x180) == '\x01') {
     if (0 < entity_type_offset) {
-      resource_ptr = (undefined8 *)(output_buffer + 8);
+      resource_ptr = (uint64_t *)(output_buffer + 8);
       system_offset = (entity_base - output_buffer) + 8;
       stack_var1 = system_offset;
       do {
         if (flag_array[data_offset] != '\0') {
           temp_ptr = *(longlong *)(GLOBAL_RESOURCE_MANAGER_BASE + 0x1cd8);
           system_offset = *(longlong )(system_offset + (longlong)resource_ptr);
-          *(undefined4 *)(system_offset + 0x16c) = *(undefined4 )(GLOBAL_CONSTANT_BASE + 0x224);
+          *(int32_t *)(system_offset + 0x16c) = *(int32_t )(GLOBAL_CONSTANT_BASE + 0x224);
           temp_ptr = *(longlong **)(temp_ptr + 0x8400);
           temp_ptr2 = stack_buffer;
           temp_var1 = 0;
-          entity_count = (**(code **)(*temp_ptr + 0x70))(temp_ptr, *(undefined8 *)(system_offset + 0x10), 0, 4);
+          entity_count = (**(code **)(*temp_ptr + 0x70))(temp_ptr, *(uint64_t *)(system_offset + 0x10), 0, 4);
           if (entity_count < 0) {
             handle_error(entity_count, &GLOBAL_ERROR_HANDLER);
           }
@@ -349,9 +349,9 @@ void process_entity_batch(undefined8 context_id, longlong entity_base, char *ent
   cleanup_resource(stack_checksum ^ (ulonglong)temp_buffer);
 }
 
-// 函数: void update_entity_data(undefined8 context_id, longlong entity_base, longlong data_buffer)
+// 函数: void update_entity_data(uint64_t context_id, longlong entity_base, longlong data_buffer)
 // 功能: 更新实体数据，处理不同类型的实体更新
-void update_entity_data(undefined8 context_id, longlong entity_base, longlong data_buffer)
+void update_entity_data(uint64_t context_id, longlong entity_base, longlong data_buffer)
 {
   int entity_index;
   int entity_total;
@@ -361,8 +361,8 @@ void update_entity_data(undefined8 context_id, longlong entity_base, longlong da
   code *update_function;
   ulonglong index_counter;
   ulonglong step_counter;
-  undefined4 *data_ptr;
-  undefined4 *config_ptr;
+  int32_t *data_ptr;
+  int32_t *config_ptr;
   int config_array[4];
   longlong *temp_ptr;
   
@@ -370,8 +370,8 @@ void update_entity_data(undefined8 context_id, longlong entity_base, longlong da
   index_counter = 0;
   entity_total = *(int )(entity_base + 0x188);
   if (0 < (longlong)entity_total) {
-    config_ptr = (undefined4 *)((ulonglong)*(byte *)(entity_base + 0x181) * 0x1c0 + 0x1e8 + GLOBAL_RESOURCE_TABLE_BASE);
-    data_ptr = (undefined4 *)(entity_base + 0xc);
+    config_ptr = (int32_t *)((ulonglong)*(byte *)(entity_base + 0x181) * 0x1c0 + 0x1e8 + GLOBAL_RESOURCE_TABLE_BASE);
+    data_ptr = (int32_t *)(entity_base + 0xc);
     step_counter = index_counter;
     do {
       if (*(longlong *)(data_buffer + index_counter * 8) != 0) {
@@ -379,14 +379,14 @@ void update_entity_data(undefined8 context_id, longlong entity_base, longlong da
           entity_ptr = *(longlong *)(data_ptr + 1);
           manager_ptr = *(longlong **)(*(longlong )(GLOBAL_RESOURCE_MANAGER_BASE + 0x1cd8) + 0x8400);
           update_function = *(code **)(*manager_ptr + 0x78);
-          *(undefined4 *)(entity_ptr + 0x16c) = *(undefined4 )(GLOBAL_CONSTANT_BASE + 0x224);
-          (*update_function)(manager_ptr, *(undefined8 *)(entity_ptr + 0x10), 0);
+          *(int32_t *)(entity_ptr + 0x16c) = *(int32_t )(GLOBAL_CONSTANT_BASE + 0x224);
+          (*update_function)(manager_ptr, *(uint64_t *)(entity_ptr + 0x10), 0);
         }
         else {
           entity_step = config_ptr[-0x40];
           create_resource_entry(GLOBAL_ENGINE_BASE_ADDRESS, config_array, *data_ptr, *(char *)(entity_base + 0x180), entity_index, 1, 1);
-          process_resource_batch(*(undefined8 *)(GLOBAL_RESOURCE_MANAGER_BASE + 0x1cd8), temp_ptr, config_array[0] * entity_step,
-                                *(undefined8 *)(*(longlong )(data_buffer + index_counter * 8) + 0x10), entity_step * entity_index, 0);
+          process_resource_batch(*(uint64_t *)(GLOBAL_RESOURCE_MANAGER_BASE + 0x1cd8), temp_ptr, config_array[0] * entity_step,
+                                *(uint64_t *)(*(longlong )(data_buffer + index_counter * 8) + 0x10), entity_step * entity_index, 0);
           update_entity_properties(entity_base, config_array, step_counter, *config_ptr, entity_step);
           if (temp_ptr != (longlong *)0x0) {
             (**(code **)(*temp_ptr + 0x38))();
@@ -402,32 +402,32 @@ void update_entity_data(undefined8 context_id, longlong entity_base, longlong da
   return;
 }
 
-// 函数: void process_entity_creation(longlong *context_ptr, int *entity_config, longlong *output_ptr, undefined8 creation_flags,
+// 函数: void process_entity_creation(longlong *context_ptr, int *entity_config, longlong *output_ptr, uint64_t creation_flags,
 // 功能: 处理实体创建过程，分配资源并初始化实体
-void process_entity_creation(longlong *context_ptr, int *entity_config, longlong *output_ptr, undefined8 creation_flags,
+void process_entity_creation(longlong *context_ptr, int *entity_config, longlong *output_ptr, uint64_t creation_flags,
                             longlong result_buffer)
 {
   longlong resource_manager;
   longlong entity_data;
   int config_size;
   longlong *allocator_ptr;
-  undefined8 resource_handle;
+  uint64_t resource_handle;
   longlong *temp_ptr1;
   longlong *temp_ptr2;
-  undefined8 temp_buffer[2];
+  uint64_t temp_buffer[2];
   
   temp_ptr1 = context_ptr;
   if ((char)entity_config[8] == '\x01') {
     resource_manager = *(longlong )(GLOBAL_RESOURCE_MANAGER_BASE + 0x1cd8);
     entity_data = *(longlong )(entity_config + 6);
-    *(undefined4 *)(entity_data + 0x16c) = *(undefined4 )(GLOBAL_CONSTANT_BASE + 0x224);
+    *(int32_t *)(entity_data + 0x16c) = *(int32_t )(GLOBAL_CONSTANT_BASE + 0x224);
     allocator_ptr = *(longlong **)(resource_manager + 0x8400);
     config_size = (**(code **)(*allocator_ptr + 0x70))
-                      (allocator_ptr, *(undefined8 )(entity_data + 0x10), 0, 4, 0, temp_buffer, 0, 0xfffffffffffffffe);
+                      (allocator_ptr, *(uint64_t )(entity_data + 0x10), 0, 4, 0, temp_buffer, 0, 0xfffffffffffffffe);
     if (config_size < 0) {
       handle_error(config_size, &GLOBAL_ERROR_HANDLER);
     }
-    *(undefined8 *)(result_buffer + 8) = temp_buffer[0];
+    *(uint64_t *)(result_buffer + 8) = temp_buffer[0];
     allocator_ptr = (longlong *)get_current_context();
     allocator_ptr = (longlong *)*allocator_ptr;
     if (allocator_ptr != (longlong *)0x0) {
@@ -452,16 +452,16 @@ void process_entity_creation(longlong *context_ptr, int *entity_config, longlong
   return;
 }
 
-// 函数: void update_entity_resources(undefined8 context_id, int *entity_config, longlong *resource_ptr)
+// 函数: void update_entity_resources(uint64_t context_id, int *entity_config, longlong *resource_ptr)
 // 功能: 更新实体资源，处理不同类型的资源更新
-void update_entity_resources(undefined8 context_id, int *entity_config, longlong *resource_ptr)
+void update_entity_resources(uint64_t context_id, int *entity_config, longlong *resource_ptr)
 {
   int resource_type;
   longlong resource_data;
   longlong *manager_ptr;
   code *update_function;
-  undefined8 engine_base;
-  undefined1 temp_buffer[16];
+  uint64_t engine_base;
+  int8_t temp_buffer[16];
   longlong *temp_ptr;
   
   engine_base = GLOBAL_ENGINE_BASE_ADDRESS;
@@ -469,8 +469,8 @@ void update_entity_resources(undefined8 context_id, int *entity_config, longlong
     resource_data = *(longlong )(entity_config + 6);
     manager_ptr = *(longlong **)(*(longlong )(GLOBAL_RESOURCE_MANAGER_BASE + 0x1cd8) + 0x8400);
     update_function = *(code **)(*manager_ptr + 0x78);
-    *(undefined4 )(resource_data + 0x16c) = *(undefined4 )(GLOBAL_CONSTANT_BASE + 0x224);
-    (*update_function)(manager_ptr, *(undefined8 )(resource_data + 0x10), 0);
+    *(int32_t )(resource_data + 0x16c) = *(int32_t )(GLOBAL_CONSTANT_BASE + 0x224);
+    (*update_function)(manager_ptr, *(uint64_t )(resource_data + 0x10), 0);
   }
   else {
     release_resource_memory(GLOBAL_ENGINE_BASE_ADDRESS, entity_config + 2);
@@ -481,26 +481,26 @@ void update_entity_resources(undefined8 context_id, int *entity_config, longlong
     if (temp_ptr != (longlong *)0x0) {
       (**(code **)(*temp_ptr + 0x38))();
     }
-    process_resource_batch(*(undefined8 )(GLOBAL_RESOURCE_MANAGER_BASE + 0x1cd8), *(undefined8 )(entity_config + 6),
-                           entity_config[2] * resource_type, *(undefined8 )(*resource_ptr + 0x10), *entity_config * resource_type, 0);
+    process_resource_batch(*(uint64_t )(GLOBAL_RESOURCE_MANAGER_BASE + 0x1cd8), *(uint64_t )(entity_config + 6),
+                           entity_config[2] * resource_type, *(uint64_t )(*resource_ptr + 0x10), *entity_config * resource_type, 0);
   }
   return;
 }
 
-// 函数: void setup_entity_callbacks(undefined8 context_id, undefined8 callback_param1, undefined8 callback_param2, undefined8 callback_param3)
+// 函数: void setup_entity_callbacks(uint64_t context_id, uint64_t callback_param1, uint64_t callback_param2, uint64_t callback_param3)
 // 功能: 设置实体回调函数，配置事件处理机制
-void setup_entity_callbacks(undefined8 context_id, undefined8 callback_param1, undefined8 callback_param2, undefined8 callback_param3)
+void setup_entity_callbacks(uint64_t context_id, uint64_t callback_param1, uint64_t callback_param2, uint64_t callback_param3)
 {
-  undefined8 engine_base;
-  undefined4 stack_param1;
-  undefined4 stack_param2;
-  undefined4 stack_param3;
-  undefined4 stack_param4;
-  undefined4 stack_param5;
-  undefined4 stack_param6;
-  undefined4 stack_param7;
-  undefined4 stack_param8;
-  undefined4 *callback_ptr[2];
+  uint64_t engine_base;
+  int32_t stack_param1;
+  int32_t stack_param2;
+  int32_t stack_param3;
+  int32_t stack_param4;
+  int32_t stack_param5;
+  int32_t stack_param6;
+  int32_t stack_param7;
+  int32_t stack_param8;
+  int32_t *callback_ptr[2];
   code *callback1;
   code *callback2;
   
@@ -508,19 +508,19 @@ void setup_entity_callbacks(undefined8 context_id, undefined8 callback_param1, u
   callback1 = entity_callback_handler1;
   callback2 = entity_callback_handler2;
   callback_ptr[0] =
-       (undefined4 *)allocate_callback_memory(GLOBAL_MEMORY_POOL, 0x20, 8, GLOBAL_CALLBACK_CONSTANT, 0xfffffffffffffffe);
-  stack_param1 = (undefined4)callback_param1;
-  stack_param2 = (undefined4)((ulonglong)callback_param1 >> 0x20);
-  stack_param3 = (undefined4)callback_param2;
-  stack_param4 = (undefined4)((ulonglong)callback_param2 >> 0x20);
+       (int32_t *)allocate_callback_memory(GLOBAL_MEMORY_POOL, 0x20, 8, GLOBAL_CALLBACK_CONSTANT, 0xfffffffffffffffe);
+  stack_param1 = (int32_t)callback_param1;
+  stack_param2 = (int32_t)((ulonglong)callback_param1 >> 0x20);
+  stack_param3 = (int32_t)callback_param2;
+  stack_param4 = (int32_t)((ulonglong)callback_param2 >> 0x20);
   *callback_ptr[0] = stack_param1;
   callback_ptr[0][1] = stack_param2;
   callback_ptr[0][2] = stack_param3;
   callback_ptr[0][3] = stack_param4;
-  stack_param5 = (undefined4)callback_param3;
-  stack_param6 = (undefined4)((ulonglong)callback_param3 >> 0x20);
-  stack_param7 = (undefined4)engine_base;
-  stack_param8 = (undefined4)((ulonglong)engine_base >> 0x20);
+  stack_param5 = (int32_t)callback_param3;
+  stack_param6 = (int32_t)((ulonglong)callback_param3 >> 0x20);
+  stack_param7 = (int32_t)engine_base;
+  stack_param8 = (int32_t)((ulonglong)engine_base >> 0x20);
   callback_ptr[0][4] = stack_param5;
   callback_ptr[0][5] = stack_param6;
   callback_ptr[0][6] = stack_param7;
@@ -537,7 +537,7 @@ void configure_entity_properties(longlong entity_base, int *property_config, int
   int multiplier;
   longlong property_data;
   byte property_flag;
-  undefined1 index_flag;
+  int8_t index_flag;
   longlong property_offset;
   longlong config_offset;
   
@@ -550,87 +550,87 @@ void configure_entity_properties(longlong entity_base, int *property_config, int
   property_offset = GLOBAL_CONSTANT_BASE;
   if (property_type != -1) {
     property_data = *(longlong )(property_config + 4);
-    *(undefined4 )(property_data + 0x16c) = *(undefined4 )(GLOBAL_CONSTANT_BASE + 0x224);
-    *(undefined8 *)(entity_base + 0x1a0 + config_offset * 8) = *(undefined8 )(property_data + 0x10);
+    *(int32_t )(property_data + 0x16c) = *(int32_t )(GLOBAL_CONSTANT_BASE + 0x224);
+    *(uint64_t *)(entity_base + 0x1a0 + config_offset * 8) = *(uint64_t )(property_data + 0x10);
     config_value = *property_config;
     *(int )(entity_base + 0x260 + config_offset * 4) = property_count;
     *(int )(entity_base + 0x220 + config_offset * 4) = config_value * property_count;
   }
   config_value = property_config[3];
-  index_flag = (undefined1)property_index;
+  index_flag = (int8_t)property_index;
   switch(config_value) {
   case 2:
     config_offset = *(longlong )(property_config + 4);
-    *(undefined4 )(config_offset + 0x16c) = *(undefined4 )(property_offset + 0x224);
-    *(undefined8 )(entity_base + 0x2a8) = *(undefined8 )(config_offset + 0x10);
+    *(int32_t )(config_offset + 0x16c) = *(int32_t )(property_offset + 0x224);
+    *(uint64_t )(entity_base + 0x2a8) = *(uint64_t )(config_offset + 0x10);
     multiplier = *property_config;
     *(int )(entity_base + 700) = property_count;
     *(int )(entity_base + 0x2b4) = multiplier * property_count;
     property_offset = (longlong)property_config[2];
-    *(undefined1 *)(entity_base + 0x19d) = 0;
+    *(int8_t *)(entity_base + 0x19d) = 0;
     property_flag = get_property_bit_position(config_value);
-    *(undefined1 *)(entity_base + 0x193) = index_flag;
+    *(int8_t *)(entity_base + 0x193) = index_flag;
     goto update_property_bits;
   case 4:
   case 5:
     config_offset = *(longlong )(property_config + 4);
-    *(undefined4 )(config_offset + 0x16c) = *(undefined4 )(property_offset + 0x224);
-    *(undefined8 )(entity_base + 0x2a0) = *(undefined8 )(config_offset + 0x10);
+    *(int32_t )(config_offset + 0x16c) = *(int32_t )(property_offset + 0x224);
+    *(uint64_t )(entity_base + 0x2a0) = *(uint64_t )(config_offset + 0x10);
     multiplier = *property_config;
     *(int )(entity_base + 0x2b8) = property_count;
     *(int )(entity_base + 0x2b0) = multiplier * property_count;
     property_offset = (longlong)property_config[2] + 1;
-    *(undefined1 *)(entity_base + 0x198) = 0;
+    *(int8_t *)(entity_base + 0x198) = 0;
     property_flag = get_property_bit_position(config_value);
-    *(undefined1 *)(entity_base + 400) = index_flag;
+    *(int8_t *)(entity_base + 400) = index_flag;
     *(ulonglong *)(entity_base + 0x198) = *(ulonglong *)(entity_base + 0x198) | property_offset << (property_flag & 0x3f);
     break;
   case 8:
     property_offset = (longlong)property_config[2] + 1;
-    *(undefined1 *)(entity_base + 0x19b) = 0;
+    *(int8_t *)(entity_base + 0x19b) = 0;
     property_flag = get_property_bit_position(config_value);
-    *(undefined1 *)(entity_base + 0x194) = index_flag;
+    *(int8_t *)(entity_base + 0x194) = index_flag;
     *(ulonglong *)(entity_base + 0x198) = *(ulonglong *)(entity_base + 0x198) | property_offset << (property_flag & 0x3f);
     break;
   case 9:
     property_offset = (longlong)property_config[2] + 1;
-    *(undefined1 *)(entity_base + 0x19a) = 0;
+    *(int8_t *)(entity_base + 0x19a) = 0;
     property_flag = get_property_bit_position(config_value);
-    *(undefined1 *)(entity_base + 0x195) = index_flag;
+    *(int8_t *)(entity_base + 0x195) = index_flag;
     *(ulonglong *)(entity_base + 0x198) = *(ulonglong )(entity_base + 0x198) | property_offset << (property_flag & 0x3f);
     break;
   case 10:
     property_offset = (longlong)property_config[2];
-    *(undefined1 *)(entity_base + 0x19c) = 0;
+    *(int8_t *)(entity_base + 0x19c) = 0;
     property_flag = get_property_bit_position(config_value);
-    *(undefined1 *)(entity_base + 0x191) = index_flag;
+    *(int8_t *)(entity_base + 0x191) = index_flag;
     goto update_property_bits;
   case 0xb:
     property_offset = (longlong)property_config[2];
-    *(undefined1 *)(entity_base + 0x19e) = 0;
+    *(int8_t *)(entity_base + 0x19e) = 0;
     property_flag = get_property_bit_position(config_value);
-    *(undefined1 *)(entity_base + 0x192) = index_flag;
+    *(int8_t *)(entity_base + 0x192) = index_flag;
   update_property_bits:
     *(ulonglong *)(entity_base + 0x198) = *(ulonglong )(entity_base + 0x198) | property_offset + 1 << (property_flag & 0x3f);
     break;
   case 0xc:
     property_offset = (longlong)property_config[2] + 1;
-    *(undefined1 *)(entity_base + 0x199) = 0;
+    *(int8_t *)(entity_base + 0x199) = 0;
     property_flag = get_property_bit_position(config_value);
-    *(undefined1 *)(entity_base + 400) = index_flag;
+    *(int8_t *)(entity_base + 400) = index_flag;
     *(ulonglong *)(entity_base + 0x198) = *(ulonglong )(entity_base + 0x198) | property_offset << (property_flag & 0x3f);
   }
   return;
 }
 
-// 函数: void resize_entity_array(longlong *array_ptr, undefined8 resize_param, undefined8 capacity_param, undefined8 alignment_param)
+// 函数: void resize_entity_array(longlong *array_ptr, uint64_t resize_param, uint64_t capacity_param, uint64_t alignment_param)
 // 功能: 调整数组大小，重新分配内存并复制数据
-void resize_entity_array(longlong *array_ptr, undefined8 resize_param, undefined8 capacity_param, undefined8 alignment_param)
+void resize_entity_array(longlong *array_ptr, uint64_t resize_param, uint64_t capacity_param, uint64_t alignment_param)
 {
   longlong *start_ptr;
   longlong *end_ptr;
-  undefined8 *new_buffer;
-  undefined8 *current_ptr;
+  uint64_t *new_buffer;
+  uint64_t *current_ptr;
   longlong array_size;
   longlong current_size;
   longlong element_size;
@@ -638,7 +638,7 @@ void resize_entity_array(longlong *array_ptr, undefined8 resize_param, undefined
   array_size = array_ptr[1];
   current_size = *array_ptr;
   element_size = (array_size - current_size) / 0x18;
-  new_buffer = (undefined8 *)0x0;
+  new_buffer = (uint64_t *)0x0;
   if (element_size == 0) {
     element_size = 1;
   }
@@ -646,7 +646,7 @@ void resize_entity_array(longlong *array_ptr, undefined8 resize_param, undefined
     element_size = element_size * 2;
     if (element_size == 0) goto allocation_complete;
   }
-  new_buffer = (undefined8 *)
+  new_buffer = (uint64_t *)
            allocate_memory_block(GLOBAL_MEMORY_POOL, element_size * 0x18, (char)array_ptr[3], alignment_param, 0xfffffffffffffffe);
   array_size = array_ptr[1];
   current_size = *array_ptr;
@@ -657,7 +657,7 @@ allocation_complete:
     do {
       current_ptr[1] = 0;
       current_ptr[2] = 0;
-      *current_ptr = *(undefined8 )(current_size + (longlong)current_ptr);
+      *current_ptr = *(uint64_t )(current_size + (longlong)current_ptr);
       start_ptr = *(longlong **)(current_size + 8 + (longlong)current_ptr);
       if (start_ptr != (longlong *)0x0) {
         (**(code **)(*start_ptr + 0x28))(start_ptr);
@@ -676,14 +676,14 @@ allocation_complete:
       if (end_ptr != (longlong *)0x0) {
         (**(code **)(*end_ptr + 0x38))();
       }
-      *(undefined8 )(current_size + (longlong)current_ptr) = 0;
+      *(uint64_t )(current_size + (longlong)current_ptr) = 0;
       start_ptr = *(longlong **)(current_size + 8 + (longlong)current_ptr);
-      *(undefined8 )(current_size + 8 + (longlong)current_ptr) = 0;
+      *(uint64_t )(current_size + 8 + (longlong)current_ptr) = 0;
       if (start_ptr != (longlong *)0x0) {
         (**(code **)(*start_ptr + 0x38))();
       }
       start_ptr = *(longlong **)(current_size + 0x10 + (longlong)current_ptr);
-      *(undefined8 )(current_size + 0x10 + (longlong)current_ptr) = 0;
+      *(uint64_t )(current_size + 0x10 + (longlong)current_ptr) = 0;
       if (start_ptr != (longlong *)0x0) {
         (**(code **)(*start_ptr + 0x38))();
       }
@@ -710,9 +710,9 @@ allocation_complete:
   free_memory(current_size);
 }
 
-// 函数: void collect_entity_statistics(undefined8 *stats_ptr)
+// 函数: void collect_entity_statistics(uint64_t *stats_ptr)
 // 功能: 收集实体统计信息，计算各种指标
-void collect_entity_statistics(undefined8 *stats_ptr)
+void collect_entity_statistics(uint64_t *stats_ptr)
 {
   int *entity_counter;
   int stat_value;
@@ -728,10 +728,10 @@ void collect_entity_statistics(undefined8 *stats_ptr)
   int stack_var1;
   longlong stack_var2;
   
-  stats_ptr = (undefined8 *)*stats_ptr;
-  *(undefined4 *)*stats_ptr = 0;
-  *(undefined4 *)stats_ptr[1] = 0;
-  *(undefined4 *)stats_ptr[2] = 0;
+  stats_ptr = (uint64_t *)*stats_ptr;
+  *(int32_t *)*stats_ptr = 0;
+  *(int32_t *)stats_ptr[1] = 0;
+  *(int32_t *)stats_ptr[2] = 0;
   stack_var1 = 0;
   list_capacity = 0x4a0;
   do {
@@ -786,9 +786,9 @@ void collect_entity_statistics(undefined8 *stats_ptr)
 // 功能: 处理实体回调，根据回调类型执行相应的操作
 longlong handle_entity_callback(longlong *param1, longlong *param2, int callback_type)
 {
-  undefined8 *temp_ptr;
-  undefined8 temp_value;
-  undefined8 *source_ptr;
+  uint64_t *temp_ptr;
+  uint64_t temp_value;
+  uint64_t *source_ptr;
   
   if (callback_type == 3) {
     return GLOBAL_CALLBACK_TABLE_ADDRESS;
@@ -804,8 +804,8 @@ longlong handle_entity_callback(longlong *param1, longlong *param2, int callback
   }
   else {
     if (callback_type == 1) {
-      source_ptr = (undefined8 *)allocate_callback_memory(GLOBAL_MEMORY_POOL, 0x20, 8, GLOBAL_CALLBACK_CONSTANT, 0xfffffffffffffffe);
-      temp_ptr = (undefined8 *)*param2;
+      source_ptr = (uint64_t *)allocate_callback_memory(GLOBAL_MEMORY_POOL, 0x20, 8, GLOBAL_CALLBACK_CONSTANT, 0xfffffffffffffffe);
+      temp_ptr = (uint64_t *)*param2;
       temp_value = temp_ptr[1];
       *source_ptr = *temp_ptr;
       source_ptr[1] = temp_value;
@@ -828,27 +828,27 @@ longlong handle_entity_callback(longlong *param1, longlong *param2, int callback
 // 功能: 初始化哈希表，分配内存并清零
 void initialize_hash_table(longlong table_base, longlong table_size)
 {
-  undefined8 table_ptr;
+  uint64_t table_ptr;
   
-  table_ptr = allocate_memory_block(GLOBAL_MEMORY_POOL, table_size * 8 + 8, 8, *(undefined1 )(table_base + 0x2c));
+  table_ptr = allocate_memory_block(GLOBAL_MEMORY_POOL, table_size * 8 + 8, 8, *(int8_t )(table_base + 0x2c));
   // 清零内存
   memset(table_ptr, 0, table_size * 8);
 }
 
-// 函数: undefined8 * initialize_resource_handle(undefined8 *handle_ptr)
+// 函数: uint64_t * initialize_resource_handle(uint64_t *handle_ptr)
 // 功能: 初始化资源句柄，设置默认值
-undefined8 * initialize_resource_handle(undefined8 *handle_ptr)
+uint64_t * initialize_resource_handle(uint64_t *handle_ptr)
 {
   *handle_ptr = 0xffffffffffffffff;
-  *(undefined4 )(handle_ptr + 1) = 0xffffffff;
-  *(undefined4 *)((longlong)handle_ptr + 0xc) = 0x10;
+  *(int32_t )(handle_ptr + 1) = 0xffffffff;
+  *(int32_t *)((longlong)handle_ptr + 0xc) = 0x10;
   handle_ptr[2] = 0;
   return handle_ptr;
 }
 
-// 函数: void reset_resource_handle(undefined8 *handle_ptr)
+// 函数: void reset_resource_handle(uint64_t *handle_ptr)
 // 功能: 重置资源句柄，清理资源
-void reset_resource_handle(undefined8 *handle_ptr)
+void reset_resource_handle(uint64_t *handle_ptr)
 {
   longlong *resource_ptr;
   
@@ -858,8 +858,8 @@ void reset_resource_handle(undefined8 *handle_ptr)
   if (resource_ptr != (longlong *)0x0) {
     (**(code **)(*resource_ptr + 0x38))();
   }
-  *(undefined4 *)((longlong)handle_ptr + 0xc) = 0x10;
-  *(undefined4 )(handle_ptr + 1) = 0xffffffff;
+  *(int32_t *)((longlong)handle_ptr + 0xc) = 0x10;
+  *(int32_t )(handle_ptr + 1) = 0xffffffff;
   return;
 }
 
@@ -883,8 +883,8 @@ void cleanup_entity_resources(longlong *resource_manager)
       flag_ptr = (uint *)(*(longlong )(current_offset + *(longlong )(*resource_manager + 0x38)) + 0x100);
       *flag_ptr = *flag_ptr & 0xfffff7ff;
       table_offset = *(longlong )(current_offset + *(longlong )(*resource_manager + 0x38));
-      *(undefined8 )(table_offset + 0x108) = 0xffffffffffffffff;
-      *(undefined4 )(table_offset + 0x110) = 0xffffffff;
+      *(uint64_t )(table_offset + 0x108) = 0xffffffffffffffff;
+      *(int32_t )(table_offset + 0x110) = 0xffffffff;
       current_offset = current_offset + 0x10;
       next_offset = next_offset + -1;
     } while (next_offset != 0);

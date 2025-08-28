@@ -53,12 +53,12 @@ void cleanup_global_object_pool(void)
   if (((longlong)plVar3 - (longlong)plVar2) / 0x18 != 0) {
     do {
       plVar3 = *(longlong **)(uVar4 + (longlong)plVar2);
-      *(undefined8 *)(uVar4 + (longlong)plVar2) = 0;
+      *(uint64_t *)(uVar4 + (longlong)plVar2) = 0;
       if (plVar3 != (longlong *)0x0) {
         (**(code **)(*plVar3 + 0x38))();
       }
       plVar3 = *(longlong **)(uVar4 + 8 + *(longlong *)(lVar1 + 0x50));
-      *(undefined8 *)(uVar4 + 8 + *(longlong *)(lVar1 + 0x50)) = 0;
+      *(uint64_t *)(uVar4 + 8 + *(longlong *)(lVar1 + 0x50)) = 0;
       if (plVar3 != (longlong *)0x0) {
         (**(code **)(*plVar3 + 0x38))();
       }
@@ -83,7 +83,7 @@ void cleanup_global_object_pool(void)
       }
       plVar2 = plVar2 + 3;
     } while (plVar2 != plVar3);
-    *(undefined8 *)(lVar1 + 0x58) = *(undefined8 *)(lVar1 + 0x50);
+    *(uint64_t *)(lVar1 + 0x58) = *(uint64_t *)(lVar1 + 0x50);
   }
   return;
 }
@@ -127,18 +127,18 @@ void safe_cleanup_container_objects(longlong *container_ptr)
 void add_object_to_container(longlong *container_ptr, longlong *object_ptr)
 
 {
-  undefined8 *container_end;
+  uint64_t *container_end;
   longlong *current_obj;
   longlong *container_start;
-  undefined8 *src_ptr;
+  uint64_t *src_ptr;
   longlong *new_obj_ptr;
   longlong *old_obj_ptr;
-  undefined8 *temp_ptr1;
-  undefined8 *temp_ptr2;
+  uint64_t *temp_ptr1;
+  uint64_t *temp_ptr2;
   longlong new_capacity;
   
-  container_end = (undefined8 *)container_ptr[1];
-  container_start = (undefined8 *)*container_ptr;
+  container_end = (uint64_t *)container_ptr[1];
+  container_start = (uint64_t *)*container_ptr;
   new_capacity = ((longlong)container_end - (longlong)container_start) / 0x18;
   new_obj_ptr = (longlong *)0x0;
   if (new_capacity == 0) {
@@ -150,8 +150,8 @@ void add_object_to_container(longlong *container_ptr, longlong *object_ptr)
   }
   new_obj_ptr = (longlong *)
            allocate_container_memory(global_memory_allocator,new_capacity * 0x18,(char)container_ptr[3],container_start,0xfffffffffffffffe);
-  container_end = (undefined8 *)container_ptr[1];
-  container_start = (undefined8 *)*container_ptr;
+  container_end = (uint64_t *)container_ptr[1];
+  container_start = (uint64_t *)*container_ptr;
 CAPACITY_CALCULATED:
   new_obj_ptr = new_obj_ptr;
   if (container_start != container_end) {
@@ -159,10 +159,10 @@ CAPACITY_CALCULATED:
     do {
       *new_obj_ptr = src_ptr[-1];
       src_ptr[-1] = 0;
-      *(undefined8 *)((longlong)src_ptr + ((longlong)new_obj_ptr - (longlong)container_start)) = *src_ptr;
+      *(uint64_t *)((longlong)src_ptr + ((longlong)new_obj_ptr - (longlong)container_start)) = *src_ptr;
       *src_ptr = 0;
-      *(undefined4 *)(((longlong)new_obj_ptr - (longlong)container_start) + 8 + (longlong)src_ptr) =
-           *(undefined4 *)(src_ptr + 1);
+      *(int32_t *)(((longlong)new_obj_ptr - (longlong)container_start) + 8 + (longlong)src_ptr) =
+           *(int32_t *)(src_ptr + 1);
       new_obj_ptr = new_obj_ptr + 3;
       temp_ptr1 = src_ptr + 2;
       src_ptr = src_ptr + 3;
@@ -240,8 +240,8 @@ void release_scene_objects(longlong *scene_ptr)
 
 
 
-// 函数: void FUN_1801946e0(undefined8 *param_1)
-void FUN_1801946e0(undefined8 *param_1)
+// 函数: void FUN_1801946e0(uint64_t *param_1)
+void FUN_1801946e0(uint64_t *param_1)
 
 {
   longlong *plVar1;
@@ -259,7 +259,7 @@ void FUN_1801946e0(undefined8 *param_1)
   
   uVar11 = 0;
   *param_1 = 0;
-  *(undefined4 *)(param_1 + 1) = 0;
+  *(int32_t *)(param_1 + 1) = 0;
   lVar10 = param_1[3];
   lVar5 = param_1[2];
   lVar3 = lVar10 - lVar5 >> 0x3f;
@@ -272,7 +272,7 @@ void FUN_1801946e0(undefined8 *param_1)
       if (*(longlong *)(uVar12 + 8 + lVar5) - *(longlong *)(uVar12 + lVar5) >> 3 != 0) {
         do {
           plVar1 = *(longlong **)(uVar9 + *(longlong *)(uVar12 + lVar5));
-          *(undefined8 *)(uVar9 + *(longlong *)(uVar12 + lVar5)) = 0;
+          *(uint64_t *)(uVar9 + *(longlong *)(uVar12 + lVar5)) = 0;
           if (plVar1 != (longlong *)0x0) {
             (**(code **)(*plVar1 + 0x38))();
           }
@@ -298,7 +298,7 @@ void FUN_1801946e0(undefined8 *param_1)
       }
       plVar1[1] = (longlong)plVar4;
       plVar1 = *(longlong **)(uVar12 + 0x40 + param_1[2]);
-      *(undefined8 *)(uVar12 + 0x40 + param_1[2]) = 0;
+      *(uint64_t *)(uVar12 + 0x40 + param_1[2]) = 0;
       if (plVar1 != (longlong *)0x0) {
         (**(code **)(*plVar1 + 0x38))();
       }
@@ -432,34 +432,34 @@ float * matrix_transform_calculation(float *matrix_src, float *matrix_dest, floa
 
 // 函数: 向缓冲区添加字符
 // 作用: 向字符缓冲区添加一个字符，必要时扩容
-void add_char_to_buffer(longlong *buffer_ptr, undefined1 *char_ptr)
+void add_char_to_buffer(longlong *buffer_ptr, int8_t *char_ptr)
 
 {
-  undefined1 *puVar1;
-  undefined1 *puVar2;
+  int8_t *puVar1;
+  int8_t *puVar2;
   longlong lVar3;
-  undefined1 *puVar4;
+  int8_t *puVar4;
   
-  puVar4 = (undefined1 *)param_1[1];
-  if (puVar4 < (undefined1 *)param_1[2]) {
+  puVar4 = (int8_t *)param_1[1];
+  if (puVar4 < (int8_t *)param_1[2]) {
     param_1[1] = (longlong)(puVar4 + 1);
     *puVar4 = *param_2;
     return;
   }
-  puVar2 = (undefined1 *)*param_1;
+  puVar2 = (int8_t *)*param_1;
   if ((longlong)puVar4 - (longlong)puVar2 == 0) {
     lVar3 = 1;
   }
   else {
     lVar3 = ((longlong)puVar4 - (longlong)puVar2) * 2;
     if (lVar3 == 0) {
-      puVar1 = (undefined1 *)0x0;
+      puVar1 = (int8_t *)0x0;
       goto LAB_180194acf;
     }
   }
-  puVar1 = (undefined1 *)allocate_container_memory(global_memory_allocator,lVar3,(char)param_1[3]);
-  puVar2 = (undefined1 *)*param_1;
-  puVar4 = (undefined1 *)param_1[1];
+  puVar1 = (int8_t *)allocate_container_memory(global_memory_allocator,lVar3,(char)param_1[3]);
+  puVar2 = (int8_t *)*param_1;
+  puVar4 = (int8_t *)param_1[1];
 LAB_180194acf:
   if (puVar2 != puVar4) {
                     // WARNING: Subroutine does not return
@@ -482,7 +482,7 @@ LAB_180194acf:
 
 // 函数: 初始化图形对象
 // 作用: 初始化图形对象，设置默认属性
-void initialize_graphics_object(undefined8 object_handle)
+void initialize_graphics_object(uint64_t object_handle)
 
 {
   initialize_object_pool(param_1,0x30,4,default_object_constructor,0xfffffffffffffffe);
@@ -491,8 +491,8 @@ void initialize_graphics_object(undefined8 object_handle)
 
 
 
-undefined8 *
-FUN_180194b60(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+uint64_t *
+FUN_180194b60(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
 
 {
   *param_1 = &GLOBAL_OBJECT_POOL_VTABLE;
@@ -505,7 +505,7 @@ FUN_180194b60(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
 
 
 
-undefined4 * FUN_180194c10(undefined8 param_1,undefined4 *param_2)
+int32_t * FUN_180194c10(uint64_t param_1,int32_t *param_2)
 
 {
   *param_2 = 0;
@@ -522,8 +522,8 @@ undefined4 * FUN_180194c10(undefined8 param_1,undefined4 *param_2)
 
 
 
-undefined8 *
-FUN_180194c60(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+uint64_t *
+FUN_180194c60(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
 
 {
   *param_1 = &GLOBAL_SHADER_VTABLE;
@@ -538,8 +538,8 @@ FUN_180194c60(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
 
 
 
-undefined8 *
-FUN_180194cc0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+uint64_t *
+FUN_180194cc0(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
 
 {
   *param_1 = &GLOBAL_MATERIAL_VTABLE;
@@ -554,8 +554,8 @@ FUN_180194cc0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 *
-FUN_180194d10(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+uint64_t *
+FUN_180194d10(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
   longlong *plVar1;
@@ -563,10 +563,10 @@ FUN_180194d10(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefine
   plVar1 = (longlong *)allocate_object_memory(global_memory_allocator,0x70,8,3,0,0xfffffffffffffffe);
   *plVar1 = (longlong)&GLOBAL_BUFFER_VTABLE;
   *plVar1 = (longlong)&GLOBAL_RENDER_TARGET_VTABLE;
-  *(undefined4 *)(plVar1 + 1) = 0;
+  *(int32_t *)(plVar1 + 1) = 0;
   *plVar1 = (longlong)&GLOBAL_SCENE_VTABLE;
   plVar1[2] = 0;
-  *(undefined4 *)(plVar1 + 3) = 0;
+  *(int32_t *)(plVar1 + 3) = 0;
   plVar1[4] = 0;
   *plVar1 = (longlong)&GLOBAL_SHADER_VTABLE;
   plVar1[0xd] = 0;
@@ -574,14 +574,14 @@ FUN_180194d10(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefine
   plVar1[6] = 0;
   plVar1[7] = 0x3f80000000000000;
   plVar1[8] = 0;
-  *(undefined4 *)(plVar1 + 9) = 0;
-  *(undefined4 *)((longlong)plVar1 + 0x4c) = 0;
-  *(undefined4 *)(plVar1 + 10) = 0x3f800000;
-  *(undefined4 *)((longlong)plVar1 + 0x54) = 0;
-  *(undefined4 *)(plVar1 + 0xb) = 0;
-  *(undefined4 *)((longlong)plVar1 + 0x5c) = 0;
-  *(undefined4 *)(plVar1 + 0xc) = 0;
-  *(undefined4 *)((longlong)plVar1 + 100) = 0x3f800000;
+  *(int32_t *)(plVar1 + 9) = 0;
+  *(int32_t *)((longlong)plVar1 + 0x4c) = 0;
+  *(int32_t *)(plVar1 + 10) = 0x3f800000;
+  *(int32_t *)((longlong)plVar1 + 0x54) = 0;
+  *(int32_t *)(plVar1 + 0xb) = 0;
+  *(int32_t *)((longlong)plVar1 + 0x5c) = 0;
+  *(int32_t *)(plVar1 + 0xc) = 0;
+  *(int32_t *)((longlong)plVar1 + 100) = 0x3f800000;
   (**(code **)(*plVar1 + 0x138))(plVar1,param_4);
   *param_2 = plVar1;
   (**(code **)(*plVar1 + 0x28))(plVar1);
@@ -592,8 +592,8 @@ FUN_180194d10(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefine
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 *
-FUN_180194e00(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+uint64_t *
+FUN_180194e00(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
   longlong *plVar1;
@@ -601,10 +601,10 @@ FUN_180194e00(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefine
   plVar1 = (longlong *)allocate_object_memory(global_memory_allocator,0x70,8,3,0,0xfffffffffffffffe);
   *plVar1 = (longlong)&GLOBAL_BUFFER_VTABLE;
   *plVar1 = (longlong)&GLOBAL_RENDER_TARGET_VTABLE;
-  *(undefined4 *)(plVar1 + 1) = 0;
+  *(int32_t *)(plVar1 + 1) = 0;
   *plVar1 = (longlong)&GLOBAL_SCENE_VTABLE;
   plVar1[2] = 0;
-  *(undefined4 *)(plVar1 + 3) = 0;
+  *(int32_t *)(plVar1 + 3) = 0;
   plVar1[4] = 0;
   *plVar1 = (longlong)&GLOBAL_SHADER_VTABLE;
   plVar1[0xd] = 0;
@@ -612,14 +612,14 @@ FUN_180194e00(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefine
   plVar1[6] = 0;
   plVar1[7] = 0x3f80000000000000;
   plVar1[8] = 0;
-  *(undefined4 *)(plVar1 + 9) = 0;
-  *(undefined4 *)((longlong)plVar1 + 0x4c) = 0;
-  *(undefined4 *)(plVar1 + 10) = 0x3f800000;
-  *(undefined4 *)((longlong)plVar1 + 0x54) = 0;
-  *(undefined4 *)(plVar1 + 0xb) = 0;
-  *(undefined4 *)((longlong)plVar1 + 0x5c) = 0;
-  *(undefined4 *)(plVar1 + 0xc) = 0;
-  *(undefined4 *)((longlong)plVar1 + 100) = 0x3f800000;
+  *(int32_t *)(plVar1 + 9) = 0;
+  *(int32_t *)((longlong)plVar1 + 0x4c) = 0;
+  *(int32_t *)(plVar1 + 10) = 0x3f800000;
+  *(int32_t *)((longlong)plVar1 + 0x54) = 0;
+  *(int32_t *)(plVar1 + 0xb) = 0;
+  *(int32_t *)((longlong)plVar1 + 0x5c) = 0;
+  *(int32_t *)(plVar1 + 0xc) = 0;
+  *(int32_t *)((longlong)plVar1 + 100) = 0x3f800000;
   *param_2 = plVar1;
   (**(code **)(*plVar1 + 0x28))();
   (**(code **)(*(longlong *)*param_2 + 0x138))((longlong *)*param_2,param_4);
@@ -630,25 +630,25 @@ FUN_180194e00(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefine
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_180194ef0(longlong param_1)
+uint64_t * FUN_180194ef0(longlong param_1)
 
 {
-  undefined8 *puVar1;
+  uint64_t *puVar1;
   longlong lVar2;
-  undefined8 *puVar3;
-  undefined8 *puVar4;
-  undefined8 *puVar5;
+  uint64_t *puVar3;
+  uint64_t *puVar4;
+  uint64_t *puVar5;
   
-  puVar1 = (undefined8 *)allocate_object_memory(global_memory_allocator,8,8,3,0xfffffffffffffffe);
+  puVar1 = (uint64_t *)allocate_object_memory(global_memory_allocator,8,8,3,0xfffffffffffffffe);
   *puVar1 = &GLOBAL_TEXTURE_VTABLE;
   *puVar1 = &GLOBAL_OBJECT_POOL_VTABLE;
-  puVar5 = *(undefined8 **)(param_1 + 0x30);
-  if (puVar5 < *(undefined8 **)(param_1 + 0x38)) {
-    *(undefined8 **)(param_1 + 0x30) = puVar5 + 1;
+  puVar5 = *(uint64_t **)(param_1 + 0x30);
+  if (puVar5 < *(uint64_t **)(param_1 + 0x38)) {
+    *(uint64_t **)(param_1 + 0x30) = puVar5 + 1;
     *puVar5 = puVar1;
     return puVar1;
   }
-  puVar4 = *(undefined8 **)(param_1 + 0x28);
+  puVar4 = *(uint64_t **)(param_1 + 0x28);
   lVar2 = (longlong)puVar5 - (longlong)puVar4 >> 3;
   if (lVar2 == 0) {
     lVar2 = 1;
@@ -656,13 +656,13 @@ undefined8 * FUN_180194ef0(longlong param_1)
   else {
     lVar2 = lVar2 * 2;
     if (lVar2 == 0) {
-      puVar3 = (undefined8 *)0x0;
+      puVar3 = (uint64_t *)0x0;
       goto LAB_180194fa5;
     }
   }
-  puVar3 = (undefined8 *)allocate_container_memory(global_memory_allocator,lVar2 * 8,*(undefined1 *)(param_1 + 0x40));
-  puVar5 = *(undefined8 **)(param_1 + 0x30);
-  puVar4 = *(undefined8 **)(param_1 + 0x28);
+  puVar3 = (uint64_t *)allocate_container_memory(global_memory_allocator,lVar2 * 8,*(int8_t *)(param_1 + 0x40));
+  puVar5 = *(uint64_t **)(param_1 + 0x30);
+  puVar4 = *(uint64_t **)(param_1 + 0x28);
 LAB_180194fa5:
   if (puVar4 != puVar5) {
                     // WARNING: Subroutine does not return
@@ -670,9 +670,9 @@ LAB_180194fa5:
   }
   *puVar3 = puVar1;
   if (*(longlong *)(param_1 + 0x28) == 0) {
-    *(undefined8 **)(param_1 + 0x28) = puVar3;
-    *(undefined8 **)(param_1 + 0x30) = puVar3 + 1;
-    *(undefined8 **)(param_1 + 0x38) = puVar3 + lVar2;
+    *(uint64_t **)(param_1 + 0x28) = puVar3;
+    *(uint64_t **)(param_1 + 0x30) = puVar3 + 1;
+    *(uint64_t **)(param_1 + 0x38) = puVar3 + lVar2;
     return puVar1;
   }
                     // WARNING: Subroutine does not return
@@ -683,7 +683,7 @@ LAB_180194fa5:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_180195000(undefined8 param_1,undefined8 *param_2)
+uint64_t * FUN_180195000(uint64_t param_1,uint64_t *param_2)
 
 {
   longlong *plVar1;
@@ -691,10 +691,10 @@ undefined8 * FUN_180195000(undefined8 param_1,undefined8 *param_2)
   plVar1 = (longlong *)allocate_object_memory(global_memory_allocator,0x70,8,3,0,0xfffffffffffffffe);
   *plVar1 = (longlong)&GLOBAL_BUFFER_VTABLE;
   *plVar1 = (longlong)&GLOBAL_RENDER_TARGET_VTABLE;
-  *(undefined4 *)(plVar1 + 1) = 0;
+  *(int32_t *)(plVar1 + 1) = 0;
   *plVar1 = (longlong)&GLOBAL_SCENE_VTABLE;
   plVar1[2] = 0;
-  *(undefined4 *)(plVar1 + 3) = 0;
+  *(int32_t *)(plVar1 + 3) = 0;
   plVar1[4] = 0;
   *plVar1 = (longlong)&GLOBAL_SHADER_VTABLE;
   plVar1[0xd] = 0;
@@ -702,14 +702,14 @@ undefined8 * FUN_180195000(undefined8 param_1,undefined8 *param_2)
   plVar1[6] = 0;
   plVar1[7] = 0x3f80000000000000;
   plVar1[8] = 0;
-  *(undefined4 *)(plVar1 + 9) = 0;
-  *(undefined4 *)((longlong)plVar1 + 0x4c) = 0;
-  *(undefined4 *)(plVar1 + 10) = 0x3f800000;
-  *(undefined4 *)((longlong)plVar1 + 0x54) = 0;
-  *(undefined4 *)(plVar1 + 0xb) = 0;
-  *(undefined4 *)((longlong)plVar1 + 0x5c) = 0;
-  *(undefined4 *)(plVar1 + 0xc) = 0;
-  *(undefined4 *)((longlong)plVar1 + 100) = 0x3f800000;
+  *(int32_t *)(plVar1 + 9) = 0;
+  *(int32_t *)((longlong)plVar1 + 0x4c) = 0;
+  *(int32_t *)(plVar1 + 10) = 0x3f800000;
+  *(int32_t *)((longlong)plVar1 + 0x54) = 0;
+  *(int32_t *)(plVar1 + 0xb) = 0;
+  *(int32_t *)((longlong)plVar1 + 0x5c) = 0;
+  *(int32_t *)(plVar1 + 0xc) = 0;
+  *(int32_t *)((longlong)plVar1 + 100) = 0x3f800000;
   *param_2 = plVar1;
   (**(code **)(*plVar1 + 0x28))();
   return param_2;
@@ -719,13 +719,13 @@ undefined8 * FUN_180195000(undefined8 param_1,undefined8 *param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_1801950d0(longlong param_1)
+uint64_t * FUN_1801950d0(longlong param_1)
 
 {
-  undefined8 *puVar1;
-  undefined8 *puStackX_8;
+  uint64_t *puVar1;
+  uint64_t *puStackX_8;
   
-  puVar1 = (undefined8 *)allocate_object_memory(global_memory_allocator,8,8,3,0xfffffffffffffffe);
+  puVar1 = (uint64_t *)allocate_object_memory(global_memory_allocator,8,8,3,0xfffffffffffffffe);
   *puVar1 = &GLOBAL_LIGHT_VTABLE;
   *puVar1 = &GLOBAL_MATERIAL_VTABLE;
   puStackX_8 = puVar1;
@@ -739,13 +739,13 @@ undefined8 * FUN_1801950d0(longlong param_1)
 
 // 函数: 释放纹理资源
 // 作用: 释放纹理资源及相关内存
-void release_texture_resource(longlong texture_id, undefined8 *resource_ptr)
+void release_texture_resource(longlong texture_id, uint64_t *resource_ptr)
 
 {
   longlong lVar1;
   
   release_texture_data(param_1 + 0x28);
-  if (param_2 != (undefined8 *)0x0) {
+  if (param_2 != (uint64_t *)0x0) {
     lVar1 = cast_to_void(param_2);
     (**(code **)*param_2)(param_2,0);
     if (lVar1 != 0) {
@@ -766,7 +766,7 @@ void cleanup_texture_cache(void)
 
 {
   longlong lVar1;
-  undefined8 *unaff_RBX;
+  uint64_t *unaff_RBX;
   
   lVar1 = cast_to_void();
   (**(code **)*unaff_RBX)();
@@ -795,13 +795,13 @@ void nop_function(void)
 
 // 函数: 释放着色器资源
 // 作用: 释放着色器资源及相关内存
-void release_shader_resource(longlong shader_id, undefined8 *resource_ptr)
+void release_shader_resource(longlong shader_id, uint64_t *resource_ptr)
 
 {
   longlong lVar1;
   
   release_texture_data(param_1 + 0x48);
-  if (param_2 != (undefined8 *)0x0) {
+  if (param_2 != (uint64_t *)0x0) {
     lVar1 = cast_to_void(param_2);
     (**(code **)*param_2)(param_2,0);
     if (lVar1 != 0) {
@@ -822,7 +822,7 @@ void cleanup_shader_cache(void)
 
 {
   longlong lVar1;
-  undefined8 *unaff_RBX;
+  uint64_t *unaff_RBX;
   
   lVar1 = cast_to_void();
   (**(code **)*unaff_RBX)();
@@ -848,7 +848,7 @@ void FUN_1801951d4(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_1801951e0(undefined8 param_1,undefined8 *param_2)
+uint64_t * FUN_1801951e0(uint64_t param_1,uint64_t *param_2)
 
 {
   longlong *plVar1;
@@ -856,10 +856,10 @@ undefined8 * FUN_1801951e0(undefined8 param_1,undefined8 *param_2)
   plVar1 = (longlong *)allocate_object_memory(global_memory_allocator,0x70,8,3,0,0xfffffffffffffffe);
   *plVar1 = (longlong)&GLOBAL_BUFFER_VTABLE;
   *plVar1 = (longlong)&GLOBAL_RENDER_TARGET_VTABLE;
-  *(undefined4 *)(plVar1 + 1) = 0;
+  *(int32_t *)(plVar1 + 1) = 0;
   *plVar1 = (longlong)&GLOBAL_SCENE_VTABLE;
   plVar1[2] = 0;
-  *(undefined4 *)(plVar1 + 3) = 0;
+  *(int32_t *)(plVar1 + 3) = 0;
   plVar1[4] = 0;
   *plVar1 = (longlong)&GLOBAL_SHADER_VTABLE;
   plVar1[0xd] = 0;
@@ -867,14 +867,14 @@ undefined8 * FUN_1801951e0(undefined8 param_1,undefined8 *param_2)
   plVar1[6] = 0;
   plVar1[7] = 0x3f80000000000000;
   plVar1[8] = 0;
-  *(undefined4 *)(plVar1 + 9) = 0;
-  *(undefined4 *)((longlong)plVar1 + 0x4c) = 0;
-  *(undefined4 *)(plVar1 + 10) = 0x3f800000;
-  *(undefined4 *)((longlong)plVar1 + 0x54) = 0;
-  *(undefined4 *)(plVar1 + 0xb) = 0;
-  *(undefined4 *)((longlong)plVar1 + 0x5c) = 0;
-  *(undefined4 *)(plVar1 + 0xc) = 0;
-  *(undefined4 *)((longlong)plVar1 + 100) = 0x3f800000;
+  *(int32_t *)(plVar1 + 9) = 0;
+  *(int32_t *)((longlong)plVar1 + 0x4c) = 0;
+  *(int32_t *)(plVar1 + 10) = 0x3f800000;
+  *(int32_t *)((longlong)plVar1 + 0x54) = 0;
+  *(int32_t *)(plVar1 + 0xb) = 0;
+  *(int32_t *)((longlong)plVar1 + 0x5c) = 0;
+  *(int32_t *)(plVar1 + 0xc) = 0;
+  *(int32_t *)((longlong)plVar1 + 100) = 0x3f800000;
   *param_2 = plVar1;
   (**(code **)(*plVar1 + 0x28))();
   return param_2;
@@ -882,7 +882,7 @@ undefined8 * FUN_1801951e0(undefined8 param_1,undefined8 *param_2)
 
 
 
-undefined8 * FUN_1801952b0(undefined8 param_1,undefined8 *param_2)
+uint64_t * FUN_1801952b0(uint64_t param_1,uint64_t *param_2)
 
 {
   *param_2 = 0;
@@ -892,11 +892,11 @@ undefined8 * FUN_1801952b0(undefined8 param_1,undefined8 *param_2)
 
 
 
-undefined8 *
-FUN_1801952e0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+uint64_t *
+FUN_1801952e0(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
   *param_1 = &GLOBAL_RESOURCE_MANAGER_VTABLE;
@@ -909,7 +909,7 @@ FUN_1801952e0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
 
 
 
-undefined8 FUN_180195330(longlong param_1,int param_2,int param_3)
+uint64_t FUN_180195330(longlong param_1,int param_2,int param_3)
 
 {
   longlong lVar1;
@@ -927,24 +927,24 @@ LAB_180195376:
     piVar2 = *(int **)(lVar1 + *(longlong *)(param_1 + 0x48) * 8);
   }
   if (piVar2 != *(int **)(lVar1 + *(longlong *)(param_1 + 0x48) * 8)) {
-    return *(undefined8 *)(piVar2 + 2);
+    return *(uint64_t *)(piVar2 + 2);
   }
   return 0;
 }
 
 
 
-undefined8 *
-FUN_1801953d0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+uint64_t *
+FUN_1801953d0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
   *param_2 = &DEFAULT_STRING_BUFFER;
   param_2[1] = 0;
-  *(undefined4 *)(param_2 + 2) = 0;
+  *(int32_t *)(param_2 + 2) = 0;
   *param_2 = &DEFAULT_STRING_HANDLER;
   param_2[1] = param_2 + 3;
-  *(undefined1 *)(param_2 + 3) = 0;
-  *(undefined4 *)(param_2 + 2) = 8;
+  *(int8_t *)(param_2 + 3) = 0;
+  *(int32_t *)(param_2 + 2) = 8;
   strcpy_s(param_2[1],0x80,&DEFAULT_STRING_FORMAT,param_4,0,0xfffffffffffffffe);
   return param_2;
 }

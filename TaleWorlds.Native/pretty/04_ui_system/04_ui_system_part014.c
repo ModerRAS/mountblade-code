@@ -33,9 +33,9 @@
 // UI系统参数化动画处理器 - 处理基于参数的UI动画和变换
 // 该函数实现了参数化的UI动画处理，包括动画插值、权重计算、向量变换和归一化处理
 // 原始实现：FUN_18065a472 - 包含复杂的参数化动画控制逻辑
-void ui_system_parametric_animation_processor(undefined8 param_1,float param_2,undefined8 param_3,float param_4,
-                  undefined8 param_5,undefined8 param_6,float param_7,float param_8,float param_9,
-                  undefined8 param_10,undefined8 param_11,float param_12)
+void ui_system_parametric_animation_processor(uint64_t param_1,float param_2,uint64_t param_3,float param_4,
+                  uint64_t param_5,uint64_t param_6,float param_7,float param_8,float param_9,
+                  uint64_t param_10,uint64_t param_11,float param_12)
 {
   undefined3 conversion_flag;
   float *animation_data_ptr;
@@ -43,7 +43,7 @@ void ui_system_parametric_animation_processor(undefined8 param_1,float param_2,u
   int loop_counter_2;
   longlong context_ptr;
   char control_flag;
-  undefined4 render_flag;
+  int32_t render_flag;
   longlong resource_ptr;
   float weight_value;
   float temp_value_1;
@@ -51,7 +51,7 @@ void ui_system_parametric_animation_processor(undefined8 param_1,float param_2,u
   float temp_value_3;
   float temp_value_4;
   float temp_value_5;
-  undefined1 conversion_buffer [16];
+  int8_t conversion_buffer [16];
   uint abs_mask;
   float base_parameter_1;
   float base_parameter_2;
@@ -59,7 +59,7 @@ void ui_system_parametric_animation_processor(undefined8 param_1,float param_2,u
   float base_parameter_4;
   float temp_storage;
   float animation_buffer [6200];
-  undefined8 return_address;
+  uint64_t return_address;
   
   // 初始化基础参数（从原始代码中推断的寄存器值）
   base_parameter_1 = 0.0f;  // unaff_XMM6_Da
@@ -245,7 +245,7 @@ LAB_18065a765:
       temp_value_1 = base_parameter_3 - ((temp_value_1 * UI_SIX_FLOAT - UI_FIFTEEN_FLOAT) * temp_value_1 + UI_TEN_FLOAT) * temp_value_1 * temp_value_1 * temp_value_1;
       if (base_parameter_2 != temp_value_1) {
         if (base_parameter_2 <= base_parameter_1) {
-          *(undefined4 *)(resource_ptr + 0x6150) = UI_NORMALIZATION_VALUE;
+          *(int32_t *)(resource_ptr + 0x6150) = UI_NORMALIZATION_VALUE;
         }
         else {
           temp_value_1 = temp_value_1 / base_parameter_2;
@@ -323,11 +323,11 @@ void ui_system_vector_normalization_processor(void)
 {
   undefined3 conversion_flag;
   longlong context_ptr;
-  undefined4 render_flag;
+  int32_t render_flag;
   longlong resource_ptr;
   float vector_component_1;
   float vector_component_2;
-  undefined1 conversion_buffer [16];
+  int8_t conversion_buffer [16];
   float normalization_factor;
   uint abs_mask;
   float base_parameter_1;
@@ -341,7 +341,7 @@ void ui_system_vector_normalization_processor(void)
   float input_parameter_1;
   float input_parameter_2;
   float temp_storage_3;
-  undefined8 input_param_1;
+  uint64_t input_param_1;
   
   // 初始化参数（从原始代码的堆栈和寄存器推断）
   base_parameter_1 = 0.0f;  // unaff_XMM6_Da
@@ -351,7 +351,7 @@ void ui_system_vector_normalization_processor(void)
   
   // 归一化因子检查和处理
   if (base_parameter_3 <= base_parameter_1) {
-    *(undefined4 *)(resource_ptr + 0x6150) = UI_NORMALIZATION_VALUE;
+    *(int32_t *)(resource_ptr + 0x6150) = UI_NORMALIZATION_VALUE;
   }
   else {
     normalization_factor = normalization_factor / base_parameter_3;
@@ -424,11 +424,11 @@ void ui_system_simple_data_setter(void)
 {
   longlong context_ptr;
   longlong resource_ptr;
-  undefined8 input_data;
+  uint64_t input_data;
   
   // 简单数据设置操作 - 将输入数据存储到指定内存位置
   // 这是简化实现，原始代码从堆栈获取输入参数
-  *(undefined8 *)(resource_ptr + 0x6178) = input_data;
+  *(uint64_t *)(resource_ptr + 0x6178) = input_data;
   
   // 调用渲染处理函数 - 跳转到渲染系统继续处理
   // FUN_1808fc050 是渲染系统的核心处理函数

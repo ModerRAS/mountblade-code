@@ -88,16 +88,16 @@
 // 类型别名定义
 // ============================================================================
 
-typedef undefined8 SystemStringHandle;        // 系统字符串句柄
-typedef undefined8 SystemBufferHandle;        // 系统缓冲区句柄
-typedef undefined8 SystemOutputHandle;        // 系统输出句柄
-typedef undefined8 SystemSearchHandle;        // 系统搜索句柄
-typedef undefined8 SystemEncodeHandle;         // 系统编码句柄
-typedef undefined8 SystemFormatHandle;        // 系统格式化句柄
-typedef undefined4 SystemStatus;              // 系统状态
-typedef undefined1 SystemChar;                // 系统字符
-typedef undefined8 SystemCallback;            // 系统回调
-typedef undefined8 SystemContext;             // 系统上下文
+typedef uint64_t SystemStringHandle;        // 系统字符串句柄
+typedef uint64_t SystemBufferHandle;        // 系统缓冲区句柄
+typedef uint64_t SystemOutputHandle;        // 系统输出句柄
+typedef uint64_t SystemSearchHandle;        // 系统搜索句柄
+typedef uint64_t SystemEncodeHandle;         // 系统编码句柄
+typedef uint64_t SystemFormatHandle;        // 系统格式化句柄
+typedef int32_t SystemStatus;              // 系统状态
+typedef int8_t SystemChar;                // 系统字符
+typedef uint64_t SystemCallback;            // 系统回调
+typedef uint64_t SystemContext;             // 系统上下文
 
 // ============================================================================
 // 数据结构定义
@@ -230,10 +230,10 @@ typedef struct {
 // 参数：context - 系统上下文
 // 返回值：SystemStatus - 处理状态
 void FUN_1800a023d(void);                    // 系统字符串搜索处理器1
-undefined8 * FUN_1800a02a0(longlong param_1, char *param_2); // 系统字符串搜索处理器2
-undefined8 * FUN_1800a02d0(undefined8 param_1, undefined8 *param_2); // 系统字符串搜索处理器3
-undefined8 * FUN_1800a0324(undefined8 param_1, undefined8 *param_2); // 系统字符串搜索处理器4
-undefined8 FUN_1800a0338(longlong param_1); // 系统字符串搜索处理器5
+uint64_t * FUN_1800a02a0(longlong param_1, char *param_2); // 系统字符串搜索处理器2
+uint64_t * FUN_1800a02d0(uint64_t param_1, uint64_t *param_2); // 系统字符串搜索处理器3
+uint64_t * FUN_1800a0324(uint64_t param_1, uint64_t *param_2); // 系统字符串搜索处理器4
+uint64_t FUN_1800a0338(longlong param_1); // 系统字符串搜索处理器5
 
 // 系统HTML实体编码器 (SystemHtmlEntityEncoder)
 // 功能：对HTML实体进行编码和解码处理
@@ -253,7 +253,7 @@ void FUN_1800a0579(void);                    // 系统字符串转义处理器1
 // 参数：input - 输入数据, output - 输出缓冲区, context - 上下文
 // 返回值：longlong* - 生成的XML数据指针
 longlong * FUN_1800a05a0(longlong *param_1, longlong *param_2, longlong param_3); // 系统XML标签生成器1
-void FUN_1800a05c2(undefined8 param_1, longlong *param_2); // 系统XML标签生成器2
+void FUN_1800a05c2(uint64_t param_1, longlong *param_2); // 系统XML标签生成器2
 void FUN_1800a07f8(void);                    // 系统XML标签生成器3
 
 // 系统数据格式化器 (SystemDataFormatter)
@@ -261,7 +261,7 @@ void FUN_1800a07f8(void);                    // 系统XML标签生成器3
 // 参数：input - 输入数据, output - 输出缓冲区, context - 上下文, flags - 处理标志, indent - 缩进级别
 // 返回值：longlong* - 格式化结果指针
 longlong * FUN_1800a0820(longlong *param_1, longlong *param_2, longlong param_3, byte param_4, uint param_5); // 系统数据格式化器1
-void FUN_1800a0831(undefined8 param_1, longlong *param_2, longlong param_3, byte param_4); // 系统数据格式化器2
+void FUN_1800a0831(uint64_t param_1, longlong *param_2, longlong param_3, byte param_4); // 系统数据格式化器2
 
 // 系统文本处理器 (SystemTextProcessor)
 // 功能：处理和清理文本数据
@@ -274,7 +274,7 @@ void FUN_1800a099d(void);                    // 系统文本处理器1
 // 参数：input - 输入数据, output - 输出缓冲区, context - 上下文, flags - 处理标志, indent - 缩进级别
 // 返回值：longlong* - 输出结果指针
 longlong * FUN_1800a0a00(longlong *param_1, longlong *param_2, longlong param_3, byte param_4, uint param_5); // 系统输出写入器1
-void FUN_1800a0a10(undefined8 param_1, longlong *param_2, longlong param_3, byte param_4); // 系统输出写入器2
+void FUN_1800a0a10(uint64_t param_1, longlong *param_2, longlong param_3, byte param_4); // 系统输出写入器2
 
 // 系统注释生成器 (SystemCommentGenerator)
 // 功能：生成和处理系统注释

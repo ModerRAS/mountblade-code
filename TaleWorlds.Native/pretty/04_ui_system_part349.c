@@ -224,7 +224,7 @@ typedef struct {
  * - data_pointer: 数据指针
  */
 typedef struct {
-    undefined8 data_buffer;    // 数据缓冲区
+    uint64_t data_buffer;    // 数据缓冲区
     uint data_size;           // 数据大小
     uint data_type;           // 数据类型
     uint data_flags;          // 数据标志
@@ -249,7 +249,7 @@ typedef struct {
     uint event_id;            // 事件ID
     uint event_flags;         // 事件标志
     longlong event_timestamp; // 事件时间戳
-    undefined8 event_data;    // 事件数据
+    uint64_t event_data;    // 事件数据
 } UISystem_EventStruct;
 
 /* ============================================================================
@@ -283,11 +283,11 @@ void UISystem_StateProcessor(longlong param_1, longlong param_2)
     longlong lVar6;
     longlong *plVar7;
     longlong *plVar8;
-    undefined8 uVar9;
-    undefined4 uVar10;
+    uint64_t uVar9;
+    int32_t uVar10;
     float fVar11;
     float fVar12;
-    undefined1 auStack_e8 [32];
+    int8_t auStack_e8 [32];
     uint uStack_c8;
     uint uStack_c0;
     uint uStack_b8;
@@ -300,7 +300,7 @@ void UISystem_StateProcessor(longlong param_1, longlong param_2)
     uint uStack_80;
     uint uStack_78;
     longlong lStack_70;
-    undefined1 auStack_68 [40];
+    int8_t auStack_68 [40];
     ulonglong uStack_40;
     
     // 安全检查和数据初始化
@@ -426,7 +426,7 @@ LAB_180859953:
                 if (iVar5 == 0) {
 LAB_18085996b:
                     // 调用UI系统渲染控制器和事件分发器
-                    uVar10 = UISystem_RenderController(lVar6, *(undefined4 *)(param_1 + UI_SYSTEM_OFFSET_24));
+                    uVar10 = UISystem_RenderController(lVar6, *(int32_t *)(param_1 + UI_SYSTEM_OFFSET_24));
                     UISystem_EventDispatcher(param_2, uVar10);
                 }
                 goto LAB_1808597c2;
@@ -455,16 +455,16 @@ LAB_1808597c2:
  * - UI系统错误处理和恢复
  * 
  * @param param_1 UI系统上下文参数
- * @return undefined8 返回操作结果状态码
+ * @return uint64_t 返回操作结果状态码
  * 
  * @note 该函数是UI系统的核心数据管理函数，承担着重要的数据管理功能
  * @warning 该函数包含复杂的资源管理和状态验证逻辑
  */
-undefined8 UISystem_DataManager(longlong param_1)
+uint64_t UISystem_DataManager(longlong param_1)
 {
-    undefined4 uVar1;
+    int32_t uVar1;
     longlong *plVar2;
-    undefined8 uVar3;
+    uint64_t uVar3;
     longlong *plVar4;
     longlong *plVar5;
     longlong *plVar6;
@@ -517,7 +517,7 @@ undefined8 UISystem_DataManager(longlong param_1)
     }
     else {
         // 处理UI系统运行状态
-        uVar1 = *(undefined4 *)(param_1 + UI_SYSTEM_OFFSET_20);
+        uVar1 = *(int32_t *)(param_1 + UI_SYSTEM_OFFSET_20);
         plVar6 = (longlong *)(param_1 + UI_SYSTEM_OFFSET_118);
         plVar5 = (longlong *)UI_SYSTEM_FLAG_0;
         plVar4 = (longlong *)(*plVar6 + UI_SYSTEM_OFFSET_18_NEG);
@@ -570,43 +570,43 @@ void UISystem_StateProcessor_ALIAS(longlong param_1, longlong param_2)
 }
 
 // UI系统数据管理器函数别名
-undefined8 UISystem_DataManager_ALIAS(longlong param_1)
+uint64_t UISystem_DataManager_ALIAS(longlong param_1)
 {
     return UISystem_DataManager(param_1);
 }
 
 // UI系统回调处理器函数别名
-int UISystem_CallbackHandler_ALIAS(longlong param_1, float param_2, undefined8 param_3)
+int UISystem_CallbackHandler_ALIAS(longlong param_1, float param_2, uint64_t param_3)
 {
     return func_0x0001808c6c40(param_1, param_2, param_3);
 }
 
 // UI系统资源管理器函数别名
-void UISystem_ResourceManager_ALIAS(undefined8 param_1, int param_2, undefined8 param_3, int param_4)
+void UISystem_ResourceManager_ALIAS(uint64_t param_1, int param_2, uint64_t param_3, int param_4)
 {
     UISystem_ResourceManager(param_1, param_2, param_3, param_4);
 }
 
 // UI系统渲染控制器函数别名
-undefined4 UISystem_RenderController_ALIAS(longlong param_1, undefined4 param_2)
+int32_t UISystem_RenderController_ALIAS(longlong param_1, int32_t param_2)
 {
     return UISystem_RenderController(param_1, param_2);
 }
 
 // UI系统事件分发器函数别名
-void UISystem_EventDispatcher_ALIAS(longlong param_1, undefined4 param_2)
+void UISystem_EventDispatcher_ALIAS(longlong param_1, int32_t param_2)
 {
     UISystem_EventDispatcher(param_1, param_2);
 }
 
 // UI系统清理管理器函数别名
-void UISystem_CleanupManager_ALIAS(undefined8 param_1)
+void UISystem_CleanupManager_ALIAS(uint64_t param_1)
 {
     UISystem_CleanupManager(param_1);
 }
 
 // UI系统初始化器函数别名
-undefined8 UISystem_Initializer_ALIAS(longlong param_1, undefined4 param_2)
+uint64_t UISystem_Initializer_ALIAS(longlong param_1, int32_t param_2)
 {
     return UISystem_Initializer(param_1, param_2);
 }

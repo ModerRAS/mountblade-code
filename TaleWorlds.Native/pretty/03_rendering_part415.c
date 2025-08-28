@@ -39,8 +39,8 @@ void FUN_180494ad0(longlong param_1,float *param_2,int param_3)
   float fVar31;
   float fVar32;
   float fVar33;
-  undefined8 uStack_188;
-  undefined8 uStack_180;
+  uint64_t uStack_188;
+  uint64_t uStack_180;
   uint uStack_178;
   uint uStack_174;
   uint uStack_170;

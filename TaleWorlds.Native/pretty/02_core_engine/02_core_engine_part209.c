@@ -2,12 +2,12 @@
 
 // 02_core_engine_part209.c - 4 个函数
 
-// 函数: void FUN_18018c360(undefined8 param_1,undefined8 param_2,undefined8 *param_3,longlong param_4,
-void process_face_animation_data(undefined8 animation_system, undefined8 param_2, undefined8 *base_node_ptr, longlong animation_database,
+// 函数: void FUN_18018c360(uint64_t param_1,uint64_t param_2,uint64_t *param_3,longlong param_4,
+void process_face_animation_data(uint64_t animation_system, uint64_t param_2, uint64_t *base_node_ptr, longlong animation_database,
                                  longlong *animation_records_ptr)
 
 {
-  undefined8 *animation_node;
+  uint64_t *animation_node;
   byte *name_ptr;
   byte name_char;
   longlong name_offset;
@@ -15,26 +15,26 @@ void process_face_animation_data(undefined8 animation_system, undefined8 param_2
   longlong node_index;
   char *current_name;
   byte *compare_ptr;
-  undefined8 *current_record;
-  undefined8 *next_record;
-  undefined8 *temp_record;
+  uint64_t *current_record;
+  uint64_t *next_record;
+  uint64_t *temp_record;
   char *record_name;
   char *record_offset;
   longlong record_length;
-  undefined8 *new_record;
+  uint64_t *new_record;
   uint name_hash;
   int compare_result;
   char *temp_name;
   ulonglong temp_length;
-  undefined8 *insert_record;
+  uint64_t *insert_record;
   char *search_name;
   char *name_end;
-  undefined8 system_param;
-  undefined1 temp_stack[8];
-  undefined *stack_pointer;
+  uint64_t system_param;
+  int8_t temp_stack[8];
+  void *stack_pointer;
   byte *name_buffer;
   int buffer_size;
-  undefined8 buffer_capacity;
+  uint64_t buffer_capacity;
   
   node_index = face_animation_database_root;
   search_name = "base";
@@ -123,7 +123,7 @@ LAB_records_found:
 LAB_record_found:
   *animation_records_ptr = (longlong)record_offset;
   if (record_offset != (char *)0x0) {
-    animation_node = (undefined8 *)(node_index + 0x50);
+    animation_node = (uint64_t *)(node_index + 0x50);
     system_param = animation_system;
     do {
       stack_pointer = &UNK_180a3c3e0;
@@ -135,8 +135,8 @@ LAB_record_found:
         name_end = search_name;
         search_name = name_end + 1;
       } while (*search_name != '\0');
-      for (current_record = *(undefined8 **)(*animation_records_ptr + 0x40); current_record != (undefined8 *)0x0;
-          current_record = (undefined8 *)current_record[6]) {
+      for (current_record = *(uint64_t **)(*animation_records_ptr + 0x40); current_record != (uint64_t *)0x0;
+          current_record = (uint64_t *)current_record[6]) {
         search_name = (char *)*current_record;
         if (search_name == (char *)0x0) {
           search_name = (char *)0x180d48d24;
@@ -163,35 +163,35 @@ LAB_id_found:
           }
         }
       }
-      current_record = *(undefined8 **)(node_index + 0x60);
+      current_record = *(uint64_t **)(node_index + 0x60);
       insert_record = animation_node;
       new_record = current_record;
-      if (current_record == (undefined8 *)0x0) {
+      if (current_record == (uint64_t *)0x0) {
 LAB_create_new_record:
-        new_record = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x48,8,3);
+        new_record = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x48,8,3);
         *new_record = &UNK_18098bcb0;
         new_record[1] = 0;
-        *(undefined4 *)(new_record + 2) = 0;
+        *(int32_t *)(new_record + 2) = 0;
         *new_record = &UNK_180a3c3e0;
         new_record[3] = 0;
         new_record[1] = 0;
-        *(undefined4 *)(new_record + 2) = 0;
+        *(int32_t *)(new_record + 2) = 0;
         new_record[4] = &UNK_18098bcb0;
         new_record[5] = 0;
-        *(undefined4 *)(new_record + 6) = 0;
+        *(int32_t *)(new_record + 6) = 0;
         new_record[4] = &UNK_180a3c3e0;
         new_record[7] = 0;
         new_record[5] = 0;
-        *(undefined4 *)(new_record + 6) = 0;
-        *(undefined1 *)(new_record + 8) = 0;
+        *(int32_t *)(new_record + 6) = 0;
+        *(int8_t *)(new_record + 8) = 0;
         name_offset = *(longlong *)(node_index + 0x38);
         record_length = *(longlong *)(node_index + 0x30);
         new_record = animation_node;
-        current_record = *(undefined8 **)(node_index + 0x60);
-        while (temp_record = new_record, current_record != (undefined8 *)0x0) {
+        current_record = *(uint64_t **)(node_index + 0x60);
+        while (temp_record = new_record, current_record != (uint64_t *)0x0) {
           if (buffer_size == 0) {
             is_found = false;
-            insert_record = (undefined8 *)current_record[1];
+            insert_record = (uint64_t *)current_record[1];
           }
           else {
             if (*(int *)(current_record + 6) == 0) {
@@ -207,11 +207,11 @@ LAB_create_new_record:
               } while (name_hash != 0);
               is_found = 0 < compare_result;
               if (compare_result < 1) {
-                insert_record = (undefined8 *)current_record[1];
+                insert_record = (uint64_t *)current_record[1];
                 goto LAB_search_complete;
               }
             }
-            insert_record = (undefined8 *)*current_record;
+            insert_record = (uint64_t *)*current_record;
           }
 LAB_search_complete:
           new_record = current_record;
@@ -222,8 +222,8 @@ LAB_search_complete:
         }
         if (temp_record == animation_node) {
 LAB_insert_position:
-          temp_record = (undefined8 *)FUN_1800c2ab0(animation_node,temp_stack);
-          temp_record = (undefined8 *)*temp_record;
+          temp_record = (uint64_t *)FUN_1800c2ab0(animation_node,temp_stack);
+          temp_record = (uint64_t *)*temp_record;
         }
         else if (*(int *)(temp_record + 6) != 0) {
           if (buffer_size != 0) {
@@ -240,26 +240,26 @@ LAB_insert_position:
           goto LAB_insert_position;
         }
         *(int *)(temp_record + 8) = (int)(name_offset - record_length >> 3);
-        current_record = *(undefined8 **)(node_index + 0x38);
-        if (current_record < *(undefined8 **)(node_index + 0x40)) {
-          *(undefined8 **)(node_index + 0x38) = current_record + 1;
+        current_record = *(uint64_t **)(node_index + 0x38);
+        if (current_record < *(uint64_t **)(node_index + 0x40)) {
+          *(uint64_t **)(node_index + 0x38) = current_record + 1;
           *current_record = new_record;
         }
         else {
-          new_record = *(undefined8 **)(node_index + 0x30);
+          new_record = *(uint64_t **)(node_index + 0x30);
           name_offset = (longlong)current_record - (longlong)new_record >> 3;
           if (name_offset == 0) {
             name_offset = 1;
 LAB_resize_array:
-            temp_record = (undefined8 *)
-                      FUN_18062b420(_DAT_180c8ed18,name_offset * 8,*(undefined1 *)(node_index + 0x48));
-            current_record = *(undefined8 **)(node_index + 0x38);
-            new_record = *(undefined8 **)(node_index + 0x30);
+            temp_record = (uint64_t *)
+                      FUN_18062b420(_DAT_180c8ed18,name_offset * 8,*(int8_t *)(node_index + 0x48));
+            current_record = *(uint64_t **)(node_index + 0x38);
+            new_record = *(uint64_t **)(node_index + 0x30);
           }
           else {
             name_offset = name_offset * 2;
             if (name_offset != 0) goto LAB_resize_array;
-            temp_record = (undefined8 *)0x0;
+            temp_record = (uint64_t *)0x0;
           }
           if (new_record != current_record) {
                     // WARNING: Subroutine does not return
@@ -270,16 +270,16 @@ LAB_resize_array:
                     // WARNING: Subroutine does not return
             FUN_18064e900();
           }
-          *(undefined8 **)(node_index + 0x30) = temp_record;
-          *(undefined8 **)(node_index + 0x38) = temp_record + 1;
-          *(undefined8 **)(node_index + 0x40) = temp_record + name_offset;
+          *(uint64_t **)(node_index + 0x30) = temp_record;
+          *(uint64_t **)(node_index + 0x38) = temp_record + 1;
+          *(uint64_t **)(node_index + 0x40) = temp_record + name_offset;
         }
       }
       else {
         do {
           if (buffer_size == 0) {
             is_found = false;
-            temp_record = (undefined8 *)new_record[1];
+            temp_record = (uint64_t *)new_record[1];
           }
           else {
             if (*(int *)(new_record + 6) == 0) {
@@ -295,11 +295,11 @@ LAB_resize_array:
               } while (name_hash != 0);
               is_found = 0 < compare_result;
               if (compare_result < 1) {
-                temp_record = (undefined8 *)new_record[1];
+                temp_record = (uint64_t *)new_record[1];
                 goto LAB_search_next;
               }
             }
-            temp_record = (undefined8 *)*new_record;
+            temp_record = (uint64_t *)*new_record;
           }
 LAB_search_next:
           insert_record = new_record;
@@ -308,7 +308,7 @@ LAB_search_next:
           }
           current_record = insert_record;
           new_record = temp_record;
-        } while (temp_record != (undefined8 *)0x0);
+        } while (temp_record != (uint64_t *)0x0);
         if (insert_record == animation_node) goto LAB_create_new_record;
         temp_length = 0;
         current_record = animation_node;
@@ -327,10 +327,10 @@ LAB_search_next:
           goto LAB_create_new_record;
         }
 LAB_found_match:
-        while (new_record = current_record, new_record != (undefined8 *)0x0) {
+        while (new_record = current_record, new_record != (uint64_t *)0x0) {
           if (buffer_size == 0) {
             is_found = false;
-            temp_record = (undefined8 *)new_record[1];
+            temp_record = (uint64_t *)new_record[1];
           }
           else {
             if (*(int *)(new_record + 6) == 0) {
@@ -347,11 +347,11 @@ LAB_found_match:
               } while (*compare_ptr != 0);
               is_found = 0 < (int)name_hash;
               if ((int)name_hash < 1) {
-                temp_record = (undefined8 *)new_record[1];
+                temp_record = (uint64_t *)new_record[1];
                 goto LAB_compare_complete;
               }
             }
-            temp_record = (undefined8 *)*new_record;
+            temp_record = (uint64_t *)*new_record;
           }
 LAB_compare_complete:
           current_record = new_record;
@@ -362,8 +362,8 @@ LAB_compare_complete:
         }
         if (new_record == animation_node) {
 LAB_process_record:
-          new_record = (undefined8 *)FUN_1800c2ab0(animation_node,&system_param,temp_length,new_record,&stack_pointer);
-          new_record = (undefined8 *)*new_record;
+          new_record = (uint64_t *)FUN_1800c2ab0(animation_node,&system_param,temp_length,new_record,&stack_pointer);
+          new_record = (uint64_t *)*new_record;
         }
         else if (*(int *)(new_record + 6) != 0) {
           if (buffer_size != 0) {
@@ -381,7 +381,7 @@ LAB_process_record:
           goto LAB_process_record;
         }
 LAB_skip_record:
-        new_record = *(undefined8 **)(*(longlong *)(node_index + 0x30) + (longlong)*(int *)(new_record + 8) * 8)
+        new_record = *(uint64_t **)(*(longlong *)(node_index + 0x30) + (longlong)*(int *)(new_record + 8) * 8)
         ;
       }
       (**(code **)(**(longlong **)(_DAT_180c86870 + 0x2b0) + 0x58))
@@ -391,8 +391,8 @@ LAB_skip_record:
         name_end = search_name;
         search_name = name_end + 1;
       } while (*search_name != '\0');
-      for (new_record = *(undefined8 **)(*animation_records_ptr + 0x58); new_record != (undefined8 *)0x0;
-          new_record = (undefined8 *)new_record[0xb]) {
+      for (new_record = *(uint64_t **)(*animation_records_ptr + 0x58); new_record != (uint64_t *)0x0;
+          new_record = (uint64_t *)new_record[0xb]) {
         current_name = (char *)*new_record;
         search_name = (char *)0x0;
         if (current_name == (char *)0x0) {
@@ -411,7 +411,7 @@ LAB_skip_record:
           }
         }
       }
-      new_record = (undefined8 *)0x0;
+      new_record = (uint64_t *)0x0;
 LAB_next_record:
       *animation_records_ptr = (longlong)new_record;
       stack_pointer = &UNK_180a3c3e0;
@@ -426,7 +426,7 @@ LAB_next_record:
 
 
 
-longlong * find_animation_record_by_id(longlong *record_table, longlong search_id, undefined8 param_3, ulonglong param_4)
+longlong * find_animation_record_by_id(longlong *record_table, longlong search_id, uint64_t param_3, ulonglong param_4)
 
 {
   byte compare_char;
@@ -439,7 +439,7 @@ longlong * find_animation_record_by_id(longlong *record_table, longlong search_i
   longlong *temp_record;
   longlong id_offset;
   longlong stack_param;
-  undefined1 temp_stack[16];
+  int8_t temp_stack[16];
   
   next_record = record_table;
   if ((longlong *)record_table[2] != (longlong *)0x0) {
@@ -562,30 +562,30 @@ LAB_processing_complete:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 *
-create_animation_record(undefined8 *record_manager, undefined8 *param_2, undefined8 param_3, longlong search_criteria)
+uint64_t *
+create_animation_record(uint64_t *record_manager, uint64_t *param_2, uint64_t param_3, longlong search_criteria)
 
 {
   byte compare_char;
   bool should_create;
-  undefined8 *current_node;
-  undefined8 *parent_node;
+  uint64_t *current_node;
+  uint64_t *parent_node;
   byte *search_string;
   uint string_hash;
   longlong string_length;
-  undefined8 search_param;
-  undefined8 create_param;
+  uint64_t search_param;
+  uint64_t create_param;
   
   create_param = 0xfffffffffffffffe;
   should_create = true;
-  parent_node = (undefined8 *)record_manager[2];
+  parent_node = (uint64_t *)record_manager[2];
   current_node = record_manager;
-  while (parent_node != (undefined8 *)0x0) {
+  while (parent_node != (uint64_t *)0x0) {
     current_node = parent_node;
     if (*(int *)(parent_node + 6) == 0) {
       should_create = false;
 LAB_traverse_list:
-      parent_node = (undefined8 *)*parent_node;
+      parent_node = (uint64_t *)*parent_node;
     }
     else {
       if (*(int *)(search_criteria + 0x10) == 0) {
@@ -603,13 +603,13 @@ LAB_traverse_list:
         should_create = 0 < (int)(compare_char - string_hash);
       }
       if (!should_create) goto LAB_traverse_list;
-      parent_node = (undefined8 *)parent_node[1];
+      parent_node = (uint64_t *)parent_node[1];
     }
   }
   parent_node = current_node;
   if (should_create) {
-    if (current_node != (undefined8 *)record_manager[1]) {
-      parent_node = (undefined8 *)func_0x00018066b9a0(current_node);
+    if (current_node != (uint64_t *)record_manager[1]) {
+      parent_node = (uint64_t *)func_0x00018066b9a0(current_node);
       goto LAB_creation_point;
     }
   }
@@ -618,7 +618,7 @@ LAB_creation_point:
     if (*(int *)(search_criteria + 0x10) == 0) {
 LAB_creation_complete:
       *param_2 = parent_node;
-      *(undefined1 *)(search_criteria + 1) = 0;
+      *(int8_t *)(search_criteria + 1) = 0;
       return param_2;
     }
     if (*(int *)(parent_node + 6) != 0) {
@@ -649,15 +649,15 @@ LAB_creation_complete:
   }
   search_param = 1;
 LAB_skip_validation:
-  string_length = FUN_18062b420(_DAT_180c8ed18,0x68,*(undefined1 *)(record_manager + 5));
+  string_length = FUN_18062b420(_DAT_180c8ed18,0x68,*(int8_t *)(record_manager + 5));
   FUN_180627ae0(string_length + 0x20,search_criteria);
-  parent_node = (undefined8 *)(string_length + 0x40);
+  parent_node = (uint64_t *)(string_length + 0x40);
   *parent_node = 0;
-  *(undefined8 *)(string_length + 0x48) = 0;
-  *(undefined8 *)(string_length + 0x50) = 0;
-  *(undefined4 *)(string_length + 0x58) = 3;
-  *(undefined8 *)(string_length + 0x48) = *parent_node;
-  *(undefined4 *)(string_length + 0x60) = 0;
+  *(uint64_t *)(string_length + 0x48) = 0;
+  *(uint64_t *)(string_length + 0x50) = 0;
+  *(int32_t *)(string_length + 0x58) = 3;
+  *(uint64_t *)(string_length + 0x48) = *parent_node;
+  *(int32_t *)(string_length + 0x60) = 0;
                     // WARNING: Subroutine does not return
   FUN_18066bdc0(string_length,current_node,record_manager,search_param,create_param,parent_node,parent_node);
 }
@@ -668,18 +668,18 @@ LAB_skip_validation:
 
 
 
-// 函数: void FUN_18018cde0(longlong param_1,undefined8 param_2,longlong param_3,undefined8 param_4,
-void insert_animation_record(longlong record_manager, undefined8 param_2, longlong record_data, undefined8 param_4,
+// 函数: void FUN_18018cde0(longlong param_1,uint64_t param_2,longlong param_3,uint64_t param_4,
+void insert_animation_record(longlong record_manager, uint64_t param_2, longlong record_data, uint64_t param_4,
                              longlong search_criteria)
 
 {
   byte compare_char;
   byte *string_ptr;
   uint char_diff;
-  undefined8 *record_node;
+  uint64_t *record_node;
   longlong string_length;
-  undefined8 insert_param;
-  undefined8 create_param;
+  uint64_t insert_param;
+  uint64_t create_param;
   
   create_param = 0xfffffffffffffffe;
   insert_param = 0;
@@ -698,16 +698,16 @@ void insert_animation_record(longlong record_manager, undefined8 param_2, longlo
   }
   insert_param = 1;
 LAB_skip_duplicate_check:
-  string_length = FUN_18062b420(_DAT_180c8ed18,0x68,*(undefined1 *)(record_manager + 0x28),param_4,
+  string_length = FUN_18062b420(_DAT_180c8ed18,0x68,*(int8_t *)(record_manager + 0x28),param_4,
                         0xfffffffffffffffe);
   FUN_180627ae0(string_length + 0x20,search_criteria);
-  record_node = (undefined8 *)(string_length + 0x40);
+  record_node = (uint64_t *)(string_length + 0x40);
   *record_node = 0;
-  *(undefined8 *)(string_length + 0x48) = 0;
-  *(undefined8 *)(string_length + 0x50) = 0;
-  *(undefined4 *)(string_length + 0x58) = 3;
-  *(undefined8 *)(string_length + 0x48) = *record_node;
-  *(undefined4 *)(string_length + 0x60) = 0;
+  *(uint64_t *)(string_length + 0x48) = 0;
+  *(uint64_t *)(string_length + 0x50) = 0;
+  *(int32_t *)(string_length + 0x58) = 3;
+  *(uint64_t *)(string_length + 0x48) = *record_node;
+  *(int32_t *)(string_length + 0x60) = 0;
                     // WARNING: Subroutine does not return
   FUN_18066bdc0(string_length,record_data,record_manager,insert_param,create_param,record_node);
 }

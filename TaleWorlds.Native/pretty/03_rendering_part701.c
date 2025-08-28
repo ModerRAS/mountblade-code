@@ -31,10 +31,10 @@
  * ============================================================================ */
 
 /* 基本数据类型别名 */
-typedef undefined8  uint64;      /* 64位无符号整数 */
-typedef undefined4  uint32;      /* 32位无符号整数 */
-typedef undefined2  uint16;      /* 16位无符号整数 */
-typedef undefined1  uint8;       /* 8位无符号整数 */
+typedef uint64_t  uint64;      /* 64位无符号整数 */
+typedef int32_t  uint32;      /* 32位无符号整数 */
+typedef int16_t  uint16;      /* 16位无符号整数 */
+typedef int8_t  uint8;       /* 8位无符号整数 */
 typedef undefined   void_ptr;    /* 空指针 */
 typedef char        byte;        /* 字节类型 */
 
@@ -220,7 +220,7 @@ typedef void (*RenderCallback)(RenderContext* context);
  * @param param_2 纹理数据指针
  * @param param_3 处理选项
  */
-void FUN_18066f94e(undefined8 param_1, undefined8 param_2, int param_3) {
+void FUN_18066f94e(uint64_t param_1, uint64_t param_2, int param_3) {
     RenderContext* context = (RenderContext*)param_1;
     TextureDescriptor* texture = (TextureDescriptor*)param_2;
     uint32 options = (uint32)param_3;
@@ -303,7 +303,7 @@ void FUN_18066f94e(undefined8 param_1, undefined8 param_2, int param_3) {
     
     // 释放信号量并返回
     if (texture_index == context->texture_count - 1) {
-        ReleaseSemaphore(*(undefined8*)((longlong)context + 0x4400), 1);
+        ReleaseSemaphore(*(uint64_t*)((longlong)context + 0x4400), 1);
     }
     
     // 调用渲染状态设置器
@@ -322,7 +322,7 @@ void FUN_1806704b6(void) {
     
     // 检查是否为最后一个纹理
     if (context->texture_count == context->texture_count - 1) {
-        ReleaseSemaphore(*(undefined8*)((longlong)context + 0x4400), 1);
+        ReleaseSemaphore(*(uint64_t*)((longlong)context + 0x4400), 1);
     }
     
     // 调用渲染状态设置器
@@ -340,7 +340,7 @@ void FUN_1806704db(void) {
     RenderContext* context = (RenderContext*)((longlong)&context - 0x50);
     
     // 释放信号量
-    ReleaseSemaphore(*(undefined8*)((longlong)context + 0x4400), 1);
+    ReleaseSemaphore(*(uint64_t*)((longlong)context + 0x4400), 1);
     
     // 调用渲染状态设置器
     RenderingStateSetter(*(ulonglong*)((longlong)context + 0x50) ^ 
@@ -465,7 +465,7 @@ void FUN_18066f3e0(void) {
  * @param param_4 链接标志
  * @param param_5 附加参数
  */
-void FUN_18069cb40(undefined8 param_1, undefined8 param_2, undefined8 param_3, 
+void FUN_18069cb40(uint64_t param_1, uint64_t param_2, uint64_t param_3, 
                    uint param_4, int param_5) {
     // 着色器链接实现
     // 包含着色器阶段链接、接口匹配、统一变量处理等工作
@@ -481,7 +481,7 @@ void FUN_18069cb40(undefined8 param_1, undefined8 param_2, undefined8 param_3,
  * @param param_4 优化标志
  * @param param_5 附加参数
  */
-void FUN_18069ca00(undefined8 param_1, undefined8 param_2, undefined8 param_3, 
+void FUN_18069ca00(uint64_t param_1, uint64_t param_2, uint64_t param_3, 
                    uint param_4, int param_5) {
     // 着色器优化实现
     // 包含代码优化、常量折叠、死代码删除等工作
@@ -497,7 +497,7 @@ void FUN_18069ca00(undefined8 param_1, undefined8 param_2, undefined8 param_3,
  * @param param_4 验证标志
  * @param param_5 附加参数
  */
-void FUN_18069cad0(undefined8 param_1, undefined8 param_2, undefined8 param_3, 
+void FUN_18069cad0(uint64_t param_1, uint64_t param_2, uint64_t param_3, 
                    uint param_4, int param_5) {
     // 着色器验证实现
     // 包含语义验证、资源检查、兼容性验证等工作
@@ -513,7 +513,7 @@ void FUN_18069cad0(undefined8 param_1, undefined8 param_2, undefined8 param_3,
  * @param param_4 创建标志
  * @param param_5 附加参数
  */
-void FUN_18069c900(undefined8 param_1, undefined8 param_2, undefined8 param_3, 
+void FUN_18069c900(uint64_t param_1, uint64_t param_2, uint64_t param_3, 
                    uint param_4, int param_5) {
     // 缓冲区创建实现
     // 包含内存分配、缓冲区初始化、格式设置等工作
@@ -529,7 +529,7 @@ void FUN_18069c900(undefined8 param_1, undefined8 param_2, undefined8 param_3,
  * @param param_4 更新标志
  * @param param_5 附加参数
  */
-void FUN_18069ca80(undefined8 param_1, undefined8 param_2, undefined8 param_3, 
+void FUN_18069ca80(uint64_t param_1, uint64_t param_2, uint64_t param_3, 
                    uint param_4, int param_5) {
     // 缓冲区更新实现
     // 包含数据复制、缓冲区同步、状态更新等工作
@@ -545,7 +545,7 @@ void FUN_18069ca80(undefined8 param_1, undefined8 param_2, undefined8 param_3,
  * @param param_4 优化标志
  * @param param_5 附加参数
  */
-void FUN_18069c990(undefined8 param_1, undefined8 param_2, undefined8 param_3, 
+void FUN_18069c990(uint64_t param_1, uint64_t param_2, uint64_t param_3, 
                    uint param_4, int param_5) {
     // 缓冲区优化实现
     // 包含内存布局优化、访问模式优化、缓存优化等工作
@@ -560,7 +560,7 @@ void FUN_18069c990(undefined8 param_1, undefined8 param_2, undefined8 param_3,
  * @param param_3 释放大小
  * @param param_4 释放选项
  */
-void FUN_18069cbd0(undefined8 param_1, longlong param_2, longlong param_3, 
+void FUN_18069cbd0(uint64_t param_1, longlong param_2, longlong param_3, 
                    longlong param_4) {
     // 缓冲区释放实现
     // 包含资源清理、内存释放、状态重置等工作

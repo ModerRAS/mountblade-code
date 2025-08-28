@@ -115,12 +115,12 @@ void ui_system_process_data_state(longlong ui_context, longlong param_data)
     longlong buffer_offset;
     char *data_pointer;
     longlong offset_data;
-    undefined8 *structure_pointer;
+    uint64_t *structure_pointer;
     longlong stack_data;
-    undefined8 stack_parameter;
-    undefined4 result_flag;
+    uint64_t stack_parameter;
+    int32_t result_flag;
     
-    result_flag = (undefined4)((ulonglong)stack_parameter >> 0x20);
+    result_flag = (int32_t)((ulonglong)stack_parameter >> 0x20);
     
     // 检查UI上下文状态
     if (*(char *)(*(longlong *)(param_data + UI_CONTEXT_OFFSET_F000) + 9) == UI_STATE_FLAG_DISABLED) {
@@ -145,39 +145,39 @@ void ui_system_process_data_state(longlong ui_context, longlong param_data)
     // 检查UI处理状态
     if (*(char *)(*(longlong *)(param_data + UI_CONTEXT_OFFSET_F000) + 2) == UI_STATE_FLAG_DISABLED) {
         // 设置UI参数
-        ui_system_setup_ui_parameters(param_data, *(undefined8 *)(param_data + UI_CONTEXT_OFFSET_F020),
-                                      *(undefined8 *)(param_data + UI_CONTEXT_OFFSET_F028),
-                                      *(undefined8 *)(param_data + UI_CONTEXT_OFFSET_F038),
-                                      *(undefined8 *)(param_data + UI_CONTEXT_OFFSET_F040),
-                                      *(undefined4 *)(param_data + UI_CONTEXT_OFFSET_F04C),
-                                      *(undefined8 *)(param_data + UI_CONTEXT_OFFSET_EB0),
-                                      *(undefined8 *)(param_data + UI_CONTEXT_OFFSET_EB8),
-                                      *(undefined4 *)(param_data + UI_CONTEXT_OFFSET_E94));
+        ui_system_setup_ui_parameters(param_data, *(uint64_t *)(param_data + UI_CONTEXT_OFFSET_F020),
+                                      *(uint64_t *)(param_data + UI_CONTEXT_OFFSET_F028),
+                                      *(uint64_t *)(param_data + UI_CONTEXT_OFFSET_F038),
+                                      *(uint64_t *)(param_data + UI_CONTEXT_OFFSET_F040),
+                                      *(int32_t *)(param_data + UI_CONTEXT_OFFSET_F04C),
+                                      *(uint64_t *)(param_data + UI_CONTEXT_OFFSET_EB0),
+                                      *(uint64_t *)(param_data + UI_CONTEXT_OFFSET_EB8),
+                                      *(int32_t *)(param_data + UI_CONTEXT_OFFSET_E94));
         
         if (context_state == UI_STATE_FLAG_ACTIVE) {
             validation_result = *(int *)(param_data + UI_CONTEXT_OFFSET_E80);
             
             if (*(char *)(*(longlong *)(param_data + UI_CONTEXT_OFFSET_F000) + 9) != UI_STATE_FLAG_DISABLED) {
                 // 清空UI工作区域
-                *(undefined8 *)(param_data + UI_CONTEXT_OFFSET_7C0) = 0;
-                *(undefined8 *)(param_data + UI_CONTEXT_OFFSET_7C8) = 0;
-                *(undefined8 *)(param_data + UI_WORKING_AREA_SIZE) = 0;
-                *(undefined1 *)(param_data + UI_CONTEXT_OFFSET_7D8) = 0;
+                *(uint64_t *)(param_data + UI_CONTEXT_OFFSET_7C0) = 0;
+                *(uint64_t *)(param_data + UI_CONTEXT_OFFSET_7C8) = 0;
+                *(uint64_t *)(param_data + UI_WORKING_AREA_SIZE) = 0;
+                *(int8_t *)(param_data + UI_CONTEXT_OFFSET_7D8) = 0;
             }
             
             parameter_data = *(longlong *)(param_data + UI_CONTEXT_OFFSET_F018);
             data_pointer = (char *)(param_data + UI_CONTEXT_OFFSET_7C0);
             context_data = (longlong)*(int *)(param_data + UI_CONTEXT_OFFSET_E80);
-            structure_pointer = (undefined8 *)(param_data + UI_CONTEXT_OFFSET_860);
+            structure_pointer = (uint64_t *)(param_data + UI_CONTEXT_OFFSET_860);
             iteration_count = 0;
             buffer_offset = *(longlong *)(param_data + UI_CONTEXT_OFFSET_EA8) - context_data;
             offset_data = 0xc;
             
             // 初始化缓冲区数据
-            *(undefined4 *)(buffer_offset + UI_ALIGNMENT_OFFSET + context_data * 4) = *(undefined4 *)(parameter_data + UI_ALIGNMENT_OFFSET);
-            *(undefined4 *)(buffer_offset + UI_ALIGNMENT_OFFSET + context_data * 8) = *(undefined4 *)(parameter_data + UI_ALIGNMENT_OFFSET);
+            *(int32_t *)(buffer_offset + UI_ALIGNMENT_OFFSET + context_data * 4) = *(int32_t *)(parameter_data + UI_ALIGNMENT_OFFSET);
+            *(int32_t *)(buffer_offset + UI_ALIGNMENT_OFFSET + context_data * 8) = *(int32_t *)(parameter_data + UI_ALIGNMENT_OFFSET);
             stack_data = 0;
-            *(undefined4 *)(buffer_offset + UI_ALIGNMENT_OFFSET + context_data * 0xc) = *(undefined4 *)(parameter_data + UI_ALIGNMENT_OFFSET);
+            *(int32_t *)(buffer_offset + UI_ALIGNMENT_OFFSET + context_data * 0xc) = *(int32_t *)(parameter_data + UI_ALIGNMENT_OFFSET);
             
             // 处理UI数据批处理
             do {
@@ -209,18 +209,18 @@ void ui_system_process_data_state(longlong ui_context, longlong param_data)
                 
                 stack_parameter = parameter_data;
                 ui_system_handle_ui_data_callback(context_data, buffer_offset, process_index,
-                                                *(undefined4 *)(*(longlong *)(param_data + UI_CONTEXT_OFFSET_F000) + offset_data),
+                                                *(int32_t *)(*(longlong *)(param_data + UI_CONTEXT_OFFSET_F000) + offset_data),
                                                 parameter_data, validation_result, activation_state);
                 
-                result_flag = (undefined4)((ulonglong)stack_parameter >> 0x20);
+                result_flag = (int32_t)((ulonglong)stack_parameter >> 0x20);
                 
                 if (*data_pointer != UI_STATE_FLAG_DISABLED) {
                     if (*data_pointer < UI_STATE_FLAG_ENABLED) {
                         stack_parameter = CONCAT44(result_flag, validation_result);
                         ui_system_process_ui_callback_a((int)*(short *)*structure_pointer * (int)*(short *)(param_data + UI_CONTEXT_OFFSET_7E0),
                                                        parameter_data, validation_result, parameter_data, stack_parameter);
-                        result_flag = (undefined4)((ulonglong)stack_parameter >> 0x20);
-                        *(undefined4 *)*structure_pointer = 0;
+                        result_flag = (int32_t)((ulonglong)stack_parameter >> 0x20);
+                        *(int32_t *)*structure_pointer = 0;
                     }
                     else {
                         ui_system_process_ui_callback_b(*structure_pointer, param_data + UI_CONTEXT_OFFSET_7E0,
@@ -236,12 +236,12 @@ void ui_system_process_data_state(longlong ui_context, longlong param_data)
             } while ((int)iteration_count < UI_MAX_ITERATIONS);
         }
         else {
-            stack_parameter = *(undefined8 *)(param_data + UI_CONTEXT_OFFSET_EA8);
-            ui_system_update_ui_state(param_data, *(undefined8 *)(param_data + UI_CONTEXT_OFFSET_F018),
-                                      *(undefined8 *)(param_data + UI_CONTEXT_OFFSET_F030),
-                                      *(undefined4 *)(param_data + UI_CONTEXT_OFFSET_F048),
-                                      stack_parameter, *(undefined4 *)(param_data + UI_CONTEXT_OFFSET_E80));
-            result_flag = (undefined4)((ulonglong)stack_parameter >> 0x20);
+            stack_parameter = *(uint64_t *)(param_data + UI_CONTEXT_OFFSET_EA8);
+            ui_system_update_ui_state(param_data, *(uint64_t *)(param_data + UI_CONTEXT_OFFSET_F018),
+                                      *(uint64_t *)(param_data + UI_CONTEXT_OFFSET_F030),
+                                      *(int32_t *)(param_data + UI_CONTEXT_OFFSET_F048),
+                                      stack_parameter, *(int32_t *)(param_data + UI_CONTEXT_OFFSET_E80));
+            result_flag = (int32_t)((ulonglong)stack_parameter >> 0x20);
         }
     }
     else {
@@ -254,17 +254,17 @@ void ui_system_process_data_state(longlong ui_context, longlong param_data)
             parameter_data = param_data + UI_CONTEXT_OFFSET_7E0;
             
             if (context_state != UI_STATE_FLAG_TAB) {
-                structure_pointer = (undefined8 *)(param_data + UI_CONTEXT_OFFSET_DA0);
+                structure_pointer = (uint64_t *)(param_data + UI_CONTEXT_OFFSET_DA0);
                 
                 if (*(char *)(param_data + UI_CONTEXT_OFFSET_7D8) < UI_STATE_FLAG_ENABLED) {
                     **(short **)(param_data + UI_CONTEXT_OFFSET_DA8) = *(short *)(param_data + UI_CONTEXT_OFFSET_820) * *(short *)*structure_pointer;
-                    ui_system_process_ui_callback_c(*(undefined8 *)(param_data + UI_CONTEXT_OFFSET_DA8), param_data + UI_CONTEXT_OFFSET_180);
-                    *(undefined4 *)*structure_pointer = 0;
+                    ui_system_process_ui_callback_c(*(uint64_t *)(param_data + UI_CONTEXT_OFFSET_DA8), param_data + UI_CONTEXT_OFFSET_180);
+                    *(int32_t *)*structure_pointer = 0;
                 }
                 else {
                     ui_system_process_ui_callback_d(structure_pointer, param_data + UI_CONTEXT_OFFSET_820);
-                    ui_system_process_ui_callback_e(*(undefined8 *)(param_data + UI_CONTEXT_OFFSET_DA8), param_data + UI_CONTEXT_OFFSET_180);
-                    structure_pointer = (undefined8 *)*structure_pointer;
+                    ui_system_process_ui_callback_e(*(uint64_t *)(param_data + UI_CONTEXT_OFFSET_DA8), param_data + UI_CONTEXT_OFFSET_180);
+                    structure_pointer = (uint64_t *)*structure_pointer;
                     *structure_pointer = 0;
                     structure_pointer[1] = 0;
                     structure_pointer[2] = 0;
@@ -276,15 +276,15 @@ void ui_system_process_data_state(longlong ui_context, longlong param_data)
             
             context_data = param_data + UI_CONTEXT_OFFSET_7C0;
             ui_system_process_ui_data(param_data + UI_CONTEXT_OFFSET_180, parameter_data,
-                                    *(undefined8 *)(param_data + UI_CONTEXT_OFFSET_EA8),
-                                    *(undefined4 *)(param_data + UI_CONTEXT_OFFSET_E80), context_data);
-            result_flag = (undefined4)((ulonglong)context_data >> 0x20);
+                                    *(uint64_t *)(param_data + UI_CONTEXT_OFFSET_EA8),
+                                    *(int32_t *)(param_data + UI_CONTEXT_OFFSET_E80), context_data);
+            result_flag = (int32_t)((ulonglong)context_data >> 0x20);
         }
         
         ui_system_finalize_ui_state(param_data + UI_CONTEXT_OFFSET_380, param_data + UI_CONTEXT_OFFSET_840,
-                                    *(undefined8 *)(param_data + UI_CONTEXT_OFFSET_EB0),
-                                    *(undefined8 *)(param_data + UI_CONTEXT_OFFSET_EB8),
-                                    CONCAT44(result_flag, *(undefined4 *)(param_data + UI_CONTEXT_OFFSET_E94)),
+                                    *(uint64_t *)(param_data + UI_CONTEXT_OFFSET_EB0),
+                                    *(uint64_t *)(param_data + UI_CONTEXT_OFFSET_EB8),
+                                    CONCAT44(result_flag, *(int32_t *)(param_data + UI_CONTEXT_OFFSET_E94)),
                                     param_data + UI_WORKING_AREA_SIZE);
     }
     
@@ -315,13 +315,13 @@ void ui_system_process_data_state_variant(longlong ui_context, longlong param_da
     longlong buffer_offset;
     char *data_pointer;
     longlong offset_data;
-    undefined8 *structure_pointer;
-    undefined8 stack_parameter;
-    undefined8 callback_parameter;
-    undefined4 result_flag;
+    uint64_t *structure_pointer;
+    uint64_t stack_parameter;
+    uint64_t callback_parameter;
+    int32_t result_flag;
     longlong stack_data;
     
-    result_flag = (undefined4)((ulonglong)stack_parameter >> 0x20);
+    result_flag = (int32_t)((ulonglong)stack_parameter >> 0x20);
     
     // 检查UI上下文状态
     if (*(char *)(context_pointer + 9) == UI_STATE_FLAG_DISABLED) {
@@ -350,25 +350,25 @@ void ui_system_process_data_state_variant(longlong ui_context, longlong param_da
             
             if (*(char *)(*(longlong *)(register_data + UI_CONTEXT_OFFSET_F000) + 9) != UI_STATE_FLAG_DISABLED) {
                 // 清空UI工作区域
-                *(undefined8 *)(register_data + UI_CONTEXT_OFFSET_7C0) = 0;
-                *(undefined8 *)(register_data + UI_CONTEXT_OFFSET_7C8) = 0;
-                *(undefined8 *)(register_data + UI_WORKING_AREA_SIZE) = 0;
-                *(undefined1 *)(register_data + UI_CONTEXT_OFFSET_7D8) = 0;
+                *(uint64_t *)(register_data + UI_CONTEXT_OFFSET_7C0) = 0;
+                *(uint64_t *)(register_data + UI_CONTEXT_OFFSET_7C8) = 0;
+                *(uint64_t *)(register_data + UI_WORKING_AREA_SIZE) = 0;
+                *(int8_t *)(register_data + UI_CONTEXT_OFFSET_7D8) = 0;
             }
             
             buffer_data = *(longlong *)(register_data + UI_CONTEXT_OFFSET_F018);
             data_pointer = (char *)(register_data + UI_CONTEXT_OFFSET_7C0);
             parameter_data = (longlong)*(int *)(register_data + UI_CONTEXT_OFFSET_E80);
-            structure_pointer = (undefined8 *)(register_data + UI_CONTEXT_OFFSET_860);
+            structure_pointer = (uint64_t *)(register_data + UI_CONTEXT_OFFSET_860);
             iteration_count = 0;
             buffer_offset = *(longlong *)(register_data + UI_CONTEXT_OFFSET_EA8) - parameter_data;
             offset_data = 0xc;
             
             // 初始化缓冲区数据
-            *(undefined4 *)(buffer_offset + UI_ALIGNMENT_OFFSET + parameter_data * 4) = *(undefined4 *)(buffer_data + UI_ALIGNMENT_OFFSET);
-            *(undefined4 *)(buffer_offset + UI_ALIGNMENT_OFFSET + parameter_data * 8) = *(undefined4 *)(buffer_data + UI_ALIGNMENT_OFFSET);
+            *(int32_t *)(buffer_offset + UI_ALIGNMENT_OFFSET + parameter_data * 4) = *(int32_t *)(buffer_data + UI_ALIGNMENT_OFFSET);
+            *(int32_t *)(buffer_offset + UI_ALIGNMENT_OFFSET + parameter_data * 8) = *(int32_t *)(buffer_data + UI_ALIGNMENT_OFFSET);
             stack_data = 0;
-            *(undefined4 *)(buffer_offset + UI_ALIGNMENT_OFFSET + parameter_data * 0xc) = *(undefined4 *)(buffer_data + UI_ALIGNMENT_OFFSET);
+            *(int32_t *)(buffer_offset + UI_ALIGNMENT_OFFSET + parameter_data * 0xc) = *(int32_t *)(buffer_data + UI_ALIGNMENT_OFFSET);
             
             // 处理UI数据批处理
             do {
@@ -392,18 +392,18 @@ void ui_system_process_data_state_variant(longlong ui_context, longlong param_da
                 
                 register_data = buffer_data;
                 ui_system_handle_ui_data_callback(parameter_data, buffer_offset, process_index,
-                                                *(undefined4 *)(*(longlong *)(register_data + UI_CONTEXT_OFFSET_F000) + offset_data),
+                                                *(int32_t *)(*(longlong *)(register_data + UI_CONTEXT_OFFSET_F000) + offset_data),
                                                 buffer_data);
                 
-                result_flag = (undefined4)((ulonglong)register_data >> 0x20);
+                result_flag = (int32_t)((ulonglong)register_data >> 0x20);
                 
                 if (*data_pointer != UI_STATE_FLAG_DISABLED) {
                     if (*data_pointer < UI_STATE_FLAG_ENABLED) {
                         callback_parameter = CONCAT44(result_flag, validation_result);
                         ui_system_process_ui_callback_a((int)*(short *)*structure_pointer * (int)*(short *)(register_data + UI_CONTEXT_OFFSET_7E0),
                                                        buffer_data, validation_result, buffer_data, callback_parameter);
-                        result_flag = (undefined4)((ulonglong)callback_parameter >> 0x20);
-                        *(undefined4 *)*structure_pointer = 0;
+                        result_flag = (int32_t)((ulonglong)callback_parameter >> 0x20);
+                        *(int32_t *)*structure_pointer = 0;
                     }
                     else {
                         ui_system_process_ui_callback_b(*structure_pointer, register_data + UI_CONTEXT_OFFSET_7E0,
@@ -419,7 +419,7 @@ void ui_system_process_data_state_variant(longlong ui_context, longlong param_da
             } while ((int)iteration_count < UI_MAX_ITERATIONS);
         }
         else {
-            result_flag = (undefined4)((ulonglong)*(undefined8 *)(register_data + UI_CONTEXT_OFFSET_EA8) >> 0x20);
+            result_flag = (int32_t)((ulonglong)*(uint64_t *)(register_data + UI_CONTEXT_OFFSET_EA8) >> 0x20);
             ui_system_update_ui_state();
         }
     }
@@ -433,17 +433,17 @@ void ui_system_process_data_state_variant(longlong ui_context, longlong param_da
             buffer_data = register_data + UI_CONTEXT_OFFSET_7E0;
             
             if (context_state != UI_STATE_FLAG_TAB) {
-                structure_pointer = (undefined8 *)(register_data + UI_CONTEXT_OFFSET_DA0);
+                structure_pointer = (uint64_t *)(register_data + UI_CONTEXT_OFFSET_DA0);
                 
                 if (*(char *)(register_data + UI_CONTEXT_OFFSET_7D8) < UI_STATE_FLAG_ENABLED) {
                     **(short **)(register_data + UI_CONTEXT_OFFSET_DA8) = *(short *)(register_data + UI_CONTEXT_OFFSET_820) * *(short *)*structure_pointer;
-                    ui_system_process_ui_callback_c(*(undefined8 *)(register_data + UI_CONTEXT_OFFSET_DA8), register_data + UI_CONTEXT_OFFSET_180);
-                    *(undefined4 *)*structure_pointer = 0;
+                    ui_system_process_ui_callback_c(*(uint64_t *)(register_data + UI_CONTEXT_OFFSET_DA8), register_data + UI_CONTEXT_OFFSET_180);
+                    *(int32_t *)*structure_pointer = 0;
                 }
                 else {
                     ui_system_process_ui_callback_d(structure_pointer, register_data + UI_CONTEXT_OFFSET_820);
-                    ui_system_process_ui_callback_e(*(undefined8 *)(register_data + UI_CONTEXT_OFFSET_DA8), register_data + UI_CONTEXT_OFFSET_180);
-                    structure_pointer = (undefined8 *)*structure_pointer;
+                    ui_system_process_ui_callback_e(*(uint64_t *)(register_data + UI_CONTEXT_OFFSET_DA8), register_data + UI_CONTEXT_OFFSET_180);
+                    structure_pointer = (uint64_t *)*structure_pointer;
                     *structure_pointer = 0;
                     structure_pointer[1] = 0;
                     structure_pointer[2] = 0;
@@ -455,15 +455,15 @@ void ui_system_process_data_state_variant(longlong ui_context, longlong param_da
             
             parameter_data = register_data + UI_CONTEXT_OFFSET_7C0;
             ui_system_process_ui_data(register_data + UI_CONTEXT_OFFSET_180, buffer_data,
-                                    *(undefined8 *)(register_data + UI_CONTEXT_OFFSET_EA8),
-                                    *(undefined4 *)(register_data + UI_CONTEXT_OFFSET_E80), parameter_data);
-            result_flag = (undefined4)((ulonglong)parameter_data >> 0x20);
+                                    *(uint64_t *)(register_data + UI_CONTEXT_OFFSET_EA8),
+                                    *(int32_t *)(register_data + UI_CONTEXT_OFFSET_E80), parameter_data);
+            result_flag = (int32_t)((ulonglong)parameter_data >> 0x20);
         }
         
         ui_system_finalize_ui_state(register_data + UI_CONTEXT_OFFSET_380, register_data + UI_CONTEXT_OFFSET_840,
-                                    *(undefined8 *)(register_data + UI_CONTEXT_OFFSET_EB0),
-                                    *(undefined8 *)(register_data + UI_CONTEXT_OFFSET_EB8),
-                                    CONCAT44(result_flag, *(undefined4 *)(register_data + UI_CONTEXT_OFFSET_E94)));
+                                    *(uint64_t *)(register_data + UI_CONTEXT_OFFSET_EB0),
+                                    *(uint64_t *)(register_data + UI_CONTEXT_OFFSET_EB8),
+                                    CONCAT44(result_flag, *(int32_t *)(register_data + UI_CONTEXT_OFFSET_E94)));
     }
     
     return;
@@ -490,11 +490,11 @@ void ui_system_process_advanced_data(void)
     longlong buffer_offset;
     char *data_pointer;
     longlong offset_data;
-    undefined8 *structure_pointer;
+    uint64_t *structure_pointer;
     longlong register_r15;
     longlong stack_parameter;
-    undefined8 callback_parameter;
-    undefined4 result_flag;
+    uint64_t callback_parameter;
+    int32_t result_flag;
     char stack_char;
     longlong stack_data;
     int stack_parameter_int;
@@ -504,26 +504,26 @@ void ui_system_process_advanced_data(void)
     // 检查UI上下文状态
     if (*(char *)(context_pointer + 9) != UI_STATE_FLAG_DISABLED) {
         // 清空UI工作区域
-        *(undefined8 *)(register_data + UI_CONTEXT_OFFSET_7C0) = 0;
-        *(undefined8 *)(register_data + UI_CONTEXT_OFFSET_7C8) = 0;
-        *(undefined8 *)(register_data + UI_WORKING_AREA_SIZE) = 0;
-        *(undefined1 *)(register_data + UI_CONTEXT_OFFSET_7D8) = 0;
+        *(uint64_t *)(register_data + UI_CONTEXT_OFFSET_7C0) = 0;
+        *(uint64_t *)(register_data + UI_CONTEXT_OFFSET_7C8) = 0;
+        *(uint64_t *)(register_data + UI_WORKING_AREA_SIZE) = 0;
+        *(int8_t *)(register_data + UI_CONTEXT_OFFSET_7D8) = 0;
     }
     
     buffer_data = *(longlong *)(register_data + UI_CONTEXT_OFFSET_F018);
     data_pointer = (char *)(register_data + UI_CONTEXT_OFFSET_7C0);
     parameter_data = (longlong)*(int *)(register_data + UI_CONTEXT_OFFSET_E80);
-    structure_pointer = (undefined8 *)(register_data + UI_CONTEXT_OFFSET_860);
+    structure_pointer = (uint64_t *)(register_data + UI_CONTEXT_OFFSET_860);
     iteration_count = 0;
     buffer_offset = *(longlong *)(register_data + UI_CONTEXT_OFFSET_EA8) - parameter_data;
     stack_data = -0x7c0 - register_data;
     offset_data = 0xc;
     
     // 初始化缓冲区数据
-    *(undefined4 *)(buffer_offset + UI_ALIGNMENT_OFFSET + parameter_data * 4) = *(undefined4 *)(buffer_data + UI_ALIGNMENT_OFFSET);
-    *(undefined4 *)(buffer_offset + UI_ALIGNMENT_OFFSET + parameter_data * 8) = *(undefined4 *)(buffer_data + UI_ALIGNMENT_OFFSET);
+    *(int32_t *)(buffer_offset + UI_ALIGNMENT_OFFSET + parameter_data * 4) = *(int32_t *)(buffer_data + UI_ALIGNMENT_OFFSET);
+    *(int32_t *)(buffer_offset + UI_ALIGNMENT_OFFSET + parameter_data * 8) = *(int32_t *)(buffer_data + UI_ALIGNMENT_OFFSET);
     stack_parameter = 0;
-    *(undefined4 *)(buffer_offset + UI_ALIGNMENT_OFFSET + parameter_data * 0xc) = *(undefined4 *)(buffer_data + UI_ALIGNMENT_OFFSET);
+    *(int32_t *)(buffer_offset + UI_ALIGNMENT_OFFSET + parameter_data * 0xc) = *(int32_t *)(buffer_data + UI_ALIGNMENT_OFFSET);
     
     // 处理UI数据批处理
     do {
@@ -555,18 +555,18 @@ void ui_system_process_advanced_data(void)
         
         stack_parameter = buffer_data;
         ui_system_handle_ui_data_callback(parameter_data, buffer_offset, process_index,
-                                        *(undefined4 *)(*(longlong *)(register_data + UI_CONTEXT_OFFSET_F000) + offset_data),
+                                        *(int32_t *)(*(longlong *)(register_data + UI_CONTEXT_OFFSET_F000) + offset_data),
                                         buffer_data);
         
-        result_flag = (undefined4)((ulonglong)stack_parameter >> 0x20);
+        result_flag = (int32_t)((ulonglong)stack_parameter >> 0x20);
         
         if (*data_pointer != UI_STATE_FLAG_DISABLED) {
             if (*data_pointer < UI_STATE_FLAG_ENABLED) {
                 callback_parameter = CONCAT44(result_flag, index_data);
                 ui_system_process_ui_callback_a((int)*(short *)*structure_pointer * (int)*(short *)(register_data + UI_CONTEXT_OFFSET_7E0),
                                                buffer_data, index_data, buffer_data, callback_parameter);
-                result_flag = (undefined4)((ulonglong)callback_parameter >> 0x20);
-                *(undefined4 *)*structure_pointer = 0;
+                result_flag = (int32_t)((ulonglong)callback_parameter >> 0x20);
+                *(int32_t *)*structure_pointer = 0;
             }
             else {
                 ui_system_process_ui_callback_b(*structure_pointer, register_data + UI_CONTEXT_OFFSET_7E0,
@@ -587,17 +587,17 @@ void ui_system_process_advanced_data(void)
             buffer_data = register_data + UI_CONTEXT_OFFSET_7E0;
             
             if (stack_parameter_int != UI_STATE_FLAG_TAB) {
-                structure_pointer = (undefined8 *)(register_data + UI_CONTEXT_OFFSET_DA0);
+                structure_pointer = (uint64_t *)(register_data + UI_CONTEXT_OFFSET_DA0);
                 
                 if (*(char *)(register_data + UI_CONTEXT_OFFSET_7D8) < UI_STATE_FLAG_ENABLED) {
                     **(short **)(register_data + UI_CONTEXT_OFFSET_DA8) = *(short *)(register_data + UI_CONTEXT_OFFSET_820) * *(short *)*structure_pointer;
-                    ui_system_process_ui_callback_c(*(undefined8 *)(register_data + UI_CONTEXT_OFFSET_DA8), register_data + UI_CONTEXT_OFFSET_180);
-                    *(undefined4 *)*structure_pointer = 0;
+                    ui_system_process_ui_callback_c(*(uint64_t *)(register_data + UI_CONTEXT_OFFSET_DA8), register_data + UI_CONTEXT_OFFSET_180);
+                    *(int32_t *)*structure_pointer = 0;
                 }
                 else {
                     ui_system_process_ui_callback_d(structure_pointer, register_data + UI_CONTEXT_OFFSET_820);
-                    ui_system_process_ui_callback_e(*(undefined8 *)(register_data + UI_CONTEXT_OFFSET_DA8), register_data + UI_CONTEXT_OFFSET_180);
-                    structure_pointer = (undefined8 *)*structure_pointer;
+                    ui_system_process_ui_callback_e(*(uint64_t *)(register_data + UI_CONTEXT_OFFSET_DA8), register_data + UI_CONTEXT_OFFSET_180);
+                    structure_pointer = (uint64_t *)*structure_pointer;
                     *structure_pointer = 0;
                     structure_pointer[1] = 0;
                     structure_pointer[2] = 0;
@@ -609,15 +609,15 @@ void ui_system_process_advanced_data(void)
             
             parameter_data = register_data + UI_CONTEXT_OFFSET_7C0;
             ui_system_process_ui_data(register_data + UI_CONTEXT_OFFSET_180, buffer_data,
-                                    *(undefined8 *)(register_data + UI_CONTEXT_OFFSET_EA8),
-                                    *(undefined4 *)(register_data + UI_CONTEXT_OFFSET_E80), parameter_data);
-            result_flag = (undefined4)((ulonglong)parameter_data >> 0x20);
+                                    *(uint64_t *)(register_data + UI_CONTEXT_OFFSET_EA8),
+                                    *(int32_t *)(register_data + UI_CONTEXT_OFFSET_E80), parameter_data);
+            result_flag = (int32_t)((ulonglong)parameter_data >> 0x20);
         }
         
         ui_system_finalize_ui_state(register_data + UI_CONTEXT_OFFSET_380, register_data + UI_CONTEXT_OFFSET_840,
-                                    *(undefined8 *)(register_data + UI_CONTEXT_OFFSET_EB0),
-                                    *(undefined8 *)(register_data + UI_CONTEXT_OFFSET_EB8),
-                                    CONCAT44(result_flag, *(undefined4 *)(register_data + UI_CONTEXT_OFFSET_E94)));
+                                    *(uint64_t *)(register_data + UI_CONTEXT_OFFSET_EB0),
+                                    *(uint64_t *)(register_data + UI_CONTEXT_OFFSET_EB8),
+                                    CONCAT44(result_flag, *(int32_t *)(register_data + UI_CONTEXT_OFFSET_E94)));
     }
     
     return;
@@ -634,15 +634,15 @@ void ui_system_process_advanced_data(void)
  */
 void ui_system_cleanup_ui_resources(void)
 {
-    undefined8 *structure_pointer;
+    uint64_t *structure_pointer;
     longlong buffer_data;
     longlong register_data;
     int register_edi;
-    undefined8 stack_parameter;
+    uint64_t stack_parameter;
     longlong parameter_data;
-    undefined4 result_flag;
+    int32_t result_flag;
     
-    result_flag = (undefined4)((ulonglong)stack_parameter >> 0x20);
+    result_flag = (int32_t)((ulonglong)stack_parameter >> 0x20);
     
     // 清理UI状态
     ui_system_cleanup_ui_state();
@@ -653,17 +653,17 @@ void ui_system_cleanup_ui_resources(void)
             buffer_data = register_data + UI_CONTEXT_OFFSET_7E0;
             
             if (register_edi != UI_STATE_FLAG_TAB) {
-                structure_pointer = (undefined8 *)(register_data + UI_CONTEXT_OFFSET_DA0);
+                structure_pointer = (uint64_t *)(register_data + UI_CONTEXT_OFFSET_DA0);
                 
                 if (*(char *)(register_data + UI_CONTEXT_OFFSET_7D8) < UI_STATE_FLAG_ENABLED) {
                     **(short **)(register_data + UI_CONTEXT_OFFSET_DA8) = *(short *)(register_data + UI_CONTEXT_OFFSET_820) * *(short *)*structure_pointer;
-                    ui_system_process_ui_callback_c(*(undefined8 *)(register_data + UI_CONTEXT_OFFSET_DA8), register_data + UI_CONTEXT_OFFSET_180);
-                    *(undefined4 *)*structure_pointer = 0;
+                    ui_system_process_ui_callback_c(*(uint64_t *)(register_data + UI_CONTEXT_OFFSET_DA8), register_data + UI_CONTEXT_OFFSET_180);
+                    *(int32_t *)*structure_pointer = 0;
                 }
                 else {
                     ui_system_process_ui_callback_d(structure_pointer, register_data + UI_CONTEXT_OFFSET_820);
-                    ui_system_process_ui_callback_e(*(undefined8 *)(register_data + UI_CONTEXT_OFFSET_DA8), register_data + UI_CONTEXT_OFFSET_180);
-                    structure_pointer = (undefined8 *)*structure_pointer;
+                    ui_system_process_ui_callback_e(*(uint64_t *)(register_data + UI_CONTEXT_OFFSET_DA8), register_data + UI_CONTEXT_OFFSET_180);
+                    structure_pointer = (uint64_t *)*structure_pointer;
                     *structure_pointer = 0;
                     structure_pointer[1] = 0;
                     structure_pointer[2] = 0;
@@ -675,15 +675,15 @@ void ui_system_cleanup_ui_resources(void)
             
             parameter_data = register_data + UI_CONTEXT_OFFSET_7C0;
             ui_system_process_ui_data(register_data + UI_CONTEXT_OFFSET_180, buffer_data,
-                                    *(undefined8 *)(register_data + UI_CONTEXT_OFFSET_EA8),
-                                    *(undefined4 *)(register_data + UI_CONTEXT_OFFSET_E80), parameter_data);
-            result_flag = (undefined4)((ulonglong)parameter_data >> 0x20);
+                                    *(uint64_t *)(register_data + UI_CONTEXT_OFFSET_EA8),
+                                    *(int32_t *)(register_data + UI_CONTEXT_OFFSET_E80), parameter_data);
+            result_flag = (int32_t)((ulonglong)parameter_data >> 0x20);
         }
         
         ui_system_finalize_ui_state(register_data + UI_CONTEXT_OFFSET_380, register_data + UI_CONTEXT_OFFSET_840,
-                                    *(undefined8 *)(register_data + UI_CONTEXT_OFFSET_EB0),
-                                    *(undefined8 *)(register_data + UI_CONTEXT_OFFSET_EB8),
-                                    CONCAT44(result_flag, *(undefined4 *)(register_data + UI_CONTEXT_OFFSET_E94)));
+                                    *(uint64_t *)(register_data + UI_CONTEXT_OFFSET_EB0),
+                                    *(uint64_t *)(register_data + UI_CONTEXT_OFFSET_EB8),
+                                    CONCAT44(result_flag, *(int32_t *)(register_data + UI_CONTEXT_OFFSET_E94)));
     }
     
     return;
@@ -700,7 +700,7 @@ void ui_system_cleanup_ui_resources(void)
  */
 void ui_system_manage_ui_resources(void)
 {
-    undefined8 *structure_pointer;
+    uint64_t *structure_pointer;
     longlong buffer_data;
     longlong register_data;
     int register_edi;
@@ -710,17 +710,17 @@ void ui_system_manage_ui_resources(void)
         buffer_data = register_data + UI_CONTEXT_OFFSET_7E0;
         
         if (register_edi != UI_STATE_FLAG_TAB) {
-            structure_pointer = (undefined8 *)(register_data + UI_CONTEXT_OFFSET_DA0);
+            structure_pointer = (uint64_t *)(register_data + UI_CONTEXT_OFFSET_DA0);
             
             if (*(char *)(register_data + UI_CONTEXT_OFFSET_7D8) < UI_STATE_FLAG_ENABLED) {
                 **(short **)(register_data + UI_CONTEXT_OFFSET_DA8) = *(short *)(register_data + UI_CONTEXT_OFFSET_820) * *(short *)*structure_pointer;
-                ui_system_process_ui_callback_c(*(undefined8 *)(register_data + UI_CONTEXT_OFFSET_DA8), register_data + UI_CONTEXT_OFFSET_180);
-                *(undefined4 *)*structure_pointer = 0;
+                ui_system_process_ui_callback_c(*(uint64_t *)(register_data + UI_CONTEXT_OFFSET_DA8), register_data + UI_CONTEXT_OFFSET_180);
+                *(int32_t *)*structure_pointer = 0;
             }
             else {
                 ui_system_process_ui_callback_d(structure_pointer, register_data + UI_CONTEXT_OFFSET_820);
-                ui_system_process_ui_callback_e(*(undefined8 *)(register_data + UI_CONTEXT_OFFSET_DA8), register_data + UI_CONTEXT_OFFSET_180);
-                structure_pointer = (undefined8 *)*structure_pointer;
+                ui_system_process_ui_callback_e(*(uint64_t *)(register_data + UI_CONTEXT_OFFSET_DA8), register_data + UI_CONTEXT_OFFSET_180);
+                structure_pointer = (uint64_t *)*structure_pointer;
                 *structure_pointer = 0;
                 structure_pointer[1] = 0;
                 structure_pointer[2] = 0;
@@ -731,14 +731,14 @@ void ui_system_manage_ui_resources(void)
         }
         
         ui_system_process_ui_data(register_data + UI_CONTEXT_OFFSET_180, buffer_data,
-                                *(undefined8 *)(register_data + UI_CONTEXT_OFFSET_EA8),
-                                *(undefined4 *)(register_data + UI_CONTEXT_OFFSET_E80), register_data + UI_CONTEXT_OFFSET_7C0);
+                                *(uint64_t *)(register_data + UI_CONTEXT_OFFSET_EA8),
+                                *(int32_t *)(register_data + UI_CONTEXT_OFFSET_E80), register_data + UI_CONTEXT_OFFSET_7C0);
     }
     
     ui_system_finalize_ui_state(register_data + UI_CONTEXT_OFFSET_380, register_data + UI_CONTEXT_OFFSET_840,
-                                *(undefined8 *)(register_data + UI_CONTEXT_OFFSET_EB0),
-                                *(undefined8 *)(register_data + UI_CONTEXT_OFFSET_EB8),
-                                *(undefined4 *)(register_data + UI_CONTEXT_OFFSET_E94));
+                                *(uint64_t *)(register_data + UI_CONTEXT_OFFSET_EB0),
+                                *(uint64_t *)(register_data + UI_CONTEXT_OFFSET_EB8),
+                                *(int32_t *)(register_data + UI_CONTEXT_OFFSET_E94));
     
     return;
 }

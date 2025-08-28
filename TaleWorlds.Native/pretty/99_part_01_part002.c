@@ -122,52 +122,52 @@ static undefined memory_optimizer;
 /**
  * 系统核心功能函数
  */
-static void system_core_data_processor(undefined8 context, undefined8 param1, undefined8 param2);
-static void system_string_formatter(undefined8 context, undefined8 param1, undefined8 param2);
-static void system_memory_allocator(undefined8 context, undefined8 param1, undefined8 param2);
-static void system_state_manager(undefined8 context, undefined8 param1, undefined8 param2);
-static void system_data_validator(undefined8 context, undefined8 param1, undefined8 param2);
-static void system_error_handler(undefined8 context, undefined8 param1, undefined8 param2);
-static void system_resource_manager(undefined8 context, undefined8 param1, undefined8 param2);
-static void system_configuration_manager(undefined8 context, undefined8 param1, undefined8 param2);
-static void system_performance_monitor(undefined8 context, undefined8 param1, undefined8 param2);
-static void system_debug_logger(undefined8 context, undefined8 param1, undefined8 param2);
+static void system_core_data_processor(uint64_t context, uint64_t param1, uint64_t param2);
+static void system_string_formatter(uint64_t context, uint64_t param1, uint64_t param2);
+static void system_memory_allocator(uint64_t context, uint64_t param1, uint64_t param2);
+static void system_state_manager(uint64_t context, uint64_t param1, uint64_t param2);
+static void system_data_validator(uint64_t context, uint64_t param1, uint64_t param2);
+static void system_error_handler(uint64_t context, uint64_t param1, uint64_t param2);
+static void system_resource_manager(uint64_t context, uint64_t param1, uint64_t param2);
+static void system_configuration_manager(uint64_t context, uint64_t param1, uint64_t param2);
+static void system_performance_monitor(uint64_t context, uint64_t param1, uint64_t param2);
+static void system_debug_logger(uint64_t context, uint64_t param1, uint64_t param2);
 
 /**
  * 数据处理系统函数
  */
-static void data_processor_buffer(undefined8 context, undefined8 param1, undefined8 param2);
-static void data_stream_handler(undefined8 context, undefined8 param1, undefined8 param2);
-static void data_converter(undefined8 context, undefined8 param1, undefined8 param2);
-static void data_validator(undefined8 context, undefined8 param1, undefined8 param2);
-static void data_cache_manager(undefined8 context, undefined8 param1, undefined8 param2);
-static void data_compression_handler(undefined8 context, undefined8 param1, undefined8 param2);
-static void data_encryption_handler(undefined8 context, undefined8 param1, undefined8 param2);
-static void data_transmission_handler(undefined8 context, undefined8 param1, undefined8 param2);
+static void data_processor_buffer(uint64_t context, uint64_t param1, uint64_t param2);
+static void data_stream_handler(uint64_t context, uint64_t param1, uint64_t param2);
+static void data_converter(uint64_t context, uint64_t param1, uint64_t param2);
+static void data_validator(uint64_t context, uint64_t param1, uint64_t param2);
+static void data_cache_manager(uint64_t context, uint64_t param1, uint64_t param2);
+static void data_compression_handler(uint64_t context, uint64_t param1, uint64_t param2);
+static void data_encryption_handler(uint64_t context, uint64_t param1, uint64_t param2);
+static void data_transmission_handler(uint64_t context, uint64_t param1, uint64_t param2);
 
 /**
  * 字符串处理系统函数
  */
-static void string_parser(undefined8 context, undefined8 param1, undefined8 param2);
-static void string_formatter(undefined8 context, undefined8 param1, undefined8 param2);
-static void string_converter(undefined8 context, undefined8 param1, undefined8 param2);
-static void string_validator(undefined8 context, undefined8 param1, undefined8 param2);
-static void string_buffer_manager(undefined8 context, undefined8 param1, undefined8 param2);
-static void string_encoding_handler(undefined8 context, undefined8 param1, undefined8 param2);
-static void string_localization_handler(undefined8 context, undefined8 param1, undefined8 param2);
-static void string_resource_manager(undefined8 context, undefined8 param1, undefined8 param2);
+static void string_parser(uint64_t context, uint64_t param1, uint64_t param2);
+static void string_formatter(uint64_t context, uint64_t param1, uint64_t param2);
+static void string_converter(uint64_t context, uint64_t param1, uint64_t param2);
+static void string_validator(uint64_t context, uint64_t param1, uint64_t param2);
+static void string_buffer_manager(uint64_t context, uint64_t param1, uint64_t param2);
+static void string_encoding_handler(uint64_t context, uint64_t param1, uint64_t param2);
+static void string_localization_handler(uint64_t context, uint64_t param1, uint64_t param2);
+static void string_resource_manager(uint64_t context, uint64_t param1, uint64_t param2);
 
 /**
  * 内存管理系统函数
  */
-static void memory_pool_manager(undefined8 context, undefined8 param1, undefined8 param2);
-static void memory_allocator(undefined8 context, undefined8 param1, undefined8 param2);
-static void memory_deallocator(undefined8 context, undefined8 param1, undefined8 param2);
-static void memory_compactor(undefined8 context, undefined8 param1, undefined8 param2);
-static void memory_tracker(undefined8 context, undefined8 param1, undefined8 param2);
-static void memory_cleaner(undefined8 context, undefined8 param1, undefined8 param2);
-static void memory_validator(undefined8 context, undefined8 param1, undefined8 param2);
-static void memory_optimizer(undefined8 context, undefined8 param1, undefined8 param2);
+static void memory_pool_manager(uint64_t context, uint64_t param1, uint64_t param2);
+static void memory_allocator(uint64_t context, uint64_t param1, uint64_t param2);
+static void memory_deallocator(uint64_t context, uint64_t param1, uint64_t param2);
+static void memory_compactor(uint64_t context, uint64_t param1, uint64_t param2);
+static void memory_tracker(uint64_t context, uint64_t param1, uint64_t param2);
+static void memory_cleaner(uint64_t context, uint64_t param1, uint64_t param2);
+static void memory_validator(uint64_t context, uint64_t param1, uint64_t param2);
+static void memory_optimizer(uint64_t context, uint64_t param1, uint64_t param2);
 
 /*==========================================
 =            函数定义            =
@@ -182,17 +182,17 @@ static void memory_optimizer(undefined8 context, undefined8 param1, undefined8 p
  * @param param_3 附加数据参数
  * @param param_4 控制标志参数
  */
-void FUN_1800a0051(undefined8 param_1, longlong *param_2, longlong param_3, byte param_4)
+void FUN_1800a0051(uint64_t param_1, longlong *param_2, longlong param_3, byte param_4)
 {
-  undefined1 uVar1;
+  int8_t uVar1;
   longlong lVar2;
   longlong lVar3;
-  undefined1 *puVar4;
+  int8_t *puVar4;
   longlong lVar5;
-  undefined1 *puVar6;
+  int8_t *puVar6;
   longlong lVar7;
   ulonglong uVar8;
-  undefined1 *puVar9;
+  int8_t *puVar9;
   longlong *unaff_R15;
   uint in_stack_00000080;
   
@@ -274,19 +274,19 @@ void FUN_1800a0051(undefined8 param_1, longlong *param_2, longlong param_3, byte
   }
   
   // 处理字符串数据
-  puVar4 = *(undefined1 **)(param_3 + 8);
+  puVar4 = *(int8_t **)(param_3 + 8);
   lVar2 = *param_2;
   lVar3 = param_2[1];
-  if (puVar4 == (undefined1 *)0x0) {
-    puVar6 = (undefined1 *)0x180d48d24;
+  if (puVar4 == (int8_t *)0x0) {
+    puVar6 = (int8_t *)0x180d48d24;
     lVar7 = 0;
   }
   else {
     lVar7 = *(longlong *)(param_3 + 0x18);
     puVar6 = puVar4;
   }
-  puVar9 = (undefined1 *)0x180d48d24;
-  if (puVar4 != (undefined1 *)0x0) {
+  puVar9 = (int8_t *)0x180d48d24;
+  if (puVar4 != (int8_t *)0x0) {
     puVar9 = puVar4;
   }
   
@@ -451,7 +451,7 @@ void module_cleanup(void)
  * 导出函数：系统核心数据处理器
  * 对应原始函数：FUN_1800a0051
  */
-void SystemCoreDataProcessor(undefined8 param_1, longlong *param_2, longlong param_3, byte param_4)
+void SystemCoreDataProcessor(uint64_t param_1, longlong *param_2, longlong param_3, byte param_4)
 {
   FUN_1800a0051(param_1, param_2, param_3, param_4);
 }

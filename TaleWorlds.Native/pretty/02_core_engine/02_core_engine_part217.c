@@ -11,14 +11,14 @@ void process_physics_material_properties(longlong physics_context, longlong mate
   char *pcVar3;
   longlong lVar4;
   ulonglong uVar5;
-  undefined8 *puVar6;
+  uint64_t *puVar6;
   char *pcVar7;
   char *pcVar8;
   char acStackX_8 [8];
-  undefined *puStack_50;
+  void *puStack_50;
   longlong lStack_48;
   uint uStack_40;
-  undefined8 uStack_38;
+  uint64_t uStack_38;
   
   // 处理材质ID属性
   pcVar7 = "id";
@@ -27,8 +27,8 @@ void process_physics_material_properties(longlong physics_context, longlong mate
     pcVar7 = pcVar8 + 1;
   } while (*pcVar7 != '\0');
   pcVar7 = (char *)0x0;
-  for (puVar6 = *(undefined8 **)(material_data + 0x40); puVar6 != (undefined8 *)0x0;
-      puVar6 = (undefined8 *)puVar6[6]) {
+  for (puVar6 = *(uint64_t **)(material_data + 0x40); puVar6 != (uint64_t *)0x0;
+      puVar6 = (uint64_t *)puVar6[6]) {
     pcVar3 = (char *)*puVar6;
     if (pcVar3 == (char *)0x0) {
       pcVar3 = (char *)0x180d48d24;
@@ -68,8 +68,8 @@ LAB_180193562:
     pcVar3 = pcVar8;
     pcVar8 = pcVar3 + 1;
   } while (*pcVar8 != '\0');
-  for (puVar6 = *(undefined8 **)(material_data + 0x40); puVar6 != (undefined8 *)0x0;
-      puVar6 = (undefined8 *)puVar6[6]) {
+  for (puVar6 = *(uint64_t **)(material_data + 0x40); puVar6 != (uint64_t *)0x0;
+      puVar6 = (uint64_t *)puVar6[6]) {
     pcVar8 = (char *)*puVar6;
     if (pcVar8 == (char *)0x0) {
       pcVar8 = (char *)0x180d48d24;
@@ -94,13 +94,13 @@ LAB_180193610:
         }
         if (uVar1 != 0) {
                     // WARNING: Subroutine does not return
-          memcpy(*(undefined8 *)(physics_context + 0x30),lStack_48,uVar5);
+          memcpy(*(uint64_t *)(physics_context + 0x30),lStack_48,uVar5);
         }
-        *(undefined4 *)(physics_context + 0x38) = 0;
+        *(int32_t *)(physics_context + 0x38) = 0;
         if (*(longlong *)(physics_context + 0x30) != 0) {
-          *(undefined1 *)(uVar5 + *(longlong *)(physics_context + 0x30)) = 0;
+          *(int8_t *)(uVar5 + *(longlong *)(physics_context + 0x30)) = 0;
         }
-        *(undefined4 *)(physics_context + 0x44) = uStack_38._4_4_;
+        *(int32_t *)(physics_context + 0x44) = uStack_38._4_4_;
         goto LAB_18019368b;
       }
       lVar4 = (longlong)&UNK_180a0b0a0 - (longlong)pcVar8;
@@ -137,8 +137,8 @@ LAB_18019368b:
     pcVar3 = pcVar8;
     pcVar8 = pcVar3 + 1;
   } while (*pcVar8 != '\0');
-  for (puVar6 = *(undefined8 **)(material_data + 0x40); pcVar8 = pcVar7, puVar6 != (undefined8 *)0x0;
-      puVar6 = (undefined8 *)puVar6[6]) {
+  for (puVar6 = *(uint64_t **)(material_data + 0x40); pcVar8 = pcVar7, puVar6 != (uint64_t *)0x0;
+      puVar6 = (uint64_t *)puVar6[6]) {
     pcVar8 = (char *)*puVar6;
     if (pcVar8 == (char *)0x0) {
       pcVar8 = (char *)0x180d48d24;
@@ -174,8 +174,8 @@ LAB_180193772:
     pcVar3 = pcVar8;
     pcVar8 = pcVar3 + 1;
   } while (*pcVar8 != '\0');
-  for (puVar6 = *(undefined8 **)(material_data + 0x40); pcVar8 = pcVar7, puVar6 != (undefined8 *)0x0;
-      puVar6 = (undefined8 *)puVar6[6]) {
+  for (puVar6 = *(uint64_t **)(material_data + 0x40); pcVar8 = pcVar7, puVar6 != (uint64_t *)0x0;
+      puVar6 = (uint64_t *)puVar6[6]) {
     pcVar8 = (char *)*puVar6;
     if (pcVar8 == (char *)0x0) {
       pcVar8 = (char *)0x180d48d24;
@@ -211,8 +211,8 @@ LAB_180193810:
     pcVar3 = pcVar8;
     pcVar8 = pcVar3 + 1;
   } while (*pcVar8 != '\0');
-  for (puVar6 = *(undefined8 **)(material_data + 0x40); pcVar8 = pcVar7, puVar6 != (undefined8 *)0x0;
-      puVar6 = (undefined8 *)puVar6[6]) {
+  for (puVar6 = *(uint64_t **)(material_data + 0x40); pcVar8 = pcVar7, puVar6 != (uint64_t *)0x0;
+      puVar6 = (uint64_t *)puVar6[6]) {
     pcVar8 = (char *)*puVar6;
     if (pcVar8 == (char *)0x0) {
       pcVar8 = (char *)0x180d48d24;
@@ -248,8 +248,8 @@ LAB_1801938a0:
     pcVar3 = pcVar8;
     pcVar8 = pcVar3 + 1;
   } while (*pcVar8 != '\0');
-  for (puVar6 = *(undefined8 **)(material_data + 0x40); pcVar8 = pcVar7, puVar6 != (undefined8 *)0x0;
-      puVar6 = (undefined8 *)puVar6[6]) {
+  for (puVar6 = *(uint64_t **)(material_data + 0x40); pcVar8 = pcVar7, puVar6 != (uint64_t *)0x0;
+      puVar6 = (uint64_t *)puVar6[6]) {
     pcVar8 = (char *)*puVar6;
     if (pcVar8 == (char *)0x0) {
       pcVar8 = (char *)0x180d48d24;
@@ -285,8 +285,8 @@ LAB_180193930:
     pcVar3 = pcVar8;
     pcVar8 = pcVar3 + 1;
   } while (*pcVar8 != '\0');
-  for (puVar6 = *(undefined8 **)(material_data + 0x40); pcVar8 = pcVar7, puVar6 != (undefined8 *)0x0;
-      puVar6 = (undefined8 *)puVar6[6]) {
+  for (puVar6 = *(uint64_t **)(material_data + 0x40); pcVar8 = pcVar7, puVar6 != (uint64_t *)0x0;
+      puVar6 = (uint64_t *)puVar6[6]) {
     pcVar8 = (char *)*puVar6;
     if (pcVar8 == (char *)0x0) {
       pcVar8 = (char *)0x180d48d24;
@@ -322,9 +322,9 @@ LAB_1801939c0:
     pcVar3 = pcVar8;
     pcVar8 = pcVar3 + 1;
   } while (*pcVar8 != '\0');
-  puVar6 = *(undefined8 **)(material_data + 0x40);
+  puVar6 = *(uint64_t **)(material_data + 0x40);
   do {
-    if (puVar6 == (undefined8 *)0x0) {
+    if (puVar6 == (uint64_t *)0x0) {
 LAB_180193a66:
       if ((physics_context + 0x60 != 0) && (pcVar7 != (char *)0x0)) {
         FUN_18010cbc0(pcVar7,&DAT_180a06430,physics_context + 0x60); // 设置角阻尼
@@ -360,13 +360,13 @@ LAB_180193a50:
         if (pcVar2 <= pcVar8) goto LAB_180193a50;
       }
     }
-    puVar6 = (undefined8 *)puVar6[6];
+    puVar6 = (uint64_t *)puVar6[6];
   } while( true );
 }
 
 
 
-undefined8 * find_material_property_node(undefined8 *material_tree, longlong search_key)
+uint64_t * find_material_property_node(uint64_t *material_tree, longlong search_key)
 
 {
   byte bVar1;
@@ -375,18 +375,18 @@ undefined8 * find_material_property_node(undefined8 *material_tree, longlong sea
   longlong *plVar4;
   uint uVar5;
   int iVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puVar9;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puVar9;
   longlong lVar10;
-  undefined1 auStackX_8 [8];
+  int8_t auStackX_8 [8];
   
-  puVar8 = (undefined8 *)material_tree[2];
+  puVar8 = (uint64_t *)material_tree[2];
   puVar9 = material_tree;
-  if (puVar8 != (undefined8 *)0x0) {
+  if (puVar8 != (uint64_t *)0x0) {
     do {
       if (*(int *)(search_key + 0x10) == 0) {
-        puVar7 = (undefined8 *)puVar8[1];
+        puVar7 = (uint64_t *)puVar8[1];
         bVar2 = false;
       }
       else {
@@ -404,11 +404,11 @@ undefined8 * find_material_property_node(undefined8 *material_tree, longlong sea
           } while (uVar5 != 0);
           bVar2 = 0 < iVar6;
           if (iVar6 < 1) {
-            puVar7 = (undefined8 *)puVar8[1];
+            puVar7 = (uint64_t *)puVar8[1];
             goto LAB_180193b37;
           }
         }
-        puVar7 = (undefined8 *)*puVar8;
+        puVar7 = (uint64_t *)*puVar8;
       }
 LAB_180193b37:
       if (bVar2) {
@@ -416,8 +416,8 @@ LAB_180193b37:
       }
       puVar9 = puVar8;
       puVar8 = puVar7;
-    } while (puVar7 != (undefined8 *)0x0);
-    puVar8 = (undefined8 *)0x0;
+    } while (puVar7 != (uint64_t *)0x0);
+    puVar8 = (uint64_t *)0x0;
   }
   if (puVar9 != material_tree) {
     if (*(int *)(puVar9 + 6) == 0) {
@@ -426,7 +426,7 @@ LAB_180193b87:
     }
     if (*(int *)(search_key + 0x10) != 0) {
       pbVar3 = (byte *)puVar9[5];
-      puVar8 = (undefined8 *)(*(longlong *)(search_key + 8) - (longlong)pbVar3);
+      puVar8 = (uint64_t *)(*(longlong *)(search_key + 8) - (longlong)pbVar3);
       do {
         bVar1 = *pbVar3;
         uVar5 = (uint)pbVar3[(longlong)puVar8];
@@ -437,13 +437,13 @@ LAB_180193b87:
     }
   }
   plVar4 = (longlong *)FUN_18013f220(material_tree,auStackX_8,puVar8,puVar9,search_key);
-  return (undefined8 *)(*plVar4 + 0x40);
+  return (uint64_t *)(*plVar4 + 0x40);
 }
 
 
 
-undefined8 *
-insert_material_property_node(undefined8 material_tree, longlong search_key, undefined8 *node_ptr, undefined8 *parent_ptr)
+uint64_t *
+insert_material_property_node(uint64_t material_tree, longlong search_key, uint64_t *node_ptr, uint64_t *parent_ptr)
 
 {
   byte bVar1;
@@ -453,13 +453,13 @@ insert_material_property_node(undefined8 material_tree, longlong search_key, und
   uint uVar5;
   int iVar6;
   longlong unaff_RBX;
-  undefined8 *unaff_RSI;
-  undefined8 *puVar7;
+  uint64_t *unaff_RSI;
+  uint64_t *puVar7;
   longlong lVar8;
   
   do {
     if (*(int *)(search_key + 0x10) == 0) {
-      puVar7 = (undefined8 *)node_ptr[1];
+      puVar7 = (uint64_t *)node_ptr[1];
       bVar2 = false;
     }
     else {
@@ -477,11 +477,11 @@ insert_material_property_node(undefined8 material_tree, longlong search_key, und
         } while (uVar5 != 0);
         bVar2 = 0 < iVar6;
         if (iVar6 < 1) {
-          puVar7 = (undefined8 *)node_ptr[1];
+          puVar7 = (uint64_t *)node_ptr[1];
           goto LAB_180193b37;
         }
       }
-      puVar7 = (undefined8 *)*node_ptr;
+      puVar7 = (uint64_t *)*node_ptr;
     }
 LAB_180193b37:
     if (bVar2) {
@@ -489,7 +489,7 @@ LAB_180193b37:
     }
     parent_ptr = node_ptr;
     node_ptr = puVar7;
-  } while (puVar7 != (undefined8 *)0x0);
+  } while (puVar7 != (uint64_t *)0x0);
   if (parent_ptr != unaff_RSI) {
     if (*(int *)(parent_ptr + 6) == 0) {
 LAB_180193b87:
@@ -508,7 +508,7 @@ LAB_180193b87:
     }
   }
   plVar4 = (longlong *)FUN_18013f220();
-  return (undefined8 *)(*plVar4 + 0x40);
+  return (uint64_t *)(*plVar4 + 0x40);
 }
 
 
@@ -551,7 +551,7 @@ LAB_180193b87:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 ulonglong *
-create_material_property_array(ulonglong array_size, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+create_material_property_array(ulonglong array_size, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 
 {
   ulonglong *puVar1;
@@ -577,25 +577,25 @@ create_material_property_array(ulonglong array_size, undefined8 param_2, undefin
       puVar1 = puVar3 + -1;
       *puVar1 = (ulonglong)&UNK_18098bcb0;
       *puVar3 = 0;
-      *(undefined4 *)(puVar3 + 1) = 0;
+      *(int32_t *)(puVar3 + 1) = 0;
       *puVar1 = (ulonglong)&UNK_180a3c3e0;
       puVar3[2] = 0;
       *puVar3 = 0;
-      *(undefined4 *)(puVar3 + 1) = 0;
+      *(int32_t *)(puVar3 + 1) = 0;
       puVar3[3] = (ulonglong)&UNK_18098bcb0;
       puVar3[4] = 0;
-      *(undefined4 *)(puVar3 + 5) = 0;
+      *(int32_t *)(puVar3 + 5) = 0;
       puVar3[3] = (ulonglong)&UNK_180a3c3e0;
       puVar3[6] = 0;
       puVar3[4] = 0;
-      *(undefined4 *)(puVar3 + 5) = 0;
+      *(int32_t *)(puVar3 + 5) = 0;
       (**(code **)(*puVar1 + 0x10))(puVar1,&UNK_180a0b198);
-      *(undefined1 *)(puVar3 + 7) = 0;
-      *(undefined4 *)((longlong)puVar3 + 0x3c) = 0x3e4ccccd; // 0.2
-      *(undefined4 *)(puVar3 + 8) = 0x3e99999a; // 0.3
-      *(undefined8 *)((longlong)puVar3 + 0x44) = 0x3ecccccd; // 0.4
-      *(undefined4 *)((longlong)puVar3 + 0x4c) = 0x3dcccccd; // 0.1
-      *(undefined4 *)(puVar3 + 10) = 0x3dcccccd; // 0.1
+      *(int8_t *)(puVar3 + 7) = 0;
+      *(int32_t *)((longlong)puVar3 + 0x3c) = 0x3e4ccccd; // 0.2
+      *(int32_t *)(puVar3 + 8) = 0x3e99999a; // 0.3
+      *(uint64_t *)((longlong)puVar3 + 0x44) = 0x3ecccccd; // 0.4
+      *(int32_t *)((longlong)puVar3 + 0x4c) = 0x3dcccccd; // 0.1
+      *(int32_t *)(puVar3 + 10) = 0x3dcccccd; // 0.1
       iVar4 = iVar4 + 1;
       puVar3 = puVar3 + 0xd;
     } while ((ulonglong)(longlong)iVar4 < array_size);
@@ -609,14 +609,14 @@ create_material_property_array(ulonglong array_size, undefined8 param_2, undefin
 
 
 
-// 函数: void resize_material_property_array(longlong *array_info, ulonglong new_size, undefined8 init_value)
-void resize_material_property_array(longlong *array_info, ulonglong new_size, undefined8 init_value)
+// 函数: void resize_material_property_array(longlong *array_info, ulonglong new_size, uint64_t init_value)
+void resize_material_property_array(longlong *array_info, ulonglong new_size, uint64_t init_value)
 
 {
-  undefined8 *puVar1;
+  uint64_t *puVar1;
   longlong lVar2;
   longlong lVar3;
-  undefined8 *puVar4;
+  uint64_t *puVar4;
   longlong lVar5;
   ulonglong uVar6;
   ulonglong uVar7;
@@ -662,16 +662,16 @@ void resize_material_property_array(longlong *array_info, ulonglong new_size, un
       lVar5 = lVar5 + 0x20;
     } while (uVar7 != 0);
   }
-  puVar1 = (undefined8 *)array_info[1];
-  puVar4 = (undefined8 *)*array_info;
+  puVar1 = (uint64_t *)array_info[1];
+  puVar4 = (uint64_t *)*array_info;
   if (puVar4 != puVar1) {
     do {
       (**(code **)*puVar4)(puVar4,0);
       puVar4 = puVar4 + 4;
     } while (puVar4 != puVar1);
-    puVar4 = (undefined8 *)*array_info;
+    puVar4 = (uint64_t *)*array_info;
   }
-  if (puVar4 == (undefined8 *)0x0) {
+  if (puVar4 == (uint64_t *)0x0) {
     *array_info = lVar2;
     array_info[2] = uVar6 * 0x20 + lVar2;
     array_info[1] = new_size * 0x20 + lVar3;
@@ -691,13 +691,13 @@ void resize_material_property_array(longlong *array_info, ulonglong new_size, un
 void expand_material_property_array(longlong array_base)
 
 {
-  undefined8 *puVar1;
+  uint64_t *puVar1;
   longlong in_RAX;
   longlong lVar2;
   longlong lVar3;
   longlong unaff_RBX;
   longlong lVar4;
-  undefined8 *puVar5;
+  uint64_t *puVar5;
   ulonglong uVar6;
   longlong unaff_RSI;
   longlong lVar7;
@@ -729,16 +729,16 @@ void expand_material_property_array(longlong array_base)
       lVar4 = lVar4 + 0x20;
     } while (lVar7 != 0);
   }
-  puVar1 = (undefined8 *)unaff_R14[1];
-  puVar5 = (undefined8 *)*unaff_R14;
+  puVar1 = (uint64_t *)unaff_R14[1];
+  puVar5 = (uint64_t *)*unaff_R14;
   if (puVar5 != puVar1) {
     do {
       (**(code **)*puVar5)(puVar5,0);
       puVar5 = puVar5 + 4;
     } while (puVar5 != puVar1);
-    puVar5 = (undefined8 *)*unaff_R14;
+    puVar5 = (uint64_t *)*unaff_R14;
   }
-  if (puVar5 == (undefined8 *)0x0) {
+  if (puVar5 == (uint64_t *)0x0) {
     *unaff_R14 = lVar2;
     unaff_R14[2] = uVar6 * 0x20 + lVar2;
     unaff_R14[1] = unaff_RSI * 0x20 + lVar3;
@@ -758,13 +758,13 @@ void expand_material_property_array(longlong array_base)
 void grow_material_property_array(longlong array_base)
 
 {
-  undefined8 *puVar1;
+  uint64_t *puVar1;
   longlong in_RAX;
   longlong lVar2;
   longlong lVar3;
   longlong unaff_RBX;
   longlong lVar4;
-  undefined8 *puVar5;
+  uint64_t *puVar5;
   ulonglong uVar6;
   longlong unaff_RSI;
   longlong lVar7;
@@ -795,16 +795,16 @@ void grow_material_property_array(longlong array_base)
       lVar4 = lVar4 + 0x20;
     } while (lVar7 != 0);
   }
-  puVar1 = (undefined8 *)unaff_R14[1];
-  puVar5 = (undefined8 *)*unaff_R14;
+  puVar1 = (uint64_t *)unaff_R14[1];
+  puVar5 = (uint64_t *)*unaff_R14;
   if (puVar5 != puVar1) {
     do {
       (**(code **)*puVar5)(puVar5,0);
       puVar5 = puVar5 + 4;
     } while (puVar5 != puVar1);
-    puVar5 = (undefined8 *)*unaff_R14;
+    puVar5 = (uint64_t *)*unaff_R14;
   }
-  if (puVar5 == (undefined8 *)0x0) {
+  if (puVar5 == (uint64_t *)0x0) {
     *unaff_R14 = lVar2;
     unaff_R14[2] = uVar6 * 0x20 + lVar2;
     unaff_R14[1] = unaff_RSI * 0x20 + lVar3;
@@ -822,10 +822,10 @@ void grow_material_property_array(longlong array_base)
 void cleanup_material_property_array(void)
 
 {
-  undefined8 *unaff_RBX;
+  uint64_t *unaff_RBX;
   longlong unaff_RBP;
   longlong unaff_RSI;
-  undefined8 *unaff_RDI;
+  uint64_t *unaff_RDI;
   longlong unaff_R12;
   longlong *unaff_R14;
   
@@ -871,7 +871,7 @@ void update_material_property_array_size(void)
 
 
 
-undefined8 * find_material_property_by_key(undefined8 *material_tree, undefined8 *result_ptr, longlong search_key)
+uint64_t * find_material_property_by_key(uint64_t *material_tree, uint64_t *result_ptr, longlong search_key)
 
 {
   bool bVar1;
@@ -879,18 +879,18 @@ undefined8 * find_material_property_by_key(undefined8 *material_tree, undefined8
   uint uVar3;
   int iVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
   
-  if ((undefined8 *)material_tree[2] == (undefined8 *)0x0) {
+  if ((uint64_t *)material_tree[2] == (uint64_t *)0x0) {
     *result_ptr = material_tree;
     return result_ptr;
   }
-  puVar6 = (undefined8 *)material_tree[2];
+  puVar6 = (uint64_t *)material_tree[2];
   do {
     if (*(int *)(search_key + 0x10) == 0) {
-      puVar7 = (undefined8 *)puVar6[1];
+      puVar7 = (uint64_t *)puVar6[1];
       bVar1 = false;
     }
     else {
@@ -908,11 +908,11 @@ undefined8 * find_material_property_by_key(undefined8 *material_tree, undefined8
         } while (uVar3 != 0);
         bVar1 = 0 < iVar4;
         if (iVar4 < 1) {
-          puVar7 = (undefined8 *)puVar6[1];
+          puVar7 = (uint64_t *)puVar6[1];
           goto LAB_180193ed9;
         }
       }
-      puVar7 = (undefined8 *)*puVar6;
+      puVar7 = (uint64_t *)*puVar6;
     }
 LAB_180193ed9:
     puVar8 = puVar6;
@@ -921,7 +921,7 @@ LAB_180193ed9:
     }
     puVar6 = puVar7;
     material_tree = puVar8;
-    if (puVar7 == (undefined8 *)0x0) {
+    if (puVar7 == (uint64_t *)0x0) {
       *result_ptr = puVar8;
       return result_ptr;
     }
@@ -932,24 +932,24 @@ LAB_180193ed9:
 
 
 
-// 函数: void insert_material_property_by_key(undefined8 tree_root, undefined8 result_ptr, longlong search_key, undefined8 *node_ptr)
-void insert_material_property_by_key(undefined8 tree_root, undefined8 result_ptr, longlong search_key, undefined8 *node_ptr)
+// 函数: void insert_material_property_by_key(uint64_t tree_root, uint64_t result_ptr, longlong search_key, uint64_t *node_ptr)
+void insert_material_property_by_key(uint64_t tree_root, uint64_t result_ptr, longlong search_key, uint64_t *node_ptr)
 
 {
   bool bVar1;
   byte *pbVar2;
   uint uVar3;
   int iVar4;
-  undefined8 *unaff_RBX;
+  uint64_t *unaff_RBX;
   longlong unaff_RSI;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *in_R11;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *in_R11;
   
   do {
     if (*(int *)(search_key + 0x10) == 0) {
-      puVar6 = (undefined8 *)node_ptr[1];
+      puVar6 = (uint64_t *)node_ptr[1];
       bVar1 = false;
     }
     else {
@@ -967,11 +967,11 @@ void insert_material_property_by_key(undefined8 tree_root, undefined8 result_ptr
         } while (uVar3 != 0);
         bVar1 = 0 < iVar4;
         if (iVar4 < 1) {
-          puVar6 = (undefined8 *)node_ptr[1];
+          puVar6 = (uint64_t *)node_ptr[1];
           goto LAB_180193ed9;
         }
       }
-      puVar6 = (undefined8 *)*node_ptr;
+      puVar6 = (uint64_t *)*node_ptr;
     }
 LAB_180193ed9:
     puVar7 = node_ptr;
@@ -980,7 +980,7 @@ LAB_180193ed9:
     }
     node_ptr = puVar6;
     in_R11 = puVar7;
-    if (puVar6 == (undefined8 *)0x0) {
+    if (puVar6 == (uint64_t *)0x0) {
       *unaff_RBX = puVar7;
       return;
     }
@@ -991,8 +991,8 @@ LAB_180193ed9:
 
 
 
-// 函数: void set_material_property_reference(undefined8 source, undefined8 *target)
-void set_material_property_reference(undefined8 source, undefined8 *target)
+// 函数: void set_material_property_reference(uint64_t source, uint64_t *target)
+void set_material_property_reference(uint64_t source, uint64_t *target)
 
 {
   *target = source;
@@ -1001,8 +1001,8 @@ void set_material_property_reference(undefined8 source, undefined8 *target)
 
 
 
-undefined8 *
-initialize_material_property_node(undefined8 *node_ptr, ulonglong flags, undefined8 param_3, undefined8 param_4)
+uint64_t *
+initialize_material_property_node(uint64_t *node_ptr, ulonglong flags, uint64_t param_3, uint64_t param_4)
 
 {
   // 初始化材质属性节点的第一个字段
@@ -1012,7 +1012,7 @@ initialize_material_property_node(undefined8 *node_ptr, ulonglong flags, undefin
     FUN_18064e900();
   }
   node_ptr[6] = 0;
-  *(undefined4 *)(node_ptr + 8) = 0;
+  *(int32_t *)(node_ptr + 8) = 0;
   node_ptr[5] = &UNK_18098bcb0;
   node_ptr[1] = &UNK_180a3c3e0;
   if (node_ptr[2] != 0) {
@@ -1020,7 +1020,7 @@ initialize_material_property_node(undefined8 *node_ptr, ulonglong flags, undefin
     FUN_18064e900();
   }
   node_ptr[2] = 0;
-  *(undefined4 *)(node_ptr + 4) = 0;
+  *(int32_t *)(node_ptr + 4) = 0;
   node_ptr[1] = &UNK_18098bcb0;
   *node_ptr = &UNK_180a07218;
   if ((flags & 1) != 0) {
@@ -1033,20 +1033,20 @@ initialize_material_property_node(undefined8 *node_ptr, ulonglong flags, undefin
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 process_material_property_callback(longlong *callback_data, undefined8 param_2, longlong param_3, int param_4)
+uint64_t process_material_property_callback(longlong *callback_data, uint64_t param_2, longlong param_3, int param_4)
 
 {
   longlong lVar1;
   ulonglong uVar2;
   longlong lVar3;
   int iVar4;
-  undefined8 *puVar5;
+  uint64_t *puVar5;
   int *piVar6;
   int iVar7;
   longlong *plStackX_8;
-  undefined8 uStackX_10;
-  undefined4 uVar8;
-  undefined8 uVar9;
+  uint64_t uStackX_10;
+  int32_t uVar8;
+  uint64_t uVar9;
   longlong lVar10;
   
   lVar3 = _DAT_180c868f0;
@@ -1066,7 +1066,7 @@ undefined8 process_material_property_callback(longlong *callback_data, undefined
     piVar6 = (int *)(lVar1 + 0x10);
     do {
       if ((*(longlong *)(piVar6 + -2) == param_3) && (*piVar6 == param_4)) {
-        FUN_1802759e0(*(undefined8 *)(lVar1 + (longlong)iVar7 * 0x18),param_2);
+        FUN_1802759e0(*(uint64_t *)(lVar1 + (longlong)iVar7 * 0x18),param_2);
         iVar4 = _Mtx_unlock(lVar3);
         if (iVar4 == 0) {
           return param_2;
@@ -1082,7 +1082,7 @@ undefined8 process_material_property_callback(longlong *callback_data, undefined
   if (iVar4 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar4);
   }
-  puVar5 = (undefined8 *)FUN_1801940f0(lVar3,&plStackX_8,param_3,param_4,uVar8,uVar9,lVar10);
+  puVar5 = (uint64_t *)FUN_1801940f0(lVar3,&plStackX_8,param_3,param_4,uVar8,uVar9,lVar10);
   FUN_1802759e0(*puVar5,param_2);
   if (plStackX_8 != (longlong *)0x0) {
     (**(code **)(*plStackX_8 + 0x38))();
@@ -1092,11 +1092,11 @@ undefined8 process_material_property_callback(longlong *callback_data, undefined
 
 
 
-undefined8 * register_material_property_callback(longlong registry, undefined8 *result_ptr, longlong *callback_data, int callback_type)
+uint64_t * register_material_property_callback(longlong registry, uint64_t *result_ptr, longlong *callback_data, int callback_type)
 
 {
   longlong lVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong lVar4;
   longlong *plVar5;
@@ -1104,14 +1104,14 @@ undefined8 * register_material_property_callback(longlong registry, undefined8 *
   uint uVar7;
   ulonglong uVar8;
   longlong *plStack_88;
-  undefined4 uStack_80;
+  int32_t uStack_80;
   longlong *plStack_78;
   longlong *plStack_70;
   longlong *plStack_68;
   int iStack_60;
   longlong *plStack_58;
-  undefined8 uStack_50;
-  undefined8 uStack_48;
+  uint64_t uStack_50;
+  uint64_t uStack_48;
   longlong lStack_40;
   
   uStack_48 = 0xfffffffffffffffe;
@@ -1162,18 +1162,18 @@ undefined8 * register_material_property_callback(longlong registry, undefined8 *
     if (plStack_88 != (longlong *)0x0) {
       (**(code **)(*plStack_88 + 0x28))(plStack_88);
     }
-    plStack_58 = (undefined8 *)0x0;
+    plStack_58 = (uint64_t *)0x0;
     plStack_70 = plVar5;
     if (callback_data != (longlong *)0x0) {
       plStack_78 = callback_data;
       (**(code **)(*callback_data + 0x28))(callback_data);
     }
     plStack_78 = (longlong *)0x0;
-    puVar2 = *(undefined8 **)(registry + 0x58);
+    puVar2 = *(uint64_t **)(registry + 0x58);
     plStack_68 = callback_data;
     iStack_60 = callback_type;
-    if (puVar2 < *(undefined8 **)(registry + 0x60)) {
-      *(undefined8 **)(registry + 0x58) = puVar2 + 3;
+    if (puVar2 < *(uint64_t **)(registry + 0x60)) {
+      *(uint64_t **)(registry + 0x58) = puVar2 + 3;
       *puVar2 = plVar5;
       plStack_58 = puVar2;
       if (plVar5 != (longlong *)0x0) {

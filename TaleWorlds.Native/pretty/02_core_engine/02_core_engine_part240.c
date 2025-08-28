@@ -53,13 +53,13 @@ void process_config_string_data(longlong *config_ptr)
   longlong temp_long1;
   longlong temp_long2;
   longlong temp_long3;
-  undefined8 *temp_ptr1;
-  undefined8 *temp_ptr2;
+  uint64_t *temp_ptr1;
+  uint64_t *temp_ptr2;
   uint temp_uint1;
-  undefined8 *temp_ptr3;
+  uint64_t *temp_ptr3;
   int temp_int2;
   longlong *temp_stack_ptr;
-  undefined *temp_stack_ptr1;
+  void *temp_stack_ptr1;
   longlong temp_stack_long1;
   uint temp_stack_uint1;
   
@@ -85,15 +85,15 @@ void process_config_string_data(longlong *config_ptr)
     if (temp_uint1 < temp_stack_uint1) {
       temp_long1 = (longlong)(int)temp_uint1;
       do {
-        *(undefined1 *)((temp_long1 - temp_int2) + temp_stack_long1) = 
-            *(undefined1 *)(temp_long1 + temp_stack_long1);
+        *(int8_t *)((temp_long1 - temp_int2) + temp_stack_long1) = 
+            *(int8_t *)(temp_long1 + temp_stack_long1);
         temp_uint1 = temp_uint1 + 1;
         temp_long1 = temp_long1 + 1;
       } while (temp_uint1 < temp_stack_uint1);
     }
     
     temp_stack_uint1 = temp_stack_uint1 - temp_int2;
-    *(undefined1 *)((ulonglong)temp_stack_uint1 + temp_stack_long1) = 0;
+    *(int8_t *)((ulonglong)temp_stack_uint1 + temp_stack_long1) = 0;
   }
   
   // 解析处理后的字符串
@@ -121,32 +121,32 @@ void process_config_string_data(longlong *config_ptr)
     // 处理解析结果数据块
     temp_int1 = 0;
     if (*(longlong *)(temp_long1 + OFFSET_0X40) - *(longlong *)(temp_long1 + OFFSET_0X38) >> 4 != 0) {
-      temp_ptr2 = (undefined8 *)config_ptr[OFFSET_0XC];
+      temp_ptr2 = (uint64_t *)config_ptr[OFFSET_0XC];
       
       do {
-        if (temp_ptr2 < (undefined8 *)config_ptr[OFFSET_0XD]) {
+        if (temp_ptr2 < (uint64_t *)config_ptr[OFFSET_0XD]) {
           // 初始化数据块
           *temp_ptr2 = INVALID_HANDLE_64;
-          *(undefined4 *)(temp_ptr2 + 1) = INVALID_HANDLE_32;
+          *(int32_t *)(temp_ptr2 + 1) = INVALID_HANDLE_32;
           config_ptr[OFFSET_0XC] = config_ptr[OFFSET_0XC] + OFFSET_0XC;
-          temp_ptr2 = (undefined8 *)config_ptr[OFFSET_0XC];
+          temp_ptr2 = (uint64_t *)config_ptr[OFFSET_0XC];
         }
         else {
           // 扩展数据结构
-          temp_ptr3 = (undefined8 *)config_ptr[OFFSET_0XB];
+          temp_ptr3 = (uint64_t *)config_ptr[OFFSET_0XB];
           temp_long3 = ((longlong)temp_ptr2 - (longlong)temp_ptr3) / OFFSET_0XC;
           
           if (temp_long3 == 0) {
             temp_long3 = 1;
           LAB_180209615:
-            temp_ptr1 = (undefined8 *)allocate_data_block(_DAT_180c8ed18, temp_long3 * OFFSET_0XC, (char)config_ptr[OFFSET_0XE]);
-            temp_ptr2 = (undefined8 *)config_ptr[OFFSET_0XC];
-            temp_ptr3 = (undefined8 *)config_ptr[OFFSET_0XB];
+            temp_ptr1 = (uint64_t *)allocate_data_block(_DAT_180c8ed18, temp_long3 * OFFSET_0XC, (char)config_ptr[OFFSET_0XE]);
+            temp_ptr2 = (uint64_t *)config_ptr[OFFSET_0XC];
+            temp_ptr3 = (uint64_t *)config_ptr[OFFSET_0XB];
           }
           else {
             temp_long3 = temp_long3 * 2;
             if (temp_long3 != 0) goto LAB_180209615;
-            temp_ptr1 = (undefined8 *)0x0;
+            temp_ptr1 = (uint64_t *)0x0;
           }
           
           // 复制现有数据
@@ -156,8 +156,8 @@ void process_config_string_data(longlong *config_ptr)
           
           // 初始化新数据块
           *temp_ptr1 = INVALID_HANDLE_64;
-          *(undefined4 *)(temp_ptr1 + 1) = INVALID_HANDLE_32;
-          temp_ptr2 = (undefined8 *)((longlong)temp_ptr1 + OFFSET_0XC);
+          *(int32_t *)(temp_ptr1 + 1) = INVALID_HANDLE_32;
+          temp_ptr2 = (uint64_t *)((longlong)temp_ptr1 + OFFSET_0XC);
           
           // 释放旧内存
           if (config_ptr[OFFSET_0XB] != 0) {
@@ -197,8 +197,8 @@ longlong *add_data_structure_element(longlong *data_struct_ptr, longlong *elemen
 {
   uint temp_uint1;
   longlong *temp_ptr1;
-  undefined4 temp_uint4_1;
-  undefined4 temp_uint4_2;
+  int32_t temp_uint4_1;
+  int32_t temp_uint4_2;
   longlong temp_long1;
   longlong *temp_ptr2;
   longlong temp_long2;
@@ -238,23 +238,23 @@ longlong *add_data_structure_element(longlong *data_struct_ptr, longlong *elemen
     temp_ptr2[6] = temp_long3;
     
     // 复制32位数据
-    temp_uint4_1 = *(undefined4 *)((longlong)element_ptr + OFFSET_0X3C);
+    temp_uint4_1 = *(int32_t *)((longlong)element_ptr + OFFSET_0X3C);
     temp_long3 = element_ptr[8];
-    temp_uint4_2 = *(undefined4 *)((longlong)element_ptr + OFFSET_0X44);
+    temp_uint4_2 = *(int32_t *)((longlong)element_ptr + OFFSET_0X44);
     
     *(int *)(temp_ptr2 + 7) = (int)element_ptr[7];
-    *(undefined4 *)((longlong)temp_ptr2 + OFFSET_0X3C) = temp_uint4_1;
+    *(int32_t *)((longlong)temp_ptr2 + OFFSET_0X3C) = temp_uint4_1;
     *(int *)(temp_ptr2 + 8) = (int)temp_long3;
-    *(undefined4 *)((longlong)temp_ptr2 + OFFSET_0X44) = temp_uint4_2;
+    *(int32_t *)((longlong)temp_ptr2 + OFFSET_0X44) = temp_uint4_2;
     
-    temp_uint4_1 = *(undefined4 *)((longlong)element_ptr + OFFSET_0X4C);
+    temp_uint4_1 = *(int32_t *)((longlong)element_ptr + OFFSET_0X4C);
     temp_long3 = element_ptr[10];
-    temp_uint4_2 = *(undefined4 *)((longlong)element_ptr + OFFSET_0X54);
+    temp_uint4_2 = *(int32_t *)((longlong)element_ptr + OFFSET_0X54);
     
     *(int *)(temp_ptr2 + 9) = (int)element_ptr[9];
-    *(undefined4 *)((longlong)temp_ptr2 + OFFSET_0X4C) = temp_uint4_1;
+    *(int32_t *)((longlong)temp_ptr2 + OFFSET_0X4C) = temp_uint4_1;
     *(int *)(temp_ptr2 + 10) = (int)temp_long3;
-    *(undefined4 *)((longlong)temp_ptr2 + OFFSET_0X54) = temp_uint4_2;
+    *(int32_t *)((longlong)temp_ptr2 + OFFSET_0X54) = temp_uint4_2;
     
     // 计算并分配子数据块
     temp_long3 = (element_ptr[OFFSET_0XC] - element_ptr[OFFSET_0XB]) / 6 + 
@@ -345,7 +345,7 @@ LAB_1802097bc:
  * 
  * 该函数扩展数据结构的容量，用于存储更多元素
  */
-void expand_data_structure_capacity(undefined8 struct_ptr, undefined8 param2, longlong size_factor)
+void expand_data_structure_capacity(uint64_t struct_ptr, uint64_t param2, longlong size_factor)
 {
   longlong temp_long1;
   longlong temp_long2;
@@ -431,15 +431,15 @@ void handle_critical_error(void)
  * 
  * 该函数将数据结构元素从源位置复制到目标位置
  */
-longlong *copy_data_structure_element(longlong *dest_ptr, longlong *src_ptr, undefined8 param3, undefined8 param4)
+longlong *copy_data_structure_element(longlong *dest_ptr, longlong *src_ptr, uint64_t param3, uint64_t param4)
 {
   uint temp_uint1;
   longlong *temp_ptr1;
-  undefined4 temp_uint4_1;
-  undefined4 temp_uint4_2;
+  int32_t temp_uint4_1;
+  int32_t temp_uint4_2;
   longlong temp_long1;
   longlong temp_long2;
-  undefined8 temp_uint8_1;
+  uint64_t temp_uint8_1;
   
   temp_uint8_1 = 0xfffffffffffffffeULL;
   temp_ptr1 = (longlong *)*src_ptr;
@@ -468,23 +468,23 @@ longlong *copy_data_structure_element(longlong *dest_ptr, longlong *src_ptr, und
   dest_ptr[6] = temp_long2;
   
   // 复制32位数据
-  temp_uint4_1 = *(undefined4 *)((longlong)src_ptr + OFFSET_0X3C);
+  temp_uint4_1 = *(int32_t *)((longlong)src_ptr + OFFSET_0X3C);
   temp_long2 = src_ptr[8];
-  temp_uint4_2 = *(undefined4 *)((longlong)src_ptr + OFFSET_0X44);
+  temp_uint4_2 = *(int32_t *)((longlong)src_ptr + OFFSET_0X44);
   
   *(int *)(dest_ptr + 7) = (int)src_ptr[7];
-  *(undefined4 *)((longlong)dest_ptr + OFFSET_0X3C) = temp_uint4_1;
+  *(int32_t *)((longlong)dest_ptr + OFFSET_0X3C) = temp_uint4_1;
   *(int *)(dest_ptr + 8) = (int)temp_long2;
-  *(undefined4 *)((longlong)dest_ptr + OFFSET_0X44) = temp_uint4_2;
+  *(int32_t *)((longlong)dest_ptr + OFFSET_0X44) = temp_uint4_2;
   
-  temp_uint4_1 = *(undefined4 *)((longlong)src_ptr + OFFSET_0X4C);
+  temp_uint4_1 = *(int32_t *)((longlong)src_ptr + OFFSET_0X4C);
   temp_long2 = src_ptr[10];
-  temp_uint4_2 = *(undefined4 *)((longlong)src_ptr + OFFSET_0X54);
+  temp_uint4_2 = *(int32_t *)((longlong)src_ptr + OFFSET_0X54);
   
   *(int *)(dest_ptr + 9) = (int)src_ptr[9];
-  *(undefined4 *)((longlong)dest_ptr + OFFSET_0X4C) = temp_uint4_1;
+  *(int32_t *)((longlong)dest_ptr + OFFSET_0X4C) = temp_uint4_1;
   *(int *)(dest_ptr + 10) = (int)temp_long2;
-  *(undefined4 *)((longlong)dest_ptr + OFFSET_0X54) = temp_uint4_2;
+  *(int32_t *)((longlong)dest_ptr + OFFSET_0X54) = temp_uint4_2;
   
   // 计算并分配子数据块
   temp_long2 = (src_ptr[OFFSET_0XC] - src_ptr[OFFSET_0XB]) / 6 + 
@@ -533,8 +533,8 @@ longlong *batch_copy_data_elements(longlong *dest_ptr, longlong *src_start_ptr,
 {
   uint temp_uint1;
   longlong *temp_ptr1;
-  undefined4 temp_uint4_1;
-  undefined4 temp_uint4_2;
+  int32_t temp_uint4_1;
+  int32_t temp_uint4_2;
   longlong temp_long1;
   longlong temp_long2;
   longlong *temp_ptr2;
@@ -570,23 +570,23 @@ longlong *batch_copy_data_elements(longlong *dest_ptr, longlong *src_start_ptr,
       dest_base_ptr[6] = temp_long2;
       
       // 复制32位数据
-      temp_uint4_1 = *(undefined4 *)((longlong)temp_ptr2 + -0x24);
+      temp_uint4_1 = *(int32_t *)((longlong)temp_ptr2 + -0x24);
       temp_long2 = temp_ptr2[-4];
-      temp_uint4_2 = *(undefined4 *)((longlong)temp_ptr2 + -0x1c);
+      temp_uint4_2 = *(int32_t *)((longlong)temp_ptr2 + -0x1c);
       
       *(int *)(dest_base_ptr + 7) = (int)temp_ptr2[-5];
-      *(undefined4 *)((longlong)dest_base_ptr + OFFSET_0X3C) = temp_uint4_1;
+      *(int32_t *)((longlong)dest_base_ptr + OFFSET_0X3C) = temp_uint4_1;
       *(int *)(dest_base_ptr + 8) = (int)temp_long2;
-      *(undefined4 *)((longlong)dest_base_ptr + OFFSET_0X44) = temp_uint4_2;
+      *(int32_t *)((longlong)dest_base_ptr + OFFSET_0X44) = temp_uint4_2;
       
-      temp_uint4_1 = *(undefined4 *)((longlong)temp_ptr2 + -0x14);
+      temp_uint4_1 = *(int32_t *)((longlong)temp_ptr2 + -0x14);
       temp_long2 = temp_ptr2[-2];
-      temp_uint4_2 = *(undefined4 *)((longlong)temp_ptr2 + -0xc);
+      temp_uint4_2 = *(int32_t *)((longlong)temp_ptr2 + -0xc);
       
       *(int *)(dest_base_ptr + 9) = (int)temp_ptr2[-3];
-      *(undefined4 *)((longlong)dest_base_ptr + OFFSET_0X4C) = temp_uint4_1;
+      *(int32_t *)((longlong)dest_base_ptr + OFFSET_0X4C) = temp_uint4_1;
       *(int *)(dest_base_ptr + 10) = (int)temp_long2;
-      *(undefined4 *)((longlong)dest_base_ptr + OFFSET_0X54) = temp_uint4_2;
+      *(int32_t *)((longlong)dest_base_ptr + OFFSET_0X54) = temp_uint4_2;
       
       // 计算并分配子数据块
       temp_long2 = (*temp_ptr2 - temp_ptr2[-1]) / 6 + (*temp_ptr2 - temp_ptr2[-1] >> BIT_SHIFT_0X3F);

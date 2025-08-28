@@ -11,18 +11,18 @@ void create_file_handle_with_completion_port(longlong engine_context, longlong f
   longlong file_handle;
   longlong completion_port;
   char *file_path;
-  undefined8 *file_entry;
+  uint64_t *file_entry;
   ulonglong hash_value;
   uint char_index;
-  undefined1 stack_buffer [32];
+  int8_t stack_buffer [32];
   ulonglong access_flags;
-  undefined4 share_mode;
-  undefined8 creation_disposition;
+  int32_t share_mode;
+  uint64_t creation_disposition;
   longlong mutex_address;
-  undefined8 stack_guard;
+  uint64_t stack_guard;
   longlong hash_params [4];
-  undefined *temp_ptr1;
-  undefined *temp_ptr2;
+  void *temp_ptr1;
+  void *temp_ptr2;
   ulonglong security_cookie;
   ulonglong file_count;
   
@@ -33,7 +33,7 @@ void create_file_handle_with_completion_port(longlong engine_context, longlong f
   
   // 获取文件路径
   file_path = &DAT_18098bc73;  // 默认路径
-  if (temp_ptr2 != (undefined *)0x0) {
+  if (temp_ptr2 != (void *)0x0) {
     file_path = temp_ptr2;  // 使用自定义路径
   }
   
@@ -48,20 +48,20 @@ void create_file_handle_with_completion_port(longlong engine_context, longlong f
   if (file_handle == -1) {
     // 文件创建失败，抛出错误
     file_path = &DAT_18098bc73;
-    if (*(undefined **)(file_params + 8) != (undefined *)0x0) {
-      file_path = *(undefined **)(file_params + 8);
+    if (*(void **)(file_params + 8) != (void *)0x0) {
+      file_path = *(void **)(file_params + 8);
     }
     // 错误处理：文件创建失败
     throw_file_error(_DAT_180c86928, &ERROR_FILE_CREATE_FAILED, file_path);
   }
   
   // 创建I/O完成端口
-  completion_port = CreateIoCompletionPort(file_handle, *(undefined8 *)(engine_context + 0x213430), 0, 0);
+  completion_port = CreateIoCompletionPort(file_handle, *(uint64_t *)(engine_context + 0x213430), 0, 0);
   if (completion_port != *(longlong *)(engine_context + 0x213430)) {
     // I/O完成端口创建失败
     file_path = &DAT_18098bc73;
-    if (*(undefined **)(file_params + 8) != (undefined *)0x0) {
-      file_path = *(undefined **)(file_params + 8);
+    if (*(void **)(file_params + 8) != (void *)0x0) {
+      file_path = *(void **)(file_params + 8);
     }
     // 错误处理：I/O完成端口创建失败
     throw_file_error(_DAT_180c86928, &ERROR_COMPLETION_PORT_FAILED, file_path);
@@ -75,8 +75,8 @@ void create_file_handle_with_completion_port(longlong engine_context, longlong f
   }
   
   // 查找或创建文件表项
-  file_entry = *(undefined8 **)(engine_context + 0x2133d8);
-  if (file_entry == (undefined8 *)0x0) {
+  file_entry = *(uint64_t **)(engine_context + 0x2133d8);
+  if (file_entry == (uint64_t *)0x0) {
     file_count = *(ulonglong *)(engine_context + 0x2133d0);
     if (0xff < file_count) {
       // 文件表已满，需要扩展
@@ -86,10 +86,10 @@ void create_file_handle_with_completion_port(longlong engine_context, longlong f
       }
       
       // 准备错误信息
-      _DAT_00000018 = *(undefined4 *)(file_params + 0x10);
+      _DAT_00000018 = *(int32_t *)(file_params + 0x10);
       file_path = &DAT_18098bc73;
-      if (*(undefined **)(file_params + 8) != (undefined *)0x0) {
-        file_path = *(undefined **)(file_params + 8);
+      if (*(void **)(file_params + 8) != (void *)0x0) {
+        file_path = *(void **)(file_params + 8);
       }
       
       // 复制文件路径到错误缓冲区
@@ -111,7 +111,7 @@ void create_file_handle_with_completion_port(longlong engine_context, longlong f
       
       // 创建新的文件表项
       create_file_table_entry(engine_context + 0x330, hash_params, file_count, file_params);
-      *(undefined8 *)(hash_params[0] + 0x118) = 0;
+      *(uint64_t *)(hash_params[0] + 0x118) = 0;
       temp_ptr1 = &UNK_18098bcb0;
       
       // 触发安全检查
@@ -119,12 +119,12 @@ void create_file_handle_with_completion_port(longlong engine_context, longlong f
     }
     
     // 分配新的文件表项
-    file_entry = (undefined8 *)(file_count * 0x130 + engine_context + 0x2003d0);
+    file_entry = (uint64_t *)(file_count * 0x130 + engine_context + 0x2003d0);
     *(ulonglong *)(engine_context + 0x2133d0) = file_count + 1;
   }
   else {
     // 重用现有的文件表项
-    *(undefined8 *)(engine_context + 0x2133d8) = *file_entry;
+    *(uint64_t *)(engine_context + 0x2133d8) = *file_entry;
   }
   
   // 初始化文件表项
@@ -136,15 +136,15 @@ void create_file_handle_with_completion_port(longlong engine_context, longlong f
 // WARNING: 全局变量起始地址与较小符号重叠
 
 // 函数: 分配缓冲区并读取文件数据
-undefined8 allocate_buffer_and_read_file(longlong buffer_manager, longlong file_handle, longlong file_info)
+uint64_t allocate_buffer_and_read_file(longlong buffer_manager, longlong file_handle, longlong file_info)
 
 {
   ulonglong buffer_count;
   char allocation_success;
   int lock_result;
-  undefined8 read_result;
+  uint64_t read_result;
   ulonglong data_size;
-  undefined8 *buffer_entry;
+  uint64_t *buffer_entry;
   ulonglong aligned_size;
   ulonglong base_address;
   
@@ -160,8 +160,8 @@ undefined8 allocate_buffer_and_read_file(longlong buffer_manager, longlong file_
   }
   
   // 查找可用的缓冲区项
-  buffer_entry = *(undefined8 **)(buffer_manager + 0x200378);
-  if (buffer_entry == (undefined8 *)0x0) {
+  buffer_entry = *(uint64_t **)(buffer_manager + 0x200378);
+  if (buffer_entry == (uint64_t *)0x0) {
     buffer_count = *(ulonglong *)(buffer_manager + 0x200370);
     if (0xfff < buffer_count) {
       // 缓冲区池已满，需要分配新缓冲区
@@ -200,7 +200,7 @@ undefined8 allocate_buffer_and_read_file(longlong buffer_manager, longlong file_
         UNLOCK();
         
         // 执行文件读取
-        lock_result = ReadFile(*(undefined8 *)(file_handle + 0x128), read_buffer_ptr, aligned_size & 0xffffffff, 0, 0);
+        lock_result = ReadFile(*(uint64_t *)(file_handle + 0x128), read_buffer_ptr, aligned_size & 0xffffffff, 0, 0);
         if (lock_result != 0) {
           // 读取失败
           throw_file_error(_DAT_180c86928, &ERROR_FILE_READ_FAILED);
@@ -219,12 +219,12 @@ undefined8 allocate_buffer_and_read_file(longlong buffer_manager, longlong file_
     }
     
     // 从缓冲区池中分配新项
-    buffer_entry = (undefined8 *)(buffer_count * 0x200 + buffer_manager + 0x370);
+    buffer_entry = (uint64_t *)(buffer_count * 0x200 + buffer_manager + 0x370);
     *(ulonglong *)(buffer_manager + 0x200370) = buffer_count + 1;
   }
   else {
     // 重用现有的缓冲区项
-    *(undefined8 *)(buffer_manager + 0x200378) = *buffer_entry;
+    *(uint64_t *)(buffer_manager + 0x200378) = *buffer_entry;
     *buffer_entry = 0;
   }
   
@@ -240,26 +240,26 @@ longlong copy_file_info_structure(longlong dest_info, longlong src_info)
 {
   longlong callback_ptr1;
   code *callback_func;
-  undefined *file_path;
+  void *file_path;
   
   // 复制基本信息
-  *(undefined4 *)(dest_info + 0x10) = *(undefined4 *)(src_info + 0x10);  // 文件大小
+  *(int32_t *)(dest_info + 0x10) = *(int32_t *)(src_info + 0x10);  // 文件大小
   file_path = &DAT_18098bc73;  // 默认路径
-  if (*(undefined **)(src_info + 8) != (undefined *)0x0) {
-    file_path = *(undefined **)(src_info + 8);  // 使用源路径
+  if (*(void **)(src_info + 8) != (void *)0x0) {
+    file_path = *(void **)(src_info + 8);  // 使用源路径
   }
-  strcpy_s(*(undefined8 *)(dest_info + 8), 0x100, file_path);  // 复制文件路径
+  strcpy_s(*(uint64_t *)(dest_info + 8), 0x100, file_path);  // 复制文件路径
   
   // 复制文件属性
-  *(undefined8 *)(dest_info + 0x118) = *(undefined8 *)(src_info + 0x118);  // 文件属性
+  *(uint64_t *)(dest_info + 0x118) = *(uint64_t *)(src_info + 0x118);  // 文件属性
   callback_ptr1 = dest_info + 0x148;  // 第一个回调结构地址
   
   // 复制文件偏移和句柄信息
-  *(undefined8 *)(dest_info + 0x120) = *(undefined8 *)(src_info + 0x120);  // 文件偏移
-  *(undefined8 *)(dest_info + 0x128) = *(undefined8 *)(src_info + 0x128);  // 文件句柄
-  *(undefined8 *)(dest_info + 0x130) = *(undefined8 *)(src_info + 0x130);  // 映射句柄
-  *(undefined8 *)(dest_info + 0x138) = *(undefined8 *)(src_info + 0x138);  // 视图句柄
-  *(undefined1 *)(dest_info + 0x140) = *(undefined1 *)(src_info + 0x140);  // 访问标志
+  *(uint64_t *)(dest_info + 0x120) = *(uint64_t *)(src_info + 0x120);  // 文件偏移
+  *(uint64_t *)(dest_info + 0x128) = *(uint64_t *)(src_info + 0x128);  // 文件句柄
+  *(uint64_t *)(dest_info + 0x130) = *(uint64_t *)(src_info + 0x130);  // 映射句柄
+  *(uint64_t *)(dest_info + 0x138) = *(uint64_t *)(src_info + 0x138);  // 视图句柄
+  *(int8_t *)(dest_info + 0x140) = *(int8_t *)(src_info + 0x140);  // 访问标志
   
   // 处理第一个回调结构
   if (callback_ptr1 != src_info + 0x148) {
@@ -277,7 +277,7 @@ longlong copy_file_info_structure(longlong dest_info, longlong src_info)
     
     // 设置新的回调函数
     *(code **)(dest_info + 0x158) = callback_func;
-    *(undefined8 *)(dest_info + 0x160) = *(undefined8 *)(src_info + 0x160);  // 回调数据
+    *(uint64_t *)(dest_info + 0x160) = *(uint64_t *)(src_info + 0x160);  // 回调数据
   }
   
   // 处理第二个回调结构
@@ -297,14 +297,14 @@ longlong copy_file_info_structure(longlong dest_info, longlong src_info)
     
     // 设置新的回调函数
     *(code **)(dest_info + 0x178) = callback_func;
-    *(undefined8 *)(dest_info + 0x180) = *(undefined8 *)(src_info + 0x180);  // 回调数据
+    *(uint64_t *)(dest_info + 0x180) = *(uint64_t *)(src_info + 0x180);  // 回调数据
   }
   
   // 复制其他文件信息
-  *(undefined8 *)(dest_info + 0x188) = *(undefined8 *)(src_info + 0x188);  // 时间戳
-  *(undefined8 *)(dest_info + 400) = *(undefined8 *)(src_info + 400);     // 扩展属性
-  *(undefined8 *)(dest_info + 0x198) = *(undefined8 *)(src_info + 0x198);  // 安全描述符
-  *(undefined8 *)(dest_info + 0x1a0) = *(undefined8 *)(src_info + 0x1a0);  // 文件ID
+  *(uint64_t *)(dest_info + 0x188) = *(uint64_t *)(src_info + 0x188);  // 时间戳
+  *(uint64_t *)(dest_info + 400) = *(uint64_t *)(src_info + 400);     // 扩展属性
+  *(uint64_t *)(dest_info + 0x198) = *(uint64_t *)(src_info + 0x198);  // 安全描述符
+  *(uint64_t *)(dest_info + 0x1a0) = *(uint64_t *)(src_info + 0x1a0);  // 文件ID
   
   return dest_info;
 }
@@ -314,11 +314,11 @@ longlong copy_file_info_structure(longlong dest_info, longlong src_info)
 
 
 // 函数: 关闭文件句柄并释放文件表项
-void close_file_handle_and_release_entry(longlong engine_context, undefined8 *file_entry, undefined8 param_3, undefined8 param_4)
+void close_file_handle_and_release_entry(longlong engine_context, uint64_t *file_entry, uint64_t param_3, uint64_t param_4)
 
 {
   int lock_result;
-  undefined8 cleanup_flag;
+  uint64_t cleanup_flag;
   
   cleanup_flag = 0xfffffffffffffffe;  // 清理标志
   
@@ -335,8 +335,8 @@ void close_file_handle_and_release_entry(longlong engine_context, undefined8 *fi
   (**(code **)*file_entry)(file_entry, 0, param_3, param_4, cleanup_flag);
   
   // 将文件项返回到空闲链表
-  *file_entry = *(undefined8 *)(engine_context + 0x2133d8);
-  *(undefined8 **)(engine_context + 0x2133d8) = file_entry;
+  *file_entry = *(uint64_t *)(engine_context + 0x2133d8);
+  *(uint64_t **)(engine_context + 0x2133d8) = file_entry;
   
   // 释放互斥锁
   lock_result = _Mtx_unlock(engine_context + 0x2133e0);
@@ -377,7 +377,7 @@ void cleanup_memory_pool(longlong memory_pool_manager)
     memory_stats = *(longlong **)(memory_pool_manager + 0x318);
     if (block_info != (longlong *)0x0) {
       // 标记块为已释放
-      *(undefined1 *)(block_info + 4) = 0;
+      *(int8_t *)(block_info + 4) = 0;
       
       // 更新内存池统计信息
       *memory_stats = *memory_stats - block_info[1];  // 减少已使用内存
@@ -441,7 +441,7 @@ void cleanup_memory_pool(longlong memory_pool_manager)
 // 功能: 将指定的缓冲区槽位释放，并将其添加到缓冲区管理器的空闲链表中
 // 参数: param_1 - 缓冲区管理器指针
 //       param_2 - 要释放的缓冲区槽位指针
-void release_buffer_slot(longlong buffer_manager, undefined8 *buffer_slot)
+void release_buffer_slot(longlong buffer_manager, uint64_t *buffer_slot)
 
 {
   int lock_result;
@@ -456,8 +456,8 @@ void release_buffer_slot(longlong buffer_manager, undefined8 *buffer_slot)
   cleanup_callback_structure(buffer_slot + 4);
   
   // 将槽位添加到空闲链表头部
-  *buffer_slot = *(undefined8 *)(buffer_manager + 0x200008);
-  *(undefined8 **)(buffer_manager + 0x200008) = buffer_slot;
+  *buffer_slot = *(uint64_t *)(buffer_manager + 0x200008);
+  *(uint64_t **)(buffer_manager + 0x200008) = buffer_slot;
   
   // 释放锁
   lock_result = _Mtx_unlock(buffer_manager + 0x200010);
@@ -480,49 +480,49 @@ void release_buffer_slot(longlong buffer_manager, undefined8 *buffer_slot)
 //       param_5 - 哈希键值
 // 返回: param_2 - 指向创建的文件表项
 longlong *
-create_file_table_entry(longlong file_table_manager, longlong *file_entry, undefined8 param_3, undefined8 param_4,
+create_file_table_entry(longlong file_table_manager, longlong *file_entry, uint64_t param_3, uint64_t param_4,
                         ulonglong hash_key)
 
 {
   longlong hash_table_base;
   ulonglong hash_index;
   longlong new_entry;
-  undefined8 extension_data;
+  uint64_t extension_data;
   
   // 计算哈希索引
   hash_index = hash_key % (ulonglong)*(uint *)(file_table_manager + 0x10);
   
   // 在哈希表中查找现有项
   new_entry = find_file_entry_by_key(file_table_manager, 
-                                     *(undefined8 *)(*(longlong *)(file_table_manager + 8) + hash_index * 8),
+                                     *(uint64_t *)(*(longlong *)(file_table_manager + 8) + hash_index * 8),
                                      param_4);
   
   if (new_entry == 0) {
     // 未找到现有项，创建新的文件表项
     expand_file_table_if_needed(file_table_manager + 0x20, &hash_key, 
-                                *(undefined4 *)(file_table_manager + 0x10),
-                                *(undefined4 *)(file_table_manager + 0x18), 1);
+                                *(int32_t *)(file_table_manager + 0x10),
+                                *(int32_t *)(file_table_manager + 0x18), 1);
     
     // 分配新的文件表项内存
-    new_entry = allocate_memory_block(_DAT_180c8ed18, 0x128, *(undefined1 *)(file_table_manager + 0x2c));
+    new_entry = allocate_memory_block(_DAT_180c8ed18, 0x128, *(int8_t *)(file_table_manager + 0x2c));
     
     // 初始化文件读取上下文
     initialize_file_read_context(new_entry, param_4);
     
     // 清理文件表项字段
-    *(undefined8 *)(new_entry + 0x118) = 0;  // 清理扩展属性
-    *(undefined8 *)(new_entry + 0x120) = 0;  // 清理时间戳
+    *(uint64_t *)(new_entry + 0x118) = 0;  // 清理扩展属性
+    *(uint64_t *)(new_entry + 0x120) = 0;  // 清理时间戳
     
     // 如果有扩展数据，分配并初始化
     if ((char)hash_key != '\0') {
       extension_data = allocate_memory_block(_DAT_180c8ed18, (ulonglong)hash_key._4_4_ * 8 + 8, 8,
-                                            *(undefined1 *)(file_table_manager + 0x2c));
+                                            *(int8_t *)(file_table_manager + 0x2c));
       // WARNING: 子函数不返回
       memset(extension_data, 0, (ulonglong)hash_key._4_4_ * 8);
     }
     
     // 将新项插入哈希表
-    *(undefined8 *)(new_entry + 0x120) = *(undefined8 *)(*(longlong *)(file_table_manager + 8) + hash_index * 8);
+    *(uint64_t *)(new_entry + 0x120) = *(uint64_t *)(*(longlong *)(file_table_manager + 8) + hash_index * 8);
     *(longlong *)(*(longlong *)(file_table_manager + 8) + hash_index * 8) = new_entry;
     
     // 更新文件表计数
@@ -532,14 +532,14 @@ create_file_table_entry(longlong file_table_manager, longlong *file_entry, undef
     hash_table_base = *(longlong *)(file_table_manager + 8);
     *file_entry = new_entry;
     file_entry[1] = hash_table_base + hash_index * 8;
-    *(undefined1 *)(file_entry + 2) = 1;  // 标记为新创建的项
+    *(int8_t *)(file_entry + 2) = 1;  // 标记为新创建的项
   }
   else {
     // 找到现有项
     hash_table_base = *(longlong *)(file_table_manager + 8);
     *file_entry = new_entry;
     file_entry[1] = hash_table_base + hash_index * 8;
-    *(undefined1 *)(file_entry + 2) = 0;  // 标记为现有项
+    *(int8_t *)(file_entry + 2) = 0;  // 标记为现有项
   }
   
   return file_entry;
@@ -552,7 +552,7 @@ create_file_table_entry(longlong file_table_manager, longlong *file_entry, undef
 // 参数: param_1 - 内存池管理器指针
 //       param_2 - 输出参数，返回找到的内存块信息
 // 返回: 1表示找到可用块，0表示未找到
-undefined8 find_available_memory_block(ulonglong *memory_pool_manager, undefined8 *block_info)
+uint64_t find_available_memory_block(ulonglong *memory_pool_manager, uint64_t *block_info)
 
 {
   longlong *block_ptr;
@@ -644,7 +644,7 @@ undefined8 find_available_memory_block(ulonglong *memory_pool_manager, undefined
                    (((block_address & 0xffffffffffffffe0) - **(longlong **)(block_ptr[3] + block_ptr[1] * 8) >> 5)
                     + block_ptr[1] & *block_ptr - 1U) * 8);
           block_offset = *(longlong *)(allocation_size + 8);
-          *block_info = *(undefined8 *)(block_offset + (ulonglong)((uint)block_address & 0x1f) * 8);
+          *block_info = *(uint64_t *)(block_offset + (ulonglong)((uint)block_address & 0x1f) * 8);
           
           // 更新位图引用计数
           LOCK();
@@ -654,8 +654,8 @@ undefined8 find_available_memory_block(ulonglong *memory_pool_manager, undefined
           UNLOCK();
           
           if (block_offset == 0x1f) {
-            *(undefined8 *)(allocation_size + 8) = 0;
-            release_bitmap_memory(*(undefined8 *)(block_head + 0x50));
+            *(uint64_t *)(allocation_size + 8) = 0;
+            release_bitmap_memory(*(uint64_t *)(block_head + 0x50));
           }
           allocation_success = true;
         }
@@ -684,8 +684,8 @@ undefined8 find_available_memory_block(ulonglong *memory_pool_manager, undefined
                        (block_ptr[2] + 8 +
                        (((block_address & 0xffffffffffffffe0) - *(longlong *)(block_ptr[2] + block_ptr[1] * 0x10)
                         >> 5) + block_ptr[1] & *block_ptr - 1U) * 0x10);
-              *block_info = *(undefined8 *)(allocation_size + current_size * 8);
-              *(undefined1 *)((allocation_size - current_size) + 0x12f) = 1;
+              *block_info = *(uint64_t *)(allocation_size + current_size * 8);
+              *(int8_t *)((allocation_size - current_size) + 0x12f) = 1;
               allocation_success = true;
               goto allocation_succeeded;
             }
@@ -721,7 +721,7 @@ allocation_succeeded:
 // 参数: param_1 - 内存块指针
 //       param_2 - 输出参数，返回分配的内存地址
 // 返回: 1表示分配成功，0表示分配失败
-undefined8 check_memory_block_availability(longlong memory_block, undefined8 *allocated_address)
+uint64_t check_memory_block_availability(longlong memory_block, uint64_t *allocated_address)
 
 {
   longlong *allocation_ptr;
@@ -762,7 +762,7 @@ undefined8 check_memory_block_availability(longlong memory_block, undefined8 *al
                (((allocation_index & 0xffffffffffffffe0) - **(longlong **)(allocation_ptr[3] + allocation_ptr[1] * 8) >> 5) +
                 allocation_ptr[1] & *allocation_ptr - 1U) * 8);
       allocation_size = *(longlong *)(bitmap_base + 8);
-      *allocated_address = *(undefined8 *)(allocation_size + (ulonglong)((uint)allocation_index & 0x1f) * 8);
+      *allocated_address = *(uint64_t *)(allocation_size + (ulonglong)((uint)allocation_index & 0x1f) * 8);
       
       // 更新位图引用计数
       LOCK();
@@ -772,8 +772,8 @@ undefined8 check_memory_block_availability(longlong memory_block, undefined8 *al
       UNLOCK();
       
       if (allocation_size == 0x1f) {
-        *(undefined8 *)(bitmap_base + 8) = 0;
-        release_bitmap_memory(*(undefined8 *)(memory_block + 0x50));
+        *(uint64_t *)(bitmap_base + 8) = 0;
+        release_bitmap_memory(*(uint64_t *)(memory_block + 0x50));
       }
       return 1;  // 分配成功
     }
@@ -809,8 +809,8 @@ undefined8 check_memory_block_availability(longlong memory_block, undefined8 *al
                (allocation_ptr[2] + 8 +
                (((allocation_index & 0xffffffffffffffe0) - *(longlong *)(allocation_ptr[2] + allocation_ptr[1] * 0x10) >> 5) +
                 allocation_ptr[1] & *allocation_ptr - 1U) * 0x10);
-      *allocated_address = *(undefined8 *)(allocation_size + bit_index * 8);
-      *(undefined1 *)((allocation_size - bit_index) + 0x12f) = 1;
+      *allocated_address = *(uint64_t *)(allocation_size + bit_index * 8);
+      *(int8_t *)((allocation_size - bit_index) + 0x12f) = 1;
       return 1;  // 分配成功
     }
   }
@@ -833,7 +833,7 @@ undefined8 check_memory_block_availability(longlong memory_block, undefined8 *al
 //       param_3 - 操作类型 (0=释放, 1=复制构造, 2=移动, 3=获取, 4=引用)
 //       param_4 - 清理标志
 // 返回: 操作结果或内存块指针
-longlong memory_management_operation(longlong *target_block, longlong *source_block, int operation_type, undefined8 cleanup_flag)
+longlong memory_management_operation(longlong *target_block, longlong *source_block, int operation_type, uint64_t cleanup_flag)
 
 {
   longlong result;
@@ -864,7 +864,7 @@ longlong memory_management_operation(longlong *target_block, longlong *source_bl
         // 复制构造内存块
         result = allocate_memory_block(_DAT_180c8ed18, 0x20, 8, DAT_180bf65bc);
         source_value = *source_block;
-        *(undefined8 *)(result + 0x10) = 0;
+        *(uint64_t *)(result + 0x10) = 0;
         *(code **)(result + 0x18) = _guard_check_icall;
         if (result != source_value) {
           callback_func = *(code **)(source_value + 0x10);
@@ -874,7 +874,7 @@ longlong memory_management_operation(longlong *target_block, longlong *source_bl
             callback_func = *(code **)(source_value + 0x10);
           }
           *(code **)(result + 0x10) = callback_func;
-          *(undefined8 *)(result + 0x18) = *(undefined8 *)(source_value + 0x18);
+          *(uint64_t *)(result + 0x18) = *(uint64_t *)(source_value + 0x18);
         }
         *target_block = result;
         return 0;
@@ -900,29 +900,29 @@ longlong memory_management_operation(longlong *target_block, longlong *source_bl
 //       param_3 - 保留参数
 //       param_4 - 保留参数
 // 返回: 初始化后的文件读取上下文指针
-undefined8 *
-initialize_file_read_context(undefined8 *file_context, longlong file_info, undefined8 param_3, undefined8 param_4)
+uint64_t *
+initialize_file_read_context(uint64_t *file_context, longlong file_info, uint64_t param_3, uint64_t param_4)
 
 {
-  undefined *file_path;
+  void *file_path;
   
   // 初始化基本字段
   *file_context = &UNK_18098bcb0;  // 设置默认路径
   file_context[1] = 0;               // 清理偏移量
-  *(undefined4 *)(file_context + 2) = 0;  // 清理大小
+  *(int32_t *)(file_context + 2) = 0;  // 清理大小
   
   *file_context = &UNK_1809feda8;  // 设置路径缓冲区
   file_context[1] = file_context + 3;  // 设置路径指针
-  *(undefined4 *)(file_context + 2) = 0;  // 清理路径长度
-  *(undefined1 *)(file_context + 3) = 0;  // 路径终止符
+  *(int32_t *)(file_context + 2) = 0;  // 清理路径长度
+  *(int8_t *)(file_context + 3) = 0;  // 路径终止符
   
   // 复制文件大小
-  *(undefined4 *)(file_context + 2) = *(undefined4 *)(file_info + 0x10);
+  *(int32_t *)(file_context + 2) = *(int32_t *)(file_info + 0x10);
   
   // 复制文件路径
   file_path = &DAT_18098bc73;  // 默认路径
-  if (*(undefined **)(file_info + 8) != (undefined *)0x0) {
-    file_path = *(undefined **)(file_info + 8);  // 使用指定路径
+  if (*(void **)(file_info + 8) != (void *)0x0) {
+    file_path = *(void **)(file_info + 8);  // 使用指定路径
   }
   strcpy_s(file_context[1], 0x100, file_path, param_4, 0xfffffffffffffffe);
   
@@ -935,18 +935,18 @@ initialize_file_read_context(undefined8 *file_context, longlong file_info, undef
 // 功能: 初始化内存管理器的各个字段，包括回调函数和安全检查
 // 参数: param_1 - 内存管理器指针
 // 返回: 初始化后的内存管理器指针
-undefined8 * initialize_memory_manager(undefined8 *memory_manager)
+uint64_t * initialize_memory_manager(uint64_t *memory_manager)
 
 {
   // 初始化基本字段
   *memory_manager = &UNK_18098bcb0;  // 设置默认值
   memory_manager[1] = 0;               // 清理计数器
-  *(undefined4 *)(memory_manager + 2) = 0;  // 清理标志
+  *(int32_t *)(memory_manager + 2) = 0;  // 清理标志
   
   *memory_manager = &UNK_1809feda8;  // 设置数据缓冲区
   memory_manager[1] = memory_manager + 3;  // 设置数据指针
-  *(undefined4 *)(memory_manager + 2) = 0;  // 清理数据长度
-  *(undefined1 *)(memory_manager + 3) = 0;  // 数据终止符
+  *(int32_t *)(memory_manager + 2) = 0;  // 清理数据长度
+  *(int8_t *)(memory_manager + 3) = 0;  // 数据终止符
   
   // 初始化回调函数和安全检查
   memory_manager[0x2b] = 0;           // 清理回调1
@@ -960,7 +960,7 @@ undefined8 * initialize_memory_manager(undefined8 *memory_manager)
   memory_manager[0x23] = 0xffffffffffffffff;  // 最大块数
   memory_manager[0x25] = 0;           // 当前引用计数
   memory_manager[0x26] = 0;           // 当前大小
-  *(undefined1 *)(memory_manager + 0x28) = 0;  // 当前块数
+  *(int8_t *)(memory_manager + 0x28) = 0;  // 当前块数
   
   return memory_manager;
 }
@@ -988,11 +988,11 @@ void copy_callback_functions(longlong target_object, longlong source_object)
   
   // 复制回调函数和数据
   *(code **)(target_object + 0x10) = callback_func;
-  *(undefined8 *)(target_object + 0x18) = *(undefined8 *)(source_object + 0x18);
+  *(uint64_t *)(target_object + 0x18) = *(uint64_t *)(source_object + 0x18);
   
   // 清理源对象的回调函数
   *(code **)(source_object + 0x18) = _guard_check_icall;
-  *(undefined8 *)(source_object + 0x10) = 0;
+  *(uint64_t *)(source_object + 0x10) = 0;
   return;
 }
 
@@ -1005,11 +1005,11 @@ void copy_callback_functions(longlong target_object, longlong source_object)
 //       param_3 - 保留参数
 //       param_4 - 保留参数
 // 返回: 文件信息指针
-longlong release_file_info(longlong file_info, ulonglong release_flags, undefined8 param_3, undefined8 param_4)
+longlong release_file_info(longlong file_info, ulonglong release_flags, uint64_t param_3, uint64_t param_4)
 
 {
   // 设置默认文件路径
-  *(undefined **)(file_info + 8) = &UNK_18098bcb0;
+  *(void **)(file_info + 8) = &UNK_18098bcb0;
   
   // 根据标志决定是否释放内存
   if ((release_flags & 1) != 0) {
@@ -1027,8 +1027,8 @@ longlong release_file_info(longlong file_info, ulonglong release_flags, undefine
 //       param_3 - 保留参数
 //       param_4 - 保留参数
 // 返回: 内存块指针
-undefined8 *
-release_memory_block(undefined8 *memory_block, ulonglong release_flags, undefined8 param_3, undefined8 param_4)
+uint64_t *
+release_memory_block(uint64_t *memory_block, ulonglong release_flags, uint64_t param_3, uint64_t param_4)
 
 {
   // 设置默认值
@@ -1050,17 +1050,17 @@ release_memory_block(undefined8 *memory_block, ulonglong release_flags, undefine
 // 参数: param_1 - 目标字符串结构指针
 //       param_2 - 源字符串数据
 //       param_3 - 要复制的字符数
-void copy_string_data(longlong target_string, undefined8 source_data, int copy_length)
+void copy_string_data(longlong target_string, uint64_t source_data, int copy_length)
 
 {
   // 检查缓冲区大小是否足够
   if (copy_length + 1 < 0x100) {
     // WARNING: 子函数不返回
-    memcpy(*(undefined1 **)(target_string + 8), source_data, (longlong)copy_length);
+    memcpy(*(int8_t **)(target_string + 8), source_data, (longlong)copy_length);
   }
   // 确保字符串正确终止
-  **(undefined1 **)(target_string + 8) = 0;
-  *(undefined4 *)(target_string + 0x10) = 0;
+  **(int8_t **)(target_string + 8) = 0;
+  *(int32_t *)(target_string + 0x10) = 0;
   return;
 }
 
@@ -1085,7 +1085,7 @@ void memory_copy_operation(void)
 // 函数: 重置字符串
 // 功能: 重置字符串结构，清空字符串内容并重置长度
 // 参数: param_1 - 字符串结构指针
-void reset_string(undefined1 *string_struct)
+void reset_string(int8_t *string_struct)
 
 {
   longlong string_base;
@@ -1093,7 +1093,7 @@ void reset_string(undefined1 *string_struct)
   // 清空字符串内容
   *string_struct = 0;
   // 重置字符串长度
-  *(undefined4 *)(string_base + 0x10) = 0;
+  *(int32_t *)(string_base + 0x10) = 0;
   return;
 }
 
@@ -1115,12 +1115,12 @@ void string_search_and_replace(longlong target_string, longlong search_string, l
   longlong search_pos;
   longlong search_len;
   longlong replace_len;
-  undefined1 stack_buffer [32];
-  undefined8 stack_guard;
-  undefined *temp_ptr;
-  undefined1 *result_buffer;
-  undefined4 result_len;
-  undefined1 work_buffer [264];
+  int8_t stack_buffer [32];
+  uint64_t stack_guard;
+  void *temp_ptr;
+  int8_t *result_buffer;
+  int32_t result_len;
+  int8_t work_buffer [264];
   ulonglong security_cookie;
   
   // 初始化栈保护
@@ -1132,7 +1132,7 @@ void string_search_and_replace(longlong target_string, longlong search_string, l
   work_buffer[0] = 0;
   
   // 搜索目标字符串中的子字符串
-  search_pos = strstr(*(undefined8 *)(target_string + 8));
+  search_pos = strstr(*(uint64_t *)(target_string + 8));
   if (search_pos != 0) {
     // 计算搜索字符串长度
     search_len = -1;
@@ -1172,8 +1172,8 @@ void set_string_value(longlong target_string, longlong source_string)
   
   if (source_string == 0) {
     // 清空字符串
-    *(undefined4 *)(target_string + 0x10) = 0;
-    **(undefined1 **)(target_string + 8) = 0;
+    *(int32_t *)(target_string + 0x10) = 0;
+    **(int8_t **)(target_string + 8) = 0;
     return;
   }
   
@@ -1188,14 +1188,14 @@ void set_string_value(longlong target_string, longlong source_string)
     *(int *)(target_string + 0x10) = (int)string_length;
     // WARNING: 无法恢复跳转表，分支过多
     // WARNING: 将间接跳转视为调用
-    strcpy_s(*(undefined8 *)(target_string + 8), 0x100);
+    strcpy_s(*(uint64_t *)(target_string + 8), 0x100);
     return;
   }
   
   // 字符串过长，处理错误情况
   handle_string_too_long_error(&UNK_18098bc48, 0x100, source_string);
-  *(undefined4 *)(target_string + 0x10) = 0;
-  **(undefined1 **)(target_string + 8) = 0;
+  *(int32_t *)(target_string + 0x10) = 0;
+  **(int8_t **)(target_string + 8) = 0;
   return;
 }
 
@@ -1208,11 +1208,11 @@ void set_string_value(longlong target_string, longlong source_string)
 //       param_3 - 保留参数
 //       param_4 - 保留参数
 // 返回: 文件表项指针
-longlong release_file_table_entry(longlong file_entry, ulonglong release_flags, undefined8 param_3, undefined8 param_4)
+longlong release_file_table_entry(longlong file_entry, ulonglong release_flags, uint64_t param_3, uint64_t param_4)
 
 {
   // 设置默认文件路径
-  *(undefined **)(file_entry + 8) = &UNK_18098bcb0;
+  *(void **)(file_entry + 8) = &UNK_18098bcb0;
   
   // 根据标志决定是否释放内存
   if ((release_flags & 1) != 0) {
@@ -1225,8 +1225,8 @@ longlong release_file_table_entry(longlong file_entry, ulonglong release_flags, 
 
 
 
-// 函数: void FUN_180069530(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180069530(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void FUN_180069530(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void FUN_180069530(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   if ((code *)param_1[0x2f] != (code *)0x0) {
@@ -1250,7 +1250,7 @@ void reset_file_info(longlong file_info)
 
 {
   // 设置默认文件路径
-  *(undefined **)(file_info + 8) = &UNK_18098bcb0;
+  *(void **)(file_info + 8) = &UNK_18098bcb0;
   return;
 }
 
@@ -1263,8 +1263,8 @@ void reset_file_info(longlong file_info)
 //       param_3 - 保留参数
 //       param_4 - 保留参数
 // 返回: 内存管理器指针
-undefined8 *
-release_memory_manager(undefined8 *memory_manager, ulonglong release_flags, undefined8 param_3, undefined8 param_4)
+uint64_t *
+release_memory_manager(uint64_t *memory_manager, ulonglong release_flags, uint64_t param_3, uint64_t param_4)
 
 {
   // 重置内存管理器的各个字段
@@ -1286,7 +1286,7 @@ release_memory_manager(undefined8 *memory_manager, ulonglong release_flags, unde
 // 参数: param_1 - 字符串缓冲区指针
 //       param_2 - 释放标志（位0表示是否释放内存）
 // 返回: 字符串缓冲区指针
-undefined8 * release_string_buffer(undefined8 *string_buffer, ulonglong release_flags)
+uint64_t * release_string_buffer(uint64_t *string_buffer, ulonglong release_flags)
 
 {
   // 重置字符串缓冲区
@@ -1306,7 +1306,7 @@ undefined8 * release_string_buffer(undefined8 *string_buffer, ulonglong release_
 // 参数: param_1 - 扩展属性指针
 //       param_2 - 释放标志（位0表示是否释放内存）
 // 返回: 扩展属性指针
-undefined8 release_extended_attributes(undefined8 extended_attr, ulonglong release_flags)
+uint64_t release_extended_attributes(uint64_t extended_attr, ulonglong release_flags)
 
 {
   // 执行清理操作

@@ -10,15 +10,15 @@ void FUN_18034d990(longlong param_1)
   int iVar2;
   longlong lVar3;
   longlong *plVar4;
-  undefined *puVar5;
+  void *puVar5;
   ulonglong uVar6;
   ulonglong uVar7;
   ulonglong uVar8;
   uint uVar9;
   ulonglong uVar10;
-  undefined8 extraout_XMM0_Qa;
-  undefined8 extraout_XMM0_Qa_00;
-  undefined8 uVar11;
+  uint64_t extraout_XMM0_Qa;
+  uint64_t extraout_XMM0_Qa_00;
+  uint64_t uVar11;
   longlong *plStackX_8;
   
   uVar6 = 0;
@@ -37,15 +37,15 @@ void FUN_18034d990(longlong param_1)
       if (iVar2 == 0) {
         uVar8 = *(ulonglong *)(uVar7 + *plVar4);
         puVar5 = &DAT_18098bc73;
-        if (*(undefined **)(uVar8 + 0x1f8) != (undefined *)0x0) {
-          puVar5 = *(undefined **)(uVar8 + 0x1f8);
+        if (*(void **)(uVar8 + 0x1f8) != (void *)0x0) {
+          puVar5 = *(void **)(uVar8 + 0x1f8);
         }
         lVar3 = strstr(puVar5,&UNK_180a1db58);
         uVar11 = extraout_XMM0_Qa;
         if (lVar3 == 0) {
           puVar5 = &DAT_18098bc73;
-          if (*(undefined **)(uVar8 + 0x1f8) != (undefined *)0x0) {
-            puVar5 = *(undefined **)(uVar8 + 0x1f8);
+          if (*(void **)(uVar8 + 0x1f8) != (void *)0x0) {
+            puVar5 = *(void **)(uVar8 + 0x1f8);
           }
           lVar3 = strstr(puVar5,&UNK_180a1dba8);
           uVar11 = extraout_XMM0_Qa_00;
@@ -75,12 +75,12 @@ LAB_18034da95:
     (**(code **)(*plStackX_8 + 0x38))();
   }
   if (bVar1) {
-    FUN_1802084b0(*(undefined8 *)(param_1 + 0x120));
-    FUN_180207f50(*(undefined8 *)(param_1 + 0x120),uVar8);
-    FUN_180208390(*(undefined8 *)(param_1 + 0x120),param_1 + 0xb0,1);
+    FUN_1802084b0(*(uint64_t *)(param_1 + 0x120));
+    FUN_180207f50(*(uint64_t *)(param_1 + 0x120),uVar8);
+    FUN_180208390(*(uint64_t *)(param_1 + 0x120),param_1 + 0xb0,1);
     *(float *)(*(longlong *)(param_1 + 0x120) + 0x848) = (float)*(double *)(param_1 + 0x100);
     if (*(char *)(param_1 + 0x110) != '\0') {
-      FUN_180208610(*(undefined8 *)(param_1 + 0x120),0x3a83126f);
+      FUN_180208610(*(uint64_t *)(param_1 + 0x120),0x3a83126f);
     }
   }
   return;

@@ -66,10 +66,10 @@ extern undefined FUN_1809416d0;    // 资源管理函数
 extern undefined FUN_180941710;    // 内存管理函数
 
 // 特殊类型变量声明
-extern undefined1 DAT_180bf5240;   // 1字节特殊变量
-extern undefined1 DAT_180bf52e0;   // 1字节状态变量
-extern undefined8 UNK_180bf5278;   // 8字节未知变量
-extern undefined8 UNK_180bf5298;   // 8字节配置变量
+extern int8_t DAT_180bf5240;   // 1字节特殊变量
+extern int8_t DAT_180bf52e0;   // 1字节状态变量
+extern uint64_t UNK_180bf5278;   // 8字节未知变量
+extern uint64_t UNK_180bf5298;   // 8字节配置变量
 
 // =============================================================================
 // 系统核心变量组
@@ -271,10 +271,10 @@ extern undefined UNK_180a01330;    // 通信控制变量
 extern undefined FUN_1809419a0;    // 通信管理函数
 
 // 系统管理变量
-extern undefined1 DAT_180c910f8;   // 系统管理变量1
-extern undefined1 DAT_180c91198;   // 系统管理变量2
-extern undefined1 DAT_180c91238;   // 系统管理变量3
-extern undefined1 DAT_180c912d8;   // 系统管理变量4
+extern int8_t DAT_180c910f8;   // 系统管理变量1
+extern int8_t DAT_180c91198;   // 系统管理变量2
+extern int8_t DAT_180c91238;   // 系统管理变量3
+extern int8_t DAT_180c912d8;   // 系统管理变量4
 extern undefined DAT_180c91900;    // 系统配置变量
 extern undefined UNK_180a3c3e0;    // 系统控制变量
 extern undefined UNK_18098bb30;    // 系统状态变量

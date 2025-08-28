@@ -221,7 +221,7 @@
  */
 void ui_system_event_handler_type1(longlong *ui_context)
 {
-    undefined8 event_data;
+    uint64_t event_data;
     
     // 获取事件数据
     event_data = FUN_180847820();
@@ -241,7 +241,7 @@ void ui_system_event_handler_type1(longlong *ui_context)
  */
 void ui_system_event_handler_type2(longlong *ui_context)
 {
-    undefined8 event_data;
+    uint64_t event_data;
     
     // 获取事件数据
     event_data = FUN_180847820();
@@ -261,7 +261,7 @@ void ui_system_event_handler_type2(longlong *ui_context)
  */
 void ui_system_event_handler_type3(longlong *ui_context)
 {
-    undefined8 event_data;
+    uint64_t event_data;
     
     // 获取事件数据
     event_data = FUN_180847820();
@@ -281,7 +281,7 @@ void ui_system_event_handler_type3(longlong *ui_context)
  */
 void ui_system_event_handler_type4(longlong *ui_context)
 {
-    undefined8 event_data;
+    uint64_t event_data;
     
     // 获取事件数据
     event_data = FUN_180847820();
@@ -301,7 +301,7 @@ void ui_system_event_handler_type4(longlong *ui_context)
  */
 void ui_system_event_handler_type5(longlong *ui_context)
 {
-    undefined8 event_data;
+    uint64_t event_data;
     
     // 获取事件数据
     event_data = FUN_180847820();
@@ -321,7 +321,7 @@ void ui_system_event_handler_type5(longlong *ui_context)
  */
 void ui_system_event_handler_type6(longlong *ui_context)
 {
-    undefined8 event_data;
+    uint64_t event_data;
     
     // 获取事件数据
     event_data = FUN_180847820();
@@ -341,7 +341,7 @@ void ui_system_event_handler_type6(longlong *ui_context)
  */
 void ui_system_event_handler_type7(longlong *ui_context)
 {
-    undefined8 event_data;
+    uint64_t event_data;
     
     // 获取事件数据
     event_data = FUN_180847820();
@@ -361,7 +361,7 @@ void ui_system_event_handler_type7(longlong *ui_context)
  */
 void ui_system_event_handler_type8(longlong *ui_context)
 {
-    undefined8 event_data;
+    uint64_t event_data;
     
     // 获取事件数据
     event_data = FUN_180847820();
@@ -381,7 +381,7 @@ void ui_system_event_handler_type8(longlong *ui_context)
  */
 void ui_system_event_handler_type9(longlong *ui_context)
 {
-    undefined8 event_data;
+    uint64_t event_data;
     
     // 获取事件数据
     event_data = FUN_180847820();
@@ -401,7 +401,7 @@ void ui_system_event_handler_type9(longlong *ui_context)
  */
 void ui_system_event_handler_type10(longlong *ui_context)
 {
-    undefined8 event_data;
+    uint64_t event_data;
     
     // 获取事件数据
     event_data = FUN_180847820();
@@ -421,7 +421,7 @@ void ui_system_event_handler_type10(longlong *ui_context)
  */
 void ui_system_event_handler_type11(longlong *ui_context)
 {
-    undefined8 event_data;
+    uint64_t event_data;
     
     // 获取事件数据
     event_data = FUN_180847820();
@@ -441,7 +441,7 @@ void ui_system_event_handler_type11(longlong *ui_context)
  */
 void ui_system_event_handler_type12(longlong *ui_context)
 {
-    undefined8 event_data;
+    uint64_t event_data;
     
     // 获取事件数据
     event_data = FUN_180847820();
@@ -461,7 +461,7 @@ void ui_system_event_handler_type12(longlong *ui_context)
  */
 void ui_system_event_handler_type13(longlong *ui_context)
 {
-    undefined8 event_data;
+    uint64_t event_data;
     
     // 获取事件数据
     event_data = FUN_180847820();
@@ -481,7 +481,7 @@ void ui_system_event_handler_type13(longlong *ui_context)
  */
 void ui_system_event_handler_type14(longlong *ui_context)
 {
-    undefined8 event_data;
+    uint64_t event_data;
     
     // 获取事件数据
     event_data = FUN_180847820();
@@ -501,7 +501,7 @@ void ui_system_event_handler_type14(longlong *ui_context)
  */
 void ui_system_event_handler_type15(longlong *ui_context)
 {
-    undefined8 event_data;
+    uint64_t event_data;
     
     // 获取事件数据
     event_data = FUN_180847820();
@@ -521,7 +521,7 @@ void ui_system_event_handler_type15(longlong *ui_context)
  */
 void ui_system_event_handler_type16(longlong *ui_context)
 {
-    undefined8 event_data;
+    uint64_t event_data;
     
     // 获取事件数据
     event_data = FUN_180847820();
@@ -541,7 +541,7 @@ void ui_system_event_handler_type16(longlong *ui_context)
  */
 void ui_system_event_handler_type17(longlong *ui_context)
 {
-    undefined8 event_data;
+    uint64_t event_data;
     
     // 获取事件数据
     event_data = FUN_180847820();
@@ -561,7 +561,7 @@ void ui_system_event_handler_type17(longlong *ui_context)
  */
 void ui_system_event_handler_type18(longlong *ui_context)
 {
-    undefined8 event_data;
+    uint64_t event_data;
     
     // 获取事件数据
     event_data = FUN_180847820();
@@ -581,7 +581,7 @@ void ui_system_event_handler_type18(longlong *ui_context)
  */
 void ui_system_event_handler_type19(longlong *ui_context)
 {
-    undefined8 event_data;
+    uint64_t event_data;
     
     // 获取事件数据
     event_data = FUN_180847820();
@@ -601,7 +601,7 @@ void ui_system_event_handler_type19(longlong *ui_context)
  */
 void ui_system_event_handler_type20(longlong *ui_context)
 {
-    undefined8 event_data;
+    uint64_t event_data;
     
     // 获取事件数据
     event_data = FUN_180847820();
@@ -626,7 +626,7 @@ void ui_system_event_handler_type20(longlong *ui_context)
  * @param search_key 搜索键值
  * @return 找到的数据指针，未找到返回0
  */
-longlong ui_system_hash_finder_type1(longlong ui_manager, undefined8 search_key)
+longlong ui_system_hash_finder_type1(longlong ui_manager, uint64_t search_key)
 {
     longlong hash_table;
     int left_index;
@@ -695,7 +695,7 @@ longlong ui_system_hash_finder_type1(longlong ui_manager, undefined8 search_key)
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type1(longlong ui_manager, undefined8 condition_data)
+void ui_system_condition_checker_type1(longlong ui_manager, uint64_t condition_data)
 {
     longlong check_result;
     
@@ -719,7 +719,7 @@ void ui_system_condition_checker_type1(longlong ui_manager, undefined8 condition
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type2(longlong ui_manager, undefined8 condition_data)
+void ui_system_condition_checker_type2(longlong ui_manager, uint64_t condition_data)
 {
     longlong check_result;
     
@@ -743,7 +743,7 @@ void ui_system_condition_checker_type2(longlong ui_manager, undefined8 condition
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type3(longlong ui_manager, undefined8 condition_data)
+void ui_system_condition_checker_type3(longlong ui_manager, uint64_t condition_data)
 {
     longlong check_result;
     
@@ -767,7 +767,7 @@ void ui_system_condition_checker_type3(longlong ui_manager, undefined8 condition
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type4(longlong ui_manager, undefined8 condition_data)
+void ui_system_condition_checker_type4(longlong ui_manager, uint64_t condition_data)
 {
     longlong check_result;
     
@@ -791,7 +791,7 @@ void ui_system_condition_checker_type4(longlong ui_manager, undefined8 condition
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type5(longlong ui_manager, undefined8 condition_data)
+void ui_system_condition_checker_type5(longlong ui_manager, uint64_t condition_data)
 {
     longlong check_result;
     
@@ -815,7 +815,7 @@ void ui_system_condition_checker_type5(longlong ui_manager, undefined8 condition
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type6(longlong ui_manager, undefined8 condition_data)
+void ui_system_condition_checker_type6(longlong ui_manager, uint64_t condition_data)
 {
     longlong check_result;
     
@@ -839,7 +839,7 @@ void ui_system_condition_checker_type6(longlong ui_manager, undefined8 condition
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type7(longlong ui_manager, undefined8 condition_data)
+void ui_system_condition_checker_type7(longlong ui_manager, uint64_t condition_data)
 {
     longlong check_result;
     
@@ -863,7 +863,7 @@ void ui_system_condition_checker_type7(longlong ui_manager, undefined8 condition
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type8(longlong ui_manager, undefined8 condition_data)
+void ui_system_condition_checker_type8(longlong ui_manager, uint64_t condition_data)
 {
     longlong check_result;
     
@@ -887,7 +887,7 @@ void ui_system_condition_checker_type8(longlong ui_manager, undefined8 condition
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type9(longlong ui_manager, undefined8 condition_data)
+void ui_system_condition_checker_type9(longlong ui_manager, uint64_t condition_data)
 {
     longlong check_result;
     
@@ -911,7 +911,7 @@ void ui_system_condition_checker_type9(longlong ui_manager, undefined8 condition
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type10(longlong ui_manager, undefined8 condition_data)
+void ui_system_condition_checker_type10(longlong ui_manager, uint64_t condition_data)
 {
     longlong check_result;
     
@@ -935,7 +935,7 @@ void ui_system_condition_checker_type10(longlong ui_manager, undefined8 conditio
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type11(longlong ui_manager, undefined8 condition_data)
+void ui_system_condition_checker_type11(longlong ui_manager, uint64_t condition_data)
 {
     longlong check_result;
     
@@ -959,7 +959,7 @@ void ui_system_condition_checker_type11(longlong ui_manager, undefined8 conditio
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type12(longlong ui_manager, undefined8 condition_data)
+void ui_system_condition_checker_type12(longlong ui_manager, uint64_t condition_data)
 {
     longlong check_result;
     
@@ -983,7 +983,7 @@ void ui_system_condition_checker_type12(longlong ui_manager, undefined8 conditio
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type13(longlong ui_manager, undefined8 condition_data)
+void ui_system_condition_checker_type13(longlong ui_manager, uint64_t condition_data)
 {
     longlong check_result;
     
@@ -1007,7 +1007,7 @@ void ui_system_condition_checker_type13(longlong ui_manager, undefined8 conditio
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type14(longlong ui_manager, undefined8 condition_data)
+void ui_system_condition_checker_type14(longlong ui_manager, uint64_t condition_data)
 {
     longlong check_result;
     
@@ -1031,7 +1031,7 @@ void ui_system_condition_checker_type14(longlong ui_manager, undefined8 conditio
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type15(longlong ui_manager, undefined8 condition_data)
+void ui_system_condition_checker_type15(longlong ui_manager, uint64_t condition_data)
 {
     longlong check_result;
     
@@ -1055,7 +1055,7 @@ void ui_system_condition_checker_type15(longlong ui_manager, undefined8 conditio
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type16(longlong ui_manager, undefined8 condition_data)
+void ui_system_condition_checker_type16(longlong ui_manager, uint64_t condition_data)
 {
     longlong check_result;
     
@@ -1079,7 +1079,7 @@ void ui_system_condition_checker_type16(longlong ui_manager, undefined8 conditio
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type17(longlong ui_manager, undefined8 condition_data)
+void ui_system_condition_checker_type17(longlong ui_manager, uint64_t condition_data)
 {
     longlong check_result;
     
@@ -1103,7 +1103,7 @@ void ui_system_condition_checker_type17(longlong ui_manager, undefined8 conditio
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type18(longlong ui_manager, undefined8 condition_data)
+void ui_system_condition_checker_type18(longlong ui_manager, uint64_t condition_data)
 {
     longlong check_result;
     
@@ -1127,7 +1127,7 @@ void ui_system_condition_checker_type18(longlong ui_manager, undefined8 conditio
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type19(longlong ui_manager, undefined8 condition_data)
+void ui_system_condition_checker_type19(longlong ui_manager, uint64_t condition_data)
 {
     longlong check_result;
     
@@ -1151,7 +1151,7 @@ void ui_system_condition_checker_type19(longlong ui_manager, undefined8 conditio
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type20(longlong ui_manager, undefined8 condition_data)
+void ui_system_condition_checker_type20(longlong ui_manager, uint64_t condition_data)
 {
     longlong check_result;
     
@@ -1175,7 +1175,7 @@ void ui_system_condition_checker_type20(longlong ui_manager, undefined8 conditio
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type21(longlong ui_manager, undefined8 condition_data)
+void ui_system_condition_checker_type21(longlong ui_manager, uint64_t condition_data)
 {
     longlong check_result;
     
@@ -1199,7 +1199,7 @@ void ui_system_condition_checker_type21(longlong ui_manager, undefined8 conditio
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type22(longlong ui_manager, undefined8 condition_data)
+void ui_system_condition_checker_type22(longlong ui_manager, uint64_t condition_data)
 {
     longlong check_result;
     
@@ -1223,7 +1223,7 @@ void ui_system_condition_checker_type22(longlong ui_manager, undefined8 conditio
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type23(longlong ui_manager, undefined8 condition_data)
+void ui_system_condition_checker_type23(longlong ui_manager, uint64_t condition_data)
 {
     longlong check_result;
     
@@ -1247,7 +1247,7 @@ void ui_system_condition_checker_type23(longlong ui_manager, undefined8 conditio
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type24(longlong ui_manager, undefined8 condition_data)
+void ui_system_condition_checker_type24(longlong ui_manager, uint64_t condition_data)
 {
     longlong check_result;
     
@@ -1271,7 +1271,7 @@ void ui_system_condition_checker_type24(longlong ui_manager, undefined8 conditio
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type25(longlong ui_manager, undefined8 condition_data)
+void ui_system_condition_checker_type25(longlong ui_manager, uint64_t condition_data)
 {
     longlong check_result;
     
@@ -1295,7 +1295,7 @@ void ui_system_condition_checker_type25(longlong ui_manager, undefined8 conditio
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type26(longlong ui_manager, undefined8 condition_data)
+void ui_system_condition_checker_type26(longlong ui_manager, uint64_t condition_data)
 {
     longlong check_result;
     
@@ -1319,7 +1319,7 @@ void ui_system_condition_checker_type26(longlong ui_manager, undefined8 conditio
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type27(longlong ui_manager, undefined8 condition_data)
+void ui_system_condition_checker_type27(longlong ui_manager, uint64_t condition_data)
 {
     longlong check_result;
     
@@ -1343,7 +1343,7 @@ void ui_system_condition_checker_type27(longlong ui_manager, undefined8 conditio
  * @param ui_manager UI管理器指针
  * @param condition_data 条件数据
  */
-void ui_system_condition_checker_type28(longlong ui_manager, undefined8 condition_data)
+void ui_system_condition_checker_type28(longlong ui_manager, uint64_t condition_data)
 {
     longlong check_result;
     
@@ -1372,11 +1372,11 @@ void ui_system_condition_checker_type28(longlong ui_manager, undefined8 conditio
  * @param ui_manager UI管理器指针
  * @param resource_data 资源数据
  */
-void ui_system_resource_manager_type1(longlong ui_manager, undefined8 resource_data)
+void ui_system_resource_manager_type1(longlong ui_manager, uint64_t resource_data)
 {
     longlong handle_result;
-    undefined1 stack_protector_1 [UI_STACK_SIZE_1];
-    undefined1 stack_protector_2 [UI_STACK_SIZE_2];
+    int8_t stack_protector_1 [UI_STACK_SIZE_1];
+    int8_t stack_protector_2 [UI_STACK_SIZE_2];
     ulonglong stack_guard;
     
     // 栈保护机制
@@ -1473,7 +1473,7 @@ cleanup_and_return:
  * @param param_3 参数3
  * @return 找到的数据指针，未找到返回0
  */
-longlong ui_system_hash_finder_type3(undefined8 param_1, undefined8 param_2, char param_3)
+longlong ui_system_hash_finder_type3(uint64_t param_1, uint64_t param_2, char param_3)
 {
     longlong hash_table;
     bool need_unlock;
@@ -1604,7 +1604,7 @@ cleanup_and_return:
  * @param param_3 参数3
  * @return 找到的数据指针，未找到返回0
  */
-longlong ui_system_hash_finder_type5(longlong param_1, undefined8 param_2, char param_3)
+longlong ui_system_hash_finder_type5(longlong param_1, uint64_t param_2, char param_3)
 {
     longlong hash_table;
     bool need_unlock;
@@ -1741,7 +1741,7 @@ void ui_system_resource_manager_type2(void)
  * @param context 上下文指针
  * @return 状态数据
  */
-undefined8 ui_system_status_query_type1(void)
+uint64_t ui_system_status_query_type1(void)
 {
     longlong context_ptr;
     char status_flag;
@@ -1750,7 +1750,7 @@ undefined8 ui_system_status_query_type1(void)
         // 警告：子函数不返回
         FUN_180768400();
     }
-    return *(undefined8 *)(context_ptr + 0x18);
+    return *(uint64_t *)(context_ptr + 0x18);
 }
 
 /**
@@ -1763,7 +1763,7 @@ undefined8 ui_system_status_query_type1(void)
  * @param param_3 参数3
  * @return 找到的数据指针，未找到返回0
  */
-longlong ui_system_hash_finder_type7(undefined8 param_1, undefined8 param_2, char param_3)
+longlong ui_system_hash_finder_type7(uint64_t param_1, uint64_t param_2, char param_3)
 {
     longlong hash_table;
     bool need_unlock;
@@ -1829,7 +1829,7 @@ void ui_system_resource_manager_type3(void)
  * @param context 上下文指针
  * @return 状态数据
  */
-undefined8 ui_system_status_query_type2(void)
+uint64_t ui_system_status_query_type2(void)
 {
     longlong context_ptr;
     char status_flag;
@@ -1838,7 +1838,7 @@ undefined8 ui_system_status_query_type2(void)
         // 警告：子函数不返回
         FUN_180768400();
     }
-    return *(undefined8 *)(context_ptr + 0x18);
+    return *(uint64_t *)(context_ptr + 0x18);
 }
 
 // ============================================================================

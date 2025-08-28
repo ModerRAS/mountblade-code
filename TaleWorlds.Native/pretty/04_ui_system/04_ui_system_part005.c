@@ -12,7 +12,7 @@
  * @param source_ptr2 源数据指针2
  * @param offset_data 偏移数据
  */
-void ui_system_data_copier(longlong destination_ptr, undefined8 source_ptr1, undefined8 source_ptr2, longlong offset_data)
+void ui_system_data_copier(longlong destination_ptr, uint64_t source_ptr1, uint64_t source_ptr2, longlong offset_data)
 {
   longlong unaff_RSI;
   int unaff_R12D;
@@ -55,35 +55,35 @@ void ui_system_resource_manager(void)
 
 {
   uint resource_hash_value;
-  undefined4 resource_type;
+  int32_t resource_type;
   int resource_index;
   uint resource_count;
-  undefined4 *resource_array_ptr;
+  int32_t *resource_array_ptr;
   longlong resource_offset;
-  undefined1 *resource_data_ptr;
-  undefined2 *resource_handle_ptr;
-  undefined *heap_allocation;
+  int8_t *resource_data_ptr;
+  int16_t *resource_handle_ptr;
+  void *heap_allocation;
   uint string_length;
   ulonglong buffer_size;
-  undefined1 resource_buffer[32];
-  undefined1 resource_flag;
-  undefined *temp_buffer_ptr;
-  undefined2 *temp_handle_ptr;
-  undefined4 temp_resource_type;
-  undefined8 temp_resource_data;
-  undefined *temp_heap_ptr;
-  undefined1 *temp_string_ptr;
+  int8_t resource_buffer[32];
+  int8_t resource_flag;
+  void *temp_buffer_ptr;
+  int16_t *temp_handle_ptr;
+  int32_t temp_resource_type;
+  uint64_t temp_resource_data;
+  void *temp_heap_ptr;
+  int8_t *temp_string_ptr;
   uint temp_string_length;
-  undefined8 temp_resource_size;
-  undefined1 temp_data_buffer[32];
-  undefined8 temp_hash_value;
-  undefined *temp_ptr1;
+  uint64_t temp_resource_size;
+  int8_t temp_data_buffer[32];
+  uint64_t temp_hash_value;
+  void *temp_ptr1;
   int temp_index;
   ulonglong stack_parameter;
   
   stack_parameter = 0xfffffffffffffffe;
   resource_hash_value = _DAT_180bf00a8 ^ (ulonglong)resource_buffer;
-  resource_data_ptr = (undefined1 *)0x0;
+  resource_data_ptr = (int8_t *)0x0;
   resource_count = 0;
   temp_resource_type = 0;
   temp_hash_value = _DAT_180c91030;
@@ -99,36 +99,36 @@ void ui_system_resource_manager(void)
   concatenate_string_buffers(temp_string_buffer, temp_data_buffer);
   temp_buffer_ptr = &UNK_180a3c3e0;
   temp_resource_size = 0;
-  temp_string_ptr = (undefined1 *)0x0;
+  temp_string_ptr = (int8_t *)0x0;
   temp_string_length = 0;
   extend_string_buffer(&temp_buffer_ptr, temp_index);
   if (0 < temp_index) {
     heap_allocation = &DAT_18098bc73;
-    if (temp_ptr1 != (undefined *)0x0) {
+    if (temp_ptr1 != (void *)0x0) {
       heap_allocation = temp_ptr1;
     }
                     // WARNING: Subroutine does not return
     memcpy(temp_string_ptr, heap_allocation, (longlong)(temp_index + 1));
   }
-  if ((temp_ptr1 != (undefined *)0x0) && (temp_string_length = 0, temp_string_ptr != (undefined1 *)0x0)) {
+  if ((temp_ptr1 != (void *)0x0) && (temp_string_length = 0, temp_string_ptr != (int8_t *)0x0)) {
     *temp_string_ptr = 0;
   }
   temp_heap_ptr = &UNK_180a3c3e0;
   temp_resource_size = 0;
-  resource_array_ptr = (undefined4 *)0x0;
+  resource_array_ptr = (int32_t *)0x0;
   temp_resource_type = 0;
-  resource_handle_ptr = (undefined2 *)string_buffer_allocator(MEMORY_ALLOCATOR_HANDLE, 0x10, 0x13);
-  *(undefined1 *)resource_handle_ptr = 0;
+  resource_handle_ptr = (int16_t *)string_buffer_allocator(MEMORY_ALLOCATOR_HANDLE, 0x10, 0x13);
+  *(int8_t *)resource_handle_ptr = 0;
   resource_array_ptr = resource_handle_ptr;
   resource_type = calculate_string_hash(resource_handle_ptr);
   temp_resource_size = CONCAT44(temp_resource_size._4_4_, resource_type);
   *resource_handle_ptr = 0x2f6e6962;
-  *(undefined1 *)(resource_handle_ptr + 1) = 0;
+  *(int8_t *)(resource_handle_ptr + 1) = 0;
   temp_resource_type = 4;
   resource_offset = process_resource_path(&temp_buffer_ptr, &temp_ptr1, &temp_heap_ptr);
   temp_string_ptr = &UNK_180a3c3e0;
   temp_resource_size = 0;
-  temp_string_ptr = (undefined1 *)0x0;
+  temp_string_ptr = (int8_t *)0x0;
   temp_string_length = 0;
   temp_resource_type = 2;
   resource_count = *(uint *)(resource_offset + 0x10);
@@ -139,7 +139,7 @@ LAB_RESOURCE_DIRECT_COPY:
     resource_hash_value = resource_index;
     if (resource_count != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(resource_data_ptr, *(undefined8 *)(resource_offset + 8), buffer_size);
+      memcpy(resource_data_ptr, *(uint64_t *)(resource_offset + 8), buffer_size);
     }
   }
   else if (resource_count != 0) {
@@ -147,51 +147,51 @@ LAB_RESOURCE_DIRECT_COPY:
     if (string_length < 0x10) {
       string_length = 0x10;
     }
-    resource_data_ptr = (undefined1 *)string_buffer_allocator(MEMORY_ALLOCATOR_HANDLE, (longlong)string_length, 0x13);
+    resource_data_ptr = (int8_t *)string_buffer_allocator(MEMORY_ALLOCATOR_HANDLE, (longlong)string_length, 0x13);
     *resource_data_ptr = 0;
     temp_string_ptr = resource_data_ptr;
     resource_index = calculate_string_hash(resource_data_ptr);
     temp_resource_size = CONCAT44(temp_resource_size._4_4_, resource_index);
     goto LAB_RESOURCE_DIRECT_COPY;
   }
-  if (resource_data_ptr != (undefined1 *)0x0) {
+  if (resource_data_ptr != (int8_t *)0x0) {
     resource_data_ptr[buffer_size] = 0;
   }
-  temp_resource_size = CONCAT44(*(undefined4 *)(resource_offset + 0x1c), (undefined4)temp_resource_size);
+  temp_resource_size = CONCAT44(*(int32_t *)(resource_offset + 0x1c), (int32_t)temp_resource_size);
   if (resource_count + 0x15 != 0) {
     resource_index = resource_count + 0x16;
     temp_string_length = resource_count;
-    if (resource_data_ptr == (undefined1 *)0x0) {
+    if (resource_data_ptr == (int8_t *)0x0) {
       if ((int)resource_index < 0x10) {
         resource_index = 0x10;
       }
-      resource_data_ptr = (undefined1 *)string_buffer_allocator(MEMORY_ALLOCATOR_HANDLE, (longlong)(int)resource_index, 0x13);
+      resource_data_ptr = (int8_t *)string_buffer_allocator(MEMORY_ALLOCATOR_HANDLE, (longlong)(int)resource_index, 0x13);
       *resource_data_ptr = 0;
     }
     else {
       if (resource_index <= string_length) goto LAB_RESOURCE_PATH_COMPLETE;
       resource_flag = 0x13;
-      resource_data_ptr = (undefined1 *)string_buffer_reallocator(MEMORY_ALLOCATOR_HANDLE, resource_data_ptr, resource_index, 0x10);
+      resource_data_ptr = (int8_t *)string_buffer_reallocator(MEMORY_ALLOCATOR_HANDLE, resource_data_ptr, resource_index, 0x10);
     }
     temp_string_ptr = resource_data_ptr;
     resource_type = calculate_string_hash(resource_data_ptr);
     temp_resource_size = CONCAT44(temp_resource_size._4_4_, resource_type);
   }
 LAB_RESOURCE_PATH_COMPLETE:
-  resource_array_ptr = (undefined4 *)(resource_data_ptr + buffer_size);
+  resource_array_ptr = (int32_t *)(resource_data_ptr + buffer_size);
   *resource_array_ptr = 0x366e6957;
   resource_array_ptr[1] = 0x68535f34;
   resource_array_ptr[2] = 0x69707069;
   resource_array_ptr[3] = 0x435f676e;
-  *(undefined4 *)(resource_data_ptr + buffer_size + 0x10) = 0x6e65696c;
-  *(undefined2 *)(resource_data_ptr + buffer_size + 0x14) = 0x74;
+  *(int32_t *)(resource_data_ptr + buffer_size + 0x10) = 0x6e65696c;
+  *(int16_t *)(resource_data_ptr + buffer_size + 0x14) = 0x74;
   temp_buffer_ptr = &UNK_180a3c3e0;
   temp_resource_data = 0;
-  temp_handle_ptr = (undefined2 *)0x0;
+  temp_handle_ptr = (int16_t *)0x0;
   temp_resource_type = 0;
   temp_string_length = resource_count + 0x15;
-  resource_handle_ptr = (undefined2 *)string_buffer_allocator(MEMORY_ALLOCATOR_HANDLE, 0x10, 0x13);
-  *(undefined1 *)resource_handle_ptr = 0;
+  resource_handle_ptr = (int16_t *)string_buffer_allocator(MEMORY_ALLOCATOR_HANDLE, 0x10, 0x13);
+  *(int8_t *)resource_handle_ptr = 0;
   temp_handle_ptr = resource_handle_ptr;
   resource_type = calculate_string_hash(resource_handle_ptr);
   temp_resource_data = CONCAT44(temp_resource_data._4_4_, resource_type);
@@ -204,11 +204,11 @@ LAB_RESOURCE_PATH_COMPLETE:
 }
 
 
-undefined8 *
-ui_component_allocator(undefined8 *component_ptr, ulonglong allocation_flags, undefined8 param_3, undefined8 param_4)
+uint64_t *
+ui_component_allocator(uint64_t *component_ptr, ulonglong allocation_flags, uint64_t param_3, uint64_t param_4)
 
 {
-  undefined8 stack_parameter;
+  uint64_t stack_parameter;
   
   stack_parameter = 0xfffffffffffffffe;
   *component_ptr = &UNK_180a3e030;
@@ -220,7 +220,7 @@ ui_component_allocator(undefined8 *component_ptr, ulonglong allocation_flags, un
 }
 
 
-undefined4 * ui_component_initializer(undefined8 param_1, undefined4 *init_data_ptr)
+int32_t * ui_component_initializer(uint64_t param_1, int32_t *init_data_ptr)
 
 {
   *init_data_ptr = 0;
@@ -228,14 +228,14 @@ undefined4 * ui_component_initializer(undefined8 param_1, undefined4 *init_data_
 }
 
 
-int ui_property_getter(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+int ui_property_getter(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 
 {
   int property_value;
   longlong string_offset1;
   longlong string_offset2;
-  undefined *property_ptr;
-  undefined *temp_buffer_ptr;
+  void *property_ptr;
+  void *temp_buffer_ptr;
   longlong buffer_data;
   int buffer_length;
   int property_id;
@@ -395,7 +395,7 @@ LAB_PROPERTY_STRING_COMPARE:
 }
 
 
-ulonglong ui_property_validator(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+ulonglong ui_property_validator(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 
 {
   char validation_char;
@@ -403,14 +403,14 @@ ulonglong ui_property_validator(undefined8 param_1, undefined8 param_2, undefine
   int compare_result;
   longlong string_offset1;
   longlong string_offset2;
-  undefined *property_ptr;
+  void *property_ptr;
   ulonglong property_value;
   bool validation_flag;
-  undefined *temp_buffer_ptr1;
+  void *temp_buffer_ptr1;
   char *string_buffer_ptr;
   int buffer_length;
-  undefined4 temp_property;
-  undefined *temp_buffer_ptr2;
+  int32_t temp_property;
+  void *temp_buffer_ptr2;
   longlong buffer_data;
   int property_id;
   
@@ -722,61 +722,61 @@ LAB_PROPERTY_VALID:
  * @param property_index 属性索引
  * @param property_data_ptr 属性数据指针
  */
-void ui_system_property_extractor(int property_index, undefined8 *property_data_ptr)
+void ui_system_property_extractor(int property_index, uint64_t *property_data_ptr)
 
 {
-  undefined8 *property_table_ptr;
-  undefined4 property_flags;
+  uint64_t *property_table_ptr;
+  int32_t property_flags;
   longlong property_offset;
   code *destructor_ptr;
-  undefined8 property_value1;
-  undefined8 property_value2;
-  undefined8 property_value3;
-  undefined8 property_value4;
-  undefined8 property_value5;
-  undefined8 property_value6;
-  undefined8 property_value7;
-  undefined8 property_value8;
-  undefined8 property_value9;
-  undefined8 property_value10;
-  undefined8 property_value11;
-  undefined8 property_value12;
-  undefined8 property_value13;
-  undefined8 property_value14;
-  undefined8 property_value15;
-  undefined8 property_value16;
-  undefined8 property_value17;
-  undefined8 property_value18;
-  undefined8 property_value19;
+  uint64_t property_value1;
+  uint64_t property_value2;
+  uint64_t property_value3;
+  uint64_t property_value4;
+  uint64_t property_value5;
+  uint64_t property_value6;
+  uint64_t property_value7;
+  uint64_t property_value8;
+  uint64_t property_value9;
+  uint64_t property_value10;
+  uint64_t property_value11;
+  uint64_t property_value12;
+  uint64_t property_value13;
+  uint64_t property_value14;
+  uint64_t property_value15;
+  uint64_t property_value16;
+  uint64_t property_value17;
+  uint64_t property_value18;
+  uint64_t property_value19;
   longlong array_index;
   
   property_offset = *_DAT_180c8ecf0;
   if ((ulonglong)(longlong)property_index < (ulonglong)((_DAT_180c8ecf0[1] - property_offset) / 0x84)) {
     array_index = (longlong)property_index * 0x84;
-    property_table_ptr = (undefined8 *)(array_index + 0x60 + property_offset);
+    property_table_ptr = (uint64_t *)(array_index + 0x60 + property_offset);
     property_value1 = *property_table_ptr;
     property_value2 = property_table_ptr[1];
-    property_flags = *(undefined4 *)(array_index + 0x80 + property_offset);
-    property_table_ptr = (undefined8 *)(array_index + 0x70 + property_offset);
+    property_flags = *(int32_t *)(array_index + 0x80 + property_offset);
+    property_table_ptr = (uint64_t *)(array_index + 0x70 + property_offset);
     property_value3 = *property_table_ptr;
     property_value4 = property_table_ptr[1];
-    property_value5 = ((undefined8 *)(array_index + property_offset))[1];
-    property_table_ptr = (undefined8 *)(array_index + 0x10 + property_offset);
+    property_value5 = ((uint64_t *)(array_index + property_offset))[1];
+    property_table_ptr = (uint64_t *)(array_index + 0x10 + property_offset);
     property_value6 = *property_table_ptr;
     property_value7 = property_table_ptr[1];
-    property_table_ptr = (undefined8 *)(array_index + 0x20 + property_offset);
+    property_table_ptr = (uint64_t *)(array_index + 0x20 + property_offset);
     property_value8 = *property_table_ptr;
     property_value9 = property_table_ptr[1];
-    property_table_ptr = (undefined8 *)(array_index + 0x30 + property_offset);
+    property_table_ptr = (uint64_t *)(array_index + 0x30 + property_offset);
     property_value10 = *property_table_ptr;
     property_value11 = property_table_ptr[1];
-    property_table_ptr = (undefined8 *)(array_index + 0x40 + property_offset);
+    property_table_ptr = (uint64_t *)(array_index + 0x40 + property_offset);
     property_value12 = *property_table_ptr;
     property_value13 = property_table_ptr[1];
-    property_table_ptr = (undefined8 *)(array_index + 0x50 + property_offset);
+    property_table_ptr = (uint64_t *)(array_index + 0x50 + property_offset);
     property_value14 = *property_table_ptr;
     property_value15 = property_table_ptr[1];
-    *property_data_ptr = *(undefined8 *)(array_index + property_offset);
+    *property_data_ptr = *(uint64_t *)(array_index + property_offset);
     property_data_ptr[1] = property_value5;
     property_data_ptr[2] = property_value6;
     property_data_ptr[3] = property_value7;
@@ -792,7 +792,7 @@ void ui_system_property_extractor(int property_index, undefined8 *property_data_
     property_data_ptr[0xd] = property_value2;
     property_data_ptr[0xe] = property_value3;
     property_data_ptr[0xf] = property_value4;
-    *(undefined4 *)(property_data_ptr + 0x10) = property_flags;
+    *(int32_t *)(property_data_ptr + 0x10) = property_flags;
     return;
   }
   ui_system_error_handler();
@@ -810,55 +810,55 @@ void ui_system_property_extractor(int property_index, undefined8 *property_data_
  * @param source_ptr2 源数据指针2
  * @param destination_ptr 目标数据指针
  */
-void ui_system_property_copier(undefined8 source_ptr1, undefined8 source_ptr2, undefined8 *destination_ptr)
+void ui_system_property_copier(uint64_t source_ptr1, uint64_t source_ptr2, uint64_t *destination_ptr)
 
 {
-  undefined8 *property_table_ptr;
-  undefined4 property_flags;
-  undefined8 property_value1;
-  undefined8 property_value2;
-  undefined8 property_value3;
-  undefined8 property_value4;
-  undefined8 property_value5;
-  undefined8 property_value6;
-  undefined8 property_value7;
-  undefined8 property_value8;
-  undefined8 property_value9;
-  undefined8 property_value10;
-  undefined8 property_value11;
-  undefined8 property_value12;
-  undefined8 property_value13;
-  undefined8 property_value14;
-  undefined8 property_value15;
-  undefined8 property_value16;
-  undefined8 property_value17;
+  uint64_t *property_table_ptr;
+  int32_t property_flags;
+  uint64_t property_value1;
+  uint64_t property_value2;
+  uint64_t property_value3;
+  uint64_t property_value4;
+  uint64_t property_value5;
+  uint64_t property_value6;
+  uint64_t property_value7;
+  uint64_t property_value8;
+  uint64_t property_value9;
+  uint64_t property_value10;
+  uint64_t property_value11;
+  uint64_t property_value12;
+  uint64_t property_value13;
+  uint64_t property_value14;
+  uint64_t property_value15;
+  uint64_t property_value16;
+  uint64_t property_value17;
   longlong base_offset;
   longlong offset_data;
   
-  property_table_ptr = (undefined8 *)(base_offset + 0x60 + offset_data);
+  property_table_ptr = (uint64_t *)(base_offset + 0x60 + offset_data);
   property_value1 = *property_table_ptr;
   property_value2 = property_table_ptr[1];
-  property_flags = *(undefined4 *)(base_offset + 0x80 + offset_data);
-  property_table_ptr = (undefined8 *)(base_offset + 0x70 + offset_data);
+  property_flags = *(int32_t *)(base_offset + 0x80 + offset_data);
+  property_table_ptr = (uint64_t *)(base_offset + 0x70 + offset_data);
   property_value3 = *property_table_ptr;
   property_value4 = property_table_ptr[1];
-  property_value5 = ((undefined8 *)(base_offset + offset_data))[1];
-  property_table_ptr = (undefined8 *)(base_offset + 0x10 + offset_data);
+  property_value5 = ((uint64_t *)(base_offset + offset_data))[1];
+  property_table_ptr = (uint64_t *)(base_offset + 0x10 + offset_data);
   property_value6 = *property_table_ptr;
   property_value7 = property_table_ptr[1];
-  property_table_ptr = (undefined8 *)(base_offset + 0x20 + offset_data);
+  property_table_ptr = (uint64_t *)(base_offset + 0x20 + offset_data);
   property_value8 = *property_table_ptr;
   property_value9 = property_table_ptr[1];
-  property_table_ptr = (undefined8 *)(base_offset + 0x30 + offset_data);
+  property_table_ptr = (uint64_t *)(base_offset + 0x30 + offset_data);
   property_value10 = *property_table_ptr;
   property_value11 = property_table_ptr[1];
-  property_table_ptr = (undefined8 *)(base_offset + 0x40 + offset_data);
+  property_table_ptr = (uint64_t *)(base_offset + 0x40 + offset_data);
   property_value12 = *property_table_ptr;
   property_value13 = property_table_ptr[1];
-  property_table_ptr = (undefined8 *)(base_offset + 0x50 + offset_data);
+  property_table_ptr = (uint64_t *)(base_offset + 0x50 + offset_data);
   property_value14 = *property_table_ptr;
   property_value15 = property_table_ptr[1];
-  *destination_ptr = *(undefined8 *)(base_offset + offset_data);
+  *destination_ptr = *(uint64_t *)(base_offset + offset_data);
   destination_ptr[1] = property_value5;
   destination_ptr[2] = property_value6;
   destination_ptr[3] = property_value7;
@@ -874,7 +874,7 @@ void ui_system_property_copier(undefined8 source_ptr1, undefined8 source_ptr2, u
   destination_ptr[0xd] = property_value2;
   destination_ptr[0xe] = property_value3;
   destination_ptr[0xf] = property_value4;
-  *(undefined4 *)(destination_ptr + 0x10) = property_flags;
+  *(int32_t *)(destination_ptr + 0x10) = property_flags;
   return;
 }
 
@@ -895,13 +895,13 @@ void ui_system_error_handler(void)
 }
 
 
-undefined8
-ui_component_creator(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+uint64_t
+ui_component_creator(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 
 {
-  undefined8 stack_parameter;
+  uint64_t stack_parameter;
   longlong component_data[3];
-  undefined4 component_count;
+  int32_t component_count;
   
   component_data[0] = 0;
   component_data[1] = 0;
@@ -923,14 +923,14 @@ ui_component_creator(undefined8 param_1, undefined8 param_2, undefined8 param_3,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined4 * ui_attribute_initializer(undefined4 *attribute_ptr)
+int32_t * ui_attribute_initializer(int32_t *attribute_ptr)
 
 {
-  undefined4 attribute_value;
+  int32_t attribute_value;
   longlong *attribute_table_ptr;
-  undefined4 temp_value1;
-  undefined4 temp_value2;
-  undefined4 temp_value3;
+  int32_t temp_value1;
+  int32_t temp_value2;
+  int32_t temp_value3;
   
   attribute_table_ptr = (longlong *)memory_block_allocator(MEMORY_ALLOCATOR_HANDLE, 0x30, 8, 3, 0xfffffffffffffffe);
   attribute_table_ptr[1] = 0;
@@ -940,17 +940,17 @@ undefined4 * ui_attribute_initializer(undefined4 *attribute_ptr)
   attribute_table_ptr[5] = 0;
   *attribute_table_ptr = (longlong)&UNK_180a21690;
   *attribute_table_ptr = (longlong)&UNK_180a21720;
-  *(undefined4 *)(attribute_table_ptr + 1) = 0;
+  *(int32_t *)(attribute_table_ptr + 1) = 0;
   *attribute_table_ptr = (longlong)&UNK_1809fe070;
   attribute_table_ptr[2] = 0;
   attribute_table_ptr[3] = 0;
   attribute_table_ptr[4] = 0;
-  *(undefined4 *)(attribute_table_ptr + 5) = 3;
+  *(int32_t *)(attribute_table_ptr + 5) = 3;
   (**(code **)(*attribute_table_ptr + 0x28))(attribute_table_ptr);
   attribute_value = (**(code **)(*attribute_table_ptr + 8))(attribute_table_ptr);
   (**(code **)(*attribute_table_ptr + 0x28))(attribute_table_ptr);
   temp_value1 = SUB84(attribute_table_ptr, 0);
-  temp_value2 = (undefined4)((ulonglong)attribute_table_ptr >> 0x20);
+  temp_value2 = (int32_t)((ulonglong)attribute_table_ptr >> 0x20);
   *attribute_ptr = temp_value1;
   attribute_ptr[1] = temp_value2;
   attribute_ptr[2] = attribute_value;
@@ -967,10 +967,10 @@ undefined4 * ui_attribute_initializer(undefined4 *attribute_ptr)
  * @param component_ptr 组件指针
  * @param property_value 属性值
  */
-void ui_system_property_setter(longlong component_ptr, undefined4 property_value)
+void ui_system_property_setter(longlong component_ptr, int32_t property_value)
 
 {
-  undefined4 temp_value;
+  int32_t temp_value;
   
   component_ptr = component_ptr + 0x10;
   temp_value = property_value;
@@ -989,10 +989,10 @@ void ui_system_property_setter(longlong component_ptr, undefined4 property_value
  * @param component_ptr 组件指针
  * @param property_value 属性值
  */
-void ui_system_property_updater(longlong component_ptr, undefined4 property_value)
+void ui_system_property_updater(longlong component_ptr, int32_t property_value)
 
 {
-  undefined4 temp_value;
+  int32_t temp_value;
   
   component_ptr = component_ptr + 0x10;
   temp_value = property_value;
@@ -1006,14 +1006,14 @@ void ui_system_property_updater(longlong component_ptr, undefined4 property_valu
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined4 * ui_transform_initializer(undefined4 *transform_ptr)
+int32_t * ui_transform_initializer(int32_t *transform_ptr)
 
 {
-  undefined4 transform_value;
+  int32_t transform_value;
   longlong *transform_table_ptr;
-  undefined4 temp_value1;
-  undefined4 temp_value2;
-  undefined4 temp_value3;
+  int32_t temp_value1;
+  int32_t temp_value2;
+  int32_t temp_value3;
   
   transform_table_ptr = (longlong *)memory_block_allocator(MEMORY_ALLOCATOR_HANDLE, 0x30, 8, 3, 0xfffffffffffffffe);
   transform_table_ptr[1] = 0;
@@ -1023,17 +1023,17 @@ undefined4 * ui_transform_initializer(undefined4 *transform_ptr)
   transform_table_ptr[5] = 0;
   *transform_table_ptr = (longlong)&UNK_180a21690;
   *transform_table_ptr = (longlong)&UNK_180a21720;
-  *(undefined4 *)(transform_table_ptr + 1) = 0;
+  *(int32_t *)(transform_table_ptr + 1) = 0;
   *transform_table_ptr = (longlong)&UNK_180a3e310;
   transform_table_ptr[2] = 0;
   transform_table_ptr[3] = 0;
   transform_table_ptr[4] = 0;
-  *(undefined4 *)(transform_table_ptr + 5) = 3;
+  *(int32_t *)(transform_table_ptr + 5) = 3;
   (**(code **)(*transform_table_ptr + 0x28))(transform_table_ptr);
   transform_value = (**(code **)(*transform_table_ptr + 8))(transform_table_ptr);
   (**(code **)(*transform_table_ptr + 0x28))(transform_table_ptr);
   temp_value1 = SUB84(transform_table_ptr, 0);
-  temp_value2 = (undefined4)((ulonglong)transform_table_ptr >> 0x20);
+  temp_value2 = (int32_t)((ulonglong)transform_table_ptr >> 0x20);
   *transform_ptr = temp_value1;
   transform_ptr[1] = temp_value2;
   transform_ptr[2] = transform_value;
@@ -1043,11 +1043,11 @@ undefined4 * ui_transform_initializer(undefined4 *transform_ptr)
 }
 
 
-undefined8 *
-ui_system_component_manager(undefined8 *component_ptr, ulonglong manager_flags, undefined8 param_3, undefined8 param_4)
+uint64_t *
+ui_system_component_manager(uint64_t *component_ptr, ulonglong manager_flags, uint64_t param_3, uint64_t param_4)
 
 {
-  undefined8 stack_parameter;
+  uint64_t stack_parameter;
   
   stack_parameter = 0xfffffffffffffffe;
   initialize_ui_component_system();
@@ -1064,8 +1064,8 @@ longlong * ui_system_component_query(longlong *result_ptr, longlong query_base, 
 
 {
   longlong *component_ptr;
-  undefined4 query_result;
-  undefined4 temp_value;
+  int32_t query_result;
+  int32_t temp_value;
   
   component_ptr = *(longlong **)(*(longlong *)(query_base + 0x10) + (longlong)query_index * 8);
   if (component_ptr == (longlong *)0x0) {
@@ -1102,7 +1102,7 @@ void ui_system_component_cleaner(longlong component_list_ptr)
       }
       component_ptr2 = component_ptr2 + 1;
     } while (component_ptr2 != component_ptr1);
-    *(undefined8 *)(component_list_ptr + 0x18) = *(undefined8 *)(component_list_ptr + 0x10);
+    *(uint64_t *)(component_list_ptr + 0x18) = *(uint64_t *)(component_list_ptr + 0x10);
     return;
   }
   *(longlong **)(component_list_ptr + 0x18) = component_ptr2;
@@ -1112,14 +1112,14 @@ void ui_system_component_cleaner(longlong component_list_ptr)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined4 * ui_event_handler_initializer(undefined4 *event_handler_ptr)
+int32_t * ui_event_handler_initializer(int32_t *event_handler_ptr)
 
 {
-  undefined4 event_value;
+  int32_t event_value;
   longlong *event_table_ptr;
-  undefined4 temp_value1;
-  undefined4 temp_value2;
-  undefined4 temp_value3;
+  int32_t temp_value1;
+  int32_t temp_value2;
+  int32_t temp_value3;
   
   event_table_ptr = (longlong *)memory_block_allocator(MEMORY_ALLOCATOR_HANDLE, 0x30, 8, 3, 0xfffffffffffffffe);
   event_table_ptr[1] = 0;
@@ -1129,20 +1129,20 @@ undefined4 * ui_event_handler_initializer(undefined4 *event_handler_ptr)
   event_table_ptr[5] = 0;
   *event_table_ptr = (longlong)&UNK_180a21690;
   *event_table_ptr = (longlong)&UNK_180a21720;
-  *(undefined4 *)(event_table_ptr + 1) = 0;
+  *(int32_t *)(event_table_ptr + 1) = 0;
   *event_table_ptr = (longlong)&UNK_180a3e378;
   event_table_ptr[2] = (longlong)&UNK_18098bcb0;
   event_table_ptr[3] = 0;
-  *(undefined4 *)(event_table_ptr + 4) = 0;
+  *(int32_t *)(event_table_ptr + 4) = 0;
   event_table_ptr[2] = (longlong)&UNK_180a3c3e0;
   event_table_ptr[5] = 0;
   event_table_ptr[3] = 0;
-  *(undefined4 *)(event_table_ptr + 4) = 0;
+  *(int32_t *)(event_table_ptr + 4) = 0;
   (**(code **)(*event_table_ptr + 0x28))(event_table_ptr);
   event_value = (**(code **)(*event_table_ptr + 8))(event_table_ptr);
   (**(code **)(*event_table_ptr + 0x28))(event_table_ptr);
   temp_value1 = SUB84(event_table_ptr, 0);
-  temp_value2 = (undefined4)((ulonglong)event_table_ptr >> 0x20);
+  temp_value2 = (int32_t)((ulonglong)event_table_ptr >> 0x20);
   *event_handler_ptr = temp_value1;
   event_handler_ptr[1] = temp_value2;
   event_handler_ptr[2] = event_value;
@@ -1152,8 +1152,8 @@ undefined4 * ui_event_handler_initializer(undefined4 *event_handler_ptr)
 }
 
 
-undefined8 *
-ui_system_event_manager(undefined8 *event_manager_ptr, ulonglong event_flags, undefined8 param_3, undefined8 param_4)
+uint64_t *
+ui_system_event_manager(uint64_t *event_manager_ptr, ulonglong event_flags, uint64_t param_3, uint64_t param_4)
 
 {
   event_manager_ptr[2] = &UNK_180a3c3e0;
@@ -1162,7 +1162,7 @@ ui_system_event_manager(undefined8 *event_manager_ptr, ulonglong event_flags, un
     memory_deallocator(event_manager_ptr);
   }
   event_manager_ptr[3] = 0;
-  *(undefined4 *)(event_manager_ptr + 5) = 0;
+  *(int32_t *)(event_manager_ptr + 5) = 0;
   event_manager_ptr[2] = &UNK_18098bcb0;
   *event_manager_ptr = &UNK_180a21720;
   *event_manager_ptr = &UNK_180a21690;
@@ -1175,11 +1175,11 @@ ui_system_event_manager(undefined8 *event_manager_ptr, ulonglong event_flags, un
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined4 ui_system_event_processor(longlong event_data, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+int32_t ui_system_event_processor(longlong event_data, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 
 {
-  undefined4 process_result;
-  undefined *temp_buffer_ptr;
+  int32_t process_result;
+  void *temp_buffer_ptr;
   longlong buffer_data;
   
   initialize_event_buffer(&temp_buffer_ptr, event_data + 0x10, param_3, param_4, 0xfffffffffffffffe);

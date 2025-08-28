@@ -66,8 +66,8 @@ void FUN_18072d609(float *param_1,float *param_2)
 
 
 
-// 函数: void FUN_18072d907(undefined8 param_1,float *param_2,undefined8 param_3,longlong param_4)
-void FUN_18072d907(undefined8 param_1,float *param_2,undefined8 param_3,longlong param_4)
+// 函数: void FUN_18072d907(uint64_t param_1,float *param_2,uint64_t param_3,longlong param_4)
+void FUN_18072d907(uint64_t param_1,float *param_2,uint64_t param_3,longlong param_4)
 
 {
   float *pfVar1;
@@ -249,8 +249,8 @@ void FUN_18072da09(float *param_1,float *param_2)
 
 
 
-// 函数: void FUN_18072dde7(undefined8 param_1,float *param_2,undefined8 param_3,longlong param_4)
-void FUN_18072dde7(undefined8 param_1,float *param_2,undefined8 param_3,longlong param_4)
+// 函数: void FUN_18072dde7(uint64_t param_1,float *param_2,uint64_t param_3,longlong param_4)
+void FUN_18072dde7(uint64_t param_1,float *param_2,uint64_t param_3,longlong param_4)
 
 {
   float *pfVar1;
@@ -394,8 +394,8 @@ void FUN_18072df29(float *param_1,float *param_2)
 
 
 
-// 函数: void FUN_18072e0d7(undefined8 param_1,float *param_2,undefined8 param_3,longlong param_4)
-void FUN_18072e0d7(undefined8 param_1,float *param_2,undefined8 param_3,longlong param_4)
+// 函数: void FUN_18072e0d7(uint64_t param_1,float *param_2,uint64_t param_3,longlong param_4)
+void FUN_18072e0d7(uint64_t param_1,float *param_2,uint64_t param_3,longlong param_4)
 
 {
   float *pfVar1;
@@ -545,8 +545,8 @@ void FUN_18072e189(float *param_1,float *param_2)
 
 
 
-// 函数: void FUN_18072e3a7(undefined8 param_1,float *param_2,undefined8 param_3,longlong param_4)
-void FUN_18072e3a7(undefined8 param_1,float *param_2,undefined8 param_3,longlong param_4)
+// 函数: void FUN_18072e3a7(uint64_t param_1,float *param_2,uint64_t param_3,longlong param_4)
+void FUN_18072e3a7(uint64_t param_1,float *param_2,uint64_t param_3,longlong param_4)
 
 {
   float *pfVar1;
@@ -574,8 +574,8 @@ void FUN_18072e3a7(undefined8 param_1,float *param_2,undefined8 param_3,longlong
 
 
 
-// 函数: void FUN_18072e450(undefined8 param_1)
-void FUN_18072e450(undefined8 param_1)
+// 函数: void FUN_18072e450(uint64_t param_1)
+void FUN_18072e450(uint64_t param_1)
 
 {
   longlong lVar1;

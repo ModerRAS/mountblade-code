@@ -30,7 +30,7 @@ void transfer_engine_resources(longlong dest_context, longlong src_context)
   else {
     *(longlong *)(dest_context + 0x30) = resource_data;
     transfer_flag = 1;
-    *(undefined8 *)(src_context + 0x30) = 0;
+    *(uint64_t *)(src_context + 0x30) = 0;
   }
   if (0 < *(int *)(src_context + 0x20)) {
     max_resources = resource_index;
@@ -43,7 +43,7 @@ void transfer_engine_resources(longlong dest_context, longlong src_context)
         resource_ptr = *(longlong *)(*(longlong *)(resource_data + 8) + 8 + resource_index);
       }
       *(byte *)(resource_ptr + 0x432) = *(byte *)(resource_ptr + 0x432) & 0xfe;
-      *(undefined8 *)(resource_ptr + 0x408) = 0;
+      *(uint64_t *)(resource_ptr + 0x408) = 0;
       update_resource_state(dest_context, resource_ptr, transfer_flag ^ 1);
       current_count = (int)temp_index + 1;
       temp_index = (ulonglong)current_count;
@@ -56,15 +56,15 @@ void transfer_engine_resources(longlong dest_context, longlong src_context)
   if (resource_data == 0) {
     if ((transfer_flag == 0) && (resource_data = *(longlong *)(src_context + 0x30), resource_data != 0)) {
       if (*(longlong *)(dest_context + 0x30) != 0) {
-        *(undefined4 *)(*(longlong *)(dest_context + 0x30) + 0x14) = *(undefined4 *)(resource_data + 0x14);
+        *(int32_t *)(*(longlong *)(dest_context + 0x30) + 0x14) = *(int32_t *)(resource_data + 0x14);
         resource_data = *(longlong *)(src_context + 0x30);
       }
       release_resource(resource_data);
-      *(undefined8 *)(src_context + 0x30) = 0;
+      *(uint64_t *)(src_context + 0x30) = 0;
     }
     return;
   }
-  *(undefined8 *)(src_context + 0x20) = 0;
+  *(uint64_t *)(src_context + 0x20) = 0;
   if (resource_ptr != 0) {
     resource_count = (int *)(resource_ptr + 0x3a8);
     *resource_count = *resource_count + -1;
@@ -76,7 +76,7 @@ void transfer_engine_resources(longlong dest_context, longlong src_context)
 // 函数：process_resource_batch - 批量处理资源
 // 参数：context - 上下文指针，batch_size - 批量大小，resource_offset - 资源偏移
 // 功能：批量处理指定数量的资源
-void process_resource_batch(undefined8 context, undefined8 batch_size, longlong resource_offset)
+void process_resource_batch(uint64_t context, uint64_t batch_size, longlong resource_offset)
 {
   int *resource_count;
   longlong resource_ptr;
@@ -107,7 +107,7 @@ void process_resource_batch(undefined8 context, undefined8 batch_size, longlong 
   } while (item_count < *(int *)(list_data + 0x20));
   current_offset = *(longlong *)(list_data + 0x28);
   if (current_offset != 0) {
-    *(undefined8 *)(list_data + 0x20) = 0;
+    *(uint64_t *)(list_data + 0x20) = 0;
     if (resource_ptr != 0) {
       resource_count = (int *)(resource_ptr + 0x3a8);
       *resource_count = *resource_count + -1;
@@ -117,11 +117,11 @@ void process_resource_batch(undefined8 context, undefined8 batch_size, longlong 
   }
   if ((process_flag == '\0') && (current_offset = *(longlong *)(list_data + 0x30), current_offset != 0)) {
     if (*(longlong *)(list_offset + 0x30) != 0) {
-      *(undefined4 *)(*(longlong *)(list_offset + 0x30) + 0x14) = *(undefined4 *)(current_offset + 0x14);
+      *(int32_t *)(*(longlong *)(list_offset + 0x30) + 0x14) = *(int32_t *)(current_offset + 0x14);
       current_offset = *(longlong *)(list_data + 0x30);
     }
     release_resource(current_offset);
-    *(undefined8 *)(list_data + 0x30) = 0;
+    *(uint64_t *)(list_data + 0x30) = 0;
   }
   return;
 }
@@ -139,7 +139,7 @@ void cleanup_resource_pool(void)
   resource_ptr = *g_engine_context;
   pool_data = *(longlong *)(context_ptr + 0x28);
   if (pool_data != 0) {
-    *(undefined8 *)(context_ptr + 0x20) = 0;
+    *(uint64_t *)(context_ptr + 0x20) = 0;
     if (resource_ptr != 0) {
       resource_count = (int *)(resource_ptr + 0x3a8);
       *resource_count = *resource_count + -1;
@@ -149,11 +149,11 @@ void cleanup_resource_pool(void)
   }
   if ((cleanup_flag == '\0') && (pool_data = *(longlong *)(context_ptr + 0x30), pool_data != 0)) {
     if (*(longlong *)(context_ptr + 0x30) != 0) {
-      *(undefined4 *)(*(longlong *)(context_ptr + 0x30) + 0x14) = *(undefined4 *)(pool_data + 0x14);
+      *(int32_t *)(*(longlong *)(context_ptr + 0x30) + 0x14) = *(int32_t *)(pool_data + 0x14);
       pool_data = *(longlong *)(context_ptr + 0x30);
     }
     release_resource(pool_data);
-    *(undefined8 *)(context_ptr + 0x30) = 0;
+    *(uint64_t *)(context_ptr + 0x30) = 0;
   }
   return;
 }
@@ -161,14 +161,14 @@ void cleanup_resource_pool(void)
 // 函数：reset_resource_counter - 重置资源计数器
 // 参数：context - 上下文指针
 // 功能：重置指定上下文的资源计数器
-void reset_resource_counter(undefined8 context)
+void reset_resource_counter(uint64_t context)
 {
   int *resource_count;
   longlong resource_ptr;
   longlong context_data;
   
   resource_ptr = *g_engine_context;
-  *(undefined8 *)(context_data + 0x20) = 0;
+  *(uint64_t *)(context_data + 0x20) = 0;
   if (resource_ptr != 0) {
     resource_count = (int *)(resource_ptr + 0x3a8);
     *resource_count = *resource_count + -1;
@@ -188,11 +188,11 @@ void release_pending_resources(void)
   resource_ptr = *(longlong *)(context_data + 0x30);
   if (resource_ptr != 0) {
     if (*(longlong *)(target_context + 0x30) != 0) {
-      *(undefined4 *)(*(longlong *)(target_context + 0x30) + 0x14) = *(undefined4 *)(resource_ptr + 0x14);
+      *(int32_t *)(*(longlong *)(target_context + 0x30) + 0x14) = *(int32_t *)(resource_ptr + 0x14);
       resource_ptr = *(longlong *)(context_data + 0x30);
     }
     release_resource(resource_ptr);
-    *(undefined8 *)(context_data + 0x30) = 0;
+    *(uint64_t *)(context_data + 0x30) = 0;
   }
   return;
 }
@@ -227,7 +227,7 @@ void traverse_resource_tree(longlong node, longlong *result)
 // 函数：update_render_component - 更新渲染组件
 // 参数：component - 组件指针
 // 功能：更新指定渲染组件的状态和属性
-void update_render_component(undefined4 *component)
+void update_render_component(int32_t *component)
 {
   int render_state;
   longlong render_context;
@@ -240,7 +240,7 @@ void update_render_component(undefined4 *component)
   
   render_context = *g_engine_context;
   if (*(longlong *)(component + 2) != 0) {
-    component[1] = *(undefined4 *)(*(longlong *)(component + 2) + 4);
+    component[1] = *(int32_t *)(*(longlong *)(component + 2) + 4);
   }
   if (*(longlong *)(component + 4) != 0) {
     update_render_component();
@@ -275,19 +275,19 @@ void update_render_component(undefined4 *component)
         if ((component[8] == 1) && ((*(byte *)(component + 0x28) & 0x20) == 0)) {
           render_context = *(longlong *)(component + 0x1a);
           if (render_context != 0) {
-            if (*(undefined4 **)(render_context + 0x410) == component) {
-              *(undefined8 *)(render_context + 0x410) = 0;
+            if (*(int32_t **)(render_context + 0x410) == component) {
+              *(uint64_t *)(render_context + 0x410) = 0;
             }
-            *(undefined8 *)(component + 0x1a) = 0;
+            *(uint64_t *)(component + 0x1a) = 0;
           }
           if (component[8] == 1) {
-            *(undefined8 *)(component + 0x1c) = **(undefined8 **)(component + 10);
+            *(uint64_t *)(component + 0x1c) = **(uint64_t **)(component + 10);
             *(byte *)(**(longlong **)(component + 10) + 0x432) =
                  *(byte *)(**(longlong **)(component + 10) + 0x432) & 0xfe;
           }
           if (*(longlong *)(component + 0xc) != 0) {
             release_resource();
-            *(undefined8 *)(component + 0xc) = 0;
+            *(uint64_t *)(component + 0xc) = 0;
           }
           update_component_properties(component, component_data, *component);
           return;
@@ -317,68 +317,68 @@ void update_render_component(undefined4 *component)
 // 函数：set_render_target - 设置渲染目标
 // 参数：target_ptr - 目标指针，render_params - 渲染参数
 // 功能：设置渲染目标并更新相关状态
-void set_render_target(longlong target_ptr, undefined8 render_params)
+void set_render_target(longlong target_ptr, uint64_t render_params)
 {
-  undefined4 prev_width;
-  undefined4 prev_height;
+  int32_t prev_width;
+  int32_t prev_height;
   longlong render_context;
   
   render_context = *g_engine_context;
-  prev_width = *(undefined4 *)(*g_engine_context + 0x1b48);
-  prev_height = *(undefined4 *)(*g_engine_context + 0x1b4c);
+  prev_width = *(int32_t *)(*g_engine_context + 0x1b48);
+  prev_height = *(int32_t *)(*g_engine_context + 0x1b4c);
   initialize_render_pipeline(render_params);
-  *(undefined8 *)(render_context + 0x1b78) = render_params;
+  *(uint64_t *)(render_context + 0x1b78) = render_params;
   *(byte *)(target_ptr + 0xa1) = *(byte *)(target_ptr + 0xa1) & 0xf7;
-  *(undefined4 *)(render_context + 0x1b48) = prev_width;
-  *(undefined4 *)(render_context + 0x1b4c) = prev_height;
+  *(int32_t *)(render_context + 0x1b48) = prev_width;
+  *(int32_t *)(render_context + 0x1b4c) = prev_height;
   return;
 }
 
 // 函数：initialize_render_component - 初始化渲染组件
 // 参数：component - 组件指针
 // 功能：初始化渲染组件的所有属性和状态
-void initialize_render_component(undefined4 *component)
+void initialize_render_component(int32_t *component)
 {
-  undefined8 *render_target;
+  uint64_t *render_target;
   byte component_flags;
-  undefined4 width;
-  undefined4 height;
-  undefined8 texture_id;
+  int32_t width;
+  int32_t height;
+  uint64_t texture_id;
   bool is_visible;
   longlong render_context;
   char render_mode;
-  undefined4 *parent_component;
-  undefined2 component_id;
+  int32_t *parent_component;
+  int16_t component_id;
   longlong component_offset;
-  undefined4 *child_component;
-  undefined2 child_id;
+  int32_t *child_component;
+  int16_t child_id;
   int texture_index;
   ulonglong stack_cookie;
   uint visibility_flag;
-  undefined4 render_queue;
-  undefined4 depth_buffer;
-  undefined4 stencil_buffer;
+  int32_t render_queue;
+  int32_t depth_buffer;
+  int32_t stencil_buffer;
   float render_scale;
-  undefined1 temp_buffer [32];
-  undefined4 render_params;
-  undefined4 viewport_params;
+  int8_t temp_buffer [32];
+  int32_t render_params;
+  int32_t viewport_params;
   char aspect_ratio;
   char aspect_mode;
   float transform_matrix [4];
-  undefined4 *component_list;
-  undefined8 render_data;
+  int32_t *component_list;
+  uint64_t render_data;
   uint render_priority;
   
   render_context = *g_engine_context;
   stack_cookie = g_stack_cookie ^ (ulonglong)temp_buffer;
-  parent_component = (undefined4 *)0x0;
-  component[0x22] = *(undefined4 *)(*g_engine_context + 0x1a90);
-  *(undefined8 *)(component + 0x20) = 0;
-  *(undefined8 *)(component + 0x1e) = 0;
+  parent_component = (int32_t *)0x0;
+  component[0x22] = *(int32_t *)(*g_engine_context + 0x1a90);
+  *(uint64_t *)(component + 0x20) = 0;
+  *(uint64_t *)(component + 0x1e) = 0;
   component_offset = render_context;
   if (*(longlong *)(component + 2) == 0) {
     update_render_component();
-    render_data = (undefined4 *)0x0;
+    render_data = (int32_t *)0x0;
     if (0 < (int)component[8]) {
       render_data = component;
     }
@@ -393,29 +393,29 @@ void initialize_render_component(undefined4 *component)
     if (*(longlong *)(component + 6) != 0) {
       traverse_resource_tree(*(longlong *)(component + 6), &component_list);
     }
-    *(undefined4 **)(component + 0x1e) = component_list;
+    *(int32_t **)(component + 0x1e) = component_list;
     child_component = parent_component;
     if (render_priority == 1) {
       child_component = render_data;
     }
-    *(undefined4 **)(component + 0x20) = child_component;
+    *(int32_t **)(component + 0x20) = child_component;
     if (component[0x25] == 0) {
       component_offset = *g_engine_context;
-      if (render_data == (undefined4 *)0x0) goto INIT_COMPLETE;
+      if (render_data == (int32_t *)0x0) goto INIT_COMPLETE;
       component[0x25] = *render_data;
     }
     component_offset = *g_engine_context;
-    if (render_data != (undefined4 *)0x0) {
+    if (render_data != (int32_t *)0x0) {
       texture_index = 1;
       component_offset = **(longlong **)(render_data + 10);
-      render_queue = *(undefined4 *)(component_offset + 0x18);
-      viewport_params = *(undefined4 *)(component_offset + 0x1c);
-      depth_buffer = *(undefined4 *)(component_offset + 0x20);
-      component[0x15] = *(undefined4 *)(component_offset + 0x14);
+      render_queue = *(int32_t *)(component_offset + 0x18);
+      viewport_params = *(int32_t *)(component_offset + 0x1c);
+      depth_buffer = *(int32_t *)(component_offset + 0x20);
+      component[0x15] = *(int32_t *)(component_offset + 0x14);
       component[0x16] = render_queue;
       component[0x17] = viewport_params;
       component[0x18] = depth_buffer;
-      component[0x19] = *(undefined4 *)(component_offset + 0x24);
+      component[0x19] = *(int32_t *)(component_offset + 0x24);
       component_offset = *g_engine_context;
       if (1 < (int)render_data[8]) {
         component_offset = 1;
@@ -424,14 +424,14 @@ void initialize_render_component(undefined4 *component)
           component_list = component_list + 1;
           if (*(char *)(*component_list + 0x24) == '\0') {
             component_offset = (*(longlong **)(render_data + 10))[texture_index];
-            render_queue = *(undefined4 *)(component_offset + 0x18);
-            viewport_params = *(undefined4 *)(component_offset + 0x1c);
-            depth_buffer = *(undefined4 *)(component_offset + 0x20);
-            component[0x15] = *(undefined4 *)(component_offset + 0x14);
+            render_queue = *(int32_t *)(component_offset + 0x18);
+            viewport_params = *(int32_t *)(component_offset + 0x1c);
+            depth_buffer = *(int32_t *)(component_offset + 0x20);
+            component[0x15] = *(int32_t *)(component_offset + 0x14);
             component[0x16] = render_queue;
             component[0x17] = viewport_params;
             component[0x18] = depth_buffer;
-            component[0x19] = *(undefined4 *)(component_offset + 0x24);
+            component[0x19] = *(int32_t *)(component_offset + 0x24);
             component_offset = *g_engine_context;
             break;
           }
@@ -448,8 +448,8 @@ INIT_COMPLETE:
     if (texture_index == 1) {
       component_offset = *(longlong *)(component + 0x1a);
       component_offset = **(longlong **)(component + 10);
-      *(undefined8 *)(component + 0xe) = *(undefined8 *)(component_offset + 0x40);
-      *(undefined8 *)(component + 0x10) = *(undefined8 *)(component_offset + 0x50);
+      *(uint64_t *)(component + 0xe) = *(uint64_t *)(component_offset + 0x40);
+      *(uint64_t *)(component + 0x10) = *(uint64_t *)(component_offset + 0x50);
       if ((component_offset != 0) && (*(longlong *)(render_context + 0x1c98) == component_offset)) {
         optimize_render_data(component_offset);
         component_offset = *(longlong *)(component + 0x1a);
@@ -457,35 +457,35 @@ INIT_COMPLETE:
       if (component_offset != 0) {
         component_offset = *(longlong *)(component_offset + 0x28);
         *(longlong *)(component_offset + 0x28) = component_offset;
-        *(undefined4 *)(component_offset + 0x30) = *(undefined4 *)(*(longlong *)(component + 0x1a) + 0x30);
+        *(int32_t *)(component_offset + 0x30) = *(int32_t *)(*(longlong *)(component + 0x1a) + 0x30);
         if (*(char *)(*(longlong *)(component + 0x1a) + 0xae) != '\0') {
           *(longlong *)(component_offset + 0x78) = component_offset;
-          *(undefined1 *)(component_offset + 0xae) = 1;
+          *(int8_t *)(component_offset + 0xae) = 1;
         }
       }
     }
     component_offset = *(longlong *)(component + 0x1a);
     if (component_offset != 0) {
-      if (*(undefined4 **)(component_offset + 0x410) == component) {
-        *(undefined8 *)(component_offset + 0x410) = 0;
+      if (*(int32_t **)(component_offset + 0x410) == component) {
+        *(uint64_t *)(component_offset + 0x410) = 0;
       }
-      *(undefined8 *)(component + 0x1a) = 0;
+      *(uint64_t *)(component + 0x1a) = 0;
     }
     if (component[8] == 1) {
-      *(undefined8 *)(component + 0x1c) = **(undefined8 **)(component + 10);
+      *(uint64_t *)(component + 0x1c) = **(uint64_t **)(component + 10);
       *(byte *)(**(longlong **)(component + 10) + 0x432) =
            *(byte *)(**(longlong **)(component + 10) + 0x432) & 0xfe;
     }
     if (*(longlong *)(component + 0xc) != 0) {
       release_resource();
-      *(undefined8 *)(component + 0xc) = 0;
+      *(uint64_t *)(component + 0xc) = 0;
     }
     *(byte *)((longlong)component + 0xa1) = *(byte *)((longlong)component + 0xa1) & 0xfc;
     component[0x27] = 0;
     *(byte *)(component + 0x28) = *(byte *)(component + 0x28) & 0x7c;
-    component[0x23] = *(undefined4 *)(render_context + 0x1a90);
+    component[0x23] = *(int32_t *)(render_context + 0x1a90);
     if (((*(byte *)((longlong)component + 0xa1) & 8) != 0) && (component[8] == 1)) {
-      set_render_target(component, **(undefined8 **)(component + 10));
+      set_render_target(component, **(uint64_t **)(component + 10));
     }
     goto INIT_FINALIZE;
   }
@@ -505,52 +505,52 @@ INIT_COMPLETE:
         aspect_mode = *(char *)(component_offset + 0xb7) << 7 | *(byte *)(component + 0x28);
         *(byte *)(component + 0x28) = aspect_mode;
         child_component = child_component + 2;
-        render_data = (undefined4 *)(ulonglong)visibility_flag;
+        render_data = (int32_t *)(ulonglong)visibility_flag;
       } while ((int)visibility_flag < (int)component[8]);
     }
     if (*(longlong *)(component + 2) == 0) {
       if ((aspect_mode & 4) != 0) {
         if (((aspect_mode & 1) == 0) || ((int)component[8] < 1)) {
           if (*(longlong *)(component + 0x1a) == 0) {
-            *(undefined8 *)(component_offset + 0x1bf4) = *(undefined8 *)(component + 0xe);
-            *(undefined8 *)(component_offset + 0x1bfc) = 0;
-            *(undefined4 *)(component_offset + 0x1bd0) = 1;
-            *(undefined1 *)(component_offset + 0x1c14) = 1;
-            *(undefined8 *)(component_offset + 0x1c04) = *(undefined8 *)(component + 0x10);
-            *(undefined4 *)(component_offset + 0x1bd4) = 1;
+            *(uint64_t *)(component_offset + 0x1bf4) = *(uint64_t *)(component + 0xe);
+            *(uint64_t *)(component_offset + 0x1bfc) = 0;
+            *(int32_t *)(component_offset + 0x1bd0) = 1;
+            *(int8_t *)(component_offset + 0x1c14) = 1;
+            *(uint64_t *)(component_offset + 0x1c04) = *(uint64_t *)(component + 0x10);
+            *(int32_t *)(component_offset + 0x1bd4) = 1;
           }
         }
         else {
           component_offset = **(longlong **)(component + 10);
-          *(undefined8 *)(component_offset + 0x1bf4) = *(undefined8 *)(component_offset + 0x40);
-          *(undefined8 *)(component_offset + 0x1bfc) = 0;
-          *(undefined4 *)(component_offset + 0x1bd0) = 1;
-          *(undefined1 *)(component_offset + 0x1c14) = 1;
-          *(undefined8 *)(component_offset + 0x1c04) = *(undefined8 *)(component_offset + 0x50);
-          *(undefined4 *)(component_offset + 0x1bd4) = 1;
-          *(undefined1 *)(component_offset + 0x1c15) = *(undefined1 *)(component_offset + 0xb2);
-          *(undefined4 *)(component_offset + 0x1bdc) = 1;
+          *(uint64_t *)(component_offset + 0x1bf4) = *(uint64_t *)(component_offset + 0x40);
+          *(uint64_t *)(component_offset + 0x1bfc) = 0;
+          *(int32_t *)(component_offset + 0x1bd0) = 1;
+          *(int8_t *)(component_offset + 0x1c14) = 1;
+          *(uint64_t *)(component_offset + 0x1c04) = *(uint64_t *)(component_offset + 0x50);
+          *(int32_t *)(component_offset + 0x1bd4) = 1;
+          *(int8_t *)(component_offset + 0x1c15) = *(int8_t *)(component_offset + 0xb2);
+          *(int32_t *)(component_offset + 0x1bdc) = 1;
         }
         if (((*(byte *)(component + 0x28) & 2) != 0) && (0 < (int)component[8])) {
-          render_queue = *(undefined4 *)(**(longlong **)(component + 10) + 0x30);
-          *(undefined4 *)(component_offset + 0x1bec) = 1;
-          *(undefined4 *)(component_offset + 0x1c3c) = render_queue;
+          render_queue = *(int32_t *)(**(longlong **)(component + 10) + 0x30);
+          *(int32_t *)(component_offset + 0x1bec) = 1;
+          *(int32_t *)(component_offset + 0x1c3c) = render_queue;
         }
         render_queue = component[0x16];
         viewport_params = component[0x17];
         depth_buffer = component[0x18];
-        *(undefined4 *)(component_offset + 0x1c44) = component[0x15];
-        *(undefined4 *)(component_offset + 0x1c48) = render_queue;
-        *(undefined4 *)(component_offset + 0x1c4c) = viewport_params;
-        *(undefined4 *)(component_offset + 0x1c50) = depth_buffer;
-        *(undefined4 *)(component_offset + 0x1c54) = component[0x19];
+        *(int32_t *)(component_offset + 0x1c44) = component[0x15];
+        *(int32_t *)(component_offset + 0x1c48) = render_queue;
+        *(int32_t *)(component_offset + 0x1c4c) = viewport_params;
+        *(int32_t *)(component_offset + 0x1c50) = depth_buffer;
+        *(int32_t *)(component_offset + 0x1c54) = component[0x19];
         setup_render_pipeline(temp_buffer, 0x14, &g_render_constant, *component);
         component_offset = *g_engine_context;
         transform_matrix [0] = 1.4013e-45;
         transform_matrix [1] = *(float *)(*g_engine_context + 0x162c);
         transform_matrix [2] = *(float *)(*g_engine_context + 0x1630);
         update_render_state(*g_engine_context + 0x1b90, &transform_matrix [0]);
-        *(undefined8 *)(component_offset + 0x162c) = 0;
+        *(uint64_t *)(component_offset + 0x162c) = 0;
         execute_render_command(temp_buffer, 0, 0x20081139);
         component_offset = *g_engine_context;
         render_context = (longlong)*(int *)(*g_engine_context + 0x1b90);
@@ -559,28 +559,28 @@ INIT_COMPLETE:
         stack_cookie = (ulonglong)*(uint *)(&g_render_offset + component_offset * 0xc);
         if (*(int *)(&g_render_base + component_offset * 0xc) == 4) {
           if (*(int *)(&g_render_offset + 4 + component_offset * 0xc) == 1) {
-            *(undefined4 *)(stack_cookie + 0x1628 + *g_engine_context) =
-                 *(undefined4 *)(component_offset + -8 + render_context * 0xc);
+            *(int32_t *)(stack_cookie + 0x1628 + *g_engine_context) =
+                 *(int32_t *)(component_offset + -8 + render_context * 0xc);
           }
           else if (*(int *)(&g_render_offset + 4 + component_offset * 0xc) == 2) {
-            *(undefined4 *)(stack_cookie + 0x1628 + *g_engine_context) =
-                 *(undefined4 *)(component_offset + -8 + render_context * 0xc);
-            *(undefined4 *)(stack_cookie + 0x162c + component_offset) = *(undefined4 *)(component_offset + -4 + render_context * 0xc);
+            *(int32_t *)(stack_cookie + 0x1628 + *g_engine_context) =
+                 *(int32_t *)(component_offset + -8 + render_context * 0xc);
+            *(int32_t *)(stack_cookie + 0x162c + component_offset) = *(int32_t *)(component_offset + -4 + render_context * 0xc);
           }
         }
         *(int *)(component_offset + 0x1b90) = *(int *)(component_offset + 0x1b90) + -1;
-        parent_component = *(undefined4 **)(render_context + 0x1af8);
-        *(undefined4 **)(component + 0x1a) = parent_component;
+        parent_component = *(int32_t **)(render_context + 0x1af8);
+        *(int32_t **)(component + 0x1a) = parent_component;
         aspect_ratio = '\x01';
-        *(undefined8 *)(parent_component + 0x40) = *(undefined8 *)(parent_component + 0x10);
-        *(undefined4 **)(parent_component + 0x104) = component;
-        *(undefined8 *)(component + 0xe) = *(undefined8 *)(parent_component + 0x10);
-        *(undefined8 *)(component + 0x10) = *(undefined8 *)(parent_component + 0x12);
+        *(uint64_t *)(parent_component + 0x40) = *(uint64_t *)(parent_component + 0x10);
+        *(int32_t **)(parent_component + 0x104) = component;
+        *(uint64_t *)(component + 0xe) = *(uint64_t *)(parent_component + 0x10);
+        *(uint64_t *)(component + 0x10) = *(uint64_t *)(parent_component + 0x12);
       }
     }
     else {
-      parent_component = *(undefined4 **)(*(longlong *)(component + 2) + 0x68);
-      *(undefined4 **)(component + 0x1a) = parent_component;
+      parent_component = *(int32_t **)(*(longlong *)(component + 2) + 0x68);
+      *(int32_t **)(component + 0x1a) = parent_component;
     }
     *(byte *)(component + 0x28) = *(byte *)(component + 0x28) & 0xfc;
     if (((*(byte *)((longlong)component + 0xa1) & 8) != 0) && (*(longlong *)(component + 0x1a) != 0)) {
@@ -588,44 +588,44 @@ INIT_COMPLETE:
     }
   }
   else {
-    parent_component = *(undefined4 **)(component + 0x1a);
+    parent_component = *(int32_t **)(component + 0x1a);
     *(byte *)((longlong)component + 0xa1) = *(byte *)((longlong)component + 0xa1) | 1;
   }
   if (*(longlong *)(component + 2) == 0) {
     if (*(longlong *)(render_context + 0x1c98) != 0) {
       component_offset = *(longlong *)(*(longlong *)(render_context + 0x1c98) + 0x3a8);
-      child_component = *(undefined4 **)(component_offset + 0x408);
-      if ((child_component != (undefined4 *)0x0) && (*(undefined4 **)(component_offset + 0x398) == parent_component)) {
+      child_component = *(int32_t **)(component_offset + 0x408);
+      if ((child_component != (int32_t *)0x0) && (*(int32_t **)(component_offset + 0x398) == parent_component)) {
         component[0x25] = *child_component;
       }
     }
-    if ((parent_component == (undefined4 *)0x0) || ((*(byte *)(component + 1) & 0x40) == 0))
+    if ((parent_component == (int32_t *)0x0) || ((*(byte *)(component + 1) & 0x40) == 0))
     goto SKIP_SHADER_INIT;
     aspect_ratio = '\x01';
-    initialize_shader_program(*(undefined8 *)(parent_component + 0xba), 2);
+    initialize_shader_program(*(uint64_t *)(parent_component + 0xba), 2);
     component_offset = *g_engine_context;
-    render_target = *(undefined8 **)(parent_component + 0xba);
+    render_target = *(uint64_t **)(parent_component + 0xba);
     if (*(int *)(render_target + 0x12) != 1) {
       texture_id = render_target[1];
-      render_target = (undefined8 *)((longlong)*(int *)(render_target + 0x12) * 0x20 + render_target[0x14]);
+      render_target = (uint64_t *)((longlong)*(int *)(render_target + 0x12) * 0x20 + render_target[0x14]);
       *render_target = *render_target;
       render_target[1] = texture_id;
       texture_id = render_target[3];
-      render_target = (undefined8 *)((longlong)*(int *)(render_target + 0x12) * 0x20 + 0x10 + render_target[0x14]);
+      render_target = (uint64_t *)((longlong)*(int *)(render_target + 0x12) * 0x20 + 0x10 + render_target[0x14]);
       *render_target = render_target[2];
       render_target[1] = texture_id;
       component_offset = render_target[0x14];
-      *(undefined4 *)(render_target + 0x12) = 1;
-      texture_id = *(undefined8 *)(component_offset + 0x28);
-      *render_target = *(undefined8 *)(component_offset + 0x20);
+      *(int32_t *)(render_target + 0x12) = 1;
+      texture_id = *(uint64_t *)(component_offset + 0x28);
+      *render_target = *(uint64_t *)(component_offset + 0x20);
       render_target[1] = texture_id;
-      render_queue = *(undefined4 *)(component_offset + 0x34);
-      viewport_params = *(undefined4 *)(component_offset + 0x38);
-      depth_buffer = *(undefined4 *)(component_offset + 0x3c);
-      *(undefined4 *)(render_target + 2) = *(undefined4 *)(component_offset + 0x30);
-      *(undefined4 *)((longlong)render_target + 0x14) = render_queue;
-      *(undefined4 *)(render_target + 3) = viewport_params;
-      *(undefined4 *)((longlong)render_target + 0x1c) = depth_buffer;
+      render_queue = *(int32_t *)(component_offset + 0x34);
+      viewport_params = *(int32_t *)(component_offset + 0x38);
+      depth_buffer = *(int32_t *)(component_offset + 0x3c);
+      *(int32_t *)(render_target + 2) = *(int32_t *)(component_offset + 0x30);
+      *(int32_t *)((longlong)render_target + 0x14) = render_queue;
+      *(int32_t *)(render_target + 3) = viewport_params;
+      *(int32_t *)((longlong)render_target + 0x1c) = depth_buffer;
       render_target[0xb] = render_target[3] + (longlong)*(int *)(render_target + 2) * 2;
     }
   }
@@ -634,25 +634,25 @@ SKIP_SHADER_INIT:
     aspect_ratio = '\0';
   }
   component_offset = *(longlong *)(component + 0x1e);
-  if (((((*(longlong *)(component + 2) == 0) && (parent_component != (undefined4 *)0x0)) &&
+  if (((((*(longlong *)(component + 2) == 0) && (parent_component != (int32_t *)0x0)) &&
        ((*(byte *)(component + 1) & 0x40) != 0)) &&
       ((component_offset != 0 && (*(longlong *)(component_offset + 0x10) == 0)))) && (*(int *)(component_offset + 0x20) == 0)) {
-    render_target = (undefined8 *)(component_offset + 0x1de0);
+    render_target = (uint64_t *)(component_offset + 0x1de0);
     is_visible = true;
     if (*(char *)(component_offset + 0x1dd0) == '\0') {
-      render_target = (undefined8 *)0x0;
+      render_target = (uint64_t *)0x0;
     }
-    if (((render_target == (undefined8 *)0x0) || (*(int *)((longlong)render_target + 0x14) == -1)) ||
+    if (((render_target == (uint64_t *)0x0) || (*(int *)((longlong)render_target + 0x14) == -1)) ||
        ((texture_index = strcmp(&g_window_title, render_target + 3), texture_index != 0 ||
-        (render_mode = validate_window_handle(parent_component, *(undefined8 *)*render_target), render_mode == '\0')))) {
+        (render_mode = validate_window_handle(parent_component, *(uint64_t *)*render_target), render_mode == '\0')))) {
       transform_matrix [3] = *(float *)(component_offset + 0x38) - -4.0;
       transform_matrix [2] = *(float *)(component_offset + 0x3c) - -4.0;
       transform_matrix [1] = (*(float *)(component_offset + 0x38) + *(float *)(component_offset + 0x40)) - 4.0;
       transform_matrix [0] = (*(float *)(component_offset + 0x3c) + *(float *)(component_offset + 0x44)) - 4.0;
       if ((transform_matrix [3] <= transform_matrix [1]) && (transform_matrix [2] <= transform_matrix [0])) {
         render_context = *(longlong *)(parent_component + 0xe6);
-        component_id = (undefined2)(int)(transform_matrix [0] - transform_matrix [2]);
-        child_id = (undefined2)(int)(transform_matrix [1] - transform_matrix [3]);
+        component_id = (int16_t)(int)(transform_matrix [0] - transform_matrix [2]);
+        child_id = (int16_t)(int)(transform_matrix [1] - transform_matrix [3]);
         parent_component[0x9a] = CONCAT22(component_id, child_id);
         parent_component[0x9b] =
              CONCAT22((short)(int)(transform_matrix [2] - (float)parent_component[0x11]),
@@ -668,8 +668,8 @@ SKIP_SHADER_INIT:
     is_visible = false;
   }
   if (*(longlong *)(component + 2) == 0) {
-    if (parent_component != (undefined4 *)0x0) {
-      update_component_transform(component, *(undefined8 *)(parent_component + 0x10), *(undefined8 *)(parent_component + 0x12));
+    if (parent_component != (int32_t *)0x0) {
+      update_component_transform(component, *(uint64_t *)(parent_component + 0x10), *(uint64_t *)(parent_component + 0x12));
       update_component_bounds(component);
       component_offset = *g_engine_context;
       goto UPDATE_COMPLETE;
@@ -677,39 +677,39 @@ SKIP_SHADER_INIT:
   }
   else {
 UPDATE_COMPLETE:
-    if ((((parent_component != (undefined4 *)0x0) && (*(longlong *)(component + 4) == 0)) && (component[8] == 0))
+    if ((((parent_component != (int32_t *)0x0) && (*(longlong *)(component + 4) == 0)) && (component[8] == 0))
        && (((*(byte *)(component + 0x28) & 4) != 0 && ((*(byte *)(component + 1) & 0x40) == 0)))) {
-      render_queue = *(undefined4 *)(component_offset + 0x1938);
-      viewport_params = *(undefined4 *)(component_offset + 0x193c);
-      depth_buffer = *(undefined4 *)(component_offset + 0x1940);
+      render_queue = *(int32_t *)(component_offset + 0x1938);
+      viewport_params = *(int32_t *)(component_offset + 0x193c);
+      depth_buffer = *(int32_t *)(component_offset + 0x1940);
       transform_matrix [1] = (float)component[0xf] + (float)component[0x11];
       transform_matrix [0] = *(float *)(component_offset + 0x1944) * *(float *)(component_offset + 0x1628);
       transform_matrix [3] = (float)component[0xe] + (float)component[0x10];
       render_queue = calculate_render_params(&render_queue);
       viewport_params = 0xf;
       render_params = 0;
-      render_to_texture(*(undefined8 *)(parent_component + 0xba), component + 0xe, &transform_matrix [3], render_queue);
+      render_to_texture(*(uint64_t *)(parent_component + 0xba), component + 0xe, &transform_matrix [3], render_queue);
       component_offset = *g_engine_context;
     }
   }
   if ((aspect_ratio != '\0') && ((*(byte *)(component + 0x28) & 4) != 0)) {
-    apply_shader_settings(*(undefined8 *)(parent_component + 0xba), 0);
-    render_queue = *(undefined4 *)(component_offset + 0x16e8);
-    viewport_params = *(undefined4 *)(component_offset + 0x16ec);
-    depth_buffer = *(undefined4 *)(component_offset + 0x16f0);
+    apply_shader_settings(*(uint64_t *)(parent_component + 0xba), 0);
+    render_queue = *(int32_t *)(component_offset + 0x16e8);
+    viewport_params = *(int32_t *)(component_offset + 0x16ec);
+    depth_buffer = *(int32_t *)(component_offset + 0x16f0);
     transform_matrix [0] = *(float *)(component_offset + 0x16f4) * *(float *)(component_offset + 0x1628);
     if (is_visible) {
-      component_list = *(undefined4 **)(component_offset + 0x38);
+      component_list = *(int32_t **)(component_offset + 0x38);
       transform_matrix [1] = (float)component[0xf];
       transform_matrix [3] = (float)component[0xe];
       transform_matrix [2] = transform_matrix [1] + (float)component[0x11];
       transform_matrix [0] = transform_matrix [3] + (float)component[0x10];
-      render_data = (undefined4 *)
+      render_data = (int32_t *)
                   CONCAT44(*(float *)(component_offset + 0x3c) + *(float *)(component_offset + 0x44),
                            *(float *)(component_offset + 0x38) + *(float *)(component_offset + 0x40));
       render_queue = calculate_render_params(&render_queue);
       render_params = 0;
-      render_to_screen(*(undefined8 *)(parent_component + 0xba), &transform_matrix [3], &component_list, render_queue);
+      render_to_screen(*(uint64_t *)(parent_component + 0xba), &transform_matrix [3], &component_list, render_queue);
     }
     else {
       transform_matrix [3] = (float)component[0xe] + (float)component[0x10];
@@ -717,16 +717,16 @@ UPDATE_COMPLETE:
       render_queue = calculate_render_params(&render_queue);
       viewport_params = 0xf;
       render_params = 0;
-      render_to_texture(*(undefined8 *)(parent_component + 0xba), component + 0xe, &transform_matrix [3], render_queue);
+      render_to_texture(*(uint64_t *)(parent_component + 0xba), component + 0xe, &transform_matrix [3], render_queue);
     }
-    finalize_shader_render(*(undefined8 *)(parent_component + 0xba));
+    finalize_shader_render(*(uint64_t *)(parent_component + 0xba));
   }
-  if ((parent_component == (undefined4 *)0x0) || ((int)component[8] < 1)) {
+  if ((parent_component == (int32_t *)0x0) || ((int)component[8] < 1)) {
     *(byte *)((longlong)component + 0xa1) = *(byte *)((longlong)component + 0xa1) & 0xfd;
     *(byte *)(component + 0x28) = *(byte *)(component + 0x28) & 0xf7;
     component[0x27] = 0;
     if (0 < (int)component[8]) {
-      component[0x26] = *(undefined4 *)(**(longlong **)(component + 10) + 8);
+      component[0x26] = *(int32_t *)(**(longlong **)(component + 10) + 8);
     }
   }
   else {
@@ -735,14 +735,14 @@ UPDATE_COMPLETE:
       component[0x26] = *(int *)(*(longlong *)(component + 0xc) + 0x14);
     }
   }
-  if ((((parent_component != (undefined4 *)0x0) && ((*(byte *)(component + 0x28) & 4) != 0)) &&
+  if ((((parent_component != (int32_t *)0x0) && ((*(byte *)(component + 0x28) & 4) != 0)) &&
       (*(longlong *)(component + 2) == 0)) &&
      ((*(longlong *)(render_context + 0x1b78) == 0 ||
-      (*(undefined4 **)(*(longlong *)(render_context + 0x1b78) + 0x3a0) != parent_component)))) {
+      (*(int32_t **)(*(longlong *)(render_context + 0x1b78) + 0x3a0) != parent_component)))) {
     optimize_render_performance(parent_component);
   }
-  component[0x23] = *(undefined4 *)(render_context + 0x1a90);
-  if (parent_component != (undefined4 *)0x0) {
+  component[0x23] = *(int32_t *)(render_context + 0x1a90);
+  if (parent_component != (int32_t *)0x0) {
     if (*(longlong *)(component + 4) != 0) {
       initialize_render_component();
     }

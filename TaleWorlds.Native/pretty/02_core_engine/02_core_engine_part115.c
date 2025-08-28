@@ -16,65 +16,65 @@ void find_and_process_entity_collisions(void)
   longlong in_RAX;
   longlong current_object;
   longlong array_index;
-  undefined8 unaff_RBP;
+  uint64_t unaff_RBP;
   longlong null_value;
   longlong *object_array_ptr;
-  undefined8 unaff_RDI;
+  uint64_t unaff_RDI;
   longlong alternate_object;
   longlong temp_object;
   longlong in_R10;
   longlong object_ptr;
   float threshold_y;
   float threshold_x;
-  undefined4 unaff_XMM6_Da;
-  undefined4 unaff_XMM6_Db;
-  undefined4 unaff_XMM6_Dc;
-  undefined4 unaff_XMM6_Dd;
-  undefined4 unaff_XMM7_Da;
-  undefined4 unaff_XMM7_Db;
-  undefined4 unaff_XMM7_Dc;
-  undefined4 unaff_XMM7_Dd;
-  undefined4 unaff_XMM8_Da;
-  undefined4 unaff_XMM8_Db;
-  undefined4 unaff_XMM8_Dc;
-  undefined4 unaff_XMM8_Dd;
-  undefined4 unaff_XMM9_Da;
-  undefined4 unaff_XMM9_Db;
-  undefined4 unaff_XMM9_Dc;
-  undefined4 unaff_XMM9_Dd;
+  int32_t unaff_XMM6_Da;
+  int32_t unaff_XMM6_Db;
+  int32_t unaff_XMM6_Dc;
+  int32_t unaff_XMM6_Dd;
+  int32_t unaff_XMM7_Da;
+  int32_t unaff_XMM7_Db;
+  int32_t unaff_XMM7_Dc;
+  int32_t unaff_XMM7_Dd;
+  int32_t unaff_XMM8_Da;
+  int32_t unaff_XMM8_Db;
+  int32_t unaff_XMM8_Dc;
+  int32_t unaff_XMM8_Dd;
+  int32_t unaff_XMM9_Da;
+  int32_t unaff_XMM9_Db;
+  int32_t unaff_XMM9_Dc;
+  int32_t unaff_XMM9_Dd;
   float size_x;
   float size_y;
   float min_size_x;
   float min_size_y;
   float test_y;
   
-  *(undefined8 *)(in_RAX + 0x18) = unaff_RBP;
+  *(uint64_t *)(in_RAX + 0x18) = unaff_RBP;
   lVar9 = 0;
-  *(undefined8 *)(in_RAX + -0x18) = unaff_RDI;
-  *(undefined4 *)(in_RAX + -0x28) = unaff_XMM6_Da;
-  *(undefined4 *)(in_RAX + -0x24) = unaff_XMM6_Db;
-  *(undefined4 *)(in_RAX + -0x20) = unaff_XMM6_Dc;
-  *(undefined4 *)(in_RAX + -0x1c) = unaff_XMM6_Dd;
+  *(uint64_t *)(in_RAX + -0x18) = unaff_RDI;
+  *(int32_t *)(in_RAX + -0x28) = unaff_XMM6_Da;
+  *(int32_t *)(in_RAX + -0x24) = unaff_XMM6_Db;
+  *(int32_t *)(in_RAX + -0x20) = unaff_XMM6_Dc;
+  *(int32_t *)(in_RAX + -0x1c) = unaff_XMM6_Dd;
   lVar13 = *(longlong *)(in_R10 + 0x1b78);
-  *(undefined4 *)(in_RAX + -0x38) = unaff_XMM7_Da;
-  *(undefined4 *)(in_RAX + -0x34) = unaff_XMM7_Db;
-  *(undefined4 *)(in_RAX + -0x30) = unaff_XMM7_Dc;
-  *(undefined4 *)(in_RAX + -0x2c) = unaff_XMM7_Dd;
-  *(undefined4 *)(in_RAX + -0x48) = unaff_XMM8_Da;
-  *(undefined4 *)(in_RAX + -0x44) = unaff_XMM8_Db;
-  *(undefined4 *)(in_RAX + -0x40) = unaff_XMM8_Dc;
-  *(undefined4 *)(in_RAX + -0x3c) = unaff_XMM8_Dd;
-  *(undefined4 *)(in_RAX + -0x58) = unaff_XMM9_Da;
-  *(undefined4 *)(in_RAX + -0x54) = unaff_XMM9_Db;
-  *(undefined4 *)(in_RAX + -0x50) = unaff_XMM9_Dc;
-  *(undefined4 *)(in_RAX + -0x4c) = unaff_XMM9_Dd;
+  *(int32_t *)(in_RAX + -0x38) = unaff_XMM7_Da;
+  *(int32_t *)(in_RAX + -0x34) = unaff_XMM7_Db;
+  *(int32_t *)(in_RAX + -0x30) = unaff_XMM7_Dc;
+  *(int32_t *)(in_RAX + -0x2c) = unaff_XMM7_Dd;
+  *(int32_t *)(in_RAX + -0x48) = unaff_XMM8_Da;
+  *(int32_t *)(in_RAX + -0x44) = unaff_XMM8_Db;
+  *(int32_t *)(in_RAX + -0x40) = unaff_XMM8_Dc;
+  *(int32_t *)(in_RAX + -0x3c) = unaff_XMM8_Dd;
+  *(int32_t *)(in_RAX + -0x58) = unaff_XMM9_Da;
+  *(int32_t *)(in_RAX + -0x54) = unaff_XMM9_Db;
+  *(int32_t *)(in_RAX + -0x50) = unaff_XMM9_Dc;
+  *(int32_t *)(in_RAX + -0x4c) = unaff_XMM9_Dd;
   if (lVar13 == 0) {
     lVar13 = 0;
     lVar5 = lVar9;
   }
   else {
     lVar5 = *(longlong *)(lVar13 + 0x28);
-    *(undefined8 *)(lVar13 + 0x28) = *(undefined8 *)(in_R10 + 0x1c80);
+    *(uint64_t *)(lVar13 + 0x28) = *(uint64_t *)(in_R10 + 0x1c80);
     lVar13 = *(longlong *)(in_R10 + 0x1b78);
   }
   lVar7 = lVar9;
@@ -106,8 +106,8 @@ void find_and_process_entity_collisions(void)
       if ((((*(char *)(lVar6 + 0xaf) != '\0') && (*(char *)(lVar6 + 0xb6) == '\0')) &&
           ((*(uint *)(lVar6 + 0xc) >> 9 & 1) == 0)) &&
          (*(longlong *)(lVar6 + 0x28) == *(longlong *)(in_R10 + 0x1c80))) {
-        fStackX_8 = (float)*(undefined8 *)(lVar6 + 0x240);
-        fStackX_c = (float)((ulonglong)*(undefined8 *)(lVar6 + 0x240) >> 0x20);
+        fStackX_8 = (float)*(uint64_t *)(lVar6 + 0x240);
+        fStackX_c = (float)((ulonglong)*(uint64_t *)(lVar6 + 0x240) >> 0x20);
         fVar3 = fVar1;
         fVar4 = fVar2;
         if ((*(uint *)(lVar6 + 0xc) & 0x1000002) == 0) {
@@ -115,9 +115,9 @@ void find_and_process_entity_collisions(void)
           fVar4 = fStack0000000000000074;
         }
         fVar15 = *(float *)(in_R10 + 0x118);
-        if ((((float)*(undefined8 *)(lVar6 + 0x238) - fVar3 <= fVar15) &&
+        if ((((float)*(uint64_t *)(lVar6 + 0x238) - fVar3 <= fVar15) &&
             (fVar14 = *(float *)(in_R10 + 0x11c),
-            (float)((ulonglong)*(undefined8 *)(lVar6 + 0x238) >> 0x20) - fVar4 <= fVar14)) &&
+            (float)((ulonglong)*(uint64_t *)(lVar6 + 0x238) >> 0x20) - fVar4 <= fVar14)) &&
            ((fVar15 < fStackX_8 + fVar3 && (fVar14 < fStackX_c + fVar4)))) {
           if (*(short *)(lVar6 + 0x268) != 0) {
             fVar15 = fVar15 - *(float *)(lVar6 + 0x40);
@@ -184,52 +184,52 @@ void find_entity_collisions_with_flags(void)
   longlong lVar13;
   float fVar14;
   float fVar15;
-  undefined4 unaff_XMM6_Da;
-  undefined4 unaff_XMM6_Db;
-  undefined4 unaff_XMM6_Dc;
-  undefined4 unaff_XMM6_Dd;
-  undefined4 unaff_XMM7_Da;
-  undefined4 unaff_XMM7_Db;
-  undefined4 unaff_XMM7_Dc;
-  undefined4 unaff_XMM7_Dd;
-  undefined4 unaff_XMM8_Da;
-  undefined4 unaff_XMM8_Db;
-  undefined4 unaff_XMM8_Dc;
-  undefined4 unaff_XMM8_Dd;
-  undefined4 unaff_XMM9_Da;
-  undefined4 unaff_XMM9_Db;
-  undefined4 unaff_XMM9_Dc;
-  undefined4 unaff_XMM9_Dd;
+  int32_t unaff_XMM6_Da;
+  int32_t unaff_XMM6_Db;
+  int32_t unaff_XMM6_Dc;
+  int32_t unaff_XMM6_Dd;
+  int32_t unaff_XMM7_Da;
+  int32_t unaff_XMM7_Db;
+  int32_t unaff_XMM7_Dc;
+  int32_t unaff_XMM7_Dd;
+  int32_t unaff_XMM8_Da;
+  int32_t unaff_XMM8_Db;
+  int32_t unaff_XMM8_Dc;
+  int32_t unaff_XMM8_Dd;
+  int32_t unaff_XMM9_Da;
+  int32_t unaff_XMM9_Db;
+  int32_t unaff_XMM9_Dc;
+  int32_t unaff_XMM9_Dd;
   float fStackX_8;
   float fStackX_c;
   float fStack0000000000000070;
   float fStack0000000000000074;
   float fVar4;
   
-  *(undefined4 *)(in_RAX + -0x28) = unaff_XMM6_Da;
-  *(undefined4 *)(in_RAX + -0x24) = unaff_XMM6_Db;
-  *(undefined4 *)(in_RAX + -0x20) = unaff_XMM6_Dc;
-  *(undefined4 *)(in_RAX + -0x1c) = unaff_XMM6_Dd;
+  *(int32_t *)(in_RAX + -0x28) = unaff_XMM6_Da;
+  *(int32_t *)(in_RAX + -0x24) = unaff_XMM6_Db;
+  *(int32_t *)(in_RAX + -0x20) = unaff_XMM6_Dc;
+  *(int32_t *)(in_RAX + -0x1c) = unaff_XMM6_Dd;
   lVar13 = *(longlong *)(in_R10 + 0x1b78);
-  *(undefined4 *)(in_RAX + -0x38) = unaff_XMM7_Da;
-  *(undefined4 *)(in_RAX + -0x34) = unaff_XMM7_Db;
-  *(undefined4 *)(in_RAX + -0x30) = unaff_XMM7_Dc;
-  *(undefined4 *)(in_RAX + -0x2c) = unaff_XMM7_Dd;
-  *(undefined4 *)(in_RAX + -0x48) = unaff_XMM8_Da;
-  *(undefined4 *)(in_RAX + -0x44) = unaff_XMM8_Db;
-  *(undefined4 *)(in_RAX + -0x40) = unaff_XMM8_Dc;
-  *(undefined4 *)(in_RAX + -0x3c) = unaff_XMM8_Dd;
-  *(undefined4 *)(in_RAX + -0x58) = unaff_XMM9_Da;
-  *(undefined4 *)(in_RAX + -0x54) = unaff_XMM9_Db;
-  *(undefined4 *)(in_RAX + -0x50) = unaff_XMM9_Dc;
-  *(undefined4 *)(in_RAX + -0x4c) = unaff_XMM9_Dd;
+  *(int32_t *)(in_RAX + -0x38) = unaff_XMM7_Da;
+  *(int32_t *)(in_RAX + -0x34) = unaff_XMM7_Db;
+  *(int32_t *)(in_RAX + -0x30) = unaff_XMM7_Dc;
+  *(int32_t *)(in_RAX + -0x2c) = unaff_XMM7_Dd;
+  *(int32_t *)(in_RAX + -0x48) = unaff_XMM8_Da;
+  *(int32_t *)(in_RAX + -0x44) = unaff_XMM8_Db;
+  *(int32_t *)(in_RAX + -0x40) = unaff_XMM8_Dc;
+  *(int32_t *)(in_RAX + -0x3c) = unaff_XMM8_Dd;
+  *(int32_t *)(in_RAX + -0x58) = unaff_XMM9_Da;
+  *(int32_t *)(in_RAX + -0x54) = unaff_XMM9_Db;
+  *(int32_t *)(in_RAX + -0x50) = unaff_XMM9_Dc;
+  *(int32_t *)(in_RAX + -0x4c) = unaff_XMM9_Dd;
   if (lVar13 == 0) {
     lVar13 = 0;
     lVar5 = unaff_RBP;
   }
   else {
     lVar5 = *(longlong *)(lVar13 + 0x28);
-    *(undefined8 *)(lVar13 + 0x28) = *(undefined8 *)(in_R10 + 0x1c80);
+    *(uint64_t *)(lVar13 + 0x28) = *(uint64_t *)(in_R10 + 0x1c80);
     lVar13 = *(longlong *)(in_R10 + 0x1b78);
   }
   lVar7 = unaff_RBP;
@@ -262,8 +262,8 @@ void find_entity_collisions_with_flags(void)
       if ((((*(char *)(lVar6 + 0xaf) != cVar10) && (*(char *)(lVar6 + 0xb6) == cVar10)) &&
           ((*(uint *)(lVar6 + 0xc) >> 9 & 1) == 0)) &&
          (*(longlong *)(lVar6 + 0x28) == *(longlong *)(in_R10 + 0x1c80))) {
-        fStackX_8 = (float)*(undefined8 *)(lVar6 + 0x240);
-        fStackX_c = (float)((ulonglong)*(undefined8 *)(lVar6 + 0x240) >> 0x20);
+        fStackX_8 = (float)*(uint64_t *)(lVar6 + 0x240);
+        fStackX_c = (float)((ulonglong)*(uint64_t *)(lVar6 + 0x240) >> 0x20);
         fVar3 = fVar1;
         fVar4 = fVar2;
         if ((*(uint *)(lVar6 + 0xc) & 0x1000002) == 0) {
@@ -271,9 +271,9 @@ void find_entity_collisions_with_flags(void)
           fVar4 = fStack0000000000000074;
         }
         fVar15 = *(float *)(in_R10 + 0x118);
-        if ((((float)*(undefined8 *)(lVar6 + 0x238) - fVar3 <= fVar15) &&
+        if ((((float)*(uint64_t *)(lVar6 + 0x238) - fVar3 <= fVar15) &&
             (fVar14 = *(float *)(in_R10 + 0x11c),
-            (float)((ulonglong)*(undefined8 *)(lVar6 + 0x238) >> 0x20) - fVar4 <= fVar14)) &&
+            (float)((ulonglong)*(uint64_t *)(lVar6 + 0x238) >> 0x20) - fVar4 <= fVar14)) &&
            ((fVar15 < fStackX_8 + fVar3 && (fVar14 < fStackX_c + fVar4)))) {
           if (*(short *)(lVar6 + 0x268) != 0) {
             fVar15 = fVar15 - *(float *)(lVar6 + 0x40);
@@ -327,13 +327,13 @@ void search_entity_collisions_in_range(void)
   longlong in_RAX;
   longlong lVar2;
   longlong lVar3;
-  undefined8 unaff_RBP;
+  uint64_t unaff_RBP;
   longlong *plVar4;
   longlong unaff_RDI;
   longlong in_R9;
   longlong in_R10;
   longlong in_R11;
-  undefined8 unaff_R14;
+  uint64_t unaff_R14;
   float fVar5;
   float fVar6;
   float fVar7;
@@ -352,10 +352,10 @@ void search_entity_collisions_in_range(void)
     if ((((*(char *)(lVar1 + 0xaf) != (char)unaff_RBP) &&
          (*(char *)(lVar1 + 0xb6) == (char)unaff_RBP)) && ((*(uint *)(lVar1 + 0xc) >> 9 & 1) == 0))
        && (*(longlong *)(lVar1 + 0x28) == *(longlong *)(in_R10 + 0x1c80))) {
-      fVar5 = (float)*(undefined8 *)(lVar1 + 0x238);
-      fVar6 = (float)((ulonglong)*(undefined8 *)(lVar1 + 0x238) >> 0x20);
-      fStackX_8 = (float)*(undefined8 *)(lVar1 + 0x240);
-      fStackX_c = (float)((ulonglong)*(undefined8 *)(lVar1 + 0x240) >> 0x20);
+      fVar5 = (float)*(uint64_t *)(lVar1 + 0x238);
+      fVar6 = (float)((ulonglong)*(uint64_t *)(lVar1 + 0x238) >> 0x20);
+      fStackX_8 = (float)*(uint64_t *)(lVar1 + 0x240);
+      fStackX_c = (float)((ulonglong)*(uint64_t *)(lVar1 + 0x240) >> 0x20);
       if ((*(uint *)(lVar1 + 0xc) & 0x1000002) == 0) {
         fVar5 = fVar5 - unaff_XMM8_Da;
         fVar6 = fVar6 - unaff_XMM9_Da;
@@ -400,12 +400,12 @@ LAB_180127fd0:
   } while (-1 < lVar3);
   *(longlong *)(in_R10 + 0x1b00) = lVar2;
   if (lVar2 != 0) {
-    unaff_RBP = *(undefined8 *)(lVar2 + 0x3a0);
+    unaff_RBP = *(uint64_t *)(lVar2 + 0x3a0);
   }
-  *(undefined8 *)(in_R10 + 0x1b08) = unaff_RBP;
+  *(uint64_t *)(in_R10 + 0x1b08) = unaff_RBP;
   *(longlong *)(in_R10 + 0x1b10) = unaff_RDI;
   if (in_R11 != 0) {
-    *(undefined8 *)(in_R11 + 0x28) = unaff_R14;
+    *(uint64_t *)(in_R11 + 0x28) = unaff_R14;
   }
   return;
 }
@@ -420,21 +420,21 @@ LAB_180127fd0:
 void set_entity_selection_result(void)
 
 {
-  undefined8 unaff_RBP;
-  undefined8 unaff_RDI;
+  uint64_t unaff_RBP;
+  uint64_t unaff_RDI;
   longlong in_R9;
   longlong in_R10;
   longlong in_R11;
-  undefined8 unaff_R14;
+  uint64_t unaff_R14;
   
   *(longlong *)(in_R10 + 0x1b00) = in_R9;
   if (in_R9 != 0) {
-    unaff_RBP = *(undefined8 *)(in_R9 + 0x3a0);
+    unaff_RBP = *(uint64_t *)(in_R9 + 0x3a0);
   }
-  *(undefined8 *)(in_R10 + 0x1b08) = unaff_RBP;
-  *(undefined8 *)(in_R10 + 0x1b10) = unaff_RDI;
+  *(uint64_t *)(in_R10 + 0x1b08) = unaff_RBP;
+  *(uint64_t *)(in_R10 + 0x1b10) = unaff_RDI;
   if (in_R11 != 0) {
-    *(undefined8 *)(in_R11 + 0x28) = unaff_R14;
+    *(uint64_t *)(in_R11 + 0x28) = unaff_R14;
   }
   return;
 }
@@ -449,16 +449,16 @@ void set_entity_selection_result(void)
 void update_entity_property_references(void)
 
 {
-  undefined8 unaff_RDI;
+  uint64_t unaff_RDI;
   longlong in_R9;
   longlong in_R10;
   longlong in_R11;
-  undefined8 unaff_R14;
+  uint64_t unaff_R14;
   
-  *(undefined8 *)(in_R10 + 0x1b08) = *(undefined8 *)(in_R9 + 0x3a0);
-  *(undefined8 *)(in_R10 + 0x1b10) = unaff_RDI;
+  *(uint64_t *)(in_R10 + 0x1b08) = *(uint64_t *)(in_R9 + 0x3a0);
+  *(uint64_t *)(in_R10 + 0x1b10) = unaff_RDI;
   if (in_R11 != 0) {
-    *(undefined8 *)(in_R11 + 0x28) = unaff_R14;
+    *(uint64_t *)(in_R11 + 0x28) = unaff_R14;
   }
   return;
 }
@@ -474,18 +474,18 @@ void reset_entity_linked_list_pointer(void)
 
 {
   longlong in_R11;
-  undefined8 unaff_R14;
+  uint64_t unaff_R14;
   
-  *(undefined8 *)(in_R11 + 0x28) = unaff_R14;
+  *(uint64_t *)(in_R11 + 0x28) = unaff_R14;
   return;
 }
 
 
 
-// 函数: ulonglong detect_entity_collision_relation(undefined8 *entity1, undefined8 *entity2, char use_bounds_check)
+// 函数: ulonglong detect_entity_collision_relation(uint64_t *entity1, uint64_t *entity2, char use_bounds_check)
 // 功能: 检测两个游戏对象之间的碰撞关系
 // 原始实现: FUN_180128040 - 简化实现: 为函数和参数提供语义化名称
-ulonglong detect_entity_collision_relation(undefined8 *entity1, undefined8 *entity2, char use_bounds_check)
+ulonglong detect_entity_collision_relation(uint64_t *entity1, uint64_t *entity2, char use_bounds_check)
 
 {
   longlong lVar1;
@@ -539,10 +539,10 @@ ulonglong detect_entity_collision_relation(undefined8 *entity1, undefined8 *enti
 
 
 
-// 函数: undefined8 check_entity_animation_state(int entity_index, char check_animation)
+// 函数: uint64_t check_entity_animation_state(int entity_index, char check_animation)
 // 功能: 检查游戏对象属性和动画状态
 // 原始实现: FUN_180128280 - 简化实现: 为函数和参数提供语义化名称
-undefined8 check_entity_animation_state(int entity_index, char check_animation)
+uint64_t check_entity_animation_state(int entity_index, char check_animation)
 
 {
   float fVar1;
@@ -568,10 +568,10 @@ undefined8 check_entity_animation_state(int entity_index, char check_animation)
 
 
 
-// 函数: undefined1 compare_entity_rotation_angles(undefined8 angle1, undefined8 angle2, longlong rotation_data)
+// 函数: int8_t compare_entity_rotation_angles(uint64_t angle1, uint64_t angle2, longlong rotation_data)
 // 功能: 比较游戏对象的旋转角度关系
 // 原始实现: FUN_1801282c7 - 简化实现: 为函数和参数提供语义化名称
-undefined1 compare_entity_rotation_angles(undefined8 angle1, undefined8 angle2, longlong rotation_data)
+int8_t compare_entity_rotation_angles(uint64_t angle1, uint64_t angle2, longlong rotation_data)
 
 {
   float fVar1;
@@ -590,10 +590,10 @@ undefined1 compare_entity_rotation_angles(undefined8 angle1, undefined8 angle2, 
 
 
 
-// 函数: undefined1 return_empty_status_check(void)
+// 函数: int8_t return_empty_status_check(void)
 // 功能: 返回空状态检查结果
 // 原始实现: FUN_180128336 - 简化实现: 为函数提供语义化名称
-undefined1 return_empty_status_check(void)
+int8_t return_empty_status_check(void)
 
 {
   return 0;
@@ -605,32 +605,32 @@ undefined1 return_empty_status_check(void)
 
 
 
-// 函数: void initialize_game_entity(longlong entity_id,int entity_type,float *size_data,undefined8 context_ptr,uint entity_flags)
+// 函数: void initialize_game_entity(longlong entity_id,int entity_type,float *size_data,uint64_t context_ptr,uint entity_flags)
 // 功能: 初始化游戏对象并设置其属性
 // 原始实现: FUN_1801283f0 - 简化实现: 为函数和参数提供语义化名称
-void initialize_game_entity(longlong entity_id,int entity_type,float *size_data,undefined8 context_ptr,uint entity_flags)
+void initialize_game_entity(longlong entity_id,int entity_type,float *size_data,uint64_t context_ptr,uint entity_flags)
 
 {
-  undefined4 uVar1;
+  int32_t uVar1;
   uint uVar2;
-  undefined8 *puVar3;
+  uint64_t *puVar3;
   longlong lVar4;
   bool bVar5;
   longlong lVar6;
   uint uVar7;
   float fVar8;
   float fVar9;
-  undefined1 auStack_188 [32];
+  int8_t auStack_188 [32];
   longlong lStack_168;
   int iStack_160;
   float fStack_158;
   float fStack_154;
-  undefined1 auStack_148 [256];
+  int8_t auStack_148 [256];
   ulonglong uStack_48;
   
   lVar6 = _DAT_180c8a9b0;
   uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
-  puVar3 = *(undefined8 **)(_DAT_180c8a9b0 + 0x1af8);
+  puVar3 = *(uint64_t **)(_DAT_180c8a9b0 + 0x1af8);
   uVar2 = *(uint *)((longlong)puVar3 + 0xc);
   func_0x00018012df80(&fStack_158);
   uVar7 = 0;
@@ -648,7 +648,7 @@ void initialize_game_entity(longlong entity_id,int entity_type,float *size_data,
   }
   *(float *)(lVar6 + 0x1c04) = fVar9;
   *(float *)(lVar6 + 0x1c08) = fVar8;
-  *(undefined4 *)(lVar6 + 0x1bd4) = 1;
+  *(int32_t *)(lVar6 + 0x1bd4) = 1;
   if (param_1 == 0) {
     lStack_168 = CONCAT44(lStack_168._4_4_,param_2);
     FUN_180121200(auStack_148,0x100,&UNK_180a064a8,*puVar3);
@@ -658,21 +658,21 @@ void initialize_game_entity(longlong entity_id,int entity_type,float *size_data,
     iStack_160 = param_2;
     FUN_180121200(auStack_148,0x100,&UNK_180a06490,*puVar3);
   }
-  uVar1 = *(undefined4 *)(lVar6 + 0x1650);
+  uVar1 = *(int32_t *)(lVar6 + 0x1650);
   FUN_1801299b0(auStack_148,0,param_5 | uVar2 & 4 | 0x1200103);
   lVar4 = *(longlong *)(lVar6 + 0x1af8);
-  *(undefined4 *)(lVar6 + 0x1650) = uVar1;
+  *(int32_t *)(lVar6 + 0x1650) = uVar1;
   *(int *)(lVar4 + 0x88) = param_2;
   *(uint *)(lVar4 + 0xd0) = uVar7 | bVar5;
   if (*(short *)(lVar4 + 0xb8) == 1) {
-    puVar3[0x20] = *(undefined8 *)(lVar4 + 0x40);
+    puVar3[0x20] = *(uint64_t *)(lVar4 + 0x40);
   }
   if (((*(int *)(lVar6 + 0x1ca4) == param_2) && ((param_5 & 0x800000) == 0)) &&
      ((*(int *)(lVar4 + 0x174) != 0 || (*(char *)(lVar4 + 0x17d) != '\0')))) {
     FUN_18012d2e0(lVar4);
     func_0x000180131810(lVar4,0);
     func_0x000180123e90(param_2 + 1,lVar4);
-    *(undefined4 *)(lVar6 + 0x1b60) = 2;
+    *(int32_t *)(lVar6 + 0x1b60) = 2;
   }
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_188);
@@ -703,17 +703,17 @@ void process_entity_boundary_box(void)
   longlong lVar11;
   float fVar12;
   float fVar13;
-  undefined8 uStackX_8;
+  uint64_t uStackX_8;
   float fStack_58;
   float fStack_54;
   float fStack_50;
   float fStack_4c;
-  undefined *puStack_40;
+  void *puStack_40;
   
   lVar5 = _DAT_180c8a9b0;
   lVar11 = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
   if (*(short *)(lVar11 + 0xb8) < 2) {
-    uStackX_8 = *(undefined8 *)(lVar11 + 0x48);
+    uStackX_8 = *(uint64_t *)(lVar11 + 0x48);
     fVar12 = (float)uStackX_8;
     if (((*(uint *)(lVar11 + 0xd0) & 1) != 0) && ((float)uStackX_8 <= 4.0)) {
       uStackX_8._4_4_ = (float)((ulonglong)uStackX_8 >> 0x20);
@@ -739,7 +739,7 @@ void process_entity_boundary_box(void)
     if (((*(int *)(lVar11 + 0x174) == 0) && (*(char *)(lVar11 + 0x17d) == '\0')) ||
        ((*(uint *)(lVar11 + 0xc) & 0x800000) != 0)) {
       lVar11 = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
-      *(undefined8 *)(lVar11 + 0x144) = 0;
+      *(uint64_t *)(lVar11 + 0x144) = 0;
       *(float *)(lVar11 + 0x14c) = fStack_58;
       *(float *)(lVar11 + 0x150) = fStack_54;
       *(float *)(lVar11 + 0x154) = fStack_50;
@@ -754,7 +754,7 @@ void process_entity_boundary_box(void)
       }
     }
     else {
-      FUN_180124190(&fStack_58,*(undefined4 *)(lVar11 + 0x88),0);
+      FUN_180124190(&fStack_58,*(int32_t *)(lVar11 + 0x88),0);
       if (*(int *)(lVar11 + 0x88) == *(int *)(_DAT_180c8a9b0 + 0x1ca0)) {
         FUN_1801230e0(&fStack_58,1);
       }
@@ -773,12 +773,12 @@ void process_entity_boundary_box(void)
   if ((1 < *(int *)(_DAT_180c8a9b0 + 0x1ad0)) || (*(char *)(_DAT_180c8a9b0 + 2) == '\0')) {
     lVar11 = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
     if (*(longlong *)(lVar11 + 0x210) != 0) {
-      puStack_40 = (undefined *)0x18012d024;
+      puStack_40 = (void *)0x18012d024;
       FUN_180134b80();
     }
     uVar7 = *(uint *)(lVar11 + 0xc);
     if ((uVar7 >> 0x1d & 1) == 0) {
-      puStack_40 = (undefined *)0x18012d039;
+      puStack_40 = (void *)0x18012d039;
       FUN_180126d80();
       uVar7 = *(uint *)(lVar11 + 0xc);
     }
@@ -786,27 +786,27 @@ void process_entity_boundary_box(void)
     lVar10 = 0;
     if (((uVar7 >> 0x18 & 1) == 0) && (pcVar1 = (char *)(_DAT_180c8a9b0 + 0x2e38), *pcVar1 != '\0'))
     {
-      puStack_40 = (undefined *)0x18012d075;
+      puStack_40 = (void *)0x18012d075;
       FUN_18013c760(&UNK_180a0677c);
       if (*(longlong *)(lVar9 + 0x2e40) != 0) {
-        puStack_40 = (undefined *)0x18012d087;
+        puStack_40 = (void *)0x18012d087;
         lVar8 = __acrt_iob_func(1);
         if (*(longlong *)(lVar9 + 0x2e40) == lVar8) {
-          puStack_40 = (undefined *)0x18012d099;
+          puStack_40 = (void *)0x18012d099;
           fflush();
         }
         else {
-          puStack_40 = (undefined *)0x18012d0a1;
+          puStack_40 = (void *)0x18012d0a1;
           fclose();
         }
-        *(undefined8 *)(lVar9 + 0x2e40) = 0;
+        *(uint64_t *)(lVar9 + 0x2e40) = 0;
       }
       piVar2 = (int *)(lVar9 + 0x2e48);
       lVar8 = *(longlong *)(lVar9 + 0x2e50);
       if ((lVar8 != 0) && (1 < *piVar2 + -1)) {
         if (*(code **)(_DAT_180c8a9b0 + 0x100) != (code *)0x0) {
-          puStack_40 = (undefined *)0x18012d0e1;
-          (**(code **)(_DAT_180c8a9b0 + 0x100))(*(undefined8 *)(_DAT_180c8a9b0 + 0x108),lVar8);
+          puStack_40 = (void *)0x18012d0e1;
+          (**(code **)(_DAT_180c8a9b0 + 0x100))(*(uint64_t *)(_DAT_180c8a9b0 + 0x108),lVar8);
           lVar8 = *(longlong *)(lVar9 + 0x2e50);
         }
         lVar9 = _DAT_180c8a9b0;
@@ -850,7 +850,7 @@ void process_entity_boundary_box(void)
     if (*(longlong *)(lVar5 + 0x1af8) != 0) {
       lVar11 = *(longlong *)(*(longlong *)(lVar5 + 0x1af8) + 0x28);
       if (lVar11 != 0) {
-        *(undefined4 *)(lVar11 + 0x54) = *(undefined4 *)(lVar9 + 0x1a90);
+        *(int32_t *)(lVar11 + 0x54) = *(int32_t *)(lVar9 + 0x1a90);
       }
       if (((*(longlong *)(lVar9 + 0x1c78) != lVar11) &&
           (*(longlong *)(lVar9 + 0x1c78) = lVar11, lVar11 != 0)) &&
@@ -871,10 +871,10 @@ void process_entity_boundary_box(void)
 
 
 
-// 函数: void update_entity_position_bounds(undefined8 position_data)
+// 函数: void update_entity_position_bounds(uint64_t position_data)
 // 功能: 更新游戏对象的位置和边界信息
 // 原始实现: FUN_18012862b - 简化实现: 为函数和参数提供语义化名称
-void update_entity_position_bounds(undefined8 position_data)
+void update_entity_position_bounds(uint64_t position_data)
 
 {
   float fVar1;
@@ -882,10 +882,10 @@ void update_entity_position_bounds(undefined8 position_data)
   int iVar3;
   longlong lVar4;
   longlong lVar5;
-  undefined4 uVar6;
-  undefined4 uVar7;
-  undefined4 uVar8;
-  undefined4 uVar9;
+  int32_t uVar6;
+  int32_t uVar7;
+  int32_t uVar8;
+  int32_t uVar9;
   char cVar10;
   ulonglong in_RAX;
   longlong unaff_RBX;
@@ -895,15 +895,15 @@ void update_entity_position_bounds(undefined8 position_data)
   float fVar12;
   float fVar13;
   
-  *(undefined8 *)(unaff_RBP + 0x10) = param_1;
+  *(uint64_t *)(unaff_RBP + 0x10) = param_1;
   fVar13 = *(float *)(unaff_RBP + 0x10);
   if (((in_RAX & 1) != 0) && (fVar13 <= 4.0)) {
-    *(undefined4 *)(unaff_RBP + 0x10) = 0x40800000;
+    *(int32_t *)(unaff_RBP + 0x10) = 0x40800000;
     fVar13 = 4.0;
   }
   fVar12 = *(float *)(unaff_RBP + 0x14);
   if (((in_RAX & 2) != 0) && (fVar12 <= 4.0)) {
-    *(undefined4 *)(unaff_RBP + 0x14) = 0x40800000;
+    *(int32_t *)(unaff_RBP + 0x14) = 0x40800000;
     fVar12 = 4.0;
   }
   FUN_18012cfe0();
@@ -920,16 +920,16 @@ void update_entity_position_bounds(undefined8 position_data)
   lVar4 = _DAT_180c8a9b0;
   if (((*(int *)(unaff_RBX + 0x174) == 0) && (*(char *)(unaff_RBX + 0x17d) == '\0')) ||
      ((*(uint *)(unaff_RBX + 0xc) & 0x800000) != 0)) {
-    uVar6 = *(undefined4 *)(unaff_RBP + -0x50);
-    uVar7 = *(undefined4 *)(unaff_RBP + -0x4c);
-    uVar8 = *(undefined4 *)(unaff_RBP + -0x48);
-    uVar9 = *(undefined4 *)(unaff_RBP + -0x44);
+    uVar6 = *(int32_t *)(unaff_RBP + -0x50);
+    uVar7 = *(int32_t *)(unaff_RBP + -0x4c);
+    uVar8 = *(int32_t *)(unaff_RBP + -0x48);
+    uVar9 = *(int32_t *)(unaff_RBP + -0x44);
     lVar11 = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
-    *(undefined8 *)(lVar11 + 0x144) = 0;
-    *(undefined4 *)(lVar11 + 0x14c) = uVar6;
-    *(undefined4 *)(lVar11 + 0x150) = uVar7;
-    *(undefined4 *)(lVar11 + 0x154) = uVar8;
-    *(undefined4 *)(lVar11 + 0x158) = uVar9;
+    *(uint64_t *)(lVar11 + 0x144) = 0;
+    *(int32_t *)(lVar11 + 0x14c) = uVar6;
+    *(int32_t *)(lVar11 + 0x150) = uVar7;
+    *(int32_t *)(lVar11 + 0x154) = uVar8;
+    *(int32_t *)(lVar11 + 0x158) = uVar9;
     lVar5 = *(longlong *)(lVar4 + 0x1af8);
     if ((((*(float *)(lVar5 + 0x22c) <= fVar12 && fVar12 != *(float *)(lVar5 + 0x22c)) &&
          (fVar2 < *(float *)(lVar5 + 0x234))) &&
@@ -942,7 +942,7 @@ void update_entity_position_bounds(undefined8 position_data)
     }
   }
   else {
-    FUN_180124190(unaff_RBP + -0x50,*(undefined4 *)(unaff_RBX + 0x88),0);
+    FUN_180124190(unaff_RBP + -0x50,*(int32_t *)(unaff_RBX + 0x88),0);
     if (*(int *)(unaff_RBX + 0x88) == *(int *)(_DAT_180c8a9b0 + 0x1ca0)) {
       FUN_1801230e0(unaff_RBP + -0x50,1);
     }

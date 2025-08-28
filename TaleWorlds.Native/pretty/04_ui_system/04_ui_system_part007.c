@@ -37,17 +37,17 @@
 #define process_ui_data_batch        FUN_180657dd0
 #define handle_ui_system_shutdown    FUN_180657fa0
 
-// 函数: void process_steam_ui_request(undefined8 param_1,undefined8 param_2,undefined *param_3,undefined8 param_4,
+// 函数: void process_steam_ui_request(uint64_t param_1,uint64_t param_2,void *param_3,uint64_t param_4,
 // 处理Steam UI请求，验证数据并调用相应的Steam API功能
 // 参数: param_1 - 请求类型标识, param_2 - 上下文数据, param_3 - 数据缓冲区, param_4 - 标志位, param_5 - 数据长度
-void process_steam_ui_request(undefined8 param_1,undefined8 param_2,undefined *param_3,undefined8 param_4,
+void process_steam_ui_request(uint64_t param_1,uint64_t param_2,void *param_3,uint64_t param_4,
                               longlong param_5)
 
 {
   byte bVar1;
   byte *pbVar2;
   uint uVar3;
-  undefined4 uVar4;
+  int32_t uVar4;
   longlong lVar5;
   
   // 验证请求参数和数据状态
@@ -76,17 +76,17 @@ LAB_1806579f0:
   // 创建系统数据结构并处理请求
   lVar5 = FUN_18062b420(SYSTEM_PARAM_DATA,0x48,SYSTEM_BUFFER_SIZE,param_4,0xfffffffffffffffe);
   FUN_180627ae0(lVar5 + 0x20,param_5);
-  *(undefined8 *)(lVar5 + 0x40) = 0;
+  *(uint64_t *)(lVar5 + 0x40) = 0;
                     // WARNING: Subroutine does not return
   FUN_18066bdc0(lVar5,param_3,&SYSTEM_CONFIG_AREA,uVar4);
 }
 
 
 
-// 函数: undefined8 * allocate_steam_interface(undefined8 *param_1,ulonglong param_2)
+// 函数: uint64_t * allocate_steam_interface(uint64_t *param_1,ulonglong param_2)
 // 分配Steam接口内存，根据标志决定是否释放内存
 // 参数: param_1 - 接口指针, param_2 - 内存管理标志
-undefined8 * allocate_steam_interface(undefined8 *param_1,ulonglong param_2)
+uint64_t * allocate_steam_interface(uint64_t *param_1,ulonglong param_2)
 
 {
   *param_1 = &STEAM_INTERFACE_PTR_4;
@@ -101,13 +101,13 @@ undefined8 * allocate_steam_interface(undefined8 *param_1,ulonglong param_2)
 
 
 
-// 函数: void initialize_steam_user(undefined8 *param_1)
+// 函数: void initialize_steam_user(uint64_t *param_1)
 // 初始化Steam用户接口，获取当前Steam用户并创建用户接口
-void initialize_steam_user(undefined8 *param_1)
+void initialize_steam_user(uint64_t *param_1)
 
 {
-  undefined8 uVar1;
-  undefined4 uVar2;
+  uint64_t uVar1;
+  int32_t uVar2;
   
   // 获取Steam用户句柄
   uVar2 = SteamAPI_GetHSteamUser();
@@ -121,13 +121,13 @@ void initialize_steam_user(undefined8 *param_1)
 
 
 
-// 函数: void initialize_steam_friends(undefined8 *param_1)
+// 函数: void initialize_steam_friends(uint64_t *param_1)
 // 初始化Steam好友接口，获取Steam用户并创建好友功能接口
-void initialize_steam_friends(undefined8 *param_1)
+void initialize_steam_friends(uint64_t *param_1)
 
 {
-  undefined8 uVar1;
-  undefined4 uVar2;
+  uint64_t uVar1;
+  int32_t uVar2;
   
   // 获取Steam用户句柄
   uVar2 = SteamAPI_GetHSteamUser();
@@ -139,14 +139,14 @@ void initialize_steam_friends(undefined8 *param_1)
 
 
 
-// 函数: undefined8 * create_steam_context(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+// 函数: uint64_t * create_steam_context(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
 // 创建Steam上下文，初始化Steam相关接口和内存管理
 // 参数: param_1 - 上下文指针, param_2 - 管理标志, param_3 - 附加参数1, param_4 - 附加参数2
-undefined8 *
-create_steam_context(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+uint64_t *
+create_steam_context(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
   *param_1 = &STEAM_INTERFACE_PTR_3;
@@ -176,21 +176,21 @@ void execute_ui_system_call(void)
 
 
 
-// 函数: void process_ui_data_batch(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void process_ui_data_batch(longlong param_1,longlong param_2,uint64_t param_3,uint64_t param_4)
 // 批量处理UI数据，处理复杂的数据结构和内存操作
 // 参数: param_1 - 输入数据缓冲区, param_2 - 输出数据缓冲区, param_3 - 处理标志, param_4 - 内存管理参数
-void process_ui_data_batch(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+void process_ui_data_batch(longlong param_1,longlong param_2,uint64_t param_3,uint64_t param_4)
 
 {
   int iVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   longlong lVar3;
   ulonglong uVar4;
   uint uVar5;
   ulonglong uVar6;
-  undefined8 uVar7;
-  undefined *puStack_50;
-  undefined1 *puStack_48;
+  uint64_t uVar7;
+  void *puStack_50;
+  int8_t *puStack_48;
   int iStack_40;
   ulonglong uStack_38;
   
@@ -203,45 +203,45 @@ void process_ui_data_batch(longlong param_1,longlong param_2,undefined8 param_3,
     do {
       puStack_50 = &SYSTEM_DATA_PTR;
       uStack_38 = 0;
-      puStack_48 = (undefined1 *)0x0;
+      puStack_48 = (int8_t *)0x0;
       iStack_40 = 0;
-      FUN_1806277c0(&puStack_50,*(undefined4 *)(uVar4 + 0x10 + lVar3));
+      FUN_1806277c0(&puStack_50,*(int32_t *)(uVar4 + 0x10 + lVar3));
       iVar1 = *(int *)(uVar4 + 0x10 + lVar3);
       if (iVar1 != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(puStack_48,*(undefined8 *)(uVar4 + 8 + lVar3),iVar1 + 1,param_4,uVar7);
+        memcpy(puStack_48,*(uint64_t *)(uVar4 + 8 + lVar3),iVar1 + 1,param_4,uVar7);
       }
       // 检查数据指针并处理
       if (*(longlong *)(uVar4 + 8 + lVar3) != 0) {
         iStack_40 = 0;
-        if (puStack_48 != (undefined1 *)0x0) {
+        if (puStack_48 != (int8_t *)0x0) {
           *puStack_48 = 0;
         }
         uStack_38 = uStack_38 & 0xffffffff;
       }
-      puVar2 = *(undefined8 **)(param_2 + 8);
+      puVar2 = *(uint64_t **)(param_2 + 8);
       // 检查输出缓冲区并写入数据
-      if (puVar2 < *(undefined8 **)(param_2 + 0x10)) {
-        *(undefined8 **)(param_2 + 8) = puVar2 + 4;
+      if (puVar2 < *(uint64_t **)(param_2 + 0x10)) {
+        *(uint64_t **)(param_2 + 8) = puVar2 + 4;
         *puVar2 = &UI_HANDLER_PTR;
         puVar2[1] = 0;
-        *(undefined4 *)(puVar2 + 2) = 0;
+        *(int32_t *)(puVar2 + 2) = 0;
         *puVar2 = &SYSTEM_DATA_PTR;
         puVar2[3] = 0;
         puVar2[1] = 0;
-        *(undefined4 *)(puVar2 + 2) = 0;
+        *(int32_t *)(puVar2 + 2) = 0;
         FUN_1806277c0(puVar2,iStack_40);
         if (iStack_40 != 0) {
                     // WARNING: Subroutine does not return
           memcpy(puVar2[1],puStack_48,iStack_40 + 1,param_4,uVar7);
         }
         // 清理和设置数据标记
-        if (puStack_48 != (undefined1 *)0x0) {
-          *(undefined4 *)(puVar2 + 2) = 0;
-          if ((undefined1 *)puVar2[1] != (undefined1 *)0x0) {
-            *(undefined1 *)puVar2[1] = 0;
+        if (puStack_48 != (int8_t *)0x0) {
+          *(int32_t *)(puVar2 + 2) = 0;
+          if ((int8_t *)puVar2[1] != (int8_t *)0x0) {
+            *(int8_t *)puVar2[1] = 0;
           }
-          *(undefined4 *)((longlong)puVar2 + 0x1c) = 0;
+          *(int32_t *)((longlong)puVar2 + 0x1c) = 0;
         }
       }
       else {
@@ -249,7 +249,7 @@ void process_ui_data_batch(longlong param_1,longlong param_2,undefined8 param_3,
       }
       puStack_50 = &SYSTEM_DATA_PTR;
       // 清理临时数据
-      if (puStack_48 != (undefined1 *)0x0) {
+      if (puStack_48 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
@@ -298,10 +298,10 @@ undefined SYSTEM_DATA_PTR;
 
 // 原始函数声明（保持与原始代码的兼容性）
 undefined FUN_180657970;
-undefined8 * FUN_180657a70;
+uint64_t * FUN_180657a70;
 void FUN_180657aa0;
 void FUN_180657ad0;
-undefined8 * FUN_180657b00;
+uint64_t * FUN_180657b00;
 void FUN_180657b70;
 void FUN_180657dd0;
 void FUN_180657fa0;

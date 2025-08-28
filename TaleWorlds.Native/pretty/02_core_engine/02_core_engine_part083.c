@@ -9,7 +9,7 @@
 void process_graphics_rendering_calculations(int render_mode)
 
 {
-  undefined4 *render_data;
+  int32_t *render_data;
   float offset_value;
   int texture_id;
   longlong render_context;
@@ -18,8 +18,8 @@ void process_graphics_rendering_calculations(int render_mode)
   longlong shader_program;
   int render_state;
   uint material_flags;
-  undefined4 render_params;
-  undefined *callback_ptr;
+  int32_t render_params;
+  void *callback_ptr;
   char texture_enabled;
   longlong transform_matrix;
   uint vertex_flags;
@@ -45,9 +45,9 @@ void process_graphics_rendering_calculations(int render_mode)
   float stack_f4;
   float stack_f0;
   float stack_ec;
-  undefined4 stack_e8;
-  undefined4 stack_e4;
-  undefined4 stack_e0;
+  int32_t stack_e8;
+  int32_t stack_e4;
+  int32_t stack_e0;
   float stack_dc;
   
   // 获取渲染上下文
@@ -62,7 +62,7 @@ void process_graphics_rendering_calculations(int render_mode)
   
   // 获取纹理ID
   texture_id = get_texture_id(callback_ptr, 0,
-                        *(undefined4 *)
+                        *(int32_t *)
                          (*(longlong *)(vertex_buffer + 0x220) + -4 + (longlong)*(int *)(vertex_buffer + 0x218) * 4)
                        );
   
@@ -71,7 +71,7 @@ void process_graphics_rendering_calculations(int render_mode)
     *(int *)(render_context + 0x1b34) = texture_id;
   }
   if (*(int *)(render_context + 0x1b30) == texture_id) {
-    *(undefined1 *)(render_context + 0x1b3f) = 1;
+    *(int8_t *)(render_context + 0x1b3f) = 1;
   }
   
   // 检查纹理是否启用
@@ -158,16 +158,16 @@ void process_graphics_rendering_calculations(int render_mode)
     }
     
     // 设置渲染数据
-    stack_e8 = *(undefined4 *)(render_context + 0x17a8);
-    stack_e4 = *(undefined4 *)(render_context + 0x17ac);
-    stack_e0 = *(undefined4 *)(render_context + 0x17b0);
+    stack_e8 = *(int32_t *)(render_context + 0x17a8);
+    stack_e4 = *(int32_t *)(render_context + 0x17ac);
+    stack_e0 = *(int32_t *)(render_context + 0x17b0);
     stack_dc = *(float *)(render_context + 0x17b4) * *(float *)(render_context + 0x1628);
     stack_f4 = depth_value;
     render_params = calculate_render_parameters(&stack_e8);
     
     // 调用渲染函数
-    render_vertex_data(*(undefined8 *)(vertex_buffer + 0x2e8), &stack_f8, &stack_f0, render_params,
-                      *(undefined4 *)(vertex_buffer + 0x78), vertex_flags);
+    render_vertex_data(*(uint64_t *)(vertex_buffer + 0x2e8), &stack_f8, &stack_f0, render_params,
+                      *(int32_t *)(vertex_buffer + 0x78), vertex_flags);
     
     // 计算并限制深度值
     tangent_z = (float)(int)((tangent_z - 2.0) * 0.5);
@@ -286,16 +286,16 @@ void process_graphics_rendering_calculations(int render_mode)
         
         // 更新渲染状态
         *(int *)(GLOBAL_RENDER_CONTEXT + 0x1b18) = texture_id;
-        *(undefined1 *)(transform_matrix + 0x1b1c) = 0;
+        *(int8_t *)(transform_matrix + 0x1b1c) = 0;
         if ((texture_id != 0) && (*(int *)(transform_matrix + 0x1b20) != texture_id)) {
-          *(undefined8 *)(transform_matrix + 0x1b24) = 0;
+          *(uint64_t *)(transform_matrix + 0x1b24) = 0;
         }
         
         collision_flag = false;
         if (render_state != texture_id) {
           if ((depth_value < normal_z) || (normal_z + position_y < depth_value)) {
             collision_flag = true;
-            *(undefined4 *)(render_context + shader_program) = 0;
+            *(int32_t *)(render_context + shader_program) = 0;
           }
           else {
             *(float *)(render_context + shader_program) = (depth_value - normal_z) - position_y * 0.5;
@@ -340,7 +340,7 @@ void process_graphics_rendering_calculations(int render_mode)
     }
     
     // 最终渲染处理
-    render_data = (undefined4 *)(transform_matrix + 0x1628 + (shader_program + 10) * 0x10);
+    render_data = (int32_t *)(transform_matrix + 0x1628 + (shader_program + 10) * 0x10);
     stack_e8 = *render_data;
     stack_e4 = render_data[1];
     stack_e0 = render_data[2];
@@ -364,8 +364,8 @@ void process_graphics_rendering_calculations(int render_mode)
       }
     }
     
-    render_vertex_data(*(undefined8 *)(vertex_buffer + 0x2e8), &stack_f8, &stack_f0, render_params,
-                      *(undefined4 *)(render_context + 0x1690), 0xf);
+    render_vertex_data(*(uint64_t *)(vertex_buffer + 0x2e8), &stack_f8, &stack_f0, render_params,
+                      *(int32_t *)(render_context + 0x1690), 0xf);
   }
   return;
 }

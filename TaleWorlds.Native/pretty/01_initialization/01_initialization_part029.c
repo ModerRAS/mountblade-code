@@ -85,7 +85,7 @@ void release_resource_and_unlock_mutex(longlong object_ptr)
   int lock_result;
   longlong mutex_address;
   
-  FUN_18020f150(*(undefined8 *)(*(longlong *)(object_ptr + 8) + 8));
+  FUN_18020f150(*(uint64_t *)(*(longlong *)(object_ptr + 8) + 8));
   mutex_address = _DAT_180c86938 + 0x20;
   lock_result = _Mtx_lock(mutex_address);
   if (lock_result != 0) {
@@ -109,13 +109,13 @@ void release_resource_and_unlock_mutex(longlong object_ptr)
 // 参数: context_ptr - 上下文指针, object_ptr - 对象指针, 
 //        status_flag - 状态标志, callback_param - 回调参数
 // 功能: 检查对象状态，根据状态执行相应的回调函数
-void process_object_state_and_callbacks(undefined8 context_ptr, longlong *object_ptr, undefined1 status_flag, undefined8 callback_param)
+void process_object_state_and_callbacks(uint64_t context_ptr, longlong *object_ptr, int8_t status_flag, uint64_t callback_param)
 
 {
   code *status_check_func;
   longlong *thread_context;
   char is_ready;
-  undefined8 retry_count;
+  uint64_t retry_count;
   
   retry_count = 0xfffffffffffffffe;
   while( true ) {
@@ -153,7 +153,7 @@ void process_object_state_and_callbacks(undefined8 context_ptr, longlong *object
 // 参数: context_ptr - 上下文指针, object_array_ptr - 对象数组指针, 
 //        process_flag - 处理标志
 // 功能: 遍历对象数组，处理每个对象的状态变化
-void batch_process_object_states(undefined8 context_ptr, longlong *object_array_ptr, char process_flag)
+void batch_process_object_states(uint64_t context_ptr, longlong *object_array_ptr, char process_flag)
 
 {
   code *status_check_func;
@@ -257,15 +257,15 @@ longlong get_thread_local_context(longlong context_manager_ptr)
 // 参数: manager_ptr - 管理器指针
 // 返回值: 初始化完成的管理器指针
 // 功能: 初始化对象管理器的各个字段和内部结构
-undefined8 * initialize_object_manager(undefined8 *manager_ptr)
+uint64_t * initialize_object_manager(uint64_t *manager_ptr)
 
 {
-  undefined8 heap_base;
+  uint64_t heap_base;
   ulonglong buffer_size;
-  undefined8 *data_array;
+  uint64_t *data_array;
   ulonglong slot_index;
   ulonglong memory_block;
-  undefined8 *array_ptr;
+  uint64_t *array_ptr;
   longlong init_count;
   longlong array_size;
   
@@ -273,7 +273,7 @@ undefined8 * initialize_object_manager(undefined8 *manager_ptr)
   data_array = manager_ptr + 0xb;
   *manager_ptr = 0;
   array_size = 0x20;
-  *(undefined4 *)(manager_ptr + 1) = 0;
+  *(int32_t *)(manager_ptr + 1) = 0;
   manager_ptr[2] = 0;
   manager_ptr[5] = 0;
   init_count = 0x20;
@@ -283,13 +283,13 @@ undefined8 * initialize_object_manager(undefined8 *manager_ptr)
     array_ptr = array_ptr + 2;
     init_count = init_count + -1;
   } while (init_count != 0);
-  *(undefined8 *)((longlong)manager_ptr + 0x25c) = 0;
-  *(undefined4 *)(manager_ptr + 0x4b) = 0;
+  *(uint64_t *)((longlong)manager_ptr + 0x25c) = 0;
+  *(int32_t *)(manager_ptr + 0x4b) = 0;
   manager_ptr[7] = 0;
   manager_ptr[8] = 0x20;
   manager_ptr[9] = data_array;
   do {
-    *(undefined4 *)data_array = 0;
+    *(int32_t *)data_array = 0;
     heap_base = GLOBAL_HEAP_BASE_ADDRESS;
     data_array = data_array + 2;
     array_size = array_size + -1;
@@ -301,13 +301,13 @@ undefined8 * initialize_object_manager(undefined8 *manager_ptr)
   buffer_size = allocate_memory_buffer(heap_base, 0x7b0, 10);
   slot_index = memory_block;
   if (buffer_size != 0) {
-    data_array = (undefined8 *)(buffer_size + 0x108);
+    data_array = (uint64_t *)(buffer_size + 0x108);
     do {
       data_array[-1] = 0;
       *data_array = 0;
-      *(undefined4 *)(data_array + 5) = 0;
+      *(int32_t *)(data_array + 5) = 0;
       data_array[6] = 0;
-      *(undefined2 *)(data_array + 7) = 0x100;
+      *(int16_t *)(data_array + 7) = 0x100;
       data_array = data_array + 0x29;
       init_count = init_count + -1;
       slot_index = buffer_size;
@@ -325,7 +325,7 @@ undefined8 * initialize_object_manager(undefined8 *manager_ptr)
   if (slot_index != 0) {
     do {
       buffer_size = buffer_size + 1;
-      *(undefined1 *)(memory_block + 0x141 + manager_ptr[3]) = 0;
+      *(int8_t *)(memory_block + 0x141 + manager_ptr[3]) = 0;
       memory_block = memory_block + 0x148;
     } while (buffer_size < (ulonglong)manager_ptr[4]);
   }

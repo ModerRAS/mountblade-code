@@ -5,16 +5,16 @@
 
 // 全局变量声明
 extern longlong _DAT_180c8a9b0;    // 主引擎上下文指针
-extern undefined8 _DAT_180c8a9a8;   // 内存分配器上下文
+extern uint64_t _DAT_180c8a9a8;   // 内存分配器上下文
 extern uint UNK_18098d290[];        // 哈希查找表
-extern undefined8 UNK_180a06788;    // 配置键值对 - 位置偏移
-extern undefined8 UNK_180a067b0;    // 配置键值对 - 边界检查
-extern undefined8 UNK_180a06798;    // 配置键值对 - 材质ID
-extern undefined8 UNK_180a067d0;    // 配置键值对 - 纹理坐标
-extern undefined8 UNK_180a067c0;    // 配置键值对 - 布尔标志
-extern undefined8 UNK_180a067f8;    // 配置键值对 - 颜色值
-extern undefined8 UNK_180a067e8;    // 配置键值对 - 整数值
-extern undefined8 UNK_180a06810;    // 配置键值对 - 浮点数值
+extern uint64_t UNK_180a06788;    // 配置键值对 - 位置偏移
+extern uint64_t UNK_180a067b0;    // 配置键值对 - 边界检查
+extern uint64_t UNK_180a06798;    // 配置键值对 - 材质ID
+extern uint64_t UNK_180a067d0;    // 配置键值对 - 纹理坐标
+extern uint64_t UNK_180a067c0;    // 配置键值对 - 布尔标志
+extern uint64_t UNK_180a067f8;    // 配置键值对 - 颜色值
+extern uint64_t UNK_180a067e8;    // 配置键值对 - 整数值
+extern uint64_t UNK_180a06810;    // 配置键值对 - 浮点数值
 extern char UNK_180a06808[];         // 字符串分隔符 "##"
 extern char UNK_180a06838[];         // 格式化字符串 "%s %s"
 extern char UNK_180a06820[];         // 格式化字符串 "%d %d"
@@ -25,17 +25,17 @@ extern char UNK_180a06870[];         // 格式化字符串 "%d"
 extern char UNK_180a068a8[];         // 格式化字符串 "%s"
 extern char UNK_180a06890[];         // 格式化字符串 "%d %d"
 extern char UNK_180a068b8[];         // 格式化字符串 "%s"
-extern undefined8 DAT_1809fcc18;     // 换行符常量
+extern uint64_t DAT_1809fcc18;     // 换行符常量
 
 // 外部函数声明
 extern void FUN_18011da00(void *buffer, longlong size);
 extern void *FUN_1801210b0(const char *str);
-extern void *func_0x000180120ce0(longlong size, undefined8 context);
-extern int FUN_18010cbc0(undefined8 config, undefined8 key, void *value1, void *value2);
+extern void *func_0x000180120ce0(longlong size, uint64_t context);
+extern int FUN_18010cbc0(uint64_t config, uint64_t key, void *value1, void *value2);
 extern void *FUN_180122210(void *buffer, const char *format, ...);
 extern void *strstr(const char *haystack, const char *needle);
 extern void *memcpy(void *dest, const void *src, longlong n);
-extern void *FUN_18013c940(undefined8 param);
+extern void *FUN_18013c940(uint64_t param);
 
 // 初始化引擎组件
 void initialize_engine_component(void)
@@ -60,7 +60,7 @@ longlong process_string_hash_and_resources(longlong *output_index)
     max_iterations = 0;
     resource_buffer = (int *)(_DAT_180c8a9b0 + 0x2e08);  // 资源缓冲区指针
     current_index = 0;
-    *(undefined4 *)(_DAT_180c8a9b0 + 0x2e04) = 0;         // 重置计数器
+    *(int32_t *)(_DAT_180c8a9b0 + 0x2e04) = 0;         // 重置计数器
     resource_count = *(int *)(engine_context + 0x2e0c);  // 获取资源数量
     
     // 处理负数资源数量
@@ -80,7 +80,7 @@ longlong process_string_hash_and_resources(longlong *output_index)
         resource_count = *resource_buffer;
     }
     
-    *(undefined1 *)((longlong)resource_count + *(longlong *)(engine_context + 0x2e10)) = 0;
+    *(int8_t *)((longlong)resource_count + *(longlong *)(engine_context + 0x2e10)) = 0;
     *resource_buffer = *resource_buffer + 1;
     max_iterations = loop_counter;
     
@@ -252,9 +252,9 @@ longlong force_process_resource_callback(void)
 }
 
 // 查找或创建字符串哈希条目
-undefined8 *find_or_create_hash_entry(undefined8 param_1, undefined8 param_2, byte *string_data)
+uint64_t *find_or_create_hash_entry(uint64_t param_1, uint64_t param_2, byte *string_data)
 {
-    undefined4 *entry_data;
+    int32_t *entry_data;
     byte current_char;
     int hash_table_size;
     longlong engine_context;
@@ -262,13 +262,13 @@ undefined8 *find_or_create_hash_entry(undefined8 param_1, undefined8 param_2, by
     longlong allocation_context;
     int new_capacity;
     uint hash_value;
-    undefined8 hash_result;
+    uint64_t hash_result;
     int current_size;
     longlong entry_offset;
     uint *hash_table_ptr;
     ulonglong search_index;
     int new_hash_size;
-    undefined8 *found_entry;
+    uint64_t *found_entry;
     ulonglong max_search;
     undefined5 stack_data;
     
@@ -297,9 +297,9 @@ undefined8 *find_or_create_hash_entry(undefined8 param_1, undefined8 param_2, by
         max_search = search_index;
         do {
             if (*hash_table_ptr == ~hash_value) {
-                found_entry = (undefined8 *)
+                found_entry = (uint64_t *)
                              ((longlong)(int)max_search * 0x38 + *(longlong *)(_DAT_180c8a9b0 + 0x2e30));
-                if (found_entry != (undefined8 *)0x0) {
+                if (found_entry != (uint64_t *)0x0) {
                     return found_entry;
                 }
                 break;
@@ -335,7 +335,7 @@ undefined8 *find_or_create_hash_entry(undefined8 param_1, undefined8 param_2, by
                        (longlong)*(int *)(engine_context + 0x2e28) * 0x38);
             }
             current_size = *(int *)(engine_context + 0x2e28);
-            *(undefined8 *)(engine_context + 0x2e30) = hash_result;
+            *(uint64_t *)(engine_context + 0x2e30) = hash_result;
             *(int *)(engine_context + 0x2e2c) = new_hash_size;
         }
     }
@@ -343,12 +343,12 @@ undefined8 *find_or_create_hash_entry(undefined8 param_1, undefined8 param_2, by
     // 创建新的哈希条目
     entry_offset = (longlong)current_size * 0x38;
     allocation_context = *(longlong *)(engine_context + 0x2e30);
-    *(undefined8 *)(entry_offset + allocation_context) = 0;
-    ((undefined8 *)(entry_offset + allocation_context))[1] = 0;
-    found_entry = (undefined8 *)(entry_offset + 0x10 + allocation_context);
+    *(uint64_t *)(entry_offset + allocation_context) = 0;
+    ((uint64_t *)(entry_offset + allocation_context))[1] = 0;
+    found_entry = (uint64_t *)(entry_offset + 0x10 + allocation_context);
     *found_entry = 0;
     found_entry[1] = 0;
-    entry_data = (undefined4 *)(entry_offset + 0x20 + allocation_context);
+    entry_data = (int32_t *)(entry_offset + 0x20 + allocation_context);
     *entry_data = 0;
     entry_data[1] = 0;
     entry_data[2] = 0;
@@ -357,7 +357,7 @@ undefined8 *find_or_create_hash_entry(undefined8 param_1, undefined8 param_2, by
     
     hash_table_size = *(int *)(engine_context + 0x2e28);
     *(int *)(engine_context + 0x2e28) = hash_table_size + 1;
-    found_entry = (undefined8 *)((longlong)hash_table_size * 0x38 + *(longlong *)(engine_context + 0x2e30));
+    found_entry = (uint64_t *)((longlong)hash_table_size * 0x38 + *(longlong *)(engine_context + 0x2e30));
     
     hash_result = FUN_1801210b0(string_data);
     *found_entry = hash_result;
@@ -380,9 +380,9 @@ undefined8 *find_or_create_hash_entry(undefined8 param_1, undefined8 param_2, by
 }
 
 // 使用预计算哈希值查找或创建条目
-undefined8 *find_or_create_hash_entry_with_precomputed_hash(undefined8 param_1, undefined8 param_2, uint precomputed_hash, byte *string_data)
+uint64_t *find_or_create_hash_entry_with_precomputed_hash(uint64_t param_1, uint64_t param_2, uint precomputed_hash, byte *string_data)
 {
-    undefined4 *entry_data;
+    int32_t *entry_data;
     byte current_char;
     int hash_table_size;
     longlong engine_context;
@@ -390,13 +390,13 @@ undefined8 *find_or_create_hash_entry_with_precomputed_hash(undefined8 param_1, 
     longlong allocation_context;
     int new_capacity;
     uint computed_hash;
-    undefined8 hash_result;
+    uint64_t hash_result;
     int current_size;
     longlong entry_offset;
     uint *hash_table_ptr;
     ulonglong search_index;
     int new_hash_size;
-    undefined8 *found_entry;
+    uint64_t *found_entry;
     uint final_hash;
     ulonglong max_search;
     byte string_start;
@@ -425,9 +425,9 @@ undefined8 *find_or_create_hash_entry_with_precomputed_hash(undefined8 param_1, 
         max_search = search_index;
         do {
             if (*hash_table_ptr == ~computed_hash) {
-                found_entry = (undefined8 *)
+                found_entry = (uint64_t *)
                              ((longlong)(int)max_search * 0x38 + *(longlong *)(_DAT_180c8a9b0 + 0x2e30));
-                if (found_entry != (undefined8 *)0x0) {
+                if (found_entry != (uint64_t *)0x0) {
                     return found_entry;
                 }
                 break;
@@ -463,7 +463,7 @@ undefined8 *find_or_create_hash_entry_with_precomputed_hash(undefined8 param_1, 
                        (longlong)*(int *)(engine_context + 0x2e28) * 0x38);
             }
             current_size = *(int *)(engine_context + 0x2e28);
-            *(undefined8 *)(engine_context + 0x2e30) = hash_result;
+            *(uint64_t *)(engine_context + 0x2e30) = hash_result;
             *(int *)(engine_context + 0x2e2c) = new_hash_size;
         }
     }
@@ -471,12 +471,12 @@ undefined8 *find_or_create_hash_entry_with_precomputed_hash(undefined8 param_1, 
     // 创建新的哈希条目
     entry_offset = (longlong)current_size * 0x38;
     allocation_context = *(longlong *)(engine_context + 0x2e30);
-    *(undefined8 *)(entry_offset + allocation_context) = 0;
-    ((undefined8 *)(entry_offset + allocation_context))[1] = 0;
-    found_entry = (undefined8 *)(entry_offset + 0x10 + allocation_context);
+    *(uint64_t *)(entry_offset + allocation_context) = 0;
+    ((uint64_t *)(entry_offset + allocation_context))[1] = 0;
+    found_entry = (uint64_t *)(entry_offset + 0x10 + allocation_context);
     *found_entry = 0;
     found_entry[1] = 0;
-    entry_data = (undefined4 *)(entry_offset + 0x20 + allocation_context);
+    entry_data = (int32_t *)(entry_offset + 0x20 + allocation_context);
     *entry_data = 0;
     entry_data[1] = 0;
     entry_data[2] = 0;
@@ -485,7 +485,7 @@ undefined8 *find_or_create_hash_entry_with_precomputed_hash(undefined8 param_1, 
     
     hash_table_size = *(int *)(engine_context + 0x2e28);
     *(int *)(engine_context + 0x2e28) = hash_table_size + 1;
-    found_entry = (undefined8 *)((longlong)hash_table_size * 0x38 + *(longlong *)(engine_context + 0x2e30));
+    found_entry = (uint64_t *)((longlong)hash_table_size * 0x38 + *(longlong *)(engine_context + 0x2e30));
     
     hash_result = FUN_1801210b0(string_start_ptr);
     *found_entry = hash_result;
@@ -508,9 +508,9 @@ undefined8 *find_or_create_hash_entry_with_precomputed_hash(undefined8 param_1, 
 }
 
 // 创建新的哈希条目
-undefined8 *create_new_hash_entry(void)
+uint64_t *create_new_hash_entry(void)
 {
-    undefined4 *entry_data;
+    int32_t *entry_data;
     byte current_char;
     int hash_table_size;
     longlong engine_context;
@@ -518,13 +518,13 @@ undefined8 *create_new_hash_entry(void)
     longlong allocation_context;
     int new_capacity;
     uint computed_hash;
-    undefined8 hash_result;
+    uint64_t hash_result;
     int current_size;
     longlong entry_offset;
     uint *hash_table_ptr;
     ulonglong search_index;
     int new_hash_size;
-    undefined8 *found_entry;
+    uint64_t *found_entry;
     uint final_hash;
     ulonglong max_search;
     byte *string_start_ptr;
@@ -540,9 +540,9 @@ undefined8 *create_new_hash_entry(void)
         max_search = search_index;
         do {
             if (*hash_table_ptr == ~computed_hash) {
-                found_entry = (undefined8 *)
+                found_entry = (uint64_t *)
                              ((longlong)(int)max_search * 0x38 + *(longlong *)(_DAT_180c8a9b0 + 0x2e30));
-                if (found_entry != (undefined8 *)0x0) {
+                if (found_entry != (uint64_t *)0x0) {
                     return found_entry;
                 }
                 break;
@@ -578,7 +578,7 @@ undefined8 *create_new_hash_entry(void)
                        (longlong)*(int *)(engine_context + 0x2e28) * 0x38);
             }
             current_size = *(int *)(engine_context + 0x2e28);
-            *(undefined8 *)(engine_context + 0x2e30) = hash_result;
+            *(uint64_t *)(engine_context + 0x2e30) = hash_result;
             *(int *)(engine_context + 0x2e2c) = new_hash_size;
         }
     }
@@ -586,12 +586,12 @@ undefined8 *create_new_hash_entry(void)
     // 创建新的哈希条目
     entry_offset = (longlong)current_size * 0x38;
     allocation_context = *(longlong *)(engine_context + 0x2e30);
-    *(undefined8 *)(entry_offset + allocation_context) = 0;
-    ((undefined8 *)(entry_offset + allocation_context))[1] = 0;
-    found_entry = (undefined8 *)(entry_offset + 0x10 + allocation_context);
+    *(uint64_t *)(entry_offset + allocation_context) = 0;
+    ((uint64_t *)(entry_offset + allocation_context))[1] = 0;
+    found_entry = (uint64_t *)(entry_offset + 0x10 + allocation_context);
     *found_entry = 0;
     found_entry[1] = 0;
-    entry_data = (undefined4 *)(entry_offset + 0x20 + allocation_context);
+    entry_data = (int32_t *)(entry_offset + 0x20 + allocation_context);
     *entry_data = 0;
     entry_data[1] = 0;
     entry_data[2] = 0;
@@ -600,7 +600,7 @@ undefined8 *create_new_hash_entry(void)
     
     hash_table_size = *(int *)(engine_context + 0x2e28);
     *(int *)(engine_context + 0x2e28) = hash_table_size + 1;
-    found_entry = (undefined8 *)((longlong)hash_table_size * 0x38 + *(longlong *)(engine_context + 0x2e30));
+    found_entry = (uint64_t *)((longlong)hash_table_size * 0x38 + *(longlong *)(engine_context + 0x2e30));
     
     hash_result = FUN_1801210b0(string_start_ptr);
     *found_entry = hash_result;
@@ -623,12 +623,12 @@ undefined8 *create_new_hash_entry(void)
 }
 
 // 处理配置参数并设置到目标结构体
-void process_configuration_parameters(undefined8 param_1, undefined8 param_2, longlong target_struct, undefined8 config_data)
+void process_configuration_parameters(uint64_t param_1, uint64_t param_2, longlong target_struct, uint64_t config_data)
 {
     int parse_result;
     float float_value1;
     float float_value2;
-    undefined4 temp_array[4];
+    int32_t temp_array[4];
     float temp_float1;
     float temp_float2;
     int temp_int_array[2];
@@ -659,7 +659,7 @@ void process_configuration_parameters(undefined8 param_1, undefined8 param_2, lo
     // 解析材质ID参数
     parse_result = FUN_18010cbc0(config_data, &UNK_180a06798, temp_array);
     if (parse_result == 1) {
-        *(undefined4 *)(target_struct + 0x24) = temp_array[0];
+        *(int32_t *)(target_struct + 0x24) = temp_array[0];
         return;
     }
     
@@ -681,34 +681,34 @@ void process_configuration_parameters(undefined8 param_1, undefined8 param_2, lo
     // 解析颜色值参数
     parse_result = FUN_18010cbc0(config_data, &UNK_180a067f8, temp_array, temp_int_array);
     if (parse_result == 2) {
-        *(undefined4 *)(target_struct + 0x28) = temp_array[0];
-        *(undefined2 *)(target_struct + 0x30) = (undefined2)temp_int_array[0];
+        *(int32_t *)(target_struct + 0x28) = temp_array[0];
+        *(int16_t *)(target_struct + 0x30) = (int16_t)temp_int_array[0];
         return;
     }
     
     // 解析整数值参数
     parse_result = FUN_18010cbc0(config_data, &UNK_180a067e8, temp_array);
     if (parse_result == 1) {
-        *(undefined4 *)(target_struct + 0x28) = temp_array[0];
-        *(undefined2 *)(target_struct + 0x30) = 0xffff;
+        *(int32_t *)(target_struct + 0x28) = temp_array[0];
+        *(int16_t *)(target_struct + 0x30) = 0xffff;
         return;
     }
     
     // 解析浮点数值参数
     parse_result = FUN_18010cbc0(config_data, &UNK_180a06810, temp_array);
     if (parse_result == 1) {
-        *(undefined4 *)(target_struct + 0x2c) = temp_array[0];
+        *(int32_t *)(target_struct + 0x2c) = temp_array[0];
     }
     return;
 }
 
 // 处理引擎资源数据并格式化输出
-void process_engine_resources_and_format_output(longlong engine_context, undefined8 *format_params, int *output_buffer)
+void process_engine_resources_and_format_output(longlong engine_context, uint64_t *format_params, int *output_buffer)
 {
     float position_x;
     float position_y;
     short texture_index;
-    undefined8 *resource_entry;
+    uint64_t *resource_entry;
     longlong resource_offset;
     int *hash_table_ptr;
     ulonglong hash_index;
@@ -730,7 +730,7 @@ void process_engine_resources_and_format_output(longlong engine_context, undefin
     // 处理活动资源
     if (*(int *)(engine_context + 0x1aa0) != 0) {
         do {
-            resource_entry = *(undefined8 **)(max_search + *(longlong *)(engine_context + 0x1aa8));
+            resource_entry = *(uint64_t **)(max_search + *(longlong *)(engine_context + 0x1aa8));
             if ((*(uint *)((longlong)resource_entry + 0xc) & 0x100) == 0) {
                 if (*(int *)(resource_entry + 0x5c) == -1) {
                     hash_index = search_index;
@@ -765,13 +765,13 @@ void process_engine_resources_and_format_output(longlong engine_context, undefin
                 position_y = *(float *)((longlong)resource_entry + 0x34);
                 *(float *)(hash_index + 0x10) = *(float *)((longlong)resource_entry + 0x44) - *(float *)(resource_entry + 7);
                 *(float *)(hash_index + 0xc) = position_x - position_y;
-                *(undefined8 *)(hash_index + 0x14) = resource_entry[10];
-                *(undefined4 *)(hash_index + 0x24) = *(undefined4 *)(resource_entry + 6);
-                *(undefined8 *)(hash_index + 0x1c) = *(undefined8 *)((longlong)resource_entry + 0x34);
-                *(undefined4 *)(hash_index + 0x28) = *(undefined4 *)(resource_entry + 0x83);
-                *(undefined4 *)(hash_index + 0x2c) = *(undefined4 *)((longlong)resource_entry + 0x14);
-                *(undefined2 *)(hash_index + 0x30) = *(undefined2 *)(resource_entry + 0x86);
-                *(undefined1 *)(hash_index + 0x32) = *(undefined1 *)((longlong)resource_entry + 0xb2);
+                *(uint64_t *)(hash_index + 0x14) = resource_entry[10];
+                *(int32_t *)(hash_index + 0x24) = *(int32_t *)(resource_entry + 6);
+                *(uint64_t *)(hash_index + 0x1c) = *(uint64_t *)((longlong)resource_entry + 0x34);
+                *(int32_t *)(hash_index + 0x28) = *(int32_t *)(resource_entry + 0x83);
+                *(int32_t *)(hash_index + 0x2c) = *(int32_t *)((longlong)resource_entry + 0x14);
+                *(int16_t *)(hash_index + 0x30) = *(int16_t *)(resource_entry + 0x86);
+                *(int8_t *)(hash_index + 0x32) = *(int8_t *)((longlong)resource_entry + 0xb2);
             }
             current_uint = (int)max_iterations + 1;
             max_search = max_search + 8;
@@ -801,7 +801,7 @@ void process_engine_resources_and_format_output(longlong engine_context, undefin
             if ((resource_count != 0) && (resource_count != 0x11111111)) {
                 FUN_180122210(output_buffer, &UNK_180a06820, (int)*(float *)(max_search + 0x1c + resource_offset),
                               (int)*(float *)(max_search + 0x20 + resource_offset));
-                FUN_180122210(output_buffer, &UNK_180a06858, *(undefined4 *)(max_search + 0x24 + resource_offset));
+                FUN_180122210(output_buffer, &UNK_180a06858, *(int32_t *)(max_search + 0x24 + resource_offset));
             }
             position_x = *(float *)(max_search + 0xc + resource_offset);
             if (((position_x != 0.0) || (*(float *)(max_search + 0x10 + resource_offset) != 0.0)) ||
@@ -812,7 +812,7 @@ void process_engine_resources_and_format_output(longlong engine_context, undefin
             if ((position_x != 0.0) || (*(float *)(max_search + 0x18 + resource_offset) != 0.0)) {
                 FUN_180122210(output_buffer, &UNK_180a06880, (int)position_x, (int)*(float *)(max_search + 0x18 + resource_offset));
             }
-            FUN_180122210(output_buffer, &UNK_180a06870, *(undefined1 *)(max_search + 0x32 + resource_offset));
+            FUN_180122210(output_buffer, &UNK_180a06870, *(int8_t *)(max_search + 0x32 + resource_offset));
             resource_count = *(int *)(max_search + 0x28 + resource_offset);
             if (resource_count != 0) {
                 texture_index = *(short *)(max_search + 0x30 + resource_offset);
@@ -836,12 +836,12 @@ void process_engine_resources_and_format_output(longlong engine_context, undefin
 }
 
 // 处理引擎资源数据的优化版本
-void process_engine_resources_optimized(undefined8 param_1)
+void process_engine_resources_optimized(uint64_t param_1)
 {
     float position_x;
     float position_y;
     short texture_index;
-    undefined8 *resource_entry;
+    uint64_t *resource_entry;
     longlong resource_offset;
     int *hash_table_ptr;
     ulonglong hash_index;
@@ -854,15 +854,15 @@ void process_engine_resources_optimized(undefined8 param_1)
     uint current_uint;
     ulonglong current_offset;
     int output_count;
-    undefined8 *format_params;
+    uint64_t *format_params;
     int *output_buffer;
     longlong engine_context;
-    undefined8 extra_output;
-    undefined8 temp_result;
+    uint64_t extra_output;
+    uint64_t temp_result;
     
     current_offset = loop_counter & 0xffffffff;
     do {
-        resource_entry = *(undefined8 **)(current_offset + *(longlong *)(engine_context + 0x1aa8));
+        resource_entry = *(uint64_t **)(current_offset + *(longlong *)(engine_context + 0x1aa8));
         if ((*(uint *)((longlong)resource_entry + 0xc) & 0x100) == 0) {
             if (*(int *)(resource_entry + 0x5c) == -1) {
                 max_iterations = loop_counter & 0xffffffff;
@@ -897,14 +897,14 @@ void process_engine_resources_optimized(undefined8 param_1)
             position_y = *(float *)((longlong)resource_entry + 0x34);
             *(float *)(hash_index + 0x10) = *(float *)((longlong)resource_entry + 0x44) - *(float *)(resource_entry + 7);
             *(float *)(hash_index + 0xc) = position_x - position_y;
-            *(undefined8 *)(hash_index + 0x14) = resource_entry[10];
-            *(undefined4 *)(hash_index + 0x24) = *(undefined4 *)(resource_entry + 6);
-            param_1 = *(undefined8 *)((longlong)resource_entry + 0x34);
-            *(undefined8 *)(hash_index + 0x1c) = param_1;
-            *(undefined4 *)(hash_index + 0x28) = *(undefined4 *)(resource_entry + 0x83);
-            *(undefined4 *)(hash_index + 0x2c) = *(undefined4 *)((longlong)resource_entry + 0x14);
-            *(undefined2 *)(hash_index + 0x30) = *(undefined2 *)(resource_entry + 0x86);
-            *(undefined1 *)(hash_index + 0x32) = *(undefined1 *)((longlong)resource_entry + 0xb2);
+            *(uint64_t *)(hash_index + 0x14) = resource_entry[10];
+            *(int32_t *)(hash_index + 0x24) = *(int32_t *)(resource_entry + 6);
+            param_1 = *(uint64_t *)((longlong)resource_entry + 0x34);
+            *(uint64_t *)(hash_index + 0x1c) = param_1;
+            *(int32_t *)(hash_index + 0x28) = *(int32_t *)(resource_entry + 0x83);
+            *(int32_t *)(hash_index + 0x2c) = *(int32_t *)((longlong)resource_entry + 0x14);
+            *(int16_t *)(hash_index + 0x30) = *(int16_t *)(resource_entry + 0x86);
+            *(int8_t *)(hash_index + 0x32) = *(int8_t *)((longlong)resource_entry + 0xb2);
         }
         output_count = output_count + 1;
         current_offset = current_offset + 8;
@@ -928,7 +928,7 @@ void process_engine_resources_optimized(undefined8 param_1)
                     if ((resource_count != 0) && (resource_count != 0x11111111)) {
                         temp_result = FUN_180122210(temp_result, &UNK_180a06820, (int)*(float *)(current_offset + 0x1c + resource_offset),
                                                    (int)*(float *)(current_offset + 0x20 + resource_offset));
-                        FUN_180122210(temp_result, &UNK_180a06858, *(undefined4 *)(current_offset + 0x24 + resource_offset));
+                        FUN_180122210(temp_result, &UNK_180a06858, *(int32_t *)(current_offset + 0x24 + resource_offset));
                     }
                     position_x = *(float *)(current_offset + 0xc + resource_offset);
                     if (((position_x != 0.0) || (*(float *)(current_offset + 0x10 + resource_offset) != 0.0)) ||
@@ -941,7 +941,7 @@ void process_engine_resources_optimized(undefined8 param_1)
                         hash_index = FUN_180122210(hash_index, &UNK_180a06880, (int)position_x,
                                                   (int)*(float *)(current_offset + 0x18 + resource_offset));
                     }
-                    temp_result = FUN_180122210(hash_index, &UNK_180a06870, *(undefined1 *)(current_offset + 0x32 + resource_offset));
+                    temp_result = FUN_180122210(hash_index, &UNK_180a06870, *(int8_t *)(current_offset + 0x32 + resource_offset));
                     resource_count = *(int *)(current_offset + 0x28 + resource_offset);
                     if (resource_count != 0) {
                         texture_index = *(short *)(current_offset + 0x30 + resource_offset);
@@ -967,7 +967,7 @@ void process_engine_resources_optimized(undefined8 param_1)
 }
 
 // 格式化资源数据输出
-void format_resource_data_output(undefined4 output_buffer)
+void format_resource_data_output(int32_t output_buffer)
 {
     short texture_index;
     longlong resource_offset;
@@ -976,12 +976,12 @@ void format_resource_data_output(undefined4 output_buffer)
     longlong engine_context;
     uint current_uint;
     ulonglong current_offset;
-    undefined8 *format_params;
+    uint64_t *format_params;
     int *output_ptr;
     longlong context_ptr;
-    undefined4 temp_result;
+    int32_t temp_result;
     float position_x;
-    undefined8 temp_output;
+    uint64_t temp_output;
     
     resource_count = (int)current_offset;
     if (*(ulonglong *)(output_ptr + 2) != current_offset) {
@@ -1004,7 +1004,7 @@ void format_resource_data_output(undefined4 output_buffer)
             if ((resource_count != 0) && (resource_count != 0x11111111)) {
                 temp_result = FUN_180122210(temp_result, &UNK_180a06820, (int)*(float *)(current_offset + 0x1c + resource_offset),
                                           (int)*(float *)(current_offset + 0x20 + resource_offset));
-                FUN_180122210(temp_result, &UNK_180a06858, *(undefined4 *)(current_offset + 0x24 + resource_offset));
+                FUN_180122210(temp_result, &UNK_180a06858, *(int32_t *)(current_offset + 0x24 + resource_offset));
             }
             position_x = *(float *)(current_offset + 0xc + resource_offset);
             if (((position_x != 0.0) || (*(float *)(current_offset + 0x10 + resource_offset) != 0.0)) ||
@@ -1016,7 +1016,7 @@ void format_resource_data_output(undefined4 output_buffer)
                 position_x = (float)FUN_180122210(position_x, &UNK_180a06880, (int)position_x,
                                              (int)*(float *)(current_offset + 0x18 + resource_offset));
             }
-            temp_result = FUN_180122210(position_x, &UNK_180a06870, *(undefined1 *)(current_offset + 0x32 + resource_offset));
+            temp_result = FUN_180122210(position_x, &UNK_180a06870, *(int8_t *)(current_offset + 0x32 + resource_offset));
             resource_count = *(int *)(current_offset + 0x28 + resource_offset);
             if (resource_count != 0) {
                 texture_index = *(short *)(current_offset + 0x30 + resource_offset);

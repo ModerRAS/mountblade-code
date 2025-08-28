@@ -335,8 +335,8 @@ void FUN_1807d8a30(float *param_1,uint param_2,int param_3,float *param_4,float 
 
 
 
-// 函数: void FUN_1807d8b2d(float *param_1,uint param_2,undefined8 param_3,float *param_4)
-void FUN_1807d8b2d(float *param_1,uint param_2,undefined8 param_3,float *param_4)
+// 函数: void FUN_1807d8b2d(float *param_1,uint param_2,uint64_t param_3,float *param_4)
+void FUN_1807d8b2d(float *param_1,uint param_2,uint64_t param_3,float *param_4)
 
 {
   float *pfVar1;
@@ -628,8 +628,8 @@ void FUN_1807d8b2d(float *param_1,uint param_2,undefined8 param_3,float *param_4
 
 
 
-// 函数: void FUN_1807d8cb9(longlong param_1,int param_2,undefined8 param_3,float *param_4)
-void FUN_1807d8cb9(longlong param_1,int param_2,undefined8 param_3,float *param_4)
+// 函数: void FUN_1807d8cb9(longlong param_1,int param_2,uint64_t param_3,float *param_4)
+void FUN_1807d8cb9(longlong param_1,int param_2,uint64_t param_3,float *param_4)
 
 {
   float *pfVar1;
@@ -848,8 +848,8 @@ void FUN_1807d8cb9(longlong param_1,int param_2,undefined8 param_3,float *param_
 
 
 
-// 函数: void FUN_1807d8cfb(float param_1,int param_2,undefined8 param_3,float *param_4)
-void FUN_1807d8cfb(float param_1,int param_2,undefined8 param_3,float *param_4)
+// 函数: void FUN_1807d8cfb(float param_1,int param_2,uint64_t param_3,float *param_4)
+void FUN_1807d8cfb(float param_1,int param_2,uint64_t param_3,float *param_4)
 
 {
   uint uVar1;
@@ -945,8 +945,8 @@ void FUN_1807d8cfb(float param_1,int param_2,undefined8 param_3,float *param_4)
 
 
 
-// 函数: void FUN_1807d8e9d(longlong param_1,int param_2,undefined8 param_3,float *param_4)
-void FUN_1807d8e9d(longlong param_1,int param_2,undefined8 param_3,float *param_4)
+// 函数: void FUN_1807d8e9d(longlong param_1,int param_2,uint64_t param_3,float *param_4)
+void FUN_1807d8e9d(longlong param_1,int param_2,uint64_t param_3,float *param_4)
 
 {
   float *pfVar1;

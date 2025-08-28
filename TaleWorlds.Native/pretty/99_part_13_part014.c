@@ -166,14 +166,14 @@ typedef enum {
  ========================================*/
 
 /** 系统数据表指针 */
-extern undefined8 _DAT_180be12f0;
+extern uint64_t _DAT_180be12f0;
 
 /** 虚表指针 */
-extern undefined8 UNK_180986940;
-extern undefined8 UNK_180986948;
+extern uint64_t UNK_180986940;
+extern uint64_t UNK_180986948;
 
 /** 类型信息指针 */
-extern undefined8 UNK_1809869a0;
+extern uint64_t UNK_1809869a0;
 
 /*=========================================
  * 函数实现
@@ -284,7 +284,7 @@ StatusCode SystemDataProcessorAndObjectCreator(longlong param_1, longlong *param
     if (index == 0) {
         /* 创建基础对象 */
         object_ptr = (ObjectPtr)
-                 FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
+                 FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
                               SYSTEM_SIZE_0X20, &UNK_1809869a0, 0x112, 
                               (ulonglong)flags << 0x20, 0, 1);
         
@@ -293,10 +293,10 @@ StatusCode SystemDataProcessorAndObjectCreator(longlong param_1, longlong *param
         }
         
         /* 初始化基础对象 */
-        *(undefined4 *)((char *)object_ptr + 3) = 0;
-        *(undefined8 *)object_ptr = &UNK_180986940;
-        ((undefined8 *)object_ptr)[1] = 0;
-        *(undefined4 *)((char *)object_ptr + 2) = 0;
+        *(int32_t *)((char *)object_ptr + 3) = 0;
+        *(uint64_t *)object_ptr = &UNK_180986940;
+        ((uint64_t *)object_ptr)[1] = 0;
+        *(int32_t *)((char *)object_ptr + 2) = 0;
         *(ObjectPtr **)((longlong *)(param_1 + SYSTEM_OFFSET_0X48) + size * 8) = object_ptr;
         
         /* 验证状态 */
@@ -327,7 +327,7 @@ StatusCode SystemDataProcessorAndObjectCreator(longlong param_1, longlong *param
     } else if (index == 2) {
         /* 处理特殊对象 */
         object_ptr = (ObjectPtr)
-                 FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
+                 FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
                               SYSTEM_SIZE_0X20, &UNK_1809869a0, 0x120, 
                               (ulonglong)flags << 0x20, 0, 1);
         
@@ -336,10 +336,10 @@ StatusCode SystemDataProcessorAndObjectCreator(longlong param_1, longlong *param
         }
         
         /* 初始化特殊对象 */
-        *(undefined1 *)((char *)object_ptr + 3) = 0;
-        *(undefined8 *)object_ptr = &UNK_180986940;
-        ((undefined8 *)object_ptr)[1] = 0;
-        *(undefined4 *)((char *)object_ptr + 2) = 2;
+        *(int8_t *)((char *)object_ptr + 3) = 0;
+        *(uint64_t *)object_ptr = &UNK_180986940;
+        ((uint64_t *)object_ptr)[1] = 0;
+        *(int32_t *)((char *)object_ptr + 2) = 2;
         *(ObjectPtr **)((longlong *)(param_1 + SYSTEM_OFFSET_0X48) + size * 8) = object_ptr;
         
         if (*(int *)(param_2[1] + SYSTEM_OFFSET_0X18) != 0) {
@@ -356,7 +356,7 @@ StatusCode SystemDataProcessorAndObjectCreator(longlong param_1, longlong *param
         }
         
         object_ptr = (ObjectPtr)
-                 FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
+                 FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
                               SYSTEM_SIZE_0X20, &UNK_1809869a0, 0x127, 
                               flags & 0xffffffff00000000, 0, 1);
         
@@ -365,10 +365,10 @@ StatusCode SystemDataProcessorAndObjectCreator(longlong param_1, longlong *param
         }
         
         /* 初始化自定义对象 */
-        ((undefined8 *)object_ptr)[1] = 0;
+        ((uint64_t *)object_ptr)[1] = 0;
         object_ptr = (ObjectPtr)((char *)object_ptr + 3);
-        *(undefined4 *)((char *)object_ptr - 1) = 3;
-        *(undefined8 *)((char *)object_ptr - 3) = &UNK_180986948;
+        *(int32_t *)((char *)object_ptr - 1) = 3;
+        *(uint64_t *)((char *)object_ptr - 3) = &UNK_180986948;
         func_0x00018005d5f0(object_ptr);
         flags = flags & 0xffffffff00000000;
         *(ObjectPtr **)((longlong *)(param_1 + SYSTEM_OFFSET_0X48) + size * 8) = (ObjectPtr)((char *)object_ptr - 3);
@@ -433,21 +433,21 @@ StatusCode SystemDataProcessorAndObjectCreator(longlong param_1, longlong *param
  * @note 这是一个简化实现
  * @see SystemDataValidatorAndStateManager
  */
-StatusCode SystemDataValidatorAndStateManager(undefined8 param_1, longlong *param_2)
+StatusCode SystemDataValidatorAndStateManager(uint64_t param_1, longlong *param_2)
 {
     ObjectPtr object_ptr;
     IndexType index;
     uint validation_result;
     StatusCode status_code;
     ObjectPtr created_object;
-    undefined8 temp_value;
+    uint64_t temp_value;
     IndexType type_index;
     longlong offset;
-    undefined8 stack_param;
-    undefined4 validation_flags;
+    uint64_t stack_param;
+    int32_t validation_flags;
     
     /* 获取验证参数 */
-    validation_flags = (undefined4)((ulonglong)stack_param >> 0x20);
+    validation_flags = (int32_t)((ulonglong)stack_param >> 0x20);
     param_2 = (longlong *)*param_2;
     index = (IndexType)(*((ulonglong *)&stack_param + 1));
     type_index = index + 1;
@@ -459,7 +459,7 @@ StatusCode SystemDataValidatorAndStateManager(undefined8 param_1, longlong *para
             /* 处理数据验证 */
             validation_result = *((ulonglong *)&stack_param + 1);
             status_code = FUN_180769ed0(*param_2, &validation_result, type_index, 4);
-            validation_flags = (undefined4)(validation_result >> 0x20);
+            validation_flags = (int32_t)(validation_result >> 0x20);
         } else {
             /* 处理复杂数据验证 */
             stack_param = CONCAT44(validation_flags, index);
@@ -469,7 +469,7 @@ StatusCode SystemDataValidatorAndStateManager(undefined8 param_1, longlong *para
                 if ((stack_param & 0xffffffff) + 4 <= (ulonglong)((longlong *)param_2)[2]) {
                     validation_result = *((ulonglong *)&stack_param + 1);
                     status_code = FUN_180769ed0(*param_2, &validation_result, type_index, 4);
-                    validation_flags = (undefined4)(validation_result >> 0x20);
+                    validation_flags = (int32_t)(validation_result >> 0x20);
                 } else {
                     status_code = SYSTEM_ERROR_MEMORY_FAILED;
                 }
@@ -508,7 +508,7 @@ StatusCode SystemDataValidatorAndStateManager(undefined8 param_1, longlong *para
     if (type_index == 0) {
         /* 基础类型验证 */
         created_object = (ObjectPtr)
-                 FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
+                 FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
                               SYSTEM_SIZE_0X20, &UNK_1809869a0, 0x112, 
                               CONCAT44(validation_flags, index));
         
@@ -518,8 +518,8 @@ StatusCode SystemDataValidatorAndStateManager(undefined8 param_1, longlong *para
         
         /* 初始化验证对象 */
         *(int *)((char *)created_object + 3) = index;
-        *(undefined8 *)created_object = &UNK_180986940;
-        ((undefined8 *)created_object)[1] = *((ulonglong *)&stack_param + 1);
+        *(uint64_t *)created_object = &UNK_180986940;
+        ((uint64_t *)created_object)[1] = *((ulonglong *)&stack_param + 1);
         *(int *)((char *)created_object + 2) = index;
         *(ObjectPtr **)((longlong *)(*((longlong *)&stack_param + 3)) + *((longlong *)&stack_param + 2) * 8) = created_object;
         
@@ -549,7 +549,7 @@ StatusCode SystemDataValidatorAndStateManager(undefined8 param_1, longlong *para
     } else if (type_index == 2) {
         /* 特殊类型验证 */
         created_object = (ObjectPtr)
-                 FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
+                 FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
                               SYSTEM_SIZE_0X20, &UNK_1809869a0, 0x120, 
                               CONCAT44(validation_flags, index));
         
@@ -559,9 +559,9 @@ StatusCode SystemDataValidatorAndStateManager(undefined8 param_1, longlong *para
         
         /* 初始化特殊验证对象 */
         *(char *)((char *)created_object + 3) = (char)*((ulonglong *)&stack_param + 1);
-        *(undefined8 *)created_object = &UNK_180986940;
-        ((undefined8 *)created_object)[1] = *((ulonglong *)&stack_param + 1);
-        *(undefined4 *)((char *)created_object + 2) = 2;
+        *(uint64_t *)created_object = &UNK_180986940;
+        ((uint64_t *)created_object)[1] = *((ulonglong *)&stack_param + 1);
+        *(int32_t *)((char *)created_object + 2) = 2;
         *(ObjectPtr **)((longlong *)(*((longlong *)&stack_param + 3)) + *((longlong *)&stack_param + 2) * 8) = created_object;
         
         if (*(int *)(*((longlong **)&stack_param + 1)[1] + SYSTEM_OFFSET_0X18) != index) {
@@ -578,7 +578,7 @@ StatusCode SystemDataValidatorAndStateManager(undefined8 param_1, longlong *para
         }
         
         created_object = (ObjectPtr)
-                 FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
+                 FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
                               SYSTEM_SIZE_0X20, &UNK_1809869a0, 0x127, 
                               CONCAT44(validation_flags, index));
         
@@ -587,10 +587,10 @@ StatusCode SystemDataValidatorAndStateManager(undefined8 param_1, longlong *para
         }
         
         /* 初始化自定义验证对象 */
-        ((undefined8 *)created_object)[1] = *((ulonglong *)&stack_param + 1);
+        ((uint64_t *)created_object)[1] = *((ulonglong *)&stack_param + 1);
         object_ptr = (ObjectPtr)((char *)created_object + 3);
-        *(undefined4 *)((char *)created_object + 2) = 3;
-        *(undefined8 *)created_object = &UNK_180986948;
+        *(int32_t *)((char *)created_object + 2) = 3;
+        *(uint64_t *)created_object = &UNK_180986948;
         func_0x00018005d5f0(object_ptr);
         stack_param = CONCAT44(validation_flags, index);
         *(ObjectPtr **)((longlong *)(*((longlong *)&stack_param + 3)) + *((longlong *)&stack_param + 2) * 8) = created_object;
@@ -660,11 +660,11 @@ StatusCode SystemMemoryAllocatorAndObjectInitializer(void)
     uint allocation_result;
     StatusCode status_code;
     ObjectPtr created_object;
-    undefined8 temp_value;
+    uint64_t temp_value;
     IndexType type_index;
     longlong size;
-    undefined8 stack_param[2];
-    undefined4 allocation_flags;
+    uint64_t stack_param[2];
+    int32_t allocation_flags;
     
     /* 获取分配参数 */
     index = (IndexType)(*((ulonglong *)&stack_param + 1));
@@ -715,7 +715,7 @@ StatusCode SystemMemoryAllocatorAndObjectInitializer(void)
         } else if (type_index == 2) {
             /* 特殊类型分配 */
             created_object = (ObjectPtr)
-                     FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
+                     FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
                                   SYSTEM_SIZE_0X20, &UNK_1809869a0, 0x120);
             
             if (created_object == (ObjectPtr)0x0) {
@@ -724,9 +724,9 @@ StatusCode SystemMemoryAllocatorAndObjectInitializer(void)
             
             /* 初始化特殊对象 */
             *(char *)((char *)created_object + 3) = (char)*((ulonglong *)&stack_param + 1);
-            *(undefined8 *)created_object = &UNK_180986940;
-            ((undefined8 *)created_object)[1] = *((ulonglong *)&stack_param + 1);
-            *(undefined4 *)((char *)created_object + 2) = 2;
+            *(uint64_t *)created_object = &UNK_180986940;
+            ((uint64_t *)created_object)[1] = *((ulonglong *)&stack_param + 1);
+            *(int32_t *)((char *)created_object + 2) = 2;
             *(ObjectPtr **)((longlong *)(*((longlong *)&stack_param + 3)) + *((longlong *)&stack_param + 2) * 8) = created_object;
             
             if (*(int *)(*((longlong **)&stack_param + 1)[1] + SYSTEM_OFFSET_0X18) != index) {
@@ -743,7 +743,7 @@ StatusCode SystemMemoryAllocatorAndObjectInitializer(void)
             }
             
             created_object = (ObjectPtr)
-                     FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
+                     FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
                                   SYSTEM_SIZE_0X20, &UNK_1809869a0, 0x127);
             
             if (created_object == (ObjectPtr)0x0) {
@@ -751,10 +751,10 @@ StatusCode SystemMemoryAllocatorAndObjectInitializer(void)
             }
             
             /* 初始化自定义对象 */
-            ((undefined8 *)created_object)[1] = *((ulonglong *)&stack_param + 1);
+            ((uint64_t *)created_object)[1] = *((ulonglong *)&stack_param + 1);
             object_ptr = (ObjectPtr)((char *)created_object + 3);
-            *(undefined4 *)((char *)created_object + 2) = 3;
-            *(undefined8 *)created_object = &UNK_180986948;
+            *(int32_t *)((char *)created_object + 2) = 3;
+            *(uint64_t *)created_object = &UNK_180986948;
             func_0x00018005d5f0(object_ptr);
             stack_param[0] = CONCAT44(allocation_flags, index);
             *(ObjectPtr **)((longlong *)(*((longlong *)&stack_param + 3)) + *((longlong *)&stack_param + 2) * 8) = created_object;
@@ -806,7 +806,7 @@ StatusCode SystemMemoryAllocatorAndObjectInitializer(void)
     
     /* 基础类型分配 */
     created_object = (ObjectPtr)
-             FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
+             FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
                           SYSTEM_SIZE_0X20, &UNK_1809869a0, 0x112);
     
     if (created_object == (ObjectPtr)0x0) {
@@ -815,8 +815,8 @@ StatusCode SystemMemoryAllocatorAndObjectInitializer(void)
     
     /* 初始化基础对象 */
     *(int *)((char *)created_object + 3) = index;
-    *(undefined8 *)created_object = &UNK_180986940;
-    ((undefined8 *)created_object)[1] = *((ulonglong *)&stack_param + 1);
+    *(uint64_t *)created_object = &UNK_180986940;
+    ((uint64_t *)created_object)[1] = *((ulonglong *)&stack_param + 1);
     *(int *)((char *)created_object + 2) = index;
     *(ObjectPtr **)((longlong *)(*((longlong *)&stack_param + 3)) + *((longlong *)&stack_param + 2) * 8) = created_object;
     
@@ -854,10 +854,10 @@ StatusCode SystemErrorHandlerAndReturnCodeManager(void)
     uint error_result;
     StatusCode status_code;
     ObjectPtr error_object;
-    undefined8 temp_value;
+    uint64_t temp_value;
     longlong error_code;
-    undefined8 stack_param[2];
-    undefined4 error_flags;
+    uint64_t stack_param[2];
+    int32_t error_flags;
     
     /* 获取错误处理参数 */
     index = (IndexType)(*((ulonglong *)&stack_param + 1));
@@ -883,7 +883,7 @@ StatusCode SystemErrorHandlerAndReturnCodeManager(void)
         } else if (*((int *)&stack_param + 1) == 2) {
             /* 处理类型2错误 */
             error_object = (ObjectPtr)
-                     FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
+                     FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
                                   SYSTEM_SIZE_0X20, &UNK_1809869a0, 0x120);
             
             if (error_object == (ObjectPtr)0x0) {
@@ -892,9 +892,9 @@ StatusCode SystemErrorHandlerAndReturnCodeManager(void)
             
             /* 初始化错误对象 */
             *(char *)((char *)error_object + 3) = (char)*((ulonglong *)&stack_param + 1);
-            *(undefined8 *)error_object = &UNK_180986940;
-            ((undefined8 *)error_object)[1] = *((ulonglong *)&stack_param + 1);
-            *(undefined4 *)((char *)error_object + 2) = 2;
+            *(uint64_t *)error_object = &UNK_180986940;
+            ((uint64_t *)error_object)[1] = *((ulonglong *)&stack_param + 1);
+            *(int32_t *)((char *)error_object + 2) = 2;
             *(ObjectPtr **)((longlong *)(*((longlong *)&stack_param + 3)) + *((longlong *)&stack_param + 2) * 8) = error_object;
             
             if (*(int *)(*((longlong **)&stack_param + 1)[1] + SYSTEM_OFFSET_0X18) != index) {
@@ -911,7 +911,7 @@ StatusCode SystemErrorHandlerAndReturnCodeManager(void)
             }
             
             error_object = (ObjectPtr)
-                     FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
+                     FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
                                   SYSTEM_SIZE_0X20, &UNK_1809869a0, 0x127);
             
             if (error_object == (ObjectPtr)0x0) {
@@ -919,10 +919,10 @@ StatusCode SystemErrorHandlerAndReturnCodeManager(void)
             }
             
             /* 初始化错误对象 */
-            ((undefined8 *)error_object)[1] = *((ulonglong *)&stack_param + 1);
+            ((uint64_t *)error_object)[1] = *((ulonglong *)&stack_param + 1);
             object_ptr = (ObjectPtr)((char *)error_object + 3);
-            *(undefined4 *)((char *)error_object + 2) = 3;
-            *(undefined8 *)error_object = &UNK_180986948;
+            *(int32_t *)((char *)error_object + 2) = 3;
+            *(uint64_t *)error_object = &UNK_180986948;
             func_0x00018005d5f0(object_ptr);
             stack_param[0] = CONCAT44(error_flags, index);
             *(ObjectPtr **)((longlong *)(*((longlong *)&stack_param + 3)) + *((longlong *)&stack_param + 2) * 8) = error_object;
@@ -974,7 +974,7 @@ StatusCode SystemErrorHandlerAndReturnCodeManager(void)
     
     /* 处理通用错误 */
     error_object = (ObjectPtr)
-             FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
+             FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + SYSTEM_OFFSET_0X1A0), 
                           SYSTEM_SIZE_0X20, &UNK_1809869a0, 0x112);
     
     if (error_object == (ObjectPtr)0x0) {
@@ -983,8 +983,8 @@ StatusCode SystemErrorHandlerAndReturnCodeManager(void)
     
     /* 初始化通用错误对象 */
     *(int *)((char *)error_object + 3) = index;
-    *(undefined8 *)error_object = &UNK_180986940;
-    ((undefined8 *)error_object)[1] = *((ulonglong *)&stack_param + 1);
+    *(uint64_t *)error_object = &UNK_180986940;
+    ((uint64_t *)error_object)[1] = *((ulonglong *)&stack_param + 1);
     *(int *)((char *)error_object + 2) = index;
     *(ObjectPtr **)((longlong *)(*((longlong *)&stack_param + 3)) + *((longlong *)&stack_param + 2) * 8) = error_object;
     

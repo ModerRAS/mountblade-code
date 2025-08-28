@@ -11,20 +11,20 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
   // 局部变量声明
   float temp_float1;          // 临时浮点变量1
   float temp_float2;          // 临时浮点变量2
-  undefined8 *ptr_undefined8;  // 未定义8字节指针
+  uint64_t *ptr_uint64_t;  // 未定义8字节指针
   longlong temp_long1;        // 临时长整型变量1
   code *code_ptr;             // 代码指针
   int temp_int1;              // 临时整型变量1
-  undefined4 temp_undefined4; // 未定义4字节变量
+  int32_t temp_int32_t; // 未定义4字节变量
   bool temp_bool1;            // 临时布尔变量1
   char temp_char1;            // 临时字符变量1
-  undefined1 temp_undefined1; // 未定义1字节变量
+  int8_t temp_int8_t; // 未定义1字节变量
   int temp_int2;              // 临时整型变量2
-  undefined4 temp_undefined4_2; // 未定义4字节变量2
+  int32_t temp_int32_t_2; // 未定义4字节变量2
   longlong **ptr_ptr_long;    // 长整型二级指针
   longlong *ptr_long1;        // 长整型指针1
   longlong *ptr_long2;        // 长整型指针2
-  undefined8 temp_undefined8; // 未定义8字节变量
+  uint64_t temp_uint64_t; // 未定义8字节变量
   longlong *ptr_long3;        // 长整型指针3
   uint temp_uint;             // 无符号整型变量
   longlong *ptr_long4;        // 长整型指针4
@@ -35,26 +35,26 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
   byte temp_byte;             // 字节型变量
   longlong temp_long4;        // 临时长整型变量4
   // 栈变量声明
-  undefined1 stack_buffer_32[32];  // 32字节栈缓冲区
+  int8_t stack_buffer_32[32];  // 32字节栈缓冲区
   char stack_char1;                // 栈字符变量1
-  undefined8 stack_undefined8_1;   // 栈未定义8字节变量1
+  uint64_t stack_uint64_t_1;   // 栈未定义8字节变量1
   float stack_float1;              // 栈浮点变量1
-  undefined4 stack_undefined4_1;   // 栈未定义4字节变量1
+  int32_t stack_int32_t_1;   // 栈未定义4字节变量1
   uint stack_uint1;                // 栈无符号整型变量1
   longlong *stack_ptr_long1;       // 栈长整型指针1
   longlong *stack_ptr_long2;       // 栈长整型指针2
-  undefined8 stack_undefined8_2;   // 栈未定义8字节变量2
-  undefined8 stack_undefined8_3;   // 栈未定义8字节变量3
-  undefined8 stack_undefined8_4;   // 栈未定义8字节变量4
-  undefined8 stack_undefined8_5;   // 栈未定义8字节变量5
+  uint64_t stack_uint64_t_2;   // 栈未定义8字节变量2
+  uint64_t stack_uint64_t_3;   // 栈未定义8字节变量3
+  uint64_t stack_uint64_t_4;   // 栈未定义8字节变量4
+  uint64_t stack_uint64_t_5;   // 栈未定义8字节变量5
   float stack_float2;              // 栈浮点变量2
   float stack_float3;              // 栈浮点变量3
   float stack_float4;              // 栈浮点变量4
-  undefined4 stack_undefined4_2;   // 栈未定义4字节变量2
+  int32_t stack_int32_t_2;   // 栈未定义4字节变量2
   float stack_float5;              // 栈浮点变量5
   float stack_float6;              // 栈浮点变量6
   float stack_float7;              // 栈浮点变量7
-  undefined4 stack_undefined4_3;   // 栈未定义4字节变量3
+  int32_t stack_int32_t_3;   // 栈未定义4字节变量3
   longlong *stack_ptr_long3;       // 栈长整型指针3
   longlong **stack_ptr_ptr_long1;  // 栈长整型二级指针1
   longlong **stack_ptr_ptr_long2;  // 栈长整型二级指针2
@@ -81,18 +81,18 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
   longlong *stack_ptr_long18;      // 栈长整型指针18
   longlong *stack_ptr_long19;      // 栈长整型指针19
   longlong *stack_ptr_long20;      // 栈长整型指针20
-  undefined *stack_ptr_undefined1; // 栈未定义指针1
+  void *stack_ptr_int8_t; // 栈未定义指针1
   code *stack_code_ptr;           // 栈代码指针
   longlong *stack_ptr_long21;      // 栈长整型指针21
   longlong *stack_ptr_long22;      // 栈长整型指针22
-  undefined *stack_ptr_undefined2; // 栈未定义指针2
-  undefined *stack_ptr_undefined3; // 栈未定义指针3
-  undefined8 stack_undefined8_6;   // 栈未定义8字节变量6
+  void *stack_ptr_int16_t; // 栈未定义指针2
+  void *stack_ptr_undefined3; // 栈未定义指针3
+  uint64_t stack_uint64_t_6;   // 栈未定义8字节变量6
   longlong stack_array_40[40];     // 40个长整型的栈数组
   ulonglong stack_ulonglong;       // 栈无符号长整型变量
   
   // 初始化栈变量
-  stack_undefined8_6 = 0xfffffffffffffffe;
+  stack_uint64_t_6 = 0xfffffffffffffffe;
   stack_ulonglong = _DAT_180bf00a8 ^ (ulonglong)stack_buffer_32;
   // 检查实体是否有自定义数据，如果有则设置到指定位置
   if (entity_context[0xc170] != 0) {
@@ -151,26 +151,26 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
     temp_long2 = ptr_long2[0x15];
     ptr_long4[0x14] = ptr_long2[0x14];
     ptr_long4[0x15] = temp_long2;
-    temp_undefined4_2 = *(undefined4 *)((longlong)ptr_long2 + 0xb4);
+    temp_int32_t_2 = *(int32_t *)((longlong)ptr_long2 + 0xb4);
     temp_long2 = ptr_long2[0x17];
-    temp_undefined4 = *(undefined4 *)((longlong)ptr_long2 + 0xbc);
+    temp_int32_t = *(int32_t *)((longlong)ptr_long2 + 0xbc);
     *(int *)(ptr_long4 + 0x16) = (int)ptr_long2[0x16];
-    *(undefined4 *)((longlong)ptr_long4 + 0xb4) = temp_undefined4_2;
+    *(int32_t *)((longlong)ptr_long4 + 0xb4) = temp_int32_t_2;
     *(int *)(ptr_long4 + 0x17) = (int)temp_long2;
-    *(undefined4 *)((longlong)ptr_long4 + 0xbc) = temp_undefined4;
+    *(int32_t *)((longlong)ptr_long4 + 0xbc) = temp_int32_t;
     
     // 处理实体组件系统
-    ptr_undefined8 = (undefined8 *)entity_context[0x534];
-    if (ptr_undefined8 != (undefined8 *)0x0) {
+    ptr_uint64_t = (uint64_t *)entity_context[0x534];
+    if (ptr_uint64_t != (uint64_t *)0x0) {
       // 检查组件类型并执行相应的清理操作
-      if ((undefined *)*ptr_undefined8 == &UNK_180a21cc8) {
+      if ((void *)*ptr_uint64_t == &UNK_180a21cc8) {
         LOCK();
-        *(undefined1 *)(ptr_undefined8 + 2) = 0;
+        *(int8_t *)(ptr_uint64_t + 2) = 0;
         UNLOCK();
-        FUN_180049550(ptr_undefined8 + 4,0);
+        FUN_180049550(ptr_uint64_t + 4,0);
       }
       else {
-        (**(code **)((undefined *)*ptr_undefined8 + 0x78))();
+        (**(code **)((void *)*ptr_uint64_t + 0x78))();
       }
       
       // 反向复制数据：从栈数组回到组件系统
@@ -217,17 +217,17 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
       temp_long2 = ptr_long4[0x15];
       ptr_long2[0x14] = ptr_long4[0x14];
       ptr_long2[0x15] = temp_long2;
-      temp_undefined4_2 = *(undefined4 *)((longlong)ptr_long4 + 0xb4);
+      temp_int32_t_2 = *(int32_t *)((longlong)ptr_long4 + 0xb4);
       temp_long2 = ptr_long4[0x17];
-      temp_undefined4 = *(undefined4 *)((longlong)ptr_long4 + 0xbc);
+      temp_int32_t = *(int32_t *)((longlong)ptr_long4 + 0xbc);
       *(int *)(ptr_long2 + 0x16) = (int)ptr_long4[0x16];
-      *(undefined4 *)((longlong)ptr_long2 + 0xb4) = temp_undefined4_2;
+      *(int32_t *)((longlong)ptr_long2 + 0xb4) = temp_int32_t_2;
       *(int *)(ptr_long2 + 0x17) = (int)temp_long2;
-      *(undefined4 *)((longlong)ptr_long2 + 0xbc) = temp_undefined4;
+      *(int32_t *)((longlong)ptr_long2 + 0xbc) = temp_int32_t;
       
       // 清理组件系统资源
       temp_long2 = _DAT_180c82868;
-      stack_undefined8_1 = &stack_ptr_long3;
+      stack_uint64_t_1 = &stack_ptr_long3;
       stack_ptr_long3 = (longlong *)entity_context[0x534];
       if (stack_ptr_long3 != (longlong *)0x0) {
         (**(code **)(*stack_ptr_long3 + 0x28))();
@@ -260,14 +260,14 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
     temp_long2 = scene_context[0x23];
     entity_context[0x85] = scene_context[0x22];
     entity_context[0x86] = temp_long2;
-    temp_undefined4_2 = *(undefined4 *)((longlong)scene_context + 0x124);
+    temp_int32_t_2 = *(int32_t *)((longlong)scene_context + 0x124);
     temp_long2 = scene_context[0x25];
-    temp_undefined4 = *(undefined4 *)((longlong)scene_context + 300);
+    temp_int32_t = *(int32_t *)((longlong)scene_context + 300);
     *(int *)(entity_context + 0x87) = (int)scene_context[0x24];
-    *(undefined4 *)((longlong)entity_context + 0x43c) = temp_undefined4_2;
+    *(int32_t *)((longlong)entity_context + 0x43c) = temp_int32_t_2;
     *(int *)(entity_context + 0x88) = (int)temp_long2;
-    *(undefined4 *)((longlong)entity_context + 0x444) = temp_undefined4;
-    *(undefined1 *)((longlong)entity_context + 0x562) = 1;  // 标记位置已更新
+    *(int32_t *)((longlong)entity_context + 0x444) = temp_int32_t;
+    *(int8_t *)((longlong)entity_context + 0x562) = 1;  // 标记位置已更新
   }
   *(char *)((longlong)param_2 + 0x124c4) = (char)param_1[0x1033];
   if ((((param_3 == '\0') || (*(char *)((longlong)param_1 + 0x3e05) == '\0')) ||
@@ -279,9 +279,9 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
   FUN_1801b65d0(param_1,param_2);
   cVar9 = func_0x0001802e1840(param_2[0x6b0] + 0x560,param_1);
   if (cVar9 != '\0') {
-    *(undefined4 *)(param_2[0x6b0] + 0x5e4) = 0xffffffff;
+    *(int32_t *)(param_2[0x6b0] + 0x5e4) = 0xffffffff;
   }
-  *(undefined4 *)(param_2[0x6b0] + 0x110) = 0;
+  *(int32_t *)(param_2[0x6b0] + 0x110) = 0;
   if ((*(char *)((longlong)param_1 + 0x563) == '\0') ||
      (iVar6 = (int)(param_1[0xb6] - param_1[0xb5] >> 0x3f),
      iVar11 = (int)((param_1[0xb6] - param_1[0xb5]) / 0xc) + iVar6,
@@ -291,15 +291,15 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
   else {
     bVar8 = true;
   }
-  *(undefined4 *)(param_1 + 0x4cd) = 0;
-  *(undefined4 *)(param_2[0x6b0] + 0x628) = 0xffffffff;
+  *(int32_t *)(param_1 + 0x4cd) = 0;
+  *(int32_t *)(param_2[0x6b0] + 0x628) = 0xffffffff;
   if (((char)param_2[0x1347] == '\0') || (*(char *)((longlong)param_1 + 0x3f61) == '\0')) {
     uVar10 = 0;
   }
   else {
     uVar10 = 1;
   }
-  *(undefined1 *)(param_2 + 0x1347) = uVar10;
+  *(int8_t *)(param_2 + 0x1347) = uVar10;
   lVar22 = _DAT_180c868c0;
   lVar20 = 1;
   if (bVar8) {
@@ -313,7 +313,7 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
     else {
       if ((lVar25 == 0) || (lVar20 = lVar25 * 2, lVar20 != 0)) {
         plVar14 = (longlong *)
-                  FUN_18062b420(_DAT_180c8ed18,lVar20 * 8,*(undefined1 *)(_DAT_180c868c0 + 0x10418))
+                  FUN_18062b420(_DAT_180c8ed18,lVar20 * 8,*(int8_t *)(_DAT_180c868c0 + 0x10418))
         ;
         plVar17 = *(longlong **)(lVar22 + 0x10408);
         plVar21 = *(longlong **)(lVar22 + 0x10400);
@@ -334,9 +334,9 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
     *(int *)(param_2[0x6b0] + 0x628) = (int)lVar25;
   }
   if ((int)param_1[0x4f8] < 7) {
-    *(undefined1 *)(param_2 + 0x38c) = 1;
+    *(int8_t *)(param_2 + 0x38c) = 1;
     uVar10 = func_0x0001800e2bf0(_DAT_180c86890,param_2);
-    *(undefined1 *)((longlong)param_2 + 0x1c61) = uVar10;
+    *(int8_t *)((longlong)param_2 + 0x1c61) = uVar10;
     if ((int)param_2[1] == -1) {
       bVar24 = 0;
     }
@@ -345,7 +345,7 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
     }
     *(byte *)((longlong)param_2 + 0x1c62) = bVar24 & 1;
     uVar12 = func_0x00018024c420(param_2);
-    *(undefined4 *)((longlong)param_2 + 0x1c64) = uVar12;
+    *(int32_t *)((longlong)param_2 + 0x1c64) = uVar12;
   }
   else {
     FUN_180304010(param_2[0x6b0]);
@@ -384,8 +384,8 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
   FUN_18005e250(_DAT_180c82868,*plVar14,param_1[0x6d] - *plVar14 >> 3);
   if (((cStack_308 != '\0') && (*(char *)((longlong)param_1 + 0x60b91) != '\0')) &&
      (1 < (int)param_1[0x4f8])) {
-    *(undefined4 *)(param_2[0x6b0] + 0x5b0) = *(undefined4 *)((longlong)param_1 + 0x27bc);
-    *(undefined4 *)((longlong)param_2 + 0x995c) = *(undefined4 *)(param_2[0x6b0] + 0x5b0);
+    *(int32_t *)(param_2[0x6b0] + 0x5b0) = *(int32_t *)((longlong)param_1 + 0x27bc);
+    *(int32_t *)((longlong)param_2 + 0x995c) = *(int32_t *)(param_2[0x6b0] + 0x5b0);
     lStack_280 = 0;
     iVar11 = FUN_1802e4530(param_2[0x6b0] + 0x560,param_2,&lStack_280);
     if (0 < iVar11) {
@@ -400,7 +400,7 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
           *(float *)(lVar4 + 0x11ccc) = fVar1 * *(float *)(lVar22 + 4);
           *(float *)(lVar4 + 0x11cd0) = fVar1 * fVar2;
         }
-        FUN_180304010(param_2[0x6b0],*(undefined8 *)(lStack_280 + lVar20 * 8));
+        FUN_180304010(param_2[0x6b0],*(uint64_t *)(lStack_280 + lVar20 * 8));
         lVar22 = *(longlong *)(lVar25 + lVar20 * 8);
         LOCK();
         plVar14 = param_2 + 0x2349;
@@ -408,9 +408,9 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
         *(int *)plVar14 = (int)*plVar14 + 1;
         UNLOCK();
         param_2[(longlong)(int)lVar25 + 0x1349] = lVar22;
-        uVar16 = *(undefined8 *)((longlong)param_2 + 0x9a3c);
-        *(undefined8 *)(lVar22 + 0x9a34) = *(undefined8 *)((longlong)param_2 + 0x9a34);
-        *(undefined8 *)(lVar22 + 0x9a3c) = uVar16;
+        uVar16 = *(uint64_t *)((longlong)param_2 + 0x9a3c);
+        *(uint64_t *)(lVar22 + 0x9a34) = *(uint64_t *)((longlong)param_2 + 0x9a34);
+        *(uint64_t *)(lVar22 + 0x9a3c) = uVar16;
         lVar20 = lVar20 + 1;
       } while (lVar20 < iVar11);
     }
@@ -418,12 +418,12 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
   if ((((int)param_1[0xc188] == -1) ||
       (lVar20 = *(longlong *)(param_1[0xc184] + (longlong)(int)param_1[0xc188] * 8), lVar20 == 0))
      || (*(longlong *)(lVar20 + 0x40) == 0)) {
-    *(undefined4 *)(param_2 + 0x253e) = *(undefined4 *)((longlong)param_1 + 0x60c44);
+    *(int32_t *)(param_2 + 0x253e) = *(int32_t *)((longlong)param_1 + 0x60c44);
   }
   else {
-    *(undefined4 *)(param_2 + 0x253e) = 0xffffffff;
+    *(int32_t *)(param_2 + 0x253e) = 0xffffffff;
   }
-  *(undefined4 *)((longlong)param_2 + 0x129f4) = *(undefined4 *)((longlong)param_1 + 0x3ec4);
+  *(int32_t *)((longlong)param_2 + 0x129f4) = *(int32_t *)((longlong)param_1 + 0x3ec4);
   if (param_1[0x103e] != 0) {
     *(float *)(param_2 + 0x253f) = *(float *)(param_1 + 0x7d9) * 0.05;
   }
@@ -431,7 +431,7 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
     iVar11 = 0;
   }
   else {
-    iVar11 = (int)*(undefined8 *)(param_1[0xc170] + 0x1dd0);
+    iVar11 = (int)*(uint64_t *)(param_1[0xc170] + 0x1dd0);
   }
   *(float *)((longlong)param_2 + 0x129fc) = (float)iVar11;
   FUN_1801acb30(param_1);
@@ -480,7 +480,7 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
   }
   if (*(char *)((longlong)param_2 + 0x9a31) != '\0') {
     if (((int)param_1[0x4f8] != 7) && (*(longlong *)(param_2[0x6b0] + 0x530) != 0)) {
-      *(undefined4 *)(*(longlong *)(param_2[0x6b0] + 0x530) + 0x40) = 0x41200000;
+      *(int32_t *)(*(longlong *)(param_2[0x6b0] + 0x530) + 0x40) = 0x41200000;
     }
     plVar17 = (longlong *)param_2[0x6b0];
     if (plVar17[0xa6] != 0) {
@@ -507,7 +507,7 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
       uVar18 = uVar18 | 0x800;
     }
     uVar12 = func_0x0001801f2a40();
-    *(undefined4 *)(param_2 + 0x133d) = uVar12;
+    *(int32_t *)(param_2 + 0x133d) = uVar12;
     FUN_180303b70(param_2[0x6b0],uVar18,param_2);
     plVar17 = *(longlong **)(param_2[0x6b0] + 0x530);
     if (plVar17 != (longlong *)0x0) {
@@ -549,9 +549,9 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
     if (plStack_210 != (longlong *)0x0) {
       (**(code **)(*plStack_210 + 0x38))();
     }
-    *(undefined4 *)(param_2 + 0x249b) = *(undefined4 *)((longlong)param_1 + 0x3f54);
+    *(int32_t *)(param_2 + 0x249b) = *(int32_t *)((longlong)param_1 + 0x3f54);
     *(int *)(param_2 + 0x249a) = (int)param_1[0x7eb];
-    *(undefined4 *)((longlong)param_2 + 0x124d4) = *(undefined4 *)((longlong)param_1 + 0x3f5c);
+    *(int32_t *)((longlong)param_2 + 0x124d4) = *(int32_t *)((longlong)param_1 + 0x3f5c);
     *(char *)((longlong)param_2 + 0x124dc) = (char)param_1[0x7ec];
   }
   plVar17 = *(longlong **)(param_2[0x6b0] + 0x558);
@@ -575,11 +575,11 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
     (**(code **)(*plStack_200 + 0x38))();
   }
   if (param_1 == (longlong *)0xffffffffffffc950) {
-    *(undefined1 *)((longlong)param_2 + 0x11cf4) = 0;
+    *(int8_t *)((longlong)param_2 + 0x11cf4) = 0;
   }
   else {
     FUN_1801c1c40(param_2 + 0x23a0);
-    *(undefined1 *)((longlong)param_2 + 0x11cf4) = 1;
+    *(int8_t *)((longlong)param_2 + 0x11cf4) = 1;
   }
   lVar20 = param_1[0x103e];
   if (lVar20 != 0) {
@@ -588,19 +588,19 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
     *(float *)((longlong)param_2 + 0x11ccc) = fVar1 * *(float *)(lVar20 + 4);
     *(float *)(param_2 + 0x239a) = fVar1 * fVar2;
   }
-  *(undefined4 *)((longlong)param_2 + 0x124e4) = *(undefined4 *)((longlong)param_1 + 0x5b9c);
+  *(int32_t *)((longlong)param_2 + 0x124e4) = *(int32_t *)((longlong)param_1 + 0x5b9c);
   lVar20 = param_1[0xc170];
   if (lVar20 == 0) {
-    *(undefined8 *)((longlong)param_2 + 0x11cd4) = 0;
-    *(undefined8 *)((longlong)param_2 + 0x11cdc) = 0;
+    *(uint64_t *)((longlong)param_2 + 0x11cd4) = 0;
+    *(uint64_t *)((longlong)param_2 + 0x11cdc) = 0;
     plVar17 = (longlong *)param_2[0x1332];
     param_2[0x1332] = 0;
     plStack_1f0 = plVar17;
   }
   else {
-    uVar16 = *(undefined8 *)(lVar20 + 0x1c18);
-    *(undefined8 *)((longlong)param_2 + 0x11cd4) = *(undefined8 *)(lVar20 + 0x1c10);
-    *(undefined8 *)((longlong)param_2 + 0x11cdc) = uVar16;
+    uVar16 = *(uint64_t *)(lVar20 + 0x1c18);
+    *(uint64_t *)((longlong)param_2 + 0x11cd4) = *(uint64_t *)(lVar20 + 0x1c10);
+    *(uint64_t *)((longlong)param_2 + 0x11cdc) = uVar16;
     plVar21 = *(longlong **)(param_1[0xc170] + 0x1c48);
     if (plVar21 != (longlong *)0x0) {
       plStack_1f8 = plVar21;
@@ -628,7 +628,7 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
          ((*(byte *)(lVar20 + 0x1bd9) & 2) == 0)) {
         FUN_18031e320(param_1[100],lVar20);
       }
-      *(undefined1 *)(lVar20 + 0x1c60) = 1;
+      *(int8_t *)(lVar20 + 0x1c60) = 1;
       if (((*(int *)(lVar20 + 0x124bc) == 0) && (*(int *)(lVar20 + 0x2920) == 0)) &&
          ((*(int *)(lVar20 + 0x2108) == 0 && (*(int *)(lVar20 + 0x1fe0) == 0)))) {
         bVar8 = false;
@@ -646,16 +646,16 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
       else {
         uVar10 = 1;
       }
-      *(undefined1 *)(lVar20 + 0x1c61) = uVar10;
+      *(int8_t *)(lVar20 + 0x1c61) = uVar10;
       if (*(int *)(lVar20 + 8) == -1) {
         bVar24 = 0;
       }
       else {
-        bVar24 = (byte)*(undefined4 *)(lVar20 + 0x18);
+        bVar24 = (byte)*(int32_t *)(lVar20 + 0x18);
       }
       *(byte *)(lVar20 + 0x1c62) = bVar24 & 1;
       uVar12 = func_0x00018024c420(lVar20);
-      *(undefined4 *)(lVar20 + 0x1c64) = uVar12;
+      *(int32_t *)(lVar20 + 0x1c64) = uVar12;
       uVar18 = uVar18 + 1;
       lVar22 = lVar22 + 8;
       lVar20 = param_2[0x6b0];
@@ -664,16 +664,16 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
   plVar17 = (longlong *)0x118;
   lVar20 = param_1[0x1040];
   if (lVar20 != 0) {
-    uStack_2d8 = *(undefined8 *)(lVar20 + 0x70);
-    uStack_2d0 = *(undefined8 *)(lVar20 + 0x78);
+    uStack_2d8 = *(uint64_t *)(lVar20 + 0x70);
+    uStack_2d0 = *(uint64_t *)(lVar20 + 0x78);
     fStack_2f8 = *(float *)(param_2 + 0x25) - *(float *)((longlong)param_1 + 0x3e14) * 2000.0;
     fStack_2a4 = *(float *)((longlong)param_2 + 0x124) - *(float *)(param_1 + 0x7c2) * 2000.0;
     fStack_2a8 = *(float *)(param_2 + 0x24) - *(float *)((longlong)param_1 + 0x3e0c) * 2000.0;
     uStack_300 = (longlong **)CONCAT44(fStack_2a4,fStack_2a8);
     uStack_2f4 = 0x7f7fffff;
     uStack_29c = 0x7f7fffff;
-    uStack_2c8 = *(undefined8 *)((longlong)param_1 + 0x3e0c);
-    uStack_2c0 = *(undefined8 *)((longlong)param_1 + 0x3e14);
+    uStack_2c8 = *(uint64_t *)((longlong)param_1 + 0x3e0c);
+    uStack_2c0 = *(uint64_t *)((longlong)param_1 + 0x3e14);
     fStack_2b8 = 0.0;
     fStack_2b4 = 0.0;
     fStack_2b0 = 1.0;
@@ -804,7 +804,7 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
     if (plStack_1e8 != (longlong *)0x0) {
       (**(code **)(*plStack_1e8 + 0x38))();
     }
-    *(undefined8 *)(param_1[0xc18e] + 0x18) = 0xfffffffffffffffc;
+    *(uint64_t *)(param_1[0xc18e] + 0x18) = 0xfffffffffffffffc;
     lVar20 = _DAT_180c82868;
     plVar14 = (longlong *)param_1[0xc18e];
     if (*(int *)(_DAT_180c8a9c8 + 0x380) == 0) {
@@ -820,7 +820,7 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
       plVar14 = (longlong *)param_1[0xc18e];
       if (*(code **)(*plVar14 + 0x70) == (code *)&UNK_180049530) {
         LOCK();
-        *(undefined1 *)(plVar14 + 2) = 1;
+        *(int8_t *)(plVar14 + 2) = 1;
         UNLOCK();
         FUN_1800466d0(plVar14 + 4);
       }
@@ -846,7 +846,7 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
     if (plStack_1e0 != (longlong *)0x0) {
       (**(code **)(*plStack_1e0 + 0x38))();
     }
-    *(undefined8 *)(param_1[0xc18f] + 0x18) = 0xfffffffffffffffe;
+    *(uint64_t *)(param_1[0xc18f] + 0x18) = 0xfffffffffffffffe;
     lVar20 = _DAT_180c82868;
     plVar14 = (longlong *)param_1[0xc18f];
     if (*(int *)(_DAT_180c8a9c8 + 0x380) == 0) {
@@ -862,7 +862,7 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
       plVar14 = (longlong *)param_1[0xc18f];
       if (*(code **)(*plVar14 + 0x70) == (code *)&UNK_180049530) {
         LOCK();
-        *(undefined1 *)(plVar14 + 2) = 1;
+        *(int8_t *)(plVar14 + 2) = 1;
         UNLOCK();
         FUN_1800466d0(plVar14 + 4);
       }
@@ -906,15 +906,15 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
       }
       else {
         (**(code **)(*plVar14 + 0x60))();
-        puVar3 = (undefined8 *)param_1[0x4ce];
-        if ((undefined *)*puVar3 == &UNK_180a0c2b8) {
+        puVar3 = (uint64_t *)param_1[0x4ce];
+        if ((void *)*puVar3 == &UNK_180a0c2b8) {
           LOCK();
-          *(undefined1 *)(puVar3 + 2) = 1;
+          *(int8_t *)(puVar3 + 2) = 1;
           UNLOCK();
           FUN_1800466d0(puVar3 + 4);
         }
         else {
-          (**(code **)((undefined *)*puVar3 + 0x70))();
+          (**(code **)((void *)*puVar3 + 0x70))();
         }
       }
     }
@@ -960,7 +960,7 @@ void process_entity_initialization(longlong *entity_context, longlong *scene_con
     FUN_1800b8500(plVar14);
     param_1 = plStack_1d8;
   }
-  *(undefined1 *)(param_1 + 2) = 1;
+  *(int8_t *)(param_1 + 2) = 1;
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_328);
 }
@@ -976,105 +976,105 @@ uint32_t process_entity_data_transfer(longlong *entity_data)
 
 {
   // 局部变量声明
-  undefined4 *ptr_undefined4_1;   // 未定义4字节指针1
-  undefined4 temp_undefined4_1;   // 临时未定义4字节变量1
+  int32_t *ptr_int32_t_1;   // 未定义4字节指针1
+  int32_t temp_int32_t_1;   // 临时未定义4字节变量1
   longlong temp_long1;            // 临时长整型变量1
   longlong temp_long2;            // 临时长整型变量2
-  undefined4 temp_undefined4_2;   // 临时未定义4字节变量2
-  undefined4 temp_undefined4_3;   // 临时未定义4字节变量3
-  undefined4 temp_undefined4_4;   // 临时未定义4字节变量4
-  undefined4 temp_undefined4_5;   // 临时未定义4字节变量5
-  undefined4 temp_undefined4_6;   // 临时未定义4字节变量6
-  undefined4 temp_undefined4_7;   // 临时未定义4字节变量7
-  undefined8 temp_undefined8_1;   // 临时未定义8字节变量1
-  undefined8 temp_undefined8_2;   // 临时未定义8字节变量2
-  undefined8 temp_undefined8_3;   // 临时未定义8字节变量3
-  undefined8 temp_undefined8_4;   // 临时未定义8字节变量4
-  undefined8 temp_undefined8_5;   // 临时未定义8字节变量5;
+  int32_t temp_int32_t_2;   // 临时未定义4字节变量2
+  int32_t temp_int32_t_3;   // 临时未定义4字节变量3
+  int32_t temp_int32_t_4;   // 临时未定义4字节变量4
+  int32_t temp_int32_t_5;   // 临时未定义4字节变量5
+  int32_t temp_int32_t_6;   // 临时未定义4字节变量6
+  int32_t temp_int32_t_7;   // 临时未定义4字节变量7
+  uint64_t temp_uint64_t_1;   // 临时未定义8字节变量1
+  uint64_t temp_uint64_t_2;   // 临时未定义8字节变量2
+  uint64_t temp_uint64_t_3;   // 临时未定义8字节变量3
+  uint64_t temp_uint64_t_4;   // 临时未定义8字节变量4
+  uint64_t temp_uint64_t_5;   // 临时未定义8字节变量5;
   
   // 获取实体数据指针和组件数据
   temp_long1 = *(longlong *)(entity_data + 0xc0);
   temp_long2 = *(longlong *)(temp_long1 + 0x3a8);
   
   // 备份源数据
-  temp_undefined4_1 = *(undefined4 *)(temp_long1 + 0x43c);
-  temp_undefined4_2 = *(undefined4 *)(temp_long1 + 0x440);
-  temp_undefined4_3 = *(undefined4 *)(temp_long1 + 0x444);
+  temp_int32_t_1 = *(int32_t *)(temp_long1 + 0x43c);
+  temp_int32_t_2 = *(int32_t *)(temp_long1 + 0x440);
+  temp_int32_t_3 = *(int32_t *)(temp_long1 + 0x444);
   
   // 备份目标数据
-  temp_undefined4_4 = *(undefined4 *)(temp_long2 + 0x40);
-  temp_undefined4_5 = *(undefined4 *)(temp_long2 + 0x44);
-  temp_undefined4_6 = *(undefined4 *)(temp_long2 + 0x48);
-  temp_undefined4_7 = *(undefined4 *)(temp_long2 + 0x4c);
+  temp_int32_t_4 = *(int32_t *)(temp_long2 + 0x40);
+  temp_int32_t_5 = *(int32_t *)(temp_long2 + 0x44);
+  temp_int32_t_6 = *(int32_t *)(temp_long2 + 0x48);
+  temp_int32_t_7 = *(int32_t *)(temp_long2 + 0x4c);
   
   // 执行数据传输：从源到目标
-  *(undefined4 *)(temp_long2 + 0x40) = *(undefined4 *)(temp_long1 + 0x438);
-  *(undefined4 *)(temp_long2 + 0x44) = temp_undefined4_1;
-  *(undefined4 *)(temp_long2 + 0x48) = temp_undefined4_2;
-  *(undefined4 *)(temp_long2 + 0x4c) = temp_undefined4_3;
+  *(int32_t *)(temp_long2 + 0x40) = *(int32_t *)(temp_long1 + 0x438);
+  *(int32_t *)(temp_long2 + 0x44) = temp_int32_t_1;
+  *(int32_t *)(temp_long2 + 0x48) = temp_int32_t_2;
+  *(int32_t *)(temp_long2 + 0x4c) = temp_int32_t_3;
   
   // 保存原始目标数据到备份位置
-  *(undefined4 *)(temp_long2 + 0x30) = temp_undefined4_4;
-  *(undefined4 *)(temp_long2 + 0x34) = temp_undefined4_5;
-  *(undefined4 *)(temp_long2 + 0x38) = temp_undefined4_6;
-  *(undefined4 *)(temp_long2 + 0x3c) = temp_undefined4_7;
+  *(int32_t *)(temp_long2 + 0x30) = temp_int32_t_4;
+  *(int32_t *)(temp_long2 + 0x34) = temp_int32_t_5;
+  *(int32_t *)(temp_long2 + 0x38) = temp_int32_t_6;
+  *(int32_t *)(temp_long2 + 0x3c) = temp_int32_t_7;
   
   // 调用数据处理函数
-  FUN_1802c6190(*(undefined8 *)(*(longlong *)(entity_data + 0xc0) + 0x3a8));
+  FUN_1802c6190(*(uint64_t *)(*(longlong *)(entity_data + 0xc0) + 0x3a8));
   FUN_18019c5b0(*(longlong *)(entity_data + 200) + 0x12678,
-                *(undefined8 *)(*(longlong *)(entity_data + 0xc0) + 0x3a8));
+                *(uint64_t *)(*(longlong *)(entity_data + 0xc0) + 0x3a8));
   
   // 复制变换数据
   temp_long1 = *(longlong *)(*(longlong *)(entity_data + 0xc0) + 0x3a8);
   temp_long2 = *(longlong *)(entity_data + 200);
-  temp_undefined8_1 = *(undefined8 *)(temp_long1 + 0x38);
-  temp_undefined8_2 = *(undefined8 *)(temp_long1 + 0x40);
-  temp_undefined8_3 = *(undefined8 *)(temp_long1 + 0x48);
-  temp_undefined8_4 = *(undefined8 *)(temp_long1 + 0x50);
-  temp_undefined8_5 = *(undefined8 *)(temp_long1 + 0x58);
+  temp_uint64_t_1 = *(uint64_t *)(temp_long1 + 0x38);
+  temp_uint64_t_2 = *(uint64_t *)(temp_long1 + 0x40);
+  temp_uint64_t_3 = *(uint64_t *)(temp_long1 + 0x48);
+  temp_uint64_t_4 = *(uint64_t *)(temp_long1 + 0x50);
+  temp_uint64_t_5 = *(uint64_t *)(temp_long1 + 0x58);
   
   // 设置变换矩阵数据
-  *(undefined8 *)(temp_long2 + 0x126b0) = *(undefined8 *)(temp_long1 + 0x30);
-  *(undefined8 *)(temp_long2 + 0x126b8) = temp_undefined8_1;
-  *(undefined8 *)(temp_long2 + 0x126c0) = temp_undefined8_2;
-  *(undefined8 *)(temp_long2 + 0x126c8) = temp_undefined8_3;
-  *(undefined8 *)(temp_long2 + 0x126d0) = temp_undefined8_4;
-  *(undefined8 *)(temp_long2 + 0x126d8) = temp_undefined8_5;
+  *(uint64_t *)(temp_long2 + 0x126b0) = *(uint64_t *)(temp_long1 + 0x30);
+  *(uint64_t *)(temp_long2 + 0x126b8) = temp_uint64_t_1;
+  *(uint64_t *)(temp_long2 + 0x126c0) = temp_uint64_t_2;
+  *(uint64_t *)(temp_long2 + 0x126c8) = temp_uint64_t_3;
+  *(uint64_t *)(temp_long2 + 0x126d0) = temp_uint64_t_4;
+  *(uint64_t *)(temp_long2 + 0x126d8) = temp_uint64_t_5;
   
   // 设置状态标志
   *(byte *)(*(longlong *)(entity_data + 200) + 0x126a0) = *(byte *)(_DAT_180c86870 + 0x224) & 1;
-  *(undefined1 *)(*(longlong *)(entity_data + 200) + 0x12670) = 1;
+  *(int8_t *)(*(longlong *)(entity_data + 200) + 0x12670) = 1;
   
   // 线程安全地获取并重置状态值
   LOCK();
-  ptr_undefined4_1 = (undefined4 *)(*(longlong *)(*(longlong *)(entity_data + 0xc0) + 0x3a8) + 0x1060);
-  temp_undefined4_1 = *ptr_undefined4_1;
-  *ptr_undefined4_1 = 0;
+  ptr_int32_t_1 = (int32_t *)(*(longlong *)(*(longlong *)(entity_data + 0xc0) + 0x3a8) + 0x1060);
+  temp_int32_t_1 = *ptr_int32_t_1;
+  *ptr_int32_t_1 = 0;
   UNLOCK();
   
-  return temp_undefined4_1;  // 返回原始状态值
+  return temp_int32_t_1;  // 返回原始状态值
 }
 
 
 
-// 函数: undefined8 cleanup_entity_resources(undefined8 resource_ptr, ulonglong cleanup_flags, undefined8 param_3, undefined8 param_4)
+// 函数: uint64_t cleanup_entity_resources(uint64_t resource_ptr, ulonglong cleanup_flags, uint64_t param_3, uint64_t param_4)
 // 清理实体资源，根据标志位决定是否释放内存
 // 参数:
 //   resource_ptr - 资源指针
 //   cleanup_flags - 清理标志位
 //   param_3, param_4 - 附加参数
 // 返回: 资源指针
-undefined8 cleanup_entity_resources(undefined8 resource_ptr, ulonglong cleanup_flags, undefined8 param_3, undefined8 param_4)
+uint64_t cleanup_entity_resources(uint64_t resource_ptr, ulonglong cleanup_flags, uint64_t param_3, uint64_t param_4)
 
 {
-  undefined8 temp_undefined8;  // 临时变量
+  uint64_t temp_uint64_t;  // 临时变量
   
-  temp_undefined8 = 0xfffffffffffffffe;  // 设置特殊值
+  temp_uint64_t = 0xfffffffffffffffe;  // 设置特殊值
   FUN_180049470();  // 调用清理准备函数
   
   // 根据标志位决定是否释放内存
   if ((cleanup_flags & 1) != 0) {
-    free(resource_ptr, 0xd0, param_3, param_4, temp_undefined8);
+    free(resource_ptr, 0xd0, param_3, param_4, temp_uint64_t);
   }
   
   return resource_ptr;  // 返回原始资源指针

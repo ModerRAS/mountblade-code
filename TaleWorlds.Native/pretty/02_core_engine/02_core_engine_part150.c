@@ -135,7 +135,7 @@ void render_shadow_mapping(void *render_context, longlong context_id, void *text
 LAB_180139b2f:
     shader_program = 0;
     do {
-      FUN_180293f50(render_pass[shader_program],&render_state,&depth_value,render_flags,*(undefined4 *)(render_context + 0xf)
+      FUN_180293f50(render_pass[shader_program],&render_state,&depth_value,render_flags,*(int32_t *)(render_context + 0xf)
                     ,0xf);
       shader_program = shader_program + 1;
     } while (shader_program < polygon_count);
@@ -152,7 +152,7 @@ LAB_180139b2f:
       ambient_light = (float)vertex_buffer;
       if ((*(uint *)((longlong)render_context + 0xc) & 0x20000000) == 0) {
         texture_coords = (float *)FUN_18011ce30(&render_state,*render_context,
-                                        *(undefined1 *)((longlong)render_context + 0xb7));
+                                        *(int8_t *)((longlong)render_context + 0xb7));
         ambient_light = *(float *)(transform_matrix + 0x1674) + *texture_coords + shadow_intensity;
       }
     }
@@ -162,8 +162,8 @@ LAB_180139b2f:
       }
       else {
         texture_coords = (float *)FUN_18011ce30(&render_state,
-                                        *(undefined8 *)**(longlong **)(context_id + 0x28),
-                                        *(undefined1 *)(**(longlong **)(context_id + 0x28) + 0xb7));
+                                        *(uint64_t *)**(longlong **)(context_id + 0x28),
+                                        *(int8_t *)(**(longlong **)(context_id + 0x28) + 0xb7));
         ambient_light = *texture_coords;
       }
       ambient_light = shadow_intensity + ambient_light + *(float *)(transform_matrix + 0x1674);
@@ -180,13 +180,13 @@ LAB_180139b2f:
         transform_matrix = transform_matrix;
         mesh_data = material_ptr;
         if (material_ptr[0x82] != 0) {
-          mesh_data = *(undefined8 **)
+          mesh_data = *(uint64_t **)
                      (*(longlong *)(*(longlong *)(material_ptr[0x82] + 0x30) + 8) + 8 + shader_program);
         }
         render_mode = func_0x000180138e60(mesh_data,render_context);
         diffuse_light = ambient_light;
         if (render_mode != '\0') {
-          FUN_18011ce30(&near_plane,*mesh_data,*(undefined1 *)((longlong)mesh_data + 0xb7));
+          FUN_18011ce30(&near_plane,*mesh_data,*(int8_t *)((longlong)mesh_data + 0xb7));
           shadow_buffer = vertex_buffer;
           color_value = color_value;
           specular_light = ambient_light + near_plane;
@@ -272,15 +272,15 @@ LAB_180139e51:
             far_plane = diffuse_light + 0.5;
           }
           else {
-            shadow_buffer = (undefined8 *)CONCAT44(diffuse_light + 0.5,shadow_distance + 0.5);
+            shadow_buffer = (uint64_t *)CONCAT44(diffuse_light + 0.5,shadow_distance + 0.5);
             texture_coords = (float *)&texture_data;
             uv_coords = (float *)&shadow_buffer;
-            texture_data = (undefined8 *)CONCAT44(ambient_light - 0.5,light_intensity - 0.5);
+            texture_data = (uint64_t *)CONCAT44(ambient_light - 0.5,light_intensity - 0.5);
           }
           FUN_1802939e0(transform_matrix,uv_coords,texture_coords,shadow_intensity,0xf);
-          FUN_1802923e0(transform_matrix,*(undefined8 *)(transform_matrix + 0x88),*(undefined4 *)(transform_matrix + 0x80),texture_index,1
+          FUN_1802923e0(transform_matrix,*(uint64_t *)(transform_matrix + 0x88),*(int32_t *)(transform_matrix + 0x80),texture_index,1
                         ,0x3f800000);
-          *(undefined4 *)(transform_matrix + 0x80) = 0;
+          *(int32_t *)(transform_matrix + 0x80) = 0;
         }
         if (face_count < 2) {
           color_value = specular_light;
@@ -373,7 +373,7 @@ void create_render_target(longlong engine_ptr, longlong target_ptr, int width, i
       texture_ptr = (uint32_t *)FUN_180136a10(buffer_size,format_flags);
     }
     *(byte *)(texture_ptr + 0x28) = *(byte *)(texture_ptr + 0x28) | 3;
-    FUN_180122160(*(undefined8 *)(engine_ptr + 0x2df8),*texture_ptr,texture_ptr);
+    FUN_180122160(*(uint64_t *)(engine_ptr + 0x2df8),*texture_ptr,texture_ptr);
   }
   *(longlong *)(texture_ptr + 2) = target_ptr;
   if ((texture_params == (uint32_t *)0x0) || (height == 1)) {
@@ -389,7 +389,7 @@ void create_render_target(longlong engine_ptr, longlong target_ptr, int width, i
       texture_params = (uint32_t *)FUN_180136a10(buffer_size,format_flags);
     }
     *(byte *)(texture_params + 0x28) = *(byte *)(texture_params + 0x28) | 3;
-    FUN_180122160(*(undefined8 *)(engine_ptr + 0x2df8),*texture_params,texture_params);
+    FUN_180122160(*(uint64_t *)(engine_ptr + 0x2df8),*texture_params,texture_params);
   }
   *(longlong *)(texture_params + 2) = target_ptr;
   frame_buffer_ptr = texture_params;
@@ -408,13 +408,13 @@ void create_render_target(longlong engine_ptr, longlong target_ptr, int width, i
     *(uint32_t **)(memory_size + 8) = frame_buffer_ptr;
   }
   frame_buffer_ptr[0x14] = *(uint32_t *)(target_ptr + 0x50);
-  *(undefined8 *)(frame_buffer_ptr + 0x12) = *(undefined8 *)(target_ptr + 0x48);
+  *(uint64_t *)(frame_buffer_ptr + 0x12) = *(uint64_t *)(target_ptr + 0x48);
   *(uint32_t **)(target_ptr + 0x10) = texture_ptr;
   *(uint32_t **)(target_ptr + 0x18) = texture_params;
-  *(undefined8 *)(*(longlong *)(target_ptr + 0x10 + (longlong)height * 8) + 0x70) =
-       *(undefined8 *)(target_ptr + 0x70);
+  *(uint64_t *)(*(longlong *)(target_ptr + 0x10 + (longlong)height * 8) + 0x70) =
+       *(uint64_t *)(target_ptr + 0x70);
   *(int *)(target_ptr + 0x50) = width;
-  *(undefined8 *)(target_ptr + 0x70) = 0;
+  *(uint64_t *)(target_ptr + 0x70) = 0;
   texture_depth = *(float *)(target_ptr + 0x40 + memory_size * 4) - 2.0;
   format_flags = *(uint32_t *)(target_ptr + 0x40);
   target_format = *(uint32_t *)(target_ptr + 0x44);
@@ -425,7 +425,7 @@ void create_render_target(longlong engine_ptr, longlong target_ptr, int width, i
   texture_height = (float)(int)(texture_depth * scale_factor);
   texture_ptr[memory_size + 0x12] = texture_height;
   texture_params[memory_size + 0x12] = (float)(int)(texture_depth - texture_height);
-  FUN_180136f60(*(undefined8 *)(target_ptr + 0x10 + (longlong)height * 8),target_ptr);
+  FUN_180136f60(*(uint64_t *)(target_ptr + 0x10 + (longlong)height * 8),target_ptr);
   target_data[0] = *(ulonglong *)(target_ptr + 0x40);
   texture_data._8_8_ = 0;
   texture_data._0_8_ = target_data[0];
@@ -523,7 +523,7 @@ LAB_18013a7a6:
     if ((*(byte *)(texture_format + 0xa0) & 4) == 0) {
       return;
     }
-    *(undefined8 *)(texture_format + 0x38) = target_data._0_8_;
+    *(uint64_t *)(texture_format + 0x38) = target_data._0_8_;
     *(ulonglong *)(texture_format + 0x40) = CONCAT44(target_format,format_flags);
     target_data._8_4_ = stencil_format;
     target_data._12_4_ = blend_format;
@@ -577,9 +577,9 @@ void update_render_target(longlong engine_ptr, uint32_t *target_params, longlong
   }
   update_count = 0;
   target_params[0x14] = *(uint32_t *)(source_data + 0x50);
-  *(undefined8 *)(target_params + 0x12) = *(undefined8 *)(source_data + 0x48);
-  *(undefined8 *)(source_data + 0x18) = 0;
-  *(undefined8 *)(source_data + 0x10) = 0;
+  *(uint64_t *)(target_params + 0x12) = *(uint64_t *)(source_data + 0x48);
+  *(uint64_t *)(source_data + 0x18) = 0;
+  *(uint64_t *)(source_data + 0x10) = 0;
   if (source_texture != (uint32_t *)0x0) {
     FUN_180136f60(target_params,source_texture);
     FUN_18013bf60(*source_texture,*target_params);
@@ -606,7 +606,7 @@ void update_render_target(longlong engine_ptr, uint32_t *target_params, longlong
   }
   texture_flags = *(byte *)(target_params + 0x28);
   *(byte *)(target_params + 0x28) = texture_flags & 0xfc;
-  *(undefined8 *)(target_params + 0x1c) = *(undefined8 *)(source_data + 0x70);
+  *(uint64_t *)(target_params + 0x1c) = *(uint64_t *)(source_data + 0x70);
   if (((source_texture == (uint32_t *)0x0) || ((*(byte *)(source_texture + 0x28) & 0x20) == 0)) &&
      ((target_texture == (uint32_t *)0x0 || ((*(byte *)(target_texture + 0x28) & 0x20) == 0)))) {
     source_state = 0;
@@ -624,7 +624,7 @@ void update_render_target(longlong engine_ptr, uint32_t *target_params, longlong
     if (target_texture == (uint32_t *)0x0) {
       return;
     }
-    FUN_180122160(*(undefined8 *)(engine_ptr + 0x2df8),*target_texture,0);
+    FUN_180122160(*(uint64_t *)(engine_ptr + 0x2df8),*target_texture,0);
     FUN_180136ab0(target_texture);
     if (_DAT_180c8a9b0 != 0) {
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
@@ -632,7 +632,7 @@ void update_render_target(longlong engine_ptr, uint32_t *target_params, longlong
                     // 警告: 子函数不返回
     FUN_180059ba0(target_texture,_DAT_180c8a9a8);
   }
-  FUN_180122160(*(undefined8 *)(engine_ptr + 0x2df8),*source_texture,0);
+  FUN_180122160(*(uint64_t *)(engine_ptr + 0x2df8),*source_texture,0);
   FUN_180136ab0(source_texture);
   if (_DAT_180c8a9b0 != 0) {
     *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
@@ -796,11 +796,11 @@ LAB_18013a7a6:
 // 警告: 以下全局变量与其他符号地址重叠
 
 
-// 函数: void process_texture_sampling(longlong sampler_ptr, undefined8 param_2, undefined8 param_3, undefined8 param_4,
-//                                   undefined8 param_5)
+// 函数: void process_texture_sampling(longlong sampler_ptr, uint64_t param_2, uint64_t param_3, uint64_t param_4,
+//                                   uint64_t param_5)
 // 功能: 处理纹理采样，计算采样率和过滤参数
-void process_texture_sampling(longlong sampler_ptr, undefined8 param_2, undefined8 param_3, undefined8 param_4,
-                             undefined8 param_5)
+void process_texture_sampling(longlong sampler_ptr, uint64_t param_2, uint64_t param_3, uint64_t param_4,
+                             uint64_t param_5)
 
 {
   float sample_rate;
@@ -809,21 +809,21 @@ void process_texture_sampling(longlong sampler_ptr, undefined8 param_2, undefine
   byte sampler_flags;
   longlong texture_id;
   float mip_level;
-  undefined8 in_XMM0_Qa;
+  uint64_t in_XMM0_Qa;
   float lod_bias;
   float min_lod;
   float max_lod;
   uint32_t sampler_mode;
   uint32_t compare_func;
   float border_color[2];
-  undefined4 min_filter;
-  undefined4 mag_filter;
+  int32_t min_filter;
+  int32_t mag_filter;
   float anisotropy;
-  undefined4 wrap_s;
-  undefined4 wrap_t;
+  int32_t wrap_s;
+  int32_t wrap_t;
   float afStackX_20 [2];
-  undefined8 uStack0000000000000080;
-  undefined8 uStack0000000000000098;
+  uint64_t uStack0000000000000080;
+  uint64_t uStack0000000000000098;
   
   afStackX_20[1] = (float)((ulonglong)in_XMM0_Qa >> 0x20);
   mip_level = (float)in_XMM0_Qa;

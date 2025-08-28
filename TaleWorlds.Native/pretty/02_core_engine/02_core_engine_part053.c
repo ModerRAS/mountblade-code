@@ -188,7 +188,7 @@ void quicksort_string_array_optimized(string_array *array_start, string_array *a
   byte *pbVar3;
   uint uVar4;
   int iVar5;
-  undefined1 unaff_BL;
+  int8_t unaff_BL;
   longlong lVar6;
   longlong *plVar7;
   longlong lVar8;
@@ -364,11 +364,11 @@ void heap_build_conditional(void)
 {
   longlong lVar1;
   longlong lVar2;
-  undefined8 *puVar3;
+  uint64_t *puVar3;
   longlong unaff_R12;
   longlong unaff_R14;
-  undefined8 *unaff_R15;
-  undefined8 uStack0000000000000060;
+  uint64_t *unaff_R15;
+  uint64_t uStack0000000000000060;
   
   if (unaff_R12 == 0) {
     lVar1 = unaff_R14 - (longlong)unaff_R15 >> 3;
@@ -381,7 +381,7 @@ void heap_build_conditional(void)
       } while (lVar2 != 0);
     }
     if (1 < lVar1) {
-      puVar3 = (undefined8 *)(unaff_R14 + -8);
+      puVar3 = (uint64_t *)(unaff_R14 + -8);
       do {
         uStack0000000000000060 = *puVar3;
         *puVar3 = *unaff_R15;
@@ -407,10 +407,10 @@ void heap_build_unconditional(void)
 {
   longlong lVar1;
   longlong lVar2;
-  undefined8 *puVar3;
+  uint64_t *puVar3;
   longlong unaff_R14;
-  undefined8 *unaff_R15;
-  undefined8 uStack0000000000000060;
+  uint64_t *unaff_R15;
+  uint64_t uStack0000000000000060;
   
   lVar1 = unaff_R14 - (longlong)unaff_R15 >> 3;
   if (1 < lVar1) {
@@ -422,7 +422,7 @@ void heap_build_unconditional(void)
     } while (lVar2 != 0);
   }
   if (1 < lVar1) {
-    puVar3 = (undefined8 *)(unaff_R14 + -8);
+    puVar3 = (uint64_t *)(unaff_R14 + -8);
     do {
       uStack0000000000000060 = *puVar3;
       *puVar3 = *unaff_R15;
@@ -437,51 +437,51 @@ void heap_build_unconditional(void)
 
 
 
-// 函数: void data_structure_initialize(undefined8 param_1,undefined8 param_2,longlong *param_3)
+// 函数: void data_structure_initialize(uint64_t param_1,uint64_t param_2,longlong *param_3)
 // 功能: 初始化数据结构，分配内存并设置默认值
 // 参数: param_1 - 参数1 (未使用), param_2 - 参数2 (未使用), param_3 - 指向数据结构的指针
 // 返回: void
 // 说明: 通过memory_allocate_0x58_bytes()分配内存，然后初始化各个字段为默认值
-void data_structure_initialize(undefined8 param_1,undefined8 param_2,longlong *param_3)
+void data_structure_initialize(uint64_t param_1,uint64_t param_2,longlong *param_3)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   longlong lVar2;
   
   lVar2 = (longlong)memory_allocate_0x58_bytes();
-  *(undefined2 *)(lVar2 + 0x18) = 0;
-  uVar1 = ((undefined8 *)*param_3)[1];
-  *(undefined8 *)(lVar2 + 0x20) = *(undefined8 *)*param_3;
-  *(undefined8 *)(lVar2 + 0x28) = uVar1;
-  *(undefined8 *)(lVar2 + 0x30) = 0;
-  *(undefined8 *)(lVar2 + 0x38) = 0;
-  *(undefined8 *)(lVar2 + 0x40) = 0;
-  *(undefined4 *)(lVar2 + 0x48) = 0xffffffff;
-  *(undefined4 *)(lVar2 + 0x4c) = 0xffffffff;
-  *(undefined8 *)(lVar2 + 0x50) = 0;
+  *(int16_t *)(lVar2 + 0x18) = 0;
+  uVar1 = ((uint64_t *)*param_3)[1];
+  *(uint64_t *)(lVar2 + 0x20) = *(uint64_t *)*param_3;
+  *(uint64_t *)(lVar2 + 0x28) = uVar1;
+  *(uint64_t *)(lVar2 + 0x30) = 0;
+  *(uint64_t *)(lVar2 + 0x38) = 0;
+  *(uint64_t *)(lVar2 + 0x40) = 0;
+  *(int32_t *)(lVar2 + 0x48) = 0xffffffff;
+  *(int32_t *)(lVar2 + 0x4c) = 0xffffffff;
+  *(uint64_t *)(lVar2 + 0x50) = 0;
   return;
 }
 
 
 
-// 函数: undefined8 *binary_tree_insert_node(longlong *param_1,undefined8 *param_2,longlong *param_3,undefined8 param_4,undefined8 param_5)
+// 函数: uint64_t *binary_tree_insert_node(longlong *param_1,uint64_t *param_2,longlong *param_3,uint64_t param_4,uint64_t param_5)
 // 功能: 在二叉树中插入节点，包含复杂的平衡和比较逻辑
 // 参数: param_1 - 树根指针, param_2 - 插入位置, param_3 - 目标节点, param_4 - 比较数据, param_5 - 附加参数
-// 返回: undefined8 * - 插入位置的指针
+// 返回: uint64_t * - 插入位置的指针
 // 说明: 这是一个复杂的二叉树插入算法，包含多种情况的处理和节点平衡
-undefined8 *
-binary_tree_insert_node(longlong *param_1,undefined8 *param_2,longlong *param_3,undefined8 param_4,
-                       undefined8 param_5)
+uint64_t *
+binary_tree_insert_node(longlong *param_1,uint64_t *param_2,longlong *param_3,uint64_t param_4,
+                       uint64_t param_5)
 
 {
   longlong *plVar1;
   longlong lVar2;
   int iVar3;
-  undefined8 *puVar4;
+  uint64_t *puVar4;
   longlong *plVar5;
   longlong *plVar6;
   bool bVar7;
-  undefined1 auStack_30 [24];
+  int8_t auStack_30 [24];
   
   if (param_1[1] == 0) {
     tree_node_insert(param_1,param_2,1,*param_1);
@@ -568,7 +568,7 @@ binary_tree_insert_node(longlong *param_1,undefined8 *param_2,longlong *param_3,
       }
     }
   }
-  puVar4 = (undefined8 *)tree_find_insert_position(param_1,auStack_30,0,param_4,param_5);
+  puVar4 = (uint64_t *)tree_find_insert_position(param_1,auStack_30,0,param_4,param_5);
   *param_2 = *puVar4;
   return param_2;
 }
@@ -577,17 +577,17 @@ binary_tree_insert_node(longlong *param_1,undefined8 *param_2,longlong *param_3,
 
 
 
-// 函数: void *memory_allocate_and_copy(undefined8 *param_1)
+// 函数: void *memory_allocate_and_copy(uint64_t *param_1)
 // 功能: 分配内存并复制数据
 // 参数: param_1 - 源数据指针
 // 返回: void * - 分配的内存指针
 // 说明: 分配0x58字节的内存，并将源数据复制到新分配的内存中
-void *memory_allocate_and_copy(undefined8 *param_1)
+void *memory_allocate_and_copy(uint64_t *param_1)
 
 {
-  undefined8 *puVar1;
+  uint64_t *puVar1;
   
-  puVar1 = (undefined8 *)memory_allocate_0x58_bytes();
+  puVar1 = (uint64_t *)memory_allocate_0x58_bytes();
   *puVar1 = *param_1;
   puVar1[1] = param_1[1];
   puVar1[2] = param_1[2];
@@ -596,21 +596,21 @@ void *memory_allocate_and_copy(undefined8 *param_1)
 
 
 
-// 函数: undefined8 *binary_tree_node_insert(longlong *param_1,undefined8 *param_2,char param_3,undefined8 *param_4,
-//             undefined8 param_5,longlong *param_6)
+// 函数: uint64_t *binary_tree_node_insert(longlong *param_1,uint64_t *param_2,char param_3,uint64_t *param_4,
+//             uint64_t param_5,longlong *param_6)
 // 功能: 在二叉树中插入节点的底层实现
 // 参数: param_1 - 树结构, param_2 - 插入位置, param_3 - 插入标志, param_4 - 节点数据, param_5 - 附加参数, param_6 - 节点指针
-// 返回: undefined8 * - 插入结果
+// 返回: uint64_t * - 插入结果
 // 说明: 这是二叉树插入操作的核心实现，处理各种边界条件和节点链接
-undefined8 *
-binary_tree_node_insert(longlong *param_1,undefined8 *param_2,char param_3,undefined8 *param_4,
-                       undefined8 param_5,longlong *param_6)
+uint64_t *
+binary_tree_node_insert(longlong *param_1,uint64_t *param_2,char param_3,uint64_t *param_4,
+                       uint64_t param_5,longlong *param_6)
 
 {
   char cVar1;
   longlong *plVar2;
   code *pcVar3;
-  undefined8 *puVar4;
+  uint64_t *puVar4;
   longlong lVar5;
   longlong *plVar6;
   longlong *plVar7;
@@ -620,27 +620,27 @@ binary_tree_node_insert(longlong *param_1,undefined8 *param_2,char param_3,undef
     throw_length_error();
     __Xlength_error_std__YAXPEBD_Z(&字符串常量_长度错误信息);
     pcVar3 = (code *)swi(3);
-    puVar4 = (undefined8 *)(*pcVar3)();
+    puVar4 = (uint64_t *)(*pcVar3)();
     return puVar4;
   }
   param_1[1] = param_1[1] + 1;
   param_6[1] = (longlong)param_4;
-  if (param_4 == (undefined8 *)*param_1) {
-    ((undefined8 *)*param_1)[1] = param_6;
+  if (param_4 == (uint64_t *)*param_1) {
+    ((uint64_t *)*param_1)[1] = param_6;
     *(longlong **)*param_1 = param_6;
     lVar5 = *param_1;
   }
   else {
     if (param_3 != '\0') {
       *param_4 = param_6;
-      if (param_4 == *(undefined8 **)*param_1) {
+      if (param_4 == *(uint64_t **)*param_1) {
         *(longlong **)*param_1 = param_6;
       }
       goto LAB_18008f4f4;
     }
     param_4[2] = param_6;
     lVar5 = *param_1;
-    if (param_4 != *(undefined8 **)(lVar5 + 0x10)) goto LAB_18008f4f4;
+    if (param_4 != *(uint64_t **)(lVar5 + 0x10)) goto LAB_18008f4f4;
   }
   *(longlong **)(lVar5 + 0x10) = param_6;
 LAB_18008f4f4:
@@ -650,7 +650,7 @@ LAB_18008f4f4:
     if (cVar1 != '\0') {
       lVar5 = *param_1;
       *param_2 = plVar8;
-      *(undefined1 *)(*(longlong *)(lVar5 + 8) + 0x18) = 1;
+      *(int8_t *)(*(longlong *)(lVar5 + 8) + 0x18) = 1;
       return param_2;
     }
     plVar6 = (longlong *)param_6[1];
@@ -658,9 +658,9 @@ LAB_18008f4f4:
     if (plVar6 == plVar7) {
       lVar5 = ((longlong *)plVar6[1])[2];
       if (*(char *)(lVar5 + 0x18) == '\0') {
-        *(undefined1 *)(plVar6 + 3) = 1;
-        *(undefined1 *)(lVar5 + 0x18) = 1;
-        *(undefined1 *)(*(longlong *)(param_6[1] + 8) + 0x18) = 0;
+        *(int8_t *)(plVar6 + 3) = 1;
+        *(int8_t *)(lVar5 + 0x18) = 1;
+        *(int8_t *)(*(longlong *)(param_6[1] + 8) + 0x18) = 0;
         param_6 = *(longlong **)(param_6[1] + 8);
       }
       else {
@@ -668,8 +668,8 @@ LAB_18008f4f4:
           handle_tree_rotation_case1(param_1);
           param_6 = plVar6;
         }
-        *(undefined1 *)(param_6[1] + 0x18) = 1;
-        *(undefined1 *)(*(longlong *)(param_6[1] + 8) + 0x18) = 0;
+        *(int8_t *)(param_6[1] + 0x18) = 1;
+        *(int8_t *)(*(longlong *)(param_6[1] + 8) + 0x18) = 0;
         plVar6 = *(longlong **)(param_6[1] + 8);
         plVar7 = (longlong *)*plVar6;
         *plVar6 = plVar7[2];
@@ -702,8 +702,8 @@ LAB_18008f669:
           handle_tree_rotation_case2(param_1);
           param_6 = plVar6;
         }
-        *(undefined1 *)(param_6[1] + 0x18) = 1;
-        *(undefined1 *)(*(longlong *)(param_6[1] + 8) + 0x18) = 0;
+        *(int8_t *)(param_6[1] + 0x18) = 1;
+        *(int8_t *)(*(longlong *)(param_6[1] + 8) + 0x18) = 0;
         plVar6 = *(longlong **)(param_6[1] + 8);
         plVar7 = (longlong *)plVar6[2];
         plVar6[2] = *plVar7;
@@ -715,7 +715,7 @@ LAB_18008f669:
           *(longlong **)(*param_1 + 8) = plVar7;
         }
         else {
-          puVar4 = (undefined8 *)plVar6[1];
+          puVar4 = (uint64_t *)plVar6[1];
           if (plVar6 == (longlong *)*puVar4) {
             *puVar4 = plVar7;
           }
@@ -726,9 +726,9 @@ LAB_18008f669:
         *plVar7 = (longlong)plVar6;
         goto LAB_18008f669;
       }
-      *(undefined1 *)(plVar6 + 3) = 1;
-      *(undefined1 *)(plVar7 + 3) = 1;
-      *(undefined1 *)(*(longlong *)(param_6[1] + 8) + 0x18) = 0;
+      *(int8_t *)(plVar6 + 3) = 1;
+      *(int8_t *)(plVar7 + 3) = 1;
+      *(int8_t *)(*(longlong *)(param_6[1] + 8) + 0x18) = 0;
       param_6 = *(longlong **)(param_6[1] + 8);
     }
     cVar1 = *(char *)(param_6[1] + 0x18);
@@ -737,28 +737,28 @@ LAB_18008f669:
 
 
 
-// 函数: undefined8 *binary_tree_find_insert_position(longlong *param_1,undefined8 *param_2,char param_3,undefined8 param_4,
-//             undefined8 param_5)
+// 函数: uint64_t *binary_tree_find_insert_position(longlong *param_1,uint64_t *param_2,char param_3,uint64_t param_4,
+//             uint64_t param_5)
 // 功能: 在二叉树中查找合适的插入位置
 // 参数: param_1 - 树结构, param_2 - 临时存储, param_3 - 查找标志, param_4 - 比较数据, param_5 - 附加参数
-// 返回: undefined8 * - 找到的位置指针
+// 返回: uint64_t * - 找到的位置指针
 // 说明: 在二叉树中搜索合适的插入位置，考虑各种比较条件和平衡要求
-undefined8 *
-binary_tree_find_insert_position(longlong *param_1,undefined8 *param_2,char param_3,undefined8 param_4,
-                                undefined8 param_5)
+uint64_t *
+binary_tree_find_insert_position(longlong *param_1,uint64_t *param_2,char param_3,uint64_t param_4,
+                                uint64_t param_5)
 
 {
-  undefined8 *puVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar1;
+  uint64_t *puVar2;
   int iVar3;
-  undefined8 *puVar4;
-  undefined8 *puVar5;
+  uint64_t *puVar4;
+  uint64_t *puVar5;
   bool bVar6;
-  undefined1 auStackX_8 [8];
+  int8_t auStackX_8 [8];
   
   bVar6 = true;
-  puVar4 = (undefined8 *)((undefined8 *)*param_1)[1];
-  puVar5 = (undefined8 *)*param_1;
+  puVar4 = (uint64_t *)((uint64_t *)*param_1)[1];
+  puVar5 = (uint64_t *)*param_1;
   while (*(char *)((longlong)puVar4 + 0x19) == '\0') {
     if (param_3 == '\0') {
       iVar3 = memcmp(param_4,puVar4 + 4,0x10);
@@ -770,54 +770,54 @@ binary_tree_find_insert_position(longlong *param_1,undefined8 *param_2,char para
     }
     puVar5 = puVar4;
     if (bVar6 == false) {
-      puVar4 = (undefined8 *)puVar4[2];
+      puVar4 = (uint64_t *)puVar4[2];
     }
     else {
-      puVar4 = (undefined8 *)*puVar4;
+      puVar4 = (uint64_t *)*puVar4;
     }
   }
   puVar4 = puVar5;
   if (bVar6 != false) {
-    if (puVar5 == *(undefined8 **)*param_1) {
-      puVar4 = (undefined8 *)tree_node_insert(param_1,auStackX_8,1,puVar5);
+    if (puVar5 == *(uint64_t **)*param_1) {
+      puVar4 = (uint64_t *)tree_node_insert(param_1,auStackX_8,1,puVar5);
       *param_2 = *puVar4;
-      *(undefined1 *)(param_2 + 1) = 1;
+      *(int8_t *)(param_2 + 1) = 1;
       return param_2;
     }
     if (*(char *)((longlong)puVar5 + 0x19) == '\0') {
-      puVar2 = (undefined8 *)*puVar5;
+      puVar2 = (uint64_t *)*puVar5;
       puVar1 = puVar5;
       if (*(char *)((longlong)*puVar5 + 0x19) == '\0') {
         do {
           puVar4 = puVar2;
-          puVar2 = (undefined8 *)puVar4[2];
+          puVar2 = (uint64_t *)puVar4[2];
         } while (*(char *)((longlong)puVar4[2] + 0x19) == '\0');
       }
       else {
         do {
           puVar4 = puVar1;
-          puVar1 = (undefined8 *)puVar4[1];
+          puVar1 = (uint64_t *)puVar4[1];
           if (*(char *)((longlong)puVar1 + 0x19) != '\0') break;
-        } while (puVar4 == (undefined8 *)*puVar1);
+        } while (puVar4 == (uint64_t *)*puVar1);
         if (*(char *)((longlong)puVar4 + 0x19) == '\0') {
           puVar4 = puVar1;
         }
       }
     }
     else {
-      puVar4 = (undefined8 *)puVar5[2];
+      puVar4 = (uint64_t *)puVar5[2];
     }
   }
   iVar3 = memcmp(puVar4 + 4,param_4,0x10);
   if (iVar3 < 0) {
-    puVar4 = (undefined8 *)tree_node_insert(param_1,auStackX_8,bVar6,puVar5);
+    puVar4 = (uint64_t *)tree_node_insert(param_1,auStackX_8,bVar6,puVar5);
     *param_2 = *puVar4;
-    *(undefined1 *)(param_2 + 1) = 1;
+    *(int8_t *)(param_2 + 1) = 1;
   }
   else {
     free(param_5,0x58);
     *param_2 = puVar4;
-    *(undefined1 *)(param_2 + 1) = 0;
+    *(int8_t *)(param_2 + 1) = 0;
   }
   return param_2;
 }
@@ -1020,12 +1020,12 @@ void heap_sort_adjust_down(longlong param_1,longlong param_2,longlong param_3,lo
     if (!bVar3) {
       lVar8 = lVar4;
     }
-    *(undefined8 *)(param_1 + param_4 * 8) = *(undefined8 *)(param_1 + lVar8 * 8);
+    *(uint64_t *)(param_1 + param_4 * 8) = *(uint64_t *)(param_1 + lVar8 * 8);
     param_4 = lVar8;
     lVar7 = lVar8 * 2;
   }
   if (lVar4 == param_3) {
-    *(undefined8 *)(param_1 + param_4 * 8) = *(undefined8 *)(param_1 + -8 + lVar4 * 8);
+    *(uint64_t *)(param_1 + param_4 * 8) = *(uint64_t *)(param_1 + -8 + lVar4 * 8);
     param_4 = lVar7 + 1;
   }
   if (param_4 <= param_2) {
@@ -1131,11 +1131,11 @@ LAB_18008fb99:
 void heap_assign_direct(void)
 
 {
-  undefined8 *unaff_RDI;
+  uint64_t *unaff_RDI;
   longlong in_R10;
   longlong in_R11;
   
-  *(undefined8 *)(in_R11 + in_R10 * 8) = *unaff_RDI;
+  *(uint64_t *)(in_R11 + in_R10 * 8) = *unaff_RDI;
   return;
 }
 
@@ -1153,9 +1153,9 @@ void heap_assign_from_stack(void)
 {
   longlong in_R10;
   longlong in_R11;
-  undefined8 *in_stack_00000030;
+  uint64_t *in_stack_00000030;
   
-  *(undefined8 *)(in_R11 + in_R10 * 8) = *in_stack_00000030;
+  *(uint64_t *)(in_R11 + in_R10 * 8) = *in_stack_00000030;
   return;
 }
 

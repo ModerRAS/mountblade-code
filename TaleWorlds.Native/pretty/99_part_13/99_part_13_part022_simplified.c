@@ -127,7 +127,7 @@ void audio_volume_adjust(float volume_input, longlong context, ulonglong securit
  * @param param4 参数4
  * @param security 安全令牌
  */
-void audio_effect_apply(undefined8 param1, undefined8 param2, int param3, 
+void audio_effect_apply(uint64_t param1, uint64_t param2, int param3, 
                       uint param4, ulonglong security)
 {
     // 简化的音效应用逻辑
@@ -166,7 +166,7 @@ void audio_effect_apply(undefined8 param1, undefined8 param2, int param3,
  * @param target 目标资源
  * @return 操作结果
  */
-undefined8 audio_resource_manager(longlong context, longlong *target)
+uint64_t audio_resource_manager(longlong context, longlong *target)
 {
     // 简化的资源管理逻辑
     if (target == (longlong *)0x0) {
@@ -195,7 +195,7 @@ undefined8 audio_resource_manager(longlong context, longlong *target)
  * @param sample 采样参数
  * @return 计算结果
  */
-float audio_system_calculator(undefined4 *params, float volume, int sample)
+float audio_system_calculator(int32_t *params, float volume, int sample)
 {
     // 简化的参数计算逻辑
     float result = volume;

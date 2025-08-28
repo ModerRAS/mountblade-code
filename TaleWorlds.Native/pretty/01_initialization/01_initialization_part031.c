@@ -54,13 +54,13 @@ ulonglong ProcessBatchObjectRegistration(longlong objectManager, longlong *objec
 
 {
   uint *referenceCount;
-  undefined4 *blockData;
+  int32_t *blockData;
   uint currentRefCount;
   uint newRefCount;
   longlong *poolInfo;
-  undefined4 data1;
-  undefined4 data2;
-  undefined4 data3;
+  int32_t data1;
+  int32_t data2;
+  int32_t data3;
   longlong *nextPool;
   ulonglong currentObject;
   longlong capacity;
@@ -72,8 +72,8 @@ ulonglong ProcessBatchObjectRegistration(longlong objectManager, longlong *objec
   ulonglong processedCount;
   ulonglong remainingBytes;
   ulonglong newCapacity;
-  undefined4 *sourceBlock;
-  undefined4 *destBlock;
+  int32_t *sourceBlock;
+  int32_t *destBlock;
   longlong processedItems;
   longlong bytesToProcess;
   ulonglong totalObjects;
@@ -124,7 +124,7 @@ LAB_18005f6a2:
     ringBuffer = nextObject;
     while( true ) {
       do {
-        *(undefined1 *)(ringBuffer + 0x110 + bytesToProcess) = 0;
+        *(int8_t *)(ringBuffer + 0x110 + bytesToProcess) = 0;
         bytesToProcess = bytesToProcess + 1;
       } while (bytesToProcess != 0x20);
       nextObject = *(ulonglong *)(objectManager + 0x40);
@@ -156,7 +156,7 @@ LAB_18005f6a2:
     }
     poolStart = *(ulonglong *)(objectManager + 0x40);
     if (poolStart == nextObject) break;
-    *(undefined8 *)(objectManager + 0x40) = *(undefined8 *)(poolStart + 0x100);
+    *(uint64_t *)(objectManager + 0x40) = *(uint64_t *)(poolStart + 0x100);
   }
   if (nextObject != 0) {
     poolStart = *(longlong *)(objectManager + 0x68) - 1;
@@ -176,13 +176,13 @@ joined_r0x00018005f6ef:
       *poolInfo = capacity * 2;
       nextPool = (longlong *)AllocateMemoryFromPool(_DAT_180c8ed18,capacity * 0x20 + 0x27,10);
       if (nextPool != (longlong *)0x0) {
-        destBlock = (undefined4 *)((ulonglong)(-(int)(nextPool + 4) & 7) + (longlong)(nextPool + 4));
+        destBlock = (int32_t *)((ulonglong)(-(int)(nextPool + 4) & 7) + (longlong)(nextPool + 4));
         processedItems = 0;
         if (*(longlong *)(objectManager + 0x60) != 0) {
           ringBuffer = *(longlong *)(objectManager + 0x70) - *(longlong *)(objectManager + 0x60) & capacity - 1U;
           sourceBlock = destBlock;
           do {
-            blockData = (undefined4 *)(*(longlong *)(objectManager + 0x78) + ringBuffer * 0x10);
+            blockData = (int32_t *)(*(longlong *)(objectManager + 0x78) + ringBuffer * 0x10);
             data1 = blockData[1];
             data2 = blockData[2];
             data3 = blockData[3];
@@ -200,7 +200,7 @@ joined_r0x00018005f6ef:
         nextPool[2] = (longlong)destBlock;
         nextPool[3] = *(longlong *)(objectManager + 0x80);
         *(longlong *)(objectManager + 0x70) = processedItems;
-        *(undefined4 **)(objectManager + 0x78) = destBlock;
+        *(int32_t **)(objectManager + 0x78) = destBlock;
         *(longlong **)(objectManager + 0x80) = nextPool;
         *(longlong **)(objectManager + 0x58) = nextPool;
         ringBuffer = objectData;
@@ -289,11 +289,11 @@ LAB_18005f8c7:
 LAB_18005f8e3:
     nextObject = AllocateMemoryFromPool(_DAT_180c8ed18,0x148,CONCAT71((int7)(nextObject >> 8),10));
     if (nextObject != 0) {
-      *(undefined8 *)(nextObject + 0x100) = 0;
-      *(undefined8 *)(nextObject + 0x108) = 0;
-      *(undefined4 *)(nextObject + 0x130) = 0;
-      *(undefined8 *)(nextObject + 0x138) = 0;
-      *(undefined2 *)(nextObject + 0x140) = 0x100;
+      *(uint64_t *)(nextObject + 0x100) = 0;
+      *(uint64_t *)(nextObject + 0x108) = 0;
+      *(int32_t *)(nextObject + 0x130) = 0;
+      *(uint64_t *)(nextObject + 0x138) = 0;
+      *(int16_t *)(nextObject + 0x140) = 0x100;
       goto LAB_18005f92b;
     }
 LAB_18005f9e1:
@@ -317,14 +317,14 @@ LAB_18005f92b:
   capacity = 0;
   if (nextObject == 0) goto LAB_18005f9e1;
   do {
-    *(undefined1 *)(nextObject + 0x110 + capacity) = 1;
+    *(int8_t *)(nextObject + 0x110 + capacity) = 1;
     capacity = capacity + 1;
   } while (capacity != 0x20);
   if (*(longlong *)(objectManager + 0x40) == 0) {
     *(ulonglong *)(nextObject + 0x100) = nextObject;
   }
   else {
-    *(undefined8 *)(nextObject + 0x100) = *(undefined8 *)(*(longlong *)(objectManager + 0x40) + 0x100);
+    *(uint64_t *)(nextObject + 0x100) = *(uint64_t *)(*(longlong *)(objectManager + 0x40) + 0x100);
     *(ulonglong *)(*(longlong *)(objectManager + 0x40) + 0x100) = nextObject;
   }
   *(ulonglong *)(objectManager + 0x40) = nextObject;
@@ -410,7 +410,7 @@ ulonglong OptimizedBatchObjectRegistration(longlong objectManager, longlong *obj
         }
         uVar17 = *(ulonglong *)(param_1 + 0x40);
         if (uVar17 == uVar14) break;
-        *(undefined8 *)(param_1 + 0x40) = *(undefined8 *)(uVar17 + 0x100);
+        *(uint64_t *)(param_1 + 0x40) = *(uint64_t *)(uVar17 + 0x100);
       }
       *(ulonglong *)(param_1 + 0x20) = uVar13;
       return CONCAT71((int7)(uVar17 >> 8),1);
@@ -448,8 +448,8 @@ ulonglong OptimizedBatchObjectRegistration(longlong objectManager, longlong *obj
 LAB_18005fd51:
     if (uVar14 == 0) goto LAB_18005fda6;
 LAB_18005fd56:
-    *(undefined8 *)(uVar14 + 0x108) = 0;
-    *(undefined8 *)(uVar14 + 0x100) = 0;
+    *(uint64_t *)(uVar14 + 0x108) = 0;
+    *(uint64_t *)(uVar14 + 0x100) = 0;
     puVar20[1] = uVar14;
     if (((uVar16 & 0x1f) != 0) || (uVar7 != 0)) {
       *(ulonglong *)(*(longlong *)(param_1 + 0x40) + 0x100) = uVar14;
@@ -523,11 +523,11 @@ LAB_18005fcf9:
 LAB_18005fd0d:
   uVar14 = FUN_18062b420(_DAT_180c8ed18,0x148,CONCAT71((int7)((ulonglong)lVar6 >> 8),10));
   if (uVar14 != 0) {
-    *(undefined8 *)(uVar14 + 0x100) = 0;
-    *(undefined8 *)(uVar14 + 0x108) = 0;
-    *(undefined4 *)(uVar14 + 0x130) = 0;
-    *(undefined8 *)(uVar14 + 0x138) = 0;
-    *(undefined2 *)(uVar14 + 0x140) = 0x100;
+    *(uint64_t *)(uVar14 + 0x100) = 0;
+    *(uint64_t *)(uVar14 + 0x108) = 0;
+    *(int32_t *)(uVar14 + 0x130) = 0;
+    *(uint64_t *)(uVar14 + 0x138) = 0;
+    *(int16_t *)(uVar14 + 0x140) = 0x100;
     goto LAB_18005fd51;
   }
 LAB_18005fda6:
@@ -538,7 +538,7 @@ joined_r0x00018005fdcd:
   for (; uVar8 != 0; uVar8 = *(ulonglong *)(uVar8 + 0x100)) {
     uVar18 = uVar18 + 0x20;
     plVar5 = *(longlong **)(param_1 + 0x60);
-    *(undefined8 *)
+    *(uint64_t *)
      (*(longlong *)
        (plVar5[3] +
        ((uVar18 - **(longlong **)(plVar5[3] + plVar5[1] * 8) >> 5) + plVar5[1] & *plVar5 - 1U) * 8)
@@ -546,7 +546,7 @@ joined_r0x00018005fdcd:
     plVar5 = *(longlong **)(param_1 + 0x60);
     plVar5[1] = plVar5[1] - 1U & *plVar5 - 1U;
   }
-  uVar13 = func_0x000180060150(*(undefined8 *)(param_1 + 0x50),uVar7);
+  uVar13 = func_0x000180060150(*(uint64_t *)(param_1 + 0x50),uVar7);
   *(ulonglong *)(param_1 + 0x40) = uVar17;
   return uVar13 & 0xffffffffffffff00;
 }
@@ -595,11 +595,11 @@ LAB_180060026:
       if (lVar6 == 0) {
         return 0;
       }
-      *(undefined8 *)(lVar6 + 0x100) = 0;
-      *(undefined8 *)(lVar6 + 0x108) = 0;
-      *(undefined4 *)(lVar6 + 0x130) = 0;
-      *(undefined8 *)(lVar6 + 0x138) = 0;
-      *(undefined2 *)(lVar6 + 0x140) = 0x100;
+      *(uint64_t *)(lVar6 + 0x100) = 0;
+      *(uint64_t *)(lVar6 + 0x108) = 0;
+      *(int32_t *)(lVar6 + 0x130) = 0;
+      *(uint64_t *)(lVar6 + 0x138) = 0;
+      *(int16_t *)(lVar6 + 0x140) = 0x100;
       return lVar6;
     }
     puVar2 = (uint *)(lVar9 + 0x130);
@@ -668,13 +668,13 @@ LAB_180060007:
  * 为指定对象设置数据值，处理内存池操作
  * 原函数名: FUN_180060080
  */
-ulonglong SetObjectDataValue(longlong objectManager, longlong *dataPointer, undefined8 dataValue)
+ulonglong SetObjectDataValue(longlong objectManager, longlong *dataPointer, uint64_t dataValue)
 
 {
   longlong *plVar1;
   longlong *plVar2;
   longlong lVar3;
-  undefined8 *puVar4;
+  uint64_t *puVar4;
   ulonglong in_RAX;
   ulonglong uVar5;
   
@@ -684,7 +684,7 @@ ulonglong SetObjectDataValue(longlong objectManager, longlong *dataPointer, unde
     plVar2 = *(longlong **)(plVar1[3] + uVar5 * 8);
     *param_2 = (longlong)plVar2;
     if ((*plVar2 == 1) || (*(longlong *)(*param_2 + 8) == 0)) {
-      puVar4 = (undefined8 *)*param_2;
+      puVar4 = (uint64_t *)*param_2;
       *puVar4 = param_3;
       plVar1[1] = uVar5;
       return CONCAT71((int7)((ulonglong)puVar4 >> 8),1);
@@ -694,7 +694,7 @@ ulonglong SetObjectDataValue(longlong objectManager, longlong *dataPointer, unde
       plVar1 = *(longlong **)(param_1 + 0x60);
       uVar5 = *plVar1 - 1U & plVar1[1] + 1U;
       lVar3 = plVar1[3];
-      puVar4 = *(undefined8 **)(lVar3 + uVar5 * 8);
+      puVar4 = *(uint64_t **)(lVar3 + uVar5 * 8);
       *param_2 = (longlong)puVar4;
       *puVar4 = param_3;
       plVar1[1] = uVar5;
@@ -711,7 +711,7 @@ ulonglong SetObjectDataValue(longlong objectManager, longlong *dataPointer, unde
  * 清理对象管理器占用的资源，根据标志决定是否释放内存
  * 原函数名: FUN_1800601c0
  */
-undefined8 CleanupObjectManagerResources(undefined8 objectManager, ulonglong freeMemoryFlag)
+uint64_t CleanupObjectManagerResources(uint64_t objectManager, ulonglong freeMemoryFlag)
 
 {
   FUN_180060200();
@@ -725,13 +725,13 @@ undefined8 CleanupObjectManagerResources(undefined8 objectManager, ulonglong fre
 
 
 
-// 函数: void FUN_180060200(undefined8 *param_1)
+// 函数: void FUN_180060200(uint64_t *param_1)
 /**
  * 销毁对象管理器
  * 完全销毁对象管理器，清理所有相关资源和内存
  * 原函数名: FUN_180060200
  */
-void DestroyObjectManager(undefined8 *objectManager)
+void DestroyObjectManager(uint64_t *objectManager)
 
 {
   longlong *plVar1;
@@ -824,7 +824,7 @@ code_r0x000180060327:
         lVar8 = *(longlong *)(lVar9 + 0x28);
         do {
           *(longlong *)(lVar7 + 0x138) = lVar8;
-          *(undefined4 *)(lVar7 + 0x130) = 1;
+          *(int32_t *)(lVar7 + 0x130) = 1;
           plVar1 = (longlong *)(lVar9 + 0x28);
           LOCK();
           lVar6 = *plVar1;
@@ -856,7 +856,7 @@ code_r0x000180060327:
  * 清理对象容器并处理相关资源，根据标志决定是否释放内存
  * 原函数名: FUN_1800603e0
  */
-undefined8 CleanupObjectContainer(undefined8 objectContainer, ulonglong freeMemoryFlag)
+uint64_t CleanupObjectContainer(uint64_t objectContainer, ulonglong freeMemoryFlag)
 
 {
   FUN_180060420();
@@ -870,13 +870,13 @@ undefined8 CleanupObjectContainer(undefined8 objectContainer, ulonglong freeMemo
 
 
 
-// 函数: void FUN_180060420(undefined8 *param_1)
+// 函数: void FUN_180060420(uint64_t *param_1)
 /**
  * 销毁对象容器
  * 完全销毁对象容器，清理所有对象和相关资源
  * 原函数名: FUN_180060420
  */
-void DestroyObjectContainer(undefined8 *objectContainer)
+void DestroyObjectContainer(uint64_t *objectContainer)
 
 {
   int *piVar1;
@@ -908,7 +908,7 @@ void DestroyObjectContainer(undefined8 *objectContainer)
           lVar8 = *(longlong *)(lVar6 + 0x28);
           do {
             *(longlong *)(lVar9 + 0x138) = lVar8;
-            *(undefined4 *)(lVar9 + 0x130) = 1;
+            *(int32_t *)(lVar9 + 0x130) = 1;
             plVar5 = (longlong *)(lVar6 + 0x28);
             LOCK();
             lVar7 = *plVar5;
@@ -954,7 +954,7 @@ LAB_1800604d1:
       lVar8 = *(longlong *)(lVar6 + 0x28);
       do {
         *(longlong *)(lVar9 + 0x138) = lVar8;
-        *(undefined4 *)(lVar9 + 0x130) = 1;
+        *(int32_t *)(lVar9 + 0x130) = 1;
         plVar5 = (longlong *)(lVar6 + 0x28);
         LOCK();
         lVar7 = *plVar5;
@@ -989,7 +989,7 @@ LAB_1800604d1:
  * 清理对象池资源，根据标志决定是否释放内存
  * 原函数名: FUN_1800605d0
  */
-undefined8 * CleanupObjectPool(undefined8 *objectPool, ulonglong freeMemoryFlag)
+uint64_t * CleanupObjectPool(uint64_t *objectPool, ulonglong freeMemoryFlag)
 
 {
   *param_1 = &UNK_1809fe210;
@@ -1003,17 +1003,17 @@ undefined8 * CleanupObjectPool(undefined8 *objectPool, ulonglong freeMemoryFlag)
 
 
 
-// 函数: void FUN_180060610(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void FUN_180060610(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 /**
  * 初始化线程管理器
  * 初始化线程管理器，设置同步原语和线程控制结构
  * 原函数名: FUN_180060610
  */
-void InitializeThreadManager(undefined8 *threadManager, undefined8 param2, undefined8 param3, undefined8 param4)
+void InitializeThreadManager(uint64_t *threadManager, uint64_t param2, uint64_t param3, uint64_t param4)
 
 {
   char cVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   
   uVar2 = 0xfffffffffffffffe;
   *param_1 = &UNK_180a10098;
@@ -1028,8 +1028,8 @@ void InitializeThreadManager(undefined8 *threadManager, undefined8 param2, undef
     _Mtx_destroy_in_situ();
     FUN_18020f530();
     if (param_1[0xe] != 0) {
-      *(undefined8 *)(param_1[0xe] + 0x10) = 0;
-      *(undefined1 *)(param_1[0xe] + 8) = 1;
+      *(uint64_t *)(param_1[0xe] + 0x10) = 0;
+      *(int8_t *)(param_1[0xe] + 8) = 1;
     }
     param_1[2] = &UNK_18098bcb0;
     return;
@@ -1049,10 +1049,10 @@ void InitializeThreadManager(undefined8 *threadManager, undefined8 param2, undef
  * 清理线程管理器资源，根据标志决定是否释放内存
  * 原函数名: FUN_180060630
  */
-undefined8 CleanupThreadManager(undefined8 threadManager, ulonglong freeMemoryFlag, undefined8 param3, undefined8 param4)
+uint64_t CleanupThreadManager(uint64_t threadManager, ulonglong freeMemoryFlag, uint64_t param3, uint64_t param4)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
   FUN_18020e6c0();
@@ -1069,13 +1069,13 @@ undefined8 CleanupThreadManager(undefined8 threadManager, ulonglong freeMemoryFl
  * 安全的格式化字符串输出函数，处理可变参数
  * 原函数名: FUN_180060680
  */
-int FormatStringOutput(undefined8 buffer, undefined8 format, undefined8 param3, undefined8 param4)
+int FormatStringOutput(uint64_t buffer, uint64_t format, uint64_t param3, uint64_t param4)
 
 {
   int iVar1;
   ulonglong *puVar2;
-  undefined8 uStackX_18;
-  undefined8 uStackX_20;
+  uint64_t uStackX_18;
+  uint64_t uStackX_20;
   
   uStackX_18 = param_3;
   uStackX_20 = param_4;

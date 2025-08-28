@@ -113,9 +113,9 @@ void networking_system_initializer(void) {
  * @param param_2 连接数据数组指针
  * @return 验证结果，0表示成功，其他值表示错误
  */
-undefined8 networking_connection_validator(longlong param_1, longlong *param_2) {
-    undefined8 result;
-    undefined4 stack_buffer[6];
+uint64_t networking_connection_validator(longlong param_1, longlong *param_2) {
+    uint64_t result;
+    int32_t stack_buffer[6];
     
     // 检查连接状态
     if (*(int *)(param_2[1] + 0x18) != 0) {
@@ -123,8 +123,8 @@ undefined8 networking_connection_validator(longlong param_1, longlong *param_2) 
     }
     
     // 发送第一个数据包
-    stack_buffer[0] = *(undefined4 *)(param_1 + 0x50);
-    result = (**(code **)**(undefined8 **)(*param_2 + 8))(*(undefined8 **)(*param_2 + 8), stack_buffer, 4);
+    stack_buffer[0] = *(int32_t *)(param_1 + 0x50);
+    result = (**(code **)**(uint64_t **)(*param_2 + 8))(*(uint64_t **)(*param_2 + 8), stack_buffer, 4);
     
     if ((int)result == 0) {
         if (*(int *)(param_2[1] + 0x18) != 0) {
@@ -132,8 +132,8 @@ undefined8 networking_connection_validator(longlong param_1, longlong *param_2) 
         }
         
         // 发送第二个数据包
-        stack_buffer[0] = *(undefined4 *)(param_1 + 0x54);
-        result = (**(code **)**(undefined8 **)(*param_2 + 8))(*(undefined8 **)(*param_2 + 8), stack_buffer, 4);
+        stack_buffer[0] = *(int32_t *)(param_1 + 0x54);
+        result = (**(code **)**(uint64_t **)(*param_2 + 8))(*(uint64_t **)(*param_2 + 8), stack_buffer, 4);
         
         if ((int)result == 0) {
             if (*(int *)(param_2[1] + 0x18) != 0) {
@@ -141,8 +141,8 @@ undefined8 networking_connection_validator(longlong param_1, longlong *param_2) 
             }
             
             // 发送第三个数据包
-            stack_buffer[0] = *(undefined4 *)(param_1 + 0x58);
-            result = (**(code **)**(undefined8 **)(*param_2 + 8))(*(undefined8 **)(*param_2 + 8), stack_buffer, 4);
+            stack_buffer[0] = *(int32_t *)(param_1 + 0x58);
+            result = (**(code **)**(uint64_t **)(*param_2 + 8))(*(uint64_t **)(*param_2 + 8), stack_buffer, 4);
             
             if ((int)result == 0) {
                 if (*(int *)(param_2[1] + 0x18) != 0) {
@@ -150,8 +150,8 @@ undefined8 networking_connection_validator(longlong param_1, longlong *param_2) 
                 }
                 
                 // 发送第四个数据包
-                stack_buffer[0] = *(undefined4 *)(param_1 + 0x60);
-                result = (**(code **)**(undefined8 **)(*param_2 + 8))(*(undefined8 **)(*param_2 + 8), stack_buffer, 4);
+                stack_buffer[0] = *(int32_t *)(param_1 + 0x60);
+                result = (**(code **)**(uint64_t **)(*param_2 + 8))(*(uint64_t **)(*param_2 + 8), stack_buffer, 4);
                 
                 // 验证多个数据字段
                 if (((((int)result == 0) && (result = FUN_180898eb0(param_2, param_1 + 100), (int)result == 0)) &&
@@ -178,11 +178,11 @@ undefined8 networking_connection_validator(longlong param_1, longlong *param_2) 
  * @param param_2 协议数据数组指针
  * @return 处理结果，0表示成功，其他值表示错误
  */
-undefined8 networking_protocol_processor(longlong param_1, longlong *param_2) {
-    undefined8 result;
-    undefined4 stack_buffer_18[2];
-    undefined1 stack_buffer_68[64];
-    undefined1 stack_buffer_28[32];
+uint64_t networking_protocol_processor(longlong param_1, longlong *param_2) {
+    uint64_t result;
+    int32_t stack_buffer_18[2];
+    int8_t stack_buffer_68[64];
+    int8_t stack_buffer_28[32];
     
     // 初始化协议数据
     result = FUN_1808ddd30(param_2, stack_buffer_28, 1, NETWORK_PROTOCOL_MAGIC_LIST, NETWORK_PROTOCOL_MAGIC_BEFB);
@@ -199,7 +199,7 @@ undefined8 networking_protocol_processor(longlong param_1, longlong *param_2) {
                 
                 if (*(int *)(param_2[1] + 0x18) == 0) {
                     // 处理协议类型
-                    switch(*(undefined4 *)(param_1 + 0x60)) {
+                    switch(*(int32_t *)(param_1 + 0x60)) {
                         default:
                             stack_buffer_18[0] = 0;
                             break;
@@ -312,8 +312,8 @@ undefined8 networking_protocol_processor(longlong param_1, longlong *param_2) {
                             stack_buffer_18[0] = 0x24;
                     }
                     
-                    result = (**(code **)**(undefined8 **)(*param_2 + 8))
-                             (*(undefined8 **)(*param_2 + 8), stack_buffer_18, 4);
+                    result = (**(code **)**(uint64_t **)(*param_2 + 8))
+                             (*(uint64_t **)(*param_2 + 8), stack_buffer_18, 4);
                     
                     if (((int)result == 0) &&
                         (result = FUN_1808a7c90(param_2, param_1 + 0x40, 0x3d), (int)result == 0)) {
@@ -341,12 +341,12 @@ undefined8 networking_protocol_processor(longlong param_1, longlong *param_2) {
  * 
  * @return 处理结果
  */
-undefined8 networking_connection_handler(void) {
+uint64_t networking_connection_handler(void) {
     longlong in_rax;
-    undefined8 result;
+    uint64_t result;
     longlong *unaff_rbx;
     longlong unaff_rsi;
-    undefined4 stack_param_b0;
+    int32_t stack_param_b0;
     
     if (*(int *)(in_rax + 0x18) == 0) {
         result = FUN_180899ef0(*unaff_rbx, unaff_rsi + 0x10);
@@ -356,7 +356,7 @@ undefined8 networking_connection_handler(void) {
             
             if (*(int *)(unaff_rbx[1] + 0x18) == 0) {
                 // 处理连接类型
-                switch(*(undefined4 *)(unaff_rsi + 0x60)) {
+                switch(*(int32_t *)(unaff_rsi + 0x60)) {
                     default:
                         stack_param_b0 = 0;
                         break;
@@ -469,8 +469,8 @@ undefined8 networking_connection_handler(void) {
                         stack_param_b0 = 0x24;
                 }
                 
-                result = (**(code **)**(undefined8 **)(*unaff_rbx + 8))
-                         (*(undefined8 **)(*unaff_rbx + 8), &stack_param_b0, 4);
+                result = (**(code **)**(uint64_t **)(*unaff_rbx + 8))
+                         (*(uint64_t **)(*unaff_rbx + 8), &stack_param_b0, 4);
                 
                 if (((int)result == 0) && (result = FUN_1808a7c90(), (int)result == 0)) {
                     // 处理连接数据（不返回）
@@ -501,7 +501,7 @@ void networking_system_cleaner(void) {
     longlong *unaff_rbx;
     int unaff_ebp;
     longlong unaff_rsi;
-    undefined4 stack_param_b0;
+    int32_t stack_param_b0;
     
     if (in_eax == 0x1b) {
         if (*(uint *)(unaff_rbx + 8) < 0x3b) {
@@ -521,8 +521,8 @@ void networking_system_cleaner(void) {
         
         if (*(int *)(unaff_rbx[1] + 0x18) == 0) {
             stack_param_b0 = 6;
-            result1 = (**(code **)**(undefined8 **)(*unaff_rbx + 8))
-                      (*(undefined8 **)(*unaff_rbx + 8), &stack_param_b0, 4);
+            result1 = (**(code **)**(uint64_t **)(*unaff_rbx + 8))
+                      (*(uint64_t **)(*unaff_rbx + 8), &stack_param_b0, 4);
         }
         
         if (result1 != 0) {
@@ -542,9 +542,9 @@ void networking_system_cleaner(void) {
             unaff_ebp = 0;
         }
         else if (*(int *)(unaff_rbx[1] + 0x18) == 0) {
-            stack_param_b0 = CONCAT31(stack_param_b0._1_3_, *(undefined1 *)(unaff_rsi + 0x5c));
-            unaff_ebp = (**(code **)**(undefined8 **)(*unaff_rbx + 8))
-                       (*(undefined8 **)(*unaff_rbx + 8), &stack_param_b0, 1);
+            stack_param_b0 = CONCAT31(stack_param_b0._1_3_, *(int8_t *)(unaff_rsi + 0x5c));
+            unaff_ebp = (**(code **)**(uint64_t **)(*unaff_rbx + 8))
+                       (*(uint64_t **)(*unaff_rbx + 8), &stack_param_b0, 1);
         }
         
         if (unaff_ebp != 0) {
@@ -597,11 +597,11 @@ void networking_resource_manager(void) {
  * @param param_5 传输模式标志
  * @return 传输结果
  */
-ulonglong networking_data_transmitter(longlong param_1, undefined8 *param_2, undefined4 param_3, undefined4 param_4, char param_5) {
+ulonglong networking_data_transmitter(longlong param_1, uint64_t *param_2, int32_t param_3, int32_t param_4, char param_5) {
     uint validation_result;
     ulonglong result;
-    undefined1 stack_buffer_70[64];
-    undefined1 stack_buffer_30[40];
+    int8_t stack_buffer_70[64];
+    int8_t stack_buffer_30[40];
     
     result = FUN_1808ddd30(param_2, stack_buffer_30, 1, NETWORK_PROTOCOL_MAGIC_LIST, param_3);
     
@@ -636,7 +636,7 @@ ulonglong networking_data_transmitter(longlong param_1, undefined8 *param_2, und
 ulonglong networking_packet_sender(void) {
     uint validation_result;
     ulonglong result;
-    undefined8 *unaff_rbx;
+    uint64_t *unaff_rbx;
     longlong unaff_rbp;
     char stack_param_d0;
     
@@ -680,11 +680,11 @@ void networking_system_terminator(void) {
  * @param param_2 协议数据数组指针
  * @return 处理结果
  */
-undefined8 networking_protocol_handler(longlong param_1, longlong *param_2) {
-    undefined8 result;
-    undefined4 stack_buffer_18[4];
-    undefined1 stack_buffer_48[32];
-    undefined1 stack_buffer_28[32];
+uint64_t networking_protocol_handler(longlong param_1, longlong *param_2) {
+    uint64_t result;
+    int32_t stack_buffer_18[4];
+    int8_t stack_buffer_48[32];
+    int8_t stack_buffer_28[32];
     
     result = FUN_1808ddd30(param_2, stack_buffer_28, 1, NETWORK_PROTOCOL_MAGIC_LIST, NETWORK_PROTOCOL_MAGIC_IDMC);
     
@@ -702,9 +702,9 @@ undefined8 networking_protocol_handler(longlong param_1, longlong *param_2) {
                 return NETWORK_ERROR_CONNECTION_FAILED;
             }
             
-            stack_buffer_18[0] = *(undefined4 *)(param_1 + 0xd8);
-            result = (**(code **)**(undefined8 **)(*param_2 + 8))
-                     (*(undefined8 **)(*param_2 + 8), stack_buffer_18, 4);
+            stack_buffer_18[0] = *(int32_t *)(param_1 + 0xd8);
+            result = (**(code **)**(uint64_t **)(*param_2 + 8))
+                     (*(uint64_t **)(*param_2 + 8), stack_buffer_18, 4);
             
             if ((int)result == 0) {
                 if (*(int *)(param_2[1] + 0x18) != 0) {
@@ -737,18 +737,18 @@ undefined8 networking_protocol_handler(longlong param_1, longlong *param_2) {
 ulonglong networking_connection_manager(longlong param_1, longlong *param_2) {
     longlong temp_var;
     uint validation_result;
-    undefined4 *data_ptr;
+    int32_t *data_ptr;
     ulonglong result;
-    undefined2 stack_buffer_18[4];
-    undefined2 stack_buffer_20[4];
-    undefined4 stack_buffer_58[2];
-    undefined4 stack_50;
-    undefined4 stack_4c;
-    undefined4 stack_48;
-    undefined4 stack_44;
-    undefined1 stack_buffer_40[40];
+    int16_t stack_buffer_18[4];
+    int16_t stack_buffer_20[4];
+    int32_t stack_buffer_58[2];
+    int32_t stack_50;
+    int32_t stack_4c;
+    int32_t stack_48;
+    int32_t stack_44;
+    int8_t stack_buffer_40[40];
     
-    data_ptr = (undefined4 *)FUN_180847820();
+    data_ptr = (int32_t *)FUN_180847820();
     stack_50 = *data_ptr;
     stack_4c = data_ptr[1];
     stack_48 = data_ptr[2];
@@ -779,22 +779,22 @@ ulonglong networking_connection_manager(longlong param_1, longlong *param_2) {
                 if ((*(uint *)(param_2 + 8) < 0x5a) && (validation_result = NETWORK_ERROR_CONNECTION_FAILED, *(int *)(param_2[1] + 0x18) == 0)) {
                     stack_buffer_58[0] = stack_50;
                     temp_var = *param_2;
-                    validation_result = (**(code **)**(undefined8 **)(temp_var + 8))
-                                      (*(undefined8 **)(temp_var + 8), stack_buffer_58, 4);
+                    validation_result = (**(code **)**(uint64_t **)(temp_var + 8))
+                                      (*(uint64_t **)(temp_var + 8), stack_buffer_58, 4);
                     
                     if (validation_result == 0) {
-                        stack_buffer_18[0] = (undefined2)stack_4c;
-                        validation_result = (**(code **)**(undefined8 **)(temp_var + 8))
-                                          (*(undefined8 **)(temp_var + 8), stack_buffer_18, 2);
+                        stack_buffer_18[0] = (int16_t)stack_4c;
+                        validation_result = (**(code **)**(uint64_t **)(temp_var + 8))
+                                          (*(uint64_t **)(temp_var + 8), stack_buffer_18, 2);
                         
                         if (validation_result == 0) {
                             stack_buffer_20[0] = stack_4c._2_2_;
-                            validation_result = (**(code **)**(undefined8 **)(temp_var + 8))
-                                              (*(undefined8 **)(temp_var + 8), stack_buffer_20, 2);
+                            validation_result = (**(code **)**(uint64_t **)(temp_var + 8))
+                                              (*(uint64_t **)(temp_var + 8), stack_buffer_20, 2);
                             
                             if (validation_result == 0) {
-                                validation_result = (**(code **)**(undefined8 **)(temp_var + 8))
-                                                  (*(undefined8 **)(temp_var + 8), &stack_48, 8);
+                                validation_result = (**(code **)**(uint64_t **)(temp_var + 8))
+                                                  (*(uint64_t **)(temp_var + 8), &stack_48, 8);
                             }
                         }
                     }
@@ -841,12 +841,12 @@ ulonglong networking_session_manager(void) {
     longlong unaff_rbp;
     uint unaff_esi;
     longlong *unaff_rdi;
-    undefined4 stack_param_30;
-    undefined4 stack_38;
-    undefined2 stack_3c;
-    undefined2 stack_3e;
-    undefined2 stack_param_a0;
-    undefined2 stack_param_a8;
+    int32_t stack_param_30;
+    int32_t stack_38;
+    int16_t stack_3c;
+    int16_t stack_3e;
+    int16_t stack_param_a0;
+    int16_t stack_param_a8;
     
     if (*(uint *)(in_rax + 0x18) != unaff_esi) {
         return NETWORK_ERROR_CONNECTION_FAILED;
@@ -872,22 +872,22 @@ ulonglong networking_session_manager(void) {
                 
                 stack_param_30 = stack_38;
                 temp_var = *unaff_rdi;
-                validation_result = (**(code **)**(undefined8 **)(temp_var + 8))
-                                  (*(undefined8 **)(temp_var + 8), &stack_param_30, 4);
+                validation_result = (**(code **)**(uint64_t **)(temp_var + 8))
+                                  (*(uint64_t **)(temp_var + 8), &stack_param_30, 4);
                 
                 if (validation_result == 0) {
                     stack_param_a0 = stack_3c;
-                    validation_result = (**(code **)**(undefined8 **)(temp_var + 8))
-                                      (*(undefined8 **)(temp_var + 8), &stack_param_a0, 2);
+                    validation_result = (**(code **)**(uint64_t **)(temp_var + 8))
+                                      (*(uint64_t **)(temp_var + 8), &stack_param_a0, 2);
                     
                     if (validation_result == 0) {
                         stack_param_a8 = stack_3e;
-                        validation_result = (**(code **)**(undefined8 **)(temp_var + 8))
-                                          (*(undefined8 **)(temp_var + 8), &stack_param_a8, 2);
+                        validation_result = (**(code **)**(uint64_t **)(temp_var + 8))
+                                          (*(uint64_t **)(temp_var + 8), &stack_param_a8, 2);
                         
                         if (validation_result == 0) {
-                            validation_result = (**(code **)**(undefined8 **)(temp_var + 8))
-                                              (*(undefined8 **)(temp_var + 8), &stack_param_40, 8);
+                            validation_result = (**(code **)**(uint64_t **)(temp_var + 8))
+                                              (*(uint64_t **)(temp_var + 8), &stack_param_40, 8);
                         }
                     }
                 }
@@ -931,12 +931,12 @@ ulonglong networking_data_processor(void) {
     longlong unaff_rbp;
     uint unaff_esi;
     longlong *unaff_rdi;
-    undefined4 stack_param_30;
-    undefined4 stack_38;
-    undefined2 stack_3c;
-    undefined2 stack_3e;
-    undefined2 stack_param_a0;
-    undefined2 stack_param_a8;
+    int32_t stack_param_30;
+    int32_t stack_38;
+    int16_t stack_3c;
+    int16_t stack_3e;
+    int16_t stack_param_a0;
+    int16_t stack_param_a8;
     
     validation_result = FUN_180899ef0(*unaff_rdi, unaff_rbp + 0x20);
     result = (ulonglong)validation_result;
@@ -950,22 +950,22 @@ ulonglong networking_data_processor(void) {
             
             stack_param_30 = stack_38;
             temp_var = *unaff_rdi;
-            validation_result = (**(code **)**(undefined8 **)(temp_var + 8))
-                              (*(undefined8 **)(temp_var + 8), &stack_param_30, 4);
+            validation_result = (**(code **)**(uint64_t **)(temp_var + 8))
+                              (*(uint64_t **)(temp_var + 8), &stack_param_30, 4);
             
             if (validation_result == 0) {
                 stack_param_a0 = stack_3c;
-                validation_result = (**(code **)**(undefined8 **)(temp_var + 8))
-                                  (*(undefined8 **)(temp_var + 8), &stack_param_a0, 2);
+                validation_result = (**(code **)**(uint64_t **)(temp_var + 8))
+                                  (*(uint64_t **)(temp_var + 8), &stack_param_a0, 2);
                 
                 if (validation_result == 0) {
                     stack_param_a8 = stack_3e;
-                    validation_result = (**(code **)**(undefined8 **)(temp_var + 8))
-                                      (*(undefined8 **)(temp_var + 8), &stack_param_a8, 2);
+                    validation_result = (**(code **)**(uint64_t **)(temp_var + 8))
+                                      (*(uint64_t **)(temp_var + 8), &stack_param_a8, 2);
                     
                     if (validation_result == 0) {
-                        validation_result = (**(code **)**(undefined8 **)(temp_var + 8))
-                                          (*(undefined8 **)(temp_var + 8), &stack_param_40, 8);
+                        validation_result = (**(code **)**(uint64_t **)(temp_var + 8))
+                                          (*(uint64_t **)(temp_var + 8), &stack_param_40, 8);
                     }
                 }
             }
@@ -1008,26 +1008,26 @@ ulonglong networking_message_handler(void) {
     ulonglong unaff_rbx;
     longlong unaff_rbp;
     longlong *unaff_rdi;
-    undefined8 stack_param_38;
-    undefined2 stack_param_a0;
-    undefined2 stack_param_a8;
+    uint64_t stack_param_38;
+    int16_t stack_param_a0;
+    int16_t stack_param_a8;
     
     temp_var = *unaff_rdi;
-    validation_result = (**(code **)**(undefined8 **)(temp_var + 8))();
+    validation_result = (**(code **)**(uint64_t **)(temp_var + 8))();
     
     if (validation_result == 0) {
         stack_param_a0 = stack_param_38._4_2_;
-        validation_result = (**(code **)**(undefined8 **)(temp_var + 8))
-                          (*(undefined8 **)(temp_var + 8), &stack_param_a0, 2);
+        validation_result = (**(code **)**(uint64_t **)(temp_var + 8))
+                          (*(uint64_t **)(temp_var + 8), &stack_param_a0, 2);
         
         if (validation_result == 0) {
             stack_param_a8 = stack_param_38._6_2_;
-            validation_result = (**(code **)**(undefined8 **)(temp_var + 8))
-                              (*(undefined8 **)(temp_var + 8), &stack_param_a8, 2);
+            validation_result = (**(code **)**(uint64_t **)(temp_var + 8))
+                              (*(uint64_t **)(temp_var + 8), &stack_param_a8, 2);
             
             if (validation_result == 0) {
-                validation_result = (**(code **)**(undefined8 **)(temp_var + 8))
-                                  (*(undefined8 **)(temp_var + 8), &stack_param_40, 8);
+                validation_result = (**(code **)**(uint64_t **)(temp_var + 8))
+                                  (*(uint64_t **)(temp_var + 8), &stack_param_40, 8);
             }
         }
     }
@@ -1067,7 +1067,7 @@ ulonglong networking_error_processor(void) {
     ulonglong unaff_rbx;
     longlong unaff_rbp;
     uint unaff_esi;
-    undefined8 *unaff_rdi;
+    uint64_t *unaff_rdi;
     
     if (unaff_esi != 0) {
         return (ulonglong)unaff_esi;
@@ -1103,7 +1103,7 @@ ulonglong networking_connection_monitor(void) {
     ulonglong result;
     ulonglong unaff_rbx;
     longlong unaff_rbp;
-    undefined8 *unaff_rdi;
+    uint64_t *unaff_rdi;
     
     if (*(int *)(unaff_rdi[1] + 0x18) == 0) {
         validation_result = FUN_180899ef0(*unaff_rdi, unaff_rbp + 0x30);
@@ -1131,9 +1131,9 @@ ulonglong networking_connection_monitor(void) {
  * @param param_1 连接参数指针
  * @param param_2 连接数据指针
  */
-void networking_connection_initializer(longlong param_1, undefined8 param_2) {
+void networking_connection_initializer(longlong param_1, uint64_t param_2) {
     int result;
-    undefined1 stack_buffer_28[32];
+    int8_t stack_buffer_28[32];
     
     result = FUN_1808ddd30(param_2, stack_buffer_28, 0, NETWORK_PROTOCOL_MAGIC_ORTC, 0);
     
@@ -1158,9 +1158,9 @@ void networking_connection_initializer(longlong param_1, undefined8 param_2) {
  * @param param_2 验证数据数组指针
  * @return 验证结果
  */
-undefined8 networking_connection_verifier(longlong param_1, undefined8 *param_2) {
-    undefined8 result;
-    undefined1 stack_buffer_28[32];
+uint64_t networking_connection_verifier(longlong param_1, uint64_t *param_2) {
+    uint64_t result;
+    int8_t stack_buffer_28[32];
     
     result = FUN_1808ddd30(param_2, stack_buffer_28, 0, NETWORK_PROTOCOL_MAGIC_VRUC, 0);
     
@@ -1197,10 +1197,10 @@ undefined8 networking_connection_verifier(longlong param_1, undefined8 *param_2)
  * @param param_2 序列化数据数组指针
  * @return 序列化结果
  */
-undefined8 networking_data_serializer(longlong param_1, undefined8 *param_2) {
-    undefined8 result;
-    undefined1 stack_buffer_48[32];
-    undefined1 stack_buffer_28[32];
+uint64_t networking_data_serializer(longlong param_1, uint64_t *param_2) {
+    uint64_t result;
+    int8_t stack_buffer_48[32];
+    int8_t stack_buffer_28[32];
     
     result = FUN_1808ddd30(param_2, stack_buffer_28, 1, NETWORK_PROTOCOL_MAGIC_LIST, NETWORK_PROTOCOL_MAGIC_TIFE);
     
@@ -1239,9 +1239,9 @@ undefined8 networking_data_serializer(longlong param_1, undefined8 *param_2) {
  * @param param_2 处理数据数组指针
  * @return 处理结果
  */
-undefined8 networking_packet_processor(longlong param_1, longlong *param_2) {
-    undefined8 result;
-    undefined4 stack_buffer_10[6];
+uint64_t networking_packet_processor(longlong param_1, longlong *param_2) {
+    uint64_t result;
+    int32_t stack_buffer_10[6];
     
     // 处理不同版本的数据包
     if (*(uint *)(param_2 + 8) < 0x55) {
@@ -1249,9 +1249,9 @@ undefined8 networking_packet_processor(longlong param_1, longlong *param_2) {
             return NETWORK_ERROR_CONNECTION_FAILED;
         }
         
-        stack_buffer_10[0] = *(undefined4 *)(param_1 + 0x50);
-        result = (**(code **)**(undefined8 **)(*param_2 + 8))
-                 (*(undefined8 **)(*param_2 + 8), stack_buffer_10, 4);
+        stack_buffer_10[0] = *(int32_t *)(param_1 + 0x50);
+        result = (**(code **)**(uint64_t **)(*param_2 + 8))
+                 (*(uint64_t **)(*param_2 + 8), stack_buffer_10, 4);
         
         if ((int)result != 0) {
             return result;
@@ -1261,9 +1261,9 @@ undefined8 networking_packet_processor(longlong param_1, longlong *param_2) {
             return NETWORK_ERROR_CONNECTION_FAILED;
         }
         
-        stack_buffer_10[0] = *(undefined4 *)(param_1 + 0x54);
-        result = (**(code **)**(undefined8 **)(*param_2 + 8))
-                 (*(undefined8 **)(*param_2 + 8), stack_buffer_10, 4);
+        stack_buffer_10[0] = *(int32_t *)(param_1 + 0x54);
+        result = (**(code **)**(uint64_t **)(*param_2 + 8))
+                 (*(uint64_t **)(*param_2 + 8), stack_buffer_10, 4);
         
         if ((int)result != 0) {
             return result;
@@ -1274,9 +1274,9 @@ undefined8 networking_packet_processor(longlong param_1, longlong *param_2) {
             return NETWORK_ERROR_CONNECTION_FAILED;
         }
         
-        stack_buffer_10[0] = *(undefined4 *)(param_1 + 0x78);
-        result = (**(code **)**(undefined8 **)(*param_2 + 8))
-                 (*(undefined8 **)(*param_2 + 8), stack_buffer_10, 4);
+        stack_buffer_10[0] = *(int32_t *)(param_1 + 0x78);
+        result = (**(code **)**(uint64_t **)(*param_2 + 8))
+                 (*(uint64_t **)(*param_2 + 8), stack_buffer_10, 4);
         
         if ((int)result != 0) {
             return result;
@@ -1287,8 +1287,8 @@ undefined8 networking_packet_processor(longlong param_1, longlong *param_2) {
         return NETWORK_ERROR_CONNECTION_FAILED;
     }
     
-    stack_buffer_10[0] = *(undefined4 *)(param_1 + 0x58);
-    result = (**(code **)**(undefined8 **)(*param_2 + 8))(*(undefined8 **)(*param_2 + 8), stack_buffer_10, 4);
+    stack_buffer_10[0] = *(int32_t *)(param_1 + 0x58);
+    result = (**(code **)**(uint64_t **)(*param_2 + 8))(*(uint64_t **)(*param_2 + 8), stack_buffer_10, 4);
     
     if ((int)result != 0) {
         return result;
@@ -1298,8 +1298,8 @@ undefined8 networking_packet_processor(longlong param_1, longlong *param_2) {
         return NETWORK_ERROR_CONNECTION_FAILED;
     }
     
-    stack_buffer_10[0] = *(undefined4 *)(param_1 + 0x5c);
-    result = (**(code **)**(undefined8 **)(*param_2 + 8))(*(undefined8 **)(*param_2 + 8), stack_buffer_10, 4);
+    stack_buffer_10[0] = *(int32_t *)(param_1 + 0x5c);
+    result = (**(code **)**(uint64_t **)(*param_2 + 8))(*(uint64_t **)(*param_2 + 8), stack_buffer_10, 4);
     
     if ((int)result == 0) {
         if (*(uint *)(param_2 + 8) < 0x53) {
@@ -1343,10 +1343,10 @@ undefined8 networking_packet_processor(longlong param_1, longlong *param_2) {
  * @param param_2 验证数据数组指针
  * @return 验证结果
  */
-undefined8 networking_data_validator(longlong param_1, undefined8 *param_2) {
-    undefined8 result;
-    undefined1 stack_buffer_48[32];
-    undefined1 stack_buffer_28[32];
+uint64_t networking_data_validator(longlong param_1, uint64_t *param_2) {
+    uint64_t result;
+    int8_t stack_buffer_48[32];
+    int8_t stack_buffer_28[32];
     
     result = FUN_1808ddd30(param_2, stack_buffer_28, 1, NETWORK_PROTOCOL_MAGIC_LIST, NETWORK_PROTOCOL_MAGIC_TIVE);
     
@@ -1386,9 +1386,9 @@ undefined8 networking_data_validator(longlong param_1, undefined8 *param_2) {
  * @param param_2 终结数据指针
  * @return 终结结果
  */
-undefined8 networking_protocol_finalizer(undefined8 param_1, longlong param_2) {
-    undefined8 result;
-    undefined1 stack_buffer_28[32];
+uint64_t networking_protocol_finalizer(uint64_t param_1, longlong param_2) {
+    uint64_t result;
+    int8_t stack_buffer_28[32];
     
     if (*(uint *)(param_2 + 0x40) < 0x31) {
         result = FUN_1808a3d50(param_1, param_2, NETWORK_PROTOCOL_MAGIC_TNVE);

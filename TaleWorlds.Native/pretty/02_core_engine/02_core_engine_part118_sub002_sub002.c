@@ -16,48 +16,48 @@
  * 3. 管理游戏对象的状态更新
  * 4. 处理各种边界条件和特殊情况
  */
-void update_game_object_position(undefined8 object_ptr, undefined8 position_data, float delta_time)
+void update_game_object_position(uint64_t object_ptr, uint64_t position_data, float delta_time)
 {
-    undefined2 *temp_var1;
+    int16_t *temp_var1;
     char temp_char2;
-    undefined2 temp_var3;
+    int16_t temp_var3;
     char *temp_char4;
-    undefined1 *temp_var5;
+    int8_t *temp_var5;
     bool temp_bool6;
     longlong temp_long7;
     char temp_char8;
     char temp_char9;
     uint temp_uint10;
-    undefined4 temp_var11;
-    undefined4 temp_var12;
-    undefined4 temp_var13;
+    int32_t temp_var11;
+    int32_t temp_var12;
+    int32_t temp_var13;
     char *temp_char14;
     longlong temp_long15;
-    undefined8 temp_var16;
+    uint64_t temp_var16;
     float *temp_float17;
     float *temp_float18;
-    undefined8 *temp_var19;
+    uint64_t *temp_var19;
     longlong *temp_long20;
-    undefined8 temp_var21;
-    undefined1 temp_var22;
+    uint64_t temp_var21;
+    int8_t temp_var22;
     uint temp_uint23;
     longlong temp_long24;
     int temp_int25;
     int *temp_int26;
     float *temp_float27;
-    undefined8 unaff_RBX;
-    undefined4 *temp_var28;
+    uint64_t unaff_RBX;
+    int32_t *temp_var28;
     float *unaff_RBP;
-    undefined8 unaff_RSI;
-    undefined8 unaff_RDI;
+    uint64_t unaff_RSI;
+    uint64_t unaff_RDI;
     byte temp_byte29;
     longlong in_R11;
-    undefined8 unaff_R12;
+    uint64_t unaff_R12;
     longlong temp_long30;
-    undefined8 unaff_R13;
+    uint64_t unaff_R13;
     bool temp_bool31;
-    undefined8 unaff_R14;
-    undefined8 unaff_R15;
+    uint64_t unaff_R14;
+    uint64_t unaff_R15;
     float temp_float32;
     float temp_float33;
     float temp_float34;
@@ -66,25 +66,25 @@ void update_game_object_position(undefined8 object_ptr, undefined8 position_data
     float temp_float37;
     float temp_float38;
     float temp_float39;
-    undefined4 unaff_XMM8_Da;
-    undefined4 unaff_XMM8_Dc;
-    undefined8 unaff_XMM9_Qa;
-    undefined8 unaff_XMM9_Qb;
-    undefined4 unaff_XMM10_Da;
-    undefined4 unaff_XMM10_Dc;
-    undefined4 unaff_XMM11_Da;
-    undefined4 unaff_XMM11_Dc;
-    undefined8 unaff_XMM12_Qa;
-    undefined8 unaff_XMM12_Qb;
-    undefined4 unaff_XMM13_Da;
-    undefined4 unaff_XMM13_Db;
-    undefined4 unaff_XMM13_Dc;
-    undefined4 unaff_XMM13_Dd;
-    undefined4 unaff_XMM14_Da;
-    undefined4 unaff_XMM14_Dc;
-    undefined4 unaff_XMM15_Da;
-    undefined4 unaff_XMM15_Dc;
-    undefined8 *in_stack_00000020;
+    int32_t unaff_XMM8_Da;
+    int32_t unaff_XMM8_Dc;
+    uint64_t unaff_XMM9_Qa;
+    uint64_t unaff_XMM9_Qb;
+    int32_t unaff_XMM10_Da;
+    int32_t unaff_XMM10_Dc;
+    int32_t unaff_XMM11_Da;
+    int32_t unaff_XMM11_Dc;
+    uint64_t unaff_XMM12_Qa;
+    uint64_t unaff_XMM12_Qb;
+    int32_t unaff_XMM13_Da;
+    int32_t unaff_XMM13_Db;
+    int32_t unaff_XMM13_Dc;
+    int32_t unaff_XMM13_Dd;
+    int32_t unaff_XMM14_Da;
+    int32_t unaff_XMM14_Dc;
+    int32_t unaff_XMM15_Da;
+    int32_t unaff_XMM15_Dc;
+    uint64_t *in_stack_00000020;
     ulonglong temp_ulong40;
     longlong *in_stack_00000040;
     char in_stack_00000048;
@@ -100,38 +100,38 @@ void update_game_object_position(undefined8 object_ptr, undefined8 position_data
     float fStack0000000000000070;
     float fStack0000000000000074;
     float in_stack_00000078;
-    undefined4 in_stack_000001a0;
-    undefined4 in_stack_000001a8;
-    undefined4 in_stack_000001b0;
-    undefined4 in_stack_000001b8;
-    undefined8 in_stack_000001d0;
-    undefined8 in_stack_000001d8;
-    undefined4 in_stack_000001e0;
-    undefined4 in_stack_000001e8;
-    undefined4 in_stack_000001f0;
-    undefined4 in_stack_000001f8;
-    undefined8 in_stack_00000200;
-    undefined8 in_stack_00000208;
-    undefined4 in_stack_00000210;
-    undefined4 in_stack_00000218;
+    int32_t in_stack_000001a0;
+    int32_t in_stack_000001a8;
+    int32_t in_stack_000001b0;
+    int32_t in_stack_000001b8;
+    uint64_t in_stack_000001d0;
+    uint64_t in_stack_000001d8;
+    int32_t in_stack_000001e0;
+    int32_t in_stack_000001e8;
+    int32_t in_stack_000001f0;
+    int32_t in_stack_000001f8;
+    uint64_t in_stack_00000200;
+    uint64_t in_stack_00000208;
+    int32_t in_stack_00000210;
+    int32_t in_stack_00000218;
     
     // 保存寄存器状态到栈帧
-    *(undefined8 *)(in_R11 + 0x20) = unaff_RBX;
-    *(undefined8 *)(in_R11 + -0x10) = unaff_RSI;
+    *(uint64_t *)(in_R11 + 0x20) = unaff_RBX;
+    *(uint64_t *)(in_R11 + -0x10) = unaff_RSI;
     temp_long7 = global_engine_state;  // 全局引擎状态指针
-    *(undefined8 *)(in_R11 + -0x18) = unaff_RDI;
-    *(undefined8 *)(in_R11 + -0x20) = unaff_R12;
-    *(undefined8 *)(in_R11 + -0x28) = unaff_R13;
-    *(undefined8 *)(in_R11 + -0x30) = unaff_R14;
-    *(undefined8 *)(in_R11 + -0x38) = unaff_R15;
-    *(undefined4 *)(in_R11 + -0xb8) = unaff_XMM13_Da;
-    *(undefined4 *)(in_R11 + -0xb4) = unaff_XMM13_Db;
-    *(undefined4 *)(in_R11 + -0xb0) = unaff_XMM13_Dc;
-    *(undefined4 *)(in_R11 + -0xac) = unaff_XMM13_Dd;
+    *(uint64_t *)(in_R11 + -0x18) = unaff_RDI;
+    *(uint64_t *)(in_R11 + -0x20) = unaff_R12;
+    *(uint64_t *)(in_R11 + -0x28) = unaff_R13;
+    *(uint64_t *)(in_R11 + -0x30) = unaff_R14;
+    *(uint64_t *)(in_R11 + -0x38) = unaff_R15;
+    *(int32_t *)(in_R11 + -0xb8) = unaff_XMM13_Da;
+    *(int32_t *)(in_R11 + -0xb4) = unaff_XMM13_Db;
+    *(int32_t *)(in_R11 + -0xb0) = unaff_XMM13_Dc;
+    *(int32_t *)(in_R11 + -0xac) = unaff_XMM13_Dd;
     
     // 设置位置数据
-    *(undefined8 *)(unaff_RBP + 10) = position_data;
-    *(undefined8 *)(unaff_RBP + 0x1e) = object_ptr;
+    *(uint64_t *)(unaff_RBP + 10) = position_data;
+    *(uint64_t *)(unaff_RBP + 0x1e) = object_ptr;
     
     // 获取游戏对象数据
     in_stack_00000040 = (longlong *)get_object_data(object_ptr);
@@ -146,9 +146,9 @@ void update_game_object_position(undefined8 object_ptr, undefined8 position_data
         }
         else {
             temp_float17 = unaff_RBP + -0xe;
-            *(undefined8 *)(unaff_RBP + -0xe) = *(undefined8 *)(temp_long7 + 0x1c04);
+            *(uint64_t *)(unaff_RBP + -0xe) = *(uint64_t *)(temp_long7 + 0x1c04);
         }
-        in_stack_00000040 = (longlong *)create_object_data(object_ptr,*(undefined8 *)temp_float17,delta_time);
+        in_stack_00000040 = (longlong *)create_object_data(object_ptr,*(uint64_t *)temp_float17,delta_time);
     }
     
     // 获取对象的高度值
@@ -194,18 +194,18 @@ void update_game_object_position(undefined8 object_ptr, undefined8 position_data
         temp_float34 = *(float *)((longlong)in_stack_00000040 + 0xc);
     }
     else {
-        *(undefined4 *)(in_stack_00000040 + 2) = *(undefined4 *)((longlong)in_stack_00000040 + 0xc);
+        *(int32_t *)(in_stack_00000040 + 2) = *(int32_t *)((longlong)in_stack_00000040 + 0xc);
         *(float *)((longlong)in_stack_00000040 + 0xc) = temp_float34;
         *(float *)(in_stack_00000040 + 0x50) = temp_float32;
-        *(undefined2 *)((longlong)in_stack_00000040 + 0xba) = 0;
-        temp_var3 = *(undefined2 *)(temp_long7 + 0x1af0);
+        *(int16_t *)((longlong)in_stack_00000040 + 0xba) = 0;
+        temp_var3 = *(int16_t *)(temp_long7 + 0x1af0);
         *(int *)(temp_long7 + 0x1af0) = *(int *)(temp_long7 + 0x1af0) + 1;
-        *(undefined2 *)((longlong)in_stack_00000040 + 0xbc) = temp_var3;
+        *(int16_t *)((longlong)in_stack_00000040 + 0xbc) = temp_var3;
     }
     
     // 处理特效更新
     if (*(int *)(temp_long7 + 0x1bf0) != 0) {
-        update_object_effects(in_stack_00000040,*(undefined4 *)(temp_long7 + 0x1c40));
+        update_object_effects(in_stack_00000040,*(int32_t *)(temp_long7 + 0x1c40));
     }
     
     // 处理位置变化相关的特殊逻辑
@@ -223,12 +223,12 @@ void update_game_object_position(undefined8 object_ptr, undefined8 position_data
             temp_var16 = 0;
         }
         else {
-            temp_var16 = *(undefined8 *)
+            temp_var16 = *(uint64_t *)
                       (*(longlong *)(temp_long7 + 0x1ad8) + -8 + (longlong)*(int *)(temp_long7 + 0x1ad0) * 8);
         }
     }
     else {
-        temp_var16 = *(undefined8 *)(in_stack_00000040[0x81] + 0x68);
+        temp_var16 = *(uint64_t *)(in_stack_00000040[0x81] + 0x68);
     }
     
     // 处理不同高度的特殊逻辑
@@ -240,26 +240,26 @@ void update_game_object_position(undefined8 object_ptr, undefined8 position_data
         if (((uint)temp_float34 & 0x5000000) != 0) {
             temp_var21 = temp_var16;
         }
-        *(undefined8 *)(unaff_RBP + 8) = temp_var21;
+        *(uint64_t *)(unaff_RBP + 8) = temp_var21;
     }
     
     // 更新对象状态
     update_object_state_reference(temp_long7 + 0x1ad0,&stack0x00000040);
-    *(undefined8 *)(temp_long7 + 0x1af8) = 0;
+    *(uint64_t *)(temp_long7 + 0x1af8) = 0;
     process_object_update(in_stack_00000040,1);
     
     // 处理特殊区域的对象
     if (((uint)temp_float34 >> 0x1a & 1) != 0) {
-        temp_var28 = (undefined4 *)
+        temp_var28 = (int32_t *)
                   ((longlong)*(int *)(temp_long7 + 0x1bc0) * 0x30 + *(longlong *)(temp_long7 + 0x1bb8));
         *(longlong **)(temp_var28 + 2) = in_stack_00000040;
         update_special_area_objects((int *)(temp_long7 + 0x1bc0),temp_var28);
-        *(undefined4 *)(in_stack_00000040 + 0x18) = *temp_var28;
+        *(int32_t *)(in_stack_00000040 + 0x18) = *temp_var28;
     }
     
     // 处理可见性相关的更新
     if ((0 < (int)temp_uint10) && (((uint)temp_float34 >> 0x18 & 1) == 0)) {
-        *(undefined4 *)(in_stack_00000040 + 0x79) = 0;
+        *(int32_t *)(in_stack_00000040 + 0x79) = 0;
     }
     
     // 初始化临时变量
@@ -337,18 +337,18 @@ void update_game_object_position(undefined8 object_ptr, undefined8 position_data
 }
 
 // 全局变量定义
-undefined8 global_engine_state = 0;  // 全局引擎状态指针
+uint64_t global_engine_state = 0;  // 全局引擎状态指针
 
 // 函数声明
-longlong *get_object_data(undefined8 object_ptr);
-longlong *create_object_data(undefined8 object_ptr, undefined8 data_ptr, float delta_time);
+longlong *get_object_data(uint64_t object_ptr);
+longlong *create_object_data(uint64_t object_ptr, uint64_t data_ptr, float delta_time);
 void update_object_state(longlong *object_ptr, int param1, int param2);
-void update_object_effects(longlong *object_ptr, undefined4 effect_data);
-void handle_position_change(longlong *object_ptr, undefined8 position_data);
-void update_object_state_reference(undefined8 state_ptr, undefined8 *stack_ptr);
+void update_object_effects(longlong *object_ptr, int32_t effect_data);
+void handle_position_change(longlong *object_ptr, uint64_t position_data);
+void update_object_state_reference(uint64_t state_ptr, uint64_t *stack_ptr);
 void process_object_update(longlong *object_ptr, int update_type);
-void update_special_area_objects(int *area_ptr, undefined4 *object_data);
-void process_object_occlusion(longlong *object_ptr, undefined8 occlusion_data);
+void update_special_area_objects(int *area_ptr, int32_t *object_data);
+void process_object_occlusion(longlong *object_ptr, uint64_t occlusion_data);
 void process_animation_state(void);
 float get_current_time(void);
 float calculate_object_time_delta(longlong *object_ptr);

@@ -9,9 +9,9 @@
 void process_text_layout_and_rendering(ulonglong text_start, ulonglong text_end)
 
 {
-  undefined8 *render_context;
+  uint64_t *render_context;
   float *font_metrics;
-  undefined8 layout_params;
+  uint64_t layout_params;
   int line_count;
   char render_flag;
   uint text_flags;
@@ -36,15 +36,15 @@ void process_text_layout_and_rendering(ulonglong text_start, ulonglong text_end)
   float char_height;
   float ascent;
   float descent;
-  undefined8 stack_temp;
+  uint64_t stack_temp;
   float temp_float1;
   float temp_float2;
-  undefined8 render_buffer1;
-  undefined8 render_buffer2;
+  uint64_t render_buffer1;
+  uint64_t render_buffer2;
   
   // 获取引擎上下文和设置渲染标志
   engine_context = _DAT_180c8a9b0;
-  *(undefined1 *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
+  *(int8_t *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
   render_state = *(longlong *)(engine_context + 0x1af8);
   
   // 检查是否已经启用渲染
@@ -73,8 +73,8 @@ void process_text_layout_and_rendering(ulonglong text_start, ulonglong text_end)
   else {
     if (0.0 > base_font_size) {
       // 获取渲染缓冲区和布局参数
-      render_buffer1 = *(undefined8 *)(render_state + 0x228);
-      render_buffer2 = *(undefined8 *)(render_state + 0x230);
+      render_buffer1 = *(uint64_t *)(render_state + 0x228);
+      render_buffer2 = *(uint64_t *)(render_state + 0x230);
       base_font_size = *(float *)(engine_context + 0x19f8);
       max_line_height = 0.0;
       temp_float1 = 0.0;
@@ -111,7 +111,7 @@ void process_text_layout_and_rendering(ulonglong text_start, ulonglong text_end)
             }
             
             current_height = (float)line_count * base_font_size + total_height;
-            stack_temp = CONCAT44(current_height,(undefined4)stack_temp);
+            stack_temp = CONCAT44(current_height,(int32_t)stack_temp);
           }
         }
         
@@ -170,7 +170,7 @@ void process_text_layout_and_rendering(ulonglong text_start, ulonglong text_end)
             width = width + base_font_size;
             text_start = char_ptr + 1;
             current_height = current_height + base_font_size;
-            stack_temp = CONCAT44(width,(undefined4)stack_temp);
+            stack_temp = CONCAT44(width,(int32_t)stack_temp);
             engine_context = _DAT_180c8a9b0;
           } while (text_start < text_end);
           
@@ -198,7 +198,7 @@ void process_text_layout_and_rendering(ulonglong text_start, ulonglong text_end)
       render_state = *(longlong *)(engine_context + 0x1af8);
       
       // 设置渲染状态
-      *(undefined8 *)(render_state + 0x144) = 0;
+      *(uint64_t *)(render_state + 0x144) = 0;
       *(float *)(render_state + 0x14c) = line_spacing;
       *(float *)(render_state + 0x150) = total_height;
       *(float *)(render_state + 0x154) = max_line_height;
@@ -295,7 +295,7 @@ FINAL_LAYOUT:
   render_state = *(longlong *)(engine_context + 0x1af8);
   
   // 设置最终渲染状态
-  *(undefined8 *)(render_state + 0x144) = 0;
+  *(uint64_t *)(render_state + 0x144) = 0;
   *(float *)(render_state + 0x14c) = line_spacing;
   *(float *)(render_state + 0x150) = total_height;
   *(float *)(render_state + 0x154) = current_height;
@@ -332,10 +332,10 @@ FINAL_LAYOUT:
     
     if (text_start != text_end) {
       // 获取渲染上下文
-      render_buffer1 = *(undefined8 *)(engine_context + 0x16c8);
+      render_buffer1 = *(uint64_t *)(engine_context + 0x16c8);
       render_state = *(longlong *)(*(longlong *)(engine_context + 0x1af8) + 0x2e8);
       render_buffer2 = CONCAT44(*(float *)(engine_context + 0x16d4) * *(float *)(engine_context + 0x1628),
-                           *(undefined4 *)(engine_context + 0x16d0));
+                           *(int32_t *)(engine_context + 0x16d0));
       text_flags = func_0x000180121e20(&render_buffer1);
       
       line_spacing = *(float *)(engine_context + 0x19f8);
@@ -359,7 +359,7 @@ FINAL_LAYOUT:
             line_spacing = *(float *)(*(longlong *)(render_state + 0x38) + 0x10);
           }
           
-          render_context = (undefined8 *)
+          render_context = (uint64_t *)
                    (*(longlong *)(render_state + 0x68) + -0x10 + (longlong)*(int *)(render_state + 0x60) * 0x10);
           
           render_buffer1 = *render_context;
@@ -384,10 +384,10 @@ FINAL_LAYOUT:
 void process_advanced_text_layout(longlong render_context, longlong text_params)
 
 {
-  undefined8 *layout_engine;
+  uint64_t *layout_engine;
   float font_size;
   float *font_metrics;
-  undefined8 render_params;
+  uint64_t render_params;
   int line_count;
   char layout_flag;
   uint render_flags;
@@ -414,31 +414,31 @@ void process_advanced_text_layout(longlong render_context, longlong text_params)
   float char_height;
   float font_ascent;
   float font_descent;
-  undefined8 stack_var1;
-  undefined8 stack_var2;
-  undefined8 stack_var3;
-  undefined8 stack_var4;
-  undefined8 stack_var5;
-  undefined8 stack_var6;
-  undefined8 stack_var7;
-  undefined8 stack_var8;
-  undefined8 stack_var9;
-  undefined8 stack_var10;
-  undefined8 stack_var11;
-  undefined8 stack_var12;
+  uint64_t stack_var1;
+  uint64_t stack_var2;
+  uint64_t stack_var3;
+  uint64_t stack_var4;
+  uint64_t stack_var5;
+  uint64_t stack_var6;
+  uint64_t stack_var7;
+  uint64_t stack_var8;
+  uint64_t stack_var9;
+  uint64_t stack_var10;
+  uint64_t stack_var11;
+  uint64_t stack_var12;
   float temp_float;
   
   // 保存寄存器状态到栈
-  *(undefined8 *)(render_context + -0x38) = stack_var1;
-  *(undefined8 *)(render_context + -0x30) = stack_var2;
-  *(undefined4 *)(render_context + -0x58) = stack_var3;
-  *(undefined4 *)(render_context + -0x54) = stack_var4;
-  *(undefined4 *)(render_context + -0x50) = stack_var5;
-  *(undefined4 *)(render_context + -0x4c) = stack_var6;
-  *(undefined4 *)(render_context + -0xa8) = stack_var7;
-  *(undefined4 *)(render_context + -0xa4) = stack_var8;
-  *(undefined4 *)(render_context + -0xa0) = stack_var9;
-  *(undefined4 *)(render_context + -0x9c) = stack_var10;
+  *(uint64_t *)(render_context + -0x38) = stack_var1;
+  *(uint64_t *)(render_context + -0x30) = stack_var2;
+  *(int32_t *)(render_context + -0x58) = stack_var3;
+  *(int32_t *)(render_context + -0x54) = stack_var4;
+  *(int32_t *)(render_context + -0x50) = stack_var5;
+  *(int32_t *)(render_context + -0x4c) = stack_var6;
+  *(int32_t *)(render_context + -0xa8) = stack_var7;
+  *(int32_t *)(render_context + -0xa4) = stack_var8;
+  *(int32_t *)(render_context + -0xa0) = stack_var9;
+  *(int32_t *)(render_context + -0x9c) = stack_var10;
   
   // 计算文本长度
   if (text_params == 0) {
@@ -461,15 +461,15 @@ void process_advanced_text_layout(longlong render_context, longlong text_params)
   else {
     if (font_size < 0.0) {
       char_width = *(float *)(render_context + 0x22c);
-      stack_var1 = *(undefined8 *)(render_context + 0x228);
+      stack_var1 = *(uint64_t *)(render_context + 0x228);
       char_height = *(float *)(render_context + 0x234);
-      stack_var2 = *(undefined8 *)(render_context + 0x230);
+      stack_var2 = *(uint64_t *)(render_context + 0x230);
       
       current_height = 0.0;
       font_size = *(float *)(engine_state + 0x19f8);
       text_width = 0.0;
-      *(undefined4 *)(layout_data + 0x48) = 0;
-      *(undefined4 *)(layout_data + 0x4c) = 0;
+      *(int32_t *)(layout_data + 0x48) = 0;
+      *(int32_t *)(layout_data + 0x4c) = 0;
       
       if (text_height <= char_height) {
         *(float *)(layout_data + 0x40) = base_size;
@@ -564,7 +564,7 @@ void process_advanced_text_layout(longlong render_context, longlong text_params)
             }
             
             // 渲染文本行
-            FUN_180122320(*(undefined8 *)(layout_data + 0x40),text_start,text_position,0);
+            FUN_180122320(*(uint64_t *)(layout_data + 0x40),text_start,text_position,0);
             engine_state = _DAT_180c8a9b0;
             char_height = char_height + font_size;
             text_start = text_position + 1;
@@ -598,7 +598,7 @@ void process_advanced_text_layout(longlong render_context, longlong text_params)
       engine_state = *(longlong *)(engine_state + 0x1af8);
       
       // 设置渲染状态
-      *(undefined8 *)(engine_state + 0x144) = 0;
+      *(uint64_t *)(engine_state + 0x144) = 0;
       *(float *)(engine_state + 0x14c) = base_size;
       *(float *)(engine_state + 0x150) = text_height;
       *(float *)(engine_state + 0x154) = text_width;
@@ -695,7 +695,7 @@ FINAL_LAYOUT_ADVANCED:
   engine_state = *(longlong *)(engine_state + 0x1af8);
   
   // 设置最终状态
-  *(undefined8 *)(engine_state + 0x144) = 0;
+  *(uint64_t *)(engine_state + 0x144) = 0;
   *(float *)(engine_state + 0x14c) = base_size;
   *(float *)(engine_state + 0x150) = text_height;
   *(float *)(engine_state + 0x154) = font_size;
@@ -719,7 +719,7 @@ FINAL_LAYOUT_ADVANCED:
     }
     
     engine_state = *(longlong *)(engine_state + 0x1af8);
-    *(undefined8 *)(layout_data + 0x40) = stack_var1;
+    *(uint64_t *)(layout_data + 0x40) = stack_var1;
     
     // 处理最终文本渲染
     if (text_position == 0) {
@@ -731,11 +731,11 @@ FINAL_LAYOUT_ADVANCED:
     }
     
     if (text_start != text_position) {
-      stack_var1 = *(undefined8 *)(engine_state + 0x16c8);
+      stack_var1 = *(uint64_t *)(engine_state + 0x16c8);
       engine_state = *(longlong *)(engine_state + 0x2e8);
       stack_var2 =
            CONCAT44(*(float *)(engine_state + 0x16d4) * *(float *)(engine_state + 0x1628),
-                    *(undefined4 *)(engine_state + 0x16d0));
+                    *(int32_t *)(engine_state + 0x16d0));
       render_flags = func_0x000180121e20(&stack_var1);
       
       base_size = *(float *)(engine_state + 0x19f8);
@@ -758,7 +758,7 @@ FINAL_LAYOUT_ADVANCED:
             base_size = *(float *)(*(longlong *)(engine_state + 0x38) + 0x10);
           }
           
-          layout_engine = (undefined8 *)
+          layout_engine = (uint64_t *)
                    (*(longlong *)(engine_state + 0x68) + -0x10 + (longlong)*(int *)(engine_state + 0x60) * 0x10);
           
           stack_var1 = *layout_engine;
@@ -780,7 +780,7 @@ FINAL_LAYOUT_ADVANCED:
 // 函数：处理优化的文本渲染
 // 原始函数名：FUN_18010e97b
 // 这是一个简化的文本渲染函数，处理基本的文本布局和渲染
-void process_optimized_text_rendering(undefined8 render_params)
+void process_optimized_text_rendering(uint64_t render_params)
 
 {
   float font_size;
@@ -810,29 +810,29 @@ void process_optimized_text_rendering(undefined8 render_params)
   float temp_float1;
   float temp_float2;
   float temp_float3;
-  undefined4 render_param1;
-  undefined4 render_param2;
-  undefined4 render_param3;
-  undefined4 render_param4;
-  undefined4 render_param5;
-  undefined4 render_param6;
+  int32_t render_param1;
+  int32_t render_param2;
+  int32_t render_param3;
+  int32_t render_param4;
+  int32_t render_param5;
+  int32_t render_param6;
   float stack_float1;
   float stack_float2;
   float stack_float3;
-  undefined4 stack_param1;
-  undefined4 stack_param2;
-  undefined4 stack_param3;
-  undefined4 stack_param4;
-  undefined4 stack_param5;
-  undefined4 stack_param6;
+  int32_t stack_param1;
+  int32_t stack_param2;
+  int32_t stack_param3;
+  int32_t stack_param4;
+  int32_t stack_param5;
+  int32_t stack_param6;
   
   // 初始化渲染参数
   stack_float1 = (float)render_params;
   text_height = 0.0;
   font_size = *(float *)(engine_state + 0x19f8);
   text_width = 0.0;
-  *(undefined4 *)(layout_data + 0x48) = 0;
-  *(undefined4 *)(layout_data + 0x4c) = 0;
+  *(int32_t *)(layout_data + 0x48) = 0;
+  *(int32_t *)(layout_data + 0x4c) = 0;
   render_flag = (char)text_flags;
   
   // 检查文本高度边界
@@ -927,7 +927,7 @@ void process_optimized_text_rendering(undefined8 render_params)
         }
         
         // 渲染文本行
-        FUN_180122320(*(undefined8 *)(layout_data + 0x40),text_start,text_end,0);
+        FUN_180122320(*(uint64_t *)(layout_data + 0x40),text_start,text_end,0);
         engine_state = _DAT_180c8a9b0;
         line_height = line_height + font_size;
         text_start = text_end + 1;

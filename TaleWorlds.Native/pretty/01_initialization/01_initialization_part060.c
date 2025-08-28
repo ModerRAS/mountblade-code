@@ -14,11 +14,11 @@ void initialize_resource_manager(longlong context_ptr, ulonglong resource_id, lo
     longlong resource_array_ptr;
     int item_index;
     longlong temp_stack_70;
-    undefined4 temp_stack_68;
+    int32_t temp_stack_68;
     longlong temp_stack_60;
     longlong temp_stack_58;
-    undefined4 temp_stack_50;
-    undefined8 temp_stack_48;
+    int32_t temp_stack_50;
+    uint64_t temp_stack_48;
     
     // 计算资源基础指针
     resource_base_ptr = (resource_id & 0xff) * 0x1c0 + _DAT_180c86938;
@@ -87,7 +87,7 @@ void initialize_resource_manager(longlong context_ptr, ulonglong resource_id, lo
             }
             
             if ((*(byte *)(context_ptr + 0xfd) & 0x20) == 0) {
-                context_ptr = func_0x000180085de0(*(undefined8 *)(context_ptr + 0x1b0));
+                context_ptr = func_0x000180085de0(*(uint64_t *)(context_ptr + 0x1b0));
             }
             
             FUN_18007df50(temp_stack_60, *output_buffer2 + 0x20, 0xffff < *(int *)(context_ptr + 0x200));
@@ -107,19 +107,19 @@ void initialize_resource_manager(longlong context_ptr, ulonglong resource_id, lo
     return;
 }
 
-// 函数: void FUN_18007e2b0(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void FUN_18007e2b0(longlong param_1,longlong param_2,uint64_t param_3,uint64_t param_4)
 // 功能: 初始化数据缓冲区并复制数据
-void initialize_data_buffer(longlong dest_ptr, longlong src_ptr, undefined8 param_3, undefined8 param_4)
+void initialize_data_buffer(longlong dest_ptr, longlong src_ptr, uint64_t param_3, uint64_t param_4)
 {
     int buffer_size;
     int buffer_capacity;
-    undefined8 temp_var;
+    uint64_t temp_var;
     
     temp_var = 0xfffffffffffffffe;
     FUN_180080650(dest_ptr + 0x10);
     FUN_180080650(dest_ptr + 0x38, src_ptr);
-    *(undefined1 *)(dest_ptr + 0x80) = *(undefined1 *)(src_ptr + 0x1a);
-    *(undefined4 *)(dest_ptr + 0x60) = **(undefined4 **)(src_ptr + 8);
+    *(int8_t *)(dest_ptr + 0x80) = *(int8_t *)(src_ptr + 0x1a);
+    *(int32_t *)(dest_ptr + 0x60) = **(int32_t **)(src_ptr + 8);
     *(longlong *)(src_ptr + 8) = *(longlong *)(src_ptr + 8) + 4;
     
     buffer_size = *(int *)(dest_ptr + 0x60);
@@ -128,7 +128,7 @@ void initialize_data_buffer(longlong dest_ptr, longlong src_ptr, undefined8 para
     if (buffer_capacity < buffer_size) {
         if (buffer_size == 0) {
             if (buffer_capacity < 2) {
-                *(undefined4 *)(dest_ptr + 100) = 8;
+                *(int32_t *)(dest_ptr + 100) = 8;
             }
             else {
                 *(int *)(dest_ptr + 100) = (buffer_capacity >> 1) + buffer_capacity;
@@ -143,23 +143,23 @@ void initialize_data_buffer(longlong dest_ptr, longlong src_ptr, undefined8 para
     *(int *)(dest_ptr + 0x60) = buffer_size;
     
     // 复制数据
-    memcpy(*(undefined8 *)(dest_ptr + 0x68), *(undefined8 *)(src_ptr + 8), (longlong)(buffer_size * 0x5c), param_4, temp_var);
+    memcpy(*(uint64_t *)(dest_ptr + 0x68), *(uint64_t *)(src_ptr + 8), (longlong)(buffer_size * 0x5c), param_4, temp_var);
 }
 
 // 函数: void FUN_18007e5b0(longlong param_1,longlong *param_2)
 // 功能: 序列化数据到输出缓冲区
 void serialize_data_to_buffer(longlong data_ptr, longlong *output_buffer)
 {
-    undefined4 header_value;
+    int32_t header_value;
     int *data_items;
-    undefined4 *data_ptr2;
+    int32_t *data_ptr2;
     longlong buffer_position;
     int item_count;
     int current_index;
     longlong buffer_size;
     ulonglong remaining_space;
     ulonglong total_space;
-    undefined8 temp_var;
+    uint64_t temp_var;
     
     temp_var = 0xfffffffffffffffe;
     FUN_1800806e0(data_ptr + 0x10);
@@ -188,7 +188,7 @@ void serialize_data_to_buffer(longlong data_ptr, longlong *output_buffer)
     
     *data_items = item_count;
     output_buffer[1] = output_buffer[1] + 4;
-    data_ptr2 = (undefined4 *)output_buffer[1];
+    data_ptr2 = (int32_t *)output_buffer[1];
     current_index = 0;
     item_count = current_index;
     
@@ -198,44 +198,44 @@ void serialize_data_to_buffer(longlong data_ptr, longlong *output_buffer)
             FUN_180078c70((longlong)item_count * 0x5c + *(longlong *)(data_ptr + 0x68), output_buffer);
             item_count = item_count + 1;
         } while (item_count < *(int *)(data_ptr + 0x60));
-        data_ptr2 = (undefined4 *)output_buffer[1];
+        data_ptr2 = (int32_t *)output_buffer[1];
     }
     
-    header_value = *(undefined4 *)(data_ptr + 0x88);
+    header_value = *(int32_t *)(data_ptr + 0x88);
     
     // 检查并扩展缓冲区
     if ((ulonglong)((*output_buffer - (longlong)data_ptr2) + output_buffer[2]) < 5) {
         FUN_180639bf0(output_buffer, (longlong)data_ptr2 + (4 - *output_buffer));
-        data_ptr2 = (undefined4 *)output_buffer[1];
+        data_ptr2 = (int32_t *)output_buffer[1];
     }
     
     *data_ptr2 = header_value;
     output_buffer[1] = output_buffer[1] + 4;
-    FUN_18063a180(output_buffer, *(undefined8 *)(data_ptr + 0x90), (longlong)*(int *)(data_ptr + 0x88) * 0xc);
+    FUN_18063a180(output_buffer, *(uint64_t *)(data_ptr + 0x90), (longlong)*(int *)(data_ptr + 0x88) * 0xc);
     
     // 处理附加数据
     remaining_space = (ulonglong)*(ushort *)(data_ptr + 0xc0);
     total_space = remaining_space * 4 + 4;
     buffer_size = output_buffer[2];
-    data_ptr2 = (undefined4 *)output_buffer[1];
+    data_ptr2 = (int32_t *)output_buffer[1];
     buffer_position = *output_buffer;
     
     if ((ulonglong)((buffer_position - (longlong)data_ptr2) + buffer_size) <= total_space) {
         FUN_180639bf0(output_buffer, (longlong)data_ptr2 + (total_space - buffer_position));
         remaining_space = (ulonglong)*(ushort *)(data_ptr + 0xc0);
         buffer_size = output_buffer[2];
-        data_ptr2 = (undefined4 *)output_buffer[1];
+        data_ptr2 = (int32_t *)output_buffer[1];
         buffer_position = *output_buffer;
     }
     
     if ((ulonglong)((buffer_position - (longlong)data_ptr2) + buffer_size) < 5) {
         FUN_180639bf0(output_buffer, (longlong)data_ptr2 + (4 - buffer_position));
-        data_ptr2 = (undefined4 *)output_buffer[1];
+        data_ptr2 = (int32_t *)output_buffer[1];
     }
     
     *data_ptr2 = (int)remaining_space;
     output_buffer[1] = output_buffer[1] + 4;
-    FUN_18063a180(output_buffer, *(undefined8 *)(data_ptr + 0xb8), (ulonglong)*(ushort *)(data_ptr + 0xc0) << 2);
+    FUN_18063a180(output_buffer, *(uint64_t *)(data_ptr + 0xb8), (ulonglong)*(ushort *)(data_ptr + 0xc0) << 2);
     
     // 处理数据块
     if (*(short *)(data_ptr + 0xc0) != 0) {
@@ -247,23 +247,23 @@ void serialize_data_to_buffer(longlong data_ptr, longlong *output_buffer)
         } while (current_index < (int)(uint)*(ushort *)(data_ptr + 0xc0));
     }
     
-    header_value = *(undefined4 *)(data_ptr + 200);
-    data_ptr2 = (undefined4 *)output_buffer[1];
+    header_value = *(int32_t *)(data_ptr + 200);
+    data_ptr2 = (int32_t *)output_buffer[1];
     
     if ((ulonglong)((*output_buffer - (longlong)data_ptr2) + output_buffer[2]) < 5) {
         FUN_180639bf0(output_buffer, (longlong)data_ptr2 + (4 - *output_buffer));
-        data_ptr2 = (undefined4 *)output_buffer[1];
+        data_ptr2 = (int32_t *)output_buffer[1];
     }
     
     *data_ptr2 = header_value;
     output_buffer[1] = output_buffer[1] + 4;
-    FUN_18063a180(output_buffer, *(undefined8 *)(data_ptr + 0xd0), (longlong)*(int *)(data_ptr + 200) * 0x14);
+    FUN_18063a180(output_buffer, *(uint64_t *)(data_ptr + 0xd0), (longlong)*(int *)(data_ptr + 200) * 0x14);
     
-    data_ptr2 = (undefined4 *)output_buffer[1];
+    data_ptr2 = (int32_t *)output_buffer[1];
     
     if ((ulonglong)((*output_buffer - (longlong)data_ptr2) + output_buffer[2]) < 5) {
         FUN_180639bf0(output_buffer, (longlong)data_ptr2 + (4 - *output_buffer));
-        data_ptr2 = (undefined4 *)output_buffer[1];
+        data_ptr2 = (int32_t *)output_buffer[1];
     }
     
     *data_ptr2 = 0;
@@ -273,12 +273,12 @@ void serialize_data_to_buffer(longlong data_ptr, longlong *output_buffer)
     return;
 }
 
-// 函数: void FUN_18007e880(longlong param_1,char param_2,undefined8 param_3)
+// 函数: void FUN_18007e880(longlong param_1,char param_2,uint64_t param_3)
 // 功能: 设置初始化参数
-void set_initialization_parameter(longlong context_ptr, char parameter_type, undefined8 parameter_value)
+void set_initialization_parameter(longlong context_ptr, char parameter_type, uint64_t parameter_value)
 {
     longlong parameter_table_ptr;
-    undefined8 temp_var;
+    uint64_t temp_var;
     longlong parameter_size;
     
     *(int *)(*(longlong *)(context_ptr + 600) + 0x18) = (int)parameter_type;
@@ -293,14 +293,14 @@ void set_initialization_parameter(longlong context_ptr, char parameter_type, und
     
     temp_var = 0;
     parameter_size = (longlong)parameter_type;
-    *(undefined8 *)(parameter_table_ptr + 0x10) = 0;
+    *(uint64_t *)(parameter_table_ptr + 0x10) = 0;
     
     if (parameter_size != 0) {
         temp_var = FUN_18062b1e0(_DAT_180c8ed18, parameter_size, 0x10, CONCAT71((int7)((ulonglong)parameter_table_ptr >> 8), 3));
     }
     
-    *(undefined8 *)(*(longlong *)(context_ptr + 600) + 0x10) = temp_var;
-    memcpy(*(undefined8 *)(*(longlong *)(context_ptr + 600) + 0x10), parameter_value, parameter_size);
+    *(uint64_t *)(*(longlong *)(context_ptr + 600) + 0x10) = temp_var;
+    memcpy(*(uint64_t *)(*(longlong *)(context_ptr + 600) + 0x10), parameter_value, parameter_size);
     
     return;
 }
@@ -309,7 +309,7 @@ void set_initialization_parameter(longlong context_ptr, char parameter_type, und
 // 功能: 初始化内存块
 void initialize_memory_block(longlong context_ptr)
 {
-    undefined8 memory_ptr;
+    uint64_t memory_ptr;
     
     if (*(longlong *)(context_ptr + 0x2c8) == 0) {
         *(uint *)(context_ptr + 0x100) = *(uint *)(context_ptr + 0x100) | 8;
@@ -324,7 +324,7 @@ void initialize_memory_block(longlong context_ptr)
 // 功能: 创建并清空内存块
 void create_and_clear_memory_block(void)
 {
-    undefined8 memory_ptr;
+    uint64_t memory_ptr;
     
     memory_ptr = FUN_18062b1e0();
     memset(memory_ptr, 0, 0xd0);
@@ -342,7 +342,7 @@ void empty_function(void)
 void resize_parameter_table(longlong context_ptr, int new_size)
 {
     longlong *table_ptr;
-    undefined8 new_memory_ptr;
+    uint64_t new_memory_ptr;
     
     table_ptr = *(longlong **)(context_ptr + 600);
     
@@ -358,7 +358,7 @@ void resize_parameter_table(longlong context_ptr, int new_size)
             new_memory_ptr = FUN_18062b1e0(_DAT_180c8ed18, (longlong)new_size << 6, 0x10, 4);
         }
         
-        **(undefined8 **)(context_ptr + 600) = new_memory_ptr;
+        **(uint64_t **)(context_ptr + 600) = new_memory_ptr;
         *(int *)(*(longlong *)(context_ptr + 600) + 8) = new_size;
     }
     
@@ -372,9 +372,9 @@ void update_context_status(longlong context_ptr, char new_status)
     byte current_status;
     longlong loop_counter;
     longlong *callback_ptr;
-    undefined1 temp_stack_40[8];
+    int8_t temp_stack_40[8];
     longlong temp_stack_38;
-    undefined4 temp_stack_30;
+    int32_t temp_stack_30;
     longlong *temp_stack_28;
     
     // 检查状态是否已改变
@@ -445,11 +445,11 @@ code *get_or_create_context_handler(longlong context_ptr, char handler_type)
 {
     longlong *handler_ptr;
     code *return_value;
-    undefined8 temp_var;
+    uint64_t temp_var;
     code *new_handler;
     longlong *temp_ptr;
     longlong temp_stack_30;
-    undefined4 temp_stack_28;
+    int32_t temp_stack_28;
     code *temp_stack_20;
     code *temp_stack_18;
     
@@ -457,7 +457,7 @@ code *get_or_create_context_handler(longlong context_ptr, char handler_type)
     
     if (*(longlong *)return_value == 0) {
         if ((*(byte *)(context_ptr + 0xfd) & 0x20) == 0) {
-            temp_stack_30 = func_0x000180085de0(*(undefined8 *)(context_ptr + 0x1b0));
+            temp_stack_30 = func_0x000180085de0(*(uint64_t *)(context_ptr + 0x1b0));
             
             if (temp_stack_30 != context_ptr) {
                 temp_stack_28 = 0;
@@ -540,7 +540,7 @@ void destroy_context_handler(longlong context_ptr, char cleanup_type)
         if (((*(char *)(context_ptr + 0xfc) == '\0') && (*(char *)(context_ptr + 0xf4) == '\0')) &&
            (((*(byte *)(context_ptr + 0xfd) & 0x20) == 0 || ((*(byte *)(context_ptr + 0xfe) & 1) == 0)))) {
             handler_ptr = *(longlong **)(context_ptr + 0x210);
-            *(undefined8 *)(context_ptr + 0x210) = 0;
+            *(uint64_t *)(context_ptr + 0x210) = 0;
             
             if (handler_ptr != (longlong *)0x0) {
                 (**(code **)(*handler_ptr + 0x38))();
@@ -558,7 +558,7 @@ void process_data_sync(longlong context_ptr)
 {
     int current_version;
     uint target_version;
-    undefined8 temp_var;
+    uint64_t temp_var;
     int source_index;
     uint source_count;
     uint target_count;
@@ -567,7 +567,7 @@ void process_data_sync(longlong context_ptr)
     longlong data_ptr;
     longlong source_data_ptr;
     ulonglong item_count;
-    undefined8 *item_ptr;
+    uint64_t *item_ptr;
     ulonglong source_offset;
     ulonglong target_offset;
     longlong target_data_ptr;
@@ -586,7 +586,7 @@ void process_data_sync(longlong context_ptr)
                 
                 source_data_ptr = (longlong)(int)target_count * 0x488 + _DAT_180c86890 + 0xb8;
                 data_ptr = (longlong)*(int *)(_DAT_180c86890 + 0x9c8) * 0x488 + _DAT_180c86890 + 0xb8;
-                target_offset = FUN_180080480(data_ptr, *(undefined4 *)(target_data_ptr + 0x14));
+                target_offset = FUN_180080480(data_ptr, *(int32_t *)(target_data_ptr + 0x14));
                 dest_index = (int)target_offset;
                 item_count = target_offset & 0xffffffff;
                 
@@ -615,9 +615,9 @@ void process_data_sync(longlong context_ptr)
                             source_offset = item_count >> 0xb;
                             item_count = (ulonglong)(source_index + 1);
                             
-                            *(undefined8 *)(*(longlong *)(data_ptr + 8 + source_offset * 8) +
+                            *(uint64_t *)(*(longlong *)(data_ptr + 8 + source_offset * 8) +
                                            (ulonglong)(uint)(source_index + (int)source_offset * -0x800) * 8) =
-                                *(undefined8 *)(*(longlong *)(source_data_ptr + 8 + (ulonglong)target_count * 8) +
+                                *(uint64_t *)(*(longlong *)(source_data_ptr + 8 + (ulonglong)target_count * 8) +
                                                (ulonglong)(remaining_items + target_count * -0x800) * 8);
                             
                             target_offset = target_offset - 1;
@@ -629,16 +629,16 @@ void process_data_sync(longlong context_ptr)
                 }
             }
             else {
-                *(undefined4 *)(target_data_ptr + 0x14) = 0;
+                *(int32_t *)(target_data_ptr + 0x14) = 0;
             }
         }
         else {
             target_data_ptr = (longlong)*(int *)(_DAT_180c86890 + 0x9c8) * 0x488 + _DAT_180c86890 + 0xb8;
             remaining_items = FUN_180080480(target_data_ptr);
             source_count = remaining_items >> 0xb;
-            target_count = *(uint *)(*(undefined8 **)(context_ptr + 0x2d0) + 1);
+            target_count = *(uint *)(*(uint64_t **)(context_ptr + 0x2d0) + 1);
             target_offset = (ulonglong)target_count;
-            item_ptr = (undefined8 *)**(undefined8 **)(context_ptr + 0x2d0);
+            item_ptr = (uint64_t *)**(uint64_t **)(context_ptr + 0x2d0);
             
             if (source_count == target_count + remaining_items >> 0xb) {
                 memcpy(*(longlong *)(target_data_ptr + 8 + (ulonglong)source_count * 8) +
@@ -651,15 +651,15 @@ void process_data_sync(longlong context_ptr)
                 do {
                     temp_var = *item_ptr;
                     item_ptr = item_ptr + 1;
-                    *(undefined8 *)(*(longlong *)(target_data_ptr + 8 + (ulonglong)(source_count >> 0xb) * 8) +
+                    *(uint64_t *)(*(longlong *)(target_data_ptr + 8 + (ulonglong)(source_count >> 0xb) * 8) +
                                    (ulonglong)(source_count + (source_count >> 0xb) * -0x800) * 8) = temp_var;
                     target_offset = target_offset - 1;
                     source_count = source_count + 1;
                 } while (target_offset != 0);
             }
             
-            *(undefined4 *)(*(longlong *)(context_ptr + 0x2d0) + 0x14) =
-                 *(undefined4 *)(*(longlong *)(context_ptr + 0x2d0) + 8);
+            *(int32_t *)(*(longlong *)(context_ptr + 0x2d0) + 0x14) =
+                 *(int32_t *)(*(longlong *)(context_ptr + 0x2d0) + 8);
             *(uint *)(*(longlong *)(context_ptr + 0x2d0) + 0x18) = remaining_items;
             *(int *)(*(longlong *)(context_ptr + 0x2d0) + 0xc) = current_version;
         }
@@ -673,7 +673,7 @@ void process_data_sync(longlong context_ptr)
 void process_batch_data_update(longlong data_ptr, int batch_size, int version_id)
 {
     uint source_index;
-    undefined8 temp_var;
+    uint64_t temp_var;
     int dest_index;
     uint source_count;
     uint target_count;
@@ -681,7 +681,7 @@ void process_batch_data_update(longlong data_ptr, int batch_size, int version_id
     uint remaining_items;
     longlong target_data_ptr;
     ulonglong item_count;
-    undefined8 *item_ptr;
+    uint64_t *item_ptr;
     ulonglong source_offset_val;
     ulonglong target_offset_val;
     longlong source_data_ptr;
@@ -696,7 +696,7 @@ void process_batch_data_update(longlong data_ptr, int batch_size, int version_id
             
             source_data_ptr = (longlong)(int)target_count * 0x488 + _DAT_180c86890 + 0xb8;
             target_data_ptr = (longlong)*(int *)(_DAT_180c86890 + 0x9c8) * 0x488 + _DAT_180c86890 + 0xb8;
-            target_offset_val = FUN_180080480(target_data_ptr, *(undefined4 *)(data_ptr + 0x14));
+            target_offset_val = FUN_180080480(target_data_ptr, *(int32_t *)(data_ptr + 0x14));
             dest_index = (int)target_offset_val;
             item_count = target_offset_val & 0xffffffff;
             
@@ -726,9 +726,9 @@ void process_batch_data_update(longlong data_ptr, int batch_size, int version_id
                         source_offset_val = item_count >> 0xb;
                         item_count = (ulonglong)(source_offset + 1);
                         
-                        *(undefined8 *)(*(longlong *)(target_data_ptr + 8 + source_offset_val * 8) +
+                        *(uint64_t *)(*(longlong *)(target_data_ptr + 8 + source_offset_val * 8) +
                                        (ulonglong)(uint)(source_offset + (int)source_offset_val * -0x800) * 8) =
-                            *(undefined8 *)(*(longlong *)(source_data_ptr + 8 + (ulonglong)target_count * 8) +
+                            *(uint64_t *)(*(longlong *)(source_data_ptr + 8 + (ulonglong)target_count * 8) +
                                            (ulonglong)(remaining_items + target_count * -0x800) * 8);
                         
                         target_offset_val = target_offset_val - 1;
@@ -740,16 +740,16 @@ void process_batch_data_update(longlong data_ptr, int batch_size, int version_id
             }
         }
         else {
-            *(undefined4 *)(data_ptr + 0x14) = 0;
+            *(int32_t *)(data_ptr + 0x14) = 0;
         }
     }
     else {
         target_data_ptr = (longlong)*(int *)(_DAT_180c86890 + 0x9c8) * 0x488 + _DAT_180c86890 + 0xb8;
         remaining_items = FUN_180080480(target_data_ptr);
         source_index = remaining_items >> 0xb;
-        target_count = *(uint *)(*(undefined8 **)(source_offset + 0x2d0) + 1);
+        target_count = *(uint *)(*(uint64_t **)(source_offset + 0x2d0) + 1);
         target_offset_val = (ulonglong)target_count;
-        item_ptr = (undefined8 *)**(undefined8 **)(source_offset + 0x2d0);
+        item_ptr = (uint64_t *)**(uint64_t **)(source_offset + 0x2d0);
         
         if (source_index == target_count + remaining_items >> 0xb) {
             memcpy(*(longlong *)(target_data_ptr + 8 + (ulonglong)source_index * 8) +
@@ -762,15 +762,15 @@ void process_batch_data_update(longlong data_ptr, int batch_size, int version_id
             do {
                 temp_var = *item_ptr;
                 item_ptr = item_ptr + 1;
-                *(undefined8 *)(*(longlong *)(target_data_ptr + 8 + (ulonglong)(source_index >> 0xb) * 8) +
+                *(uint64_t *)(*(longlong *)(target_data_ptr + 8 + (ulonglong)(source_index >> 0xb) * 8) +
                                (ulonglong)(source_index + (source_index >> 0xb) * -0x800) * 8) = temp_var;
                 target_offset_val = target_offset_val - 1;
                 source_index = source_index + 1;
             } while (target_offset_val != 0);
         }
         
-        *(undefined4 *)(*(longlong *)(source_offset + 0x2d0) + 0x14) =
-             *(undefined4 *)(*(longlong *)(source_offset + 0x2d0) + 8);
+        *(int32_t *)(*(longlong *)(source_offset + 0x2d0) + 0x14) =
+             *(int32_t *)(*(longlong *)(source_offset + 0x2d0) + 8);
         *(uint *)(*(longlong *)(source_offset + 0x2d0) + 0x18) = remaining_items;
         *(int *)(*(longlong *)(source_offset + 0x2d0) + 0xc) = source_offset;
     }
@@ -802,7 +802,7 @@ void process_data_block_copy(longlong source_ptr, longlong target_ptr)
     
     source_block_ptr = (longlong)(int)target_version * 0x488 + target_ptr;
     target_ptr = (longlong)*(int *)(target_ptr + 0x910) * 0x488 + target_ptr;
-    item_count = FUN_180080480(target_ptr, *(undefined4 *)(source_ptr + 0x14));
+    item_count = FUN_180080480(target_ptr, *(int32_t *)(source_ptr + 0x14));
     dest_index = (int)item_count;
     target_offset = item_count & 0xffffffff;
     
@@ -831,9 +831,9 @@ void process_data_block_copy(longlong source_ptr, longlong target_ptr)
                 source_offset = target_offset >> 0xb;
                 target_offset = (ulonglong)(source_index + 1);
                 
-                *(undefined8 *)(*(longlong *)(target_ptr + 8 + source_offset * 8) +
+                *(uint64_t *)(*(longlong *)(target_ptr + 8 + source_offset * 8) +
                                (ulonglong)(uint)(source_index + (int)source_offset * -0x800) * 8) =
-                    *(undefined8 *)(*(longlong *)(source_block_ptr + 8 + (ulonglong)target_version * 8) +
+                    *(uint64_t *)(*(longlong *)(source_block_ptr + 8 + (ulonglong)target_version * 8) +
                                    (ulonglong)(block_size + target_version * -0x800) * 8);
                 
                 item_count = item_count - 1;
@@ -841,7 +841,7 @@ void process_data_block_copy(longlong source_ptr, longlong target_ptr)
         }
         
         *(int *)(*(longlong *)(source_offset + 0x2d0) + 0x18) = dest_index;
-        *(undefined4 *)(*(longlong *)(source_offset + 0x2d0) + 0xc) = source_index;
+        *(int32_t *)(*(longlong *)(source_offset + 0x2d0) + 0xc) = source_index;
     }
     
     return;
@@ -865,7 +865,7 @@ void placeholder_function_2(void)
 // 功能: 重置数据计数器
 void reset_data_counter(longlong data_ptr)
 {
-    *(undefined4 *)(data_ptr + 0x14) = 0;
+    *(int32_t *)(data_ptr + 0x14) = 0;
     return;
 }
 
@@ -874,15 +874,15 @@ void reset_data_counter(longlong data_ptr)
 void initialize_data_array(longlong context_ptr, longlong data_ptr, int array_size)
 {
     int *source_ptr;
-    undefined8 *dest_ptr;
-    undefined8 *temp_ptr;
-    undefined8 *alloc_ptr;
+    uint64_t *dest_ptr;
+    uint64_t *temp_ptr;
+    uint64_t *alloc_ptr;
     uint item_index;
     int *loop_ptr;
     longlong offset;
     ulonglong total_items;
     longlong array_base_ptr;
-    undefined8 *current_ptr;
+    uint64_t *current_ptr;
     
     total_items = (ulonglong)array_size;
     
@@ -890,31 +890,31 @@ void initialize_data_array(longlong context_ptr, longlong data_ptr, int array_si
         FUN_18064e900();
     }
     
-    alloc_ptr = (undefined8 *)0x0;
+    alloc_ptr = (uint64_t *)0x0;
     **(longlong **)(context_ptr + 0x2d0) = 0;
     
     if (0 < array_size) {
         dest_ptr = alloc_ptr;
         
         if (array_size != 0) {
-            dest_ptr = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, total_items * 8, 3);
+            dest_ptr = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, total_items * 8, 3);
             temp_ptr = dest_ptr;
             current_ptr = alloc_ptr;
             
             do {
                 item_index = (int)current_ptr + 1;
-                current_ptr = (undefined8 *)(ulonglong)item_index;
+                current_ptr = (uint64_t *)(ulonglong)item_index;
                 *temp_ptr = 0;
                 temp_ptr = temp_ptr + 1;
             } while ((ulonglong)(longlong)(int)item_index < total_items);
         }
         
-        **(undefined8 **)(context_ptr + 0x2d0) = dest_ptr;
+        **(uint64_t **)(context_ptr + 0x2d0) = dest_ptr;
         
         if (3 < (longlong)total_items) {
             offset = -8 - data_ptr;
             array_base_ptr = (total_items - 4 >> 2) + 1;
-            alloc_ptr = (undefined8 *)(offset * 4);
+            alloc_ptr = (uint64_t *)(offset * 4);
             loop_ptr = (int *)(data_ptr + 8);
             
             do {
@@ -932,9 +932,9 @@ void initialize_data_array(longlong context_ptr, longlong data_ptr, int array_si
             } while (array_base_ptr != 0);
         }
         
-        for (; (longlong)alloc_ptr < (longlong)total_items; alloc_ptr = (undefined8 *)((longlong)alloc_ptr + 1)) {
+        for (; (longlong)alloc_ptr < (longlong)total_items; alloc_ptr = (uint64_t *)((longlong)alloc_ptr + 1)) {
             *(float *)(**(longlong **)(context_ptr + 0x2d0) + (longlong)alloc_ptr * 8) = (float)*(int *)(data_ptr + (longlong)alloc_ptr * 8);
-            *(undefined4 *)(**(longlong **)(context_ptr + 0x2d0) + 4 + (longlong)alloc_ptr * 8) = *(undefined4 *)(data_ptr + 4 + (longlong)alloc_ptr * 8);
+            *(int32_t *)(**(longlong **)(context_ptr + 0x2d0) + 4 + (longlong)alloc_ptr * 8) = *(int32_t *)(data_ptr + 4 + (longlong)alloc_ptr * 8);
         }
         
         *(int *)(*(longlong *)(context_ptr + 0x2d0) + 8) = array_size;
@@ -1005,7 +1005,7 @@ void optimized_initialize_data_array(void)
     
     for (; (longlong)context_offset < (longlong)total_items; context_offset = context_offset + 1) {
         *(float *)(**(longlong **)(context_ptr + 0x2d0) + context_offset * 8) = (float)*(int *)(data_offset + context_offset * 8);
-        *(undefined4 *)(**(longlong **)(context_ptr + 0x2d0) + 4 + context_offset * 8) = *(undefined4 *)(data_offset + 4 + context_offset * 8);
+        *(int32_t *)(**(longlong **)(context_ptr + 0x2d0) + 4 + context_offset * 8) = *(int32_t *)(data_offset + 4 + context_offset * 8);
     }
     
     *(int *)(*(longlong *)(context_ptr + 0x2d0) + 8) = (int)total_items;

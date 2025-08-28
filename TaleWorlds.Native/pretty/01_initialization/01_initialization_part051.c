@@ -2,9 +2,9 @@
 
 // 01_initialization_part051.c - 8 个函数
 
-// 函数: void FUN_180078051(undefined8 param_1,undefined8 param_2,float param_3,float param_4)
+// 函数: void FUN_180078051(uint64_t param_1,uint64_t param_2,float param_3,float param_4)
 // 功能: 矩阵变换函数，用于进行3D空间中的坐标变换
-void FUN_180078051(undefined8 param_1, undefined8 param_2, float param_3, float param_4)
+void FUN_180078051(uint64_t param_1, uint64_t param_2, float param_3, float param_4)
 
 {
   float matrix_element_1;
@@ -18,7 +18,7 @@ void FUN_180078051(undefined8 param_1, undefined8 param_2, float param_3, float 
   float matrix_element_9;
   longlong transformation_base;
   float *matrix_pointer;
-  undefined4 matrix_flag;
+  int32_t matrix_flag;
   float x_component_1;
   float y_component_1;
   float z_component_1;
@@ -28,25 +28,25 @@ void FUN_180078051(undefined8 param_1, undefined8 param_2, float param_3, float 
   float x_component_3;
   float y_component_3;
   float z_component_3;
-  undefined4 stack_param_1;
+  int32_t stack_param_1;
   float transformed_x_1;
   float transformed_y_1;
   float transformed_z_1;
-  undefined4 stack_param_2;
+  int32_t stack_param_2;
   float transformed_x_2;
   float transformed_y_2;
   float transformed_z_2;
-  undefined4 stack_param_3;
+  int32_t stack_param_3;
   float transformed_x_3;
   float transformed_y_3;
   float transformed_z_3;
-  undefined4 stack_param_4;
+  int32_t stack_param_4;
   float transformed_x_4;
   float transformed_y_4;
   float transformed_z_4;
-  undefined4 stack_param_5;
-  undefined4 input_param_1;
-  undefined4 input_param_2;
+  int32_t stack_param_5;
+  int32_t input_param_1;
+  int32_t input_param_2;
   
   // 从矩阵指针获取变换矩阵元素
   matrix_element_1 = *matrix_pointer;
@@ -105,29 +105,29 @@ void FUN_180078051(undefined8 param_1, undefined8 param_2, float param_3, float 
 void FUN_180078143(void)
 
 {
-  undefined8 *render_context;
-  undefined4 render_flags;
-  undefined4 stack_param_1;
-  undefined8 context_data_1;
+  uint64_t *render_context;
+  int32_t render_flags;
+  int32_t stack_param_1;
+  uint64_t context_data_1;
   ulonglong context_data_2;
-  undefined8 context_data_3;
+  uint64_t context_data_3;
   ulonglong context_data_4;
-  undefined8 context_data_5;
+  uint64_t context_data_5;
   ulonglong context_data_6;
-  undefined4 render_param_1;
-  undefined4 render_param_2;
-  undefined4 render_param_3;
-  undefined4 render_param_4;
-  undefined4 input_param_1;
-  undefined4 input_param_2;
+  int32_t render_param_1;
+  int32_t render_param_2;
+  int32_t render_param_3;
+  int32_t render_param_4;
+  int32_t input_param_1;
+  int32_t input_param_2;
   
   // 从渲染上下文获取数据
   context_data_1 = *render_context;
   context_data_3 = render_context[2];
   context_data_5 = render_context[4];
-  render_param_1 = *(undefined4 *)(render_context + 6);
-  render_param_2 = *(undefined4 *)((longlong)render_context + 0x34);
-  render_param_3 = *(undefined4 *)(render_context + 7);
+  render_param_1 = *(int32_t *)(render_context + 6);
+  render_param_2 = *(int32_t *)((longlong)render_context + 0x34);
+  render_param_3 = *(int32_t *)(render_context + 7);
   stack_param_1 = input_param_2;
   render_param_4 = 0x3f800000;  // 1.0f
   context_data_6 = render_context[5] & 0xffffffff;
@@ -149,12 +149,12 @@ void FUN_1800781e0(longlong param_1)
 
 {
   longlong object_data;
-  undefined4 flag_1;
-  undefined4 flag_2;
-  undefined4 flag_3;
+  int32_t flag_1;
+  int32_t flag_2;
+  int32_t flag_3;
   char visibility_flag;
-  undefined1 render_mode;
-  undefined8 *data_pointer;
+  int8_t render_mode;
+  uint64_t *data_pointer;
   longlong transform_data;
   uint render_flags;
   bool is_visible;
@@ -200,59 +200,59 @@ LAB_1800782e0:
   
   // 设置渲染模式
   if (render_flags == 0x1000) {
-    *(undefined1 *)(param_1 + 0xf7) = 1;
+    *(int8_t *)(param_1 + 0xf7) = 1;
   }
   else {
     if (render_flags == 0x2000) {
       render_mode = 2;
     }
-    *(undefined1 *)(param_1 + 0xf7) = render_mode;
+    *(int8_t *)(param_1 + 0xf7) = render_mode;
   }
   
   // 复制变换参数
   if ((((*(float *)(transform_data + 0x288) != 0.0) || (*(float *)(transform_data + 0x28c) != 0.0)) ||
       (*(float *)(transform_data + 0x290) != 0.0)) || (*(float *)(transform_data + 0x294) != 0.0)) {
-    flag_1 = *(undefined4 *)(transform_data + 0x28c);
-    flag_2 = *(undefined4 *)(transform_data + 0x290);
-    flag_3 = *(undefined4 *)(transform_data + 0x294);
-    *(undefined4 *)(param_1 + 0x2a8) = *(undefined4 *)(transform_data + 0x288);
-    *(undefined4 *)(param_1 + 0x2ac) = flag_1;
-    *(undefined4 *)(param_1 + 0x2b0) = flag_2;
-    *(undefined4 *)(param_1 + 0x2b4) = flag_3;
+    flag_1 = *(int32_t *)(transform_data + 0x28c);
+    flag_2 = *(int32_t *)(transform_data + 0x290);
+    flag_3 = *(int32_t *)(transform_data + 0x294);
+    *(int32_t *)(param_1 + 0x2a8) = *(int32_t *)(transform_data + 0x288);
+    *(int32_t *)(param_1 + 0x2ac) = flag_1;
+    *(int32_t *)(param_1 + 0x2b0) = flag_2;
+    *(int32_t *)(param_1 + 0x2b4) = flag_3;
   }
   
   if (((*(float *)(transform_data + 0x298) != 0.0) || (*(float *)(transform_data + 0x29c) != 0.0)) ||
      ((*(float *)(transform_data + 0x2a0) != 0.0 || (*(float *)(transform_data + 0x2a4) != 0.0)))) {
-    flag_1 = *(undefined4 *)(transform_data + 0x29c);
-    flag_2 = *(undefined4 *)(transform_data + 0x2a0);
-    flag_3 = *(undefined4 *)(transform_data + 0x2a4);
-    *(undefined4 *)(param_1 + 0x2b8) = *(undefined4 *)(transform_data + 0x298);
-    *(undefined4 *)(param_1 + 700) = flag_1;
-    *(undefined4 *)(param_1 + 0x2c0) = flag_2;
-    *(undefined4 *)(param_1 + 0x2c4) = flag_3;
+    flag_1 = *(int32_t *)(transform_data + 0x29c);
+    flag_2 = *(int32_t *)(transform_data + 0x2a0);
+    flag_3 = *(int32_t *)(transform_data + 0x2a4);
+    *(int32_t *)(param_1 + 0x2b8) = *(int32_t *)(transform_data + 0x298);
+    *(int32_t *)(param_1 + 700) = flag_1;
+    *(int32_t *)(param_1 + 0x2c0) = flag_2;
+    *(int32_t *)(param_1 + 0x2c4) = flag_3;
   }
   
   // 设置渲染状态标志
-  *(undefined2 *)(transform_data + 0x3c0) = 0xffff;
+  *(int16_t *)(transform_data + 0x3c0) = 0xffff;
   FUN_180077150(param_1);
   
   // 创建对象数据结构
   if ((*(longlong *)(param_1 + 600) == 0) &&
      ((*(uint *)(*(longlong *)(param_1 + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
-    data_pointer = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, 0x58, 8, 9);
-    *(undefined8 *)((longlong)data_pointer + 0x2c) = 0xffffffffffffffff;
-    *(undefined4 *)(data_pointer + 9) = 0xffffffff;
+    data_pointer = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x58, 8, 9);
+    *(uint64_t *)((longlong)data_pointer + 0x2c) = 0xffffffffffffffff;
+    *(int32_t *)(data_pointer + 9) = 0xffffffff;
     *data_pointer = 0;
     data_pointer[2] = 0;
     data_pointer[7] = 0;
-    *(undefined4 *)(data_pointer + 5) = 0xffffffff;
-    *(undefined4 *)(data_pointer + 4) = 0xffffffff;
+    *(int32_t *)(data_pointer + 5) = 0xffffffff;
+    *(int32_t *)(data_pointer + 4) = 0xffffffff;
     data_pointer[3] = 0;
-    *(undefined4 *)(data_pointer + 8) = 0;
-    *(undefined4 *)(data_pointer + 1) = 0;
-    *(undefined1 *)((longlong)data_pointer + 0x44) = 0;
-    *(undefined1 *)((longlong)data_pointer + 0x24) = 0;
-    *(undefined8 **)(param_1 + 600) = data_pointer;
+    *(int32_t *)(data_pointer + 8) = 0;
+    *(int32_t *)(data_pointer + 1) = 0;
+    *(int8_t *)((longlong)data_pointer + 0x44) = 0;
+    *(int8_t *)((longlong)data_pointer + 0x24) = 0;
+    *(uint64_t **)(param_1 + 600) = data_pointer;
   }
   return;
 }
@@ -267,13 +267,13 @@ void FUN_1800781f4(longlong param_1)
 
 {
   longlong object_data;
-  undefined4 flag_1;
-  undefined4 flag_2;
-  undefined4 flag_3;
+  int32_t flag_1;
+  int32_t flag_2;
+  int32_t flag_3;
   char visibility_flag;
-  undefined1 render_mode;
+  int8_t render_mode;
   longlong transform_base;
-  undefined8 *data_pointer;
+  uint64_t *data_pointer;
   uint render_flags;
   longlong object_base;
   bool is_visible;
@@ -315,59 +315,59 @@ LAB_1800782e0:
   
   // 设置渲染模式
   if (render_flags == 0x1000) {
-    *(undefined1 *)(object_base + 0xf7) = 1;
+    *(int8_t *)(object_base + 0xf7) = 1;
   }
   else {
     if (render_flags == 0x2000) {
       render_mode = 2;
     }
-    *(undefined1 *)(object_base + 0xf7) = render_mode;
+    *(int8_t *)(object_base + 0xf7) = render_mode;
   }
   
   // 复制变换参数
   if ((((*(float *)(object_data + 0x288) != 0.0) || (*(float *)(object_data + 0x28c) != 0.0)) ||
       (*(float *)(object_data + 0x290) != 0.0)) || (*(float *)(object_data + 0x294) != 0.0)) {
-    flag_1 = *(undefined4 *)(object_data + 0x28c);
-    flag_2 = *(undefined4 *)(object_data + 0x290);
-    flag_3 = *(undefined4 *)(object_data + 0x294);
-    *(undefined4 *)(object_base + 0x2a8) = *(undefined4 *)(object_data + 0x288);
-    *(undefined4 *)(object_base + 0x2ac) = flag_1;
-    *(undefined4 *)(object_base + 0x2b0) = flag_2;
-    *(undefined4 *)(object_base + 0x2b4) = flag_3;
+    flag_1 = *(int32_t *)(object_data + 0x28c);
+    flag_2 = *(int32_t *)(object_data + 0x290);
+    flag_3 = *(int32_t *)(object_data + 0x294);
+    *(int32_t *)(object_base + 0x2a8) = *(int32_t *)(object_data + 0x288);
+    *(int32_t *)(object_base + 0x2ac) = flag_1;
+    *(int32_t *)(object_base + 0x2b0) = flag_2;
+    *(int32_t *)(object_base + 0x2b4) = flag_3;
   }
   
   if (((*(float *)(object_data + 0x298) != 0.0) || (*(float *)(object_data + 0x29c) != 0.0)) ||
      ((*(float *)(object_data + 0x2a0) != 0.0 || (*(float *)(object_data + 0x2a4) != 0.0)))) {
-    flag_1 = *(undefined4 *)(object_data + 0x29c);
-    flag_2 = *(undefined4 *)(object_data + 0x2a0);
-    flag_3 = *(undefined4 *)(object_data + 0x2a4);
-    *(undefined4 *)(object_base + 0x2b8) = *(undefined4 *)(object_data + 0x298);
-    *(undefined4 *)(object_base + 700) = flag_1;
-    *(undefined4 *)(object_base + 0x2c0) = flag_2;
-    *(undefined4 *)(object_base + 0x2c4) = flag_3;
+    flag_1 = *(int32_t *)(object_data + 0x29c);
+    flag_2 = *(int32_t *)(object_data + 0x2a0);
+    flag_3 = *(int32_t *)(object_data + 0x2a4);
+    *(int32_t *)(object_base + 0x2b8) = *(int32_t *)(object_data + 0x298);
+    *(int32_t *)(object_base + 700) = flag_1;
+    *(int32_t *)(object_base + 0x2c0) = flag_2;
+    *(int32_t *)(object_base + 0x2c4) = flag_3;
   }
   
   // 设置渲染状态
-  *(undefined2 *)(object_data + 0x3c0) = 0xffff;
+  *(int16_t *)(object_data + 0x3c0) = 0xffff;
   FUN_180077150();
   
   // 创建数据结构
   if ((*(longlong *)(object_base + 600) == 0) &&
      ((*(uint *)(*(longlong *)(object_base + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
-    data_pointer = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, 0x58, 8, 9);
-    *(undefined8 *)((longlong)data_pointer + 0x2c) = 0xffffffffffffffff;
-    *(undefined4 *)(data_pointer + 9) = 0xffffffff;
+    data_pointer = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x58, 8, 9);
+    *(uint64_t *)((longlong)data_pointer + 0x2c) = 0xffffffffffffffff;
+    *(int32_t *)(data_pointer + 9) = 0xffffffff;
     *data_pointer = 0;
     data_pointer[2] = 0;
     data_pointer[7] = 0;
-    *(undefined4 *)(data_pointer + 5) = 0xffffffff;
-    *(undefined4 *)(data_pointer + 4) = 0xffffffff;
+    *(int32_t *)(data_pointer + 5) = 0xffffffff;
+    *(int32_t *)(data_pointer + 4) = 0xffffffff;
     data_pointer[3] = 0;
-    *(undefined4 *)(data_pointer + 8) = 0;
-    *(undefined4 *)(data_pointer + 1) = 0;
-    *(undefined1 *)((longlong)data_pointer + 0x44) = 0;
-    *(undefined1 *)((longlong)data_pointer + 0x24) = 0;
-    *(undefined8 **)(object_base + 600) = data_pointer;
+    *(int32_t *)(data_pointer + 8) = 0;
+    *(int32_t *)(data_pointer + 1) = 0;
+    *(int8_t *)((longlong)data_pointer + 0x44) = 0;
+    *(int8_t *)((longlong)data_pointer + 0x24) = 0;
+    *(uint64_t **)(object_base + 600) = data_pointer;
   }
   return;
 }
@@ -382,13 +382,13 @@ void FUN_180078239(float param_1, float param_2, float param_3, float param_4)
 
 {
   longlong object_data;
-  undefined4 flag_1;
-  undefined4 flag_2;
-  undefined4 flag_3;
+  int32_t flag_1;
+  int32_t flag_2;
+  int32_t flag_3;
   char visibility_flag;
-  undefined1 render_mode;
+  int8_t render_mode;
   longlong transform_base;
-  undefined8 *data_pointer;
+  uint64_t *data_pointer;
   longlong context_data;
   uint render_flags;
   longlong object_base;
@@ -429,59 +429,59 @@ LAB_1800782e0:
   
   // 设置渲染模式
   if (render_flags == 0x1000) {
-    *(undefined1 *)(object_base + 0xf7) = 1;
+    *(int8_t *)(object_base + 0xf7) = 1;
   }
   else {
     if (render_flags == 0x2000) {
       render_mode = 2;
     }
-    *(undefined1 *)(object_base + 0xf7) = render_mode;
+    *(int8_t *)(object_base + 0xf7) = render_mode;
   }
   
   // 复制非零变换参数
   if (((transform_z != *(float *)(object_data + 0x288)) || (transform_z != *(float *)(object_data + 0x28c))) ||
       (transform_z != *(float *)(object_data + 0x290))) || (transform_z != *(float *)(object_data + 0x294))) {
-    flag_1 = *(undefined4 *)(object_data + 0x28c);
-    flag_2 = *(undefined4 *)(object_data + 0x290);
-    flag_3 = *(undefined4 *)(object_data + 0x294);
-    *(undefined4 *)(object_base + 0x2a8) = *(undefined4 *)(object_data + 0x288);
-    *(undefined4 *)(object_base + 0x2ac) = flag_1;
-    *(undefined4 *)(object_base + 0x2b0) = flag_2;
-    *(undefined4 *)(object_base + 0x2b4) = flag_3;
+    flag_1 = *(int32_t *)(object_data + 0x28c);
+    flag_2 = *(int32_t *)(object_data + 0x290);
+    flag_3 = *(int32_t *)(object_data + 0x294);
+    *(int32_t *)(object_base + 0x2a8) = *(int32_t *)(object_data + 0x288);
+    *(int32_t *)(object_base + 0x2ac) = flag_1;
+    *(int32_t *)(object_base + 0x2b0) = flag_2;
+    *(int32_t *)(object_base + 0x2b4) = flag_3;
   }
   
   if (((transform_z != *(float *)(object_data + 0x298)) || (transform_z != *(float *)(object_data + 0x29c))) ||
      ((transform_z != *(float *)(object_data + 0x2a0) || (transform_z != *(float *)(object_data + 0x2a4))))) {
-    flag_1 = *(undefined4 *)(object_data + 0x29c);
-    flag_2 = *(undefined4 *)(object_data + 0x2a0);
-    flag_3 = *(undefined4 *)(object_data + 0x2a4);
-    *(undefined4 *)(object_base + 0x2b8) = *(undefined4 *)(object_data + 0x298);
-    *(undefined4 *)(object_base + 700) = flag_1;
-    *(undefined4 *)(object_base + 0x2c0) = flag_2;
-    *(undefined4 *)(object_base + 0x2c4) = flag_3;
+    flag_1 = *(int32_t *)(object_data + 0x29c);
+    flag_2 = *(int32_t *)(object_data + 0x2a0);
+    flag_3 = *(int32_t *)(object_data + 0x2a4);
+    *(int32_t *)(object_base + 0x2b8) = *(int32_t *)(object_data + 0x298);
+    *(int32_t *)(object_base + 700) = flag_1;
+    *(int32_t *)(object_base + 0x2c0) = flag_2;
+    *(int32_t *)(object_base + 0x2c4) = flag_3;
   }
   
   // 设置渲染状态
-  *(undefined2 *)(object_data + 0x3c0) = 0xffff;
+  *(int16_t *)(object_data + 0x3c0) = 0xffff;
   FUN_180077150();
   
   // 创建数据结构
   if ((*(longlong *)(object_base + 600) == 0) &&
      ((*(uint *)(*(longlong *)(object_base + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
-    data_pointer = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, 0x58, 8, 9);
-    *(undefined8 *)((longlong)data_pointer + 0x2c) = 0xffffffffffffffff;
-    *(undefined4 *)(data_pointer + 9) = 0xffffffff;
+    data_pointer = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x58, 8, 9);
+    *(uint64_t *)((longlong)data_pointer + 0x2c) = 0xffffffffffffffff;
+    *(int32_t *)(data_pointer + 9) = 0xffffffff;
     *data_pointer = 0;
     data_pointer[2] = 0;
     data_pointer[7] = 0;
-    *(undefined4 *)(data_pointer + 5) = 0xffffffff;
-    *(undefined4 *)(data_pointer + 4) = 0xffffffff;
+    *(int32_t *)(data_pointer + 5) = 0xffffffff;
+    *(int32_t *)(data_pointer + 4) = 0xffffffff;
     data_pointer[3] = 0;
-    *(undefined4 *)(data_pointer + 8) = 0;
-    *(undefined4 *)(data_pointer + 1) = 0;
-    *(undefined1 *)((longlong)data_pointer + 0x44) = 0;
-    *(undefined1 *)((longlong)data_pointer + 0x24) = 0;
-    *(undefined8 **)(object_base + 600) = data_pointer;
+    *(int32_t *)(data_pointer + 8) = 0;
+    *(int32_t *)(data_pointer + 1) = 0;
+    *(int8_t *)((longlong)data_pointer + 0x44) = 0;
+    *(int8_t *)((longlong)data_pointer + 0x24) = 0;
+    *(uint64_t **)(object_base + 600) = data_pointer;
   }
   return;
 }
@@ -496,12 +496,12 @@ void FUN_1800782a8(longlong param_1)
 
 {
   longlong object_data;
-  undefined4 flag_1;
-  undefined4 flag_2;
-  undefined4 flag_3;
+  int32_t flag_1;
+  int32_t flag_2;
+  int32_t flag_3;
   char visibility_flag;
-  undefined1 render_mode;
-  undefined8 *data_pointer;
+  int8_t render_mode;
+  uint64_t *data_pointer;
   uint render_flags;
   longlong object_base;
   bool is_visible;
@@ -531,59 +531,59 @@ LAB_1800782e0:
   
   // 设置渲染模式
   if (render_flags == 0x1000) {
-    *(undefined1 *)(object_base + 0xf7) = 1;
+    *(int8_t *)(object_base + 0xf7) = 1;
   }
   else {
     if (render_flags == 0x2000) {
       render_mode = 2;
     }
-    *(undefined1 *)(object_base + 0xf7) = render_mode;
+    *(int8_t *)(object_base + 0xf7) = render_mode;
   }
   
   // 复制非零变换参数
   if (((zero_threshold != *(float *)(object_data + 0x288)) || (zero_threshold != *(float *)(object_data + 0x28c))) ||
       (zero_threshold != *(float *)(object_data + 0x290))) || (zero_threshold != *(float *)(object_data + 0x294))) {
-    flag_1 = *(undefined4 *)(object_data + 0x28c);
-    flag_2 = *(undefined4 *)(object_data + 0x290);
-    flag_3 = *(undefined4 *)(object_data + 0x294);
-    *(undefined4 *)(object_base + 0x2a8) = *(undefined4 *)(object_data + 0x288);
-    *(undefined4 *)(object_base + 0x2ac) = flag_1;
-    *(undefined4 *)(object_base + 0x2b0) = flag_2;
-    *(undefined4 *)(object_base + 0x2b4) = flag_3;
+    flag_1 = *(int32_t *)(object_data + 0x28c);
+    flag_2 = *(int32_t *)(object_data + 0x290);
+    flag_3 = *(int32_t *)(object_data + 0x294);
+    *(int32_t *)(object_base + 0x2a8) = *(int32_t *)(object_data + 0x288);
+    *(int32_t *)(object_base + 0x2ac) = flag_1;
+    *(int32_t *)(object_base + 0x2b0) = flag_2;
+    *(int32_t *)(object_base + 0x2b4) = flag_3;
   }
   
   if (((zero_threshold != *(float *)(object_data + 0x298)) || (zero_threshold != *(float *)(object_data + 0x29c))) ||
      ((zero_threshold != *(float *)(object_data + 0x2a0) || (zero_threshold != *(float *)(object_data + 0x2a4))))) {
-    flag_1 = *(undefined4 *)(object_data + 0x29c);
-    flag_2 = *(undefined4 *)(object_data + 0x2a0);
-    flag_3 = *(undefined4 *)(object_data + 0x2a4);
-    *(undefined4 *)(object_base + 0x2b8) = *(undefined4 *)(object_data + 0x298);
-    *(undefined4 *)(object_base + 700) = flag_1;
-    *(undefined4 *)(object_base + 0x2c0) = flag_2;
-    *(undefined4 *)(object_base + 0x2c4) = flag_3;
+    flag_1 = *(int32_t *)(object_data + 0x29c);
+    flag_2 = *(int32_t *)(object_data + 0x2a0);
+    flag_3 = *(int32_t *)(object_data + 0x2a4);
+    *(int32_t *)(object_base + 0x2b8) = *(int32_t *)(object_data + 0x298);
+    *(int32_t *)(object_base + 700) = flag_1;
+    *(int32_t *)(object_base + 0x2c0) = flag_2;
+    *(int32_t *)(object_base + 0x2c4) = flag_3;
   }
   
   // 设置渲染状态
-  *(undefined2 *)(object_data + 0x3c0) = 0xffff;
+  *(int16_t *)(object_data + 0x3c0) = 0xffff;
   FUN_180077150();
   
   // 创建数据结构
   if ((*(longlong *)(object_base + 600) == 0) &&
      ((*(uint *)(*(longlong *)(object_base + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
-    data_pointer = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, 0x58, 8, 9);
-    *(undefined8 *)((longlong)data_pointer + 0x2c) = 0xffffffffffffffff;
-    *(undefined4 *)(data_pointer + 9) = 0xffffffff;
+    data_pointer = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x58, 8, 9);
+    *(uint64_t *)((longlong)data_pointer + 0x2c) = 0xffffffffffffffff;
+    *(int32_t *)(data_pointer + 9) = 0xffffffff;
     *data_pointer = 0;
     data_pointer[2] = 0;
     data_pointer[7] = 0;
-    *(undefined4 *)(data_pointer + 5) = 0xffffffff;
-    *(undefined4 *)(data_pointer + 4) = 0xffffffff;
+    *(int32_t *)(data_pointer + 5) = 0xffffffff;
+    *(int32_t *)(data_pointer + 4) = 0xffffffff;
     data_pointer[3] = 0;
-    *(undefined4 *)(data_pointer + 8) = 0;
-    *(undefined4 *)(data_pointer + 1) = 0;
-    *(undefined1 *)((longlong)data_pointer + 0x44) = 0;
-    *(undefined1 *)((longlong)data_pointer + 0x24) = 0;
-    *(undefined8 **)(object_base + 600) = data_pointer;
+    *(int32_t *)(data_pointer + 8) = 0;
+    *(int32_t *)(data_pointer + 1) = 0;
+    *(int8_t *)((longlong)data_pointer + 0x44) = 0;
+    *(int8_t *)((longlong)data_pointer + 0x24) = 0;
+    *(uint64_t **)(object_base + 600) = data_pointer;
   }
   return;
 }
@@ -597,36 +597,36 @@ LAB_1800782e0:
 void FUN_1800783b0(void)
 
 {
-  undefined8 *data_pointer;
+  uint64_t *data_pointer;
   longlong object_base;
-  undefined8 context_data;
+  uint64_t context_data;
   
   // 检查是否需要创建数据结构
   if ((*(uint *)(*(longlong *)(object_base + 0x1b8) + 0x388) >> 0x19 & 1) != 0) {
-    data_pointer = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, 0x58, 8, 9);
-    *(undefined8 *)((longlong)data_pointer + 0x2c) = 0xffffffffffffffff;
-    *(undefined4 *)(data_pointer + 9) = 0xffffffff;
+    data_pointer = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x58, 8, 9);
+    *(uint64_t *)((longlong)data_pointer + 0x2c) = 0xffffffffffffffff;
+    *(int32_t *)(data_pointer + 9) = 0xffffffff;
     *data_pointer = context_data;
     data_pointer[2] = context_data;
     data_pointer[7] = context_data;
-    *(undefined4 *)(data_pointer + 5) = 0xffffffff;
-    *(undefined4 *)(data_pointer + 4) = 0xffffffff;
+    *(int32_t *)(data_pointer + 5) = 0xffffffff;
+    *(int32_t *)(data_pointer + 4) = 0xffffffff;
     data_pointer[3] = context_data;
     *(int *)(data_pointer + 8) = (int)context_data;
     *(int *)(data_pointer + 1) = (int)context_data;
     *(char *)((longlong)data_pointer + 0x44) = (char)context_data;
     *(char *)((longlong)data_pointer + 0x24) = (char)context_data;
-    *(undefined8 **)(object_base + 600) = data_pointer;
+    *(uint64_t **)(object_base + 600) = data_pointer;
   }
   return;
 }
 
 
 
-undefined8 * FUN_1800784e0(undefined8 *param_1, ulonglong param_2)
+uint64_t * FUN_1800784e0(uint64_t *param_1, ulonglong param_2)
 
 {
-  undefined8 memory_flag;
+  uint64_t memory_flag;
   
   memory_flag = 0xfffffffffffffffe;
   *param_1 = &UNK_180a001e8;
@@ -642,22 +642,22 @@ undefined8 * FUN_1800784e0(undefined8 *param_1, ulonglong param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: void FUN_180078550(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void FUN_180078550(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 // 功能: 初始化渲染上下文和参数
-void FUN_180078550(undefined8 *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void FUN_180078550(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 
 {
   longlong *callback_pointer;
   longlong *context_data;
   longlong loop_counter;
-  undefined4 render_param;
-  undefined8 init_flag;
+  int32_t render_param;
+  uint64_t init_flag;
   
   init_flag = 0xfffffffffffffffe;
   
   // 如果有初始化数据，复制到参数
   if (0 < *(int *)(_DAT_180c8aa00 + 0x40)) {
-    param_1[0x26] = *(undefined8 *)(_DAT_180c8aa00 + 0x38);
+    param_1[0x26] = *(uint64_t *)(_DAT_180c8aa00 + 0x38);
   }
   
   // 执行回调函数清理
@@ -677,53 +677,53 @@ void FUN_180078550(undefined8 *param_1, undefined8 param_2, undefined8 param_3, 
   param_1[0x20] = 0x3f8000003f800000;
   param_1[0x21] = 0x3f8000003f800000;
   param_1[0x22] = 0;
-  *(undefined4 *)(param_1 + 0x23) = 0;
-  *(undefined4 *)((longlong)param_1 + 0x11c) = 0x3f800000;
+  *(int32_t *)(param_1 + 0x23) = 0;
+  *(int32_t *)((longlong)param_1 + 0x11c) = 0x3f800000;
   param_1[0x24] = 0x3f800000;
-  *(undefined4 *)(param_1 + 0x25) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x13c) = 0;
-  *(undefined4 *)((longlong)param_1 + 0x144) = 0;
-  *(undefined4 *)(param_1 + 0x29) = 0x3f800000;
-  *(undefined4 *)((longlong)param_1 + 0x14c) = 0x3f800000;
-  *(undefined2 *)(param_1 + 0x2a) = 0;
-  *(undefined1 *)((longlong)param_1 + 0x152) = 1;
-  *(undefined4 *)(param_1 + 0x27) = 0;
+  *(int32_t *)(param_1 + 0x25) = 0;
+  *(uint64_t *)((longlong)param_1 + 0x13c) = 0;
+  *(int32_t *)((longlong)param_1 + 0x144) = 0;
+  *(int32_t *)(param_1 + 0x29) = 0x3f800000;
+  *(int32_t *)((longlong)param_1 + 0x14c) = 0x3f800000;
+  *(int16_t *)(param_1 + 0x2a) = 0;
+  *(int8_t *)((longlong)param_1 + 0x152) = 1;
+  *(int32_t *)(param_1 + 0x27) = 0;
   param_1[8] = 0x3f800000;
   param_1[9] = 0;
   param_1[10] = 0x3f80000000000000;
   param_1[0xb] = 0;
-  *(undefined4 *)(param_1 + 0xc) = 0;
-  *(undefined4 *)((longlong)param_1 + 100) = 0;
-  *(undefined4 *)(param_1 + 0xd) = 0x3f800000;
-  *(undefined4 *)((longlong)param_1 + 0x6c) = 0;
-  *(undefined4 *)(param_1 + 0xe) = 0;
-  *(undefined4 *)((longlong)param_1 + 0x74) = 0;
-  *(undefined4 *)(param_1 + 0xf) = 0;
-  *(undefined4 *)((longlong)param_1 + 0x7c) = 0x3f800000;
+  *(int32_t *)(param_1 + 0xc) = 0;
+  *(int32_t *)((longlong)param_1 + 100) = 0;
+  *(int32_t *)(param_1 + 0xd) = 0x3f800000;
+  *(int32_t *)((longlong)param_1 + 0x6c) = 0;
+  *(int32_t *)(param_1 + 0xe) = 0;
+  *(int32_t *)((longlong)param_1 + 0x74) = 0;
+  *(int32_t *)(param_1 + 0xf) = 0;
+  *(int32_t *)((longlong)param_1 + 0x7c) = 0x3f800000;
   
   // 根据上下文类型进行不同的初始化
-  if ((undefined *)*param_1 == &UNK_180a001e8) {
+  if ((void *)*param_1 == &UNK_180a001e8) {
     param_1[0x10] = param_1[8];
     param_1[0x11] = param_1[9];
     param_1[0x12] = param_1[10];
     param_1[0x13] = param_1[0xb];
-    *(undefined4 *)(param_1 + 0x14) = *(undefined4 *)(param_1 + 0xc);
-    *(undefined4 *)((longlong)param_1 + 0xa4) = *(undefined4 *)((longlong)param_1 + 100);
-    *(undefined4 *)(param_1 + 0x15) = *(undefined4 *)(param_1 + 0xd);
-    *(undefined4 *)((longlong)param_1 + 0xac) = *(undefined4 *)((longlong)param_1 + 0x6c);
-    *(undefined4 *)(param_1 + 0x16) = *(undefined4 *)(param_1 + 0xe);
-    *(undefined4 *)((longlong)param_1 + 0xb4) = *(undefined4 *)((longlong)param_1 + 0x74);
-    *(undefined4 *)(param_1 + 0x17) = *(undefined4 *)(param_1 + 0xf);
-    *(undefined4 *)((longlong)param_1 + 0xbc) = *(undefined4 *)((longlong)param_1 + 0x7c);
+    *(int32_t *)(param_1 + 0x14) = *(int32_t *)(param_1 + 0xc);
+    *(int32_t *)((longlong)param_1 + 0xa4) = *(int32_t *)((longlong)param_1 + 100);
+    *(int32_t *)(param_1 + 0x15) = *(int32_t *)(param_1 + 0xd);
+    *(int32_t *)((longlong)param_1 + 0xac) = *(int32_t *)((longlong)param_1 + 0x6c);
+    *(int32_t *)(param_1 + 0x16) = *(int32_t *)(param_1 + 0xe);
+    *(int32_t *)((longlong)param_1 + 0xb4) = *(int32_t *)((longlong)param_1 + 0x74);
+    *(int32_t *)(param_1 + 0x17) = *(int32_t *)(param_1 + 0xf);
+    *(int32_t *)((longlong)param_1 + 0xbc) = *(int32_t *)((longlong)param_1 + 0x7c);
     render_param = FUN_180084ae0();
-    *(undefined4 *)((longlong)param_1 + 0x8c) = 0;
-    *(undefined4 *)((longlong)param_1 + 0x9c) = 0;
-    *(undefined4 *)((longlong)param_1 + 0xac) = 0;
-    *(undefined4 *)((longlong)param_1 + 0xbc) = 0x3f800000;
+    *(int32_t *)((longlong)param_1 + 0x8c) = 0;
+    *(int32_t *)((longlong)param_1 + 0x9c) = 0;
+    *(int32_t *)((longlong)param_1 + 0xac) = 0;
+    *(int32_t *)((longlong)param_1 + 0xbc) = 0x3f800000;
     FUN_180084760(render_param, param_1 + 0x18);
   }
   else {
-    (**(code **)((undefined *)*param_1 + 0x10))(param_1, 0, param_3, param_4, init_flag);
+    (**(code **)((void *)*param_1 + 0x10))(param_1, 0, param_3, param_4, init_flag);
   }
   return;
 }

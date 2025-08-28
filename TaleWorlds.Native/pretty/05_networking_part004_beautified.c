@@ -115,12 +115,12 @@ typedef struct {
  * 
  * @note 这是一个简化实现，原始实现包含更复杂的安全验证逻辑
  */
-void Network_SendPacket(longlong connection_ptr, undefined8 packet_type, undefined4 packet_size)
+void Network_SendPacket(longlong connection_ptr, uint64_t packet_type, int32_t packet_size)
 {
     /* 简化实现：调用底层网络发送函数 */
     FUN_18083f7b0(packet_type, packet_size, &UNK_1809828f8, 
-                 *(undefined4 *)(connection_ptr + 0x10),
-                 *(undefined4 *)(connection_ptr + 0x14));
+                 *(int32_t *)(connection_ptr + 0x10),
+                 *(int32_t *)(connection_ptr + 0x14));
     return;
 }
 
@@ -138,14 +138,14 @@ void Network_SendPacket(longlong connection_ptr, undefined8 packet_type, undefin
  */
 int Network_SerializeConnectionData(longlong connection_ptr, longlong buffer_ptr, int buffer_size)
 {
-    undefined4 connection_info1;
-    undefined4 connection_info2;
+    int32_t connection_info1;
+    int32_t connection_info2;
     int processed_size;
     int total_size;
     
     /* 获取连接信息 */
-    connection_info1 = *(undefined4 *)(connection_ptr + 0x14);
-    connection_info2 = *(undefined4 *)(connection_ptr + 0x10);
+    connection_info1 = *(int32_t *)(connection_ptr + 0x14);
+    connection_info2 = *(int32_t *)(connection_ptr + 0x10);
     
     /* 序列化连接头信息 */
     processed_size = FUN_18074b880(buffer_ptr, buffer_size, &UNK_180982a98);
@@ -176,17 +176,17 @@ int Network_SerializeConnectionData(longlong connection_ptr, longlong buffer_ptr
  */
 int Network_ProcessClientPacket(longlong connection_ptr, longlong packet_ptr, int packet_size)
 {
-    undefined4 validation_code;
+    int32_t validation_code;
     int processed_size;
     int total_size;
-    undefined4 packet_header[4];
+    int32_t packet_header[4];
     
     /* 提取数据包头部信息 */
-    packet_header[0] = *(undefined4 *)(connection_ptr + 0x10);
-    packet_header[1] = *(undefined4 *)(connection_ptr + 0x14);
-    packet_header[2] = *(undefined4 *)(connection_ptr + 0x18);
-    packet_header[3] = *(undefined4 *)(connection_ptr + 0x1c);
-    validation_code = *(undefined4 *)(connection_ptr + 0x20);
+    packet_header[0] = *(int32_t *)(connection_ptr + 0x10);
+    packet_header[1] = *(int32_t *)(connection_ptr + 0x14);
+    packet_header[2] = *(int32_t *)(connection_ptr + 0x18);
+    packet_header[3] = *(int32_t *)(connection_ptr + 0x1c);
+    validation_code = *(int32_t *)(connection_ptr + 0x20);
     
     /* 验证数据包头部 */
     processed_size = FUN_18074b880(packet_ptr, packet_size, &UNK_180981fc0);
@@ -215,17 +215,17 @@ int Network_ProcessClientPacket(longlong connection_ptr, longlong packet_ptr, in
  */
 int Network_HandleServerResponse(longlong connection_ptr, longlong response_ptr, int response_size)
 {
-    undefined4 response_code;
+    int32_t response_code;
     int processed_size;
     int total_size;
-    undefined4 response_header[4];
+    int32_t response_header[4];
     
     /* 提取响应头部信息 */
-    response_header[0] = *(undefined4 *)(connection_ptr + 0x10);
-    response_header[1] = *(undefined4 *)(connection_ptr + 0x14);
-    response_header[2] = *(undefined4 *)(connection_ptr + 0x18);
-    response_header[3] = *(undefined4 *)(connection_ptr + 0x1c);
-    response_code = *(undefined4 *)(connection_ptr + 0x20);
+    response_header[0] = *(int32_t *)(connection_ptr + 0x10);
+    response_header[1] = *(int32_t *)(connection_ptr + 0x14);
+    response_header[2] = *(int32_t *)(connection_ptr + 0x18);
+    response_header[3] = *(int32_t *)(connection_ptr + 0x1c);
+    response_code = *(int32_t *)(connection_ptr + 0x20);
     
     /* 处理响应数据 */
     processed_size = FUN_18074b880(response_ptr, response_size, &UNK_180981dc0);
@@ -254,17 +254,17 @@ int Network_HandleServerResponse(longlong connection_ptr, longlong response_ptr,
  */
 int Network_ManageConnectionPool(longlong connection_ptr, longlong pool_data_ptr, int pool_size)
 {
-    undefined4 pool_info;
+    int32_t pool_info;
     int processed_size;
     int total_size;
-    undefined4 pool_header[4];
+    int32_t pool_header[4];
     
     /* 提取连接池信息 */
-    pool_header[0] = *(undefined4 *)(connection_ptr + 0x10);
-    pool_header[1] = *(undefined4 *)(connection_ptr + 0x14);
-    pool_header[2] = *(undefined4 *)(connection_ptr + 0x18);
-    pool_header[3] = *(undefined4 *)(connection_ptr + 0x1c);
-    pool_info = *(undefined4 *)(connection_ptr + 0x20);
+    pool_header[0] = *(int32_t *)(connection_ptr + 0x10);
+    pool_header[1] = *(int32_t *)(connection_ptr + 0x14);
+    pool_header[2] = *(int32_t *)(connection_ptr + 0x18);
+    pool_header[3] = *(int32_t *)(connection_ptr + 0x1c);
+    pool_info = *(int32_t *)(connection_ptr + 0x20);
     
     /* 处理连接池数据 */
     processed_size = FUN_18074b880(pool_data_ptr, pool_size, &UNK_180981f40);
@@ -293,17 +293,17 @@ int Network_ManageConnectionPool(longlong connection_ptr, longlong pool_data_ptr
  */
 int Network_UpdateConnectionStatus(longlong connection_ptr, longlong status_data_ptr, int status_size)
 {
-    undefined4 status_code;
+    int32_t status_code;
     int processed_size;
     int total_size;
-    undefined4 status_header[4];
+    int32_t status_header[4];
     
     /* 提取状态信息 */
-    status_header[0] = *(undefined4 *)(connection_ptr + 0x10);
-    status_header[1] = *(undefined4 *)(connection_ptr + 0x14);
-    status_header[2] = *(undefined4 *)(connection_ptr + 0x18);
-    status_header[3] = *(undefined4 *)(connection_ptr + 0x1c);
-    status_code = *(undefined4 *)(connection_ptr + 0x20);
+    status_header[0] = *(int32_t *)(connection_ptr + 0x10);
+    status_header[1] = *(int32_t *)(connection_ptr + 0x14);
+    status_header[2] = *(int32_t *)(connection_ptr + 0x18);
+    status_header[3] = *(int32_t *)(connection_ptr + 0x1c);
+    status_code = *(int32_t *)(connection_ptr + 0x20);
     
     /* 更新状态数据 */
     processed_size = FUN_18074b880(status_data_ptr, status_size, &UNK_180981d40);
@@ -332,12 +332,12 @@ int Network_UpdateConnectionStatus(longlong connection_ptr, longlong status_data
  */
 int Network_ValidatePacketHeader(longlong packet_ptr, longlong header_data_ptr, int header_size)
 {
-    undefined4 validation_info;
+    int32_t validation_info;
     int processed_size;
     int total_size;
     
     /* 获取验证信息 */
-    validation_info = *(undefined4 *)(packet_ptr + 0x10);
+    validation_info = *(int32_t *)(packet_ptr + 0x10);
     
     /* 验证数据包头部 */
     processed_size = FUN_18074b880(header_data_ptr, header_size, &UNK_180982978);
@@ -359,12 +359,12 @@ int Network_ValidatePacketHeader(longlong packet_ptr, longlong header_data_ptr, 
  * 
  * @note 这是一个简化实现，原始实现包含完整的命令发送逻辑
  */
-void Network_SendServerCommand(longlong server_ptr, undefined8 command_type, undefined4 command_data)
+void Network_SendServerCommand(longlong server_ptr, uint64_t command_type, int32_t command_data)
 {
     /* 简化实现：调用底层命令发送函数 */
     FUN_18083f7b0(command_type, command_data, &UNK_180982a08, 
-                 *(undefined4 *)(server_ptr + 0x10),
-                 *(undefined4 *)(server_ptr + 0x14));
+                 *(int32_t *)(server_ptr + 0x10),
+                 *(int32_t *)(server_ptr + 0x14));
     return;
 }
 
@@ -382,17 +382,17 @@ void Network_SendServerCommand(longlong server_ptr, undefined8 command_type, und
  */
 int Network_ProcessGameData(longlong connection_ptr, longlong game_data_ptr, int game_data_size)
 {
-    undefined4 game_code;
+    int32_t game_code;
     int processed_size;
     int total_size;
-    undefined4 game_header[4];
+    int32_t game_header[4];
     
     /* 提取游戏数据信息 */
-    game_header[0] = *(undefined4 *)(connection_ptr + 0x10);
-    game_header[1] = *(undefined4 *)(connection_ptr + 0x14);
-    game_header[2] = *(undefined4 *)(connection_ptr + 0x18);
-    game_header[3] = *(undefined4 *)(connection_ptr + 0x1c);
-    game_code = *(undefined4 *)(connection_ptr + 0x20);
+    game_header[0] = *(int32_t *)(connection_ptr + 0x10);
+    game_header[1] = *(int32_t *)(connection_ptr + 0x14);
+    game_header[2] = *(int32_t *)(connection_ptr + 0x18);
+    game_header[3] = *(int32_t *)(connection_ptr + 0x1c);
+    game_code = *(int32_t *)(connection_ptr + 0x20);
     
     /* 处理游戏数据 */
     processed_size = FUN_18074b880(game_data_ptr, game_data_size, &UNK_180982038);
@@ -421,17 +421,17 @@ int Network_ProcessGameData(longlong connection_ptr, longlong game_data_ptr, int
  */
 int Network_HandlePlayerUpdate(longlong connection_ptr, longlong player_data_ptr, int player_data_size)
 {
-    undefined4 player_code;
+    int32_t player_code;
     int processed_size;
     int total_size;
-    undefined4 player_header[4];
+    int32_t player_header[4];
     
     /* 提取玩家数据信息 */
-    player_header[0] = *(undefined4 *)(connection_ptr + 0x10);
-    player_header[1] = *(undefined4 *)(connection_ptr + 0x14);
-    player_header[2] = *(undefined4 *)(connection_ptr + 0x18);
-    player_header[3] = *(undefined4 *)(connection_ptr + 0x1c);
-    player_code = *(undefined4 *)(connection_ptr + 0x20);
+    player_header[0] = *(int32_t *)(connection_ptr + 0x10);
+    player_header[1] = *(int32_t *)(connection_ptr + 0x14);
+    player_header[2] = *(int32_t *)(connection_ptr + 0x18);
+    player_header[3] = *(int32_t *)(connection_ptr + 0x1c);
+    player_code = *(int32_t *)(connection_ptr + 0x20);
     
     /* 处理玩家更新数据 */
     processed_size = FUN_18074b880(player_data_ptr, player_data_size, &UNK_180981e40);
@@ -460,25 +460,25 @@ int Network_HandlePlayerUpdate(longlong connection_ptr, longlong player_data_ptr
  */
 int Network_SerializeGameState(longlong game_state_ptr, longlong buffer_ptr, int buffer_size)
 {
-    undefined4 state_info1;
-    undefined4 state_info2;
+    int32_t state_info1;
+    int32_t state_info2;
     int processed_size;
     int total_size;
-    undefined8 state_data[6];
-    undefined4 state_header[8];
+    uint64_t state_data[6];
+    int32_t state_header[8];
     
     /* 提取游戏状态信息 */
-    state_data[0] = *(undefined8 *)(game_state_ptr + 0x10);
-    state_data[1] = *(undefined8 *)(game_state_ptr + 0x18);
-    state_info1 = *(undefined4 *)(game_state_ptr + 0x4c);
-    state_data[2] = *(undefined8 *)(game_state_ptr + 0x20);
-    state_data[3] = *(undefined8 *)(game_state_ptr + 0x28);
-    state_info2 = *(undefined4 *)(game_state_ptr + 0x48);
-    state_header[0] = *(undefined4 *)(game_state_ptr + 0x30);
-    state_header[1] = *(undefined4 *)(game_state_ptr + 0x34);
-    state_header[2] = *(undefined4 *)(game_state_ptr + 0x38);
-    state_header[3] = *(undefined4 *)(game_state_ptr + 0x3c);
-    state_data[4] = *(undefined8 *)(game_state_ptr + 0x40);
+    state_data[0] = *(uint64_t *)(game_state_ptr + 0x10);
+    state_data[1] = *(uint64_t *)(game_state_ptr + 0x18);
+    state_info1 = *(int32_t *)(game_state_ptr + 0x4c);
+    state_data[2] = *(uint64_t *)(game_state_ptr + 0x20);
+    state_data[3] = *(uint64_t *)(game_state_ptr + 0x28);
+    state_info2 = *(int32_t *)(game_state_ptr + 0x48);
+    state_header[0] = *(int32_t *)(game_state_ptr + 0x30);
+    state_header[1] = *(int32_t *)(game_state_ptr + 0x34);
+    state_header[2] = *(int32_t *)(game_state_ptr + 0x38);
+    state_header[3] = *(int32_t *)(game_state_ptr + 0x3c);
+    state_data[4] = *(uint64_t *)(game_state_ptr + 0x40);
     
     /* 序列化游戏状态数据 */
     processed_size = FUN_18074b880(buffer_ptr, buffer_size, &UNK_180982670);
@@ -511,14 +511,14 @@ int Network_SerializeGameState(longlong game_state_ptr, longlong buffer_ptr, int
  */
 int Network_ManageServerSlots(longlong server_ptr, longlong slot_data_ptr, int slot_size)
 {
-    undefined4 slot_info1;
-    undefined4 slot_info2;
+    int32_t slot_info1;
+    int32_t slot_info2;
     int processed_size;
     int total_size;
     
     /* 获取插槽信息 */
-    slot_info1 = *(undefined4 *)(server_ptr + 0x10);
-    slot_info2 = *(undefined4 *)(server_ptr + 0x14);
+    slot_info1 = *(int32_t *)(server_ptr + 0x10);
+    slot_info2 = *(int32_t *)(server_ptr + 0x14);
     
     /* 处理插槽数据 */
     processed_size = FUN_18074b880(slot_data_ptr, slot_size, &UNK_180982570);
@@ -551,17 +551,17 @@ int Network_ManageServerSlots(longlong server_ptr, longlong slot_data_ptr, int s
  */
 int Network_HandleComplexPacket(longlong packet_ptr, longlong data_ptr, int data_size)
 {
-    undefined4 packet_info[4];
-    undefined8 packet_data;
+    int32_t packet_info[4];
+    uint64_t packet_data;
     int processed_size;
     int total_size;
     
     /* 提取数据包信息 */
-    packet_info[0] = *(undefined4 *)(packet_ptr + 0x24);
-    packet_info[1] = *(undefined4 *)(packet_ptr + 0x20);
-    packet_info[2] = *(undefined4 *)(packet_ptr + 0x1c);
-    packet_info[3] = *(undefined4 *)(packet_ptr + 0x18);
-    packet_data = *(undefined8 *)(packet_ptr + 0x10);
+    packet_info[0] = *(int32_t *)(packet_ptr + 0x24);
+    packet_info[1] = *(int32_t *)(packet_ptr + 0x20);
+    packet_info[2] = *(int32_t *)(packet_ptr + 0x1c);
+    packet_info[3] = *(int32_t *)(packet_ptr + 0x18);
+    packet_data = *(uint64_t *)(packet_ptr + 0x10);
     
     /* 处理复杂数据包 */
     processed_size = FUN_18074b880(data_ptr, data_size, &UNK_1809825f0);
@@ -602,28 +602,28 @@ int Network_HandleComplexPacket(longlong packet_ptr, longlong data_ptr, int data
  */
 int Network_ProcessSecureData(longlong security_ptr, longlong data_ptr, int data_size)
 {
-    undefined1 security_flag;
-    undefined4 security_code;
+    int8_t security_flag;
+    int32_t security_code;
     int processed_size;
     int total_size;
-    undefined8 security_data[6];
-    undefined4 security_header[10];
+    uint64_t security_data[6];
+    int32_t security_header[10];
     
     /* 提取安全信息 */
-    security_data[0] = *(undefined8 *)(security_ptr + 0x44);
-    security_header[0] = *(undefined4 *)(security_ptr + 0x24);
-    security_header[1] = *(undefined4 *)(security_ptr + 0x28);
-    security_header[2] = *(undefined4 *)(security_ptr + 0x2c);
-    security_header[3] = *(undefined4 *)(security_ptr + 0x30);
-    security_code = *(undefined4 *)(security_ptr + 0x4c);
-    security_flag = *(undefined1 *)(security_ptr + 0x50);
-    security_header[4] = *(undefined4 *)(security_ptr + 0x10);
-    security_data[1] = *(undefined8 *)(security_ptr + 0x14);
-    security_data[2] = *(undefined8 *)(security_ptr + 0x1c);
-    security_header[5] = *(undefined4 *)(security_ptr + 0x34);
-    security_header[6] = *(undefined4 *)(security_ptr + 0x38);
-    security_header[7] = *(undefined4 *)(security_ptr + 0x3c);
-    security_header[8] = *(undefined4 *)(security_ptr + 0x40);
+    security_data[0] = *(uint64_t *)(security_ptr + 0x44);
+    security_header[0] = *(int32_t *)(security_ptr + 0x24);
+    security_header[1] = *(int32_t *)(security_ptr + 0x28);
+    security_header[2] = *(int32_t *)(security_ptr + 0x2c);
+    security_header[3] = *(int32_t *)(security_ptr + 0x30);
+    security_code = *(int32_t *)(security_ptr + 0x4c);
+    security_flag = *(int8_t *)(security_ptr + 0x50);
+    security_header[4] = *(int32_t *)(security_ptr + 0x10);
+    security_data[1] = *(uint64_t *)(security_ptr + 0x14);
+    security_data[2] = *(uint64_t *)(security_ptr + 0x1c);
+    security_header[5] = *(int32_t *)(security_ptr + 0x34);
+    security_header[6] = *(int32_t *)(security_ptr + 0x38);
+    security_header[7] = *(int32_t *)(security_ptr + 0x3c);
+    security_header[8] = *(int32_t *)(security_ptr + 0x40);
     
     /* 处理安全数据 */
     processed_size = FUN_18074b880(data_ptr, data_size, &UNK_180982460);
@@ -660,13 +660,13 @@ int Network_ProcessSecureData(longlong security_ptr, longlong data_ptr, int data
  */
 int Network_ManageClientSession(longlong session_ptr, longlong data_ptr, int data_size)
 {
-    undefined4 session_info[2];
+    int32_t session_info[2];
     int processed_size;
     int total_size;
     
     /* 获取会话信息 */
-    session_info[0] = *(undefined4 *)(session_ptr + 0x10);
-    session_info[1] = *(undefined4 *)(session_ptr + 0x14);
+    session_info[0] = *(int32_t *)(session_ptr + 0x10);
+    session_info[1] = *(int32_t *)(session_ptr + 0x14);
     
     /* 管理会话数据 */
     processed_size = FUN_18074b880(data_ptr, data_size, &UNK_1809824e8);
@@ -695,12 +695,12 @@ int Network_ManageClientSession(longlong session_ptr, longlong data_ptr, int dat
  */
 int Network_ValidateConnection(longlong connection_ptr, longlong validation_data_ptr, int validation_size)
 {
-    undefined4 validation_info;
+    int32_t validation_info;
     int processed_size;
     int total_size;
     
     /* 获取验证信息 */
-    validation_info = *(undefined4 *)(connection_ptr + 0x10);
+    validation_info = *(int32_t *)(connection_ptr + 0x10);
     
     /* 验证连接 */
     processed_size = FUN_18074b880(validation_data_ptr, validation_size, &UNK_1809823e0);
@@ -725,16 +725,16 @@ int Network_ValidateConnection(longlong connection_ptr, longlong validation_data
  */
 int Network_HandleAuthPacket(longlong auth_ptr, longlong packet_ptr, int packet_size)
 {
-    undefined4 auth_info;
-    undefined1 auth_flag;
+    int32_t auth_info;
+    int8_t auth_flag;
     int processed_size;
     int total_size;
-    undefined8 auth_data;
+    uint64_t auth_data;
     
     /* 提取认证信息 */
-    auth_data = *(undefined8 *)(auth_ptr + 0x10);
-    auth_flag = *(undefined1 *)(auth_ptr + 0x1c);
-    auth_info = *(undefined4 *)(auth_ptr + 0x18);
+    auth_data = *(uint64_t *)(auth_ptr + 0x10);
+    auth_flag = *(int8_t *)(auth_ptr + 0x1c);
+    auth_info = *(int32_t *)(auth_ptr + 0x18);
     
     /* 处理认证数据包 */
     processed_size = FUN_18074b880(packet_ptr, packet_size, &UNK_180982128);
@@ -767,14 +767,14 @@ int Network_HandleAuthPacket(longlong auth_ptr, longlong packet_ptr, int packet_
  */
 int Network_ProcessDisconnect(longlong connection_ptr, longlong disconnect_data_ptr, int disconnect_size)
 {
-    undefined1 disconnect_flag;
+    int8_t disconnect_flag;
     int processed_size;
     int total_size;
-    undefined8 connection_data;
+    uint64_t connection_data;
     
     /* 获取断开连接信息 */
-    connection_data = *(undefined8 *)(connection_ptr + 0x10);
-    disconnect_flag = *(undefined1 *)(connection_ptr + 0x1c);
+    connection_data = *(uint64_t *)(connection_ptr + 0x10);
+    disconnect_flag = *(int8_t *)(connection_ptr + 0x1c);
     
     /* 处理断开连接数据 */
     processed_size = FUN_18074b880(disconnect_data_ptr, disconnect_size, &UNK_1809821b0);
@@ -807,14 +807,14 @@ int Network_ProcessDisconnect(longlong connection_ptr, longlong disconnect_data_
  */
 int Network_HandleGameData(longlong game_ptr, longlong data_ptr, int data_size)
 {
-    undefined4 game_info;
-    undefined1 game_flag;
+    int32_t game_info;
+    int8_t game_flag;
     int processed_size;
     int total_size;
     
     /* 获取游戏信息 */
-    game_flag = *(undefined1 *)(game_ptr + 0x14);
-    game_info = *(undefined4 *)(game_ptr + 0x10);
+    game_flag = *(int8_t *)(game_ptr + 0x14);
+    game_info = *(int32_t *)(game_ptr + 0x10);
     
     /* 处理游戏数据 */
     processed_size = FUN_18074b880(data_ptr, data_size, &UNK_1809822c8);
@@ -847,12 +847,12 @@ int Network_HandleGameData(longlong game_ptr, longlong data_ptr, int data_size)
  */
 int Network_ProcessServerQuery(longlong server_ptr, longlong query_ptr, int query_size)
 {
-    undefined1 query_flag;
+    int8_t query_flag;
     int processed_size;
     int total_size;
     
     /* 获取查询信息 */
-    query_flag = *(undefined1 *)(server_ptr + 0x14);
+    query_flag = *(int8_t *)(server_ptr + 0x14);
     
     /* 处理查询数据 */
     processed_size = FUN_18074b880(query_ptr, query_size, &UNK_180982350);
@@ -911,13 +911,13 @@ int Network_HandleSimplePacket(longlong packet_ptr, longlong data_ptr, int data_
  */
 int Network_ManageDataTransfer(longlong transfer_ptr, longlong data_ptr, int data_size)
 {
-    undefined4 transfer_info[2];
+    int32_t transfer_info[2];
     int processed_size;
     int total_size;
     
     /* 获取传输信息 */
-    transfer_info[0] = *(undefined4 *)(transfer_ptr + 0x10);
-    transfer_info[1] = *(undefined4 *)(transfer_ptr + 0x18);
+    transfer_info[0] = *(int32_t *)(transfer_ptr + 0x10);
+    transfer_info[1] = *(int32_t *)(transfer_ptr + 0x18);
     
     /* 管理数据传输 */
     processed_size = FUN_18074b880(data_ptr, data_size, &UNK_180984530);
@@ -942,23 +942,23 @@ int Network_ManageDataTransfer(longlong transfer_ptr, longlong data_ptr, int dat
  * 
  * @note 这是一个简化实现，原始实现包含完整的服务器信息获取逻辑
  */
-void Network_GetServerInfo(ulonglong server_id, undefined8 *info_ptr)
+void Network_GetServerInfo(ulonglong server_id, uint64_t *info_ptr)
 {
-    undefined4 server_info[4];
-    undefined8 server_data;
+    int32_t server_info[4];
+    uint64_t server_data;
     int status;
-    undefined1 security_buffer[32];
-    undefined1 *message_ptr;
-    undefined8 server_handles[2];
+    int8_t security_buffer[32];
+    int8_t *message_ptr;
+    uint64_t server_handles[2];
     longlong server_context[2];
-    undefined1 message_buffer[256];
+    int8_t message_buffer[256];
     ulonglong security_key;
     
     /* 安全密钥初始化 */
     security_key = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
     
     /* 处理空指针情况 */
-    if (info_ptr == (undefined8 *)0x0) {
+    if (info_ptr == (uint64_t *)0x0) {
         if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
             /* 安全检查失败，终止程序 */
             FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
@@ -988,23 +988,23 @@ void Network_GetServerInfo(ulonglong server_id, undefined8 *info_ptr)
     }
     
     /* 提取服务器信息 */
-    server_data = *(undefined8 *)(server_context[0] + 0x40);
-    *info_ptr = *(undefined8 *)(server_context[0] + 0x38);
+    server_data = *(uint64_t *)(server_context[0] + 0x40);
+    *info_ptr = *(uint64_t *)(server_context[0] + 0x38);
     info_ptr[1] = server_data;
-    server_info[0] = *(undefined4 *)(server_context[0] + 0x4c);
-    server_info[1] = *(undefined4 *)(server_context[0] + 0x50);
-    server_info[2] = *(undefined4 *)(server_context[0] + 0x54);
-    *(undefined4 *)(info_ptr + 2) = *(undefined4 *)(server_context[0] + 0x48);
-    *(undefined4 *)((longlong)info_ptr + 0x14) = server_info[0];
-    *(undefined4 *)(info_ptr + 3) = server_info[1];
-    *(undefined4 *)((longlong)info_ptr + 0x1c) = server_info[2];
-    server_info[0] = *(undefined4 *)(server_context[0] + 0x5c);
-    server_info[1] = *(undefined4 *)(server_context[0] + 0x60);
-    server_info[2] = *(undefined4 *)(server_context[0] + 100);
-    *(undefined4 *)(info_ptr + 4) = *(undefined4 *)(server_context[0] + 0x58);
-    *(undefined4 *)((longlong)info_ptr + 0x24) = server_info[0];
-    *(undefined4 *)(info_ptr + 5) = server_info[1];
-    *(undefined4 *)((longlong)info_ptr + 0x2c) = server_info[2];
+    server_info[0] = *(int32_t *)(server_context[0] + 0x4c);
+    server_info[1] = *(int32_t *)(server_context[0] + 0x50);
+    server_info[2] = *(int32_t *)(server_context[0] + 0x54);
+    *(int32_t *)(info_ptr + 2) = *(int32_t *)(server_context[0] + 0x48);
+    *(int32_t *)((longlong)info_ptr + 0x14) = server_info[0];
+    *(int32_t *)(info_ptr + 3) = server_info[1];
+    *(int32_t *)((longlong)info_ptr + 0x1c) = server_info[2];
+    server_info[0] = *(int32_t *)(server_context[0] + 0x5c);
+    server_info[1] = *(int32_t *)(server_context[0] + 0x60);
+    server_info[2] = *(int32_t *)(server_context[0] + 100);
+    *(int32_t *)(info_ptr + 4) = *(int32_t *)(server_context[0] + 0x58);
+    *(int32_t *)((longlong)info_ptr + 0x24) = server_info[0];
+    *(int32_t *)(info_ptr + 5) = server_info[1];
+    *(int32_t *)((longlong)info_ptr + 0x2c) = server_info[2];
     
     /* 清理资源 */
     FUN_18088c790(&server_handles[0]);
@@ -1020,15 +1020,15 @@ void Network_GetServerInfo(ulonglong server_id, undefined8 *info_ptr)
  * 
  * @note 这是一个简化实现，原始实现包含完整的连接建立逻辑
  */
-void Network_ConnectToServer(undefined8 server_id, longlong connection_ptr)
+void Network_ConnectToServer(uint64_t server_id, longlong connection_ptr)
 {
     int status;
     int auth_status;
-    undefined1 security_buffer[32];
-    undefined1 *message_ptr;
-    undefined8 server_handle;
+    int8_t security_buffer[32];
+    int8_t *message_ptr;
+    uint64_t server_handle;
     longlong server_info;
-    undefined1 message_buffer[256];
+    int8_t message_buffer[256];
     ulonglong security_key;
     
     /* 安全密钥初始化 */
@@ -1083,14 +1083,14 @@ LAB_18084510c:
  * 
  * @note 这是一个简化实现，原始实现包含完整的命令发送逻辑
  */
-void Network_SendGameCommand(undefined8 command_id, undefined8 command_data, undefined8 command_size)
+void Network_SendGameCommand(uint64_t command_id, uint64_t command_data, uint64_t command_size)
 {
     int status;
     int processed_size;
     int total_size;
-    undefined1 security_buffer[32];
-    undefined1 *message_ptr;
-    undefined1 message_buffer[256];
+    int8_t security_buffer[32];
+    int8_t *message_ptr;
+    int8_t message_buffer[256];
     ulonglong security_key;
     
     /* 安全密钥初始化 */
@@ -1123,7 +1123,7 @@ void Network_HandleSystemMessage(void)
 {
     int processed_size;
     int total_size;
-    undefined4 message_id;
+    int32_t message_id;
     
     /* 处理系统消息 */
     processed_size = FUN_18074b880(&stack0x00000030, 0x100);
@@ -1159,15 +1159,15 @@ void Network_HandleErrorCondition(void)
  * 
  * @note 这是一个简化实现，原始实现包含完整的响应验证逻辑
  */
-void Network_ValidateServerResponse(undefined8 server_id, undefined4 *response_ptr, undefined8 response_data)
+void Network_ValidateServerResponse(uint64_t server_id, int32_t *response_ptr, uint64_t response_data)
 {
     int status;
     int processed_size;
     int total_size;
-    undefined1 security_buffer[32];
-    undefined1 *message_ptr;
+    int8_t security_buffer[32];
+    int8_t *message_ptr;
     longlong server_info[2];
-    undefined1 message_buffer[256];
+    int8_t message_buffer[256];
     ulonglong security_key;
     
     /* 安全密钥初始化 */
@@ -1184,7 +1184,7 @@ void Network_ValidateServerResponse(undefined8 server_id, undefined4 *response_p
     }
     
     /* 处理验证失败 */
-    if (response_ptr != (undefined4 *)0x0) {
+    if (response_ptr != (int32_t *)0x0) {
         *response_ptr = 0;
     }
     
@@ -1213,7 +1213,7 @@ void Network_HandleDebugMessage(void)
 {
     int processed_size;
     int total_size;
-    undefined4 debug_id;
+    int32_t debug_id;
     
     /* 处理调试消息 */
     processed_size = func_0x00018074bda0(&stack0x00000040, 0x100);
@@ -1248,22 +1248,22 @@ void Network_HandleSecurityEvent(void)
  * 
  * @note 这是一个简化实现，原始实现包含完整的连接信息获取逻辑
  */
-void Network_GetConnectionInfo(undefined8 connection_id, undefined8 *info_ptr)
+void Network_GetConnectionInfo(uint64_t connection_id, uint64_t *info_ptr)
 {
     int status;
     int auth_status;
-    undefined1 security_buffer[32];
-    undefined1 *message_ptr;
+    int8_t security_buffer[32];
+    int8_t *message_ptr;
     longlong connection_info[2];
-    undefined8 *request_info[2];
-    undefined1 message_buffer[256];
+    uint64_t *request_info[2];
+    int8_t message_buffer[256];
     ulonglong security_key;
     
     /* 安全密钥初始化 */
     security_key = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
     
     /* 处理空指针情况 */
-    if (info_ptr == (undefined8 *)0x0) {
+    if (info_ptr == (uint64_t *)0x0) {
         if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
             /* 安全检查失败，终止程序 */
             FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
@@ -1291,11 +1291,11 @@ LAB_180845484:
     
     /* 处理认证成功情况 */
     if ((auth_status == 0) &&
-        (status = FUN_18088dec0(*(undefined8 *)(connection_info[0] + 0x98), request_info, 0x20), status == 0)) {
+        (status = FUN_18088dec0(*(uint64_t *)(connection_info[0] + 0x98), request_info, 0x20), status == 0)) {
         *request_info[0] = &UNK_180984260;
-        *(undefined4 *)(request_info[0] + 1) = 0x20;
+        *(int32_t *)(request_info[0] + 1) = 0x20;
         *(int *)(request_info[0] + 2) = (int)connection_id;
-        status = func_0x00018088e0d0(*(undefined8 *)(connection_info[0] + 0x98), request_info[0]);
+        status = func_0x00018088e0d0(*(uint64_t *)(connection_info[0] + 0x98), request_info[0]);
         if (status == 0) {
             *info_ptr = request_info[0][3];
             /* 清理资源 */
@@ -1318,26 +1318,26 @@ LAB_18084541c:
  * 
  * @note 这是一个简化实现，原始实现包含完整的服务器状态获取逻辑
  */
-void Network_GetServerStatus(undefined8 server_id, undefined8 *status_ptr)
+void Network_GetServerStatus(uint64_t server_id, uint64_t *status_ptr)
 {
     int status;
-    undefined1 security_buffer[32];
-    undefined1 *message_ptr;
+    int8_t security_buffer[32];
+    int8_t *message_ptr;
     longlong server_info[2];
-    undefined1 message_buffer[256];
+    int8_t message_buffer[256];
     ulonglong security_key;
     
     /* 安全密钥初始化 */
     security_key = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
     
     /* 处理空指针情况 */
-    if (status_ptr == (undefined8 *)0x0) {
+    if (status_ptr == (uint64_t *)0x0) {
         status = 0x1f;
     } else {
         *status_ptr = 0;
         status = func_0x00018088c590(server_id, server_info);
         if (status == 0) {
-            *status_ptr = *(undefined8 *)(server_info[0] + 0x78);
+            *status_ptr = *(uint64_t *)(server_info[0] + 0x78);
             goto LAB_1808455bc;
         }
     }

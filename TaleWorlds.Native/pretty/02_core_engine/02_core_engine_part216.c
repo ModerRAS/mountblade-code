@@ -18,13 +18,13 @@ void quick_sort_elements(longlong base_address, longlong *start_range, longlong 
     bool should_swap;
     longlong range_size;
     unsigned char *compare_ptr;
-    undefined *default_string_ptr;
+    void *default_string_ptr;
     int compare_result;
     longlong string_offset;
     longlong *pivot_ptr;
     longlong left_pos;
     longlong right_pos;
-    undefined1 temp_buffer[848];
+    int8_t temp_buffer[848];
     
     // 计算范围大小
     range_size = (longlong)start_range - base_address;
@@ -48,15 +48,15 @@ void quick_sort_elements(longlong base_address, longlong *start_range, longlong 
         pivot_ptr = start_range + 2;
         do {
             default_string_ptr = &DEFAULT_STRING_CONSTANT;
-            if ((undefined *)*pivot_ptr != (undefined *)0x0) {
-                default_string_ptr = (undefined *)*pivot_ptr;
+            if ((void *)*pivot_ptr != (void *)0x0) {
+                default_string_ptr = (void *)*pivot_ptr;
             }
             
             // 查找分隔符
             string_offset = strstr(default_string_ptr, &STRING_SEPARATOR);
             default_string_ptr = &DEFAULT_STRING_CONSTANT;
-            if (*(undefined **)(base_address + 0x10) != (undefined *)0x0) {
-                default_string_ptr = *(undefined **)(base_address + 0x10);
+            if (*(void **)(base_address + 0x10) != (void *)0x0) {
+                default_string_ptr = *(void **)(base_address + 0x10);
             }
             
             longlong separator_pos = strstr(default_string_ptr, &STRING_SEPARATOR);
@@ -152,23 +152,23 @@ unsigned long long search_elements_in_range(unsigned long long search_start, uns
     longlong search_offset;
     longlong target_offset;
     unsigned char *target_ptr;
-    undefined *target_string_ptr;
+    void *target_string_ptr;
     int comparison_result;
     unsigned long long current_pos;
     bool should_continue;
-    undefined1 temp_buffer[848];
+    int8_t temp_buffer[848];
     
     do {
         while( true ) {
             target_string_ptr = &DEFAULT_STRING_CONSTANT;
-            if (*(undefined **)(search_start + 0x10) != (undefined *)0x0) {
-                target_string_ptr = *(undefined **)(search_start + 0x10);
+            if (*(void **)(search_start + 0x10) != (void *)0x0) {
+                target_string_ptr = *(void **)(search_start + 0x10);
             }
             search_offset = strstr(target_string_ptr, &STRING_SEPARATOR);
             
             target_string_ptr = &DEFAULT_STRING_CONSTANT;
-            if (*(undefined **)(compare_target + 0x10) != (undefined *)0x0) {
-                target_string_ptr = *(undefined **)(compare_target + 0x10);
+            if (*(void **)(compare_target + 0x10) != (void *)0x0) {
+                target_string_ptr = *(void **)(compare_target + 0x10);
             }
             target_offset = strstr(target_string_ptr, &STRING_SEPARATOR);
             should_continue = target_offset != 0;
@@ -198,14 +198,14 @@ unsigned long long search_elements_in_range(unsigned long long search_start, uns
                 current_pos = search_end;
                 search_end = current_pos - 0x348;
                 target_string_ptr = &DEFAULT_STRING_CONSTANT;
-                if (*(undefined **)(compare_target + 0x10) != (undefined *)0x0) {
-                    target_string_ptr = *(undefined **)(compare_target + 0x10);
+                if (*(void **)(compare_target + 0x10) != (void *)0x0) {
+                    target_string_ptr = *(void **)(compare_target + 0x10);
                 }
                 search_offset = strstr(target_string_ptr, &STRING_SEPARATOR);
                 
                 target_string_ptr = &DEFAULT_STRING_CONSTANT;
-                if (*(undefined **)(current_pos - 0x338) != (undefined *)0x0) {
-                    target_string_ptr = *(undefined **)(current_pos - 0x338);
+                if (*(void **)(current_pos - 0x338) != (void *)0x0) {
+                    target_string_ptr = *(void **)(current_pos - 0x338);
                 }
                 target_offset = strstr(target_string_ptr, &STRING_SEPARATOR);
                 should_continue = target_offset != 0;
@@ -310,14 +310,14 @@ long long compare_and_swap_elements(long long base_address, long long left_index
     unsigned char *compare_ptr;
     long long *element_ptr;
     long long *compare_element_ptr;
-    undefined4 temp_value_1;
-    undefined4 temp_value_2;
-    undefined4 temp_value_3;
-    undefined8 temp_value_8;
+    int32_t temp_value_1;
+    int32_t temp_value_2;
+    int32_t temp_value_3;
+    uint64_t temp_value_8;
     long long search_offset;
     long long compare_offset;
     unsigned char *string_ptr;
-    undefined *string_data_ptr;
+    void *string_data_ptr;
     int comparison_result;
     long long element_offset;
     long long temp_position;
@@ -329,14 +329,14 @@ long long compare_and_swap_elements(long long base_address, long long left_index
     while (temp_position = double_right + 2, temp_position < total_count) {
         element_offset = temp_position * 0x348 + base_address;
         string_data_ptr = &DEFAULT_STRING_CONSTANT;
-        if (*(undefined **)(element_offset + 0x10) != (undefined *)0x0) {
-            string_data_ptr = *(undefined **)(element_offset + 0x10);
+        if (*(void **)(element_offset + 0x10) != (void *)0x0) {
+            string_data_ptr = *(void **)(element_offset + 0x10);
         }
         search_offset = strstr(string_data_ptr, &STRING_SEPARATOR);
         
         string_data_ptr = &DEFAULT_STRING_CONSTANT;
-        if (*(undefined **)(element_offset + -0x338) != (undefined *)0x0) {
-            string_data_ptr = *(undefined **)(element_offset + -0x338);
+        if (*(void **)(element_offset + -0x338) != (void *)0x0) {
+            string_data_ptr = *(void **)(element_offset + -0x338);
         }
         compare_offset = strstr(string_data_ptr, &STRING_SEPARATOR);
         
@@ -413,14 +413,14 @@ swap_decision:
         temp_position = right_index + -1 >> 1;
         double_right = temp_position * 0x348 + base_address;
         string_data_ptr = &DEFAULT_STRING_CONSTANT;
-        if (*(undefined **)(double_right + 0x10) != (undefined *)0x0) {
-            string_data_ptr = *(undefined **)(double_right + 0x10);
+        if (*(void **)(double_right + 0x10) != (void *)0x0) {
+            string_data_ptr = *(void **)(double_right + 0x10);
         }
         element_offset = strstr(string_data_ptr, &STRING_SEPARATOR);
         
         string_data_ptr = &DEFAULT_STRING_CONSTANT;
-        if (*(undefined **)(temp_buffer + 0x10) != (undefined *)0x0) {
-            string_data_ptr = *(undefined **)(temp_buffer + 0x10);
+        if (*(void **)(temp_buffer + 0x10) != (void *)0x0) {
+            string_data_ptr = *(void **)(temp_buffer + 0x10);
         }
         search_offset = strstr(string_data_ptr, &STRING_SEPARATOR);
         should_swap = search_offset != 0;
@@ -526,32 +526,32 @@ final_decision:
 unsigned int get_element_priority(long long element_address)
 {
     unsigned char byte_value;
-    undefined8 *priority_ptr;
+    uint64_t *priority_ptr;
     bool has_higher_priority;
     unsigned int priority_value;
     unsigned char *string_ptr;
     unsigned int char_value;
     int comparison_result;
-    undefined8 *current_ptr;
-    undefined8 *next_ptr;
-    undefined8 *temp_ptr;
-    undefined8 *best_ptr;
+    uint64_t *current_ptr;
+    uint64_t *next_ptr;
+    uint64_t *temp_ptr;
+    uint64_t *best_ptr;
     long long string_offset;
-    undefined *stack_ptr_30;
+    void *stack_ptr_30;
     unsigned char *stack_ptr_28;
     int stack_value_20;
     
-    priority_ptr = *(undefined8 **)(element_address + 0x30);
+    priority_ptr = *(uint64_t **)(element_address + 0x30);
     initialize_stack_variables(&stack_ptr_30);
-    temp_ptr = (undefined8 *)priority_ptr[2];
+    temp_ptr = (uint64_t *)priority_ptr[2];
     current_ptr = priority_ptr;
     
     // 遍历优先级链表
-    if (temp_ptr != (undefined8 *)0x0) {
+    if (temp_ptr != (uint64_t *)0x0) {
         do {
             if (stack_value_20 == 0) {
                 has_higher_priority = false;
-                next_ptr = (undefined8 *)temp_ptr[1];
+                next_ptr = (uint64_t *)temp_ptr[1];
             }
             else {
                 if (*(int *)(temp_ptr + 6) == 0) {
@@ -567,11 +567,11 @@ unsigned int get_element_priority(long long element_address)
                     } while (char_value != 0);
                     has_higher_priority = 0 < comparison_result;
                     if (comparison_result < 1) {
-                        next_ptr = (undefined8 *)temp_ptr[1];
+                        next_ptr = (uint64_t *)temp_ptr[1];
                         goto priority_decision;
                     }
                 }
-                next_ptr = (undefined8 *)*temp_ptr;
+                next_ptr = (uint64_t *)*temp_ptr;
             }
             
 priority_decision:
@@ -581,7 +581,7 @@ priority_decision:
             }
             current_ptr = best_ptr;
             temp_ptr = next_ptr;
-        } while (next_ptr != (undefined8 *)0x0);
+        } while (next_ptr != (uint64_t *)0x0);
         
         // 检查是否需要更新优先级
         if (best_ptr != priority_ptr) {
@@ -609,7 +609,7 @@ priority_decision:
 return_priority:
     stack_ptr_30 = &PRIORITY_CONSTANT;
     if (stack_ptr_28 == (unsigned char *)0x0) {
-        if (best_ptr == *(undefined8 **)(element_address + 0x30)) {
+        if (best_ptr == *(uint64_t **)(element_address + 0x30)) {
             priority_value = 0xffffffff;
         }
         else {
@@ -630,27 +630,27 @@ return_priority:
  * @param cleanup_flag_2 清理标志2
  * @param cleanup_flag_3 清理标志3
  */
-void cleanup_element_structure(long long element_address, undefined8 cleanup_flag_1, undefined8 cleanup_flag_2, undefined8 cleanup_flag_3)
+void cleanup_element_structure(long long element_address, uint64_t cleanup_flag_1, uint64_t cleanup_flag_2, uint64_t cleanup_flag_3)
 {
     long long cleanup_ptr;
     unsigned long long array_size;
     unsigned long long element_count;
     unsigned long long loop_counter;
-    undefined8 cleanup_flags;
+    uint64_t cleanup_flags;
     
     cleanup_flags = 0xfffffffffffffffe;
     cleanup_ptr = *(long long *)(element_address + 0x30);
     if (cleanup_ptr != 0) {
-        release_element_resources(cleanup_ptr, *(undefined8 *)(cleanup_ptr + 0x10));
+        release_element_resources(cleanup_ptr, *(uint64_t *)(cleanup_ptr + 0x10));
         handle_critical_error(cleanup_ptr);
     }
     
     loop_counter = 0;
-    *(undefined8 *)(element_address + 0x30) = 0;
+    *(uint64_t *)(element_address + 0x30) = 0;
     cleanup_ptr = *(long long *)(element_address + 0x38);
     if (cleanup_ptr == 0) {
-        *(undefined4 *)(element_address + 0x40) = 0;
-        *(undefined8 *)(element_address + 0x38) = 0;
+        *(int32_t *)(element_address + 0x40) = 0;
+        *(uint64_t *)(element_address + 0x38) = 0;
         return;
     }
     
@@ -658,8 +658,8 @@ void cleanup_element_structure(long long element_address, undefined8 cleanup_fla
     element_count = array_size >> 0x20;
     if ((int)(array_size >> 0x20) != 0) {
         do {
-            ((*(code *)**(undefined8 **)(loop_counter + cleanup_ptr))
-                ((undefined8 *)(loop_counter + cleanup_ptr), 0, cleanup_flag_2, cleanup_flag_3, cleanup_flags));
+            ((*(code *)**(uint64_t **)(loop_counter + cleanup_ptr))
+                ((uint64_t *)(loop_counter + cleanup_ptr), 0, cleanup_flag_2, cleanup_flag_3, cleanup_flags));
             loop_counter = (unsigned long long)(uint)((int)loop_counter + (int)array_size);
             element_count = element_count - 1;
         } while (element_count != 0);
@@ -677,7 +677,7 @@ void cleanup_element_structure(long long element_address, undefined8 cleanup_fla
 void initialize_element_index_table(long long element_address, int index_count)
 {
     long long table_ptr;
-    undefined8 table_size;
+    uint64_t table_size;
     unsigned long long index;
     unsigned int element_id;
     unsigned long long temp_index;
@@ -687,20 +687,20 @@ void initialize_element_index_table(long long element_address, int index_count)
     index = 0;
     
     // 初始化表结构
-    *(undefined4 *)(table_ptr + 0x19) = 0;
-    *(undefined2 *)(table_ptr + 0x1d) = 0;
-    *(undefined1 *)(table_ptr + 0x1f) = 0;
-    *(undefined4 *)(table_ptr + 0x28) = 3;
+    *(int32_t *)(table_ptr + 0x19) = 0;
+    *(int16_t *)(table_ptr + 0x1d) = 0;
+    *(int8_t *)(table_ptr + 0x1f) = 0;
+    *(int32_t *)(table_ptr + 0x28) = 3;
     *(long long *)table_ptr = table_ptr;
     *(long long *)(table_ptr + 8) = table_ptr;
-    *(undefined8 *)(table_ptr + 0x10) = 0;
-    *(undefined1 *)(table_ptr + 0x18) = 0;
-    *(undefined8 *)(table_ptr + 0x20) = 0;
+    *(uint64_t *)(table_ptr + 0x10) = 0;
+    *(int8_t *)(table_ptr + 0x18) = 0;
+    *(uint64_t *)(table_ptr + 0x20) = 0;
     *(long long *)(element_address + 0x30) = table_ptr;
     *(int *)(element_address + 0x40) = index_count;
     
     table_size = calculate_table_size((long long)index_count);
-    *(undefined8 *)(element_address + 0x38) = table_size;
+    *(uint64_t *)(element_address + 0x38) = table_size;
     temp_index = index;
     
     // 填充索引表
@@ -724,22 +724,22 @@ void perform_engine_cleanup(void)
 }
 
 // 辅助函数声明（简化实现）
-void initialize_temp_buffer(undefined1 *buffer, long long address);
-void cleanup_temp_buffer(undefined1 *buffer);
+void initialize_temp_buffer(int8_t *buffer, long long address);
+void cleanup_temp_buffer(int8_t *buffer);
 void swap_element_positions(long long pos1, long long pos2);
 void copy_memory_block(long long dest, long long src);
 void copy_4byte_values(long long dest, long long src, int count);
 void copy_8byte_values(long long dest, long long src, int count);
 void copy_byte_values(long long dest, long long src, int count);
 void handle_pointer_references(long long dest, long long src);
-void release_element_resources(long long ptr, undefined8 flags);
-long long allocate_managed_memory(undefined8 pool, int size1, int size2, int flags, undefined8 cleanup_flags);
-undefined8 calculate_table_size(long long count);
-void initialize_stack_variables(undefined **ptr);
+void release_element_resources(long long ptr, uint64_t flags);
+long long allocate_managed_memory(uint64_t pool, int size1, int size2, int flags, uint64_t cleanup_flags);
+uint64_t calculate_table_size(long long count);
+void initialize_stack_variables(void **ptr);
 void handle_critical_error(long long ptr);
 
 // 全局常量声明
-extern undefined8 DEFAULT_STRING_CONSTANT;
-extern undefined8 STRING_SEPARATOR;
-extern undefined8 PRIORITY_CONSTANT;
-extern undefined8 GLOBAL_MEMORY_POOL;
+extern uint64_t DEFAULT_STRING_CONSTANT;
+extern uint64_t STRING_SEPARATOR;
+extern uint64_t PRIORITY_CONSTANT;
+extern uint64_t GLOBAL_MEMORY_POOL;

@@ -3,10 +3,10 @@
 // 04_ui_system_part005.c - UI系统组件和事件处理功能
 // 本文件包含UI组件初始化、事件处理、字符串操作和内存管理等功能
 
-// 函数: void update_ui_component_offset(longlong component_ptr, undefined8 param2, undefined8 param3, longlong offset)
+// 函数: void update_ui_component_offset(longlong component_ptr, uint64_t param2, uint64_t param3, longlong offset)
 // 功能: 更新UI组件的偏移量，处理组件位置计算
 // 参数: component_ptr - 组件指针, param2 - 保留参数, param3 - 保留参数, offset - 偏移量
-void update_ui_component_offset(longlong component_ptr, undefined8 param2, undefined8 param3, longlong offset)
+void update_ui_component_offset(longlong component_ptr, uint64_t param2, uint64_t param3, longlong offset)
 
 {
   longlong unaff_RSI;
@@ -55,52 +55,52 @@ void process_ui_event_handling(void)
 
 {
   uint uVar1;
-  undefined4 uVar2;
+  int32_t uVar2;
   int iVar3;
   uint uVar4;
-  undefined4 *puVar5;
+  int32_t *puVar5;
   longlong lVar6;
-  undefined1 *puVar7;
-  undefined2 *puVar8;
-  undefined *puVar9;
+  int8_t *puVar7;
+  int16_t *puVar8;
+  void *puVar9;
   uint uVar10;
   ulonglong uVar11;
-  undefined1 auStack_338 [32];
-  undefined1 uStack_318;
-  undefined *puStack_2f8;
-  undefined2 *puStack_2f0;
-  undefined4 uStack_2e8;
-  undefined8 uStack_2e0;
-  undefined *puStack_2d8;
-  undefined4 *puStack_2d0;
-  undefined4 uStack_2c8;
-  undefined8 uStack_2c0;
-  undefined *puStack_2b8;
-  undefined1 *puStack_2b0;
+  int8_t auStack_338 [32];
+  int8_t uStack_318;
+  void *puStack_2f8;
+  int16_t *puStack_2f0;
+  int32_t uStack_2e8;
+  uint64_t uStack_2e0;
+  void *puStack_2d8;
+  int32_t *puStack_2d0;
+  int32_t uStack_2c8;
+  uint64_t uStack_2c0;
+  void *puStack_2b8;
+  int8_t *puStack_2b0;
   uint uStack_2a8;
-  undefined8 uStack_2a0;
-  undefined4 uStack_298;
-  undefined *puStack_270;
-  undefined1 *puStack_268;
-  undefined4 uStack_260;
-  undefined8 uStack_258;
-  undefined1 auStack_210 [32];
-  undefined8 uStack_1f0;
-  undefined1 auStack_1a8 [32];
-  undefined8 uStack_188;
-  undefined *puStack_180;
-  undefined1 *puStack_178;
-  undefined4 uStack_170;
-  undefined1 auStack_168 [16];
-  undefined1 auStack_158 [8];
-  undefined *puStack_150;
+  uint64_t uStack_2a0;
+  int32_t uStack_298;
+  void *puStack_270;
+  int8_t *puStack_268;
+  int32_t uStack_260;
+  uint64_t uStack_258;
+  int8_t auStack_210 [32];
+  uint64_t uStack_1f0;
+  int8_t auStack_1a8 [32];
+  uint64_t uStack_188;
+  void *puStack_180;
+  int8_t *puStack_178;
+  int32_t uStack_170;
+  int8_t auStack_168 [16];
+  int8_t auStack_158 [8];
+  void *puStack_150;
   int iStack_148;
   ulonglong uStack_38;
   
   // 初始化栈变量和全局数据
   uStack_188 = 0xfffffffffffffffe;
   uStack_38 = global_ui_security_key ^ (ulonglong)auStack_338;
-  puVar7 = (undefined1 *)0x0;
+  puVar7 = (int8_t *)0x0;
   uVar10 = 0;
   uStack_298 = 0;
   uStack_1f0 = global_ui_string_table;
@@ -119,40 +119,40 @@ void process_ui_event_handling(void)
   create_ui_component(auStack_158,auStack_1a8);
   puStack_270 = &UI_PATH_SEPARATOR;
   uStack_258 = 0;
-  puStack_268 = (undefined1 *)0x0;
+  puStack_268 = (int8_t *)0x0;
   uStack_260 = 0;
   // 处理路径字符串
   process_ui_path(&puStack_270,iStack_148);
   if (0 < iStack_148) {
     puVar9 = &DEFAULT_UI_PATH;
-    if (puStack_150 != (undefined *)0x0) {
+    if (puStack_150 != (void *)0x0) {
       puVar9 = puStack_150;
     }
                     // WARNING: Subroutine does not return
     // 复制路径字符串
     memcpy(puStack_268,puVar9,(longlong)(iStack_148 + 1));
   }
-  if ((puStack_150 != (undefined *)0x0) && (uStack_260 = 0, puStack_268 != (undefined1 *)0x0)) {
+  if ((puStack_150 != (void *)0x0) && (uStack_260 = 0, puStack_268 != (int8_t *)0x0)) {
     *puStack_268 = 0; // 字符串终止符
   }
   puStack_2d8 = &UI_PATH_SEPARATOR;
   uStack_2c0 = 0;
-  puStack_2d0 = (undefined4 *)0x0;
+  puStack_2d0 = (int32_t *)0x0;
   uStack_2c8 = 0;
   // 分配UI路径缓冲区
-  puVar5 = (undefined4 *)allocate_ui_buffer(global_ui_memory_pool,0x10,0x13);
-  *(undefined1 *)puVar5 = 0;
+  puVar5 = (int32_t *)allocate_ui_buffer(global_ui_memory_pool,0x10,0x13);
+  *(int8_t *)puVar5 = 0;
   puStack_2d0 = puVar5;
   uVar2 = get_ui_buffer_length(puVar5);
   uStack_2c0 = CONCAT44(uStack_2c0._4_4_,uVar2);
   *puVar5 = 0x2f6e6962; // "/bin" 字符串
-  *(undefined1 *)(puVar5 + 1) = 0;
+  *(int8_t *)(puVar5 + 1) = 0;
   uStack_2c8 = 4;
   // 构建完整UI路径
   lVar6 = construct_ui_path(&puStack_270,&puStack_180,&puStack_2d8);
   puStack_2b8 = &UI_PATH_SEPARATOR;
   uStack_2a0 = 0;
-  puStack_2b0 = (undefined1 *)0x0;
+  puStack_2b0 = (int8_t *)0x0;
   uStack_2a8 = 0;
   uStack_298 = 2;
   uVar1 = *(uint *)(lVar6 + 0x10);
@@ -164,7 +164,7 @@ LAB_18065415f:
     if (uVar1 != 0) {
                     // WARNING: Subroutine does not return
       // 复制路径数据
-      memcpy(puVar7,*(undefined8 *)(lVar6 + 8),uVar11);
+      memcpy(puVar7,*(uint64_t *)(lVar6 + 8),uVar11);
     }
   }
   else if (uVar1 != 0) {
@@ -173,32 +173,32 @@ LAB_18065415f:
       iVar3 = 0x10;
     }
     // 分配路径缓冲区
-    puVar7 = (undefined1 *)allocate_ui_buffer(global_ui_memory_pool,(longlong)iVar3,0x13);
+    puVar7 = (int8_t *)allocate_ui_buffer(global_ui_memory_pool,(longlong)iVar3,0x13);
     *puVar7 = 0;
     puStack_2b0 = puVar7;
     uVar4 = get_ui_buffer_length(puVar7);
     uStack_2a0 = CONCAT44(uStack_2a0._4_4_,uVar4);
     goto LAB_18065415f;
   }
-  if (puVar7 != (undefined1 *)0x0) {
+  if (puVar7 != (int8_t *)0x0) {
     puVar7[uVar11] = 0; // 字符串终止符
   }
-  uStack_2a0 = CONCAT44(*(undefined4 *)(lVar6 + 0x1c),(undefined4)uStack_2a0);
+  uStack_2a0 = CONCAT44(*(int32_t *)(lVar6 + 0x1c),(int32_t)uStack_2a0);
   if (uVar1 + 0x15 != 0) {
     uVar4 = uVar1 + 0x16;
     uStack_2a8 = uVar1;
-    if (puVar7 == (undefined1 *)0x0) {
+    if (puVar7 == (int8_t *)0x0) {
       if ((int)uVar4 < 0x10) {
         uVar4 = 0x10;
       }
-      puVar7 = (undefined1 *)allocate_ui_buffer(global_ui_memory_pool,(longlong)(int)uVar4,0x13);
+      puVar7 = (int8_t *)allocate_ui_buffer(global_ui_memory_pool,(longlong)(int)uVar4,0x13);
       *puVar7 = 0;
     }
     else {
       if (uVar4 <= uVar10) goto LAB_1806541f1;
       uStack_318 = 0x13;
       // 重新分配更大的缓冲区
-      puVar7 = (undefined1 *)reallocate_ui_buffer(global_ui_memory_pool,puVar7,uVar4,0x10);
+      puVar7 = (int8_t *)reallocate_ui_buffer(global_ui_memory_pool,puVar7,uVar4,0x10);
     }
     puStack_2b0 = puVar7;
     uVar2 = get_ui_buffer_length(puVar7);
@@ -206,21 +206,21 @@ LAB_18065415f:
   }
 LAB_1806541f1:
   // 构建UI资源路径
-  puVar5 = (undefined4 *)(puVar7 + uVar11);
+  puVar5 = (int32_t *)(puVar7 + uVar11);
   *puVar5 = 0x366e6957; // "Win6" 字符串
   puVar5[1] = 0x68535f34; // "4_Sh" 字符串
   puVar5[2] = 0x69707069; // "ippi" 字符串
   puVar5[3] = 0x435f676e; // "ng_C" 字符串
-  *(undefined4 *)(puVar7 + uVar11 + 0x10) = 0x6e65696c; // "lien" 字符串
-  *(undefined2 *)(puVar7 + uVar11 + 0x14) = 0x74; // "t" 字符串
+  *(int32_t *)(puVar7 + uVar11 + 0x10) = 0x6e65696c; // "lien" 字符串
+  *(int16_t *)(puVar7 + uVar11 + 0x14) = 0x74; // "t" 字符串
   puStack_2f8 = &UI_PATH_SEPARATOR;
   uStack_2e0 = 0;
-  puStack_2f0 = (undefined2 *)0x0;
+  puStack_2f0 = (int16_t *)0x0;
   uStack_2e8 = 0;
   uStack_2a8 = uVar1 + 0x15;
   // 分配路径分隔符缓冲区
-  puVar8 = (undefined2 *)allocate_ui_buffer(global_ui_memory_pool,0x10,0x13);
-  *(undefined1 *)puVar8 = 0;
+  puVar8 = (int16_t *)allocate_ui_buffer(global_ui_memory_pool,0x10,0x13);
+  *(int8_t *)puVar8 = 0;
   puStack_2f0 = puVar8;
   uVar2 = get_ui_buffer_length(puVar8);
   uStack_2e0 = CONCAT44(uStack_2e0._4_4_,uVar2);
@@ -236,11 +236,11 @@ LAB_1806541f1:
 
 
 
-undefined8 *
-initialize_ui_component_manager(undefined8 *manager_ptr, ulonglong init_flags, undefined8 param3, undefined8 param4)
+uint64_t *
+initialize_ui_component_manager(uint64_t *manager_ptr, ulonglong init_flags, uint64_t param3, uint64_t param4)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
   *manager_ptr = &UI_COMPONENT_TABLE;
@@ -254,7 +254,7 @@ initialize_ui_component_manager(undefined8 *manager_ptr, ulonglong init_flags, u
 
 
 
-undefined4 * reset_ui_component_state(undefined8 param1, undefined4 *state_ptr)
+int32_t * reset_ui_component_state(uint64_t param1, int32_t *state_ptr)
 
 {
   // 重置UI组件状态为初始值
@@ -264,14 +264,14 @@ undefined4 * reset_ui_component_state(undefined8 param1, undefined4 *state_ptr)
 
 
 
-int get_ui_component_type(undefined8 param1, undefined8 param2, undefined8 param3, undefined8 param4)
+int get_ui_component_type(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4)
 
 {
   int iVar1;
   longlong lVar2;
   longlong lVar3;
-  undefined *puVar4;
-  undefined *puStack_30;
+  void *puVar4;
+  void *puStack_30;
   longlong lStack_28;
   int iStack_20;
   
@@ -434,7 +434,7 @@ LAB_1806554a0:
 
 
 
-ulonglong get_ui_component_property(undefined8 param1, undefined8 param2, undefined8 param3, undefined8 param4)
+ulonglong get_ui_component_property(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4)
 
 {
   char cVar1;
@@ -442,14 +442,14 @@ ulonglong get_ui_component_property(undefined8 param1, undefined8 param2, undefi
   int iVar3;
   longlong lVar4;
   longlong lVar5;
-  undefined *puVar6;
+  void *puVar6;
   ulonglong uVar7;
   bool bVar8;
-  undefined *puStack_50;
+  void *puStack_50;
   char *pcStack_48;
   int iStack_40;
-  undefined4 uStack_38;
-  undefined *puStack_30;
+  int32_t uStack_38;
+  void *puStack_30;
   longlong lStack_28;
   int iStack_20;
   
@@ -760,60 +760,60 @@ LAB_180655685:
 
 
 
-// 函数: void get_ui_component_data(int component_index, undefined8 *data_buffer)
+// 函数: void get_ui_component_data(int component_index, uint64_t *data_buffer)
 // 功能: 获取指定索引的UI组件数据
 // 参数: component_index - 组件索引, data_buffer - 数据缓冲区
-void get_ui_component_data(int component_index, undefined8 *data_buffer)
+void get_ui_component_data(int component_index, uint64_t *data_buffer)
 
 {
-  undefined8 *puVar1;
-  undefined4 uVar2;
+  uint64_t *puVar1;
+  int32_t uVar2;
   longlong lVar3;
   code *pcVar4;
-  undefined8 uVar5;
-  undefined8 uVar6;
-  undefined8 uVar7;
-  undefined8 uVar8;
-  undefined8 uVar9;
-  undefined8 uVar10;
-  undefined8 uVar11;
-  undefined8 uVar12;
-  undefined8 uVar13;
-  undefined8 uVar14;
-  undefined8 uVar15;
-  undefined8 uVar16;
-  undefined8 uVar17;
-  undefined8 uVar18;
-  undefined8 uVar19;
+  uint64_t uVar5;
+  uint64_t uVar6;
+  uint64_t uVar7;
+  uint64_t uVar8;
+  uint64_t uVar9;
+  uint64_t uVar10;
+  uint64_t uVar11;
+  uint64_t uVar12;
+  uint64_t uVar13;
+  uint64_t uVar14;
+  uint64_t uVar15;
+  uint64_t uVar16;
+  uint64_t uVar17;
+  uint64_t uVar18;
+  uint64_t uVar19;
   longlong lVar20;
   
   lVar3 = *global_ui_component_table;
   if ((ulonglong)(longlong)component_index < (ulonglong)((global_ui_component_table[1] - lVar3) / 0x84)) {
     lVar20 = (longlong)component_index * 0x84;
-    puVar1 = (undefined8 *)(lVar20 + 0x60 + lVar3);
+    puVar1 = (uint64_t *)(lVar20 + 0x60 + lVar3);
     uVar5 = *puVar1;
     uVar6 = puVar1[1];
-    uVar2 = *(undefined4 *)(lVar20 + 0x80 + lVar3);
-    puVar1 = (undefined8 *)(lVar20 + 0x70 + lVar3);
+    uVar2 = *(int32_t *)(lVar20 + 0x80 + lVar3);
+    puVar1 = (uint64_t *)(lVar20 + 0x70 + lVar3);
     uVar7 = *puVar1;
     uVar8 = puVar1[1];
-    uVar9 = ((undefined8 *)(lVar20 + lVar3))[1];
-    puVar1 = (undefined8 *)(lVar20 + 0x10 + lVar3);
+    uVar9 = ((uint64_t *)(lVar20 + lVar3))[1];
+    puVar1 = (uint64_t *)(lVar20 + 0x10 + lVar3);
     uVar10 = *puVar1;
     uVar11 = puVar1[1];
-    puVar1 = (undefined8 *)(lVar20 + 0x20 + lVar3);
+    puVar1 = (uint64_t *)(lVar20 + 0x20 + lVar3);
     uVar12 = *puVar1;
     uVar13 = puVar1[1];
-    puVar1 = (undefined8 *)(lVar20 + 0x30 + lVar3);
+    puVar1 = (uint64_t *)(lVar20 + 0x30 + lVar3);
     uVar14 = *puVar1;
     uVar15 = puVar1[1];
-    puVar1 = (undefined8 *)(lVar20 + 0x40 + lVar3);
+    puVar1 = (uint64_t *)(lVar20 + 0x40 + lVar3);
     uVar16 = *puVar1;
     uVar17 = puVar1[1];
-    puVar1 = (undefined8 *)(lVar20 + 0x50 + lVar3);
+    puVar1 = (uint64_t *)(lVar20 + 0x50 + lVar3);
     uVar18 = *puVar1;
     uVar19 = puVar1[1];
-    *data_buffer = *(undefined8 *)(lVar20 + lVar3);
+    *data_buffer = *(uint64_t *)(lVar20 + lVar3);
     data_buffer[1] = uVar9;
     data_buffer[2] = uVar10;
     data_buffer[3] = uVar11;
@@ -829,7 +829,7 @@ void get_ui_component_data(int component_index, undefined8 *data_buffer)
     data_buffer[0xd] = uVar6;
     data_buffer[0xe] = uVar7;
     data_buffer[0xf] = uVar8;
-    *(undefined4 *)(data_buffer + 0x10) = uVar2;
+    *(int32_t *)(data_buffer + 0x10) = uVar2;
     return;
   }
   // 索引越界，触发错误处理
@@ -841,57 +841,57 @@ void get_ui_component_data(int component_index, undefined8 *data_buffer)
 
 
 
-// 函数: void set_ui_component_data(undefined8 param1, undefined8 param2, undefined8 *data_buffer)
+// 函数: void set_ui_component_data(uint64_t param1, uint64_t param2, uint64_t *data_buffer)
 // 功能: 设置UI组件数据
 // 参数: param1 - 组件标识, param2 - 数据类型, data_buffer - 数据缓冲区
-void set_ui_component_data(undefined8 param1, undefined8 param2, undefined8 *data_buffer)
+void set_ui_component_data(uint64_t param1, uint64_t param2, uint64_t *data_buffer)
 
 {
-  undefined8 *puVar1;
-  undefined4 uVar2;
-  undefined8 uVar3;
-  undefined8 uVar4;
-  undefined8 uVar5;
-  undefined8 uVar6;
-  undefined8 uVar7;
-  undefined8 uVar8;
-  undefined8 uVar9;
-  undefined8 uVar10;
-  undefined8 uVar11;
-  undefined8 uVar12;
-  undefined8 uVar13;
-  undefined8 uVar14;
-  undefined8 uVar15;
-  undefined8 uVar16;
-  undefined8 uVar17;
+  uint64_t *puVar1;
+  int32_t uVar2;
+  uint64_t uVar3;
+  uint64_t uVar4;
+  uint64_t uVar5;
+  uint64_t uVar6;
+  uint64_t uVar7;
+  uint64_t uVar8;
+  uint64_t uVar9;
+  uint64_t uVar10;
+  uint64_t uVar11;
+  uint64_t uVar12;
+  uint64_t uVar13;
+  uint64_t uVar14;
+  uint64_t uVar15;
+  uint64_t uVar16;
+  uint64_t uVar17;
   longlong in_RAX;
   longlong in_R10;
   
   // 从组件数据结构中提取各字段
-  puVar1 = (undefined8 *)(in_RAX + 0x60 + in_R10);
+  puVar1 = (uint64_t *)(in_RAX + 0x60 + in_R10);
   uVar3 = *puVar1;
   uVar4 = puVar1[1];
-  uVar2 = *(undefined4 *)(in_RAX + 0x80 + in_R10);
-  puVar1 = (undefined8 *)(in_RAX + 0x70 + in_R10);
+  uVar2 = *(int32_t *)(in_RAX + 0x80 + in_R10);
+  puVar1 = (uint64_t *)(in_RAX + 0x70 + in_R10);
   uVar5 = *puVar1;
   uVar6 = puVar1[1];
-  uVar7 = ((undefined8 *)(in_RAX + in_R10))[1];
-  puVar1 = (undefined8 *)(in_RAX + 0x10 + in_R10);
+  uVar7 = ((uint64_t *)(in_RAX + in_R10))[1];
+  puVar1 = (uint64_t *)(in_RAX + 0x10 + in_R10);
   uVar8 = *puVar1;
   uVar9 = puVar1[1];
-  puVar1 = (undefined8 *)(in_RAX + 0x20 + in_R10);
+  puVar1 = (uint64_t *)(in_RAX + 0x20 + in_R10);
   uVar10 = *puVar1;
   uVar11 = puVar1[1];
-  puVar1 = (undefined8 *)(in_RAX + 0x30 + in_R10);
+  puVar1 = (uint64_t *)(in_RAX + 0x30 + in_R10);
   uVar12 = *puVar1;
   uVar13 = puVar1[1];
-  puVar1 = (undefined8 *)(in_RAX + 0x40 + in_R10);
+  puVar1 = (uint64_t *)(in_RAX + 0x40 + in_R10);
   uVar14 = *puVar1;
   uVar15 = puVar1[1];
-  puVar1 = (undefined8 *)(in_RAX + 0x50 + in_R10);
+  puVar1 = (uint64_t *)(in_RAX + 0x50 + in_R10);
   uVar16 = *puVar1;
   uVar17 = puVar1[1];
-  *data_buffer = *(undefined8 *)(in_RAX + in_R10);
+  *data_buffer = *(uint64_t *)(in_RAX + in_R10);
   data_buffer[1] = uVar7;
   data_buffer[2] = uVar8;
   data_buffer[3] = uVar9;
@@ -907,7 +907,7 @@ void set_ui_component_data(undefined8 param1, undefined8 param2, undefined8 *dat
   data_buffer[0xd] = uVar4;
   data_buffer[0xe] = uVar5;
   data_buffer[0xf] = uVar6;
-  *(undefined4 *)(data_buffer + 0x10) = uVar2;
+  *(int32_t *)(data_buffer + 0x10) = uVar2;
   return;
 }
 
@@ -929,13 +929,13 @@ void handle_ui_index_error(void)
 
 
 
-undefined8
-register_ui_event_handler(undefined8 param1, undefined8 param2, undefined8 param3, undefined8 param4)
+uint64_t
+register_ui_event_handler(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4)
 
 {
-  undefined8 uStackX_8;
+  uint64_t uStackX_8;
   longlong alStack_30 [3];
-  undefined4 uStack_18;
+  int32_t uStack_18;
   
   // 初始化事件处理器数据
   alStack_30[0] = 0;
@@ -961,14 +961,14 @@ register_ui_event_handler(undefined8 param1, undefined8 param2, undefined8 param
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined4 * create_ui_component_instance(undefined4 *instance_ptr)
+int32_t * create_ui_component_instance(int32_t *instance_ptr)
 
 {
-  undefined4 uVar1;
+  int32_t uVar1;
   longlong *plVar2;
-  undefined4 uStack_20;
-  undefined4 uStack_1c;
-  undefined4 uStack_14;
+  int32_t uStack_20;
+  int32_t uStack_1c;
+  int32_t uStack_14;
   
   // 创建UI组件实例
   plVar2 = (longlong *)allocate_ui_memory(global_ui_memory_pool,0x30,8,3,0xfffffffffffffffe);
@@ -979,18 +979,18 @@ undefined4 * create_ui_component_instance(undefined4 *instance_ptr)
   plVar2[5] = 0;
   *plVar2 = (longlong)&UI_COMPONENT_VTABLE;
   *plVar2 = (longlong)&UI_COMPONENT_METHODS;
-  *(undefined4 *)(plVar2 + 1) = 0;
+  *(int32_t *)(plVar2 + 1) = 0;
   *plVar2 = (longlong)&UI_EVENT_TABLE;
   plVar2[2] = 0;
   plVar2[3] = 0;
   plVar2[4] = 0;
-  *(undefined4 *)(plVar2 + 5) = 3;
+  *(int32_t *)(plVar2 + 5) = 3;
   // 调用组件初始化方法
   (**(code **)(*plVar2 + 0x28))(plVar2);
   uVar1 = (**(code **)(*plVar2 + 8))(plVar2);
   (**(code **)(*plVar2 + 0x28))(plVar2);
   uStack_20 = extract_ui_component_handle(plVar2,0);
-  uStack_1c = (undefined4)((ulonglong)plVar2 >> 0x20);
+  uStack_1c = (int32_t)((ulonglong)plVar2 >> 0x20);
   *instance_ptr = uStack_20;
   instance_ptr[1] = uStack_1c;
   instance_ptr[2] = uVar1;
@@ -1002,13 +1002,13 @@ undefined4 * create_ui_component_instance(undefined4 *instance_ptr)
 
 
 
-// 函数: void set_ui_component_property(longlong component_ptr, undefined4 property_value)
+// 函数: void set_ui_component_property(longlong component_ptr, int32_t property_value)
 // 功能: 设置UI组件属性值
 // 参数: component_ptr - 组件指针, property_value - 属性值
-void set_ui_component_property(longlong component_ptr, undefined4 property_value)
+void set_ui_component_property(longlong component_ptr, int32_t property_value)
 
 {
-  undefined4 uStackX_10;
+  int32_t uStackX_10;
   
   component_ptr = component_ptr + 0x10;
   uStackX_10 = property_value;
@@ -1022,13 +1022,13 @@ void set_ui_component_property(longlong component_ptr, undefined4 property_value
 
 
 
-// 函数: void update_ui_component_property(longlong component_ptr, undefined4 property_value)
+// 函数: void update_ui_component_property(longlong component_ptr, int32_t property_value)
 // 功能: 更新UI组件属性值
 // 参数: component_ptr - 组件指针, property_value - 属性值
-void update_ui_component_property(longlong component_ptr, undefined4 property_value)
+void update_ui_component_property(longlong component_ptr, int32_t property_value)
 
 {
-  undefined4 uStackX_10;
+  int32_t uStackX_10;
   
   component_ptr = component_ptr + 0x10;
   uStackX_10 = property_value;
@@ -1044,14 +1044,14 @@ void update_ui_component_property(longlong component_ptr, undefined4 property_va
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined4 * create_ui_control_instance(undefined4 *instance_ptr)
+int32_t * create_ui_control_instance(int32_t *instance_ptr)
 
 {
-  undefined4 uVar1;
+  int32_t uVar1;
   longlong *plVar2;
-  undefined4 uStack_20;
-  undefined4 uStack_1c;
-  undefined4 uStack_14;
+  int32_t uStack_20;
+  int32_t uStack_1c;
+  int32_t uStack_14;
   
   // 创建UI控件实例
   plVar2 = (longlong *)allocate_ui_memory(global_ui_memory_pool,0x30,8,3,0xfffffffffffffffe);
@@ -1062,18 +1062,18 @@ undefined4 * create_ui_control_instance(undefined4 *instance_ptr)
   plVar2[5] = 0;
   *plVar2 = (longlong)&UI_COMPONENT_VTABLE;
   *plVar2 = (longlong)&UI_COMPONENT_METHODS;
-  *(undefined4 *)(plVar2 + 1) = 0;
+  *(int32_t *)(plVar2 + 1) = 0;
   *plVar2 = (longlong)&UI_CONTROL_FACTORY;
   plVar2[2] = 0;
   plVar2[3] = 0;
   plVar2[4] = 0;
-  *(undefined4 *)(plVar2 + 5) = 3;
+  *(int32_t *)(plVar2 + 5) = 3;
   // 调用控件初始化方法
   (**(code **)(*plVar2 + 0x28))(plVar2);
   uVar1 = (**(code **)(*plVar2 + 8))(plVar2);
   (**(code **)(*plVar2 + 0x28))(plVar2);
   uStack_20 = extract_ui_component_handle(plVar2,0);
-  uStack_1c = (undefined4)((ulonglong)plVar2 >> 0x20);
+  uStack_1c = (int32_t)((ulonglong)plVar2 >> 0x20);
   *instance_ptr = uStack_20;
   instance_ptr[1] = uStack_1c;
   instance_ptr[2] = uVar1;
@@ -1085,11 +1085,11 @@ undefined4 * create_ui_control_instance(undefined4 *instance_ptr)
 
 
 
-undefined8 *
-initialize_ui_control_manager(undefined8 *manager_ptr, ulonglong init_flags, undefined8 param3, undefined8 param4)
+uint64_t *
+initialize_ui_control_manager(uint64_t *manager_ptr, ulonglong init_flags, uint64_t param3, uint64_t param4)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
   // 初始化UI控件系统
@@ -1109,8 +1109,8 @@ longlong * get_ui_control_data(longlong *data_ptr, longlong control_table, int c
 
 {
   longlong *plVar1;
-  undefined4 uVar2;
-  undefined4 uStack_c;
+  int32_t uVar2;
+  int32_t uStack_c;
   
   // 从控件表中获取指定索引的控件数据
   plVar1 = *(longlong **)(*(longlong *)(control_table + 0x10) + (longlong)control_index * 8);
@@ -1149,7 +1149,7 @@ void cleanup_ui_control_list(longlong control_list_ptr)
       }
       plVar2 = plVar2 + 1;
     } while (plVar2 != plVar1);
-    *(undefined8 *)(control_list_ptr + 0x18) = *(undefined8 *)(control_list_ptr + 0x10);
+    *(uint64_t *)(control_list_ptr + 0x18) = *(uint64_t *)(control_list_ptr + 0x10);
     return;
   }
   *(longlong **)(control_list_ptr + 0x18) = plVar2;
@@ -1160,14 +1160,14 @@ void cleanup_ui_control_list(longlong control_list_ptr)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined4 * create_ui_renderer_instance(undefined4 *instance_ptr)
+int32_t * create_ui_renderer_instance(int32_t *instance_ptr)
 
 {
-  undefined4 uVar1;
+  int32_t uVar1;
   longlong *plVar2;
-  undefined4 uStack_20;
-  undefined4 uStack_1c;
-  undefined4 uStack_14;
+  int32_t uStack_20;
+  int32_t uStack_1c;
+  int32_t uStack_14;
   
   // 创建UI渲染器实例
   plVar2 = (longlong *)allocate_ui_memory(global_ui_memory_pool,0x30,8,3,0xfffffffffffffffe);
@@ -1178,21 +1178,21 @@ undefined4 * create_ui_renderer_instance(undefined4 *instance_ptr)
   plVar2[5] = 0;
   *plVar2 = (longlong)&UI_COMPONENT_VTABLE;
   *plVar2 = (longlong)&UI_COMPONENT_METHODS;
-  *(undefined4 *)(plVar2 + 1) = 0;
+  *(int32_t *)(plVar2 + 1) = 0;
   *plVar2 = (longlong)&UI_RENDERER_FACTORY;
   plVar2[2] = (longlong)&UI_COMPONENT_FACTORY;
   plVar2[3] = 0;
-  *(undefined4 *)(plVar2 + 4) = 0;
+  *(int32_t *)(plVar2 + 4) = 0;
   plVar2[2] = (longlong)&UI_PATH_SEPARATOR;
   plVar2[5] = 0;
   plVar2[3] = 0;
-  *(undefined4 *)(plVar2 + 4) = 0;
+  *(int32_t *)(plVar2 + 4) = 0;
   // 调用渲染器初始化方法
   (**(code **)(*plVar2 + 0x28))(plVar2);
   uVar1 = (**(code **)(*plVar2 + 8))(plVar2);
   (**(code **)(*plVar2 + 0x28))(plVar2);
   uStack_20 = extract_ui_component_handle(plVar2,0);
-  uStack_1c = (undefined4)((ulonglong)plVar2 >> 0x20);
+  uStack_1c = (int32_t)((ulonglong)plVar2 >> 0x20);
   *instance_ptr = uStack_20;
   instance_ptr[1] = uStack_1c;
   instance_ptr[2] = uVar1;
@@ -1204,8 +1204,8 @@ undefined4 * create_ui_renderer_instance(undefined4 *instance_ptr)
 
 
 
-undefined8 *
-initialize_ui_renderer(undefined8 *renderer_ptr, ulonglong init_flags, undefined8 param3, undefined8 param4)
+uint64_t *
+initialize_ui_renderer(uint64_t *renderer_ptr, ulonglong init_flags, uint64_t param3, uint64_t param4)
 
 {
   renderer_ptr[2] = &UI_PATH_SEPARATOR;
@@ -1215,7 +1215,7 @@ initialize_ui_renderer(undefined8 *renderer_ptr, ulonglong init_flags, undefined
     release_ui_renderer_memory();
   }
   renderer_ptr[3] = 0;
-  *(undefined4 *)(renderer_ptr + 5) = 0;
+  *(int32_t *)(renderer_ptr + 5) = 0;
   renderer_ptr[2] = &UI_COMPONENT_FACTORY;
   *renderer_ptr = &UI_CONTROL_FACTORY;
   *renderer_ptr = &UI_COMPONENT_VTABLE;
@@ -1230,11 +1230,11 @@ initialize_ui_renderer(undefined8 *renderer_ptr, ulonglong init_flags, undefined
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined4 get_ui_system_state(longlong system_handle, undefined8 param2, undefined8 param3, undefined8 param4)
+int32_t get_ui_system_state(longlong system_handle, uint64_t param2, uint64_t param3, uint64_t param4)
 
 {
-  undefined4 uVar1;
-  undefined *puStack_30;
+  int32_t uVar1;
+  void *puStack_30;
   longlong lStack_28;
   
   // 初始化系统状态查询

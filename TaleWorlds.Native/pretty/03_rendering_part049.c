@@ -2,15 +2,15 @@
 
 // 03_rendering_part049.c - 渲染系统高级图形处理模块 - 29 个函数
 
-// 函数: void FUN_180293190(longlong param_1,undefined8 *param_2,uint param_3,uint param_4)
+// 函数: void FUN_180293190(longlong param_1,uint64_t *param_2,uint param_3,uint param_4)
 // 功能: 渲染系统顶点索引缓冲区处理函数
 // 参数: param_1 - 渲染上下文指针, param_2 - 顶点数据数组, param_3 - 顶点数量, param_4 - 渲染标志
-void RenderingSystem_ProcessVertexIndexBuffer(longlong render_context, undefined8 *vertex_data, uint vertex_count, uint render_flags)
+void RenderingSystem_ProcessVertexIndexBuffer(longlong render_context, uint64_t *vertex_data, uint vertex_count, uint render_flags)
 
 {
-  undefined4 render_flag1;
-  undefined4 render_flag2;
-  undefined8 vertex_data_item;
+  int32_t render_flag1;
+  int32_t render_flag2;
+  uint64_t vertex_data_item;
   longlong vertex_buffer_ptr;
   ulonglong vertex_loop_counter;
   short index_offset;
@@ -26,13 +26,13 @@ void RenderingSystem_ProcessVertexIndexBuffer(longlong render_context, undefined
   
   // 处理顶点数量大于2的情况
   if (2 < (int)vertex_count) {
-    render_flag1 = **(undefined4 **)(render_context + 0x38);
-    render_flag2 = (*(undefined4 **)(render_context + 0x38))[1];
+    render_flag1 = **(int32_t **)(render_context + 0x38);
+    render_flag2 = (*(int32_t **)(render_context + 0x38))[1];
     if ((*(byte *)(render_context + 0x30) & 2) != 0) {
       processed_render_flags = render_flags & 0xffffff;
       index_buffer_size = vertex_count * 2;
       allocate_index_buffer(render_context, vertex_count * 9 + -6, index_buffer_size);
-      render_flag1 = *(undefined4 *)(render_context + 0x48);
+      render_flag1 = *(int32_t *)(render_context + 0x48);
       triangle_counter = 2;
       if (2 < (int)vertex_count) {
         do {
@@ -58,10 +58,10 @@ void RenderingSystem_ProcessVertexIndexBuffer(longlong render_context, undefined
       do {
         vertex_data_item = *vertex_data;
         vertex_data = vertex_data + 1;
-        **(undefined8 **)(render_context + 0x50) = vertex_data_item;
+        **(uint64_t **)(render_context + 0x50) = vertex_data_item;
         vertex_buffer_ptr = *(longlong *)(render_context + 0x50);
-        *(undefined4 *)(vertex_buffer_ptr + 8) = render_flag1;
-        *(undefined4 *)(vertex_buffer_ptr + 0xc) = render_flag2;
+        *(int32_t *)(vertex_buffer_ptr + 8) = render_flag1;
+        *(int32_t *)(vertex_buffer_ptr + 0xc) = render_flag2;
         *(uint *)(*(longlong *)(render_context + 0x50) + 0x10) = render_flags;
         *(longlong *)(render_context + 0x50) = *(longlong *)(render_context + 0x50) + 0x14;
         vertex_loop_counter = vertex_loop_counter - 1;
@@ -70,7 +70,7 @@ void RenderingSystem_ProcessVertexIndexBuffer(longlong render_context, undefined
     triangle_counter = 2;
     if (2 < (int)vertex_count) {
       do {
-        **(undefined2 **)(render_context + 0x58) = *(undefined2 *)(render_context + 0x48);
+        **(int16_t **)(render_context + 0x58) = *(int16_t *)(render_context + 0x48);
         index_offset = (short)triangle_counter;
         *(short *)(*(longlong *)(render_context + 0x58) + 2) = index_offset + -1 + *(short *)(render_context + 0x48);
         triangle_counter = triangle_counter + 1;
@@ -157,10 +157,10 @@ void RenderingSystem_TextureCoordinateTransform(longlong render_context, float *
 
 
 
-// 函数: void FUN_180293772(longlong param_1,int param_2,undefined8 param_3,int param_4)
+// 函数: void FUN_180293772(longlong param_1,int param_2,uint64_t param_3,int param_4)
 // 功能: 渲染系统高级坐标变换处理函数（寄存器变量版本）
 // 参数: param_1 - 渲染上下文指针, param_2 - 坐标数量, param_3 - 坐标数据指针, param_4 - 起始索引
-void RenderingSystem_AdvancedCoordinateTransform(longlong render_context, int coordinate_count, undefined8 coordinate_data, int start_index)
+void RenderingSystem_AdvancedCoordinateTransform(longlong render_context, int coordinate_count, uint64_t coordinate_data, int start_index)
 
 {
   int *buffer_count_ptr;
@@ -241,10 +241,10 @@ void RenderingSystem_ClearBuffer(longlong render_context)
 
 
 
-// 函数: void FUN_180293860(longlong param_1,undefined8 param_2,float param_3,undefined8 param_4,
+// 函数: void FUN_180293860(longlong param_1,uint64_t param_2,float param_3,uint64_t param_4,
 // 功能: 渲染系统缩放和初始化函数
 // 参数: param_1 - 渲染上下文指针, param_2 - 数据指针, param_3 - 缩放因子, param_4 - 数据指针2, param_5 - 数据指针3, param_6 - 索引数量
-void RenderingSystem_ScaleAndInitialize(longlong render_context, undefined8 data_ptr, float scale_factor, undefined8 data_ptr2, undefined8 data_ptr3, int index_count)
+void RenderingSystem_ScaleAndInitialize(longlong render_context, uint64_t data_ptr, float scale_factor, uint64_t data_ptr2, uint64_t data_ptr3, int index_count)
 
 {
   // 检查缩放因子是否为0
@@ -473,10 +473,10 @@ void RenderingSystem_ProcessRectangleArea(longlong render_context, float *start_
 
 
 
-// 函数: void FUN_180293ab9(undefined4 param_1)
+// 函数: void FUN_180293ab9(int32_t param_1)
 // 功能: 渲染系统坐标偏移处理函数（寄存器变量版本）
 // 参数: param_1 - 渲染上下文指针
-void RenderingSystem_ProcessCoordinateOffset(undefined4 render_context)
+void RenderingSystem_ProcessCoordinateOffset(int32_t render_context)
 
 {
   float *coord_ptr1;
@@ -540,21 +540,21 @@ void RenderingSystem_ProcessCoordinateOffset(undefined4 render_context)
 void RenderingSystem_ProcessDualCoordinates(void)
 
 {
-  undefined4 coord_x;
+  int32_t coord_x;
   int buffer_capacity;
   int current_count;
   int new_capacity;
   longlong render_context_reg;
   int *buffer_count_ptr;
-  undefined4 *coord_ptr1;
-  undefined4 *coord_ptr2;
+  int32_t *coord_ptr1;
+  int32_t *coord_ptr2;
   int default_capacity;
-  undefined4 coord_y;
+  int32_t coord_y;
   
   // 初始化寄存器变量（这些变量在实际调用时由调用者设置）
   render_context_reg = 0x2000;   // 示例地址，实际应根据上下文设置
-  coord_ptr1 = (undefined4 *)0x3000;  // 示例地址，实际应根据上下文设置
-  coord_ptr2 = (undefined4 *)0x3008;  // 示例地址，实际应根据上下文设置
+  coord_ptr1 = (int32_t *)0x3000;  // 示例地址，实际应根据上下文设置
+  coord_ptr2 = (int32_t *)0x3008;  // 示例地址，实际应根据上下文设置
   
   buffer_count_ptr = (int *)(render_context_reg + 0x80);
   FUN_18011d9a0(buffer_count_ptr);
@@ -620,20 +620,20 @@ void RenderingSystem_ProcessDualCoordinates(void)
 void RenderingSystem_ProcessDualCoordinates2(void)
 
 {
-  undefined4 coord_x;
+  int32_t coord_x;
   int buffer_capacity;
   int current_count;
   int new_capacity;
   int *buffer_count_ptr;
-  undefined4 *coord_ptr1;
-  undefined4 *coord_ptr2;
+  int32_t *coord_ptr1;
+  int32_t *coord_ptr2;
   int default_capacity;
-  undefined4 coord_y;
+  int32_t coord_y;
   
   // 初始化寄存器变量（这些变量在实际调用时由调用者设置）
   buffer_count_ptr = (int *)0x4000;  // 示例地址，实际应根据上下文设置
-  coord_ptr1 = (undefined4 *)0x5000;  // 示例地址，实际应根据上下文设置
-  coord_ptr2 = (undefined4 *)0x5008;  // 示例地址，实际应根据上下文设置
+  coord_ptr1 = (int32_t *)0x5000;  // 示例地址，实际应根据上下文设置
+  coord_ptr2 = (int32_t *)0x5008;  // 示例地址，实际应根据上下文设置
   coord_x = 0x6000;                   // 示例值，实际应根据上下文设置
   
   FUN_18011d9a0();
@@ -707,10 +707,10 @@ void RenderingSystem_NoOperation3(void)
 
 
 
-// 函数: void FUN_180293d20(longlong param_1,float *param_2,float *param_3,uint param_4,undefined4 param_5)
+// 函数: void FUN_180293d20(longlong param_1,float *param_2,float *param_3,uint param_4,int32_t param_5)
 // 功能: 渲染系统纹理坐标对齐处理函数
 // 参数: param_1 - 渲染上下文指针, param_2 - 起始纹理坐标, param_3 - 结束纹理坐标, param_4 - 渲染标志, param_5 - 纹理参数
-void RenderingSystem_AlignTextureCoordinates(longlong render_context, float *start_texcoord, float *end_texcoord, uint render_flags, undefined4 texture_param)
+void RenderingSystem_AlignTextureCoordinates(longlong render_context, float *start_texcoord, float *end_texcoord, uint render_flags, int32_t texture_param)
 
 {
   int *buffer_count_ptr;
@@ -775,7 +775,7 @@ void RenderingSystem_AlignTextureCoordinates(longlong render_context, float *sta
     *buffer_count_ptr = *buffer_count_ptr + 1;
     
     // 执行纹理坐标渲染
-    FUN_1802923e0(render_context, *(undefined8 *)(render_context + 0x88), *buffer_count_ptr, render_flags, 0, texture_param);
+    FUN_1802923e0(render_context, *(uint64_t *)(render_context + 0x88), *buffer_count_ptr, render_flags, 0, texture_param);
     *buffer_count_ptr = 0;
   }
   return;
@@ -785,10 +785,10 @@ void RenderingSystem_AlignTextureCoordinates(longlong render_context, float *sta
 
 
 
-// 函数: void FUN_180293d4c(float param_1,longlong param_2,float *param_3,undefined8 param_4,
+// 函数: void FUN_180293d4c(float param_1,longlong param_2,float *param_3,uint64_t param_4,
 // 功能: 渲染系统高级纹理坐标处理函数（寄存器变量版本）
 // 参数: param_1 - 坐标X, param_2 - 渲染上下文指针, param_3 - 纹理坐标数组, param_4 - 数据指针1, param_5 - 数据指针2, param_6 - 数据指针3
-void RenderingSystem_AdvancedTextureCoordProcess(float coord_x, longlong render_context, float *texture_coords, undefined8 data_ptr1, undefined8 data_ptr2, undefined8 data_ptr3)
+void RenderingSystem_AdvancedTextureCoordProcess(float coord_x, longlong render_context, float *texture_coords, uint64_t data_ptr1, uint64_t data_ptr2, uint64_t data_ptr3)
 
 {
   int *buffer_count_ptr;
@@ -799,15 +799,15 @@ void RenderingSystem_AdvancedTextureCoordProcess(float coord_x, longlong render_
   int current_count;
   longlong data_ptr_reg;
   longlong context_reg;
-  undefined4 render_flags;
+  int32_t render_flags;
   longlong context_reg2;
   int default_capacity;
-  undefined8 texture_data;
-  undefined4 color_r;
-  undefined4 color_g;
-  undefined4 color_b;
-  undefined4 color_a;
-  undefined4 stack_param;
+  uint64_t texture_data;
+  int32_t color_r;
+  int32_t color_g;
+  int32_t color_b;
+  int32_t color_a;
+  int32_t stack_param;
   
   // 初始化寄存器变量（这些变量在实际调用时由调用者设置）
   data_ptr_reg = (longlong)data_ptr1;
@@ -822,15 +822,15 @@ void RenderingSystem_AdvancedTextureCoordProcess(float coord_x, longlong render_
   stack_param = 0x12345678;
   
   // 设置纹理数据
-  *(undefined8 *)(data_ptr_reg + 0x10) = texture_data;
+  *(uint64_t *)(data_ptr_reg + 0x10) = texture_data;
   buffer_count_ptr = (int *)(context_reg + 0x80);
   buffer_capacity = *(int *)(context_reg + 0x84);
   
   // 设置颜色值
-  *(undefined4 *)(data_ptr_reg + -0x18) = color_r;
-  *(undefined4 *)(data_ptr_reg + -0x14) = color_g;
-  *(undefined4 *)(data_ptr_reg + -0x10) = color_b;
-  *(undefined4 *)(data_ptr_reg + -0xc) = color_a;
+  *(int32_t *)(data_ptr_reg + -0x18) = color_r;
+  *(int32_t *)(data_ptr_reg + -0x14) = color_g;
+  *(int32_t *)(data_ptr_reg + -0x10) = color_b;
+  *(int32_t *)(data_ptr_reg + -0xc) = color_a;
   default_capacity = 8;
   
   // 对齐坐标
@@ -855,7 +855,7 @@ void RenderingSystem_AdvancedTextureCoordProcess(float coord_x, longlong render_
   }
   
   // 存储纹理数据
-  *(undefined8 *)(*(longlong *)(context_reg + 0x88) + (longlong)current_count * 8) = data_ptr3;
+  *(uint64_t *)(*(longlong *)(context_reg + 0x88) + (longlong)current_count * 8) = data_ptr3;
   *buffer_count_ptr = *buffer_count_ptr + 1;
   
   texcoord_u = *texture_coords;
@@ -882,7 +882,7 @@ void RenderingSystem_AdvancedTextureCoordProcess(float coord_x, longlong render_
   *buffer_count_ptr = *buffer_count_ptr + 1;
   
   // 执行纹理渲染
-  FUN_1802923e0(stack_param, *(undefined8 *)(context_reg2 + 0x88), *buffer_count_ptr, render_flags, 0);
+  FUN_1802923e0(stack_param, *(uint64_t *)(context_reg2 + 0x88), *buffer_count_ptr, render_flags, 0);
   *buffer_count_ptr = 0;
   return;
 }
@@ -903,17 +903,17 @@ void RenderingSystem_AlignCoordinates(float coord_x, longlong render_context)
   int buffer_capacity;
   int new_capacity;
   int *buffer_count_ptr;
-  undefined4 render_flags;
+  int32_t render_flags;
   longlong context_reg;
   int default_capacity;
   float *coord_array_reg;
   float aligned_coord;
-  undefined4 color_r;
-  undefined4 color_g;
-  undefined4 color_b;
-  undefined4 color_a;
-  undefined8 texture_data;
-  undefined4 stack_param;
+  int32_t color_r;
+  int32_t color_g;
+  int32_t color_b;
+  int32_t color_a;
+  uint64_t texture_data;
+  int32_t stack_param;
   
   // 初始化寄存器变量（这些变量在实际调用时由调用者设置）
   data_ptr_reg = 0x7000;          // 示例地址，实际应根据上下文设置
@@ -929,10 +929,10 @@ void RenderingSystem_AlignCoordinates(float coord_x, longlong render_context)
   stack_param = 0x12345678;
   
   // 设置颜色值
-  *(undefined4 *)(data_ptr_reg + -0x18) = color_r;
-  *(undefined4 *)(data_ptr_reg + -0x14) = color_g;
-  *(undefined4 *)(data_ptr_reg + -0x10) = color_b;
-  *(undefined4 *)(data_ptr_reg + -0xc) = color_a;
+  *(int32_t *)(data_ptr_reg + -0x18) = color_r;
+  *(int32_t *)(data_ptr_reg + -0x14) = color_g;
+  *(int32_t *)(data_ptr_reg + -0x10) = color_b;
+  *(int32_t *)(data_ptr_reg + -0xc) = color_a;
   default_capacity = 8;
   
   // 对齐坐标
@@ -958,7 +958,7 @@ void RenderingSystem_AlignCoordinates(float coord_x, longlong render_context)
   }
   
   // 存储纹理数据
-  *(undefined8 *)(*(longlong *)(buffer_count_ptr + 2) + (longlong)current_count * 8) = texture_data;
+  *(uint64_t *)(*(longlong *)(buffer_count_ptr + 2) + (longlong)current_count * 8) = texture_data;
   *buffer_count_ptr = *buffer_count_ptr + 1;
   
   aligned_coord = *coord_array_reg;
@@ -985,7 +985,7 @@ void RenderingSystem_AlignCoordinates(float coord_x, longlong render_context)
   *buffer_count_ptr = *buffer_count_ptr + 1;
   
   // 执行坐标渲染
-  FUN_1802923e0(stack_param, *(undefined8 *)(context_reg + 0x88), *buffer_count_ptr, render_flags, 0);
+  FUN_1802923e0(stack_param, *(uint64_t *)(context_reg + 0x88), *buffer_count_ptr, render_flags, 0);
   *buffer_count_ptr = 0;
   return;
 }
@@ -994,19 +994,19 @@ void RenderingSystem_AlignCoordinates(float coord_x, longlong render_context)
 
 
 
-// 函数: void FUN_180293df5(undefined4 param_1,undefined8 param_2,int param_3,undefined8 param_4,
+// 函数: void FUN_180293df5(int32_t param_1,uint64_t param_2,int param_3,uint64_t param_4,
 // 功能: 渲染系统缓冲区扩展和数据处理函数（寄存器变量版本）
 // 参数: param_1 - 缓冲区指针, param_2 - 数据指针1, param_3 - 缓冲区大小, param_4 - 数据指针2, param_5 - 数据指针3, param_6 - 数据指针4
-void RenderingSystem_ExpandBufferAndProcessData(undefined4 buffer_ptr, undefined8 data_ptr1, int buffer_size, undefined8 data_ptr2, undefined8 data_ptr3, undefined8 data_ptr4)
+void RenderingSystem_ExpandBufferAndProcessData(int32_t buffer_ptr, uint64_t data_ptr1, int buffer_size, uint64_t data_ptr2, uint64_t data_ptr3, uint64_t data_ptr4)
 
 {
   int current_size;
   int new_size;
   int *buffer_count_ptr;
-  undefined4 render_flags;
+  int32_t render_flags;
   longlong context_reg;
   int expanded_size;
-  undefined4 stack_param;
+  int32_t stack_param;
   
   // 初始化寄存器变量（这些变量在实际调用时由调用者设置）
   current_size = buffer_size;
@@ -1028,11 +1028,11 @@ void RenderingSystem_ExpandBufferAndProcessData(undefined4 buffer_ptr, undefined
   expand_render_buffer(buffer_ptr, new_size);
   
   // 存储数据
-  *(undefined8 *)(*(longlong *)(buffer_count_ptr + 2) + (longlong)*buffer_count_ptr * 8) = data_ptr4;
+  *(uint64_t *)(*(longlong *)(buffer_count_ptr + 2) + (longlong)*buffer_count_ptr * 8) = data_ptr4;
   *buffer_count_ptr = *buffer_count_ptr + 1;
   
   // 执行数据处理
-  FUN_1802923e0(stack_param, *(undefined8 *)(context_reg + 0x88), *buffer_count_ptr, render_flags, 0);
+  FUN_1802923e0(stack_param, *(uint64_t *)(context_reg + 0x88), *buffer_count_ptr, render_flags, 0);
   *buffer_count_ptr = 0;
   return;
 }
@@ -1054,10 +1054,10 @@ void RenderingSystem_NoOperation4(void)
 
 
 
-// 函数: void FUN_180293e80(longlong param_1,float *param_2,float *param_3,undefined4 param_4,
+// 函数: void FUN_180293e80(longlong param_1,float *param_2,float *param_3,int32_t param_4,
 // 功能: 渲染系统纹理坐标精确对齐处理函数
 // 参数: param_1 - 渲染上下文指针, param_2 - 起始坐标, param_3 - 结束坐标, param_4 - 渲染标志, param_5 - 参数1, param_6 - 参数2, param_7 - 参数3
-void RenderingSystem_PreciseTextureCoordAlignment(longlong render_context, float *start_coord, float *end_coord, undefined4 render_flags, undefined4 param1, undefined4 param2, undefined4 param3)
+void RenderingSystem_PreciseTextureCoordAlignment(longlong render_context, float *start_coord, float *end_coord, int32_t render_flags, int32_t param1, int32_t param2, int32_t param3)
 
 {
   float end_coord_x;
@@ -1085,10 +1085,10 @@ void RenderingSystem_PreciseTextureCoordAlignment(longlong render_context, float
   FUN_1802939e0(0x3f000000, &start_coord_x, &end_coord_x, param1, param2);
   
   // 执行纹理渲染
-  FUN_1802923e0(render_context, *(undefined8 *)(render_context + 0x88), *(undefined4 *)(render_context + 0x80), render_flags, 1, param3);
+  FUN_1802923e0(render_context, *(uint64_t *)(render_context + 0x88), *(int32_t *)(render_context + 0x80), render_flags, 1, param3);
   
   // 重置缓冲区计数器
-  *(undefined4 *)(render_context + 0x80) = 0;
+  *(int32_t *)(render_context + 0x80) = 0;
   return;
 }
 
@@ -1096,19 +1096,19 @@ void RenderingSystem_PreciseTextureCoordAlignment(longlong render_context, float
 
 
 
-// 函数: void FUN_180293f50(longlong param_1,undefined8 *param_2,undefined8 *param_3,uint param_4,
+// 函数: void FUN_180293f50(longlong param_1,uint64_t *param_2,uint64_t *param_3,uint param_4,
 // 功能: 渲染系统四边形顶点处理函数
 // 参数: param_1 - 渲染上下文指针, param_2 - 顶点数据数组1, param_3 - 顶点数据数组2, param_4 - 渲染标志, param_5 - 缩放因子, param_6 - 渲染参数
-void RenderingSystem_ProcessQuadVertices(longlong render_context, undefined8 *vertex_data1, undefined8 *vertex_data2, uint render_flags, float scale_factor, undefined4 render_param)
+void RenderingSystem_ProcessQuadVertices(longlong render_context, uint64_t *vertex_data1, uint64_t *vertex_data2, uint render_flags, float scale_factor, int32_t render_param)
 
 {
-  undefined4 vertex_x1;
-  undefined4 vertex_y1;
-  undefined4 vertex_x2;
-  undefined4 vertex_y2;
-  undefined4 render_flag1;
-  undefined4 render_flag2;
-  undefined4 render_flag3;
+  int32_t vertex_x1;
+  int32_t vertex_y1;
+  int32_t vertex_x2;
+  int32_t vertex_y2;
+  int32_t render_flag1;
+  int32_t render_flag2;
+  int32_t render_flag3;
   short base_index;
   longlong vertex_buffer_ptr;
   
@@ -1118,12 +1118,12 @@ void RenderingSystem_ProcessQuadVertices(longlong render_context, undefined8 *ve
       // 直接渲染模式：处理四边形顶点索引
       allocate_index_buffer(0, 6, 4);
       base_index = *(short *)(render_context + 0x48);
-      vertex_x1 = *(undefined4 *)vertex_data2;
-      vertex_y1 = *(undefined4 *)((longlong)vertex_data1 + 4);
-      vertex_x2 = *(undefined4 *)vertex_data1;
-      render_flag2 = (*(undefined4 **)(render_context + 0x38))[1];
-      render_flag1 = **(undefined4 **)(render_context + 0x38);
-      render_flag3 = *(undefined4 *)((longlong)vertex_data2 + 4);
+      vertex_x1 = *(int32_t *)vertex_data2;
+      vertex_y1 = *(int32_t *)((longlong)vertex_data1 + 4);
+      vertex_x2 = *(int32_t *)vertex_data1;
+      render_flag2 = (*(int32_t **)(render_context + 0x38))[1];
+      render_flag1 = **(int32_t **)(render_context + 0x38);
+      render_flag3 = *(int32_t *)((longlong)vertex_data2 + 4);
       
       // 设置三角形索引（两个三角形组成四边形）
       **(short **)(render_context + 0x58) = base_index;
@@ -1134,35 +1134,35 @@ void RenderingSystem_ProcessQuadVertices(longlong render_context, undefined8 *ve
       *(short *)(*(longlong *)(render_context + 0x58) + 10) = base_index + 3;
       
       // 处理第一个顶点
-      **(undefined8 **)(render_context + 0x50) = *vertex_data1;
+      **(uint64_t **)(render_context + 0x50) = *vertex_data1;
       vertex_buffer_ptr = *(longlong *)(render_context + 0x50);
-      *(undefined4 *)(vertex_buffer_ptr + 8) = render_flag1;
-      *(undefined4 *)(vertex_buffer_ptr + 0xc) = render_flag2;
+      *(int32_t *)(vertex_buffer_ptr + 8) = render_flag1;
+      *(int32_t *)(vertex_buffer_ptr + 0xc) = render_flag2;
       *(uint *)(*(longlong *)(render_context + 0x50) + 0x10) = render_flags;
       
       // 处理第二个顶点
       vertex_buffer_ptr = *(longlong *)(render_context + 0x50);
-      *(undefined4 *)(vertex_buffer_ptr + 0x14) = vertex_x1;
-      *(undefined4 *)(vertex_buffer_ptr + 0x18) = vertex_y1;
+      *(int32_t *)(vertex_buffer_ptr + 0x14) = vertex_x1;
+      *(int32_t *)(vertex_buffer_ptr + 0x18) = vertex_y1;
       vertex_buffer_ptr = *(longlong *)(render_context + 0x50);
-      *(undefined4 *)(vertex_buffer_ptr + 0x1c) = render_flag1;
-      *(undefined4 *)(vertex_buffer_ptr + 0x20) = render_flag2;
+      *(int32_t *)(vertex_buffer_ptr + 0x1c) = render_flag1;
+      *(int32_t *)(vertex_buffer_ptr + 0x20) = render_flag2;
       *(uint *)(*(longlong *)(render_context + 0x50) + 0x24) = render_flags;
       
       // 处理第三个顶点
-      *(undefined8 *)(*(longlong *)(render_context + 0x50) + 0x28) = *vertex_data2;
+      *(uint64_t *)(*(longlong *)(render_context + 0x50) + 0x28) = *vertex_data2;
       vertex_buffer_ptr = *(longlong *)(render_context + 0x50);
-      *(undefined4 *)(vertex_buffer_ptr + 0x30) = render_flag1;
-      *(undefined4 *)(vertex_buffer_ptr + 0x34) = render_flag2;
+      *(int32_t *)(vertex_buffer_ptr + 0x30) = render_flag1;
+      *(int32_t *)(vertex_buffer_ptr + 0x34) = render_flag2;
       *(uint *)(*(longlong *)(render_context + 0x50) + 0x38) = render_flags;
       
       // 处理第四个顶点
       vertex_buffer_ptr = *(longlong *)(render_context + 0x50);
-      *(undefined4 *)(vertex_buffer_ptr + 0x3c) = vertex_x2;
-      *(undefined4 *)(vertex_buffer_ptr + 0x40) = render_flag3;
+      *(int32_t *)(vertex_buffer_ptr + 0x3c) = vertex_x2;
+      *(int32_t *)(vertex_buffer_ptr + 0x40) = render_flag3;
       vertex_buffer_ptr = *(longlong *)(render_context + 0x50);
-      *(undefined4 *)(vertex_buffer_ptr + 0x44) = render_flag1;
-      *(undefined4 *)(vertex_buffer_ptr + 0x48) = render_flag2;
+      *(int32_t *)(vertex_buffer_ptr + 0x44) = render_flag1;
+      *(int32_t *)(vertex_buffer_ptr + 0x48) = render_flag2;
       *(uint *)(*(longlong *)(render_context + 0x50) + 0x4c) = render_flags;
       
       // 更新缓冲区指针
@@ -1173,8 +1173,8 @@ void RenderingSystem_ProcessQuadVertices(longlong render_context, undefined8 *ve
     else {
       // 缩放处理模式：先处理矩形区域，再处理顶点索引
       FUN_1802939e0(0, vertex_data1, vertex_data2, scale_factor, render_param);
-      FUN_180293190(render_context, *(undefined8 *)(render_context + 0x88), *(undefined4 *)(render_context + 0x80), render_flags);
-      *(undefined4 *)(render_context + 0x80) = 0;
+      FUN_180293190(render_context, *(uint64_t *)(render_context + 0x88), *(int32_t *)(render_context + 0x80), render_flags);
+      *(int32_t *)(render_context + 0x80) = 0;
     }
   }
   return;
@@ -1184,29 +1184,29 @@ void RenderingSystem_ProcessQuadVertices(longlong render_context, undefined8 *ve
 
 
 
-// 函数: void FUN_180293fc5(undefined8 param_1,undefined8 param_2)
+// 函数: void FUN_180293fc5(uint64_t param_1,uint64_t param_2)
 // 功能: 渲染系统四边形顶点处理函数（寄存器变量版本）
 // 参数: param_1 - 顶点数量, param_2 - 顶点数据
-void RenderingSystem_ProcessQuadVerticesReg(undefined8 vertex_count, undefined8 vertex_data)
+void RenderingSystem_ProcessQuadVerticesReg(uint64_t vertex_count, uint64_t vertex_data)
 
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  undefined4 uVar4;
-  undefined4 uVar5;
-  undefined4 uVar6;
+  int32_t uVar1;
+  int32_t uVar2;
+  int32_t uVar3;
+  int32_t uVar4;
+  int32_t uVar5;
+  int32_t uVar6;
   short sVar7;
   longlong lVar8;
   longlong unaff_RBX;
-  undefined8 *unaff_RBP;
-  undefined8 *unaff_RSI;
-  undefined4 unaff_EDI;
+  uint64_t *unaff_RBP;
+  uint64_t *unaff_RSI;
+  int32_t unaff_EDI;
   
   // 初始化寄存器变量（这些变量在实际调用时由调用者设置）
   unaff_RBX = 0xC000;      // 示例地址，实际应根据上下文设置
-  unaff_RBP = (undefined8 *)vertex_data;
-  unaff_RSI = (undefined8 *)(vertex_data + 8);
+  unaff_RBP = (uint64_t *)vertex_data;
+  unaff_RSI = (uint64_t *)(vertex_data + 8);
   unaff_EDI = 0xFFFFFFFF;
   
   // 注意：这是一个寄存器变量版本的函数，实际使用时需要由调用者设置正确的寄存器值
@@ -1232,10 +1232,10 @@ void RenderingSystem_NoOperation5(void)
 
 
 
-// 函数: void FUN_1802940f0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
+// 函数: void FUN_1802940f0(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4,
 // 功能: 渲染系统三坐标点处理函数
 // 参数: param_1 - 渲染上下文指针, param_2 - 数据指针1, param_3 - 数据指针2, param_4 - 数据指针3, param_5 - 渲染标志
-void RenderingSystem_ProcessTripleCoordinates(longlong render_context, undefined8 data_ptr1, undefined8 data_ptr2, undefined8 data_ptr3, uint render_flags)
+void RenderingSystem_ProcessTripleCoordinates(longlong render_context, uint64_t data_ptr1, uint64_t data_ptr2, uint64_t data_ptr3, uint render_flags)
 
 {
   // 检查渲染标志是否有效
@@ -1246,9 +1246,9 @@ void RenderingSystem_ProcessTripleCoordinates(longlong render_context, undefined
     FUN_18011d9a0(render_context + 0x80, data_ptr2);
     FUN_18011d9a0(render_context + 0x80, data_ptr3);
     // 处理顶点索引缓冲区
-    FUN_180293190(render_context, *(undefined8 *)(render_context + 0x88), *(undefined4 *)(render_context + 0x80), render_flags);
+    FUN_180293190(render_context, *(uint64_t *)(render_context + 0x88), *(int32_t *)(render_context + 0x80), render_flags);
     // 重置缓冲区计数器
-    *(undefined4 *)(render_context + 0x80) = 0;
+    *(int32_t *)(render_context + 0x80) = 0;
   }
   return;
 }
@@ -1274,7 +1274,7 @@ void RenderingSystem_ProcessTripleCoordinatesReg(void)
   // 处理顶点索引缓冲区
   FUN_180293190();
   // 重置缓冲区计数器
-  *(undefined4 *)(render_context_reg + 0x80) = 0;
+  *(int32_t *)(render_context_reg + 0x80) = 0;
   return;
 }
 
@@ -1295,10 +1295,10 @@ void RenderingSystem_NoOperation6(void)
 
 
 
-// 函数: void FUN_180294180(longlong param_1,undefined8 param_2,float param_3,uint param_4,undefined8 param_5
+// 函数: void FUN_180294180(longlong param_1,uint64_t param_2,float param_3,uint param_4,uint64_t param_5
 // 功能: 渲染系统缩放坐标处理函数
 // 参数: param_1 - 渲染上下文指针, param_2 - 数据指针, param_3 - 缩放因子, param_4 - 渲染标志, param_5 - 数据指针2, param_6 - 渲染参数
-void RenderingSystem_ProcessScaledCoordinates(longlong render_context, undefined8 data_ptr, float scale_factor, uint render_flags, undefined8 data_ptr2, undefined4 render_param)
+void RenderingSystem_ProcessScaledCoordinates(longlong render_context, uint64_t data_ptr, float scale_factor, uint render_flags, uint64_t data_ptr2, int32_t render_param)
 
 {
   // 检查渲染标志是否有效
@@ -1306,9 +1306,9 @@ void RenderingSystem_ProcessScaledCoordinates(longlong render_context, undefined
     // 执行缩放和初始化
     FUN_180293860(0x40bc7edd, data_ptr, scale_factor - 0.5, 0, 0x40bc7edd, 0xf);
     // 执行渲染
-    FUN_1802923e0(render_context, *(undefined8 *)(render_context + 0x88), *(undefined4 *)(render_context + 0x80), render_flags, 1, render_param);
+    FUN_1802923e0(render_context, *(uint64_t *)(render_context + 0x88), *(int32_t *)(render_context + 0x80), render_flags, 1, render_param);
     // 重置缓冲区计数器
-    *(undefined4 *)(render_context + 0x80) = 0;
+    *(int32_t *)(render_context + 0x80) = 0;
   }
   return;
 }
@@ -1317,15 +1317,15 @@ void RenderingSystem_ProcessScaledCoordinates(longlong render_context, undefined
 
 
 
-// 函数: void FUN_180294200(longlong param_1,longlong param_2,float param_3,undefined8 *param_4,uint param_5,
+// 函数: void FUN_180294200(longlong param_1,longlong param_2,float param_3,uint64_t *param_4,uint param_5,
 // 功能: 渲染系统高级文本处理函数
 // 参数: param_1 - 渲染上下文指针, param_2 - 字体数据指针, param_3 - 缩放因子, param_4 - 顶点数据数组, param_5 - 渲染标志, param_6 - 文本起始指针, param_7 - 文本结束指针, param_8 - 渲染参数, param_9 - 颜色数组
-void RenderingSystem_AdvancedTextProcessing(longlong render_context, longlong font_data, float scale_factor, undefined8 *vertex_data, uint render_flags, longlong text_start, longlong text_end, undefined4 render_param, float *color_array)
+void RenderingSystem_AdvancedTextProcessing(longlong render_context, longlong font_data, float scale_factor, uint64_t *vertex_data, uint render_flags, longlong text_start, longlong text_end, int32_t render_param, float *color_array)
 
 {
-  undefined8 *texture_data_ptr;
-  undefined8 texture_coord1;
-  undefined8 texture_coord2;
+  uint64_t *texture_data_ptr;
+  uint64_t texture_coord1;
+  uint64_t texture_coord2;
   
   // 检查渲染标志是否有效
   if ((render_flags & 0xff000000) != 0) {
@@ -1349,7 +1349,7 @@ void RenderingSystem_AdvancedTextProcessing(longlong render_context, longlong fo
       }
       
       // 获取纹理坐标数据
-      texture_data_ptr = (undefined8 *)
+      texture_data_ptr = (uint64_t *)
                (*(longlong *)(render_context + 0x68) + -0x10 + (longlong)*(int *)(render_context + 0x60) * 0x10);
       texture_coord1 = *texture_data_ptr;
       texture_coord2 = texture_data_ptr[1];
@@ -1383,18 +1383,18 @@ void RenderingSystem_AdvancedTextProcessing(longlong render_context, longlong fo
 
 
 
-// 函数: void FUN_180294330(longlong param_1,undefined8 *param_2,uint param_3,longlong param_4)
+// 函数: void FUN_180294330(longlong param_1,uint64_t *param_2,uint param_3,longlong param_4)
 // 功能: 渲染系统文本处理函数
 // 参数: param_1 - 渲染上下文指针, param_2 - 顶点数据数组, param_3 - 渲染标志, param_4 - 文本指针
-void RenderingSystem_ProcessText(longlong render_context, undefined8 *vertex_data, uint render_flags, longlong text_ptr)
+void RenderingSystem_ProcessText(longlong render_context, uint64_t *vertex_data, uint render_flags, longlong text_ptr)
 
 {
-  undefined4 *texture_data_ptr;
+  int32_t *texture_data_ptr;
   longlong text_length;
-  undefined4 texture_coord1;
-  undefined4 texture_coord2;
-  undefined4 texture_coord3;
-  undefined4 texture_coord4;
+  int32_t texture_coord1;
+  int32_t texture_coord2;
+  int32_t texture_coord3;
+  int32_t texture_coord4;
   
   // 检查渲染标志是否有效
   if ((render_flags & 0xff000000) != 0) {
@@ -1407,7 +1407,7 @@ void RenderingSystem_ProcessText(longlong render_context, undefined8 *vertex_dat
     // 确保文本不为空
     if (text_ptr != text_length + text_ptr) {
       // 获取纹理坐标数据
-      texture_data_ptr = (undefined4 *)
+      texture_data_ptr = (int32_t *)
                (*(longlong *)(render_context + 0x68) + -0x10 + (longlong)*(int *)(render_context + 0x60) * 0x10);
       texture_coord1 = *texture_data_ptr;
       texture_coord2 = texture_data_ptr[1];
@@ -1415,8 +1415,8 @@ void RenderingSystem_ProcessText(longlong render_context, undefined8 *vertex_dat
       texture_coord4 = texture_data_ptr[3];
       
       // 执行文本渲染
-      FUN_180297590(*(undefined8 *)(*(longlong *)(render_context + 0x38) + 8), render_context,
-                    *(undefined4 *)(*(longlong *)(render_context + 0x38) + 0x10), *vertex_data, render_flags,
+      FUN_180297590(*(uint64_t *)(*(longlong *)(render_context + 0x38) + 8), render_context,
+                    *(int32_t *)(*(longlong *)(render_context + 0x38) + 0x10), *vertex_data, render_flags,
                     &texture_coord1, text_ptr, text_length + text_ptr, 0, 0);
     }
   }

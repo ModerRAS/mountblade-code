@@ -27,7 +27,7 @@ void cleanup_thread_local_storage(longlong *thread_context)
   longlong *tls_ptr;
   char cleanup_status;
   int lock_result;
-  undefined8 timeout_param;
+  uint64_t timeout_param;
   longlong *queue_node;
   char lock_acquired;
   
@@ -39,7 +39,7 @@ void cleanup_thread_local_storage(longlong *thread_context)
       cleanup_status = (**(code **)(*thread_context + 0x20))(thread_context, 1);
       if (cleanup_status == '\0') {
         // 释放资源
-        release_resource_handle(*(undefined8 *)(*tls_ptr + 0x10), 0);
+        release_resource_handle(*(uint64_t *)(*tls_ptr + 0x10), 0);
         queue_node = thread_context + 0x33;
         lock_acquired = 0;
         lock_result = _Mtx_lock();
@@ -50,12 +50,12 @@ void cleanup_thread_local_storage(longlong *thread_context)
         
         // 处理队列状态
         if ((char)thread_context[0x3d] == '\x01') {
-          *(undefined1 *)(thread_context + 0x3d) = 0;
+          *(int8_t *)(thread_context + 0x3d) = 0;
         }
         else {
           timeout_param = 0x32;
           process_queue_item(thread_context + 0x2a, &queue_node, &timeout_param);
-          *(undefined1 *)(thread_context + 0x3d) = 0;
+          *(int8_t *)(thread_context + 0x3d) = 0;
           if (lock_acquired == '\0') goto cleanup_complete;
         }
         
@@ -79,12 +79,12 @@ void cleanup_thread_local_storage(longlong *thread_context)
  * 此函数从工作队列中取出任务进行处理，
  * 涉及复杂的锁机制和内存管理操作
  */
-undefined8 process_work_queue_item(longlong queue_manager, char should_process)
+uint64_t process_work_queue_item(longlong queue_manager, char should_process)
 {
   longlong queue_capacity;
   int lock_result;
   longlong *task_node;
-  undefined8 process_result;
+  uint64_t process_result;
   longlong *processed_task;
   
   processed_task = (longlong *)0x0;
@@ -128,7 +128,7 @@ undefined8 process_work_queue_item(longlong queue_manager, char should_process)
           queue_capacity = *task_node;
           *(longlong *)(queue_manager + 0xb0) = queue_capacity;
           *(longlong *)(queue_manager + 0xb8) = queue_capacity + MAX_QUEUE_SIZE;
-          *(undefined8 *)(queue_manager + 0xa8) = *(undefined8 *)(queue_manager + 0xb0);
+          *(uint64_t *)(queue_manager + 0xa8) = *(uint64_t *)(queue_manager + 0xb0);
         }
         else {
           *(longlong **)(queue_manager + 0xa8) = task_node + 1;
@@ -175,15 +175,15 @@ processing_complete:
  * 
  * 此函数等待指定对象并处理相关任务
  */
-bool wait_and_process_object(longlong sync_object, undefined8 timeout, undefined8 param3, undefined8 param4)
+bool wait_and_process_object(longlong sync_object, uint64_t timeout, uint64_t param3, uint64_t param4)
 {
   longlong *processed_item;
   char process_status;
   longlong *work_item;
   
   work_item = (longlong *)0x0;
-  WaitForSingleObject(**(undefined8 **)(sync_object + 0x1f0), 1, param3, param4, TIMEOUT_INFINITE);
-  process_status = process_queue_item(*(undefined8 *)(sync_object + 0x60), sync_object + 0x78, &work_item);
+  WaitForSingleObject(**(uint64_t **)(sync_object + 0x1f0), 1, param3, param4, TIMEOUT_INFINITE);
+  process_status = process_queue_item(*(uint64_t *)(sync_object + 0x60), sync_object + 0x78, &work_item);
   processed_item = work_item;
   if (process_status != '\0') {
     (**(code **)(*work_item + 0x60))(work_item);
@@ -347,7 +347,7 @@ longlong *cleanup_pointer_resource(longlong *target_ptr)
  * 此函数向队列中添加新元素，
  * 涉及复杂的内存管理和同步操作
  */
-undefined8 add_to_queue(longlong queue_manager, undefined8 new_element)
+uint64_t add_to_queue(longlong queue_manager, uint64_t new_element)
 {
   longlong *queue_position;
   ulonglong *queue_count;
@@ -400,8 +400,8 @@ undefined8 add_to_queue(longlong queue_manager, undefined8 new_element)
       UNLOCK();
       
       if (queue_capacity == SEMAPHORE_MAX_COUNT) {
-        *(undefined8 *)(current_count + 8) = 0;
-        func_0x000180060c10(*(undefined8 *)(queue_manager + 0x50), queue_end);
+        *(uint64_t *)(current_count + 8) = 0;
+        func_0x000180060c10(*(uint64_t *)(queue_manager + 0x50), queue_end);
       }
       return 1;
     }
@@ -441,7 +441,7 @@ undefined8 add_to_queue(longlong queue_manager, undefined8 new_element)
         (**(code **)(*queue_position + 0x38))();
       }
       
-      *(undefined1 *)((current_count - element_index) + 0x12f) = 1;
+      *(int8_t *)((current_count - element_index) + 0x12f) = 1;
       return 1;
     }
   }
@@ -458,7 +458,7 @@ undefined8 add_to_queue(longlong queue_manager, undefined8 new_element)
  * 
  * 此函数批量处理队列中的元素
  */
-undefined8 batch_process_queue_elements(void)
+uint64_t batch_process_queue_elements(void)
 {
   ulonglong *process_count;
   ulonglong batch_size;
@@ -494,8 +494,8 @@ undefined8 batch_process_queue_elements(void)
   UNLOCK();
   
   if (base_address == SEMAPHORE_MAX_COUNT) {
-    *(undefined8 *)(base_address + 8) = 0;
-    func_0x000180060c10(*(undefined8 *)(unaff_RDI + 0x50), queue_end);
+    *(uint64_t *)(base_address + 8) = 0;
+    func_0x000180060c10(*(uint64_t *)(unaff_RDI + 0x50), queue_end);
   }
   return 1;
 }
@@ -506,7 +506,7 @@ undefined8 batch_process_queue_elements(void)
  * 
  * 此函数增加队列处理的计数器
  */
-undefined1 increment_queue_process_count(void)
+int8_t increment_queue_process_count(void)
 {
   longlong unaff_RSI;
   longlong unaff_RDI;
@@ -526,7 +526,7 @@ undefined1 increment_queue_process_count(void)
  * 
  * 此函数处理队列中的请求
  */
-undefined8 process_queue_request(undefined8 *queue_handle, longlong request_data, undefined8 process_context)
+uint64_t process_queue_request(uint64_t *queue_handle, longlong request_data, uint64_t process_context)
 {
   char request_valid;
   longlong *queue_node;
@@ -579,7 +579,7 @@ undefined8 process_queue_request(undefined8 *queue_handle, longlong request_data
       base_address = next_node[1];
     }
     
-    *(undefined4 *)(request_data + 8) = 1;
+    *(int32_t *)(request_data + 8) = 1;
     current_node = next_node + 1;
     if (next_node == (longlong *)0x0) {
       current_node = next_node;
@@ -607,14 +607,14 @@ undefined8 process_queue_request(undefined8 *queue_handle, longlong request_data
  * 
  * 此函数处理带超时的队列请求
  */
-bool process_timed_queue_request(longlong sync_object, undefined8 timeout, undefined8 param3, undefined8 param4)
+bool process_timed_queue_request(longlong sync_object, uint64_t timeout, uint64_t param3, uint64_t param4)
 {
   longlong *processed_item;
   char process_status;
   longlong *work_item;
   
   work_item = (longlong *)0x0;
-  process_status = process_queue_request(*(undefined8 *)(sync_object + 0x60), sync_object + 0x78, &work_item, param4, TIMEOUT_INFINITE);
+  process_status = process_queue_request(*(uint64_t *)(sync_object + 0x60), sync_object + 0x78, &work_item, param4, TIMEOUT_INFINITE);
   processed_item = work_item;
   if (process_status != '\0') {
     (**(code **)(*work_item + 0x60))(work_item);
@@ -645,7 +645,7 @@ void expand_queue_capacity(longlong *queue_header, longlong *new_element)
   ulonglong expand_size;
   longlong new_queue_size;
   longlong new_base_address;
-  undefined8 allocation_flags;
+  uint64_t allocation_flags;
   
   allocation_flags = TIMEOUT_INFINITE;
   read_position = (longlong *)queue_header[6];
@@ -699,7 +699,7 @@ void expand_queue_capacity(longlong *queue_header, longlong *new_element)
     }
     
     allocation_flags = allocate_queue_memory(_DAT_180c8ed18, MAX_QUEUE_SIZE, (char)queue_header[10]);
-    *(undefined8 *)(queue_header[9] + 8) = allocation_flags;
+    *(uint64_t *)(queue_header[9] + 8) = allocation_flags;
     *(longlong **)queue_header[6] = new_element;
     queue_size = queue_header[9];
     queue_header[9] = queue_size + 8;
@@ -728,15 +728,15 @@ void expand_queue_capacity(longlong *queue_header, longlong *new_element)
  * 
  * 此函数初始化队列操作
  */
-void initialize_queue_operation(longlong queue_manager, longlong *queue_data, undefined8 param3, undefined8 param4)
+void initialize_queue_operation(longlong queue_manager, longlong *queue_data, uint64_t param3, uint64_t param4)
 {
-  undefined8 *semaphore_handle;
+  uint64_t *semaphore_handle;
   longlong semaphore_count;
   longlong initial_count;
   int lock_result;
   longlong lock_address;
-  undefined8 operation_flags;
-  undefined1 lock_acquired;
+  uint64_t operation_flags;
+  int8_t lock_acquired;
   
   operation_flags = TIMEOUT_INFINITE;
   lock_address = queue_manager + 0xf0;
@@ -751,7 +751,7 @@ void initialize_queue_operation(longlong queue_manager, longlong *queue_data, un
   *(int *)(queue_manager + 0x140) = *(int *)(queue_manager + 0x140) + 1;
   UNLOCK();
   
-  semaphore_handle = *(undefined8 **)(queue_manager + 0x1f0);
+  semaphore_handle = *(uint64_t **)(queue_manager + 0x1f0);
   semaphore_count = *(longlong *)(_DAT_180c82868 + 0x10);
   initial_count = *(longlong *)(_DAT_180c82868 + 8);
   
@@ -777,7 +777,7 @@ void initialize_queue_operation(longlong queue_manager, longlong *queue_data, un
  * 
  * 此函数关闭指定的句柄
  */
-void close_handle(undefined8 *handle)
+void close_handle(uint64_t *handle)
 {
   CloseHandle(*handle);
   return;
@@ -789,7 +789,7 @@ void close_handle(undefined8 *handle)
  * 
  * 此函数重置队列管理器到初始状态
  */
-void reset_queue_manager(undefined8 *manager)
+void reset_queue_manager(uint64_t *manager)
 {
   *manager = &UNK_180a3cf50;
   if (*(char *)((longlong)manager + 0xb1) != '\0') {
@@ -802,14 +802,14 @@ void reset_queue_manager(undefined8 *manager)
     FUN_18064e900();
   }
   manager[8] = 0;
-  *(undefined4 *)(manager + 10) = 0;
+  *(int32_t *)(manager + 10) = 0;
   manager[7] = &UNK_18098bcb0;
   manager[1] = &UNK_180a3c3e0;
   if (manager[2] != 0) {
     FUN_18064e900();
   }
   manager[2] = 0;
-  *(undefined4 *)(manager + 4) = 0;
+  *(int32_t *)(manager + 4) = 0;
   manager[1] = &UNK_18098bcb0;
   return;
 }
@@ -824,9 +824,9 @@ void reset_queue_manager(undefined8 *manager)
  * 
  * 此函数释放管理器占用的资源
  */
-undefined8 *release_manager_resources(undefined8 *manager, ulonglong flags, undefined8 param3, undefined8 param4)
+uint64_t *release_manager_resources(uint64_t *manager, ulonglong flags, uint64_t param3, uint64_t param4)
 {
-  undefined8 release_flags;
+  uint64_t release_flags;
   
   release_flags = TIMEOUT_INFINITE;
   *manager = &UNK_180a3cf50;
@@ -848,25 +848,25 @@ undefined8 *release_manager_resources(undefined8 *manager, ulonglong flags, unde
  * 
  * 此函数初始化引擎的核心组件
  */
-void initialize_engine_core(undefined8 engine_param, longlong config_data)
+void initialize_engine_core(uint64_t engine_param, longlong config_data)
 {
   longlong system_address;
   longlong engine_base;
-  undefined8 *component_handle;
-  undefined8 local_config[32];
+  uint64_t *component_handle;
+  uint64_t local_config[32];
   longlong config_size;
-  undefined8 *config_ptr;
-  undefined1 temp_config[8];
+  uint64_t *config_ptr;
+  int8_t temp_config[8];
   longlong config_offset;
   uint config_length;
   longlong stack_config;
-  undefined1 buffer_config[80];
-  undefined8 buffer_flags;
-  undefined *stack_pointer;
-  undefined1 *config_pointer;
-  undefined4 config_type;
-  undefined1 local_buffer[88];
-  undefined1 large_buffer[256];
+  int8_t buffer_config[80];
+  uint64_t buffer_flags;
+  void *stack_pointer;
+  int8_t *config_pointer;
+  int32_t config_type;
+  int8_t local_buffer[88];
+  int8_t large_buffer[256];
   ulonglong checksum;
   
   system_address = _DAT_180c86928;
@@ -880,7 +880,7 @@ void initialize_engine_core(undefined8 engine_param, longlong config_data)
   config_type = 6;
   strcpy_s(local_buffer, 0x10, &UNK_1809fe2c0);
   
-  component_handle = (undefined8 *)allocate_engine_component(_DAT_180c8ed18, 0x208, 8, 3);
+  component_handle = (uint64_t *)allocate_engine_component(_DAT_180c8ed18, 0x208, 8, 3);
   config_size = engine_base + 0x70;
   config_ptr = component_handle;
   initialize_engine_component(component_handle, &stack_pointer, 3, engine_base + 0x2e0);
@@ -888,14 +888,14 @@ void initialize_engine_core(undefined8 engine_param, longlong config_data)
   config_ptr = component_handle;
   configure_engine_component(component_handle);
   register_engine_component(engine_base + 0x48, &config_ptr);
-  *(undefined8 **)(system_address + 400) = component_handle;
+  *(uint64_t **)(system_address + 400) = component_handle;
   
   stack_pointer = &UNK_18098bcb0;
   setup_engine_config(_DAT_180c86870 + 0x170, temp_config, &DAT_1809fc8c8);
   
   if (0 < *(int *)(config_data + 0x10)) {
     expand_engine_config(temp_config, config_length + *(int *)(config_data + 0x10));
-    memcpy((ulonglong)config_length + config_offset, *(undefined8 *)(config_data + 8), (longlong)(*(int *)(config_data + 0x10) + 1));
+    memcpy((ulonglong)config_length + config_offset, *(uint64_t *)(config_data + 8), (longlong)(*(int *)(config_data + 0x10) + 1));
   }
   
   process_engine_config(buffer_config, temp_config);
@@ -911,10 +911,10 @@ void initialize_engine_core(undefined8 engine_param, longlong config_data)
  */
 void process_engine_event(longlong *event_data)
 {
-  undefined8 *event_handler;
+  uint64_t *event_handler;
   code *handler_code;
   longlong engine_address;
-  undefined8 event_flags;
+  uint64_t event_flags;
   longlong *event_processor;
   longlong *event_source;
   longlong *event_target;
@@ -933,7 +933,7 @@ void process_engine_event(longlong *event_data)
     (**(code **)(*event_processor + 0x28))(event_processor);
   }
   
-  event_handler = *(undefined8 **)(engine_address + 400);
+  event_handler = *(uint64_t **)(engine_address + 400);
   handler_code = *(code **)*event_handler;
   event_reference = &processed_event;
   processed_event = event_processor;
@@ -952,7 +952,7 @@ void process_engine_event(longlong *event_data)
     (**(code **)(*event_source + 0x28))(event_source);
   }
   
-  event_handler = *(undefined8 **)(engine_address + 400);
+  event_handler = *(uint64_t **)(engine_address + 400);
   handler_code = *(code **)*event_handler;
   event_reference = &processed_event;
   processed_event = event_source;
@@ -977,7 +977,7 @@ void process_engine_event(longlong *event_data)
     (**(code **)(*event_processor + 0x38))(event_processor);
   }
   
-  event_handler = *(undefined8 **)(engine_address + 400);
+  event_handler = *(uint64_t **)(engine_address + 400);
   handler_code = *(code **)*event_handler;
   event_reference = &processed_event;
   processed_event = event_target;
@@ -987,7 +987,7 @@ void process_engine_event(longlong *event_data)
   }
   
   (*handler_code)(event_handler, &processed_event);
-  cleanup_engine_component(*(undefined8 *)(engine_address + 400));
+  cleanup_engine_component(*(uint64_t *)(engine_address + 400));
   
   if (event_source != (longlong *)0x0) {
     (**(code **)(*event_source + 0x38))(event_source);
@@ -1007,10 +1007,10 @@ void process_engine_event(longlong *event_data)
  */
 void process_engine_system_event(longlong *system_event)
 {
-  undefined8 *event_handler;
+  uint64_t *event_handler;
   code *handler_code;
   longlong engine_address;
-  undefined8 event_flags;
+  uint64_t event_flags;
   longlong *event_processor;
   longlong *event_source;
   longlong *event_target;
@@ -1029,7 +1029,7 @@ void process_engine_system_event(longlong *system_event)
     (**(code **)(*event_processor + 0x28))(event_processor);
   }
   
-  event_handler = *(undefined8 **)(engine_address + 400);
+  event_handler = *(uint64_t **)(engine_address + 400);
   handler_code = *(code **)*event_handler;
   event_reference = &processed_event;
   processed_event = event_processor;
@@ -1048,7 +1048,7 @@ void process_engine_system_event(longlong *system_event)
     (**(code **)(*event_source + 0x28))(event_source);
   }
   
-  event_handler = *(undefined8 **)(engine_address + 400);
+  event_handler = *(uint64_t **)(engine_address + 400);
   handler_code = *(code **)*event_handler;
   event_reference = &processed_event;
   processed_event = event_source;
@@ -1073,7 +1073,7 @@ void process_engine_system_event(longlong *system_event)
     (**(code **)(*event_processor + 0x38))(event_processor);
   }
   
-  event_handler = *(undefined8 **)(engine_address + 400);
+  event_handler = *(uint64_t **)(engine_address + 400);
   handler_code = *(code **)*event_handler;
   event_reference = &processed_event;
   processed_event = event_target;
@@ -1083,7 +1083,7 @@ void process_engine_system_event(longlong *system_event)
   }
   
   (*handler_code)(event_handler, &processed_event);
-  cleanup_engine_component(*(undefined8 *)(engine_address + 400));
+  cleanup_engine_component(*(uint64_t *)(engine_address + 400));
   
   if (event_source != (longlong *)0x0) {
     (**(code **)(*event_source + 0x38))(event_source);
@@ -1114,7 +1114,7 @@ void trigger_engine_fault(void)
  * 
  * 此函数执行引擎的故障处理程序
  */
-void execute_engine_fault_handler(undefined8 param1, undefined8 param2, undefined4 param3, undefined8 param4)
+void execute_engine_fault_handler(uint64_t param1, uint64_t param2, int32_t param3, uint64_t param4)
 {
   trigger_engine_fault(param1, param2, 0xffffffff00000000, param3, param4, &stack0x00000028);
   return;
@@ -1129,10 +1129,10 @@ void execute_engine_fault_handler(undefined8 param1, undefined8 param2, undefine
  * 
  * 此函数执行引擎的故障恢复程序
  */
-void execute_engine_fault_recovery(undefined8 param1, undefined8 param2, undefined8 param3, undefined8 param4)
+void execute_engine_fault_recovery(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-  undefined8 recovery_param1;
-  undefined8 recovery_param2;
+  uint64_t recovery_param1;
+  uint64_t recovery_param2;
   
   recovery_param1 = param3;
   recovery_param2 = param4;
@@ -1149,9 +1149,9 @@ void execute_engine_fault_recovery(undefined8 param1, undefined8 param2, undefin
  * 
  * 此函数执行引擎的故障重试程序
  */
-void execute_engine_fault_retry(undefined8 param1, undefined8 param2, undefined8 param3, undefined8 param4)
+void execute_engine_fault_retry(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-  undefined8 retry_param;
+  uint64_t retry_param;
   
   retry_param = param4;
   trigger_engine_fault(param1, param2, 0xffffffff00000000, 0xd, param3, &retry_param);
@@ -1188,10 +1188,10 @@ void execute_engine_integrity_check(void)
  */
 void process_engine_state_event(longlong *state_data)
 {
-  undefined8 *event_handler;
+  uint64_t *event_handler;
   code *handler_code;
   longlong engine_address;
-  undefined8 event_flags;
+  uint64_t event_flags;
   longlong *event_processor;
   longlong *processed_event;
   longlong **event_reference;
@@ -1207,7 +1207,7 @@ void process_engine_state_event(longlong *state_data)
       (**(code **)(*event_processor + 0x28))(event_processor);
     }
     
-    event_handler = *(undefined8 **)(engine_address + 400);
+    event_handler = *(uint64_t **)(engine_address + 400);
     handler_code = *(code **)*event_handler;
     event_reference = &processed_event;
     processed_event = event_processor;
@@ -1217,7 +1217,7 @@ void process_engine_state_event(longlong *state_data)
     }
     
     (*handler_code)(event_handler, &processed_event);
-    cleanup_engine_component(*(undefined8 *)(engine_address + 400));
+    cleanup_engine_component(*(uint64_t *)(engine_address + 400));
     
     if (event_processor != (longlong *)0x0) {
       (**(code **)(*event_processor + 0x38))(event_processor);
@@ -1233,13 +1233,13 @@ void process_engine_state_event(longlong *state_data)
  */
 void execute_engine_time_sync(void)
 {
-  undefined1 time_buffer[48];
-  undefined4 sync_flags;
-  undefined8 current_time;
-  undefined8 local_time;
-  undefined8 timezone_info;
-  undefined8 daylight_info;
-  undefined1 sync_data[256];
+  int8_t time_buffer[48];
+  int32_t sync_flags;
+  uint64_t current_time;
+  uint64_t local_time;
+  uint64_t timezone_info;
+  uint64_t daylight_info;
+  int8_t sync_data[256];
   ulonglong sync_checksum;
   
   daylight_info = TIMEOUT_INFINITE;

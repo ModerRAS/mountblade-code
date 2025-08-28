@@ -261,10 +261,10 @@ void FUN_1808f8d7f(void)
  * @note 此函数需要在NGX SDK初始化后调用
  * @warning 参数指针必须有效，否则会导致未定义行为
  */
-undefined8 NVSDK_NGX_D3D11_GetParameters(undefined8 param_1)
+uint64_t NVSDK_NGX_D3D11_GetParameters(uint64_t param_1)
 {
     code* UNRECOVERED_JUMPTABLE;
-    undefined8 uVar1;
+    uint64_t uVar1;
     
     // 获取参数获取函数指针
     UNRECOVERED_JUMPTABLE = _DAT_180c69ea0;
@@ -297,10 +297,10 @@ undefined8 NVSDK_NGX_D3D11_GetParameters(undefined8 param_1)
  * @note 缓冲区大小用于NGX SDK的临时数据存储
  * @warning 调用者需要确保有足够的内存分配
  */
-undefined8 NVSDK_NGX_D3D11_GetScratchBufferSize(undefined4 param_1, undefined8 param_2, undefined8 param_3)
+uint64_t NVSDK_NGX_D3D11_GetScratchBufferSize(int32_t param_1, uint64_t param_2, uint64_t param_3)
 {
     code* pcVar1;
-    undefined8 uVar2;
+    uint64_t uVar2;
     
     // 获取缓冲区大小计算函数指针
     pcVar1 = _DAT_180c69e98;
@@ -330,10 +330,10 @@ undefined8 NVSDK_NGX_D3D11_GetScratchBufferSize(undefined4 param_1, undefined8 p
  * @note 此函数用于确保NGX模块的安全性
  * @warning 验证失败时，模块将无法使用
  */
-undefined8 FUN_1808f8e50(undefined8 param_1, undefined8 param_2)
+uint64_t FUN_1808f8e50(uint64_t param_1, uint64_t param_2)
 {
     char cVar1;
-    undefined1 auStack_80[88];
+    int8_t auStack_80[88];
     
     // 执行模块验证
     cVar1 = FUN_1808fbf50(param_2, &UNK_18098a888);
@@ -359,15 +359,15 @@ undefined8 FUN_1808f8e50(undefined8 param_1, undefined8 param_2)
  * @note 此函数是NGX功能系统的核心初始化函数
  * @warning 初始化失败时，NGX功能将无法使用
  */
-undefined8 FUN_1808f8f41(void)
+uint64_t FUN_1808f8f41(void)
 {
-    undefined4 uVar1;
-    undefined4 uVar2;
+    int32_t uVar1;
+    int32_t uVar2;
     longlong lVar3;
     code* pcVar4;
     code* pcVar5;
     longlong lVar6;
-    undefined8 uVar7;
+    uint64_t uVar7;
     longlong* unaff_RBX;
     longlong unaff_RBP;
     longlong unaff_R13;
@@ -417,14 +417,14 @@ undefined8 FUN_1808f8f41(void)
             *(uint*)(unaff_RBP + -0x39) = (uint)unaff_R13;
         }
         else {
-            uVar1 = *(undefined4*)((longlong)unaff_RBX + 4);
+            uVar1 = *(int32_t*)((longlong)unaff_RBX + 4);
             lVar3 = unaff_RBX[1];
-            uVar2 = *(undefined4*)((longlong)unaff_RBX + 0xc);
+            uVar2 = *(int32_t*)((longlong)unaff_RBX + 0xc);
             lVar6 = unaff_RBX[2];
             *(int*)(unaff_RBP + -0x41) = (int)*unaff_RBX;
-            *(undefined4*)(unaff_RBP + -0x3d) = uVar1;
+            *(int32_t*)(unaff_RBP + -0x3d) = uVar1;
             *(int*)(unaff_RBP + -0x39) = (int)lVar3;
-            *(undefined4*)(unaff_RBP + -0x35) = uVar2;
+            *(int32_t*)(unaff_RBP + -0x35) = uVar2;
             *(longlong*)(unaff_RBP + -0x31) = lVar6;
         }
         *(longlong*)(unaff_RBP + -0x31) = unaff_RBP + -0x51;
@@ -448,14 +448,14 @@ undefined8 FUN_1808f8f41(void)
  * @note 功能激活后才能正常使用NGX功能
  * @warning 激活失败时，功能将不可用
  */
-undefined8 FUN_1808f90aa(void)
+uint64_t FUN_1808f90aa(void)
 {
     longlong lVar1;
-    undefined4 uVar2;
-    undefined4 uVar3;
+    int32_t uVar2;
+    int32_t uVar3;
     longlong lVar4;
     code* pcVar5;
-    undefined8 uVar6;
+    uint64_t uVar6;
     longlong* unaff_RBX;
     longlong unaff_RBP;
     code* unaff_RDI;
@@ -480,14 +480,14 @@ undefined8 FUN_1808f90aa(void)
             *(uint*)(unaff_RBP + -0x39) = (uint)unaff_R13;
         }
         else {
-            uVar2 = *(undefined4*)((longlong)unaff_RBX + 4);
+            uVar2 = *(int32_t*)((longlong)unaff_RBX + 4);
             lVar4 = unaff_RBX[1];
-            uVar3 = *(undefined4*)((longlong)unaff_RBX + 0xc);
+            uVar3 = *(int32_t*)((longlong)unaff_RBX + 0xc);
             lVar1 = unaff_RBX[2];
             *(int*)(unaff_RBP + -0x41) = (int)*unaff_RBX;
-            *(undefined4*)(unaff_RBP + -0x3d) = uVar2;
+            *(int32_t*)(unaff_RBP + -0x3d) = uVar2;
             *(int*)(unaff_RBP + -0x39) = (int)lVar4;
-            *(undefined4*)(unaff_RBP + -0x35) = uVar3;
+            *(int32_t*)(unaff_RBP + -0x35) = uVar3;
             *(longlong*)(unaff_RBP + -0x31) = lVar1;
         }
         *(longlong*)(unaff_RBP + -0x31) = unaff_RBP + -0x51;
@@ -546,9 +546,9 @@ void FUN_1808f911c(void)
  * @note 用于监控NGX功能的运行状态
  * @warning 状态信息仅供参考，不应作为逻辑判断依据
  */
-undefined8 FUN_1808f9134(void)
+uint64_t FUN_1808f9134(void)
 {
-    undefined8 uVar1;
+    uint64_t uVar1;
     longlong* unaff_RBX;
     code* unaff_RDI;
     longlong unaff_R13;
@@ -576,7 +576,7 @@ undefined8 FUN_1808f9134(void)
  * @note 每次操作都会更新错误状态
  * @warning 错误代码可能被后续操作覆盖
  */
-undefined8 FUN_1808f9165(void)
+uint64_t FUN_1808f9165(void)
 {
     return NGX_ERROR_INVALID_PARAMETER;
 }
@@ -595,10 +595,10 @@ undefined8 FUN_1808f9165(void)
  * @note 释放后的功能句柄将不再有效
  * @warning 不要重复释放同一个功能句柄
  */
-undefined8 NVSDK_NGX_D3D11_ReleaseFeature(undefined8 param_1)
+uint64_t NVSDK_NGX_D3D11_ReleaseFeature(uint64_t param_1)
 {
     code* UNRECOVERED_JUMPTABLE;
-    undefined8 uVar1;
+    uint64_t uVar1;
     
     // 获取功能释放函数指针
     UNRECOVERED_JUMPTABLE = _DAT_180c69eb8;
@@ -628,10 +628,10 @@ undefined8 NVSDK_NGX_D3D11_ReleaseFeature(undefined8 param_1)
  * @note 关闭后需要重新初始化才能再次使用
  * @warning 关闭后所有功能句柄将失效
  */
-undefined8 NVSDK_NGX_D3D11_Shutdown(void)
+uint64_t NVSDK_NGX_D3D11_Shutdown(void)
 {
     code* UNRECOVERED_JUMPTABLE;
-    undefined8 uVar1;
+    uint64_t uVar1;
     
     // 执行控制流_guard检查
     _guard_check_icall();
@@ -695,7 +695,7 @@ ulonglong FUN_1808f9200(longlong param_1)
             
             // 添加路径分隔符
             if (*(short*)(uVar3 + (ulonglong)(uVar2 - 1) * 2) != 0x5c) {
-                *(undefined2*)(uVar3 + (ulonglong)uVar2 * 2) = 0x5c;
+                *(int16_t*)(uVar3 + (ulonglong)uVar2 * 2) = 0x5c;
                 uVar2 = uVar2 + 1;
             }
             
@@ -710,7 +710,7 @@ ulonglong FUN_1808f9200(longlong param_1)
                     lVar5 = uVar6 * 2;
                     iVar1 = (int)uVar6;
                     uVar6 = (ulonglong)(iVar1 + 1);
-                    *(undefined2*)(uVar3 + (ulonglong)(iVar1 + uVar2) * 2) = *(undefined2*)(param_1 + lVar5);
+                    *(int16_t*)(uVar3 + (ulonglong)(iVar1 + uVar2) * 2) = *(int16_t*)(param_1 + lVar5);
                     uVar4 = 0xffffffffffffffff;
                     do {
                         uVar4 = uVar4 + 1;
@@ -737,13 +737,13 @@ ulonglong FUN_1808f9200(longlong param_1)
  * @note 用于确保功能可以正常使用
  * @warning 验证失败时功能将不可用
  */
-bool FUN_1808f92e0(longlong param_1, undefined8 param_2)
+bool FUN_1808f92e0(longlong param_1, uint64_t param_2)
 {
-    undefined4* puVar1;
+    int32_t* puVar1;
     code* pcVar2;
     int iVar3;
     uint uVar4;
-    undefined4 auStackX_8[2];
+    int32_t auStackX_8[2];
     ulonglong uVar5;
     
     uVar5 = 0;
@@ -751,12 +751,12 @@ bool FUN_1808f92e0(longlong param_1, undefined8 param_2)
     if (*(int*)(param_1 + 0x68) != 0) {
         do {
             // 比较功能名称
-            iVar3 = lstrcmpA(*(undefined8*)(*(longlong*)(param_1 + 0x70) + uVar5 * 0x18), &UNK_18098ade0);
+            iVar3 = lstrcmpA(*(uint64_t*)(*(longlong*)(param_1 + 0x70) + uVar5 * 0x18), &UNK_18098ade0);
             pcVar2 = _DAT_180c69f78;
             if (iVar3 == 0) {
-                puVar1 = *(undefined4**)(*(longlong*)(param_1 + 0x70) + 0x10 + uVar5 * 0x18);
+                puVar1 = *(int32_t**)(*(longlong*)(param_1 + 0x70) + 0x10 + uVar5 * 0x18);
                 _guard_check_icall(_DAT_180c69f78);
-                iVar3 = (*pcVar2)(0x10001, &UNK_18098ade0, *(undefined8*)(puVar1 + 2), *puVar1, 0, 0, param_2,
+                iVar3 = (*pcVar2)(0x10001, &UNK_18098ade0, *(uint64_t*)(puVar1 + 2), *puVar1, 0, 0, param_2,
                                 auStackX_8);
                 return iVar3 == 1;
             }
@@ -783,213 +783,213 @@ bool FUN_1808f92e0(longlong param_1, undefined8 param_2)
  */
 void FUN_1808f93b0(int* param_1)
 {
-    undefined8 uVar1;
+    uint64_t uVar1;
     int iVar2;
-    undefined1 auStack_368[32];
-    undefined4 uStack_348;
-    undefined4 uStack_344;
-    undefined4 uStack_340;
-    undefined4 uStack_33c;
-    undefined4 uStack_338;
-    undefined4 uStack_334;
-    undefined4 uStack_330;
-    undefined4 uStack_32c;
-    undefined4 uStack_328;
-    undefined4 uStack_324;
-    undefined4 uStack_320;
-    undefined4 uStack_31c;
-    undefined4 uStack_318;
-    undefined4 uStack_314;
-    undefined4 uStack_310;
-    undefined4 uStack_30c;
-    undefined4 uStack_308;
-    undefined4 uStack_304;
-    undefined4 uStack_300;
-    undefined4 uStack_2fc;
-    undefined4 uStack_2f8;
-    undefined4 uStack_2f4;
-    undefined4 uStack_2f0;
-    undefined4 uStack_2ec;
-    undefined4 uStack_2e8;
-    undefined4 uStack_2e4;
-    undefined4 uStack_2e0;
-    undefined4 uStack_2dc;
-    undefined4 uStack_2d8;
-    undefined4 uStack_2d4;
-    undefined4 uStack_2d0;
-    undefined4 uStack_2cc;
-    undefined4 uStack_2c8;
-    undefined4 uStack_2c4;
-    undefined4 uStack_2c0;
-    undefined4 uStack_2bc;
-    undefined4 uStack_2b8;
-    undefined4 uStack_2b4;
-    undefined4 uStack_2b0;
-    undefined4 uStack_2ac;
-    undefined4 uStack_2a8;
-    undefined4 uStack_2a4;
-    undefined4 uStack_2a0;
-    undefined4 uStack_29c;
-    undefined4 uStack_298;
-    undefined4 uStack_294;
-    undefined4 uStack_290;
-    undefined4 uStack_28c;
-    undefined4 uStack_288;
-    undefined4 uStack_284;
-    undefined4 uStack_280;
-    undefined4 uStack_27c;
-    undefined4 uStack_278;
-    undefined4 uStack_274;
-    undefined4 uStack_270;
-    undefined4 uStack_26c;
-    undefined4 uStack_268;
-    undefined4 uStack_264;
-    undefined4 uStack_260;
-    undefined4 uStack_25c;
-    undefined4 uStack_258;
-    undefined4 uStack_254;
-    undefined4 uStack_250;
-    undefined4 uStack_24c;
-    undefined4 uStack_248;
-    undefined4 uStack_244;
-    undefined4 uStack_240;
-    undefined4 uStack_23c;
-    undefined4 uStack_238;
-    undefined4 uStack_234;
-    undefined4 uStack_230;
-    undefined4 uStack_22c;
-    undefined4 uStack_228;
-    undefined4 uStack_224;
-    undefined4 uStack_220;
-    undefined4 uStack_21c;
-    undefined4 uStack_218;
-    undefined4 uStack_214;
-    undefined4 uStack_210;
-    undefined4 uStack_20c;
-    undefined4 uStack_208;
-    undefined4 uStack_204;
-    undefined4 uStack_200;
-    undefined4 uStack_1fc;
-    undefined4 uStack_1f8;
-    undefined4 uStack_1f4;
-    undefined4 uStack_1f0;
-    undefined4 uStack_1ec;
-    undefined4 uStack_1e8;
-    undefined4 uStack_1e4;
-    undefined4 uStack_1e0;
-    undefined4 uStack_1dc;
-    undefined4 uStack_1d8;
-    undefined4 uStack_1d4;
-    undefined4 uStack_1d0;
-    undefined4 uStack_1cc;
-    undefined4 uStack_1c8;
-    undefined4 uStack_1c4;
-    undefined4 uStack_1c0;
-    undefined4 uStack_1bc;
-    undefined4 uStack_1b8;
-    undefined4 uStack_1b4;
-    undefined4 uStack_1b0;
-    undefined4 uStack_1ac;
-    undefined4 uStack_1a8;
-    undefined4 uStack_1a4;
-    undefined4 uStack_1a0;
-    undefined4 uStack_19c;
-    undefined4 uStack_198;
-    undefined4 uStack_194;
-    undefined4 uStack_190;
-    undefined4 uStack_18c;
-    undefined4 uStack_188;
-    undefined4 uStack_184;
-    undefined4 uStack_180;
-    undefined4 uStack_17c;
-    undefined4 uStack_178;
-    undefined4 uStack_174;
-    undefined4 uStack_170;
-    undefined4 uStack_16c;
-    undefined4 uStack_168;
-    undefined4 uStack_164;
-    undefined4 uStack_160;
-    undefined4 uStack_15c;
-    undefined4 uStack_158;
-    undefined4 uStack_154;
-    undefined4 uStack_150;
-    undefined4 uStack_14c;
-    undefined4 uStack_148;
-    undefined4 uStack_144;
-    undefined4 uStack_140;
-    undefined4 uStack_13c;
-    undefined4 uStack_138;
-    undefined4 uStack_134;
-    undefined4 uStack_130;
-    undefined4 uStack_12c;
-    undefined4 uStack_128;
-    undefined4 uStack_124;
-    undefined4 uStack_120;
-    undefined4 uStack_11c;
-    undefined4 uStack_118;
-    undefined4 uStack_114;
-    undefined4 uStack_110;
-    undefined4 uStack_10c;
-    undefined4 uStack_108;
-    undefined4 uStack_104;
-    undefined4 uStack_100;
-    undefined4 uStack_fc;
-    undefined4 uStack_f8;
-    undefined4 uStack_f4;
-    undefined4 uStack_f0;
-    undefined4 uStack_ec;
-    undefined4 uStack_e8;
-    undefined4 uStack_e4;
-    undefined4 uStack_e0;
-    undefined4 uStack_dc;
-    undefined4 uStack_d8;
-    undefined4 uStack_d4;
-    undefined4 uStack_d0;
-    undefined4 uStack_cc;
-    undefined4 uStack_c8;
-    undefined4 uStack_c4;
-    undefined4 uStack_c0;
-    undefined4 uStack_bc;
-    undefined4 uStack_b8;
-    undefined4 uStack_b4;
-    undefined4 uStack_b0;
-    undefined4 uStack_ac;
-    undefined4 uStack_a8;
-    undefined4 uStack_a4;
-    undefined4 uStack_a0;
-    undefined4 uStack_9c;
-    undefined4 uStack_98;
-    undefined4 uStack_94;
-    undefined4 uStack_90;
-    undefined4 uStack_8c;
-    undefined4 uStack_88;
-    undefined4 uStack_84;
-    undefined4 uStack_80;
-    undefined4 uStack_7c;
-    undefined4 uStack_78;
-    undefined4 uStack_74;
-    undefined4 uStack_70;
-    undefined4 uStack_6c;
-    undefined4 uStack_68;
-    undefined4 uStack_64;
-    undefined4 uStack_60;
-    undefined4 uStack_5c;
-    undefined4 uStack_58;
-    undefined4 uStack_54;
-    undefined4 uStack_50;
-    undefined4 uStack_4c;
-    undefined4 uStack_48;
-    undefined4 uStack_44;
-    undefined4 uStack_40;
-    undefined4 uStack_3c;
-    undefined4 uStack_38;
-    undefined4 uStack_34;
-    undefined4 uStack_30;
-    undefined4 uStack_2c;
-    undefined4 uStack_28;
-    undefined4 uStack_24;
-    undefined4 uStack_20;
-    undefined4 uStack_1c;
+    int8_t auStack_368[32];
+    int32_t uStack_348;
+    int32_t uStack_344;
+    int32_t uStack_340;
+    int32_t uStack_33c;
+    int32_t uStack_338;
+    int32_t uStack_334;
+    int32_t uStack_330;
+    int32_t uStack_32c;
+    int32_t uStack_328;
+    int32_t uStack_324;
+    int32_t uStack_320;
+    int32_t uStack_31c;
+    int32_t uStack_318;
+    int32_t uStack_314;
+    int32_t uStack_310;
+    int32_t uStack_30c;
+    int32_t uStack_308;
+    int32_t uStack_304;
+    int32_t uStack_300;
+    int32_t uStack_2fc;
+    int32_t uStack_2f8;
+    int32_t uStack_2f4;
+    int32_t uStack_2f0;
+    int32_t uStack_2ec;
+    int32_t uStack_2e8;
+    int32_t uStack_2e4;
+    int32_t uStack_2e0;
+    int32_t uStack_2dc;
+    int32_t uStack_2d8;
+    int32_t uStack_2d4;
+    int32_t uStack_2d0;
+    int32_t uStack_2cc;
+    int32_t uStack_2c8;
+    int32_t uStack_2c4;
+    int32_t uStack_2c0;
+    int32_t uStack_2bc;
+    int32_t uStack_2b8;
+    int32_t uStack_2b4;
+    int32_t uStack_2b0;
+    int32_t uStack_2ac;
+    int32_t uStack_2a8;
+    int32_t uStack_2a4;
+    int32_t uStack_2a0;
+    int32_t uStack_29c;
+    int32_t uStack_298;
+    int32_t uStack_294;
+    int32_t uStack_290;
+    int32_t uStack_28c;
+    int32_t uStack_288;
+    int32_t uStack_284;
+    int32_t uStack_280;
+    int32_t uStack_27c;
+    int32_t uStack_278;
+    int32_t uStack_274;
+    int32_t uStack_270;
+    int32_t uStack_26c;
+    int32_t uStack_268;
+    int32_t uStack_264;
+    int32_t uStack_260;
+    int32_t uStack_25c;
+    int32_t uStack_258;
+    int32_t uStack_254;
+    int32_t uStack_250;
+    int32_t uStack_24c;
+    int32_t uStack_248;
+    int32_t uStack_244;
+    int32_t uStack_240;
+    int32_t uStack_23c;
+    int32_t uStack_238;
+    int32_t uStack_234;
+    int32_t uStack_230;
+    int32_t uStack_22c;
+    int32_t uStack_228;
+    int32_t uStack_224;
+    int32_t uStack_220;
+    int32_t uStack_21c;
+    int32_t uStack_218;
+    int32_t uStack_214;
+    int32_t uStack_210;
+    int32_t uStack_20c;
+    int32_t uStack_208;
+    int32_t uStack_204;
+    int32_t uStack_200;
+    int32_t uStack_1fc;
+    int32_t uStack_1f8;
+    int32_t uStack_1f4;
+    int32_t uStack_1f0;
+    int32_t uStack_1ec;
+    int32_t uStack_1e8;
+    int32_t uStack_1e4;
+    int32_t uStack_1e0;
+    int32_t uStack_1dc;
+    int32_t uStack_1d8;
+    int32_t uStack_1d4;
+    int32_t uStack_1d0;
+    int32_t uStack_1cc;
+    int32_t uStack_1c8;
+    int32_t uStack_1c4;
+    int32_t uStack_1c0;
+    int32_t uStack_1bc;
+    int32_t uStack_1b8;
+    int32_t uStack_1b4;
+    int32_t uStack_1b0;
+    int32_t uStack_1ac;
+    int32_t uStack_1a8;
+    int32_t uStack_1a4;
+    int32_t uStack_1a0;
+    int32_t uStack_19c;
+    int32_t uStack_198;
+    int32_t uStack_194;
+    int32_t uStack_190;
+    int32_t uStack_18c;
+    int32_t uStack_188;
+    int32_t uStack_184;
+    int32_t uStack_180;
+    int32_t uStack_17c;
+    int32_t uStack_178;
+    int32_t uStack_174;
+    int32_t uStack_170;
+    int32_t uStack_16c;
+    int32_t uStack_168;
+    int32_t uStack_164;
+    int32_t uStack_160;
+    int32_t uStack_15c;
+    int32_t uStack_158;
+    int32_t uStack_154;
+    int32_t uStack_150;
+    int32_t uStack_14c;
+    int32_t uStack_148;
+    int32_t uStack_144;
+    int32_t uStack_140;
+    int32_t uStack_13c;
+    int32_t uStack_138;
+    int32_t uStack_134;
+    int32_t uStack_130;
+    int32_t uStack_12c;
+    int32_t uStack_128;
+    int32_t uStack_124;
+    int32_t uStack_120;
+    int32_t uStack_11c;
+    int32_t uStack_118;
+    int32_t uStack_114;
+    int32_t uStack_110;
+    int32_t uStack_10c;
+    int32_t uStack_108;
+    int32_t uStack_104;
+    int32_t uStack_100;
+    int32_t uStack_fc;
+    int32_t uStack_f8;
+    int32_t uStack_f4;
+    int32_t uStack_f0;
+    int32_t uStack_ec;
+    int32_t uStack_e8;
+    int32_t uStack_e4;
+    int32_t uStack_e0;
+    int32_t uStack_dc;
+    int32_t uStack_d8;
+    int32_t uStack_d4;
+    int32_t uStack_d0;
+    int32_t uStack_cc;
+    int32_t uStack_c8;
+    int32_t uStack_c4;
+    int32_t uStack_c0;
+    int32_t uStack_bc;
+    int32_t uStack_b8;
+    int32_t uStack_b4;
+    int32_t uStack_b0;
+    int32_t uStack_ac;
+    int32_t uStack_a8;
+    int32_t uStack_a4;
+    int32_t uStack_a0;
+    int32_t uStack_9c;
+    int32_t uStack_98;
+    int32_t uStack_94;
+    int32_t uStack_90;
+    int32_t uStack_8c;
+    int32_t uStack_88;
+    int32_t uStack_84;
+    int32_t uStack_80;
+    int32_t uStack_7c;
+    int32_t uStack_78;
+    int32_t uStack_74;
+    int32_t uStack_70;
+    int32_t uStack_6c;
+    int32_t uStack_68;
+    int32_t uStack_64;
+    int32_t uStack_60;
+    int32_t uStack_5c;
+    int32_t uStack_58;
+    int32_t uStack_54;
+    int32_t uStack_50;
+    int32_t uStack_4c;
+    int32_t uStack_48;
+    int32_t uStack_44;
+    int32_t uStack_40;
+    int32_t uStack_3c;
+    int32_t uStack_38;
+    int32_t uStack_34;
+    int32_t uStack_30;
+    int32_t uStack_2c;
+    int32_t uStack_28;
+    int32_t uStack_24;
+    int32_t uStack_20;
+    int32_t uStack_1c;
     ulonglong uStack_18;
     
     // 设置验证数据
@@ -1201,7 +1201,7 @@ void FUN_1808f93b0(int* param_1)
     
     // 验证参数
     if ((*param_1 == 0x10e) && (param_1[4] == 0)) {
-        uVar1 = *(undefined8*)(param_1 + 2);
+        uVar1 = *(uint64_t*)(param_1 + 2);
         iVar2 = memcmp(uVar1, &uStack_348, 0x10e);
         if ((iVar2 != 0) && (iVar2 = memcmp(uVar1, &uStack_238, 0x10e), iVar2 != 0)) {
             memcmp(uVar1, &uStack_128, 0x10e);
@@ -1228,12 +1228,12 @@ void FUN_1808f93b0(int* param_1)
  */
 void FUN_1808f9ae9(longlong param_1)
 {
-    undefined8 uVar1;
+    uint64_t uVar1;
     int iVar2;
     longlong unaff_RBP;
-    undefined1 auStackX_20[8];
+    int8_t auStackX_20[8];
     
-    uVar1 = *(undefined8*)(param_1 + 8);
+    uVar1 = *(uint64_t*)(param_1 + 8);
     iVar2 = memcmp(uVar1, auStackX_20, 0x10e);
     if ((iVar2 != 0) && (iVar2 = memcmp(uVar1, unaff_RBP + 0x30, 0x10e), iVar2 != 0)) {
         memcmp(uVar1, unaff_RBP + 0x140, 0x10e);

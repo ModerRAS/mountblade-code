@@ -16,10 +16,10 @@
 //------------------------------------------------------------------------------
 
 // 网络通信句柄类型
-typedef undefined8 NetworkHandle;                   // 网络通信句柄
-typedef undefined8 ProtocolHandle;                 // 协议处理句柄
-typedef undefined8 ConnectionHandle;               // 连接管理句柄
-typedef undefined8 TransferHandle;                // 传输控制句柄
+typedef uint64_t NetworkHandle;                   // 网络通信句柄
+typedef uint64_t ProtocolHandle;                 // 协议处理句柄
+typedef uint64_t ConnectionHandle;               // 连接管理句柄
+typedef uint64_t TransferHandle;                // 传输控制句柄
 
 // 网络状态常量
 #define NETWORK_STATE_READY        0x00000001      // 网络就绪状态
@@ -69,7 +69,7 @@ typedef undefined8 TransferHandle;                // 传输控制句柄
 //   param_2 - 操作类型或参数，标识要执行的网络操作
 //
 // 返回值：
-//   undefined8 - 操作结果或状态码
+//   uint64_t - 操作结果或状态码
 //
 // 处理流程：
 //   1. 验证输入参数的有效性
@@ -96,13 +96,13 @@ typedef undefined8 TransferHandle;                // 传输控制句柄
 //   简化实现：基于高级网络通信模块架构，创建完整的网络管理功能
 //   优化点：添加完整的网络通信、协议处理、连接管理功能
 //------------------------------------------------------------------------------
-undefined8 FUN_180012348(undefined8 param_1, undefined8 param_2)
+uint64_t FUN_180012348(uint64_t param_1, uint64_t param_2)
 {
     // 局部变量定义
-    undefined8 uVar1;                            // 操作结果
+    uint64_t uVar1;                            // 操作结果
     longlong lVar2;                              // 上下文指针
     int iVar3;                                  // 状态标志
-    undefined8 auStack_28 [4];                   // 栈缓冲区 (32字节)
+    uint64_t auStack_28 [4];                   // 栈缓冲区 (32字节)
     ulonglong uStack_8;                         // 安全检查值
     
     // 安全检查：栈保护机制

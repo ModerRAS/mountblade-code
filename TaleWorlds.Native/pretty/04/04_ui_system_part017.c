@@ -71,7 +71,7 @@ void ui_system_advanced_transform_processor(longlong transform_context, longlong
     float control_weight_3;
     int control_index;
     int transform_type;
-    undefined8 *control_point_ptr;
+    uint64_t *control_point_ptr;
     float intensity_1;
     float intensity_2;
     float intensity_3;
@@ -92,7 +92,7 @@ void ui_system_advanced_transform_processor(longlong transform_context, longlong
     else {
         ui_system_execute_render_command((longlong)*(int *)(transform_context + 0x10) * UI_TRANSFORM_MULTIPLIER + 
                                        *(longlong *)(transform_context + 0xc78),
-                                       *(undefined4 *)(transform_context + 0x1c));
+                                       *(int32_t *)(transform_context + 0x1c));
     }
     
     // 第二阶段变换处理
@@ -103,7 +103,7 @@ void ui_system_advanced_transform_processor(longlong transform_context, longlong
     else {
         ui_system_execute_render_command((longlong)*(int *)(transform_context + 0x14) * UI_TRANSFORM_MULTIPLIER + 
                                        *(longlong *)(transform_context + 0xc78),
-                                       *(undefined4 *)(transform_context + 0x1c));
+                                       *(int32_t *)(transform_context + 0x1c));
     }
     
     // 控制点权重计算
@@ -115,7 +115,7 @@ void ui_system_advanced_transform_processor(longlong transform_context, longlong
                 control_weight_1 = *(float *)(transform_context + 0x34);
                 control_weight_2 = *(float *)(transform_context + 0x38);
                 control_weight_3 = *(float *)(transform_context + 0x30);
-                control_point_ptr = (undefined8 *)(*(longlong *)(transform_context + 0xc78) + UI_CONTROL_OFFSET_1);
+                control_point_ptr = (uint64_t *)(*(longlong *)(transform_context + 0xc78) + UI_CONTROL_OFFSET_1);
                 intensity_2 = (1.0 - control_weight_1) - control_weight_2;
                 transform_type = control_index;
                 
@@ -154,7 +154,7 @@ end_control_loop_1:
             if (0.0 < threshold_value) {
                 control_weight_1 = *(float *)(transform_context + 0x34);
                 control_weight_2 = *(float *)(transform_context + 0x38);
-                control_point_ptr = (undefined8 *)(*(longlong *)(transform_context + 0xc78) + UI_CONTROL_OFFSET_2);
+                control_point_ptr = (uint64_t *)(*(longlong *)(transform_context + 0xc78) + UI_CONTROL_OFFSET_2);
                 control_weight_3 = *(float *)(transform_context + 0x30);
                 intensity_2 = (1.0 - control_weight_1) - control_weight_2;
                 transform_type = control_index;
@@ -204,7 +204,7 @@ end_control_loop_2:
             control_weight_2 = *(float *)(transform_context + 0x38);
             control_weight_3 = *(float *)(transform_context + 0x30);
             intensity_2 = (1.0 - smooth_factor) * blend_weight;
-            control_point_ptr = (undefined8 *)(*(longlong *)(transform_context + 0xc78) + UI_CONTROL_OFFSET_1);
+            control_point_ptr = (uint64_t *)(*(longlong *)(transform_context + 0xc78) + UI_CONTROL_OFFSET_1);
             weight_result = (1.0 - control_weight_1) - control_weight_2;
             smooth_factor = -1.0;
             
@@ -249,7 +249,7 @@ end_control_loop_2:
         if (0.0 < smooth_factor) {
             control_weight_1 = *(float *)(transform_context + 0x34);
             control_weight_2 = *(float *)(transform_context + 0x38);
-            control_point_ptr = (undefined8 *)(*(longlong *)(transform_context + 0xc78) + UI_CONTROL_OFFSET_2);
+            control_point_ptr = (uint64_t *)(*(longlong *)(transform_context + 0xc78) + UI_CONTROL_OFFSET_2);
             control_weight_3 = *(float *)(transform_context + 0x30);
             smooth_factor = smooth_factor * blend_weight;
             blend_weight = (1.0 - control_weight_1) - control_weight_2;
@@ -321,8 +321,8 @@ void ui_system_complex_transform_calculator(longlong context, float transform_pa
     // ... 其他变量声明
     
     // 保存寄存器状态
-    *(undefined8 *)(stack_context + 8) = /* 寄存器RBX */;
-    *(undefined8 *)(stack_context + 0x18) = /* 寄存器RSI */;
+    *(uint64_t *)(stack_context + 8) = /* 寄存器RBX */;
+    *(uint64_t *)(stack_context + 0x18) = /* 寄存器RSI */;
     // ... 其他寄存器保存
     
     // 计算平滑插值因子
@@ -345,7 +345,7 @@ void ui_system_complex_transform_calculator(longlong context, float transform_pa
  * 
  * @param control_param 控制参数
  */
-void ui_system_transform_control_handler(undefined4 control_param)
+void ui_system_transform_control_handler(int32_t control_param)
 {
     // 局部变量声明
     float intensity_factor;
@@ -358,7 +358,7 @@ void ui_system_transform_control_handler(undefined4 control_param)
     longlong context_ptr;
     uint control_index;
     uint transform_index;
-    undefined8 *control_point_ptr;
+    uint64_t *control_point_ptr;
     longlong resource_ptr;
     float weight_result;
     float intensity_1;
@@ -424,7 +424,7 @@ void ui_system_transform_control_handler(undefined4 control_param)
             control_weight_2 = *(float *)(context_ptr + 0x38);
             control_weight_3 = *(float *)(context_ptr + 0x30);
             weight_result = (1.0 - blend_factor) * intensity_1;
-            control_point_ptr = (undefined8 *)(*(longlong *)(context_ptr + 0xc78) + UI_CONTROL_OFFSET_1);
+            control_point_ptr = (uint64_t *)(*(longlong *)(context_ptr + 0xc78) + UI_CONTROL_OFFSET_1);
             intensity_2 = (1.0 - control_weight_1) - control_weight_2;
             blend_factor = -1.0;
             
@@ -470,7 +470,7 @@ void ui_system_transform_control_handler(undefined4 control_param)
         
         transform_index = 0;
         if (0.0 < blend_factor) {
-            control_point_ptr = (undefined8 *)(*(longlong *)(context_ptr + 0xc78) + UI_CONTROL_OFFSET_2);
+            control_point_ptr = (uint64_t *)(*(longlong *)(context_ptr + 0xc78) + UI_CONTROL_OFFSET_2);
             do {
                 if (transform_index < UI_CONTROL_POINT_COUNT) {
                     // 执行变换控制
@@ -532,8 +532,8 @@ void ui_system_render_state_cleaner(void)
  * @param param_5 参数5
  * @param param_6 参数6
  */
-void ui_system_matrix_transform_normalizer(undefined8 *matrix_ptr, undefined8 param_2, undefined8 param_3, 
-                                        undefined8 *source_matrix, float param_5, float param_6)
+void ui_system_matrix_transform_normalizer(uint64_t *matrix_ptr, uint64_t param_2, uint64_t param_3, 
+                                        uint64_t *source_matrix, float param_5, float param_6)
 {
     // 局部变量声明
     longlong resource_handle;
@@ -651,14 +651,14 @@ void ui_system_effect_executor(void)
  * @param param_3 参数3
  * @param param_4 参数4
  */
-void ui_system_advanced_render_controller(longlong param_1, undefined8 param_2, longlong param_3, undefined8 param_4)
+void ui_system_advanced_render_controller(longlong param_1, uint64_t param_2, longlong param_3, uint64_t param_4)
 {
     // 局部变量声明
     int render_index;
     longlong context_ptr;
     ulonglong render_mask;
     longlong *resource_ptr;
-    undefined1 *data_ptr;
+    int8_t *data_ptr;
     longlong buffer_ptr;
     float *float_ptr;
     ulonglong data_size;
@@ -666,7 +666,7 @@ void ui_system_advanced_render_controller(longlong param_1, undefined8 param_2, 
     float threshold_1;
     float threshold_2;
     longlong stack_context_1;
-    undefined8 stack_context_2;
+    uint64_t stack_context_2;
     
     // 计算强度因子
     intensity_factor = **(float **)(context_ptr + 0x10d0);
@@ -753,8 +753,8 @@ void ui_system_render_parameter_optimizer(void)
     float *vector_ptr;
     float vector_component;
     float *vector_ptr_2;
-    undefined1 transform_matrix_1[16];
-    undefined1 transform_matrix_2[16];
+    int8_t transform_matrix_1[16];
+    int8_t transform_matrix_2[16];
     int matrix_index;
     char component_flag;
     byte component_index;
@@ -779,7 +779,7 @@ void ui_system_render_parameter_optimizer(void)
     float intensity_9;
     float intensity_10;
     float intensity_11;
-    undefined1 transform_matrix[16];
+    int8_t transform_matrix[16];
     float intensity_12;
     float intensity_13;
     float intensity_14;
@@ -793,7 +793,7 @@ void ui_system_render_parameter_optimizer(void)
     longlong stack_context_1;
     longlong stack_context_2;
     longlong stack_context_3;
-    undefined8 stack_context_4;
+    uint64_t stack_context_4;
     
     // 计算变换参数
     intensity_19 = intensity_16 * intensity_17;
@@ -978,7 +978,7 @@ void ui_system_final_render_processor(void)
     float threshold_1;
     float threshold_2;
     longlong stack_context_1;
-    undefined8 stack_context_2;
+    uint64_t stack_context_2;
     
     // 初始化渲染参数
     render_index = 10;

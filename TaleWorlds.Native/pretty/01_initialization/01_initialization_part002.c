@@ -42,10 +42,10 @@
 #define INIT_STACK_SIZE         0x88        /* 栈缓冲区大小 */
 
 /* 数据类型别名 */
-typedef undefined8  uint64;      /* 64位无符号整数 */
-typedef undefined4  uint32;      /* 32位无符号整数 */
-typedef undefined2  uint16;      /* 16位无符号整数 */
-typedef undefined1  uint8;       /* 8位无符号整数 */
+typedef uint64_t  uint64;      /* 64位无符号整数 */
+typedef int32_t  uint32;      /* 32位无符号整数 */
+typedef int16_t  uint16;      /* 16位无符号整数 */
+typedef int8_t  uint8;       /* 8位无符号整数 */
 typedef undefined   void_ptr;    /* 空指针 */
 
 /* 函数指针类型 */
@@ -79,32 +79,32 @@ typedef void (*init_function_ptr)(void);  /* 初始化函数指针 */
 void system_register_base_function(uint64 hash_value, init_function_ptr callback, uint32 priority, void_ptr config_data)
 {
     longlong *registry_ptr;
-    undefined8 *current_node;
-    undefined8 *next_node;
-    undefined8 *parent_node;
-    undefined8 *new_node;
+    uint64_t *current_node;
+    uint64_t *next_node;
+    uint64_t *parent_node;
+    uint64_t *new_node;
     char status_flag;
     int compare_result;
     
     /* 获取系统注册表根指针 */
     registry_ptr = (longlong *)FUN_18008d070();
-    current_node = (undefined8 *)*registry_ptr;
+    current_node = (uint64_t *)*registry_ptr;
     
     /* 遍历注册表查找匹配项 */
     status_flag = *(char *)((longlong)current_node[1] + 0x19);
     parent_node = current_node;
-    next_node = (undefined8 *)current_node[1];
+    next_node = (uint64_t *)current_node[1];
     
     while (status_flag == '\0') {
         compare_result = memcmp(next_node + 4, &hash_value, INIT_HASH_SIZE);
         if (compare_result < 0) {
-            next_node = (undefined8 *)next_node[2];
+            next_node = (uint64_t *)next_node[2];
             next_node = parent_node;
         } else {
-            next_node = (undefined8 *)*next_node;
+            next_node = (uint64_t *)*next_node;
         }
         parent_node = next_node;
-        next_node = (undefined8 *)next_node;
+        next_node = (uint64_t *)next_node;
         status_flag = *(char *)((longlong)next_node + 0x19);
     }
     
@@ -164,11 +164,11 @@ int system_initialize_function(uint32 init_type, void_ptr param_block)
  */
 void system_string_processor(uint32 string_type, char *buffer, uint32 buffer_size)
 {
-    undefined8 in_R9;
-    undefined *stack_ptr_a0;
-    undefined1 *stack_ptr_98;
-    undefined4 stack_value_90;
-    undefined1 stack_buffer[INIT_STACK_SIZE];
+    uint64_t in_R9;
+    void *stack_ptr_a0;
+    int8_t *stack_ptr_98;
+    int32_t stack_value_90;
+    int8_t stack_buffer[INIT_STACK_SIZE];
     
     /* 初始化栈参数 */
     stack_ptr_a0 = &UNK_1809fcc28;

@@ -318,7 +318,7 @@ ulonglong NetworkConnectionManager(longlong param_1, longlong *param_2)
     int iteration_count;
     uint stack_buffer_18[2];
     uint stack_buffer_20[2];
-    undefined1 temp_buffer_38[32];
+    int8_t temp_buffer_38[32];
     
     /* 验证协议头和初始化参数 */
     result = FUN_1808ddc20(param_2, temp_buffer_38, 0, NETWORK_PROTOCOL_FEMP);
@@ -497,9 +497,9 @@ process_validation:
  * 处理网络数据的格式化、验证和转换。
  * 确保数据在网络传输中的完整性和一致性。
  * 
- * @return undefined8 处理结果状态
+ * @return uint64_t 处理结果状态
  */
-undefined8 NetworkDataProcessor(void)
+uint64_t NetworkDataProcessor(void)
 {
     return NETWORK_ERROR_SUCCESS;
 }
@@ -510,9 +510,9 @@ undefined8 NetworkDataProcessor(void)
  * 验证网络数据的完整性和有效性。
  * 检查数据格式、大小和校验和。
  * 
- * @return undefined8 验证结果状态
+ * @return uint64_t 验证结果状态
  */
-undefined8 NetworkDataValidator(void)
+uint64_t NetworkDataValidator(void)
 {
     return NETWORK_ERROR_INVALID_PARAM;
 }
@@ -549,7 +549,7 @@ ulonglong NetworkProtocolValidator(longlong param_1, longlong *param_2)
     bool is_valid;
     uint stack_buffer_18[2];
     uint stack_buffer_20[2];
-    undefined1 temp_buffer_48[32];
+    int8_t temp_buffer_48[32];
     
     /* 验证协议标识符 */
     validation_result = FUN_1808ddc20(param_2, temp_buffer_48, 0, NETWORK_PROTOCOL_TSLP);
@@ -675,7 +675,7 @@ protocol_cleanup:
     }
     
     if (is_valid) {
-        *(undefined4 *)(param_1 + 0x10) = 3;
+        *(int32_t *)(param_1 + 0x10) = 3;
     }
     
 protocol_finalization:
@@ -721,7 +721,7 @@ void NetworkResourceCleanup(void)
  * @param param_2 状态数据指针
  * @return void 无返回值
  */
-void NetworkStatusChecker(longlong param_1, undefined8 param_2)
+void NetworkStatusChecker(longlong param_1, uint64_t param_2)
 {
     int status_result;
     
@@ -743,13 +743,13 @@ void NetworkStatusChecker(longlong param_1, undefined8 param_2)
  * @param param_2 传输数据指针
  * @return ulonglong 传输结果状态码
  */
-ulonglong NetworkDataTransmitter(longlong param_1, undefined8 *param_2)
+ulonglong NetworkDataTransmitter(longlong param_1, uint64_t *param_2)
 {
     uint transmission_result;
     ulonglong operation_result;
     ulonglong final_result;
-    undefined1 temp_buffer_48[32];
-    undefined1 temp_buffer_28[32];
+    int8_t temp_buffer_48[32];
+    int8_t temp_buffer_28[32];
     
     /* 验证传输协议 */
     operation_result = FUN_1808ddc20(param_2, temp_buffer_28, 1, NETWORK_PROTOCOL_FFEP);
@@ -810,7 +810,7 @@ ulonglong NetworkDataReceiver(void)
     uint receive_result;
     longlong context_ptr;
     ulonglong operation_result;
-    undefined8 *data_ptr;
+    uint64_t *data_ptr;
     longlong connection_ptr;
     ulonglong final_result;
     
@@ -862,7 +862,7 @@ ulonglong NetworkErrorHandler(void)
 {
     uint error_result;
     ulonglong operation_result;
-    undefined8 *error_ptr;
+    uint64_t *error_ptr;
     longlong context_ptr;
     ulonglong final_result;
     
@@ -934,19 +934,19 @@ void NetworkAdvancedProcessor(void)
  * 
  * @param param_1 数据包处理参数
  * @param param_2 数据包数据指针
- * @return undefined8 处理结果状态
+ * @return uint64_t 处理结果状态
  */
-undefined8 NetworkPacketProcessor(undefined8 param_1, longlong *param_2)
+uint64_t NetworkPacketProcessor(uint64_t param_1, longlong *param_2)
 {
     longlong *packet_ptr;
     longlong packet_size;
-    undefined8 processing_result;
+    uint64_t processing_result;
     int validation_result[2];
     uint size_buffer[2];
-    undefined4 packet_header[2];
+    int32_t packet_header[2];
     longlong packet_data;
-    undefined1 temp_buffer_58[32];
-    undefined1 temp_buffer_38[32];
+    int8_t temp_buffer_58[32];
+    int8_t temp_buffer_38[32];
     
     /* 验证数据包协议 */
     processing_result = FUN_1808ddc20(param_2, temp_buffer_38, 1, NETWORK_PROTOCOL_SPRP);
@@ -1030,7 +1030,7 @@ buffer_validation_complete:
                 }
                 processing_result = FUN_1808a5d60(param_2, packet_size + 0x10, 0);
                 if ((int)processing_result == 0) {
-                    *(undefined4 *)(packet_size + 0x44) = 0xffffffff;
+                    *(int32_t *)(packet_size + 0x44) = 0xffffffff;
                     goto packet_finalization;
                 }
             }
@@ -1057,15 +1057,15 @@ packet_finalization:
  * 验证网络数据包的有效性和完整性。
  * 检查数据包格式、大小和校验和。
  * 
- * @return undefined8 验证结果状态
+ * @return uint64_t 验证结果状态
  */
-undefined8 NetworkPacketValidator(void)
+uint64_t NetworkPacketValidator(void)
 {
     longlong *packet_ptr;
     longlong packet_size;
-    undefined8 validation_result;
+    uint64_t validation_result;
     longlong *context_ptr;
-    undefined4 packet_header;
+    int32_t packet_header;
     longlong packet_data;
     int validation_flags;
     uint size_param;
@@ -1146,7 +1146,7 @@ validation_complete:
                 }
                 validation_result = FUN_1808a5d60();
                 if ((int)validation_result == 0) {
-                    *(undefined4 *)(packet_size + 0x44) = 0xffffffff;
+                    *(int32_t *)(packet_size + 0x44) = 0xffffffff;
                     goto packet_finalization;
                 }
             }
@@ -1187,9 +1187,9 @@ void NetworkConnectionStateHandler(void)
  * 处理网络系统错误码的生成和管理。
  * 提供错误码的标准化和分类处理。
  * 
- * @return undefined8 错误码处理结果
+ * @return uint64_t 错误码处理结果
  */
-undefined8 NetworkErrorCodeHandler(void)
+uint64_t NetworkErrorCodeHandler(void)
 {
     return NETWORK_ERROR_PROTOCOL_ERROR;
 }
@@ -1202,11 +1202,11 @@ undefined8 NetworkErrorCodeHandler(void)
  * 
  * @param param_1 配置上下文参数
  * @param param_2 配置数据指针
- * @return undefined8 配置管理结果
+ * @return uint64_t 配置管理结果
  */
-undefined8 NetworkConfigurationManager(longlong param_1, undefined8 *param_2)
+uint64_t NetworkConfigurationManager(longlong param_1, uint64_t *param_2)
 {
-    undefined8 config_result;
+    uint64_t config_result;
     
     /* 验证配置数据 */
     config_result = FUN_1808dde10(param_2, 0);
@@ -1239,11 +1239,11 @@ undefined8 NetworkConfigurationManager(longlong param_1, undefined8 *param_2)
  * @param param_2 同步数据指针
  * @return void 无返回值
  */
-void NetworkDataSynchronizer(longlong param_1, undefined8 *param_2)
+void NetworkDataSynchronizer(longlong param_1, uint64_t *param_2)
 {
     int sync_result;
-    undefined1 temp_buffer_48[32];
-    undefined1 temp_buffer_28[32];
+    int8_t temp_buffer_48[32];
+    int8_t temp_buffer_28[32];
     
     /* 验证同步协议 */
     sync_result = FUN_1808ddc20(param_2, temp_buffer_28, 1, NETWORK_PROTOCOL_KORP);
@@ -1263,7 +1263,7 @@ void NetworkDataSynchronizer(longlong param_1, undefined8 *param_2)
         }
         
         if (sync_result == 0) {
-            *(undefined4 *)(param_1 + 0x218) = *(undefined4 *)(param_2 + 8);
+            *(int32_t *)(param_1 + 0x218) = *(int32_t *)(param_2 + 8);
             if (*(uint *)(param_2 + 8) < NETWORK_HEADER_SIZE_0x41) {
                 sync_result = 0;
             }
@@ -1287,10 +1287,10 @@ void NetworkDataSynchronizer(longlong param_1, undefined8 *param_2)
                 
                 if (sync_result == 0) {
                     /* 设置同步数据 */
-                    *(undefined4 *)(param_1 + 0x200) = *(undefined4 *)(param_1 + 0x10);
-                    *(undefined4 *)(param_1 + 0x204) = *(undefined4 *)(param_1 + 0x14);
-                    *(undefined4 *)(param_1 + 0x208) = *(undefined4 *)(param_1 + 0x18);
-                    *(undefined4 *)(param_1 + 0x20c) = *(undefined4 *)(param_1 + 0x1c);
+                    *(int32_t *)(param_1 + 0x200) = *(int32_t *)(param_1 + 0x10);
+                    *(int32_t *)(param_1 + 0x204) = *(int32_t *)(param_1 + 0x14);
+                    *(int32_t *)(param_1 + 0x208) = *(int32_t *)(param_1 + 0x18);
+                    *(int32_t *)(param_1 + 0x20c) = *(int32_t *)(param_1 + 0x1c);
                     
                     /* 清理同步资源 */
                     FUN_1808ddf80(param_2, temp_buffer_48);
@@ -1309,12 +1309,12 @@ void NetworkDataSynchronizer(longlong param_1, undefined8 *param_2)
  * @param param_1 协议管理参数
  * @return void 无返回值
  */
-void NetworkProtocolManager(undefined4 param_1)
+void NetworkProtocolManager(int32_t param_1)
 {
     int protocol_result;
-    undefined8 *context_ptr;
+    uint64_t *context_ptr;
     longlong data_ptr;
-    undefined4 protocol_param;
+    int32_t protocol_param;
     
     /* 验证协议参数 */
     protocol_result = FUN_1808ddc20(param_1, &protocol_param, 0);
@@ -1332,7 +1332,7 @@ void NetworkProtocolManager(undefined4 param_1)
             }
             
             if (protocol_result == 0) {
-                *(undefined4 *)(data_ptr + 0x218) = *(undefined4 *)(context_ptr + 8);
+                *(int32_t *)(data_ptr + 0x218) = *(int32_t *)(context_ptr + 8);
                 if (*(uint *)(context_ptr + 8) < NETWORK_HEADER_SIZE_0x41) {
                     protocol_result = 0;
                 }
@@ -1356,13 +1356,13 @@ void NetworkProtocolManager(undefined4 param_1)
                     
                     if (protocol_result == 0) {
                         /* 设置协议数据 */
-                        *(undefined4 *)(data_ptr + 0x200) = *(undefined4 *)(data_ptr + 0x10);
-                        *(undefined4 *)(data_ptr + 0x204) = *(undefined4 *)(data_ptr + 0x14);
-                        *(undefined4 *)(data_ptr + 0x208) = *(undefined4 *)(data_ptr + 0x18);
-                        *(undefined4 *)(data_ptr + 0x20c) = *(undefined4 *)(data_ptr + 0x1c);
+                        *(int32_t *)(data_ptr + 0x200) = *(int32_t *)(data_ptr + 0x10);
+                        *(int32_t *)(data_ptr + 0x204) = *(int32_t *)(data_ptr + 0x14);
+                        *(int32_t *)(data_ptr + 0x208) = *(int32_t *)(data_ptr + 0x18);
+                        *(int32_t *)(data_ptr + 0x20c) = *(int32_t *)(data_ptr + 0x1c);
                         
                         /* 清理协议资源 */
-                        FUN_1808ddf80(*(undefined4 *)(data_ptr + 0x10), &protocol_param);
+                        FUN_1808ddf80(*(int32_t *)(data_ptr + 0x10), &protocol_param);
                     }
                 }
             }

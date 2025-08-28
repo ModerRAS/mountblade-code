@@ -60,15 +60,15 @@
 // 函数: ui_process_string_data - 处理UI字符串数据
 // 参数: data_context - 数据上下文指针, option_flags - 选项标志, callback_func - 回调函数, security_param - 安全参数
 // 功能: 处理UI系统的字符串数据，包括内存复制、数据初始化和清理
-void ui_process_string_data(longlong data_context, undefined8 option_flags, undefined8 callback_func, undefined8 security_param)
+void ui_process_string_data(longlong data_context, uint64_t option_flags, uint64_t callback_func, uint64_t security_param)
 
 {
   ulonglong string_length;
-  undefined8 security_cookie;
-  undefined *string_handler;
+  uint64_t security_cookie;
+  void *string_handler;
   longlong source_buffer;
   uint source_size;
-  undefined4 processing_flag;
+  int32_t processing_flag;
   
   security_cookie = 0xfffffffffffffffe;
   allocate_string_memory(&string_handler);
@@ -78,13 +78,13 @@ void ui_process_string_data(longlong data_context, undefined8 option_flags, unde
   }
   if (source_size != 0) {
     // 警告：子函数不返回
-    copy_string_data(*(undefined8 *)(data_context + 0x18), source_buffer, string_length, security_param, security_cookie);
+    copy_string_data(*(uint64_t *)(data_context + 0x18), source_buffer, string_length, security_param, security_cookie);
   }
-  *(undefined4 *)(data_context + 0x20) = 0;
+  *(int32_t *)(data_context + 0x20) = 0;
   if (*(longlong *)(data_context + 0x18) != 0) {
-    *(undefined1 *)(string_length + *(longlong *)(data_context + 0x18)) = 0;
+    *(int8_t *)(string_length + *(longlong *)(data_context + 0x18)) = 0;
   }
-  *(undefined4 *)(data_context + 0x2c) = processing_flag;
+  *(int32_t *)(data_context + 0x2c) = processing_flag;
   string_handler = &EMPTY_STRING_PTR;
   if (source_buffer != 0) {
     // 警告：子函数不返回
@@ -100,21 +100,21 @@ void ui_process_string_data(longlong data_context, undefined8 option_flags, unde
 // 函数: ui_allocate_string_buffer - 分配UI字符串缓冲区
 // 参数: input_string - 输入字符串指针
 // 功能: 为UI系统分配字符串缓冲区，初始化字符串数据
-undefined8 * ui_allocate_string_buffer(longlong input_string)
+uint64_t * ui_allocate_string_buffer(longlong input_string)
 
 {
-  undefined8 *string_buffer;
+  uint64_t *string_buffer;
   ulonglong calculated_length;
   ulonglong current_char;
   
-  string_buffer = (undefined8 *)allocate_ui_memory(MEMORY_POOL_HANDLE, 0x20, 8, 3);
+  string_buffer = (uint64_t *)allocate_ui_memory(MEMORY_POOL_HANDLE, 0x20, 8, 3);
   *string_buffer = &NULL_STRING_PTR;
   string_buffer[1] = 0;
-  *(undefined4 *)(string_buffer + 2) = 0;
+  *(int32_t *)(string_buffer + 2) = 0;
   *string_buffer = &EMPTY_STRING_PTR;
   string_buffer[3] = 0;
   string_buffer[1] = 0;
-  *(undefined4 *)(string_buffer + 2) = 0;
+  *(int32_t *)(string_buffer + 2) = 0;
   if (input_string != 0) {
     calculated_length = 0xffffffffffffffff;
     do {
@@ -126,9 +126,9 @@ undefined8 * ui_allocate_string_buffer(longlong input_string)
       // 警告：子函数不返回
       copy_string_content(string_buffer[1], input_string, (int)current_char + 2);
     }
-    *(undefined4 *)(string_buffer + 2) = 0;
-    if ((undefined1 *)string_buffer[1] != (undefined1 *)0x0) {
-      *(undefined1 *)string_buffer[1] = 0;
+    *(int32_t *)(string_buffer + 2) = 0;
+    if ((int8_t *)string_buffer[1] != (int8_t *)0x0) {
+      *(int8_t *)string_buffer[1] = 0;
     }
   }
   return string_buffer;
@@ -139,17 +139,17 @@ undefined8 * ui_allocate_string_buffer(longlong input_string)
 // 函数: ui_format_error_message - 格式化UI错误消息
 // 参数: error_code - 错误代码, output_buffer - 输出缓冲区, format_options - 格式化选项, security_param - 安全参数
 // 功能: 格式化UI系统的错误消息，使用预定义的错误模板
-undefined8 *
-ui_format_error_message(undefined8 error_code, undefined8 *output_buffer, undefined8 format_options, undefined8 security_param)
+uint64_t *
+ui_format_error_message(uint64_t error_code, uint64_t *output_buffer, uint64_t format_options, uint64_t security_param)
 
 {
   *output_buffer = &NULL_STRING_PTR;
   output_buffer[1] = 0;
-  *(undefined4 *)(output_buffer + 2) = 0;
+  *(int32_t *)(output_buffer + 2) = 0;
   *output_buffer = &ERROR_FORMAT_PTR;
   output_buffer[1] = output_buffer + 3;
-  *(undefined1 *)(output_buffer + 3) = 0;
-  *(undefined4 *)(output_buffer + 2) = 0x17;
+  *(int8_t *)(output_buffer + 3) = 0;
+  *(int32_t *)(output_buffer + 2) = 0x17;
   copy_error_message(output_buffer[1], 0x80, &ERROR_TEMPLATE_STRING, security_param, 0, 0xfffffffffffffffe);
   return output_buffer;
 }
@@ -159,17 +159,17 @@ ui_format_error_message(undefined8 error_code, undefined8 *output_buffer, undefi
 // 函数: ui_format_warning_message - 格式化UI警告消息
 // 参数: warning_code - 警告代码, output_buffer - 输出缓冲区, format_options - 格式化选项, security_param - 安全参数
 // 功能: 格式化UI系统的警告消息，使用预定义的警告模板
-undefined8 *
-ui_format_warning_message(undefined8 warning_code, undefined8 *output_buffer, undefined8 format_options, undefined8 security_param)
+uint64_t *
+ui_format_warning_message(uint64_t warning_code, uint64_t *output_buffer, uint64_t format_options, uint64_t security_param)
 
 {
   *output_buffer = &NULL_STRING_PTR;
   output_buffer[1] = 0;
-  *(undefined4 *)(output_buffer + 2) = 0;
+  *(int32_t *)(output_buffer + 2) = 0;
   *output_buffer = &WARNING_FORMAT_PTR;
   output_buffer[1] = output_buffer + 3;
-  *(undefined1 *)(output_buffer + 3) = 0;
-  *(undefined4 *)(output_buffer + 2) = 0x11;
+  *(int8_t *)(output_buffer + 3) = 0;
+  *(int32_t *)(output_buffer + 2) = 0x11;
   copy_warning_message(output_buffer[1], 0x80, &WARNING_TEMPLATE_STRING, security_param, 0, 0xfffffffffffffffe);
   return output_buffer;
 }
@@ -183,7 +183,7 @@ ui_format_warning_message(undefined8 warning_code, undefined8 *output_buffer, un
 // 函数: ui_process_resource_data - 处理UI资源数据
 // 参数: resource_id - 资源ID, resource_data - 资源数据, process_options - 处理选项, security_param - 安全参数
 // 功能: 处理UI系统的资源数据，调用资源处理函数进行数据转换
-void ui_process_resource_data(undefined8 resource_id, undefined8 resource_data, undefined8 process_options, undefined8 security_param)
+void ui_process_resource_data(uint64_t resource_id, uint64_t resource_data, uint64_t process_options, uint64_t security_param)
 
 {
   process_ui_resource(resource_id, RESOURCE_MANAGER_HANDLE, process_options, security_param, 0xfffffffffffffffe);
@@ -204,14 +204,14 @@ void ui_execute_resource_manager(longlong *manager_context)
 {
   byte processing_status;
   bool comparison_result;
-  undefined8 *current_resource;
-  undefined8 *next_resource;
+  uint64_t *current_resource;
+  uint64_t *next_resource;
   char character_value;
   longlong resource_identifier;
   longlong *manager_ptr;
   byte *string_data;
   byte *temp_string;
-  undefined8 *temp_pointer;
+  uint64_t *temp_pointer;
   byte *buffer_pointer;
   int comparison_value;
   ulonglong resource_index;
@@ -226,20 +226,20 @@ void ui_execute_resource_manager(longlong *manager_context)
   uint resource_total;
   longlong resource_info;
   longlong *stack_pointer_8;
-  undefined *string_handler;
+  void *string_handler;
   byte *string_content;
   uint string_length;
   ulonglong data_size;
-  undefined *format_handler;
-  undefined1 *output_buffer;
+  void *format_handler;
+  int8_t *output_buffer;
   uint output_length;
   ulonglong temp_size;
-  undefined4 allocation_mode;
-  undefined8 *resource_list;
-  undefined8 *list_end;
-  undefined8 resource_counter;
-  undefined4 temp_flag;
-  undefined8 security_cookie;
+  int32_t allocation_mode;
+  uint64_t *resource_list;
+  uint64_t *list_end;
+  uint64_t resource_counter;
+  int32_t temp_flag;
+  uint64_t security_cookie;
   
   security_cookie = 0xfffffffffffffffe;
   GLOBAL_MANAGER_CONTEXT = manager_context;
@@ -254,8 +254,8 @@ void ui_execute_resource_manager(longlong *manager_context)
   initialize_resource_stack(&STACK_POINTER_78);
   resource_collection = STACK_POINTER_70;
   if (_DAT_180c91038 != (longlong *)0x0) {
-    resource_list = (undefined8 *)0x0;
-    resource_end = (undefined8 *)0x0;
+    resource_list = (uint64_t *)0x0;
+    resource_end = (uint64_t *)0x0;
     resource_count_var = 0;
     temp_flag = 3;
     (**(code **)(*_DAT_180c91038 + 0x18))(_DAT_180c91038, &resource_list);
@@ -271,44 +271,44 @@ void ui_execute_resource_manager(longlong *manager_context)
         temp_ptr = resource_list;
         string_handler = &UNK_180a3c3e0;
         data_size = 0;
-        string_data = (undefined1 *)0x0;
+        string_data = (int8_t *)0x0;
         string_length = 0;
-        FUN_1806277c0(&string_handler, *(undefined4 *)(buffer_size + 0x10 + (longlong)resource_list));
+        FUN_1806277c0(&string_handler, *(int32_t *)(buffer_size + 0x10 + (longlong)resource_list));
         loop_counter = *(int *)(buffer_size + 0x10 + (longlong)temp_ptr);
         if (loop_counter != 0) {
           // 警告：子函数不返回
-          memcpy(string_data, *(undefined8 *)(buffer_size + 8 + (longlong)temp_ptr), loop_counter + 1);
+          memcpy(string_data, *(uint64_t *)(buffer_size + 8 + (longlong)temp_ptr), loop_counter + 1);
         }
         if (*(longlong *)(buffer_size + 8 + (longlong)temp_ptr) != 0) {
           string_length = 0;
-          if (string_data != (undefined1 *)0x0) {
+          if (string_data != (int8_t *)0x0) {
             *string_data = 0;
           }
           data_size = data_size & 0xffffffff;
         }
         format_ptr = &UNK_180a3c3e0;
         temp_size = 0;
-        output_ptr = (undefined1 *)0x0;
+        output_ptr = (int8_t *)0x0;
         output_size = 0;
         FUN_1806277c0(&format_ptr, string_length);
         if (string_length != 0) {
           // 警告：子函数不返回
           memcpy(output_ptr, string_data, string_length + 1);
         }
-        if (string_data != (undefined1 *)0x0) {
+        if (string_data != (int8_t *)0x0) {
           output_size = 0;
-          if (output_ptr != (undefined1 *)0x0) {
+          if (output_ptr != (int8_t *)0x0) {
             *output_ptr = 0;
           }
           temp_size = temp_size & 0xffffffff;
         }
         loop_counter = output_size + 0xe;
         FUN_1806277c0(&format_ptr, loop_counter);
-        temp_ptr = (undefined8 *)(output_ptr + output_size);
+        temp_ptr = (uint64_t *)(output_ptr + output_size);
         *temp_ptr = 0x75646f4d6275532f;
-        *(undefined4 *)(temp_ptr + 1) = 0x782e656c;
-        *(undefined2 *)((longlong)temp_ptr + 0xc) = 0x6c6d;
-        *(undefined1 *)((longlong)temp_ptr + 0xe) = 0;
+        *(int32_t *)(temp_ptr + 1) = 0x782e656c;
+        *(int16_t *)((longlong)temp_ptr + 0xc) = 0x6c6d;
+        *(int8_t *)((longlong)temp_ptr + 0xe) = 0;
         output_size = loop_counter;
         char_val = FUN_180624af0(&format_ptr);
         resource_array = manager_ptr;
@@ -326,7 +326,7 @@ void ui_execute_resource_manager(longlong *manager_context)
             if (resource_data == 0) {
               resource_data = 1;
 LAB_180656abd:
-              manager_ptr = (longlong *)FUN_18062b420(_DAT_180c8ed18, resource_data * 8, (undefined1)allocation_flag);
+              manager_ptr = (longlong *)FUN_18062b420(_DAT_180c8ed18, resource_data * 8, (int8_t)allocation_flag);
             }
             else {
               resource_data = resource_data * 2;
@@ -351,15 +351,15 @@ LAB_180656abd:
           }
         }
         format_ptr = &UNK_180a3c3e0;
-        if (output_ptr != (undefined1 *)0x0) {
+        if (output_ptr != (int8_t *)0x0) {
           // 警告：子函数不返回
           FUN_18064e900();
         }
-        output_ptr = (undefined1 *)0x0;
+        output_ptr = (int8_t *)0x0;
         temp_size = temp_size & 0xffffffff00000000;
         format_ptr = &UNK_18098bcb0;
         string_handler = &UNK_180a3c3e0;
-        if (string_data != (undefined1 *)0x0) {
+        if (string_data != (int8_t *)0x0) {
           // 警告：子函数不返回
           FUN_18064e900();
         }
@@ -381,12 +381,12 @@ LAB_180656abd:
       next_resource = resource_end;
       resource_end = temp_ptr;
     }
-    if (resource_list != (undefined8 *)0x0) {
+    if (resource_list != (uint64_t *)0x0) {
       resource_end = next_resource;
       // 警告：子函数不返回
       FUN_18064e900();
     }
-    resource_list = (undefined8 *)0x0;
+    resource_list = (uint64_t *)0x0;
     resource_end = next_resource;
   }
   loop_counter = 0;
@@ -401,10 +401,10 @@ LAB_180656abd:
       data_size = 0;
       string_data = (byte *)0x0;
       string_length = 0;
-      FUN_1806277c0(&string_handler, *(undefined4 *)(resource_id + 0x10));
+      FUN_1806277c0(&string_handler, *(int32_t *)(resource_id + 0x10));
       if (*(int *)(resource_id + 0x10) != 0) {
         // 警告：子函数不返回
-        memcpy(string_data, *(undefined8 *)(resource_id + 8), *(int *)(resource_id + 0x10) + 1);
+        memcpy(string_data, *(uint64_t *)(resource_id + 8), *(int *)(resource_id + 0x10) + 1);
       }
       if (*(longlong *)(resource_id + 8) != 0) {
         string_length = 0;
@@ -464,7 +464,7 @@ LAB_180656dbb:
         }
         if (temp_string == &DAT_180c967e0) {
 LAB_180656df9:
-          temp_ptr = (undefined8 *)FUN_1806576d0(&string_handler, &plStackX_8, temp_buffer, temp_string, &string_handler);
+          temp_ptr = (uint64_t *)FUN_1806576d0(&string_handler, &plStackX_8, temp_buffer, temp_string, &string_handler);
           temp_string = (byte *)*temp_ptr;
         }
         else if (*(int *)(temp_string + 0x30) != 0) {
@@ -567,34 +567,34 @@ LAB_180656e1e:
 void ui_initialize_resource_loader(ulonglong *param_1)
 
 {
-  undefined8 *config_ptr;
-  undefined8 *next_config;
+  uint64_t *config_ptr;
+  uint64_t *next_config;
   char char_val;
-  undefined8 config_var;
+  uint64_t config_var;
   longlong temp_long;
-  undefined8 *current_config;
-  undefined8 *prev_config;
-  undefined8 *start_config;
+  uint64_t *current_config;
+  uint64_t *prev_config;
+  uint64_t *start_config;
   int config_count;
   int *config_size_ptr;
   int size_val;
   ulonglong total_size;
-  undefined1 security_buffer[32];
-  undefined *temp_ptr;
-  undefined1 *string_ptr;
+  int8_t security_buffer[32];
+  void *temp_ptr;
+  int8_t *string_ptr;
   uint string_len;
   ulonglong buffer_size;
-  undefined4 buffer_flag;
-  undefined *format_handler;
+  int32_t buffer_flag;
+  void *format_handler;
   longlong path_offset;
   uint path_size;
-  undefined4 path_flag;
+  int32_t path_flag;
   ulonglong path_capacity;
-  undefined8 *resource_array;
-  undefined8 *array_end;
-  undefined8 array_count;
-  undefined4 allocation_flag;
-  undefined8 stack_var;
+  uint64_t *resource_array;
+  uint64_t *array_end;
+  uint64_t array_count;
+  int32_t allocation_flag;
+  uint64_t stack_var;
   ulonglong config_array[2];
   ulonglong security_cookie;
   
@@ -613,10 +613,10 @@ void ui_initialize_resource_loader(ulonglong *param_1)
   format_handler = &UNK_18098bcb0;
   config_count = path_size + 8;
   FUN_1806277c0(&string_ptr, config_count);
-  *(undefined8 *)((ulonglong)path_size + path_offset) = 0x2f73656c75646f4d;
-  *(undefined1 *)((undefined8 *)((ulonglong)path_size + path_offset) + 1) = 0;
-  resource_array = (undefined8 *)0x0;
-  array_end = (undefined8 *)0x0;
+  *(uint64_t *)((ulonglong)path_size + path_offset) = 0x2f73656c75646f4d;
+  *(int8_t *)((uint64_t *)((ulonglong)path_size + path_offset) + 1) = 0;
+  resource_array = (uint64_t *)0x0;
+  array_end = (uint64_t *)0x0;
   array_count = 0;
   allocation_flag = 3;
   path_size = config_count;
@@ -636,18 +636,18 @@ void ui_initialize_resource_loader(ulonglong *param_1)
       FUN_1806277c0(&format_handler, *config_size_ptr);
       if (*config_size_ptr != 0) {
         // 警告：子函数不返回
-        memcpy(temp_ptr, *(undefined8 *)(config_size_ptr + -2), *config_size_ptr + 1);
+        memcpy(temp_ptr, *(uint64_t *)(config_size_ptr + -2), *config_size_ptr + 1);
       }
       if (*(longlong *)(config_size_ptr + -2) != 0) {
         config_count = 0;
         if (temp_ptr != (ulonglong *)0x0) {
-          *(undefined1 *)temp_ptr = 0;
+          *(int8_t *)temp_ptr = 0;
         }
         config_array[0] = config_array[0] & 0xffffffff;
       }
       temp_ptr = &UNK_180a3c3e0;
       buffer_size = 0;
-      string_ptr = (undefined1 *)0x0;
+      string_ptr = (int8_t *)0x0;
       string_len = 0;
       FUN_1806277c0(&temp_ptr, config_count);
       if (config_count != 0) {
@@ -656,41 +656,41 @@ void ui_initialize_resource_loader(ulonglong *param_1)
       }
       if (temp_ptr != (ulonglong *)0x0) {
         string_len = 0;
-        if (string_ptr != (undefined1 *)0x0) {
+        if (string_ptr != (int8_t *)0x0) {
           *string_ptr = 0;
         }
         buffer_size = buffer_size & 0xffffffff;
       }
       config_count = string_len + 0xe;
       FUN_1806277c0(&temp_ptr, config_count);
-      prev_config = (undefined8 *)(string_ptr + string_len);
+      prev_config = (uint64_t *)(string_ptr + string_len);
       *prev_config = 0x75646f4d6275532f;
-      *(undefined4 *)(prev_config + 1) = 0x782e656c;
-      *(undefined2 *)((longlong)prev_config + 0xc) = 0x6c6d;
-      *(undefined1 *)((longlong)prev_config + 0xe) = 0;
+      *(int32_t *)(prev_config + 1) = 0x782e656c;
+      *(int16_t *)((longlong)prev_config + 0xc) = 0x6c6d;
+      *(int8_t *)((longlong)prev_config + 0xe) = 0;
       string_len = config_count;
       char_val = FUN_180624af0(&temp_ptr);
       if (char_val != '\0') {
         config_var = FUN_180657fa0(&temp_ptr);
-        prev_config = (undefined8 *)param_1[1];
-        if (prev_config < (undefined8 *)param_1[2]) {
+        prev_config = (uint64_t *)param_1[1];
+        if (prev_config < (uint64_t *)param_1[2]) {
           param_1[1] = (ulonglong)(prev_config + 1);
           *prev_config = config_var;
         }
         else {
-          start_config = (undefined8 *)*param_1;
+          start_config = (uint64_t *)*param_1;
           temp_long = (longlong)prev_config - (longlong)start_config >> 3;
           if (temp_long == 0) {
             temp_long = 1;
 LAB_1806572f9:
-            current_config = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, temp_long * 8, (char)param_1[3]);
-            prev_config = (undefined8 *)param_1[1];
-            start_config = (undefined8 *)*param_1;
+            current_config = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, temp_long * 8, (char)param_1[3]);
+            prev_config = (uint64_t *)param_1[1];
+            start_config = (uint64_t *)*param_1;
           }
           else {
             temp_long = temp_long * 2;
             if (temp_long != 0) goto LAB_1806572f9;
-            current_config = (undefined8 *)0x0;
+            current_config = (uint64_t *)0x0;
           }
           if (start_config != prev_config) {
             // 警告：子函数不返回
@@ -708,11 +708,11 @@ LAB_1806572f9:
         }
       }
       temp_ptr = &UNK_180a3c3e0;
-      if (string_ptr != (undefined1 *)0x0) {
+      if (string_ptr != (int8_t *)0x0) {
         // 警告：子函数不返回
         FUN_18064e900();
       }
-      string_ptr = (undefined1 *)0x0;
+      string_ptr = (int8_t *)0x0;
       buffer_size = buffer_size & 0xffffffff00000000;
       temp_ptr = &UNK_18098bcb0;
       format_handler = &UNK_180a3c3e0;
@@ -739,7 +739,7 @@ LAB_1806572f9:
     array_end = next_config;
     resource_array = config_ptr;
   }
-  if (resource_array != (undefined8 *)0x0) {
+  if (resource_array != (uint64_t *)0x0) {
     resource_array = start_config;
     array_end = current_config;
     // 警告：子函数不返回
@@ -766,15 +766,15 @@ LAB_1806572f9:
 // 函数: ui_process_path_string - 处理UI路径字符串
 // 参数: param_1 - 输入字符串, param_2 - 处理选项, param_3/4 - 处理参数
 // 功能: 处理UI系统的路径字符串，进行字符转换和路径规范化
-undefined8
-ui_process_path_string(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+uint64_t
+ui_process_path_string(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 
 {
   uint char_count;
-  undefined8 result;
+  uint64_t result;
   longlong string_ptr;
-  undefined *temp_array[3];
-  undefined *string_handler;
+  void *temp_array[3];
+  void *string_handler;
   longlong buffer_ptr;
   uint buffer_size;
   
@@ -795,7 +795,7 @@ ui_process_path_string(undefined8 param_1, undefined8 param_2, undefined8 param_
     result = 0;
   }
   else {
-    result = *(undefined8 *)(temp_array[0] + 0x40);
+    result = *(uint64_t *)(temp_array[0] + 0x40);
   }
   string_handler = &UNK_180a3c3e0;
   if (buffer_ptr != 0) {
@@ -814,7 +814,7 @@ ui_process_path_string(undefined8 param_1, undefined8 param_2, undefined8 param_
 // 函数: ui_cleanup_resource_cache - 清理UI资源缓存
 // 参数: param_1 - 缓存标识, param_2 - 清理选项, param_3/4 - 清理参数
 // 功能: 清理UI系统的资源缓存，释放不再使用的资源
-void ui_cleanup_resource_cache(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void ui_cleanup_resource_cache(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 
 {
   FUN_180657620(param_1, _DAT_180c967f0, param_3, param_4, 0xfffffffffffffffe);
@@ -828,7 +828,7 @@ void ui_cleanup_resource_cache(undefined8 param_1, undefined8 param_2, undefined
 // 函数: ui_find_resource_by_name - 根据名称查找UI资源
 // 参数: param_1 - 查找类型, param_2 - 输出缓冲区, param_3 - 资源名称
 // 功能: 在UI系统中根据名称查找资源，返回资源指针
-undefined8 * ui_find_resource_by_name(undefined8 param_1, undefined8 *param_2, longlong param_3)
+uint64_t * ui_find_resource_by_name(uint64_t param_1, uint64_t *param_2, longlong param_3)
 
 {
   byte char_val;
@@ -837,17 +837,17 @@ undefined8 * ui_find_resource_by_name(undefined8 param_1, undefined8 *param_2, l
   uint name_length;
   int comparison_val;
   longlong name_offset;
-  undefined8 *resource_ptr;
-  undefined8 *next_resource;
-  undefined8 *current_resource;
-  undefined8 *found_resource;
+  uint64_t *resource_ptr;
+  uint64_t *next_resource;
+  uint64_t *current_resource;
+  uint64_t *found_resource;
   
-  if (_DAT_180c967f0 != (undefined8 *)0x0) {
+  if (_DAT_180c967f0 != (uint64_t *)0x0) {
     resource_ptr = _DAT_180c967f0;
-    found_resource = (undefined8 *)&DAT_180c967e0;
+    found_resource = (uint64_t *)&DAT_180c967e0;
     do {
       if (*(int *)(param_3 + 0x10) == 0) {
-        next_resource = (undefined8 *)resource_ptr[1];
+        next_resource = (uint64_t *)resource_ptr[1];
         comparison_result = false;
       }
       else {
@@ -865,11 +865,11 @@ undefined8 * ui_find_resource_by_name(undefined8 param_1, undefined8 *param_2, l
           } while (name_length != 0);
           comparison_result = 0 < comparison_val;
           if (comparison_val < 1) {
-            next_resource = (undefined8 *)resource_ptr[1];
+            next_resource = (uint64_t *)resource_ptr[1];
             goto LAB_1806575b7;
           }
         }
-        next_resource = (undefined8 *)*resource_ptr;
+        next_resource = (uint64_t *)*resource_ptr;
       }
 LAB_1806575b7:
       current_resource = resource_ptr;
@@ -878,8 +878,8 @@ LAB_1806575b7:
       }
       resource_ptr = next_resource;
       found_resource = current_resource;
-    } while (next_resource != (undefined8 *)0x0);
-    if (current_resource != (undefined8 *)&DAT_180c967e0) {
+    } while (next_resource != (uint64_t *)0x0);
+    if (current_resource != (uint64_t *)&DAT_180c967e0) {
       if (*(int *)(current_resource + 6) == 0) {
 LAB_1806575f7:
         *param_2 = current_resource;
@@ -909,10 +909,10 @@ LAB_1806575f7:
 // 函数: ui_free_resource_memory - 释放UI资源内存
 // 参数: param_1 - 资源指针, param_2 - 释放选项, param_3/4 - 释放参数
 // 功能: 释放UI系统占用的资源内存，清理相关数据结构
-void ui_free_resource_memory(undefined8 param_1, undefined8 *param_2, undefined8 param_3, undefined8 param_4)
+void ui_free_resource_memory(uint64_t param_1, uint64_t *param_2, uint64_t param_3, uint64_t param_4)
 
 {
-  if (param_2 == (undefined8 *)0x0) {
+  if (param_2 == (uint64_t *)0x0) {
     return;
   }
   FUN_180657620(&DAT_180c967e0, *param_2, param_3, param_4, 0xfffffffffffffffe);
@@ -922,7 +922,7 @@ void ui_free_resource_memory(undefined8 param_1, undefined8 *param_2, undefined8
     FUN_18064e900();
   }
   param_2[5] = 0;
-  *(undefined4 *)(param_2 + 7) = 0;
+  *(int32_t *)(param_2 + 7) = 0;
   param_2[4] = &UNK_18098bcb0;
   // 警告：子函数不返回
   FUN_18064e900(param_2);
@@ -932,22 +932,22 @@ void ui_free_resource_memory(undefined8 param_1, undefined8 *param_2, undefined8
 
 // 警告：以'_'开头的全局变量与同一地址的较小符号的重叠
 
-undefined8 *
-ui_insert_resource_node(ulonglong param_1, undefined8 *param_2, undefined8 param_3, longlong *param_4,
+uint64_t *
+ui_insert_resource_node(ulonglong param_1, uint64_t *param_2, uint64_t param_3, longlong *param_4,
                         longlong param_5)
 
 {
   byte char_val;
   bool comparison_result;
-  undefined8 *new_node;
+  uint64_t *new_node;
   longlong *node_ptr;
   byte *name_ptr;
-  undefined8 *current_node;
+  uint64_t *current_node;
   uint name_length;
   longlong *next_node;
   longlong name_offset;
   ulonglong node_flags;
-  undefined8 insert_flag;
+  uint64_t insert_flag;
   
   if ((param_4 == _DAT_180c967e0) || (param_4 == (longlong *)&DAT_180c967e0)) {
     if ((_DAT_180c96800 != 0) && (*(int *)(param_5 + 0x10) != 0)) {
@@ -1010,14 +1010,14 @@ LAB_1806577da:
   }
 LAB_1806577f1:
   comparison_result = true;
-  new_node = (undefined8 *)&DAT_180c967e0;
+  new_node = (uint64_t *)&DAT_180c967e0;
   current_node = _DAT_180c967f0;
-  while (current_node != (undefined8 *)0x0) {
+  while (current_node != (uint64_t *)0x0) {
     new_node = current_node;
     if (*(int *)(current_node + 6) == 0) {
       comparison_result = false;
 LAB_180657812:
-      current_node = (undefined8 *)*current_node;
+      current_node = (uint64_t *)*current_node;
     }
     else {
       if (*(int *)(param_5 + 0x10) == 0) {
@@ -1035,13 +1035,13 @@ LAB_180657812:
         comparison_result = 0 < (int)(char_val - name_length);
       }
       if (!comparison_result) goto LAB_180657812;
-      current_node = (undefined8 *)current_node[1];
+      current_node = (uint64_t *)current_node[1];
     }
   }
   current_node = new_node;
   if (comparison_result) {
     if (new_node != _DAT_180c96800) {
-      current_node = (undefined8 *)func_0x00018066b9a0(new_node);
+      current_node = (uint64_t *)func_0x00018066b9a0(new_node);
       goto LAB_180657835;
     }
   }
@@ -1064,7 +1064,7 @@ LAB_180657941:
       if ((int)(char_val - name_length) < 1) goto LAB_180657941;
     }
   }
-  if (new_node != (undefined8 *)&DAT_180c967e0) {
+  if (new_node != (uint64_t *)&DAT_180c967e0) {
     if (*(int *)(new_node + 6) == 0) {
 LAB_1806578a7:
       insert_flag = 1;
@@ -1086,7 +1086,7 @@ LAB_1806578a7:
 LAB_1806578f0:
   name_offset = FUN_18062b420(_DAT_180c8ed18, 0x48, DAT_180c96808);
   FUN_180627ae0(name_offset + 0x20, param_5);
-  *(undefined8 *)(name_offset + 0x40) = 0;
+  *(uint64_t *)(name_offset + 0x40) = 0;
   // 警告：子函数不返回
   FUN_18066bdc0(name_offset, new_node, &DAT_180c967e0, insert_flag);
 }

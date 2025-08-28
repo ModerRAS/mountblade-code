@@ -53,8 +53,8 @@ void SystemExceptionHandlerWithCleanup(void)
   longlong unaff_R13;
   
   // 复制异常处理状态信息
-  *(undefined4 *)(unaff_R13 + SYSTEM_EXCEPTION_HANDLER_OFFSET) = 
-    *(undefined4 *)(unaff_RBP + -SYSTEM_MEMORY_BLOCK_SIZE);
+  *(int32_t *)(unaff_R13 + SYSTEM_EXCEPTION_HANDLER_OFFSET) = 
+    *(int32_t *)(unaff_RBP + -SYSTEM_MEMORY_BLOCK_SIZE);
   
   // 执行系统内部清理操作
   SystemInternalCleanupFunction();

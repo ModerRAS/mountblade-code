@@ -63,9 +63,9 @@ typedef uint IndexType;                             // 索引类型
 typedef ulonglong DataValue;                        // 数据值类型
 typedef longlong ProcessCounter;                    // 处理计数器类型
 typedef bool ComparisonResult;                      // 比较结果类型
-typedef undefined1 SystemFlag;                      // 系统标志类型
-typedef undefined8* ExtendedDataPointer;            // 扩展数据指针类型
-typedef undefined4 StatusFlag;                      // 状态标志类型
+typedef int8_t SystemFlag;                      // 系统标志类型
+typedef uint64_t* ExtendedDataPointer;            // 扩展数据指针类型
+typedef int32_t StatusFlag;                      // 状态标志类型
 
 //============================================================================
 // 枚举定义
@@ -363,10 +363,10 @@ LAB_1800eb6ee:
  * @param param_4 系统标志
  * @param param_5 扩展参数
  */
-void ExtendedDataProcessor(DataPointer param_1, DataPointer param_2, ProcessCounter param_3, undefined8 param_4,
-                         undefined8 param_5, DataValue param_6, DataValue param_7, undefined8 param_8,
-                         undefined8 param_9, undefined8 param_10, undefined8 param_11, ProcessCounter param_12,
-                         ProcessCounter param_13, undefined8 param_14, undefined8 param_15, ProcessCounter param_16,
+void ExtendedDataProcessor(DataPointer param_1, DataPointer param_2, ProcessCounter param_3, uint64_t param_4,
+                         uint64_t param_5, DataValue param_6, DataValue param_7, uint64_t param_8,
+                         uint64_t param_9, uint64_t param_10, uint64_t param_11, ProcessCounter param_12,
+                         ProcessCounter param_13, uint64_t param_14, uint64_t param_15, ProcessCounter param_16,
                          ProcessCounter param_17, ProcessCounter param_18, ProcessCounter param_19, ProcessCounter param_20,
                          ProcessCounter param_21, StatusFlag param_22, StatusFlag param_23, StatusFlag param_24,
                          StatusFlag param_25)
@@ -380,22 +380,22 @@ void ExtendedDataProcessor(DataPointer param_1, DataPointer param_2, ProcessCoun
     HashTablePointer localPtr11, localPtr12;
     IndexType localIndex13;
     SystemFlag unaff_bl;
-    undefined8 unaff_rbp;
+    uint64_t unaff_rbp;
     HashTablePointer localPtr14;
     IndexType localIndex15;
     HashTablePointer localPtr16;
     ProcessCounter register_r11;
-    undefined8 unaff_r12;
-    undefined8 unaff_r13;
+    uint64_t unaff_r12;
+    uint64_t unaff_r13;
     ProcessCounter localVar17;
     ComparisonResult compareResult;
-    undefined4 unaff_xmm6_da, unaff_xmm6_dc;
-    undefined4 stack_b4, stack_bc;
+    int32_t unaff_xmm6_da, unaff_xmm6_dc;
+    int32_t stack_b4, stack_bc;
     
     // 寄存器初始化
-    *(undefined8 *)(register_rax + OFFSET_8) = unaff_rbp;
-    *(undefined8 *)(register_rax + -0x20) = unaff_r12;
-    *(undefined8 *)(register_rax + -0x28) = unaff_r13;
+    *(uint64_t *)(register_rax + OFFSET_8) = unaff_rbp;
+    *(uint64_t *)(register_rax + -0x20) = unaff_r12;
+    *(uint64_t *)(register_rax + -0x28) = unaff_r13;
     
     // 变量初始化
     localIndex1 = *(IndexType *)(param_1 + 1);
@@ -687,10 +687,10 @@ void SystemStateController(void)
 {
     SystemFlag unaff_bl;
     ProcessCounter unaff_rbp;
-    undefined8 *unaff_r14;
-    undefined4 *unaff_r15;
-    undefined8 stack_90, stack_98;
-    undefined8 stack_a0, stack_a8;
+    uint64_t *unaff_r14;
+    int32_t *unaff_r15;
+    uint64_t stack_90, stack_98;
+    uint64_t stack_a0, stack_a8;
     StatusFlag stack_b0, stack_b4;
     StatusFlag stack_b8, stack_bc;
     
@@ -720,10 +720,10 @@ void SystemStateController(void)
 void SystemOperationHandler(void)
 {
     SystemFlag unaff_bl;
-    undefined8 *unaff_r14;
-    undefined4 *unaff_r15;
-    undefined8 stack_90, stack_98;
-    undefined8 stack_a0, stack_a8;
+    uint64_t *unaff_r14;
+    int32_t *unaff_r15;
+    uint64_t stack_90, stack_98;
+    uint64_t stack_a0, stack_a8;
     StatusFlag stack_b0, stack_b4;
     StatusFlag stack_b8, stack_bc;
     
@@ -756,12 +756,12 @@ void DataSortingEngine(DataPointer param_1, DataPointer param_2, ProcessCounter 
 {
     ExtendedDataPointer localPtr1, localPtr2;
     ProcessCounter localVar3;
-    undefined8 localValue4;
+    uint64_t localValue4;
     int localVar5;
     ProcessCounter localVar6, localVar7;
     DataValue localValue8;
     ProcessCounter localVar9;
-    undefined8 localValue10;
+    uint64_t localValue10;
     IndexType localIndex11;
     DataValue localValue12;
     IndexType localIndex13;
@@ -772,11 +772,11 @@ void DataSortingEngine(DataPointer param_1, DataPointer param_2, ProcessCounter 
     ProcessCounter stack_a8, stack_a0;
     ProcessCounter stack_98, stack_90;
     ProcessCounter stack_88, stack_80;
-    undefined8 stack_78, stack_70;
-    undefined8 stack_68, stack_60;
-    undefined8 stack_58, stack_50;
-    undefined8 stack_48, stack_40;
-    undefined8 stack_38;
+    uint64_t stack_78, stack_70;
+    uint64_t stack_68, stack_60;
+    uint64_t stack_58, stack_50;
+    uint64_t stack_48, stack_40;
+    uint64_t stack_38;
     
     // 初始化变量
     localVar9 = *param_1;
@@ -795,7 +795,7 @@ void DataSortingEngine(DataPointer param_1, DataPointer param_2, ProcessCounter 
             localPtr1 = (ExtendedDataPointer)(localVar6 + localValue12 * EXTENDED_DATA_SIZE);
             stack_78 = *localPtr1;
             stack_70 = localPtr1[1];
-            stack_68 = *(undefined8 *)(localVar6 + OFFSET_0x10 + localValue12 * EXTENDED_DATA_SIZE);
+            stack_68 = *(uint64_t *)(localVar6 + OFFSET_0x10 + localValue12 * EXTENDED_DATA_SIZE);
             stack_a8 = *param_1;
             stack_a0 = param_1[1];
             ExtendedDataOperation(&stack_a8, localVar15, localVar16, localVar15, &stack_78);
@@ -831,11 +831,11 @@ void DataSortingEngine(DataPointer param_1, DataPointer param_2, ProcessCounter 
                 localPtr1 = (ExtendedDataPointer)(localVar6 + localValue12 * EXTENDED_DATA_SIZE);
                 stack_60 = *localPtr1;
                 stack_58 = localPtr1[1];
-                stack_50 = *(undefined8 *)(localVar6 + OFFSET_0x10 + localValue12 * EXTENDED_DATA_SIZE);
+                stack_50 = *(uint64_t *)(localVar6 + OFFSET_0x10 + localValue12 * EXTENDED_DATA_SIZE);
                 localVar6 = *(ProcessCounter *)(localVar9 + OFFSET_8 + (DataValue)localIndex18 * OFFSET_8);
                 localPtr1 = (ExtendedDataPointer)(localVar7 + localVar16);
                 localValue10 = localPtr1[1];
-                localValue4 = *(undefined8 *)(localVar7 + OFFSET_0x10 + localVar16);
+                localValue4 = *(uint64_t *)(localVar7 + OFFSET_0x10 + localVar16);
                 localValue12 = (DataValue)(localIndex13 + localIndex18 * -HASH_TABLE_SIZE);
                 localVar7 = param_2[1];
                 localPtr2 = (ExtendedDataPointer)(localVar6 + localValue12 * EXTENDED_DATA_SIZE);
@@ -843,7 +843,7 @@ void DataSortingEngine(DataPointer param_1, DataPointer param_2, ProcessCounter 
                 localPtr2[1] = localValue10;
                 stack_98 = *param_1;
                 stack_90 = param_1[1];
-                *(undefined8 *)(localVar6 + OFFSET_0x10 + localValue12 * EXTENDED_DATA_SIZE) = localValue4;
+                *(uint64_t *)(localVar6 + OFFSET_0x10 + localValue12 * EXTENDED_DATA_SIZE) = localValue4;
                 ExtendedDataOperation(&stack_98, INITIAL_VALUE_0, (ProcessCounter)(IndexType)localVar7 - (ProcessCounter)(IndexType)localIndex17, INITIAL_VALUE_0, &stack_60);
             }
             localIndex13 = localIndex13 + INITIAL_VALUE_1;
@@ -867,18 +867,18 @@ void DataSortingEngine(DataPointer param_1, DataPointer param_2, ProcessCounter 
             localPtr1 = (ExtendedDataPointer)(localVar15 + (DataValue)localIndex11 * EXTENDED_DATA_SIZE);
             stack_48 = *localPtr1;
             stack_40 = localPtr1[1];
-            stack_38 = *(undefined8 *)(localVar15 + OFFSET_0x10 + (DataValue)localIndex11 * EXTENDED_DATA_SIZE);
+            stack_38 = *(uint64_t *)(localVar15 + OFFSET_0x10 + (DataValue)localIndex11 * EXTENDED_DATA_SIZE);
             localVar15 = *(ProcessCounter *)(localVar16 + (DataValue)(localIndex17 >> BIT_SHIFT_11) * OFFSET_8 + OFFSET_8);
             localVar6 = *(ProcessCounter *)(localVar9 + OFFSET_8 + (DataValue)(localIndex18 >> BIT_SHIFT_11) * OFFSET_8);
             localPtr1 = (ExtendedDataPointer)(localVar15 + localValue12 * EXTENDED_DATA_SIZE);
             localValue10 = localPtr1[1];
-            localValue4 = *(undefined8 *)(localVar15 + OFFSET_0x10 + localValue12 * EXTENDED_DATA_SIZE);
+            localValue4 = *(uint64_t *)(localVar15 + OFFSET_0x10 + localValue12 * EXTENDED_DATA_SIZE);
             localPtr2 = (ExtendedDataPointer)(localVar6 + (DataValue)localIndex11 * EXTENDED_DATA_SIZE);
             *localPtr2 = *localPtr1;
             localPtr2[1] = localValue10;
             stack_88 = *param_1;
             stack_80 = param_1[1];
-            *(undefined8 *)(localVar6 + OFFSET_0x10 + (DataValue)localIndex11 * EXTENDED_DATA_SIZE) = localValue4;
+            *(uint64_t *)(localVar6 + OFFSET_0x10 + (DataValue)localIndex11 * EXTENDED_DATA_SIZE) = localValue4;
             ExtendedDataOperation(&stack_88, INITIAL_VALUE_0, ((ProcessCounter)(IndexType)localIndex13 - (ProcessCounter)(IndexType)localIndex17) + -INITIAL_VALUE_1, INITIAL_VALUE_0, &stack_48);
             localIndex13 = localIndex18;
         } while (INITIAL_VALUE_1 < (ProcessCounter)(IndexType)localIndex18 - (ProcessCounter)(IndexType)localVar3);
@@ -901,11 +901,11 @@ void DataComparisonProcessor(int param_1)
     IndexType localIndex1;
     ExtendedDataPointer localPtr2, localPtr3;
     ProcessCounter localVar4;
-    undefined8 localValue5;
+    uint64_t localValue5;
     ProcessCounter localVar6, localVar7, localVar8;
     DataValue localValue9;
     ProcessCounter localVar10;
-    undefined8 localValue11;
+    uint64_t localValue11;
     IndexType localIndex12;
     DataValue localValue13, localValue14;
     IndexType unaff_ebx;
@@ -918,9 +918,9 @@ void DataComparisonProcessor(int param_1)
     ComparisonResult compareResult;
     ProcessCounter stack_40, stack_48;
     ProcessCounter stack_50, stack_58;
-    undefined8 stack_78, stack_80;
-    undefined8 stack_88, stack_90;
-    undefined8 stack_98, stack_a0;
+    uint64_t stack_78, stack_80;
+    uint64_t stack_88, stack_90;
+    uint64_t stack_98, stack_a0;
     ProcessCounter stack_e0;
     
     // 初始化变量
@@ -947,11 +947,11 @@ void DataComparisonProcessor(int param_1)
             localPtr2 = (ExtendedDataPointer)(localVar7 + localValue13 * EXTENDED_DATA_SIZE);
             stack_78 = *localPtr2;
             stack_80 = localPtr2[1];
-            stack_88 = *(undefined8 *)(localVar7 + OFFSET_0x10 + localValue13 * EXTENDED_DATA_SIZE);
+            stack_88 = *(uint64_t *)(localVar7 + OFFSET_0x10 + localValue13 * EXTENDED_DATA_SIZE);
             localVar7 = *(ProcessCounter *)(unaff_rbp + OFFSET_8 + (DataValue)localIndex15 * OFFSET_8);
             localPtr2 = (ExtendedDataPointer)(localVar8 + localVar4);
             localValue11 = localPtr2[1];
-            localValue5 = *(undefined8 *)(localVar8 + OFFSET_0x10 + localVar4);
+            localValue5 = *(uint64_t *)(localVar8 + OFFSET_0x10 + localVar4);
             localValue13 = (DataValue)(unaff_ebx + localIndex15 * -HASH_TABLE_SIZE);
             localVar8 = unaff_r12[1];
             localPtr3 = (ExtendedDataPointer)(localVar7 + localValue13 * EXTENDED_DATA_SIZE);
@@ -959,7 +959,7 @@ void DataComparisonProcessor(int param_1)
             localPtr3[1] = localValue11;
             stack_40 = *unaff_rdi;
             stack_48 = unaff_rdi[1];
-            *(undefined8 *)(localVar7 + OFFSET_0x10 + localValue13 * EXTENDED_DATA_SIZE) = localValue5;
+            *(uint64_t *)(localVar7 + OFFSET_0x10 + localValue13 * EXTENDED_DATA_SIZE) = localValue5;
             ExtendedDataOperation(&stack_40, INITIAL_VALUE_0, (IndexType)localVar8 - unaff_r15, INITIAL_VALUE_0, &stack_78);
         }
         unaff_ebx = unaff_ebx + INITIAL_VALUE_1;
@@ -982,18 +982,18 @@ void DataComparisonProcessor(int param_1)
             localPtr2 = (ExtendedDataPointer)(localVar8 + (DataValue)localIndex12 * EXTENDED_DATA_SIZE);
             stack_90 = *localPtr2;
             stack_98 = localPtr2[1];
-            stack_a0 = *(undefined8 *)(localVar8 + OFFSET_0x10 + (DataValue)localIndex12 * EXTENDED_DATA_SIZE);
+            stack_a0 = *(uint64_t *)(localVar8 + OFFSET_0x10 + (DataValue)localIndex12 * EXTENDED_DATA_SIZE);
             localVar8 = *(ProcessCounter *)(localVar7 + (DataValue)(localIndex16 >> BIT_SHIFT_11) * OFFSET_8 + OFFSET_8);
             localVar10 = *(ProcessCounter *)(localVar4 + OFFSET_8 + (DataValue)(localIndex1 >> BIT_SHIFT_11) * OFFSET_8);
             localPtr2 = (ExtendedDataPointer)(localVar8 + localValue13 * EXTENDED_DATA_SIZE);
             localValue11 = localPtr2[1];
-            localValue5 = *(undefined8 *)(localVar8 + OFFSET_0x10 + localValue13 * EXTENDED_DATA_SIZE);
+            localValue5 = *(uint64_t *)(localVar8 + OFFSET_0x10 + localValue13 * EXTENDED_DATA_SIZE);
             localPtr3 = (ExtendedDataPointer)(localVar10 + (DataValue)localIndex12 * EXTENDED_DATA_SIZE);
             *localPtr3 = *localPtr2;
             localPtr3[1] = localValue11;
             stack_50 = *unaff_rdi;
             stack_58 = unaff_rdi[1];
-            *(undefined8 *)(localVar10 + OFFSET_0x10 + (DataValue)localIndex12 * EXTENDED_DATA_SIZE) = localValue5;
+            *(uint64_t *)(localVar10 + OFFSET_0x10 + (DataValue)localIndex12 * EXTENDED_DATA_SIZE) = localValue5;
             ExtendedDataOperation(&stack_50, INITIAL_VALUE_0, ((ProcessCounter)(IndexType)localIndex15 - (ProcessCounter)(IndexType)localIndex16) + -INITIAL_VALUE_1, INITIAL_VALUE_0, &stack_90);
             localIndex15 = localIndex1;
         } while (INITIAL_VALUE_1 < (ProcessCounter)(IndexType)localIndex1 - (ProcessCounter)(IndexType)localVar6);
@@ -1013,9 +1013,9 @@ void DataOptimizationEngine(void)
 {
     IndexType localIndex1;
     ExtendedDataPointer localPtr2, localPtr3;
-    undefined8 localValue4;
+    uint64_t localValue4;
     ProcessCounter localVar5, localVar6, localVar7;
-    undefined8 localValue8;
+    uint64_t localValue8;
     ProcessCounter localVar9, localVar10;
     IndexType localIndex11;
     DataValue localValue12;
@@ -1026,8 +1026,8 @@ void DataOptimizationEngine(void)
     IndexType stack_48;
     StatusFlag stack_4c;
     ProcessCounter stack_50, stack_58;
-    undefined8 stack_90, stack_98;
-    undefined8 stack_a0;
+    uint64_t stack_90, stack_98;
+    uint64_t stack_a0;
     
     // 初始化变量
     stack_40 = (StatusFlag)*unaff_r12;
@@ -1050,18 +1050,18 @@ void DataOptimizationEngine(void)
             localPtr2 = (ExtendedDataPointer)(localVar5 + (DataValue)localIndex11 * EXTENDED_DATA_SIZE);
             stack_90 = *localPtr2;
             stack_98 = localPtr2[1];
-            stack_a0 = *(undefined8 *)(localVar5 + OFFSET_0x10 + (DataValue)localIndex11 * EXTENDED_DATA_SIZE);
+            stack_a0 = *(uint64_t *)(localVar5 + OFFSET_0x10 + (DataValue)localIndex11 * EXTENDED_DATA_SIZE);
             localVar5 = *(ProcessCounter *)(localVar7 + (DataValue)(localIndex13 >> BIT_SHIFT_11) * OFFSET_8 + OFFSET_8);
             localVar6 = *(ProcessCounter *)(localVar9 + OFFSET_8 + (DataValue)(localIndex1 >> BIT_SHIFT_11) * OFFSET_8);
             localPtr2 = (ExtendedDataPointer)(localVar5 + localValue12 * EXTENDED_DATA_SIZE);
             localValue8 = localPtr2[1];
-            localValue4 = *(undefined8 *)(localVar5 + OFFSET_0x10 + localValue12 * EXTENDED_DATA_SIZE);
+            localValue4 = *(uint64_t *)(localVar5 + OFFSET_0x10 + localValue12 * EXTENDED_DATA_SIZE);
             localPtr3 = (ExtendedDataPointer)(localVar6 + (DataValue)localIndex11 * EXTENDED_DATA_SIZE);
             *localPtr3 = *localPtr2;
             localPtr3[1] = localValue8;
             stack_50 = *unaff_rdi;
             stack_58 = unaff_rdi[1];
-            *(undefined8 *)(localVar6 + OFFSET_0x10 + (DataValue)localIndex11 * EXTENDED_DATA_SIZE) = localValue4;
+            *(uint64_t *)(localVar6 + OFFSET_0x10 + (DataValue)localIndex11 * EXTENDED_DATA_SIZE) = localValue4;
             ExtendedDataOperation(&stack_50, INITIAL_VALUE_0, ((ProcessCounter)(IndexType)localIndex14 - (ProcessCounter)(IndexType)localIndex13) + -INITIAL_VALUE_1, INITIAL_VALUE_0, &stack_90);
             localIndex14 = localIndex1;
         } while (INITIAL_VALUE_1 < (ProcessCounter)(IndexType)localIndex1 - (ProcessCounter)(IndexType)localVar10);

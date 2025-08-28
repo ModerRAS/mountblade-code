@@ -16,9 +16,9 @@
  * @param operation_code 操作码
  */
 void process_text_edit_operations(longlong engine_context, int *text_buffer, uint operation_code) {
-    undefined2 *temp_ptr;
+    int16_t *temp_ptr;
     short index_val;
-    undefined4 temp_val;
+    int32_t temp_val;
     char char_val;
     int int_val1;
     int int_val2;
@@ -34,8 +34,8 @@ void process_text_edit_operations(longlong engine_context, int *text_buffer, uin
     float float_val2;
     float float_val3;
     float float_val4;
-    undefined2 temp_stack1[4];
-    undefined1 temp_stack2[16];
+    int16_t temp_stack1[4];
+    int8_t temp_stack2[16];
     int stack_val1;
     int stack_val2;
     float float_stack[5];
@@ -123,7 +123,7 @@ void process_text_edit_operations(longlong engine_context, int *text_buffer, uin
                 }
                 *text_buffer = int_val2;
                 text_buffer[2] = int_val2;
-                *(undefined1 *)((longlong)text_buffer + 0xf) = 0;
+                *(int8_t *)((longlong)text_buffer + 0xf) = 0;
             }
             if ((char)text_buffer[4] == '\0') {
                 while ((0 < int_val2 &&
@@ -168,7 +168,7 @@ void process_text_edit_operations(longlong engine_context, int *text_buffer, uin
                 }
                 *text_buffer = int_val2;
                 text_buffer[2] = int_val2;
-                *(undefined1 *)((longlong)text_buffer + 0xf) = 0;
+                *(int8_t *)((longlong)text_buffer + 0xf) = 0;
             }
             if ((char)text_buffer[4] == '\0') {
                 while ((int_val2 < int_val4 &&
@@ -187,7 +187,7 @@ void process_text_edit_operations(longlong engine_context, int *text_buffer, uin
             text_buffer[1] = 0;
             text_buffer[2] = 0;
             *text_buffer = 0;
-            *(undefined1 *)((longlong)text_buffer + 0xf) = 0;
+            *(int8_t *)((longlong)text_buffer + 0xf) = 0;
             return;
             
         case 0x10007:
@@ -195,7 +195,7 @@ void process_text_edit_operations(longlong engine_context, int *text_buffer, uin
             int_val3 = *(int *)(engine_context + 0x3c);
             text_buffer[1] = 0;
             text_buffer[2] = 0;
-            *(undefined1 *)((longlong)text_buffer + 0xf) = 0;
+            *(int8_t *)((longlong)text_buffer + 0xf) = 0;
             *text_buffer = int_val3;
             return;
             
@@ -212,7 +212,7 @@ void process_text_edit_operations(longlong engine_context, int *text_buffer, uin
             // 处理文本替换操作
             if ((short)text_buffer[0x386] != 99) {
                 ptr_val2 = text_buffer + (longlong)*(short *)((longlong)text_buffer + 0xe16) * 4 + 6;
-                temp_stack2 = *(undefined1 (*) [16])(text_buffer + (longlong)(short)text_buffer[0x386] * 4 + 6);
+                temp_stack2 = *(int8_t (*) [16])(text_buffer + (longlong)(short)text_buffer[0x386] * 4 + 6);
                 int_val5 = temp_stack2._0_4_;
                 ulong_val = temp_stack2._0_8_;
                 ptr_val2[3] = -1;
@@ -234,8 +234,8 @@ void process_text_edit_operations(longlong engine_context, int *text_buffer, uin
                                 int_val2 = *ptr_val2 + int_val4;
                                 int_val3 = ptr_val2[3] + int_val4;
                                 int_val4 = int_val4 + 1;
-                                *(undefined2 *)((longlong)text_buffer + (longlong)int_val3 * 2 + 0x648) =
-                                     *(undefined2 *)(*(longlong *)(engine_context + 0x10) + (longlong)int_val2 * 2);
+                                *(int16_t *)((longlong)text_buffer + (longlong)int_val3 * 2 + 0x648) =
+                                     *(int16_t *)(*(longlong *)(engine_context + 0x10) + (longlong)int_val2 * 2);
                             } while (int_val4 < ptr_val2[1]);
                         }
                     }
@@ -322,7 +322,7 @@ void process_text_edit_operations(longlong engine_context, int *text_buffer, uin
                         int_val5 = int_val3;
                     }
                     *text_buffer = int_val5;
-                    *(undefined1 *)((longlong)text_buffer + 0xf) = 0;
+                    *(int8_t *)((longlong)text_buffer + 0xf) = 0;
                     goto text_processing_1;
                 }
             }
@@ -480,7 +480,7 @@ void process_text_edit_operations(longlong engine_context, int *text_buffer, uin
         }
         text_buffer[2] = 0;
         *text_buffer = 0;
-        *(undefined1 *)((longlong)text_buffer + 0xf) = 0;
+        *(int8_t *)((longlong)text_buffer + 0xf) = 0;
         return;
         
     case 0x30007:
@@ -535,7 +535,7 @@ void process_text_edit_operations(longlong engine_context, int *text_buffer, uin
         if ((int)operation_code < 1) {
             return;
         }
-        temp_stack1[0] = (undefined2)operation_code;
+        temp_stack1[0] = (int16_t)operation_code;
         if ((operation_code == 10) && ((char)text_buffer[4] != '\0')) {
             return;
         }
@@ -543,7 +543,7 @@ void process_text_edit_operations(longlong engine_context, int *text_buffer, uin
             int_val3 = *text_buffer;
             if (int_val3 < *(int *)(engine_context + 0x3c)) {
                 ptr_val2 = text_buffer + 6;
-                *(undefined2 *)(text_buffer + 0x386) = 99;
+                *(int16_t *)(text_buffer + 0x386) = 99;
                 text_buffer[0x388] = 999;
                 if (*(short *)((longlong)text_buffer + 0xe16) == 99) {
                     cleanup_text_buffer(ptr_val2);
@@ -562,9 +562,9 @@ void process_text_edit_operations(longlong engine_context, int *text_buffer, uin
                     ptr_val1[2] = 1;
                     ptr_val1[3] = text_buffer[0x387];
                     text_buffer[0x387] = text_buffer[0x387] + 1;
-                    temp_ptr = (undefined2 *)((longlong)ptr_val2 + ((longlong)ptr_val1[3] + 0x318) * 2);
-                    if (temp_ptr != (undefined2 *)0x0) {
-                        *temp_ptr = *(undefined2 *)(*(longlong *)(engine_context + 0x10) + (longlong)int_val3 * 2);
+                    temp_ptr = (int16_t *)((longlong)ptr_val2 + ((longlong)ptr_val1[3] + 0x318) * 2);
+                    if (temp_ptr != (int16_t *)0x0) {
+                        *temp_ptr = *(int16_t *)(*(longlong *)(engine_context + 0x10) + (longlong)int_val3 * 2);
                     }
                 }
                 update_text_cache(engine_context, *text_buffer, 1);
@@ -575,7 +575,7 @@ void process_text_edit_operations(longlong engine_context, int *text_buffer, uin
             text_increment:
                 *text_buffer = *text_buffer + 1;
             cleanup_exit:
-                *(undefined1 *)((longlong)text_buffer + 0xf) = 0;
+                *(int8_t *)((longlong)text_buffer + 0xf) = 0;
                 return;
             }
         }
@@ -646,7 +646,7 @@ text_processing_2:
         int_val3 = int_val4;
     }
     text_buffer[5] = (int)float_val4;
-    *(undefined1 *)((longlong)text_buffer + 0xf) = 1;
+    *(int8_t *)((longlong)text_buffer + 0xf) = 1;
     if ((operation_code >> 0x11 & 1) != 0) {
         text_buffer[2] = int_val3;
     }
@@ -662,8 +662,8 @@ text_processing_2:
  * @param param2 参数2（数据源）
  * @param target_buffer 目标缓冲区
  */
-void insert_text_buffer_data(undefined8 param1, undefined8 param2, int *target_buffer) {
-    undefined1 temp_data[16];
+void insert_text_buffer_data(uint64_t param1, uint64_t param2, int *target_buffer) {
+    int8_t temp_data[16];
     int int_val1;
     int int_val2;
     longlong reg_rax;
@@ -674,12 +674,12 @@ void insert_text_buffer_data(undefined8 param1, undefined8 param2, int *target_b
     int int_val3;
     int int_val4;
     int int_val5;
-    undefined8 temp_val;
+    uint64_t temp_val;
     
-    temp_data = *(undefined1 (*) [16])(ptr_reg_rsi + reg_rax * 8);
+    temp_data = *(int8_t (*) [16])(ptr_reg_rsi + reg_rax * 8);
     int_val5 = temp_data._0_4_;
     target_buffer[3] = -1;
-    *(undefined1 (*) [16])(ptr_reg_rbp + -0x40) = temp_data;
+    *(int8_t (*) [16])(ptr_reg_rbp + -0x40) = temp_data;
     *target_buffer = int_val5;
     temp_val = temp_data._8_8_;
     int_val4 = temp_data._8_4_;
@@ -699,8 +699,8 @@ void insert_text_buffer_data(undefined8 param1, undefined8 param2, int *target_b
                     int_val1 = *target_buffer + int_val3;
                     int_val2 = target_buffer[3] + int_val3;
                     int_val3 = int_val3 + 1;
-                    *(undefined2 *)(ptr_reg_rsi + 0x630 + (longlong)int_val2 * 2) =
-                         *(undefined2 *)(*(longlong *)(ptr_reg_rdi + 0x10) + (longlong)int_val1 * 2);
+                    *(int16_t *)(ptr_reg_rsi + 0x630 + (longlong)int_val2 * 2) =
+                         *(int16_t *)(*(longlong *)(ptr_reg_rdi + 0x10) + (longlong)int_val1 * 2);
                 } while (int_val3 < target_buffer[1]);
             }
         }
@@ -715,7 +715,7 @@ void insert_text_buffer_data(undefined8 param1, undefined8 param2, int *target_b
     *ptr_reg_rbx = int_val5 + int_val4;
     *(short *)(ptr_reg_rsi + 0xdfe) = *(short *)(ptr_reg_rsi + 0xdfe) + 1;
     *(short *)(ptr_reg_rsi + 0xe00) = *(short *)(ptr_reg_rsi + 0xe00) + 1;
-    *(undefined1 *)((longlong)ptr_reg_rbx + 0xf) = 0;
+    *(int8_t *)((longlong)ptr_reg_rbx + 0xf) = 0;
     return;
 }
 
@@ -744,7 +744,7 @@ void simplify_text_buffer(void) {
         *buffer_ptr = int_val2;
         buffer_ptr[2] = int_val2;
     }
-    *(undefined1 *)((longlong)buffer_ptr + 0xf) = 0;
+    *(int8_t *)((longlong)buffer_ptr + 0xf) = 0;
     return;
 }
 
@@ -816,7 +816,7 @@ void free_text_buffer_block(longlong buffer_ptr) {
  * @param param1 参数1
  * @param index 新的索引值
  */
-void adjust_text_buffer_index(undefined8 param1, short index) {
+void adjust_text_buffer_index(uint64_t param1, short index) {
     longlong ptr_reg_rdi;
     
     *(short *)(ptr_reg_rdi + 0xdfe) = index + -1;
@@ -843,13 +843,13 @@ void empty_operation(void) {
  * @param param4 参数4
  * @return 分配的内存地址或0
  */
-longlong allocate_text_buffer(longlong buffer_ptr, undefined4 param2, int size, undefined4 param4) {
+longlong allocate_text_buffer(longlong buffer_ptr, int32_t param2, int size, int32_t param4) {
     short index_val;
     int int_val1;
-    undefined4 *ptr_val;
+    int32_t *ptr_val;
     
-    *(undefined4 *)(buffer_ptr + 0xe08) = 999;
-    *(undefined2 *)(buffer_ptr + 0xe00) = 99;
+    *(int32_t *)(buffer_ptr + 0xe08) = 999;
+    *(int16_t *)(buffer_ptr + 0xe00) = 99;
     if (*(short *)(buffer_ptr + 0xdfe) == 99) {
         cleanup_text_buffer();
     }
@@ -861,13 +861,13 @@ longlong allocate_text_buffer(longlong buffer_ptr, undefined4 param2, int size, 
         }
         index_val = *(short *)(buffer_ptr + 0xdfe);
         *(short *)(buffer_ptr + 0xdfe) = index_val + 1;
-        ptr_val = (undefined4 *)((longlong)index_val * 0x10 + buffer_ptr);
-        if (ptr_val != (undefined4 *)0x0) {
+        ptr_val = (int32_t *)((longlong)index_val * 0x10 + buffer_ptr);
+        if (ptr_val != (int32_t *)0x0) {
             *ptr_val = param2;
             ptr_val[1] = size;
             ptr_val[2] = param4;
             if (size != 0) {
-                ptr_val[3] = *(undefined4 *)(buffer_ptr + 0xe04);
+                ptr_val[3] = *(int32_t *)(buffer_ptr + 0xe04);
                 *(int *)(buffer_ptr + 0xe04) = *(int *)(buffer_ptr + 0xe04) + size;
                 return buffer_ptr + ((longlong)(int)ptr_val[3] + 0x318) * 2;
             }
@@ -875,8 +875,8 @@ longlong allocate_text_buffer(longlong buffer_ptr, undefined4 param2, int size, 
         }
     }
     else {
-        *(undefined2 *)(buffer_ptr + 0xdfe) = 0;
-        *(undefined4 *)(buffer_ptr + 0xe04) = 0;
+        *(int16_t *)(buffer_ptr + 0xdfe) = 0;
+        *(int32_t *)(buffer_ptr + 0xe04) = 0;
     }
     return 0;
 }
@@ -890,7 +890,7 @@ longlong allocate_text_buffer(longlong buffer_ptr, undefined4 param2, int size, 
  * @param text_buffer 文本缓冲区
  */
 void delete_text_buffer_data(longlong engine_context, int *text_buffer) {
-    undefined1 temp_data[16];
+    int8_t temp_data[16];
     short index_val;
     int int_val1;
     int int_val2;
@@ -905,7 +905,7 @@ void delete_text_buffer_data(longlong engine_context, int *text_buffer) {
     
     if (*(short *)((longlong)text_buffer + 0xe16) != 0) {
         index_val = (short)text_buffer[0x386];
-        temp_data = *(undefined1 (*) [16])
+        temp_data = *(int8_t (*) [16])
                      (text_buffer + (longlong)*(short *)((longlong)text_buffer + 0xe16) * 4 + 2);
         int_val8 = temp_data._0_4_;
         text_buffer[(longlong)index_val * 4 + 5] = -1;
@@ -945,8 +945,8 @@ void delete_text_buffer_data(longlong engine_context, int *text_buffer) {
                     do {
                         int_val5 = text_buffer[(longlong)(short)int_val1 * 4 + 5] + int_val7;
                         int_val7 = int_val7 + 1;
-                        *(undefined2 *)((longlong)text_buffer + (longlong)int_val5 * 2 + 0x648) =
-                             *(undefined2 *)(long_val + *(longlong *)(engine_context + 0x10));
+                        *(int16_t *)((longlong)text_buffer + (longlong)int_val5 * 2 + 0x648) =
+                             *(int16_t *)(long_val + *(longlong *)(engine_context + 0x10));
                         long_val = long_val + 2;
                     } while (int_val7 < int_val6);
                 }
@@ -978,7 +978,7 @@ void delete_text_buffer_data(longlong engine_context, int *text_buffer) {
  * @param engine_context 引擎上下文
  */
 void insert_text_buffer_data_variant(longlong param1, longlong param2) {
-    undefined1 temp_data[16];
+    int8_t temp_data[16];
     short index_val;
     int int_val1;
     longlong reg_rax;
@@ -989,14 +989,14 @@ void insert_text_buffer_data_variant(longlong param1, longlong param2) {
     int *ptr_reg_rsi;
     int int_val4;
     int int_val5;
-    undefined8 temp_val;
+    uint64_t temp_val;
     int int_val6;
     int stack_val;
     
     long_val = param1 * 0x10 + param2;
-    temp_data = *(undefined1 (*) [16])(param2 + 8 + reg_rax * 8);
+    temp_data = *(int8_t (*) [16])(param2 + 8 + reg_rax * 8);
     int_val6 = temp_data._0_4_;
-    *(undefined4 *)(long_val + 0x14) = 0xffffffff;
+    *(int32_t *)(long_val + 0x14) = 0xffffffff;
     *(int *)(long_val + 8) = int_val6;
     temp_val = temp_data._8_8_;
     int_val4 = temp_data._8_4_;
@@ -1036,14 +1036,14 @@ void insert_text_buffer_data_variant(longlong param1, longlong param2) {
                 do {
                     int_val2 = ptr_reg_rsi[(longlong)(short)int_val3 * 4 + 5] + int_val5;
                     int_val5 = int_val5 + 1;
-                    *(undefined2 *)((longlong)ptr_reg_rsi + (longlong)int_val2 * 2 + 0x648) =
-                         *(undefined2 *)(long_val + *(longlong *)(ptr_reg_rbp + 0x10));
+                    *(int16_t *)((longlong)ptr_reg_rsi + (longlong)int_val2 * 2 + 0x648) =
+                         *(int16_t *)(long_val + *(longlong *)(ptr_reg_rbp + 0x10));
                     long_val = long_val + 2;
                 } while (int_val5 < int_val4);
             }
         }
         else {
-            *(undefined4 *)(long_val + 0xc) = 0;
+            *(int32_t *)(long_val + 0xc) = 0;
         }
         temp_val = update_text_cache(temp_val, int_val6, int_val4);
     }

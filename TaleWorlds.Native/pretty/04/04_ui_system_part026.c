@@ -469,9 +469,9 @@ void ui_system_resource_pool_destroyer(void* pool)
             ui_system_copy_layer_data((longlong)pool + 0x1a40 + layer_offset * 0x90,
                                      (longlong)pool + 0x1a40 + (longlong)current_count * 0x90);
         }
-        *(undefined4*)((longlong)pool + 0x1ac8 + 
+        *(int32_t*)((longlong)pool + 0x1ac8 + 
                        (longlong)*(int*)((longlong)pool + 0x1c94) * 0x90) = 1;
-        *(undefined4*)((longlong)pool + 0x1e68) = 0;
+        *(int32_t*)((longlong)pool + 0x1e68) = 0;
         return;
     }
 }
@@ -480,13 +480,13 @@ void ui_system_resource_pool_destroyer(void* pool)
  * UI系统资源切换函数
  * 在不同的UI资源层之间进行切换
  */
-undefined8 ui_system_switch_resource_layer(longlong pool, uint param_2, uint param_3)
+uint64_t ui_system_switch_resource_layer(longlong pool, uint param_2, uint param_3)
 {
     int result;
     longlong layer_data;
-    undefined4* layer_ptr;
+    int32_t* layer_ptr;
     int layer_index;
-    undefined4* resource_ptr;
+    int32_t* resource_ptr;
 
     ui_system_initialize_resource_allocator();
     if ((param_2 & 0xf) != 0) {
@@ -495,9 +495,9 @@ undefined8 ui_system_switch_resource_layer(longlong pool, uint param_2, uint par
     if ((param_3 & 0xf) != 0) {
         param_3 = param_3 + (0x10 - (param_3 & 0xf));
     }
-    layer_ptr = (undefined4*)(pool + 0x80c);
+    layer_ptr = (int32_t*)(pool + 0x80c);
     layer_index = 0;
-    resource_ptr = (undefined4*)(pool + 0x9c0);
+    resource_ptr = (int32_t*)(pool + 0x9c0);
     do {
         *resource_ptr = 0;
         *layer_ptr = 0;
@@ -509,12 +509,12 @@ undefined8 ui_system_switch_resource_layer(longlong pool, uint param_2, uint par
         layer_ptr = layer_ptr + 0x24;
     } while (layer_index < 4);
     
-    *(undefined4*)(pool + 0x9d0) = 0;
-    *(undefined4*)(pool + 0x9d4) = 1;
-    *(undefined4*)(pool + 0x9d8) = 2;
-    *(undefined4*)(pool + 0x9dc) = 3;
-    *(undefined8*)(pool + 0x9c0) = 0x100000001;
-    *(undefined8*)(pool + 0x9c8) = 0x100000001;
+    *(int32_t*)(pool + 0x9d0) = 0;
+    *(int32_t*)(pool + 0x9d4) = 1;
+    *(int32_t*)(pool + 0x9d8) = 2;
+    *(int32_t*)(pool + 0x9dc) = 3;
+    *(uint64_t*)(pool + 0x9c0) = 0x100000001;
+    *(uint64_t*)(pool + 0x9c8) = 0x100000001;
     result = ui_system_allocate_layer_resources(pool + 0x9e0, param_2, 0x10);
     if (-1 < result) {
         layer_index = (int)param_3 >> 4;
@@ -532,7 +532,7 @@ undefined8 ui_system_switch_resource_layer(longlong pool, uint param_2, uint par
             if (layer_data != 0) {
                 result = ui_system_allocate_layer_resources(pool + 0xa70, param_2, param_3, 0x20);
                 if (-1 < result) {
-                    *(undefined4*)(pool + 0xb90) = 0;
+                    *(int32_t*)(pool + 0xb90) = 0;
                     memset(pool + 0x2230, 0, 0xc40);
                 }
             }
@@ -552,14 +552,14 @@ void ui_system_initialize_core(longlong pool)
     ui_system_setup_rendering_pipeline();
     ui_system_initialize_input_system(pool);
     ui_system_setup_event_handlers();
-    *(undefined8*)(pool + 0xbc0) = 1;
-    *(undefined4*)(pool + 0xc00) = 0;
-    *(undefined8*)(pool + 0xbc8) = 0;
-    *(undefined4*)(pool + 0x2224) = 0;
-    *(undefined4*)(pool + 0x770) = 0;
-    *(undefined8*)(pool + 0x1944) = 0;
-    *(undefined8*)(pool + 0x194c) = 0;
-    *(undefined8*)(pool + 0x1938) = 0;
+    *(uint64_t*)(pool + 0xbc0) = 1;
+    *(int32_t*)(pool + 0xc00) = 0;
+    *(uint64_t*)(pool + 0xbc8) = 0;
+    *(int32_t*)(pool + 0x2224) = 0;
+    *(int32_t*)(pool + 0x770) = 0;
+    *(uint64_t*)(pool + 0x1944) = 0;
+    *(uint64_t*)(pool + 0x194c) = 0;
+    *(uint64_t*)(pool + 0x1938) = 0;
 }
 
 /**
@@ -584,12 +584,12 @@ void ui_system_cleanup_resources(longlong pool)
     if (*(int*)(pool + 0xb90) != 0) {
         ui_system_free_layer_resources(pool + 0xb00);
     }
-    ui_system_free_resource_handle(*(undefined8*)(pool + 0xb98));
-    *(undefined8*)(pool + 0xb98) = 0;
-    ui_system_free_resource_handle(*(undefined8*)(pool + 0x1958));
-    ui_system_free_resource_handle(*(undefined8*)(pool + 0xbe8));
-    *(undefined8*)(pool + 0x1958) = 0;
-    *(undefined8*)(pool + 0xbe8) = 0;
+    ui_system_free_resource_handle(*(uint64_t*)(pool + 0xb98));
+    *(uint64_t*)(pool + 0xb98) = 0;
+    ui_system_free_resource_handle(*(uint64_t*)(pool + 0x1958));
+    ui_system_free_resource_handle(*(uint64_t*)(pool + 0xbe8));
+    *(uint64_t*)(pool + 0x1958) = 0;
+    *(uint64_t*)(pool + 0xbe8) = 0;
 }
 
 /**
@@ -655,7 +655,7 @@ ulonglong ui_system_allocate_custom_aligned_memory(longlong size, longlong align
  * UI系统资源验证函数
  * 验证UI系统资源的状态和完整性
  */
-undefined8 ui_system_validate_resources(longlong pool)
+uint64_t ui_system_validate_resources(longlong pool)
 {
     int* resource_count;
     int current_count;
@@ -670,9 +670,9 @@ undefined8 ui_system_validate_resources(longlong pool)
         ui_system_copy_layer_data((longlong)pool + 0x1a40 + layer_offset * 0x90,
                                 (longlong)pool + 0x1a40 + (longlong)current_count * 0x90);
     }
-    *(undefined4*)((longlong)pool + 0x1ac8 + 
+    *(int32_t*)((longlong)pool + 0x1ac8 + 
                    (longlong)*(int*)((longlong)pool + 0x1c94) * 0x90) = 1;
-    *(undefined4*)((longlong)pool + 0x1e68) = 0;
+    *(int32_t*)((longlong)pool + 0x1e68) = 0;
     return 0;
 }
 
@@ -680,7 +680,7 @@ undefined8 ui_system_validate_resources(longlong pool)
  * UI系统状态检查函数
  * 检查UI系统的当前状态
  */
-undefined8 ui_system_check_system_status(void)
+uint64_t ui_system_check_system_status(void)
 {
     return 1;
 }
@@ -689,10 +689,10 @@ undefined8 ui_system_check_system_status(void)
  * UI系统资源池创建函数（完整版本）
  * 创建完整的UI系统资源池
  */
-undefined8 ui_system_create_complete_resource_pool(void)
+uint64_t ui_system_create_complete_resource_pool(void)
 {
     longlong pool_ptr;
-    undefined8 extra_param;
+    uint64_t extra_param;
 
     pool_ptr = ui_system_allocate_custom_aligned_memory(0x20, UI_RESOURCE_POOL_SIZE);
     if (pool_ptr != 0) {
@@ -849,7 +849,7 @@ void ui_system_execute_once_simplified(void (*func)(void))
  * UI系统资源初始化函数
  * 初始化UI系统资源
  */
-undefined4 ui_system_initialize_resources(int* resource_handle, longlong pool_size)
+int32_t ui_system_initialize_resources(int* resource_handle, longlong pool_size)
 {
     longlong resource_pool;
 
@@ -859,8 +859,8 @@ undefined4 ui_system_initialize_resources(int* resource_handle, longlong pool_si
         if (resource_pool == 0) {
             return UI_ERROR_MEMORY;
         }
-        *(undefined4*)(resource_pool + 0x4384) = *(undefined4*)(pool_size + 0x10);
-        ui_system_setup_resource_optimizations(*(undefined8*)(resource_handle + 2));
+        *(int32_t*)(resource_pool + 0x4384) = *(int32_t*)(pool_size + 0x10);
+        ui_system_setup_resource_optimizations(*(uint64_t*)(resource_handle + 2));
     }
     return UI_SUCCESS;
 }
@@ -869,7 +869,7 @@ undefined4 ui_system_initialize_resources(int* resource_handle, longlong pool_si
  * UI系统资源释放函数
  * 释放UI系统资源
  */
-undefined4 ui_system_release_resources(int* resource_handle)
+int32_t ui_system_release_resources(int* resource_handle)
 {
     longlong resource_pool;
 
@@ -879,7 +879,7 @@ undefined4 ui_system_release_resources(int* resource_handle)
             return UI_ERROR_MEMORY;
         }
         if (*(int*)(resource_pool + 0x4380) != 0) {
-            ui_system_cleanup_resource_pool(resource_pool, *(undefined4*)(resource_pool + 0x1e74));
+            ui_system_cleanup_resource_pool(resource_pool, *(int32_t*)(resource_pool + 0x1e74));
         }
         ui_system_destroy_resource_pool(resource_pool);
         ui_system_cleanup_resources(resource_pool + 0x12c0);
@@ -892,15 +892,15 @@ undefined4 ui_system_release_resources(int* resource_handle)
  * UI系统事件处理函数
  * 处理UI系统事件
  */
-undefined4 ui_system_process_ui_events(longlong pool, undefined8 event_type, 
-                                      undefined8* event_data, undefined8* result_data,
-                                      undefined8 extra_param)
+int32_t ui_system_process_ui_events(longlong pool, uint64_t event_type, 
+                                      uint64_t* event_data, uint64_t* result_data,
+                                      uint64_t extra_param)
 {
-    undefined4 result;
+    int32_t result;
 
     if ((*(int*)(pool + 0x4410) != 1) && (*(int*)(pool + 0x1e68) != 0)) {
-        *(undefined4*)(pool + 0x4410) = 1;
-        *event_data = *(undefined8*)(pool + 0x4408);
+        *(int32_t*)(pool + 0x4410) = 1;
+        *event_data = *(uint64_t*)(pool + 0x4408);
         *result_data = 0;
         result = ui_system_handle_ui_event(pool + 0x12c0, event_type, extra_param);
         ui_system_call_system_function();
@@ -913,14 +913,14 @@ undefined4 ui_system_process_ui_events(longlong pool, undefined8 event_type,
  * UI系统状态更新函数
  * 更新UI系统状态
  */
-undefined4 ui_system_update_ui_state(longlong pool, int state_type, int* state_data)
+int32_t ui_system_update_ui_state(longlong pool, int state_type, int* state_data)
 {
-    undefined4* ui_context;
+    int32_t* ui_context;
     int current_layer;
-    undefined* error_handler;
+    void* error_handler;
     longlong layer_offset;
 
-    ui_context = (undefined4*)(pool + 0x12c0);
+    ui_context = (int32_t*)(pool + 0x12c0);
     if (state_type == 1) {
         current_layer = *(int*)(pool + 0x1c94);
     }
@@ -952,18 +952,18 @@ handle_error:
  * UI系统渲染函数
  * 执行UI系统渲染操作
  */
-ulonglong ui_system_render_ui(longlong pool, undefined8 render_param, undefined8 render_data,
-                             undefined8 render_options)
+ulonglong ui_system_render_ui(longlong pool, uint64_t render_param, uint64_t render_data,
+                             uint64_t render_options)
 {
-    undefined4* ui_context;
+    int32_t* ui_context;
     uint render_result;
     ulonglong final_result;
     int layer_index;
-    undefined1 stack_buffer[32];
+    int8_t stack_buffer[32];
     uint stack_param;
-    undefined4* context_ptr;
+    int32_t* context_ptr;
 
-    ui_context = (undefined4*)(pool + 0x12c0);
+    ui_context = (int32_t*)(pool + 0x12c0);
     *ui_context = 0;
     context_ptr = ui_context;
     final_result = ui_system_validate_resources();
@@ -977,16 +977,16 @@ ulonglong ui_system_render_ui(longlong pool, undefined8 render_param, undefined8
         layer_index = layer_index + 1;
     } while (layer_index < 4);
     
-    *(undefined4*)(pool + 0x1c80 + (longlong)layer_index * 4) = 1;
+    *(int32_t*)(pool + 0x1c80 + (longlong)layer_index * 4) = 1;
     *(int*)(pool + 0x1c90) = layer_index;
-    *(undefined4**)(pool + 0x12a0) = ui_context + (longlong)layer_index * 0x24 + 0x1e0;
+    *(int32_t**)(pool + 0x12a0) = ui_context + (longlong)layer_index * 0x24 + 0x1e0;
     *(longlong*)(pool + 0x12a8) = pool + 0x1a40 + (longlong)*(int*)(pool + 0x1c94) * 0x90;
     *(longlong*)(pool + 0x12b0) = pool + 0x1a40 + (longlong)*(int*)(pool + 0x1c98) * 0x90;
     *(longlong*)(pool + 0x12b8) = pool + 0x1a40 + (longlong)*(int*)(pool + 0x1c9c) * 0x90;
     
     layer_index = ui_system_setjmp_handler(pool + 0x1320, stack_buffer);
     if (layer_index == 0) {
-        *(undefined4*)(pool + 0x1318) = 1;
+        *(int32_t*)(pool + 0x1318) = 1;
         render_result = ui_system_execute_render_pipeline(pool);
         ui_context = context_ptr;
         stack_param = render_result;
@@ -1002,14 +1002,14 @@ ulonglong ui_system_render_ui(longlong pool, undefined8 render_param, undefined8
                 ui_system_call_system_function();
                 if (ui_context[0x2ea] != 0) {
                     ui_context[0x887] = ui_context[0x887] + 1;
-                    *(undefined8*)(ui_context + 0x2fe) = *(undefined8*)(ui_context + 0x2fc);
+                    *(uint64_t*)(ui_context + 0x2fe) = *(uint64_t*)(ui_context + 0x2fc);
                 }
-                *(undefined8*)(pool + 0x4408) = render_options;
-                *(undefined4*)(pool + 0x4410) = 0;
+                *(uint64_t*)(pool + 0x4408) = render_options;
+                *(int32_t*)(pool + 0x4410) = 0;
                 goto render_complete;
             }
         }
-        *(undefined4*)(pool + 0x12c0) = 1;
+        *(int32_t*)(pool + 0x12c0) = 1;
     }
     else {
         context_ptr[(longlong)(int)context_ptr[0x275] * 0x24 + 0x202] = 1;
@@ -1020,7 +1020,7 @@ ulonglong ui_system_render_ui(longlong pool, undefined8 render_param, undefined8
         }
     }
 render_complete:
-    *(undefined4*)(pool + 0x1318) = 0;
+    *(int32_t*)(pool + 0x1318) = 0;
     ui_system_call_system_function();
     return (ulonglong)render_result;
 }
@@ -1029,16 +1029,16 @@ render_complete:
  * UI系统状态切换函数
  * 在不同的UI状态之间进行切换
  */
-undefined4 ui_system_switch_ui_state(longlong pool, int state_type, int* state_data)
+int32_t ui_system_switch_ui_state(longlong pool, int state_type, int* state_data)
 {
-    undefined4* ui_context;
+    int32_t* ui_context;
     int* layer_count;
     int new_layer;
     longlong layer_offset;
-    undefined* error_handler;
+    void* error_handler;
     int* resource_count;
 
-    ui_context = (undefined4*)(pool + 0x12c0);
+    ui_context = (int32_t*)(pool + 0x12c0);
     if (state_type == 1) {
         layer_count = (int*)(pool + 0x1c94);
     }

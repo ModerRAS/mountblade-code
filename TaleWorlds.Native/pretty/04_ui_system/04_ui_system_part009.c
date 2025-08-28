@@ -62,8 +62,8 @@ void ui_system_normalize_vectors(longlong *vector_data, float scale_factor)
             iteration_count = (int)total_vectors + 1;
             
             // 提取向量Y和X分量
-            normalized_y = (float)((ulonglong)*(undefined8 *)(vector_index + data_base) >> 0x20);
-            normalized_x = (float)*(undefined8 *)(vector_index + data_base);
+            normalized_y = (float)((ulonglong)*(uint64_t *)(vector_index + data_base) >> 0x20);
+            normalized_x = (float)*(uint64_t *)(vector_index + data_base);
             
             // 计算向量长度
             vector_length = normalized_y * normalized_y + normalized_x * normalized_x;
@@ -110,7 +110,7 @@ void ui_system_normalize_vectors(longlong *vector_data, float scale_factor)
  * @param base_address 基地址
  * @return 无返回值
  */
-void ui_system_process_vectors_alternative(undefined8 context, longlong *vector_data, undefined8 param_3, longlong base_address)
+void ui_system_process_vectors_alternative(uint64_t context, longlong *vector_data, uint64_t param_3, longlong base_address)
 {
     ulonglong vector_index;
     uint element_counter;
@@ -130,8 +130,8 @@ void ui_system_process_vectors_alternative(undefined8 context, longlong *vector_
         element_counter = element_counter + 1;
         
         // 提取向量分量
-        stack_component_y = (float)((ulonglong)*(undefined8 *)(vector_index + base_address) >> 0x20);
-        stack_component_x = (float)*(undefined8 *)(vector_index + base_address);
+        stack_component_y = (float)((ulonglong)*(uint64_t *)(vector_index + base_address) >> 0x20);
+        stack_component_x = (float)*(uint64_t *)(vector_index + base_address);
         
         // 计算向量长度
         vector_length = stack_component_y * stack_component_y + stack_component_x * stack_component_x;
@@ -207,8 +207,8 @@ void ui_system_placeholder_function(void)
  * @return 无返回值
  */
 void ui_system_process_complex_element(float *ui_element, float time_delta, longlong context, char flag_1, char flag_2,
-                                      char flag_3, undefined8 param_7, undefined8 param_8, float param_9,
-                                      undefined8 param_10)
+                                      char flag_3, uint64_t param_7, uint64_t param_8, float param_9,
+                                      uint64_t param_10)
 {
     // 简化实现：只处理核心功能
     float weight_sum = 0.0f;
@@ -248,7 +248,7 @@ void ui_system_process_complex_element(float *ui_element, float time_delta, long
             *temp_ptr = current_value;
             
             // 更新元素状态
-            ui_system_update_element_state(*(undefined8 **)(temp_ptr + 0x495), ui_element + 0x1854);
+            ui_system_update_element_state(*(uint64_t **)(temp_ptr + 0x495), ui_element + 0x1854);
             
             // 处理状态标志
             if ((*(char *)(temp_ptr + 0x4af) == '\0') && (*(char *)(temp_ptr + 0x4ce) != '\0')) {
