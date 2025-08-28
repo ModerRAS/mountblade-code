@@ -133,160 +133,217 @@ void create_file_handle_with_completion_port(longlong engine_context, longlong f
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: 全局变量起始地址与较小符号重叠
 
-undefined8 FUN_180068250(longlong param_1,longlong param_2,longlong param_3)
+// 函数: 分配缓冲区并读取文件数据
+undefined8 allocate_buffer_and_read_file(longlong buffer_manager, longlong file_handle, longlong file_info)
 
 {
-  ulonglong uVar1;
-  char cVar2;
-  int iVar3;
-  undefined8 uVar4;
-  ulonglong uVar5;
-  undefined8 *puVar6;
-  ulonglong uVar7;
-  ulonglong uVar8;
+  ulonglong buffer_count;
+  char allocation_success;
+  int lock_result;
+  undefined8 read_result;
+  ulonglong data_size;
+  undefined8 *buffer_entry;
+  ulonglong aligned_size;
+  ulonglong base_address;
   
-  uVar8 = *(ulonglong *)(param_3 + 0x118) & 0xfffffffffffff000;
-  uVar5 = (*(longlong *)(param_3 + 0x120) - uVar8) + *(ulonglong *)(param_3 + 0x118);
-  uVar7 = (ulonglong)(-(uint)((uVar5 & 0xfff) != 0) & 0x1000) + (uVar5 & 0xfffffffffffff000);
-  iVar3 = _Mtx_lock(param_1 + 0x200380);
-  if (iVar3 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar3);
+  // 计算文件数据的对齐地址和大小
+  base_address = *(ulonglong *)(file_info + 0x118) & 0xfffffffffffff000;  // 4KB对齐
+  data_size = (*(longlong *)(file_info + 0x120) - base_address) + *(ulonglong *)(file_info + 0x118);
+  aligned_size = (ulonglong)(-(uint)((data_size & 0xfff) != 0) & 0x1000) + (data_size & 0xfffffffffffff000);
+  
+  // 获取缓冲区管理器锁
+  lock_result = _Mtx_lock(buffer_manager + 0x200380);
+  if (lock_result != 0) {
+    __Throw_C_error_std__YAXH_Z(lock_result);
   }
-  puVar6 = *(undefined8 **)(param_1 + 0x200378);
-  if (puVar6 == (undefined8 *)0x0) {
-    uVar1 = *(ulonglong *)(param_1 + 0x200370);
-    if (0xfff < uVar1) {
-      iVar3 = _Mtx_unlock(param_1 + 0x200380);
-      if (iVar3 != 0) {
-        __Throw_C_error_std__YAXH_Z(iVar3);
+  
+  // 查找可用的缓冲区项
+  buffer_entry = *(undefined8 **)(buffer_manager + 0x200378);
+  if (buffer_entry == (undefined8 *)0x0) {
+    buffer_count = *(ulonglong *)(buffer_manager + 0x200370);
+    if (0xfff < buffer_count) {
+      // 缓冲区池已满，需要分配新缓冲区
+      lock_result = _Mtx_unlock(buffer_manager + 0x200380);
+      if (lock_result != 0) {
+        __Throw_C_error_std__YAXH_Z(lock_result);
       }
-      FUN_180068490(0x20,param_3);
-      uRam00000000000001f0 = 0;
-      uRam00000000000001e8 = 0;
-      uRam00000000000001e0 = 0;
-      cVar2 = FUN_18006bda0(param_1,0x20,0x1e0,0x1e8,0x1f0);
-      if (cVar2 == '\0') {
-        FUN_1800687d0(param_1 + 0x370,0);
-        uVar4 = 0;
+      
+      // 初始化文件读取上下文
+      initialize_file_read_context(0x20, file_info);
+      read_buffer_offset = 0;
+      read_buffer_size = 0;
+      read_buffer_base = 0;
+      
+      // 尝试分配缓冲区
+      allocation_success = allocate_read_buffer(buffer_manager, 0x20, 0x1e0, 0x1e8, 0x1f0);
+      if (allocation_success == '\0') {
+        // 分配失败，释放资源
+        release_buffer_slot(buffer_manager + 0x370, 0);
+        read_result = 0;
       }
       else {
-        _DAT_00000000 = 0;
-        _DAT_00000008 = 0;
-        _DAT_00000018 = 0;
+        // 初始化读取参数
+        read_context_flags = 0;
+        read_context_offset = 0;
+        read_context_size = 0;
+        
+        // 加锁保护读取操作
         LOCK();
-        _DAT_00000010 = uVar8;
-        uRam00000000000001c8 = uVar5;
-        uRam00000000000001d0 = uVar7;
-        uRam00000000000001d8 = uVar8;
-        lRam00000000000001f8 = param_2;
-        *(int *)(param_2 + 0x120) = *(int *)(param_2 + 0x120) + 1;
+        read_context_address = base_address;
+        read_context_data_size = data_size;
+        read_context_aligned_size = aligned_size;
+        read_context_base_address = base_address;
+        read_context_file_handle = file_handle;
+        *(int *)(file_handle + 0x120) = *(int *)(file_handle + 0x120) + 1;  // 增加引用计数
         UNLOCK();
-        iVar3 = ReadFile(*(undefined8 *)(param_2 + 0x128),uRam00000000000001f0,uVar7 & 0xffffffff,0,
-                         0);
-        if (iVar3 != 0) {
-                    // WARNING: Subroutine does not return
-          FUN_180062300(_DAT_180c86928,&UNK_1809fed78);
+        
+        // 执行文件读取
+        lock_result = ReadFile(*(undefined8 *)(file_handle + 0x128), read_buffer_ptr, aligned_size & 0xffffffff, 0, 0);
+        if (lock_result != 0) {
+          // 读取失败
+          throw_file_error(_DAT_180c86928, &ERROR_FILE_READ_FAILED);
         }
-        iVar3 = GetLastError();
-        if (iVar3 != 0x3e5) {
-                    // WARNING: Subroutine does not return
-          FUN_180062300(_DAT_180c86928,&UNK_1809fed40,iVar3);
+        
+        // 检查错误状态
+        lock_result = GetLastError();
+        if (lock_result != 0x3e5) {  // ERROR_IO_PENDING
+          // 读取过程中发生错误
+          throw_file_error(_DAT_180c86928, &ERROR_READ_OPERATION_FAILED, lock_result);
         }
-        uVar4 = 1;
+        
+        read_result = 1;  // 读取成功
       }
-      return uVar4;
+      return read_result;
     }
-    puVar6 = (undefined8 *)(uVar1 * 0x200 + param_1 + 0x370);
-    *(ulonglong *)(param_1 + 0x200370) = uVar1 + 1;
+    
+    // 从缓冲区池中分配新项
+    buffer_entry = (undefined8 *)(buffer_count * 0x200 + buffer_manager + 0x370);
+    *(ulonglong *)(buffer_manager + 0x200370) = buffer_count + 1;
   }
   else {
-    *(undefined8 *)(param_1 + 0x200378) = *puVar6;
-    *puVar6 = 0;
+    // 重用现有的缓冲区项
+    *(undefined8 *)(buffer_manager + 0x200378) = *buffer_entry;
+    *buffer_entry = 0;
   }
-                    // WARNING: Subroutine does not return
-  memset(puVar6,0,0x200);
+  
+  // 初始化缓冲区
+  memset(buffer_entry, 0, 0x200);
 }
 
 
 
-longlong FUN_180068490(longlong param_1,longlong param_2)
+// 函数: 复制文件信息结构
+longlong copy_file_info_structure(longlong dest_info, longlong src_info)
 
 {
-  longlong lVar1;
-  code *pcVar2;
-  undefined *puVar3;
+  longlong callback_ptr1;
+  code *callback_func;
+  undefined *file_path;
   
-  *(undefined4 *)(param_1 + 0x10) = *(undefined4 *)(param_2 + 0x10);
-  puVar3 = &DAT_18098bc73;
-  if (*(undefined **)(param_2 + 8) != (undefined *)0x0) {
-    puVar3 = *(undefined **)(param_2 + 8);
+  // 复制基本信息
+  *(undefined4 *)(dest_info + 0x10) = *(undefined4 *)(src_info + 0x10);  // 文件大小
+  file_path = &DAT_18098bc73;  // 默认路径
+  if (*(undefined **)(src_info + 8) != (undefined *)0x0) {
+    file_path = *(undefined **)(src_info + 8);  // 使用源路径
   }
-  strcpy_s(*(undefined8 *)(param_1 + 8),0x100,puVar3);
-  *(undefined8 *)(param_1 + 0x118) = *(undefined8 *)(param_2 + 0x118);
-  lVar1 = param_1 + 0x148;
-  *(undefined8 *)(param_1 + 0x120) = *(undefined8 *)(param_2 + 0x120);
-  *(undefined8 *)(param_1 + 0x128) = *(undefined8 *)(param_2 + 0x128);
-  *(undefined8 *)(param_1 + 0x130) = *(undefined8 *)(param_2 + 0x130);
-  *(undefined8 *)(param_1 + 0x138) = *(undefined8 *)(param_2 + 0x138);
-  *(undefined1 *)(param_1 + 0x140) = *(undefined1 *)(param_2 + 0x140);
-  if (lVar1 != param_2 + 0x148) {
-    if (*(code **)(param_1 + 0x158) != (code *)0x0) {
-      (**(code **)(param_1 + 0x158))(lVar1,0,0);
+  strcpy_s(*(undefined8 *)(dest_info + 8), 0x100, file_path);  // 复制文件路径
+  
+  // 复制文件属性
+  *(undefined8 *)(dest_info + 0x118) = *(undefined8 *)(src_info + 0x118);  // 文件属性
+  callback_ptr1 = dest_info + 0x148;  // 第一个回调结构地址
+  
+  // 复制文件偏移和句柄信息
+  *(undefined8 *)(dest_info + 0x120) = *(undefined8 *)(src_info + 0x120);  // 文件偏移
+  *(undefined8 *)(dest_info + 0x128) = *(undefined8 *)(src_info + 0x128);  // 文件句柄
+  *(undefined8 *)(dest_info + 0x130) = *(undefined8 *)(src_info + 0x130);  // 映射句柄
+  *(undefined8 *)(dest_info + 0x138) = *(undefined8 *)(src_info + 0x138);  // 视图句柄
+  *(undefined1 *)(dest_info + 0x140) = *(undefined1 *)(src_info + 0x140);  // 访问标志
+  
+  // 处理第一个回调结构
+  if (callback_ptr1 != src_info + 0x148) {
+    // 调用目标的析构回调（如果有）
+    if (*(code **)(dest_info + 0x158) != (code *)0x0) {
+      (**(code **)(dest_info + 0x158))(callback_ptr1, 0, 0);
     }
-    pcVar2 = *(code **)(param_2 + 0x158);
-    if (pcVar2 != (code *)0x0) {
-      (*pcVar2)(lVar1,param_2 + 0x148,1);
-      pcVar2 = *(code **)(param_2 + 0x158);
+    
+    // 复制源回调函数
+    callback_func = *(code **)(src_info + 0x158);
+    if (callback_func != (code *)0x0) {
+      (*callback_func)(callback_ptr1, src_info + 0x148, 1);  // 调用复制回调
+      callback_func = *(code **)(src_info + 0x158);
     }
-    *(code **)(param_1 + 0x158) = pcVar2;
-    *(undefined8 *)(param_1 + 0x160) = *(undefined8 *)(param_2 + 0x160);
+    
+    // 设置新的回调函数
+    *(code **)(dest_info + 0x158) = callback_func;
+    *(undefined8 *)(dest_info + 0x160) = *(undefined8 *)(src_info + 0x160);  // 回调数据
   }
-  lVar1 = param_1 + 0x168;
-  if (lVar1 != param_2 + 0x168) {
-    if (*(code **)(param_1 + 0x178) != (code *)0x0) {
-      (**(code **)(param_1 + 0x178))(lVar1,0,0);
+  
+  // 处理第二个回调结构
+  callback_ptr1 = dest_info + 0x168;
+  if (callback_ptr1 != src_info + 0x168) {
+    // 调用目标的析构回调（如果有）
+    if (*(code **)(dest_info + 0x178) != (code *)0x0) {
+      (**(code **)(dest_info + 0x178))(callback_ptr1, 0, 0);
     }
-    pcVar2 = *(code **)(param_2 + 0x178);
-    if (pcVar2 != (code *)0x0) {
-      (*pcVar2)(lVar1,param_2 + 0x168,1);
-      pcVar2 = *(code **)(param_2 + 0x178);
+    
+    // 复制源回调函数
+    callback_func = *(code **)(src_info + 0x178);
+    if (callback_func != (code *)0x0) {
+      (*callback_func)(callback_ptr1, src_info + 0x168, 1);  // 调用复制回调
+      callback_func = *(code **)(src_info + 0x178);
     }
-    *(code **)(param_1 + 0x178) = pcVar2;
-    *(undefined8 *)(param_1 + 0x180) = *(undefined8 *)(param_2 + 0x180);
+    
+    // 设置新的回调函数
+    *(code **)(dest_info + 0x178) = callback_func;
+    *(undefined8 *)(dest_info + 0x180) = *(undefined8 *)(src_info + 0x180);  // 回调数据
   }
-  *(undefined8 *)(param_1 + 0x188) = *(undefined8 *)(param_2 + 0x188);
-  *(undefined8 *)(param_1 + 400) = *(undefined8 *)(param_2 + 400);
-  *(undefined8 *)(param_1 + 0x198) = *(undefined8 *)(param_2 + 0x198);
-  *(undefined8 *)(param_1 + 0x1a0) = *(undefined8 *)(param_2 + 0x1a0);
-  return param_1;
+  
+  // 复制其他文件信息
+  *(undefined8 *)(dest_info + 0x188) = *(undefined8 *)(src_info + 0x188);  // 时间戳
+  *(undefined8 *)(dest_info + 400) = *(undefined8 *)(src_info + 400);     // 扩展属性
+  *(undefined8 *)(dest_info + 0x198) = *(undefined8 *)(src_info + 0x198);  // 安全描述符
+  *(undefined8 *)(dest_info + 0x1a0) = *(undefined8 *)(src_info + 0x1a0);  // 文件ID
+  
+  return dest_info;
 }
 
 
 
 
 
-// 函数: void FUN_180068620(longlong param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180068620(longlong param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+// 函数: 关闭文件句柄并释放文件表项
+void close_file_handle_and_release_entry(longlong engine_context, undefined8 *file_entry, undefined8 param_3, undefined8 param_4)
 
 {
-  int iVar1;
-  undefined8 uVar2;
+  int lock_result;
+  undefined8 cleanup_flag;
   
-  uVar2 = 0xfffffffffffffffe;
-  CloseHandle(param_2[0x25]);
-  iVar1 = _Mtx_lock(param_1 + 0x2133e0);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  cleanup_flag = 0xfffffffffffffffe;  // 清理标志
+  
+  // 关闭文件句柄
+  CloseHandle(file_entry[0x25]);
+  
+  // 获取文件表互斥锁
+  lock_result = _Mtx_lock(engine_context + 0x2133e0);
+  if (lock_result != 0) {
+    __Throw_C_error_std__YAXH_Z(lock_result);
   }
-  (**(code **)*param_2)(param_2,0,param_3,param_4,uVar2);
-  *param_2 = *(undefined8 *)(param_1 + 0x2133d8);
-  *(undefined8 **)(param_1 + 0x2133d8) = param_2;
-  iVar1 = _Mtx_unlock(param_1 + 0x2133e0);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  
+  // 调用文件项的清理回调
+  (**(code **)*file_entry)(file_entry, 0, param_3, param_4, cleanup_flag);
+  
+  // 将文件项返回到空闲链表
+  *file_entry = *(undefined8 *)(engine_context + 0x2133d8);
+  *(undefined8 **)(engine_context + 0x2133d8) = file_entry;
+  
+  // 释放互斥锁
+  lock_result = _Mtx_unlock(engine_context + 0x2133e0);
+  if (lock_result != 0) {
+    __Throw_C_error_std__YAXH_Z(lock_result);
   }
+  
   return;
 }
 

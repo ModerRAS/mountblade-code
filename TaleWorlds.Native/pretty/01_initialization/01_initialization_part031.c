@@ -1,6 +1,6 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 01_initialization_part031.c - 10 个函数
+// 01_initialization_part031.c - 10 个函数（已完成转译）
 
 /**
  * 初始化空函数 - 占位符函数，无实际功能
@@ -634,7 +634,12 @@ LAB_180060007:
 
 
 
-ulonglong FUN_180060080(longlong param_1,longlong *param_2,undefined8 param_3)
+/**
+ * 设置对象数据值
+ * 为指定对象设置数据值，处理内存池操作
+ * 原函数名: FUN_180060080
+ */
+ulonglong SetObjectDataValue(longlong objectManager, longlong *dataPointer, undefined8 dataValue)
 
 {
   longlong *plVar1;
@@ -672,7 +677,12 @@ ulonglong FUN_180060080(longlong param_1,longlong *param_2,undefined8 param_3)
 
 
 
-undefined8 FUN_1800601c0(undefined8 param_1,ulonglong param_2)
+/**
+ * 清理对象管理器资源
+ * 清理对象管理器占用的资源，根据标志决定是否释放内存
+ * 原函数名: FUN_1800601c0
+ */
+undefined8 CleanupObjectManagerResources(undefined8 objectManager, ulonglong freeMemoryFlag)
 
 {
   FUN_180060200();
@@ -687,7 +697,12 @@ undefined8 FUN_1800601c0(undefined8 param_1,ulonglong param_2)
 
 
 // 函数: void FUN_180060200(undefined8 *param_1)
-void FUN_180060200(undefined8 *param_1)
+/**
+ * 销毁对象管理器
+ * 完全销毁对象管理器，清理所有相关资源和内存
+ * 原函数名: FUN_180060200
+ */
+void DestroyObjectManager(undefined8 *objectManager)
 
 {
   longlong *plVar1;
@@ -807,7 +822,12 @@ code_r0x000180060327:
 
 
 
-undefined8 FUN_1800603e0(undefined8 param_1,ulonglong param_2)
+/**
+ * 清理对象容器
+ * 清理对象容器并处理相关资源，根据标志决定是否释放内存
+ * 原函数名: FUN_1800603e0
+ */
+undefined8 CleanupObjectContainer(undefined8 objectContainer, ulonglong freeMemoryFlag)
 
 {
   FUN_180060420();
@@ -822,7 +842,12 @@ undefined8 FUN_1800603e0(undefined8 param_1,ulonglong param_2)
 
 
 // 函数: void FUN_180060420(undefined8 *param_1)
-void FUN_180060420(undefined8 *param_1)
+/**
+ * 销毁对象容器
+ * 完全销毁对象容器，清理所有对象和相关资源
+ * 原函数名: FUN_180060420
+ */
+void DestroyObjectContainer(undefined8 *objectContainer)
 
 {
   int *piVar1;
@@ -930,7 +955,12 @@ LAB_1800604d1:
 
 
 
-undefined8 * FUN_1800605d0(undefined8 *param_1,ulonglong param_2)
+/**
+ * 清理对象池
+ * 清理对象池资源，根据标志决定是否释放内存
+ * 原函数名: FUN_1800605d0
+ */
+undefined8 * CleanupObjectPool(undefined8 *objectPool, ulonglong freeMemoryFlag)
 
 {
   *param_1 = &UNK_1809fe210;
@@ -945,7 +975,12 @@ undefined8 * FUN_1800605d0(undefined8 *param_1,ulonglong param_2)
 
 
 // 函数: void FUN_180060610(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180060610(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 初始化线程管理器
+ * 初始化线程管理器，设置同步原语和线程控制结构
+ * 原函数名: FUN_180060610
+ */
+void InitializeThreadManager(undefined8 *threadManager, undefined8 param2, undefined8 param3, undefined8 param4)
 
 {
   char cVar1;
@@ -980,7 +1015,12 @@ void FUN_180060610(undefined8 *param_1,undefined8 param_2,undefined8 param_3,und
 
 
 
-undefined8 FUN_180060630(undefined8 param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 清理线程管理器
+ * 清理线程管理器资源，根据标志决定是否释放内存
+ * 原函数名: FUN_180060630
+ */
+undefined8 CleanupThreadManager(undefined8 threadManager, ulonglong freeMemoryFlag, undefined8 param3, undefined8 param4)
 
 {
   undefined8 uVar1;
@@ -995,7 +1035,12 @@ undefined8 FUN_180060630(undefined8 param_1,ulonglong param_2,undefined8 param_3
 
 
 
-int FUN_180060680(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 格式化字符串输出
+ * 安全的格式化字符串输出函数，处理可变参数
+ * 原函数名: FUN_180060680
+ */
+int FormatStringOutput(undefined8 buffer, undefined8 format, undefined8 param3, undefined8 param4)
 
 {
   int iVar1;

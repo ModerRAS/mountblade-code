@@ -641,60 +641,80 @@ void initialize_system_core(void)
   undefined8 pool_size;         // 内存池大小
   longlong mutex_handle;        // 互斥体句柄
   
-  puVar2 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x198,8,3);
-  puVar1 = puVar2 + 4;
-  FUN_180637560(puVar1);
-  *puVar1 = &UNK_180a3cf50;
-  *(undefined2 *)(puVar2 + 0x1a) = 1;
-  *(undefined4 *)(puVar2 + 9) = 0;
-  *(undefined1 *)((longlong)puVar2 + 0x54) = 0;
-  *puVar1 = &UNK_1809fe6d8;
-  puVar1 = puVar2 + 0x1b;
-  FUN_180637560(puVar1);
-  *puVar1 = &UNK_180a3cf50;
-  *(undefined2 *)(puVar2 + 0x31) = 1;
-  *(undefined4 *)(puVar2 + 0x20) = 0;
-  *(undefined1 *)((longlong)puVar2 + 0x10c) = 0;
-  *puVar1 = &UNK_1809fe6d8;
-  *puVar2 = 0;
-  *(undefined1 *)(puVar2 + 3) = 0;
-  puVar2[2] = 0xffffffff00000000;
-  *(undefined4 *)(puVar2 + 1) = 0xe;
-  _DAT_180c86928 = puVar2;
-  uVar3 = FUN_18062b1e0(_DAT_180c8ed18,0x480,8,3);
-  _DAT_180c8a9f8 = FUN_18004bd10(uVar3);
-  uVar3 = FUN_18062b1e0(_DAT_180c8ed18,0x10420,8,3);
-  _DAT_180c868c0 = FUN_18005c090(uVar3);
+  // 分配并初始化系统表1（408字节）
+  memory_pool = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x198,8,3);
+  system_handle = memory_pool + 4;
+  FUN_180637560(system_handle);
+  *system_handle = &UNK_180a3cf50;
+  *(undefined2 *)(memory_pool + 0x1a) = 1;
+  *(undefined4 *)(memory_pool + 9) = 0;
+  *(undefined1 *)((longlong)memory_pool + 0x54) = 0;
+  *system_handle = &UNK_1809fe6d8;
+  
+  // 初始化第二个系统表项
+  system_handle = memory_pool + 0x1b;
+  FUN_180637560(system_handle);
+  *system_handle = &UNK_180a3cf50;
+  *(undefined2 *)(memory_pool + 0x31) = 1;
+  *(undefined4 *)(memory_pool + 0x20) = 0;
+  *(undefined1 *)((longlong)memory_pool + 0x10c) = 0;
+  *system_handle = &UNK_1809fe6d8;
+  
+  // 设置系统表头部信息
+  *memory_pool = 0;
+  *(undefined1 *)(memory_pool + 3) = 0;
+  memory_pool[2] = 0xffffffff00000000;
+  *(undefined4 *)(memory_pool + 1) = 0xe;  // 表大小标记
+  _DAT_180c86928 = memory_pool;
+  
+  // 初始化渲染系统（1152字节）
+  pool_size = FUN_18062b1e0(_DAT_180c8ed18,0x480,8,3);
+  _DAT_180c8a9f8 = FUN_18004bd10(pool_size);
+  
+  // 初始化场景系统（66592字节）
+  pool_size = FUN_18062b1e0(_DAT_180c8ed18,0x10420,8,3);
+  _DAT_180c868c0 = FUN_18005c090(pool_size);
+  
+  // 初始化调试系统（48字节）
   _DAT_180c868d8 = FUN_18062b1e0(_DAT_180c8ed18,0x30,8,3);
   *(undefined4 *)(_DAT_180c868d8 + 0x19) = 0;
   *(undefined2 *)(_DAT_180c868d8 + 0x1d) = 0;
   *(undefined1 *)(_DAT_180c868d8 + 0x1f) = 0;
-  *(undefined4 *)(_DAT_180c868d8 + 0x28) = 3;
-  *(longlong *)_DAT_180c868d8 = _DAT_180c868d8;
+  *(undefined4 *)(_DAT_180c868d8 + 0x28) = 3;  // 调试级别
+  *(longlong *)_DAT_180c868d8 = _DAT_180c868d8;  // 自引用指针
   *(longlong *)(_DAT_180c868d8 + 8) = _DAT_180c868d8;
   *(undefined8 *)(_DAT_180c868d8 + 0x10) = 0;
   *(undefined1 *)(_DAT_180c868d8 + 0x18) = 0;
   *(undefined8 *)(_DAT_180c868d8 + 0x20) = 0;
+  
+  // 初始化输入系统（8字节）
   _DAT_180c86910 = FUN_18062b1e0(_DAT_180c8ed18,8,4,3);
   *(undefined4 *)(_DAT_180c86910 + 4) = 0;
-  uVar3 = FUN_18062b1e0(_DAT_180c8ed18,0x80,8,3);
-  _DAT_180c86900 = FUN_18015c450(uVar3);
-  lVar4 = FUN_18062b1e0(_DAT_180c8ed18,0xe8,8,3);
-  _Mtx_init_in_situ(lVar4,2);
-  _Mtx_init_in_situ(lVar4 + 0x50,2);
-  *(undefined8 *)(lVar4 + 0xa0) = 0;
-  *(undefined8 *)(lVar4 + 0xa8) = 0;
-  *(undefined8 *)(lVar4 + 0xb0) = 0;
-  *(undefined4 *)(lVar4 + 0xb8) = 3;
-  *(undefined8 *)(lVar4 + 0xc0) = 0;
-  *(undefined8 *)(lVar4 + 200) = 0;
-  *(undefined8 *)(lVar4 + 0xd0) = 0;
-  *(undefined4 *)(lVar4 + 0xd8) = 0x20;
-  *(undefined4 *)(lVar4 + 0xe0) = 0;
-  _DAT_180c8a998 = lVar4;
-  uVar3 = FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3);
-                    // WARNING: Subroutine does not return
-  memset(uVar3,0,0x70);
+  
+  // 初始化音频系统（128字节）
+  pool_size = FUN_18062b1e0(_DAT_180c8ed18,0x80,8,3);
+  _DAT_180c86900 = FUN_18015c450(pool_size);
+  
+  // 初始化线程池互斥锁（232字节）
+  mutex_handle = FUN_18062b1e0(_DAT_180c8ed18,0xe8,8,3);
+  _Mtx_init_in_situ(mutex_handle,2);           // 主互斥锁
+  _Mtx_init_in_situ(mutex_handle + 0x50,2);     // 次互斥锁
+  
+  // 设置线程池参数
+  *(undefined8 *)(mutex_handle + 0xa0) = 0;     // 任务队列头
+  *(undefined8 *)(mutex_handle + 0xa8) = 0;     // 任务队列尾
+  *(undefined8 *)(mutex_handle + 0xb0) = 0;     // 当前任务数
+  *(undefined4 *)(mutex_handle + 0xb8) = 3;     // 最大线程数
+  *(undefined8 *)(mutex_handle + 0xc0) = 0;     // 活动线程数
+  *(undefined8 *)(mutex_handle + 200) = 0;      // 线程ID数组
+  *(undefined8 *)(mutex_handle + 0xd0) = 0;     // 完成任务数
+  *(undefined4 *)(mutex_handle + 0xd8) = 0x20; // 任务超时时间
+  *(undefined4 *)(mutex_handle + 0xe0) = 0;     // 线程优先级
+  _DAT_180c8a998 = mutex_handle;
+  
+  // 初始化日志系统（112字节）
+  pool_size = FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3);
+  memset(pool_size,0,0x70);  // 清零初始化
 }
 
 
@@ -736,7 +756,8 @@ void cleanup_module_resources(longlong *module_list)
 void initialize_module_handle(longlong module_base, undefined8 handle_size, undefined8 init_flags, undefined8 context_data)
 
 {
-  FUN_180058210(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  // 调用模块初始化函数，使用提供的参数
+  FUN_180058210(module_base,*(undefined8 *)(module_base + 0x10),init_flags,context_data,0xfffffffffffffffe);
   return;
 }
 

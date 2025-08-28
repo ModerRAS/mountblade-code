@@ -69,8 +69,8 @@
 - [-] `01_initialization_part037.c` - 进行中 - 负责人: Claude Code - 预计完成时间: 2025-08-28
 - [-] `01_initialization_part038.c` - 进行中 - 负责人: Claude - 预计完成时间: 2025-08-28
 - [-] `01_initialization_part039.c` - 进行中 - 负责人: Claude Code - 预计完成时间: 2025-08-28
-- [ ] `01_initialization_part040.c` - 未开始 - 负责人: - 预计完成时间: -
-- [ ] `01_initialization_part041.c` - 未开始 - 负责人: - 预计完成时间: -
+- [-] `01_initialization_part040.c` - 进行中 - 负责人: Claude Code - 预计完成时间: 2025-08-28
+- [-] `01_initialization_part041.c` - 进行中 - 负责人: Claude Code - 预计完成时间: 2025-08-28
 - [ ] `01_initialization_part042.c` - 未开始 - 负责人: - 预计完成时间: -
 - [ ] `01_initialization_part043.c` - 未开始 - 负责人: - 预计完成时间: -
 - [ ] `01_initialization_part044.c` - 未开始 - 负责人: - 预计完成时间: -

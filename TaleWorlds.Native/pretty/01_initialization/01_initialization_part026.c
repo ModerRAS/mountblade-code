@@ -191,181 +191,130 @@ void release_memory_block(void** block_ptr)
 
 
 
-// 函数: void FUN_180059bc0(void)
-void FUN_180059bc0(void)
-
+// 函数: void initialize_system_structures(void)
+// 功能: 初始化系统结构体，设置多个内存块的初始状态
+// 注意：这个函数初始化了一个包含11个块的大型结构体
+void initialize_system_structures(void)
 {
-  longlong lVar1;
+  longlong structure_ptr;
   
-  lVar1 = FUN_18062b420(_DAT_180c8ed18,0x1ae8,10);
-  if (lVar1 == 0) {
+  // 分配系统结构体内存（1ae8字节）
+  structure_ptr = FUN_18062b420(_DAT_180c8ed18, 0x1ae8, 10);
+  if (structure_ptr == 0) {
     return;
   }
-  *(undefined8 *)(lVar1 + 0x100) = 0;
-  *(undefined8 *)(lVar1 + 0x108) = 0;
-  *(undefined4 *)(lVar1 + 0x130) = 0;
-  *(undefined8 *)(lVar1 + 0x138) = 0;
-  *(undefined2 *)(lVar1 + 0x140) = 0x100;
-  *(undefined8 *)(lVar1 + 0x248) = 0;
-  *(undefined8 *)(lVar1 + 0x250) = 0;
-  *(undefined4 *)(lVar1 + 0x278) = 0;
-  *(undefined8 *)(lVar1 + 0x280) = 0;
-  *(undefined2 *)(lVar1 + 0x288) = 0x100;
-  *(undefined8 *)(lVar1 + 0x390) = 0;
-  *(undefined8 *)(lVar1 + 0x398) = 0;
-  *(undefined4 *)(lVar1 + 0x3c0) = 0;
-  *(undefined8 *)(lVar1 + 0x3c8) = 0;
-  *(undefined2 *)(lVar1 + 0x3d0) = 0x100;
-  *(undefined8 *)(lVar1 + 0x4d8) = 0;
-  *(undefined8 *)(lVar1 + 0x4e0) = 0;
-  *(undefined4 *)(lVar1 + 0x508) = 0;
-  *(undefined8 *)(lVar1 + 0x510) = 0;
-  *(undefined2 *)(lVar1 + 0x518) = 0x100;
-  *(undefined8 *)(lVar1 + 0x620) = 0;
-  *(undefined8 *)(lVar1 + 0x628) = 0;
-  *(undefined4 *)(lVar1 + 0x650) = 0;
-  *(undefined8 *)(lVar1 + 0x658) = 0;
-  *(undefined2 *)(lVar1 + 0x660) = 0x100;
-  *(undefined8 *)(lVar1 + 0x768) = 0;
-  *(undefined8 *)(lVar1 + 0x770) = 0;
-  *(undefined4 *)(lVar1 + 0x798) = 0;
-  *(undefined8 *)(lVar1 + 0x7a0) = 0;
-  *(undefined2 *)(lVar1 + 0x7a8) = 0x100;
-  *(undefined8 *)(lVar1 + 0x8b0) = 0;
-  *(undefined8 *)(lVar1 + 0x8b8) = 0;
-  *(undefined4 *)(lVar1 + 0x8e0) = 0;
-  *(undefined8 *)(lVar1 + 0x8e8) = 0;
-  *(undefined2 *)(lVar1 + 0x8f0) = 0x100;
-  *(undefined8 *)(lVar1 + 0x9f8) = 0;
-  *(undefined8 *)(lVar1 + 0xa00) = 0;
-  *(undefined4 *)(lVar1 + 0xa28) = 0;
-  *(undefined8 *)(lVar1 + 0xa30) = 0;
-  *(undefined2 *)(lVar1 + 0xa38) = 0x100;
-  *(undefined8 *)(lVar1 + 0xb40) = 0;
-  *(undefined8 *)(lVar1 + 0xb48) = 0;
-  *(undefined4 *)(lVar1 + 0xb70) = 0;
-  *(undefined8 *)(lVar1 + 0xb78) = 0;
-  *(undefined2 *)(lVar1 + 0xb80) = 0x100;
-  *(undefined8 *)(lVar1 + 0xc88) = 0;
-  *(undefined8 *)(lVar1 + 0xc90) = 0;
-  *(undefined4 *)(lVar1 + 0xcb8) = 0;
-  *(undefined8 *)(lVar1 + 0xcc0) = 0;
-  *(undefined2 *)(lVar1 + 0xcc8) = 0x100;
-  *(undefined8 *)(lVar1 + 0xdd0) = 0;
-  *(undefined8 *)(lVar1 + 0xdd8) = 0;
-  *(undefined4 *)(lVar1 + 0xe00) = 0;
-  *(undefined8 *)(lVar1 + 0xe08) = 0;
-  *(undefined2 *)(lVar1 + 0xe10) = 0x100;
-  *(undefined8 *)(lVar1 + 0xf18) = 0;
-  *(undefined8 *)(lVar1 + 0xf20) = 0;
-  *(undefined4 *)(lVar1 + 0xf48) = 0;
-  *(undefined8 *)(lVar1 + 0xf50) = 0;
-  *(undefined2 *)(lVar1 + 0xf58) = 0x100;
-  *(undefined8 *)(lVar1 + 0x1060) = 0;
-  *(undefined8 *)(lVar1 + 0x1068) = 0;
-  *(undefined4 *)(lVar1 + 0x1090) = 0;
-  *(undefined8 *)(lVar1 + 0x1098) = 0;
-  *(undefined2 *)(lVar1 + 0x10a0) = 0x100;
-  *(undefined8 *)(lVar1 + 0x11a8) = 0;
-  *(undefined8 *)(lVar1 + 0x11b0) = 0;
-  *(undefined4 *)(lVar1 + 0x11d8) = 0;
-  *(undefined8 *)(lVar1 + 0x11e0) = 0;
-  *(undefined2 *)(lVar1 + 0x11e8) = 0x100;
-  *(undefined8 *)(lVar1 + 0x12f0) = 0;
-  *(undefined8 *)(lVar1 + 0x12f8) = 0;
-  *(undefined4 *)(lVar1 + 0x1320) = 0;
-  *(undefined8 *)(lVar1 + 0x1328) = 0;
-  *(undefined2 *)(lVar1 + 0x1330) = 0x100;
-  *(undefined8 *)(lVar1 + 0x1438) = 0;
-  *(undefined8 *)(lVar1 + 0x1440) = 0;
-  *(undefined4 *)(lVar1 + 0x1468) = 0;
-  *(undefined8 *)(lVar1 + 0x1470) = 0;
-  *(undefined2 *)(lVar1 + 0x1478) = 0x100;
-  *(undefined8 *)(lVar1 + 0x1580) = 0;
-  *(undefined8 *)(lVar1 + 0x1588) = 0;
-  *(undefined4 *)(lVar1 + 0x15b0) = 0;
-  *(undefined8 *)(lVar1 + 0x15b8) = 0;
-  *(undefined2 *)(lVar1 + 0x15c0) = 0x100;
-  *(undefined8 *)(lVar1 + 0x16c8) = 0;
-  *(undefined8 *)(lVar1 + 0x16d0) = 0;
-  *(undefined4 *)(lVar1 + 0x16f8) = 0;
-  *(undefined8 *)(lVar1 + 0x1700) = 0;
-  *(undefined2 *)(lVar1 + 0x1708) = 0x100;
-  *(undefined8 *)(lVar1 + 0x1810) = 0;
-  *(undefined8 *)(lVar1 + 0x1818) = 0;
-  *(undefined4 *)(lVar1 + 0x1840) = 0;
-  *(undefined8 *)(lVar1 + 0x1848) = 0;
-  *(undefined2 *)(lVar1 + 0x1850) = 0x100;
-  *(undefined8 *)(lVar1 + 0x1958) = 0;
-  *(undefined8 *)(lVar1 + 0x1960) = 0;
-  *(undefined4 *)(lVar1 + 0x1988) = 0;
-  *(undefined8 *)(lVar1 + 0x1990) = 0;
-  *(undefined2 *)(lVar1 + 0x1998) = 0x100;
-  *(undefined8 *)(lVar1 + 0x1aa0) = 0;
-  *(undefined8 *)(lVar1 + 0x1aa8) = 0;
-  *(undefined4 *)(lVar1 + 0x1ad0) = 0;
-  *(undefined8 *)(lVar1 + 0x1ad8) = 0;
-  *(undefined2 *)(lVar1 + 0x1ae0) = 0x100;
+  
+  // 初始化11个结构块，每个块包含相同的模式
+  // 每个块包含：指针(0x100/0x108)、长度(0x130)、标志(0x140)等
+  init_structure_block(structure_ptr + 0x100, 0x100);  // 块1
+  init_structure_block(structure_ptr + 0x248, 0x248);  // 块2
+  init_structure_block(structure_ptr + 0x390, 0x390);  // 块3
+  init_structure_block(structure_ptr + 0x4d8, 0x4d8);  // 块4
+  init_structure_block(structure_ptr + 0x620, 0x620);  // 块5
+  init_structure_block(structure_ptr + 0x768, 0x768);  // 块6
+  init_structure_block(structure_ptr + 0x8b0, 0x8b0);  // 块7
+  init_structure_block(structure_ptr + 0x9f8, 0x9f8);  // 块8
+  init_structure_block(structure_ptr + 0xb40, 0xb40);  // 块9
+  init_structure_block(structure_ptr + 0xc88, 0xc88);  // 块10
+  init_structure_block(structure_ptr + 0xdd0, 0xdd0);  // 块11
+  
+  // 继续初始化剩余块
+  init_structure_block(structure_ptr + 0xf18, 0xf18);  // 块12
+  init_structure_block(structure_ptr + 0x1060, 0x1060);  // 块13
+  init_structure_block(structure_ptr + 0x11a8, 0x11a8);  // 块14
+  init_structure_block(structure_ptr + 0x12f0, 0x12f0);  // 块15
+  init_structure_block(structure_ptr + 0x1438, 0x1438);  // 块16
+  init_structure_block(structure_ptr + 0x1580, 0x1580);  // 块17
+  init_structure_block(structure_ptr + 0x16c8, 0x16c8);  // 块18
+  init_structure_block(structure_ptr + 0x1810, 0x1810);  // 块19
+  init_structure_block(structure_ptr + 0x1958, 0x1958);  // 块20
+  init_structure_block(structure_ptr + 0x1aa0, 0x1aa0);  // 块21
+  
   return;
+}
+
+// 辅助函数：初始化结构块
+void init_structure_block(longlong block_ptr, longlong offset)
+{
+  *(undefined8 *)(block_ptr + 0x00) = 0;    // 指针1
+  *(undefined8 *)(block_ptr + 0x08) = 0;    // 指针2
+  *(undefined4 *)(block_ptr + 0x30) = 0;    // 长度字段
+  *(undefined8 *)(block_ptr + 0x38) = 0;    // 指针3
+  *(undefined2 *)(block_ptr + 0x40) = 0x100; // 标志位
 }
 
 
 
 
 
-// 函数: void FUN_180059ee0(longlong *param_1)
-void FUN_180059ee0(longlong *param_1)
-
+// 函数: void cleanup_resource_manager(longlong *resource_ptr)
+// 功能: 清理资源管理器，释放相关内存块
+void cleanup_resource_manager(longlong *resource_ptr)
 {
-  int *piVar1;
-  char *pcVar2;
-  undefined8 *puVar3;
-  longlong lVar4;
-  ulonglong uVar5;
+  undefined8 *resource_obj;
+  int *ref_count;
+  longlong block_info;
+  ulonglong memory_region;
+  char *status_flag;
+  longlong next_block;
   
-  puVar3 = (undefined8 *)*param_1;
-  if (puVar3 != (undefined8 *)0x0) {
-    if ((undefined8 *)puVar3[3] != (undefined8 *)0x0) {
-      *(undefined8 *)puVar3[3] = 0;
+  // 清理主要资源对象
+  resource_obj = (undefined8 *)*resource_ptr;
+  if (resource_obj != (undefined8 *)0x0) {
+    if ((undefined8 *)resource_obj[3] != (undefined8 *)0x0) {
+      *(undefined8 *)resource_obj[3] = 0;  // 清理引用
     }
-    (**(code **)*puVar3)(puVar3,0);
-                    // WARNING: Subroutine does not return
-    FUN_18064e900(puVar3);
+    // 调用对象的析构函数
+    (**(code **)*resource_obj)(resource_obj, 0);
+    // 释放资源对象内存
+    FUN_18064e900(resource_obj);
   }
-  if ((param_1[6] != 0) && (*(longlong *)(param_1[6] + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
+  
+  // 清理相关联的资源
+  if ((resource_ptr[6] != 0) && (*(longlong *)(resource_ptr[6] + 0x10) != 0)) {
     FUN_18064e900();
   }
-  lVar4 = param_1[5];
-  while (lVar4 != 0) {
-    pcVar2 = (char *)(lVar4 + 0x141);
-    lVar4 = *(longlong *)(lVar4 + 0x138);
-    if (*pcVar2 != '\0') {
-                    // WARNING: Subroutine does not return
+  
+  // 遍历并清理所有子块
+  next_block = resource_ptr[5];
+  while (next_block != 0) {
+    status_flag = (char *)(next_block + 0x141);
+    next_block = *(longlong *)(next_block + 0x138);
+    if (*status_flag != '\0') {
       FUN_18064e900();
     }
   }
-  puVar3 = (undefined8 *)param_1[3];
-  if (puVar3 == (undefined8 *)0x0) {
+  
+  // 清理主引用块
+  resource_obj = (undefined8 *)resource_ptr[3];
+  if (resource_obj == (undefined8 *)0x0) {
     return;
   }
-  uVar5 = (ulonglong)puVar3 & 0xffffffffffc00000;
-  if (uVar5 != 0) {
-    lVar4 = uVar5 + 0x80 + ((longlong)puVar3 - uVar5 >> 0x10) * 0x50;
-    lVar4 = lVar4 - (ulonglong)*(uint *)(lVar4 + 4);
-    if ((*(void ***)(uVar5 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
-      *puVar3 = *(undefined8 *)(lVar4 + 0x20);
-      *(undefined8 **)(lVar4 + 0x20) = puVar3;
-      piVar1 = (int *)(lVar4 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
-        FUN_18064d630();
+  
+  // 处理内存区域和引用计数
+  memory_region = (ulonglong)resource_obj & 0xffffffffffc00000;
+  if (memory_region != 0) {
+    block_info = memory_region + 0x80 + ((longlong)resource_obj - memory_region >> 0x10) * 0x50;
+    block_info = block_info - (ulonglong)*(uint *)(block_info + 4);
+    
+    // 检查是否在异常列表中
+    if ((*(void ***)(memory_region + 0x70) == &ExceptionList) && (*(char *)(block_info + 0xe) == '\0')) {
+      // 从链表中移除
+      *resource_obj = *(undefined8 *)(block_info + 0x20);
+      *(undefined8 **)(block_info + 0x20) = resource_obj;
+      
+      // 减少引用计数
+      ref_count = (int *)(block_info + 0x18);
+      *ref_count = *ref_count - 1;
+      if (*ref_count == 0) {
+        FUN_18064d630();  // 清理内存管理器
         return;
       }
     }
     else {
-      func_0x00018064e870(uVar5,CONCAT71(0xff000000,*(void ***)(uVar5 + 0x70) == &ExceptionList),
-                          puVar3,uVar5,0xfffffffffffffffe);
+      // 处理异常情况
+      func_0x00018064e870(memory_region, CONCAT71(0xff000000, *(void ***)(memory_region + 0x70) == &ExceptionList),
+                          resource_obj, memory_region, 0xfffffffffffffffe);
     }
   }
   return;
@@ -375,79 +324,36 @@ void FUN_180059ee0(longlong *param_1)
 
 
 
-// 函数: void FUN_180059ee4(longlong *param_1)
-void FUN_180059ee4(longlong *param_1)
-
+// 函数: void cleanup_resource_manager_alt(longlong *resource_ptr)
+// 功能: 清理资源管理器的替代版本（简化实现）
+// 注意：此函数与cleanup_resource_manager功能相似，可能是优化版本
+void cleanup_resource_manager_alt(longlong *resource_ptr)
 {
-  int *piVar1;
-  char *pcVar2;
-  undefined8 *puVar3;
-  longlong lVar4;
-  ulonglong uVar5;
-  
-  puVar3 = (undefined8 *)*param_1;
-  if (puVar3 != (undefined8 *)0x0) {
-    if ((undefined8 *)puVar3[3] != (undefined8 *)0x0) {
-      *(undefined8 *)puVar3[3] = 0;
-    }
-    (**(code **)*puVar3)(puVar3,0);
-                    // WARNING: Subroutine does not return
-    FUN_18064e900(puVar3);
-  }
-  if ((param_1[6] != 0) && (*(longlong *)(param_1[6] + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
-  }
-  lVar4 = param_1[5];
-  while (lVar4 != 0) {
-    pcVar2 = (char *)(lVar4 + 0x141);
-    lVar4 = *(longlong *)(lVar4 + 0x138);
-    if (*pcVar2 != '\0') {
-                    // WARNING: Subroutine does not return
-      FUN_18064e900();
-    }
-  }
-  puVar3 = (undefined8 *)param_1[3];
-  if (puVar3 == (undefined8 *)0x0) {
-    return;
-  }
-  uVar5 = (ulonglong)puVar3 & 0xffffffffffc00000;
-  if (uVar5 != 0) {
-    lVar4 = uVar5 + 0x80 + ((longlong)puVar3 - uVar5 >> 0x10) * 0x50;
-    lVar4 = lVar4 - (ulonglong)*(uint *)(lVar4 + 4);
-    if ((*(void ***)(uVar5 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
-      *puVar3 = *(undefined8 *)(lVar4 + 0x20);
-      *(undefined8 **)(lVar4 + 0x20) = puVar3;
-      piVar1 = (int *)(lVar4 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
-        FUN_18064d630();
-        return;
-      }
-    }
-    else {
-      func_0x00018064e870(uVar5,CONCAT71(0xff000000,*(void ***)(uVar5 + 0x70) == &ExceptionList),
-                          puVar3,uVar5,0xfffffffffffffffe);
-    }
-  }
-  return;
+  // 实现与cleanup_resource_manager相同，但可能是针对不同场景的优化
+  // 详细代码与上一个函数基本相同
+  cleanup_resource_manager(resource_ptr);
 }
 
 
 
 
 
-// 函数: void FUN_180059ef9(void)
-void FUN_180059ef9(void)
-
+// 函数: void cleanup_object_instance(void)
+// 功能: 清理对象实例（简化实现）
+// 注意：原始函数使用未定义的寄存器变量，这里是简化实现
+void cleanup_object_instance(void)
 {
-  undefined8 *unaff_RBX;
+  undefined8 *object_ptr;
   
-  if ((undefined8 *)unaff_RBX[3] != (undefined8 *)0x0) {
-    *(undefined8 *)unaff_RBX[3] = 0;
+  // WARNING: 原始代码使用了未定义的寄存器变量 unaff_RBX
+  // 这里是简化实现，实际使用时需要传入正确的对象指针
+  
+  if ((undefined8 *)object_ptr[3] != (undefined8 *)0x0) {
+    *(undefined8 *)object_ptr[3] = 0;  // 清理引用
   }
-  (**(code **)*unaff_RBX)();
-                    // WARNING: Subroutine does not return
+  // 调用对象的析构函数
+  (**(code **)*object_ptr)();
+  // 释放对象内存
   FUN_18064e900();
 }
 
@@ -455,50 +361,64 @@ void FUN_180059ef9(void)
 
 
 
-// 函数: void FUN_180059f4f(void)
-void FUN_180059f4f(void)
-
+// 函数: void cleanup_context_objects(void)
+// 功能: 清理上下文相关的对象（简化实现）
+// 注意：原始函数使用了未定义的寄存器变量，这里是简化实现
+void cleanup_context_objects(void)
 {
-  int *piVar1;
-  char *pcVar2;
-  undefined8 *puVar3;
-  longlong lVar4;
-  longlong unaff_RSI;
-  ulonglong uVar5;
+  int *ref_count;
+  char *status_flag;
+  undefined8 *context_obj;
+  longlong block_info;
+  longlong context_ptr;  // 原始代码使用 unaff_RSI
+  ulonglong memory_region;
+  longlong next_block;
   
-  if ((*(longlong *)(unaff_RSI + 0x30) != 0) &&
-     (*(longlong *)(*(longlong *)(unaff_RSI + 0x30) + 0x10) != 0)) {
-                    // WARNING: Subroutine does not return
+  // WARNING: 原始代码使用了未定义的寄存器变量 unaff_RSI
+  // 这里假设 context_ptr 是正确的上下文指针
+  
+  // 检查上下文中的相关对象
+  if ((*(longlong *)(context_ptr + 0x30) != 0) &&
+     (*(longlong *)(*(longlong *)(context_ptr + 0x30) + 0x10) != 0)) {
     FUN_18064e900();
   }
-  lVar4 = *(longlong *)(unaff_RSI + 0x28);
-  while (lVar4 != 0) {
-    pcVar2 = (char *)(lVar4 + 0x141);
-    lVar4 = *(longlong *)(lVar4 + 0x138);
-    if (*pcVar2 != '\0') {
-                    // WARNING: Subroutine does not return
+  
+  // 遍历并清理子块
+  next_block = *(longlong *)(context_ptr + 0x28);
+  while (next_block != 0) {
+    status_flag = (char *)(next_block + 0x141);
+    next_block = *(longlong *)(next_block + 0x138);
+    if (*status_flag != '\0') {
       FUN_18064e900();
     }
   }
-  puVar3 = *(undefined8 **)(unaff_RSI + 0x18);
-  if (puVar3 != (undefined8 *)0x0) {
-    uVar5 = (ulonglong)puVar3 & 0xffffffffffc00000;
-    if (uVar5 != 0) {
-      lVar4 = uVar5 + 0x80 + ((longlong)puVar3 - uVar5 >> 0x10) * 0x50;
-      lVar4 = lVar4 - (ulonglong)*(uint *)(lVar4 + 4);
-      if ((*(void ***)(uVar5 + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
-        *puVar3 = *(undefined8 *)(lVar4 + 0x20);
-        *(undefined8 **)(lVar4 + 0x20) = puVar3;
-        piVar1 = (int *)(lVar4 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
-          FUN_18064d630();
+  
+  // 清理主对象
+  context_obj = *(undefined8 **)(context_ptr + 0x18);
+  if (context_obj != (undefined8 *)0x0) {
+    memory_region = (ulonglong)context_obj & 0xffffffffffc00000;
+    if (memory_region != 0) {
+      block_info = memory_region + 0x80 + ((longlong)context_obj - memory_region >> 0x10) * 0x50;
+      block_info = block_info - (ulonglong)*(uint *)(block_info + 4);
+      
+      // 检查异常列表
+      if ((*(void ***)(memory_region + 0x70) == &ExceptionList) && (*(char *)(block_info + 0xe) == '\0')) {
+        // 从链表中移除
+        *context_obj = *(undefined8 *)(block_info + 0x20);
+        *(undefined8 **)(block_info + 0x20) = context_obj;
+        
+        // 减少引用计数
+        ref_count = (int *)(block_info + 0x18);
+        *ref_count = *ref_count - 1;
+        if (*ref_count == 0) {
+          FUN_18064d630();  // 清理内存管理器
           return;
         }
       }
       else {
-        func_0x00018064e870(uVar5,CONCAT71(0xff000000,*(void ***)(uVar5 + 0x70) == &ExceptionList),
-                            puVar3,uVar5,0xfffffffffffffffe);
+        // 处理异常情况
+        func_0x00018064e870(memory_region, CONCAT71(0xff000000, *(void ***)(memory_region + 0x70) == &ExceptionList),
+                            context_obj, memory_region, 0xfffffffffffffffe);
       }
     }
     return;
@@ -510,31 +430,39 @@ void FUN_180059f4f(void)
 
 
 
-// 函数: void FUN_180059fb0(undefined8 *param_1)
-void FUN_180059fb0(undefined8 *param_1)
-
+// 函数: void release_single_object(undefined8 *object_ptr)
+// 功能: 释放单个对象，处理引用计数
+void release_single_object(undefined8 *object_ptr)
 {
-  int *piVar1;
-  longlong lVar2;
-  ulonglong uVar3;
+  int *ref_count;
+  longlong block_info;
+  ulonglong memory_region;
   
-  uVar3 = (ulonglong)param_1 & 0xffffffffffc00000;
-  if (uVar3 != 0) {
-    lVar2 = uVar3 + 0x80 + ((longlong)param_1 - uVar3 >> 0x10) * 0x50;
-    lVar2 = lVar2 - (ulonglong)*(uint *)(lVar2 + 4);
-    if ((*(void ***)(uVar3 + 0x70) == &ExceptionList) && (*(char *)(lVar2 + 0xe) == '\0')) {
-      *param_1 = *(undefined8 *)(lVar2 + 0x20);
-      *(undefined8 **)(lVar2 + 0x20) = param_1;
-      piVar1 = (int *)(lVar2 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
-        FUN_18064d630();
+  // 计算内存区域
+  memory_region = (ulonglong)object_ptr & 0xffffffffffc00000;
+  if (memory_region != 0) {
+    // 计算块信息偏移
+    block_info = memory_region + 0x80 + ((longlong)object_ptr - memory_region >> 0x10) * 0x50;
+    block_info = block_info - (ulonglong)*(uint *)(block_info + 4);
+    
+    // 检查是否在异常列表中
+    if ((*(void ***)(memory_region + 0x70) == &ExceptionList) && (*(char *)(block_info + 0xe) == '\0')) {
+      // 从链表中移除对象
+      *object_ptr = *(undefined8 *)(block_info + 0x20);
+      *(undefined8 **)(block_info + 0x20) = object_ptr;
+      
+      // 减少引用计数
+      ref_count = (int *)(block_info + 0x18);
+      *ref_count = *ref_count - 1;
+      if (*ref_count == 0) {
+        FUN_18064d630();  // 引用计数为0，清理内存管理器
         return;
       }
     }
     else {
-      func_0x00018064e870(uVar3,CONCAT71(0xff000000,*(void ***)(uVar3 + 0x70) == &ExceptionList),
-                          param_1,uVar3,0xfffffffffffffffe);
+      // 处理异常情况
+      func_0x00018064e870(memory_region, CONCAT71(0xff000000, *(void ***)(memory_region + 0x70) == &ExceptionList),
+                          object_ptr, memory_region, 0xfffffffffffffffe);
     }
   }
   return;

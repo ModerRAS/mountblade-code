@@ -617,9 +617,13 @@ undefined8 * setup_component_callback(undefined8 *param_1, undefined8 *param_2, 
 
 
 
-// 函数: void FUN_18005c650(longlong *param_1)
-void FUN_18005c650(longlong *param_1)
-
+/**
+ * 执行组件回调
+ * 执行组件的回调函数，处理线程同步和资源清理
+ * 
+ * @param param_1 组件指针
+ */
+void execute_component_callback(longlong *param_1)
 {
   int iVar1;
   longlong lVar2;
@@ -653,22 +657,22 @@ void FUN_18005c650(longlong *param_1)
     plStack_108 = alStack_b8;
     _Cnd_init_in_situ(alStack_b8);
     plStack_108 = alStack_70;
-    _Mtx_init_in_situ(alStack_70,2);
+    _Mtx_init_in_situ(alStack_70, 2);
     uStack_20 = 0;
-    uVar4 = FUN_18062b1e0(_DAT_180c8ed18,0xe8,8,3);
+    uVar4 = allocate_callback_memory(_DAT_180c8ed18, 0xe8, 8, 3);
     plStack_108 = alStack_f8;
     pcStack_e8 = (code *)0x0;
     pcStack_e0 = _guard_check_icall;
     if (alStack_f8 != param_1) {
       pcVar6 = (code *)param_1[2];
       if (pcVar6 != (code *)0x0) {
-        (*pcVar6)(alStack_f8,param_1,1);
+        (*pcVar6)(alStack_f8, param_1, 1);
         pcVar6 = (code *)param_1[2];
       }
       pcStack_e0 = (code *)param_1[3];
       pcStack_e8 = pcVar6;
     }
-    plVar5 = (longlong *)FUN_18005c590(uVar4,alStack_f8,alStack_b8);
+    plVar5 = (longlong *)setup_component_callback(uVar4, alStack_f8, alStack_b8);
     plStack_c8 = plVar5;
     if (plVar5 != (longlong *)0x0) {
       (**(code **)(*plVar5 + 0x28))(plVar5);
@@ -679,8 +683,8 @@ void FUN_18005c650(longlong *param_1)
     if (plVar5 != (longlong *)0x0) {
       (**(code **)(*plVar5 + 0x28))(plVar5);
     }
-    FUN_18005e370(lVar2,&plStack_108);
-    FUN_180046190(alStack_b8);
+    process_callback_queue(lVar2, &plStack_108);
+    cleanup_callback_resources(alStack_b8);
     if (plVar5 != (longlong *)0x0) {
       (**(code **)(*plVar5 + 0x38))(plVar5);
     }
@@ -690,10 +694,10 @@ void FUN_18005c650(longlong *param_1)
     _Cnd_destroy_in_situ(alStack_b8);
   }
   if ((code *)param_1[2] != (code *)0x0) {
-    (*(code *)param_1[2])(param_1,0,0);
+    (*(code *)param_1[2])(param_1, 0, 0);
   }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_128);
+  // 警告：子程序不返回
+  cleanup_stack_protection(uStack_18 ^ (ulonglong)auStack_128);
 }
 
 
