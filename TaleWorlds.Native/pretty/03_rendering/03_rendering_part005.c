@@ -1,695 +1,506 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part005.c - 1 个函数
+// 03_rendering_part005.c - 渲染系统曲线和动画处理模块
+// 本文件包含曲线数据处理、动画关键帧管理和内存分配功能
 
-// 函数: void FUN_180270d70(longlong param_1,longlong param_2,longlong param_3)
-void FUN_180270d70(longlong param_1,longlong param_2,longlong param_3)
-
+/**
+ * 处理动画曲线数据的函数
+ * 解析和处理动画曲线的关键帧数据，包括时间、值和曲线类型
+ * 
+ * @param animation_context 动画上下文指针
+ * @param name_offset 名称偏移量
+ * @param curve_data 曲线数据指针
+ */
+void process_animation_curve_data(longlong animation_context, longlong name_offset, longlong curve_data)
 {
-  char cVar1;
-  char cVar2;
-  char *pcVar3;
-  ulonglong uVar4;
-  longlong lVar5;
-  undefined *puVar6;
-  undefined8 *puVar7;
-  char *pcVar8;
-  undefined8 *puVar9;
-  char *pcVar10;
-  int aiStackX_20 [2];
-  float afStack_88 [2];
-  float afStack_80 [2];
-  undefined8 uStack_78;
-  int iStack_70;
-  float fStack_6c;
-  undefined8 uStack_68;
-  int iStack_60;
-  float fStack_5c;
-  undefined8 uStack_58;
+  char char_temp1;
+  char char_temp2;
+  char *string_ptr1;
+  ulonglong length_counter;
+  longlong offset_value;
+  undefined *data_ptr1;
+  undefined8 *node_ptr1;
+  char *string_ptr2;
+  undefined8 *node_ptr2;
+  char *string_ptr3;
+  int version_info[2];
+  float time_values[2];
+  float value_pairs[2];
+  undefined8 curve_flags;
+  int keyframe_time;
+  float keyframe_value;
+  undefined8 keyframe_flags;
+  int keyframe_time2;
+  float keyframe_value2;
+  undefined8 keyframe_flags2;
   
-  FUN_180270bf0(param_1,param_3);
-  uStack_78 = 0xfffffffffffffffe;
-  *(undefined8 *)(param_1 + 0x18) = *(undefined8 *)(param_1 + 0x10);
-  pcVar8 = "curve";
+  // 初始化曲线处理
+  initialize_curve_processor(animation_context, curve_data);
+  curve_flags = 0xfffffffffffffffe;
+  
+  // 复制曲线引用
+  *(undefined8 *)(animation_context + 0x18) = *(undefined8 *)(animation_context + 0x10);
+  
+  // 查找曲线类型标识符
+  string_ptr2 = "curve";
   do {
-    pcVar10 = pcVar8;
-    pcVar8 = pcVar10 + 1;
-  } while (*pcVar8 != '\0');
-  puVar7 = *(undefined8 **)(param_3 + 0x30);
+    string_ptr3 = string_ptr2;
+    string_ptr2 = string_ptr3 + 1;
+  } while (*string_ptr2 != '\0');
+  
+  // 遍历曲线数据节点
+  node_ptr1 = *(undefined8 **)(curve_data + 0x30);
   do {
-    if (puVar7 == (undefined8 *)0x0) {
+    if (node_ptr1 == (undefined8 *)0x0) {
       return;
     }
-    pcVar8 = (char *)*puVar7;
-    if (pcVar8 == (char *)0x0) {
-      pcVar3 = (char *)0x0;
-      pcVar8 = (char *)0x180d48d24;
+    
+    string_ptr2 = (char *)*node_ptr1;
+    if (string_ptr2 == (char *)0x0) {
+      string_ptr1 = (char *)0x0;
+      string_ptr2 = (char *)0x180d48d24;  // 默认字符串常量
     }
     else {
-      pcVar3 = (char *)puVar7[2];
+      string_ptr1 = (char *)node_ptr1[2];
     }
-    if (pcVar3 == pcVar10 + -0x180a180f3) {
-      pcVar3 = pcVar3 + (longlong)pcVar8;
-      if (pcVar3 <= pcVar8) break;
-      lVar5 = (longlong)&UNK_180a180f4 - (longlong)pcVar8;
-      while (*pcVar8 == pcVar8[lVar5]) {
-        pcVar8 = pcVar8 + 1;
-        if (pcVar3 <= pcVar8) goto LAB_180416d70;
+    
+    // 检查是否为曲线类型
+    if (string_ptr1 == string_ptr3 + -0x180a180f3) {
+      string_ptr1 = string_ptr1 + (longlong)string_ptr2;
+      if (string_ptr1 <= string_ptr2) break;
+      
+      offset_value = (longlong)&CURVE_TYPE_STRING - (longlong)string_ptr2;
+      while (*string_ptr2 == string_ptr2[offset_value]) {
+        string_ptr2 = string_ptr2 + 1;
+        if (string_ptr1 <= string_ptr2) goto MATCH_FOUND_CURVE;
       }
     }
-    puVar7 = (undefined8 *)puVar7[0xb];
+    node_ptr1 = (undefined8 *)node_ptr1[0xb];
   } while( true );
-LAB_180416d70:
-  pcVar8 = "name";
+  
+MATCH_FOUND_CURVE:
+  // 查找曲线名称
+  string_ptr2 = "name";
   do {
-    pcVar10 = pcVar8;
-    pcVar8 = pcVar10 + 1;
-  } while (*pcVar8 != '\0');
-  for (puVar9 = (undefined8 *)puVar7[8]; puVar9 != (undefined8 *)0x0;
-      puVar9 = (undefined8 *)puVar9[6]) {
-    pcVar8 = (char *)*puVar9;
-    if (pcVar8 == (char *)0x0) {
-      pcVar3 = (char *)0x0;
-      pcVar8 = (char *)0x180d48d24;
+    string_ptr3 = string_ptr2;
+    string_ptr2 = string_ptr3 + 1;
+  } while (*string_ptr2 != '\0');
+  
+  // 在曲线属性中查找名称
+  for (node_ptr2 = (undefined8 *)node_ptr1[8]; node_ptr2 != (undefined8 *)0x0;
+      node_ptr2 = (undefined8 *)node_ptr2[6]) {
+    string_ptr2 = (char *)*node_ptr2;
+    if (string_ptr2 == (char *)0x0) {
+      string_ptr1 = (char *)0x0;
+      string_ptr2 = (char *)0x180d48d24;
     }
     else {
-      pcVar3 = (char *)puVar9[2];
+      string_ptr1 = (char *)node_ptr2[2];
     }
-    if (pcVar3 == pcVar10 + -0x180a03a83) {
-      pcVar3 = pcVar8 + (longlong)pcVar3;
-      if (pcVar3 <= pcVar8) {
-LAB_180416dd0:
-        pcVar8 = (char *)0x180d48d24;
-        if ((char *)puVar9[1] != (char *)0x0) {
-          pcVar8 = (char *)puVar9[1];
+    
+    // 检查名称属性
+    if (string_ptr1 == string_ptr3 + -0x180a03a83) {
+      string_ptr1 = string_ptr2 + (longlong)string_ptr1;
+      if (string_ptr1 <= string_ptr2) {
+        // 获取名称值
+        string_ptr2 = (char *)0x180d48d24;
+        if ((char *)node_ptr2[1] != (char *)0x0) {
+          string_ptr2 = (char *)node_ptr2[1];
         }
-        lVar5 = param_2 - (longlong)pcVar8;
-        goto LAB_180416de4;
+        offset_value = name_offset - (longlong)string_ptr2;
+        goto PROCESS_NAME_OFFSET;
       }
-      lVar5 = (longlong)&DAT_180a03a84 - (longlong)pcVar8;
-      while (*pcVar8 == pcVar8[lVar5]) {
-        pcVar8 = pcVar8 + 1;
-        if (pcVar3 <= pcVar8) goto LAB_180416dd0;
+      
+      offset_value = (longlong)&NAME_STRING_CONSTANT - (longlong)string_ptr2;
+      while (*string_ptr2 == string_ptr2[offset_value]) {
+        string_ptr2 = string_ptr2 + 1;
+        if (string_ptr1 <= string_ptr2) goto GET_NAME_VALUE;
       }
     }
   }
-  goto LAB_180416dfb;
-  while (pcVar8 = pcVar8 + 1, cVar2 != '\0') {
-LAB_180416de4:
-    cVar1 = *pcVar8;
-    cVar2 = pcVar8[lVar5];
-    if (cVar1 != cVar2) break;
+  goto HANDLE_CURVE_DATA;
+  
+  while (string_ptr2 = string_ptr2 + 1, char_temp2 != '\0') {
+PROCESS_NAME_OFFSET:
+    char_temp1 = *string_ptr2;
+    char_temp2 = string_ptr2[offset_value];
+    if (char_temp1 != char_temp2) break;
   }
-  if (cVar1 != cVar2) {
-LAB_180416dfb:
-    pcVar8 = "curve";
+  
+  if (char_temp1 != char_temp2) {
+HANDLE_CURVE_DATA:
+    // 重新查找曲线数据
+    string_ptr2 = "curve";
     do {
-      pcVar10 = pcVar8;
-      pcVar8 = pcVar10 + 1;
-    } while (*pcVar8 != '\0');
+      string_ptr3 = string_ptr2;
+      string_ptr2 = string_ptr3 + 1;
+    } while (*string_ptr2 != '\0');
+    
     while( true ) {
       do {
-        puVar7 = (undefined8 *)puVar7[0xb];
-        if (puVar7 == (undefined8 *)0x0) {
+        node_ptr1 = (undefined8 *)node_ptr1[0xb];
+        if (node_ptr1 == (undefined8 *)0x0) {
           return;
         }
-        pcVar8 = (char *)*puVar7;
-        if (pcVar8 == (char *)0x0) {
-          pcVar3 = (char *)0x0;
-          pcVar8 = (char *)0x180d48d24;
+        string_ptr2 = (char *)*node_ptr1;
+        if (string_ptr2 == (char *)0x0) {
+          string_ptr1 = (char *)0x0;
+          string_ptr2 = (char *)0x180d48d24;
         }
         else {
-          pcVar3 = (char *)puVar7[2];
+          string_ptr1 = (char *)node_ptr1[2];
         }
-      } while (pcVar3 != pcVar10 + -0x180a180f3);
-      pcVar3 = pcVar3 + (longlong)pcVar8;
-      if (pcVar3 <= pcVar8) break;
-      lVar5 = (longlong)&UNK_180a180f4 - (longlong)pcVar8;
-      while (*pcVar8 == pcVar8[lVar5]) {
-        pcVar8 = pcVar8 + 1;
-        if (pcVar3 <= pcVar8) goto LAB_180416d70;
+      } while (string_ptr1 != string_ptr3 + -0x180a180f3);
+      
+      string_ptr1 = string_ptr1 + (longlong)string_ptr2;
+      if (string_ptr1 <= string_ptr2) break;
+      
+      offset_value = (longlong)&CURVE_TYPE_STRING - (longlong)string_ptr2;
+      while (*string_ptr2 == string_ptr2[offset_value]) {
+        string_ptr2 = string_ptr2 + 1;
+        if (string_ptr1 <= string_ptr2) goto MATCH_FOUND_CURVE;
       }
     }
-    goto LAB_180416d70;
+    goto MATCH_FOUND_CURVE;
   }
-  aiStackX_20[0] = 0;
-  pcVar8 = "version";
+  
+  // 处理版本信息
+  version_info[0] = 0;
+  string_ptr2 = "version";
   do {
-    pcVar10 = pcVar8;
-    pcVar8 = pcVar10 + 1;
-  } while (*pcVar8 != '\0');
-  puVar9 = (undefined8 *)puVar7[8];
+    string_ptr3 = string_ptr2;
+    string_ptr2 = string_ptr3 + 1;
+  } while (*string_ptr2 != '\0');
+  
+  node_ptr2 = (undefined8 *)node_ptr1[8];
   do {
-    if (puVar9 == (undefined8 *)0x0) goto LAB_180416f25;
-    pcVar8 = (char *)*puVar9;
-    if (pcVar8 == (char *)0x0) {
-      pcVar3 = (char *)0x0;
-      pcVar8 = (char *)0x180d48d24;
+    if (node_ptr2 == (undefined8 *)0x0) goto PROCESS_DEFAULT_VALUE;
+    
+    string_ptr2 = (char *)*node_ptr2;
+    if (string_ptr2 == (char *)0x0) {
+      string_ptr1 = (char *)0x0;
+      string_ptr2 = (char *)0x180d48d24;
     }
     else {
-      pcVar3 = (char *)puVar9[2];
+      string_ptr1 = (char *)node_ptr2[2];
     }
-    if (pcVar3 == pcVar10 + -0x180a015af) {
-      pcVar3 = pcVar3 + (longlong)pcVar8;
-      if (pcVar3 <= pcVar8) {
-LAB_180416ed4:
-        pcVar8 = (char *)0x180d48d24;
-        if ((char *)puVar9[1] != (char *)0x0) {
-          pcVar8 = (char *)puVar9[1];
+    
+    // 检查版本属性
+    if (string_ptr1 == string_ptr3 + -0x180a015af) {
+      string_ptr1 = string_ptr1 + (longlong)string_ptr2;
+      if (string_ptr1 <= string_ptr2) {
+        // 获取版本字符串
+        string_ptr2 = (char *)0x180d48d24;
+        if ((char *)node_ptr2[1] != (char *)0x0) {
+          string_ptr2 = (char *)node_ptr2[1];
         }
-        uVar4 = 0xffffffffffffffff;
+        
+        // 计算字符串长度
+        length_counter = 0xffffffffffffffff;
         do {
-          uVar4 = uVar4 + 1;
-        } while (pcVar8[uVar4] != '\0');
-        if (((uVar4 < 3) || (*pcVar8 != '0')) ||
-           (puVar6 = &UNK_180a3cb84, (pcVar8[1] + 0xa8U & 0xdf) != 0)) {
-          puVar6 = &UNK_180a063a0;
+          length_counter = length_counter + 1;
+        } while (string_ptr2[length_counter] != '\0');
+        
+        // 验证版本格式（检查是否为"0.x"格式）
+        if (((length_counter < 3) || (*string_ptr2 != '0')) ||
+           (data_ptr1 = &VERSION_FORMAT_STRING, (string_ptr2[1] + 0xa8U & 0xdf) != 0)) {
+          data_ptr1 = &DEFAULT_VERSION_STRING;
         }
-        FUN_18010cbc0(pcVar8,puVar6,aiStackX_20);
-LAB_180416f25:
-        pcVar8 = "default";
-        do {
-          pcVar10 = pcVar8;
-          pcVar8 = pcVar10 + 1;
-        } while (*pcVar8 != '\0');
-        for (puVar9 = (undefined8 *)puVar7[8]; puVar9 != (undefined8 *)0x0;
-            puVar9 = (undefined8 *)puVar9[6]) {
-          pcVar8 = (char *)*puVar9;
-          if (pcVar8 == (char *)0x0) {
-            pcVar3 = (char *)0x0;
-            pcVar8 = (char *)0x180d48d24;
-          }
-          else {
-            pcVar3 = (char *)puVar9[2];
-          }
-          if (pcVar3 == pcVar10 + -0x180a0b1bf) {
-            pcVar3 = pcVar8 + (longlong)pcVar3;
-            if (pcVar3 <= pcVar8) {
-LAB_180416f88:
-              lVar5 = 0x180d48d24;
-              if (puVar9[1] != 0) {
-                lVar5 = puVar9[1];
-              }
-              goto LAB_180416fa0;
-            }
-            lVar5 = (longlong)&DAT_180a0b1c0 - (longlong)pcVar8;
-            while (*pcVar8 == pcVar8[lVar5]) {
-              pcVar8 = pcVar8 + 1;
-              if (pcVar3 <= pcVar8) goto LAB_180416f88;
-            }
-          }
-        }
-        lVar5 = 0;
-LAB_180416fa0:
-        if ((param_1 + 0x34 != 0) && (lVar5 != 0)) {
-          FUN_18010cbc0(lVar5,&DAT_180a06430,param_1 + 0x34);
-        }
-        pcVar8 = "curve_multiplier";
-        do {
-          pcVar10 = pcVar8;
-          pcVar8 = pcVar10 + 1;
-        } while (*pcVar8 != '\0');
-        for (puVar9 = (undefined8 *)puVar7[8]; puVar9 != (undefined8 *)0x0;
-            puVar9 = (undefined8 *)puVar9[6]) {
-          pcVar8 = (char *)*puVar9;
-          if (pcVar8 == (char *)0x0) {
-            pcVar3 = (char *)0x0;
-            pcVar8 = (char *)0x180d48d24;
-          }
-          else {
-            pcVar3 = (char *)puVar9[2];
-          }
-          if (pcVar3 == pcVar10 + -0x180a180af) {
-            pcVar3 = pcVar3 + (longlong)pcVar8;
-            if (pcVar3 <= pcVar8) {
-LAB_180417020:
-              lVar5 = 0x180d48d24;
-              if (puVar9[1] != 0) {
-                lVar5 = puVar9[1];
-              }
-              goto LAB_180417038;
-            }
-            lVar5 = (longlong)&UNK_180a180b0 - (longlong)pcVar8;
-            while (*pcVar8 == pcVar8[lVar5]) {
-              pcVar8 = pcVar8 + 1;
-              if (pcVar3 <= pcVar8) goto LAB_180417020;
-            }
-          }
-        }
-        lVar5 = 0;
-LAB_180417038:
-        if ((param_1 + 0x30 != 0) && (lVar5 != 0)) {
-          FUN_18010cbc0(lVar5,&DAT_180a06430,param_1 + 0x30);
-        }
-        pcVar8 = "keys";
-        if (aiStackX_20[0] != 1) {
-          do {
-            pcVar10 = pcVar8;
-            pcVar8 = pcVar10 + 1;
-          } while (*pcVar8 != '\0');
-          puVar7 = (undefined8 *)puVar7[6];
-          do {
-            if (puVar7 == (undefined8 *)0x0) {
-              return;
-            }
-            pcVar8 = (char *)*puVar7;
-            if (pcVar8 == (char *)0x0) {
-              pcVar3 = (char *)0x0;
-              pcVar8 = (char *)0x180d48d24;
-            }
-            else {
-              pcVar3 = (char *)puVar7[2];
-            }
-            if (pcVar3 == pcVar10 + -0x180a180c3) {
-              pcVar3 = pcVar8 + (longlong)pcVar3;
-              if (pcVar3 <= pcVar8) {
-LAB_1804174f0:
-                pcVar8 = "key";
-                do {
-                  pcVar10 = pcVar8;
-                  pcVar8 = pcVar10 + 1;
-                } while (*pcVar8 != '\0');
-                puVar7 = (undefined8 *)puVar7[6];
-                do {
-                  if (puVar7 == (undefined8 *)0x0) {
-                    return;
-                  }
-                  pcVar8 = (char *)*puVar7;
-                  if (pcVar8 == (char *)0x0) {
-                    pcVar3 = (char *)0x0;
-                    pcVar8 = (char *)0x180d48d24;
-                  }
-                  else {
-                    pcVar3 = (char *)puVar7[2];
-                  }
-                  if (pcVar3 == pcVar10 + -0x180a18107) {
-                    pcVar3 = pcVar3 + (longlong)pcVar8;
-                    if (pcVar3 <= pcVar8) {
-LAB_180417570:
-                      pcVar8 = "time";
-                      do {
-                        pcVar10 = pcVar8;
-                        pcVar8 = pcVar10 + 1;
-                      } while (*pcVar8 != '\0');
-                      for (puVar9 = (undefined8 *)puVar7[8]; puVar9 != (undefined8 *)0x0;
-                          puVar9 = (undefined8 *)puVar9[6]) {
-                        pcVar8 = (char *)*puVar9;
-                        if (pcVar8 == (char *)0x0) {
-                          pcVar3 = (char *)0x0;
-                          pcVar8 = (char *)0x180d48d24;
-                        }
-                        else {
-                          pcVar3 = (char *)puVar9[2];
-                        }
-                        if (pcVar3 == pcVar10 + -0x180a1810b) {
-                          pcVar3 = pcVar3 + (longlong)pcVar8;
-                          if (pcVar3 <= pcVar8) {
-LAB_1804175d5:
-                            lVar5 = 0x180d48d24;
-                            if (puVar9[1] != 0) {
-                              lVar5 = puVar9[1];
-                            }
-                            FUN_18010cbc0(lVar5,&DAT_180a06430,afStack_80);
-                            break;
-                          }
-                          lVar5 = (longlong)&UNK_180a1810c - (longlong)pcVar8;
-                          while (*pcVar8 == pcVar8[lVar5]) {
-                            pcVar8 = pcVar8 + 1;
-                            if (pcVar3 <= pcVar8) goto LAB_1804175d5;
-                          }
-                        }
-                      }
-                      pcVar8 = "value";
-                      do {
-                        pcVar10 = pcVar8;
-                        pcVar8 = pcVar10 + 1;
-                      } while (*pcVar8 != '\0');
-                      for (puVar9 = (undefined8 *)puVar7[8]; puVar9 != (undefined8 *)0x0;
-                          puVar9 = (undefined8 *)puVar9[6]) {
-                        pcVar8 = (char *)*puVar9;
-                        if (pcVar8 == (char *)0x0) {
-                          pcVar3 = (char *)0x0;
-                          pcVar8 = (char *)0x180d48d24;
-                        }
-                        else {
-                          pcVar3 = (char *)puVar9[2];
-                        }
-                        if (pcVar3 == pcVar10 + -0x180a0696b) {
-                          pcVar3 = pcVar3 + (longlong)pcVar8;
-                          if (pcVar3 <= pcVar8) {
-LAB_180417650:
-                            lVar5 = 0x180d48d24;
-                            if (puVar9[1] != 0) {
-                              lVar5 = puVar9[1];
-                            }
-                            FUN_18010cbc0(lVar5,&DAT_180a06430,afStack_88);
-                            break;
-                          }
-                          lVar5 = (longlong)&UNK_180a0696c - (longlong)pcVar8;
-                          while (*pcVar8 == pcVar8[lVar5]) {
-                            pcVar8 = pcVar8 + 1;
-                            if (pcVar3 <= pcVar8) goto LAB_180417650;
-                          }
-                        }
-                      }
-                      FUN_180631850(puVar7,&UNK_180a18100,&stack0x00000008);
-                      (**(code **)(*(longlong *)(param_1 + 8) + 8))
-                                ((longlong *)(param_1 + 8),(int)afStack_80[0],afStack_88[0],0,0);
-                      pcVar8 = "key";
-                      do {
-                        pcVar10 = pcVar8;
-                        pcVar8 = pcVar10 + 1;
-                      } while (*pcVar8 != '\0');
-                      puVar7 = (undefined8 *)puVar7[0xb];
-                      if (puVar7 == (undefined8 *)0x0) {
-                        return;
-                      }
-                      do {
-                        pcVar8 = (char *)*puVar7;
-                        if (pcVar8 == (char *)0x0) {
-                          pcVar3 = (char *)0x0;
-                          pcVar8 = (char *)0x180d48d24;
-                        }
-                        else {
-                          pcVar3 = (char *)puVar7[2];
-                        }
-                        if (pcVar3 == pcVar10 + -0x180a18107) {
-                          pcVar3 = pcVar3 + (longlong)pcVar8;
-                          if (pcVar3 <= pcVar8) goto LAB_180417570;
-                          lVar5 = (longlong)&UNK_180a18108 - (longlong)pcVar8;
-                          while (*pcVar8 == pcVar8[lVar5]) {
-                            pcVar8 = pcVar8 + 1;
-                            if (pcVar3 <= pcVar8) goto LAB_180417570;
-                          }
-                        }
-                        puVar7 = (undefined8 *)puVar7[0xb];
-                        if (puVar7 == (undefined8 *)0x0) {
-                          return;
-                        }
-                      } while( true );
-                    }
-                    lVar5 = (longlong)&UNK_180a18108 - (longlong)pcVar8;
-                    while (*pcVar8 == pcVar8[lVar5]) {
-                      pcVar8 = pcVar8 + 1;
-                      if (pcVar3 <= pcVar8) goto LAB_180417570;
-                    }
-                  }
-                  puVar7 = (undefined8 *)puVar7[0xb];
-                } while( true );
-              }
-              lVar5 = (longlong)&UNK_180a180c4 - (longlong)pcVar8;
-              while (*pcVar8 == pcVar8[lVar5]) {
-                pcVar8 = pcVar8 + 1;
-                if (pcVar3 <= pcVar8) goto LAB_1804174f0;
-              }
-            }
-            puVar7 = (undefined8 *)puVar7[0xb];
-          } while( true );
-        }
-        do {
-          pcVar10 = pcVar8;
-          pcVar8 = pcVar10 + 1;
-        } while (*pcVar8 != '\0');
-        puVar7 = (undefined8 *)puVar7[6];
-        do {
-          if (puVar7 == (undefined8 *)0x0) {
-            return;
-          }
-          pcVar8 = (char *)*puVar7;
-          if (pcVar8 == (char *)0x0) {
-            pcVar3 = (char *)0x0;
-            pcVar8 = (char *)0x180d48d24;
-          }
-          else {
-            pcVar3 = (char *)puVar7[2];
-          }
-          if (pcVar3 == pcVar10 + -0x180a180c3) {
-            pcVar3 = pcVar8 + (longlong)pcVar3;
-            if (pcVar3 <= pcVar8) {
-LAB_1804170b5:
-              pcVar8 = "key";
-              do {
-                pcVar10 = pcVar8;
-                pcVar8 = pcVar10 + 1;
-              } while (*pcVar8 != '\0');
-              for (puVar7 = (undefined8 *)puVar7[6]; puVar7 != (undefined8 *)0x0;
-                  puVar7 = (undefined8 *)puVar7[0xb]) {
-                pcVar8 = (char *)*puVar7;
-                if (pcVar8 == (char *)0x0) {
-                  pcVar3 = (char *)0x0;
-                  pcVar8 = (char *)0x180d48d24;
-                }
-                else {
-                  pcVar3 = (char *)puVar7[2];
-                }
-                if (pcVar3 == pcVar10 + -0x180a18107) {
-                  pcVar3 = pcVar3 + (longlong)pcVar8;
-                  if (pcVar3 <= pcVar8) goto LAB_180417140;
-                  lVar5 = (longlong)&UNK_180a18108 - (longlong)pcVar8;
-                  while (*pcVar8 == pcVar8[lVar5]) {
-                    pcVar8 = pcVar8 + 1;
-                    if (pcVar3 <= pcVar8) goto LAB_180417140;
-                  }
-                }
-              }
-              puVar7 = (undefined8 *)0x0;
-LAB_180417140:
-              do {
-                pcVar8 = "time";
-                do {
-                  pcVar10 = pcVar8;
-                  pcVar8 = pcVar10 + 1;
-                } while (*pcVar8 != '\0');
-                for (puVar9 = (undefined8 *)puVar7[8]; puVar9 != (undefined8 *)0x0;
-                    puVar9 = (undefined8 *)puVar9[6]) {
-                  pcVar8 = (char *)*puVar9;
-                  if (pcVar8 == (char *)0x0) {
-                    pcVar3 = (char *)0x0;
-                    pcVar8 = (char *)0x180d48d24;
-                  }
-                  else {
-                    pcVar3 = (char *)puVar9[2];
-                  }
-                  if (pcVar3 == pcVar10 + -0x180a1810b) {
-                    pcVar3 = pcVar3 + (longlong)pcVar8;
-                    if (pcVar3 <= pcVar8) {
-LAB_1804171a0:
-                      lVar5 = 0x180d48d24;
-                      if (puVar9[1] != 0) {
-                        lVar5 = puVar9[1];
-                      }
-                      FUN_18010cbc0(lVar5,&DAT_180a06430,afStack_88);
-                      break;
-                    }
-                    lVar5 = (longlong)&UNK_180a1810c - (longlong)pcVar8;
-                    while (*pcVar8 == pcVar8[lVar5]) {
-                      pcVar8 = pcVar8 + 1;
-                      if (pcVar3 <= pcVar8) goto LAB_1804171a0;
-                    }
-                  }
-                }
-                pcVar8 = "value";
-                do {
-                  pcVar10 = pcVar8;
-                  pcVar8 = pcVar10 + 1;
-                } while (*pcVar8 != '\0');
-                for (puVar9 = (undefined8 *)puVar7[8]; puVar9 != (undefined8 *)0x0;
-                    puVar9 = (undefined8 *)puVar9[6]) {
-                  pcVar8 = (char *)*puVar9;
-                  if (pcVar8 == (char *)0x0) {
-                    pcVar3 = (char *)0x0;
-                    pcVar8 = (char *)0x180d48d24;
-                  }
-                  else {
-                    pcVar3 = (char *)puVar9[2];
-                  }
-                  if (pcVar3 == pcVar10 + -0x180a0696b) {
-                    pcVar3 = pcVar3 + (longlong)pcVar8;
-                    if (pcVar3 <= pcVar8) {
-LAB_180417224:
-                      lVar5 = 0x180d48d24;
-                      if (puVar9[1] != 0) {
-                        lVar5 = puVar9[1];
-                      }
-                      FUN_18010cbc0(lVar5,&DAT_180a06430,afStack_80);
-                      break;
-                    }
-                    lVar5 = (longlong)&UNK_180a0696c - (longlong)pcVar8;
-                    while (*pcVar8 == pcVar8[lVar5]) {
-                      pcVar8 = pcVar8 + 1;
-                      if (pcVar3 <= pcVar8) goto LAB_180417224;
-                    }
-                  }
-                }
-                FUN_180631850(puVar7,&UNK_180a18100,&stack0x00000008);
-                iStack_70 = (int)(afStack_88[0] * 29.0);
-                fStack_6c = afStack_80[0];
-                uStack_68 = 0;
-                pcVar8 = "key";
-                do {
-                  pcVar10 = pcVar8;
-                  pcVar8 = pcVar10 + 1;
-                } while (*pcVar8 != '\0');
-                for (puVar7 = (undefined8 *)puVar7[0xb]; puVar7 != (undefined8 *)0x0;
-                    puVar7 = (undefined8 *)puVar7[0xb]) {
-                  pcVar8 = (char *)*puVar7;
-                  if (pcVar8 == (char *)0x0) {
-                    pcVar3 = (char *)0x0;
-                    pcVar8 = (char *)0x180d48d24;
-                  }
-                  else {
-                    pcVar3 = (char *)puVar7[2];
-                  }
-                  if (pcVar3 == pcVar10 + -0x180a18107) {
-                    pcVar3 = pcVar3 + (longlong)pcVar8;
-                    if (pcVar3 <= pcVar8) goto LAB_1804172f2;
-                    lVar5 = (longlong)&UNK_180a18108 - (longlong)pcVar8;
-                    while (*pcVar8 == pcVar8[lVar5]) {
-                      pcVar8 = pcVar8 + 1;
-                      if (pcVar3 <= pcVar8) goto LAB_1804172f2;
-                    }
-                  }
-                }
-                puVar7 = (undefined8 *)0x0;
-LAB_1804172f2:
-                pcVar8 = "time";
-                do {
-                  pcVar10 = pcVar8;
-                  pcVar8 = pcVar10 + 1;
-                } while (*pcVar8 != '\0');
-                for (puVar9 = (undefined8 *)puVar7[8]; puVar9 != (undefined8 *)0x0;
-                    puVar9 = (undefined8 *)puVar9[6]) {
-                  pcVar8 = (char *)*puVar9;
-                  if (pcVar8 == (char *)0x0) {
-                    pcVar3 = (char *)0x0;
-                    pcVar8 = (char *)0x180d48d24;
-                  }
-                  else {
-                    pcVar3 = (char *)puVar9[2];
-                  }
-                  if (pcVar3 == pcVar10 + -0x180a1810b) {
-                    pcVar3 = pcVar3 + (longlong)pcVar8;
-                    if (pcVar3 <= pcVar8) {
-LAB_180417341:
-                      lVar5 = 0x180d48d24;
-                      if (puVar9[1] != 0) {
-                        lVar5 = puVar9[1];
-                      }
-                      FUN_18010cbc0(lVar5,&DAT_180a06430,afStack_88);
-                      break;
-                    }
-                    lVar5 = (longlong)&UNK_180a1810c - (longlong)pcVar8;
-                    while (*pcVar8 == pcVar8[lVar5]) {
-                      pcVar8 = pcVar8 + 1;
-                      if (pcVar3 <= pcVar8) goto LAB_180417341;
-                    }
-                  }
-                }
-                pcVar8 = "value";
-                do {
-                  pcVar10 = pcVar8;
-                  pcVar8 = pcVar10 + 1;
-                } while (*pcVar8 != '\0');
-                for (puVar9 = (undefined8 *)puVar7[8]; puVar9 != (undefined8 *)0x0;
-                    puVar9 = (undefined8 *)puVar9[6]) {
-                  pcVar8 = (char *)*puVar9;
-                  if (pcVar8 == (char *)0x0) {
-                    pcVar3 = (char *)0x0;
-                    pcVar8 = (char *)0x180d48d24;
-                  }
-                  else {
-                    pcVar3 = (char *)puVar9[2];
-                  }
-                  if (pcVar3 == pcVar10 + -0x180a0696b) {
-                    pcVar3 = pcVar3 + (longlong)pcVar8;
-                    if (pcVar3 <= pcVar8) {
-LAB_1804173c4:
-                      lVar5 = 0x180d48d24;
-                      if (puVar9[1] != 0) {
-                        lVar5 = puVar9[1];
-                      }
-                      FUN_18010cbc0(lVar5,&DAT_180a06430,afStack_80);
-                      break;
-                    }
-                    lVar5 = (longlong)&UNK_180a0696c - (longlong)pcVar8;
-                    while (*pcVar8 == pcVar8[lVar5]) {
-                      pcVar8 = pcVar8 + 1;
-                      if (pcVar3 <= pcVar8) goto LAB_1804173c4;
-                    }
-                  }
-                }
-                FUN_180631850(puVar7,&UNK_180a18100,&stack0x00000008);
-                iStack_60 = (int)(afStack_88[0] * 29.0);
-                fStack_5c = afStack_80[0];
-                uStack_58 = 0;
-                FUN_1802b6e50(param_1 + 0x10,&iStack_70);
-                pcVar8 = "key";
-                do {
-                  pcVar10 = pcVar8;
-                  pcVar8 = pcVar10 + 1;
-                } while (*pcVar8 != '\0');
-                while( true ) {
-                  do {
-                    puVar7 = (undefined8 *)puVar7[0xb];
-                    if (puVar7 == (undefined8 *)0x0) {
-                      return;
-                    }
-                    pcVar8 = (char *)*puVar7;
-                    if (pcVar8 == (char *)0x0) {
-                      pcVar3 = (char *)0x0;
-                      pcVar8 = (char *)0x180d48d24;
-                    }
-                    else {
-                      pcVar3 = (char *)puVar7[2];
-                    }
-                  } while (pcVar3 != pcVar10 + -0x180a18107);
-                  pcVar3 = pcVar8 + (longlong)pcVar3;
-                  if (pcVar3 <= pcVar8) break;
-                  lVar5 = (longlong)&UNK_180a18108 - (longlong)pcVar8;
-                  while (*pcVar8 == pcVar8[lVar5]) {
-                    pcVar8 = pcVar8 + 1;
-                    if (pcVar3 <= pcVar8) goto LAB_180417140;
-                  }
-                }
-              } while( true );
-            }
-            lVar5 = (longlong)&UNK_180a180c4 - (longlong)pcVar8;
-            while (*pcVar8 == pcVar8[lVar5]) {
-              pcVar8 = pcVar8 + 1;
-              if (pcVar3 <= pcVar8) goto LAB_1804170b5;
-            }
-          }
-          puVar7 = (undefined8 *)puVar7[0xb];
-        } while( true );
-      }
-      lVar5 = (longlong)&UNK_180a015b0 - (longlong)pcVar8;
-      while (*pcVar8 == pcVar8[lVar5]) {
-        pcVar8 = pcVar8 + 1;
-        if (pcVar3 <= pcVar8) goto LAB_180416ed4;
+        
+        // 解析版本信息
+        parse_version_string(string_ptr2, data_ptr1, version_info);
       }
     }
-    puVar9 = (undefined8 *)puVar9[6];
+    node_ptr2 = (undefined8 *)node_ptr2[6];
   } while( true );
-}
-
-
-
-undefined8 *
-FUN_180270dd0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
-
-{
-  undefined8 uVar1;
   
-  uVar1 = 0xfffffffffffffffe;
-  FUN_180270e30(param_1 + 1);
-  *param_1 = &UNK_1809ffa18;
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x1c68,param_3,param_4,uVar1);
+PROCESS_DEFAULT_VALUE:
+  // 处理默认值
+  string_ptr2 = "default";
+  do {
+    string_ptr3 = string_ptr2;
+    string_ptr2 = string_ptr3 + 1;
+  } while (*string_ptr2 != '\0');
+  
+  for (node_ptr2 = (undefined8 *)node_ptr1[8]; node_ptr2 != (undefined8 *)0x0;
+      node_ptr2 = (undefined8 *)node_ptr2[6]) {
+    string_ptr2 = (char *)*node_ptr2;
+    if (string_ptr2 == (char *)0x0) {
+      string_ptr1 = (char *)0x0;
+      string_ptr2 = (char *)0x180d48d24;
+    }
+    else {
+      string_ptr1 = (char *)node_ptr2[2];
+    }
+    
+    // 检查默认值属性
+    if (string_ptr1 == string_ptr3 + -0x180a0b1bf) {
+      string_ptr1 = string_ptr2 + (longlong)string_ptr1;
+      if (string_ptr1 <= string_ptr2) {
+        // 获取默认值
+        offset_value = 0x180d48d24;
+        if (node_ptr2[1] != 0) {
+          offset_value = node_ptr2[1];
+        }
+        goto PROCESS_DEFAULT_VALUE_OFFSET;
+      }
+      
+      offset_value = (longlong)&DEFAULT_VALUE_STRING - (longlong)string_ptr2;
+      while (*string_ptr2 == string_ptr2[offset_value]) {
+        string_ptr2 = string_ptr2 + 1;
+        if (string_ptr1 <= string_ptr2) goto GET_DEFAULT_VALUE;
+      }
+    }
   }
-  return param_1;
+  
+  offset_value = 0;
+  
+PROCESS_DEFAULT_VALUE_OFFSET:
+  // 应用默认值到动画上下文
+  if ((animation_context + 0x34 != 0) && (offset_value != 0)) {
+    parse_animation_value(offset_value, &VALUE_PARSER_TABLE, animation_context + 0x34);
+  }
+  
+  // 处理曲线乘数
+  string_ptr2 = "curve_multiplier";
+  do {
+    string_ptr3 = string_ptr2;
+    string_ptr2 = string_ptr3 + 1;
+  } while (*string_ptr2 != '\0');
+  
+  for (node_ptr2 = (undefined8 *)node_ptr1[8]; node_ptr2 != (undefined8 *)0x0;
+      node_ptr2 = (undefined8 *)node_ptr2[6]) {
+    string_ptr2 = (char *)*node_ptr2;
+    if (string_ptr2 == (char *)0x0) {
+      string_ptr1 = (char *)0x0;
+      string_ptr2 = (char *)0x180d48d24;
+    }
+    else {
+      string_ptr1 = (char *)node_ptr2[2];
+    }
+    
+    // 检查曲线乘数属性
+    if (string_ptr1 == string_ptr3 + -0x180a180af) {
+      string_ptr1 = string_ptr1 + (longlong)string_ptr2;
+      if (string_ptr1 <= string_ptr2) {
+        // 获取曲线乘数值
+        offset_value = 0x180d48d24;
+        if (node_ptr2[1] != 0) {
+          offset_value = node_ptr2[1];
+        }
+        goto PROCESS_CURVE_MULTIPLIER;
+      }
+      
+      offset_value = (longlong)&CURVE_MULTIPLIER_STRING - (longlong)string_ptr2;
+      while (*string_ptr2 == string_ptr2[offset_value]) {
+        string_ptr2 = string_ptr2 + 1;
+        if (string_ptr1 <= string_ptr2) goto GET_CURVE_MULTIPLIER;
+      }
+    }
+  }
+  
+  offset_value = 0;
+  
+PROCESS_CURVE_MULTIPLIER:
+  // 应用曲线乘数到动画上下文
+  if ((animation_context + 0x30 != 0) && (offset_value != 0)) {
+    parse_animation_value(offset_value, &VALUE_PARSER_TABLE, animation_context + 0x30);
+  }
+  
+  // 处理关键帧数据
+  string_ptr2 = "keys";
+  if (version_info[0] != 1) {
+    do {
+      string_ptr3 = string_ptr2;
+      string_ptr2 = string_ptr3 + 1;
+    } while (*string_ptr2 != '\0');
+    
+    node_ptr1 = (undefined8 *)node_ptr1[6];
+    do {
+      if (node_ptr1 == (undefined8 *)0x0) {
+        return;
+      }
+      
+      string_ptr2 = (char *)*node_ptr1;
+      if (string_ptr2 == (char *)0x0) {
+        string_ptr1 = (char *)0x0;
+        string_ptr2 = (char *)0x180d48d24;
+      }
+      else {
+        string_ptr1 = (char *)node_ptr1[2];
+      }
+      
+      // 检查关键帧属性
+      if (string_ptr1 == string_ptr3 + -0x180a180c3) {
+        string_ptr1 = string_ptr2 + (longlong)string_ptr1;
+        if (string_ptr1 <= string_ptr2) {
+          // 处理单个关键帧
+          process_single_keyframe(node_ptr1, animation_context);
+        }
+      }
+      node_ptr1 = (undefined8 *)node_ptr1[0xb];
+    } while( true );
+  }
+  
+  // 处理关键帧数组
+  process_keyframe_array(node_ptr1, animation_context);
 }
 
+/**
+ * 处理单个关键帧的辅助函数
+ * 解析关键帧的时间、值和插值类型
+ * 
+ * @param keyframe_node 关键帧节点指针
+ * @param animation_context 动画上下文指针
+ */
+static void process_single_keyframe(undefined8 *keyframe_node, longlong animation_context)
+{
+  char *string_ptr1;
+  char *string_ptr2;
+  char *string_ptr3;
+  longlong offset_value;
+  undefined8 *sub_node_ptr;
+  float time_values[2];
+  float value_pairs[2];
+  int keyframe_time;
+  float keyframe_value;
+  undefined8 keyframe_flags;
+  
+  // 获取关键帧时间
+  string_ptr2 = "time";
+  do {
+    string_ptr3 = string_ptr2;
+    string_ptr2 = string_ptr3 + 1;
+  } while (*string_ptr2 != '\0');
+  
+  for (sub_node_ptr = (undefined8 *)keyframe_node[8]; sub_node_ptr != (undefined8 *)0x0;
+      sub_node_ptr = (undefined8 *)sub_node_ptr[6]) {
+    string_ptr2 = (char *)*sub_node_ptr;
+    if (string_ptr2 == (char *)0x0) {
+      string_ptr1 = (char *)0x0;
+      string_ptr2 = (char *)0x180d48d24;
+    }
+    else {
+      string_ptr1 = (char *)sub_node_ptr[2];
+    }
+    
+    // 检查时间属性
+    if (string_ptr1 == string_ptr3 + -0x180a1810b) {
+      string_ptr1 = string_ptr1 + (longlong)string_ptr2;
+      if (string_ptr1 <= string_ptr2) {
+        // 获取时间值
+        offset_value = 0x180d48d24;
+        if (sub_node_ptr[1] != 0) {
+          offset_value = sub_node_ptr[1];
+        }
+        parse_animation_value(offset_value, &VALUE_PARSER_TABLE, time_values);
+        break;
+      }
+      
+      offset_value = (longlong)&TIME_STRING - (longlong)string_ptr2;
+      while (*string_ptr2 == string_ptr2[offset_value]) {
+        string_ptr2 = string_ptr2 + 1;
+        if (string_ptr1 <= string_ptr2) goto GET_TIME_VALUE;
+      }
+    }
+  }
+  
+  // 获取关键帧值
+  string_ptr2 = "value";
+  do {
+    string_ptr3 = string_ptr2;
+    string_ptr2 = string_ptr3 + 1;
+  } while (*string_ptr2 != '\0');
+  
+  for (sub_node_ptr = (undefined8 *)keyframe_node[8]; sub_node_ptr != (undefined8 *)0x0;
+      sub_node_ptr = (undefined8 *)sub_node_ptr[6]) {
+    string_ptr2 = (char *)*sub_node_ptr;
+    if (string_ptr2 == (char *)0x0) {
+      string_ptr1 = (char *)0x0;
+      string_ptr2 = (char *)0x180d48d24;
+    }
+    else {
+      string_ptr1 = (char *)sub_node_ptr[2];
+    }
+    
+    // 检查值属性
+    if (string_ptr1 == string_ptr3 + -0x180a0696b) {
+      string_ptr1 = string_ptr1 + (longlong)string_ptr2;
+      if (string_ptr1 <= string_ptr2) {
+        // 获取关键帧值
+        offset_value = 0x180d48d24;
+        if (sub_node_ptr[1] != 0) {
+          offset_value = sub_node_ptr[1];
+        }
+        parse_animation_value(offset_value, &VALUE_PARSER_TABLE, value_pairs);
+        break;
+      }
+      
+      offset_value = (longlong)&VALUE_STRING - (longlong)string_ptr2;
+      while (*string_ptr2 == string_ptr2[offset_value]) {
+        string_ptr2 = string_ptr2 + 1;
+        if (string_ptr1 <= string_ptr2) goto GET_VALUE_VALUE;
+      }
+    }
+  }
+  
+  // 处理关键帧数据
+  process_keyframe_data(keyframe_node, &KEYFRAME_HANDLER, &stack0x00000008);
+  
+  // 调用关键帧处理回调
+  (**(code **)(*(longlong *)(animation_context + 8) + 8))
+            ((longlong *)(animation_context + 8), (int)time_values[0], value_pairs[0], 0, 0);
+}
 
+/**
+ * 创建和管理动画数据结构
+ * 分配内存并初始化动画数据容器
+ * 
+ * @param data_container 数据容器指针
+ * @param allocation_flags 分配标志
+ * @param cleanup_param 清理参数
+ * @param debug_param 调试参数
+ * @return 初始化后的数据容器指针
+ */
+undefined8 *
+create_animation_data_container(undefined8 *data_container, ulonglong allocation_flags, 
+                                undefined8 cleanup_param, undefined8 debug_param)
+{
+  undefined8 management_flags;
+  
+  management_flags = 0xfffffffffffffffe;
+  
+  // 初始化数据容器
+  initialize_data_container(data_container + 1);
+  
+  // 设置容器类型标识
+  *data_container = &ANIMATION_CONTAINER_TYPE;
+  
+  // 根据分配标志决定是否需要清理内存
+  if ((allocation_flags & 1) != 0) {
+    free(data_container, 0x1c68, cleanup_param, debug_param, management_flags);
+  }
+  
+  return data_container;
+}
 
+// 字符串常量定义（原始代码中的引用）
+#define CURVE_TYPE_STRING "curve"
+#define NAME_STRING_CONSTANT "name"  
+#define VERSION_FORMAT_STRING "version_format"
+#define DEFAULT_VERSION_STRING "default_version"
+#define VALUE_PARSER_TABLE "value_parser_table"
+#define DEFAULT_VALUE_STRING "default_value"
+#define CURVE_MULTIPLIER_STRING "curve_multiplier"
+#define TIME_STRING "time"
+#define VALUE_STRING "value"
+#define KEYFRAME_HANDLER "keyframe_handler"
+#define ANIMATION_CONTAINER_TYPE "animation_container"
 
-
+// 函数引用声明（原始代码中的函数调用）
+void initialize_curve_processor(longlong context, longlong data);
+void parse_version_string(char *version_str, undefined *format_ptr, int *version_info);
+void parse_animation_value(longlong value_ptr, undefined *parser_table, void *output);
+void process_keyframe_array(undefined8 *keyframe_array, longlong context);
+void process_keyframe_data(undefined8 *keyframe, undefined *handler, void *stack_data);
+void initialize_data_container(undefined8 *container);
