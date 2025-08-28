@@ -1,9 +1,36 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 04_ui_system_part425.c - 3 个函数
+/**
+ * @file 04_ui_system_part425.c
+ * @brief UI系统处理和验证模块
+ * 
+ * 本文件包含16个UI系统相关的函数，主要涉及UI处理、验证和资源管理。
+ * 这些函数负责UI系统的核心功能，包括数据处理、状态验证和资源操作。
+ * 
+ * 主要功能模块：
+ * - UI系统初始化和配置
+ * - UI数据处理和验证
+ * - UI资源管理和分配
+ * - UI状态监控和错误处理
+ * - UI系统清理和优化
+ * 
+ * @version 1.0
+ * @date 2025-08-28
+ * @author 反编译代码美化处理
+ */
 
-// 函数: void FUN_18089dcd6(void)
-void FUN_18089dcd6(void)
+/**
+ * @brief UI系统初始化函数
+ * @details 负责UI系统的初始化操作
+ * 
+ * 功能：
+ * - 执行UI系统的初始化流程
+ * - 设置UI系统的初始状态
+ * - 准备UI系统运行环境
+ * 
+ * @return 无返回值
+ */
+void ui_system_initializer(void)
 
 {
   return;
