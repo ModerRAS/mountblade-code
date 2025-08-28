@@ -226,31 +226,40 @@ void RenderingSystem_AdvancedAngleCalculator(uint64_t param_1,uint param_2,uint 
     uStack_8 = 0x1806598e8;  // 设置错误代码
     RenderingSystem_ErrorHandler(param_2 ^ param_3);  // 调用错误处理函数
   }
-  fVar25 = fStack000000000000003c;
-  fVar15 = fStack0000000000000038;
-  fVar16 = unaff_R14[0x185d];
+  // 初始化变量并设置渲染参数
+  fVar25 = fStack000000000000003c;  // 初始化浮点变量25
+  fVar15 = fStack0000000000000038;  // 初始化浮点变量15
+  fVar16 = unaff_R14[RENDER_DATA_OFFSET];  // 获取渲染数据偏移量
+  
+  // 渲染状态检查和条件判断
   if (((unaff_R14[0x10] == unaff_XMM6_Da) || (unaff_R14[0x10] == 0.5)) || (fVar16 <= unaff_XMM6_Da))
   {
-    bVar3 = false;
+    bVar3 = false;  // 设置布尔标志为false
   }
   else {
-    bVar3 = true;
+    bVar3 = true;   // 设置布尔标志为true
   }
-  uStack_8 = 0x1806599e0;
+  
+  // 设置调试栈位置并开始角度计算
+  uStack_8 = 0x1806599e0;  // 设置调试位置标记
+  
+  // 计算角度差异（使用atan2f函数）
   fVar12 = (float)atan2f(*(uint *)(*(int64_t *)(unaff_R12 + 0x10) + 0x80) ^ param_3,
                          *(int32_t *)(*(int64_t *)(unaff_R12 + 0x10) + 0x84));
-  fVar12 = fVar12 + unaff_R14[6];
-  unaff_R14[0xb] = fVar12;
-  if (fVar12 <= 3.1415927) {
-    if (fVar12 < -3.1415927) {
-      fVar12 = fVar12 + 6.2831855;
-      goto LAB_180659a1a;
+  fVar12 = fVar12 + unaff_R14[6];  // 添加角度偏移
+  unaff_R14[0xb] = fVar12;  // 存储计算结果
+  
+  // 角度归一化处理
+  if (fVar12 <= RENDER_PI) {
+    if (fVar12 < -RENDER_PI) {
+      fVar12 = fVar12 + RENDER_TWO_PI;  // 角度归一化：加2π
+      goto LAB_180659a1a;  // 跳转到标签
     }
   }
   else {
-    fVar12 = fVar12 - 6.2831855;
+    fVar12 = fVar12 - RENDER_TWO_PI;  // 角度归一化：减2π
 LAB_180659a1a:
-    unaff_R14[0xb] = fVar12;
+    unaff_R14[0xb] = fVar12;  // 存储归一化后的角度
   }
   fVar12 = unaff_R14[0x18];
   lVar7 = (int64_t)(int)fVar12;

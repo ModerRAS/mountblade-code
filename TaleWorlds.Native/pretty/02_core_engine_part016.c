@@ -97,11 +97,11 @@
 #define CoreEngineDataStructureOptimizer FUN_180057610  // 核心引擎数据结构优化器
 
 // 系统组件管理函数别名
-#define CoreEngineComponentProcessor CoreEngineComponentProcessor      // 核心引擎组件处理器
-#define CoreEngineResourceManager CoreEngineResourceManager         // 核心引擎资源管理器
-#define CoreEngineStateManager CoreEngineStateManager            // 核心引擎状态管理器
-#define CoreEngineErrorHandler CoreEngineErrorHandler            // 核心引擎错误处理器
-#define CoreEngineSystemInitializer CoreEngineSystemInitializer       // 核心引擎系统初始化器
+#define CoreEngineComponentProcessor FUN_1800574b0      // 核心引擎组件处理器
+#define CoreEngineResourceManager FUN_1800582b0         // 核心引擎资源管理器
+#define CoreEngineStateManager FUN_180058370            // 核心引擎状态管理器
+#define CoreEngineErrorHandler FUN_180058420            // 核心引擎错误处理器
+#define CoreEngineSystemInitializer FUN_180058210       // 核心引擎系统初始化器
 
 // 高级处理函数别名
 #define CoreEngineAdvancedProcessor CoreEngineAdvancedProcessor       // 核心引擎高级处理器

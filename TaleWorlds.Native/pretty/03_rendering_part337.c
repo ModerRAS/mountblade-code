@@ -685,7 +685,7 @@ void RenderingSystem_DataCleaner(int64_t *param_1)
  * - 释放分配的内存
  * - 重置系统状态
  */
-void FUN_180448e50(int64_t *param_1)
+void RenderingSystem_DataValidator(int64_t *param_1)
 {
     if (param_1 == NULL) {
         return;
