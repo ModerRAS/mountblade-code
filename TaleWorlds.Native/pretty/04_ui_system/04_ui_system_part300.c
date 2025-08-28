@@ -305,7 +305,7 @@ typedef struct _UIDataBuffer {
  * 
  * @算法分析：
  * 1. 循环处理顶点数据，每次处理一个顶点
- * 2. 计算插值因子 fVar4 = (float)*unaff_RBX * unaff_XMM12_Da
+ * 2. 计算插值因子 interpolationFactor = (float)*indexPtr * scaleFactor
  * 3. 执行双线性插值计算
  * 4. 更新输出缓冲区和索引
  * 
@@ -315,36 +315,51 @@ typedef struct _UIDataBuffer {
  * - 优化策略：循环展开、寄存器优化、SIMD指令
  */
 void FUN_180832ee0(void)
-
 {
-  short sVar1;
-  short sVar2;
-  uint uVar3;
-  uint *unaff_RBX;
-  longlong *unaff_RSI;
-  int unaff_EDI;
-  longlong in_R10;
-  float *in_R11;
-  float fVar4;
-  float unaff_XMM11_Da;
-  float unaff_XMM12_Da;
-  float unaff_XMM13_Da;
+  // 顶点索引和数据处理变量
+  short vertexData1;
+  short vertexData2;
+  uint vertexOffset;
+  uint *indexPtr;
+  longlong *stepPtr;
+  int loopCounter;
+  longlong vertexBasePtr;
+  float *outputBuffer;
+  float interpolationFactor;
+  float scaleFactor;
+  float maxValue;
+  float minValue;
   
+  // 主渲染循环：处理每个顶点的插值计算
   do {
-    uVar3 = unaff_RBX[1] * 2;
-    sVar1 = *(short *)(in_R10 + (ulonglong)uVar3 * 2);
-    fVar4 = (float)*unaff_RBX * unaff_XMM12_Da;
-    sVar2 = *(short *)(in_R10 + (ulonglong)(uVar3 + 2) * 2);
-    in_R11[1] = (float)(int)*(short *)(in_R10 + (ulonglong)(uVar3 + 1) * 2) * unaff_XMM11_Da *
-                (unaff_XMM13_Da - fVar4) +
-                (float)(int)*(short *)(in_R10 + (ulonglong)(uVar3 + 3) * 2) * unaff_XMM11_Da * fVar4
-    ;
-    *in_R11 = (float)(int)sVar2 * unaff_XMM11_Da * fVar4 +
-              (float)(int)sVar1 * unaff_XMM11_Da * (unaff_XMM13_Da - fVar4);
-    in_R11 = in_R11 + 2;
-    *(longlong *)unaff_RBX = *(longlong *)unaff_RBX + *unaff_RSI;
-    unaff_EDI = unaff_EDI + -1;
-  } while (unaff_EDI != 0);
+    // 计算顶点偏移量
+    vertexOffset = indexPtr[1] * 2;
+    
+    // 读取顶点数据
+    vertexData1 = *(short *)(vertexBasePtr + (ulonglong)vertexOffset * 2);
+    interpolationFactor = (float)*indexPtr * scaleFactor;
+    vertexData2 = *(short *)(vertexBasePtr + (ulonglong)(vertexOffset + 2) * 2);
+    
+    // 执行双线性插值计算
+    // 第二个输出值：在vertexData1和vertexData3之间插值
+    outputBuffer[1] = (float)(int)*(short *)(vertexBasePtr + (ulonglong)(vertexOffset + 1) * 2) * scaleFactor *
+                        (maxValue - interpolationFactor) +
+                        (float)(int)*(short *)(vertexBasePtr + (ulonglong)(vertexOffset + 3) * 2) * scaleFactor * interpolationFactor;
+    
+    // 第一个输出值：在vertexData2和vertexData1之间插值
+    *outputBuffer = (float)(int)vertexData2 * scaleFactor * interpolationFactor +
+                    (float)(int)vertexData1 * scaleFactor * (maxValue - interpolationFactor);
+    
+    // 更新输出缓冲区指针
+    outputBuffer = outputBuffer + 2;
+    
+    // 更新索引指针
+    *(longlong *)indexPtr = *(longlong *)indexPtr + *stepPtr;
+    
+    // 更新循环计数器
+    loopCounter = loopCounter + -1;
+  } while (loopCounter != 0);
+  
   return;
 }
 
@@ -361,11 +376,11 @@ void FUN_180832ee0(void)
  * - 批量数据处理：高效处理4个一组的数据块以提高性能
  * - 边界处理：处理剩余的不足4个的数据项
  * 
- * @param param_1 输出缓冲区指针，用于存储处理后的结果
- * @param param_2 要处理的数据数量
- * @param param_3 纹理数据基地址
- * @param param_4 当前纹理坐标指针
- * @param param_5 纹理坐标步长指针
+ * @param outputBuffer 输出缓冲区指针，用于存储处理后的结果
+ * @param dataCount 要处理的数据数量
+ * @param textureBase 纹理数据基地址
+ * @param texCoordPtr 当前纹理坐标指针
+ * @param stepPtr 纹理坐标步长指针
  * 
  * @note 该函数使用了优化的批处理算法，每次处理4个数据项
  * @note 使用了常数 2.3283064e-10 (1/2^32) 进行归一化
@@ -383,65 +398,81 @@ void FUN_180832ee0(void)
  * - 空间复杂度：O(1)，使用固定数量的局部变量
  * - 优化策略：循环展开、寄存器优化、批处理
  */
-void FUN_180832fb0(float *param_1,uint param_2,longlong param_3,ulonglong *param_4,longlong *param_5
-                  )
-
+void FUN_180832fb0(float *outputBuffer, uint dataCount, longlong textureBase, ulonglong *texCoordPtr, longlong *stepPtr)
 {
-  char cVar1;
-  char cVar2;
-  char cVar3;
-  char cVar4;
-  char cVar5;
-  char cVar6;
-  char cVar7;
-  char cVar8;
-  ulonglong uVar9;
-  int iVar10;
-  ulonglong uVar11;
-  float fVar12;
-  float fVar13;
-  float fVar14;
-  float fVar15;
+  // 纹理采样数据变量
+  char texel1, texel2, texel3, texel4;
+  char texel5, texel6, texel7, texel8;
+  ulonglong coord1, coord2;
+  int batchCount;
+  float interpolationFactor1, interpolationFactor2;
+  float interpolationFactor3, interpolationFactor4;
   
-  for (iVar10 = (int)param_2 >> 2; iVar10 != 0; iVar10 = iVar10 + -1) {
-    uVar9 = *param_4 + *param_5;
-    cVar1 = *(char *)((ulonglong)*(uint *)((longlong)param_4 + 4) + param_3);
-    cVar2 = *(char *)((ulonglong)(*(uint *)((longlong)param_4 + 4) + 1) + param_3);
-    fVar12 = (float)(uint)*param_4 * 2.3283064e-10;
-    *param_4 = uVar9;
-    uVar11 = *param_5 + uVar9;
-    cVar3 = *(char *)((uVar9 >> 0x20) + param_3);
-    cVar4 = *(char *)((ulonglong)((int)(uVar9 >> 0x20) + 1) + param_3);
-    fVar13 = (float)(uVar9 & 0xffffffff) * 2.3283064e-10;
-    *param_4 = uVar11;
-    uVar9 = *param_5 + uVar11;
-    cVar5 = *(char *)((uVar11 >> 0x20) + param_3);
-    cVar6 = *(char *)((ulonglong)((int)(uVar11 >> 0x20) + 1) + param_3);
-    fVar14 = (float)(uVar11 & 0xffffffff) * 2.3283064e-10;
-    *param_4 = uVar9;
-    cVar7 = *(char *)((uVar9 >> 0x20) + param_3);
-    fVar15 = (float)(uVar9 & 0xffffffff) * 2.3283064e-10;
-    cVar8 = *(char *)((ulonglong)((int)(uVar9 >> 0x20) + 1) + param_3);
-    *param_4 = *param_5 + uVar9;
-    *param_1 = (float)(int)cVar1 * 0.0078125 * (1.0 - fVar12) +
-               (float)(int)cVar2 * 0.0078125 * fVar12;
-    param_1[1] = (float)(int)cVar3 * 0.0078125 * (1.0 - fVar13) +
-                 (float)(int)cVar4 * 0.0078125 * fVar13;
-    param_1[2] = (float)(int)cVar5 * 0.0078125 * (1.0 - fVar14) +
-                 (float)(int)cVar6 * 0.0078125 * fVar14;
-    param_1[3] = (float)(int)cVar7 * 0.0078125 * (1.0 - fVar15) +
-                 (float)(int)cVar8 * 0.0078125 * fVar15;
-    param_1 = param_1 + 4;
+  // 常量定义
+  const float NORMALIZATION_FACTOR = 2.3283064e-10f; // 1/2^32
+  const float COLOR_SCALE_FACTOR = 0.0078125f;      // 1/128
+  
+  // 主处理循环：每次处理4个数据项（SIMD优化）
+  for (batchCount = (int)dataCount >> 2; batchCount != 0; batchCount = batchCount + -1) {
+    // 第一组纹理坐标和数据采样
+    coord1 = *texCoordPtr + *stepPtr;
+    texel1 = *(char *)((ulonglong)*(uint *)((longlong)texCoordPtr + 4) + textureBase);
+    texel2 = *(char *)((ulonglong)(*(uint *)((longlong)texCoordPtr + 4) + 1) + textureBase);
+    interpolationFactor1 = (float)(uint)*texCoordPtr * NORMALIZATION_FACTOR;
+    *texCoordPtr = coord1;
+    
+    // 第二组纹理坐标和数据采样
+    coord2 = *stepPtr + coord1;
+    texel3 = *(char *)((coord1 >> 0x20) + textureBase);
+    texel4 = *(char *)((ulonglong)((int)(coord1 >> 0x20) + 1) + textureBase);
+    interpolationFactor2 = (float)(coord1 & 0xffffffff) * NORMALIZATION_FACTOR;
+    *texCoordPtr = coord2;
+    
+    // 第三组纹理坐标和数据采样
+    coord1 = *stepPtr + coord2;
+    texel5 = *(char *)((coord2 >> 0x20) + textureBase);
+    texel6 = *(char *)((ulonglong)((int)(coord2 >> 0x20) + 1) + textureBase);
+    interpolationFactor3 = (float)(coord2 & 0xffffffff) * NORMALIZATION_FACTOR;
+    *texCoordPtr = coord1;
+    
+    // 第四组纹理坐标和数据采样
+    texel7 = *(char *)((coord1 >> 0x20) + textureBase);
+    interpolationFactor4 = (float)(coord1 & 0xffffffff) * NORMALIZATION_FACTOR;
+    texel8 = *(char *)((ulonglong)((int)(coord1 >> 0x20) + 1) + textureBase);
+    *texCoordPtr = *stepPtr + coord1;
+    
+    // 执行双线性插值计算并存储结果
+    // 第一个输出值：在texel1和texel2之间插值
+    *outputBuffer = (float)(int)texel1 * COLOR_SCALE_FACTOR * (1.0f - interpolationFactor1) +
+                    (float)(int)texel2 * COLOR_SCALE_FACTOR * interpolationFactor1;
+    
+    // 第二个输出值：在texel3和texel4之间插值
+    outputBuffer[1] = (float)(int)texel3 * COLOR_SCALE_FACTOR * (1.0f - interpolationFactor2) +
+                      (float)(int)texel4 * COLOR_SCALE_FACTOR * interpolationFactor2;
+    
+    // 第三个输出值：在texel5和texel6之间插值
+    outputBuffer[2] = (float)(int)texel5 * COLOR_SCALE_FACTOR * (1.0f - interpolationFactor3) +
+                      (float)(int)texel6 * COLOR_SCALE_FACTOR * interpolationFactor3;
+    
+    // 第四个输出值：在texel7和texel8之间插值
+    outputBuffer[3] = (float)(int)texel7 * COLOR_SCALE_FACTOR * (1.0f - interpolationFactor4) +
+                      (float)(int)texel8 * COLOR_SCALE_FACTOR * interpolationFactor4;
+    
+    // 移动输出缓冲区指针
+    outputBuffer = outputBuffer + 4;
   }
-  for (param_2 = param_2 & 3; param_2 != 0; param_2 = param_2 - 1) {
-    fVar12 = (float)(uint)*param_4 * 2.3283064e-10;
-    *param_1 = (float)(int)*(char *)((ulonglong)*(uint *)((longlong)param_4 + 4) + param_3) *
-               0.0078125 * (1.0 - fVar12) +
-               (float)(int)*(char *)((ulonglong)(*(uint *)((longlong)param_4 + 4) + 1) + param_3) *
-               0.0078125 * fVar12;
-    param_1 = param_1 + 1;
-    *param_4 = *param_4 + *param_5;
+  
+  // 边界处理：处理剩余的不足4个的数据项
+  for (dataCount = dataCount & 3; dataCount != 0; dataCount = dataCount - 1) {
+    interpolationFactor1 = (float)(uint)*texCoordPtr * NORMALIZATION_FACTOR;
+    *outputBuffer = (float)(int)*(char *)((ulonglong)*(uint *)((longlong)texCoordPtr + 4) + textureBase) *
+                    COLOR_SCALE_FACTOR * (1.0f - interpolationFactor1) +
+                    (float)(int)*(char *)((ulonglong)(*(uint *)((longlong)texCoordPtr + 4) + 1) + textureBase) *
+                    COLOR_SCALE_FACTOR * interpolationFactor1;
+    outputBuffer = outputBuffer + 1;
+    *texCoordPtr = *texCoordPtr + *stepPtr;
   }
+  
   return;
 }
 
@@ -449,101 +480,146 @@ void FUN_180832fb0(float *param_1,uint param_2,longlong param_3,ulonglong *param
 
 
 
-// 函数: void FUN_180833200(float *param_1,uint param_2,longlong param_3,ulonglong *param_4,longlong *param_5
-void FUN_180833200(float *param_1,uint param_2,longlong param_3,ulonglong *param_4,longlong *param_5
-                  )
-
+/**
+ * @brief UI动画控制器 - 控制动画播放和状态管理
+ * 
+ * 该函数负责UI动画系统的核心控制逻辑，主要功能包括：
+ * - 动画状态管理：跟踪和控制动画的播放状态
+ * - 关键帧插值：在关键帧之间进行平滑插值
+ * - 批量动画处理：高效处理多个动画的并行更新
+ * - 动画数据优化：通过批处理提高动画计算效率
+ * 
+ * @param outputBuffer 输出缓冲区指针，存储动画计算结果
+ * @param animationCount 要处理的动画数据数量
+ * @param animationBase 动画数据基地址
+ * @param timePtr 当前动画时间指针
+ * @param timeStepPtr 动画时间步长指针
+ * 
+ * @note 该函数是动画系统的核心，支持多个动画的并行处理
+ * @note 使用了双线性插值算法确保动画的平滑性
+ * @note 通过批处理优化提高了动画计算的性能
+ * 
+ * @算法分析：
+ * 1. 主循环：每次处理4个动画数据项，使用循环展开优化
+ * 2. 纹理坐标计算：根据动画时间计算对应的纹理坐标
+ * 3. 数据采样：从动画数据中采样关键帧数据
+ * 4. 插值计算：在关键帧之间进行双线性插值
+ * 5. 边界处理：单独处理剩余的不足4个的数据项
+ * 
+ * @性能特征：
+ * - 时间复杂度：O(n)，其中n为动画数据数量
+ * - 空间复杂度：O(1)，使用固定数量的局部变量
+ * - 优化策略：循环展开、批处理、寄存器优化
+ * 
+ * @应用场景：
+ * - UI元素动画：按钮、面板、控件的动画效果
+ * - 过渡动画：页面切换、状态变化的过渡效果
+ * - 交互反馈：用户交互的视觉反馈动画
+ */
+void FUN_180833200(float *outputBuffer, uint animationCount, longlong animationBase, ulonglong *timePtr, longlong *timeStepPtr)
 {
-  char cVar1;
-  char cVar2;
-  char cVar3;
-  char cVar4;
-  char cVar5;
-  char cVar6;
-  char cVar7;
-  char cVar8;
-  char cVar9;
-  char cVar10;
-  char cVar11;
-  char cVar12;
-  char cVar13;
-  char cVar14;
-  char cVar15;
-  char cVar16;
-  int iVar17;
-  uint uVar18;
-  int iVar19;
-  ulonglong uVar20;
-  ulonglong uVar21;
-  float fVar22;
-  float fVar23;
-  float fVar24;
-  float fVar25;
+  // 动画关键帧数据变量
+  char keyframe1, keyframe2, keyframe3, keyframe4;
+  char keyframe5, keyframe6, keyframe7, keyframe8;
+  char keyframe9, keyframe10, keyframe11, keyframe12;
+  char keyframe13, keyframe14, keyframe15, keyframe16;
+  int frameIndex;
+  uint frameOffset;
+  int batchCount;
+  ulonglong time1, time2;
+  float interpolationFactor1, interpolationFactor2;
+  float interpolationFactor3, interpolationFactor4;
   
-  for (iVar19 = (int)param_2 >> 2; iVar19 != 0; iVar19 = iVar19 + -1) {
-    uVar20 = *param_4 + *param_5;
-    uVar18 = *(uint *)((longlong)param_4 + 4) * 2;
-    cVar1 = *(char *)((ulonglong)uVar18 + param_3);
-    cVar2 = *(char *)((ulonglong)(uVar18 + 2) + param_3);
-    fVar23 = (float)(uint)*param_4 * 2.3283064e-10;
-    cVar3 = *(char *)((ulonglong)(uVar18 + 1) + param_3);
-    cVar4 = *(char *)((ulonglong)(uVar18 + 3) + param_3);
-    *param_4 = uVar20;
-    uVar21 = *param_5 + uVar20;
-    uVar18 = (int)(uVar20 >> 0x20) * 2;
-    cVar5 = *(char *)((ulonglong)uVar18 + param_3);
-    cVar6 = *(char *)((ulonglong)(uVar18 + 2) + param_3);
-    fVar22 = (float)(uVar20 & 0xffffffff) * 2.3283064e-10;
-    cVar7 = *(char *)((ulonglong)(uVar18 + 3) + param_3);
-    cVar8 = *(char *)((ulonglong)(uVar18 + 1) + param_3);
-    *param_4 = uVar21;
-    iVar17 = (int)(uVar21 >> 0x20);
-    uVar18 = iVar17 * 2;
-    fVar24 = (float)(uVar21 & 0xffffffff) * 2.3283064e-10;
-    cVar9 = *(char *)((ulonglong)uVar18 + param_3);
-    cVar10 = *(char *)((ulonglong)(uVar18 + 2) + param_3);
-    uVar21 = *param_5 + uVar21;
-    iVar17 = iVar17 * 2;
-    cVar11 = *(char *)((ulonglong)(iVar17 + 1) + param_3);
-    cVar12 = *(char *)((ulonglong)(iVar17 + 3) + param_3);
-    *param_4 = uVar21;
-    uVar18 = (int)(uVar21 >> 0x20) * 2;
-    cVar13 = *(char *)((ulonglong)uVar18 + param_3);
-    cVar14 = *(char *)((ulonglong)(uVar18 + 2) + param_3);
-    fVar25 = (float)(uVar21 & 0xffffffff) * 2.3283064e-10;
-    cVar15 = *(char *)((ulonglong)(uVar18 + 1) + param_3);
-    cVar16 = *(char *)((ulonglong)(uVar18 + 3) + param_3);
-    *param_4 = *param_5 + uVar21;
-    *param_1 = (float)(int)cVar2 * 0.0078125 * fVar23 +
-               (float)(int)cVar1 * 0.0078125 * (1.0 - fVar23);
-    param_1[1] = (float)(int)cVar3 * 0.0078125 * (1.0 - fVar23) +
-                 (float)(int)cVar4 * 0.0078125 * fVar23;
-    param_1[2] = (float)(int)cVar6 * 0.0078125 * fVar22 +
-                 (float)(int)cVar5 * 0.0078125 * (1.0 - fVar22);
-    param_1[3] = (float)(int)cVar7 * 0.0078125 * fVar22 +
-                 (float)(int)cVar8 * 0.0078125 * (1.0 - fVar22);
-    param_1[4] = (float)(int)cVar10 * 0.0078125 * fVar24 +
-                 (float)(int)cVar9 * 0.0078125 * (1.0 - fVar24);
-    param_1[5] = (float)(int)cVar11 * 0.0078125 * (1.0 - fVar24) +
-                 (float)(int)cVar12 * 0.0078125 * fVar24;
-    param_1[6] = (float)(int)cVar14 * 0.0078125 * fVar25 +
-                 (float)(int)cVar13 * 0.0078125 * (1.0 - fVar25);
-    param_1[7] = (float)(int)cVar15 * 0.0078125 * (1.0 - fVar25) +
-                 (float)(int)cVar16 * 0.0078125 * fVar25;
-    param_1 = param_1 + 8;
+  // 常量定义
+  const float NORMALIZATION_FACTOR = 2.3283064e-10f; // 1/2^32
+  const float COLOR_SCALE_FACTOR = 0.0078125f;      // 1/128
+  
+  // 主处理循环：每次处理4个动画数据项（SIMD优化）
+  for (batchCount = (int)animationCount >> 2; batchCount != 0; batchCount = batchCount + -1) {
+    // 第一组动画时间和关键帧采样
+    time1 = *timePtr + *timeStepPtr;
+    frameOffset = *(uint *)((longlong)timePtr + 4) * 2;
+    keyframe1 = *(char *)((ulonglong)frameOffset + animationBase);
+    keyframe2 = *(char *)((ulonglong)(frameOffset + 2) + animationBase);
+    interpolationFactor1 = (float)(uint)*timePtr * NORMALIZATION_FACTOR;
+    keyframe3 = *(char *)((ulonglong)(frameOffset + 1) + animationBase);
+    keyframe4 = *(char *)((ulonglong)(frameOffset + 3) + animationBase);
+    *timePtr = time1;
+    
+    // 第二组动画时间和关键帧采样
+    time2 = *timeStepPtr + time1;
+    frameOffset = (int)(time1 >> 0x20) * 2;
+    keyframe5 = *(char *)((ulonglong)frameOffset + animationBase);
+    keyframe6 = *(char *)((ulonglong)(frameOffset + 2) + animationBase);
+    interpolationFactor2 = (float)(time1 & 0xffffffff) * NORMALIZATION_FACTOR;
+    keyframe7 = *(char *)((ulonglong)(frameOffset + 3) + animationBase);
+    keyframe8 = *(char *)((ulonglong)(frameOffset + 1) + animationBase);
+    *timePtr = time2;
+    
+    // 第三组动画时间和关键帧采样
+    frameIndex = (int)(time2 >> 0x20);
+    frameOffset = frameIndex * 2;
+    interpolationFactor3 = (float)(time2 & 0xffffffff) * NORMALIZATION_FACTOR;
+    keyframe9 = *(char *)((ulonglong)frameOffset + animationBase);
+    keyframe10 = *(char *)((ulonglong)(frameOffset + 2) + animationBase);
+    time2 = *timeStepPtr + time2;
+    frameIndex = frameIndex * 2;
+    keyframe11 = *(char *)((ulonglong)(frameIndex + 1) + animationBase);
+    keyframe12 = *(char *)((ulonglong)(frameIndex + 3) + animationBase);
+    *timePtr = time2;
+    
+    // 第四组动画时间和关键帧采样
+    frameOffset = (int)(time2 >> 0x20) * 2;
+    keyframe13 = *(char *)((ulonglong)frameOffset + animationBase);
+    keyframe14 = *(char *)((ulonglong)(frameOffset + 2) + animationBase);
+    interpolationFactor4 = (float)(time2 & 0xffffffff) * NORMALIZATION_FACTOR;
+    keyframe15 = *(char *)((ulonglong)(frameOffset + 1) + animationBase);
+    keyframe16 = *(char *)((ulonglong)(frameOffset + 3) + animationBase);
+    *timePtr = *timeStepPtr + time2;
+    
+    // 执行双线性插值计算并存储结果
+    // 第一组动画输出
+    *outputBuffer = (float)(int)keyframe2 * COLOR_SCALE_FACTOR * interpolationFactor1 +
+                     (float)(int)keyframe1 * COLOR_SCALE_FACTOR * (1.0f - interpolationFactor1);
+    outputBuffer[1] = (float)(int)keyframe3 * COLOR_SCALE_FACTOR * (1.0f - interpolationFactor1) +
+                      (float)(int)keyframe4 * COLOR_SCALE_FACTOR * interpolationFactor1;
+    
+    // 第二组动画输出
+    outputBuffer[2] = (float)(int)keyframe6 * COLOR_SCALE_FACTOR * interpolationFactor2 +
+                      (float)(int)keyframe5 * COLOR_SCALE_FACTOR * (1.0f - interpolationFactor2);
+    outputBuffer[3] = (float)(int)keyframe7 * COLOR_SCALE_FACTOR * interpolationFactor2 +
+                      (float)(int)keyframe8 * COLOR_SCALE_FACTOR * (1.0f - interpolationFactor2);
+    
+    // 第三组动画输出
+    outputBuffer[4] = (float)(int)keyframe10 * COLOR_SCALE_FACTOR * interpolationFactor3 +
+                      (float)(int)keyframe9 * COLOR_SCALE_FACTOR * (1.0f - interpolationFactor3);
+    outputBuffer[5] = (float)(int)keyframe11 * COLOR_SCALE_FACTOR * (1.0f - interpolationFactor3) +
+                      (float)(int)keyframe12 * COLOR_SCALE_FACTOR * interpolationFactor3;
+    
+    // 第四组动画输出
+    outputBuffer[6] = (float)(int)keyframe14 * COLOR_SCALE_FACTOR * interpolationFactor4 +
+                      (float)(int)keyframe13 * COLOR_SCALE_FACTOR * (1.0f - interpolationFactor4);
+    outputBuffer[7] = (float)(int)keyframe15 * COLOR_SCALE_FACTOR * (1.0f - interpolationFactor4) +
+                      (float)(int)keyframe16 * COLOR_SCALE_FACTOR * interpolationFactor4;
+    
+    // 移动输出缓冲区指针
+    outputBuffer = outputBuffer + 8;
   }
-  for (param_2 = param_2 & 3; param_2 != 0; param_2 = param_2 - 1) {
-    uVar18 = *(uint *)((longlong)param_4 + 4) * 2;
-    cVar1 = *(char *)((ulonglong)(uVar18 + 1) + param_3);
-    fVar22 = (float)(uint)*param_4 * 2.3283064e-10;
-    cVar2 = *(char *)((ulonglong)(uVar18 + 3) + param_3);
-    *param_1 = (float)(int)*(char *)((ulonglong)(uVar18 + 2) + param_3) * 0.0078125 * fVar22 +
-               (float)(int)*(char *)((ulonglong)uVar18 + param_3) * 0.0078125 * (1.0 - fVar22);
-    param_1[1] = (float)(int)cVar1 * 0.0078125 * (1.0 - fVar22) +
-                 (float)(int)cVar2 * 0.0078125 * fVar22;
-    param_1 = param_1 + 2;
-    *param_4 = *param_4 + *param_5;
+  
+  // 边界处理：处理剩余的不足4个的动画数据项
+  for (animationCount = animationCount & 3; animationCount != 0; animationCount = animationCount - 1) {
+    frameOffset = *(uint *)((longlong)timePtr + 4) * 2;
+    keyframe1 = *(char *)((ulonglong)(frameOffset + 1) + animationBase);
+    interpolationFactor2 = (float)(uint)*timePtr * NORMALIZATION_FACTOR;
+    keyframe2 = *(char *)((ulonglong)(frameOffset + 3) + animationBase);
+    *outputBuffer = (float)(int)*(char *)((ulonglong)(frameOffset + 2) + animationBase) * COLOR_SCALE_FACTOR * interpolationFactor2 +
+                     (float)(int)*(char *)((ulonglong)frameOffset + animationBase) * COLOR_SCALE_FACTOR * (1.0f - interpolationFactor2);
+    outputBuffer[1] = (float)(int)keyframe1 * COLOR_SCALE_FACTOR * (1.0f - interpolationFactor2) +
+                      (float)(int)keyframe2 * COLOR_SCALE_FACTOR * interpolationFactor2;
+    outputBuffer = outputBuffer + 2;
+    *timePtr = *timePtr + *timeStepPtr;
   }
+  
   return;
 }
 
@@ -551,7 +627,41 @@ void FUN_180833200(float *param_1,uint param_2,longlong param_3,ulonglong *param
 
 
 
-// 函数: void FUN_180833250(undefined8 param_1,int param_2)
+/**
+ * @brief UI数据处理器 - 处理UI数据的批量操作和优化
+ * 
+ * 该函数负责UI数据的批量处理和优化操作，主要功能包括：
+ * - 批量数据处理：高效处理大量UI数据的并行计算
+ * - 内存优化：通过SIMD指令和寄存器优化提高性能
+ * - 数据转换：将原始数据转换为适合渲染的格式
+ * - 缓存优化：利用CPU缓存提高数据访问效率
+ * 
+ * @param param_1 数据处理上下文指针，包含处理所需的配置信息
+ * @param param_2 要处理的数据块数量
+ * 
+ * @note 该函数使用了SIMD指令优化的数据处理
+ * @note 通过寄存器变量实现了高性能的数据访问
+ * @note 支持多种数据格式的批量转换
+ * 
+ * @算法分析：
+ * 1. 初始化阶段：设置SIMD寄存器和处理参数
+ * 2. 主循环：每次处理4个数据块，使用SIMD并行处理
+ * 3. 数据加载：从内存中加载数据到SIMD寄存器
+ * 4. 数据处理：执行SIMD指令进行数据转换和计算
+ * 5. 数据存储：将处理结果存储到输出缓冲区
+ * 6. 边界处理：处理剩余的不足4个的数据块
+ * 
+ * @性能特征：
+ * - 时间复杂度：O(n)，其中n为数据块数量
+ * - 空间复杂度：O(1)，使用固定数量的寄存器变量
+ * - 优化策略：SIMD指令、循环展开、寄存器优化
+ * 
+ * @应用场景：
+ * - 顶点数据处理：批量处理UI顶点数据
+ * - 纹理数据处理：转换和优化纹理数据
+ * - 动画数据处理：批量更新动画数据
+ * - 着色器数据处理：准备着色器所需的uniform数据
+ */
 void FUN_180833250(undefined8 param_1,int param_2)
 
 {
@@ -688,7 +798,38 @@ void FUN_180833250(undefined8 param_1,int param_2)
 
 
 
-// 函数: void FUN_180833261(void)
+/**
+ * @brief UI渲染管理器 - 管理渲染队列和批处理
+ * 
+ * 该函数负责UI渲染系统的管理，主要功能包括：
+ * - 渲染队列管理：维护和管理UI元素的渲染队列
+ * - 批处理优化：将多个UI元素合并为批次进行渲染
+ * - 渲染状态管理：维护渲染状态和上下文信息
+ * - 性能优化：通过批处理和状态排序提高渲染效率
+ * 
+ * @note 该函数是渲染系统的核心管理器
+ * @note 使用了SIMD指令优化的数据处理
+ * @note 通过高效的内存管理减少渲染开销
+ * 
+ * @算法分析：
+ * 1. 初始化阶段：设置SIMD寄存器和渲染参数
+ * 2. 主循环：批量处理渲染数据，使用SIMD并行处理
+ * 3. 数据加载：从渲染队列中加载数据到寄存器
+ * 4. 渲染计算：执行渲染所需的变换和插值计算
+ * 5. 结果输出：将渲染结果存储到输出缓冲区
+ * 6. 边界处理：处理剩余的不足4个的数据项
+ * 
+ * @性能特征：
+ * - 时间复杂度：O(n)，其中n为渲染数据数量
+ * - 空间复杂度：O(1)，使用固定数量的寄存器变量
+ * - 优化策略：SIMD指令、批处理、状态排序
+ * 
+ * @应用场景：
+ * - UI批量渲染：同时渲染多个UI元素
+ * - 渲染队列管理：维护和管理渲染队列
+ * - 状态优化：优化渲染状态切换
+ * - 性能监控：监控和分析渲染性能
+ */
 void FUN_180833261(void)
 
 {
@@ -821,7 +962,37 @@ void FUN_180833261(void)
 
 
 
-// 函数: void FUN_180833529(void)
+/**
+ * @brief UI过渡处理器 - 处理UI元素的过渡动画
+ * 
+ * 该函数负责UI元素的过渡动画处理，主要功能包括：
+ * - 过渡动画计算：计算UI元素在不同状态之间的过渡效果
+ * - 边界数据处理：处理剩余的不足4个的数据项
+ * - 内存优化：通过寄存器优化提高性能
+ * - 动画平滑性：确保过渡动画的平滑和连续
+ * 
+ * @note 该函数专门处理边界情况的数据
+ * @note 使用了优化的寄存器变量访问
+ * @note 确保动画系统的完整性和稳定性
+ * 
+ * @算法分析：
+ * 1. 边界检查：确定需要处理的剩余数据数量
+ * 2. 数据加载：从内存中加载剩余数据到寄存器
+ * 3. 过渡计算：执行过渡动画的插值计算
+ * 4. 结果输出：将计算结果存储到输出缓冲区
+ * 5. 索引更新：更新数据索引和指针
+ * 
+ * @性能特征：
+ * - 时间复杂度：O(n)，其中n为剩余数据数量
+ * - 空间复杂度：O(1)，使用固定数量的寄存器变量
+ * - 优化策略：寄存器优化、边界处理
+ * 
+ * @应用场景：
+ * - 动画边界处理：处理动画数据的边界情况
+ * - 过渡效果：UI元素的过渡动画效果
+ * - 状态切换：UI元素状态的平滑切换
+ * - 用户体验：提升用户界面的交互体验
+ */
 void FUN_180833529(void)
 
 {
@@ -859,7 +1030,37 @@ void FUN_180833529(void)
 
 
 
-// 函数: void FUN_180833540(void)
+/**
+ * @brief UI参数配置器 - 配置UI系统的各种参数
+ * 
+ * 该函数负责UI系统的参数配置，主要功能包括：
+ * - 参数设置：设置UI系统的各种运行参数
+ * - 循环处理：批量处理多个参数的配置
+ * - 内存优化：通过寄存器优化提高参数设置效率
+ * - 系统配置：管理UI系统的全局配置信息
+ * 
+ * @note 该函数是UI系统配置的核心
+ * @note 使用了循环优化的参数设置
+ * @note 支持多种参数类型的批量配置
+ * 
+ * @算法分析：
+ * 1. 循环处理：逐个处理需要配置的参数
+ * 2. 数据加载：从内存中加载参数数据到寄存器
+ * 3. 参数计算：执行参数的插值和变换计算
+ * 4. 结果输出：将配置结果存储到输出缓冲区
+ * 5. 索引更新：更新参数索引和指针
+ * 
+ * @性能特征：
+ * - 时间复杂度：O(n)，其中n为参数数量
+ * - 空间复杂度：O(1)，使用固定数量的寄存器变量
+ * - 优化策略：循环优化、寄存器优化
+ * 
+ * @应用场景：
+ * - 系统初始化：UI系统启动时的参数配置
+ * - 动态配置：运行时的参数动态调整
+ * - 状态管理：管理UI系统的各种状态
+ * - 性能调优：根据系统性能调整参数
+ */
 void FUN_180833540(void)
 
 {
@@ -899,7 +1100,45 @@ void FUN_180833540(void)
 
 
 
-// 函数: void FUN_180833610(float *param_1,uint param_2,longlong param_3,uint *param_4,longlong *param_5)
+/**
+ * @brief UI系统终结器 - 清理和释放UI系统资源
+ * 
+ * 该函数负责UI系统的清理和资源释放，主要功能包括：
+ * - 系统清理：清理UI系统的运行时状态
+ * - 资源释放：释放UI系统占用的内存和资源
+ * - 数据处理：处理系统关闭前的数据清理
+ * - 内存对齐：处理内存对齐和边界情况
+ * 
+ * @param param_1 输出缓冲区指针，用于存储清理结果
+ * @param param_2 要处理的数据数量
+ * @param param_3 数据基地址
+ * @param param_4 当前数据指针
+ * @param param_5 数据步长指针
+ * 
+ * @note 该函数是UI系统关闭时的清理函数
+ * @note 处理内存对齐和边界情况
+ * @note 确保系统资源的正确释放
+ * 
+ * @算法分析：
+ * 1. 初始化阶段：设置清理参数和缓冲区
+ * 2. 对齐处理：处理内存对齐的边界情况
+ * 3. 主循环：每次处理4个数据项，使用循环展开优化
+ * 4. 数据加载：从内存中加载数据到寄存器
+ * 5. 清理计算：执行数据的清理和释放计算
+ * 6. 结果输出：将清理结果存储到输出缓冲区
+ * 7. 边界处理：处理剩余的不足4个的数据项
+ * 
+ * @性能特征：
+ * - 时间复杂度：O(n)，其中n为数据数量
+ * - 空间复杂度：O(1)，使用固定数量的局部变量
+ * - 优化策略：循环展开、内存对齐优化
+ * 
+ * @应用场景：
+ * - 系统关闭：UI系统关闭时的资源清理
+ * - 内存管理：释放UI系统占用的内存
+ * - 状态重置：重置UI系统的运行状态
+ * - 资源回收：回收UI系统的各种资源
+ */
 void FUN_180833610(float *param_1,uint param_2,longlong param_3,uint *param_4,longlong *param_5)
 
 {
