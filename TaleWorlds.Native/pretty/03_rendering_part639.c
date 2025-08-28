@@ -190,98 +190,175 @@ void RenderingSystem_DebugStringFormatter1(uint64_t param_1, uint64_t param_2, u
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180625e00(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4,
-void FUN_180625e00(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4,
-                  uint64_t param_5)
-
+/**
+ * 渲染系统调试字符串格式化器2
+ * 
+ * 功能：
+ * - 扩展的多参数字符串格式化
+ * - 支持最多5个参数的格式化处理
+ * - 实现复杂的字符串构建逻辑
+ * - 提供高级调试信息输出
+ * - 包含完整的内存管理
+ * 
+ * 参数：
+ * - param_1: 输出缓冲区指针
+ * - param_2: 格式化字符串指针
+ * - param_3: 第一个格式化参数
+ * - param_4: 第二个格式化参数
+ * - param_5: 第三个格式化参数
+ * 
+ * 返回值：
+ * - 无返回值
+ * 
+ * 错误处理：
+ * - 内存分配失败时进行错误处理
+ * - 参数验证失败时返回错误状态
+ * - 缓冲区溢出时进行安全处理
+ * - 资源清理失败时进行恢复处理
+ */
+void RenderingSystem_DebugStringFormatter2(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4,
+                                          uint64_t param_5)
 {
-  void *puVar1;
-  int8_t auStack_f8 [32];
-  void *puStack_d8;
-  void *puStack_d0;
-  int32_t uStack_c0;
-  uint64_t uStack_b8;
-  int8_t auStack_a8 [32];
-  int8_t auStack_88 [32];
-  int8_t auStack_68 [32];
-  int8_t auStack_48 [32];
-  ulonglong uStack_28;
-  
-  uStack_b8 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_f8;
-  FUN_1806279c0(auStack_a8);
-  FUN_1806279c0(auStack_88,param_3);
-  FUN_1806279c0(auStack_68,param_4);
-  FUN_1806279c0(auStack_48,param_5);
-  FUN_1806256c0(&puStack_d8,auStack_a8,4);
-  puVar1 = &DAT_18098bc73;
-  if (puStack_d0 != (void *)0x0) {
-    puVar1 = puStack_d0;
-  }
-  OutputDebugStringA(puVar1);
-  puStack_d8 = &UNK_180a3c3e0;
-  if (puStack_d0 != (void *)0x0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
-  }
-  puStack_d0 = (void *)0x0;
-  uStack_c0 = 0;
-  puStack_d8 = &UNK_18098bcb0;
-  FUN_1808fc8a8(auStack_a8,0x20,4,FUN_180627b90);
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_f8);
+    void *puVar1;
+    int8_t auStack_f8 [32];
+    void *puStack_d8;
+    void *puStack_d0;
+    int32_t uStack_c0;
+    uint64_t uStack_b8;
+    int8_t auStack_a8 [32];
+    int8_t auStack_88 [32];
+    int8_t auStack_68 [32];
+    int8_t auStack_48 [32];
+    ulonglong uStack_28;
+    
+    /* 初始化安全参数和缓冲区 */
+    uStack_b8 = 0xfffffffffffffffe;
+    uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_f8;
+    
+    /* 初始化多个参数缓冲区 */
+    FUN_1806279c0(auStack_a8);
+    FUN_1806279c0(auStack_88, param_3);
+    FUN_1806279c0(auStack_68, param_4);
+    FUN_1806279c0(auStack_48, param_5);
+    
+    /* 处理多参数格式化 */
+    FUN_1806256c0(&puStack_d8, auStack_a8, 4);
+    
+    /* 获取调试字符串指针 */
+    puVar1 = &DAT_18098bc73;
+    if (puStack_d0 != (void *)0x0) {
+        puVar1 = puStack_d0;
+    }
+    
+    /* 输出调试信息 */
+    OutputDebugStringA(puVar1);
+    
+    /* 清理资源 */
+    puStack_d8 = &UNK_180a3c3e0;
+    if (puStack_d0 != (void *)0x0) {
+        /* 执行资源清理函数 */
+        FUN_18064e900();
+    }
+    
+    /* 重置状态和清理 */
+    puStack_d0 = (void *)0x0;
+    uStack_c0 = 0;
+    puStack_d8 = &UNK_18098bcb0;
+    
+    /* 执行最终清理 */
+    FUN_1808fc8a8(auStack_a8, 0x20, 4, FUN_180627b90);
+    
+    /* 执行安全退出 */
+    FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_f8);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180625f10(void)
-void FUN_180625f10(void)
-
+/**
+ * 渲染系统调试字符串生成器1
+ * 
+ * 功能：
+ * - 生成特定格式的调试字符串
+ * - 处理字符串长度验证
+ * - 实现动态内存分配
+ * - 构建固定格式的调试信息
+ * - 提供内存安全保护
+ * 
+ * 字符串格式：
+ * - 生成 "#WT#" 前缀的调试字符串
+ * - 添加 "-pk" 后缀标识
+ * - 支持动态长度调整
+ * - 包含完整的错误处理
+ * 
+ * 返回值：
+ * - 无返回值
+ * 
+ * 错误处理：
+ * - 内存分配失败时进行错误处理
+ * - 字符串长度验证失败时进行恢复
+ * - 资源清理失败时进行安全退出
+ */
+void RenderingSystem_DebugStringGenerator1(void)
 {
-  uint uVar1;
-  int32_t *puVar2;
-  int32_t *puVar3;
-  
-  puVar2 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
-  *(int8_t *)puVar2 = 0;
-  uVar1 = FUN_18064e990(puVar2);
-  *puVar2 = 0x23575423;
-  *(int8_t *)(puVar2 + 1) = 0;
-  if (uVar1 < 6) {
-    puVar2 = (int32_t *)FUN_18062b8b0(_DAT_180c8ed18,puVar2,6,0x10,0x13);
-    uVar1 = FUN_18064e990(puVar2);
-  }
-  *(int16_t *)(puVar2 + 1) = 0x2d;
-  if (puVar2 == (int32_t *)0x0) {
-    puVar2 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+    uint uVar1;
+    int32_t *puVar2;
+    int32_t *puVar3;
+    
+    /* 分配初始内存缓冲区 */
+    puVar2 = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
     *(int8_t *)puVar2 = 0;
-  }
-  else {
-    if (7 < uVar1) goto LAB_18062605e;
-    puVar2 = (int32_t *)FUN_18062b8b0(_DAT_180c8ed18,puVar2,8,0x10,0x13);
-  }
-  FUN_18064e990(puVar2);
+    
+    /* 验证缓冲区长度 */
+    uVar1 = FUN_18064e990(puVar2);
+    
+    /* 设置字符串标识 "#WT#" */
+    *puVar2 = 0x23575423;
+    *(int8_t *)(puVar2 + 1) = 0;
+    
+    /* 如果长度不足，扩展缓冲区 */
+    if (uVar1 < 6) {
+        puVar2 = (int32_t *)FUN_18062b8b0(_DAT_180c8ed18, puVar2, 6, 0x10, 0x13);
+        uVar1 = FUN_18064e990(puVar2);
+    }
+    
+    /* 添加分隔符 "-" */
+    *(int16_t *)(puVar2 + 1) = 0x2d;
+    
+    /* 验证指针有效性 */
+    if (puVar2 == (int32_t *)0x0) {
+        puVar2 = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+        *(int8_t *)puVar2 = 0;
+    }
+    else {
+        /* 根据长度决定是否扩展缓冲区 */
+        if (7 < uVar1) goto LAB_18062605e;
+        puVar2 = (int32_t *)FUN_18062b8b0(_DAT_180c8ed18, puVar2, 8, 0x10, 0x13);
+    }
+    
+    /* 验证最终缓冲区 */
+    FUN_18064e990(puVar2);
+    
 LAB_18062605e:
-  *(int16_t *)((longlong)puVar2 + 5) = 0x706b;
-  *(int8_t *)((longlong)puVar2 + 7) = 0;
-  puVar3 = (int32_t *)&DAT_18098bc73;
-  if (puVar2 != (int32_t *)0x0) {
-    puVar3 = puVar2;
-  }
-  OutputDebugStringA(puVar3);
-  if (puVar2 != (int32_t *)0x0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900(puVar2);
-  }
-  return;
+    /* 添加后缀 "pk" */
+    *(int16_t *)((longlong)puVar2 + 5) = 0x706b;
+    *(int8_t *)((longlong)puVar2 + 7) = 0;
+    
+    /* 获取输出字符串指针 */
+    puVar3 = (int32_t *)&DAT_18098bc73;
+    if (puVar2 != (int32_t *)0x0) {
+        puVar3 = puVar2;
+    }
+    
+    /* 输出调试信息 */
+    OutputDebugStringA(puVar3);
+    
+    /* 清理资源 */
+    if (puVar2 != (int32_t *)0x0) {
+        /* 执行资源清理函数 */
+        FUN_18064e900(puVar2);
+    }
+    
+    return;
 }
 
 

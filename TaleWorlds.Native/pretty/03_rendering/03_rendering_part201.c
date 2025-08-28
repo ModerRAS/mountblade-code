@@ -55,6 +55,7 @@
 #define RENDERING_FLOAT_0_9              0.9f          /** 渲染缩放常量 */
 
 /** 渲染系统索引常量 */
+#define RENDERING_INDEX_2                2             /** 渲染基础索引 */
 #define RENDERING_INDEX_4                4             /** 渲染数据索引 */
 #define RENDERING_INDEX_8                8             /** 渲染步进索引 */
 #define RENDERING_INDEX_0XC              0xc            /** 渲染偏移索引 */
@@ -197,7 +198,7 @@ void rendering_parameter_calculator_type1(void)
             }
             
             // 检查循环条件
-            if (*(longlong *)(loop_counter1 + (longlong)matrix_data_ptr2) == temp_long1) {
+            if (*(longlong *)(loop_counter1 + (longlong)render_data_ptr2) == temp_long1) {
                 goto rendering_state_set;
             }
             
@@ -675,6 +676,7 @@ void rendering_data_processor(longlong param_1, uint64_t param_2, longlong param
     uint64_t memory_stack_param3;           // 内存栈参数3
     int32_t stack_uint1;                    // 栈32位无符号整数1
     int16_t stack_ushort;                   // 栈无符号短整型
+    uint32_t stack_uint32_t;                // 栈32位无符号整数
     uint64_t stack_int32_t;                 // 栈32位整数
     uint64_t memory_stack_param5;           // 内存栈参数5
     int32_t stack_uint2;                    // 栈32位无符号整数2
