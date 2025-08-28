@@ -565,168 +565,227 @@ undefined8 *render_system_initialize_string_object(undefined8 param1, undefined8
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong * FUN_180301040(longlong *param_1)
-
+/**
+ * 初始化渲染对象
+ * @param render_obj 渲染对象指针
+ * @return 渲染对象指针
+ */
+longlong *render_system_initialize_render_object(longlong *render_obj)
 {
-  int iVar1;
-  longlong *plVar2;
-  undefined1 *puVar3;
-  longlong *plVar4;
-  int iVar5;
-  int iVar6;
-  longlong lVar7;
-  longlong lVar8;
-  
-  FUN_180244190();
-  *param_1 = (longlong)&UNK_180a19eb0;
-  param_1[0xa4] = 0;
-  param_1[0xa5] = 0;
-  param_1[0xa6] = 0;
-  param_1[0xa7] = 0;
-  param_1[0xa8] = 0;
-  param_1[0xa9] = 0;
-  param_1[0xaa] = 0;
-  param_1[0xab] = 0;
-  param_1[0xae] = 0;
-  param_1[0xaf] = 0;
-  *(undefined4 *)(param_1 + 0xb7) = 0x44000000;
-  *(undefined4 *)((longlong)param_1 + 0x5bc) = 0x44400000;
-  *(undefined4 *)(param_1 + 0xb8) = 0x44800000;
-  *(undefined4 *)((longlong)param_1 + 0x5c4) = 0x44c00000;
-  *(undefined4 *)((longlong)param_1 + 0x5cc) = 0xab3abdf1;
-  *(undefined4 *)((longlong)param_1 + 0x5d4) = 1;
-  *(undefined4 *)(param_1 + 0xbb) = 1;
-  *(undefined4 *)((longlong)param_1 + 0x5dc) = 1;
-  param_1[0xbc] = 1;
-  *(undefined1 *)(param_1 + 0xb9) = 0;
-  plVar2 = (longlong *)param_1[0xae];
-  param_1[0xae] = 0;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x38))();
-  }
-  plVar2 = (longlong *)param_1[0xaf];
-  param_1[0xaf] = 0;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x38))();
-  }
-  param_1[0xbd] = 0;
-  param_1[0xbe] = 0;
-  param_1[0xbf] = 0;
-  param_1[0xc0] = 0;
-  param_1[0xc1] = 0;
-  *(undefined4 *)(param_1 + 0xba) = 2;
-  param_1[0xb1] = 0;
-  *(undefined4 *)(param_1 + 0xb6) = 0x3f800000;
-  *(undefined4 *)((longlong)param_1 + 0x5b4) = 0x3f800000;
-  *(undefined4 *)(param_1 + 0xb0) = 0x400;
-  iVar6 = 0;
-  *(undefined4 *)((longlong)param_1 + 0x56c) = 0;
-  lVar7 = _DAT_180c86920;
-  iVar1 = *(int *)(_DAT_180c86920 + 0xc40);
-  iVar5 = iVar6;
-  if ((-1 < iVar1) && (iVar5 = iVar1, 2 < iVar1)) {
-    iVar5 = 2;
-  }
-  *(int *)(param_1 + 0xac) = iVar5;
-  iVar1 = *(int *)(lVar7 + 0xcb0);
-  iVar5 = iVar6;
-  if ((-1 < iVar1) && (iVar5 = iVar1, 3 < iVar1)) {
-    iVar5 = 3;
-  }
-  *(int *)((longlong)param_1 + 0x564) = iVar5;
-  iVar1 = *(int *)(lVar7 + 0xd20);
-  if ((-1 < iVar1) && (iVar6 = iVar1, 2 < iVar1)) {
-    iVar6 = 2;
-  }
-  *(int *)(param_1 + 0xad) = iVar6;
-  *(undefined2 *)(param_1 + 0xc2) = 0;
-  param_1[0xc6] = 0;
-  param_1[199] = 0;
-  param_1[200] = 0;
-  param_1[0xc9] = 0;
-  param_1[0xca] = 0;
-  param_1[0xcb] = 0;
-  param_1[0xcc] = 0;
-  param_1[0xcd] = 0;
-  FUN_1808fc838(param_1 + 0xce,8,2,&SUB_18005d5f0,FUN_180045af0);
-  param_1[0xda] = 0;
-  FUN_180094c20(param_1 + 0xdc);
-  param_1[0x106] = (longlong)&UNK_18098bcb0;
-  param_1[0x107] = 0;
-  *(undefined4 *)(param_1 + 0x108) = 0;
-  param_1[0x106] = (longlong)&UNK_180a3c3e0;
-  param_1[0x109] = 0;
-  param_1[0x107] = 0;
-  *(undefined4 *)(param_1 + 0x108) = 0;
-  plVar2 = param_1 + 0x10b;
-  *plVar2 = (longlong)&UNK_18098bcb0;
-  param_1[0x10c] = 0;
-  *(undefined4 *)(param_1 + 0x10d) = 0;
-  *plVar2 = (longlong)&UNK_180a3c3e0;
-  param_1[0x10e] = 0;
-  param_1[0x10c] = 0;
-  *(undefined4 *)(param_1 + 0x10d) = 0;
-  puVar3 = *(undefined1 **)(_DAT_180c86890 + 0x7ab8);
-  if (puVar3 != (undefined1 *)0x0) {
-    *puVar3 = 1;
-  }
-  lVar7 = 0x3ff0000000000000;
-  lVar8 = 0x3ff0000000000000;
-  if ((puVar3[0xd9] != '\0') && (iVar1 = *(int *)(_DAT_180c86920 + 0x540), iVar1 - 1U < 4)) {
-    lVar7 = *(longlong *)(puVar3 + (longlong)iVar1 * 0x10 + -8);
-    lVar8 = *(longlong *)(puVar3 + (longlong)iVar1 * 0x10);
-  }
-  param_1[0xa4] = lVar7;
-  param_1[0xa5] = lVar8;
-  plVar4 = (longlong *)param_1[0xda];
-  param_1[0xda] = 0;
-  if (plVar4 != (longlong *)0x0) {
-    (**(code **)(*plVar4 + 0x38))();
-  }
-  *(undefined4 *)(param_1 + 0x1e) = 0;
-  *(undefined1 *)(param_1 + 0x105) = 1;
-  plVar4 = (longlong *)param_1[0xcb];
-  param_1[0xcb] = 0;
-  if (plVar4 != (longlong *)0x0) {
-    (**(code **)(*plVar4 + 0x38))();
-  }
-  plVar4 = (longlong *)param_1[0xca];
-  param_1[0xca] = 0;
-  if (plVar4 != (longlong *)0x0) {
-    (**(code **)(*plVar4 + 0x38))();
-  }
-  *(undefined4 *)(param_1 + 0x104) = 0;
-  *(undefined1 *)((longlong)param_1 + 0xdc) = 1;
-  *(undefined4 *)((longlong)param_1 + 0x829) = 0;
-  *(undefined4 *)((longlong)param_1 + 0xfc) = 5;
-  *(undefined4 *)(param_1 + 0x1f) = 5;
-  *(undefined4 *)((longlong)param_1 + 0x824) = 0x1000101;
-  *(undefined4 *)(param_1 + 0x1a) = 0xff000000;
-  *(undefined4 *)(param_1 + 0xc5) = 0xffffffff;
-  *(undefined2 *)(param_1 + 0xd8) = 0x100;
-  *(undefined4 *)(param_1 + 0x10a) = 0;
-  *(undefined4 *)(param_1 + 0x21) = 0;
-  *(undefined1 *)(param_1 + 0x20) = 1;
-  *(undefined1 *)((longlong)param_1 + 0x10c) = 1;
-  plVar4 = (longlong *)param_1[0xcc];
-  param_1[0xcc] = 0;
-  if (plVar4 != (longlong *)0x0) {
-    (**(code **)(*plVar4 + 0x38))();
-  }
-  (**(code **)(*plVar2 + 0x10))(plVar2,&DAT_180a0b1c0);
-  *(undefined1 *)(param_1 + 0x10f) = 0;
-  param_1[0xa3] = 0;
-  *(undefined4 *)((longlong)param_1 + 0xf4) = 0x3f800000;
-  param_1[0xd9] = 0;
-  *(undefined1 *)((longlong)param_1 + 0x81) = 0;
-  param_1[0xc] = param_1[0xb];
-  if ((*(float *)(param_1 + 0xb) != 1.0) || (*(float *)((longlong)param_1 + 0x5c) != 1.0)) {
-    param_1[0xb] = 0x3f8000003f800000;
-    (**(code **)(*param_1 + 0x70))(param_1);
-  }
-  *(undefined4 *)((longlong)param_1 + 0x87c) = 0;
-  *(undefined1 *)((longlong)param_1 + 0x10d) = 0;
-  return param_1;
+    int quality_setting;
+    longlong *resource_ptr;
+    undefined1 *system_flags;
+    longlong *temp_resource;
+    int texture_quality;
+    int shadow_quality;
+    longlong settings_ptr;
+    longlong scale_values;
+    
+    // 调用初始化函数
+    FUN_180244190();
+    
+    // 设置对象类型和基础属性
+    *render_obj = (longlong)&UNK_180a19eb0;
+    render_obj[0xa4] = 0;  // 变换矩阵X
+    render_obj[0xa5] = 0;  // 变换矩阵Y
+    render_obj[0xa6] = 0;  // 变换矩阵Z
+    render_obj[0xa7] = 0;  // 变换矩阵W
+    render_obj[0xa8] = 0;  // 位置X
+    render_obj[0xa9] = 0;  // 位置Y
+    render_obj[0xaa] = 0;  // 位置Z
+    render_obj[0xab] = 0;  // 位置W
+    render_obj[0xae] = 0;  // 材质资源指针
+    render_obj[0xaf] = 0;  // 纹理资源指针
+    
+    // 设置浮点参数
+    *(undefined4 *)(render_obj + 0xb7) = RENDER_FLOAT_FOUR;      // 参数1
+    *(undefined4 *)((longlong)render_obj + 0x5bc) = RENDER_FLOAT_SIXTEEN; // 参数2
+    *(undefined4 *)(render_obj + 0xb8) = RENDER_FLOAT_TWO;      // 参数3
+    *(undefined4 *)((longlong)render_obj + 0x5c4) = RENDER_FLOAT_FOUR;  // 参数4
+    *(undefined4 *)((longlong)render_obj + 0x5cc) = RENDER_SPECIAL_FLOAT; // 特殊浮点数
+    *(undefined4 *)((longlong)render_obj + 0x5d4) = 1;              // 整数参数1
+    *(undefined4 *)(render_obj + 0xbb) = 1;                      // 整数参数2
+    *(undefined4 *)((longlong)render_obj + 0x5dc) = 1;              // 整数参数3
+    render_obj[0xbc] = 1;                                      // 布尔标志1
+    *(undefined1 *)(render_obj + 0xb9) = 0;                     // 布尔标志2
+    
+    // 清理材质资源
+    resource_ptr = (longlong *)render_obj[0xae];
+    render_obj[0xae] = 0;
+    if (resource_ptr != (longlong *)0x0) {
+        (**(code **)(*resource_ptr + 0x38))();
+    }
+    
+    // 清理纹理资源
+    resource_ptr = (longlong *)render_obj[0xaf];
+    render_obj[0xaf] = 0;
+    if (resource_ptr != (longlong *)0x0) {
+        (**(code **)(*resource_ptr + 0x38))();
+    }
+    
+    // 初始化渲染状态
+    render_obj[0xbd] = 0;  // 状态标志1
+    render_obj[0xbe] = 0;  // 状态标志2
+    render_obj[0xbf] = 0;  // 状态标志3
+    render_obj[0xc0] = 0;  // 状态标志4
+    render_obj[0xc1] = 0;  // 状态标志5
+    *(undefined4 *)(render_obj + 0xba) = 2;                    // 渲染模式
+    render_obj[0xb1] = 0;                                      // 透明度
+    *(undefined4 *)(render_obj + 0xb6) = RENDER_FLOAT_ONE;      // 缩放因子1
+    *(undefined4 *)((longlong)render_obj + 0x5b4) = RENDER_FLOAT_ONE; // 缩放因子2
+    *(undefined4 *)(render_obj + 0xb0) = RENDER_DEFAULT_SCALE;  // 默认缩放
+    
+    // 初始化质量设置
+    shadow_quality = 0;
+    *(undefined4 *)((longlong)render_obj + 0x56c) = 0;
+    settings_ptr = global_render_settings;
+    quality_setting = *(int *)(global_render_settings + 0xc40);
+    texture_quality = shadow_quality;
+    
+    // 设置纹理质量（限制最大值为2）
+    if ((-1 < quality_setting) && (texture_quality = quality_setting, 2 < quality_setting)) {
+        texture_quality = 2;
+    }
+    *(int *)(render_obj + 0xac) = texture_quality;
+    
+    // 设置阴影质量（限制最大值为3）
+    quality_setting = *(int *)(settings_ptr + 0xcb0);
+    texture_quality = shadow_quality;
+    if ((-1 < quality_setting) && (texture_quality = quality_setting, 3 < quality_setting)) {
+        texture_quality = 3;
+    }
+    *(int *)((longlong)render_obj + 0x564) = texture_quality;
+    
+    // 设置特效质量（限制最大值为2）
+    quality_setting = *(int *)(settings_ptr + 0xd20);
+    if ((-1 < quality_setting) && (shadow_quality = quality_setting, 2 < quality_setting)) {
+        shadow_quality = 2;
+    }
+    *(int *)(render_obj + 0xad) = shadow_quality;
+    
+    // 初始化其他参数
+    *(undefined2 *)(render_obj + 0xc2) = 0;                    // 短整型参数
+    render_obj[0xc6] = 0;                                      // 字节参数1
+    render_obj[199] = 0;                                      // 字节参数2
+    render_obj[200] = 0;                                      // 字节参数3
+    render_obj[0xc9] = 0;                                      // 字节参数4
+    render_obj[0xca] = 0;                                      // 字节参数5
+    render_obj[0xcb] = 0;                                      // 字节参数6
+    render_obj[0xcc] = 0;                                      // 字节参数7
+    render_obj[0xcd] = 0;                                      // 字节参数8
+    
+    // 初始化渲染队列
+    FUN_1808fc838(render_obj + 0xce, 8, 2, &SUB_18005d5f0, FUN_180045af0);
+    render_obj[0xda] = 0;  // 渲染队列指针
+    FUN_180094c20(render_obj + 0xdc); // 初始化渲染数据
+    
+    // 初始化字符串缓冲区
+    render_obj[0x106] = (longlong)&UNK_18098bcb0;
+    render_obj[0x107] = 0;
+    *(undefined4 *)(render_obj + 0x108) = 0;
+    render_obj[0x106] = (longlong)&UNK_180a3c3e0;
+    render_obj[0x109] = 0;
+    render_obj[0x107] = 0;
+    *(undefined4 *)(render_obj + 0x108) = 0;
+    
+    // 初始化第二个字符串缓冲区
+    resource_ptr = render_obj + 0x10b;
+    *resource_ptr = (longlong)&UNK_18098bcb0;
+    render_obj[0x10c] = 0;
+    *(undefined4 *)(render_obj + 0x10d) = 0;
+    *resource_ptr = (longlong)&UNK_180a3c3e0;
+    render_obj[0x10e] = 0;
+    render_obj[0x10c] = 0;
+    *(undefined4 *)(render_obj + 0x10d) = 0;
+    
+    // 设置系统标志
+    system_flags = *(undefined1 **)(global_string_constants + 0x7ab8);
+    if (system_flags != (undefined1 *)0x0) {
+        *system_flags = 1;
+    }
+    
+    // 设置默认缩放值
+    scale_values = 0x3ff0000000000000; // 1.0
+    scale_values = 0x3ff0000000000000; // 1.0
+    
+    // 根据系统设置调整缩放值
+    if ((system_flags[0xd9] != '\0') && (quality_setting = *(int *)(global_render_settings + 0x540), quality_setting - 1U < 4)) {
+        scale_values = *(longlong *)(system_flags + (longlong)quality_setting * 0x10 + -8);
+        scale_values = *(longlong *)(system_flags + (longlong)quality_setting * 0x10);
+    }
+    render_obj[0xa4] = scale_values;
+    render_obj[0xa5] = scale_values;
+    
+    // 清理渲染队列资源
+    temp_resource = (longlong *)render_obj[0xda];
+    render_obj[0xda] = 0;
+    if (temp_resource != (longlong *)0x0) {
+        (**(code **)(*temp_resource + 0x38))();
+    }
+    
+    // 设置渲染参数
+    *(undefined4 *)(render_obj + 0x1e) = 0;                    // 渲染参数1
+    *(undefined1 *)(render_obj + 0x105) = 1;                   // 启用标志
+    
+    // 清理额外资源
+    temp_resource = (longlong *)render_obj[0xcb];
+    render_obj[0xcb] = 0;
+    if (temp_resource != (longlong *)0x0) {
+        (**(code **)(*temp_resource + 0x38))();
+    }
+    
+    temp_resource = (longlong *)render_obj[0xca];
+    render_obj[0xca] = 0;
+    if (temp_resource != (longlong *)0x0) {
+        (**(code **)(*temp_resource + 0x38))();
+    }
+    
+    // 设置颜色和混合参数
+    *(undefined4 *)(render_obj + 0x104) = 0;                  // 颜色参数
+    *(undefined1 *)((longlong)render_obj + 0xdc) = 1;          // 混合标志
+    *(undefined4 *)((longlong)render_obj + 0x829) = 0;          // 混合参数1
+    *(undefined4 *)((longlong)render_obj + 0xfc) = 5;           // 混合参数2
+    *(undefined4 *)(render_obj + 0x1f) = 5;                    // 混合参数3
+    *(undefined4 *)((longlong)render_obj + 0x824) = 0x1000101;  // 混合参数4
+    *(undefined4 *)(render_obj + 0x1a) = RENDER_DEFAULT_ALPHA;   // Alpha值
+    *(undefined4 *)(render_obj + 0xc5) = RENDER_DEFAULT_COLOR;   // 颜色值
+    *(undefined2 *)(render_obj + 0xd8) = 0x100;                 // 混合参数5
+    
+    // 设置其他渲染参数
+    *(undefined4 *)(render_obj + 0x10a) = 0;                    // 渲染参数2
+    *(undefined4 *)(render_obj + 0x21) = 0;                    // 渲染参数3
+    *(undefined1 *)(render_obj + 0x20) = 1;                    // 渲染标志1
+    *(undefined1 *)((longlong)render_obj + 0x10c) = 1;          // 渲染标志2
+    
+    // 清理最后的资源
+    temp_resource = (longlong *)render_obj[0xcc];
+    render_obj[0xcc] = 0;
+    if (temp_resource != (longlong *)0x0) {
+        (**(code **)(*temp_resource + 0x38))();
+    }
+    
+    // 调用初始化完成函数
+    (**(code **)(*resource_ptr + 0x10))(resource_ptr, &DAT_180a0b1c0);
+    
+    // 最终设置
+    *(undefined1 *)(render_obj + 0x10f) = 0;                   // 完成标志
+    render_obj[0xa3] = 0;                                      // 扩展数据指针
+    *(undefined4 *)((longlong)render_obj + 0xf4) = RENDER_FLOAT_ONE; // 最终缩放
+    render_obj[0xd9] = 0;                                      // 调试标志
+    *(undefined1 *)((longlong)render_obj + 0x81) = 0;          // 系统标志
+    
+    // 同步缩放参数
+    render_obj[0xc] = render_obj[0xb];
+    if ((*(float *)(render_obj + 0xb) != 1.0) || (*(float *)((longlong)render_obj + 0x5c) != 1.0)) {
+        render_obj[0xb] = RENDER_DEFAULT_SCALE;
+        (**(code **)(*render_obj + 0x70))(render_obj);
+    }
+    
+    // 清理临时状态
+    *(undefined4 *)((longlong)render_obj + 0x87c) = 0;
+    *(undefined1 *)((longlong)render_obj + 0x10d) = 0;
+    
+    return render_obj;
 }
 
 
