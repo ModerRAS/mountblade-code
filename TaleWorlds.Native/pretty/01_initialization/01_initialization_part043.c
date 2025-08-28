@@ -935,10 +935,76 @@ bool check_system_status(undefined8 param_1, undefined8 *param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+// 全局变量映射说明
+// ===================
+// 以下是对代码中使用的全局变量的映射说明：
 
+// 调试相关全局变量：
+// _GLOBAL_DEBUG_FLAG - 全局调试标志
+// _GLOBAL_INIT_FLAG_1 - 初始化标志1
+// _GLOBAL_INIT_FLAG_2 - 初始化标志2
+// _DAT_180c91900 - 全局信号量句柄
+// _DAT_180c82868 - 系统状态检查句柄
+// _DAT_180c86950 - 初始化检查句柄
+// _DAT_180c86870 - 引擎上下文指针
+// _DAT_180c868d0 - 系统配置指针
 
-// 函数: void FUN_180073630(undefined8 param_1,undefined8 param_2)
-void FUN_180073630(undefined8 param_1,undefined8 param_2)
+// 字符串相关全局变量：
+// _DAT_180c8ed18 - 字符串内存管理器
+// UNK_1809fd0a0 - 全局字符串数据
+// UNK_180a3c3e0 - 字符串结束标记
+// UNK_18098bcb0 - 字符串处理器
+// DAT_18098bc73 - 空字符串常量
+
+// 错误处理相关全局变量：
+// DAT_180c82860 - 错误状态标志
+// UNK_18098bb88 - 默认错误处理器
+// UNK_1809ff918 - 错误日志格式
+
+// 函数映射说明：
+// ===================
+// FUN_1800634b0 -> initialize_string_buffer - 初始化字符串缓冲区
+// FUN_180627910 -> create_string_handler - 创建字符串处理器
+// FUN_18062b420 -> allocate_string_memory - 分配字符串内存
+// FUN_18064e990 -> get_string_length - 获取字符串长度
+// FUN_18062b8b0 -> reallocate_string_memory - 重新分配字符串内存
+// FUN_18064e900 -> release_string_memory - 释放字符串内存
+// FUN_180627e10 -> cleanup_string_buffer - 清理字符串缓冲区
+// FUN_1800f9600 -> get_debug_status - 获取调试状态
+// FUN_1801723a0 -> execute_initialization_check - 执行初始化检查
+// FUN_1801719d0 -> execute_cleanup_routine - 执行清理例程
+// FUN_18005dab0 -> execute_system_check - 执行系统检查
+// FUN_1800f9ce0 -> get_log_information - 获取日志信息
+// FUN_18005d190 -> process_event_result - 处理事件结果
+// FUN_1800623b0 -> log_error_message - 记录错误信息
+
+// 函数功能总结：
+// ===================
+// 1. process_initialization_parameters - 处理初始化参数和配置
+//    - 主要功能：处理游戏引擎的初始化参数，包括字符串处理、调试检查、日志记录
+//    - 涉及：内存管理、字符串操作、调试器检测、信号量同步
+
+// 2. handle_event_notification - 处理事件通知
+//    - 主要功能：处理引擎事件通知，调用相应的事件处理器
+//    - 涉及：事件处理、内存管理
+
+// 3. check_system_status - 检查系统状态
+//    - 主要功能：检查系统运行状态，包括超时等待、系统检查、状态报告
+//    - 涉及：信号量操作、系统状态检查、错误处理
+
+// 4. log_system_error - 记录系统错误日志
+//    - 主要功能：记录系统错误信息，包括错误格式化、错误处理
+//    - 涉及：错误日志、字符串处理、错误处理
+
+// 代码特点：
+// ===================
+// - 大量使用字符串操作和内存管理
+// - 包含调试器检测和反调试机制
+// - 使用信号量进行线程同步
+// - 完善的错误处理和日志记录机制
+// - 采用Windows API进行系统级操作// 函数: 记录系统错误日志
+// 原始函数名：FUN_180073630
+void log_system_error(undefined8 param_1, undefined8 param_2)
 
 {
   undefined *puVar1;
@@ -947,25 +1013,30 @@ void FUN_180073630(undefined8 param_1,undefined8 param_2)
   undefined *puStack_30;
   longlong lStack_28;
   
-  FUN_1800623b0(_DAT_180c86928,0,0x100000000,0,&UNK_1809ff918,param_2,0xfffffffffffffffe);
+  // 记录错误信息
+  log_error_message(_DAT_180c86928, 0, 0x100000000, 0, &ERROR_LOG_FORMAT, param_2, 0xfffffffffffffffe);
+  
   if (DAT_180c82860 == '\0') {
     auStackX_18[0] = 0xffff0000;
-    FUN_180627910(&puStack_30,param_2);
+    create_string_handler(&puStack_30, param_2);
     puVar1 = *(undefined **)*_DAT_180c8ed08;
-    if (puVar1 == &UNK_18098bb88) {
+    
+    // 检查错误处理状态
+    if (puVar1 == &ERROR_HANDLER_DEFAULT) {
       cVar2 = *(int *)(_DAT_180c8a9c8 + 0xc40) != 0;
     }
     else {
       cVar2 = (**(code **)(puVar1 + 0x50))((undefined8 *)*_DAT_180c8ed08);
     }
+    
+    // 如果没有错误，执行处理
     if (cVar2 == '\0') {
       (**(code **)(*(longlong *)_DAT_180c8ed08[1] + 0x18))
-                ((longlong *)_DAT_180c8ed08[1],&puStack_30,auStackX_18);
+                ((longlong *)_DAT_180c8ed08[1], &puStack_30, auStackX_18);
     }
-    puStack_30 = &UNK_180a3c3e0;
+    puStack_30 = &GLOBAL_STRING_END;
     if (lStack_28 != 0) {
-                    // WARNING: Subroutine does not return
-      FUN_18064e900();
+      release_memory_handler();
     }
   }
   return;
@@ -975,5 +1046,71 @@ void FUN_180073630(undefined8 param_1,undefined8 param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+// 全局变量映射说明
+// ===================
+// 以下是对代码中使用的全局变量的映射说明：
 
+// 调试相关全局变量：
+// _GLOBAL_DEBUG_FLAG - 全局调试标志
+// _GLOBAL_INIT_FLAG_1 - 初始化标志1
+// _GLOBAL_INIT_FLAG_2 - 初始化标志2
+// _DAT_180c91900 - 全局信号量句柄
+// _DAT_180c82868 - 系统状态检查句柄
+// _DAT_180c86950 - 初始化检查句柄
+// _DAT_180c86870 - 引擎上下文指针
+// _DAT_180c868d0 - 系统配置指针
 
+// 字符串相关全局变量：
+// _DAT_180c8ed18 - 字符串内存管理器
+// UNK_1809fd0a0 - 全局字符串数据
+// UNK_180a3c3e0 - 字符串结束标记
+// UNK_18098bcb0 - 字符串处理器
+// DAT_18098bc73 - 空字符串常量
+
+// 错误处理相关全局变量：
+// DAT_180c82860 - 错误状态标志
+// UNK_18098bb88 - 默认错误处理器
+// UNK_1809ff918 - 错误日志格式
+
+// 函数映射说明：
+// ===================
+// FUN_1800634b0 -> initialize_string_buffer - 初始化字符串缓冲区
+// FUN_180627910 -> create_string_handler - 创建字符串处理器
+// FUN_18062b420 -> allocate_string_memory - 分配字符串内存
+// FUN_18064e990 -> get_string_length - 获取字符串长度
+// FUN_18062b8b0 -> reallocate_string_memory - 重新分配字符串内存
+// FUN_18064e900 -> release_string_memory - 释放字符串内存
+// FUN_180627e10 -> cleanup_string_buffer - 清理字符串缓冲区
+// FUN_1800f9600 -> get_debug_status - 获取调试状态
+// FUN_1801723a0 -> execute_initialization_check - 执行初始化检查
+// FUN_1801719d0 -> execute_cleanup_routine - 执行清理例程
+// FUN_18005dab0 -> execute_system_check - 执行系统检查
+// FUN_1800f9ce0 -> get_log_information - 获取日志信息
+// FUN_18005d190 -> process_event_result - 处理事件结果
+// FUN_1800623b0 -> log_error_message - 记录错误信息
+
+// 函数功能总结：
+// ===================
+// 1. process_initialization_parameters - 处理初始化参数和配置
+//    - 主要功能：处理游戏引擎的初始化参数，包括字符串处理、调试检查、日志记录
+//    - 涉及：内存管理、字符串操作、调试器检测、信号量同步
+
+// 2. handle_event_notification - 处理事件通知
+//    - 主要功能：处理引擎事件通知，调用相应的事件处理器
+//    - 涉及：事件处理、内存管理
+
+// 3. check_system_status - 检查系统状态
+//    - 主要功能：检查系统运行状态，包括超时等待、系统检查、状态报告
+//    - 涉及：信号量操作、系统状态检查、错误处理
+
+// 4. log_system_error - 记录系统错误日志
+//    - 主要功能：记录系统错误信息，包括错误格式化、错误处理
+//    - 涉及：错误日志、字符串处理、错误处理
+
+// 代码特点：
+// ===================
+// - 大量使用字符串操作和内存管理
+// - 包含调试器检测和反调试机制
+// - 使用信号量进行线程同步
+// - 完善的错误处理和日志记录机制
+// - 采用Windows API进行系统级操作

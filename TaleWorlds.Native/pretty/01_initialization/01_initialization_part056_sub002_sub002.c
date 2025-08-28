@@ -98,192 +98,229 @@ void initialize_skeletal_animation_system(longlong animation_context)
   undefined8 stack_data2;        // 堆栈数据2
   int *temp_stack_ptr;           // 临时堆栈指针
   undefined4 temp_stack_flags;   // 临时堆栈标志
-  undefined8 uStack_180;
-  float fStack_178;
-  float fStack_174;
-  longlong lStack_170;
-  longlong *plStack_168;
-  longlong *plStack_160;
-  undefined4 uStack_158;
-  undefined1 auStack_150 [16];
-  undefined8 uStack_140;
-  undefined4 uStack_138;
-  undefined4 *puStack_130;
-  undefined8 uStack_128;
-  undefined8 uStack_120;
-  undefined4 uStack_118;
-  undefined8 uStack_110;
-  undefined8 uStack_108;
-  undefined8 uStack_100;
-  undefined8 uStack_f8;
-  undefined8 uStack_f0;
-  undefined8 uStack_e8;
-  undefined8 uStack_e0;
-  undefined8 uStack_d8;
-  undefined8 uStack_d0;
-  undefined8 uStack_c8;
-  undefined8 uStack_c0;
-  undefined8 uStack_b8;
-  undefined4 uStack_b0;
+  undefined8 temp_matrix;          // 临时矩阵
+  float normal_length;            // 法线长度
+  float inv_normal_length;       // 反向法线长度
+  longlong main_frame_addr;      // 主帧地址
+  longlong *frame_array_ptr;     // 帧数组指针
+  longlong *temp_array_ptr2;     // 临时数组指针2
+  undefined4 frame_flags;        // 帧标志
+  undefined1 transform_buffer[16]; // 变换缓冲区
+  undefined8 buffer_data1;       // 缓冲区数据1
+  undefined4 buffer_flags;       // 缓冲区标志
+  undefined4 *bone_weights;      // 骨骼权重
+  undefined8 weight_data1;        // 权重数据1
+  undefined8 weight_data2;        // 权重数据2
+  undefined4 weight_flags;        // 权重标志
+  undefined8 animation_data1;     // 动画数据1
+  undefined8 animation_data2;     // 动画数据2
+  undefined8 animation_data3;     // 动画数据3
+  undefined8 frame_data1;         // 帧数据1
+  undefined8 frame_data2;         // 帧数据2
+  undefined8 frame_data3;         // 帧数据3
+  undefined8 frame_data4;         // 帧数据4
+  undefined8 frame_data5;         // 帧数据5
+  undefined8 frame_data6;         // 帧数据6
+  undefined8 frame_data7;         // 帧数据7
+  undefined8 frame_data8;         // 帧数据8
+  undefined8 frame_data9;         // 帧数据9
+  undefined8 frame_data10;        // 帧数据10
+  undefined8 frame_data11;        // 帧数据11
+  undefined8 frame_data12;        // 帧数据12
+  undefined4 frame_end_flag;      // 帧结束标志
   
-  uStack_110 = 0xfffffffffffffffe;
-  piVar1 = (int *)(param_1 + 0x60);
-  iVar27 = *piVar1;
-  iVar11 = *(int *)(param_1 + 0x88);
-  uVar28 = (ulonglong)iVar11;
-  iStack_1e8 = *(int *)(param_1 + 0x10);
-  puStack_130 = (undefined4 *)0x0;
-  uStack_128 = 0;
-  uStack_120 = 0;
-  uStack_118 = 3;
-  FUN_180080ca0(&puStack_130,uVar28);
-  uVar41 = uVar28;
-  puVar29 = puStack_130;
-  if (0 < iVar11) {
-    for (; uVar41 != 0; uVar41 = uVar41 - 1) {
-      *puVar29 = 1;
-      puVar29 = puVar29 + 1;
+  animation_data1 = 0xfffffffffffffffe;  // 初始化动画数据1
+  bone_count_ptr = (int *)(animation_context + 0x60);  // 获取骨骼数量指针
+  frame_index = *bone_count_ptr;        // 获取帧索引
+  bone_count = *(int *)(animation_context + 0x88);  // 获取骨骼数量
+  memory_size = (ulonglong)bone_count;  // 计算内存大小
+  total_frames = *(int *)(animation_context + 0x10);  // 获取总帧数
+  bone_weights = (undefined4 *)0x0;     // 初始化骨骼权重为NULL
+  weight_data1 = 0;                     // 初始化权重数据1
+  weight_data2 = 0;                     // 初始化权重数据2
+  weight_flags = 3;                     // 初始化权重标志
+  FUN_180080ca0(&bone_weights, memory_size);  // 分配骨骼权重内存
+  temp_size1 = memory_size;            // 临时存储内存大小
+  buffer_ptr = bone_weights;           // 设置缓冲区指针
+  if (0 < bone_count) {                // 如果骨骼数量大于0
+    for (; temp_size1 != 0; temp_size1 = temp_size1 - 1) {
+      *buffer_ptr = 1;                 // 初始化所有骨骼权重为1
+      buffer_ptr = buffer_ptr + 1;     // 移动到下一个权重
     }
   }
-  auStack_150 = ZEXT816(0);
-  uStack_140 = 0;
-  uStack_138 = 3;
-  lVar21 = (ulonglong)*(ushort *)(param_1 + 0xc0) + 1;
-  if (lVar21 == 0) {
-    lVar21 = 0;
-    auStack_150 = ZEXT816(0) << 0x40;
+  transform_buffer = ZEXT816(0);        // 初始化变换缓冲区
+  buffer_data1 = 0;                   // 初始化缓冲区数据1
+  buffer_flags = 3;                   // 初始化缓冲区标志
+  vertex_data_addr = (ulonglong)*(ushort *)(animation_context + 0xc0) + 1;  // 计算顶点数据地址
+  
+  // 处理顶点数据缓冲区分配
+  if (vertex_data_addr == 0) {
+    vertex_data_addr = 0;              // 如果地址为0，保持为0
+    transform_buffer = ZEXT816(0) << 0x40;  // 设置变换缓冲区
   }
   else {
-    FUN_180082290(auStack_150,lVar21);
-    lVar21 = auStack_150._0_8_;
+    FUN_180082290(transform_buffer, vertex_data_addr);  // 分配变换缓冲区
+    vertex_data_addr = transform_buffer._0_8_;  // 获取缓冲区地址
   }
-  pauStack_1e0 = (undefined1 (*) [16])(ulonglong)*(ushort *)(param_1 + 0xc0);
-  lVar23 = -1;
+  
+  matrix_buffer = (undefined1 (*) [16])(ulonglong)*(ushort *)(animation_context + 0xc0);  // 设置矩阵缓冲区
+  current_bone = -1;                     // 初始化当前骨骼为-1
   do {
-    lVar31 = lVar23 + 1;
-    lVar22 = lVar31 * 0x20;
-    lVar17 = *(longlong *)(lVar21 + 8 + lVar22);
-    lVar24 = *(longlong *)(lVar21 + lVar22);
-    uVar41 = lVar17 - lVar24 >> 4;
-    if (uVar41 < uVar28) {
-      uVar30 = uVar28 - uVar41;
-      if ((ulonglong)(*(longlong *)(lVar21 + 0x10 + lVar22) - lVar17 >> 4) < uVar30) {
-        if (uVar41 == 0) {
-          uVar41 = 1;
+    temp_addr2 = current_bone + 1;      // 计算临时地址2
+    data_offset = temp_addr2 * 0x20;    // 计算数据偏移
+    animation_data_addr = *(longlong *)(vertex_data_addr + 8 + data_offset);  // 获取动画数据地址
+    frame_data_addr = *(longlong *)(vertex_data_addr + data_offset);  // 获取帧数据地址
+    temp_size1 = animation_data_addr - frame_data_addr >> 4;  // 计算临时大小1
+    
+    // 检查是否需要重新分配内存
+    if (temp_size1 < memory_size) {
+      array_size = memory_size - temp_size1;  // 计算数组大小
+      if ((ulonglong)(*(longlong *)(vertex_data_addr + 0x10 + data_offset) - animation_data_addr >> 4) < array_size) {
+        // 计算新的缓冲区大小
+        if (temp_size1 == 0) {
+          temp_size1 = 1;
         }
         else {
-          uVar41 = uVar41 * 2;
+          temp_size1 = temp_size1 * 2;
         }
-        if (uVar41 < uVar28) {
-          uVar41 = uVar28;
+        if (temp_size1 < memory_size) {
+          temp_size1 = memory_size;
         }
-        if (uVar41 == 0) {
-          lVar12 = 0;
+        
+        // 分配新的内存
+        if (temp_size1 == 0) {
+          temp_addr1 = 0;
         }
         else {
-          lVar12 = FUN_18062b420(_DAT_180c8ed18,uVar41 << 4,*(undefined1 *)(lVar21 + 0x18 + lVar22))
-          ;
-          lVar17 = *(longlong *)(lVar21 + 8 + lVar22);
-          lVar24 = *(longlong *)(lVar21 + lVar22);
+          temp_addr1 = FUN_18062b420(_DAT_180c8ed18, temp_size1 << 4, *(undefined1 *)(vertex_data_addr + 0x18 + data_offset));
+          animation_data_addr = *(longlong *)(vertex_data_addr + 8 + data_offset);
+          frame_data_addr = *(longlong *)(vertex_data_addr + data_offset);
         }
-        if (lVar24 != lVar17) {
-                    // WARNING: Subroutine does not return
-          memmove(lVar12,lVar24,lVar17 - lVar24);
+        
+        // 移动现有数据
+        if (frame_data_addr != animation_data_addr) {
+          // WARNING: Subroutine does not return
+          memmove(temp_addr1, frame_data_addr, animation_data_addr - frame_data_addr);
         }
-        if (uVar30 != 0) {
-                    // WARNING: Subroutine does not return
-          memset(lVar12,0,uVar30 * 0x10);
+        
+        // 清零新分配的内存
+        if (array_size != 0) {
+          // WARNING: Subroutine does not return
+          memset(temp_addr1, 0, array_size * 0x10);
         }
-        if (*(longlong *)(lVar21 + lVar22) != 0) {
-                    // WARNING: Subroutine does not return
+        
+        // 释放旧内存
+        if (*(longlong *)(vertex_data_addr + data_offset) != 0) {
+          // WARNING: Subroutine does not return
           FUN_18064e900();
         }
-        *(longlong *)(lVar21 + lVar22) = lVar12;
-        *(longlong *)(lVar21 + 8 + lVar22) = lVar12;
-        *(ulonglong *)(lVar21 + 0x10 + lVar22) = uVar41 * 0x10 + lVar12;
+        *(longlong *)(vertex_data_addr + data_offset) = temp_addr1;  // 更新顶点数据地址
+        *(longlong *)(vertex_data_addr + 8 + data_offset) = temp_addr1;  // 更新动画数据地址
+        *(ulonglong *)(vertex_data_addr + 0x10 + data_offset) = temp_size1 * 0x10 + temp_addr1;  // 更新数据大小
       }
       else {
-        if (uVar30 != 0) {
-                    // WARNING: Subroutine does not return
-          memset(lVar17,0,uVar30 * 0x10);
+        // 如果不需要重新分配，直接清零扩展的内存
+        if (array_size != 0) {
+          // WARNING: Subroutine does not return
+          memset(animation_data_addr, 0, array_size * 0x10);
         }
-        *(longlong *)(lVar21 + 8 + lVar22) = lVar17;
+        *(longlong *)(vertex_data_addr + 8 + data_offset) = animation_data_addr;  // 更新动画数据地址
       }
     }
     else {
-      *(ulonglong *)(lVar21 + 8 + lVar22) = uVar28 * 0x10 + lVar24;
+      // 如果现有空间足够，直接设置结束地址
+      *(ulonglong *)(vertex_data_addr + 8 + data_offset) = memory_size * 0x10 + frame_data_addr;
     }
-    uVar36 = 0;
-    uVar41 = uVar36;
-    uVar30 = uVar36;
-    uVar38 = uVar28;
-    if (0 < (longlong)uVar28) {
+    buffer_size1 = 0;                    // 初始化缓冲区大小1
+    temp_size1 = buffer_size1;        // 临时存储缓冲区大小1
+    array_size = buffer_size1;         // 设置数组大小
+    buffer_size2 = memory_size;        // 设置缓冲区大小2
+    
+    // 遍历所有骨骼计算变换矩阵
+    if (0 < (longlong)memory_size) {
       do {
-        lVar21 = *(longlong *)(param_1 + 0x90);
-        lVar24 = (longlong)*(int *)(lVar21 + 8 + uVar41);
-        lVar17 = (longlong)*(int *)(lVar21 + 4 + uVar41) * 0x5c;
-        if (lVar23 == -1) {
-          lVar12 = *(longlong *)(param_1 + 0x68);
-          lVar40 = *(longlong *)(param_1 + 0x18);
-          lVar17 = (longlong)*(int *)(lVar17 + lVar12);
-          lVar21 = (longlong)*(int *)((longlong)*(int *)(lVar21 + uVar41) * 0x5c + lVar12);
-          fVar48 = *(float *)(lVar40 + 8 + lVar21 * 0x10);
-          fVar49 = *(float *)(lVar40 + 8 + lVar17 * 0x10) - fVar48;
-          fVar5 = *(float *)(lVar40 + 4 + lVar21 * 0x10);
-          fVar52 = *(float *)(lVar40 + 4 + lVar17 * 0x10);
-          fVar51 = *(float *)(lVar40 + lVar21 * 0x10);
-          lVar21 = (longlong)*(int *)(lVar24 * 0x5c + lVar12);
-          fVar48 = *(float *)(lVar40 + 8 + lVar21 * 0x10) - fVar48;
-          fVar45 = *(float *)(lVar40 + 4 + lVar21 * 0x10);
-          fVar46 = *(float *)(lVar40 + lVar17 * 0x10);
-          fVar53 = *(float *)(lVar40 + lVar21 * 0x10);
+        vertex_data_addr = *(longlong *)(animation_context + 0x90);  // 获取顶点数据地址
+        frame_data_addr = (longlong)*(int *)(vertex_data_addr + 8 + temp_size1);  // 获取帧数据地址
+        animation_data_addr = (longlong)*(int *)(vertex_data_addr + 4 + temp_size1) * 0x5c;  // 获取动画数据地址
+        
+        // 根据当前骨骼类型选择不同的计算方式
+        if (current_bone == -1) {
+          // 基础骨骼变换计算
+          temp_addr1 = *(longlong *)(animation_context + 0x68);  // 获取临时地址1
+          temp_addr3 = *(longlong *)(animation_context + 0x18);   // 获取临时地址3
+          animation_data_addr = (longlong)*(int *)(animation_data_addr + temp_addr1);  // 计算动画数据地址
+          vertex_data_addr = (longlong)*(int *)((longlong)*(int *)(vertex_data_addr + temp_size1) * 0x5c + temp_addr1);  // 计算顶点数据地址
+          
+          // 读取向量分量
+          normal_x = *(float *)(temp_addr3 + 8 + vertex_data_addr * 0x10);  // 读取法线X分量
+          normal_y = *(float *)(temp_addr3 + 8 + animation_data_addr * 0x10) - normal_x;  // 计算法线Y分量差值
+          vector_x = *(float *)(temp_addr3 + 4 + vertex_data_addr * 0x10);  // 读取向量X分量
+          vector1_y = *(float *)(temp_addr3 + 4 + animation_data_addr * 0x10);  // 读取向量1的Y分量
+          vector1_z = *(float *)(temp_addr3 + vertex_data_addr * 0x10);  // 读取向量1的Z分量
+          
+          vertex_data_addr = (longlong)*(int *)(frame_data_addr * 0x5c + temp_addr1);  // 重新计算顶点数据地址
+          normal_x = *(float *)(temp_addr3 + 8 + vertex_data_addr * 0x10) - normal_x;  // 重新计算法线X分量
+          vector_y = *(float *)(temp_addr3 + 4 + vertex_data_addr * 0x10);  // 读取向量Y分量
+          vector_z = *(float *)(temp_addr3 + animation_data_addr * 0x10);  // 读取向量Z分量
+          vector1_x = *(float *)(temp_addr3 + vertex_data_addr * 0x10);  // 读取向量1的X分量
         }
         else {
-          lVar12 = *(longlong *)(param_1 + 0x68);
-          lVar40 = *(longlong *)(lVar23 * 0x50 + *(longlong *)(param_1 + 0xb0) + 8);
-          lVar17 = (longlong)*(int *)(lVar17 + lVar12);
-          lVar21 = (longlong)*(int *)((longlong)*(int *)(lVar21 + uVar41) * 0x5c + lVar12);
-          fVar48 = *(float *)(lVar40 + 8 + lVar21 * 0x10);
-          fVar49 = *(float *)(lVar40 + 8 + lVar17 * 0x10) - fVar48;
-          fVar5 = *(float *)(lVar40 + 4 + lVar21 * 0x10);
-          fVar52 = *(float *)(lVar40 + 4 + lVar17 * 0x10);
-          fVar51 = *(float *)(lVar40 + lVar21 * 0x10);
-          lVar21 = (longlong)*(int *)(lVar24 * 0x5c + lVar12);
-          fVar48 = *(float *)(lVar40 + 8 + lVar21 * 0x10) - fVar48;
-          fVar45 = *(float *)(lVar40 + 4 + lVar21 * 0x10);
-          fVar46 = *(float *)(lVar40 + lVar17 * 0x10);
-          fVar53 = *(float *)(lVar40 + lVar21 * 0x10);
+          // 高级骨骼变换计算
+          temp_addr1 = *(longlong *)(animation_context + 0x68);  // 获取临时地址1
+          temp_addr3 = *(longlong *)(current_bone * 0x50 + *(longlong *)(animation_context + 0xb0) + 8);  // 获取临时地址3
+          animation_data_addr = (longlong)*(int *)(animation_data_addr + temp_addr1);  // 计算动画数据地址
+          vertex_data_addr = (longlong)*(int *)((longlong)*(int *)(vertex_data_addr + temp_size1) * 0x5c + temp_addr1);  // 计算顶点数据地址
+          
+          // 读取变换矩阵数据
+          normal_x = *(float *)(temp_addr3 + 8 + vertex_data_addr * 0x10);  // 读取法线X分量
+          normal_y = *(float *)(temp_addr3 + 8 + animation_data_addr * 0x10) - normal_x;  // 计算法线Y分量差值
+          vector_x = *(float *)(temp_addr3 + 4 + vertex_data_addr * 0x10);  // 读取向量X分量
+          vector1_y = *(float *)(temp_addr3 + 4 + animation_data_addr * 0x10);  // 读取向量1的Y分量
+          vector1_z = *(float *)(temp_addr3 + vertex_data_addr * 0x10);  // 读取向量1的Z分量
+          
+          vertex_data_addr = (longlong)*(int *)(frame_data_addr * 0x5c + temp_addr1);  // 重新计算顶点数据地址
+          normal_x = *(float *)(temp_addr3 + 8 + vertex_data_addr * 0x10) - normal_x;  // 重新计算法线X分量
+          vector_y = *(float *)(temp_addr3 + 4 + vertex_data_addr * 0x10);  // 读取向量Y分量
+          vector_z = *(float *)(temp_addr3 + animation_data_addr * 0x10);  // 读取向量Z分量
+          vector1_x = *(float *)(temp_addr3 + vertex_data_addr * 0x10);  // 读取向量1的X分量
         }
-        fVar50 = (fVar46 - fVar51) * (fVar45 - fVar5) - (fVar52 - fVar5) * (fVar53 - fVar51);
-        fVar51 = fVar49 * (fVar53 - fVar51) - fVar48 * (fVar46 - fVar51);
-        fVar48 = fVar48 * (fVar52 - fVar5) - fVar49 * (fVar45 - fVar5);
-        fStack_174 = SQRT(fVar51 * fVar51 + fVar48 * fVar48 + fVar50 * fVar50);
-        if (fStack_174 <= 0.0) {
-          fVar48 = 0.0;
-          fVar51 = 0.0;
-          fStack_178 = 1.0;
-          fStack_174 = 1.0;
+        // 计算向量叉积（法线向量）
+        normal_z = (vector_z - vector1_z) * (vector_y - vector_x) - (vector1_y - vector_x) * (vector1_x - vector1_z);
+        vector1_z = normal_y * (vector1_x - vector1_z) - normal_x * (vector_z - vector1_z);
+        normal_x = normal_x * (vector1_y - vector_x) - normal_y * (vector_y - vector_x);
+        
+        // 计算向量长度并进行归一化
+        normal_length = SQRT(vector1_z * vector1_z + normal_x * normal_x + normal_z * normal_z);
+        if (normal_length <= 0.0) {
+          normal_x = 0.0;           // 如果长度为0，设置默认值
+          vector1_z = 0.0;
+          inv_normal_length = 1.0;
+          normal_length = 1.0;
         }
         else {
-          fStack_178 = 1.0 / fStack_174;
-          fVar48 = fVar48 * fStack_178;
-          fVar51 = fStack_178 * fVar51;
-          fStack_178 = fStack_178 * fVar50;
+          inv_normal_length = 1.0 / normal_length;  // 计算反向长度
+          normal_x = normal_x * inv_normal_length;  // 归一化X分量
+          vector1_z = inv_normal_length * vector1_z;  // 归一化Z分量
+          inv_normal_length = inv_normal_length * normal_z;  // 归一化长度并存储
         }
-        uStack_180 = CONCAT44(fVar51,fVar48);
-        pfVar18 = (float *)(*(longlong *)(auStack_150._0_8_ + lVar22) + uVar30);
-        *pfVar18 = fVar48;
-        pfVar18[1] = fVar51;
-        pfVar18[2] = fStack_178;
-        pfVar18[3] = fStack_174;
-        uVar38 = uVar38 - 1;
-        uVar41 = uVar41 + 0xc;
-        uVar30 = uVar30 + 0x10;
-      } while (uVar38 != 0);
+        
+        // 将归一化后的法线向量存储到矩阵中
+        temp_matrix = CONCAT44(vector1_z, normal_x);
+        float_array = (float *)(*(longlong *)(transform_buffer._0_8_ + data_offset) + array_size);
+        *float_array = normal_x;                // 存储X分量
+        float_array[1] = vector1_z;              // 存储Y分量
+        float_array[2] = inv_normal_length;      // 存储Z分量
+        float_array[3] = normal_length;          // 存储长度
+        
+        buffer_size2 = buffer_size2 - 1;         // 减少剩余骨骼数量
+        temp_size1 = temp_size1 + 0xc;           // 移动到下一个骨骼
+        array_size = array_size + 0x10;          // 移动数组指针
+      } while (buffer_size2 != 0);  // 继续处理直到所有骨骼处理完毕
     }
-    lVar21 = auStack_150._0_8_;
-    lVar23 = lVar31;
-  } while (lVar31 < (longlong)pauStack_1e0);
+    
+    vertex_data_addr = transform_buffer._0_8_;  // 重置顶点数据地址
+    current_bone = temp_addr2;                  // 更新当前骨骼
+  } while (temp_addr2 < (longlong)matrix_buffer);  // 继续处理直到所有矩阵处理完毕
   lStack_170 = 0;
   plStack_168 = (longlong *)0x0;
   plStack_160 = (longlong *)0x0;

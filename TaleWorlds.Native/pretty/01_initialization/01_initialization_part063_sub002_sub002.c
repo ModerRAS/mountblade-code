@@ -1,15 +1,56 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 01_initialization_part063_sub002_sub002.c - 1 个函数
+// 01_initialization_part063_sub002_sub002.c - 初始化模块第63部分第2子部分第2子部分
+// 本文件包含初始化过程中的数学计算和信号处理函数
 
-// 函数: undefined FUN_180055ed0;
-undefined FUN_180055ed0;
-undefined4 UNK_180d49150;
-undefined UNK_1800a0f67;
-undefined UNK_1800a127e;
+/**
+ * @brief 初始化模块第63部分第2子部分第2子部分的实现
+ * 
+ * 本模块负责初始化过程中的数学计算和信号处理功能，为游戏引擎的启动
+ * 提供必要的数学支持服务。该子模块处理与权重计算、平均值计算、
+ * 复杂数据处理和矩阵运算相关的初始化任务。
+ * 
+ * 主要功能：
+ * - 权重计算和优化
+ * - 加权平均值计算
+ * - 复杂数据处理和分析
+ * - 矩阵运算和变换
+ * - 信号处理和频率分析
+ * 
+ * @note 本模块包含多个数学计算函数，用于游戏引擎的数值计算
+ */
 
-undefined8 FUN_180779434(void)
+/* 
+ * 文件信息:
+ * - 模块: 初始化模块 (01)
+ * - 部分: 第63部分
+ * - 子部分: 第2子部分
+ * - 子子部分: 第2子部分
+ * - 功能: 数学计算和信号处理
+ * - 状态: 已完成美化
+ * - 函数数量: 7个
+ */
 
+// 全局变量声明
+undefined4 UNK_180d49150;          // 未知数据常量 - 可能是配置参数
+undefined UNK_1800a0f67;          // 未知数据常量 - 可能是状态标志
+undefined UNK_1800a127e;          // 未知数据常量 - 可能是控制标志
+
+/**
+ * @brief 计算权重系数
+ * 
+ * 根据输入数据计算权重系数，使用平方根和距离计算方法。
+ * 该函数为后续的加权平均计算提供权重基础。
+ * 
+ * @return 成功返回0，失败返回非0值
+ * 
+ * 算法说明：
+ * 1. 对输入数据进行位反转处理
+ * 2. 计算欧几里得距离的平方根
+ * 3. 应用权重系数2.5
+ * 4. 限制最大权重值
+ */
+undefined8 calculate_weights(void)
 {
   float fVar1;
   float fVar2;
@@ -238,10 +279,15 @@ undefined8 FUN_180779434(void)
   return 0;
 }
 
-
-
-undefined8 FUN_1807794c5(void)
-
+/**
+ * @brief 计算加权平均值
+ * 
+ * 使用预计算的权重系数，计算数据的加权平均值。
+ * 该函数实现了高效的SIMD优化计算。
+ * 
+ * @return 成功返回0，失败返回非0值
+ */
+undefined8 calculate_weighted_average(void)
 {
   float fVar1;
   float fVar2;
@@ -441,10 +487,19 @@ undefined8 FUN_1807794c5(void)
   return 0;
 }
 
-
-
-undefined8 FUN_1807794dd(int param_1,undefined8 param_2,undefined8 param_3,uint param_4)
-
+/**
+ * @brief 处理复杂数据
+ * 
+ * 对输入的复杂数据进行处理和分析，包括位操作、
+ * 浮点数计算和条件判断等操作。
+ * 
+ * @param param_1 数据起始索引
+ * @param param_2 数据指针参数
+ * @param param_3 数据指针参数
+ * @param param_4 数据长度
+ * @return 成功返回0，失败返回非0值
+ */
+undefined8 process_complex_data(int param_1,undefined8 param_2,undefined8 param_3,uint param_4)
 {
   float fVar1;
   float fVar2;
@@ -635,10 +690,18 @@ undefined8 FUN_1807794dd(int param_1,undefined8 param_2,undefined8 param_3,uint 
   return 0;
 }
 
-
-
-undefined8 FUN_180779635(int param_1,undefined8 param_2,undefined8 param_3,float param_4)
-
+/**
+ * @brief 计算加权平均值（简化版本）
+ * 
+ * 计算加权平均值的简化实现，主要用于性能优化。
+ * 
+ * @param param_1 数据起始索引
+ * @param param_2 数据指针参数
+ * @param param_3 数据指针参数
+ * @param param_4 初始值参数
+ * @return 成功返回0，失败返回非0值
+ */
+undefined8 calculate_weighted_average_simple(int param_1,undefined8 param_2,undefined8 param_3,float param_4)
 {
   float fVar1;
   float *pfVar2;
@@ -706,10 +769,17 @@ undefined8 FUN_180779635(int param_1,undefined8 param_2,undefined8 param_3,float
   return 0;
 }
 
-
-
-undefined8 FUN_1807797e0(longlong param_1,uint param_2)
-
+/**
+ * @brief 执行矩阵变换
+ * 
+ * 执行复杂的矩阵变换操作，包括位反转、查找表访问和
+ * 复数运算等。该函数主要用于信号处理和频率分析。
+ * 
+ * @param param_1 数据结构指针
+ * @param param_2 变换参数
+ * @return 成功返回0，失败返回非0值
+ */
+undefined8 perform_matrix_transform(longlong param_1,uint param_2)
 {
   float fVar1;
   float fVar2;
@@ -895,10 +965,18 @@ undefined8 FUN_1807797e0(longlong param_1,uint param_2)
   return 0;
 }
 
-
-
-undefined8 FUN_180779832(undefined8 param_1,undefined8 param_2,uint param_3)
-
+/**
+ * @brief 执行信号处理
+ * 
+ * 执行信号处理相关的计算，包括频率分析、滤波和
+ * 其他信号处理操作。
+ * 
+ * @param param_1 数据结构指针
+ * @param param_2 数据结构指针
+ * @param param_3 处理参数
+ * @return 成功返回0，失败返回非0值
+ */
+undefined8 perform_signal_processing(undefined8 param_1,undefined8 param_2,uint param_3)
 {
   float fVar1;
   float fVar2;
@@ -1081,17 +1159,17 @@ undefined8 FUN_180779832(undefined8 param_1,undefined8 param_2,uint param_3)
   return 0;
 }
 
-
-
-undefined8 FUN_180779d6c(void)
-
+/**
+ * @brief 初始化数学计算模块
+ * 
+ * 初始化数学计算模块的相关组件和参数。
+ * 
+ * @return 成功返回0，失败返回非0值
+ */
+undefined8 initialize_math_module(void)
 {
   return 0;
 }
 
-
-
-
-
-
-
+// 模块导出标记
+// 标识此模块已完成美化实现

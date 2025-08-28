@@ -1,6 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part007.c - 25 个函数
+// 02_core_engine_part007.c - 核心引擎组件注册函数
+// 本文件包含25个函数，主要用于注册各种引擎组件和初始化系统
 
 // 函数: void FUN_180039eb0(void)
 void FUN_180039eb0(void)
