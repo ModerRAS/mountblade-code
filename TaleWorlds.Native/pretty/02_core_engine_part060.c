@@ -437,12 +437,20 @@ LAB_180097ca1:
 
 
 
-// 函数: void FUN_180097d40(void)
-void FUN_180097d40(void)
-
+/**
+ * @brief 系统工具函数 - 系统级工具操作函数
+ * 
+ * 这是一个系统级工具函数，主要用于执行特定的系统操作或工具功能。
+ * 该函数调用了更深层的系统功能，通常用于系统维护或特殊操作。
+ * 
+ * @return void
+ * 
+ * 注意：此函数不返回，调用后程序流程将转移到被调用的函数中。
+ */
+void SystemUtilityFunction(void)
 {
-                    // WARNING: Subroutine does not return
-  FUN_1808fd200();
+    // 调用深层系统功能
+    FUN_1808fd200();
 }
 
 
