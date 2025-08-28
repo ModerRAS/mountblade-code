@@ -1428,12 +1428,51 @@ void SystemOperation_ExecuteWithFlags(longlong param_1, undefined8 param_2, unde
 
 
 
-// 函数: void FUN_1803aa030(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1803aa030(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * 函数: SystemOperation_ExecuteAlternative
+ * 
+ * 描述:
+ * 执行系统操作的替代包装函数，提供与 SystemOperation_ExecuteWithFlags 相同的功能。
+ * 该函数作为 SystemOperation_ExecuteWithFlags 的替代实现，可能在不同的上下文或条件下使用。
+ * 
+ * 参数:
+ * - param_1: 系统上下文指针，包含操作所需的系统状态信息
+ * - param_2: 保留参数（未使用）
+ * - param_3: 操作参数3，传递给核心处理函数
+ * - param_4: 操作参数4，传递给核心处理函数
+ * 
+ * 返回值:
+ * 无返回值 (void)
+ * 
+ * 异常处理:
+ * - 通过核心处理函数 FUN_1803aeb70 提供异常处理机制
+ * - 使用固定的操作标志 0xfffffffffffffffe 确保操作的一致性
+ * 
+ * 算法复杂度:
+ * - 时间复杂度: 取决于核心处理函数 FUN_1803aeb70 的复杂度
+ * - 空间复杂度: O(1)，仅使用传入的参数
+ * 
+ * 依赖项:
+ * - FUN_1803aeb70: 核心系统操作处理函数
+ * 
+ * 线程安全:
+ * 线程安全性取决于核心处理函数 FUN_1803aeb70 的实现。
+ * 
+ * 使用示例:
+ * ```c
+ * SystemOperation_ExecuteAlternative(system_context, 0, param3, param4);
+ * ```
+ * 
+ * 注意:
+ * 该函数与 SystemOperation_ExecuteWithFlags 功能完全相同，可能是为了提供不同的调用接口
+ * 或用于不同的系统上下文中。
+ */
+void SystemOperation_ExecuteAlternative(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  FUN_1803aeb70(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
-  return;
+    // 提取系统上下文中的参数并调用核心处理函数
+    FUN_1803aeb70(param_1, *(undefined8 *)(param_1 + SYSTEM_CONTEXT_PARAM_OFFSET), param_3, param_4, SYSTEM_OPERATION_FLAGS);
+    
+    return;
 }
 
 
