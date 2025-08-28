@@ -116,6 +116,11 @@ static UIMemoryBuffer g_memory_buffers[4] = {0}; // 内存缓冲区数组
 #define UISystem_Allocator FUN_180831260
 #define UISystem_Deallocator FUN_180831300
 #define UISystem_ResetHandler FUN_180831311
+#define UISystem_InternalValidator FUN_1808313c0
+#define UISystem_SystemInitializer FUN_180830440
+#define UISystem_MemoryAllocator FUN_1807c4200
+#define UISystem_MemoryDeallocator FUN_1807c41d0
+#define UISystem_MemoryReallocator FUN_1807c4260
 
 // 辅助函数声明
 static float ui_calculate_mix_weight(float base_weight, int32_t iteration);
