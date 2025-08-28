@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingEngineCore */
+#define RenderingEngineCore RenderingEngineCore
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -337,7 +341,7 @@ void FUN_1803ffb40(uint64_t *param_1,uint64_t param_2,int64_t param_3,uint param
       do {
         if (*plVar12 != 0) {
           uStack_4e8 = 0xffffffff;
-          FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),iVar10,*plVar12,0x10);
+          RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),iVar10,*plVar12,0x10);
         }
         iVar10 = iVar10 + 1;
         plVar12 = plVar12 + 1;

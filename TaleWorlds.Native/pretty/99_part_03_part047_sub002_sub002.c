@@ -328,7 +328,7 @@ LAB_1801fb064:
         if (lVar21 != 0) {
           lVar20 = lVar21;
         }
-        FUN_180627c50(&puStack_130,lVar20);
+        CoreSystem_ConfigValidator0(&puStack_130,lVar20);
 LAB_1801fb07d:
         uVar6 = uStack_120;
         uVar14 = (uint64_t)uStack_120;

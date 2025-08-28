@@ -167,7 +167,7 @@ LAB_18053ad36:
             if (puVar13[1] != 0) {
               lVar10 = puVar13[1];
             }
-            FUN_180627c50(&puStack_140,lVar10);
+            CoreSystem_ConfigValidator0(&puStack_140,lVar10);
             break;
           }
           lVar10 = (int64_t)&system_param2_ptr - (int64_t)pcVar14;
@@ -221,7 +221,7 @@ LAB_18053ae33:
             if (puVar13[1] != 0) {
               lVar10 = puVar13[1];
             }
-            FUN_180627c50(&puStack_160,lVar10);
+            CoreSystem_ConfigValidator0(&puStack_160,lVar10);
             break;
           }
           lVar10 = (int64_t)&processed_var_8256_ptr - (int64_t)pcVar14;
@@ -312,7 +312,7 @@ LAB_18053afe4:
                 if (puVar13[1] != 0) {
                   lVar10 = puVar13[1];
                 }
-                FUN_180627c50(&puStack_180,lVar10);
+                CoreSystem_ConfigValidator0(&puStack_180,lVar10);
                 break;
               }
               lVar10 = (int64_t)&processed_var_7680_ptr - (int64_t)pcVar7;

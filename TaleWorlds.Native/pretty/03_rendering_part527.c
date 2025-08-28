@@ -91,7 +91,7 @@ LAB_180554446:
         if (puVar15[1] != 0) {
           lVar10 = puVar15[1];
         }
-        FUN_180627c50(&puStack_50,lVar10);
+        CoreSystem_ConfigValidator0(&puStack_50,lVar10);
         lVar10 = *param_1;
         puVar15 = (uint64_t *)param_1[2];
         puVar4 = puVar15;
@@ -299,7 +299,7 @@ LAB_180554794:
           if (puVar9[1] != 0) {
             lVar7 = puVar9[1];
           }
-          FUN_180627c50(&puStack_50,lVar7);
+          CoreSystem_ConfigValidator0(&puStack_50,lVar7);
           break;
         }
         lVar7 = (int64_t)&processed_var_800_ptr - (int64_t)pcVar13;
@@ -408,7 +408,7 @@ LAB_180554970:
           if (puVar10[1] != 0) {
             lVar7 = puVar10[1];
           }
-          FUN_180627c50(&puStack_70,lVar7);
+          CoreSystem_ConfigValidator0(&puStack_70,lVar7);
           break;
         }
         lVar7 = (int64_t)&ui_system_data_1288_ptr - (int64_t)pcVar13;
@@ -478,7 +478,7 @@ LAB_180554ab0:
           if (puVar10[1] != 0) {
             lVar7 = puVar10[1];
           }
-          FUN_180627c50(&puStack_90,lVar7);
+          CoreSystem_ConfigValidator0(&puStack_90,lVar7);
           break;
         }
         lVar7 = (int64_t)&memory_allocator_3216_ptr - (int64_t)pcVar13;
@@ -732,7 +732,7 @@ LAB_180554f73:
           if (puVar14[1] != 0) {
             lVar4 = puVar14[1];
           }
-          FUN_180627c50(&puStack_60,lVar4);
+          CoreSystem_ConfigValidator0(&puStack_60,lVar4);
           break;
         }
         lVar4 = (int64_t)&ui_system_data_1288_ptr - (int64_t)pcVar13;
@@ -934,7 +934,7 @@ LAB_180555246:
         if (puVar15[1] != 0) {
           lVar10 = puVar15[1];
         }
-        FUN_180627c50(&puStack_50,lVar10);
+        CoreSystem_ConfigValidator0(&puStack_50,lVar10);
         lVar10 = *param_1;
         puVar15 = (uint64_t *)param_1[2];
         puVar4 = puVar15;

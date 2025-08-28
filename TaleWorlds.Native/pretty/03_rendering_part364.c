@@ -253,7 +253,7 @@ LAB_180466b24:
               if (puVar13[1] != 0) {
                 lVar12 = puVar13[1];
               }
-              FUN_180627c50(&puStack_218,lVar12);
+              CoreSystem_ConfigValidator0(&puStack_218,lVar12);
               puStackX_8 = &uStack_1b8;
               uVar5 = SystemCore_NetworkHandler0(&uStack_1b8,&puStack_218);
               uVar3 = FUN_1804660e0(extraout_XMM0_Da,uVar5);
@@ -294,7 +294,7 @@ LAB_180466bf0:
               if (puVar13[1] != 0) {
                 lVar12 = puVar13[1];
               }
-              FUN_180627c50(&puStack_278,lVar12);
+              CoreSystem_ConfigValidator0(&puStack_278,lVar12);
               break;
             }
             lVar12 = (int64_t)&ui_system_data_1440_ptr - (int64_t)pcVar16;

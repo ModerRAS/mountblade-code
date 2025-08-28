@@ -352,7 +352,7 @@ void FUN_180054360(int64_t *param_1,int64_t param_2)
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar5 = *(void **)(param_2 + 8);
   }
-  FUN_180627c50(&puStack_1c0,puVar5);
+  CoreSystem_ConfigValidator0(&puStack_1c0,puVar5);
   uStack_1a0 = 0;
   uStack_19c = uStack_19c & 0xffffff00;
   uVar3 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x60d30,0x10,0x1f);

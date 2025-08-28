@@ -179,7 +179,7 @@ LAB_18040a580:
               if (puVar10[1] != 0) {
                 lVar14 = puVar10[1];
               }
-              FUN_180627c50(&puStack_128,lVar14);
+              CoreSystem_ConfigValidator0(&puStack_128,lVar14);
               puVar8 = (uint64_t *)&system_data_aec0;
               puVar10 = render_system_control_config;
               if (render_system_control_config == (uint64_t *)0x0) goto LAB_18040a672;

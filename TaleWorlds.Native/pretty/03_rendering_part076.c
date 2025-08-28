@@ -173,7 +173,7 @@ LAB_18030bfe4:
         if (puVar9[1] != 0) {
           lVar10 = puVar9[1];
         }
-        param_1 = FUN_180627c50(&puStack_1d0,lVar10);
+        param_1 = CoreSystem_ConfigValidator0(&puStack_1d0,lVar10);
         break;
       }
       lVar10 = (int64_t)&processed_var_4288_ptr - (int64_t)pcVar21;
@@ -359,7 +359,7 @@ LAB_18030c270:
         if (puVar18[1] != 0) {
           lVar10 = puVar18[1];
         }
-        FUN_180627c50(&puStack_70,lVar10);
+        CoreSystem_ConfigValidator0(&puStack_70,lVar10);
         break;
       }
       lVar10 = (int64_t)&system_data_3a84 - (int64_t)pcVar21;

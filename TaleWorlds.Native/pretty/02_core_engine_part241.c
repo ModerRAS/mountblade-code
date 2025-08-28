@@ -220,7 +220,7 @@ LAB_180209e40:
                       if (puVar13[1] != 0) {
                         lVar11 = puVar13[1];
                       }
-                      FUN_180627c50(&puStack_e8,lVar11);
+                      CoreSystem_ConfigValidator0(&puStack_e8,lVar11);
                       break;
                     }
                     lVar11 = (int64_t)&processed_var_7680_ptr - (int64_t)pcVar14;
@@ -267,7 +267,7 @@ LAB_180209f34:
                         if (puVar13[1] != 0) {
                           lVar11 = puVar13[1];
                         }
-                        FUN_180627c50(&puStack_c8,lVar11);
+                        CoreSystem_ConfigValidator0(&puStack_c8,lVar11);
                         break;
                       }
                       lVar11 = (int64_t)&system_data_3a84 - (int64_t)pcVar14;
@@ -333,7 +333,7 @@ LAB_18020a094:
                           if (puVar13[1] != 0) {
                             lVar11 = puVar13[1];
                           }
-                          FUN_180627c50(&puStack_a8,lVar11);
+                          CoreSystem_ConfigValidator0(&puStack_a8,lVar11);
                           break;
                         }
                         lVar11 = (int64_t)&system_data_3a84 - (int64_t)pcVar14;
@@ -399,7 +399,7 @@ LAB_18020a1f4:
                             if (puVar13[1] != 0) {
                               lVar11 = puVar13[1];
                             }
-                            FUN_180627c50(&puStack_128,lVar11);
+                            CoreSystem_ConfigValidator0(&puStack_128,lVar11);
                             break;
                           }
                           lVar11 = (int64_t)&system_data_3a84 - (int64_t)pcVar14;
@@ -553,7 +553,7 @@ LAB_18020a4d0:
                       if (puVar13[1] != 0) {
                         lVar11 = puVar13[1];
                       }
-                      FUN_180627c50(&puStack_108,lVar11);
+                      CoreSystem_ConfigValidator0(&puStack_108,lVar11);
                       break;
                     }
                     lVar11 = (int64_t)&system_data_3a84 - (int64_t)pcVar15;

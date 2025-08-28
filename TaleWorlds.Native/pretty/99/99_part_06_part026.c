@@ -163,7 +163,7 @@ void SceneLevelDataProcessor(void* scene_data, void* level_config)
                                 
                                 // 调用名称处理函数
                                 void* name_processor = &system_data_buffer_ptr;
-                                FUN_180627c50(&name_processor, (long long)name_value);
+                                CoreSystem_ConfigValidator0(&name_processor, (long long)name_value);
                                 break;
                             }
                         }
@@ -299,7 +299,7 @@ void PrefabConfigManager(void* prefab_data, void* config_data, uint64_t config_f
                     }
                     
                     // 调用属性处理函数
-                    FUN_180627c50(&prefab_attr_data, (long long)attr_value_data);
+                    CoreSystem_ConfigValidator0(&prefab_attr_data, (long long)attr_value_data);
                     
                     // 验证属性值
                     long long validation_result = FUN_18020bef0(config_flags, &prefab_attr_data);
@@ -389,7 +389,7 @@ void PrefabConfigManager(void* prefab_data, void* config_data, uint64_t config_f
                     name_attr_value_data = (void*)name_attr_array[1];
                 }
                 
-                FUN_180627c50(&name_attr_data, (long long)name_attr_value_data);
+                CoreSystem_ConfigValidator0(&name_attr_data, (long long)name_attr_value_data);
                 break;
             }
         }
@@ -506,7 +506,7 @@ void PrefabConfigManager(void* prefab_data, void* config_data, uint64_t config_f
                     guid_attr_value_data = (void*)guid_attr_array[1];
                 }
                 
-                FUN_180627c50(&guid_attr_data, (long long)guid_attr_value_data);
+                CoreSystem_ConfigValidator0(&guid_attr_data, (long long)guid_attr_value_data);
                 
                 // 验证GUID格式
                 if (guid_attr_count == 0x26) {

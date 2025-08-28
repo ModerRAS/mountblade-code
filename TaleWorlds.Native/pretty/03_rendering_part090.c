@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingEngineCore */
+#define RenderingEngineCore RenderingEngineCore
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -381,7 +385,7 @@ void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
             
             // 执行渲染变换
             uStack_248 = CONCAT44(uStack_248._4_4_, 0xffffffff);
-            FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8), 0, lVar9, 0x20);
+            RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8), 0, lVar9, 0x20);
             lVar9 = *(int64_t *)(system_message_buffer + 0x1cd8);
             
             if (pcStack_1f0 != (code *)0x0) {

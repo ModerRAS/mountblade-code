@@ -871,7 +871,7 @@ LAB_1802f2dc5:
                                 if (puVar5[1] != 0) {
                                     lVar4 = puVar5[1];
                                 }
-                                FUN_180627c50(&puStack_490, lVar4);
+                                CoreSystem_ConfigValidator0(&puStack_490, lVar4);
                                 goto LAB_1802f2de0;
                             }
                             

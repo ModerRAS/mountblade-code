@@ -775,7 +775,7 @@ FUN_18044d910(int32_t *param_1,char param_2,uint64_t param_3,int32_t param_4,
   uStack_34 = 0x100;
   uStack_30 = 0;
   uStack_2c = 0;
-  FUN_180627c50(&puStack_58,param_5,param_3,param_4,0xfffffffffffffffe);
+  CoreSystem_ConfigValidator0(&puStack_58,param_5,param_3,param_4,0xfffffffffffffffe);
   uStack_38 = 0;
   uStack_34._0_2_ = CONCAT11((char)param_3,1);
   uStack_2c = param_4;

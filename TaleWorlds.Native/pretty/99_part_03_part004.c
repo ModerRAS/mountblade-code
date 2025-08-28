@@ -222,7 +222,7 @@ void FUN_1801c79a0(uint64_t param_1,int64_t param_2,int64_t param_3,uint64_t *pa
     func_0x0001801c7f00();
   }
   else {
-    FUN_180627c50(&puStack_60,&memory_allocator_352_ptr);
+    CoreSystem_ConfigValidator0(&puStack_60,&memory_allocator_352_ptr);
   }
   puVar10 = &system_buffer_ptr;
   if (puStack_58 != (void *)0x0) {

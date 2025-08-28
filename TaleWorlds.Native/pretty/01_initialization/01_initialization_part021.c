@@ -80,7 +80,7 @@ void process_resource_initialization(int64_t *engine_context, int64_t resource_p
   }
   
   // 设置资源名称
-  FUN_180627c50(&module_name, resource_name);
+  CoreSystem_ConfigValidator0(&module_name, resource_name);
   buffer_size = 0;
   buffer_capacity = buffer_capacity & 0xffffff00;  // 对齐到256字节边界
   uint64_t alloc_result = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x60d30,0x10,0x1f);

@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingEngineCore */
+#define RenderingEngineCore RenderingEngineCore
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -48,7 +52,7 @@
 #define RenderingSystem_UpdateShaderParams      FUN_18029cfa0
 #define RenderingSystem_SetRenderMode          FUN_18029d000
 #define RenderingSystem_ApplyTextureSettings   FUN_18029d0a0
-#define RenderingSystem_UpdateRenderState      FUN_18029d150
+#define RenderingSystem_UpdateRenderState      RenderingEngineCore0
 #define RenderingSystem_GenerateRenderInfo     FUN_18029d280
 #define RenderingSystem_CreateRenderReport     FUN_18029d500
 #define RenderingSystem_SetRenderTarget        FUN_18029d760
@@ -348,7 +352,7 @@ void FUN_18029d0a0(int64_t param_1,uint64_t *param_2,int32_t *param_3)
 // param_3: 状态数据指针
 // param_4: 状态参数1
 // param_5: 状态参数2
-void FUN_18029d150(int64_t param_1,int param_2,int64_t param_3,int param_4,int param_5)
+void RenderingEngineCore0(int64_t param_1,int param_2,int64_t param_3,int param_4,int param_5)
 {
   int64_t state_type;
   int64_t state_data_ptr;

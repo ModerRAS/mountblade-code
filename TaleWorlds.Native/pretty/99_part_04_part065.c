@@ -322,7 +322,7 @@ LAB_1802c17a4:
           if (puVar5[1] != 0) {
             lVar10 = puVar5[1];
           }
-          FUN_180627c50(&puStack_1a0,lVar10);
+          CoreSystem_ConfigValidator0(&puStack_1a0,lVar10);
           break;
         }
         lVar10 = (int64_t)&system_flag_6b58 - (int64_t)pcVar7;

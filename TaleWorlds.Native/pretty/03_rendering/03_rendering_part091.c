@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingEngineCore */
+#define RenderingEngineCore RenderingEngineCore
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -190,7 +194,7 @@ void rendering_system_advanced_processor(code **render_context, code *render_dat
                 *(int64_t *)(memory_address + 0x82a0) = (int64_t)**(int **)(stack_data + 0x10);
             }
             security_key = CONCAT44(security_key._4_4_, 0xffffffff);
-            FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8), 0, data_offset, 0x20);
+            RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8), 0, data_offset, 0x20);
             memory_address = *(int64_t *)(system_message_buffer + 0x1cd8);
             if (context_cache != (code **)0x0) {
                 *(int32_t *)((int64_t)context_cache + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);

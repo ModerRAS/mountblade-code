@@ -60,7 +60,7 @@ void FUN_1800b5f00(int64_t param_1)
   if (*(void **)(*system_main_module_state + 0x440) != (void *)0x0) {
     puVar13 = *(void **)(*system_main_module_state + 0x440);
   }
-  FUN_180627c50(&puStack_100,puVar13);
+  CoreSystem_ConfigValidator0(&puStack_100,puVar13);
   if ((*(int *)(*(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8) +
                0x48) < system_system_config_memory) && (SystemInitializer(&system_ptr_9238), system_system_config_memory == -1)) {
     system_system_config_memory = &system_data_buffer_ptr;

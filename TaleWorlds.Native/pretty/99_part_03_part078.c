@@ -59,7 +59,7 @@ void FUN_1802436f0(int64_t param_1)
     if (*(void **)(*system_main_module_state + 0x440) != (void *)0x0) {
       puVar15 = *(void **)(*system_main_module_state + 0x440);
     }
-    FUN_180627c50(&puStack_a0,puVar15);
+    CoreSystem_ConfigValidator0(&puStack_a0,puVar15);
     uVar16 = uStack_90;
     puStack_c0 = &system_data_buffer_ptr;
     uStack_a8 = 0;

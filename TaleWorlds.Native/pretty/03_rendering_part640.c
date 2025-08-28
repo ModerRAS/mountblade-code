@@ -236,8 +236,8 @@ int64_t SystemCore_ConfigurationHandler0(int64_t param_1,int64_t param_2)
 
 
 
-// 函数: void FUN_180627c50(int64_t param_1,int64_t param_2)
-void FUN_180627c50(int64_t param_1,int64_t param_2)
+// 函数: void CoreSystem_ConfigValidator0(int64_t param_1,int64_t param_2)
+void CoreSystem_ConfigValidator0(int64_t param_1,int64_t param_2)
 
 {
   uint64_t uVar1;

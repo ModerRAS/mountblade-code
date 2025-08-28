@@ -1,3 +1,4 @@
+#include "FUN_1808de000_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -332,7 +333,7 @@ uint64_t AdvancedSystemManager(int64_t *param_1,int64_t param_2)
 
 
 
-uint64_t FUN_1808de000(int64_t *param_1,int64_t param_2)
+uint64_t SystemThreadManager(int64_t *param_1,int64_t param_2)
 
 {
   uint64_t uVar1;
@@ -647,7 +648,7 @@ uint64_t FUN_1808de3a0(int64_t *param_1,int32_t param_2,int32_t param_3)
           uVar1 = FUN_180899f80(*param_1,param_1 + 8);
           if ((int)uVar1 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_1808de000(param_1,&uStack_28);
+            SystemThreadManager(param_1,&uStack_28);
           }
         }
       }
@@ -698,7 +699,7 @@ uint64_t FUN_1808de3d7(void)
         uVar1 = FUN_180899f80(*unaff_RBX,unaff_RBX + 8);
         if ((int)uVar1 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_1808de000();
+          SystemThreadManager();
         }
       }
     }
@@ -742,7 +743,7 @@ uint64_t FUN_1808de412(void)
         uVar1 = FUN_180899f80(*unaff_RBX,unaff_RBX + 8);
         if ((int)uVar1 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_1808de000();
+          SystemThreadManager();
         }
       }
     }
@@ -918,7 +919,7 @@ uint64_t FUN_1808de6f0(int64_t *param_1,int32_t *param_2)
                       (*(uint64_t **)(*param_1 + 8),auStackX_8,4);
     if ((int)uVar1 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808de000(param_1,&uStack_28);
+      SystemThreadManager(param_1,&uStack_28);
     }
   }
   return uVar1;

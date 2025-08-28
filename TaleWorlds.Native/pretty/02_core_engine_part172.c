@@ -332,7 +332,7 @@ LAB_180157585:
   if (*(void **)(param_3 + 8) != (void *)0x0) {
     puVar11 = *(void **)(param_3 + 8);
   }
-  FUN_180627c50(&puStack_98,puVar11);
+  CoreSystem_ConfigValidator0(&puStack_98,puVar11);
   iVar4 = (int)plVar2[5];
   *(int *)(plVar2 + 5) = iVar4 + 1;
   (**(code **)(*plVar2 + 0x208))(plVar2,&plStackX_8,auStack_a0,iVar4,param_4);
@@ -732,7 +732,7 @@ int64_t * EventDispatcher(int64_t *dispatcher, int64_t *dispatch_result, uint64_
     uStack_98 = 0;
     uStack_88 = 0;
     auStack_b0[0] = 0;
-    FUN_180627c50(&puStack_a8,param_3);
+    CoreSystem_ConfigValidator0(&puStack_a8,param_3);
     (**(code **)(*plVar2 + 0x208))(plVar2,&plStackX_8,auStack_b0,(int)lVar3,param_6);
     *(int32_t *)(plStackX_8 + 2) = 2;
     plStackX_8[7] = param_4;
@@ -830,7 +830,7 @@ int64_t * EventQueueManager(int64_t *queue_system, int64_t *queue_result, uint64
     uStack_98 = 0;
     uStack_88 = 0;
     auStack_b0[0] = 0;
-    FUN_180627c50(&puStack_a8,param_3);
+    CoreSystem_ConfigValidator0(&puStack_a8,param_3);
     lVar2 = param_1[5];
     *(int *)(param_1 + 5) = (int)lVar2 + 1;
     (**(code **)(*param_1 + 0x208))(param_1,&plStackX_8,auStack_b0,(int)lVar2,param_5);

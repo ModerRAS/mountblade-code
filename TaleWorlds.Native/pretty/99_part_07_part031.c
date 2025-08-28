@@ -320,7 +320,7 @@ LAB_1804b9184:
               if (puVar8[1] != 0) {
                 lVar16 = puVar8[1];
               }
-              FUN_180627c50(&puStack_b0,lVar16);
+              CoreSystem_ConfigValidator0(&puStack_b0,lVar16);
               puVar8 = (uint64_t *)FUN_1800b30d0(system_resource_state,&plStack_60,&puStack_b0,1);
               lVar16 = *plVar1;
               uVar2 = *puVar8;

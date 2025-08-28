@@ -440,7 +440,7 @@ LAB_18037b5a5:
     if (*(void **)(*system_main_module_state + 0x440) != (void *)0x0) {
       puVar23 = *(void **)(*system_main_module_state + 0x440);
     }
-    FUN_180627c50(&puStack_9a8,puVar23);
+    CoreSystem_ConfigValidator0(&puStack_9a8,puVar23);
     uVar9 = uStack_998;
     uVar24 = uStack_998 + 0x10;
     if (uVar24 != 0) {

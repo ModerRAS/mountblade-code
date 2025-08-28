@@ -1,10 +1,14 @@
+/* 函数别名定义: RenderingGeometryProcessor */
+#define RenderingGeometryProcessor RenderingGeometryProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
 // 03_rendering_part281.c - 5 个函数
 
-// 函数: void FUN_18041ee20(int64_t param_1)
-void FUN_18041ee20(int64_t param_1)
+// 函数: void RenderingGeometryProcessor0(int64_t param_1)
+void RenderingGeometryProcessor0(int64_t param_1)
 
 {
   int8_t *puVar1;
@@ -65,7 +69,7 @@ int FUN_18041efc0(int64_t param_1)
     uVar4 = 0;
   }
   else {
-    FUN_18041ee20(param_1);
+    RenderingGeometryProcessor0(param_1);
     pbVar3 = *(byte **)(param_1 + 0xc0);
     uVar4 = (uint)**(byte **)(param_1 + 0xb8);
     pbVar2 = *(byte **)(param_1 + 0xb8) + 1;
@@ -75,7 +79,7 @@ int FUN_18041efc0(int64_t param_1)
     if (*(int *)(param_1 + 0x30) == 0) {
       return uVar4 * 0x100;
     }
-    FUN_18041ee20(param_1);
+    RenderingGeometryProcessor0(param_1);
     pbVar2 = *(byte **)(param_1 + 0xb8);
   }
   bVar1 = *pbVar2;
@@ -117,7 +121,7 @@ uint FUN_18041f0a0(int64_t param_1)
     uVar4 = 0;
   }
   else {
-    FUN_18041ee20(param_1);
+    RenderingGeometryProcessor0(param_1);
     pbVar3 = *(byte **)(param_1 + 0xc0);
     uVar4 = (uint)**(byte **)(param_1 + 0xb8);
     pbVar2 = *(byte **)(param_1 + 0xb8) + 1;
@@ -127,7 +131,7 @@ uint FUN_18041f0a0(int64_t param_1)
     if (*(int *)(param_1 + 0x30) == 0) {
       return uVar4;
     }
-    FUN_18041ee20(param_1);
+    RenderingGeometryProcessor0(param_1);
     pbVar2 = *(byte **)(param_1 + 0xb8);
   }
   bVar1 = *pbVar2;
@@ -783,7 +787,7 @@ void FUN_18041f7a0(int64_t *param_1)
         bVar6 = 0;
       }
       else {
-        FUN_18041ee20(lVar2);
+        RenderingGeometryProcessor0(lVar2);
         bVar6 = **(byte **)(lVar2 + 0xb8);
         *(byte **)(lVar2 + 0xb8) = *(byte **)(lVar2 + 0xb8) + 1;
       }
@@ -799,7 +803,7 @@ void FUN_18041f7a0(int64_t *param_1)
           cVar7 = '\0';
         }
         else {
-          FUN_18041ee20(lVar2);
+          RenderingGeometryProcessor0(lVar2);
           cVar7 = **(char **)(lVar2 + 0xb8);
           *(char **)(lVar2 + 0xb8) = *(char **)(lVar2 + 0xb8) + 1;
         }

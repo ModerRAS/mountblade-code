@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingEngineCore */
+#define RenderingEngineCore RenderingEngineCore
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -29,7 +33,7 @@ void FUN_1800e8362(int64_t param_1,int64_t param_2)
   else {
     uVar3 = *(uint64_t *)(system_message_buffer + 0x1cd8);
   }
-  FUN_18029d150(uVar3,0x10,lVar1,0x10,0xffffffff);
+  RenderingEngineCore0(uVar3,0x10,lVar1,0x10,0xffffffff);
   lVar2 = *(int64_t *)(system_message_buffer + 0x1cd8);
   *(int64_t *)(lVar1 + 0x340) = (int64_t)*(int *)(system_main_module_state + 0x224);
   lVar4 = lVar1 + 0x1a0;
@@ -123,7 +127,7 @@ void FUN_1800e8367(int64_t param_1,int64_t param_2)
   else {
     uVar3 = *(uint64_t *)(system_message_buffer + 0x1cd8);
   }
-  FUN_18029d150(uVar3,0x10,lVar1,0x10,0xffffffff);
+  RenderingEngineCore0(uVar3,0x10,lVar1,0x10,0xffffffff);
   lVar2 = *(int64_t *)(system_message_buffer + 0x1cd8);
   *(int64_t *)(lVar1 + 0x340) = (int64_t)*(int *)(system_main_module_state + 0x224);
   lVar4 = lVar1 + 0x1a0;
@@ -307,9 +311,9 @@ void FUN_1800e8640(int64_t param_1,int64_t param_2)
     }
   }
   if ((uVar1 & 0x20) != 0) {
-    FUN_18029d150(lVar2,7,*system_system_data_config,0x10,0xffffffff);
-    FUN_18029d150(lVar2,8,system_system_data_config[1],0x10,0xffffffff);
-    FUN_18029d150(lVar2,9,system_system_data_config[2],0x10,0xffffffff);
+    RenderingEngineCore0(lVar2,7,*system_system_data_config,0x10,0xffffffff);
+    RenderingEngineCore0(lVar2,8,system_system_data_config[1],0x10,0xffffffff);
+    RenderingEngineCore0(lVar2,9,system_system_data_config[2],0x10,0xffffffff);
   }
   if ((uVar1 >> 10 & 1) != 0) {
     FUN_18029f830(lVar2,*(int32_t *)(param_2 + 0x30c),*(int32_t *)(param_2 + 0x2d0));
@@ -428,7 +432,7 @@ void FUN_1800e8a00(uint64_t param_1,int64_t param_2)
     else {
       uVar3 = *(uint64_t *)(system_message_buffer + 0x1cd8);
     }
-    FUN_18029d150(uVar3,0x10,lVar1,0x10,0xffffffff);
+    RenderingEngineCore0(uVar3,0x10,lVar1,0x10,0xffffffff);
     lVar2 = *(int64_t *)(system_message_buffer + 0x1cd8);
     *(int64_t *)(lVar1 + 0x340) = (int64_t)*(int *)(system_main_module_state + 0x224);
     lVar5 = lVar1 + 0x1a0;
@@ -526,7 +530,7 @@ void FUN_1800e8a22(int64_t param_1,int64_t param_2)
   else {
     uVar3 = *(uint64_t *)(system_message_buffer + 0x1cd8);
   }
-  FUN_18029d150(uVar3,0x10,lVar1,0x10,0xffffffff);
+  RenderingEngineCore0(uVar3,0x10,lVar1,0x10,0xffffffff);
   lVar2 = *(int64_t *)(system_message_buffer + 0x1cd8);
   *(int64_t *)(lVar1 + 0x340) = (int64_t)*(int *)(system_main_module_state + 0x224);
   lVar4 = lVar1 + 0x1a0;
@@ -620,7 +624,7 @@ void FUN_1800e8a27(int64_t param_1,int64_t param_2)
   else {
     uVar3 = *(uint64_t *)(system_message_buffer + 0x1cd8);
   }
-  FUN_18029d150(uVar3,0x10,lVar1,0x10,0xffffffff);
+  RenderingEngineCore0(uVar3,0x10,lVar1,0x10,0xffffffff);
   lVar2 = *(int64_t *)(system_message_buffer + 0x1cd8);
   *(int64_t *)(lVar1 + 0x340) = (int64_t)*(int *)(system_main_module_state + 0x224);
   lVar4 = lVar1 + 0x1a0;

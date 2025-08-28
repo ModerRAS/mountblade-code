@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingEngineCore */
+#define RenderingEngineCore RenderingEngineCore
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -255,7 +259,7 @@ void RenderingSystem_PipelineManager(uint64_t **render_context_ptr, code *materi
       
       // 执行渲染操作
       depth_stencil_state = CONCAT44(depth_stencil_state._4_4_, 0xffffffff);
-      FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8), 0, frame_buffer, 0x20);
+      RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8), 0, frame_buffer, 0x20);
       pipeline_config = *(int64_t *)(system_message_buffer + 0x1cd8);
       if (input_layout != (code **)0x0) {
         *(int32_t *)((int64_t)input_layout + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);

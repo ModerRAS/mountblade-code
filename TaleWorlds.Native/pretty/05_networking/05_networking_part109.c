@@ -1,3 +1,4 @@
+#include "FUN_1808de000_definition.h"
 /**
  * @file networking_protocol_handler.c
  * @brief 网络系统协议处理器模块
@@ -318,7 +319,7 @@ uint64_t networking_protocol_processor(int64_t param_1, int64_t *param_2) {
                     if (((int)result == 0) &&
                         (result = FUN_1808a7c90(param_2, param_1 + 0x40, 0x3d), (int)result == 0)) {
                         // 处理协议数据（不返回）
-                        FUN_1808de000(param_2, stack_buffer_68);
+                        SystemThreadManager(param_2, stack_buffer_68);
                     }
                 }
                 else {
@@ -474,7 +475,7 @@ uint64_t networking_connection_handler(void) {
                 
                 if (((int)result == 0) && (result = FUN_1808a7c90(), (int)result == 0)) {
                     // 处理连接数据（不返回）
-                    FUN_1808de000();
+                    SystemThreadManager();
                 }
             }
             else {
@@ -551,7 +552,7 @@ void networking_system_cleaner(void) {
             return;
         }
         // 执行清理（不返回）
-        FUN_1808de000();
+        SystemThreadManager();
     }
     
     result1 = FUN_1808a1090();
@@ -561,7 +562,7 @@ void networking_system_cleaner(void) {
     
 cleanup_complete:
     // 完成清理（不返回）
-    FUN_1808de000();
+    SystemThreadManager();
 }
 
 /**
@@ -615,7 +616,7 @@ uint64_t networking_data_transmitter(int64_t param_1, uint64_t *param_2, int32_t
             if ((validation_result == 0) &&
                 ((param_5 == '\0' || (result = FUN_1808a1870(param_1 + 0x48, param_2), (int)result == 0)))) {
                 // 执行数据传输（不返回）
-                FUN_1808de000(param_2, stack_buffer_70);
+                SystemThreadManager(param_2, stack_buffer_70);
             }
         }
         else {
@@ -650,7 +651,7 @@ uint64_t networking_packet_sender(void) {
             if ((validation_result == 0) &&
                 ((stack_param_d0 == '\0' || (result = FUN_1808a1870(unaff_rbp + 0x48), (int)result == 0)))) {
                 // 发送数据包（不返回）
-                FUN_1808de000();
+                SystemThreadManager();
             }
         }
         else {
@@ -716,7 +717,7 @@ uint64_t networking_protocol_handler(int64_t param_1, int64_t *param_2) {
                 if (((int)result == 0) &&
                     (result = FUN_1808a7c40(param_2, param_1 + 0xec, 0x80), (int)result == 0)) {
                     // 处理协议数据（不返回）
-                    FUN_1808de000(param_2, stack_buffer_48);
+                    SystemThreadManager(param_2, stack_buffer_48);
                 }
             }
         }
@@ -815,7 +816,7 @@ uint64_t networking_connection_manager(int64_t param_1, int64_t *param_2) {
                             return result;
                         }
                         // 管理连接（不返回）
-                        FUN_1808de000(param_2, stack_buffer_40);
+                        SystemThreadManager(param_2, stack_buffer_40);
                     }
                 }
             }
@@ -906,7 +907,7 @@ uint64_t networking_session_manager(void) {
                     
                     if ((int)result == 0) {
                         // 管理会话（不返回）
-                        FUN_1808de000();
+                        SystemThreadManager();
                     }
                     return result;
                 }
@@ -986,7 +987,7 @@ uint64_t networking_data_processor(void) {
                     return result;
                 }
                 // 处理数据（不返回）
-                FUN_1808de000();
+                SystemThreadManager();
             }
         }
     }
@@ -1045,7 +1046,7 @@ uint64_t networking_message_handler(void) {
             
             if ((int)result == 0) {
                 // 处理消息（不返回）
-                FUN_1808de000();
+                SystemThreadManager();
             }
             return result;
         }
@@ -1082,7 +1083,7 @@ uint64_t networking_error_processor(void) {
             
             if ((int)result == 0) {
                 // 处理错误（不返回）
-                FUN_1808de000();
+                SystemThreadManager();
             }
             return result;
         }
@@ -1114,7 +1115,7 @@ uint64_t networking_connection_monitor(void) {
             
             if ((int)result == 0) {
                 // 监控连接（不返回）
-                FUN_1808de000();
+                SystemThreadManager();
             }
             return result;
         }
@@ -1142,7 +1143,7 @@ void networking_connection_initializer(int64_t param_1, uint64_t param_2) {
         
         if (result == 0) {
             // 初始化连接（不返回）
-            FUN_1808de000(param_2, stack_buffer_28);
+            SystemThreadManager(param_2, stack_buffer_28);
         }
     }
     return;
@@ -1180,7 +1181,7 @@ uint64_t networking_connection_verifier(int64_t param_1, uint64_t *param_2) {
             
             if (((int)result == 0) && (result = FUN_1808a4fb0(param_2, param_1 + 0x30, 1, 0), (int)result == 0)) {
                 // 验证连接（不返回）
-                FUN_1808de000(param_2, stack_buffer_28);
+                SystemThreadManager(param_2, stack_buffer_28);
             }
         }
     }
@@ -1222,7 +1223,7 @@ uint64_t networking_data_serializer(int64_t param_1, uint64_t *param_2) {
             
             if ((int)result == 0) {
                 // 序列化数据（不返回）
-                FUN_1808de000(param_2, stack_buffer_48);
+                SystemThreadManager(param_2, stack_buffer_48);
             }
         }
     }
@@ -1369,7 +1370,7 @@ uint64_t networking_data_validator(int64_t param_1, uint64_t *param_2) {
             if ((((int)result == 0) && (result = FUN_180898eb0(param_2, param_1 + 0xf8), (int)result == 0)) &&
                 (result = FUN_1808a6e50(param_2, param_1 + 0xe8, 1, param_1), (int)result == 0)) {
                 // 验证数据（不返回）
-                FUN_1808de000(param_2, stack_buffer_48);
+                SystemThreadManager(param_2, stack_buffer_48);
             }
         }
     }
@@ -1408,7 +1409,7 @@ uint64_t networking_protocol_finalizer(uint64_t param_1, int64_t param_2) {
                 
                 if ((int)result == 0) {
                     // 终结协议（不返回）
-                    FUN_1808de000(param_2, stack_buffer_28);
+                    SystemThreadManager(param_2, stack_buffer_28);
                 }
             }
         }

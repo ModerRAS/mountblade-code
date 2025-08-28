@@ -185,7 +185,7 @@ void FUN_1804ac910(uint64_t param_1,int32_t param_2,int64_t param_3,int64_t *par
     puVar5 = *(void **)(param_3 + 8);
   }
   auStack_58[0] = param_2;
-  FUN_180627c50(&puStack_50,puVar5,FUN_180627c50,param_4,0xfffffffffffffffe);
+  CoreSystem_ConfigValidator0(&puStack_50,puVar5,CoreSystem_ConfigValidator0,param_4,0xfffffffffffffffe);
   if (param_4 != (int64_t *)0x0) {
     (**(code **)(*param_4 + 0x28))(param_4);
   }
@@ -712,7 +712,7 @@ LAB_1804ad428:
         if (puVar11[1] != 0) {
           lVar5 = puVar11[1];
         }
-        FUN_180627c50(&puStack_60,lVar5,pcVar3,puVar11,0xfffffffffffffffe);
+        CoreSystem_ConfigValidator0(&puStack_60,lVar5,pcVar3,puVar11,0xfffffffffffffffe);
         break;
       }
       lVar5 = (int64_t)&processed_var_5480_ptr - (int64_t)pcVar12;
@@ -777,7 +777,7 @@ LAB_1804ad540:
         if (puVar11[1] != 0) {
           lVar5 = puVar11[1];
         }
-        FUN_180627c50(&puStack_40,lVar5);
+        CoreSystem_ConfigValidator0(&puStack_40,lVar5);
         break;
       }
       lVar5 = (int64_t)&processed_var_5472_ptr - (int64_t)pcVar12;

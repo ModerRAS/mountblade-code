@@ -70,7 +70,7 @@ void FUN_1803ba550(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t par
       if (*(void **)(param_4 + 8) != (void *)0x0) {
         puVar8 = *(void **)(param_4 + 8);
       }
-      FUN_180627c50(&puStack_b8,puVar8);
+      CoreSystem_ConfigValidator0(&puStack_b8,puVar8);
       LOCK();
       uVar12 = *param_6;
       *param_6 = *param_6 + 1;
@@ -643,7 +643,7 @@ LAB_1803bb347:
                         if (puVar11[1] != 0) {
                           lVar9 = puVar11[1];
                         }
-                        FUN_180627c50(&puStack_50,lVar9);
+                        CoreSystem_ConfigValidator0(&puStack_50,lVar9);
                         break;
                       }
                       lVar9 = (int64_t)&system_data_3a84 - (int64_t)pcVar6;

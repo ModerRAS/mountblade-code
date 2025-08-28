@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingEngineCore */
+#define RenderingEngineCore RenderingEngineCore
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -452,18 +456,18 @@ void FUN_1800d82a0(uint64_t param_1,uint64_t param_2,int64_t param_3)
   
   uStackX_8 = param_1;
   uStackX_10 = param_2;
-  FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),0x5e,*(uint64_t *)(param_3 + 0x68),1,
+  RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),0x5e,*(uint64_t *)(param_3 + 0x68),1,
                 0xffffffff);
   if (*(int64_t *)(param_3 + 0x90) == 0) {
-    FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),0x5d,*(uint64_t *)(param_3 + 0x60),0x12
+    RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),0x5d,*(uint64_t *)(param_3 + 0x60),0x12
                   ,0xffffffff);
-    FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),0x5f,*(uint64_t *)(param_3 + 0xa0),0x10
+    RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),0x5f,*(uint64_t *)(param_3 + 0xa0),0x10
                   ,0xffffffff);
   }
   if (*(int64_t *)(param_3 + 0x88) != 0) {
-    FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),0x11,*(int64_t *)(param_3 + 0x88),0x10,
+    RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),0x11,*(int64_t *)(param_3 + 0x88),0x10,
                   0xffffffff);
-    FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),0x12,*(uint64_t *)(param_3 + 0x80),0x10
+    RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),0x12,*(uint64_t *)(param_3 + 0x80),0x10
                   ,0xffffffff);
   }
   uVar5 = 0;
@@ -471,7 +475,7 @@ void FUN_1800d82a0(uint64_t param_1,uint64_t param_2,int64_t param_3)
   uVar2 = uVar5;
   if (*(int64_t *)(param_3 + 0x2d8) - *(int64_t *)(param_3 + 0x2d0) >> 3 != 0) {
     do {
-      FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),(int)uVar4 + 0x60,
+      RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),(int)uVar4 + 0x60,
                     *(uint64_t *)(*(int64_t *)(param_3 + 0x2d0) + uVar2),0x10,0xffffffff);
       uVar3 = (int)uVar4 + 1;
       uVar4 = (uint64_t)uVar3;
@@ -552,18 +556,18 @@ void FUN_1800d82bb(int64_t param_1,uint64_t param_2,int64_t param_3,uint64_t par
   uint64_t in_stack_00000050;
   uint64_t in_stack_00000058;
   
-  FUN_18029d150(*(uint64_t *)(param_1 + 0x1cd8),(int)param_4 + 0x5d,
+  RenderingEngineCore0(*(uint64_t *)(param_1 + 0x1cd8),(int)param_4 + 0x5d,
                 *(uint64_t *)(param_3 + 0x68),param_4,0xffffffff);
   if (*(int64_t *)(param_3 + 0x90) == 0) {
-    FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),0x5d,*(uint64_t *)(param_3 + 0x60),0x12
+    RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),0x5d,*(uint64_t *)(param_3 + 0x60),0x12
                   ,0xffffffff);
-    FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),0x5f,*(uint64_t *)(param_3 + 0xa0),0x10
+    RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),0x5f,*(uint64_t *)(param_3 + 0xa0),0x10
                   ,0xffffffff);
   }
   if (*(int64_t *)(param_3 + 0x88) != 0) {
-    FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),0x11,*(int64_t *)(param_3 + 0x88),0x10,
+    RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),0x11,*(int64_t *)(param_3 + 0x88),0x10,
                   0xffffffff);
-    FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),0x12,*(uint64_t *)(param_3 + 0x80),0x10
+    RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),0x12,*(uint64_t *)(param_3 + 0x80),0x10
                   ,0xffffffff);
   }
   uVar5 = 0;
@@ -571,7 +575,7 @@ void FUN_1800d82bb(int64_t param_1,uint64_t param_2,int64_t param_3,uint64_t par
   uVar2 = uVar5;
   if (*(int64_t *)(param_3 + 0x2d8) - *(int64_t *)(param_3 + 0x2d0) >> 3 != 0) {
     do {
-      FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),(int)uVar4 + 0x60,
+      RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),(int)uVar4 + 0x60,
                     *(uint64_t *)(*(int64_t *)(param_3 + 0x2d0) + uVar2),0x10,0xffffffff);
       uVar3 = (int)uVar4 + 1;
       uVar4 = (uint64_t)uVar3;
@@ -657,7 +661,7 @@ void FUN_1800d83ba(void)
   if (in_RAX != 0) {
     uVar3 = unaff_RSI & 0xffffffff;
     do {
-      FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),unaff_EBX + 0x60,
+      RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),unaff_EBX + 0x60,
                     *(uint64_t *)(*(int64_t *)(unaff_RDI + 0x2d0) + uVar3),0x10,0xffffffff);
       uVar3 = uVar3 + 8;
       unaff_EBX = unaff_EBX + 1;

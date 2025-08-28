@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingEngineCore */
+#define RenderingEngineCore RenderingEngineCore
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -362,9 +366,9 @@ apply_parameters:
     buffer_size_1 = 0xffffffff;
     
     // 应用纹理映射
-    FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8), 5, render_context, 0x10);
+    RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8), 5, render_context, 0x10);
     buffer_size_1 = 0xffffffff;
-    FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8), 0, texture_cache[0], 0x10);
+    RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8), 0, texture_cache[0], 0x10);
     FUN_18029d000(*(uint64_t *)(system_message_buffer + 0x1cd8), 4);
     FUN_18029cdd0(*(uint64_t *)(system_message_buffer + 0x1cd8), &data_source);
     

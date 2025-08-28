@@ -65,7 +65,7 @@ LAB_180558980:
         if (puVar9[1] != 0) {
           lVar7 = puVar9[1];
         }
-        FUN_180627c50(&puStack_58,lVar7);
+        CoreSystem_ConfigValidator0(&puStack_58,lVar7);
         break;
       }
       lVar7 = (int64_t)&processed_var_4200_ptr - (int64_t)pcVar4;
@@ -185,7 +185,7 @@ LAB_180558be4:
         if (puVar9[1] != 0) {
           lVar7 = puVar9[1];
         }
-        FUN_180627c50(&puStack_b8,lVar7);
+        CoreSystem_ConfigValidator0(&puStack_b8,lVar7);
         break;
       }
       lVar7 = (int64_t)&processed_var_4592_ptr - (int64_t)pcVar4;
@@ -245,7 +245,7 @@ LAB_180558d04:
         if (puVar9[1] != 0) {
           lVar7 = puVar9[1];
         }
-        FUN_180627c50(&puStack_78,lVar7);
+        CoreSystem_ConfigValidator0(&puStack_78,lVar7);
         break;
       }
       lVar7 = (int64_t)&processed_var_8128_ptr - (int64_t)pcVar4;
@@ -324,7 +324,7 @@ LAB_180558dc5:
         if (puVar9[1] != 0) {
           lVar7 = puVar9[1];
         }
-        FUN_180627c50(&puStack_98,lVar7);
+        CoreSystem_ConfigValidator0(&puStack_98,lVar7);
         goto LAB_180558dde;
       }
       lVar7 = (int64_t)&rendering_buffer_2776_ptr - (int64_t)pcVar4;
@@ -404,7 +404,7 @@ LAB_180558f70:
         if (puVar9[1] != 0) {
           lVar6 = puVar9[1];
         }
-        FUN_180627c50(&puStack_58,lVar6);
+        CoreSystem_ConfigValidator0(&puStack_58,lVar6);
         break;
       }
       lVar6 = (int64_t)&processed_var_4496_ptr - (int64_t)pcVar3;
@@ -483,7 +483,7 @@ LAB_180559104:
         if (puVar9[1] != 0) {
           lVar6 = puVar9[1];
         }
-        FUN_180627c50(&puStack_78,lVar6);
+        CoreSystem_ConfigValidator0(&puStack_78,lVar6);
         break;
       }
       lVar6 = (int64_t)&processed_var_4200_ptr - (int64_t)pcVar3;
@@ -602,7 +602,7 @@ LAB_180559354:
         if (puVar9[1] != 0) {
           lVar6 = puVar9[1];
         }
-        FUN_180627c50(&puStack_98,lVar6);
+        CoreSystem_ConfigValidator0(&puStack_98,lVar6);
         break;
       }
       lVar6 = (int64_t)&processed_var_8128_ptr - (int64_t)pcVar3;
@@ -684,7 +684,7 @@ LAB_180559454:
         if (puVar9[1] != 0) {
           lVar6 = puVar9[1];
         }
-        FUN_180627c50(&puStack_b8,lVar6);
+        CoreSystem_ConfigValidator0(&puStack_b8,lVar6);
         goto LAB_18055946d;
       }
       lVar6 = (int64_t)&rendering_buffer_2776_ptr - (int64_t)pcVar3;

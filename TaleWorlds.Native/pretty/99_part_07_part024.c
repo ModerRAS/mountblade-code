@@ -94,7 +94,7 @@ LAB_1804b32c0:
         if (puVar9[1] != 0) {
           lVar6 = puVar9[1];
         }
-        FUN_180627c50(&puStack_70,lVar6);
+        CoreSystem_ConfigValidator0(&puStack_70,lVar6);
         pcVar11 = pcVar10;
         if (0 < iStack_60) {
           pcVar11 = (char *)FUN_1800b6de0(system_resource_state,&puStack_70,1);
@@ -397,7 +397,7 @@ LAB_1804b37d0:
                 if (puVar9[1] != 0) {
                   lVar6 = puVar9[1];
                 }
-                FUN_180627c50(&puStack_50,lVar6);
+                CoreSystem_ConfigValidator0(&puStack_50,lVar6);
                 break;
               }
               lVar6 = (int64_t)&system_data_3a84 - (int64_t)pcVar10;

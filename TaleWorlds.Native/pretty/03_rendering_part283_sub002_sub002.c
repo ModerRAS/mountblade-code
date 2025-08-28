@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingGeometryProcessor */
+#define RenderingGeometryProcessor RenderingGeometryProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -991,7 +995,7 @@ uint64_t FUN_1804214d0(int64_t *param_1)
   pcVar4 = *(char **)(lVar3 + 0xb8);
   if (*(char **)(lVar3 + 0xc0) <= pcVar4) {
     if (*(int *)(lVar3 + 0x30) == 0) goto FUN_180421588;
-    FUN_18041ee20(lVar3);
+    RenderingGeometryProcessor0(lVar3);
     pcVar4 = *(char **)(lVar3 + 0xb8);
   }
   cVar2 = *pcVar4;
@@ -1005,7 +1009,7 @@ uint64_t FUN_1804214d0(int64_t *param_1)
         if (*(int *)(lVar3 + 0x30) == 0) {
           return 0;
         }
-        FUN_18041ee20(lVar3);
+        RenderingGeometryProcessor0(lVar3);
         pbVar5 = *(byte **)(lVar3 + 0xb8);
       }
       bVar1 = *pbVar5;
@@ -1033,7 +1037,7 @@ uint64_t FUN_1804214f1(int64_t *param_1)
   pcVar4 = *(char **)(lVar3 + 0xb8);
   if (*(char **)(lVar3 + 0xc0) <= pcVar4) {
     if (*(int *)(lVar3 + 0x30) == 0) goto FUN_180421588;
-    FUN_18041ee20(lVar3);
+    RenderingGeometryProcessor0(lVar3);
     pcVar4 = *(char **)(lVar3 + 0xb8);
   }
   cVar1 = *pcVar4;
@@ -1047,7 +1051,7 @@ uint64_t FUN_1804214f1(int64_t *param_1)
         if (*(int *)(lVar3 + 0x30) == 0) {
           return 0;
         }
-        FUN_18041ee20(lVar3);
+        RenderingGeometryProcessor0(lVar3);
         pbVar5 = *(byte **)(lVar3 + 0xb8);
       }
       bVar2 = *pbVar5;

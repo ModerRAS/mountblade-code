@@ -589,7 +589,7 @@ RenderingSystemState RenderingSystemStateUpdater(
     
     if (param_1 == 0) {
         // 执行默认状态更新
-        FUN_180627c50(&data_ptr, &system_buffer_ptr, param_3, param_4, 
+        CoreSystem_ConfigValidator0(&data_ptr, &system_buffer_ptr, param_3, param_4, 
             RENDERING_SYSTEM_HANDLE_INVALID);
     } else {
         state_count = *(RenderingSystemCount *)(param_1 + RENDERING_OFFSET_DATA_2);

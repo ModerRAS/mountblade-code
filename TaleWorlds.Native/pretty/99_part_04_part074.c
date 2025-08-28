@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingEngineCore */
+#define RenderingEngineCore RenderingEngineCore
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -421,7 +425,7 @@ void FUN_1802cb930(uint64_t param_1,uint64_t *param_2)
   lVar6 = FUN_1802cb7a0(*param_2,&puStack_d8,0);
   puStack_d8 = &system_state_ptr;
   uStack_278 = 0xffffffff;
-  FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),4,param_2[0xb],0x20);
+  RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),4,param_2[0xb],0x20);
   auStack_264[0] = *(uint *)((int64_t)param_2 + 0x2e4);
   FUN_1802c22a0(auStack_268,&system_message_config_ptr);
   puStack_1c0 = &uStack_228;

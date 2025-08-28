@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingEngineCore */
+#define RenderingEngineCore RenderingEngineCore
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -305,7 +309,7 @@ void FUN_1801f6650(int64_t *param_1,uint64_t param_2,int64_t param_3,int32_t par
       do {
         if (*plVar7 != 0) {
           uStack_298 = 0xffffffff;
-          FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),plVar11,*plVar7,0x10);
+          RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),plVar11,*plVar7,0x10);
         }
         if (*piVar12 == -0x12) {
           lVar3 = *(int64_t *)(system_message_buffer + 0x1cd8);
@@ -341,7 +345,7 @@ void FUN_1801f6650(int64_t *param_1,uint64_t param_2,int64_t param_3,int32_t par
           uVar6 = *(uint64_t *)(system_message_buffer + 0x1cd8);
           puVar4 = (uint64_t *)FUN_1802c8e90(*(uint64_t *)(param_3 + 0x99b8),&uStack_280);
           uStack_298 = 0xffffffff;
-          FUN_18029d150(uVar6,1,*puVar4);
+          RenderingEngineCore0(uVar6,1,*puVar4);
           if ((int64_t *)CONCAT44(uStack_27c,uStack_280) != (int64_t *)0x0) {
             (**(code **)(*(int64_t *)CONCAT44(uStack_27c,uStack_280) + 0x38))();
           }
@@ -714,7 +718,7 @@ void FUN_1801f7200(int64_t *param_1,int64_t param_2,int32_t param_3,int param_4,
     do {
       if (*plVar13 != 0) {
         uStack_278 = (int *)CONCAT44(uStack_278._4_4_,0xffffffff);
-        FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),iVar10,*plVar13,0x20);
+        RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),iVar10,*plVar13,0x20);
       }
       iVar10 = iVar10 + 1;
       plVar13 = plVar13 + 1;

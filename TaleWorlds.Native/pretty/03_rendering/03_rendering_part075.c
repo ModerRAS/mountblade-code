@@ -49,7 +49,7 @@ void FUN_180275540(uint64_t param1, int64_t param2, int64_t param3);
 void FUN_180275a60(int64_t param1, int64_t *param2, int param3);
 void FUN_18064e990(void *ptr);
 void FUN_1806277c0(void *param1, int param2, uint64_t param3, uint64_t param4, int param5, uint64_t memory_flags);
-void FUN_180627c50(void *param1, int64_t param2, uint64_t param3, uint64_t param4, uint64_t memory_flags);
+void CoreSystem_ConfigValidator0(void *param1, int64_t param2, uint64_t param3, uint64_t param4, uint64_t memory_flags);
 void FUN_180628f30(void *param1, uint *param2, uint param3, uint64_t param4, uint64_t memory_flags);
 void System_QueueProcessor(uint64_t param1, void *param2);
 void FUN_1800f5a90(uint64_t param1, uint64_t param2, uint64_t param3, void *param4, uint64_t memory_flags);
@@ -476,7 +476,7 @@ name_found:
                         if (resource_data[1] != 0) {
                             name_length = resource_data[1];
                         }
-                        FUN_180627c50(&resource_cleanup, name_length);
+                        CoreSystem_ConfigValidator0(&resource_cleanup, name_length);
                         break;
                     }
                     

@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingEngineCore */
+#define RenderingEngineCore RenderingEngineCore
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -519,7 +523,7 @@ void FUN_1800d7010(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
   else {
     uVar14 = 0xffffffff;
   }
-  FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),0x10,lVar9,0x10,uVar14);
+  RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),0x10,lVar9,0x10,uVar14);
   lVar12 = *(int64_t *)(system_message_buffer + 0x1cd8);
   *(int64_t *)(lVar9 + 0x340) = (int64_t)*(int *)(system_main_module_state + 0x224);
   lVar10 = lVar9 + 0x1a0;
@@ -541,13 +545,13 @@ void FUN_1800d7010(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
     *(int *)(lVar12 + 0x82b4) = *(int *)(lVar12 + 0x82b4) + 1;
   }
 LAB_1800d733a:
-  FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),1,uStackX_10,0x10,0xffffffff);
-  FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),2,uVar3,0x10,0xffffffff);
-  FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),3,uVar2,0x10,0xffffffff);
-  FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),4,uStackX_18,0x10,0xffffffff);
-  FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),6,uVar6,0x10,0xffffffff);
-  FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),0x28,uVar4,0x11,0xffffffff);
-  FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),0x29,uVar5,0x11,0xffffffff);
+  RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),1,uStackX_10,0x10,0xffffffff);
+  RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),2,uVar3,0x10,0xffffffff);
+  RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),3,uVar2,0x10,0xffffffff);
+  RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),4,uStackX_18,0x10,0xffffffff);
+  RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),6,uVar6,0x10,0xffffffff);
+  RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),0x28,uVar4,0x11,0xffffffff);
+  RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),0x29,uVar5,0x11,0xffffffff);
   return;
 }
 
@@ -655,7 +659,7 @@ void FUN_1800d7036(uint64_t param_1,int64_t param_2,int64_t param_3,int64_t para
   else {
     uVar12 = 0xffffffff;
   }
-  FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),0x10,lVar7,0x10,uVar12);
+  RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),0x10,lVar7,0x10,uVar12);
   lVar10 = *(int64_t *)(system_message_buffer + 0x1cd8);
   *(int64_t *)(lVar7 + 0x340) = (int64_t)*(int *)(system_main_module_state + 0x224);
   lVar8 = lVar7 + 0x1a0;
@@ -677,13 +681,13 @@ void FUN_1800d7036(uint64_t param_1,int64_t param_2,int64_t param_3,int64_t para
     *(int *)(lVar10 + 0x82b4) = *(int *)(lVar10 + 0x82b4) + 1;
   }
 LAB_1800d733a:
-  FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),1,uStack00000000000000a8,0x10,0xffffffff);
-  FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),2);
-  FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),3);
-  FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),4,uStack00000000000000b0,0x10,0xffffffff);
-  FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),6,uVar4,0x10,0xffffffff);
-  FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),0x28,uVar2,0x11,0xffffffff);
-  FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),0x29,uVar3,0x11,0xffffffff);
+  RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),1,uStack00000000000000a8,0x10,0xffffffff);
+  RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),2);
+  RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),3);
+  RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),4,uStack00000000000000b0,0x10,0xffffffff);
+  RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),6,uVar4,0x10,0xffffffff);
+  RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),0x28,uVar2,0x11,0xffffffff);
+  RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),0x29,uVar3,0x11,0xffffffff);
   return;
 }
 
@@ -712,7 +716,7 @@ void FUN_1800d727a(void)
   uint64_t in_stack_000000b0;
   
   uVar3 = *(int32_t *)(unaff_RBX + 0x357c);
-  FUN_18029d150();
+  RenderingEngineCore0();
   lVar1 = *(int64_t *)(system_message_buffer + 0x1cd8);
   *(int64_t *)(unaff_RSI + 0x340) = (int64_t)*(int *)(system_main_module_state + 0x224);
   lVar2 = unaff_RSI + 0x1a0;
@@ -734,13 +738,13 @@ void FUN_1800d727a(void)
     *(int *)(lVar1 + 0x82b4) = *(int *)(lVar1 + 0x82b4) + 1;
   }
 LAB_1800d733a:
-  FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),1,in_stack_000000a8,0x10,0xffffffff);
-  FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),2);
-  FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),3);
-  FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),4,in_stack_000000b0,0x10,0xffffffff);
-  FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),6,in_stack_00000030,0x10,0xffffffff);
-  FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),0x28,in_stack_00000038,0x11,0xffffffff);
-  FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),0x29,in_stack_00000040,0x11,0xffffffff);
+  RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),1,in_stack_000000a8,0x10,0xffffffff);
+  RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),2);
+  RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),3);
+  RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),4,in_stack_000000b0,0x10,0xffffffff);
+  RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),6,in_stack_00000030,0x10,0xffffffff);
+  RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),0x28,in_stack_00000038,0x11,0xffffffff);
+  RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),0x29,in_stack_00000040,0x11,0xffffffff);
   return;
 }
 

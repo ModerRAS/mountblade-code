@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingGeometryProcessor */
+#define RenderingGeometryProcessor RenderingGeometryProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -52,7 +56,7 @@ void FUN_180422040(int64_t *param_1,int param_2)
         bVar13 = 0;
       }
       else {
-        FUN_18041ee20(lVar20);
+        RenderingGeometryProcessor0(lVar20);
         bVar13 = **(byte **)(lVar20 + 0xb8);
         *(byte **)(lVar20 + 0xb8) = *(byte **)(lVar20 + 0xb8) + 1;
       }
@@ -71,7 +75,7 @@ void FUN_180422040(int64_t *param_1,int param_2)
           bVar14 = 0;
         }
         else {
-          FUN_18041ee20(lVar22);
+          RenderingGeometryProcessor0(lVar22);
           bVar14 = **(byte **)(lVar22 + 0xb8);
           *(byte **)(lVar22 + 0xb8) = *(byte **)(lVar22 + 0xb8) + 1;
         }
@@ -107,7 +111,7 @@ void FUN_180422040(int64_t *param_1,int param_2)
             uVar15 = 0;
           }
           else {
-            FUN_18041ee20(lVar3);
+            RenderingGeometryProcessor0(lVar3);
             uVar15 = **(int8_t **)(lVar3 + 0xb8);
             *(int8_t **)(lVar3 + 0xb8) = *(int8_t **)(lVar3 + 0xb8) + 1;
           }
@@ -160,7 +164,7 @@ void FUN_180422040(int64_t *param_1,int param_2)
         uVar16 = 0;
       }
       else {
-        FUN_18041ee20(lVar20);
+        RenderingGeometryProcessor0(lVar20);
         uVar16 = (uint64_t)**(byte **)(lVar20 + 0xb8);
         *(byte **)(lVar20 + 0xb8) = *(byte **)(lVar20 + 0xb8) + 1;
       }
@@ -180,7 +184,7 @@ void FUN_180422040(int64_t *param_1,int param_2)
             bVar13 = 0;
           }
           else {
-            FUN_18041ee20(lVar22);
+            RenderingGeometryProcessor0(lVar22);
             bVar13 = **(byte **)(lVar22 + 0xb8);
             *(byte **)(lVar22 + 0xb8) = *(byte **)(lVar22 + 0xb8) + 1;
           }
@@ -229,7 +233,7 @@ void FUN_180422040(int64_t *param_1,int param_2)
           cVar12 = '\0';
         }
         else {
-          FUN_18041ee20(lVar22);
+          RenderingGeometryProcessor0(lVar22);
           cVar12 = **(char **)(lVar22 + 0xb8);
           *(char **)(lVar22 + 0xb8) = *(char **)(lVar22 + 0xb8) + 1;
         }
@@ -262,7 +266,7 @@ void FUN_180422040(int64_t *param_1,int param_2)
         cVar12 = '\0';
       }
       else {
-        FUN_18041ee20(lVar22);
+        RenderingGeometryProcessor0(lVar22);
         cVar12 = **(char **)(lVar22 + 0xb8);
         *(char **)(lVar22 + 0xb8) = *(char **)(lVar22 + 0xb8) + 1;
       }
@@ -280,7 +284,7 @@ void FUN_180422040(int64_t *param_1,int param_2)
         *(uint64_t *)(lVar20 + 0xb8) = *(uint64_t *)(lVar20 + 0xb8) + 1;
       }
       else if (*(int *)(lVar20 + 0x30) != 0) {
-        FUN_18041ee20(lVar20);
+        RenderingGeometryProcessor0(lVar20);
         *(int64_t *)(lVar20 + 0xb8) = *(int64_t *)(lVar20 + 0xb8) + 1;
       }
       FUN_18041efc0(*param_1);
@@ -294,7 +298,7 @@ LAB_18042227f:
       }
       else {
         if (*(int *)(lVar20 + 0x30) != 0) {
-          FUN_18041ee20(lVar20);
+          RenderingGeometryProcessor0(lVar20);
           pbVar17 = *(byte **)(lVar20 + 0xb8);
           goto LAB_18042227f;
         }
@@ -337,7 +341,7 @@ uint64_t FUN_1804226f0(int64_t *param_1)
     bVar5 = 0;
   }
   else {
-    FUN_18041ee20(lVar9);
+    RenderingGeometryProcessor0(lVar9);
     bVar5 = **(byte **)(lVar9 + 0xb8);
     *(byte **)(lVar9 + 0xb8) = *(byte **)(lVar9 + 0xb8) + 1;
   }
@@ -358,7 +362,7 @@ uint64_t FUN_1804226f0(int64_t *param_1)
           bVar5 = 0;
         }
         else {
-          FUN_18041ee20(lVar9);
+          RenderingGeometryProcessor0(lVar9);
           bVar5 = **(byte **)(lVar9 + 0xb8);
           *(byte **)(lVar9 + 0xb8) = *(byte **)(lVar9 + 0xb8) + 1;
         }
@@ -372,7 +376,7 @@ uint64_t FUN_1804226f0(int64_t *param_1)
           bVar6 = 0;
         }
         else {
-          FUN_18041ee20(lVar9);
+          RenderingGeometryProcessor0(lVar9);
           bVar6 = **(byte **)(lVar9 + 0xb8);
           *(byte **)(lVar9 + 0xb8) = *(byte **)(lVar9 + 0xb8) + 1;
         }
@@ -414,7 +418,7 @@ uint64_t FUN_1804226f0(int64_t *param_1)
       bVar5 = 0;
     }
     else {
-      FUN_18041ee20(lVar9);
+      RenderingGeometryProcessor0(lVar9);
       bVar5 = **(byte **)(lVar9 + 0xb8);
       *(byte **)(lVar9 + 0xb8) = *(byte **)(lVar9 + 0xb8) + 1;
     }
@@ -429,7 +433,7 @@ uint64_t FUN_1804226f0(int64_t *param_1)
       bVar5 = 0;
     }
     else {
-      FUN_18041ee20(lVar9);
+      RenderingGeometryProcessor0(lVar9);
       bVar5 = **(byte **)(lVar9 + 0xb8);
       *(byte **)(lVar9 + 0xb8) = *(byte **)(lVar9 + 0xb8) + 1;
     }
@@ -444,7 +448,7 @@ uint64_t FUN_1804226f0(int64_t *param_1)
       bVar5 = 0;
     }
     else {
-      FUN_18041ee20(lVar9);
+      RenderingGeometryProcessor0(lVar9);
       bVar5 = **(byte **)(lVar9 + 0xb8);
       *(byte **)(lVar9 + 0xb8) = *(byte **)(lVar9 + 0xb8) + 1;
     }
@@ -575,7 +579,7 @@ uint64_t FUN_180422ab0(uint64_t *param_1,int param_2)
       if (piVar3[0xc] == 0) {
         return 0;
       }
-      FUN_18041ee20(piVar3);
+      RenderingGeometryProcessor0(piVar3);
       pcVar8 = *(char **)(piVar3 + 0x2e);
     }
     cVar1 = *pcVar8;
@@ -596,7 +600,7 @@ uint64_t FUN_180422ab0(uint64_t *param_1,int param_2)
             bVar12 = 0;
           }
           else {
-            FUN_18041ee20(piVar3);
+            RenderingGeometryProcessor0(piVar3);
             bVar12 = **(byte **)(piVar3 + 0x2e);
             *(byte **)(piVar3 + 0x2e) = *(byte **)(piVar3 + 0x2e) + 1;
           }
@@ -631,7 +635,7 @@ uint64_t FUN_180422ab0(uint64_t *param_1,int param_2)
                     bVar12 = 0;
                   }
                   else {
-                    FUN_18041ee20(piVar3);
+                    RenderingGeometryProcessor0(piVar3);
                     bVar12 = **(byte **)(piVar3 + 0x2e);
                     *(byte **)(piVar3 + 0x2e) = *(byte **)(piVar3 + 0x2e) + 1;
                   }
@@ -648,7 +652,7 @@ uint64_t FUN_180422ab0(uint64_t *param_1,int param_2)
                     bVar12 = 0;
                   }
                   else {
-                    FUN_18041ee20(piVar3);
+                    RenderingGeometryProcessor0(piVar3);
                     bVar12 = **(byte **)(piVar3 + 0x2e);
                     *(byte **)(piVar3 + 0x2e) = *(byte **)(piVar3 + 0x2e) + 1;
                   }
@@ -676,7 +680,7 @@ uint64_t FUN_180422ab0(uint64_t *param_1,int param_2)
                     bVar12 = 0;
                   }
                   else {
-                    FUN_18041ee20(piVar3);
+                    RenderingGeometryProcessor0(piVar3);
                     bVar12 = **(byte **)(piVar3 + 0x2e);
                     *(byte **)(piVar3 + 0x2e) = *(byte **)(piVar3 + 0x2e) + 1;
                   }
@@ -987,7 +991,7 @@ LAB_180423201:
           *(int8_t *)(param_1 + 0x905) = 0;
         }
         else {
-          FUN_18041ee20(lVar9);
+          RenderingGeometryProcessor0(lVar9);
           uVar2 = **(int8_t **)(lVar9 + 0xb8);
           *(int8_t **)(lVar9 + 0xb8) = *(int8_t **)(lVar9 + 0xb8) + 1;
           *(int8_t *)(param_1 + 0x905) = uVar2;

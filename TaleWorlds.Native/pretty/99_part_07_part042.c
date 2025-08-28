@@ -462,7 +462,7 @@ LAB_1804c2774:
           if (puVar7[1] != 0) {
             lVar9 = puVar7[1];
           }
-          FUN_180627c50(&puStack_128,lVar9);
+          CoreSystem_ConfigValidator0(&puStack_128,lVar9);
           break;
         }
         lVar9 = (int64_t)&processed_var_800_ptr - (int64_t)pcVar11;
@@ -539,7 +539,7 @@ LAB_1804c2914:
           if (puVar7[1] != 0) {
             lVar9 = puVar7[1];
           }
-          FUN_180627c50(&puStack_c8,lVar9);
+          CoreSystem_ConfigValidator0(&puStack_c8,lVar9);
           break;
         }
         lVar9 = (int64_t)&processed_var_912_ptr - (int64_t)pcVar11;
@@ -593,7 +593,7 @@ LAB_1804c2a24:
           if (puVar7[1] != 0) {
             lVar9 = puVar7[1];
           }
-          FUN_180627c50(&puStack_e8,lVar9);
+          CoreSystem_ConfigValidator0(&puStack_e8,lVar9);
           break;
         }
         lVar9 = (int64_t)&processed_var_968_ptr - (int64_t)pcVar11;
@@ -646,7 +646,7 @@ LAB_1804c2b24:
           if (puVar7[1] != 0) {
             lVar9 = puVar7[1];
           }
-          FUN_180627c50(&puStack_108,lVar9);
+          CoreSystem_ConfigValidator0(&puStack_108,lVar9);
           break;
         }
         lVar9 = (int64_t)&processed_var_952_ptr - (int64_t)pcVar11;
@@ -759,7 +759,7 @@ LAB_1804c2e95:
           if (puVar7[1] != 0) {
             lVar9 = puVar7[1];
           }
-          FUN_180627c50(&puStack_168,lVar9);
+          CoreSystem_ConfigValidator0(&puStack_168,lVar9);
           break;
         }
         lVar9 = (int64_t)&processed_var_864_ptr - (int64_t)pcVar11;

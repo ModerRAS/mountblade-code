@@ -1,3 +1,4 @@
+#include "FUN_1808de000_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_12_part081.c - 12 个函数
@@ -64,7 +65,7 @@ void FUN_1808a0f37(void)
   }
 LAB_1808a1016:
                     // WARNING: Subroutine does not return
-  FUN_1808de000();
+  SystemThreadManager();
 }
 
 
@@ -148,7 +149,7 @@ uint64_t FUN_1808a1090(int64_t param_1,int64_t *param_2)
       }
       if (uVar2 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808de000(param_2,auStack_38);
+        SystemThreadManager(param_2,auStack_38);
       }
       uVar3 = (uint64_t)uVar2;
     }
@@ -201,7 +202,7 @@ uint64_t FUN_1808a10c8(void)
     }
     if (uVar2 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808de000();
+      SystemThreadManager();
     }
     uVar3 = (uint64_t)uVar2;
   }
@@ -243,7 +244,7 @@ uint64_t FUN_1808a110e(void)
     return (uint64_t)unaff_EDI;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808de000();
+  SystemThreadManager();
 }
 
 
@@ -322,7 +323,7 @@ uint64_t FUN_1808a11c0(uint64_t *param_1,int64_t *param_2)
           while( true ) {
             if ((uVar6 < *param_1) || (*param_1 + (int64_t)(int)param_1[1] * 0x14 <= uVar6)) {
                     // WARNING: Subroutine does not return
-              FUN_1808de000(param_2,auStack_40);
+              SystemThreadManager(param_2,auStack_40);
             }
             uVar4 = FUN_1808ddf00(param_2,auStackX_20[0]);
             if ((int)uVar4 != 0) {
@@ -382,7 +383,7 @@ void FUN_1808a12c6(int32_t param_1)
     while( true ) {
       if ((uVar4 < *unaff_R14) || (*unaff_R14 + (int64_t)(int)unaff_R14[1] * 0x14 <= uVar4)) {
                     // WARNING: Subroutine does not return
-        FUN_1808de000(param_1,&stack0x00000038);
+        SystemThreadManager(param_1,&stack0x00000038);
       }
       iVar3 = FUN_1808ddf00(param_1,uStack0000000000000098);
       if ((iVar3 != 0) || (*(int *)(unaff_RBX[1] + 0x18) != 0)) break;
@@ -476,7 +477,7 @@ uint64_t FUN_1808a13f0(int64_t param_1,uint64_t *param_2)
         if (((int)uVar1 == 0) &&
            (uVar1 = FUN_1808a7c90(param_2,param_1 + 0x40,0x3d), (int)uVar1 == 0)) {
                     // WARNING: Subroutine does not return
-          FUN_1808de000(param_2,auStack_48);
+          SystemThreadManager(param_2,auStack_48);
         }
       }
     }
@@ -507,7 +508,7 @@ uint64_t FUN_1808a1530(int64_t param_1,uint64_t *param_2)
       uVar1 = FUN_1808a27f0(*param_2,param_1 + 0xd8);
       if ((int)uVar1 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808de000(param_2,auStack_48);
+        SystemThreadManager(param_2,auStack_48);
       }
     }
   }
@@ -621,13 +622,13 @@ uint64_t FUN_1808a1610(int64_t param_1,int64_t *param_2)
           }
 LAB_1808a1807:
                     // WARNING: Subroutine does not return
-          FUN_1808de000(param_2,auStack_58);
+          SystemThreadManager(param_2,auStack_58);
         }
       }
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808de000(param_2,auStack_38);
+  SystemThreadManager(param_2,auStack_38);
 }
 
 
@@ -729,13 +730,13 @@ uint64_t FUN_1808a164e(uint64_t param_1,uint64_t *param_2)
           }
 LAB_1808a1807:
                     // WARNING: Subroutine does not return
-          FUN_1808de000();
+          SystemThreadManager();
         }
       }
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808de000();
+  SystemThreadManager();
 }
 
 
@@ -860,7 +861,7 @@ uint64_t FUN_1808a1910(int64_t param_1,int64_t *param_2)
              ((*(uint *)(param_2 + 8) < 0x85 ||
               (uVar3 = FUN_1808992f0(param_2,param_1 + 0x108), (int)uVar3 == 0)))) {
                     // WARNING: Subroutine does not return
-            FUN_1808de000(param_2,auStack_48);
+            SystemThreadManager(param_2,auStack_48);
           }
         }
       }
@@ -919,7 +920,7 @@ void FUN_1808a19dc(void)
           return;
         }
                     // WARNING: Subroutine does not return
-        FUN_1808de000();
+        SystemThreadManager();
       }
     }
   }

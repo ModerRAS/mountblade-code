@@ -230,7 +230,7 @@ LAB_1806327a3:
         if (puVar9[1] != 0) {
           lVar5 = puVar9[1];
         }
-        FUN_180627c50(&puStack_40,lVar5,pcVar2,puVar9,uVar10);
+        CoreSystem_ConfigValidator0(&puStack_40,lVar5,pcVar2,puVar9,uVar10);
         break;
       }
       lVar5 = (int64_t)&system_data_3a84 - (int64_t)pcVar7;
@@ -505,7 +505,7 @@ void FUN_180632d00(int64_t param_1,int32_t *param_2,int64_t param_3,int32_t para
     if (*(void **)(param_3 + 8) != (void *)0x0) {
       puVar4 = *(void **)(param_3 + 8);
     }
-    FUN_180627c50(&puStack_60,puVar4);
+    CoreSystem_ConfigValidator0(&puStack_60,puVar4);
     fStack_34 = (float)system_error_code * 1e-05;
     uStack_30 = param_6;
     if (param_5 != (uint64_t *)0x0) {

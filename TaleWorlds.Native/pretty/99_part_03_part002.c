@@ -108,7 +108,7 @@ uint32_t ThreadSafeDataProcessor(void* context, void* data_buffer, uint64_t oper
     }
     
     /* 调用字符串处理函数 */
-    FUN_180627c50(&stack_buffer[0], string_ptr, FUN_180627c50, param4, 0xfffffffffffffffe);
+    CoreSystem_ConfigValidator0(&stack_buffer[0], string_ptr, CoreSystem_ConfigValidator0, param4, 0xfffffffffffffffe);
     
     /* 处理第二个数据缓冲区 */
     string_ptr = (void*)0x18098bc73;

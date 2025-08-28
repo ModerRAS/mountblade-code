@@ -258,7 +258,7 @@ int32_t FUN_18043f770(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t
   lStack_28 = 0;
   uStack_20 = 0;
   if (param_1 == 0) {
-    FUN_180627c50(&puStack_30,&system_buffer_ptr,param_3,param_4,0xfffffffffffffffe);
+    CoreSystem_ConfigValidator0(&puStack_30,&system_buffer_ptr,param_3,param_4,0xfffffffffffffffe);
   }
   else {
     uVar1 = *(uint *)(param_1 + 0x298);

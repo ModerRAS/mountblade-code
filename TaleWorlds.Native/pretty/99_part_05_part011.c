@@ -197,7 +197,7 @@ void FUN_1802db5b0(int64_t param_1,int32_t param_2,int32_t param_3,int32_t param
   if (*(void **)(param_5 + 8) != (void *)0x0) {
     puVar2 = *(void **)(param_5 + 8);
   }
-  FUN_180627c50(&puStack_60,puVar2,FUN_180627c50,param_4,0xfffffffffffffffe);
+  CoreSystem_ConfigValidator0(&puStack_60,puVar2,CoreSystem_ConfigValidator0,param_4,0xfffffffffffffffe);
   param_5 = CONCAT44(param_3,param_2);
   uStack_40 = param_5;
   uVar1 = *(uint64_t *)(param_1 + 0x50);

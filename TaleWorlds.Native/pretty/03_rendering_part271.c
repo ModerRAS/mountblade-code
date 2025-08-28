@@ -146,7 +146,7 @@ LAB_180419067:
                             if (puVar20[1] != 0) {
                               lVar14 = puVar20[1];
                             }
-                            FUN_180627c50(&puStack_510,lVar14);
+                            CoreSystem_ConfigValidator0(&puStack_510,lVar14);
                             break;
                           }
                           lVar14 = (int64_t)&system_data_3a84 - (int64_t)pcVar19;
@@ -428,7 +428,7 @@ LAB_180418a30:
                         if (puVar17[1] != 0) {
                           lVar14 = puVar17[1];
                         }
-                        FUN_180627c50(&puStack_510,lVar14);
+                        CoreSystem_ConfigValidator0(&puStack_510,lVar14);
                         break;
                       }
                       lVar14 = (int64_t)&system_data_3a84 - (int64_t)pcVar19;

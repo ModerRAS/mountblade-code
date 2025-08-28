@@ -1,3 +1,4 @@
+#include "FUN_1808de000_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_12_part078_sub001.c - 4 个函数
@@ -690,7 +691,7 @@ uint64_t FUN_1808a00c0(int64_t param_1,int64_t *param_2)
                   }
                 }
                     // WARNING: Subroutine does not return
-                FUN_1808de000(param_2,auStack_28);
+                SystemThreadManager(param_2,auStack_28);
               }
             }
           }
@@ -760,7 +761,7 @@ uint64_t FUN_1808a021e(void)
         }
       }
                     // WARNING: Subroutine does not return
-      FUN_1808de000(uVar4,&stack0x00000030);
+      SystemThreadManager(uVar4,&stack0x00000030);
     }
   }
   return uVar3;
@@ -798,7 +799,7 @@ uint64_t FUN_1808a0262(void)
         }
       }
                     // WARNING: Subroutine does not return
-      FUN_1808de000();
+      SystemThreadManager();
     }
   }
   return uVar1;
@@ -839,7 +840,7 @@ uint64_t FUN_1808a03b0(int64_t param_1,int64_t *param_2)
         if (((int)uVar1 == 0) && (uVar1 = FUN_1808a7bf0(param_2,param_1 + 0x48,99), (int)uVar1 == 0)
            ) {
                     // WARNING: Subroutine does not return
-          FUN_1808de000(param_2,auStack_28);
+          SystemThreadManager(param_2,auStack_28);
         }
       }
     }
@@ -893,7 +894,7 @@ uint64_t FUN_1808a04a0(int64_t param_1,int64_t *param_2)
              (*(int32_t **)(param_1 + 0x20) + (int64_t)*(int *)(param_1 + 0x28) * 2 <= puVar6))
           {
                     // WARNING: Subroutine does not return
-            FUN_1808de000(param_2,auStack_38);
+            SystemThreadManager(param_2,auStack_38);
           }
           uVar4 = FUN_1808ddf00(param_2,auStackX_20[0]);
           if ((int)uVar4 != 0) {

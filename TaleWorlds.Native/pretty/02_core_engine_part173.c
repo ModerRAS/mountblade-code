@@ -630,7 +630,7 @@ void FUN_1801594d0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
   uStack_38 = 0;
   lStack_48 = 0;
   uStack_40 = 0;
-  FUN_180627c50(&puStack_50);
+  CoreSystem_ConfigValidator0(&puStack_50);
   uStack_30 = 0xffffffff;
   uStack_2c = *(int32_t *)(param_2 + 0x20);
   uStack_28 = 1;

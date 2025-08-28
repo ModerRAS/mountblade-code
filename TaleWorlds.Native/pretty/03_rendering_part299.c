@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingGeometryProcessor */
+#define RenderingGeometryProcessor RenderingGeometryProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 
 // 03_rendering_part299.c - 2 个函数
@@ -43,7 +47,7 @@ uint64_t FUN_180428a90(int64_t param_1)
     *(byte **)(param_1 + 0xb8) = pbVar2;
   }
   else if (*(int *)(param_1 + 0x30) != 0) {
-    FUN_18041ee20(param_1);
+    RenderingGeometryProcessor0(param_1);
     *(int64_t *)(param_1 + 0xb8) = *(int64_t *)(param_1 + 0xb8) + 1;
     pbVar2 = *(byte **)(param_1 + 0xb8);
     pbVar1 = *(byte **)(param_1 + 0xc0);
@@ -57,7 +61,7 @@ uint64_t FUN_180428a90(int64_t param_1)
     bVar7 = 0;
   }
   else {
-    FUN_18041ee20(param_1);
+    RenderingGeometryProcessor0(param_1);
     bVar7 = **(byte **)(param_1 + 0xb8);
     pbVar2 = *(byte **)(param_1 + 0xb8) + 1;
     *(byte **)(param_1 + 0xb8) = pbVar2;
@@ -72,7 +76,7 @@ uint64_t FUN_180428a90(int64_t param_1)
     bVar3 = 0;
   }
   else {
-    FUN_18041ee20(param_1);
+    RenderingGeometryProcessor0(param_1);
     bVar3 = **(byte **)(param_1 + 0xb8);
     pbVar2 = *(byte **)(param_1 + 0xb8) + 1;
   }
@@ -97,7 +101,7 @@ uint64_t FUN_180428a90(int64_t param_1)
         bVar3 = 0;
       }
       else {
-        FUN_18041ee20(param_1);
+        RenderingGeometryProcessor0(param_1);
         bVar3 = **(byte **)(param_1 + 0xb8);
         pbVar2 = *(byte **)(param_1 + 0xb8) + 1;
       }
@@ -137,7 +141,7 @@ LAB_180428c99:
     bVar3 = 0;
   }
   else {
-    FUN_18041ee20(param_1);
+    RenderingGeometryProcessor0(param_1);
     bVar3 = **(byte **)(param_1 + 0xb8);
   }
   if (bVar7 == 1) {
@@ -182,7 +186,7 @@ uint64_t FUN_180428b2a(char *param_1)
     cVar2 = '\0';
   }
   else {
-    FUN_18041ee20();
+    RenderingGeometryProcessor0();
     cVar2 = **(char **)(unaff_RBX + 0xb8);
     param_1 = *(char **)(unaff_RBX + 0xb8) + 1;
   }
@@ -209,7 +213,7 @@ LAB_180428bbc:
         bVar3 = 0;
       }
       else {
-        FUN_18041ee20();
+        RenderingGeometryProcessor0();
         bVar3 = **(byte **)(unaff_RBX + 0xb8);
         pbVar1 = *(byte **)(unaff_RBX + 0xb8) + 1;
       }
@@ -253,7 +257,7 @@ LAB_180428ca0:
     bVar3 = 0;
   }
   else {
-    FUN_18041ee20();
+    RenderingGeometryProcessor0();
     bVar3 = **(byte **)(unaff_RBX + 0xb8);
   }
   if (unaff_DIL == '\x01') {

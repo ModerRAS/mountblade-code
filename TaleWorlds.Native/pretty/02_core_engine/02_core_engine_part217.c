@@ -87,7 +87,7 @@ LAB_180193610:
         if (puVar6[1] != 0) {
           lVar4 = puVar6[1];
         }
-        FUN_180627c50(&puStack_50,lVar4);
+        CoreSystem_ConfigValidator0(&puStack_50,lVar4);
         uVar1 = uStack_40;
         uVar5 = (uint64_t)uStack_40;
         if (lStack_48 != 0) {

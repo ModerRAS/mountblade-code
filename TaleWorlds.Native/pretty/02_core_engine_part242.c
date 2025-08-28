@@ -503,7 +503,7 @@ LAB_18020b304:
           if (puVar8[1] != 0) {
             lVar9 = puVar8[1];
           }
-          FUN_180627c50(&puStack_4e0,lVar9);
+          CoreSystem_ConfigValidator0(&puStack_4e0,lVar9);
           break;
         }
         lVar9 = (int64_t)&system_state_3a84 - (int64_t)pcVar19;

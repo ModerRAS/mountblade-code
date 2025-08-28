@@ -62,7 +62,7 @@ void initialize_resource_manager(int64_t *engine_context,int64_t resource_params
   if (*(void **)(resource_params + 8) != (void *)0x0) {
     resource_data = *(void **)(resource_params + 8);
   }
-  FUN_180627c50(&stack_string_ptr,resource_data);
+  CoreSystem_ConfigValidator0(&stack_string_ptr,resource_data);
   stack_resource_value = 0;
   stack_capacity = stack_capacity & 0xffffff00;
   resource_handle = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x60d30,0x10,0x1f);

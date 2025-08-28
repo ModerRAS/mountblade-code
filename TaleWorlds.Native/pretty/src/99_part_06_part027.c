@@ -250,7 +250,7 @@ typedef struct SystemState {
 /** 系统工具函数别名 */
 #define SystemLogOutput FUN_180627020
 #define SystemTimeGet CoreEngineSystemCleanup
-#define SystemProcessCreate FUN_180627c50
+#define SystemProcessCreate CoreSystem_ConfigValidator0
 #define SystemProcessExecute FUN_1800b6de0
 #define SystemProcessWait FUN_180275a60
 

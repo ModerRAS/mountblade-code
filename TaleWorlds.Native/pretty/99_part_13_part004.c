@@ -1,3 +1,4 @@
+#include "FUN_1808de000_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -658,7 +659,7 @@ uint64_t FUN_1808a87d0(int64_t param_1,int64_t *param_2)
       uVar6 = uVar2;
       if (uVar6 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808de000(param_2,auStack_48);
+        SystemThreadManager(param_2,auStack_48);
       }
 LAB_1808a8983:
       uVar3 = (uint64_t)uVar6;
@@ -739,7 +740,7 @@ uint64_t FUN_1808a880a(void)
     uVar6 = uVar3;
     if (uVar6 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808de000(uVar7,&stack0x00000030);
+      SystemThreadManager(uVar7,&stack0x00000030);
     }
 LAB_1808a8983:
     uVar4 = (uint64_t)uVar6;
@@ -810,7 +811,7 @@ uint64_t FUN_1808a884b(void)
   }
   if ((int)unaff_RDI == 0) {
                     // WARNING: Subroutine does not return
-    FUN_1808de000(uVar7,&stack0x00000030);
+    SystemThreadManager(uVar7,&stack0x00000030);
   }
 LAB_1808a8983:
   return unaff_RDI & 0xffffffff;

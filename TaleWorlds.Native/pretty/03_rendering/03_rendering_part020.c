@@ -151,7 +151,7 @@ void process_rendering_materials(int64_t *render_context, int64_t *material_data
                 if (material_entry[1] != 0) {
                     current_material = material_entry[1];
                 }
-                FUN_180627c50(&texture_manager, current_material);
+                CoreSystem_ConfigValidator0(&texture_manager, current_material);
                 break;
             }
             
@@ -165,7 +165,7 @@ void process_rendering_materials(int64_t *render_context, int64_t *material_data
                     if (material_entry[1] != 0) {
                         current_material = material_entry[1];
                     }
-                    FUN_180627c50(&texture_manager, current_material);
+                    CoreSystem_ConfigValidator0(&texture_manager, current_material);
                     break;
                 }
             }
@@ -230,7 +230,7 @@ void process_rendering_materials(int64_t *render_context, int64_t *material_data
                 if (material_entry[1] != 0) {
                     current_material = material_entry[1];
                 }
-                FUN_180627c50(&material_resource, current_material);
+                CoreSystem_ConfigValidator0(&material_resource, current_material);
                 break;
             }
             
@@ -244,7 +244,7 @@ void process_rendering_materials(int64_t *render_context, int64_t *material_data
                     if (material_entry[1] != 0) {
                         current_material = material_entry[1];
                     }
-                    FUN_180627c50(&material_resource, current_material);
+                    CoreSystem_ConfigValidator0(&material_resource, current_material);
                     break;
                 }
             }
@@ -309,7 +309,7 @@ void process_rendering_materials(int64_t *render_context, int64_t *material_data
                         if (sub_material_entry[1] != 0) {
                             current_material = sub_material_entry[1];
                         }
-                        FUN_180627c50(&texture_data[0], current_material);
+                        CoreSystem_ConfigValidator0(&texture_data[0], current_material);
                         break;
                     }
                     
@@ -323,7 +323,7 @@ void process_rendering_materials(int64_t *render_context, int64_t *material_data
                             if (sub_material_entry[1] != 0) {
                                 current_material = sub_material_entry[1];
                             }
-                            FUN_180627c50(&texture_data[0], current_material);
+                            CoreSystem_ConfigValidator0(&texture_data[0], current_material);
                             break;
                         }
                     }
@@ -832,7 +832,7 @@ final_processing:
                             if (material_entry[1] != 0) {
                                 current_material = material_entry[1];
                             }
-                            FUN_180627c50(&data_processor, current_material);
+                            CoreSystem_ConfigValidator0(&data_processor, current_material);
                             material_list = (int64_t *)FUN_1800b30d0(system_resource_state, material_array, &data_processor, 1);
                             material_params[1] = 4;
                             material_list = (int64_t *)*material_list;
@@ -872,7 +872,7 @@ final_processing:
                                 if (material_entry[1] != 0) {
                                     current_material = material_entry[1];
                                 }
-                                FUN_180627c50(&data_processor, current_material);
+                                CoreSystem_ConfigValidator0(&data_processor, current_material);
                                 material_list = (int64_t *)FUN_1800b30d0(system_resource_state, material_array, &data_processor, 1);
                                 material_params[1] = 4;
                                 material_list = (int64_t *)*material_list;

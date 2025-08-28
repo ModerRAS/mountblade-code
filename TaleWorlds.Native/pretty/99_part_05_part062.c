@@ -726,7 +726,7 @@ LAB_1802ff2f4:
         if (puVar3[1] != 0) {
           lVar7 = puVar3[1];
         }
-        FUN_180627c50(&puStack_50,lVar7);
+        CoreSystem_ConfigValidator0(&puStack_50,lVar7);
         plVar2 = (int64_t *)FUN_1800b3970();
         lVar7 = *plVar2;
         if (plStackX_8 != (int64_t *)0x0) {

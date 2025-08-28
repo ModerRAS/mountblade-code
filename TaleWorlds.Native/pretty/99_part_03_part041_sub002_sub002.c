@@ -259,7 +259,7 @@ LAB_1801f3ac0:
         if (puVar10[1] != 0) {
           lVar18 = puVar10[1];
         }
-        FUN_180627c50(&puStack_1c8,lVar18);
+        CoreSystem_ConfigValidator0(&puStack_1c8,lVar18);
         break;
       }
       lVar18 = (int64_t)&processed_var_6056_ptr - (int64_t)pcVar24;
@@ -317,7 +317,7 @@ LAB_1801f3bd5:
         if (puVar10[1] != 0) {
           lVar18 = puVar10[1];
         }
-        FUN_180627c50(&puStack_1a8,lVar18);
+        CoreSystem_ConfigValidator0(&puStack_1a8,lVar18);
         break;
       }
       lVar18 = (int64_t)&processed_var_6084_ptr - (int64_t)pcVar24;
@@ -483,7 +483,7 @@ LAB_1801f3e94:
           uStack_138 = 0;
           uStack_124 = 0xffffffff;
           uStack_120 = 0;
-          FUN_180627c50(&puStack_168,&system_buffer_ptr);
+          CoreSystem_ConfigValidator0(&puStack_168,&system_buffer_ptr);
           (**(code **)(puStack_148 + 0x10))(&puStack_148,&system_buffer_ptr);
           uStack_128 = 0;
           pcVar24 = "type";
@@ -620,7 +620,7 @@ LAB_1801f41d4:
                 if (puVar10[1] != 0) {
                   lVar18 = puVar10[1];
                 }
-                FUN_180627c50(&puStack_1c8,lVar18);
+                CoreSystem_ConfigValidator0(&puStack_1c8,lVar18);
                 break;
               }
               lVar18 = (int64_t)&processed_var_6232_ptr - (int64_t)pcVar24;

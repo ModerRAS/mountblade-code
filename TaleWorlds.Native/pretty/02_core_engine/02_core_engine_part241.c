@@ -233,7 +233,7 @@ LAB_180209e40:
                       if (texture_data[1] != 0) {
                         path_length = texture_data[1];
                       }
-                      FUN_180627c50(&stack_resource_3,path_length);
+                      CoreSystem_ConfigValidator0(&stack_resource_3,path_length);
                       break;
                     }
                     path_length = (int64_t)&global_config_7680_ptr - (int64_t)material_name;
@@ -280,7 +280,7 @@ LAB_180209f34:
                         if (texture_data[1] != 0) {
                           path_length = texture_data[1];
                         }
-                        FUN_180627c50(&stack_resource_4,path_length);
+                        CoreSystem_ConfigValidator0(&stack_resource_4,path_length);
                         break;
                       }
                       path_length = (int64_t)&system_flag_3a84 - (int64_t)material_name;
@@ -346,7 +346,7 @@ LAB_18020a094:
                           if (texture_data[1] != 0) {
                             path_length = texture_data[1];
                           }
-                          FUN_180627c50(&stack_resource_5,path_length);
+                          CoreSystem_ConfigValidator0(&stack_resource_5,path_length);
                           break;
                         }
                         path_length = (int64_t)&system_flag_3a84 - (int64_t)material_name;
@@ -412,7 +412,7 @@ LAB_18020a1f4:
                             if (texture_data[1] != 0) {
                               path_length = texture_data[1];
                             }
-                            FUN_180627c50(&stack_resource_1,path_length);
+                            CoreSystem_ConfigValidator0(&stack_resource_1,path_length);
                             break;
                           }
                           path_length = (int64_t)&system_flag_3a84 - (int64_t)material_name;
@@ -566,7 +566,7 @@ LAB_18020a4d0:
                       if (texture_data[1] != 0) {
                         path_length = texture_data[1];
                       }
-                      FUN_180627c50(&stack_resource_2,path_length);
+                      CoreSystem_ConfigValidator0(&stack_resource_2,path_length);
                       break;
                     }
                     path_length = (int64_t)&system_flag_3a84 - (int64_t)temp_name;

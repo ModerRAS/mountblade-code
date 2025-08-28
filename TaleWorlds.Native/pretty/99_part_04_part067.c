@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingEngineCore */
+#define RenderingEngineCore RenderingEngineCore
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -283,7 +287,7 @@ void FUN_1802c3ab0(void **param_1,int64_t param_2)
     FUN_180049bf0(&puStack_228,&processed_var_8088_ptr);
     FUN_1802c2560(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20,&puStack_228);
     pppuStack_2c8._0_4_ = 0xffffffff;
-    FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),0,param_1[7],0x20);
+    RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),0,param_1[7],0x20);
     uStack_2c0 = 1;
     pppuStack_2c8 = (void ***)CONCAT44(pppuStack_2c8._4_4_,0xffffffff);
     FUN_18029d760(*(uint64_t *)(system_message_buffer + 0x1cd8),1,1,param_1[8]);
@@ -324,7 +328,7 @@ void FUN_1802c3ab0(void **param_1,int64_t param_2)
     do {
       iVar8 = (int)ppuVar9;
       pppuStack_2c8._0_4_ = iVar8;
-      FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),0,param_1[8],0x20);
+      RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),0,param_1[8],0x20);
       uVar10 = iVar8 + 1;
       uStack_2c0 = 1;
       pppuStack_2c8 = (void ***)CONCAT44(pppuStack_2c8._4_4_,uVar10);

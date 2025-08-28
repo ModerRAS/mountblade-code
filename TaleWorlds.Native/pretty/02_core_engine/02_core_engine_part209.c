@@ -154,7 +154,7 @@ LAB_id_found:
             if (current_record[1] != 0) {
               name_offset = current_record[1];
             }
-            FUN_180627c50(&stack_pointer,name_offset);
+            CoreSystem_ConfigValidator0(&stack_pointer,name_offset);
             break;
           }
           name_offset = (int64_t)&ui_system_data_1288_ptr - (int64_t)search_name;

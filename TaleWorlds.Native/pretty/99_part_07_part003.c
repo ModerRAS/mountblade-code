@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingEngineCore */
+#define RenderingEngineCore RenderingEngineCore
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -249,7 +253,7 @@ typedef struct {
 #define ProcessData                        FUN_1801f7d20      // 数据处理函数
 #define ValidateParameters                 FUN_180299eb0      // 参数验证函数
 #define ExecuteOperation                   FUN_18029fc10      // 操作执行函数
-#define FormatData                         FUN_18029d150      // 数据格式化函数
+#define FormatData                         RenderingEngineCore0      // 数据格式化函数
 #define TransformData                      FUN_18029d760      // 数据变换函数
 #define ConfigureSystem                    CoreEngineDataTransformer      // 系统配置函数
 #define ControlResource                    SystemDataInitializer      // 资源控制函数

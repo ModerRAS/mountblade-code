@@ -1535,7 +1535,7 @@ LAB_1800a9108:
   default:
     goto LAB_1800a8889;
   }
-  FUN_180627c50(&puStack_878,puVar15);
+  CoreSystem_ConfigValidator0(&puStack_878,puVar15);
 LAB_1800a8889:
   uVar11 = uStack_978;
   uVar16 = uStack_978 + 3;

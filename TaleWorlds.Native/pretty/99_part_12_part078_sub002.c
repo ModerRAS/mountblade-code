@@ -1,3 +1,4 @@
+#include "FUN_1808de000_definition.h"
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_12_part078_sub002.c - 1 个函数
@@ -28,7 +29,7 @@ void FUN_1808a0552(int32_t param_1)
          (*(int32_t **)(unaff_RBP + 0x20) + (int64_t)*(int *)(unaff_RBP + 0x28) * 2 <= puVar4))
       {
                     // WARNING: Subroutine does not return
-        FUN_1808de000(param_1,&stack0x00000040);
+        SystemThreadManager(param_1,&stack0x00000040);
       }
       iVar3 = FUN_1808ddf00(param_1,uStack0000000000000098);
       if ((iVar3 != 0) || (*(int *)(unaff_RDI[1] + 0x18) != 0)) break;

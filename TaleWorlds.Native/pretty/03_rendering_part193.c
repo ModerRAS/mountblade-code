@@ -277,7 +277,7 @@ LAB_18037dd34:
         if (puVar8[1] != 0) {
           lVar5 = puVar8[1];
         }
-        uVar12 = FUN_180627c50(&puStack_b0,lVar5);
+        uVar12 = CoreSystem_ConfigValidator0(&puStack_b0,lVar5);
         lVar5 = render_system_data_config;
         if (*(int *)(system_main_module_state + 0x20) == 1) {
           plVar2 = (int64_t *)FUN_180058080(render_system_data_config,auStack_78,&puStack_b0);

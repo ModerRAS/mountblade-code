@@ -1,3 +1,4 @@
+#include "FUN_1808de000_definition.h"
 /**
  * @file 04_ui_system_part428.c
  * @brief UI系统高级数据验证和处理模块
@@ -339,7 +340,7 @@ uint64_t ui_system_data_validator_2(int64_t param_1, int64_t *param_2)
         if (((int)validation_result == 0) &&
            (validation_result = FUN_1808a7c90(param_2, param_1 + UI_OFFSET_0x40, 0x3d), (int)validation_result == 0)) {
                     // WARNING: Subroutine does not return
-            FUN_1808de000(param_2, validation_buffer_64);
+            SystemThreadManager(param_2, validation_buffer_64);
           }
         }
         else {
@@ -501,7 +502,7 @@ uint64_t ui_system_data_validator_3(int64_t validation_context, int64_t data_obj
             if (((int)validation_result == 0) && 
                (validation_result = FUN_1808a7c90(), (int)validation_result == 0)) {
                         // WARNING: Subroutine does not return
-                FUN_1808de000();
+                SystemThreadManager();
             }
         }
         else {
@@ -587,7 +588,7 @@ void ui_system_data_processor_1(void)
             return;
         }
                     // WARNING: Subroutine does not return
-        FUN_1808de000();
+        SystemThreadManager();
     }
     
     // 执行通用处理
@@ -598,7 +599,7 @@ void ui_system_data_processor_1(void)
     
 process_final:
                     // WARNING: Subroutine does not return
-    FUN_1808de000();
+    SystemThreadManager();
 }
 
 
@@ -667,7 +668,7 @@ uint64_t ui_system_data_processor_2(int64_t data_object, uint64_t *context_ptr, 
                ((optional_flag == '\0' || 
                  (processing_result = FUN_1808a1870(data_object + UI_OFFSET_0x48, context_ptr), (int)processing_result == 0)))) {
                         // WARNING: Subroutine does not return
-                FUN_1808de000(context_ptr, validation_buffer_64);
+                SystemThreadManager(context_ptr, validation_buffer_64);
             }
         }
         else {
@@ -705,7 +706,7 @@ uint64_t ui_system_data_processor_3(uint64_t *context_ptr, int64_t data_object, 
                ((optional_flag == '\0' || 
                  (processing_result = FUN_1808a1870(data_object + UI_OFFSET_0x48, context_ptr), (int)processing_result == 0)))) {
                         // WARNING: Subroutine does not return
-                FUN_1808de000();
+                SystemThreadManager();
             }
         }
         else {
@@ -778,7 +779,7 @@ uint64_t ui_system_data_processor_4(int64_t data_object, int64_t *context_ptr)
                 if (((int)processing_result == 0) &&
                    (processing_result = FUN_1808a7c40(context_ptr, data_object + UI_OFFSET_0xec, 0x80), (int)processing_result == 0)) {
                             // WARNING: Subroutine does not return
-                    FUN_1808de000(context_ptr, validation_buffer_48);
+                    SystemThreadManager(context_ptr, validation_buffer_48);
                 }
             }
         }
@@ -878,7 +879,7 @@ uint64_t ui_system_data_processor_5(int64_t data_object, int64_t *context_ptr)
                             return uVar4;
                         }
                         // WARNING: Subroutine does not return
-                        FUN_1808de000(context_ptr, auStack_40);
+                        SystemThreadManager(context_ptr, auStack_40);
                     }
                 }
             }
@@ -972,7 +973,7 @@ uint64_t ui_system_data_processor_6(int64_t validation_context, int64_t data_obj
                     uVar3 = FUN_180898e70();
                     if ((int)uVar3 == 0) {
                         // WARNING: Subroutine does not return
-                        FUN_1808de000();
+                        SystemThreadManager();
                     }
                     return uVar3;
                 }
@@ -1053,7 +1054,7 @@ uint64_t ui_system_data_processor_7(int64_t data_object, int64_t *context_ptr, u
                     return uVar3;
                 }
                 // WARNING: Subroutine does not return
-                FUN_1808de000();
+                SystemThreadManager();
             }
         }
     }
@@ -1114,7 +1115,7 @@ uint64_t ui_system_data_processor_8(int64_t *context_ptr, int64_t data_object, u
             uVar3 = FUN_180898e70();
             if ((int)uVar3 == 0) {
                 // WARNING: Subroutine does not return
-                FUN_1808de000();
+                SystemThreadManager();
             }
             return uVar3;
         }
@@ -1157,7 +1158,7 @@ uint64_t ui_system_data_processor_9(uint64_t *context_ptr, int64_t data_object, 
             uVar2 = FUN_180898e70();
             if ((int)uVar2 == 0) {
                 // WARNING: Subroutine does not return
-                FUN_1808de000();
+                SystemThreadManager();
             }
             return uVar2;
         }
@@ -1193,7 +1194,7 @@ uint64_t ui_system_data_processor_10(uint64_t *context_ptr, int64_t data_object)
             uVar2 = FUN_180898e70();
             if ((int)uVar2 == 0) {
                 // WARNING: Subroutine does not return
-                FUN_1808de000();
+                SystemThreadManager();
             }
             return uVar2;
         }
@@ -1221,7 +1222,7 @@ void ui_system_data_processor_11(void)
     iVar1 = FUN_180898e70();
     if (iVar1 == 0) {
         // WARNING: Subroutine does not return
-        FUN_1808de000();
+        SystemThreadManager();
     }
     return;
 }
@@ -1266,7 +1267,7 @@ void ui_system_data_processor_12(int64_t data_object, uint64_t context_ptr)
         iVar1 = FUN_1808a7b00(context_ptr, data_object + UI_OFFSET_0x8);
         if (iVar1 == 0) {
             // WARNING: Subroutine does not return
-            FUN_1808de000(context_ptr, auStack_28);
+            SystemThreadManager(context_ptr, auStack_28);
         }
     }
     return;
@@ -1309,7 +1310,7 @@ uint64_t ui_system_data_processor_13(int64_t data_object, uint64_t *context_ptr)
             if (((int)uVar1 == 0) && 
                 (uVar1 = FUN_1808a4fb0(context_ptr, data_object + UI_OFFSET_0x30, 1, 0), (int)uVar1 == 0)) {
                 // WARNING: Subroutine does not return
-                FUN_1808de000(context_ptr, auStack_28);
+                SystemThreadManager(context_ptr, auStack_28);
             }
         }
     }
@@ -1355,7 +1356,7 @@ uint64_t ui_system_data_processor_14(int64_t data_object, uint64_t *context_ptr)
             uVar1 = FUN_180899ef0(*context_ptr, data_object + UI_OFFSET_0xd8);
             if ((int)uVar1 == 0) {
                 // WARNING: Subroutine does not return
-                FUN_1808de000(context_ptr, auStack_48);
+                SystemThreadManager(context_ptr, auStack_48);
             }
         }
     }
@@ -1517,7 +1518,7 @@ uint64_t ui_system_data_processor_16(int64_t data_object, uint64_t *context_ptr)
                  (uVar1 = FUN_180898eb0(context_ptr, data_object + UI_OFFSET_0xf8), (int)uVar1 == 0)) &&
                 (uVar1 = FUN_1808a6e50(context_ptr, data_object + UI_OFFSET_0xe8, 1, data_object), (int)uVar1 == 0)) {
                 // WARNING: Subroutine does not return
-                FUN_1808de000(context_ptr, auStack_48);
+                SystemThreadManager(context_ptr, auStack_48);
             }
         }
     }
@@ -1557,7 +1558,7 @@ uint64_t ui_system_data_processor_17(uint64_t data_object, int64_t context_ptr)
                 uVar1 = FUN_1808a1610(data_object, context_ptr);
                 if ((int)uVar1 == 0) {
                     // WARNING: Subroutine does not return
-                    FUN_1808de000(context_ptr, auStack_28);
+                    SystemThreadManager(context_ptr, auStack_28);
                 }
             }
         }

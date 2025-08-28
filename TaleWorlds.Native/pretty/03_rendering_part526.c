@@ -82,7 +82,7 @@ LAB_180553374:
           if (puVar5[1] != 0) {
             lVar4 = puVar5[1];
           }
-          FUN_180627c50(&puStack_40,lVar4);
+          CoreSystem_ConfigValidator0(&puStack_40,lVar4);
           break;
         }
         lVar4 = (int64_t)&memory_allocator_3028_ptr - (int64_t)pcVar7;
@@ -921,7 +921,7 @@ LAB_180554173:
           if (puVar14[1] != 0) {
             lVar4 = puVar14[1];
           }
-          FUN_180627c50(&puStack_60,lVar4);
+          CoreSystem_ConfigValidator0(&puStack_60,lVar4);
           break;
         }
         lVar4 = (int64_t)&ui_system_data_1288_ptr - (int64_t)pcVar13;

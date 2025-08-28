@@ -621,7 +621,7 @@ int insert_into_dynamic_array(int64_t array_ptr,int64_t element_ptr)
   temp_ptr = &cleanup_stack;
   cleanup_stack = &cleanup_stack;
   temp_stack = &cleanup_stack;
-  FUN_180627c50(&element_list,error_msg);
+  CoreSystem_ConfigValidator0(&element_list,error_msg);
   uStack_118 = 0;
   uStack_110 = 0;
   uStack_c0 = 0;

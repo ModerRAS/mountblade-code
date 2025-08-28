@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingEngineCore */
+#define RenderingEngineCore RenderingEngineCore
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -552,7 +556,7 @@ LAB_1802dde9e:
           }
 LAB_1802ddeb5:
           uStack_e8 = 0xffffffff;
-          FUN_18029d150(uVar1,uVar7 & 0xffffffff,lVar10,1);
+          RenderingEngineCore0(uVar1,uVar7 & 0xffffffff,lVar10,1);
         }
         uVar7 = (uint64_t)(uVar6 + 1);
         uVar9 = uVar9 << 1 | (uint)((int)uVar9 < 0);
@@ -609,7 +613,7 @@ LAB_1802ddf95:
           }
 LAB_1802ddfac:
           uStack_e8 = 0xffffffff;
-          FUN_18029d150(uVar1,uVar7 & 0xffffffff,lVar10,0x10);
+          RenderingEngineCore0(uVar1,uVar7 & 0xffffffff,lVar10,0x10);
         }
         uVar7 = (uint64_t)(uVar6 + 1);
         uVar9 = uVar9 << 1 | (uint)((int)uVar9 < 0);

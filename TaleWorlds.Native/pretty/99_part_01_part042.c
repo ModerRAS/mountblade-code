@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingEngineCore */
+#define RenderingEngineCore RenderingEngineCore
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -625,7 +629,7 @@ LAB_1800cc2f2:
   }
   else {
     uStack_1f8 = 0xffffffff;
-    FUN_18029d150(*(uint64_t *)(lVar11 + 0x1cd8),0x18,lVar13,0x10);
+    RenderingEngineCore0(*(uint64_t *)(lVar11 + 0x1cd8),0x18,lVar13,0x10);
   }
   lVar11 = *(int64_t *)(param_2 + 0x99c8);
   if (((lVar11 == 0) || (*(int64_t *)(lVar11 + 0x58) - *(int64_t *)(lVar11 + 0x50) >> 3 == 0)) ||
@@ -656,7 +660,7 @@ LAB_1800cc2f2:
   }
   else {
     uStack_1f8 = 0xffffffff;
-    FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),0x1b,lVar11,0x10);
+    RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),0x1b,lVar11,0x10);
   }
   uVar18 = system_resource_state;
   lVar11 = system_system_data_memory;
@@ -747,7 +751,7 @@ LAB_1800cc2f2:
   }
   else {
     uStack_1f8 = 0xffffffff;
-    FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),0x1a,lVar11,0x10);
+    RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),0x1a,lVar11,0x10);
   }
 LAB_1800cd0dc:
   if (plVar5 != (int64_t *)0x0) {
@@ -821,7 +825,7 @@ void FUN_1800cd1b0(uint64_t param_1,int64_t param_2,byte param_3)
     uVar6 = *(uint64_t *)(lVar1 + 0x18);
   }
   FUN_18029fb10(uVar2,0x59,uVar6,iVar5);
-  FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),0x38,*(uint64_t *)(param_2 + 0x97b8),
+  RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),0x38,*(uint64_t *)(param_2 + 0x97b8),
                 iVar5,0xffffffff);
   lVar3 = system_main_module_state;
   lVar1 = *(int64_t *)(param_2 + 0x97b0);
@@ -832,7 +836,7 @@ void FUN_1800cd1b0(uint64_t param_1,int64_t param_2,byte param_3)
     *(int32_t *)(lVar1 + 0x16c) = *(int32_t *)(lVar3 + 0x224);
   }
   FUN_18029fb10(uVar2,0x57,uVar4,iVar5);
-  FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),0x37,*(uint64_t *)(param_2 + 0x97c0),
+  RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),0x37,*(uint64_t *)(param_2 + 0x97c0),
                 iVar5,0xffffffff);
   return;
 }

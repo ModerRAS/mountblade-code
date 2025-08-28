@@ -172,7 +172,7 @@ void FUN_180248910(int64_t param_1)
   if (*(void **)(param_1 + 0x3528) != (void *)0x0) {
     puVar8 = *(void **)(param_1 + 0x3528);
   }
-  FUN_180627c50(&puStack_1d8,puVar8);
+  CoreSystem_ConfigValidator0(&puStack_1d8,puVar8);
   plStack_478 = (int64_t *)0x0;
   plStack_470 = (int64_t *)0x0;
   plStack_468 = (int64_t *)0x0;

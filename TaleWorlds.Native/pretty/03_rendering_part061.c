@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingEngineCore */
+#define RenderingEngineCore RenderingEngineCore
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -218,8 +222,8 @@ void FUN_18029d0a0(int64_t param_1,uint64_t *param_2,int32_t *param_3)
 
 
 
-// 函数: void FUN_18029d150(int64_t param_1,int param_2,int64_t param_3,int param_4,int param_5)
-void FUN_18029d150(int64_t param_1,int param_2,int64_t param_3,int param_4,int param_5)
+// 函数: void RenderingEngineCore0(int64_t param_1,int param_2,int64_t param_3,int param_4,int param_5)
+void RenderingEngineCore0(int64_t param_1,int param_2,int64_t param_3,int param_4,int param_5)
 
 {
   int64_t lVar1;

@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingEngineCore */
+#define RenderingEngineCore RenderingEngineCore
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -581,10 +585,10 @@ void FUN_1800c78b0(uint64_t param_1,int64_t param_2)
     *(int32_t *)(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x1480) = 0;
     uVar5 = *(uint64_t *)(lVar4 + 0x1cd8);
     uVar6 = FUN_1800be610();
-    FUN_18029d150(uVar5,0x15,uVar6,0x30,0xffffffff);
+    RenderingEngineCore0(uVar5,0x15,uVar6,0x30,0xffffffff);
   }
   else {
-    FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),0x15,*(uint64_t *)(param_2 + 0x11ee0),
+    RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),0x15,*(uint64_t *)(param_2 + 0x11ee0),
                   0x30,0xffffffff);
     lVar4 = system_message_buffer;
     puVar9 = (int32_t *)(param_2 + 0x12008);
@@ -680,7 +684,7 @@ void FUN_1800c78fc(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   *(uint64_t *)(in_R11 + 0x10) = unaff_R14;
   uVar12 = *(uint64_t *)(param_1 + 0x1cd8);
   *(uint64_t *)(in_R11 + 0x18) = unaff_R15;
-  FUN_18029d150(uVar12,(int)param_4 + -0x1b,param_3,param_4,0xffffffff);
+  RenderingEngineCore0(uVar12,(int)param_4 + -0x1b,param_3,param_4,0xffffffff);
   lVar11 = system_message_buffer;
   puVar15 = (int32_t *)(unaff_RSI + 0x12008);
   iVar13 = 0;
@@ -762,7 +766,7 @@ void FUN_1800c7ab5(void)
   *(int32_t *)(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x1480) = 0;
   uVar1 = *(uint64_t *)(lVar2 + 0x1cd8);
   uVar3 = FUN_1800be610();
-  FUN_18029d150(uVar1,0x15,uVar3,0x30,0xffffffff);
+  RenderingEngineCore0(uVar1,0x15,uVar3,0x30,0xffffffff);
   return;
 }
 
@@ -810,7 +814,7 @@ void FUN_1800c7b10(uint64_t param_1,int64_t param_2)
   
   if ((*(int64_t *)(param_2 + 0x11d10) != 0) &&
      (*(char *)(*(int64_t *)(param_2 + 0x11d10) + 900) != '\0')) {
-    FUN_18029d150(*(uint64_t *)(system_message_buffer + 0x1cd8),0x14,*(uint64_t *)(param_2 + 0x11d10),
+    RenderingEngineCore0(*(uint64_t *)(system_message_buffer + 0x1cd8),0x14,*(uint64_t *)(param_2 + 0x11d10),
                   0x30,0xffffffff);
     FUN_180286010(param_2 + 0x11d20,auStack_88,0);
     FUN_180287b30(param_2 + 0x11de0,auStack_148);
@@ -845,7 +849,7 @@ void FUN_1800c7b10(uint64_t param_1,int64_t param_2)
   }
   uVar2 = *(uint64_t *)(system_message_buffer + 0x1cd8);
   uVar3 = FUN_1800be610();
-  FUN_18029d150(uVar2,0x14,uVar3,0x30,0xffffffff);
+  RenderingEngineCore0(uVar2,0x14,uVar3,0x30,0xffffffff);
   return;
 }
 

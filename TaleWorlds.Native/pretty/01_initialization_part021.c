@@ -193,7 +193,7 @@ typedef struct {
 // 辅助功能函数别名
 #define SystemMemoryAllocator CoreEngineMemoryPoolReallocator              // 系统内存分配器
 #define SystemMemoryDeallocator CoreEngineMemoryPoolCleaner            // 系统内存释放器
-#define SystemDataValidator FUN_180627c50                // 系统数据验证器
+#define SystemDataValidator CoreSystem_ConfigValidator0                // 系统数据验证器
 #define SystemBufferManager CoreEngineDataBufferProcessor                // 系统缓冲区管理器
 #define SystemErrorHandler FUN_18004b100                  // 系统错误处理器
 #define SystemStatusChecker FUN_180624a00                // 系统状态检查器
@@ -897,7 +897,7 @@ void SystemDataProcessor(int64_t *param_1, int64_t param_2)
   if (*(void **)(param_2 + 8) != (void *)0x0) {
     puVar5 = *(void **)(param_2 + 8);
   }
-  FUN_180627c50(&puStack_1c0,puVar5);
+  CoreSystem_ConfigValidator0(&puStack_1c0,puVar5);
   uStack_1a0 = 0;
   uStack_19c = uStack_19c & 0xffffff00;
   uVar3 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x60d30,0x10,0x1f);

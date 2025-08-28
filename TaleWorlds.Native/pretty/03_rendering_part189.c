@@ -670,7 +670,7 @@ void FUN_18037a770(int64_t param_1,int64_t param_2)
   if (*(void **)(*system_main_module_state + 0x440) != (void *)0x0) {
     puVar5 = *(void **)(*system_main_module_state + 0x440);
   }
-  FUN_180627c50(&puStack_3b8,puVar5);
+  CoreSystem_ConfigValidator0(&puStack_3b8,puVar5);
   iVar6 = uStack_3a8 + 0x11;
   CoreMemoryPoolProcessor(&puStack_3b8,iVar6);
   puVar4 = (int32_t *)((uint64_t)uStack_3a8 + lStack_3b0);

@@ -1,3 +1,7 @@
+/* 函数别名定义: RenderingGeometryProcessor */
+#define RenderingGeometryProcessor RenderingGeometryProcessor
+
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -371,7 +375,7 @@ uint64_t FUN_1804255c0(int64_t param_1)
       cVar2 = '\0';
     }
     else {
-      FUN_18041ee20(param_1);
+      RenderingGeometryProcessor0(param_1);
       cVar2 = **(char **)(param_1 + 0xb8);
       *(char **)(param_1 + 0xb8) = *(char **)(param_1 + 0xb8) + 1;
     }

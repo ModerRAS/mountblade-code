@@ -779,7 +779,7 @@ int SystemResourceInserter(int64_t param_1,int64_t param_2)
   pppuStackX_8 = &pppuStack_68;
   pppuStack_68 = &pppuStack_68;
   pppuStack_60 = &pppuStack_68;
-  FUN_180627c50(&puStack_138,puVar3);
+  CoreSystem_ConfigValidator0(&puStack_138,puVar3);
   uStack_118 = 0;
   uStack_110 = 0;
   uStack_c0 = 0;
