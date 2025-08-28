@@ -2,7 +2,7 @@
  * 原始函数语义化别名定义
  * 自动生成的别名定义，用于提高代码可读性
  */
-#include "fun_aliases_batch.txt"
+#include "unified_function_aliases.h"
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
 #include "TaleWorlds.Native.Split.h"

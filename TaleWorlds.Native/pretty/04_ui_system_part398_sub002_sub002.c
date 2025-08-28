@@ -2,7 +2,7 @@
  * REMOVED_原始函数语义化别名定义
  * 自动生成的别名定义，用于提高代码可读性
  */
-#include "fun_aliases_batch.txt"
+#include "unified_function_aliases.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 // 04_ui_system_part398_sub002_sub002.c - 1 个函数

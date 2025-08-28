@@ -107,7 +107,7 @@
  *
  * ===================================================================
  */
-#include "fun_aliases_batch.txt"
+#include "unified_function_aliases.h"
 #define SystemInitializer System_Initializer2  // 系统初始化器
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"

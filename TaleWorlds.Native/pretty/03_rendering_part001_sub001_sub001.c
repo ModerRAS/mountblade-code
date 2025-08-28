@@ -2,7 +2,7 @@
  * 原始函数语义化别名定义
  * 自动生成的别名定义，用于提高代码可读性
  */
-#include "fun_aliases_batch.txt"
+#include "unified_function_aliases.h"
 #include "TaleWorlds.Native.Split.h"
 //============================================================================
 // 03_rendering_part001_sub001_sub001.c - 渲染系统基础函数和变量定义模块

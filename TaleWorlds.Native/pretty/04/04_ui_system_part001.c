@@ -2,7 +2,7 @@
  * 原始函数语义化别名定义
  * 自动生成的别名定义，用于提高代码可读性
  */
-#include "fun_aliases_batch.txt"
+#include "unified_function_aliases.h"
 #include "TaleWorlds.Native.Split.h"
 // 04_ui_system_part001.c - UI系统接口定义文件 (179个函数)
 // 该文件定义了用户界面系统的核心接口函数，包括窗口管理、控件处理、事件系统等

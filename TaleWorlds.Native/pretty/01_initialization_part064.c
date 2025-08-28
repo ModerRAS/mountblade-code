@@ -1,5 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
-#include "fun_aliases.h"
+#include "unified_function_aliases.h"
 /**
  * @file 01_initialization_part064.c
  * @brief 初始化系统高级组件管理和配置处理模块

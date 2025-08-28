@@ -644,3 +644,15 @@ void initialize_rendering_system(void) {
 #define compare_sub_object_data function_327250
 #define initialize_texture_buffer strcpy_s
 #define CALCULATE_OFFSET SUB168
+#define SEXT816 SignExtend16Bit
+
+/**
+ * 16位符号扩展函数
+ * 将16位值扩展为64位，保持符号位
+ * 
+ * @param value 要扩展的16位值
+ * @return 扩展后的64位值
+ */
+int64_t SignExtend16Bit(int16_t value) {
+  return (int64_t)value;
+}

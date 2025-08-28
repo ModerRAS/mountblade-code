@@ -3,7 +3,7 @@
  * 原始函数语义化别名定义
  * 自动生成的别名定义，用于提高代码可读性
  */
-#include "fun_aliases_batch.txt"
+#include "unified_function_aliases.h"
 /* 函数别名定义: DataStructureManager */
 #define DataStructureManager DataStructureManager
 /* 函数别名定义: RenderingEngineCore */

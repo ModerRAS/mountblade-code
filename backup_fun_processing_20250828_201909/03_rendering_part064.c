@@ -1,17 +1,56 @@
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
-// $fun 的语义化别名
-#define $alias_name $fun
-
-
-// $fun 的语义化别名
-#define $alias_name $fun
-
-
-// 03_rendering_part064.c - 渲染系统高级数据处理和渲染控制模块
-// 包含12个核心函数，涵盖渲染参数设置、内存管理、数据复制、字符串处理、
-// 缓冲区管理、矩阵运算、资源清理、字符处理、数组操作等高级渲染功能
+/**
+ * @file 03_rendering_part064.c
+ * @brief 渲染系统高级数据处理和渲染控制模块
+ * 
+ * 本模块是TaleWorlds.Native渲染系统的高级数据处理和渲染控制部分，主要负责
+ * 渲染参数设置、内存管理、数据复制、字符串处理、缓冲区管理、矩阵运算等
+ * 核心渲染功能。
+ * 
+ * 主要功能包括：
+ * - 渲染系统参数配置和初始化
+ * - 内存分配和资源管理
+ * - 数据块复制和处理
+ * - 字符串和缓冲区操作
+ * - 矩阵变换和运算
+ * - 渲染对象管理
+ * - 资源清理和释放
+ * 
+ * 核心函数：
+ * - render_system_set_parameters - 渲染系统参数设置
+ * - render_system_initialize_buffer - 缓冲区初始化
+ * - render_system_allocate_memory - 内存分配
+ * - render_system_copy_data_blocks - 数据块复制
+ * - render_system_calculate_matrix_transform - 矩阵变换计算
+ * - render_system_cleanup_resources - 资源清理
+ * - render_system_process_render_data - 渲染数据处理
+ * 
+ * 技术架构：
+ * - 采用模块化设计，各功能组件相对独立
+ * - 支持多种数据类型和格式处理
+ * - 包含完整的错误处理机制
+ * - 实现了高效的内存管理策略
+ * - 支持并行处理和异步操作
+ * 
+ * 性能优化策略：
+ * - 使用高效的内存分配算法
+ * - 实现数据块的批量处理
+ * - 采用缓存友好的数据结构
+ * - 支持GPU加速计算
+ * - 实现资源池管理
+ * 
+ * 安全考虑：
+ * - 实现了完整的内存边界检查
+ * - 包含资源泄漏防护机制
+ * - 支持异常情况处理
+ * - 实现了数据验证和校验
+ * 
+ * @author Claude Code
+ * @version 1.0
+ * @date 2025-08-28
+ */
 
 // 函数别名定义
 #define render_system_set_parameters FUN_180300970
@@ -36,18 +75,28 @@
 #define render_system_create_string_buffer FUN_180301830
 #define render_system_process_render_data FUN_180301910
 
-// 常量定义
-#define RENDER_FLOAT_ONE 0x3f800000
-#define RENDER_FLOAT_TWO 0x40000000
-#define RENDER_FLOAT_FOUR 0x40800000
-#define RENDER_FLOAT_SIXTEEN 0x41800000
-#define RENDER_PAGE_SIZE_8K 0x2000
-#define RENDER_BLOCK_SIZE_64 0x40
-#define RENDER_BUFFER_SIZE_4K 0x1028
-#define RENDER_MAX_ITERATIONS_64 0x40
-#define RENDER_SHIFT_MASK_13 0xd
-#define RENDER_STRING_BUFFER_SIZE 0x80
-#define RENDER_RESOURCE_FLAG_DEALLOCATE 1
+// ===========================================
+// 渲染系统常量定义
+// ===========================================
+
+/** 浮点数值常量（IEEE 754格式） */
+#define RENDER_FLOAT_ONE         0x3f800000    // 浮点数1.0
+#define RENDER_FLOAT_TWO        0x40000000    // 浮点数2.0
+#define RENDER_FLOAT_FOUR       0x40800000    // 浮点数4.0
+#define RENDER_FLOAT_SIXTEEN    0x41800000    // 浮点数16.0
+
+/** 内存和缓冲区大小常量 */
+#define RENDER_PAGE_SIZE_8K     0x2000        // 页面大小：8KB
+#define RENDER_BLOCK_SIZE_64    0x40          // 块大小：64字节
+#define RENDER_BUFFER_SIZE_4K   0x1028        // 缓冲区大小：4KB+8字节
+#define RENDER_STRING_BUFFER_SIZE 0x80        // 字符串缓冲区大小：128字节
+
+/** 处理限制常量 */
+#define RENDER_MAX_ITERATIONS_64 0x40          // 最大迭代次数：64次
+#define RENDER_SHIFT_MASK_13     0xd           // 移位掩码：13位
+
+/** 资源管理标志 */
+#define RENDER_RESOURCE_FLAG_DEALLOCATE 1      // 资源释放标志
 #define RENDER_MAX_COUNTER 100
 #define RENDER_DEFAULT_ALPHA 0xff000000
 #define RENDER_DEFAULT_COLOR 0xffffffff

@@ -38,6 +38,45 @@
 #define RENDERING_OFFSET_19C          0x19c        // 偏移量412
 #define RENDERING_OFFSET_1A4          0x1a4        // 偏移量420
 #define RENDERING_OFFSET_1AC          0x1ac        // 偏移量428
+// 渲染系统结构体偏移量常量
+#define RENDERING_CONTEXT_OFFSET_18   0x18         // 渲染上下文偏移量24
+#define RENDERING_CONTEXT_OFFSET_20   0x20         // 渲染上下文偏移量32
+#define RENDERING_CONTEXT_OFFSET_28   0x28         // 渲染上下文偏移量40
+#define RENDERING_CONTEXT_OFFSET_30   0x30         // 渲染上下文偏移量48
+#define RENDERING_CONTEXT_OFFSET_38   0x38         // 渲染上下文偏移量56
+#define RENDERING_CONTEXT_OFFSET_40   0x40         // 渲染上下文偏移量64
+#define RENDERING_CONTEXT_OFFSET_48   0x48         // 渲染上下文偏移量72
+#define RENDERING_CONTEXT_OFFSET_50   0x50         // 渲染上下文偏移量80
+#define RENDERING_CONTEXT_OFFSET_58   0x58         // 渲染上下文偏移量88
+#define RENDERING_CONTEXT_OFFSET_60   0x60         // 渲染上下文偏移量96
+#define RENDERING_CONTEXT_OFFSET_68   0x68         // 渲染上下文偏移量104
+#define RENDERING_CONTEXT_OFFSET_70   0x70         // 渲染上下文偏移量112
+#define RENDERING_CONTEXT_OFFSET_78   0x78         // 渲染上下文偏移量120
+#define RENDERING_CONTEXT_OFFSET_80   0x80         // 渲染上下文偏移量128
+#define RENDERING_CONTEXT_OFFSET_88   0x88         // 渲染上下文偏移量136
+#define RENDERING_CONTEXT_OFFSET_90   0x90         // 渲染上下文偏移量144
+#define RENDERING_CONTEXT_OFFSET_98   0x98         // 渲染上下文偏移量152
+#define RENDERING_CONTEXT_OFFSET_A0   0xa0         // 渲染上下文偏移量160
+#define RENDERING_CONTEXT_OFFSET_A8   0xa8         // 渲染上下文偏移量168
+#define RENDERING_CONTEXT_OFFSET_B0   0xb0         // 渲染上下文偏移量176
+#define RENDERING_CONTEXT_OFFSET_B8   0xb8         // 渲染上下文偏移量184
+#define RENDERING_CONTEXT_OFFSET_C0   0xc0         // 渲染上下文偏移量192
+#define RENDERING_CONTEXT_OFFSET_C8   0xc8         // 渲染上下文偏移量200
+#define RENDERING_CONTEXT_OFFSET_D0   0xd0         // 渲染上下文偏移量208
+#define RENDERING_CONTEXT_OFFSET_D8   0xd8         // 渲染上下文偏移量216
+#define RENDERING_CONTEXT_OFFSET_E0   0xe0         // 渲染上下文偏移量224
+// 渲染系统数据操作常量
+#define RENDERING_DATA_INCREMENT      0x14         // 数据增量 (20字节)
+#define RENDERING_NULL_VALUE          0x0          // 空值
+// 渲染系统扩展偏移量常量
+#define RENDERING_CONTEXT_OFFSET_E8   0xe8         // 渲染上下文偏移量232
+#define RENDERING_CONTEXT_OFFSET_F0   0xf0         // 渲染上下文偏移量240
+#define RENDERING_CONTEXT_OFFSET_F8   0xf8         // 渲染上下文偏移量248
+#define RENDERING_CONTEXT_OFFSET_FC   0xfc         // 渲染上下文偏移量252
+#define RENDERING_CONTEXT_OFFSET_100  0x100        // 渲染上下文偏移量256
+#define RENDERING_CONTEXT_OFFSET_104  0x104        // 渲染上下文偏移量260
+#define RENDERING_CONTEXT_OFFSET_108  0x108        // 渲染上下文偏移量264
+#define RENDERING_CONTEXT_OFFSET_110  0x110        // 渲染上下文偏移量272
 // 渲染系统指针常量
 #define RENDERING_NULL_PTR            0x0           // 空指针
 #define RENDERING_BASE_PTR            &system_state_ptr     // 系统状态基础指针
@@ -235,41 +274,41 @@ void RenderingSystem_AdvancedDataProcessor(int64_t *render_context, int64_t *dat
     uint_ptr = (uint *)(int64_val1 + RENDERING_OFFSET_10);
     *(uint **)(data_stream + 8) = uint_ptr;
     uint_val1 = *uint_ptr;
-    *(int64_t *)(data_stream + 8) = int64_val1 + 0x14;
-    *(uint64_t *)(render_context + 0x18) = 0;
-    *(uint64_t *)(render_context + 0x20) = 0;
-    *(uint64_t *)(render_context + 0x28) = 0;
-    *(uint64_t *)(render_context + 0x30) = 0;
-    *(uint64_t *)(render_context + 0x38) = 0;
-    *(uint64_t *)(render_context + 0x40) = 0;
-    *(uint64_t *)(render_context + 0x48) = 0;
-    *(uint64_t *)(render_context + 0x50) = 0;
-    *(uint64_t *)(render_context + 0x58) = 0;
-    *(uint64_t *)(render_context + 0x60) = 0;
-    *(uint64_t *)(render_context + 0x68) = 0;
-    *(uint64_t *)(render_context + 0x70) = 0;
-    *(uint64_t *)(render_context + 0x78) = 0;
-    *(uint64_t *)(render_context + 0x80) = 0;
-    *(uint64_t *)(render_context + 0x88) = 0;
-    *(uint64_t *)(render_context + 0x90) = 0;
-    *(uint64_t *)(render_context + 0x98) = 0;
-    *(uint64_t *)(render_context + 0xa0) = 0;
-    *(uint64_t *)(render_context + 0xa8) = 0;
-    *(uint64_t *)(render_context + 0xb0) = 0;
-    *(uint64_t *)(render_context + 0xb8) = 0;
-    *(uint64_t *)(render_context + 0xc0) = 0;
-    *(uint64_t *)(render_context + 200) = 0;
-    *(uint64_t *)(render_context + 0xd0) = 0;
-    *(uint64_t *)(render_context + 0xd8) = 0;
-    *(uint64_t *)(render_context + 0xe0) = 0;
-    *(uint64_t *)(render_context + 0xe8) = 0;
-    *(uint64_t *)(render_context + 0xf0) = 0;
-    *(int32_t *)(render_context + 0xf8) = 0;
-    *(int32_t *)(render_context + 0xfc) = 0;
-    *(int32_t *)(render_context + 0x100) = 0;
-    *(int32_t *)(render_context + 0x104) = 0;
-    *(uint64_t *)(render_context + 0x108) = 0;
-    *(uint64_t *)(render_context + 0x110) = 0;
+    *(int64_t *)(data_stream + 8) = int64_val1 + RENDERING_DATA_INCREMENT;
+    *(uint64_t *)(render_context + RENDERING_CONTEXT_OFFSET_18) = RENDERING_NULL_VALUE;
+    *(uint64_t *)(render_context + RENDERING_CONTEXT_OFFSET_20) = RENDERING_NULL_VALUE;
+    *(uint64_t *)(render_context + RENDERING_CONTEXT_OFFSET_28) = RENDERING_NULL_VALUE;
+    *(uint64_t *)(render_context + RENDERING_CONTEXT_OFFSET_30) = RENDERING_NULL_VALUE;
+    *(uint64_t *)(render_context + RENDERING_CONTEXT_OFFSET_38) = RENDERING_NULL_VALUE;
+    *(uint64_t *)(render_context + RENDERING_CONTEXT_OFFSET_40) = RENDERING_NULL_VALUE;
+    *(uint64_t *)(render_context + RENDERING_CONTEXT_OFFSET_48) = RENDERING_NULL_VALUE;
+    *(uint64_t *)(render_context + RENDERING_CONTEXT_OFFSET_50) = RENDERING_NULL_VALUE;
+    *(uint64_t *)(render_context + RENDERING_CONTEXT_OFFSET_58) = RENDERING_NULL_VALUE;
+    *(uint64_t *)(render_context + RENDERING_CONTEXT_OFFSET_60) = RENDERING_NULL_VALUE;
+    *(uint64_t *)(render_context + RENDERING_CONTEXT_OFFSET_68) = RENDERING_NULL_VALUE;
+    *(uint64_t *)(render_context + RENDERING_CONTEXT_OFFSET_70) = RENDERING_NULL_VALUE;
+    *(uint64_t *)(render_context + RENDERING_CONTEXT_OFFSET_78) = RENDERING_NULL_VALUE;
+    *(uint64_t *)(render_context + RENDERING_CONTEXT_OFFSET_80) = RENDERING_NULL_VALUE;
+    *(uint64_t *)(render_context + RENDERING_CONTEXT_OFFSET_88) = RENDERING_NULL_VALUE;
+    *(uint64_t *)(render_context + RENDERING_CONTEXT_OFFSET_90) = RENDERING_NULL_VALUE;
+    *(uint64_t *)(render_context + RENDERING_CONTEXT_OFFSET_98) = RENDERING_NULL_VALUE;
+    *(uint64_t *)(render_context + RENDERING_CONTEXT_OFFSET_A0) = RENDERING_NULL_VALUE;
+    *(uint64_t *)(render_context + RENDERING_CONTEXT_OFFSET_A8) = RENDERING_NULL_VALUE;
+    *(uint64_t *)(render_context + RENDERING_CONTEXT_OFFSET_B0) = RENDERING_NULL_VALUE;
+    *(uint64_t *)(render_context + RENDERING_CONTEXT_OFFSET_B8) = RENDERING_NULL_VALUE;
+    *(uint64_t *)(render_context + RENDERING_CONTEXT_OFFSET_C0) = RENDERING_NULL_VALUE;
+    *(uint64_t *)(render_context + RENDERING_CONTEXT_OFFSET_C8) = RENDERING_NULL_VALUE;
+    *(uint64_t *)(render_context + RENDERING_CONTEXT_OFFSET_D0) = RENDERING_NULL_VALUE;
+    *(uint64_t *)(render_context + RENDERING_CONTEXT_OFFSET_D8) = RENDERING_NULL_VALUE;
+    *(uint64_t *)(render_context + RENDERING_CONTEXT_OFFSET_E0) = RENDERING_NULL_VALUE;
+    *(uint64_t *)(render_context + RENDERING_CONTEXT_OFFSET_E8) = RENDERING_NULL_VALUE;
+    *(uint64_t *)(render_context + RENDERING_CONTEXT_OFFSET_F0) = RENDERING_NULL_VALUE;
+    *(int32_t *)(render_context + RENDERING_CONTEXT_OFFSET_F8) = (int32_t)RENDERING_NULL_VALUE;
+    *(int32_t *)(render_context + RENDERING_CONTEXT_OFFSET_FC) = (int32_t)RENDERING_NULL_VALUE;
+    *(int32_t *)(render_context + RENDERING_CONTEXT_OFFSET_100) = (int32_t)RENDERING_NULL_VALUE;
+    *(int32_t *)(render_context + RENDERING_CONTEXT_OFFSET_104) = (int32_t)RENDERING_NULL_VALUE;
+    *(uint64_t *)(render_context + RENDERING_CONTEXT_OFFSET_108) = RENDERING_NULL_VALUE;
+    *(uint64_t *)(render_context + RENDERING_CONTEXT_OFFSET_110) = RENDERING_NULL_VALUE;
     int32_ptr = *(int32_t **)(data_stream + 8);
     if (0 < (int)uint_val1) {
         uint64_val2 = (uint64_t)uint_val1;

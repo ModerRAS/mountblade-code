@@ -7,7 +7,7 @@
  * RenderingSystem_CallbackRegister_函数语义化别名定义
  * 自动生成的别名定义，用于提高代码可读性
  */
-#include "fun_aliases_batch.txt"
+#include "unified_function_aliases.h"
 #define RenderingSystem_CallbackRegister_1804559d0 function_4559d0            // 渲染系统回调注册器
 #define RenderingSystem_CallbackRegister_1804557b0 function_4557b0            // 渲染系统回调注册器
 #define RenderingSystem_CallbackRegister_1804555a0 function_4555a0            // 渲染系统回调注册器

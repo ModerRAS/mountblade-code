@@ -173,6 +173,9 @@
 // 通用空函数处理器
 #define FUN_0014b6a0 InitSubmodule_EmptyFunctionProcessor
 
+// 渲染系统着色器管理器初始化函数
+#define FUN_001417940 RenderingSystem_InitializeShaderManager
+
 /* ============================================================================
  * 系统模块高级功能函数别名
  * ============================================================================ */
@@ -203,7 +206,7 @@
  * ============================================================================ */
 
 // 函数别名使用统计宏
-#define FUNCTION_ALIAS_COUNT 87
+#define FUNCTION_ALIAS_COUNT 88
 
 // 函数别名版本信息
 #define FUNCTION_ALIAS_VERSION "1.0"
