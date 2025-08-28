@@ -1,65 +1,78 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part004.c - 核心引擎组件注册函数 (26个函数)
+// 02_core_engine_part004.c - 核心引擎数据结构初始化模块
+// 本模块包含26个数据结构初始化函数，用于注册各种引擎组件
 
 /**
- * 注册网络消息处理器
- * 在全局注册表中注册网络消息处理接口
+ * 注册基础场景组件
+ * 在全局组件注册表中注册场景基础组件，包括组件ID、处理函数和相关信息
+ * 
+ * 功能说明：
+ * 1. 获取全局组件管理器
+ * 2. 在组件树中查找合适的插入位置
+ * 3. 创建新的组件节点
+ * 4. 设置组件的属性和回调函数
+ * 
+ * 组件属性：
+ * - 组件类型ID: 0x40afa5469b6ac06d
+ * - 组件版本ID: 0x2f4bab01d34055a5
+ * - 组件名称: UNK_1809ff990
+ * - 优先级: 3
+ * - 处理函数: FUN_1802285e0
  */
-void register_network_message_handler(void)
-
+void 注册基础场景组件(void)
 {
-  char is_active;
-  void **registry_root;
-  int compare_result;
-  longlong *pool_manager;
-  longlong allocation_size;
-  void **current_node;
-  void **previous_node;
-  void **next_node;
-  void *new_entry;
-  void *handler_function;
-  
-  // 获取全局池管理器
-  pool_manager = (longlong *)FUN_18008d070();
-  registry_root = (void **)*pool_manager;
-  
-  // 检查根节点状态
-  is_active = *(char *)((longlong)registry_root[1] + 0x19);
-  handler_function = FUN_1802285e0;
-  previous_node = registry_root;
-  current_node = (void **)registry_root[1];
-  
-  // 遍历注册表查找合适位置
-  while (is_active == '\0') {
-    compare_result = memcmp(current_node + 4, &DAT_1809ff9c0, 0x10);
-    if (compare_result < 0) {
-      next_node = (void **)current_node[2];
-      current_node = previous_node;
+    char node_is_valid;
+    uint64_t *component_manager;
+    uint64_t *root_node;
+    uint64_t *current_node;
+    uint64_t *parent_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    void (*component_handler)(void);
+    
+    // 获取全局组件管理器
+    component_manager = (uint64_t *)FUN_18008d070();
+    root_node = (uint64_t *)*component_manager;
+    
+    // 检查根节点是否有效
+    node_is_valid = *(char *)((uint64_t)root_node[1] + 0x19);
+    component_handler = FUN_1802285e0;
+    parent_node = root_node;
+    current_node = (uint64_t *)root_node[1];
+    
+    // 在组件树中遍历寻找合适的插入位置
+    while (node_is_valid == '\0') {
+        int compare_result = memcmp(current_node + 4, &COMPONENT_SIGNATURE_BASE_SCENE, 0x10);
+        if (compare_result < 0) {
+            // 向左子树移动
+            next_node = (uint64_t *)current_node[2];
+            current_node = parent_node;
+        } else {
+            // 向右子树移动
+            next_node = (uint64_t *)*current_node;
+        }
+        parent_node = current_node;
+        current_node = next_node;
+        node_is_valid = *(char *)((uint64_t)next_node + 0x19);
     }
-    else {
-      next_node = (void **)*current_node;
+    
+    // 如果需要创建新节点
+    if ((parent_node == root_node) || 
+        (int compare_result = memcmp(&COMPONENT_SIGNATURE_BASE_SCENE, parent_node + 4, 0x10), compare_result < 0)) {
+        uint64_t allocation_size = FUN_18008f0d0(component_manager);
+        FUN_18008f140(component_manager, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+        parent_node = new_node;
     }
-    previous_node = current_node;
-    current_node = next_node;
-    is_active = *(char *)((longlong)next_node + 0x19);
-  }
-  
-  // 如果需要创建新条目
-  if ((previous_node == registry_root) || 
-      (compare_result = memcmp(&DAT_1809ff9c0, previous_node + 4, 0x10), compare_result < 0)) {
-    allocation_size = FUN_18008f0d0(pool_manager);
-    FUN_18008f140(pool_manager, &new_entry, previous_node, allocation_size + 0x20, allocation_size);
-    previous_node = new_entry;
-  }
-  
-  // 设置条目数据
-  previous_node[6] = 0x40afa5469b6ac06d;  // 网络消息类型标识符
-  previous_node[7] = 0x2f4bab01d34055a5;  // 版本信息
-  previous_node[8] = &UNK_1809ff990;      // 消息格式描述符
-  previous_node[9] = 3;                   // 优先级
-  previous_node[10] = handler_function;    // 处理函数指针
-  return;
+    
+    // 设置组件属性
+    parent_node[6] = COMPONENT_TYPE_BASE_SCENE;      // 组件类型ID
+    parent_node[7] = COMPONENT_VERSION_BASE_SCENE;   // 组件版本ID
+    parent_node[8] = &COMPONENT_NAME_BASE_SCENE;    // 组件名称
+    parent_node[9] = COMPONENT_PRIORITY_BASE_SCENE; // 组件优先级
+    parent_node[10] = (uint64_t)component_handler;  // 组件处理函数
+    
+    return;
 }
 
 /**
