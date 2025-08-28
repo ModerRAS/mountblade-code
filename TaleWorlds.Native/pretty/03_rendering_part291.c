@@ -107,11 +107,11 @@ void FUN_180423b90(int8_t (*param_1) [16],longlong param_2,longlong param_3,long
   int8_t auVar95 [16];
   int8_t auVar96 [16];
   
-  auVar43 = _DAT_180a40710;
-  auVar42 = _DAT_180a406f0;
-  auVar41 = _DAT_180a40580;
-  auVar40 = _DAT_180a3f990;
-  auVar39 = _DAT_180a3f980;
+  auVar43 = render_system_config;
+  auVar42 = render_system_config;
+  auVar41 = render_system_config;
+  auVar40 = render_system_config;
+  auVar39 = render_system_config;
   iVar49 = 0;
   if ((param_6 == 4) && (iVar48 = iVar49, 7 < param_5)) {
     do {
@@ -485,10 +485,10 @@ void FUN_180423bcb(int8_t (*param_1) [16],longlong param_2,int param_3,longlong 
   int8_t auVar93 [16];
   int8_t auVar94 [16];
   
-  auVar42 = _DAT_180a40710;
-  auVar41 = _DAT_180a406f0;
-  auVar40 = _DAT_180a3f990;
-  auVar39 = _DAT_180a3f980;
+  auVar42 = render_system_config;
+  auVar41 = render_system_config;
+  auVar40 = render_system_config;
+  auVar39 = render_system_config;
   iVar47 = param_3;
   if (7 < (int)param_2) {
     do {

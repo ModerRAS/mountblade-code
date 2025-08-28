@@ -91,11 +91,11 @@ LAB_1805b4350:
       cVar4 = FUN_18055f260(lVar7);
       if (cVar4 == '\0') goto LAB_1805b4442;
       if (auStackX_20[0] != 0) {
-        _DAT_180c95dc8 = lVar7;
-        cVar4 = (**(code **)(_DAT_180c8ece0 + 0x140))
+        system_system_memory = lVar7;
+        cVar4 = (**(code **)(system_system_data_memory + 0x140))
                           (*(int32_t *)(*(longlong *)(unaff_R14 + 0x58f8) + 0x4c));
         bVar10 = cVar4 != '\0';
-        _DAT_180c95dc8 = 0;
+        system_system_memory = 0;
 LAB_1805b441a:
         if (!bVar10) goto LAB_1805b4445;
         goto LAB_1805b4350;

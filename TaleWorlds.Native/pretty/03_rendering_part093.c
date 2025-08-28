@@ -8,8 +8,8 @@ void FUN_180320050(uint64_t *param_1)
 
 {
   *param_1 = &unknown_var_7872_ptr;
-  if (*(int *)(_DAT_180c8a9c8 + 0x9a0) != 0) {
-    FUN_1800623b0(_DAT_180c86928,0,0x1000000000000,3,&unknown_var_7272_ptr);
+  if (*(int *)(render_system_data_config + 0x9a0) != 0) {
+    FUN_1800623b0(system_message_context,0,0x1000000000000,3,&unknown_var_7272_ptr);
   }
   *(int32_t *)(param_1 + 10) = 0xffffffff;
   param_1[3] = &unknown_var_3456_ptr;
@@ -1143,12 +1143,12 @@ void FUN_180321570(longlong param_1,int32_t *param_2,longlong param_3)
   int32_t uStack_24;
   
   uVar12 = 0xfffffffffffffffe;
-  lVar10 = *(longlong *)(_DAT_180c86870 + 0x3d8);
+  lVar10 = *(longlong *)(system_main_module_state + 0x3d8);
   iVar7 = _Mtx_lock(lVar10 + 0xc0);
   if (iVar7 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar7);
   }
-  uVar12 = FUN_18062b1e0(_DAT_180c8ed18,0x100,8,3,uVar12);
+  uVar12 = FUN_18062b1e0(system_memory_pool_ptr,0x100,8,3,uVar12);
   puVar9 = (int32_t *)FUN_1803201f0(uVar12);
   uVar8 = FUN_18032b4a0(lVar10,puVar9);
   *puVar9 = uVar8;
@@ -1183,7 +1183,7 @@ void FUN_180321570(longlong param_1,int32_t *param_2,longlong param_3)
       puVar6 = (uint64_t *)*puVar6;
     }
   }
-  lVar10 = FUN_18062b420(_DAT_180c8ed18,0x30,*(int8_t *)(lVar10 + 0x840));
+  lVar10 = FUN_18062b420(system_memory_pool_ptr,0x30,*(int8_t *)(lVar10 + 0x840));
   uStack_28 = SUB84(puVar9,0);
   uStack_24 = (int32_t)((ulonglong)puVar9 >> 0x20);
   *(uint *)(lVar10 + 0x20) = uVar2;

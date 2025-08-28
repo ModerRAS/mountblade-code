@@ -608,11 +608,11 @@ FUN_1806e71c0(int16_t *param_1,uint param_2,uint *param_3,uint param_4,uint *par
     uStack_14 = (int16_t)param_5[3];
     uStack_12 = *(int16_t *)((longlong)param_5 + 0xe);
     uStack_28 = 0;
-    (**(code **)(&unknown_var_5696_ptr + (longlong)_DAT_180c0c300 * 8))(&uStack_28,&uStack_20,0x180c0c310);
+    (**(code **)(&unknown_var_5696_ptr + (longlong)system_system_config * 8))(&uStack_28,&uStack_20,0x180c0c310);
     uStack_30 = 0;
-    (**(code **)(&unknown_var_5696_ptr + (longlong)_DAT_180c0c304 * 8))(&uStack_30,&uStack_18,0x180c0c318);
+    (**(code **)(&unknown_var_5696_ptr + (longlong)system_system_config * 8))(&uStack_30,&uStack_18,0x180c0c318);
     uStack_38 = 0;
-    (**(code **)(&unknown_var_5696_ptr + (longlong)_DAT_180c0c308 * 8))(&uStack_38,&uStack_28,&uStack_30);
+    (**(code **)(&unknown_var_5696_ptr + (longlong)system_system_config * 8))(&uStack_38,&uStack_28,&uStack_30);
     if (((((short)uStack_38 == 0) && (uStack_38._2_2_ == 0)) && (uStack_38._4_2_ == 0)) &&
        (uStack_38._6_2_ == 0)) {
       cVar1 = '\0';
@@ -656,13 +656,13 @@ void FUN_1806e71ec(uint *param_1,longlong param_2,longlong param_3)
     *(int16_t *)(unaff_RBP + -0xe) = *(int16_t *)((longlong)param_1 + 10);
     *(short *)(unaff_RBP + -0xc) = (short)param_1[3];
     *(int16_t *)(unaff_RBP + -10) = *(int16_t *)((longlong)param_1 + 0xe);
-    lVar3 = (longlong)_DAT_180c0c300;
+    lVar3 = (longlong)system_system_config;
     *(uint64_t *)(unaff_RBP + -0x20) = 0;
     (**(code **)(&unknown_var_5696_ptr + lVar3 * 8))(unaff_RBP + -0x20,unaff_RBP + -0x18,0x180c0c310);
-    lVar3 = (longlong)_DAT_180c0c304;
+    lVar3 = (longlong)system_system_config;
     *(uint64_t *)(unaff_RBP + -0x28) = 0;
     (**(code **)(&unknown_var_5696_ptr + lVar3 * 8))(unaff_RBP + -0x28,unaff_RBP + -0x10,0x180c0c318);
-    lVar3 = (longlong)_DAT_180c0c308;
+    lVar3 = (longlong)system_system_config;
     *(uint64_t *)(unaff_RBP + -0x30) = 0;
     (**(code **)(&unknown_var_5696_ptr + lVar3 * 8))(unaff_RBP + -0x30,unaff_RBP + -0x20,unaff_RBP + -0x28)
     ;

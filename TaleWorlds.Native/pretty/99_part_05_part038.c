@@ -225,7 +225,7 @@ uint64_t FUN_1802efdd0(longlong param_1,longlong *param_2,uint64_t param_3,uint6
       lVar7 = lVar8;
       if ((lVar3 == 0) || (lVar7 = lVar3 * 2, plVar2 = plVar4, plVar9 = plVar4, lVar7 != 0)) {
         plVar2 = (longlong *)
-                 FUN_18062b420(_DAT_180c8ed18,lVar7 * 8,*(int8_t *)(param_1 + 0x218),param_4,
+                 FUN_18062b420(system_memory_pool_ptr,lVar7 * 8,*(int8_t *)(param_1 + 0x218),param_4,
                                0xfffffffffffffffe);
         plVar6 = *(longlong **)(param_1 + 0x208);
         plVar5 = *(longlong **)(param_1 + 0x200);
@@ -273,7 +273,7 @@ uint64_t FUN_1802efdd0(longlong param_1,longlong *param_2,uint64_t param_3,uint6
         lVar3 = (longlong)plVar6 - (longlong)plVar5 >> 3;
         if ((lVar3 == 0) || (lVar8 = lVar3 * 2, lVar8 != 0)) {
           plVar4 = (longlong *)
-                   FUN_18062b420(_DAT_180c8ed18,lVar8 * 8,*(int8_t *)(param_1 + 0x238));
+                   FUN_18062b420(system_memory_pool_ptr,lVar8 * 8,*(int8_t *)(param_1 + 0x238));
           plVar6 = *(longlong **)(param_1 + 0x228);
           plVar5 = *(longlong **)(param_1 + 0x220);
         }
@@ -372,7 +372,7 @@ uint64_t FUN_1802f0080(longlong param_1,longlong *param_2,int32_t param_3)
               uVar1 = 0;
             }
             else {
-              uVar1 = FUN_18062b420(_DAT_180c8ed18,uVar10 * 8,*(int8_t *)(param_1 + 0x238));
+              uVar1 = FUN_18062b420(system_memory_pool_ptr,uVar10 * 8,*(int8_t *)(param_1 + 0x238));
               lVar6 = *(longlong *)(param_1 + 0x228);
               lVar5 = *(longlong *)(param_1 + 0x220);
             }
@@ -435,7 +435,7 @@ uint64_t FUN_1802f0080(longlong param_1,longlong *param_2,int32_t param_3)
             plVar15 = plVar2;
             if (uVar9 != 0) {
               plVar2 = (longlong *)
-                       FUN_18062b420(_DAT_180c8ed18,uVar9 * 8,*(int8_t *)(param_1 + 0x218));
+                       FUN_18062b420(system_memory_pool_ptr,uVar9 * 8,*(int8_t *)(param_1 + 0x218));
               plVar4 = *(longlong **)(param_1 + 0x208);
               plVar3 = *(longlong **)(param_1 + 0x200);
               plVar15 = plVar2;

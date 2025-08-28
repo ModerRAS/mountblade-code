@@ -230,7 +230,7 @@ void AdvancedDataProcessor(longlong param_1, int param_2, int param_3, char para
     stackUlong6 = GET_SECURITY_COOKIE() ^ (ulonglong)stackBuffer1;
     
     // 获取系统信息
-    tempInt2 = *(int *)(*(longlong *)(*(longlong *)(_DAT_180c82868 + 8) + 8) + 0x48);
+    tempInt2 = *(int *)(*(longlong *)(*(longlong *)(system_context_ptr + 8) + 8) + 0x48);
     threadId = _Thrd_id();
     tempVar14 = 0;
     
@@ -252,7 +252,7 @@ void AdvancedDataProcessor(longlong param_1, int param_2, int param_3, char para
     }
     else {
         // 子线程处理逻辑
-        FUN_18005e630(_DAT_180c82868);
+        FUN_18005e630(system_context_ptr);
         stackPointer3 = stackArray1;
         stackPtr1 = &unknown_var_2816_ptr;
         stackCodePtr = FUN_1800adc50;
@@ -277,8 +277,8 @@ void AdvancedDataProcessor(longlong param_1, int param_2, int param_3, char para
             stackInt3 = 0x3c;
             stackInt4 = 1;
             tempFloat2 = 3.4028235e+38;
-            tempLong1 = *(longlong *)(_DAT_180c86870 + 0x78);
-            tempUlong2 = *(longlong *)(_DAT_180c86870 + 0x80) - tempLong1 >> 4;
+            tempLong1 = *(longlong *)(system_main_module_state + 0x78);
+            tempUlong2 = *(longlong *)(system_main_module_state + 0x80) - tempLong1 >> 4;
             
             if (tempUlong2 != 0) {
                 tempUlong1 = tempVar14;
@@ -377,7 +377,7 @@ void AdvancedDataProcessor(longlong param_1, int param_2, int param_3, char para
                   (*(longlong **)(param_1 + 0x1d78), stackPointer1, 0, &stackUlong1);
         
         // 分配资源
-        tempUlong = FUN_18062b1e0(_DAT_180c8ed18, 0x3b0, 0x10, 3);
+        tempUlong = FUN_18062b1e0(system_memory_pool_ptr, 0x3b0, 0x10, 3);
         dataPointer = (longlong *)FUN_18023a2e0(tempUlong, 4);
         
         if (dataPointer != (longlong *)0x0) {
@@ -410,7 +410,7 @@ void AdvancedDataProcessor(longlong param_1, int param_2, int param_3, char para
         *(longlong *)(*(longlong *)(param_1 + 0x121e0) + 0x168) = *(longlong *)(param_1 + 0x121e0);
         
         // 分配和初始化资源块
-        resourcePointer = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 3);
+        resourcePointer = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 3);
         tempUlong1 = resourcePointer;
         
         // 清零资源块
@@ -430,15 +430,15 @@ void AdvancedDataProcessor(longlong param_1, int param_2, int param_3, char para
         *(int32_t *)(tempLong1 + 0x35c) = 1;
         
         // 更新系统配置
-        tempLong1 = _DAT_180c86870;
+        tempLong1 = system_main_module_state;
         tempLong1 = *(longlong *)(*(longlong *)(param_1 + 0x121e0) + 0x1d8);
         
         if (tempLong1 == 0) {
             tempLong1 = 0;
         }
-        else if (_DAT_180c86870 != 0) {
+        else if (system_main_module_state != 0) {
             *(longlong *)(*(longlong *)(param_1 + 0x121e0) + 0x340) =
-                 (longlong)*(int *)(_DAT_180c86870 + 0x224);
+                 (longlong)*(int *)(system_main_module_state + 0x224);
         }
         
         *(uint64_t *)(tempLong1 + 8) = stackUlong1;
@@ -457,9 +457,9 @@ void AdvancedDataProcessor(longlong param_1, int param_2, int param_3, char para
         // 执行系统初始化
         FUN_18023ce10(*(uint64_t *)(param_1 + 0x121e0));
         
-        if ((*(longlong *)(*(longlong *)(param_1 + 0x121e0) + 0x1d8) != 0) && (_DAT_180c86870 != 0)) {
+        if ((*(longlong *)(*(longlong *)(param_1 + 0x121e0) + 0x1d8) != 0) && (system_main_module_state != 0)) {
             *(longlong *)(*(longlong *)(param_1 + 0x121e0) + 0x340) =
-                 (longlong)*(int *)(_DAT_180c86870 + 0x224);
+                 (longlong)*(int *)(system_main_module_state + 0x224);
         }
         
         // 更新资源信息
@@ -478,8 +478,8 @@ void AdvancedDataProcessor(longlong param_1, int param_2, int param_3, char para
         if (dataPointer == (longlong *)0x0) {
             dataPointer = (longlong *)0x0;
         }
-        else if (_DAT_180c86870 != 0) {
-            *(longlong *)(tempLong1 + 0x340) = (longlong)*(int *)(_DAT_180c86870 + 0x224);
+        else if (system_main_module_state != 0) {
+            *(longlong *)(tempLong1 + 0x340) = (longlong)*(int *)(system_main_module_state + 0x224);
             tempLong1 = *(longlong *)(param_1 + 0x121e0);
         }
         
@@ -513,7 +513,7 @@ uint64_t SystemParameterCalculator(longlong param_1, uint64_t *param_2)
     int stackParams[2];              // 栈参数
     
     // 初始化系统
-    FUN_1802055a0(_DAT_180c8aa50);
+    FUN_1802055a0(system_system_data_buffer);
     systemStatus = *(int *)(SYSTEM_STATE_MANAGER + 0x1f80);
     
     // 检查系统状态
@@ -1044,7 +1044,7 @@ void ResourceDataManager(void **param_1, uint *param_2, longlong param_3)
         resourcePtr1 = (uint64_t *)0x0;
     }
     else {
-        resourcePtr1 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, (ulonglong)tempUint6 << 4, 5);
+        resourcePtr1 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, (ulonglong)tempUint6 << 4, 5);
         tempInt1 = 0;
         resourcePtr2 = resourcePtr1;
         
@@ -1098,12 +1098,12 @@ LAB_1800a46f5:
                     (**(code **)(*(longlong *)tempPtrPtr1[0x3af] + 0x48))
                             (tempPtrPtr1[0x3af], *(uint64_t *)(param_3 + 0x170), &stackUint1, &stackLong1);
                     
-                    tempLong1 = _DAT_180c86870;
+                    tempLong1 = system_main_module_state;
                     dataPtr1 = dataPtr2;
                     
                     if (*(longlong *)(param_3 + 0x1d8) != 0) {
-                        if (_DAT_180c86870 != 0) {
-                            *(longlong *)(param_3 + 0x340) = (longlong)*(int *)(_DAT_180c86870 + 0x224);
+                        if (system_main_module_state != 0) {
+                            *(longlong *)(param_3 + 0x340) = (longlong)*(int *)(system_main_module_state + 0x224);
                         }
                         dataPtr1 = (longlong *)
                                   ((longlong)(int)(*(byte *)(param_3 + 0x335) * tempUint6 + tempInt1) * 0x10 +
@@ -1133,8 +1133,8 @@ LAB_1800a46f5:
                     dataPtr1 = dataPtr2;
                     
                     if (*(longlong *)(param_3 + 0x1d8) != 0) {
-                        if (_DAT_180c86870 != 0) {
-                            *(longlong *)(param_3 + 0x340) = (longlong)*(int *)(_DAT_180c86870 + 0x224);
+                        if (system_main_module_state != 0) {
+                            *(longlong *)(param_3 + 0x340) = (longlong)*(int *)(system_main_module_state + 0x224);
                         }
                         dataPtr1 = (longlong *)
                                   ((longlong)(int)(*(byte *)(param_3 + 0x335) * tempUint6 + tempInt1) * 0x10 +
@@ -1171,7 +1171,7 @@ LAB_1800a46f5:
         }
         
         if (tempUint3 * tempUshort != 0) {
-            tempUlong2 = FUN_18062b420(_DAT_180c8ed18, (ulonglong)(tempUint3 * tempUshort) * 8,
+            tempUlong2 = FUN_18062b420(system_memory_pool_ptr, (ulonglong)(tempUint3 * tempUshort) * 8,
                                      CONCAT71((uint7)(byte)(tempUshort >> 8), 3));
             tempUint7 = (uint)*(byte *)(param_3 + 0x335);
             tempUint6 = *(uint *)(param_3 + 0x35c);
@@ -1260,7 +1260,7 @@ LAB_1800a46f5:
             tempUlong2 = 0;
         }
         else {
-            tempUlong2 = FUN_18062b420(_DAT_180c8ed18, (ulonglong)(tempUint3 * tempUshort) * 8,
+            tempUlong2 = FUN_18062b420(system_memory_pool_ptr, (ulonglong)(tempUint3 * tempUshort) * 8,
                                      CONCAT71((uint7)(byte)(tempUshort >> 8), 3));
             tempUint7 = (uint)*(byte *)(param_3 + 0x335);
             tempUint6 = *(uint *)(param_3 + 0x35c);
@@ -1341,10 +1341,10 @@ LAB_1800a46f5:
     
     // 加锁操作
     LOCK();
-    _DAT_180d48d28 = 0;
+    system_system_config_buffer = 0;
     UNLOCK();
     
-    *(longlong *)(param_3 + 0x340) = (longlong)*(int *)(_DAT_180c86870 + 0x224);
+    *(longlong *)(param_3 + 0x340) = (longlong)*(int *)(system_main_module_state + 0x224);
     
     LOCK();
     *(int32_t *)(param_3 + 0x380) = 2;

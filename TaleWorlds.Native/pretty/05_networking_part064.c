@@ -88,15 +88,15 @@ uint64_t FUN_180875520(longlong *param_1)
             FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar6,&unknown_var_2144_ptr,0xc6,1);
           }
           lVar7 = FUN_1808719a0(lVar7,lStackX_8,lVar3,plVar5,puVar6);
-          uVar1 = _DAT_180c4eaf0;
+          uVar1 = network_system_config;
           while( true ) {
-            _DAT_180c4eaf0 = uVar1 + 1 & 0x80000007;
-            if ((int)_DAT_180c4eaf0 < 0) {
-              _DAT_180c4eaf0 = (_DAT_180c4eaf0 - 1 | 0xfffffff8) + 1;
+            network_system_config = uVar1 + 1 & 0x80000007;
+            if ((int)network_system_config < 0) {
+              network_system_config = (network_system_config - 1 | 0xfffffff8) + 1;
             }
             if (*(longlong *)((longlong)(int)uVar1 * 8 + 0x180c4eab0) == 0) break;
             iVar8 = iVar8 + 1;
-            uVar1 = _DAT_180c4eaf0;
+            uVar1 = network_system_config;
             if (7 < iVar8) {
               FUN_180873460(lVar7);
                     // WARNING: Subroutine does not return
@@ -176,15 +176,15 @@ uint64_t FUN_180875538(void)
             FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar6,&unknown_var_2144_ptr,0xc6,1);
           }
           lVar7 = FUN_1808719a0(lVar7,lStack0000000000000070,lVar3,plVar5,puVar6);
-          uVar1 = _DAT_180c4eaf0;
+          uVar1 = network_system_config;
           while( true ) {
-            _DAT_180c4eaf0 = uVar1 + 1 & 0x80000007;
-            if ((int)_DAT_180c4eaf0 < 0) {
-              _DAT_180c4eaf0 = (_DAT_180c4eaf0 - 1 | 0xfffffff8) + 1;
+            network_system_config = uVar1 + 1 & 0x80000007;
+            if ((int)network_system_config < 0) {
+              network_system_config = (network_system_config - 1 | 0xfffffff8) + 1;
             }
             if (*(longlong *)((longlong)(int)uVar1 * 8 + 0x180c4eab0) == 0) break;
             iVar8 = iVar8 + 1;
-            uVar1 = _DAT_180c4eaf0;
+            uVar1 = network_system_config;
             if (7 < iVar8) {
               FUN_180873460(lVar7);
                     // WARNING: Subroutine does not return
@@ -274,16 +274,16 @@ ulonglong FUN_180875569(longlong param_1,uint64_t param_2,uint64_t param_3)
         }
         lVar2 = FUN_1808719a0(lVar3,in_stack_00000070,lVar2,plVar4,puVar5);
         uVar7 = unaff_RDI & 0xffffffff;
-        uVar1 = _DAT_180c4eaf0;
+        uVar1 = network_system_config;
         while( true ) {
-          _DAT_180c4eaf0 = uVar1 + 1 & 0x80000007;
-          if ((int)_DAT_180c4eaf0 < 0) {
-            _DAT_180c4eaf0 = (_DAT_180c4eaf0 - 1 | 0xfffffff8) + 1;
+          network_system_config = uVar1 + 1 & 0x80000007;
+          if ((int)network_system_config < 0) {
+            network_system_config = (network_system_config - 1 | 0xfffffff8) + 1;
           }
           if (*(ulonglong *)((longlong)(int)uVar1 * 8 + 0x180c4eab0) == unaff_RDI) break;
           uVar6 = (int)uVar7 + 1;
           uVar7 = (ulonglong)uVar6;
-          uVar1 = _DAT_180c4eaf0;
+          uVar1 = network_system_config;
           if (7 < (int)uVar6) {
             FUN_180873460(lVar2);
                     // WARNING: Subroutine does not return

@@ -47,7 +47,7 @@ void FUN_180677ae0(int8_t (*param_1) [16],longlong param_2,int8_t (*param_3) [16
   int8_t auStack_100 [16];
   int8_t auStack_e0 [16];
   
-  auVar14 = _DAT_180947040;
+  auVar14 = ui_system_config;
   auVar22 = *(int8_t (*) [16])(*param_1 + param_2);
   auVar1 = *(int8_t (*) [16])(*param_1 + param_2 * 2);
   auVar23._0_16_ = ZEXT116(0) * auVar1 + ZEXT116(1) * auVar22;
@@ -55,10 +55,10 @@ void FUN_180677ae0(int8_t (*param_1) [16],longlong param_2,int8_t (*param_3) [16
   auVar2 = vpacksswb_avx(*param_6,*param_6);
   auVar16._16_16_ = auVar2;
   auVar16._0_16_ = auVar2;
-  auVar7 = vpshufb_avx2(auVar16,_DAT_180947080);
-  auVar8 = vpshufb_avx2(auVar16,_DAT_1809470c0);
-  auVar9 = vpshufb_avx2(auVar16,_DAT_180947060);
-  auVar16 = vpshufb_avx2(auVar16,_DAT_1809470a0);
+  auVar7 = vpshufb_avx2(auVar16,ui_system_config);
+  auVar8 = vpshufb_avx2(auVar16,ui_system_config);
+  auVar9 = vpshufb_avx2(auVar16,ui_system_config);
+  auVar16 = vpshufb_avx2(auVar16,ui_system_config);
   auVar27._0_16_ = ZEXT116(0) * auVar22 + ZEXT116(1) * *param_1;
   auVar27._16_16_ = ZEXT116(1) * auVar22;
   auVar22 = *(int8_t (*) [16])(*param_1 + param_2 * 5);

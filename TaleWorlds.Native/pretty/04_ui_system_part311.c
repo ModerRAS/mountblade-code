@@ -260,12 +260,12 @@ uint64_t FUN_180839dc0(longlong *param_1,longlong param_2,int *param_3,longlong 
           iVar7 = iVar5 * 2 + iVar17;
           iVar8 = iVar5 + iVar17;
           for (iVar18 = (int)(uVar21 - uVar10) >> 2; iVar18 != 0; iVar18 = iVar18 + -1) {
-            _DAT_180c4ea70 = iVar6 >> 0x14;
+            ui_system_memory = iVar6 >> 0x14;
             iRam0000000180c4ea74 = iVar7 >> 0x14;
             iRam0000000180c4ea78 = iVar8 >> 0x14;
             iRam0000000180c4ea7c = iVar17 >> 0x14;
             fVar2 = *(float *)(&unknown_var_5936_ptr + (longlong)iRam0000000180c4ea74 * 4);
-            fVar3 = *(float *)(&unknown_var_5936_ptr + (longlong)_DAT_180c4ea70 * 4);
+            fVar3 = *(float *)(&unknown_var_5936_ptr + (longlong)ui_system_memory * 4);
             fVar4 = *(float *)(&unknown_var_5936_ptr + (longlong)iRam0000000180c4ea78 * 4);
             *pfVar11 = *(float *)(&unknown_var_5936_ptr + (longlong)iRam0000000180c4ea7c * 4) * *pfVar11;
             pfVar11[1] = fVar4 * pfVar11[1];
@@ -385,12 +385,12 @@ uint64_t FUN_180839dfd(uint64_t param_1,uint64_t param_2,int *param_3)
         iVar8 = iVar6 * 2 + iVar17;
         iVar9 = iVar6 + iVar17;
         for (iVar16 = (int)(uVar20 - uVar19) >> 2; iVar16 != 0; iVar16 = iVar16 + -1) {
-          _DAT_180c4ea70 = iVar7 >> 0x14;
+          ui_system_memory = iVar7 >> 0x14;
           iRam0000000180c4ea74 = iVar8 >> 0x14;
           iRam0000000180c4ea78 = iVar9 >> 0x14;
           iRam0000000180c4ea7c = iVar17 >> 0x14;
           fVar2 = *(float *)(&unknown_var_5936_ptr + (longlong)iRam0000000180c4ea74 * 4);
-          fVar3 = *(float *)(&unknown_var_5936_ptr + (longlong)_DAT_180c4ea70 * 4);
+          fVar3 = *(float *)(&unknown_var_5936_ptr + (longlong)ui_system_memory * 4);
           fVar4 = *(float *)(&unknown_var_5936_ptr + (longlong)iRam0000000180c4ea78 * 4);
           *pfVar10 = *(float *)(&unknown_var_5936_ptr + (longlong)iRam0000000180c4ea7c * 4) * *pfVar10;
           pfVar10[1] = fVar4 * pfVar10[1];
@@ -502,12 +502,12 @@ uint64_t FUN_180839e32(uint64_t param_1,uint64_t param_2,longlong param_3,uint p
       iVar8 = iVar6 * 2 + iVar17;
       iVar9 = iVar6 + iVar17;
       for (iVar16 = (int)(uVar14 - param_4) >> 2; iVar16 != 0; iVar16 = iVar16 + -1) {
-        _DAT_180c4ea70 = iVar7 >> 0x14;
+        ui_system_memory = iVar7 >> 0x14;
         iRam0000000180c4ea74 = iVar8 >> 0x14;
         iRam0000000180c4ea78 = iVar9 >> 0x14;
         iRam0000000180c4ea7c = iVar17 >> 0x14;
         fVar2 = *(float *)(&unknown_var_5936_ptr + (longlong)iRam0000000180c4ea74 * 4);
-        fVar3 = *(float *)(&unknown_var_5936_ptr + (longlong)_DAT_180c4ea70 * 4);
+        fVar3 = *(float *)(&unknown_var_5936_ptr + (longlong)ui_system_memory * 4);
         fVar4 = *(float *)(&unknown_var_5936_ptr + (longlong)iRam0000000180c4ea78 * 4);
         *pfVar10 = *(float *)(&unknown_var_5936_ptr + (longlong)iRam0000000180c4ea7c * 4) * *pfVar10;
         pfVar10[1] = fVar4 * pfVar10[1];

@@ -9,7 +9,7 @@ void FUN_18006e140(void)
 {
   longlong lVar1;
   
-  lVar1 = FUN_18062b420(_DAT_180c8ed18,0x45ee8,10);
+  lVar1 = FUN_18062b420(system_memory_pool_ptr,0x45ee8,10);
   if (lVar1 == 0) {
     return;
   }
@@ -605,8 +605,8 @@ void FUN_18006e990(void)
   int iVar3;
   longlong *plVar4;
   
-  lVar1 = _DAT_180c86948;
-  FUN_18006f160(_DAT_180c86948);
+  lVar1 = init_system_data_config;
+  FUN_18006f160(init_system_data_config);
   *(int *)(lVar1 + 0xec) = *(int *)(lVar1 + 0xec) + 1;
   iVar3 = _Mtx_lock(lVar1 + 0x98);
   if (iVar3 != 0) {
@@ -668,8 +668,8 @@ void FUN_18006eb30(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   longlong lVar2;
   int iVar3;
   
-  lVar2 = _DAT_180c86948;
-  FUN_18005e630(_DAT_180c82868,param_2,param_3,param_4,0xfffffffffffffffe);
+  lVar2 = init_system_data_config;
+  FUN_18005e630(system_context_ptr,param_2,param_3,param_4,0xfffffffffffffffe);
   FUN_18006efc0(lVar2);
   iVar3 = _Mtx_lock(lVar2 + 0x98);
   if (iVar3 != 0) {
@@ -726,11 +726,11 @@ void FUN_18006edf0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   int32_t uStack_14;
   uint7 uStack_f;
   
-  lVar3 = _DAT_180c86948;
+  lVar3 = init_system_data_config;
   uVar7 = 0xfffffffffffffffe;
-  if (_DAT_180c86948 != 0) {
-    lVar6 = _DAT_180c86948 + 0xf0;
-    lVar1 = _DAT_180c86948 + 0x110;
+  if (init_system_data_config != 0) {
+    lVar6 = init_system_data_config + 0xf0;
+    lVar1 = init_system_data_config + 0x110;
     iVar4 = _Mtx_lock(lVar1);
     if (iVar4 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar4);
@@ -738,7 +738,7 @@ void FUN_18006edf0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
     iVar4 = *(int *)(lVar3 + 0x164);
     iVar2 = *(int *)(lVar3 + 0x160);
     plVar5 = (longlong *)
-             FUN_18062b420(_DAT_180c8ed18,0x28,*(int8_t *)(lVar3 + 0x100),param_4,uVar7);
+             FUN_18062b420(system_memory_pool_ptr,0x28,*(int8_t *)(lVar3 + 0x100),param_4,uVar7);
     uStack_18 = (int32_t)param_1;
     uStack_14 = (int32_t)((ulonglong)param_1 >> 0x20);
     *(int *)(plVar5 + 2) = iVar4 + iVar2;

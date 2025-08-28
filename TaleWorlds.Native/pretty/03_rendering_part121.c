@@ -255,7 +255,7 @@ longlong * FUN_18033d790(longlong *param_1,longlong *param_2,longlong *param_3,i
       param_4[0x28] = uVar2;
       lVar5 = 0;
       if (lVar7 != 0) {
-        lVar5 = FUN_18062b420(_DAT_180c8ed18,lVar7 * 8,uVar2 & 0xff);
+        lVar5 = FUN_18062b420(system_memory_pool_ptr,lVar7 * 8,uVar2 & 0xff);
       }
       *(longlong *)(param_4 + 0x22) = lVar5;
       *(longlong *)(param_4 + 0x24) = lVar5;
@@ -423,7 +423,7 @@ void FUN_18033db70(longlong param_1,longlong param_2)
 {
   uint64_t uVar1;
   
-  uVar1 = FUN_18062b1e0(_DAT_180c8ed18,param_2 * 8 + 8,8,*(int8_t *)(param_1 + 0x2c));
+  uVar1 = FUN_18062b1e0(system_memory_pool_ptr,param_2 * 8 + 8,8,*(int8_t *)(param_1 + 0x2c));
                     // WARNING: Subroutine does not return
   memset(uVar1,0,param_2 * 8);
 }

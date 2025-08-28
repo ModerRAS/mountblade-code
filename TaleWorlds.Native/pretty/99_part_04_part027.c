@@ -295,7 +295,7 @@ void FUN_18026fc50(float *param_1,longlong param_2)
       lVar12 = lVar19;
       lVar27 = lVar11;
       if (uVar24 != 0) {
-        lVar12 = FUN_18062b420(_DAT_180c8ed18,uVar24 * 8);
+        lVar12 = FUN_18062b420(system_memory_pool_ptr,uVar24 * 8);
         lVar22 = *(longlong *)(param_1 + 0xd0);
         lVar27 = *(longlong *)(param_1 + 0xd2);
       }
@@ -644,7 +644,7 @@ void FUN_18026fc70(int32_t param_1,longlong param_2)
       lVar12 = lVar19;
       lVar27 = lVar11;
       if (uVar24 != 0) {
-        lVar12 = FUN_18062b420(_DAT_180c8ed18,uVar24 * 8);
+        lVar12 = FUN_18062b420(system_memory_pool_ptr,uVar24 * 8);
         lVar22 = *(longlong *)(unaff_RSI + 0xd0);
         lVar27 = *(longlong *)(unaff_RSI + 0xd2);
       }

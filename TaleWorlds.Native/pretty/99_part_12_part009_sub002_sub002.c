@@ -777,7 +777,7 @@ uint64_t SystemResourceManager(longlong system_context)
       else {
         lVar20 = 0x180be7b90;
         puStack_68 = &system_memory_7a80;
-        _DAT_180be7a80 = 0;
+        system_system_buffer_string = 0;
       }
       uVar3 = *(int8_t *)(lVar16 + 3);
       bVar7 = *(byte *)(lVar16 + 4);
@@ -1295,7 +1295,7 @@ uint64_t AdvancedDataProcessingCoordinator(uint64_t system_context, uint64_t dat
     else {
       calculation_result = 0x180be7b90; /* 默认资源地址 */
       *(void **)(unaff_RBP + -9) = &system_memory_7a80;
-      _DAT_180be7a80 = processing_params;
+      system_system_buffer_string = processing_params;
     }
     /* 状态标志处理和初始化 */
     operation_type = *(int8_t *)(unaff_RDI + 3);
@@ -2086,7 +2086,7 @@ uint64_t SystemErrorHandler(longlong system_context, char error_flag)
         
         /* 检查是否需要特殊处理 */
         if (((longlong *)context_data == error_processor) && (*(longlong **)(error_context + 0x10) == error_processor)) {
-          _DAT_180be7ae8 = &system_memory_7a80;
+          system_system_buffer_string = &system_memory_7a80;
           context_data = 0x180be7ac0; /* 默认错误处理器 */
         }
         
@@ -2125,7 +2125,7 @@ uint64_t SystemErrorHandler(longlong system_context, char error_flag)
         else {
           resource_addr = 0x180be7b90; /* 默认资源地址 */
           resource_handle = &system_memory_7a80;
-          _DAT_180be7a80 = 0; /* 重置错误数据 */
+          system_system_buffer_string = 0; /* 重置错误数据 */
         }
         uVar2 = *(int32_t *)(lStack_68 + 0x40);
         iVar18 = *(int *)(lStack_68 + 0x44);
@@ -2142,7 +2142,7 @@ uint64_t SystemErrorHandler(longlong system_context, char error_flag)
           }
           if (lStack_68 == 0) {
             lStack_68 = 0x180be7ac0;
-            _DAT_180be7ae8 = &system_memory_7a80;
+            system_system_buffer_string = &system_memory_7a80;
           }
           bVar9 = puStack_60[0x18] + -1 + *pcVar22;
           *(byte *)(lVar4 + 0xd3) = bVar9;
@@ -2589,7 +2589,7 @@ uint64_t SystemCleaner(void)
     bVar18 = bVar9 & 0xf;
     bVar22 = bVar9 >> 4;
     if ((plVar16 == plVar1) && (*(longlong **)(lVar6 + 0x10) == plVar1)) {
-      _DAT_180be7ae8 = &system_memory_7a80;
+      system_system_buffer_string = &system_memory_7a80;
       plVar16 = (longlong *)0x180be7ac0;
     }
     cVar23 = unaff_R14[3];
@@ -2631,7 +2631,7 @@ uint64_t SystemCleaner(void)
     else {
       *(uint64_t *)(unaff_RBP + -0x11) = 0x180be7b90;
       *(void **)(unaff_RBP + -1) = &system_memory_7a80;
-      _DAT_180be7a80 = in_R11;
+      system_system_buffer_string = in_R11;
     }
     cVar4 = *(char *)(lVar6 + 0xd8);
     iVar14 = *(int *)((longlong)plVar16 + 0x44);
@@ -2652,7 +2652,7 @@ uint64_t SystemCleaner(void)
       }
       if (lVar19 == 0) {
         *(uint64_t *)(unaff_RBP + -9) = 0x180be7ac0;
-        _DAT_180be7ae8 = &system_memory_7a80;
+        system_system_buffer_string = &system_memory_7a80;
       }
       lVar19 = *(longlong *)(unaff_RBP + -1);
       bVar8 = *(char *)(lVar19 + 0x18) + -1 + *unaff_R14;

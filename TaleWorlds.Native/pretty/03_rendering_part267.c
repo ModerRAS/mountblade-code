@@ -165,7 +165,7 @@ LAB_1804162d5:
                     if (lVar16 == 0) {
                       lVar16 = 1;
 LAB_18041637c:
-                      puVar11 = (int32_t *)FUN_18062b420(_DAT_180c8ed18);
+                      puVar11 = (int32_t *)FUN_18062b420(system_memory_pool_ptr);
                       puVar25 = *(int32_t **)(param_1 + 200);
                       puVar20 = *(int32_t **)(param_1 + 0xca);
                     }
@@ -369,7 +369,7 @@ code_r0x0001804166ea:
                       if (lVar16 == 0) {
                         lVar16 = 1;
 LAB_180416750:
-                        puVar12 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,lVar16 * 8);
+                        puVar12 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,lVar16 * 8);
                         puVar17 = *(uint64_t **)(param_1 + 0xd0);
                         puVar19 = *(uint64_t **)(param_1 + 0xd2);
                       }

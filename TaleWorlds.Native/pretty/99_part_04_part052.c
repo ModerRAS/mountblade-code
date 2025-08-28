@@ -106,7 +106,7 @@ void FUN_1802b7360(longlong *param_1,float param_2)
   pfVar14 = *(float **)(lVar28 + 0x81f0);
   fVar3 = pfVar14[3];
   fVar42 = ABS(*(float *)((longlong)param_1 + 0xe4) + *(float *)(param_1 + 0x1c)) * 8.0 +
-           (float)_DAT_180c8ed30 * 8e-05;
+           (float)system_error_code * 8e-05;
   uVar17 = (uint)fVar42;
   uVar18 = uVar17 & 0x800000ff;
   if ((int)uVar18 < 0) {
@@ -305,7 +305,7 @@ void FUN_1802b7360(longlong *param_1,float param_2)
     puVar30 = puVar16;
   }
   else {
-    puVar16 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,uVar33 * 0x70,(char)param_1[0xe]);
+    puVar16 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,uVar33 * 0x70,(char)param_1[0xe]);
     puVar21 = (uint64_t *)*plVar1;
     puVar27 = (uint64_t *)param_1[0xc];
     puVar30 = puVar16;

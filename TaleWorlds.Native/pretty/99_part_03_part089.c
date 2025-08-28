@@ -134,13 +134,13 @@ void FUN_18024c560(longlong param_1,longlong param_2,int32_t param_3,int32_t par
   *(float *)(puVar18 + 0x98) = fVar8 * 0.0 + fVar9 * 0.0 + fVar10 * 0.0;
   *(float *)(puVar18 + 0x9c) = fVar11 * 0.0 + fVar12 * 0.0 + fVar13 * 0.0;
   *(float *)(puVar18 + 0xa0) = fVar14 * 0.0 + fVar14 * 0.0 + fVar14 * 0.0;
-  lVar7 = _DAT_180c8a980;
+  lVar7 = system_system_data_ui;
   lVar20 = plVar6[4];
   if ((int)lVar20 == -1) {
     *(int32_t *)(puVar18 + 0x74) = 0;
   }
   else {
-    lVar1 = _DAT_180c8a980 + 0x2b8;
+    lVar1 = system_system_data_ui + 0x2b8;
     AcquireSRWLockShared(lVar1);
     lVar20 = (longlong)(int)lVar20 * 0x30 + *(longlong *)(lVar7 + 0x180);
     ReleaseSRWLockShared(lVar1);
@@ -248,7 +248,7 @@ void FUN_18024cb50(longlong param_1,longlong param_2)
         do {
           iVar16 = (int)uVar15;
           if (*plVar19 == 0) {
-            lVar9 = FUN_18062b420(_DAT_180c8ed18,0x8000,0x25);
+            lVar9 = FUN_18062b420(system_memory_pool_ptr,0x8000,0x25);
             plVar6 = (longlong *)(param_1 + 0x3268 + (longlong)iVar16 * 8);
             LOCK();
             bVar20 = *plVar6 == 0;
@@ -373,7 +373,7 @@ void FUN_18024cb72(int param_1)
       do {
         iVar15 = (int)uVar14;
         if (*plVar18 == 0) {
-          lVar8 = FUN_18062b420(_DAT_180c8ed18,0x8000,0x25);
+          lVar8 = FUN_18062b420(system_memory_pool_ptr,0x8000,0x25);
           plVar5 = (longlong *)(unaff_R15 + 0x3268 + (longlong)iVar15 * 8);
           LOCK();
           bVar19 = *plVar5 == 0;
@@ -492,7 +492,7 @@ void FUN_18024cb8b(int param_1)
     do {
       iVar16 = (int)uVar12;
       if (*plVar17 == 0) {
-        lVar9 = FUN_18062b420(_DAT_180c8ed18,0x8000,0x25);
+        lVar9 = FUN_18062b420(system_memory_pool_ptr,0x8000,0x25);
         plVar5 = (longlong *)(unaff_R15 + 0x3268 + (longlong)iVar16 * 8);
         LOCK();
         bVar18 = *plVar5 == 0;
@@ -603,7 +603,7 @@ void FUN_18024cbbc(void)
   do {
     iVar13 = (int)unaff_RSI;
     if (*plVar14 == 0) {
-      lVar6 = FUN_18062b420(_DAT_180c8ed18,0x8000,0x25);
+      lVar6 = FUN_18062b420(system_memory_pool_ptr,0x8000,0x25);
       plVar3 = (longlong *)(unaff_R15 + 0x3268 + (longlong)iVar13 * 8);
       LOCK();
       bVar15 = *plVar3 == 0;
@@ -852,7 +852,7 @@ char FUN_18024cd70(longlong param_1,int param_2)
     } while (cVar3 != '\0');
     return cVar3;
   }
-  lVar4 = FUN_18062b420(_DAT_180c8ed18,0x8000,0x25);
+  lVar4 = FUN_18062b420(system_memory_pool_ptr,0x8000,0x25);
   plVar1 = (longlong *)(param_1 + 8 + lVar5 * 8);
   LOCK();
   bVar6 = *plVar1 == 0;

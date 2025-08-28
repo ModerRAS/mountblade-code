@@ -39,7 +39,7 @@ void FUN_180596920(uint64_t param_1,uint64_t param_2,longlong param_3,longlong p
   uint64_t uStack0000000000000030;
   
   cVar9 = (char)unaff_RSI;
-  if ((in_ZF) || ((_DAT_180c92514 != 1 && (_DAT_180c92514 != 4)))) {
+  if ((in_ZF) || ((system_status_flag != 1 && (system_status_flag != 4)))) {
     *(uint64_t *)(param_4 + 0x30) = unaff_RSI;
     if (*(char *)(param_3 + 0x9a) == cVar9) {
       fVar17 = *(float *)(param_3 + 0xbc);
@@ -154,13 +154,13 @@ LAB_180596c90:
     *(float *)(unaff_RBP + 0x73) = fVar11;
     *(uint64_t *)(unaff_RBP + 0x6f) = *(uint64_t *)(unaff_RBP + 0x6f);
   }
-  fVar18 = *(float *)(unaff_RDI + 200) * _DAT_180c96390;
+  fVar18 = *(float *)(unaff_RDI + 200) * render_system_ui;
   fVar17 = fVar17 * fVar16 * fVar2 + (float)unaff_RBX[5] * *(float *)(unaff_RBP + 0x67);
   if (fVar17 <= unaff_XMM8_Da) {
     fVar17 = unaff_XMM8_Da;
   }
-  fVar16 = (_DAT_180c9638c * (float)unaff_RBX[0x1f]) / fVar18 - fVar10;
-  if (fVar17 < (unaff_XMM10_Da - _DAT_180c9638c) * (float)unaff_RBX[0x1f]) {
+  fVar16 = (render_system_ui * (float)unaff_RBX[0x1f]) / fVar18 - fVar10;
+  if (fVar17 < (unaff_XMM10_Da - render_system_ui) * (float)unaff_RBX[0x1f]) {
     fVar17 = ((fVar16 + fVar16) / (*(float *)(unaff_RDI + 200) - fVar18)) * fVar17 + fVar10 * fVar10
     ;
     if (fVar17 <= unaff_XMM8_Da) {
@@ -213,7 +213,7 @@ LAB_180596c90:
     uVar7 = uVar3 & 0xfffffff7;
   }
   *unaff_RBX = uVar7;
-  if ((((_DAT_180c92514 != 1) && (_DAT_180c92514 != 4)) || (*(int *)(unaff_RDI + 0x178) == 2)) &&
+  if ((((system_status_flag != 1) && (system_status_flag != 4)) || (*(int *)(unaff_RDI + 0x178) == 2)) &&
      (((uVar7 >> 4 & 1) == 0 &&
       (*(float *)(unaff_RDI + 0x15c) <= ABS((float)unaff_RBX[5]) &&
        ABS((float)unaff_RBX[5]) != *(float *)(unaff_RDI + 0x15c))))) {
@@ -304,7 +304,7 @@ void FUN_180596928(uint64_t param_1,uint64_t param_2,longlong param_3,longlong p
   uint64_t uStack0000000000000030;
   
   cVar9 = (char)unaff_RSI;
-  if ((in_ZF) || ((_DAT_180c92514 != 1 && (_DAT_180c92514 != 4)))) {
+  if ((in_ZF) || ((system_status_flag != 1 && (system_status_flag != 4)))) {
     *(uint64_t *)(param_4 + 0x30) = unaff_RSI;
     if (*(char *)(param_3 + 0x9a) == cVar9) {
       fVar17 = *(float *)(param_3 + 0xbc);
@@ -419,13 +419,13 @@ LAB_180596c90:
     *(float *)(unaff_RBP + 0x73) = fVar11;
     *(uint64_t *)(unaff_RBP + 0x6f) = *(uint64_t *)(unaff_RBP + 0x6f);
   }
-  fVar18 = *(float *)(unaff_RDI + 200) * _DAT_180c96390;
+  fVar18 = *(float *)(unaff_RDI + 200) * render_system_ui;
   fVar17 = fVar17 * fVar16 * fVar2 + (float)unaff_RBX[5] * *(float *)(unaff_RBP + 0x67);
   if (fVar17 <= unaff_XMM8_Da) {
     fVar17 = unaff_XMM8_Da;
   }
-  fVar16 = (_DAT_180c9638c * (float)unaff_RBX[0x1f]) / fVar18 - fVar10;
-  if (fVar17 < (unaff_XMM10_Da - _DAT_180c9638c) * (float)unaff_RBX[0x1f]) {
+  fVar16 = (render_system_ui * (float)unaff_RBX[0x1f]) / fVar18 - fVar10;
+  if (fVar17 < (unaff_XMM10_Da - render_system_ui) * (float)unaff_RBX[0x1f]) {
     fVar17 = ((fVar16 + fVar16) / (*(float *)(unaff_RDI + 200) - fVar18)) * fVar17 + fVar10 * fVar10
     ;
     if (fVar17 <= unaff_XMM8_Da) {
@@ -478,7 +478,7 @@ LAB_180596c90:
     uVar7 = uVar3 & 0xfffffff7;
   }
   *unaff_RBX = uVar7;
-  if ((((_DAT_180c92514 != 1) && (_DAT_180c92514 != 4)) || (*(int *)(unaff_RDI + 0x178) == 2)) &&
+  if ((((system_status_flag != 1) && (system_status_flag != 4)) || (*(int *)(unaff_RDI + 0x178) == 2)) &&
      (((uVar7 >> 4 & 1) == 0 &&
       (*(float *)(unaff_RDI + 0x15c) <= ABS((float)unaff_RBX[5]) &&
        ABS((float)unaff_RBX[5]) != *(float *)(unaff_RDI + 0x15c))))) {
@@ -596,7 +596,7 @@ void FUN_180596dd2(uint64_t param_1,uint64_t param_2,int8_t param_3,uint64_t par
     uVar2 = uVar1 & 0xfffffff7;
   }
   *unaff_RBX = uVar2;
-  if ((((_DAT_180c92514 != 1) && (_DAT_180c92514 != 4)) || (*(int *)(unaff_RDI + 0x178) == 2)) &&
+  if ((((system_status_flag != 1) && (system_status_flag != 4)) || (*(int *)(unaff_RDI + 0x178) == 2)) &&
      (((uVar2 >> 4 & 1) == 0 &&
       (*(float *)(unaff_RDI + 0x15c) <= ABS((float)unaff_RBX[5]) &&
        ABS((float)unaff_RBX[5]) != *(float *)(unaff_RDI + 0x15c))))) {

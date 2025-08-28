@@ -622,11 +622,11 @@ void FUN_18069dfe0(int param_1,int param_2,int param_3,uint64_t param_4,uint64_t
   iVar7 = param_1 >> 1;
   uStackX_20 = param_4;
   if (param_1 == 0x10) {
-    iVar3 = (*_DAT_180d4a958)();
+    iVar3 = (*ui_system_config_config)();
     uVar8 = iVar3 + 0x80U >> 8;
-    iVar3 = (*_DAT_180d4a958)(param_4,param_7,&unknown_var_16_ptr,0,aiStackX_10);
+    iVar3 = (*ui_system_config_config)(param_4,param_7,&unknown_var_16_ptr,0,aiStackX_10);
     uStackX_18 = iVar3 + 0x80U >> 8;
-    (*_DAT_180d4a958)(param_4,param_7,param_9,param_12,aiStackX_10);
+    (*ui_system_config_config)(param_4,param_7,param_9,param_12,aiStackX_10);
     uStack_68 = aiStackX_10[0] + 0x80U >> 8;
     FUN_180690580(param_5,param_8,param_10,param_13,aiStackX_10);
     uStack_60 = aiStackX_10[0] + 0x20U >> 6;

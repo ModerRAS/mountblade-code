@@ -139,7 +139,7 @@ void FUN_1800ea780(longlong *param_1)
   longlong **pplStackX_10;
   longlong *plStackX_18;
   
-  plVar4 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,200,8,3,0xfffffffffffffffe);
+  plVar4 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,200,8,3,0xfffffffffffffffe);
   plStackX_18 = plVar4;
   FUN_180049830(plVar4);
   *plVar4 = (longlong)&unknown_var_5408_ptr;
@@ -153,12 +153,12 @@ void FUN_1800ea780(longlong *param_1)
     (**(code **)((longlong)*pplStackX_10 + 0x38))();
   }
   *(int32_t *)(*param_1 + 8) = 1;
-  plVar4 = *(longlong **)(_DAT_180c86950 + 0x1860);
+  plVar4 = *(longlong **)(system_operation_state + 0x1860);
   if (system_data_c049 == '\0') {
-    _DAT_00000018 = *(int *)(_DAT_180c86890 + 0x12d0) + 1;
+    system_system_memory = *(int *)(system_parameter_buffer + 0x12d0) + 1;
   }
   else {
-    _DAT_00000018 = *(int *)(_DAT_180c86890 + 0x12d0);
+    system_system_memory = *(int *)(system_parameter_buffer + 0x12d0);
 
 
 

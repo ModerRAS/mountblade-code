@@ -560,11 +560,11 @@ uint64_t FUN_1808f6660(longlong param_1,longlong param_2,uint64_t param_3,uint64
         lVar3 = lVar2 + 1;
       } while (*(short *)(param_2 + lVar3 * 2) != 0);
       lVar3 = (lVar2 + 2) * 2;
-      if (_DAT_180c69e18 == (code *)0x0) {
+      if (system_system_config == (code *)0x0) {
         lVar2 = malloc(lVar3);
       }
       else {
-        lVar2 = (*_DAT_180c69e18)();
+        lVar2 = (*system_system_config)();
       }
       *plVar4 = lVar2;
       if (lVar2 != 0) {
@@ -688,11 +688,11 @@ uint64_t FUN_1808f6722(int32_t param_1)
       lVar2 = lVar1 + 1;
     } while (*(short *)(unaff_RSI + lVar2 * 2) != 0);
     lVar2 = (lVar1 + 2) * 2;
-    if (_DAT_180c69e18 == (code *)0x0) {
+    if (system_system_config == (code *)0x0) {
       lVar1 = malloc(lVar2);
     }
     else {
-      lVar1 = (*_DAT_180c69e18)();
+      lVar1 = (*system_system_config)();
     }
     *plVar3 = lVar1;
     if (lVar1 != 0) {

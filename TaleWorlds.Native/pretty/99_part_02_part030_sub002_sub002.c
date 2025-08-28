@@ -222,7 +222,7 @@ void FUN_1801a0860(uint64_t param_1,uint64_t *param_2,longlong *param_3)
   plStack_280 = param_3;
   puStack_270 = param_2;
   puStack_178 = param_2;
-  uVar9 = FUN_18062b1e0(_DAT_180c8ed18,0x300,0x10,3);
+  uVar9 = FUN_18062b1e0(system_memory_pool_ptr,0x300,0x10,3);
   plVar10 = (longlong *)FUN_180075030(uVar9,1);
   plStack_3b0 = plVar10;
   if (plVar10 != (longlong *)0x0) {
@@ -976,7 +976,7 @@ FUN_1801a20e0(uint64_t param_1,ulonglong *param_2,float *param_3,float *param_4,
           lVar8 = 1;
 LAB_1801a2330:
           puVar7 = (uint64_t *)
-                   FUN_18062b420(_DAT_180c8ed18,lVar8 << 4,(char)param_2[3],fVar13,uVar18,uVar19);
+                   FUN_18062b420(system_memory_pool_ptr,lVar8 << 4,(char)param_2[3],fVar13,uVar18,uVar19);
           puVar9 = (uint64_t *)param_2[1];
         }
         else {

@@ -387,7 +387,7 @@ void FUN_1805eb720(longlong *param_1,ulonglong *param_2,longlong *param_3,longlo
   if (((-1 < cStack_688) && (cStack_686 != '\0')) &&
      ((*(char *)((longlong)param_1 + 0x125) == '\0' || (param_6 != '\0')))) {
     cStack_685 = '\x01';
-    FUN_1804c31d0((longlong)*(int *)((longlong)param_1 + 0x16c) * 200 + _DAT_180c961b0,&uStack_5a8,
+    FUN_1804c31d0((longlong)*(int *)((longlong)param_1 + 0x16c) * 200 + system_system_memory,&uStack_5a8,
                   &cStack_688);
     fStack_3e8 = 0.0;
     fStack_3e4 = 0.0;

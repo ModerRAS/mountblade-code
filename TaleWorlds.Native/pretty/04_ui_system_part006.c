@@ -545,7 +545,7 @@ uint64_t * UISystem_StringFormatter(longlong string_source)
   ulonglong string_length;
   ulonglong char_index;
   
-  formatted_string_ptr = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,MEMORY_ALLOCATION_SIZE,8,3);
+  formatted_string_ptr = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,MEMORY_ALLOCATION_SIZE,8,3);
   *formatted_string_ptr = &unknown_var_720_ptr;
   formatted_string_ptr[1] = 0;
   *(int32_t *)(formatted_string_ptr + 2) = 0;
@@ -649,7 +649,7 @@ UISystem_StringProcessor(uint64_t source_string, uint64_t *target_ptr, uint64_t 
 void UISystem_ResourceAllocator(uint64_t allocation_context, uint64_t resource_type, uint64_t operation_flag, uint64_t validation_flag)
 
 {
-  FUN_180657620(allocation_context,_DAT_180c967f0,operation_flag,validation_flag,0xfffffffffffffffe);
+  FUN_180657620(allocation_context,ui_system_string,operation_flag,validation_flag,0xfffffffffffffffe);
   return;
 }
 
@@ -711,7 +711,7 @@ void UISystem_DataStructureProcessor(longlong *data_context)
   uint64_t system_flag;
   
   system_flag = 0xfffffffffffffffe;
-  _DAT_180c91038 = data_context;
+  ui_system_string = data_context;
   if (data_context != (longlong *)0x0) {
     (**(code **)(*data_context + 8))();
   }
@@ -722,12 +722,12 @@ void UISystem_DataStructureProcessor(longlong *data_context)
   allocation_flag = 3;
   FUN_180657040(&data_ptr_array);
   data_array_ptr = data_ptr_array2;
-  if (_DAT_180c91038 != (longlong *)0x0) {
+  if (ui_system_string != (longlong *)0x0) {
     memory_ptr1 = (uint64_t *)0x0;
     memory_ptr2 = (uint64_t *)0x0;
     memory_management_flag = 0;
     memory_flag = 3;
-    (**(code **)(*_DAT_180c91038 + 0x18))(_DAT_180c91038,&memory_ptr1);
+    (**(code **)(*ui_system_string + 0x18))(ui_system_string,&memory_ptr1);
     structure_array_ptr = memory_ptr1;
     next_structure_ptr = memory_ptr2;
     data_array_ptr = data_ptr_array2;
@@ -793,7 +793,7 @@ void UISystem_DataStructureProcessor(longlong *data_context)
             if (array_size == 0) {
               array_size = 1;
 LAB_180656abd:
-              data_item_ptr = (longlong *)FUN_18062b420(_DAT_180c8ed18,array_size * 8,(int8_t)allocation_flag);
+              data_item_ptr = (longlong *)FUN_18062b420(system_memory_pool_ptr,array_size * 8,(int8_t)allocation_flag);
             }
             else {
               array_size = array_size * 2;
@@ -885,11 +885,11 @@ LAB_180656abd:
           comparison_index = comparison_index + 1;
         } while (temp_count < buffer_length);
       }
-      comparison_string1 = _DAT_180c967f0;
-      if (_DAT_180c967f0 == (byte *)0x0) {
+      comparison_string1 = ui_system_string;
+      if (ui_system_string == (byte *)0x0) {
 LAB_180656d5b:
         comparison_string2 = &system_memory_67e0;
-        string_ptr1 = _DAT_180c967f0;
+        string_ptr1 = ui_system_string;
         while (string_ptr2 = comparison_string2, string_ptr1 != (byte *)0x0) {
           if (buffer_length == 0) {
             comparison_result = false;
@@ -1144,7 +1144,7 @@ void UISystem_ResourceManager(ulonglong *resource_context)
           if (resource_length == 0) {
             resource_length = 1;
 LAB_1806572f9:
-            resource_ptr5 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,resource_length * 8,(char)resource_context[3]);
+            resource_ptr5 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,resource_length * 8,(char)resource_context[3]);
             resource_ptr3 = (uint64_t *)resource_context[1];
             resource_ptr4 = (uint64_t *)*resource_context;
           }
@@ -1286,7 +1286,7 @@ UISystem_DataValidator(uint64_t validation_context, uint64_t data_source, uint64
 void UISystem_ResourceCleaner(uint64_t cleanup_context, uint64_t resource_type, uint64_t operation_flag, uint64_t validation_flag)
 
 {
-  FUN_180657620(cleanup_context,_DAT_180c967f0,operation_flag,validation_flag,0xfffffffffffffffe);
+  FUN_180657620(cleanup_context,ui_system_string,operation_flag,validation_flag,0xfffffffffffffffe);
   return;
 }
 
@@ -1317,8 +1317,8 @@ uint64_t * UISystem_StringFinder(uint64_t search_context, longlong *target_strin
   uint64_t *current_string_ptr;
   uint64_t *result_string_ptr;
   
-  if (_DAT_180c967f0 != (uint64_t *)0x0) {
-    found_string_ptr = _DAT_180c967f0;
+  if (ui_system_string != (uint64_t *)0x0) {
+    found_string_ptr = ui_system_string;
     result_string_ptr = (uint64_t *)&system_memory_67e0;
     do {
       if (*(int *)(target_string + 0x10) == 0) {
@@ -1440,13 +1440,13 @@ UISystem_StringConverter(ulonglong conversion_context, uint64_t *target_data, ui
   ulonglong data_index;
   uint64_t conversion_flag;
   
-  if ((param_4 == _DAT_180c967e0) || (param_4 == (longlong *)&system_memory_67e0)) {
-    if ((_DAT_180c96800 != 0) && (*(int *)(param_5 + 0x10) != 0)) {
-      data_ptr2 = _DAT_180c967e0;
+  if ((param_4 == ui_system_string) || (param_4 == (longlong *)&system_memory_67e0)) {
+    if ((ui_system_string != 0) && (*(int *)(param_5 + 0x10) != 0)) {
+      data_ptr2 = ui_system_string;
       data_ptr3 = param_4;
-      if ((int)_DAT_180c967e0[6] != 0) {
+      if ((int)ui_system_string[6] != 0) {
         string_ptr1 = *(byte **)(param_5 + 8);
-        data_ptr3 = (longlong *)(_DAT_180c967e0[5] - (longlong)string_ptr1);
+        data_ptr3 = (longlong *)(ui_system_string[5] - (longlong)string_ptr1);
         do {
           char_comparison_result = *string_ptr1;
           conversion_context = (ulonglong)string_ptr1[(longlong)data_ptr3];
@@ -1502,7 +1502,7 @@ LAB_1806577da:
 LAB_1806577f1:
   comparison_result = true;
   conversion_result = (uint64_t *)&system_memory_67e0;
-  string_ptr2 = _DAT_180c967f0;
+  string_ptr2 = ui_system_string;
   while (string_ptr2 != (uint64_t *)0x0) {
     conversion_result = string_ptr2;
     if (*(int *)(string_ptr2 + 6) == 0) {
@@ -1531,7 +1531,7 @@ LAB_180657812:
   }
   string_ptr2 = conversion_result;
   if (comparison_result) {
-    if (conversion_result != _DAT_180c967e8) {
+    if (conversion_result != ui_system_string) {
       string_ptr2 = (uint64_t *)func_0x00018066b9a0(conversion_result);
       goto LAB_180657835;
     }
@@ -1575,7 +1575,7 @@ LAB_1806578a7:
   }
   conversion_flag = 0;
 LAB_1806578f0:
-  string_length = FUN_18062b420(_DAT_180c8ed18,0x48,system_memory_6808);
+  string_length = FUN_18062b420(system_memory_pool_ptr,0x48,system_memory_6808);
   FUN_180627ae0(string_length + 0x20,param_5);
   *(uint64_t *)(string_length + 0x40) = 0;
   FUN_18066bdc0(string_length,conversion_result,&system_memory_67e0,conversion_flag);

@@ -606,8 +606,8 @@ longlong FUN_1806ad710(longlong param_1,uint64_t *param_2,uint param_3)
         }
       } while (*(int *)(param_1 + 0x80) <= (int)param_3);
     }
-    lVar2 = (**(code **)(*_DAT_180be0050 + 8))
-                      (_DAT_180be0050,0xa0,&unknown_var_5520_ptr,&unknown_var_5360_ptr,0x293);
+    lVar2 = (**(code **)(*system_system_buffer_config + 8))
+                      (system_system_buffer_config,0xa0,&unknown_var_5520_ptr,&unknown_var_5360_ptr,0x293);
     if (lVar2 != 0) {
       puStack_98 = &unknown_var_2232_ptr;
       uStack_90 = uStack_a8;
@@ -689,8 +689,8 @@ uint64_t FUN_1806ad758(longlong *param_1)
       }
     } while (*(int *)(unaff_RDI + 0x80) <= iVar10);
   }
-  lVar6 = (**(code **)(*_DAT_180be0050 + 8))
-                    (_DAT_180be0050,0xa0,&unknown_var_5520_ptr,&unknown_var_5360_ptr,0x293);
+  lVar6 = (**(code **)(*system_system_buffer_config + 8))
+                    (system_system_buffer_config,0xa0,&unknown_var_5520_ptr,&unknown_var_5360_ptr,0x293);
   if (lVar6 != 0) {
     *(int *)(unaff_RBP + -0x21) = iVar10;
     *(void **)(unaff_RBP + -0x39) = &unknown_var_2232_ptr;

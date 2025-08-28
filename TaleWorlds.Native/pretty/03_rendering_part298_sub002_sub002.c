@@ -103,7 +103,7 @@ void FUN_180427a30(uint *param_1,uint *param_2,uint *param_3,uint *param_4)
        (iVar17 < 0)) ||
       (((int)uVar16 < 0 ||
        (((uVar16 != 0 && ((int)(0x7fffffff / (longlong)(int)uVar16) < iVar17)) ||
-        (lVar2 = FUN_18062b420(_DAT_180c8ed18,(longlong)(int)(uVar23 * uVar16 * uVar21),
+        (lVar2 = FUN_18062b420(system_memory_pool_ptr,(longlong)(int)(uVar23 * uVar16 * uVar21),
                                CONCAT71((uint7)(uint3)(uVar16 >> 8),0x22)), lStack_478 = lVar2,
         lVar2 == 0)))))))) goto LAB_180428659;
   if (iVar13 < 0x10) {

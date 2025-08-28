@@ -62,7 +62,7 @@ longlong FUN_18076c8c0(uint *param_1,ulonglong param_2)
     if (*(longlong *)puVar1 == 0) {
       puVar1[0] = 0x58585858;
       puVar1[1] = 0;
-      _DAT_180c0cab0 = 0;
+      ui_system_config = 0;
     }
     param_1[0xe4] = 0x1000;
     param_1[0xe5] = 0;
@@ -212,7 +212,7 @@ longlong FUN_18076c8c0(uint *param_1,ulonglong param_2)
     if (*(longlong *)puVar1 == 0) {
       puVar1[0] = 0x58585858;
       puVar1[1] = 0;
-      _DAT_180c0cab0 = 0;
+      ui_system_config = 0;
     }
     param_1[0xe4] = 0x1000;
     param_1[0xe5] = 0;
@@ -1455,7 +1455,7 @@ longlong FUN_18076d040(longlong param_1,ulonglong param_2)
     *(int32_t *)(param_1 + 0x3b0) = 0;
     if (*plVar1 == 0) {
       *plVar1 = 0x58585858;
-      _DAT_180c0cab0 = 0;
+      ui_system_config = 0;
     }
     *(uint64_t *)(param_1 + 0x390) = 0x1000;
     *(uint64_t *)(param_1 + 0x398) = 0x1000;

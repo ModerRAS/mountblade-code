@@ -101,7 +101,7 @@ void FUN_180376b03(void)
   *(int32_t *)(in_R11 + -0x80) = unaff_XMM10_Dc;
   *(int32_t *)(in_R11 + -0x7c) = unaff_XMM10_Dd;
   uVar12 = FUN_1801b4a60();
-  lVar15 = _DAT_180c86978;
+  lVar15 = render_system_data_ui;
   *(uint64_t *)(unaff_RBP + 0x46) = uVar12;
   if ((int)unaff_RBX < 0) {
     unaff_RBX = 0;
@@ -751,7 +751,7 @@ LAB_18037777e:
     puVar18 = &unknown_var_3824_ptr;
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(_DAT_180c86928,puVar18,lVar15 / 0x28,puVar27);
+  FUN_180062300(system_message_context,puVar18,lVar15 / 0x28,puVar27);
 }
 
 

@@ -488,14 +488,14 @@ void FUN_1803deff0(longlong param_1)
   *(int32_t *)(param_1 + 0xe4) = 0x3f800000;
   *(int32_t *)(param_1 + 200) = 0;
   *(int32_t *)(param_1 + 0xcc) = 1;
-  if (*(int *)(_DAT_180c8a9c8 + 0xe0) == 0) {
-    plVar1 = _DAT_180c8ed58;
-    if (_DAT_180c8ed58 == (longlong *)0x0) {
+  if (*(int *)(system_system_data_memory + 0xe0) == 0) {
+    plVar1 = system_system_data_memory;
+    if (system_system_data_memory == (longlong *)0x0) {
       QueryPerformanceCounter(&plStackX_8);
       plVar1 = plStackX_8;
     }
     *(int *)(param_1 + 0xf8) =
-         (int)((double)((longlong)plVar1 - _DAT_180c8ed48) * _DAT_180c8ed50 * 123.45600128173828);
+         (int)((double)((longlong)plVar1 - system_system_data_memory) * system_system_data_memory * 123.45600128173828);
   }
   else {
     *(int32_t *)(param_1 + 0xf8) = 0;

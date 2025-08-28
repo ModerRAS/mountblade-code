@@ -208,7 +208,7 @@ void FUN_18007f4c0(int8_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
         puVar8 = *(void **)(lVar7 + 0x18);
       }
                     // WARNING: Subroutine does not return
-      FUN_180062300(_DAT_180c86928,&unknown_var_5720_ptr,puVar8,param_4,uVar10);
+      FUN_180062300(system_message_context,&unknown_var_5720_ptr,puVar8,param_4,uVar10);
     }
   }
   lVar7 = *(longlong *)(param_1 + 8);
@@ -542,11 +542,11 @@ void FUN_18007f8f0(longlong param_1)
   ulonglong uVar22;
   bool bVar23;
   
-  if (*(int *)(param_1 + 0x28) != *(int *)(_DAT_180c86870 + 0x224)) {
+  if (*(int *)(param_1 + 0x28) != *(int *)(system_main_module_state + 0x224)) {
     iVar15 = *(int *)(param_1 + 0x1c) + *(int *)(param_1 + 0x18);
-    *(int *)(param_1 + 0x28) = *(int *)(_DAT_180c86870 + 0x224);
+    *(int *)(param_1 + 0x28) = *(int *)(system_main_module_state + 0x224);
     if (0 < iVar15) {
-      lVar11 = (longlong)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc28;
+      lVar11 = (longlong)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc28;
       uVar5 = FUN_180080380(lVar11,iVar15);
       *(int32_t *)(param_1 + 0x30) = uVar5;
       FUN_1800802e0(lVar11,uVar5);
@@ -576,7 +576,7 @@ void FUN_18007f8f0(longlong param_1)
             *plVar1 = 0;
           }
           else {
-            plVar7 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,(longlong)cVar4 * 4);
+            plVar7 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,(longlong)cVar4 * 4);
             *plVar1 = (longlong)plVar7;
           }
         }
@@ -637,8 +637,8 @@ void FUN_18007f8f0(longlong param_1)
             } while (lVar11 < iVar18);
           }
         }
-        puVar14 = (uint *)((longlong)*(int *)(_DAT_180c86890 + 0xc20) * 0x128 +
-                          _DAT_180c86890 + 0x9d0);
+        puVar14 = (uint *)((longlong)*(int *)(system_parameter_buffer + 0xc20) * 0x128 +
+                          system_parameter_buffer + 0x9d0);
         if (iVar15 == 0) {
           uVar16 = (int)cVar4 - 1;
         }
@@ -656,7 +656,7 @@ void FUN_18007f8f0(longlong param_1)
             do {
               iVar18 = (int)uVar21;
               if (*(longlong *)puVar20 == 0) {
-                lVar8 = FUN_18062b420(_DAT_180c8ed18,0x2000,0x25);
+                lVar8 = FUN_18062b420(system_memory_pool_ptr,0x2000,0x25);
                 LOCK();
                 bVar23 = *(longlong *)(puVar14 + (longlong)iVar18 * 2 + 2) == 0;
                 if (bVar23) {
@@ -752,7 +752,7 @@ void FUN_18007f90f(int32_t param_1)
   iVar15 = *(int *)(unaff_RDI + 0x1c) + *(int *)(unaff_RDI + 0x18);
   *(int32_t *)(unaff_RDI + 0x28) = param_1;
   if (0 < iVar15) {
-    lVar11 = (longlong)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc28;
+    lVar11 = (longlong)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc28;
     uVar5 = FUN_180080380(lVar11,iVar15);
     *(int32_t *)(unaff_RDI + 0x30) = uVar5;
     FUN_1800802e0(lVar11,uVar5);
@@ -782,7 +782,7 @@ void FUN_18007f90f(int32_t param_1)
           *plVar1 = 0;
         }
         else {
-          plVar7 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,(longlong)cVar4 * 4);
+          plVar7 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,(longlong)cVar4 * 4);
           *plVar1 = (longlong)plVar7;
         }
       }
@@ -844,7 +844,7 @@ void FUN_18007f90f(int32_t param_1)
           } while (lVar11 < iVar18);
         }
       }
-      puVar14 = (uint *)((longlong)*(int *)(_DAT_180c86890 + 0xc20) * 0x128 + _DAT_180c86890 + 0x9d0
+      puVar14 = (uint *)((longlong)*(int *)(system_parameter_buffer + 0xc20) * 0x128 + system_parameter_buffer + 0x9d0
                         );
       if (iVar15 == 0) {
         uVar16 = (int)cVar4 - 1;
@@ -863,7 +863,7 @@ void FUN_18007f90f(int32_t param_1)
           do {
             iVar18 = (int)uVar21;
             if (*(longlong *)puVar20 == 0) {
-              lVar8 = FUN_18062b420(_DAT_180c8ed18,0x2000,0x25);
+              lVar8 = FUN_18062b420(system_memory_pool_ptr,0x2000,0x25);
               LOCK();
               bVar23 = *(longlong *)(puVar14 + (longlong)iVar18 * 2 + 2) == 0;
               if (bVar23) {

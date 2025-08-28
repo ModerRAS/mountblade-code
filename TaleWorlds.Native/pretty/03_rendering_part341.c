@@ -546,7 +546,7 @@ ulonglong FUN_18044d4f0(longlong param_1,uint param_2)
   uint64_t uStackX_8;
   
   if (param_1 != 0) {
-    uVar1 = FUN_18062b1e0(_DAT_180c8ed18,0xd8,8,3);
+    uVar1 = FUN_18062b1e0(system_memory_pool_ptr,0xd8,8,3);
     uStackX_8 = func_0x000180464d70(uVar1,&system_data_0300,0);
     FUN_180469480((longlong *)(param_1 + 0xd0),
                   *(longlong *)(param_1 + 0xd0) + (ulonglong)param_2 * 8,&uStackX_8);
@@ -662,7 +662,7 @@ FUN_18044d680(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   longlong lStack_28;
   
   uVar2 = FUN_180627910(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
-  uVar1 = FUN_180191c00(_DAT_180c8aa00,uVar2);
+  uVar1 = FUN_180191c00(render_system_data_config,uVar2);
   puStack_30 = &unknown_var_3456_ptr;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
@@ -712,7 +712,7 @@ void FUN_18044d7d0(longlong param_1,longlong *param_2,uint64_t param_3,uint64_t 
     if (lVar4 == 0) goto joined_r0x00018044d87d;
   }
   puVar2 = (uint64_t *)
-           FUN_18062b420(_DAT_180c8ed18,lVar4 * 8,*(int8_t *)(param_1 + 0x28),param_4,uVar8);
+           FUN_18062b420(system_memory_pool_ptr,lVar4 * 8,*(int8_t *)(param_1 + 0x28),param_4,uVar8);
   puVar6 = *(uint64_t **)(param_1 + 0x18);
   puVar3 = *(uint64_t **)(param_1 + 0x10);
   puVar7 = puVar2;
@@ -779,7 +779,7 @@ FUN_18044d910(int32_t *param_1,char param_2,uint64_t param_3,int32_t param_4,
   uStack_38 = 0;
   uStack_34._0_2_ = CONCAT11((char)param_3,1);
   uStack_2c = param_4;
-  uVar2 = FUN_18062b1e0(_DAT_180c8ed18,0x60d30,0x10,0x1f);
+  uVar2 = FUN_18062b1e0(system_memory_pool_ptr,0x60d30,0x10,0x1f);
   plVar3 = (longlong *)FUN_1801954d0(uVar2,&puStack_58);
   if (plVar3 != (longlong *)0x0) {
     (**(code **)(*plVar3 + 0x28))(plVar3);
@@ -990,7 +990,7 @@ void FUN_18044dd10(uint64_t *param_1,longlong param_2,uint64_t param_3)
   lStack_d8 = lVar1;
   uStack_d0 = param_3;
   if (cStack_72 == '\0') {
-    uVar2 = FUN_18062b420(_DAT_180c8ed18,param_3,3);
+    uVar2 = FUN_18062b420(system_memory_pool_ptr,param_3,3);
                     // WARNING: Subroutine does not return
     memcpy(uVar2,lVar1,param_3);
   }

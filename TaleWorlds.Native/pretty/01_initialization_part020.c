@@ -138,7 +138,7 @@ void InitializationSystem_AdvancedMathCalculator(SystemHandle system_context, Ma
   system_manager = SYSTEM_STATE_MANAGER;
   
   // 检查系统状态条件
-  if ((*(longlong *)(_DAT_180c86890 + 0x7ab8) == 0) || (*(int *)(SYSTEM_STATE_MANAGER + 0x540) < 1)) {
+  if ((*(longlong *)(system_parameter_buffer + 0x7ab8) == 0) || (*(int *)(SYSTEM_STATE_MANAGER + 0x540) < 1)) {
     condition_flag = *(int *)(SYSTEM_STATE_MANAGER + 0x2140) != 0;
   }
   else {
@@ -152,9 +152,9 @@ void InitializationSystem_AdvancedMathCalculator(SystemHandle system_context, Ma
     // 处理线程局部存储和条件检查
     if (*(char *)(system_context + 0x22d) == '\0') {
       temp_pointer = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
-      if ((*(int *)(temp_pointer + 0x48) < _DAT_180d49140) &&
-         (FUN_1808fcb90(&system_memory_9140), _DAT_180d49140 == -1)) {
-        _DAT_180d49144 = float_param;
+      if ((*(int *)(temp_pointer + 0x48) < init_system_config_counter) &&
+         (FUN_1808fcb90(&system_memory_9140), init_system_config_counter == -1)) {
+        init_system_config_counter = float_param;
         FUN_1808fcb30(&system_memory_9140);
       }
       
@@ -166,12 +166,12 @@ void InitializationSystem_AdvancedMathCalculator(SystemHandle system_context, Ma
       calculated_value5 = (float)exp2f();
       
       // 优化计算结果
-      _DAT_180d49144 = (MATH_NORMALIZATION_FACTOR - calculated_value1) * _DAT_180d49144 + calculated_value1 * float_param;
+      init_system_config_counter = (MATH_NORMALIZATION_FACTOR - calculated_value1) * init_system_config_counter + calculated_value1 * float_param;
       optimized_value = (float)*(int *)(SYSTEM_STATE_MANAGER + 0x21b0);
       
       // 应用范围限制
-      if (*(float *)(_DAT_180c86870 + 0x1f8) <= (float)*(int *)(SYSTEM_STATE_MANAGER + 0x21b0)) {
-        optimized_value = *(float *)(_DAT_180c86870 + 0x1f8);
+      if (*(float *)(system_main_module_state + 0x1f8) <= (float)*(int *)(SYSTEM_STATE_MANAGER + 0x21b0)) {
+        optimized_value = *(float *)(system_main_module_state + 0x1f8);
       }
       
       // 计算优化参数
@@ -186,16 +186,16 @@ void InitializationSystem_AdvancedMathCalculator(SystemHandle system_context, Ma
       }
       
       // 更新配置参数
-      if ((*(int *)(temp_pointer + 0x48) < _DAT_180d49148) &&
-         (FUN_1808fcb90(&system_memory_9148), _DAT_180d49148 == -1)) {
-        _DAT_180d4914c = calculated_value2;
+      if ((*(int *)(temp_pointer + 0x48) < init_system_config_counter) &&
+         (FUN_1808fcb90(&system_memory_9148), init_system_config_counter == -1)) {
+        init_system_config_counter = calculated_value2;
         FUN_1808fcb30(&system_memory_9148);
       }
       
-      _DAT_180d4914c = (MATH_NORMALIZATION_FACTOR - calculated_value1) * _DAT_180d4914c + calculated_value2 * calculated_value1;
+      init_system_config_counter = (MATH_NORMALIZATION_FACTOR - calculated_value1) * init_system_config_counter + calculated_value2 * calculated_value1;
       
       // 执行复杂的数学优化计算
-      calculated_value3 = ((float)(int)((_DAT_180d49144 / _DAT_180d4914c) / calculated_value2) * calculated_value2 - MATH_NORMALIZATION_FACTOR) * calculated_value3 *
+      calculated_value3 = ((float)(int)((init_system_config_counter / init_system_config_counter) / calculated_value2) * calculated_value2 - MATH_NORMALIZATION_FACTOR) * calculated_value3 *
                        calculated_value4 + calculated_value3;
       
       // 应用数值范围限制
@@ -215,26 +215,26 @@ void InitializationSystem_AdvancedMathCalculator(SystemHandle system_context, Ma
       *(float *)(system_context + 0x238) = base_value;
       precision_result = log2f();
       *(int32_t *)(system_context + 0x248) = precision_result;
-      *(float *)(system_context + 0x250) = _DAT_180d49144;
+      *(float *)(system_context + 0x250) = init_system_config_counter;
       
       // 更新系统状态
-      system_manager = _DAT_180c86950;
-      *(int8_t *)(_DAT_180c86950 + 0x162b) = 1;
+      system_manager = system_operation_state;
+      *(int8_t *)(system_operation_state + 0x162b) = 1;
       temp_pointer = SYSTEM_STATE_MANAGER;
     }
     else {
       *(float *)(system_context + 0x238) = base_value;
       temp_pointer = SYSTEM_STATE_MANAGER;
-      system_manager = _DAT_180c86950;
+      system_manager = system_operation_state;
     }
   }
   else {
     *(int32_t *)(system_context + 0x238) = 0x3f800000;
-    system_manager = _DAT_180c86950;
+    system_manager = system_operation_state;
   }
   
   // 处理系统配置和参数验证
-  if ((*(longlong *)(_DAT_180c86890 + 0x7ab8) == 0) || (*(int *)(temp_pointer + 0x540) < 1)) {
+  if ((*(longlong *)(system_parameter_buffer + 0x7ab8) == 0) || (*(int *)(temp_pointer + 0x540) < 1)) {
     if (*(int *)(temp_pointer + 0x2140) == 0) {
       base_value = *(float *)(temp_pointer + 0x20d0);
     }
@@ -377,22 +377,22 @@ void InitializationSystem_ConfigManager(SystemHandle *config_array, ConfigHandle
   void *temp_pointer4;
   
   // 初始化系统管理器
-  system_manager = _DAT_180c86870;
+  system_manager = system_main_module_state;
   temp_stack_pointer = config_array;
   
   // 检查配置状态并执行初始化
   if (*(int *)(SYSTEM_STATE_MANAGER + 0xd94) != *(int *)(SYSTEM_STATE_MANAGER + 0xd90)) {
-    FUN_18004caf0(_DAT_180c86870, config_param1, config_param2, status_flag, 0xfffffffffffffffe);
+    FUN_18004caf0(system_main_module_state, config_param1, config_param2, status_flag, 0xfffffffffffffffe);
   }
   
-  resource_manager = _DAT_180c86950;
-  if (_DAT_180c86950 != 0) {
+  resource_manager = system_operation_state;
+  if (system_operation_state != 0) {
     iteration_counter = 0;
-    memory_manager = *(longlong *)(_DAT_180c86950 + 0x1868);
+    memory_manager = *(longlong *)(system_operation_state + 0x1868);
     temp_counter = iteration_counter;
     
     // 遍历并执行回调函数
-    if (*(longlong *)(_DAT_180c86950 + 0x1870) - memory_manager >> 3 != 0) {
+    if (*(longlong *)(system_operation_state + 0x1870) - memory_manager >> 3 != 0) {
       do {
         if (*(longlong **)(iteration_counter + memory_manager) != (longlong *)0x0) {
           (**(code **)(**(longlong **)(iteration_counter + memory_manager) + 0x108))();
@@ -406,7 +406,7 @@ void InitializationSystem_ConfigManager(SystemHandle *config_array, ConfigHandle
     }
     
     // 执行系统回调
-    (**(code **)(_DAT_180c8a9c0 + 0x40))();
+    (**(code **)(init_system_data_counter + 0x40))();
   }
   
   // 执行系统管理回调
@@ -423,10 +423,10 @@ void InitializationSystem_ConfigManager(SystemHandle *config_array, ConfigHandle
   }
   
   // 处理高级系统配置
-  if ((_DAT_180c8a9d0 != 0) &&
+  if ((init_system_data_counter != 0) &&
      ((*(int *)(SYSTEM_STATE_MANAGER + 900) != *(int *)(SYSTEM_STATE_MANAGER + 0x380) ||
       (*(int *)(SYSTEM_STATE_MANAGER + 0x3f4) != *(int *)(SYSTEM_STATE_MANAGER + 0x3f0))))) {
-    callback_param = FUN_18062b1e0(_DAT_180c8ed18, 0x40, 8, 3);
+    callback_param = FUN_18062b1e0(system_memory_pool_ptr, 0x40, 8, 3);
     temp_stack_pointer = temp_array2;
     temp_pointer3 = &unknown_var_5328_ptr;
     temp_pointer4 = &unknown_var_5312_ptr;
@@ -437,7 +437,7 @@ void InitializationSystem_ConfigManager(SystemHandle *config_array, ConfigHandle
       (**(code **)(*resource_pointer + 0x28))(resource_pointer);
     }
     
-    callback_param = _DAT_180c82868;
+    callback_param = system_context_ptr;
     callback_pointer = &temp_stack_pointer;
     temp_stack_pointer = resource_pointer;
     
@@ -454,7 +454,7 @@ void InitializationSystem_ConfigManager(SystemHandle *config_array, ConfigHandle
   
   // 更新系统配置参数
   resource_manager = SYSTEM_STATE_MANAGER;
-  if ((*(longlong *)(_DAT_180c86890 + 0x7ab8) == 0) || (*(int *)(SYSTEM_STATE_MANAGER + 0x540) < 1)) {
+  if ((*(longlong *)(system_parameter_buffer + 0x7ab8) == 0) || (*(int *)(SYSTEM_STATE_MANAGER + 0x540) < 1)) {
     if (*(int *)(SYSTEM_STATE_MANAGER + 0x2140) == 0) {
       calculated_value1 = *(float *)(SYSTEM_STATE_MANAGER + 0x20d0);
     }
@@ -474,7 +474,7 @@ void InitializationSystem_ConfigManager(SystemHandle *config_array, ConfigHandle
   // 处理系统状态验证
   if (*(int *)(resource_manager + 0x1ea0) == 1) {
     validation_result = *(int *)(resource_manager + 0x1d50);
-    status_pointer = (int *)FUN_180171f10(*(uint64_t *)(_DAT_180c86870 + 8), &temp_stack_pointer2);
+    status_pointer = (int *)FUN_180171f10(*(uint64_t *)(system_main_module_state + 8), &temp_stack_pointer2);
     calculated_value2 = (float)validation_result / (float)*status_pointer;
     calculated_value1 = calculated_value2 * *(float *)(system_manager + 0x234);
     calculated_value2 = calculated_value2 * *(float *)(system_manager + 0x238);
@@ -544,8 +544,8 @@ void InitializationSystem_StringProcessor(StringHandle string_buffer, longlong b
   
   // 初始化缓冲区和系统调用
   FUN_180047d40(temp_buffer2,
-                (longlong)*(int *)(_DAT_180c86938 + 0x1d40) * 0xd0 +
-                *(longlong *)(_DAT_180c86938 + 0x1d20));
+                (longlong)*(int *)(system_message_buffer + 0x1d40) * 0xd0 +
+                *(longlong *)(system_message_buffer + 0x1d20));
   
   FUN_180623de0(&temp_pointer1);
   string_length = 0;
@@ -733,7 +733,7 @@ RESOURCE_ALLOCATION_COMPLETE:
     }
     
     // 分配内存资源
-    memory_pointer = (int8_t *)FUN_18062b420(_DAT_180c8ed18, (longlong)iteration_count, 0x13);
+    memory_pointer = (int8_t *)FUN_18062b420(system_memory_pool_ptr, (longlong)iteration_count, 0x13);
     *memory_pointer = 0;
     temp_pointer2 = memory_pointer;
     resource_counter = FUN_18064e990(memory_pointer);
@@ -757,13 +757,13 @@ RESOURCE_ALLOCATION_COMPLETE:
       if ((int)allocation_counter < 0x10) {
         allocation_counter = 0x10;
       }
-      memory_pointer = (int8_t *)FUN_18062b420(_DAT_180c8ed18, (longlong)(int)allocation_counter, 0x13);
+      memory_pointer = (int8_t *)FUN_18062b420(system_memory_pool_ptr, (longlong)(int)allocation_counter, 0x13);
       *memory_pointer = 0;
     }
     else {
       if (allocation_counter <= temp_counter) goto RESOURCE_EXTENSION_COMPLETE;
       temp_flag = 0x13;
-      memory_pointer = (int8_t *)FUN_18062b8b0(_DAT_180c8ed18, memory_pointer, allocation_counter, 0x10);
+      memory_pointer = (int8_t *)FUN_18062b8b0(system_memory_pool_ptr, memory_pointer, allocation_counter, 0x10);
     }
     
     temp_pointer2 = memory_pointer;
@@ -831,7 +831,7 @@ InitializationSystem_CompletionHandler(SystemHandle completion_handle, uint64_t 
   temp_value = 3;
   
   // 执行字符串预处理
-  InitializationSystem_StringProcessor(_DAT_180c86870, &temp_pointer2, completion_param2, completion_param3, 0xfffffffffffffffe);
+  InitializationSystem_StringProcessor(system_main_module_state, &temp_pointer2, completion_param2, completion_param3, 0xfffffffffffffffe);
   
   callback_array_end = temp_pointer3;
   callback_array = temp_pointer2;
