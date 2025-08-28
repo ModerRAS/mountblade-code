@@ -35,27 +35,27 @@ void process_string_search_and_memory_management(void)
     char current_char;            // 当前字符
     char compare_char;            // 比较字符
     int search_index;             // 搜索索引
-    ulonglong loop_counter;       // 循环计数器
-    longlong data_pointer;        // 数据指针
+    uint64_t loop_counter;       // 循环计数器
+    int64_t data_pointer;        // 数据指针
     void **result_pointer;   // 结果指针
-    longlong array_pointer;       // 数组指针
+    int64_t array_pointer;       // 数组指针
     byte *byte_pointer;           // 字节指针
     char *char_pointer;           // 字符指针
     void *temp_pointer1;      // 临时指针1
     void *temp_pointer2;      // 临时指针2
-    longlong offset_value;        // 偏移值
-    ulonglong address_value;      // 地址值
+    int64_t offset_value;        // 偏移值
+    uint64_t address_value;      // 地址值
     int temp_int1;                 // 临时整数1
-    longlong *long_pointer;       // 长整型指针
+    int64_t *long_pointer;       // 长整型指针
     int8_t *buffer_pointer;    // 缓冲区指针
-    longlong temp_long1;           // 临时长整型1
+    int64_t temp_long1;           // 临时长整型1
     uint *uint_pointer;           // 无符号整型指针
     int8_t *temp_buffer1;      // 临时缓冲区1
-    ulonglong temp_ulong1;        // 临时无符号长整型1
+    uint64_t temp_ulong1;        // 临时无符号长整型1
     uint64_t temp_uint64_t;   // 临时未定义8字节
     uint temp_uint1;              // 临时无符号整型1
-    ulonglong temp_ulong2;        // 临时无符号长整型2
-    longlong temp_long2;           // 临时长整型2
+    uint64_t temp_ulong2;        // 临时无符号长整型2
+    int64_t temp_long2;           // 临时长整型2
     int32_t xmm0_out;          // XMM0寄存器输出
     int8_t stack_buffer1[32];  // 栈缓冲区1
     void *stack_pointer1;     // 栈指针1
@@ -63,35 +63,35 @@ void process_string_search_and_memory_management(void)
     uint stack_uint1;             // 栈无符号整型1
     void **stack_pointer2;   // 栈指针2
     void *stack_pointer3;     // 栈指针3
-    longlong stack_long1;         // 栈长整型1
+    int64_t stack_long1;         // 栈长整型1
     uint stack_uint2;             // 栈无符号整型2
-    ulonglong stack_ulong1;       // 栈无符号长整型1
-    longlong stack_long2;         // 栈长整型2
+    uint64_t stack_ulong1;       // 栈无符号长整型1
+    int64_t stack_long2;         // 栈长整型2
     void *stack_pointer4;     // 栈指针4
     int8_t *stack_pointer5;     // 栈指针5
     int32_t stack_uint3;       // 栈无符号整型3
-    ulonglong stack_ulong2;       // 栈无符号长整型2
+    uint64_t stack_ulong2;       // 栈无符号长整型2
     void *stack_pointer6;     // 栈指针6
     int8_t *stack_pointer7;     // 栈指针7
     int32_t stack_uint4;       // 栈无符号整型4
-    ulonglong stack_ulong3;       // 栈无符号长整型3
+    uint64_t stack_ulong3;       // 栈无符号长整型3
     void *stack_pointer8;     // 栈指针8
     int8_t *stack_pointer9;     // 栈指针9
     int32_t stack_uint5;       // 栈无符号整型5
-    ulonglong stack_ulong4;       // 栈无符号长整型4
+    uint64_t stack_ulong4;       // 栈无符号长整型4
     void *stack_pointer10;    // 栈指针10
     int8_t *stack_pointer11;    // 栈指针11
     int stack_int1;               // 栈整型1
-    ulonglong stack_ulong5;       // 栈无符号长整型5
+    uint64_t stack_ulong5;       // 栈无符号长整型5
     void *stack_pointer12;    // 栈指针12
-    longlong stack_long3;         // 栈长整型3
+    int64_t stack_long3;         // 栈长整型3
     int32_t stack_uint6;       // 栈无符号整型6
-    ulonglong stack_ulong6;       // 栈无符号长整型6
-    longlong stack_long4;         // 栈长整型4
+    uint64_t stack_ulong6;       // 栈无符号长整型6
+    int64_t stack_long4;         // 栈长整型4
     void *stack_pointer13;    // 栈指针13
     void *stack_pointer14;    // 栈指针14
     int32_t stack_uint7;       // 栈无符号整型7
-    ulonglong stack_ulong7;       // 栈无符号长整型7
+    uint64_t stack_ulong7;       // 栈无符号长整型7
     void *stack_pointer15;    // 栈指针15
     int8_t *stack_pointer16;    // 栈指针16
     int32_t stack_uint8;       // 栈无符号整型8
@@ -99,14 +99,14 @@ void process_string_search_and_memory_management(void)
     void *stack_pointer17;    // 栈指针17
     void *stack_pointer18;    // 栈指针18
     int32_t stack_uint9;       // 栈无符号整型9
-    ulonglong stack_ulong8;       // 栈无符号长整型8
+    uint64_t stack_ulong8;       // 栈无符号长整型8
     void *stack_pointer19;    // 栈指针19
     uint64_t stack_data9;  // 栈数据9
     int32_t stack_uint10;      // 栈无符号整型10
-    ulonglong stack_ulong9;       // 栈无符号长整型9
-    longlong stack_long5;         // 栈长整型5
+    uint64_t stack_ulong9;       // 栈无符号长整型9
+    int64_t stack_long5;         // 栈长整型5
     void **stack_pointer20;   // 栈指针20
-    longlong *stack_pointer21;    // 栈指针21
+    int64_t *stack_pointer21;    // 栈指针21
     uint64_t stack_int8_t0; // 栈未定义10字节
     int32_t stack_uint11;      // 栈无符号整型11
     int8_t stack_byte1;       // 栈字节1
@@ -119,10 +119,10 @@ void process_string_search_and_memory_management(void)
     int8_t stack_buffer3[16];  // 栈缓冲区3
     code *code_pointer5;          // 代码指针5
     code *code_pointer6;          // 代码指针6
-    longlong stack_long6;         // 栈长整型6
-    longlong stack_long7;         // 栈长整型7
-    longlong stack_long8;         // 栈长整型8
-    longlong stack_long9;         // 栈长整型9
+    int64_t stack_long6;         // 栈长整型6
+    int64_t stack_long7;         // 栈长整型7
+    int64_t stack_long8;         // 栈长整型8
+    int64_t stack_long9;         // 栈长整型9
     uint64_t stack_int8_t1; // 栈未定义11字节
     int32_t stack_uint12;      // 栈无符号整型12
     uint64_t stack_int8_t2; // 栈未定义12字节
@@ -136,19 +136,19 @@ void process_string_search_and_memory_management(void)
     void *stack_pointer25;    // 栈指针25
     void *stack_pointer26;    // 栈指针26
     int stack_int2;               // 栈整型2
-    ulonglong stack_ulong10;      // 栈无符号长整型10
+    uint64_t stack_ulong10;      // 栈无符号长整型10
     
     // 初始化栈变量
     stack_int8_t2 = 0xfffffffffffffffe;
-    stack_ulong10 = _DAT ^ (ulonglong)stack_buffer1;
+    stack_ulong10 = _DAT ^ (uint64_t)stack_buffer1;
     temp_ulong2 = 0;
     stack_uint1 = 0;
     stack_long4 = _DAT;
-    search_index = (int)((*(longlong *)(_DAT + 0x10) - *(longlong *)(_DAT + 8)) / 0x60);
+    search_index = (int)((*(int64_t *)(_DAT + 0x10) - *(int64_t *)(_DAT + 8)) / 0x60);
     
     // 搜索匹配的字符串模式
     if (0 < search_index) {
-        long_pointer = (longlong *)(*(longlong *)(_DAT + 8) + 8);
+        long_pointer = (int64_t *)(*(int64_t *)(_DAT + 8) + 8);
         address_value = temp_ulong2;
         temp_ulong1 = temp_ulong2;
         do {
@@ -159,21 +159,21 @@ void process_string_search_and_memory_management(void)
                     temp_ulong1 = loop_counter;
                     if (loop_counter == 7) {
                         if (temp_int1 == -1) goto error_handler;
-                        stack_long7 = (longlong)
-                                     (int)(*(longlong *)(_DAT + 0x30) -
-                                           *(longlong *)(_DAT + 0x28) >> 5);
+                        stack_long7 = (int64_t)
+                                     (int)(*(int64_t *)(_DAT + 0x30) -
+                                           *(int64_t *)(_DAT + 0x28) >> 5);
                         if (stack_long7 < 1) goto cleanup_handler;
                         stack_long5 = 0;
-                        stack_long2 = (longlong)temp_int1 * 0x60;
+                        stack_long2 = (int64_t)temp_int1 * 0x60;
                         offset_value = _DAT;
                         goto process_string_match;
                     }
                 }
             }
-            temp_ulong1 = (ulonglong)(temp_int1 + 1);
+            temp_ulong1 = (uint64_t)(temp_int1 + 1);
             address_value = address_value + 1;
             long_pointer = long_pointer + 0xc;
-        } while ((longlong)address_value < (longlong)search_index);
+        } while ((int64_t)address_value < (int64_t)search_index);
     }
 error_handler:
                     // 调用错误处理函数
@@ -181,7 +181,7 @@ error_handler:
 process_string_match:
     array_pointer = stack_long2;
     temp_uint1 = 0;
-    temp_long2 = stack_long5 * 0x20 + *(longlong *)(offset_value + 0x28);
+    temp_long2 = stack_long5 * 0x20 + *(int64_t *)(offset_value + 0x28);
     temp_pointer1 = &DAT;
     if (_DAT != (void *)0x0) {
         temp_pointer1 = _DAT;
@@ -197,8 +197,8 @@ process_string_match:
         match_found = false;
     }
     else {
-        char_pointer = (char *)((longlong)(*(int *)(temp_long2 + 0x10) - (int)data_pointer) + *(longlong *)(temp_long2 + 8));
-        data_pointer = (longlong)temp_pointer1 - (longlong)char_pointer;
+        char_pointer = (char *)((int64_t)(*(int *)(temp_long2 + 0x10) - (int)data_pointer) + *(int64_t *)(temp_long2 + 8));
+        data_pointer = (int64_t)temp_pointer1 - (int64_t)char_pointer;
         do {
             current_char = *char_pointer;
             compare_char = char_pointer[data_pointer];
@@ -211,9 +211,9 @@ process_string_match:
     
     // 处理字符串匹配结果
     if (match_found) {
-        search_index = *(int *)(stack_long2 + 0x5c + *(longlong *)(offset_value + 8));
-        address_value = (ulonglong)search_index;
-        current_char = *(char *)(address_value + *(longlong *)(*_DAT + 0x8c8));
+        search_index = *(int *)(stack_long2 + 0x5c + *(int64_t *)(offset_value + 8));
+        address_value = (uint64_t)search_index;
+        current_char = *(char *)(address_value + *(int64_t *)(*_DAT + 0x8c8));
         if (current_char == '\0') {
             stack_pointer23 = &system_config_ptr;
             stack_pointer24 = stack_buffer5;
@@ -264,7 +264,7 @@ process_string_match:
             stack_pointer_array2[0] = &system_state_ptr;
             stack_uint1 = temp_uint1;
         }
-        temp_ulong2 = (ulonglong)temp_uint1;
+        temp_ulong2 = (uint64_t)temp_uint1;
         
         // 创建第二个字符串处理对象
         stack_pointer13 = &system_data_buffer_ptr;
@@ -274,8 +274,8 @@ process_string_match:
         
         // 检查索引范围
         if ((search_index < 0) ||
-           (offset_value = *(longlong *)(*_DAT + 0x888),
-           (ulonglong)(*(longlong *)(*_DAT + 0x890) - offset_value >> 5) <= address_value)) {
+           (offset_value = *(int64_t *)(*_DAT + 0x888),
+           (uint64_t)(*(int64_t *)(*_DAT + 0x890) - offset_value >> 5) <= address_value)) {
             offset_value = allocate_memory_block();
         }
         else {
@@ -298,7 +298,7 @@ process_string_match:
         }
         
         // 处理第二个字符串终止符
-        if (*(longlong *)(offset_value + 8) != 0) {
+        if (*(int64_t *)(offset_value + 8) != 0) {
             stack_uint3 = 0;
             if (stack_pointer5 != (int8_t *)0x0) {
                 *stack_pointer5 = 0;
@@ -311,7 +311,7 @@ process_string_match:
         if (*(void **)(temp_long2 + 8) != (void *)0x0) {
             stack_pointer1 = *(void **)(temp_long2 + 8);
         }
-        temp_pointer1 = *(void **)(stack_long2 + 0x28 + *(longlong *)(stack_long4 + 8));
+        temp_pointer1 = *(void **)(stack_long2 + 0x28 + *(int64_t *)(stack_long4 + 8));
         temp_pointer2 = &DAT;
         if (temp_pointer1 != (void *)0x0) {
             temp_pointer2 = temp_pointer1;
@@ -332,7 +332,7 @@ process_string_match:
             stack_ulong1 = 0;
             stack_long3 = 0;
             stack_uint2 = 0;
-            temp_pointer1 = *(void **)(stack_long2 + 0x28 + *(longlong *)(array_pointer + 8));
+            temp_pointer1 = *(void **)(stack_long2 + 0x28 + *(int64_t *)(array_pointer + 8));
             temp_pointer2 = &DAT;
             if (temp_pointer1 != (void *)0x0) {
                 temp_pointer2 = temp_pointer1;
@@ -357,7 +357,7 @@ process_string_match:
                     }
                     address_value = temp_int1 + search_index;
                     if (address_value < stack_uint2) {
-                        array_pointer = (longlong)(int)address_value;
+                        array_pointer = (int64_t)(int)address_value;
                         do {
                             *(int8_t *)((array_pointer - temp_int1) + stack_long3) = *(int8_t *)(array_pointer + stack_long3);
                             address_value = address_value + 1;
@@ -365,7 +365,7 @@ process_string_match:
                         } while (address_value < stack_uint2);
                     }
                     stack_uint2 = stack_uint2 - temp_int1;
-                    *(int8_t *)((ulonglong)stack_uint2 + stack_long3) = 0;
+                    *(int8_t *)((uint64_t)stack_uint2 + stack_long3) = 0;
                 }
                 stack_data9 = 0;
                 stack_ulong9 = stack_ulong9 & 0xffffffff00000000;
@@ -379,7 +379,7 @@ process_string_match:
             stack_ulong8 = 0;
             stack_pointer18 = (void *)0x0;
             stack_uint9 = 0;
-            search_result = *(int8_t *)(offset_value + 0x58 + *(longlong *)(stack_long4 + 8));
+            search_result = *(int8_t *)(offset_value + 0x58 + *(int64_t *)(stack_long4 + 8));
             stack_pointer22 = &stack_pointer16;
             stack_pointer16 = &system_data_buffer_ptr;
             stack_int8_t0 = 0;
@@ -441,7 +441,7 @@ process_string_match:
             }
             else {
                 *(int32_t *)(stack_long6 + 4) =
-                     *(int32_t *)(stack_long2 + 0x5c + *(longlong *)(array_pointer + 8));
+                     *(int32_t *)(stack_long2 + 0x5c + *(int64_t *)(array_pointer + 8));
                 update_string_data(array_pointer,stack_long6);
                 process_string_operations(array_pointer + 0x48,stack_buffer4,offset_value + 0x58);
             }
@@ -494,15 +494,15 @@ process_string_match:
         offset_value = stack_long4;
     }
     else {
-        search_index = *(int *)(stack_long2 + 0x5c + *(longlong *)(offset_value + 8));
+        search_index = *(int *)(stack_long2 + 0x5c + *(int64_t *)(offset_value + 8));
         if ((search_index < 0) ||
-           (data_pointer = *(longlong *)(*_DAT + 0x888),
-           (ulonglong)(*(longlong *)(*_DAT + 0x890) - data_pointer >> 5) <=
-           (ulonglong)(longlong)search_index)) {
+           (data_pointer = *(int64_t *)(*_DAT + 0x888),
+           (uint64_t)(*(int64_t *)(*_DAT + 0x890) - data_pointer >> 5) <=
+           (uint64_t)(int64_t)search_index)) {
             data_pointer = allocate_memory_block();
         }
         else {
-            data_pointer = (longlong)search_index * 0x20 + data_pointer;
+            data_pointer = (int64_t)search_index * 0x20 + data_pointer;
         }
         
         // 创建字符串缓冲区
@@ -515,13 +515,13 @@ process_string_match:
             if (search_index < 0x10) {
                 search_index = 0x10;
             }
-            stack_pointer9 = (int8_t *)allocate_buffer(_DAT,(longlong)search_index,0x13);
+            stack_pointer9 = (int8_t *)allocate_buffer(_DAT,(int64_t)search_index,0x13);
             *stack_pointer9 = 0;
-            address_value = (ulonglong)stack_pointer9 & 0xffffffffffc00000;
+            address_value = (uint64_t)stack_pointer9 & 0xffffffffffc00000;
             if (address_value != 0) {
-                temp_long1 = ((longlong)stack_pointer9 - address_value >> 0x10) * 0x50 + 0x80 + address_value;
-                uint_pointer = (uint *)(temp_long1 - (ulonglong)*(uint *)(temp_long1 + 4));
-                if ((*(byte *)((longlong)uint_pointer + 0xe) & 2) == 0) {
+                temp_long1 = ((int64_t)stack_pointer9 - address_value >> 0x10) * 0x50 + 0x80 + address_value;
+                uint_pointer = (uint *)(temp_long1 - (uint64_t)*(uint *)(temp_long1 + 4));
+                if ((*(byte *)((int64_t)uint_pointer + 0xe) & 2) == 0) {
                     temp_uint1 = uint_pointer[7];
                     if (0x3ffffff < temp_uint1) {
                         temp_uint1 = *uint_pointer << 0x10;
@@ -530,16 +530,16 @@ process_string_match:
                 else {
                     temp_uint1 = uint_pointer[7];
                     if (temp_uint1 < 0x4000000) {
-                        temp_ulong1 = (ulonglong)temp_uint1;
+                        temp_ulong1 = (uint64_t)temp_uint1;
                     }
                     else {
-                        temp_ulong1 = (ulonglong)*uint_pointer << 0x10;
+                        temp_ulong1 = (uint64_t)*uint_pointer << 0x10;
                     }
                     if (0x3ffffff < temp_uint1) {
                         temp_uint1 = *uint_pointer << 0x10;
                     }
-                    temp_uint1 = temp_uint1 - (int)(((longlong)stack_pointer9 -
-                                                    (((longlong)((longlong)uint_pointer + (-0x80 - address_value)) / 0x50) *
+                    temp_uint1 = temp_uint1 - (int)(((int64_t)stack_pointer9 -
+                                                    (((int64_t)((int64_t)uint_pointer + (-0x80 - address_value)) / 0x50) *
                                                      0x10000 + address_value)) % temp_ulong1);
                 }
             }
@@ -552,7 +552,7 @@ process_string_match:
         string_buffer = stack_pointer9;
         
         // 处理字符串终止符
-        if (*(longlong *)(data_pointer + 8) != 0) {
+        if (*(int64_t *)(data_pointer + 8) != 0) {
             stack_uint6 = 0;
             if (stack_pointer9 != (int8_t *)0x0) {
                 *stack_pointer9 = 0;
@@ -569,7 +569,7 @@ process_string_match:
         if (*(void **)(temp_long2 + 8) != (void *)0x0) {
             stack_pointer1 = *(void **)(temp_long2 + 8);
         }
-        temp_pointer1 = *(void **)(array_pointer + 0x28 + *(longlong *)(offset_value + 8));
+        temp_pointer1 = *(void **)(array_pointer + 0x28 + *(int64_t *)(offset_value + 8));
         temp_pointer2 = &DAT;
         if (temp_pointer1 != (void *)0x0) {
             temp_pointer2 = temp_pointer1;
@@ -599,8 +599,8 @@ process_string_match:
             code_pointer6 = (code *)0x0;
             code_pointer1 = _guard_check_icall;
             stack_int8_t0 = 0;
-            stack_uint11 = *(int32_t *)(*(longlong *)(offset_value + 8) + 0x5c + array_pointer);
-            stack_byte1 = *(int8_t *)(*(longlong *)(offset_value + 8) + 0x58 + array_pointer);
+            stack_uint11 = *(int32_t *)(*(int64_t *)(offset_value + 8) + 0x5c + array_pointer);
+            stack_byte1 = *(int8_t *)(*(int64_t *)(offset_value + 8) + 0x58 + array_pointer);
             execute_string_processing_function(&stack_pointer20);
             
             // 处理字符串处理结果
@@ -614,7 +614,7 @@ process_string_match:
                     if (*(int *)(data_pointer + 0x30) == 0) goto string_comparison_success;
                     if (*(int *)(temp_long2 + 0x30) == 0) goto string_comparison_failed;
                     byte_pointer = *(byte **)(data_pointer + 0x28);
-                    offset_value = *(longlong *)(temp_long2 + 0x28) - (longlong)byte_pointer;
+                    offset_value = *(int64_t *)(temp_long2 + 0x28) - (int64_t)byte_pointer;
                     goto compare_string_bytes;
                 }
                 cleanup_string_processing(xmm0_out,temp_long2);
@@ -662,7 +662,7 @@ process_string_match:
     if (stack_long7 <= stack_long5) {
 cleanup_handler:
                     // 调用清理函数
-        execute_cleanup_function(stack_ulong10 ^ (ulonglong)stack_buffer1);
+        execute_cleanup_function(stack_ulong10 ^ (uint64_t)stack_buffer1);
     }
     goto process_string_match;
     
@@ -692,11 +692,11 @@ string_comparison_failed:
  * 原始实现：FUN_18008a480
  * 简化实现：字符串搜索和结果验证
  */
-void process_string_search_and_validation(uint64_t search_param1, longlong search_param2, 
+void process_string_search_and_validation(uint64_t search_param1, int64_t search_param2, 
                                         uint64_t search_param3, uint64_t search_param4)
 {
-    longlong data_pointer1;
-    longlong data_pointer2;
+    int64_t data_pointer1;
+    int64_t data_pointer2;
     void *string_pointer;
     void *stack_pointer1;
     int8_t *stack_pointer2;
@@ -727,7 +727,7 @@ void process_string_search_and_validation(uint64_t search_param1, longlong searc
         }
         
         // 处理字符串终止符
-        if ((*(longlong *)(search_param2 + 8) != 0) && (stack_uint1 = 0, stack_pointer2 != (int8_t *)0x0)) {
+        if ((*(int64_t *)(search_param2 + 8) != 0) && (stack_uint1 = 0, stack_pointer2 != (int8_t *)0x0)) {
             *stack_pointer2 = 0;
         }
         
@@ -747,23 +747,23 @@ void process_string_search_and_validation(uint64_t search_param1, longlong searc
 
 // 辅助函数声明
 void handle_error_message(uint64_t error_system, uint64_t message_pointer);
-longlong allocate_memory_block(void);
+int64_t allocate_memory_block(void);
 void create_string_processor(void *processor_object, ...);
-void copy_string_content(int8_t *dest, void *src, longlong length);
+void copy_string_content(int8_t *dest, void *src, int64_t length);
 void compare_strings(void *result, void *pattern, void *str1, void *str2);
 char validate_string_comparison(void *comparison_result);
 void setup_string_comparison(void *processor, void *pattern, void *str1, void *str2);
 char *find_substring(char *haystack, char *needle);
 void execute_string_operation(void *result, void *source);
-void update_string_data(longlong pointer, void *data);
-void process_string_operations(longlong pointer, void *buffer, longlong offset);
+void update_string_data(int64_t pointer, void *data);
+void process_string_operations(int64_t pointer, void *buffer, int64_t offset);
 void free_memory(void *pointer);
 void log_debug_message(void *message, void *param1, void *param2);
-longlong search_string_pattern(void *source, void *pattern, void *param1, void *param2, uint64_t flags);
+int64_t search_string_pattern(void *source, void *pattern, void *param1, void *param2, uint64_t flags);
 void log_status_message(void *message);
 void setup_string_processor(void *processor, void *source);
-longlong execute_string_operations(longlong pointer, void *buffer, void *source);
-void cleanup_string_processing(int32_t xmm0_out, longlong pointer);
-void process_string_result(longlong pointer, void *result);
+int64_t execute_string_operations(int64_t pointer, void *buffer, void *source);
+void cleanup_string_processing(int32_t xmm0_out, int64_t pointer);
+void process_string_result(int64_t pointer, void *result);
 void execute_string_processing_function(void **function_pointer);
-void process_string_comparison_result(longlong param1, longlong param2, longlong param3, uint64_t result);
+void process_string_comparison_result(int64_t param1, int64_t param2, int64_t param3, uint64_t result);

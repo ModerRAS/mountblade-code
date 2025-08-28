@@ -10,11 +10,11 @@
  * @param callback_param1 回调参数1
  * @param callback_param2 回调参数2
  */
-void process_engine_state_update(uint64_t *engine_context, longlong state_offset, uint64_t callback_param1, uint64_t callback_param_2)
+void process_engine_state_update(uint64_t *engine_context, int64_t state_offset, uint64_t callback_param1, uint64_t callback_param_2)
 
 {
-  longlong *callback_ptr;
-  longlong callback_params[3];
+  int64_t *callback_ptr;
+  int64_t callback_params[3];
   uint64_t cleanup_param1;
   uint64_t cleanup_param2;
   code *cleanup_func1;
@@ -23,13 +23,13 @@ void process_engine_state_update(uint64_t *engine_context, longlong state_offset
   // 检查状态是否允许更新
   if (*(int *)(state_offset + 0x380) != 2) {
     *(int *)*engine_context = *(int *)*engine_context + 1;
-    callback_ptr = (longlong *)engine_context[1];
+    callback_ptr = (int64_t *)engine_context[1];
     
     // 执行主回调函数
     if (*callback_ptr != 0) {
       callback_params[0] = state_offset;
       execute_callback_chain(*callback_ptr, callback_params, callback_param1, callback_param2, 0xfffffffffffffffe);
-      callback_ptr = (longlong *)engine_context[1];
+      callback_ptr = (int64_t *)engine_context[1];
     }
     
     // 执行清理回调
@@ -55,7 +55,7 @@ void process_engine_state_update(uint64_t *engine_context, longlong state_offset
  * @param flags 释放标志位
  * @return 返回资源指针
  */
-uint64_t * release_engine_resources(uint64_t *resource_ptr, ulonglong flags)
+uint64_t * release_engine_resources(uint64_t *resource_ptr, uint64_t flags)
 {
   // 设置资源指针指向全局资源管理器
   *resource_ptr = &global_resource_manager;
@@ -78,7 +78,7 @@ uint64_t * release_engine_resources(uint64_t *resource_ptr, ulonglong flags)
  * 处理引擎数据统计和计算
  * @param context_ptr 引擎上下文指针
  */
-void process_engine_data_statistics(longlong context_ptr)
+void process_engine_data_statistics(int64_t context_ptr)
 {
   int *counter_ptr;
   ushort width;
@@ -86,16 +86,16 @@ void process_engine_data_statistics(longlong context_ptr)
   int data_value;
   uint *result_ptr;
   uint valid_count;
-  ulonglong sum;
+  uint64_t sum;
   uint total_count;
-  ulonglong index;
-  ulonglong max_items;
-  ulonglong temp_sum;
-  longlong data_buffer;
+  uint64_t index;
+  uint64_t max_items;
+  uint64_t temp_sum;
+  int64_t data_buffer;
   uint64_t *temp_array;
   
   // 获取数据缓冲区和结果指针
-  data_buffer = *(longlong *)(context_ptr + 0x98d8);
+  data_buffer = *(int64_t *)(context_ptr + 0x98d8);
   result_ptr = *(uint **)(context_ptr + 0x9650);
   
   if (data_buffer != 0) {
@@ -109,7 +109,7 @@ void process_engine_data_statistics(longlong context_ptr)
     get_data_array(*(uint64_t *)(global_data_table + 0x1cd8), data_buffer, 0, 0, &temp_array, 0);
     
     total_count = 0;
-    max_items = (longlong)(int)((uint)height * (uint)width);
+    max_items = (int64_t)(int)((uint)height * (uint)width);
     index = temp_sum;
     temp_sum = temp_sum;
     valid_count = total_count;
@@ -117,8 +117,8 @@ void process_engine_data_statistics(longlong context_ptr)
     // 遍历数据数组进行统计
     if (0 < max_items) {
       do {
-        data_value = *(int *)((longlong)temp_array + index * 4);
-        sum = (ulonglong)(uint)((int)temp_sum + data_value);
+        data_value = *(int *)((int64_t)temp_array + index * 4);
+        sum = (uint64_t)(uint)((int)temp_sum + data_value);
         if (data_value == 0) {
           sum = temp_sum;
         }
@@ -129,8 +129,8 @@ void process_engine_data_statistics(longlong context_ptr)
         }
         index = index + 1;
         temp_sum = sum;
-        temp_sum = (ulonglong)valid_count;
-      } while ((longlong)index < max_items);
+        temp_sum = (uint64_t)valid_count;
+      } while ((int64_t)index < max_items);
     }
     
     // 保存统计结果
@@ -139,10 +139,10 @@ void process_engine_data_statistics(longlong context_ptr)
     
     // 清理临时数组
     if (temp_array != (uint64_t *)0x0) {
-      temp_sum = (ulonglong)temp_array & 0xffffffffffc00000;
+      temp_sum = (uint64_t)temp_array & 0xffffffffffc00000;
       if (temp_sum != 0) {
-        data_buffer = temp_sum + 0x80 + ((longlong)temp_array - temp_sum >> 0x10) * 0x50;
-        data_buffer = data_buffer - (ulonglong)*(uint *)(data_buffer + 4);
+        data_buffer = temp_sum + 0x80 + ((int64_t)temp_array - temp_sum >> 0x10) * 0x50;
+        data_buffer = data_buffer - (uint64_t)*(uint *)(data_buffer + 4);
         if ((*(void ***)(temp_sum + 0x70) == &ExceptionList) && (*(char *)(data_buffer + 0xe) == '\0')) {
           // 标准清理流程
           *temp_array = *(uint64_t *)(data_buffer + 0x20);
@@ -176,19 +176,19 @@ void process_engine_data_statistics(longlong context_ptr)
  * @param context_ptr 引擎上下文指针
  * @param data_ptr 数据指针
  */
-void process_engine_data_statistics_variant(longlong context_ptr, longlong data_ptr)
+void process_engine_data_statistics_variant(int64_t context_ptr, int64_t data_ptr)
 {
   int *counter_ptr;
   ushort height;
   int data_value;
   int width;
   uint sum_result;
-  ulonglong temp_sum;
+  uint64_t temp_sum;
   uint *result_ptr;
   uint valid_count;
-  ulonglong index;
-  ulonglong max_items;
-  longlong total_items;
+  uint64_t index;
+  uint64_t max_items;
+  int64_t total_items;
   uint64_t temp_param;
   uint64_t *data_array;
   
@@ -200,7 +200,7 @@ void process_engine_data_statistics_variant(longlong context_ptr, longlong data_
   get_data_array(*(uint64_t *)(context_ptr + 0x1cd8));
   
   valid_count = 0;
-  total_items = (longlong)(int)((uint)height * width);
+  total_items = (int64_t)(int)((uint)height * width);
   index = temp_sum;
   temp_sum = temp_sum;
   sum_result = valid_count;
@@ -208,8 +208,8 @@ void process_engine_data_statistics_variant(longlong context_ptr, longlong data_
   // 遍历数据数组进行统计
   if (0 < total_items) {
     do {
-      data_value = *(int *)((longlong)data_array + index * 4);
-      temp_sum = (ulonglong)(uint)((int)temp_sum + data_value);
+      data_value = *(int *)((int64_t)data_array + index * 4);
+      temp_sum = (uint64_t)(uint)((int)temp_sum + data_value);
       if (data_value == 0) {
         temp_sum = temp_sum;
       }
@@ -220,8 +220,8 @@ void process_engine_data_statistics_variant(longlong context_ptr, longlong data_
       }
       index = index + 1;
       temp_sum = temp_sum;
-      temp_sum = (ulonglong)valid_count;
-    } while ((longlong)index < total_items);
+      temp_sum = (uint64_t)valid_count;
+    } while ((int64_t)index < total_items);
   }
   
   // 保存统计结果
@@ -233,10 +233,10 @@ void process_engine_data_statistics_variant(longlong context_ptr, longlong data_
     return;
   }
   
-  temp_sum = (ulonglong)data_array & 0xffffffffffc00000;
+  temp_sum = (uint64_t)data_array & 0xffffffffffc00000;
   if (temp_sum != 0) {
-    total_items = temp_sum + 0x80 + ((longlong)data_array - temp_sum >> 0x10) * 0x50;
-    total_items = total_items - (ulonglong)*(uint *)(total_items + 4);
+    total_items = temp_sum + 0x80 + ((int64_t)data_array - temp_sum >> 0x10) * 0x50;
+    total_items = total_items - (uint64_t)*(uint *)(total_items + 4);
     if ((*(void ***)(temp_sum + 0x70) == &ExceptionList) && (*(char *)(total_items + 0xe) == '\0')) {
       // 标准清理流程
       *data_array = *(uint64_t *)(total_items + 0x20);
@@ -273,17 +273,17 @@ void process_data_accumulation(uint64_t param1, uint initial_value, uint64_t par
   int *counter_ptr;
   int data_value;
   uint accumulated_value;
-  longlong memory_block;
+  int64_t memory_block;
   uint *result_ptr;
   uint item_count;
-  ulonglong index;
-  longlong max_items;
+  uint64_t index;
+  int64_t max_items;
   
-  index = (ulonglong)item_count;
+  index = (uint64_t)item_count;
   
   // 遍历数据数组进行累加计算
   do {
-    data_value = *(int *)((longlong)data_array + index * 4);
+    data_value = *(int *)((int64_t)data_array + index * 4);
     accumulated_value = initial_value + data_value;
     if (data_value == 0) {
       accumulated_value = initial_value;
@@ -295,7 +295,7 @@ void process_data_accumulation(uint64_t param1, uint initial_value, uint64_t par
     }
     item_count = accumulated_value;
     index = index + 1;
-  } while ((longlong)index < max_items);
+  } while ((int64_t)index < max_items);
   
   // 保存计算结果
   *result_ptr = item_count;
@@ -303,10 +303,10 @@ void process_data_accumulation(uint64_t param1, uint initial_value, uint64_t par
   
   // 清理数据数组
   if (data_array != (uint64_t *)0x0) {
-    index = (ulonglong)data_array & 0xffffffffffc00000;
+    index = (uint64_t)data_array & 0xffffffffffc00000;
     if (index != 0) {
-      memory_block = index + 0x80 + ((longlong)data_array - index >> 0x10) * 0x50;
-      memory_block = memory_block - (ulonglong)*(uint *)(memory_block + 4);
+      memory_block = index + 0x80 + ((int64_t)data_array - index >> 0x10) * 0x50;
+      memory_block = memory_block - (uint64_t)*(uint *)(memory_block + 4);
       if ((*(void ***)(index + 0x70) == &ExceptionList) && (*(char *)(memory_block + 0xe) == '\0')) {
         // 标准清理流程
         *data_array = *(uint64_t *)(memory_block + 0x20);
@@ -339,16 +339,16 @@ void process_data_accumulation(uint64_t param1, uint initial_value, uint64_t par
 void cleanup_memory_resources(void)
 {
   int *counter_ptr;
-  longlong memory_block;
+  int64_t memory_block;
   uint64_t *resource_ptr;
-  ulonglong base_address;
+  uint64_t base_address;
   
   // 获取资源的基础地址
-  base_address = (ulonglong)resource_ptr & 0xffffffffffc00000;
+  base_address = (uint64_t)resource_ptr & 0xffffffffffc00000;
   if (base_address != 0) {
     // 计算内存块位置
-    memory_block = base_address + 0x80 + ((longlong)resource_ptr - base_address >> 0x10) * 0x50;
-    memory_block = memory_block - (ulonglong)*(uint *)(memory_block + 4);
+    memory_block = base_address + 0x80 + ((int64_t)resource_ptr - base_address >> 0x10) * 0x50;
+    memory_block = memory_block - (uint64_t)*(uint *)(memory_block + 4);
     
     if ((*(void ***)(base_address + 0x70) == &ExceptionList) && (*(char *)(memory_block + 0xe) == '\0')) {
       // 标准清理流程
@@ -381,20 +381,20 @@ void cleanup_memory_resources(void)
  * @param context_ptr 引擎上下文指针
  * @param callback_data 回调数据指针
  */
-void initialize_engine_context(longlong context_ptr, int8_t *callback_data)
+void initialize_engine_context(int64_t context_ptr, int8_t *callback_data)
 {
-  longlong *callback_chain;
+  int64_t *callback_chain;
   code *callback_func;
   uint64_t *context_data;
   code *resource_callback;
   int8_t cleanup_buffer1 [16];
   code *cleanup_func1;
   code *cleanup_func2;
-  longlong context_param;
+  int64_t context_param;
   int8_t cleanup_buffer2 [16];
   code *resource_cleanup1;
   code *resource_cleanup2;
-  longlong context_handle;
+  int64_t context_handle;
   int8_t *resource_data [2];
   code *resource_handler1;
   code *resource_handler2;
@@ -407,7 +407,7 @@ void initialize_engine_context(longlong context_ptr, int8_t *callback_data)
   cleanup_flags = 0xfffffffffffffffe;
   
   // 检查是否已经初始化
-  if (*(longlong *)(context_ptr + 0xc0) == 0) {
+  if (*(int64_t *)(context_ptr + 0xc0) == 0) {
     // 分配上下文数据
     context_data = (uint64_t *)allocate_memory_block(global_memory_pool, 0x60, 8, 3);
     
@@ -422,7 +422,7 @@ void initialize_engine_context(longlong context_ptr, int8_t *callback_data)
     final_cleanup2 = _guard_check_icall;
     
     // 获取回调链
-    callback_chain = *(longlong **)(*(longlong *)(context_ptr + 0xa8) + 0x88);
+    callback_chain = *(int64_t **)(*(int64_t *)(context_ptr + 0xa8) + 0x88);
     callback_func = *(code **)(*callback_chain + 0x70);
     
     // 初始化清理函数指针
@@ -464,7 +464,7 @@ void initialize_engine_context(longlong context_ptr, int8_t *callback_data)
     }
     
     // 设置上下文句柄
-    *(longlong *)(resource_data[0] + 0x20) = context_handle;
+    *(int64_t *)(resource_data[0] + 0x20) = context_handle;
     
     // 执行资源清理
     if (resource_cleanup1 != (code *)0x0) {
@@ -475,7 +475,7 @@ void initialize_engine_context(longlong context_ptr, int8_t *callback_data)
     }
     
     // 执行主回调函数
-    (*callback_func)(callback_chain, &engine_callback_target, *(longlong *)(context_ptr + 0xa8) + 0xc, 0, resource_data, cleanup_buffer3);
+    (*callback_func)(callback_chain, &engine_callback_target, *(int64_t *)(context_ptr + 0xa8) + 0xc, 0, resource_data, cleanup_buffer3);
     
     // 清理资源
     if (resource_handler1 != (code *)0x0) {
@@ -508,13 +508,13 @@ void initialize_engine_context(longlong context_ptr, int8_t *callback_data)
  * 清理回调链表
  * @param chain_ptr 回调链表指针
  */
-void cleanup_callback_chain(longlong *chain_ptr)
+void cleanup_callback_chain(int64_t *chain_ptr)
 {
-  longlong *chain_end;
-  longlong *current_node;
+  int64_t *chain_end;
+  int64_t *current_node;
   
-  chain_end = (longlong *)chain_ptr[1];
-  current_node = (longlong *)*chain_ptr;
+  chain_end = (int64_t *)chain_ptr[1];
+  current_node = (int64_t *)*chain_ptr;
   
   while (true) {
     // 检查是否到达链表末尾
@@ -556,14 +556,14 @@ void cleanup_callback_chain(longlong *chain_ptr)
  * @param callback_data 回调数据
  * @param float_data 浮点数据数组
  */
-void process_float_data_and_initialize_context(longlong context_ptr, int8_t *callback_data, float *float_data)
+void process_float_data_and_initialize_context(int64_t context_ptr, int8_t *callback_data, float *float_data)
 {
   int *counter_ptr;
-  longlong *callback_chain;
+  int64_t *callback_chain;
   code *callback_func;
   int dimension_flags;
   uint64_t *context_data;
-  longlong render_data;
+  int64_t render_data;
   uint64_t render_param;
   code *render_callback;
   int axis_flags;
@@ -572,7 +572,7 @@ void process_float_data_and_initialize_context(longlong context_ptr, int8_t *cal
   code *cleanup_func1;
   code *cleanup_func2;
   uint dimension_count;
-  longlong context_handle;
+  int64_t context_handle;
   float *float_ptr;
   uint64_t render_params [2];
   code *render_handler1;
@@ -582,7 +582,7 @@ void process_float_data_and_initialize_context(longlong context_ptr, int8_t *cal
   code *context_handler2;
   uint64_t cleanup_flags;
   int8_t render_buffer [72];
-  ulonglong dimension_index;
+  uint64_t dimension_index;
   
   cleanup_flags = 0xfffffffffffffffe;
   
@@ -599,10 +599,10 @@ void process_float_data_and_initialize_context(longlong context_ptr, int8_t *cal
   
   // 计算总维度数
   total_dimensions = axis_flags + dimension_flags + (uint)(0.0 < float_data[2] || float_data[2] == 0.0);
-  dimension_index = (ulonglong)total_dimensions;
+  dimension_index = (uint64_t)total_dimensions;
   
   // 检查是否已经初始化
-  if (*(longlong *)(context_ptr + 200 + dimension_index * 8) == 0) {
+  if (*(int64_t *)(context_ptr + 200 + dimension_index * 8) == 0) {
     // 分配上下文数据
     context_data = (uint64_t *)allocate_memory_block(global_memory_pool, 0x60, 8, 3);
     
@@ -617,7 +617,7 @@ void process_float_data_and_initialize_context(longlong context_ptr, int8_t *cal
     context_handler2 = _guard_check_icall;
     
     // 获取回调链
-    callback_chain = *(longlong **)(*(longlong *)(context_ptr + 0xa8) + 0x88);
+    callback_chain = *(int64_t **)(*(int64_t *)(context_ptr + 0xa8) + 0x88);
     callback_func = *(code **)(*callback_chain + 0x70);
     
     // 初始化清理函数
@@ -663,7 +663,7 @@ void process_float_data_and_initialize_context(longlong context_ptr, int8_t *cal
     }
     
     // 执行主回调函数
-    (*callback_func)(callback_chain, &render_callback_target, *(longlong *)(context_ptr + 0xa8) + 0xc, 0, render_params, cleanup_buffer2);
+    (*callback_func)(callback_chain, &render_callback_target, *(int64_t *)(context_ptr + 0xa8) + 0xc, 0, render_params, cleanup_buffer2);
     
     // 清理渲染参数
     if (render_handler1 != (code *)0x0) {
@@ -710,14 +710,14 @@ uint64_t * initialize_engine_resource_manager(uint64_t *resource_ptr)
   resource_ptr[3] = resource_ptr + 5;
   *(int32_t *)(resource_ptr + 4) = 0;
   *(int8_t *)(resource_ptr + 5) = 0;
-  *(int8_t *)((longlong)resource_ptr + 0xb2) = 0;
+  *(int8_t *)((int64_t)resource_ptr + 0xb2) = 0;
   *(int32_t *)(resource_ptr + 1) = 0;
   *(int16_t *)(resource_ptr + 0x16) = 0;
   resource_ptr[0x15] = 0;
   *resource_ptr = &global_resource_manager;
   resource_ptr[0x15] = 0;
   resource_ptr[0x17] = 0;
-  *(int8_t *)((longlong)resource_ptr + 300) = 0;
+  *(int8_t *)((int64_t)resource_ptr + 300) = 0;
   resource_ptr[0x18] = 0;
   resource_ptr[0x19] = 0;
   resource_ptr[0x1a] = 0;
@@ -746,7 +746,7 @@ uint64_t *
  * @param param4 参数4
  * @return 返回资源指针
  */
-uint64_t * cleanup_engine_resource_manager(uint64_t *resource_ptr, ulonglong flags, uint64_t param3, uint64_t param4)
+uint64_t * cleanup_engine_resource_manager(uint64_t *resource_ptr, uint64_t flags, uint64_t param3, uint64_t param4)
 {
   uint64_t cleanup_flags;
   
@@ -785,16 +785,16 @@ uint64_t * cleanup_engine_resource_manager(uint64_t *resource_ptr, ulonglong fla
  * @param state_flag 状态标志
  * @param callback_data 回调数据指针
  */
-void process_engine_state_callback(longlong context_ptr, char state_flag, int8_t *callback_data)
+void process_engine_state_callback(int64_t context_ptr, char state_flag, int8_t *callback_data)
 {
-  longlong *callback_chain;
+  int64_t *callback_chain;
   char callback_result;
   uint64_t cleanup_result;
-  longlong context_handle;
-  longlong state_data;
+  int64_t context_handle;
+  int64_t state_data;
   code *callback_func;
   uint64_t *context_data;
-  longlong render_data;
+  int64_t render_data;
   uint64_t render_param;
   code *render_callback;
   int8_t cleanup_buffer1 [16];
@@ -803,7 +803,7 @@ void process_engine_state_callback(longlong context_ptr, char state_flag, int8_t
   uint64_t render_params [2];
   code *render_handler1;
   void *render_target;
-  longlong cleanup_data;
+  int64_t cleanup_data;
   int8_t cleanup_buffer2 [16];
   code *final_cleanup1;
   code *final_cleanup2;
@@ -815,9 +815,9 @@ void process_engine_state_callback(longlong context_ptr, char state_flag, int8_t
   cleanup_result = 0xfffffffffffffffe;
   
   // 检查是否已经初始化
-  if (*(longlong *)(context_ptr + 0xb8) == 0) {
+  if (*(int64_t *)(context_ptr + 0xb8) == 0) {
     // 检查上下文是否需要初始化
-    if (*(longlong *)(context_ptr + 0xa8) == 0) {
+    if (*(int64_t *)(context_ptr + 0xa8) == 0) {
       cleanup_result = allocate_memory_block(global_memory_pool, 0x130, 8, 6);
       memset(cleanup_result, 0, 0x130);
     }
@@ -857,7 +857,7 @@ void process_engine_state_callback(longlong context_ptr, char state_flag, int8_t
     // 根据状态标志选择不同的处理路径
     if (state_flag == '\0') {
       // 获取回调链
-      callback_chain = *(longlong **)(*(longlong *)(context_ptr + 0xa8) + 0x88);
+      callback_chain = *(int64_t **)(*(int64_t *)(context_ptr + 0xa8) + 0x88);
       callback_func = *(code **)(*callback_chain + 0x70);
       
       // 初始化渲染数据
@@ -886,7 +886,7 @@ void process_engine_state_callback(longlong context_ptr, char state_flag, int8_t
       initialize_render_system(cleanup_buffer2, cleanup_data);
       
       // 执行主回调函数
-      (*callback_func)(callback_chain, &engine_callback_target, *(longlong *)(context_ptr + 0xa8) + 0xc, 0, cleanup_buffer2, render_params);
+      (*callback_func)(callback_chain, &engine_callback_target, *(int64_t *)(context_ptr + 0xa8) + 0xc, 0, cleanup_buffer2, render_params);
       
       // 清理资源
       if (render_handler1 != (code *)0x0) {
@@ -898,7 +898,7 @@ void process_engine_state_callback(longlong context_ptr, char state_flag, int8_t
     }
     else {
       // 获取备用回调链
-      callback_chain = *(longlong **)(*(longlong *)(context_ptr + 0xa8) + 0x88);
+      callback_chain = *(int64_t **)(*(int64_t *)(context_ptr + 0xa8) + 0x88);
       callback_func = *(code **)(*callback_chain + 0x60);
       
       // 初始化渲染数据
@@ -906,7 +906,7 @@ void process_engine_state_callback(longlong context_ptr, char state_flag, int8_t
       initialize_render_system(render_params, cleanup_data);
       
       // 执行回调函数
-      callback_result = (*callback_func)(callback_chain, &engine_callback_target, *(longlong *)(context_ptr + 0xa8) + 0xc, 0, render_params);
+      callback_result = (*callback_func)(callback_chain, &engine_callback_target, *(int64_t *)(context_ptr + 0xa8) + 0xc, 0, render_params);
       
       // 清理渲染参数
       if (render_handler1 != (code *)0x0) {
@@ -1068,10 +1068,10 @@ uint64_t * copy_engine_context_data(uint64_t *dest_ptr, uint64_t *src_ptr, uint6
  * 清理引擎回调链表
  * @param chain_ptr 链表指针
  */
-void cleanup_engine_callback_chain(longlong *chain_ptr)
+void cleanup_engine_callback_chain(int64_t *chain_ptr)
 {
-  longlong chain_end;
-  longlong current_item;
+  int64_t chain_end;
+  int64_t current_item;
   
   chain_end = chain_ptr[1];
   
@@ -1097,10 +1097,10 @@ void cleanup_engine_callback_chain(longlong *chain_ptr)
  * 清理引擎资源池
  * @param pool_ptr 资源池指针
  */
-void cleanup_engine_resource_pool(longlong *pool_ptr)
+void cleanup_engine_resource_pool(int64_t *pool_ptr)
 {
-  longlong pool_end;
-  longlong current_item;
+  int64_t pool_end;
+  int64_t current_item;
   
   pool_end = pool_ptr[1];
   
@@ -1126,10 +1126,10 @@ void cleanup_engine_resource_pool(longlong *pool_ptr)
  * 清理引擎数据结构
  * @param data_ptr 数据指针
  */
-void cleanup_engine_data_structure(longlong *data_ptr)
+void cleanup_engine_data_structure(int64_t *data_ptr)
 {
-  longlong data_end;
-  longlong current_item;
+  int64_t data_end;
+  int64_t current_item;
   
   data_end = data_ptr[1];
   
@@ -1139,7 +1139,7 @@ void cleanup_engine_data_structure(longlong *data_ptr)
     *(uint64_t *)(current_item + 0x28) = &engine_cleanup_target;
     
     // 检查资源状态
-    if (*(longlong *)(current_item + 0x30) != 0) {
+    if (*(int64_t *)(current_item + 0x30) != 0) {
       // 触发错误处理
       trigger_resource_error();
     }
@@ -1166,10 +1166,10 @@ void cleanup_engine_data_structure(longlong *data_ptr)
  * 清理引擎内存块
  * @param memory_ptr 内存指针
  */
-void cleanup_engine_memory_blocks(longlong *memory_ptr)
+void cleanup_engine_memory_blocks(int64_t *memory_ptr)
 {
-  longlong memory_end;
-  longlong current_block;
+  int64_t memory_end;
+  int64_t current_block;
   
   memory_end = memory_ptr[1];
   
@@ -1179,7 +1179,7 @@ void cleanup_engine_memory_blocks(longlong *memory_ptr)
     *(uint64_t *)(current_block + 0x18) = &engine_cleanup_target;
     
     // 检查内存状态
-    if (*(longlong *)(current_block + 0x20) != 0) {
+    if (*(int64_t *)(current_block + 0x20) != 0) {
       // 触发错误处理
       trigger_resource_error();
     }
@@ -1211,11 +1211,11 @@ void cleanup_engine_memory_blocks(longlong *memory_ptr)
  */
 void process_engine_resources_and_callback(uint64_t *resource_ptr, uint64_t callback_param)
 {
-  longlong resource_table;
+  int64_t resource_table;
   int resource_index;
-  longlong resource_data;
+  int64_t resource_data;
   void *cleanup_target;
-  longlong cleanup_handle;
+  int64_t cleanup_handle;
   int32_t cleanup_flags;
   uint64_t resource_param1;
   uint64_t resource_param2;
@@ -1238,13 +1238,13 @@ void process_engine_resources_and_callback(uint64_t *resource_ptr, uint64_t call
   resource_data = 0;
   
   // 检查资源状态
-  if (*(int *)(*(longlong *)(*(longlong *)*resource_ptr + 0x20) + 0x20) != 0) {
+  if (*(int *)(*(int64_t *)(*(int64_t *)*resource_ptr + 0x20) + 0x20) != 0) {
     // 获取资源索引
-    resource_index = find_resource_index(global_resource_table, *(longlong *)(*(longlong *)*resource_ptr + 0x20) + 0x10);
+    resource_index = find_resource_index(global_resource_table, *(int64_t *)(*(int64_t *)*resource_ptr + 0x20) + 0x10);
     resource_data = 0;
     if (resource_index != -1) {
       // 计算资源数据位置
-      resource_data = (longlong)resource_index * 0x68 + *(longlong *)(resource_table + 0x38);
+      resource_data = (int64_t)resource_index * 0x68 + *(int64_t *)(resource_table + 0x38);
     }
   }
   
@@ -1296,11 +1296,11 @@ void process_engine_resources_and_callback(uint64_t *resource_ptr, uint64_t call
  * @param dest_ptr 目标上下文指针
  * @return 返回目标上下文指针
  */
-longlong * clone_engine_context(longlong source_ptr, longlong *dest_ptr)
+int64_t * clone_engine_context(int64_t source_ptr, int64_t *dest_ptr)
 {
-  longlong context_data;
+  int64_t context_data;
   uint64_t context_handle;
-  longlong *cloned_context;
+  int64_t *cloned_context;
   void *name_ptr;
   int32_t init_flag;
   uint64_t cleanup_flags;
@@ -1309,11 +1309,11 @@ longlong * clone_engine_context(longlong source_ptr, longlong *dest_ptr)
   
   // 分配上下文内存
   context_handle = allocate_memory_block(global_memory_pool, 0x140, 0x10, 3, 0, 0xfffffffffffffffe);
-  cloned_context = (longlong *)initialize_context_structure(context_handle);
-  *dest_ptr = (longlong)cloned_context;
+  cloned_context = (int64_t *)initialize_context_structure(context_handle);
+  *dest_ptr = (int64_t)cloned_context;
   
   // 初始化克隆的上下文
-  if (cloned_context != (longlong *)0x0) {
+  if (cloned_context != (int64_t *)0x0) {
     (**(code **)(*cloned_context + 0x28))(cloned_context);
   }
   
@@ -1335,7 +1335,7 @@ longlong * clone_engine_context(longlong source_ptr, longlong *dest_ptr)
   *(uint64_t *)(*dest_ptr + 0xb8) = 0;
   
   // 如果需要额外的初始化
-  if (*(longlong *)(source_ptr + 0xb8) != 0) {
+  if (*(int64_t *)(source_ptr + 0xb8) != 0) {
     context_handle = allocate_memory_block(global_memory_pool, 0x130, 8, 6, init_flag, cleanup_flags);
     memset(context_handle, 0, 0x130);
   }
@@ -1354,17 +1354,17 @@ longlong * clone_engine_context(longlong source_ptr, longlong *dest_ptr)
  * @param dest_ptr 目标数据指针
  * @param src_ptr 源数据指针
  */
-void copy_engine_data_structure(longlong *dest_ptr, longlong *src_ptr)
+void copy_engine_data_structure(int64_t *dest_ptr, int64_t *src_ptr)
 {
-  longlong data_field1;
-  ulonglong available_size;
+  int64_t data_field1;
+  uint64_t available_size;
   int32_t field_value1;
   int32_t field_value2;
-  longlong src_start;
-  longlong src_end;
-  ulonglong required_size;
+  int64_t src_start;
+  int64_t src_end;
+  uint64_t required_size;
   void *name_ptr;
-  longlong data_size;
+  int64_t data_size;
   
   // 复制基本字段
   data_field1 = src_ptr[0x20];
@@ -1372,22 +1372,22 @@ void copy_engine_data_structure(longlong *dest_ptr, longlong *src_ptr)
   dest_ptr[0x20] = data_field1;
   
   // 复制配置字段
-  field_value1 = *(int32_t *)((longlong)src_ptr + 0x10c);
+  field_value1 = *(int32_t *)((int64_t)src_ptr + 0x10c);
   data_field1 = src_ptr[0x22];
-  field_value2 = *(int32_t *)((longlong)src_ptr + 0x114);
+  field_value2 = *(int32_t *)((int64_t)src_ptr + 0x114);
   *(int *)(dest_ptr + 0x21) = (int)src_ptr[0x21];
-  *(int32_t *)((longlong)dest_ptr + 0x10c) = field_value1;
+  *(int32_t *)((int64_t)dest_ptr + 0x10c) = field_value1;
   *(int *)(dest_ptr + 0x22) = (int)data_field1;
-  *(int32_t *)((longlong)dest_ptr + 0x114) = field_value2;
+  *(int32_t *)((int64_t)dest_ptr + 0x114) = field_value2;
   
   // 复制更多配置字段
-  field_value1 = *(int32_t *)((longlong)src_ptr + 0x11c);
+  field_value1 = *(int32_t *)((int64_t)src_ptr + 0x11c);
   data_field1 = src_ptr[0x24];
-  field_value2 = *(int32_t *)((longlong)src_ptr + 0x124);
+  field_value2 = *(int32_t *)((int64_t)src_ptr + 0x124);
   *(int *)(dest_ptr + 0x23) = (int)src_ptr[0x23];
-  *(int32_t *)((longlong)dest_ptr + 0x11c) = field_value1;
+  *(int32_t *)((int64_t)dest_ptr + 0x11c) = field_value1;
   *(int *)(dest_ptr + 0x24) = (int)data_field1;
-  *(int32_t *)((longlong)dest_ptr + 0x124) = field_value2;
+  *(int32_t *)((int64_t)dest_ptr + 0x124) = field_value2;
   *(int *)(dest_ptr + 0x25) = (int)src_ptr[0x25];
   
   // 如果需要深度复制
@@ -1401,7 +1401,7 @@ void copy_engine_data_structure(longlong *dest_ptr, longlong *src_ptr)
     required_size = (required_size >> 3) - (required_size >> 0x3f);
     
     // 检查是否有足够的空间
-    if ((ulonglong)((dest_ptr[2] - *dest_ptr) / 0x30) < required_size) {
+    if ((uint64_t)((dest_ptr[2] - *dest_ptr) / 0x30) < required_size) {
       // 分配新的内存空间
       if (required_size == 0) {
         data_size = 0;

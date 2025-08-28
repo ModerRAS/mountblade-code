@@ -14,21 +14,21 @@ void process_render_batch_update(void)
 {
   float *render_data_ptr;
   void **context_ptr;
-  longlong data_offset;
+  int64_t data_offset;
   int current_count;
   int new_capacity;
   int index;
   int max_elements;
   uint element_index;
   int *capacity_ptr;
-  longlong base_address;
-  longlong buffer_address;
+  int64_t base_address;
+  int64_t buffer_address;
   int current_index;
-  longlong render_context;
-  ulonglong element_data;
+  int64_t render_context;
+  uint64_t element_data;
   uint element_count;
   int max_elements_limit;
-  longlong physics_context;
+  int64_t physics_context;
   float scale_factor;
   float height_offset;
   float width_offset;
@@ -38,7 +38,7 @@ void process_render_batch_update(void)
   // 批量处理渲染数据
   do {
     current_count = *(int *)(physics_context + 0x34);
-    element_data = (ulonglong)render_context;
+    element_data = (uint64_t)render_context;
     height_offset = (float)(render_context >> 0x20);
     
     // 设置边界框默认值
@@ -66,12 +66,12 @@ void process_render_batch_update(void)
     }
     
     // 写入渲染数据
-    base_address = *(longlong *)(physics_context + 0x38);
+    base_address = *(int64_t *)(physics_context + 0x38);
     current_index = current_index + 1;
-    data_offset = (longlong)index * 0x1c;
+    data_offset = (int64_t)index * 0x1c;
     *(uint64_t *)(data_offset + base_address) = CONCAT44(element_data, scale_factor);
     ((uint64_t *)(data_offset + base_address))[1] = CONCAT44(min_x, height_offset);
-    *(ulonglong *)(data_offset + 0x10 + base_address) = CONCAT44(min_y, max_x);
+    *(uint64_t *)(data_offset + 0x10 + base_address) = CONCAT44(min_y, max_x);
     *(int32_t *)(data_offset + 0x18 + base_address) = max_y;
     *(int *)(physics_context + 0x30) = *(int *)(physics_context + 0x30) + 1;
     base_address = engine_context;
@@ -84,8 +84,8 @@ void process_render_batch_update(void)
     element_data = render_context;
     do {
       current_index = (int)render_context;
-      data_offset = *(longlong *)(physics_context + 0x38);
-      buffer_address = *(longlong *)(*(longlong *)(base_address + 0x1af8) + 0x210);
+      data_offset = *(int64_t *)(physics_context + 0x38);
+      buffer_address = *(int64_t *)(*(int64_t *)(base_address + 0x1af8) + 0x210);
       new_capacity = current_index;
       
       // 处理负数索引
@@ -97,8 +97,8 @@ void process_render_batch_update(void)
       element_count = current_index + 1;
       width_offset = *(float *)(buffer_address + 0x18) - depth_offset;
       height_offset = *(float *)(render_context + 0x40) + 0.5;
-      scale_factor = (float)(int)((width_offset * *(float *)((longlong)new_capacity * 0x1c +
-                                                *(longlong *)(buffer_address + 0x38)) + depth_offset + height_offset) -
+      scale_factor = (float)(int)((width_offset * *(float *)((int64_t)new_capacity * 0x1c +
+                                                *(int64_t *)(buffer_address + 0x38)) + depth_offset + height_offset) -
                            physics_scale);
       
       element_index = element_count;
@@ -106,9 +106,9 @@ void process_render_batch_update(void)
         element_index = *(uint *)(buffer_address + 0xc);
       }
       
-      render_context = (ulonglong)element_count;
-      height_offset = (float)(int)((width_offset * *(float *)((longlong)(int)element_index * 0x1c +
-                                            *(longlong *)(buffer_address + 0x38)) + depth_offset + height_offset) -
+      render_context = (uint64_t)element_count;
+      height_offset = (float)(int)((width_offset * *(float *)((int64_t)(int)element_index * 0x1c +
+                                            *(int64_t *)(buffer_address + 0x38)) + depth_offset + height_offset) -
                        physics_scale);
       
       // 更新渲染数据数组
@@ -151,18 +151,18 @@ void process_render_batch_update(void)
   
   // 处理物理碰撞数据
   data_offset = engine_context;
-  base_address = *(longlong *)(*(longlong *)(engine_context + 0x1af8) + 0x210);
-  buffer_address = (longlong)*(int *)(base_address + 0xc) * 0x1c + *(longlong *)(base_address + 0x38);
-  *(int8_t *)(*(longlong *)(engine_context + 0x1af8) + 0xb1) = 1;
-  base_address = *(longlong *)(data_offset + 0x1af8);
+  base_address = *(int64_t *)(*(int64_t *)(engine_context + 0x1af8) + 0x210);
+  buffer_address = (int64_t)*(int *)(base_address + 0xc) * 0x1c + *(int64_t *)(base_address + 0x38);
+  *(int8_t *)(*(int64_t *)(engine_context + 0x1af8) + 0xb1) = 1;
+  base_address = *(int64_t *)(data_offset + 0x1af8);
   
   // 更新物理碰撞体积
   update_physics_collision(*(uint64_t *)(base_address + 0x2e8), *(uint64_t *)(buffer_address + 0xc),
                           *(uint64_t *)(buffer_address + 0x14), 0, scale_factor);
   
   data_offset = engine_context;
-  context_ptr = (uint64_t *)(*(longlong *)(*(longlong *)(base_address + 0x2e8) + 0x68) + -0x10 +
-                              (longlong)*(int *)(*(longlong *)(base_address + 0x2e8) + 0x60) * 0x10);
+  context_ptr = (uint64_t *)(*(int64_t *)(*(int64_t *)(base_address + 0x2e8) + 0x68) + -0x10 +
+                              (int64_t)*(int *)(*(int64_t *)(base_address + 0x2e8) + 0x60) * 0x10);
   
   // 更新物理属性
   *(uint64_t *)(base_address + 0x228) = *context_ptr;
@@ -170,13 +170,13 @@ void process_render_batch_update(void)
   height_offset = (float)context_ptr[1];
   
   // 计算碰撞体积
-  base_address = *(longlong *)(*(longlong *)(data_offset + 0x1af8) + 0x210);
+  base_address = *(int64_t *)(*(int64_t *)(data_offset + 0x1af8) + 0x210);
   scale_factor = *(float *)(base_address + 0x18);
   depth_offset = *(float *)(base_address + 0x14);
-  width_offset = *(float *)(((longlong)*(int *)(base_address + 0xc) + 1) * 0x1c + *(longlong *)(base_address + 0x38));
-  height_offset = *(float *)((longlong)*(int *)(base_address + 0xc) * 0x1c + *(longlong *)(base_address + 0x38));
-  *(int8_t *)(*(longlong *)(data_offset + 0x1af8) + 0xb1) = 1;
-  base_address = *(longlong *)(data_offset + 0x1af8);
+  width_offset = *(float *)(((int64_t)*(int *)(base_address + 0xc) + 1) * 0x1c + *(int64_t *)(base_address + 0x38));
+  height_offset = *(float *)((int64_t)*(int *)(base_address + 0xc) * 0x1c + *(int64_t *)(base_address + 0x38));
+  *(int8_t *)(*(int64_t *)(data_offset + 0x1af8) + 0xb1) = 1;
+  base_address = *(int64_t *)(data_offset + 0x1af8);
   scale_factor = (width_offset - height_offset) * (scale_factor - depth_offset) * 0.65;
   
   if (scale_factor == physics_scale) {
@@ -205,7 +205,7 @@ void process_render_batch_update(void)
     new_capacity = *capacity_ptr;
   }
   
-  *(float *)(*(longlong *)(base_address + 0x1d0) + (longlong)new_capacity * 4) = *(float *)(base_address + 0x1ac);
+  *(float *)(*(int64_t *)(base_address + 0x1d0) + (int64_t)new_capacity * 4) = *(float *)(base_address + 0x1ac);
   *capacity_ptr = *capacity_ptr + 1;
   return;
 }
@@ -219,19 +219,19 @@ void process_simplified_render_update(void)
   float *render_data_ptr;
   uint64_t *context_ptr;
   float physics_value;
-  longlong data_offset;
-  longlong buffer_address;
+  int64_t data_offset;
+  int64_t buffer_address;
   int current_count;
   int new_capacity;
   int index;
   uint element_index;
   int *capacity_ptr;
-  longlong render_context;
-  longlong physics_context;
-  ulonglong element_data;
+  int64_t render_context;
+  int64_t physics_context;
+  uint64_t element_data;
   uint element_count;
   int max_elements_limit;
-  longlong physics_address;
+  int64_t physics_address;
   float scale_factor;
   float height_offset;
   float width_offset;
@@ -244,8 +244,8 @@ void process_simplified_render_update(void)
   if (0 < max_elements_limit) {
     do {
       index = (int)render_context;
-      data_offset = *(longlong *)(physics_address + 0x38);
-      render_context = *(longlong *)(*(longlong *)(buffer_address + 0x1af8) + 0x210);
+      data_offset = *(int64_t *)(physics_address + 0x38);
+      render_context = *(int64_t *)(*(int64_t *)(buffer_address + 0x1af8) + 0x210);
       current_count = index;
       
       // 处理负数索引
@@ -263,13 +263,13 @@ void process_simplified_render_update(void)
         element_index = *(uint *)(render_context + 0xc);
       }
       
-      render_context = (ulonglong)element_count;
-      physics_value = *(float *)((longlong)(int)element_index * 0x1c + *(longlong *)(render_context + 0x38));
+      render_context = (uint64_t)element_count;
+      physics_value = *(float *)((int64_t)(int)element_index * 0x1c + *(int64_t *)(render_context + 0x38));
       render_data_ptr = (float *)(element_data + 0xc + data_offset);
       
       // 计算并设置渲染数据
-      *render_data_ptr = (float)(int)((width_offset * *(float *)((longlong)current_count * 0x1c +
-                                                 *(longlong *)(render_context + 0x38)) + depth_offset + height_offset) -
+      *render_data_ptr = (float)(int)((width_offset * *(float *)((int64_t)current_count * 0x1c +
+                                                 *(int64_t *)(render_context + 0x38)) + depth_offset + height_offset) -
                             physics_scale);
       render_data_ptr[1] = -3.4028235e+38;
       render_data_ptr[2] = (float)(int)((width_offset * physics_value + depth_offset + height_offset) - physics_scale);
@@ -307,31 +307,31 @@ void process_simplified_render_update(void)
   update_render_system(*(uint64_t *)(physics_context + 0x2e8), *(int32_t *)(physics_address + 0x10));
   
   data_offset = engine_context;
-  buffer_address = *(longlong *)(*(longlong *)(engine_context + 0x1af8) + 0x210);
-  render_context = (longlong)*(int *)(buffer_address + 0xc) * 0x1c + *(longlong *)(buffer_address + 0x38);
-  *(int8_t *)(*(longlong *)(engine_context + 0x1af8) + 0xb1) = 1;
-  buffer_address = *(longlong *)(data_offset + 0x1af8);
+  buffer_address = *(int64_t *)(*(int64_t *)(engine_context + 0x1af8) + 0x210);
+  render_context = (int64_t)*(int *)(buffer_address + 0xc) * 0x1c + *(int64_t *)(buffer_address + 0x38);
+  *(int8_t *)(*(int64_t *)(engine_context + 0x1af8) + 0xb1) = 1;
+  buffer_address = *(int64_t *)(data_offset + 0x1af8);
   
   // 更新物理碰撞
   update_physics_collision(*(uint64_t *)(buffer_address + 0x2e8), *(uint64_t *)(render_context + 0xc),
                           *(uint64_t *)(render_context + 0x14), 0);
   
   data_offset = engine_context;
-  context_ptr = (uint64_t *)(*(longlong *)(*(longlong *)(buffer_address + 0x2e8) + 0x68) + -0x10 +
-                              (longlong)*(int *)(*(longlong *)(buffer_address + 0x2e8) + 0x60) * 0x10);
+  context_ptr = (uint64_t *)(*(int64_t *)(*(int64_t *)(buffer_address + 0x2e8) + 0x68) + -0x10 +
+                              (int64_t)*(int *)(*(int64_t *)(buffer_address + 0x2e8) + 0x60) * 0x10);
   
   // 更新物理属性
   *(uint64_t *)(buffer_address + 0x228) = *context_ptr;
   *(uint64_t *)(buffer_address + 0x230) = context_ptr[1];
   
   // 计算碰撞体积
-  buffer_address = *(longlong *)(*(longlong *)(data_offset + 0x1af8) + 0x210);
+  buffer_address = *(int64_t *)(*(int64_t *)(data_offset + 0x1af8) + 0x210);
   depth_offset = *(float *)(buffer_address + 0x18);
   width_offset = *(float *)(buffer_address + 0x14);
-  height_offset = *(float *)(((longlong)*(int *)(buffer_address + 0xc) + 1) * 0x1c + *(longlong *)(buffer_address + 0x38));
-  physics_value = *(float *)((longlong)*(int *)(buffer_address + 0xc) * 0x1c + *(longlong *)(buffer_address + 0x38));
-  *(int8_t *)(*(longlong *)(data_offset + 0x1af8) + 0xb1) = 1;
-  buffer_address = *(longlong *)(data_offset + 0x1af8);
+  height_offset = *(float *)(((int64_t)*(int *)(buffer_address + 0xc) + 1) * 0x1c + *(int64_t *)(buffer_address + 0x38));
+  physics_value = *(float *)((int64_t)*(int *)(buffer_address + 0xc) * 0x1c + *(int64_t *)(buffer_address + 0x38));
+  *(int8_t *)(*(int64_t *)(data_offset + 0x1af8) + 0xb1) = 1;
+  buffer_address = *(int64_t *)(data_offset + 0x1af8);
   depth_offset = (height_offset - physics_value) * (depth_offset - width_offset) * 0.65;
   
   if (depth_offset == physics_scale) {
@@ -360,7 +360,7 @@ void process_simplified_render_update(void)
     current_count = *capacity_ptr;
   }
   
-  *(float *)(*(longlong *)(buffer_address + 0x1d0) + (longlong)current_count * 4) = *(float *)(buffer_address + 0x1ac);
+  *(float *)(*(int64_t *)(buffer_address + 0x1d0) + (int64_t)current_count * 4) = *(float *)(buffer_address + 0x1ac);
   *capacity_ptr = *capacity_ptr + 1;
   return;
 }
@@ -374,19 +374,19 @@ void process_optimized_render_update(void)
   float *render_data_ptr;
   uint64_t *context_ptr;
   float physics_value;
-  longlong data_offset;
-  longlong buffer_address;
+  int64_t data_offset;
+  int64_t buffer_address;
   int current_count;
   int new_capacity;
   int index;
   uint element_index;
   int *capacity_ptr;
-  longlong render_context;
-  longlong physics_context;
-  ulonglong element_data;
+  int64_t render_context;
+  int64_t physics_context;
+  uint64_t element_data;
   uint element_count;
   int max_elements_limit;
-  longlong physics_address;
+  int64_t physics_address;
   float scale_factor;
   float height_offset;
   float width_offset;
@@ -400,8 +400,8 @@ void process_optimized_render_update(void)
   
   do {
     index = (int)render_context;
-    data_offset = *(longlong *)(physics_address + 0x38);
-    render_context = *(longlong *)(*(longlong *)(buffer_address + 0x1af8) + 0x210);
+    data_offset = *(int64_t *)(physics_address + 0x38);
+    render_context = *(int64_t *)(*(int64_t *)(buffer_address + 0x1af8) + 0x210);
     current_count = index;
     
     // 处理负数索引
@@ -419,14 +419,14 @@ void process_optimized_render_update(void)
       element_index = *(uint *)(render_context + 0xc);
     }
     
-    render_context = (ulonglong)element_count;
-    temp_value = (float)(int)((width_offset * *(float *)((longlong)(int)element_index * 0x1c +
-                                          *(longlong *)(render_context + 0x38)) + depth_offset + height_offset) -
+    render_context = (uint64_t)element_count;
+    temp_value = (float)(int)((width_offset * *(float *)((int64_t)(int)element_index * 0x1c +
+                                          *(int64_t *)(render_context + 0x38)) + depth_offset + height_offset) -
                      physics_scale);
     
     render_data_ptr = (float *)(element_data + 0xc + data_offset);
-    *render_data_ptr = (float)(int)((width_offset * *(float *)((longlong)current_count * 0x1c +
-                                               *(longlong *)(render_context + 0x38)) + depth_offset + height_offset) -
+    *render_data_ptr = (float)(int)((width_offset * *(float *)((int64_t)current_count * 0x1c +
+                                               *(int64_t *)(render_context + 0x38)) + depth_offset + height_offset) -
                           physics_scale);
     render_data_ptr[1] = -3.4028235e+38;
     render_data_ptr[2] = temp_value;
@@ -463,31 +463,31 @@ void process_optimized_render_update(void)
   update_render_system(*(uint64_t *)(physics_context + 0x2e8), *(int32_t *)(physics_address + 0x10));
   
   data_offset = engine_context;
-  buffer_address = *(longlong *)(*(longlong *)(engine_context + 0x1af8) + 0x210);
-  render_context = (longlong)*(int *)(buffer_address + 0xc) * 0x1c + *(longlong *)(buffer_address + 0x38);
-  *(int8_t *)(*(longlong *)(engine_context + 0x1af8) + 0xb1) = 1;
-  buffer_address = *(longlong *)(data_offset + 0x1af8);
+  buffer_address = *(int64_t *)(*(int64_t *)(engine_context + 0x1af8) + 0x210);
+  render_context = (int64_t)*(int *)(buffer_address + 0xc) * 0x1c + *(int64_t *)(buffer_address + 0x38);
+  *(int8_t *)(*(int64_t *)(engine_context + 0x1af8) + 0xb1) = 1;
+  buffer_address = *(int64_t *)(data_offset + 0x1af8);
   
   // 更新物理碰撞
   update_physics_collision(*(uint64_t *)(buffer_address + 0x2e8), *(uint64_t *)(render_context + 0xc),
                           *(uint64_t *)(render_context + 0x14), 0);
   
   data_offset = engine_context;
-  context_ptr = (uint64_t *)(*(longlong *)(*(longlong *)(buffer_address + 0x2e8) + 0x68) + -0x10 +
-                              (longlong)*(int *)(*(longlong *)(buffer_address + 0x2e8) + 0x60) * 0x10);
+  context_ptr = (uint64_t *)(*(int64_t *)(*(int64_t *)(buffer_address + 0x2e8) + 0x68) + -0x10 +
+                              (int64_t)*(int *)(*(int64_t *)(buffer_address + 0x2e8) + 0x60) * 0x10);
   
   // 更新物理属性
   *(uint64_t *)(buffer_address + 0x228) = *context_ptr;
   *(uint64_t *)(buffer_address + 0x230) = context_ptr[1];
   
   // 计算碰撞体积
-  buffer_address = *(longlong *)(*(longlong *)(data_offset + 0x1af8) + 0x210);
+  buffer_address = *(int64_t *)(*(int64_t *)(data_offset + 0x1af8) + 0x210);
   depth_offset = *(float *)(buffer_address + 0x18);
   width_offset = *(float *)(buffer_address + 0x14);
-  height_offset = *(float *)(((longlong)*(int *)(buffer_address + 0xc) + 1) * 0x1c + *(longlong *)(buffer_address + 0x38));
-  physics_value = *(float *)((longlong)*(int *)(buffer_address + 0xc) * 0x1c + *(longlong *)(buffer_address + 0x38));
-  *(int8_t *)(*(longlong *)(data_offset + 0x1af8) + 0xb1) = 1;
-  buffer_address = *(longlong *)(data_offset + 0x1af8);
+  height_offset = *(float *)(((int64_t)*(int *)(buffer_address + 0xc) + 1) * 0x1c + *(int64_t *)(buffer_address + 0x38));
+  physics_value = *(float *)((int64_t)*(int *)(buffer_address + 0xc) * 0x1c + *(int64_t *)(buffer_address + 0x38));
+  *(int8_t *)(*(int64_t *)(data_offset + 0x1af8) + 0xb1) = 1;
+  buffer_address = *(int64_t *)(data_offset + 0x1af8);
   depth_offset = (height_offset - physics_value) * (depth_offset - width_offset) * 0.65;
   
   if (depth_offset == physics_scale) {
@@ -516,7 +516,7 @@ void process_optimized_render_update(void)
     current_count = *capacity_ptr;
   }
   
-  *(float *)(*(longlong *)(buffer_address + 0x1d0) + (longlong)current_count * 4) = *(float *)(buffer_address + 0x1ac);
+  *(float *)(*(int64_t *)(buffer_address + 0x1d0) + (int64_t)current_count * 4) = *(float *)(buffer_address + 0x1ac);
   *capacity_ptr = *capacity_ptr + 1;
   return;
 }
@@ -527,7 +527,7 @@ void process_optimized_render_update(void)
  * 
  * @param param_1 物理系统上下文指针
  */
-void add_physics_property(longlong param_1)
+void add_physics_property(int64_t param_1)
 {
   int current_count;
   int capacity;
@@ -557,7 +557,7 @@ void add_physics_property(longlong param_1)
     current_count = *array_ptr;
   }
   
-  *(int32_t *)(*(longlong *)(param_1 + 0x1d0) + (longlong)current_count * 4) =
+  *(int32_t *)(*(int64_t *)(param_1 + 0x1d0) + (int64_t)current_count * 4) =
        *(int32_t *)(param_1 + 0x1ac);
   *array_ptr = *array_ptr + 1;
   return;
@@ -571,18 +571,18 @@ void process_complex_render_physics(void)
 {
   int32_t *render_ptr;
   float physics_value;
-  longlong context_offset;
+  int64_t context_offset;
   int *array_ptr;
   uint element_flags;
   int32_t temp_value;
-  longlong data_address;
+  int64_t data_address;
   int index;
-  longlong buffer_offset;
+  int64_t buffer_offset;
   int element_id;
-  longlong physics_offset;
+  int64_t physics_offset;
   int collision_id;
   int element_count;
-  longlong render_address;
+  int64_t render_address;
   float scale_factor;
   float height_offset;
   float width_offset;
@@ -601,8 +601,8 @@ void process_complex_render_physics(void)
   float render_scale;
   
   context_offset = engine_context;
-  *(int8_t *)(*(longlong *)(engine_context + 0x1af8) + 0xb1) = 1;
-  data_address = *(longlong *)(context_offset + 0x1af8);
+  *(int8_t *)(*(int64_t *)(engine_context + 0x1af8) + 0xb1) = 1;
+  data_address = *(int64_t *)(context_offset + 0x1af8);
   array_ptr = *(int **)(data_address + 0x210);
   
   // 初始化渲染系统
@@ -635,7 +635,7 @@ void process_complex_render_physics(void)
       buffer_offset = engine_context;
       
       do {
-        data_address = *(longlong *)(*(longlong *)(buffer_offset + 0x1af8) + 0x210);
+        data_address = *(int64_t *)(*(int64_t *)(buffer_offset + 0x1af8) + 0x210);
         element_count = index;
         
         if (index < 0) {
@@ -644,7 +644,7 @@ void process_complex_render_physics(void)
         
         element_id = *array_ptr + index;
         depth_offset = (*(float *)(data_address + 0x18) - *(float *)(data_address + 0x14)) *
-                 *(float *)((longlong)element_count * 0x1c + *(longlong *)(data_address + 0x38)) +
+                 *(float *)((int64_t)element_count * 0x1c + *(int64_t *)(data_address + 0x38)) +
                  *(float *)(data_address + 0x14) + *(float *)(data_address + 0x40);
         
         // 设置边界值
@@ -659,7 +659,7 @@ void process_complex_render_physics(void)
           *(int8_t *)(buffer_offset + 0x1b3f) = 1;
         }
         
-        data_address = *(longlong *)(buffer_offset + 0x1af8);
+        data_address = *(int64_t *)(buffer_offset + 0x1af8);
         width_value = physics_value;
         height_value = depth_offset;
         
@@ -682,12 +682,12 @@ void process_complex_render_physics(void)
             
             data_address = 0x1d;
             element_count = index;
-            if ((*(byte *)(*(longlong *)(array_ptr + 0xe) + 8 + render_address) & 2) != 0) {
+            if ((*(byte *)(*(int64_t *)(array_ptr + 0xe) + 8 + render_address) & 2) != 0) {
               element_count = collision_id;
             }
           }
           else {
-            data_address = (ulonglong)(temp_buffer2[0] != '\0') + 0x1b;
+            data_address = (uint64_t)(temp_buffer2[0] != '\0') + 0x1b;
             element_count = collision_id;
           }
           
@@ -722,31 +722,31 @@ void process_complex_render_physics(void)
       
       // 处理碰撞结果
       if (collision_id != -1) {
-        if ((*(char *)((longlong)array_ptr + 9) == '\0') && (index = 0, 0 < array_ptr[4] + 1)) {
+        if ((*(char *)((int64_t)array_ptr + 9) == '\0') && (index = 0, 0 < array_ptr[4] + 1)) {
           context_offset = 0;
           do {
             index = index + 1;
-            *(int32_t *)(context_offset + 4 + *(longlong *)(array_ptr + 0xe)) =
-                 *(int32_t *)(context_offset + *(longlong *)(array_ptr + 0xe));
+            *(int32_t *)(context_offset + 4 + *(int64_t *)(array_ptr + 0xe)) =
+                 *(int32_t *)(context_offset + *(int64_t *)(array_ptr + 0xe));
             context_offset = context_offset + 0x1c;
           } while (index < array_ptr[4] + 1);
         }
         
-        *(int8_t *)((longlong)array_ptr + 9) = 1;
+        *(int8_t *)((int64_t)array_ptr + 9) = 1;
         index = collision_id + -1;
         render_flag = 1;
-        context_offset = *(longlong *)(*(longlong *)(buffer_offset + 0x1af8) + 0x210);
+        context_offset = *(int64_t *)(*(int64_t *)(buffer_offset + 0x1af8) + 0x210);
         depth_offset = ((*(float *)(buffer_offset + 0x118) - *(float *)(buffer_offset + 0x1b48)) + 4.0) -
-                 *(float *)(*(longlong *)(buffer_offset + 0x1af8) + 0x40);
+                 *(float *)(*(int64_t *)(buffer_offset + 0x1af8) + 0x40);
         
         if (index < 0) {
           index = *(int *)(context_offset + 0xc);
         }
         
         physics_value = *(float *)(context_offset + 0x14);
-        render_address = *(longlong *)(context_offset + 0x38);
+        render_address = *(int64_t *)(context_offset + 0x38);
         height_offset = *(float *)(context_offset + 0x18) - physics_value;
-        depth_offset = height_offset * *(float *)((longlong)index * 0x1c + render_address) + physics_value +
+        depth_offset = height_offset * *(float *)((int64_t)index * 0x1c + render_address) + physics_value +
                  *(float *)(buffer_offset + 0x1688);
         
         if (depth_offset <= depth_offset) {
@@ -758,7 +758,7 @@ void process_complex_render_physics(void)
           if (index < 0) {
             index = *(int *)(context_offset + 0xc);
           }
-          context_offset = (longlong)index * 0x1c;
+          context_offset = (int64_t)index * 0x1c;
           depth_offset = (height_offset * *(float *)(context_offset + render_address) + physics_value) - *(float *)(buffer_offset + 0x1688);
           if (depth_offset <= depth_offset) {
             depth_offset = depth_offset;
@@ -770,7 +770,7 @@ void process_complex_render_physics(void)
     }
   }
   
-  *(int8_t *)((longlong)array_ptr + 9) = render_flag;
+  *(int8_t *)((int64_t)array_ptr + 9) = render_flag;
   *(uint64_t *)(data_address + 0x210) = 0;
   *(int32_t *)(data_address + 0x20c) = 0;
   *(float *)(data_address + 0x100) = (float)(int)(*(float *)(data_address + 0x204) + *(float *)(data_address + 0x40));
@@ -785,16 +785,16 @@ void process_advanced_render_physics(void)
 {
   int32_t *render_ptr;
   int32_t temp_value;
-  longlong context_offset;
+  int64_t context_offset;
   int element_count;
   int *array_ptr;
-  longlong physics_context;
+  int64_t physics_context;
   int index;
-  longlong data_offset;
-  longlong render_context;
+  int64_t data_offset;
+  int64_t render_context;
   int element_id;
   int current_count;
-  longlong buffer_address;
+  int64_t buffer_address;
   float scale_factor;
   float height_offset;
   float width_offset;
@@ -818,7 +818,7 @@ void process_advanced_render_physics(void)
     data_offset = engine_context;
     
     do {
-      context_offset = *(longlong *)(*(longlong *)(data_offset + 0x1af8) + 0x210);
+      context_offset = *(int64_t *)(*(int64_t *)(data_offset + 0x1af8) + 0x210);
       current_count = index;
       
       if (index < 0) {
@@ -827,7 +827,7 @@ void process_advanced_render_physics(void)
       
       element_count = *array_ptr + index;
       depth_offset = (*(float *)(context_offset + 0x18) - *(float *)(context_offset + 0x14)) *
-               *(float *)((longlong)current_count * 0x1c + *(longlong *)(context_offset + 0x38)) +
+               *(float *)((int64_t)current_count * 0x1c + *(int64_t *)(context_offset + 0x38)) +
                *(float *)(context_offset + 0x14) + *(float *)(physics_context + 0x40);
       
       // 设置边界值
@@ -842,7 +842,7 @@ void process_advanced_render_physics(void)
         *(int8_t *)(data_offset + 0x1b3f) = 1;
       }
       
-      context_offset = *(longlong *)(data_offset + 0x1af8);
+      context_offset = *(int64_t *)(data_offset + 0x1af8);
       render_data[2] = height_offset;
       
       // 边界检查和碰撞检测
@@ -864,12 +864,12 @@ void process_advanced_render_physics(void)
           
           context_offset = 0x1d;
           current_count = index;
-          if ((*(byte *)(*(longlong *)(array_ptr + 0xe) + 8 + buffer_address) & 2) != 0) {
+          if ((*(byte *)(*(int64_t *)(array_ptr + 0xe) + 8 + buffer_address) & 2) != 0) {
             current_count = element_id;
           }
         }
         else {
-          context_offset = (ulonglong)(temp_buffer2[0] != '\0') + 0x1b;
+          context_offset = (uint64_t)(temp_buffer2[0] != '\0') + 0x1b;
           current_count = element_id;
         }
         
@@ -904,31 +904,31 @@ void process_advanced_render_physics(void)
     
     // 处理碰撞结果
     if (element_id != -1) {
-      if ((*(char *)((longlong)array_ptr + 9) == '\0') && (index = 0, 0 < array_ptr[4] + 1)) {
+      if ((*(char *)((int64_t)array_ptr + 9) == '\0') && (index = 0, 0 < array_ptr[4] + 1)) {
         buffer_address = 0;
         do {
           index = index + 1;
-          *(int32_t *)(buffer_address + 4 + *(longlong *)(array_ptr + 0xe)) =
-               *(int32_t *)(buffer_address + *(longlong *)(array_ptr + 0xe));
+          *(int32_t *)(buffer_address + 4 + *(int64_t *)(array_ptr + 0xe)) =
+               *(int32_t *)(buffer_address + *(int64_t *)(array_ptr + 0xe));
           buffer_address = buffer_address + 0x1c;
         } while (index < array_ptr[4] + 1);
       }
       
-      *(int8_t *)((longlong)array_ptr + 9) = 1;
+      *(int8_t *)((int64_t)array_ptr + 9) = 1;
       index = element_id + -1;
       render_flag = 1;
-      buffer_address = *(longlong *)(*(longlong *)(data_offset + 0x1af8) + 0x210);
+      buffer_address = *(int64_t *)(*(int64_t *)(data_offset + 0x1af8) + 0x210);
       height_offset = ((*(float *)(data_offset + 0x118) - *(float *)(data_offset + 0x1b48)) + 4.0) -
-               *(float *)(*(longlong *)(data_offset + 0x1af8) + 0x40);
+               *(float *)(*(int64_t *)(data_offset + 0x1af8) + 0x40);
       
       if (index < 0) {
         index = *(int *)(buffer_address + 0xc);
       }
       
       depth_offset = *(float *)(buffer_address + 0x14);
-      context_offset = *(longlong *)(buffer_address + 0x38);
+      context_offset = *(int64_t *)(buffer_address + 0x38);
       width_offset = *(float *)(buffer_address + 0x18) - depth_offset;
-      physics_value = width_offset * *(float *)((longlong)index * 0x1c + context_offset) + depth_offset +
+      physics_value = width_offset * *(float *)((int64_t)index * 0x1c + context_offset) + depth_offset +
                *(float *)(data_offset + 0x1688);
       
       if (physics_value <= height_offset) {
@@ -940,7 +940,7 @@ void process_advanced_render_physics(void)
         if (index < 0) {
           index = *(int *)(buffer_address + 0xc);
         }
-        buffer_address = (longlong)index * 0x1c;
+        buffer_address = (int64_t)index * 0x1c;
         height_offset = (width_offset * *(float *)(buffer_address + context_offset) + depth_offset) - *(float *)(data_offset + 0x1688);
         if (height_offset <= physics_value) {
           physics_value = height_offset;
@@ -951,7 +951,7 @@ void process_advanced_render_physics(void)
     }
   }
   
-  *(int8_t *)((longlong)array_ptr + 9) = render_flag;
+  *(int8_t *)((int64_t)array_ptr + 9) = render_flag;
   *(uint64_t *)(physics_context + 0x210) = 0;
   *(int32_t *)(physics_context + 0x20c) = 0;
   *(float *)(physics_context + 0x100) = (float)(int)(*(float *)(physics_context + 0x204) + *(float *)(physics_context + 0x40));

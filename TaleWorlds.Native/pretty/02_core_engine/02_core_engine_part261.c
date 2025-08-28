@@ -68,7 +68,7 @@ void 序列化场景节点数据(void)
     // 遍历所有场景节点
     while (node_count > 0) {
         // 获取当前节点的偏移量
-        longlong node_offset = *(longlong*)((char*)scene_data + 0x90);
+        int64_t node_offset = *(int64_t*)((char*)scene_data + 0x90);
         
         // 序列化节点标识符
         char node_id = *(char*)((char*)scene_data + node_offset);
@@ -313,7 +313,7 @@ int 查找字符枚举值(char target_char, const char* enum_table)
         enum_index++;
         
         // 检查是否超出表范围
-        if ((longlong)current > 0x180bf7e97) {
+        if ((int64_t)current > 0x180bf7e97) {
             return -1;
         }
     }

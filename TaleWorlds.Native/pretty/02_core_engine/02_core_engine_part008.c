@@ -13,8 +13,8 @@ void register_physics_system(void)
   char component_status;
   uint64_t *component_root;
   int compare_result;
-  longlong *system_manager;
-  longlong component_id;
+  int64_t *system_manager;
+  int64_t component_id;
   uint64_t *current_component;
   uint64_t *parent_component;
   uint64_t *next_component;
@@ -22,9 +22,9 @@ void register_physics_system(void)
   uint64_t component_flags;
   
   // 获取系统管理器
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   component_root = (uint64_t *)*system_manager;
-  component_status = *(char *)((longlong)component_root[1] + 0x19);
+  component_status = *(char *)((int64_t)component_root[1] + 0x19);
   component_flags = 0;
   parent_component = component_root;
   current_component = (uint64_t *)component_root[1];
@@ -41,7 +41,7 @@ void register_physics_system(void)
     }
     parent_component = current_component;
     current_component = next_component;
-    component_status = *(char *)((longlong)next_component + 0x19);
+    component_status = *(char *)((int64_t)next_component + 0x19);
   }
   
   // 如果组件不存在或需要插入，则创建新组件
@@ -73,8 +73,8 @@ void register_render_system(void)
   char component_status;
   uint64_t *component_root;
   int compare_result;
-  longlong *system_manager;
-  longlong component_id;
+  int64_t *system_manager;
+  int64_t component_id;
   uint64_t *current_component;
   uint64_t *parent_component;
   uint64_t *next_component;
@@ -82,9 +82,9 @@ void register_render_system(void)
   uint64_t component_flags;
   
   // 获取系统管理器
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   component_root = (uint64_t *)*system_manager;
-  component_status = *(char *)((longlong)component_root[1] + 0x19);
+  component_status = *(char *)((int64_t)component_root[1] + 0x19);
   component_flags = 0;
   parent_component = component_root;
   current_component = (uint64_t *)component_root[1];
@@ -101,7 +101,7 @@ void register_render_system(void)
     }
     parent_component = current_component;
     current_component = next_component;
-    component_status = *(char *)((longlong)next_component + 0x19);
+    component_status = *(char *)((int64_t)next_component + 0x19);
   }
   
   // 如果组件不存在或需要插入，则创建新组件
@@ -133,8 +133,8 @@ void register_audio_system(void)
   char component_status;
   uint64_t *component_root;
   int compare_result;
-  longlong *system_manager;
-  longlong component_id;
+  int64_t *system_manager;
+  int64_t component_id;
   uint64_t *current_component;
   uint64_t *parent_component;
   uint64_t *next_component;
@@ -142,9 +142,9 @@ void register_audio_system(void)
   uint64_t component_flags;
   
   // 获取系统管理器
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   component_root = (uint64_t *)*system_manager;
-  component_status = *(char *)((longlong)component_root[1] + 0x19);
+  component_status = *(char *)((int64_t)component_root[1] + 0x19);
   component_flags = 0;
   parent_component = component_root;
   current_component = (uint64_t *)component_root[1];
@@ -161,7 +161,7 @@ void register_audio_system(void)
     }
     parent_component = current_component;
     current_component = next_component;
-    component_status = *(char *)((longlong)next_component + 0x19);
+    component_status = *(char *)((int64_t)next_component + 0x19);
   }
   
   // 如果组件不存在或需要插入，则创建新组件
@@ -193,8 +193,8 @@ void register_input_system(void)
   char component_status;
   uint64_t *component_root;
   int compare_result;
-  longlong *system_manager;
-  longlong component_id;
+  int64_t *system_manager;
+  int64_t component_id;
   uint64_t *current_component;
   uint64_t *parent_component;
   uint64_t *next_component;
@@ -202,9 +202,9 @@ void register_input_system(void)
   uint64_t component_flags;
   
   // 获取系统管理器
-  system_manager = (longlong *)get_system_manager();
+  system_manager = (int64_t *)get_system_manager();
   component_root = (uint64_t *)*system_manager;
-  component_status = *(char *)((longlong)component_root[1] + 0x19);
+  component_status = *(char *)((int64_t)component_root[1] + 0x19);
   component_flags = 0;
   parent_component = component_root;
   current_component = (uint64_t *)component_root[1];
@@ -221,7 +221,7 @@ void register_input_system(void)
     }
     parent_component = current_component;
     current_component = next_component;
-    component_status = *(char *)((longlong)next_component + 0x19);
+    component_status = *(char *)((int64_t)next_component + 0x19);
   }
   
   // 如果组件不存在或需要插入，则创建新组件

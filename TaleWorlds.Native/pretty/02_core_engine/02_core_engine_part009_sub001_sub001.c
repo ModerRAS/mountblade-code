@@ -32,7 +32,7 @@ void get_current_process_handle(void)
  */
 int initialize_system_core(void)
 {
-    longlong result;
+    int64_t result;
     
     // 调用初始化函数
     FUN_180629770();
@@ -50,7 +50,7 @@ int initialize_system_core(void)
  */
 int initialize_first_mutex(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    longlong result;
+    int64_t result;
     
     // 在指定位置初始化互斥锁
     _Mtx_init_in_situ(0x180c966f0, 2, param_3, param_4, 0xfffffffffffffffe);
@@ -68,7 +68,7 @@ int initialize_first_mutex(uint64_t param_1, uint64_t param_2, uint64_t param_3,
  */
 int initialize_second_mutex(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    longlong result;
+    int64_t result;
     
     // 在指定位置初始化互斥锁
     _Mtx_init_in_situ(0x180c96740, 2, param_3, param_4, 0xfffffffffffffffe);
@@ -87,7 +87,7 @@ int initialize_second_mutex(uint64_t param_1, uint64_t param_2, uint64_t param_3
  */
 int initialize_global_data_structure(void)
 {
-    longlong result;
+    int64_t result;
     
     // 设置全局数据结构初始值
     core_system_memory = 3;
@@ -141,11 +141,11 @@ void initialize_string_system_1(void)
  */
 uint64_t initialize_thread_local_storage(void)
 {
-    longlong tls_ptr;
+    int64_t tls_ptr;
     int *data_ptr;
     
     // 获取线程本地存储指针
-    tls_ptr = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
+    tls_ptr = *(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
     
     // 设置线程本地存储数据
     *(uint64_t *)(tls_ptr + 0x18) = &global_config_720_ptr;
@@ -156,7 +156,7 @@ uint64_t initialize_thread_local_storage(void)
     *(uint64_t *)(tls_ptr + 0x20) = 0;
     *(int32_t *)(tls_ptr + 0x28) = 0;
     
-    tls_ptr = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
+    tls_ptr = *(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
     data_ptr = *(int **)(tls_ptr + 0x50);
     
     // 检查是否需要分配内存
@@ -176,7 +176,7 @@ uint64_t initialize_thread_local_storage(void)
     *data_ptr = 0;
     *(int **)(tls_ptr + 0x50) = data_ptr;
 LAB_1808fd14a:
-    *(code **)(data_ptr + (longlong)*data_ptr * 2 + 4) = FUN_1809431a0;
+    *(code **)(data_ptr + (int64_t)*data_ptr * 2 + 4) = FUN_1809431a0;
     *data_ptr = *data_ptr + 1;
     return 0;
 }
@@ -252,7 +252,7 @@ void initialize_string_system_3(void)
  */
 int initialize_second_global_data_structure(void)
 {
-    longlong result;
+    int64_t result;
     
     // 设置第二个全局数据结构初始值
     core_system_memory = 3;
@@ -276,7 +276,7 @@ int initialize_second_global_data_structure(void)
  */
 int initialize_system_configuration(void)
 {
-    longlong result;
+    int64_t result;
     int i;
     
     // 设置系统配置初始值
@@ -303,7 +303,7 @@ int initialize_system_configuration(void)
  */
 int initialize_memory_management(void)
 {
-    longlong result;
+    int64_t result;
     
     // 调用内存管理初始化函数
     func_0x000180741c80(0x180c0c340);
@@ -506,7 +506,7 @@ void initialize_system_module_7(void)
 int initialize_system_data_array(void)
 {
     uint64_t *data_ptr;
-    longlong counter;
+    int64_t counter;
     
     data_ptr = (uint64_t *)0x180c35590;
     counter = 0x10;
@@ -590,7 +590,7 @@ void initialize_system_module_9(void)
  */
 int initialize_debug_system(void)
 {
-    longlong result;
+    int64_t result;
     
     FUN_1808dbcd0(0x180c4f510);
     result = FUN_1808fc7d0(&global_config_3344_ptr);
@@ -606,7 +606,7 @@ int initialize_debug_system(void)
  */
 int initialize_third_mutex(void)
 {
-    longlong result;
+    int64_t result;
     
     _Mtx_init_in_situ(0x180c82170, 2);
     result = FUN_1808fc7d0(&global_config_3360_ptr);
@@ -625,21 +625,21 @@ void WotsMainSDLL(uint64_t param_1)
 
 
 
-// 函数: void FUN_180043d40(longlong param_1)
+// 函数: void FUN_180043d40(int64_t param_1)
 /**
  * 处理系统初始化完成事件
  * 功能：处理系统初始化完成后的清理和资源管理
  * 参数：param_1 - 事件参数
  */
-void handle_system_initialization_complete(longlong param_1)
+void handle_system_initialization_complete(int64_t param_1)
 {
-    longlong lVar1;
-    longlong *plVar2;
+    int64_t lVar1;
+    int64_t *plVar2;
     char cVar3;
-    longlong *plStackX_8;
-    longlong **pplStackX_10;
-    longlong *plStackX_18;
-    longlong *plStackX_20;
+    int64_t *plStackX_8;
+    int64_t **pplStackX_10;
+    int64_t *plStackX_18;
+    int64_t *plStackX_20;
     uint64_t uVar4;
     
     uVar4 = 0xfffffffffffffffe;
@@ -648,7 +648,7 @@ void handle_system_initialization_complete(longlong param_1)
     FUN_180050b00();
     
     // 检查全局状态
-    if (core_system_memory != (longlong *)0x0) {
+    if (core_system_memory != (int64_t *)0x0) {
         if ((void *)*core_system_memory == &global_config_8768_ptr) {
             cVar3 = (char)core_system_memory[2] != '\0';
         }
@@ -659,17 +659,17 @@ void handle_system_initialization_complete(longlong param_1)
     }
     
     // 分配内存并初始化
-    plVar2 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr, 0xc0, 8, 3, uVar4);
+    plVar2 = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0xc0, 8, 3, uVar4);
     plStackX_20 = plVar2;
     FUN_180049830(plVar2);
-    *plVar2 = (longlong)&global_config_8768_ptr;
+    *plVar2 = (int64_t)&global_config_8768_ptr;
     plVar2[3] = -4;
-    pplStackX_10 = (longlong **)plVar2;
+    pplStackX_10 = (int64_t **)plVar2;
     (**(code **)(*plVar2 + 0x28))(plVar2);
     
     // 更新全局状态
-    pplStackX_10 = (longlong **)core_system_memory;
-    if (core_system_memory != (longlong *)0x0) {
+    pplStackX_10 = (int64_t **)core_system_memory;
+    if (core_system_memory != (int64_t *)0x0) {
         lVar1 = *core_system_memory;
         core_system_memory = plVar2;
         (**(code **)(lVar1 + 0x38))();
@@ -689,8 +689,8 @@ void handle_system_initialization_complete(longlong param_1)
     // 清理资源
     plVar2 = core_system_memory;
     plStackX_18 = core_system_memory;
-    core_system_memory = (longlong *)0x0;
-    if (plVar2 != (longlong *)0x0) {
+    core_system_memory = (int64_t *)0x0;
+    if (plVar2 != (int64_t *)0x0) {
         (**(code **)(*plVar2 + 0x38))();
     }
 LAB_180043e47:
@@ -698,16 +698,16 @@ LAB_180043e47:
     
     // 处理额外资源
     if (*(char *)(system_main_module_state + 0x1ed) != '\0') {
-        plVar2 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr, 0x28, 8, 3);
-        *plVar2 = (longlong)&global_config_3552_ptr;
-        *plVar2 = (longlong)&global_config_3696_ptr;
+        plVar2 = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x28, 8, 3);
+        *plVar2 = (int64_t)&global_config_3552_ptr;
+        *plVar2 = (int64_t)&global_config_3696_ptr;
         *(int32_t *)(plVar2 + 1) = 0;
-        *plVar2 = (longlong)&global_config_1000_ptr;
+        *plVar2 = (int64_t)&global_config_1000_ptr;
         LOCK();
         *(int8_t *)(plVar2 + 2) = 0;
         UNLOCK();
         plVar2[3] = -1;
-        *plVar2 = (longlong)&global_config_864_ptr;
+        *plVar2 = (int64_t)&global_config_864_ptr;
         plVar2[4] = 0x180c91060;
         plStackX_20 = plVar2;
         (**(code **)(*plVar2 + 0x28))(plVar2);
@@ -729,7 +729,7 @@ LAB_180043e47:
  * 参数：param_1 - 内存指针，param_2 - 标志，param_3 - 参数3，param_4 - 参数4
  * 返回值：返回清理后的内存指针
  */
-uint64_t *cleanup_memory_resources(uint64_t *param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4)
+uint64_t *cleanup_memory_resources(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 清理多个内存资源
     *param_1 = &global_config_864_ptr;
@@ -796,52 +796,52 @@ void initialize_system_environment(void)
 {
     uint64_t *puVar1;
     code *pcVar2;
-    longlong lVar3;
+    int64_t lVar3;
     int iVar4;
     uint64_t uVar5;
-    longlong *plVar6;
+    int64_t *plVar6;
     int8_t auStack_248 [32];
     void *puStack_228;
     void *puStack_220;
     void *puStack_218;
-    longlong *plStack_208;
+    int64_t *plStack_208;
     int32_t uStack_200;
     void *puStack_1f8;
     void *puStack_1f0;
     int32_t uStack_1e8;
-    ulonglong uStack_1e0;
+    uint64_t uStack_1e0;
     void *puStack_1d8;
     void *puStack_1d0;
     int32_t uStack_1c8;
-    ulonglong uStack_1c0;
+    uint64_t uStack_1c0;
     void *puStack_1b8;
-    longlong lStack_1b0;
+    int64_t lStack_1b0;
     int32_t uStack_1a0;
     uint64_t uStack_198;
-    longlong *plStack_190;
+    int64_t *plStack_190;
     void *puStack_188;
     void *puStack_180;
     int32_t uStack_178;
     uint8_t auStack_170 [32];
-    longlong **applStack_150 [3];
+    int64_t **applStack_150 [3];
     int8_t auStack_138 [272];
-    ulonglong uStack_28;
+    uint64_t uStack_28;
     
     uStack_198 = 0xfffffffffffffffe;
-    uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_248;
+    uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_248;
     uStack_200 = 0;
     
     // 检查是否需要初始化
     if (*(char *)(system_message_context + 0x18) == '\0') {
         FUN_18004b560(&puStack_1b8);
-        (**(code **)(**(longlong **)(system_main_module_state + 0x2b0) + 0x98))
-                  (*(longlong **)(system_main_module_state + 0x2b0), &puStack_1b8);
+        (**(code **)(**(int64_t **)(system_main_module_state + 0x2b0) + 0x98))
+                  (*(int64_t **)(system_main_module_state + 0x2b0), &puStack_1b8);
         FUN_180061380();
         lVar3 = system_message_context;
         uVar5 = FUN_18062b1e0(system_memory_pool_ptr, 0x70, 8, 3);
-        plVar6 = (longlong *)FUN_1800636f0(uVar5, 8, lVar3);
+        plVar6 = (int64_t *)FUN_1800636f0(uVar5, 8, lVar3);
         plStack_190 = plVar6;
-        if (plVar6 != (longlong *)0x0) {
+        if (plVar6 != (int64_t *)0x0) {
             (**(code **)(*plVar6 + 0x28))(plVar6);
         }
         *(int32_t *)(plVar6 + 0xd) = 0xbb80073;
@@ -863,25 +863,25 @@ void initialize_system_environment(void)
         uStack_1e0 = 0;
         puStack_1f0 = (void *)0x0;
         uStack_1e8 = 0;
-        plStack_208 = (longlong *)CONCAT44(plStack_208._4_4_, 0x10);
+        plStack_208 = (int64_t *)CONCAT44(plStack_208._4_4_, 0x10);
         iVar4 = GetComputerNameA(applStack_150, &plStack_208);
         if (iVar4 == 0) {
             FUN_180627160(&global_config_2736_ptr);
         }
         else {
-            if (0xf < ((ulonglong)plStack_208 & 0xffffffff)) goto LAB_180044db8;
-            *(int8_t *)((longlong)applStack_150 + ((ulonglong)plStack_208 & 0xffffffff)) = 0;
+            if (0xf < ((uint64_t)plStack_208 & 0xffffffff)) goto LAB_180044db8;
+            *(int8_t *)((int64_t)applStack_150 + ((uint64_t)plStack_208 & 0xffffffff)) = 0;
             (**(code **)(puStack_1d8 + 0x10))(&puStack_1d8, applStack_150);
         }
         
         // 获取用户名
-        plStack_208 = (longlong *)CONCAT44(plStack_208._4_4_, 0x101);
+        plStack_208 = (int64_t *)CONCAT44(plStack_208._4_4_, 0x101);
         iVar4 = GetUserNameA(auStack_138, &plStack_208);
         if (iVar4 == 0) {
             FUN_180627160(&global_config_2776_ptr);
         }
         else {
-            if (0x100 < ((ulonglong)plStack_208 & 0xffffffff)) {
+            if (0x100 < ((uint64_t)plStack_208 & 0xffffffff)) {
                 FUN_1808fcdc8();
 LAB_180044db8:
                 FUN_1808fcdc8();
@@ -889,7 +889,7 @@ LAB_180044db8:
                 (*pcVar2)();
                 return;
             }
-            auStack_138[(ulonglong)plStack_208 & 0xffffffff] = 0;
+            auStack_138[(uint64_t)plStack_208 & 0xffffffff] = 0;
             (**(code **)(puStack_1f8 + 0x10))(&puStack_1f8, auStack_138);
         }
         
@@ -945,7 +945,7 @@ LAB_180044db8:
     }
     uStack_200 = 0;
     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_248);
+    FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_248);
 }
 
 
@@ -956,53 +956,53 @@ LAB_180044db8:
 
 
 
-// 函数: void FUN_180044dc0(uint64_t param_1,longlong param_2)
+// 函数: void FUN_180044dc0(uint64_t param_1,int64_t param_2)
 /**
  * 初始化系统调试和性能计数器
  * 功能：初始化系统调试功能、符号处理和性能计数器
  * 参数：param_1 - 参数1，param_2 - 参数2
  */
-void initialize_debug_and_performance(uint64_t param_1, longlong param_2)
+void initialize_debug_and_performance(uint64_t param_1, int64_t param_2)
 {
-    longlong **pplVar1;
+    int64_t **pplVar1;
     int iVar2;
     uint uVar3;
     int32_t uVar4;
     uint64_t uVar5;
-    longlong *plVar6;
-    longlong lVar7;
+    int64_t *plVar6;
+    int64_t lVar7;
     uint64_t *puVar8;
     uint64_t *puVar9;
     uint64_t *puVar10;
     int8_t *puVar11;
     char *pcVar12;
     void *puVar13;
-    ulonglong uVar14;
+    uint64_t uVar14;
     uint uVar15;
     char cVar16;
-    longlong *plStackX_10;
-    longlong **pplStackX_18;
-    longlong lStackX_20;
+    int64_t *plStackX_10;
+    int64_t **pplStackX_18;
+    int64_t lStackX_20;
     void *puStack_b8;
     void *puStack_b0;
     int32_t uStack_a0;
     void *puStack_98;
-    longlong lStack_90;
+    int64_t lStack_90;
     uint uStack_88;
     void *puStack_78;
     void *puStack_70;
     int32_t uStack_60;
     uint64_t uStack_58;
-    longlong **pplStack_50;
-    longlong *plStack_48;
+    int64_t **pplStack_50;
+    int64_t *plStack_48;
     
     uStack_58 = 0xfffffffffffffffe;
     uVar5 = FUN_180043f90();
     FUN_180629770();
     
     // 初始化互斥锁和数据结构
-    plVar6 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr, 0x68, 8, 3);
-    pplVar1 = (longlong **)(plVar6 + 1);
+    plVar6 = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x68, 8, 3);
+    pplVar1 = (int64_t **)(plVar6 + 1);
     plStackX_10 = plVar6;
     pplStackX_18 = pplVar1;
     _Mtx_init_in_situ(pplVar1, 2);
@@ -1115,7 +1115,7 @@ LAB_180044faf:
     if (iVar2 == 0) {
         FUN_180626ee0(&global_config_2608_ptr);
     }
-    core_system_data_memory = 1.0 / (double)(longlong)pplStackX_18;
+    core_system_data_memory = 1.0 / (double)(int64_t)pplStackX_18;
     timeBeginPeriod(1);
     QueryPerformanceCounter(&lStackX_20);
     
@@ -1182,22 +1182,22 @@ int32_t system_main_cleanup(void)
 {
     uint64_t *puVar1;
     code *pcVar2;
-    longlong **pplVar3;
+    int64_t **pplVar3;
     int32_t uVar4;
     int iVar5;
-    longlong ****pppplVar6;
+    int64_t ****pppplVar6;
     uint64_t uVar7;
-    longlong ****pppplVar8;
-    longlong ***ppplVar9;
-    longlong lVar10;
+    int64_t ****pppplVar8;
+    int64_t ***ppplVar9;
+    int64_t lVar10;
     char cVar11;
-    longlong ****pppplStackX_8;
-    longlong ***ppplStackX_10;
-    longlong **pplStackX_18;
-    longlong ***ppplStackX_20;
+    int64_t ****pppplStackX_8;
+    int64_t ***ppplStackX_10;
+    int64_t **pplStackX_18;
+    int64_t ***ppplStackX_20;
     uint64_t uVar12;
-    longlong *****ppppplVar13;
-    longlong ****pppplVar14;
+    int64_t *****ppppplVar13;
+    int64_t ****pppplVar14;
     
     uVar12 = 0xfffffffffffffffe;
     
@@ -1216,11 +1216,11 @@ int32_t system_main_cleanup(void)
     }
     
     // 初始化清理数据结构
-    pppplVar6 = (longlong ****)FUN_18062b1e0(system_memory_pool_ptr, 0xc0, 8, 3, uVar12);
+    pppplVar6 = (int64_t ****)FUN_18062b1e0(system_memory_pool_ptr, 0xc0, 8, 3, uVar12);
     pppplStackX_8 = pppplVar6;
     FUN_180049830(pppplVar6);
-    *pppplVar6 = (longlong ***)&global_config_3368_ptr;
-    ppplStackX_20 = (longlong ***)pppplVar6;
+    *pppplVar6 = (int64_t ***)&global_config_3368_ptr;
+    ppplStackX_20 = (int64_t ***)pppplVar6;
     (*(code *)(*pppplVar6)[5])(pppplVar6);
     lVar10 = system_context_ptr;
     ppppplVar13 = &pppplStackX_8;
@@ -1230,7 +1230,7 @@ int32_t system_main_cleanup(void)
     
     // 等待清理完成
     while( true ) {
-        if (*pppplVar6 == (longlong ***)&global_config_3368_ptr) {
+        if (*pppplVar6 == (int64_t ***)&global_config_3368_ptr) {
             cVar11 = *(char *)(pppplVar6 + 2) != '\0';
         }
         else {
@@ -1244,9 +1244,9 @@ int32_t system_main_cleanup(void)
     FUN_1800623e0();
     lVar10 = system_message_context;
     uVar7 = FUN_18062b1e0(system_memory_pool_ptr, 0x70, 8, 3);
-    pppplVar8 = (longlong ****)FUN_1800636f0(uVar7, 2, lVar10);
+    pppplVar8 = (int64_t ****)FUN_1800636f0(uVar7, 2, lVar10);
     pppplVar14 = pppplVar8;
-    if (pppplVar8 != (longlong ****)0x0) {
+    if (pppplVar8 != (int64_t ****)0x0) {
         (*(code *)(*pppplVar8)[5])(pppplVar8);
     }
     
@@ -1254,33 +1254,33 @@ int32_t system_main_cleanup(void)
     puVar1 = *(uint64_t **)(lVar10 + 400);
     pcVar2 = *(code **)*puVar1;
     pppplStackX_8 = &ppplStackX_10;
-    ppplStackX_10 = (longlong ***)pppplVar8;
-    if (pppplVar8 != (longlong ****)0x0) {
+    ppplStackX_10 = (int64_t ***)pppplVar8;
+    if (pppplVar8 != (int64_t ****)0x0) {
         (*(code *)(*pppplVar8)[5])(pppplVar8);
     }
     (*pcVar2)(puVar1, &ppplStackX_10);
     
     // 第二阶段清理
     uVar12 = FUN_18062b1e0(system_memory_pool_ptr, 0x70, 8, 3, uVar12, ppppplVar13, pppplVar14);
-    ppplVar9 = (longlong ***)FUN_1800636f0(uVar12, 0, lVar10);
-    if (ppplVar9 != (longlong ***)0x0) {
+    ppplVar9 = (int64_t ***)FUN_1800636f0(uVar12, 0, lVar10);
+    if (ppplVar9 != (int64_t ***)0x0) {
         (*(code *)(*ppplVar9)[5])(ppplVar9);
     }
     puVar1 = *(uint64_t **)(lVar10 + 400);
     pcVar2 = *(code **)*puVar1;
-    pppplStackX_8 = (longlong ****)&pplStackX_18;
-    pplStackX_18 = (longlong **)ppplVar9;
-    if (ppplVar9 != (longlong ***)0x0) {
+    pppplStackX_8 = (int64_t ****)&pplStackX_18;
+    pplStackX_18 = (int64_t **)ppplVar9;
+    if (ppplVar9 != (int64_t ***)0x0) {
         (*(code *)(*ppplVar9)[5])(ppplVar9);
     }
     (*pcVar2)(puVar1, &pplStackX_18);
     FUN_18020f150(*(uint64_t *)(lVar10 + 400));
     
     // 清理资源
-    if (ppplVar9 != (longlong ***)0x0) {
+    if (ppplVar9 != (int64_t ***)0x0) {
         (*(code *)(*ppplVar9)[7])(ppplVar9);
     }
-    if (pppplVar8 != (longlong ****)0x0) {
+    if (pppplVar8 != (int64_t ****)0x0) {
         (*(code *)(*pppplVar8)[7])(pppplVar8);
     }
     
@@ -1289,7 +1289,7 @@ int32_t system_main_cleanup(void)
     *(int8_t *)(core_system_data_memory[1] + 0x80) = 1;
     while( true ) {
         pplVar3 = *pppplVar14[1];
-        if (pplVar3 == (longlong **)&global_config_3624_ptr) {
+        if (pplVar3 == (int64_t **)&global_config_3624_ptr) {
             cVar11 = *(char *)(pppplVar14[1] + 2) != '\0';
         }
         else {
@@ -1302,19 +1302,19 @@ int32_t system_main_cleanup(void)
     
     // 释放系统资源
     pppplStackX_8 = core_system_data_memory;
-    if (core_system_data_memory != (longlong ****)0x0) {
+    if (core_system_data_memory != (int64_t ****)0x0) {
         lVar10 = __RTCastToVoid(core_system_data_memory);
-        *pppplVar8 = (longlong ***)&global_config_2208_ptr;
+        *pppplVar8 = (int64_t ***)&global_config_2208_ptr;
         PostQueuedCompletionStatus(pppplVar8[0x42686], 0, 0xffffffffffffffff);
         CloseHandle(pppplVar8[0x42686]);
-        ppplStackX_10 = (longlong ***)(pppplVar8 + 0x42687);
-        if ((longlong ***)*ppplStackX_10 != (longlong ***)0x0) {
+        ppplStackX_10 = (int64_t ***)(pppplVar8 + 0x42687);
+        if ((int64_t ***)*ppplStackX_10 != (int64_t ***)0x0) {
             // WARNING: Subroutine does not return
             FUN_18064e900();
         }
-        ppplStackX_10 = (longlong ***)(pppplVar8 + 0x4267c);
+        ppplStackX_10 = (int64_t ***)(pppplVar8 + 0x4267c);
         _Mtx_destroy_in_situ();
-        ppplStackX_10 = (longlong ***)(pppplVar8 + 0x40070);
+        ppplStackX_10 = (int64_t ***)(pppplVar8 + 0x40070);
         _Mtx_destroy_in_situ();
         FUN_18006bfe0(pppplVar8);
         if (lVar10 != 0) {
@@ -1326,7 +1326,7 @@ int32_t system_main_cleanup(void)
     // 清理全局状态
     pppplVar14 = core_system_data_memory;
     lVar10 = system_context_ptr;
-    core_system_data_memory = (longlong ****)0x0;
+    core_system_data_memory = (int64_t ****)0x0;
     if (system_context_ptr != 0) {
         FUN_18005d790(system_context_ptr);
         // WARNING: Subroutine does not return
@@ -1335,8 +1335,8 @@ int32_t system_main_cleanup(void)
     system_context_ptr = 0;
     *(int32_t *)(core_system_data_memory + 0x2d) = 2;
     pppplStackX_8 = pppplVar14;
-    if (pppplVar14 == (longlong ****)0x0) {
-        core_system_data_memory = (longlong ****)0x0;
+    if (pppplVar14 == (int64_t ****)0x0) {
+        core_system_data_memory = (int64_t ****)0x0;
         WaitForSingleObject(core_system_memory, 0xffffffff);
         do {
             iVar5 = ReleaseSemaphore(core_system_memory, 1);
@@ -1370,16 +1370,16 @@ void WotsMain(uint64_t param_1)
 
 
 
-// 函数: void FUN_180045af0(longlong *param_1)
+// 函数: void FUN_180045af0(int64_t *param_1)
 /**
  * 清理对象
  * 功能：清理指定对象和相关资源
  * 参数：param_1 - 对象指针
  */
-void cleanup_object(longlong *param_1)
+void cleanup_object(int64_t *param_1)
 {
-    if ((longlong *)*param_1 != (longlong *)0x0) {
-        (**(code **)(*(longlong *)*param_1 + 0x38))();
+    if ((int64_t *)*param_1 != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)*param_1 + 0x38))();
     }
     return;
 }
@@ -1390,15 +1390,15 @@ void cleanup_object(longlong *param_1)
 
 
 
-// 函数: void FUN_180045b20(longlong param_1,longlong param_2)
+// 函数: void FUN_180045b20(int64_t param_1,int64_t param_2)
 /**
  * 复制字符串到对象
  * 功能：将字符串复制到指定对象中
  * 参数：param_1 - 目标对象，param_2 - 源字符串
  */
-void copy_string_to_object(longlong param_1, longlong param_2)
+void copy_string_to_object(int64_t param_1, int64_t param_2)
 {
-    longlong lVar1;
+    int64_t lVar1;
     
     // 处理空字符串
     if (param_2 == 0) {
@@ -1435,18 +1435,18 @@ void copy_string_to_object(longlong param_1, longlong param_2)
 
 
 
-// 函数: void FUN_180045ba0(longlong param_1,uint64_t param_2,int param_3)
+// 函数: void FUN_180045ba0(int64_t param_1,uint64_t param_2,int param_3)
 /**
  * 复制内存到对象
  * 功能：将内存数据复制到指定对象中
  * 参数：param_1 - 目标对象，param_2 - 源数据，param_3 - 数据长度
  */
-void copy_memory_to_object(longlong param_1, uint64_t param_2, int param_3)
+void copy_memory_to_object(int64_t param_1, uint64_t param_2, int param_3)
 {
     // 复制内存数据
     if (param_3 + 1 < 0x1000) {
         // WARNING: Subroutine does not return
-        memcpy(*(int8_t **)(param_1 + 8), param_2, (longlong)param_3);
+        memcpy(*(int8_t **)(param_1 + 8), param_2, (int64_t)param_3);
     }
     
     // 清理对象
@@ -1487,7 +1487,7 @@ void memory_copy_simplified(void)
  */
 void initialize_memory_block(int8_t *param_1)
 {
-    longlong unaff_RDI;
+    int64_t unaff_RDI;
     
     *param_1 = 0;
     *(int32_t *)(unaff_RDI + 0x10) = 0;
@@ -1519,7 +1519,7 @@ void system_fast_terminate(void)
  * 参数：param_1 - 内存指针，param_2 - 标志，param_3 - 参数3，param_4 - 参数4
  * 返回值：返回清理后的内存指针
  */
-uint64_t *cleanup_large_memory_block(uint64_t *param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4)
+uint64_t *cleanup_large_memory_block(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     *param_1 = &global_config_720_ptr;
     
@@ -1584,7 +1584,7 @@ void guard_check_icall(void)
  * 参数：param_1 - 内存指针，param_2 - 标志，param_3 - 参数3，param_4 - 参数4
  * 返回值：返回清理后的内存指针
  */
-uint64_t *cleanup_small_memory_block(uint64_t *param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4)
+uint64_t *cleanup_small_memory_block(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     *param_1 = &global_config_720_ptr;
     
@@ -1601,15 +1601,15 @@ uint64_t *cleanup_small_memory_block(uint64_t *param_1, ulonglong param_2, uint6
 
 
 
-// 函数: void FUN_180045ee0(longlong param_1,longlong param_2)
+// 函数: void FUN_180045ee0(int64_t param_1,int64_t param_2)
 /**
  * 复制短字符串到对象
  * 功能：将短字符串复制到指定对象中（限制1024字节）
  * 参数：param_1 - 目标对象，param_2 - 源字符串
  */
-void copy_short_string_to_object(longlong param_1, longlong param_2)
+void copy_short_string_to_object(int64_t param_1, int64_t param_2)
 {
-    longlong lVar1;
+    int64_t lVar1;
     
     // 处理空字符串
     if (param_2 == 0) {

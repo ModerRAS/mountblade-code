@@ -13,8 +13,8 @@ void initialize_base_rendering_registry(void)
   char registry_flag;
   uint64_t *registry_root;
   int compare_result;
-  longlong *registry_manager;
-  longlong allocation_size;
+  int64_t *registry_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -22,9 +22,9 @@ void initialize_base_rendering_registry(void)
   uint64_t callback_parameter;
   
   // 获取注册表管理器实例
-  registry_manager = (longlong *)get_registry_manager();
+  registry_manager = (int64_t *)get_registry_manager();
   registry_root = (uint64_t *)*registry_manager;
-  registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
+  registry_flag = *(char *)((int64_t)registry_root[1] + 0x19);
   callback_parameter = 0;
   previous_node = registry_root;
   current_node = (uint64_t *)registry_root[1];
@@ -41,7 +41,7 @@ void initialize_base_rendering_registry(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    registry_flag = *(char *)((longlong)next_node + 0x19);
+    registry_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新的注册表条目
@@ -75,8 +75,8 @@ void initialize_material_rendering_registry(void)
   char registry_flag;
   uint64_t *registry_root;
   int compare_result;
-  longlong *registry_manager;
-  longlong allocation_size;
+  int64_t *registry_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -84,9 +84,9 @@ void initialize_material_rendering_registry(void)
   uint64_t callback_parameter;
   
   // 获取注册表管理器实例
-  registry_manager = (longlong *)get_registry_manager();
+  registry_manager = (int64_t *)get_registry_manager();
   registry_root = (uint64_t *)*registry_manager;
-  registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
+  registry_flag = *(char *)((int64_t)registry_root[1] + 0x19);
   callback_parameter = 0;
   previous_node = registry_root;
   current_node = (uint64_t *)registry_root[1];
@@ -103,7 +103,7 @@ void initialize_material_rendering_registry(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    registry_flag = *(char *)((longlong)next_node + 0x19);
+    registry_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新的注册表条目
@@ -137,8 +137,8 @@ void initialize_texture_rendering_registry(void)
   char registry_flag;
   uint64_t *registry_root;
   int compare_result;
-  longlong *registry_manager;
-  longlong allocation_size;
+  int64_t *registry_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -146,9 +146,9 @@ void initialize_texture_rendering_registry(void)
   uint64_t callback_parameter;
   
   // 获取注册表管理器实例
-  registry_manager = (longlong *)get_registry_manager();
+  registry_manager = (int64_t *)get_registry_manager();
   registry_root = (uint64_t *)*registry_manager;
-  registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
+  registry_flag = *(char *)((int64_t)registry_root[1] + 0x19);
   callback_parameter = 0;
   previous_node = registry_root;
   current_node = (uint64_t *)registry_root[1];
@@ -165,7 +165,7 @@ void initialize_texture_rendering_registry(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    registry_flag = *(char *)((longlong)next_node + 0x19);
+    registry_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新的注册表条目
@@ -229,7 +229,7 @@ void initialize_game_system_config_registry(void)
  */
 int initialize_system_data_pointers(void)
 {
-  longlong system_data;
+  int64_t system_data;
   uint64_t config_param;
   
   // 设置系统数据指针
@@ -314,8 +314,8 @@ void initialize_input_system_registry(void)
   char registry_flag;
   uint64_t *registry_root;
   int compare_result;
-  longlong *registry_manager;
-  longlong allocation_size;
+  int64_t *registry_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -323,9 +323,9 @@ void initialize_input_system_registry(void)
   void *input_callback;
   
   // 获取注册表管理器实例
-  registry_manager = (longlong *)get_registry_manager();
+  registry_manager = (int64_t *)get_registry_manager();
   registry_root = (uint64_t *)*registry_manager;
-  registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
+  registry_flag = *(char *)((int64_t)registry_root[1] + 0x19);
   input_callback = input_system_callback;
   previous_node = registry_root;
   current_node = (uint64_t *)registry_root[1];
@@ -342,7 +342,7 @@ void initialize_input_system_registry(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    registry_flag = *(char *)((longlong)next_node + 0x19);
+    registry_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新的注册表条目
@@ -376,8 +376,8 @@ void initialize_physics_system_registry(void)
   char registry_flag;
   uint64_t *registry_root;
   int compare_result;
-  longlong *registry_manager;
-  longlong allocation_size;
+  int64_t *registry_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -385,9 +385,9 @@ void initialize_physics_system_registry(void)
   void *physics_callback;
   
   // 获取注册表管理器实例
-  registry_manager = (longlong *)get_registry_manager();
+  registry_manager = (int64_t *)get_registry_manager();
   registry_root = (uint64_t *)*registry_manager;
-  registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
+  registry_flag = *(char *)((int64_t)registry_root[1] + 0x19);
   physics_callback = physics_system_callback;
   previous_node = registry_root;
   current_node = (uint64_t *)registry_root[1];
@@ -404,7 +404,7 @@ void initialize_physics_system_registry(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    registry_flag = *(char *)((longlong)next_node + 0x19);
+    registry_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新的注册表条目
@@ -438,8 +438,8 @@ void initialize_animation_system_registry(void)
   char registry_flag;
   uint64_t *registry_root;
   int compare_result;
-  longlong *registry_manager;
-  longlong allocation_size;
+  int64_t *registry_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -447,9 +447,9 @@ void initialize_animation_system_registry(void)
   uint64_t callback_parameter;
   
   // 获取注册表管理器实例
-  registry_manager = (longlong *)get_registry_manager();
+  registry_manager = (int64_t *)get_registry_manager();
   registry_root = (uint64_t *)*registry_manager;
-  registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
+  registry_flag = *(char *)((int64_t)registry_root[1] + 0x19);
   callback_parameter = 0;
   previous_node = registry_root;
   current_node = (uint64_t *)registry_root[1];
@@ -466,7 +466,7 @@ void initialize_animation_system_registry(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    registry_flag = *(char *)((longlong)next_node + 0x19);
+    registry_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新的注册表条目
@@ -500,8 +500,8 @@ void initialize_ai_system_registry(void)
   char registry_flag;
   uint64_t *registry_root;
   int compare_result;
-  longlong *registry_manager;
-  longlong allocation_size;
+  int64_t *registry_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -509,9 +509,9 @@ void initialize_ai_system_registry(void)
   void *ai_callback;
   
   // 获取注册表管理器实例
-  registry_manager = (longlong *)get_registry_manager();
+  registry_manager = (int64_t *)get_registry_manager();
   registry_root = (uint64_t *)*registry_manager;
-  registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
+  registry_flag = *(char *)((int64_t)registry_root[1] + 0x19);
   ai_callback = ai_system_callback;
   previous_node = registry_root;
   current_node = (uint64_t *)registry_root[1];
@@ -528,7 +528,7 @@ void initialize_ai_system_registry(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    registry_flag = *(char *)((longlong)next_node + 0x19);
+    registry_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新的注册表条目
@@ -562,8 +562,8 @@ void initialize_scene_management_registry(void)
   char registry_flag;
   uint64_t *registry_root;
   int compare_result;
-  longlong *registry_manager;
-  longlong allocation_size;
+  int64_t *registry_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -571,9 +571,9 @@ void initialize_scene_management_registry(void)
   uint64_t callback_parameter;
   
   // 获取注册表管理器实例
-  registry_manager = (longlong *)get_registry_manager();
+  registry_manager = (int64_t *)get_registry_manager();
   registry_root = (uint64_t *)*registry_manager;
-  registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
+  registry_flag = *(char *)((int64_t)registry_root[1] + 0x19);
   callback_parameter = 0;
   previous_node = registry_root;
   current_node = (uint64_t *)registry_root[1];
@@ -590,7 +590,7 @@ void initialize_scene_management_registry(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    registry_flag = *(char *)((longlong)next_node + 0x19);
+    registry_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新的注册表条目
@@ -624,8 +624,8 @@ void initialize_particle_system_registry(void)
   char registry_flag;
   uint64_t *registry_root;
   int compare_result;
-  longlong *registry_manager;
-  longlong allocation_size;
+  int64_t *registry_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -633,9 +633,9 @@ void initialize_particle_system_registry(void)
   uint64_t callback_parameter;
   
   // 获取注册表管理器实例
-  registry_manager = (longlong *)get_registry_manager();
+  registry_manager = (int64_t *)get_registry_manager();
   registry_root = (uint64_t *)*registry_manager;
-  registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
+  registry_flag = *(char *)((int64_t)registry_root[1] + 0x19);
   callback_parameter = 0;
   previous_node = registry_root;
   current_node = (uint64_t *)registry_root[1];
@@ -652,7 +652,7 @@ void initialize_particle_system_registry(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    registry_flag = *(char *)((longlong)next_node + 0x19);
+    registry_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新的注册表条目
@@ -686,8 +686,8 @@ void initialize_lighting_system_registry(void)
   char registry_flag;
   uint64_t *registry_root;
   int compare_result;
-  longlong *registry_manager;
-  longlong allocation_size;
+  int64_t *registry_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -695,9 +695,9 @@ void initialize_lighting_system_registry(void)
   uint64_t callback_parameter;
   
   // 获取注册表管理器实例
-  registry_manager = (longlong *)get_registry_manager();
+  registry_manager = (int64_t *)get_registry_manager();
   registry_root = (uint64_t *)*registry_manager;
-  registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
+  registry_flag = *(char *)((int64_t)registry_root[1] + 0x19);
   callback_parameter = 0;
   previous_node = registry_root;
   current_node = (uint64_t *)registry_root[1];
@@ -714,7 +714,7 @@ void initialize_lighting_system_registry(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    registry_flag = *(char *)((longlong)next_node + 0x19);
+    registry_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新的注册表条目
@@ -748,8 +748,8 @@ void initialize_post_processing_registry(void)
   char registry_flag;
   uint64_t *registry_root;
   int compare_result;
-  longlong *registry_manager;
-  longlong allocation_size;
+  int64_t *registry_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -757,9 +757,9 @@ void initialize_post_processing_registry(void)
   uint64_t callback_parameter;
   
   // 获取注册表管理器实例
-  registry_manager = (longlong *)get_registry_manager();
+  registry_manager = (int64_t *)get_registry_manager();
   registry_root = (uint64_t *)*registry_manager;
-  registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
+  registry_flag = *(char *)((int64_t)registry_root[1] + 0x19);
   callback_parameter = 0;
   previous_node = registry_root;
   current_node = (uint64_t *)registry_root[1];
@@ -776,7 +776,7 @@ void initialize_post_processing_registry(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    registry_flag = *(char *)((longlong)next_node + 0x19);
+    registry_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新的注册表条目
@@ -843,8 +843,8 @@ void initialize_audio_management_registry(void)
   char registry_flag;
   uint64_t *registry_root;
   int compare_result;
-  longlong *registry_manager;
-  longlong allocation_size;
+  int64_t *registry_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -852,9 +852,9 @@ void initialize_audio_management_registry(void)
   void *audio_callback;
   
   // 获取注册表管理器实例
-  registry_manager = (longlong *)get_registry_manager();
+  registry_manager = (int64_t *)get_registry_manager();
   registry_root = (uint64_t *)*registry_manager;
-  registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
+  registry_flag = *(char *)((int64_t)registry_root[1] + 0x19);
   audio_callback = audio_management_callback;
   previous_node = registry_root;
   current_node = (uint64_t *)registry_root[1];
@@ -871,7 +871,7 @@ void initialize_audio_management_registry(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    registry_flag = *(char *)((longlong)next_node + 0x19);
+    registry_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新的注册表条目
@@ -905,8 +905,8 @@ void initialize_sound_effect_registry(void)
   char registry_flag;
   uint64_t *registry_root;
   int compare_result;
-  longlong *registry_manager;
-  longlong allocation_size;
+  int64_t *registry_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -914,9 +914,9 @@ void initialize_sound_effect_registry(void)
   uint64_t callback_parameter;
   
   // 获取注册表管理器实例
-  registry_manager = (longlong *)get_registry_manager();
+  registry_manager = (int64_t *)get_registry_manager();
   registry_root = (uint64_t *)*registry_manager;
-  registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
+  registry_flag = *(char *)((int64_t)registry_root[1] + 0x19);
   callback_parameter = 0;
   previous_node = registry_root;
   current_node = (uint64_t *)registry_root[1];
@@ -933,7 +933,7 @@ void initialize_sound_effect_registry(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    registry_flag = *(char *)((longlong)next_node + 0x19);
+    registry_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新的注册表条目
@@ -967,8 +967,8 @@ void initialize_music_system_registry(void)
   char registry_flag;
   uint64_t *registry_root;
   int compare_result;
-  longlong *registry_manager;
-  longlong allocation_size;
+  int64_t *registry_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -976,9 +976,9 @@ void initialize_music_system_registry(void)
   uint64_t callback_parameter;
   
   // 获取注册表管理器实例
-  registry_manager = (longlong *)get_registry_manager();
+  registry_manager = (int64_t *)get_registry_manager();
   registry_root = (uint64_t *)*registry_manager;
-  registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
+  registry_flag = *(char *)((int64_t)registry_root[1] + 0x19);
   callback_parameter = 0;
   previous_node = registry_root;
   current_node = (uint64_t *)registry_root[1];
@@ -995,7 +995,7 @@ void initialize_music_system_registry(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    registry_flag = *(char *)((longlong)next_node + 0x19);
+    registry_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新的注册表条目
@@ -1029,8 +1029,8 @@ void initialize_voice_system_registry(void)
   char registry_flag;
   uint64_t *registry_root;
   int compare_result;
-  longlong *registry_manager;
-  longlong allocation_size;
+  int64_t *registry_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -1038,9 +1038,9 @@ void initialize_voice_system_registry(void)
   uint64_t callback_parameter;
   
   // 获取注册表管理器实例
-  registry_manager = (longlong *)get_registry_manager();
+  registry_manager = (int64_t *)get_registry_manager();
   registry_root = (uint64_t *)*registry_manager;
-  registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
+  registry_flag = *(char *)((int64_t)registry_root[1] + 0x19);
   callback_parameter = 0;
   previous_node = registry_root;
   current_node = (uint64_t *)registry_root[1];
@@ -1057,7 +1057,7 @@ void initialize_voice_system_registry(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    registry_flag = *(char *)((longlong)next_node + 0x19);
+    registry_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新的注册表条目
@@ -1091,8 +1091,8 @@ void initialize_video_playback_registry(void)
   char registry_flag;
   uint64_t *registry_root;
   int compare_result;
-  longlong *registry_manager;
-  longlong allocation_size;
+  int64_t *registry_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -1100,9 +1100,9 @@ void initialize_video_playback_registry(void)
   uint64_t callback_parameter;
   
   // 获取注册表管理器实例
-  registry_manager = (longlong *)get_registry_manager();
+  registry_manager = (int64_t *)get_registry_manager();
   registry_root = (uint64_t *)*registry_manager;
-  registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
+  registry_flag = *(char *)((int64_t)registry_root[1] + 0x19);
   callback_parameter = 0;
   previous_node = registry_root;
   current_node = (uint64_t *)registry_root[1];
@@ -1119,7 +1119,7 @@ void initialize_video_playback_registry(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    registry_flag = *(char *)((longlong)next_node + 0x19);
+    registry_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新的注册表条目
@@ -1153,8 +1153,8 @@ void initialize_audio_stream_registry(void)
   char registry_flag;
   uint64_t *registry_root;
   int compare_result;
-  longlong *registry_manager;
-  longlong allocation_size;
+  int64_t *registry_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -1162,9 +1162,9 @@ void initialize_audio_stream_registry(void)
   uint64_t callback_parameter;
   
   // 获取注册表管理器实例
-  registry_manager = (longlong *)get_registry_manager();
+  registry_manager = (int64_t *)get_registry_manager();
   registry_root = (uint64_t *)*registry_manager;
-  registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
+  registry_flag = *(char *)((int64_t)registry_root[1] + 0x19);
   callback_parameter = 0;
   previous_node = registry_root;
   current_node = (uint64_t *)registry_root[1];
@@ -1181,7 +1181,7 @@ void initialize_audio_stream_registry(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    registry_flag = *(char *)((longlong)next_node + 0x19);
+    registry_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新的注册表条目
@@ -1215,8 +1215,8 @@ void initialize_resource_management_registry(void)
   char registry_flag;
   uint64_t *registry_root;
   int compare_result;
-  longlong *registry_manager;
-  longlong allocation_size;
+  int64_t *registry_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -1224,9 +1224,9 @@ void initialize_resource_management_registry(void)
   uint64_t callback_parameter;
   
   // 获取注册表管理器实例
-  registry_manager = (longlong *)get_registry_manager();
+  registry_manager = (int64_t *)get_registry_manager();
   registry_root = (uint64_t *)*registry_manager;
-  registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
+  registry_flag = *(char *)((int64_t)registry_root[1] + 0x19);
   callback_parameter = 0;
   previous_node = registry_root;
   current_node = (uint64_t *)registry_root[1];
@@ -1243,7 +1243,7 @@ void initialize_resource_management_registry(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    registry_flag = *(char *)((longlong)next_node + 0x19);
+    registry_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新的注册表条目
@@ -1277,8 +1277,8 @@ void initialize_memory_management_registry(void)
   char registry_flag;
   uint64_t *registry_root;
   int compare_result;
-  longlong *registry_manager;
-  longlong allocation_size;
+  int64_t *registry_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -1286,9 +1286,9 @@ void initialize_memory_management_registry(void)
   uint64_t callback_parameter;
   
   // 获取注册表管理器实例
-  registry_manager = (longlong *)get_registry_manager();
+  registry_manager = (int64_t *)get_registry_manager();
   registry_root = (uint64_t *)*registry_manager;
-  registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
+  registry_flag = *(char *)((int64_t)registry_root[1] + 0x19);
   callback_parameter = 0;
   previous_node = registry_root;
   current_node = (uint64_t *)registry_root[1];
@@ -1305,7 +1305,7 @@ void initialize_memory_management_registry(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    registry_flag = *(char *)((longlong)next_node + 0x19);
+    registry_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新的注册表条目
@@ -1339,8 +1339,8 @@ void initialize_thread_management_registry(void)
   char registry_flag;
   uint64_t *registry_root;
   int compare_result;
-  longlong *registry_manager;
-  longlong allocation_size;
+  int64_t *registry_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -1348,9 +1348,9 @@ void initialize_thread_management_registry(void)
   void *thread_callback;
   
   // 获取注册表管理器实例
-  registry_manager = (longlong *)get_registry_manager();
+  registry_manager = (int64_t *)get_registry_manager();
   registry_root = (uint64_t *)*registry_manager;
-  registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
+  registry_flag = *(char *)((int64_t)registry_root[1] + 0x19);
   thread_callback = thread_management_callback;
   previous_node = registry_root;
   current_node = (uint64_t *)registry_root[1];
@@ -1367,7 +1367,7 @@ void initialize_thread_management_registry(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    registry_flag = *(char *)((longlong)next_node + 0x19);
+    registry_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新的注册表条目
@@ -1401,8 +1401,8 @@ void initialize_sync_management_registry(void)
   char registry_flag;
   uint64_t *registry_root;
   int compare_result;
-  longlong *registry_manager;
-  longlong allocation_size;
+  int64_t *registry_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -1410,9 +1410,9 @@ void initialize_sync_management_registry(void)
   uint64_t callback_parameter;
   
   // 获取注册表管理器实例
-  registry_manager = (longlong *)get_registry_manager();
+  registry_manager = (int64_t *)get_registry_manager();
   registry_root = (uint64_t *)*registry_manager;
-  registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
+  registry_flag = *(char *)((int64_t)registry_root[1] + 0x19);
   callback_parameter = 0;
   previous_node = registry_root;
   current_node = (uint64_t *)registry_root[1];
@@ -1429,7 +1429,7 @@ void initialize_sync_management_registry(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    registry_flag = *(char *)((longlong)next_node + 0x19);
+    registry_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新的注册表条目
@@ -1463,8 +1463,8 @@ void initialize_network_sync_registry(void)
   char registry_flag;
   uint64_t *registry_root;
   int compare_result;
-  longlong *registry_manager;
-  longlong allocation_size;
+  int64_t *registry_manager;
+  int64_t allocation_size;
   uint64_t *current_node;
   uint64_t *previous_node;
   uint64_t *next_node;
@@ -1472,9 +1472,9 @@ void initialize_network_sync_registry(void)
   void *network_callback;
   
   // 获取注册表管理器实例
-  registry_manager = (longlong *)get_registry_manager();
+  registry_manager = (int64_t *)get_registry_manager();
   registry_root = (uint64_t *)*registry_manager;
-  registry_flag = *(char *)((longlong)registry_root[1] + 0x19);
+  registry_flag = *(char *)((int64_t)registry_root[1] + 0x19);
   network_callback = network_sync_callback;
   previous_node = registry_root;
   current_node = (uint64_t *)registry_root[1];
@@ -1491,7 +1491,7 @@ void initialize_network_sync_registry(void)
     }
     previous_node = current_node;
     current_node = next_node;
-    registry_flag = *(char *)((longlong)next_node + 0x19);
+    registry_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新的注册表条目

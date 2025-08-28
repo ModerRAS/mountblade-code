@@ -13,16 +13,16 @@
  */
 
 // 全局变量引用
-extern longlong SYSTEM_DATA_MANAGER_A;  // 引擎全局上下文
+extern int64_t SYSTEM_DATA_MANAGER_A;  // 引擎全局上下文
 extern uint global_var_6320_ptr[];      // 哈希计算查找表
 extern void FUN_18011db30(int *param_1, int param_2);  // 动态数组扩容
-extern void *func_0x000180120ce0(longlong param_1, void *param_2);  // 内存分配
-extern int FUN_18011ce30(void *param_1, longlong param_2, char param_3);  // 资源处理
+extern void *func_0x000180120ce0(int64_t param_1, void *param_2);  // 内存分配
+extern int FUN_18011ce30(void *param_1, int64_t param_2, char param_3);  // 资源处理
 extern int FUN_18011c120(int *param_1);  // 渲染条目选择
 extern int FUN_18011bd30(int *param_1);  // 优先级计算
 extern int FUN_180121250(byte *param_1, int param_2, int param_3);  // 哈希计算
 extern int FUN_180121250(void);  // 默认哈希计算
-extern void qsort(void *base, longlong num, longlong size, int (*compar)(const void *, const void *));  // 快速排序
+extern void qsort(void *base, int64_t num, int64_t size, int (*compar)(const void *, const void *));  // 快速排序
 extern int global_var_9728_ptr;  // 比较函数指针
 
 /**
@@ -50,20 +50,20 @@ void process_render_queue_optimization(int *render_queue)
     uint64_t temp8_4;
     uint64_t temp8_5;
     bool has_active_item;
-    longlong engine_context;
+    int64_t engine_context;
     int queue_count;
     int processed_count;
     uint64_t temp_data;
     int *item_ptr;
     float *float_ptr;
     int *temp_ptr;
-    ulonglong ulong_temp;
-    longlong item_offset;
+    uint64_t ulong_temp;
+    int64_t item_offset;
     int *index_ptr;
-    ulonglong ulong_temp2;
+    uint64_t ulong_temp2;
     int int_temp;
     int *temp_ptr2;
-    ulonglong ulong_temp3;
+    uint64_t ulong_temp3;
     uint uint_temp;
     int *temp_ptr3;
     int int_temp2;
@@ -74,7 +74,7 @@ void process_render_queue_optimization(int *render_queue)
     float float_temp3;
     float float_temp4;
     uint stack_temp1;
-    longlong stack_temp2;
+    int64_t stack_temp2;
     int8_t local_buffer[72];
     
     engine_context = SYSTEM_DATA_MANAGER_A;
@@ -92,42 +92,42 @@ void process_render_queue_optimization(int *render_queue)
     // 第一步：处理现有的渲染条目
     if (0 < queue_count) {
         do {
-            item_offset = *(longlong *)(render_queue + 2);
-            if (*(int *)((longlong)temp_ptr + item_offset + 0x10) < render_queue[9]) {
-                if (*(int *)((longlong)temp_ptr + item_offset) == render_queue[5]) {
+            item_offset = *(int64_t *)(render_queue + 2);
+            if (*(int *)((int64_t)temp_ptr + item_offset + 0x10) < render_queue[9]) {
+                if (*(int *)((int64_t)temp_ptr + item_offset) == render_queue[5]) {
                     render_queue[5] = 0;
                 }
             }
             else {
                 if (temp_ptr5 != index_ptr) {
-                    src_ptr = (int32_t *)((longlong)temp_ptr + item_offset);
+                    src_ptr = (int32_t *)((int64_t)temp_ptr + item_offset);
                     temp4_1 = src_ptr[1];
                     temp4_2 = src_ptr[2];
                     temp4_3 = src_ptr[3];
-                    src_ptr64 = (uint64_t *)((longlong)temp_ptr + item_offset + 0x10);
+                    src_ptr64 = (uint64_t *)((int64_t)temp_ptr + item_offset + 0x10);
                     temp8_1 = *src_ptr64;
                     temp8_2 = src_ptr64[1];
-                    temp_data = *(uint64_t *)((longlong)temp_ptr + item_offset + 0x20);
-                    dest_ptr = (int32_t *)((longlong)temp_ptr2 + item_offset);
+                    temp_data = *(uint64_t *)((int64_t)temp_ptr + item_offset + 0x20);
+                    dest_ptr = (int32_t *)((int64_t)temp_ptr2 + item_offset);
                     *dest_ptr = *src_ptr;
                     dest_ptr[1] = temp4_1;
                     dest_ptr[2] = temp4_2;
                     dest_ptr[3] = temp4_3;
-                    src_ptr64 = (uint64_t *)((longlong)temp_ptr2 + item_offset + 0x10);
+                    src_ptr64 = (uint64_t *)((int64_t)temp_ptr2 + item_offset + 0x10);
                     *src_ptr64 = temp8_1;
                     src_ptr64[1] = temp8_2;
-                    *(uint64_t *)((longlong)temp_ptr2 + item_offset + 0x20) = temp_data;
+                    *(uint64_t *)((int64_t)temp_ptr2 + item_offset + 0x20) = temp_data;
                 }
-                temp_ptr4 = (int *)(ulonglong)((int)temp_ptr4 + 1);
-                temp_ptr5 = (int *)((longlong)temp_ptr5 + 1);
+                temp_ptr4 = (int *)(uint64_t)((int)temp_ptr4 + 1);
+                temp_ptr5 = (int *)((int64_t)temp_ptr5 + 1);
                 temp_ptr2 = temp_ptr2 + 10;
             }
             processed_count = (int)temp_ptr4;
             queue_count = *render_queue;
             uint_temp = (int)temp_ptr3 + 1;
             temp_ptr = temp_ptr + 10;
-            index_ptr = (int *)((longlong)index_ptr + 1);
-            temp_ptr3 = (int *)(ulonglong)uint_temp;
+            index_ptr = (int *)((int64_t)index_ptr + 1);
+            temp_ptr3 = (int *)(uint64_t)uint_temp;
         } while ((int)uint_temp < queue_count);
     }
     
@@ -157,7 +157,7 @@ void process_render_queue_optimization(int *render_queue)
     temp_ptr = item_ptr;
     if (uint_temp != 0) {
         queue_count = *render_queue;
-        temp_ptr = (int *)(ulonglong)uint_temp;
+        temp_ptr = (int *)(uint64_t)uint_temp;
         render_queue[5] = uint_temp;
         render_queue[6] = 0;
         stack_temp1 = uint_temp;
@@ -171,13 +171,13 @@ void process_render_queue_optimization(int *render_queue)
             index_ptr = temp_ptr2;
             do {
                 if (*index_ptr == render_queue[0x14]) {
-                    temp_ptr5 = temp_ptr2 + (longlong)(int)temp_ptr5 * 10;
+                    temp_ptr5 = temp_ptr2 + (int64_t)(int)temp_ptr5 * 10;
                     if (temp_ptr5 != (int *)0x0) {
-                        processed_count = (int)(((longlong)temp_ptr5 - (longlong)temp_ptr2) / 0x28) + render_queue[0x15];
+                        processed_count = (int)(((int64_t)temp_ptr5 - (int64_t)temp_ptr2) / 0x28) + render_queue[0x15];
                         if ((-1 < processed_count) && (processed_count < queue_count)) {
                             temp8_1 = *(uint64_t *)temp_ptr5;
                             temp8_2 = *(uint64_t *)(temp_ptr5 + 2);
-                            item_offset = (longlong)processed_count;
+                            item_offset = (int64_t)processed_count;
                             temp8_3 = *(uint64_t *)(temp_ptr5 + 4);
                             temp8_4 = *(uint64_t *)(temp_ptr5 + 6);
                             temp_data = *(uint64_t *)(temp_ptr5 + 8);
@@ -194,7 +194,7 @@ void process_render_queue_optimization(int *render_queue)
                             *(uint64_t *)(temp_ptr2 + item_offset * 10 + 4 + 2) = temp8_4;
                             *(uint64_t *)(temp_ptr2 + item_offset * 10 + 8) = temp_data;
                             if (temp_ptr2[item_offset * 10] == render_queue[5]) {
-                                temp_ptr = (int *)(ulonglong)(uint)temp_ptr2[item_offset * 10];
+                                temp_ptr = (int *)(uint64_t)(uint)temp_ptr2[item_offset * 10];
                             }
                             stack_temp1 = (uint)temp_ptr;
                         }
@@ -208,7 +208,7 @@ void process_render_queue_optimization(int *render_queue)
                 }
                 queue_count = *render_queue;
                 uint_temp = (int)temp_ptr5 + 1;
-                temp_ptr5 = (int *)(ulonglong)uint_temp;
+                temp_ptr5 = (int *)(uint64_t)uint_temp;
                 index_ptr = index_ptr + 10;
             } while ((int)uint_temp < queue_count);
         }
@@ -234,11 +234,11 @@ void process_render_queue_optimization(int *render_queue)
                 *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = 
                     *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
             }
-            temp_data = func_0x000180120ce0((longlong)int_temp2 << 3, SYSTEM_DATA_MANAGER_B);
-            if (*(longlong *)(engine_context + 0x1ea0) != 0) {
+            temp_data = func_0x000180120ce0((int64_t)int_temp2 << 3, SYSTEM_DATA_MANAGER_B);
+            if (*(int64_t *)(engine_context + 0x1ea0) != 0) {
                 // WARNING: Subroutine does not return
-                memcpy(temp_data, *(longlong *)(engine_context + 0x1ea0),
-                       (longlong)*(int *)(engine_context + 0x1e98) << 3);
+                memcpy(temp_data, *(int64_t *)(engine_context + 0x1ea0),
+                       (int64_t)*(int *)(engine_context + 0x1e98) << 3);
             }
             *(uint64_t *)(engine_context + 0x1ea0) = temp_data;
             *(int *)(engine_context + 0x1e9c) = int_temp2;
@@ -257,7 +257,7 @@ void process_render_queue_optimization(int *render_queue)
         temp_ptr2 = item_ptr;
         has_active_item = false;
         do {
-            temp_ptr5 = (int *)(*(longlong *)(render_queue + 2) + stack_temp2);
+            temp_ptr5 = (int *)(*(int64_t *)(render_queue + 2) + stack_temp2);
             if ((item_ptr == (int *)0x0) || (item_ptr[5] < temp_ptr5[5])) {
                 item_ptr = temp_ptr5;
             }
@@ -267,7 +267,7 @@ void process_render_queue_optimization(int *render_queue)
             }
             if (src_ptr64 != (uint64_t *)0x0) {
                 index_ptr = (int *)FUN_18011ce30(local_buffer, *src_ptr64,
-                                               *(int8_t *)((longlong)src_ptr64 + 0xb7));
+                                               *(int8_t *)((int64_t)src_ptr64 + 0xb7));
                 temp_ptr5[8] = *index_ptr;
             }
             int_temp = (int)temp_ptr;
@@ -279,14 +279,14 @@ void process_render_queue_optimization(int *render_queue)
             }
             stack_temp2 = stack_temp2 + 0x28;
             float_temp2 = (float)temp_ptr5[8];
-            *(int *)(*(longlong *)(engine_context + 0x1ea0) + (longlong)temp_ptr2) = int_temp;
-            temp_ptr = (int *)(ulonglong)(int_temp + 1U);
+            *(int *)(*(int64_t *)(engine_context + 0x1ea0) + (int64_t)temp_ptr2) = int_temp;
+            temp_ptr = (int *)(uint64_t)(int_temp + 1U);
             float_temp4 = float_temp4 + float_temp1 + float_temp2;
-            *(int *)(*(longlong *)(engine_context + 0x1ea0) + 4 + (longlong)temp_ptr2) = temp_ptr5[8];
+            *(int *)(*(int64_t *)(engine_context + 0x1ea0) + 4 + (int64_t)temp_ptr2) = temp_ptr5[8];
             temp_ptr2 = temp_ptr2 + 2;
             queue_count = *render_queue;
         } while ((int)(int_temp + 1U) < queue_count);
-        temp_ptr = (int *)(ulonglong)stack_temp1;
+        temp_ptr = (int *)(uint64_t)stack_temp1;
     }
     
     // 第七步：处理渲染权重分配
@@ -302,7 +302,7 @@ void process_render_queue_optimization(int *render_queue)
     if ((float_temp4 <= 0.0) || ((*(byte *)(render_queue + 0x13) & 0x40) == 0)) {
         float_temp4 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19f8) * 20.0;
         if (0 < queue_count) {
-            float_ptr = (float *)(*(longlong *)(render_queue + 2) + 0x1c);
+            float_ptr = (float *)(*(int64_t *)(render_queue + 2) + 0x1c);
             ulong_temp = ulong_temp3;
             do {
                 float_temp1 = float_ptr[1];
@@ -310,7 +310,7 @@ void process_render_queue_optimization(int *render_queue)
                     float_temp1 = float_temp4;
                 }
                 uint_temp = (int)ulong_temp + 1;
-                ulong_temp = (ulonglong)uint_temp;
+                ulong_temp = (uint64_t)uint_temp;
                 *float_ptr = float_temp1;
                 queue_count = *render_queue;
                 float_ptr = float_ptr + 10;
@@ -320,7 +320,7 @@ void process_render_queue_optimization(int *render_queue)
     else {
         if (1 < queue_count) {
             qsort(*(uint64_t *)(engine_context + 0x1ea0),
-                  (longlong)*(int *)(engine_context + 0x1e98), 8, &global_var_9728_ptr);
+                  (int64_t)*(int *)(engine_context + 0x1e98), 8, &global_var_9728_ptr);
         }
         
         item_offset = 1;
@@ -328,9 +328,9 @@ void process_render_queue_optimization(int *render_queue)
             queue_count = *render_queue;
             if (queue_count <= processed_count) goto LAB_weight_assignment_complete;
             
-            float_temp1 = *(float *)(*(longlong *)(engine_context + 0x1ea0) + 4);
+            float_temp1 = *(float *)(*(int64_t *)(engine_context + 0x1ea0) + 4);
             do {
-                float_temp2 = *(float *)(*(longlong *)(engine_context + 0x1ea0) + 4 + item_offset * 8);
+                float_temp2 = *(float *)(*(int64_t *)(engine_context + 0x1ea0) + 4 + item_offset * 8);
                 if (float_temp1 != float_temp2) {
                     if (processed_count < queue_count) {
                         float_temp1 = float_temp1 - float_temp2;
@@ -352,21 +352,21 @@ LAB_weight_calculation:
             ulong_temp = ulong_temp3;
             if (3 < item_offset) {
                 do {
-                    *(float *)(*(longlong *)(engine_context + 0x1ea0) + 4 + ulong_temp * 8) =
-                         *(float *)(*(longlong *)(engine_context + 0x1ea0) + 4 + ulong_temp * 8) - float_temp2;
-                    *(float *)(*(longlong *)(engine_context + 0x1ea0) + 0xc + ulong_temp * 8) =
-                         *(float *)(*(longlong *)(engine_context + 0x1ea0) + 0xc + ulong_temp * 8) - float_temp2;
-                    *(float *)(*(longlong *)(engine_context + 0x1ea0) + 0x14 + ulong_temp * 8) =
-                         *(float *)(*(longlong *)(engine_context + 0x1ea0) + 0x14 + ulong_temp * 8) - float_temp2;
-                    *(float *)(*(longlong *)(engine_context + 0x1ea0) + 0x1c + ulong_temp * 8) =
-                         *(float *)(*(longlong *)(engine_context + 0x1ea0) + 0x1c + ulong_temp * 8) - float_temp2;
+                    *(float *)(*(int64_t *)(engine_context + 0x1ea0) + 4 + ulong_temp * 8) =
+                         *(float *)(*(int64_t *)(engine_context + 0x1ea0) + 4 + ulong_temp * 8) - float_temp2;
+                    *(float *)(*(int64_t *)(engine_context + 0x1ea0) + 0xc + ulong_temp * 8) =
+                         *(float *)(*(int64_t *)(engine_context + 0x1ea0) + 0xc + ulong_temp * 8) - float_temp2;
+                    *(float *)(*(int64_t *)(engine_context + 0x1ea0) + 0x14 + ulong_temp * 8) =
+                         *(float *)(*(int64_t *)(engine_context + 0x1ea0) + 0x14 + ulong_temp * 8) - float_temp2;
+                    *(float *)(*(int64_t *)(engine_context + 0x1ea0) + 0x1c + ulong_temp * 8) =
+                         *(float *)(*(int64_t *)(engine_context + 0x1ea0) + 0x1c + ulong_temp * 8) - float_temp2;
                     ulong_temp = ulong_temp + 4;
-                } while ((longlong)ulong_temp < item_offset + -3);
+                } while ((int64_t)ulong_temp < item_offset + -3);
             }
             
-            for (; (longlong)ulong_temp < item_offset; ulong_temp = ulong_temp + 1) {
-                *(float *)(*(longlong *)(engine_context + 0x1ea0) + 4 + ulong_temp * 8) =
-                     *(float *)(*(longlong *)(engine_context + 0x1ea0) + 4 + ulong_temp * 8) - float_temp2;
+            for (; (int64_t)ulong_temp < item_offset; ulong_temp = ulong_temp + 1) {
+                *(float *)(*(int64_t *)(engine_context + 0x1ea0) + 4 + ulong_temp * 8) =
+                     *(float *)(*(int64_t *)(engine_context + 0x1ea0) + 4 + ulong_temp * 8) - float_temp2;
             }
             
             float_temp4 = float_temp4 - (float)processed_count * float_temp2;
@@ -380,12 +380,12 @@ LAB_weight_assignment_complete:
         if (0 < queue_count) {
             do {
                 uint_temp = (int)ulong_temp2 + 1;
-                *(float *)(*(longlong *)(render_queue + 2) + 0x1c +
-                          (longlong)*(int *)(ulong_temp + *(longlong *)(engine_context + 0x1ea0)) * 0x28) =
-                     (float)(int)*(float *)(ulong_temp + 4 + *(longlong *)(engine_context + 0x1ea0));
+                *(float *)(*(int64_t *)(render_queue + 2) + 0x1c +
+                          (int64_t)*(int *)(ulong_temp + *(int64_t *)(engine_context + 0x1ea0)) * 0x28) =
+                     (float)(int)*(float *)(ulong_temp + 4 + *(int64_t *)(engine_context + 0x1ea0));
                 queue_count = *render_queue;
                 ulong_temp = ulong_temp + 8;
-                ulong_temp2 = (ulonglong)uint_temp;
+                ulong_temp2 = (uint64_t)uint_temp;
             } while ((int)uint_temp < queue_count);
         }
     }
@@ -396,18 +396,18 @@ LAB_weight_assignment_complete:
     ulong_temp2 = ulong_temp3;
     if (0 < queue_count) {
         do {
-            item_offset = *(longlong *)(render_queue + 2);
+            item_offset = *(int64_t *)(render_queue + 2);
             *(float *)(ulong_temp + 0x18 + item_offset) = float_temp4;
             if (((int)temp_ptr == 0) && 
                 (*(uint *)(engine_context + 0x1cb8) == *(uint *)(ulong_temp + item_offset))) {
-                temp_ptr = (int *)(ulonglong)*(uint *)(ulong_temp + item_offset);
+                temp_ptr = (int *)(uint64_t)*(uint *)(ulong_temp + item_offset);
             }
             int_temp = (int)temp_ptr;
             uint_temp = (int)ulong_temp2 + 1;
             float_temp4 = float_temp4 + *(float *)(ulong_temp + 0x1c + item_offset) + 
                          *(float *)(engine_context + 0x1674);
             ulong_temp = ulong_temp + 0x28;
-            ulong_temp2 = (ulonglong)uint_temp;
+            ulong_temp2 = (uint64_t)uint_temp;
         } while ((int)uint_temp < *render_queue);
     }
     
@@ -450,12 +450,12 @@ LAB_weight_assignment_complete:
     }
     
     render_queue[7] = queue_count;
-    *(int8_t *)((longlong)render_queue + 0x59) = 0;
+    *(int8_t *)((int64_t)render_queue + 0x59) = 0;
     
     // 第十一步：处理特殊上下文
-    item_offset = *(longlong *)(engine_context + 0x1cd8);
-    if (((item_offset != 0) && (*(longlong *)(item_offset + 0x408) != 0)) &&
-        (*(int **)(*(longlong *)(item_offset + 0x408) + 0x30) == render_queue)) {
+    item_offset = *(int64_t *)(engine_context + 0x1cd8);
+    if (((item_offset != 0) && (*(int64_t *)(item_offset + 0x408) != 0)) &&
+        (*(int **)(*(int64_t *)(item_offset + 0x408) + 0x30) == render_queue)) {
         int_temp = *(int *)(item_offset + 8);
         render_queue[7] = int_temp;
     }
@@ -466,10 +466,10 @@ LAB_weight_assignment_complete:
         do {
             processed_count = (int)ulong_temp3;
             if (*temp_ptr == int_temp) {
-                temp_ptr = *(int **)(render_queue + 2) + (longlong)processed_count * 10;
+                temp_ptr = *(int **)(render_queue + 2) + (int64_t)processed_count * 10;
                 if (temp_ptr != (int *)0x0) {
                     float_temp4 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x19f8);
-                    processed_count = (int)(((longlong)processed_count * 0x28) / 0x28);
+                    processed_count = (int)(((int64_t)processed_count * 0x28) / 0x28);
                     if (processed_count < 1) {
                         float_temp1 = 0.0;
                     }
@@ -492,7 +492,7 @@ LAB_weight_assignment_complete:
                 }
                 break;
             }
-            ulong_temp3 = (ulonglong)(processed_count + 1U);
+            ulong_temp3 = (uint64_t)(processed_count + 1U);
             temp_ptr = temp_ptr + 10;
         } while ((int)(processed_count + 1U) < queue_count);
     }
@@ -553,11 +553,11 @@ LAB_weight_assignment_complete:
  * @param context 上下文指针
  * @param string 要计算哈希的字符串
  */
-void calculate_string_hash(longlong context, byte *string)
+void calculate_string_hash(int64_t context, byte *string)
 {
     byte current_char;
     byte *char_ptr;
-    longlong engine_context;
+    int64_t engine_context;
     uint hash_value;
     int computed_hash;
     
@@ -568,10 +568,10 @@ void calculate_string_hash(longlong context, byte *string)
         // 普通哈希计算模式
         computed_hash = FUN_180121250(string, 0,
                                       *(int32_t *)
-                                       (*(longlong *)
-                                         (*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x220) + -4 +
-                                         (longlong)*(int *)
-                                         (*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x218) * 4));
+                                       (*(int64_t *)
+                                         (*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x220) + -4 +
+                                         (int64_t)*(int *)
+                                         (*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x218) * 4));
         
         // 验证哈希值
         if (*(int *)(engine_context + 0x1b2c) == computed_hash) {
@@ -592,7 +592,7 @@ void calculate_string_hash(longlong context, byte *string)
             if (((current_char == 0x23) && (*char_ptr == 0x23)) && (char_ptr[1] == 0x23)) {
                 hash_value = 0xffffffff;
             }
-            hash_value = *(uint *)(&global_var_6320_ptr + ((ulonglong)(hash_value & 0xff) ^ (ulonglong)current_char) * 4) ^
+            hash_value = *(uint *)(&global_var_6320_ptr + ((uint64_t)(hash_value & 0xff) ^ (uint64_t)current_char) * 4) ^
                     hash_value >> 8;
             current_char = *char_ptr;
             char_ptr = char_ptr + 1;
@@ -619,7 +619,7 @@ void calculate_string_hash(longlong context, byte *string)
  */
 void update_default_hash_validation(void)
 {
-    longlong engine_context;
+    int64_t engine_context;
     int computed_hash;
     
     engine_context = SYSTEM_DATA_MANAGER_A;
@@ -655,15 +655,15 @@ void empty_function(void)
  * @param entry_id 条目ID
  * @param entry_data 条目数据指针
  */
-void add_render_queue_entry(int *render_queue, int32_t entry_id, longlong entry_data)
+void add_render_queue_entry(int *render_queue, int32_t entry_id, int64_t entry_data)
 {
     uint64_t *dest_ptr64;
     int32_t data_part;
-    longlong queue_base;
+    int64_t queue_base;
     int queue_count;
     int queue_capacity;
     int new_capacity;
-    longlong entry_offset;
+    int64_t entry_offset;
     int priority_level;
     uint entry_flags;
     
@@ -695,8 +695,8 @@ void add_render_queue_entry(int *render_queue, int32_t entry_id, longlong entry_
     }
     
     // 计算条目位置并写入数据
-    entry_offset = (longlong)queue_count;
-    queue_base = *(longlong *)(render_queue + 2);
+    entry_offset = (int64_t)queue_count;
+    queue_base = *(int64_t *)(render_queue + 2);
     dest_ptr64 = (uint64_t *)(queue_base + entry_offset * 0x28);
     *dest_ptr64 = CONCAT44(entry_id, data_part);
     dest_ptr64[1] = entry_data;
@@ -707,7 +707,7 @@ void add_render_queue_entry(int *render_queue, int32_t entry_id, longlong entry_
     dest_ptr64[1] = 0;
     
     // 设置条目标志
-    *(ulonglong *)(queue_base + 0x20 + entry_offset * 0x28) = (ulonglong)entry_flags << 0x20;
+    *(uint64_t *)(queue_base + 0x20 + entry_offset * 0x28) = (uint64_t)entry_flags << 0x20;
     
     // 更新队列计数
     *render_queue = *render_queue + 1;

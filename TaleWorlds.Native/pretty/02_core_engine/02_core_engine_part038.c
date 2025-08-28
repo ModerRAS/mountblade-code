@@ -10,8 +10,8 @@
 void update_transform_matrix_and_sync(void)
 
 {
-  longlong *matrix_buffer_ptr1;
-  longlong *matrix_buffer_ptr2;
+  int64_t *matrix_buffer_ptr1;
+  int64_t *matrix_buffer_ptr2;
   byte *byte_data_ptr;
   uint64_t *data_block_ptr;
   float transform_x;
@@ -25,7 +25,7 @@ void update_transform_matrix_and_sync(void)
   float rotation_z;
   char thread_count;
   float *matrix_data;
-  longlong matrix_base_addr;
+  int64_t matrix_base_addr;
   float matrix_val_17;
   float matrix_val_18;
   float matrix_val_19;
@@ -40,32 +40,32 @@ void update_transform_matrix_and_sync(void)
   float matrix_val_28;
   uint64_t temp_data_64;
   int32_t temp_data_32;
-  longlong offset_val;
-  longlong *thread_array_ptr;
+  int64_t offset_val;
+  int64_t *thread_array_ptr;
   uint index_val;
   int loop_counter;
   uint hash_val;
   int array_index;
-  longlong context_ptr;
-  ulonglong thread_count_ulong;
+  int64_t context_ptr;
+  uint64_t thread_count_ulong;
   char *thread_name_ptr;
   uint *global_counter_ptr;
   int sync_flag;
-  longlong render_context;
+  int64_t render_context;
   int matrix_index;
   int data_index;
-  longlong global_data_base;
+  int64_t global_data_base;
   uint matrix_data_index;
   int sync_flag_value;
-  longlong render_context_ptr;
+  int64_t render_context_ptr;
   int matrix_data_index;
   int thread_data_index;
-  longlong global_engine_data;
+  int64_t global_engine_data;
   int32_t *matrix_block_data;
   uint *index_array_data;
   uint *index_array_ptr;
-  ulonglong memory_page_start;
-  ulonglong memory_page_end;
+  uint64_t memory_page_start;
+  uint64_t memory_page_end;
   bool is_memory_allocated;
   int32_t matrix_register_a;
   int32_t matrix_register_b;
@@ -74,11 +74,11 @@ void update_transform_matrix_and_sync(void)
   
   // 计算矩阵数据的哈希值
   matrix_data_index = (int)*(char *)(render_context_ptr + 0xd) + *(int *)(render_context_ptr + 0x18);
-  matrix_data = (float *)**(longlong **)(context_ptr + 600);
-  global_engine_data = (longlong)*(int *)(GLOBAL_ENGINE_DATA + 0xe78) * 0x128 + GLOBAL_ENGINE_DATA + 0xc28;
+  matrix_data = (float *)**(int64_t **)(context_ptr + 600);
+  global_engine_data = (int64_t)*(int *)(GLOBAL_ENGINE_DATA + 0xe78) * 0x128 + GLOBAL_ENGINE_DATA + 0xc28;
   index_array_data = matrix_data_index >> 0xd;
-  matrix_base_addr = *(longlong *)(global_engine_data + 8 + (ulonglong)index_array_data * 8);
-  offset_val = (ulonglong)(matrix_data_index + index_array_data * -0x2000) * 0x40;
+  matrix_base_addr = *(int64_t *)(global_engine_data + 8 + (uint64_t)index_array_data * 8);
+  offset_val = (uint64_t)(matrix_data_index + index_array_data * -0x2000) * 0x40;
   temp_data_64 = ((uint64_t *)(matrix_base_addr + offset_val))[1];
   *(uint64_t *)matrix_data = *(uint64_t *)(matrix_base_addr + offset_val);
   *(uint64_t *)(matrix_data + 2) = temp_data_64;
@@ -94,7 +94,7 @@ void update_transform_matrix_and_sync(void)
   temp_data_64 = data_block_ptr[1];
   *(uint64_t *)(matrix_data + 0xc) = *data_block_ptr;
   *(uint64_t *)(matrix_data + 0xe) = temp_data_64;
-  matrix_base_addr = *(longlong *)(render_context_ptr + 0x10);
+  matrix_base_addr = *(int64_t *)(render_context_ptr + 0x10);
   matrix_val_17 = matrix_data[8];
   matrix_val_18 = matrix_data[9];
   matrix_val_19 = matrix_data[10];
@@ -128,18 +128,18 @@ void update_transform_matrix_and_sync(void)
   matrix_data[9] = scale_y * matrix_val_26 + rotation_z * matrix_val_22 + rotation_z * matrix_val_18;
   matrix_data[10] = scale_y * matrix_val_27 + rotation_z * matrix_val_23 + rotation_z * matrix_val_19;
   matrix_data[0xb] = scale_y * matrix_val_28 + rotation_z * matrix_val_24 + rotation_z * matrix_val_20;
-  matrix_base_addr = *(longlong *)(context_ptr + 600);
+  matrix_base_addr = *(int64_t *)(context_ptr + 600);
   // 检查是否需要更新同步状态
   if (*(int *)(matrix_base_addr + 0x28) != *(int )(GLOBAL_SYNC_DATA + 0x224)) {
     sync_flag_value = *(int )(matrix_base_addr + 0x1c) + *(int )(matrix_base_addr + 0x18);
     *(int )(matrix_base_addr + 0x28) = *(int )(GLOBAL_SYNC_DATA + 0x224);
     if (0 < sync_flag_value) {
       thread_sync_param_64 = thread_sync_param_58;
-      global_data_base = (longlong)*(int )(GLOBAL_ENGINE_CONTEXT + 0xe78) * 0x128 + GLOBAL_ENGINE_CONTEXT + 0xc28;
+      global_data_base = (int64_t)*(int )(GLOBAL_ENGINE_CONTEXT + 0xe78) * 0x128 + GLOBAL_ENGINE_CONTEXT + 0xc28;
       temp_data_32 = process_matrix_sync(global_data_base, sync_flag_value, offset_val, matrix_data, CONCAT44(matrix_register_b, matrix_register_a));
       *(int32_t *)(matrix_base_addr + 0x30) = temp_data_32;
       update_thread_sync(global_data_base, temp_data_32);
-      if (*(longlong *)(matrix_base_addr + 0x10) == 0) {
+      if (*(int64_t *)(matrix_base_addr + 0x10) == 0) {
         if (*(int *)(matrix_base_addr + 0x18) != 0) {
           *(int32_t *)(matrix_base_addr + 0x2c) = *(int32_t *)(matrix_base_addr + 0x30);
           return;
@@ -148,11 +148,11 @@ void update_transform_matrix_and_sync(void)
       else {
         // 处理线程数据同步
         thread_count = *(char *)(matrix_base_addr + 0x44);
-        thread_count_ulong = (ulonglong)thread_count;
-        thread_array_ptr = (longlong *)(matrix_base_addr + 0x38);
+        thread_count_ulong = (uint64_t)thread_count;
+        thread_array_ptr = (int64_t *)(matrix_base_addr + 0x38);
         sync_flag_value = (int)thread_count;
         if (*(int *)(matrix_base_addr + 0x40) == (int)thread_count) {
-          thread_array_ptr = (longlong *)*thread_array_ptr;
+          thread_array_ptr = (int64_t *)*thread_array_ptr;
         }
         else {
           *(int *)(matrix_base_addr + 0x40) = sync_flag_value;
@@ -162,23 +162,23 @@ void update_transform_matrix_and_sync(void)
           }
           *thread_array_ptr = 0;
           if (thread_count == '\0') {
-            thread_array_ptr = (longlong *)0x0;
+            thread_array_ptr = (int64_t *)0x0;
             *thread_array_ptr = 0;
           }
           else {
-            thread_array_ptr = (longlong *)allocate_thread_buffer(GLOBAL_MEMORY_POOL, (longlong)thread_count * 4);
-            *thread_array_ptr = (longlong)thread_array_ptr;
+            thread_array_ptr = (int64_t *)allocate_thread_buffer(GLOBAL_MEMORY_POOL, (int64_t)thread_count * 4);
+            *thread_array_ptr = (int64_t)thread_array_ptr;
           }
         }
-        if (thread_array_ptr != (longlong *)0x0) {
+        if (thread_array_ptr != (int64_t *)0x0) {
           // 初始化线程数组数据
           array_index = 0;
           index_array_data = (uint)thread_count;
           data_index = array_index;
           if ((0 < sync_flag_value) && (0xf < index_array_data)) {
             sync_flag_value = *(int *)(matrix_base_addr + 0x2c);
-            thread_array_ptr = (longlong *)((longlong)thread_array_ptr + (longlong)(thread_count + -1) * 4);
-            if ((((longlong *)(matrix_base_addr + 0x2c) < thread_array_ptr) || (thread_array_ptr < (longlong *)(matrix_base_addr + 0x2c)))
+            thread_array_ptr = (int64_t *)((int64_t)thread_array_ptr + (int64_t)(thread_count + -1) * 4);
+            if ((((int64_t *)(matrix_base_addr + 0x2c) < thread_array_ptr) || (thread_array_ptr < (int64_t *)(matrix_base_addr + 0x2c)))
                && ((thread_array_ptr < thread_array_ptr || (data_index = 0, thread_array_ptr < thread_array_ptr)))) {
               index_array_data = index_array_data & 0x8000000f;
               if ((int)index_array_data < 0) {
@@ -188,48 +188,48 @@ void update_transform_matrix_and_sync(void)
               sync_flag_value = 8;
               do {
                 *(int *)(thread_array_ptr + -4) = array_index + sync_flag_value;
-                *(int *)((longlong)thread_array_ptr + -0x1c) = array_index + 1 + sync_flag_value;
+                *(int *)((int64_t)thread_array_ptr + -0x1c) = array_index + 1 + sync_flag_value;
                 *(int *)(thread_array_ptr + -3) = array_index + 2 + sync_flag_value;
-                *(int *)((longlong)thread_array_ptr + -0x14) = array_index + 3 + sync_flag_value;
+                *(int *)((int64_t)thread_array_ptr + -0x14) = array_index + 3 + sync_flag_value;
                 array_index = array_index + 0x10;
                 *(int *)(thread_array_ptr + -2) = sync_flag_value + -4 + sync_flag_value;
-                *(int *)((longlong)thread_array_ptr + -0xc) = sync_flag_value + -3 + sync_flag_value;
+                *(int *)((int64_t)thread_array_ptr + -0xc) = sync_flag_value + -3 + sync_flag_value;
                 *(int *)(thread_array_ptr + -1) = sync_flag_value + -2 + sync_flag_value;
-                *(int *)((longlong)thread_array_ptr + -4) = sync_flag_value + -1 + sync_flag_value;
+                *(int *)((int64_t)thread_array_ptr + -4) = sync_flag_value + -1 + sync_flag_value;
                 *(int *)thread_array_ptr = sync_flag_value + sync_flag_value;
-                *(int *)((longlong)thread_array_ptr + 4) = sync_flag_value + 1 + sync_flag_value;
+                *(int *)((int64_t)thread_array_ptr + 4) = sync_flag_value + 1 + sync_flag_value;
                 *(int *)(thread_array_ptr + 1) = sync_flag_value + 2 + sync_flag_value;
-                *(int *)((longlong)thread_array_ptr + 0xc) = sync_flag_value + 3 + sync_flag_value;
+                *(int *)((int64_t)thread_array_ptr + 0xc) = sync_flag_value + 3 + sync_flag_value;
                 *(int *)(thread_array_ptr + 2) = sync_flag_value + 4 + sync_flag_value;
-                *(int *)((longlong)thread_array_ptr + 0x14) = sync_flag_value + 5 + sync_flag_value;
+                *(int *)((int64_t)thread_array_ptr + 0x14) = sync_flag_value + 5 + sync_flag_value;
                 *(int *)(thread_array_ptr + 3) = sync_flag_value + 6 + sync_flag_value;
-                *(int *)((longlong)thread_array_ptr + 0x1c) = sync_flag_value + 7 + sync_flag_value;
+                *(int *)((int64_t)thread_array_ptr + 0x1c) = sync_flag_value + 7 + sync_flag_value;
                 thread_array_ptr = thread_array_ptr + 8;
                 sync_flag_value = sync_flag_value + 0x10;
                 data_index = array_index;
               } while (array_index < (int)(index_array_data - index_array_data));
             }
           }
-          for (global_data_base = (longlong)data_index; global_data_base < (longlong)thread_count_ulong; global_data_base = global_data_base + 1) {
+          for (global_data_base = (int64_t)data_index; global_data_base < (int64_t)thread_count_ulong; global_data_base = global_data_base + 1) {
             array_index = *(int *)(matrix_base_addr + 0x2c) + data_index;
             data_index = data_index + 1;
             *(int *)(*thread_array_ptr + global_data_base * 4) = array_index;
           }
           data_index = *(int *)(matrix_base_addr + 0x18);
           array_index = 0;
-          if (0 < (longlong)data_index) {
+          if (0 < (int64_t)data_index) {
             global_data_base = 0;
             do {
               sync_flag_value = *(int *)(matrix_base_addr + 0x30) + array_index;
               array_index = array_index + 1;
-              byte_data_ptr = (byte *)(*(longlong *)(matrix_base_addr + 0x10) + global_data_base);
+              byte_data_ptr = (byte *)(*(int64_t *)(matrix_base_addr + 0x10) + global_data_base);
               global_data_base = global_data_base + 1;
-              *(int *)(*thread_array_ptr + (ulonglong)*byte_data_ptr * 4) = sync_flag_value;
+              *(int *)(*thread_array_ptr + (uint64_t)*byte_data_ptr * 4) = sync_flag_value;
             } while (global_data_base < data_index);
           }
         }
         // 处理全局数据索引
-        global_counter_ptr = (uint *)((longlong)*(int )(GLOBAL_ENGINE_CONTEXT + 0xc20) * 0x128 +
+        global_counter_ptr = (uint *)((int64_t)*(int )(GLOBAL_ENGINE_CONTEXT + 0xc20) * 0x128 +
                           GLOBAL_ENGINE_CONTEXT + 0x9d0);
         if (sync_flag_value == 0) {
           index_array_data = (int)thread_count - 1;
@@ -239,25 +239,25 @@ void update_transform_matrix_and_sync(void)
           index_array_data = *global_counter_ptr;
           *global_counter_ptr = *global_counter_ptr + (int)thread_count;
           UNLOCK();
-          memory_page_start = (ulonglong)(index_array_data >> 0xb);
-          memory_page_end = (ulonglong)(thread_count + -1 + index_array_data >> 0xb);
+          memory_page_start = (uint64_t)(index_array_data >> 0xb);
+          memory_page_end = (uint64_t)(thread_count + -1 + index_array_data >> 0xb);
           if (memory_page_start <= memory_page_end) {
-            thread_name_ptr = (char *)((longlong)global_counter_ptr + memory_page_start + 0x108);
+            thread_name_ptr = (char *)((int64_t)global_counter_ptr + memory_page_start + 0x108);
             global_data_base = (memory_page_end - memory_page_start) + 1;
             index_array_ptr = global_counter_ptr + memory_page_start * 2 + 2;
             do {
               data_index = (int)memory_page_start;
-              if (*(longlong *)index_array_ptr == 0) {
+              if (*(int64_t *)index_array_ptr == 0) {
                 offset_val = allocate_memory_page(GLOBAL_MEMORY_POOL, 0x2000, 0x25);
                 LOCK();
-                is_memory_allocated = *(longlong *)(global_counter_ptr + (longlong)data_index * 2 + 2) == 0;
+                is_memory_allocated = *(int64_t *)(global_counter_ptr + (int64_t)data_index * 2 + 2) == 0;
                 if (is_memory_allocated) {
-                  *(longlong *)(global_counter_ptr + (longlong)data_index * 2 + 2) = offset_val;
+                  *(int64_t *)(global_counter_ptr + (int64_t)data_index * 2 + 2) = offset_val;
                 }
                 UNLOCK();
                 if (is_memory_allocated) {
                   LOCK();
-                  *(int8_t *)((longlong)data_index + 0x108 + (longlong)global_counter_ptr) = 0;
+                  *(int8_t *)((int64_t)data_index + 0x108 + (int64_t)global_counter_ptr) = 0;
                   UNLOCK();
                 }
                 else {
@@ -273,7 +273,7 @@ void update_transform_matrix_and_sync(void)
                 do {
                 } while (*thread_name_ptr != '\0');
               }
-              memory_page_start = (ulonglong)(data_index + 1);
+              memory_page_start = (uint64_t)(data_index + 1);
               index_array_ptr = index_array_ptr + 2;
               thread_name_ptr = thread_name_ptr + 1;
               global_data_base = global_data_base + -1;
@@ -286,8 +286,8 @@ void update_transform_matrix_and_sync(void)
         *(uint *)(matrix_base_addr + 0x2c) = index_array_data;
         if (index_array_data == (int)thread_count + index_array_data >> 0xb) {
                     // WARNING: Subroutine does not return
-          memcpy(*(longlong *)(global_counter_ptr + (ulonglong)index_array_data * 2 + 2) +
-                 (ulonglong)(index_array_data + index_array_data * -0x800) * 4, matrix_block_data, (thread_count_ulong & 0xffffffff) << 2);
+          memcpy(*(int64_t *)(global_counter_ptr + (uint64_t)index_array_data * 2 + 2) +
+                 (uint64_t)(index_array_data + index_array_data * -0x800) * 4, matrix_block_data, (thread_count_ulong & 0xffffffff) << 2);
         }
         if (sync_flag_value != 0) {
           thread_count_ulong = thread_count_ulong & 0xffffffff;
@@ -295,8 +295,8 @@ void update_transform_matrix_and_sync(void)
             temp_data_32 = *matrix_block_data;
             matrix_block_data = matrix_block_data + 1;
             *(int32_t *)
-             (*(longlong *)(global_counter_ptr + (ulonglong)(index_array_data >> 0xb) * 2 + 2) +
-             (ulonglong)(index_array_data + (index_array_data >> 0xb) * -0x800) * 4) = temp_data_32;
+             (*(int64_t *)(global_counter_ptr + (uint64_t)(index_array_data >> 0xb) * 2 + 2) +
+             (uint64_t)(index_array_data + (index_array_data >> 0xb) * -0x800) * 4) = temp_data_32;
             thread_count_ulong = thread_count_ulong - 1;
             index_array_data = index_array_data + 1;
           } while (thread_count_ulong != 0);
@@ -317,11 +317,11 @@ void update_transform_matrix_and_sync(void)
  * 处理矩阵变换和同步更新
  * 根据传入的参数处理矩阵数据，包括变换计算和线程同步
  */
-void process_matrix_transform_and_sync(longlong render_context, uint matrix_index, uint64_t sync_param, float *matrix_data)
+void process_matrix_transform_and_sync(int64_t render_context, uint matrix_index, uint64_t sync_param, float *matrix_data)
 
 {
-  longlong *matrix_ptr1;
-  longlong *matrix_ptr2;
+  int64_t *matrix_ptr1;
+  int64_t *matrix_ptr2;
   byte *byte_data_ptr;
   uint64_t *data_block_ptr;
   float transform_x;
@@ -334,7 +334,7 @@ void process_matrix_transform_and_sync(longlong render_context, uint matrix_inde
   float rotation_y;
   float rotation_z;
   float extra_param;
-  longlong matrix_base_addr;
+  int64_t matrix_base_addr;
   float matrix_val_1;
   float matrix_val_2;
   float matrix_val_3;
@@ -350,32 +350,32 @@ void process_matrix_transform_and_sync(longlong render_context, uint matrix_inde
   uint64_t temp_data_64;
   int32_t temp_data_32;
   uint index_val;
-  longlong offset_val;
-  longlong *thread_array_ptr;
-  longlong memory_addr;
+  int64_t offset_val;
+  int64_t *thread_array_ptr;
+  int64_t memory_addr;
   int loop_counter;
   int array_index;
-  longlong context_ptr;
-  ulonglong thread_count_ulong;
+  int64_t context_ptr;
+  uint64_t thread_count_ulong;
   char *thread_name_ptr;
   uint *global_counter_ptr;
   int sync_flag;
   uint thread_data_index;
-  longlong render_context_ptr;
+  int64_t render_context_ptr;
   int data_index;
   int32_t *matrix_block_data;
   uint *index_array_data;
-  ulonglong memory_page_start;
-  ulonglong memory_page_end;
+  uint64_t memory_page_start;
+  uint64_t memory_page_end;
   bool is_memory_allocated;
   int32_t matrix_register_a;
   int32_t matrix_register_b;
   uint64_t thread_sync_param_64;
   uint64_t thread_sync_param_58;
   
-  context_base = (longlong)*(int *)(context_base + 0x250) * 0x128 + context_base;
-  matrix_base_addr = *(longlong *)(context_base + 8 + (ulonglong)(sync_param >> 0xd) * 8);
-  memory_addr = (ulonglong)(sync_param + (sync_param >> 0xd) * -0x2000) * 0x40;
+  context_base = (int64_t)*(int *)(context_base + 0x250) * 0x128 + context_base;
+  matrix_base_addr = *(int64_t *)(context_base + 8 + (uint64_t)(sync_param >> 0xd) * 8);
+  memory_addr = (uint64_t)(sync_param + (sync_param >> 0xd) * -0x2000) * 0x40;
   temp_data_64 = ((uint64_t *)(matrix_base_addr + memory_addr))[1];
   *(uint64_t *)data_param = *(uint64_t *)(matrix_base_addr + memory_addr);
   *(uint64_t *)(data_param + 2) = temp_data_64;
@@ -391,7 +391,7 @@ void process_matrix_transform_and_sync(longlong render_context, uint matrix_inde
   temp_data_64 = data_block_ptr[1];
   *(uint64_t *)(data_param + 0xc) = *data_block_ptr;
   *(uint64_t *)(data_param + 0xe) = temp_data_64;
-  matrix_base_addr = *(longlong *)(unaff_RDI + 0x10);
+  matrix_base_addr = *(int64_t *)(unaff_RDI + 0x10);
   matrix_val_1 = data_param[8];
   matrix_val_2 = data_param[9];
   matrix_val_3 = data_param[10];
@@ -425,17 +425,17 @@ void process_matrix_transform_and_sync(longlong render_context, uint matrix_inde
   data_param[9] = scale_y * matrix_val_10 + rotation_z * matrix_val_6 + extra_param * matrix_val_2;
   data_param[10] = scale_y * matrix_val_11 + rotation_z * matrix_val_7 + extra_param * matrix_val_3;
   data_param[0xb] = scale_y * matrix_val_12 + rotation_z * matrix_val_8 + extra_param * matrix_val_4;
-  matrix_base_addr = *(longlong *)(thread_context + 600);
+  matrix_base_addr = *(int64_t *)(thread_context + 600);
   if (*(int *)(matrix_base_addr + 0x28) != *(int *)(GLOBAL_SYNC_DATA + 0x224)) {
     sync_flag = *(int *)(matrix_base_addr + 0x1c) + *(int *)(matrix_base_addr + 0x18);
     *(int *)(matrix_base_addr + 0x28) = *(int *)(GLOBAL_SYNC_DATA + 0x224);
     if (0 < sync_flag) {
       uStack0000000000000050 = thread_sync_param_58;
-      memory_addr = (longlong)*(int *)(GLOBAL_ENGINE_CONTEXT + 0xe78) * 0x128 + GLOBAL_ENGINE_CONTEXT + 0xc28;
+      memory_addr = (int64_t)*(int *)(GLOBAL_ENGINE_CONTEXT + 0xe78) * 0x128 + GLOBAL_ENGINE_CONTEXT + 0xc28;
       temp_data_32 = process_matrix_sync(memory_addr,sync_flag,context_base,data_param,CONCAT44(unaff_XMM7_Db,unaff_XMM7_Da));
       *(int32_t *)(matrix_base_addr + 0x30) = temp_data_32;
       update_thread_sync(memory_addr,temp_data_32);
-      if (*(longlong *)(matrix_base_addr + 0x10) == 0) {
+      if (*(int64_t *)(matrix_base_addr + 0x10) == 0) {
         if (*(int *)(matrix_base_addr + 0x18) != 0) {
           *(int32_t *)(matrix_base_addr + 0x2c) = *(int32_t *)(matrix_base_addr + 0x30);
           return;
@@ -443,11 +443,11 @@ void process_matrix_transform_and_sync(longlong render_context, uint matrix_inde
       }
       else {
         thread_count = *(char *)(matrix_base_addr + 0x44);
-        thread_count_ulong = (ulonglong)thread_count;
-        matrix_ptr1 = (longlong *)(matrix_base_addr + 0x38);
+        thread_count_ulong = (uint64_t)thread_count;
+        matrix_ptr1 = (int64_t *)(matrix_base_addr + 0x38);
         sync_flag = (int)thread_count;
         if (*(int *)(matrix_base_addr + 0x40) == (int)thread_count) {
-          thread_array_ptr = (longlong *)*matrix_ptr1;
+          thread_array_ptr = (int64_t *)*matrix_ptr1;
         }
         else {
           *(int *)(matrix_base_addr + 0x40) = sync_flag;
@@ -457,22 +457,22 @@ void process_matrix_transform_and_sync(longlong render_context, uint matrix_inde
           }
           *matrix_ptr1 = 0;
           if (thread_count == '\0') {
-            thread_array_ptr = (longlong *)0x0;
+            thread_array_ptr = (int64_t *)0x0;
             *matrix_ptr1 = 0;
           }
           else {
-            thread_array_ptr = (longlong *)allocate_thread_buffer(GLOBAL_MEMORY_POOL,(longlong)thread_count * 4);
-            *matrix_ptr1 = (longlong)thread_array_ptr;
+            thread_array_ptr = (int64_t *)allocate_thread_buffer(GLOBAL_MEMORY_POOL,(int64_t)thread_count * 4);
+            *matrix_ptr1 = (int64_t)thread_array_ptr;
           }
         }
-        if (thread_array_ptr != (longlong *)0x0) {
+        if (thread_array_ptr != (int64_t *)0x0) {
           data_index = 0;
           thread_data_index = (uint)thread_count;
           loop_counter = data_index;
           if ((0 < sync_flag) && (0xf < thread_data_index)) {
             array_index = *(int *)(matrix_base_addr + 0x2c);
-            matrix_ptr2 = (longlong *)((longlong)thread_array_ptr + (longlong)(thread_count + -1) * 4);
-            if ((((longlong *)(matrix_base_addr + 0x2c) < thread_array_ptr) || (matrix_ptr2 < (longlong *)(matrix_base_addr + 0x2c)))
+            matrix_ptr2 = (int64_t *)((int64_t)thread_array_ptr + (int64_t)(thread_count + -1) * 4);
+            if ((((int64_t *)(matrix_base_addr + 0x2c) < thread_array_ptr) || (matrix_ptr2 < (int64_t *)(matrix_base_addr + 0x2c)))
                && ((matrix_ptr1 < thread_array_ptr || (loop_counter = 0, matrix_ptr2 < matrix_ptr1)))) {
               index_val = thread_data_index & 0x8000000f;
               if ((int)index_val < 0) {
@@ -482,47 +482,47 @@ void process_matrix_transform_and_sync(longlong render_context, uint matrix_inde
               loop_counter = 8;
               do {
                 *(int *)(thread_array_ptr + -4) = data_index + array_index;
-                *(int *)((longlong)thread_array_ptr + -0x1c) = data_index + 1 + array_index;
+                *(int *)((int64_t)thread_array_ptr + -0x1c) = data_index + 1 + array_index;
                 *(int *)(thread_array_ptr + -3) = data_index + 2 + array_index;
-                *(int *)((longlong)thread_array_ptr + -0x14) = data_index + 3 + array_index;
+                *(int *)((int64_t)thread_array_ptr + -0x14) = data_index + 3 + array_index;
                 data_index = data_index + 0x10;
                 *(int *)(thread_array_ptr + -2) = loop_counter + -4 + array_index;
-                *(int *)((longlong)thread_array_ptr + -0xc) = loop_counter + -3 + array_index;
+                *(int *)((int64_t)thread_array_ptr + -0xc) = loop_counter + -3 + array_index;
                 *(int *)(thread_array_ptr + -1) = loop_counter + -2 + array_index;
-                *(int *)((longlong)thread_array_ptr + -4) = loop_counter + -1 + array_index;
+                *(int *)((int64_t)thread_array_ptr + -4) = loop_counter + -1 + array_index;
                 *(int *)thread_array_ptr = loop_counter + array_index;
-                *(int *)((longlong)thread_array_ptr + 4) = loop_counter + 1 + array_index;
+                *(int *)((int64_t)thread_array_ptr + 4) = loop_counter + 1 + array_index;
                 *(int *)(thread_array_ptr + 1) = loop_counter + 2 + array_index;
-                *(int *)((longlong)thread_array_ptr + 0xc) = loop_counter + 3 + array_index;
+                *(int *)((int64_t)thread_array_ptr + 0xc) = loop_counter + 3 + array_index;
                 *(int *)(thread_array_ptr + 2) = loop_counter + 4 + array_index;
-                *(int *)((longlong)thread_array_ptr + 0x14) = loop_counter + 5 + array_index;
+                *(int *)((int64_t)thread_array_ptr + 0x14) = loop_counter + 5 + array_index;
                 *(int *)(thread_array_ptr + 3) = loop_counter + 6 + array_index;
-                *(int *)((longlong)thread_array_ptr + 0x1c) = loop_counter + 7 + array_index;
+                *(int *)((int64_t)thread_array_ptr + 0x1c) = loop_counter + 7 + array_index;
                 thread_array_ptr = thread_array_ptr + 8;
                 loop_counter = loop_counter + 0x10;
                 loop_counter = data_index;
               } while (data_index < (int)(thread_data_index - index_val));
             }
           }
-          for (memory_addr = (longlong)loop_counter; memory_addr < (longlong)thread_count_ulong; memory_addr = memory_addr + 1) {
+          for (memory_addr = (int64_t)loop_counter; memory_addr < (int64_t)thread_count_ulong; memory_addr = memory_addr + 1) {
             data_index = *(int *)(matrix_base_addr + 0x2c) + loop_counter;
             loop_counter = loop_counter + 1;
             *(int *)(*matrix_ptr1 + memory_addr * 4) = data_index;
           }
           loop_counter = *(int *)(matrix_base_addr + 0x18);
           data_index = 0;
-          if (0 < (longlong)loop_counter) {
+          if (0 < (int64_t)loop_counter) {
             memory_addr = 0;
             do {
               array_index = *(int *)(matrix_base_addr + 0x30) + data_index;
               data_index = data_index + 1;
-              byte_data_ptr = (byte *)(*(longlong *)(matrix_base_addr + 0x10) + memory_addr);
+              byte_data_ptr = (byte *)(*(int64_t *)(matrix_base_addr + 0x10) + memory_addr);
               memory_addr = memory_addr + 1;
-              *(int *)(*matrix_ptr1 + (ulonglong)*byte_data_ptr * 4) = array_index;
+              *(int *)(*matrix_ptr1 + (uint64_t)*byte_data_ptr * 4) = array_index;
             } while (memory_addr < loop_counter);
           }
         }
-        global_counter_ptr = (uint *)((longlong)*(int *)(GLOBAL_ENGINE_CONTEXT + 0xc20) * 0x128 +
+        global_counter_ptr = (uint *)((int64_t)*(int *)(GLOBAL_ENGINE_CONTEXT + 0xc20) * 0x128 +
                           GLOBAL_ENGINE_CONTEXT + 0x9d0);
         if (sync_flag == 0) {
           thread_data_index = (int)thread_count - 1;
@@ -532,25 +532,25 @@ void process_matrix_transform_and_sync(longlong render_context, uint matrix_inde
           thread_data_index = *global_counter_ptr;
           *global_counter_ptr = *global_counter_ptr + (int)thread_count;
           UNLOCK();
-          memory_page_start = (ulonglong)(thread_data_index >> 0xb);
-          memory_page_end = (ulonglong)(thread_count + -1 + thread_data_index >> 0xb);
+          memory_page_start = (uint64_t)(thread_data_index >> 0xb);
+          memory_page_end = (uint64_t)(thread_count + -1 + thread_data_index >> 0xb);
           if (memory_page_start <= memory_page_end) {
-            thread_name_ptr = (char *)((longlong)global_counter_ptr + memory_page_start + 0x108);
+            thread_name_ptr = (char *)((int64_t)global_counter_ptr + memory_page_start + 0x108);
             memory_addr = (memory_page_end - memory_page_start) + 1;
             data_block_ptr4 = global_counter_ptr + memory_page_start * 2 + 2;
             do {
               loop_counter = (int)memory_page_start;
-              if (*(longlong *)data_block_ptr4 == 0) {
+              if (*(int64_t *)data_block_ptr4 == 0) {
                 offset_val = allocate_memory_page(GLOBAL_MEMORY_POOL,0x2000,0x25);
                 LOCK();
-                is_memory_allocated = *(longlong *)(global_counter_ptr + (longlong)loop_counter * 2 + 2) == 0;
+                is_memory_allocated = *(int64_t *)(global_counter_ptr + (int64_t)loop_counter * 2 + 2) == 0;
                 if (is_memory_allocated) {
-                  *(longlong *)(global_counter_ptr + (longlong)loop_counter * 2 + 2) = offset_val;
+                  *(int64_t *)(global_counter_ptr + (int64_t)loop_counter * 2 + 2) = offset_val;
                 }
                 UNLOCK();
                 if (is_memory_allocated) {
                   LOCK();
-                  *(int8_t *)((longlong)loop_counter + 0x108 + (longlong)global_counter_ptr) = 0;
+                  *(int8_t *)((int64_t)loop_counter + 0x108 + (int64_t)global_counter_ptr) = 0;
                   UNLOCK();
                 }
                 else {
@@ -566,7 +566,7 @@ void process_matrix_transform_and_sync(longlong render_context, uint matrix_inde
                 do {
                 } while (*thread_name_ptr != '\0');
               }
-              memory_page_start = (ulonglong)(loop_counter + 1);
+              memory_page_start = (uint64_t)(loop_counter + 1);
               data_block_ptr4 = data_block_ptr4 + 2;
               thread_name_ptr = thread_name_ptr + 1;
               memory_addr = memory_addr + -1;
@@ -578,8 +578,8 @@ void process_matrix_transform_and_sync(longlong render_context, uint matrix_inde
         *(uint *)(matrix_base_addr + 0x2c) = thread_data_index;
         if (index_val == (int)thread_count + thread_data_index >> 0xb) {
                     // WARNING: Subroutine does not return
-          memcpy(*(longlong *)(global_counter_ptr + (ulonglong)index_val * 2 + 2) +
-                 (ulonglong)(thread_data_index + index_val * -0x800) * 4,data_block_ptr3,(thread_count_ulong & 0xffffffff) << 2);
+          memcpy(*(int64_t *)(global_counter_ptr + (uint64_t)index_val * 2 + 2) +
+                 (uint64_t)(thread_data_index + index_val * -0x800) * 4,data_block_ptr3,(thread_count_ulong & 0xffffffff) << 2);
         }
         if (sync_flag != 0) {
           thread_count_ulong = thread_count_ulong & 0xffffffff;
@@ -587,8 +587,8 @@ void process_matrix_transform_and_sync(longlong render_context, uint matrix_inde
             temp_data_32 = *data_block_ptr3;
             data_block_ptr3 = data_block_ptr3 + 1;
             *(int32_t *)
-             (*(longlong *)(global_counter_ptr + (ulonglong)(thread_data_index >> 0xb) * 2 + 2) +
-             (ulonglong)(thread_data_index + (thread_data_index >> 0xb) * -0x800) * 4) = temp_data_32;
+             (*(int64_t *)(global_counter_ptr + (uint64_t)(thread_data_index >> 0xb) * 2 + 2) +
+             (uint64_t)(thread_data_index + (thread_data_index >> 0xb) * -0x800) * 4) = temp_data_32;
             thread_count_ulong = thread_count_ulong - 1;
             thread_data_index = thread_data_index + 1;
           } while (thread_count_ulong != 0);
@@ -612,20 +612,20 @@ void process_matrix_transform_and_sync(longlong render_context, uint matrix_inde
 void execute_thread_synchronization(void)
 
 {
-  longlong *matrix_ptr1;
-  longlong *matrix_ptr2;
+  int64_t *matrix_ptr1;
+  int64_t *matrix_ptr2;
   byte *byte_data_ptr;
   char thread_count;
-  longlong context_base;
+  int64_t context_base;
   int32_t temp_data_32;
   uint index_val;
-  longlong *thread_array_ptr;
-  longlong offset_val;
+  int64_t *thread_array_ptr;
+  int64_t offset_val;
   int loop_counter;
   int array_index;
-  longlong thread_context;
-  longlong memory_addr;
-  ulonglong thread_count_ulong;
+  int64_t thread_context;
+  int64_t memory_addr;
+  uint64_t thread_count_ulong;
   char *pthread_count;
   uint *global_counter_ptr;
   int sync_flag;
@@ -634,23 +634,23 @@ void execute_thread_synchronization(void)
   int loop_counter;
   int32_t *matrix_block_data;
   uint *index_array_data;
-  ulonglong memory_page_start;
-  ulonglong memory_page_end;
+  uint64_t memory_page_start;
+  uint64_t memory_page_end;
   bool is_memory_allocated;
   uint64_t uStack0000000000000050;
   uint64_t thread_sync_param_58;
   
-  context_base = *(longlong *)(thread_context + 600);
+  context_base = *(int64_t *)(thread_context + 600);
   if (*(int *)(context_base + 0x28) != *(int *)(GLOBAL_SYNC_DATA + 0x224)) {
     sync_flag = *(int *)(context_base + 0x1c) + *(int *)(context_base + 0x18);
     *(int *)(context_base + 0x28) = *(int *)(GLOBAL_SYNC_DATA + 0x224);
     if (0 < sync_flag) {
       uStack0000000000000050 = thread_sync_param_58;
-      memory_addr = (longlong)*(int *)(GLOBAL_ENGINE_CONTEXT + 0xe78) * 0x128 + GLOBAL_ENGINE_CONTEXT + 0xc28;
+      memory_addr = (int64_t)*(int *)(GLOBAL_ENGINE_CONTEXT + 0xe78) * 0x128 + GLOBAL_ENGINE_CONTEXT + 0xc28;
       temp_data_32 = process_matrix_sync(memory_addr,sync_flag);
       *(int32_t *)(context_base + 0x30) = temp_data_32;
       update_thread_sync(memory_addr,temp_data_32);
-      if (*(longlong *)(context_base + 0x10) == 0) {
+      if (*(int64_t *)(context_base + 0x10) == 0) {
         if (*(int *)(context_base + 0x18) != 0) {
           *(int32_t *)(context_base + 0x2c) = *(int32_t *)(context_base + 0x30);
           return;
@@ -658,11 +658,11 @@ void execute_thread_synchronization(void)
       }
       else {
         thread_count = *(char *)(context_base + 0x44);
-        thread_count_ulong = (ulonglong)thread_count;
-        matrix_ptr1 = (longlong *)(context_base + 0x38);
+        thread_count_ulong = (uint64_t)thread_count;
+        matrix_ptr1 = (int64_t *)(context_base + 0x38);
         sync_flag = (int)thread_count;
         if (*(int *)(context_base + 0x40) == (int)thread_count) {
-          thread_array_ptr = (longlong *)*matrix_ptr1;
+          thread_array_ptr = (int64_t *)*matrix_ptr1;
         }
         else {
           *(int *)(context_base + 0x40) = sync_flag;
@@ -672,22 +672,22 @@ void execute_thread_synchronization(void)
           }
           *matrix_ptr1 = 0;
           if (thread_count == '\0') {
-            thread_array_ptr = (longlong *)0x0;
+            thread_array_ptr = (int64_t *)0x0;
             *matrix_ptr1 = 0;
           }
           else {
-            thread_array_ptr = (longlong *)allocate_thread_buffer(GLOBAL_MEMORY_POOL,(longlong)thread_count * 4);
-            *matrix_ptr1 = (longlong)thread_array_ptr;
+            thread_array_ptr = (int64_t *)allocate_thread_buffer(GLOBAL_MEMORY_POOL,(int64_t)thread_count * 4);
+            *matrix_ptr1 = (int64_t)thread_array_ptr;
           }
         }
-        if (thread_array_ptr != (longlong *)0x0) {
+        if (thread_array_ptr != (int64_t *)0x0) {
           data_index = 0;
           thread_data_index = (uint)thread_count;
           loop_counter = data_index;
           if ((0 < sync_flag) && (0xf < thread_data_index)) {
             array_index = *(int *)(context_base + 0x2c);
-            matrix_ptr2 = (longlong *)((longlong)thread_array_ptr + (longlong)(thread_count + -1) * 4);
-            if ((((longlong *)(context_base + 0x2c) < thread_array_ptr) || (matrix_ptr2 < (longlong *)(context_base + 0x2c))) &&
+            matrix_ptr2 = (int64_t *)((int64_t)thread_array_ptr + (int64_t)(thread_count + -1) * 4);
+            if ((((int64_t *)(context_base + 0x2c) < thread_array_ptr) || (matrix_ptr2 < (int64_t *)(context_base + 0x2c))) &&
                ((matrix_ptr1 < thread_array_ptr || (loop_counter = 0, matrix_ptr2 < matrix_ptr1)))) {
               index_val = thread_data_index & 0x8000000f;
               if ((int)index_val < 0) {
@@ -697,47 +697,47 @@ void execute_thread_synchronization(void)
               loop_counter = 8;
               do {
                 *(int *)(thread_array_ptr + -4) = data_index + array_index;
-                *(int *)((longlong)thread_array_ptr + -0x1c) = data_index + 1 + array_index;
+                *(int *)((int64_t)thread_array_ptr + -0x1c) = data_index + 1 + array_index;
                 *(int *)(thread_array_ptr + -3) = data_index + 2 + array_index;
-                *(int *)((longlong)thread_array_ptr + -0x14) = data_index + 3 + array_index;
+                *(int *)((int64_t)thread_array_ptr + -0x14) = data_index + 3 + array_index;
                 data_index = data_index + 0x10;
                 *(int *)(thread_array_ptr + -2) = loop_counter + -4 + array_index;
-                *(int *)((longlong)thread_array_ptr + -0xc) = loop_counter + -3 + array_index;
+                *(int *)((int64_t)thread_array_ptr + -0xc) = loop_counter + -3 + array_index;
                 *(int *)(thread_array_ptr + -1) = loop_counter + -2 + array_index;
-                *(int *)((longlong)thread_array_ptr + -4) = loop_counter + -1 + array_index;
+                *(int *)((int64_t)thread_array_ptr + -4) = loop_counter + -1 + array_index;
                 *(int *)thread_array_ptr = loop_counter + array_index;
-                *(int *)((longlong)thread_array_ptr + 4) = loop_counter + 1 + array_index;
+                *(int *)((int64_t)thread_array_ptr + 4) = loop_counter + 1 + array_index;
                 *(int *)(thread_array_ptr + 1) = loop_counter + 2 + array_index;
-                *(int *)((longlong)thread_array_ptr + 0xc) = loop_counter + 3 + array_index;
+                *(int *)((int64_t)thread_array_ptr + 0xc) = loop_counter + 3 + array_index;
                 *(int *)(thread_array_ptr + 2) = loop_counter + 4 + array_index;
-                *(int *)((longlong)thread_array_ptr + 0x14) = loop_counter + 5 + array_index;
+                *(int *)((int64_t)thread_array_ptr + 0x14) = loop_counter + 5 + array_index;
                 *(int *)(thread_array_ptr + 3) = loop_counter + 6 + array_index;
-                *(int *)((longlong)thread_array_ptr + 0x1c) = loop_counter + 7 + array_index;
+                *(int *)((int64_t)thread_array_ptr + 0x1c) = loop_counter + 7 + array_index;
                 thread_array_ptr = thread_array_ptr + 8;
                 loop_counter = loop_counter + 0x10;
                 loop_counter = data_index;
               } while (data_index < (int)(thread_data_index - index_val));
             }
           }
-          for (memory_addr = (longlong)loop_counter; memory_addr < (longlong)thread_count_ulong; memory_addr = memory_addr + 1) {
+          for (memory_addr = (int64_t)loop_counter; memory_addr < (int64_t)thread_count_ulong; memory_addr = memory_addr + 1) {
             data_index = *(int *)(context_base + 0x2c) + loop_counter;
             loop_counter = loop_counter + 1;
             *(int *)(*matrix_ptr1 + memory_addr * 4) = data_index;
           }
           loop_counter = *(int *)(context_base + 0x18);
           data_index = 0;
-          if (0 < (longlong)loop_counter) {
+          if (0 < (int64_t)loop_counter) {
             memory_addr = 0;
             do {
               array_index = *(int *)(context_base + 0x30) + data_index;
               data_index = data_index + 1;
-              byte_data_ptr = (byte *)(*(longlong *)(context_base + 0x10) + memory_addr);
+              byte_data_ptr = (byte *)(*(int64_t *)(context_base + 0x10) + memory_addr);
               memory_addr = memory_addr + 1;
-              *(int *)(*matrix_ptr1 + (ulonglong)*byte_data_ptr * 4) = array_index;
+              *(int *)(*matrix_ptr1 + (uint64_t)*byte_data_ptr * 4) = array_index;
             } while (memory_addr < loop_counter);
           }
         }
-        global_counter_ptr = (uint *)((longlong)*(int *)(GLOBAL_ENGINE_CONTEXT + 0xc20) * 0x128 +
+        global_counter_ptr = (uint *)((int64_t)*(int *)(GLOBAL_ENGINE_CONTEXT + 0xc20) * 0x128 +
                           GLOBAL_ENGINE_CONTEXT + 0x9d0);
         if (sync_flag == 0) {
           thread_data_index = (int)thread_count - 1;
@@ -747,25 +747,25 @@ void execute_thread_synchronization(void)
           thread_data_index = *global_counter_ptr;
           *global_counter_ptr = *global_counter_ptr + (int)thread_count;
           UNLOCK();
-          memory_page_start = (ulonglong)(thread_data_index >> 0xb);
-          memory_page_end = (ulonglong)(thread_count + -1 + thread_data_index >> 0xb);
+          memory_page_start = (uint64_t)(thread_data_index >> 0xb);
+          memory_page_end = (uint64_t)(thread_count + -1 + thread_data_index >> 0xb);
           if (memory_page_start <= memory_page_end) {
-            pthread_count = (char *)((longlong)global_counter_ptr + memory_page_start + 0x108);
+            pthread_count = (char *)((int64_t)global_counter_ptr + memory_page_start + 0x108);
             memory_addr = (memory_page_end - memory_page_start) + 1;
             index_array_data = global_counter_ptr + memory_page_start * 2 + 2;
             do {
               loop_counter = (int)memory_page_start;
-              if (*(longlong *)index_array_data == 0) {
+              if (*(int64_t *)index_array_data == 0) {
                 offset_val = allocate_memory_page(GLOBAL_MEMORY_POOL,0x2000,0x25);
                 LOCK();
-                is_memory_allocated = *(longlong *)(global_counter_ptr + (longlong)loop_counter * 2 + 2) == 0;
+                is_memory_allocated = *(int64_t *)(global_counter_ptr + (int64_t)loop_counter * 2 + 2) == 0;
                 if (is_memory_allocated) {
-                  *(longlong *)(global_counter_ptr + (longlong)loop_counter * 2 + 2) = offset_val;
+                  *(int64_t *)(global_counter_ptr + (int64_t)loop_counter * 2 + 2) = offset_val;
                 }
                 UNLOCK();
                 if (is_memory_allocated) {
                   LOCK();
-                  *(int8_t *)((longlong)loop_counter + 0x108 + (longlong)global_counter_ptr) = 0;
+                  *(int8_t *)((int64_t)loop_counter + 0x108 + (int64_t)global_counter_ptr) = 0;
                   UNLOCK();
                 }
                 else {
@@ -781,7 +781,7 @@ void execute_thread_synchronization(void)
                 do {
                 } while (*pthread_count != '\0');
               }
-              memory_page_start = (ulonglong)(loop_counter + 1);
+              memory_page_start = (uint64_t)(loop_counter + 1);
               index_array_data = index_array_data + 2;
               pthread_count = pthread_count + 1;
               memory_addr = memory_addr + -1;
@@ -793,8 +793,8 @@ void execute_thread_synchronization(void)
         *(uint *)(context_base + 0x2c) = thread_data_index;
         if (index_val == (int)thread_count + thread_data_index >> 0xb) {
                     // WARNING: Subroutine does not return
-          memcpy(*(longlong *)(global_counter_ptr + (ulonglong)index_val * 2 + 2) +
-                 (ulonglong)(thread_data_index + index_val * -0x800) * 4,matrix_block_data,(thread_count_ulong & 0xffffffff) << 2);
+          memcpy(*(int64_t *)(global_counter_ptr + (uint64_t)index_val * 2 + 2) +
+                 (uint64_t)(thread_data_index + index_val * -0x800) * 4,matrix_block_data,(thread_count_ulong & 0xffffffff) << 2);
         }
         if (sync_flag != 0) {
           thread_count_ulong = thread_count_ulong & 0xffffffff;
@@ -802,8 +802,8 @@ void execute_thread_synchronization(void)
             temp_data_32 = *matrix_block_data;
             matrix_block_data = matrix_block_data + 1;
             *(int32_t *)
-             (*(longlong *)(global_counter_ptr + (ulonglong)(thread_data_index >> 0xb) * 2 + 2) +
-             (ulonglong)(thread_data_index + (thread_data_index >> 0xb) * -0x800) * 4) = temp_data_32;
+             (*(int64_t *)(global_counter_ptr + (uint64_t)(thread_data_index >> 0xb) * 2 + 2) +
+             (uint64_t)(thread_data_index + (thread_data_index >> 0xb) * -0x800) * 4) = temp_data_32;
             thread_count_ulong = thread_count_ulong - 1;
             thread_data_index = thread_data_index + 1;
           } while (thread_count_ulong != 0);
@@ -822,16 +822,16 @@ void execute_thread_synchronization(void)
  * 获取变换矩阵指针
  * 根据参数计算并返回变换矩阵的指针地址
  */
-void * get_transform_matrix_pointer(longlong context_base, uint64_t sync_param, uint64_t matrix_param, uint64_t data_param)
+void * get_transform_matrix_pointer(int64_t context_base, uint64_t sync_param, uint64_t matrix_param, uint64_t data_param)
 
 {
   uint64_t result_code;
   
   result_code = 0xfffffffffffffffe;
-  if (*(longlong *)(context_base + 0x1b8) != 0) {
-    return (void *)(*(longlong *)(context_base + 0x1b8) + 0x10);
+  if (*(int64_t *)(context_base + 0x1b8) != 0) {
+    return (void *)(*(int64_t *)(context_base + 0x1b8) + 0x10);
   }
-  if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
+  if (*(int *)(*(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8) +
               0x48) < _GLOBAL_THREAD_LIMIT) {
     initialize_thread_system(&GLOBAL_THREAD_LIMIT);
     if (_GLOBAL_THREAD_LIMIT == -1) {
@@ -843,26 +843,26 @@ void * get_transform_matrix_pointer(longlong context_base, uint64_t sync_param, 
  * 重置线程状态标志
  * 重置线程的状态标志，确保线程处于正确的初始状态
  */
-void reset_thread_status_flags(longlong thread_context)
+void reset_thread_status_flags(int64_t thread_context)
 
 {
-  longlong thread_offset;
+  int64_t thread_offset;
   int thread_index;
-  longlong thread_offset;
+  int64_t thread_offset;
   
-  if (((*(byte *)(context_base + 0xfd) & 0x20) != 0) && (*(longlong *)(context_base + 0x1e0) != 0)) {
+  if (((*(byte *)(context_base + 0xfd) & 0x20) != 0) && (*(int64_t *)(context_base + 0x1e0) != 0)) {
     thread_index = 0;
     thread_offset = 0;
     do {
-      while ((*(char *)(*(longlong *)(context_base + 0x1e0) + 0x15 + thread_offset) == '\x02' ||
-             (*(char *)(*(longlong *)(context_base + 0x1e0) + 0x15 + thread_offset) == '\x01'))) {
+      while ((*(char *)(*(int64_t *)(context_base + 0x1e0) + 0x15 + thread_offset) == '\x02' ||
+             (*(char *)(*(int64_t *)(context_base + 0x1e0) + 0x15 + thread_offset) == '\x01'))) {
         thread_sleep(0);
       }
-      thread_offset = (longlong)thread_index;
+      thread_offset = (int64_t)thread_index;
       thread_offset = thread_offset + 0x18;
       thread_index = thread_index + 1;
       LOCK();
-      *(int8_t *)(*(longlong *)(context_base + 0x1e0) + thread_offset * 0x18 + 0x15) = 0;
+      *(int8_t *)(*(int64_t *)(context_base + 0x1e0) + thread_offset * 0x18 + 0x15) = 0;
       UNLOCK();
     } while (thread_index < 0x10);
   }
@@ -880,23 +880,23 @@ int8_t get_and_clear_thread_status(void)
 {
   int8_t *status_ptr;
   int8_t status_value;
-  longlong thread_offset;
-  longlong thread_context;
+  int64_t thread_offset;
+  int64_t thread_context;
   int thread_index;
-  longlong context_base;
+  int64_t context_base;
   
   thread_index = 0;
   context_base = 0;
   do {
-    while ((*(char *)(*(longlong *)(thread_context + 0x1e0) + 0x15 + context_base) == '\x02' ||
-           (*(char *)(*(longlong *)(thread_context + 0x1e0) + 0x15 + context_base) == '\x01'))) {
+    while ((*(char *)(*(int64_t *)(thread_context + 0x1e0) + 0x15 + context_base) == '\x02' ||
+           (*(char *)(*(int64_t *)(thread_context + 0x1e0) + 0x15 + context_base) == '\x01'))) {
       thread_sleep(0);
     }
-    thread_offset = (longlong)thread_index;
+    thread_offset = (int64_t)thread_index;
     context_base = context_base + 0x18;
     thread_index = thread_index + 1;
     LOCK();
-    status_ptr = (int8_t *)(*(longlong *)(thread_context + 0x1e0) + thread_offset * 0x18 + 0x15);
+    status_ptr = (int8_t *)(*(int64_t *)(thread_context + 0x1e0) + thread_offset * 0x18 + 0x15);
     status_value = *status_ptr;
     *status_ptr = 0;
     UNLOCK();

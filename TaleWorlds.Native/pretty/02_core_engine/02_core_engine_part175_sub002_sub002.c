@@ -26,13 +26,13 @@
  *   - 初始化子系统
  *   - 建立内存管理
  */
-void initialize_core_engine_config(longlong engine_context)
+void initialize_core_engine_config(int64_t engine_context)
 {
-    longlong temp_var1;
+    int64_t temp_var1;
     int8_t buffer_array1[32];
-    longlong stack_var1;
+    int64_t stack_var1;
     int8_t stack_flag1;
-    longlong stack_var2;
+    int64_t stack_var2;
     uint64_t config_value1;
     int8_t buffer_array2[56];
     int8_t buffer_array3[56];
@@ -86,11 +86,11 @@ void initialize_core_engine_config(longlong engine_context)
     uint64_t stack_var5;
     int32_t stack_var6;
     int32_t stack_var7;
-    ulonglong security_token;
+    uint64_t security_token;
     
     // 初始化配置值
     config_value1 = 0xfffffffffffffffe;
-    security_token = get_security_token() ^ (ulonglong)buffer_array1;
+    security_token = get_security_token() ^ (uint64_t)buffer_array1;
     
     // 设置引擎上下文
     stack_var2 = engine_context;
@@ -156,7 +156,7 @@ void initialize_core_engine_config(longlong engine_context)
                                   buffer_array45, buffer_array46, buffer_array47, buffer_array48);
     
     // 完成初始化并调用最终配置函数
-    complete_engine_initialization(security_token ^ (ulonglong)buffer_array1);
+    complete_engine_initialization(security_token ^ (uint64_t)buffer_array1);
 }
 
 // 文件结束

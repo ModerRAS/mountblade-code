@@ -13,7 +13,7 @@
 //   param_2: 输出缓冲区指针
 //   param_3: 操作标识符
 //   param_4: 数据块指针
-void process_engine_string_formatting(uint64_t param_1, uint64_t *param_2, uint64_t param_3, longlong *param_4)
+void process_engine_string_formatting(uint64_t param_1, uint64_t *param_2, uint64_t param_3, int64_t *param_4)
 
 {
   uint64_t *buffer_ptr;
@@ -77,10 +77,10 @@ void process_engine_string_formatting(uint64_t param_1, uint64_t *param_2, uint6
   int8_t local_buffer5[72];
   int8_t local_buffer6[176];
   int8_t local_buffer7[48];
-  ulonglong security_cookie;
+  uint64_t security_cookie;
   
   local_var19 = 0xfffffffffffffffe;
-  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)local_buffer1;
+  security_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)local_buffer1;
   format_flag = 0;
   buffer_ptr2 = param_2;
   if ((param_4[1] - *param_4 & 0xffffffffffffffe0U) == 0x80) {
@@ -235,18 +235,18 @@ void process_engine_string_formatting(uint64_t param_1, uint64_t *param_2, uint6
     buffer_ptr[6] = 0x666572503c203e65;  // "erPer< >e"
     buffer_ptr[7] = 0x3e656d614e206261;  // ">eName ba"
     *(int32_t *)(buffer_ptr + 8) = 0x614d3c20;  // "aM< "
-    *(int32_t *)((longlong)buffer_ptr + 0x44) = 0x72696574;  // "tier"
+    *(int32_t *)((int64_t)buffer_ptr + 0x44) = 0x72696574;  // "tier"
     *(int32_t *)(buffer_ptr + 9) = 0x4e206c61;  // "N la"
-    *(int32_t *)((longlong)buffer_ptr + 0x4c) = 0x3e656d61;  // ">ema"
+    *(int32_t *)((int64_t)buffer_ptr + 0x4c) = 0x3e656d61;  // ">ema"
     buffer_ptr[10] = 0x6f6c472073493c20;  // "olG sI< "
     buffer_ptr[0xb] = 0x302f3128206c6162;  // "0/1( lab"
     *(int16_t *)(buffer_ptr + 0xc) = 0x3e29;  // ">)"
-    *(int8_t *)((longlong)buffer_ptr + 0x62) = 0;
+    *(int8_t *)((int64_t)buffer_ptr + 0x62) = 0;
     *(int32_t *)(param_2 + 2) = 0x62;
     format_flag = 1;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(security_cookie ^ (ulonglong)local_buffer1);
+  FUN_1808fc050(security_cookie ^ (uint64_t)local_buffer1);
 }
 
 
@@ -261,7 +261,7 @@ void process_engine_string_formatting(uint64_t param_1, uint64_t *param_2, uint6
 //   param_4: 数据块指针
 // 返回值: 输出缓冲区指针
 uint64_t *
-process_engine_version_info(uint64_t param_1, uint64_t *param_2, uint64_t param_3, longlong *param_4)
+process_engine_version_info(uint64_t param_1, uint64_t *param_2, uint64_t param_3, int64_t *param_4)
 
 {
   uint64_t *result_ptr;
@@ -311,7 +311,7 @@ process_engine_version_info(uint64_t param_1, uint64_t *param_2, uint64_t param_
       FUN_18064e900();
     }
     temp_ptr2 = (uint64_t *)0x0;
-    local_var1 = (ulonglong)local_var1._4_4_ << 0x20;
+    local_var1 = (uint64_t)local_var1._4_4_ << 0x20;
     temp_ptr1 = &system_state_ptr;
     temp_ptr3 = &system_data_buffer_ptr;
     local_var2 = 0;
@@ -333,7 +333,7 @@ process_engine_version_info(uint64_t param_1, uint64_t *param_2, uint64_t param_
       FUN_18064e900();
     }
     temp_ptr4 = (uint64_t *)0x0;
-    local_var2 = (ulonglong)local_var2._4_4_ << 0x20;
+    local_var2 = (uint64_t)local_var2._4_4_ << 0x20;
     temp_ptr3 = &system_state_ptr;
     temp_ptr1 = &system_data_buffer_ptr;
     local_var1 = 0;
@@ -353,7 +353,7 @@ process_engine_version_info(uint64_t param_1, uint64_t *param_2, uint64_t param_
       FUN_18064e900();
     }
     temp_ptr2 = (uint64_t *)0x0;
-    local_var1 = (ulonglong)local_var1._4_4_ << 0x20;
+    local_var1 = (uint64_t)local_var1._4_4_ << 0x20;
     temp_ptr1 = &system_state_ptr;
     temp_ptr3 = &system_data_buffer_ptr;
     local_var2 = 0;
@@ -373,7 +373,7 @@ process_engine_version_info(uint64_t param_1, uint64_t *param_2, uint64_t param_
       FUN_18064e900();
     }
     temp_ptr4 = (uint64_t *)0x0;
-    local_var2 = (ulonglong)local_var2._4_4_ << 0x20;
+    local_var2 = (uint64_t)local_var2._4_4_ << 0x20;
     temp_ptr3 = &system_state_ptr;
     temp_ptr1 = &system_data_buffer_ptr;
     local_var1 = 0;
@@ -394,7 +394,7 @@ process_engine_version_info(uint64_t param_1, uint64_t *param_2, uint64_t param_
       FUN_18064e900();
     }
     temp_ptr2 = (uint64_t *)0x0;
-    local_var1 = (ulonglong)local_var1._4_4_ << 0x20;
+    local_var1 = (uint64_t)local_var1._4_4_ << 0x20;
     temp_ptr1 = &system_state_ptr;
     // 处理版本信息回调函数
     process_version_callbacks(0, *param_4, *param_4 + 0x20, &temp_ptr5);
@@ -440,18 +440,18 @@ process_engine_version_info(uint64_t param_1, uint64_t *param_2, uint64_t param_
 //   param_1: 上下文参数
 //   param_2: 操作标识符
 //   param_3: 数据块指针
-void process_engine_file_operations(uint64_t param_1, uint64_t param_2, longlong *param_3)
+void process_engine_file_operations(uint64_t param_1, uint64_t param_2, int64_t *param_3)
 
 {
   uint temp_uint;
   code *error_handler;
   char temp_char;
   int temp_int;
-  longlong temp_long;
+  int64_t temp_long;
   int32_t *temp_ptr1;
   uint64_t temp_var1;
   int32_t temp_var2;
-  ulonglong temp_ulong;
+  uint64_t temp_ulong;
   void *temp_ptr2;
   int8_t local_buffer1[32];
   int16_t *wide_char_ptr;
@@ -462,11 +462,11 @@ void process_engine_file_operations(uint64_t param_1, uint64_t param_2, longlong
   uint buffer_size1;
   uint64_t local_var1;
   void *temp_ptr5;
-  longlong temp_long1;
+  int64_t temp_long1;
   uint buffer_size2;
   uint64_t local_var2;
   void *temp_ptr6;
-  longlong temp_long2;
+  int64_t temp_long2;
   int16_t *wide_char_ptr2;
   uint64_t local_var3;
   int16_t wide_char_flag;
@@ -474,15 +474,15 @@ void process_engine_file_operations(uint64_t param_1, uint64_t param_2, longlong
   uint64_t local_var4;
   uint64_t local_var5;
   void *temp_ptr7;
-  longlong temp_long3;
+  int64_t temp_long3;
   int32_t temp_flag2;
   uint64_t local_var6;
   void *pointer_array[68];
   int16_t wide_char_buffer[280];
-  ulonglong security_cookie;
+  uint64_t security_cookie;
   
   local_var6 = 0xfffffffffffffffe;
-  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)local_buffer1;
+  security_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)local_buffer1;
   temp_flag1 = 0;
   // 检查参数范围并处理文件路径
   if (param_3[1] - *param_3 >> 5 != 0) {
@@ -497,10 +497,10 @@ void process_engine_file_operations(uint64_t param_1, uint64_t param_2, longlong
     temp_flag1 = 1;                         // 操作标志
     
     temp_uint = *(uint *)(temp_long + 0x10); // 获取路径长度
-    temp_ulong = (ulonglong)temp_uint;      // 转换为无符号长整型
+    temp_ulong = (uint64_t)temp_uint;      // 转换为无符号长整型
     
     // 分配内存存储路径
-    if (*(longlong *)(temp_long + 8) != 0) {
+    if (*(int64_t *)(temp_long + 8) != 0) {
       allocate_string_memory(&temp_ptr3, temp_ulong);
     }
     
@@ -510,12 +510,12 @@ void process_engine_file_operations(uint64_t param_1, uint64_t param_2, longlong
       copy_path_data(temp_ptr4, *(uint64_t *)(temp_long + 8), temp_ulong);
     }
     if (temp_ptr4 != (void *)0x0) {
-      *(int8_t *)(temp_ulong + (longlong)temp_ptr4) = 0;
+      *(int8_t *)(temp_ulong + (int64_t)temp_ptr4) = 0;
     }
     local_var1 = CONCAT44(*(int32_t *)(temp_long + 0x1c), (int32_t)local_var1);
     buffer_size1 = temp_uint;
     FUN_1806277c0(&temp_ptr3, 0xf);
-    temp_ptr1 = (int32_t *)((ulonglong)buffer_size1 + (longlong)temp_ptr4);
+    temp_ptr1 = (int32_t *)((uint64_t)buffer_size1 + (int64_t)temp_ptr4);
     *temp_ptr1 = 0x72726554;  // "Trra"
     temp_ptr1[1] = 0x536e6961;  // "Sina"
     temp_ptr1[2] = 0x65646168;  // "edah"
@@ -528,8 +528,8 @@ void process_engine_file_operations(uint64_t param_1, uint64_t param_2, longlong
     buffer_size2 = 0;
     temp_flag1 = 3;
     temp_uint = *(uint *)(temp_long + 0x10);
-    temp_ulong = (ulonglong)temp_uint;
-    if (*(longlong *)(temp_long + 8) != 0) {
+    temp_ulong = (uint64_t)temp_uint;
+    if (*(int64_t *)(temp_long + 8) != 0) {
       FUN_1806277c0(&temp_ptr5, temp_ulong);
     }
     if (temp_uint != 0) {
@@ -543,7 +543,7 @@ void process_engine_file_operations(uint64_t param_1, uint64_t param_2, longlong
     temp_var2 = 1;
     buffer_size2 = temp_uint;
     FUN_1806277c0(&temp_ptr5, 1);
-    *(int16_t *)((ulonglong)buffer_size2 + temp_long1) = 0x2f;  // "/"
+    *(int16_t *)((uint64_t)buffer_size2 + temp_long1) = 0x2f;  // "/"
     temp_ptr7 = &system_data_buffer_ptr;
     buffer_size2 = temp_var2;
     if (temp_long3 != 0) {
@@ -568,7 +568,7 @@ void process_engine_file_operations(uint64_t param_1, uint64_t param_2, longlong
       FUN_18064e900();
     }
     temp_long2 = 0;
-    local_var3 = (ulonglong)local_var3._4_4_ << 0x20;
+    local_var3 = (uint64_t)local_var3._4_4_ << 0x20;
     temp_ptr6 = &system_state_ptr;
     temp_char = FUN_180624a00(&temp_ptr5);
     if (temp_char != '\0') {
@@ -582,7 +582,7 @@ void process_engine_file_operations(uint64_t param_1, uint64_t param_2, longlong
       temp_flag1 = 0x118;
       wide_char_ptr = wide_char_buffer;
       temp_int = MultiByteToWideChar(0xfde9, 0, temp_ptr2, 0xffffffff);
-      if (0x22f < (ulonglong)((longlong)temp_int * 2)) {
+      if (0x22f < (uint64_t)((int64_t)temp_int * 2)) {
 LAB_180167a3b:
         FUN_1808fcdc8();
         error_handler = (code *)swi(3);
@@ -590,7 +590,7 @@ LAB_180167a3b:
         return;
       }
       wide_char_buffer[temp_int] = 0;
-      if (0x22f < (ulonglong)((longlong)(temp_int + 1) * 2)) {
+      if (0x22f < (uint64_t)((int64_t)(temp_int + 1) * 2)) {
         FUN_1808fcdc8();
         goto LAB_180167a3b;
       }
@@ -625,7 +625,7 @@ LAB_180167a3b:
   }
   temp_flag1 = 0;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(security_cookie ^ (ulonglong)local_buffer1);
+  FUN_1808fc050(security_cookie ^ (uint64_t)local_buffer1);
 }
 
 

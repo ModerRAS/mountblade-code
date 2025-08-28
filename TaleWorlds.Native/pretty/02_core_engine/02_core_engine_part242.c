@@ -11,19 +11,19 @@
  * @param param_4 输出参数1
  * @param param_5 输出参数2
  */
-void process_game_entities_and_prefabs(void *param_1, longlong param_2, longlong param_3, 
-                                       longlong *param_4, longlong *param_5)
+void process_game_entities_and_prefabs(void *param_1, int64_t param_2, int64_t param_3, 
+                                       int64_t *param_4, int64_t *param_5)
 {
     byte temp_byte1;
     bool comparison_result;
     char char_result;
     int temp_int;
-    longlong *temp_ptr1;
+    int64_t *temp_ptr1;
     void *temp_void1;
     void *temp_void2;
     void **temp_void_ptr1;
-    longlong long_temp1;
-    longlong *long_ptr_temp1;
+    int64_t long_temp1;
+    int64_t *long_ptr_temp1;
     void *********void_ptr_ptr1;
     byte *byte_ptr_temp1;
     void ******void_ptr_ptr2;
@@ -37,8 +37,8 @@ void process_game_entities_and_prefabs(void *param_1, longlong param_2, longlong
     char *char_ptr4;
     int int_temp1;
     void *void_ptr_temp1;
-    longlong *long_ptr_temp2;
-    longlong long_temp2;
+    int64_t *long_ptr_temp2;
+    int64_t long_temp2;
     void *********void_ptr_ptr3;
     int int_temp2;
     char *char_ptr5;
@@ -53,14 +53,14 @@ void process_game_entities_and_prefabs(void *param_1, longlong param_2, longlong
     void *stack_void_ptr1;
     byte *stack_byte_ptr1;
     int stack_int1;
-    ulonglong stack_ulonglong1;
+    uint64_t stack_ulonglong1;
     char *stack_char_ptr1;
     void **stack_void_ptr2;
-    longlong *stack_long_ptr1;
+    int64_t *stack_long_ptr1;
     void *stack_void_ptr3;
-    longlong *stack_long_ptr2;
+    int64_t *stack_long_ptr2;
     char *stack_char_ptr2;
-    longlong *stack_long_ptr3;
+    int64_t *stack_long_ptr3;
     void *********stack_void_ptr_ptr1;
     void *********stack_void_ptr_ptr2;
     void *********stack_void_ptr_ptr3;
@@ -68,40 +68,40 @@ void process_game_entities_and_prefabs(void *param_1, longlong param_2, longlong
     void *stack_void_ptr5;
     int stack_int2;
     int stack_int3;
-    longlong *stack_long_ptr4;
-    longlong *stack_long_ptr5;
-    longlong *stack_long_ptr6;
-    longlong *stack_long_ptr7;
-    longlong *stack_long_ptr8;
-    longlong stack_long1;
+    int64_t *stack_long_ptr4;
+    int64_t *stack_long_ptr5;
+    int64_t *stack_long_ptr6;
+    int64_t *stack_long_ptr7;
+    int64_t *stack_long_ptr8;
+    int64_t stack_long1;
     void *stack_void_ptr6;
     void *stack_void_ptr_array[3];
     byte stack_buffer3[8];
     byte stack_buffer4[152];
-    longlong stack_long_array[13];
+    int64_t stack_long_array[13];
     void *stack_void_ptr7;
     void *stack_void_ptr8;
     char stack_char_array[144];
-    ulonglong stack_ulonglong2;
+    uint64_t stack_ulonglong2;
     
     // 初始化变量
     char_ptr5 = GLOBAL_STRING_TABLE_001;
     stack_void_ptr6 = (void *)0xfffffffffffffffe;
-    stack_ulonglong2 = GLOBAL_STACK_CHECK_VALUE ^ (ulonglong)stack_buffer1;
+    stack_ulonglong2 = GLOBAL_STACK_CHECK_VALUE ^ (uint64_t)stack_buffer1;
     stack_long_ptr8 = param_5;
     int_temp2 = 0;
     stack_int3 = 0;
     stack_char_ptr2 = GLOBAL_STRING_TABLE_001;
     stack_long_ptr5 = param_4;
-    stack_long_ptr7 = (longlong *)param_2;
+    stack_long_ptr7 = (int64_t *)param_2;
     stack_long1 = param_3;
     
     // 分配并初始化临时结构体
-    temp_ptr1 = (longlong *)allocate_memory(GLOBAL_MEMORY_POOL, 0x50, 8, 3);
-    *temp_ptr1 = (longlong)&GLOBAL_STRING_001;
+    temp_ptr1 = (int64_t *)allocate_memory(GLOBAL_MEMORY_POOL, 0x50, 8, 3);
+    *temp_ptr1 = (int64_t)&GLOBAL_STRING_001;
     temp_ptr1[1] = 0;
     *(int *)(temp_ptr1 + 2) = 0;
-    *temp_ptr1 = (longlong)&GLOBAL_STRING_002;
+    *temp_ptr1 = (int64_t)&GLOBAL_STRING_002;
     temp_ptr1[3] = 0;
     temp_ptr1[1] = 0;
     *(int *)(temp_ptr1 + 2) = 0;
@@ -115,7 +115,7 @@ void process_game_entities_and_prefabs(void *param_1, longlong param_2, longlong
     stack_long_ptr6 = temp_ptr1;
     
     // 调用虚函数初始化
-    (*(void (**)(void *, longlong))(*temp_ptr1 + 0x10))(temp_ptr1, param_2);
+    (*(void (**)(void *, int64_t))(*temp_ptr1 + 0x10))(temp_ptr1, param_2);
     
     temp_void2 = *GLOBAL_ENGINE_STATE;
     temp_void1 = create_entity_reference(&stack_char_ptr1, temp_ptr1);
@@ -129,7 +129,7 @@ void process_game_entities_and_prefabs(void *param_1, longlong param_2, longlong
         handle_memory_error();
     }
     stack_void_ptr2 = (void **)0x0;
-    stack_void_ptr3 = (void *)((ulonglong)stack_void_ptr3._4_4_ << 0x20);
+    stack_void_ptr3 = (void *)((uint64_t)stack_void_ptr3._4_4_ << 0x20);
     stack_char_ptr1 = &GLOBAL_STRING_001;
     temp_void2 = load_entity_data(char_ptr5, temp_ptr1 + 4);
     process_entity_data(temp_void2, &stack_long_ptr4);
@@ -148,7 +148,7 @@ void process_game_entities_and_prefabs(void *param_1, longlong param_2, longlong
         stack_char_ptr1 = &GLOBAL_STRING_002;
         stack_void_ptr3 = (void *)0x0;
         stack_void_ptr2 = (void **)0x0;
-        stack_long_ptr1 = (longlong *)((ulonglong)stack_long_ptr1 & 0xffffffff00000000);
+        stack_long_ptr1 = (int64_t *)((uint64_t)stack_long_ptr1 & 0xffffffff00000000);
         temp_void_ptr1 = (void **)allocate_memory(GLOBAL_MEMORY_POOL, 0x45, 0x13);
         *(byte *)temp_void_ptr1 = 0;
         stack_void_ptr2 = temp_void_ptr1;
@@ -161,16 +161,16 @@ void process_game_entities_and_prefabs(void *param_1, longlong param_2, longlong
         temp_void_ptr1[2] = 0x646f4d2f65766974;   // "tive/Mod"
         temp_void_ptr1[3] = 0x2f61746144656c75;   // "ule/Data"
         *(int *)(temp_void_ptr1 + 4) = 0x65726f43;  // "Core"
-        *(int *)((longlong)temp_void_ptr1 + 0x24) = 0x656d6147;  // "Game"
+        *(int *)((int64_t)temp_void_ptr1 + 0x24) = 0x656d6147;  // "Game"
         *(int *)(temp_void_ptr1 + 5) = 0x65666552;  // "Refe"
-        *(int *)((longlong)temp_void_ptr1 + 0x2c) = 0x636e6572;  // "renc"
+        *(int *)((int64_t)temp_void_ptr1 + 0x2c) = 0x636e6572;  // "renc"
         *(int *)(temp_void_ptr1 + 6) = 0x702f7365;  // "es/p"
-        *(int *)((longlong)temp_void_ptr1 + 0x34) = 0x61666572;  // "prefa"
+        *(int *)((int64_t)temp_void_ptr1 + 0x34) = 0x61666572;  // "prefa"
         *(int *)(temp_void_ptr1 + 7) = 0x6e655f62;  // "b_en"
-        *(int *)((longlong)temp_void_ptr1 + 0x3c) = 0x79746974;  // "tity"
+        *(int *)((int64_t)temp_void_ptr1 + 0x3c) = 0x79746974;  // "tity"
         *(int *)(temp_void_ptr1 + 8) = 0x7478742e;  // ".txt"
-        *(byte *)((longlong)temp_void_ptr1 + 0x44) = 0;
-        stack_long_ptr1 = (longlong *)CONCAT44(stack_long_ptr1._4_4_, 0x44);
+        *(byte *)((int64_t)temp_void_ptr1 + 0x44) = 0;
+        stack_long_ptr1 = (int64_t *)CONCAT44(stack_long_ptr1._4_4_, 0x44);
         
         // 文件读取操作
         open_file_stream(&stack_void_ptr7, &stack_char_ptr1);
@@ -185,21 +185,21 @@ void process_game_entities_and_prefabs(void *param_1, longlong param_2, longlong
         initialize_io_stream(stack_long_array);
         stack_int3 = 1;
         create_input_stream(stack_void_ptr_array, stack_buffer3, 0);
-        *(void **)((longlong)stack_void_ptr_array + (longlong)*(int *)(stack_void_ptr_array[0] + 4)) =
+        *(void **)((int64_t)stack_void_ptr_array + (int64_t)*(int *)(stack_void_ptr_array[0] + 4)) =
              &GLOBAL_STREAM_003;
-        *(int *)((longlong)stack_void_ptr_array + (longlong)*(int *)(stack_void_ptr_array[0] + 4) + -4) =
+        *(int *)((int64_t)stack_void_ptr_array + (int64_t)*(int *)(stack_void_ptr_array[0] + 4) + -4) =
              *(int *)(stack_void_ptr_array[0] + 4) + -0xb8;
         cleanup_stream_buffer(stack_buffer3);
         long_temp1 = read_stream_data(stack_buffer3, void_ptr_temp1, 1);
         
         if (long_temp1 == 0) {
-            set_stream_error_state((longlong)stack_void_ptr_array + (longlong)*(int *)(stack_void_ptr_array[0] + 4), 2, 0);
+            set_stream_error_state((int64_t)stack_void_ptr_array + (int64_t)*(int *)(stack_void_ptr_array[0] + 4), 2, 0);
         }
         
         // 读取行数据
-        temp_ptr1 = (longlong *)get_stream_line(stack_void_ptr_array, stack_char_array, 0x80);
+        temp_ptr1 = (int64_t *)get_stream_line(stack_void_ptr_array, stack_char_array, 0x80);
         
-        if ((*(byte *)((longlong)*(int *)(*temp_ptr1 + 4) + 0x10 + (longlong)temp_ptr1) & 6) == 0) {
+        if ((*(byte *)((int64_t)*(int *)(*temp_ptr1 + 4) + 0x10 + (int64_t)temp_ptr1) & 6) == 0) {
             // 处理字符串数据
             stack_void_ptr1 = &GLOBAL_STRING_002;
             stack_ulonglong1 = 0;
@@ -219,7 +219,7 @@ void process_game_entities_and_prefabs(void *param_1, longlong param_2, longlong
                 if (int_temp1 < 0x10) {
                     int_temp3 = 0x10;
                 }
-                stack_byte_ptr1 = (byte *)allocate_memory(GLOBAL_MEMORY_POOL, (longlong)int_temp3, 0x13);
+                stack_byte_ptr1 = (byte *)allocate_memory(GLOBAL_MEMORY_POOL, (int64_t)int_temp3, 0x13);
                 *stack_byte_ptr1 = 0;
                 temp_int = validate_memory_allocation(stack_byte_ptr1);
                 stack_ulonglong1 = CONCAT44(stack_ulonglong1._4_4_, temp_int);
@@ -229,7 +229,7 @@ void process_game_entities_and_prefabs(void *param_1, longlong param_2, longlong
             cleanup_string_buffer(&stack_void_ptr1);
             
             // 创建实体数据结构
-            long_ptr_temp1 = (longlong *)allocate_memory(GLOBAL_MEMORY_POOL, 0x40, (byte)stack_int2);
+            long_ptr_temp1 = (int64_t *)allocate_memory(GLOBAL_MEMORY_POOL, 0x40, (byte)stack_int2);
             temp_ptr1 = long_ptr_temp1 + 4;
             create_entity_data_structure(temp_ptr1, &stack_void_ptr1);
             stack_long_ptr4 = long_ptr_temp1;
@@ -250,12 +250,12 @@ void process_game_entities_and_prefabs(void *param_1, longlong param_2, longlong
                     }
                     else {
                         void_ptr_ptr2 = void_ptr_ptr1[5];
-                        long_temp1 = long_ptr_temp1[5] - (longlong)void_ptr_ptr2;
+                        long_temp1 = long_ptr_temp1[5] - (int64_t)void_ptr_ptr2;
                         do {
                             temp_byte1 = *(byte *)void_ptr_ptr2;
-                            uint_temp1 = (uint)*(byte *)((longlong)void_ptr_ptr2 + long_temp1);
+                            uint_temp1 = (uint)*(byte *)((int64_t)void_ptr_ptr2 + long_temp1);
                             if (temp_byte1 != uint_temp1) break;
-                            void_ptr_ptr2 = (void ******)((longlong)void_ptr_ptr2 + 1);
+                            void_ptr_ptr2 = (void ******)((int64_t)void_ptr_ptr2 + 1);
                         } while (uint_temp1 != 0);
                         comparison_result = 0 < (int)(temp_byte1 - uint_temp1);
                     }
@@ -275,19 +275,19 @@ void process_game_entities_and_prefabs(void *param_1, longlong param_2, longlong
                 }
                 else {
                     if ((int)long_ptr_temp1[6] == 0) {
-                        *temp_ptr1 = (longlong)&GLOBAL_STRING_002;
+                        *temp_ptr1 = (int64_t)&GLOBAL_STRING_002;
                         stack_long_ptr3 = temp_ptr1;
                         if (long_ptr_temp1[5] == 0) {
                             long_ptr_temp1[5] = 0;
                             *(int *)(long_ptr_temp1 + 7) = 0;
-                            *temp_ptr1 = (longlong)&GLOBAL_STRING_001;
+                            *temp_ptr1 = (int64_t)&GLOBAL_STRING_001;
                             handle_memory_error(long_ptr_temp1);
                         }
                         handle_memory_error();
                     }
                     if (*(int *)(void_ptr_ptr1 + 6) != 0) {
                         byte_ptr_temp1 = (byte *)long_ptr_temp1[5];
-                        long_temp1 = (longlong)void_ptr_ptr1[5] - (longlong)byte_ptr_temp1;
+                        long_temp1 = (int64_t)void_ptr_ptr1[5] - (int64_t)byte_ptr_temp1;
                         do {
                             temp_byte1 = *byte_ptr_temp1;
                             uint_temp1 = (uint)byte_ptr_temp1[long_temp1];
@@ -295,12 +295,12 @@ void process_game_entities_and_prefabs(void *param_1, longlong param_2, longlong
                             byte_ptr_temp1 = byte_ptr_temp1 + 1;
                         } while (uint_temp1 != 0);
                         if ((int)(temp_byte1 - uint_temp1) < 1) {
-                            *temp_ptr1 = (longlong)&GLOBAL_STRING_002;
+                            *temp_ptr1 = (int64_t)&GLOBAL_STRING_002;
                             stack_long_ptr3 = temp_ptr1;
                             if (long_ptr_temp1[5] == 0) {
                                 long_ptr_temp1[5] = 0;
                                 *(int *)(long_ptr_temp1 + 7) = 0;
-                                *temp_ptr1 = (longlong)&GLOBAL_STRING_001;
+                                *temp_ptr1 = (int64_t)&GLOBAL_STRING_001;
                                 handle_memory_error(long_ptr_temp1);
                             }
                             handle_memory_error();
@@ -317,12 +317,12 @@ void process_game_entities_and_prefabs(void *param_1, longlong param_2, longlong
                         }
                         else {
                             void_ptr_ptr2 = void_ptr_ptr5[5];
-                            long_temp1 = long_ptr_temp1[5] - (longlong)void_ptr_ptr2;
+                            long_temp1 = long_ptr_temp1[5] - (int64_t)void_ptr_ptr2;
                             do {
                                 temp_byte1 = *(byte *)void_ptr_ptr2;
-                                uint_temp1 = (uint)*(byte *)((longlong)void_ptr_ptr2 + long_temp1);
+                                uint_temp1 = (uint)*(byte *)((int64_t)void_ptr_ptr2 + long_temp1);
                                 if (temp_byte1 != uint_temp1) break;
-                                void_ptr_ptr2 = (void ******)((longlong)void_ptr_ptr2 + 1);
+                                void_ptr_ptr2 = (void ******)((int64_t)void_ptr_ptr2 + 1);
                             } while (uint_temp1 != 0);
                             if (0 < (int)(temp_byte1 - uint_temp1)) {
                                 int_temp2 = 1;
@@ -339,9 +339,9 @@ void process_game_entities_and_prefabs(void *param_1, longlong param_2, longlong
                 insert_entity_into_list(long_ptr_temp1, void_ptr_ptr5, &stack_void_ptr_ptr1, int_temp2);
             }
             stack_long_ptr3 = stack_long_array;
-            *(void **)((longlong)stack_void_ptr_array + (longlong)*(int *)(stack_void_ptr_array[0] + 4)) =
+            *(void **)((int64_t)stack_void_ptr_array + (int64_t)*(int *)(stack_void_ptr_array[0] + 4)) =
                  &GLOBAL_STREAM_003;
-            *(int *)((longlong)stack_void_ptr_array + (longlong)*(int *)(stack_void_ptr_array[0] + 4) + -4) =
+            *(int *)((int64_t)stack_void_ptr_array + (int64_t)*(int *)(stack_void_ptr_array[0] + 4) + -4) =
                  *(int *)(stack_void_ptr_array[0] + 4) + -0xb8;
             cleanup_input_stream(stack_buffer3);
             destroy_input_stream(stack_buffer4);
@@ -352,7 +352,7 @@ void process_game_entities_and_prefabs(void *param_1, longlong param_2, longlong
                 handle_memory_error();
             }
             stack_void_ptr2 = (void **)0x0;
-            stack_void_ptr3 = (void *)((ulonglong)stack_void_ptr3 & 0xffffffff00000000);
+            stack_void_ptr3 = (void *)((uint64_t)stack_void_ptr3 & 0xffffffff00000000);
             stack_char_ptr1 = &GLOBAL_STRING_001;
         }
     }
@@ -365,7 +365,7 @@ void process_game_entities_and_prefabs(void *param_1, longlong param_2, longlong
         handle_memory_error();
     }
     stack_void_ptr2 = (void **)0x0;
-    stack_void_ptr3 = (void *)((ulonglong)stack_void_ptr3 & 0xffffffff00000000);
+    stack_void_ptr3 = (void *)((uint64_t)stack_void_ptr3 & 0xffffffff00000000);
     stack_char_ptr1 = &GLOBAL_STRING_001;
     
     if (char_result == '\0') {
@@ -384,7 +384,7 @@ void process_game_entities_and_prefabs(void *param_1, longlong param_2, longlong
     temp_void_ptr1[0x610] = 0;
     temp_void_ptr2 = temp_void_ptr1 + 0xf;
     temp_void_ptr1[0xc] = temp_void_ptr2;
-    temp_void_ptr1[0xd] = (ulonglong)(-(int)temp_void_ptr2 & 7) + (longlong)temp_void_ptr2;
+    temp_void_ptr1[0xd] = (uint64_t)(-(int)temp_void_ptr2 & 7) + (int64_t)temp_void_ptr2;
     temp_void_ptr1[0xe] = temp_void_ptr1 + 0x60f;
     temp_void_ptr1[0x60f] = &GLOBAL_PREFAB_VTABLE_001;
     temp_void_ptr1[0x610] = GLOBAL_PREFAB_DESTRUCTOR;
@@ -392,12 +392,12 @@ void process_game_entities_and_prefabs(void *param_1, longlong param_2, longlong
     stack_long_ptr3 = temp_void_ptr1;
     
     if (temp_void_ptr2 < (void **)param_4[2]) {
-        param_4[1] = (longlong)(temp_void_ptr2 + 1);
+        param_4[1] = (int64_t)(temp_void_ptr2 + 1);
         *temp_void_ptr2 = temp_void_ptr1;
     }
     else {
         temp_void_ptr4 = (void **)*param_4;
-        long_temp1 = (longlong)temp_void_ptr2 - (longlong)temp_void_ptr4 >> 3;
+        long_temp1 = (int64_t)temp_void_ptr2 - (int64_t)temp_void_ptr4 >> 3;
         if (long_temp1 == 0) {
             long_temp1 = 1;
         }
@@ -414,19 +414,19 @@ void process_game_entities_and_prefabs(void *param_1, longlong param_2, longlong
         }
         
         if (temp_void_ptr4 != temp_void_ptr2) {
-            memmove(temp_void_ptr3, temp_void_ptr4, (longlong)temp_void_ptr2 - (longlong)temp_void_ptr4);
+            memmove(temp_void_ptr3, temp_void_ptr4, (int64_t)temp_void_ptr2 - (int64_t)temp_void_ptr4);
         }
         *temp_void_ptr3 = temp_void_ptr1;
         if (*param_4 != 0) {
             handle_memory_error();
         }
-        *param_4 = (longlong)temp_void_ptr3;
-        param_4[1] = (longlong)(temp_void_ptr3 + 1);
-        param_4[2] = (longlong)(temp_void_ptr3 + long_temp1);
+        *param_4 = (int64_t)temp_void_ptr3;
+        param_4[1] = (int64_t)(temp_void_ptr3 + 1);
+        param_4[2] = (int64_t)(temp_void_ptr3 + long_temp1);
     }
     
     temp_void_ptr4 = (void **)0x0;
-    temp_ptr1 = (longlong *)allocate_memory(GLOBAL_MEMORY_POOL, 0x20, 8, 3);
+    temp_ptr1 = (int64_t *)allocate_memory(GLOBAL_MEMORY_POOL, 0x20, 8, 3);
     *temp_ptr1 = 0;
     temp_ptr1[1] = 0;
     temp_ptr1[2] = 0;
@@ -435,12 +435,12 @@ void process_game_entities_and_prefabs(void *param_1, longlong param_2, longlong
     stack_long_ptr3 = temp_ptr1;
     
     if (temp_void_ptr2 < (void **)param_5[2]) {
-        param_5[1] = (longlong)(temp_void_ptr2 + 1);
+        param_5[1] = (int64_t)(temp_void_ptr2 + 1);
         *temp_void_ptr2 = temp_ptr1;
     }
     else {
         temp_void_ptr3 = (void **)*param_5;
-        long_temp1 = (longlong)temp_void_ptr2 - (longlong)temp_void_ptr3 >> 3;
+        long_temp1 = (int64_t)temp_void_ptr2 - (int64_t)temp_void_ptr3 >> 3;
         if (long_temp1 == 0) {
             long_temp1 = 1;
         }
@@ -457,15 +457,15 @@ void process_game_entities_and_prefabs(void *param_1, longlong param_2, longlong
         }
         
         if (temp_void_ptr3 != temp_void_ptr2) {
-            memmove(temp_void_ptr4, temp_void_ptr3, (longlong)temp_void_ptr2 - (longlong)temp_void_ptr3);
+            memmove(temp_void_ptr4, temp_void_ptr3, (int64_t)temp_void_ptr2 - (int64_t)temp_void_ptr3);
         }
         *temp_void_ptr4 = temp_ptr1;
         if (*param_5 != 0) {
             handle_memory_error();
         }
-        *param_5 = (longlong)temp_void_ptr4;
-        param_5[1] = (longlong)(temp_void_ptr4 + 1);
-        param_5[2] = (longlong)(temp_void_ptr4 + long_temp1);
+        *param_5 = (int64_t)temp_void_ptr4;
+        param_5[1] = (int64_t)(temp_void_ptr4 + 1);
+        param_5[2] = (int64_t)(temp_void_ptr4 + long_temp1);
     }
     
     if (param_2 != 0) {
@@ -491,11 +491,11 @@ void process_game_entities_and_prefabs(void *param_1, longlong param_2, longlong
             char_ptr5 = (char *)temp_void_ptr2[2];
         }
         if (char_ptr5 == char_ptr6 + -0x180a0ffa7) {
-            char_ptr5 = char_ptr5 + (longlong)char_ptr2;
+            char_ptr5 = char_ptr5 + (int64_t)char_ptr2;
             if (char_ptr5 <= char_ptr2) {
                 goto prefab_search_done;
             }
-            long_temp1 = (longlong)&GLOBAL_PREFAB_NAME_001 - (longlong)char_ptr2;
+            long_temp1 = (int64_t)&GLOBAL_PREFAB_NAME_001 - (int64_t)char_ptr2;
             while (*char_ptr2 == char_ptr2[long_temp1]) {
                 char_ptr2 = char_ptr2 + 1;
                 if (char_ptr5 <= char_ptr2) {
@@ -513,7 +513,7 @@ prefab_search_done:
         stack_buffer2[0] = 1;
     }
     *(byte *)(stack_long_ptr6 + 9) = stack_buffer2[0];
-    long_ptr_temp1 = (longlong *)load_entity_data(stack_char_ptr2, stack_long_ptr6 + 4);
+    long_ptr_temp1 = (int64_t *)load_entity_data(stack_char_ptr2, stack_long_ptr6 + 4);
     stack_long_ptr5 = long_ptr_temp1;
     
     if (temp_void_ptr2 != (void **)0x0) {
@@ -535,11 +535,11 @@ prefab_search_done:
                 char_ptr4 = *(char **)(char_ptr5 + 0x10);
             }
             if (char_ptr4 == char_ptr6 + -0x180a0b67f) {
-                char_ptr4 = char_ptr4 + (longlong)char_ptr2;
+                char_ptr4 = char_ptr4 + (int64_t)char_ptr2;
                 if (char_ptr4 <= char_ptr2) {
                     goto entity_search_done;
                 }
-                long_temp1 = (longlong)&GLOBAL_ENTITY_NAME_001 - (longlong)char_ptr2;
+                long_temp1 = (int64_t)&GLOBAL_ENTITY_NAME_001 - (int64_t)char_ptr2;
                 while (*char_ptr2 == char_ptr2[long_temp1]) {
                     char_ptr2 = char_ptr2 + 1;
                     if (char_ptr4 <= char_ptr2) {
@@ -554,7 +554,7 @@ entity_search_done:
     // 清理资源并退出
 cleanup_and_exit:
     cleanup_entity_list(&stack_void_ptr_ptr1, stack_void_ptr_ptr3);
-    cleanup_stack_frame(stack_ulonglong2 ^ (ulonglong)stack_buffer1);
+    cleanup_stack_frame(stack_ulonglong2 ^ (uint64_t)stack_buffer1);
     
     // 主处理循环
     while (true) {
@@ -589,7 +589,7 @@ cleanup_and_exit:
                 char_ptr1 = (char *)temp_void_ptr2[2];
             }
             if (char_ptr1 == char_ptr4 + -0x180a03a83) {
-                char_ptr1 = char_ptr2 + (longlong)char_ptr1;
+                char_ptr1 = char_ptr2 + (int64_t)char_ptr1;
                 if (char_ptr1 <= char_ptr2) {
                     long_temp1 = 0x180d48d24;
                     if (temp_void_ptr2[1] != 0) {
@@ -598,7 +598,7 @@ cleanup_and_exit:
                     add_entity_attribute(&stack_void_ptr1, long_temp1);
                     break;
                 }
-                long_temp1 = (longlong)&GLOBAL_ATTRIBUTE_NAME_001 - (longlong)char_ptr2;
+                long_temp1 = (int64_t)&GLOBAL_ATTRIBUTE_NAME_001 - (int64_t)char_ptr2;
                 while (*char_ptr2 == char_ptr2[long_temp1]) {
                     char_ptr2 = char_ptr2 + 1;
                     if (char_ptr1 <= char_ptr2) {
@@ -639,12 +639,12 @@ cleanup_and_exit:
                     char_ptr3 = *(char **)(char_ptr2 + 0x10);
                 }
                 if (char_ptr3 == char_ptr4 + -0x180a0b67f) {
-                    char_ptr3 = char_ptr3 + (longlong)char_ptr1;
+                    char_ptr3 = char_ptr3 + (int64_t)char_ptr1;
                     char_ptr5 = char_ptr2;
                     if (char_ptr3 <= char_ptr1) {
                         break;
                     }
-                    long_temp1 = (longlong)&GLOBAL_ENTITY_TYPE_NAME_001 - (longlong)char_ptr1;
+                    long_temp1 = (int64_t)&GLOBAL_ENTITY_TYPE_NAME_001 - (int64_t)char_ptr1;
                     while (*char_ptr1 == char_ptr1[long_temp1]) {
                         char_ptr1 = char_ptr1 + 1;
                         if (char_ptr3 <= char_ptr1) {
@@ -674,7 +674,7 @@ entity_type_found:
                     else {
                         byte_ptr_temp1 = stack_byte_ptr1;
                         do {
-                            uint_temp1 = (uint)byte_ptr_temp1[(longlong)void_ptr_ptr1[5] - (longlong)stack_byte_ptr1];
+                            uint_temp1 = (uint)byte_ptr_temp1[(int64_t)void_ptr_ptr1[5] - (int64_t)stack_byte_ptr1];
                             int_temp3 = *byte_ptr_temp1 - uint_temp1;
                             if (*byte_ptr_temp1 != uint_temp1) {
                                 break;
@@ -717,12 +717,12 @@ entity_type_found:
                         char_ptr3 = *(char **)(char_ptr2 + 0x10);
                     }
                     if (char_ptr3 == char_ptr4 + -0x180a0b67f) {
-                        char_ptr3 = char_ptr3 + (longlong)char_ptr1;
+                        char_ptr3 = char_ptr3 + (int64_t)char_ptr1;
                         char_ptr5 = char_ptr2;
                         if (char_ptr3 <= char_ptr1) {
                             break;
                         }
-                        long_temp1 = (longlong)&GLOBAL_ENTITY_TYPE_NAME_001 - (longlong)char_ptr1;
+                        long_temp1 = (int64_t)&GLOBAL_ENTITY_TYPE_NAME_001 - (int64_t)char_ptr1;
                         while (*char_ptr1 == char_ptr1[long_temp1]) {
                             char_ptr1 = char_ptr1 + 1;
                             if (char_ptr3 <= char_ptr1) {
@@ -742,14 +742,14 @@ entity_type_processed:
             if (*(int *)(void_ptr_ptr4 + 6) != 0) {
                 if (stack_int1 != 0) {
                     void_ptr_ptr2 = void_ptr_ptr4[5];
-                    long_temp1 = (longlong)stack_byte_ptr1 - (longlong)void_ptr_ptr2;
+                    long_temp1 = (int64_t)stack_byte_ptr1 - (int64_t)void_ptr_ptr2;
                     do {
                         temp_byte1 = *(byte *)void_ptr_ptr2;
-                        uint_temp1 = (uint)*(byte *)((longlong)void_ptr_ptr2 + long_temp1);
+                        uint_temp1 = (uint)*(byte *)((int64_t)void_ptr_ptr2 + long_temp1);
                         if (temp_byte1 != uint_temp1) {
                             break;
                         }
-                        void_ptr_ptr2 = (void ******)((longlong)void_ptr_ptr2 + 1);
+                        void_ptr_ptr2 = (void ******)((int64_t)void_ptr_ptr2 + 1);
                     } while (uint_temp1 != 0);
                     if ((int)(temp_byte1 - uint_temp1) < 1) {
                         goto process_entity_data;
@@ -773,12 +773,12 @@ entity_type_processed:
                         char_ptr3 = *(char **)(char_ptr2 + 0x10);
                     }
                     if (char_ptr3 == char_ptr4 + -0x180a0b67f) {
-                        char_ptr3 = char_ptr3 + (longlong)char_ptr1;
+                        char_ptr3 = char_ptr3 + (int64_t)char_ptr1;
                         char_ptr5 = char_ptr2;
                         if (char_ptr3 <= char_ptr1) {
                             break;
                         }
-                        long_temp1 = (longlong)&GLOBAL_ENTITY_TYPE_NAME_001 - (longlong)char_ptr1;
+                        long_temp1 = (int64_t)&GLOBAL_ENTITY_TYPE_NAME_001 - (int64_t)char_ptr1;
                         while (*char_ptr1 == char_ptr1[long_temp1]) {
                             char_ptr1 = char_ptr1 + 1;
                             if (char_ptr3 <= char_ptr1) {
@@ -798,31 +798,31 @@ entity_type_final:
         
 process_entity_data:
         // 处理实体数据
-        stack_long_ptr1 = (longlong *)0x0;
+        stack_long_ptr1 = (int64_t *)0x0;
         int_temp3 = (int)(long_ptr_temp1[1] - *long_ptr_temp1 >> 3) + -1;
         stack_void_ptr2 = (void **)CONCAT44(stack_void_ptr2._4_4_, int_temp3);
         stack_char_ptr1 = char_ptr5;
         stack_void_ptr3 = temp_ptr1;
         temp_void2 = allocate_memory(GLOBAL_MEMORY_POOL, 0x2f0, 0x10, 0xd);
-        long_ptr_temp1 = (longlong *)create_entity_object(temp_void2, 4);
+        long_ptr_temp1 = (int64_t *)create_entity_object(temp_void2, 4);
         stack_long_ptr3 = long_ptr_temp1;
         
-        if (long_ptr_temp1 != (longlong *)0x0) {
+        if (long_ptr_temp1 != (int64_t *)0x0) {
             (*(void (**)(void *))(*long_ptr_temp1 + 0x28))(long_ptr_temp1);
         }
         
         long_ptr_temp2 = stack_long_ptr2;
         temp_void_ptr2 = (void **)stack_long_ptr2[1];
         if (temp_void_ptr2 < (void **)stack_long_ptr2[2]) {
-            stack_long_ptr2[1] = (longlong)(temp_void_ptr2 + 1);
+            stack_long_ptr2[1] = (int64_t)(temp_void_ptr2 + 1);
             *temp_void_ptr2 = long_ptr_temp1;
-            if (long_ptr_temp1 != (longlong *)0x0) {
+            if (long_ptr_temp1 != (int64_t *)0x0) {
                 (*(void (**)(void *))(*long_ptr_temp1 + 0x28))(long_ptr_temp1);
             }
         }
         else {
             temp_void_ptr1 = (void **)*stack_long_ptr2;
-            long_temp1 = (longlong)temp_void_ptr2 - (longlong)temp_void_ptr1 >> 3;
+            long_temp1 = (int64_t)temp_void_ptr2 - (int64_t)temp_void_ptr1 >> 3;
             if (long_temp1 == 0) {
                 long_temp1 = 1;
             }
@@ -839,40 +839,40 @@ process_entity_data:
             }
             
             if (temp_void_ptr1 != temp_void_ptr2) {
-                memmove(temp_void_ptr3, temp_void_ptr1, (longlong)temp_void_ptr2 - (longlong)temp_void_ptr1);
+                memmove(temp_void_ptr3, temp_void_ptr1, (int64_t)temp_void_ptr2 - (int64_t)temp_void_ptr1);
             }
-            *(longlong **)temp_void_ptr3 = long_ptr_temp1;
-            if (long_ptr_temp1 != (longlong *)0x0) {
+            *(int64_t **)temp_void_ptr3 = long_ptr_temp1;
+            if (long_ptr_temp1 != (int64_t *)0x0) {
                 (*(void (**)(void *))(*long_ptr_temp1 + 0x28))(long_ptr_temp1);
             }
             stack_char_ptr2 = (char *)temp_void_ptr3 + 8;
-            temp_ptr1 = (longlong *)long_ptr_temp2[1];
-            long_ptr_temp2 = (longlong *)*stack_long_ptr2;
+            temp_ptr1 = (int64_t *)long_ptr_temp2[1];
+            long_ptr_temp2 = (int64_t *)*stack_long_ptr2;
             
             if (long_ptr_temp2 != temp_ptr1) {
                 do {
-                    if ((longlong *)*long_ptr_temp2 != (longlong *)0x0) {
-                        (*(void (**)(void))(*(longlong *)*long_ptr_temp2 + 0x38))();
+                    if ((int64_t *)*long_ptr_temp2 != (int64_t *)0x0) {
+                        (*(void (**)(void))(*(int64_t *)*long_ptr_temp2 + 0x38))();
                     }
                     long_ptr_temp2 = long_ptr_temp2 + 1;
                 } while (long_ptr_temp2 != temp_ptr1);
-                long_ptr_temp2 = (longlong *)*stack_long_ptr2;
+                long_ptr_temp2 = (int64_t *)*stack_long_ptr2;
             }
             
-            if (long_ptr_temp2 != (longlong *)0x0) {
+            if (long_ptr_temp2 != (int64_t *)0x0) {
                 handle_memory_error(long_ptr_temp2);
             }
-            *stack_long_ptr2 = (longlong)temp_void_ptr3;
-            stack_long_ptr2[1] = (longlong)stack_char_ptr2;
-            stack_long_ptr2[2] = (longlong)(temp_void_ptr3 + long_temp1 * 8);
+            *stack_long_ptr2 = (int64_t)temp_void_ptr3;
+            stack_long_ptr2[1] = (int64_t)stack_char_ptr2;
+            stack_long_ptr2[2] = (int64_t)(temp_void_ptr3 + long_temp1 * 8);
             temp_ptr1 = stack_long_ptr6;
         }
         
-        if (long_ptr_temp1 != (longlong *)0x0) {
+        if (long_ptr_temp1 != (int64_t *)0x0) {
             stack_long_ptr7 = long_ptr_temp1;
             (*(void (**)(void *))(*long_ptr_temp1 + 0x28))(long_ptr_temp1);
         }
-        stack_long_ptr7 = (longlong *)0x0;
+        stack_long_ptr7 = (int64_t *)0x0;
         char_ptr6 = *(char **)(stack_long1 + 8);
         stack_long_ptr1 = long_ptr_temp1;
         
@@ -880,12 +880,12 @@ process_entity_data:
             *(char **)(stack_long1 + 8) = char_ptr6 + 0x20;
             *(char **)char_ptr6 = char_ptr5;
             *(int *)(char_ptr6 + 8) = int_temp3;
-            *(longlong **)(char_ptr6 + 0x10) = long_ptr_temp1;
+            *(int64_t **)(char_ptr6 + 0x10) = long_ptr_temp1;
             stack_char_ptr2 = char_ptr6;
-            if (long_ptr_temp1 != (longlong *)0x0) {
+            if (long_ptr_temp1 != (int64_t *)0x0) {
                 (*(void (**)(void *))(*long_ptr_temp1 + 0x28))(long_ptr_temp1);
             }
-            *(longlong **)(char_ptr6 + 0x18) = temp_ptr1;
+            *(int64_t **)(char_ptr6 + 0x18) = temp_ptr1;
             long_ptr_temp2 = long_ptr_temp1;
         }
         else {
@@ -911,12 +911,12 @@ process_entity_data:
                 char_ptr1 = *(char **)(char_ptr6 + 0x10);
             }
             if (char_ptr1 == char_ptr2 + -0x180a0b67f) {
-                char_ptr1 = char_ptr1 + (longlong)char_ptr4;
+                char_ptr1 = char_ptr1 + (int64_t)char_ptr4;
                 char_ptr5 = char_ptr6;
                 if (char_ptr1 <= char_ptr4) {
                     break;
                 }
-                long_temp1 = (longlong)&GLOBAL_ENTITY_TYPE_NAME_001 - (longlong)char_ptr4;
+                long_temp1 = (int64_t)&GLOBAL_ENTITY_TYPE_NAME_001 - (int64_t)char_ptr4;
                 while (*char_ptr4 == char_ptr4[long_temp1]) {
                     char_ptr4 = char_ptr4 + 1;
                     if (char_ptr1 <= char_ptr4) {
@@ -927,10 +927,10 @@ process_entity_data:
         }
         
 entity_type_cleanup:
-        if (long_ptr_temp1 != (longlong *)0x0) {
+        if (long_ptr_temp1 != (int64_t *)0x0) {
             (*(void (**)(void *))(*long_ptr_temp1 + 0x38))(long_ptr_temp1);
         }
-        if (long_ptr_temp2 != (longlong *)0x0) {
+        if (long_ptr_temp2 != (int64_t *)0x0) {
             (*(void (**)(void *))(*long_ptr_temp2 + 0x38))(long_ptr_temp2);
         }
         stack_void_ptr1 = &GLOBAL_STRING_002;
@@ -954,7 +954,7 @@ void initialize_game_engine(void)
 
 // 全局变量和常量定义
 #define GLOBAL_STRING_TABLE_001    ((char *)0x180c868e8)
-#define GLOBAL_STACK_CHECK_VALUE   ((ulonglong)0x180bf00a8)
+#define GLOBAL_STACK_CHECK_VALUE   ((uint64_t)0x180bf00a8)
 #define GLOBAL_MEMORY_POOL         ((void *)0x180c8ed18)
 #define GLOBAL_STRING_001          ((void *)0x18098bcb0)
 #define GLOBAL_STRING_002          ((void *)0x180a3c3e0)
@@ -978,26 +978,26 @@ int register_entity_component(void *engine_state, void *ref);
 void handle_memory_error(void);
 void *load_entity_data(char *name, void *data);
 void process_entity_data(void *data, void **output);
-void initialize_io_stream(longlong *stream);
+void initialize_io_stream(int64_t *stream);
 void create_input_stream(void **array, void *buffer, int flags);
 void cleanup_stream_buffer(void *buffer);
-longlong read_stream_data(void *buffer, void *data, int count);
-void set_stream_error_state(longlong state, int error, int flags);
-longlong *get_stream_line(void **stream, char *buffer, size_t size);
+int64_t read_stream_data(void *buffer, void *data, int count);
+void set_stream_error_state(int64_t state, int error, int flags);
+int64_t *get_stream_line(void **stream, char *buffer, size_t size);
 void cleanup_string_buffer(void **buffer);
 void create_entity_data_structure(void *data, void **input);
 void *process_entity_reference(void *ref);
 void insert_entity_into_list(void *data, void *ref, void **list, int flags);
 void cleanup_input_stream(void *buffer);
 void destroy_input_stream(void *buffer);
-void destroy_io_stream(longlong *stream);
-void *get_entity_type(void **ref, longlong param);
+void destroy_io_stream(int64_t *stream);
+void *get_entity_type(void **ref, int64_t param);
 char validate_entity_type(void *type);
-void setup_entity_components(longlong param, void *prefab, void *data);
-longlong find_prefab_by_name(void *prefab, void *name, void *buffer);
+void setup_entity_components(int64_t param, void *prefab, void *data);
+int64_t find_prefab_by_name(void *prefab, void *name, void *buffer);
 void cleanup_entity_list(void **list1, void **list2);
-void cleanup_stack_frame(ulonglong value);
-void add_entity_attribute(void **attr, longlong value);
+void cleanup_stack_frame(uint64_t value);
+void add_entity_attribute(void **attr, int64_t value);
 void *create_entity_object(void *data, int flags);
-void expand_entity_buffer(longlong *buffer, void **output);
+void expand_entity_buffer(int64_t *buffer, void **output);
 void initialize_engine_core(void);

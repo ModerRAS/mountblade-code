@@ -18,7 +18,7 @@ void *g_CallbackTable;           // 回调函数表
  *   - param_4: 数据指针指针
  * 说明：通过回调函数处理数据，将结果存储到指定位置
  */
-void process_data_callback(void *param_1, void *param_2, void *param_3, longlong *param_4)
+void process_data_callback(void *param_1, void *param_2, void *param_3, int64_t *param_4)
 {
   void **data_ptr;
   char result;
@@ -45,7 +45,7 @@ void process_data_callback(void *param_1, void *param_2, void *param_3, longlong
  *   - param_4: 操作参数
  * 返回值：操作结果或数据指针
  */
-longlong manage_data_structure_type1(longlong **param_1, longlong **param_2, int operation_type, void *param_4)
+int64_t manage_data_structure_type1(int64_t **param_1, int64_t **param_2, int operation_type, void *param_4)
 {
   void **new_struct;
   void *src_data;
@@ -82,7 +82,7 @@ longlong manage_data_structure_type1(longlong **param_1, longlong **param_2, int
       new_struct[1] = src_data;        // 复制第二个字段
       new_struct[2] = dest_data[2];    // 复制第三个字段
       
-      *param_1 = (longlong)new_struct;
+      *param_1 = (int64_t)new_struct;
       return 0;
     }
     
@@ -106,9 +106,9 @@ longlong manage_data_structure_type1(longlong **param_1, longlong **param_2, int
  *   - param_4: 操作参数
  * 返回值：操作结果或数据指针
  */
-longlong manage_data_structure_type2(longlong **param_1, longlong **param_2, int operation_type, void *param_4)
+int64_t manage_data_structure_type2(int64_t **param_1, int64_t **param_2, int operation_type, void *param_4)
 {
-  longlong data_ptr;
+  int64_t data_ptr;
   void **new_struct;
   
   // 获取类型信息
@@ -142,7 +142,7 @@ longlong manage_data_structure_type2(longlong **param_1, longlong **param_2, int
       // 初始化数据
       initialize_data_structure(new_struct, *param_2);
       
-      *param_1 = (longlong)new_struct;
+      *param_1 = (int64_t)new_struct;
       return 0;
     }
     
@@ -166,9 +166,9 @@ longlong manage_data_structure_type2(longlong **param_1, longlong **param_2, int
  *   - param_4: 操作参数
  * 返回值：操作结果或数据指针
  */
-longlong manage_data_structure_type3(longlong **param_1, longlong **param_2, int operation_type, void *param_4)
+int64_t manage_data_structure_type3(int64_t **param_1, int64_t **param_2, int operation_type, void *param_4)
 {
-  longlong data_ptr;
+  int64_t data_ptr;
   void **new_struct;
   
   // 获取类型信息
@@ -202,7 +202,7 @@ longlong manage_data_structure_type3(longlong **param_1, longlong **param_2, int
       // 初始化数据
       initialize_data_structure(new_struct, *param_2);
       
-      *param_1 = (longlong)new_struct;
+      *param_1 = (int64_t)new_struct;
       return 0;
     }
     
@@ -226,15 +226,15 @@ longlong manage_data_structure_type3(longlong **param_1, longlong **param_2, int
  *   - param_4: 数据结构指针指针
  * 说明：通过复杂数据结构处理回调，使用索引访问和函数指针调用
  */
-void process_complex_callback(void *param_1, void *param_2, void *param_3, longlong *param_4)
+void process_complex_callback(void *param_1, void *param_2, void *param_3, int64_t *param_4)
 {
-  longlong struct_ptr;
+  int64_t struct_ptr;
   
   struct_ptr = *param_4;
   
   // 处理数据元素
   process_data_elements(
-    *(void **)(*(longlong *)(struct_ptr + 0x28) + 200 + (longlong)*(int *)(struct_ptr + 0x20) * 8),
+    *(void **)(*(int64_t *)(struct_ptr + 0x28) + 200 + (int64_t)*(int *)(struct_ptr + 0x20) * 8),
     *(void **)(struct_ptr + 0x30),
     param_1
   );
@@ -255,11 +255,11 @@ void process_complex_callback(void *param_1, void *param_2, void *param_3, longl
  *   - param_4: 操作参数
  * 返回值：操作结果或数据指针
  */
-longlong manage_data_structure_type4(longlong **param_1, longlong **param_2, int operation_type, void *param_4)
+int64_t manage_data_structure_type4(int64_t **param_1, int64_t **param_2, int operation_type, void *param_4)
 {
-  longlong result;
-  longlong data_ptr;
-  longlong src_ptr;
+  int64_t result;
+  int64_t data_ptr;
+  int64_t src_ptr;
   void *callback_func;
   
   // 获取类型信息
@@ -335,14 +335,14 @@ longlong manage_data_structure_type4(longlong **param_1, longlong **param_2, int
  *   - param_4: 数据结构指针指针
  * 说明：通过简单数据结构处理回调，使用固定偏移访问
  */
-void process_simple_callback(void *param_1, void *param_2, void *param_3, longlong *param_4)
+void process_simple_callback(void *param_1, void *param_2, void *param_3, int64_t *param_4)
 {
-  longlong struct_ptr;
+  int64_t struct_ptr;
   
   struct_ptr = *param_4;
   
   // 处理数据元素
-  process_data_elements_simple(*(void **)(*(longlong *)(struct_ptr + 0x20) + 0xc0), param_1);
+  process_data_elements_simple(*(void **)(*(int64_t *)(struct_ptr + 0x20) + 0xc0), param_1);
   
   // 调用回调函数
   (*(void **)(struct_ptr + 0x18))(struct_ptr);
@@ -360,11 +360,11 @@ void process_simple_callback(void *param_1, void *param_2, void *param_3, longlo
  *   - param_4: 操作参数
  * 返回值：操作结果或数据指针
  */
-longlong manage_data_structure_type5(longlong **param_1, longlong **param_2, int operation_type, void *param_4)
+int64_t manage_data_structure_type5(int64_t **param_1, int64_t **param_2, int operation_type, void *param_4)
 {
-  longlong result;
-  longlong data_ptr;
-  longlong src_ptr;
+  int64_t result;
+  int64_t data_ptr;
+  int64_t src_ptr;
   void *callback_func;
   
   // 获取类型信息
@@ -436,7 +436,7 @@ longlong manage_data_structure_type5(longlong **param_1, longlong **param_2, int
  *   - param_2: 搜索结果标志输出
  *   - param_3: 搜索键值（包含ulonglong和3个float值）
  * 返回值：找到的节点指针或插入位置
- * 说明：在四维浮点数空间（ulonglong + 3个float）中进行树搜索
+ * 说明：在四维浮点数空间（uint64_t + 3个float）中进行树搜索
  */
 void **search_in_float_tree(void **param_1, char *param_2, unsigned long long *param_3)
 {
@@ -461,7 +461,7 @@ void **search_in_float_tree(void **param_1, char *param_2, unsigned long long *p
       current_node = next_node;
       node_ul = current_node[4];
       
-      // 比较第一个维度（ulonglong）
+      // 比较第一个维度（uint64_t）
       if (node_ul < key_ul) {
         goto traverse_left;
       }
@@ -473,8 +473,8 @@ void **search_in_float_tree(void **param_1, char *param_2, unsigned long long *p
         
         if (key_f1 == node_f1) {
           // 比较第三个维度（float）
-          key_f1 = *(float *)((longlong)param_3 + 0xc);
-          node_f1 = *(float *)((longlong)current_node + 0x2c);
+          key_f1 = *(float *)((int64_t)param_3 + 0xc);
+          node_f1 = *(float *)((int64_t)current_node + 0x2c);
           
           if (key_f1 != node_f1) {
             go_left = (node_f1 == key_f1);
@@ -501,8 +501,8 @@ compare_result:
         key_f1 = *(float *)(param_3 + 1);
         
         if (node_f1 == key_f1) {
-          node_f1 = *(float *)((longlong)current_node + 0x2c);
-          key_f1 = *(float *)((longlong)param_3 + 0xc);
+          node_f1 = *(float *)((int64_t)current_node + 0x2c);
+          key_f1 = *(float *)((int64_t)param_3 + 0xc);
           
           if (node_f1 != key_f1) {
             go_left = (key_f1 == node_f1);
@@ -555,8 +555,8 @@ compare_right:
     key_f1 = *(float *)(param_3 + 1);
     
     if (node_f1 == key_f1) {
-      node_f1 = *(float *)((longlong)next_node + 0x2c);
-      key_f1 = *(float *)((longlong)param_3 + 0xc);
+      node_f1 = *(float *)((int64_t)next_node + 0x2c);
+      key_f1 = *(float *)((int64_t)param_3 + 0xc);
       
       if (node_f1 != key_f1) {
         go_left = (key_f1 == node_f1);
@@ -586,8 +586,8 @@ final_compare:
   node_f1 = *(float *)(next_node + 5);
   
   if (key_f1 == node_f1) {
-    key_f1 = *(float *)((longlong)param_3 + 0xc);
-    node_f1 = *(float *)((longlong)next_node + 0x2c);
+    key_f1 = *(float *)((int64_t)param_3 + 0xc);
+    node_f1 = *(float *)((int64_t)next_node + 0x2c);
     
     if (key_f1 != node_f1) {
       go_left = (node_f1 == key_f1);
@@ -624,7 +624,7 @@ return_right:
  *   - param_3: 目标缓冲区
  * 说明：仅在源地址和目标地址不同时执行内存移动
  */
-void safe_memory_move(longlong param_1, longlong param_2, void *param_3)
+void safe_memory_move(int64_t param_1, int64_t param_2, void *param_3)
 {
   if (param_1 != param_2) {
     memmove(param_3, param_1, param_2 - param_1);
@@ -643,15 +643,15 @@ void safe_memory_move(longlong param_1, longlong param_2, void *param_3)
  * 返回值：更新后的目标指针
  * 说明：处理多个数据块的复制，包括8字节、16字节、4字节和24字节块
  */
-longlong *copy_data_blocks(longlong **param_1, longlong *param_2, longlong *param_3, longlong *param_4)
+int64_t *copy_data_blocks(int64_t **param_1, int64_t *param_2, int64_t *param_3, int64_t *param_4)
 {
-  longlong *current_src;
+  int64_t *current_src;
   uint allocation_flags;
-  longlong block_size;
-  longlong *dest_ptr;
-  longlong *next_src;
+  int64_t block_size;
+  int64_t *dest_ptr;
+  int64_t *next_src;
   
-  *param_1 = (longlong)param_4;
+  *param_1 = (int64_t)param_4;
   
   // 遍历源数据块
   if (param_2 != param_3) {
@@ -761,7 +761,7 @@ longlong *copy_data_blocks(longlong **param_1, longlong *param_2, longlong *para
       
       // 移动到下一个数据块
       *param_1 = *param_1 + 0x88;
-      param_4 = (longlong *)*param_1;
+      param_4 = (int64_t *)*param_1;
       current_src = next_src + 0xb;
       next_src = next_src + 0x11;
       
@@ -781,25 +781,25 @@ longlong *copy_data_blocks(longlong **param_1, longlong *param_2, longlong *para
  * 返回值：处理后的参数指针
  * 说明：处理包含多种数据类型块的复杂数组结构
  */
-longlong *process_data_structure_array(longlong param_1, longlong param_2, longlong *param_3)
+int64_t *process_data_structure_array(int64_t param_1, int64_t param_2, int64_t *param_3)
 {
-  longlong *current_param;
-  longlong element_start;
-  longlong element_end;
-  longlong data_size;
+  int64_t *current_param;
+  int64_t element_start;
+  int64_t element_end;
+  int64_t data_size;
   unsigned long long required_size;
-  longlong buffer_ptr;
-  longlong *src_ptr;
+  int64_t buffer_ptr;
+  int64_t *src_ptr;
   unsigned long long available_size;
-  longlong new_size;
-  longlong *next_param;
-  longlong array_size;
+  int64_t new_size;
+  int64_t *next_param;
+  int64_t array_size;
   
   array_size = (param_2 - param_1) / 0x88;
   
   if (0 < array_size) {
     next_param = param_3 + 10;
-    src_ptr = (longlong *)(param_1 + 0x70);
+    src_ptr = (int64_t *)(param_1 + 0x70);
     current_param = param_3;
     
     do {
@@ -887,21 +887,21 @@ longlong *process_data_structure_array(longlong param_1, longlong param_2, longl
  * 返回值：优化后的上下文指针
  * 说明：对数据结构进行内存布局优化，提高访问效率
  */
-longlong *optimize_data_structure(longlong param_1, void *param_2, longlong param_3)
+int64_t *optimize_data_structure(int64_t param_1, void *param_2, int64_t param_3)
 {
-  longlong *current_param;
-  longlong element_start;
-  longlong element_end;
-  longlong data_size;
+  int64_t *current_param;
+  int64_t element_start;
+  int64_t element_end;
+  int64_t data_size;
   unsigned long long required_size;
-  longlong buffer_ptr;
-  longlong *src_ptr;
+  int64_t buffer_ptr;
+  int64_t *src_ptr;
   unsigned long long available_size;
-  longlong new_size;
-  longlong *next_param;
+  int64_t new_size;
+  int64_t *next_param;
   
   // 初始化优化上下文
-  current_param = (longlong *)(param_3 + 0x50);
+  current_param = (int64_t *)(param_3 + 0x50);
   
   // [此处省略了详细的优化逻辑，与process_data_structure_array类似]
   
@@ -927,15 +927,15 @@ void empty_function_stub(void)
  * 返回值：目标数据结构指针
  * 说明：专门处理16字节数据块的复制和内存管理
  */
-longlong *copy_16byte_data_blocks(longlong *param_1, longlong *param_2)
+int64_t *copy_16byte_data_blocks(int64_t *param_1, int64_t *param_2)
 {
-  longlong dest_start;
-  longlong src_start;
-  longlong src_end;
-  longlong dest_end;
+  int64_t dest_start;
+  int64_t src_start;
+  int64_t src_end;
+  int64_t dest_end;
   unsigned long long required_size;
   unsigned long long available_size;
-  longlong new_buffer;
+  int64_t new_buffer;
   
   if (param_1 != param_2) {
     dest_start = *param_1;
@@ -1005,13 +1005,13 @@ longlong *copy_16byte_data_blocks(longlong *param_1, longlong *param_2)
  *   - param_2: 目标数据结构指针
  * 说明：将源数据合并到目标数据结构中
  */
-void merge_16byte_data_blocks(longlong param_1, longlong *param_2)
+void merge_16byte_data_blocks(int64_t param_1, int64_t *param_2)
 {
-  longlong src_start;
-  longlong src_end;
-  longlong data_size;
-  longlong new_buffer;
-  longlong *dest_struct;
+  int64_t src_start;
+  int64_t src_end;
+  int64_t data_size;
+  int64_t new_buffer;
+  int64_t *dest_struct;
   unsigned long long required_size;
   unsigned long long available_size;
   
@@ -1079,12 +1079,12 @@ void merge_16byte_data_blocks(longlong param_1, longlong *param_2)
  *   - param_2: 目标数据结构指针
  * 说明：根据指定大小初始化16字节对齐的缓冲区
  */
-void initialize_16byte_buffer(longlong param_1, longlong *param_2)
+void initialize_16byte_buffer(int64_t param_1, int64_t *param_2)
 {
-  longlong new_buffer;
-  longlong *dest_struct;
-  longlong src_start;
-  longlong src_end;
+  int64_t new_buffer;
+  int64_t *dest_struct;
+  int64_t src_start;
+  int64_t src_end;
   unsigned long long buffer_size;
   
   if (param_1 == 0) {
@@ -1120,15 +1120,15 @@ void initialize_16byte_buffer(longlong param_1, longlong *param_2)
  *   - param_2: 目标数据结构指针
  * 说明：调整缓冲区大小并保持数据完整性
  */
-void resize_16byte_buffer(longlong param_1, longlong *param_2)
+void resize_16byte_buffer(int64_t param_1, int64_t *param_2)
 {
-  longlong current_start;
-  longlong buffer_size;
-  longlong *dest_struct;
+  int64_t current_start;
+  int64_t buffer_size;
+  int64_t *dest_struct;
   unsigned long long available_size;
-  longlong new_start;
+  int64_t new_start;
   
-  current_start = *(longlong *)(dest_struct + 8);
+  current_start = *(int64_t *)(dest_struct + 8);
   buffer_size = current_start - param_1 >> 4;
   
   if (buffer_size < param_1) {
@@ -1142,13 +1142,13 @@ void resize_16byte_buffer(longlong param_1, longlong *param_2)
       memmove(current_start, new_start, src_end - new_start);
     }
     
-    *(longlong *)(dest_struct + 8) = current_start;
+    *(int64_t *)(dest_struct + 8) = current_start;
   }
   else {
     if (src_start != src_end) {
       memmove(param_1, src_start);
     }
-    *(longlong *)(dest_struct + 8) = param_1;
+    *(int64_t *)(dest_struct + 8) = param_1;
   }
   
   return;

@@ -20,23 +20,23 @@
 void EngineResourceManager_Destroy(uint64_t *param_1)
 
 {
-  longlong *plVar1;
-  longlong *plVar2;
-  longlong *plVar3;
-  longlong *plVar4;
+  int64_t *plVar1;
+  int64_t *plVar2;
+  int64_t *plVar3;
+  int64_t *plVar4;
   int iVar5;
   int *piVar6;
-  longlong *plVar7;
+  int64_t *plVar7;
   uint uVar8;
-  ulonglong uVar10;
-  ulonglong uVar11;
-  longlong *plStackX_10;
-  longlong *plStackX_18;
-  longlong *plStackX_20;
-  ulonglong uVar9;
+  uint64_t uVar10;
+  uint64_t uVar11;
+  int64_t *plStackX_10;
+  int64_t *plStackX_18;
+  int64_t *plStackX_20;
+  uint64_t uVar9;
   
   *param_1 = &g_pEngineResourceTable;  // 设置资源管理表指针 (原: unknown_var_8656)
-  *(int8_t *)((longlong)param_1 + 0x162) = 1;
+  *(int8_t *)((int64_t)param_1 + 0x162) = 1;
   plVar2 = param_1 + 0x1a;
   plStackX_20 = plVar2;
   iVar5 = _Mtx_lock(plVar2);
@@ -47,7 +47,7 @@ void EngineResourceManager_Destroy(uint64_t *param_1)
   uVar10 = uVar9;
   if (param_1[9] != 0) {
     do {
-      uVar11 = uVar10 % (ulonglong)*(uint *)(param_1 + 8);
+      uVar11 = uVar10 % (uint64_t)*(uint *)(param_1 + 8);
       iVar5 = (int)uVar9;
       for (piVar6 = *(int **)(param_1[7] + uVar11 * 8); piVar6 != (int *)0x0;
           piVar6 = *(int **)(piVar6 + 4)) {
@@ -56,46 +56,46 @@ void EngineResourceManager_Destroy(uint64_t *param_1)
           break;
         }
       }
-      ResourceTable_AllocateSlot(param_1 + 10,&plStackX_10,(ulonglong)*(uint *)(param_1 + 8),
+      ResourceTable_AllocateSlot(param_1 + 10,&plStackX_10,(uint64_t)*(uint *)(param_1 + 8),
                                        *(int32_t *)(param_1 + 9),1);  // 分配资源表槽位 (原: FUN_18066c220)
-      piVar6 = (int *)MemoryPool_Allocate(g_pMemoryPool,0x18,*(int8_t *)((longlong)param_1 + 0x5c));  // 从内存池分配 (原: FUN_18062b420)
+      piVar6 = (int *)MemoryPool_Allocate(g_pMemoryPool,0x18,*(int8_t *)((int64_t)param_1 + 0x5c));  // 从内存池分配 (原: FUN_18062b420)
       *piVar6 = iVar5;
       piVar6[2] = 0;
       piVar6[3] = 0;
       piVar6[4] = 0;
       piVar6[5] = 0;
       if ((char)plStackX_10 != '\0') {
-        uVar11 = uVar10 % ((ulonglong)plStackX_10 >> 0x20);
+        uVar11 = uVar10 % ((uint64_t)plStackX_10 >> 0x20);
         ResourceTable_IncrementRefCount(param_1 + 6);  // 增加资源引用计数 (原: FUN_18015bdc0)
       }
       *(uint64_t *)(piVar6 + 4) = *(uint64_t *)(param_1[7] + uVar11 * 8);
       *(int **)(param_1[7] + uVar11 * 8) = piVar6;
       param_1[9] = param_1[9] + 1;
 LAB_1801571ef:
-      plStackX_18 = *(longlong **)(piVar6 + 2);
+      plStackX_18 = *(int64_t **)(piVar6 + 2);
       piVar6[2] = 0;
       piVar6[3] = 0;
-      if (plStackX_18 != (longlong *)0x0) {
+      if (plStackX_18 != (int64_t *)0x0) {
         (**(code **)(*plStackX_18 + 0x38))();
       }
       uVar8 = iVar5 + 1;
-      uVar9 = (ulonglong)uVar8;
-      uVar10 = (longlong)(int)uVar8;
-    } while ((ulonglong)(longlong)(int)uVar8 < (ulonglong)param_1[9]);
+      uVar9 = (uint64_t)uVar8;
+      uVar10 = (int64_t)(int)uVar8;
+    } while ((uint64_t)(int64_t)(int)uVar8 < (uint64_t)param_1[9]);
   }
   plVar1 = param_1 + 6;
   ResourceTable_Release(plVar1);  // 释放资源表 (原: FUN_18015b450)
   plVar3 = param_1 + 0x2d;
-  plVar4 = (longlong *)param_1[0x2e];
-  plVar7 = (longlong *)*plVar3;
+  plVar4 = (int64_t *)param_1[0x2e];
+  plVar7 = (int64_t *)*plVar3;
   if (plVar7 != plVar4) {
     do {
-      if ((longlong *)*plVar7 != (longlong *)0x0) {
-        (**(code **)(*(longlong *)*plVar7 + 0x38))();
+      if ((int64_t *)*plVar7 != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)*plVar7 + 0x38))();
       }
       plVar7 = plVar7 + 1;
     } while (plVar7 != plVar4);
-    plVar7 = (longlong *)*plVar3;
+    plVar7 = (int64_t *)*plVar3;
   }
   param_1[0x2e] = plVar7;
   iVar5 = _Mtx_unlock(plVar2);
@@ -108,8 +108,8 @@ LAB_1801571ef:
   }
   plStackX_10 = param_1 + 0x44;
   EventQueue_Clear();  // 清空事件队列 (原: FUN_18015b4f0)
-  if ((longlong *)param_1[0x3d] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)param_1[0x3d] + 0x38))();
+  if ((int64_t *)param_1[0x3d] != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)param_1[0x3d] + 0x38))();
   }
   plStackX_10 = plVar3;
   ThreadLocalStorage_Destroy(plVar3);  // 销毁线程本地存储 (原: FUN_180057830)
@@ -128,7 +128,7 @@ LAB_1801571ef:
   _Mtx_destroy_in_situ();
   plStackX_10 = plVar1;
   ResourceTable_Release(plVar1);  // 释放资源表 (原: FUN_18015b450)
-  if ((1 < (ulonglong)param_1[8]) && (param_1[7] != 0)) {
+  if ((1 < (uint64_t)param_1[8]) && (param_1[7] != 0)) {
                     // WARNING: Subroutine does not return
     Assertion_Failure();  // 断言失败 (原: FUN_18064e900)
   }
@@ -148,12 +148,12 @@ LAB_1801571ef:
 // 功能: 创建一个新的引擎事件对象并进行初始化
 // 参数: param_1 - 引擎上下文指针, param_2 - 输出参数存储创建的事件对象, param_3 - 事件参数, param_4 - 事件类型, param_5 - 标志位
 // 返回: 事件对象指针
-longlong *
-EngineEvent_Create(longlong *param_1,longlong *param_2,longlong param_3,uint64_t param_4,char param_5)
+int64_t *
+EngineEvent_Create(int64_t *param_1,int64_t *param_2,int64_t param_3,uint64_t param_4,char param_5)
 
 {
-  longlong *plVar1;
-  longlong *plVar2;
+  int64_t *plVar1;
+  int64_t *plVar2;
   char cVar3;
   int iVar4;
   uint uVar5;
@@ -163,9 +163,9 @@ EngineEvent_Create(longlong *param_1,longlong *param_2,longlong param_3,uint64_t
   int32_t *puVar9;
   int32_t *puVar10;
   void *puVar11;
-  longlong *plStackX_8;
-  longlong *plStackX_10;
-  longlong lStackX_18;
+  int64_t *plStackX_8;
+  int64_t *plStackX_10;
+  int64_t lStackX_18;
   uint64_t uStackX_20;
   void *puStack_c8;
   uint64_t *puStack_c0;
@@ -174,14 +174,14 @@ EngineEvent_Create(longlong *param_1,longlong *param_2,longlong param_3,uint64_t
   int32_t uStack_a8;
   int32_t auStack_a0 [2];
   void *puStack_98;
-  longlong lStack_90;
+  int64_t lStack_90;
   int32_t uStack_88;
-  ulonglong uStack_80;
+  uint64_t uStack_80;
   int32_t uStack_78;
   void **ppuStack_70;
-  longlong *plStack_68;
+  int64_t *plStack_68;
   uint64_t uStack_60;
-  longlong *plStack_58;
+  int64_t *plStack_58;
   
   plVar2 = g_pEngineContext;  // 获取引擎全局上下文
   uStack_60 = 0xfffffffffffffffe;
@@ -191,9 +191,9 @@ EngineEvent_Create(longlong *param_1,longlong *param_2,longlong param_3,uint64_t
   lStackX_18 = param_3;
   uStackX_20 = param_4;
   if ((char)core_system_data_memory[0x42] != '\0') {
-    plVar2 = (longlong *)core_system_data_memory[0x3d];
-    *param_2 = (longlong)plVar2;
-    if (plVar2 == (longlong *)0x0) {
+    plVar2 = (int64_t *)core_system_data_memory[0x3d];
+    *param_2 = (int64_t)plVar2;
+    if (plVar2 == (int64_t *)0x0) {
       return param_2;
     }
     (**(code **)(*plVar2 + 0x28))();
@@ -216,7 +216,7 @@ EngineEvent_Create(longlong *param_1,longlong *param_2,longlong param_3,uint64_t
     uVar5 = String_GetLength(puVar7);  // 获取字符串长度
     *puVar7 = 0x655f657461657263;
     *(int32_t *)(puVar7 + 1) = 0x746e6576;
-    *(int16_t *)((longlong)puVar7 + 0xc) = 0x20;
+    *(int16_t *)((int64_t)puVar7 + 0xc) = 0x20;
     uStack_b8 = 0xd;
     iVar4 = *(int *)(param_3 + 0x10);
     uStack_b0._0_4_ = uVar5;
@@ -228,8 +228,8 @@ EngineEvent_Create(longlong *param_1,longlong *param_2,longlong param_3,uint64_t
         iVar4 = *(int *)(param_3 + 0x10);
       }
                     // WARNING: Subroutine does not return
-      memcpy((int8_t *)((longlong)puVar7 + 0xd),*(uint64_t *)(param_3 + 8),
-             (longlong)(iVar4 + 1));
+      memcpy((int8_t *)((int64_t)puVar7 + 0xd),*(uint64_t *)(param_3 + 8),
+             (int64_t)(iVar4 + 1));
     }
     if (puVar7 == (uint64_t *)0x0) {
       puVar7 = (uint64_t *)MemoryPool_Allocate(g_pMemoryPool,0x10,0x13);  // 分配内存池
@@ -242,7 +242,7 @@ LAB_180157585:
       puVar7 = (uint64_t *)StringBuffer_Resize(g_pMemoryPool,puVar7,0xf,0x10,0x13);  // 调整字符串缓冲区大小
       goto LAB_180157585;
     }
-    *(int16_t *)((longlong)puVar7 + 0xd) = 10;
+    *(int16_t *)((int64_t)puVar7 + 0xd) = 10;
     uStack_b8 = 0xe;
     puVar8 = (uint64_t *)&system_buffer_ptr;
     if (puVar7 != (uint64_t *)0x0) {
@@ -255,15 +255,15 @@ LAB_180157585:
       MemoryPool_Free(puVar7);  // 释放内存池
     }
     puStack_c0 = (uint64_t *)0x0;
-    uStack_b0 = (ulonglong)uStack_b0._4_4_ << 0x20;
+    uStack_b0 = (uint64_t)uStack_b0._4_4_ << 0x20;
     puStack_c8 = &g_sNullStringBuffer;  // 空指针字符串缓冲区
     param_4 = uStackX_20;
     param_3 = lStackX_18;
   }
   if (*(int *)(param_3 + 0x10) == 0) {
-    plVar2 = (longlong *)plVar2[0x3d];
-    *param_2 = (longlong)plVar2;
-    if (plVar2 != (longlong *)0x0) {
+    plVar2 = (int64_t *)plVar2[0x3d];
+    *param_2 = (int64_t)plVar2;
+    if (plVar2 != (int64_t *)0x0) {
       (**(code **)(*plVar2 + 0x28))();
     }
     goto LAB_180157b3b;
@@ -292,11 +292,11 @@ LAB_180157585:
     *(int8_t *)puStack_c0 = 0;
     uVar5 = String_GetLength(puStack_c0);  // 获取字符串长度
     *(int32_t *)puStack_c0 = 0x61657263;
-    *(int32_t *)((longlong)puStack_c0 + 4) = 0x5f646574;
-    *(int32_t *)((longlong)puStack_c0 + 8) = 0x6e657665;
-    *(int32_t *)((longlong)puStack_c0 + 0xc) = 0x6e692074;
-    *(int32_t *)((longlong)puStack_c0 + 0x10) = 0x20786564;
-    *(int8_t *)((longlong)puStack_c0 + 0x14) = 0;
+    *(int32_t *)((int64_t)puStack_c0 + 4) = 0x5f646574;
+    *(int32_t *)((int64_t)puStack_c0 + 8) = 0x6e657665;
+    *(int32_t *)((int64_t)puStack_c0 + 0xc) = 0x6e692074;
+    *(int32_t *)((int64_t)puStack_c0 + 0x10) = 0x20786564;
+    *(int8_t *)((int64_t)puStack_c0 + 0x14) = 0;
     uStack_b8 = 0x14;
     uStack_b0._0_4_ = uVar5;
     String_FormatInteger(&puStack_c8,iVar4);  // 格式化整数为字符串
@@ -307,7 +307,7 @@ LAB_180157585:
         if ((int)uVar6 < 0x10) {
           uVar6 = 0x10;
         }
-        puStack_c0 = (uint64_t *)MemoryPool_Allocate(g_pMemoryPool,(longlong)(int)uVar6,0x13);  // 分配内存池
+        puStack_c0 = (uint64_t *)MemoryPool_Allocate(g_pMemoryPool,(int64_t)(int)uVar6,0x13);  // 分配内存池
         *(int8_t *)puStack_c0 = 0;
       }
       else {
@@ -317,11 +317,11 @@ LAB_180157585:
       uStack_b0._0_4_ = String_GetLength(puStack_c0);  // 获取字符串长度
     }
 LAB_1801577b2:
-    puVar7 = (uint64_t *)((ulonglong)uStack_b8 + (longlong)puStack_c0);
+    puVar7 = (uint64_t *)((uint64_t)uStack_b8 + (int64_t)puStack_c0);
     *puVar7 = 0x6820746e65766520;
     *(int32_t *)(puVar7 + 1) = 0x6c646e61;
-    *(int16_t *)((longlong)puVar7 + 0xc) = 0x2065;
-    *(int8_t *)((longlong)puVar7 + 0xe) = 0;
+    *(int16_t *)((int64_t)puVar7 + 0xc) = 0x2065;
+    *(int8_t *)((int64_t)puVar7 + 0xe) = 0;
     uStack_b8 = uVar5;
     String_FormatInteger(&puStack_c8,(int)plStackX_8[10]);  // 格式化整数为字符串
     iVar4 = uStack_b8 + 1;
@@ -331,7 +331,7 @@ LAB_1801577b2:
         if ((int)uVar5 < 0x10) {
           uVar5 = 0x10;
         }
-        puStack_c0 = (uint64_t *)MemoryPool_Allocate(g_pMemoryPool,(longlong)(int)uVar5,0x13);  // 分配内存池
+        puStack_c0 = (uint64_t *)MemoryPool_Allocate(g_pMemoryPool,(int64_t)(int)uVar5,0x13);  // 分配内存池
         *(int8_t *)puStack_c0 = 0;
       }
       else {
@@ -341,7 +341,7 @@ LAB_1801577b2:
       uStack_b0._0_4_ = String_GetLength(puStack_c0);  // 获取字符串长度
     }
 LAB_180157862:
-    *(int16_t *)((ulonglong)uStack_b8 + (longlong)puStack_c0) = 10;
+    *(int16_t *)((uint64_t)uStack_b8 + (int64_t)puStack_c0) = 10;
     puVar7 = (uint64_t *)&g_sDefaultString;  // 默认字符串
     if (puStack_c0 != (uint64_t *)0x0) {
       puVar7 = puStack_c0;
@@ -354,18 +354,18 @@ LAB_180157862:
       Assertion_Failure();  // 断言失败 (原: FUN_18064e900)
     }
     puStack_c0 = (uint64_t *)0x0;
-    uStack_b0 = (ulonglong)uStack_b0._4_4_ << 0x20;
+    uStack_b0 = (uint64_t)uStack_b0._4_4_ << 0x20;
     puStack_c8 = &g_sNullStringBuffer;  // 空指针字符串缓冲区
   }
   ppuStack_70 = (void **)CONCAT44(ppuStack_70._4_4_,(int)plStackX_8[10]);
   plStack_68 = plStackX_8;
   (**(code **)(*plStackX_8 + 0x28))();
   EventQueue_Push(plVar2 + 6,&puStack_c8,&ppuStack_70);  // 将事件推入队列
-  if (plStack_68 != (longlong *)0x0) {
+  if (plStack_68 != (int64_t *)0x0) {
     (**(code **)(*plStack_68 + 0x38))();
   }
   if ((param_5 != '\0') &&
-     ((plStackX_8 == (longlong *)0x0 || (cVar3 = (**(code **)(*plStackX_8 + 0xd8))(), cVar3 == '\0')
+     ((plStackX_8 == (int64_t *)0x0 || (cVar3 = (**(code **)(*plStackX_8 + 0xd8))(), cVar3 == '\0')
       ))) {
     puStack_c8 = &g_sEmptyStringBuffer;  // 空字符串缓冲区
     uStack_b0 = 0;
@@ -391,8 +391,8 @@ LAB_180157862:
         iVar4 = *(int *)(param_3 + 0x10);
       }
                     // WARNING: Subroutine does not return
-      memcpy((int8_t *)((longlong)puVar9 + 0x17),*(uint64_t *)(param_3 + 8),
-             (longlong)(iVar4 + 1));
+      memcpy((int8_t *)((int64_t)puVar9 + 0x17),*(uint64_t *)(param_3 + 8),
+             (int64_t)(iVar4 + 1));
     }
     if (puVar9 == (int32_t *)0x0) {
       puVar9 = (int32_t *)MemoryPool_Allocate(g_pMemoryPool,0x31,0x13);  // 分配内存池
@@ -405,12 +405,12 @@ LAB_180157a6e:
       puVar9 = (int32_t *)StringBuffer_Resize(g_pMemoryPool,puVar9,0x31,0x10,0x13);  // 调整字符串缓冲区大小
       goto LAB_180157a6e;
     }
-    *(int32_t *)((longlong)puVar9 + 0x17) = 0x6f632022;
-    *(int32_t *)((longlong)puVar9 + 0x1b) = 0x20646c75;
-    *(int32_t *)((longlong)puVar9 + 0x1f) = 0x20746f6e;
-    *(int32_t *)((longlong)puVar9 + 0x23) = 0x67206562;
-    *(uint64_t *)((longlong)puVar9 + 0x27) = 0x6465746172656e65;
-    *(int16_t *)((longlong)puVar9 + 0x2f) = 0x21;
+    *(int32_t *)((int64_t)puVar9 + 0x17) = 0x6f632022;
+    *(int32_t *)((int64_t)puVar9 + 0x1b) = 0x20646c75;
+    *(int32_t *)((int64_t)puVar9 + 0x1f) = 0x20746f6e;
+    *(int32_t *)((int64_t)puVar9 + 0x23) = 0x67206562;
+    *(uint64_t *)((int64_t)puVar9 + 0x27) = 0x6465746172656e65;
+    *(int16_t *)((int64_t)puVar9 + 0x2f) = 0x21;
     uStack_b8 = 0x30;
     puVar10 = (int32_t *)&g_sDefaultString;  // 默认字符串
     if (puVar9 != (int32_t *)0x0) {
@@ -423,12 +423,12 @@ LAB_180157a6e:
       MemoryPool_Free(puVar9);  // 释放内存池
     }
     puStack_c0 = (uint64_t *)0x0;
-    uStack_b0 = (ulonglong)uStack_b0._4_4_ << 0x20;
+    uStack_b0 = (uint64_t)uStack_b0._4_4_ << 0x20;
     puStack_c8 = &g_sNullStringBuffer;  // 空指针字符串缓冲区
   }
-  *param_2 = (longlong)plStackX_8;
+  *param_2 = (int64_t)plStackX_8;
   uStack_a8 = 1;
-  plStackX_8 = (longlong *)0x0;
+  plStackX_8 = (int64_t *)0x0;
   ppuStack_70 = &puStack_98;
   puStack_98 = &g_sEmptyStringBuffer;  // 空字符串缓冲区
   if (lStack_90 != 0) {
@@ -457,19 +457,19 @@ LAB_180157b3b:
 // 功能: 创建一个定时器事件对象
 // 参数: param_1 - 引擎上下文, param_2 - 输出参数, param_3 - 定时器ID, param_4 - 定时器参数, param_5 - 标志位
 // 返回: 定时器事件对象指针
-longlong *
-EngineTimerEvent_Create(longlong *param_1,longlong *param_2,int param_3,uint64_t param_4,char param_5)
+int64_t *
+EngineTimerEvent_Create(int64_t *param_1,int64_t *param_2,int param_3,uint64_t param_4,char param_5)
 
 {
-  longlong *plVar1;
-  longlong *plVar2;
-  longlong lVar3;
+  int64_t *plVar1;
+  int64_t *plVar2;
+  int64_t lVar3;
   char cVar4;
   int iVar5;
   uint uVar6;
   int32_t *puVar7;
-  longlong *plStackX_8;
-  longlong *plStackX_10;
+  int64_t *plStackX_8;
+  int64_t *plStackX_10;
   void *puStack_b0;
   int32_t *puStack_a8;
   uint uStack_a0;
@@ -477,23 +477,23 @@ EngineTimerEvent_Create(longlong *param_1,longlong *param_2,int param_3,uint64_t
   void **ppuStack_90;
   int32_t auStack_88 [2];
   void *puStack_80;
-  longlong lStack_78;
+  int64_t lStack_78;
   int32_t uStack_70;
-  ulonglong uStack_68;
+  uint64_t uStack_68;
   int iStack_60;
   int32_t auStack_58 [2];
-  longlong *plStack_50;
+  int64_t *plStack_50;
   uint64_t uStack_48;
-  longlong *plStack_40;
+  int64_t *plStack_40;
   
   plVar2 = g_pEngineContext;  // 获取引擎全局上下文
   uStack_48 = 0xfffffffffffffffe;
   plStackX_8 = param_1;
   plStackX_10 = param_2;
   if ((char)g_pEngineContext[0x42] != '\0') {
-    plVar2 = (longlong *)core_system_data_memory[0x3d];
-    *param_2 = (longlong)plVar2;
-    if (plVar2 == (longlong *)0x0) {
+    plVar2 = (int64_t *)core_system_data_memory[0x3d];
+    *param_2 = (int64_t)plVar2;
+    if (plVar2 == (int64_t *)0x0) {
       return param_2;
     }
     (**(code **)(*plVar2 + 0x28))();
@@ -508,8 +508,8 @@ EngineTimerEvent_Create(longlong *param_1,longlong *param_2,int param_3,uint64_t
   iVar5 = *(int *)(plVar2[0x3f] + 0x50);
   if (iVar5 <= param_3) {
     TimerManager_ExpandPool(plVar2,&ppuStack_90,
-                                 (longlong)(param_3 - iVar5) * 0x60 + *(longlong *)(plVar2[0x3f] + 0x30));  // 扩展定时器池
-    *param_2 = (longlong)ppuStack_90;
+                                 (int64_t)(param_3 - iVar5) * 0x60 + *(int64_t *)(plVar2[0x3f] + 0x30));  // 扩展定时器池
+    *param_2 = (int64_t)ppuStack_90;
     ppuStack_90 = (void **)0x0;
     goto LAB_180157eb5;
   }
@@ -527,11 +527,11 @@ EngineTimerEvent_Create(longlong *param_1,longlong *param_2,int param_3,uint64_t
   plStack_50 = plStackX_8;
   (**(code **)(*plStackX_8 + 0x28))();
   EventQueue_Push(plVar2 + 6,&puStack_b0,auStack_58);  // 推入事件队列
-  if (plStack_50 != (longlong *)0x0) {
+  if (plStack_50 != (int64_t *)0x0) {
     (**(code **)(*plStack_50 + 0x38))();
   }
   if ((param_5 != '\0') &&
-     ((plStackX_8 == (longlong *)0x0 || (cVar4 = (**(code **)(*plStackX_8 + 0xd8))(), cVar4 == '\0')
+     ((plStackX_8 == (int64_t *)0x0 || (cVar4 = (**(code **)(*plStackX_8 + 0xd8))(), cVar4 == '\0')
       ))) {
     puStack_b0 = &g_sEmptyStringBuffer;  // 空字符串缓冲区
     uStack_98 = 0;
@@ -556,7 +556,7 @@ EngineTimerEvent_Create(longlong *param_1,longlong *param_2,int param_3,uint64_t
         if ((int)uVar6 < 0x10) {
           uVar6 = 0x10;
         }
-        puStack_a8 = (int32_t *)MemoryPool_Allocate(g_pMemoryPool,(longlong)(int)uVar6,0x13);  // 分配内存池
+        puStack_a8 = (int32_t *)MemoryPool_Allocate(g_pMemoryPool,(int64_t)(int)uVar6,0x13);  // 分配内存池
         *(int8_t *)puStack_a8 = 0;
       }
       else {
@@ -566,7 +566,7 @@ EngineTimerEvent_Create(longlong *param_1,longlong *param_2,int param_3,uint64_t
       uStack_98._0_4_ = String_GetLength(puStack_a8);  // 获取字符串长度
     }
 LAB_180157e02:
-    puVar7 = (int32_t *)((ulonglong)uStack_a0 + (longlong)puStack_a8);
+    puVar7 = (int32_t *)((uint64_t)uStack_a0 + (int64_t)puStack_a8);
     *puVar7 = 0x6f632022;
     puVar7[1] = 0x20646c75;
     puVar7[2] = 0x20746f6e;
@@ -585,11 +585,11 @@ LAB_180157e02:
       Assertion_Failure();  // 断言失败 (原: FUN_18064e900)
     }
     puStack_a8 = (int32_t *)0x0;
-    uStack_98 = (ulonglong)uStack_98._4_4_ << 0x20;
+    uStack_98 = (uint64_t)uStack_98._4_4_ << 0x20;
     puStack_b0 = &g_sNullStringBuffer;  // 空指针字符串缓冲区
   }
-  *param_2 = (longlong)plStackX_8;
-  plStackX_8 = (longlong *)0x0;
+  *param_2 = (int64_t)plStackX_8;
+  plStackX_8 = (int64_t *)0x0;
   ppuStack_90 = &puStack_80;
   puStack_80 = &g_sEmptyStringBuffer;  // 空字符串缓冲区
   if (lStack_78 != 0) {
@@ -616,28 +616,28 @@ LAB_180157eb5:
 // 功能: 创建一个渲染相关的事件对象
 // 参数: param_1 - 引擎上下文, param_2 - 输出参数, param_3 - 渲染目标, param_4 - 渲染参数1, param_5 - 渲染参数2, param_6 - 渲染标志, param_7 - 渲染模式
 // 返回: 渲染事件对象指针
-longlong *
-EngineRenderEvent_Create(longlong *param_1,longlong *param_2,uint64_t param_3,longlong param_4,
-                           longlong param_5,uint64_t param_6,int8_t param_7)
+int64_t *
+EngineRenderEvent_Create(int64_t *param_1,int64_t *param_2,uint64_t param_3,int64_t param_4,
+                           int64_t param_5,uint64_t param_6,int8_t param_7)
 
 {
-  longlong *plVar1;
-  longlong *plVar2;
-  longlong lVar3;
+  int64_t *plVar1;
+  int64_t *plVar2;
+  int64_t lVar3;
   int iVar4;
-  longlong *plStackX_8;
-  longlong *plStackX_10;
+  int64_t *plStackX_8;
+  int64_t *plStackX_10;
   int32_t auStack_b0 [2];
   void *puStack_a8;
-  longlong lStack_a0;
+  int64_t lStack_a0;
   int32_t uStack_98;
-  ulonglong uStack_90;
+  uint64_t uStack_90;
   int32_t uStack_88;
   void **ppuStack_80;
   int32_t auStack_78 [2];
-  longlong *plStack_70;
+  int64_t *plStack_70;
   uint64_t uStack_68;
-  longlong *plStack_60;
+  int64_t *plStack_60;
   int8_t auStack_58 [32];
   
   plVar2 = g_pEngineContext;  // 获取引擎全局上下文
@@ -666,16 +666,16 @@ EngineRenderEvent_Create(longlong *param_1,longlong *param_2,uint64_t param_3,lo
     plStackX_8[7] = param_4;
     plStackX_8[8] = param_5;
     *(int8_t *)(plStackX_8 + 9) = 0;
-    *(int8_t *)((longlong)plStackX_8 + 0x49) = param_7;
+    *(int8_t *)((int64_t)plStackX_8 + 0x49) = param_7;
     auStack_78[0] = (int32_t)plStackX_8[10];
     plStack_70 = plStackX_8;
     (**(code **)(*plStackX_8 + 0x28))();
     RenderQueue_Push(plVar2 + 6,auStack_58,auStack_78);  // 推入渲染队列
-    if (plStack_70 != (longlong *)0x0) {
+    if (plStack_70 != (int64_t *)0x0) {
       (**(code **)(*plStack_70 + 0x38))();
     }
-    *param_2 = (longlong)plStackX_8;
-    plStackX_8 = (longlong *)0x0;
+    *param_2 = (int64_t)plStackX_8;
+    plStackX_8 = (int64_t *)0x0;
     ppuStack_80 = &puStack_a8;
     puStack_a8 = &g_sEmptyStringBuffer;  // 空字符串缓冲区
     if (lStack_a0 != 0) {
@@ -691,9 +691,9 @@ EngineRenderEvent_Create(longlong *param_1,longlong *param_2,uint64_t param_3,lo
     }
   }
   else {
-    plVar2 = (longlong *)core_system_data_memory[0x3d];
-    *param_2 = (longlong)plVar2;
-    if (plVar2 != (longlong *)0x0) {
+    plVar2 = (int64_t *)core_system_data_memory[0x3d];
+    *param_2 = (int64_t)plVar2;
+    if (plVar2 != (int64_t *)0x0) {
       (**(code **)(*plVar2 + 0x28))();
     }
   }
@@ -708,28 +708,28 @@ EngineRenderEvent_Create(longlong *param_1,longlong *param_2,uint64_t param_3,lo
 // 功能: 创建一个资源加载/释放相关的事件对象
 // 参数: param_1 - 引擎上下文, param_2 - 输出参数, param_3 - 资源类型, param_4 - 资源描述符, param_5 - 资源标志, param_6 - 加载标志, param_7 - 异步标志
 // 返回: 资源事件对象指针
-longlong *
-EngineResourceEvent_Create(longlong *param_1,longlong *param_2,uint64_t param_3,longlong param_4,
+int64_t *
+EngineResourceEvent_Create(int64_t *param_1,int64_t *param_2,uint64_t param_3,int64_t param_4,
                               uint64_t param_5,int8_t param_6,int8_t param_7)
 
 {
-  longlong *plVar1;
-  longlong lVar2;
+  int64_t *plVar1;
+  int64_t lVar2;
   int iVar3;
   void *puVar4;
-  longlong *plStackX_8;
-  longlong *plStackX_10;
+  int64_t *plStackX_8;
+  int64_t *plStackX_10;
   int32_t auStack_b0 [2];
   void *puStack_a8;
-  longlong lStack_a0;
+  int64_t lStack_a0;
   int32_t uStack_98;
-  ulonglong uStack_90;
+  uint64_t uStack_90;
   int32_t uStack_88;
   void **ppuStack_80;
   int32_t auStack_78 [2];
-  longlong *plStack_70;
+  int64_t *plStack_70;
   uint64_t uStack_68;
-  longlong *plStack_60;
+  int64_t *plStack_60;
   int8_t auStack_58 [32];
   
   uStack_68 = 0xfffffffffffffffe;
@@ -759,16 +759,16 @@ EngineResourceEvent_Create(longlong *param_1,longlong *param_2,uint64_t param_3,
     }
     ResourceDescriptor_SetName(plStackX_8 + 3,puVar4);  // 设置资源描述符名称
     *(int8_t *)(plStackX_8 + 9) = param_7;
-    *(int8_t *)((longlong)plStackX_8 + 0x49) = param_6;
+    *(int8_t *)((int64_t)plStackX_8 + 0x49) = param_6;
     auStack_78[0] = (int32_t)plStackX_8[10];
     plStack_70 = plStackX_8;
     (**(code **)(*plStackX_8 + 0x28))();
     ResourceQueue_Push(param_1 + 6,auStack_58,auStack_78);  // 推入资源队列
-    if (plStack_70 != (longlong *)0x0) {
+    if (plStack_70 != (int64_t *)0x0) {
       (**(code **)(*plStack_70 + 0x38))();
     }
-    *param_2 = (longlong)plStackX_8;
-    plStackX_8 = (longlong *)0x0;
+    *param_2 = (int64_t)plStackX_8;
+    plStackX_8 = (int64_t *)0x0;
     ppuStack_80 = &puStack_a8;
     puStack_a8 = &g_sEmptyStringBuffer;  // 空字符串缓冲区
     if (lStack_a0 != 0) {
@@ -784,9 +784,9 @@ EngineResourceEvent_Create(longlong *param_1,longlong *param_2,uint64_t param_3,
     }
   }
   else {
-    plVar1 = (longlong *)param_1[0x3d];
-    *param_2 = (longlong)plVar1;
-    if (plVar1 != (longlong *)0x0) {
+    plVar1 = (int64_t *)param_1[0x3d];
+    *param_2 = (int64_t)plVar1;
+    if (plVar1 != (int64_t *)0x0) {
       (**(code **)(*plVar1 + 0x28))();
     }
   }
@@ -801,14 +801,14 @@ EngineResourceEvent_Create(longlong *param_1,longlong *param_2,uint64_t param_3,
 // 功能: 扩展定时器池并为新定时器分配随机化的参数
 // 参数: param_1 - 定时器管理器, param_2 - 输出参数, param_3 - 基础偏移量
 // 返回: 新创建的定时器对象指针
-longlong * TimerManager_ExpandPool(uint64_t param_1,longlong *param_2,longlong param_3)
+int64_t * TimerManager_ExpandPool(uint64_t param_1,int64_t *param_2,int64_t param_3)
 
 {
-  longlong *plVar1;
-  longlong lVar2;
+  int64_t *plVar1;
+  int64_t lVar2;
   float fVar3;
   float fVar4;
-  longlong *plStackX_20;
+  int64_t *plStackX_20;
   
   fVar3 = *(float *)(param_3 + 0x40);
   g_nRandomSeed = g_nRandomSeed << 0xd ^ g_nRandomSeed;  // XOR移位随机数生成算法
@@ -816,21 +816,21 @@ longlong * TimerManager_ExpandPool(uint64_t param_1,longlong *param_2,longlong p
   g_nRandomSeed = g_nRandomSeed << 5 ^ g_nRandomSeed;
   fVar4 = (float)(system_memory_flags - 1) * 2.3283064e-10 * fVar3;
   *param_2 = 0;
-  lVar2 = *(longlong *)(param_3 + 0x20);
+  lVar2 = *(int64_t *)(param_3 + 0x20);
   do {
-    if (lVar2 == *(longlong *)(param_3 + 0x28)) {
+    if (lVar2 == *(int64_t *)(param_3 + 0x28)) {
 LAB_180158404:
       system_memory_flags = system_memory_flags << 0xd ^ system_memory_flags;
       system_memory_flags = system_memory_flags >> 0x11 ^ system_memory_flags;
       system_memory_flags = system_memory_flags << 5 ^ system_memory_flags;
-      Timer_SetPositionX((longlong *)*param_2,  // 设置定时器X位置
+      Timer_SetPositionX((int64_t *)*param_2,  // 设置定时器X位置
                        (float)(g_nRandomSeed - 1) * 2.3283064e-10 *
                        (*(float *)(param_3 + 0x48) - *(float *)(param_3 + 0x44)) +
                        *(float *)(param_3 + 0x44));
       system_memory_flags = system_memory_flags << 0xd ^ system_memory_flags;
       system_memory_flags = system_memory_flags >> 0x11 ^ system_memory_flags;
       system_memory_flags = system_memory_flags << 5 ^ system_memory_flags;
-      Timer_SetPositionY((longlong *)*param_2,  // 设置定时器Y位置
+      Timer_SetPositionY((int64_t *)*param_2,  // 设置定时器Y位置
                        (float)(g_nRandomSeed - 1) * 2.3283064e-10 *
                        (*(float *)(param_3 + 0x50) - *(float *)(param_3 + 0x4c)) +
                        *(float *)(param_3 + 0x4c));
@@ -838,19 +838,19 @@ LAB_180158404:
     }
     fVar3 = fVar3 - *(float *)(lVar2 + 0x20);
     if (fVar3 <= fVar4) {
-      plVar1 = (longlong *)
+      plVar1 = (int64_t *)
                EngineResourceEvent_Create(param_1,&plStackX_20,
                                              *(uint64_t *)
-                                              (&g_pResourceTypeTable + (longlong)*(char *)(param_3 + 0x59) * 8),lVar2,0,
+                                              (&g_pResourceTypeTable + (int64_t)*(char *)(param_3 + 0x59) * 8),lVar2,0,
                                              *(int8_t *)(param_3 + 0x58),0);  // 创建资源事件
       lVar2 = *plVar1;
       *plVar1 = 0;
-      plVar1 = (longlong *)*param_2;
+      plVar1 = (int64_t *)*param_2;
       *param_2 = lVar2;
-      if (plVar1 != (longlong *)0x0) {
+      if (plVar1 != (int64_t *)0x0) {
         (**(code **)(*plVar1 + 0x38))();
       }
-      if (plStackX_20 != (longlong *)0x0) {
+      if (plStackX_20 != (int64_t *)0x0) {
         (**(code **)(*plStackX_20 + 0x38))();
       }
       goto LAB_180158404;
@@ -871,7 +871,7 @@ LAB_180158404:
 void EngineEventHandler_Unregister(uint64_t param_1,int param_2)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   char cVar2;
   uint uVar3;
   int *piVar4;
@@ -899,8 +899,8 @@ void EngineEventHandler_Unregister(uint64_t param_1,int param_2)
   uVar3 = String_GetLength(puStack_58);  // 获取字符串长度
   *puStack_58 = 0x5f657361656c6572;
   *(int32_t *)(puStack_58 + 1) = 0x6e657665;
-  *(int16_t *)((longlong)puStack_58 + 0xc) = 0x2074;
-  *(int8_t *)((longlong)puStack_58 + 0xe) = 0;
+  *(int16_t *)((int64_t)puStack_58 + 0xc) = 0x2074;
+  *(int8_t *)((int64_t)puStack_58 + 0xe) = 0;
   uStack_50 = 0xe;
   uStack_48._0_4_ = uVar3;
   String_FormatInteger(&puStack_60,param_2);  // 格式化整数为字符串
@@ -911,7 +911,7 @@ void EngineEventHandler_Unregister(uint64_t param_1,int param_2)
       if ((int)uVar3 < 0x10) {
         uVar3 = 0x10;
       }
-      puStack_58 = (uint64_t *)MemoryPool_Allocate(g_pMemoryPool,(longlong)(int)uVar3,0x13);  // 分配内存池
+      puStack_58 = (uint64_t *)MemoryPool_Allocate(g_pMemoryPool,(int64_t)(int)uVar3,0x13);  // 分配内存池
       *(int8_t *)puStack_58 = 0;
     }
     else {
@@ -921,7 +921,7 @@ void EngineEventHandler_Unregister(uint64_t param_1,int param_2)
     uStack_48._0_4_ = String_GetLength(puStack_58);  // 获取字符串长度
   }
 LAB_18015860c:
-  *(int16_t *)((ulonglong)uStack_50 + (longlong)puStack_58) = 10;
+  *(int16_t *)((uint64_t)uStack_50 + (int64_t)puStack_58) = 10;
   puVar6 = (uint64_t *)&g_sDefaultString;  // 默认字符串
   if (puStack_58 != (uint64_t *)0x0) {
     puVar6 = puStack_58;
@@ -934,7 +934,7 @@ LAB_18015860c:
     Assertion_Failure();  // 断言失败 (原: FUN_18064e900)
   }
   puStack_58 = (uint64_t *)0x0;
-  uStack_48 = (ulonglong)uStack_48._4_4_ << 0x20;
+  uStack_48 = (uint64_t)uStack_48._4_4_ << 0x20;
   puStack_60 = &g_sNullStringBuffer;  // 空指针字符串缓冲区
 LAB_180158671:
   cVar2 = EventSystem_IsInitialized(lVar1);  // 检查事件系统是否已初始化
@@ -943,8 +943,8 @@ LAB_180158671:
     if (iVar8 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar8);
     }
-    piVar7 = (int *)(*(longlong *)(lVar1 + 0x38) +  // 查找事件处理器哈希表位置
-                    ((ulonglong)(longlong)param_2 % (ulonglong)*(uint *)(lVar1 + 0x40)) * 8);
+    piVar7 = (int *)(*(int64_t *)(lVar1 + 0x38) +  // 查找事件处理器哈希表位置
+                    ((uint64_t)(int64_t)param_2 % (uint64_t)*(uint *)(lVar1 + 0x40)) * 8);
     piVar4 = *(int **)piVar7;
     if (piVar4 != (int *)0x0) {
       do {
@@ -959,13 +959,13 @@ LAB_180158671:
           if (param_2 != *piVar5) break;
           *(uint64_t *)piVar7 = *(uint64_t *)(piVar5 + 4);
           *(int **)(piVar5 + 4) = piVar9;
-          *(longlong *)(lVar1 + 0x48) = *(longlong *)(lVar1 + 0x48) + -1;
+          *(int64_t *)(lVar1 + 0x48) = *(int64_t *)(lVar1 + 0x48) + -1;
           piVar4 = *(int **)piVar7;
           piVar9 = piVar5;
         } while (*(int **)piVar7 != (int *)0x0);
         if (piVar9 != (int *)0x0) {
-          if (*(longlong **)(piVar9 + 2) != (longlong *)0x0) {
-            (**(code **)(**(longlong **)(piVar9 + 2) + 0x38))();
+          if (*(int64_t **)(piVar9 + 2) != (int64_t *)0x0) {
+            (**(code **)(**(int64_t **)(piVar9 + 2) + 0x38))();
           }
                     // WARNING: Subroutine does not return
           MemoryPool_Free(piVar9);  // 释放事件处理器内存

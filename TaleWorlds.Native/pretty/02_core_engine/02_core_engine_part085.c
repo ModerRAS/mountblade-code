@@ -494,7 +494,7 @@ void simple_position_update(float *offset_vector)
  * @param param_4 - 第四个参数
  * @param param_5 - 第五个参数
  */
-void parameterized_position_update(float *offset_vector, void *context_ptr, void *engine_ptr, longlong param_4, float param_5)
+void parameterized_position_update(float *offset_vector, void *context_ptr, void *engine_ptr, int64_t param_4, float param_5)
 {
     void *engine_context;
     float original_x, original_y;

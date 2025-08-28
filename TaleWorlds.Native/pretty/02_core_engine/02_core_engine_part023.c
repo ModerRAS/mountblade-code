@@ -3,17 +3,17 @@
 // 02_core_engine_part023.c - 23 个函数
 
 // 函数：处理线程同步对象和内存操作
-void process_thread_sync_objects(longlong *sync_object, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void process_thread_sync_objects(int64_t *sync_object, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 
 {
   uint size_value;
-  longlong object_ptr;
+  int64_t object_ptr;
   void *temp_ptr1;
-  ulonglong data_size;
+  uint64_t data_size;
   uint64_t stack_value1;
-  longlong stack_value2;
+  int64_t stack_value2;
   void *temp_ptr2;
-  longlong stack_value3;
+  int64_t stack_value3;
   uint stack_value4;
   uint64_t stack_value5;
   void *temp_ptr3;
@@ -28,8 +28,8 @@ void process_thread_sync_objects(longlong *sync_object, uint64_t param_2, uint64
   stack_value3 = 0;
   stack_value4 = 0;
   size_value = *(uint *)(object_ptr + 0x10);
-  data_size = (ulonglong)size_value;
-  if (*(longlong *)(object_ptr + 8) != 0) {
+  data_size = (uint64_t)size_value;
+  if (*(int64_t *)(object_ptr + 8) != 0) {
     allocate_memory_block(&temp_ptr2, data_size, param_3, param_4, 1, 0xfffffffffffffffe);
   }
   if (size_value != 0) {
@@ -42,7 +42,7 @@ void process_thread_sync_objects(longlong *sync_object, uint64_t param_2, uint64
   stack_value4 = size_value;
   stack_value5._4_4_ = *(uint *)(object_ptr + 0x1c);
   allocate_memory_block(&temp_ptr2, 1);
-  *(int16_t *)((ulonglong)stack_value4 + stack_value3) = 0x5c;
+  *(int16_t *)((uint64_t)stack_value4 + stack_value3) = 0x5c;
   stack_value4 = 1;
   create_string_buffer(&temp_ptr2, &temp_ptr3, param_3);
   temp_ptr2 = &EMPTY_OBJECT_TABLE;
@@ -51,7 +51,7 @@ void process_thread_sync_objects(longlong *sync_object, uint64_t param_2, uint64
     cleanup_memory_allocation();
   }
   stack_value3 = 0;
-  stack_value5 = (ulonglong)stack_value5._4_4_ << 0x20;
+  stack_value5 = (uint64_t)stack_value5._4_4_ << 0x20;
   temp_ptr2 = &GLOBAL_STRING_TABLE;
   temp_ptr1 = &DEFAULT_STRING_PTR;
   if (temp_ptr4 != (void *)0x0) {
@@ -66,7 +66,7 @@ void process_thread_sync_objects(longlong *sync_object, uint64_t param_2, uint64
     GLOBAL_FILE_COUNTER = GLOBAL_FILE_COUNTER + -1;
     UNLOCK();
   }
-  (**(code **)(**(longlong **)sync_object[1] + 0x40))(*(longlong **)sync_object[1], &temp_ptr3);
+  (**(code **)(**(int64_t **)sync_object[1] + 0x40))(*(int64_t **)sync_object[1], &temp_ptr3);
   temp_ptr3 = &EMPTY_OBJECT_TABLE;
   if (temp_ptr4 != (void *)0x0) {
     // WARNING: Subroutine does not return
@@ -102,34 +102,34 @@ void process_error_report(uint64_t param_1, uint64_t param_2, char debug_flag, c
   int32_t message_result;
   int option_index;
   uint64_t temp_value1;
-  ulonglong memory_usage;
+  uint64_t memory_usage;
   int8_t stack_buffer1 [32];
   void *temp_ptr1;
   void *temp_ptr2;
   void *temp_ptr3;
   void *temp_ptr4;
-  longlong stack_value1;
+  int64_t stack_value1;
   int32_t stack_value2;
   uint64_t stack_value3;
   void *temp_ptr5;
-  longlong stack_value4;
+  int64_t stack_value4;
   int32_t stack_value5;
   void *temp_ptr6;
   void *temp_ptr7;
   int32_t stack_value6;
-  ulonglong stack_value7;
+  uint64_t stack_value7;
   void *temp_ptr8;
   void *temp_ptr9;
   int32_t stack_value8;
-  ulonglong stack_value9;
+  uint64_t stack_value9;
   void *temp_ptr10;
-  longlong stack_value10;
+  int64_t stack_value10;
   int32_t stack_value11;
   void *temp_ptr11;
-  longlong stack_value12;
+  int64_t stack_value12;
   int32_t stack_value13;
   void *temp_ptr12;
-  longlong stack_value14;
+  int64_t stack_value14;
   int32_t stack_value15;
   void *temp_ptr13;
   void *temp_ptr14;
@@ -137,11 +137,11 @@ void process_error_report(uint64_t param_1, uint64_t param_2, char debug_flag, c
   uint64_t stack_value17;
   void **temp_ptr15;
   int32_t stack_buffer2 [14];
-  ulonglong process_memory;
-  ulonglong thread_memory;
+  uint64_t process_memory;
+  uint64_t thread_memory;
   
   stack_value17 = 0xfffffffffffffffe;
-  thread_memory = GLOBAL_MEMORY_BASE ^ (ulonglong)stack_buffer1;
+  thread_memory = GLOBAL_MEMORY_BASE ^ (uint64_t)stack_buffer1;
   is_debugger_present = (**(code **)**(uint64_t **)(GLOBAL_DEBUG_HANDLE + 0x18))();
   option_index = 0;
   if (is_debugger_present != '\0') {
@@ -153,7 +153,7 @@ void process_error_report(uint64_t param_1, uint64_t param_2, char debug_flag, c
       cleanup_memory_allocation();
     }
     stack_value1 = 0;
-    stack_value3 = (ulonglong)stack_value3._4_4_ << 0x20;
+    stack_value3 = (uint64_t)stack_value3._4_4_ << 0x20;
     temp_ptr4 = &GLOBAL_STRING_TABLE;
     goto ERROR_HANDLER;
   }
@@ -338,7 +338,7 @@ CRASH_HANDLER:
   }
 ERROR_HANDLER:
   // WARNING: Subroutine does not return
-  cleanup_security_check(thread_memory ^ (ulonglong)stack_buffer1);
+  cleanup_security_check(thread_memory ^ (uint64_t)stack_buffer1);
 }
 
 
@@ -352,13 +352,13 @@ void process_system_exception(uint64_t param_1, uint64_t param_2, char exception
                              uint64_t param_5)
 
 {
-  longlong temp_ptr1;
+  int64_t temp_ptr1;
   char is_debugger_active;
   int user_response;
   int32_t dialog_result;
   uint64_t *string_ptr;
   int debug_status;
-  longlong memory_ptr;
+  int64_t memory_ptr;
   void *temp_ptr2;
   uint64_t *temp_ptr3;
   int32_t stack_value1;
@@ -438,7 +438,7 @@ EXCEPTION_HANDLER:
       if (debug_status < 0x10) {
         user_response = 0x10;
       }
-      temp_ptr3 = (uint64_t *)allocate_string_buffer(GLOBAL_MEMORY_BASE, (longlong)user_response, 0x13);
+      temp_ptr3 = (uint64_t *)allocate_string_buffer(GLOBAL_MEMORY_BASE, (int64_t)user_response, 0x13);
       *(int8_t *)temp_ptr3 = 0;
       dialog_result = get_string_length(temp_ptr3);
       stack_value2 = CONCAT44(stack_value2._4_4_, dialog_result);
@@ -474,21 +474,21 @@ void empty_function_placeholder(void)
 
 
 // 函数：处理动态数组扩容
-void expand_dynamic_array(longlong *array_ptr, longlong element_size, uint64_t param_3, uint64_t param_4)
+void expand_dynamic_array(int64_t *array_ptr, int64_t element_size, uint64_t param_3, uint64_t param_4)
 
 {
-  longlong current_capacity;
+  int64_t current_capacity;
   uint64_t *element_ptr;
-  longlong base_address;
+  int64_t base_address;
   uint64_t *temp_ptr1;
   uint64_t *temp_ptr2;
   uint64_t *temp_ptr3;
-  longlong growth_factor;
+  int64_t growth_factor;
   
   temp_ptr2 = (uint64_t *)array_ptr[1];
   current_capacity = 0;
   if (temp_ptr2 < (uint64_t *)array_ptr[2]) {
-    array_ptr[1] = (longlong)(temp_ptr2 + 4);
+    array_ptr[1] = (int64_t)(temp_ptr2 + 4);
     *temp_ptr2 = &GLOBAL_STRING_TABLE;
     temp_ptr2[1] = 0;
     *(int32_t *)(temp_ptr2 + 2) = 0;
@@ -498,7 +498,7 @@ void expand_dynamic_array(longlong *array_ptr, longlong element_size, uint64_t p
     *(int32_t *)(temp_ptr2 + 2) = 0;
     *(int32_t *)(temp_ptr2 + 2) = *(int32_t *)(element_size + 0x10);
     temp_ptr2[1] = *(uint64_t *)(element_size + 8);
-    *(int32_t *)((longlong)temp_ptr2 + 0x1c) = *(int32_t *)(element_size + 0x1c);
+    *(int32_t *)((int64_t)temp_ptr2 + 0x1c) = *(int32_t *)(element_size + 0x1c);
     *(int32_t *)(temp_ptr2 + 3) = *(int32_t *)(element_size + 0x18);
     *(int32_t *)(element_size + 0x10) = 0;
     *(uint64_t *)(element_size + 8) = 0;
@@ -506,7 +506,7 @@ void expand_dynamic_array(longlong *array_ptr, longlong element_size, uint64_t p
     return;
   }
   base_address = *array_ptr;
-  growth_factor = (longlong)temp_ptr2 - base_address >> 5;
+  growth_factor = (int64_t)temp_ptr2 - base_address >> 5;
   if (growth_factor == 0) {
     growth_factor = 1;
   }
@@ -528,7 +528,7 @@ CAPACITY_CALCULATION:
   *(int32_t *)(temp_ptr1 + 2) = 0;
   *(int32_t *)(temp_ptr1 + 2) = *(int32_t *)(element_size + 0x10);
   temp_ptr1[1] = *(uint64_t *)(element_size + 8);
-  *(int32_t *)((longlong)temp_ptr1 + 0x1c) = *(int32_t *)(element_size + 0x1c);
+  *(int32_t *)((int64_t)temp_ptr1 + 0x1c) = *(int32_t *)(element_size + 0x1c);
   *(int32_t *)(temp_ptr1 + 3) = *(int32_t *)(element_size + 0x18);
   *(int32_t *)(element_size + 0x10) = 0;
   *(uint64_t *)(element_size + 8) = 0;
@@ -544,7 +544,7 @@ CAPACITY_CALCULATION:
   }
   if (temp_ptr3 == (uint64_t *)0x0) {
     *array_ptr = current_capacity;
-    array_ptr[1] = (longlong)(temp_ptr1 + 4);
+    array_ptr[1] = (int64_t)(temp_ptr1 + 4);
     array_ptr[2] = growth_factor * 0x20 + current_capacity;
     return;
   }
@@ -555,14 +555,14 @@ CAPACITY_CALCULATION:
 
 
 // 函数：在内存块中搜索子串
-longlong find_substring_in_memory(longlong memory_base, ulonglong memory_size, uint64_t param_3, char *search_pattern,
-                                   ulonglong pattern_length)
+int64_t find_substring_in_memory(int64_t memory_base, uint64_t memory_size, uint64_t param_3, char *search_pattern,
+                                   uint64_t pattern_length)
 
 {
   char first_char;
   int compare_result;
-  longlong found_position;
-  longlong search_end;
+  int64_t found_position;
+  int64_t search_end;
   
   if (pattern_length <= memory_size) {
     if (pattern_length == 0) {
@@ -602,19 +602,19 @@ void handle_out_of_range_exception(void)
 
 
 // 函数：清理动态数组内存
-void cleanup_dynamic_array(longlong *array_ptr)
+void cleanup_dynamic_array(int64_t *array_ptr)
 
 {
-  ulonglong current_size;
-  longlong base_address;
-  longlong memory_block;
+  uint64_t current_size;
+  int64_t base_address;
+  int64_t memory_block;
   
   current_size = array_ptr[3];
   if (0xf < current_size) {
     base_address = *array_ptr;
     memory_block = base_address;
     if (0xfff < current_size + 1) {
-      memory_block = *(longlong *)(base_address + -8);
+      memory_block = *(int64_t *)(base_address + -8);
       if (0x1f < (base_address - memory_block) - 8U) {
         // WARNING: Subroutine does not return
         throw_invalid_parameter_exception(base_address - memory_block, current_size + 0x28);
@@ -661,13 +661,13 @@ void handle_length_error_exception(void)
 
 
 // 函数：分配内存块
-void allocate_memory_block(ulonglong requested_size)
+void allocate_memory_block(uint64_t requested_size)
 
 {
   code *exception_handler;
   int allocation_result;
-  longlong allocated_ptr;
-  ulonglong aligned_size;
+  int64_t allocated_ptr;
+  uint64_t aligned_size;
   
   if (0xfff < requested_size) {
     aligned_size = requested_size + 0x27;
@@ -679,7 +679,7 @@ void allocate_memory_block(ulonglong requested_size)
       // WARNING: Subroutine does not return
       throw_invalid_parameter_exception();
     }
-    *(longlong *)((allocated_ptr + 0x27U & 0xffffffffffffffe0) - 8) = allocated_ptr;
+    *(int64_t *)((allocated_ptr + 0x27U & 0xffffffffffffffe0) - 8) = allocated_ptr;
     return;
   }
   if (requested_size == 0) {
@@ -709,14 +709,14 @@ void allocate_memory_block(ulonglong requested_size)
 
 
 // 函数：释放内存块
-void free_memory_block(longlong memory_ptr, ulonglong block_size)
+void free_memory_block(int64_t memory_ptr, uint64_t block_size)
 
 {
-  longlong actual_ptr;
+  int64_t actual_ptr;
   
   actual_ptr = memory_ptr;
   if (0xfff < block_size) {
-    actual_ptr = *(longlong *)(memory_ptr + -8);
+    actual_ptr = *(int64_t *)(memory_ptr + -8);
     if (0x1f < (memory_ptr - actual_ptr) - 8U) {
       // WARNING: Subroutine does not return
       throw_invalid_parameter_exception(memory_ptr - actual_ptr, block_size + 0x27);
@@ -733,15 +733,15 @@ void free_memory_block(longlong memory_ptr, ulonglong block_size)
 
 
 // 函数：调整容器大小
-void resize_container(uint64_t *container_ptr, uint64_t data_ptr, ulonglong new_size)
+void resize_container(uint64_t *container_ptr, uint64_t data_ptr, uint64_t new_size)
 
 {
-  ulonglong current_capacity;
+  uint64_t current_capacity;
   code *exception_handler;
   uint64_t new_memory;
-  ulonglong required_capacity;
+  uint64_t required_capacity;
   uint64_t *base_ptr;
-  ulonglong growth_factor;
+  uint64_t growth_factor;
   
   current_capacity = container_ptr[3];
   if (new_size <= current_capacity) {
@@ -777,15 +777,15 @@ void resize_container(uint64_t *container_ptr, uint64_t data_ptr, ulonglong new_
 
 
 // 函数：处理容器扩容
-void handle_container_expansion(ulonglong requested_size)
+void handle_container_expansion(uint64_t requested_size)
 
 {
-  ulonglong aligned_size;
+  uint64_t aligned_size;
   uint64_t new_memory;
-  longlong container_ptr;
-  ulonglong current_capacity;
+  int64_t container_ptr;
+  uint64_t current_capacity;
   uint64_t data_ptr;
-  ulonglong new_capacity;
+  uint64_t new_capacity;
   
   requested_size = requested_size | 0xf;
   if (((requested_size <= current_capacity) && (current_capacity <= current_capacity - (current_capacity >> 1))) &&
@@ -794,7 +794,7 @@ void handle_container_expansion(ulonglong requested_size)
   }
   new_memory = allocate_memory_block(current_capacity + 1);
   *(uint64_t *)(container_ptr + 0x10) = data_ptr;
-  *(ulonglong *)(container_ptr + 0x18) = current_capacity;
+  *(uint64_t *)(container_ptr + 0x18) = current_capacity;
   // WARNING: Subroutine does not return
   copy_memory_data(new_memory);
 }
@@ -845,18 +845,18 @@ void throw_length_error_exception2(void)
 
 
 // 函数：处理IO完成端口
-void process_io_completion_port(longlong port_handle)
+void process_io_completion_port(int64_t port_handle)
 
 {
-  longlong temp_ptr1;
-  longlong temp_ptr2;
+  int64_t temp_ptr1;
+  int64_t temp_ptr2;
   int completion_status;
   uint64_t temp_value1;
   uint64_t temp_value2;
-  longlong *async_result;
+  int64_t *async_result;
   uint completion_key [2];
-  longlong overlapped_ptr;
-  longlong *async_context;
+  int64_t overlapped_ptr;
+  int64_t *async_context;
   int32_t thread_priority1;
   int32_t thread_priority2;
   int32_t thread_priority3;
@@ -882,24 +882,24 @@ void process_io_completion_port(longlong port_handle)
       if (overlapped_ptr == -1) {
         return;
       }
-      *(longlong *)(async_context + 0x1c8) =
-           *(longlong *)(async_context + 0x1c8) - (ulonglong)completion_key[0];
+      *(int64_t *)(async_context + 0x1c8) =
+           *(int64_t *)(async_context + 0x1c8) - (uint64_t)completion_key[0];
       temp_value1 = GLOBAL_IO_HANDLE;
-      if (*(longlong *)(async_context + 0x1c8) < 1) {
-        temp_ptr1 = *(longlong *)(port_handle + 0x20);
+      if (*(int64_t *)(async_context + 0x1c8) < 1) {
+        temp_ptr1 = *(int64_t *)(port_handle + 0x20);
         temp_value2 = allocate_thread_context(GLOBAL_MEMORY_BASE, 0x40, 8, 10);
-        async_result = (longlong *)&thread_priority3;
+        async_result = (int64_t *)&thread_priority3;
         temp_ptr3 = &ASYNC_CALLBACK_FUNCTION;
         temp_ptr4 = &ASYNC_CONTEXT_DATA;
         thread_priority1 = (int32_t)temp_value1;
-        thread_priority2 = (int32_t)((ulonglong)temp_value1 >> 0x20);
+        thread_priority2 = (int32_t)((uint64_t)temp_value1 >> 0x20);
         thread_priority3 = thread_priority1;
         thread_priority4 = thread_priority2;
         thread_priority5 = thread_priority3;
         thread_priority6 = thread_priority4;
         thread_priority7 = thread_priority5;
-        async_result = (longlong *)create_async_context(temp_value2, &thread_priority3);
-        if (async_result != (longlong *)0x0) {
+        async_result = (int64_t *)create_async_context(temp_value2, &thread_priority3);
+        if (async_result != (int64_t *)0x0) {
           (**(code **)(*async_result + 0x28))(async_result);
         }
         temp_value1 = GLOBAL_ASYNC_MANAGER;
@@ -910,12 +910,12 @@ void process_io_completion_port(longlong port_handle)
           process_async_result(temp_value1, &async_result);
         }
         else {
-          if (async_result != (longlong *)0x0) {
+          if (async_result != (int64_t *)0x0) {
             (**(code **)(*async_result + 0x28))(async_result);
           }
           handle_async_completion(temp_value1, &async_result);
         }
-        if (async_result != (longlong *)0x0) {
+        if (async_result != (int64_t *)0x0) {
           (**(code **)(*async_result + 0x38))(async_result);
         }
       }
@@ -938,13 +938,13 @@ void process_io_completion_port(longlong port_handle)
 
 
 // 函数：处理IO错误
-void handle_io_error(uint64_t io_handle, longlong error_context)
+void handle_io_error(uint64_t io_handle, int64_t error_context)
 
 {
   void *error_message_ptr;
   void *default_message_ptr;
   
-  error_message_ptr = *(void **)(*(longlong *)(error_context + 0x1f8) + 0x10);
+  error_message_ptr = *(void **)(*(int64_t *)(error_context + 0x1f8) + 0x10);
   default_message_ptr = &DEFAULT_STRING_PTR;
   if (error_message_ptr != (void *)0x0) {
     default_message_ptr = error_message_ptr;
@@ -958,7 +958,7 @@ void handle_io_error(uint64_t io_handle, longlong error_context)
 
 
 // 函数：调用对象回调函数
-void call_object_callback(longlong object_ptr, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void call_object_callback(int64_t object_ptr, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 
 {
   if (*(code **)(object_ptr + 0x10) != (code *)0x0) {
@@ -974,21 +974,21 @@ void call_object_callback(longlong object_ptr, uint64_t param_2, uint64_t param_
 
 
 // 函数：清理线程池资源
-void cleanup_thread_pool_resources(longlong *pool_ptr)
+void cleanup_thread_pool_resources(int64_t *pool_ptr)
 
 {
   int *counter_ptr;
-  longlong *temp_ptr1;
-  longlong temp_ptr2;
-  longlong temp_ptr3;
+  int64_t *temp_ptr1;
+  int64_t temp_ptr2;
+  int64_t temp_ptr3;
   uint64_t temp_value1;
   uint64_t temp_value2;
   uint64_t *temp_ptr4;
-  longlong *temp_ptr5;
+  int64_t *temp_ptr5;
   int thread_status;
-  longlong async_result;
+  int64_t async_result;
   uint64_t *async_context;
-  longlong stack_value1;
+  int64_t stack_value1;
   uint64_t uStack_b8;
   int16_t uStack_b0;
   int8_t uStack_ae;
@@ -999,16 +999,16 @@ void cleanup_thread_pool_resources(longlong *pool_ptr)
   stack_value2 = 0xfffffffffffffffe;
   temp_ptr2 = pool_ptr[1];
   thread_status = *(int *)(temp_ptr2 + 0x138) - *(int *)(temp_ptr2 + 0x1d8);
-  temp_ptr3 = *(longlong *)(temp_ptr2 + 0x150);
-  temp_ptr5 = (longlong *)0x0;
+  temp_ptr3 = *(int64_t *)(temp_ptr2 + 0x150);
+  temp_ptr5 = (int64_t *)0x0;
   if (temp_ptr3 != 0) {
     temp_value1 = *(uint64_t *)(temp_ptr2 + 0x158);
     temp_value2 = *(uint64_t *)(temp_ptr2 + 0x1e0);
-    async_result = *(longlong *)(temp_ptr2 + 0x140);
-    temp_ptr2 = *(longlong *)(temp_ptr2 + 0x1f0);
+    async_result = *(int64_t *)(temp_ptr2 + 0x140);
+    temp_ptr2 = *(int64_t *)(temp_ptr2 + 0x1f0);
     if (temp_ptr3 - 2U < 2) {
-      temp_ptr5 = (longlong *)allocate_thread_context(GLOBAL_MEMORY_BASE, 0x10, 8, 3);
-      *temp_ptr5 = (longlong)&THREAD_POOL_CONFIG;
+      temp_ptr5 = (int64_t *)allocate_thread_context(GLOBAL_MEMORY_BASE, 0x10, 8, 3);
+      *temp_ptr5 = (int64_t)&THREAD_POOL_CONFIG;
       *(bool *)(temp_ptr5 + 1) = temp_ptr3 == 3;
     }
     (**(code **)(*temp_ptr5 + 0x18))(temp_ptr5, stack_buffer1, thread_status + temp_ptr2, async_result, temp_value2, temp_value1);
@@ -1018,19 +1018,19 @@ void cleanup_thread_pool_resources(longlong *pool_ptr)
   uStack_ae = 3;
   temp_ptr2 = pool_ptr[1];
   uStack_b8 = *(uint64_t *)(temp_ptr2 + 0x140);
-  stack_value1 = (longlong)thread_status + *(longlong *)(temp_ptr2 + 0x1f0);
+  stack_value1 = (int64_t)thread_status + *(int64_t *)(temp_ptr2 + 0x1f0);
   uStack_b0 = 1;
   async_result = stack_value1;
-  (**(code **)(temp_ptr2 + 0x180))(&stack_value1, *(longlong *)(temp_ptr2 + 0x1f8) + 8);
+  (**(code **)(temp_ptr2 + 0x180))(&stack_value1, *(int64_t *)(temp_ptr2 + 0x1f8) + 8);
   if (((char)uStack_b0 == '\0') && (stack_value1 != 0)) {
     // WARNING: Subroutine does not return
     cleanup_memory_allocation();
   }
   LOCK();
-  counter_ptr = (int *)(*(longlong *)(pool_ptr[1] + 0x1f8) + 0x120);
+  counter_ptr = (int *)(*(int64_t *)(pool_ptr[1] + 0x1f8) + 0x120);
   *counter_ptr = *counter_ptr + -1;
   UNLOCK();
-  async_result = *(longlong *)(pool_ptr[1] + 0x1a8);
+  async_result = *(int64_t *)(pool_ptr[1] + 0x1a8);
   temp_ptr2 = *pool_ptr;
   process_async_result(temp_ptr2 + 0x10, &async_result);
   thread_status = _Cnd_signal(temp_ptr2 + 0x278);
@@ -1044,8 +1044,8 @@ void cleanup_thread_pool_resources(longlong *pool_ptr)
   if (thread_status != 0) {
     throw_thread_error_exception(thread_status);
   }
-  temp_ptr2 = *(longlong *)(pool_ptr[1] + 0x1c0);
-  if (*(longlong *)(pool_ptr[1] + 0x1b8) != 0) {
+  temp_ptr2 = *(int64_t *)(pool_ptr[1] + 0x1c0);
+  if (*(int64_t *)(pool_ptr[1] + 0x1b8) != 0) {
     // WARNING: Subroutine does not return
     cleanup_memory_allocation();
   }
@@ -1054,23 +1054,23 @@ void cleanup_thread_pool_resources(longlong *pool_ptr)
     cleanup_memory_allocation(temp_ptr2);
   }
   temp_ptr2 = pool_ptr[1];
-  if (*(longlong *)(temp_ptr2 + 0x150) == 0) {
-    if (*(longlong *)(temp_ptr2 + 0x148) == 0) {
-      temp_ptr5 = *(longlong **)(temp_ptr2 + 0x140);
+  if (*(int64_t *)(temp_ptr2 + 0x150) == 0) {
+    if (*(int64_t *)(temp_ptr2 + 0x148) == 0) {
+      temp_ptr5 = *(int64_t **)(temp_ptr2 + 0x140);
     }
   }
   else {
-    temp_ptr5 = *(longlong **)(temp_ptr2 + 0x140);
-    if (*(longlong *)(temp_ptr2 + 0x148) == 0) {
-      temp_ptr5 = (longlong *)((longlong)temp_ptr5 + *(longlong *)(temp_ptr2 + 0x158));
+    temp_ptr5 = *(int64_t **)(temp_ptr2 + 0x140);
+    if (*(int64_t *)(temp_ptr2 + 0x148) == 0) {
+      temp_ptr5 = (int64_t *)((int64_t)temp_ptr5 + *(int64_t *)(temp_ptr2 + 0x158));
     }
   }
   LOCK();
-  temp_ptr1 = (longlong *)(*(longlong *)(*pool_ptr + 8) + 0x3f0);
-  *temp_ptr1 = *temp_ptr1 - (longlong)temp_ptr5;
+  temp_ptr1 = (int64_t *)(*(int64_t *)(*pool_ptr + 8) + 0x3f0);
+  *temp_ptr1 = *temp_ptr1 - (int64_t)temp_ptr5;
   UNLOCK();
   LOCK();
-  counter_ptr = (int *)(*(longlong *)(*pool_ptr + 8) + 0x3f8);
+  counter_ptr = (int *)(*(int64_t *)(*pool_ptr + 8) + 0x3f8);
   *counter_ptr = *counter_ptr + -1;
   UNLOCK();
   temp_ptr3 = *pool_ptr;
@@ -1111,10 +1111,10 @@ void initialize_global_object(uint64_t *object_ptr)
   uint64_t *temp_ptr1;
   uint64_t stack_value1;
   uint64_t *temp_ptr2;
-  ulonglong security_cookie;
+  uint64_t security_cookie;
   
   stack_value1 = 0xfffffffffffffffe;
-  security_cookie = GLOBAL_MEMORY_BASE ^ (ulonglong)stack_buffer1;
+  security_cookie = GLOBAL_MEMORY_BASE ^ (uint64_t)stack_buffer1;
   temp_ptr2 = object_ptr;
   initialize_security_system();
   *object_ptr = &GLOBAL_OBJECT_TABLE;

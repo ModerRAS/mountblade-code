@@ -46,7 +46,7 @@ extern uint64_t global_render_manager;
  * @param entity_data 实体数据
  * 简化实现: 保留原始逻辑但优化变量命名和注释
  */
-void process_render_bounding_box(uint64_t render_context, float *bounds_ptr, longlong entity_data)
+void process_render_bounding_box(uint64_t render_context, float *bounds_ptr, int64_t entity_data)
 {
     float *pfVar1;
     float fVar2;
@@ -56,11 +56,11 @@ void process_render_bounding_box(uint64_t render_context, float *bounds_ptr, lon
     float fVar6;
     float fVar7;
     uint uVar8;
-    longlong unaff_RBX;
-    longlong lVar9;
-    longlong unaff_RBP;
-    longlong unaff_RDI;
-    longlong unaff_R13;
+    int64_t unaff_RBX;
+    int64_t lVar9;
+    int64_t unaff_RBP;
+    int64_t unaff_RDI;
+    int64_t unaff_R13;
     float unaff_XMM6_Da;
     float unaff_XMM9_Da;
     
@@ -69,16 +69,16 @@ void process_render_bounding_box(uint64_t render_context, float *bounds_ptr, lon
     uint render_flags = func_0x000180121e20();
     if ((render_flags & 0xff000000) != 0) {
         if (render_context == 0) {
-            longlong string_length = -1;
+            int64_t string_length = -1;
             do {
                 string_length = string_length + 1;
             } while (*(char *)(bounds_ptr + string_length) != '\0');
             render_context = string_length + bounds_ptr;
         }
         if (bounds_ptr != render_context) {
-            longlong entity_ptr = *(longlong *)(render_context + 0x38);
-            float *current_bounds = (float *)(*(longlong *)(render_context + 0x68) + -0x10 +
-                                        (longlong)*(int *)(render_context + 0x60) * 0x10);
+            int64_t entity_ptr = *(int64_t *)(render_context + 0x38);
+            float *current_bounds = (float *)(*(int64_t *)(render_context + 0x68) + -0x10 +
+                                        (int64_t)*(int *)(render_context + 0x60) * 0x10);
             float max_z = *current_bounds;
             float max_w = current_bounds[1];
             float adjusted_min_y = current_bounds[2];
@@ -127,11 +127,11 @@ void initialize_render_state(void)
 void process_text_string(uint64_t context1, uint64_t context2, char *text_start, char *text_end,
                        uint64_t process_param1, uint64_t process_param2, uint64_t process_param3)
 {
-    longlong lVar1;
+    int64_t lVar1;
     char *pcVar2;
     char *pcVar3;
     
-    longlong render_manager = global_render_manager;
+    int64_t render_manager = global_render_manager;
     char *end_pos = (char *)0xffffffffffffffff;
     if (text_end != (char *)0x0) {
         end_pos = text_end;
@@ -144,7 +144,7 @@ void process_text_string(uint64_t context1, uint64_t context2, char *text_start,
         }
     }
     if (((int)current_pos != (int)text_start) &&
-       (FUN_1801224c0(*(uint64_t *)(*(longlong *)(global_render_manager + 0x1af8) + 0x2e8),context1,context2,
+       (FUN_1801224c0(*(uint64_t *)(*(int64_t *)(global_render_manager + 0x1af8) + 0x2e8),context1,context2,
                       text_start,current_pos,process_param1,process_param2,process_param3), *(char *)(render_manager + 0x2e38) != '\0')) {
         FUN_18013c800(context1,text_start,current_pos);
     }
@@ -156,9 +156,9 @@ void process_text_string(uint64_t context1, uint64_t context2, char *text_start,
  */
 void execute_default_text_processing(void)
 {
-    longlong render_manager = global_render_manager;
+    int64_t render_manager = global_render_manager;
     
-    FUN_1801224c0(*(uint64_t *)(*(longlong *)(global_render_manager + 0x1af8) + 0x2e8));
+    FUN_1801224c0(*(uint64_t *)(*(int64_t *)(global_render_manager + 0x1af8) + 0x2e8));
     if (*(char *)(render_manager + 0x2e38) != '\0') {
         FUN_18013c800();
     }
@@ -186,9 +186,9 @@ void render_2d_rectangle(uint64_t render_context, uint64_t position, int32_t siz
                         int32_t color)
 {
     float fVar1;
-    longlong lVar2;
+    int64_t lVar2;
     uint uVar3;
-    longlong lVar4;
+    int64_t lVar4;
     uint64_t uStack_58;
     uint64_t uStack_50;
     float fStack_48;
@@ -198,8 +198,8 @@ void render_2d_rectangle(uint64_t render_context, uint64_t position, int32_t siz
     int32_t uStack_38;
     float fStack_34;
     
-    longlong manager_ptr = global_render_manager;
-    longlong render_data = *(longlong *)(global_render_manager + 0x1af8);
+    int64_t manager_ptr = global_render_manager;
+    int64_t render_data = *(int64_t *)(global_render_manager + 0x1af8);
     uint64_t stack_size = position;
     uint64_t stack_pos = render_context;
     FUN_180293f50(*(uint64_t *)(render_data + 0x2e8),&stack_pos,&stack_size,size,color,0xf);
@@ -247,9 +247,9 @@ void render_2d_rectangle(uint64_t render_context, uint64_t position, int32_t siz
 void render_2d_rectangle_simple(uint64_t render_context, uint64_t position, int32_t color)
 {
     float fVar1;
-    longlong lVar2;
+    int64_t lVar2;
     uint uVar3;
-    longlong lVar4;
+    int64_t lVar4;
     float fStackX_20;
     float fStackX_24;
     uint64_t uStack_48;
@@ -260,7 +260,7 @@ void render_2d_rectangle_simple(uint64_t render_context, uint64_t position, int3
     float fStack_2c;
     
     fVar1 = *(float *)(global_render_manager + 0x1668);
-    lVar2 = *(longlong *)(global_render_manager + 0x1af8);
+    lVar2 = *(int64_t *)(global_render_manager + 0x1af8);
     if (0.0 < fVar1) {
         fStack_38 = *(float *)(global_render_manager + 0x1728);
         fStack_34 = *(float *)(global_render_manager + 0x172c);
@@ -306,7 +306,7 @@ void render_particle_effect(uint64_t particle_position, int particle_type, float
 {
     float fVar1;
     int32_t uVar2;
-    longlong lVar3;
+    int64_t lVar3;
     float fVar4;
     float fVar5;
     float fVar6;
@@ -329,7 +329,7 @@ void render_particle_effect(uint64_t particle_position, int particle_type, float
     float base_size = *(float *)(global_render_manager + 0x19f8);
     float offset_y = 0.0;
     float size_factor = base_size * 0.4 * particle_size;
-    float particle_z = (float)((ulonglong)particle_position >> 0x20);
+    float particle_z = (float)((uint64_t)particle_position >> 0x20);
     float transformed_z = base_size * 0.5 * particle_size + particle_z;
     float particle_x = (float)particle_position;
     float transformed_x = base_size * 0.5 + particle_x;
@@ -375,9 +375,9 @@ void render_particle_effect(uint64_t particle_position, int particle_type, float
     float final_y2 = transformed_z + offset_y2;
     float final_z = transformed_z + offset_x;
     
-    longlong render_manager = global_render_manager;
+    int64_t render_manager = global_render_manager;
     uint render_flags = func_0x000180121e20(&particle_color);
-    FUN_1802940f0(*(uint64_t *)(*(longlong *)(render_manager + 0x1af8) + 0x2e8),&final_x,&final_y,
+    FUN_1802940f0(*(uint64_t *)(*(int64_t *)(render_manager + 0x1af8) + 0x2e8),&final_x,&final_y,
                   &final_position,render_flags);
     return;
 }
@@ -392,9 +392,9 @@ void render_particle_effect(uint64_t particle_position, int particle_type, float
  */
 void render_glow_effect(uint64_t glow_position)
 {
-    longlong lVar1;
+    int64_t lVar1;
     uint uVar2;
-    longlong lVar3;
+    int64_t lVar3;
     uint64_t uStack_28;
     int32_t uStack_20;
     int32_t uStack_1c;
@@ -407,9 +407,9 @@ void render_glow_effect(uint64_t glow_position)
     glow_color.g = *(int32_t *)(global_render_manager + 0x16cc);
     glow_color.b = *(int32_t *)(global_render_manager + 0x16d0);
     
-    longlong render_data = *(longlong *)(*(longlong *)(global_render_manager + 0x1af8) + 0x2e8);
+    int64_t render_data = *(int64_t *)(*(int64_t *)(global_render_manager + 0x1af8) + 0x2e8);
     float alpha = *(float *)(global_render_manager + 0x16d4) * *(float *)(global_render_manager + 0x1628);
-    longlong render_manager = global_render_manager;
+    int64_t render_manager = global_render_manager;
     uint64_t position = glow_position;
     uint render_flags = func_0x000180121e20(&glow_color);
     
@@ -436,7 +436,7 @@ void render_glow_effect(uint64_t glow_position)
  */
 void render_blink_effect(uint64_t blink_position, int32_t blink_type, float blink_intensity)
 {
-    longlong lVar1;
+    int64_t lVar1;
     float fVar2;
     float fVar3;
     float fVar4;
@@ -444,7 +444,7 @@ void render_blink_effect(uint64_t blink_position, int32_t blink_type, float blin
     float fStackX_20;
     float fStackX_24;
     
-    longlong render_manager = *(longlong *)(global_render_manager + 0x1af8);
+    int64_t render_manager = *(int64_t *)(global_render_manager + 0x1af8);
     
     // 计算闪烁参数
     float glow_size = blink_intensity * 0.2;
@@ -453,7 +453,7 @@ void render_blink_effect(uint64_t blink_position, int32_t blink_type, float blin
     }
     
     float adjusted_intensity = blink_intensity + glow_size * -0.5;
-    float position_z = (float)((ulonglong)blink_position >> 0x20);
+    float position_z = (float)((uint64_t)blink_position >> 0x20);
     float position_x = (float)blink_position;
     float offset = adjusted_intensity * 0.33333334; // 1/3
     
@@ -463,15 +463,15 @@ void render_blink_effect(uint64_t blink_position, int32_t blink_type, float blin
     
     // 创建三重闪烁效果
     uint64_t blink_pos1 = CONCAT44(final_z - offset, final_x - offset);
-    FUN_18011d9a0(*(longlong *)(render_manager + 0x2e8) + 0x80, &blink_pos1);
+    FUN_18011d9a0(*(int64_t *)(render_manager + 0x2e8) + 0x80, &blink_pos1);
     
     uint64_t blink_pos2 = CONCAT44(final_z, final_x);
-    FUN_18011d9a0(*(longlong *)(render_manager + 0x2e8) + 0x80, &blink_pos2);
+    FUN_18011d9a0(*(int64_t *)(render_manager + 0x2e8) + 0x80, &blink_pos2);
     
     uint64_t blink_pos3 = CONCAT44(final_z - (offset + offset), offset + offset + final_x);
-    FUN_18011d9a0(*(longlong *)(render_manager + 0x2e8) + 0x80, &blink_pos3);
+    FUN_18011d9a0(*(int64_t *)(render_manager + 0x2e8) + 0x80, &blink_pos3);
     
-    longlong render_data = *(longlong *)(render_manager + 0x2e8);
+    int64_t render_data = *(int64_t *)(render_manager + 0x2e8);
     FUN_1802923e0(render_data, *(uint64_t *)(render_data + 0x88), *(int32_t *)(render_data + 0x80), blink_type, 0, glow_size);
     *(int32_t *)(render_data + 0x80) = 0;
     return;
@@ -489,13 +489,13 @@ void render_blink_effect(uint64_t blink_position, int32_t blink_type, float blin
  * @param render_flags 渲染标志
  * @param render_context 渲染上下文
  */
-void process_bounding_box_display(float *bbox_coords, uint render_flags, longlong render_context)
+void process_bounding_box_display(float *bbox_coords, uint render_flags, int64_t render_context)
 {
     int *piVar1;
     float fVar2;
     float fVar3;
     float fVar4;
-    longlong lVar5;
+    int64_t lVar5;
     bool bVar6;
     uint uVar7;
     float fVar8;
@@ -517,7 +517,7 @@ void process_bounding_box_display(float *bbox_coords, uint render_flags, longlon
     
     // 检查是否需要显示边界框
     if (((*(char *)(render_context + 0x1d06) == '\0') || ((render_flags & 4) != 0)) &&
-       (longlong render_data = *(longlong *)(render_context + 0x1af8), *(char *)(render_data + 0x17c) == '\0')) {
+       (int64_t render_data = *(int64_t *)(render_context + 0x1af8), *(char *)(render_data + 0x17c) == '\0')) {
         
         // 获取颜色参数
         int32_t color_param;
@@ -595,7 +595,7 @@ void process_bounding_box_display(float *bbox_coords, uint render_flags, longlon
             }
             
             if (!is_valid) {
-                int *counter = (int *)(*(longlong *)(render_data + 0x2e8) + 0x60);
+                int *counter = (int *)(*(int64_t *)(render_data + 0x2e8) + 0x60);
                 *counter = *counter + -1;
                 FUN_180291950();
             }
@@ -603,7 +603,7 @@ void process_bounding_box_display(float *bbox_coords, uint render_flags, longlon
         
         // 处理边界框高亮模式
         if ((render_flags & 2) != 0) {
-            render_data = *(longlong *)(render_data + 0x2e8);
+            render_data = *(int64_t *)(render_data + 0x2e8);
             
             color_data highlight_color;
             highlight_color.r = *(float *)(global_render_manager + 0x19a8);
@@ -647,20 +647,20 @@ void process_bounding_box_display(float *bbox_coords, uint render_flags, longlon
  * @param display_params 显示参数
  * @param render_context 渲染上下文
  */
-void process_advanced_bounding_box(float *bbox_coords, uint64_t display_params, longlong render_context)
+void process_advanced_bounding_box(float *bbox_coords, uint64_t display_params, int64_t render_context)
 {
     int *piVar1;
     float fVar2;
     float fVar3;
     float fVar4;
-    longlong lVar5;
+    int64_t lVar5;
     int32_t uVar6;
     int32_t uVar7;
     bool bVar8;
-    longlong lVar9;
+    int64_t lVar9;
     uint uVar10;
-    longlong unaff_RBP;
-    ulonglong unaff_RDI;
+    int64_t unaff_RBP;
+    uint64_t unaff_RDI;
     float fVar11;
     float fVar12;
     float fVar13;
@@ -670,7 +670,7 @@ void process_advanced_bounding_box(float *bbox_coords, uint64_t display_params, 
     float fVar17;
     int32_t uVar18;
     
-    lVar5 = *(longlong *)(param_3 + 0x1af8);
+    lVar5 = *(int64_t *)(param_3 + 0x1af8);
     if (*(char *)(lVar5 + 0x17c) == '\0') {
         if ((unaff_RDI & 8) == 0) {
             uVar18 = *(int32_t *)(param_3 + 0x1664);
@@ -743,14 +743,14 @@ void process_advanced_bounding_box(float *bbox_coords, uint64_t display_params, 
                              uVar18);
             }
             if (!bVar8) {
-                piVar1 = (int *)(*(longlong *)(lVar5 + 0x2e8) + 0x60);
+                piVar1 = (int *)(*(int64_t *)(lVar5 + 0x2e8) + 0x60);
                 *piVar1 = *piVar1 + -1;
                 FUN_180291950();
             }
         }
         lVar9 = global_render_manager;
         if ((unaff_RDI & 2) != 0) {
-            lVar5 = *(longlong *)(lVar5 + 0x2e8);
+            lVar5 = *(int64_t *)(lVar5 + 0x2e8);
             uVar6 = *(int32_t *)(global_render_manager + 0x19ac);
             uVar7 = *(int32_t *)(global_render_manager + 0x19b0);
             fVar2 = *(float *)(global_render_manager + 0x19b4);
@@ -794,21 +794,21 @@ void process_advanced_bounding_box(float *bbox_coords, uint64_t display_params, 
  * @param display_params 显示参数
  * @param render_context 渲染上下文
  */
-void process_enhanced_bounding_box(float *bbox_coords, uint64_t display_params, longlong render_context)
+void process_enhanced_bounding_box(float *bbox_coords, uint64_t display_params, int64_t render_context)
 {
     int *piVar1;
     float fVar2;
     float fVar3;
     float fVar4;
-    longlong lVar5;
+    int64_t lVar5;
     int32_t uVar6;
     int32_t uVar7;
     bool bVar8;
-    longlong lVar9;
+    int64_t lVar9;
     uint uVar10;
-    longlong unaff_RBX;
-    longlong unaff_RBP;
-    ulonglong unaff_RDI;
+    int64_t unaff_RBX;
+    int64_t unaff_RBP;
+    uint64_t unaff_RDI;
     float fVar11;
     float fVar12;
     float fVar13;
@@ -889,14 +889,14 @@ void process_enhanced_bounding_box(float *bbox_coords, uint64_t display_params, 
                           uVar18);
         }
         if (!bVar8) {
-            piVar1 = (int *)(*(longlong *)(unaff_RBX + 0x2e8) + 0x60);
+            piVar1 = (int *)(*(int64_t *)(unaff_RBX + 0x2e8) + 0x60);
             *piVar1 = *piVar1 + -1;
             FUN_180291950();
         }
     }
     lVar9 = global_render_manager;
     if ((unaff_RDI & 2) != 0) {
-        lVar5 = *(longlong *)(unaff_RBX + 0x2e8);
+        lVar5 = *(int64_t *)(unaff_RBX + 0x2e8);
         uVar6 = *(int32_t *)(global_render_manager + 0x19ac);
         uVar7 = *(int32_t *)(global_render_manager + 0x19b0);
         fVar2 = *(float *)(global_render_manager + 0x19b4);
@@ -944,16 +944,16 @@ void process_enhanced_bounding_box(float *bbox_coords, uint64_t display_params, 
 void process_float_coordinate_bounding_box(float offset_x, float offset_y, float offset_z, float offset_w)
 {
     int *piVar1;
-    longlong lVar2;
+    int64_t lVar2;
     int32_t uVar3;
     int32_t uVar4;
     float fVar5;
     bool bVar6;
-    longlong lVar7;
+    int64_t lVar7;
     uint uVar8;
-    longlong unaff_RBX;
-    longlong unaff_RBP;
-    ulonglong unaff_RDI;
+    int64_t unaff_RBX;
+    int64_t unaff_RBP;
+    uint64_t unaff_RDI;
     float unaff_XMM6_Da;
     float fVar9;
     float unaff_XMM7_Da;
@@ -981,7 +981,7 @@ void process_float_coordinate_bounding_box(float offset_x, float offset_y, float
     }
     
     // 设置边界框颜色
-    longlong render_manager = global_render_manager;
+    int64_t render_manager = global_render_manager;
     int32_t color_g = *(int32_t *)(global_render_manager + 0x19ac);
     int32_t color_b = *(int32_t *)(global_render_manager + 0x19b0);
     float color_a = *(float *)(global_render_manager + 0x19b4);
@@ -1006,7 +1006,7 @@ void process_float_coordinate_bounding_box(float offset_x, float offset_y, float
     }
     
     if (!is_valid) {
-        int *counter = (int *)(*(longlong *)(unaff_RBX + 0x2e8) + 0x60);
+        int *counter = (int *)(*(int64_t *)(unaff_RBX + 0x2e8) + 0x60);
         *counter = *counter + -1;
         FUN_180291950();
     }
@@ -1014,7 +1014,7 @@ void process_float_coordinate_bounding_box(float offset_x, float offset_y, float
     // 处理高亮模式
     render_manager = global_render_manager;
     if ((unaff_RDI & 2) != 0) {
-        longlong render_data = *(longlong *)(unaff_RBX + 0x2e8);
+        int64_t render_data = *(int64_t *)(unaff_RBX + 0x2e8);
         
         color_g = *(int32_t *)(global_render_manager + 0x19ac);
         color_b = *(int32_t *)(global_render_manager + 0x19b0);

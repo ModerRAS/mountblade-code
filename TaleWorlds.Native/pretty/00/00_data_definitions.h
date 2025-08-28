@@ -24,7 +24,7 @@ return (lVar1 != 0) - 1;
 // 初始化模块函数 - 初始化模块2ce30
 int initialize_module_2ce30(void)
 {
-  longlong lVar1;
+  int64_t lVar1;
   data_pointer_5320 = &base_address_bb30;
   data_pointer_5328 = &control_flag_5338;
   control_flag_5330 = 0;
@@ -36,7 +36,7 @@ int initialize_module_2ce30(void)
 // 初始化模块函数 - 初始化模块2ce80
 int initialize_module_2ce80(void)
 {
-  longlong lVar1;
+  int64_t lVar1;
   data_pointer_5770 = &base_address_bb30;
   data_pointer_5778 = &control_flag_5788;
   control_flag_5780 = 0;
@@ -48,7 +48,7 @@ int initialize_module_2ce80(void)
 // 初始化模块函数 - 初始化模块2ced0
 int initialize_module_2ced0(void)
 {
-  longlong lVar1;
+  int64_t lVar1;
   data_pointer_5208 = &system_buffer_bc80;
   data_pointer_5210 = &control_flag_5220;
   control_flag_5218 = 0;
@@ -60,7 +60,7 @@ int initialize_module_2ced0(void)
 // 初始化模块函数 - 初始化模块2cf20
 int initialize_module_2cf20(void)
 {
-  longlong lVar1;
+  int64_t lVar1;
   data_pointer_5bc0 = &fixed_pointer_cc58;
   data_pointer_5bc8 = &control_flag_5bd8;
   control_flag_5bd0 = 0;
@@ -72,7 +72,7 @@ int initialize_module_2cf20(void)
 // 初始化模块函数 - 初始化模块2cf70
 int initialize_module_2cf70(void)
 {
-  longlong lVar1;
+  int64_t lVar1;
   data_pointer_5c30 = &base_address_bb30;
   data_pointer_5c38 = &control_flag_5c48;
   control_flag_5c40 = 0;
@@ -84,7 +84,7 @@ int initialize_module_2cf70(void)
 // 初始化模块函数 - 初始化模块2cfc0
 int initialize_module_2cfc0(void)
 {
-  longlong lVar1;
+  int64_t lVar1;
   data_pointer_6080 = &base_address_bb30;
   data_pointer_6088 = &control_flag_6098;
   control_flag_6090 = 0;
@@ -96,7 +96,7 @@ int initialize_module_2cfc0(void)
 // 设置线程函数 - 设置线程2d010
 int setup_thread_2d010(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t uVar2;
   uVar2 = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
@@ -109,7 +109,7 @@ int setup_thread_2d010(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64
 // 设置线程函数 - 设置线程2d060
 int setup_thread_2d060(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t uVar2;
   uVar2 = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
@@ -122,7 +122,7 @@ int setup_thread_2d060(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64
 // 设置线程函数 - 设置线程2d0b0
 int setup_thread_2d0b0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t uVar2;
   uVar2 = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
@@ -135,7 +135,7 @@ int setup_thread_2d0b0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64
 // 设置线程函数 - 设置线程2d100
 int setup_thread_2d100(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t uVar2;
   uVar2 = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
@@ -148,7 +148,7 @@ int setup_thread_2d100(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64
 // 注册字符串函数 - 注册字符串64e8
 int register_string_64e8(void)
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t in_R9;
   control_flag_64e8 = 0;
   control_flag_64e0 = 6;
@@ -160,7 +160,7 @@ int register_string_64e8(void)
 // 注册字符串函数 - 注册字符串6548
 int register_string_6548(void)
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t in_R9;
   data_pointer_6530 = &table_reference_dc18;
   data_pointer_6538 = &control_flag_6548;
@@ -174,7 +174,7 @@ int register_string_6548(void)
 // 注册字符串函数 - 注册字符串65a8
 int register_string_65a8(void)
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t in_R9;
   data_pointer_6590 = &table_reference_dc18;
   data_pointer_6598 = &control_flag_65a8;
@@ -188,7 +188,7 @@ int register_string_65a8(void)
 // 注册字符串函数 - 注册字符串65d8
 int register_string_65d8(void)
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t in_R9;
   data_pointer_65c0 = &table_reference_dc18;
   data_pointer_65c8 = &control_flag_65d8;
@@ -202,7 +202,7 @@ int register_string_65d8(void)
 // 注册字符串函数 - 注册字符串6608
 int register_string_6608(void)
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t in_R9;
   data_pointer_65f0 = &table_reference_dc18;
   data_pointer_65f8 = &control_flag_6608;
@@ -216,7 +216,7 @@ int register_string_6608(void)
 // 注册字符串函数 - 注册字符串6638
 int register_string_6638(void)
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t in_R9;
   data_pointer_6620 = &table_reference_dc18;
   data_pointer_6628 = &control_flag_6638;
@@ -230,7 +230,7 @@ int register_string_6638(void)
 // 注册字符串函数 - 注册字符串6668
 int register_string_6668(void)
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t in_R9;
   data_pointer_6650 = &table_reference_dc18;
   data_pointer_6658 = &control_flag_6668;
@@ -244,7 +244,7 @@ int register_string_6668(void)
 // 注册字符串函数 - 注册字符串6698
 int register_string_6698(void)
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t in_R9;
   data_pointer_6680 = &table_reference_dc18;
   data_pointer_6688 = &control_flag_6698;
@@ -258,7 +258,7 @@ int register_string_6698(void)
 // 注册字符串函数 - 注册字符串66c8
 int register_string_66c8(void)
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t in_R9;
   data_pointer_66b0 = &table_reference_dc18;
   data_pointer_66b8 = &control_flag_66c8;
@@ -272,7 +272,7 @@ int register_string_66c8(void)
 // 注册字符串函数 - 注册字符串52e8
 int register_string_52e8(void)
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t in_R9;
   data_pointer_52e8 = &system_buffer_bc80;
   data_pointer_52f0 = &control_flag_5300;
@@ -286,7 +286,7 @@ int register_string_52e8(void)
 // 注册字符串函数 - 注册字符串5750
 int register_string_5750(void)
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t in_R9;
   data_pointer_5738 = &system_buffer_bc80;
   data_pointer_5740 = &control_flag_5750;
@@ -300,7 +300,7 @@ int register_string_5750(void)
 // 初始化互斥锁函数 - 初始化互斥锁2e8b0
 int initialize_mutex_2e8b0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
-  longlong lVar1;
+  int64_t lVar1;
   _Mtx_init_in_situ(0x180c91970,0x102,param_3,param_4,0xfffffffffffffffe);
   lVar1 = function_8fc7d0(function_9419c0);
   return (lVar1 != 0) - 1;

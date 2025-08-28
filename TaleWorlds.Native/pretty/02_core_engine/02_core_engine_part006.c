@@ -225,10 +225,10 @@ void RegisterTypeService1(void)
   int compare_result;
   
   // 全局树结构指针
-  longlong *tree_structure;
+  int64_t *tree_structure;
   
   // 内存分配大小
-  longlong allocation_size;
+  int64_t allocation_size;
   
   // 当前搜索节点
   uint64_t *current_node;
@@ -246,13 +246,13 @@ void RegisterTypeService1(void)
   code *service_handler;
   
   // 获取全局树结构
-  tree_structure = (longlong *)GetGlobalTreeStructure();
+  tree_structure = (int64_t *)GetGlobalTreeStructure();
   
   // 获取根节点
   root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   
   // 设置服务处理函数
   service_handler = BasicObjectServiceHandler;
@@ -278,7 +278,7 @@ void RegisterTypeService1(void)
     
     parent_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -324,10 +324,10 @@ void RegisterTypeService2(void)
   int compare_result;
   
   // 全局树结构指针
-  longlong *tree_structure;
+  int64_t *tree_structure;
   
   // 内存分配大小
-  longlong allocation_size;
+  int64_t allocation_size;
   
   // 当前搜索节点
   uint64_t *current_node;
@@ -345,13 +345,13 @@ void RegisterTypeService2(void)
   code *service_handler;
   
   // 获取全局树结构
-  tree_structure = (longlong *)GetGlobalTreeStructure();
+  tree_structure = (int64_t *)GetGlobalTreeStructure();
   
   // 获取根节点
   root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   
   // 设置服务处理函数
   service_handler = Matrix3ServiceHandler;
@@ -377,7 +377,7 @@ void RegisterTypeService2(void)
     
     parent_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -423,10 +423,10 @@ void RegisterTypeService3(void)
   int compare_result;
   
   // 全局树结构指针
-  longlong *tree_structure;
+  int64_t *tree_structure;
   
   // 内存分配大小
-  longlong allocation_size;
+  int64_t allocation_size;
   
   // 当前搜索节点
   uint64_t *current_node;
@@ -444,13 +444,13 @@ void RegisterTypeService3(void)
   uint64_t service_handler;
   
   // 获取全局树结构
-  tree_structure = (longlong *)GetGlobalTreeStructure();
+  tree_structure = (int64_t *)GetGlobalTreeStructure();
   
   // 获取根节点
   root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   
   // 设置服务处理函数（无）
   service_handler = 0;
@@ -476,7 +476,7 @@ void RegisterTypeService3(void)
     
     parent_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -522,10 +522,10 @@ void RegisterTypeService4(void)
   int compare_result;
   
   // 全局树结构指针
-  longlong *tree_structure;
+  int64_t *tree_structure;
   
   // 内存分配大小
-  longlong allocation_size;
+  int64_t allocation_size;
   
   // 当前搜索节点
   uint64_t *current_node;
@@ -543,13 +543,13 @@ void RegisterTypeService4(void)
   code *service_handler;
   
   // 获取全局树结构
-  tree_structure = (longlong *)GetGlobalTreeStructure();
+  tree_structure = (int64_t *)GetGlobalTreeStructure();
   
   // 获取根节点
   root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   
   // 设置服务处理函数
   service_handler = Matrix4ServiceHandler;
@@ -575,7 +575,7 @@ void RegisterTypeService4(void)
     
     parent_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -621,10 +621,10 @@ void RegisterTypeService5(void)
   int compare_result;
   
   // 全局树结构指针
-  longlong *tree_structure;
+  int64_t *tree_structure;
   
   // 内存分配大小
-  longlong allocation_size;
+  int64_t allocation_size;
   
   // 当前搜索节点
   uint64_t *current_node;
@@ -642,13 +642,13 @@ void RegisterTypeService5(void)
   uint64_t service_handler;
   
   // 获取全局树结构
-  tree_structure = (longlong *)GetGlobalTreeStructure();
+  tree_structure = (int64_t *)GetGlobalTreeStructure();
   
   // 获取根节点
   root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   
   // 设置服务处理函数（无）
   service_handler = 0;
@@ -674,7 +674,7 @@ void RegisterTypeService5(void)
     
     parent_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -720,10 +720,10 @@ void RegisterTypeService6(void)
   int compare_result;
   
   // 全局树结构指针
-  longlong *tree_structure;
+  int64_t *tree_structure;
   
   // 内存分配大小
-  longlong allocation_size;
+  int64_t allocation_size;
   
   // 当前搜索节点
   uint64_t *current_node;
@@ -741,13 +741,13 @@ void RegisterTypeService6(void)
   void *service_handler;
   
   // 获取全局树结构
-  tree_structure = (longlong *)GetGlobalTreeStructure();
+  tree_structure = (int64_t *)GetGlobalTreeStructure();
   
   // 获取根节点
   root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   
   // 设置服务处理函数
   service_handler = &MatrixStackServiceHandler;
@@ -773,7 +773,7 @@ void RegisterTypeService6(void)
     
     parent_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -819,10 +819,10 @@ void RegisterTypeService7(void)
   int compare_result;
   
   // 全局树结构指针
-  longlong *tree_structure;
+  int64_t *tree_structure;
   
   // 内存分配大小
-  longlong allocation_size;
+  int64_t allocation_size;
   
   // 当前搜索节点
   uint64_t *current_node;
@@ -840,13 +840,13 @@ void RegisterTypeService7(void)
   uint64_t service_handler;
   
   // 获取全局树结构
-  tree_structure = (longlong *)GetGlobalTreeStructure();
+  tree_structure = (int64_t *)GetGlobalTreeStructure();
   
   // 获取根节点
   root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   
   // 设置服务处理函数（无）
   service_handler = 0;
@@ -872,7 +872,7 @@ void RegisterTypeService7(void)
     
     parent_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -918,10 +918,10 @@ void RegisterTypeService8(void)
   int compare_result;
   
   // 全局树结构指针
-  longlong *tree_structure;
+  int64_t *tree_structure;
   
   // 内存分配大小
-  longlong allocation_size;
+  int64_t allocation_size;
   
   // 当前搜索节点
   uint64_t *current_node;
@@ -939,13 +939,13 @@ void RegisterTypeService8(void)
   code *service_handler;
   
   // 获取全局树结构
-  tree_structure = (longlong *)GetGlobalTreeStructure();
+  tree_structure = (int64_t *)GetGlobalTreeStructure();
   
   // 获取根节点
   root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   
   // 设置服务处理函数
   service_handler = BasicObjectServiceHandler;
@@ -971,7 +971,7 @@ void RegisterTypeService8(void)
     
     parent_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -1017,10 +1017,10 @@ void RegisterTypeService9(void)
   int compare_result;
   
   // 全局树结构指针
-  longlong *tree_structure;
+  int64_t *tree_structure;
   
   // 内存分配大小
-  longlong allocation_size;
+  int64_t allocation_size;
   
   // 当前搜索节点
   uint64_t *current_node;
@@ -1038,13 +1038,13 @@ void RegisterTypeService9(void)
   code *service_handler;
   
   // 获取全局树结构
-  tree_structure = (longlong *)GetGlobalTreeStructure();
+  tree_structure = (int64_t *)GetGlobalTreeStructure();
   
   // 获取根节点
   root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   
   // 设置服务处理函数
   service_handler = Matrix3ServiceHandler;
@@ -1070,7 +1070,7 @@ void RegisterTypeService9(void)
     
     parent_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -1116,10 +1116,10 @@ void RegisterTypeService10(void)
   int compare_result;
   
   // 全局树结构指针
-  longlong *tree_structure;
+  int64_t *tree_structure;
   
   // 内存分配大小
-  longlong allocation_size;
+  int64_t allocation_size;
   
   // 当前搜索节点
   uint64_t *current_node;
@@ -1137,13 +1137,13 @@ void RegisterTypeService10(void)
   uint64_t service_handler;
   
   // 获取全局树结构
-  tree_structure = (longlong *)GetGlobalTreeStructure();
+  tree_structure = (int64_t *)GetGlobalTreeStructure();
   
   // 获取根节点
   root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   
   // 设置服务处理函数（无）
   service_handler = 0;
@@ -1169,7 +1169,7 @@ void RegisterTypeService10(void)
     
     parent_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -1215,10 +1215,10 @@ void RegisterTypeService11(void)
   int compare_result;
   
   // 全局树结构指针
-  longlong *tree_structure;
+  int64_t *tree_structure;
   
   // 内存分配大小
-  longlong allocation_size;
+  int64_t allocation_size;
   
   // 当前搜索节点
   uint64_t *current_node;
@@ -1236,13 +1236,13 @@ void RegisterTypeService11(void)
   code *service_handler;
   
   // 获取全局树结构
-  tree_structure = (longlong *)GetGlobalTreeStructure();
+  tree_structure = (int64_t *)GetGlobalTreeStructure();
   
   // 获取根节点
   root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   
   // 设置服务处理函数
   service_handler = Matrix4ServiceHandler;
@@ -1268,7 +1268,7 @@ void RegisterTypeService11(void)
     
     parent_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -1314,10 +1314,10 @@ void RegisterTypeService12(void)
   int compare_result;
   
   // 全局树结构指针
-  longlong *tree_structure;
+  int64_t *tree_structure;
   
   // 内存分配大小
-  longlong allocation_size;
+  int64_t allocation_size;
   
   // 当前搜索节点
   uint64_t *current_node;
@@ -1335,13 +1335,13 @@ void RegisterTypeService12(void)
   uint64_t service_handler;
   
   // 获取全局树结构
-  tree_structure = (longlong *)GetGlobalTreeStructure();
+  tree_structure = (int64_t *)GetGlobalTreeStructure();
   
   // 获取根节点
   root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   
   // 设置服务处理函数（无）
   service_handler = 0;
@@ -1367,7 +1367,7 @@ void RegisterTypeService12(void)
     
     parent_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -1413,10 +1413,10 @@ void RegisterTypeService13(void)
   int compare_result;
   
   // 全局树结构指针
-  longlong *tree_structure;
+  int64_t *tree_structure;
   
   // 内存分配大小
-  longlong allocation_size;
+  int64_t allocation_size;
   
   // 当前搜索节点
   uint64_t *current_node;
@@ -1434,13 +1434,13 @@ void RegisterTypeService13(void)
   void *service_handler;
   
   // 获取全局树结构
-  tree_structure = (longlong *)GetGlobalTreeStructure();
+  tree_structure = (int64_t *)GetGlobalTreeStructure();
   
   // 获取根节点
   root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   
   // 设置服务处理函数
   service_handler = &MatrixStackServiceHandler;
@@ -1466,7 +1466,7 @@ void RegisterTypeService13(void)
     
     parent_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -1512,10 +1512,10 @@ void RegisterTypeService14(void)
   int compare_result;
   
   // 全局树结构指针
-  longlong *tree_structure;
+  int64_t *tree_structure;
   
   // 内存分配大小
-  longlong allocation_size;
+  int64_t allocation_size;
   
   // 当前搜索节点
   uint64_t *current_node;
@@ -1533,13 +1533,13 @@ void RegisterTypeService14(void)
   uint64_t service_handler;
   
   // 获取全局树结构
-  tree_structure = (longlong *)GetGlobalTreeStructure();
+  tree_structure = (int64_t *)GetGlobalTreeStructure();
   
   // 获取根节点
   root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   
   // 设置服务处理函数（无）
   service_handler = 0;
@@ -1565,7 +1565,7 @@ void RegisterTypeService14(void)
     
     parent_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -1611,10 +1611,10 @@ void RegisterTypeService15(void)
   int compare_result;
   
   // 全局树结构指针
-  longlong *tree_structure;
+  int64_t *tree_structure;
   
   // 内存分配大小
-  longlong allocation_size;
+  int64_t allocation_size;
   
   // 当前搜索节点
   uint64_t *current_node;
@@ -1632,13 +1632,13 @@ void RegisterTypeService15(void)
   code *service_handler;
   
   // 获取全局树结构
-  tree_structure = (longlong *)GetGlobalTreeStructure();
+  tree_structure = (int64_t *)GetGlobalTreeStructure();
   
   // 获取根节点
   root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   
   // 设置服务处理函数
   service_handler = BasicObjectServiceHandler;
@@ -1664,7 +1664,7 @@ void RegisterTypeService15(void)
     
     parent_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -1710,10 +1710,10 @@ void RegisterTypeService16(void)
   int compare_result;
   
   // 全局树结构指针
-  longlong *tree_structure;
+  int64_t *tree_structure;
   
   // 内存分配大小
-  longlong allocation_size;
+  int64_t allocation_size;
   
   // 当前搜索节点
   uint64_t *current_node;
@@ -1731,13 +1731,13 @@ void RegisterTypeService16(void)
   code *service_handler;
   
   // 获取全局树结构
-  tree_structure = (longlong *)GetGlobalTreeStructure();
+  tree_structure = (int64_t *)GetGlobalTreeStructure();
   
   // 获取根节点
   root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   
   // 设置服务处理函数
   service_handler = Matrix3ServiceHandler;
@@ -1763,7 +1763,7 @@ void RegisterTypeService16(void)
     
     parent_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -1809,10 +1809,10 @@ void RegisterTypeService17(void)
   int compare_result;
   
   // 全局树结构指针
-  longlong *tree_structure;
+  int64_t *tree_structure;
   
   // 内存分配大小
-  longlong allocation_size;
+  int64_t allocation_size;
   
   // 当前搜索节点
   uint64_t *current_node;
@@ -1830,13 +1830,13 @@ void RegisterTypeService17(void)
   uint64_t service_handler;
   
   // 获取全局树结构
-  tree_structure = (longlong *)GetGlobalTreeStructure();
+  tree_structure = (int64_t *)GetGlobalTreeStructure();
   
   // 获取根节点
   root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   
   // 设置服务处理函数（无）
   service_handler = 0;
@@ -1862,7 +1862,7 @@ void RegisterTypeService17(void)
     
     parent_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -1908,10 +1908,10 @@ void RegisterTypeService18(void)
   int compare_result;
   
   // 全局树结构指针
-  longlong *tree_structure;
+  int64_t *tree_structure;
   
   // 内存分配大小
-  longlong allocation_size;
+  int64_t allocation_size;
   
   // 当前搜索节点
   uint64_t *current_node;
@@ -1929,13 +1929,13 @@ void RegisterTypeService18(void)
   code *service_handler;
   
   // 获取全局树结构
-  tree_structure = (longlong *)GetGlobalTreeStructure();
+  tree_structure = (int64_t *)GetGlobalTreeStructure();
   
   // 获取根节点
   root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   
   // 设置服务处理函数
   service_handler = Matrix4ServiceHandler;
@@ -1961,7 +1961,7 @@ void RegisterTypeService18(void)
     
     parent_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -2007,10 +2007,10 @@ void RegisterTypeService19(void)
   int compare_result;
   
   // 全局树结构指针
-  longlong *tree_structure;
+  int64_t *tree_structure;
   
   // 内存分配大小
-  longlong allocation_size;
+  int64_t allocation_size;
   
   // 当前搜索节点
   uint64_t *current_node;
@@ -2028,13 +2028,13 @@ void RegisterTypeService19(void)
   uint64_t service_handler;
   
   // 获取全局树结构
-  tree_structure = (longlong *)GetGlobalTreeStructure();
+  tree_structure = (int64_t *)GetGlobalTreeStructure();
   
   // 获取根节点
   root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   
   // 设置服务处理函数（无）
   service_handler = 0;
@@ -2060,7 +2060,7 @@ void RegisterTypeService19(void)
     
     parent_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -2106,10 +2106,10 @@ void RegisterTypeService20(void)
   int compare_result;
   
   // 全局树结构指针
-  longlong *tree_structure;
+  int64_t *tree_structure;
   
   // 内存分配大小
-  longlong allocation_size;
+  int64_t allocation_size;
   
   // 当前搜索节点
   uint64_t *current_node;
@@ -2127,13 +2127,13 @@ void RegisterTypeService20(void)
   void *service_handler;
   
   // 获取全局树结构
-  tree_structure = (longlong *)GetGlobalTreeStructure();
+  tree_structure = (int64_t *)GetGlobalTreeStructure();
   
   // 获取根节点
   root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   
   // 设置服务处理函数
   service_handler = &MatrixStackServiceHandler;
@@ -2159,7 +2159,7 @@ void RegisterTypeService20(void)
     
     parent_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -2205,10 +2205,10 @@ void RegisterTypeService21(void)
   int compare_result;
   
   // 全局树结构指针
-  longlong *tree_structure;
+  int64_t *tree_structure;
   
   // 内存分配大小
-  longlong allocation_size;
+  int64_t allocation_size;
   
   // 当前搜索节点
   uint64_t *current_node;
@@ -2226,13 +2226,13 @@ void RegisterTypeService21(void)
   uint64_t service_handler;
   
   // 获取全局树结构
-  tree_structure = (longlong *)GetGlobalTreeStructure();
+  tree_structure = (int64_t *)GetGlobalTreeStructure();
   
   // 获取根节点
   root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   
   // 设置服务处理函数（无）
   service_handler = 0;
@@ -2258,7 +2258,7 @@ void RegisterTypeService21(void)
     
     parent_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -2304,10 +2304,10 @@ void RegisterTypeService22(void)
   int compare_result;
   
   // 全局树结构指针
-  longlong *tree_structure;
+  int64_t *tree_structure;
   
   // 内存分配大小
-  longlong allocation_size;
+  int64_t allocation_size;
   
   // 当前搜索节点
   uint64_t *current_node;
@@ -2325,13 +2325,13 @@ void RegisterTypeService22(void)
   code *service_handler;
   
   // 获取全局树结构
-  tree_structure = (longlong *)GetGlobalTreeStructure();
+  tree_structure = (int64_t *)GetGlobalTreeStructure();
   
   // 获取根节点
   root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   
   // 设置服务处理函数
   service_handler = BasicObjectServiceHandler;
@@ -2357,7 +2357,7 @@ void RegisterTypeService22(void)
     
     parent_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -2403,10 +2403,10 @@ void RegisterTypeService23(void)
   int compare_result;
   
   // 全局树结构指针
-  longlong *tree_structure;
+  int64_t *tree_structure;
   
   // 内存分配大小
-  longlong allocation_size;
+  int64_t allocation_size;
   
   // 当前搜索节点
   uint64_t *current_node;
@@ -2424,13 +2424,13 @@ void RegisterTypeService23(void)
   code *service_handler;
   
   // 获取全局树结构
-  tree_structure = (longlong *)GetGlobalTreeStructure();
+  tree_structure = (int64_t *)GetGlobalTreeStructure();
   
   // 获取根节点
   root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   
   // 设置服务处理函数
   service_handler = Matrix3ServiceHandler;
@@ -2456,7 +2456,7 @@ void RegisterTypeService23(void)
     
     parent_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新节点
@@ -2502,10 +2502,10 @@ void RegisterTypeService24(void)
   int compare_result;
   
   // 全局树结构指针
-  longlong *tree_structure;
+  int64_t *tree_structure;
   
   // 内存分配大小
-  longlong allocation_size;
+  int64_t allocation_size;
   
   // 当前搜索节点
   uint64_t *current_node;
@@ -2523,13 +2523,13 @@ void RegisterTypeService24(void)
   uint64_t service_handler;
   
   // 获取全局树结构
-  tree_structure = (longlong *)GetGlobalTreeStructure();
+  tree_structure = (int64_t *)GetGlobalTreeStructure();
   
   // 获取根节点
   root_node = (uint64_t *)*tree_structure;
   
   // 获取根节点标志
-  node_flag = *(char *)((longlong)root_node[1] + 0x19);
+  node_flag = *(char *)((int64_t)root_node[1] + 0x19);
   
   // 设置服务处理函数（无）
   service_handler = 0;
@@ -2555,7 +2555,7 @@ void RegisterTypeService24(void)
     
     parent_node = current_node;
     current_node = next_node;
-    node_flag = *(char *)((longlong)next_node + 0x19);
+    node_flag = *(char *)((int64_t)next_node + 0x19);
   }
   
   // 如果需要创建新节点

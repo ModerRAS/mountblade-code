@@ -21,7 +21,7 @@ void matrix_transform_4x4(uint64_t param_1, uint64_t param_2, float param_3, flo
     float matrix_element_7;
     float matrix_element_8;
     float matrix_element_9;
-    longlong matrix_base_ptr;
+    int64_t matrix_base_ptr;
     float *matrix_data_ptr;
     int32_t transform_flag;
     float xmm0_value;
@@ -62,8 +62,8 @@ void matrix_transform_4x4(uint64_t param_1, uint64_t param_2, float param_3, flo
     
     // 计算第一行结果
     result_x = matrix_element_7 * xmm4_x + (float)param_1 * matrix_element_1 + (float)param_2 * matrix_element_4;
-    result_y = matrix_element_7 * xmm4_y + (float)((ulonglong)param_1 >> 0x20) * matrix_element_2 +
-               (float)((ulonglong)param_2 >> 0x20) * matrix_element_5;
+    result_y = matrix_element_7 * xmm4_y + (float)((uint64_t)param_1 >> 0x20) * matrix_element_2 +
+               (float)((uint64_t)param_2 >> 0x20) * matrix_element_5;
     result_z = matrix_element_7 * xmm4_z + xmm0_value * matrix_element_3 + xmm1_value * matrix_element_6;
     
     // 计算第二行结果
@@ -105,11 +105,11 @@ void initialize_render_state(void)
     int32_t state_flag;
     int32_t stack_padding_1;
     uint64_t state_value_1;
-    ulonglong state_value_2;
+    uint64_t state_value_2;
     uint64_t state_value_3;
-    ulonglong state_value_4;
+    uint64_t state_value_4;
     uint64_t state_value_5;
-    ulonglong state_value_6;
+    uint64_t state_value_6;
     int32_t state_value_7;
     int32_t state_value_8;
     int32_t state_value_9;
@@ -122,7 +122,7 @@ void initialize_render_state(void)
     state_value_3 = state_ptr[2];
     state_value_5 = state_ptr[4];
     state_value_7 = *(int32_t *)(state_ptr + 6);
-    state_value_8 = *(int32_t *)((longlong)state_ptr + 0x34);
+    state_value_8 = *(int32_t *)((int64_t)state_ptr + 0x34);
     state_value_9 = *(int32_t *)(state_ptr + 7);
     stack_padding_1 = input_param_2;
     stack_padding_10 = 0x3f800000; // 1.0f
@@ -137,16 +137,16 @@ void initialize_render_state(void)
  * 对象状态更新函数 - 更新游戏对象的状态信息
  * @param param_1 对象指针
  */
-void update_object_state(longlong param_1)
+void update_object_state(int64_t param_1)
 {
-    longlong transform_ptr;
+    int64_t transform_ptr;
     int32_t temp_value_1;
     int32_t temp_value_2;
     int32_t temp_value_3;
     char visibility_flag;
     int8_t render_mode;
     uint64_t *object_ptr;
-    longlong object_base;
+    int64_t object_base;
     uint object_flags;
     bool collision_state;
     float determinant;
@@ -154,8 +154,8 @@ void update_object_state(longlong param_1)
     object_base = param_1;
     
     // 计算变换矩阵的行列式用于碰撞检测
-    if ((*(longlong *)(param_1 + 0x1c8) != 0) &&
-        (transform_ptr = *(longlong *)(*(longlong *)(param_1 + 0x1c8) + 0x28), transform_ptr != 0)) {
+    if ((*(int64_t *)(param_1 + 0x1c8) != 0) &&
+        (transform_ptr = *(int64_t *)(*(int64_t *)(param_1 + 0x1c8) + 0x28), transform_ptr != 0)) {
         determinant = (*(float *)(transform_ptr + 0x74) * *(float *)(transform_ptr + 0x88) -
                      *(float *)(transform_ptr + 0x78) * *(float *)(transform_ptr + 0x84)) * *(float *)(transform_ptr + 0x90);
         check_collision_detection(determinant, (*(float *)(transform_ptr + 0x78) * *(float *)(transform_ptr + 0x80) -
@@ -167,12 +167,12 @@ void update_object_state(longlong param_1)
     }
     
     // 检查对象可见性状态
-    if (*(longlong *)(object_base + 0x1b8) == 0) {
+    if (*(int64_t *)(object_base + 0x1b8) == 0) {
     set_visibility_state:
         collision_state = (*(byte *)(param_1 + 0xfd) & 2) != 0;
     }
     else {
-        object_flags = *(uint *)(*(longlong *)(object_base + 0x1b8) + 0x138);
+        object_flags = *(uint *)(*(int64_t *)(object_base + 0x1b8) + 0x138);
         if ((object_flags & 0x20) != 0) {
             visibility_flag = '\0';
             goto apply_visibility;
@@ -184,7 +184,7 @@ void update_object_state(longlong param_1)
     
 apply_visibility:
     *(char *)(param_1 + 0xff) = visibility_flag;
-    transform_ptr = *(longlong *)(param_1 + 0x1b8);
+    transform_ptr = *(int64_t *)(param_1 + 0x1b8);
     object_flags = *(uint *)(transform_ptr + 0x138) & 0x3000;
     render_mode = 0;
     
@@ -228,8 +228,8 @@ apply_visibility:
     process_object_transforms(param_1);
     
     // 初始化对象数据结构
-    if ((*(longlong *)(param_1 + 600) == 0) &&
-         ((*(uint *)(*(longlong *)(param_1 + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
+    if ((*(int64_t *)(param_1 + 600) == 0) &&
+         ((*(uint *)(*(int64_t *)(param_1 + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
         object_ptr = (uint64_t *)allocate_object_data(global_memory_pool, 0x58, 8, 9);
         initialize_object_structure(object_ptr);
         *(uint64_t **)(param_1 + 600) = object_ptr;
@@ -241,23 +241,23 @@ apply_visibility:
  * 对象状态更新函数简化版本 - 使用寄存器参数
  * @param param_1 对象指针
  */
-void update_object_state_optimized(longlong param_1)
+void update_object_state_optimized(int64_t param_1)
 {
-    longlong transform_ptr;
+    int64_t transform_ptr;
     int32_t temp_value_1;
     int32_t temp_value_2;
     int32_t temp_value_3;
     char visibility_flag;
     int8_t render_mode;
-    longlong input_param;
+    int64_t input_param;
     uint64_t *object_ptr;
     uint object_flags;
-    longlong object_base;
+    int64_t object_base;
     bool collision_state;
     float determinant;
     
     // 使用寄存器参数计算行列式
-    if ((input_param != 0) && (transform_ptr = *(longlong *)(input_param + 0x28), transform_ptr != 0)) {
+    if ((input_param != 0) && (transform_ptr = *(int64_t *)(input_param + 0x28), transform_ptr != 0)) {
         determinant = (*(float *)(transform_ptr + 0x74) * *(float *)(transform_ptr + 0x88) -
                      *(float *)(transform_ptr + 0x78) * *(float *)(transform_ptr + 0x84)) * *(float *)(transform_ptr + 0x90);
         check_collision_detection(determinant, (*(float *)(transform_ptr + 0x78) * *(float *)(transform_ptr + 0x80) -
@@ -269,12 +269,12 @@ void update_object_state_optimized(longlong param_1)
     }
     
     // 其余逻辑与原始函数相同，但使用不同的寄存器
-    if (*(longlong *)(param_1 + 0x1b8) == 0) {
+    if (*(int64_t *)(param_1 + 0x1b8) == 0) {
     set_visibility_state_opt:
         collision_state = (*(byte *)(object_base + 0xfd) & 2) != 0;
     }
     else {
-        object_flags = *(uint *)(*(longlong *)(param_1 + 0x1b8) + 0x138);
+        object_flags = *(uint *)(*(int64_t *)(param_1 + 0x1b8) + 0x138);
         if ((object_flags & 0x20) != 0) {
             visibility_flag = '\0';
             goto apply_visibility_opt;
@@ -286,7 +286,7 @@ void update_object_state_optimized(longlong param_1)
     
 apply_visibility_opt:
     *(char *)(object_base + 0xff) = visibility_flag;
-    transform_ptr = *(longlong *)(object_base + 0x1b8);
+    transform_ptr = *(int64_t *)(object_base + 0x1b8);
     object_flags = *(uint *)(transform_ptr + 0x138) & 0x3000;
     render_mode = 0;
     
@@ -307,8 +307,8 @@ apply_visibility_opt:
     process_object_transforms();
     
     // 初始化对象数据
-    if ((*(longlong *)(object_base + 600) == 0) &&
-         ((*(uint *)(*(longlong *)(object_base + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
+    if ((*(int64_t *)(object_base + 600) == 0) &&
+         ((*(uint *)(*(int64_t *)(object_base + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
         object_ptr = (uint64_t *)allocate_object_data(global_memory_pool, 0x58, 8, 9);
         initialize_object_structure(object_ptr);
         *(uint64_t **)(object_base + 600) = object_ptr;
@@ -325,17 +325,17 @@ apply_visibility_opt:
  */
 void update_object_state_with_params(float param_1, float param_2, float param_3, float param_4)
 {
-    longlong transform_ptr;
+    int64_t transform_ptr;
     int32_t temp_value_1;
     int32_t temp_value_2;
     int32_t temp_value_3;
     char visibility_flag;
     int8_t render_mode;
-    longlong input_param_1;
+    int64_t input_param_1;
     uint64_t *object_ptr;
-    longlong input_param_2;
+    int64_t input_param_2;
     uint object_flags;
-    longlong object_base;
+    int64_t object_base;
     bool collision_state;
     float determinant;
     float xmm4_x;
@@ -350,12 +350,12 @@ void update_object_state_with_params(float param_1, float param_2, float param_3
                              *(float *)(input_param_1 + 0x98) < threshold_value);
     
     // 检查可见性状态
-    if (*(longlong *)(input_param_2 + 0x1b8) == 0) {
+    if (*(int64_t *)(input_param_2 + 0x1b8) == 0) {
     set_visibility_state_param:
         collision_state = (*(byte *)(object_base + 0xfd) & 2) != 0;
     }
     else {
-        object_flags = *(uint *)(*(longlong *)(input_param_2 + 0x1b8) + 0x138);
+        object_flags = *(uint *)(*(int64_t *)(input_param_2 + 0x1b8) + 0x138);
         if ((object_flags & 0x20) != 0) {
             visibility_flag = '\0';
             goto apply_visibility_param;
@@ -367,7 +367,7 @@ void update_object_state_with_params(float param_1, float param_2, float param_3
     
 apply_visibility_param:
     *(char *)(object_base + 0xff) = visibility_flag;
-    transform_ptr = *(longlong *)(object_base + 0x1b8);
+    transform_ptr = *(int64_t *)(object_base + 0x1b8);
     object_flags = *(uint *)(transform_ptr + 0x138) & 0x3000;
     render_mode = 0;
     
@@ -398,8 +398,8 @@ apply_visibility_param:
     process_object_transforms();
     
     // 初始化对象数据
-    if ((*(longlong *)(object_base + 600) == 0) &&
-         ((*(uint *)(*(longlong *)(object_base + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
+    if ((*(int64_t *)(object_base + 600) == 0) &&
+         ((*(uint *)(*(int64_t *)(object_base + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
         object_ptr = (uint64_t *)allocate_object_data(global_memory_pool, 0x58, 8, 9);
         initialize_object_structure(object_ptr);
         *(uint64_t **)(object_base + 600) = object_ptr;
@@ -411,9 +411,9 @@ apply_visibility_param:
  * 简化对象状态更新函数 - 仅更新基本状态
  * @param param_1 对象指针
  */
-void update_object_state_simple(longlong param_1)
+void update_object_state_simple(int64_t param_1)
 {
-    longlong transform_ptr;
+    int64_t transform_ptr;
     int32_t temp_value_1;
     int32_t temp_value_2;
     int32_t temp_value_3;
@@ -421,17 +421,17 @@ void update_object_state_simple(longlong param_1)
     int8_t render_mode;
     uint64_t *object_ptr;
     uint object_flags;
-    longlong object_base;
+    int64_t object_base;
     bool collision_state;
     float threshold_value;
     
     // 检查对象状态
-    if (*(longlong *)(param_1 + 0x1b8) == 0) {
+    if (*(int64_t *)(param_1 + 0x1b8) == 0) {
     set_visibility_state_simple:
         collision_state = (*(byte *)(object_base + 0xfd) & 2) != 0;
     }
     else {
-        object_flags = *(uint *)(*(longlong *)(param_1 + 0x1b8) + 0x138);
+        object_flags = *(uint *)(*(int64_t *)(param_1 + 0x1b8) + 0x138);
         if ((object_flags & 0x20) != 0) {
             visibility_flag = '\0';
             goto apply_visibility_simple;
@@ -443,7 +443,7 @@ void update_object_state_simple(longlong param_1)
     
 apply_visibility_simple:
     *(char *)(object_base + 0xff) = visibility_flag;
-    transform_ptr = *(longlong *)(object_base + 0x1b8);
+    transform_ptr = *(int64_t *)(object_base + 0x1b8);
     object_flags = *(uint *)(transform_ptr + 0x138) & 0x3000;
     render_mode = 0;
     
@@ -464,8 +464,8 @@ apply_visibility_simple:
     process_object_transforms();
     
     // 初始化对象数据
-    if ((*(longlong *)(object_base + 600) == 0) &&
-         ((*(uint *)(*(longlong *)(object_base + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
+    if ((*(int64_t *)(object_base + 600) == 0) &&
+         ((*(uint *)(*(int64_t *)(object_base + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
         object_ptr = (uint64_t *)allocate_object_data(global_memory_pool, 0x58, 8, 9);
         initialize_object_structure(object_ptr);
         *(uint64_t **)(object_base + 600) = object_ptr;
@@ -479,11 +479,11 @@ apply_visibility_simple:
 void initialize_object_data(void)
 {
     uint64_t *object_ptr;
-    longlong object_base;
+    int64_t object_base;
     uint64_t object_reference;
     
     // 检查是否需要初始化对象数据
-    if ((*(uint *)(*(longlong *)(object_base + 0x1b8) + 0x388) >> 0x19 & 1) != 0) {
+    if ((*(uint *)(*(int64_t *)(object_base + 0x1b8) + 0x388) >> 0x19 & 1) != 0) {
         object_ptr = (uint64_t *)allocate_object_data(global_memory_pool, 0x58, 8, 9);
         initialize_object_structure_with_reference(object_ptr, object_reference);
         *(uint64_t **)(object_base + 600) = object_ptr;
@@ -497,7 +497,7 @@ void initialize_object_data(void)
  * @param param_2 创建标志
  * @return 创建的对象指针
  */
-uint64_t * create_game_object(uint64_t *param_1, ulonglong param_2)
+uint64_t * create_game_object(uint64_t *param_1, uint64_t param_2)
 {
     uint64_t object_type;
     
@@ -522,9 +522,9 @@ uint64_t * create_game_object(uint64_t *param_1, ulonglong param_2)
  */
 void initialize_object_template(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    longlong *callback_ptr;
-    longlong *callback_list;
-    longlong callback_count;
+    int64_t *callback_ptr;
+    int64_t *callback_list;
+    int64_t callback_count;
     int32_t init_flag;
     uint64_t template_id;
     
@@ -539,9 +539,9 @@ void initialize_object_template(uint64_t *param_1, uint64_t param_2, uint64_t pa
     callback_list = param_1 + 1;
     callback_count = 7;
     do {
-        callback_ptr = (longlong *)*callback_list;
+        callback_ptr = (int64_t *)*callback_list;
         *callback_list = 0;
-        if (callback_ptr != (longlong *)0x0) {
+        if (callback_ptr != (int64_t *)0x0) {
             // 执行回调函数
             (**(code **)(*callback_ptr + 0x38))();
         }

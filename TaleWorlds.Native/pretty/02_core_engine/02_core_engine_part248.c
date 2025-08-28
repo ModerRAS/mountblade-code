@@ -19,74 +19,74 @@
 void process_resource_cleanup_and_management(uint64_t *context_ptr)
 
 {
-  longlong temp_var1;
+  int64_t temp_var1;
   uint64_t *resource_ptr;
   char status_flag;
   uint current_time;
   int loop_counter;
   int32_t operation_result;
-  longlong *cleanup_ptr;
-  longlong *resource_array;
+  int64_t *cleanup_ptr;
+  int64_t *resource_array;
   uint64_t *task_queue;
   int sync_status;
-  longlong timeout_value;
-  ulonglong stack_cookie;
+  int64_t timeout_value;
+  uint64_t stack_cookie;
   uint64_t local_buffer[32];
   uint64_t stack_guard1;
   char status_flag1;
   char status_flag2;
-  longlong *mutex_ptr;
-  longlong *resource_ptr1;
-  longlong *resource_ptr2;
+  int64_t *mutex_ptr;
+  int64_t *resource_ptr1;
+  int64_t *resource_ptr2;
   uint64_t *pending_tasks;
   uint64_t *active_tasks;
   uint64_t task_param;
   int32_t operation_flags;
   uint64_t context_data;
   int8_t large_buffer[224];
-  ulonglong security_cookie;
+  uint64_t security_cookie;
   
   context_data = 0xfffffffffffffffe;
-  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)local_buffer;
+  security_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)local_buffer;
   loop_counter = 0;
   if (*(char *)(context_ptr + 0x86) != '\0') {
     current_time = timeGetTime();
     resource_array = context_ptr + 0x87;
     timeout_value = 9;
     do {
-      if ((ulonglong)resource_array[0xb] <= (ulonglong)current_time) {
-        status_flag = (**(code **)(*(longlong *)*resource_array + 0xd8))();
+      if ((uint64_t)resource_array[0xb] <= (uint64_t)current_time) {
+        status_flag = (**(code **)(*(int64_t *)*resource_array + 0xd8))();
         if (status_flag == '\0') {
           stack_guard1 = 0;
           status_flag1 = status_flag;
           status_flag2 = status_flag;
-          cleanup_ptr = (longlong *)allocate_memory_block(context_ptr,&resource_ptr2,&unknown_var_3472_ptr,*resource_array + 0x18);
+          cleanup_ptr = (int64_t *)allocate_memory_block(context_ptr,&resource_ptr2,&unknown_var_3472_ptr,*resource_array + 0x18);
           temp_var1 = *cleanup_ptr;
           *cleanup_ptr = 0;
-          resource_ptr1 = (longlong *)*resource_array;
+          resource_ptr1 = (int64_t *)*resource_array;
           *resource_array = temp_var1;
-          if (resource_ptr1 != (longlong *)0x0) {
+          if (resource_ptr1 != (int64_t *)0x0) {
             (**(code **)(*resource_ptr1 + 0x38))();
           }
-          if (resource_ptr2 != (longlong *)0x0) {
+          if (resource_ptr2 != (int64_t *)0x0) {
             (**(code **)(*resource_ptr2 + 0x38))();
           }
         }
-        (**(code **)(*(longlong *)*resource_array + 0x60))();
+        (**(code **)(*(int64_t *)*resource_array + 0x60))();
         resource_array[0xb] = 0xffffffff;
       }
       resource_array = resource_array + 1;
       timeout_value = timeout_value + -1;
     } while (timeout_value != 0);
   }
-  if (-1 < *(int *)(*(longlong *)(core_system_data_buffer + 0x2018) + 0x330)) {
+  if (-1 < *(int *)(*(int64_t *)(core_system_data_buffer + 0x2018) + 0x330)) {
     process_system_tasks(context_ptr[0x6d],&unknown_var_4464_ptr,&resource_ptr2);
     execute_task_queue(resource_ptr2,&resource_ptr1);
-    if (resource_ptr1 == (longlong *)0x0) {
-      *(int8_t *)((longlong)context_ptr + 0x401) = 1;
+    if (resource_ptr1 == (int64_t *)0x0) {
+      *(int8_t *)((int64_t)context_ptr + 0x401) = 1;
     }
-    else if (*(char *)((longlong)context_ptr + 0x401) != '\0') {
-      *(int8_t *)((longlong)context_ptr + 0x401) = 0;
+    else if (*(char *)((int64_t)context_ptr + 0x401) != '\0') {
+      *(int8_t *)((int64_t)context_ptr + 0x401) = 0;
                     // WARNING: Subroutine does not return
       memset(large_buffer,0,0xd8);
     }
@@ -117,7 +117,7 @@ void process_resource_cleanup_and_management(uint64_t *context_ptr)
     if (sync_status != 0) {
       __Throw_C_error_std__YAXH_Z(sync_status);
     }
-    stack_cookie = timeout_value - (longlong)resource_ptr >> 3;
+    stack_cookie = timeout_value - (int64_t)resource_ptr >> 3;
     task_queue = resource_ptr;
     if (stack_cookie != 0) {
       do {
@@ -125,7 +125,7 @@ void process_resource_cleanup_and_management(uint64_t *context_ptr)
         register_task_result(operation_result,&system_buffer_ptr);
         loop_counter = loop_counter + 1;
         task_queue = task_queue + 1;
-      } while ((ulonglong)(longlong)loop_counter < stack_cookie);
+      } while ((uint64_t)(int64_t)loop_counter < stack_cookie);
     }
     active_tasks = resource_ptr;
     if (resource_ptr != (uint64_t *)0x0) {
@@ -141,7 +141,7 @@ void process_resource_cleanup_and_management(uint64_t *context_ptr)
     register_task_result(operation_result,&unknown_var_4408_ptr);
   }
                     // WARNING: Subroutine does not return
-  cleanup_system_state(security_cookie ^ (ulonglong)local_buffer);
+  cleanup_system_state(security_cookie ^ (uint64_t)local_buffer);
 }
 
 
@@ -155,16 +155,16 @@ void process_resource_cleanup_and_management(uint64_t *context_ptr)
 // 返回值：处理结果状态码
 // 说明：该函数对浮点数数组进行优化处理，包括数据复制和性能优化
 uint64_t
-process_float_array_optimization(uint64_t target_ptr,int array_size,longlong source_ptr1,longlong source_ptr2,int optimization_flags)
+process_float_array_optimization(uint64_t target_ptr,int array_size,int64_t source_ptr1,int64_t source_ptr2,int optimization_flags)
 
 {
   float *float_array1;
   int element_count;
-  longlong temp_var1;
+  int64_t temp_var1;
   uint loop_counter;
   float *float_array2;
   float *float_array3;
-  ulonglong remaining_elements;
+  uint64_t remaining_elements;
   int processed_elements;
   float max_value;
   float temp_float1;
@@ -187,7 +187,7 @@ process_float_array_optimization(uint64_t target_ptr,int array_size,longlong sou
         processed_elements = 0;
         if (3 < element_count) {
           loop_counter = (element_count - 4U >> 2) + 1;
-          remaining_elements = (ulonglong)loop_counter;
+          remaining_elements = (uint64_t)loop_counter;
           processed_elements = loop_counter * 4;
           do {
             temp_float4 = *float_array2;
@@ -221,7 +221,7 @@ process_float_array_optimization(uint64_t target_ptr,int array_size,longlong sou
           } while (remaining_elements != 0);
         }
         if (processed_elements < element_count) {
-          remaining_elements = (ulonglong)(uint)(element_count - processed_elements);
+          remaining_elements = (uint64_t)(uint)(element_count - processed_elements);
           temp_float4 = current_max;
           do {
             current_max = *float_array2;
@@ -238,7 +238,7 @@ process_float_array_optimization(uint64_t target_ptr,int array_size,longlong sou
         }
       } while (array_size != 0);
     }
-    temp_var1 = *(longlong *)(core_system_data_buffer + 0x2018);
+    temp_var1 = *(int64_t *)(core_system_data_buffer + 0x2018);
     element_count = *(int *)(temp_var1 + 100);
     if (element_count == 1) {
       optimization_factor = 0.1;
@@ -265,10 +265,10 @@ uint64_t optimized_float_array_processing(float *input_array,float *output_array
 {
   float *temp_float_ptr;
   int array_size;
-  longlong system_context;
+  int64_t system_context;
   uint loop_counter;
   int *size_ptr;
-  ulonglong remaining_elements;
+  uint64_t remaining_elements;
   int processed_elements;
   int iteration_count;
   float max_value;
@@ -287,7 +287,7 @@ uint64_t optimized_float_array_processing(float *input_array,float *output_array
       processed_elements = 0;
       if (3 < array_size) {
         loop_counter = (array_size - 4U >> 2) + 1;
-        remaining_elements = (ulonglong)loop_counter;
+        remaining_elements = (uint64_t)loop_counter;
         processed_elements = loop_counter * 4;
         do {
           temp_float4 = *input_array;
@@ -321,7 +321,7 @@ uint64_t optimized_float_array_processing(float *input_array,float *output_array
         } while (remaining_elements != 0);
       }
       if (processed_elements < array_size) {
-        remaining_elements = (ulonglong)(uint)(array_size - processed_elements);
+        remaining_elements = (uint64_t)(uint)(array_size - processed_elements);
         temp_float4 = current_max;
         do {
           temp_float3 = *input_array;
@@ -338,7 +338,7 @@ uint64_t optimized_float_array_processing(float *input_array,float *output_array
       }
     } while (iteration_count != 0);
   }
-  system_context = *(longlong *)(core_system_data_buffer + 0x2018);
+  system_context = *(int64_t *)(core_system_data_buffer + 0x2018);
   array_size = *(int *)(system_context + 100);
   if (array_size == 1) {
     optimization_factor = 0.1;
@@ -363,9 +363,9 @@ uint64_t advanced_float_array_optimization(float *source_array,float *destinatio
 
 {
   float *temp_float_ptr;
-  longlong system_context;
+  int64_t system_context;
   uint loop_counter;
-  ulonglong remaining_elements;
+  uint64_t remaining_elements;
   int processed_elements;
   int array_size1;
   int iteration_count;
@@ -382,7 +382,7 @@ uint64_t advanced_float_array_optimization(float *source_array,float *destinatio
     processed_elements = 0;
     if (3 < array_size1) {
       loop_counter = (array_size1 - 4U >> 2) + 1;
-      remaining_elements = (ulonglong)loop_counter;
+      remaining_elements = (uint64_t)loop_counter;
       processed_elements = loop_counter * 4;
       do {
         temp_float4 = *source_array;
@@ -416,7 +416,7 @@ uint64_t advanced_float_array_optimization(float *source_array,float *destinatio
       } while (remaining_elements != 0);
     }
     if (processed_elements < array_size1) {
-      remaining_elements = (ulonglong)(uint)(array_size1 - processed_elements);
+      remaining_elements = (uint64_t)(uint)(array_size1 - processed_elements);
       temp_float4 = current_max;
       do {
         temp_float3 = *source_array;
@@ -432,7 +432,7 @@ uint64_t advanced_float_array_optimization(float *source_array,float *destinatio
       } while (remaining_elements != 0);
     }
   } while (iteration_count != 0);
-  system_context = *(longlong *)(core_system_data_buffer + 0x2018);
+  system_context = *(int64_t *)(core_system_data_buffer + 0x2018);
   processed_elements = *(int *)(system_context + 100);
   if (processed_elements == 1) {
     optimization_factor = 0.1;
@@ -455,11 +455,11 @@ uint64_t apply_optimization_settings(void)
 
 {
   int config_value;
-  longlong system_context;
+  int64_t system_context;
   float current_max;
   float optimization_factor;
   
-  system_context = *(longlong *)(core_system_data_buffer + 0x2018);
+  system_context = *(int64_t *)(core_system_data_buffer + 0x2018);
   config_value = *(int *)(system_context + 100);
   if (config_value == 1) {
     optimization_factor = 0.1;
@@ -490,7 +490,7 @@ uint64_t initialize_optimization_module(void)
 // 参数：task_context - 任务上下文
 // 返回值：任务执行结果
 // 说明：该函数执行指定的优化任务
-int32_t execute_optimization_task(longlong task_context)
+int32_t execute_optimization_task(int64_t task_context)
 
 {
   int32_t task_result;
@@ -507,7 +507,7 @@ int32_t execute_optimization_task(longlong task_context)
 // 参数：system_context - 系统上下文
 // 返回值：优化处理结果
 // 说明：该函数处理系统级别的优化任务
-int32_t process_system_optimization(longlong system_context)
+int32_t process_system_optimization(int64_t system_context)
 
 {
   int32_t optimization_result;
@@ -523,15 +523,15 @@ int32_t process_system_optimization(longlong system_context)
 // 功能：生成错误报告
 // 参数：error_context - 错误上下文
 // 说明：该函数生成详细的错误报告，包括错误信息和调试数据
-void generate_error_report(longlong error_context)
+void generate_error_report(int64_t error_context)
 
 {
   int32_t report_id;
   uint buffer_size;
   int error_code;
-  longlong system_data;
+  int64_t system_data;
   uint64_t *message_buffer;
-  longlong error_offset;
+  int64_t error_offset;
   uint message_length;
   uint required_size;
   int char_count;
@@ -540,7 +540,7 @@ void generate_error_report(longlong error_context)
   uint buffer_capacity;
   uint64_t report_handle;
   uint64_t system_handle;
-  longlong temp_var;
+  int64_t temp_var;
   
   report_handle = 0x180214cd0;
   error_code = get_error_information(*(uint64_t *)(error_context + 0x370));
@@ -557,8 +557,8 @@ void generate_error_report(longlong error_context)
   system_handle = CONCAT44(system_handle._4_4_,report_id);
   *report_buffer = 0x726520444f4d460a;
   *(int32_t *)(report_buffer + 1) = 0x21726f72;
-  *(int16_t *)((longlong)report_buffer + 0xc) = 0x2820;
-  *(int8_t *)((longlong)report_buffer + 0xe) = 0;
+  *(int16_t *)((int64_t)report_buffer + 0xc) = 0x2820;
+  *(int8_t *)((int64_t)report_buffer + 0xe) = 0;
   buffer_capacity = 0xe;
   format_error_message(&output_stream,error_code);
   buffer_size = buffer_capacity;
@@ -569,7 +569,7 @@ void generate_error_report(longlong error_context)
       if ((int)message_length < 0x10) {
         message_length = 0x10;
       }
-      report_buffer = (uint64_t *)allocate_report_buffer(system_memory_pool_ptr,(longlong)(int)message_length,0x13);
+      report_buffer = (uint64_t *)allocate_report_buffer(system_memory_pool_ptr,(int64_t)(int)message_length,0x13);
       *(int8_t *)report_buffer = 0;
     }
     else {
@@ -580,8 +580,8 @@ void generate_error_report(longlong error_context)
     system_handle = CONCAT44(system_handle._4_4_,report_id);
   }
 CONTINUE_PROCESSING:
-  *(int16_t *)((ulonglong)buffer_capacity + (longlong)report_buffer) = 0x2029;
-  *(int8_t *)((int16_t *)((ulonglong)buffer_capacity + (longlong)report_buffer) + 1) = 0;
+  *(int16_t *)((uint64_t)buffer_capacity + (int64_t)report_buffer) = 0x2029;
+  *(int8_t *)((int16_t *)((uint64_t)buffer_capacity + (int64_t)report_buffer) + 1) = 0;
   message_length = buffer_size + 3;
   buffer_capacity = required_size;
   if (message_length != 0) {
@@ -590,7 +590,7 @@ CONTINUE_PROCESSING:
       if ((int)required_size < 0x10) {
         required_size = 0x10;
       }
-      report_buffer = (uint64_t *)allocate_report_buffer(system_memory_pool_ptr,(longlong)(int)required_size,0x13);
+      report_buffer = (uint64_t *)allocate_report_buffer(system_memory_pool_ptr,(int64_t)(int)required_size,0x13);
       *(int8_t *)report_buffer = 0;
     }
     else {
@@ -601,7 +601,7 @@ CONTINUE_PROCESSING:
     system_handle = CONCAT44(system_handle._4_4_,report_id);
   }
 APPEND_ERROR_CODE:
-  *(int16_t *)((ulonglong)buffer_capacity + (longlong)report_buffer) = 0x22;
+  *(int16_t *)((uint64_t)buffer_capacity + (int64_t)report_buffer) = 0x22;
   error_offset = -1;
   do {
     system_data = error_offset;
@@ -617,7 +617,7 @@ APPEND_ERROR_CODE:
         if ((int)buffer_size < 0x10) {
           buffer_size = 0x10;
         }
-        report_buffer = (uint64_t *)allocate_report_buffer(system_memory_pool_ptr,(longlong)(int)buffer_size,0x13);
+        report_buffer = (uint64_t *)allocate_report_buffer(system_memory_pool_ptr,(int64_t)(int)buffer_size,0x13);
         *(int8_t *)report_buffer = 0;
       }
       else {
@@ -629,8 +629,8 @@ APPEND_ERROR_CODE:
     }
 COPY_ERROR_MESSAGE:
                     // WARNING: Subroutine does not return
-    memcpy((int8_t *)((ulonglong)buffer_capacity + (longlong)report_buffer),&system_buffer_ptr,
-           (longlong)((int)system_data + 2));
+    memcpy((int8_t *)((uint64_t)buffer_capacity + (int64_t)report_buffer),&system_buffer_ptr,
+           (int64_t)((int)system_data + 2));
   }
   required_size = buffer_size + 5;
   if (required_size != 0) {
@@ -639,7 +639,7 @@ COPY_ERROR_MESSAGE:
       if ((int)buffer_size < 0x10) {
         buffer_size = 0x10;
       }
-      report_buffer = (uint64_t *)allocate_report_buffer(system_memory_pool_ptr,(longlong)(int)buffer_size,0x13);
+      report_buffer = (uint64_t *)allocate_report_buffer(system_memory_pool_ptr,(int64_t)(int)buffer_size,0x13);
       *(int8_t *)report_buffer = 0;
     }
     else {
@@ -650,8 +650,8 @@ COPY_ERROR_MESSAGE:
     system_handle = CONCAT44(system_handle._4_4_,report_id);
   }
 ADD_FORMATTING:
-  *(int16_t *)((ulonglong)buffer_capacity + (longlong)report_buffer) = 0x2022;
-  *(int8_t *)((int16_t *)((ulonglong)buffer_capacity + (longlong)report_buffer) + 1) = 0;
+  *(int16_t *)((uint64_t)buffer_capacity + (int64_t)report_buffer) = 0x2022;
+  *(int8_t *)((int16_t *)((uint64_t)buffer_capacity + (int64_t)report_buffer) + 1) = 0;
   buffer_capacity = required_size;
   system_data = get_error_details(error_code);
   error_offset = -1;
@@ -668,7 +668,7 @@ ADD_FORMATTING:
           if ((int)buffer_size < 0x10) {
             buffer_size = 0x10;
           }
-          report_buffer = (uint64_t *)allocate_report_buffer(system_memory_pool_ptr,(longlong)(int)buffer_size,0x13);
+          report_buffer = (uint64_t *)allocate_report_buffer(system_memory_pool_ptr,(int64_t)(int)buffer_size,0x13);
           *(int8_t *)report_buffer = 0;
         }
         else {
@@ -680,8 +680,8 @@ ADD_FORMATTING:
       }
 COPY_ERROR_DETAILS:
                     // WARNING: Subroutine does not return
-      memcpy((int8_t *)((ulonglong)buffer_capacity + (longlong)report_buffer),system_data,
-             (longlong)((int)temp_var + 2));
+      memcpy((int8_t *)((uint64_t)buffer_capacity + (int64_t)report_buffer),system_data,
+             (int64_t)((int)temp_var + 2));
     }
   }
   error_code = buffer_capacity + 1;
@@ -691,7 +691,7 @@ COPY_ERROR_DETAILS:
       if ((int)buffer_size < 0x10) {
         buffer_size = 0x10;
       }
-      report_buffer = (uint64_t *)allocate_report_buffer(system_memory_pool_ptr,(longlong)(int)buffer_size,0x13);
+      report_buffer = (uint64_t *)allocate_report_buffer(system_memory_pool_ptr,(int64_t)(int)buffer_size,0x13);
       *(int8_t *)report_buffer = 0;
     }
     else {
@@ -702,7 +702,7 @@ COPY_ERROR_DETAILS:
     system_handle = CONCAT44(system_handle._4_4_,report_id);
   }
 FINALIZE_REPORT:
-  *(int16_t *)((ulonglong)buffer_capacity + (longlong)report_buffer) = 10;
+  *(int16_t *)((uint64_t)buffer_capacity + (int64_t)report_buffer) = 10;
   message_buffer = (uint64_t *)&system_buffer_ptr;
   if (report_buffer != (uint64_t *)0x0) {
     message_buffer = report_buffer;
@@ -723,7 +723,7 @@ FINALIZE_REPORT:
 // 参数：diagnostic_context - 诊断上下文
 // 返回值：诊断结果
 // 说明：该函数处理系统级别的诊断任务
-int32_t process_system_diagnostics(longlong diagnostic_context)
+int32_t process_system_diagnostics(int64_t diagnostic_context)
 
 {
   int32_t diagnostic_result[2];

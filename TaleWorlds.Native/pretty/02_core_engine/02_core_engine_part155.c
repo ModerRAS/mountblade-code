@@ -5,7 +5,7 @@
 // 包含字符串哈希、资源管理和配置处理相关功能
 
 // 全局变量声明
-extern longlong SYSTEM_DATA_MANAGER_A;    // 主引擎上下文指针
+extern int64_t SYSTEM_DATA_MANAGER_A;    // 主引擎上下文指针
 extern uint64_t SYSTEM_DATA_MANAGER_B;   // 内存分配器上下文
 extern uint global_config_6320_ptr[];        // 哈希查找表
 extern uint64_t global_config_3208_ptr;    // 配置键值对 - 位置偏移
@@ -29,13 +29,13 @@ extern char global_config_3512_ptr[];         // 格式化字符串 "%s"
 extern uint64_t system_buffer_cc18;     // 换行符常量
 
 // 外部函数声明
-extern void FUN_18011da00(void *buffer, longlong size);
+extern void FUN_18011da00(void *buffer, int64_t size);
 extern void *FUN_1801210b0(const char *str);
-extern void *func_0x000180120ce0(longlong size, uint64_t context);
+extern void *func_0x000180120ce0(int64_t size, uint64_t context);
 extern int FUN_18010cbc0(uint64_t config, uint64_t key, void *value1, void *value2);
 extern void *FUN_180122210(void *buffer, const char *format, ...);
 extern void *strstr(const char *haystack, const char *needle);
-extern void *memcpy(void *dest, const void *src, longlong n);
+extern void *memcpy(void *dest, const void *src, int64_t n);
 extern void *FUN_18013c940(uint64_t param);
 
 // 初始化引擎组件
@@ -46,16 +46,16 @@ void initialize_engine_component(void)
 }
 
 // 处理字符串哈希和资源管理
-longlong process_string_hash_and_resources(longlong *output_index)
+int64_t process_string_hash_and_resources(int64_t *output_index)
 {
     int *resource_buffer;
-    longlong engine_context;
+    int64_t engine_context;
     uint hash_value;
     int resource_count;
-    ulonglong loop_counter;
-    ulonglong max_iterations;
+    uint64_t loop_counter;
+    uint64_t max_iterations;
     int current_index;
-    longlong callback_context;
+    int64_t callback_context;
     
     engine_context = SYSTEM_DATA_MANAGER_A;
     max_iterations = 0;
@@ -69,7 +69,7 @@ longlong process_string_hash_and_resources(longlong *output_index)
         hash_value = resource_count / 2 + resource_count;
         max_iterations = loop_counter;
         if (0 < (int)hash_value) {
-            max_iterations = (ulonglong)hash_value;
+            max_iterations = (uint64_t)hash_value;
         }
         FUN_18011da00(resource_buffer, max_iterations);  // 分配资源缓冲区
     }
@@ -81,48 +81,48 @@ longlong process_string_hash_and_resources(longlong *output_index)
         resource_count = *resource_buffer;
     }
     
-    *(int8_t *)((longlong)resource_count + *(longlong *)(engine_context + 0x2e10)) = 0;
+    *(int8_t *)((int64_t)resource_count + *(int64_t *)(engine_context + 0x2e10)) = 0;
     *resource_buffer = *resource_buffer + 1;
     max_iterations = loop_counter;
     
     // 遍历资源列表并执行回调
     if (0 < *(int *)(engine_context + 0x2e18)) {
         do {
-            callback_context = *(longlong *)(engine_context + 0x2e20) + max_iterations;
+            callback_context = *(int64_t *)(engine_context + 0x2e20) + max_iterations;
             (**(code **)(callback_context + 0x20))(engine_context, callback_context, resource_buffer);
             hash_value = (int)loop_counter + 1;
-            loop_counter = (ulonglong)hash_value;
+            loop_counter = (uint64_t)hash_value;
             max_iterations = max_iterations + 0x30;     // 下一个资源条目
         } while ((int)hash_value < *(int *)(engine_context + 0x2e18));
     }
     
     // 设置输出索引
-    if (output_index != (longlong *)0x0) {
-        if (*(longlong *)(engine_context + 0x2e10) != 0) {
+    if (output_index != (int64_t *)0x0) {
+        if (*(int64_t *)(engine_context + 0x2e10) != 0) {
             current_index = *resource_buffer + -1;
         }
-        *output_index = (longlong)current_index;
+        *output_index = (int64_t)current_index;
     }
     
     callback_context = 0x180c82861;
-    if (*(longlong *)(engine_context + 0x2e10) != 0) {
-        callback_context = *(longlong *)(engine_context + 0x2e10);
+    if (*(int64_t *)(engine_context + 0x2e10) != 0) {
+        callback_context = *(int64_t *)(engine_context + 0x2e10);
     }
     return callback_context;
 }
 
 // 带索引的字符串哈希处理
-longlong process_string_hash_with_index(longlong *output_index)
+int64_t process_string_hash_with_index(int64_t *output_index)
 {
     int *resource_buffer;
     uint hash_value;
     int current_count;
-    longlong result;
-    ulonglong loop_counter;
-    ulonglong max_iterations;
+    int64_t result;
+    uint64_t loop_counter;
+    uint64_t max_iterations;
     int start_index;
-    ulonglong current_offset;
-    longlong engine_context;
+    uint64_t current_offset;
+    int64_t engine_context;
     
     resource_buffer = (int *)(engine_context + 0x2e08);
     start_index = (int)current_offset;
@@ -134,7 +134,7 @@ longlong process_string_hash_with_index(longlong *output_index)
         max_iterations = current_offset & 0xffffffff;
         hash_value = current_count / 2 + current_count;
         if (0 < (int)hash_value) {
-            max_iterations = (ulonglong)hash_value;
+            max_iterations = (uint64_t)hash_value;
         }
         FUN_18011da00(resource_buffer, max_iterations);
     }
@@ -147,107 +147,107 @@ longlong process_string_hash_with_index(longlong *output_index)
     }
     
     loop_counter = current_offset & 0xffffffff;
-    *(char *)((longlong)current_count + *(longlong *)(engine_context + 0x2e10)) = (char)current_offset;
+    *(char *)((int64_t)current_count + *(int64_t *)(engine_context + 0x2e10)) = (char)current_offset;
     *resource_buffer = *resource_buffer + 1;
     max_iterations = current_offset;
     
     // 执行回调处理
     if (start_index < *(int *)(engine_context + 0x2e18)) {
         do {
-            (**(code **)(*(longlong *)(engine_context + 0x2e20) + max_iterations + 0x20))();
+            (**(code **)(*(int64_t *)(engine_context + 0x2e20) + max_iterations + 0x20))();
             hash_value = (int)loop_counter + 1;
-            loop_counter = (ulonglong)hash_value;
+            loop_counter = (uint64_t)hash_value;
             max_iterations = max_iterations + 0x30;
         } while ((int)hash_value < *(int *)(engine_context + 0x2e18));
     }
     
     // 设置输出索引
-    if (output_index != (longlong *)0x0) {
-        if (*(ulonglong *)(engine_context + 0x2e10) != current_offset) {
-            current_offset = (ulonglong)(*resource_buffer - 1);
+    if (output_index != (int64_t *)0x0) {
+        if (*(uint64_t *)(engine_context + 0x2e10) != current_offset) {
+            current_offset = (uint64_t)(*resource_buffer - 1);
         }
-        *output_index = (longlong)(int)current_offset;
+        *output_index = (int64_t)(int)current_offset;
     }
     
     result = 0x180c82861;
-    if (*(longlong *)(engine_context + 0x2e10) != 0) {
-        result = *(longlong *)(engine_context + 0x2e10);
+    if (*(int64_t *)(engine_context + 0x2e10) != 0) {
+        result = *(int64_t *)(engine_context + 0x2e10);
     }
     return result;
 }
 
 // 批量处理资源回调
-longlong process_resource_callbacks_batch(void)
+int64_t process_resource_callbacks_batch(void)
 {
-    longlong result;
+    int64_t result;
     int *resource_buffer;
     int current_count;
-    ulonglong current_offset;
-    longlong engine_context;
-    ulonglong loop_counter;
-    longlong *output_index;
+    uint64_t current_offset;
+    int64_t engine_context;
+    uint64_t loop_counter;
+    int64_t *output_index;
     
     loop_counter = current_offset;
     do {
-        (**(code **)(*(longlong *)(engine_context + 0x2e20) + loop_counter + 0x20))();
+        (**(code **)(*(int64_t *)(engine_context + 0x2e20) + loop_counter + 0x20))();
         current_count = current_count + 1;
         loop_counter = loop_counter + 0x30;
     } while (current_count < *(int *)(engine_context + 0x2e18));
     
-    if (output_index != (longlong *)0x0) {
-        if (*(ulonglong *)(resource_buffer + 2) != current_offset) {
-            current_offset = (ulonglong)(*resource_buffer - 1);
+    if (output_index != (int64_t *)0x0) {
+        if (*(uint64_t *)(resource_buffer + 2) != current_offset) {
+            current_offset = (uint64_t)(*resource_buffer - 1);
         }
-        *output_index = (longlong)(int)current_offset;
+        *output_index = (int64_t)(int)current_offset;
     }
     
     result = 0x180c82861;
-    if (*(longlong *)(engine_context + 0x2e10) != 0) {
-        result = *(longlong *)(engine_context + 0x2e10);
+    if (*(int64_t *)(engine_context + 0x2e10) != 0) {
+        result = *(int64_t *)(engine_context + 0x2e10);
     }
     return result;
 }
 
 // 处理单个资源回调
-longlong process_single_resource_callback(void)
+int64_t process_single_resource_callback(void)
 {
-    longlong result;
+    int64_t result;
     int *resource_buffer;
-    ulonglong current_offset;
-    longlong engine_context;
-    longlong *output_index;
+    uint64_t current_offset;
+    int64_t engine_context;
+    int64_t *output_index;
     
-    if (output_index != (longlong *)0x0) {
-        if (*(ulonglong *)(resource_buffer + 2) != current_offset) {
-            current_offset = (ulonglong)(*resource_buffer - 1);
+    if (output_index != (int64_t *)0x0) {
+        if (*(uint64_t *)(resource_buffer + 2) != current_offset) {
+            current_offset = (uint64_t)(*resource_buffer - 1);
         }
-        *output_index = (longlong)(int)current_offset;
+        *output_index = (int64_t)(int)current_offset;
     }
     
     result = 0x180c82861;
-    if (*(longlong *)(engine_context + 0x2e10) != 0) {
-        result = *(longlong *)(engine_context + 0x2e10);
+    if (*(int64_t *)(engine_context + 0x2e10) != 0) {
+        result = *(int64_t *)(engine_context + 0x2e10);
     }
     return result;
 }
 
 // 强制处理资源回调
-longlong force_process_resource_callback(void)
+int64_t force_process_resource_callback(void)
 {
-    longlong result;
+    int64_t result;
     int *resource_buffer;
-    ulonglong current_offset;
-    longlong engine_context;
-    longlong *output_index;
+    uint64_t current_offset;
+    int64_t engine_context;
+    int64_t *output_index;
     
-    if (*(ulonglong *)(resource_buffer + 2) != current_offset) {
-        current_offset = (ulonglong)(*resource_buffer - 1);
+    if (*(uint64_t *)(resource_buffer + 2) != current_offset) {
+        current_offset = (uint64_t)(*resource_buffer - 1);
     }
-    *output_index = (longlong)(int)current_offset;
+    *output_index = (int64_t)(int)current_offset;
     
     result = 0x180c82861;
-    if (*(longlong *)(engine_context + 0x2e10) != 0) {
-        result = *(longlong *)(engine_context + 0x2e10);
+    if (*(int64_t *)(engine_context + 0x2e10) != 0) {
+        result = *(int64_t *)(engine_context + 0x2e10);
     }
     return result;
 }
@@ -258,19 +258,19 @@ uint64_t *find_or_create_hash_entry(uint64_t param_1, uint64_t param_2, byte *st
     int32_t *entry_data;
     byte current_char;
     int hash_table_size;
-    longlong engine_context;
+    int64_t engine_context;
     byte *string_ptr;
-    longlong allocation_context;
+    int64_t allocation_context;
     int new_capacity;
     uint hash_value;
     uint64_t hash_result;
     int current_size;
-    longlong entry_offset;
+    int64_t entry_offset;
     uint *hash_table_ptr;
-    ulonglong search_index;
+    uint64_t search_index;
     int new_hash_size;
     uint64_t *found_entry;
-    ulonglong max_search;
+    uint64_t max_search;
     uint8_t stack_data;
     
     engine_context = SYSTEM_DATA_MANAGER_A;
@@ -285,7 +285,7 @@ uint64_t *find_or_create_hash_entry(uint64_t param_1, uint64_t param_2, byte *st
         if (((current_char == 0x23) && (*string_ptr == 0x23)) && (string_ptr[1] == 0x23)) {
             hash_value = 0xffffffff;
         }
-        hash_value = *(uint *)(&global_config_6320_ptr + (ulonglong)(byte)((byte)hash_value ^ current_char) * 4) ^ hash_value >> 8;
+        hash_value = *(uint *)(&global_config_6320_ptr + (uint64_t)(byte)((byte)hash_value ^ current_char) * 4) ^ hash_value >> 8;
         current_char = *string_ptr;
         string_ptr = string_ptr + 1;
     }
@@ -294,21 +294,21 @@ uint64_t *find_or_create_hash_entry(uint64_t param_1, uint64_t param_2, byte *st
     
     // 在现有哈希表中查找
     if (*(int *)(SYSTEM_DATA_MANAGER_A + 0x2e28) != 0) {
-        hash_table_ptr = (uint *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x2e30) + 8);
+        hash_table_ptr = (uint *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x2e30) + 8);
         max_search = search_index;
         do {
             if (*hash_table_ptr == ~hash_value) {
                 found_entry = (uint64_t *)
-                             ((longlong)(int)max_search * 0x38 + *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x2e30));
+                             ((int64_t)(int)max_search * 0x38 + *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x2e30));
                 if (found_entry != (uint64_t *)0x0) {
                     return found_entry;
                 }
                 break;
             }
-            max_search = (ulonglong)((int)max_search + 1);
+            max_search = (uint64_t)((int)max_search + 1);
             search_index = search_index + 1;
             hash_table_ptr = hash_table_ptr + 0xe;
-        } while (search_index != (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x2e28));
+        } while (search_index != (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x2e28));
     }
     
     // 检查是否需要扩容
@@ -329,11 +329,11 @@ uint64_t *find_or_create_hash_entry(uint64_t param_1, uint64_t param_2, byte *st
         // 执行扩容操作
         if (hash_table_size < new_hash_size) {
             *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
-            hash_result = func_0x000180120ce0((longlong)new_hash_size * 0x38, hash_result);
-            if (*(longlong *)(engine_context + 0x2e30) != 0) {
+            hash_result = func_0x000180120ce0((int64_t)new_hash_size * 0x38, hash_result);
+            if (*(int64_t *)(engine_context + 0x2e30) != 0) {
                 // 复制现有数据到新分配的内存
-                memcpy(hash_result, *(longlong *)(engine_context + 0x2e30), 
-                       (longlong)*(int *)(engine_context + 0x2e28) * 0x38);
+                memcpy(hash_result, *(int64_t *)(engine_context + 0x2e30), 
+                       (int64_t)*(int *)(engine_context + 0x2e28) * 0x38);
             }
             current_size = *(int *)(engine_context + 0x2e28);
             *(uint64_t *)(engine_context + 0x2e30) = hash_result;
@@ -342,8 +342,8 @@ uint64_t *find_or_create_hash_entry(uint64_t param_1, uint64_t param_2, byte *st
     }
     
     // 创建新的哈希条目
-    entry_offset = (longlong)current_size * 0x38;
-    allocation_context = *(longlong *)(engine_context + 0x2e30);
+    entry_offset = (int64_t)current_size * 0x38;
+    allocation_context = *(int64_t *)(engine_context + 0x2e30);
     *(uint64_t *)(entry_offset + allocation_context) = 0;
     ((uint64_t *)(entry_offset + allocation_context))[1] = 0;
     found_entry = (uint64_t *)(entry_offset + 0x10 + allocation_context);
@@ -354,11 +354,11 @@ uint64_t *find_or_create_hash_entry(uint64_t param_1, uint64_t param_2, byte *st
     entry_data[1] = 0;
     entry_data[2] = 0;
     entry_data[3] = 0;
-    *(ulonglong *)(entry_offset + 0x30 + allocation_context) = CONCAT53(stack_data, 0xffff);
+    *(uint64_t *)(entry_offset + 0x30 + allocation_context) = CONCAT53(stack_data, 0xffff);
     
     hash_table_size = *(int *)(engine_context + 0x2e28);
     *(int *)(engine_context + 0x2e28) = hash_table_size + 1;
-    found_entry = (uint64_t *)((longlong)hash_table_size * 0x38 + *(longlong *)(engine_context + 0x2e30));
+    found_entry = (uint64_t *)((int64_t)hash_table_size * 0x38 + *(int64_t *)(engine_context + 0x2e30));
     
     hash_result = FUN_1801210b0(string_data);
     *found_entry = hash_result;
@@ -371,7 +371,7 @@ uint64_t *find_or_create_hash_entry(uint64_t param_1, uint64_t param_2, byte *st
         if (((current_char == 0x23) && (*string_ptr == 0x23)) && (string_ptr[1] == 0x23)) {
             hash_value = 0xffffffff;
         }
-        hash_value = *(uint *)(&global_config_6320_ptr + ((ulonglong)(hash_value & 0xff) ^ (ulonglong)current_char) * 4) ^
+        hash_value = *(uint *)(&global_config_6320_ptr + ((uint64_t)(hash_value & 0xff) ^ (uint64_t)current_char) * 4) ^
                 hash_value >> 8;
         current_char = *string_ptr;
         string_ptr = string_ptr + 1;
@@ -386,20 +386,20 @@ uint64_t *find_or_create_hash_entry_with_precomputed_hash(uint64_t param_1, uint
     int32_t *entry_data;
     byte current_char;
     int hash_table_size;
-    longlong engine_context;
+    int64_t engine_context;
     byte *string_ptr;
-    longlong allocation_context;
+    int64_t allocation_context;
     int new_capacity;
     uint computed_hash;
     uint64_t hash_result;
     int current_size;
-    longlong entry_offset;
+    int64_t entry_offset;
     uint *hash_table_ptr;
-    ulonglong search_index;
+    uint64_t search_index;
     int new_hash_size;
     uint64_t *found_entry;
     uint final_hash;
-    ulonglong max_search;
+    uint64_t max_search;
     byte string_start;
     byte *string_start_ptr;
     uint8_t stack_data;
@@ -414,7 +414,7 @@ uint64_t *find_or_create_hash_entry_with_precomputed_hash(uint64_t param_1, uint
         }
         current_char = *string_data;
         string_data = string_data + 1;
-        computed_hash = *(uint *)(&global_config_6320_ptr + (ulonglong)(byte)((byte)computed_hash ^ string_start) * 4) ^ computed_hash >> 8;
+        computed_hash = *(uint *)(&global_config_6320_ptr + (uint64_t)(byte)((byte)computed_hash ^ string_start) * 4) ^ computed_hash >> 8;
         string_start = current_char;
     } while (current_char != 0);
     
@@ -422,21 +422,21 @@ uint64_t *find_or_create_hash_entry_with_precomputed_hash(uint64_t param_1, uint
     
     // 在现有哈希表中查找
     if (*(int *)(SYSTEM_DATA_MANAGER_A + 0x2e28) != 0) {
-        hash_table_ptr = (uint *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x2e30) + 8);
+        hash_table_ptr = (uint *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x2e30) + 8);
         max_search = search_index;
         do {
             if (*hash_table_ptr == ~computed_hash) {
                 found_entry = (uint64_t *)
-                             ((longlong)(int)max_search * 0x38 + *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x2e30));
+                             ((int64_t)(int)max_search * 0x38 + *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x2e30));
                 if (found_entry != (uint64_t *)0x0) {
                     return found_entry;
                 }
                 break;
             }
-            max_search = (ulonglong)((int)max_search + 1);
+            max_search = (uint64_t)((int)max_search + 1);
             search_index = search_index + 1;
             hash_table_ptr = hash_table_ptr + 0xe;
-        } while (search_index != (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x2e28));
+        } while (search_index != (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x2e28));
     }
     
     // 检查是否需要扩容
@@ -457,11 +457,11 @@ uint64_t *find_or_create_hash_entry_with_precomputed_hash(uint64_t param_1, uint
         // 执行扩容操作
         if (hash_table_size < new_hash_size) {
             *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
-            hash_result = func_0x000180120ce0((longlong)new_hash_size * 0x38, hash_result);
-            if (*(longlong *)(engine_context + 0x2e30) != 0) {
+            hash_result = func_0x000180120ce0((int64_t)new_hash_size * 0x38, hash_result);
+            if (*(int64_t *)(engine_context + 0x2e30) != 0) {
                 // 复制现有数据到新分配的内存
-                memcpy(hash_result, *(longlong *)(engine_context + 0x2e30), 
-                       (longlong)*(int *)(engine_context + 0x2e28) * 0x38);
+                memcpy(hash_result, *(int64_t *)(engine_context + 0x2e30), 
+                       (int64_t)*(int *)(engine_context + 0x2e28) * 0x38);
             }
             current_size = *(int *)(engine_context + 0x2e28);
             *(uint64_t *)(engine_context + 0x2e30) = hash_result;
@@ -470,8 +470,8 @@ uint64_t *find_or_create_hash_entry_with_precomputed_hash(uint64_t param_1, uint
     }
     
     // 创建新的哈希条目
-    entry_offset = (longlong)current_size * 0x38;
-    allocation_context = *(longlong *)(engine_context + 0x2e30);
+    entry_offset = (int64_t)current_size * 0x38;
+    allocation_context = *(int64_t *)(engine_context + 0x2e30);
     *(uint64_t *)(entry_offset + allocation_context) = 0;
     ((uint64_t *)(entry_offset + allocation_context))[1] = 0;
     found_entry = (uint64_t *)(entry_offset + 0x10 + allocation_context);
@@ -482,11 +482,11 @@ uint64_t *find_or_create_hash_entry_with_precomputed_hash(uint64_t param_1, uint
     entry_data[1] = 0;
     entry_data[2] = 0;
     entry_data[3] = 0;
-    *(ulonglong *)(entry_offset + 0x30 + allocation_context) = CONCAT53(stack_data, 0xffff);
+    *(uint64_t *)(entry_offset + 0x30 + allocation_context) = CONCAT53(stack_data, 0xffff);
     
     hash_table_size = *(int *)(engine_context + 0x2e28);
     *(int *)(engine_context + 0x2e28) = hash_table_size + 1;
-    found_entry = (uint64_t *)((longlong)hash_table_size * 0x38 + *(longlong *)(engine_context + 0x2e30));
+    found_entry = (uint64_t *)((int64_t)hash_table_size * 0x38 + *(int64_t *)(engine_context + 0x2e30));
     
     hash_result = FUN_1801210b0(string_start_ptr);
     *found_entry = hash_result;
@@ -499,7 +499,7 @@ uint64_t *find_or_create_hash_entry_with_precomputed_hash(uint64_t param_1, uint
         if (((current_char == 0x23) && (*string_ptr == 0x23)) && (string_ptr[1] == 0x23)) {
             final_hash = 0xffffffff;
         }
-        final_hash = *(uint *)(&global_config_6320_ptr + ((ulonglong)(final_hash & 0xff) ^ (ulonglong)current_char) * 4) ^
+        final_hash = *(uint *)(&global_config_6320_ptr + ((uint64_t)(final_hash & 0xff) ^ (uint64_t)current_char) * 4) ^
                  final_hash >> 8;
         current_char = *string_ptr;
         string_ptr = string_ptr + 1;
@@ -514,20 +514,20 @@ uint64_t *create_new_hash_entry(void)
     int32_t *entry_data;
     byte current_char;
     int hash_table_size;
-    longlong engine_context;
+    int64_t engine_context;
     byte *string_ptr;
-    longlong allocation_context;
+    int64_t allocation_context;
     int new_capacity;
     uint computed_hash;
     uint64_t hash_result;
     int current_size;
-    longlong entry_offset;
+    int64_t entry_offset;
     uint *hash_table_ptr;
-    ulonglong search_index;
+    uint64_t search_index;
     int new_hash_size;
     uint64_t *found_entry;
     uint final_hash;
-    ulonglong max_search;
+    uint64_t max_search;
     byte *string_start_ptr;
     uint8_t stack_data;
     
@@ -537,21 +537,21 @@ uint64_t *create_new_hash_entry(void)
     
     // 在现有哈希表中查找
     if (*(int *)(SYSTEM_DATA_MANAGER_A + 0x2e28) != 0) {
-        hash_table_ptr = (uint *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x2e30) + 8);
+        hash_table_ptr = (uint *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x2e30) + 8);
         max_search = search_index;
         do {
             if (*hash_table_ptr == ~computed_hash) {
                 found_entry = (uint64_t *)
-                             ((longlong)(int)max_search * 0x38 + *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x2e30));
+                             ((int64_t)(int)max_search * 0x38 + *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x2e30));
                 if (found_entry != (uint64_t *)0x0) {
                     return found_entry;
                 }
                 break;
             }
-            max_search = (ulonglong)((int)max_search + 1);
+            max_search = (uint64_t)((int)max_search + 1);
             search_index = search_index + 1;
             hash_table_ptr = hash_table_ptr + 0xe;
-        } while (search_index != (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x2e28));
+        } while (search_index != (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x2e28));
     }
     
     // 检查是否需要扩容
@@ -572,11 +572,11 @@ uint64_t *create_new_hash_entry(void)
         // 执行扩容操作
         if (hash_table_size < new_hash_size) {
             *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
-            hash_result = func_0x000180120ce0((longlong)new_hash_size * 0x38, hash_result);
-            if (*(longlong *)(engine_context + 0x2e30) != 0) {
+            hash_result = func_0x000180120ce0((int64_t)new_hash_size * 0x38, hash_result);
+            if (*(int64_t *)(engine_context + 0x2e30) != 0) {
                 // 复制现有数据到新分配的内存
-                memcpy(hash_result, *(longlong *)(engine_context + 0x2e30), 
-                       (longlong)*(int *)(engine_context + 0x2e28) * 0x38);
+                memcpy(hash_result, *(int64_t *)(engine_context + 0x2e30), 
+                       (int64_t)*(int *)(engine_context + 0x2e28) * 0x38);
             }
             current_size = *(int *)(engine_context + 0x2e28);
             *(uint64_t *)(engine_context + 0x2e30) = hash_result;
@@ -585,8 +585,8 @@ uint64_t *create_new_hash_entry(void)
     }
     
     // 创建新的哈希条目
-    entry_offset = (longlong)current_size * 0x38;
-    allocation_context = *(longlong *)(engine_context + 0x2e30);
+    entry_offset = (int64_t)current_size * 0x38;
+    allocation_context = *(int64_t *)(engine_context + 0x2e30);
     *(uint64_t *)(entry_offset + allocation_context) = 0;
     ((uint64_t *)(entry_offset + allocation_context))[1] = 0;
     found_entry = (uint64_t *)(entry_offset + 0x10 + allocation_context);
@@ -597,11 +597,11 @@ uint64_t *create_new_hash_entry(void)
     entry_data[1] = 0;
     entry_data[2] = 0;
     entry_data[3] = 0;
-    *(ulonglong *)(entry_offset + 0x30 + allocation_context) = CONCAT53(stack_data, 0xffff);
+    *(uint64_t *)(entry_offset + 0x30 + allocation_context) = CONCAT53(stack_data, 0xffff);
     
     hash_table_size = *(int *)(engine_context + 0x2e28);
     *(int *)(engine_context + 0x2e28) = hash_table_size + 1;
-    found_entry = (uint64_t *)((longlong)hash_table_size * 0x38 + *(longlong *)(engine_context + 0x2e30));
+    found_entry = (uint64_t *)((int64_t)hash_table_size * 0x38 + *(int64_t *)(engine_context + 0x2e30));
     
     hash_result = FUN_1801210b0(string_start_ptr);
     *found_entry = hash_result;
@@ -614,7 +614,7 @@ uint64_t *create_new_hash_entry(void)
         if (((current_char == 0x23) && (*string_ptr == 0x23)) && (string_ptr[1] == 0x23)) {
             final_hash = 0xffffffff;
         }
-        final_hash = *(uint *)(&global_config_6320_ptr + ((ulonglong)(final_hash & 0xff) ^ (ulonglong)current_char) * 4) ^
+        final_hash = *(uint *)(&global_config_6320_ptr + ((uint64_t)(final_hash & 0xff) ^ (uint64_t)current_char) * 4) ^
                  final_hash >> 8;
         current_char = *string_ptr;
         string_ptr = string_ptr + 1;
@@ -624,7 +624,7 @@ uint64_t *create_new_hash_entry(void)
 }
 
 // 处理配置参数并设置到目标结构体
-void process_configuration_parameters(uint64_t param_1, uint64_t param_2, longlong target_struct, uint64_t config_data)
+void process_configuration_parameters(uint64_t param_1, uint64_t param_2, int64_t target_struct, uint64_t config_data)
 {
     int parse_result;
     float float_value1;
@@ -704,24 +704,24 @@ void process_configuration_parameters(uint64_t param_1, uint64_t param_2, longlo
 }
 
 // 处理引擎资源数据并格式化输出
-void process_engine_resources_and_format_output(longlong engine_context, uint64_t *format_params, int *output_buffer)
+void process_engine_resources_and_format_output(int64_t engine_context, uint64_t *format_params, int *output_buffer)
 {
     float position_x;
     float position_y;
     short texture_index;
     uint64_t *resource_entry;
-    longlong resource_offset;
+    int64_t resource_offset;
     int *hash_table_ptr;
-    ulonglong hash_index;
-    longlong string_match;
+    uint64_t hash_index;
+    int64_t string_match;
     int resource_count;
-    ulonglong loop_counter;
-    ulonglong max_iterations;
-    longlong callback_offset;
-    ulonglong iteration_count;
-    ulonglong search_index;
+    uint64_t loop_counter;
+    uint64_t max_iterations;
+    int64_t callback_offset;
+    uint64_t iteration_count;
+    uint64_t search_index;
     uint current_uint;
-    ulonglong max_search;
+    uint64_t max_search;
     
     search_index = 0;
     resource_count = 0;
@@ -731,57 +731,57 @@ void process_engine_resources_and_format_output(longlong engine_context, uint64_
     // 处理活动资源
     if (*(int *)(engine_context + 0x1aa0) != 0) {
         do {
-            resource_entry = *(uint64_t **)(max_search + *(longlong *)(engine_context + 0x1aa8));
-            if ((*(uint *)((longlong)resource_entry + 0xc) & 0x100) == 0) {
+            resource_entry = *(uint64_t **)(max_search + *(int64_t *)(engine_context + 0x1aa8));
+            if ((*(uint *)((int64_t)resource_entry + 0xc) & 0x100) == 0) {
                 if (*(int *)(resource_entry + 0x5c) == -1) {
                     hash_index = search_index;
                     if (*(int *)(SYSTEM_DATA_MANAGER_A + 0x2e28) != 0) {
-                        hash_table_ptr = (int *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x2e30) + 8);
+                        hash_table_ptr = (int *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x2e30) + 8);
                         iteration_count = search_index;
                         max_iterations = search_index;
                         do {
                             if (*hash_table_ptr == *(int *)(resource_entry + 1)) {
-                                hash_index = (longlong)(int)max_iterations * 0x38 + *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x2e30);
+                                hash_index = (int64_t)(int)max_iterations * 0x38 + *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x2e30);
                                 break;
                             }
-                            max_iterations = (ulonglong)((int)max_iterations + 1);
+                            max_iterations = (uint64_t)((int)max_iterations + 1);
                             iteration_count = iteration_count + 1;
                             hash_table_ptr = hash_table_ptr + 0xe;
-                        } while (iteration_count != (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x2e28));
+                        } while (iteration_count != (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x2e28));
                     }
                 }
                 else {
-                    hash_index = (longlong)*(int *)(resource_entry + 0x5c) * 0x38 + *(longlong *)(engine_context + 0x2e30);
+                    hash_index = (int64_t)*(int *)(resource_entry + 0x5c) * 0x38 + *(int64_t *)(engine_context + 0x2e30);
                 }
                 
                 // 创建新的资源条目
                 if (hash_index == 0) {
                     hash_index = FUN_18013c940(*resource_entry);
                     *(int *)(resource_entry + 0x5c) =
-                         (int)((longlong)(hash_index - *(longlong *)(engine_context + 0x2e30)) / 0x38);
+                         (int)((int64_t)(hash_index - *(int64_t *)(engine_context + 0x2e30)) / 0x38);
                 }
                 
                 // 填充资源数据
                 position_x = *(float *)(resource_entry + 8);
-                position_y = *(float *)((longlong)resource_entry + 0x34);
-                *(float *)(hash_index + 0x10) = *(float *)((longlong)resource_entry + 0x44) - *(float *)(resource_entry + 7);
+                position_y = *(float *)((int64_t)resource_entry + 0x34);
+                *(float *)(hash_index + 0x10) = *(float *)((int64_t)resource_entry + 0x44) - *(float *)(resource_entry + 7);
                 *(float *)(hash_index + 0xc) = position_x - position_y;
                 *(uint64_t *)(hash_index + 0x14) = resource_entry[10];
                 *(int32_t *)(hash_index + 0x24) = *(int32_t *)(resource_entry + 6);
-                *(uint64_t *)(hash_index + 0x1c) = *(uint64_t *)((longlong)resource_entry + 0x34);
+                *(uint64_t *)(hash_index + 0x1c) = *(uint64_t *)((int64_t)resource_entry + 0x34);
                 *(int32_t *)(hash_index + 0x28) = *(int32_t *)(resource_entry + 0x83);
-                *(int32_t *)(hash_index + 0x2c) = *(int32_t *)((longlong)resource_entry + 0x14);
+                *(int32_t *)(hash_index + 0x2c) = *(int32_t *)((int64_t)resource_entry + 0x14);
                 *(int16_t *)(hash_index + 0x30) = *(int16_t *)(resource_entry + 0x86);
-                *(int8_t *)(hash_index + 0x32) = *(int8_t *)((longlong)resource_entry + 0xb2);
+                *(int8_t *)(hash_index + 0x32) = *(int8_t *)((int64_t)resource_entry + 0xb2);
             }
             current_uint = (int)max_iterations + 1;
             max_search = max_search + 8;
-            max_iterations = (ulonglong)current_uint;
+            max_iterations = (uint64_t)current_uint;
         } while (current_uint != *(uint *)(engine_context + 0x1aa0));
     }
     
     // 设置输出缓冲区大小
-    if (*(longlong *)(output_buffer + 2) != 0) {
+    if (*(int64_t *)(output_buffer + 2) != 0) {
         resource_count = *output_buffer + -1;
     }
     FUN_18011da00(output_buffer, *(int *)(engine_context + 0x2e28) * 0x60 + resource_count);
@@ -791,8 +791,8 @@ void process_engine_resources_and_format_output(longlong engine_context, uint64_
     // 格式化输出资源数据
     if (*(int *)(engine_context + 0x2e28) != 0) {
         do {
-            resource_offset = *(longlong *)(engine_context + 0x2e30);
-            callback_offset = *(longlong *)(max_search + resource_offset);
+            resource_offset = *(int64_t *)(engine_context + 0x2e30);
+            callback_offset = *(int64_t *)(max_search + resource_offset);
             string_match = strstr(callback_offset, &global_config_3336_ptr);
             if (string_match != 0) {
                 callback_offset = string_match;
@@ -829,7 +829,7 @@ void process_engine_resources_and_format_output(longlong engine_context, uint64_
             }
             FUN_180122210(output_buffer, &system_buffer_cc18);
             current_uint = (int)search_index + 1;
-            search_index = (ulonglong)current_uint;
+            search_index = (uint64_t)current_uint;
             max_search = max_search + 0x38;
         } while (current_uint != *(uint *)(engine_context + 0x2e28));
     }
@@ -843,83 +843,83 @@ void process_engine_resources_optimized(uint64_t param_1)
     float position_y;
     short texture_index;
     uint64_t *resource_entry;
-    longlong resource_offset;
+    int64_t resource_offset;
     int *hash_table_ptr;
-    ulonglong hash_index;
-    longlong string_match;
+    uint64_t hash_index;
+    int64_t string_match;
     int resource_count;
-    ulonglong loop_counter;
-    ulonglong max_iterations;
-    longlong callback_offset;
-    ulonglong iteration_count;
+    uint64_t loop_counter;
+    uint64_t max_iterations;
+    int64_t callback_offset;
+    uint64_t iteration_count;
     uint current_uint;
-    ulonglong current_offset;
+    uint64_t current_offset;
     int output_count;
     uint64_t *format_params;
     int *output_buffer;
-    longlong engine_context;
+    int64_t engine_context;
     uint64_t extra_output;
     uint64_t temp_result;
     
     current_offset = loop_counter & 0xffffffff;
     do {
-        resource_entry = *(uint64_t **)(current_offset + *(longlong *)(engine_context + 0x1aa8));
-        if ((*(uint *)((longlong)resource_entry + 0xc) & 0x100) == 0) {
+        resource_entry = *(uint64_t **)(current_offset + *(int64_t *)(engine_context + 0x1aa8));
+        if ((*(uint *)((int64_t)resource_entry + 0xc) & 0x100) == 0) {
             if (*(int *)(resource_entry + 0x5c) == -1) {
                 max_iterations = loop_counter & 0xffffffff;
                 hash_index = loop_counter;
                 if (*(int *)(SYSTEM_DATA_MANAGER_A + 0x2e28) != 0) {
-                    hash_table_ptr = (int *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x2e30) + 8);
+                    hash_table_ptr = (int *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x2e30) + 8);
                     iteration_count = loop_counter;
                     do {
                         if (*hash_table_ptr == *(int *)(resource_entry + 1)) {
-                            hash_index = (longlong)(int)max_iterations * 0x38 + *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x2e30);
+                            hash_index = (int64_t)(int)max_iterations * 0x38 + *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x2e30);
                             break;
                         }
-                        max_iterations = (ulonglong)((int)max_iterations + 1);
+                        max_iterations = (uint64_t)((int)max_iterations + 1);
                         iteration_count = iteration_count + 1;
                         hash_table_ptr = hash_table_ptr + 0xe;
-                    } while (iteration_count != (longlong)*(int *)(SYSTEM_DATA_MANAGER_A + 0x2e28));
+                    } while (iteration_count != (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x2e28));
                 }
             }
             else {
-                hash_index = (longlong)*(int *)(resource_entry + 0x5c) * 0x38 + *(longlong *)(engine_context + 0x2e30);
+                hash_index = (int64_t)*(int *)(resource_entry + 0x5c) * 0x38 + *(int64_t *)(engine_context + 0x2e30);
             }
             
             // 创建新的资源条目
             if (hash_index == 0) {
                 hash_index = FUN_18013c940(*resource_entry);
                 *(int *)(resource_entry + 0x5c) =
-                     (int)((longlong)(hash_index - *(longlong *)(engine_context + 0x2e30)) / 0x38);
+                     (int)((int64_t)(hash_index - *(int64_t *)(engine_context + 0x2e30)) / 0x38);
             }
             
             // 填充资源数据
             position_x = *(float *)(resource_entry + 8);
-            position_y = *(float *)((longlong)resource_entry + 0x34);
-            *(float *)(hash_index + 0x10) = *(float *)((longlong)resource_entry + 0x44) - *(float *)(resource_entry + 7);
+            position_y = *(float *)((int64_t)resource_entry + 0x34);
+            *(float *)(hash_index + 0x10) = *(float *)((int64_t)resource_entry + 0x44) - *(float *)(resource_entry + 7);
             *(float *)(hash_index + 0xc) = position_x - position_y;
             *(uint64_t *)(hash_index + 0x14) = resource_entry[10];
             *(int32_t *)(hash_index + 0x24) = *(int32_t *)(resource_entry + 6);
-            param_1 = *(uint64_t *)((longlong)resource_entry + 0x34);
+            param_1 = *(uint64_t *)((int64_t)resource_entry + 0x34);
             *(uint64_t *)(hash_index + 0x1c) = param_1;
             *(int32_t *)(hash_index + 0x28) = *(int32_t *)(resource_entry + 0x83);
-            *(int32_t *)(hash_index + 0x2c) = *(int32_t *)((longlong)resource_entry + 0x14);
+            *(int32_t *)(hash_index + 0x2c) = *(int32_t *)((int64_t)resource_entry + 0x14);
             *(int16_t *)(hash_index + 0x30) = *(int16_t *)(resource_entry + 0x86);
-            *(int8_t *)(hash_index + 0x32) = *(int8_t *)((longlong)resource_entry + 0xb2);
+            *(int8_t *)(hash_index + 0x32) = *(int8_t *)((int64_t)resource_entry + 0xb2);
         }
         output_count = output_count + 1;
         current_offset = current_offset + 8;
         if (output_count == *(int *)(engine_context + 0x1aa0)) {
             resource_count = (int)loop_counter;
-            if (*(ulonglong *)(output_buffer + 2) != loop_counter) {
+            if (*(uint64_t *)(output_buffer + 2) != loop_counter) {
                 resource_count = *output_buffer + -1;
             }
             FUN_18011da00(param_1, *(int *)(engine_context + 0x2e28) * 0x60 + resource_count);
             current_offset = loop_counter;
             if (*(int *)(engine_context + 0x2e28) != (int)loop_counter) {
                 do {
-                    resource_offset = *(longlong *)(engine_context + 0x2e30);
-                    callback_offset = *(longlong *)(current_offset + resource_offset);
+                    resource_offset = *(int64_t *)(engine_context + 0x2e30);
+                    callback_offset = *(int64_t *)(current_offset + resource_offset);
                     string_match = strstr(callback_offset, &global_config_3336_ptr);
                     if (string_match != 0) {
                         callback_offset = string_match;
@@ -937,7 +937,7 @@ void process_engine_resources_optimized(uint64_t param_1)
                         FUN_180122210(position_x, &global_config_3400_ptr, (int)position_x, (int)*(float *)(current_offset + 0x10 + resource_offset));
                     }
                     position_x = *(float *)(current_offset + 0x14 + resource_offset);
-                    hash_index = (ulonglong)(uint)position_x;
+                    hash_index = (uint64_t)(uint)position_x;
                     if ((position_x != 0.0) || (*(float *)(current_offset + 0x18 + resource_offset) != 0.0)) {
                         hash_index = FUN_180122210(hash_index, &global_config_3456_ptr, (int)position_x,
                                                   (int)*(float *)(current_offset + 0x18 + resource_offset));
@@ -958,7 +958,7 @@ void process_engine_resources_optimized(uint64_t param_1)
                     }
                     FUN_180122210(temp_result, &system_buffer_cc18);
                     current_uint = (int)loop_counter + 1;
-                    loop_counter = (ulonglong)current_uint;
+                    loop_counter = (uint64_t)current_uint;
                     current_offset = current_offset + 0x38;
                 } while (current_uint != *(uint *)(engine_context + 0x2e28));
             }
@@ -971,21 +971,21 @@ void process_engine_resources_optimized(uint64_t param_1)
 void format_resource_data_output(int32_t output_buffer)
 {
     short texture_index;
-    longlong resource_offset;
-    longlong string_match;
+    int64_t resource_offset;
+    int64_t string_match;
     int resource_count;
-    longlong engine_context;
+    int64_t engine_context;
     uint current_uint;
-    ulonglong current_offset;
+    uint64_t current_offset;
     uint64_t *format_params;
     int *output_ptr;
-    longlong context_ptr;
+    int64_t context_ptr;
     int32_t temp_result;
     float position_x;
     uint64_t temp_output;
     
     resource_count = (int)current_offset;
-    if (*(ulonglong *)(output_ptr + 2) != current_offset) {
+    if (*(uint64_t *)(output_ptr + 2) != current_offset) {
         resource_count = *output_ptr + -1;
     }
     FUN_18011da00(output_buffer, *(int *)(context_ptr + 0x2e28) * 0x60 + resource_count);
@@ -994,8 +994,8 @@ void format_resource_data_output(int32_t output_buffer)
     // 格式化输出资源数据
     if (*(int *)(context_ptr + 0x2e28) != (int)current_offset) {
         do {
-            resource_offset = *(longlong *)(context_ptr + 0x2e30);
-            string_match = *(longlong *)(current_offset + resource_offset);
+            resource_offset = *(int64_t *)(context_ptr + 0x2e30);
+            string_match = *(int64_t *)(current_offset + resource_offset);
             resource_offset = strstr(string_match, &global_config_3336_ptr);
             if (resource_offset != 0) {
                 string_match = resource_offset;
@@ -1033,7 +1033,7 @@ void format_resource_data_output(int32_t output_buffer)
             }
             FUN_180122210(temp_result, &system_buffer_cc18);
             current_uint = (int)current_offset + 1;
-            current_offset = (ulonglong)current_uint;
+            current_offset = (uint64_t)current_uint;
             current_offset = current_offset + 0x38;
         } while (current_uint != *(uint *)(context_ptr + 0x2e28));
     }

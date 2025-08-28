@@ -5,7 +5,7 @@
 
 // 函数: 处理三维网格数据
 // 参数: data_context - 数据结构指针, process_flag - 处理标志
-void process_mesh_data(longlong data_context, uint64_t process_flag)
+void process_mesh_data(int64_t data_context, uint64_t process_flag)
 {
     int32_t temp_var1;
     int32_t temp_var2;
@@ -19,10 +19,10 @@ void process_mesh_data(longlong data_context, uint64_t process_flag)
     int32_t *ptr_var10;
     int32_t *ptr_var11;
     int16_t *ptr_var12;
-    longlong temp_var13;
-    longlong temp_var14;
+    int64_t temp_var13;
+    int64_t temp_var14;
     int32_t *ptr_var15;
-    longlong stack_offset_18;
+    int64_t stack_offset_18;
     int stack_offset_20;
     int32_t *stack_ptr_1a0;
     int32_t *stack_ptr_198;
@@ -36,12 +36,12 @@ void process_mesh_data(longlong data_context, uint64_t process_flag)
     int16_t *stack_ptr_158;
     int16_t *stack_ptr_150;
     int32_t stack_value_148;
-    longlong stack_value_140;
+    int64_t stack_value_140;
     int32_t *stack_ptr_138;
     int32_t *stack_ptr_130;
     int32_t *stack_ptr_128;
-    longlong stack_value_120;
-    longlong stack_value_118;
+    int64_t stack_value_120;
+    int64_t stack_value_118;
     int32_t stack_value_108;
     int32_t stack_value_104;
     int32_t *stack_ptr_100;
@@ -84,25 +84,25 @@ void process_mesh_data(longlong data_context, uint64_t process_flag)
     
     // 分配缓冲区空间
     allocate_buffer_space(&stack_ptr_1a0,
-                         ((*(longlong *)(data_context + 0x70) - *(longlong *)(data_context + 0x68)) / 0x18) * 3);
+                         ((*(int64_t *)(data_context + 0x70) - *(int64_t *)(data_context + 0x68)) / 0x18) * 3);
     allocate_buffer_space(&stack_ptr_180,
-                         ((*(longlong *)(data_context + 0x70) - *(longlong *)(data_context + 0x68)) / 0x18) * 3);
+                         ((*(int64_t *)(data_context + 0x70) - *(int64_t *)(data_context + 0x68)) / 0x18) * 3);
     
-    temp_var13 = *(longlong *)(data_context + 0x70);
-    temp_var14 = (temp_var13 - *(longlong *)(data_context + 0x68)) / 0x18;
+    temp_var13 = *(int64_t *)(data_context + 0x70);
+    temp_var14 = (temp_var13 - *(int64_t *)(data_context + 0x68)) / 0x18;
     
     // 如果有数据需要处理
     if (temp_var14 != 0) {
         stack_ptr_160 = (int16_t *)
                       allocate_memory(_memory_pool_180c8ed18, temp_var14 * 2, 
-                                   CONCAT71((int7)((ulonglong)temp_var13 >> 8), 3));
+                                   CONCAT71((int7)((uint64_t)temp_var13 >> 8), 3));
         stack_ptr_150 = stack_ptr_160 + temp_var14;
-        temp_var13 = *(longlong *)(data_context + 0x70);
+        temp_var13 = *(int64_t *)(data_context + 0x70);
         stack_ptr_158 = stack_ptr_160;
     }
     
     stack_offset_20 = 0;
-    stack_value_120 = *(longlong *)(data_context + 0x68);
+    stack_value_120 = *(int64_t *)(data_context + 0x68);
     temp_var14 = temp_var13 - stack_value_120 >> 0x3f;
     ptr_var9 = stack_ptr_180;
     ptr_var15 = stack_ptr_178;
@@ -115,17 +115,17 @@ void process_mesh_data(longlong data_context, uint64_t process_flag)
         do {
             ptr_var5 = stack_ptr_158;
             ptr_var7 = (int32_t *)0x0;
-            temp_var13 = *(longlong *)(data_context + 0x28);
+            temp_var13 = *(int64_t *)(data_context + 0x28);
             stack_ptr_138 = (int32_t *)
-                          ((longlong)*(int *)(stack_value_120 + 4 + stack_value_140 * 0x18) * 0x10 + temp_var13);
+                          ((int64_t)*(int *)(stack_value_120 + 4 + stack_value_140 * 0x18) * 0x10 + temp_var13);
             stack_ptr_130 = (int32_t *)
-                          ((longlong)*(int *)(stack_value_120 + 8 + stack_value_140 * 0x18) * 0x10 + temp_var13);
+                          ((int64_t)*(int *)(stack_value_120 + 8 + stack_value_140 * 0x18) * 0x10 + temp_var13);
             stack_ptr_128 = (int32_t *)
-                          ((longlong)*(int *)(stack_value_120 + 0xc + stack_value_140 * 0x18) * 0x10 + temp_var13);
+                          ((int64_t)*(int *)(stack_value_120 + 0xc + stack_value_140 * 0x18) * 0x10 + temp_var13);
             
             // 计算中间值
-            temp_var13 = ((longlong)ptr_var11 - (longlong)ptr_var10) / 6 +
-                         ((longlong)ptr_var11 - (longlong)ptr_var10 >> 0x3f);
+            temp_var13 = ((int64_t)ptr_var11 - (int64_t)ptr_var10) / 6 +
+                         ((int64_t)ptr_var11 - (int64_t)ptr_var10 >> 0x3f);
             temp_var13 = (temp_var13 >> 1) - (temp_var13 >> 0x3f);
             
             if (ptr_var15 < stack_ptr_170) {
@@ -134,7 +134,7 @@ void process_mesh_data(longlong data_context, uint64_t process_flag)
             }
             else {
                 // 重新分配内存
-                stack_value_118 = (longlong)ptr_var15 - (longlong)ptr_var9;
+                stack_value_118 = (int64_t)ptr_var15 - (int64_t)ptr_var9;
                 if (stack_value_118 >> 2 == 0) {
                     stack_offset_18 = 1;
 LAB_REALLOC_1:
@@ -189,13 +189,13 @@ LAB_REALLOC_2:
                 
                 ptr_var6 = ptr_var9;
                 if (ptr_var10 != ptr_var11) {
-                    temp_var14 = (longlong)ptr_var10 - (longlong)ptr_var9;
+                    temp_var14 = (int64_t)ptr_var10 - (int64_t)ptr_var9;
                     do {
-                        *ptr_var6 = *(int32_t *)(temp_var14 + (longlong)ptr_var6);
-                        ptr_var6[1] = *(int32_t *)((longlong)ptr_var6 + temp_var14 + 4);
-                        ptr_var6[2] = *(int32_t *)((longlong)ptr_var6 + temp_var14 + 8);
+                        *ptr_var6 = *(int32_t *)(temp_var14 + (int64_t)ptr_var6);
+                        ptr_var6[1] = *(int32_t *)((int64_t)ptr_var6 + temp_var14 + 4);
+                        ptr_var6[2] = *(int32_t *)((int64_t)ptr_var6 + temp_var14 + 8);
                         ptr_var6 = ptr_var6 + 3;
-                    } while ((int32_t *)(temp_var14 + (longlong)ptr_var6) != ptr_var11);
+                    } while ((int32_t *)(temp_var14 + (int64_t)ptr_var6) != ptr_var11);
                 }
                 
                 *ptr_var6 = temp_var3;
@@ -210,8 +210,8 @@ LAB_REALLOC_2:
             }
             
             ptr_var11 = ptr_var6 + 3;
-            temp_var13 = ((longlong)ptr_var11 - (longlong)ptr_var9) / 6 +
-                         ((longlong)ptr_var11 - (longlong)ptr_var9 >> 0x3f);
+            temp_var13 = ((int64_t)ptr_var11 - (int64_t)ptr_var9) / 6 +
+                         ((int64_t)ptr_var11 - (int64_t)ptr_var9 >> 0x3f);
             temp_var13 = (temp_var13 >> 1) - (temp_var13 >> 0x3f);
             stack_ptr_198 = ptr_var11;
             
@@ -222,8 +222,8 @@ LAB_REALLOC_2:
             }
             else {
                 // 处理索引数据
-                stack_ptr_138 = (int32_t *)((longlong)ptr_var8 - (longlong)ptr_var7);
-                if ((longlong)stack_ptr_138 >> 2 == 0) {
+                stack_ptr_138 = (int32_t *)((int64_t)ptr_var8 - (int64_t)ptr_var7);
+                if ((int64_t)stack_ptr_138 >> 2 == 0) {
                     stack_offset_18 = 1;
 LAB_REALLOC_3:
                     ptr_var10 = (int32_t *)
@@ -231,7 +231,7 @@ LAB_REALLOC_3:
                                             (int8_t)stack_value_168);
                 }
                 else {
-                    stack_offset_18 = ((longlong)stack_ptr_138 >> 2) * 2;
+                    stack_offset_18 = ((int64_t)stack_ptr_138 >> 2) * 2;
                     if (stack_offset_18 != 0) goto LAB_REALLOC_3;
                     ptr_var10 = (int32_t *)0x0;
                 }
@@ -278,13 +278,13 @@ LAB_REALLOC_4:
                 
                 ptr_var8 = ptr_var7;
                 if (ptr_var9 != ptr_var11) {
-                    temp_var14 = (longlong)ptr_var9 - (longlong)ptr_var7;
+                    temp_var14 = (int64_t)ptr_var9 - (int64_t)ptr_var7;
                     do {
-                        *ptr_var8 = *(int32_t *)(temp_var14 + (longlong)ptr_var8);
-                        ptr_var8[1] = *(int32_t *)(temp_var14 + 4 + (longlong)ptr_var8);
-                        ptr_var8[2] = *(int32_t *)(temp_var14 + 8 + (longlong)ptr_var8);
+                        *ptr_var8 = *(int32_t *)(temp_var14 + (int64_t)ptr_var8);
+                        ptr_var8[1] = *(int32_t *)(temp_var14 + 4 + (int64_t)ptr_var8);
+                        ptr_var8[2] = *(int32_t *)(temp_var14 + 8 + (int64_t)ptr_var8);
                         ptr_var8 = ptr_var8 + 3;
-                    } while ((int32_t *)(temp_var14 + (longlong)ptr_var8) != ptr_var11);
+                    } while ((int32_t *)(temp_var14 + (int64_t)ptr_var8) != ptr_var11);
                 }
                 
                 *ptr_var8 = temp_var3;
@@ -300,8 +300,8 @@ LAB_REALLOC_4:
             }
             
             // 处理纹理坐标数据...
-            temp_var13 = ((longlong)ptr_var8 - (longlong)ptr_var7) / 6 +
-                         ((longlong)ptr_var8 - (longlong)ptr_var7 >> 0x3f);
+            temp_var13 = ((int64_t)ptr_var8 - (int64_t)ptr_var7) / 6 +
+                         ((int64_t)ptr_var8 - (int64_t)ptr_var7 >> 0x3f);
             temp_var13 = (temp_var13 >> 1) - (temp_var13 >> 0x3f);
             stack_ptr_198 = ptr_var8;
             
@@ -310,15 +310,15 @@ LAB_REALLOC_4:
                 ptr_var9 = ptr_var10;
             }
             else {
-                stack_ptr_130 = (int32_t *)((longlong)ptr_var15 - (longlong)ptr_var10);
-                if ((longlong)stack_ptr_130 >> 2 == 0) {
+                stack_ptr_130 = (int32_t *)((int64_t)ptr_var15 - (int64_t)ptr_var10);
+                if ((int64_t)stack_ptr_130 >> 2 == 0) {
                     stack_offset_18 = 1;
 LAB_REALLOC_5:
                     ptr_var9 = (int32_t *)allocate_memory(_memory_pool_180c8ed18, 
                                                             stack_offset_18 * 4, (int8_t)stack_value_168);
                 }
                 else {
-                    stack_offset_18 = ((longlong)stack_ptr_130 >> 2) * 2;
+                    stack_offset_18 = ((int64_t)stack_ptr_130 >> 2) * 2;
                     if (stack_offset_18 != 0) goto LAB_REALLOC_5;
                     ptr_var9 = (int32_t *)0x0;
                 }
@@ -365,13 +365,13 @@ LAB_REALLOC_6:
                 
                 ptr_var11 = ptr_var10;
                 if (ptr_var7 != ptr_var8) {
-                    temp_var14 = (longlong)ptr_var7 - (longlong)ptr_var10;
+                    temp_var14 = (int64_t)ptr_var7 - (int64_t)ptr_var10;
                     do {
-                        *ptr_var11 = *(int32_t *)(temp_var14 + (longlong)ptr_var11);
-                        ptr_var11[1] = *(int32_t *)(temp_var14 + 4 + (longlong)ptr_var11);
-                        ptr_var11[2] = *(int32_t *)(temp_var14 + 8 + (longlong)ptr_var11);
+                        *ptr_var11 = *(int32_t *)(temp_var14 + (int64_t)ptr_var11);
+                        ptr_var11[1] = *(int32_t *)(temp_var14 + 4 + (int64_t)ptr_var11);
+                        ptr_var11[2] = *(int32_t *)(temp_var14 + 8 + (int64_t)ptr_var11);
                         ptr_var11 = ptr_var11 + 3;
-                    } while ((int32_t *)(temp_var14 + (longlong)ptr_var11) != ptr_var8);
+                    } while ((int32_t *)(temp_var14 + (int64_t)ptr_var11) != ptr_var8);
                 }
                 
                 *ptr_var11 = temp_var3;
@@ -395,15 +395,15 @@ LAB_REALLOC_6:
             }
             else {
                 // 处理材质索引
-                stack_ptr_128 = (int32_t *)((longlong)ptr_var5 - (longlong)stack_ptr_160);
-                if ((longlong)stack_ptr_128 >> 1 == 0) {
+                stack_ptr_128 = (int32_t *)((int64_t)ptr_var5 - (int64_t)stack_ptr_160);
+                if ((int64_t)stack_ptr_128 >> 1 == 0) {
                     temp_var13 = 1;
 LAB_REALLOC_7:
                     ptr_var12 = (int16_t *)allocate_memory(_memory_pool_180c8ed18, 
                                                             temp_var13 * 2, 3);
                 }
                 else {
-                    temp_var13 = ((longlong)stack_ptr_128 >> 1) * 2;
+                    temp_var13 = ((int64_t)stack_ptr_128 >> 1) * 2;
                     if (temp_var13 != 0) goto LAB_REALLOC_7;
                     ptr_var12 = (int16_t *)0x0;
                 }
@@ -423,9 +423,9 @@ LAB_REALLOC_7:
             stack_ptr_158 = ptr_var12 + 1;
             stack_offset_20 = stack_offset_20 + 1;
             stack_value_140 = stack_value_140 + 1;
-            stack_value_120 = *(longlong *)(data_context + 0x68);
-        } while ((ulonglong)(longlong)stack_offset_20 <
-                 (ulonglong)((*(longlong *)(data_context + 0x70) - stack_value_120) / 0x18));
+            stack_value_120 = *(int64_t *)(data_context + 0x68);
+        } while ((uint64_t)(int64_t)stack_offset_20 <
+                 (uint64_t)((*(int64_t *)(data_context + 0x70) - stack_value_120) / 0x18));
     }
     
     // 清理和最终处理
@@ -439,9 +439,9 @@ LAB_REALLOC_7:
     stack_value_ec = stack_value_9c;
     
     // 准备渲染数据
-    _stack_value_f8 = CONCAT44(stack_value_a4, (int)(((longlong)ptr_var11 - (longlong)ptr_var10) / 0xc));
+    _stack_value_f8 = CONCAT44(stack_value_a4, (int)(((int64_t)ptr_var11 - (int64_t)ptr_var10) / 0xc));
     _stack_value_108 = CONCAT44(stack_value_b4, 0xc);
-    _stack_value_e0 = CONCAT44(stack_value_8c, (int)((ulonglong)((longlong)ptr_var15 - (longlong)ptr_var9 >> 2) / 3));
+    _stack_value_e0 = CONCAT44(stack_value_8c, (int)((uint64_t)((int64_t)ptr_var15 - (int64_t)ptr_var9 >> 2) / 3));
     
     stack_value_f0 = 0xc;
     stack_value_d0 = 2;
@@ -451,8 +451,8 @@ LAB_REALLOC_7:
     stack_ptr_c8 = stack_ptr_160;
     
     // 调用渲染函数
-    (**(code **)(**(longlong **)(_global_table_180c8a990 + 0x28) + 0x20))
-              (*(longlong **)(_global_table_180c8a990 + 0x28), &stack_value_108, process_flag, 0);
+    (**(code **)(**(int64_t **)(_global_table_180c8a990 + 0x28) + 0x20))
+              (*(int64_t **)(_global_table_180c8a990 + 0x28), &stack_value_108, process_flag, 0);
     
     // 释放内存
     if (ptr_var5 != (int16_t *)0x0) {
@@ -470,7 +470,7 @@ LAB_REALLOC_7:
 
 // 函数: 处理顶点缓冲区数据
 // 参数: data_context - 数据上下文, process_flag - 处理标志, param_3/param_4 - 附加参数
-int8_t process_vertex_buffer(longlong data_context, uint64_t process_flag, 
+int8_t process_vertex_buffer(int64_t data_context, uint64_t process_flag, 
                                 uint64_t param_3, uint64_t param_4)
 {
     int32_t temp_var1;
@@ -480,13 +480,13 @@ int8_t process_vertex_buffer(longlong data_context, uint64_t process_flag,
     int8_t result;
     int32_t *ptr_var6;
     int32_t *ptr_var7;
-    longlong temp_var8;
+    int64_t temp_var8;
     int32_t *ptr_var9;
-    longlong temp_var10;
+    int64_t temp_var10;
     int32_t *ptr_var11;
     uint temp_var12;
-    ulonglong loop_counter;
-    ulonglong temp_var14;
+    uint64_t loop_counter;
+    uint64_t temp_var14;
     int temp_array[2];
     uint64_t saved_param_2;
     int32_t *stack_ptr_e0;
@@ -504,7 +504,7 @@ int8_t process_vertex_buffer(longlong data_context, uint64_t process_flag,
     int32_t stack_value_78;
     ushort stack_value_70;
     int32_t stack_value_6e;
-    ulonglong temp_var13;
+    uint64_t temp_var13;
     
     // 初始化栈变量
     stack_ptr_e0 = (int32_t *)0x0;
@@ -516,17 +516,17 @@ int8_t process_vertex_buffer(longlong data_context, uint64_t process_flag,
     
     // 分配顶点缓冲区空间
     allocate_buffer_space(&stack_ptr_e0, 
-                         *(longlong *)(data_context + 0x30) - *(longlong *)(data_context + 0x28) >> 4,
+                         *(int64_t *)(data_context + 0x30) - *(int64_t *)(data_context + 0x28) >> 4,
                          param_3, param_4, 0xfffffffffffffffe);
     
-    temp_var8 = *(longlong *)(data_context + 0x28);
+    temp_var8 = *(int64_t *)(data_context + 0x28);
     ptr_var9 = stack_ptr_e0;
     ptr_var6 = stack_ptr_e0;
     ptr_var11 = stack_ptr_d0;
     temp_var14 = temp_var13;
     
     // 处理顶点数据
-    if (*(longlong *)(data_context + 0x30) - temp_var8 >> 4 != 0) {
+    if (*(int64_t *)(data_context + 0x30) - temp_var8 >> 4 != 0) {
         do {
             ptr_var4 = stack_ptr_d8;
             ptr_var6 = (int32_t *)0x0;
@@ -543,7 +543,7 @@ int8_t process_vertex_buffer(longlong data_context, uint64_t process_flag,
             }
             else {
                 // 重新分配顶点缓冲区
-                temp_var8 = ((longlong)stack_ptr_d8 - (longlong)ptr_var9) / 0xc;
+                temp_var8 = ((int64_t)stack_ptr_d8 - (int64_t)ptr_var9) / 0xc;
                 if (temp_var8 == 0) {
                     temp_var8 = 1;
 LAB_REALLOC_VERTEX:
@@ -557,13 +557,13 @@ LAB_REALLOC_VERTEX:
                 
                 ptr_var7 = ptr_var6;
                 if (ptr_var9 != ptr_var4) {
-                    temp_var10 = (longlong)ptr_var9 - (longlong)ptr_var6;
+                    temp_var10 = (int64_t)ptr_var9 - (int64_t)ptr_var6;
                     do {
-                        *ptr_var7 = *(int32_t *)(temp_var10 + (longlong)ptr_var7);
-                        ptr_var7[1] = *(int32_t *)((longlong)ptr_var7 + temp_var10 + 4);
-                        ptr_var7[2] = *(int32_t *)((longlong)ptr_var7 + temp_var10 + 8);
+                        *ptr_var7 = *(int32_t *)(temp_var10 + (int64_t)ptr_var7);
+                        ptr_var7[1] = *(int32_t *)((int64_t)ptr_var7 + temp_var10 + 4);
+                        ptr_var7[2] = *(int32_t *)((int64_t)ptr_var7 + temp_var10 + 8);
                         ptr_var7 = ptr_var7 + 3;
-                    } while ((int32_t *)(temp_var10 + (longlong)ptr_var7) != ptr_var4);
+                    } while ((int32_t *)(temp_var10 + (int64_t)ptr_var7) != ptr_var4);
                 }
                 
                 *ptr_var7 = temp_var3;
@@ -580,13 +580,13 @@ LAB_REALLOC_VERTEX:
             
             stack_ptr_d8 = ptr_var7 + 3;
             temp_var12 = (int)temp_var13 + 1;
-            temp_var13 = (ulonglong)temp_var12;
-            temp_var8 = *(longlong *)(data_context + 0x28);
+            temp_var13 = (uint64_t)temp_var12;
+            temp_var8 = *(int64_t *)(data_context + 0x28);
             process_flag = saved_param_2;
             ptr_var9 = ptr_var6;
             temp_var14 = temp_var14 + 0x10;
-        } while ((ulonglong)(longlong)(int)temp_var12 <
-                 (ulonglong)(*(longlong *)(data_context + 0x30) - temp_var8 >> 4));
+        } while ((uint64_t)(int64_t)(int)temp_var12 <
+                 (uint64_t)(*(int64_t *)(data_context + 0x30) - temp_var8 >> 4));
     }
     
     // 准备渲染参数
@@ -597,25 +597,25 @@ LAB_REALLOC_VERTEX:
     stack_value_80 = 0;
     stack_value_78 = 0;
     stack_value_6e = 0xff00ff;
-    stack_value_a8 = (int32_t)(((longlong)stack_ptr_d8 - (longlong)ptr_var6) / 0xc);
+    stack_value_a8 = (int32_t)(((int64_t)stack_ptr_d8 - (int64_t)ptr_var6) / 0xc);
     temp_array_b8[0] = 0xc;
     stack_value_70 = 6;
     stack_ptr_b0 = ptr_var6;
     
     // 调用顶点处理函数
-    result = (**(code **)(**(longlong **)(_global_table_180c8a990 + 0x28) + 0x38))
-                    (*(longlong **)(_global_table_180c8a990 + 0x28), temp_array_b8, process_flag, temp_array);
+    result = (**(code **)(**(int64_t **)(_global_table_180c8a990 + 0x28) + 0x38))
+                    (*(int64_t **)(_global_table_180c8a990 + 0x28), temp_array_b8, process_flag, temp_array);
     
     if (temp_array[0] == 1) {
         stack_value_70 = 2;
-        result = (**(code **)(**(longlong **)(_global_table_180c8a990 + 0x28) + 0x38))
-                          (*(longlong **)(_global_table_180c8a990 + 0x28), temp_array_b8, process_flag, temp_array);
+        result = (**(code **)(**(int64_t **)(_global_table_180c8a990 + 0x28) + 0x38))
+                          (*(int64_t **)(_global_table_180c8a990 + 0x28), temp_array_b8, process_flag, temp_array);
     }
     
     if (temp_array[0] == 2) {
         stack_value_70 = stack_value_70 | 8;
-        result = (**(code **)(**(longlong **)(_global_table_180c8a990 + 0x28) + 0x38))
-                          (*(longlong **)(_global_table_180c8a990 + 0x28), temp_array_b8, process_flag, temp_array);
+        result = (**(code **)(**(int64_t **)(_global_table_180c8a990 + 0x28) + 0x38))
+                          (*(int64_t **)(_global_table_180c8a990 + 0x28), temp_array_b8, process_flag, temp_array);
     }
     
     // 清理内存
@@ -628,22 +628,22 @@ LAB_REALLOC_VERTEX:
 
 // 函数: 统计顶点使用频率
 // 参数: vertex_array - 顶点数据数组, process_flag - 处理标志, param_3/param_4 - 附加参数
-void count_vertex_usage(longlong *vertex_array, uint64_t process_flag, 
+void count_vertex_usage(int64_t *vertex_array, uint64_t process_flag, 
                        uint64_t param_3, uint64_t param_4)
 {
     int temp_var1;
-    longlong temp_var2;
+    int64_t temp_var2;
     int temp_var3;
     int temp_var4;
-    ulonglong loop_counter1;
-    ulonglong loop_counter2;
+    uint64_t loop_counter1;
+    uint64_t loop_counter2;
     uint temp_var7;
     int temp_var8;
-    ulonglong loop_counter3;
+    uint64_t loop_counter3;
     int *ptr_var10;
     int32_t temp_array[2];
     int *stack_ptr_30;
-    longlong stack_value_28;
+    int64_t stack_value_28;
     uint64_t stack_value_20;
     int32_t stack_value_18;
     
@@ -657,7 +657,7 @@ void count_vertex_usage(longlong *vertex_array, uint64_t process_flag,
     
     // 分配统计内存
     allocate_statistics_buffer(&stack_ptr_30, 
-                             (longlong)(int)(vertex_array[1] - *vertex_array >> 3), 
+                             (int64_t)(int)(vertex_array[1] - *vertex_array >> 3), 
                              temp_array, param_4, 0xfffffffffffffffe);
     
     temp_var2 = vertex_array[0xe] - vertex_array[0xd] >> 0x3f;
@@ -671,14 +671,14 @@ void count_vertex_usage(longlong *vertex_array, uint64_t process_flag,
                  stack_ptr_30[*(int *)(loop_counter2 + 0x14 + vertex_array[0xd])] + 1;
             temp_var7 = (int)loop_counter3 + 1;
             loop_counter2 = loop_counter2 + 0x18;
-            loop_counter3 = (ulonglong)temp_var7;
-        } while ((ulonglong)(longlong)(int)temp_var7 < (ulonglong)((vertex_array[0xe] - vertex_array[0xd]) / 0x18));
+            loop_counter3 = (uint64_t)temp_var7;
+        } while ((uint64_t)(int64_t)(int)temp_var7 < (uint64_t)((vertex_array[0xe] - vertex_array[0xd]) / 0x18));
     }
     
     // 查找最常使用的顶点
     temp_var4 = -0x80000000;
     temp_var8 = -1;
-    loop_counter2 = stack_value_28 - (longlong)stack_ptr_30 >> 2;
+    loop_counter2 = stack_value_28 - (int64_t)stack_ptr_30 >> 2;
     ptr_var10 = stack_ptr_30;
     
     if (loop_counter2 != 0) {
@@ -689,17 +689,17 @@ void count_vertex_usage(longlong *vertex_array, uint64_t process_flag,
                 temp_var3 = temp_var8;
             }
             temp_var7 = (int)loop_counter1 + 1;
-            loop_counter1 = (ulonglong)temp_var7;
+            loop_counter1 = (uint64_t)temp_var7;
             if (temp_var1 <= temp_var4) {
                 temp_var1 = temp_var4;
             }
             temp_var4 = temp_var1;
             ptr_var10 = ptr_var10 + 1;
             temp_var8 = temp_var3;
-        } while ((ulonglong)(longlong)(int)temp_var7 < loop_counter2);
+        } while ((uint64_t)(int64_t)(int)temp_var7 < loop_counter2);
         
         if (loop_counter2 != 0) {
-            vertex_array[4] = *(longlong *)(*vertex_array + (longlong)temp_var3 * 8);
+            vertex_array[4] = *(int64_t *)(*vertex_array + (int64_t)temp_var3 * 8);
         }
     }
     
@@ -713,13 +713,13 @@ void count_vertex_usage(longlong *vertex_array, uint64_t process_flag,
 
 // 函数: 复制数据结构
 // 参数: dest_structure - 目标数据结构, src_structure - 源数据结构, param_3/param_4 - 附加参数
-longlong * copy_data_structure(longlong *dest_structure, longlong *src_structure, 
+int64_t * copy_data_structure(int64_t *dest_structure, int64_t *src_structure, 
                               uint64_t param_3, uint64_t param_4)
 {
     uint temp_var1;
-    longlong temp_var2;
-    longlong temp_var3;
-    longlong data_size;
+    int64_t temp_var2;
+    int64_t temp_var3;
+    int64_t data_size;
     uint64_t memory_flags;
     
     memory_flags = 0xfffffffffffffffe;
@@ -818,12 +818,12 @@ longlong * copy_data_structure(longlong *dest_structure, longlong *src_structure
 
 // 函数: 释放数据结构内存
 // 参数: data_structure - 要释放的数据结构
-void release_data_structure(ulonglong *data_structure)
+void release_data_structure(uint64_t *data_structure)
 {
     int *ptr_var1;
     uint64_t *ptr_var2;
-    longlong temp_var3;
-    ulonglong memory_flag;
+    int64_t temp_var3;
+    uint64_t memory_flag;
     
     // 释放面数据
     if (data_structure[0xd] != 0) {
@@ -843,10 +843,10 @@ void release_data_structure(ulonglong *data_structure)
     // 释放主数据
     ptr_var2 = (uint64_t *)*data_structure;
     if (ptr_var2 != (uint64_t *)0x0) {
-        memory_flag = (ulonglong)ptr_var2 & 0xffffffffffc00000;
+        memory_flag = (uint64_t)ptr_var2 & 0xffffffffffc00000;
         if (memory_flag != 0) {
-            temp_var3 = memory_flag + 0x80 + ((longlong)ptr_var2 - memory_flag >> 0x10) * 0x50;
-            temp_var3 = temp_var3 - (ulonglong)*(uint *)(temp_var3 + 4);
+            temp_var3 = memory_flag + 0x80 + ((int64_t)ptr_var2 - memory_flag >> 0x10) * 0x50;
+            temp_var3 = temp_var3 - (uint64_t)*(uint *)(temp_var3 + 4);
             
             if ((*(void ***)(memory_flag + 0x70) == &ExceptionList) && 
                 (*(char *)(temp_var3 + 0xe) == '\0')) {
@@ -967,15 +967,15 @@ uint64_t * swap_data_structures(uint64_t *structure1, uint64_t *structure2)
 
 // 函数: 更新资源使用统计
 // 参数: resource_manager - 资源管理器, resource_data - 资源数据
-void update_resource_statistics(uint64_t resource_manager, longlong resource_data)
+void update_resource_statistics(uint64_t resource_manager, int64_t resource_data)
 {
-    longlong mutex_handle;
-    longlong temp_var1;
-    longlong temp_var2;
+    int64_t mutex_handle;
+    int64_t temp_var1;
+    int64_t temp_var2;
     int lock_result;
-    longlong temp_var4;
-    longlong *resource_ptr;
-    longlong total_size;
+    int64_t temp_var4;
+    int64_t *resource_ptr;
+    int64_t total_size;
     uint64_t stack_value_30;
     uint64_t stack_value_28;
     code *callback_func;
@@ -991,7 +991,7 @@ void update_resource_statistics(uint64_t resource_manager, longlong resource_dat
     }
     
     // 检查资源状态
-    if ((*(longlong *)(resource_data + 0xa8) != 0) && (*(longlong *)(resource_data + 0xb8) == 0)) {
+    if ((*(int64_t *)(resource_data + 0xa8) != 0) && (*(int64_t *)(resource_data + 0xb8) == 0)) {
         stack_value_30 = 0;
         stack_value_28 = 0;
         lock_result = 0;
@@ -1006,7 +1006,7 @@ void update_resource_statistics(uint64_t resource_manager, longlong resource_dat
         }
         
         // 计算资源大小
-        resource_ptr = *(longlong **)(resource_data + 0xb8);
+        resource_ptr = *(int64_t **)(resource_data + 0xb8);
         total_size = ((resource_ptr[1] - *resource_ptr) / 0x30) * 0x30 + 
                     (resource_ptr[5] - resource_ptr[4] & 0xffffffffffffffe0U);
         temp_var4 = resource_ptr[9] - resource_ptr[8];
@@ -1014,17 +1014,17 @@ void update_resource_statistics(uint64_t resource_manager, longlong resource_dat
         temp_var4 = temp_var4 / 0x88 + temp_var2;
         
         if (temp_var4 != temp_var2) {
-            resource_ptr = (longlong *)(resource_ptr[8] + 0x30);
+            resource_ptr = (int64_t *)(resource_ptr[8] + 0x30);
             do {
                 total_size = total_size + (*resource_ptr - resource_ptr[-1] >> 4) * 0x14 + 
                              ((resource_ptr[8] - resource_ptr[7]) / 0x18) * 0x18;
                 lock_result = lock_result + 1;
                 resource_ptr = resource_ptr + 0x11;
-            } while ((ulonglong)(longlong)lock_result < (ulonglong)(temp_var4 - temp_var2));
+            } while ((uint64_t)(int64_t)lock_result < (uint64_t)(temp_var4 - temp_var2));
         }
         
         // 更新统计信息
-        *(longlong *)(mutex_handle + 0x30) = *(longlong *)(mutex_handle + 0x30) + total_size;
+        *(int64_t *)(mutex_handle + 0x30) = *(int64_t *)(mutex_handle + 0x30) + total_size;
     }
     
     // 释放互斥锁

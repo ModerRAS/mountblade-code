@@ -1,4 +1,4 @@
-#define ConditionChecker FUN_1808cf96d  // 条件检查器
+#define ConditionChecker ConditionChecker  // 条件检查器
 
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"

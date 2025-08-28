@@ -23,20 +23,20 @@ void process_resource_manager_batches(void)
     uint64_t *batch_ptr;
     uint64_t *temp_ptr;
     uint64_t *new_batch;
-    ulonglong current_pos;
-    longlong item_count;
-    ulonglong start_pos;
-    longlong capacity;
-    longlong offset;
+    uint64_t current_pos;
+    int64_t item_count;
+    uint64_t start_pos;
+    int64_t capacity;
+    int64_t offset;
     void *name_ptr;
     void *default_name;
-    longlong resource_id;
+    int64_t resource_id;
     int8_t stack_buffer[32];
-    longlong context_backup1;
-    longlong context_backup2;
+    int64_t context_backup1;
+    int64_t context_backup2;
     uint64_t *manager_ptr;
-    longlong *iterator_ptr;
-    longlong iterator_pos;
+    int64_t *iterator_ptr;
+    int64_t iterator_pos;
     uint64_t stack_guard1;
     void *batch_name_ptr;
     int8_t *batch_buffer;
@@ -50,17 +50,17 @@ void process_resource_manager_batches(void)
     int8_t *name_ptr2;
     int32_t id2;
     int8_t storage2[72];
-    ulonglong stack_guard2;
+    uint64_t stack_guard2;
     
     stack_guard1 = 0xfffffffffffffffe;
-    stack_guard2 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
+    stack_guard2 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer;
     context_backup1 = g_engine_context;
     context_backup2 = g_resource_manager_base;
-    iterator_ptr = *(longlong **)(g_resource_manager_base + 0xa0);
+    iterator_ptr = *(int64_t **)(g_resource_manager_base + 0xa0);
     resource_id = g_engine_context;
     
     // 检查迭代器是否有效
-    if (iterator_ptr != *(longlong **)(g_resource_manager_base + 0xa8)) {
+    if (iterator_ptr != *(int64_t **)(g_resource_manager_base + 0xa8)) {
         do {
             batch_ptr = (uint64_t *)0x0;
             resource_id = *iterator_ptr;
@@ -79,21 +79,21 @@ void process_resource_manager_batches(void)
                 }
                 strcpy_s(batch_storage, 0x40, name_ptr);
                 
-                current_pos = *(ulonglong *)(resource_id + 0x3c8);
-                if (current_pos < *(ulonglong *)(resource_id + 0x3d0)) {
-                    *(ulonglong *)(resource_id + 0x3c8) = current_pos + 0x58;
+                current_pos = *(uint64_t *)(resource_id + 0x3c8);
+                if (current_pos < *(uint64_t *)(resource_id + 0x3d0)) {
+                    *(uint64_t *)(resource_id + 0x3c8) = current_pos + 0x58;
                     add_resource_batch(current_pos, &batch_name_ptr);
                 }
                 else {
-                    start_pos = *(ulonglong *)(resource_id + 0x3c0);
-                    capacity = (longlong)(current_pos - start_pos) / 0x58;
+                    start_pos = *(uint64_t *)(resource_id + 0x3c0);
+                    capacity = (int64_t)(current_pos - start_pos) / 0x58;
                     if (capacity == 0) {
                         capacity = 1;
 LAB_expand_batch_array:
                         new_batch = (uint64_t *)
                                  allocate_memory(g_memory_allocator, capacity * 0x58, *(int8_t *)(resource_id + 0x3d8));
-                        current_pos = *(ulonglong *)(resource_id + 0x3c8);
-                        start_pos = *(ulonglong *)(resource_id + 0x3c0);
+                        current_pos = *(uint64_t *)(resource_id + 0x3c8);
+                        start_pos = *(uint64_t *)(resource_id + 0x3c0);
                     }
                     else {
                         capacity = capacity * 2;
@@ -102,7 +102,7 @@ LAB_expand_batch_array:
                     
                     temp_ptr = new_batch;
                     if (start_pos != current_pos) {
-                        offset = start_pos - (longlong)new_batch;
+                        offset = start_pos - (int64_t)new_batch;
                         do {
                             *temp_ptr = g_resource_header;
                             temp_ptr[1] = 0;
@@ -111,8 +111,8 @@ LAB_expand_batch_array:
                             temp_ptr[1] = temp_ptr + 3;
                             *(int32_t *)(temp_ptr + 2) = 0;
                             *(int8_t *)(temp_ptr + 3) = 0;
-                            *(int32_t *)(temp_ptr + 2) = *(int32_t *)(offset + 0x10 + (longlong)temp_ptr);
-                            name_ptr = *(void **)(offset + 8 + (longlong)temp_ptr);
+                            *(int32_t *)(temp_ptr + 2) = *(int32_t *)(offset + 0x10 + (int64_t)temp_ptr);
+                            name_ptr = *(void **)(offset + 8 + (int64_t)temp_ptr);
                             default_name = g_string_constants;
                             if (name_ptr != (void *)0x0) {
                                 default_name = name_ptr;
@@ -122,7 +122,7 @@ LAB_expand_batch_array:
                             temp_ptr = temp_ptr + 0xb;
                             resource_id = context_backup1;
                             resource_id = iterator_pos;
-                        } while (offset + (longlong)temp_ptr != current_pos);
+                        } while (offset + (int64_t)temp_ptr != current_pos);
                     }
                     add_resource_batch(temp_ptr, &batch_name_ptr);
                     
@@ -160,21 +160,21 @@ LAB_expand_batch_array:
                 }
                 strcpy_s(temp_storage, 0x40, name_ptr);
                 
-                current_pos = *(ulonglong *)(resource_id + 1000);
-                if (current_pos < *(ulonglong *)(resource_id + 0x3f0)) {
-                    *(ulonglong *)(resource_id + 1000) = current_pos + 0x58;
+                current_pos = *(uint64_t *)(resource_id + 1000);
+                if (current_pos < *(uint64_t *)(resource_id + 0x3f0)) {
+                    *(uint64_t *)(resource_id + 1000) = current_pos + 0x58;
                     add_resource_batch(current_pos, &temp_batch_ptr);
                 }
                 else {
-                    start_pos = *(ulonglong *)(resource_id + 0x3e0);
-                    capacity = (longlong)(current_pos - start_pos) / 0x58;
+                    start_pos = *(uint64_t *)(resource_id + 0x3e0);
+                    capacity = (int64_t)(current_pos - start_pos) / 0x58;
                     if (capacity == 0) {
                         capacity = 1;
 LAB_expand_temp_array:
                         new_batch = (uint64_t *)
                                  allocate_memory(g_memory_allocator, capacity * 0x58, *(int8_t *)(resource_id + 0x3f8));
-                        current_pos = *(ulonglong *)(resource_id + 1000);
-                        start_pos = *(ulonglong *)(resource_id + 0x3e0);
+                        current_pos = *(uint64_t *)(resource_id + 1000);
+                        start_pos = *(uint64_t *)(resource_id + 0x3e0);
                     }
                     else {
                         capacity = capacity * 2;
@@ -183,7 +183,7 @@ LAB_expand_temp_array:
                     
                     temp_ptr = new_batch;
                     if (start_pos != current_pos) {
-                        offset = start_pos - (longlong)new_batch;
+                        offset = start_pos - (int64_t)new_batch;
                         do {
                             *temp_ptr = g_resource_header;
                             temp_ptr[1] = 0;
@@ -192,8 +192,8 @@ LAB_expand_temp_array:
                             temp_ptr[1] = temp_ptr + 3;
                             *(int32_t *)(temp_ptr + 2) = 0;
                             *(int8_t *)(temp_ptr + 3) = 0;
-                            *(int32_t *)(temp_ptr + 2) = *(int32_t *)(offset + 0x10 + (longlong)temp_ptr);
-                            name_ptr = *(void **)(offset + 8 + (longlong)temp_ptr);
+                            *(int32_t *)(temp_ptr + 2) = *(int32_t *)(offset + 0x10 + (int64_t)temp_ptr);
+                            name_ptr = *(void **)(offset + 8 + (int64_t)temp_ptr);
                             default_name = g_string_constants;
                             if (name_ptr != (void *)0x0) {
                                 default_name = name_ptr;
@@ -203,7 +203,7 @@ LAB_expand_temp_array:
                             temp_ptr = temp_ptr + 0xb;
                             resource_id = context_backup1;
                             resource_id = iterator_pos;
-                        } while (offset + (longlong)temp_ptr != current_pos);
+                        } while (offset + (int64_t)temp_ptr != current_pos);
                     }
                     add_resource_batch(temp_ptr, &temp_batch_ptr);
                     
@@ -241,21 +241,21 @@ LAB_expand_temp_array:
                 }
                 strcpy_s(storage2, 0x40, name_ptr);
                 
-                current_pos = *(ulonglong *)(resource_id + 0x428);
-                if (current_pos < *(ulonglong *)(resource_id + 0x430)) {
-                    *(ulonglong *)(resource_id + 0x428) = current_pos + 0x58;
+                current_pos = *(uint64_t *)(resource_id + 0x428);
+                if (current_pos < *(uint64_t *)(resource_id + 0x430)) {
+                    *(uint64_t *)(resource_id + 0x428) = current_pos + 0x58;
                     add_resource_batch(current_pos, &batch_ptr2);
                 }
                 else {
-                    start_pos = *(ulonglong *)(resource_id + 0x420);
-                    capacity = (longlong)(current_pos - start_pos) / 0x58;
+                    start_pos = *(uint64_t *)(resource_id + 0x420);
+                    capacity = (int64_t)(current_pos - start_pos) / 0x58;
                     if (capacity == 0) {
                         capacity = 1;
 LAB_expand_storage_array:
                         new_batch = (uint64_t *)
                                  allocate_memory(g_memory_allocator, capacity * 0x58, *(int8_t *)(resource_id + 0x438));
-                        current_pos = *(ulonglong *)(resource_id + 0x428);
-                        start_pos = *(ulonglong *)(resource_id + 0x420);
+                        current_pos = *(uint64_t *)(resource_id + 0x428);
+                        start_pos = *(uint64_t *)(resource_id + 0x420);
                     }
                     else {
                         capacity = capacity * 2;
@@ -264,7 +264,7 @@ LAB_expand_storage_array:
                     
                     temp_ptr = new_batch;
                     if (start_pos != current_pos) {
-                        offset = start_pos - (longlong)new_batch;
+                        offset = start_pos - (int64_t)new_batch;
                         do {
                             *temp_ptr = g_resource_header;
                             temp_ptr[1] = 0;
@@ -273,8 +273,8 @@ LAB_expand_storage_array:
                             temp_ptr[1] = temp_ptr + 3;
                             *(int32_t *)(temp_ptr + 2) = 0;
                             *(int8_t *)(temp_ptr + 3) = 0;
-                            *(int32_t *)(temp_ptr + 2) = *(int32_t *)(offset + 0x10 + (longlong)temp_ptr);
-                            name_ptr = *(void **)(offset + 8 + (longlong)temp_ptr);
+                            *(int32_t *)(temp_ptr + 2) = *(int32_t *)(offset + 0x10 + (int64_t)temp_ptr);
+                            name_ptr = *(void **)(offset + 8 + (int64_t)temp_ptr);
                             default_name = g_string_constants;
                             if (name_ptr != (void *)0x0) {
                                 default_name = name_ptr;
@@ -284,7 +284,7 @@ LAB_expand_storage_array:
                             temp_ptr = temp_ptr + 0xb;
                             resource_id = context_backup1;
                             resource_id = iterator_pos;
-                        } while (offset + (longlong)temp_ptr != current_pos);
+                        } while (offset + (int64_t)temp_ptr != current_pos);
                     }
                     add_resource_batch(temp_ptr, &batch_ptr2);
                     
@@ -322,22 +322,22 @@ LAB_expand_storage_array:
                 }
                 strcpy_s(batch_storage, 0x40, name_ptr);
                 
-                current_pos = *(ulonglong *)(resource_id + 0x448);
-                if (current_pos < *(ulonglong *)(resource_id + 0x450)) {
-                    *(ulonglong *)(resource_id + 0x448) = current_pos + 0x58;
+                current_pos = *(uint64_t *)(resource_id + 0x448);
+                if (current_pos < *(uint64_t *)(resource_id + 0x450)) {
+                    *(uint64_t *)(resource_id + 0x448) = current_pos + 0x58;
                     add_resource_batch(current_pos, &batch_ptr);
                 }
                 else {
-                    start_pos = *(ulonglong *)(resource_id + 0x440);
-                    capacity = (longlong)(current_pos - start_pos) / 0x58;
+                    start_pos = *(uint64_t *)(resource_id + 0x440);
+                    capacity = (int64_t)(current_pos - start_pos) / 0x58;
                     if (capacity == 0) {
                         iterator_pos = 1;
 LAB_expand_final_array:
                         capacity = iterator_pos;
                         new_batch = (uint64_t *)
                                  allocate_memory(g_memory_allocator, iterator_pos * 0x58, *(int8_t *)(resource_id + 0x458));
-                        current_pos = *(ulonglong *)(resource_id + 0x448);
-                        start_pos = *(ulonglong *)(resource_id + 0x440);
+                        current_pos = *(uint64_t *)(resource_id + 0x448);
+                        start_pos = *(uint64_t *)(resource_id + 0x440);
                     }
                     else {
                         capacity = capacity * 2;
@@ -347,7 +347,7 @@ LAB_expand_final_array:
                     
                     temp_ptr = new_batch;
                     if (start_pos != current_pos) {
-                        offset = start_pos - (longlong)new_batch;
+                        offset = start_pos - (int64_t)new_batch;
                         do {
                             *temp_ptr = g_resource_header;
                             temp_ptr[1] = 0;
@@ -356,8 +356,8 @@ LAB_expand_final_array:
                             temp_ptr[1] = temp_ptr + 3;
                             *(int32_t *)(temp_ptr + 2) = 0;
                             *(int8_t *)(temp_ptr + 3) = 0;
-                            *(int32_t *)(temp_ptr + 2) = *(int32_t *)((longlong)temp_ptr + offset + 0x10);
-                            name_ptr = *(void **)((longlong)temp_ptr + offset + 8);
+                            *(int32_t *)(temp_ptr + 2) = *(int32_t *)((int64_t)temp_ptr + offset + 0x10);
+                            name_ptr = *(void **)((int64_t)temp_ptr + offset + 8);
                             default_name = g_string_constants;
                             if (name_ptr != (void *)0x0) {
                                 default_name = name_ptr;
@@ -367,7 +367,7 @@ LAB_expand_final_array:
                             temp_ptr = temp_ptr + 0xb;
                             resource_id = context_backup1;
                             capacity = iterator_pos;
-                        } while ((longlong)temp_ptr + offset != current_pos);
+                        } while ((int64_t)temp_ptr + offset != current_pos);
                     }
                     add_resource_batch(temp_ptr, &batch_ptr);
                     
@@ -392,11 +392,11 @@ LAB_expand_final_array:
             }
             
             iterator_ptr = iterator_ptr + 1;
-        } while (iterator_ptr != *(longlong **)(context_backup2 + 0xa8));
+        } while (iterator_ptr != *(int64_t **)(context_backup2 + 0xa8));
     }
     
     // 清理并返回
-    cleanup_resource_manager(stack_guard2 ^ (ulonglong)stack_buffer);
+    cleanup_resource_manager(stack_guard2 ^ (uint64_t)stack_buffer);
 }
 
 /**
@@ -406,20 +406,20 @@ LAB_expand_final_array:
  * @param param_1 资源管理器实例
  * @param param_2 数据缓冲区
  */
-void load_and_process_resource_data(uint64_t param_1, longlong param_2)
+void load_and_process_resource_data(uint64_t param_1, int64_t param_2)
 {
     byte stream_status;
     int32_t read_result;
     int str_length;
     uint comparison_result;
     uint64_t *resource_data;
-    longlong data_offset;
-    longlong *stream_ptr;
-    longlong file_handle;
+    int64_t data_offset;
+    int64_t *stream_ptr;
+    int64_t file_handle;
     byte *file_data;
     int buffer_size;
     void *resource_name;
-    longlong name_length;
+    int64_t name_length;
     uint64_t allocation_size;
     int32_t extraout_XMM0_Da;
     int8_t stack_guard[32];
@@ -427,18 +427,18 @@ void load_and_process_resource_data(uint64_t param_1, longlong param_2)
     void *path_ptr;
     int8_t *name_buffer;
     int name_size;
-    ulonglong name_capacity;
+    uint64_t name_capacity;
     void *temp_ptr;
     uint64_t *data_ptr;
     int32_t data_size;
-    ulonglong data_capacity;
+    uint64_t data_capacity;
     uint64_t stack_guard2;
     int8_t *buffer_ptr;
     int buffer_offset;
-    longlong stream_params[3];
+    int64_t stream_params[3];
     int8_t temp_buffer[8];
     int8_t line_buffer[120];
-    longlong line_length;
+    int64_t line_length;
     int8_t line_storage[104];
     void *resource_ptr;
     void *resource_type;
@@ -446,15 +446,15 @@ void load_and_process_resource_data(uint64_t param_1, longlong param_2)
     uint8_t file_data_buffer[520];
     void *resource_array[68];
     char path_buffer[128];
-    ulonglong final_guard;
+    uint64_t final_guard;
     
     stack_guard2 = 0xfffffffffffffffe;
-    final_guard = GET_SECURITY_COOKIE() ^ (ulonglong)stack_guard;
+    final_guard = GET_SECURITY_COOKIE() ^ (uint64_t)stack_guard;
     
     // 初始化数据结构
     initialize_data_structure(param_2, *(uint64_t *)(param_2 + 0x10));
-    *(longlong *)param_2 = param_2;
-    *(longlong *)(param_2 + 8) = param_2;
+    *(int64_t *)param_2 = param_2;
+    *(int64_t *)(param_2 + 8) = param_2;
     allocation_size = 0;
     *(uint64_t *)(param_2 + 0x10) = 0;
     *(int8_t *)(param_2 + 0x18) = 0;
@@ -479,15 +479,15 @@ void load_and_process_resource_data(uint64_t param_1, longlong param_2)
     resource_data[2] = 0x646f4d2f65766974;  // "tive/Mod"
     resource_data[3] = 0x2f61746144656c75;  // "ule/Data/"
     *(int32_t *)(resource_data + 4) = 0x65726f43;  // "Core"
-    *(int32_t *)((longlong)resource_data + 0x24) = 0x656d6147;  // "Game"
+    *(int32_t *)((int64_t)resource_data + 0x24) = 0x656d6147;  // "Game"
     *(int32_t *)(resource_data + 5) = 0x65666552;  // "Refe"
-    *(int32_t *)((longlong)resource_data + 0x2c) = 0x636e6572;  // "renc"
+    *(int32_t *)((int64_t)resource_data + 0x2c) = 0x636e6572;  // "renc"
     *(int32_t *)(resource_data + 6) = 0x612f7365;  // "es/a"
-    *(int32_t *)((longlong)resource_data + 0x34) = 0x736f6d74;  // "tmot"
+    *(int32_t *)((int64_t)resource_data + 0x34) = 0x736f6d74;  // "tmot"
     *(int32_t *)(resource_data + 7) = 0x72656870;  // "pher"
-    *(int32_t *)((longlong)resource_data + 0x3c) = 0x742e7365;  // "est.t"
+    *(int32_t *)((int64_t)resource_data + 0x3c) = 0x742e7365;  // "est.t"
     *(int16_t *)(resource_data + 8) = 0x7478;  // "xt"
-    *(int8_t *)((longlong)resource_data + 0x42) = 0;
+    *(int8_t *)((int64_t)resource_data + 0x42) = 0;
     data_size = 0x42;
     
     // 初始化文件流
@@ -522,16 +522,16 @@ void load_and_process_resource_data(uint64_t param_1, longlong param_2)
     
     data_offset = open_resource_stream(temp_buffer, resource_name, 1);
     if (data_offset == 0) {
-        set_stream_error_state((longlong)stream_params + (longlong)*(int *)(stream_params[0] + 4), 2);
+        set_stream_error_state((int64_t)stream_params + (int64_t)*(int *)(stream_params[0] + 4), 2);
     }
     else {
-        clear_stream_error_state((longlong)stream_params + (longlong)*(int *)(stream_params[0] + 4), 0);
+        clear_stream_error_state((int64_t)stream_params + (int64_t)*(int *)(stream_params[0] + 4), 0);
     }
     
     if (line_length != 0) {
-        stream_ptr = (longlong *)
+        stream_ptr = (int64_t *)
                  read_file_line(stream_params, file_buffer, 0x80);
-        stream_status = *(byte *)((longlong)*(int *)(*stream_ptr + 4) + 0x10 + (longlong)stream_ptr);
+        stream_status = *(byte *)((int64_t)*(int *)(*stream_ptr + 4) + 0x10 + (int64_t)stream_ptr);
         
         while ((stream_status & 6) == 0) {
             path_ptr = &system_data_buffer_ptr;
@@ -550,7 +550,7 @@ void load_and_process_resource_data(uint64_t param_1, longlong param_2)
                 if (buffer_size < 0x10) {
                     str_length = 0x10;
                 }
-                name_buffer = (int8_t *)allocate_memory(g_memory_allocator, (longlong)str_length, 0x13);
+                name_buffer = (int8_t *)allocate_memory(g_memory_allocator, (int64_t)str_length, 0x13);
                 *name_buffer = 0;
                 read_result = get_memory_size(name_buffer);
                 name_capacity = CONCAT44(name_capacity._4_4_, read_result);
@@ -570,7 +570,7 @@ void load_and_process_resource_data(uint64_t param_1, longlong param_2)
                     if (*(int *)(file_handle + 0x30) == 0) goto LAB_resource_not_found;
                     if (*(int *)(data_offset + 0x30) == 0) goto LAB_compare_resources;
                     file_data = *(byte **)(file_handle + 0x28);
-                    name_length = *(longlong *)(data_offset + 0x28) - (longlong)file_data;
+                    name_length = *(int64_t *)(data_offset + 0x28) - (int64_t)file_data;
                     goto LAB_compare_data;
                 }
                 release_resource_memory(extraout_XMM0_Da, data_offset);
@@ -584,21 +584,21 @@ void load_and_process_resource_data(uint64_t param_1, longlong param_2)
             name_capacity = name_capacity & 0xffffffff00000000;
             path_ptr = g_resource_header;
             
-            stream_ptr = (longlong *)
+            stream_ptr = (int64_t *)
                      read_file_line(stream_params, file_buffer, 0x80);
-            stream_status = *(byte *)((longlong)*(int *)(*stream_ptr + 4) + 0x10 + (longlong)stream_ptr);
+            stream_status = *(byte *)((int64_t)*(int *)(*stream_ptr + 4) + 0x10 + (int64_t)stream_ptr);
         }
         
         data_offset = check_stream_status(temp_buffer);
         if (data_offset == 0) {
-            set_stream_error_state((longlong)stream_params + (longlong)*(int *)(stream_params[0] + 4), 2);
+            set_stream_error_state((int64_t)stream_params + (int64_t)*(int *)(stream_params[0] + 4), 2);
         }
     }
     
     resource_ptr = g_resource_header;
     buffer_ptr = line_storage;
-    *(void **)((longlong)stream_params + (longlong)*(int *)(stream_params[0] + 4)) = &unknown_var_1768_ptr;
-    *(int *)((longlong)&buffer_offset + (longlong)*(int *)(stream_params[0] + 4)) =
+    *(void **)((int64_t)stream_params + (int64_t)*(int *)(stream_params[0] + 4)) = &unknown_var_1768_ptr;
+    *(int *)((int64_t)&buffer_offset + (int64_t)*(int *)(stream_params[0] + 4)) =
          *(int *)(stream_params[0] + 4) + -0xb8;
     
     cleanup_resource_stream(temp_buffer);
@@ -613,7 +613,7 @@ void load_and_process_resource_data(uint64_t param_1, longlong param_2)
     name_capacity = name_capacity & 0xffffffff00000000;
     path_ptr = g_resource_header;
     
-    cleanup_resource_manager(final_guard ^ (ulonglong)stack_guard);
+    cleanup_resource_manager(final_guard ^ (uint64_t)stack_guard);
     
     // 资源比较循环
     while (file_data = file_data + 1, comparison_result != 0) {

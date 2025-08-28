@@ -11,23 +11,23 @@
  * @param end_range 结束范围指针
  * @param sort_flag 排序标志
  */
-void quick_sort_elements(longlong base_address, longlong *start_range, longlong *end_range, unsigned char sort_flag)
+void quick_sort_elements(int64_t base_address, int64_t *start_range, int64_t *end_range, unsigned char sort_flag)
 {
-    longlong *current_ptr;
+    int64_t *current_ptr;
     unsigned char *char_ptr;
     bool should_swap;
-    longlong range_size;
+    int64_t range_size;
     unsigned char *compare_ptr;
     void *default_string_ptr;
     int compare_result;
-    longlong string_offset;
-    longlong *pivot_ptr;
-    longlong left_pos;
-    longlong right_pos;
+    int64_t string_offset;
+    int64_t *pivot_ptr;
+    int64_t left_pos;
+    int64_t right_pos;
     int8_t temp_buffer[848];
     
     // 计算范围大小
-    range_size = (longlong)start_range - base_address;
+    range_size = (int64_t)start_range - base_address;
     range_size = range_size / 0x348;
     
     // 如果范围大于1，进行快速排序
@@ -59,7 +59,7 @@ void quick_sort_elements(longlong base_address, longlong *start_range, longlong 
                 default_string_ptr = *(void **)(base_address + 0x10);
             }
             
-            longlong separator_pos = strstr(default_string_ptr, &STRING_SEPARATOR);
+            int64_t separator_pos = strstr(default_string_ptr, &STRING_SEPARATOR);
             
             // 比较字符串并决定是否需要交换
             if (string_offset == 0) {
@@ -73,7 +73,7 @@ void quick_sort_elements(longlong base_address, longlong *start_range, longlong 
                             goto swap_check_done;
                         }
                         compare_ptr = *(unsigned char **)(base_address + 0x10);
-                        string_offset = *pivot_ptr - (longlong)compare_ptr;
+                        string_offset = *pivot_ptr - (int64_t)compare_ptr;
                         do {
                             char_ptr = compare_ptr + string_offset;
                             compare_result = (uint)*compare_ptr - (uint)*char_ptr;
@@ -99,7 +99,7 @@ void quick_sort_elements(longlong base_address, longlong *start_range, longlong 
                     goto swap_check_done;
                 }
                 compare_ptr = *(unsigned char **)(base_address + 0x10);
-                string_offset = *pivot_ptr - (longlong)compare_ptr;
+                string_offset = *pivot_ptr - (int64_t)compare_ptr;
                 do {
                     char_ptr = compare_ptr + string_offset;
                     compare_result = (uint)*compare_ptr - (uint)*char_ptr;
@@ -149,8 +149,8 @@ swap_check_done:
 unsigned long long search_elements_in_range(unsigned long long search_start, unsigned long long search_end, long long compare_target)
 {
     unsigned char *search_ptr;
-    longlong search_offset;
-    longlong target_offset;
+    int64_t search_offset;
+    int64_t target_offset;
     unsigned char *target_ptr;
     void *target_string_ptr;
     int comparison_result;

@@ -76,10 +76,10 @@
  * 类型定义和别名
  * ============================================================================ */
 
-typedef longlong ResourceManagerHandle;         // 资源管理器句柄
+typedef int64_t ResourceManagerHandle;         // 资源管理器句柄
 typedef uint64_t* ResourceDataPtr;               // 资源数据指针
 typedef int32_t* ResourceRefCountPtr;            // 资源引用计数指针
-typedef longlong** ResourceHandleArray;          // 资源句柄数组
+typedef int64_t** ResourceHandleArray;          // 资源句柄数组
 typedef uint ResourceCleanupFlags;               // 资源清理标志
 typedef int32_t ResourceState;                   // 资源状态
 typedef uint64_t ResourceId;                     // 资源ID

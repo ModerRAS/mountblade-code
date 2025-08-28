@@ -23,18 +23,18 @@
  * 此函数负责清理线程本地存储中的资源，
  * 包括释放队列中的元素和清理相关数据结构
  */
-void cleanup_thread_local_storage(longlong *thread_context)
+void cleanup_thread_local_storage(int64_t *thread_context)
 {
-  longlong *tls_ptr;
+  int64_t *tls_ptr;
   char cleanup_status;
   int lock_result;
   uint64_t timeout_param;
-  longlong *queue_node;
+  int64_t *queue_node;
   char lock_acquired;
   
   // 检查线程上下文是否需要清理
   if ((char)thread_context[0xb] != '\0') {
-    tls_ptr = (longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
+    tls_ptr = (int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
     do {
       // 调用清理回调函数
       cleanup_status = (**(code **)(*thread_context + 0x20))(thread_context, 1);
@@ -80,19 +80,19 @@ void cleanup_thread_local_storage(longlong *thread_context)
  * 此函数从工作队列中取出任务进行处理，
  * 涉及复杂的锁机制和内存管理操作
  */
-uint64_t process_work_queue_item(longlong queue_manager, char should_process)
+uint64_t process_work_queue_item(int64_t queue_manager, char should_process)
 {
-  longlong queue_capacity;
+  int64_t queue_capacity;
   int lock_result;
-  longlong *task_node;
+  int64_t *task_node;
   uint64_t process_result;
-  longlong *processed_task;
+  int64_t *processed_task;
   
-  processed_task = (longlong *)0x0;
-  task_node = (longlong *)0x0;
+  processed_task = (int64_t *)0x0;
+  task_node = (int64_t *)0x0;
   if (should_process != '\0') {
     if (*(int *)(queue_manager + 0x140) < 1) {
-      task_node = (longlong *)0x0;
+      task_node = (int64_t *)0x0;
     }
     else {
       // 获取队列锁
@@ -102,39 +102,39 @@ uint64_t process_work_queue_item(longlong queue_manager, char should_process)
       }
       
       // 检查队列是否有空间
-      if (((*(longlong *)(queue_manager + 200) - *(longlong *)(queue_manager + 0xd0) >> 3) +
-          ((*(longlong *)(queue_manager + 0xe0) - *(longlong *)(queue_manager + 0xc0) >> 3) + -1) * 0x20 +
-          (*(longlong *)(queue_manager + 0xb8) - (longlong)*(longlong **)(queue_manager + 0xa8) >> 3) != 0) {
+      if (((*(int64_t *)(queue_manager + 200) - *(int64_t *)(queue_manager + 0xd0) >> 3) +
+          ((*(int64_t *)(queue_manager + 0xe0) - *(int64_t *)(queue_manager + 0xc0) >> 3) + -1) * 0x20 +
+          (*(int64_t *)(queue_manager + 0xb8) - (int64_t)*(int64_t **)(queue_manager + 0xa8) >> 3) != 0) {
         
         // 处理队列节点
-        processed_task = (longlong *)**(longlong **)(queue_manager + 0xa8);
-        if (processed_task != (longlong *)0x0) {
+        processed_task = (int64_t *)**(int64_t **)(queue_manager + 0xa8);
+        if (processed_task != (int64_t *)0x0) {
           (**(code **)(*processed_task + 0x28))(processed_task);
         }
         
-        task_node = *(longlong **)(queue_manager + 0xa8);
-        if (task_node + 1 == *(longlong **)(queue_manager + 0xb8)) {
+        task_node = *(int64_t **)(queue_manager + 0xa8);
+        if (task_node + 1 == *(int64_t **)(queue_manager + 0xb8)) {
           // 队列需要扩展
-          if ((longlong *)*task_node != (longlong *)0x0) {
-            (**(code **)(*(longlong *)*task_node + 0x38))();
+          if ((int64_t *)*task_node != (int64_t *)0x0) {
+            (**(code **)(*(int64_t *)*task_node + 0x38))();
           }
-          if (*(longlong *)(queue_manager + 0xb0) != 0) {
+          if (*(int64_t *)(queue_manager + 0xb0) != 0) {
             // 错误处理：队列已满
             FUN_18064e900();
           }
           
           // 重新分配队列空间
-          task_node = (longlong *)(*(longlong *)(queue_manager + 0xc0) + 8);
-          *(longlong **)(queue_manager + 0xc0) = task_node;
+          task_node = (int64_t *)(*(int64_t *)(queue_manager + 0xc0) + 8);
+          *(int64_t **)(queue_manager + 0xc0) = task_node;
           queue_capacity = *task_node;
-          *(longlong *)(queue_manager + 0xb0) = queue_capacity;
-          *(longlong *)(queue_manager + 0xb8) = queue_capacity + MAX_QUEUE_SIZE;
+          *(int64_t *)(queue_manager + 0xb0) = queue_capacity;
+          *(int64_t *)(queue_manager + 0xb8) = queue_capacity + MAX_QUEUE_SIZE;
           *(uint64_t *)(queue_manager + 0xa8) = *(uint64_t *)(queue_manager + 0xb0);
         }
         else {
-          *(longlong **)(queue_manager + 0xa8) = task_node + 1;
-          if ((longlong *)*task_node != (longlong *)0x0) {
-            (**(code **)(*(longlong *)*task_node + 0x38))();
+          *(int64_t **)(queue_manager + 0xa8) = task_node + 1;
+          if ((int64_t *)*task_node != (int64_t *)0x0) {
+            (**(code **)(*(int64_t *)*task_node + 0x38))();
           }
         }
       }
@@ -145,7 +145,7 @@ uint64_t process_work_queue_item(longlong queue_manager, char should_process)
       }
       
       task_node = processed_task;
-      if (processed_task != (longlong *)0x0) {
+      if (processed_task != (int64_t *)0x0) {
         (**(code **)(*processed_task + 0x60))(processed_task);
         (**(code **)(*processed_task + 0x70))(processed_task);
         LOCK();
@@ -160,7 +160,7 @@ uint64_t process_work_queue_item(longlong queue_manager, char should_process)
   processed_task = task_node;
   process_result = 0;
 processing_complete:
-  if (processed_task != (longlong *)0x0) {
+  if (processed_task != (int64_t *)0x0) {
     (**(code **)(*processed_task + 0x38))(processed_task);
   }
   return process_result;
@@ -176,13 +176,13 @@ processing_complete:
  * 
  * 此函数等待指定对象并处理相关任务
  */
-bool wait_and_process_object(longlong sync_object, uint64_t timeout, uint64_t param3, uint64_t param4)
+bool wait_and_process_object(int64_t sync_object, uint64_t timeout, uint64_t param3, uint64_t param4)
 {
-  longlong *processed_item;
+  int64_t *processed_item;
   char process_status;
-  longlong *work_item;
+  int64_t *work_item;
   
-  work_item = (longlong *)0x0;
+  work_item = (int64_t *)0x0;
   WaitForSingleObject(**(uint64_t **)(sync_object + 0x1f0), 1, param3, param4, TIMEOUT_INFINITE);
   process_status = process_queue_item(*(uint64_t *)(sync_object + 0x60), sync_object + 0x78, &work_item);
   processed_item = work_item;
@@ -190,7 +190,7 @@ bool wait_and_process_object(longlong sync_object, uint64_t timeout, uint64_t pa
     (**(code **)(*work_item + 0x60))(work_item);
     (**(code **)(*processed_item + 0x70))(processed_item);
   }
-  if (processed_item != (longlong *)0x0) {
+  if (processed_item != (int64_t *)0x0) {
     (**(code **)(*processed_item + 0x38))(processed_item);
   }
   return process_status != '\0';
@@ -205,56 +205,56 @@ bool wait_and_process_object(longlong sync_object, uint64_t timeout, uint64_t pa
  * 此函数计算队列中的位置和偏移量，
  * 用于队列管理和元素访问
  */
-ulonglong calculate_queue_position(longlong *queue_header, uint *queue_params)
+uint64_t calculate_queue_position(int64_t *queue_header, uint *queue_params)
 {
   uint queue_size;
   uint current_offset;
-  longlong base_address;
-  ulonglong position_result;
-  ulonglong *current_node;
-  ulonglong *next_node;
-  ulonglong *temp_node;
-  ulonglong calculated_value;
-  ulonglong *target_node;
+  int64_t base_address;
+  uint64_t position_result;
+  uint64_t *current_node;
+  uint64_t *next_node;
+  uint64_t *temp_node;
+  uint64_t calculated_value;
+  uint64_t *target_node;
   uint remaining_steps;
-  ulonglong step_count;
+  uint64_t step_count;
   
   base_address = *queue_header;
-  if ((*(longlong *)(queue_params + 6) == 0) && (base_address == 0)) {
+  if ((*(int64_t *)(queue_params + 6) == 0) && (base_address == 0)) {
     return position_result & 0xffffffffffffff00;
   }
   
   queue_size = *(uint *)(queue_header + 1);
   current_offset = *(uint *)(queue_header + 0x4c);
-  target_node = (ulonglong *)0x0;
-  current_node = *(ulonglong **)(queue_params + 6);
+  target_node = (uint64_t *)0x0;
+  current_node = *(uint64_t **)(queue_params + 6);
   
-  if (*(ulonglong **)(queue_params + 6) == (ulonglong *)0x0) {
-    next_node = (ulonglong *)(base_address + 8);
+  if (*(uint64_t **)(queue_params + 6) == (uint64_t *)0x0) {
+    next_node = (uint64_t *)(base_address + 8);
     if (base_address == 0) {
       next_node = target_node;
     }
-    *(ulonglong **)(queue_params + 6) = next_node;
+    *(uint64_t **)(queue_params + 6) = next_node;
     remaining_steps = (queue_size - *queue_params % queue_size) - 1;
-    step_count = (ulonglong)remaining_steps;
+    step_count = (uint64_t)remaining_steps;
     current_node = next_node;
     
     if (remaining_steps != 0) {
       do {
-        if (current_node == (ulonglong *)0x0) {
-          current_node = (ulonglong *)&system_memory_0008;
+        if (current_node == (uint64_t *)0x0) {
+          current_node = (uint64_t *)&system_memory_0008;
         }
-        temp_node = (ulonglong *)(*current_node - 8);
+        temp_node = (uint64_t *)(*current_node - 8);
         if (*current_node == 0) {
           temp_node = target_node;
         }
         current_node = temp_node + 1;
-        if (temp_node == (ulonglong *)0x0) {
+        if (temp_node == (uint64_t *)0x0) {
           current_node = target_node;
         }
-        *(ulonglong **)(queue_params + 6) = current_node;
-        if (current_node == (ulonglong *)0x0) {
-          *(ulonglong **)(queue_params + 6) = next_node;
+        *(uint64_t **)(queue_params + 6) = current_node;
+        if (current_node == (uint64_t *)0x0) {
+          *(uint64_t **)(queue_params + 6) = next_node;
           current_node = next_node;
         }
         step_count = step_count - 1;
@@ -263,33 +263,33 @@ ulonglong calculate_queue_position(longlong *queue_header, uint *queue_params)
   }
   
   remaining_steps = current_offset - queue_params[1];
-  step_count = (ulonglong)remaining_steps;
+  step_count = (uint64_t)remaining_steps;
   if (queue_size <= remaining_steps) {
-    step_count = (ulonglong)remaining_steps % (ulonglong)queue_size;
+    step_count = (uint64_t)remaining_steps % (uint64_t)queue_size;
   }
   
   calculated_value = step_count;
   if ((int)step_count != 0) {
     do {
-      if (current_node == (ulonglong *)0x0) {
-        current_node = (ulonglong *)&system_memory_0008;
+      if (current_node == (uint64_t *)0x0) {
+        current_node = (uint64_t *)&system_memory_0008;
       }
       step_count = *current_node;
-      next_node = (ulonglong *)(step_count - 8);
+      next_node = (uint64_t *)(step_count - 8);
       if (step_count == 0) {
         next_node = target_node;
       }
       current_node = target_node;
-      if (next_node != (ulonglong *)0x0) {
+      if (next_node != (uint64_t *)0x0) {
         current_node = next_node + 1;
       }
-      *(ulonglong **)(queue_params + 6) = current_node;
-      if (current_node == (ulonglong *)0x0) {
-        current_node = (ulonglong *)(base_address + 8);
+      *(uint64_t **)(queue_params + 6) = current_node;
+      if (current_node == (uint64_t *)0x0) {
+        current_node = (uint64_t *)(base_address + 8);
         if (base_address == 0) {
           current_node = target_node;
         }
-        *(ulonglong **)(queue_params + 6) = current_node;
+        *(uint64_t **)(queue_params + 6) = current_node;
       }
       calculated_value = calculated_value - 1;
     } while (calculated_value != 0);
@@ -297,7 +297,7 @@ ulonglong calculate_queue_position(longlong *queue_header, uint *queue_params)
   
   queue_params[1] = current_offset;
   queue_params[2] = 0;
-  *(ulonglong **)(queue_params + 4) = current_node;
+  *(uint64_t **)(queue_params + 4) = current_node;
   return CONCAT71((int7)(step_count >> 8), 1);
 }
 
@@ -309,16 +309,16 @@ ulonglong calculate_queue_position(longlong *queue_header, uint *queue_params)
  * 
  * 此函数交换两个指针并清理相关资源
  */
-longlong *swap_and_cleanup_pointers(longlong *target_ptr, longlong *source_ptr)
+int64_t *swap_and_cleanup_pointers(int64_t *target_ptr, int64_t *source_ptr)
 {
-  longlong temp_value;
-  longlong *cleanup_target;
+  int64_t temp_value;
+  int64_t *cleanup_target;
   
   temp_value = *source_ptr;
   *source_ptr = 0;
-  cleanup_target = (longlong *)*target_ptr;
+  cleanup_target = (int64_t *)*target_ptr;
   *target_ptr = temp_value;
-  if (cleanup_target != (longlong *)0x0) {
+  if (cleanup_target != (int64_t *)0x0) {
     (**(code **)(*cleanup_target + 0x38))();
   }
   return target_ptr;
@@ -331,10 +331,10 @@ longlong *swap_and_cleanup_pointers(longlong *target_ptr, longlong *source_ptr)
  * 
  * 此函数清理指定指针指向的资源
  */
-longlong *cleanup_pointer_resource(longlong *target_ptr)
+int64_t *cleanup_pointer_resource(int64_t *target_ptr)
 {
-  if ((longlong *)*target_ptr != (longlong *)0x0) {
-    (**(code **)(*(longlong *)*target_ptr + 0x38))();
+  if ((int64_t *)*target_ptr != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)*target_ptr + 0x38))();
   }
   return target_ptr;
 }
@@ -348,54 +348,54 @@ longlong *cleanup_pointer_resource(longlong *target_ptr)
  * 此函数向队列中添加新元素，
  * 涉及复杂的内存管理和同步操作
  */
-uint64_t add_to_queue(longlong queue_manager, uint64_t new_element)
+uint64_t add_to_queue(int64_t queue_manager, uint64_t new_element)
 {
-  longlong *queue_position;
-  ulonglong *queue_count;
-  longlong current_count;
-  ulonglong available_space;
-  longlong base_address;
-  longlong queue_capacity;
-  longlong queue_end;
-  ulonglong element_index;
+  int64_t *queue_position;
+  uint64_t *queue_count;
+  int64_t current_count;
+  uint64_t available_space;
+  int64_t base_address;
+  int64_t queue_capacity;
+  int64_t queue_end;
+  uint64_t element_index;
   
   if (*(char *)(queue_manager + 0x48) == '\0') {
-    if ((ulonglong)((*(longlong *)(queue_manager + 0x30) - *(longlong *)(queue_manager + 0x38)) - 
-        *(longlong *)(queue_manager + 0x20)) < 0x8000000000000001) {
+    if ((uint64_t)((*(int64_t *)(queue_manager + 0x30) - *(int64_t *)(queue_manager + 0x38)) - 
+        *(int64_t *)(queue_manager + 0x20)) < 0x8000000000000001) {
       return 0;
     }
     
     LOCK();
-    queue_position = (longlong *)(queue_manager + 0x30);
+    queue_position = (int64_t *)(queue_manager + 0x30);
     current_count = *queue_position;
     *queue_position = *queue_position + 1;
     UNLOCK();
     
-    if (0x8000000000000000 < (ulonglong)((current_count - *(longlong *)(queue_manager + 0x20)) - 
-        *(longlong *)(queue_manager + 0x38))) {
+    if (0x8000000000000000 < (uint64_t)((current_count - *(int64_t *)(queue_manager + 0x20)) - 
+        *(int64_t *)(queue_manager + 0x38))) {
       
       LOCK();
-      queue_count = (ulonglong *)(queue_manager + 0x28);
+      queue_count = (uint64_t *)(queue_manager + 0x28);
       available_space = *queue_count;
       *queue_count = *queue_count + 1;
       UNLOCK();
       
-      queue_position = *(longlong **)(queue_manager + 0x60);
-      current_count = *(longlong *)(queue_position[3] + (((available_space & 0xffffffffffffffe0) - 
-          **(longlong **)(queue_position[3] + queue_position[1] * 8) >> 5) + 
+      queue_position = *(int64_t **)(queue_manager + 0x60);
+      current_count = *(int64_t *)(queue_position[3] + (((available_space & 0xffffffffffffffe0) - 
+          **(int64_t **)(queue_position[3] + queue_position[1] * 8) >> 5) + 
           queue_position[1] & *queue_position - 1U) * 8);
       
-      queue_end = *(longlong *)(current_count + 8);
-      queue_position = (longlong *)(queue_end + (ulonglong)((uint)available_space & 0x1f) * 8);
+      queue_end = *(int64_t *)(current_count + 8);
+      queue_position = (int64_t *)(queue_end + (uint64_t)((uint)available_space & 0x1f) * 8);
       swap_and_cleanup_pointers(new_element, queue_position);
-      queue_position = (longlong *)*queue_position;
+      queue_position = (int64_t *)*queue_position;
       
-      if (queue_position != (longlong *)0x0) {
+      if (queue_position != (int64_t *)0x0) {
         (**(code **)(*queue_position + 0x38))();
       }
       
       LOCK();
-      queue_position = (longlong *)(queue_end + 0x108);
+      queue_position = (int64_t *)(queue_end + 0x108);
       queue_capacity = *queue_position;
       *queue_position = *queue_position + 1;
       UNLOCK();
@@ -408,37 +408,37 @@ uint64_t add_to_queue(longlong queue_manager, uint64_t new_element)
     }
   }
   else {
-    if ((ulonglong)((*(longlong *)(queue_manager + 0x30) - *(longlong *)(queue_manager + 0x38)) - 
-        *(longlong *)(queue_manager + 0x20)) < 0x8000000000000001) {
+    if ((uint64_t)((*(int64_t *)(queue_manager + 0x30) - *(int64_t *)(queue_manager + 0x38)) - 
+        *(int64_t *)(queue_manager + 0x20)) < 0x8000000000000001) {
       return 0;
     }
     
     LOCK();
-    queue_position = (longlong *)(queue_manager + 0x30);
+    queue_position = (int64_t *)(queue_manager + 0x30);
     current_count = *queue_position;
     *queue_position = *queue_position + 1;
     UNLOCK();
     
-    if (0x8000000000000000 < (ulonglong)((current_count - *(longlong *)(queue_manager + 0x20)) - 
-        *(longlong *)(queue_manager + 0x38))) {
+    if (0x8000000000000000 < (uint64_t)((current_count - *(int64_t *)(queue_manager + 0x20)) - 
+        *(int64_t *)(queue_manager + 0x38))) {
       
       LOCK();
-      queue_count = (ulonglong *)(queue_manager + 0x28);
+      queue_count = (uint64_t *)(queue_manager + 0x28);
       available_space = *queue_count;
       *queue_count = *queue_count + 1;
       UNLOCK();
       
-      queue_position = *(longlong **)(queue_manager + 0x58);
-      element_index = (ulonglong)((uint)available_space & 0x1f);
-      current_count = *(longlong *)(queue_position[2] + 8 + (((available_space & 0xffffffffffffffe0) - 
-          *(longlong *)(queue_position[2] + queue_position[1] * 0x10) >> 5) + 
+      queue_position = *(int64_t **)(queue_manager + 0x58);
+      element_index = (uint64_t)((uint)available_space & 0x1f);
+      current_count = *(int64_t *)(queue_position[2] + 8 + (((available_space & 0xffffffffffffffe0) - 
+          *(int64_t *)(queue_position[2] + queue_position[1] * 0x10) >> 5) + 
           queue_position[1] & *queue_position - 1U) * 0x10);
       
-      queue_position = (longlong *)(current_count + element_index * 8);
+      queue_position = (int64_t *)(current_count + element_index * 8);
       swap_and_cleanup_pointers(new_element, queue_position);
-      queue_position = (longlong *)*queue_position;
+      queue_position = (int64_t *)*queue_position;
       
-      if (queue_position != (longlong *)0x0) {
+      if (queue_position != (int64_t *)0x0) {
         (**(code **)(*queue_position + 0x38))();
       }
       
@@ -448,7 +448,7 @@ uint64_t add_to_queue(longlong queue_manager, uint64_t new_element)
   }
   
   LOCK();
-  *(longlong *)(queue_manager + 0x38) = *(longlong *)(queue_manager + 0x38) + 1;
+  *(int64_t *)(queue_manager + 0x38) = *(int64_t *)(queue_manager + 0x38) + 1;
   UNLOCK();
   return 0;
 }
@@ -461,35 +461,35 @@ uint64_t add_to_queue(longlong queue_manager, uint64_t new_element)
  */
 uint64_t batch_process_queue_elements(void)
 {
-  ulonglong *process_count;
-  ulonglong batch_size;
-  longlong base_address;
-  longlong *queue_info;
-  longlong queue_end;
-  ulonglong unaff_RSI;
-  longlong unaff_RDI;
+  uint64_t *process_count;
+  uint64_t batch_size;
+  int64_t base_address;
+  int64_t *queue_info;
+  int64_t queue_end;
+  uint64_t unaff_RSI;
+  int64_t unaff_RDI;
   
   LOCK();
-  process_count = (ulonglong *)(unaff_RDI + 0x28);
+  process_count = (uint64_t *)(unaff_RDI + 0x28);
   batch_size = *process_count;
   *process_count = *process_count + (unaff_RSI & 0xffffffff);
   UNLOCK();
   
-  queue_info = *(longlong **)(unaff_RDI + 0x60);
-  base_address = *(longlong *)(queue_info[3] + (((batch_size & 0xffffffffffffffe0) - 
-      **(longlong **)(queue_info[3] + queue_info[1] * 8) >> 5) + 
+  queue_info = *(int64_t **)(unaff_RDI + 0x60);
+  base_address = *(int64_t *)(queue_info[3] + (((batch_size & 0xffffffffffffffe0) - 
+      **(int64_t **)(queue_info[3] + queue_info[1] * 8) >> 5) + 
       queue_info[1] & *queue_info - 1U) * 8);
   
-  queue_end = *(longlong *)(base_address + 8);
+  queue_end = *(int64_t *)(base_address + 8);
   swap_and_cleanup_pointers();
-  queue_info = *(longlong **)(queue_end + (ulonglong)((uint)batch_size & 0x1f) * 8);
+  queue_info = *(int64_t **)(queue_end + (uint64_t)((uint)batch_size & 0x1f) * 8);
   
-  if (queue_info != (longlong *)0x0) {
+  if (queue_info != (int64_t *)0x0) {
     (**(code **)(*queue_info + 0x38))();
   }
   
   LOCK();
-  queue_info = (longlong *)(queue_end + 0x108);
+  queue_info = (int64_t *)(queue_end + 0x108);
   base_address = *queue_info;
   *queue_info = *queue_info + unaff_RSI;
   UNLOCK();
@@ -509,11 +509,11 @@ uint64_t batch_process_queue_elements(void)
  */
 int8_t increment_queue_process_count(void)
 {
-  longlong unaff_RSI;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t unaff_RDI;
   
   LOCK();
-  *(longlong *)(unaff_RDI + 0x38) = *(longlong *)(unaff_RDI + 0x38) + unaff_RSI;
+  *(int64_t *)(unaff_RDI + 0x38) = *(int64_t *)(unaff_RDI + 0x38) + unaff_RSI;
   UNLOCK();
   return 0;
 }
@@ -527,47 +527,47 @@ int8_t increment_queue_process_count(void)
  * 
  * 此函数处理队列中的请求
  */
-uint64_t process_queue_request(uint64_t *queue_handle, longlong request_data, uint64_t process_context)
+uint64_t process_queue_request(uint64_t *queue_handle, int64_t request_data, uint64_t process_context)
 {
   char request_valid;
-  longlong *queue_node;
-  longlong base_address;
-  longlong *current_node;
-  longlong *next_node;
+  int64_t *queue_node;
+  int64_t base_address;
+  int64_t *current_node;
+  int64_t *next_node;
   
-  if (((*(longlong *)(request_data + 0x18) == 0) || (*(int *)(request_data + 4) != *(int *)(queue_handle + 0x4c))) &&
+  if (((*(int64_t *)(request_data + 0x18) == 0) || (*(int *)(request_data + 4) != *(int *)(queue_handle + 0x4c))) &&
       (request_valid = calculate_queue_position(), request_valid == '\0')) {
     return 0;
   }
   
-  next_node = (longlong *)0x0;
-  current_node = (longlong *)(*(longlong *)(request_data + 0x10) + -8);
-  if (*(longlong *)(request_data + 0x10) == 0) {
+  next_node = (int64_t *)0x0;
+  current_node = (int64_t *)(*(int64_t *)(request_data + 0x10) + -8);
+  if (*(int64_t *)(request_data + 0x10) == 0) {
     current_node = next_node;
   }
   
   request_valid = add_to_queue(current_node, process_context);
   if (request_valid == '\0') {
-    current_node = (longlong *)*queue_handle;
-    queue_node = *(longlong **)(request_data + 0x10);
-    if (queue_node == (longlong *)0x0) {
-      queue_node = (longlong *)&system_memory_0008;
+    current_node = (int64_t *)*queue_handle;
+    queue_node = *(int64_t **)(request_data + 0x10);
+    if (queue_node == (int64_t *)0x0) {
+      queue_node = (int64_t *)&system_memory_0008;
     }
     
     base_address = *queue_node;
     while (true) {
-      queue_node = (longlong *)(base_address + -8);
+      queue_node = (int64_t *)(base_address + -8);
       if (base_address == 0) {
         queue_node = next_node;
       }
       
       next_node = current_node;
-      if (queue_node != (longlong *)0x0) {
+      if (queue_node != (int64_t *)0x0) {
         next_node = queue_node;
       }
       
-      queue_node = (longlong *)(*(longlong *)(request_data + 0x10) + -8);
-      if (*(longlong *)(request_data + 0x10) == 0) {
+      queue_node = (int64_t *)(*(int64_t *)(request_data + 0x10) + -8);
+      if (*(int64_t *)(request_data + 0x10) == 0) {
         queue_node = next_node;
       }
       
@@ -582,10 +582,10 @@ uint64_t process_queue_request(uint64_t *queue_handle, longlong request_data, ui
     
     *(int32_t *)(request_data + 8) = 1;
     current_node = next_node + 1;
-    if (next_node == (longlong *)0x0) {
+    if (next_node == (int64_t *)0x0) {
       current_node = next_node;
     }
-    *(longlong **)(request_data + 0x10) = current_node;
+    *(int64_t **)(request_data + 0x10) = current_node;
   }
   else {
     *(int *)(request_data + 8) = *(int *)(request_data + 8) + 1;
@@ -608,20 +608,20 @@ uint64_t process_queue_request(uint64_t *queue_handle, longlong request_data, ui
  * 
  * 此函数处理带超时的队列请求
  */
-bool process_timed_queue_request(longlong sync_object, uint64_t timeout, uint64_t param3, uint64_t param4)
+bool process_timed_queue_request(int64_t sync_object, uint64_t timeout, uint64_t param3, uint64_t param4)
 {
-  longlong *processed_item;
+  int64_t *processed_item;
   char process_status;
-  longlong *work_item;
+  int64_t *work_item;
   
-  work_item = (longlong *)0x0;
+  work_item = (int64_t *)0x0;
   process_status = process_queue_request(*(uint64_t *)(sync_object + 0x60), sync_object + 0x78, &work_item, param4, TIMEOUT_INFINITE);
   processed_item = work_item;
   if (process_status != '\0') {
     (**(code **)(*work_item + 0x60))(work_item);
     (**(code **)(*processed_item + 0x70))(processed_item);
   }
-  if (processed_item != (longlong *)0x0) {
+  if (processed_item != (int64_t *)0x0) {
     (**(code **)(*processed_item + 0x38))(processed_item);
   }
   return process_status != '\0';
@@ -634,27 +634,27 @@ bool process_timed_queue_request(longlong sync_object, uint64_t timeout, uint64_
  * 
  * 此函数扩展队列容量并添加新元素
  */
-void expand_queue_capacity(longlong *queue_header, longlong *new_element)
+void expand_queue_capacity(int64_t *queue_header, int64_t *new_element)
 {
-  longlong *write_position;
-  longlong queue_size;
-  longlong *read_position;
-  longlong available_space;
-  ulonglong new_capacity;
-  longlong data_size;
-  longlong copy_size;
-  ulonglong expand_size;
-  longlong new_queue_size;
-  longlong new_base_address;
+  int64_t *write_position;
+  int64_t queue_size;
+  int64_t *read_position;
+  int64_t available_space;
+  uint64_t new_capacity;
+  int64_t data_size;
+  int64_t copy_size;
+  uint64_t expand_size;
+  int64_t new_queue_size;
+  int64_t new_base_address;
   uint64_t allocation_flags;
   
   allocation_flags = TIMEOUT_INFINITE;
-  read_position = (longlong *)queue_header[6];
+  read_position = (int64_t *)queue_header[6];
   write_position = read_position + 1;
   
-  if (write_position == (longlong *)queue_header[8]) {
-    new_element = (longlong *)*new_element;
-    if (new_element != (longlong *)0x0) {
+  if (write_position == (int64_t *)queue_header[8]) {
+    new_element = (int64_t *)*new_element;
+    if (new_element != (int64_t *)0x0) {
       (**(code **)(*new_element + 0x28))(new_element);
     }
     
@@ -681,7 +681,7 @@ void expand_queue_capacity(longlong *queue_header, longlong *new_element)
       
       data_size = available_space + 2 + data_size;
       queue_size = allocate_queue_memory(system_memory_pool_ptr, data_size * 8, (char)queue_header[10], queue_size, allocation_flags);
-      write_position = (longlong *)(queue_size + (queue_header[5] - *queue_header >> 3) * 8);
+      write_position = (int64_t *)(queue_size + (queue_header[5] - *queue_header >> 3) * 8);
       
       if (*queue_header != 0) {
         memcpy(write_position, queue_header[5], data_size);
@@ -689,11 +689,11 @@ void expand_queue_capacity(longlong *queue_header, longlong *new_element)
       
       *queue_header = queue_size;
       queue_header[1] = data_size;
-      queue_header[5] = (longlong)write_position;
+      queue_header[5] = (int64_t)write_position;
       queue_size = *write_position;
       queue_header[3] = queue_size;
       queue_header[4] = queue_size + MAX_QUEUE_SIZE;
-      queue_header[9] = (longlong)(write_position + copy_size);
+      queue_header[9] = (int64_t)(write_position + copy_size);
       queue_size = write_position[copy_size];
       queue_header[7] = queue_size;
       queue_header[8] = queue_size + MAX_QUEUE_SIZE;
@@ -701,19 +701,19 @@ void expand_queue_capacity(longlong *queue_header, longlong *new_element)
     
     allocation_flags = allocate_queue_memory(system_memory_pool_ptr, MAX_QUEUE_SIZE, (char)queue_header[10]);
     *(uint64_t *)(queue_header[9] + 8) = allocation_flags;
-    *(longlong **)queue_header[6] = new_element;
+    *(int64_t **)queue_header[6] = new_element;
     queue_size = queue_header[9];
     queue_header[9] = queue_size + 8;
-    queue_size = *(longlong *)(queue_size + 8);
+    queue_size = *(int64_t *)(queue_size + 8);
     queue_header[7] = queue_size;
     queue_header[8] = queue_size + MAX_QUEUE_SIZE;
     queue_header[6] = queue_size;
   }
   else {
-    queue_header[6] = (longlong)write_position;
-    new_element = (longlong *)*new_element;
-    *read_position = (longlong)new_element;
-    if (new_element != (longlong *)0x0) {
+    queue_header[6] = (int64_t)write_position;
+    new_element = (int64_t *)*new_element;
+    *read_position = (int64_t)new_element;
+    if (new_element != (int64_t *)0x0) {
       (**(code **)(*new_element + 0x28))();
     }
   }
@@ -729,13 +729,13 @@ void expand_queue_capacity(longlong *queue_header, longlong *new_element)
  * 
  * 此函数初始化队列操作
  */
-void initialize_queue_operation(longlong queue_manager, longlong *queue_data, uint64_t param3, uint64_t param4)
+void initialize_queue_operation(int64_t queue_manager, int64_t *queue_data, uint64_t param3, uint64_t param4)
 {
   uint64_t *semaphore_handle;
-  longlong semaphore_count;
-  longlong initial_count;
+  int64_t semaphore_count;
+  int64_t initial_count;
   int lock_result;
-  longlong lock_address;
+  int64_t lock_address;
   uint64_t operation_flags;
   int8_t lock_acquired;
   
@@ -753,8 +753,8 @@ void initialize_queue_operation(longlong queue_manager, longlong *queue_data, ui
   UNLOCK();
   
   semaphore_handle = *(uint64_t **)(queue_manager + 0x1f0);
-  semaphore_count = *(longlong *)(system_context_ptr + 0x10);
-  initial_count = *(longlong *)(system_context_ptr + 8);
+  semaphore_count = *(int64_t *)(system_context_ptr + 0x10);
+  initial_count = *(int64_t *)(system_context_ptr + 8);
   
   do {
     lock_result = ReleaseSemaphore(*semaphore_handle, semaphore_count - initial_count >> 3 & 0xffffffff, 0, param4, operation_flags, lock_address, lock_acquired);
@@ -766,8 +766,8 @@ void initialize_queue_operation(longlong queue_manager, longlong *queue_data, ui
     __Throw_C_error_std__YAXH_Z(lock_result);
   }
   
-  if ((longlong *)*queue_data != (longlong *)0x0) {
-    (**(code **)(*(longlong *)*queue_data + 0x38))();
+  if ((int64_t *)*queue_data != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)*queue_data + 0x38))();
   }
   return;
 }
@@ -793,7 +793,7 @@ void close_handle(uint64_t *handle)
 void reset_queue_manager(uint64_t *manager)
 {
   *manager = &unknown_var_6384_ptr;
-  if (*(char *)((longlong)manager + 0xb1) != '\0') {
+  if (*(char *)((int64_t)manager + 0xb1) != '\0') {
     FUN_180639250();
   }
   _Mtx_destroy_in_situ();
@@ -825,13 +825,13 @@ void reset_queue_manager(uint64_t *manager)
  * 
  * 此函数释放管理器占用的资源
  */
-uint64_t *release_manager_resources(uint64_t *manager, ulonglong flags, uint64_t param3, uint64_t param4)
+uint64_t *release_manager_resources(uint64_t *manager, uint64_t flags, uint64_t param3, uint64_t param4)
 {
   uint64_t release_flags;
   
   release_flags = TIMEOUT_INFINITE;
   *manager = &unknown_var_6384_ptr;
-  if (*(char *)((longlong)manager + 0xb1) != '\0') {
+  if (*(char *)((int64_t)manager + 0xb1) != '\0') {
     FUN_180639250();
   }
   _Mtx_destroy_in_situ();
@@ -849,18 +849,18 @@ uint64_t *release_manager_resources(uint64_t *manager, ulonglong flags, uint64_t
  * 
  * 此函数初始化引擎的核心组件
  */
-void initialize_engine_core(uint64_t engine_param, longlong config_data)
+void initialize_engine_core(uint64_t engine_param, int64_t config_data)
 {
-  longlong system_address;
-  longlong engine_base;
+  int64_t system_address;
+  int64_t engine_base;
   uint64_t *component_handle;
   uint64_t local_config[32];
-  longlong config_size;
+  int64_t config_size;
   uint64_t *config_ptr;
   int8_t temp_config[8];
-  longlong config_offset;
+  int64_t config_offset;
   uint config_length;
-  longlong stack_config;
+  int64_t stack_config;
   int8_t buffer_config[80];
   uint64_t buffer_flags;
   void *stack_pointer;
@@ -868,12 +868,12 @@ void initialize_engine_core(uint64_t engine_param, longlong config_data)
   int32_t config_type;
   int8_t local_buffer[88];
   int8_t large_buffer[256];
-  ulonglong checksum;
+  uint64_t checksum;
   
   system_address = system_message_context;
   engine_base = system_context_ptr;
   buffer_flags = TIMEOUT_INFINITE;
-  checksum = GET_SECURITY_COOKIE() ^ (ulonglong)local_config;
+  checksum = GET_SECURITY_COOKIE() ^ (uint64_t)local_config;
   stack_config = system_message_context;
   stack_pointer = &system_config_ptr;
   config_pointer = local_buffer;
@@ -896,7 +896,7 @@ void initialize_engine_core(uint64_t engine_param, longlong config_data)
   
   if (0 < *(int *)(config_data + 0x10)) {
     expand_engine_config(temp_config, config_length + *(int *)(config_data + 0x10));
-    memcpy((ulonglong)config_length + config_offset, *(uint64_t *)(config_data + 8), (longlong)(*(int *)(config_data + 0x10) + 1));
+    memcpy((uint64_t)config_length + config_offset, *(uint64_t *)(config_data + 8), (int64_t)(*(int *)(config_data + 0x10) + 1));
   }
   
   process_engine_config(buffer_config, temp_config);
@@ -910,27 +910,27 @@ void initialize_engine_core(uint64_t engine_param, longlong config_data)
  * 
  * 此函数处理引擎的各种事件
  */
-void process_engine_event(longlong *event_data)
+void process_engine_event(int64_t *event_data)
 {
   uint64_t *event_handler;
   code *handler_code;
-  longlong engine_address;
+  int64_t engine_address;
   uint64_t event_flags;
-  longlong *event_processor;
-  longlong *event_source;
-  longlong *event_target;
-  longlong *processed_event;
-  longlong **event_reference;
-  longlong *queued_event;
-  longlong *processed_item;
+  int64_t *event_processor;
+  int64_t *event_source;
+  int64_t *event_target;
+  int64_t *processed_event;
+  int64_t **event_reference;
+  int64_t *queued_event;
+  int64_t *processed_item;
   
   engine_address = system_message_context;
   processed_event = event_data;
   event_flags = allocate_engine_component(system_memory_pool_ptr, 0x70, 8, 3, TIMEOUT_INFINITE);
-  event_processor = (longlong *)create_event_processor(event_flags, 0, engine_address);
+  event_processor = (int64_t *)create_event_processor(event_flags, 0, engine_address);
   queued_event = event_processor;
   
-  if (event_processor != (longlong *)0x0) {
+  if (event_processor != (int64_t *)0x0) {
     (**(code **)(*event_processor + 0x28))(event_processor);
   }
   
@@ -939,17 +939,17 @@ void process_engine_event(longlong *event_data)
   event_reference = &processed_event;
   processed_event = event_processor;
   
-  if (event_processor != (longlong *)0x0) {
+  if (event_processor != (int64_t *)0x0) {
     (**(code **)(*event_processor + 0x28))(event_processor);
   }
   
   (*handler_code)(event_handler, &processed_event);
   
   event_flags = allocate_engine_component(system_memory_pool_ptr, 0x70, 8, 3);
-  event_source = (longlong *)create_event_processor(event_flags, 4, engine_address);
+  event_source = (int64_t *)create_event_processor(event_flags, 4, engine_address);
   processed_item = event_source;
   
-  if (event_source != (longlong *)0x0) {
+  if (event_source != (int64_t *)0x0) {
     (**(code **)(*event_source + 0x28))(event_source);
   }
   
@@ -958,23 +958,23 @@ void process_engine_event(longlong *event_data)
   event_reference = &processed_event;
   processed_event = event_source;
   
-  if (event_source != (longlong *)0x0) {
+  if (event_source != (int64_t *)0x0) {
     (**(code **)(*event_source + 0x28))(event_source);
   }
   
   (*handler_code)(event_handler, &processed_event);
   
   event_flags = allocate_engine_component(system_memory_pool_ptr, 0x70, 8, 3);
-  event_target = (longlong *)create_event_processor(event_flags, 0, engine_address);
+  event_target = (int64_t *)create_event_processor(event_flags, 0, engine_address);
   
-  if (event_target != (longlong *)0x0) {
-    event_reference = (longlong **)event_target;
+  if (event_target != (int64_t *)0x0) {
+    event_reference = (int64_t **)event_target;
     (**(code **)(*event_target + 0x28))(event_target);
   }
   
   queued_event = event_target;
-  if (event_processor != (longlong *)0x0) {
-    event_reference = (longlong **)event_processor;
+  if (event_processor != (int64_t *)0x0) {
+    event_reference = (int64_t **)event_processor;
     (**(code **)(*event_processor + 0x38))(event_processor);
   }
   
@@ -983,18 +983,18 @@ void process_engine_event(longlong *event_data)
   event_reference = &processed_event;
   processed_event = event_target;
   
-  if (event_target != (longlong *)0x0) {
+  if (event_target != (int64_t *)0x0) {
     (**(code **)(*event_target + 0x28))(event_target);
   }
   
   (*handler_code)(event_handler, &processed_event);
   cleanup_engine_component(*(uint64_t *)(engine_address + 400));
   
-  if (event_source != (longlong *)0x0) {
+  if (event_source != (int64_t *)0x0) {
     (**(code **)(*event_source + 0x38))(event_source);
   }
   
-  if (event_target != (longlong *)0x0) {
+  if (event_target != (int64_t *)0x0) {
     (**(code **)(*event_target + 0x38))(event_target);
   }
   return;
@@ -1006,27 +1006,27 @@ void process_engine_event(longlong *event_data)
  * 
  * 此函数处理引擎的系统级事件
  */
-void process_engine_system_event(longlong *system_event)
+void process_engine_system_event(int64_t *system_event)
 {
   uint64_t *event_handler;
   code *handler_code;
-  longlong engine_address;
+  int64_t engine_address;
   uint64_t event_flags;
-  longlong *event_processor;
-  longlong *event_source;
-  longlong *event_target;
-  longlong *processed_event;
-  longlong **event_reference;
-  longlong *queued_event;
-  longlong *processed_item;
+  int64_t *event_processor;
+  int64_t *event_source;
+  int64_t *event_target;
+  int64_t *processed_event;
+  int64_t **event_reference;
+  int64_t *queued_event;
+  int64_t *processed_item;
   
   engine_address = system_message_context;
   processed_event = system_event;
   event_flags = allocate_engine_component(system_memory_pool_ptr, 0x70, 8, 3, TIMEOUT_INFINITE);
-  event_processor = (longlong *)create_event_processor(event_flags, 0, engine_address);
+  event_processor = (int64_t *)create_event_processor(event_flags, 0, engine_address);
   queued_event = event_processor;
   
-  if (event_processor != (longlong *)0x0) {
+  if (event_processor != (int64_t *)0x0) {
     (**(code **)(*event_processor + 0x28))(event_processor);
   }
   
@@ -1035,17 +1035,17 @@ void process_engine_system_event(longlong *system_event)
   event_reference = &processed_event;
   processed_event = event_processor;
   
-  if (event_processor != (longlong *)0x0) {
+  if (event_processor != (int64_t *)0x0) {
     (**(code **)(*event_processor + 0x28))(event_processor);
   }
   
   (*handler_code)(event_handler, &processed_event);
   
   event_flags = allocate_engine_component(system_memory_pool_ptr, 0x70, 8, 3);
-  event_source = (longlong *)create_event_processor(event_flags, 3, engine_address);
+  event_source = (int64_t *)create_event_processor(event_flags, 3, engine_address);
   processed_item = event_source;
   
-  if (event_source != (longlong *)0x0) {
+  if (event_source != (int64_t *)0x0) {
     (**(code **)(*event_source + 0x28))(event_source);
   }
   
@@ -1054,23 +1054,23 @@ void process_engine_system_event(longlong *system_event)
   event_reference = &processed_event;
   processed_event = event_source;
   
-  if (event_source != (longlong *)0x0) {
+  if (event_source != (int64_t *)0x0) {
     (**(code **)(*event_source + 0x28))(event_source);
   }
   
   (*handler_code)(event_handler, &processed_event);
   
   event_flags = allocate_engine_component(system_memory_pool_ptr, 0x70, 8, 3);
-  event_target = (longlong *)create_event_processor(event_flags, 0, engine_address);
+  event_target = (int64_t *)create_event_processor(event_flags, 0, engine_address);
   
-  if (event_target != (longlong *)0x0) {
-    event_reference = (longlong **)event_target;
+  if (event_target != (int64_t *)0x0) {
+    event_reference = (int64_t **)event_target;
     (**(code **)(*event_target + 0x28))(event_target);
   }
   
   queued_event = event_target;
-  if (event_processor != (longlong *)0x0) {
-    event_reference = (longlong **)event_processor;
+  if (event_processor != (int64_t *)0x0) {
+    event_reference = (int64_t **)event_processor;
     (**(code **)(*event_processor + 0x38))(event_processor);
   }
   
@@ -1079,18 +1079,18 @@ void process_engine_system_event(longlong *system_event)
   event_reference = &processed_event;
   processed_event = event_target;
   
-  if (event_target != (longlong *)0x0) {
+  if (event_target != (int64_t *)0x0) {
     (**(code **)(*event_target + 0x28))(event_target);
   }
   
   (*handler_code)(event_handler, &processed_event);
   cleanup_engine_component(*(uint64_t *)(engine_address + 400));
   
-  if (event_source != (longlong *)0x0) {
+  if (event_source != (int64_t *)0x0) {
     (**(code **)(*event_source + 0x38))(event_source);
   }
   
-  if (event_target != (longlong *)0x0) {
+  if (event_target != (int64_t *)0x0) {
     (**(code **)(*event_target + 0x38))(event_target);
   }
   return;
@@ -1187,24 +1187,24 @@ void execute_engine_integrity_check(void)
  * 
  * 此函数处理引擎的状态变化事件
  */
-void process_engine_state_event(longlong *state_data)
+void process_engine_state_event(int64_t *state_data)
 {
   uint64_t *event_handler;
   code *handler_code;
-  longlong engine_address;
+  int64_t engine_address;
   uint64_t event_flags;
-  longlong *event_processor;
-  longlong *processed_event;
-  longlong **event_reference;
+  int64_t *event_processor;
+  int64_t *processed_event;
+  int64_t **event_reference;
   
   engine_address = system_message_context;
   if (*(char *)(system_message_context + 0x18) != '\0') {
     processed_event = state_data;
     event_flags = allocate_engine_component(system_memory_pool_ptr, 0x70, 8, 3, TIMEOUT_INFINITE);
-    event_processor = (longlong *)create_event_processor(event_flags, 6, engine_address);
+    event_processor = (int64_t *)create_event_processor(event_flags, 6, engine_address);
     processed_event = event_processor;
     
-    if (event_processor != (longlong *)0x0) {
+    if (event_processor != (int64_t *)0x0) {
       (**(code **)(*event_processor + 0x28))(event_processor);
     }
     
@@ -1213,14 +1213,14 @@ void process_engine_state_event(longlong *state_data)
     event_reference = &processed_event;
     processed_event = event_processor;
     
-    if (event_processor != (longlong *)0x0) {
+    if (event_processor != (int64_t *)0x0) {
       (**(code **)(*event_processor + 0x28))(event_processor);
     }
     
     (*handler_code)(event_handler, &processed_event);
     cleanup_engine_component(*(uint64_t *)(engine_address + 400));
     
-    if (event_processor != (longlong *)0x0) {
+    if (event_processor != (int64_t *)0x0) {
       (**(code **)(*event_processor + 0x38))(event_processor);
     }
   }
@@ -1241,10 +1241,10 @@ void execute_engine_time_sync(void)
   uint64_t timezone_info;
   uint64_t daylight_info;
   int8_t sync_data[256];
-  ulonglong sync_checksum;
+  uint64_t sync_checksum;
   
   daylight_info = TIMEOUT_INFINITE;
-  sync_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)time_buffer;
+  sync_checksum = GET_SECURITY_COOKIE() ^ (uint64_t)time_buffer;
   sync_flags = 0;
   timezone_info = system_message_context;
   current_time = _time64(0);

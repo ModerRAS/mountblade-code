@@ -3,25 +3,25 @@
 
 // 02_core_engine_part190.c - 6 个函数
 
-// 函数: void process_window_messages(longlong window_context, uint64_t window_handle, uint message_type, longlong param_4,
-//                               ulonglong param_5)
+// 函数: void process_window_messages(int64_t window_context, uint64_t window_handle, uint message_type, int64_t param_4,
+//                               uint64_t param_5)
 // 功能: 处理Windows窗口消息，包括鼠标移动、按键、窗口控制等
 // 参数: window_context - 窗口上下文, window_handle - 窗口句柄, message_type - 消息类型, param_4/5 - 消息参数
-void process_window_messages(longlong window_context, uint64_t window_handle, uint message_type, longlong param_4,
-                             ulonglong param_5)
+void process_window_messages(int64_t window_context, uint64_t window_handle, uint message_type, int64_t param_4,
+                             uint64_t param_5)
 
 {
   int *piVar1;
   int iVar2;
-  longlong lVar3;
+  int64_t lVar3;
   char cVar4;
   short sVar5;
   int iVar6;
   uint uVar7;
   uint uVar8;
   uint64_t *puVar9;
-  ulonglong uVar10;
-  longlong lVar11;
+  uint64_t uVar10;
+  int64_t lVar11;
   int *piVar12;
   int iVar13;
   uint uVar14;
@@ -105,13 +105,13 @@ void process_window_messages(longlong window_context, uint64_t window_handle, ui
   uint64_t uStack_668;
   int8_t auStack_658 [28];
   int aiStack_63c [377];
-  ulonglong uStack_58;
+  uint64_t uStack_58;
   
   lVar3 = system_operation_state;
-  uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_8d8;
+  uStack_58 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_8d8;
   uStack_888 = param_3;
   if (0x120 < param_3) {
-    sVar5 = (short)((ulonglong)param_4 >> 0x10);
+    sVar5 = (short)((uint64_t)param_4 >> 0x10);
     switch(param_3) {
     case 0x200:
       if ((*(char *)(system_operation_state + 0x1609) != '\0') &&
@@ -125,7 +125,7 @@ void process_window_messages(longlong window_context, uint64_t window_handle, ui
           ClientToScreen(param_2,&uStack_880);
           iStack_8a0 = iStack_898;
           iStack_89c = iStack_890;
-          *(ulonglong *)(param_1 + 0xa4) = CONCAT44(iStack_890,iStack_898);
+          *(uint64_t *)(param_1 + 0xa4) = CONCAT44(iStack_890,iStack_898);
           ClientToScreen(param_2,&iStack_8a0);
           iStack_674 = iStack_89c;
           uStack_670 = auStack_8a8[0];
@@ -159,7 +159,7 @@ void process_window_messages(longlong window_context, uint64_t window_handle, ui
           *(int32_t *)(param_1 + 0xa0) = auStack_8a8[0];
         }
         else {
-          uVar10 = (ulonglong)(*(uint *)(param_1 + 0x13c) & 1);
+          uVar10 = (uint64_t)(*(uint *)(param_1 + 0x13c) & 1);
           uVar8 = *(int *)(param_1 + 0xb4 + uVar10 * 0x48) -
                   *(int *)(param_1 + 0xac + uVar10 * 0x48);
           uVar14 = *(int *)(param_1 + 0xb8 + uVar10 * 0x48) -
@@ -328,7 +328,7 @@ void process_window_messages(longlong window_context, uint64_t window_handle, ui
       }
       break;
     case 0x219:
-      if (*(longlong *)(core_system_data_memory + 0x2018) != 0) {
+      if (*(int64_t *)(core_system_data_memory + 0x2018) != 0) {
         FUN_18030f2c0();
       }
     }
@@ -457,7 +457,7 @@ LAB_1801732b6:
     break;
   case 0x112:
     if (param_4 == 0xf100) {
-      if ((longlong)(param_5 & 0xffffffffffff0000) < 1) goto LAB_1801732ce;
+      if ((int64_t)(param_5 & 0xffffffffffff0000) < 1) goto LAB_1801732ce;
     }
     else if ((param_4 == 0xf140) || (param_4 == 0xf170)) goto LAB_1801732ce;
   }
@@ -465,7 +465,7 @@ LAB_1801732bb:
   DefWindowProcW(param_2,uStack_888,param_4,param_5);
 LAB_1801732ce:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_8d8);
+  FUN_1808fc050(uStack_58 ^ (uint64_t)auStack_8d8);
 }
 
 
@@ -483,8 +483,8 @@ void process_mouse_movement_events(void)
   int32_t uVar4;
   int iVar5;
   int *piVar6;
-  longlong unaff_RBP;
-  longlong unaff_RSI;
+  int64_t unaff_RBP;
+  int64_t unaff_RSI;
   int iVar7;
   int iVar8;
   int iVar9;
@@ -498,7 +498,7 @@ void process_mouse_movement_events(void)
   uVar3 = *(uint64_t *)(unaff_RSI + 0xa4);
   ClientToScreen();
   uStack000000000000003c = in_stack_00000048;
-  *(ulonglong *)(unaff_RSI + 0xa4) = CONCAT44(in_stack_00000048,in_stack_00000040);
+  *(uint64_t *)(unaff_RSI + 0xa4) = CONCAT44(in_stack_00000048,in_stack_00000040);
   ClientToScreen();
   *(int32_t *)(unaff_RBP + 0x164) = uStack000000000000003c;
   *(int32_t *)(unaff_RBP + 0x168) = uVar4;
@@ -507,7 +507,7 @@ void process_mouse_movement_events(void)
   iVar5 = GetMouseMovePointsEx(0x18,unaff_RBP + 0x160,unaff_RBP + 0x180,0x40,1);
   if ((1 < iVar5) && (0 < iVar5 + -1)) {
     piVar6 = (int *)(unaff_RBP + 0x19c);
-    iStack000000000000005c = (int)((ulonglong)uVar3 >> 0x20);
+    iStack000000000000005c = (int)((uint64_t)uVar3 >> 0x20);
     iVar7 = iVar8;
     iVar9 = iVar8;
     do {
@@ -532,7 +532,7 @@ void process_mouse_movement_events(void)
   *(int32_t *)(unaff_RSI + 0xa0) = uVar4;
   DefWindowProcW();
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x780) ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x780) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -541,19 +541,19 @@ void process_mouse_movement_events(void)
 
 
 
-// 函数: void process_mouse_position_delta(longlong window_context, uint64_t window_handle, int delta_x, int delta_y)
+// 函数: void process_mouse_position_delta(int64_t window_context, uint64_t window_handle, int delta_x, int delta_y)
 // 功能: 处理鼠标位置变化，计算坐标增量并触发相应事件
 // 参数: window_context - 窗口上下文, window_handle - 窗口句柄, delta_x/delta_y - 坐标增量
-void process_mouse_position_delta(longlong window_context, uint64_t window_handle, int delta_x, int delta_y)
+void process_mouse_position_delta(int64_t window_context, uint64_t window_handle, int delta_x, int delta_y)
 
 {
   int iVar1;
   uint uVar2;
   uint uVar3;
   int iVar4;
-  ulonglong uVar5;
-  longlong unaff_RBP;
-  longlong unaff_RSI;
+  uint64_t uVar5;
+  int64_t unaff_RBP;
+  int64_t unaff_RSI;
   uint uVar6;
   float fVar7;
   int8_t auVar8 [16];
@@ -562,7 +562,7 @@ void process_mouse_position_delta(longlong window_context, uint64_t window_handl
   float fVar11;
   float fVar12;
   
-  uVar5 = (ulonglong)(*(uint *)(param_1 + 0x13c) & 1);
+  uVar5 = (uint64_t)(*(uint *)(param_1 + 0x13c) & 1);
   uVar3 = *(int *)(unaff_RSI + 0xb4 + uVar5 * 0x48) - *(int *)(unaff_RSI + 0xac + uVar5 * 0x48);
   uVar6 = *(int *)(unaff_RSI + 0xb8 + uVar5 * 0x48) - *(int *)(unaff_RSI + 0xb0 + uVar5 * 0x48);
   uVar2 = 1;
@@ -611,7 +611,7 @@ void process_mouse_position_delta(longlong window_context, uint64_t window_handl
   }
   DefWindowProcW();
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x780) ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x780) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -627,8 +627,8 @@ void process_raw_mouse_input(float window_context, uint64_t input_data)
 
 {
   ushort uVar1;
-  longlong in_RCX;
-  ulonglong uVar2;
+  int64_t in_RCX;
+  uint64_t uVar2;
   float fVar3;
   float fVar4;
   uint64_t uStackX_10;
@@ -764,9 +764,9 @@ void handle_mouse_button_events(float window_context)
 {
   uint64_t uVar1;
   ushort uVar2;
-  ulonglong uVar3;
-  longlong unaff_RBX;
-  longlong unaff_RBP;
+  uint64_t uVar3;
+  int64_t unaff_RBX;
+  int64_t unaff_RBP;
   bool in_ZF;
   float fVar4;
   float fVar5;
@@ -890,9 +890,9 @@ LAB_1801736de:
 void process_mouse_capture_events(uint64_t event_data)
 
 {
-  ulonglong uVar1;
+  uint64_t uVar1;
   char unaff_BL;
-  longlong unaff_RBP;
+  int64_t unaff_RBP;
   
   *(uint64_t *)(unaff_RBP + -0x28) = 0;
   *(int32_t *)(unaff_RBP + -0x30) = 1;

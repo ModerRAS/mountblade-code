@@ -47,7 +47,7 @@ void process_path_and_resource_queue(uint64_t *context)
     uint64_t *path_end;
     uint64_t **queue_ptr;
     int8_t path_char;
-    ulonglong *resource_ptr;
+    uint64_t *resource_ptr;
     bool is_valid_path;
     uint64_t *current_path;
     uint64_t *next_path;
@@ -55,21 +55,21 @@ void process_path_and_resource_queue(uint64_t *context)
     uint64_t *temp_path2;
     char result_flag;
     int path_index;
-    longlong resource_count;
-    longlong temp_long;
-    longlong *resource_array;
-    ulonglong path_length;
+    int64_t resource_count;
+    int64_t temp_long;
+    int64_t *resource_array;
+    uint64_t path_length;
     char *path_string;
     int8_t *string_ptr;
     int string_length;
     void *temp_ptr;
-    longlong *temp_resource;
+    int64_t *temp_resource;
     int compare_result;
     code *callback_func;
     int32_t temp_uint;
     uint loop_counter;
     uint64_t *path_iterator;
-    longlong *iterator_ptr;
+    int64_t *iterator_ptr;
     void *stack_ptr;
     
     int8_t local_buffer[32];      // 局部缓冲区，用于XOR计算
@@ -79,10 +79,10 @@ void process_path_and_resource_queue(uint64_t *context)
     void *stack_ptr2;
     void *stack_ptr3;
     uint buffer_size;
-    ulonglong total_size;
+    uint64_t total_size;
     uint64_t *result_ptr;
     uint64_t *data_ptr;
-    ulonglong data_length;
+    uint64_t data_length;
     uint64_t data_header;
     void *ptr1;
     int8_t *ptr2;
@@ -99,19 +99,19 @@ void process_path_and_resource_queue(uint64_t *context)
     uint64_t callback_info[2];
     code *callback4;
     code *callback5;
-    longlong stack_long;
+    int64_t stack_long;
     uint64_t *stack_ptr4;
     uint64_t *stack_ptr5;
     uint64_t stack_value1;
     int32_t stack_value2;
-    longlong stack_long1;
-    longlong stack_long2;
+    int64_t stack_long1;
+    int64_t stack_long2;
     uint64_t *stack_ptr6;
     void *stack_ptr7;
     void *stack_ptr8;
     int32_t stack_value3;
     void *stack_ptr9;
-    longlong stack_long3;
+    int64_t stack_long3;
     int32_t stack_value4;
     uint64_t stack_value5;
     void **indirect_ptr;
@@ -135,9 +135,9 @@ void process_path_and_resource_queue(uint64_t *context)
     void *stack_ptr19;
     uint stack_uint3;
     uint8_t local_buffer5[264];
-    ulonglong xor_key;                // XOR加密密钥
+    uint64_t xor_key;                // XOR加密密钥
     
-    xor_key = GET_SECURITY_COOKIE() ^ (ulonglong)local_buffer;
+    xor_key = GET_SECURITY_COOKIE() ^ (uint64_t)local_buffer;
     queue_size = 0;
     stack_ptr6 = context;
     
@@ -157,7 +157,7 @@ void process_path_and_resource_queue(uint64_t *context)
         ptr2 = (int8_t *)0x0;
         size_field = 0;
         
-        resource_count = (longlong)(int)((longlong)path_end - (longlong)path_start >> 5);
+        resource_count = (int64_t)(int)((int64_t)path_end - (int64_t)path_start >> 5);
         
         if (0 < resource_count) {
             stack_long = 0;
@@ -168,7 +168,7 @@ void process_path_and_resource_queue(uint64_t *context)
                 
                 // 查找路径中的最后一个分隔符
                 if (-1 < compare_result) {
-                    temp_long = (longlong)compare_result;
+                    temp_long = (int64_t)compare_result;
                     do {
                         if (*(char *)(temp_long + path_iterator[1]) == '/') goto found_separator;
                         compare_result = compare_result - 1;
@@ -204,7 +204,7 @@ found_separator:
                     else {
                         if (stack_uint1 != 0) {
                             path_string = (char *)path_iterator[1];
-                            temp_long = (longlong)stack_ptr13 - (longlong)path_string;
+                            temp_long = (int64_t)stack_ptr13 - (int64_t)path_string;
                             do {
                                 if (*path_string != path_string[temp_long]) goto path_mismatch;
                                 loop_counter = loop_counter + 1;
@@ -263,7 +263,7 @@ found_separator:
                 // 分配字符串缓冲区
                 allocate_string_buffer(&stack_ptr19, string_length + 1);
                 
-                temp_long = (longlong)(int)loop_counter;
+                temp_long = (int64_t)(int)loop_counter;
                 for (; (temp_long < compare_result && (loop_counter < *(uint *)(path_iterator + 2))); 
                      loop_counter = loop_counter + 1) {
                     path_char = *(int8_t *)(temp_long + path_iterator[1]);
@@ -288,7 +288,7 @@ found_separator:
                 queue_size = 0xc;
                 loop_counter = stack_uint3 - 1;
                 if (-1 < (int)loop_counter) {
-                    temp_long = (longlong)(int)loop_counter;
+                    temp_long = (int64_t)(int)loop_counter;
                     do {
                         // 移除文件扩展名
                         if (stack_ptr2[temp_long] == '.') {
@@ -332,7 +332,7 @@ found_separator:
                 // 处理资源注册
                 if (context[0xe] == 0) {
                 process_resource:
-                    path_char = *(int8_t *)((longlong)context + 0x1c);
+                    path_char = *(int8_t *)((int64_t)context + 0x1c);
                     indirect_ptr = &stack_ptr10;
                     stack_ptr10 = &global_var_3456_ptr;
                     return_value = 0;
@@ -345,7 +345,7 @@ found_separator:
                         if (stack_ptr15 != (void *)0x0) {
                             temp_ptr = stack_ptr15;
                         }
-                        memcpy(ptr2, temp_ptr, (longlong)(int)(stack_uint2 + 1));
+                        memcpy(ptr2, temp_ptr, (int64_t)(int)(stack_uint2 + 1));
                     }
                     
                     if ((stack_ptr15 != (void *)0x0) &&
@@ -365,7 +365,7 @@ found_separator:
                         if (stack_ptr17 != (void *)0x0) {
                             temp_ptr = stack_ptr17;
                         }
-                        memcpy(stack_ptr7, temp_ptr, (longlong)(stack_int1 + 1));
+                        memcpy(stack_ptr7, temp_ptr, (int64_t)(stack_int1 + 1));
                     }
                     
                     if ((stack_ptr17 != (void *)0x0) &&
@@ -388,40 +388,40 @@ found_separator:
                     else {
                         // 资源注册成功，添加到队列
                         *(int32_t *)(stack_long1 + 4) = *(int32_t *)(context + 3);
-                        resource_ptr = (ulonglong *)context[1];
-                        iterator_ptr = (longlong *)resource_ptr[1];
+                        resource_ptr = (uint64_t *)context[1];
+                        iterator_ptr = (int64_t *)resource_ptr[1];
                         
-                        if (iterator_ptr < (longlong *)resource_ptr[2]) {
-                            resource_ptr[1] = (ulonglong)(iterator_ptr + 1);
+                        if (iterator_ptr < (int64_t *)resource_ptr[2]) {
+                            resource_ptr[1] = (uint64_t)(iterator_ptr + 1);
                             *iterator_ptr = stack_long1;
                         }
                         else {
                             // 队列扩容
-                            temp_resource = (longlong *)*resource_ptr;
-                            temp_long = (longlong)iterator_ptr - (longlong)temp_resource >> 3;
+                            temp_resource = (int64_t *)*resource_ptr;
+                            temp_long = (int64_t)iterator_ptr - (int64_t)temp_resource >> 3;
                             if (temp_long == 0) {
                                 temp_long = 1;
                             expand_queue:
-                                resource_array = (longlong *)allocate_memory(system_memory_pool_ptr, temp_long * 8, (char)resource_ptr[3]);
-                                iterator_ptr = (longlong *)resource_ptr[1];
-                                temp_resource = (longlong *)*resource_ptr;
+                                resource_array = (int64_t *)allocate_memory(system_memory_pool_ptr, temp_long * 8, (char)resource_ptr[3]);
+                                iterator_ptr = (int64_t *)resource_ptr[1];
+                                temp_resource = (int64_t *)*resource_ptr;
                             }
                             else {
                                 temp_long = temp_long * 2;
                                 if (temp_long != 0) goto expand_queue;
-                                resource_array = (longlong *)0x0;
+                                resource_array = (int64_t *)0x0;
                             }
                             
                             if (temp_resource != iterator_ptr) {
-                                memmove(resource_array, temp_resource, (longlong)iterator_ptr - (longlong)temp_resource);
+                                memmove(resource_array, temp_resource, (int64_t)iterator_ptr - (int64_t)temp_resource);
                             }
                             *resource_array = temp_long;
                             if (*resource_ptr != 0) {
                                 cleanup_memory();
                             }
-                            *resource_ptr = (ulonglong)resource_array;
-                            resource_ptr[1] = (ulonglong)(resource_array + 1);
-                            resource_ptr[2] = (ulonglong)(resource_array + temp_long);
+                            *resource_ptr = (uint64_t)resource_array;
+                            resource_ptr[1] = (uint64_t)(resource_array + 1);
+                            resource_ptr[2] = (uint64_t)(resource_array + temp_long);
                         }
                         
                         // 触发回调函数
@@ -469,7 +469,7 @@ found_separator:
                             cleanup_memory();
                         }
                         ptr2 = (int8_t *)0x0;
-                        data_block = (ulonglong)data_block._4_4_ << 0x20;
+                        data_block = (uint64_t)data_block._4_4_ << 0x20;
                         stack_ptr8 = &global_var_720_ptr;
                         goto process_resource;
                     }
@@ -477,7 +477,7 @@ found_separator:
                         cleanup_memory();
                     }
                     ptr2 = (int8_t *)0x0;
-                    data_block = (ulonglong)data_block._4_4_ << 0x20;
+                    data_block = (uint64_t)data_block._4_4_ << 0x20;
                     stack_ptr8 = &global_var_720_ptr;
                 }
                 
@@ -496,7 +496,7 @@ found_separator:
         cleanup_queue(*context, &stack_ptr5);
         
         current_path = stack_ptr6;
-        total_size = (longlong)stack_ptr7 - (longlong)stack_ptr5 >> 5;
+        total_size = (int64_t)stack_ptr7 - (int64_t)stack_ptr5 >> 5;
         path_iterator = stack_ptr5;
         temp_path1 = stack_ptr5;
         temp_path2 = stack_ptr7;
@@ -520,7 +520,7 @@ found_separator:
                 callback_func = _guard_check_icall;
                 data_header = 0;
                 stack_value3 = *(int32_t *)(current_path + 3);
-                path_char = *(int8_t *)((longlong)current_path + 0x1c);
+                path_char = *(int8_t *)((int64_t)current_path + 0x1c);
                 return_ptr = next_path;
                 
                 if (callback_info != path_start) {
@@ -632,7 +632,7 @@ found_separator:
     }
     
     // XOR解密并返回
-    cleanup_security(xor_key ^ (ulonglong)local_buffer);
+    cleanup_security(xor_key ^ (uint64_t)local_buffer);
 }
 
 /**
@@ -652,7 +652,7 @@ found_separator:
  * 
  * 简化实现：原始实现包含复杂的资源统计算法
  */
-ulonglong calculate_resource_statistics(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4)
+uint64_t calculate_resource_statistics(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4)
 {
     uint64_t *resource_start;
     uint64_t *resource_end;
@@ -662,9 +662,9 @@ ulonglong calculate_resource_statistics(uint64_t param1, uint64_t param2, uint64
     uint64_t *temp_ptr4;
     uint64_t *temp_ptr5;
     int count_result;
-    ulonglong total_count;
+    uint64_t total_count;
     uint64_t *iterator;
-    ulonglong final_count;
+    uint64_t final_count;
     uint64_t *stack_ptr1;
     uint64_t *stack_ptr2;
     uint64_t stack_value1;
@@ -682,7 +682,7 @@ ulonglong calculate_resource_statistics(uint64_t param1, uint64_t param2, uint64
     
     temp_ptr3 = stack_ptr2;
     temp_ptr2 = stack_ptr1;
-    final_count = (longlong)stack_ptr2 - (longlong)stack_ptr1 >> 5;
+    final_count = (int64_t)stack_ptr2 - (int64_t)stack_ptr1 >> 5;
     
     stack_ptr3 = (uint64_t *)0x0;
     stack_ptr4 = (uint64_t *)0x0;
@@ -692,7 +692,7 @@ ulonglong calculate_resource_statistics(uint64_t param1, uint64_t param2, uint64
     
     temp_ptr5 = stack_ptr4;
     temp_ptr4 = stack_ptr3;
-    total_count = (longlong)stack_ptr4 - (longlong)stack_ptr3 >> 5;
+    total_count = (int64_t)stack_ptr4 - (int64_t)stack_ptr3 >> 5;
     temp_ptr1 = temp_ptr4;
     
     if (0 < (int)total_count) {
@@ -700,7 +700,7 @@ ulonglong calculate_resource_statistics(uint64_t param1, uint64_t param2, uint64
         iterator = stack_ptr3;
         do {
             count_result = calculate_resource_statistics(iterator);
-            final_count = (ulonglong)(uint)((int)final_count + count_result);
+            final_count = (uint64_t)(uint)((int)final_count + count_result);
             iterator = iterator + 4;
             total_count = total_count - 1;
         } while (total_count != 0);
@@ -743,10 +743,10 @@ ulonglong calculate_resource_statistics(uint64_t param1, uint64_t param2, uint64
  * 
  * 简化实现：原始实现包含复杂的缓存优先级管理算法
  */
-void update_cache_priority(ulonglong resource_id, int new_priority, uint64_t *cache_manager)
+void update_cache_priority(uint64_t resource_id, int new_priority, uint64_t *cache_manager)
 {
     uint64_t *cache_node;
-    longlong search_result;
+    int64_t search_result;
     uint64_t *current_node;
     uint current_priority;
     uint max_priority;
@@ -758,7 +758,7 @@ void update_cache_priority(ulonglong resource_id, int new_priority, uint64_t *ca
     // 在缓存树中查找资源节点
     if (cache_node != (uint64_t *)0x0) {
         do {
-            if ((ulonglong)cache_node[4] < resource_id) {
+            if ((uint64_t)cache_node[4] < resource_id) {
                 cache_node = (uint64_t *)*cache_node;
             }
             else {
@@ -767,7 +767,7 @@ void update_cache_priority(ulonglong resource_id, int new_priority, uint64_t *ca
             }
         } while (cache_node != (uint64_t *)0x0);
         
-        if ((current_node != cache_manager) && ((ulonglong)current_node[4] <= resource_id)) {
+        if ((current_node != cache_manager) && ((uint64_t)current_node[4] <= resource_id)) {
             goto priority_update;
         }
     }
@@ -781,7 +781,7 @@ priority_update:
     }
     
     // 递归更新子节点优先级
-    for (search_result = *(longlong *)(resource_id + 0x40); search_result != resource_id + 0x38;
+    for (search_result = *(int64_t *)(resource_id + 0x40); search_result != resource_id + 0x38;
          search_result = traverse_cache_tree(search_result)) {
         update_cache_priority(*(uint64_t *)(search_result + 0x20), current_priority, cache_manager);
     }
@@ -806,20 +806,20 @@ priority_update:
  * 
  * 简化实现：原始实现包含复杂的缓存释放和内存管理逻辑
  */
-ulonglong release_resource_cache(longlong heap_handle, longlong *cache_ptr, uint64_t flags, uint64_t options)
+uint64_t release_resource_cache(int64_t heap_handle, int64_t *cache_ptr, uint64_t flags, uint64_t options)
 {
-    longlong *resource_array;
-    longlong cache_size;
+    int64_t *resource_array;
+    int64_t cache_size;
     int item_count;
-    ulonglong result;
+    uint64_t result;
     void *temp_ptr;
-    longlong total_items;
-    longlong used_items;
-    longlong free_items;
-    longlong stack_temp;
-    longlong stack_item_count;
-    longlong stack_used_items;
-    longlong stack_free_items;
+    int64_t total_items;
+    int64_t used_items;
+    int64_t free_items;
+    int64_t stack_temp;
+    int64_t stack_item_count;
+    int64_t stack_used_items;
+    int64_t stack_free_items;
     uint stack_flags;
     
     stack_temp = cache_ptr[1];
@@ -837,7 +837,7 @@ ulonglong release_resource_cache(longlong heap_handle, longlong *cache_ptr, uint
     else {
         // 执行缓存释放操作
         execute_cache_release(stack_temp);
-        total_items = *(longlong *)(cache_size + 0x188) - *(longlong *)(cache_size + 0x180) >> 3;
+        total_items = *(int64_t *)(cache_size + 0x188) - *(int64_t *)(cache_size + 0x180) >> 3;
         stack_flags = *(uint *)(cache_size + 0x198);
         used_items = 0;
         stack_item_count = used_items;
@@ -847,25 +847,25 @@ ulonglong release_resource_cache(longlong heap_handle, longlong *cache_ptr, uint
         }
         
         stack_free_items = stack_item_count + total_items * 8;
-        free_items = *(longlong *)(cache_size + 0x180);
+        free_items = *(int64_t *)(cache_size + 0x180);
         stack_used_items = stack_item_count;
         
-        if (free_items != *(longlong *)(cache_size + 0x188)) {
-            memmove(stack_item_count, free_items, *(longlong *)(cache_size + 0x188) - free_items);
+        if (free_items != *(int64_t *)(cache_size + 0x188)) {
+            memmove(stack_item_count, free_items, *(int64_t *)(cache_size + 0x188) - free_items);
         }
         
         execute_cache_cleanup();
         process_cache_release(heap_handle, &stack_item_count);
         cache_size = stack_item_count;
         
-        item_count = (int)(*(longlong *)(heap_handle + 0x118) - *(longlong *)(heap_handle + 0x110) >> 4);
-        total_items = (longlong)item_count;
+        item_count = (int)(*(int64_t *)(heap_handle + 0x118) - *(int64_t *)(heap_handle + 0x110) >> 4);
+        total_items = (int64_t)item_count;
         
         if (0 < item_count) {
             do {
-                resource_array = *(longlong **)(*(longlong *)(heap_handle + 0x110) + used_items);
+                resource_array = *(int64_t **)(*(int64_t *)(heap_handle + 0x110) + used_items);
                 (**(code **)(*resource_array + 0x20))
-                          (resource_array, *(uint64_t *)(*(longlong *)(heap_handle + 0x110) + 8 + used_items));
+                          (resource_array, *(uint64_t *)(*(int64_t *)(heap_handle + 0x110) + 8 + used_items));
                 used_items = used_items + 0x10;
                 total_items = total_items + -1;
             } while (total_items != 0);
@@ -875,7 +875,7 @@ ulonglong release_resource_cache(longlong heap_handle, longlong *cache_ptr, uint
         if (cache_size != 0) {
             cleanup_memory(cache_size);
         }
-        result = CONCAT71((int7)((ulonglong)*(uint64_t *)(heap_handle + 0x110) >> 8), 1);
+        result = CONCAT71((int7)((uint64_t)*(uint64_t *)(heap_handle + 0x110) >> 8), 1);
     }
     
     return result;
@@ -895,28 +895,28 @@ ulonglong release_resource_cache(longlong heap_handle, longlong *cache_ptr, uint
  * 
  * 简化实现：原始实现包含复杂的批量处理和优化算法
  */
-void process_resource_batch(longlong heap_handle, longlong *queue_ptr)
+void process_resource_batch(int64_t heap_handle, int64_t *queue_ptr)
 {
     uint64_t *resource_ptr;
-    ulonglong resource_id;
+    uint64_t resource_id;
     uint64_t *cache_node;
     int queue_size;
     uint64_t *temp_ptr1;
     uint64_t *temp_ptr2;
     uint64_t *temp_ptr3;
-    longlong item_count;
-    longlong total_items;
-    longlong processed_items;
+    int64_t item_count;
+    int64_t total_items;
+    int64_t processed_items;
     bool insert_before;
     uint64_t stack_value1;
-    longlong stack_item_count;
+    int64_t stack_item_count;
     uint64_t stack_value2;
     int32_t stack_value3;
     uint64_t stack_value4;
-    longlong stack_total_items;
-    longlong stack_processed_items;
+    int64_t stack_total_items;
+    int64_t stack_processed_items;
     int32_t stack_queue_size;
-    ulonglong stack_resource_id;
+    uint64_t stack_resource_id;
     
     stack_value4 = INVALID_HANDLE;
     stack_item_count = 0;
@@ -926,7 +926,7 @@ void process_resource_batch(longlong heap_handle, longlong *queue_ptr)
     stack_queue_size = DEFAULT_QUEUE_SIZE;
     
     queue_size = (int)(queue_ptr[1] - *queue_ptr >> 3);
-    total_items = (longlong)queue_size;
+    total_items = (int64_t)queue_size;
     stack_processed_items = total_items;
     
     if (queue_size != 0) {
@@ -956,19 +956,19 @@ void process_resource_batch(longlong heap_handle, longlong *queue_ptr)
     
     stack_value4 = 0;
     resource_ptr = (uint64_t *)(heap_handle + 0xb0);
-    resource_id = *(ulonglong *)*queue_ptr;
+    resource_id = *(uint64_t *)*queue_ptr;
     stack_item_count = stack_total_items;
     stack_resource_id = resource_id;
     
     total_items = allocate_memory(system_memory_pool_ptr, 0x28, *(int8_t *)(heap_handle + 0xd8));
-    *(ulonglong *)(total_items + 0x20) = resource_id;
+    *(uint64_t *)(total_items + 0x20) = resource_id;
     insert_before = true;
     cache_node = resource_ptr;
     temp_ptr3 = *(uint64_t **)(heap_handle + 0xc0);
     
     // 在缓存树中查找插入位置
     while (temp_ptr3 != (uint64_t *)0x0) {
-        insert_before = resource_id < (ulonglong)temp_ptr3[4];
+        insert_before = resource_id < (uint64_t)temp_ptr3[4];
         cache_node = temp_ptr3;
         if (insert_before) {
             temp_ptr3 = (uint64_t *)temp_ptr3[1];
@@ -986,12 +986,12 @@ void process_resource_batch(longlong heap_handle, longlong *queue_ptr)
         temp_ptr3 = (uint64_t *)find_cache_position(cache_node);
     }
     
-    if (*(ulonglong *)(total_items + 0x20) <= (ulonglong)temp_ptr3[4]) {
+    if (*(uint64_t *)(total_items + 0x20) <= (uint64_t)temp_ptr3[4]) {
         cleanup_memory(total_items);
     }
     
 insert_position:
-    if ((cache_node == resource_ptr) || (processed_items = 1, *(ulonglong *)(total_items + 0x20) < (ulonglong)cache_node[4])) {
+    if ((cache_node == resource_ptr) || (processed_items = 1, *(uint64_t *)(total_items + 0x20) < (uint64_t)cache_node[4])) {
         processed_items = item_count;
     }
     

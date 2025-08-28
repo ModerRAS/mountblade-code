@@ -118,7 +118,7 @@ void UI_EmptyFunction(void)
  * 
  * 原始实现：FUN_180788e60
  */
-uint64_t UI_InitializeSystem(longlong system_ptr, longlong component_ptr)
+uint64_t UI_InitializeSystem(int64_t system_ptr, int64_t component_ptr)
 {
     // 简化实现：基本状态检查
     if (system_ptr == 0 || component_ptr == 0) {
@@ -142,7 +142,7 @@ uint64_t UI_InitializeSystem(longlong system_ptr, longlong component_ptr)
  * 
  * 原始实现：FUN_180788f20
  */
-void UI_ShutdownSystem(longlong system_ptr)
+void UI_ShutdownSystem(int64_t system_ptr)
 {
     // 简化实现：检查清理函数是否存在
     if (*(code **)(system_ptr + UI_OFFSET_CLEANUP) != (code *)0x0) {
@@ -161,7 +161,7 @@ void UI_ShutdownSystem(longlong system_ptr)
  * 
  * 原始实现：FUN_180788f70
  */
-uint64_t UI_SecurityCheck(longlong *system_ptr_ptr)
+uint64_t UI_SecurityCheck(int64_t *system_ptr_ptr)
 {
     // 简化实现：基本安全检查
     if (*system_ptr_ptr != 0) {
@@ -182,7 +182,7 @@ uint64_t UI_SecurityCheck(longlong *system_ptr_ptr)
  * 
  * 原始实现：FUN_180788fe0
  */
-uint64_t UI_ProcessEvents(longlong system_ptr)
+uint64_t UI_ProcessEvents(int64_t system_ptr)
 {
     // 简化实现：基本事件处理框架
     if (system_ptr == 0) {
@@ -190,10 +190,10 @@ uint64_t UI_ProcessEvents(longlong system_ptr)
     }
     
     // 重置UI状态
-    if (*(longlong *)(system_ptr + UI_OFFSET_DATA) != 0) {
-        *(int16_t *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x127f4) = 0;
-        *(int16_t *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x127f2) = 0;
-        *(int16_t *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x127f0) = 0;
+    if (*(int64_t *)(system_ptr + UI_OFFSET_DATA) != 0) {
+        *(int16_t *)(*(int64_t *)(system_ptr + UI_OFFSET_DATA) + 0x127f4) = 0;
+        *(int16_t *)(*(int64_t *)(system_ptr + UI_OFFSET_DATA) + 0x127f2) = 0;
+        *(int16_t *)(*(int64_t *)(system_ptr + UI_OFFSET_DATA) + 0x127f0) = 0;
     }
     
     return UI_SYSTEM_SUCCESS;
@@ -211,11 +211,11 @@ uint64_t UI_ProcessEvents(longlong system_ptr)
 uint64_t UI_TraverseComponents(void)
 {
     // 简化实现：组件遍历框架
-    longlong system_ptr = 0; // 在实际实现中需要传入系统指针
+    int64_t system_ptr = 0; // 在实际实现中需要传入系统指针
     uint64_t *list_head;
     
-    if (system_ptr && *(longlong *)(system_ptr + UI_OFFSET_DATA)) {
-        list_head = (uint64_t *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
+    if (system_ptr && *(int64_t *)(system_ptr + UI_OFFSET_DATA)) {
+        list_head = (uint64_t *)(*(int64_t *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
         // 在实际实现中，这里会遍历所有组件
     }
     
@@ -276,7 +276,7 @@ uint64_t UI_ReturnSuccess2(void)
  * 
  * 原始实现：FUN_1807891d0
  */
-uint64_t UI_CleanupResources(longlong system_ptr)
+uint64_t UI_CleanupResources(int64_t system_ptr)
 {
     // 简化实现：资源清理框架
     if (system_ptr == 0) {
@@ -298,7 +298,7 @@ uint64_t UI_CleanupResources(longlong system_ptr)
  * 
  * 原始实现：FUN_180789205
  */
-uint64_t UI_ReleaseResources(code *cleanup_func, longlong system_ptr)
+uint64_t UI_ReleaseResources(code *cleanup_func, int64_t system_ptr)
 {
     // 简化实现：资源释放框架
     if (system_ptr == 0) {
@@ -320,7 +320,7 @@ uint64_t UI_ReleaseResources(code *cleanup_func, longlong system_ptr)
  * 
  * 原始实现：FUN_180789221
  */
-uint64_t UI_ResetSystem(longlong data_ptr, longlong system_ptr)
+uint64_t UI_ResetSystem(int64_t data_ptr, int64_t system_ptr)
 {
     // 简化实现：系统重置框架
     if (data_ptr == 0 || system_ptr == 0) {
@@ -342,7 +342,7 @@ uint64_t UI_ResetSystem(longlong data_ptr, longlong system_ptr)
  * 
  * 原始实现：FUN_18078922b
  */
-uint64_t UI_ResetSystem2(longlong data_ptr, longlong system_ptr)
+uint64_t UI_ResetSystem2(int64_t data_ptr, int64_t system_ptr)
 {
     // 简化实现：系统重置框架（备用版本）
     return UI_ResetSystem(data_ptr, system_ptr);
@@ -359,7 +359,7 @@ uint64_t UI_ResetSystem2(longlong data_ptr, longlong system_ptr)
  * 
  * 原始实现：FUN_18078923c
  */
-uint64_t UI_ClearSystem(longlong system_ptr, longlong resource_count)
+uint64_t UI_ClearSystem(int64_t system_ptr, int64_t resource_count)
 {
     // 简化实现：系统清理框架
     if (system_ptr == 0) {
@@ -382,9 +382,9 @@ uint64_t UI_ClearSystem(longlong system_ptr, longlong resource_count)
 uint64_t UI_BatchProcess(void)
 {
     // 简化实现：批量处理框架
-    longlong system_ptr = 0; // 在实际实现中需要传入系统指针
+    int64_t system_ptr = 0; // 在实际实现中需要传入系统指针
     
-    if (system_ptr && *(longlong *)(system_ptr + UI_OFFSET_RENDER) != 0) {
+    if (system_ptr && *(int64_t *)(system_ptr + UI_OFFSET_RENDER) != 0) {
         // 在实际实现中，这里会批量处理渲染资源
     }
     
@@ -403,9 +403,9 @@ uint64_t UI_BatchProcess(void)
 uint64_t UI_ProcessLinkedList(void)
 {
     // 简化实现：链表处理框架
-    longlong system_ptr = 0; // 在实际实现中需要传入系统指针
+    int64_t system_ptr = 0; // 在实际实现中需要传入系统指针
     
-    if (system_ptr && *(longlong *)(system_ptr + UI_OFFSET_DATA)) {
+    if (system_ptr && *(int64_t *)(system_ptr + UI_OFFSET_DATA)) {
         // 在实际实现中，这里会处理链表结构
     }
     
@@ -446,7 +446,7 @@ void UI_EmptyFunction3(void)
  * 
  * 原始实现：FUN_180789300
  */
-uint64_t UI_CheckStatus(longlong system_ptr)
+uint64_t UI_CheckStatus(int64_t system_ptr)
 {
     // 简化实现：状态检查框架
     if (system_ptr == 0) {
@@ -490,7 +490,7 @@ void UI_RecursiveProcess(uint *data_array, uint base_value, int step_size, int d
  * 
  * 原始实现：FUN_180789470
  */
-uint64_t UI_AllocateMemory(longlong system_ptr, uint size, char flags)
+uint64_t UI_AllocateMemory(int64_t system_ptr, uint size, char flags)
 {
     // 简化实现：内存分配框架
     if (system_ptr == 0 || size == 0) {
@@ -511,7 +511,7 @@ uint64_t UI_AllocateMemory(longlong system_ptr, uint size, char flags)
  * 
  * 原始实现：FUN_1807894bb
  */
-uint64_t UI_AllocateMemory2(longlong system_ptr)
+uint64_t UI_AllocateMemory2(int64_t system_ptr)
 {
     // 简化实现：内存分配框架（备用版本）
     if (system_ptr == 0) {
@@ -532,7 +532,7 @@ uint64_t UI_AllocateMemory2(longlong system_ptr)
  * 
  * 原始实现：FUN_1807894e0
  */
-uint64_t UI_AllocateMemory3(longlong system_ptr)
+uint64_t UI_AllocateMemory3(int64_t system_ptr)
 {
     // 简化实现：内存分配框架（第三版本）
     return UI_AllocateMemory2(system_ptr);
@@ -656,7 +656,7 @@ uint64_t UI_HandleInitError(void)
  * 
  * 原始实现：FUN_1807897b0
  */
-int32_t UI_ProcessData(longlong param1, longlong param2, uint64_t param3, longlong param4, int param5)
+int32_t UI_ProcessData(int64_t param1, int64_t param2, uint64_t param3, int64_t param4, int param5)
 {
     // 简化实现：数据处理框架
     if (param1 == 0 || param5 == 0) {

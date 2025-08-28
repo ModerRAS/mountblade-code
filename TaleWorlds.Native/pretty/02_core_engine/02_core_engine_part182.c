@@ -22,7 +22,7 @@ void trigger_system_termination(void)
  * @return 返回输出缓冲区指针
  */
 uint64_t *
-process_hash_table_string_generation(uint64_t param1, uint64_t *output_buffer, uint64_t param3, longlong *hash_table)
+process_hash_table_string_generation(uint64_t param1, uint64_t *output_buffer, uint64_t param3, int64_t *hash_table)
 {
     int buffer_length;
     void *string_ptr;
@@ -35,13 +35,13 @@ process_hash_table_string_generation(uint64_t param1, uint64_t *output_buffer, u
     void *stack_buffer_88;
     int32_t *stack_buffer_80;
     int32_t stack_value_78;
-    ulonglong stack_value_70;
+    uint64_t stack_value_70;
     void *stack_buffer_68;
     void *stack_buffer_60;
     int stack_value_58;
     void *stack_buffer_50;
     void *stack_buffer_48;
-    longlong stack_value_40;
+    int64_t stack_value_40;
     int32_t stack_value_30;
     
     // 检查哈希表对齐状态
@@ -63,7 +63,7 @@ process_hash_table_string_generation(uint64_t param1, uint64_t *output_buffer, u
         hash_entry[3] = 0x65696669;  // "ifie"
         hash_entry[4] = 0x742e7372;  // "rs.t"
         *(int16_t *)(hash_entry + 5) = 0x7478;  // "xt"
-        *(int8_t *)((longlong)hash_entry + 0x16) = 0;
+        *(int8_t *)((int64_t)hash_entry + 0x16) = 0;
         stack_value_78 = 0x16;
         buffer_ptr = &stack_buffer_88;
     }
@@ -80,7 +80,7 @@ process_hash_table_string_generation(uint64_t param1, uint64_t *output_buffer, u
     stack_value_58 = buffer_length;
     string_ptr = buffer_ptr[1];
     stack_buffer_60 = string_ptr;
-    stack_buffer_50 = (void *)((ulonglong)*(uint *)((longlong)buffer_ptr + 0x1c) << 0x20);
+    stack_buffer_50 = (void *)((uint64_t)*(uint *)((int64_t)buffer_ptr + 0x1c) << 0x20);
     stack_buffer_50 = buffer_ptr[3];
     *(int32_t *)(buffer_ptr + 2) = 0;
     buffer_ptr[1] = (void *)0x0;
@@ -131,7 +131,7 @@ process_hash_table_string_generation(uint64_t param1, uint64_t *output_buffer, u
     
     entry_length = *(int *)(output_buffer + 2) + 0x21;
     expand_buffer(output_buffer, entry_length);
-    hash_entry = (int32_t *)((ulonglong)*(uint *)(output_buffer + 2) + output_buffer[1]);
+    hash_entry = (int32_t *)((uint64_t)*(uint *)(output_buffer + 2) + output_buffer[1]);
     *hash_entry = 0x656e6f44;  // "Done"
     hash_entry[1] = 0x6f43202e;  // ". Co"
     hash_entry[2] = 0x6e69626d;  // "mbin"
@@ -147,7 +147,7 @@ process_hash_table_string_generation(uint64_t param1, uint64_t *output_buffer, u
     if (0 < buffer_length) {
         expand_buffer(output_buffer, entry_length + buffer_length);
         // 复制字符串到输出缓冲区
-        memcpy((ulonglong)*(uint *)(output_buffer + 2) + output_buffer[1], string_ptr, (longlong)(buffer_length + 1));
+        memcpy((uint64_t)*(uint *)(output_buffer + 2) + output_buffer[1], string_ptr, (int64_t)(buffer_length + 1));
     }
     
     // 最终清理
@@ -169,7 +169,7 @@ process_hash_table_string_generation(uint64_t param1, uint64_t *output_buffer, u
  * @return 返回输出缓冲区指针
  */
 uint64_t *
-process_combination_string_generation(uint64_t param1, uint64_t *output_buffer, uint64_t param3, longlong *combination_data)
+process_combination_string_generation(uint64_t param1, uint64_t *output_buffer, uint64_t param3, int64_t *combination_data)
 {
     int buffer_length;
     void *string_ptr;
@@ -182,13 +182,13 @@ process_combination_string_generation(uint64_t param1, uint64_t *output_buffer, 
     void *stack_buffer_88;
     int32_t *stack_buffer_80;
     int32_t stack_value_78;
-    ulonglong stack_value_70;
+    uint64_t stack_value_70;
     void *stack_buffer_68;
     void *stack_buffer_60;
     int stack_value_58;
     void *stack_buffer_50;
     void *stack_buffer_48;
-    longlong stack_value_40;
+    int64_t stack_value_40;
     int32_t stack_value_30;
     
     // 检查组合数据对齐状态
@@ -225,7 +225,7 @@ process_combination_string_generation(uint64_t param1, uint64_t *output_buffer, 
     stack_value_58 = buffer_length;
     string_ptr = buffer_ptr[1];
     stack_buffer_60 = string_ptr;
-    stack_buffer_50 = (void *)((ulonglong)*(uint *)((longlong)buffer_ptr + 0x1c) << 0x20);
+    stack_buffer_50 = (void *)((uint64_t)*(uint *)((int64_t)buffer_ptr + 0x1c) << 0x20);
     stack_buffer_50 = buffer_ptr[3];
     *(int32_t *)(buffer_ptr + 2) = 0;
     buffer_ptr[1] = (void *)0x0;
@@ -276,7 +276,7 @@ process_combination_string_generation(uint64_t param1, uint64_t *output_buffer, 
     
     entry_length = *(int *)(output_buffer + 2) + 0x21;
     expand_buffer(output_buffer, entry_length);
-    combination_entry = (int32_t *)((ulonglong)*(uint *)(output_buffer + 2) + output_buffer[1]);
+    combination_entry = (int32_t *)((uint64_t)*(uint *)(output_buffer + 2) + output_buffer[1]);
     *combination_entry = 0x656e6f44;  // "Done"
     combination_entry[1] = 0x6f43202e;  // ". Co"
     combination_entry[2] = 0x6e69626d;  // "mbin"
@@ -292,7 +292,7 @@ process_combination_string_generation(uint64_t param1, uint64_t *output_buffer, 
     if (0 < buffer_length) {
         expand_buffer(output_buffer, entry_length + buffer_length);
         // 复制字符串到输出缓冲区
-        memcpy((ulonglong)*(uint *)(output_buffer + 2) + output_buffer[1], string_ptr, (longlong)(buffer_length + 1));
+        memcpy((uint64_t)*(uint *)(output_buffer + 2) + output_buffer[1], string_ptr, (int64_t)(buffer_length + 1));
     }
     
     // 最终清理
@@ -314,9 +314,9 @@ process_combination_string_generation(uint64_t param1, uint64_t *output_buffer, 
  * @return 返回输出缓冲区指针
  */
 uint64_t *
-process_graphics_string_generation(uint64_t param1, uint64_t *output_buffer, uint64_t param3, longlong *graphics_data)
+process_graphics_string_generation(uint64_t param1, uint64_t *output_buffer, uint64_t param3, int64_t *graphics_data)
 {
-    longlong data_start;
+    int64_t data_start;
     uint64_t *message_ptr;
     
     data_start = *graphics_data;
@@ -359,7 +359,7 @@ process_graphics_string_generation(uint64_t param1, uint64_t *output_buffer, uin
         message_ptr[1] = 0x6e696d6165727473;  // "training "
         message_ptr[2] = 0x7561702d6e752067;  // "g un-paus"
         *(int32_t *)(message_ptr + 3) = 0x2e646573;  // "sed."
-        *(int8_t *)((longlong)message_ptr + 0x1c) = 0;
+        *(int8_t *)((int64_t)message_ptr + 0x1c) = 0;
         *(int32_t *)(output_buffer + 2) = 0x1c;
     }
     
@@ -375,10 +375,10 @@ process_graphics_string_generation(uint64_t param1, uint64_t *output_buffer, uin
  * @return 返回输出缓冲区指针
  */
 uint64_t *
-process_network_string_generation(uint64_t param1, uint64_t *output_buffer, uint64_t param3, longlong *network_data)
+process_network_string_generation(uint64_t param1, uint64_t *output_buffer, uint64_t param3, int64_t *network_data)
 {
-    longlong data_end;
-    longlong data_start;
+    int64_t data_end;
+    int64_t data_start;
     int32_t *short_message;
     uint64_t *long_message;
     
@@ -388,7 +388,7 @@ process_network_string_generation(uint64_t param1, uint64_t *output_buffer, uint
     *(int32_t *)(output_buffer + 2) = 0;
     *output_buffer = &global_resource_manager_v2;
     
-    if ((ulonglong)(data_end - data_start >> 5) < 2) {
+    if ((uint64_t)(data_end - data_start >> 5) < 2) {
         // 生成网络错误消息
         *output_buffer = &global_resource_manager_v1;
         output_buffer[3] = 0;
@@ -399,7 +399,7 @@ process_network_string_generation(uint64_t param1, uint64_t *output_buffer, uint
         *long_message = 0x777420736465654e;  // "Need twos "
         long_message[1] = 0x656d75677261206f;  // "o grammar "
         *(int32_t *)(long_message + 2) = 0x2e73746e;  // "nts."
-        *(int8_t *)((longlong)long_message + 0x14) = 0;
+        *(int8_t *)((int64_t)long_message + 0x14) = 0;
         *(int32_t *)(output_buffer + 2) = 0x14;
     }
     else {
@@ -427,22 +427,22 @@ process_network_string_generation(uint64_t param1, uint64_t *output_buffer, uint
  * @return 返回输出缓冲区指针
  */
 uint64_t *
-process_multi_element_string_concat(uint64_t param1, uint64_t *output_buffer, uint64_t param3, longlong *element_data)
+process_multi_element_string_concat(uint64_t param1, uint64_t *output_buffer, uint64_t param3, int64_t *element_data)
 {
-    longlong element_start;
+    int64_t element_start;
     int32_t *result_ptr;
-    longlong data_start;
+    int64_t data_start;
     uint element_count;
-    ulonglong buffer_offset;
-    ulonglong temp_offset;
-    longlong data_end;
-    ulonglong loop_counter;
-    ulonglong element_size;
+    uint64_t buffer_offset;
+    uint64_t temp_offset;
+    int64_t data_end;
+    uint64_t loop_counter;
+    uint64_t element_size;
     void *stack_buffer_48;
-    ulonglong stack_buffer_40;
+    uint64_t stack_buffer_40;
     uint stack_buffer_38;
     uint64_t stack_buffer_30;
-    ulonglong total_size;
+    uint64_t total_size;
     
     total_size = 0;
     stack_buffer_48 = &global_resource_manager_v1;
@@ -464,13 +464,13 @@ process_multi_element_string_concat(uint64_t param1, uint64_t *output_buffer, ui
                 expand_buffer(&stack_buffer_48, (int)total_size + *(int *)(element_start + 0x10));
                 // 复制元素内容到缓冲区
                 memcpy(stack_buffer_38 + stack_buffer_40, *(uint64_t *)(element_start + 8),
-                       (longlong)(*(int *)(element_start + 0x10) + 1));
+                       (int64_t)(*(int *)(element_start + 0x10) + 1));
             }
             
             // 添加分隔符
             if (buffer_offset != (data_end - data_start >> 5) - 1U) {
                 element_count = (int)total_size + 1;
-                total_size = (ulonglong)element_count;
+                total_size = (uint64_t)element_count;
                 expand_buffer(&stack_buffer_48, total_size);
                 *(int16_t *)(stack_buffer_38 + stack_buffer_40) = 0x20;  // 空格
                 data_end = element_data[1];
@@ -480,10 +480,10 @@ process_multi_element_string_concat(uint64_t param1, uint64_t *output_buffer, ui
             }
             
             element_count = (int)loop_counter + 1;
-            buffer_offset = (longlong)(int)element_count;
-            loop_counter = (ulonglong)element_count;
+            buffer_offset = (int64_t)(int)element_count;
+            loop_counter = (uint64_t)element_count;
             element_size = element_size + 0x20;
-        } while ((ulonglong)(longlong)(int)element_count < (ulonglong)(data_end - data_start >> 5));
+        } while ((uint64_t)(int64_t)(int)element_count < (uint64_t)(data_end - data_start >> 5));
     }
     
     // 设置输出缓冲区
@@ -519,7 +519,7 @@ process_multi_element_string_concat(uint64_t param1, uint64_t *output_buffer, ui
  * @return 返回输出缓冲区指针
  */
 uint64_t *
-process_option_string_generation(uint64_t param1, uint64_t *output_buffer, uint64_t param3, longlong *option_data)
+process_option_string_generation(uint64_t param1, uint64_t *output_buffer, uint64_t param3, int64_t *option_data)
 {
     int32_t *short_result;
     uint64_t *long_result;
@@ -583,8 +583,8 @@ process_command_sequence(uint64_t *param1, uint64_t *output_buffer, uint64_t par
     uint64_t *command_ptr;
     int command_length;
     uint option_count;
-    ulonglong buffer_size;
-    ulonglong temp_offset;
+    uint64_t buffer_size;
+    uint64_t temp_offset;
     uint64_t *command_start;
     uint64_t *command_end;
     
@@ -605,29 +605,29 @@ process_command_sequence(uint64_t *param1, uint64_t *output_buffer, uint64_t par
     command_ptr = command_start;
     
     // 处理命令序列中的每个命令
-    if ((longlong)command_end - (longlong)command_start >> 5 != 0) {
+    if ((int64_t)command_end - (int64_t)command_start >> 5 != 0) {
         do {
-            command_length = *(int *)(temp_offset + 0x10 + (longlong)command_start);
+            command_length = *(int *)(temp_offset + 0x10 + (int64_t)command_start);
             if (0 < command_length) {
                 expand_buffer(output_buffer, *(int *)(output_buffer + 2) + command_length);
                 // 复制命令内容到输出缓冲区
-                memcpy((ulonglong)*(uint *)(output_buffer + 2) + output_buffer[1],
-                       *(uint64_t *)(temp_offset + 8 + (longlong)command_start),
-                       (longlong)(*(int *)(temp_offset + 0x10 + (longlong)command_start) + 1));
+                memcpy((uint64_t)*(uint *)(output_buffer + 2) + output_buffer[1],
+                       *(uint64_t *)(temp_offset + 8 + (int64_t)command_start),
+                       (int64_t)(*(int *)(temp_offset + 0x10 + (int64_t)command_start) + 1));
             }
             
             // 添加分隔符
             command_length = *(int *)(output_buffer + 2) + 1;
             expand_buffer(output_buffer, command_length);
-            *(int16_t *)((ulonglong)*(uint *)(output_buffer + 2) + output_buffer[1]) = 10;  // 换行符
+            *(int16_t *)((uint64_t)*(uint *)(output_buffer + 2) + output_buffer[1]) = 10;  // 换行符
             *(int *)(output_buffer + 2) = command_length;
             
             option_count = (int)buffer_size + 1;
-            buffer_size = (ulonglong)option_count;
+            buffer_size = (uint64_t)option_count;
             temp_offset = temp_offset + 0x20;
             command_ptr = command_start;
-        } while ((ulonglong)(longlong)(int)option_count <
-                 (ulonglong)((longlong)command_end - (longlong)command_start >> 5));
+        } while ((uint64_t)(int64_t)(int)option_count <
+                 (uint64_t)((int64_t)command_end - (int64_t)command_start >> 5));
     }
     
     // 执行命令

@@ -3,22 +3,22 @@
 // 02_core_engine_part206.c - 核心引擎动态数组管理模块
 
 // 函数：向动态数组中插入元素（8字节结构体）
-void dynamic_array_insert_8byte(longlong *array_info, longlong insert_pos, uint64_t *element_data)
+void dynamic_array_insert_8byte(int64_t *array_info, int64_t insert_pos, uint64_t *element_data)
 
 {
-    ulonglong new_capacity;
+    uint64_t new_capacity;
     uint64_t *new_array;
     code *error_handler;
-    ulonglong current_capacity;
+    uint64_t current_capacity;
     int32_t element_field_0x14;
     int32_t element_field_0x18;
     int32_t element_field_0x1c;
     uint64_t element_field_4;
-    longlong array_start;
-    longlong array_end;
+    int64_t array_start;
+    int64_t array_end;
     int8_t temp_stack[8];
-    ulonglong calc_capacity;
-    longlong element_offset;
+    uint64_t calc_capacity;
+    int64_t element_offset;
     
     array_end = *array_info;
     element_offset = (array_info[1] - array_end) / 0x28;
@@ -45,13 +45,13 @@ void dynamic_array_insert_8byte(longlong *array_info, longlong insert_pos, uint6
     element_field_4 = element_data[1];
     *new_array = *element_data;
     new_array[1] = element_field_4;
-    element_field_0x14 = *(int32_t *)((longlong)element_data + 0x14);
+    element_field_0x14 = *(int32_t *)((int64_t)element_data + 0x14);
     element_field_0x18 = *(int32_t *)(element_data + 3);
-    element_field_0x1c = *(int32_t *)((longlong)element_data + 0x1c);
+    element_field_0x1c = *(int32_t *)((int64_t)element_data + 0x1c);
     *(int32_t *)(new_array + 2) = *(int32_t *)(element_data + 2);
-    *(int32_t *)((longlong)new_array + 0x14) = element_field_0x14;
+    *(int32_t *)((int64_t)new_array + 0x14) = element_field_0x14;
     *(int32_t *)(new_array + 3) = element_field_0x18;
-    *(int32_t *)((longlong)new_array + 0x1c) = element_field_0x1c;
+    *(int32_t *)((int64_t)new_array + 0x1c) = element_field_0x1c;
     new_array[4] = element_data[4];
     array_end = array_info[1];
     element_offset = element_offset;
@@ -67,9 +67,9 @@ void dynamic_array_insert_8byte(longlong *array_info, longlong insert_pos, uint6
 
 
 // 函数：向4字节元素数组中插入元素
-int32_t * array_insert_4byte_elements(longlong *array_info, longlong insert_pos, int32_t *element_data)
+int32_t * array_insert_4byte_elements(int64_t *array_info, int64_t insert_pos, int32_t *element_data)
 {
-  ulonglong new_element_count;
+  uint64_t new_element_count;
   int32_t *new_array;
   code *error_handler;
   int32_t *result_ptr;
@@ -78,12 +78,12 @@ int32_t * array_insert_4byte_elements(longlong *array_info, longlong insert_pos,
   int32_t element_field_3;
   int32_t *element_ptr;
   int32_t *temp_ptr;
-  longlong array_start;
-  longlong array_end;
+  int64_t array_start;
+  int64_t array_end;
   uint64_t temp_var;
-  ulonglong current_count;
-  ulonglong new_capacity;
-  longlong element_offset;
+  uint64_t current_count;
+  uint64_t new_capacity;
+  int64_t element_offset;
   
   array_end = *array_info;
   element_offset = (array_info[1] - array_end) / 0x28;
@@ -128,7 +128,7 @@ int32_t * array_insert_4byte_elements(longlong *array_info, longlong insert_pos,
   *(int8_t *)element_data = 0;
   *(int8_t *)(result_ptr + 8) = *(int8_t *)(element_data + 8);
   array_end = array_info[1];
-  element_offset = (longlong)new_array;
+  element_offset = (int64_t)new_array;
   temp_ptr = new_array;
   element_ptr = result_ptr;
   if (insert_pos != array_end) {
@@ -152,7 +152,7 @@ int32_t * array_insert_4byte_elements(longlong *array_info, longlong insert_pos,
     current_count = ((array_info[2] - element_offset) / 0x28) * 0x28;
     array_end = element_offset;
     if (0xfff < current_count) {
-      array_end = *(longlong *)(element_offset + -8);
+      array_end = *(int64_t *)(element_offset + -8);
       if (0x1f < (element_offset - array_end) - 8U) {
         // WARNING: Subroutine does not return
         invalid_parameter_no_info_no_return(array_info[2] - element_offset, current_count + 0x27);
@@ -160,29 +160,29 @@ int32_t * array_insert_4byte_elements(longlong *array_info, longlong insert_pos,
     }
     free(array_end);
   }
-  *array_info = (longlong)new_array;
-  array_info[1] = (longlong)(new_array + new_element_count * 10);
-  array_info[2] = (longlong)(new_array + new_capacity * 10);
+  *array_info = (int64_t)new_array;
+  array_info[1] = (int64_t)(new_array + new_element_count * 10);
+  array_info[2] = (int64_t)(new_array + new_capacity * 10);
   return result_ptr;
 }
 
 
 
 // 函数：向数组中插入结构体元素
-longlong array_insert_struct_element(longlong *array_info, longlong insert_pos, longlong element_data)
+int64_t array_insert_struct_element(int64_t *array_info, int64_t insert_pos, int64_t element_data)
 {
-  ulonglong new_element_count;
+  uint64_t new_element_count;
   code *error_handler;
-  longlong array_start;
-  longlong array_end;
-  longlong new_array_start;
-  longlong insert_position;
-  ulonglong current_count;
-  ulonglong new_capacity;
-  longlong element_offset;
+  int64_t array_start;
+  int64_t array_end;
+  int64_t new_array_start;
+  int64_t insert_position;
+  uint64_t current_count;
+  uint64_t new_capacity;
+  int64_t element_offset;
   uint64_t temp_var;
-  longlong new_array;
-  longlong result_ptr;
+  int64_t new_array;
+  int64_t result_ptr;
   
   temp_var = 0xfffffffffffffffe;
   array_start = *array_info;
@@ -236,7 +236,7 @@ longlong array_insert_struct_element(longlong *array_info, longlong insert_pos, 
     current_count = ((array_info[2] - array_start) / 0x28) * 0x28;
     array_end = array_start;
     if (0xfff < current_count) {
-      array_end = *(longlong *)(array_start + -8);
+      array_end = *(int64_t *)(array_start + -8);
       if (0x1f < (array_start - array_end) - 8U) {
         // WARNING: Subroutine does not return
         invalid_parameter_no_info_no_return(array_info[2] - array_start, current_count + 0x27);
@@ -255,7 +255,7 @@ longlong array_insert_struct_element(longlong *array_info, longlong insert_pos, 
 
 
 // 函数：复制结构体数据
-void copy_struct_data(uint64_t dest_ptr, longlong src_ptr, longlong param_3, uint64_t param_4)
+void copy_struct_data(uint64_t dest_ptr, int64_t src_ptr, int64_t param_3, uint64_t param_4)
 {
   copy_memory_block(dest_ptr, src_ptr, src_ptr, param_4, 0xfffffffffffffffe);
   *(int8_t *)(dest_ptr + 0x20) = *(int8_t *)(src_ptr + 0x20);
@@ -268,20 +268,20 @@ void copy_struct_data(uint64_t dest_ptr, longlong src_ptr, longlong param_3, uin
 
 
 // 函数：向64字节对齐数组中插入元素
-longlong array_insert_64byte_aligned(longlong *array_info, longlong insert_pos, longlong element_data)
+int64_t array_insert_64byte_aligned(int64_t *array_info, int64_t insert_pos, int64_t element_data)
 {
-  ulonglong new_element_count;
+  uint64_t new_element_count;
   code *error_handler;
-  longlong array_start;
-  longlong current_count;
-  ulonglong new_capacity;
-  longlong new_array;
-  ulonglong offset;
-  longlong dest_ptr;
-  longlong src_ptr;
-  longlong temp_ptr;
-  longlong old_ptr;
-  ulonglong aligned_size;
+  int64_t array_start;
+  int64_t current_count;
+  uint64_t new_capacity;
+  int64_t new_array;
+  uint64_t offset;
+  int64_t dest_ptr;
+  int64_t src_ptr;
+  int64_t temp_ptr;
+  int64_t old_ptr;
+  uint64_t aligned_size;
   
   array_start = *array_info;
   current_count = array_info[1] - array_start >> 6;
@@ -342,7 +342,7 @@ longlong array_insert_64byte_aligned(longlong *array_info, longlong insert_pos, 
     aligned_size = array_info[2] - array_start & 0xffffffffffffffc0;
     dest_ptr = array_start;
     if (0xfff < aligned_size) {
-      dest_ptr = *(longlong *)(array_start + -8);
+      dest_ptr = *(int64_t *)(array_start + -8);
       if (0x1f < (array_start - dest_ptr) - 8U) {
         // WARNING: Subroutine does not return
         invalid_parameter_no_info_no_return(dest_ptr, aligned_size + 0x27);
@@ -361,15 +361,15 @@ longlong array_insert_64byte_aligned(longlong *array_info, longlong insert_pos, 
 
 
 // 函数：调整8字节数组大小
-void resize_8byte_array(longlong *array_info, ulonglong new_size, uint64_t param_3, uint64_t param_4)
+void resize_8byte_array(int64_t *array_info, uint64_t new_size, uint64_t param_3, uint64_t param_4)
 {
   code *error_handler;
-  ulonglong current_size;
-  longlong array_end;
-  longlong array_start;
+  uint64_t current_size;
+  int64_t array_end;
+  int64_t array_start;
   uint64_t *new_array;
-  ulonglong capacity;
-  ulonglong new_capacity;
+  uint64_t capacity;
+  uint64_t new_capacity;
   uint64_t temp_stack[2];
   uint64_t temp_var;
   
@@ -424,14 +424,14 @@ void resize_8byte_array(longlong *array_info, ulonglong new_size, uint64_t param
 
 
 // 函数：复制4字节数据块
-void copy_4byte_data_block(longlong *array_info, longlong src_ptr, longlong dest_ptr, int8_t param_4)
+void copy_4byte_data_block(int64_t *array_info, int64_t src_ptr, int64_t dest_ptr, int8_t param_4)
 {
   code *error_handler;
-  ulonglong current_size;
-  longlong array_start;
-  ulonglong capacity;
-  ulonglong required_size;
-  longlong memory_ptr;
+  uint64_t current_size;
+  int64_t array_start;
+  uint64_t capacity;
+  uint64_t required_size;
+  int64_t memory_ptr;
   int8_t temp_stack[8];
   
   array_start = *array_info;
@@ -463,7 +463,7 @@ LAB_180189786:
   if (array_start != 0) {
     memory_ptr = array_start;
     if (0xfff < capacity * 4) {
-      memory_ptr = *(longlong *)(array_start + -8);
+      memory_ptr = *(int64_t *)(array_start + -8);
       if (0x1f < (array_start - memory_ptr) - 8U) {
         // WARNING: Subroutine does not return
         invalid_parameter_no_info_no_return(memory_ptr, capacity * 4 + 0x27);
@@ -492,11 +492,11 @@ LAB_180189786:
 
 
 // 函数：释放数组内存块
-void free_array_memory_blocks(longlong *array_start, longlong *array_end)
+void free_array_memory_blocks(int64_t *array_start, int64_t *array_end)
 {
-  longlong array_ptr;
-  longlong memory_ptr;
-  ulonglong block_size;
+  int64_t array_ptr;
+  int64_t memory_ptr;
+  uint64_t block_size;
   
   if (array_start != array_end) {
     do {
@@ -505,7 +505,7 @@ void free_array_memory_blocks(longlong *array_start, longlong *array_end)
         block_size = array_start[2] - array_ptr & 0xfffffffffffffff0;
         memory_ptr = array_ptr;
         if (0xfff < block_size) {
-          memory_ptr = *(longlong *)(array_ptr + -8);
+          memory_ptr = *(int64_t *)(array_ptr + -8);
           if (0x1f < (array_ptr - memory_ptr) - 8U) {
             // WARNING: Subroutine does not return
             invalid_parameter_no_info_no_return(array_ptr - memory_ptr, block_size + 0x27);
@@ -527,11 +527,11 @@ void free_array_memory_blocks(longlong *array_start, longlong *array_end)
 
 
 // 函数：释放连续数组内存块
-void free_consecutive_array_blocks(longlong *array_start, longlong *array_end)
+void free_consecutive_array_blocks(int64_t *array_start, int64_t *array_end)
 {
-  longlong array_ptr;
-  longlong memory_ptr;
-  ulonglong block_size;
+  int64_t array_ptr;
+  int64_t memory_ptr;
+  uint64_t block_size;
   
   do {
     array_ptr = *array_start;
@@ -539,7 +539,7 @@ void free_consecutive_array_blocks(longlong *array_start, longlong *array_end)
       block_size = array_start[2] - array_ptr & 0xfffffffffffffff0;
       memory_ptr = array_ptr;
       if (0xfff < block_size) {
-        memory_ptr = *(longlong *)(array_ptr + -8);
+        memory_ptr = *(int64_t *)(array_ptr + -8);
         if (0x1f < (array_ptr - memory_ptr) - 8U) {
           // WARNING: Subroutine does not return
           invalid_parameter_no_info_no_return(array_ptr - memory_ptr, block_size + 0x27);
@@ -608,16 +608,16 @@ int32_t * copy_array_segment_4byte(uint64_t param_1, uint64_t *src_start, uint64
     do {
       *(uint64_t *)(dest_ptr + 4) = 0;
       *(uint64_t *)(dest_ptr + 6) = 0;
-      field_1 = *(int32_t *)((longlong)src_ptr + -0x34);
+      field_1 = *(int32_t *)((int64_t)src_ptr + -0x34);
       field_2 = *(int32_t *)(src_ptr + -6);
-      field_3 = *(int32_t *)((longlong)src_ptr + -0x2c);
+      field_3 = *(int32_t *)((int64_t)src_ptr + -0x2c);
       *dest_ptr = *(int32_t *)(src_ptr + -7);
       dest_ptr[1] = field_1;
       dest_ptr[2] = field_2;
       dest_ptr[3] = field_3;
-      field_1 = *(int32_t *)((longlong)src_ptr + -0x24);
+      field_1 = *(int32_t *)((int64_t)src_ptr + -0x24);
       field_2 = *(int32_t *)(src_ptr + -4);
-      field_3 = *(int32_t *)((longlong)src_ptr + -0x1c);
+      field_3 = *(int32_t *)((int64_t)src_ptr + -0x1c);
       dest_ptr[4] = *(int32_t *)(src_ptr + -5);
       dest_ptr[5] = field_1;
       dest_ptr[6] = field_2;
@@ -626,7 +626,7 @@ int32_t * copy_array_segment_4byte(uint64_t param_1, uint64_t *src_start, uint64
       src_ptr[-4] = 0xf;
       *(int8_t *)(src_ptr + -7) = 0;
       *(int8_t *)(dest_ptr + 8) = *(int8_t *)(src_ptr + -3);
-      dest_ptr[9] = *(int32_t *)((longlong)src_ptr + -0x14);
+      dest_ptr[9] = *(int32_t *)((int64_t)src_ptr + -0x14);
       dest_ptr[10] = *(int32_t *)(src_ptr + -2);
       temp_ptr = (uint64_t *)(dest_ptr + 0xc);
       *temp_ptr = 0;
@@ -731,7 +731,7 @@ uint64_t * copy_struct_array_segment(uint64_t *src_start, uint64_t *src_end, uin
       *src_ptr = 0xf;
       *(int8_t *)(src_ptr + -3) = 0;
       *(int32_t *)(dest_ptr + 4) = *(int32_t *)(src_ptr + 1);
-      *(int32_t *)((longlong)dest_ptr + 0x24) = *(int32_t *)((longlong)src_ptr + 0xc);
+      *(int32_t *)((int64_t)dest_ptr + 0x24) = *(int32_t *)((int64_t)src_ptr + 0xc);
       dest_ptr = dest_ptr + 5;
       temp_ptr = src_ptr + 2;
       src_ptr = src_ptr + 5;
@@ -743,13 +743,13 @@ uint64_t * copy_struct_array_segment(uint64_t *src_start, uint64_t *src_end, uin
 
 
 // 函数：复制链表数据
-longlong * copy_linked_list_data(longlong *dest_ptr, longlong *src_ptr)
+int64_t * copy_linked_list_data(int64_t *dest_ptr, int64_t *src_ptr)
 {
-  longlong *dest_node;
-  longlong *src_node;
-  longlong node_id;
-  longlong *temp_node;
-  longlong current_node;
+  int64_t *dest_node;
+  int64_t *src_node;
+  int64_t node_id;
+  int64_t *temp_node;
+  int64_t current_node;
   uint64_t temp_value;
   
   temp_value = 0xfffffffffffffffe;
@@ -757,27 +757,27 @@ longlong * copy_linked_list_data(longlong *dest_ptr, longlong *src_ptr)
   dest_ptr[1] = 0;
   node_id = get_next_available_id();
   *dest_ptr = node_id;
-  temp_value = process_linked_list_node(dest_ptr, *(uint64_t *)(*src_ptr + 8), *dest_ptr, (ulonglong)dest_ptr & 0xff, temp_value);
+  temp_value = process_linked_list_node(dest_ptr, *(uint64_t *)(*src_ptr + 8), *dest_ptr, (uint64_t)dest_ptr & 0xff, temp_value);
   *(uint64_t *)(*dest_ptr + 8) = temp_value;
   dest_ptr[1] = src_ptr[1];
-  dest_node = (longlong *)*dest_ptr;
-  src_node = (longlong *)dest_node[1];
+  dest_node = (int64_t *)*dest_ptr;
+  src_node = (int64_t *)dest_node[1];
   if (*(char *)(dest_node[1] + 0x19) == '\0') {
     do {
       temp_node = src_node;
-      src_node = (longlong *)*temp_node;
-    } while (*(char *)((longlong)src_node + 0x19) == '\0');
-    *dest_node = (longlong)temp_node;
-    node_id = *(longlong *)(*dest_ptr + 8);
+      src_node = (int64_t *)*temp_node;
+    } while (*(char *)((int64_t)src_node + 0x19) == '\0');
+    *dest_node = (int64_t)temp_node;
+    node_id = *(int64_t *)(*dest_ptr + 8);
     do {
       current_node = node_id;
-      node_id = *(longlong *)(current_node + 0x10);
+      node_id = *(int64_t *)(current_node + 0x10);
     } while (*(char *)(node_id + 0x19) == '\0');
-    *(longlong *)(*dest_ptr + 0x10) = current_node;
+    *(int64_t *)(*dest_ptr + 0x10) = current_node;
   }
   else {
-    *dest_node = (longlong)dest_node;
-    *(longlong *)(*dest_ptr + 0x10) = *dest_ptr;
+    *dest_node = (int64_t)dest_node;
+    *(int64_t *)(*dest_ptr + 0x10) = *dest_ptr;
   }
   return dest_ptr;
 }
@@ -921,10 +921,10 @@ void process_error_message_type6(uint64_t param_1, int32_t *error_code, uint64_t
 
 
 // 函数：清理64字节内存块
-void cleanup_64byte_memory_blocks(longlong *array_info)
+void cleanup_64byte_memory_blocks(int64_t *array_info)
 {
-  longlong array_end;
-  longlong current_ptr;
+  int64_t array_end;
+  int64_t current_ptr;
   
   array_end = array_info[1];
   for (current_ptr = *array_info; current_ptr != array_end; current_ptr = current_ptr + 0x40) {
@@ -938,10 +938,10 @@ void cleanup_64byte_memory_blocks(longlong *array_info)
 
 
 // 函数：清理40字节内存块
-void cleanup_40byte_memory_blocks(longlong *array_info)
+void cleanup_40byte_memory_blocks(int64_t *array_info)
 {
-  longlong array_end;
-  longlong current_ptr;
+  int64_t array_end;
+  int64_t current_ptr;
   
   array_end = array_info[1];
   for (current_ptr = *array_info; current_ptr != array_end; current_ptr = current_ptr + 0x28) {

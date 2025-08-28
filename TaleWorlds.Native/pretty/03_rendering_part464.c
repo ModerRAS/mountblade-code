@@ -1,4 +1,4 @@
-#define ControlFlowHandler FUN_18051739b  // 控制流处理器
+#define ControlFlowHandler ControlFlowHandler  // 控制流处理器
 
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"

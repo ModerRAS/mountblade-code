@@ -8,18 +8,18 @@ void update_engine_state_and_resources(void)
 
 {
   int status_count;
-  longlong resource_ptr;
+  int64_t resource_ptr;
   uint flag_value;
-  longlong context_base;
+  int64_t context_base;
   int *engine_config;
   int object_count;
-  ulonglong object_iterator;
-  ulonglong data_buffer;
+  uint64_t object_iterator;
+  uint64_t data_buffer;
   
   data_buffer = object_iterator;
   do {
     // 检查对象状态并触发相应处理
-    if (*(int *)(object_iterator + *(longlong *)(engine_config + 6)) == 1) {
+    if (*(int *)(object_iterator + *(int64_t *)(engine_config + 6)) == 1) {
       trigger_resource_cleanup();
     }
     object_count = object_count + 1;
@@ -31,7 +31,7 @@ void update_engine_state_and_resources(void)
     data_buffer = object_iterator & 0xffffffff;
     flag_value = status_count / 2 + status_count;
     if (0 < (int)flag_value) {
-      data_buffer = (ulonglong)flag_value;
+      data_buffer = (uint64_t)flag_value;
     }
     resize_memory_buffer(engine_config + 4, data_buffer);
   }
@@ -41,14 +41,14 @@ void update_engine_state_and_resources(void)
   if ((int)object_iterator < *engine_config) {
     do {
       // 遍历对象列表并处理符合条件的对象
-      resource_ptr = *(longlong *)(object_iterator + 8 + *(longlong *)(engine_config + 2));
+      resource_ptr = *(int64_t *)(object_iterator + 8 + *(int64_t *)(engine_config + 2));
       if (((resource_ptr != 0) && ((*(byte *)(resource_ptr + 0xa0) & 0x10) == 0)) &&
-         (*(longlong *)(resource_ptr + 8) == 0)) {
+         (*(int64_t *)(resource_ptr + 8) == 0)) {
         trigger_object_handler();
       }
       flag_value = (int)data_buffer + 1;
       object_iterator = object_iterator + 0x10;
-      data_buffer = (ulonglong)flag_value;
+      data_buffer = (uint64_t)flag_value;
     } while ((int)flag_value < *engine_config);
   }
   
@@ -71,19 +71,19 @@ void update_engine_state_simple(void)
 
 {
   int status_count;
-  longlong resource_ptr;
+  int64_t resource_ptr;
   uint flag_value;
-  ulonglong object_iterator;
-  longlong context_base;
+  uint64_t object_iterator;
+  int64_t context_base;
   int *engine_config;
-  ulonglong data_buffer;
+  uint64_t data_buffer;
   
   status_count = engine_config[5];
   if (status_count < 0) {
     data_buffer = object_iterator & 0xffffffff;
     flag_value = status_count / 2 + status_count;
     if (0 < (int)flag_value) {
-      data_buffer = (ulonglong)flag_value;
+      data_buffer = (uint64_t)flag_value;
     }
     resize_memory_buffer(engine_config + 4, data_buffer);
   }
@@ -93,14 +93,14 @@ void update_engine_state_simple(void)
   if ((int)object_iterator < *engine_config) {
     do {
       // 处理对象资源
-      resource_ptr = *(longlong *)(object_iterator + 8 + *(longlong *)(engine_config + 2));
+      resource_ptr = *(int64_t *)(object_iterator + 8 + *(int64_t *)(engine_config + 2));
       if (((resource_ptr != 0) && ((*(byte *)(resource_ptr + 0xa0) & 0x10) == 0)) &&
-         (*(longlong *)(resource_ptr + 8) == 0)) {
+         (*(int64_t *)(resource_ptr + 8) == 0)) {
         trigger_object_handler();
       }
       flag_value = (int)data_buffer + 1;
       object_iterator = object_iterator + 0x10;
-      data_buffer = (ulonglong)flag_value;
+      data_buffer = (uint64_t)flag_value;
     } while ((int)flag_value < *engine_config);
   }
   
@@ -120,24 +120,24 @@ void update_engine_state_simple(void)
 void process_object_iteration(void)
 
 {
-  longlong object_ptr;
-  longlong context_base;
+  int64_t object_ptr;
+  int64_t context_base;
   int *engine_config;
   uint object_index;
-  ulonglong object_iterator;
-  ulonglong data_buffer;
+  uint64_t object_iterator;
+  uint64_t data_buffer;
   
   data_buffer = object_iterator;
   do {
     // 检查并处理每个对象
-    object_ptr = *(longlong *)(object_iterator + 8 + *(longlong *)(engine_config + 2));
+    object_ptr = *(int64_t *)(object_iterator + 8 + *(int64_t *)(engine_config + 2));
     if (((object_ptr != 0) && ((*(byte *)(object_ptr + 0xa0) & 0x10) == 0)) && 
-        (*(longlong *)(object_ptr + 8) == 0)) {
+        (*(int64_t *)(object_ptr + 8) == 0)) {
       trigger_object_handler();
     }
     object_ptr = g_engine_global_data;
     object_index = (int)data_buffer + 1;
-    data_buffer = (ulonglong)object_index;
+    data_buffer = (uint64_t)object_index;
     object_iterator = object_iterator + 0x10;
   } while ((int)object_index < *engine_config);
   
@@ -165,13 +165,13 @@ void initialize_object_management(int8_t *system_context)
   int new_capacity;
   uint iterator;
   byte *string_ptr;
-  ulonglong char_value;
+  uint64_t char_value;
   uint64_t *stack_ptr_8;
   uint64_t *stack_ptr_10;
   uint64_t **stack_ptr_18;
   uint64_t *stack_ptr_20;
   void *stack_78;
-  ulonglong stack_70;
+  uint64_t stack_70;
   code *callback_68;
   code *callback_60;
   code *callback_58;
@@ -191,11 +191,11 @@ void initialize_object_management(int8_t *system_context)
     }
     iterator = *(uint *)(&g_hash_table + (iterator & 0xff ^ char_value) * 4) ^ iterator >> 8;
     flag_byte = *string_ptr;
-    char_value = (ulonglong)flag_byte;
+    char_value = (uint64_t)flag_byte;
     string_ptr = string_ptr + 1;
   } while (flag_byte != 0);
   
-  stack_70 = (ulonglong)~iterator;
+  stack_70 = (uint64_t)~iterator;
   callback_68 = process_object_callback_1;
   callback_60 = process_object_callback_2;
   callback_58 = process_object_callback_3;
@@ -244,7 +244,7 @@ void initialize_object_management(int8_t *system_context)
     object_capacity = *object_pool;
   }
   
-  *(uint64_t *)(*(longlong *)(system_context + 0x1620) + (longlong)object_capacity * 8) = hash_value;
+  *(uint64_t *)(*(int64_t *)(system_context + 0x1620) + (int64_t)object_capacity * 8) = hash_value;
   *object_pool = *object_pool + 1;
   
   if (g_engine_global_data != 0) {
@@ -280,11 +280,11 @@ void initialize_object_management(int8_t *system_context)
     }
     iterator = *(uint *)(&g_hash_table + (iterator & 0xff ^ char_value) * 4) ^ iterator >> 8;
     flag_byte = *string_ptr;
-    char_value = (ulonglong)flag_byte;
+    char_value = (uint64_t)flag_byte;
     string_ptr = string_ptr + 1;
   } while (flag_byte != 0);
   
-  stack_70 = (ulonglong)~iterator;
+  stack_70 = (uint64_t)~iterator;
   callback_68 = (code *)&g_callback_table;
   callback_60 = process_callback_2;
   callback_58 = process_callback_3;
@@ -300,13 +300,13 @@ void initialize_object_management(int8_t *system_context)
 void cleanup_system_resources(char *system_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 
 {
-  longlong resource_ptr;
+  int64_t resource_ptr;
   char *context_ptr;
-  longlong memory_block;
+  int64_t memory_block;
   uint cleanup_flag;
-  ulonglong iterator_1;
-  ulonglong iterator_2;
-  ulonglong iterator_3;
+  uint64_t iterator_1;
+  uint64_t iterator_2;
+  uint64_t iterator_3;
   uint64_t cleanup_param;
   
   cleanup_param = 0xfffffffffffffffe;
@@ -314,41 +314,41 @@ void cleanup_system_resources(char *system_context, uint64_t param_2, uint64_t p
   // 清理主资源
   if ((*(int8_t **)(system_context + 0xa0) != (int8_t *)0x0) && (system_context[3] != '\0')) {
     **(int8_t **)(system_context + 0xa0) = 0;
-    resource_ptr = *(longlong *)(system_context + 0xa0);
+    resource_ptr = *(int64_t *)(system_context + 0xa0);
     
     if (resource_ptr != 0) {
       release_resource_handles(resource_ptr);
-      memory_block = *(longlong *)(resource_ptr + 0x68);
+      memory_block = *(int64_t *)(resource_ptr + 0x68);
       
       if (memory_block != 0) {
         if (g_engine_global_data != (char *)0x0) {
-          *(int *)((longlong)g_engine_global_data + 0x3a8) =
-               *(int *)((longlong)g_engine_global_data + 0x3a8) + -1;
+          *(int *)((int64_t)g_engine_global_data + 0x3a8) =
+               *(int *)((int64_t)g_engine_global_data + 0x3a8) + -1;
         }
         // 递归清理资源
         cleanup_recursive(memory_block, g_memory_allocator, param_3, param_4, cleanup_param);
       }
       
-      memory_block = *(longlong *)(resource_ptr + 0x58);
+      memory_block = *(int64_t *)(resource_ptr + 0x58);
       if (memory_block == 0) {
-        memory_block = *(longlong *)(resource_ptr + 0x48);
+        memory_block = *(int64_t *)(resource_ptr + 0x48);
         if (memory_block == 0) {
           if (g_engine_global_data != (char *)0x0) {
-            *(int *)((longlong)g_engine_global_data + 0x3a8) =
-                 *(int *)((longlong)g_engine_global_data + 0x3a8) + -1;
+            *(int *)((int64_t)g_engine_global_data + 0x3a8) =
+                 *(int *)((int64_t)g_engine_global_data + 0x3a8) + -1;
           }
           cleanup_recursive(resource_ptr, g_memory_allocator, param_3, param_4, cleanup_param);
         }
         
         if (g_engine_global_data != (char *)0x0) {
-          *(int *)((longlong)g_engine_global_data + 0x3a8) =
-               *(int *)((longlong)g_engine_global_data + 0x3a8) + -1;
+          *(int *)((int64_t)g_engine_global_data + 0x3a8) =
+               *(int *)((int64_t)g_engine_global_data + 0x3a8) + -1;
         }
         cleanup_recursive(memory_block, g_memory_allocator, param_3, param_4, cleanup_param);
       }
       
       if (g_engine_global_data != (char *)0x0) {
-        *(int *)((longlong)g_engine_global_data + 0x3a8) = *(int *)((longlong)g_engine_global_data + 0x3a8) + -1;
+        *(int *)((int64_t)g_engine_global_data + 0x3a8) = *(int *)((int64_t)g_engine_global_data + 0x3a8) + -1;
       }
       cleanup_recursive(memory_block, g_memory_allocator, param_3, param_4, cleanup_param);
     }
@@ -357,7 +357,7 @@ void cleanup_system_resources(char *system_context, uint64_t param_2, uint64_t p
   // 重置系统状态
   iterator_1 = 0;
   system_context[0xa0] = '\0';
-  resource_ptr = (longlong)g_engine_global_data;
+  resource_ptr = (int64_t)g_engine_global_data;
   system_context[0xa1] = '\0';
   system_context[0xa2] = '\0';
   system_context[0xa3] = '\0';
@@ -367,7 +367,7 @@ void cleanup_system_resources(char *system_context, uint64_t param_2, uint64_t p
   system_context[0xa7] = '\0';
   
   if (*system_context != '\0') {
-    if ((system_context[0x2e00] != '\0') && (*(longlong *)(system_context + 0x20) != 0)) {
+    if ((system_context[0x2e00] != '\0') && (*(int64_t *)(system_context + 0x20) != 0)) {
       g_engine_global_data = system_context;
       initialize_system_components();
     }
@@ -380,7 +380,7 @@ void cleanup_system_resources(char *system_context, uint64_t param_2, uint64_t p
     if (0 < *(int *)(system_context + 0x1c68)) {
       do {
         context_ptr = g_engine_global_data;
-        memory_block = *(longlong *)(iterator_3 + *(longlong *)(system_context + 0x1c70));
+        memory_block = *(int64_t *)(iterator_3 + *(int64_t *)(system_context + 0x1c70));
         
         if (*(code **)(g_engine_global_data + 0x15e0) != (code *)0x0) {
           (**(code **)(g_engine_global_data + 0x15e0))(memory_block);
@@ -398,7 +398,7 @@ void cleanup_system_resources(char *system_context, uint64_t param_2, uint64_t p
         *(int8_t *)(memory_block + 0x48) = 0;
         
         cleanup_flag = (int)iterator_2 + 1;
-        iterator_2 = (ulonglong)cleanup_flag;
+        iterator_2 = (uint64_t)cleanup_flag;
         iterator_3 = iterator_3 + 8;
       } while ((int)cleanup_flag < *(int *)(system_context + 0x1c68));
     }
@@ -412,17 +412,17 @@ void cleanup_system_resources(char *system_context, uint64_t param_2, uint64_t p
     // 清理附加资源
     if (0 < *(int *)(system_context + 0x1aa0)) {
       do {
-        resource_ptr = *(longlong *)(iterator_3 + *(longlong *)(system_context + 0x1aa8));
+        resource_ptr = *(int64_t *)(iterator_3 + *(int64_t *)(system_context + 0x1aa8));
         if (resource_ptr != 0) {
           release_resource_object(resource_ptr);
           if (g_engine_global_data != (char *)0x0) {
-            *(int *)((longlong)g_engine_global_data + 0x3a8) =
-                 *(int *)((longlong)g_engine_global_data + 0x3a8) + -1;
+            *(int *)((int64_t)g_engine_global_data + 0x3a8) =
+                 *(int *)((int64_t)g_engine_global_data + 0x3a8) + -1;
           }
           cleanup_recursive(resource_ptr, g_memory_allocator);
         }
         cleanup_flag = (int)iterator_2 + 1;
-        iterator_2 = (ulonglong)cleanup_flag;
+        iterator_2 = (uint64_t)cleanup_flag;
         iterator_3 = iterator_3 + 8;
       } while ((int)cleanup_flag < *(int *)(system_context + 0x1aa0));
     }
@@ -447,10 +447,10 @@ void cleanup_system_resources(char *system_context, uint64_t param_2, uint64_t p
     iterator_3 = iterator_1;
     if (0 < *(int *)(system_context + 0x1c68)) {
       do {
-        release_object_memory(*(uint64_t *)(iterator_2 + *(longlong *)(system_context + 0x1c70)));
+        release_object_memory(*(uint64_t *)(iterator_2 + *(int64_t *)(system_context + 0x1c70)));
         cleanup_flag = (int)iterator_3 + 1;
         iterator_2 = iterator_2 + 8;
-        iterator_3 = (ulonglong)cleanup_flag;
+        iterator_3 = (uint64_t)cleanup_flag;
       } while ((int)cleanup_flag < *(int *)(system_context + 0x1c68));
     }
     
@@ -464,17 +464,17 @@ void cleanup_system_resources(char *system_context, uint64_t param_2, uint64_t p
     iterator_2 = iterator_1;
     if (0 < *(int *)(system_context + 0x2e28)) {
       do {
-        resource_ptr = *(longlong *)(iterator_1 + *(longlong *)(system_context + 0x2e30));
+        resource_ptr = *(int64_t *)(iterator_1 + *(int64_t *)(system_context + 0x2e30));
         if (resource_ptr != 0) {
           if (g_engine_global_data != (char *)0x0) {
-            *(int *)((longlong)g_engine_global_data + 0x3a8) =
-                 *(int *)((longlong)g_engine_global_data + 0x3a8) + -1;
+            *(int *)((int64_t)g_engine_global_data + 0x3a8) =
+                 *(int *)((int64_t)g_engine_global_data + 0x3a8) + -1;
           }
           cleanup_recursive(resource_ptr, g_memory_allocator);
         }
         cleanup_flag = (int)iterator_2 + 1;
         iterator_1 = iterator_1 + 0x38;
-        iterator_2 = (ulonglong)cleanup_flag;
+        iterator_2 = (uint64_t)cleanup_flag;
       } while ((int)cleanup_flag < *(int *)(system_context + 0x2e28));
     }
     
@@ -482,8 +482,8 @@ void cleanup_system_resources(char *system_context, uint64_t param_2, uint64_t p
     cleanup_memory_block(system_context + 0x2e20, 0x2e18);
     
     // 关闭文件句柄
-    if (*(longlong *)(system_context + 0x2e40) != 0) {
-      resource_ptr = *(longlong *)(system_context + 0x2e40);
+    if (*(int64_t *)(system_context + 0x2e40) != 0) {
+      resource_ptr = *(int64_t *)(system_context + 0x2e40);
       memory_block = get_standard_output();
       if (resource_ptr != memory_block) {
         fclose(resource_ptr);
@@ -500,12 +500,12 @@ void cleanup_system_resources(char *system_context, uint64_t param_2, uint64_t p
 
 // 辅助函数：清理内存块
 void cleanup_memory_block(char *context, int offset) {
-  longlong ptr = *(longlong *)(context + offset);
+  int64_t ptr = *(int64_t *)(context + offset);
   if (ptr != 0) {
     memset(context + offset, 0, 8);
     if (g_engine_global_data != (char *)0x0) {
-      *(int *)((longlong)g_engine_global_data + 0x3a8) = 
-           *(int *)((longlong)g_engine_global_data + 0x3a8) + -1;
+      *(int *)((int64_t)g_engine_global_data + 0x3a8) = 
+           *(int *)((int64_t)g_engine_global_data + 0x3a8) + -1;
     }
     cleanup_recursive(ptr, g_memory_allocator);
   }
@@ -529,13 +529,13 @@ void cleanup_render_resources(char *context) {
 }
 
 // 函数：向对象数组添加元素
-void add_to_object_array(int *array_ptr, longlong element_ptr)
+void add_to_object_array(int *array_ptr, int64_t element_ptr)
 
 {
   int current_count;
   int array_capacity;
   int new_capacity;
-  longlong array_data;
+  int64_t array_data;
   
   current_count = *array_ptr;
   array_capacity = array_ptr[1];
@@ -557,7 +557,7 @@ void add_to_object_array(int *array_ptr, longlong element_ptr)
   }
   
   // 添加元素到数组
-  *(longlong *)(*(longlong *)(array_ptr + 2) + (longlong)current_count * 8) = element_ptr;
+  *(int64_t *)(*(int64_t *)(array_ptr + 2) + (int64_t)current_count * 8) = element_ptr;
   *array_ptr = *array_ptr + 1;
   
   // 递归处理子对象
@@ -565,13 +565,13 @@ void add_to_object_array(int *array_ptr, longlong element_ptr)
     current_count = *(int *)(element_ptr + 0x188);
     if (1 < current_count) {
       // 对子对象数组进行排序
-      qsort(*(uint64_t *)(element_ptr + 400), (longlong)current_count, 8, &g_object_compare_func);
+      qsort(*(uint64_t *)(element_ptr + 400), (int64_t)current_count, 8, &g_object_compare_func);
     }
     
     if (0 < current_count) {
       array_data = 0;
       do {
-        if (*(char *)(*(longlong *)(*(longlong *)(element_ptr + 400) + array_data * 8) + 0xaf) != '\0') {
+        if (*(char *)(*(int64_t *)(*(int64_t *)(element_ptr + 400) + array_data * 8) + 0xaf) != '\0') {
           add_to_object_array(array_ptr);
         }
         array_data = array_data + 1;
@@ -588,18 +588,18 @@ void sort_and_process_object_array(void)
 
 {
   int object_count;
-  longlong array_data;
-  longlong object_context;
+  int64_t array_data;
+  int64_t object_context;
   
   object_count = *(int *)(object_context + 0x188);
   if (1 < object_count) {
-    qsort(*(uint64_t *)(object_context + 400), (longlong)object_count, 8, &g_object_compare_func);
+    qsort(*(uint64_t *)(object_context + 400), (int64_t)object_count, 8, &g_object_compare_func);
   }
   
   if (0 < object_count) {
     array_data = 0;
     do {
-      if (*(char *)(*(longlong *)(*(longlong *)(object_context + 400) + array_data * 8) + 0xaf) != '\0') {
+      if (*(char *)(*(int64_t *)(*(int64_t *)(object_context + 400) + array_data * 8) + 0xaf) != '\0') {
         add_to_object_array();
       }
       array_data = array_data + 1;
@@ -630,8 +630,8 @@ void build_object_reference_tree(int *target_array, int *source_array)
   source_count = *source_array;
   if (source_count != 0) {
     // 检查源数组中的有效元素
-    if (((*(int *)(*(longlong *)(source_array + 2) + -0x30 + (longlong)source_count * 0x30) != 0) ||
-        (*(longlong *)(*(longlong *)(source_array + 2) + -0x10 + (longlong)source_count * 0x30) != 0)) ||
+    if (((*(int *)(*(int64_t *)(source_array + 2) + -0x30 + (int64_t)source_count * 0x30) != 0) ||
+        (*(int64_t *)(*(int64_t *)(source_array + 2) + -0x10 + (int64_t)source_count * 0x30) != 0)) ||
        (*source_array = source_count + -1, source_count + -1 != 0)) {
       
       target_count = *target_array;
@@ -654,7 +654,7 @@ void build_object_reference_tree(int *target_array, int *source_array)
       }
       
       // 添加引用到目标数组
-      *(int **)(*(longlong *)(target_array + 2) + (longlong)target_count * 8) = source_array;
+      *(int **)(*(int64_t *)(target_array + 2) + (int64_t)target_count * 8) = source_array;
       *target_array = *target_array + 1;
     }
   }
@@ -664,25 +664,25 @@ void build_object_reference_tree(int *target_array, int *source_array)
 
 
 // 函数：递归处理对象层次结构
-void process_object_hierarchy(longlong object_ptr, int hierarchy_level)
+void process_object_hierarchy(int64_t object_ptr, int hierarchy_level)
 
 {
-  longlong child_object;
+  int64_t child_object;
   int child_index;
-  longlong child_iterator;
+  int64_t child_iterator;
   
   // 更新全局处理计数器
   *(int *)(g_engine_global_data + 0x3a0) = *(int *)(g_engine_global_data + 0x3a0) + 1;
   
   // 将当前对象添加到对应层级的引用树
-  build_object_reference_tree(*(longlong *)(object_ptr + 0x28) + 0xb8 + (longlong)hierarchy_level * 0x10,
+  build_object_reference_tree(*(int64_t *)(object_ptr + 0x28) + 0xb8 + (int64_t)hierarchy_level * 0x10,
                              *(uint64_t *)(object_ptr + 0x2e8));
   
   child_index = 0;
   if (0 < *(int *)(object_ptr + 0x188)) {
     child_iterator = 0;
     do {
-      child_object = *(longlong *)(child_iterator + *(longlong *)(object_ptr + 400));
+      child_object = *(int64_t *)(child_iterator + *(int64_t *)(object_ptr + 400));
       
       // 处理符合条件的子对象
       if ((*(char *)(child_object + 0xaf) != '\0') && (*(char *)(child_object + 0xb6) == '\0')) {
@@ -702,15 +702,15 @@ void process_object_hierarchy(longlong object_ptr, int hierarchy_level)
 void traverse_and_process_objects(void)
 
 {
-  longlong object_ptr;
+  int64_t object_ptr;
   uint object_index;
   int32_t hierarchy_level;
-  longlong object_context;
-  ulonglong iterator;
+  int64_t object_context;
+  uint64_t iterator;
   
-  iterator = (ulonglong)object_index;
+  iterator = (uint64_t)object_index;
   do {
-    object_ptr = *(longlong *)(iterator + *(longlong *)(object_context + 400));
+    object_ptr = *(int64_t *)(iterator + *(int64_t *)(object_context + 400));
     
     // 处理符合条件的对象
     if ((*(char *)(object_ptr + 0xaf) != '\0') && (*(char *)(object_ptr + 0xb6) == '\0')) {
@@ -739,22 +739,22 @@ void set_render_parameters(uint64_t *param_1, uint64_t *param_2, int8_t param_3)
 
 {
   uint64_t *render_data;
-  longlong context_ptr;
+  int64_t context_ptr;
   uint64_t render_value;
   
   context_ptr = g_engine_global_data;
   
   // 启用渲染状态
-  *(int8_t *)(*(longlong *)(g_engine_global_data + 0x1af8) + 0xb1) = 1;
-  context_ptr = *(longlong *)(context_ptr + 0x1af8);
+  *(int8_t *)(*(int64_t *)(g_engine_global_data + 0x1af8) + 0xb1) = 1;
+  context_ptr = *(int64_t *)(context_ptr + 0x1af8);
   
   // 配置渲染参数
   configure_render_system(*(uint64_t *)(context_ptr + 0x2e8), *param_1, *param_2, param_3);
   
   // 获取渲染数据
   render_data = (uint64_t *)
-               (*(longlong *)(*(longlong *)(context_ptr + 0x2e8) + 0x68) + -0x10 +
-               (longlong)*(int *)(*(longlong *)(context_ptr + 0x2e8) + 0x60) * 0x10);
+               (*(int64_t *)(*(int64_t *)(context_ptr + 0x2e8) + 0x68) + -0x10 +
+               (int64_t)*(int *)(*(int64_t *)(context_ptr + 0x2e8) + 0x60) * 0x10);
   
   render_value = render_data[1];
   *(uint64_t *)(context_ptr + 0x228) = *render_data;
@@ -764,7 +764,7 @@ void set_render_parameters(uint64_t *param_1, uint64_t *param_2, int8_t param_3)
 
 
 // 全局变量定义
-longlong g_engine_global_data = 0;           // 引擎全局数据指针
+int64_t g_engine_global_data = 0;           // 引擎全局数据指针
 uint64_t g_render_context = 0;             // 渲染上下文
 uint64_t g_memory_allocator = 0;           // 内存分配器
 uint64_t g_string_constants = 0;           // 字符串常量表

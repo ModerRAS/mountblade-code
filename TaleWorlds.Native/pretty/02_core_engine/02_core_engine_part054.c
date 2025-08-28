@@ -16,20 +16,20 @@
  * @param index 插入位置的索引
  * @param new_element 要插入的新元素指针
  */
-void heap_insert_and_balance(longlong heap_base, longlong heap_size, longlong capacity, 
-                            longlong index, longlong *new_element)
+void heap_insert_and_balance(int64_t heap_base, int64_t heap_size, int64_t capacity, 
+                            int64_t index, int64_t *new_element)
 {
   int left_child_key;
   byte *current_byte;
   int right_child_key;
-  longlong left_child_data;
+  int64_t left_child_data;
   bool should_swap;
-  longlong swap_index;
+  int64_t swap_index;
   byte *string_ptr;
   uint compare_char;
-  longlong child_index;
-  longlong parent_index;
-  longlong *parent_node;
+  int64_t child_index;
+  int64_t parent_index;
+  int64_t *parent_node;
   
   // 从当前节点开始向下调整堆
   parent_index = index * 2;
@@ -40,17 +40,17 @@ void heap_insert_and_balance(longlong heap_base, longlong heap_size, longlong ca
     
     // 比较左右子节点的键值
     if (right_child_key == left_child_key) {
-      left_child_data = *(longlong *)(swap_index + -0x10 + heap_base);
+      left_child_data = *(int64_t *)(swap_index + -0x10 + heap_base);
       if (*(int *)(left_child_data + 0x78) == 0) {
         should_swap = false;
       }
-      else if (*(int *)(*(longlong *)(swap_index + heap_base) + 0x78) == 0) {
+      else if (*(int *)(*(int64_t *)(swap_index + heap_base) + 0x78) == 0) {
         should_swap = true;
       }
       else {
         // 比较字符串内容
         string_ptr = *(byte **)(left_child_data + 0x70);
-        swap_index = *(longlong *)(*(longlong *)(swap_index + heap_base) + 0x70) - (longlong)string_ptr;
+        swap_index = *(int64_t *)(*(int64_t *)(swap_index + heap_base) + 0x70) - (int64_t)string_ptr;
         do {
           current_byte = *string_ptr;
           compare_char = (uint)string_ptr[swap_index];
@@ -70,7 +70,7 @@ void heap_insert_and_balance(longlong heap_base, longlong heap_size, longlong ca
     }
     
     // 交换节点内容
-    *(longlong *)(heap_base + index * 0x10) = *(longlong *)(heap_base + swap_index * 0x10);
+    *(int64_t *)(heap_base + index * 0x10) = *(int64_t *)(heap_base + swap_index * 0x10);
     *(int *)(heap_base + 8 + index * 0x10) = *(int *)(heap_base + 8 + swap_index * 0x10);
     index = swap_index;
     parent_index = swap_index * 2;
@@ -78,7 +78,7 @@ void heap_insert_and_balance(longlong heap_base, longlong heap_size, longlong ca
   
   // 处理最后一个可能的子节点
   if (child_index == capacity) {
-    *(longlong *)(heap_base + index * 0x10) = *(longlong *)(heap_base + -0x10 + child_index * 0x10);
+    *(int64_t *)(heap_base + index * 0x10) = *(int64_t *)(heap_base + -0x10 + child_index * 0x10);
     *(int *)(heap_base + 8 + index * 0x10) = *(int *)(heap_base + -8 + child_index * 0x10);
     index = parent_index + 1;
   }
@@ -86,7 +86,7 @@ void heap_insert_and_balance(longlong heap_base, longlong heap_size, longlong ca
   // 向上调整堆，确保父节点小于子节点
   while (heap_size < index) {
     parent_index = index + -1 >> 1;
-    parent_node = (longlong *)(parent_index * 0x10 + heap_base);
+    parent_node = (int64_t *)(parent_index * 0x10 + heap_base);
     
     if ((int)parent_node[1] == (int)new_element[1]) {
       if (*(int *)(*new_element + 0x78) == 0) {
@@ -98,7 +98,7 @@ void heap_insert_and_balance(longlong heap_base, longlong heap_size, longlong ca
       else {
         // 比较字符串内容
         string_ptr = *(byte **)(*new_element + 0x70);
-        child_index = *(longlong *)(*parent_node + 0x70) - (longlong)string_ptr;
+        child_index = *(int64_t *)(*parent_node + 0x70) - (int64_t)string_ptr;
         do {
           current_byte = *string_ptr;
           compare_char = (uint)string_ptr[child_index];
@@ -115,13 +115,13 @@ void heap_insert_and_balance(longlong heap_base, longlong heap_size, longlong ca
     if (!should_swap) break;
     
     // 交换父子节点
-    *(longlong *)(heap_base + index * 0x10) = *parent_node;
+    *(int64_t *)(heap_base + index * 0x10) = *parent_node;
     *(int *)(heap_base + 8 + index * 0x10) = (int)parent_node[1];
     index = parent_index;
   }
   
   // 将新元素放入最终位置
-  *(longlong *)(heap_base + index * 0x10) = *new_element;
+  *(int64_t *)(heap_base + index * 0x10) = *new_element;
   *(int *)(heap_base + 8 + index * 0x10) = (int)new_element[1];
   return;
 }
@@ -139,7 +139,7 @@ void heap_insert_and_balance(longlong heap_base, longlong heap_size, longlong ca
  * @return 返回初始化后的内存块指针
  */
 uint64_t *
-initialize_memory_block_with_vtable(uint64_t *memory_block, ulonglong flags, uint64_t param3, uint64_t param4)
+initialize_memory_block_with_vtable(uint64_t *memory_block, uint64_t flags, uint64_t param3, uint64_t param4)
 {
   // 设置虚函数表指针
   *memory_block = &system_state_ptr;
@@ -163,9 +163,9 @@ initialize_memory_block_with_vtable(uint64_t *memory_block, ulonglong flags, uin
  * @param string_buffer 字符串缓冲区结构体指针
  * @param source_string 源字符串指针
  */
-void safe_copy_string_to_buffer(longlong string_buffer, longlong source_string)
+void safe_copy_string_to_buffer(int64_t string_buffer, int64_t source_string)
 {
-  longlong string_length;
+  int64_t string_length;
   
   // 如果源字符串为空，清空缓冲区
   if (source_string == 0) {
@@ -207,12 +207,12 @@ void safe_copy_string_to_buffer(longlong string_buffer, longlong source_string)
  * @param source_data 源数据指针
  * @param data_length 要复制的数据长度
  */
-void safe_copy_string_with_length(longlong string_buffer, uint64_t source_data, int data_length)
+void safe_copy_string_with_length(int64_t string_buffer, uint64_t source_data, int data_length)
 {
   // 检查缓冲区大小是否足够
   if (data_length + 1 < 0x200) {
     // 安全复制数据到缓冲区
-    memcpy(*(char **)(string_buffer + 8), source_data, (longlong)data_length);
+    memcpy(*(char **)(string_buffer + 8), source_data, (int64_t)data_length);
   }
   
   // 确保字符串正确终止
@@ -248,7 +248,7 @@ void memory_copy_wrapper(void)
  */
 void reset_string_object(int8_t *string_obj)
 {
-  longlong object_base;
+  int64_t object_base;
   
   // 清空字符串内容
   *string_obj = 0;
@@ -272,22 +272,22 @@ void reset_string_object(int8_t *string_obj)
  * @param search_string 搜索字符串指针
  * @param replace_string 替换字符串指针
  */
-void string_replace_and_memory_operation(longlong string_buffer, longlong search_string, longlong replace_string)
+void string_replace_and_memory_operation(int64_t string_buffer, int64_t search_string, int64_t replace_string)
 {
-  longlong search_result;
-  longlong search_len;
-  longlong replace_len;
+  int64_t search_result;
+  int64_t search_len;
+  int64_t replace_len;
   int8_t stack_buffer_298 [32];
   uint64_t stack_value_278;
   void *stack_ptr_268;
   int8_t *stack_buffer_260;
   int32_t stack_value_258;
   int8_t stack_buffer_250 [520];
-  ulonglong security_cookie;
+  uint64_t security_cookie;
   
   // 初始化栈变量和安全cookie
   stack_value_278 = 0xfffffffffffffffe;
-  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_298;
+  security_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer_298;
   stack_ptr_268 = &unknown_var_9208_ptr;
   stack_buffer_260 = stack_buffer_250;
   stack_value_258 = 0;
@@ -309,14 +309,14 @@ void string_replace_and_memory_operation(longlong string_buffer, longlong search
     } while (*(char *)(search_len + replace_string) != '\0');
     
     // 复制字符串到栈缓冲区
-    memcpy(stack_buffer_260, *(longlong *)(string_buffer + 8), search_result - *(longlong *)(string_buffer + 8));
+    memcpy(stack_buffer_260, *(int64_t *)(string_buffer + 8), search_result - *(int64_t *)(string_buffer + 8));
   }
   
   // 设置虚函数表指针
   stack_ptr_268 = &system_state_ptr;
   
   // 执行内存清理操作
-  FUN_1808fc050(security_cookie ^ (ulonglong)stack_buffer_298);
+  FUN_1808fc050(security_cookie ^ (uint64_t)stack_buffer_298);
 }
 
 
@@ -394,13 +394,13 @@ uint64_t * create_advanced_memory_manager_object(uint64_t memory_pool, int32_t c
  */
 uint64_t * initialize_thread_manager(uint64_t *thread_manager)
 {
-  longlong *old_object;
+  int64_t *old_object;
   int mutex_result;
   uint64_t new_object;
-  longlong *thread_object;
-  longlong object_ptr;
-  longlong loop_counter;
-  longlong *thread_pool;
+  int64_t *thread_object;
+  int64_t object_ptr;
+  int64_t loop_counter;
+  int64_t *thread_pool;
   
   // 初始化32个线程槽位
   loop_counter = 0x20;
@@ -425,38 +425,38 @@ uint64_t * initialize_thread_manager(uint64_t *thread_manager)
   do {
     // 创建主线程对象
     new_object = FUN_18062b1e0(system_memory_pool_ptr, 0x3d0, 8, 3);
-    thread_object = (longlong *)FUN_180275090(new_object);
-    if (thread_object != (longlong *)0x0) {
+    thread_object = (int64_t *)FUN_180275090(new_object);
+    if (thread_object != (int64_t *)0x0) {
       // 调用线程对象的初始化函数
       (**(code **)(*thread_object + 0x28))(thread_object);
     }
     
     // 替换旧的线程对象
-    old_object = (longlong *)thread_pool[-0x20];
-    thread_pool[-0x20] = (longlong)thread_object;
-    if (old_object != (longlong *)0x0) {
+    old_object = (int64_t *)thread_pool[-0x20];
+    thread_pool[-0x20] = (int64_t)thread_object;
+    if (old_object != (int64_t *)0x0) {
       // 清理旧的线程对象
       (**(code **)(*old_object + 0x38))();
     }
     
     // 创建辅助线程对象
     new_object = FUN_18062b1e0(system_memory_pool_ptr, 0x300, 0x10, 3);
-    thread_object = (longlong *)FUN_180075030(new_object, 1);
-    if (thread_object != (longlong *)0x0) {
+    thread_object = (int64_t *)FUN_180075030(new_object, 1);
+    if (thread_object != (int64_t *)0x0) {
       // 调用辅助线程对象的初始化函数
       (**(code **)(*thread_object + 0x28))(thread_object);
     }
     
     // 替换旧的辅助线程对象
-    old_object = (longlong *)*thread_pool;
-    *thread_pool = (longlong)thread_object;
-    if (old_object != (longlong *)0x0) {
+    old_object = (int64_t *)*thread_pool;
+    *thread_pool = (int64_t)thread_object;
+    if (old_object != (int64_t *)0x0) {
       // 清理旧的辅助线程对象
       (**(code **)(*old_object + 0x38))();
     }
     
     // 调用线程对象的设置函数
-    (**(code **)(*(longlong *)(*thread_pool + 0x10) + 0x10))((longlong *)(*thread_pool + 0x10), &unknown_var_1584_ptr);
+    (**(code **)(*(int64_t *)(*thread_pool + 0x10) + 0x10))((int64_t *)(*thread_pool + 0x10), &unknown_var_1584_ptr);
     
     object_ptr = *thread_pool;
     
@@ -504,7 +504,7 @@ uint64_t * initialize_thread_manager(uint64_t *thread_manager)
  * 
  * @param thread_manager 线程管理器对象指针
  */
-void destroy_thread_manager(longlong thread_manager)
+void destroy_thread_manager(int64_t thread_manager)
 {
   uint64_t cleanup_flag;
   
@@ -538,15 +538,15 @@ void destroy_thread_manager(longlong thread_manager)
  * 
  * @param resource_manager 资源管理器对象指针
  */
-void cleanup_resource_manager(longlong *resource_manager)
+void cleanup_resource_manager(int64_t *resource_manager)
 {
-  longlong *old_object;
+  int64_t *old_object;
   uint64_t cleanup_flag;
   
   cleanup_flag = 0xfffffffffffffffe;
   
   // 计算并设置资源管理器的基地址
-  resource_manager[0x1a5] = *(longlong *)(&system_error_code + (longlong)(int)resource_manager[0x1a6] * 8) + -100000;
+  resource_manager[0x1a5] = *(int64_t *)(&system_error_code + (int64_t)(int)resource_manager[0x1a6] * 8) + -100000;
   
   // 调用清理函数
   FUN_180090b80(resource_manager);
@@ -555,15 +555,15 @@ void cleanup_resource_manager(longlong *resource_manager)
   *(int *)(resource_manager + 0x1a7) = 0;
   
   // 清理主要资源对象
-  old_object = (longlong *)resource_manager[0x1a4];
+  old_object = (int64_t *)resource_manager[0x1a4];
   resource_manager[0x1a4] = 0;
-  if (old_object != (longlong *)0x0) {
+  if (old_object != (int64_t *)0x0) {
     (**(code **)(*old_object + 0x38))();
   }
   
   // 二次检查确保清理完成
-  if ((longlong *)resource_manager[0x1a4] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)resource_manager[0x1a4] + 0x38))();
+  if ((int64_t *)resource_manager[0x1a4] != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)resource_manager[0x1a4] + 0x38))();
   }
   
   // 清理资源池
@@ -573,8 +573,8 @@ void cleanup_resource_manager(longlong *resource_manager)
   FUN_1808fc8a8(resource_manager + 1, 8, 4, FUN_180045af0);
   
   // 清理主对象引用
-  if ((longlong *)*resource_manager != (longlong *)0x0) {
-    (**(code **)(*(longlong *)*resource_manager + 0x38))();
+  if ((int64_t *)*resource_manager != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)*resource_manager + 0x38))();
   }
   
   return;
@@ -590,7 +590,7 @@ void cleanup_resource_manager(longlong *resource_manager)
  * 
  * @param simple_manager 简单资源管理器指针
  */
-void cleanup_simple_resource_manager(longlong simple_manager)
+void cleanup_simple_resource_manager(int64_t simple_manager)
 {
   // 清理资源管理器的基础资源
   FUN_1808fc8a8(simple_manager + 8, 0x20, 0x20, FUN_180627b90, 0xfffffffffffffffe);
@@ -610,7 +610,7 @@ void cleanup_simple_resource_manager(longlong simple_manager)
 void reset_thread_manager_state(uint64_t *thread_manager)
 {
   int mutex_result;
-  longlong loop_counter;
+  int64_t loop_counter;
   uint64_t *counter_ptr;
   uint64_t *thread_pool_ptr;
   
@@ -633,12 +633,12 @@ void reset_thread_manager_state(uint64_t *thread_manager)
     *(int *)counter_ptr = 0x3dcccccd;
     
     // 调用线程对象的清理函数
-    (**(code **)(*(longlong *)thread_pool_ptr[-0x20] + 0xd8))();
+    (**(code **)(*(int64_t *)thread_pool_ptr[-0x20] + 0xd8))();
     
     // 清理线程对象
     FUN_180076760(*thread_pool_ptr);
     
-    counter_ptr = (uint64_t *)((longlong)counter_ptr + 4);
+    counter_ptr = (uint64_t *)((int64_t)counter_ptr + 4);
     thread_pool_ptr = thread_pool_ptr + 1;
     loop_counter = loop_counter + -1;
   } while (loop_counter != 0);
@@ -746,11 +746,11 @@ void update_float_array_values(float *float_array, float delta_value)
 void process_render_objects(float *render_manager, uint64_t render_context, int32_t *color_param)
 {
   float object_color;
-  longlong *render_object;
+  int64_t *render_object;
   int mutex_result;
   uint object_index;
-  longlong color_data_ptr;
-  longlong render_index;
+  int64_t color_data_ptr;
+  int64_t render_index;
   uint color_rgb;
   char is_aligned;
   float distance_factor;
@@ -816,7 +816,7 @@ void process_render_objects(float *render_manager, uint64_t render_context, int3
     if ((int)object_index < 0) {
       object_index = (object_index - 1 | 0xffffffe0) + 1;
     }
-    render_index = (longlong)(int)object_index;
+    render_index = (int64_t)(int)object_index;
     
     // 只处理距离小于10.0的对象
     if (render_manager[render_index + 0x82] < 10.0) {
@@ -854,11 +854,11 @@ void process_render_objects(float *render_manager, uint64_t render_context, int3
       render_params_180 = 0x3f800000;  // 蓝色通道
       
       // 调用对象的渲染设置函数
-      (**(code **)(**(longlong **)(render_manager + render_index * 2 + 2) + 0x108))
-                (*(longlong **)(render_manager + render_index * 2 + 2), &render_params_188);
+      (**(code **)(**(int64_t **)(render_manager + render_index * 2 + 2) + 0x108))
+                (*(int64_t **)(render_manager + render_index * 2 + 2), &render_params_188);
       
       // 获取渲染对象指针
-      render_object = *(longlong **)(render_manager + render_index * 2 + 2);
+      render_object = *(int64_t **)(render_manager + render_index * 2 + 2);
       
       // 检查对象是否对齐
       if (*(code **)(*render_object + 0xc0) == (code *)&unknown_var_9120_ptr) {
@@ -871,7 +871,7 @@ void process_render_objects(float *render_manager, uint64_t render_context, int3
       // 获取颜色数据指针
       color_data_ptr = 0;
       if (is_aligned == '\0') {
-        color_data_ptr = *(longlong *)render_object[7];
+        color_data_ptr = *(int64_t *)render_object[7];
       }
       
       // 设置主颜色（RGB转浮点数0.0-1.0）
@@ -887,7 +887,7 @@ void process_render_objects(float *render_manager, uint64_t render_context, int3
       }
       
       // 获取第二个颜色数据指针
-      color_data_ptr = *(longlong *)(render_manager + render_index * 2 + 0x42);
+      color_data_ptr = *(int64_t *)(render_manager + render_index * 2 + 0x42);
       
       // 创建RGB颜色值（所有通道相同，用于单色效果）
       color_rgb = ((object_index | 0xffffff00) << 8 | object_index) << 8 | object_index;
@@ -921,8 +921,8 @@ void process_render_objects(float *render_manager, uint64_t render_context, int3
                   render_context, &projection_108, 0, &transform_178);
       
       // 调用对象的最终渲染函数
-      (**(code **)(**(longlong **)(render_manager + render_index * 2 + 2) + 0x1c8))
-                (*(longlong **)(render_manager + render_index * 2 + 2), render_context, 0, &projection_108, &transform_178);
+      (**(code **)(**(int64_t **)(render_manager + render_index * 2 + 2) + 0x1c8))
+                (*(int64_t **)(render_manager + render_index * 2 + 2), render_context, 0, &projection_108, &transform_178);
     }
     
     mutex_result = mutex_result + 1;
@@ -950,23 +950,23 @@ void process_render_objects(float *render_manager, uint64_t render_context, int3
  * @param param3 保留参数
  * @param param4 保留参数
  */
-void initialize_render_parameters(longlong render_system, uint64_t param2, uint64_t param3, uint64_t param4)
+void initialize_render_parameters(int64_t render_system, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-  longlong loop_counter;
-  longlong *old_resource;
-  longlong *resource_array;
+  int64_t loop_counter;
+  int64_t *old_resource;
+  int64_t *resource_array;
   uint64_t cleanup_flag;
   
   cleanup_flag = 0xfffffffffffffffe;
   
   // 设置渲染系统的基地址
   *(uint64_t *)(render_system + 0xd28) = 
-       *(uint64_t *)(&system_error_code + (longlong)*(int *)(render_system + 0xd30) * 8);
+       *(uint64_t *)(&system_error_code + (int64_t)*(int *)(render_system + 0xd30) * 8);
   
   // 清理旧的渲染资源
-  old_resource = *(longlong **)(render_system + 0xd20);
+  old_resource = *(int64_t **)(render_system + 0xd20);
   *(uint64_t *)(render_system + 0xd20) = 0;
-  if (old_resource != (longlong *)0x0) {
+  if (old_resource != (int64_t *)0x0) {
     (**(code **)(*old_resource + 0x38))();
   }
   
@@ -975,7 +975,7 @@ void initialize_render_parameters(longlong render_system, uint64_t param2, uint6
   *(int32_t *)(render_system + 0x28) = 0xff101010;    // 渲染模式
   
   // 初始化资源数组
-  resource_array = (longlong *)(render_system + 0x30);
+  resource_array = (int64_t *)(render_system + 0x30);
   loop_counter = 0x50;
   
   // 循环初始化80个资源对象
@@ -992,9 +992,9 @@ void initialize_render_parameters(longlong render_system, uint64_t param2, uint6
   *(int32_t *)(render_system + 0xd00) = 0;      // 帧计数器
   
   // 再次清理渲染资源（确保完全清理）
-  old_resource = *(longlong **)(render_system + 0xd20);
+  old_resource = *(int64_t **)(render_system + 0xd20);
   *(uint64_t *)(render_system + 0xd20) = 0;
-  if (old_resource != (longlong *)0x0) {
+  if (old_resource != (int64_t *)0x0) {
     (**(code **)(*old_resource + 0x38))();
   }
   
@@ -1015,11 +1015,11 @@ void initialize_render_parameters(longlong render_system, uint64_t param2, uint6
  * @param render_manager 渲染管理器对象指针
  * @return 返回初始化后的渲染管理器指针
  */
-longlong * create_render_manager(longlong *render_manager)
+int64_t * create_render_manager(int64_t *render_manager)
 {
-  longlong *old_object;
+  int64_t *old_object;
   uint64_t new_object;
-  longlong *resource_object;
+  int64_t *resource_object;
   
   // 重置管理器状态
   *render_manager = 0;
@@ -1036,9 +1036,9 @@ longlong * create_render_manager(longlong *render_manager)
   render_manager[0x1a5] = system_error_code;      // 资源基地址
   
   // 清理旧的资源对象
-  resource_object = (longlong *)render_manager[0x1a4];
+  resource_object = (int64_t *)render_manager[0x1a4];
   render_manager[0x1a4] = 0;
-  if (resource_object != (longlong *)0x0) {
+  if (resource_object != (int64_t *)0x0) {
     (**(code **)(*resource_object + 0x38))();
   }
   
@@ -1047,27 +1047,27 @@ longlong * create_render_manager(longlong *render_manager)
   *(int32_t *)(render_manager + 0x1a1) = 0xbcf5c28f;  // 状态哈希值
   
   // 清理5个主要资源对象
-  resource_object = (longlong *)render_manager[1];
+  resource_object = (int64_t *)render_manager[1];
   render_manager[1] = 0;
-  if (resource_object != (longlong *)0x0) {
+  if (resource_object != (int64_t *)0x0) {
     (**(code **)(*resource_object + 0x38))();
   }
   
-  resource_object = (longlong *)render_manager[2];
+  resource_object = (int64_t *)render_manager[2];
   render_manager[2] = 0;
-  if (resource_object != (longlong *)0x0) {
+  if (resource_object != (int64_t *)0x0) {
     (**(code **)(*resource_object + 0x38))();
   }
   
-  resource_object = (longlong *)render_manager[3];
+  resource_object = (int64_t *)render_manager[3];
   render_manager[3] = 0;
-  if (resource_object != (longlong *)0x0) {
+  if (resource_object != (int64_t *)0x0) {
     (**(code **)(*resource_object + 0x38))();
   }
   
-  resource_object = (longlong *)render_manager[4];
+  resource_object = (int64_t *)render_manager[4];
   render_manager[4] = 0;
-  if (resource_object != (longlong *)0x0) {
+  if (resource_object != (int64_t *)0x0) {
     (**(code **)(*resource_object + 0x38))();
   }
   
@@ -1077,23 +1077,23 @@ longlong * create_render_manager(longlong *render_manager)
   
   // 创建新的渲染对象（768字节，16字节对齐）
   new_object = FUN_18062b1e0(system_memory_pool_ptr, 0x300, 0x10, 3);
-  resource_object = (longlong *)FUN_180075030(new_object, 1);
+  resource_object = (int64_t *)FUN_180075030(new_object, 1);
   
   // 初始化新创建的渲染对象
-  if (resource_object != (longlong *)0x0) {
+  if (resource_object != (int64_t *)0x0) {
     (**(code **)(*resource_object + 0x28))(resource_object);
   }
   
   // 替换旧的渲染对象
-  old_object = (longlong *)*render_manager;
-  *render_manager = (longlong)resource_object;
-  if (old_object != (longlong *)0x0) {
+  old_object = (int64_t *)*render_manager;
+  *render_manager = (int64_t)resource_object;
+  if (old_object != (int64_t *)0x0) {
     (**(code **)(*old_object + 0x38))();
   }
   
   // 调用渲染对象的设置函数
-  (**(code **)(*(longlong *)(*render_manager + 0x10) + 0x10))
-            ((longlong *)(*render_manager + 0x10), &unknown_var_1688_ptr);
+  (**(code **)(*(int64_t *)(*render_manager + 0x10) + 0x10))
+            ((int64_t *)(*render_manager + 0x10), &unknown_var_1688_ptr);
   
   return render_manager;
 }
@@ -1112,7 +1112,7 @@ longlong * create_render_manager(longlong *render_manager)
  */
 uint64_t * initialize_render_system(uint64_t *render_system, uint64_t param2, uint64_t param3, uint64_t param4)
 {
-  longlong *old_object;
+  int64_t *old_object;
   uint64_t init_flag;
   
   init_flag = 0xfffffffffffffffe;
@@ -1131,7 +1131,7 @@ uint64_t * initialize_render_system(uint64_t *render_system, uint64_t param2, ui
   
   // 设置渲染目标
   render_system[0x2c0] = 0;  // 渲染目标指针
-  func_0x0001800e7950((longlong)render_system + 0x1614);  // 初始化渲染目标
+  func_0x0001800e7950((int64_t)render_system + 0x1614);  // 初始化渲染目标
   
   // 设置深度缓冲区参数
   render_system[0x2d3] = 0;  // 深度测试模式
@@ -1139,7 +1139,7 @@ uint64_t * initialize_render_system(uint64_t *render_system, uint64_t param2, ui
   
   // 设置帧缓冲区
   render_system[0x2fc] = 0;  // 帧缓冲区指针
-  *(uint64_t *)((longlong)render_system + 0x17ec) = 0;  // 帧缓冲区大小
+  *(uint64_t *)((int64_t)render_system + 0x17ec) = 0;  // 帧缓冲区大小
   render_system[0x300] = 0;  // 帧缓冲区对象
   
   // 初始化渲染同步互斥锁
@@ -1153,13 +1153,13 @@ uint64_t * initialize_render_system(uint64_t *render_system, uint64_t param2, ui
   *(int32_t *)(render_system + 0x310) = 3;  // 渲染精度
   
   // 设置视口参数
-  *(int16_t *)((longlong)render_system + 0x1609) = 0x101;  // 视口宽度
-  *(int32_t *)((longlong)render_system + 0x160c) = 1;       // 视口高度
+  *(int16_t *)((int64_t)render_system + 0x1609) = 0x101;  // 视口宽度
+  *(int32_t *)((int64_t)render_system + 0x160c) = 1;       // 视口高度
   
   // 清理旧的渲染目标
-  old_object = (longlong *)render_system[0x2c0];
+  old_object = (int64_t *)render_system[0x2c0];
   render_system[0x2c0] = 0;
-  if (old_object != (longlong *)0x0) {
+  if (old_object != (int64_t *)0x0) {
     (**(code **)(*old_object + 0x38))();
   }
   
@@ -1171,29 +1171,29 @@ uint64_t * initialize_render_system(uint64_t *render_system, uint64_t param2, ui
   
   // 清理主渲染对象
   *render_system = 0;
-  old_object = (longlong *)render_system[0x300];
+  old_object = (int64_t *)render_system[0x300];
   render_system[0x300] = 0;
-  if (old_object != (longlong *)0x0) {
+  if (old_object != (int64_t *)0x0) {
     (**(code **)(*old_object + 0x38))();
   }
   
   // 清理垂直同步对象
-  old_object = (longlong *)render_system[0x30b];
+  old_object = (int64_t *)render_system[0x30b];
   render_system[0x30b] = 0;
-  if (old_object != (longlong *)0x0) {
+  if (old_object != (int64_t *)0x0) {
     (**(code **)(*old_object + 0x38))();
   }
   
   // 设置最终渲染参数
   *(int16_t *)(render_system + 0x311) = 0x101;  // 刷新率
   render_system[0x2fc] = 0x3f0000003f000000;     // 渲染分辨率
-  *(uint64_t *)((longlong)render_system + 0x17ec) = 0x4434000044a00000;  // 显示模式
+  *(uint64_t *)((int64_t)render_system + 0x17ec) = 0x4434000044a00000;  // 显示模式
   
   // 清理状态标志
   *(int8_t *)(render_system + 0x2bf) = 0;  // 错误状态
   render_system[0x2c4] = 0;                   // 警告计数
   *(int16_t *)(render_system + 0x2c5) = 0;  // 性能计数器
-  *(int8_t *)((longlong)render_system + 0x162a) = 0;  // 调试标志
+  *(int8_t *)((int64_t)render_system + 0x162a) = 0;  // 调试标志
   *(int8_t *)(render_system + 0x2c2) = 0;             // 优化标志
   *(int8_t *)(render_system + 1) = 0;                 // 保留字段
   render_system[0x30c] = 0;                               // 最后错误代码
@@ -1217,14 +1217,14 @@ void main_render_loop(void)
 {
   char current_state;
   char previous_state;
-  longlong context_ptr1;
-  longlong context_ptr2;
-  longlong context_ptr3;
-  longlong engine_context;
+  int64_t context_ptr1;
+  int64_t context_ptr2;
+  int64_t context_ptr3;
+  int64_t engine_context;
   char is_active;
-  ulonglong context_index1;
-  ulonglong context_index2;
-  ulonglong context_index3;
+  uint64_t context_index1;
+  uint64_t context_index2;
+  uint64_t context_index3;
   uint64_t render_result;
   int8_t stack_buffer_d8 [32];
   int8_t active_flag;
@@ -1232,25 +1232,25 @@ void main_render_loop(void)
   int render_width;
   int viewport_x;
   int viewport_y;
-  longlong *resource_ptr;
+  int64_t *resource_ptr;
   uint64_t cleanup_flag;
   void *resource_manager;
   int8_t *string_buffer;
   int32_t buffer_size;
   int8_t stack_buffer_70 [72];
-  ulonglong security_cookie;
+  uint64_t security_cookie;
   
   // 获取引擎上下文
   engine_context = system_operation_state;
   cleanup_flag = 0xfffffffffffffffe;
-  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer_d8;
+  security_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer_d8;
   
   // 保存当前渲染状态
   *(int8_t *)(system_operation_state + 0x1889) = *(int8_t *)(system_operation_state + 0x1888);
   
   // 获取新的渲染状态
-  current_state = *(char *)(*(longlong *)(system_main_module_state + 8) + 0xbc +
-                          (ulonglong)(*(uint *)(*(longlong *)(system_main_module_state + 8) + 0x13c) & 1) * 0x48);
+  current_state = *(char *)(*(int64_t *)(system_main_module_state + 8) + 0xbc +
+                          (uint64_t)(*(uint *)(*(int64_t *)(system_main_module_state + 8) + 0x13c) & 1) * 0x48);
   
   // 更新状态寄存器
   *(char *)(engine_context + 0x1888) = current_state;
@@ -1275,13 +1275,13 @@ void main_render_loop(void)
     FUN_180060b80(engine_context + 0x1698, render_result);
     
     // 清理资源指针
-    if (resource_ptr != (longlong *)0x0) {
+    if (resource_ptr != (int64_t *)0x0) {
       (**(code **)(*resource_ptr + 0x38))();
     }
     
     // 设置资源管理器
     resource_manager = &system_state_ptr;
-    (**(code **)(**(longlong **)(engine_context + 0x1698) + 0x60))();
+    (**(code **)(**(int64_t **)(engine_context + 0x1698) + 0x60))();
     
 RENDER_CONTINUE:
     // 继续渲染循环
@@ -1290,18 +1290,18 @@ RENDER_CONTINUE:
   else {
 ACTIVE_RENDERING:
     // 活跃渲染模式
-    if (*(longlong **)(engine_context + 0x1698) != (longlong *)0x0) {
-      is_active = (**(code **)(**(longlong **)(engine_context + 0x1698) + 0xd8))();
+    if (*(int64_t **)(engine_context + 0x1698) != (int64_t *)0x0) {
+      is_active = (**(code **)(**(int64_t **)(engine_context + 0x1698) + 0xd8))();
       if (is_active != '\0') {
         // 执行活跃渲染任务
-        (**(code **)(**(longlong **)(engine_context + 0x1698) + 0x68))();
+        (**(code **)(**(int64_t **)(engine_context + 0x1698) + 0x68))();
         goto RENDER_CONTINUE;
       }
     }
   }
   
   // 状态变化处理
-  if (((current_state != previous_state) && (core_system_data_string != 0)) && (*(longlong *)(core_system_data_string + 0x10) != 0)) {
+  if (((current_state != previous_state) && (core_system_data_string != 0)) && (*(int64_t *)(core_system_data_string + 0x10) != 0)) {
     (**(code **)(core_system_data_string + 0x80))(*(int8_t *)(engine_context + 0x1888));
   }
   
@@ -1314,19 +1314,19 @@ RENDER_CONTINUE:
   if ((system_debug_flag == '\0') && (*(int *)(system_module_state + 0x7e0) == 0)) {
     // 如果显示配置为空或无效，使用默认设置
     if ((**(char **)(core_system_data_string + 0x2010) == '\0') ||
-       (*(char *)(*(longlong *)(system_main_module_state + 8) + 0xbc +
-                 (ulonglong)(*(uint *)(*(longlong *)(system_main_module_state + 8) + 0x13c) & 1) * 0x48) ==
+       (*(char *)(*(int64_t *)(system_main_module_state + 8) + 0xbc +
+                 (uint64_t)(*(uint *)(*(int64_t *)(system_main_module_state + 8) + 0x13c) & 1) * 0x48) ==
         '\0')) {
       FUN_180171fb0(*(uint64_t *)(system_main_module_state + 8), 0);
     }
     else {
       // 计算显示参数
-      context_ptr1 = *(longlong *)(system_main_module_state + 8);
-      context_index1 = (ulonglong)(*(uint *)(context_ptr1 + 0x13c) & 1);
-      context_ptr2 = *(longlong *)(system_main_module_state + 8);
-      context_index2 = (ulonglong)(*(uint *)(context_ptr2 + 0x13c) & 1);
-      context_ptr3 = *(longlong *)(system_main_module_state + 8);
-      context_index3 = (ulonglong)(*(uint *)(context_ptr3 + 0x13c) & 1);
+      context_ptr1 = *(int64_t *)(system_main_module_state + 8);
+      context_index1 = (uint64_t)(*(uint *)(context_ptr1 + 0x13c) & 1);
+      context_ptr2 = *(int64_t *)(system_main_module_state + 8);
+      context_index2 = (uint64_t)(*(uint *)(context_ptr2 + 0x13c) & 1);
+      context_ptr3 = *(int64_t *)(system_main_module_state + 8);
+      context_index3 = (uint64_t)(*(uint *)(context_ptr3 + 0x13c) & 1);
       
       // 计算渲染尺寸
       render_width = *(int *)(context_ptr2 + 0xf0 + context_index2 * 0x48) + *(int *)(context_ptr1 + 0xb0 + context_index1 * 0x48);
@@ -1338,20 +1338,20 @@ RENDER_CONTINUE:
       FUN_180171fb0(*(uint64_t *)(system_main_module_state + 8), &render_height);
       
       // 更新显示比例
-      context_ptr1 = *(longlong *)(core_system_data_string + 0x2010);
+      context_ptr1 = *(int64_t *)(core_system_data_string + 0x2010);
       FUN_180093780(context_ptr1, *(int32_t *)(context_ptr1 + 4), *(int32_t *)(context_ptr1 + 8));
       context_ptr1 = core_system_data_string;
       
       // 计算并设置宽高比
       *(float *)(engine_context + 0x17e0) =
-           (float)*(int *)(*(longlong *)(core_system_data_string + 0x2010) + 4) / *(float *)(engine_context + 0x17ec);
+           (float)*(int *)(*(int64_t *)(core_system_data_string + 0x2010) + 4) / *(float *)(engine_context + 0x17ec);
       *(float *)(engine_context + 0x17e4) =
-           (float)*(int *)(*(longlong *)(context_ptr1 + 0x2010) + 8) / *(float *)(engine_context + 0x17f0);
+           (float)*(int *)(*(int64_t *)(context_ptr1 + 0x2010) + 8) / *(float *)(engine_context + 0x17f0);
     }
   }
   
   // 清理栈帧并继续循环（此函数不返回）
-  FUN_1808fc050(security_cookie ^ (ulonglong)stack_buffer_d8);
+  FUN_1808fc050(security_cookie ^ (uint64_t)stack_buffer_d8);
 }
 
 

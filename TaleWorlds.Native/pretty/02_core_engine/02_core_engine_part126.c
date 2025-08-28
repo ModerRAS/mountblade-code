@@ -12,12 +12,12 @@ void initialize_render_pipeline(void)
     float transform_x;
     float transform_y;
     uint render_flags;
-    longlong context_ptr;
+    int64_t context_ptr;
     int8_t *texture_ptr;
-    longlong camera_ptr;
+    int64_t camera_ptr;
     char is_visible;
     int32_t color_value;
-    longlong render_context;
+    int64_t render_context;
     uint64_t matrix_data;
     int32_t *shader_params;
     longlight vertex_buffer;
@@ -26,7 +26,7 @@ void initialize_render_pipeline(void)
     uint64_t *render_target;
     int8_t depth_test;
     float *camera_matrix;
-    longlong scene_manager;
+    int64_t scene_manager;
     int32_t ambient_light;
     uint64_t world_matrix;
     float *viewport_ptr;
@@ -41,7 +41,7 @@ void initialize_render_pipeline(void)
     float camera_far;
     
     // 设置基础渲染参数
-    color_value = (int32_t)((ulonglong)world_matrix >> 0x20);
+    color_value = (int32_t)((uint64_t)world_matrix >> 0x20);
     *(float *)(render_context + 0x278) =
          ((*(float *)(render_context + 0x40) - *(float *)(render_context + 0x8c)) - *(float *)(render_context + 0x70)) +
          (*(float *)(render_context + 0x48) - *(float *)(render_context + 0xa4));
@@ -106,7 +106,7 @@ void initialize_render_pipeline(void)
     setup_clipping_planes(camera_ptr + 0x188,0);
     
     // 设置渲染状态
-    context_ptr = *(longlong *)(camera_matrix + 8);
+    context_ptr = *(int64_t *)(camera_matrix + 8);
     *(int32_t *)(camera_ptr + 0x1a0) = 1;
     if (context_ptr == 0) {
         color_value = 1;
@@ -132,7 +132,7 @@ void initialize_render_pipeline(void)
     *(uint64_t *)(camera_ptr + 0x210) = world_matrix;
     *(int32_t *)(camera_ptr + 0x13c) = ambient_light;
     *(int32_t *)(camera_ptr + 0x140) = ambient_light;
-    *(longlong *)(camera_ptr + 0x198) = camera_ptr + 0x2b8;
+    *(int64_t *)(camera_ptr + 0x198) = camera_ptr + 0x2b8;
     
     // 设置纹理采样器
     setup_texture_sampler(camera_ptr + 0x1e8,0);
@@ -162,7 +162,7 @@ void initialize_render_pipeline(void)
     // 处理纹理更新
     texture_ptr = *(int8_t **)(camera_matrix + 10);
     if ((((texture_ptr != (int8_t *)0x0) &&
-         (vertex_buffer = *(longlong *)(camera_ptr + 0x28), *(char *)(vertex_buffer + 0x48) != '\0')) &&
+         (vertex_buffer = *(int64_t *)(camera_ptr + 0x28), *(char *)(vertex_buffer + 0x48) != '\0')) &&
         (context_ptr = get_current_texture(), vertex_buffer != context_ptr)) &&
        (((*(byte *)(camera_ptr + 0x432) & 1) == 0 ||
         ((*(byte *)(camera_ptr + 0x432) & 2) != 0)))) {
@@ -188,7 +188,7 @@ void initialize_render_pipeline(void)
         }
         
         // 处理反射渲染
-        if (*(longlong *)(camera_matrix + 10) != 0) {
+        if (*(int64_t *)(camera_matrix + 10) != 0) {
             view_distance = *(float *)(scene_manager + 0x19f8) * camera_fov;
             matrix_data = calculate_world_matrix(camera_matrix + -0x18,
                                         ((*(float *)(camera_ptr + 0x48) +
@@ -212,7 +212,7 @@ void initialize_render_pipeline(void)
         if ((render_mode & 0x100000) != 0) {
             matrix_data = CONCAT44(color_value,0xbf800000);
             position_ptr = (float *)setup_post_processing(camera_matrix + -0x18,&GLOBAL_POSTPROCESS_DATA,0,0,matrix_data);
-            color_value = (int32_t)((ulonglong)matrix_data >> 0x20);
+            color_value = (int32_t)((uint64_t)matrix_data >> 0x20);
             view_distance = *position_ptr;
         }
         
@@ -242,7 +242,7 @@ void initialize_render_pipeline(void)
             material_shininess = camera_far;
         }
         
-        vertex_buffer = *(longlong *)(camera_matrix + 10);
+        vertex_buffer = *(int64_t *)(camera_matrix + 10);
         if (vertex_buffer != 0) {
             material_shininess = material_shininess + *(float *)(scene_manager + 0x19f8) + *(float *)(scene_manager + 0x1674);
         }
@@ -344,13 +344,13 @@ void initialize_render_pipeline(void)
     if ((*(byte *)(scene_manager + 8) & 0x40) != 0) {
         if ((*(int *)(scene_manager + 0x1b2c) == *(int *)(camera_ptr + 0x84)) &&
            (((*(char *)(scene_manager + 0xc1) == '\0' || (*(char *)(scene_manager + 0x135) != '\0')) &&
-            ((*(uint *)(*(longlong *)(camera_ptr + 0x3a0) + 0xc) & 0x200004) == 0)))) {
+            ((*(uint *)(*(int64_t *)(camera_ptr + 0x3a0) + 0xc) & 0x200004) == 0)))) {
             trigger_special_effect();
         }
         if ((((*(char *)(scene_manager + 0x1dd0) != '\0') && ((render_mode >> 0x15 & 1) == 0)) &&
-            ((*(longlong *)(scene_manager + 0x1b78) == 0 ||
-             (*(longlong *)(*(longlong *)(scene_manager + 0x1b78) + 0x3a0) != camera_ptr)))) &&
-           ((camera_ptr == *(longlong *)(camera_ptr + 0x3a0) &&
+            ((*(int64_t *)(scene_manager + 0x1b78) == 0 ||
+             (*(int64_t *)(*(int64_t *)(scene_manager + 0x1b78) + 0x3a0) != camera_ptr)))) &&
+           ((camera_ptr == *(int64_t *)(camera_ptr + 0x3a0) &&
             ((*(uint *)(camera_ptr + 0xc) & 0x20000000) == 0)))) {
             trigger_secondary_effect();
         }
@@ -434,7 +434,7 @@ void initialize_render_pipeline(void)
     *(int8_t *)(camera_ptr + 0xb4) = depth_test;
     
     // 执行最终渲染
-    execute_render_pipeline(*(ulonglong *)(camera_matrix + 0x24) ^ (ulonglong)&render_target);
+    execute_render_pipeline(*(uint64_t *)(camera_matrix + 0x24) ^ (uint64_t)&render_target);
 }
 
 
@@ -449,15 +449,15 @@ void update_render_pipeline_state(void)
     int8_t render_enabled;
     int frame_count;
     uint64_t *render_context;
-    longlong scene_manager;
+    int64_t scene_manager;
     float *viewport;
-    longlong camera_params;
+    int64_t camera_params;
     uint render_mode;
     float clear_color;
     float blend_factor;
     float camera_fov;
     float camera_near;
-    longlong render_target;
+    int64_t render_target;
     int render_pass;
     
     // 获取当前渲染时间
@@ -476,7 +476,7 @@ void update_render_pipeline_state(void)
     }
     clear_color = *viewport;
     blend_factor = (float)calculate_world_matrix();
-    *(float *)(render_target + 0x24c) = blend_factor + *(float *)((longlong)render_context + 4) + clear_color;
+    *(float *)(render_target + 0x24c) = blend_factor + *(float *)((int64_t)render_context + 4) + clear_color;
     
     // 计算屏幕坐标
     *(float *)(render_target + 0x250) =
@@ -499,13 +499,13 @@ void update_render_pipeline_state(void)
     if ((*(byte *)(scene_manager + 8) & 0x40) != 0) {
         if ((*(int *)(scene_manager + 0x1b2c) == *(int *)(render_target + 0x84)) &&
            (((*(char *)(scene_manager + 0xc1) == '\0' || (*(char *)(scene_manager + 0x135) != '\0')) &&
-            ((*(uint *)(*(longlong *)(render_target + 0x3a0) + 0xc) & 0x200004) == 0)))) {
+            ((*(uint *)(*(int64_t *)(render_target + 0x3a0) + 0xc) & 0x200004) == 0)))) {
             trigger_special_effect();
         }
         if ((((*(char *)(scene_manager + 0x1dd0) != '\0') && ((render_mode >> 0x15 & 1) == 0)) &&
-            ((*(longlong *)(scene_manager + 0x1b78) == 0 ||
-             (*(longlong *)(*(longlong *)(scene_manager + 0x1b78) + 0x3a0) != render_target)))) &&
-           ((render_target == *(longlong *)(render_target + 0x3a0) &&
+            ((*(int64_t *)(scene_manager + 0x1b78) == 0 ||
+             (*(int64_t *)(*(int64_t *)(scene_manager + 0x1b78) + 0x3a0) != render_target)))) &&
+           ((render_target == *(int64_t *)(render_target + 0x3a0) &&
             ((*(uint *)(render_target + 0xc) & 0x20000000) == 0)))) {
             trigger_secondary_effect();
         }
@@ -592,7 +592,7 @@ void update_render_pipeline_state(void)
     *(int8_t *)(render_target + 0xb4) = render_enabled;
     
     // 执行最终渲染
-    execute_render_pipeline(render_context[0x12] ^ (ulonglong)&render_target);
+    execute_render_pipeline(render_context[0x12] ^ (uint64_t)&render_target);
 }
 
 
@@ -600,7 +600,7 @@ void update_render_pipeline_state(void)
  * 处理特殊渲染效果
  * 根据场景参数触发特殊的视觉效果
  */
-void process_special_effects(longlong render_context)
+void process_special_effects(int64_t render_context)
 {
     int32_t effect_param1;
     int32_t effect_param2;
@@ -609,26 +609,26 @@ void process_special_effects(longlong render_context)
     int8_t effect_enabled;
     int effect_id;
     int32_t *effect_data;
-    longlong scene_manager;
-    longlong camera_params;
+    int64_t scene_manager;
+    int64_t camera_params;
     uint render_mode;
     float camera_near;
-    longlong target_context;
+    int64_t target_context;
     int effect_priority;
     
     // 检查是否需要触发特殊效果
     if ((*(int *)(scene_manager + 0x1b2c) == *(int *)(render_context + 0x84)) &&
        (((*(char *)(scene_manager + 0xc1) == '\0' || (*(char *)(scene_manager + 0x135) != '\0')) &&
-        ((*(uint *)(*(longlong *)(render_context + 0x3a0) + 0xc) & 0x200004) == 0)))) {
+        ((*(uint *)(*(int64_t *)(render_context + 0x3a0) + 0xc) & 0x200004) == 0)))) {
         trigger_special_effect();
         render_context = target_context;
     }
     
     // 检查是否需要触发次要效果
     if ((((*(char *)(scene_manager + 0x1dd0) != '\0') && ((render_mode >> 0x15 & 1) == 0)) &&
-        ((*(longlong *)(scene_manager + 0x1b78) == 0 ||
-         (*(longlong *)(*(longlong *)(scene_manager + 0x1b78) + 0x3a0) != render_context)))) &&
-       ((render_context == *(longlong *)(render_context + 0x3a0) &&
+        ((*(int64_t *)(scene_manager + 0x1b78) == 0 ||
+         (*(int64_t *)(*(int64_t *)(scene_manager + 0x1b78) + 0x3a0) != render_context)))) &&
+       ((render_context == *(int64_t *)(render_context + 0x3a0) &&
         ((*(uint *)(render_context + 0xc) & 0x20000000) == 0)))) {
         trigger_secondary_effect();
         render_context = target_context;
@@ -721,7 +721,7 @@ void process_special_effects(longlong render_context)
     *(int8_t *)(target_context + 0xb4) = effect_enabled;
     
     // 执行效果渲染
-    execute_render_pipeline(*(ulonglong *)(effect_data + 0x24) ^ (ulonglong)&target_context);
+    execute_render_pipeline(*(uint64_t *)(effect_data + 0x24) ^ (uint64_t)&target_context);
 }
 
 
@@ -734,13 +734,13 @@ void apply_postprocessing_effects(void)
     char effect_enabled;
     int8_t render_skip;
     int previous_frame;
-    longlong render_context;
-    longlong scene_manager;
+    int64_t render_context;
+    int64_t scene_manager;
     int current_frame;
-    longlong camera_params;
+    int64_t camera_params;
     uint render_mode;
     float camera_near;
-    longlong render_target;
+    int64_t render_target;
     
     // 应用深度场效果
     apply_depth_of_field(render_target + 600,render_target + 0x260,1);
@@ -803,7 +803,7 @@ void apply_postprocessing_effects(void)
     *(int8_t *)(render_target + 0xb4) = render_skip;
     
     // 执行最终渲染
-    execute_render_pipeline(*(ulonglong *)(render_context + 0x90) ^ (ulonglong)&render_target);
+    execute_render_pipeline(*(uint64_t *)(render_context + 0x90) ^ (uint64_t)&render_target);
 }
 
 
@@ -815,12 +815,12 @@ void cleanup_render_state(void)
 {
     char render_enabled;
     int8_t render_skip;
-    longlong render_context;
-    longlong scene_manager;
-    longlong camera_params;
+    int64_t render_context;
+    int64_t scene_manager;
+    int64_t camera_params;
     uint render_mode;
     float camera_near;
-    longlong render_target;
+    int64_t render_target;
     
     // 重置渲染状态
     *(int8_t *)(render_target + 0xb1) = 0;
@@ -878,7 +878,7 @@ void cleanup_render_state(void)
     *(int8_t *)(render_target + 0xb4) = render_skip;
     
     // 执行最终渲染
-    execute_render_pipeline(*(ulonglong *)(render_context + 0x90) ^ (ulonglong)&render_target);
+    execute_render_pipeline(*(uint64_t *)(render_context + 0x90) ^ (uint64_t)&render_target);
 }
 
 // 全局渲染状态常量

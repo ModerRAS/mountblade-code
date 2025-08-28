@@ -12,7 +12,7 @@ static const char* DEBUG_MODE_FLAG = "debug_mode_enabled";
 // 函数：初始化引擎状态管理器
 // 参数：engine_context - 引擎上下文指针
 // 功能：初始化和管理引擎的各种状态和配置，包括渲染、物理和调试设置
-void initialize_engine_state_manager(longlong engine_context)
+void initialize_engine_state_manager(int64_t engine_context)
 {
     char operation_result;
     uint32_t config_value;
@@ -50,7 +50,7 @@ void initialize_engine_state_manager(longlong engine_context)
     config_value = 0;
     
     // 检查并初始化渲染配置
-    if ((*(longlong*)(engine_context + 0x370) != 0) &&
+    if ((*(int64_t*)(engine_context + 0x370) != 0) &&
         (operation_result = (**(code **)(engine_context + 0x378))(render_config_backup), 
          config_value = render_config_backup[0], operation_result == '\0')) {
         
@@ -79,7 +79,7 @@ void initialize_engine_state_manager(longlong engine_context)
         config_value = 1;
         
         // 检查并初始化物理配置
-        if ((*(longlong*)(engine_context + 0x680) != 0) &&
+        if ((*(int64_t*)(engine_context + 0x680) != 0) &&
             (operation_result = (**(code **)(engine_context + 0x688))(render_config_backup), 
              config_value = render_config_backup[0], operation_result == '\0')) {
             
@@ -97,7 +97,7 @@ void initialize_engine_state_manager(longlong engine_context)
         // 检查并初始化调试配置
         render_config_values[0] = 1;
         config_value = 1;
-        if ((*(longlong*)(engine_context + 0x450) != 0) &&
+        if ((*(int64_t*)(engine_context + 0x450) != 0) &&
             (operation_result = (**(code **)(engine_context + 0x458))(render_config_values), 
              config_value = render_config_values[0], operation_result == '\0')) {
             
@@ -154,7 +154,7 @@ config_complete:
         config_value = 0;
         
         // 应用物理配置
-        if ((*(longlong*)(engine_context + 0x680) != 0) &&
+        if ((*(int64_t*)(engine_context + 0x680) != 0) &&
             (operation_result = (**(code **)(engine_context + 0x688))(render_config_values), 
              config_value = render_config_values[0], operation_result == '\0')) {
             
@@ -172,7 +172,7 @@ config_complete:
         // 应用调试配置
         render_config_values[0] = 1;
         config_value = 1;
-        if ((*(longlong*)(engine_context + 0x450) == 0) ||
+        if ((*(int64_t*)(engine_context + 0x450) == 0) ||
             (operation_result = (**(code **)(engine_context + 0x458))(render_config_values), 
              config_value = render_config_values[0], operation_result != '\0')) {
             *(uint32_t*)(engine_context + 0x3f0) = config_value;
@@ -190,7 +190,7 @@ config_complete:
     
     // 最终状态设置
     render_config_values[0] = 0;
-    if ((*(longlong*)(engine_context + 0x680) == 0) ||
+    if ((*(int64_t*)(engine_context + 0x680) == 0) ||
         (operation_result = (**(code **)(engine_context + 0x688))(render_config_values), 
          operation_result != '\0')) {
         *(uint32_t*)(engine_context + 0x620) = render_config_values[0];

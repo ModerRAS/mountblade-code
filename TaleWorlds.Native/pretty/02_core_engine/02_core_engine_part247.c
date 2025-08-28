@@ -8,10 +8,10 @@
  * 清理事件队列中的所有事件
  * @param event_context 事件上下文指针
  */
-void clear_event_queue(longlong event_context)
+void clear_event_queue(int64_t event_context)
 {
   int lock_result;
-  longlong event_index;
+  int64_t event_index;
   
   // 锁定事件互斥体
   lock_result = _Mtx_lock(event_context + 0x318);
@@ -21,14 +21,14 @@ void clear_event_queue(longlong event_context)
   
   lock_result = 0;
   // 遍历并清理队列中的所有事件
-  if (*(longlong *)(event_context + 0x380) - *(longlong *)(event_context + 0x378) >> 3 != 0) {
+  if (*(int64_t *)(event_context + 0x380) - *(int64_t *)(event_context + 0x378) >> 3 != 0) {
     event_index = 0;
     do {
-      FUN_18084b2f0(*(uint64_t *)(event_index + *(longlong *)(event_context + 0x378)));
+      FUN_18084b2f0(*(uint64_t *)(event_index + *(int64_t *)(event_context + 0x378)));
       lock_result = lock_result + 1;
       event_index = event_index + 8;
-    } while ((ulonglong)(longlong)lock_result <
-             (ulonglong)(*(longlong *)(event_context + 0x380) - *(longlong *)(event_context + 0x378) >> 3));
+    } while ((uint64_t)(int64_t)lock_result <
+             (uint64_t)(*(int64_t *)(event_context + 0x380) - *(int64_t *)(event_context + 0x378) >> 3));
   }
   
   // 清理事件处理相关资源
@@ -52,26 +52,26 @@ void clear_event_queue(longlong event_context)
  * 获取事件系统状态标识符（水平方向）
  * @return 事件系统状态标识符
  */
-longlong get_event_system_horizontal_id(void)
+int64_t get_event_system_horizontal_id(void)
 {
   int id_buffer[2];
   int8_t temp_buffer[16];
   
   FUN_180738630(id_buffer, temp_buffer, 1);
-  return (longlong)id_buffer[0];
+  return (int64_t)id_buffer[0];
 }
 
 /**
  * 获取事件系统状态标识符（垂直方向）
  * @return 事件系统状态标识符
  */
-longlong get_event_system_vertical_id(void)
+int64_t get_event_system_vertical_id(void)
 {
   int id_buffer[2];
   int8_t temp_buffer[16];
   
   FUN_180738630(temp_buffer, id_buffer, 1);
-  return (longlong)id_buffer[0];
+  return (int64_t)id_buffer[0];
 }
 
 /**
@@ -81,7 +81,7 @@ longlong get_event_system_vertical_id(void)
  * @param is_enabled 是否启用触发器
  * @return 处理结果状态码
  */
-uint64_t process_event_trigger(longlong event_context, longlong trigger_data, char is_enabled)
+uint64_t process_event_trigger(int64_t event_context, int64_t trigger_data, char is_enabled)
 {
   uint buffer_size;
   int string_length;
@@ -89,8 +89,8 @@ uint64_t process_event_trigger(longlong event_context, longlong trigger_data, ch
   int32_t *message_buffer;
   int32_t *temp_buffer;
   void *string_ptr;
-  longlong compare_index;
-  longlong context_backup;
+  int64_t compare_index;
+  int64_t context_backup;
   uint64_t result_code;
   
   context_backup = event_context;
@@ -117,7 +117,7 @@ uint64_t process_event_trigger(longlong event_context, longlong trigger_data, ch
       string_length = *(int *)(trigger_data + 0x10);
     }
     // 复制触发器名称到消息缓冲区
-    memcpy((int8_t *)((longlong)message_buffer + 0xf), *(uint64_t *)(trigger_data + 8), (longlong)(string_length + 1));
+    memcpy((int8_t *)((int64_t)message_buffer + 0xf), *(uint64_t *)(trigger_data + 8), (int64_t)(string_length + 1));
   }
   
   if (message_buffer == (int32_t *)0x0) {
@@ -131,7 +131,7 @@ build_message:
     goto build_message;
   }
   
-  *(int16_t *)((longlong)message_buffer + 0xf) = 10; // 换行符
+  *(int16_t *)((int64_t)message_buffer + 0xf) = 10; // 换行符
   
   temp_buffer = (int32_t *)&system_buffer_ptr;
   if (message_buffer != (int32_t *)0x0) {
@@ -164,7 +164,7 @@ skip_debug_logging:
   if (is_enabled == '\0') {
     if (6 < *(uint *)(trigger_data + 0x10)) {
       do {
-        if ((&unknown_var_3520_ptr + compare_index)[*(longlong *)(trigger_data + 8) + -0x180a10500] !=
+        if ((&unknown_var_3520_ptr + compare_index)[*(int64_t *)(trigger_data + 8) + -0x180a10500] !=
             (&unknown_var_3520_ptr)[compare_index]) {
           return result_code;
         }
@@ -192,13 +192,13 @@ skip_debug_logging:
  * @param is_enabled 是否启用事件类型
  * @return 处理结果状态码
  */
-longlong process_event_type(longlong event_context, int event_type, char is_enabled)
+int64_t process_event_type(int64_t event_context, int event_type, char is_enabled)
 {
   uint buffer_size;
   int32_t format_result;
   int32_t *message_buffer;
   int total_length;
-  longlong context_backup;
+  int64_t context_backup;
   void *string_data;
   int32_t *temp_buffer;
   uint temp_size;
@@ -233,7 +233,7 @@ longlong process_event_type(longlong event_context, int event_type, char is_enab
       if ((int)buffer_size < 0x10) {
         buffer_size = 0x10;
       }
-      temp_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, (longlong)(int)buffer_size, 0x13);
+      temp_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, (int64_t)(int)buffer_size, 0x13);
       *(int8_t *)temp_buffer = 0;
     }
     else {
@@ -244,7 +244,7 @@ longlong process_event_type(longlong event_context, int event_type, char is_enab
   }
   
 buffer_ready:
-  *(int16_t *)((ulonglong)temp_size + (longlong)temp_buffer) = 10; // 换行符
+  *(int16_t *)((uint64_t)temp_size + (int64_t)temp_buffer) = 10; // 换行符
   
   message_buffer = (int32_t *)&system_buffer_ptr;
   if (temp_buffer != (int32_t *)0x0) {
@@ -259,13 +259,13 @@ buffer_ready:
     FUN_18064e900();
   }
   temp_buffer = (int32_t *)0x0;
-  result_code = (ulonglong)result_code._4_4_ << 0x20;
+  result_code = (uint64_t)result_code._4_4_ << 0x20;
   string_data = &system_state_ptr;
 
 skip_debug_logging:
   context_backup = 0;
   format_result = FUN_180845d20(*(uint64_t *)(event_context + 0x368),
-                        (longlong)event_type * 0x10 + *(longlong *)(event_context + 0x3b8), &context_backup);
+                        (int64_t)event_type * 0x10 + *(int64_t *)(event_context + 0x3b8), &context_backup);
   FUN_180211a30(format_result, &system_buffer_ptr);
   
   if ((context_backup != 0) && (is_enabled != '\0')) {
@@ -281,7 +281,7 @@ skip_debug_logging:
  * @param state_data 状态数据指针
  * @return 处理结果状态码
  */
-uint64_t check_event_system_state(longlong event_context, longlong state_data)
+uint64_t check_event_system_state(int64_t event_context, int64_t state_data)
 {
   uint buffer_size;
   int string_length;
@@ -322,8 +322,8 @@ uint64_t check_event_system_state(longlong event_context, longlong state_data)
       string_length = *(int *)(state_data + 0x10);
     }
     // 复制状态信息到消息缓冲区
-    memcpy((int8_t *)((longlong)message_buffer + 0x15), *(uint64_t *)(state_data + 8),
-           (longlong)(string_length + 1));
+    memcpy((int8_t *)((int64_t)message_buffer + 0x15), *(uint64_t *)(state_data + 8),
+           (int64_t)(string_length + 1));
   }
   
   if (message_buffer == (int32_t *)0x0) {
@@ -337,7 +337,7 @@ build_message:
     goto build_message;
   }
   
-  *(int16_t *)((longlong)message_buffer + 0x15) = 10; // 换行符
+  *(int16_t *)((int64_t)message_buffer + 0x15) = 10; // 换行符
   
   temp_buffer = (int32_t *)&system_buffer_ptr;
   if (message_buffer != (int32_t *)0x0) {
@@ -373,7 +373,7 @@ skip_debug_logging:
  * @param operation_code 操作代码
  * @return 处理结果状态码
  */
-uint64_t process_thread_safe_event_operation(longlong event_context, int32_t operation_code)
+uint64_t process_thread_safe_event_operation(int64_t event_context, int32_t operation_code)
 {
   int lock_result;
   uint buffer_size;
@@ -427,7 +427,7 @@ uint64_t process_thread_safe_event_operation(longlong event_context, int32_t ope
       if ((int)buffer_size < 0x10) {
         buffer_size = 0x10;
       }
-      temp_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, (longlong)(int)buffer_size, 0x13);
+      temp_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, (int64_t)(int)buffer_size, 0x13);
       *(int8_t *)temp_buffer = 0;
     }
     else {
@@ -438,7 +438,7 @@ uint64_t process_thread_safe_event_operation(longlong event_context, int32_t ope
   }
 
 buffer_ready:
-  *(int16_t *)((ulonglong)temp_size + (longlong)temp_buffer) = 10; // 换行符
+  *(int16_t *)((uint64_t)temp_size + (int64_t)temp_buffer) = 10; // 换行符
   
   message_buffer = (int32_t *)&system_buffer_ptr;
   if (temp_buffer != (int32_t *)0x0) {
@@ -453,7 +453,7 @@ buffer_ready:
     FUN_18064e900();
   }
   temp_buffer = (int32_t *)0x0;
-  debug_result = (ulonglong)debug_result._4_4_ << 0x20;
+  debug_result = (uint64_t)debug_result._4_4_ << 0x20;
   string_data = &system_state_ptr;
 
 skip_debug_logging:
@@ -480,13 +480,13 @@ skip_debug_logging:
  * @param event_context 事件上下文指针
  * @param event_data 事件数据
  */
-void add_event_to_queue(longlong event_context, uint64_t event_data)
+void add_event_to_queue(int64_t event_context, uint64_t event_data)
 {
-  longlong lock_address;
+  int64_t lock_address;
   int lock_result;
   int32_t format_result;
   uint64_t parsed_data;
-  longlong search_result;
+  int64_t search_result;
   void *string_ptr;
   uint64_t *queue_end;
   uint64_t *queue_start;
@@ -496,10 +496,10 @@ void add_event_to_queue(longlong event_context, uint64_t event_data)
   void *temp_string;
   uint64_t *queue_capacity;
   uint64_t *new_queue;
-  ulonglong security_check;
+  uint64_t security_check;
   
   debug_handle = 0xfffffffffffffffe;
-  security_check = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
+  security_check = GET_SECURITY_COOKIE() ^ (uint64_t)security_buffer;
   
   lock_address = event_context + 0x318;
   lock_result = _Mtx_lock(lock_address);
@@ -578,7 +578,7 @@ process_special_event:
   
   // 队列已满，需要扩容
   queue_start = *(uint64_t **)(event_context + 0x378);
-  search_result = (longlong)queue_end - (longlong)queue_start >> 3;
+  search_result = (int64_t)queue_end - (int64_t)queue_start >> 3;
   if (search_result == 0) {
     search_result = 1;
 calculate_new_size:
@@ -594,11 +594,11 @@ calculate_new_size:
   
   // 复制现有队列数据到新队列
   if (queue_start != queue_end) {
-    memmove(new_queue, queue_start, (longlong)queue_end - (longlong)queue_start);
+    memmove(new_queue, queue_start, (int64_t)queue_end - (int64_t)queue_start);
   }
   
   *new_queue = debug_handle;
-  if (*(longlong *)(event_context + 0x378) != 0) {
+  if (*(int64_t *)(event_context + 0x378) != 0) {
     FUN_18064e900();
   }
   
@@ -623,7 +623,7 @@ cleanup_and_exit:
   }
   
   // 安全检查
-  FUN_1808fc050(security_check ^ (ulonglong)security_buffer);
+  FUN_1808fc050(security_check ^ (uint64_t)security_buffer);
 }
 
 /**
@@ -632,7 +632,7 @@ cleanup_and_exit:
  * @param config_data 配置数据数组
  * @param config_params 配置参数数组
  */
-void initialize_event_system_config(longlong event_context, uint64_t *config_data, int32_t *config_params)
+void initialize_event_system_config(int64_t event_context, uint64_t *config_data, int32_t *config_params)
 {
   int32_t temp_result;
   uint64_t config_value;
@@ -650,9 +650,9 @@ void initialize_event_system_config(longlong event_context, uint64_t *config_dat
   int32_t u_stack_2c;
   int32_t u_stack_28;
   int32_t u_stack_24;
-  ulonglong security_check;
+  uint64_t security_check;
   
-  security_check = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
+  security_check = GET_SECURITY_COOKIE() ^ (uint64_t)security_buffer;
   
   // 检查事件系统是否已禁用
   if (*(char *)(event_context + 0x210) == '\0') {
@@ -672,9 +672,9 @@ void initialize_event_system_config(longlong event_context, uint64_t *config_dat
     
     // 复制配置参数
     config_params_copy[0] = *(int32_t *)(config_data + 6);
-    config_params_copy[1] = *(int32_t *)((longlong)config_data + 0x34);
+    config_params_copy[1] = *(int32_t *)((int64_t)config_data + 0x34);
     config_params_copy[2] = *(int32_t *)(config_data + 7);
-    temp_result = *(int32_t *)((longlong)config_data + 0x3c);
+    temp_result = *(int32_t *)((int64_t)config_data + 0x3c);
     
     *(int32_t *)(event_context + 0x1b8) = config_params_copy[0];
     *(int32_t *)(event_context + 0x1bc) = config_params_copy[1];
@@ -708,7 +708,7 @@ void initialize_event_system_config(longlong event_context, uint64_t *config_dat
   }
   
   // 安全检查
-  FUN_1808fc050(security_check ^ (ulonglong)security_buffer);
+  FUN_1808fc050(security_check ^ (uint64_t)security_buffer);
 }
 
 /**
@@ -716,32 +716,32 @@ void initialize_event_system_config(longlong event_context, uint64_t *config_dat
  * @param event_context 事件上下文指针
  * @param handler_id 要移除的处理器ID
  */
-void remove_event_handler(longlong event_context, int handler_id)
+void remove_event_handler(int64_t event_context, int handler_id)
 {
-  longlong *hash_table_entry;
-  longlong table_size;
+  int64_t *hash_table_entry;
+  int64_t table_size;
   int *handler_entry;
   int *next_handler;
-  longlong handler_data;
+  int64_t handler_data;
   int *current_handler;
-  longlong *table_entry;
+  int64_t *table_entry;
   
-  table_size = *(longlong *)(event_context + 0x38);
-  table_entry = (longlong *)
-           (table_size + ((ulonglong)(longlong)handler_id % (ulonglong)*(uint *)(event_context + 0x40)) * 8);
+  table_size = *(int64_t *)(event_context + 0x38);
+  table_entry = (int64_t *)
+           (table_size + ((uint64_t)(int64_t)handler_id % (uint64_t)*(uint *)(event_context + 0x40)) * 8);
   current_handler = (int *)*table_entry;
   
   do {
     if (current_handler == (int *)0x0) {
-      handler_data = *(longlong *)(event_context + 0x40);
-      table_entry = (longlong *)(table_size + handler_data * 8);
+      handler_data = *(int64_t *)(event_context + 0x40);
+      table_entry = (int64_t *)(table_size + handler_data * 8);
       current_handler = (int *)*table_entry;
 remove_handler:
       if (current_handler != *(int **)(table_size + handler_data * 8)) {
-        table_size = *(longlong *)(current_handler + 2);
+        table_size = *(int64_t *)(current_handler + 2);
         FUN_180849230(*(uint64_t *)(table_size + 0x80));
         *(uint64_t *)(table_size + 0x80) = 0;
-        table_size = *(longlong *)(current_handler + 4);
+        table_size = *(int64_t *)(current_handler + 4);
         hash_table_entry = table_entry;
         
         // 查找链表中的下一个处理器
@@ -753,7 +753,7 @@ remove_handler:
         handler_entry = (int *)*table_entry;
         next_handler = *(int **)(handler_entry + 4);
         if (handler_entry == current_handler) {
-          *table_entry = (longlong)next_handler;
+          *table_entry = (int64_t)next_handler;
         }
         else {
           // 遍历链表找到要移除的处理器
@@ -764,8 +764,8 @@ remove_handler:
         }
         
         // 调用处理器的清理函数
-        if (*(longlong **)(current_handler + 2) != (longlong *)0x0) {
-          (**(code **)(**(longlong **)(current_handler + 2) + 0x38))();
+        if (*(int64_t **)(current_handler + 2) != (int64_t *)0x0) {
+          (**(code **)(**(int64_t **)(current_handler + 2) + 0x38))();
         }
         FUN_18064e900(current_handler);
       }
@@ -773,7 +773,7 @@ remove_handler:
     }
     
     if (handler_id == *current_handler) {
-      handler_data = *(longlong *)(event_context + 0x40);
+      handler_data = *(int64_t *)(event_context + 0x40);
       goto remove_handler;
     }
     current_handler = *(int **)(current_handler + 4);
@@ -786,30 +786,30 @@ remove_handler:
  * @param handler_id 要检查的处理器ID
  * @return 处理器是否存在（true/false）
  */
-bool is_event_handler_registered(longlong event_context, int handler_id)
+bool is_event_handler_registered(int64_t event_context, int handler_id)
 {
-  longlong table_size;
+  int64_t table_size;
   int *handler_entry;
-  longlong table_index;
+  int64_t table_index;
   int status_buffer[6];
   
-  table_size = *(longlong *)(event_context + 0x38);
-  handler_entry = *(int **)(table_size + ((ulonglong)(longlong)handler_id % (ulonglong)*(uint *)(event_context + 0x40)) *
+  table_size = *(int64_t *)(event_context + 0x38);
+  handler_entry = *(int **)(table_size + ((uint64_t)(int64_t)handler_id % (uint64_t)*(uint *)(event_context + 0x40)) *
                              8);
   do {
     if (handler_entry == (int *)0x0) {
-      table_index = *(longlong *)(event_context + 0x40);
+      table_index = *(int64_t *)(event_context + 0x40);
       handler_entry = *(int **)(table_size + table_index * 8);
 check_handler:
       if (handler_entry == *(int **)(table_size + table_index * 8)) {
         return false;
       }
-      FUN_180846d30(*(uint64_t *)(*(longlong *)(handler_entry + 2) + 0x78), status_buffer);
+      FUN_180846d30(*(uint64_t *)(*(int64_t *)(handler_entry + 2) + 0x78), status_buffer);
       return status_buffer[0] != 2;
     }
     
     if (handler_id == *handler_entry) {
-      table_index = *(longlong *)(event_context + 0x40);
+      table_index = *(int64_t *)(event_context + 0x40);
       goto check_handler;
     }
     handler_entry = *(int **)(handler_entry + 4);
@@ -820,7 +820,7 @@ check_handler:
  * 更新事件系统的渲染参数
  * @param event_context 事件上下文指针
  */
-void update_event_rendering_params(longlong event_context)
+void update_event_rendering_params(int64_t event_context)
 {
   int8_t security_buffer[32];
   float render_params[16];
@@ -828,9 +828,9 @@ void update_event_rendering_params(longlong event_context)
   int32_t u_stack_38;
   int32_t u_stack_2c;
   int32_t u_stack_24;
-  ulonglong security_check;
+  uint64_t security_check;
   
-  security_check = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
+  security_check = GET_SECURITY_COOKIE() ^ (uint64_t)security_buffer;
   
   // 获取当前渲染参数
   FUN_1808452a0(*(uint64_t *)(event_context + 0x368), &render_params[3], &render_params[2]);
@@ -890,5 +890,5 @@ void update_event_rendering_params(longlong event_context)
   FUN_18010f010(&unknown_var_4184_ptr);
   
   // 安全检查
-  FUN_1808fc050(security_check ^ (ulonglong)security_buffer);
+  FUN_1808fc050(security_check ^ (uint64_t)security_buffer);
 }

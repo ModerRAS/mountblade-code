@@ -38,7 +38,7 @@ extern void *default_error_handler;
 
 // 外部函数声明
 extern void log_render_error(void *message_table, void *handler);
-extern void FUN_18005ea90(longlong context, uint64_t *param);
+extern void FUN_18005ea90(int64_t context, uint64_t *param);
 extern void FUN_180626f80(void *error_ptr, void *handler);
 
 // 辅助函数：设置材质参数
@@ -51,8 +51,8 @@ extern void FUN_180626f80(void *error_ptr, void *handler);
 //   shader_table - 着色器参数表
 //   default_texture - 默认纹理指针
 static void setup_material_parameter(
-  longlong engine_context,
-  longlong param_offset,
+  int64_t engine_context,
+  int64_t param_offset,
   code *cleanup_func,
   void *param_handler,
   void *shader_table,
@@ -87,16 +87,16 @@ static void setup_material_parameter(
   
   // 初始化着色器参数
   if (shader_table != (void *)0x0) {
-    (*(code **)(*(longlong *)(engine_context + param_offset + 0x48) + 0x10))(
+    (*(code **)(*(int64_t *)(engine_context + param_offset + 0x48) + 0x10))(
       engine_context + param_offset + 0x48, shader_table
     );
   }
   
   // 设置参数值
-  material_config = (uint64_t *)((ulonglong)material_config & 0xffffffff00000000);
+  material_config = (uint64_t *)((uint64_t)material_config & 0xffffffff00000000);
   param_value = 0;
   
-  if (*(longlong *)(engine_context + param_offset + 16) != 0) {
+  if (*(int64_t *)(engine_context + param_offset + 16) != 0) {
     success_flag = (**(code **)(engine_context + param_offset + 24))(&material_config);
     if (success_flag == '\0') {
       if (global_debug_flag == '\0') {
@@ -115,10 +115,10 @@ static void setup_material_parameter(
   *(int32_t *)(engine_context + param_offset + 0x40) = param_value;
   
   // 设置第二个参数值
-  material_config = (uint64_t *)((ulonglong)material_config & 0xffffffff00000000);
+  material_config = (uint64_t *)((uint64_t)material_config & 0xffffffff00000000);
   param_value = 0;
   
-  if (*(longlong *)(engine_context + param_offset + 16) != 0) {
+  if (*(int64_t *)(engine_context + param_offset + 16) != 0) {
     success_flag = (**(code **)(engine_context + param_offset + 24))(&material_config, texture_ptr);
     if (success_flag == '\0') {
       if (global_debug_flag == '\0') {
@@ -141,7 +141,7 @@ static void setup_material_parameter(
   FUN_18005ea90(engine_context + 8, &material_config);
 }
 
-// 函数: void initialize_render_parameters(longlong engine_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+// 函数: void initialize_render_parameters(int64_t engine_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 // 功能: 初始化渲染参数，配置材质和着色器参数
 // 参数：
 //   engine_context - 引擎上下文指针，包含所有渲染状态信息
@@ -155,12 +155,12 @@ static void setup_material_parameter(
 // 3. 配置着色器参数表
 // 4. 初始化错误处理机制
 // 5. 设置渲染状态标志
-void initialize_render_parameters(longlong engine_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void initialize_render_parameters(int64_t engine_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   // 材质和纹理相关变量
   int8_t *texture_ptr;
-  ulonglong texture_data;
-  longlong render_offset;
+  uint64_t texture_data;
+  int64_t render_offset;
   char success_flag;
   int32_t render_value;
   uint64_t shader_handle;
@@ -214,12 +214,12 @@ void initialize_render_parameters(longlong engine_context, uint64_t param_2, uin
   }
   
   // 初始化渲染参数
-  (*(code **)(*(longlong *)(engine_context + SHADER_CONTEXT_OFFSET) + 0x10))(engine_context + SHADER_CONTEXT_OFFSET, &shader_parameter_table_1);
+  (*(code **)(*(int64_t *)(engine_context + SHADER_CONTEXT_OFFSET) + 0x10))(engine_context + SHADER_CONTEXT_OFFSET, &shader_parameter_table_1);
   
   // 设置默认参数值
   material_param_value = 0;
   render_value = 0;
-  if ((*(longlong *)(engine_context + CLEANUP_FUNC_OFFSET) != 0) &&
+  if ((*(int64_t *)(engine_context + CLEANUP_FUNC_OFFSET) != 0) &&
       (success_flag = (**(code **)(engine_context + PARAM_HANDLER_OFFSET))(&material_param_value), render_value = (int32_t)material_param_value,
        success_flag == '\0')) {
     // 处理参数设置失败的情况
@@ -236,9 +236,9 @@ void initialize_render_parameters(longlong engine_context, uint64_t param_2, uin
   // 保存渲染参数
   *(int32_t *)(engine_context + RENDER_PARAM_1_OFFSET) = render_value;
   // 设置基础渲染参数
-  material_config_ptr = (uint64_t *)((ulonglong)material_config_ptr << 0x20);
+  material_config_ptr = (uint64_t *)((uint64_t)material_config_ptr << 0x20);
   material_param_value = 0;
-  if (*(longlong *)(engine_context + 0x1b0) != 0) {
+  if (*(int64_t *)(engine_context + 0x1b0) != 0) {
     success_flag = (**(code **)(engine_context + 0x1b8))(&material_config_ptr, texture_ptr);
     if (success_flag == '\0') {
       if (global_debug_flag == '\0') {
@@ -269,9 +269,9 @@ void initialize_render_parameters(longlong engine_context, uint64_t param_2, uin
   );
   
   // 设置第二个材质参数
-  material_config_ptr = (uint64_t *)((ulonglong)material_config_ptr & 0xffffffff00000000);
+  material_config_ptr = (uint64_t *)((uint64_t)material_config_ptr & 0xffffffff00000000);
   material_param_value = 0;
-  if (*(longlong *)(engine_context + MATERIAL_PARAM_1_OFFSET + 16) != 0) {
+  if (*(int64_t *)(engine_context + MATERIAL_PARAM_1_OFFSET + 16) != 0) {
     success_flag = (**(code **)(engine_context + MATERIAL_PARAM_1_OFFSET + 24))(&material_config_ptr, texture_ptr);
     if (success_flag == '\0') {
       if (global_debug_flag == '\0') {

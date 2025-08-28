@@ -45,7 +45,7 @@ void release_render_resources(void *render_context)
         if (SYSTEM_DATA_MANAGER_A != NULL) {
             *(int *)((uint8_t *)SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)((uint8_t *)SYSTEM_DATA_MANAGER_A + 0x3a8) - 1;
         }
-        FUN_180059ba0(resource_1, SYSTEM_DATA_MANAGER_B);
+        RenderingSystem_ResourceReleaser(resource_1, SYSTEM_DATA_MANAGER_B);
     }
     
     // 释放第二个资源
@@ -54,7 +54,7 @@ void release_render_resources(void *render_context)
         if (SYSTEM_DATA_MANAGER_A != NULL) {
             *(int *)((uint8_t *)SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)((uint8_t *)SYSTEM_DATA_MANAGER_A + 0x3a8) - 1;
         }
-        FUN_180059ba0(resource_2, SYSTEM_DATA_MANAGER_B);
+        RenderingSystem_ResourceReleaser(resource_2, SYSTEM_DATA_MANAGER_B);
     }
     
     // 清理指针
@@ -420,10 +420,10 @@ void initialize_render_parameters_with_resources(void *render_context, void **pa
                 default_floats[1] = 0x7f7fffff; // FLT_MAX
                 
                 // 调用渲染配置函数
-                resource_ptr = FUN_180294c20(render_context, &global_config_704_ptr, param_3, default_params);
+                resource_ptr = RenderingSystem_Configurator(render_context, &global_config_704_ptr, param_3, default_params);
                 *(uint32_t *)((uint8_t *)resource_ptr + 0xc) = 0x3f800000; // 1.0f
             }
-            FUN_180294f50(render_context);
+            RenderingSystem_Processor(render_context);
         }
         
         // 处理像素数据
@@ -524,7 +524,7 @@ void initialize_advanced_render_parameters(void *render_context, void **param_2,
                                             param_13 != NULL ? param_13 : &global_config_720_ptr);
                 *(uint32_t *)((uint8_t *)resource_ptr + 0xc) = 0x3f800000; // 1.0f
             }
-            FUN_180294f50(render_context);
+            RenderingSystem_Processor(render_context);
         }
         
         // 处理像素数据

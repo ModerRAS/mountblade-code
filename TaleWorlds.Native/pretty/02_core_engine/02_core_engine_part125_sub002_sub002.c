@@ -17,22 +17,22 @@ void process_entity_rendering(void)
   uint uVar8;
   int32_t uVar9;
   uint64_t *puVar10;
-  longlong lVar11;
+  int64_t lVar11;
   float *pfVar12;
   uint64_t uVar13;
   int32_t *puVar14;
-  longlong lVar15;
+  int64_t lVar15;
   float *pfVar16;
   uint64_t uVar17;
   int8_t uVar18;
-  longlong lVar19;
+  int64_t lVar19;
   float *entity_position_ptr;
-  longlong entity_context;
+  int64_t entity_context;
   uint64_t entity_flags;
   byte bVar20;
   float *camera_ptr;
   bool bVar21;
-  longlong render_context;
+  int64_t render_context;
   uint render_flags;
   float fVar22;
   float fVar23;
@@ -45,7 +45,7 @@ void process_entity_rendering(void)
   float directional_light;
   float specular_light;
   uint64_t in_stack_00000020;
-  longlong in_stack_00000040;
+  int64_t in_stack_00000040;
   float fStack0000000000000050;
   float fStack0000000000000054;
   char cStack0000000000000058;
@@ -58,12 +58,12 @@ void process_entity_rendering(void)
   float in_stack_00000078;
   
   // 检查实体状态标志
-  if (*(char *)(*(longlong *)(render_context + 0x28) + 0x49) == '\0') {
-    *(uint64_t *)(*(longlong *)(render_context + 0x28) + 8) = *(uint64_t *)(render_context + 0x40);
+  if (*(char *)(*(int64_t *)(render_context + 0x28) + 0x49) == '\0') {
+    *(uint64_t *)(*(int64_t *)(render_context + 0x28) + 8) = *(uint64_t *)(render_context + 0x40);
     render_context = in_stack_00000040;
   }
-  if (*(char *)(*(longlong *)(render_context + 0x28) + 0x4a) == '\0') {
-    *(uint64_t *)(*(longlong *)(render_context + 0x28) + 0x10) = *(uint64_t *)(render_context + 0x48);
+  if (*(char *)(*(int64_t *)(render_context + 0x28) + 0x4a) == '\0') {
+    *(uint64_t *)(*(int64_t *)(render_context + 0x28) + 0x10) = *(uint64_t *)(render_context + 0x48);
     render_context = in_stack_00000040;
   }
   
@@ -73,7 +73,7 @@ void process_entity_rendering(void)
   *(uint64_t *)(entity_position_ptr + 4) = *puVar10;
   *(uint64_t *)(entity_position_ptr + 6) = uVar13;
   *(uint64_t *)(in_stack_00000040 + 0x34) =
-       *(uint64_t *)(*(longlong *)(in_stack_00000040 + 0x28) + 8);
+       *(uint64_t *)(*(int64_t *)(in_stack_00000040 + 0x28) + 8);
   
   // 计算渲染距离和缩放
   if ((*(float *)(in_stack_00000040 + 0x48) <= directional_light) || ((render_flags & 0x2000040) != 0)) {
@@ -86,19 +86,19 @@ void process_entity_rendering(void)
   
   // 初始化渲染状态
   initialize_render_state(*(uint64_t *)(in_stack_00000040 + 0x2e8));
-  *(uint *)(*(longlong *)(in_stack_00000040 + 0x2e8) + 0x30) =
+  *(uint *)(*(int64_t *)(in_stack_00000040 + 0x2e8) + 0x30) =
        -(uint)(*(char *)(entity_context + 0x16c1) != '\0') & 2 |
-       (uint)CONCAT71((int7)((ulonglong)entity_flags >> 8),*(char *)(entity_context + 0x16c0) != '\0');
-  lVar11 = *(longlong *)(in_stack_00000040 + 0x2e8);
+       (uint)CONCAT71((int7)((uint64_t)entity_flags >> 8),*(char *)(entity_context + 0x16c0) != '\0');
+  lVar11 = *(int64_t *)(in_stack_00000040 + 0x2e8);
   *(uint64_t *)(entity_position_ptr + -0x14) =
-       *(uint64_t *)(*(longlong *)(*(longlong *)(entity_context + 0x19f0) + 0x58) + 8);
+       *(uint64_t *)(*(int64_t *)(*(int64_t *)(entity_context + 0x19f0) + 0x58) + 8);
   setup_render_transform(lVar11 + 0x70,entity_position_ptr + -0x14);
   update_render_context(lVar11);
   
   // 设置渲染参数
   if (((render_flags & 0x5000000) == 0x1000000) && (entity_position_ptr[-4] != 3.761582e-37)) {
-    pfVar12 = (float *)(*(longlong *)(entity_position_ptr + 8) + 0x228);
-    pfVar16 = (float *)(*(longlong *)(entity_position_ptr + 8) + 0x230);
+    pfVar12 = (float *)(*(int64_t *)(entity_position_ptr + 8) + 0x228);
+    pfVar16 = (float *)(*(int64_t *)(entity_position_ptr + 8) + 0x230);
   }
   else {
     pfVar12 = entity_position_ptr + 4;
@@ -116,12 +116,12 @@ void process_entity_rendering(void)
     bVar20 = 1;
   }
   
-  uVar9 = (int32_t)((ulonglong)in_stack_00000020 >> 0x20);
-  lVar11 = *(longlong *)(entity_context + 0x1ce0);
+  uVar9 = (int32_t)((uint64_t)in_stack_00000020 >> 0x20);
+  lVar11 = *(int64_t *)(entity_context + 0x1ce0);
   if ((lVar11 == 0) ||
-     ((in_stack_00000040 != *(longlong *)(lVar11 + 0x3a0) &&
-      (((lVar19 = *(longlong *)(entity_context + 0x1ce8), lVar19 == 0 || (in_stack_00000040 != lVar19))
-       || (*(longlong *)(lVar19 + 0x28) == *(longlong *)(lVar11 + 0x28))))))) {
+     ((in_stack_00000040 != *(int64_t *)(lVar11 + 0x3a0) &&
+      (((lVar19 = *(int64_t *)(entity_context + 0x1ce8), lVar19 == 0 || (in_stack_00000040 != lVar19))
+       || (*(int64_t *)(lVar19 + 0x28) == *(int64_t *)(lVar11 + 0x28))))))) {
     bVar21 = false;
   }
   else {
@@ -132,7 +132,7 @@ void process_entity_rendering(void)
   if ((bVar20 != 0) || (bVar21)) {
     fVar26 = *(float *)(entity_context + 0x1dc8);
     fVar25 = *(float *)(GLOBAL_DATA_ADDRESS + 0x1628);
-    pfVar12 = (float *)(GLOBAL_DATA_ADDRESS + 0x1628 + ((ulonglong)bVar20 + 0x3a) * 0x10);
+    pfVar12 = (float *)(GLOBAL_DATA_ADDRESS + 0x1628 + ((uint64_t)bVar20 + 0x3a) * 0x10);
     fVar27 = pfVar12[1];
     fVar22 = pfVar12[2];
     fVar23 = pfVar12[3];
@@ -147,10 +147,10 @@ void process_entity_rendering(void)
                   in_stack_00000020);
     
     // 处理阴影映射
-    if ((bVar21) && (in_stack_00000040 == *(longlong *)(entity_context + 0x1ce0))) {
+    if ((bVar21) && (in_stack_00000040 == *(int64_t *)(entity_context + 0x1ce0))) {
       calculate_shadow_bounds(in_stack_00000040,entity_position_ptr + -0x18);
       process_shadow_mapping(entity_position_ptr + -0x18);
-      uVar9 = (int32_t)((ulonglong)in_stack_00000020 >> 0x20);
+      uVar9 = (int32_t)((uint64_t)in_stack_00000020 >> 0x20);
       if ((((entity_position_ptr[4] < entity_position_ptr[-0x18]) || (entity_position_ptr[5] < entity_position_ptr[-0x17])) ||
           (entity_position_ptr[-0x16] <= entity_position_ptr[6] && entity_position_ptr[6] != entity_position_ptr[-0x16])) ||
          (entity_position_ptr[-0x15] <= entity_position_ptr[7] && entity_position_ptr[7] != entity_position_ptr[-0x15])) {
@@ -175,17 +175,17 @@ void process_entity_rendering(void)
   
   // 处理实体特殊效果
   uVar9 = in_stack_00000068;
-  lVar11 = *(longlong *)(entity_context + 0x1cd8);
+  lVar11 = *(int64_t *)(entity_context + 0x1cd8);
   fVar26 = *(float *)(in_stack_00000040 + 0x78);
   fVar25 = *(float *)(in_stack_00000040 + 0x7c);
   if (lVar11 == 0) {
-    lVar11 = *(longlong *)(entity_context + 0x1c98);
+    lVar11 = *(int64_t *)(entity_context + 0x1c98);
   }
   if (((char)in_stack_00000068 == '\0') &&
      ((lVar11 == 0 ||
-      ((*(longlong *)(in_stack_00000040 + 0x3b0) != *(longlong *)(lVar11 + 0x3b0) &&
-       ((*(longlong *)(in_stack_00000040 + 0x408) == 0 ||
-        (*(longlong *)(in_stack_00000040 + 0x408) != *(longlong *)(lVar11 + 0x408))))))))) {
+      ((*(int64_t *)(in_stack_00000040 + 0x3b0) != *(int64_t *)(lVar11 + 0x3b0) &&
+       ((*(int64_t *)(in_stack_00000040 + 0x408) == 0 ||
+        (*(int64_t *)(in_stack_00000040 + 0x408) != *(int64_t *)(lVar11 + 0x408))))))))) {
     bVar20 = 0;
   }
   else {
@@ -193,7 +193,7 @@ void process_entity_rendering(void)
   }
   
   update_entity_effects(in_stack_00000040,entity_position_ptr + -2);
-  uVar4 = (int32_t)((ulonglong)in_stack_00000020 >> 0x20);
+  uVar4 = (int32_t)((uint64_t)in_stack_00000020 >> 0x20);
   
   // 处理透明度和混合模式
   if (*(char *)(in_stack_00000040 + 0xb2) == '\0') {
@@ -205,7 +205,7 @@ void process_entity_rendering(void)
          ((*(char *)(entity_context + 0xc3) != '\0' &&
           (((*(int *)(entity_context + 0x1df4) != -1 &&
             (iVar7 = strcmp(&GLOBAL_STRING_ADDRESS,entity_context + 0x1df8), iVar7 == 0)) &&
-           (bVar21 = false, **(longlong **)(entity_context + 0x1de0) == in_stack_00000040)))))) {
+           (bVar21 = false, **(int64_t **)(entity_context + 0x1de0) == in_stack_00000040)))))) {
         bVar21 = true;
       }
       lVar11 = GLOBAL_DATA_ADDRESS;
@@ -247,8 +247,8 @@ void process_entity_rendering(void)
       else {
         uVar8 = uVar8 | 0xff000000;
         if (bVar21) {
-          *(float *)(*(longlong *)(in_stack_00000040 + 0x28) + 0x6c) =
-               *(float *)(*(longlong *)(in_stack_00000040 + 0x28) + 0x6c) * 0.5;
+          *(float *)(*(int64_t *)(in_stack_00000040 + 0x28) + 0x6c) =
+               *(float *)(*(int64_t *)(in_stack_00000040 + 0x28) + 0x6c) * 0.5;
         }
       }
       fVar27 = *(float *)(in_stack_00000040 + 0x48);
@@ -265,12 +265,12 @@ void process_entity_rendering(void)
     }
     
     // 处理粒子效果
-    uVar9 = (int32_t)((ulonglong)in_stack_00000020 >> 0x20);
+    uVar9 = (int32_t)((uint64_t)in_stack_00000020 >> 0x20);
     bVar21 = false;
     *(int32_t *)(entity_context + 0x1be8) = 0;
     lVar11 = GLOBAL_DATA_ADDRESS;
     if (((render_flags & 1) == 0) && ((*(byte *)(in_stack_00000040 + 0x432) & 1) == 0)) {
-      pfVar12 = (float *)(GLOBAL_DATA_ADDRESS + 0x1628 + ((ulonglong)bVar20 + 0x14) * 0x10);
+      pfVar12 = (float *)(GLOBAL_DATA_ADDRESS + 0x1628 + ((uint64_t)bVar20 + 0x14) * 0x10);
       fVar27 = pfVar12[1];
       fVar22 = pfVar12[2];
       fVar23 = pfVar12[3];
@@ -285,7 +285,7 @@ void process_entity_rendering(void)
     }
     
     // 处理后期处理效果
-    uVar9 = (int32_t)((ulonglong)in_stack_00000020 >> 0x20);
+    uVar9 = (int32_t)((uint64_t)in_stack_00000020 >> 0x20);
     if ((render_flags >> 10 & 1) != 0) {
       apply_post_processing(in_stack_00000040,entity_position_ptr + -8);
       uVar13 = calculate_shadow_bounds(in_stack_00000040,entity_position_ptr + -0x18);
@@ -308,7 +308,7 @@ void process_entity_rendering(void)
       in_stack_00000020 = CONCAT44(uVar9,fVar27);
       render_post_processing_effect(uVar13,entity_position_ptr + -8,entity_position_ptr + -6,uVar4,in_stack_00000020);
       lVar11 = GLOBAL_DATA_ADDRESS;
-      uVar9 = (int32_t)((ulonglong)in_stack_00000020 >> 0x20);
+      uVar9 = (int32_t)((uint64_t)in_stack_00000020 >> 0x20);
       fVar27 = *(float *)(entity_context + 0x1668);
       if ((directional_light < fVar27) &&
          (entity_position_ptr[-5] <
@@ -332,8 +332,8 @@ void process_entity_rendering(void)
     }
     
     // 处理实体动画和变形
-    uVar9 = (int32_t)((ulonglong)in_stack_00000020 >> 0x20);
-    lVar11 = *(longlong *)(in_stack_00000040 + 0x408);
+    uVar9 = (int32_t)((uint64_t)in_stack_00000020 >> 0x20);
+    lVar11 = *(int64_t *)(in_stack_00000040 + 0x408);
     if ((lVar11 != 0) && ((*(byte *)(lVar11 + 0xa0) & 0x40) != 0)) {
       fStack0000000000000050 = *(float *)(lVar11 + 0x38);
       fVar27 = *(float *)(entity_context + 0x19f8);
@@ -346,18 +346,18 @@ void process_entity_rendering(void)
       entity_position_ptr[-0x1d] = fStack0000000000000054 + fVar27;
       uVar4 = get_entity_shader_params(in_stack_00000040,&GLOBAL_SHADER_ADDRESS,0);
       uVar13 = CONCAT44(uVar9,0x20);
-      cVar3 = apply_vertex_shader(entity_position_ptr + -0x20,uVar4,(longlong)&stack0x00000058 + 1,&stack0x00000058,
+      cVar3 = apply_vertex_shader(entity_position_ptr + -0x20,uVar4,(int64_t)&stack0x00000058 + 1,&stack0x00000058,
                             uVar13);
-      uVar9 = (int32_t)((ulonglong)uVar13 >> 0x20);
+      uVar9 = (int32_t)((uint64_t)uVar13 >> 0x20);
       if (cVar3 != '\0') {
-        pbVar1 = (byte *)(*(longlong *)(in_stack_00000040 + 0x408) + 0xa1);
+        pbVar1 = (byte *)(*(int64_t *)(in_stack_00000040 + 0x408) + 0xa1);
         *pbVar1 = *pbVar1 | 0x10;
       }
       lVar11 = GLOBAL_DATA_ADDRESS;
       if (((cStack0000000000000058 == '\0') || (cStack0000000000000059 == '\0')) &&
-         (((*(byte *)(*(longlong *)(in_stack_00000040 + 0x408) + 0xa0) & 8) == 0 ||
+         (((*(byte *)(*(int64_t *)(in_stack_00000040 + 0x408) + 0xa0) & 8) == 0 ||
           (cStack0000000000000059 != '\0')))) {
-        lVar19 = (ulonglong)(cStack0000000000000059 != '\0') + 0x15;
+        lVar19 = (uint64_t)(cStack0000000000000059 != '\0') + 0x15;
       }
       else {
         lVar19 = 0x17;
@@ -390,14 +390,14 @@ void process_entity_rendering(void)
     }
     
     // 处理多重渲染通道
-    uVar4 = (int32_t)((ulonglong)in_stack_00000020 >> 0x20);
+    uVar4 = (int32_t)((uint64_t)in_stack_00000020 >> 0x20);
     if ((render_flags & 2) == 0) {
       lVar11 = 0;
       do {
-        uVar9 = (int32_t)((ulonglong)in_stack_00000020 >> 0x20);
+        uVar9 = (int32_t)((uint64_t)in_stack_00000020 >> 0x20);
         fVar27 = *(float *)(in_stack_00000040 + 0x40);
         fVar22 = *(float *)(in_stack_00000040 + 0x44);
-        lVar19 = *(longlong *)(in_stack_00000040 + 0x2e8);
+        lVar19 = *(int64_t *)(in_stack_00000040 + 0x2e8);
         fVar27 = ((fVar27 + *(float *)(in_stack_00000040 + 0x48)) - fVar27) * camera_ptr[-2] + fVar27
         ;
         fVar22 = ((fVar22 + *(float *)(in_stack_00000040 + 0x4c)) - fVar22) * camera_ptr[-1] + fVar22
@@ -412,14 +412,14 @@ void process_entity_rendering(void)
           fVar23 = ambient_light;
           fStack0000000000000060 = ambient_light;
         }
-        pfVar12 = (float *)((longlong)&stack0x00000060 + 4);
+        pfVar12 = (float *)((int64_t)&stack0x00000060 + 4);
         if (bVar21) {
           pfVar12 = entity_position_ptr + 3;
         }
         entity_position_ptr[-4] = fVar23 * *camera_ptr + fVar27;
         entity_position_ptr[-3] = *pfVar12 * camera_ptr[1] + fVar22;
         setup_render_transform(lVar19 + 0x80,entity_position_ptr + -4);
-        lVar19 = *(longlong *)(in_stack_00000040 + 0x2e8);
+        lVar19 = *(int64_t *)(in_stack_00000040 + 0x2e8);
         if (bVar21) {
           entity_position_ptr[0x1c] = ambient_light;
           entity_position_ptr[0x1d] = fVar25;
@@ -443,21 +443,21 @@ void process_entity_rendering(void)
         entity_position_ptr[-0x14] = (fVar25 + fVar26) * *camera_ptr + fVar27;
         entity_position_ptr[-0x13] = (fVar25 + fVar26) * fVar23 + fVar22;
         render_multi_pass_entity(uVar13,entity_position_ptr + -0x14);
-        lVar19 = *(longlong *)(in_stack_00000040 + 0x2e8);
+        lVar19 = *(int64_t *)(in_stack_00000040 + 0x2e8);
         render_entity_with_shader(lVar19,*(uint64_t *)(lVar19 + 0x88),*(int32_t *)(lVar19 + 0x80),
                       entity_position_ptr[lVar11 + 0x20],in_stack_00000020);
-        uVar4 = (int32_t)((ulonglong)in_stack_00000020 >> 0x20);
+        uVar4 = (int32_t)((uint64_t)in_stack_00000020 >> 0x20);
         bVar21 = (bool)(bVar21 ^ 1);
         *(int32_t *)(lVar19 + 0x80) = 0;
         lVar11 = lVar11 + 1;
         camera_ptr = camera_ptr + 6;
-      } while (lVar11 < *(longlong *)(entity_position_ptr + -0xe));
+      } while (lVar11 < *(int64_t *)(entity_position_ptr + -0xe));
     }
     
     // 处理最终渲染输出
     lVar11 = GLOBAL_DATA_ADDRESS;
     if ((directional_light < fVar25) && (entity_position_ptr[-10] == 0.0)) {
-      lVar19 = *(longlong *)(in_stack_00000040 + 0x2e8);
+      lVar19 = *(int64_t *)(in_stack_00000040 + 0x2e8);
       fVar27 = *(float *)(GLOBAL_DATA_ADDRESS + 0x171c);
       fVar22 = *(float *)(GLOBAL_DATA_ADDRESS + 0x1720);
       fVar23 = *(float *)(GLOBAL_DATA_ADDRESS + 0x1724);
@@ -486,7 +486,7 @@ void process_entity_rendering(void)
         entity_position_ptr[-0xe] = fVar22;
         entity_position_ptr[-0xd] = fVar23;
         render_final_output(lVar19,entity_position_ptr + -0x14,entity_position_ptr + -0xe,fVar26,uVar13);
-        uVar4 = (int32_t)((ulonglong)uVar13 >> 0x20);
+        uVar4 = (int32_t)((uint64_t)uVar13 >> 0x20);
         apply_final_shading(lVar19,uVar8,1,fVar25);
       }
     }
@@ -509,7 +509,7 @@ void process_entity_rendering(void)
       }
       uVar17 = CONCAT44(uVar4,fVar25);
       render_screen_space_effect(uVar13,entity_position_ptr + -0x14,entity_position_ptr + -0x12,uVar9,uVar17);
-      uVar4 = (int32_t)((ulonglong)uVar17 >> 0x20);
+      uVar4 = (int32_t)((uint64_t)uVar17 >> 0x20);
     }
     
     // 处理UI覆盖层
@@ -534,7 +534,7 @@ void process_entity_rendering(void)
       entity_position_ptr[-0x13] = entity_position_ptr[1] - specular_light;
       entity_position_ptr[-0x14] = entity_position_ptr[-2] + fVar25;
       render_ui_overlay(uVar13,entity_position_ptr + -0x14,entity_position_ptr + -0xe,uVar9,uVar17);
-      uVar4 = (int32_t)((ulonglong)uVar17 >> 0x20);
+      uVar4 = (int32_t)((uint64_t)uVar17 >> 0x20);
     }
     entity_flags = 0;
     uVar9 = in_stack_00000068;
@@ -559,7 +559,7 @@ void process_entity_rendering(void)
     uVar6 = calculate_lighting_value(entity_position_ptr + 0x20);
     uVar13 = CONCAT44(uVar4,fVar26);
     apply_special_render_mode(*(uint64_t *)(entity_position_ptr + -2),*(uint64_t *)entity_position_ptr,uVar6,1,uVar13);
-    uVar4 = (int32_t)((ulonglong)uVar13 >> 0x20);
+    uVar4 = (int32_t)((uint64_t)uVar13 >> 0x20);
     *(int32_t *)(entity_context + 0x1668) = uVar5;
   }
   
@@ -621,7 +621,7 @@ void process_entity_rendering(void)
   *(int8_t *)(in_stack_00000040 + 0x17e) = 0;
   *(float *)(in_stack_00000040 + 0x138) = *(float *)(in_stack_00000040 + 0x104) - 9999.0;
   initialize_entity_state(in_stack_00000040 + 0x188,0);
-  lVar11 = *(longlong *)(entity_position_ptr + 8);
+  lVar11 = *(int64_t *)(entity_position_ptr + 8);
   *(int32_t *)(in_stack_00000040 + 0x1a0) = 1;
   if (lVar11 == 0) {
     uVar5 = 1;
@@ -643,7 +643,7 @@ void process_entity_rendering(void)
   *(uint64_t *)(in_stack_00000040 + 0x210) = entity_flags;
   *(int32_t *)(in_stack_00000040 + 0x13c) = uVar6;
   *(int32_t *)(in_stack_00000040 + 0x140) = uVar6;
-  *(longlong *)(in_stack_00000040 + 0x198) = in_stack_00000040 + 0x2b8;
+  *(int64_t *)(in_stack_00000040 + 0x198) = in_stack_00000040 + 0x2b8;
   initialize_entity_state(in_stack_00000040 + 0x1e8,0);
   setup_entity_shader(in_stack_00000040 + 0x288,3);
   if ((entity_position_ptr[0x16] != 0.0) && (*(int *)(in_stack_00000040 + 0x1a8) != *(int *)(lVar11 + 0x1a8)))
@@ -663,7 +663,7 @@ void process_entity_rendering(void)
   }
   puVar2 = *(int8_t **)(entity_position_ptr + 10);
   if ((((puVar2 != (int8_t *)0x0) &&
-       (lVar19 = *(longlong *)(in_stack_00000040 + 0x28), *(char *)(lVar19 + 0x48) != '\0')) &&
+       (lVar19 = *(int64_t *)(in_stack_00000040 + 0x28), *(char *)(lVar19 + 0x48) != '\0')) &&
       (lVar15 = get_active_entity(), lVar19 != lVar15)) &&
      (((*(byte *)(in_stack_00000040 + 0x432) & 1) == 0 ||
       ((*(byte *)(in_stack_00000040 + 0x432) & 2) != 0)))) {
@@ -685,7 +685,7 @@ void process_entity_rendering(void)
         *(int8_t *)(in_stack_00000040 + 0xb3) = 1;
       }
     }
-    if (*(longlong *)(entity_position_ptr + 10) != 0) {
+    if (*(int64_t *)(entity_position_ptr + 10) != 0) {
       fVar26 = *(float *)(entity_context + 0x19f8) * 0.5;
       uVar13 = calculate_screen_position(entity_position_ptr + -0x18,
                                    ((*(float *)(in_stack_00000040 + 0x48) +
@@ -706,7 +706,7 @@ void process_entity_rendering(void)
     if ((render_flags & 0x100000) != 0) {
       uVar13 = CONCAT44(uVar4,0xbf800000);
       pfVar16 = (float *)get_entity_texture_coordinates(entity_position_ptr + -0x18,&GLOBAL_TEXTURE_ADDRESS,0,0,uVar13);
-      uVar4 = (int32_t)((ulonglong)uVar13 >> 0x20);
+      uVar4 = (int32_t)((uint64_t)uVar13 >> 0x20);
       fVar26 = *pfVar16;
     }
     uVar13 = calculate_screen_position(entity_position_ptr + -0x18);
@@ -729,7 +729,7 @@ void process_entity_rendering(void)
       fVar24 = *(float *)(entity_context + 0x165c);
       fVar28 = fVar24;
     }
-    lVar19 = *(longlong *)(entity_position_ptr + 10);
+    lVar19 = *(int64_t *)(entity_position_ptr + 10);
     if (lVar19 != 0) {
       fVar24 = fVar24 + *(float *)(entity_context + 0x19f8) + *(float *)(entity_context + 0x1674);
     }
@@ -813,13 +813,13 @@ void process_entity_rendering(void)
   if ((*(byte *)(entity_context + 8) & 0x40) != 0) {
     if ((*(int *)(entity_context + 0x1b2c) == *(int *)(in_stack_00000040 + 0x84)) &&
        (((*(char *)(entity_context + 0xc1) == '\0' || (*(char *)(entity_context + 0x135) != '\0')) &&
-        ((*(uint *)(*(longlong *)(in_stack_00000040 + 0x3a0) + 0xc) & 0x200004) == 0)))) {
+        ((*(uint *)(*(int64_t *)(in_stack_00000040 + 0x3a0) + 0xc) & 0x200004) == 0)))) {
       trigger_game_event();
     }
     if ((((*(char *)(entity_context + 0x1dd0) != '\0') && ((render_flags >> 0x15 & 1) == 0)) &&
-        ((*(longlong *)(entity_context + 0x1b78) == 0 ||
-         (*(longlong *)(*(longlong *)(entity_context + 0x1b78) + 0x3a0) != in_stack_00000040)))) &&
-       ((in_stack_00000040 == *(longlong *)(in_stack_00000040 + 0x3a0) &&
+        ((*(int64_t *)(entity_context + 0x1b78) == 0 ||
+         (*(int64_t *)(*(int64_t *)(entity_context + 0x1b78) + 0x3a0) != in_stack_00000040)))) &&
+       ((in_stack_00000040 == *(int64_t *)(in_stack_00000040 + 0x3a0) &&
         ((*(uint *)(in_stack_00000040 + 0xc) & 0x20000000) == 0)))) {
       trigger_special_event();
     }
@@ -895,5 +895,5 @@ void process_entity_rendering(void)
   *(int8_t *)(in_stack_00000040 + 0xb4) = uVar18;
   
   // 返回到渲染循环
-  return_to_render_loop(*(ulonglong *)(entity_position_ptr + 0x24) ^ (ulonglong)&stack0x00000000);
+  return_to_render_loop(*(uint64_t *)(entity_position_ptr + 0x24) ^ (uint64_t)&stack0x00000000);
 }

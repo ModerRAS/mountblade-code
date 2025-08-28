@@ -10,7 +10,7 @@
  * @param config_type 配置类型 (0-3)
  * 功能: 根据不同的配置类型设置引擎的相应参数
  */
-void set_engine_configuration(longlong *engine_context, int config_type)
+void set_engine_configuration(int64_t *engine_context, int config_type)
 
 {
   code *pcVar1;
@@ -20,10 +20,10 @@ void set_engine_configuration(longlong *engine_context, int config_type)
   int8_t *puStack_38;
   int32_t uStack_30;
   int8_t auStack_28 [16];
-  ulonglong uStack_18;
+  uint64_t uStack_18;
   
   uStack_48 = 0xfffffffffffffffe;
-  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_68;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_68;
   if (param_2 == 0) {
     pcVar1 = *(code **)(*param_1 + 0x18);
     puStack_40 = &system_config_ptr;
@@ -64,7 +64,7 @@ void set_engine_configuration(longlong *engine_context, int config_type)
   puStack_40 = &system_state_ptr;
 LAB_180158962:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_68);
+  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_68);
 }
 
 
@@ -77,34 +77,34 @@ LAB_180158962:
  * @return 返回输出结果指针
  * 功能: 在资源管理器中查找指定ID的资源并返回
  */
-longlong * find_engine_resource(longlong resource_manager, longlong *output_ptr, int resource_id)
+int64_t * find_engine_resource(int64_t resource_manager, int64_t *output_ptr, int resource_id)
 
 {
-  longlong lVar1;
-  longlong *plVar2;
+  int64_t lVar1;
+  int64_t *plVar2;
   int iVar3;
   int *piVar4;
-  longlong lVar5;
+  int64_t lVar5;
   
   iVar3 = _Mtx_lock(param_1 + 0xd0);
   if (iVar3 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar3);
   }
-  lVar1 = *(longlong *)(param_1 + 0x38);
-  piVar4 = *(int **)(lVar1 + ((ulonglong)(longlong)param_3 % (ulonglong)*(uint *)(param_1 + 0x40)) *
+  lVar1 = *(int64_t *)(param_1 + 0x38);
+  piVar4 = *(int **)(lVar1 + ((uint64_t)(int64_t)param_3 % (uint64_t)*(uint *)(param_1 + 0x40)) *
                              8);
   do {
     if (piVar4 == (int *)0x0) {
-      lVar5 = *(longlong *)(param_1 + 0x40);
+      lVar5 = *(int64_t *)(param_1 + 0x40);
       piVar4 = *(int **)(lVar1 + lVar5 * 8);
 LAB_180158a0c:
       if (piVar4 == *(int **)(lVar1 + lVar5 * 8)) {
         *param_2 = 0;
       }
       else {
-        plVar2 = *(longlong **)(piVar4 + 2);
-        *param_2 = (longlong)plVar2;
-        if (plVar2 != (longlong *)0x0) {
+        plVar2 = *(int64_t **)(piVar4 + 2);
+        *param_2 = (int64_t)plVar2;
+        if (plVar2 != (int64_t *)0x0) {
           (**(code **)(*plVar2 + 0x28))();
         }
       }
@@ -115,7 +115,7 @@ LAB_180158a0c:
       return param_2;
     }
     if (param_3 == *piVar4) {
-      lVar5 = *(longlong *)(param_1 + 0x40);
+      lVar5 = *(int64_t *)(param_1 + 0x40);
       goto LAB_180158a0c;
     }
     piVar4 = *(int **)(piVar4 + 4);
@@ -133,14 +133,14 @@ LAB_180158a0c:
  * @return 返回操作状态 (1=成功, 0=失败)
  * 功能: 从资源管理器中移除指定ID的资源并进行清理
  */
-uint64_t remove_engine_resource(longlong resource_manager, int resource_id)
+uint64_t remove_engine_resource(int64_t resource_manager, int resource_id)
 
 {
-  longlong lVar1;
-  longlong *plVar2;
+  int64_t lVar1;
+  int64_t *plVar2;
   int iVar3;
   uint uVar4;
-  longlong lVar5;
+  int64_t lVar5;
   int32_t *puVar6;
   int *piVar7;
   uint64_t uVar8;
@@ -153,25 +153,25 @@ uint64_t remove_engine_resource(longlong resource_manager, int resource_id)
   if (iVar3 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar3);
   }
-  lVar1 = *(longlong *)(param_1 + 0x38);
-  for (piVar7 = *(int **)(lVar1 + ((ulonglong)(longlong)param_2 %
-                                  (ulonglong)*(uint *)(param_1 + 0x40)) * 8); piVar7 != (int *)0x0;
+  lVar1 = *(int64_t *)(param_1 + 0x38);
+  for (piVar7 = *(int **)(lVar1 + ((uint64_t)(int64_t)param_2 %
+                                  (uint64_t)*(uint *)(param_1 + 0x40)) * 8); piVar7 != (int *)0x0;
       piVar7 = *(int **)(piVar7 + 4)) {
     if (param_2 == *piVar7) {
-      lVar5 = *(longlong *)(param_1 + 0x40);
+      lVar5 = *(int64_t *)(param_1 + 0x40);
       goto LAB_180158aea;
     }
   }
-  lVar5 = *(longlong *)(param_1 + 0x40);
+  lVar5 = *(int64_t *)(param_1 + 0x40);
   piVar7 = *(int **)(lVar1 + lVar5 * 8);
 LAB_180158aea:
   if (piVar7 != *(int **)(lVar1 + lVar5 * 8)) {
-    plVar2 = *(longlong **)(piVar7 + 2);
-    if (plVar2 != (longlong *)0x0) {
+    plVar2 = *(int64_t **)(piVar7 + 2);
+    if (plVar2 != (int64_t *)0x0) {
       (**(code **)(*plVar2 + 0x28))(plVar2);
     }
     (**(code **)(*plVar2 + 0x170))(plVar2);
-    if (plVar2 != (longlong *)0x0) {
+    if (plVar2 != (int64_t *)0x0) {
       (**(code **)(*plVar2 + 0x38))(plVar2);
     }
     uVar8 = 1;
@@ -191,7 +191,7 @@ LAB_180158aea:
     puStack_58[3] = 0x646c756f;
     *(uint64_t *)(puStack_58 + 4) = 0x6e696620746f6e20;
     *(int16_t *)(puStack_58 + 6) = 0x2064;
-    *(int8_t *)((longlong)puStack_58 + 0x1a) = 0;
+    *(int8_t *)((int64_t)puStack_58 + 0x1a) = 0;
     uStack_50 = 0x1a;
     uStack_48._0_4_ = uVar4;
     FUN_180628380(&puStack_60,param_2);
@@ -202,7 +202,7 @@ LAB_180158aea:
         if ((int)uVar4 < 0x10) {
           uVar4 = 0x10;
         }
-        puStack_58 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,(longlong)(int)uVar4,0x13);
+        puStack_58 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,(int64_t)(int)uVar4,0x13);
         *(int8_t *)puStack_58 = 0;
       }
       else {
@@ -212,7 +212,7 @@ LAB_180158aea:
       uStack_48._0_4_ = FUN_18064e990(puStack_58);
     }
 LAB_180158c0c:
-    *(int16_t *)((ulonglong)uStack_50 + (longlong)puStack_58) = 10;
+    *(int16_t *)((uint64_t)uStack_50 + (int64_t)puStack_58) = 10;
     puVar6 = (int32_t *)&system_buffer_ptr;
     if (puStack_58 != (int32_t *)0x0) {
       puVar6 = puStack_58;
@@ -225,7 +225,7 @@ LAB_180158c0c:
       FUN_18064e900();
     }
     puStack_58 = (int32_t *)0x0;
-    uStack_48 = (ulonglong)uStack_48._4_4_ << 0x20;
+    uStack_48 = (uint64_t)uStack_48._4_4_ << 0x20;
     puStack_60 = &system_state_ptr;
   }
   uVar8 = 0;
@@ -249,17 +249,17 @@ LAB_180158cb6:
  * @param event_id 事件ID
  * 功能: 根据事件ID触发相应的引擎事件处理逻辑
  */
-void process_engine_event(uint64_t event_handler, longlong event_id)
+void process_engine_event(uint64_t event_handler, int64_t event_id)
 
 {
-  longlong lVar1;
-  longlong *plVar2;
-  longlong lVar3;
-  longlong lVar4;
+  int64_t lVar1;
+  int64_t *plVar2;
+  int64_t lVar3;
+  int64_t lVar4;
   char cVar5;
   int iVar6;
-  longlong *plVar7;
-  longlong lVar8;
+  int64_t *plVar7;
+  int64_t lVar8;
   
   lVar4 = core_system_data_memory;
   lVar1 = core_system_data_memory + 0xd0;
@@ -267,7 +267,7 @@ void process_engine_event(uint64_t event_handler, longlong event_id)
   if (iVar6 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar6);
   }
-  plVar2 = *(longlong **)(lVar4 + 0x38);
+  plVar2 = *(int64_t **)(lVar4 + 0x38);
   lVar8 = *plVar2;
   plVar7 = plVar2;
   if (lVar8 == 0) {
@@ -278,17 +278,17 @@ void process_engine_event(uint64_t event_handler, longlong event_id)
       lVar8 = *plVar7;
     }
   }
-  lVar3 = plVar2[*(longlong *)(lVar4 + 0x40)];
+  lVar3 = plVar2[*(int64_t *)(lVar4 + 0x40)];
   while (lVar8 != lVar3) {
-    cVar5 = (**(code **)(**(longlong **)(lVar8 + 8) + 0xd8))();
+    cVar5 = (**(code **)(**(int64_t **)(lVar8 + 8) + 0xd8))();
     if (cVar5 != '\0') {
-      cVar5 = (**(code **)(**(longlong **)(lVar8 + 8) + 0x90))();
-      if ((((*(longlong **)(lVar8 + 8))[0xb] == param_2) && (cVar5 == '\0')) &&
-         (cVar5 = (**(code **)(**(longlong **)(lVar8 + 8) + 0x80))(), cVar5 != '\0')) {
-        (**(code **)(**(longlong **)(lVar8 + 8) + 0x70))();
+      cVar5 = (**(code **)(**(int64_t **)(lVar8 + 8) + 0x90))();
+      if ((((*(int64_t **)(lVar8 + 8))[0xb] == param_2) && (cVar5 == '\0')) &&
+         (cVar5 = (**(code **)(**(int64_t **)(lVar8 + 8) + 0x80))(), cVar5 != '\0')) {
+        (**(code **)(**(int64_t **)(lVar8 + 8) + 0x70))();
       }
     }
-    lVar8 = *(longlong *)(lVar8 + 0x10);
+    lVar8 = *(int64_t *)(lVar8 + 0x10);
     while (lVar8 == 0) {
       plVar7 = plVar7 + 1;
       lVar8 = *plVar7;
@@ -314,18 +314,18 @@ void process_engine_event(uint64_t event_handler, longlong event_id)
  * @param state_id 状态ID
  * 功能: 根据状态ID更新引擎的相应状态
  */
-void update_engine_state(uint64_t state_manager, longlong state_id)
+void update_engine_state(uint64_t state_manager, int64_t state_id)
 
 {
-  longlong lVar1;
-  longlong *plVar2;
-  longlong lVar3;
-  longlong lVar4;
-  longlong lVar5;
+  int64_t lVar1;
+  int64_t *plVar2;
+  int64_t lVar3;
+  int64_t lVar4;
+  int64_t lVar5;
   char cVar6;
   int iVar7;
-  longlong lVar8;
-  longlong *plVar9;
+  int64_t lVar8;
+  int64_t *plVar9;
   
   lVar5 = core_system_data_memory;
   lVar1 = core_system_data_memory + 0xd0;
@@ -333,7 +333,7 @@ void update_engine_state(uint64_t state_manager, longlong state_id)
   if (iVar7 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar7);
   }
-  plVar2 = *(longlong **)(lVar5 + 0x38);
+  plVar2 = *(int64_t **)(lVar5 + 0x38);
   lVar8 = *plVar2;
   plVar9 = plVar2;
   if (lVar8 == 0) {
@@ -344,16 +344,16 @@ void update_engine_state(uint64_t state_manager, longlong state_id)
       lVar8 = *plVar9;
     }
   }
-  lVar3 = plVar2[*(longlong *)(lVar5 + 0x40)];
+  lVar3 = plVar2[*(int64_t *)(lVar5 + 0x40)];
   while (lVar8 != lVar3) {
-    lVar4 = (*(longlong **)(lVar8 + 8))[0xb];
-    cVar6 = (**(code **)(**(longlong **)(lVar8 + 8) + 0xd8))();
+    lVar4 = (*(int64_t **)(lVar8 + 8))[0xb];
+    cVar6 = (**(code **)(**(int64_t **)(lVar8 + 8) + 0xd8))();
     if ((cVar6 != '\0') && (lVar4 == param_2)) {
-      (**(code **)(**(longlong **)(lVar8 + 8) + 0x78))();
-      (**(code **)(**(longlong **)(lVar8 + 8) + 0xf8))
-                (*(longlong **)(lVar8 + 8),*(int32_t *)(SYSTEM_STATE_MANAGER + 0x1500));
+      (**(code **)(**(int64_t **)(lVar8 + 8) + 0x78))();
+      (**(code **)(**(int64_t **)(lVar8 + 8) + 0xf8))
+                (*(int64_t **)(lVar8 + 8),*(int32_t *)(SYSTEM_STATE_MANAGER + 0x1500));
     }
-    lVar8 = *(longlong *)(lVar8 + 0x10);
+    lVar8 = *(int64_t *)(lVar8 + 0x10);
     while (lVar8 == 0) {
       plVar9 = plVar9 + 1;
       lVar8 = *plVar9;
@@ -379,25 +379,25 @@ void update_engine_state(uint64_t state_manager, longlong state_id)
  * @param param_2 资源ID
  * 功能: 收集指定ID的资源并进行清理处理
  */
-void collect_and_cleanup_engine_resources(uint64_t param_1, longlong param_2)
+void collect_and_cleanup_engine_resources(uint64_t param_1, int64_t param_2)
 
 {
-  longlong lVar1;
-  longlong *plVar2;
-  longlong lVar3;
+  int64_t lVar1;
+  int64_t *plVar2;
+  int64_t lVar3;
   char cVar4;
   int iVar5;
-  longlong *plVar6;
-  longlong *plVar7;
-  longlong *plVar8;
-  longlong *plVar9;
-  ulonglong uVar10;
+  int64_t *plVar6;
+  int64_t *plVar7;
+  int64_t *plVar8;
+  int64_t *plVar9;
+  uint64_t uVar10;
   uint uVar11;
-  longlong *plVar12;
-  longlong *plVar13;
-  longlong *plVar14;
-  longlong lVar15;
-  longlong lStackX_20;
+  int64_t *plVar12;
+  int64_t *plVar13;
+  int64_t *plVar14;
+  int64_t lVar15;
+  int64_t lStackX_20;
   
   lVar3 = core_system_data_memory;
   lVar1 = core_system_data_memory + 0xd0;
@@ -405,7 +405,7 @@ void collect_and_cleanup_engine_resources(uint64_t param_1, longlong param_2)
   if (iVar5 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar5);
   }
-  plVar8 = *(longlong **)(lVar3 + 0x38);
+  plVar8 = *(int64_t **)(lVar3 + 0x38);
   lVar15 = *plVar8;
   if (lVar15 == 0) {
     plVar8 = plVar8 + 1;
@@ -415,16 +415,16 @@ void collect_and_cleanup_engine_resources(uint64_t param_1, longlong param_2)
       lVar15 = *plVar8;
     }
   }
-  plVar12 = (longlong *)0x0;
-  plVar6 = (longlong *)0x0;
-  plVar14 = (longlong *)0x0;
+  plVar12 = (int64_t *)0x0;
+  plVar6 = (int64_t *)0x0;
+  plVar14 = (int64_t *)0x0;
   plVar7 = plVar12;
   plVar9 = plVar6;
   plVar13 = plVar14;
-  if (lVar15 != *(longlong *)(*(longlong *)(lVar3 + 0x38) + *(longlong *)(lVar3 + 0x40) * 8)) {
+  if (lVar15 != *(int64_t *)(*(int64_t *)(lVar3 + 0x38) + *(int64_t *)(lVar3 + 0x40) * 8)) {
     do {
-      plVar2 = *(longlong **)(lVar15 + 8);
-      if (plVar2 != (longlong *)0x0) {
+      plVar2 = *(int64_t **)(lVar15 + 8);
+      if (plVar2 != (int64_t *)0x0) {
         (**(code **)(*plVar2 + 0x28))(plVar2);
       }
       plVar6 = plVar9;
@@ -432,16 +432,16 @@ void collect_and_cleanup_engine_resources(uint64_t param_1, longlong param_2)
       if (plVar2[0xb] == param_2) {
         if (plVar9 < plVar7) {
           plVar6 = plVar9 + 1;
-          *plVar9 = (longlong)plVar2;
+          *plVar9 = (int64_t)plVar2;
           (**(code **)(*plVar2 + 0x28))(plVar2);
         }
         else {
-          lStackX_20 = (longlong)plVar9 - (longlong)plVar13 >> 3;
+          lStackX_20 = (int64_t)plVar9 - (int64_t)plVar13 >> 3;
           plVar7 = plVar13;
           if (lStackX_20 == 0) {
             lStackX_20 = 1;
 LAB_18015906f:
-            plVar6 = (longlong *)FUN_18062b420(system_memory_pool_ptr,lStackX_20 * 8,3);
+            plVar6 = (int64_t *)FUN_18062b420(system_memory_pool_ptr,lStackX_20 * 8,3);
             plVar14 = plVar6;
           }
           else {
@@ -455,22 +455,22 @@ LAB_18015906f:
             *plVar7 = 0;
             plVar6 = plVar6 + 1;
           }
-          *plVar6 = (longlong)plVar2;
+          *plVar6 = (int64_t)plVar2;
           (**(code **)(*plVar2 + 0x28))(plVar2);
           plVar6 = plVar6 + 1;
           for (plVar7 = plVar13; plVar7 != plVar9; plVar7 = plVar7 + 1) {
-            if ((longlong *)*plVar7 != (longlong *)0x0) {
-              (**(code **)(*(longlong *)*plVar7 + 0x38))();
+            if ((int64_t *)*plVar7 != (int64_t *)0x0) {
+              (**(code **)(*(int64_t *)*plVar7 + 0x38))();
             }
           }
-          if (plVar13 != (longlong *)0x0) {
+          if (plVar13 != (int64_t *)0x0) {
                     // WARNING: Subroutine does not return
             FUN_18064e900(plVar13);
           }
           plVar7 = plVar14 + lStackX_20;
         }
       }
-      lVar15 = *(longlong *)(lVar15 + 0x10);
+      lVar15 = *(int64_t *)(lVar15 + 0x10);
       while (lVar15 == 0) {
         plVar8 = plVar8 + 1;
         lVar15 = *plVar8;
@@ -478,29 +478,29 @@ LAB_18015906f:
       (**(code **)(*plVar2 + 0x38))(plVar2);
       plVar9 = plVar6;
       plVar13 = plVar14;
-    } while (lVar15 != *(longlong *)(*(longlong *)(lVar3 + 0x38) + *(longlong *)(lVar3 + 0x40) * 8))
+    } while (lVar15 != *(int64_t *)(*(int64_t *)(lVar3 + 0x38) + *(int64_t *)(lVar3 + 0x40) * 8))
     ;
   }
-  uVar10 = (longlong)plVar6 - (longlong)plVar14 >> 3;
+  uVar10 = (int64_t)plVar6 - (int64_t)plVar14 >> 3;
   plVar8 = plVar14;
   if (uVar10 != 0) {
     do {
-      cVar4 = (**(code **)(*(longlong *)*plVar8 + 0xd8))();
+      cVar4 = (**(code **)(*(int64_t *)*plVar8 + 0xd8))();
       if (cVar4 != '\0') {
-        (**(code **)(*(longlong *)*plVar8 + 0x68))();
+        (**(code **)(*(int64_t *)*plVar8 + 0x68))();
       }
       uVar11 = (int)plVar12 + 1;
-      plVar12 = (longlong *)(ulonglong)uVar11;
+      plVar12 = (int64_t *)(uint64_t)uVar11;
       plVar8 = plVar8 + 1;
-    } while ((ulonglong)(longlong)(int)uVar11 < uVar10);
+    } while ((uint64_t)(int64_t)(int)uVar11 < uVar10);
   }
   *(int16_t *)(lVar3 + 0x160) = 0;
   for (plVar8 = plVar14; plVar8 != plVar6; plVar8 = plVar8 + 1) {
-    if ((longlong *)*plVar8 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar8 + 0x38))();
+    if ((int64_t *)*plVar8 != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*plVar8 + 0x38))();
     }
   }
-  if (plVar14 != (longlong *)0x0) {
+  if (plVar14 != (int64_t *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900(plVar14);
   }
@@ -522,10 +522,10 @@ LAB_18015906f:
  * @return 返回输出结果指针
  * 功能: 从资源队列中移除资源并返回
  */
-longlong * dequeue_and_return_resource(longlong resource_manager, longlong *output_ptr, uint64_t param_3, uint64_t param_4)
+int64_t * dequeue_and_return_resource(int64_t resource_manager, int64_t *output_ptr, uint64_t param_3, uint64_t param_4)
 
 {
-  longlong *plVar1;
+  int64_t *plVar1;
   int iVar2;
   int32_t uVar3;
   uint64_t uVar4;
@@ -536,17 +536,17 @@ longlong * dequeue_and_return_resource(longlong resource_manager, longlong *outp
   if (iVar2 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar2);
   }
-  iVar2 = (int)(*(longlong *)(param_1 + 0x170) - *(longlong *)(param_1 + 0x168) >> 3);
+  iVar2 = (int)(*(int64_t *)(param_1 + 0x170) - *(int64_t *)(param_1 + 0x168) >> 3);
   if (iVar2 < 1) {
     *param_2 = 0;
   }
   else {
-    plVar1 = *(longlong **)(*(longlong *)(param_1 + 0x168) + -8 + (longlong)iVar2 * 8);
-    if (plVar1 != (longlong *)0x0) {
+    plVar1 = *(int64_t **)(*(int64_t *)(param_1 + 0x168) + -8 + (int64_t)iVar2 * 8);
+    if (plVar1 != (int64_t *)0x0) {
       (**(code **)(*plVar1 + 0x28))(plVar1);
     }
-    FUN_1800b8630(param_1 + 0x168,(longlong)iVar2 + -1,param_3,param_4,uVar3,uVar4);
-    *param_2 = (longlong)plVar1;
+    FUN_1800b8630(param_1 + 0x168,(int64_t)iVar2 + -1,param_3,param_4,uVar3,uVar4);
+    *param_2 = (int64_t)plVar1;
   }
   iVar2 = _Mtx_unlock(param_1 + 0xd0);
   if (iVar2 != 0) {
@@ -569,17 +569,17 @@ longlong * dequeue_and_return_resource(longlong resource_manager, longlong *outp
  * @param param_4 参数4 (用途未知)
  * 功能: 将资源添加到管理器队列中
  */
-void enqueue_resource_to_manager(uint64_t param_1, longlong *resource_ptr, uint64_t param_3, uint64_t param_4)
+void enqueue_resource_to_manager(uint64_t param_1, int64_t *resource_ptr, uint64_t param_3, uint64_t param_4)
 
 {
-  longlong lVar1;
-  longlong *plVar2;
-  longlong lVar3;
+  int64_t lVar1;
+  int64_t *plVar2;
+  int64_t lVar3;
   int iVar4;
   uint64_t *puVar5;
   uint64_t *puVar6;
-  longlong lVar7;
-  longlong *plVar8;
+  int64_t lVar7;
+  int64_t *plVar8;
   uint64_t *puVar9;
   uint64_t *puVar10;
   uint64_t uVar11;
@@ -602,7 +602,7 @@ void enqueue_resource_to_manager(uint64_t param_1, longlong *resource_ptr, uint6
   param_2[8] = 0;
   (**(code **)(param_2[3] + 0x10))(param_2 + 3,&system_buffer_ptr);
   *(int16_t *)(param_2 + 9) = 0;
-  if (param_2 != (longlong *)0x0) {
+  if (param_2 != (int64_t *)0x0) {
     (**(code **)(*param_2 + 0x28))(param_2);
   }
   puVar9 = *(uint64_t **)(lVar3 + 0x170);
@@ -612,7 +612,7 @@ void enqueue_resource_to_manager(uint64_t param_1, longlong *resource_ptr, uint6
     goto LAB_180159499;
   }
   puVar6 = *(uint64_t **)(lVar3 + 0x168);
-  lVar7 = (longlong)puVar9 - (longlong)puVar6 >> 3;
+  lVar7 = (int64_t)puVar9 - (int64_t)puVar6 >> 3;
   if (lVar7 == 0) {
     lVar7 = 1;
 LAB_1801593e3:
@@ -633,18 +633,18 @@ LAB_1801593e3:
     puVar5 = puVar5 + 1;
   }
   *puVar5 = param_2;
-  plVar2 = *(longlong **)(lVar3 + 0x170);
-  plVar8 = *(longlong **)(lVar3 + 0x168);
+  plVar2 = *(int64_t **)(lVar3 + 0x170);
+  plVar8 = *(int64_t **)(lVar3 + 0x168);
   if (plVar8 != plVar2) {
     do {
-      if ((longlong *)*plVar8 != (longlong *)0x0) {
-        (**(code **)(*(longlong *)*plVar8 + 0x38))();
+      if ((int64_t *)*plVar8 != (int64_t *)0x0) {
+        (**(code **)(*(int64_t *)*plVar8 + 0x38))();
       }
       plVar8 = plVar8 + 1;
     } while (plVar8 != plVar2);
-    plVar8 = *(longlong **)(lVar3 + 0x168);
+    plVar8 = *(int64_t **)(lVar3 + 0x168);
   }
-  if (plVar8 != (longlong *)0x0) {
+  if (plVar8 != (int64_t *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900(plVar8);
   }
@@ -671,13 +671,13 @@ LAB_180159499:
  * @param param_4 参数4 (用途未知)
  * 功能: 初始化引擎的内部数据结构
  */
-void initialize_engine_data_structure(longlong engine_context, longlong param_2, uint64_t param_3, uint64_t param_4)
+void initialize_engine_data_structure(int64_t engine_context, int64_t param_2, uint64_t param_3, uint64_t param_4)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t uVar2;
   void *puStack_50;
-  longlong lStack_48;
+  int64_t lStack_48;
   int32_t uStack_40;
   uint64_t uStack_38;
   int32_t uStack_30;
@@ -693,7 +693,7 @@ void initialize_engine_data_structure(longlong engine_context, longlong param_2,
   uStack_30 = 0xffffffff;
   uStack_2c = *(int32_t *)(param_2 + 0x20);
   uStack_28 = 1;
-  lVar1 = (longlong)*(int *)(param_1 + 0xc0) * 0x30 + param_1;
+  lVar1 = (int64_t)*(int *)(param_1 + 0xc0) * 0x30 + param_1;
   FUN_18005d190(lVar1,&puStack_50,param_3,param_4,uVar2);
   *(int32_t *)(lVar1 + 0x20) = uStack_30;
   *(int32_t *)(lVar1 + 0x24) = uStack_2c;
@@ -719,22 +719,22 @@ void initialize_engine_data_structure(longlong engine_context, longlong param_2,
  * @param path_ptr 路径指针
  * 功能: 设置引擎相关的路径字符串
  */
-void set_engine_path_string(uint64_t param_1, longlong path_ptr)
+void set_engine_path_string(uint64_t param_1, int64_t path_ptr)
 
 {
   int iVar1;
   int8_t auStack_78 [32];
   int32_t uStack_58;
   uint64_t uStack_50;
-  longlong lStack_48;
+  int64_t lStack_48;
   void *puStack_40;
   int8_t *puStack_38;
   int32_t uStack_30;
   int8_t auStack_28 [16];
-  ulonglong uStack_18;
+  uint64_t uStack_18;
   
   uStack_50 = 0xfffffffffffffffe;
-  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_78;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_78;
   uStack_58 = 0;
   puStack_40 = &system_config_ptr;
   puStack_38 = auStack_28;
@@ -748,11 +748,11 @@ void set_engine_path_string(uint64_t param_1, longlong path_ptr)
   puStack_40 = &system_state_ptr;
   iVar1 = *(int *)(param_2 + 0x10) + 7;
   FUN_1806277c0(param_2,iVar1);
-  *(uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8)) =
+  *(uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8)) =
        0x2f73646e756f53;
   *(int *)(param_2 + 0x10) = iVar1;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_78);
+  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_78);
 }
 
 
@@ -766,7 +766,7 @@ void set_engine_path_string(uint64_t param_1, longlong path_ptr)
  * @return 返回路径指针
  * 功能: 在路径字符串后添加".GUITexture"扩展名
  */
-longlong add_gui_texture_extension(uint64_t param_1, longlong path_ptr, uint64_t param_3, uint64_t param_4)
+int64_t add_gui_texture_extension(uint64_t param_1, int64_t path_ptr, uint64_t param_3, uint64_t param_4)
 
 {
   uint64_t *puVar1;
@@ -777,7 +777,7 @@ longlong add_gui_texture_extension(uint64_t param_1, longlong path_ptr, uint64_t
   FUN_1801595d0();
   iVar2 = *(int *)(param_2 + 0x10) + 9;
   FUN_1806277c0(param_2,iVar2,param_3,param_4,1,uVar3);
-  puVar1 = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  puVar1 = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *puVar1 = 0x78742e7344495547;
   *(int16_t *)(puVar1 + 1) = 0x74;
   *(int *)(param_2 + 0x10) = iVar2;
@@ -795,7 +795,7 @@ longlong add_gui_texture_extension(uint64_t param_1, longlong path_ptr, uint64_t
  * @return 返回路径指针
  * 功能: 在路径字符串后添加"dds.data"扩展名
  */
-longlong add_dds_data_extension(uint64_t param_1, longlong path_ptr, uint64_t param_3, uint64_t param_4)
+int64_t add_dds_data_extension(uint64_t param_1, int64_t path_ptr, uint64_t param_3, uint64_t param_4)
 
 {
   uint64_t *puVar1;
@@ -806,7 +806,7 @@ longlong add_dds_data_extension(uint64_t param_1, longlong path_ptr, uint64_t pa
   FUN_1801595d0();
   iVar2 = *(int *)(param_2 + 0x10) + 0x13;
   FUN_1806277c0(param_2,iVar2,param_3,param_4,1,uVar3);
-  puVar1 = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  puVar1 = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *puVar1 = 0x746144646e756f53;
   puVar1[1] = 0x732e6e65672e7361;
   *(int32_t *)(puVar1 + 2) = 0x666465;
@@ -825,7 +825,7 @@ longlong add_dds_data_extension(uint64_t param_1, longlong path_ptr, uint64_t pa
  * @return 返回路径指针
  * 功能: 在路径字符串后添加"smaPar.defs"扩展名
  */
-longlong add_smapar_defs_extension(uint64_t param_1, longlong path_ptr, uint64_t param_3, uint64_t param_4)
+int64_t add_smapar_defs_extension(uint64_t param_1, int64_t path_ptr, uint64_t param_3, uint64_t param_4)
 
 {
   uint64_t *puVar1;
@@ -836,11 +836,11 @@ longlong add_smapar_defs_extension(uint64_t param_1, longlong path_ptr, uint64_t
   FUN_1801595d0();
   iVar2 = *(int *)(param_2 + 0x10) + 0x14;
   FUN_1806277c0(param_2,iVar2,param_3,param_4,1,uVar3);
-  puVar1 = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  puVar1 = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *puVar1 = 0x726150646e756f53;
   puVar1[1] = 0x2e6e65672e736d61;
   *(int32_t *)(puVar1 + 2) = 0x66646573;
-  *(int8_t *)((longlong)puVar1 + 0x14) = 0;
+  *(int8_t *)((int64_t)puVar1 + 0x14) = 0;
   *(int *)(param_2 + 0x10) = iVar2;
   return param_2;
 }
@@ -889,7 +889,7 @@ uint64_t write_extended_engine_data(uint64_t param_1, uint64_t param_2, uint64_t
   FUN_1801595d0();
   FUN_1806281a0(param_2,&unknown_var_7428_ptr,param_3,param_4,2,uVar1);
   FUN_1806281a0(param_2,*(uint64_t *)
-                         (&unknown_var_7376_ptr + (longlong)*(int *)(SYSTEM_STATE_MANAGER + 0x15e0) * 8),param_3,
+                         (&unknown_var_7376_ptr + (int64_t)*(int *)(SYSTEM_STATE_MANAGER + 0x15e0) * 8),param_3,
                 param_4,1);
   return param_2;
 }
@@ -926,9 +926,9 @@ void process_engine_string_operation(uint64_t param_1, uint64_t param_2, uint64_
 
 {
   uint64_t uVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int iVar3;
-  longlong lVar4;
+  int64_t lVar4;
   int32_t auStackX_10 [2];
   uint64_t auStackX_18 [2];
   int32_t uVar5;
@@ -936,7 +936,7 @@ void process_engine_string_operation(uint64_t param_1, uint64_t param_2, uint64_
   int32_t uStack_98;
   int32_t uStack_94;
   void *puStack_80;
-  longlong lStack_78;
+  int64_t lStack_78;
   uint uStack_70;
   int32_t *apuStack_60 [2];
   code *pcStack_50;
@@ -959,7 +959,7 @@ void process_engine_string_operation(uint64_t param_1, uint64_t param_2, uint64_
     puStack_48 = &unknown_var_6496_ptr;
     apuStack_60[0] = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr,0x18,8,system_allocation_flags);
     uStack_98 = (int32_t)uVar1;
-    uStack_94 = (int32_t)((ulonglong)uVar1 >> 0x20);
+    uStack_94 = (int32_t)((uint64_t)uVar1 >> 0x20);
     *apuStack_60[0] = uStack_98;
     apuStack_60[0][1] = uStack_94;
     *(int32_t **)(apuStack_60[0] + 2) = auStackX_10;
@@ -974,7 +974,7 @@ void process_engine_string_operation(uint64_t param_1, uint64_t param_2, uint64_
   }
   FUN_1806277c0(&puStack_80,uStack_70 + iVar3);
                     // WARNING: Subroutine does not return
-  memcpy((ulonglong)uStack_70 + lStack_78,&unknown_var_7428_ptr,(longlong)((int)lVar4 + 2));
+  memcpy((uint64_t)uStack_70 + lStack_78,&unknown_var_7428_ptr,(int64_t)((int)lVar4 + 2));
 }
 
 
@@ -990,20 +990,20 @@ void process_engine_string_operation(uint64_t param_1, uint64_t param_2, uint64_
  * @param end_index 结束索引
  * 功能: 批量处理指定索引范围内的引擎资源
  */
-void process_engine_resources_batch(longlong *engine_context, int start_index, int end_index)
+void process_engine_resources_batch(int64_t *engine_context, int start_index, int end_index)
 
 {
   int *piVar1;
   int iVar2;
-  longlong lVar3;
-  longlong lVar4;
-  longlong lVar5;
-  longlong lVar6;
-  longlong *plVar7;
+  int64_t lVar3;
+  int64_t lVar4;
+  int64_t lVar5;
+  int64_t lVar6;
+  int64_t *plVar7;
   int aiStackX_10 [4];
-  longlong lStackX_20;
+  int64_t lStackX_20;
   void *puStack_a0;
-  longlong lStack_98;
+  int64_t lStack_98;
   uint uStack_90;
   int32_t uStack_88;
   uint64_t uStack_80;
@@ -1016,20 +1016,20 @@ void process_engine_resources_batch(longlong *engine_context, int start_index, i
   int32_t **ppuStack_40;
   
   uStack_48 = 0xfffffffffffffffe;
-  lVar6 = (longlong)param_2;
-  lStackX_20 = (longlong)param_3;
+  lVar6 = (int64_t)param_2;
+  lStackX_20 = (int64_t)param_3;
   if (lVar6 < lStackX_20) {
     do {
       if (lVar6 == 3) {
-        plVar7 = (longlong *)(*param_1 + 0x140);
+        plVar7 = (int64_t *)(*param_1 + 0x140);
       }
       else {
-        plVar7 = (longlong *)(*param_1 + 0x120);
+        plVar7 = (int64_t *)(*param_1 + 0x120);
       }
       aiStackX_10[0] = 0;
       iVar2 = *(int *)param_1[1];
       FUN_1801595d0(0,&puStack_a0);
-      lVar3 = *(longlong *)(&system_state_d698 + (longlong)iVar2 * 8);
+      lVar3 = *(int64_t *)(&system_state_d698 + (int64_t)iVar2 * 8);
       if (lVar3 != 0) {
         lVar5 = -1;
         do {
@@ -1039,10 +1039,10 @@ void process_engine_resources_batch(longlong *engine_context, int start_index, i
         if (0 < (int)lVar5) {
           FUN_1806277c0(&puStack_a0,uStack_90 + (int)lVar5);
                     // WARNING: Subroutine does not return
-          memcpy((ulonglong)uStack_90 + lStack_98,lVar3,(longlong)((int)lVar4 + 2));
+          memcpy((uint64_t)uStack_90 + lStack_98,lVar3,(int64_t)((int)lVar4 + 2));
         }
       }
-      lVar3 = *(longlong *)(&unknown_var_7376_ptr + lVar6 * 8);
+      lVar3 = *(int64_t *)(&unknown_var_7376_ptr + lVar6 * 8);
       if (lVar3 != 0) {
         lVar5 = -1;
         do {
@@ -1052,7 +1052,7 @@ void process_engine_resources_batch(longlong *engine_context, int start_index, i
         if (0 < (int)lVar5) {
           FUN_1806277c0(&puStack_a0,uStack_90 + (int)lVar5);
                     // WARNING: Subroutine does not return
-          memcpy((ulonglong)uStack_90 + lStack_98,lVar3,(longlong)((int)lVar4 + 2));
+          memcpy((uint64_t)uStack_90 + lStack_98,lVar3,(int64_t)((int)lVar4 + 2));
         }
       }
       ppuStack_40 = apuStack_68;
@@ -1069,7 +1069,7 @@ void process_engine_resources_batch(longlong *engine_context, int start_index, i
       *(int **)(apuStack_68[0] + 4) = piStack_70;
       FUN_18015b810(plVar7[1] - *plVar7,0,(plVar7[1] - *plVar7) / 0x28,1,0xffffffffffffffff,
                     apuStack_68);
-      piVar1 = (int *)(*(longlong *)param_1[2] + lVar6 * 4);
+      piVar1 = (int *)(*(int64_t *)param_1[2] + lVar6 * 4);
       *piVar1 = *piVar1 + aiStackX_10[0];
       puStack_a0 = &system_data_buffer_ptr;
       if (lStack_98 != 0) {
@@ -1097,36 +1097,36 @@ void process_engine_resources_batch(longlong *engine_context, int start_index, i
  * @return 返回校验和结果
  * 功能: 计算指定索引范围内引擎资源的校验和
  */
-ulonglong calculate_engine_resource_checksum(longlong *engine_context, int start_index, int end_index)
+uint64_t calculate_engine_resource_checksum(int64_t *engine_context, int start_index, int end_index)
 
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   uint *puVar3;
   uint uVar4;
-  ulonglong uVar5;
+  uint64_t uVar5;
   uint64_t uVar6;
   uint64_t uVar7;
   int8_t *puVar8;
-  longlong lVar9;
-  longlong lVar10;
-  longlong lVar11;
+  int64_t lVar9;
+  int64_t lVar10;
+  int64_t lVar11;
   uint64_t uStack_80;
-  longlong lStack_78;
+  int64_t lStack_78;
   void *puStack_68;
   int8_t *puStack_60;
   uint uStack_58;
-  ulonglong uStack_50;
-  longlong lStack_48;
+  uint64_t uStack_50;
+  int64_t lStack_48;
   uint64_t uStack_40;
   uint64_t uStack_38;
   int16_t uStack_30;
   int8_t uStack_2e;
   
-  uVar5 = (ulonglong)param_2;
-  if ((longlong)uVar5 < (longlong)param_3) {
+  uVar5 = (uint64_t)param_2;
+  if ((int64_t)uVar5 < (int64_t)param_3) {
     lVar10 = uVar5 * 0x28;
-    lVar11 = (longlong)param_3 - uVar5;
+    lVar11 = (int64_t)param_3 - uVar5;
     do {
       lVar9 = 0;
       lVar2 = *param_1;
@@ -1139,20 +1139,20 @@ ulonglong calculate_engine_resource_checksum(longlong *engine_context, int start
                     // WARNING: Subroutine does not return
         memcpy(puStack_60,*(uint64_t *)(lVar2 + 8),*(int *)(lVar2 + 0x10) + 1);
       }
-      if (*(longlong *)(lVar2 + 8) != 0) {
+      if (*(int64_t *)(lVar2 + 8) != 0) {
         uStack_58 = 0;
         if (puStack_60 != (int8_t *)0x0) {
           *puStack_60 = 0;
         }
         uStack_50 = uStack_50 & 0xffffffff;
       }
-      lVar2 = *(longlong *)param_1[1];
+      lVar2 = *(int64_t *)param_1[1];
       iVar1 = *(int *)(lVar2 + 0x10 + lVar10);
       if (0 < iVar1) {
         FUN_1806277c0(&puStack_68,uStack_58 + iVar1);
                     // WARNING: Subroutine does not return
         memcpy(puStack_60 + uStack_58,*(uint64_t *)(lVar2 + 8 + lVar10),
-               (longlong)(*(int *)(lVar2 + 0x10 + lVar10) + 1));
+               (int64_t)(*(int *)(lVar2 + 0x10 + lVar10) + 1));
       }
       uStack_80 = 0;
       lStack_78 = 0;
@@ -1181,18 +1181,18 @@ ulonglong calculate_engine_resource_checksum(longlong *engine_context, int start
         UNLOCK();
         uVar5 = 0xffffffff;
         uVar4 = 0xffffffff;
-        if (0 < (longlong)(int)uStack_38) {
+        if (0 < (int64_t)(int)uStack_38) {
           do {
             uVar4 = *(uint *)(&unknown_var_5616_ptr +
-                             (uVar5 & 0xff ^ (ulonglong)*(byte *)(lVar9 + lStack_48)) * 4) ^
+                             (uVar5 & 0xff ^ (uint64_t)*(byte *)(lVar9 + lStack_48)) * 4) ^
                     (uint)(uVar5 >> 8);
-            uVar5 = (ulonglong)uVar4;
+            uVar5 = (uint64_t)uVar4;
             lVar9 = lVar9 + 1;
           } while (lVar9 < (int)uStack_38);
         }
         puVar3 = (uint *)param_1[2];
         LOCK();
-        uVar5 = (ulonglong)*puVar3;
+        uVar5 = (uint64_t)*puVar3;
         *puVar3 = *puVar3 + ~uVar4;
         UNLOCK();
         if (((char)uStack_30 == '\0') && (lStack_48 != 0)) {
@@ -1204,7 +1204,7 @@ ulonglong calculate_engine_resource_checksum(longlong *engine_context, int start
         fclose(lStack_78);
         lStack_78 = 0;
         LOCK();
-        uVar5 = (ulonglong)SYSTEM_FILE_COUNTER_ADDR;
+        uVar5 = (uint64_t)SYSTEM_FILE_COUNTER_ADDR;
         UNLOCK();
         SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR - 1;
       }

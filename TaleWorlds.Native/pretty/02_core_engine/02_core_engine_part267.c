@@ -217,12 +217,12 @@ int g_vector_operations_count;      // 向量运算计数
  * - 完善的内存管理和清理
  * - 优化的元素析构调用
  */
-void resize_container_with_migration(longlong *container_ptr, longlong old_start, longlong new_end)
+void resize_container_with_migration(int64_t *container_ptr, int64_t old_start, int64_t new_end)
 {
     void **element_ptr;
-    unsigned longlong element_count;
-    unsigned longlong capacity_diff;
-    longlong new_buffer;
+    unsigned int64_t element_count;
+    unsigned int64_t capacity_diff;
+    int64_t new_buffer;
     void **current_ptr;
     void **end_ptr;
     
@@ -230,7 +230,7 @@ void resize_container_with_migration(longlong *container_ptr, longlong old_start
     element_count = (new_end - old_start) / CONTAINER_ELEMENT_SIZE;
     
     // 检查是否需要扩容
-    if ((unsigned longlong)((container_ptr[2] - *container_ptr) / CONTAINER_ELEMENT_SIZE) < element_count) {
+    if ((unsigned int64_t)((container_ptr[2] - *container_ptr) / CONTAINER_ELEMENT_SIZE) < element_count) {
         // 分配新内存
         if (element_count == 0) {
             new_buffer = 0;
@@ -278,7 +278,7 @@ void resize_container_with_migration(longlong *container_ptr, longlong old_start
             for (end_ptr = element_ptr; end_ptr != target_ptr; end_ptr = end_ptr + CONTAINER_ELEMENT_STRIDE) {
                 (*(void (**)(void *, int)) *end_ptr)(end_ptr, 0);
             }
-            container_ptr[1] = (longlong)element_ptr;
+            container_ptr[1] = (int64_t)element_ptr;
         }
     }
     
@@ -304,11 +304,11 @@ void resize_container_with_migration(longlong *container_ptr, longlong old_start
 void clear_container_and_free_elements(void)
 {
     void **element_ptr;
-    longlong new_buffer;
+    int64_t new_buffer;
     void **current_ptr;
     void **end_ptr;
-    longlong *unaff_RBP;
-    longlong *unaff_RDI;
+    int64_t *unaff_RBP;
+    int64_t *unaff_RDI;
     
     // 分配新内存（基于未绑定寄存器的值）
     if (unaff_RBP == 0) {
@@ -363,20 +363,20 @@ void clear_container_and_free_elements(void)
  * - 容量自动调整
  * - 元素生命周期管理
  */
-void insert_element_at_position(unsigned __int64 param1, unsigned __int64 param2, longlong param3)
+void insert_element_at_position(unsigned __int64 param1, unsigned __int64 param2, int64_t param3)
 {
     void **element_ptr;
     void **target_ptr;
     unsigned __int64 temp_value;
-    longlong calculated_offset;
-    unsigned longlong max_elements;
-    unsigned longlong unaff_RBP;
-    longlong unaff_RSI;
-    longlong unaff_RDI;
-    longlong in_R10;
+    int64_t calculated_offset;
+    unsigned int64_t max_elements;
+    unsigned int64_t unaff_RBP;
+    int64_t unaff_RSI;
+    int64_t unaff_RDI;
+    int64_t in_R10;
     
     // 计算偏移量
-    calculated_offset = SUB168(SEXT816(in_R10) * SEXT816(*(longlong *)(unaff_RDI + 8) - param3), 8);
+    calculated_offset = SUB168(SEXT816(in_R10) * SEXT816(*(int64_t *)(unaff_RDI + 8) - param3), 8);
     max_elements = (calculated_offset >> 4) - (calculated_offset >> 0x3f);
     
     if (max_elements < unaff_RBP) {
@@ -424,7 +424,7 @@ void insert_sorted_element(unsigned __int64 *container_ptr, unsigned __int64 par
     unsigned int data4;
     void **node_ptr;
     int compare_result;
-    longlong new_node;
+    int64_t new_node;
     void **current_ptr;
     unsigned __int64 temp_value;
     bool should_insert_left;
@@ -469,8 +469,8 @@ void insert_sorted_element(unsigned __int64 *container_ptr, unsigned __int64 par
     
     compare_result = memcmp(current_ptr + 4, data_ptr, 0x10);
     if (-1 < compare_result) {
-        if (*(longlong **)(new_node + 0x30) != (longlong **)0x0) {
-            (*(void (**)(void))(*(longlong **)(new_node + 0x30) + 0x38))();
+        if (*(int64_t **)(new_node + 0x30) != (int64_t **)0x0) {
+            (*(void (**)(void))(*(int64_t **)(new_node + 0x30) + 0x38))();
         }
         free_memory(new_node);
     }
@@ -504,11 +504,11 @@ LAB_insert_right:
  * - 内存安全检查
  * - 性能优化策略
  */
-longlong batch_copy_elements(longlong source_start, longlong source_end, longlong target_start)
+int64_t batch_copy_elements(int64_t source_start, int64_t source_end, int64_t target_start)
 {
     void **element_ptr;
-    longlong element_count;
-    longlong total_size;
+    int64_t element_count;
+    int64_t total_size;
     void *string_ptr;
     
     // 计算元素数量
@@ -518,14 +518,14 @@ longlong batch_copy_elements(longlong source_start, longlong source_end, longlon
         total_size = element_count * CONTAINER_ELEMENT_SIZE;
         do {
             // 复制元素标识符
-            *(unsigned int *)((target_start - source_start) + 8 + (longlong)element_ptr) = *(unsigned int *)(element_ptr + 1);
+            *(unsigned int *)((target_start - source_start) + 8 + (int64_t)element_ptr) = *(unsigned int *)(element_ptr + 1);
             
             // 复制字符串数据
             string_ptr = get_default_string();
             if ((void *)*element_ptr != (void *)0x0) {
                 string_ptr = (void *)*element_ptr;
             }
-            strcpy_s(*(void **)((target_start - source_start) + (longlong)element_ptr), 0x40, string_ptr);
+            strcpy_s(*(void **)((target_start - source_start) + (int64_t)element_ptr), 0x40, string_ptr);
             
             element_count = element_count + -1;
             element_ptr = element_ptr + CONTAINER_ELEMENT_STRIDE;
@@ -552,22 +552,22 @@ longlong batch_copy_elements(longlong source_start, longlong source_end, longlon
  * - 字符串数据复制
  * - 边界条件处理
  */
-longlong copy_elements_by_count(longlong source_start, unsigned __int64 param2, longlong target_start)
+int64_t copy_elements_by_count(int64_t source_start, unsigned __int64 param2, int64_t target_start)
 {
     void **element_ptr;
-    longlong total_size;
-    longlong unaff_RDI;
+    int64_t total_size;
+    int64_t unaff_RDI;
     void *string_ptr;
     
     element_ptr = (void **)(source_start + 8);
     total_size = unaff_RDI * CONTAINER_ELEMENT_SIZE;
     do {
-        *(unsigned int *)((target_start - source_start) + 8 + (longlong)element_ptr) = *(unsigned int *)(element_ptr + 1);
+        *(unsigned int *)((target_start - source_start) + 8 + (int64_t)element_ptr) = *(unsigned int *)(element_ptr + 1);
         string_ptr = get_default_string();
         if ((void *)*element_ptr != (void *)0x0) {
             string_ptr = (void *)*element_ptr;
         }
-        strcpy_s(*(void **)((target_start - source_start) + (longlong)element_ptr), 0x40, string_ptr);
+        strcpy_s(*(void **)((target_start - source_start) + (int64_t)element_ptr), 0x40, string_ptr);
         unaff_RDI = unaff_RDI + -1;
         element_ptr = element_ptr + CONTAINER_ELEMENT_STRIDE;
     } while (0 < unaff_RDI);
@@ -614,7 +614,7 @@ unsigned __int64 simple_return_function(unsigned __int64 param1, unsigned __int6
  * - 字符串数据处理
  * - 内存安全检查
  */
-unsigned __int64 *batch_initialize_elements(longlong source_start, longlong source_end, unsigned __int64 *target_ptr, unsigned __int64 param4)
+unsigned __int64 *batch_initialize_elements(int64_t source_start, int64_t source_end, unsigned __int64 *target_ptr, unsigned __int64 param4)
 {
     void *default_ptr;
     void *string_data;
@@ -622,7 +622,7 @@ unsigned __int64 *batch_initialize_elements(longlong source_start, longlong sour
     
     init_flag = 0xfffffffffffffffe;
     if (source_start != source_end) {
-        source_start = source_start - (longlong)target_ptr;
+        source_start = source_start - (int64_t)target_ptr;
         do {
             *target_ptr = get_default_element_ptr();
             target_ptr[1] = 0;
@@ -631,16 +631,16 @@ unsigned __int64 *batch_initialize_elements(longlong source_start, longlong sour
             target_ptr[1] = target_ptr + 3;
             *(unsigned int *)(target_ptr + 2) = 0;
             *(unsigned char *)(target_ptr + 3) = 0;
-            *(unsigned int *)(target_ptr + 2) = *(unsigned int *)(source_start + 0x10 + (longlong)target_ptr);
+            *(unsigned int *)(target_ptr + 2) = *(unsigned int *)(source_start + 0x10 + (int64_t)target_ptr);
             
-            string_data = *(void **)(source_start + 8 + (longlong)target_ptr);
+            string_data = *(void **)(source_start + 8 + (int64_t)target_ptr);
             default_ptr = get_default_string();
             if (string_data != (void *)0x0) {
                 default_ptr = string_data;
             }
             strcpy_s(target_ptr[1], 0x40, default_ptr, param4, init_flag);
             target_ptr = target_ptr + CONTAINER_ELEMENT_STRIDE;
-        } while (source_start + (longlong)target_ptr != source_end);
+        } while (source_start + (int64_t)target_ptr != source_end);
     }
     
     // 更新系统状态
@@ -663,39 +663,39 @@ unsigned __int64 *batch_initialize_elements(longlong source_start, longlong sour
  * - 内存安全检查
  * - 错误处理机制
  */
-void process_texture_operations(longlong param1)
+void process_texture_operations(int64_t param1)
 {
     bool has_texture;
     bool operation_result;
     unsigned int texture_id;
-    unsigned longlong *texture_ptr;
-    longlong texture_handle;
-    unsigned longlong texture_size;
+    unsigned int64_t *texture_ptr;
+    int64_t texture_handle;
+    unsigned int64_t texture_size;
     unsigned char texture_data[TEXTURE_DATA_SIZE];
     unsigned int stack_param1;
     unsigned __int64 stack_param2;
     void *stack_param3;
-    unsigned longlong *stack_param4;
+    unsigned int64_t *stack_param4;
     unsigned int stack_param5;
-    unsigned longlong stack_params[4];
+    unsigned int64_t stack_params[4];
     unsigned __int64 stack_param6;
     
     stack_param2 = 0xfffffffffffffffe;
-    stack_param6 = g_texture_manager ^ (unsigned longlong)texture_data;
+    stack_param6 = g_texture_manager ^ (unsigned int64_t)texture_data;
     has_texture = false;
     stack_param1 = 0;
     *(unsigned char *)(param1 + 0x1d8) = 1;
     
-    texture_handle = *(longlong *)(param1 + 0x1e0);
+    texture_handle = *(int64_t *)(param1 + 0x1e0);
     texture_ptr = stack_param4;
     if (texture_handle != 0) {
         stack_param3 = get_texture_constants();
         stack_params[0] = 0;
-        stack_param4 = (unsigned longlong *)0x0;
+        stack_param4 = (unsigned int64_t *)0x0;
         stack_param5 = 0;
         
         // 分配纹理内存
-        texture_ptr = (unsigned longlong *)allocate_memory(g_memory_allocator, TEXTURE_IDENTIFIER_SIZE, 0x13);
+        texture_ptr = (unsigned int64_t *)allocate_memory(g_memory_allocator, TEXTURE_IDENTIFIER_SIZE, 0x13);
         *(unsigned char *)texture_ptr = 0;
         stack_param4 = texture_ptr;
         texture_id = generate_texture_id(texture_ptr);
@@ -703,11 +703,11 @@ void process_texture_operations(longlong param1)
         
         // 设置纹理标识
         *(unsigned int *)texture_ptr = 0x5f657375;  // "_esu"
-        *(unsigned int *)((longlong)texture_ptr + 4) = 0x74726976;  // "triv"
+        *(unsigned int *)((int64_t)texture_ptr + 4) = 0x74726976;  // "triv"
         *(unsigned int *)(texture_ptr + 1) = 0x5f6c6175;  // "_lau"
-        *(unsigned int *)((longlong)texture_ptr + 0xc) = 0x74786574;  // "txet"
+        *(unsigned int *)((int64_t)texture_ptr + 0xc) = 0x74786574;  // "txet"
         *(unsigned int *)(texture_ptr + 2) = 0x6e697275;  // "niru"
-        *(unsigned short *)((longlong)texture_ptr + 0x14) = 0x67;  // "g"
+        *(unsigned short *)((int64_t)texture_ptr + 0x14) = 0x67;  // "g"
         stack_param5 = 0x15;
         has_texture = true;
         stack_param1 = 1;
@@ -724,10 +724,10 @@ LAB_texture_loaded:
     if (has_texture) {
         stack_param1 = 0;
         stack_param3 = get_texture_constants();
-        if (texture_ptr != (unsigned longlong *)0x0) {
+        if (texture_ptr != (unsigned int64_t *)0x0) {
             free_memory(texture_ptr);
         }
-        stack_param4 = (unsigned longlong *)0x0;
+        stack_param4 = (unsigned int64_t *)0x0;
         stack_params[0] = stack_params[0] & TEXTURE_ID_MASK;
         stack_param3 = get_default_element_ptr();
     }
@@ -739,13 +739,13 @@ LAB_texture_loaded:
         stack_param5 = 0x15;
         strcpy_s(stack_params, 0x20, get_error_message());
         texture_size = load_texture_from_file(*(unsigned __int64 *)(param1 + 0x1e0), &stack_param3, 1);
-        *(unsigned longlong *)(param1 + 0x140) = *(unsigned longlong *)(param1 + 0x140) & ~texture_size;
+        *(unsigned int64_t *)(param1 + 0x140) = *(unsigned int64_t *)(param1 + 0x140) & ~texture_size;
         update_texture_cache(param1);
         stack_param3 = get_default_element_ptr();
     }
     
     // 清理栈数据
-    cleanup_texture_stack(stack_param6 ^ (unsigned longlong)texture_data);
+    cleanup_texture_stack(stack_param6 ^ (unsigned int64_t)texture_data);
     
     // 更新系统状态
     g_memory_allocations_count++;
@@ -767,9 +767,9 @@ LAB_texture_loaded:
  * - 缓存查找机制
  * - 元素生命周期管理
  */
-longlong *find_element_by_size(unsigned __int64 *container_ptr, unsigned longlong size_param)
+int64_t *find_element_by_size(unsigned __int64 *container_ptr, unsigned int64_t size_param)
 {
-    longlong *element_ptr;
+    int64_t *element_ptr;
     unsigned __int64 *current_ptr;
     unsigned __int64 *previous_ptr;
     
@@ -777,7 +777,7 @@ longlong *find_element_by_size(unsigned __int64 *container_ptr, unsigned longlon
     previous_ptr = container_ptr;
     if (current_ptr != (unsigned __int64 *)0x0) {
         do {
-            if ((unsigned longlong)current_ptr[4] < size_param) {
+            if ((unsigned int64_t)current_ptr[4] < size_param) {
                 current_ptr = (unsigned __int64 *)*current_ptr;
             } else {
                 previous_ptr = current_ptr;
@@ -785,16 +785,16 @@ longlong *find_element_by_size(unsigned __int64 *container_ptr, unsigned longlon
             }
         } while (current_ptr != (unsigned __int64 *)0x0);
         
-        if ((previous_ptr != container_ptr) && ((unsigned longlong)previous_ptr[4] <= size_param)) {
-            return (longlong *)previous_ptr[5];
+        if ((previous_ptr != container_ptr) && ((unsigned int64_t)previous_ptr[4] <= size_param)) {
+            return (int64_t *)previous_ptr[5];
         }
     }
     
     // 尝试从全局缓存中获取
-    element_ptr = *(longlong **)(size_param + 0x210);
-    if (element_ptr != (longlong **)0x0) {
-        (*(void (**)(longlong *))(*element_ptr + 0x28))(element_ptr);
-        (*(void (**)(longlong *))(*element_ptr + 0x38))(element_ptr);
+    element_ptr = *(int64_t **)(size_param + 0x210);
+    if (element_ptr != (int64_t **)0x0) {
+        (*(void (**)(int64_t *))(*element_ptr + 0x28))(element_ptr);
+        (*(void (**)(int64_t *))(*element_ptr + 0x38))(element_ptr);
     }
     return element_ptr;
 }
@@ -815,39 +815,39 @@ longlong *find_element_by_size(unsigned __int64 *container_ptr, unsigned longlon
  * - 事件通知机制
  * - 状态同步处理
  */
-void update_container_element_reference(longlong *container_ptr, longlong *new_element_ptr, unsigned int element_id)
+void update_container_element_reference(int64_t *container_ptr, int64_t *new_element_ptr, unsigned int element_id)
 {
-    longlong *old_element_ptr;
-    longlong *temp_ptr;
+    int64_t *old_element_ptr;
+    int64_t *temp_ptr;
     
     // 清理旧元素
-    if (new_element_ptr != (longlong *)0x0) {
-        (*(void (**)(longlong *))(*new_element_ptr + 0x28))(new_element_ptr);
+    if (new_element_ptr != (int64_t *)0x0) {
+        (*(void (**)(int64_t *))(*new_element_ptr + 0x28))(new_element_ptr);
     }
     
-    old_element_ptr = (longlong *)*container_ptr;
-    *container_ptr = (longlong)new_element_ptr;
-    if (old_element_ptr != (longlong *)0x0) {
+    old_element_ptr = (int64_t *)*container_ptr;
+    *container_ptr = (int64_t)new_element_ptr;
+    if (old_element_ptr != (int64_t *)0x0) {
         (*(void (**)(void))(*old_element_ptr + 0x38))();
     }
     
-    container_ptr[3] = (longlong)new_element_ptr;
+    container_ptr[3] = (int64_t)new_element_ptr;
     *(unsigned int *)(container_ptr + 4) = element_id;
     notify_element_changed();
     
-    old_element_ptr = (longlong *)container_ptr[5];
-    if (old_element_ptr != (longlong *)0x0) {
-        (*(void (**)(longlong *))(*old_element_ptr + 0x28))(old_element_ptr);
+    old_element_ptr = (int64_t *)container_ptr[5];
+    if (old_element_ptr != (int64_t *)0x0) {
+        (*(void (**)(int64_t *))(*old_element_ptr + 0x28))(old_element_ptr);
     }
     
-    temp_ptr = (longlong *)container_ptr[1];
-    container_ptr[1] = (longlong)old_element_ptr;
-    if (temp_ptr != (longlong *)0x0) {
+    temp_ptr = (int64_t *)container_ptr[1];
+    container_ptr[1] = (int64_t)old_element_ptr;
+    if (temp_ptr != (int64_t *)0x0) {
         (*(void (**)(void))(*temp_ptr + 0x38))();
     }
     
     *(unsigned short *)(container_ptr + 6) = 0;
-    *(unsigned char *)((longlong)container_ptr + 0x32) = 0;
+    *(unsigned char *)((int64_t)container_ptr + 0x32) = 0;
     return;
 }
 
@@ -867,22 +867,22 @@ void update_container_element_reference(longlong *container_ptr, longlong *new_e
  */
 void destroy_container_and_elements(unsigned __int64 *container_ptr)
 {
-    longlong *element_ptr;
+    int64_t *element_ptr;
     
     if (container_ptr[1] != 0) {
-        if (*(char *)((longlong)container_ptr + 0x32) != '\0') {
+        if (*(char *)((int64_t)container_ptr + 0x32) != '\0') {
             release_resource(*container_ptr);
         }
         cleanup_container_data(container_ptr + 2);
         if (*(char *)(container_ptr + 6) != '\0') {
             release_resource(*container_ptr);
         }
-        if (*(char *)((longlong)container_ptr + 0x31) != '\0') {
+        if (*(char *)((int64_t)container_ptr + 0x31) != '\0') {
             release_resource(*container_ptr);
         }
-        element_ptr = (longlong *)container_ptr[1];
+        element_ptr = (int64_t *)container_ptr[1];
         container_ptr[1] = 0;
-        if (element_ptr != (longlong *)0x0) {
+        if (element_ptr != (int64_t *)0x0) {
             // 注意：此处有复杂的跳转表处理
             (*(void (**)(void))(*element_ptr + 0x38))();
             return;
@@ -905,20 +905,20 @@ void destroy_container_and_elements(unsigned __int64 *container_ptr)
  * - 资源完全释放
  * - 内存安全检查
  */
-void complete_container_destruction(longlong *container_ptr)
+void complete_container_destruction(int64_t *container_ptr)
 {
     if (*container_ptr != 0) {
         destroy_container_and_elements();
     }
     cleanup_container_data(container_ptr + 2);
-    if ((longlong *)container_ptr[5] != (longlong *)0x0) {
-        (*(void (**)(void))(*(longlong *)container_ptr[5] + 0x38))();
+    if ((int64_t *)container_ptr[5] != (int64_t *)0x0) {
+        (*(void (**)(void))(*(int64_t *)container_ptr[5] + 0x38))();
     }
-    if ((longlong *)container_ptr[1] != (longlong *)0x0) {
-        (*(void (**)(void))(*(longlong *)container_ptr[1] + 0x38))();
+    if ((int64_t *)container_ptr[1] != (int64_t *)0x0) {
+        (*(void (**)(void))(*(int64_t *)container_ptr[1] + 0x38))();
     }
-    if ((longlong *)*container_ptr != (longlong *)0x0) {
-        (*(void (**)(void))(*(longlong *)*container_ptr + 0x38))();
+    if ((int64_t *)*container_ptr != (int64_t *)0x0) {
+        (*(void (**)(void))(*(int64_t *)*container_ptr + 0x38))();
     }
     return;
 }
@@ -938,7 +938,7 @@ void complete_container_destruction(longlong *container_ptr)
  * - 数值稳定性处理
  * - 精度控制机制
  */
-void normalize_vector_operation(unsigned __int64 param1, longlong param2)
+void normalize_vector_operation(unsigned __int64 param1, int64_t param2)
 {
     float *vector_ptr;
     char is_negative;
@@ -1078,7 +1078,7 @@ void normalize_vector_operation(unsigned __int64 param1, longlong param2)
  * - 批量处理优化
  * - 向量标准化处理
  */
-void interpolate_keyframe_animation(longlong *skeleton_ptr, longlong *animation_ptr, int frame1, int frame2, float blend_factor)
+void interpolate_keyframe_animation(int64_t *skeleton_ptr, int64_t *animation_ptr, int frame1, int frame2, float blend_factor)
 {
     unsigned __int64 *bone_ptr;
     unsigned __int64 *temp_ptr;
@@ -1091,30 +1091,30 @@ void interpolate_keyframe_animation(longlong *skeleton_ptr, longlong *animation_
     unsigned int bone_count1;
     unsigned int bone_count2;
     unsigned int index;
-    longlong offset1;
-    longlong offset2;
+    int64_t offset1;
+    int64_t offset2;
     unsigned int current_index;
-    longlong bone_data1;
-    longlong bone_data2;
+    int64_t bone_data1;
+    int64_t bone_data2;
     unsigned int temp_index;
     float blend_weights[16];
-    longlong *stack_params[2];
+    int64_t *stack_params[2];
     int frame_indices[2];
     int frame_params[2];
     unsigned __int64 temp_param1;
-    longlong **param_ptr1;
-    longlong **param_ptr2;
-    longlong *stack_ptr1;
-    longlong **stack_ptr2;
+    int64_t **param_ptr1;
+    int64_t **param_ptr2;
+    int64_t *stack_ptr1;
+    int64_t **stack_ptr2;
     unsigned __int64 stack_param1;
     unsigned __int64 stack_param2;
     int *frame_ptr;
-    longlong *stack_ptr3;
-    longlong **stack_ptr4;
+    int64_t *stack_ptr3;
+    int64_t **stack_ptr4;
     unsigned __int64 stack_param3;
     unsigned __int64 stack_param4;
     int *frame_ptr2;
-    longlong *stack_params2[2];
+    int64_t *stack_params2[2];
     void *callback1;
     void *callback2;
     unsigned __int64 stack_param5;
@@ -1134,15 +1134,15 @@ void interpolate_keyframe_animation(longlong *skeleton_ptr, longlong *animation_
                 temp_index = current_index;
                 if (bone_count1 != 0) {
                     do {
-                        offset1 = (longlong)(int)temp_index;
-                        bone_data1 = *(longlong *)(*animation_ptr + 8 + (longlong)frame_params[0] * ANIMATION_FRAME_SIZE);
+                        offset1 = (int64_t)(int)temp_index;
+                        bone_data1 = *(int64_t *)(*animation_ptr + 8 + (int64_t)frame_params[0] * ANIMATION_FRAME_SIZE);
                         weight2 = 1.0 - blend_factor;
-                        bone_data2 = *(longlong *)(*animation_ptr + 8 + (longlong)frame_indices[0] * ANIMATION_FRAME_SIZE);
+                        bone_data2 = *(int64_t *)(*animation_ptr + 8 + (int64_t)frame_indices[0] * ANIMATION_FRAME_SIZE);
                         result_y = *(float *)(bone_data1 + 4 + offset1 * BONE_TRANSFORM_SIZE);
                         result_z = *(float *)(bone_data2 + 4 + offset1 * BONE_TRANSFORM_SIZE);
                         weight1 = *(float *)(bone_data1 + 8 + offset1 * BONE_TRANSFORM_SIZE);
                         result_x = *(float *)(bone_data2 + 8 + offset1 * BONE_TRANSFORM_SIZE);
-                        transform_ptr = (float *)(*(longlong *)(skeleton_ptr[1] + 0x40) + offset1 * BONE_TRANSFORM_SIZE);
+                        transform_ptr = (float *)(*(int64_t *)(skeleton_ptr[1] + 0x40) + offset1 * BONE_TRANSFORM_SIZE);
                         *transform_ptr = blend_factor * *(float *)(bone_data2 + offset1 * BONE_TRANSFORM_SIZE) + weight2 * *(float *)(bone_data1 + offset1 * BONE_TRANSFORM_SIZE);
                         transform_ptr[1] = weight2 * result_y + blend_factor * result_z;
                         transform_ptr[2] = weight2 * weight1 + blend_factor * result_x;
@@ -1153,22 +1153,22 @@ void interpolate_keyframe_animation(longlong *skeleton_ptr, longlong *animation_
                 
                 if (bone_count2 != 0) {
                     do {
-                        offset2 = (longlong)(int)current_index;
-                        bone_data1 = *(longlong *)(*animation_ptr + 0x30 + (longlong)frame_params[0] * ANIMATION_FRAME_SIZE);
+                        offset2 = (int64_t)(int)current_index;
+                        bone_data1 = *(int64_t *)(*animation_ptr + 0x30 + (int64_t)frame_params[0] * ANIMATION_FRAME_SIZE);
                         weight2 = 1.0 - blend_factor;
-                        bone_data2 = *(longlong *)(*animation_ptr + 0x30 + (longlong)frame_indices[0] * ANIMATION_FRAME_SIZE);
+                        bone_data2 = *(int64_t *)(*animation_ptr + 0x30 + (int64_t)frame_indices[0] * ANIMATION_FRAME_SIZE);
                         result_y = *(float *)(bone_data1 + 4 + offset2 * BONE_TRANSFORM_SIZE);
                         result_z = *(float *)(bone_data2 + 4 + offset2 * BONE_TRANSFORM_SIZE);
                         weight1 = *(float *)(bone_data1 + 8 + offset2 * BONE_TRANSFORM_SIZE);
                         result_x = *(float *)(bone_data2 + 8 + offset2 * BONE_TRANSFORM_SIZE);
                         offset1 = offset2 * BONE_DATA_OFFSET;
-                        transform_ptr = (float *)(*(longlong *)(skeleton_ptr[1] + 0x68) + 0x34 + offset1);
+                        transform_ptr = (float *)(*(int64_t *)(skeleton_ptr[1] + 0x68) + 0x34 + offset1);
                         *transform_ptr = blend_factor * *(float *)(bone_data2 + offset2 * BONE_TRANSFORM_SIZE) + weight2 * *(float *)(bone_data1 + offset2 * BONE_TRANSFORM_SIZE);
                         transform_ptr[1] = weight2 * result_y + blend_factor * result_z;
                         transform_ptr[2] = weight2 * weight1 + blend_factor * result_x;
                         transform_ptr[3] = 3.4028235e+38;
                         
-                        bone_data1 = *(longlong *)(skeleton_ptr[1] + 0x68);
+                        bone_data1 = *(int64_t *)(skeleton_ptr[1] + 0x68);
                         result_y = *(float *)(bone_data1 + 0x38 + offset1);
                         result_z = *(float *)(bone_data1 + 0x34 + offset1);
                         weight1 = *(float *)(bone_data1 + 0x3c + offset1);
@@ -1179,7 +1179,7 @@ void interpolate_keyframe_animation(longlong *skeleton_ptr, longlong *animation_
                         *(float *)(bone_data1 + 0x34 + offset1) = result_z * result_x;
                         *(float *)(bone_data1 + 0x38 + offset1) = result_y * result_x;
                         *(float *)(bone_data1 + 0x3c + offset1) = weight1 * result_x;
-                        normalize_vector_operation(bone_data1, offset1 + *(longlong *)(skeleton_ptr[1] + 0x68));
+                        normalize_vector_operation(bone_data1, offset1 + *(int64_t *)(skeleton_ptr[1] + 0x68));
                         current_index = current_index + 1;
                     } while (current_index < bone_count2);
                 }
@@ -1188,9 +1188,9 @@ void interpolate_keyframe_animation(longlong *skeleton_ptr, longlong *animation_
                 temp_index = current_index;
                 if (bone_count1 != 0) {
                     do {
-                        bone_ptr = (unsigned __int64 *)(*(longlong *)(*animation_ptr + 8 + (longlong)frame_indices[0] * ANIMATION_FRAME_SIZE) + (longlong)(int)temp_index * BONE_TRANSFORM_SIZE);
+                        bone_ptr = (unsigned __int64 *)(*(int64_t *)(*animation_ptr + 8 + (int64_t)frame_indices[0] * ANIMATION_FRAME_SIZE) + (int64_t)(int)temp_index * BONE_TRANSFORM_SIZE);
                         temp_param1 = bone_ptr[1];
-                        temp_ptr = (unsigned __int64 *)(*(longlong *)(skeleton_ptr[1] + 0x40) + (longlong)(int)temp_index * BONE_TRANSFORM_SIZE);
+                        temp_ptr = (unsigned __int64 *)(*(int64_t *)(skeleton_ptr[1] + 0x40) + (int64_t)(int)temp_index * BONE_TRANSFORM_SIZE);
                         *temp_ptr = *bone_ptr;
                         temp_ptr[1] = temp_param1;
                         temp_index = temp_index + 1;
@@ -1199,13 +1199,13 @@ void interpolate_keyframe_animation(longlong *skeleton_ptr, longlong *animation_
                 
                 if (bone_count2 != 0) {
                     do {
-                        bone_ptr = (unsigned __int64 *)(*(longlong *)(*animation_ptr + 0x30 + (longlong)frame_indices[0] * ANIMATION_FRAME_SIZE) + (longlong)(int)current_index * BONE_TRANSFORM_SIZE);
+                        bone_ptr = (unsigned __int64 *)(*(int64_t *)(*animation_ptr + 0x30 + (int64_t)frame_indices[0] * ANIMATION_FRAME_SIZE) + (int64_t)(int)current_index * BONE_TRANSFORM_SIZE);
                         temp_param1 = bone_ptr[1];
-                        offset2 = (longlong)(int)current_index * BONE_DATA_OFFSET;
-                        temp_ptr = (unsigned __int64 *)(*(longlong *)(skeleton_ptr[1] + 0x68) + 0x34 + offset2);
+                        offset2 = (int64_t)(int)current_index * BONE_DATA_OFFSET;
+                        temp_ptr = (unsigned __int64 *)(*(int64_t *)(skeleton_ptr[1] + 0x68) + 0x34 + offset2);
                         *temp_ptr = *bone_ptr;
                         temp_ptr[1] = temp_param1;
-                        bone_data1 = *(longlong *)(skeleton_ptr[1] + 0x68);
+                        bone_data1 = *(int64_t *)(skeleton_ptr[1] + 0x68);
                         result_y = *(float *)(bone_data1 + 0x38 + offset2);
                         result_z = *(float *)(bone_data1 + 0x34 + offset2);
                         weight1 = *(float *)(bone_data1 + 0x3c + offset2);
@@ -1216,7 +1216,7 @@ void interpolate_keyframe_animation(longlong *skeleton_ptr, longlong *animation_
                         *(float *)(bone_data1 + 0x34 + offset2) = result_x * result_z;
                         *(float *)(bone_data1 + 0x38 + offset2) = result_x * result_y;
                         *(float *)(bone_data1 + 0x3c + offset2) = result_x * weight1;
-                        normalize_vector_operation(bone_data1, offset2 + *(longlong *)(skeleton_ptr[1] + 0x68));
+                        normalize_vector_operation(bone_data1, offset2 + *(int64_t *)(skeleton_ptr[1] + 0x68));
                         current_index = current_index + 1;
                     } while (current_index < bone_count2);
                 }
@@ -1226,9 +1226,9 @@ void interpolate_keyframe_animation(longlong *skeleton_ptr, longlong *animation_
             temp_index = current_index;
             if (bone_count1 != 0) {
                 do {
-                    bone_ptr = (unsigned __int64 *)(*(longlong *)(*animation_ptr + 8 + (longlong)frame_params[0] * ANIMATION_FRAME_SIZE) + (longlong)(int)temp_index * BONE_TRANSFORM_SIZE);
+                    bone_ptr = (unsigned __int64 *)(*(int64_t *)(*animation_ptr + 8 + (int64_t)frame_params[0] * ANIMATION_FRAME_SIZE) + (int64_t)(int)temp_index * BONE_TRANSFORM_SIZE);
                     temp_param1 = bone_ptr[1];
-                    temp_ptr = (unsigned __int64 *)(*(longlong *)(skeleton_ptr[1] + 0x40) + (longlong)(int)temp_index * BONE_TRANSFORM_SIZE);
+                    temp_ptr = (unsigned __int64 *)(*(int64_t *)(skeleton_ptr[1] + 0x40) + (int64_t)(int)temp_index * BONE_TRANSFORM_SIZE);
                     *temp_ptr = *bone_ptr;
                     temp_ptr[1] = temp_param1;
                     temp_index = temp_index + 1;
@@ -1237,13 +1237,13 @@ void interpolate_keyframe_animation(longlong *skeleton_ptr, longlong *animation_
             
             if (bone_count2 != 0) {
                 do {
-                    bone_ptr = (unsigned __int64 *)(*(longlong *)(*animation_ptr + 0x30 + (longlong)frame_params[0] * ANIMATION_FRAME_SIZE) + (longlong)(int)current_index * BONE_TRANSFORM_SIZE);
+                    bone_ptr = (unsigned __int64 *)(*(int64_t *)(*animation_ptr + 0x30 + (int64_t)frame_params[0] * ANIMATION_FRAME_SIZE) + (int64_t)(int)current_index * BONE_TRANSFORM_SIZE);
                     temp_param1 = bone_ptr[1];
-                    offset2 = (longlong)(int)current_index * BONE_DATA_OFFSET;
-                    temp_ptr = (unsigned __int64 *)(*(longlong *)(skeleton_ptr[1] + 0x68) + 0x34 + offset2);
+                    offset2 = (int64_t)(int)current_index * BONE_DATA_OFFSET;
+                    temp_ptr = (unsigned __int64 *)(*(int64_t *)(skeleton_ptr[1] + 0x68) + 0x34 + offset2);
                     *temp_ptr = *bone_ptr;
                     temp_ptr[1] = temp_param1;
-                    bone_data1 = *(longlong *)(skeleton_ptr[1] + 0x68);
+                    bone_data1 = *(int64_t *)(skeleton_ptr[1] + 0x68);
                     result_y = *(float *)(bone_data1 + 0x38 + offset2);
                     result_z = *(float *)(bone_data1 + 0x34 + offset2);
                     weight1 = *(float *)(bone_data1 + 0x3c + offset2);
@@ -1254,7 +1254,7 @@ void interpolate_keyframe_animation(longlong *skeleton_ptr, longlong *animation_
                     *(float *)(bone_data1 + 0x34 + offset2) = result_x * result_z;
                     *(float *)(bone_data1 + 0x38 + offset2) = result_x * result_y;
                     *(float *)(bone_data1 + 0x3c + offset2) = result_x * weight1;
-                    normalize_vector_operation(bone_data1, offset2 + *(longlong *)(skeleton_ptr[1] + 0x68));
+                    normalize_vector_operation(bone_data1, offset2 + *(int64_t *)(skeleton_ptr[1] + 0x68));
                     current_index = current_index + 1;
                 } while (current_index < bone_count2);
             }
@@ -1270,14 +1270,14 @@ void interpolate_keyframe_animation(longlong *skeleton_ptr, longlong *animation_
         callback2 = batch_process_animation_frame2;
         stack_params[0] = animation_ptr;
         stack_ptr1 = skeleton_ptr;
-        stack_params2[0] = (longlong *)allocate_memory_with_callback(g_memory_allocator, 0x28, 8, get_animation_constants());
-        *stack_params2[0] = (longlong)stack_ptr1;
-        stack_params2[0][1] = (longlong)param_ptr2;
+        stack_params2[0] = (int64_t *)allocate_memory_with_callback(g_memory_allocator, 0x28, 8, get_animation_constants());
+        *stack_params2[0] = (int64_t)stack_ptr1;
+        stack_params2[0][1] = (int64_t)param_ptr2;
         *(unsigned int *)(stack_params2[0] + 2) = (unsigned int)stack_param1;
-        *(unsigned int *)((longlong)stack_params2[0] + 0x14) = stack_param1._4_4_;
+        *(unsigned int *)((int64_t)stack_params2[0] + 0x14) = stack_param1._4_4_;
         *(unsigned int *)(stack_params2[0] + 3) = (unsigned int)stack_param2;
-        *(unsigned int *)((longlong)stack_params2[0] + 0x1c) = stack_param2._4_4_;
-        stack_params2[0][4] = (longlong)frame_ptr;
+        *(unsigned int *)((int64_t)stack_params2[0] + 0x1c) = stack_param2._4_4_;
+        stack_params2[0][4] = (int64_t)frame_ptr;
         param_ptr1 = stack_params2;
         temp_param1 = 0xffffffffffffffff;
         batch_process_bone_data((int)frame_ptr, 0, bone_count1, BONE_TRANSFORM_SIZE, 0xffffffffffffffff, param_ptr1, param_ptr2);
@@ -1289,14 +1289,14 @@ void interpolate_keyframe_animation(longlong *skeleton_ptr, longlong *animation_
         stack_param1 = batch_process_animation_callback1;
         stack_param2 = (unsigned int *)&batch_process_animation_callback2;
         stack_ptr3 = skeleton_ptr;
-        stack_ptr1 = (longlong *)allocate_memory_with_callback(g_memory_allocator, 0x28, 8, get_animation_constants(), temp_param1, param_ptr1, &stack_ptr1);
-        *stack_ptr1 = (longlong)stack_ptr3;
-        stack_ptr1[1] = (longlong)stack_ptr4;
+        stack_ptr1 = (int64_t *)allocate_memory_with_callback(g_memory_allocator, 0x28, 8, get_animation_constants(), temp_param1, param_ptr1, &stack_ptr1);
+        *stack_ptr1 = (int64_t)stack_ptr3;
+        stack_ptr1[1] = (int64_t)stack_ptr4;
         *(unsigned int *)(stack_ptr1 + 2) = (unsigned int)stack_param3;
-        *(unsigned int *)((longlong)stack_ptr1 + 0x14) = stack_param3._4_4_;
+        *(unsigned int *)((int64_t)stack_ptr1 + 0x14) = stack_param3._4_4_;
         *(unsigned int *)(stack_ptr1 + 3) = (unsigned int)stack_param4;
-        *(unsigned int *)((longlong)stack_ptr1 + 0x1c) = stack_param4._4_4_;
-        stack_ptr1[4] = (longlong)frame_ptr2;
+        *(unsigned int *)((int64_t)stack_ptr1 + 0x1c) = stack_param4._4_4_;
+        stack_ptr1[4] = (int64_t)frame_ptr2;
         batch_process_bone_data((int)frame_ptr2, 0, bone_count2, BONE_TRANSFORM_SIZE, 0xffffffffffffffff, &stack_ptr1);
     }
     
@@ -1314,9 +1314,9 @@ void interpolate_keyframe_animation(longlong *skeleton_ptr, longlong *animation_
 // 内存管理函数
 void *allocate_memory(void *allocator, size_t size, int flags);
 void free_memory(void *ptr);
-void batch_migrate_elements(longlong start, longlong end, longlong target);
-void move_elements_backward(longlong start, longlong end);
-longlong allocate_memory_with_callback(void *allocator, size_t size, int flags, void *callback, ...);
+void batch_migrate_elements(int64_t start, int64_t end, int64_t target);
+void move_elements_backward(int64_t start, int64_t end);
+int64_t allocate_memory_with_callback(void *allocator, size_t size, int flags, void *callback, ...);
 
 // 字符串和元素处理函数
 void *get_default_string(void);
@@ -1326,13 +1326,13 @@ void *get_element_constructor(void);
 // 纹理处理函数
 void *get_texture_constants(void);
 unsigned int generate_texture_id(void *ptr);
-longlong load_texture_from_file(longlong handle, void **params, int flags);
-void update_texture_cache(longlong param);
+int64_t load_texture_from_file(int64_t handle, void **params, int flags);
+void update_texture_cache(int64_t param);
 void cleanup_texture_stack(unsigned __int64 param);
 
 // 容器和资源管理函数
-void release_resource(longlong resource);
-void cleanup_container_data(longlong *ptr);
+void release_resource(int64_t resource);
+void cleanup_container_data(int64_t *ptr);
 void notify_element_changed(void);
 
 // 向量数学函数
@@ -1343,16 +1343,16 @@ void initialize_animation_system(void);
 void *get_animation_constants(void);
 void *batch_process_animation_frame1(void);
 void *batch_process_animation_frame2(void);
-void batch_process_bone_data(int frame, int param1, unsigned int count, int param3, unsigned __int64 param4, longlong **param5, ...);
+void batch_process_bone_data(int frame, int param1, unsigned int count, int param3, unsigned __int64 param4, int64_t **param5, ...);
 
 // 红黑树和数据结构函数
-void insert_into_red_black_tree(longlong node, longlong parent, longlong *container, unsigned __int64 param);
+void insert_into_red_black_tree(int64_t node, int64_t parent, int64_t *container, unsigned __int64 param);
 void *create_red_black_tree_node(void *param);
 
 // 工具函数
 unsigned __int64 CONCAT44(unsigned int high, unsigned int low);
 unsigned __int64 SUB168(unsigned __int64 param1, int param2);
-longlong SEXT816(longlong param);
+int64_t SEXT816(int64_t param);
 void *get_error_message(void);
 void *get_error_string(void);
 unsigned __int64 fast_inverse_sqrt(unsigned int param1, unsigned int param2);

@@ -20,9 +20,9 @@
 //       param_2 - 参数2（配置值）
 //       param_3 - 参数3（配置值）
 // 功能：初始化引擎的基本参数，设置阈值和计数器
-void initialize_engine_parameters(longlong engine_context, uint32_t param_2, uint32_t param_3)
+void initialize_engine_parameters(int64_t engine_context, uint32_t param_2, uint32_t param_3)
 {
-    longlong context_base;
+    int64_t context_base;
     int16_t parameter_index;
     int32_t current_count;
     uint32_t *parameter_array;

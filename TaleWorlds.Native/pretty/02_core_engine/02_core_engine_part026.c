@@ -22,7 +22,7 @@
  * 参数：param_1 - 错误上下文, param_2 - 错误描述, param_3 - 错误代码, 
  *        param_4 - 附加信息, param_5 - 错误类型标志, param_6 - 调试模式标志
  */
-void log_engine_error_with_context(uint64_t param_1, longlong param_2, int32_t param_3, longlong param_4,
+void log_engine_error_with_context(uint64_t param_1, int64_t param_2, int32_t param_3, int64_t param_4,
                                   char param_5, char param_6)
 
 {
@@ -53,11 +53,11 @@ void log_engine_error_with_context(uint64_t param_1, longlong param_2, int32_t p
   uint allocation_size;
   
   // 长整型变量
-  longlong string_index;
-  longlong temp_index;
-  longlong semaphore_handle;
-  longlong debug_context;
-  longlong engine_context;
+  int64_t string_index;
+  int64_t temp_index;
+  int64_t semaphore_handle;
+  int64_t debug_context;
+  int64_t engine_context;
   
   // 指针变量
   int8_t *message_buffer;
@@ -79,24 +79,24 @@ void log_engine_error_with_context(uint64_t param_1, longlong param_2, int32_t p
   
   // 其他变量
   byte allocation_flag;
-  ulonglong security_cookie;
+  uint64_t security_cookie;
   int32_t error_code;
   void *module_base;
-  longlong context_value;
+  int64_t context_value;
   int32_t local_param3;
   int32_t temp_value1;
   int32_t temp_value2;
-  longlong semaphore_timeout;
-  longlong thread_context;
+  int64_t semaphore_timeout;
+  int64_t thread_context;
   uint64_t temp_value3;
   uint64_t temp_value4;
   uint64_t temp_value5;
-  ulonglong stack_checksum;
-  longlong temp_index2;
+  uint64_t stack_checksum;
+  int64_t temp_index2;
   
   // 设置安全cookie防止栈溢出
   temp_value3 = 0xfffffffffffffffe;
-  stack_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)stack_cookie;
+  stack_checksum = GET_SECURITY_COOKIE() ^ (uint64_t)stack_cookie;
   
   // 初始化变量
   error_type = param_5;
@@ -123,11 +123,11 @@ void log_engine_error_with_context(uint64_t param_1, longlong param_2, int32_t p
   
   // 获取描述字符串的长度
   message_length = *(uint *)(string_index + 0x10);
-  security_cookie = (ulonglong)message_length;
+  security_cookie = (uint64_t)message_length;
   buffer_size = 0;
   
   // 检查是否有描述字符串
-  if (*(longlong *)(string_index + 8) == 0) {
+  if (*(int64_t *)(string_index + 8) == 0) {
 LAB_ALLOCATE_BUFFER:
     buffer_size = 0;
     if (message_length != 0) {
@@ -143,7 +143,7 @@ LAB_ALLOCATE_BUFFER:
     }
     
     // 分配内存缓冲区
-    message_buffer = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (longlong)allocation_size, 0x13);
+    message_buffer = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (int64_t)allocation_size, 0x13);
     *message_buffer = 0;
     description_buffer = message_buffer;
     buffer_size = get_buffer_handle(message_buffer);
@@ -181,7 +181,7 @@ LAB_ALLOCATE_BUFFER:
           if ((int)message_length < 0x10) {
             message_length = 0x10;
           }
-          message_buffer = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (longlong)(int)message_length, 0x13);
+          message_buffer = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (int64_t)(int)message_length, 0x13);
           *message_buffer = 0;
         }
         else {
@@ -196,7 +196,7 @@ LAB_ALLOCATE_BUFFER:
       
 LAB_APPEND_DESCRIPTION:
       // 追加错误描述到消息缓冲区
-      memcpy(message_buffer + security_cookie, param_2, (longlong)((int)temp_index + 2));
+      memcpy(message_buffer + security_cookie, param_2, (int64_t)((int)temp_index + 2));
     }
   }
   
@@ -212,7 +212,7 @@ LAB_APPEND_DESCRIPTION:
   }
   
   description_buffer = (int8_t *)0x0;
-  temp_value4 = (ulonglong)temp_value4._4_4_ << 0x20;
+  temp_value4 = (uint64_t)temp_value4._4_4_ << 0x20;
   local_pointer = &StandardCleanupString;
   
   // 清理上下文指针
@@ -283,14 +283,14 @@ LAB_APPEND_DESCRIPTION:
       }
       
       // 分配前缀缓冲区
-      buffer_ptr = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (longlong)allocation_size, 0x13);
+      buffer_ptr = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (int64_t)allocation_size, 0x13);
       *buffer_ptr = 0;
       temp_value2 = get_buffer_handle(buffer_ptr);
       temp_value4._0_4_ = temp_value2;
     }
     
     // 复制前缀到缓冲区
-    memcpy(buffer_ptr + message_length, context_pointer, (longlong)((int)string_index + 2));
+    memcpy(buffer_ptr + message_length, context_pointer, (int64_t)((int)string_index + 2));
   }
   
   // 分配格式化消息缓冲区
@@ -343,7 +343,7 @@ LAB_REALLOCATE_BUFFER:
             security_cookie = 0x10;
           }
           message_length = buffer_size;
-          buffer_ptr = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (longlong)(int)security_cookie, 0x13);
+          buffer_ptr = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (int64_t)(int)security_cookie, 0x13);
           *buffer_ptr = 0;
         }
         else {
@@ -361,7 +361,7 @@ LAB_REALLOCATE_BUFFER:
       
 LAB_APPEND_ERROR_MESSAGE:
       message_length = buffer_size;
-      memcpy(buffer_ptr + message_length, param_2, (longlong)((int)string_index + 2));
+      memcpy(buffer_ptr + message_length, param_2, (int64_t)((int)string_index + 2));
     }
   }
   
@@ -395,7 +395,7 @@ LAB_APPEND_SEPARATOR:
       if ((int)allocation_size < 0x10) {
         allocation_size = 0x10;
       }
-      buffer_ptr = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (longlong)(int)allocation_size, 0x13);
+      buffer_ptr = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (int64_t)(int)allocation_size, 0x13);
       *buffer_ptr = 0;
     }
     else {
@@ -418,7 +418,7 @@ LAB_FORMAT_ERROR_CODE:
       if ((int)allocation_size < 0x10) {
         allocation_size = 0x10;
       }
-      buffer_ptr = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (longlong)(int)allocation_size, 0x13);
+      buffer_ptr = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (int64_t)(int)allocation_size, 0x13);
       *buffer_ptr = 0;
     }
     else {
@@ -436,7 +436,7 @@ LAB_APPEND_EXPRESS_INFO:
   string_pointer = (uint64_t *)(buffer_ptr + message_length);
   *string_pointer = 0x6973736572707845;  // "Express: "
   *(int32_t *)(string_pointer + 1) = 0x203a6e6f;
-  *(int8_t *)((longlong)string_pointer + 0xc) = 0;
+  *(int8_t *)((int64_t)string_pointer + 0xc) = 0;
   
   temp_index = -1;
   message_length = security_cookie;
@@ -456,7 +456,7 @@ LAB_APPEND_EXPRESS_INFO:
           if ((int)buffer_size < 0x10) {
             buffer_size = 0x10;
           }
-          buffer_ptr = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (longlong)(int)buffer_size, 0x13);
+          buffer_ptr = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (int64_t)(int)buffer_size, 0x13);
           *buffer_ptr = 0;
         }
         else {
@@ -469,7 +469,7 @@ LAB_APPEND_EXPRESS_INFO:
       }
       
 LAB_APPEND_THREAD_CONTEXT:
-      memcpy(buffer_ptr + message_length, string_index, (longlong)((int)temp_index2 + 2));
+      memcpy(buffer_ptr + message_length, string_index, (int64_t)((int)temp_index2 + 2));
     }
   }
   
@@ -480,7 +480,7 @@ LAB_APPEND_THREAD_CONTEXT:
       if ((int)buffer_size < 0x10) {
         buffer_size = 0x10;
       }
-      buffer_ptr = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (longlong)(int)buffer_size, 0x13);
+      buffer_ptr = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (int64_t)(int)buffer_size, 0x13);
       *buffer_ptr = 0;
     }
     else {
@@ -519,7 +519,7 @@ LAB_FINAL_NEWLINE:
   
   is_main_thread = true;
   if (string_index != 0) {
-    allocation_size = *(int *)(**(longlong **)(string_index + 8) + 0x48);
+    allocation_size = *(int *)(**(int64_t **)(string_index + 8) + 0x48);
     current_thread_id = _Thrd_id();
     thread_flag = current_thread_id == allocation_size;
     is_main_thread = (bool)thread_flag;
@@ -535,7 +535,7 @@ LAB_FINAL_NEWLINE:
       *(int8_t *)(string_index + 0x1609) = 1;
     }
     
-    if (*(longlong *)(system_main_module_state + 8) != 0) {
+    if (*(int64_t *)(system_main_module_state + 8) != 0) {
       initialize_debug_context();
     }
   }
@@ -550,7 +550,7 @@ LAB_FINAL_NEWLINE:
     string_index = get_debug_message(&local_pointer, 0);
     message_length = *(uint *)(string_index + 0x10);
     description_buffer = *(int8_t **)(string_index + 8);
-    temp_value4 = *(ulonglong *)(string_index + 0x18);
+    temp_value4 = *(uint64_t *)(string_index + 0x18);
     *(int32_t *)(string_index + 0x10) = 0;
     *(uint64_t *)(string_index + 8) = 0;
     *(uint64_t *)(string_index + 0x18) = 0;
@@ -714,7 +714,7 @@ LAB_FINAL_NEWLINE:
     }
     
     if ((system_debug_flag2 == '\0') && (thread_flag != '\0')) {
-      if (*(longlong *)(system_main_module_state + 8) != 0) {
+      if (*(int64_t *)(system_main_module_state + 8) != 0) {
         cleanup_engine_resources();
       }
       
@@ -764,7 +764,7 @@ LAB_SHOW_ERROR_DIALOG:
     local_pointer = &StandardCleanupString;
     
     // 验证安全cookie并返回
-    verify_stack_cookie(stack_checksum ^ (ulonglong)stack_cookie);
+    verify_stack_cookie(stack_checksum ^ (uint64_t)stack_cookie);
   }
   
 LAB_TERMINATE_PROCESS:
@@ -783,29 +783,29 @@ LAB_TERMINATE_PROCESS:
  * 功能：记录断言失败信息，格式化错误消息，并输出到调试日志
  * 参数：param_1 - 上下文信息, param_2 - 断言描述, param_3 - 错误代码, param_4 - 附加信息
  */
-void log_assertion_failure(uint64_t param_1, longlong param_2, int32_t param_3, longlong param_4)
+void log_assertion_failure(uint64_t param_1, int64_t param_2, int32_t param_3, int64_t param_4)
 
 {
   int wait_result;
   uint buffer_size;
   uint message_length;
   int32_t formatted_value;
-  longlong string_index;
+  int64_t string_index;
   void *context_pointer;
   int32_t *string_data;
   uint64_t *message_pointer;
   int8_t *message_buffer;
   int8_t *description_buffer;
   void *temp_pointer;
-  longlong temp_index;
+  int64_t temp_index;
   uint temp_size;
   uint new_size;
   void *local_pointer;
   int8_t *local_buffer;
   uint local_size;
-  ulonglong buffer_capacity;
+  uint64_t buffer_capacity;
   void *stack_pointer;
-  longlong local_context;
+  int64_t local_context;
   int32_t local_param3;
   
   // 等待信号量获取访问权限
@@ -904,7 +904,7 @@ LAB_EXPAND_BUFFER:
             temp_size = 0x10;
           }
           local_size = buffer_size;
-          message_buffer = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (longlong)(int)temp_size, 0x13);
+          message_buffer = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (int64_t)(int)temp_size, 0x13);
           *message_buffer = 0;
         }
         else {
@@ -921,7 +921,7 @@ LAB_EXPAND_BUFFER:
       
 LAB_APPEND_ASSERTION_DESC:
       local_size = new_size;
-      memcpy(message_buffer + local_size, param_2, (longlong)((int)temp_index + 2));
+      memcpy(message_buffer + local_size, param_2, (int64_t)((int)temp_index + 2));
     }
   }
   
@@ -954,7 +954,7 @@ LAB_ADD_SEPARATOR:
       if ((int)temp_size < 0x10) {
         temp_size = 0x10;
       }
-      message_buffer = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (longlong)(int)temp_size, 0x13);
+      message_buffer = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (int64_t)(int)temp_size, 0x13);
       *message_buffer = 0;
     }
     else {
@@ -976,7 +976,7 @@ LAB_FORMAT_ASSERTION_CODE:
       if ((int)new_size < 0x10) {
         new_size = 0x10;
       }
-      message_buffer = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (longlong)(int)new_size, 0x13);
+      message_buffer = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (int64_t)(int)new_size, 0x13);
       *message_buffer = 0;
     }
     else {
@@ -992,7 +992,7 @@ LAB_APPEND_EXPRESS_PREFIX:
   message_pointer = (uint64_t *)(message_buffer + local_size);
   *message_pointer = 0x6973736572707845;  // "Express: "
   *(int32_t *)(message_pointer + 1) = 0x203a6e6f;
-  *(int8_t *)((longlong)message_pointer + 0xc) = 0;
+  *(int8_t *)((int64_t)message_pointer + 0xc) = 0;
   
   string_index = -1;
   local_size = temp_size;
@@ -1013,7 +1013,7 @@ LAB_APPEND_EXPRESS_PREFIX:
           if ((int)buffer_size < 0x10) {
             buffer_size = 0x10;
           }
-          message_buffer = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (longlong)(int)buffer_size, 0x13);
+          message_buffer = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (int64_t)(int)buffer_size, 0x13);
           *message_buffer = 0;
         }
         else {
@@ -1025,7 +1025,7 @@ LAB_APPEND_EXPRESS_PREFIX:
       }
       
 LAB_APPEND_ADDITIONAL_INFO:
-      memcpy(message_buffer + local_size, param_4, (longlong)((int)temp_index + 2));
+      memcpy(message_buffer + local_size, param_4, (int64_t)((int)temp_index + 2));
     }
   }
   
@@ -1036,7 +1036,7 @@ LAB_APPEND_ADDITIONAL_INFO:
       if ((int)new_size < 0x10) {
         new_size = 0x10;
       }
-      message_buffer = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (longlong)(int)new_size, 0x13);
+      message_buffer = (int8_t *)allocate_buffer_memory(system_memory_pool_ptr, (int64_t)(int)new_size, 0x13);
       *message_buffer = 0;
     }
     else {
@@ -1118,25 +1118,25 @@ LAB_FINAL_NEWLINE:
 
 // 函数原型（简化实现中使用的语义化名称）
 void initialize_error_buffer(void* buffer, int size, const char* prefix, int error_code);
-longlong get_string_length(void** context, longlong param);
-void* allocate_buffer_memory(void* heap, longlong size, int flags);
-longlong get_buffer_handle(void* buffer);
-void* reallocate_buffer_memory(void* heap, void* buffer, longlong size, int flags1, int flags2);
+int64_t get_string_length(void** context, int64_t param);
+void* allocate_buffer_memory(void* heap, int64_t size, int flags);
+int64_t get_buffer_handle(void* buffer);
+void* reallocate_buffer_memory(void* heap, void* buffer, int64_t size, int flags1, int flags2);
 void free_buffer_memory(void* buffer);
 void release_temporary_buffer(void** context1, void** context2, void* buffer);
 char validate_error_message(void* message);
-longlong release_engine_semaphore(longlong handle);
+int64_t release_engine_semaphore(int64_t handle);
 void process_debug_information(void* context, char flag, int param);
 void initialize_debug_context(void);
-void log_error_message(void* context, int level, longlong flags, const char* location);
-void log_error_with_flags(void* context, int level, longlong flags, int extra_flags);
+void log_error_message(void* context, int level, int64_t flags, const char* location);
+void log_error_with_flags(void* context, int level, int64_t flags, int extra_flags);
 void finalize_error_logging(void);
-void cleanup_temporary_variables(longlong index);
+void cleanup_temporary_variables(int64_t index);
 void cleanup_engine_resources(void);
 void cleanup_debug_context(void* context, char flag);
 void cleanup_thread_context(void);
-longlong get_debug_message(void** context, int flags);
+int64_t get_debug_message(void** context, int flags);
 void terminate_process_with_error(void* context, const char* message, char flag, int code);
-void verify_stack_cookie(ulonglong cookie);
+void verify_stack_cookie(uint64_t cookie);
 void format_error_code(void* context, int code);
 void shutdown_engine(char flag, int code);

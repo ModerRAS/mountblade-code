@@ -2,32 +2,32 @@
 
 // 02_core_engine_part053.c - 核心引擎排序与数据结构操作函数 (10个函数)
 
-// 函数: void quicksort_string_array(string_array *array, string_array *end, longlong depth, char sort_flag)
+// 函数: void quicksort_string_array(string_array *array, string_array *end, int64_t depth, char sort_flag)
 // 快速排序算法，用于字符串数组的排序
 // 参数: array - 要排序的数组, end - 数组结束位置, depth - 递归深度, sort_flag - 排序标志
-void quicksort_string_array(string_array *array, string_array *end, longlong depth, char sort_flag)
+void quicksort_string_array(string_array *array, string_array *end, int64_t depth, char sort_flag)
 
 {
   byte cmp_result;
-  longlong array_size;
-  ulonglong distance;
-  longlong middle_index;
+  int64_t array_size;
+  uint64_t distance;
+  int64_t middle_index;
   byte *string_ptr;
   uint char_val;
   int compare_result;
-  longlong pivot_value;
+  int64_t pivot_value;
   string_array *left_ptr;
   string_array *right_ptr;
-  longlong left_value;
-  longlong right_value;
+  int64_t left_value;
+  int64_t right_value;
   string_array *temp_ptr;
-  longlong temp_value;
+  int64_t temp_value;
   
-  distance = array_size - (longlong)array;
+  distance = array_size - (int64_t)array;
 sort_loop:
-  if (((longlong)(distance & 0xfffffffffffffff8) < 0xe1) || (depth < 1)) {
+  if (((int64_t)(distance & 0xfffffffffffffff8) < 0xe1) || (depth < 1)) {
     if (depth == 0) {
-      pivot_value = (longlong)end - (longlong)array >> 3;
+      pivot_value = (int64_t)end - (int64_t)array >> 3;
       if (1 < pivot_value) {
         middle_index = (pivot_value + -2 >> 1) + 1;
         do {
@@ -43,14 +43,14 @@ sort_loop:
           *end = *array;
           heap_sort_adjust(array, 0, pivot_value + -1, 0, &temp_value);
           end = end + -1;
-          pivot_value = (8 - (longlong)array) + (longlong)end >> 3;
+          pivot_value = (8 - (int64_t)array) + (int64_t)end >> 3;
         } while (1 < pivot_value);
       }
     }
     return;
   }
   pivot_value = *array;
-  middle_index = (longlong)end - (longlong)array >> 3;
+  middle_index = (int64_t)end - (int64_t)array >> 3;
   if (middle_index < 0) {
     middle_index = middle_index + 1;
   }
@@ -64,7 +64,7 @@ find_partition:
     if ((*(int *)(right_value + 0x78) == 0) || (left_value = pivot_value, *(int *)(pivot_value + 0x78) == 0))
     goto partition_complete;
     string_ptr = *(byte **)(right_value + 0x70);
-    left_value = *(longlong *)(pivot_value + 0x70) - (longlong)string_ptr;
+    left_value = *(int64_t *)(pivot_value + 0x70) - (int64_t)string_ptr;
     do {
       cmp_result = *string_ptr;
       char_val = (uint)string_ptr[left_value];
@@ -76,7 +76,7 @@ find_partition:
     goto partition_complete;
     if (*(int *)(middle_index + 0x78) != 0) {
       string_ptr = *(byte **)(right_value + 0x70);
-      left_value = *(longlong *)(middle_index + 0x70) - (longlong)string_ptr;
+      left_value = *(int64_t *)(middle_index + 0x70) - (int64_t)string_ptr;
       do {
         char_val = (uint)string_ptr[left_value];
         compare_result = *string_ptr - char_val;
@@ -90,7 +90,7 @@ find_partition:
   else {
     if (*(int *)(pivot_value + 0x78) != 0) {
       string_ptr = *(byte **)(middle_index + 0x70);
-      right_value = *(longlong *)(pivot_value + 0x70) - (longlong)string_ptr;
+      right_value = *(int64_t *)(pivot_value + 0x70) - (int64_t)string_ptr;
       do {
         cmp_result = *string_ptr;
         char_val = (uint)string_ptr[right_value];
@@ -103,7 +103,7 @@ find_partition:
     left_value = pivot_value;
     if (*(int *)(right_value + 0x78) == 0) goto partition_complete;
     string_ptr = *(byte **)(right_value + 0x70);
-    left_value = *(longlong *)(middle_index + 0x70) - (longlong)string_ptr;
+    left_value = *(int64_t *)(middle_index + 0x70) - (int64_t)string_ptr;
     do {
       cmp_result = *string_ptr;
       char_val = (uint)string_ptr[left_value];
@@ -115,7 +115,7 @@ find_partition:
     goto partition_complete;
     if (*(int *)(pivot_value + 0x78) != 0) {
       string_ptr = *(byte **)(right_value + 0x70);
-      middle_index = *(longlong *)(pivot_value + 0x70) - (longlong)string_ptr;
+      middle_index = *(int64_t *)(pivot_value + 0x70) - (int64_t)string_ptr;
       do {
         char_val = (uint)string_ptr[middle_index];
         compare_result = *string_ptr - char_val;
@@ -135,7 +135,7 @@ partition_complete:
       if (*(int *)(left_value + 0x78) == 0) break;
       if (*(int *)(pivot_value + 0x78) != 0) {
         string_ptr = *(byte **)(left_value + 0x70);
-        middle_index = *(longlong *)(pivot_value + 0x70) - (longlong)string_ptr;
+        middle_index = *(int64_t *)(pivot_value + 0x70) - (int64_t)string_ptr;
         do {
           cmp_result = *string_ptr;
           char_val = (uint)string_ptr[middle_index];
@@ -153,7 +153,7 @@ partition_complete:
         if (*(int *)(middle_index + 0x78) == 0) goto swap_elements;
       } while (*(int *)(left_value + 0x78) == 0);
       string_ptr = *(byte **)(middle_index + 0x70);
-      right_value = *(longlong *)(left_value + 0x70) - (longlong)string_ptr;
+      right_value = *(int64_t *)(left_value + 0x70) - (int64_t)string_ptr;
       do {
         cmp_result = *string_ptr;
         char_val = (uint)string_ptr[right_value];
@@ -169,7 +169,7 @@ swap_elements:
   } while( true );
   depth = depth + -1;
   quicksort_string_array(left_ptr, end, depth, sort_flag);
-  distance = (longlong)left_ptr - (longlong)array;
+  distance = (int64_t)left_ptr - (int64_t)array;
   end = left_ptr;
   goto sort_loop;
 }
@@ -178,31 +178,31 @@ swap_elements:
 
 
 
-// 函数: void quicksort_string_array_optimized(string_array *array_start, string_array *array_end, longlong depth, char sort_flag)
+// 函数: void quicksort_string_array_optimized(string_array *array_start, string_array *array_end, int64_t depth, char sort_flag)
 // 优化的快速排序算法实现，包含递归深度限制和堆排序优化
-void quicksort_string_array_optimized(string_array *array_start, string_array *array_end, longlong depth, char sort_flag)
+void quicksort_string_array_optimized(string_array *array_start, string_array *array_end, int64_t depth, char sort_flag)
 
 {
   byte bVar1;
-  longlong lVar2;
+  int64_t lVar2;
   byte *pbVar3;
   uint uVar4;
   int iVar5;
   int8_t unaff_BL;
-  longlong lVar6;
-  longlong *plVar7;
-  longlong lVar8;
-  longlong lVar9;
-  longlong *plVar10;
-  longlong unaff_R12;
-  longlong *unaff_R14;
-  longlong *unaff_R15;
+  int64_t lVar6;
+  int64_t *plVar7;
+  int64_t lVar8;
+  int64_t lVar9;
+  int64_t *plVar10;
+  int64_t unaff_R12;
+  int64_t *unaff_R14;
+  int64_t *unaff_R15;
   
 LAB_18008ee00:
   plVar7 = unaff_R14;
   if (0 < unaff_R12) {
     lVar6 = *unaff_R15;
-    lVar2 = (longlong)unaff_R14 - (longlong)unaff_R15 >> 3;
+    lVar2 = (int64_t)unaff_R14 - (int64_t)unaff_R15 >> 3;
     if (lVar2 < 0) {
       lVar2 = lVar2 + 1;
     }
@@ -216,7 +216,7 @@ LAB_18008eecc:
       if ((*(int *)(lVar8 + 0x78) == 0) || (lVar9 = lVar6, *(int *)(lVar6 + 0x78) == 0))
       goto LAB_18008ef40;
       pbVar3 = *(byte **)(lVar8 + 0x70);
-      lVar9 = *(longlong *)(lVar6 + 0x70) - (longlong)pbVar3;
+      lVar9 = *(int64_t *)(lVar6 + 0x70) - (int64_t)pbVar3;
       do {
         bVar1 = *pbVar3;
         uVar4 = (uint)pbVar3[lVar9];
@@ -228,7 +228,7 @@ LAB_18008eecc:
       goto LAB_18008ef40;
       if (*(int *)(lVar2 + 0x78) != 0) {
         pbVar3 = *(byte **)(lVar8 + 0x70);
-        lVar9 = *(longlong *)(lVar2 + 0x70) - (longlong)pbVar3;
+        lVar9 = *(int64_t *)(lVar2 + 0x70) - (int64_t)pbVar3;
         do {
           uVar4 = (uint)pbVar3[lVar9];
           iVar5 = *pbVar3 - uVar4;
@@ -242,7 +242,7 @@ LAB_18008eecc:
     else {
       if (*(int *)(lVar6 + 0x78) != 0) {
         pbVar3 = *(byte **)(lVar2 + 0x70);
-        lVar8 = *(longlong *)(lVar6 + 0x70) - (longlong)pbVar3;
+        lVar8 = *(int64_t *)(lVar6 + 0x70) - (int64_t)pbVar3;
         do {
           bVar1 = *pbVar3;
           uVar4 = (uint)pbVar3[lVar8];
@@ -255,7 +255,7 @@ LAB_18008eecc:
       lVar9 = lVar6;
       if (*(int *)(lVar8 + 0x78) == 0) goto LAB_18008ef40;
       pbVar3 = *(byte **)(lVar8 + 0x70);
-      lVar9 = *(longlong *)(lVar2 + 0x70) - (longlong)pbVar3;
+      lVar9 = *(int64_t *)(lVar2 + 0x70) - (int64_t)pbVar3;
       do {
         bVar1 = *pbVar3;
         uVar4 = (uint)pbVar3[lVar9];
@@ -267,7 +267,7 @@ LAB_18008eecc:
       goto LAB_18008ef40;
       if (*(int *)(lVar6 + 0x78) != 0) {
         pbVar3 = *(byte **)(lVar8 + 0x70);
-        lVar2 = *(longlong *)(lVar6 + 0x70) - (longlong)pbVar3;
+        lVar2 = *(int64_t *)(lVar6 + 0x70) - (int64_t)pbVar3;
         do {
           uVar4 = (uint)pbVar3[lVar2];
           iVar5 = *pbVar3 - uVar4;
@@ -287,7 +287,7 @@ LAB_18008ef40:
         if (*(int *)(lVar9 + 0x78) == 0) break;
         if (*(int *)(lVar6 + 0x78) != 0) {
           pbVar3 = *(byte **)(lVar9 + 0x70);
-          lVar2 = *(longlong *)(lVar6 + 0x70) - (longlong)pbVar3;
+          lVar2 = *(int64_t *)(lVar6 + 0x70) - (int64_t)pbVar3;
           do {
             bVar1 = *pbVar3;
             uVar4 = (uint)pbVar3[lVar2];
@@ -305,7 +305,7 @@ LAB_18008ef40:
           if (*(int *)(lVar2 + 0x78) == 0) goto LAB_18008efb7;
         } while (*(int *)(lVar9 + 0x78) == 0);
         pbVar3 = *(byte **)(lVar2 + 0x70);
-        lVar8 = *(longlong *)(lVar9 + 0x70) - (longlong)pbVar3;
+        lVar8 = *(int64_t *)(lVar9 + 0x70) - (int64_t)pbVar3;
         do {
           bVar1 = *pbVar3;
           uVar4 = (uint)pbVar3[lVar8];
@@ -325,10 +325,10 @@ LAB_18008efcb:
   unaff_R12 = unaff_R12 + -1;
   quicksort_string_array_optimized(plVar7,unaff_R14,unaff_R12,unaff_BL);
   unaff_R14 = plVar7;
-  if ((longlong)((longlong)plVar7 - (longlong)unaff_R15 & 0xfffffffffffffff8U) < 0xe1) {
+  if ((int64_t)((int64_t)plVar7 - (int64_t)unaff_R15 & 0xfffffffffffffff8U) < 0xe1) {
 LAB_18008eff7:
     if (unaff_R12 == 0) {
-      lVar6 = (longlong)plVar7 - (longlong)unaff_R15 >> 3;
+      lVar6 = (int64_t)plVar7 - (int64_t)unaff_R15 >> 3;
       if (1 < lVar6) {
         lVar2 = (lVar6 + -2 >> 1) + 1;
         do {
@@ -342,7 +342,7 @@ LAB_18008eff7:
           *plVar7 = *unaff_R15;
           heap_sort_adjust_down(unaff_R15,lVar2,lVar1,lVar2,&uStack0000000000000060);
           plVar7 = plVar7 + -1;
-        } while (1 < (8 - (longlong)unaff_R15) + (longlong)plVar7 >> 3);
+        } while (1 < (8 - (int64_t)unaff_R15) + (int64_t)plVar7 >> 3);
       }
     }
     return;
@@ -362,16 +362,16 @@ LAB_18008eff7:
 void heap_build_conditional(void)
 
 {
-  longlong lVar1;
-  longlong lVar2;
+  int64_t lVar1;
+  int64_t lVar2;
   uint64_t *puVar3;
-  longlong unaff_R12;
-  longlong unaff_R14;
+  int64_t unaff_R12;
+  int64_t unaff_R14;
   uint64_t *unaff_R15;
   uint64_t uStack0000000000000060;
   
   if (unaff_R12 == 0) {
-    lVar1 = unaff_R14 - (longlong)unaff_R15 >> 3;
+    lVar1 = unaff_R14 - (int64_t)unaff_R15 >> 3;
     if (1 < lVar1) {
       lVar2 = (lVar1 + -2 >> 1) + 1;
       do {
@@ -387,7 +387,7 @@ void heap_build_conditional(void)
         *puVar3 = *unaff_R15;
         heap_sort_adjust_down(unaff_R15,lVar2,lVar1,lVar2,&uStack0000000000000060);
         puVar3 = puVar3 + -1;
-      } while (1 < (8 - (longlong)unaff_R15) + (longlong)puVar3 >> 3);
+      } while (1 < (8 - (int64_t)unaff_R15) + (int64_t)puVar3 >> 3);
     }
   }
   return;
@@ -405,14 +405,14 @@ void heap_build_conditional(void)
 void heap_build_unconditional(void)
 
 {
-  longlong lVar1;
-  longlong lVar2;
+  int64_t lVar1;
+  int64_t lVar2;
   uint64_t *puVar3;
-  longlong unaff_R14;
+  int64_t unaff_R14;
   uint64_t *unaff_R15;
   uint64_t uStack0000000000000060;
   
-  lVar1 = unaff_R14 - (longlong)unaff_R15 >> 3;
+  lVar1 = unaff_R14 - (int64_t)unaff_R15 >> 3;
   if (1 < lVar1) {
     lVar2 = (lVar1 + -2 >> 1) + 1;
     do {
@@ -428,7 +428,7 @@ void heap_build_unconditional(void)
       *puVar3 = *unaff_R15;
       heap_sort_adjust_down(unaff_R15,lVar2,lVar1,lVar2,&uStack0000000000000060);
       puVar3 = puVar3 + -1;
-    } while (1 < (8 - (longlong)unaff_R15) + (longlong)puVar3 >> 3);
+    } while (1 < (8 - (int64_t)unaff_R15) + (int64_t)puVar3 >> 3);
   }
   return;
 }
@@ -437,18 +437,18 @@ void heap_build_unconditional(void)
 
 
 
-// 函数: void data_structure_initialize(uint64_t param_1,uint64_t param_2,longlong *param_3)
+// 函数: void data_structure_initialize(uint64_t param_1,uint64_t param_2,int64_t *param_3)
 // 功能: 初始化数据结构，分配内存并设置默认值
 // 参数: param_1 - 参数1 (未使用), param_2 - 参数2 (未使用), param_3 - 指向数据结构的指针
 // 返回: void
 // 说明: 通过memory_allocate_0x58_bytes()分配内存，然后初始化各个字段为默认值
-void data_structure_initialize(uint64_t param_1,uint64_t param_2,longlong *param_3)
+void data_structure_initialize(uint64_t param_1,uint64_t param_2,int64_t *param_3)
 
 {
   uint64_t uVar1;
-  longlong lVar2;
+  int64_t lVar2;
   
-  lVar2 = (longlong)memory_allocate_0x58_bytes();
+  lVar2 = (int64_t)memory_allocate_0x58_bytes();
   *(int16_t *)(lVar2 + 0x18) = 0;
   uVar1 = ((uint64_t *)*param_3)[1];
   *(uint64_t *)(lVar2 + 0x20) = *(uint64_t *)*param_3;
@@ -464,22 +464,22 @@ void data_structure_initialize(uint64_t param_1,uint64_t param_2,longlong *param
 
 
 
-// 函数: uint64_t *binary_tree_insert_node(longlong *param_1,uint64_t *param_2,longlong *param_3,uint64_t param_4,uint64_t param_5)
+// 函数: uint64_t *binary_tree_insert_node(int64_t *param_1,uint64_t *param_2,int64_t *param_3,uint64_t param_4,uint64_t param_5)
 // 功能: 在二叉树中插入节点，包含复杂的平衡和比较逻辑
 // 参数: param_1 - 树根指针, param_2 - 插入位置, param_3 - 目标节点, param_4 - 比较数据, param_5 - 附加参数
 // 返回: uint64_t * - 插入位置的指针
 // 说明: 这是一个复杂的二叉树插入算法，包含多种情况的处理和节点平衡
 uint64_t *
-binary_tree_insert_node(longlong *param_1,uint64_t *param_2,longlong *param_3,uint64_t param_4,
+binary_tree_insert_node(int64_t *param_1,uint64_t *param_2,int64_t *param_3,uint64_t param_4,
                        uint64_t param_5)
 
 {
-  longlong *plVar1;
-  longlong lVar2;
+  int64_t *plVar1;
+  int64_t lVar2;
   int iVar3;
   uint64_t *puVar4;
-  longlong *plVar5;
-  longlong *plVar6;
+  int64_t *plVar5;
+  int64_t *plVar6;
   bool bVar7;
   int8_t auStack_30 [24];
   
@@ -487,8 +487,8 @@ binary_tree_insert_node(longlong *param_1,uint64_t *param_2,longlong *param_3,ui
     tree_node_insert(param_1,param_2,1,*param_1);
     return param_2;
   }
-  plVar1 = (longlong *)*param_1;
-  if (param_3 == (longlong *)*plVar1) {
+  plVar1 = (int64_t *)*param_1;
+  if (param_3 == (int64_t *)*plVar1) {
     iVar3 = memcmp(param_4,param_3 + 4,0x10);
     if (iVar3 < 0) {
       tree_node_insert(param_1,param_2,1,param_3);
@@ -506,28 +506,28 @@ binary_tree_insert_node(longlong *param_1,uint64_t *param_2,longlong *param_3,ui
   else {
     iVar3 = memcmp(param_4,param_3 + 4,0x10);
     if (iVar3 < 0) {
-      if (*(char *)((longlong)param_3 + 0x19) == '\0') {
+      if (*(char *)((int64_t)param_3 + 0x19) == '\0') {
         plVar1 = param_3;
-        plVar6 = (longlong *)*param_3;
+        plVar6 = (int64_t *)*param_3;
         if (*(char *)(*param_3 + 0x19) == '\0') {
           do {
             plVar5 = plVar6;
-            plVar6 = (longlong *)plVar5[2];
+            plVar6 = (int64_t *)plVar5[2];
           } while (*(char *)(plVar5[2] + 0x19) == '\0');
         }
         else {
           do {
             plVar5 = plVar1;
-            plVar1 = (longlong *)plVar5[1];
-            if (*(char *)((longlong)plVar1 + 0x19) != '\0') break;
-          } while (plVar5 == (longlong *)*plVar1);
-          if (*(char *)((longlong)plVar5 + 0x19) == '\0') {
+            plVar1 = (int64_t *)plVar5[1];
+            if (*(char *)((int64_t)plVar1 + 0x19) != '\0') break;
+          } while (plVar5 == (int64_t *)*plVar1);
+          if (*(char *)((int64_t)plVar5 + 0x19) == '\0') {
             plVar5 = plVar1;
           }
         }
       }
       else {
-        plVar5 = (longlong *)param_3[2];
+        plVar5 = (int64_t *)param_3[2];
       }
       iVar3 = memcmp(plVar5 + 4,param_4,0x10);
       if (iVar3 < 0) {
@@ -541,23 +541,23 @@ binary_tree_insert_node(longlong *param_1,uint64_t *param_2,longlong *param_3,ui
     }
     iVar3 = memcmp(param_3 + 4,param_4,0x10);
     if (iVar3 < 0) {
-      plVar1 = (longlong *)param_3[2];
+      plVar1 = (int64_t *)param_3[2];
       plVar6 = param_3;
       if (*(char *)(param_3[2] + 0x19) == '\0') {
         do {
           plVar5 = plVar1;
-          plVar1 = (longlong *)*plVar5;
+          plVar1 = (int64_t *)*plVar5;
         } while (*(char *)(*plVar5 + 0x19) == '\0');
       }
       else {
         do {
-          plVar5 = (longlong *)plVar6[1];
-          if (*(char *)((longlong)plVar5 + 0x19) != '\0') break;
-          bVar7 = plVar6 == (longlong *)plVar5[2];
+          plVar5 = (int64_t *)plVar6[1];
+          if (*(char *)((int64_t)plVar5 + 0x19) != '\0') break;
+          bVar7 = plVar6 == (int64_t *)plVar5[2];
           plVar6 = plVar5;
         } while (bVar7);
       }
-      if ((plVar5 == (longlong *)*param_1) || (iVar3 = memcmp(param_4,plVar5 + 4,0x10), iVar3 < 0))
+      if ((plVar5 == (int64_t *)*param_1) || (iVar3 = memcmp(param_4,plVar5 + 4,0x10), iVar3 < 0))
       {
         if (*(char *)(param_3[2] + 0x19) != '\0') {
           tree_node_insert(param_1,param_2,0,param_3);
@@ -596,27 +596,27 @@ void *memory_allocate_and_copy(uint64_t *param_1)
 
 
 
-// 函数: uint64_t *binary_tree_node_insert(longlong *param_1,uint64_t *param_2,char param_3,uint64_t *param_4,
-//             uint64_t param_5,longlong *param_6)
+// 函数: uint64_t *binary_tree_node_insert(int64_t *param_1,uint64_t *param_2,char param_3,uint64_t *param_4,
+//             uint64_t param_5,int64_t *param_6)
 // 功能: 在二叉树中插入节点的底层实现
 // 参数: param_1 - 树结构, param_2 - 插入位置, param_3 - 插入标志, param_4 - 节点数据, param_5 - 附加参数, param_6 - 节点指针
 // 返回: uint64_t * - 插入结果
 // 说明: 这是二叉树插入操作的核心实现，处理各种边界条件和节点链接
 uint64_t *
-binary_tree_node_insert(longlong *param_1,uint64_t *param_2,char param_3,uint64_t *param_4,
-                       uint64_t param_5,longlong *param_6)
+binary_tree_node_insert(int64_t *param_1,uint64_t *param_2,char param_3,uint64_t *param_4,
+                       uint64_t param_5,int64_t *param_6)
 
 {
   char cVar1;
-  longlong *plVar2;
+  int64_t *plVar2;
   code *pcVar3;
   uint64_t *puVar4;
-  longlong lVar5;
-  longlong *plVar6;
-  longlong *plVar7;
-  longlong *plVar8;
+  int64_t lVar5;
+  int64_t *plVar6;
+  int64_t *plVar7;
+  int64_t *plVar8;
   
-  if (0x2e8ba2e8ba2e8b8 < (ulonglong)param_1[1]) {
+  if (0x2e8ba2e8ba2e8b8 < (uint64_t)param_1[1]) {
     throw_length_error();
     __Xlength_error_std__YAXPEBD_Z(&字符串常量_长度错误信息);
     pcVar3 = (code *)swi(3);
@@ -624,17 +624,17 @@ binary_tree_node_insert(longlong *param_1,uint64_t *param_2,char param_3,uint64_
     return puVar4;
   }
   param_1[1] = param_1[1] + 1;
-  param_6[1] = (longlong)param_4;
+  param_6[1] = (int64_t)param_4;
   if (param_4 == (uint64_t *)*param_1) {
     ((uint64_t *)*param_1)[1] = param_6;
-    *(longlong **)*param_1 = param_6;
+    *(int64_t **)*param_1 = param_6;
     lVar5 = *param_1;
   }
   else {
     if (param_3 != '\0') {
       *param_4 = param_6;
       if (param_4 == *(uint64_t **)*param_1) {
-        *(longlong **)*param_1 = param_6;
+        *(int64_t **)*param_1 = param_6;
       }
       goto LAB_18008f4f4;
     }
@@ -642,7 +642,7 @@ binary_tree_node_insert(longlong *param_1,uint64_t *param_2,char param_3,uint64_
     lVar5 = *param_1;
     if (param_4 != *(uint64_t **)(lVar5 + 0x10)) goto LAB_18008f4f4;
   }
-  *(longlong **)(lVar5 + 0x10) = param_6;
+  *(int64_t **)(lVar5 + 0x10) = param_6;
 LAB_18008f4f4:
   cVar1 = *(char *)(param_6[1] + 0x18);
   plVar8 = param_6;
@@ -650,86 +650,86 @@ LAB_18008f4f4:
     if (cVar1 != '\0') {
       lVar5 = *param_1;
       *param_2 = plVar8;
-      *(int8_t *)(*(longlong *)(lVar5 + 8) + 0x18) = 1;
+      *(int8_t *)(*(int64_t *)(lVar5 + 8) + 0x18) = 1;
       return param_2;
     }
-    plVar6 = (longlong *)param_6[1];
-    plVar7 = *(longlong **)plVar6[1];
+    plVar6 = (int64_t *)param_6[1];
+    plVar7 = *(int64_t **)plVar6[1];
     if (plVar6 == plVar7) {
-      lVar5 = ((longlong *)plVar6[1])[2];
+      lVar5 = ((int64_t *)plVar6[1])[2];
       if (*(char *)(lVar5 + 0x18) == '\0') {
         *(int8_t *)(plVar6 + 3) = 1;
         *(int8_t *)(lVar5 + 0x18) = 1;
-        *(int8_t *)(*(longlong *)(param_6[1] + 8) + 0x18) = 0;
-        param_6 = *(longlong **)(param_6[1] + 8);
+        *(int8_t *)(*(int64_t *)(param_6[1] + 8) + 0x18) = 0;
+        param_6 = *(int64_t **)(param_6[1] + 8);
       }
       else {
-        if (param_6 == (longlong *)plVar6[2]) {
+        if (param_6 == (int64_t *)plVar6[2]) {
           handle_tree_rotation_case1(param_1);
           param_6 = plVar6;
         }
         *(int8_t *)(param_6[1] + 0x18) = 1;
-        *(int8_t *)(*(longlong *)(param_6[1] + 8) + 0x18) = 0;
-        plVar6 = *(longlong **)(param_6[1] + 8);
-        plVar7 = (longlong *)*plVar6;
+        *(int8_t *)(*(int64_t *)(param_6[1] + 8) + 0x18) = 0;
+        plVar6 = *(int64_t **)(param_6[1] + 8);
+        plVar7 = (int64_t *)*plVar6;
         *plVar6 = plVar7[2];
         if (*(char *)(plVar7[2] + 0x19) == '\0') {
-          *(longlong **)(plVar7[2] + 8) = plVar6;
+          *(int64_t **)(plVar7[2] + 8) = plVar6;
         }
         plVar7[1] = plVar6[1];
-        if (plVar6 == *(longlong **)(*param_1 + 8)) {
-          *(longlong **)(*param_1 + 8) = plVar7;
-          plVar7[2] = (longlong)plVar6;
+        if (plVar6 == *(int64_t **)(*param_1 + 8)) {
+          *(int64_t **)(*param_1 + 8) = plVar7;
+          plVar7[2] = (int64_t)plVar6;
         }
         else {
-          plVar2 = (longlong *)plVar6[1];
-          if (plVar6 == (longlong *)plVar2[2]) {
-            plVar2[2] = (longlong)plVar7;
-            plVar7[2] = (longlong)plVar6;
+          plVar2 = (int64_t *)plVar6[1];
+          if (plVar6 == (int64_t *)plVar2[2]) {
+            plVar2[2] = (int64_t)plVar7;
+            plVar7[2] = (int64_t)plVar6;
           }
           else {
-            *plVar2 = (longlong)plVar7;
-            plVar7[2] = (longlong)plVar6;
+            *plVar2 = (int64_t)plVar7;
+            plVar7[2] = (int64_t)plVar6;
           }
         }
 LAB_18008f669:
-        plVar6[1] = (longlong)plVar7;
+        plVar6[1] = (int64_t)plVar7;
       }
     }
     else {
       if ((char)plVar7[3] != '\0') {
-        if (param_6 == (longlong *)*plVar6) {
+        if (param_6 == (int64_t *)*plVar6) {
           handle_tree_rotation_case2(param_1);
           param_6 = plVar6;
         }
         *(int8_t *)(param_6[1] + 0x18) = 1;
-        *(int8_t *)(*(longlong *)(param_6[1] + 8) + 0x18) = 0;
-        plVar6 = *(longlong **)(param_6[1] + 8);
-        plVar7 = (longlong *)plVar6[2];
+        *(int8_t *)(*(int64_t *)(param_6[1] + 8) + 0x18) = 0;
+        plVar6 = *(int64_t **)(param_6[1] + 8);
+        plVar7 = (int64_t *)plVar6[2];
         plVar6[2] = *plVar7;
         if (*(char *)(*plVar7 + 0x19) == '\0') {
-          *(longlong **)(*plVar7 + 8) = plVar6;
+          *(int64_t **)(*plVar7 + 8) = plVar6;
         }
         plVar7[1] = plVar6[1];
-        if (plVar6 == *(longlong **)(*param_1 + 8)) {
-          *(longlong **)(*param_1 + 8) = plVar7;
+        if (plVar6 == *(int64_t **)(*param_1 + 8)) {
+          *(int64_t **)(*param_1 + 8) = plVar7;
         }
         else {
           puVar4 = (uint64_t *)plVar6[1];
-          if (plVar6 == (longlong *)*puVar4) {
+          if (plVar6 == (int64_t *)*puVar4) {
             *puVar4 = plVar7;
           }
           else {
             puVar4[2] = plVar7;
           }
         }
-        *plVar7 = (longlong)plVar6;
+        *plVar7 = (int64_t)plVar6;
         goto LAB_18008f669;
       }
       *(int8_t *)(plVar6 + 3) = 1;
       *(int8_t *)(plVar7 + 3) = 1;
-      *(int8_t *)(*(longlong *)(param_6[1] + 8) + 0x18) = 0;
-      param_6 = *(longlong **)(param_6[1] + 8);
+      *(int8_t *)(*(int64_t *)(param_6[1] + 8) + 0x18) = 0;
+      param_6 = *(int64_t **)(param_6[1] + 8);
     }
     cVar1 = *(char *)(param_6[1] + 0x18);
   } while( true );
@@ -737,14 +737,14 @@ LAB_18008f669:
 
 
 
-// 函数: uint64_t *binary_tree_find_insert_position(longlong *param_1,uint64_t *param_2,char param_3,uint64_t param_4,
+// 函数: uint64_t *binary_tree_find_insert_position(int64_t *param_1,uint64_t *param_2,char param_3,uint64_t param_4,
 //             uint64_t param_5)
 // 功能: 在二叉树中查找合适的插入位置
 // 参数: param_1 - 树结构, param_2 - 临时存储, param_3 - 查找标志, param_4 - 比较数据, param_5 - 附加参数
 // 返回: uint64_t * - 找到的位置指针
 // 说明: 在二叉树中搜索合适的插入位置，考虑各种比较条件和平衡要求
 uint64_t *
-binary_tree_find_insert_position(longlong *param_1,uint64_t *param_2,char param_3,uint64_t param_4,
+binary_tree_find_insert_position(int64_t *param_1,uint64_t *param_2,char param_3,uint64_t param_4,
                                 uint64_t param_5)
 
 {
@@ -759,7 +759,7 @@ binary_tree_find_insert_position(longlong *param_1,uint64_t *param_2,char param_
   bVar6 = true;
   puVar4 = (uint64_t *)((uint64_t *)*param_1)[1];
   puVar5 = (uint64_t *)*param_1;
-  while (*(char *)((longlong)puVar4 + 0x19) == '\0') {
+  while (*(char *)((int64_t)puVar4 + 0x19) == '\0') {
     if (param_3 == '\0') {
       iVar3 = memcmp(param_4,puVar4 + 4,0x10);
       bVar6 = iVar3 < 0;
@@ -784,22 +784,22 @@ binary_tree_find_insert_position(longlong *param_1,uint64_t *param_2,char param_
       *(int8_t *)(param_2 + 1) = 1;
       return param_2;
     }
-    if (*(char *)((longlong)puVar5 + 0x19) == '\0') {
+    if (*(char *)((int64_t)puVar5 + 0x19) == '\0') {
       puVar2 = (uint64_t *)*puVar5;
       puVar1 = puVar5;
-      if (*(char *)((longlong)*puVar5 + 0x19) == '\0') {
+      if (*(char *)((int64_t)*puVar5 + 0x19) == '\0') {
         do {
           puVar4 = puVar2;
           puVar2 = (uint64_t *)puVar4[2];
-        } while (*(char *)((longlong)puVar4[2] + 0x19) == '\0');
+        } while (*(char *)((int64_t)puVar4[2] + 0x19) == '\0');
       }
       else {
         do {
           puVar4 = puVar1;
           puVar1 = (uint64_t *)puVar4[1];
-          if (*(char *)((longlong)puVar1 + 0x19) != '\0') break;
+          if (*(char *)((int64_t)puVar1 + 0x19) != '\0') break;
         } while (puVar4 == (uint64_t *)*puVar1);
-        if (*(char *)((longlong)puVar4 + 0x19) == '\0') {
+        if (*(char *)((int64_t)puVar4 + 0x19) == '\0') {
           puVar4 = puVar1;
         }
       }
@@ -824,12 +824,12 @@ binary_tree_find_insert_position(longlong *param_1,uint64_t *param_2,char param_
 
 
 
-// 函数: longlong *string_compare_with_flags(longlong *param_1,longlong *param_2,longlong *param_3)
+// 函数: int64_t *string_compare_with_flags(int64_t *param_1,int64_t *param_2,int64_t *param_3)
 // 功能: 比较两个字符串，考虑各种标志和特殊情况
 // 参数: param_1 - 字符串1指针, param_2 - 字符串2指针, param_3 - 比较标志
-// 返回: longlong * - 比较结果
+// 返回: int64_t * - 比较结果
 // 说明: 这是一个复杂的字符串比较函数，处理空字符串和各种比较情况
-longlong *string_compare_with_flags(longlong *param_1,longlong *param_2,longlong *param_3)
+int64_t *string_compare_with_flags(int64_t *param_1,int64_t *param_2,int64_t *param_3)
 
 {
   byte bVar1;
@@ -839,7 +839,7 @@ longlong *string_compare_with_flags(longlong *param_1,longlong *param_2,longlong
   bool bVar5;
   byte *pbVar6;
   uint uVar7;
-  longlong lVar8;
+  int64_t lVar8;
   
   iVar2 = (int)param_1[1];
   iVar3 = (int)param_2[1];
@@ -852,7 +852,7 @@ longlong *string_compare_with_flags(longlong *param_1,longlong *param_2,longlong
     }
     else {
       pbVar6 = *(byte **)(*param_2 + 0x70);
-      lVar8 = *(longlong *)(*param_1 + 0x70) - (longlong)pbVar6;
+      lVar8 = *(int64_t *)(*param_1 + 0x70) - (int64_t)pbVar6;
       do {
         bVar1 = *pbVar6;
         uVar7 = (uint)pbVar6[lVar8];
@@ -876,7 +876,7 @@ longlong *string_compare_with_flags(longlong *param_1,longlong *param_2,longlong
       }
       else {
         pbVar6 = *(byte **)(*param_3 + 0x70);
-        lVar8 = *(longlong *)(*param_2 + 0x70) - (longlong)pbVar6;
+        lVar8 = *(int64_t *)(*param_2 + 0x70) - (int64_t)pbVar6;
         do {
           bVar1 = *pbVar6;
           uVar7 = (uint)pbVar6[lVar8];
@@ -901,7 +901,7 @@ longlong *string_compare_with_flags(longlong *param_1,longlong *param_2,longlong
       }
       else {
         pbVar6 = *(byte **)(*param_3 + 0x70);
-        lVar8 = *(longlong *)(*param_1 + 0x70) - (longlong)pbVar6;
+        lVar8 = *(int64_t *)(*param_1 + 0x70) - (int64_t)pbVar6;
         do {
           bVar1 = *pbVar6;
           uVar7 = (uint)pbVar6[lVar8];
@@ -928,7 +928,7 @@ longlong *string_compare_with_flags(longlong *param_1,longlong *param_2,longlong
       }
       else {
         pbVar6 = *(byte **)(*param_3 + 0x70);
-        lVar8 = *(longlong *)(*param_1 + 0x70) - (longlong)pbVar6;
+        lVar8 = *(int64_t *)(*param_1 + 0x70) - (int64_t)pbVar6;
         do {
           bVar1 = *pbVar6;
           uVar7 = (uint)pbVar6[lVar8];
@@ -951,7 +951,7 @@ longlong *string_compare_with_flags(longlong *param_1,longlong *param_2,longlong
         }
         else {
           pbVar6 = *(byte **)(*param_3 + 0x70);
-          lVar8 = *(longlong *)(*param_2 + 0x70) - (longlong)pbVar6;
+          lVar8 = *(int64_t *)(*param_2 + 0x70) - (int64_t)pbVar6;
           do {
             bVar1 = *pbVar6;
             uVar7 = (uint)pbVar6[lVar8];
@@ -977,28 +977,28 @@ longlong *string_compare_with_flags(longlong *param_1,longlong *param_2,longlong
 
 
 
-// 函数: void heap_sort_adjust_down(longlong param_1,longlong param_2,longlong param_3,longlong param_4,
+// 函数: void heap_sort_adjust_down(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param_4,
 // 功能: 堆排序中的向下调整操作
 // 参数: param_1 - 堆数组, param_2 - 堆大小, param_3 - 调整起始位置, param_4 - 堆属性, param_5 - 临时存储
 // 返回: void
 // 说明: 这是堆排序算法中的核心向下调整函数
-void heap_sort_adjust_down(longlong param_1,longlong param_2,longlong param_3,longlong param_4,
-                  longlong *param_5)
+void heap_sort_adjust_down(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param_4,
+                  int64_t *param_5)
 
 {
   byte bVar1;
-  longlong lVar2;
+  int64_t lVar2;
   bool bVar3;
-  longlong lVar4;
+  int64_t lVar4;
   byte *pbVar5;
   uint uVar6;
-  longlong lVar7;
-  longlong lVar8;
+  int64_t lVar7;
+  int64_t lVar8;
   
   lVar7 = param_4 * 2;
   while (lVar4 = lVar7 + 2, lVar4 < param_3) {
-    lVar8 = *(longlong *)(param_1 + -8 + lVar4 * 8);
-    lVar2 = *(longlong *)(param_1 + lVar4 * 8);
+    lVar8 = *(int64_t *)(param_1 + -8 + lVar4 * 8);
+    lVar2 = *(int64_t *)(param_1 + lVar4 * 8);
     if (*(int *)(lVar8 + 0x78) == 0) {
       bVar3 = false;
     }
@@ -1007,7 +1007,7 @@ void heap_sort_adjust_down(longlong param_1,longlong param_2,longlong param_3,lo
     }
     else {
       pbVar5 = *(byte **)(lVar8 + 0x70);
-      lVar8 = *(longlong *)(lVar2 + 0x70) - (longlong)pbVar5;
+      lVar8 = *(int64_t *)(lVar2 + 0x70) - (int64_t)pbVar5;
       do {
         bVar1 = *pbVar5;
         uVar6 = (uint)pbVar5[lVar8];
@@ -1029,21 +1029,21 @@ void heap_sort_adjust_down(longlong param_1,longlong param_2,longlong param_3,lo
     param_4 = lVar7 + 1;
   }
   if (param_4 <= param_2) {
-    *(longlong *)(param_1 + param_4 * 8) = *param_5;
+    *(int64_t *)(param_1 + param_4 * 8) = *param_5;
     return;
   }
   do {
     lVar7 = *param_5;
     lVar8 = param_4 + -1 >> 1;
-    lVar4 = *(longlong *)(param_1 + lVar8 * 8);
+    lVar4 = *(int64_t *)(param_1 + lVar8 * 8);
     if (*(int *)(lVar7 + 0x78) == 0) {
 LAB_18008fb99:
-      *(longlong *)(param_1 + param_4 * 8) = lVar7;
+      *(int64_t *)(param_1 + param_4 * 8) = lVar7;
       return;
     }
     if (*(int *)(lVar4 + 0x78) != 0) {
       pbVar5 = *(byte **)(lVar7 + 0x70);
-      lVar7 = *(longlong *)(lVar4 + 0x70) - (longlong)pbVar5;
+      lVar7 = *(int64_t *)(lVar4 + 0x70) - (int64_t)pbVar5;
       do {
         bVar1 = *pbVar5;
         uVar6 = (uint)pbVar5[lVar7];
@@ -1055,10 +1055,10 @@ LAB_18008fb99:
         goto LAB_18008fb99;
       }
     }
-    *(longlong *)(param_1 + param_4 * 8) = lVar4;
+    *(int64_t *)(param_1 + param_4 * 8) = lVar4;
     param_4 = lVar8;
     if (lVar8 <= param_2) {
-      *(longlong *)(param_1 + lVar8 * 8) = *param_5;
+      *(int64_t *)(param_1 + lVar8 * 8) = *param_5;
       return;
     }
   } while( true );
@@ -1077,28 +1077,28 @@ void heap_sort_adjust_up_string(void)
 
 {
   byte bVar1;
-  longlong lVar2;
+  int64_t lVar2;
   byte *pbVar3;
   uint uVar4;
-  longlong unaff_RSI;
-  longlong lVar5;
-  longlong lVar6;
-  longlong in_R10;
-  longlong in_R11;
-  longlong *in_stack_00000030;
+  int64_t unaff_RSI;
+  int64_t lVar5;
+  int64_t lVar6;
+  int64_t in_R10;
+  int64_t in_R11;
+  int64_t *in_stack_00000030;
   
   do {
     lVar5 = *in_stack_00000030;
     lVar6 = in_R10 + -1 >> 1;
-    lVar2 = *(longlong *)(in_R11 + lVar6 * 8);
+    lVar2 = *(int64_t *)(in_R11 + lVar6 * 8);
     if (*(int *)(lVar5 + 0x78) == 0) {
 LAB_18008fb99:
-      *(longlong *)(in_R11 + in_R10 * 8) = lVar5;
+      *(int64_t *)(in_R11 + in_R10 * 8) = lVar5;
       return;
     }
     if (*(int *)(lVar2 + 0x78) != 0) {
       pbVar3 = *(byte **)(lVar5 + 0x70);
-      lVar5 = *(longlong *)(lVar2 + 0x70) - (longlong)pbVar3;
+      lVar5 = *(int64_t *)(lVar2 + 0x70) - (int64_t)pbVar3;
       do {
         bVar1 = *pbVar3;
         uVar4 = (uint)pbVar3[lVar5];
@@ -1110,10 +1110,10 @@ LAB_18008fb99:
         goto LAB_18008fb99;
       }
     }
-    *(longlong *)(in_R11 + in_R10 * 8) = lVar2;
+    *(int64_t *)(in_R11 + in_R10 * 8) = lVar2;
     in_R10 = lVar6;
     if (lVar6 <= unaff_RSI) {
-      *(longlong *)(in_R11 + lVar6 * 8) = *in_stack_00000030;
+      *(int64_t *)(in_R11 + lVar6 * 8) = *in_stack_00000030;
       return;
     }
   } while( true );
@@ -1132,8 +1132,8 @@ void heap_assign_direct(void)
 
 {
   uint64_t *unaff_RDI;
-  longlong in_R10;
-  longlong in_R11;
+  int64_t in_R10;
+  int64_t in_R11;
   
   *(uint64_t *)(in_R11 + in_R10 * 8) = *unaff_RDI;
   return;
@@ -1151,8 +1151,8 @@ void heap_assign_direct(void)
 void heap_assign_from_stack(void)
 
 {
-  longlong in_R10;
-  longlong in_R11;
+  int64_t in_R10;
+  int64_t in_R11;
   uint64_t *in_stack_00000030;
   
   *(uint64_t *)(in_R11 + in_R10 * 8) = *in_stack_00000030;

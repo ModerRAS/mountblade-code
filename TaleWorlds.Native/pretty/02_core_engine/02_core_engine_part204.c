@@ -29,36 +29,36 @@ extern int8_t system_buffer_ptr;      // 默认字符串数据
  * @param param3 保留参数
  * @param param4 保留参数
  */
-void cleanup_linked_list_memory(longlong context, uint64_t param2, uint64_t param3, uint64_t param_4)
+void cleanup_linked_list_memory(int64_t context, uint64_t param2, uint64_t param3, uint64_t param_4)
 
 {
-  longlong *list_head;
-  longlong current_node;
-  longlong *next_node;
-  longlong *node_ptr;
+  int64_t *list_head;
+  int64_t current_node;
+  int64_t *next_node;
+  int64_t *node_ptr;
   uint64_t cleanup_flag;
   
   cleanup_flag = 0xfffffffffffffffe;
-  list_head = (longlong *)(context + 0x28);
+  list_head = (int64_t *)(context + 0x28);
   current_node = *list_head;
-  node_ptr = *(longlong **)(current_node + 8);
+  node_ptr = *(int64_t **)(current_node + 8);
   
   // 检查是否需要遍历清理链表
-  if (*(char *)((longlong)*(longlong **)(current_node + 8) + 0x19) == '\0') {
+  if (*(char *)((int64_t)*(int64_t **)(current_node + 8) + 0x19) == '\0') {
     do {
       // 调用清理函数处理每个节点
       FUN_1801885a0(list_head, node_ptr[2], param3, param4, cleanup_flag);
-      next_node = (longlong *)*node_ptr;
+      next_node = (int64_t *)*node_ptr;
       free(node_ptr, 0x28);
       node_ptr = next_node;
-    } while (*(char *)((longlong)next_node + 0x19) == '\0');
+    } while (*(char *)((int64_t)next_node + 0x19) == '\0');
     current_node = *list_head;
   }
   
   // 重置链表结构
-  *(longlong *)(current_node + 8) = current_node;
-  *(longlong *)*list_head = current_node;
-  *(longlong *)(*list_head + 0x10) = current_node;
+  *(int64_t *)(current_node + 8) = current_node;
+  *(int64_t *)*list_head = current_node;
+  *(int64_t *)(*list_head + 0x10) = current_node;
   *(uint64_t *)(context + 0x30) = 0;
   free(*list_head, 0x28);
   FUN_180067070(context + 8);
@@ -78,13 +78,13 @@ void cleanup_linked_list_memory(longlong context, uint64_t param2, uint64_t para
  * @param param3 保留参数
  * @param param4 保留参数
  */
-void free_buffer_memory(longlong *buffer_ptr, uint64_t param2, uint64_t param3, uint64_t param_4)
+void free_buffer_memory(int64_t *buffer_ptr, uint64_t param2, uint64_t param3, uint64_t param_4)
 
 {
-  longlong buffer_start;
-  longlong buffer_end;
-  ulonglong buffer_size;
-  longlong actual_start;
+  int64_t buffer_start;
+  int64_t buffer_end;
+  uint64_t buffer_size;
+  int64_t actual_start;
   
   buffer_start = *buffer_ptr;
   if (buffer_start != 0) {
@@ -93,7 +93,7 @@ void free_buffer_memory(longlong *buffer_ptr, uint64_t param2, uint64_t param3, 
     
     // 检查缓冲区大小是否超出限制
     if (0xfff < buffer_size) {
-      actual_start = *(longlong *)(buffer_start + -8);
+      actual_start = *(int64_t *)(buffer_start + -8);
       if (0x1f < (buffer_start - actual_start) - 8U) {
         // 缓冲区大小验证失败
         _invalid_parameter_noinfo_noreturn(buffer_start - actual_start, buffer_size + 0x27, actual_start, param4, 0xfffffffffffffffe);
@@ -123,34 +123,34 @@ void free_buffer_memory(longlong *buffer_ptr, uint64_t param2, uint64_t param3, 
 void format_and_process_string_data(uint64_t context, uint64_t *data_ptr)
 
 {
-  longlong *engine_data;
-  longlong security_check;
+  int64_t *engine_data;
+  int64_t security_check;
   uint64_t format_result;
   void *string_data;
-  ulonglong buffer_size;
-  longlong string_length;
-  longlong data_length;
+  uint64_t buffer_size;
+  int64_t string_length;
+  int64_t data_length;
   int8_t security_buffer [32];
-  longlong **temp_pointer;
+  int64_t **temp_pointer;
   uint64_t cleanup_flag;
   uint64_t *output_data;
   int8_t temp_buffer [16];
   uint64_t buffer_capacity;
   uint64_t buffer_size_flag;
-  longlong *format_data;
+  int64_t *format_data;
   uint64_t format_flag;
   void *temp_string;
-  longlong temp_length;
+  int64_t temp_length;
   uint64_t temp_data;
-  ulonglong alloc_size;
+  uint64_t alloc_size;
   void **string_pointer;
-  ulonglong security_xor;
+  uint64_t security_xor;
   
   engine_data = core_system_data_string;
   cleanup_flag = 0xfffffffffffffffe;
-  security_xor = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
+  security_xor = GET_SECURITY_COOKIE() ^ (uint64_t)security_buffer;
   output_data = data_ptr;
-  if (*(longlong *)(core_system_data_string + 8) == 0) {
+  if (*(int64_t *)(core_system_data_string + 8) == 0) {
     *data_ptr = &global_var_3456_ptr;
     if (data_ptr[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -164,9 +164,9 @@ void format_and_process_string_data(uint64_t context, uint64_t *data_ptr)
     buffer_size_flag = 0xf;
     temp_buffer[0] = 0;
     temp_pointer = &format_data;
-    format_data = (longlong *)0x0;
+    format_data = (int64_t *)0x0;
     format_flag = 0;
-    format_data = (longlong *)FUN_180188490();
+    format_data = (int64_t *)FUN_180188490();
     string_data = &system_buffer_ptr;
     if ((void *)data_ptr[1] != (void *)0x0) {
       string_data = (void *)data_ptr[1];
@@ -183,7 +183,7 @@ void format_and_process_string_data(uint64_t context, uint64_t *data_ptr)
     }
     temp_data = 0;
     alloc_size = 0xf;
-    temp_string = (void *)((ulonglong)temp_string & 0xffffffffffffff00);
+    temp_string = (void *)((uint64_t)temp_string & 0xffffffffffffff00);
     FUN_1800671b0(&temp_string,&global_var_276_ptr,5);
     format_result = FUN_180187f00(&format_data,&temp_string);
     do {
@@ -196,7 +196,7 @@ void format_and_process_string_data(uint64_t context, uint64_t *data_ptr)
       if (0xfff < buffer_size) {
         buffer_size = alloc_size + 0x28;
         string_data = *(void **)(temp_string + -8);
-        if ((void *)0x1f < temp_string + (-8 - (longlong)string_data)) {
+        if ((void *)0x1f < temp_string + (-8 - (int64_t)string_data)) {
                     // WARNING: Subroutine does not return
           _invalid_parameter_noinfo_noreturn();
         }
@@ -205,8 +205,8 @@ void format_and_process_string_data(uint64_t context, uint64_t *data_ptr)
     }
     temp_data = 0;
     alloc_size = 0xf;
-    engine_data = *(longlong **)(engine_data + 8);
-    temp_pointer = (longlong **)&temp_string;
+    engine_data = *(int64_t **)(engine_data + 8);
+    temp_pointer = (int64_t **)&temp_string;
     temp_string = &global_var_704_ptr;
     temp_length = engine_data;
     string_pointer = &temp_string;
@@ -214,9 +214,9 @@ void format_and_process_string_data(uint64_t context, uint64_t *data_ptr)
     engine_data = format_data;
     temp_pointer = &format_data;
     FUN_1801884d0(&format_data,format_data[1]);
-    format_data[1] = (longlong)engine_data;
-    *format_data = (longlong)engine_data;
-    format_data[2] = (longlong)engine_data;
+    format_data[1] = (int64_t)engine_data;
+    *format_data = (int64_t)engine_data;
+    format_data[2] = (int64_t)engine_data;
     format_flag = 0;
     free(format_data,0x60);
     FUN_180067070(temp_buffer);
@@ -230,7 +230,7 @@ void format_and_process_string_data(uint64_t context, uint64_t *data_ptr)
   }
   *data_ptr = &global_var_720_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(security_xor ^ (ulonglong)security_buffer);
+  FUN_1808fc050(security_xor ^ (uint64_t)security_buffer);
 }
 
 
@@ -246,18 +246,18 @@ void format_and_process_string_data(uint64_t context, uint64_t *data_ptr)
  * @param param3 保留参数
  * @param param4 保留参数
  */
-void reset_data_structure_and_free_memory(longlong data_context, uint64_t param2, uint64_t param3, uint64_t param4)
+void reset_data_structure_and_free_memory(int64_t data_context, uint64_t param2, uint64_t param3, uint64_t param4)
 
 {
-  longlong *data_pointer;
-  longlong current_data;
+  int64_t *data_pointer;
+  int64_t current_data;
   
-  data_pointer = (longlong *)(data_context + 0x20);
+  data_pointer = (int64_t *)(data_context + 0x20);
   current_data = *data_pointer;
   FUN_1801884d0(data_pointer,*(uint64_t *)(current_data + 8),param3,param4,0xfffffffffffffffe);
-  *(longlong *)(*data_pointer + 8) = current_data;
-  *(longlong *)*data_pointer = current_data;
-  *(longlong *)(*data_pointer + 0x10) = current_data;
+  *(int64_t *)(*data_pointer + 8) = current_data;
+  *(int64_t *)*data_pointer = current_data;
+  *(int64_t *)(*data_pointer + 0x10) = current_data;
   *(uint64_t *)(data_context + 0x28) = 0;
   free(*data_pointer,0x60);
   FUN_180067070(data_context);
@@ -281,18 +281,18 @@ void reset_data_structure_and_free_memory(longlong data_context, uint64_t param2
 void process_dual_parameter_formatting(uint64_t context, uint64_t *first_data, uint64_t *second_data)
 
 {
-  longlong *engine_data;
-  longlong security_check;
+  int64_t *engine_data;
+  int64_t security_check;
   void *string_data;
-  longlong first_length;
-  longlong second_length;
+  int64_t first_length;
+  int64_t second_length;
   int8_t security_buffer [32];
   uint64_t cleanup_flag;
   uint64_t *output_first;
   uint64_t *output_second;
   void **format_pointer;
   void *format_data;
-  longlong engine_context;
+  int64_t engine_context;
   void **temp_pointer;
   int8_t first_buffer [16];
   uint64_t first_capacity;
@@ -300,14 +300,14 @@ void process_dual_parameter_formatting(uint64_t context, uint64_t *first_data, u
   int8_t second_buffer [16];
   uint64_t second_capacity;
   uint64_t second_size;
-  ulonglong security_xor;
+  uint64_t security_xor;
   
   engine_data = core_system_data_string;
   cleanup_flag = 0xfffffffffffffffe;
-  security_xor = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
+  security_xor = GET_SECURITY_COOKIE() ^ (uint64_t)security_buffer;
   output_first = first_data;
   output_second = second_data;
-  if (*(longlong *)(core_system_data_string + 8) == 0) {
+  if (*(int64_t *)(core_system_data_string + 8) == 0) {
     *first_data = &global_var_3456_ptr;
     if (first_data[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -349,7 +349,7 @@ void process_dual_parameter_formatting(uint64_t context, uint64_t *first_data, u
       first_length = first_length + 1;
     } while (string_data[first_length] != '\0');
     FUN_1800671b0(second_buffer,string_data,first_length);
-    engine_data = *(longlong **)(engine_data + 8);
+    engine_data = *(int64_t **)(engine_data + 8);
     format_pointer = &format_data;
     format_data = &global_var_592_ptr;
     engine_context = engine_data;
@@ -375,7 +375,7 @@ void process_dual_parameter_formatting(uint64_t context, uint64_t *first_data, u
   }
   *second_data = &global_var_720_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(security_xor ^ (ulonglong)security_buffer);
+  FUN_1808fc050(security_xor ^ (uint64_t)security_buffer);
 }
 
 
@@ -388,7 +388,7 @@ void process_dual_parameter_formatting(uint64_t context, uint64_t *first_data, u
  * 
  * @param object_ptr 对象指针
  */
-void release_object_memory_resources(longlong object_ptr)
+void release_object_memory_resources(int64_t object_ptr)
 
 {
   FUN_180067070(object_ptr + 0x20);
@@ -416,18 +416,18 @@ void process_quad_parameter_formatting(uint64_t context, uint64_t *first_data, u
                                        int32_t second_param)
 
 {
-  longlong *engine_data;
-  longlong security_check;
+  int64_t *engine_data;
+  int64_t security_check;
   void *string_data;
-  longlong first_length;
-  longlong second_length;
+  int64_t first_length;
+  int64_t second_length;
   int8_t security_buffer [32];
   uint64_t cleanup_flag;
   uint64_t *output_first;
   uint64_t *output_second;
   void **format_pointer;
   void *format_data;
-  longlong engine_context;
+  int64_t engine_context;
   void **temp_pointer;
   int8_t first_buffer [16];
   uint64_t first_capacity;
@@ -437,14 +437,14 @@ void process_quad_parameter_formatting(uint64_t context, uint64_t *first_data, u
   uint64_t second_size;
   int32_t param1_value;
   int32_t param2_value;
-  ulonglong security_xor;
+  uint64_t security_xor;
   
   engine_data = core_system_data_string;
   cleanup_flag = 0xfffffffffffffffe;
-  security_xor = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
+  security_xor = GET_SECURITY_COOKIE() ^ (uint64_t)security_buffer;
   output_first = first_data;
   output_second = second_data;
-  if (*(longlong *)(core_system_data_string + 8) == 0) {
+  if (*(int64_t *)(core_system_data_string + 8) == 0) {
     *first_data = &global_var_3456_ptr;
     if (first_data[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -488,7 +488,7 @@ void process_quad_parameter_formatting(uint64_t context, uint64_t *first_data, u
       first_length = first_length + 1;
     } while (string_data[first_length] != '\0');
     FUN_1800671b0(second_buffer,string_data,first_length);
-    engine_data = *(longlong **)(engine_data + 8);
+    engine_data = *(int64_t **)(engine_data + 8);
     format_pointer = &format_data;
     format_data = &global_var_648_ptr;
     engine_context = engine_data;
@@ -514,7 +514,7 @@ void process_quad_parameter_formatting(uint64_t context, uint64_t *first_data, u
   }
   *second_data = &global_var_720_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(security_xor ^ (ulonglong)security_buffer);
+  FUN_1808fc050(security_xor ^ (uint64_t)security_buffer);
 }
 
 
@@ -531,15 +531,15 @@ void process_quad_parameter_formatting(uint64_t context, uint64_t *first_data, u
  * @param array_data 数组数据指针
  * @param array_size 数组大小
  */
-void process_array_data_formatting(uint64_t context, longlong array_data, ulonglong array_size)
+void process_array_data_formatting(uint64_t context, int64_t array_data, uint64_t array_size)
 
 {
-  longlong *engine_data;
-  longlong security_check;
+  int64_t *engine_data;
+  int64_t security_check;
   void **array_start;
   void **array_current;
-  ulonglong array_index;
-  longlong string_length;
+  uint64_t array_index;
+  int64_t string_length;
   int8_t security_buffer [32];
   void **array_head;
   void **array_tail;
@@ -547,17 +547,17 @@ void process_array_data_formatting(uint64_t context, longlong array_data, ulongl
   void **array_temp;
   uint64_t cleanup_flag;
   void *temp_string;
-  longlong engine_context;
+  int64_t engine_context;
   uint64_t temp_capacity;
   uint64_t temp_size;
   uint64_t temp_data;
   void **format_pointer;
-  ulonglong security_xor;
+  uint64_t security_xor;
   
   engine_data = core_system_data_string;
   cleanup_flag = 0xfffffffffffffffe;
-  security_xor = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
-  if (*(longlong *)(core_system_data_string + 8) != 0) {
+  security_xor = GET_SECURITY_COOKIE() ^ (uint64_t)security_buffer;
+  if (*(int64_t *)(core_system_data_string + 8) != 0) {
     array_head = (void **)0x0;
     array_tail = (void **)0x0;
     array_index = 0;
@@ -566,12 +566,12 @@ void process_array_data_formatting(uint64_t context, longlong array_data, ulongl
       do {
         temp_capacity = 0;
         temp_size = 0xf;
-        temp_string = (void *)((ulonglong)temp_string & 0xffffffffffffff00);
+        temp_string = (void *)((uint64_t)temp_string & 0xffffffffffffff00);
         temp_data = 0;
         string_length = -1;
         do {
           string_length = string_length + 1;
-        } while (*(char *)(*(longlong *)(array_data + array_index * 8) + string_length) != '\0');
+        } while (*(char *)(*(int64_t *)(array_data + array_index * 8) + string_length) != '\0');
         FUN_1800671b0(&temp_string);
         array_current = array_tail;
         if (array_end == array_tail) {
@@ -581,14 +581,14 @@ void process_array_data_formatting(uint64_t context, longlong array_data, ulongl
           array_temp = array_tail;
           FUN_18018b350(array_tail,&temp_string);
           *(int32_t *)(array_current + 4) = (int32_t)temp_data;
-          *(int32_t *)((longlong)array_current + 0x24) = temp_data._4_4_;
+          *(int32_t *)((int64_t)array_current + 0x24) = temp_data._4_4_;
           array_tail = array_tail + 5;
         }
         FUN_180067070(&temp_string);
         array_index = array_index + 1;
       } while (array_index < array_size);
     }
-    engine_data = *(longlong **)(engine_data + 8);
+    engine_data = *(int64_t **)(engine_data + 8);
     array_temp = &temp_string;
     temp_string = &global_var_480_ptr;
     engine_context = engine_data;
@@ -600,12 +600,12 @@ void process_array_data_formatting(uint64_t context, longlong array_data, ulongl
       for (; array_temp = array_current, array_current != array_start; array_current = array_current + 5) {
         FUN_180067070(array_current);
       }
-      array_index = (((longlong)array_end - (longlong)array_head) / 0x28) * 0x28;
+      array_index = (((int64_t)array_end - (int64_t)array_head) / 0x28) * 0x28;
       array_current = array_head;
       if (0xfff < array_index) {
         array_index = array_index + 0x27;
         array_current = (void **)array_head[-1];
-        if (0x1f < (ulonglong)((longlong)array_head + (-8 - (longlong)array_current))) {
+        if (0x1f < (uint64_t)((int64_t)array_head + (-8 - (int64_t)array_current))) {
                     // WARNING: Subroutine does not return
           _invalid_parameter_noinfo_noreturn();
         }
@@ -617,7 +617,7 @@ void process_array_data_formatting(uint64_t context, longlong array_data, ulongl
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(security_xor ^ (ulonglong)security_buffer);
+  FUN_1808fc050(security_xor ^ (uint64_t)security_buffer);
 }
 
 
@@ -634,7 +634,7 @@ void process_array_data_formatting(uint64_t context, longlong array_data, ulongl
 void initialize_memory_pool_structure(void)
 
 {
-  longlong pool_memory;
+  int64_t pool_memory;
   
   pool_memory = FUN_18062b1e0(system_memory_pool_ptr,0x88,8,3,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
@@ -662,11 +662,11 @@ void remove_entry_from_string_map(uint64_t context, uint64_t *string_data)
   int entry_length;
   uint64_t *map_entry;
   uint64_t *map_end;
-  longlong engine_data;
+  int64_t engine_data;
   byte *entry_string;
   int compare_result;
   uint64_t *map_start;
-  longlong string_offset;
+  int64_t string_offset;
   
   engine_data = core_system_data_string;
   map_start = *(uint64_t **)(core_system_data_string + 0x18);
@@ -679,7 +679,7 @@ void remove_entry_from_string_map(uint64_t context, uint64_t *string_data)
       if (entry_length == target_length) {
         if (entry_length != 0) {
           entry_string = (byte *)map_entry[1];
-          string_offset = string_data[1] - (longlong)entry_string;
+          string_offset = string_data[1] - (int64_t)entry_string;
           do {
             current_char = entry_string + string_offset;
             compare_result = (uint)*entry_string - (uint)*current_char;
@@ -718,7 +718,7 @@ ENTRY_FOUND:
           map_end = *(uint64_t **)(engine_data + 0x20);
           if (map_entry < map_end) {
                     // WARNING: Subroutine does not return
-            memmove(map_start,map_entry,(longlong)map_end - (longlong)map_entry,target_length,0xfffffffffffffffe);
+            memmove(map_start,map_entry,(int64_t)map_end - (int64_t)map_entry,target_length,0xfffffffffffffffe);
           }
           *(uint64_t **)(engine_data + 0x20) = map_end + -1;
           break;
@@ -753,32 +753,32 @@ ENTRY_FOUND:
  * @param map_ptr 映射结构指针
  * @param search_key 搜索键值
  */
-void process_string_map_structure(void **map_ptr, longlong search_key)
+void process_string_map_structure(void **map_ptr, int64_t search_key)
 
 {
-  ulonglong compare_size;
+  uint64_t compare_size;
   int8_t *string_buffer;
   int compare_result;
   uint64_t *node_data;
   uint64_t ref_count;
   uint64_t *string_ptr;
   int8_t *target_string;
-  ulonglong buffer_size;
+  uint64_t buffer_size;
   uint64_t *current_node;
   uint64_t **node_iterator;
-  longlong string_length;
-  longlong node_offset;
-  ulonglong min_size;
-  ulonglong max_size;
+  int64_t string_length;
+  int64_t node_offset;
+  uint64_t min_size;
+  uint64_t max_size;
   int8_t security_buffer [32];
   uint64_t process_result;
   uint64_t **iterator_start;
   uint64_t **iterator_current;
-  ulonglong match_count;
+  uint64_t match_count;
   uint64_t *result_data;
   void **map_pointer;
   int8_t *match_string;
-  longlong key_length;
+  int64_t key_length;
   uint64_t cleanup_flag;
   void *temp_data;
   void **temp_pointer;
@@ -790,23 +790,23 @@ void process_string_map_structure(void **map_ptr, longlong search_key)
   void **node_pointer;
   int8_t temp_string;
   uint8_t temp_padding;
-  ulonglong temp_capacity;
-  ulonglong temp_size;
-  longlong result_start;
-  longlong result_end;
-  longlong result_capacity;
+  uint64_t temp_capacity;
+  uint64_t temp_size;
+  int64_t result_start;
+  int64_t result_end;
+  int64_t result_capacity;
   int8_t key_buffer [16];
   uint64_t key_capacity;
   uint64_t key_size;
-  ulonglong security_xor;
+  uint64_t security_xor;
   
   cleanup_flag = 0xfffffffffffffffe;
-  security_xor = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
+  security_xor = GET_SECURITY_COOKIE() ^ (uint64_t)security_buffer;
   current_node = (uint64_t *)*map_ptr;
   map_pointer = map_ptr;
   key_length = search_key;
   if ((current_node != (uint64_t *)0x0) &&
-     (((longlong)map_ptr[4] - (longlong)map_ptr[3] & 0xfffffffffffffff8U) != 0)) {
+     (((int64_t)map_ptr[4] - (int64_t)map_ptr[3] & 0xfffffffffffffff8U) != 0)) {
     node_data = (uint64_t *)FUN_1808fc418(0x10);
     *node_data = &global_var_872_ptr;
     *node_data = &global_var_952_ptr;
@@ -838,11 +838,11 @@ void process_string_map_structure(void **map_ptr, longlong search_key)
     } while (*(char *)(search_key + string_length) != '\0');
     FUN_1800671b0(key_buffer,search_key);
     for (node_iterator = (uint64_t **)map_ptr[3]; iterator_current = node_iterator,
-        node_iterator != (uint64_t **)map_ptr[4]; node_iterator = (uint64_t **)((longlong *)node_iterator + 1))
+        node_iterator != (uint64_t **)map_ptr[4]; node_iterator = (uint64_t **)((int64_t *)node_iterator + 1))
     {
       data_capacity = 0;
       data_size = 0xf;
-      temp_data = (void *)((ulonglong)temp_data & 0xffffffffffffff00);
+      temp_data = (void *)((uint64_t)temp_data & 0xffffffffffffff00);
       is_found = 1;
       found_data = 0;
       iterator_start = &search_node;
@@ -852,16 +852,16 @@ void process_string_map_structure(void **map_ptr, longlong search_key)
       string_length = -1;
       do {
         string_length = string_length + 1;
-      } while (*(char *)(*(longlong *)((longlong)*node_iterator + 0x40) + string_length) != '\0');
+      } while (*(char *)(*(int64_t *)((int64_t)*node_iterator + 0x40) + string_length) != '\0');
       FUN_1800671b0(&temp_data);
-      string_length = (longlong)*node_iterator;
+      string_length = (int64_t)*node_iterator;
       is_found = *(int8_t *)(string_length + 0x48);
       found_data = *(uint64_t *)(string_length + 0x4c);
       match_count = 0;
-      if (*(longlong *)(string_length + 0x60) != 0) {
+      if (*(int64_t *)(string_length + 0x60) != 0) {
         iterator_start = (uint64_t **)0x0;
         do {
-          string_length = *(longlong *)(*(longlong *)(string_length + 0x58) + 8 + (longlong)iterator_start);
+          string_length = *(int64_t *)(*(int64_t *)(string_length + 0x58) + 8 + (int64_t)iterator_start);
           temp_capacity = 0;
           temp_size = 0xf;
           temp_string = 0;
@@ -873,7 +873,7 @@ void process_string_map_structure(void **map_ptr, longlong search_key)
           max_size = temp_size;
           buffer_size = temp_capacity;
           current_node = search_node;
-          if (*(char *)((longlong)search_node[1] + 0x19) == '\0') {
+          if (*(char *)((int64_t)search_node[1] + 0x19) == '\0') {
             string_buffer = (int8_t *)CONCAT71(temp_padding,temp_string);
             node_data = (uint64_t *)search_node[1];
             do {
@@ -883,7 +883,7 @@ void process_string_map_structure(void **map_ptr, longlong search_key)
                 target_string = string_buffer;
               }
               compare_size = node_data[6];
-              if (0xf < (ulonglong)node_data[7]) {
+              if (0xf < (uint64_t)node_data[7]) {
                 string_ptr = (uint64_t *)*string_ptr;
               }
               min_size = compare_size;
@@ -903,11 +903,11 @@ INSERT_LEFT:
                 string_ptr = (uint64_t *)node_data[2];
               }
               node_data = string_ptr;
-            } while (*(char *)((longlong)string_ptr + 0x19) == '\0');
+            } while (*(char *)((int64_t)string_ptr + 0x19) == '\0');
             if (current_node == search_node) goto INSERT_NEW;
             node_data = current_node + 4;
             compare_size = current_node[6];
-            if (0xf < (ulonglong)current_node[7]) {
+            if (0xf < (uint64_t)current_node[7]) {
               node_data = (uint64_t *)*node_data;
             }
             target_string = &temp_string;
@@ -938,7 +938,7 @@ INSERT_NEW:
           FUN_1800671b0(current_node + 8,string_length);
           if (0xf < temp_size) {
             if (0xfff < temp_size + 1) {
-              string_length = *(longlong *)(CONCAT71(temp_padding,temp_string) + -8);
+              string_length = *(int64_t *)(CONCAT71(temp_padding,temp_string) + -8);
               if (0x1f < (CONCAT71(temp_padding,temp_string) - string_length) - 8U) {
                     // WARNING: Subroutine does not return
                 _invalid_parameter_noinfo_noreturn(string_length,temp_size + 0x28);
@@ -951,11 +951,11 @@ INSERT_NEW:
           temp_string = 0;
           match_count = match_count + 1;
           iterator_start = iterator_start + 2;
-          string_length = (longlong)*iterator_current;
+          string_length = (int64_t)*iterator_current;
           search_key = key_length;
           node_iterator = iterator_current;
           map_ptr = map_pointer;
-        } while (match_count < *(ulonglong *)(string_length + 0x60));
+        } while (match_count < *(uint64_t *)(string_length + 0x60));
       }
       if (result_capacity == result_end) {
         FUN_1801891f0(&result_start,result_end,&temp_data);
@@ -978,7 +978,7 @@ INSERT_NEW:
     temp_data = &global_var_536_ptr;
     node_pointer = &temp_data;
     temp_pointer = map_ptr;
-    (**(code **)(*(longlong *)map_ptr[1] + 8))(map_ptr[1],&result_start,&temp_data,0);
+    (**(code **)(*(int64_t *)map_ptr[1] + 8))(map_ptr[1],&result_start,&temp_data,0);
     FUN_180067070(key_buffer);
     node_offset = result_end;
     string_length = result_start;
@@ -990,7 +990,7 @@ INSERT_NEW:
       string_length = result_start;
       if (0xfff < buffer_size) {
         buffer_size = buffer_size + 0x27;
-        string_length = *(longlong *)(result_start + -8);
+        string_length = *(int64_t *)(result_start + -8);
         if (0x1f < (result_start - string_length) - 8U) {
                     // WARNING: Subroutine does not return
           _invalid_parameter_noinfo_noreturn();
@@ -1003,7 +1003,7 @@ INSERT_NEW:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(security_xor ^ (ulonglong)security_buffer);
+  FUN_1808fc050(security_xor ^ (uint64_t)security_buffer);
 }
 
 
@@ -1016,11 +1016,11 @@ INSERT_NEW:
  * 
  * @param array_ptr 数组指针
  */
-void release_array_block_memory(longlong *array_ptr)
+void release_array_block_memory(int64_t *array_ptr)
 
 {
-  longlong current_block;
-  longlong end_block;
+  int64_t current_block;
+  int64_t end_block;
   
   FUN_180067070(array_ptr + 3);
   current_block = *array_ptr;
@@ -1035,7 +1035,7 @@ void release_array_block_memory(longlong *array_ptr)
     }
     end_block = current_block;
     if ((0xfff < (array_ptr[2] - current_block & 0xffffffffffffffc0U)) &&
-       (end_block = *(longlong *)(current_block + -8), 0x1f < (current_block - end_block) - 8U)) {
+       (end_block = *(int64_t *)(current_block + -8), 0x1f < (current_block - end_block) - 8U)) {
                     // WARNING: Subroutine does not return
       _invalid_parameter_noinfo_noreturn();
     }
@@ -1060,18 +1060,18 @@ void release_array_block_memory(longlong *array_ptr)
  * @param param3 保留参数
  * @param param4 保留参数
  */
-void cleanup_data_block_resources(longlong block_ptr, uint64_t param2, uint64_t param3, uint64_t param4)
+void cleanup_data_block_resources(int64_t block_ptr, uint64_t param2, uint64_t param3, uint64_t param4)
 
 {
-  longlong *data_pointer;
-  longlong current_data;
+  int64_t *data_pointer;
+  int64_t current_data;
   
-  data_pointer = (longlong *)(block_ptr + 0x30);
+  data_pointer = (int64_t *)(block_ptr + 0x30);
   current_data = *data_pointer;
   FUN_1801884d0(data_pointer,*(uint64_t *)(current_data + 8),param3,param4,0xfffffffffffffffe);
-  *(longlong *)(*data_pointer + 8) = current_data;
-  *(longlong *)*data_pointer = current_data;
-  *(longlong *)(*data_pointer + 0x10) = current_data;
+  *(int64_t *)(*data_pointer + 8) = current_data;
+  *(int64_t *)*data_pointer = current_data;
+  *(int64_t *)(*data_pointer + 0x10) = current_data;
   *(uint64_t *)(block_ptr + 0x38) = 0;
   free(*data_pointer,0x60);
   FUN_180067070(block_ptr);
@@ -1091,15 +1091,15 @@ void cleanup_data_block_resources(longlong block_ptr, uint64_t param2, uint64_t 
  * @param param3 保留参数
  * @param param4 保留参数
  */
-void release_object_instance_memory(longlong *object_ptr, uint64_t param2, uint64_t param3, uint64_t param4)
+void release_object_instance_memory(int64_t *object_ptr, uint64_t param2, uint64_t param3, uint64_t param4)
 
 {
-  longlong *instance_data;
+  int64_t *instance_data;
   
-  object_ptr = (longlong *)*object_ptr;
-  if (object_ptr != (longlong *)0x0) {
-    instance_data = (longlong *)object_ptr[7];
-    if (instance_data != (longlong *)0x0) {
+  object_ptr = (int64_t *)*object_ptr;
+  if (object_ptr != (int64_t *)0x0) {
+    instance_data = (int64_t *)object_ptr[7];
+    if (instance_data != (int64_t *)0x0) {
       (**(code **)(*instance_data + 0x20))(instance_data,instance_data != object_ptr,param3,param4,0xfffffffffffffffe);
       object_ptr[7] = 0;
     }
@@ -1124,19 +1124,19 @@ void release_object_instance_memory(longlong *object_ptr, uint64_t param2, uint6
  * @param param3 保留参数
  * @param param4 保留参数
  */
-void release_16byte_aligned_memory(longlong *memory_ptr, uint64_t param2, uint64_t param3, uint64_t param4)
+void release_16byte_aligned_memory(int64_t *memory_ptr, uint64_t param2, uint64_t param3, uint64_t param4)
 
 {
-  longlong memory_start;
-  longlong actual_start;
-  ulonglong memory_size;
+  int64_t memory_start;
+  int64_t actual_start;
+  uint64_t memory_size;
   
   memory_start = *memory_ptr;
   if (memory_start != 0) {
     memory_size = memory_ptr[2] - memory_start & 0xfffffffffffffff0;
     actual_start = memory_start;
     if (0xfff < memory_size) {
-      actual_start = *(longlong *)(memory_start + -8);
+      actual_start = *(int64_t *)(memory_start + -8);
       if (0x1f < (memory_start - actual_start) - 8U) {
                     // WARNING: Subroutine does not return
         _invalid_parameter_noinfo_noreturn
@@ -1164,12 +1164,12 @@ void release_16byte_aligned_memory(longlong *memory_ptr, uint64_t param2, uint64
  * @param param3 保留参数
  * @param param4 保留参数
  */
-void release_24byte_aligned_array_memory(longlong *array_ptr, uint64_t param2, uint64_t param3, uint64_t param4)
+void release_24byte_aligned_array_memory(int64_t *array_ptr, uint64_t param2, uint64_t param3, uint64_t param4)
 
 {
-  longlong array_start;
-  longlong actual_start;
-  ulonglong array_size;
+  int64_t array_start;
+  int64_t actual_start;
+  uint64_t array_size;
   
   if (*array_ptr != 0) {
     FUN_180189900(*array_ptr,array_ptr[1],param3,param4,0xfffffffffffffffe);
@@ -1177,7 +1177,7 @@ void release_24byte_aligned_array_memory(longlong *array_ptr, uint64_t param2, u
     array_size = ((array_ptr[2] - array_start) / 0x18) * 0x18;
     actual_start = array_start;
     if (0xfff < array_size) {
-      actual_start = *(longlong *)(array_start + -8);
+      actual_start = *(int64_t *)(array_start + -8);
       if (0x1f < (array_start - actual_start) - 8U) {
                     // WARNING: Subroutine does not return
         _invalid_parameter_noinfo_noreturn(array_start - actual_start,array_size + 0x27);
@@ -1204,19 +1204,19 @@ void release_24byte_aligned_array_memory(longlong *array_ptr, uint64_t param2, u
  * @param param3 保留参数
  * @param param4 保留参数
  */
-void release_40byte_aligned_array_memory(longlong *array_ptr, uint64_t param2, uint64_t param3, uint64_t param4)
+void release_40byte_aligned_array_memory(int64_t *array_ptr, uint64_t param2, uint64_t param3, uint64_t param4)
 
 {
-  longlong array_start;
-  longlong actual_start;
-  ulonglong array_size;
+  int64_t array_start;
+  int64_t actual_start;
+  uint64_t array_size;
   
   array_start = *array_ptr;
   if (array_start != 0) {
     array_size = ((array_ptr[2] - array_start) / 0x28) * 0x28;
     actual_start = array_start;
     if (0xfff < array_size) {
-      actual_start = *(longlong *)(array_start + -8);
+      actual_start = *(int64_t *)(array_start + -8);
       if (0x1f < (array_start - actual_start) - 8U) {
                     // WARNING: Subroutine does not return
         _invalid_parameter_noinfo_noreturn

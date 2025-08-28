@@ -24,7 +24,7 @@
 // DataBuffer_Prepare - 数据缓冲区准备器 (原FUN_18013ce40)
 
 // 全局变量引用
-extern longlong SYSTEM_DATA_MANAGER_A;      // 核心引擎全局数据结构指针
+extern int64_t SYSTEM_DATA_MANAGER_A;      // 核心引擎全局数据结构指针
 extern uint64_t SYSTEM_DATA_MANAGER_B;     // 内存分配器相关
 extern uint global_config_6320_ptr[256];       // 哈希计算查找表
 extern uint64_t global_config_3184_ptr;      // 字符串处理相关
@@ -35,9 +35,9 @@ extern char global_config_2420_ptr;            // 默认字符串常量
 // 函数声明
 void StringProcessor_FormatAndWrite(uint64_t *param_1, int param_2, ...);
 uint64_t StringStorage_CreateCopy(byte *param_1);
-uint64_t MemoryManager_Allocate(longlong param_1, uint64_t param_2);
+uint64_t MemoryManager_Allocate(int64_t param_1, uint64_t param_2);
 void ResourceCleaner_Release(uint64_t param_1, uint64_t param_2);
-longlong FileHandler_Open(longlong param_1, uint64_t *param_2);
+int64_t FileHandler_Open(int64_t param_1, uint64_t *param_2);
 uint64_t DataBuffer_Prepare(uint64_t *param_1);
 
 /**
@@ -48,11 +48,11 @@ uint64_t DataBuffer_Prepare(uint64_t *param_1);
  * @param param_2 输入字符串起始位置
  * @param param_3 输入字符串结束位置，如果为NULL则使用param_2
  */
-void process_string_and_write_buffer(longlong context, char *input_start, char *input_end)
+void process_string_and_write_buffer(int64_t context, char *input_start, char *input_end)
 {
-  longlong global_data;
+  int64_t global_data;
   bool should_use_alternative_format;
-  longlong buffer_manager;
+  int64_t buffer_manager;
   int current_count;
   int max_count;
   int write_index;
@@ -62,7 +62,7 @@ void process_string_and_write_buffer(longlong context, char *input_start, char *
   char *next_line_start;
   
   global_data = SYSTEM_DATA_MANAGER_A;
-  buffer_manager = *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8);
+  buffer_manager = *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8);
   
   // 如果结束位置为NULL，则使用起始位置作为结束位置
   if ((input_end == (char *)0x0) && (input_end = input_start, input_start != (char *)0xffffffffffffffff)) {
@@ -102,7 +102,7 @@ void process_string_and_write_buffer(longlong context, char *input_start, char *
   // 逐行处理字符串
   while( true ) {
     // 查找换行符
-    line_end = (char *)memchr(current_pos, 10, (longlong)input_end - (longlong)current_pos);
+    line_end = (char *)memchr(current_pos, 10, (int64_t)input_end - (int64_t)current_pos);
     next_line_start = input_end;
     
     if (line_end != (char *)0x0) {
@@ -146,13 +146,13 @@ uint64_t *create_string_hash_entry(byte *input_string)
   byte current_char;
   int capacity;
   int count;
-  longlong array_base;
+  int64_t array_base;
   byte *char_ptr;
-  longlong global_data;
+  int64_t global_data;
   int new_capacity;
   uint64_t new_array;
   int new_size;
-  longlong entry_offset;
+  int64_t entry_offset;
   int current_count;
   uint64_t *entry_ptr;
   uint hash_value;
@@ -180,12 +180,12 @@ uint64_t *create_string_hash_entry(byte *input_string)
     // 执行数组扩展
     if (capacity < new_capacity) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
-      new_array = MemoryManager_Allocate((longlong)new_capacity * 0x38, new_array);
+      new_array = MemoryManager_Allocate((int64_t)new_capacity * 0x38, new_array);
       
       // 复制现有数据
-      if (*(longlong *)(global_data + 0x2e30) != 0) {
-        memcpy(new_array, *(longlong *)(global_data + 0x2e30), 
-               (longlong)*(int *)(global_data + 0x2e28) * 0x38);
+      if (*(int64_t *)(global_data + 0x2e30) != 0) {
+        memcpy(new_array, *(int64_t *)(global_data + 0x2e30), 
+               (int64_t)*(int *)(global_data + 0x2e28) * 0x38);
       }
       
       count = *(int *)(global_data + 0x2e28);
@@ -195,8 +195,8 @@ uint64_t *create_string_hash_entry(byte *input_string)
   }
   
   // 计算新条目的偏移量
-  entry_offset = (longlong)count * 0x38;
-  array_base = *(longlong *)(global_data + 0x2e30);
+  entry_offset = (int64_t)count * 0x38;
+  array_base = *(int64_t *)(global_data + 0x2e30);
   
   // 初始化新条目的各个字段
   *(uint64_t *)(entry_offset + array_base) = 0;                    // 字段1
@@ -212,14 +212,14 @@ uint64_t *create_string_hash_entry(byte *input_string)
   data_fields[2] = 0;                                              // 数据字段3
   data_fields[3] = 0;                                              // 数据字段4
   
-  *(ulonglong *)(entry_offset + 0x30 + array_base) = CONCAT53(stack_temp, 0xffff);  // 标志字段
+  *(uint64_t *)(entry_offset + 0x30 + array_base) = CONCAT53(stack_temp, 0xffff);  // 标志字段
   
   // 更新计数器
   current_count = *(int *)(global_data + 0x2e28);
   *(int *)(global_data + 0x2e28) = current_count + 1;
   
   // 获取新条目指针
-  entry_ptr = (uint64_t *)((longlong)current_count * 0x38 + *(longlong *)(global_data + 0x2e30));
+  entry_ptr = (uint64_t *)((int64_t)current_count * 0x38 + *(int64_t *)(global_data + 0x2e30));
   
   // 存储字符串指针
   new_array = StringStorage_CreateCopy(input_string);
@@ -237,7 +237,7 @@ uint64_t *create_string_hash_entry(byte *input_string)
     }
     
     // 使用查找表计算哈希值
-    hash_value = *(uint *)(&global_config_6320_ptr + ((ulonglong)(hash_value & 0xff) ^ (ulonglong)current_char) * 4) ^
+    hash_value = *(uint *)(&global_config_6320_ptr + ((uint64_t)(hash_value & 0xff) ^ (uint64_t)current_char) * 4) ^
                hash_value >> 8;
     
     current_char = *char_ptr;
@@ -266,20 +266,20 @@ uint64_t *create_string_hash_entry_with_params(byte *input_string)
   byte current_char;
   int capacity;
   int count;
-  longlong array_base;
+  int64_t array_base;
   byte *char_ptr;
-  longlong global_data;
+  int64_t global_data;
   int32_t param_value;
   int new_capacity;
   uint64_t new_array;
   int new_size;
-  longlong entry_offset;
+  int64_t entry_offset;
   uint64_t register_rax;
   uint64_t array_ptr;
   int current_count;
   uint64_t *entry_ptr;
   uint hash_value;
-  longlong frame_ptr;
+  int64_t frame_ptr;
   uint64_t register_r14;
   uint64_t stack_param1;
   uint64_t stack_param2;
@@ -322,11 +322,11 @@ uint64_t *create_string_hash_entry_with_params(byte *input_string)
     
     if (capacity < new_capacity) {
       *(int *)(global_data + 0x3a8) = *(int *)(global_data + 0x3a8) + 1;
-      array_ptr = func_0x000180120ce0((longlong)new_capacity * 0x38, array_ptr);
+      array_ptr = func_0x000180120ce0((int64_t)new_capacity * 0x38, array_ptr);
       
-      if (*(longlong *)(global_data + 0x2e30) != 0) {
-        memcpy(array_ptr, *(longlong *)(global_data + 0x2e30), 
-               (longlong)*(int *)(global_data + 0x2e28) * 0x38);
+      if (*(int64_t *)(global_data + 0x2e30) != 0) {
+        memcpy(array_ptr, *(int64_t *)(global_data + 0x2e30), 
+               (int64_t)*(int *)(global_data + 0x2e28) * 0x38);
       }
       
       count = *(int *)(global_data + 0x2e28);
@@ -336,8 +336,8 @@ uint64_t *create_string_hash_entry_with_params(byte *input_string)
   }
   
   // 计算新条目的偏移量
-  entry_offset = (longlong)count * 0x38;
-  array_base = *(longlong *)(global_data + 0x2e30);
+  entry_offset = (int64_t)count * 0x38;
+  array_base = *(int64_t *)(global_data + 0x2e30);
   
   // 使用栈参数初始化条目字段
   *(uint64_t *)(entry_offset + array_base) = stack_param1;         // 字段1（来自栈参数）
@@ -353,14 +353,14 @@ uint64_t *create_string_hash_entry_with_params(byte *input_string)
   data_fields[2] = stack_param7;                                      // 数据字段3（来自栈参数）
   data_fields[3] = stack_param8;                                      // 数据字段4（来自栈参数）
   
-  *(ulonglong *)(entry_offset + 0x30 + array_base) = CONCAT53(stack_param9._3_5_, 0xffff);  // 标志字段
+  *(uint64_t *)(entry_offset + 0x30 + array_base) = CONCAT53(stack_param9._3_5_, 0xffff);  // 标志字段
   
   // 更新计数器
   current_count = *(int *)(global_data + 0x2e28);
   *(int *)(global_data + 0x2e28) = current_count + 1;
   
   // 获取新条目指针
-  entry_ptr = (uint64_t *)((longlong)current_count * 0x38 + *(longlong *)(global_data + 0x2e30));
+  entry_ptr = (uint64_t *)((int64_t)current_count * 0x38 + *(int64_t *)(global_data + 0x2e30));
   
   // 存储字符串指针并计算哈希值（与create_string_hash_entry相同的逻辑）
   array_ptr = StringStorage_CreateCopy(input_string);
@@ -375,7 +375,7 @@ uint64_t *create_string_hash_entry_with_params(byte *input_string)
       hash_value = 0xffffffff;
     }
     
-    hash_value = *(uint *)(&global_config_6320_ptr + ((ulonglong)(hash_value & 0xff) ^ (ulonglong)current_char) * 4) ^
+    hash_value = *(uint *)(&global_config_6320_ptr + ((uint64_t)(hash_value & 0xff) ^ (uint64_t)current_char) * 4) ^
                hash_value >> 8;
     
     current_char = *char_ptr;
@@ -401,11 +401,11 @@ uint64_t *create_default_string_hash_entry(void)
   int32_t *data_fields;
   byte current_char;
   int current_count;
-  longlong array_base;
+  int64_t array_base;
   byte *char_ptr;
   uint64_t new_array;
-  longlong entry_offset;
-  longlong global_base;
+  int64_t entry_offset;
+  int64_t global_base;
   int32_t capacity_param;
   uint64_t *entry_ptr;
   uint hash_value;
@@ -424,9 +424,9 @@ uint64_t *create_default_string_hash_entry(void)
   new_array = MemoryManager_Allocate();
   
   // 复制现有数据到新数组
-  if (*(longlong *)(global_base + 0x2e30) != 0) {
-    memcpy(new_array, *(longlong *)(global_base + 0x2e30), 
-           (longlong)*(int *)(global_base + 0x2e28) * 0x38);
+  if (*(int64_t *)(global_base + 0x2e30) != 0) {
+    memcpy(new_array, *(int64_t *)(global_base + 0x2e30), 
+           (int64_t)*(int *)(global_base + 0x2e28) * 0x38);
   }
   
   // 更新全局指针
@@ -434,8 +434,8 @@ uint64_t *create_default_string_hash_entry(void)
   *(int32_t *)(global_base + 0x2e2c) = capacity_param;
   
   // 计算新条目偏移量
-  entry_offset = (longlong)*(int *)(global_base + 0x2e28) * 0x38;
-  array_base = *(longlong *)(global_base + 0x2e30);
+  entry_offset = (int64_t)*(int *)(global_base + 0x2e28) * 0x38;
+  array_base = *(int64_t *)(global_base + 0x2e30);
   
   // 使用默认值初始化条目字段
   *(uint64_t *)(entry_offset + array_base) = stack_param1;          // 字段1
@@ -458,7 +458,7 @@ uint64_t *create_default_string_hash_entry(void)
   *(int *)(global_base + 0x2e28) = current_count + 1;
   
   // 获取新条目指针
-  entry_ptr = (uint64_t *)((longlong)current_count * 0x38 + *(longlong *)(global_base + 0x2e30));
+  entry_ptr = (uint64_t *)((int64_t)current_count * 0x38 + *(int64_t *)(global_base + 0x2e30));
   
   // 存储默认字符串指针
   new_array = StringStorage_CreateCopy();
@@ -474,7 +474,7 @@ uint64_t *create_default_string_hash_entry(void)
       hash_value = 0xffffffff;
     }
     
-    hash_value = *(uint *)(&global_config_6320_ptr + ((ulonglong)(hash_value & 0xff) ^ (ulonglong)current_char) * 4) ^
+    hash_value = *(uint *)(&global_config_6320_ptr + ((uint64_t)(hash_value & 0xff) ^ (uint64_t)current_char) * 4) ^
                hash_value >> 8;
     
     current_char = *char_ptr;
@@ -501,11 +501,11 @@ uint64_t *create_string_hash_entry_at_index(int entry_index)
   int32_t *data_fields;
   byte current_char;
   int current_count;
-  longlong array_base;
+  int64_t array_base;
   byte *char_ptr;
   uint64_t string_ptr;
-  longlong entry_offset;
-  longlong global_base;
+  int64_t entry_offset;
+  int64_t global_base;
   uint64_t *entry_ptr;
   uint hash_value;
   byte *default_string;
@@ -520,8 +520,8 @@ uint64_t *create_string_hash_entry_at_index(int entry_index)
   uint64_t stack_param9;
   
   // 根据索引计算条目偏移量（每个条目0x38字节）
-  entry_offset = (longlong)entry_index * 0x38;
-  array_base = *(longlong *)(global_base + 0x2e30);
+  entry_offset = (int64_t)entry_index * 0x38;
+  array_base = *(int64_t *)(global_base + 0x2e30);
   
   // 使用栈参数初始化条目字段
   *(uint64_t *)(entry_offset + array_base) = stack_param1;          // 字段1
@@ -544,7 +544,7 @@ uint64_t *create_string_hash_entry_at_index(int entry_index)
   *(int *)(global_base + 0x2e28) = current_count + 1;
   
   // 获取条目指针
-  entry_ptr = (uint64_t *)((longlong)current_count * 0x38 + *(longlong *)(global_base + 0x2e30));
+  entry_ptr = (uint64_t *)((int64_t)current_count * 0x38 + *(int64_t *)(global_base + 0x2e30));
   
   // 存储字符串指针
   string_ptr = StringStorage_CreateCopy();
@@ -560,7 +560,7 @@ uint64_t *create_string_hash_entry_at_index(int entry_index)
       hash_value = 0xffffffff;
     }
     
-    hash_value = *(uint *)(&global_config_6320_ptr + ((ulonglong)(hash_value & 0xff) ^ (ulonglong)current_char) * 4) ^
+    hash_value = *(uint *)(&global_config_6320_ptr + ((uint64_t)(hash_value & 0xff) ^ (uint64_t)current_char) * 4) ^
                hash_value >> 8;
     
     current_char = *char_ptr;
@@ -588,7 +588,7 @@ uint64_t *create_string_hash_entry_at_index(int entry_index)
  */
 void calculate_string_hash_and_store(byte first_char, uint64_t unused_param, uint initial_hash, byte *remaining_string)
 {
-  longlong target_pointer;
+  int64_t target_pointer;
   uint register_r10d;
   
   // 遍历字符串计算哈希值
@@ -599,7 +599,7 @@ void calculate_string_hash_and_store(byte first_char, uint64_t unused_param, uin
     }
     
     // 使用查找表计算哈希值
-    initial_hash = *(uint *)(&global_config_6320_ptr + ((ulonglong)(initial_hash & 0xff) ^ (ulonglong)first_char) * 4) ^
+    initial_hash = *(uint *)(&global_config_6320_ptr + ((uint64_t)(initial_hash & 0xff) ^ (uint64_t)first_char) * 4) ^
                   initial_hash >> 8;
     
     // 移动到下一个字符
@@ -629,7 +629,7 @@ void calculate_string_hash_and_store(byte first_char, uint64_t unused_param, uin
  * - 原始实现：使用全局内存分配器，更新分配计数器
  * - 简化实现：保持原有逻辑，添加中文注释说明内存管理过程
  */
-void copy_string_to_new_memory(longlong source_string, longlong string_length)
+void copy_string_to_new_memory(int64_t source_string, int64_t string_length)
 {
   uint64_t new_memory;
   
@@ -666,11 +666,11 @@ void copy_string_to_new_memory(longlong source_string, longlong string_length)
  * 
  * 注意：此函数使用寄存器R13作为全局数据指针，而不是全局变量
  */
-void copy_string_with_register_values(longlong source_string, longlong string_length)
+void copy_string_with_register_values(int64_t source_string, int64_t string_length)
 {
   uint64_t new_memory;
-  longlong register_rbx;
-  longlong global_data;
+  int64_t register_rbx;
+  int64_t global_data;
   
   // 如果长度为0，使用RBX寄存器计算字符串长度
   if (string_length == 0) {
@@ -718,16 +718,16 @@ void parse_config_file(void)
   char *line_end;
   uint hash_value;
   int8_t *bracket_pos;
-  longlong nested_bracket;
+  int64_t nested_bracket;
   int entry_index;
   uint *hash_table;
-  longlong handler_result;
-  longlong section_handler;
+  int64_t handler_result;
+  int64_t section_handler;
   byte *section_name;
   char *input_ptr;
   byte *char_ptr;
   char *input_end;
-  longlong stack_param;
+  int64_t stack_param;
   
   do {
     // 跳过空白行（只包含换行符或回车符的行）
@@ -753,11 +753,11 @@ void parse_config_file(void)
         *section_end = '\0';
         
         // 查找右方括号位置
-        bracket_pos = (int8_t *)memchr(section_name, 0x5d, (longlong)section_end - (longlong)section_name);
+        bracket_pos = (int8_t *)memchr(section_name, 0x5d, (int64_t)section_end - (int64_t)section_name);
         
         // 检查是否有嵌套的方括号（无效格式）
         if ((bracket_pos == (int8_t *)0x0) ||
-           (nested_bracket = memchr(bracket_pos + 1, 0x5b, (longlong)section_end - (longlong)(bracket_pos + 1)), nested_bracket == 0)) {
+           (nested_bracket = memchr(bracket_pos + 1, 0x5b, (int64_t)section_end - (int64_t)(bracket_pos + 1)), nested_bracket == 0)) {
           // 如果格式无效，使用默认节名
           section_name = &global_config_2420_ptr;
         }
@@ -778,7 +778,7 @@ void parse_config_file(void)
           }
           
           // 使用查找表计算哈希值
-          hash_value = *(uint *)(&global_config_6320_ptr + ((ulonglong)(hash_value & 0xff) ^ (ulonglong)current_char) * 4) ^
+          hash_value = *(uint *)(&global_config_6320_ptr + ((uint64_t)(hash_value & 0xff) ^ (uint64_t)current_char) * 4) ^
                      hash_value >> 8;
           
           section_name = char_ptr;
@@ -788,12 +788,12 @@ void parse_config_file(void)
         // 在哈希表中查找匹配的处理函数
         entry_index = 0;
         if (0 < *(int *)(SYSTEM_DATA_MANAGER_A + 0x2e18)) {
-          hash_table = (uint *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x2e20) + 8);
+          hash_table = (uint *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x2e20) + 8);
           
           do {
             if (*hash_table == ~hash_value) {
               // 找到匹配的节处理器
-              section_handler = (longlong)entry_index * 0x30 + *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x2e20);
+              section_handler = (int64_t)entry_index * 0x30 + *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x2e20);
               if (section_handler == 0) goto handler_not_found;
               
               // 调用节处理函数
@@ -847,7 +847,7 @@ continue_parsing:
  */
 void cleanup_with_r14_register(void)
 {
-  longlong register_r14;
+  int64_t register_r14;
   
   // 如果R14寄存器不为0且全局数据存在，减少分配计数器
   if ((register_r14 != 0) && (SYSTEM_DATA_MANAGER_A != 0)) {
@@ -909,16 +909,16 @@ void parse_config_file_variant(void)
   char *line_end;
   uint hash_value;
   int8_t *bracket_pos;
-  longlong nested_bracket;
+  int64_t nested_bracket;
   int entry_index;
   uint *hash_table;
-  longlong handler_result;
+  int64_t handler_result;
   byte *section_name;
-  longlong section_handler;
+  int64_t section_handler;
   char *input_ptr;
   byte *char_ptr;
   char *input_end;
-  longlong stack_param;
+  int64_t stack_param;
   
   do {
     // 先跳过一个字符（与parse_config_file的主要区别）
@@ -945,11 +945,11 @@ void parse_config_file_variant(void)
           *section_end = '\0';
           
           // 查找右方括号位置
-          bracket_pos = (int8_t *)memchr(section_name, 0x5d, (longlong)section_end - (longlong)section_name);
+          bracket_pos = (int8_t *)memchr(section_name, 0x5d, (int64_t)section_end - (int64_t)section_name);
           
           // 检查是否有嵌套的方括号（无效格式）
           if ((bracket_pos == (int8_t *)0x0) ||
-             (nested_bracket = memchr(bracket_pos + 1, 0x5b, (longlong)section_end - (longlong)(bracket_pos + 1)), nested_bracket == 0)) {
+             (nested_bracket = memchr(bracket_pos + 1, 0x5b, (int64_t)section_end - (int64_t)(bracket_pos + 1)), nested_bracket == 0)) {
             // 如果格式无效，使用默认节名
             section_name = &global_config_2420_ptr;
           }
@@ -970,7 +970,7 @@ void parse_config_file_variant(void)
             }
             
             // 使用查找表计算哈希值
-            hash_value = *(uint *)(&global_config_6320_ptr + ((ulonglong)(hash_value & 0xff) ^ (ulonglong)current_char) * 4) ^
+            hash_value = *(uint *)(&global_config_6320_ptr + ((uint64_t)(hash_value & 0xff) ^ (uint64_t)current_char) * 4) ^
                        hash_value >> 8;
             
             section_name = char_ptr;
@@ -980,12 +980,12 @@ void parse_config_file_variant(void)
           // 在哈希表中查找匹配的处理函数
           entry_index = 0;
           if (0 < *(int *)(SYSTEM_DATA_MANAGER_A + 0x2e18)) {
-            hash_table = (uint *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x2e20) + 8);
+            hash_table = (uint *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x2e20) + 8);
             
             do {
               if (*hash_table == ~hash_value) {
                 // 找到匹配的节处理器
-                section_handler = (longlong)entry_index * 0x30 + *(longlong *)(SYSTEM_DATA_MANAGER_A + 0x2e20);
+                section_handler = (int64_t)entry_index * 0x30 + *(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x2e20);
                 if (section_handler == 0) goto handler_not_found;
                 
                 // 调用节处理函数
@@ -1042,10 +1042,10 @@ continue_parsing:
  * - 原始实现：重置全局标志，使用栈变量作为大小参数
  * - 简化实现：保持原有逻辑，添加中文注释说明文件写入过程
  */
-void write_data_to_file(longlong file_path)
+void write_data_to_file(int64_t file_path)
 {
   uint64_t data_buffer;
-  longlong file_handle;
+  int64_t file_handle;
   uint64_t data_size;
   
   // 重置全局标志
@@ -1082,7 +1082,7 @@ void write_data_to_file(longlong file_path)
 void write_data_to_default_file(void)
 {
   uint64_t data_buffer;
-  longlong file_handle;
+  int64_t file_handle;
   uint64_t data_size;
   
   // 准备要写入的数据

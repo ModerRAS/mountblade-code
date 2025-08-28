@@ -11,20 +11,20 @@ void cleanup_engine_state(void)
 {
   int *reference_count;
   uint64_t *data_pointer;
-  longlong engine_context;
+  int64_t engine_context;
   uint64_t temp_data;
   
   engine_context = global_engine_context;
   // 设置引擎状态标志为1
-  *(int8_t *)(*(longlong *)(global_engine_context + 0x1af8) + 0xb1) = 1;
-  engine_context = *(longlong *)(engine_context + 0x1af8);
-  reference_count = (int *)(*(longlong *)(engine_context + 0x2e8) + 0x60);
+  *(int8_t *)(*(int64_t *)(global_engine_context + 0x1af8) + 0xb1) = 1;
+  engine_context = *(int64_t *)(engine_context + 0x1af8);
+  reference_count = (int *)(*(int64_t *)(engine_context + 0x2e8) + 0x60);
   // 减少引用计数
   *reference_count = *reference_count - 1;
   update_reference_counter();
   data_pointer = (uint64_t *)
-           (*(longlong *)(*(longlong *)(engine_context + 0x2e8) + 0x68) + -0x10 +
-           (longlong)*(int *)(*(longlong *)(engine_context + 0x2e8) + 0x60) * 0x10);
+           (*(int64_t *)(*(int64_t *)(engine_context + 0x2e8) + 0x68) + -0x10 +
+           (int64_t)*(int *)(*(int64_t *)(engine_context + 0x2e8) + 0x60) * 0x10);
   temp_data = data_pointer[1];
   // 保存数据到引擎上下文
   *(uint64_t *)(engine_context + 0x228) = *data_pointer;
@@ -45,17 +45,17 @@ void process_engine_rendering(void)
 
 {
   float *render_params;
-  longlong entity_list;
+  int64_t entity_list;
   bool should_continue;
-  longlong current_entity;
+  int64_t current_entity;
   int32_t color_value;
   uint render_flags;
   uint64_t entity_id;
-  longlong render_context;
-  longlong texture_data;
-  longlong *entity_pointer;
+  int64_t render_context;
+  int64_t texture_data;
+  int64_t *entity_pointer;
   int entity_index;
-  longlong list_offset;
+  int64_t list_offset;
   float position_x;
   float position_y;
   float position_z;
@@ -84,8 +84,8 @@ void process_engine_rendering(void)
   entity_list = global_engine_context;
   // 检查实体列表是否为空
   if (0 < *(int *)(global_engine_context + 0x1bb0)) {
-    list_offset = (longlong)*(int *)(global_engine_context + 0x1bb0) + -1;
-    entity_pointer = (longlong *)(*(longlong *)(global_engine_context + 0x1bb8) + 8 + list_offset * 0x30);
+    list_offset = (int64_t)*(int *)(global_engine_context + 0x1bb0) + -1;
+    entity_pointer = (int64_t *)(*(int64_t *)(global_engine_context + 0x1bb8) + 8 + list_offset * 0x30);
     do {
       current_entity = *entity_pointer;
       if ((current_entity != 0) && ((*(uint *)(current_entity + 0xc) & 0x8000000) != 0)) goto LAB_180126e9d;
@@ -95,18 +95,18 @@ void process_engine_rendering(void)
   }
   current_entity = 0;
 LAB_180126e9d:
-  list_offset = *(longlong *)(global_engine_context + 0x1ce0);
+  list_offset = *(int64_t *)(global_engine_context + 0x1ce0);
   if ((current_entity != 0) || (list_offset != 0)) {
     entity_index = 0;
     if (0 < *(int *)(global_engine_context + 0x1c68)) {
       list_offset = 0;
       do {
-        entity_list = *(longlong *)(list_offset + *(longlong *)(entity_list + 0x1c70));
-        if ((((current_entity == 0) || (entity_list != *(longlong *)(current_entity + 0x28))) &&
-            ((*(longlong *)(entity_list + 0x1ce8) == 0 ||
-             (entity_list != *(longlong *)(*(longlong *)(entity_list + 0x1ce8) + 0x28))))) &&
-           ((*(longlong *)(entity_list + 0x1ce0) == 0 ||
-            (entity_list != *(longlong *)(*(longlong *)(entity_list + 0x1ce0) + 0x28))))) {
+        entity_list = *(int64_t *)(list_offset + *(int64_t *)(entity_list + 0x1c70));
+        if ((((current_entity == 0) || (entity_list != *(int64_t *)(current_entity + 0x28))) &&
+            ((*(int64_t *)(entity_list + 0x1ce8) == 0 ||
+             (entity_list != *(int64_t *)(*(int64_t *)(entity_list + 0x1ce8) + 0x28))))) &&
+           ((*(int64_t *)(entity_list + 0x1ce0) == 0 ||
+            (entity_list != *(int64_t *)(*(int64_t *)(entity_list + 0x1ce0) + 0x28))))) {
           entity_id = get_entity_id(entity_list);
           render_context = 0x3a0;
           if (current_entity != 0) {
@@ -127,16 +127,16 @@ LAB_180126e9d:
       } while (entity_index < *(int *)(entity_list + 0x1c68));
     }
     if (list_offset != 0) {
-      list_offset = *(longlong *)(entity_list + 0x1ce0);
-      current_entity = *(longlong *)(list_offset + 0x3a0);
+      list_offset = *(int64_t *)(entity_list + 0x1ce0);
+      current_entity = *(int64_t *)(list_offset + 0x3a0);
       entity_index = *(int *)(current_entity + 0x188) + -1;
       if (-1 < entity_index) {
-        entity_pointer = (longlong *)(*(longlong *)(current_entity + 400) + (longlong)entity_index * 8);
-        list_offset = (longlong)entity_index;
+        entity_pointer = (int64_t *)(*(int64_t *)(current_entity + 400) + (int64_t)entity_index * 8);
+        list_offset = (int64_t)entity_index;
         do {
           if ((*(char *)(*entity_pointer + 0xaf) != '\0') && (*(char *)(*entity_pointer + 0xb6) == '\0')) {
             current_entity = find_entity_by_id(*(uint64_t *)
-                                         (*(longlong *)(current_entity + 400) + (longlong)entity_index * 8));
+                                         (*(int64_t *)(current_entity + 400) + (int64_t)entity_index * 8));
             break;
           }
           entity_index = entity_index + -1;
@@ -145,12 +145,12 @@ LAB_180126e9d:
           list_offset = list_offset + -1;
         } while (should_continue);
       }
-      current_entity = *(longlong *)(current_entity + 0x2e8);
-      setup_render_context(current_entity,*(uint64_t *)(*(longlong *)(current_entity + 0x38) + 0x18),
-                    *(uint64_t *)(*(longlong *)(current_entity + 0x38) + 0x20),0);
-      list_offset = *(longlong *)(list_offset + 0x3a8);
+      current_entity = *(int64_t *)(current_entity + 0x2e8);
+      setup_render_context(current_entity,*(uint64_t *)(*(int64_t *)(current_entity + 0x38) + 0x18),
+                    *(uint64_t *)(*(int64_t *)(current_entity + 0x38) + 0x20),0);
+      list_offset = *(int64_t *)(list_offset + 0x3a8);
       if (((*(byte *)(list_offset + 0x432) & 1) != 0) &&
-         (entity_list = *(longlong *)(list_offset + 0x3a0), entity_list != list_offset)) {
+         (entity_list = *(int64_t *)(list_offset + 0x3a0), entity_list != list_offset)) {
         temp_float_10 = *(float *)(list_offset + 0x40);
         temp_float_1 = *(float *)(entity_list + 0x40);
         temp_float_2 = *(float *)(entity_list + 0x44);
@@ -168,7 +168,7 @@ LAB_180126e9d:
         render_texture(current_entity,&temp_float_1,&temp_float_10,color_value,*(int32_t *)(entity_list + 0x1634));
       }
       color_b = *(float *)(entity_list + 0x19f8);
-      list_offset = *(longlong *)(list_offset + 0x28);
+      list_offset = *(int64_t *)(list_offset + 0x28);
       color_a = *(float *)(list_offset + 0x40) - color_b;
       color_g = *(float *)(list_offset + 0x44) - color_b;
       color_r = *(float *)(entity_list + 0x1634);
@@ -264,7 +264,7 @@ void process_engine_rendering_variant1(void)
   float *render_params;
   int32_t *color_data;
   byte texture_flag;
-  longlong entity_list;
+  int64_t entity_list;
   bool should_continue;
   int32_t color_r;
   int32_t color_g;
@@ -272,16 +272,16 @@ void process_engine_rendering_variant1(void)
   int32_t color_a;
   uint render_flags;
   uint64_t entity_id;
-  longlong render_context;
-  longlong texture_data;
-  longlong *entity_pointer;
-  longlong unaff_RBX;
-  longlong unaff_RBP;
+  int64_t render_context;
+  int64_t texture_data;
+  int64_t *entity_pointer;
+  int64_t unaff_RBX;
+  int64_t unaff_RBP;
   uint alpha_value;
-  longlong unaff_RDI;
-  longlong unaff_R12;
+  int64_t unaff_RDI;
+  int64_t unaff_R12;
   int entity_index;
-  longlong list_offset;
+  int64_t list_offset;
   float position_x;
   float position_y;
   float position_z;
@@ -304,12 +304,12 @@ void process_engine_rendering_variant1(void)
   if (0 < *(int *)(unaff_RDI + 0x1c68)) {
     list_offset = 0;
     do {
-      render_context = *(longlong *)(list_offset + *(longlong *)(unaff_RDI + 0x1c70));
-      if ((((unaff_RBX == 0) || (render_context != *(longlong *)(unaff_RBX + 0x28))) &&
-          ((*(longlong *)(unaff_RDI + 0x1ce8) == 0 ||
-           (render_context != *(longlong *)(*(longlong *)(unaff_RDI + 0x1ce8) + 0x28))))) &&
-         ((*(longlong *)(unaff_RDI + 0x1ce0) == 0 ||
-          (render_context != *(longlong *)(*(longlong *)(unaff_RDI + 0x1ce0) + 0x28))))) {
+      render_context = *(int64_t *)(list_offset + *(int64_t *)(unaff_RDI + 0x1c70));
+      if ((((unaff_RBX == 0) || (render_context != *(int64_t *)(unaff_RBX + 0x28))) &&
+          ((*(int64_t *)(unaff_RDI + 0x1ce8) == 0 ||
+           (render_context != *(int64_t *)(*(int64_t *)(unaff_RDI + 0x1ce8) + 0x28))))) &&
+         ((*(int64_t *)(unaff_RDI + 0x1ce0) == 0 ||
+          (render_context != *(int64_t *)(*(int64_t *)(unaff_RDI + 0x1ce0) + 0x28))))) {
         entity_id = get_entity_id(render_context);
         color_alpha = *(float *)(unaff_RDI + 0x1dc8);
         texture_data = 0x3a0;
@@ -340,16 +340,16 @@ void process_engine_rendering_variant1(void)
     } while (entity_index < *(int *)(unaff_RDI + 0x1c68));
   }
   if (unaff_R12 != 0) {
-    list_offset = *(longlong *)(unaff_RDI + 0x1ce0);
-    render_context = *(longlong *)(list_offset + 0x3a0);
+    list_offset = *(int64_t *)(unaff_RDI + 0x1ce0);
+    render_context = *(int64_t *)(list_offset + 0x3a0);
     entity_index = *(int *)(render_context + 0x188) + -1;
     if (-1 < entity_index) {
-      entity_pointer = (longlong *)(*(longlong *)(render_context + 400) + (longlong)entity_index * 8);
-      texture_data = (longlong)entity_index;
+      entity_pointer = (int64_t *)(*(int64_t *)(render_context + 400) + (int64_t)entity_index * 8);
+      texture_data = (int64_t)entity_index;
       do {
         if ((*(char *)(*entity_pointer + 0xaf) != '\0') && (*(char *)(*entity_pointer + 0xb6) == '\0')) {
           render_context = find_entity_by_id(*(uint64_t *)
-                                        (*(longlong *)(render_context + 400) + (longlong)entity_index * 8));
+                                        (*(int64_t *)(render_context + 400) + (int64_t)entity_index * 8));
           break;
         }
         entity_index = entity_index + -1;
@@ -358,12 +358,12 @@ void process_engine_rendering_variant1(void)
         texture_data = texture_data + -1;
       } while (should_continue);
     }
-    render_context = *(longlong *)(render_context + 0x2e8);
-    setup_render_context(render_context,*(uint64_t *)(*(longlong *)(render_context + 0x38) + 0x18),
-                  *(uint64_t *)(*(longlong *)(render_context + 0x38) + 0x20),0);
-    texture_data = *(longlong *)(list_offset + 0x3a8);
+    render_context = *(int64_t *)(render_context + 0x2e8);
+    setup_render_context(render_context,*(uint64_t *)(*(int64_t *)(render_context + 0x38) + 0x18),
+                  *(uint64_t *)(*(int64_t *)(render_context + 0x38) + 0x20),0);
+    texture_data = *(int64_t *)(list_offset + 0x3a8);
     if (((*(byte *)(texture_data + 0x432) & 1) != 0) &&
-       (entity_list = *(longlong *)(list_offset + 0x3a0), entity_list != texture_data)) {
+       (entity_list = *(int64_t *)(list_offset + 0x3a0), entity_list != texture_data)) {
       color_alpha = *(float *)(texture_data + 0x40);
       color_green = *(float *)(unaff_RDI + 0x1dc8);
       render_params = (float *)(entity_list + 0x40);
@@ -406,7 +406,7 @@ void process_engine_rendering_variant1(void)
                     *(int32_t *)(unaff_RDI + 0x1634));
     }
     color_alpha = *(float *)(unaff_RDI + 0x19f8);
-    texture_data = *(longlong *)(list_offset + 0x28);
+    texture_data = *(int64_t *)(list_offset + 0x28);
     temp_float_9 = *(float *)(list_offset + 0x40) - color_alpha;
     temp_float_7 = *(float *)(list_offset + 0x44) - color_alpha;
     color_green = *(float *)(unaff_RDI + 0x1634);
@@ -507,7 +507,7 @@ void process_engine_rendering_variant2(void)
   float *render_params;
   int32_t *color_data;
   byte texture_flag;
-  longlong entity_list;
+  int64_t entity_list;
   bool should_continue;
   int32_t color_r;
   int32_t color_g;
@@ -515,16 +515,16 @@ void process_engine_rendering_variant2(void)
   int32_t color_a;
   uint render_flags;
   uint64_t entity_id;
-  longlong render_context;
-  longlong texture_data;
-  longlong *entity_pointer;
-  longlong unaff_RBX;
-  longlong unaff_RBP;
+  int64_t render_context;
+  int64_t texture_data;
+  int64_t *entity_pointer;
+  int64_t unaff_RBX;
+  int64_t unaff_RBP;
   uint alpha_value;
-  longlong unaff_RDI;
-  longlong unaff_R12;
+  int64_t unaff_RDI;
+  int64_t unaff_R12;
   int entity_index;
-  longlong list_offset;
+  int64_t list_offset;
   float position_x;
   float position_y;
   float position_z;
@@ -547,12 +547,12 @@ void process_engine_rendering_variant2(void)
   if (0 < *(int *)(unaff_RDI + 0x1c68)) {
     list_offset = 0;
     do {
-      render_context = *(longlong *)(list_offset + *(longlong *)(unaff_RDI + 0x1c70));
-      if ((((unaff_RBX == 0) || (render_context != *(longlong *)(unaff_RBX + 0x28))) &&
-          ((*(longlong *)(unaff_RDI + 0x1ce8) == 0 ||
-           (render_context != *(longlong *)(*(longlong *)(unaff_RDI + 0x1ce8) + 0x28))))) &&
-         ((*(longlong *)(unaff_RDI + 0x1ce0) == 0 ||
-          (render_context != *(longlong *)(*(longlong *)(unaff_RDI + 0x1ce0) + 0x28))))) {
+      render_context = *(int64_t *)(list_offset + *(int64_t *)(unaff_RDI + 0x1c70));
+      if ((((unaff_RBX == 0) || (render_context != *(int64_t *)(unaff_RBX + 0x28))) &&
+          ((*(int64_t *)(unaff_RDI + 0x1ce8) == 0 ||
+           (render_context != *(int64_t *)(*(int64_t *)(unaff_RDI + 0x1ce8) + 0x28))))) &&
+         ((*(int64_t *)(unaff_RDI + 0x1ce0) == 0 ||
+          (render_context != *(int64_t *)(*(int64_t *)(unaff_RDI + 0x1ce0) + 0x28))))) {
         entity_id = get_entity_id(render_context);
         color_alpha = *(float *)(unaff_RDI + 0x1dc8);
         texture_data = 0x3a0;
@@ -583,16 +583,16 @@ void process_engine_rendering_variant2(void)
     } while (entity_index < *(int *)(unaff_RDI + 0x1c68));
   }
   if (unaff_R12 != 0) {
-    list_offset = *(longlong *)(unaff_RDI + 0x1ce0);
-    render_context = *(longlong *)(list_offset + 0x3a0);
+    list_offset = *(int64_t *)(unaff_RDI + 0x1ce0);
+    render_context = *(int64_t *)(list_offset + 0x3a0);
     entity_index = *(int *)(render_context + 0x188) + -1;
     if (-1 < entity_index) {
-      entity_pointer = (longlong *)(*(longlong *)(render_context + 400) + (longlong)entity_index * 8);
-      texture_data = (longlong)entity_index;
+      entity_pointer = (int64_t *)(*(int64_t *)(render_context + 400) + (int64_t)entity_index * 8);
+      texture_data = (int64_t)entity_index;
       do {
         if ((*(char *)(*entity_pointer + 0xaf) != '\0') && (*(char *)(*entity_pointer + 0xb6) == '\0')) {
           render_context = find_entity_by_id(*(uint64_t *)
-                                        (*(longlong *)(render_context + 400) + (longlong)entity_index * 8));
+                                        (*(int64_t *)(render_context + 400) + (int64_t)entity_index * 8));
           break;
         }
         entity_index = entity_index + -1;
@@ -601,12 +601,12 @@ void process_engine_rendering_variant2(void)
         texture_data = texture_data + -1;
       } while (should_continue);
     }
-    render_context = *(longlong *)(render_context + 0x2e8);
-    setup_render_context(render_context,*(uint64_t *)(*(longlong *)(render_context + 0x38) + 0x18),
-                  *(uint64_t *)(*(longlong *)(render_context + 0x38) + 0x20),0);
-    texture_data = *(longlong *)(list_offset + 0x3a8);
+    render_context = *(int64_t *)(render_context + 0x2e8);
+    setup_render_context(render_context,*(uint64_t *)(*(int64_t *)(render_context + 0x38) + 0x18),
+                  *(uint64_t *)(*(int64_t *)(render_context + 0x38) + 0x20),0);
+    texture_data = *(int64_t *)(list_offset + 0x3a8);
     if (((*(byte *)(texture_data + 0x432) & 1) != 0) &&
-       (entity_list = *(longlong *)(list_offset + 0x3a0), entity_list != texture_data)) {
+       (entity_list = *(int64_t *)(list_offset + 0x3a0), entity_list != texture_data)) {
       color_alpha = *(float *)(texture_data + 0x40);
       color_green = *(float *)(unaff_RDI + 0x1dc8);
       render_params = (float *)(entity_list + 0x40);
@@ -649,7 +649,7 @@ void process_engine_rendering_variant2(void)
                     *(int32_t *)(unaff_RDI + 0x1634));
     }
     color_alpha = *(float *)(unaff_RDI + 0x19f8);
-    texture_data = *(longlong *)(list_offset + 0x28);
+    texture_data = *(int64_t *)(list_offset + 0x28);
     temp_float_9 = *(float *)(list_offset + 0x40) - color_alpha;
     temp_float_7 = *(float *)(list_offset + 0x44) - color_alpha;
     color_green = *(float *)(unaff_RDI + 0x1634);

@@ -11,7 +11,7 @@ void render_text_label(uint64_t render_context, char *text_label, uint64_t posit
                      int count, int index, char *font_name, float x_coord, float y_coord, uint64_t additional_data)
 {
   float *font_metrics;
-  longlong global_base;
+  int64_t global_base;
   uint64_t temp_data1;
   bool use_special_rendering;
   uint64_t temp_data2;
@@ -21,10 +21,10 @@ void render_text_label(uint64_t render_context, char *text_label, uint64_t posit
   int current_index;
   int total_chars;
   uint64_t temp_data3;
-  longlong render_state;
+  int64_t render_state;
   uint char_count;
-  ulonglong text_length;
-  longlong font_data;
+  uint64_t text_length;
+  int64_t font_data;
   float base_font_size;
   float text_width;
   float calculated_width;
@@ -45,11 +45,11 @@ void render_text_label(uint64_t render_context, char *text_label, uint64_t posit
   float baseline_offset;
   float char_spacing;
   float line_spacing;
-  longlong stack_offset;
+  int64_t stack_offset;
   float render_x;
   float render_y;
   uint64_t temp_buffer;
-  longlong buffer_offset;
+  int64_t buffer_offset;
   uint64_t stack_buffer;
   float shadow_x;
   float shadow_y;
@@ -59,8 +59,8 @@ void render_text_label(uint64_t render_context, char *text_label, uint64_t posit
   stack_offset = GLOBAL_ENGINE_BASE;
   
   // 启用特殊渲染模式
-  *(int8_t *)(*(longlong *)(GLOBAL_ENGINE_BASE + 0x1af8) + 0xb1) = 1;
-  buffer_offset = *(longlong *)(global_base + 0x1af8);
+  *(int8_t *)(*(int64_t *)(GLOBAL_ENGINE_BASE + 0x1af8) + 0xb1) = 1;
+  buffer_offset = *(int64_t *)(global_base + 0x1af8);
   
   if (*(char *)(buffer_offset + 0xb4) == '\0') {
     // 查找文本中的注释结束位置
@@ -83,7 +83,7 @@ void render_text_label(uint64_t render_context, char *text_label, uint64_t posit
     }
     else {
       // 计算文本宽度
-      stack_data = CONCAT44((int)((ulonglong)stack_data >> 0x20), 0xbf800000);
+      stack_data = CONCAT44((int)((uint64_t)stack_data >> 0x20), 0xbf800000);
       calculate_text_dimensions(font_metrics, &dimensions, line_height, 0x7f7fffff, stack_data, text_label, comment_start, 0);
       text_width = (float)dimensions;
       
@@ -144,7 +144,7 @@ void render_text_label(uint64_t render_context, char *text_label, uint64_t posit
     
     // 计算布局参数
     calculate_layout_parameters(&render_height, *(int32_t *)(global_base + 0x1660));
-    render_state = *(longlong *)(global_base + 0x1af8);
+    render_state = *(int64_t *)(global_base + 0x1af8);
     
     // 保存渲染状态
     *(uint64_t *)(render_state + 0x144) = 0;
@@ -153,7 +153,7 @@ void render_text_label(uint64_t render_context, char *text_label, uint64_t posit
     *(float *)(render_state + 0x154) = text_width;
     *(float *)(render_state + 0x158) = additional_data._4_4_;
     
-    font_data = *(longlong *)(global_base + 0x1af8);
+    font_data = *(int64_t *)(global_base + 0x1af8);
     
     // 检查是否需要特殊渲染效果
     if ((((*(float *)(font_data + 0x22c) <= additional_data._4_4_ &&
@@ -174,7 +174,7 @@ void render_text_label(uint64_t render_context, char *text_label, uint64_t posit
       
       // 检查是否启用高级渲染
       if (((*(int *)(global_base + 0x1b18) == 0) || (*(char *)(global_base + 0x1b1c) != '\0')) &&
-         (((render_state = *(longlong *)(global_base + 0x1af8), *(longlong *)(global_base + 0x1b00) == render_state &&
+         (((render_state = *(int64_t *)(global_base + 0x1af8), *(int64_t *)(global_base + 0x1b00) == render_state &&
            ((((*(int *)(global_base + 0x1b2c) == 0 || (*(char *)(global_base + 0x1b3d) != '\0')) &&
              (comment_end = apply_special_effects(&shadow_y, &temp_buffer, comment_end != '\0')) &&
             ((*(char *)(global_base + 0x1d07) == '\0' &&
@@ -189,7 +189,7 @@ void render_text_label(uint64_t render_context, char *text_label, uint64_t posit
       }
       
       temp_data2 = size_info;
-      temp_register = (int32_t)((ulonglong)stack_data >> 0x20);
+      temp_register = (int32_t)((uint64_t)stack_data >> 0x20);
       font_data = global_base;
       
       // 计算渲染边界
@@ -200,7 +200,7 @@ void render_text_label(uint64_t render_context, char *text_label, uint64_t posit
         if (0 < count) {
           do {
             calculated_width = (float)get_character_width(temp_data2, current_index);
-            temp_register = (int32_t)((ulonglong)stack_data >> 0x20);
+            temp_register = (int32_t)((uint64_t)stack_data >> 0x20);
             
             if (calculated_width <= gradient_start) {
               gradient_start = calculated_width;
@@ -248,7 +248,7 @@ void render_text_label(uint64_t render_context, char *text_label, uint64_t posit
         }
         
         char_count = total_chars - 1;
-        text_length = (ulonglong)char_count;
+        text_length = (uint64_t)char_count;
         temp_data2 = size_info;
         
         if (use_special_rendering) {
@@ -267,9 +267,9 @@ void render_text_label(uint64_t render_context, char *text_label, uint64_t posit
           total_chars = (int)((float)(count + -1) * line_height);
           current_index = total_chars;
           
-          line_height = (float)get_character_width(size_info, (longlong)(total_chars + index) % (longlong)count & 0xffffffff);
+          line_height = (float)get_character_width(size_info, (int64_t)(total_chars + index) % (int64_t)count & 0xffffffff);
           temp_data2 = size_info;
-          text_width = (float)get_character_width(size_info, (longlong)(total_chars + index + 1) % (longlong)count & 0xffffffff);
+          text_width = (float)get_character_width(size_info, (int64_t)(total_chars + index + 1) % (int64_t)count & 0xffffffff);
           temp_double = (double)text_width;
           
           // 执行插值计算
@@ -285,7 +285,7 @@ void render_text_label(uint64_t render_context, char *text_label, uint64_t posit
         }
         
         gradient_end = 0.0;
-        text_width = (float)get_character_width(temp_data2, (longlong)index % (longlong)count & 0xffffffff);
+        text_width = (float)get_character_width(temp_data2, (int64_t)index % (int64_t)count & 0xffffffff);
         global_base = GLOBAL_ENGINE_BASE;
         text_width = (text_width - x_coord) * line_height;
         
@@ -323,12 +323,12 @@ void render_text_label(uint64_t render_context, char *text_label, uint64_t posit
           dimensions = CONCAT44(dimensions._4_4_, (float)dimensions - baseline_offset);
           
           do {
-            temp_register = (int32_t)((ulonglong)temp_double >> 0x20);
+            temp_register = (int32_t)((uint64_t)temp_double >> 0x20);
             calculated_width = (float)(count + -1) * gradient_end;
             gradient_end = gradient_end + 1.0 / (float)(int)char_count;
             total_chars = (int)(calculated_width + 0.5);
             
-            calculated_width = (float)get_character_width(size_info, (longlong)(total_chars + index + 1) % (longlong)count & 0xffffffff);
+            calculated_width = (float)get_character_width(size_info, (int64_t)(total_chars + index + 1) % (int64_t)count & 0xffffffff);
             calculated_width = (calculated_width - x_coord) * line_height;
             
             if (0.0 <= calculated_width) {
@@ -382,7 +382,7 @@ void render_text_label(uint64_t render_context, char *text_label, uint64_t posit
         }
         
         if (((int)comment_start != (int)font_name) &&
-           (render_text_with_effects(*(uint64_t *)(*(longlong *)(global_base + 0x1af8) + 0x2e8), &dimensions,
+           (render_text_with_effects(*(uint64_t *)(*(int64_t *)(global_base + 0x1af8) + 0x2e8), &dimensions,
                           &shadow_x, font_name, comment_start, 0, &stack_offset, 0),
            *(char *)(global_base + 0x2e38) != '\0')) {
           apply_text_effects(&dimensions, font_name, comment_start);
@@ -401,11 +401,11 @@ void render_text_label(uint64_t render_context, char *text_label, uint64_t posit
 // 函数：高级文本渲染处理
 // 参数：render_context - 渲染上下文，text_content - 文本内容，render_data - 渲染数据，render_params - 渲染参数
 // 功能：处理复杂的文本渲染，包括多层渲染、效果合成等高级功能
-void process_advanced_text_rendering(uint64_t render_context, char *text_content, uint64_t render_data, longlong render_params)
+void process_advanced_text_rendering(uint64_t render_context, char *text_content, uint64_t render_data, int64_t render_params)
 {
   int char_index;
   float *font_table;
-  longlong engine_state;
+  int64_t engine_state;
   uint64_t temp_data1;
   uint64_t temp_data2;
   bool enable_advanced_effects;
@@ -416,13 +416,13 @@ void process_advanced_text_rendering(uint64_t render_context, char *text_content
   int total_length;
   uint64_t render_buffer;
   char *comment_end;
-  longlong frame_buffer;
+  int64_t frame_buffer;
   int texture_index;
-  longlong buffer_base;
+  int64_t buffer_base;
   uint vertex_count;
-  longlong render_target;
-  ulonglong index_count;
-  longlong context_data;
+  int64_t render_target;
+  uint64_t index_count;
+  int64_t context_data;
   uint64_t texture_coords;
   float font_size;
   float text_metrics;
@@ -458,7 +458,7 @@ void process_advanced_text_rendering(uint64_t render_context, char *text_content
   int stack_index;
   float stack_spacing;
   float stack_scale;
-  longlong stack_offset;
+  int64_t stack_offset;
   float stack_texture;
   uint64_t stack_buffer;
   int32_t stack_e0;
@@ -518,7 +518,7 @@ void process_advanced_text_rendering(uint64_t render_context, char *text_content
   }
   else {
     // 计算文本尺寸
-    stack_data = CONCAT44((int)((ulonglong)stack_data >> 0x20), 0xbf800000);
+    stack_data = CONCAT44((int)((uint64_t)stack_data >> 0x20), 0xbf800000);
     calculate_text_dimensions(font_table, frame_buffer + 0xb0, text_metrics, 0x7f7fffff, stack_data);
     render_width = *(float *)(frame_buffer + 0xb0);
     
@@ -527,7 +527,7 @@ void process_advanced_text_rendering(uint64_t render_context, char *text_content
     }
     
     text_metrics = *(float *)(frame_buffer + 0xb4);
-    render_params = *(longlong *)(frame_buffer + -0x80);
+    render_params = *(int64_t *)(frame_buffer + -0x80);
     render_width = (float)(int)(render_width + 0.95);
   }
   
@@ -588,14 +588,14 @@ void process_advanced_text_rendering(uint64_t render_context, char *text_content
   // 计算布局
   calculate_layout_parameters(&depth_value, *(int32_t *)(engine_state + 0x1660));
   
-  buffer_base = *(longlong *)(engine_state + 0x1af8);
+  buffer_base = *(int64_t *)(engine_state + 0x1af8);
   *(uint64_t *)(buffer_base + 0x144) = 0;
   *(float *)(buffer_base + 0x14c) = color_r;
   *(int32_t *)(buffer_base + 0x150) = temp_value;
   *(float *)(buffer_base + 0x154) = render_height;
   *(float *)(buffer_base + 0x158) = blend_factor;
   
-  engine_state = *(longlong *)(engine_state + 0x1af8);
+  engine_state = *(int64_t *)(engine_state + 0x1af8);
   
   // 检查是否启用高级效果
   if ((((*(float *)(engine_state + 0x22c) <= blend_factor && blend_factor != *(float *)(engine_state + 0x22c)) &&
@@ -616,7 +616,7 @@ void process_advanced_text_rendering(uint64_t render_context, char *text_content
     
     // 检查高级渲染条件
     if (((*(int *)(engine_state + 0x1b18) == 0) || (*(char *)(engine_state + 0x1b1c) != '\0')) &&
-       (((buffer_base = *(longlong *)(engine_state + 0x1af8), *(longlong *)(engine_state + 0x1b00) == buffer_base &&
+       (((buffer_base = *(int64_t *)(engine_state + 0x1af8), *(int64_t *)(engine_state + 0x1b00) == buffer_base &&
          ((((*(int *)(engine_state + 0x1b2c) == 0 || (*(char *)(engine_state + 0x1b3d) != '\0')) &&
            (effect_status = apply_special_effects(&stack_depth, &stack_data, effect_status != '\0')) &&
           ((*(char *)(engine_state + 0x1d07) == '\0' &&
@@ -630,7 +630,7 @@ void process_advanced_text_rendering(uint64_t render_context, char *text_content
       enable_advanced_effects = false;
     }
     
-    temp_register = (int32_t)((ulonglong)stack_data >> 0x20);
+    temp_register = (int32_t)((uint64_t)stack_data >> 0x20);
     color_b = *(float *)(frame_buffer + 0xd8);
     char_index = *(int *)(frame_buffer + 0xc0);
     color_g = *(float *)(frame_buffer + 0xe0);
@@ -644,7 +644,7 @@ void process_advanced_text_rendering(uint64_t render_context, char *text_content
         temp_data1 = *(uint64_t *)(frame_buffer + 0xb8);
         do {
           render_height = (float)get_character_width(temp_data1, current_pos);
-          temp_register = (int32_t)((ulonglong)stack_data >> 0x20);
+          temp_register = (int32_t)((uint64_t)stack_data >> 0x20);
           
           if (render_height <= alpha_value) {
             alpha_value = render_height;
@@ -693,7 +693,7 @@ void process_advanced_text_rendering(uint64_t render_context, char *text_content
       }
       
       vertex_count = texture_index - 1;
-      index_count = (ulonglong)vertex_count;
+      index_count = (uint64_t)vertex_count;
       
       if (enable_advanced_effects) {
         // 计算插值参数
@@ -712,9 +712,9 @@ void process_advanced_text_rendering(uint64_t render_context, char *text_content
         stack_index = texture_index;
         
         text_metrics = (float)get_character_width(*(uint64_t *)(frame_buffer + 0xb8),
-                                        (longlong)(texture_index + current_pos) % (longlong)char_index & 0xffffffff);
+                                        (int64_t)(texture_index + current_pos) % (int64_t)char_index & 0xffffffff);
         render_buffer = *(uint64_t *)(frame_buffer + 0xb8);
-        color_g = (float)get_character_width(render_buffer, (longlong)(texture_index + current_pos + 1) % (longlong)char_index & 0xffffffff);
+        color_g = (float)get_character_width(render_buffer, (int64_t)(texture_index + current_pos + 1) % (int64_t)char_index & 0xffffffff);
         temp_double = (double)color_g;
         
         // 执行插值
@@ -733,7 +733,7 @@ void process_advanced_text_rendering(uint64_t render_context, char *text_content
       }
       
       blend_factor = 0.0;
-      text_metrics = (float)get_character_width(render_buffer, (longlong)current_pos % (longlong)char_index & 0xffffffff);
+      text_metrics = (float)get_character_width(render_buffer, (int64_t)current_pos % (int64_t)char_index & 0xffffffff);
       buffer_base = GLOBAL_ENGINE_BASE;
       text_metrics = (text_metrics - color_b) * text_metrics;
       
@@ -771,13 +771,13 @@ void process_advanced_text_rendering(uint64_t render_context, char *text_content
         *(float *)(frame_buffer + 0xb0) = *(float *)(frame_buffer + 0xb0) - *(float *)(frame_buffer + 0xa0);
         
         do {
-          temp_register = (int32_t)((ulonglong)temp_double >> 0x20);
+          temp_register = (int32_t)((uint64_t)temp_double >> 0x20);
           color_g = (float)(char_index + -1) * blend_factor;
           blend_factor = blend_factor + 1.0 / (float)(int)vertex_count;
           total_length = (int)(color_g + 0.5);
           
           color_g = (float)get_character_width(*(uint64_t *)(frame_buffer + 0xb8),
-                                          (longlong)(total_length + current_pos + 1) % (longlong)char_index & 0xffffffff);
+                                          (int64_t)(total_length + current_pos + 1) % (int64_t)char_index & 0xffffffff);
           color_g = (color_g - color_b) * text_metrics;
           
           if (0.0 <= color_g) {
@@ -804,7 +804,7 @@ void process_advanced_text_rendering(uint64_t render_context, char *text_content
           depth_value = *(float *)(frame_buffer + 0xb0) * blend_factor + *(float *)(frame_buffer + 0xa0);
           
           // 执行最终渲染
-          perform_final_render(*(uint64_t *)(*(longlong *)(render_params + 0x2e8)), &stack_width, &depth_value, color_g, temp_double);
+          perform_final_render(*(uint64_t *)(*(int64_t *)(render_params + 0x2e8)), &stack_width, &depth_value, color_g, temp_double);
           
           index_count = index_count - 1;
           buffer_base = GLOBAL_ENGINE_BASE;
@@ -834,7 +834,7 @@ void process_advanced_text_rendering(uint64_t render_context, char *text_content
       }
       
       if (((int)text_pointer != (int)comment_end) &&
-         (render_text_with_effects(*(uint64_t *)(*(longlong *)(buffer_base + 0x1af8) + 0x2e8), frame_buffer + 0xb0,
+         (render_text_with_effects(*(uint64_t *)(*(int64_t *)(buffer_base + 0x1af8) + 0x2e8), frame_buffer + 0xb0,
                         frame_buffer + -0x70, comment_end, text_pointer), *(char *)(buffer_base + 0x2e38) != '\0')) {
         apply_text_effects(frame_buffer + 0xb0, comment_end, text_pointer);
       }

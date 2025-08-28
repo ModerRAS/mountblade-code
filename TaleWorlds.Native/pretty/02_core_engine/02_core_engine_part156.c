@@ -10,67 +10,67 @@
  * @param object_ptr 对象指针
  * @param animation_id 动画ID
  */
-void process_object_animation_data(uint64_t object_ptr, ulonglong animation_id)
+void process_object_animation_data(uint64_t object_ptr, uint64_t animation_id)
 
 {
   float position_x;
   float position_y;
   short animation_flag;
-  longlong data_offset;
+  int64_t data_offset;
   int8_t animation_data [16];
   int *frame_count_ptr;
-  ulonglong current_offset;
-  longlong animation_length;
+  uint64_t current_offset;
+  int64_t animation_length;
   int current_frame;
   uint64_t *object_table;
-  longlong timeline_offset;
+  int64_t timeline_offset;
   uint animation_index;
-  ulonglong timeline_base;
-  longlong timeline_position;
+  uint64_t timeline_base;
+  int64_t timeline_position;
   int timeline_frame;
-  longlong in_R10;
+  int64_t in_R10;
   uint64_t extraout_XMM0_Qa;
   uint64_t texture_id;
-  ulonglong render_param;
+  uint64_t render_param;
   
 code_r0x00018013d378:
-  current_offset = (longlong)(int)animation_id * 0x38 + in_R10;
+  current_offset = (int64_t)(int)animation_id * 0x38 + in_R10;
   do {
     do {
       while( true ) {
         if (current_offset == 0) {
           current_offset = allocate_animation_buffer(*object_table);
           animation_data = SEXT816(timeline_position) *
-                   SEXT816((longlong)(current_offset - *(longlong *)(object_table + 0x2e30)));
+                   SEXT816((int64_t)(current_offset - *(int64_t *)(object_table + 0x2e30)));
           *(int *)(object_table + 0x5c) = (int)(animation_data._8_8_ >> 4) - (animation_data._12_4_ >> 0x1f);
         }
         position_x = *(float *)(object_table + 8);
-        position_y = *(float *)((longlong)object_table + 0x34);
+        position_y = *(float *)((int64_t)object_table + 0x34);
         *(float *)(current_offset + 0x10) =
-             *(float *)((longlong)object_table + 0x44) - *(float *)(object_table + 7);
+             *(float *)((int64_t)object_table + 0x44) - *(float *)(object_table + 7);
         *(float *)(current_offset + 0xc) = position_x - position_y;
         *(uint64_t *)(current_offset + 0x14) = object_table[10];
         *(int32_t *)(current_offset + 0x24) = *(int32_t *)(object_table + 6);
-        texture_id = *(uint64_t *)((longlong)object_table + 0x34);
+        texture_id = *(uint64_t *)((int64_t)object_table + 0x34);
         *(uint64_t *)(current_offset + 0x1c) = texture_id;
         *(int32_t *)(current_offset + 0x28) = *(int32_t *)(object_table + 0x83);
-        *(int32_t *)(current_offset + 0x2c) = *(int32_t *)((longlong)object_table + 0x14);
+        *(int32_t *)(current_offset + 0x2c) = *(int32_t *)((int64_t)object_table + 0x14);
         *(int16_t *)(current_offset + 0x30) = *(int16_t *)(object_table + 0x86);
-        *(int8_t *)(current_offset + 0x32) = *(int8_t *)((longlong)object_table + 0xb2);
+        *(int8_t *)(current_offset + 0x32) = *(int8_t *)((int64_t)object_table + 0xb2);
         do {
           timeline_frame = timeline_frame + 1;
           timeline_position = timeline_position + 8;
           if (timeline_frame == *(int *)(object_table + 0x1aa0)) {
             current_frame = (int)timeline_base;
-            if (*(ulonglong *)(frame_count_ptr + 2) != timeline_base) {
+            if (*(uint64_t *)(frame_count_ptr + 2) != timeline_base) {
               current_frame = *frame_count_ptr + -1;
             }
             render_animation_frame(texture_id,*(int *)(object_table + 0x2e28) * 0x60 + current_frame);
             current_offset = timeline_base;
             if (*(int *)(object_table + 0x2e28) != (int)timeline_base) {
               do {
-                data_offset = *(longlong *)(object_table + 0x2e30);
-                timeline_offset = *(longlong *)(current_offset + data_offset);
+                data_offset = *(int64_t *)(object_table + 0x2e30);
+                timeline_offset = *(int64_t *)(current_offset + data_offset);
                 animation_length = strstr(timeline_offset,&ANIMATION_START_MARKER);
                 if (animation_length != 0) {
                   timeline_offset = animation_length;
@@ -89,7 +89,7 @@ code_r0x00018013d378:
                                 (int)*(float *)(current_offset + 0x10 + data_offset));
                 }
                 position_x = *(float *)(current_offset + 0x14 + data_offset);
-                render_param = (ulonglong)(uint)position_x;
+                render_param = (uint64_t)(uint)position_x;
                 if ((position_x != 0.0) || (*(float *)(current_offset + 0x18 + data_offset) != 0.0)) {
                   render_param = render_texture_data(render_param,&RENDER_PARAMS_TABLE,(int)position_x,
                                          (int)*(float *)(current_offset + 0x18 + data_offset));
@@ -110,29 +110,29 @@ code_r0x00018013d378:
                 }
                 render_texture_data(texture_id,&GLOBAL_RENDER_CONTEXT);
                 animation_index = (int)timeline_base + 1;
-                timeline_base = (ulonglong)animation_index;
+                timeline_base = (uint64_t)animation_index;
                 current_offset = current_offset + 0x38;
               } while (animation_index != *(uint *)(object_table + 0x2e28));
             }
             return;
           }
-          object_table = *(uint64_t **)(timeline_position + *(longlong *)(object_table + 0x1aa8));
-        } while ((*(uint *)((longlong)object_table + 0xc) & 0x100) != 0);
+          object_table = *(uint64_t **)(timeline_position + *(int64_t *)(object_table + 0x1aa8));
+        } while ((*(uint *)((int64_t)object_table + 0xc) & 0x100) != 0);
         if (*(int *)(object_table + 0x5c) == -1) break;
-        current_offset = (longlong)*(int *)(object_table + 0x5c) * 0x38 + *(longlong *)(object_table + 0x2e30);
+        current_offset = (int64_t)*(int *)(object_table + 0x5c) * 0x38 + *(int64_t *)(object_table + 0x2e30);
       }
       animation_id = timeline_base & 0xffffffff;
       current_offset = timeline_base;
     } while (*(int *)(GLOBAL_ENGINE_CONTEXT + 0x2e28) == 0);
-    in_R10 = *(longlong *)(GLOBAL_ENGINE_CONTEXT + 0x2e30);
+    in_R10 = *(int64_t *)(GLOBAL_ENGINE_CONTEXT + 0x2e30);
     frame_count_ptr = (int *)(in_R10 + 8);
     render_param = timeline_base;
     do {
       if (*frame_count_ptr == *(int *)(object_table + 1)) goto code_r0x00018013d378;
-      animation_id = (ulonglong)((int)animation_id + 1);
+      animation_id = (uint64_t)((int)animation_id + 1);
       render_param = render_param + 1;
       frame_count_ptr = frame_count_ptr + 0xe;
-    } while (render_param != (longlong)*(int *)(GLOBAL_ENGINE_CONTEXT + 0x2e28));
+    } while (render_param != (int64_t)*(int *)(GLOBAL_ENGINE_CONTEXT + 0x2e28));
   } while( true );
 }
 
@@ -145,13 +145,13 @@ void render_animation_frame_data(int32_t render_param)
 {
   short animation_flag;
   int frame_index;
-  longlong data_offset;
-  longlong timeline_offset;
-  longlong animation_length;
+  int64_t data_offset;
+  int64_t timeline_offset;
+  int64_t animation_length;
   uint current_index;
-  ulonglong timeline_base;
+  uint64_t timeline_base;
   uint64_t *object_table;
-  longlong object_data;
+  int64_t object_data;
   int32_t texture_data;
   uint64_t render_result;
   float position_data;
@@ -162,8 +162,8 @@ void render_animation_frame_data(int32_t render_param)
   current_index = timeline_base;
   if (*(int *)(object_data + 0x2e28) != (int)timeline_base) {
     do {
-      data_offset = *(longlong *)(object_data + 0x2e30);
-      timeline_offset = *(longlong *)(current_index + data_offset);
+      data_offset = *(int64_t *)(object_data + 0x2e30);
+      timeline_offset = *(int64_t *)(current_index + data_offset);
       animation_length = strstr(timeline_offset,&ANIMATION_START_MARKER);
       if (animation_length != 0) {
         timeline_offset = animation_length;
@@ -202,7 +202,7 @@ void render_animation_frame_data(int32_t render_param)
       }
       render_texture_data(texture_data,&GLOBAL_RENDER_CONTEXT);
       current_index = (int)timeline_base + 1;
-      timeline_base = (ulonglong)current_index;
+      timeline_base = (uint64_t)current_index;
       current_index = current_index + 0x38;
     } while (current_index != *(uint *)(object_data + 0x2e28));
   }
@@ -218,13 +218,13 @@ void process_animation_data_loop(void)
 {
   short animation_flag;
   int frame_index;
-  longlong data_offset;
-  longlong timeline_offset;
-  longlong animation_length;
+  int64_t data_offset;
+  int64_t timeline_offset;
+  int64_t animation_length;
   uint current_index;
-  ulonglong timeline_base;
+  uint64_t timeline_base;
   uint64_t *object_table;
-  longlong object_data;
+  int64_t object_data;
   int32_t texture_data;
   uint64_t render_result;
   float position_data;
@@ -232,8 +232,8 @@ void process_animation_data_loop(void)
   
   current_index = timeline_base;
   do {
-    data_offset = *(longlong *)(object_data + 0x2e30);
-    timeline_offset = *(longlong *)(current_index + data_offset);
+    data_offset = *(int64_t *)(object_data + 0x2e30);
+    timeline_offset = *(int64_t *)(current_index + data_offset);
     animation_length = strstr(timeline_offset,&ANIMATION_START_MARKER);
     if (animation_length != 0) {
       timeline_offset = animation_length;
@@ -272,7 +272,7 @@ void process_animation_data_loop(void)
     }
     render_texture_data(texture_data,&GLOBAL_RENDER_CONTEXT);
     current_index = (int)timeline_base + 1;
-    timeline_base = (ulonglong)current_index;
+    timeline_base = (uint64_t)current_index;
     current_index = current_index + 0x38;
   } while (current_index != *(uint *)(object_data + 0x2e28));
   return;
@@ -291,7 +291,7 @@ void animation_processing_placeholder(void)
  * 从剪贴板读取Unicode文本数据
  * @return 返回剪贴板文本数据的指针
  */
-longlong read_clipboard_unicode_text(void)
+int64_t read_clipboard_unicode_text(void)
 
 {
   ushort *text_ptr;
@@ -299,14 +299,14 @@ longlong read_clipboard_unicode_text(void)
   int text_length;
   int char_size;
   uint buffer_size;
-  longlong clipboard_data;
+  int64_t clipboard_data;
   ushort *unicode_text;
-  longlong new_buffer;
+  int64_t new_buffer;
   uint required_size;
   uint allocated_size;
   
   // 检查是否需要初始化剪贴板功能
-  if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
+  if ((*(int *)(*(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8) +
                0x48) < core_system_config_resource) && (SystemInitializer(&system_memory_9270), core_system_config_resource == -1)) {
     core_system_config_resource = 0;
     core_system_config_resource = 0;
@@ -357,11 +357,11 @@ longlong read_clipboard_unicode_text(void)
               if (SYSTEM_DATA_MANAGER_A != 0) {
                 *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
               }
-              new_buffer = func_0x000180120ce0((longlong)(int)allocated_size,SYSTEM_DATA_MANAGER_B);
+              new_buffer = func_0x000180120ce0((int64_t)(int)allocated_size,SYSTEM_DATA_MANAGER_B);
               if (core_system_config_resource != 0) {
-                memcpy(new_buffer,core_system_config_resource,(longlong)core_system_config_resource);
+                memcpy(new_buffer,core_system_config_resource,(int64_t)core_system_config_resource);
               }
-              core_system_config_resource = (ulonglong)allocated_size << 0x20;
+              core_system_config_resource = (uint64_t)allocated_size << 0x20;
               core_system_config_resource = new_buffer;
             }
           }
@@ -394,14 +394,14 @@ void write_clipboard_unicode_text(uint64_t param1,uint64_t param2,uint64_t param
 
 {
   uint64_t clipboard_handle;
-  longlong memory_handle;
+  int64_t memory_handle;
   int text_length;
-  longlong result;
+  int64_t result;
   
   text_length = OpenClipboard(0);
   if (text_length != 0) {
     text_length = FUN_1801219c0(param2,0);
-    memory_handle = GlobalAlloc(2,(longlong)(text_length + 1) * 2);
+    memory_handle = GlobalAlloc(2,(int64_t)(text_length + 1) * 2);
     if (memory_handle != 0) {
       clipboard_handle = GlobalLock(memory_handle);
       FUN_180121740(clipboard_handle,text_length + 1,param2,param4,0);
@@ -425,12 +425,12 @@ void write_default_clipboard_text(void)
 
 {
   int text_length;
-  longlong memory_handle;
+  int64_t memory_handle;
   uint64_t clipboard_handle;
-  longlong result;
+  int64_t result;
   
   text_length = FUN_1801219c0();
-  memory_handle = GlobalAlloc(2,(longlong)(text_length + 1) * 2);
+  memory_handle = GlobalAlloc(2,(int64_t)(text_length + 1) * 2);
   if (memory_handle != 0) {
     clipboard_handle = GlobalLock(memory_handle);
     FUN_180121740(clipboard_handle,text_length + 1);
@@ -483,15 +483,15 @@ void add_pointer_to_array(int *array_ptr,uint64_t *element_ptr)
       if (SYSTEM_DATA_MANAGER_A != 0) {
         *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
       }
-      new_buffer = func_0x000180120ce0((longlong)required_size << 3,SYSTEM_DATA_MANAGER_B);
-      if (*(longlong *)(array_ptr + 2) != 0) {
-        memcpy(new_buffer,*(longlong *)(array_ptr + 2),(longlong)*array_ptr << 3);
+      new_buffer = func_0x000180120ce0((int64_t)required_size << 3,SYSTEM_DATA_MANAGER_B);
+      if (*(int64_t *)(array_ptr + 2) != 0) {
+        memcpy(new_buffer,*(int64_t *)(array_ptr + 2),(int64_t)*array_ptr << 3);
       }
       *(uint64_t *)(array_ptr + 2) = new_buffer;
       array_ptr[1] = required_size;
     }
   }
-  *(uint64_t *)(*(longlong *)(array_ptr + 2) + (longlong)*array_ptr * 8) = *element_ptr;
+  *(uint64_t *)(*(int64_t *)(array_ptr + 2) + (int64_t)*array_ptr * 8) = *element_ptr;
   *array_ptr = *array_ptr + 1;
   return;
 }
@@ -503,7 +503,7 @@ void add_pointer_to_array(int *array_ptr,uint64_t *element_ptr)
 void add_pointer_to_array_reg(void)
 
 {
-  longlong memory_tracker;
+  int64_t memory_tracker;
   uint64_t new_buffer;
   int *array_ptr;
   int new_capacity;
@@ -512,13 +512,13 @@ void add_pointer_to_array_reg(void)
   if (memory_tracker != 0) {
     *(int *)(memory_tracker + 0x3a8) = *(int *)(memory_tracker + 0x3a8) + 1;
   }
-  new_buffer = func_0x000180120ce0((longlong)new_capacity << 3,SYSTEM_DATA_MANAGER_B);
-  if (*(longlong *)(array_ptr + 2) != 0) {
-    memcpy(new_buffer,*(longlong *)(array_ptr + 2),(longlong)*array_ptr << 3);
+  new_buffer = func_0x000180120ce0((int64_t)new_capacity << 3,SYSTEM_DATA_MANAGER_B);
+  if (*(int64_t *)(array_ptr + 2) != 0) {
+    memcpy(new_buffer,*(int64_t *)(array_ptr + 2),(int64_t)*array_ptr << 3);
   }
   *(uint64_t *)(array_ptr + 2) = new_buffer;
   array_ptr[1] = new_capacity;
-  *(uint64_t *)(*(longlong *)(array_ptr + 2) + (longlong)*array_ptr * 8) = *element_ptr;
+  *(uint64_t *)(*(int64_t *)(array_ptr + 2) + (int64_t)*array_ptr * 8) = *element_ptr;
   *array_ptr = *array_ptr + 1;
   return;
 }
@@ -533,7 +533,7 @@ void add_pointer_to_array_simple(void)
   int *array_ptr;
   uint64_t *element_ptr;
   
-  *(uint64_t *)(*(longlong *)(array_ptr + 2) + (longlong)*array_ptr * 8) = *element_ptr;
+  *(uint64_t *)(*(int64_t *)(array_ptr + 2) + (int64_t)*array_ptr * 8) = *element_ptr;
   *array_ptr = *array_ptr + 1;
   return;
 }
@@ -548,7 +548,7 @@ void add_pointer_to_array_simple(void)
 void release_object_resources(uint64_t *object_ptr,uint64_t param2,uint64_t param3,uint64_t param4)
 
 {
-  longlong resource_ptr;
+  int64_t resource_ptr;
   
   resource_ptr = object_ptr[3];
   if (resource_ptr != 0) {
@@ -598,9 +598,9 @@ void resize_array_capacity(int *array_ptr,int new_capacity)
     if (SYSTEM_DATA_MANAGER_A != 0) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
     }
-    new_buffer = func_0x000180120ce0((longlong)new_capacity << 5,SYSTEM_DATA_MANAGER_B);
-    if (*(longlong *)(array_ptr + 2) != 0) {
-      memcpy(new_buffer,*(longlong *)(array_ptr + 2),(longlong)*array_ptr << 5);
+    new_buffer = func_0x000180120ce0((int64_t)new_capacity << 5,SYSTEM_DATA_MANAGER_B);
+    if (*(int64_t *)(array_ptr + 2) != 0) {
+      memcpy(new_buffer,*(int64_t *)(array_ptr + 2),(int64_t)*array_ptr << 5);
     }
     *(uint64_t *)(array_ptr + 2) = new_buffer;
     array_ptr[1] = new_capacity;
@@ -615,17 +615,17 @@ void resize_array_capacity(int *array_ptr,int new_capacity)
 void resize_array_capacity_reg(void)
 
 {
-  longlong memory_tracker;
+  int64_t memory_tracker;
   uint64_t new_buffer;
   int *array_ptr;
-  longlong new_capacity;
+  int64_t new_capacity;
   
   if (memory_tracker != 0) {
     *(int *)(memory_tracker + 0x3a8) = *(int *)(memory_tracker + 0x3a8) + 1;
   }
   new_buffer = func_0x000180120ce0(new_capacity << 5,SYSTEM_DATA_MANAGER_B);
-  if (*(longlong *)(array_ptr + 2) != 0) {
-    memcpy(new_buffer,*(longlong *)(array_ptr + 2),(longlong)*array_ptr << 5);
+  if (*(int64_t *)(array_ptr + 2) != 0) {
+    memcpy(new_buffer,*(int64_t *)(array_ptr + 2),(int64_t)*array_ptr << 5);
   }
   *(uint64_t *)(array_ptr + 2) = new_buffer;
   array_ptr[1] = (int)new_capacity;
@@ -703,9 +703,9 @@ void set_array_size(int *array_ptr,int new_size)
     if (SYSTEM_DATA_MANAGER_A != 0) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
     }
-    new_buffer = func_0x000180120ce0((longlong)required_size * 0x30,SYSTEM_DATA_MANAGER_B);
-    if (*(longlong *)(array_ptr + 2) != 0) {
-      memcpy(new_buffer,*(longlong *)(array_ptr + 2),(longlong)*array_ptr * 0x30);
+    new_buffer = func_0x000180120ce0((int64_t)required_size * 0x30,SYSTEM_DATA_MANAGER_B);
+    if (*(int64_t *)(array_ptr + 2) != 0) {
+      memcpy(new_buffer,*(int64_t *)(array_ptr + 2),(int64_t)*array_ptr * 0x30);
     }
     *(uint64_t *)(array_ptr + 2) = new_buffer;
     array_ptr[1] = required_size;
@@ -743,9 +743,9 @@ void set_array_size_reg(int current_size)
     if (SYSTEM_DATA_MANAGER_A != 0) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
     }
-    new_buffer = func_0x000180120ce0((longlong)required_size * 0x30,SYSTEM_DATA_MANAGER_B);
-    if (*(longlong *)(array_ptr + 2) != 0) {
-      memcpy(new_buffer,*(longlong *)(array_ptr + 2),(longlong)*array_ptr * 0x30);
+    new_buffer = func_0x000180120ce0((int64_t)required_size * 0x30,SYSTEM_DATA_MANAGER_B);
+    if (*(int64_t *)(array_ptr + 2) != 0) {
+      memcpy(new_buffer,*(int64_t *)(array_ptr + 2),(int64_t)*array_ptr * 0x30);
     }
     *(uint64_t *)(array_ptr + 2) = new_buffer;
     array_ptr[1] = required_size;
@@ -794,10 +794,10 @@ void add_struct_to_array(int *array_ptr,uint64_t *element_ptr)
 {
   uint64_t *dest_ptr;
   int current_size;
-  longlong data_offset;
+  int64_t data_offset;
   int new_size;
   uint64_t new_buffer;
-  longlong base_offset;
+  int64_t base_offset;
   int required_size;
   
   current_size = array_ptr[1];
@@ -816,17 +816,17 @@ void add_struct_to_array(int *array_ptr,uint64_t *element_ptr)
       if (SYSTEM_DATA_MANAGER_A != 0) {
         *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
       }
-      new_buffer = func_0x000180120ce0((longlong)required_size * 0x30,SYSTEM_DATA_MANAGER_B);
-      if (*(longlong *)(array_ptr + 2) != 0) {
-        memcpy(new_buffer,*(longlong *)(array_ptr + 2),(longlong)*array_ptr * 0x30);
+      new_buffer = func_0x000180120ce0((int64_t)required_size * 0x30,SYSTEM_DATA_MANAGER_B);
+      if (*(int64_t *)(array_ptr + 2) != 0) {
+        memcpy(new_buffer,*(int64_t *)(array_ptr + 2),(int64_t)*array_ptr * 0x30);
       }
       *(uint64_t *)(array_ptr + 2) = new_buffer;
       array_ptr[1] = required_size;
     }
   }
-  base_offset = (longlong)*array_ptr;
+  base_offset = (int64_t)*array_ptr;
   new_buffer = element_ptr[1];
-  data_offset = *(longlong *)(array_ptr + 2);
+  data_offset = *(int64_t *)(array_ptr + 2);
   dest_ptr = (uint64_t *)(data_offset + base_offset * 0x30);
   *dest_ptr = *element_ptr;
   dest_ptr[1] = new_buffer;
@@ -850,10 +850,10 @@ void add_struct_to_array_reg(void)
 
 {
   uint64_t *dest_ptr;
-  longlong data_offset;
-  longlong memory_tracker;
+  int64_t data_offset;
+  int64_t memory_tracker;
   uint64_t new_buffer;
-  longlong base_offset;
+  int64_t base_offset;
   int *array_ptr;
   uint64_t *element_ptr;
   int new_capacity;
@@ -861,15 +861,15 @@ void add_struct_to_array_reg(void)
   if (memory_tracker != 0) {
     *(int *)(memory_tracker + 0x3a8) = *(int *)(memory_tracker + 0x3a8) + 1;
   }
-  new_buffer = func_0x000180120ce0((longlong)new_capacity * 0x30,SYSTEM_DATA_MANAGER_B);
-  if (*(longlong *)(array_ptr + 2) != 0) {
-    memcpy(new_buffer,*(longlong *)(array_ptr + 2),(longlong)*array_ptr * 0x30);
+  new_buffer = func_0x000180120ce0((int64_t)new_capacity * 0x30,SYSTEM_DATA_MANAGER_B);
+  if (*(int64_t *)(array_ptr + 2) != 0) {
+    memcpy(new_buffer,*(int64_t *)(array_ptr + 2),(int64_t)*array_ptr * 0x30);
   }
   *(uint64_t *)(array_ptr + 2) = new_buffer;
   array_ptr[1] = new_capacity;
-  base_offset = (longlong)*array_ptr;
+  base_offset = (int64_t)*array_ptr;
   new_buffer = element_ptr[1];
-  data_offset = *(longlong *)(array_ptr + 2);
+  data_offset = *(int64_t *)(array_ptr + 2);
   dest_ptr = (uint64_t *)(data_offset + base_offset * 0x30);
   *dest_ptr = *element_ptr;
   dest_ptr[1] = new_buffer;
@@ -893,15 +893,15 @@ void add_struct_to_array_simple(void)
 
 {
   uint64_t *dest_ptr;
-  longlong data_offset;
+  int64_t data_offset;
   uint64_t new_buffer;
-  longlong base_offset;
+  int64_t base_offset;
   int *array_ptr;
   uint64_t *element_ptr;
   
-  base_offset = (longlong)*array_ptr;
+  base_offset = (int64_t)*array_ptr;
   new_buffer = element_ptr[1];
-  data_offset = *(longlong *)(array_ptr + 2);
+  data_offset = *(int64_t *)(array_ptr + 2);
   dest_ptr = (uint64_t *)(data_offset + base_offset * 0x30);
   *dest_ptr = *element_ptr;
   dest_ptr[1] = new_buffer;
@@ -929,10 +929,10 @@ void release_container_resources(uint64_t *container_ptr,uint64_t param2,uint64_
 {
   int *size_ptr;
   int index;
-  longlong resource_ptr;
-  ulonglong offset;
+  int64_t resource_ptr;
+  uint64_t offset;
   uint current_index;
-  ulonglong max_index;
+  uint64_t max_index;
   
   offset = 0;
   size_ptr = (int *)(container_ptr + 2);
@@ -941,7 +941,7 @@ void release_container_resources(uint64_t *container_ptr,uint64_t param2,uint64_
     do {
       index = *(int *)(container_ptr[3] + 8 + offset);
       if ((index != -1) &&
-         (resource_ptr = *(longlong *)((longlong)index * 0x60 + container_ptr[1] + 8), resource_ptr != 0)) {
+         (resource_ptr = *(int64_t *)((int64_t)index * 0x60 + container_ptr[1] + 8), resource_ptr != 0)) {
         if (SYSTEM_DATA_MANAGER_A != 0) {
           *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
         }
@@ -949,7 +949,7 @@ void release_container_resources(uint64_t *container_ptr,uint64_t param2,uint64_
       }
       current_index = (int)max_index + 1;
       offset = offset + 0x10;
-      max_index = (ulonglong)current_index;
+      max_index = (uint64_t)current_index;
     } while ((int)current_index < *size_ptr);
   }
   resource_ptr = container_ptr[3];
@@ -1019,9 +1019,9 @@ void set_simple_array_size(int *array_ptr,int new_size)
     if (SYSTEM_DATA_MANAGER_A != 0) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
     }
-    new_buffer = func_0x000180120ce0((longlong)required_size,SYSTEM_DATA_MANAGER_B);
-    if (*(longlong *)(array_ptr + 2) != 0) {
-      memcpy(new_buffer,*(longlong *)(array_ptr + 2),(longlong)*array_ptr);
+    new_buffer = func_0x000180120ce0((int64_t)required_size,SYSTEM_DATA_MANAGER_B);
+    if (*(int64_t *)(array_ptr + 2) != 0) {
+      memcpy(new_buffer,*(int64_t *)(array_ptr + 2),(int64_t)*array_ptr);
     }
     *(uint64_t *)(array_ptr + 2) = new_buffer;
     array_ptr[1] = required_size;
@@ -1059,9 +1059,9 @@ void set_simple_array_size_reg(int current_size)
     if (SYSTEM_DATA_MANAGER_A != 0) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
     }
-    new_buffer = func_0x000180120ce0((longlong)required_size,SYSTEM_DATA_MANAGER_B);
-    if (*(longlong *)(array_ptr + 2) != 0) {
-      memcpy(new_buffer,*(longlong *)(array_ptr + 2),(longlong)*array_ptr);
+    new_buffer = func_0x000180120ce0((int64_t)required_size,SYSTEM_DATA_MANAGER_B);
+    if (*(int64_t *)(array_ptr + 2) != 0) {
+      memcpy(new_buffer,*(int64_t *)(array_ptr + 2),(int64_t)*array_ptr);
     }
     *(uint64_t *)(array_ptr + 2) = new_buffer;
     array_ptr[1] = required_size;

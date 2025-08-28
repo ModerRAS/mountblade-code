@@ -15,7 +15,7 @@
  * @param text_buffer 文本缓冲区指针
  * @param operation_code 操作码
  */
-void process_text_edit_operations(longlong engine_context, int *text_buffer, uint operation_code) {
+void process_text_edit_operations(int64_t engine_context, int *text_buffer, uint operation_code) {
     int16_t *temp_ptr;
     short index_val;
     int32_t temp_val;
@@ -25,7 +25,7 @@ void process_text_edit_operations(longlong engine_context, int *text_buffer, uin
     int int_val3;
     int *ptr_val1;
     int *ptr_val2;
-    ulonglong ulong_val;
+    uint64_t ulong_val;
     int int_val4;
     bool bool_val1;
     bool bool_val2;
@@ -123,11 +123,11 @@ void process_text_edit_operations(longlong engine_context, int *text_buffer, uin
                 }
                 *text_buffer = int_val2;
                 text_buffer[2] = int_val2;
-                *(int8_t *)((longlong)text_buffer + 0xf) = 0;
+                *(int8_t *)((int64_t)text_buffer + 0xf) = 0;
             }
             if ((char)text_buffer[4] == '\0') {
                 while ((0 < int_val2 &&
-                       (*(short *)(*(longlong *)(engine_context + 0x10) + -2 + (longlong)int_val2 * 2) != 10))) {
+                       (*(short *)(*(int64_t *)(engine_context + 0x10) + -2 + (int64_t)int_val2 * 2) != 10))) {
                     int_val2 = int_val2 + -1;
                     *text_buffer = int_val2;
                 }
@@ -168,11 +168,11 @@ void process_text_edit_operations(longlong engine_context, int *text_buffer, uin
                 }
                 *text_buffer = int_val2;
                 text_buffer[2] = int_val2;
-                *(int8_t *)((longlong)text_buffer + 0xf) = 0;
+                *(int8_t *)((int64_t)text_buffer + 0xf) = 0;
             }
             if ((char)text_buffer[4] == '\0') {
                 while ((int_val2 < int_val4 &&
-                       (*(short *)(*(longlong *)(engine_context + 0x10) + (longlong)int_val2 * 2) != 10))) {
+                       (*(short *)(*(int64_t *)(engine_context + 0x10) + (int64_t)int_val2 * 2) != 10))) {
                     int_val2 = int_val2 + 1;
                     *text_buffer = int_val2;
                 }
@@ -187,7 +187,7 @@ void process_text_edit_operations(longlong engine_context, int *text_buffer, uin
             text_buffer[1] = 0;
             text_buffer[2] = 0;
             *text_buffer = 0;
-            *(int8_t *)((longlong)text_buffer + 0xf) = 0;
+            *(int8_t *)((int64_t)text_buffer + 0xf) = 0;
             return;
             
         case 0x10007:
@@ -195,7 +195,7 @@ void process_text_edit_operations(longlong engine_context, int *text_buffer, uin
             int_val3 = *(int *)(engine_context + 0x3c);
             text_buffer[1] = 0;
             text_buffer[2] = 0;
-            *(int8_t *)((longlong)text_buffer + 0xf) = 0;
+            *(int8_t *)((int64_t)text_buffer + 0xf) = 0;
             *text_buffer = int_val3;
             return;
             
@@ -211,8 +211,8 @@ void process_text_edit_operations(longlong engine_context, int *text_buffer, uin
         case 0x1000b:
             // 处理文本替换操作
             if ((short)text_buffer[0x386] != 99) {
-                ptr_val2 = text_buffer + (longlong)*(short *)((longlong)text_buffer + 0xe16) * 4 + 6;
-                temp_stack2 = *(int8_t (*) [16])(text_buffer + (longlong)(short)text_buffer[0x386] * 4 + 6);
+                ptr_val2 = text_buffer + (int64_t)*(short *)((int64_t)text_buffer + 0xe16) * 4 + 6;
+                temp_stack2 = *(int8_t (*) [16])(text_buffer + (int64_t)(short)text_buffer[0x386] * 4 + 6);
                 int_val5 = temp_stack2._0_4_;
                 ulong_val = temp_stack2._0_8_;
                 ptr_val2[3] = -1;
@@ -234,8 +234,8 @@ void process_text_edit_operations(longlong engine_context, int *text_buffer, uin
                                 int_val2 = *ptr_val2 + int_val4;
                                 int_val3 = ptr_val2[3] + int_val4;
                                 int_val4 = int_val4 + 1;
-                                *(int16_t *)((longlong)text_buffer + (longlong)int_val3 * 2 + 0x648) =
-                                     *(int16_t *)(*(longlong *)(engine_context + 0x10) + (longlong)int_val2 * 2);
+                                *(int16_t *)((int64_t)text_buffer + (int64_t)int_val3 * 2 + 0x648) =
+                                     *(int16_t *)(*(int64_t *)(engine_context + 0x10) + (int64_t)int_val2 * 2);
                             } while (int_val4 < ptr_val2[1]);
                         }
                     }
@@ -244,12 +244,12 @@ void process_text_edit_operations(longlong engine_context, int *text_buffer, uin
                 temp_val = temp_stack2._4_4_;
                 if (temp_stack2._4_4_ != 0) {
                     process_text_replacement(engine_context, ulong_val & 0xffffffff,
-                                           (longlong)text_buffer + ((longlong)(int)temp_stack2._12_4_ + 0x318) * 2 + 0x18,
+                                           (int64_t)text_buffer + ((int64_t)(int)temp_stack2._12_4_ + 0x318) * 2 + 0x18,
                                            temp_stack2._4_4_);
                     text_buffer[0x388] = text_buffer[0x388] + temp_val;
                 }
                 *text_buffer = int_val5 + temp_val;
-                *(short *)((longlong)text_buffer + 0xe16) = *(short *)((longlong)text_buffer + 0xe16) + 1;
+                *(short *)((int64_t)text_buffer + 0xe16) = *(short *)((int64_t)text_buffer + 0xe16) + 1;
                 *(short *)(text_buffer + 0x386) = (short)text_buffer[0x386] + 1;
             }
             goto cleanup_exit;
@@ -322,7 +322,7 @@ void process_text_edit_operations(longlong engine_context, int *text_buffer, uin
                         int_val5 = int_val3;
                     }
                     *text_buffer = int_val5;
-                    *(int8_t *)((longlong)text_buffer + 0xf) = 0;
+                    *(int8_t *)((int64_t)text_buffer + 0xf) = 0;
                     goto text_processing_1;
                 }
             }
@@ -340,7 +340,7 @@ void process_text_edit_operations(longlong engine_context, int *text_buffer, uin
             if (stack_val2 == temp_stack2._12_4_) {
                 return;
             }
-            if (*(char *)((longlong)text_buffer + 0xf) == '\0') {
+            if (*(char *)((int64_t)text_buffer + 0xf) == '\0') {
                 float_val4 = (float)temp_stack2._0_4_;
             }
             else {
@@ -348,7 +348,7 @@ void process_text_edit_operations(longlong engine_context, int *text_buffer, uin
             }
             *text_buffer = stack_val2;
             calculate_text_metrics(float_stack, engine_context, stack_val2);
-            ulong_val = (ulonglong)stack_val3;
+            ulong_val = (uint64_t)stack_val3;
             int_val3 = 0;
             if ((int)stack_val3 < 1) goto text_processing_2;
             float_val3 = -1.0;
@@ -379,7 +379,7 @@ void process_text_edit_operations(longlong engine_context, int *text_buffer, uin
         if (stack_val1 == 0) {
             return;
         }
-        if (*(char *)((longlong)text_buffer + 0xf) == '\0') {
+        if (*(char *)((int64_t)text_buffer + 0xf) == '\0') {
             float_val4 = (float)temp_stack2._0_4_;
         }
         else {
@@ -388,7 +388,7 @@ void process_text_edit_operations(longlong engine_context, int *text_buffer, uin
         int_val5 = temp_stack2._12_4_ + stack_val1;
         *text_buffer = int_val5;
         calculate_text_metrics(float_stack, engine_context, int_val5);
-        ulong_val = (ulonglong)stack_val3;
+        ulong_val = (uint64_t)stack_val3;
         int_val3 = 0;
         if (0 < (int)stack_val3) {
             float_val3 = -1.0;
@@ -416,7 +416,7 @@ void process_text_edit_operations(longlong engine_context, int *text_buffer, uin
         }
         if ((char)text_buffer[4] == '\0') {
             while ((0 < int_val3 &&
-                   (*(short *)(*(longlong *)(engine_context + 0x10) + -2 + (longlong)int_val3 * 2) != 10))) {
+                   (*(short *)(*(int64_t *)(engine_context + 0x10) + -2 + (int64_t)int_val3 * 2) != 10))) {
                 int_val3 = int_val3 + -1;
                 *text_buffer = int_val3;
             }
@@ -461,7 +461,7 @@ void process_text_edit_operations(longlong engine_context, int *text_buffer, uin
         }
         if ((char)text_buffer[4] == '\0') {
             while ((int_val3 < int_val4 &&
-                   (*(short *)(*(longlong *)(engine_context + 0x10) + (longlong)int_val3 * 2) != 10))) {
+                   (*(short *)(*(int64_t *)(engine_context + 0x10) + (int64_t)int_val3 * 2) != 10))) {
                 int_val3 = int_val3 + 1;
                 *text_buffer = int_val3;
             }
@@ -480,7 +480,7 @@ void process_text_edit_operations(longlong engine_context, int *text_buffer, uin
         }
         text_buffer[2] = 0;
         *text_buffer = 0;
-        *(int8_t *)((longlong)text_buffer + 0xf) = 0;
+        *(int8_t *)((int64_t)text_buffer + 0xf) = 0;
         return;
         
     case 0x30007:
@@ -545,7 +545,7 @@ void process_text_edit_operations(longlong engine_context, int *text_buffer, uin
                 ptr_val2 = text_buffer + 6;
                 *(int16_t *)(text_buffer + 0x386) = 99;
                 text_buffer[0x388] = 999;
-                if (*(short *)((longlong)text_buffer + 0xe16) == 99) {
+                if (*(short *)((int64_t)text_buffer + 0xe16) == 99) {
                     cleanup_text_buffer(ptr_val2);
                 }
                 if (999 < text_buffer[0x387] + 1) {
@@ -553,18 +553,18 @@ void process_text_edit_operations(longlong engine_context, int *text_buffer, uin
                         cleanup_text_buffer(ptr_val2);
                     } while (0x3e6 < text_buffer[0x387]);
                 }
-                index_val = *(short *)((longlong)text_buffer + 0xe16);
-                *(short *)((longlong)text_buffer + 0xe16) = index_val + 1;
-                ptr_val1 = ptr_val2 + (longlong)index_val * 4;
+                index_val = *(short *)((int64_t)text_buffer + 0xe16);
+                *(short *)((int64_t)text_buffer + 0xe16) = index_val + 1;
+                ptr_val1 = ptr_val2 + (int64_t)index_val * 4;
                 if (ptr_val1 != (int *)0x0) {
                     *ptr_val1 = int_val3;
                     ptr_val1[1] = 1;
                     ptr_val1[2] = 1;
                     ptr_val1[3] = text_buffer[0x387];
                     text_buffer[0x387] = text_buffer[0x387] + 1;
-                    temp_ptr = (int16_t *)((longlong)ptr_val2 + ((longlong)ptr_val1[3] + 0x318) * 2);
+                    temp_ptr = (int16_t *)((int64_t)ptr_val2 + ((int64_t)ptr_val1[3] + 0x318) * 2);
                     if (temp_ptr != (int16_t *)0x0) {
-                        *temp_ptr = *(int16_t *)(*(longlong *)(engine_context + 0x10) + (longlong)int_val3 * 2);
+                        *temp_ptr = *(int16_t *)(*(int64_t *)(engine_context + 0x10) + (int64_t)int_val3 * 2);
                     }
                 }
                 update_text_cache(engine_context, *text_buffer, 1);
@@ -575,7 +575,7 @@ void process_text_edit_operations(longlong engine_context, int *text_buffer, uin
             text_increment:
                 *text_buffer = *text_buffer + 1;
             cleanup_exit:
-                *(int8_t *)((longlong)text_buffer + 0xf) = 0;
+                *(int8_t *)((int64_t)text_buffer + 0xf) = 0;
                 return;
             }
         }
@@ -646,7 +646,7 @@ text_processing_2:
         int_val3 = int_val4;
     }
     text_buffer[5] = (int)float_val4;
-    *(int8_t *)((longlong)text_buffer + 0xf) = 1;
+    *(int8_t *)((int64_t)text_buffer + 0xf) = 1;
     if ((operation_code >> 0x11 & 1) != 0) {
         text_buffer[2] = int_val3;
     }
@@ -666,11 +666,11 @@ void insert_text_buffer_data(uint64_t param1, uint64_t param2, int *target_buffe
     int8_t temp_data[16];
     int int_val1;
     int int_val2;
-    longlong reg_rax;
+    int64_t reg_rax;
     int *ptr_reg_rbx;
-    longlong ptr_reg_rbp;
-    longlong ptr_reg_rsi;
-    longlong ptr_reg_rdi;
+    int64_t ptr_reg_rbp;
+    int64_t ptr_reg_rsi;
+    int64_t ptr_reg_rdi;
     int int_val3;
     int int_val4;
     int int_val5;
@@ -699,8 +699,8 @@ void insert_text_buffer_data(uint64_t param1, uint64_t param2, int *target_buffe
                     int_val1 = *target_buffer + int_val3;
                     int_val2 = target_buffer[3] + int_val3;
                     int_val3 = int_val3 + 1;
-                    *(int16_t *)(ptr_reg_rsi + 0x630 + (longlong)int_val2 * 2) =
-                         *(int16_t *)(*(longlong *)(ptr_reg_rdi + 0x10) + (longlong)int_val1 * 2);
+                    *(int16_t *)(ptr_reg_rsi + 0x630 + (int64_t)int_val2 * 2) =
+                         *(int16_t *)(*(int64_t *)(ptr_reg_rdi + 0x10) + (int64_t)int_val1 * 2);
                 } while (int_val3 < target_buffer[1]);
             }
         }
@@ -709,13 +709,13 @@ void insert_text_buffer_data(uint64_t param1, uint64_t param2, int *target_buffe
     int_val4 = *(int *)(ptr_reg_rbp + -0x3c);
     if (int_val4 != 0) {
         process_text_replacement(temp_val, temp_data._0_8_ & 0xffffffff,
-                                 ptr_reg_rsi + ((longlong)*(int *)(ptr_reg_rbp + -0x34) + 0x318) * 2, int_val4);
+                                 ptr_reg_rsi + ((int64_t)*(int *)(ptr_reg_rbp + -0x34) + 0x318) * 2, int_val4);
         *(int *)(ptr_reg_rsi + 0xe08) = *(int *)(ptr_reg_rsi + 0xe08) + int_val4;
     }
     *ptr_reg_rbx = int_val5 + int_val4;
     *(short *)(ptr_reg_rsi + 0xdfe) = *(short *)(ptr_reg_rsi + 0xdfe) + 1;
     *(short *)(ptr_reg_rsi + 0xe00) = *(short *)(ptr_reg_rsi + 0xe00) + 1;
-    *(int8_t *)((longlong)ptr_reg_rbx + 0xf) = 0;
+    *(int8_t *)((int64_t)ptr_reg_rbx + 0xf) = 0;
     return;
 }
 
@@ -744,7 +744,7 @@ void simplify_text_buffer(void) {
         *buffer_ptr = int_val2;
         buffer_ptr[2] = int_val2;
     }
-    *(int8_t *)((longlong)buffer_ptr + 0xf) = 0;
+    *(int8_t *)((int64_t)buffer_ptr + 0xf) = 0;
     return;
 }
 
@@ -755,7 +755,7 @@ void simplify_text_buffer(void) {
  * 
  * @param buffer_ptr 缓冲区指针
  */
-void cleanup_text_buffer(longlong buffer_ptr) {
+void cleanup_text_buffer(int64_t buffer_ptr) {
     short index_val;
     
     if (*(short *)(buffer_ptr + 0xdfe) < 1) {
@@ -763,12 +763,12 @@ void cleanup_text_buffer(longlong buffer_ptr) {
     }
     if (-1 < *(int *)(buffer_ptr + 0xc)) {
         *(int *)(buffer_ptr + 0xe04) = *(int *)(buffer_ptr + 0xe04) - *(int *)(buffer_ptr + 4);
-        memmove(buffer_ptr + 0x630, buffer_ptr + 0x630 + (longlong)*(int *)(buffer_ptr + 4) * 2,
-                (longlong)*(int *)(buffer_ptr + 0xe04) * 2);
+        memmove(buffer_ptr + 0x630, buffer_ptr + 0x630 + (int64_t)*(int *)(buffer_ptr + 4) * 2,
+                (int64_t)*(int *)(buffer_ptr + 0xe04) * 2);
     }
     index_val = *(short *)(buffer_ptr + 0xdfe) + -1;
     *(short *)(buffer_ptr + 0xdfe) = index_val;
-    memmove(buffer_ptr, buffer_ptr + 0x10, (longlong)index_val << 4);
+    memmove(buffer_ptr, buffer_ptr + 0x10, (int64_t)index_val << 4);
 }
 
 /**
@@ -779,15 +779,15 @@ void cleanup_text_buffer(longlong buffer_ptr) {
  * @param buffer_ptr 缓冲区指针
  * @param index 要移除的索引
  */
-void remove_from_text_buffer(longlong buffer_ptr, short index) {
-    longlong ptr_reg_rdi;
+void remove_from_text_buffer(int64_t buffer_ptr, short index) {
+    int64_t ptr_reg_rdi;
     char flag_sf;
     char flag_of;
     
     if (flag_of == flag_sf) {
         *(int *)(buffer_ptr + 0xe04) = *(int *)(buffer_ptr + 0xe04) - *(int *)(buffer_ptr + 4);
-        memmove(buffer_ptr + 0x630, buffer_ptr + 0x630 + (longlong)*(int *)(buffer_ptr + 4) * 2,
-                (longlong)*(int *)(buffer_ptr + 0xe04) * 2);
+        memmove(buffer_ptr + 0x630, buffer_ptr + 0x630 + (int64_t)*(int *)(buffer_ptr + 4) * 2,
+                (int64_t)*(int *)(buffer_ptr + 0xe04) * 2);
     }
     *(short *)(ptr_reg_rdi + 0xdfe) = index + -1;
     memmove();
@@ -800,12 +800,12 @@ void remove_from_text_buffer(longlong buffer_ptr, short index) {
  * 
  * @param buffer_ptr 缓冲区指针
  */
-void free_text_buffer_block(longlong buffer_ptr) {
-    longlong reg_rax;
+void free_text_buffer_block(int64_t buffer_ptr) {
+    int64_t reg_rax;
     
     *(int *)(buffer_ptr + 0xe04) = *(int *)(buffer_ptr + 0xe04) - *(int *)(buffer_ptr + 4);
-    memmove(buffer_ptr + 0x630, reg_rax + (longlong)*(int *)(buffer_ptr + 4) * 2,
-            (longlong)*(int *)(buffer_ptr + 0xe04) * 2);
+    memmove(buffer_ptr + 0x630, reg_rax + (int64_t)*(int *)(buffer_ptr + 4) * 2,
+            (int64_t)*(int *)(buffer_ptr + 0xe04) * 2);
 }
 
 /**
@@ -817,7 +817,7 @@ void free_text_buffer_block(longlong buffer_ptr) {
  * @param index 新的索引值
  */
 void adjust_text_buffer_index(uint64_t param1, short index) {
-    longlong ptr_reg_rdi;
+    int64_t ptr_reg_rdi;
     
     *(short *)(ptr_reg_rdi + 0xdfe) = index + -1;
     memmove();
@@ -843,7 +843,7 @@ void empty_operation(void) {
  * @param param4 参数4
  * @return 分配的内存地址或0
  */
-longlong allocate_text_buffer(longlong buffer_ptr, int32_t param2, int size, int32_t param4) {
+int64_t allocate_text_buffer(int64_t buffer_ptr, int32_t param2, int size, int32_t param4) {
     short index_val;
     int int_val1;
     int32_t *ptr_val;
@@ -861,7 +861,7 @@ longlong allocate_text_buffer(longlong buffer_ptr, int32_t param2, int size, int
         }
         index_val = *(short *)(buffer_ptr + 0xdfe);
         *(short *)(buffer_ptr + 0xdfe) = index_val + 1;
-        ptr_val = (int32_t *)((longlong)index_val * 0x10 + buffer_ptr);
+        ptr_val = (int32_t *)((int64_t)index_val * 0x10 + buffer_ptr);
         if (ptr_val != (int32_t *)0x0) {
             *ptr_val = param2;
             ptr_val[1] = size;
@@ -869,7 +869,7 @@ longlong allocate_text_buffer(longlong buffer_ptr, int32_t param2, int size, int
             if (size != 0) {
                 ptr_val[3] = *(int32_t *)(buffer_ptr + 0xe04);
                 *(int *)(buffer_ptr + 0xe04) = *(int *)(buffer_ptr + 0xe04) + size;
-                return buffer_ptr + ((longlong)(int)ptr_val[3] + 0x318) * 2;
+                return buffer_ptr + ((int64_t)(int)ptr_val[3] + 0x318) * 2;
             }
             ptr_val[3] = 0xffffffff;
         }
@@ -889,7 +889,7 @@ longlong allocate_text_buffer(longlong buffer_ptr, int32_t param2, int size, int
  * @param engine_context 引擎上下文
  * @param text_buffer 文本缓冲区
  */
-void delete_text_buffer_data(longlong engine_context, int *text_buffer) {
+void delete_text_buffer_data(int64_t engine_context, int *text_buffer) {
     int8_t temp_data[16];
     short index_val;
     int int_val1;
@@ -899,21 +899,21 @@ void delete_text_buffer_data(longlong engine_context, int *text_buffer) {
     int int_val5;
     int int_val6;
     int int_val7;
-    longlong long_val;
+    int64_t long_val;
     int int_val8;
     int stack_val;
     
-    if (*(short *)((longlong)text_buffer + 0xe16) != 0) {
+    if (*(short *)((int64_t)text_buffer + 0xe16) != 0) {
         index_val = (short)text_buffer[0x386];
         temp_data = *(int8_t (*) [16])
-                     (text_buffer + (longlong)*(short *)((longlong)text_buffer + 0xe16) * 4 + 2);
+                     (text_buffer + (int64_t)*(short *)((int64_t)text_buffer + 0xe16) * 4 + 2);
         int_val8 = temp_data._0_4_;
-        text_buffer[(longlong)index_val * 4 + 5] = -1;
-        text_buffer[(longlong)index_val * 4 + 2] = int_val8;
+        text_buffer[(int64_t)index_val * 4 + 5] = -1;
+        text_buffer[(int64_t)index_val * 4 + 2] = int_val8;
         int_val6 = temp_data._8_4_;
-        text_buffer[(longlong)index_val * 4 + 3] = int_val6;
+        text_buffer[(int64_t)index_val * 4 + 3] = int_val6;
         int_val2 = temp_data._4_4_;
-        text_buffer[(longlong)index_val * 4 + 4] = int_val2;
+        text_buffer[(int64_t)index_val * 4 + 4] = int_val2;
         if (int_val6 != 0) {
             if (text_buffer[0x387] + int_val6 < 999) {
                 int_val5 = text_buffer[0x388];
@@ -927,42 +927,42 @@ void delete_text_buffer_data(longlong engine_context, int *text_buffer) {
                             if (-1 < text_buffer[0x191]) {
                                 int_val5 = int_val5 + text_buffer[399];
                                 text_buffer[0x388] = int_val5;
-                                memmove((longlong)text_buffer + ((longlong)int_val5 + 0x324) * 2,
-                                        (longlong)text_buffer + (((longlong)int_val5 - (longlong)text_buffer[399]) + 0x324) * 2,
-                                        (longlong)(999 - int_val5) * 2);
+                                memmove((int64_t)text_buffer + ((int64_t)int_val5 + 0x324) * 2,
+                                        (int64_t)text_buffer + (((int64_t)int_val5 - (int64_t)text_buffer[399]) + 0x324) * 2,
+                                        (int64_t)(999 - int_val5) * 2);
                             }
-                            memmove(text_buffer + (longlong)index_val * 4 + 6 + 4, text_buffer + (longlong)index_val * 4 + 6,
-                                    (longlong)(99 - index_val) << 4);
+                            memmove(text_buffer + (int64_t)index_val * 4 + 6 + 4, text_buffer + (int64_t)index_val * 4 + 6,
+                                    (int64_t)(99 - index_val) << 4);
                         }
                     } while (int_val5 < text_buffer[0x387] + int_val6);
                 }
                 int_val1 = text_buffer[0x386];
                 int_val7 = 0;
-                text_buffer[(longlong)(short)int_val1 * 4 + 5] = int_val5 - int_val6;
+                text_buffer[(int64_t)(short)int_val1 * 4 + 5] = int_val5 - int_val6;
                 text_buffer[0x388] = text_buffer[0x388] - int_val6;
                 if (0 < int_val6) {
-                    long_val = (longlong)int_val8 * 2;
+                    long_val = (int64_t)int_val8 * 2;
                     do {
-                        int_val5 = text_buffer[(longlong)(short)int_val1 * 4 + 5] + int_val7;
+                        int_val5 = text_buffer[(int64_t)(short)int_val1 * 4 + 5] + int_val7;
                         int_val7 = int_val7 + 1;
-                        *(int16_t *)((longlong)text_buffer + (longlong)int_val5 * 2 + 0x648) =
-                             *(int16_t *)(long_val + *(longlong *)(engine_context + 0x10));
+                        *(int16_t *)((int64_t)text_buffer + (int64_t)int_val5 * 2 + 0x648) =
+                             *(int16_t *)(long_val + *(int64_t *)(engine_context + 0x10));
                         long_val = long_val + 2;
                     } while (int_val7 < int_val6);
                 }
             }
             else {
-                text_buffer[(longlong)index_val * 4 + 3] = 0;
+                text_buffer[(int64_t)index_val * 4 + 3] = 0;
             }
             update_text_cache(engine_context, int_val8, int_val6);
         }
         if (int_val2 != 0) {
             stack_val = temp_data._12_4_;
-            process_text_replacement(engine_context, int_val8, (longlong)text_buffer + ((longlong)stack_val + 0x324) * 2, int_val2);
+            process_text_replacement(engine_context, int_val8, (int64_t)text_buffer + ((int64_t)stack_val + 0x324) * 2, int_val2);
             text_buffer[0x387] = text_buffer[0x387] - int_val2;
         }
         *text_buffer = int_val8 + int_val2;
-        *(short *)((longlong)text_buffer + 0xe16) = *(short *)((longlong)text_buffer + 0xe16) + -1;
+        *(short *)((int64_t)text_buffer + 0xe16) = *(short *)((int64_t)text_buffer + 0xe16) + -1;
         *(short *)(text_buffer + 0x386) = (short)text_buffer[0x386] + -1;
     }
     return;
@@ -977,15 +977,15 @@ void delete_text_buffer_data(longlong engine_context, int *text_buffer) {
  * @param param2 参数2
  * @param engine_context 引擎上下文
  */
-void insert_text_buffer_data_variant(longlong param1, longlong param2) {
+void insert_text_buffer_data_variant(int64_t param1, int64_t param2) {
     int8_t temp_data[16];
     short index_val;
     int int_val1;
-    longlong reg_rax;
+    int64_t reg_rax;
     int int_val2;
-    longlong long_val;
+    int64_t long_val;
     int int_val3;
-    longlong ptr_reg_rbp;
+    int64_t ptr_reg_rbp;
     int *ptr_reg_rsi;
     int int_val4;
     int int_val5;
@@ -1017,27 +1017,27 @@ void insert_text_buffer_data_variant(longlong param1, longlong param2) {
                         if (-1 < ptr_reg_rsi[0x191]) {
                             int_val2 = int_val2 + ptr_reg_rsi[399];
                             ptr_reg_rsi[0x388] = int_val2;
-                            memmove((longlong)ptr_reg_rsi + ((longlong)int_val2 + 0x324) * 2,
-                                    (longlong)ptr_reg_rsi +
-                                    (((longlong)int_val2 - (longlong)ptr_reg_rsi[399]) + 0x324) * 2,
-                                    (longlong)(999 - int_val2) * 2);
+                            memmove((int64_t)ptr_reg_rsi + ((int64_t)int_val2 + 0x324) * 2,
+                                    (int64_t)ptr_reg_rsi +
+                                    (((int64_t)int_val2 - (int64_t)ptr_reg_rsi[399]) + 0x324) * 2,
+                                    (int64_t)(999 - int_val2) * 2);
                         }
-                        memmove(ptr_reg_rsi + (longlong)index_val * 4 + 6 + 4, ptr_reg_rsi + (longlong)index_val * 4 + 6,
-                                (longlong)(99 - index_val) << 4);
+                        memmove(ptr_reg_rsi + (int64_t)index_val * 4 + 6 + 4, ptr_reg_rsi + (int64_t)index_val * 4 + 6,
+                                (int64_t)(99 - index_val) << 4);
                     }
                 } while (int_val2 < ptr_reg_rsi[0x387] + int_val4);
             }
             int_val3 = ptr_reg_rsi[0x386];
             int_val5 = 0;
-            ptr_reg_rsi[(longlong)(short)int_val3 * 4 + 5] = int_val2 - int_val4;
+            ptr_reg_rsi[(int64_t)(short)int_val3 * 4 + 5] = int_val2 - int_val4;
             ptr_reg_rsi[0x388] = ptr_reg_rsi[0x388] - int_val4;
             if (0 < int_val4) {
-                long_val = (longlong)int_val6 * 2;
+                long_val = (int64_t)int_val6 * 2;
                 do {
-                    int_val2 = ptr_reg_rsi[(longlong)(short)int_val3 * 4 + 5] + int_val5;
+                    int_val2 = ptr_reg_rsi[(int64_t)(short)int_val3 * 4 + 5] + int_val5;
                     int_val5 = int_val5 + 1;
-                    *(int16_t *)((longlong)ptr_reg_rsi + (longlong)int_val2 * 2 + 0x648) =
-                         *(int16_t *)(long_val + *(longlong *)(ptr_reg_rbp + 0x10));
+                    *(int16_t *)((int64_t)ptr_reg_rsi + (int64_t)int_val2 * 2 + 0x648) =
+                         *(int16_t *)(long_val + *(int64_t *)(ptr_reg_rbp + 0x10));
                     long_val = long_val + 2;
                 } while (int_val5 < int_val4);
             }
@@ -1049,12 +1049,12 @@ void insert_text_buffer_data_variant(longlong param1, longlong param2) {
     }
     if (int_val1 != 0) {
         stack_val = temp_data._12_4_;
-        process_text_replacement(temp_val, int_val6, (longlong)ptr_reg_rsi + ((longlong)stack_val + 0x324) * 2,
+        process_text_replacement(temp_val, int_val6, (int64_t)ptr_reg_rsi + ((int64_t)stack_val + 0x324) * 2,
                                  int_val1);
         ptr_reg_rsi[0x387] = ptr_reg_rsi[0x387] - int_val1;
     }
     *ptr_reg_rsi = int_val6 + int_val1;
-    *(short *)((longlong)ptr_reg_rsi + 0xe16) = *(short *)((longlong)ptr_reg_rsi + 0xe16) + -1;
+    *(short *)((int64_t)ptr_reg_rsi + 0xe16) = *(short *)((int64_t)ptr_reg_rsi + 0xe16) + -1;
     *(short *)(ptr_reg_rsi + 0x386) = (short)ptr_reg_rsi[0x386] + -1;
     return;
 }

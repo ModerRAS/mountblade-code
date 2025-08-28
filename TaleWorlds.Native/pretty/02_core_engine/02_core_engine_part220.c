@@ -8,11 +8,11 @@
 // 原函数名: FUN_180196d20
 // 参数: resource_manager_ptr - 资源管理器指针
 // 功能: 初始化资源管理器的三个主要资源组，设置初始状态
-void initialize_resource_manager(longlong resource_manager_ptr)
+void initialize_resource_manager(int64_t resource_manager_ptr)
 {
     // 初始化第一个资源组 (偏移量 0x48)
     *(uint64_t *)(resource_manager_ptr + 0x48) = &RESOURCE_VTABLE_INITIAL;
-    if (*(longlong *)(resource_manager_ptr + 0x50) != 0) {
+    if (*(int64_t *)(resource_manager_ptr + 0x50) != 0) {
         // 如果资源已存在，触发错误处理
         trigger_critical_error();
     }
@@ -22,7 +22,7 @@ void initialize_resource_manager(longlong resource_manager_ptr)
     
     // 初始化第二个资源组 (偏移量 0x28)
     *(uint64_t *)(resource_manager_ptr + 0x28) = &RESOURCE_VTABLE_INITIAL;
-    if (*(longlong *)(resource_manager_ptr + 0x30) != 0) {
+    if (*(int64_t *)(resource_manager_ptr + 0x30) != 0) {
         trigger_critical_error();
     }
     *(uint64_t *)(resource_manager_ptr + 0x30) = 0;
@@ -31,7 +31,7 @@ void initialize_resource_manager(longlong resource_manager_ptr)
     
     // 初始化第三个资源组 (偏移量 0x8)
     *(uint64_t *)(resource_manager_ptr + 8) = &RESOURCE_VTABLE_INITIAL;
-    if (*(longlong *)(resource_manager_ptr + 0x10) != 0) {
+    if (*(int64_t *)(resource_manager_ptr + 0x10) != 0) {
         trigger_critical_error();
     }
     *(uint64_t *)(resource_manager_ptr + 0x10) = 0;
@@ -60,9 +60,9 @@ void reset_render_context(uint64_t *render_context)
     reset_render_slot(render_context, 0x2e, 0x2f, 0x31);  // 槽位5
     
     // 处理特殊的渲染对象
-    if ((longlong *)render_context[0x2b] != (longlong *)0x0) {
+    if ((int64_t *)render_context[0x2b] != (int64_t *)0x0) {
         // 调用渲染对象的清理函数
-        (**(code **)(*(longlong *)render_context[0x2b] + 0x38))();
+        (**(code **)(*(int64_t *)render_context[0x2b] + 0x38))();
     }
     
     // 继续重置其他渲染状态
@@ -97,19 +97,19 @@ void reset_render_slot(uint64_t *context, int vtable_offset, int data_offset, in
 // 原函数名: FUN_180197080
 // 参数: list_head - 链表头指针, cleanup_flags - 清理标志, param_3, param_4 - 清理参数
 // 功能: 遍历并清理链表中的所有对象，调用它们的清理函数
-void cleanup_object_list(longlong *list_head, uint64_t cleanup_flags, uint64_t param_3, uint64_t param_4)
+void cleanup_object_list(int64_t *list_head, uint64_t cleanup_flags, uint64_t param_3, uint64_t param_4)
 {
-    longlong *current_item;
-    longlong *next_item;
-    longlong *list_end;
+    int64_t *current_item;
+    int64_t *next_item;
+    int64_t *list_end;
     
     cleanup_flags = 0xfffffffffffffffe;  // 清理标志位
-    list_end = (longlong *)list_head[1];  // 链表结束指针
+    list_end = (int64_t *)list_head[1];  // 链表结束指针
     
     // 遍历链表
-    for (current_item = (longlong *)*list_head; current_item != list_end; current_item = current_item + 8) {
-        next_item = (longlong *)current_item[7];  // 获取下一个对象
-        if (next_item != (longlong *)0x0) {
+    for (current_item = (int64_t *)*list_head; current_item != list_end; current_item = current_item + 8) {
+        next_item = (int64_t *)current_item[7];  // 获取下一个对象
+        if (next_item != (int64_t *)0x0) {
             // 调用对象的清理函数
             (**(code **)(*next_item + 0x20))(next_item, next_item != current_item, param_3, param_4, cleanup_flags);
             current_item[7] = 0;  // 清除链接
@@ -127,15 +127,15 @@ void cleanup_object_list(longlong *list_head, uint64_t cleanup_flags, uint64_t p
 // 原函数名: FUN_1801970a0
 // 参数: resource_array - 资源数组指针
 // 功能: 释放资源数组中的所有资源，确保内存正确释放
-void free_resource_array(longlong resource_array)
+void free_resource_array(int64_t resource_array)
 {
-    longlong array_base;
+    int64_t array_base;
     uint64_t *resource_ptr;
-    ulonglong current_index;
-    ulonglong max_index;
+    uint64_t current_index;
+    uint64_t max_index;
     
-    max_index = *(ulonglong *)(resource_array + 0x10);  // 数组大小
-    array_base = *(longlong *)(resource_array + 8);     // 数组基地址
+    max_index = *(uint64_t *)(resource_array + 0x10);  // 数组大小
+    array_base = *(int64_t *)(resource_array + 8);     // 数组基地址
     current_index = 0;
     
     if (max_index != 0) {
@@ -149,12 +149,12 @@ void free_resource_array(longlong resource_array)
             *(uint64_t *)(array_base + current_index * 8) = 0;
             current_index = current_index + 1;
         } while (current_index < max_index);
-        max_index = *(ulonglong *)(resource_array + 0x10);
+        max_index = *(uint64_t *)(resource_array + 0x10);
     }
     
     // 清理数组结构
     *(uint64_t *)(resource_array + 0x18) = 0;
-    if ((1 < max_index) && (*(longlong *)(resource_array + 8) != 0)) {
+    if ((1 < max_index) && (*(int64_t *)(resource_array + 8) != 0)) {
         trigger_critical_error();  // 数组未正确清理
     }
     return;
@@ -168,8 +168,8 @@ void process_render_frame(uint64_t **renderer, float delta_time)
 {
     short *state_ptr;
     short render_state;
-    longlong object_ptr;
-    longlong *renderable_ptr;
+    int64_t object_ptr;
+    int64_t *renderable_ptr;
     float *time_param;
     uint64_t render_flags;
     float frame_time;
@@ -179,7 +179,7 @@ void process_render_frame(uint64_t **renderer, float delta_time)
     uint64_t **render_list;
     uint64_t *render_item;
     uint list_index;
-    longlong list_size;
+    int64_t list_size;
     uint64_t **temp_list;
     uint64_t **processing_list;
     uint64_t ****render_stack;
@@ -199,8 +199,8 @@ void process_render_frame(uint64_t **renderer, float delta_time)
     time_stack[0] = delta_time;
     
     // 检查渲染器状态并调用预处理函数
-    if ((((renderer[99] != (longlong *)0x0) && (*(char *)((longlong)renderer + 0x2a61) != '\0')) &&
-        (*(char *)((longlong)renderer + 0x2a62) != '\0')) && (*(int *)(RENDER_FLAG_ADDRESS + 0xaf0) != 0)) {
+    if ((((renderer[99] != (int64_t *)0x0) && (*(char *)((int64_t)renderer + 0x2a61) != '\0')) &&
+        (*(char *)((int64_t)renderer + 0x2a62) != '\0')) && (*(int *)(RENDER_FLAG_ADDRESS + 0xaf0) != 0)) {
         (**(code **)(*renderer[99] + 0x40))();
     }
     
@@ -208,8 +208,8 @@ void process_render_frame(uint64_t **renderer, float delta_time)
     process_render_queue(renderer + 0xc0fc, renderer + 0x53a);
     
     // 再次检查渲染器状态
-    if (((renderer[99] != (longlong *)0x0) && (*(char *)((longlong)renderer + 0x2a61) != '\0')) &&
-       ((*(char *)((longlong)renderer + 0x2a62) != '\0' && (*(int *)(RENDER_FLAG_ADDRESS + 0xaf0) != 0)))) {
+    if (((renderer[99] != (int64_t *)0x0) && (*(char *)((int64_t)renderer + 0x2a61) != '\0')) &&
+       ((*(char *)((int64_t)renderer + 0x2a62) != '\0' && (*(int *)(RENDER_FLAG_ADDRESS + 0xaf0) != 0)))) {
         (**(code **)(*renderer[99] + 0x40))();
     }
     
@@ -221,18 +221,18 @@ void process_render_frame(uint64_t **renderer, float delta_time)
     active_list = renderer;
     
     // 处理活动渲染对象
-    process_active_render_objects(&active_list, 0, (longlong)renderer[0x53b] - (longlong)renderer[0x53a] >> 3, 0x10,
+    process_active_render_objects(&active_list, 0, (int64_t)renderer[0x53b] - (int64_t)renderer[0x53a] >> 3, 0x10,
                                  0xffffffffffffffff, &active_list, temp_value);
     
     // 处理渲染状态更新
-    if (((renderer[99] != (longlong *)0x0) && (*(char *)((longlong)renderer + 0x2a61) != '\0')) &&
-       ((*(char *)((longlong)renderer + 0x2a62) != '\0' && (*(int *)(RENDER_FLAG_ADDRESS + 0xaf0) != 0)))) {
+    if (((renderer[99] != (int64_t *)0x0) && (*(char *)((int64_t)renderer + 0x2a61) != '\0')) &&
+       ((*(char *)((int64_t)renderer + 0x2a62) != '\0' && (*(int *)(RENDER_FLAG_ADDRESS + 0xaf0) != 0)))) {
         (**(code **)(*renderer[99] + 0x40))();
     }
     
     // 遍历渲染对象并更新状态
-    object_count = (int)((longlong)renderer[0x537] - (longlong)renderer[0x536] >> 3) + -1;
-    list_size = (longlong)object_count;
+    object_count = (int)((int64_t)renderer[0x537] - (int64_t)renderer[0x536] >> 3) + -1;
+    list_size = (int64_t)object_count;
     if (-1 < object_count) {
         do {
             object_ptr = renderer[0x536][list_size];
@@ -246,8 +246,8 @@ void process_render_frame(uint64_t **renderer, float delta_time)
                 }
                 else if (render_state == 4) {
                     // 处理动态渲染对象
-                    if ((*(longlong *)(object_ptr + 0xd0) != 0) &&
-                       (*(longlong *)(*(longlong *)(object_ptr + 0xd0) + 0x1000) != 0)) {
+                    if ((*(int64_t *)(object_ptr + 0xd0) != 0) &&
+                       (*(int64_t *)(*(int64_t *)(object_ptr + 0xd0) + 0x1000) != 0)) {
                         update_dynamic_object(object_ptr, 0);
                     }
                 }
@@ -262,17 +262,17 @@ void process_render_frame(uint64_t **renderer, float delta_time)
                     *(int16_t *)(object_ptr + 0x40) = 3;
                     
                     // 检查是否需要更新
-                    if ((*(longlong *)(object_ptr + 0x130) != 0) || (*(longlong *)(object_ptr + 0x138) != 0)) {
-                        (**(code **)(object_ptr + 0x138))(*(longlong *)(object_ptr + 0x130), object_ptr);
+                    if ((*(int64_t *)(object_ptr + 0x130) != 0) || (*(int64_t *)(object_ptr + 0x138) != 0)) {
+                        (**(code **)(object_ptr + 0x138))(*(int64_t *)(object_ptr + 0x130), object_ptr);
                     }
                     
                     // 更新渲染标志
                     if (((byte)*(ushort *)(object_ptr + 0xa8) >> 2 & 1) == 0) {
                         *(ushort *)(object_ptr + 0xa8) = *(ushort *)(object_ptr + 0xa8) | 4;
-                        object_ptr = *(longlong *)(object_ptr + 0x10);
+                        object_ptr = *(int64_t *)(object_ptr + 0x10);
                         state_ptr = (short *)(object_ptr + 0x2b0);
                         *state_ptr = *state_ptr + 1;
-                        if (*(longlong *)(object_ptr + 0x168) != 0) {
+                        if (*(int64_t *)(object_ptr + 0x168) != 0) {
                             update_render_state();
                         }
                     }
@@ -292,31 +292,31 @@ void process_render_frame(uint64_t **renderer, float delta_time)
 // 原函数名: FUN_1801977e0
 // 参数: game_world - 游戏世界指针, start_index - 起始索引, end_index - 结束索引
 // 功能: 更新指定范围内的游戏对象状态
-void update_game_objects(longlong *game_world, int start_index, int end_index)
+void update_game_objects(int64_t *game_world, int start_index, int end_index)
 {
     int32_t update_flags;
-    longlong game_object;
-    longlong *component_ptr;
-    longlong component_data;
+    int64_t game_object;
+    int64_t *component_ptr;
+    int64_t component_data;
     char needs_update;
     int component_count;
-    longlong loop_index;
-    longlong object_index;
+    int64_t loop_index;
+    int64_t object_index;
     
     // 遍历游戏对象
-    for (object_index = (longlong)start_index; object_index < end_index; object_index = object_index + 1) {
-        game_object = *(longlong *)(*(longlong *)(*game_world + 0x29d0) + object_index * 8);
+    for (object_index = (int64_t)start_index; object_index < end_index; object_index = object_index + 1) {
+        game_object = *(int64_t *)(*(int64_t *)(*game_world + 0x29d0) + object_index * 8);
         update_flags = *(int32_t *)game_world[1];
         
         // 检查对象是否需要更新
         if (((*(byte *)(game_object + 0x2e9) & 2) != 0) || ((*(uint *)(game_object + 0x2ac) & 0x100) == 0)) {
             loop_index = 0;
-            component_count = (int)(*(longlong *)(game_object + 0x1e8) - *(longlong *)(game_object + 0x1e0) >> 3);
+            component_count = (int)(*(int64_t *)(game_object + 0x1e8) - *(int64_t *)(game_object + 0x1e0) >> 3);
             
             // 更新所有组件
             if (0 < component_count) {
                 do {
-                    component_ptr = *(longlong **)(*(longlong *)(game_object + 0x1e0) + loop_index * 8);
+                    component_ptr = *(int64_t **)(*(int64_t *)(game_object + 0x1e0) + loop_index * 8);
                     (**(code **)(*component_ptr + 0x1b8))(component_ptr, update_flags, game_object + 0x70);
                     needs_update = (**(code **)(*component_ptr + 0x138))(component_ptr);
                     if (needs_update != '\0') {
@@ -327,25 +327,25 @@ void update_game_objects(longlong *game_world, int start_index, int end_index)
             }
             
             // 处理特殊游戏逻辑
-            if (((*(longlong *)(game_object + 0x260) != 0) &&
-                (process_special_game_logic(*(longlong *)(game_object + 0x260), update_flags, game_object + 0x70),
-                (*(byte *)(*(longlong *)(game_object + 0x260) + 0xa8) >> 2 & 1) != 0)) &&
+            if (((*(int64_t *)(game_object + 0x260) != 0) &&
+                (process_special_game_logic(*(int64_t *)(game_object + 0x260), update_flags, game_object + 0x70),
+                (*(byte *)(*(int64_t *)(game_object + 0x260) + 0xa8) >> 2 & 1) != 0)) &&
                (*(short *)(game_object + 0x2b0) = *(short *)(game_object + 0x2b0) + 1,
-               *(longlong *)(game_object + 0x168) != 0)) {
+               *(int64_t *)(game_object + 0x168) != 0)) {
                 trigger_game_event();
             }
             
             // 处理子对象
-            component_count = (int)(*(longlong *)(game_object + 0x1c8) - *(longlong *)(game_object + 0x1c0) >> 3);
+            component_count = (int)(*(int64_t *)(game_object + 0x1c8) - *(int64_t *)(game_object + 0x1c0) >> 3);
             if ((0 < component_count) &&
                ((((*(byte *)(game_object + 0x2e8) & 0x10) != 0 ||
-                 ((*(longlong **)(game_object + 0x270) != (longlong *)0x0 &&
-                  (needs_update = (**(code **)(**(longlong **)(game_object + 0x270) + 0x70))(), needs_update != '\0')))) ||
+                 ((*(int64_t **)(game_object + 0x270) != (int64_t *)0x0 &&
+                  (needs_update = (**(code **)(**(int64_t **)(game_object + 0x270) + 0x70))(), needs_update != '\0')))) ||
                 ((*(uint *)(game_object + 0x2ac) & 0x800000) == 0)))) {
                 loop_index = 0;
-                if (0 < (longlong)component_count) {
+                if (0 < (int64_t)component_count) {
                     do {
-                        component_data = *(longlong *)(*(longlong *)(game_object + 0x1c0) + loop_index * 8);
+                        component_data = *(int64_t *)(*(int64_t *)(game_object + 0x1c0) + loop_index * 8);
                         if ((*(uint *)(component_data + 0x2ac) & 0x20000000) == 0) {
                             process_sub_object(component_data, update_flags, 1);
                         }
@@ -356,8 +356,8 @@ void update_game_objects(longlong *game_world, int start_index, int end_index)
         }
         
         // 清理无用对象
-        if ((*(longlong *)(game_object + 0x260) != 0) &&
-           (*(longlong *)(*(longlong *)(game_object + 0x260) + 0x28) == 0)) {
+        if ((*(int64_t *)(game_object + 0x260) != 0) &&
+           (*(int64_t *)(*(int64_t *)(game_object + 0x260) + 0x28) == 0)) {
             cleanup_unused_object();
         }
         
@@ -367,7 +367,7 @@ void update_game_objects(longlong *game_world, int start_index, int end_index)
                 cleanup_game_object(game_object);
             }
             else {
-                sync_game_object_state(*(longlong *)(game_object + 0x28), *(longlong *)(game_object + 0x28) + 0xf8, game_object + 0x70);
+                sync_game_object_state(*(int64_t *)(game_object + 0x28), *(int64_t *)(game_object + 0x28) + 0xf8, game_object + 0x70);
             }
             *(int16_t *)(game_object + 0x2b0) = *(int16_t *)(game_object + 0x2b4);
         }
@@ -382,21 +382,21 @@ void update_game_objects(longlong *game_world, int start_index, int end_index)
 void batch_update_game_objects(void)
 {
     int32_t update_flags;
-    longlong game_object;
-    longlong *component_ptr;
-    longlong component_data;
+    int64_t game_object;
+    int64_t *component_ptr;
+    int64_t component_data;
     char needs_update;
     int component_count;
-    longlong loop_index;
-    longlong object_index;
-    longlong in_RAX;
+    int64_t loop_index;
+    int64_t object_index;
+    int64_t in_RAX;
     uint64_t unaff_RBX;
     uint64_t unaff_RBP;
     uint64_t unaff_RSI;
     uint64_t unaff_RDI;
-    longlong unaff_R13;
+    int64_t unaff_R13;
     uint64_t unaff_R14;
-    longlong unaff_R15;
+    int64_t unaff_R15;
     int32_t unaff_XMM6_Da;
     int32_t unaff_XMM6_Db;
     int32_t unaff_XMM6_Dc;
@@ -415,18 +415,18 @@ void batch_update_game_objects(void)
     
     do {
         // 批量处理游戏对象（使用寄存器优化）
-        game_object = *(longlong *)(*(longlong *)(*unaff_R12 + 0x29d0) + unaff_R15 * 8);
+        game_object = *(int64_t *)(*(int64_t *)(*unaff_R12 + 0x29d0) + unaff_R15 * 8);
         update_flags = *(int32_t *)unaff_R12[1];
         
         // 检查对象是否需要更新
         if (((*(byte *)(game_object + 0x2e9) & 2) != 0) || ((*(uint *)(game_object + 0x2ac) & 0x100) == 0)) {
             loop_index = 0;
-            component_count = (int)(*(longlong *)(game_object + 0x1e8) - *(longlong *)(game_object + 0x1e0) >> 3);
+            component_count = (int)(*(int64_t *)(game_object + 0x1e8) - *(int64_t *)(game_object + 0x1e0) >> 3);
             
             // 批量更新组件
             if (0 < component_count) {
                 do {
-                    component_ptr = *(longlong **)(*(longlong *)(game_object + 0x1e0) + loop_index * 8);
+                    component_ptr = *(int64_t **)(*(int64_t *)(game_object + 0x1e0) + loop_index * 8);
                     (**(code **)(*component_ptr + 0x1b8))(component_ptr, update_flags, game_object + 0x70);
                     needs_update = (**(code **)(*component_ptr + 0x138))(component_ptr);
                     if (needs_update != '\0') {
@@ -437,31 +437,31 @@ void batch_update_game_objects(void)
             }
             
             // 处理特殊游戏逻辑
-            if (*(longlong *)(game_object + 0x260) != 0) {
-                process_special_game_logic(*(longlong *)(game_object + 0x260), update_flags, game_object + 0x70);
-                if ((*(byte *)(*(longlong *)(game_object + 0x260) + 0xa8) >> 2 & 1) != 0) {
+            if (*(int64_t *)(game_object + 0x260) != 0) {
+                process_special_game_logic(*(int64_t *)(game_object + 0x260), update_flags, game_object + 0x70);
+                if ((*(byte *)(*(int64_t *)(game_object + 0x260) + 0xa8) >> 2 & 1) != 0) {
                     *(short *)(game_object + 0x2b0) = *(short *)(game_object + 0x2b0) + 1;
-                    if (*(longlong *)(game_object + 0x168) != 0) {
+                    if (*(int64_t *)(game_object + 0x168) != 0) {
                         trigger_game_event();
                     }
                 }
             }
             
             // 处理子对象
-            component_count = (int)(*(longlong *)(game_object + 0x1c8) - *(longlong *)(game_object + 0x1c0) >> 3);
+            component_count = (int)(*(int64_t *)(game_object + 0x1c8) - *(int64_t *)(game_object + 0x1c0) >> 3);
             if (0 < component_count) {
                 if ((*(byte *)(game_object + 0x2e8) & 0x10) == 0) {
-                    if (*(longlong **)(game_object + 0x270) != (longlong *)0x0) {
-                        needs_update = (**(code **)(**(longlong **)(game_object + 0x270) + 0x70))();
+                    if (*(int64_t **)(game_object + 0x270) != (int64_t *)0x0) {
+                        needs_update = (**(code **)(**(int64_t **)(game_object + 0x270) + 0x70))();
                         if (needs_update != '\0') goto PROCESS_CHILDREN;
                     }
                     if ((*(uint *)(game_object + 0x2ac) & 0x800000) != 0) goto SKIP_CHILDREN;
                 }
             PROCESS_CHILDREN:
                 loop_index = 0;
-                if (0 < (longlong)component_count) {
+                if (0 < (int64_t)component_count) {
                     do {
-                        component_data = *(longlong *)(*(longlong *)(game_object + 0x1c0) + loop_index * 8);
+                        component_data = *(int64_t *)(*(int64_t *)(game_object + 0x1c0) + loop_index * 8);
                         if ((*(uint *)(component_data + 0x2ac) & 0x20000000) == 0) {
                             process_sub_object(component_data, update_flags, 1);
                         }
@@ -473,8 +473,8 @@ void batch_update_game_objects(void)
     SKIP_CHILDREN:
         
         // 清理无用对象
-        if ((*(longlong *)(game_object + 0x260) != 0) &&
-           (*(longlong *)(*(longlong *)(game_object + 0x260) + 0x28) == 0)) {
+        if ((*(int64_t *)(game_object + 0x260) != 0) &&
+           (*(int64_t *)(*(int64_t *)(game_object + 0x260) + 0x28) == 0)) {
             cleanup_unused_object();
         }
         
@@ -484,7 +484,7 @@ void batch_update_game_objects(void)
                 cleanup_game_object(game_object);
             }
             else {
-                sync_game_object_state(*(longlong *)(game_object + 0x28), *(longlong *)(game_object + 0x28) + 0xf8, game_object + 0x70);
+                sync_game_object_state(*(int64_t *)(game_object + 0x28), *(int64_t *)(game_object + 0x28) + 0xf8, game_object + 0x70);
             }
             *(int16_t *)(game_object + 0x2b0) = *(int16_t *)(game_object + 0x2b4);
         }
@@ -525,21 +525,21 @@ extern uint64_t core_system_data_resource;
 // 外部函数声明
 void trigger_critical_error(void);
 void process_render_queue(uint64_t *param_1, uint64_t *param_2);
-void process_active_render_objects(uint64_t ***param_1, longlong param_2, longlong param_3, int param_4, 
+void process_active_render_objects(uint64_t ***param_1, int64_t param_2, int64_t param_3, int param_4, 
                                  uint64_t param_5, uint64_t **param_6, uint64_t param_7);
-void update_static_object(longlong object_ptr);
-void update_dynamic_object(longlong object_ptr, int param_2);
+void update_static_object(int64_t object_ptr);
+void update_dynamic_object(int64_t object_ptr, int param_2);
 void update_render_state(void);
-void process_game_object_update(uint64_t param_1, longlong *param_2, int param_3, longlong param_4, int param_5);
-void process_special_game_logic(longlong param_1, int32_t param_2, longlong param_3);
+void process_game_object_update(uint64_t param_1, int64_t *param_2, int param_3, int64_t param_4, int param_5);
+void process_special_game_logic(int64_t param_1, int32_t param_2, int64_t param_3);
 void trigger_game_event(void);
-void process_sub_object(longlong param_1, int32_t param_2, int param_3);
+void process_sub_object(int64_t param_1, int32_t param_2, int param_3);
 void cleanup_unused_object(void);
-void cleanup_game_object(longlong param_1);
-void sync_game_object_state(longlong param_1, longlong param_2, longlong param_3);
+void cleanup_game_object(int64_t param_1);
+void sync_game_object_state(int64_t param_1, int64_t param_2, int64_t param_3);
 void func_0x0001802eeba0(void);
-void FUN_1802fddb0(longlong param_1);
-void FUN_1802fe7c0(longlong param_1, int param_2);
+void FUN_1802fddb0(int64_t param_1);
+void FUN_1802fe7c0(int64_t param_1, int param_2);
 void FUN_1802d1da0(uint64_t param_1, float param_2);
 void FUN_1802d1e30(uint64_t param_1);
 void FUN_1803005b0(void);
@@ -548,15 +548,15 @@ void FUN_18039f2b0(uint64_t param_1, uint64_t param_2);
 int8_t FUN_1802fc790(uint64_t param_1, uint64_t param_2);
 void FUN_1802fca80(uint64_t param_1, uint64_t param_2, uint64_t param_3);
 void FUN_1802f9710(uint64_t param_1, uint64_t ****param_2, uint64_t param_3);
-void FUN_1802ebcb0(longlong param_1, int32_t param_2, int param_3);
-void FUN_1802e7e20(longlong param_1);
-void FUN_18063ad30(longlong param_1, longlong param_2, longlong param_3);
+void FUN_1802ebcb0(int64_t param_1, int32_t param_2, int param_3);
+void FUN_1802e7e20(int64_t param_1);
+void FUN_18063ad30(int64_t param_1, int64_t param_2, int64_t param_3);
 void FUN_1801b02f0(uint64_t *param_1);
-void FUN_18015b810(uint64_t ***param_1, longlong param_2, longlong param_3, int param_4, 
+void FUN_18015b810(uint64_t ***param_1, int64_t param_2, int64_t param_3, int param_4, 
                    uint64_t param_5, uint64_t **param_6, uint64_t param_7);
 void FUN_18005e6a0(uint64_t param_1, uint64_t ****param_2, int param_3);
-void FUN_1801985e0(uint64_t param_1, longlong *param_2, int param_3, longlong param_4, int param_5);
+void FUN_1801985e0(uint64_t param_1, int64_t *param_2, int param_3, int64_t param_4, int param_5);
 void FUN_180397d70(uint64_t *param_1, uint64_t *param_2);
-void FUN_1802fa820(longlong param_1, int32_t param_2, longlong param_3);
+void FUN_1802fa820(int64_t param_1, int32_t param_2, int64_t param_3);
 code *FUN_1801bc9a0(void);
-uint64_t *FUN_18062b420(uint64_t param_1, longlong param_2, ulonglong param_3);
+uint64_t *FUN_18062b420(uint64_t param_1, int64_t param_2, uint64_t param_3);

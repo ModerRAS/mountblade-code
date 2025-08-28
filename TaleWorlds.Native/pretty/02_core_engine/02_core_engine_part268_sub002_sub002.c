@@ -45,8 +45,8 @@ int calculate_weighted_distance_and_average(float *result_array, float *input_ar
     bit_count = bit_count + 1;
     
     // 计算距离
-    x_component = *(float *)(*(longlong *)(array_size + 0x218) + 4 + (longlong)(int)processed_bits * 8);
-    y_component = *(float *)(*(longlong *)(array_size + 0x218) + (longlong)(int)processed_bits * 8);
+    x_component = *(float *)(*(int64_t *)(array_size + 0x218) + 4 + (int64_t)(int)processed_bits * 8);
+    y_component = *(float *)(*(int64_t *)(array_size + 0x218) + (int64_t)(int)processed_bits * 8);
     distance_value = sqrtf(y_component * y_component + x_component * x_component) * 2.5f;
     if (max_distance <= distance_value) {
       distance_value = max_distance;
@@ -156,7 +156,7 @@ int calculate_weighted_distance_and_average(float *result_array, float *input_ar
         if (3 < (int)(array_size - loop_counter)) {
           temp_counter = loop_counter + 2;
           float weight_value = (float)bit_count;
-          array_ptr = input_array + (longlong)loop_counter + 2;
+          array_ptr = input_array + (int64_t)loop_counter + 2;
           float size_value = (float)(int)array_size;
           do {
             sum_w = array_ptr[-2];
@@ -289,29 +289,29 @@ int add_weighted_to_accumulator(int start_index, void *context1, void *context2,
 
 // 函数: 执行快速傅里叶变换(FFT)
 // 原函数名: FUN_1807797e0
-int perform_fast_fourier_transform(longlong fft_context, uint fft_size)
+int perform_fast_fourier_transform(int64_t fft_context, uint fft_size)
 {
   float real_part, imag_part;
   float cos_val, sin_val;
-  longlong butterfly_ptr;
+  int64_t butterfly_ptr;
   int stage_size;
   uint butterfly_count;
-  ulonglong stage_index;
-  ulonglong butterfly_index;
+  uint64_t stage_index;
+  uint64_t butterfly_index;
   uint temp_index;
   uint bit_reversed;
-  longlong temp_ptr;
+  int64_t temp_ptr;
   int group_index;
   int element_index;
   uint group_size;
-  ulonglong index1, index2;
-  longlong data_ptr;
+  uint64_t index1, index2;
+  int64_t data_ptr;
   float temp_real, temp_imag;
   float real1, imag1;
   float real2, imag2;
   unsigned int stack_var;
   
-  stage_index = (ulonglong)fft_size;
+  stage_index = (uint64_t)fft_size;
   stack_var = 1;
   stage_size = 1 << ((byte)fft_size & 0x1f);
   butterfly_count = stage_size / 2;
@@ -320,9 +320,9 @@ int perform_fast_fourier_transform(longlong fft_context, uint fft_size)
     do {
       group_index = 0;
       if (0 < (int)stack_var) {
-        ulonglong group_count = (ulonglong)stack_var;
+        uint64_t group_count = (uint64_t)stack_var;
         do {
-          butterfly_index = (longlong)group_index / (longlong)(int)butterfly_count & 0xffffffff;
+          butterfly_index = (int64_t)group_index / (int64_t)(int)butterfly_count & 0xffffffff;
           bit_reversed = 0;
           group_size = fft_size;
           if (fft_size != 0) {
@@ -341,13 +341,13 @@ int perform_fast_fourier_transform(longlong fft_context, uint fft_size)
             group_size = -group_size;
           }
           group_size = group_size & 0x7fff;
-          index1 = (ulonglong)group_size;
+          index1 = (uint64_t)group_size;
           temp_index = group_size >> 0xd;
           
           if (group_size >> 0xd == 0) {
             sin_val = *(float *)(fft_context + 0x4cc + index1 * 4);
           } else if (temp_index == 1) {
-            sin_val = -*(float *)(fft_context + (0x4132 - (ulonglong)group_size) * 4);
+            sin_val = -*(float *)(fft_context + (0x4132 - (uint64_t)group_size) * 4);
           } else if (temp_index == 2) {
             sin_val = -*(float *)(fft_context + -0xfb34 + index1 * 4);
           } else if (temp_index == 3) {
@@ -361,13 +361,13 @@ int perform_fast_fourier_transform(longlong fft_context, uint fft_size)
             group_size = -group_size;
           }
           group_size = group_size & 0x7fff;
-          index1 = (ulonglong)group_size;
+          index1 = (uint64_t)group_size;
           temp_index = group_size >> 0xd;
           
           if (group_size >> 0xd == 0) {
             cos_val = *(float *)(fft_context + 0x4cc + index1 * 4);
           } else if (temp_index == 1) {
-            cos_val = -*(float *)(fft_context + (0x4132 - (ulonglong)group_size) * 4);
+            cos_val = -*(float *)(fft_context + (0x4132 - (uint64_t)group_size) * 4);
           } else if (temp_index == 2) {
             cos_val = -*(float *)(fft_context + -0xfb34 + index1 * 4);
           } else if (temp_index == 3) {
@@ -376,8 +376,8 @@ int perform_fast_fourier_transform(longlong fft_context, uint fft_size)
             cos_val = 0.0f;
           }
           
-          data_ptr = (longlong)group_index;
-          butterfly_ptr = (longlong)(int)(group_index + butterfly_count);
+          data_ptr = (int64_t)group_index;
+          butterfly_ptr = (int64_t)(int)(group_index + butterfly_count);
           sin_val = -sin_val;
           
           if (data_ptr < butterfly_ptr) {
@@ -386,24 +386,24 @@ int perform_fast_fourier_transform(longlong fft_context, uint fft_size)
               group_size = group_index + butterfly_count + 3;
               element_index = group_index + ((int)(((butterfly_ptr + -3) - data_ptr) - 1U >> 2) + 1) * 4;
               do {
-                index2 = (ulonglong)group_size;
-                butterfly_ptr = *(longlong *)(fft_context + 0x218);
-                index1 = (ulonglong)(group_size - 1);
-                stage_index = (ulonglong)(group_size - 2);
+                index2 = (uint64_t)group_size;
+                butterfly_ptr = *(int64_t *)(fft_context + 0x218);
+                index1 = (uint64_t)(group_size - 1);
+                stage_index = (uint64_t)(group_size - 2);
                 temp_index = group_size - 3;
                 
                 // 蝶形运算
-                imag_part = *(float *)(butterfly_ptr + 4 + (ulonglong)temp_index * 8);
-                real_part = *(float *)(butterfly_ptr + (ulonglong)temp_index * 8);
+                imag_part = *(float *)(butterfly_ptr + 4 + (uint64_t)temp_index * 8);
+                real_part = *(float *)(butterfly_ptr + (uint64_t)temp_index * 8);
                 real2 = *(float *)(butterfly_ptr + data_ptr * 8);
                 imag2 = *(float *)(butterfly_ptr + 4 + data_ptr * 8);
                 temp_real = real_part * cos_val - imag_part * sin_val;
                 temp_imag = imag_part * cos_val + real_part * sin_val;
                 
                 *(float *)(butterfly_ptr + data_ptr * 8) = temp_real + real2;
-                *(float *)(*(longlong *)(fft_context + 0x218) + 4 + data_ptr * 8) = temp_imag + imag2;
-                *(float *)(*(longlong *)(fft_context + 0x218) + (ulonglong)temp_index * 8) = real2 - temp_real;
-                *(float *)(*(longlong *)(fft_context + 0x218) + 4 + (ulonglong)temp_index * 8) = imag2 - temp_imag;
+                *(float *)(*(int64_t *)(fft_context + 0x218) + 4 + data_ptr * 8) = temp_imag + imag2;
+                *(float *)(*(int64_t *)(fft_context + 0x218) + (uint64_t)temp_index * 8) = real2 - temp_real;
+                *(float *)(*(int64_t *)(fft_context + 0x218) + 4 + (uint64_t)temp_index * 8) = imag2 - temp_imag;
                 
                 // 继续蝶形运算...
                 data_ptr = data_ptr + 4;
@@ -414,8 +414,8 @@ int perform_fast_fourier_transform(longlong fft_context, uint fft_size)
             if (data_ptr < butterfly_ptr) {
               group_size = element_index + butterfly_count;
               do {
-                index1 = (ulonglong)group_size;
-                butterfly_ptr = *(longlong *)(fft_context + 0x218);
+                index1 = (uint64_t)group_size;
+                butterfly_ptr = *(int64_t *)(fft_context + 0x218);
                 imag_part = *(float *)(butterfly_ptr + index1 * 8);
                 real_part = *(float *)(butterfly_ptr + 4 + index1 * 8);
                 real2 = *(float *)(butterfly_ptr + data_ptr * 8);
@@ -424,10 +424,10 @@ int perform_fast_fourier_transform(longlong fft_context, uint fft_size)
                 temp_imag = real_part * cos_val + imag_part * sin_val;
                 
                 *(float *)(butterfly_ptr + data_ptr * 8) = temp_real + real2;
-                *(float *)(*(longlong *)(fft_context + 0x218) + 4 + data_ptr * 8) = temp_imag + imag2;
+                *(float *)(*(int64_t *)(fft_context + 0x218) + 4 + data_ptr * 8) = temp_imag + imag2;
                 data_ptr = data_ptr + 1;
-                *(float *)(*(longlong *)(fft_context + 0x218) + index1 * 8) = real2 - temp_real;
-                *(float *)(*(longlong *)(fft_context + 0x218) + 4 + index1 * 8) = imag2 - temp_imag;
+                *(float *)(*(int64_t *)(fft_context + 0x218) + index1 * 8) = real2 - temp_real;
+                *(float *)(*(int64_t *)(fft_context + 0x218) + 4 + index1 * 8) = imag2 - temp_imag;
                 group_size = group_size + 1;
               } while (data_ptr < butterfly_ptr);
             }

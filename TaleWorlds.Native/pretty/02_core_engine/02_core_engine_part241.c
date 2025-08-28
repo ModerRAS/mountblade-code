@@ -17,61 +17,61 @@ extern uint64_t core_system_config_material;    // 默认材质路径
  * @param material_base 材质基础地址
  * @param material_count 材质数量
  */
-void process_material_loading(uint64_t material_context, longlong material_base, int material_count)
+void process_material_loading(uint64_t material_context, int64_t material_base, int material_count)
 
 {
   uint texture_id;
   int material_index;
   int texture_index;
   char *material_name;
-  longlong *material_ptr;
+  int64_t *material_ptr;
   char *texture_path;
   char *texture_name;
   char *texture_ext;
   char *temp_path;
-  longlong material_offset;
-  longlong texture_offset;
-  ulonglong loop_counter;
+  int64_t material_offset;
+  int64_t texture_offset;
+  uint64_t loop_counter;
   uint64_t *texture_data;
   char *default_path;
   char *temp_name;
-  longlong texture_size;
-  longlong path_length;
-  longlong *resource_ptr;
+  int64_t texture_size;
+  int64_t path_length;
+  int64_t *resource_ptr;
   bool is_match;
   void *stack_resource_1;
-  longlong stack_offset_1;
+  int64_t stack_offset_1;
   code *callback_func_1;
   code *callback_func_2;
   void *stack_resource_2;
-  longlong stack_offset_2;
+  int64_t stack_offset_2;
   uint stack_flags;
   uint64_t stack_config_1;
   void *stack_resource_3;
-  longlong stack_offset_3;
+  int64_t stack_offset_3;
   int stack_index;
-  ulonglong stack_counter;
+  uint64_t stack_counter;
   void *stack_resource_4;
-  longlong stack_offset_4;
+  int64_t stack_offset_4;
   int32_t stack_param_1;
-  ulonglong stack_param_2;
+  uint64_t stack_param_2;
   void *stack_resource_5;
-  longlong stack_offset_5;
+  int64_t stack_offset_5;
   int32_t stack_param_3;
-  ulonglong stack_param_4;
-  longlong *stack_ptr_1;
-  longlong *stack_ptr_2;
-  longlong *stack_ptr_3;
-  longlong *stack_ptr_4;
-  longlong *stack_ptr_5;
-  longlong *stack_ptr_6;
-  longlong stack_value_1;
+  uint64_t stack_param_4;
+  int64_t *stack_ptr_1;
+  int64_t *stack_ptr_2;
+  int64_t *stack_ptr_3;
+  int64_t *stack_ptr_4;
+  int64_t *stack_ptr_5;
+  int64_t *stack_ptr_6;
+  int64_t stack_value_1;
   uint64_t stack_config_2;
   
   stack_config_2 = 0xfffffffffffffffe;
   texture_size = 0;
   stack_ptr_6 = core_system_data_material;
-  stack_value_1 = (longlong)material_count;
+  stack_value_1 = (int64_t)material_count;
   resource_ptr = core_system_data_material;
   if (0 < material_count) {
     do {
@@ -94,9 +94,9 @@ LAB_180209ba0:
           texture_ext = (char *)texture_data[2];
         }
         if (texture_ext != texture_path + -0x180a04ee3) goto LAB_180209c13;
-        texture_ext = material_name + (longlong)texture_ext;
+        texture_ext = material_name + (int64_t)texture_ext;
         if (material_name < texture_ext) {
-          path_length = (longlong)&system_flag_4ee4 - (longlong)material_name;
+          path_length = (int64_t)&system_flag_4ee4 - (int64_t)material_name;
           while (*material_name == material_name[path_length]) {
             material_name = material_name + 1;
             if (texture_ext <= material_name) goto LAB_180209bd8;
@@ -120,10 +120,10 @@ LAB_180209bd8:
             temp_path = *(char **)(material_name + 0x10);
           }
           if (temp_path == texture_path + -0x18098c5e7) {
-            temp_path = temp_path + (longlong)texture_name;
+            temp_path = temp_path + (int64_t)texture_name;
             texture_ext = material_name;
             if (temp_path <= texture_name) break;
-            path_length = (longlong)&system_flag_c5e8 - (longlong)texture_name;
+            path_length = (int64_t)&system_flag_c5e8 - (int64_t)texture_name;
             while (*texture_name == texture_name[path_length]) {
               texture_name = texture_name + 1;
               if (temp_path <= texture_name) goto LAB_180209c65;
@@ -147,10 +147,10 @@ LAB_180209c65:
             temp_path = *(char **)(material_name + 0x10);
           }
           if (temp_path == texture_path + -0x180a0ff37) {
-            temp_path = texture_name + (longlong)temp_path;
+            temp_path = texture_name + (int64_t)temp_path;
             texture_ext = material_name;
             if (temp_path <= texture_name) break;
-            path_length = (longlong)&global_config_2040_ptr - (longlong)texture_name;
+            path_length = (int64_t)&global_config_2040_ptr - (int64_t)texture_name;
             while (*texture_name == texture_name[path_length]) {
               texture_name = texture_name + 1;
               if (temp_path <= texture_name) goto LAB_180209cd5;
@@ -174,7 +174,7 @@ LAB_180209cd5:
             texture_name = (char *)texture_data[2];
           }
           if (texture_name == texture_path + -0x180a0f117) {
-            texture_name = texture_name + (longlong)material_name;
+            texture_name = texture_name + (int64_t)material_name;
             if (texture_name <= material_name) {
 LAB_180209d30:
               material_name = "texture";
@@ -193,10 +193,10 @@ LAB_180209d30:
                   default_path = *(char **)(material_name + 0x10);
                 }
                 if (default_path == texture_path + -0x180a0e89f) {
-                  default_path = temp_path + (longlong)default_path;
+                  default_path = temp_path + (int64_t)default_path;
                   texture_name = material_name;
                   if (default_path <= temp_path) break;
-                  path_length = (longlong)&system_flag_e8a0 - (longlong)temp_path;
+                  path_length = (int64_t)&system_flag_e8a0 - (int64_t)temp_path;
                   while (*temp_path == temp_path[path_length]) {
                     temp_path = temp_path + 1;
                     if (default_path <= temp_path) goto joined_r0x000180209daf;
@@ -226,7 +226,7 @@ joined_r0x000180209daf:
                     texture_path = (char *)texture_data[2];
                   }
                   if (texture_path == temp_name + -0x180a0ee2f) {
-                    texture_path = texture_path + (longlong)material_name;
+                    texture_path = texture_path + (int64_t)material_name;
                     if (texture_path <= material_name) {
 LAB_180209e40:
                       path_length = 0x180d48d24;
@@ -236,7 +236,7 @@ LAB_180209e40:
                       FUN_180627c50(&stack_resource_3,path_length);
                       break;
                     }
-                    path_length = (longlong)&global_config_7680_ptr - (longlong)material_name;
+                    path_length = (int64_t)&global_config_7680_ptr - (int64_t)material_name;
                     while (*material_name == material_name[path_length]) {
                       material_name = material_name + 1;
                       if (texture_path <= material_name) goto LAB_180209e40;
@@ -273,7 +273,7 @@ LAB_180209e40:
                       texture_path = (char *)texture_data[2];
                     }
                     if (texture_path == temp_name + -0x180a03a83) {
-                      texture_path = texture_path + (longlong)material_name;
+                      texture_path = texture_path + (int64_t)material_name;
                       if (texture_path <= material_name) {
 LAB_180209f34:
                         path_length = 0x180d48d24;
@@ -283,22 +283,22 @@ LAB_180209f34:
                         FUN_180627c50(&stack_resource_4,path_length);
                         break;
                       }
-                      path_length = (longlong)&system_flag_3a84 - (longlong)material_name;
+                      path_length = (int64_t)&system_flag_3a84 - (int64_t)material_name;
                       while (*material_name == material_name[path_length]) {
                         material_name = material_name + 1;
                         if (texture_path <= material_name) goto LAB_180209f34;
                       }
                     }
                   }
-                  material_ptr = (longlong *)FUN_1800b08e0(system_resource_state,&stack_ptr_5,&stack_resource_4,1);
+                  material_ptr = (int64_t *)FUN_1800b08e0(system_resource_state,&stack_ptr_5,&stack_resource_4,1);
                   path_length = *material_ptr;
                   *material_ptr = 0;
-                  material_ptr = (longlong *)*resource_ptr;
+                  material_ptr = (int64_t *)*resource_ptr;
                   *resource_ptr = path_length;
-                  if (material_ptr != (longlong *)0x0) {
+                  if (material_ptr != (int64_t *)0x0) {
                     (**(code **)(*material_ptr + 0x38))();
                   }
-                  if (stack_ptr_5 != (longlong *)0x0) {
+                  if (stack_ptr_5 != (int64_t *)0x0) {
                     (**(code **)(*stack_ptr_5 + 0x38))();
                   }
                   stack_resource_4 = &global_config_3456_ptr;
@@ -339,7 +339,7 @@ LAB_180209f34:
                         texture_path = (char *)texture_data[2];
                       }
                       if (texture_path == temp_name + -0x180a03a83) {
-                        texture_path = material_name + (longlong)texture_path;
+                        texture_path = material_name + (int64_t)texture_path;
                         if (texture_path <= material_name) {
 LAB_18020a094:
                           path_length = 0x180d48d24;
@@ -349,22 +349,22 @@ LAB_18020a094:
                           FUN_180627c50(&stack_resource_5,path_length);
                           break;
                         }
-                        path_length = (longlong)&system_flag_3a84 - (longlong)material_name;
+                        path_length = (int64_t)&system_flag_3a84 - (int64_t)material_name;
                         while (*material_name == material_name[path_length]) {
                           material_name = material_name + 1;
                           if (texture_path <= material_name) goto LAB_18020a094;
                         }
                       }
                     }
-                    material_ptr = (longlong *)FUN_1800b08e0(system_resource_state,&stack_ptr_4,&stack_resource_5,1);
+                    material_ptr = (int64_t *)FUN_1800b08e0(system_resource_state,&stack_ptr_4,&stack_resource_5,1);
                     path_length = *material_ptr;
                     *material_ptr = 0;
-                    stack_ptr_2 = (longlong *)resource_ptr[1];
+                    stack_ptr_2 = (int64_t *)resource_ptr[1];
                     resource_ptr[1] = path_length;
-                    if (stack_ptr_2 != (longlong *)0x0) {
+                    if (stack_ptr_2 != (int64_t *)0x0) {
                       (**(code **)(*stack_ptr_2 + 0x38))();
                     }
-                    if (stack_ptr_4 != (longlong *)0x0) {
+                    if (stack_ptr_4 != (int64_t *)0x0) {
                       (**(code **)(*stack_ptr_4 + 0x38))();
                     }
                     stack_resource_5 = &global_config_3456_ptr;
@@ -388,7 +388,7 @@ LAB_18020a094:
                       stack_resource_1 = &global_config_3456_ptr;
                       callback_func_2 = (code *)0x0;
                       stack_offset_1 = 0;
-                      callback_func_1 = (code *)((ulonglong)callback_func_1 & 0xffffffff00000000);
+                      callback_func_1 = (code *)((uint64_t)callback_func_1 & 0xffffffff00000000);
                       material_name = "name";
                       do {
                         temp_name = material_name;
@@ -405,7 +405,7 @@ LAB_18020a094:
                           texture_path = (char *)texture_data[2];
                         }
                         if (texture_path == temp_name + -0x180a03a83) {
-                          texture_path = texture_path + (longlong)material_name;
+                          texture_path = texture_path + (int64_t)material_name;
                           if (texture_path <= material_name) {
 LAB_18020a1f4:
                             path_length = 0x180d48d24;
@@ -415,22 +415,22 @@ LAB_18020a1f4:
                             FUN_180627c50(&stack_resource_1,path_length);
                             break;
                           }
-                          path_length = (longlong)&system_flag_3a84 - (longlong)material_name;
+                          path_length = (int64_t)&system_flag_3a84 - (int64_t)material_name;
                           while (*material_name == material_name[path_length]) {
                             material_name = material_name + 1;
                             if (texture_path <= material_name) goto LAB_18020a1f4;
                           }
                         }
                       }
-                      material_ptr = (longlong *)FUN_1800b08e0(system_resource_state,&stack_ptr_3,&stack_resource_1,1);
+                      material_ptr = (int64_t *)FUN_1800b08e0(system_resource_state,&stack_ptr_3,&stack_resource_1,1);
                       path_length = *material_ptr;
                       *material_ptr = 0;
-                      stack_ptr_1 = (longlong *)resource_ptr[2];
+                      stack_ptr_1 = (int64_t *)resource_ptr[2];
                       resource_ptr[2] = path_length;
-                      if (stack_ptr_1 != (longlong *)0x0) {
+                      if (stack_ptr_1 != (int64_t *)0x0) {
                         (**(code **)(*stack_ptr_1 + 0x38))();
                       }
-                      if (stack_ptr_3 != (longlong *)0x0) {
+                      if (stack_ptr_3 != (int64_t *)0x0) {
                         (**(code **)(*stack_ptr_3 + 0x38))();
                       }
                       stack_resource_1 = &global_config_3456_ptr;
@@ -439,7 +439,7 @@ LAB_18020a1f4:
                         FUN_18064e900();
                       }
                       stack_offset_1 = 0;
-                      callback_func_2 = (code *)((ulonglong)callback_func_2 & 0xffffffff00000000);
+                      callback_func_2 = (code *)((uint64_t)callback_func_2 & 0xffffffff00000000);
                       stack_resource_1 = &global_config_720_ptr;
                     }
                   }
@@ -460,10 +460,10 @@ LAB_18020a1f4:
                     temp_path = *(char **)(material_name + 0x10);
                   }
                   if (temp_path == temp_name + -0x180a0e89f) {
-                    temp_path = temp_path + (longlong)texture_path;
+                    temp_path = temp_path + (int64_t)texture_path;
                     texture_name = material_name;
                     if (temp_path <= texture_path) break;
-                    path_length = (longlong)&system_flag_e8a0 - (longlong)texture_path;
+                    path_length = (int64_t)&system_flag_e8a0 - (int64_t)texture_path;
                     while (*texture_path == texture_path[path_length]) {
                       texture_path = texture_path + 1;
                       if (temp_path <= texture_path) goto LAB_18020a31a;
@@ -481,7 +481,7 @@ LAB_18020a31a:
                 stack_resource_3 = &global_config_720_ptr;
               } while( true );
             }
-            path_length = (longlong)&global_config_8424_ptr - (longlong)material_name;
+            path_length = (int64_t)&global_config_8424_ptr - (int64_t)material_name;
             while (*material_name == material_name[path_length]) {
               material_name = material_name + 1;
               if (texture_name <= material_name) goto LAB_180209d30;
@@ -506,7 +506,7 @@ LAB_18020a368:
             texture_ext = (char *)texture_data[2];
           }
           if (texture_ext == texture_path + -0x180a04ab7) {
-            texture_ext = texture_ext + (longlong)temp_name;
+            texture_ext = texture_ext + (int64_t)temp_name;
             if (texture_ext <= temp_name) {
 LAB_18020a3c0:
               temp_name = "material";
@@ -525,10 +525,10 @@ LAB_18020a3c0:
                   temp_path = *(char **)(temp_name + 0x10);
                 }
                 if (temp_path == texture_path + -0x180a04ebf) {
-                  temp_path = texture_name + (longlong)temp_path;
+                  temp_path = texture_name + (int64_t)temp_path;
                   texture_ext = temp_name;
                   if (temp_path <= texture_name) break;
-                  path_length = (longlong)&global_config_6864_ptr - (longlong)texture_name;
+                  path_length = (int64_t)&global_config_6864_ptr - (int64_t)texture_name;
                   while (*texture_name == texture_name[path_length]) {
                     texture_name = texture_name + 1;
                     if (temp_path <= texture_name) goto joined_r0x00018020a436;
@@ -559,7 +559,7 @@ joined_r0x00018020a436:
                     texture_name = (char *)texture_data[2];
                   }
                   if (texture_name == texture_path + -0x180a03a83) {
-                    texture_name = texture_name + (longlong)temp_name;
+                    texture_name = texture_name + (int64_t)temp_name;
                     if (texture_name <= temp_name) {
 LAB_18020a4d0:
                       path_length = 0x180d48d24;
@@ -569,7 +569,7 @@ LAB_18020a4d0:
                       FUN_180627c50(&stack_resource_2,path_length);
                       break;
                     }
-                    path_length = (longlong)&system_flag_3a84 - (longlong)temp_name;
+                    path_length = (int64_t)&system_flag_3a84 - (int64_t)temp_name;
                     while (*temp_name == temp_name[path_length]) {
                       temp_name = temp_name + 1;
                       if (texture_name <= temp_name) goto LAB_18020a4d0;
@@ -577,7 +577,7 @@ LAB_18020a4d0:
                   }
                 }
                 texture_id = stack_flags;
-                loop_counter = (ulonglong)stack_flags;
+                loop_counter = (uint64_t)stack_flags;
                 if (stack_flags == 4) {
                   path_length = 0;
                   do {
@@ -601,9 +601,9 @@ LAB_18020a528:
                   if (*resource_ptr != 0) {
                     *(int8_t *)(loop_counter + *resource_ptr) = 0;
                   }
-                  *(int32_t *)((longlong)material_ptr + 0x3c) = stack_config_2._4_4_;
+                  *(int32_t *)((int64_t)material_ptr + 0x3c) = stack_config_2._4_4_;
                 }
-                material_name = (char *)((ulonglong)((int)material_name + 1));
+                material_name = (char *)((uint64_t)((int)material_name + 1));
                 temp_name = "material";
                 do {
                   texture_path = temp_name;
@@ -620,9 +620,9 @@ LAB_18020a528:
                     temp_name = *(char **)(texture_ext + 0x10);
                   }
                   if (temp_name == texture_path + -0x180a04ebf) {
-                    temp_name = texture_name + (longlong)temp_name;
+                    temp_name = texture_name + (int64_t)temp_name;
                     if (temp_name <= texture_name) goto LAB_18020a5e9;
-                    path_length = (longlong)&global_config_6864_ptr - (longlong)texture_name;
+                    path_length = (int64_t)&global_config_6864_ptr - (int64_t)texture_name;
                     while (*texture_name == texture_name[path_length]) {
                       texture_name = texture_name + 1;
                       if (temp_name <= texture_name) goto LAB_18020a5e9;
@@ -643,7 +643,7 @@ LAB_18020a5e9:
                 resource_ptr = stack_ptr_6;
               } while( true );
             }
-            path_length = (longlong)&global_config_5832_ptr - (longlong)temp_name;
+            path_length = (int64_t)&global_config_5832_ptr - (int64_t)temp_name;
             while (*temp_name == temp_name[path_length]) {
               temp_name = temp_name + 1;
               if (texture_ext <= temp_name) goto LAB_18020a3c0;
@@ -651,13 +651,13 @@ LAB_18020a5e9:
           }
         }
 LAB_18020a626:
-        for (path_length = *(longlong *)(texture_offset + 0x30); path_length != 0;
-            path_length = *(longlong *)(path_length + 0x58)) {
+        for (path_length = *(int64_t *)(texture_offset + 0x30); path_length != 0;
+            path_length = *(int64_t *)(path_length + 0x58)) {
           *(uint64_t *)(path_length + 0x20) = 0;
         }
         *(uint64_t *)(texture_offset + 0x30) = 0;
-        for (path_length = *(longlong *)(texture_offset + 0x40); path_length != 0;
-            path_length = *(longlong *)(path_length + 0x30)) {
+        for (path_length = *(int64_t *)(texture_offset + 0x40); path_length != 0;
+            path_length = *(int64_t *)(path_length + 0x30)) {
           *(uint64_t *)(path_length + 0x20) = 0;
         }
         *(uint64_t *)(texture_offset + 0x40) = 0;
@@ -712,16 +712,16 @@ LAB_180209c13:
  * @param spatial_context 空间上下文指针，包含空间索引数据
  * @param target_position 目标位置坐标数组 [x, y, z]
  */
-void process_vertex_position_validation(longlong vertex_context, longlong spatial_context, float *target_position)
+void process_vertex_position_validation(int64_t vertex_context, int64_t spatial_context, float *target_position)
 
 {
   int *vertex_count;
   uint64_t *vertex_data;
-  longlong spatial_index;
+  int64_t spatial_index;
   uint64_t position_x;
   uint64_t position_y;
   uint64_t position_z;
-  longlong vertex_offset;
+  int64_t vertex_offset;
   uint vertex_id;
   uint block_index;
   int current_count;
@@ -737,8 +737,8 @@ void process_vertex_position_validation(longlong vertex_context, longlong spatia
         // 计算顶点的空间索引
         vertex_id = *(int *)(vertex_context + 0x10) + current_count;
         block_index = vertex_id >> 0xc;
-        spatial_index = *(longlong *)(spatial_context + 0x1220 + (ulonglong)block_index * 8);
-        vertex_offset = (ulonglong)(vertex_id + block_index * -0x1000) * 0x20;
+        spatial_index = *(int64_t *)(spatial_context + 0x1220 + (uint64_t)block_index * 8);
+        vertex_offset = (uint64_t)(vertex_id + block_index * -0x1000) * 0x20;
         
         // 计算当前顶点与目标位置的距离
         distance_z = *(float *)(spatial_index + 4 + vertex_offset) - target_position[1];
@@ -768,8 +768,8 @@ void process_vertex_position_validation(longlong vertex_context, longlong spatia
       position_y = *(uint64_t *)(target_position + 4);
       position_z = *(uint64_t *)(target_position + 6);
       block_index = vertex_id >> 0xc;
-      spatial_index = *(longlong *)(spatial_context + 0x1220 + (ulonglong)block_index * 8);
-      vertex_offset = (ulonglong)(vertex_id + block_index * -0x1000) * 0x20;
+      spatial_index = *(int64_t *)(spatial_context + 0x1220 + (uint64_t)block_index * 8);
+      vertex_offset = (uint64_t)(vertex_id + block_index * -0x1000) * 0x20;
       
       // 存储顶点位置数据（前16字节：x,y坐标）
       vertex_data = (uint64_t *)(spatial_index + vertex_offset);

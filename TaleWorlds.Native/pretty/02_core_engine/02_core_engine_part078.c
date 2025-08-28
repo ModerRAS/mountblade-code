@@ -17,24 +17,24 @@ static const char* CONFIG_KEY_DEBUG = "debug";
  * @param config_ptr 配置指针
  * 功能：根据不同的请求ID处理相应的配置和字符串操作
  */
-void process_config_request(uint64_t *context_ptr, longlong request_id, longlong config_ptr)
+void process_config_request(uint64_t *context_ptr, int64_t request_id, int64_t config_ptr)
 
 {
   int compare_result;
   uint operation_result;
-  longlong string_pos;
+  int64_t string_pos;
   int16_t *string_buffer;
   uint64_t *config_data;
-  longlong loop_counter;
+  int64_t loop_counter;
   int8_t *char_ptr;
   uint64_t *memory_ptr;
   uint buffer_size;
-  ulonglong string_length;
+  uint64_t string_length;
   int request_type;
   uint64_t *temp_ptr;
   void *cleanup_ptr;
-  longlong array_index;
-  longlong *array_ptr;
+  int64_t array_index;
+  int64_t *array_ptr;
   int8_t stack_buffer [32];
   void *result_ptr;
   int8_t *string_data;
@@ -52,11 +52,11 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
   uint64_t stack_value3;
   uint64_t *alloc_ptr;
   char config_buffer [256];
-  ulonglong context_id;
+  uint64_t context_id;
   
   // 初始化堆栈保护值和上下文ID
   stack_value3 = 0xfffffffffffffffe;
-  context_id = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
+  context_id = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer;
   request_type = *(int *)(request_id + 0x10);
   context_data = context_ptr;
   
@@ -68,24 +68,24 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
     if ((0 < (int)data_length) && (string_pos = strstr(string_data,&unknown_var_7168_ptr), string_pos != 0)) {
       request_type = 5;
       buffer_size = (int)string_pos - (int)string_data;
-      string_length = (ulonglong)buffer_size;
+      string_length = (uint64_t)buffer_size;
       if (data_length < buffer_size + 5) {
         request_type = data_length - buffer_size;
       }
       buffer_size = buffer_size + request_type;
       if (buffer_size < data_length) {
-        string_length = (ulonglong)(int)buffer_size;
+        string_length = (uint64_t)(int)buffer_size;
         // 执行字符串移位操作
         do {
-          *(int8_t *)((string_length - (longlong)request_type) + (longlong)string_data) =
-               *(int8_t *)(string_length + (longlong)string_data);
+          *(int8_t *)((string_length - (int64_t)request_type) + (int64_t)string_data) =
+               *(int8_t *)(string_length + (int64_t)string_data);
           buffer_size = buffer_size + 1;
           string_length = string_length + 1;
         } while (buffer_size < data_length);
       }
       // 分配和初始化字符串缓冲区
       uStack_1a8 = uStack_1a8 - request_type;
-      *(int8_t *)((ulonglong)uStack_1a8 + (longlong)puStack_1b0) = 0;
+      *(int8_t *)((uint64_t)uStack_1a8 + (int64_t)puStack_1b0) = 0;
       puStack_190 = &system_data_buffer_ptr;
       uStack_178 = 0;
       puStack_188 = (int16_t *)0x0;
@@ -120,7 +120,7 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
       cleanup_memory();
     }
     puStack_1b0 = (int8_t *)0x0;
-    uStack_1a0 = (ulonglong)uStack_1a0._4_4_ << 0x20;
+    uStack_1a0 = (uint64_t)uStack_1a0._4_4_ << 0x20;
     puStack_1b8 = &system_state_ptr;
   }
   // 处理名称信息请求 (request_type == 0x12)
@@ -158,7 +158,7 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
         if (compare_result < 0x10) {
           request_type = 0x10;
         }
-        puStack_1b0 = (int8_t *)FUN_18062b420(system_memory_pool_ptr,(longlong)request_type,0x13);
+        puStack_1b0 = (int8_t *)FUN_18062b420(system_memory_pool_ptr,(int64_t)request_type,0x13);
         *puStack_1b0 = 0;
         operation_result = allocate_buffer(puStack_1b0);
         uStack_1a0 = CONCAT44(uStack_1a0._4_4_,operation_result);
@@ -169,7 +169,7 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
       uStack_1a8 = 0;
       puStack_1b0 = (int8_t *)0x0;
       puStack_1b8 = &system_data_buffer_ptr;
-      if ((ulonglong)puStack_170[1] < (ulonglong)puStack_170[2]) {
+      if ((uint64_t)puStack_170[1] < (uint64_t)puStack_170[2]) {
         puStack_170[1] = puStack_170[1] + 0x20;
         extract_string_data();
       }
@@ -181,13 +181,13 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
         string_length = string_length + 1;
       } while (config_data[string_length] != '\0');
       puStack_1b8 = &system_data_buffer_ptr;
-      if (string_length <= (ulonglong)(longlong)(int)uStack_194) {
+      if (string_length <= (uint64_t)(int64_t)(int)uStack_194) {
         if (puStack_1b0 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
           cleanup_memory();
         }
         puStack_1b0 = (int8_t *)0x0;
-        uStack_1a0 = (ulonglong)uStack_1a0._4_4_ << 0x20;
+        uStack_1a0 = (uint64_t)uStack_1a0._4_4_ << 0x20;
         puStack_1b8 = &system_state_ptr;
         break;
       }
@@ -196,7 +196,7 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
         cleanup_memory();
       }
       puStack_1b0 = (int8_t *)0x0;
-      uStack_1a0 = (ulonglong)uStack_1a0._4_4_ << 0x20;
+      uStack_1a0 = (uint64_t)uStack_1a0._4_4_ << 0x20;
       puStack_1b8 = &system_state_ptr;
       request_type = FUN_18010cbc0(config_data + (int)uStack_194,&unknown_var_1928_ptr,stack_buffer);
       buffer_size = uStack_194;
@@ -239,7 +239,7 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
         if (compare_result < 0x10) {
           request_type = 0x10;
         }
-        char_ptr = (int8_t *)FUN_18062b420(system_memory_pool_ptr,(longlong)request_type,0x13);
+        char_ptr = (int8_t *)FUN_18062b420(system_memory_pool_ptr,(int64_t)request_type,0x13);
         *char_ptr = 0;
         puStack_1b0 = char_ptr;
         uStack_160 = allocate_buffer(char_ptr);
@@ -257,7 +257,7 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
         *memory_ptr = &system_data_buffer_ptr;
         *(int32_t *)(memory_ptr + 2) = 0;
         memory_ptr[1] = 0;
-        *(int32_t *)((longlong)memory_ptr + 0x1c) = 0;
+        *(int32_t *)((int64_t)memory_ptr + 0x1c) = 0;
         *(int32_t *)(memory_ptr + 3) = 0;
         uStack_1a8 = 0;
         uStack_1a0 = 0;
@@ -265,7 +265,7 @@ void process_config_request(uint64_t *context_ptr, longlong request_id, longlong
       }
       else {
         string_pos = *array_ptr;
-        array_index = (longlong)memory_ptr - string_pos >> 5;
+        array_index = (int64_t)memory_ptr - string_pos >> 5;
         if (array_index == 0) {
           array_index = 1;
 LAB_18010b692:
@@ -287,7 +287,7 @@ LAB_18010b692:
         *puStack_150 = &system_data_buffer_ptr;
         *(int32_t *)(puStack_150 + 2) = 0;
         puStack_150[1] = 0;
-        *(int32_t *)((longlong)puStack_150 + 0x1c) = 0;
+        *(int32_t *)((int64_t)puStack_150 + 0x1c) = 0;
         *(int *)(puStack_150 + 3) = (int)uStack_160;
         uStack_1a8 = 0;
         puStack_1b0 = (int8_t *)0x0;
@@ -306,27 +306,27 @@ LAB_18010b692:
                     // WARNING: Subroutine does not return
           cleanup_memory(memory_ptr);
         }
-        *array_ptr = (longlong)puStack_170;
+        *array_ptr = (int64_t)puStack_170;
         context_ptr[0x275] = temp_ptr;
         context_ptr[0x276] = puStack_170 + array_index * 4;
         config_data = puStack_168;
       }
-      memory_ptr = (uint64_t *)(ulonglong)uStack_194;
+      memory_ptr = (uint64_t *)(uint64_t)uStack_194;
       puStack_1b0 = (int8_t *)0x0;
       uStack_1a0 = uStack_1a0 & 0xffffffff00000000;
       puStack_1b8 = &system_state_ptr;
       string_length = 0xffffffffffffffff;
       do {
         string_length = string_length + 1;
-      } while (*(char *)((longlong)config_data + string_length) != '\0');
-      if (string_length <= (ulonglong)(longlong)(int)uStack_194) break;
-      request_type = FUN_18010cbc0((void *)((longlong)(int)uStack_194 + (longlong)config_data),
+      } while (*(char *)((int64_t)config_data + string_length) != '\0');
+      if (string_length <= (uint64_t)(int64_t)(int)uStack_194) break;
+      request_type = FUN_18010cbc0((void *)((int64_t)(int)uStack_194 + (int64_t)config_data),
                              &unknown_var_1928_ptr,stack_buffer);
     }
   }
   // 清理堆栈并返回
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)temp_array);
+  FUN_1808fc050(uStack_48 ^ (uint64_t)temp_array);
 }
 
 
@@ -346,22 +346,22 @@ LAB_18010b692:
  * @param param_2 输出文件指针
  * 功能：清理字符串数据中的特殊字符并格式化输出
  */
-void process_string_cleanup(longlong context_ptr, longlong file_ptr)
+void process_string_cleanup(int64_t context_ptr, int64_t file_ptr)
 
 {
-  longlong lVar1;
-  longlong lVar2;
+  int64_t lVar1;
+  int64_t lVar2;
   uint64_t uVar3;
-  ulonglong uVar4;
-  ulonglong uVar5;
-  ulonglong uVar6;
+  uint64_t uVar4;
+  uint64_t uVar5;
+  uint64_t uVar6;
   int iVar7;
   void *puVar8;
   void *puVar9;
   uint uVar10;
   int iVar11;
   void *puStack_d8;
-  longlong lStack_d0;
+  int64_t lStack_d0;
   int iStack_c8;
   uint64_t uStack_c0;
   void *puStack_b8;
@@ -373,10 +373,10 @@ void process_string_cleanup(longlong context_ptr, longlong file_ptr)
   uint uStack_88;
   int32_t uStack_80;
   void *puStack_78;
-  longlong lStack_70;
+  int64_t lStack_70;
   int32_t uStack_60;
   void *puStack_58;
-  longlong lStack_50;
+  int64_t lStack_50;
   int32_t uStack_40;
   uint64_t uStack_38;
   
@@ -390,12 +390,12 @@ void process_string_cleanup(longlong context_ptr, longlong file_ptr)
     iStack_c8 = 0;
     
     // 处理主字符串区域
-    if (*(longlong *)(context_ptr + 5000) - *(longlong *)(context_ptr + 0x1380) >> 5 != 0) {
+    if (*(int64_t *)(context_ptr + 5000) - *(int64_t *)(context_ptr + 0x1380) >> 5 != 0) {
       System_DataHandler(&puStack_d8,&unknown_var_1944_ptr);
-      longlong end_pos = *(longlong *)(context_ptr + 5000);
-      longlong start_pos = *(longlong *)(context_ptr + 0x1380);
-      ulonglong current_offset = string_length;
-      ulonglong total_items = string_length;
+      int64_t end_pos = *(int64_t *)(context_ptr + 5000);
+      int64_t start_pos = *(int64_t *)(context_ptr + 0x1380);
+      uint64_t current_offset = string_length;
+      uint64_t total_items = string_length;
       
       // 处理多个字符串项
       if (end_pos - start_pos >> 5 != 1) {
@@ -410,7 +410,7 @@ void process_string_cleanup(longlong context_ptr, longlong file_ptr)
             }
             uint new_length = position + remove_count;
             if (new_length < uStack_a8) {
-              longlong copy_pos = (longlong)(int)new_length;
+              int64_t copy_pos = (int64_t)(int)new_length;
               // 执行字符串移位操作
               do {
                 puStack_b0[copy_pos - remove_count] = puStack_b0[copy_pos];
@@ -446,11 +446,11 @@ void process_string_cleanup(longlong context_ptr, longlong file_ptr)
           uStack_a0 = 0;
           puStack_b8 = &system_state_ptr;
           uint item_count = (int)total_items + 1;
-          end_pos = *(longlong *)(context_ptr + 5000);
-          start_pos = *(longlong *)(context_ptr + 0x1380);
-          current_offset = (longlong)(int)item_count;
-          total_items = (ulonglong)item_count;
-        } while ((ulonglong)(longlong)(int)item_count < (end_pos - start_pos >> 5) - 1U);
+          end_pos = *(int64_t *)(context_ptr + 5000);
+          start_pos = *(int64_t *)(context_ptr + 0x1380);
+          current_offset = (int64_t)(int)item_count;
+          total_items = (uint64_t)item_count;
+        } while ((uint64_t)(int64_t)(int)item_count < (end_pos - start_pos >> 5) - 1U);
       }
       // 处理最后一个字符串项
       extract_string_data(&puStack_98,start_pos + ((end_pos - start_pos & 0xffffffffffffffe0U) - 0x20));
@@ -462,7 +462,7 @@ void process_string_cleanup(longlong context_ptr, longlong file_ptr)
         }
         uint new_length = position + remove_count;
         if (new_length < uStack_88) {
-          longlong copy_pos = (longlong)(int)new_length;
+          int64_t copy_pos = (int64_t)(int)new_length;
           do {
             puStack_90[copy_pos - remove_count] = puStack_90[copy_pos];
             new_length = new_length + 1;
@@ -499,10 +499,10 @@ void process_string_cleanup(longlong context_ptr, longlong file_ptr)
     }
     
     // 处理附加数据区域
-    if (*(longlong *)(context_ptr + 0x13a8) - *(longlong *)(context_ptr + 0x13a0) >> 5 != 0) {
+    if (*(int64_t *)(context_ptr + 0x13a8) - *(int64_t *)(context_ptr + 0x13a0) >> 5 != 0) {
       System_DataHandler(&puStack_d8,&unknown_var_1984_ptr);
-      longlong end_pos = *(longlong *)(context_ptr + 0x13a8);
-      longlong start_pos = *(longlong *)(context_ptr + 0x13a0);
+      int64_t end_pos = *(int64_t *)(context_ptr + 0x13a8);
+      int64_t start_pos = *(int64_t *)(context_ptr + 0x13a0);
       current_offset = string_length;
       
       // 处理附加数据项
@@ -516,10 +516,10 @@ void process_string_cleanup(longlong context_ptr, longlong file_ptr)
           System_DataHandler(&puStack_d8,&unknown_var_2004_ptr,default_data);
           uint item_count = (int)current_offset + 1;
           string_length = string_length + 0x20;
-          end_pos = *(longlong *)(context_ptr + 0x13a8);
-          start_pos = *(longlong *)(context_ptr + 0x13a0);
-          current_offset = (ulonglong)item_count;
-        } while ((ulonglong)(longlong)(int)item_count < (end_pos - start_pos >> 5) - 1U);
+          end_pos = *(int64_t *)(context_ptr + 0x13a8);
+          start_pos = *(int64_t *)(context_ptr + 0x13a0);
+          current_offset = (uint64_t)item_count;
+        } while ((uint64_t)(int64_t)(int)item_count < (end_pos - start_pos >> 5) - 1U);
       }
       // 处理最后一个附加数据项
       void *last_item = *(void **)(((end_pos - start_pos & 0xffffffffffffffe0U) - 0x18) + start_pos);
@@ -531,8 +531,8 @@ void process_string_cleanup(longlong context_ptr, longlong file_ptr)
     }
     
     // 写入输出文件并清理
-    fwrite(lStack_d0,1,(longlong)iStack_c8,*(uint64_t *)(file_ptr + 8));
-    if (*(longlong *)(file_ptr + 8) != 0) {
+    fwrite(lStack_d0,1,(int64_t)iStack_c8,*(uint64_t *)(file_ptr + 8));
+    if (*(int64_t *)(file_ptr + 8) != 0) {
       fclose();
       *(uint64_t *)(file_ptr + 8) = 0;
       LOCK();
@@ -559,13 +559,13 @@ void process_string_cleanup(longlong context_ptr, longlong file_ptr)
  * @param param_3 目标位置指针
  * 功能：在配置结构中设置指定的值
  */
-void set_config_value(longlong config_context, int32_t *value_ptr, longlong target_ptr)
+void set_config_value(int64_t config_context, int32_t *value_ptr, int64_t target_ptr)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   code *pcVar2;
   
-  longlong source_pos = config_context + 0x50;
+  int64_t source_pos = config_context + 0x50;
   *(int32_t *)(config_context + 0x48) = *value_ptr;
   if (source_pos != target_ptr) {
     // 调用源位置的清理函数
@@ -597,9 +597,9 @@ void execute_callback_operations(void)
 
 {
   code *current_callback = in_RAX;
-  longlong source_context = unaff_RBX;
+  int64_t source_context = unaff_RBX;
   code *next_callback;
-  longlong target_context = unaff_RDI;
+  int64_t target_context = unaff_RDI;
   
   // 执行当前回调函数
   if (current_callback != (code *)0x0) {
@@ -640,7 +640,7 @@ void empty_operation(void)
  * @return 返回源配置指针
  * 功能：将目标配置的操作函数复制到源配置
  */
-longlong copy_config_operations(longlong source_ptr, longlong target_ptr)
+int64_t copy_config_operations(int64_t source_ptr, int64_t target_ptr)
 
 {
   if (source_ptr != target_ptr) {
@@ -674,9 +674,9 @@ void execute_callback_with_param(uint64_t param_1)
 
 {
   code *current_callback = in_RAX;
-  longlong source_context = unaff_RBX;
+  int64_t source_context = unaff_RBX;
   code *next_callback;
-  longlong target_context = unaff_RDI;
+  int64_t target_context = unaff_RDI;
   
   // 执行带参数的回调函数
   if (current_callback != (code *)0x0) {
@@ -716,7 +716,7 @@ void empty_operation_variant2(void)
  * @return 返回配置指针
  * 功能：为配置设置第一种操作类型的函数指针
  */
-longlong init_config_operation_type1(longlong config_ptr)
+int64_t init_config_operation_type1(int64_t config_ptr)
 
 {
   *(void **)(config_ptr + 0x10) = &unknown_var_592_ptr;
@@ -732,7 +732,7 @@ longlong init_config_operation_type1(longlong config_ptr)
  * @return 返回配置指针
  * 功能：为配置设置第二种操作类型的函数指针
  */
-longlong init_config_operation_type2(longlong config_ptr)
+int64_t init_config_operation_type2(int64_t config_ptr)
 
 {
   *(void **)(config_ptr + 0x10) = &unknown_var_560_ptr;
@@ -748,7 +748,7 @@ longlong init_config_operation_type2(longlong config_ptr)
  * @return 返回配置指针
  * 功能：为配置设置第三种操作类型的函数指针
  */
-longlong init_config_operation_type3(longlong config_ptr)
+int64_t init_config_operation_type3(int64_t config_ptr)
 
 {
   *(void **)(config_ptr + 0x10) = &unknown_var_512_ptr;
@@ -764,7 +764,7 @@ longlong init_config_operation_type3(longlong config_ptr)
  * @return 返回配置指针
  * 功能：为配置设置第四种操作类型的函数指针
  */
-longlong init_config_operation_type4(longlong config_ptr)
+int64_t init_config_operation_type4(int64_t config_ptr)
 
 {
   *(void **)(config_ptr + 0x10) = &unknown_var_480_ptr;
@@ -780,7 +780,7 @@ longlong init_config_operation_type4(longlong config_ptr)
  * @return 返回配置指针
  * 功能：为配置设置第五种操作类型的函数指针
  */
-longlong init_config_operation_type5(longlong config_ptr)
+int64_t init_config_operation_type5(int64_t config_ptr)
 
 {
   *(void **)(config_ptr + 0x10) = &unknown_var_432_ptr;
@@ -796,7 +796,7 @@ longlong init_config_operation_type5(longlong config_ptr)
  * @return 返回配置指针
  * 功能：为配置设置第六种操作类型的函数指针
  */
-longlong init_config_operation_type6(longlong config_ptr)
+int64_t init_config_operation_type6(int64_t config_ptr)
 
 {
   *(void **)(config_ptr + 0x10) = &unknown_var_384_ptr;
@@ -812,7 +812,7 @@ longlong init_config_operation_type6(longlong config_ptr)
  * @return 返回配置指针
  * 功能：为配置设置第七种操作类型的函数指针
  */
-longlong init_config_operation_type7(longlong config_ptr)
+int64_t init_config_operation_type7(int64_t config_ptr)
 
 {
   *(void **)(config_ptr + 0x10) = &unknown_var_352_ptr;
@@ -828,7 +828,7 @@ longlong init_config_operation_type7(longlong config_ptr)
  * @return 返回配置指针
  * 功能：为配置设置第八种操作类型的函数指针
  */
-longlong init_config_operation_type8(longlong config_ptr)
+int64_t init_config_operation_type8(int64_t config_ptr)
 
 {
   *(void **)(config_ptr + 0x10) = &unknown_var_320_ptr;
@@ -844,7 +844,7 @@ longlong init_config_operation_type8(longlong config_ptr)
  * @return 返回配置指针
  * 功能：为配置设置第九种操作类型的函数指针
  */
-longlong init_config_operation_type9(longlong config_ptr)
+int64_t init_config_operation_type9(int64_t config_ptr)
 
 {
   *(void **)(config_ptr + 0x10) = &unknown_var_288_ptr;
@@ -860,7 +860,7 @@ longlong init_config_operation_type9(longlong config_ptr)
  * @return 返回配置指针
  * 功能：为配置设置第十种操作类型的函数指针
  */
-longlong init_config_operation_type10(longlong config_ptr)
+int64_t init_config_operation_type10(int64_t config_ptr)
 
 {
   *(void **)(config_ptr + 0x10) = &unknown_var_256_ptr;
@@ -906,7 +906,7 @@ void format_string_scan(uint64_t input_string, uint64_t format_string, uint64_t 
  * @param value 要设置的值
  * 功能：在配置上下文中设置指定类型的值
  */
-void set_config_value_type1(longlong config_context, int32_t value)
+void set_config_value_type1(int64_t config_context, int32_t value)
 
 {
   char validation_result;
@@ -914,7 +914,7 @@ void set_config_value_type1(longlong config_context, int32_t value)
   int32_t temp_params [6];
   
   // 检查是否需要验证设置值
-  if ((*(longlong *)(config_context + 0x1bf0) != 0) &&
+  if ((*(int64_t *)(config_context + 0x1bf0) != 0) &&
      (temp_params[0] = value, validation_result = (**(code **)(config_context + 0x1bf8))(temp_params),
      value = temp_params[0], validation_result == '\0')) {
     // 如果验证通过且调试模式未启用，则使用默认值
@@ -943,7 +943,7 @@ void set_config_value_type1(longlong config_context, int32_t value)
  * @param value 要设置的值
  * 功能：在配置上下文中设置第二种类型的值
  */
-void set_config_value_type2(longlong config_context, int32_t value)
+void set_config_value_type2(int64_t config_context, int32_t value)
 
 {
   char validation_result;
@@ -951,7 +951,7 @@ void set_config_value_type2(longlong config_context, int32_t value)
   int32_t temp_params [6];
   
   // 检查是否需要验证设置值
-  if ((*(longlong *)(config_context + 0x1fe0) != 0) &&
+  if ((*(int64_t *)(config_context + 0x1fe0) != 0) &&
      (temp_params[0] = value, validation_result = (**(code **)(config_context + 0x1fe8))(temp_params),
      value = temp_params[0], validation_result == '\0')) {
     // 如果验证通过且调试模式未启用，则使用默认值
@@ -980,7 +980,7 @@ void set_config_value_type2(longlong config_context, int32_t value)
  * @param value 要设置的值
  * 功能：在配置上下文中设置第三种类型的值
  */
-void set_config_value_type3(longlong config_context, int32_t value)
+void set_config_value_type3(int64_t config_context, int32_t value)
 
 {
   char validation_result;
@@ -988,7 +988,7 @@ void set_config_value_type3(longlong config_context, int32_t value)
   int32_t temp_params [6];
   
   // 检查是否需要验证设置值
-  if ((*(longlong *)(config_context + 0x20c0) != 0) &&
+  if ((*(int64_t *)(config_context + 0x20c0) != 0) &&
      (temp_params[0] = value, validation_result = (**(code **)(config_context + 0x20c8))(temp_params),
      value = temp_params[0], validation_result == '\0')) {
     // 如果验证通过且调试模式未启用，则使用默认值
@@ -1017,7 +1017,7 @@ void set_config_value_type3(longlong config_context, int32_t value)
  * @param value 要设置的值
  * 功能：在配置上下文中设置第四种类型的值
  */
-void set_config_value_type4(longlong config_context, int32_t value)
+void set_config_value_type4(int64_t config_context, int32_t value)
 
 {
   char validation_result;
@@ -1025,7 +1025,7 @@ void set_config_value_type4(longlong config_context, int32_t value)
   int32_t temp_params [6];
   
   // 检查是否需要验证设置值
-  if ((*(longlong *)(config_context + 0x2210) != 0) &&
+  if ((*(int64_t *)(config_context + 0x2210) != 0) &&
      (temp_params[0] = value, validation_result = (**(code **)(config_context + 0x2218))(temp_params),
      value = temp_params[0], validation_result == '\0')) {
     // 如果验证通过且调试模式未启用，则使用默认值
@@ -1054,7 +1054,7 @@ void set_config_value_type4(longlong config_context, int32_t value)
  * @param value 要设置的值
  * 功能：在配置上下文中设置第五种类型的值
  */
-void set_config_value_type5(longlong config_context, int32_t value)
+void set_config_value_type5(int64_t config_context, int32_t value)
 
 {
   char validation_result;
@@ -1062,7 +1062,7 @@ void set_config_value_type5(longlong config_context, int32_t value)
   int32_t temp_params [6];
   
   // 检查是否需要验证设置值
-  if ((*(longlong *)(config_context + 0x2280) != 0) &&
+  if ((*(int64_t *)(config_context + 0x2280) != 0) &&
      (temp_params[0] = value, validation_result = (**(code **)(config_context + 0x2288))(temp_params),
      value = temp_params[0], validation_result == '\0')) {
     // 如果验证通过且调试模式未启用，则使用默认值
@@ -1091,7 +1091,7 @@ void set_config_value_type5(longlong config_context, int32_t value)
  * @param value 要设置的值
  * 功能：在配置上下文中设置第六种类型的值
  */
-void set_config_value_type6(longlong config_context, int32_t value)
+void set_config_value_type6(int64_t config_context, int32_t value)
 
 {
   char validation_result;
@@ -1099,7 +1099,7 @@ void set_config_value_type6(longlong config_context, int32_t value)
   int32_t temp_params [6];
   
   // 检查是否需要验证设置值
-  if ((*(longlong *)(config_context + 0x21a0) != 0) &&
+  if ((*(int64_t *)(config_context + 0x21a0) != 0) &&
      (temp_params[0] = value, validation_result = (**(code **)(config_context + 0x21a8))(temp_params),
      value = temp_params[0], validation_result == '\0')) {
     // 如果验证通过且调试模式未启用，则使用默认值
@@ -1128,7 +1128,7 @@ void set_config_value_type6(longlong config_context, int32_t value)
  * @param value 要设置的值
  * 功能：在配置上下文中设置第七种类型的值
  */
-void set_config_value_type7(longlong config_context, int32_t value)
+void set_config_value_type7(int64_t config_context, int32_t value)
 
 {
   char validation_result;
@@ -1136,7 +1136,7 @@ void set_config_value_type7(longlong config_context, int32_t value)
   int32_t temp_params [6];
   
   // 检查是否需要验证设置值
-  if ((*(longlong *)(config_context + 0x2130) != 0) &&
+  if ((*(int64_t *)(config_context + 0x2130) != 0) &&
      (temp_params[0] = value, validation_result = (**(code **)(config_context + 0x2138))(temp_params),
      value = temp_params[0], validation_result == '\0')) {
     // 如果验证通过且调试模式未启用，则使用默认值
@@ -1165,7 +1165,7 @@ void set_config_value_type7(longlong config_context, int32_t value)
  * @param value 要设置的值
  * 功能：在配置上下文中设置第八种类型的值
  */
-void set_config_value_type8(longlong config_context, int32_t value)
+void set_config_value_type8(int64_t config_context, int32_t value)
 
 {
   char validation_result;
@@ -1173,7 +1173,7 @@ void set_config_value_type8(longlong config_context, int32_t value)
   int32_t temp_params [6];
   
   // 检查是否需要验证设置值
-  if ((*(longlong *)(config_context + 0x1330) != 0) &&
+  if ((*(int64_t *)(config_context + 0x1330) != 0) &&
      (temp_params[0] = value, validation_result = (**(code **)(config_context + 0x1338))(temp_params),
      value = temp_params[0], validation_result == '\0')) {
     // 如果验证通过且调试模式未启用，则使用默认值
@@ -1202,7 +1202,7 @@ void set_config_value_type8(longlong config_context, int32_t value)
  * @param value 要设置的值
  * 功能：在配置上下文中设置第九种类型的值
  */
-void set_config_value_type9(longlong config_context, int32_t value)
+void set_config_value_type9(int64_t config_context, int32_t value)
 
 {
   char validation_result;
@@ -1210,7 +1210,7 @@ void set_config_value_type9(longlong config_context, int32_t value)
   int32_t temp_params [6];
   
   // 检查是否需要验证设置值
-  if ((*(longlong *)(config_context + 0x1100) != 0) &&
+  if ((*(int64_t *)(config_context + 0x1100) != 0) &&
      (temp_params[0] = value, validation_result = (**(code **)(config_context + 0x1108))(temp_params),
      value = temp_params[0], validation_result == '\0')) {
     // 如果验证通过且调试模式未启用，则使用默认值
@@ -1239,7 +1239,7 @@ void set_config_value_type9(longlong config_context, int32_t value)
  * @param value 要设置的值
  * 功能：在配置上下文中设置第十种类型的值
  */
-void set_config_value_type10(longlong config_context, int32_t value)
+void set_config_value_type10(int64_t config_context, int32_t value)
 
 {
   char validation_result;
@@ -1247,7 +1247,7 @@ void set_config_value_type10(longlong config_context, int32_t value)
   int32_t temp_params [6];
   
   // 检查是否需要验证设置值
-  if ((*(longlong *)(config_context + 0x1090) != 0) &&
+  if ((*(int64_t *)(config_context + 0x1090) != 0) &&
      (temp_params[0] = value, validation_result = (**(code **)(config_context + 0x1098))(temp_params),
      value = temp_params[0], validation_result == '\0')) {
     // 如果验证通过且调试模式未启用，则使用默认值
@@ -1276,7 +1276,7 @@ void set_config_value_type10(longlong config_context, int32_t value)
  * @param value 要设置的值
  * 功能：在配置上下文中设置第十一种类型的值
  */
-void set_config_value_type11(longlong config_context, int32_t value)
+void set_config_value_type11(int64_t config_context, int32_t value)
 
 {
   char validation_result;
@@ -1284,7 +1284,7 @@ void set_config_value_type11(longlong config_context, int32_t value)
   int32_t temp_params [6];
   
   // 检查是否需要验证设置值
-  if ((*(longlong *)(config_context + 0x1020) != 0) &&
+  if ((*(int64_t *)(config_context + 0x1020) != 0) &&
      (temp_params[0] = value, validation_result = (**(code **)(config_context + 0x1028))(temp_params),
      value = temp_params[0], validation_result == '\0')) {
     // 如果验证通过且调试模式未启用，则使用默认值
@@ -1313,7 +1313,7 @@ void set_config_value_type11(longlong config_context, int32_t value)
  * @param value 要设置的值
  * 功能：在配置上下文中设置第十二种类型的值
  */
-void set_config_value_type12(longlong config_context, int32_t value)
+void set_config_value_type12(int64_t config_context, int32_t value)
 
 {
   char validation_result;
@@ -1321,7 +1321,7 @@ void set_config_value_type12(longlong config_context, int32_t value)
   int32_t temp_params [6];
   
   // 检查是否需要验证设置值
-  if ((*(longlong *)(config_context + 0xfb0) != 0) &&
+  if ((*(int64_t *)(config_context + 0xfb0) != 0) &&
      (temp_params[0] = value, validation_result = (**(code **)(config_context + 0xfb8))(temp_params),
      value = temp_params[0], validation_result == '\0')) {
     // 如果验证通过且调试模式未启用，则使用默认值

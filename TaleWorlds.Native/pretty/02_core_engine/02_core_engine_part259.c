@@ -31,7 +31,7 @@
  * @param engine_context 引擎上下文指针，包含引擎的核心配置和状态
  * @return void 无返回值
  */
-void initialize_engine_core(longlong engine_context)
+void initialize_engine_core(int64_t engine_context)
 
 {
   int8_t stack_buffer_1b8 [32];
@@ -41,9 +41,9 @@ void initialize_engine_core(longlong engine_context)
   code *init_callback_170;
   void *config_data_168;
   void *resource_data_158;
-  longlong resource_count_150;
+  int64_t resource_count_150;
   int32_t flags_148;
-  ulonglong checksum_140;
+  uint64_t checksum_140;
   uint64_t memory_pool_138;
   uint64_t memory_pool_130;
   uint64_t memory_pool_128;
@@ -70,14 +70,14 @@ void initialize_engine_core(longlong engine_context)
   uint64_t texture_slot_50;
   uint64_t texture_slot_48;
   int32_t texture_flags_40;
-  ulonglong texture_checksum_38;
+  uint64_t texture_checksum_38;
   
   // 初始化线程上下文和校验和
   thread_context_118 = 0xfffffffffffffffe;
-  texture_checksum_38 = _ENGINE_CHECKSUM_SEED ^ (ulonglong)stack_buffer_1b8;
+  texture_checksum_38 = _ENGINE_CHECKSUM_SEED ^ (uint64_t)stack_buffer_1b8;
   
   // 检查引擎上下文是否有效
-  if (*(longlong *)(engine_context + 0xb0) != 0) {
+  if (*(int64_t *)(engine_context + 0xb0) != 0) {
     // 初始化资源数据
     resource_data_158 = &DEFAULT_RESOURCE_TABLE;
     checksum_140 = 0;
@@ -126,8 +126,8 @@ void initialize_engine_core(longlong engine_context)
     callback_ptr_198 = resource_array_180;
     
     // 调用引擎初始化函数
-    (**(code **)(**(longlong **)(engine_context + 0x88) + 0x60))
-              (*(longlong **)(engine_context + 0x88),&RENDER_TARGET_TABLE,engine_context + 0xc,0);
+    (**(code **)(**(int64_t **)(engine_context + 0x88) + 0x60))
+              (*(int64_t **)(engine_context + 0x88),&RENDER_TARGET_TABLE,engine_context + 0xc,0);
     
     // 执行初始化回调
     if (init_callback_170 != (code *)0x0) {
@@ -141,8 +141,8 @@ void initialize_engine_core(longlong engine_context)
     callback_ptr_198 = resource_array_180;
     
     // 调用渲染设置函数
-    (**(code **)(**(longlong **)(engine_context + 0x88) + 0x60))
-              (*(longlong **)(engine_context + 0x88),&RENDER_CONFIG_TABLE,engine_context + 0xc,0);
+    (**(code **)(**(int64_t **)(engine_context + 0x88) + 0x60))
+              (*(int64_t **)(engine_context + 0x88),&RENDER_CONFIG_TABLE,engine_context + 0xc,0);
     
     // 执行渲染设置回调
     if (init_callback_170 != (code *)0x0) {
@@ -174,7 +174,7 @@ void initialize_engine_core(longlong engine_context)
   }
   
   // 调用引擎核心初始化完成函数
-  engine_core_initialization_complete(texture_checksum_38 ^ (ulonglong)stack_buffer_1b8);
+  engine_core_initialization_complete(texture_checksum_38 ^ (uint64_t)stack_buffer_1b8);
 }
 
 /*
@@ -240,7 +240,7 @@ void reset_resource_manager(uint64_t *resource_manager)
  * @param engine_context 引擎上下文指针，包含需要清理的资源信息
  * @return void 无返回值
  */
-void cleanup_engine_resources(longlong engine_context)
+void cleanup_engine_resources(int64_t engine_context)
 
 {
   cleanup_texture_slots();
@@ -266,14 +266,14 @@ void cleanup_engine_resources(longlong engine_context)
  * @param resource_chain 资源链表指针，包含需要清理的资源
  * @return void 无返回值
  */
-void cleanup_resource_chain(ulonglong *resource_chain)
+void cleanup_resource_chain(uint64_t *resource_chain)
 
 {
   int *reference_count;
   uint64_t *resource_ptr;
-  longlong memory_block;
-  ulonglong block_address;
-  ulonglong chain_end;
+  int64_t memory_block;
+  uint64_t block_address;
+  uint64_t chain_end;
   
   chain_end = resource_chain[1];
   
@@ -284,10 +284,10 @@ void cleanup_resource_chain(ulonglong *resource_chain)
   
   resource_ptr = (uint64_t *)*resource_chain;
   if (resource_ptr != (uint64_t *)0x0) {
-    block_address = (ulonglong)resource_ptr & 0xffffffffffc00000;
+    block_address = (uint64_t)resource_ptr & 0xffffffffffc00000;
     if (block_address != 0) {
-      memory_block = block_address + 0x80 + ((longlong)resource_ptr - block_address >> 0x10) * 0x50;
-      memory_block = memory_block - (ulonglong)*(uint *)(memory_block + 4);
+      memory_block = block_address + 0x80 + ((int64_t)resource_ptr - block_address >> 0x10) * 0x50;
+      memory_block = memory_block - (uint64_t)*(uint *)(memory_block + 4);
       
       // 检查内存块是否有效
       if ((*(void ***)(block_address + 0x70) == &ExceptionList) && (*(char *)(memory_block + 0xe) == '\0')) {
@@ -331,14 +331,14 @@ void cleanup_resource_chain(ulonglong *resource_chain)
  * @param resource_chain 扩展资源链表指针，包含需要清理的扩展资源
  * @return void 无返回值
  */
-void cleanup_extended_resource_chain(ulonglong *resource_chain)
+void cleanup_extended_resource_chain(uint64_t *resource_chain)
 
 {
   int *reference_count;
   uint64_t *resource_ptr;
-  longlong memory_block;
-  ulonglong block_address;
-  ulonglong chain_end;
+  int64_t memory_block;
+  uint64_t block_address;
+  uint64_t chain_end;
   
   chain_end = resource_chain[1];
   
@@ -350,10 +350,10 @@ void cleanup_extended_resource_chain(ulonglong *resource_chain)
   
   resource_ptr = (uint64_t *)*resource_chain;
   if (resource_ptr != (uint64_t *)0x0) {
-    block_address = (ulonglong)resource_ptr & 0xffffffffffc00000;
+    block_address = (uint64_t)resource_ptr & 0xffffffffffc00000;
     if (block_address != 0) {
-      memory_block = block_address + 0x80 + ((longlong)resource_ptr - block_address >> 0x10) * 0x50;
-      memory_block = memory_block - (ulonglong)*(uint *)(memory_block + 4);
+      memory_block = block_address + 0x80 + ((int64_t)resource_ptr - block_address >> 0x10) * 0x50;
+      memory_block = memory_block - (uint64_t)*(uint *)(memory_block + 4);
       
       // 检查内存块是否有效
       if ((*(void ***)(block_address + 0x70) == &ExceptionList) && (*(char *)(memory_block + 0xe) == '\0')) {
@@ -397,11 +397,11 @@ void cleanup_extended_resource_chain(ulonglong *resource_chain)
  * @param object_array 对象数组指针，包含需要清理的对象
  * @return void 无返回值
  */
-void cleanup_object_array(longlong *object_array)
+void cleanup_object_array(int64_t *object_array)
 
 {
-  longlong array_end;
-  longlong current_object;
+  int64_t array_end;
+  int64_t current_object;
   
   array_end = object_array[1];
   
@@ -437,38 +437,38 @@ void cleanup_object_array(longlong *object_array)
  * @param engine_context 引擎上下文指针，包含渲染系统的配置信息
  * @return void 无返回值
  */
-void initialize_render_system(longlong engine_context)
+void initialize_render_system(int64_t engine_context)
 
 {
-  longlong *old_render_context;
-  longlong new_render_context;
+  int64_t *old_render_context;
+  int64_t new_render_context;
   int render_status;
   uint64_t memory_allocation;
-  longlong *render_manager;
+  int64_t *render_manager;
   void *render_config;
   
   // 检查渲染系统是否已初始化
-  if (*(char *)(*(longlong *)(engine_context + 0x20) + 0x18) == '\0') {
+  if (*(char *)(*(int64_t *)(engine_context + 0x20) + 0x18) == '\0') {
     // 分配渲染系统内存
     memory_allocation = allocate_render_memory(_RENDER_MEMORY_CONFIG,0x1e0,0x10,3,0xfffffffffffffffe);
-    render_manager = (longlong *)initialize_render_manager(memory_allocation);
+    render_manager = (int64_t *)initialize_render_manager(memory_allocation);
     
-    if (render_manager != (longlong *)0x0) {
+    if (render_manager != (int64_t *)0x0) {
       // 初始化渲染管理器
       (**(code **)(*render_manager + 0x28))(render_manager);
     }
     
     // 更新渲染上下文
-    old_render_context = *(longlong **)(engine_context + 0xb0);
-    *(longlong **)(engine_context + 0xb0) = render_manager;
+    old_render_context = *(int64_t **)(engine_context + 0xb0);
+    *(int64_t **)(engine_context + 0xb0) = render_manager;
     
     // 清理旧的渲染上下文
-    if (old_render_context != (longlong *)0x0) {
+    if (old_render_context != (int64_t *)0x0) {
       (**(code **)(*old_render_context + 0x38))();
     }
     
     // 配置渲染管理器
-    render_manager = (longlong *)(*(longlong *)(engine_context + 0xb0) + 0x10);
+    render_manager = (int64_t *)(*(int64_t *)(engine_context + 0xb0) + 0x10);
     render_config = &DEFAULT_RENDER_CONFIG;
     if (*(void **)(engine_context + 0x70) != (void *)0x0) {
       render_config = *(void **)(engine_context + 0x70);
@@ -476,17 +476,17 @@ void initialize_render_system(longlong engine_context)
     
     // 设置渲染配置
     (**(code **)(*render_manager + 0x10))(render_manager,render_config);
-    *(longlong *)(*(longlong *)(engine_context + 0xb0) + 0xa8) = engine_context;
-    *(int8_t *)(*(longlong *)(engine_context + 0xb0) + 0xb1) = 1;
+    *(int64_t *)(*(int64_t *)(engine_context + 0xb0) + 0xa8) = engine_context;
+    *(int8_t *)(*(int64_t *)(engine_context + 0xb0) + 0xb1) = 1;
     
     // 初始化渲染状态
     new_render_context = _RENDER_STATE_CONFIG;
-    render_manager = *(longlong **)(engine_context + 0xb0);
+    render_manager = *(int64_t **)(engine_context + 0xb0);
     render_status = (**(code **)(*render_manager + 0x60))(render_manager);
-    *(int8_t *)((longlong)render_manager + 0xb2) = 1;
+    *(int8_t *)((int64_t)render_manager + 0xb2) = 1;
     
     // 配置渲染管线
-    setup_render_pipeline((longlong)render_status * 0x98 + new_render_context + 8,render_manager);
+    setup_render_pipeline((int64_t)render_status * 0x98 + new_render_context + 8,render_manager);
   }
   return;
 }
@@ -511,7 +511,7 @@ void initialize_render_system(longlong engine_context)
  * @param material_data 材质数据指针，包含材质属性
  * @return void 无返回值
  */
-void process_render_resources(longlong render_context, longlong resource_context, int32_t *material_data)
+void process_render_resources(int64_t render_context, int64_t resource_context, int32_t *material_data)
 
 {
   uint64_t *texture_coord;
@@ -536,10 +536,10 @@ void process_render_resources(longlong render_context, longlong resource_context
   uint64_t texture_id;
   uint64_t normal_id;
   uint64_t specular_id;
-  longlong mesh_offset;
+  int64_t mesh_offset;
   char shader_type;
-  ulonglong vertex_count;
-  ulonglong index_count;
+  uint64_t vertex_count;
+  uint64_t index_count;
   float *vertex_buffer;
   void *texture_path;
   int *material_index;
@@ -547,8 +547,8 @@ void process_render_resources(longlong render_context, longlong resource_context
   void *animation_data;
   uint64_t *transform_matrix;
   int lod_level;
-  ulonglong mesh_size;
-  ulonglong texture_size;
+  uint64_t mesh_size;
+  uint64_t texture_size;
   float bounding_min_x;
   float bounding_min_y;
   float bounding_min_z;
@@ -569,11 +569,11 @@ void process_render_resources(longlong render_context, longlong resource_context
   float position_y;
   float position_z;
   int8_t stack_buffer_1a8 [32];
-  longlong animation_state;
+  int64_t animation_state;
   uint64_t animation_speed;
   float animation_time;
   int32_t animation_flags;
-  longlong render_queue;
+  int64_t render_queue;
   uint64_t render_flags;
   uint64_t shader_params;
   float opacity;
@@ -584,11 +584,11 @@ void process_render_resources(longlong render_context, longlong resource_context
   uint64_t lighting_params;
   uint64_t shadow_params;
   uint64_t post_process_params;
-  ulonglong resource_checksum;
+  uint64_t resource_checksum;
   
   // 初始化渲染参数
   render_flags = 0xfffffffffffffffe;
-  resource_checksum = _RESOURCE_CHECKSUM ^ (ulonglong)stack_buffer_1a8;
+  resource_checksum = _RESOURCE_CHECKSUM ^ (uint64_t)stack_buffer_1a8;
   texture_path = &DEFAULT_TEXTURE_PATH;
   
   // 获取纹理路径
@@ -599,7 +599,7 @@ void process_render_resources(longlong render_context, longlong resource_context
   render_queue = resource_context;
   
   // 设置纹理
-  (**(code **)(*(longlong *)(render_context + 0x10) + 0x10))((longlong *)(render_context + 0x10),texture_path);
+  (**(code **)(*(int64_t *)(render_context + 0x10) + 0x10))((int64_t *)(render_context + 0x10),texture_path);
   *(int32_t *)(render_context + 0x1ac) = *material_data;
   
   // 获取法线贴图路径
@@ -609,12 +609,12 @@ void process_render_resources(longlong render_context, longlong resource_context
   }
   
   // 设置法线贴图
-  (**(code **)(*(longlong *)(render_context + 0x1b8) + 0x10))((longlong *)(render_context + 0x1b8),texture_path);
+  (**(code **)(*(int64_t *)(render_context + 0x1b8) + 0x10))((int64_t *)(render_context + 0x1b8),texture_path);
   *(int8_t *)(render_context + 0x1b0) = *(int8_t *)(material_data + 9);
   
   // 获取材质属性
   texture_flags = *(int **)(resource_context + 0x20);
-  index_count = (*(longlong *)(resource_context + 0x28) - (longlong)texture_flags) / 0xe0;
+  index_count = (*(int64_t *)(resource_context + 0x28) - (int64_t)texture_flags) / 0xe0;
   
   // 检查材质是否有可见的属性
   if ((((0.01 <= ABS((float)material_data[1])) || (0.01 <= ABS((float)material_data[2]))) ||
@@ -658,7 +658,7 @@ void process_render_resources(longlong render_context, longlong resource_context
       do {
         // 处理网格变换
         lighting_params = *(uint64_t **)(material_index + 0x2a);
-        shadow_params = *(ulonglong *)(material_index + 0x2e);
+        shadow_params = *(uint64_t *)(material_index + 0x2e);
         post_process_params = *(uint64_t *)(material_index + 0x32);
         material_properties = *(uint64_t *)(material_index + 0x36);
         lod_level = *material_index;
@@ -670,10 +670,10 @@ void process_render_resources(longlong render_context, longlong resource_context
         while( true ) {
           // 处理顶点变换
           post_process_params._0_4_ = (float)specular_id;
-          post_process_params._4_4_ = (float)((ulonglong)specular_id >> 0x20);
+          post_process_params._4_4_ = (float)((uint64_t)specular_id >> 0x20);
           if (lod_level == -1) break;
           
-          mesh_offset = (longlong)lod_level;
+          mesh_offset = (int64_t)lod_level;
           vertex_buffer = (float *)(texture_flags + mesh_offset * 0x38 + 0x28);
           diffuse_r = *vertex_buffer;
           diffuse_g = vertex_buffer[1];
@@ -692,19 +692,19 @@ void process_render_resources(longlong render_context, longlong resource_context
           vertex_buffer = (float *)(texture_flags + mesh_offset * 0x38 + 0x34);
           
           // 计算变换矩阵
-          render_flags._4_4_ = (float)((ulonglong)mesh_data >> 0x20);
+          render_flags._4_4_ = (float)((uint64_t)mesh_data >> 0x20);
           bounding_min_x = render_flags._4_4_ * reflection;
           bounding_max_x = render_flags._4_4_ * refraction;
           render_flags._0_4_ = SUB84(mesh_data,0);
           position_x = (float)render_flags * ambient_b;
           position_y = (float)render_flags * ambient_g;
-          shader_params._4_4_ = (float)((ulonglong)texture_id >> 0x20);
+          shader_params._4_4_ = (float)((uint64_t)texture_id >> 0x20);
           bounding_min_y = shader_params._4_4_ * reflection;
           bounding_max_y = shader_params._4_4_ * refraction;
           shader_params._0_4_ = (float)texture_id;
           center_x = (float)shader_params * ambient_b;
           center_y = (float)shader_params * ambient_g;
-          lighting_params._4_4_ = (float)((ulonglong)normal_id >> 0x20);
+          lighting_params._4_4_ = (float)((uint64_t)normal_id >> 0x20);
           bounding_min_z = lighting_params._4_4_ * reflection;
           bounding_max_z = lighting_params._4_4_ * refraction;
           lighting_params._0_4_ = (float)normal_id;
@@ -834,22 +834,22 @@ void process_render_resources(longlong render_context, longlong resource_context
     
     do {
       // 检查网格是否可见
-      if (*(char *)(texture_size + *(longlong *)(material_data + 0x24)) != '\0') {
-        *(ulonglong *)(render_context + 0x150) =
-             *(ulonglong *)(render_context + 0x150) | 1L << (animation_speed & 0x3f);
+      if (*(char *)(texture_size + *(int64_t *)(material_data + 0x24)) != '\0') {
+        *(uint64_t *)(render_context + 0x150) =
+             *(uint64_t *)(render_context + 0x150) | 1L << (animation_speed & 0x3f);
       }
       
       // 复制网格数据
-      *(int8_t *)(*(longlong *)(render_context + 0x140) + 0xf0 + mesh_size) =
-           *(int8_t *)(animation_state + *(longlong *)(render_queue + 0x20));
+      *(int8_t *)(*(int64_t *)(render_context + 0x140) + 0xf0 + mesh_size) =
+           *(int8_t *)(animation_state + *(int64_t *)(render_queue + 0x20));
       
-      mesh_offset = *(longlong *)(render_context + 0x140);
+      mesh_offset = *(int64_t *)(render_context + 0x140);
       render_flags = &SHADER_PARAM_TABLE;
       shader_params = &shadow_params;
       shadow_params = shadow_params & 0xffffffffffffff00;
-      material_properties = CONCAT44((int)((ulonglong)material_properties >> 0x20),
-                            *(int32_t *)(animation_state + 0x18 + *(longlong *)(render_queue + 0x20)));
-      mesh_data = *(void **)(animation_state + 0x10 + *(longlong *)(render_queue + 0x20));
+      material_properties = CONCAT44((int)((uint64_t)material_properties >> 0x20),
+                            *(int32_t *)(animation_state + 0x18 + *(int64_t *)(render_queue + 0x20)));
+      mesh_data = *(void **)(animation_state + 0x10 + *(int64_t *)(render_queue + 0x20));
       texture_path = &DEFAULT_TEXTURE_PATH;
       
       if (mesh_data != (void *)0x0) {
@@ -858,7 +858,7 @@ void process_render_resources(longlong render_context, longlong resource_context
       
       // 设置材质名称
       strcpy_s(&shadow_params,0x40,texture_path);
-      mesh_offset = *(longlong *)(mesh_offset + 0x180 + mesh_size);
+      mesh_offset = *(int64_t *)(mesh_offset + 0x180 + mesh_size);
       *(float *)(mesh_offset + 0x10) = (float)material_properties;
       
       transform_matrix = (uint64_t *)&DEFAULT_TEXTURE_PATH;
@@ -869,24 +869,24 @@ void process_render_resources(longlong render_context, longlong resource_context
       // 设置纹理矩阵
       strcpy_s(*(uint64_t *)(mesh_offset + 8),0x40,transform_matrix);
       render_flags = &CLEANUP_RESOURCE_TABLE;
-      setup_mesh_texture(*(longlong *)(render_context + 0x140) + mesh_size,
-                    animation_state + 0xa0 + *(longlong *)(render_queue + 0x20));
+      setup_mesh_texture(*(int64_t *)(render_context + 0x140) + mesh_size,
+                    animation_state + 0xa0 + *(int64_t *)(render_queue + 0x20));
       
       // 设置网格属性
-      *(int8_t *)(*(longlong *)(render_context + 0x140) + 0x104 + mesh_size) =
-           *(int8_t *)(texture_size + 0xf8 + *(longlong *)(material_data + 0x24));
-      *(int32_t *)(*(longlong *)(*(longlong *)(render_context + 0x140) + 0x180 + mesh_size) + 0x58) =
-           *(int32_t *)(texture_size + 0xfc + *(longlong *)(material_data + 0x24));
+      *(int8_t *)(*(int64_t *)(render_context + 0x140) + 0x104 + mesh_size) =
+           *(int8_t *)(texture_size + 0xf8 + *(int64_t *)(material_data + 0x24));
+      *(int32_t *)(*(int64_t *)(*(int64_t *)(render_context + 0x140) + 0x180 + mesh_size) + 0x58) =
+           *(int32_t *)(texture_size + 0xfc + *(int64_t *)(material_data + 0x24));
       
       // 处理网格变换数据
-      mesh_offset = *(longlong *)(material_data + 0x24);
+      mesh_offset = *(int64_t *)(material_data + 0x24);
       transform_matrix = (uint64_t *)(texture_size + 0x104 + mesh_offset);
       texture_id = transform_matrix[1];
       texture_coord = (uint64_t *)(texture_size + 0x114 + mesh_offset);
       normal_id = *texture_coord;
       specular_id = texture_coord[1];
       roughness = *(int32_t *)(texture_size + 0x124 + mesh_offset);
-      mesh_offset = *(longlong *)(render_context + 0x140);
+      mesh_offset = *(int64_t *)(render_context + 0x140);
       texture_coord = (uint64_t *)(mesh_offset + 0x114 + mesh_size);
       *texture_coord = *transform_matrix;
       texture_coord[1] = texture_id;
@@ -896,14 +896,14 @@ void process_render_resources(longlong render_context, longlong resource_context
       *(int32_t *)(mesh_offset + 0x134 + mesh_size) = roughness;
       
       // 处理网格动画数据
-      mesh_offset = *(longlong *)(material_data + 0x24);
+      mesh_offset = *(int64_t *)(material_data + 0x24);
       transform_matrix = (uint64_t *)(texture_size + 0x128 + mesh_offset);
       texture_id = transform_matrix[1];
       texture_coord = (uint64_t *)(texture_size + 0x138 + mesh_offset);
       normal_id = *texture_coord;
       specular_id = texture_coord[1];
       roughness = *(int32_t *)(texture_size + 0x148 + mesh_offset);
-      mesh_offset = *(longlong *)(render_context + 0x140);
+      mesh_offset = *(int64_t *)(render_context + 0x140);
       texture_coord = (uint64_t *)(mesh_offset + 0x138 + mesh_size);
       *texture_coord = *transform_matrix;
       texture_coord[1] = texture_id;
@@ -913,7 +913,7 @@ void process_render_resources(longlong render_context, longlong resource_context
       *(int32_t *)(mesh_offset + 0x158 + mesh_size) = roughness;
       
       // 处理网格材质数据
-      mesh_offset = *(longlong *)(material_data + 0x24);
+      mesh_offset = *(int64_t *)(material_data + 0x24);
       normal_map = (int32_t *)(texture_size + 0x128 + mesh_offset);
       metalness = normal_map[1];
       transparency = normal_map[2];
@@ -924,7 +924,7 @@ void process_render_resources(longlong render_context, longlong resource_context
       roughness = specular_map[2];
       metalness = specular_map[3];
       transparency = *(int32_t *)(texture_size + 0x148 + mesh_offset);
-      mesh_offset = *(longlong *)(render_context + 0x140);
+      mesh_offset = *(int64_t *)(render_context + 0x140);
       specular_map = (int32_t *)(mesh_offset + 0x15c + mesh_size);
       *specular_map = *normal_map;
       specular_map[1] = metalness;
@@ -938,24 +938,24 @@ void process_render_resources(longlong render_context, longlong resource_context
       *(int32_t *)(mesh_offset + 0x17c + mesh_size) = transparency;
       
       // 设置材质着色器
-      mesh_data = *(void **)(texture_size + 0xa8 + *(longlong *)(material_data + 0x24));
+      mesh_data = *(void **)(texture_size + 0xa8 + *(int64_t *)(material_data + 0x24));
       texture_path = &DEFAULT_TEXTURE_PATH;
       if (mesh_data != (void *)0x0) {
         texture_path = mesh_data;
       }
       
       // 应用材质着色器
-      (**(code **)(*(longlong *)(*(longlong *)(render_context + 0x140) + 0x188 + mesh_size) + 0x10))
-                (*(longlong *)(render_context + 0x140) + 0x188 + mesh_size,texture_path);
+      (**(code **)(*(int64_t *)(*(int64_t *)(render_context + 0x140) + 0x188 + mesh_size) + 0x10))
+                (*(int64_t *)(render_context + 0x140) + 0x188 + mesh_size,texture_path);
       
       // 处理网格可见性
-      mesh_offset = *(longlong *)(material_data + 0x24);
+      mesh_offset = *(int64_t *)(material_data + 0x24);
       specular_r = *(float *)(texture_size + 0x100 + mesh_offset);
       vertex_buffer = (float *)(texture_size + 0x148 + mesh_offset);
       
       if (*vertex_buffer <= specular_r && specular_r != *vertex_buffer) {
-        *(float *)(*(longlong *)(render_context + 0x140) + 0x17c + mesh_size) = specular_r;
-        mesh_offset = *(longlong *)(material_data + 0x24);
+        *(float *)(*(int64_t *)(render_context + 0x140) + 0x17c + mesh_size) = specular_r;
+        mesh_offset = *(int64_t *)(material_data + 0x24);
       }
       
       // 检查材质特殊效果
@@ -966,7 +966,7 @@ void process_render_resources(longlong render_context, longlong resource_context
           vertex_count = index_count;
           do {
             texture_size = vertex_count + 1;
-            if (*(char *)(*(longlong *)(texture_size + 0xa8 + mesh_offset) + vertex_count) !=
+            if (*(char *)(*(int64_t *)(texture_size + 0xa8 + mesh_offset) + vertex_count) !=
                 (&SPECIAL_MATERIAL_TABLE)[vertex_count]) goto LAB_180227e59;
             vertex_count = texture_size;
           } while (texture_size != 6);
@@ -993,12 +993,12 @@ LAB_180227e59:
             render_flags = &CLEANUP_RESOURCE_TABLE;
             if (shader_type < '\0') {
               // 应用特殊材质效果
-              mesh_data = *(void **)(texture_size + 0xa8 + *(longlong *)(material_data + 0x24));
+              mesh_data = *(void **)(texture_size + 0xa8 + *(int64_t *)(material_data + 0x24));
               texture_path = &DEFAULT_TEXTURE_PATH;
               if (mesh_data != (void *)0x0) {
                 texture_path = mesh_data;
               }
-              mesh_data = *(void **)(animation_state + 0x10 + *(longlong *)(render_queue + 0x20));
+              mesh_data = *(void **)(animation_state + 0x10 + *(int64_t *)(render_queue + 0x20));
               animation_data = &DEFAULT_TEXTURE_PATH;
               if (mesh_data != (void *)0x0) {
                 animation_data = mesh_data;
@@ -1007,14 +1007,14 @@ LAB_180227e59:
             }
             else {
               // 设置着色器类型
-              *(char *)((longlong)shader_type + 0xc0 + render_context) = (char)index_count;
+              *(char *)((int64_t)shader_type + 0xc0 + render_context) = (char)index_count;
             }
           }
         }
       }
       
       lod_level = (int)index_count + 1;
-      index_count = (ulonglong)lod_level;
+      index_count = (uint64_t)lod_level;
       animation_speed = animation_speed + 1;
       mesh_size = mesh_size + 0x1b0;
       texture_size = texture_size + 0x150;
@@ -1033,17 +1033,17 @@ LAB_180227e59:
   // 处理可见性标志
   if ('\0' < *(char *)(render_context + 0x148)) {
     do {
-      mesh_offset = *(longlong *)(render_context + 0x140);
+      mesh_offset = *(int64_t *)(render_context + 0x140);
       shader_type = *(char *)(index_count + 0xf0 + mesh_offset);
       lod_level = (int)vertex_count;
       
       if (shader_type < '\0') {
-        mesh_offset = (longlong)lod_level * 0x1b0 + mesh_offset;
+        mesh_offset = (int64_t)lod_level * 0x1b0 + mesh_offset;
         transform_matrix = (uint64_t *)(mesh_offset + 0x50);
       }
       else {
         // 处理网格变换
-        vertex_buffer = (float *)((longlong)shader_type * 0x1b0 + mesh_offset);
+        vertex_buffer = (float *)((int64_t)shader_type * 0x1b0 + mesh_offset);
         diffuse_r = *vertex_buffer;
         diffuse_g = vertex_buffer[1];
         ambient_b = vertex_buffer[2];
@@ -1088,13 +1088,13 @@ LAB_180227e59:
                              specular_r * specular_r + specular_g * diffuse_r + specular_b * ambient_r + vertex_buffer[0xc]);
         material_properties = CONCAT44(specular_r * refraction + specular_g * ambient_g + specular_b * roughness + vertex_buffer[0xf],
                              specular_r * reflection + specular_g * ambient_b + specular_b * ambient_b + vertex_buffer[0xe]);
-        mesh_offset = (longlong)lod_level * 0x1b0 + mesh_offset;
+        mesh_offset = (int64_t)lod_level * 0x1b0 + mesh_offset;
         transform_matrix = &render_flags;
       }
       
       // 应用网格变换
       apply_mesh_transform(mesh_offset,transform_matrix);
-      vertex_count = (ulonglong)(lod_level + 1U);
+      vertex_count = (uint64_t)(lod_level + 1U);
       index_count = index_count + 0x1b0;
     } while ((int)(lod_level + 1U) < (int)*(char *)(render_context + 0x148));
   }
@@ -1106,8 +1106,8 @@ LAB_180227e59:
   // 复制可见性标志
   if ('\0' < *(char *)(render_context + 0x148)) {
     do {
-      *(int8_t *)(render_context + 0x100 + (longlong)shader_type) =
-           *(int8_t *)((longlong)shader_type * 0x1b0 + 0xf0 + *(longlong *)(render_context + 0x140));
+      *(int8_t *)(render_context + 0x100 + (int64_t)shader_type) =
+           *(int8_t *)((int64_t)shader_type * 0x1b0 + 0xf0 + *(int64_t *)(render_context + 0x140));
       shader_type = shader_type + '\x01';
     } while (shader_type < *(char *)(render_context + 0x148));
   }
@@ -1116,7 +1116,7 @@ LAB_180227e59:
   submit_render_batch(render_context);
   
   // 调用渲染资源处理完成函数
-  render_resource_processing_complete(resource_checksum ^ (ulonglong)stack_buffer_1a8);
+  render_resource_processing_complete(resource_checksum ^ (uint64_t)stack_buffer_1a8);
 }
 
 
@@ -1143,7 +1143,7 @@ void initialize_render_batch(uint64_t render_target, uint64_t shader_program, ui
 
 {
   void *resource_data;
-  longlong batch_size;
+  int64_t batch_size;
   int32_t batch_flags;
   uint64_t texture_slots;
   uint64_t shader_params;

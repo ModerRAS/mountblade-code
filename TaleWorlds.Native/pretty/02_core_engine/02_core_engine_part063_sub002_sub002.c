@@ -23,18 +23,18 @@ void initialize_engine_placeholder(void)
  * @param search_context 搜索上下文
  * @return 找到的节点指针，未找到返回NULL
  */
-uint64_t * find_string_match_node(uint64_t *data_structure, longlong search_context)
+uint64_t * find_string_match_node(uint64_t *data_structure, int64_t search_context)
 {
     byte current_char;
     bool is_match;
     byte *string_ptr;
-    longlong *result_ptr;
+    int64_t *result_ptr;
     uint compare_char;
     int compare_result;
     uint64_t *next_node;
     uint64_t *current_node;
     uint64_t *previous_node;
-    longlong string_offset;
+    int64_t string_offset;
     int8_t stack_buffer[8];
     
     current_node = (uint64_t *)data_structure[2];
@@ -51,7 +51,7 @@ uint64_t * find_string_match_node(uint64_t *data_structure, longlong search_cont
                 }
                 else {
                     string_ptr = *(byte **)(search_context + 8);
-                    string_offset = current_node[5] - (longlong)string_ptr;
+                    string_offset = current_node[5] - (int64_t)string_ptr;
                     do {
                         compare_char = (uint)string_ptr[string_offset];
                         compare_result = *string_ptr - compare_char;
@@ -82,17 +82,17 @@ LAB_RETURN_NODE:
         }
         if (*(int *)(search_context + 0x10) != 0) {
             string_ptr = (byte *)previous_node[5];
-            current_node = (uint64_t *)(*(longlong *)(search_context + 8) - (longlong)string_ptr);
+            current_node = (uint64_t *)(*(int64_t *)(search_context + 8) - (int64_t)string_ptr);
             do {
                 current_char = *string_ptr;
-                compare_char = (uint)string_ptr[(longlong)current_node];
+                compare_char = (uint)string_ptr[(int64_t)current_node];
                 if (current_char != compare_char) break;
                 string_ptr = string_ptr + 1;
             } while (compare_char != 0);
             if ((int)(current_char - compare_char) < 1) goto LAB_RETURN_NODE;
         }
     }
-    result_ptr = (longlong *)process_node_insertion(data_structure, stack_buffer, current_node, previous_node, search_context);
+    result_ptr = (int64_t *)process_node_insertion(data_structure, stack_buffer, current_node, previous_node, search_context);
     return (uint64_t *)(*result_ptr + 0x40);
 }
 
@@ -104,18 +104,18 @@ LAB_RETURN_NODE:
  * @param end_node 结束节点
  * @return 处理结果指针
  */
-uint64_t * process_node_traversal(uint64_t param1, longlong search_context, uint64_t *start_node, uint64_t *end_node)
+uint64_t * process_node_traversal(uint64_t param1, int64_t search_context, uint64_t *start_node, uint64_t *end_node)
 {
     byte current_char;
     bool is_match;
     byte *string_ptr;
-    longlong *result_ptr;
+    int64_t *result_ptr;
     uint compare_char;
     int compare_result;
-    longlong unaff_RBX;
+    int64_t unaff_RBX;
     uint64_t *unaff_RSI;
     uint64_t *next_node;
-    longlong string_offset;
+    int64_t string_offset;
     
     do {
         if (*(int *)(search_context + 0x10) == 0) {
@@ -128,7 +128,7 @@ uint64_t * process_node_traversal(uint64_t param1, longlong search_context, uint
             }
             else {
                 string_ptr = *(byte **)(unaff_RBX + 8);
-                string_offset = start_node[5] - (longlong)string_ptr;
+                string_offset = start_node[5] - (int64_t)string_ptr;
                 do {
                     compare_char = (uint)string_ptr[string_offset];
                     compare_result = *string_ptr - compare_char;
@@ -157,7 +157,7 @@ LAB_RETURN_NODE:
         }
         if (*(int *)(unaff_RBX + 0x10) != 0) {
             string_ptr = (byte *)end_node[5];
-            string_offset = *(longlong *)(unaff_RBX + 8) - (longlong)string_ptr;
+            string_offset = *(int64_t *)(unaff_RBX + 8) - (int64_t)string_ptr;
             do {
                 current_char = *string_ptr;
                 compare_char = (uint)string_ptr[string_offset];
@@ -167,7 +167,7 @@ LAB_RETURN_NODE:
             if ((int)(current_char - compare_char) < 1) goto LAB_RETURN_NODE;
         }
     }
-    result_ptr = (longlong *)process_node_insertion();
+    result_ptr = (int64_t *)process_node_insertion();
     return (uint64_t *)(*result_ptr + 0x40);
 }
 
@@ -175,16 +175,16 @@ LAB_RETURN_NODE:
  * 计算节点偏移量的辅助函数
  * @return 计算得到的偏移量
  */
-longlong calculate_node_offset(void)
+int64_t calculate_node_offset(void)
 {
     byte current_char;
     byte *string_ptr;
-    longlong *result_ptr;
+    int64_t *result_ptr;
     uint compare_char;
-    longlong unaff_RBX;
-    longlong unaff_RSI;
-    longlong string_offset;
-    longlong in_R9;
+    int64_t unaff_RBX;
+    int64_t unaff_RSI;
+    int64_t string_offset;
+    int64_t in_R9;
     
     if (in_R9 != unaff_RSI) {
         if (*(int *)(in_R9 + 0x30) == 0) {
@@ -193,7 +193,7 @@ LAB_RETURN_OFFSET:
         }
         if (*(int *)(unaff_RBX + 0x10) != 0) {
             string_ptr = *(byte **)(in_R9 + 0x28);
-            string_offset = *(longlong *)(unaff_RBX + 8) - (longlong)string_ptr;
+            string_offset = *(int64_t *)(unaff_RBX + 8) - (int64_t)string_ptr;
             do {
                 current_char = *string_ptr;
                 compare_char = (uint)string_ptr[string_offset];
@@ -203,7 +203,7 @@ LAB_RETURN_OFFSET:
             if ((int)(current_char - compare_char) < 1) goto LAB_RETURN_OFFSET;
         }
     }
-    result_ptr = (longlong *)process_node_insertion();
+    result_ptr = (int64_t *)process_node_insertion();
     return *result_ptr + 0x40;
 }
 
@@ -213,18 +213,18 @@ LAB_RETURN_OFFSET:
  * @param search_context 搜索上下文
  * @return 处理结果指针
  */
-uint64_t * find_and_process_string_match(uint64_t *data_structure, longlong search_context)
+uint64_t * find_and_process_string_match(uint64_t *data_structure, int64_t search_context)
 {
     byte current_char;
     bool is_match;
     byte *string_ptr;
-    longlong *result_ptr;
+    int64_t *result_ptr;
     uint compare_char;
     int compare_result;
     uint64_t *next_node;
     uint64_t *current_node;
     uint64_t *previous_node;
-    longlong string_offset;
+    int64_t string_offset;
     int8_t stack_buffer[8];
     
     current_node = (uint64_t *)data_structure[2];
@@ -241,7 +241,7 @@ uint64_t * find_and_process_string_match(uint64_t *data_structure, longlong sear
                 }
                 else {
                     string_ptr = *(byte **)(search_context + 8);
-                    string_offset = current_node[5] - (longlong)string_ptr;
+                    string_offset = current_node[5] - (int64_t)string_ptr;
                     do {
                         compare_char = (uint)string_ptr[string_offset];
                         compare_result = *string_ptr - compare_char;
@@ -272,17 +272,17 @@ LAB_RETURN_RESULT:
         }
         if (*(int *)(search_context + 0x10) != 0) {
             string_ptr = (byte *)previous_node[5];
-            current_node = (uint64_t *)(*(longlong *)(search_context + 8) - (longlong)string_ptr);
+            current_node = (uint64_t *)(*(int64_t *)(search_context + 8) - (int64_t)string_ptr);
             do {
                 current_char = *string_ptr;
-                compare_char = (uint)string_ptr[(longlong)current_node];
+                compare_char = (uint)string_ptr[(int64_t)current_node];
                 if (current_char != compare_char) break;
                 string_ptr = string_ptr + 1;
             } while (compare_char != 0);
             if ((int)(current_char - compare_char) < 1) goto LAB_RETURN_RESULT;
         }
     }
-    result_ptr = (longlong *)process_string_operations(data_structure, stack_buffer, current_node, previous_node, search_context);
+    result_ptr = (int64_t *)process_string_operations(data_structure, stack_buffer, current_node, previous_node, search_context);
     return (uint64_t *)(*result_ptr + 0x40);
 }
 
@@ -294,18 +294,18 @@ LAB_RETURN_RESULT:
  * @param end_node 结束节点
  * @return 处理结果指针
  */
-uint64_t * process_string_traversal(uint64_t param1, longlong search_context, uint64_t *start_node, uint64_t *end_node)
+uint64_t * process_string_traversal(uint64_t param1, int64_t search_context, uint64_t *start_node, uint64_t *end_node)
 {
     byte current_char;
     bool is_match;
     byte *string_ptr;
-    longlong *result_ptr;
+    int64_t *result_ptr;
     uint compare_char;
     int compare_result;
-    longlong unaff_RBX;
+    int64_t unaff_RBX;
     uint64_t *unaff_RSI;
     uint64_t *next_node;
-    longlong string_offset;
+    int64_t string_offset;
     
     do {
         if (*(int *)(search_context + 0x10) == 0) {
@@ -318,7 +318,7 @@ uint64_t * process_string_traversal(uint64_t param1, longlong search_context, ui
             }
             else {
                 string_ptr = *(byte **)(unaff_RBX + 8);
-                string_offset = start_node[5] - (longlong)string_ptr;
+                string_offset = start_node[5] - (int64_t)string_ptr;
                 do {
                     compare_char = (uint)string_ptr[string_offset];
                     compare_result = *string_ptr - compare_char;
@@ -347,7 +347,7 @@ LAB_RETURN_RESULT:
         }
         if (*(int *)(unaff_RBX + 0x10) != 0) {
             string_ptr = (byte *)end_node[5];
-            string_offset = *(longlong *)(unaff_RBX + 8) - (longlong)string_ptr;
+            string_offset = *(int64_t *)(unaff_RBX + 8) - (int64_t)string_ptr;
             do {
                 current_char = *string_ptr;
                 compare_char = (uint)string_ptr[string_offset];
@@ -357,7 +357,7 @@ LAB_RETURN_RESULT:
             if ((int)(current_char - compare_char) < 1) goto LAB_RETURN_RESULT;
         }
     }
-    result_ptr = (longlong *)process_string_operations();
+    result_ptr = (int64_t *)process_string_operations();
     return (uint64_t *)(*result_ptr + 0x40);
 }
 
@@ -365,16 +365,16 @@ LAB_RETURN_RESULT:
  * 计算字符串偏移量的辅助函数
  * @return 计算得到的偏移量
  */
-longlong calculate_string_offset(void)
+int64_t calculate_string_offset(void)
 {
     byte current_char;
     byte *string_ptr;
-    longlong *result_ptr;
+    int64_t *result_ptr;
     uint compare_char;
-    longlong unaff_RBX;
-    longlong unaff_RSI;
-    longlong string_offset;
-    longlong in_R9;
+    int64_t unaff_RBX;
+    int64_t unaff_RSI;
+    int64_t string_offset;
+    int64_t in_R9;
     
     if (in_R9 != unaff_RSI) {
         if (*(int *)(in_R9 + 0x30) == 0) {
@@ -383,7 +383,7 @@ LAB_RETURN_OFFSET:
         }
         if (*(int *)(unaff_RBX + 0x10) != 0) {
             string_ptr = *(byte **)(in_R9 + 0x28);
-            string_offset = *(longlong *)(unaff_RBX + 8) - (longlong)string_ptr;
+            string_offset = *(int64_t *)(unaff_RBX + 8) - (int64_t)string_ptr;
             do {
                 current_char = *string_ptr;
                 compare_char = (uint)string_ptr[string_offset];
@@ -393,7 +393,7 @@ LAB_RETURN_OFFSET:
             if ((int)(current_char - compare_char) < 1) goto LAB_RETURN_OFFSET;
         }
     }
-    result_ptr = (longlong *)process_string_operations();
+    result_ptr = (int64_t *)process_string_operations();
     return *result_ptr + 0x40;
 }
 
@@ -405,26 +405,26 @@ LAB_RETURN_OFFSET:
  * @param param4 参数4
  * @return 处理结果指针
  */
-longlong * process_data_structure_node(longlong *data_structure, longlong param2, uint64_t param3, ulonglong param4)
+int64_t * process_data_structure_node(int64_t *data_structure, int64_t param2, uint64_t param3, uint64_t param4)
 {
     byte current_char;
     bool is_match;
     byte *string_ptr;
-    longlong *node_ptr;
-    longlong *current_ptr;
+    int64_t *node_ptr;
+    int64_t *current_ptr;
     uint compare_char;
     int compare_result;
-    longlong *next_ptr;
-    longlong string_offset;
-    longlong stack_value;
+    int64_t *next_ptr;
+    int64_t string_offset;
+    int64_t stack_value;
     int8_t stack_buffer[16];
     
     current_ptr = data_structure;
-    if ((longlong *)data_structure[2] != (longlong *)0x0) {
-        node_ptr = (longlong *)data_structure[2];
+    if ((int64_t *)data_structure[2] != (int64_t *)0x0) {
+        node_ptr = (int64_t *)data_structure[2];
         do {
             if (*(int *)(param2 + 0x10) == 0) {
-                next_ptr = (longlong *)node_ptr[1];
+                next_ptr = (int64_t *)node_ptr[1];
                 is_match = false;
             }
             else {
@@ -433,7 +433,7 @@ longlong * process_data_structure_node(longlong *data_structure, longlong param2
                 }
                 else {
                     string_ptr = *(byte **)(param2 + 8);
-                    param4 = node_ptr[5] - (longlong)string_ptr;
+                    param4 = node_ptr[5] - (int64_t)string_ptr;
                     do {
                         compare_char = (uint)string_ptr[param4];
                         compare_result = *string_ptr - compare_char;
@@ -442,11 +442,11 @@ longlong * process_data_structure_node(longlong *data_structure, longlong param2
                     } while (compare_char != 0);
                     is_match = 0 < compare_result;
                     if (compare_result < 1) {
-                        next_ptr = (longlong *)node_ptr[1];
+                        next_ptr = (int64_t *)node_ptr[1];
                         goto LAB_FOUND_MATCH;
                     }
                 }
-                next_ptr = (longlong *)*node_ptr;
+                next_ptr = (int64_t *)*node_ptr;
             }
 LAB_FOUND_MATCH:
             if (is_match) {
@@ -454,7 +454,7 @@ LAB_FOUND_MATCH:
             }
             current_ptr = node_ptr;
             node_ptr = next_ptr;
-        } while (next_ptr != (longlong *)0x0);
+        } while (next_ptr != (int64_t *)0x0);
     }
     if (current_ptr != data_structure) {
         if ((int)current_ptr[6] == 0) {
@@ -463,7 +463,7 @@ LAB_RETURN_RESULT:
         }
         if (*(int *)(param2 + 0x10) != 0) {
             string_ptr = (byte *)current_ptr[5];
-            string_offset = *(longlong *)(param2 + 8) - (longlong)string_ptr;
+            string_offset = *(int64_t *)(param2 + 8) - (int64_t)string_ptr;
             do {
                 current_char = *string_ptr;
                 compare_char = (uint)string_ptr[string_offset];
@@ -473,13 +473,13 @@ LAB_RETURN_RESULT:
             if ((int)(current_char - compare_char) < 1) goto LAB_RETURN_RESULT;
         }
     }
-    node_ptr = (longlong *)*data_structure;
+    node_ptr = (int64_t *)*data_structure;
     if ((current_ptr == node_ptr) || (current_ptr == data_structure)) {
         if ((data_structure[4] != 0) && (*(int *)(param2 + 0x10) != 0)) {
             current_ptr = node_ptr;
             if ((int)node_ptr[6] != 0) {
                 string_ptr = *(byte **)(param2 + 8);
-                param4 = node_ptr[5] - (longlong)string_ptr;
+                param4 = node_ptr[5] - (int64_t)string_ptr;
                 do {
                     current_char = *string_ptr;
                     compare_char = (uint)string_ptr[param4];
@@ -492,18 +492,18 @@ LAB_PREPARE_INSERT:
             param4 = param4 & 0xffffffffffffff00;
             node_ptr = current_ptr;
 LAB_INSERT_NODE:
-            if (node_ptr != (longlong *)0x0) {
+            if (node_ptr != (int64_t *)0x0) {
                 perform_node_insertion(data_structure, &stack_value, node_ptr, param4, param2);
                 goto LAB_RETURN_FINAL;
             }
         }
     }
     else {
-        node_ptr = (longlong *)get_previous_node(current_ptr);
+        node_ptr = (int64_t *)get_previous_node(current_ptr);
         if (*(int *)(param2 + 0x10) != 0) {
             if ((int)current_ptr[6] != 0) {
                 string_ptr = *(byte **)(param2 + 8);
-                string_offset = current_ptr[5] - (longlong)string_ptr;
+                string_offset = current_ptr[5] - (int64_t)string_ptr;
                 do {
                     current_char = *string_ptr;
                     compare_char = (uint)string_ptr[string_offset];
@@ -514,7 +514,7 @@ LAB_INSERT_NODE:
             }
             if ((int)node_ptr[6] != 0) {
                 string_ptr = (byte *)node_ptr[5];
-                param4 = *(longlong *)(param2 + 8) - (longlong)string_ptr;
+                param4 = *(int64_t *)(param2 + 8) - (int64_t)string_ptr;
                 do {
                     current_char = *string_ptr;
                     compare_char = (uint)string_ptr[param4];
@@ -530,10 +530,10 @@ LAB_INSERT_NODE:
         }
     }
 LAB_PROCESS_INSERT:
-    current_ptr = (longlong *)allocate_new_node(data_structure, stack_buffer, node_ptr, param2);
+    current_ptr = (int64_t *)allocate_new_node(data_structure, stack_buffer, node_ptr, param2);
     stack_value = *current_ptr;
 LAB_RETURN_FINAL:
-    return (longlong *)(stack_value + 0x40);
+    return (int64_t *)(stack_value + 0x40);
 }
 
 /**
@@ -544,26 +544,26 @@ LAB_RETURN_FINAL:
  * @param param4 参数4
  * @return 处理结果指针
  */
-longlong * process_data_structure_operation(longlong *data_structure, longlong param2, uint64_t param3, ulonglong param4)
+int64_t * process_data_structure_operation(int64_t *data_structure, int64_t param2, uint64_t param3, uint64_t param4)
 {
     byte current_char;
     bool is_match;
     byte *string_ptr;
-    longlong *node_ptr;
-    longlong *current_ptr;
+    int64_t *node_ptr;
+    int64_t *current_ptr;
     uint compare_char;
     int compare_result;
-    longlong *next_ptr;
-    longlong string_offset;
-    longlong stack_value;
+    int64_t *next_ptr;
+    int64_t string_offset;
+    int64_t stack_value;
     int8_t stack_buffer[16];
     
     current_ptr = data_structure;
-    if ((longlong *)data_structure[2] != (longlong *)0x0) {
-        node_ptr = (longlong *)data_structure[2];
+    if ((int64_t *)data_structure[2] != (int64_t *)0x0) {
+        node_ptr = (int64_t *)data_structure[2];
         do {
             if (*(int *)(param2 + 0x10) == 0) {
-                next_ptr = (longlong *)node_ptr[1];
+                next_ptr = (int64_t *)node_ptr[1];
                 is_match = false;
             }
             else {
@@ -572,7 +572,7 @@ longlong * process_data_structure_operation(longlong *data_structure, longlong p
                 }
                 else {
                     string_ptr = *(byte **)(param2 + 8);
-                    param4 = node_ptr[5] - (longlong)string_ptr;
+                    param4 = node_ptr[5] - (int64_t)string_ptr;
                     do {
                         compare_char = (uint)string_ptr[param4];
                         compare_result = *string_ptr - compare_char;
@@ -581,11 +581,11 @@ longlong * process_data_structure_operation(longlong *data_structure, longlong p
                     } while (compare_char != 0);
                     is_match = 0 < compare_result;
                     if (compare_result < 1) {
-                        next_ptr = (longlong *)node_ptr[1];
+                        next_ptr = (int64_t *)node_ptr[1];
                         goto LAB_FOUND_MATCH;
                     }
                 }
-                next_ptr = (longlong *)*node_ptr;
+                next_ptr = (int64_t *)*node_ptr;
             }
 LAB_FOUND_MATCH:
             if (is_match) {
@@ -593,7 +593,7 @@ LAB_FOUND_MATCH:
             }
             current_ptr = node_ptr;
             node_ptr = next_ptr;
-        } while (next_ptr != (longlong *)0x0);
+        } while (next_ptr != (int64_t *)0x0);
     }
     if (current_ptr != data_structure) {
         if ((int)current_ptr[6] == 0) {
@@ -602,7 +602,7 @@ LAB_RETURN_RESULT:
         }
         if (*(int *)(param2 + 0x10) != 0) {
             string_ptr = (byte *)current_ptr[5];
-            string_offset = *(longlong *)(param2 + 8) - (longlong)string_ptr;
+            string_offset = *(int64_t *)(param2 + 8) - (int64_t)string_ptr;
             do {
                 current_char = *string_ptr;
                 compare_char = (uint)string_ptr[string_offset];
@@ -612,13 +612,13 @@ LAB_RETURN_RESULT:
             if ((int)(current_char - compare_char) < 1) goto LAB_RETURN_RESULT;
         }
     }
-    node_ptr = (longlong *)*data_structure;
+    node_ptr = (int64_t *)*data_structure;
     if ((current_ptr == node_ptr) || (current_ptr == data_structure)) {
         if ((data_structure[4] != 0) && (*(int *)(param2 + 0x10) != 0)) {
             current_ptr = node_ptr;
             if ((int)node_ptr[6] != 0) {
                 string_ptr = *(byte **)(param2 + 8);
-                param4 = node_ptr[5] - (longlong)string_ptr;
+                param4 = node_ptr[5] - (int64_t)string_ptr;
                 do {
                     current_char = *string_ptr;
                     compare_char = (uint)string_ptr[param4];
@@ -631,18 +631,18 @@ LAB_PREPARE_INSERT:
             param4 = param4 & 0xffffffffffffff00;
             node_ptr = current_ptr;
 LAB_INSERT_NODE:
-            if (node_ptr != (longlong *)0x0) {
+            if (node_ptr != (int64_t *)0x0) {
                 perform_node_operation(data_structure, &stack_value, node_ptr, param4, param2);
                 goto LAB_RETURN_FINAL;
             }
         }
     }
     else {
-        node_ptr = (longlong *)get_previous_node(current_ptr);
+        node_ptr = (int64_t *)get_previous_node(current_ptr);
         if (*(int *)(param2 + 0x10) != 0) {
             if ((int)current_ptr[6] != 0) {
                 string_ptr = *(byte **)(param2 + 8);
-                string_offset = current_ptr[5] - (longlong)string_ptr;
+                string_offset = current_ptr[5] - (int64_t)string_ptr;
                 do {
                     current_char = *string_ptr;
                     compare_char = (uint)string_ptr[string_offset];
@@ -653,7 +653,7 @@ LAB_INSERT_NODE:
             }
             if ((int)node_ptr[6] != 0) {
                 string_ptr = (byte *)node_ptr[5];
-                param4 = *(longlong *)(param2 + 8) - (longlong)string_ptr;
+                param4 = *(int64_t *)(param2 + 8) - (int64_t)string_ptr;
                 do {
                     current_char = *string_ptr;
                     compare_char = (uint)string_ptr[param4];
@@ -669,10 +669,10 @@ LAB_INSERT_NODE:
         }
     }
 LAB_PROCESS_INSERT:
-    current_ptr = (longlong *)allocate_and_initialize_node(data_structure, stack_buffer, node_ptr, param2);
+    current_ptr = (int64_t *)allocate_and_initialize_node(data_structure, stack_buffer, node_ptr, param2);
     stack_value = *current_ptr;
 LAB_RETURN_FINAL:
-    return (longlong *)(stack_value + 0x40);
+    return (int64_t *)(stack_value + 0x40);
 }
 
 /**
@@ -681,18 +681,18 @@ LAB_RETURN_FINAL:
  * @param search_context 搜索上下文
  * @return 处理结果指针
  */
-uint64_t * find_and_process_string_node(uint64_t *data_structure, longlong search_context)
+uint64_t * find_and_process_string_node(uint64_t *data_structure, int64_t search_context)
 {
     byte current_char;
     bool is_match;
     byte *string_ptr;
-    longlong *result_ptr;
+    int64_t *result_ptr;
     uint compare_char;
     int compare_result;
     uint64_t *next_node;
     uint64_t *current_node;
     uint64_t *previous_node;
-    longlong string_offset;
+    int64_t string_offset;
     int8_t stack_buffer[8];
     
     current_node = (uint64_t *)data_structure[2];
@@ -709,7 +709,7 @@ uint64_t * find_and_process_string_node(uint64_t *data_structure, longlong searc
                 }
                 else {
                     string_ptr = *(byte **)(search_context + 8);
-                    string_offset = current_node[5] - (longlong)string_ptr;
+                    string_offset = current_node[5] - (int64_t)string_ptr;
                     do {
                         compare_char = (uint)string_ptr[string_offset];
                         compare_result = *string_ptr - compare_char;
@@ -740,17 +740,17 @@ LAB_RETURN_RESULT:
         }
         if (*(int *)(search_context + 0x10) != 0) {
             string_ptr = (byte *)previous_node[5];
-            current_node = (uint64_t *)(*(longlong *)(search_context + 8) - (longlong)string_ptr);
+            current_node = (uint64_t *)(*(int64_t *)(search_context + 8) - (int64_t)string_ptr);
             do {
                 current_char = *string_ptr;
-                compare_char = (uint)string_ptr[(longlong)current_node];
+                compare_char = (uint)string_ptr[(int64_t)current_node];
                 if (current_char != compare_char) break;
                 string_ptr = string_ptr + 1;
             } while (compare_char != 0);
             if ((int)(current_char - compare_char) < 1) goto LAB_RETURN_RESULT;
         }
     }
-    result_ptr = (longlong *)perform_string_processing(data_structure, stack_buffer, current_node, previous_node, search_context);
+    result_ptr = (int64_t *)perform_string_processing(data_structure, stack_buffer, current_node, previous_node, search_context);
     return (uint64_t *)(*result_ptr + 0x40);
 }
 
@@ -762,18 +762,18 @@ LAB_RETURN_RESULT:
  * @param end_node 结束节点
  * @return 处理结果指针
  */
-uint64_t * process_string_node_traversal(uint64_t param1, longlong search_context, uint64_t *start_node, uint64_t *end_node)
+uint64_t * process_string_node_traversal(uint64_t param1, int64_t search_context, uint64_t *start_node, uint64_t *end_node)
 {
     byte current_char;
     bool is_match;
     byte *string_ptr;
-    longlong *result_ptr;
+    int64_t *result_ptr;
     uint compare_char;
     int compare_result;
-    longlong unaff_RBX;
+    int64_t unaff_RBX;
     uint64_t *unaff_RSI;
     uint64_t *next_node;
-    longlong string_offset;
+    int64_t string_offset;
     
     do {
         if (*(int *)(search_context + 0x10) == 0) {
@@ -786,7 +786,7 @@ uint64_t * process_string_node_traversal(uint64_t param1, longlong search_contex
             }
             else {
                 string_ptr = *(byte **)(unaff_RBX + 8);
-                string_offset = start_node[5] - (longlong)string_ptr;
+                string_offset = start_node[5] - (int64_t)string_ptr;
                 do {
                     compare_char = (uint)string_ptr[string_offset];
                     compare_result = *string_ptr - compare_char;
@@ -815,7 +815,7 @@ LAB_RETURN_RESULT:
         }
         if (*(int *)(unaff_RBX + 0x10) != 0) {
             string_ptr = (byte *)end_node[5];
-            string_offset = *(longlong *)(unaff_RBX + 8) - (longlong)string_ptr;
+            string_offset = *(int64_t *)(unaff_RBX + 8) - (int64_t)string_ptr;
             do {
                 current_char = *string_ptr;
                 compare_char = (uint)string_ptr[string_offset];
@@ -825,7 +825,7 @@ LAB_RETURN_RESULT:
             if ((int)(current_char - compare_char) < 1) goto LAB_RETURN_RESULT;
         }
     }
-    result_ptr = (longlong *)perform_string_processing();
+    result_ptr = (int64_t *)perform_string_processing();
     return (uint64_t *)(*result_ptr + 0x40);
 }
 
@@ -833,16 +833,16 @@ LAB_RETURN_RESULT:
  * 计算字符串节点偏移量的辅助函数
  * @return 计算得到的偏移量
  */
-longlong calculate_string_node_offset(void)
+int64_t calculate_string_node_offset(void)
 {
     byte current_char;
     byte *string_ptr;
-    longlong *result_ptr;
+    int64_t *result_ptr;
     uint compare_char;
-    longlong unaff_RBX;
-    longlong unaff_RSI;
-    longlong string_offset;
-    longlong in_R9;
+    int64_t unaff_RBX;
+    int64_t unaff_RSI;
+    int64_t string_offset;
+    int64_t in_R9;
     
     if (in_R9 != unaff_RSI) {
         if (*(int *)(in_R9 + 0x30) == 0) {
@@ -851,7 +851,7 @@ LAB_RETURN_OFFSET:
         }
         if (*(int *)(unaff_RBX + 0x10) != 0) {
             string_ptr = *(byte **)(in_R9 + 0x28);
-            string_offset = *(longlong *)(unaff_RBX + 8) - (longlong)string_ptr;
+            string_offset = *(int64_t *)(unaff_RBX + 8) - (int64_t)string_ptr;
             do {
                 current_char = *string_ptr;
                 compare_char = (uint)string_ptr[string_offset];
@@ -861,7 +861,7 @@ LAB_RETURN_OFFSET:
             if ((int)(current_char - compare_char) < 1) goto LAB_RETURN_OFFSET;
         }
     }
-    result_ptr = (longlong *)perform_string_processing();
+    result_ptr = (int64_t *)perform_string_processing();
     return *result_ptr + 0x40;
 }
 
@@ -871,18 +871,18 @@ LAB_RETURN_OFFSET:
  * @param search_context 搜索上下文
  * @return 操作结果指针
  */
-uint64_t * perform_advanced_string_search(uint64_t *data_structure, longlong search_context)
+uint64_t * perform_advanced_string_search(uint64_t *data_structure, int64_t search_context)
 {
     byte current_char;
     bool is_match;
     byte *string_ptr;
-    longlong *result_ptr;
+    int64_t *result_ptr;
     uint compare_char;
     int compare_result;
     uint64_t *next_node;
     uint64_t *current_node;
     uint64_t *previous_node;
-    longlong string_offset;
+    int64_t string_offset;
     int8_t stack_buffer[8];
     
     current_node = (uint64_t *)data_structure[2];
@@ -899,7 +899,7 @@ uint64_t * perform_advanced_string_search(uint64_t *data_structure, longlong sea
                 }
                 else {
                     string_ptr = *(byte **)(search_context + 8);
-                    string_offset = current_node[5] - (longlong)string_ptr;
+                    string_offset = current_node[5] - (int64_t)string_ptr;
                     do {
                         compare_char = (uint)string_ptr[string_offset];
                         compare_result = *string_ptr - compare_char;
@@ -930,17 +930,17 @@ LAB_RETURN_RESULT:
         }
         if (*(int *)(search_context + 0x10) != 0) {
             string_ptr = (byte *)previous_node[5];
-            current_node = (uint64_t *)(*(longlong *)(search_context + 8) - (longlong)string_ptr);
+            current_node = (uint64_t *)(*(int64_t *)(search_context + 8) - (int64_t)string_ptr);
             do {
                 current_char = *string_ptr;
-                compare_char = (uint)string_ptr[(longlong)current_node];
+                compare_char = (uint)string_ptr[(int64_t)current_node];
                 if (current_char != compare_char) break;
                 string_ptr = string_ptr + 1;
             } while (compare_char != 0);
             if ((int)(current_char - compare_char) < 1) goto LAB_RETURN_RESULT;
         }
     }
-    result_ptr = (longlong *)execute_advanced_string_operations(data_structure, stack_buffer, current_node, previous_node, search_context);
+    result_ptr = (int64_t *)execute_advanced_string_operations(data_structure, stack_buffer, current_node, previous_node, search_context);
     return (uint64_t *)(*result_ptr + 0x40);
 }
 
@@ -952,18 +952,18 @@ LAB_RETURN_RESULT:
  * @param end_node 结束节点
  * @return 处理结果指针
  */
-uint64_t * process_advanced_string_traversal(uint64_t param1, longlong search_context, uint64_t *start_node, uint64_t *end_node)
+uint64_t * process_advanced_string_traversal(uint64_t param1, int64_t search_context, uint64_t *start_node, uint64_t *end_node)
 {
     byte current_char;
     bool is_match;
     byte *string_ptr;
-    longlong *result_ptr;
+    int64_t *result_ptr;
     uint compare_char;
     int compare_result;
-    longlong unaff_RBX;
+    int64_t unaff_RBX;
     uint64_t *unaff_RSI;
     uint64_t *next_node;
-    longlong string_offset;
+    int64_t string_offset;
     
     do {
         if (*(int *)(search_context + 0x10) == 0) {
@@ -976,7 +976,7 @@ uint64_t * process_advanced_string_traversal(uint64_t param1, longlong search_co
             }
             else {
                 string_ptr = *(byte **)(unaff_RBX + 8);
-                string_offset = start_node[5] - (longlong)string_ptr;
+                string_offset = start_node[5] - (int64_t)string_ptr;
                 do {
                     compare_char = (uint)string_ptr[string_offset];
                     compare_result = *string_ptr - compare_char;
@@ -1005,7 +1005,7 @@ LAB_RETURN_RESULT:
         }
         if (*(int *)(unaff_RBX + 0x10) != 0) {
             string_ptr = (byte *)end_node[5];
-            string_offset = *(longlong *)(unaff_RBX + 8) - (longlong)string_ptr;
+            string_offset = *(int64_t *)(unaff_RBX + 8) - (int64_t)string_ptr;
             do {
                 current_char = *string_ptr;
                 compare_char = (uint)string_ptr[string_offset];
@@ -1015,7 +1015,7 @@ LAB_RETURN_RESULT:
             if ((int)(current_char - compare_char) < 1) goto LAB_RETURN_RESULT;
         }
     }
-    result_ptr = (longlong *)execute_advanced_string_operations();
+    result_ptr = (int64_t *)execute_advanced_string_operations();
     return (uint64_t *)(*result_ptr + 0x40);
 }
 
@@ -1023,16 +1023,16 @@ LAB_RETURN_RESULT:
  * 计算高级字符串偏移量的辅助函数
  * @return 计算得到的偏移量
  */
-longlong calculate_advanced_string_offset(void)
+int64_t calculate_advanced_string_offset(void)
 {
     byte current_char;
     byte *string_ptr;
-    longlong *result_ptr;
+    int64_t *result_ptr;
     uint compare_char;
-    longlong unaff_RBX;
-    longlong unaff_RSI;
-    longlong string_offset;
-    longlong in_R9;
+    int64_t unaff_RBX;
+    int64_t unaff_RSI;
+    int64_t string_offset;
+    int64_t in_R9;
     
     if (in_R9 != unaff_RSI) {
         if (*(int *)(in_R9 + 0x30) == 0) {
@@ -1041,7 +1041,7 @@ LAB_RETURN_OFFSET:
         }
         if (*(int *)(unaff_RBX + 0x10) != 0) {
             string_ptr = *(byte **)(in_R9 + 0x28);
-            string_offset = *(longlong *)(unaff_RBX + 8) - (longlong)string_ptr;
+            string_offset = *(int64_t *)(unaff_RBX + 8) - (int64_t)string_ptr;
             do {
                 current_char = *string_ptr;
                 compare_char = (uint)string_ptr[string_offset];
@@ -1051,7 +1051,7 @@ LAB_RETURN_OFFSET:
             if ((int)(current_char - compare_char) < 1) goto LAB_RETURN_OFFSET;
         }
     }
-    result_ptr = (longlong *)execute_advanced_string_operations();
+    result_ptr = (int64_t *)execute_advanced_string_operations();
     return *result_ptr + 0x40;
 }
 
@@ -1063,7 +1063,7 @@ LAB_RETURN_OFFSET:
  * @param param4 参数4
  * @return 初始化结果
  */
-longlong * initialize_resource_manager(uint64_t param1, longlong *param2, uint64_t param3, int32_t param4)
+int64_t * initialize_resource_manager(uint64_t param1, int64_t *param2, uint64_t param3, int32_t param4)
 {
     uint64_t global_data;
     int32_t string_length;
@@ -1098,7 +1098,7 @@ longlong * initialize_resource_manager(uint64_t param1, longlong *param2, uint64
         release_resource_buffer();
     }
     resource_ptr = (int32_t *)0x0;
-    stack_data = (ulonglong)stack_data._4_4_ << 0x20;
+    stack_data = (uint64_t)stack_data._4_4_ << 0x20;
     error_handler = &global_debug_callback;
     initialize_debug_system(global_data, param2);
     *(uint64_t *)(*param2 + 0x10) = param3;
@@ -1117,49 +1117,49 @@ longlong * initialize_resource_manager(uint64_t param1, longlong *param2, uint64
  * @param search_context 搜索上下文
  * @return 处理结果
  */
-uint64_t * process_node_insertion(longlong *data_structure, uint64_t *stack_buffer, uint64_t param3, longlong *param4, longlong search_context)
+uint64_t * process_node_insertion(int64_t *data_structure, uint64_t *stack_buffer, uint64_t param3, int64_t *param4, int64_t search_context)
 {
     byte current_char;
     bool is_match;
-    longlong *node_ptr;
+    int64_t *node_ptr;
     byte *string_ptr;
-    longlong *current_ptr;
+    int64_t *current_ptr;
     uint compare_char;
-    longlong string_offset;
-    longlong *next_ptr;
-    ulonglong search_flag;
+    int64_t string_offset;
+    int64_t *next_ptr;
+    uint64_t search_flag;
     uint64_t operation_flag;
     
-    current_ptr = (longlong *)*data_structure;
+    current_ptr = (int64_t *)*data_structure;
     if ((param4 == current_ptr) || (param4 == data_structure)) {
         if ((data_structure[4] != 0) && (*(int *)(search_context + 0x10) != 0)) {
             next_ptr = param4;
             if (*(int *)(current_ptr + 6) != 0) {
                 string_ptr = *(byte **)(search_context + 8);
-                next_ptr = (longlong *)(current_ptr[5] - (longlong)string_ptr);
+                next_ptr = (int64_t *)(current_ptr[5] - (int64_t)string_ptr);
                 do {
                     current_char = *string_ptr;
-                    compare_char = (uint)string_ptr[(longlong)next_ptr];
+                    compare_char = (uint)string_ptr[(int64_t)next_ptr];
                     if (current_char != compare_char) break;
                     string_ptr = string_ptr + 1;
                 } while (compare_char != 0);
                 if ((int)(current_char - compare_char) < 1) goto LAB_INSERT_NODE;
             }
 LAB_PREPARE_INSERT:
-            search_flag = (ulonglong)next_ptr & 0xffffffffffffff00;
+            search_flag = (uint64_t)next_ptr & 0xffffffffffffff00;
 LAB_EXECUTE_INSERT:
-            if (current_ptr != (longlong *)0x0) {
+            if (current_ptr != (int64_t *)0x0) {
                 execute_node_insertion(data_structure, stack_buffer, current_ptr, search_flag, search_context);
                 return stack_buffer;
             }
         }
     }
     else {
-        node_ptr = (longlong *)get_previous_node(param4);
+        node_ptr = (int64_t *)get_previous_node(param4);
         if (*(int *)(search_context + 0x10) != 0) {
             if ((int)param4[6] != 0) {
                 string_ptr = *(byte **)(search_context + 8);
-                string_offset = param4[5] - (longlong)string_ptr;
+                string_offset = param4[5] - (int64_t)string_ptr;
                 do {
                     current_char = *string_ptr;
                     compare_char = (uint)string_ptr[string_offset];
@@ -1170,17 +1170,17 @@ LAB_EXECUTE_INSERT:
             }
             if ((int)node_ptr[6] != 0) {
                 string_ptr = (byte *)node_ptr[5];
-                next_ptr = (longlong *)(*(longlong *)(search_context + 8) - (longlong)string_ptr);
+                next_ptr = (int64_t *)(*(int64_t *)(search_context + 8) - (int64_t)string_ptr);
                 do {
                     current_char = *string_ptr;
-                    compare_char = (uint)string_ptr[(longlong)next_ptr];
+                    compare_char = (uint)string_ptr[(int64_t)next_ptr];
                     if (current_char != compare_char) break;
                     string_ptr = string_ptr + 1;
                 } while (compare_char != 0);
                 if (0 < (int)(current_char - compare_char)) {
                     current_ptr = param4;
                     if (*param4 == 0) goto LAB_PREPARE_INSERT;
-                    search_flag = CONCAT71((int7)((ulonglong)next_ptr >> 8), 1);
+                    search_flag = CONCAT71((int7)((uint64_t)next_ptr >> 8), 1);
                     current_ptr = node_ptr;
                     goto LAB_EXECUTE_INSERT;
                 }
@@ -1189,14 +1189,14 @@ LAB_EXECUTE_INSERT:
     }
 LAB_INSERT_NODE:
     is_match = true;
-    current_ptr = (longlong *)data_structure[2];
+    current_ptr = (int64_t *)data_structure[2];
     next_ptr = data_structure;
-    while (current_ptr != (longlong *)0x0) {
+    while (current_ptr != (int64_t *)0x0) {
         next_ptr = current_ptr;
         if ((int)current_ptr[6] == 0) {
             is_match = false;
 LAB_TRAVERSE_NODES:
-            current_ptr = (longlong *)*current_ptr;
+            current_ptr = (int64_t *)*current_ptr;
         }
         else {
             if (*(int *)(search_context + 0x10) == 0) {
@@ -1204,7 +1204,7 @@ LAB_TRAVERSE_NODES:
             }
             else {
                 string_ptr = (byte *)current_ptr[5];
-                string_offset = *(longlong *)(search_context + 8) - (longlong)string_ptr;
+                string_offset = *(int64_t *)(search_context + 8) - (int64_t)string_ptr;
                 do {
                     current_char = *string_ptr;
                     compare_char = (uint)string_ptr[string_offset];
@@ -1214,13 +1214,13 @@ LAB_TRAVERSE_NODES:
                 is_match = 0 < (int)(current_char - compare_char);
             }
             if (!is_match) goto LAB_TRAVERSE_NODES;
-            current_ptr = (longlong *)current_ptr[1];
+            current_ptr = (int64_t *)current_ptr[1];
         }
     }
     current_ptr = next_ptr;
     if (is_match) {
-        if (next_ptr != (longlong *)data_structure[1]) {
-            current_ptr = (longlong *)get_sibling_node(next_ptr);
+        if (next_ptr != (int64_t *)data_structure[1]) {
+            current_ptr = (int64_t *)get_sibling_node(next_ptr);
             goto LAB_PROCESS_NODE;
         }
     }
@@ -1233,7 +1233,7 @@ LAB_FINALIZE_INSERT:
         }
         if ((int)current_ptr[6] != 0) {
             string_ptr = *(byte **)(search_context + 8);
-            string_offset = current_ptr[5] - (longlong)string_ptr;
+            string_offset = current_ptr[5] - (int64_t)string_ptr;
             do {
                 current_char = *string_ptr;
                 compare_char = (uint)string_ptr[string_offset];
@@ -1251,7 +1251,7 @@ LAB_SET_OPERATION_FLAG:
         }
         if (*(int *)(search_context + 0x10) != 0) {
             string_ptr = (byte *)next_ptr[5];
-            string_offset = *(longlong *)(search_context + 8) - (longlong)string_ptr;
+            string_offset = *(int64_t *)(search_context + 8) - (int64_t)string_ptr;
             do {
                 current_char = *string_ptr;
                 compare_char = (uint)string_ptr[string_offset];
@@ -1279,24 +1279,24 @@ LAB_EXECUTE_OPERATION:
  * @param search_context 搜索上下文
  * @return 处理结果
  */
-uint64_t * process_string_operations(longlong *data_structure, uint64_t *stack_buffer, uint64_t param3, longlong *param4, longlong search_context)
+uint64_t * process_string_operations(int64_t *data_structure, uint64_t *stack_buffer, uint64_t param3, int64_t *param4, int64_t search_context)
 {
     byte current_char;
-    longlong *node_ptr;
+    int64_t *node_ptr;
     byte *string_ptr;
     uint64_t *result_ptr;
     uint compare_char;
-    longlong string_offset;
+    int64_t string_offset;
     uint64_t operation_flag;
     int8_t temp_buffer[16];
     
-    node_ptr = (longlong *)*data_structure;
+    node_ptr = (int64_t *)*data_structure;
     if ((param4 == node_ptr) || (param4 == data_structure)) {
         if ((data_structure[4] == 0) || (*(int *)(search_context + 0x10) == 0)) goto LAB_RETURN_RESULT;
         param4 = node_ptr;
         if (*(int *)(node_ptr + 6) != 0) {
             string_ptr = *(byte **)(search_context + 8);
-            string_offset = node_ptr[5] - (longlong)string_ptr;
+            string_offset = node_ptr[5] - (int64_t)string_ptr;
             do {
                 current_char = *string_ptr;
                 compare_char = (uint)string_ptr[string_offset];
@@ -1309,11 +1309,11 @@ LAB_PREPARE_OPERATION:
         operation_flag = 0;
     }
     else {
-        node_ptr = (longlong *)get_previous_node(param4);
+        node_ptr = (int64_t *)get_previous_node(param4);
         if (*(int *)(search_context + 0x10) == 0) goto LAB_RETURN_RESULT;
         if ((int)param4[6] != 0) {
             string_ptr = *(byte **)(search_context + 8);
-            string_offset = param4[5] - (longlong)string_ptr;
+            string_offset = param4[5] - (int64_t)string_ptr;
             do {
                 current_char = *string_ptr;
                 compare_char = (uint)string_ptr[string_offset];
@@ -1324,7 +1324,7 @@ LAB_PREPARE_OPERATION:
         }
         if ((int)node_ptr[6] == 0) goto LAB_RETURN_RESULT;
         string_ptr = (byte *)node_ptr[5];
-        string_offset = *(longlong *)(search_context + 8) - (longlong)string_ptr;
+        string_offset = *(int64_t *)(search_context + 8) - (int64_t)string_ptr;
         do {
             current_char = *string_ptr;
             compare_char = (uint)string_ptr[string_offset];
@@ -1336,7 +1336,7 @@ LAB_PREPARE_OPERATION:
         operation_flag = 1;
         param4 = node_ptr;
     }
-    if (param4 != (longlong *)0x0) {
+    if (param4 != (int64_t *)0x0) {
         execute_string_operation(data_structure, stack_buffer, param4, operation_flag, search_context);
         return stack_buffer;
     }
@@ -1355,49 +1355,49 @@ LAB_RETURN_RESULT:
  * @param search_context 搜索上下文
  * @return 处理结果
  */
-uint64_t * perform_string_processing(longlong *data_structure, uint64_t *stack_buffer, uint64_t param3, longlong *param4, longlong search_context)
+uint64_t * perform_string_processing(int64_t *data_structure, uint64_t *stack_buffer, uint64_t param3, int64_t *param4, int64_t search_context)
 {
     byte current_char;
     bool is_match;
-    longlong *node_ptr;
+    int64_t *node_ptr;
     byte *string_ptr;
-    longlong *current_ptr;
+    int64_t *current_ptr;
     uint compare_char;
-    longlong string_offset;
-    longlong *next_ptr;
-    ulonglong search_flag;
+    int64_t string_offset;
+    int64_t *next_ptr;
+    uint64_t search_flag;
     uint64_t operation_flag;
     
-    current_ptr = (longlong *)*data_structure;
+    current_ptr = (int64_t *)*data_structure;
     if ((param4 == current_ptr) || (param4 == data_structure)) {
         if ((data_structure[4] != 0) && (*(int *)(search_context + 0x10) != 0)) {
             next_ptr = param4;
             if (*(int *)(current_ptr + 6) != 0) {
                 string_ptr = *(byte **)(search_context + 8);
-                next_ptr = (longlong *)(current_ptr[5] - (longlong)string_ptr);
+                next_ptr = (int64_t *)(current_ptr[5] - (int64_t)string_ptr);
                 do {
                     current_char = *string_ptr;
-                    compare_char = (uint)string_ptr[(longlong)next_ptr];
+                    compare_char = (uint)string_ptr[(int64_t)next_ptr];
                     if (current_char != compare_char) break;
                     string_ptr = string_ptr + 1;
                 } while (compare_char != 0);
                 if ((int)(current_char - compare_char) < 1) goto LAB_INSERT_NODE;
             }
 LAB_PREPARE_INSERT:
-            search_flag = (ulonglong)next_ptr & 0xffffffffffffff00;
+            search_flag = (uint64_t)next_ptr & 0xffffffffffffff00;
 LAB_EXECUTE_INSERT:
-            if (current_ptr != (longlong *)0x0) {
+            if (current_ptr != (int64_t *)0x0) {
                 perform_string_insertion(data_structure, stack_buffer, current_ptr, search_flag, search_context);
                 return stack_buffer;
             }
         }
     }
     else {
-        node_ptr = (longlong *)get_previous_node(param4);
+        node_ptr = (int64_t *)get_previous_node(param4);
         if (*(int *)(search_context + 0x10) != 0) {
             if ((int)param4[6] != 0) {
                 string_ptr = *(byte **)(search_context + 8);
-                string_offset = param4[5] - (longlong)string_ptr;
+                string_offset = param4[5] - (int64_t)string_ptr;
                 do {
                     current_char = *string_ptr;
                     compare_char = (uint)string_ptr[string_offset];
@@ -1408,17 +1408,17 @@ LAB_EXECUTE_INSERT:
             }
             if ((int)node_ptr[6] != 0) {
                 string_ptr = (byte *)node_ptr[5];
-                next_ptr = (longlong *)(*(longlong *)(search_context + 8) - (longlong)string_ptr);
+                next_ptr = (int64_t *)(*(int64_t *)(search_context + 8) - (int64_t)string_ptr);
                 do {
                     current_char = *string_ptr;
-                    compare_char = (uint)string_ptr[(longlong)next_ptr];
+                    compare_char = (uint)string_ptr[(int64_t)next_ptr];
                     if (current_char != compare_char) break;
                     string_ptr = string_ptr + 1;
                 } while (compare_char != 0);
                 if (0 < (int)(current_char - compare_char)) {
                     current_ptr = param4;
                     if (*param4 == 0) goto LAB_PREPARE_INSERT;
-                    search_flag = CONCAT71((int7)((ulonglong)next_ptr >> 8), 1);
+                    search_flag = CONCAT71((int7)((uint64_t)next_ptr >> 8), 1);
                     current_ptr = node_ptr;
                     goto LAB_EXECUTE_INSERT;
                 }
@@ -1427,14 +1427,14 @@ LAB_EXECUTE_INSERT:
     }
 LAB_INSERT_NODE:
     is_match = true;
-    current_ptr = (longlong *)data_structure[2];
+    current_ptr = (int64_t *)data_structure[2];
     next_ptr = data_structure;
-    while (current_ptr != (longlong *)0x0) {
+    while (current_ptr != (int64_t *)0x0) {
         next_ptr = current_ptr;
         if ((int)current_ptr[6] == 0) {
             is_match = false;
 LAB_TRAVERSE_NODES:
-            current_ptr = (longlong *)*current_ptr;
+            current_ptr = (int64_t *)*current_ptr;
         }
         else {
             if (*(int *)(search_context + 0x10) == 0) {
@@ -1442,7 +1442,7 @@ LAB_TRAVERSE_NODES:
             }
             else {
                 string_ptr = (byte *)current_ptr[5];
-                string_offset = *(longlong *)(search_context + 8) - (longlong)string_ptr;
+                string_offset = *(int64_t *)(search_context + 8) - (int64_t)string_ptr;
                 do {
                     current_char = *string_ptr;
                     compare_char = (uint)string_ptr[string_offset];
@@ -1452,13 +1452,13 @@ LAB_TRAVERSE_NODES:
                 is_match = 0 < (int)(current_char - compare_char);
             }
             if (!is_match) goto LAB_TRAVERSE_NODES;
-            current_ptr = (longlong *)current_ptr[1];
+            current_ptr = (int64_t *)current_ptr[1];
         }
     }
     current_ptr = next_ptr;
     if (is_match) {
-        if (next_ptr != (longlong *)data_structure[1]) {
-            current_ptr = (longlong *)get_sibling_node(next_ptr);
+        if (next_ptr != (int64_t *)data_structure[1]) {
+            current_ptr = (int64_t *)get_sibling_node(next_ptr);
             goto LAB_PROCESS_NODE;
         }
     }
@@ -1471,7 +1471,7 @@ LAB_FINALIZE_INSERT:
         }
         if ((int)current_ptr[6] != 0) {
             string_ptr = *(byte **)(search_context + 8);
-            string_offset = current_ptr[5] - (longlong)string_ptr;
+            string_offset = current_ptr[5] - (int64_t)string_ptr;
             do {
                 current_char = *string_ptr;
                 compare_char = (uint)string_ptr[string_offset];
@@ -1489,7 +1489,7 @@ LAB_SET_OPERATION_FLAG:
         }
         if (*(int *)(search_context + 0x10) != 0) {
             string_ptr = (byte *)next_ptr[5];
-            string_offset = *(longlong *)(search_context + 8) - (longlong)string_ptr;
+            string_offset = *(int64_t *)(search_context + 8) - (int64_t)string_ptr;
             do {
                 current_char = *string_ptr;
                 compare_char = (uint)string_ptr[string_offset];
@@ -1517,49 +1517,49 @@ LAB_EXECUTE_OPERATION:
  * @param search_context 搜索上下文
  * @return 处理结果
  */
-uint64_t * execute_advanced_string_operations(longlong *data_structure, uint64_t *stack_buffer, uint64_t param3, longlong *param4, longlong search_context)
+uint64_t * execute_advanced_string_operations(int64_t *data_structure, uint64_t *stack_buffer, uint64_t param3, int64_t *param4, int64_t search_context)
 {
     byte current_char;
     bool is_match;
-    longlong *node_ptr;
+    int64_t *node_ptr;
     byte *string_ptr;
-    longlong *current_ptr;
+    int64_t *current_ptr;
     uint compare_char;
-    longlong string_offset;
-    longlong *next_ptr;
-    ulonglong search_flag;
+    int64_t string_offset;
+    int64_t *next_ptr;
+    uint64_t search_flag;
     uint64_t operation_flag;
     
-    current_ptr = (longlong *)*data_structure;
+    current_ptr = (int64_t *)*data_structure;
     if ((param4 == current_ptr) || (param4 == data_structure)) {
         if ((data_structure[4] != 0) && (*(int *)(search_context + 0x10) != 0)) {
             next_ptr = param4;
             if (*(int *)(current_ptr + 6) != 0) {
                 string_ptr = *(byte **)(search_context + 8);
-                next_ptr = (longlong *)(current_ptr[5] - (longlong)string_ptr);
+                next_ptr = (int64_t *)(current_ptr[5] - (int64_t)string_ptr);
                 do {
                     current_char = *string_ptr;
-                    compare_char = (uint)string_ptr[(longlong)next_ptr];
+                    compare_char = (uint)string_ptr[(int64_t)next_ptr];
                     if (current_char != compare_char) break;
                     string_ptr = string_ptr + 1;
                 } while (compare_char != 0);
                 if ((int)(current_char - compare_char) < 1) goto LAB_INSERT_NODE;
             }
 LAB_PREPARE_INSERT:
-            search_flag = (ulonglong)next_ptr & 0xffffffffffffff00;
+            search_flag = (uint64_t)next_ptr & 0xffffffffffffff00;
 LAB_EXECUTE_INSERT:
-            if (current_ptr != (longlong *)0x0) {
+            if (current_ptr != (int64_t *)0x0) {
                 execute_advanced_string_insertion(data_structure, stack_buffer, current_ptr, search_flag, search_context);
                 return stack_buffer;
             }
         }
     }
     else {
-        node_ptr = (longlong *)get_previous_node(param4);
+        node_ptr = (int64_t *)get_previous_node(param4);
         if (*(int *)(search_context + 0x10) != 0) {
             if ((int)param4[6] != 0) {
                 string_ptr = *(byte **)(search_context + 8);
-                string_offset = param4[5] - (longlong)string_ptr;
+                string_offset = param4[5] - (int64_t)string_ptr;
                 do {
                     current_char = *string_ptr;
                     compare_char = (uint)string_ptr[string_offset];
@@ -1570,17 +1570,17 @@ LAB_EXECUTE_INSERT:
             }
             if ((int)node_ptr[6] != 0) {
                 string_ptr = (byte *)node_ptr[5];
-                next_ptr = (longlong *)(*(longlong *)(search_context + 8) - (longlong)string_ptr);
+                next_ptr = (int64_t *)(*(int64_t *)(search_context + 8) - (int64_t)string_ptr);
                 do {
                     current_char = *string_ptr;
-                    compare_char = (uint)string_ptr[(longlong)next_ptr];
+                    compare_char = (uint)string_ptr[(int64_t)next_ptr];
                     if (current_char != compare_char) break;
                     string_ptr = string_ptr + 1;
                 } while (compare_char != 0);
                 if (0 < (int)(current_char - compare_char)) {
                     current_ptr = param4;
                     if (*param4 == 0) goto LAB_PREPARE_INSERT;
-                    search_flag = CONCAT71((int7)((ulonglong)next_ptr >> 8), 1);
+                    search_flag = CONCAT71((int7)((uint64_t)next_ptr >> 8), 1);
                     current_ptr = node_ptr;
                     goto LAB_EXECUTE_INSERT;
                 }
@@ -1589,14 +1589,14 @@ LAB_EXECUTE_INSERT:
     }
 LAB_INSERT_NODE:
     is_match = true;
-    current_ptr = (longlong *)data_structure[2];
+    current_ptr = (int64_t *)data_structure[2];
     next_ptr = data_structure;
-    while (current_ptr != (longlong *)0x0) {
+    while (current_ptr != (int64_t *)0x0) {
         next_ptr = current_ptr;
         if ((int)current_ptr[6] == 0) {
             is_match = false;
 LAB_TRAVERSE_NODES:
-            current_ptr = (longlong *)*current_ptr;
+            current_ptr = (int64_t *)*current_ptr;
         }
         else {
             if (*(int *)(search_context + 0x10) == 0) {
@@ -1604,7 +1604,7 @@ LAB_TRAVERSE_NODES:
             }
             else {
                 string_ptr = (byte *)current_ptr[5];
-                string_offset = *(longlong *)(search_context + 8) - (longlong)string_ptr;
+                string_offset = *(int64_t *)(search_context + 8) - (int64_t)string_ptr;
                 do {
                     current_char = *string_ptr;
                     compare_char = (uint)string_ptr[string_offset];
@@ -1614,13 +1614,13 @@ LAB_TRAVERSE_NODES:
                 is_match = 0 < (int)(current_char - compare_char);
             }
             if (!is_match) goto LAB_TRAVERSE_NODES;
-            current_ptr = (longlong *)current_ptr[1];
+            current_ptr = (int64_t *)current_ptr[1];
         }
     }
     current_ptr = next_ptr;
     if (is_match) {
-        if (next_ptr != (longlong *)data_structure[1]) {
-            current_ptr = (longlong *)get_sibling_node(next_ptr);
+        if (next_ptr != (int64_t *)data_structure[1]) {
+            current_ptr = (int64_t *)get_sibling_node(next_ptr);
             goto LAB_PROCESS_NODE;
         }
     }
@@ -1633,7 +1633,7 @@ LAB_FINALIZE_INSERT:
         }
         if ((int)current_ptr[6] != 0) {
             string_ptr = *(byte **)(search_context + 8);
-            string_offset = current_ptr[5] - (longlong)string_ptr;
+            string_offset = current_ptr[5] - (int64_t)string_ptr;
             do {
                 current_char = *string_ptr;
                 compare_char = (uint)string_ptr[string_offset];
@@ -1651,7 +1651,7 @@ LAB_SET_OPERATION_FLAG:
         }
         if (*(int *)(search_context + 0x10) != 0) {
             string_ptr = (byte *)next_ptr[5];
-            string_offset = *(longlong *)(search_context + 8) - (longlong)string_ptr;
+            string_offset = *(int64_t *)(search_context + 8) - (int64_t)string_ptr;
             do {
                 current_char = *string_ptr;
                 compare_char = (uint)string_ptr[string_offset];
@@ -1679,16 +1679,16 @@ LAB_EXECUTE_OPERATION:
  * @param index_ptr 索引指针
  * @return 处理结果
  */
-uint64_t * process_indexed_data_structure(longlong *data_structure, uint64_t *stack_buffer, uint64_t param3, longlong *param4, int *index_ptr)
+uint64_t * process_indexed_data_structure(int64_t *data_structure, uint64_t *stack_buffer, uint64_t param3, int64_t *param4, int *index_ptr)
 {
     bool is_found;
     int current_index;
-    longlong *node_ptr;
-    longlong *current_ptr;
-    longlong index_offset;
+    int64_t *node_ptr;
+    int64_t *current_ptr;
+    int64_t index_offset;
     uint64_t operation_flag;
     
-    node_ptr = (longlong *)*data_structure;
+    node_ptr = (int64_t *)*data_structure;
     if ((param4 == node_ptr) || (param4 == data_structure)) {
         if ((data_structure[4] != 0) && (param4 = node_ptr, *(int *)(node_ptr + 4) < *index_ptr)) {
 LAB_PREPARE_OPERATION:
@@ -1697,13 +1697,13 @@ LAB_PREPARE_OPERATION:
         }
     }
     else {
-        node_ptr = (longlong *)get_previous_node(param4);
+        node_ptr = (int64_t *)get_previous_node(param4);
         if (((int)param4[4] < *index_ptr) && (*index_ptr < (int)node_ptr[4])) {
             if (*param4 == 0) goto LAB_PREPARE_OPERATION;
             operation_flag = 1;
             param4 = node_ptr;
 LAB_EXECUTE_OPERATION:
-            if (param4 != (longlong *)0x0) {
+            if (param4 != (int64_t *)0x0) {
                 execute_indexed_operation(data_structure, stack_buffer, param4, operation_flag, index_ptr);
                 return stack_buffer;
             }
@@ -1711,26 +1711,26 @@ LAB_EXECUTE_OPERATION:
     }
     is_found = true;
     node_ptr = data_structure;
-    if ((longlong *)data_structure[2] != (longlong *)0x0) {
-        current_ptr = (longlong *)data_structure[2];
+    if ((int64_t *)data_structure[2] != (int64_t *)0x0) {
+        current_ptr = (int64_t *)data_structure[2];
         do {
             node_ptr = current_ptr;
             is_found = *index_ptr < (int)node_ptr[4];
             if (*index_ptr < (int)node_ptr[4]) {
-                current_ptr = (longlong *)node_ptr[1];
+                current_ptr = (int64_t *)node_ptr[1];
             }
             else {
-                current_ptr = (longlong *)*node_ptr;
+                current_ptr = (int64_t *)*node_ptr;
             }
-        } while (current_ptr != (longlong *)0x0);
+        } while (current_ptr != (int64_t *)0x0);
     }
     current_ptr = node_ptr;
     if (is_found) {
-        if (node_ptr == (longlong *)data_structure[1]) {
+        if (node_ptr == (int64_t *)data_structure[1]) {
             current_index = *index_ptr;
             goto LAB_FINALIZE_OPERATION;
         }
-        current_ptr = (longlong *)get_sibling_node(node_ptr);
+        current_ptr = (int64_t *)get_sibling_node(node_ptr);
     }
     current_index = *index_ptr;
     if (current_index <= (int)current_ptr[4]) {
@@ -1758,19 +1758,19 @@ extern uint64_t global_error_handler;
 extern uint64_t global_debug_callback;
 
 // 外部函数声明
-extern uint64_t * allocate_resource_buffer(uint64_t, int, char, int32_t, longlong, ulonglong);
+extern uint64_t * allocate_resource_buffer(uint64_t, int, char, int32_t, int64_t, uint64_t);
 extern int32_t get_string_length(int32_t *);
 extern void log_error_message(int, int32_t, void **);
 extern void release_resource_buffer(void);
-extern void initialize_debug_system(uint64_t, longlong *);
-extern longlong * get_previous_node(longlong *);
-extern longlong * get_sibling_node(longlong *);
-extern void execute_node_insertion(longlong *, uint64_t *, longlong *, ulonglong, longlong);
-extern void execute_string_operation(longlong *, uint64_t *, longlong *, uint64_t, longlong);
-extern void perform_string_insertion(longlong *, uint64_t *, longlong *, ulonglong, longlong);
-extern void execute_advanced_string_insertion(longlong *, uint64_t *, longlong *, ulonglong, longlong);
-extern uint64_t * allocate_and_initialize_string_node(longlong *, int8_t *);
-extern void configure_resource_context(longlong, longlong);
-extern void initialize_string_operations(longlong);
-extern void execute_resource_operation(longlong, longlong, longlong *, uint64_t);
-extern void execute_indexed_operation(longlong *, uint64_t *, longlong *, uint64_t, int *);
+extern void initialize_debug_system(uint64_t, int64_t *);
+extern int64_t * get_previous_node(int64_t *);
+extern int64_t * get_sibling_node(int64_t *);
+extern void execute_node_insertion(int64_t *, uint64_t *, int64_t *, uint64_t, int64_t);
+extern void execute_string_operation(int64_t *, uint64_t *, int64_t *, uint64_t, int64_t);
+extern void perform_string_insertion(int64_t *, uint64_t *, int64_t *, uint64_t, int64_t);
+extern void execute_advanced_string_insertion(int64_t *, uint64_t *, int64_t *, uint64_t, int64_t);
+extern uint64_t * allocate_and_initialize_string_node(int64_t *, int8_t *);
+extern void configure_resource_context(int64_t, int64_t);
+extern void initialize_string_operations(int64_t);
+extern void execute_resource_operation(int64_t, int64_t, int64_t *, uint64_t);
+extern void execute_indexed_operation(int64_t *, uint64_t *, int64_t *, uint64_t, int *);

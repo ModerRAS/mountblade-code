@@ -3,25 +3,25 @@
 
 // 02_core_engine_part031.c - 核心引擎模块第31部分 - 包含7个函数
 
-// 函数: void update_entity_reference(longlong entity_id, longlong *reference_chain)
+// 函数: void update_entity_reference(int64_t entity_id, int64_t *reference_chain)
 // 功能: 更新实体引用链，管理实体的引用关系
-void update_entity_reference(longlong entity_id, longlong *reference_chain)
+void update_entity_reference(int64_t entity_id, int64_t *reference_chain)
 
 {
-  longlong *current_ref;
+  int64_t *current_ref;
   uint64_t temp_stack_40;
   int32_t temp_stack_38;
-  longlong temp_stack_30;
+  int64_t temp_stack_30;
   int8_t temp_array_28 [8];
-  longlong temp_stack_20;
+  int64_t temp_stack_20;
   int32_t temp_stack_18;
-  longlong *temp_stack_10;
+  int64_t *temp_stack_10;
   
   // 检查是否需要更新引用
-  if (*(longlong *)(entity_id + 0x1b0) != *reference_chain) {
+  if (*(int64_t *)(entity_id + 0x1b0) != *reference_chain) {
     // 处理空引用情况
     if (*reference_chain == 0) {
-      temp_stack_10 = (longlong *)0x0;
+      temp_stack_10 = (int64_t *)0x0;
       temp_array_28[0] = 0;
       temp_stack_18 = 0;
       temp_stack_20 = entity_id;
@@ -39,32 +39,32 @@ void update_entity_reference(longlong entity_id, longlong *reference_chain)
         cleanup_entity_reference(&temp_stack_40);
       }
       release_entity_context(temp_array_28);
-      if (temp_stack_10 != (longlong *)0x0) {
+      if (temp_stack_10 != (int64_t *)0x0) {
         (**(code **)(*temp_stack_10 + 0x38))();
       }
     }
     // 遍历引用链
-    reference_chain = (longlong *)*reference_chain;
-    if (reference_chain != (longlong *)0x0) {
+    reference_chain = (int64_t *)*reference_chain;
+    if (reference_chain != (int64_t *)0x0) {
       (**(code **)(*reference_chain + 0x28))(reference_chain);
     }
     // 更新实体引用
-    current_ref = *(longlong **)(entity_id + 0x1b0);
-    *(longlong **)(entity_id + 0x1b0) = reference_chain;
-    if (current_ref != (longlong *)0x0) {
+    current_ref = *(int64_t **)(entity_id + 0x1b0);
+    *(int64_t **)(entity_id + 0x1b0) = reference_chain;
+    if (current_ref != (int64_t *)0x0) {
       (**(code **)(*current_ref + 0x38))();
     }
   }
   return;
 }
 
-// 函数: longlong calculate_entity_size(longlong entity_id)
+// 函数: int64_t calculate_entity_size(int64_t entity_id)
 // 功能: 计算实体的尺寸大小
-longlong calculate_entity_size(longlong entity_id)
+int64_t calculate_entity_size(int64_t entity_id)
 
 {
-  longlong temp_var1;
-  longlong temp_var2;
+  int64_t temp_var1;
+  int64_t temp_var2;
   byte entity_flag;
   
   entity_flag = *(byte *)(entity_id + 0xfd) & 0x20;
@@ -89,12 +89,12 @@ float * calculate_bounding_box(float *entity_data)
 {
   float *min_bounds;
   byte entity_flag;
-  longlong *entity_ref;
+  int64_t *entity_ref;
   float *max_bounds;
   char lock_status;
   float *current_pos;
   uint index;
-  ulonglong count;
+  uint64_t count;
   bool is_locked;
   float temp_float1;
   float temp_float2;
@@ -108,7 +108,7 @@ float * calculate_bounding_box(float *entity_data)
   int32_t temp_stack_9c;
   float *bounding_data;
   int32_t temp_stack_90;
-  longlong temp_stack_88;
+  int64_t temp_stack_88;
   uint64_t temp_stack_78;
   uint64_t temp_stack_70;
   uint64_t temp_stack_68;
@@ -123,10 +123,10 @@ float * calculate_bounding_box(float *entity_data)
   
   temp_stack_38 = 0xfffffffffffffffe;
   current_pos = entity_data;
-  if ((*(byte *)((longlong)entity_data + 0xfd) & 0x20) == 0) {
+  if ((*(byte *)((int64_t)entity_data + 0xfd) & 0x20) == 0) {
     current_pos = (float *)get_entity_handle(*(uint64_t *)(entity_data + 0x6c));
   }
-  if ((*(longlong *)(current_pos + 0x84) != 0) && (((uint)entity_data[0x40] & 0x80) == 0)) {
+  if ((*(int64_t *)(current_pos + 0x84) != 0) && (((uint)entity_data[0x40] & 0x80) == 0)) {
     // 初始化边界框为极值
     min_bounds = entity_data + 0x9d;
     min_bounds[0] = 1e+08;  // min_x
@@ -148,7 +148,7 @@ float * calculate_bounding_box(float *entity_data)
     setup_bounding_calculation(&bounding_data);
     if (*(int *)(temp_stack_88 + 0x10) != 0) {
       do {
-        current_pos = (float *)((longlong)(int)index * 0x10 + *(longlong *)(temp_stack_88 + 0x18));
+        current_pos = (float *)((int64_t)(int)index * 0x10 + *(int64_t *)(temp_stack_88 + 0x18));
         max_x = *current_pos;
         if (*min_bounds < max_x) {
           max_x = *min_bounds;
@@ -161,8 +161,8 @@ float * calculate_bounding_box(float *entity_data)
         if (entity_data[0x9f] < max_z) {
           max_z = entity_data[0x9f];
         }
-        *(ulonglong *)min_bounds = CONCAT44(max_y, max_x);
-        *(ulonglong *)(entity_data + 0x9f) = CONCAT44(temp_stack_9c, max_z);
+        *(uint64_t *)min_bounds = CONCAT44(max_y, max_x);
+        *(uint64_t *)(entity_data + 0x9f) = CONCAT44(temp_stack_9c, max_z);
         min_x = *current_pos;
         if (min_x < entity_data[0xa1]) {
           min_x = entity_data[0xa1];
@@ -175,8 +175,8 @@ float * calculate_bounding_box(float *entity_data)
         if (min_z < entity_data[0xa3]) {
           min_z = entity_data[0xa3];
         }
-        *(ulonglong *)(entity_data + 0xa1) = CONCAT44(min_y, min_x);
-        *(ulonglong *)(entity_data + 0xa3) = CONCAT44(temp_stack_ac, min_z);
+        *(uint64_t *)(entity_data + 0xa1) = CONCAT44(min_y, min_x);
+        *(uint64_t *)(entity_data + 0xa3) = CONCAT44(temp_stack_ac, min_z);
         index = index + 1;
       } while (index < *(uint *)(temp_stack_88 + 0x10));
     }
@@ -248,7 +248,7 @@ float * calculate_bounding_box(float *entity_data)
       entity_data[0xa7] = (entity_data[0xa3] + entity_data[0x9f]) * 0.5;
       entity_data[0xa8] = 3.4028235e+38;
       temp_float1 = 0.0;
-      count = (ulonglong)*(uint *)(temp_stack_88 + 0x10);
+      count = (uint64_t)*(uint *)(temp_stack_88 + 0x10);
       if (0 < (int)*(uint *)(temp_stack_88 + 0x10)) {
         current_pos = *(float **)(temp_stack_88 + 0x18);
         temp_float2 = temp_float1;
@@ -287,26 +287,26 @@ LAB_180075f4f:
       LOCK();
       min_bounds = max_bounds + 0x3a;
       temp_float1 = *min_bounds;
-      current_pos = (float *)(ulonglong)(uint)temp_float1;
+      current_pos = (float *)(uint64_t)(uint)temp_float1;
       *min_bounds = (float)((int)*min_bounds + -1);
       UNLOCK();
       if (lock_status == '\0') {
-        if ((((temp_float1 == 1.4013e-45) && (*(longlong *)(bounding_data + 0x84) != 0)) &&
+        if ((((temp_float1 == 1.4013e-45) && (*(int64_t *)(bounding_data + 0x84) != 0)) &&
             (current_pos = bounding_data, release_bounding_data(bounding_data), *(char *)(current_pos + 0x3f) == '\0')) &&
            ((*(char *)(current_pos + 0x3d) == '\0' &&
-            (((*(byte *)((longlong)current_pos + 0xfd) & 0x20) == 0 ||
-             ((*(byte *)((longlong)current_pos + 0xfe) & 1) == 0)))))) {
-          entity_ref = *(longlong **)(current_pos + 0x84);
+            (((*(byte *)((int64_t)current_pos + 0xfd) & 0x20) == 0 ||
+             ((*(byte *)((int64_t)current_pos + 0xfe) & 1) == 0)))))) {
+          entity_ref = *(int64_t **)(current_pos + 0x84);
           current_pos[0x84] = 0.0;
           current_pos[0x85] = 0.0;
-          if (entity_ref != (longlong *)0x0) {
+          if (entity_ref != (int64_t *)0x0) {
             (**(code **)(*entity_ref + 0x38))();
           }
         }
         LOCK();
         entity_flag = *(byte *)(max_bounds + 0x3b);
         *(byte *)(max_bounds + 0x3b) = 0;
-        current_pos = (float *)(ulonglong)entity_flag;
+        current_pos = (float *)(uint64_t)entity_flag;
         UNLOCK();
       }
     }
@@ -314,28 +314,28 @@ LAB_180075f4f:
   return current_pos;
 }
 
-// 函数: void update_entity_animation(longlong *entity_data)
+// 函数: void update_entity_animation(int64_t *entity_data)
 // 功能: 更新实体动画状态
-void update_entity_animation(longlong *entity_data)
+void update_entity_animation(int64_t *entity_data)
 
 {
   ushort frame_index;
-  longlong *animation_data;
+  int64_t *animation_data;
   uint frame_count;
   int temp_int1;
   int temp_int2;
   int temp_int3;
-  longlong temp_long1;
+  int64_t temp_long1;
   float current_frame;
   float target_frame;
   float interpolation_factor;
   int8_t temp_array_138 [8];
-  longlong *temp_stack_130;
+  int64_t *temp_stack_130;
   int32_t temp_stack_128;
-  longlong *temp_stack_120;
-  longlong *temp_stack_118;
+  int64_t *temp_stack_120;
+  int64_t *temp_stack_118;
   int32_t temp_stack_110;
-  longlong temp_stack_108;
+  int64_t temp_stack_108;
   uint64_t temp_stack_100;
   uint64_t temp_stack_f8;
   int8_t temp_stack_f0;
@@ -351,26 +351,26 @@ void update_entity_animation(longlong *entity_data)
   temp_stack_90 = 0xfffffffffffffffe;
   while( true ) {
     if (((int)entity_data[0x41] != 0) &&
-       ((current_frame = *(float *)(entity_data + 0x5b) - *(float *)((longlong)entity_data + 0x2dc), current_frame <= -0.01
+       ((current_frame = *(float *)(entity_data + 0x5b) - *(float *)((int64_t)entity_data + 0x2dc), current_frame <= -0.01
         || (0.01 <= current_frame)))) {
       animation_data = entity_data;
-      if ((((*(byte *)((longlong)entity_data + 0xfd) & 0x40) == 0) || (entity_data[0x42] == 0)) &&
+      if ((((*(byte *)((int64_t)entity_data + 0xfd) & 0x40) == 0) || (entity_data[0x42] == 0)) &&
          (entity_data[0x36] != 0)) {
-        animation_data = (longlong *)get_animation_data();
+        animation_data = (int64_t *)get_animation_data();
       }
       temp_int3 = 0;
       if (animation_data == entity_data) {
-        temp_stack_120 = (longlong *)0x0;
+        temp_stack_120 = (int64_t *)0x0;
         temp_array_138[0] = 0;
         temp_stack_128 = 0;
         temp_stack_130 = animation_data;
         initialize_animation_context(temp_array_138);
         animation_data = temp_stack_120 + 0x16;
         frame_index = *(ushort *)(temp_stack_120 + 0x18);
-        current_frame = *(float *)(temp_stack_120[0x17] + -4 + (ulonglong)frame_index * 4);
-        target_frame = *(float *)((longlong)entity_data + 0x2dc);
-        if (current_frame < *(float *)((longlong)entity_data + 0x2dc)) {
-          *(float *)((longlong)entity_data + 0x2dc) = current_frame;
+        current_frame = *(float *)(temp_stack_120[0x17] + -4 + (uint64_t)frame_index * 4);
+        target_frame = *(float *)((int64_t)entity_data + 0x2dc);
+        if (current_frame < *(float *)((int64_t)entity_data + 0x2dc)) {
+          *(float *)((int64_t)entity_data + 0x2dc) = current_frame;
           frame_index = *(ushort *)(temp_stack_120 + 0x18);
           target_frame = current_frame;
         }
@@ -385,15 +385,15 @@ void update_entity_animation(longlong *entity_data)
           if (0 < (int)(frame_count - 2)) {
             do {
               temp_int1 = temp_int2 + temp_int3 >> 1;
-              if (*(float *)(temp_stack_120[0x17] + (longlong)temp_int1 * 4) <= target_frame) {
+              if (*(float *)(temp_stack_120[0x17] + (int64_t)temp_int1 * 4) <= target_frame) {
                 temp_int3 = temp_int1;
                 temp_int1 = temp_int2;
               }
               temp_int2 = temp_int1;
             } while (temp_int3 < temp_int2 + -1);
           }
-          current_frame = *(float *)(temp_stack_120[0x17] + (longlong)temp_int3 * 4);
-          current_frame = (target_frame - current_frame) / (*(float *)(temp_stack_120[0x17] + (longlong)temp_int2 * 4) - current_frame);
+          current_frame = *(float *)(temp_stack_120[0x17] + (int64_t)temp_int3 * 4);
+          current_frame = (target_frame - current_frame) / (*(float *)(temp_stack_120[0x17] + (int64_t)temp_int2 * 4) - current_frame);
           if (0.0 <= current_frame) {
             if (1.0 <= current_frame) {
               current_frame = 1.0;
@@ -416,7 +416,7 @@ void update_entity_animation(longlong *entity_data)
           cleanup_animation_frame(&temp_stack_100);
         }
         release_animation_context(temp_array_138);
-        if (temp_stack_120 != (longlong *)0x0) {
+        if (temp_stack_120 != (int64_t *)0x0) {
           (**(code **)(*temp_stack_120 + 0x38))();
         }
       }
@@ -426,10 +426,10 @@ void update_entity_animation(longlong *entity_data)
         setup_external_animation(&temp_stack_118);
         temp_long1 = temp_stack_108 + 0xb0;
         frame_index = *(ushort *)(temp_stack_108 + 0xc0);
-        current_frame = *(float *)(*(longlong *)(temp_stack_108 + 0xb8) + -4 + (ulonglong)frame_index * 4);
-        target_frame = *(float *)((longlong)entity_data + 0x2dc);
-        if (current_frame < *(float *)((longlong)entity_data + 0x2dc)) {
-          *(float *)((longlong)entity_data + 0x2dc) = current_frame;
+        current_frame = *(float *)(*(int64_t *)(temp_stack_108 + 0xb8) + -4 + (uint64_t)frame_index * 4);
+        target_frame = *(float *)((int64_t)entity_data + 0x2dc);
+        if (current_frame < *(float *)((int64_t)entity_data + 0x2dc)) {
+          *(float *)((int64_t)entity_data + 0x2dc) = current_frame;
           frame_index = *(ushort *)(temp_stack_108 + 0xc0);
           target_frame = current_frame;
         }
@@ -444,16 +444,16 @@ void update_entity_animation(longlong *entity_data)
           if (0 < (int)(frame_count - 2)) {
             do {
               temp_int1 = temp_int2 + temp_int3 >> 1;
-              if (*(float *)(*(longlong *)(temp_stack_108 + 0xb8) + (longlong)temp_int1 * 4) <= target_frame) {
+              if (*(float *)(*(int64_t *)(temp_stack_108 + 0xb8) + (int64_t)temp_int1 * 4) <= target_frame) {
                 temp_int3 = temp_int1;
                 temp_int1 = temp_int2;
               }
               temp_int2 = temp_int1;
             } while (temp_int3 < temp_int2 + -1);
           }
-          current_frame = *(float *)(*(longlong *)(temp_stack_108 + 0xb8) + (longlong)temp_int3 * 4);
+          current_frame = *(float *)(*(int64_t *)(temp_stack_108 + 0xb8) + (int64_t)temp_int3 * 4);
           current_frame = (target_frame - current_frame) /
-                  (*(float *)(*(longlong *)(temp_stack_108 + 0xb8) + (longlong)temp_int2 * 4) - current_frame);
+                  (*(float *)(*(int64_t *)(temp_stack_108 + 0xb8) + (int64_t)temp_int2 * 4) - current_frame);
           if (0.0 <= current_frame) {
             if (1.0 <= current_frame) {
               current_frame = 1.0;
@@ -477,22 +477,22 @@ void update_entity_animation(longlong *entity_data)
         }
         release_external_animation(&temp_stack_118);
       }
-      *(int32_t *)(entity_data + 0x5b) = *(int32_t *)((longlong)entity_data + 0x2dc);
+      *(int32_t *)(entity_data + 0x5b) = *(int32_t *)((int64_t)entity_data + 0x2dc);
     }
-    if ((*(byte *)((longlong)entity_data + 0xfd) & 0x20) != 0) break;
-    entity_data = (longlong *)entity_data[0x36];
+    if ((*(byte *)((int64_t)entity_data + 0xfd) & 0x20) != 0) break;
+    entity_data = (int64_t *)entity_data[0x36];
   }
   return;
 }
 
-// 函数: longlong * clone_entity(longlong *source_entity, longlong *target_entity)
+// 函数: int64_t * clone_entity(int64_t *source_entity, int64_t *target_entity)
 // 功能: 克隆实体，创建实体的副本
-longlong * clone_entity(longlong *source_entity, longlong *target_entity)
+int64_t * clone_entity(int64_t *source_entity, int64_t *target_entity)
 
 {
   byte *byte_ptr;
   int32_t temp_uint1;
-  longlong temp_long1;
+  int64_t temp_long1;
   int32_t temp_uint2;
   int32_t temp_uint3;
   int32_t temp_uint4;
@@ -501,41 +501,41 @@ longlong * clone_entity(longlong *source_entity, longlong *target_entity)
   uint64_t temp_ullong3;
   uint64_t temp_ullong4;
   uint64_t temp_ullong5;
-  longlong temp_long2;
-  longlong temp_long3;
-  longlong temp_long4;
-  longlong temp_long5;
-  longlong temp_long6;
-  longlong temp_long7;
-  longlong temp_long8;
+  int64_t temp_long2;
+  int64_t temp_long3;
+  int64_t temp_long4;
+  int64_t temp_long5;
+  int64_t temp_long6;
+  int64_t temp_long7;
+  int64_t temp_long8;
   uint64_t temp_ullong6;
-  longlong *cloned_entity;
+  int64_t *cloned_entity;
   void *temp_ptr;
-  longlong *temp_stackX_8;
-  longlong *temp_stackX_10;
+  int64_t *temp_stackX_8;
+  int64_t *temp_stackX_10;
   int32_t temp_uint5;
   
   temp_stackX_10 = target_entity;
   temp_ullong6 = allocate_entity_memory(system_memory_pool_ptr, 0x300, 0x10, 9, 0, 0xfffffffffffffffe);
-  cloned_entity = (longlong *)initialize_entity_data(temp_ullong6, 0, 0);
-  *target_entity = (longlong)cloned_entity;
-  if (cloned_entity != (longlong *)0x0) {
+  cloned_entity = (int64_t *)initialize_entity_data(temp_ullong6, 0, 0);
+  *target_entity = (int64_t)cloned_entity;
+  if (cloned_entity != (int64_t *)0x0) {
     (**(code **)(*cloned_entity + 0x28))(cloned_entity);
   }
   temp_uint5 = 1;
   *(byte *)(*target_entity + 0xfd) = *(byte *)(*target_entity + 0xfd) & 0xdf;
   temp_long2 = source_entity[0x18];
   temp_long1 = *target_entity;
-  *(longlong *)(temp_long1 + 0xb8) = source_entity[0x17];
-  *(longlong *)(temp_long1 + 0xc0) = temp_long2;
+  *(int64_t *)(temp_long1 + 0xb8) = source_entity[0x17];
+  *(int64_t *)(temp_long1 + 0xc0) = temp_long2;
   *(byte *)(*target_entity + 0xfd) = *(byte *)(*target_entity + 0xfd) & 0xbf;
-  temp_uint1 = *(int32_t *)((longlong)source_entity + 0xcc);
+  temp_uint1 = *(int32_t *)((int64_t)source_entity + 0xcc);
   temp_long2 = source_entity[0x1a];
-  temp_uint2 = *(int32_t *)((longlong)source_entity + 0xd4);
+  temp_uint2 = *(int32_t *)((int64_t)source_entity + 0xd4);
   temp_long3 = source_entity[0x1b];
-  temp_uint3 = *(int32_t *)((longlong)source_entity + 0xdc);
+  temp_uint3 = *(int32_t *)((int64_t)source_entity + 0xdc);
   temp_long4 = source_entity[0x1c];
-  temp_uint4 = *(int32_t *)((longlong)source_entity + 0xe4);
+  temp_uint4 = *(int32_t *)((int64_t)source_entity + 0xe4);
   temp_long1 = *target_entity;
   *(int *)(temp_long1 + 200) = (int)source_entity[0x19];
   *(int32_t *)(temp_long1 + 0xcc) = temp_uint1;
@@ -545,7 +545,7 @@ longlong * clone_entity(longlong *source_entity, longlong *target_entity)
   *(int32_t *)(temp_long1 + 0xdc) = temp_uint3;
   *(int *)(temp_long1 + 0xe0) = (int)temp_long4;
   *(int32_t *)(temp_long1 + 0xe4) = temp_uint4;
-  if ((*(byte *)((longlong)source_entity + 0xfd) & 0x20) == 0) {
+  if ((*(byte *)((int64_t)source_entity + 0xfd) & 0x20) == 0) {
     update_entity_reference(*target_entity, source_entity + 0x36);
   }
   else {
@@ -555,59 +555,59 @@ longlong * clone_entity(longlong *source_entity, longlong *target_entity)
     update_entity_reference(temp_long1, &temp_stackX_8);
     (**(code **)(*source_entity + 0x38))(source_entity);
   }
-  *(longlong *)(*target_entity + 0xa8) = source_entity[0x15];
+  *(int64_t *)(*target_entity + 0xa8) = source_entity[0x15];
   byte_ptr = (byte *)(*target_entity + 0xfd);
-  *byte_ptr = *byte_ptr ^ (*(byte *)(*target_entity + 0xfd) ^ *(byte *)((longlong)source_entity + 0xfd)) & 2;
+  *byte_ptr = *byte_ptr ^ (*(byte *)(*target_entity + 0xfd) ^ *(byte *)((int64_t)source_entity + 0xfd)) & 2;
   *(int *)(*target_entity + 0x100) = (int)source_entity[0x20];
   temp_long2 = source_entity[0x48];
   temp_long1 = *target_entity;
-  *(longlong *)(temp_long1 + 0x238) = source_entity[0x47];
-  *(longlong *)(temp_long1 + 0x240) = temp_long2;
+  *(int64_t *)(temp_long1 + 0x238) = source_entity[0x47];
+  *(int64_t *)(temp_long1 + 0x240) = temp_long2;
   temp_long2 = source_entity[0x4a];
   temp_long1 = *target_entity;
-  *(longlong *)(temp_long1 + 0x248) = source_entity[0x49];
-  *(longlong *)(temp_long1 + 0x250) = temp_long2;
-  temp_uint1 = *(int32_t *)((longlong)source_entity + 0x2ac);
+  *(int64_t *)(temp_long1 + 0x248) = source_entity[0x49];
+  *(int64_t *)(temp_long1 + 0x250) = temp_long2;
+  temp_uint1 = *(int32_t *)((int64_t)source_entity + 0x2ac);
   temp_long2 = source_entity[0x56];
-  temp_uint2 = *(int32_t *)((longlong)source_entity + 0x2b4);
+  temp_uint2 = *(int32_t *)((int64_t)source_entity + 0x2b4);
   temp_long1 = *target_entity;
   *(int *)(temp_long1 + 0x2a8) = (int)source_entity[0x55];
   *(int32_t *)(temp_long1 + 0x2ac) = temp_uint1;
   *(int *)(temp_long1 + 0x2b0) = (int)temp_long2;
   *(int32_t *)(temp_long1 + 0x2b4) = temp_uint2;
-  temp_uint1 = *(int32_t *)((longlong)source_entity + 700);
+  temp_uint1 = *(int32_t *)((int64_t)source_entity + 700);
   temp_long2 = source_entity[0x58];
-  temp_uint2 = *(int32_t *)((longlong)source_entity + 0x2c4);
+  temp_uint2 = *(int32_t *)((int64_t)source_entity + 0x2c4);
   temp_long1 = *target_entity;
   *(int *)(temp_long1 + 0x2b8) = (int)source_entity[0x57];
   *(int32_t *)(temp_long1 + 700) = temp_uint1;
   *(int *)(temp_long1 + 0x2c0) = (int)temp_long2;
   *(int32_t *)(temp_long1 + 0x2c4) = temp_uint2;
   *(int *)(*target_entity + 0x108) = (int)source_entity[0x21];
-  if ((longlong *)(*target_entity + 0x218) != source_entity + 0x43) {
-    copy_entity_data((longlong *)(*target_entity + 0x218), source_entity[0x43], source_entity[0x44]);
+  if ((int64_t *)(*target_entity + 0x218) != source_entity + 0x43) {
+    copy_entity_data((int64_t *)(*target_entity + 0x218), source_entity[0x43], source_entity[0x44]);
   }
   temp_ptr = &system_buffer_ptr;
   if ((void *)source_entity[3] != (void *)0x0) {
     temp_ptr = (void *)source_entity[3];
   }
-  (**(code **)(*(longlong *)(*target_entity + 0x10) + 0x10))((longlong *)(*target_entity + 0x10), temp_ptr);
-  *(int8_t *)(*target_entity + 0xf6) = *(int8_t *)((longlong)source_entity + 0xf6);
-  temp_ullong6 = *(uint64_t *)((longlong)source_entity + 0x27c);
-  temp_ullong1 = *(uint64_t *)((longlong)source_entity + 0x284);
-  temp_ullong2 = *(uint64_t *)((longlong)source_entity + 0x28c);
-  temp_ullong3 = *(uint64_t *)((longlong)source_entity + 0x294);
-  temp_ullong4 = *(uint64_t *)((longlong)source_entity + 0x29c);
-  temp_uint1 = *(int32_t *)((longlong)source_entity + 0x2a4);
+  (**(code **)(*(int64_t *)(*target_entity + 0x10) + 0x10))((int64_t *)(*target_entity + 0x10), temp_ptr);
+  *(int8_t *)(*target_entity + 0xf6) = *(int8_t *)((int64_t)source_entity + 0xf6);
+  temp_ullong6 = *(uint64_t *)((int64_t)source_entity + 0x27c);
+  temp_ullong1 = *(uint64_t *)((int64_t)source_entity + 0x284);
+  temp_ullong2 = *(uint64_t *)((int64_t)source_entity + 0x28c);
+  temp_ullong3 = *(uint64_t *)((int64_t)source_entity + 0x294);
+  temp_ullong4 = *(uint64_t *)((int64_t)source_entity + 0x29c);
+  temp_uint1 = *(int32_t *)((int64_t)source_entity + 0x2a4);
   temp_long1 = *target_entity;
-  *(uint64_t *)(temp_long1 + 0x274) = *(uint64_t *)((longlong)source_entity + 0x274);
+  *(uint64_t *)(temp_long1 + 0x274) = *(uint64_t *)((int64_t)source_entity + 0x274);
   *(uint64_t *)(temp_long1 + 0x27c) = temp_ullong6;
   *(uint64_t *)(temp_long1 + 0x284) = temp_ullong1;
   *(uint64_t *)(temp_long1 + 0x28c) = temp_ullong2;
   *(uint64_t *)(temp_long1 + 0x294) = temp_ullong3;
   *(uint64_t *)(temp_long1 + 0x29c) = temp_ullong4;
   *(int32_t *)(temp_long1 + 0x2a4) = temp_uint1;
-  *(int8_t *)(*target_entity + 0xff) = *(int8_t *)((longlong)source_entity + 0xff);
+  *(int8_t *)(*target_entity + 0xff) = *(int8_t *)((int64_t)source_entity + 0xff);
   *(int *)(*target_entity + 0x270) = (int)source_entity[0x4e];
   temp_long2 = source_entity[0x25];
   temp_long3 = source_entity[0x26];
@@ -617,30 +617,30 @@ longlong * clone_entity(longlong *source_entity, longlong *target_entity)
   temp_long7 = source_entity[0x2a];
   temp_long8 = source_entity[0x2b];
   temp_long1 = *target_entity;
-  *(longlong *)(temp_long1 + 0x120) = source_entity[0x24];
-  *(longlong *)(temp_long1 + 0x128) = temp_long2;
-  *(longlong *)(temp_long1 + 0x130) = temp_long3;
-  *(longlong *)(temp_long1 + 0x138) = temp_long4;
-  *(longlong *)(temp_long1 + 0x140) = temp_long5;
-  *(longlong *)(temp_long1 + 0x148) = temp_long6;
-  *(longlong *)(temp_long1 + 0x150) = temp_long7;
-  *(longlong *)(temp_long1 + 0x158) = temp_long8;
+  *(int64_t *)(temp_long1 + 0x120) = source_entity[0x24];
+  *(int64_t *)(temp_long1 + 0x128) = temp_long2;
+  *(int64_t *)(temp_long1 + 0x130) = temp_long3;
+  *(int64_t *)(temp_long1 + 0x138) = temp_long4;
+  *(int64_t *)(temp_long1 + 0x140) = temp_long5;
+  *(int64_t *)(temp_long1 + 0x148) = temp_long6;
+  *(int64_t *)(temp_long1 + 0x150) = temp_long7;
+  *(int64_t *)(temp_long1 + 0x158) = temp_long8;
   temp_long2 = source_entity[0x2d];
   temp_long3 = source_entity[0x2e];
   temp_long4 = source_entity[0x2f];
   temp_long5 = source_entity[0x30];
-  temp_uint1 = *(int32_t *)((longlong)source_entity + 0x184);
+  temp_uint1 = *(int32_t *)((int64_t)source_entity + 0x184);
   temp_long6 = source_entity[0x31];
-  temp_uint2 = *(int32_t *)((longlong)source_entity + 0x18c);
+  temp_uint2 = *(int32_t *)((int64_t)source_entity + 0x18c);
   temp_long7 = source_entity[0x32];
-  temp_uint3 = *(int32_t *)((longlong)source_entity + 0x194);
+  temp_uint3 = *(int32_t *)((int64_t)source_entity + 0x194);
   temp_long8 = source_entity[0x33];
-  temp_uint4 = *(int32_t *)((longlong)source_entity + 0x19c);
+  temp_uint4 = *(int32_t *)((int64_t)source_entity + 0x19c);
   temp_long1 = *target_entity;
-  *(longlong *)(temp_long1 + 0x160) = source_entity[0x2c];
-  *(longlong *)(temp_long1 + 0x168) = temp_long2;
-  *(longlong *)(temp_long1 + 0x170) = temp_long3;
-  *(longlong *)(temp_long1 + 0x178) = temp_long4;
+  *(int64_t *)(temp_long1 + 0x160) = source_entity[0x2c];
+  *(int64_t *)(temp_long1 + 0x168) = temp_long2;
+  *(int64_t *)(temp_long1 + 0x170) = temp_long3;
+  *(int64_t *)(temp_long1 + 0x178) = temp_long4;
   *(int *)(temp_long1 + 0x180) = (int)temp_long5;
   *(int32_t *)(temp_long1 + 0x184) = temp_uint1;
   *(int *)(temp_long1 + 0x188) = (int)temp_long6;
@@ -650,43 +650,43 @@ longlong * clone_entity(longlong *source_entity, longlong *target_entity)
   *(int *)(temp_long1 + 0x198) = (int)temp_long8;
   *(int32_t *)(temp_long1 + 0x19c) = temp_uint4;
   byte_ptr = (byte *)(*target_entity + 0xfd);
-  *byte_ptr = *byte_ptr ^ (*(byte *)(*target_entity + 0xfd) ^ *(byte *)((longlong)source_entity + 0xfd)) & 1;
-  *(int8_t *)(*target_entity + 0xf7) = *(int8_t *)((longlong)source_entity + 0xf7);
+  *byte_ptr = *byte_ptr ^ (*(byte *)(*target_entity + 0xfd) ^ *(byte *)((int64_t)source_entity + 0xfd)) & 1;
+  *(int8_t *)(*target_entity + 0xf7) = *(int8_t *)((int64_t)source_entity + 0xf7);
   *(int *)(*target_entity + 0x208) = (int)source_entity[0x41];
   *(int *)(*target_entity + 0x1f8) = (int)source_entity[0x3f];
-  *(int32_t *)(*target_entity + 0x1fc) = *(int32_t *)((longlong)source_entity + 0x1fc);
+  *(int32_t *)(*target_entity + 0x1fc) = *(int32_t *)((int64_t)source_entity + 0x1fc);
   *(int *)(*target_entity + 0x200) = (int)source_entity[0x40];
-  *(int32_t *)(*target_entity + 0x204) = *(int32_t *)((longlong)source_entity + 0x204);
+  *(int32_t *)(*target_entity + 0x204) = *(int32_t *)((int64_t)source_entity + 0x204);
   *(int *)(*target_entity + 0x2d8) = (int)source_entity[0x5b];
-  temp_uint1 = *(int32_t *)((longlong)source_entity + 0x2dc);
+  temp_uint1 = *(int32_t *)((int64_t)source_entity + 0x2dc);
   *(int32_t *)(*target_entity + 0x2dc) = temp_uint1;
   temp_long1 = *target_entity;
-  cloned_entity = (longlong *)source_entity[0x4d];
-  if (cloned_entity != (longlong *)0x0) {
+  cloned_entity = (int64_t *)source_entity[0x4d];
+  if (cloned_entity != (int64_t *)0x0) {
     temp_stackX_8 = cloned_entity;
     (**(code **)(*cloned_entity + 0x28))(cloned_entity, temp_uint1, (int)temp_long5, (int)temp_long7, temp_uint5);
   }
-  temp_stackX_8 = *(longlong **)(temp_long1 + 0x268);
-  *(longlong **)(temp_long1 + 0x268) = cloned_entity;
-  if (temp_stackX_8 != (longlong *)0x0) {
+  temp_stackX_8 = *(int64_t **)(temp_long1 + 0x268);
+  *(int64_t **)(temp_long1 + 0x268) = cloned_entity;
+  if (temp_stackX_8 != (int64_t *)0x0) {
     (**(code **)(*temp_stackX_8 + 0x38))();
   }
   update_entity_flags(*target_entity, source_entity + 0x37);
   return target_entity;
 }
 
-// 函数: void initialize_entity_rendering(longlong *entity_data, uint64_t param2, uint64_t param3, uint64_t param4)
+// 函数: void initialize_entity_rendering(int64_t *entity_data, uint64_t param2, uint64_t param3, uint64_t param4)
 // 功能: 初始化实体渲染相关数据
-void initialize_entity_rendering(longlong *entity_data, uint64_t param2, uint64_t param3, uint64_t param4)
+void initialize_entity_rendering(int64_t *entity_data, uint64_t param2, uint64_t param3, uint64_t param4)
 
 {
-  longlong *render_data;
+  int64_t *render_data;
   uint64_t temp_ullong1;
-  longlong *temp_stack_40;
-  longlong *temp_stack_38;
+  int64_t *temp_stack_40;
+  int64_t *temp_stack_38;
   int8_t temp_array_30 [8];
   uint64_t temp_stack_28;
-  longlong *temp_stack_18;
+  int64_t *temp_stack_18;
   int16_t temp_ushort;
   char temp_char;
   
@@ -699,9 +699,9 @@ void initialize_entity_rendering(longlong *entity_data, uint64_t param2, uint64_
   }
   else {
     (**(code **)(*entity_data + 0x28))();
-    temp_stack_40 = (longlong *)0x0;
-    temp_stack_38 = (longlong *)0x0;
-    temp_stack_18 = (longlong *)0x0;
+    temp_stack_40 = (int64_t *)0x0;
+    temp_stack_38 = (int64_t *)0x0;
+    temp_stack_18 = (int64_t *)0x0;
     temp_stack_28 = 0;
     temp_array_30[0] = 0;
     setup_render_context(&temp_stack_40, entity_data, 0, param4, temp_ullong1);
@@ -721,7 +721,7 @@ void initialize_entity_rendering(longlong *entity_data, uint64_t param2, uint64_
     render_data[0x16] = 0;
     *(int32_t *)(render_data + 0x19) = 0;
     temp_ushort = 0x101;
-    if ((temp_stack_40 != (longlong *)0x0) && (temp_stack_38 != (longlong *)0x0)) {
+    if ((temp_stack_40 != (int64_t *)0x0) && (temp_stack_38 != (int64_t *)0x0)) {
       if (temp_char != '\0') {
         calculate_bounding_box();
       }
@@ -733,19 +733,19 @@ void initialize_entity_rendering(longlong *entity_data, uint64_t param2, uint64_
         cleanup_render_data(temp_stack_40);
       }
       render_data = temp_stack_38;
-      temp_stack_38 = (longlong *)0x0;
-      if (render_data != (longlong *)0x0) {
+      temp_stack_38 = (int64_t *)0x0;
+      if (render_data != (int64_t *)0x0) {
         (**(code **)(*render_data + 0x38))();
       }
     }
     release_render_context(temp_array_30);
-    if (temp_stack_18 != (longlong *)0x0) {
+    if (temp_stack_18 != (int64_t *)0x0) {
       (**(code **)(*temp_stack_18 + 0x38))();
     }
-    if (temp_stack_38 != (longlong *)0x0) {
+    if (temp_stack_38 != (int64_t *)0x0) {
       (**(code **)(*temp_stack_38 + 0x38))();
     }
-    if (temp_stack_40 != (longlong *)0x0) {
+    if (temp_stack_40 != (int64_t *)0x0) {
       (**(code **)(*temp_stack_40 + 0x38))();
       return;
     }
@@ -753,30 +753,30 @@ void initialize_entity_rendering(longlong *entity_data, uint64_t param2, uint64_
   return;
 }
 
-// 函数: void update_entity_flags(longlong entity_id, longlong *flag_data)
+// 函数: void update_entity_flags(int64_t entity_id, int64_t *flag_data)
 // 功能: 更新实体标志位
-void update_entity_flags(longlong entity_id, longlong *flag_data)
+void update_entity_flags(int64_t entity_id, int64_t *flag_data)
 
 {
   byte flag_byte;
-  longlong temp_long1;
+  int64_t temp_long1;
   int8_t temp_uchar1;
   byte flag_mask;
   uint flag_value;
-  longlong temp_long2;
-  longlong *flag_ref;
+  int64_t temp_long2;
+  int64_t *flag_ref;
   
-  if (*flag_data != *(longlong *)(entity_id + 0x1b8)) {
+  if (*flag_data != *(int64_t *)(entity_id + 0x1b8)) {
     if (*(char *)(entity_id + 0xb1) != '\0') {
                     // WARNING: Subroutine does not return
       handle_flag_error();
     }
     release_flag_reference(entity_id + 0x1b8);
-    temp_long1 = *(longlong *)(entity_id + 0x1b8);
+    temp_long1 = *(int64_t *)(entity_id + 0x1b8);
     if (temp_long1 != 0) {
       temp_long2 = 0;
       flag_byte = *(byte *)(entity_id + 0xfd);
-      flag_mask = (byte)((uint)*(int32_t *)(*(longlong *)(temp_long1 + 0x1e0) + 0x1588) >> 0x1b) << 7;
+      flag_mask = (byte)((uint)*(int32_t *)(*(int64_t *)(temp_long1 + 0x1e0) + 0x1588) >> 0x1b) << 7;
       *(byte *)(entity_id + 0xfd) = flag_mask | flag_byte & 0x7f;
       flag_value = *(uint *)(temp_long1 + 0x138) & 0x3000;
       if (flag_value == 0x1000) {
@@ -791,7 +791,7 @@ void update_entity_flags(longlong entity_id, longlong *flag_data)
       }
       flag_mask = flag_mask | flag_byte & 0x77;
       *(byte *)(entity_id + 0xfd) = flag_mask;
-      flag_ref = (longlong *)(temp_long1 + 0xb8);
+      flag_ref = (int64_t *)(temp_long1 + 0xb8);
       do {
         if (0xf < temp_long2) break;
         if ((*flag_ref != 0) && (*(int *)(*flag_ref + 0x36c) != 0)) {
@@ -807,9 +807,9 @@ void update_entity_flags(longlong entity_id, longlong *flag_data)
   return;
 }
 
-// 函数: void increment_entity_reference_count(longlong entity_id)
+// 函数: void increment_entity_reference_count(int64_t entity_id)
 // 功能: 增加实体引用计数
-void increment_entity_reference_count(longlong entity_id)
+void increment_entity_reference_count(int64_t entity_id)
 
 {
   int mutex_result;

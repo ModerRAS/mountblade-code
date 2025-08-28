@@ -16,11 +16,11 @@
  * @param sort_flags 排序标志位，控制排序行为
  */
 void quick_sort_16byte_elements(int8_t (*data_array) [16], int8_t (*end_ptr) [16], 
-                              longlong depth, int8_t sort_flags)
+                              int64_t depth, int8_t sort_flags)
 {
   bool comparison_result;
   uint64_t temp_data_8bytes;
-  longlong element_count;
+  int64_t element_count;
   int8_t (*current_ptr) [16];
   int compare_value;
   int8_t (*insertion_ptr) [16];
@@ -31,7 +31,7 @@ void quick_sort_16byte_elements(int8_t (*data_array) [16], int8_t (*end_ptr) [16
   int8_t comparison_element[16];
   
   // 计算数组中的元素数量（每个元素16字节）
-  element_count = (longlong)end_ptr - (longlong)data_array;
+  element_count = (int64_t)end_ptr - (int64_t)data_array;
   do {
     element_count = element_count >> 4;  // 除以16得到元素个数
     
@@ -63,7 +63,7 @@ small_array_sort:
             func_0x00018018a000(temp_buffer_8bytes);  // 内存管理函数调用
             
             // 移动元素为新元素腾出空间
-            memmove((longlong)next_ptr - ((longlong)insertion_ptr - (longlong)data_array), data_array);
+            memmove((int64_t)next_ptr - ((int64_t)insertion_ptr - (int64_t)data_array), data_array);
           }
           
           // 向前查找合适的插入位置
@@ -95,7 +95,7 @@ small_array_sort:
       if (0x20 < element_count) {
         // 使用堆排序处理大数组
         FUN_180204700(data_array, end_ptr, sort_flags);
-        if ((longlong)end_ptr - (longlong)data_array >> 4 < 2) {
+        if ((int64_t)end_ptr - (int64_t)data_array >> 4 < 2) {
           return;
         }
         
@@ -108,10 +108,10 @@ small_array_sort:
           *(uint64_t *)(*end_ptr + 8) = temp_data_8bytes;
           
           // 递归调用排序函数
-          FUN_180204870(data_array, 0, (longlong)end_ptr - (longlong)data_array >> 4, 
+          FUN_180204870(data_array, 0, (int64_t)end_ptr - (int64_t)data_array >> 4, 
                         current_element, sort_flags);
           end_ptr = end_ptr + -1;
-        } while (1 < (longlong)end_ptr + (0x10 - (longlong)data_array) >> 4);
+        } while (1 < (int64_t)end_ptr + (0x10 - (int64_t)data_array) >> 4);
         return;
       }
       goto small_array_sort;
@@ -124,8 +124,8 @@ small_array_sort:
     depth = (depth >> 1) + (depth >> 2);  // 优化递归深度
     
     // 选择较小的子数组优先处理（优化栈空间使用）
-    if ((longlong)(current_element._0_8_ - (longlong)data_array & 0xfffffffffffffff0U) <
-        (longlong)((longlong)end_ptr - current_element._8_8_ & 0xfffffffffffffff0U)) {
+    if ((int64_t)(current_element._0_8_ - (int64_t)data_array & 0xfffffffffffffff0U) <
+        (int64_t)((int64_t)end_ptr - current_element._8_8_ & 0xfffffffffffffff0U)) {
       // 递归处理左子数组
       FUN_1802041f0(data_array, current_element._0_8_, depth, sort_flags);
       insertion_ptr = end_ptr;
@@ -136,7 +136,7 @@ small_array_sort:
       FUN_1802041f0(current_element._8_8_, end_ptr, depth, sort_flags);
     }
     
-    element_count = (longlong)insertion_ptr - (longlong)data_array;
+    element_count = (int64_t)insertion_ptr - (int64_t)data_array;
     end_ptr = insertion_ptr;
   } while( true );
 }
@@ -167,13 +167,13 @@ uint64_t * select_pivot_element(uint64_t *pivot_info, uint64_t *start_ptr, uint6
   uint64_t *scan_ptr;
   uint64_t *compare_ptr;
   uint64_t *swap_ptr;
-  longlong partition_size;
-  longlong block_size;
+  int64_t partition_size;
+  int64_t block_size;
   uint64_t *temp_ptr;
   
   // 选择中间候选点（使用位移操作优化计算）
-  pivot_candidate = start_ptr + ((longlong)end_ptr - (longlong)start_ptr >> 5) * 2;
-  partition_size = (longlong)end_ptr + (-0x10 - (longlong)start_ptr) >> 4;
+  pivot_candidate = start_ptr + ((int64_t)end_ptr - (int64_t)start_ptr >> 5) * 2;
+  partition_size = (int64_t)end_ptr + (-0x10 - (int64_t)start_ptr) >> 4;
   
   // 小分区优化：使用简单的三数取中法
   if (partition_size < 0x29) {
@@ -186,10 +186,10 @@ uint64_t * select_pivot_element(uint64_t *pivot_info, uint64_t *start_ptr, uint6
     
     // 对多个采样点进行排序
     func_0x000180204980(start_ptr, start_ptr + block_size * 2, start_ptr + block_size * 4);
-    func_0x000180204980((longlong)pivot_candidate - partition_size, pivot_candidate, 
-                        partition_size + (longlong)pivot_candidate);
+    func_0x000180204980((int64_t)pivot_candidate - partition_size, pivot_candidate, 
+                        partition_size + (int64_t)pivot_candidate);
     
-    partition_size = (longlong)end_ptr + (-0x10 - partition_size);
+    partition_size = (int64_t)end_ptr + (-0x10 - partition_size);
     func_0x000180204980(end_ptr + block_size * -4 + -2, partition_size, end_ptr + -2);
     func_0x000180204980(start_ptr + block_size * 2, pivot_candidate, partition_size);
   }
@@ -204,8 +204,8 @@ uint64_t * select_pivot_element(uint64_t *pivot_info, uint64_t *start_ptr, uint6
       
       // 比较键值
       if (left_compare_value == right_compare_value) {
-        comparison_result = *(int *)((longlong)pivot_candidate + -4) < 
-                           *(int *)((longlong)pivot_candidate + 0xc);
+        comparison_result = *(int *)((int64_t)pivot_candidate + -4) < 
+                           *(int *)((int64_t)pivot_candidate + 0xc);
       }
       else {
         comparison_result = right_compare_value < left_compare_value;
@@ -214,8 +214,8 @@ uint64_t * select_pivot_element(uint64_t *pivot_info, uint64_t *start_ptr, uint6
       
       // 反向比较
       if (right_compare_value == left_compare_value) {
-        comparison_result = *(int *)((longlong)pivot_candidate + 0xc) < 
-                           *(int *)((longlong)pivot_candidate + -4);
+        comparison_result = *(int *)((int64_t)pivot_candidate + 0xc) < 
+                           *(int *)((int64_t)pivot_candidate + -4);
       }
       else {
         comparison_result = left_compare_value < right_compare_value;
@@ -233,8 +233,8 @@ uint64_t * select_pivot_element(uint64_t *pivot_info, uint64_t *start_ptr, uint6
     while( true ) {
       right_compare_value = *(int *)(right_ptr + 1);
       if (right_compare_value == left_compare_value) {
-        comparison_result = *(int *)((longlong)right_ptr + 0xc) < 
-                           *(int *)((longlong)pivot_candidate + 0xc);
+        comparison_result = *(int *)((int64_t)right_ptr + 0xc) < 
+                           *(int *)((int64_t)pivot_candidate + 0xc);
       }
       else {
         comparison_result = left_compare_value < right_compare_value;
@@ -243,8 +243,8 @@ uint64_t * select_pivot_element(uint64_t *pivot_info, uint64_t *start_ptr, uint6
       if (comparison_result) break;
       
       if (left_compare_value == right_compare_value) {
-        comparison_result = *(int *)((longlong)pivot_candidate + 0xc) < 
-                           *(int *)((longlong)right_ptr + 0xc);
+        comparison_result = *(int *)((int64_t)pivot_candidate + 0xc) < 
+                           *(int *)((int64_t)right_ptr + 0xc);
       }
       else {
         comparison_result = right_compare_value < left_compare_value;
@@ -266,8 +266,8 @@ final_partition_phase:
         right_compare_value = *(int *)(scan_ptr + 1);
         
         if (left_compare_value == right_compare_value) {
-          comparison_result = *(int *)((longlong)temp_ptr + -4) < 
-                             *(int *)((longlong)scan_ptr + 0xc);
+          comparison_result = *(int *)((int64_t)temp_ptr + -4) < 
+                             *(int *)((int64_t)scan_ptr + 0xc);
         }
         else {
           comparison_result = right_compare_value < left_compare_value;
@@ -276,8 +276,8 @@ final_partition_phase:
         compare_ptr = scan_ptr;
         if (!comparison_result) {
           if (right_compare_value == left_compare_value) {
-            comparison_result = *(int *)((longlong)scan_ptr + 0xc) < 
-                               *(int *)((longlong)temp_ptr + -4);
+            comparison_result = *(int *)((int64_t)scan_ptr + 0xc) < 
+                               *(int *)((int64_t)temp_ptr + -4);
           }
           else {
             comparison_result = left_compare_value < right_compare_value;
@@ -375,8 +375,8 @@ final_partition_phase:
     left_compare_value = *(int *)(scan_ptr + 1);
     right_compare_value = *(int *)(right_ptr + 1);
     if (left_compare_value == right_compare_value) {
-      comparison_result = *(int *)((longlong)scan_ptr + 0xc) < 
-                         *(int *)((longlong)right_ptr + 0xc);
+      comparison_result = *(int *)((int64_t)scan_ptr + 0xc) < 
+                         *(int *)((int64_t)right_ptr + 0xc);
     }
     else {
       comparison_result = right_compare_value < left_compare_value;
@@ -385,8 +385,8 @@ final_partition_phase:
     middle_ptr = left_ptr;
     if (!comparison_result) {
       if (right_compare_value == left_compare_value) {
-        comparison_result = *(int *)((longlong)right_ptr + 0xc) < 
-                           *(int *)((longlong)scan_ptr + 0xc);
+        comparison_result = *(int *)((int64_t)right_ptr + 0xc) < 
+                           *(int *)((int64_t)scan_ptr + 0xc);
       }
       else {
         comparison_result = left_compare_value < right_compare_value;
@@ -422,7 +422,7 @@ final_partition_phase:
  * @return 返回基准点信息的指针
  */
 uint64_t * optimized_pivot_selection(uint64_t *pivot_info, uint64_t *start_ptr, 
-                                      uint64_t *end_ptr, longlong r10_register)
+                                      uint64_t *end_ptr, int64_t r10_register)
 {
   int left_compare_value;
   int right_compare_value;
@@ -437,13 +437,13 @@ uint64_t * optimized_pivot_selection(uint64_t *pivot_info, uint64_t *start_ptr,
   uint64_t *scan_ptr;
   uint64_t *compare_ptr;
   uint64_t *swap_ptr;
-  longlong partition_size;
-  longlong block_size;
+  int64_t partition_size;
+  int64_t block_size;
   uint64_t *temp_ptr;
   
   // 使用R10寄存器优化基准点选择
-  pivot_candidate = start_ptr + (r10_register - (longlong)start_ptr >> 5) * 2;
-  partition_size = (longlong)end_ptr + (-0x10 - (longlong)start_ptr) >> 4;
+  pivot_candidate = start_ptr + (r10_register - (int64_t)start_ptr >> 5) * 2;
+  partition_size = (int64_t)end_ptr + (-0x10 - (int64_t)start_ptr) >> 4;
   
   // 小分区优化处理
   if (partition_size < 0x29) {
@@ -455,10 +455,10 @@ uint64_t * optimized_pivot_selection(uint64_t *pivot_info, uint64_t *start_ptr,
     partition_size = block_size * 0x10;
     
     func_0x000180204980(start_ptr, start_ptr + block_size * 2, start_ptr + block_size * 4);
-    func_0x000180204980((longlong)pivot_candidate - partition_size, pivot_candidate, 
-                        partition_size + (longlong)pivot_candidate);
+    func_0x000180204980((int64_t)pivot_candidate - partition_size, pivot_candidate, 
+                        partition_size + (int64_t)pivot_candidate);
     
-    partition_size = (longlong)end_ptr + (-0x10 - partition_size);
+    partition_size = (int64_t)end_ptr + (-0x10 - partition_size);
     func_0x000180204980(end_ptr + block_size * -4 + -2, partition_size, end_ptr + -2);
     func_0x000180204980(start_ptr + block_size * 2, pivot_candidate, partition_size);
   }
@@ -472,8 +472,8 @@ uint64_t * optimized_pivot_selection(uint64_t *pivot_info, uint64_t *start_ptr,
       right_compare_value = *(int *)(pivot_candidate + 1);
       
       if (left_compare_value == right_compare_value) {
-        comparison_result = *(int *)((longlong)pivot_candidate + -4) < 
-                           *(int *)((longlong)pivot_candidate + 0xc);
+        comparison_result = *(int *)((int64_t)pivot_candidate + -4) < 
+                           *(int *)((int64_t)pivot_candidate + 0xc);
       }
       else {
         comparison_result = right_compare_value < left_compare_value;
@@ -481,8 +481,8 @@ uint64_t * optimized_pivot_selection(uint64_t *pivot_info, uint64_t *start_ptr,
       if (comparison_result) break;
       
       if (right_compare_value == left_compare_value) {
-        comparison_result = *(int *)((longlong)pivot_candidate + 0xc) < 
-                           *(int *)((longlong)pivot_candidate + -4);
+        comparison_result = *(int *)((int64_t)pivot_candidate + 0xc) < 
+                           *(int *)((int64_t)pivot_candidate + -4);
       }
       else {
         comparison_result = left_compare_value < right_compare_value;
@@ -500,8 +500,8 @@ uint64_t * optimized_pivot_selection(uint64_t *pivot_info, uint64_t *start_ptr,
     while( true ) {
       right_compare_value = *(int *)(right_ptr + 1);
       if (right_compare_value == left_compare_value) {
-        comparison_result = *(int *)((longlong)right_ptr + 0xc) < 
-                           *(int *)((longlong)pivot_candidate + 0xc);
+        comparison_result = *(int *)((int64_t)right_ptr + 0xc) < 
+                           *(int *)((int64_t)pivot_candidate + 0xc);
       }
       else {
         comparison_result = left_compare_value < right_compare_value;
@@ -510,8 +510,8 @@ uint64_t * optimized_pivot_selection(uint64_t *pivot_info, uint64_t *start_ptr,
       if (comparison_result) break;
       
       if (left_compare_value == right_compare_value) {
-        comparison_result = *(int *)((longlong)pivot_candidate + 0xc) < 
-                           *(int *)((longlong)right_ptr + 0xc);
+        comparison_result = *(int *)((int64_t)pivot_candidate + 0xc) < 
+                           *(int *)((int64_t)right_ptr + 0xc);
       }
       else {
         comparison_result = right_compare_value < left_compare_value;
@@ -533,8 +533,8 @@ optimized_final_phase:
         right_compare_value = *(int *)(scan_ptr + 1);
         
         if (left_compare_value == right_compare_value) {
-          comparison_result = *(int *)((longlong)temp_ptr + -4) < 
-                             *(int *)((longlong)scan_ptr + 0xc);
+          comparison_result = *(int *)((int64_t)temp_ptr + -4) < 
+                             *(int *)((int64_t)scan_ptr + 0xc);
         }
         else {
           comparison_result = right_compare_value < left_compare_value;
@@ -543,8 +543,8 @@ optimized_final_phase:
         compare_ptr = scan_ptr;
         if (!comparison_result) {
           if (right_compare_value == left_compare_value) {
-            comparison_result = *(int *)((longlong)scan_ptr + 0xc) < 
-                               *(int *)((longlong)temp_ptr + -4);
+            comparison_result = *(int *)((int64_t)scan_ptr + 0xc) < 
+                               *(int *)((int64_t)temp_ptr + -4);
           }
           else {
             comparison_result = left_compare_value < right_compare_value;
@@ -641,8 +641,8 @@ optimized_final_phase:
     left_compare_value = *(int *)(scan_ptr + 1);
     right_compare_value = *(int *)(right_ptr + 1);
     if (left_compare_value == right_compare_value) {
-      comparison_result = *(int *)((longlong)scan_ptr + 0xc) < 
-                         *(int *)((longlong)right_ptr + 0xc);
+      comparison_result = *(int *)((int64_t)scan_ptr + 0xc) < 
+                         *(int *)((int64_t)right_ptr + 0xc);
     }
     else {
       comparison_result = right_compare_value < left_compare_value;
@@ -651,8 +651,8 @@ optimized_final_phase:
     middle_ptr = left_ptr;
     if (!comparison_result) {
       if (right_compare_value == left_compare_value) {
-        comparison_result = *(int *)((longlong)right_ptr + 0xc) < 
-                           *(int *)((longlong)scan_ptr + 0xc);
+        comparison_result = *(int *)((int64_t)right_ptr + 0xc) < 
+                           *(int *)((int64_t)scan_ptr + 0xc);
       }
       else {
         comparison_result = left_compare_value < right_compare_value;
@@ -689,11 +689,11 @@ optimized_final_phase:
  * @param rbp_register RBP寄存器值，用于起始位置
  * @param r15_register R15寄存器值，用于结果存储
  */
-void optimized_partition_sort(uint64_t base_ptr, longlong size_param, longlong r11_register,
+void optimized_partition_sort(uint64_t base_ptr, int64_t size_param, int64_t r11_register,
                              uint64_t *r10_register, uint64_t *rsi_register, 
                              uint64_t *rbp_register, uint64_t *r15_register)
 {
-  longlong block_size;
+  int64_t block_size;
   int left_compare_value;
   int right_compare_value;
   bool comparison_result;
@@ -708,8 +708,8 @@ void optimized_partition_sort(uint64_t base_ptr, longlong size_param, longlong r
   uint64_t *compare_ptr;
   uint64_t *swap_ptr;
   uint64_t *temp_ptr;
-  longlong partition_size;
-  longlong block_offset;
+  int64_t partition_size;
+  int64_t block_offset;
   
   // 使用R11寄存器进行块大小计算
   block_size = r11_register >> 3;
@@ -718,10 +718,10 @@ void optimized_partition_sort(uint64_t base_ptr, longlong size_param, longlong r
   
   // 多路分区初始化
   func_0x000180204980(base_ptr, partition_size, block_size * 0x20 + size_param);
-  func_0x000180204980((longlong)r10_register - block_offset, r10_register, 
-                      block_offset + (longlong)r10_register);
+  func_0x000180204980((int64_t)r10_register - block_offset, r10_register, 
+                      block_offset + (int64_t)r10_register);
   
-  block_offset = (longlong)rsi_register + (-0x10 - block_offset);
+  block_offset = (int64_t)rsi_register + (-0x10 - block_offset);
   func_0x000180204980(rsi_register + block_size * -4 + -2, block_offset, rsi_register + -2);
   func_0x000180204980(partition_size, r10_register, block_offset);
   
@@ -734,8 +734,8 @@ void optimized_partition_sort(uint64_t base_ptr, longlong size_param, longlong r
       right_compare_value = *(int *)(r10_register + 1);
       
       if (left_compare_value == right_compare_value) {
-        comparison_result = *(int *)((longlong)r10_register + -4) < 
-                           *(int *)((longlong)r10_register + 0xc);
+        comparison_result = *(int *)((int64_t)r10_register + -4) < 
+                           *(int *)((int64_t)r10_register + 0xc);
       }
       else {
         comparison_result = right_compare_value < left_compare_value;
@@ -743,8 +743,8 @@ void optimized_partition_sort(uint64_t base_ptr, longlong size_param, longlong r
       if (comparison_result) break;
       
       if (right_compare_value == left_compare_value) {
-        comparison_result = *(int *)((longlong)r10_register + 0xc) < 
-                           *(int *)((longlong)r10_register + -4);
+        comparison_result = *(int *)((int64_t)r10_register + 0xc) < 
+                           *(int *)((int64_t)r10_register + -4);
       }
       else {
         comparison_result = left_compare_value < right_compare_value;
@@ -762,8 +762,8 @@ void optimized_partition_sort(uint64_t base_ptr, longlong size_param, longlong r
     while( true ) {
       right_compare_value = *(int *)(right_ptr + 1);
       if (right_compare_value == left_compare_value) {
-        comparison_result = *(int *)((longlong)right_ptr + 0xc) < 
-                           *(int *)((longlong)r10_register + 0xc);
+        comparison_result = *(int *)((int64_t)right_ptr + 0xc) < 
+                           *(int *)((int64_t)r10_register + 0xc);
       }
       else {
         comparison_result = left_compare_value < right_compare_value;
@@ -772,8 +772,8 @@ void optimized_partition_sort(uint64_t base_ptr, longlong size_param, longlong r
       if (comparison_result) break;
       
       if (left_compare_value == right_compare_value) {
-        comparison_result = *(int *)((longlong)r10_register + 0xc) < 
-                           *(int *)((longlong)right_ptr + 0xc);
+        comparison_result = *(int *)((int64_t)r10_register + 0xc) < 
+                           *(int *)((int64_t)right_ptr + 0xc);
       }
       else {
         comparison_result = right_compare_value < left_compare_value;
@@ -795,8 +795,8 @@ r11_final_phase:
         right_compare_value = *(int *)(scan_ptr + 1);
         
         if (left_compare_value == right_compare_value) {
-          comparison_result = *(int *)((longlong)temp_ptr + -4) < 
-                             *(int *)((longlong)scan_ptr + 0xc);
+          comparison_result = *(int *)((int64_t)temp_ptr + -4) < 
+                             *(int *)((int64_t)scan_ptr + 0xc);
         }
         else {
           comparison_result = right_compare_value < left_compare_value;
@@ -805,8 +805,8 @@ r11_final_phase:
         compare_ptr = scan_ptr;
         if (!comparison_result) {
           if (right_compare_value == left_compare_value) {
-            comparison_result = *(int *)((longlong)scan_ptr + 0xc) < 
-                               *(int *)((longlong)temp_ptr + -4);
+            comparison_result = *(int *)((int64_t)scan_ptr + 0xc) < 
+                               *(int *)((int64_t)temp_ptr + -4);
           }
           else {
             comparison_result = left_compare_value < right_compare_value;
@@ -903,8 +903,8 @@ r11_final_phase:
     left_compare_value = *(int *)(scan_ptr + 1);
     right_compare_value = *(int *)(right_ptr + 1);
     if (left_compare_value == right_compare_value) {
-      comparison_result = *(int *)((longlong)scan_ptr + 0xc) < 
-                         *(int *)((longlong)right_ptr + 0xc);
+      comparison_result = *(int *)((int64_t)scan_ptr + 0xc) < 
+                         *(int *)((int64_t)right_ptr + 0xc);
     }
     else {
       comparison_result = right_compare_value < left_compare_value;
@@ -913,8 +913,8 @@ r11_final_phase:
     middle_ptr = left_ptr;
     if (!comparison_result) {
       if (right_compare_value == left_compare_value) {
-        comparison_result = *(int *)((longlong)right_ptr + 0xc) < 
-                           *(int *)((longlong)scan_ptr + 0xc);
+        comparison_result = *(int *)((int64_t)right_ptr + 0xc) < 
+                           *(int *)((int64_t)scan_ptr + 0xc);
       }
       else {
         comparison_result = left_compare_value < right_compare_value;
@@ -951,7 +951,7 @@ r11_final_phase:
  * @param rbp_register RBP寄存器值，用于起始位置
  * @param r15_register R15寄存器值，用于结果存储
  */
-void simplified_sort_function(uint64_t base_ptr, int32_t range_param, longlong end_param,
+void simplified_sort_function(uint64_t base_ptr, int32_t range_param, int64_t end_param,
                              uint64_t *r10_register, uint64_t *rsi_register, 
                              uint64_t *rbp_register, uint64_t *r15_register)
 {
@@ -982,8 +982,8 @@ void simplified_sort_function(uint64_t base_ptr, int32_t range_param, longlong e
       right_compare_value = *(int *)(r10_register + 1);
       
       if (left_compare_value == right_compare_value) {
-        comparison_result = *(int *)((longlong)r10_register + -4) < 
-                           *(int *)((longlong)r10_register + 0xc);
+        comparison_result = *(int *)((int64_t)r10_register + -4) < 
+                           *(int *)((int64_t)r10_register + 0xc);
       }
       else {
         comparison_result = right_compare_value < left_compare_value;
@@ -991,8 +991,8 @@ void simplified_sort_function(uint64_t base_ptr, int32_t range_param, longlong e
       if (comparison_result) break;
       
       if (right_compare_value == left_compare_value) {
-        comparison_result = *(int *)((longlong)r10_register + 0xc) < 
-                           *(int *)((longlong)r10_register + -4);
+        comparison_result = *(int *)((int64_t)r10_register + 0xc) < 
+                           *(int *)((int64_t)r10_register + -4);
       }
       else {
         comparison_result = left_compare_value < right_compare_value;
@@ -1010,8 +1010,8 @@ void simplified_sort_function(uint64_t base_ptr, int32_t range_param, longlong e
     while( true ) {
       right_compare_value = *(int *)(right_ptr + 1);
       if (right_compare_value == left_compare_value) {
-        comparison_result = *(int *)((longlong)right_ptr + 0xc) < 
-                           *(int *)((longlong)r10_register + 0xc);
+        comparison_result = *(int *)((int64_t)right_ptr + 0xc) < 
+                           *(int *)((int64_t)r10_register + 0xc);
       }
       else {
         comparison_result = left_compare_value < right_compare_value;
@@ -1020,8 +1020,8 @@ void simplified_sort_function(uint64_t base_ptr, int32_t range_param, longlong e
       if (comparison_result) break;
       
       if (left_compare_value == right_compare_value) {
-        comparison_result = *(int *)((longlong)r10_register + 0xc) < 
-                           *(int *)((longlong)right_ptr + 0xc);
+        comparison_result = *(int *)((int64_t)r10_register + 0xc) < 
+                           *(int *)((int64_t)right_ptr + 0xc);
       }
       else {
         comparison_result = right_compare_value < left_compare_value;
@@ -1043,8 +1043,8 @@ simplified_final_phase:
         right_compare_value = *(int *)(scan_ptr + 1);
         
         if (left_compare_value == right_compare_value) {
-          comparison_result = *(int *)((longlong)temp_ptr + -4) < 
-                             *(int *)((longlong)scan_ptr + 0xc);
+          comparison_result = *(int *)((int64_t)temp_ptr + -4) < 
+                             *(int *)((int64_t)scan_ptr + 0xc);
         }
         else {
           comparison_result = right_compare_value < left_compare_value;
@@ -1053,8 +1053,8 @@ simplified_final_phase:
         compare_ptr = scan_ptr;
         if (!comparison_result) {
           if (right_compare_value == left_compare_value) {
-            comparison_result = *(int *)((longlong)scan_ptr + 0xc) < 
-                               *(int *)((longlong)temp_ptr + -4);
+            comparison_result = *(int *)((int64_t)scan_ptr + 0xc) < 
+                               *(int *)((int64_t)temp_ptr + -4);
           }
           else {
             comparison_result = left_compare_value < right_compare_value;
@@ -1151,8 +1151,8 @@ simplified_final_phase:
     left_compare_value = *(int *)(scan_ptr + 1);
     right_compare_value = *(int *)(right_ptr + 1);
     if (left_compare_value == right_compare_value) {
-      comparison_result = *(int *)((longlong)scan_ptr + 0xc) < 
-                         *(int *)((longlong)right_ptr + 0xc);
+      comparison_result = *(int *)((int64_t)scan_ptr + 0xc) < 
+                         *(int *)((int64_t)right_ptr + 0xc);
     }
     else {
       comparison_result = right_compare_value < left_compare_value;
@@ -1161,8 +1161,8 @@ simplified_final_phase:
     middle_ptr = left_ptr;
     if (!comparison_result) {
       if (right_compare_value == left_compare_value) {
-        comparison_result = *(int *)((longlong)right_ptr + 0xc) < 
-                           *(int *)((longlong)scan_ptr + 0xc);
+        comparison_result = *(int *)((int64_t)right_ptr + 0xc) < 
+                           *(int *)((int64_t)scan_ptr + 0xc);
       }
       else {
         comparison_result = left_compare_value < right_compare_value;

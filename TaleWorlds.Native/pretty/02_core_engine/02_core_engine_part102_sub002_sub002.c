@@ -36,8 +36,8 @@
 // 外部调用函数
 extern void func_0x00018011f7e0(uint64_t param1, int param2, int param3, int param4);
 extern void func_0x00018011f830(uint64_t param1, uint param2, uint param3, uint param4);
-extern void func_0x00018011f880(uint64_t param1, longlong param2, longlong param3, longlong param4);
-extern void func_0x00018011f8d0(uint64_t param1, ulonglong param2, ulonglong param3, ulonglong param4);
+extern void func_0x00018011f880(uint64_t param1, int64_t param2, int64_t param3, int64_t param4);
+extern void func_0x00018011f8d0(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4);
 extern void func_0x00018011f940(uint64_t param1, float param2, float param3, float param4);
 extern void func_0x00018011f9b0(uint64_t param1, double param2, float param3, int32_t param4);
 
@@ -46,8 +46,8 @@ extern int func_0x0001801140c0(uint64_t param1);
 extern uint64_t FUN_180131aa0(float param1, int param2, int param3, int param4, int param5);
 extern int FUN_18011f3e0(uint64_t param1);
 extern uint FUN_18011f480(uint64_t param1);
-extern longlong FUN_18011f520(uint64_t param1);
-extern ulonglong FUN_18011f5c0(uint64_t param1, int param2, longlong param3);
+extern int64_t FUN_18011f520(uint64_t param1);
+extern uint64_t FUN_18011f5c0(uint64_t param1, int param2, int64_t param3);
 extern float FUN_18011f690(uint64_t param1, float param2, float param3);
 extern double FUN_18011f740(uint64_t param1, float param2, double param3);
 
@@ -91,7 +91,7 @@ uint8_t calculate_integer_interpolation_bounds(float *rect_coords, int type_id, 
     float width, max_width, half_width, center_x;
     float adjusted_width, scale_factor, interpolation_factor;
     int range_diff, current_type, new_value;
-    longlong global_context;
+    int64_t global_context;
     float temp_array[2];
     uint8_t status_flag = 0;
     
@@ -257,7 +257,7 @@ uint8_t calculate_uint_interpolation_bounds(float *rect_coords, int type_id, uin
     float adjusted_width, scale_factor, interpolation_factor;
     int range_diff, current_type;
     uint new_value, current_uint;
-    longlong global_context;
+    int64_t global_context;
     float temp_array[2];
     uint8_t status_flag = 0;
     
@@ -415,14 +415,14 @@ process_uint_interpolation:
  * @return uint8_t - 返回操作状态标志
  */
 uint8_t calculate_longlong_interpolation_bounds(float *rect_coords, int type_id, uint64_t param3,
-                                               longlong *current_value, longlong range_start, longlong range_end,
+                                               int64_t *current_value, int64_t range_start, int64_t range_end,
                                                uint64_t param7, uint64_t param8, uint64_t param9,
                                                float *result_coords)
 {
     float width, max_width, half_width, center_x;
     float adjusted_width, scale_factor, interpolation_factor;
     int current_type;
-    longlong range_diff, new_value, clamped_value, global_context;
+    int64_t range_diff, new_value, clamped_value, global_context;
     float temp_value;
     uint64_t temp_param;
     uint8_t status_flag = 0;
@@ -582,15 +582,15 @@ process_longlong_interpolation:
  * @return uint8_t - 返回操作状态标志
  */
 uint8_t calculate_ulonglong_interpolation_bounds(float *rect_coords, int type_id, uint64_t param3,
-                                                ulonglong *current_value, ulonglong range_start, ulonglong range_end,
+                                                uint64_t *current_value, uint64_t range_start, uint64_t range_end,
                                                 uint64_t param7, uint64_t param8, uint64_t param9,
                                                 float *result_coords)
 {
     float width, max_width, half_width, center_x;
     float adjusted_width, scale_factor, interpolation_factor;
     int current_type;
-    longlong range_diff, global_context;
-    ulonglong current_ulong, clamped_value, new_value;
+    int64_t range_diff, global_context;
+    uint64_t current_ulong, clamped_value, new_value;
     float temp_value, range_start_float, range_end_float;
     uint64_t temp_param;
     double range_diff_double, range_total_double, clamped_diff_double;
@@ -605,7 +605,7 @@ uint8_t calculate_ulonglong_interpolation_bounds(float *rect_coords, int type_id
     }
     
     // 转换为浮点数处理
-    range_start_float = (float)(longlong)range_start;
+    range_start_float = (float)(int64_t)range_start;
     adjusted_width = (width - *rect_coords) - 4.0;
     max_width = adjusted_width;
     
@@ -618,7 +618,7 @@ uint8_t calculate_ulonglong_interpolation_bounds(float *rect_coords, int type_id
     center_x = *rect_coords + 2.0 + half_width;
     
     // 处理负数范围起始值
-    if ((longlong)range_start < 0) {
+    if ((int64_t)range_start < 0) {
         range_start_float = range_start_float + 1.8446744e+19;
     }
     
@@ -734,8 +734,8 @@ uint8_t calculate_ulonglong_interpolation_bounds(float *rect_coords, int type_id
     }
     
     // 计算插值参数
-    temp_value = (float)(longlong)(range_end - range_start);
-    if ((longlong)(range_end - range_start) < 0) {
+    temp_value = (float)(int64_t)(range_end - range_start);
+    if ((int64_t)(range_end - range_start) < 0) {
         temp_value = temp_value + 1.8446744e+19;
     }
     
@@ -749,7 +749,7 @@ uint8_t calculate_ulonglong_interpolation_bounds(float *rect_coords, int type_id
     }
     
     // 获取新值
-    new_value = FUN_18011f5c0(param7, 0x5f000000, (longlong)range_start_float + range_diff);
+    new_value = FUN_18011f5c0(param7, 0x5f000000, (int64_t)range_start_float + range_diff);
     if (*current_value != new_value) {
         *current_value = new_value;
         status_flag = 1;
@@ -772,13 +772,13 @@ process_ulonglong_interpolation:
         }
         
         // 计算插值因子
-        clamped_diff_double = (double)(longlong)(clamped_value - range_start);
-        if ((longlong)(clamped_value - range_start) < 0) {
+        clamped_diff_double = (double)(int64_t)(clamped_value - range_start);
+        if ((int64_t)(clamped_value - range_start) < 0) {
             clamped_diff_double = clamped_diff_double + 1.8446744073709552e+19;
         }
         
-        range_total_double = (double)(longlong)(range_end - range_start);
-        if ((longlong)(range_end - range_start) < 0) {
+        range_total_double = (double)(int64_t)(range_end - range_start);
+        if ((int64_t)(range_end - range_start) < 0) {
             range_total_double = range_total_double + 1.8446744073709552e+19;
         }
         
@@ -820,7 +820,7 @@ uint8_t calculate_float_interpolation_bounds(float param1, int type_id, uint64_t
     float width, max_width, half_width, center_x;
     float adjusted_width, range_diff, scale_factor, interpolation_factor;
     int current_type;
-    longlong global_context;
+    int64_t global_context;
     float *rect_coords;
     int8_t status_flag = 0;
     float temp_array[2];
@@ -979,10 +979,10 @@ process_float_interpolation:
 char process_float_interpolation_helper(float param1, float param2)
 {
     int render_mode, current_type, temp_int;
-    longlong global_context;
+    int64_t global_context;
     float *current_value_ptr;
     int type_id;
-    longlong context_value;
+    int64_t context_value;
     char status_flag;
     float scale_factor, temp_float;
     uint64_t temp_param;
@@ -1118,7 +1118,7 @@ uint8_t calculate_float_bounds_simple(uint64_t param1)
 {
     float interpolation_factor, width, height;
     uint64_t *current_value_ptr;
-    longlong context_value;
+    int64_t context_value;
     int8_t status_flag;
     float center_x, temp_value;
     float *result_ptr;
@@ -1159,7 +1159,7 @@ uint8_t calculate_double_interpolation_bounds(float *rect_coords, int type_id, u
     float adjusted_width, range_diff_float, scale_factor, interpolation_factor;
     double range_diff, dVar5, dVar6;
     int current_type;
-    longlong global_context;
+    int64_t global_context;
     int8_t status_flag = 0;
     double temp_value;
     int32_t temp_param;
@@ -1258,11 +1258,11 @@ uint8_t calculate_double_interpolation_bounds(float *rect_coords, int type_id, u
             if (((-100.0 <= range_diff) && (range_diff <= 100.0)) || 
                 (0.0 < *(float *)(global_context + SCALE_FACTOR_OFFSET_1))) {
                 if (0.0 <= range_diff_float) {
-                    temp_value = (double)(ulonglong)(uint)(float)range_diff;
+                    temp_value = (double)(uint64_t)(uint)(float)range_diff;
                     range_diff_float = 1.0 / (float)range_diff;
                 }
                 else {
-                    temp_value = (double)(ulonglong)(uint)(float)range_diff;
+                    temp_value = (double)(uint64_t)(uint)(float)range_diff;
                     range_diff_float = -1.0 / (float)range_diff;
                 }
             }
@@ -1325,10 +1325,10 @@ process_double_interpolation:
 char process_double_interpolation_helper(double param1, uint64_t param2)
 {
     int render_mode, temp_int;
-    longlong global_context;
+    int64_t global_context;
     double *current_value_ptr;
     int type_id;
-    longlong context_value;
+    int64_t context_value;
     char status_flag;
     float scale_factor, temp_float;
     int32_t temp_param;
@@ -1472,7 +1472,7 @@ uint8_t calculate_double_bounds_simple(uint64_t param1)
 {
     float interpolation_factor, width, height;
     uint64_t *current_value_ptr;
-    longlong context_value;
+    int64_t context_value;
     int8_t status_flag;
     float center_x, temp_value;
     float *result_ptr;

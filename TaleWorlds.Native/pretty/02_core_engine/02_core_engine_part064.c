@@ -16,9 +16,9 @@
  */
 void allocate_and_initialize_data_block(void)
 {
-  longlong allocated_block;
+  int64_t allocated_block;
   int32_t *source_data;
-  longlong parameter_struct;
+  int64_t parameter_struct;
   
   // 分配0x28字节的内存块
   allocated_block = memory_allocate_and_init(global_data_allocator, 0x28, *(int8_t *)(parameter_struct + 0x28));
@@ -41,9 +41,9 @@ void allocate_and_initialize_data_block(void)
  */
 void allocate_and_initialize_data_block_variant1(void)
 {
-  longlong allocated_block;
+  int64_t allocated_block;
   int32_t *source_data;
-  longlong parameter_struct;
+  int64_t parameter_struct;
   
   allocated_block = memory_allocate_and_init(global_data_allocator, 0x28, *(int8_t *)(parameter_struct + 0x28));
   *(int32_t *)(allocated_block + 0x20) = *source_data;
@@ -57,9 +57,9 @@ void allocate_and_initialize_data_block_variant1(void)
  */
 void allocate_and_initialize_data_block_variant2(void)
 {
-  longlong allocated_block;
+  int64_t allocated_block;
   int32_t *source_data;
-  longlong parameter_struct;
+  int64_t parameter_struct;
   
   allocated_block = memory_allocate_and_init(global_data_allocator, 0x28, *(int8_t *)(parameter_struct + 0x28));
   *(int32_t *)(allocated_block + 0x20) = *source_data;
@@ -73,9 +73,9 @@ void allocate_and_initialize_data_block_variant2(void)
  */
 void allocate_and_initialize_data_block_variant3(void)
 {
-  longlong allocated_block;
+  int64_t allocated_block;
   int32_t *source_data;
-  longlong parameter_struct;
+  int64_t parameter_struct;
   
   allocated_block = memory_allocate_and_init(global_data_allocator, 0x28, *(int8_t *)(parameter_struct + 0x28));
   *(int32_t *)(allocated_block + 0x20) = *source_data;
@@ -93,9 +93,9 @@ void allocate_and_initialize_data_block_variant3(void)
  */
 void allocate_and_initialize_data_block_variant4(void)
 {
-  longlong allocated_block;
+  int64_t allocated_block;
   int32_t *source_data;
-  longlong parameter_struct;
+  int64_t parameter_struct;
   
   allocated_block = memory_allocate_and_init(global_data_allocator, 0x28, *(int8_t *)(parameter_struct + 0x28));
   *(int32_t *)(allocated_block + 0x20) = *source_data;
@@ -109,9 +109,9 @@ void allocate_and_initialize_data_block_variant4(void)
  */
 void allocate_and_initialize_data_block_variant5(void)
 {
-  longlong allocated_block;
+  int64_t allocated_block;
   int32_t *source_data;
-  longlong parameter_struct;
+  int64_t parameter_struct;
   
   allocated_block = memory_allocate_and_init(global_data_allocator, 0x28, *(int8_t *)(parameter_struct + 0x28));
   *(int32_t *)(allocated_block + 0x20) = *source_data;
@@ -125,9 +125,9 @@ void allocate_and_initialize_data_block_variant5(void)
  */
 void allocate_and_initialize_data_block_variant6(void)
 {
-  longlong allocated_block;
+  int64_t allocated_block;
   int32_t *source_data;
-  longlong parameter_struct;
+  int64_t parameter_struct;
   
   allocated_block = memory_allocate_and_init(global_data_allocator, 0x28, *(int8_t *)(parameter_struct + 0x28));
   *(int32_t *)(allocated_block + 0x20) = *source_data;
@@ -141,9 +141,9 @@ void allocate_and_initialize_data_block_variant6(void)
  */
 void allocate_and_initialize_data_block_variant7(void)
 {
-  longlong allocated_block;
+  int64_t allocated_block;
   int32_t *source_data;
-  longlong parameter_struct;
+  int64_t parameter_struct;
   
   allocated_block = memory_allocate_and_init(global_data_allocator, 0x28, *(int8_t *)(parameter_struct + 0x28));
   *(int32_t *)(allocated_block + 0x20) = *source_data;
@@ -161,9 +161,9 @@ void allocate_and_initialize_data_block_variant7(void)
  */
 void allocate_and_initialize_data_block_variant8(void)
 {
-  longlong allocated_block;
+  int64_t allocated_block;
   int32_t *source_data;
-  longlong parameter_struct;
+  int64_t parameter_struct;
   
   allocated_block = memory_allocate_and_init(global_data_allocator, 0x28, *(int8_t *)(parameter_struct + 0x28));
   *(int32_t *)(allocated_block + 0x20) = *source_data;
@@ -177,9 +177,9 @@ void allocate_and_initialize_data_block_variant8(void)
  */
 void allocate_and_initialize_data_block_variant9(void)
 {
-  longlong allocated_block;
+  int64_t allocated_block;
   int32_t *source_data;
-  longlong parameter_struct;
+  int64_t parameter_struct;
   
   allocated_block = memory_allocate_and_init(global_data_allocator, 0x28, *(int8_t *)(parameter_struct + 0x28));
   *(int32_t *)(allocated_block + 0x20) = *source_data;
@@ -193,9 +193,9 @@ void allocate_and_initialize_data_block_variant9(void)
  */
 void allocate_and_initialize_data_block_variant10(void)
 {
-  longlong allocated_block;
+  int64_t allocated_block;
   int32_t *source_data;
-  longlong parameter_struct;
+  int64_t parameter_struct;
   
   allocated_block = memory_allocate_and_init(global_data_allocator, 0x28, *(int8_t *)(parameter_struct + 0x28));
   *(int32_t *)(allocated_block + 0x20) = *source_data;
@@ -209,9 +209,9 @@ void allocate_and_initialize_data_block_variant10(void)
  */
 void allocate_and_initialize_data_block_variant11(void)
 {
-  longlong allocated_block;
+  int64_t allocated_block;
   int32_t *source_data;
-  longlong parameter_struct;
+  int64_t parameter_struct;
   
   allocated_block = memory_allocate_and_init(global_data_allocator, 0x28, *(int8_t *)(parameter_struct + 0x28));
   *(int32_t *)(allocated_block + 0x20) = *source_data;
@@ -229,9 +229,9 @@ void allocate_and_initialize_data_block_variant11(void)
  */
 void allocate_and_initialize_data_block_variant12(void)
 {
-  longlong allocated_block;
+  int64_t allocated_block;
   int32_t *source_data;
-  longlong parameter_struct;
+  int64_t parameter_struct;
   
   allocated_block = memory_allocate_and_init(global_data_allocator, 0x28, *(int8_t *)(parameter_struct + 0x28));
   *(int32_t *)(allocated_block + 0x20) = *source_data;
@@ -245,9 +245,9 @@ void allocate_and_initialize_data_block_variant12(void)
  */
 void allocate_and_initialize_data_block_variant13(void)
 {
-  longlong allocated_block;
+  int64_t allocated_block;
   int32_t *source_data;
-  longlong parameter_struct;
+  int64_t parameter_struct;
   
   allocated_block = memory_allocate_and_init(global_data_allocator, 0x28, *(int8_t *)(parameter_struct + 0x28));
   *(int32_t *)(allocated_block + 0x20) = *source_data;
@@ -261,9 +261,9 @@ void allocate_and_initialize_data_block_variant13(void)
  */
 void allocate_and_initialize_data_block_variant14(void)
 {
-  longlong allocated_block;
+  int64_t allocated_block;
   int32_t *source_data;
-  longlong parameter_struct;
+  int64_t parameter_struct;
   
   allocated_block = memory_allocate_and_init(global_data_allocator, 0x28, *(int8_t *)(parameter_struct + 0x28));
   *(int32_t *)(allocated_block + 0x20) = *source_data;
@@ -277,9 +277,9 @@ void allocate_and_initialize_data_block_variant14(void)
  */
 void allocate_and_initialize_data_block_variant15(void)
 {
-  longlong allocated_block;
+  int64_t allocated_block;
   int32_t *source_data;
-  longlong parameter_struct;
+  int64_t parameter_struct;
   
   allocated_block = memory_allocate_and_init(global_data_allocator, 0x28, *(int8_t *)(parameter_struct + 0x28));
   *(int32_t *)(allocated_block + 0x20) = *source_data;
@@ -297,9 +297,9 @@ void allocate_and_initialize_data_block_variant15(void)
  */
 void allocate_and_initialize_data_block_variant16(void)
 {
-  longlong allocated_block;
+  int64_t allocated_block;
   int32_t *source_data;
-  longlong parameter_struct;
+  int64_t parameter_struct;
   
   allocated_block = memory_allocate_and_init(global_data_allocator, 0x28, *(int8_t *)(parameter_struct + 0x28));
   *(int32_t *)(allocated_block + 0x20) = *source_data;
@@ -313,9 +313,9 @@ void allocate_and_initialize_data_block_variant16(void)
  */
 void allocate_and_initialize_data_block_variant17(void)
 {
-  longlong allocated_block;
+  int64_t allocated_block;
   int32_t *source_data;
-  longlong parameter_struct;
+  int64_t parameter_struct;
   
   allocated_block = memory_allocate_and_init(global_data_allocator, 0x28, *(int8_t *)(parameter_struct + 0x28));
   *(int32_t *)(allocated_block + 0x20) = *source_data;
@@ -329,9 +329,9 @@ void allocate_and_initialize_data_block_variant17(void)
  */
 void allocate_and_initialize_data_block_variant18(void)
 {
-  longlong allocated_block;
+  int64_t allocated_block;
   int32_t *source_data;
-  longlong parameter_struct;
+  int64_t parameter_struct;
   
   allocated_block = memory_allocate_and_init(global_data_allocator, 0x28, *(int8_t *)(parameter_struct + 0x28));
   *(int32_t *)(allocated_block + 0x20) = *source_data;
@@ -345,9 +345,9 @@ void allocate_and_initialize_data_block_variant18(void)
  */
 void allocate_and_initialize_data_block_variant19(void)
 {
-  longlong allocated_block;
+  int64_t allocated_block;
   int32_t *source_data;
-  longlong parameter_struct;
+  int64_t parameter_struct;
   
   allocated_block = memory_allocate_and_init(global_data_allocator, 0x28, *(int8_t *)(parameter_struct + 0x28));
   *(int32_t *)(allocated_block + 0x20) = *source_data;
@@ -365,9 +365,9 @@ void allocate_and_initialize_data_block_variant19(void)
  */
 void allocate_and_initialize_data_block_variant20(void)
 {
-  longlong allocated_block;
+  int64_t allocated_block;
   int32_t *source_data;
-  longlong parameter_struct;
+  int64_t parameter_struct;
   
   allocated_block = memory_allocate_and_init(global_data_allocator, 0x28, *(int8_t *)(parameter_struct + 0x28));
   *(int32_t *)(allocated_block + 0x20) = *source_data;
@@ -381,9 +381,9 @@ void allocate_and_initialize_data_block_variant20(void)
  */
 void allocate_and_initialize_data_block_variant21(void)
 {
-  longlong allocated_block;
+  int64_t allocated_block;
   int32_t *source_data;
-  longlong parameter_struct;
+  int64_t parameter_struct;
   
   allocated_block = memory_allocate_and_init(global_data_allocator, 0x28, *(int8_t *)(parameter_struct + 0x28));
   *(int32_t *)(allocated_block + 0x20) = *source_data;
@@ -397,9 +397,9 @@ void allocate_and_initialize_data_block_variant21(void)
  */
 void allocate_and_initialize_data_block_variant22(void)
 {
-  longlong allocated_block;
+  int64_t allocated_block;
   int32_t *source_data;
-  longlong parameter_struct;
+  int64_t parameter_struct;
   
   allocated_block = memory_allocate_and_init(global_data_allocator, 0x28, *(int8_t *)(parameter_struct + 0x28));
   *(int32_t *)(allocated_block + 0x20) = *source_data;
@@ -420,11 +420,11 @@ void allocate_and_initialize_data_block_variant22(void)
 // =============================================================================
 
 // 内存分配和初始化函数
-// longlong memory_allocate_and_init(void *allocator, uint size, uint init_param);
+// int64_t memory_allocate_and_init(void *allocator, uint size, uint init_param);
 // 功能：分配指定大小的内存并进行初始化
 
 // 数据块处理函数
-// void process_allocated_block(longlong block);
+// void process_allocated_block(int64_t block);
 // 功能：处理已分配的数据块（函数不返回）
 
 // =============================================================================

@@ -6,15 +6,15 @@
 
 // 函数：处理字符串比较和内存分配
 // 原始函数名：FUN_18013f4b0
-void process_string_comparison_and_memory_allocation(longlong context_ptr, uint64_t param_2, 
-                                                    longlong target_ptr, uint64_t flag_param,
-                                                    longlong source_ptr)
+void process_string_comparison_and_memory_allocation(int64_t context_ptr, uint64_t param_2, 
+                                                    int64_t target_ptr, uint64_t flag_param,
+                                                    int64_t source_ptr)
 {
   byte current_char;
   byte *string_ptr;
   uint char_value;
   int32_t comparison_result;
-  longlong allocated_memory;
+  int64_t allocated_memory;
   
   // 检查标志位和指针有效性
   if (((char)flag_param == '\0') && (target_ptr != context_ptr)) {
@@ -25,7 +25,7 @@ void process_string_comparison_and_memory_allocation(longlong context_ptr, uint6
     }
     if (*(int *)(source_ptr + 0x10) != 0) {
       string_ptr = *(byte **)(target_ptr + 0x28);
-      allocated_memory = *(longlong *)(source_ptr + 8) - (longlong)string_ptr;
+      allocated_memory = *(int64_t *)(source_ptr + 8) - (int64_t)string_ptr;
       // 执行字符串比较
       do {
         current_char = *string_ptr;
@@ -51,14 +51,14 @@ finalize_allocation:
 
 // 函数：构建格式化字符串缓冲区
 // 原始函数名：FUN_18013f590
-uint64_t *build_formatted_string_buffer(longlong data_source, uint64_t *buffer_ptr, 
+uint64_t *build_formatted_string_buffer(int64_t data_source, uint64_t *buffer_ptr, 
                                          uint64_t param_3, uint64_t param_4)
 {
   int item_count;
-  longlong base_offset;
+  int64_t base_offset;
   uint loop_counter;
-  ulonglong total_items;
-  ulonglong current_index;
+  uint64_t total_items;
+  uint64_t current_index;
   int32_t format_flag;
   uint64_t separator_flag;
   
@@ -72,41 +72,41 @@ uint64_t *build_formatted_string_buffer(longlong data_source, uint64_t *buffer_p
   buffer_ptr[1] = 0;
   *(int32_t *)(buffer_ptr + 2) = 0;
   format_flag = 1;
-  base_offset = *(longlong *)(data_source + 0x888);
+  base_offset = *(int64_t *)(data_source + 0x888);
   current_index = total_items;
   // 处理数据项循环
-  if (*(longlong *)(data_source + 0x890) - base_offset >> 5 != 1) {
+  if (*(int64_t *)(data_source + 0x890) - base_offset >> 5 != 1) {
     do {
       item_count = *(int *)(current_index + 0x10 + base_offset);
       if (0 < item_count) {
         expand_buffer_capacity(buffer_ptr, *(int *)(buffer_ptr + 2) + item_count);
         // 复制数据到缓冲区（不返回）
-        copy_data_to_buffer((ulonglong)*(uint *)(buffer_ptr + 2) + buffer_ptr[1], 
+        copy_data_to_buffer((uint64_t)*(uint *)(buffer_ptr + 2) + buffer_ptr[1], 
                            *(uint64_t *)(current_index + 8 + base_offset),
-                           (longlong)(*(int *)(current_index + 0x10 + base_offset) + 1), 
+                           (int64_t)(*(int *)(current_index + 0x10 + base_offset) + 1), 
                            param_4, format_flag, separator_flag);
       }
       item_count = *(int *)(buffer_ptr + 2) + 1;
       expand_buffer_capacity(buffer_ptr, item_count);
       // 添加分隔符
-      *(int16_t *)((ulonglong)*(uint *)(buffer_ptr + 2) + buffer_ptr[1]) = 0x2a; // '*'
+      *(int16_t *)((uint64_t)*(uint *)(buffer_ptr + 2) + buffer_ptr[1]) = 0x2a; // '*'
       *(int *)(buffer_ptr + 2) = item_count;
       loop_counter = (int)total_items + 1;
-      total_items = (ulonglong)loop_counter;
-      base_offset = *(longlong *)(data_source + 0x888);
+      total_items = (uint64_t)loop_counter;
+      base_offset = *(int64_t *)(data_source + 0x888);
       current_index = current_index + 0x20;
-    } while ((ulonglong)(longlong)(int)loop_counter < (*(longlong *)(data_source + 0x890) - base_offset >> 5) - 1U);
+    } while ((uint64_t)(int64_t)(int)loop_counter < (*(int64_t *)(data_source + 0x890) - base_offset >> 5) - 1U);
   }
-  base_offset = *(longlong *)(data_source + 0x890);
+  base_offset = *(int64_t *)(data_source + 0x890);
   // 处理最后一项
   if (*(int *)(base_offset + -0x10) < 1) {
     return buffer_ptr;
   }
   expand_buffer_capacity(buffer_ptr, *(int *)(buffer_ptr + 2) + *(int *)(base_offset + -0x10));
   // 复制最后一项数据（不返回）
-  copy_data_to_buffer((ulonglong)*(uint *)(buffer_ptr + 2) + buffer_ptr[1], 
+  copy_data_to_buffer((uint64_t)*(uint *)(buffer_ptr + 2) + buffer_ptr[1], 
                      *(uint64_t *)(base_offset + -0x18),
-                     (longlong)(*(int *)(base_offset + -0x10) + 1));
+                     (int64_t)(*(int *)(base_offset + -0x10) + 1));
 }
 
 
@@ -118,14 +118,14 @@ uint64_t *build_formatted_string_buffer(longlong data_source, uint64_t *buffer_p
 
 // 函数：处理模块路径和配置
 // 原始函数名：FUN_18013f6f0
-void process_module_path_and_configuration(longlong module_context)
+void process_module_path_and_configuration(int64_t module_context)
 {
-  longlong temp_offset;
+  int64_t temp_offset;
   int config_result;
   int32_t string_length;
   uint64_t buffer_handle;
   uint64_t *string_buffer;
-  longlong path_length;
+  int64_t path_length;
   void *default_path;
   int8_t security_buffer [32];
   int32_t operation_flag;
@@ -140,20 +140,20 @@ void process_module_path_and_configuration(longlong module_context)
   int32_t data_size;
   int8_t temp_string [16];
   char path_buffer [256];
-  ulonglong security_hash;
+  uint64_t security_hash;
   
   security_param = 0xfffffffffffffffe;
-  security_hash = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
+  security_hash = GET_SECURITY_COOKIE() ^ (uint64_t)security_buffer;
   operation_flag = 0;
   initialize_module_component(module_context + 0x20, system_main_module_state + 0x290);
   ptr_to_stack_ptr = &stack_ptr;
   buffer_handle = create_string_buffer(&stack_ptr, module_context + 0x20);
   config_result = lookup_configuration_entry(module_context, buffer_handle);
   // 检查配置结果
-  if (*(char *)((longlong)config_result + *(longlong *)(module_context + 0x8c8)) == '\0') {
-    initialize_module_component(module_context + 0x438, (longlong)config_result * 0x20 + *(longlong *)(module_context + 0x888));
+  if (*(char *)((int64_t)config_result + *(int64_t *)(module_context + 0x8c8)) == '\0') {
+    initialize_module_component(module_context + 0x438, (int64_t)config_result * 0x20 + *(int64_t *)(module_context + 0x888));
     // 执行安全检查（不返回）
-    perform_security_check(security_hash ^ (ulonglong)security_buffer);
+    perform_security_check(security_hash ^ (uint64_t)security_buffer);
   }
   stack_ptr = &STRING_TERMINATOR;
   temp_value = 0;
@@ -192,8 +192,8 @@ void process_module_path_and_configuration(longlong module_context)
   // 检查缓冲区容量
   if ((0 < config_result) && (*(uint *)(module_context + 0x448) + config_result < 0x3ff)) {
     // 复制路径数据（不返回）
-    copy_memory_data((ulonglong)*(uint *)(module_context + 0x448) + *(longlong *)(module_context + 0x440), 
-                   path_buffer, (longlong)((int)path_length + 2));
+    copy_memory_data((uint64_t)*(uint *)(module_context + 0x448) + *(int64_t *)(module_context + 0x440), 
+                   path_buffer, (int64_t)((int)path_length + 2));
   }
   stack_ptr = &STRING_TERMINATOR;
   // 释放字符串缓冲区（不返回）
@@ -332,7 +332,7 @@ uint64_t *initialize_data_structure_pointers(uint64_t *data_structure)
 
 // 函数：处理路径规范化
 // 原始函数名：FUN_180141820
-ulonglong process_path_normalization(longlong *path_data)
+uint64_t process_path_normalization(int64_t *path_data)
 {
   char current_char;
   int32_t temp_result;
@@ -344,12 +344,12 @@ ulonglong process_path_normalization(longlong *path_data)
   int16_t *path_separator;
   int8_t *string_buffer;
   int8_t *temp_string_ptr;
-  longlong current_offset;
+  int64_t current_offset;
   uint char_code;
-  ulonglong loop_counter;
-  ulonglong path_length;
-  ulonglong normalized_length;
-  ulonglong total_chars;
+  uint64_t loop_counter;
+  uint64_t path_length;
+  uint64_t normalized_length;
+  uint64_t total_chars;
   void *stack_buffer_c0;
   int8_t *path_string;
   uint path_size;
@@ -357,7 +357,7 @@ ulonglong process_path_normalization(longlong *path_data)
   void *stack_buffer_a0;
   uint64_t *buffer_ptr;
   int32_t buffer_flag;
-  ulonglong buffer_capacity;
+  uint64_t buffer_capacity;
   void *stack_buffer_80;
   int16_t *separator_ptr;
   int32_t separator_size;
@@ -365,7 +365,7 @@ ulonglong process_path_normalization(longlong *path_data)
   void *stack_buffer_60;
   int8_t *char_buffer;
   int32_t char_buffer_size;
-  ulonglong buffer_handle;
+  uint64_t buffer_handle;
   uint64_t security_param;
   
   security_param = 0xfffffffffffffffe;
@@ -410,7 +410,7 @@ ulonglong process_path_normalization(longlong *path_data)
     *string_buffer = *(int8_t *)path_separator;
     char_buffer_size = 1;
     string_buffer[1] = 0;
-    buffer_handle = (ulonglong)buffer_size;
+    buffer_handle = (uint64_t)buffer_size;
     comparison_result = *(int *)(current_offset + 0x10);
     if (comparison_result < 1) {
       if (string_buffer != (int8_t *)0x0) {
@@ -431,7 +431,7 @@ ulonglong process_path_normalization(longlong *path_data)
     }
     // 复制路径数据（不返回）
     copy_memory_data(string_buffer + 1, *(uint64_t *)(current_offset + 8), 
-                   (longlong)(comparison_result + 1));
+                   (int64_t)(comparison_result + 1));
   }
   current_offset = concatenate_string_buffers(&stack_buffer_80, &stack_buffer_c0);
   if (path_string != (int8_t *)0x0) {
@@ -451,12 +451,12 @@ ulonglong process_path_normalization(longlong *path_data)
     release_string_buffer();
   }
   separator_ptr = (int16_t *)0x0;
-  separator_value = (ulonglong)separator_value._4_4_ << 0x20;
+  separator_value = (uint64_t)separator_value._4_4_ << 0x20;
   stack_buffer_80 = &EMPTY_STRING_PTR;
-  normalized_length = (ulonglong)path_size;
+  normalized_length = (uint64_t)path_size;
   // 检查路径结尾
   if (((0 < (int)path_size) && (path_string[(int)(path_size - 1)] == '/')) &&
-     (path_string[(longlong)(int)(path_size - 1) + 1] == '\0')) goto path_complete;
+     (path_string[(int64_t)(int)(path_size - 1) + 1] == '\0')) goto path_complete;
   required_size = path_size + 1;
   if (required_size != 0) {
     buffer_size = path_size + 2;
@@ -465,7 +465,7 @@ ulonglong process_path_normalization(longlong *path_data)
         buffer_size = 0x10;
       }
       path_string = (int8_t *)
-                   allocate_memory_structure(system_memory_pool_ptr, (longlong)(int)buffer_size,
+                   allocate_memory_structure(system_memory_pool_ptr, (int64_t)(int)buffer_size,
                                  CONCAT71((uint7)(uint3)(path_size >> 8), 0x13));
       *path_string = 0;
     }
@@ -475,12 +475,12 @@ ulonglong process_path_normalization(longlong *path_data)
                                                        buffer_size, 0x10, 0x13);
     }
     temp_result = get_string_length(path_string);
-    normalized_length = (ulonglong)path_size;
+    normalized_length = (uint64_t)path_size;
     temp_value = CONCAT44(temp_value._4_4_, temp_result);
   }
 buffer_sufficient:
   *(int16_t *)(path_string + normalized_length) = 0x2f; // "/"
-  normalized_length = (ulonglong)required_size;
+  normalized_length = (uint64_t)required_size;
   path_size = required_size;
 path_complete:
   total_chars = path_length;
@@ -491,10 +491,10 @@ path_complete:
       current_char = path_string[char_code];
       if ((byte)(current_char + 0xbfU) < 0x1a) {
         path_string[char_code] = current_char + ' ';
-        normalized_length = (ulonglong)path_size;
+        normalized_length = (uint64_t)path_size;
       }
       buffer_size = (int)total_chars + 1;
-      total_chars = (ulonglong)buffer_size;
+      total_chars = (uint64_t)buffer_size;
       char_code = char_code + 1;
     } while (buffer_size < (uint)normalized_length);
   }
@@ -511,7 +511,7 @@ path_complete:
         if (string_length < 0x10) {
           string_length = 0x10;
         }
-        string_buffer = (int8_t *)allocate_memory_structure(system_memory_pool_ptr, (longlong)string_length, 0x13);
+        string_buffer = (int8_t *)allocate_memory_structure(system_memory_pool_ptr, (int64_t)string_length, 0x13);
         *string_buffer = 0;
         if (*(int *)(current_offset + 0x10) != 0) {
           // 复制组件数据（不返回）
@@ -519,7 +519,7 @@ path_complete:
                          *(int *)(current_offset + 0x10) + 1);
         }
       }
-      if ((*(longlong *)(current_offset + 8) != 0) && (string_buffer != (int8_t *)0x0)) {
+      if ((*(int64_t *)(current_offset + 8) != 0) && (string_buffer != (int8_t *)0x0)) {
         *string_buffer = 0;
       }
       if ((path_size == 0) || (path_size == 0)) {
@@ -533,10 +533,10 @@ path_complete:
         // 释放字符串缓冲区（不返回）
         release_string_buffer(string_buffer);
       }
-      path_length = (ulonglong)((int)path_length + 1);
+      path_length = (uint64_t)((int)path_length + 1);
       normalized_length = normalized_length + 1;
       total_chars = total_chars + 0x20;
-    } while ((longlong)normalized_length < (longlong)comparison_result);
+    } while ((int64_t)normalized_length < (int64_t)comparison_result);
   }
   path_length = 0xffffffff;
 cleanup_complete:
@@ -560,16 +560,16 @@ cleanup_complete:
 
 // 函数：查找配置条目
 // 原始函数名：FUN_180142220
-int32_t find_configuration_entry(longlong config_context, uint64_t *search_buffer, 
-                                   uint64_t param_3, longlong search_key)
+int32_t find_configuration_entry(int64_t config_context, uint64_t *search_buffer, 
+                                   uint64_t param_3, int64_t search_key)
 {
   int32_t result;
-  longlong *found_entry;
+  int64_t *found_entry;
   uint search_length;
-  ulonglong current_pos;
+  uint64_t current_pos;
   int8_t temp_stack [8];
   uint64_t *buffer_ptr;
-  ulonglong search_index;
+  uint64_t search_index;
   
   search_index = 0;
   current_pos = search_index;
@@ -581,12 +581,12 @@ int32_t find_configuration_entry(longlong config_context, uint64_t *search_buffe
         *(char *)(search_key + current_pos) = *(char *)(search_key + current_pos) + ' ';
       }
       search_length = (int)search_index + 1;
-      search_index = (ulonglong)search_length;
+      search_index = (uint64_t)search_length;
       current_pos = current_pos + 1;
     } while (search_length < *(uint *)(search_buffer + 2));
   }
   buffer_ptr = search_buffer;
-  found_entry = (longlong *)search_configuration_table(config_context + 0x8e8, temp_stack, 
+  found_entry = (int64_t *)search_configuration_table(config_context + 0x8e8, temp_stack, 
                                                       search_buffer, search_key, 0xfffffffffffffffe);
   if (*found_entry == config_context + 0x8e8) {
     *search_buffer = &STRING_TERMINATOR;
@@ -620,17 +620,17 @@ int32_t find_configuration_entry(longlong config_context, uint64_t *search_buffe
 
 // 函数：处理模块配置更新
 // 原始函数名：FUN_180142300
-void process_module_configuration_update(longlong module_context, uint64_t *config_buffer, 
-                                       longlong config_source)
+void process_module_configuration_update(int64_t module_context, uint64_t *config_buffer, 
+                                       int64_t config_source)
 {
   uint buffer_index;
   int32_t temp_result;
   int32_t config_size;
-  ulonglong buffer_capacity;
+  uint64_t buffer_capacity;
   uint path_length;
   int string_length;
   int16_t *path_buffer;
-  longlong source_offset;
+  int64_t source_offset;
   uint64_t temp_value1;
   uint64_t temp_value2;
   int config_length;
@@ -648,11 +648,11 @@ void process_module_configuration_update(longlong module_context, uint64_t *conf
   void *char_buffer;
   int32_t data_size;
   uint8_t temp_string [16];
-  ulonglong security_hash;
-  longlong temp_offset;
+  uint64_t security_hash;
+  int64_t temp_offset;
   
   temp_value = 0xfffffffffffffffe;
-  security_hash = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
+  security_hash = GET_SECURITY_COOKIE() ^ (uint64_t)security_buffer;
   operation_flag = 0;
   stack_ptr = &STRING_TERMINATOR;
   temp_value._0_4_ = 0;
@@ -688,14 +688,14 @@ void process_module_configuration_update(longlong module_context, uint64_t *conf
       temp_value._0_4_ = get_string_length(path_buffer);
     }
     // 复制配置数据（不返回）
-    copy_memory_data((int8_t *)((longlong)path_buffer + 1), default_config, 
-                     (longlong)config_length);
+    copy_memory_data((int8_t *)((int64_t)path_buffer + 1), default_config, 
+                     (int64_t)config_length);
   }
   ptr_to_stack_ptr = &char_buffer;
   temp_value1 = build_config_string(&char_buffer, &stack_ptr);
   string_length = find_configuration_entry(module_context, temp_value1);
   // 检查配置结果
-  if (*(char *)((longlong)string_length + *(longlong *)(module_context + 0x8c8)) == '\0') {
+  if (*(char *)((int64_t)string_length + *(int64_t *)(module_context + 0x8c8)) == '\0') {
     copy_configuration_data(config_buffer, config_source);
     operation_flag = 1;
     stack_ptr = &STRING_TERMINATOR;
@@ -703,7 +703,7 @@ void process_module_configuration_update(longlong module_context, uint64_t *conf
       // 释放字符串缓冲区（不返回）
       release_string_buffer();
     }
-    buffer_capacity = (ulonglong)temp_value._4_4_;
+    buffer_capacity = (uint64_t)temp_value._4_4_;
   }
   else {
     temp_stack_ptr = &ERROR_MESSAGE_PTR;
@@ -754,7 +754,7 @@ void process_module_configuration_update(longlong module_context, uint64_t *conf
     *config_buffer = &STRING_TERMINATOR;
     *(int32_t *)(config_buffer + 2) = ptr_size;
     config_buffer[1] = string_ptr;
-    *(int32_t *)((longlong)config_buffer + 0x1c) = temp_result;
+    *(int32_t *)((int64_t)config_buffer + 0x1c) = temp_result;
     *(int32_t *)(config_buffer + 3) = config_size;
     ptr_size = 0;
     buffer_capacity = 0;
@@ -764,14 +764,14 @@ void process_module_configuration_update(longlong module_context, uint64_t *conf
   stack_ptr = &EMPTY_STRING_PTR;
   operation_flag = 1;
   // 执行安全检查（不返回）
-  perform_security_check(security_hash ^ (ulonglong)security_buffer);
+  perform_security_check(security_hash ^ (uint64_t)security_buffer);
 }
 
 
 
 // 函数：在模块列表中查找匹配项
 // 原始函数名：FUN_1801426a0
-int32_t find_matching_module_in_list(longlong module_list, longlong search_key)
+int32_t find_matching_module_in_list(int64_t module_list, int64_t search_key)
 {
   uint64_t *current_module;
   byte current_char;
@@ -782,7 +782,7 @@ int32_t find_matching_module_in_list(longlong module_list, longlong search_key)
   int comparison_result;
   uint64_t *next_module;
   uint64_t *temp_module;
-  longlong string_offset;
+  int64_t string_offset;
   
   current_module = (uint64_t *)(module_list + 0x858);
   if (*(uint64_t **)(module_list + 0x868) != (uint64_t *)0x0) {
@@ -799,7 +799,7 @@ int32_t find_matching_module_in_list(longlong module_list, longlong search_key)
         }
         else {
           key_string = *(byte **)(search_key + 8);
-          string_offset = next_module[5] - (longlong)key_string;
+          string_offset = next_module[5] - (int64_t)key_string;
           do {
             char_value = (uint)key_string[string_offset];
             comparison_result = *key_string - char_value;
@@ -825,7 +825,7 @@ comparison_complete:
       if (*(int *)(previous_module + 6) == 0) goto match_found;
       if (*(int *)(search_key + 0x10) != 0) {
         key_string = (byte *)previous_module[5];
-        string_offset = *(longlong *)(search_key + 8) - (longlong)key_string;
+        string_offset = *(int64_t *)(search_key + 8) - (int64_t)key_string;
         do {
           current_char = *key_string;
           char_value = (uint)key_string[string_offset];
@@ -848,7 +848,7 @@ match_found:
 
 // 函数：在模块列表中查找匹配项（副本）
 // 原始函数名：FUN_1801426a4
-int32_t find_matching_module_duplicate(longlong module_list, longlong search_key)
+int32_t find_matching_module_duplicate(int64_t module_list, int64_t search_key)
 {
   uint64_t *current_module;
   byte current_char;
@@ -859,7 +859,7 @@ int32_t find_matching_module_duplicate(longlong module_list, longlong search_key
   int comparison_result;
   uint64_t *next_module;
   uint64_t *temp_module;
-  longlong string_offset;
+  int64_t string_offset;
   
   current_module = (uint64_t *)(module_list + 0x858);
   if (*(uint64_t **)(module_list + 0x868) != (uint64_t *)0x0) {
@@ -876,7 +876,7 @@ int32_t find_matching_module_duplicate(longlong module_list, longlong search_key
         }
         else {
           key_string = *(byte **)(search_key + 8);
-          string_offset = next_module[5] - (longlong)key_string;
+          string_offset = next_module[5] - (int64_t)key_string;
           do {
             char_value = (uint)key_string[string_offset];
             comparison_result = *key_string - char_value;
@@ -902,7 +902,7 @@ comparison_complete:
       if (*(int *)(previous_module + 6) == 0) goto match_found;
       if (*(int *)(search_key + 0x10) != 0) {
         key_string = (byte *)previous_module[5];
-        string_offset = *(longlong *)(search_key + 8) - (longlong)key_string;
+        string_offset = *(int64_t *)(search_key + 8) - (int64_t)key_string;
         do {
           current_char = *key_string;
           char_value = (uint)key_string[string_offset];
@@ -935,27 +935,27 @@ uint64_t get_default_error_code(void)
 
 // 函数：查找并插入数据结构项
 // 原始函数名：FUN_1801427a0
-longlong *find_and_insert_structure_item(longlong *structure_root, longlong search_key, 
-                                      uint64_t param_3, ulonglong param_4)
+int64_t *find_and_insert_structure_item(int64_t *structure_root, int64_t search_key, 
+                                      uint64_t param_3, uint64_t param_4)
 {
   byte current_char;
   bool is_match;
   byte *key_string;
-  longlong *current_item;
-  longlong *previous_item;
+  int64_t *current_item;
+  int64_t *previous_item;
   uint char_value;
   int comparison_result;
-  longlong *next_item;
-  longlong string_offset;
+  int64_t *next_item;
+  int64_t string_offset;
   char temp_char;
   uint8_t unused_padding;
   
   previous_item = structure_root;
-  if ((longlong *)structure_root[2] != (longlong *)0x0) {
-    current_item = (longlong *)structure_root[2];
+  if ((int64_t *)structure_root[2] != (int64_t *)0x0) {
+    current_item = (int64_t *)structure_root[2];
     do {
       if (*(int *)(search_key + 0x10) == 0) {
-        next_item = (longlong *)current_item[1];
+        next_item = (int64_t *)current_item[1];
         is_match = false;
       }
       else {
@@ -964,7 +964,7 @@ longlong *find_and_insert_structure_item(longlong *structure_root, longlong sear
         }
         else {
           key_string = *(byte **)(search_key + 8);
-          param_4 = current_item[5] - (longlong)key_string;
+          param_4 = current_item[5] - (int64_t)key_string;
           do {
             char_value = (uint)key_string[param_4];
             comparison_result = *key_string - char_value;
@@ -973,11 +973,11 @@ longlong *find_and_insert_structure_item(longlong *structure_root, longlong sear
           } while (char_value != 0);
           is_match = 0 < comparison_result;
           if (comparison_result < 1) {
-            next_item = (longlong *)current_item[1];
+            next_item = (int64_t *)current_item[1];
             goto search_complete;
           }
         }
-        next_item = (longlong *)*current_item;
+        next_item = (int64_t *)*current_item;
       }
 search_complete:
       if (is_match) {
@@ -985,7 +985,7 @@ search_complete:
       }
       previous_item = current_item;
       current_item = next_item;
-    } while (next_item != (longlong *)0x0);
+    } while (next_item != (int64_t *)0x0);
   }
   if (previous_item != structure_root) {
     if ((int)previous_item[6] == 0) {
@@ -994,7 +994,7 @@ search_complete:
     }
     if (*(int *)(search_key + 0x10) != 0) {
       key_string = (byte *)previous_item[5];
-      string_offset = *(longlong *)(search_key + 8) - (longlong)key_string;
+      string_offset = *(int64_t *)(search_key + 8) - (int64_t)key_string;
       do {
         current_char = *key_string;
         char_value = (uint)key_string[string_offset];
@@ -1004,13 +1004,13 @@ search_complete:
       if ((int)(current_char - char_value) < 1) goto item_found;
     }
   }
-  current_item = (longlong *)*structure_root;
+  current_item = (int64_t *)*structure_root;
   if ((previous_item == current_item) || (previous_item == structure_root)) {
     if ((structure_root[4] == 0) || (*(int *)(search_key + 0x10) == 0)) goto insertion_point;
     previous_item = current_item;
     if ((int)current_item[6] != 0) {
       key_string = *(byte **)(search_key + 8);
-      param_4 = current_item[5] - (longlong)key_string;
+      param_4 = current_item[5] - (int64_t)key_string;
       do {
         current_char = *key_string;
         char_value = (uint)key_string[param_4];
@@ -1022,14 +1022,14 @@ search_complete:
   normalize_search:
     param_4 = param_4 & 0xffffffffffffff00;
   search_next:
-    if (previous_item == (longlong *)0x0) goto insertion_point;
+    if (previous_item == (int64_t *)0x0) goto insertion_point;
   }
   else {
-    current_item = (longlong *)get_structure_balance_factor(previous_item);
+    current_item = (int64_t *)get_structure_balance_factor(previous_item);
     if (*(int *)(search_key + 0x10) != 0) {
       if ((int)previous_item[6] != 0) {
         key_string = *(byte **)(search_key + 8);
-        string_offset = previous_item[5] - (longlong)key_string;
+        string_offset = previous_item[5] - (int64_t)key_string;
         do {
           current_char = *key_string;
           char_value = (uint)key_string[string_offset];
@@ -1040,7 +1040,7 @@ search_complete:
       }
       if ((int)current_item[6] != 0) {
         key_string = (byte *)current_item[5];
-        param_4 = *(longlong *)(search_key + 8) - (longlong)key_string;
+        param_4 = *(int64_t *)(search_key + 8) - (int64_t)key_string;
         do {
           current_char = *key_string;
           char_value = (uint)key_string[param_4];
@@ -1056,12 +1056,12 @@ search_complete:
       }
     }
   insertion_point:
-    previous_item = (longlong *)create_new_structure_item(structure_root, &temp_char, search_key);
+    previous_item = (int64_t *)create_new_structure_item(structure_root, &temp_char, search_key);
     if (temp_char == '\0') goto final_cleanup;
     param_4 = 0;
   }
   insert_structure_item(structure_root, &temp_char, previous_item, param_4, search_key);
-  previous_item = (longlong *)CONCAT71(unused_padding, temp_char);
+  previous_item = (int64_t *)CONCAT71(unused_padding, temp_char);
 final_cleanup:
   return previous_item + 8;
 }
@@ -1072,7 +1072,7 @@ final_cleanup:
 
 // 函数：清理模块资源
 // 原始函数名：FUN_180142990
-void cleanup_module_resources(longlong module_context)
+void cleanup_module_resources(int64_t module_context)
 {
   uint64_t *resource_ptr;
   
@@ -1083,11 +1083,11 @@ void cleanup_module_resources(longlong module_context)
     // 释放内存缓冲区（不返回）
     release_memory_buffer(resource_ptr);
   }
-  *(longlong *)module_context = module_context;
+  *(int64_t *)module_context = module_context;
   *(uint64_t *)(module_context + 0x10) = 0;
   *(int8_t *)(module_context + 0x18) = 0;
   *(uint64_t *)(module_context + 0x20) = 0;
-  *(longlong *)(module_context + 8) = module_context;
+  *(int64_t *)(module_context + 8) = module_context;
   return;
 }
 

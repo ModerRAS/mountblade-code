@@ -11,11 +11,11 @@ void quick_sort_float_array(int32_t param_1, float *param_2)
 {
   float pivot_value;
   float temp_value;
-  longlong middle_index;
+  int64_t middle_index;
   float *left_ptr;
   float *right_ptr;
   int8_t temp_byte;
-  longlong array_size;
+  int64_t array_size;
   float *array_start;
   float left_value;
   float right_value;
@@ -23,7 +23,7 @@ void quick_sort_float_array(int32_t param_1, float *param_2)
   do {
     right_ptr = param_2;
     if (array_size < 1) break;
-    middle_index = (longlong)param_2 - (longlong)array_start >> 2;
+    middle_index = (int64_t)param_2 - (int64_t)array_start >> 2;
     if (middle_index < 0) {
       middle_index = middle_index + 1;
     }
@@ -61,7 +61,7 @@ void quick_sort_float_array(int32_t param_1, float *param_2)
     array_size = array_size + -1;
     param_1 = partition_array(right_ptr, param_2, array_size, temp_byte);
     param_2 = right_ptr;
-  } while (0x70 < (longlong)((longlong)right_ptr - (longlong)array_start & 0xfffffffffffffffcU));
+  } while (0x70 < (int64_t)((int64_t)right_ptr - (int64_t)array_start & 0xfffffffffffffffcU));
   if (array_size == 0) {
     finalize_sorting(param_1, right_ptr, right_ptr, temp_byte);
   }

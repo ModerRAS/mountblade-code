@@ -7,7 +7,7 @@
 //   pool_info - 池信息结构体指针，包含起始地址、结束地址和容量信息
 //   new_size - 新的实体数量
 // 功能: 扩展或收缩实体池，处理内存重分配和数据迁移
-void resize_entity_pool(longlong *pool_info, ulonglong new_size)
+void resize_entity_pool(int64_t *pool_info, uint64_t new_size)
 
 {
   void *entity_ptr;
@@ -18,15 +18,15 @@ void resize_entity_pool(longlong *pool_info, ulonglong new_size)
   int32_t *data_ptr1;
   int32_t *data_ptr2;
   uint64_t *data_ptr3;
-  longlong pool_start;
-  ulonglong current_capacity;
-  longlong pool_end;
+  int64_t pool_start;
+  uint64_t current_capacity;
+  int64_t pool_end;
   int32_t *entity_data;
   int32_t *new_pool_start;
   void *name_ptr;
-  ulonglong entities_to_add;
+  uint64_t entities_to_add;
   int32_t *pool_capacity_ptr;
-  longlong old_capacity;
+  int64_t old_capacity;
   
   old_capacity = pool_info[1];
   pool_start = *pool_info;
@@ -45,9 +45,9 @@ void resize_entity_pool(longlong *pool_info, ulonglong new_size)
   }
   new_size = new_size - current_capacity;
   entity_data = (int32_t *)pool_info[1];
-  if ((ulonglong)((pool_info[2] - (longlong)entity_data) / 0xe0) < new_size) {
+  if ((uint64_t)((pool_info[2] - (int64_t)entity_data) / 0xe0) < new_size) {
     new_pool_start = (int32_t *)*pool_info;
-    old_capacity = ((longlong)entity_data - (longlong)new_pool_start) / 0xe0;
+    old_capacity = ((int64_t)entity_data - (int64_t)new_pool_start) / 0xe0;
     current_capacity = old_capacity * 2;
     if (old_capacity == 0) {
       current_capacity = 1;
@@ -65,10 +65,10 @@ void resize_entity_pool(longlong *pool_info, ulonglong new_size)
     }
     pool_capacity_ptr = data_ptr1;
     if (new_pool_start != entity_data) {
-      old_capacity = (longlong)new_pool_start - (longlong)data_ptr1;
+      old_capacity = (int64_t)new_pool_start - (int64_t)data_ptr1;
       new_pool_start = data_ptr1 + 6;
       do {
-        *pool_capacity_ptr = *(int32_t *)(old_capacity + -0x18 + (longlong)new_pool_start);
+        *pool_capacity_ptr = *(int32_t *)(old_capacity + -0x18 + (int64_t)new_pool_start);
         *(void **)(new_pool_start + -4) = &EMPTY_ENTITY_MARKER;
         *(uint64_t *)(new_pool_start + -2) = 0;
         *new_pool_start = 0;
@@ -76,22 +76,22 @@ void resize_entity_pool(longlong *pool_info, ulonglong new_size)
         *(int32_t **)(new_pool_start + -2) = new_pool_start + 2;
         *new_pool_start = 0;
         *(int8_t *)(new_pool_start + 2) = 0;
-        *new_pool_start = *(int32_t *)(old_capacity + (longlong)new_pool_start);
-        entity_ptr = *(void **)(old_capacity + -8 + (longlong)new_pool_start);
+        *new_pool_start = *(int32_t *)(old_capacity + (int64_t)new_pool_start);
+        entity_ptr = *(void **)(old_capacity + -8 + (int64_t)new_pool_start);
         name_ptr = &DEFAULT_ENTITY_NAME;
         if (entity_ptr != (void *)0x0) {
           name_ptr = entity_ptr;
         }
         strcpy_s(*(uint64_t *)(new_pool_start + -2),0x80,name_ptr);
-        data_ptr3 = (uint64_t *)(old_capacity + 0x88 + (longlong)new_pool_start);
+        data_ptr3 = (uint64_t *)(old_capacity + 0x88 + (int64_t)new_pool_start);
         temp_var4 = data_ptr3[1];
         *(uint64_t *)(new_pool_start + 0x22) = *data_ptr3;
         *(uint64_t *)(new_pool_start + 0x24) = temp_var4;
-        data_ptr3 = (uint64_t *)(old_capacity + 0x98 + (longlong)new_pool_start);
+        data_ptr3 = (uint64_t *)(old_capacity + 0x98 + (int64_t)new_pool_start);
         temp_var4 = data_ptr3[1];
         *(uint64_t *)(new_pool_start + 0x26) = *data_ptr3;
         *(uint64_t *)(new_pool_start + 0x28) = temp_var4;
-        data_ptr2 = (int32_t *)(old_capacity + 0xa8 + (longlong)new_pool_start);
+        data_ptr2 = (int32_t *)(old_capacity + 0xa8 + (int64_t)new_pool_start);
         temp_var1 = data_ptr2[1];
         temp_var2 = data_ptr2[2];
         temp_var3 = data_ptr2[3];
@@ -99,12 +99,12 @@ void resize_entity_pool(longlong *pool_info, ulonglong new_size)
         new_pool_start[0x2b] = temp_var1;
         new_pool_start[0x2c] = temp_var2;
         new_pool_start[0x2d] = temp_var3;
-        data_ptr3 = (uint64_t *)(old_capacity + 0xb8 + (longlong)new_pool_start);
+        data_ptr3 = (uint64_t *)(old_capacity + 0xb8 + (int64_t)new_pool_start);
         temp_var4 = data_ptr3[1];
         *(uint64_t *)(new_pool_start + 0x2e) = *data_ptr3;
         *(uint64_t *)(new_pool_start + 0x30) = temp_var4;
         pool_capacity_ptr = pool_capacity_ptr + 0x38;
-        data_ptr2 = (int32_t *)((longlong)new_pool_start + old_capacity + 200);
+        data_ptr2 = (int32_t *)((int64_t)new_pool_start + old_capacity + 200);
         new_pool_start = new_pool_start + 0x38;
       } while (data_ptr2 != entity_data);
     }
@@ -125,9 +125,9 @@ void resize_entity_pool(longlong *pool_info, ulonglong new_size)
         data_ptr3[0x14] = 0x3f80000000000000;
         data_ptr3[0x15] = 0;
         *(int32_t *)(data_ptr3 + 0x16) = 0;
-        *(int32_t *)((longlong)data_ptr3 + 0xb4) = 0;
+        *(int32_t *)((int64_t)data_ptr3 + 0xb4) = 0;
         *(int32_t *)(data_ptr3 + 0x17) = 0x3f800000;
-        *(int32_t *)((longlong)data_ptr3 + 0xbc) = 0;
+        *(int32_t *)((int64_t)data_ptr3 + 0xbc) = 0;
         data_ptr3[0x18] = 0;
         data_ptr3[0x19] = 0x3f80000000000000;
         data_ptr3 = data_ptr3 + 0x1c;
@@ -147,9 +147,9 @@ void resize_entity_pool(longlong *pool_info, ulonglong new_size)
                     // WARNING: Subroutine does not return
       free_memory();
     }
-    *pool_info = (longlong)data_ptr1;
-    pool_info[1] = (longlong)(pool_capacity_ptr + new_size * 0x38);
-    pool_info[2] = (longlong)(data_ptr1 + current_capacity * 0x38);
+    *pool_info = (int64_t)data_ptr1;
+    pool_info[1] = (int64_t)(pool_capacity_ptr + new_size * 0x38);
+    pool_info[2] = (int64_t)(data_ptr1 + current_capacity * 0x38);
   }
   else {
     if (new_size != 0) {
@@ -178,7 +178,7 @@ void resize_entity_pool(longlong *pool_info, ulonglong new_size)
       } while (current_capacity != 0);
       entity_data = (int32_t *)pool_info[1];
     }
-    pool_info[1] = (longlong)(entity_data + new_size * 0x38);
+    pool_info[1] = (int64_t)(entity_data + new_size * 0x38);
   }
   return;
 }
@@ -189,14 +189,14 @@ void resize_entity_pool(longlong *pool_info, ulonglong new_size)
 // 参数: 
 //   pool_info - 对象池信息结构体指针
 // 功能: 释放对象池中所有对象占用的内存，重置池状态
-void cleanup_object_pool(ulonglong *pool_info)
+void cleanup_object_pool(uint64_t *pool_info)
 
 {
   int *ref_count;
   uint64_t *object_ptr;
-  longlong memory_block;
-  ulonglong pool_start;
-  ulonglong pool_end;
+  int64_t memory_block;
+  uint64_t pool_start;
+  uint64_t pool_end;
   
   pool_end = pool_info[1];
   for (pool_start = *pool_info; pool_start != pool_end; pool_start = pool_start + 0x150) {
@@ -205,10 +205,10 @@ void cleanup_object_pool(ulonglong *pool_info)
   }
   object_ptr = (uint64_t *)*pool_info;
   if (object_ptr != (uint64_t *)0x0) {
-    pool_start = (ulonglong)object_ptr & 0xffffffffffc00000;
+    pool_start = (uint64_t)object_ptr & 0xffffffffffc00000;
     if (pool_start != 0) {
-      memory_block = pool_start + 0x80 + ((longlong)object_ptr - pool_start >> 0x10) * 0x50;
-      memory_block = memory_block - (ulonglong)*(uint *)(memory_block + 4);
+      memory_block = pool_start + 0x80 + ((int64_t)object_ptr - pool_start >> 0x10) * 0x50;
+      memory_block = memory_block - (uint64_t)*(uint *)(memory_block + 4);
       if ((*(void ***)(pool_start + 0x70) == &ExceptionList) && (*(char *)(memory_block + 0xe) == '\0')) {
         *object_ptr = *(uint64_t *)(memory_block + 0x20);
         *(uint64_t **)(memory_block + 0x20) = object_ptr;
@@ -240,7 +240,7 @@ void cleanup_object_pool(ulonglong *pool_info)
 //   pool_info - 对象池信息结构体指针
 //   new_size - 新的对象数量
 // 功能: 扩展或收缩对象池，处理复杂的对象数据结构迁移
-void resize_object_pool(longlong *pool_info, ulonglong new_size)
+void resize_object_pool(int64_t *pool_info, uint64_t new_size)
 
 {
   uint64_t *object_data;
@@ -251,14 +251,14 @@ void resize_object_pool(longlong *pool_info, ulonglong new_size)
   int32_t field_val3;
   uint64_t field_val4;
   int8_t *memory_ptr;
-  longlong calc_result;
-  ulonglong current_size;
-  longlong pool_end;
+  int64_t calc_result;
+  uint64_t current_size;
+  int64_t pool_end;
   int8_t *new_memory;
   int8_t *temp_ptr;
-  longlong offset;
+  int64_t offset;
   void *name_data;
-  ulonglong objects_to_add;
+  uint64_t objects_to_add;
   int32_t *field_array;
   
   offset = pool_info[1];
@@ -282,7 +282,7 @@ void resize_object_pool(longlong *pool_info, ulonglong new_size)
   offset = pool_info[1];
   pool_end = SUB168(SEXT816(-0x3cf3cf3cf3cf3cf3) * SEXT816(pool_info[2] - offset),8) +
            (pool_info[2] - offset);
-  if ((ulonglong)((pool_end >> 8) - (pool_end >> 0x3f)) < new_size) {
+  if ((uint64_t)((pool_end >> 8) - (pool_end >> 0x3f)) < new_size) {
     pool_end = *pool_info;
     calc_result = SUB168(SEXT816(-0x3cf3cf3cf3cf3cf3) * SEXT816(offset - pool_end),8) + (offset - pool_end);
     calc_result = (calc_result >> 8) - (calc_result >> 0x3f);
@@ -305,10 +305,10 @@ void resize_object_pool(longlong *pool_info, ulonglong new_size)
     new_memory = memory_ptr;
     temp_ptr = memory_ptr;
     if (pool_end != offset) {
-      pool_end = pool_end - (longlong)memory_ptr;
+      pool_end = pool_end - (int64_t)memory_ptr;
       field_array = (int32_t *)(memory_ptr + 0x18);
       do {
-        *new_memory = *(int8_t *)(pool_end + -0x18 + (longlong)field_array);
+        *new_memory = *(int8_t *)(pool_end + -0x18 + (int64_t)field_array);
         *(void **)(field_array + -4) = &EMPTY_OBJECT_MARKER;
         *(uint64_t *)(field_array + -2) = 0;
         *field_array = 0;
@@ -316,8 +316,8 @@ void resize_object_pool(longlong *pool_info, ulonglong new_size)
         *(int32_t **)(field_array + -2) = field_array + 2;
         *field_array = 0;
         *(int8_t *)(field_array + 2) = 0;
-        *field_array = *(int32_t *)(pool_end + (longlong)field_array);
-        field_ptr = *(void **)(pool_end + -8 + (longlong)field_array);
+        *field_array = *(int32_t *)(pool_end + (int64_t)field_array);
+        field_ptr = *(void **)(pool_end + -8 + (int64_t)field_array);
         name_data = &DEFAULT_OBJECT_NAME;
         if (field_ptr != (void *)0x0) {
           name_data = field_ptr;
@@ -330,26 +330,26 @@ void resize_object_pool(longlong *pool_info, ulonglong new_size)
         *(int32_t **)(field_array + 0x24) = field_array + 0x28;
         field_array[0x26] = 0;
         *(int8_t *)(field_array + 0x28) = 0;
-        field_array[0x26] = *(int32_t *)(pool_end + 0x98 + (longlong)field_array);
-        field_ptr = *(void **)(pool_end + 0x90 + (longlong)field_array);
+        field_array[0x26] = *(int32_t *)(pool_end + 0x98 + (int64_t)field_array);
+        field_ptr = *(void **)(pool_end + 0x90 + (int64_t)field_array);
         name_data = &DEFAULT_OBJECT_NAME;
         if (field_ptr != (void *)0x0) {
           name_data = field_ptr;
         }
         strcpy_s(*(uint64_t *)(field_array + 0x24),0x40,name_data);
-        *(int8_t *)(field_array + 0x38) = *(int8_t *)(pool_end + 0xe0 + (longlong)field_array);
-        field_array[0x39] = *(int32_t *)(pool_end + 0xe4 + (longlong)field_array);
-        field_array[0x3a] = *(int32_t *)(pool_end + 0xe8 + (longlong)field_array);
-        object_data = (uint64_t *)(pool_end + 0xec + (longlong)field_array);
+        *(int8_t *)(field_array + 0x38) = *(int8_t *)(pool_end + 0xe0 + (int64_t)field_array);
+        field_array[0x39] = *(int32_t *)(pool_end + 0xe4 + (int64_t)field_array);
+        field_array[0x3a] = *(int32_t *)(pool_end + 0xe8 + (int64_t)field_array);
+        object_data = (uint64_t *)(pool_end + 0xec + (int64_t)field_array);
         field_val4 = object_data[1];
         *(uint64_t *)(field_array + 0x3b) = *object_data;
         *(uint64_t *)(field_array + 0x3d) = field_val4;
-        object_data = (uint64_t *)(pool_end + 0xfc + (longlong)field_array);
+        object_data = (uint64_t *)(pool_end + 0xfc + (int64_t)field_array);
         field_val4 = object_data[1];
         *(uint64_t *)(field_array + 0x3f) = *object_data;
         *(uint64_t *)(field_array + 0x41) = field_val4;
-        field_array[0x43] = *(int32_t *)(pool_end + 0x10c + (longlong)field_array);
-        object_fields = (int32_t *)(pool_end + 0x110 + (longlong)field_array);
+        field_array[0x43] = *(int32_t *)(pool_end + 0x10c + (int64_t)field_array);
+        object_fields = (int32_t *)(pool_end + 0x110 + (int64_t)field_array);
         field_val1 = object_fields[1];
         field_val2 = object_fields[2];
         field_val3 = object_fields[3];
@@ -357,13 +357,13 @@ void resize_object_pool(longlong *pool_info, ulonglong new_size)
         field_array[0x45] = field_val1;
         field_array[0x46] = field_val2;
         field_array[0x47] = field_val3;
-        object_data = (uint64_t *)(pool_end + 0x120 + (longlong)field_array);
+        object_data = (uint64_t *)(pool_end + 0x120 + (int64_t)field_array);
         field_val4 = object_data[1];
         *(uint64_t *)(field_array + 0x48) = *object_data;
         *(uint64_t *)(field_array + 0x4a) = field_val4;
-        field_array[0x4c] = *(int32_t *)(pool_end + 0x130 + (longlong)field_array);
+        field_array[0x4c] = *(int32_t *)(pool_end + 0x130 + (int64_t)field_array);
         new_memory = new_memory + 0x150;
-        calc_result = (longlong)field_array + pool_end + 0x138;
+        calc_result = (int64_t)field_array + pool_end + 0x138;
         field_array = field_array + 0x54;
         temp_ptr = new_memory;
       } while (calc_result != offset);
@@ -386,9 +386,9 @@ void resize_object_pool(longlong *pool_info, ulonglong new_size)
                     // WARNING: Subroutine does not return
       free_memory();
     }
-    *pool_info = (longlong)memory_ptr;
-    pool_info[1] = (longlong)(temp_ptr + new_size * 0x150);
-    pool_info[2] = (longlong)(memory_ptr + current_size * 0x150);
+    *pool_info = (int64_t)memory_ptr;
+    pool_info[1] = (int64_t)(temp_ptr + new_size * 0x150);
+    pool_info[2] = (int64_t)(memory_ptr + current_size * 0x150);
   }
   else {
     current_size = new_size;
@@ -416,7 +416,7 @@ void resize_object_pool(longlong *pool_info, ulonglong new_size)
 //   pool_info - 实体池信息结构体指针
 //   additional_size - 需要添加的额外实体数量
 // 功能: 在当前容量不足时扩展实体池，保持现有数据完整性
-void expand_entity_pool_capacity(longlong *pool_info, ulonglong additional_size)
+void expand_entity_pool_capacity(int64_t *pool_info, uint64_t additional_size)
 
 {
   void *entity_ptr;
@@ -427,19 +427,19 @@ void expand_entity_pool_capacity(longlong *pool_info, ulonglong additional_size)
   int32_t *data_ptr1;
   int32_t *data_ptr2;
   uint64_t *data_ptr3;
-  ulonglong new_capacity;
-  longlong pool_start;
+  uint64_t new_capacity;
+  int64_t pool_start;
   int32_t *entity_data;
   int32_t *pool_capacity_ptr;
   void *name_ptr;
-  ulonglong entities_to_add;
+  uint64_t entities_to_add;
   int32_t *current_pool_end;
-  longlong old_capacity;
+  int64_t old_capacity;
   
   entity_data = (int32_t *)pool_info[1];
-  if ((ulonglong)((pool_info[2] - (longlong)entity_data) / 0xe0) < additional_size) {
+  if ((uint64_t)((pool_info[2] - (int64_t)entity_data) / 0xe0) < additional_size) {
     current_pool_end = (int32_t *)*pool_info;
-    old_capacity = ((longlong)entity_data - (longlong)current_pool_end) / 0xe0;
+    old_capacity = ((int64_t)entity_data - (int64_t)current_pool_end) / 0xe0;
     new_capacity = old_capacity * 2;
     if (old_capacity == 0) {
       new_capacity = 1;
@@ -457,10 +457,10 @@ void expand_entity_pool_capacity(longlong *pool_info, ulonglong additional_size)
     }
     pool_capacity_ptr = data_ptr1;
     if (current_pool_end != entity_data) {
-      old_capacity = (longlong)current_pool_end - (longlong)data_ptr1;
+      old_capacity = (int64_t)current_pool_end - (int64_t)data_ptr1;
       current_pool_end = data_ptr1 + 6;
       do {
-        *pool_capacity_ptr = *(int32_t *)(old_capacity + -0x18 + (longlong)current_pool_end);
+        *pool_capacity_ptr = *(int32_t *)(old_capacity + -0x18 + (int64_t)current_pool_end);
         *(void **)(current_pool_end + -4) = &EMPTY_ENTITY_MARKER;
         *(uint64_t *)(current_pool_end + -2) = 0;
         *current_pool_end = 0;
@@ -468,22 +468,22 @@ void expand_entity_pool_capacity(longlong *pool_info, ulonglong additional_size)
         *(int32_t **)(current_pool_end + -2) = current_pool_end + 2;
         *current_pool_end = 0;
         *(int8_t *)(current_pool_end + 2) = 0;
-        *current_pool_end = *(int32_t *)(old_capacity + (longlong)current_pool_end);
-        entity_ptr = *(void **)(old_capacity + -8 + (longlong)current_pool_end);
+        *current_pool_end = *(int32_t *)(old_capacity + (int64_t)current_pool_end);
+        entity_ptr = *(void **)(old_capacity + -8 + (int64_t)current_pool_end);
         name_ptr = &DEFAULT_ENTITY_NAME;
         if (entity_ptr != (void *)0x0) {
           name_ptr = entity_ptr;
         }
         strcpy_s(*(uint64_t *)(current_pool_end + -2),0x80,name_ptr);
-        data_ptr3 = (uint64_t *)(old_capacity + 0x88 + (longlong)current_pool_end);
+        data_ptr3 = (uint64_t *)(old_capacity + 0x88 + (int64_t)current_pool_end);
         temp_var4 = data_ptr3[1];
         *(uint64_t *)(current_pool_end + 0x22) = *data_ptr3;
         *(uint64_t *)(current_pool_end + 0x24) = temp_var4;
-        data_ptr3 = (uint64_t *)(old_capacity + 0x98 + (longlong)current_pool_end);
+        data_ptr3 = (uint64_t *)(old_capacity + 0x98 + (int64_t)current_pool_end);
         temp_var4 = data_ptr3[1];
         *(uint64_t *)(current_pool_end + 0x26) = *data_ptr3;
         *(uint64_t *)(current_pool_end + 0x28) = temp_var4;
-        data_ptr2 = (int32_t *)(old_capacity + 0xa8 + (longlong)current_pool_end);
+        data_ptr2 = (int32_t *)(old_capacity + 0xa8 + (int64_t)current_pool_end);
         temp_var1 = data_ptr2[1];
         temp_var2 = data_ptr2[2];
         temp_var3 = data_ptr2[3];
@@ -491,12 +491,12 @@ void expand_entity_pool_capacity(longlong *pool_info, ulonglong additional_size)
         current_pool_end[0x2b] = temp_var1;
         current_pool_end[0x2c] = temp_var2;
         current_pool_end[0x2d] = temp_var3;
-        data_ptr3 = (uint64_t *)(old_capacity + 0xb8 + (longlong)current_pool_end);
+        data_ptr3 = (uint64_t *)(old_capacity + 0xb8 + (int64_t)current_pool_end);
         temp_var4 = data_ptr3[1];
         *(uint64_t *)(current_pool_end + 0x2e) = *data_ptr3;
         *(uint64_t *)(current_pool_end + 0x30) = temp_var4;
         pool_capacity_ptr = pool_capacity_ptr + 0x38;
-        data_ptr2 = (int32_t *)((longlong)current_pool_end + old_capacity + 200);
+        data_ptr2 = (int32_t *)((int64_t)current_pool_end + old_capacity + 200);
         current_pool_end = current_pool_end + 0x38;
       } while (data_ptr2 != entity_data);
     }
@@ -517,9 +517,9 @@ void expand_entity_pool_capacity(longlong *pool_info, ulonglong additional_size)
         data_ptr3[0x14] = 0x3f80000000000000;
         data_ptr3[0x15] = 0;
         *(int32_t *)(data_ptr3 + 0x16) = 0;
-        *(int32_t *)((longlong)data_ptr3 + 0xb4) = 0;
+        *(int32_t *)((int64_t)data_ptr3 + 0xb4) = 0;
         *(int32_t *)(data_ptr3 + 0x17) = 0x3f800000;
-        *(int32_t *)((longlong)data_ptr3 + 0xbc) = 0;
+        *(int32_t *)((int64_t)data_ptr3 + 0xbc) = 0;
         data_ptr3[0x18] = 0;
         data_ptr3[0x19] = 0x3f80000000000000;
         data_ptr3 = data_ptr3 + 0x1c;
@@ -539,9 +539,9 @@ void expand_entity_pool_capacity(longlong *pool_info, ulonglong additional_size)
                     // WARNING: Subroutine does not return
       free_memory();
     }
-    *pool_info = (longlong)data_ptr1;
-    pool_info[1] = (longlong)(pool_capacity_ptr + additional_size * 0x38);
-    pool_info[2] = (longlong)(data_ptr1 + new_capacity * 0x38);
+    *pool_info = (int64_t)data_ptr1;
+    pool_info[1] = (int64_t)(pool_capacity_ptr + additional_size * 0x38);
+    pool_info[2] = (int64_t)(data_ptr1 + new_capacity * 0x38);
   }
   else {
     if (additional_size != 0) {
@@ -570,7 +570,7 @@ void expand_entity_pool_capacity(longlong *pool_info, ulonglong additional_size)
       } while (new_capacity != 0);
       entity_data = (int32_t *)pool_info[1];
     }
-    pool_info[1] = (longlong)(entity_data + additional_size * 0x38);
+    pool_info[1] = (int64_t)(entity_data + additional_size * 0x38);
   }
   return;
 }
@@ -586,7 +586,7 @@ void expand_entity_pool_capacity(longlong *pool_info, ulonglong additional_size)
 //   pool_info - 对象池信息结构体指针
 //   additional_size - 需要添加的额外对象数量
 // 功能: 在当前容量不足时扩展对象池，保持现有数据完整性
-void expand_object_pool_capacity(longlong *pool_info, ulonglong additional_size)
+void expand_object_pool_capacity(int64_t *pool_info, uint64_t additional_size)
 
 {
   uint64_t *object_data;
@@ -597,20 +597,20 @@ void expand_object_pool_capacity(longlong *pool_info, ulonglong additional_size)
   int32_t field_val3;
   uint64_t field_val4;
   int8_t *memory_ptr;
-  longlong calc_result;
-  longlong pool_start;
+  int64_t calc_result;
+  int64_t pool_start;
   int8_t *new_memory;
   int8_t *temp_ptr;
-  longlong offset;
+  int64_t offset;
   void *name_data;
-  ulonglong new_capacity;
-  ulonglong objects_to_add;
+  uint64_t new_capacity;
+  uint64_t objects_to_add;
   int32_t *field_array;
   
   offset = pool_info[1];
   calc_result = SUB168(SEXT816(-0x3cf3cf3cf3cf3cf3) * SEXT816(pool_info[2] - offset),8) +
           (pool_info[2] - offset);
-  if ((ulonglong)((calc_result >> 8) - (calc_result >> 0x3f)) < additional_size) {
+  if ((uint64_t)((calc_result >> 8) - (calc_result >> 0x3f)) < additional_size) {
     pool_start = *pool_info;
     calc_result = SUB168(SEXT816(-0x3cf3cf3cf3cf3cf3) * SEXT816(offset - pool_start),8) + (offset - pool_start);
     calc_result = (calc_result >> 8) - (calc_result >> 0x3f);
@@ -631,10 +631,10 @@ void expand_object_pool_capacity(longlong *pool_info, ulonglong additional_size)
     }
     new_memory = memory_ptr;
     if (pool_start != offset) {
-      pool_start = pool_start - (longlong)memory_ptr;
+      pool_start = pool_start - (int64_t)memory_ptr;
       field_array = (int32_t *)(memory_ptr + 0x18);
       do {
-        *new_memory = *(int8_t *)(pool_start + -0x18 + (longlong)field_array);
+        *new_memory = *(int8_t *)(pool_start + -0x18 + (int64_t)field_array);
         *(void **)(field_array + -4) = &EMPTY_OBJECT_MARKER;
         *(uint64_t *)(field_array + -2) = 0;
         *field_array = 0;
@@ -642,8 +642,8 @@ void expand_object_pool_capacity(longlong *pool_info, ulonglong additional_size)
         *(int32_t **)(field_array + -2) = field_array + 2;
         *field_array = 0;
         *(int8_t *)(field_array + 2) = 0;
-        *field_array = *(int32_t *)(pool_start + (longlong)field_array);
-        field_ptr = *(void **)(pool_start + -8 + (longlong)field_array);
+        *field_array = *(int32_t *)(pool_start + (int64_t)field_array);
+        field_ptr = *(void **)(pool_start + -8 + (int64_t)field_array);
         name_data = &DEFAULT_OBJECT_NAME;
         if (field_ptr != (void *)0x0) {
           name_data = field_ptr;
@@ -656,26 +656,26 @@ void expand_object_pool_capacity(longlong *pool_info, ulonglong additional_size)
         *(int32_t **)(field_array + 0x24) = field_array + 0x28;
         field_array[0x26] = 0;
         *(int8_t *)(field_array + 0x28) = 0;
-        field_array[0x26] = *(int32_t *)(pool_start + 0x98 + (longlong)field_array);
-        field_ptr = *(void **)(pool_start + 0x90 + (longlong)field_array);
+        field_array[0x26] = *(int32_t *)(pool_start + 0x98 + (int64_t)field_array);
+        field_ptr = *(void **)(pool_start + 0x90 + (int64_t)field_array);
         name_data = &DEFAULT_OBJECT_NAME;
         if (field_ptr != (void *)0x0) {
           name_data = field_ptr;
         }
         strcpy_s(*(uint64_t *)(field_array + 0x24),0x40,name_data);
-        *(int8_t *)(field_array + 0x38) = *(int8_t *)(pool_start + 0xe0 + (longlong)field_array);
-        field_array[0x39] = *(int32_t *)(pool_start + 0xe4 + (longlong)field_array);
-        field_array[0x3a] = *(int32_t *)(pool_start + 0xe8 + (longlong)field_array);
-        object_data = (uint64_t *)(pool_start + 0xec + (longlong)field_array);
+        *(int8_t *)(field_array + 0x38) = *(int8_t *)(pool_start + 0xe0 + (int64_t)field_array);
+        field_array[0x39] = *(int32_t *)(pool_start + 0xe4 + (int64_t)field_array);
+        field_array[0x3a] = *(int32_t *)(pool_start + 0xe8 + (int64_t)field_array);
+        object_data = (uint64_t *)(pool_start + 0xec + (int64_t)field_array);
         field_val4 = object_data[1];
         *(uint64_t *)(field_array + 0x3b) = *object_data;
         *(uint64_t *)(field_array + 0x3d) = field_val4;
-        object_data = (uint64_t *)(pool_start + 0xfc + (longlong)field_array);
+        object_data = (uint64_t *)(pool_start + 0xfc + (int64_t)field_array);
         field_val4 = object_data[1];
         *(uint64_t *)(field_array + 0x3f) = *object_data;
         *(uint64_t *)(field_array + 0x41) = field_val4;
-        field_array[0x43] = *(int32_t *)(pool_start + 0x10c + (longlong)field_array);
-        object_fields = (int32_t *)(pool_start + 0x110 + (longlong)field_array);
+        field_array[0x43] = *(int32_t *)(pool_start + 0x10c + (int64_t)field_array);
+        object_fields = (int32_t *)(pool_start + 0x110 + (int64_t)field_array);
         field_val1 = object_fields[1];
         field_val2 = object_fields[2];
         field_val3 = object_fields[3];
@@ -683,13 +683,13 @@ void expand_object_pool_capacity(longlong *pool_info, ulonglong additional_size)
         field_array[0x45] = field_val1;
         field_array[0x46] = field_val2;
         field_array[0x47] = field_val3;
-        object_data = (uint64_t *)(pool_start + 0x120 + (longlong)field_array);
+        object_data = (uint64_t *)(pool_start + 0x120 + (int64_t)field_array);
         field_val4 = object_data[1];
         *(uint64_t *)(field_array + 0x48) = *object_data;
         *(uint64_t *)(field_array + 0x4a) = field_val4;
-        field_array[0x4c] = *(int32_t *)(pool_start + 0x130 + (longlong)field_array);
+        field_array[0x4c] = *(int32_t *)(pool_start + 0x130 + (int64_t)field_array);
         new_memory = new_memory + 0x150;
-        calc_result = (longlong)field_array + pool_start + 0x138;
+        calc_result = (int64_t)field_array + pool_start + 0x138;
         field_array = field_array + 0x54;
       } while (calc_result != offset);
     }
@@ -716,9 +716,9 @@ void expand_object_pool_capacity(longlong *pool_info, ulonglong additional_size)
                     // WARNING: Subroutine does not return
       free_memory();
     }
-    *pool_info = (longlong)memory_ptr;
-    pool_info[1] = (longlong)(new_memory + additional_size * 0x150);
-    pool_info[2] = (longlong)(memory_ptr + new_capacity * 0x150);
+    *pool_info = (int64_t)memory_ptr;
+    pool_info[1] = (int64_t)(new_memory + additional_size * 0x150);
+    pool_info[2] = (int64_t)(memory_ptr + new_capacity * 0x150);
   }
   else {
     new_capacity = additional_size;
@@ -747,18 +747,18 @@ void expand_object_pool_capacity(longlong *pool_info, ulonglong additional_size)
 //   start_index - 起始索引
 //   end_index - 结束索引
 // 功能: 重新构建索引数组，优化内存布局和访问性能
-void rebuild_index_array(longlong *array_info, longlong start_index, longlong end_index)
+void rebuild_index_array(int64_t *array_info, int64_t start_index, int64_t end_index)
 
 {
-  ulonglong required_size;
-  longlong temp_index;
-  longlong current_pos;
-  longlong segment_end;
-  ulonglong segment_count;
+  uint64_t required_size;
+  int64_t temp_index;
+  int64_t current_pos;
+  int64_t segment_end;
+  uint64_t segment_count;
   
   temp_index = (end_index - start_index) / 6 + (end_index - start_index >> 0x3f);
   segment_count = (temp_index >> 4) - (temp_index >> 0x3f);
-  if ((ulonglong)((array_info[2] - *array_info) / 0x60) < segment_count) {
+  if ((uint64_t)((array_info[2] - *array_info) / 0x60) < segment_count) {
     if (segment_count == 0) {
       temp_index = 0;
     }
@@ -821,13 +821,13 @@ void rebuild_index_array(longlong *array_info, longlong start_index, longlong en
 void optimize_index_memory(void)
 
 {
-  longlong new_memory_block;
-  longlong range_start;
-  longlong temp_var;
-  longlong range_end;
-  longlong *array_info;
-  longlong allocation_size;
-  longlong data_size;
+  int64_t new_memory_block;
+  int64_t range_start;
+  int64_t temp_var;
+  int64_t range_end;
+  int64_t *array_info;
+  int64_t allocation_size;
+  int64_t data_size;
   
   if (data_size == 0) {
     new_memory_block = 0;

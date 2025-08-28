@@ -24,7 +24,7 @@ void update_game_object_position(uint64_t object_ptr, uint64_t position_data, fl
     char *temp_char4;
     int8_t *temp_var5;
     bool temp_bool6;
-    longlong temp_long7;
+    int64_t temp_long7;
     char temp_char8;
     char temp_char9;
     uint temp_uint10;
@@ -32,16 +32,16 @@ void update_game_object_position(uint64_t object_ptr, uint64_t position_data, fl
     int32_t temp_var12;
     int32_t temp_var13;
     char *temp_char14;
-    longlong temp_long15;
+    int64_t temp_long15;
     uint64_t temp_var16;
     float *temp_float17;
     float *temp_float18;
     uint64_t *temp_var19;
-    longlong *temp_long20;
+    int64_t *temp_long20;
     uint64_t temp_var21;
     int8_t temp_var22;
     uint temp_uint23;
-    longlong temp_long24;
+    int64_t temp_long24;
     int temp_int25;
     int *temp_int26;
     float *temp_float27;
@@ -51,9 +51,9 @@ void update_game_object_position(uint64_t object_ptr, uint64_t position_data, fl
     uint64_t unaff_RSI;
     uint64_t unaff_RDI;
     byte temp_byte29;
-    longlong in_R11;
+    int64_t in_R11;
     uint64_t unaff_R12;
-    longlong temp_long30;
+    int64_t temp_long30;
     uint64_t unaff_R13;
     bool temp_bool31;
     uint64_t unaff_R14;
@@ -85,8 +85,8 @@ void update_game_object_position(uint64_t object_ptr, uint64_t position_data, fl
     int32_t unaff_XMM15_Da;
     int32_t unaff_XMM15_Dc;
     uint64_t *in_stack_00000020;
-    ulonglong temp_ulong40;
-    longlong *in_stack_00000040;
+    uint64_t temp_ulong40;
+    int64_t *in_stack_00000040;
     char in_stack_00000048;
     char cStack0000000000000049;
     char cStack000000000000004a;
@@ -134,12 +134,12 @@ void update_game_object_position(uint64_t object_ptr, uint64_t position_data, fl
     *(uint64_t *)(unaff_RBP + 0x1e) = object_ptr;
     
     // 获取游戏对象数据
-    in_stack_00000040 = (longlong *)get_object_data(object_ptr);
+    in_stack_00000040 = (int64_t *)get_object_data(object_ptr);
     temp_int25 = *(int *)(temp_long7 + 0x1ad0);  // 获取引擎配置
-    cStack0000000000000049 = in_stack_00000040 == (longlong *)0x0;
+    cStack0000000000000049 = in_stack_00000040 == (int64_t *)0x0;
     
     // 如果对象数据为空，创建新的对象数据
-    if (in_stack_00000040 == (longlong *)0x0) {
+    if (in_stack_00000040 == (int64_t *)0x0) {
         if (*(int *)(temp_long7 + 0x1bd4) == 0) {
             _fStack0000000000000050 = 0;
             temp_float17 = &stack0x00000050;
@@ -148,12 +148,12 @@ void update_game_object_position(uint64_t object_ptr, uint64_t position_data, fl
             temp_float17 = unaff_RBP + -0xe;
             *(uint64_t *)(unaff_RBP + -0xe) = *(uint64_t *)(temp_long7 + 0x1c04);
         }
-        in_stack_00000040 = (longlong *)create_object_data(object_ptr,*(uint64_t *)temp_float17,delta_time);
+        in_stack_00000040 = (int64_t *)create_object_data(object_ptr,*(uint64_t *)temp_float17,delta_time);
     }
     
     // 获取对象的高度值
     in_stack_00000078 = *(float *)(in_stack_00000040 + 0x50);
-    temp_uint10 = *(uint *)((longlong)in_stack_00000040 + 0xdc);
+    temp_uint10 = *(uint *)((int64_t)in_stack_00000040 + 0xdc);
     
     // 计算新的高度值
     temp_float34 = (float)((uint)delta_time | 6);
@@ -167,10 +167,10 @@ void update_game_object_position(uint64_t object_ptr, uint64_t position_data, fl
     
     // 检查是否在特殊区域
     if (((uint)temp_float34 >> 0x1a & 1) != 0) {
-        temp_int26 = (int *)((longlong)*(int *)(temp_long7 + 0x1bc0) * 0x30 + *(longlong *)(temp_long7 + 0x1bb8));
+        temp_int26 = (int *)((int64_t)*(int *)(temp_long7 + 0x1bc0) * 0x30 + *(int64_t *)(temp_long7 + 0x1bb8));
         cStack000000000000004a =
              (bool)cStack000000000000004a ||
-             (in_stack_00000040 != *(longlong **)(temp_int26 + 2) ||
+             (in_stack_00000040 != *(int64_t **)(temp_int26 + 2) ||
              (int)in_stack_00000040[0x18] != *temp_int26);
     }
     
@@ -181,7 +181,7 @@ void update_game_object_position(uint64_t object_ptr, uint64_t position_data, fl
     else {
         temp_char8 = '\0';
     }
-    *(char *)((longlong)in_stack_00000040 + 0xb5) = temp_char8;
+    *(char *)((int64_t)in_stack_00000040 + 0xb5) = temp_char8;
     in_stack_00000068 = temp_uint10;
     
     // 如果需要更新，执行更新操作
@@ -191,16 +191,16 @@ void update_game_object_position(uint64_t object_ptr, uint64_t position_data, fl
     
     // 处理高度变化
     if (in_stack_00000078 == temp_float32) {
-        temp_float34 = *(float *)((longlong)in_stack_00000040 + 0xc);
+        temp_float34 = *(float *)((int64_t)in_stack_00000040 + 0xc);
     }
     else {
-        *(int32_t *)(in_stack_00000040 + 2) = *(int32_t *)((longlong)in_stack_00000040 + 0xc);
-        *(float *)((longlong)in_stack_00000040 + 0xc) = temp_float34;
+        *(int32_t *)(in_stack_00000040 + 2) = *(int32_t *)((int64_t)in_stack_00000040 + 0xc);
+        *(float *)((int64_t)in_stack_00000040 + 0xc) = temp_float34;
         *(float *)(in_stack_00000040 + 0x50) = temp_float32;
-        *(int16_t *)((longlong)in_stack_00000040 + 0xba) = 0;
+        *(int16_t *)((int64_t)in_stack_00000040 + 0xba) = 0;
         temp_var3 = *(int16_t *)(temp_long7 + 0x1af0);
         *(int *)(temp_long7 + 0x1af0) = *(int *)(temp_long7 + 0x1af0) + 1;
-        *(int16_t *)((longlong)in_stack_00000040 + 0xbc) = temp_var3;
+        *(int16_t *)((int64_t)in_stack_00000040 + 0xbc) = temp_var3;
     }
     
     // 处理特效更新
@@ -214,17 +214,17 @@ void update_game_object_position(uint64_t object_ptr, uint64_t position_data, fl
         ((*(char *)(temp_long7 + 0xc2) != '\0' && ((((uint)temp_float34 & 0x1200001) == 0 && (temp_int25 != 0)))))))
     {
         handle_position_change(in_stack_00000040,position_data);
-        temp_float34 = *(float *)((longlong)in_stack_00000040 + 0xc);
+        temp_float34 = *(float *)((int64_t)in_stack_00000040 + 0xc);
     }
     
     // 获取对象相关的额外数据
-    if ((*(byte *)((longlong)in_stack_00000040 + 0x432) & 1) == 0) {
+    if ((*(byte *)((int64_t)in_stack_00000040 + 0x432) & 1) == 0) {
         if (*(int *)(temp_long7 + 0x1ad0) == 0) {
             temp_var16 = 0;
         }
         else {
             temp_var16 = *(uint64_t *)
-                      (*(longlong *)(temp_long7 + 0x1ad8) + -8 + (longlong)*(int *)(temp_long7 + 0x1ad0) * 8);
+                      (*(int64_t *)(temp_long7 + 0x1ad8) + -8 + (int64_t)*(int *)(temp_long7 + 0x1ad0) * 8);
         }
     }
     else {
@@ -233,7 +233,7 @@ void update_game_object_position(uint64_t object_ptr, uint64_t position_data, fl
     
     // 处理不同高度的特殊逻辑
     if (in_stack_00000078 == temp_float32) {
-        *(longlong *)(unaff_RBP + 8) = in_stack_00000040[0x73];
+        *(int64_t *)(unaff_RBP + 8) = in_stack_00000040[0x73];
     }
     else {
         temp_var21 = 0;
@@ -251,8 +251,8 @@ void update_game_object_position(uint64_t object_ptr, uint64_t position_data, fl
     // 处理特殊区域的对象
     if (((uint)temp_float34 >> 0x1a & 1) != 0) {
         temp_var28 = (int32_t *)
-                  ((longlong)*(int *)(temp_long7 + 0x1bc0) * 0x30 + *(longlong *)(temp_long7 + 0x1bb8));
-        *(longlong **)(temp_var28 + 2) = in_stack_00000040;
+                  ((int64_t)*(int *)(temp_long7 + 0x1bc0) * 0x30 + *(int64_t *)(temp_long7 + 0x1bb8));
+        *(int64_t **)(temp_var28 + 2) = in_stack_00000040;
         update_special_area_objects((int *)(temp_long7 + 0x1bc0),temp_var28);
         *(int32_t *)(in_stack_00000040 + 0x18) = *temp_var28;
     }
@@ -277,15 +277,15 @@ void update_game_object_position(uint64_t object_ptr, uint64_t position_data, fl
             process_object_occlusion(in_stack_00000040,temp_long7 + 0x1bf4);
         }
         else {
-            in_stack_00000040[0x1e] = *(longlong *)(temp_long7 + 0x1bf4);
-            in_stack_00000040[0x1f] = *(longlong *)(temp_long7 + 0x1bfc);
+            in_stack_00000040[0x1e] = *(int64_t *)(temp_long7 + 0x1bf4);
+            in_stack_00000040[0x1f] = *(int64_t *)(temp_long7 + 0x1bfc);
             *(uint *)(in_stack_00000040 + 0x1c) = *(uint *)(in_stack_00000040 + 0x1c) & 0xfffffff1;
         }
     }
     
     // 处理对象的动画状态
     if (*(uint *)(temp_long7 + 0x1bd4) != 0) {
-        temp_uint10 = *(uint *)((longlong)in_stack_00000040 + 0xe4) & *(uint *)(temp_long7 + 0x1bd4);
+        temp_uint10 = *(uint *)((int64_t)in_stack_00000040 + 0xe4) & *(uint *)(temp_long7 + 0x1bd4);
         if ((temp_uint10 == 0) || (*(float *)(temp_long7 + 0x1c04) <= 0.0)) {
             temp_bool31 = false;
         }
@@ -309,12 +309,12 @@ void update_game_object_position(uint64_t object_ptr, uint64_t position_data, fl
         }
     }
     else {
-        in_stack_00000040[0xd] = *(longlong *)(temp_long7 + 0x1c0c);
-        if (*(float *)((longlong)in_stack_00000040 + 0x6c) != 0.0) {
+        in_stack_00000040[0xd] = *(int64_t *)(temp_long7 + 0x1c0c);
+        if (*(float *)((int64_t)in_stack_00000040 + 0x6c) != 0.0) {
             temp_float32 = (float)get_current_time();
             temp_float33 = (float)calculate_object_time_delta(in_stack_00000040);
-            *(float *)((longlong)in_stack_00000040 + 0x6c) =
-                 temp_float32 + temp_float33 + *(float *)((longlong)in_stack_00000040 + 0x6c);
+            *(float *)((int64_t)in_stack_00000040 + 0x6c) =
+                 temp_float32 + temp_float33 + *(float *)((int64_t)in_stack_00000040 + 0x6c);
         }
         temp_float32 = unaff_RBP[-0x10];
     }
@@ -340,18 +340,18 @@ void update_game_object_position(uint64_t object_ptr, uint64_t position_data, fl
 uint64_t global_engine_state = 0;  // 全局引擎状态指针
 
 // 函数声明
-longlong *get_object_data(uint64_t object_ptr);
-longlong *create_object_data(uint64_t object_ptr, uint64_t data_ptr, float delta_time);
-void update_object_state(longlong *object_ptr, int param1, int param2);
-void update_object_effects(longlong *object_ptr, int32_t effect_data);
-void handle_position_change(longlong *object_ptr, uint64_t position_data);
+int64_t *get_object_data(uint64_t object_ptr);
+int64_t *create_object_data(uint64_t object_ptr, uint64_t data_ptr, float delta_time);
+void update_object_state(int64_t *object_ptr, int param1, int param2);
+void update_object_effects(int64_t *object_ptr, int32_t effect_data);
+void handle_position_change(int64_t *object_ptr, uint64_t position_data);
 void update_object_state_reference(uint64_t state_ptr, uint64_t *stack_ptr);
-void process_object_update(longlong *object_ptr, int update_type);
+void process_object_update(int64_t *object_ptr, int update_type);
 void update_special_area_objects(int *area_ptr, int32_t *object_data);
-void process_object_occlusion(longlong *object_ptr, uint64_t occlusion_data);
+void process_object_occlusion(int64_t *object_ptr, uint64_t occlusion_data);
 void process_animation_state(void);
 float get_current_time(void);
-float calculate_object_time_delta(longlong *object_ptr);
+float calculate_object_time_delta(int64_t *object_ptr);
 void cleanup_object_updates(void);
-void finalize_object_state(longlong *object_ptr);
+void finalize_object_state(int64_t *object_ptr);
 void restore_register_state(void);

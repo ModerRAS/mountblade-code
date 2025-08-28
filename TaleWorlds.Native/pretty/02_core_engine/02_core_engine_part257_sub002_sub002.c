@@ -37,29 +37,29 @@
  * 
  * 注意: 此函数实现包含10000多行代码，逻辑极其复杂
  */
-void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结构指针, longlong 配置参数1, longlong 配置参数2,
-                        int8_t 标志参数, int32_t 选项参数, uint 状态参数, ulonglong 地址参数)
+void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结构指针, int64_t 配置参数1, int64_t 配置参数2,
+                        int8_t 标志参数, int32_t 选项参数, uint 状态参数, uint64_t 地址参数)
 
 {
   int iVar1;
   void **ppuVar2;
   uint64_t uVar3;
-  longlong *plVar4;
+  int64_t *plVar4;
   uint uVar5;
   void *puVar6;
   int8_t *puVar8;
-  longlong lVar9;
-  ulonglong uVar10;
-  longlong lVar11;
-  longlong lVar12;
+  int64_t lVar9;
+  uint64_t uVar10;
+  int64_t lVar11;
+  int64_t lVar12;
   int8_t auStack_1b8 [32];
   void **ppuStack_198;
   void *puStack_190;
   int8_t *puStack_188;
   uint uStack_180;
-  ulonglong uStack_178;
+  uint64_t uStack_178;
   int32_t uStack_170;
-  ulonglong uStack_168;
+  uint64_t uStack_168;
   uint64_t uStack_160;
   uint64_t *puStack_158;
   void *puStack_148;
@@ -67,22 +67,22 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
   int32_t uStack_138;
   int8_t auStack_130 [64];
   void *puStack_f0;
-  longlong lStack_e8;
+  int64_t lStack_e8;
   int32_t uStack_e0;
-  ulonglong uStack_d8;
+  uint64_t uStack_d8;
   void *puStack_c8;
   int8_t *puStack_c0;
   int32_t uStack_b8;
   int8_t auStack_b0 [64];
   void *puStack_70;
-  longlong lStack_68;
+  int64_t lStack_68;
   int32_t uStack_60;
-  ulonglong uStack_58;
-  ulonglong uStack_48;
-  ulonglong uVar7;
+  uint64_t uStack_58;
+  uint64_t uStack_48;
+  uint64_t uVar7;
   
   uStack_160 = 0xfffffffffffffffe;
-  uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_1b8;
+  uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_1b8;
   lVar11 = 0;
   *param_2 = 0;
   param_2[1] = 0;
@@ -153,7 +153,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
   (**(code **)(puStack_148 + 0x10))(&puStack_148,uVar3);
   (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
   uVar7 = param_2[1];
-  if (uVar7 < (ulonglong)param_2[2]) {
+  if (uVar7 < (uint64_t)param_2[2]) {
     param_2[1] = uVar7 + 0x78;
     ppuStack_198 = (void **)uVar7;
     FUN_1800b8300(uVar7);
@@ -185,7 +185,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     }
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,puVar6);
     uVar7 = param_2[1];
-    if (uVar7 < (ulonglong)param_2[2]) {
+    if (uVar7 < (uint64_t)param_2[2]) {
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
@@ -214,7 +214,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     FUN_180049bf0(&puStack_148,&unknown_var_5360_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
-    if (uVar7 < (ulonglong)param_2[2]) {
+    if (uVar7 < (uint64_t)param_2[2]) {
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
@@ -243,7 +243,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     FUN_180049bf0(&puStack_148,&unknown_var_5280_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
-    if (uVar7 < (ulonglong)param_2[2]) {
+    if (uVar7 < (uint64_t)param_2[2]) {
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
@@ -272,7 +272,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     FUN_180049bf0(&puStack_148,&unknown_var_5304_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
-    if (uVar7 < (ulonglong)param_2[2]) {
+    if (uVar7 < (uint64_t)param_2[2]) {
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
@@ -301,7 +301,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     FUN_180049bf0(&puStack_148,&unknown_var_5456_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
-    if (uVar7 < (ulonglong)param_2[2]) {
+    if (uVar7 < (uint64_t)param_2[2]) {
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
@@ -330,7 +330,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     FUN_180049bf0(&puStack_148,&unknown_var_5472_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
-    if (uVar7 < (ulonglong)param_2[2]) {
+    if (uVar7 < (uint64_t)param_2[2]) {
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
@@ -359,7 +359,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     FUN_180049bf0(&puStack_148,&unknown_var_5392_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
-    if (uVar7 < (ulonglong)param_2[2]) {
+    if (uVar7 < (uint64_t)param_2[2]) {
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
@@ -388,7 +388,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     FUN_180049bf0(&puStack_148,&unknown_var_5416_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
-    if (uVar7 < (ulonglong)param_2[2]) {
+    if (uVar7 < (uint64_t)param_2[2]) {
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
@@ -417,7 +417,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     FUN_180049bf0(&puStack_148,&unknown_var_5544_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
-    if (uVar7 < (ulonglong)param_2[2]) {
+    if (uVar7 < (uint64_t)param_2[2]) {
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
@@ -446,7 +446,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     FUN_180049bf0(&puStack_148,&unknown_var_5568_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
-    if (uVar7 < (ulonglong)param_2[2]) {
+    if (uVar7 < (uint64_t)param_2[2]) {
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
@@ -475,7 +475,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     FUN_180049bf0(&puStack_148,&unknown_var_5496_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
-    if (uVar7 < (ulonglong)param_2[2]) {
+    if (uVar7 < (uint64_t)param_2[2]) {
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
@@ -504,7 +504,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     FUN_180049bf0(&puStack_148,&unknown_var_5520_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
-    if (uVar7 < (ulonglong)param_2[2]) {
+    if (uVar7 < (uint64_t)param_2[2]) {
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
@@ -533,7 +533,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     FUN_180049bf0(&puStack_148,&unknown_var_5664_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
-    if (uVar7 < (ulonglong)param_2[2]) {
+    if (uVar7 < (uint64_t)param_2[2]) {
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
@@ -562,7 +562,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     FUN_180049bf0(&puStack_148,&unknown_var_5688_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
-    if (uVar7 < (ulonglong)param_2[2]) {
+    if (uVar7 < (uint64_t)param_2[2]) {
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
@@ -591,7 +591,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     FUN_180049bf0(&puStack_148,&unknown_var_5600_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
-    if (uVar7 < (ulonglong)param_2[2]) {
+    if (uVar7 < (uint64_t)param_2[2]) {
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
@@ -621,7 +621,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
       FUN_180049bf0(&puStack_148,&unknown_var_5792_ptr);
       (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
       uVar7 = param_2[1];
-      if (uVar7 < (ulonglong)param_2[2]) {
+      if (uVar7 < (uint64_t)param_2[2]) {
         param_2[1] = uVar7 + 0x78;
         ppuStack_198 = (void **)uVar7;
         FUN_1800b8300(uVar7);
@@ -651,7 +651,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
       FUN_180049bf0(&puStack_148,&unknown_var_5760_ptr);
       (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
       uVar7 = param_2[1];
-      if (uVar7 < (ulonglong)param_2[2]) {
+      if (uVar7 < (uint64_t)param_2[2]) {
         param_2[1] = uVar7 + 0x78;
         ppuStack_198 = (void **)uVar7;
         FUN_1800b8300(uVar7);
@@ -682,7 +682,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     FUN_180049bf0(&puStack_148,&unknown_var_5632_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
-    if (uVar7 < (ulonglong)param_2[2]) {
+    if (uVar7 < (uint64_t)param_2[2]) {
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
@@ -712,7 +712,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     FUN_180049bf0(&puStack_148,&unknown_var_5696_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
-    if (uVar7 < (ulonglong)param_2[2]) {
+    if (uVar7 < (uint64_t)param_2[2]) {
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
@@ -742,7 +742,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     FUN_180049bf0(&puStack_148,&unknown_var_5728_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
-    if (uVar7 < (ulonglong)param_2[2]) {
+    if (uVar7 < (uint64_t)param_2[2]) {
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
@@ -772,7 +772,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     FUN_180049bf0(&puStack_148,&unknown_var_5880_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
-    if (uVar7 < (ulonglong)param_2[2]) {
+    if (uVar7 < (uint64_t)param_2[2]) {
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
@@ -802,7 +802,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     FUN_180049bf0(&puStack_148,&unknown_var_5904_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
-    if (uVar7 < (ulonglong)param_2[2]) {
+    if (uVar7 < (uint64_t)param_2[2]) {
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
@@ -832,7 +832,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     FUN_180049bf0(&puStack_148,&unknown_var_5824_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
-    if (uVar7 < (ulonglong)param_2[2]) {
+    if (uVar7 < (uint64_t)param_2[2]) {
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
@@ -862,7 +862,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     FUN_180049bf0(&puStack_148,&unknown_var_5848_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
-    if (uVar7 < (ulonglong)param_2[2]) {
+    if (uVar7 < (uint64_t)param_2[2]) {
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
@@ -892,7 +892,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     FUN_180049bf0(&puStack_148,&unknown_var_5960_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
-    if (uVar7 < (ulonglong)param_2[2]) {
+    if (uVar7 < (uint64_t)param_2[2]) {
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
@@ -922,7 +922,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     FUN_180049bf0(&puStack_148,&unknown_var_5992_ptr);
     (**(code **)(puStack_f0 + 0x10))(&puStack_f0,&system_data_8120);
     uVar7 = param_2[1];
-    if (uVar7 < (ulonglong)param_2[2]) {
+    if (uVar7 < (uint64_t)param_2[2]) {
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
@@ -944,9 +944,9 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
   puStack_f0 = &system_state_ptr;
   puStack_148 = &system_state_ptr;
   if (param_3 != 0) {
-    plVar4 = (longlong *)FUN_180240a60(param_3);
+    plVar4 = (int64_t *)FUN_180240a60(param_3);
     iVar1 = (int)((plVar4[1] - *plVar4) / 0x60);
-    lVar12 = (longlong)iVar1;
+    lVar12 = (int64_t)iVar1;
     if (0 < iVar1) {
       do {
         uVar7 = 0;
@@ -962,9 +962,9 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
             puVar6 = *(void **)(lVar9 + 8);
           }
                     // WARNING: Subroutine does not return
-          memcpy(puStack_188,puVar6,(longlong)(*(int *)(lVar9 + 0x10) + 1));
+          memcpy(puStack_188,puVar6,(int64_t)(*(int *)(lVar9 + 0x10) + 1));
         }
-        if ((*(longlong *)(lVar9 + 8) != 0) && (uStack_180 = 0, puStack_188 != (int8_t *)0x0)) {
+        if ((*(int64_t *)(lVar9 + 8) != 0) && (uStack_180 = 0, puStack_188 != (int8_t *)0x0)) {
           *puStack_188 = 0;
         }
         uVar10 = uVar7;
@@ -974,7 +974,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
               puStack_188[uVar10] = puStack_188[uVar10] + -0x20;
             }
             uVar5 = (int)uVar7 + 1;
-            uVar7 = (ulonglong)uVar5;
+            uVar7 = (uint64_t)uVar5;
             uVar10 = uVar10 + 1;
           } while (uVar5 < uStack_180);
         }
@@ -998,7 +998,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
         }
         (**(code **)(puStack_f0 + 0x10))(&puStack_f0,puVar6);
         uVar7 = param_2[1];
-        if (uVar7 < (ulonglong)param_2[2]) {
+        if (uVar7 < (uint64_t)param_2[2]) {
           param_2[1] = uVar7 + 0x78;
           ppuStack_198 = (void **)uVar7;
           FUN_1800b8300(uVar7);
@@ -1026,7 +1026,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
         puStack_188 = (int8_t *)0x0;
         uStack_178 = uStack_178 & 0xffffffff00000000;
         puStack_190 = &system_state_ptr;
-        uStack_168 = uStack_168 << 1 | (ulonglong)((longlong)uStack_168 < 0);
+        uStack_168 = uStack_168 << 1 | (uint64_t)((int64_t)uStack_168 < 0);
         lVar11 = lVar11 + 0x60;
         lVar12 = lVar12 + -1;
       } while (lVar12 != 0);
@@ -1085,7 +1085,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
   }
   (**(code **)(puStack_70 + 0x10))(&puStack_70,puVar6);
   uVar7 = param_2[1];
-  if (uVar7 < (ulonglong)param_2[2]) {
+  if (uVar7 < (uint64_t)param_2[2]) {
     param_2[1] = uVar7 + 0x78;
     ppuStack_198 = (void **)uVar7;
     FUN_1800b8300(uVar7);
@@ -1106,20 +1106,20 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
   ppuStack_198 = &puStack_c8;
   puStack_c8 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_1b8);
+  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_1b8);
 }
 
 
 
-int FUN_180225200(longlong param_1)
+int FUN_180225200(int64_t param_1)
 
 {
   char *pcVar1;
   int iVar2;
   int iVar3;
-  longlong lVar4;
-  longlong lVar5;
-  longlong lVar6;
+  int64_t lVar4;
+  int64_t lVar5;
+  int64_t lVar6;
   
   iVar3 = *(int *)(param_1 + 0x10);
   if (iVar3 == 8) {
@@ -1135,7 +1135,7 @@ int FUN_180225200(longlong param_1)
   lVar5 = 0;
   if (iVar3 == 6) {
     lVar6 = lVar5;
-    while (lVar4 = lVar6, *(char *)(*(longlong *)(param_1 + 8) + lVar4) == (&unknown_var_4708_ptr)[lVar4])
+    while (lVar4 = lVar6, *(char *)(*(int64_t *)(param_1 + 8) + lVar4) == (&unknown_var_4708_ptr)[lVar4])
     {
       lVar6 = lVar4 + 1;
       if (lVar4 + 1 == 7) {
@@ -1148,7 +1148,7 @@ int FUN_180225200(longlong param_1)
   }
   if (iVar3 == 7) {
     lVar6 = lVar5;
-    while (lVar4 = lVar6, *(char *)(*(longlong *)(param_1 + 8) + lVar4) == (&unknown_var_4784_ptr)[lVar4])
+    while (lVar4 = lVar6, *(char *)(*(int64_t *)(param_1 + 8) + lVar4) == (&unknown_var_4784_ptr)[lVar4])
     {
       lVar6 = lVar4 + 1;
       if (lVar4 + 1 == 8) {
@@ -1156,7 +1156,7 @@ int FUN_180225200(longlong param_1)
       }
     }
     lVar6 = lVar5;
-    while (lVar4 = lVar6, *(char *)(*(longlong *)(param_1 + 8) + lVar4) == (&unknown_var_4792_ptr)[lVar4])
+    while (lVar4 = lVar6, *(char *)(*(int64_t *)(param_1 + 8) + lVar4) == (&unknown_var_4792_ptr)[lVar4])
     {
       lVar6 = lVar4 + 1;
       if (lVar4 + 1 == 8) {
@@ -1196,7 +1196,7 @@ int FUN_180225200(longlong param_1)
   }
   if (iVar3 == 7) {
     lVar6 = lVar5;
-    while (lVar4 = lVar6, *(char *)(*(longlong *)(param_1 + 8) + lVar4) == (&unknown_var_4872_ptr)[lVar4])
+    while (lVar4 = lVar6, *(char *)(*(int64_t *)(param_1 + 8) + lVar4) == (&unknown_var_4872_ptr)[lVar4])
     {
       lVar6 = lVar4 + 1;
       if (lVar4 + 1 == 8) {
@@ -1206,7 +1206,7 @@ int FUN_180225200(longlong param_1)
   }
   if (iVar3 == 3) {
     lVar6 = lVar5;
-    while (lVar4 = lVar6, *(char *)(*(longlong *)(param_1 + 8) + lVar4) == (&unknown_var_4880_ptr)[lVar4])
+    while (lVar4 = lVar6, *(char *)(*(int64_t *)(param_1 + 8) + lVar4) == (&unknown_var_4880_ptr)[lVar4])
     {
       lVar6 = lVar4 + 1;
       if (lVar4 + 1 == 4) {
@@ -1219,7 +1219,7 @@ int FUN_180225200(longlong param_1)
   }
   if (iVar3 == 4) {
     lVar6 = lVar5;
-    while (lVar4 = lVar6, *(char *)(*(longlong *)(param_1 + 8) + lVar4) == (&unknown_var_4924_ptr)[lVar4])
+    while (lVar4 = lVar6, *(char *)(*(int64_t *)(param_1 + 8) + lVar4) == (&unknown_var_4924_ptr)[lVar4])
     {
       lVar6 = lVar4 + 1;
       if (lVar4 + 1 == 5) {
@@ -1227,7 +1227,7 @@ int FUN_180225200(longlong param_1)
       }
     }
     lVar6 = lVar5;
-    while (lVar4 = lVar6, *(char *)(*(longlong *)(param_1 + 8) + lVar4) == (&unknown_var_4892_ptr)[lVar4])
+    while (lVar4 = lVar6, *(char *)(*(int64_t *)(param_1 + 8) + lVar4) == (&unknown_var_4892_ptr)[lVar4])
     {
       lVar6 = lVar4 + 1;
       if (lVar4 + 1 == 5) {
@@ -1235,7 +1235,7 @@ int FUN_180225200(longlong param_1)
       }
     }
     lVar6 = lVar5;
-    while (lVar4 = lVar6, *(char *)(*(longlong *)(param_1 + 8) + lVar4) == (&unknown_var_4900_ptr)[lVar4])
+    while (lVar4 = lVar6, *(char *)(*(int64_t *)(param_1 + 8) + lVar4) == (&unknown_var_4900_ptr)[lVar4])
     {
       lVar6 = lVar4 + 1;
       if (lVar4 + 1 == 5) {
@@ -1243,7 +1243,7 @@ int FUN_180225200(longlong param_1)
       }
     }
     lVar6 = lVar5;
-    while (lVar4 = lVar6, *(char *)(*(longlong *)(param_1 + 8) + lVar4) == (&unknown_var_4944_ptr)[lVar4])
+    while (lVar4 = lVar6, *(char *)(*(int64_t *)(param_1 + 8) + lVar4) == (&unknown_var_4944_ptr)[lVar4])
     {
       lVar6 = lVar4 + 1;
       if (lVar4 + 1 == 5) {
@@ -1251,7 +1251,7 @@ int FUN_180225200(longlong param_1)
       }
     }
     lVar6 = lVar5;
-    while (lVar4 = lVar6, *(char *)(*(longlong *)(param_1 + 8) + lVar4) == (&unknown_var_4952_ptr)[lVar4])
+    while (lVar4 = lVar6, *(char *)(*(int64_t *)(param_1 + 8) + lVar4) == (&unknown_var_4952_ptr)[lVar4])
     {
       lVar6 = lVar4 + 1;
       if (lVar4 + 1 == 5) {
@@ -1259,7 +1259,7 @@ int FUN_180225200(longlong param_1)
       }
     }
     lVar6 = lVar5;
-    while (lVar4 = lVar6, *(char *)(*(longlong *)(param_1 + 8) + lVar4) == (&unknown_var_4932_ptr)[lVar4])
+    while (lVar4 = lVar6, *(char *)(*(int64_t *)(param_1 + 8) + lVar4) == (&unknown_var_4932_ptr)[lVar4])
     {
       lVar6 = lVar4 + 1;
       if (lVar4 + 1 == 5) {
@@ -1269,7 +1269,7 @@ int FUN_180225200(longlong param_1)
   }
   if (iVar3 == 3) {
     lVar6 = lVar5;
-    while (lVar4 = lVar6, *(char *)(*(longlong *)(param_1 + 8) + lVar4) == (&unknown_var_4940_ptr)[lVar4])
+    while (lVar4 = lVar6, *(char *)(*(int64_t *)(param_1 + 8) + lVar4) == (&unknown_var_4940_ptr)[lVar4])
     {
       lVar6 = lVar4 + 1;
       if (lVar4 + 1 == 4) {
@@ -1277,7 +1277,7 @@ int FUN_180225200(longlong param_1)
       }
     }
     lVar6 = lVar5;
-    while (lVar4 = lVar6, *(char *)(*(longlong *)(param_1 + 8) + lVar4) == (&unknown_var_4972_ptr)[lVar4])
+    while (lVar4 = lVar6, *(char *)(*(int64_t *)(param_1 + 8) + lVar4) == (&unknown_var_4972_ptr)[lVar4])
     {
       lVar6 = lVar4 + 1;
       if (lVar4 + 1 == 4) {
@@ -1285,7 +1285,7 @@ int FUN_180225200(longlong param_1)
       }
     }
     lVar6 = lVar5;
-    while (lVar4 = lVar6, *(char *)(*(longlong *)(param_1 + 8) + lVar4) == (&unknown_var_4976_ptr)[lVar4])
+    while (lVar4 = lVar6, *(char *)(*(int64_t *)(param_1 + 8) + lVar4) == (&unknown_var_4976_ptr)[lVar4])
     {
       lVar6 = lVar4 + 1;
       if (lVar4 + 1 == 4) {
@@ -1293,7 +1293,7 @@ int FUN_180225200(longlong param_1)
       }
     }
     lVar6 = lVar5;
-    while (lVar4 = lVar6, *(char *)(*(longlong *)(param_1 + 8) + lVar4) == (&unknown_var_4960_ptr)[lVar4])
+    while (lVar4 = lVar6, *(char *)(*(int64_t *)(param_1 + 8) + lVar4) == (&unknown_var_4960_ptr)[lVar4])
     {
       lVar6 = lVar4 + 1;
       if (lVar4 + 1 == 4) {
@@ -1303,7 +1303,7 @@ int FUN_180225200(longlong param_1)
   }
   if (iVar3 == 5) {
     lVar6 = lVar5;
-    while (lVar4 = lVar6, *(char *)(*(longlong *)(param_1 + 8) + lVar4) == (&unknown_var_4964_ptr)[lVar4])
+    while (lVar4 = lVar6, *(char *)(*(int64_t *)(param_1 + 8) + lVar4) == (&unknown_var_4964_ptr)[lVar4])
     {
       lVar6 = lVar4 + 1;
       if (lVar4 + 1 == 6) {
@@ -1311,7 +1311,7 @@ int FUN_180225200(longlong param_1)
       }
     }
     lVar6 = lVar5;
-    while (lVar4 = lVar6, *(char *)(*(longlong *)(param_1 + 8) + lVar4) == (&unknown_var_4988_ptr)[lVar4])
+    while (lVar4 = lVar6, *(char *)(*(int64_t *)(param_1 + 8) + lVar4) == (&unknown_var_4988_ptr)[lVar4])
     {
       lVar6 = lVar4 + 1;
       if (lVar4 + 1 == 6) {
@@ -1321,7 +1321,7 @@ int FUN_180225200(longlong param_1)
   }
   if (iVar3 == 3) {
     lVar6 = lVar5;
-    while (lVar4 = lVar6, *(char *)(*(longlong *)(param_1 + 8) + lVar4) == (&unknown_var_4996_ptr)[lVar4])
+    while (lVar4 = lVar6, *(char *)(*(int64_t *)(param_1 + 8) + lVar4) == (&unknown_var_4996_ptr)[lVar4])
     {
       lVar6 = lVar4 + 1;
       if (lVar4 + 1 == 4) {
@@ -1329,7 +1329,7 @@ int FUN_180225200(longlong param_1)
       }
     }
     lVar6 = lVar5;
-    while (lVar4 = lVar6, *(char *)(*(longlong *)(param_1 + 8) + lVar4) == (&unknown_var_4980_ptr)[lVar4])
+    while (lVar4 = lVar6, *(char *)(*(int64_t *)(param_1 + 8) + lVar4) == (&unknown_var_4980_ptr)[lVar4])
     {
       lVar6 = lVar4 + 1;
       if (lVar4 + 1 == 4) {
@@ -1337,7 +1337,7 @@ int FUN_180225200(longlong param_1)
       }
     }
     lVar6 = lVar5;
-    while (lVar4 = lVar6, *(char *)(*(longlong *)(param_1 + 8) + lVar4) == (&unknown_var_4984_ptr)[lVar4])
+    while (lVar4 = lVar6, *(char *)(*(int64_t *)(param_1 + 8) + lVar4) == (&unknown_var_4984_ptr)[lVar4])
     {
       lVar6 = lVar4 + 1;
       if (lVar4 + 1 == 4) {
@@ -1358,7 +1358,7 @@ int FUN_180225200(longlong param_1)
   }
   if (iVar3 == 4) {
     lVar6 = lVar5;
-    while (lVar4 = lVar6, *(char *)(*(longlong *)(param_1 + 8) + lVar4) == (&unknown_var_5020_ptr)[lVar4])
+    while (lVar4 = lVar6, *(char *)(*(int64_t *)(param_1 + 8) + lVar4) == (&unknown_var_5020_ptr)[lVar4])
     {
       lVar6 = lVar4 + 1;
       if (lVar4 + 1 == 5) {
@@ -1368,7 +1368,7 @@ int FUN_180225200(longlong param_1)
   }
   if (iVar3 == 5) {
     lVar6 = lVar5;
-    while (lVar4 = lVar6, *(char *)(*(longlong *)(param_1 + 8) + lVar4) == (&unknown_var_5096_ptr)[lVar4])
+    while (lVar4 = lVar6, *(char *)(*(int64_t *)(param_1 + 8) + lVar4) == (&unknown_var_5096_ptr)[lVar4])
     {
       lVar6 = lVar4 + 1;
       if (lVar4 + 1 == 6) {
@@ -1384,7 +1384,7 @@ int FUN_180225200(longlong param_1)
   }
   if (iVar3 == 4) {
     lVar6 = lVar5;
-    while (lVar4 = lVar6, *(char *)(*(longlong *)(param_1 + 8) + lVar4) == (&unknown_var_5088_ptr)[lVar4])
+    while (lVar4 = lVar6, *(char *)(*(int64_t *)(param_1 + 8) + lVar4) == (&unknown_var_5088_ptr)[lVar4])
     {
       lVar6 = lVar4 + 1;
       if (lVar4 + 1 == 5) {
@@ -1392,7 +1392,7 @@ int FUN_180225200(longlong param_1)
       }
     }
     lVar6 = lVar5;
-    while (lVar4 = lVar6, *(char *)(*(longlong *)(param_1 + 8) + lVar4) == (&unknown_var_5140_ptr)[lVar4])
+    while (lVar4 = lVar6, *(char *)(*(int64_t *)(param_1 + 8) + lVar4) == (&unknown_var_5140_ptr)[lVar4])
     {
       lVar6 = lVar4 + 1;
       if (lVar4 + 1 == 5) {
@@ -1400,7 +1400,7 @@ int FUN_180225200(longlong param_1)
       }
     }
     lVar6 = lVar5;
-    while (lVar4 = lVar6, *(char *)(*(longlong *)(param_1 + 8) + lVar4) == (&unknown_var_5148_ptr)[lVar4])
+    while (lVar4 = lVar6, *(char *)(*(int64_t *)(param_1 + 8) + lVar4) == (&unknown_var_5148_ptr)[lVar4])
     {
       lVar6 = lVar4 + 1;
       if (lVar4 + 1 == 5) {
@@ -1408,7 +1408,7 @@ int FUN_180225200(longlong param_1)
       }
     }
     lVar6 = lVar5;
-    while (lVar4 = lVar6, *(char *)(*(longlong *)(param_1 + 8) + lVar4) == (&unknown_var_5116_ptr)[lVar4])
+    while (lVar4 = lVar6, *(char *)(*(int64_t *)(param_1 + 8) + lVar4) == (&unknown_var_5116_ptr)[lVar4])
     {
       lVar6 = lVar4 + 1;
       if (lVar4 + 1 == 5) {
@@ -1424,7 +1424,7 @@ int FUN_180225200(longlong param_1)
   }
   if (iVar3 == 6) {
     lVar6 = lVar5;
-    while (lVar4 = lVar6, *(char *)(*(longlong *)(param_1 + 8) + lVar4) == (&unknown_var_5204_ptr)[lVar4])
+    while (lVar4 = lVar6, *(char *)(*(int64_t *)(param_1 + 8) + lVar4) == (&unknown_var_5204_ptr)[lVar4])
     {
       lVar6 = lVar4 + 1;
       if (lVar4 + 1 == 7) {
@@ -1436,7 +1436,7 @@ int FUN_180225200(longlong param_1)
     return 0x31;
   }
   if (iVar3 == 6) {
-    while (lVar6 = lVar5, *(char *)(*(longlong *)(param_1 + 8) + lVar6) == (&unknown_var_5156_ptr)[lVar6])
+    while (lVar6 = lVar5, *(char *)(*(int64_t *)(param_1 + 8) + lVar6) == (&unknown_var_5156_ptr)[lVar6])
     {
       lVar5 = lVar6 + 1;
       if (lVar6 + 1 == 7) {
@@ -1471,16 +1471,16 @@ int FUN_18022525e(void)
 {
   char *pcVar1;
   int iVar2;
-  longlong lVar3;
+  int64_t lVar3;
   int unaff_EBX;
-  longlong lVar4;
-  longlong lVar5;
-  longlong unaff_RDI;
+  int64_t lVar4;
+  int64_t lVar5;
+  int64_t unaff_RDI;
   
   lVar4 = 0;
   if (unaff_EBX == 6) {
     lVar5 = lVar4;
-    while (lVar3 = lVar5, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4708_ptr)[lVar3]
+    while (lVar3 = lVar5, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4708_ptr)[lVar3]
           ) {
       lVar5 = lVar3 + 1;
       if (lVar3 + 1 == 7) {
@@ -1494,7 +1494,7 @@ int FUN_18022525e(void)
   }
   if (unaff_EBX == 7) {
     lVar5 = lVar4;
-    while (lVar3 = lVar5, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4784_ptr)[lVar3]
+    while (lVar3 = lVar5, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4784_ptr)[lVar3]
           ) {
       lVar5 = lVar3 + 1;
       if (lVar3 + 1 == 8) {
@@ -1502,7 +1502,7 @@ int FUN_18022525e(void)
       }
     }
     lVar5 = lVar4;
-    while (lVar3 = lVar5, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4792_ptr)[lVar3]
+    while (lVar3 = lVar5, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4792_ptr)[lVar3]
           ) {
       lVar5 = lVar3 + 1;
       if (lVar3 + 1 == 8) {
@@ -1546,7 +1546,7 @@ int FUN_18022525e(void)
   }
   if (unaff_EBX == 7) {
     lVar5 = lVar4;
-    while (lVar3 = lVar5, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4872_ptr)[lVar3]
+    while (lVar3 = lVar5, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4872_ptr)[lVar3]
           ) {
       lVar5 = lVar3 + 1;
       if (lVar3 + 1 == 8) {
@@ -1556,7 +1556,7 @@ int FUN_18022525e(void)
   }
   if (unaff_EBX == 3) {
     lVar5 = lVar4;
-    while (lVar3 = lVar5, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4880_ptr)[lVar3]
+    while (lVar3 = lVar5, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4880_ptr)[lVar3]
           ) {
       lVar5 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -1570,7 +1570,7 @@ int FUN_18022525e(void)
   }
   if (unaff_EBX == 4) {
     lVar5 = lVar4;
-    while (lVar3 = lVar5, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4924_ptr)[lVar3]
+    while (lVar3 = lVar5, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4924_ptr)[lVar3]
           ) {
       lVar5 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -1578,7 +1578,7 @@ int FUN_18022525e(void)
       }
     }
     lVar5 = lVar4;
-    while (lVar3 = lVar5, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4892_ptr)[lVar3]
+    while (lVar3 = lVar5, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4892_ptr)[lVar3]
           ) {
       lVar5 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -1586,7 +1586,7 @@ int FUN_18022525e(void)
       }
     }
     lVar5 = lVar4;
-    while (lVar3 = lVar5, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4900_ptr)[lVar3]
+    while (lVar3 = lVar5, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4900_ptr)[lVar3]
           ) {
       lVar5 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -1594,7 +1594,7 @@ int FUN_18022525e(void)
       }
     }
     lVar5 = lVar4;
-    while (lVar3 = lVar5, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4944_ptr)[lVar3]
+    while (lVar3 = lVar5, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4944_ptr)[lVar3]
           ) {
       lVar5 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -1602,7 +1602,7 @@ int FUN_18022525e(void)
       }
     }
     lVar5 = lVar4;
-    while (lVar3 = lVar5, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4952_ptr)[lVar3]
+    while (lVar3 = lVar5, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4952_ptr)[lVar3]
           ) {
       lVar5 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -1610,7 +1610,7 @@ int FUN_18022525e(void)
       }
     }
     lVar5 = lVar4;
-    while (lVar3 = lVar5, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4932_ptr)[lVar3]
+    while (lVar3 = lVar5, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4932_ptr)[lVar3]
           ) {
       lVar5 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -1620,7 +1620,7 @@ int FUN_18022525e(void)
   }
   if (unaff_EBX == 3) {
     lVar5 = lVar4;
-    while (lVar3 = lVar5, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4940_ptr)[lVar3]
+    while (lVar3 = lVar5, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4940_ptr)[lVar3]
           ) {
       lVar5 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -1628,7 +1628,7 @@ int FUN_18022525e(void)
       }
     }
     lVar5 = lVar4;
-    while (lVar3 = lVar5, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4972_ptr)[lVar3]
+    while (lVar3 = lVar5, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4972_ptr)[lVar3]
           ) {
       lVar5 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -1636,7 +1636,7 @@ int FUN_18022525e(void)
       }
     }
     lVar5 = lVar4;
-    while (lVar3 = lVar5, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4976_ptr)[lVar3]
+    while (lVar3 = lVar5, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4976_ptr)[lVar3]
           ) {
       lVar5 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -1644,7 +1644,7 @@ int FUN_18022525e(void)
       }
     }
     lVar5 = lVar4;
-    while (lVar3 = lVar5, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4960_ptr)[lVar3]
+    while (lVar3 = lVar5, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4960_ptr)[lVar3]
           ) {
       lVar5 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -1654,7 +1654,7 @@ int FUN_18022525e(void)
   }
   if (unaff_EBX == 5) {
     lVar5 = lVar4;
-    while (lVar3 = lVar5, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4964_ptr)[lVar3]
+    while (lVar3 = lVar5, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4964_ptr)[lVar3]
           ) {
       lVar5 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -1662,7 +1662,7 @@ int FUN_18022525e(void)
       }
     }
     lVar5 = lVar4;
-    while (lVar3 = lVar5, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4988_ptr)[lVar3]
+    while (lVar3 = lVar5, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4988_ptr)[lVar3]
           ) {
       lVar5 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -1672,7 +1672,7 @@ int FUN_18022525e(void)
   }
   if (unaff_EBX == 3) {
     lVar5 = lVar4;
-    while (lVar3 = lVar5, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4996_ptr)[lVar3]
+    while (lVar3 = lVar5, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4996_ptr)[lVar3]
           ) {
       lVar5 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -1680,7 +1680,7 @@ int FUN_18022525e(void)
       }
     }
     lVar5 = lVar4;
-    while (lVar3 = lVar5, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4980_ptr)[lVar3]
+    while (lVar3 = lVar5, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4980_ptr)[lVar3]
           ) {
       lVar5 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -1688,7 +1688,7 @@ int FUN_18022525e(void)
       }
     }
     lVar5 = lVar4;
-    while (lVar3 = lVar5, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4984_ptr)[lVar3]
+    while (lVar3 = lVar5, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4984_ptr)[lVar3]
           ) {
       lVar5 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -1710,7 +1710,7 @@ int FUN_18022525e(void)
   }
   if (unaff_EBX == 4) {
     lVar5 = lVar4;
-    while (lVar3 = lVar5, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5020_ptr)[lVar3]
+    while (lVar3 = lVar5, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5020_ptr)[lVar3]
           ) {
       lVar5 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -1720,7 +1720,7 @@ int FUN_18022525e(void)
   }
   if (unaff_EBX == 5) {
     lVar5 = lVar4;
-    while (lVar3 = lVar5, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5096_ptr)[lVar3]
+    while (lVar3 = lVar5, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5096_ptr)[lVar3]
           ) {
       lVar5 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -1738,7 +1738,7 @@ int FUN_18022525e(void)
   }
   if (unaff_EBX == 4) {
     lVar5 = lVar4;
-    while (lVar3 = lVar5, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5088_ptr)[lVar3]
+    while (lVar3 = lVar5, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5088_ptr)[lVar3]
           ) {
       lVar5 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -1746,7 +1746,7 @@ int FUN_18022525e(void)
       }
     }
     lVar5 = lVar4;
-    while (lVar3 = lVar5, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5140_ptr)[lVar3]
+    while (lVar3 = lVar5, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5140_ptr)[lVar3]
           ) {
       lVar5 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -1754,7 +1754,7 @@ int FUN_18022525e(void)
       }
     }
     lVar5 = lVar4;
-    while (lVar3 = lVar5, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5148_ptr)[lVar3]
+    while (lVar3 = lVar5, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5148_ptr)[lVar3]
           ) {
       lVar5 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -1762,7 +1762,7 @@ int FUN_18022525e(void)
       }
     }
     lVar5 = lVar4;
-    while (lVar3 = lVar5, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5116_ptr)[lVar3]
+    while (lVar3 = lVar5, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5116_ptr)[lVar3]
           ) {
       lVar5 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -1780,7 +1780,7 @@ int FUN_18022525e(void)
   }
   if (unaff_EBX == 6) {
     lVar5 = lVar4;
-    while (lVar3 = lVar5, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5204_ptr)[lVar3]
+    while (lVar3 = lVar5, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5204_ptr)[lVar3]
           ) {
       lVar5 = lVar3 + 1;
       if (lVar3 + 1 == 7) {
@@ -1793,7 +1793,7 @@ int FUN_18022525e(void)
     return 0x31;
   }
   if (unaff_EBX == 6) {
-    while (lVar5 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar5) == (&unknown_var_5156_ptr)[lVar5]
+    while (lVar5 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar5) == (&unknown_var_5156_ptr)[lVar5]
           ) {
       lVar4 = lVar5 + 1;
       if (lVar5 + 1 == 7) {
@@ -1829,11 +1829,11 @@ int FUN_1802252a7(void)
 {
   char *pcVar1;
   int iVar2;
-  longlong lVar3;
+  int64_t lVar3;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar4;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar4;
+  int64_t unaff_RDI;
   
   if ((unaff_EBX == 0xb) &&
      (iVar2 = strcmp(*(uint64_t *)(unaff_RDI + 8),&unknown_var_4720_ptr), iVar2 == 0)) {
@@ -1841,7 +1841,7 @@ int FUN_1802252a7(void)
   }
   if (unaff_EBX == 7) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4784_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4784_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 8) {
@@ -1849,7 +1849,7 @@ int FUN_1802252a7(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4792_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4792_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 8) {
@@ -1893,7 +1893,7 @@ int FUN_1802252a7(void)
   }
   if (unaff_EBX == 7) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4872_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4872_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 8) {
@@ -1903,7 +1903,7 @@ int FUN_1802252a7(void)
   }
   if (unaff_EBX == 3) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4880_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4880_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -1917,7 +1917,7 @@ int FUN_1802252a7(void)
   }
   if (unaff_EBX == 4) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4924_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4924_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -1925,7 +1925,7 @@ int FUN_1802252a7(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4892_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4892_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -1933,7 +1933,7 @@ int FUN_1802252a7(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4900_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4900_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -1941,7 +1941,7 @@ int FUN_1802252a7(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4944_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4944_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -1949,7 +1949,7 @@ int FUN_1802252a7(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4952_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4952_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -1957,7 +1957,7 @@ int FUN_1802252a7(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4932_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4932_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -1967,7 +1967,7 @@ int FUN_1802252a7(void)
   }
   if (unaff_EBX == 3) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4940_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4940_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -1975,7 +1975,7 @@ int FUN_1802252a7(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4972_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4972_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -1983,7 +1983,7 @@ int FUN_1802252a7(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4976_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4976_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -1991,7 +1991,7 @@ int FUN_1802252a7(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4960_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4960_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -2001,7 +2001,7 @@ int FUN_1802252a7(void)
   }
   if (unaff_EBX == 5) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4964_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4964_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -2009,7 +2009,7 @@ int FUN_1802252a7(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4988_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4988_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -2019,7 +2019,7 @@ int FUN_1802252a7(void)
   }
   if (unaff_EBX == 3) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4996_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4996_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -2027,7 +2027,7 @@ int FUN_1802252a7(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4980_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4980_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -2035,7 +2035,7 @@ int FUN_1802252a7(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4984_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4984_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -2057,7 +2057,7 @@ int FUN_1802252a7(void)
   }
   if (unaff_EBX == 4) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5020_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5020_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -2067,7 +2067,7 @@ int FUN_1802252a7(void)
   }
   if (unaff_EBX == 5) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5096_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5096_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -2085,7 +2085,7 @@ int FUN_1802252a7(void)
   }
   if (unaff_EBX == 4) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5088_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5088_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -2093,7 +2093,7 @@ int FUN_1802252a7(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5140_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5140_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -2101,7 +2101,7 @@ int FUN_1802252a7(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5148_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5148_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -2109,7 +2109,7 @@ int FUN_1802252a7(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5116_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5116_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -2127,7 +2127,7 @@ int FUN_1802252a7(void)
   }
   if (unaff_EBX == 6) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5204_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5204_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 7) {
@@ -2141,7 +2141,7 @@ int FUN_1802252a7(void)
   }
   if (unaff_EBX == 6) {
     while (lVar4 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar4) == (&unknown_var_5156_ptr)[lVar4]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar4) == (&unknown_var_5156_ptr)[lVar4]) {
       unaff_RSI = lVar4 + 1;
       if (lVar4 + 1 == 7) {
         return (int)lVar4 + 0x23;
@@ -2176,15 +2176,15 @@ int FUN_1802252d3(void)
 {
   char *pcVar1;
   int iVar2;
-  longlong lVar3;
+  int64_t lVar3;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar4;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar4;
+  int64_t unaff_RDI;
   
   if (unaff_EBX == 7) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4784_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4784_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 8) {
@@ -2192,7 +2192,7 @@ int FUN_1802252d3(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4792_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4792_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 8) {
@@ -2236,7 +2236,7 @@ int FUN_1802252d3(void)
   }
   if (unaff_EBX == 7) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4872_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4872_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 8) {
@@ -2246,7 +2246,7 @@ int FUN_1802252d3(void)
   }
   if (unaff_EBX == 3) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4880_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4880_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -2260,7 +2260,7 @@ int FUN_1802252d3(void)
   }
   if (unaff_EBX == 4) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4924_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4924_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -2268,7 +2268,7 @@ int FUN_1802252d3(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4892_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4892_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -2276,7 +2276,7 @@ int FUN_1802252d3(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4900_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4900_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -2284,7 +2284,7 @@ int FUN_1802252d3(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4944_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4944_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -2292,7 +2292,7 @@ int FUN_1802252d3(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4952_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4952_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -2300,7 +2300,7 @@ int FUN_1802252d3(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4932_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4932_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -2310,7 +2310,7 @@ int FUN_1802252d3(void)
   }
   if (unaff_EBX == 3) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4940_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4940_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -2318,7 +2318,7 @@ int FUN_1802252d3(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4972_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4972_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -2326,7 +2326,7 @@ int FUN_1802252d3(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4976_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4976_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -2334,7 +2334,7 @@ int FUN_1802252d3(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4960_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4960_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -2344,7 +2344,7 @@ int FUN_1802252d3(void)
   }
   if (unaff_EBX == 5) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4964_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4964_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -2352,7 +2352,7 @@ int FUN_1802252d3(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4988_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4988_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -2362,7 +2362,7 @@ int FUN_1802252d3(void)
   }
   if (unaff_EBX == 3) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4996_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4996_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -2370,7 +2370,7 @@ int FUN_1802252d3(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4980_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4980_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -2378,7 +2378,7 @@ int FUN_1802252d3(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4984_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4984_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -2400,7 +2400,7 @@ int FUN_1802252d3(void)
   }
   if (unaff_EBX == 4) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5020_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5020_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -2410,7 +2410,7 @@ int FUN_1802252d3(void)
   }
   if (unaff_EBX == 5) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5096_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5096_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -2428,7 +2428,7 @@ int FUN_1802252d3(void)
   }
   if (unaff_EBX == 4) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5088_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5088_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -2436,7 +2436,7 @@ int FUN_1802252d3(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5140_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5140_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -2444,7 +2444,7 @@ int FUN_1802252d3(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5148_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5148_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -2452,7 +2452,7 @@ int FUN_1802252d3(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5116_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5116_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -2470,7 +2470,7 @@ int FUN_1802252d3(void)
   }
   if (unaff_EBX == 6) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5204_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5204_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 7) {
@@ -2484,7 +2484,7 @@ int FUN_1802252d3(void)
   }
   if (unaff_EBX == 6) {
     while (lVar4 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar4) == (&unknown_var_5156_ptr)[lVar4]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar4) == (&unknown_var_5156_ptr)[lVar4]) {
       unaff_RSI = lVar4 + 1;
       if (lVar4 + 1 == 7) {
         return (int)lVar4 + 0x23;
@@ -2519,15 +2519,15 @@ int FUN_180225317(void)
 {
   char *pcVar1;
   int iVar2;
-  longlong lVar3;
+  int64_t lVar3;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar4;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar4;
+  int64_t unaff_RDI;
   
   if (unaff_EBX == 7) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4792_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4792_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 8) {
@@ -2571,7 +2571,7 @@ int FUN_180225317(void)
   }
   if (unaff_EBX == 7) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4872_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4872_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 8) {
@@ -2581,7 +2581,7 @@ int FUN_180225317(void)
   }
   if (unaff_EBX == 3) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4880_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4880_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -2595,7 +2595,7 @@ int FUN_180225317(void)
   }
   if (unaff_EBX == 4) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4924_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4924_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -2603,7 +2603,7 @@ int FUN_180225317(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4892_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4892_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -2611,7 +2611,7 @@ int FUN_180225317(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4900_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4900_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -2619,7 +2619,7 @@ int FUN_180225317(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4944_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4944_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -2627,7 +2627,7 @@ int FUN_180225317(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4952_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4952_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -2635,7 +2635,7 @@ int FUN_180225317(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4932_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4932_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -2645,7 +2645,7 @@ int FUN_180225317(void)
   }
   if (unaff_EBX == 3) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4940_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4940_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -2653,7 +2653,7 @@ int FUN_180225317(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4972_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4972_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -2661,7 +2661,7 @@ int FUN_180225317(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4976_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4976_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -2669,7 +2669,7 @@ int FUN_180225317(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4960_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4960_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -2679,7 +2679,7 @@ int FUN_180225317(void)
   }
   if (unaff_EBX == 5) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4964_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4964_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -2687,7 +2687,7 @@ int FUN_180225317(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4988_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4988_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -2697,7 +2697,7 @@ int FUN_180225317(void)
   }
   if (unaff_EBX == 3) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4996_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4996_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -2705,7 +2705,7 @@ int FUN_180225317(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4980_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4980_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -2713,7 +2713,7 @@ int FUN_180225317(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4984_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4984_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -2735,7 +2735,7 @@ int FUN_180225317(void)
   }
   if (unaff_EBX == 4) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5020_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5020_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -2745,7 +2745,7 @@ int FUN_180225317(void)
   }
   if (unaff_EBX == 5) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5096_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5096_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -2763,7 +2763,7 @@ int FUN_180225317(void)
   }
   if (unaff_EBX == 4) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5088_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5088_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -2771,7 +2771,7 @@ int FUN_180225317(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5140_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5140_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -2779,7 +2779,7 @@ int FUN_180225317(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5148_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5148_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -2787,7 +2787,7 @@ int FUN_180225317(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5116_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5116_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -2805,7 +2805,7 @@ int FUN_180225317(void)
   }
   if (unaff_EBX == 6) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5204_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5204_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 7) {
@@ -2819,7 +2819,7 @@ int FUN_180225317(void)
   }
   if (unaff_EBX == 6) {
     while (lVar4 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar4) == (&unknown_var_5156_ptr)[lVar4]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar4) == (&unknown_var_5156_ptr)[lVar4]) {
       unaff_RSI = lVar4 + 1;
       if (lVar4 + 1 == 7) {
         return (int)lVar4 + 0x23;
@@ -2854,11 +2854,11 @@ int FUN_180225357(void)
 {
   char *pcVar1;
   int iVar2;
-  longlong lVar3;
+  int64_t lVar3;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar4;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar4;
+  int64_t unaff_RDI;
   
   if ((unaff_EBX == 8) &&
      (iVar2 = strcmp(*(uint64_t *)(unaff_RDI + 8),&unknown_var_4768_ptr), iVar2 == 0)) {
@@ -2896,7 +2896,7 @@ int FUN_180225357(void)
   }
   if (unaff_EBX == 7) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4872_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4872_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 8) {
@@ -2906,7 +2906,7 @@ int FUN_180225357(void)
   }
   if (unaff_EBX == 3) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4880_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4880_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -2920,7 +2920,7 @@ int FUN_180225357(void)
   }
   if (unaff_EBX == 4) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4924_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4924_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -2928,7 +2928,7 @@ int FUN_180225357(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4892_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4892_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -2936,7 +2936,7 @@ int FUN_180225357(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4900_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4900_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -2944,7 +2944,7 @@ int FUN_180225357(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4944_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4944_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -2952,7 +2952,7 @@ int FUN_180225357(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4952_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4952_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -2960,7 +2960,7 @@ int FUN_180225357(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4932_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4932_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -2970,7 +2970,7 @@ int FUN_180225357(void)
   }
   if (unaff_EBX == 3) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4940_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4940_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -2978,7 +2978,7 @@ int FUN_180225357(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4972_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4972_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -2986,7 +2986,7 @@ int FUN_180225357(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4976_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4976_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -2994,7 +2994,7 @@ int FUN_180225357(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4960_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4960_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -3004,7 +3004,7 @@ int FUN_180225357(void)
   }
   if (unaff_EBX == 5) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4964_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4964_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -3012,7 +3012,7 @@ int FUN_180225357(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4988_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4988_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -3022,7 +3022,7 @@ int FUN_180225357(void)
   }
   if (unaff_EBX == 3) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4996_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4996_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -3030,7 +3030,7 @@ int FUN_180225357(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4980_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4980_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -3038,7 +3038,7 @@ int FUN_180225357(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4984_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4984_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -3060,7 +3060,7 @@ int FUN_180225357(void)
   }
   if (unaff_EBX == 4) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5020_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5020_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -3070,7 +3070,7 @@ int FUN_180225357(void)
   }
   if (unaff_EBX == 5) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5096_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5096_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -3088,7 +3088,7 @@ int FUN_180225357(void)
   }
   if (unaff_EBX == 4) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5088_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5088_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -3096,7 +3096,7 @@ int FUN_180225357(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5140_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5140_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -3104,7 +3104,7 @@ int FUN_180225357(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5148_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5148_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -3112,7 +3112,7 @@ int FUN_180225357(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5116_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5116_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -3130,7 +3130,7 @@ int FUN_180225357(void)
   }
   if (unaff_EBX == 6) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5204_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5204_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 7) {
@@ -3144,7 +3144,7 @@ int FUN_180225357(void)
   }
   if (unaff_EBX == 6) {
     while (lVar4 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar4) == (&unknown_var_5156_ptr)[lVar4]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar4) == (&unknown_var_5156_ptr)[lVar4]) {
       unaff_RSI = lVar4 + 1;
       if (lVar4 + 1 == 7) {
         return (int)lVar4 + 0x23;
@@ -3179,11 +3179,11 @@ int FUN_180225383(void)
 {
   char *pcVar1;
   int iVar2;
-  longlong lVar3;
+  int64_t lVar3;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar4;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar4;
+  int64_t unaff_RDI;
   
   if ((((unaff_EBX == 2) && (pcVar1 = *(char **)(unaff_RDI + 8), *pcVar1 == 'A')) &&
       (pcVar1[1] == '8')) && (pcVar1[2] == '\0')) {
@@ -3217,7 +3217,7 @@ int FUN_180225383(void)
   }
   if (unaff_EBX == 7) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4872_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4872_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 8) {
@@ -3227,7 +3227,7 @@ int FUN_180225383(void)
   }
   if (unaff_EBX == 3) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4880_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4880_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -3241,7 +3241,7 @@ int FUN_180225383(void)
   }
   if (unaff_EBX == 4) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4924_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4924_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -3249,7 +3249,7 @@ int FUN_180225383(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4892_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4892_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -3257,7 +3257,7 @@ int FUN_180225383(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4900_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4900_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -3265,7 +3265,7 @@ int FUN_180225383(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4944_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4944_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -3273,7 +3273,7 @@ int FUN_180225383(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4952_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4952_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -3281,7 +3281,7 @@ int FUN_180225383(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4932_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4932_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -3291,7 +3291,7 @@ int FUN_180225383(void)
   }
   if (unaff_EBX == 3) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4940_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4940_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -3299,7 +3299,7 @@ int FUN_180225383(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4972_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4972_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -3307,7 +3307,7 @@ int FUN_180225383(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4976_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4976_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -3315,7 +3315,7 @@ int FUN_180225383(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4960_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4960_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -3325,7 +3325,7 @@ int FUN_180225383(void)
   }
   if (unaff_EBX == 5) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4964_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4964_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -3333,7 +3333,7 @@ int FUN_180225383(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4988_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4988_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -3343,7 +3343,7 @@ int FUN_180225383(void)
   }
   if (unaff_EBX == 3) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4996_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4996_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -3351,7 +3351,7 @@ int FUN_180225383(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4980_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4980_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -3359,7 +3359,7 @@ int FUN_180225383(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4984_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4984_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -3381,7 +3381,7 @@ int FUN_180225383(void)
   }
   if (unaff_EBX == 4) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5020_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5020_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -3391,7 +3391,7 @@ int FUN_180225383(void)
   }
   if (unaff_EBX == 5) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5096_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5096_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -3409,7 +3409,7 @@ int FUN_180225383(void)
   }
   if (unaff_EBX == 4) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5088_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5088_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -3417,7 +3417,7 @@ int FUN_180225383(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5140_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5140_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -3425,7 +3425,7 @@ int FUN_180225383(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5148_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5148_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -3433,7 +3433,7 @@ int FUN_180225383(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5116_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5116_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -3451,7 +3451,7 @@ int FUN_180225383(void)
   }
   if (unaff_EBX == 6) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5204_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5204_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 7) {
@@ -3465,7 +3465,7 @@ int FUN_180225383(void)
   }
   if (unaff_EBX == 6) {
     while (lVar4 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar4) == (&unknown_var_5156_ptr)[lVar4]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar4) == (&unknown_var_5156_ptr)[lVar4]) {
       unaff_RSI = lVar4 + 1;
       if (lVar4 + 1 == 7) {
         return (int)lVar4 + 0x23;
@@ -3500,11 +3500,11 @@ int FUN_1802253c2(void)
 {
   char *pcVar1;
   int iVar2;
-  longlong lVar3;
+  int64_t lVar3;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar4;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar4;
+  int64_t unaff_RDI;
   
   if ((unaff_EBX == 8) &&
      (iVar2 = strcmp(*(uint64_t *)(unaff_RDI + 8),&unknown_var_4832_ptr), iVar2 == 0)) {
@@ -3534,7 +3534,7 @@ int FUN_1802253c2(void)
   }
   if (unaff_EBX == 7) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4872_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4872_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 8) {
@@ -3544,7 +3544,7 @@ int FUN_1802253c2(void)
   }
   if (unaff_EBX == 3) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4880_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4880_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -3558,7 +3558,7 @@ int FUN_1802253c2(void)
   }
   if (unaff_EBX == 4) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4924_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4924_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -3566,7 +3566,7 @@ int FUN_1802253c2(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4892_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4892_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -3574,7 +3574,7 @@ int FUN_1802253c2(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4900_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4900_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -3582,7 +3582,7 @@ int FUN_1802253c2(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4944_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4944_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -3590,7 +3590,7 @@ int FUN_1802253c2(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4952_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4952_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -3598,7 +3598,7 @@ int FUN_1802253c2(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4932_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4932_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -3608,7 +3608,7 @@ int FUN_1802253c2(void)
   }
   if (unaff_EBX == 3) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4940_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4940_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -3616,7 +3616,7 @@ int FUN_1802253c2(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4972_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4972_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -3624,7 +3624,7 @@ int FUN_1802253c2(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4976_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4976_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -3632,7 +3632,7 @@ int FUN_1802253c2(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4960_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4960_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -3642,7 +3642,7 @@ int FUN_1802253c2(void)
   }
   if (unaff_EBX == 5) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4964_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4964_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -3650,7 +3650,7 @@ int FUN_1802253c2(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4988_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4988_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -3660,7 +3660,7 @@ int FUN_1802253c2(void)
   }
   if (unaff_EBX == 3) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4996_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4996_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -3668,7 +3668,7 @@ int FUN_1802253c2(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4980_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4980_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -3676,7 +3676,7 @@ int FUN_1802253c2(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4984_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4984_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -3698,7 +3698,7 @@ int FUN_1802253c2(void)
   }
   if (unaff_EBX == 4) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5020_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5020_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -3708,7 +3708,7 @@ int FUN_1802253c2(void)
   }
   if (unaff_EBX == 5) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5096_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5096_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -3726,7 +3726,7 @@ int FUN_1802253c2(void)
   }
   if (unaff_EBX == 4) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5088_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5088_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -3734,7 +3734,7 @@ int FUN_1802253c2(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5140_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5140_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -3742,7 +3742,7 @@ int FUN_1802253c2(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5148_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5148_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -3750,7 +3750,7 @@ int FUN_1802253c2(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5116_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5116_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -3768,7 +3768,7 @@ int FUN_1802253c2(void)
   }
   if (unaff_EBX == 6) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5204_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5204_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 7) {
@@ -3782,7 +3782,7 @@ int FUN_1802253c2(void)
   }
   if (unaff_EBX == 6) {
     while (lVar4 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar4) == (&unknown_var_5156_ptr)[lVar4]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar4) == (&unknown_var_5156_ptr)[lVar4]) {
       unaff_RSI = lVar4 + 1;
       if (lVar4 + 1 == 7) {
         return (int)lVar4 + 0x23;
@@ -3817,11 +3817,11 @@ int FUN_1802253ee(void)
 {
   char *pcVar1;
   int iVar2;
-  longlong lVar3;
+  int64_t lVar3;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar4;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar4;
+  int64_t unaff_RDI;
   
   if ((unaff_EBX == 0x11) &&
      (iVar2 = strcmp(*(uint64_t *)(unaff_RDI + 8),&unknown_var_4848_ptr), iVar2 == 0)) {
@@ -3847,7 +3847,7 @@ int FUN_1802253ee(void)
   }
   if (unaff_EBX == 7) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4872_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4872_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 8) {
@@ -3857,7 +3857,7 @@ int FUN_1802253ee(void)
   }
   if (unaff_EBX == 3) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4880_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4880_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -3871,7 +3871,7 @@ int FUN_1802253ee(void)
   }
   if (unaff_EBX == 4) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4924_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4924_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -3879,7 +3879,7 @@ int FUN_1802253ee(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4892_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4892_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -3887,7 +3887,7 @@ int FUN_1802253ee(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4900_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4900_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -3895,7 +3895,7 @@ int FUN_1802253ee(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4944_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4944_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -3903,7 +3903,7 @@ int FUN_1802253ee(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4952_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4952_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -3911,7 +3911,7 @@ int FUN_1802253ee(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4932_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4932_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -3921,7 +3921,7 @@ int FUN_1802253ee(void)
   }
   if (unaff_EBX == 3) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4940_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4940_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -3929,7 +3929,7 @@ int FUN_1802253ee(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4972_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4972_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -3937,7 +3937,7 @@ int FUN_1802253ee(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4976_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4976_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -3945,7 +3945,7 @@ int FUN_1802253ee(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4960_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4960_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -3955,7 +3955,7 @@ int FUN_1802253ee(void)
   }
   if (unaff_EBX == 5) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4964_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4964_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -3963,7 +3963,7 @@ int FUN_1802253ee(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4988_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4988_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -3973,7 +3973,7 @@ int FUN_1802253ee(void)
   }
   if (unaff_EBX == 3) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4996_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4996_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -3981,7 +3981,7 @@ int FUN_1802253ee(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4980_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4980_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -3989,7 +3989,7 @@ int FUN_1802253ee(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4984_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4984_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -4011,7 +4011,7 @@ int FUN_1802253ee(void)
   }
   if (unaff_EBX == 4) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5020_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5020_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4021,7 +4021,7 @@ int FUN_1802253ee(void)
   }
   if (unaff_EBX == 5) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5096_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5096_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -4039,7 +4039,7 @@ int FUN_1802253ee(void)
   }
   if (unaff_EBX == 4) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5088_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5088_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4047,7 +4047,7 @@ int FUN_1802253ee(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5140_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5140_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4055,7 +4055,7 @@ int FUN_1802253ee(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5148_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5148_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4063,7 +4063,7 @@ int FUN_1802253ee(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5116_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5116_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4081,7 +4081,7 @@ int FUN_1802253ee(void)
   }
   if (unaff_EBX == 6) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5204_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5204_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 7) {
@@ -4095,7 +4095,7 @@ int FUN_1802253ee(void)
   }
   if (unaff_EBX == 6) {
     while (lVar4 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar4) == (&unknown_var_5156_ptr)[lVar4]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar4) == (&unknown_var_5156_ptr)[lVar4]) {
       unaff_RSI = lVar4 + 1;
       if (lVar4 + 1 == 7) {
         return (int)lVar4 + 0x23;
@@ -4130,11 +4130,11 @@ int FUN_18022541a(void)
 {
   char *pcVar1;
   int iVar2;
-  longlong lVar3;
+  int64_t lVar3;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar4;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar4;
+  int64_t unaff_RDI;
   
   if ((unaff_EBX == 0xd) &&
      (iVar2 = strcmp(*(uint64_t *)(unaff_RDI + 8),&unknown_var_4800_ptr), iVar2 == 0)) {
@@ -4156,7 +4156,7 @@ int FUN_18022541a(void)
   }
   if (unaff_EBX == 7) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4872_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4872_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 8) {
@@ -4166,7 +4166,7 @@ int FUN_18022541a(void)
   }
   if (unaff_EBX == 3) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4880_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4880_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -4180,7 +4180,7 @@ int FUN_18022541a(void)
   }
   if (unaff_EBX == 4) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4924_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4924_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4188,7 +4188,7 @@ int FUN_18022541a(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4892_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4892_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4196,7 +4196,7 @@ int FUN_18022541a(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4900_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4900_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4204,7 +4204,7 @@ int FUN_18022541a(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4944_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4944_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4212,7 +4212,7 @@ int FUN_18022541a(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4952_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4952_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4220,7 +4220,7 @@ int FUN_18022541a(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4932_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4932_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4230,7 +4230,7 @@ int FUN_18022541a(void)
   }
   if (unaff_EBX == 3) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4940_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4940_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -4238,7 +4238,7 @@ int FUN_18022541a(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4972_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4972_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -4246,7 +4246,7 @@ int FUN_18022541a(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4976_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4976_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -4254,7 +4254,7 @@ int FUN_18022541a(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4960_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4960_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -4264,7 +4264,7 @@ int FUN_18022541a(void)
   }
   if (unaff_EBX == 5) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4964_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4964_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -4272,7 +4272,7 @@ int FUN_18022541a(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4988_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4988_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -4282,7 +4282,7 @@ int FUN_18022541a(void)
   }
   if (unaff_EBX == 3) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4996_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4996_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -4290,7 +4290,7 @@ int FUN_18022541a(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4980_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4980_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -4298,7 +4298,7 @@ int FUN_18022541a(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4984_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4984_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -4320,7 +4320,7 @@ int FUN_18022541a(void)
   }
   if (unaff_EBX == 4) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5020_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5020_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4330,7 +4330,7 @@ int FUN_18022541a(void)
   }
   if (unaff_EBX == 5) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5096_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5096_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -4348,7 +4348,7 @@ int FUN_18022541a(void)
   }
   if (unaff_EBX == 4) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5088_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5088_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4356,7 +4356,7 @@ int FUN_18022541a(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5140_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5140_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4364,7 +4364,7 @@ int FUN_18022541a(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5148_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5148_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4372,7 +4372,7 @@ int FUN_18022541a(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5116_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5116_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4390,7 +4390,7 @@ int FUN_18022541a(void)
   }
   if (unaff_EBX == 6) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5204_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5204_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 7) {
@@ -4404,7 +4404,7 @@ int FUN_18022541a(void)
   }
   if (unaff_EBX == 6) {
     while (lVar4 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar4) == (&unknown_var_5156_ptr)[lVar4]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar4) == (&unknown_var_5156_ptr)[lVar4]) {
       unaff_RSI = lVar4 + 1;
       if (lVar4 + 1 == 7) {
         return (int)lVar4 + 0x23;
@@ -4439,11 +4439,11 @@ int FUN_180225446(void)
 {
   char *pcVar1;
   int iVar2;
-  longlong lVar3;
+  int64_t lVar3;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar4;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar4;
+  int64_t unaff_RDI;
   
   if ((unaff_EBX == 0xc) &&
      (iVar2 = strcmp(*(uint64_t *)(unaff_RDI + 8),&unknown_var_4816_ptr), iVar2 == 0)) {
@@ -4461,7 +4461,7 @@ int FUN_180225446(void)
   }
   if (unaff_EBX == 7) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4872_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4872_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 8) {
@@ -4471,7 +4471,7 @@ int FUN_180225446(void)
   }
   if (unaff_EBX == 3) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4880_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4880_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -4485,7 +4485,7 @@ int FUN_180225446(void)
   }
   if (unaff_EBX == 4) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4924_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4924_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4493,7 +4493,7 @@ int FUN_180225446(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4892_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4892_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4501,7 +4501,7 @@ int FUN_180225446(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4900_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4900_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4509,7 +4509,7 @@ int FUN_180225446(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4944_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4944_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4517,7 +4517,7 @@ int FUN_180225446(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4952_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4952_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4525,7 +4525,7 @@ int FUN_180225446(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4932_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4932_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4535,7 +4535,7 @@ int FUN_180225446(void)
   }
   if (unaff_EBX == 3) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4940_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4940_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -4543,7 +4543,7 @@ int FUN_180225446(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4972_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4972_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -4551,7 +4551,7 @@ int FUN_180225446(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4976_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4976_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -4559,7 +4559,7 @@ int FUN_180225446(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4960_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4960_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -4569,7 +4569,7 @@ int FUN_180225446(void)
   }
   if (unaff_EBX == 5) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4964_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4964_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -4577,7 +4577,7 @@ int FUN_180225446(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4988_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4988_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -4587,7 +4587,7 @@ int FUN_180225446(void)
   }
   if (unaff_EBX == 3) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4996_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4996_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -4595,7 +4595,7 @@ int FUN_180225446(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4980_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4980_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -4603,7 +4603,7 @@ int FUN_180225446(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4984_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4984_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -4625,7 +4625,7 @@ int FUN_180225446(void)
   }
   if (unaff_EBX == 4) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5020_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5020_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4635,7 +4635,7 @@ int FUN_180225446(void)
   }
   if (unaff_EBX == 5) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5096_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5096_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -4653,7 +4653,7 @@ int FUN_180225446(void)
   }
   if (unaff_EBX == 4) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5088_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5088_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4661,7 +4661,7 @@ int FUN_180225446(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5140_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5140_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4669,7 +4669,7 @@ int FUN_180225446(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5148_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5148_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4677,7 +4677,7 @@ int FUN_180225446(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5116_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5116_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4695,7 +4695,7 @@ int FUN_180225446(void)
   }
   if (unaff_EBX == 6) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5204_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5204_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 7) {
@@ -4709,7 +4709,7 @@ int FUN_180225446(void)
   }
   if (unaff_EBX == 6) {
     while (lVar4 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar4) == (&unknown_var_5156_ptr)[lVar4]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar4) == (&unknown_var_5156_ptr)[lVar4]) {
       unaff_RSI = lVar4 + 1;
       if (lVar4 + 1 == 7) {
         return (int)lVar4 + 0x23;
@@ -4744,11 +4744,11 @@ int FUN_180225472(void)
 {
   char *pcVar1;
   int iVar2;
-  longlong lVar3;
+  int64_t lVar3;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar4;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar4;
+  int64_t unaff_RDI;
   
   if (unaff_EBX == 2) {
     pcVar1 = *(char **)(unaff_RDI + 8);
@@ -4762,7 +4762,7 @@ int FUN_180225472(void)
   }
   if (unaff_EBX == 7) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4872_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4872_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 8) {
@@ -4772,7 +4772,7 @@ int FUN_180225472(void)
   }
   if (unaff_EBX == 3) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4880_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4880_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -4786,7 +4786,7 @@ int FUN_180225472(void)
   }
   if (unaff_EBX == 4) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4924_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4924_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4794,7 +4794,7 @@ int FUN_180225472(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4892_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4892_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4802,7 +4802,7 @@ int FUN_180225472(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4900_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4900_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4810,7 +4810,7 @@ int FUN_180225472(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4944_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4944_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4818,7 +4818,7 @@ int FUN_180225472(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4952_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4952_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4826,7 +4826,7 @@ int FUN_180225472(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4932_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4932_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4836,7 +4836,7 @@ int FUN_180225472(void)
   }
   if (unaff_EBX == 3) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4940_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4940_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -4844,7 +4844,7 @@ int FUN_180225472(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4972_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4972_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -4852,7 +4852,7 @@ int FUN_180225472(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4976_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4976_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -4860,7 +4860,7 @@ int FUN_180225472(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4960_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4960_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -4870,7 +4870,7 @@ int FUN_180225472(void)
   }
   if (unaff_EBX == 5) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4964_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4964_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -4878,7 +4878,7 @@ int FUN_180225472(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4988_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4988_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -4888,7 +4888,7 @@ int FUN_180225472(void)
   }
   if (unaff_EBX == 3) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4996_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4996_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -4896,7 +4896,7 @@ int FUN_180225472(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4980_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4980_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -4904,7 +4904,7 @@ int FUN_180225472(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4984_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4984_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -4926,7 +4926,7 @@ int FUN_180225472(void)
   }
   if (unaff_EBX == 4) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5020_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5020_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4936,7 +4936,7 @@ int FUN_180225472(void)
   }
   if (unaff_EBX == 5) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5096_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5096_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -4954,7 +4954,7 @@ int FUN_180225472(void)
   }
   if (unaff_EBX == 4) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5088_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5088_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4962,7 +4962,7 @@ int FUN_180225472(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5140_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5140_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4970,7 +4970,7 @@ int FUN_180225472(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5148_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5148_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4978,7 +4978,7 @@ int FUN_180225472(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5116_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5116_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -4996,7 +4996,7 @@ int FUN_180225472(void)
   }
   if (unaff_EBX == 6) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5204_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5204_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 7) {
@@ -5010,7 +5010,7 @@ int FUN_180225472(void)
   }
   if (unaff_EBX == 6) {
     while (lVar4 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar4) == (&unknown_var_5156_ptr)[lVar4]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar4) == (&unknown_var_5156_ptr)[lVar4]) {
       unaff_RSI = lVar4 + 1;
       if (lVar4 + 1 == 7) {
         return (int)lVar4 + 0x23;
@@ -5045,11 +5045,11 @@ int FUN_1802254b1(void)
 {
   char *pcVar1;
   int iVar2;
-  longlong lVar3;
+  int64_t lVar3;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar4;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar4;
+  int64_t unaff_RDI;
   
   if ((((unaff_EBX == 2) && (pcVar1 = *(char **)(unaff_RDI + 8), *pcVar1 == 'R')) &&
       (pcVar1[1] == '8')) && (pcVar1[2] == '\0')) {
@@ -5057,7 +5057,7 @@ int FUN_1802254b1(void)
   }
   if (unaff_EBX == 7) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4872_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4872_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 8) {
@@ -5067,7 +5067,7 @@ int FUN_1802254b1(void)
   }
   if (unaff_EBX == 3) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4880_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4880_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -5081,7 +5081,7 @@ int FUN_1802254b1(void)
   }
   if (unaff_EBX == 4) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4924_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4924_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -5089,7 +5089,7 @@ int FUN_1802254b1(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4892_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4892_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -5097,7 +5097,7 @@ int FUN_1802254b1(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4900_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4900_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -5105,7 +5105,7 @@ int FUN_1802254b1(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4944_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4944_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -5113,7 +5113,7 @@ int FUN_1802254b1(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4952_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4952_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -5121,7 +5121,7 @@ int FUN_1802254b1(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4932_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4932_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -5131,7 +5131,7 @@ int FUN_1802254b1(void)
   }
   if (unaff_EBX == 3) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4940_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4940_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -5139,7 +5139,7 @@ int FUN_1802254b1(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4972_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4972_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -5147,7 +5147,7 @@ int FUN_1802254b1(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4976_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4976_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -5155,7 +5155,7 @@ int FUN_1802254b1(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4960_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4960_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -5165,7 +5165,7 @@ int FUN_1802254b1(void)
   }
   if (unaff_EBX == 5) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4964_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4964_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -5173,7 +5173,7 @@ int FUN_1802254b1(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4988_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4988_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -5183,7 +5183,7 @@ int FUN_1802254b1(void)
   }
   if (unaff_EBX == 3) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4996_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4996_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -5191,7 +5191,7 @@ int FUN_1802254b1(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4980_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4980_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -5199,7 +5199,7 @@ int FUN_1802254b1(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4984_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_4984_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 4) {
@@ -5221,7 +5221,7 @@ int FUN_1802254b1(void)
   }
   if (unaff_EBX == 4) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5020_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5020_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -5231,7 +5231,7 @@ int FUN_1802254b1(void)
   }
   if (unaff_EBX == 5) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5096_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5096_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 6) {
@@ -5249,7 +5249,7 @@ int FUN_1802254b1(void)
   }
   if (unaff_EBX == 4) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5088_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5088_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -5257,7 +5257,7 @@ int FUN_1802254b1(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5140_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5140_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -5265,7 +5265,7 @@ int FUN_1802254b1(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5148_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5148_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -5273,7 +5273,7 @@ int FUN_1802254b1(void)
       }
     }
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5116_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5116_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 5) {
@@ -5291,7 +5291,7 @@ int FUN_1802254b1(void)
   }
   if (unaff_EBX == 6) {
     lVar4 = unaff_RSI;
-    while (lVar3 = lVar4, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5204_ptr)[lVar3]
+    while (lVar3 = lVar4, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5204_ptr)[lVar3]
           ) {
       lVar4 = lVar3 + 1;
       if (lVar3 + 1 == 7) {
@@ -5305,7 +5305,7 @@ int FUN_1802254b1(void)
   }
   if (unaff_EBX == 6) {
     while (lVar4 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar4) == (&unknown_var_5156_ptr)[lVar4]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar4) == (&unknown_var_5156_ptr)[lVar4]) {
       unaff_RSI = lVar4 + 1;
       if (lVar4 + 1 == 7) {
         return (int)lVar4 + 0x23;
@@ -5339,15 +5339,15 @@ int FUN_1802254f0(void)
 
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar3;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar3;
+  int64_t unaff_RDI;
   
   if (unaff_EBX == 7) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4872_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4872_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 8) {
@@ -5357,7 +5357,7 @@ int FUN_1802254f0(void)
   }
   if (unaff_EBX == 3) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4880_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4880_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -5371,7 +5371,7 @@ int FUN_1802254f0(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4924_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4924_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -5379,7 +5379,7 @@ int FUN_1802254f0(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4892_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4892_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -5387,7 +5387,7 @@ int FUN_1802254f0(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4900_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4900_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -5395,7 +5395,7 @@ int FUN_1802254f0(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4944_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4944_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -5403,7 +5403,7 @@ int FUN_1802254f0(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4952_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4952_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -5411,7 +5411,7 @@ int FUN_1802254f0(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4932_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4932_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -5421,7 +5421,7 @@ int FUN_1802254f0(void)
   }
   if (unaff_EBX == 3) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4940_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4940_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -5429,7 +5429,7 @@ int FUN_1802254f0(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4972_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4972_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -5437,7 +5437,7 @@ int FUN_1802254f0(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4976_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4976_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -5445,7 +5445,7 @@ int FUN_1802254f0(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4960_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4960_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -5455,7 +5455,7 @@ int FUN_1802254f0(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4964_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4964_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -5463,7 +5463,7 @@ int FUN_1802254f0(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4988_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4988_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -5473,7 +5473,7 @@ int FUN_1802254f0(void)
   }
   if (unaff_EBX == 3) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4996_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4996_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -5481,7 +5481,7 @@ int FUN_1802254f0(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4980_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4980_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -5489,7 +5489,7 @@ int FUN_1802254f0(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -5511,7 +5511,7 @@ int FUN_1802254f0(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -5521,7 +5521,7 @@ int FUN_1802254f0(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -5539,7 +5539,7 @@ int FUN_1802254f0(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -5547,7 +5547,7 @@ int FUN_1802254f0(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -5555,7 +5555,7 @@ int FUN_1802254f0(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -5563,7 +5563,7 @@ int FUN_1802254f0(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -5581,7 +5581,7 @@ int FUN_1802254f0(void)
   }
   if (unaff_EBX == 6) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 7) {
@@ -5595,7 +5595,7 @@ int FUN_1802254f0(void)
   }
   if (unaff_EBX == 6) {
     while (lVar3 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
       unaff_RSI = lVar3 + 1;
       if (lVar3 + 1 == 7) {
         return (int)lVar3 + 0x23;
@@ -5629,15 +5629,15 @@ int FUN_180225537(void)
 
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar3;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar3;
+  int64_t unaff_RDI;
   
   if (unaff_EBX == 3) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4880_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4880_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -5651,7 +5651,7 @@ int FUN_180225537(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4924_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4924_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -5659,7 +5659,7 @@ int FUN_180225537(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4892_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4892_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -5667,7 +5667,7 @@ int FUN_180225537(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4900_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4900_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -5675,7 +5675,7 @@ int FUN_180225537(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4944_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4944_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -5683,7 +5683,7 @@ int FUN_180225537(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4952_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4952_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -5691,7 +5691,7 @@ int FUN_180225537(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4932_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4932_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -5701,7 +5701,7 @@ int FUN_180225537(void)
   }
   if (unaff_EBX == 3) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4940_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4940_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -5709,7 +5709,7 @@ int FUN_180225537(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4972_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4972_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -5717,7 +5717,7 @@ int FUN_180225537(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4976_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4976_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -5725,7 +5725,7 @@ int FUN_180225537(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4960_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4960_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -5735,7 +5735,7 @@ int FUN_180225537(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4964_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4964_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -5743,7 +5743,7 @@ int FUN_180225537(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4988_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4988_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -5753,7 +5753,7 @@ int FUN_180225537(void)
   }
   if (unaff_EBX == 3) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4996_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4996_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -5761,7 +5761,7 @@ int FUN_180225537(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4980_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4980_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -5769,7 +5769,7 @@ int FUN_180225537(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -5791,7 +5791,7 @@ int FUN_180225537(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -5801,7 +5801,7 @@ int FUN_180225537(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -5819,7 +5819,7 @@ int FUN_180225537(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -5827,7 +5827,7 @@ int FUN_180225537(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -5835,7 +5835,7 @@ int FUN_180225537(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -5843,7 +5843,7 @@ int FUN_180225537(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -5861,7 +5861,7 @@ int FUN_180225537(void)
   }
   if (unaff_EBX == 6) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 7) {
@@ -5875,7 +5875,7 @@ int FUN_180225537(void)
   }
   if (unaff_EBX == 6) {
     while (lVar3 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
       unaff_RSI = lVar3 + 1;
       if (lVar3 + 1 == 7) {
         return (int)lVar3 + 0x23;
@@ -5909,11 +5909,11 @@ int FUN_180225577(void)
 
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar3;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar3;
+  int64_t unaff_RDI;
   
   if ((unaff_EBX == 8) &&
      (iVar1 = strcmp(*(uint64_t *)(unaff_RDI + 8),&unknown_var_4912_ptr), iVar1 == 0)) {
@@ -5921,7 +5921,7 @@ int FUN_180225577(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4924_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4924_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -5929,7 +5929,7 @@ int FUN_180225577(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4892_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4892_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -5937,7 +5937,7 @@ int FUN_180225577(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4900_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4900_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -5945,7 +5945,7 @@ int FUN_180225577(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4944_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4944_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -5953,7 +5953,7 @@ int FUN_180225577(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4952_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4952_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -5961,7 +5961,7 @@ int FUN_180225577(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4932_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4932_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -5971,7 +5971,7 @@ int FUN_180225577(void)
   }
   if (unaff_EBX == 3) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4940_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4940_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -5979,7 +5979,7 @@ int FUN_180225577(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4972_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4972_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -5987,7 +5987,7 @@ int FUN_180225577(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4976_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4976_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -5995,7 +5995,7 @@ int FUN_180225577(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4960_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4960_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -6005,7 +6005,7 @@ int FUN_180225577(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4964_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4964_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -6013,7 +6013,7 @@ int FUN_180225577(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4988_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4988_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -6023,7 +6023,7 @@ int FUN_180225577(void)
   }
   if (unaff_EBX == 3) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4996_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4996_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -6031,7 +6031,7 @@ int FUN_180225577(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4980_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4980_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -6039,7 +6039,7 @@ int FUN_180225577(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -6061,7 +6061,7 @@ int FUN_180225577(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6071,7 +6071,7 @@ int FUN_180225577(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -6089,7 +6089,7 @@ int FUN_180225577(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6097,7 +6097,7 @@ int FUN_180225577(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6105,7 +6105,7 @@ int FUN_180225577(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6113,7 +6113,7 @@ int FUN_180225577(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6131,7 +6131,7 @@ int FUN_180225577(void)
   }
   if (unaff_EBX == 6) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 7) {
@@ -6145,7 +6145,7 @@ int FUN_180225577(void)
   }
   if (unaff_EBX == 6) {
     while (lVar3 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
       unaff_RSI = lVar3 + 1;
       if (lVar3 + 1 == 7) {
         return (int)lVar3 + 0x23;
@@ -6179,15 +6179,15 @@ int FUN_1802255a3(void)
 
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar3;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar3;
+  int64_t unaff_RDI;
   
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4924_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4924_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6195,7 +6195,7 @@ int FUN_1802255a3(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4892_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4892_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6203,7 +6203,7 @@ int FUN_1802255a3(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4900_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4900_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6211,7 +6211,7 @@ int FUN_1802255a3(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4944_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4944_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6219,7 +6219,7 @@ int FUN_1802255a3(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4952_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4952_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6227,7 +6227,7 @@ int FUN_1802255a3(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4932_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4932_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6237,7 +6237,7 @@ int FUN_1802255a3(void)
   }
   if (unaff_EBX == 3) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4940_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4940_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -6245,7 +6245,7 @@ int FUN_1802255a3(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4972_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4972_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -6253,7 +6253,7 @@ int FUN_1802255a3(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4976_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4976_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -6261,7 +6261,7 @@ int FUN_1802255a3(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4960_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4960_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -6271,7 +6271,7 @@ int FUN_1802255a3(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4964_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4964_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -6279,7 +6279,7 @@ int FUN_1802255a3(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4988_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4988_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -6289,7 +6289,7 @@ int FUN_1802255a3(void)
   }
   if (unaff_EBX == 3) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4996_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4996_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -6297,7 +6297,7 @@ int FUN_1802255a3(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4980_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4980_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -6305,7 +6305,7 @@ int FUN_1802255a3(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -6327,7 +6327,7 @@ int FUN_1802255a3(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6337,7 +6337,7 @@ int FUN_1802255a3(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -6355,7 +6355,7 @@ int FUN_1802255a3(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6363,7 +6363,7 @@ int FUN_1802255a3(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6371,7 +6371,7 @@ int FUN_1802255a3(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6379,7 +6379,7 @@ int FUN_1802255a3(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6397,7 +6397,7 @@ int FUN_1802255a3(void)
   }
   if (unaff_EBX == 6) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 7) {
@@ -6411,7 +6411,7 @@ int FUN_1802255a3(void)
   }
   if (unaff_EBX == 6) {
     while (lVar3 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
       unaff_RSI = lVar3 + 1;
       if (lVar3 + 1 == 7) {
         return (int)lVar3 + 0x23;
@@ -6445,15 +6445,15 @@ int FUN_1802255e7(void)
 
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar3;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar3;
+  int64_t unaff_RDI;
   
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4892_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4892_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6461,7 +6461,7 @@ int FUN_1802255e7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4900_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4900_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6469,7 +6469,7 @@ int FUN_1802255e7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4944_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4944_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6477,7 +6477,7 @@ int FUN_1802255e7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4952_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4952_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6485,7 +6485,7 @@ int FUN_1802255e7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4932_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4932_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6495,7 +6495,7 @@ int FUN_1802255e7(void)
   }
   if (unaff_EBX == 3) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4940_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4940_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -6503,7 +6503,7 @@ int FUN_1802255e7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4972_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4972_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -6511,7 +6511,7 @@ int FUN_1802255e7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4976_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4976_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -6519,7 +6519,7 @@ int FUN_1802255e7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4960_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4960_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -6529,7 +6529,7 @@ int FUN_1802255e7(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4964_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4964_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -6537,7 +6537,7 @@ int FUN_1802255e7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4988_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4988_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -6547,7 +6547,7 @@ int FUN_1802255e7(void)
   }
   if (unaff_EBX == 3) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4996_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4996_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -6555,7 +6555,7 @@ int FUN_1802255e7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4980_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4980_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -6563,7 +6563,7 @@ int FUN_1802255e7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -6585,7 +6585,7 @@ int FUN_1802255e7(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6595,7 +6595,7 @@ int FUN_1802255e7(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -6613,7 +6613,7 @@ int FUN_1802255e7(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6621,7 +6621,7 @@ int FUN_1802255e7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6629,7 +6629,7 @@ int FUN_1802255e7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6637,7 +6637,7 @@ int FUN_1802255e7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6655,7 +6655,7 @@ int FUN_1802255e7(void)
   }
   if (unaff_EBX == 6) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 7) {
@@ -6669,7 +6669,7 @@ int FUN_1802255e7(void)
   }
   if (unaff_EBX == 6) {
     while (lVar3 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
       unaff_RSI = lVar3 + 1;
       if (lVar3 + 1 == 7) {
         return (int)lVar3 + 0x23;
@@ -6703,15 +6703,15 @@ int FUN_180225627(void)
 
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar3;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar3;
+  int64_t unaff_RDI;
   
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4900_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4900_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6719,7 +6719,7 @@ int FUN_180225627(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4944_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4944_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6727,7 +6727,7 @@ int FUN_180225627(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4952_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4952_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6735,7 +6735,7 @@ int FUN_180225627(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4932_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4932_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6745,7 +6745,7 @@ int FUN_180225627(void)
   }
   if (unaff_EBX == 3) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4940_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4940_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -6753,7 +6753,7 @@ int FUN_180225627(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4972_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4972_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -6761,7 +6761,7 @@ int FUN_180225627(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4976_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4976_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -6769,7 +6769,7 @@ int FUN_180225627(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4960_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4960_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -6779,7 +6779,7 @@ int FUN_180225627(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4964_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4964_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -6787,7 +6787,7 @@ int FUN_180225627(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4988_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4988_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -6797,7 +6797,7 @@ int FUN_180225627(void)
   }
   if (unaff_EBX == 3) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4996_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4996_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -6805,7 +6805,7 @@ int FUN_180225627(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4980_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4980_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -6813,7 +6813,7 @@ int FUN_180225627(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -6835,7 +6835,7 @@ int FUN_180225627(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6845,7 +6845,7 @@ int FUN_180225627(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -6863,7 +6863,7 @@ int FUN_180225627(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6871,7 +6871,7 @@ int FUN_180225627(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6879,7 +6879,7 @@ int FUN_180225627(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6887,7 +6887,7 @@ int FUN_180225627(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6905,7 +6905,7 @@ int FUN_180225627(void)
   }
   if (unaff_EBX == 6) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 7) {
@@ -6919,7 +6919,7 @@ int FUN_180225627(void)
   }
   if (unaff_EBX == 6) {
     while (lVar3 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
       unaff_RSI = lVar3 + 1;
       if (lVar3 + 1 == 7) {
         return (int)lVar3 + 0x23;
@@ -6953,15 +6953,15 @@ int FUN_180225667(void)
 
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar3;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar3;
+  int64_t unaff_RDI;
   
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4944_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4944_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6969,7 +6969,7 @@ int FUN_180225667(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4952_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4952_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6977,7 +6977,7 @@ int FUN_180225667(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4932_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4932_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -6987,7 +6987,7 @@ int FUN_180225667(void)
   }
   if (unaff_EBX == 3) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4940_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4940_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -6995,7 +6995,7 @@ int FUN_180225667(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4972_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4972_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -7003,7 +7003,7 @@ int FUN_180225667(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4976_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4976_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -7011,7 +7011,7 @@ int FUN_180225667(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4960_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4960_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -7021,7 +7021,7 @@ int FUN_180225667(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4964_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4964_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -7029,7 +7029,7 @@ int FUN_180225667(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4988_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4988_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -7039,7 +7039,7 @@ int FUN_180225667(void)
   }
   if (unaff_EBX == 3) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4996_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4996_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -7047,7 +7047,7 @@ int FUN_180225667(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4980_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4980_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -7055,7 +7055,7 @@ int FUN_180225667(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -7077,7 +7077,7 @@ int FUN_180225667(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -7087,7 +7087,7 @@ int FUN_180225667(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -7105,7 +7105,7 @@ int FUN_180225667(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -7113,7 +7113,7 @@ int FUN_180225667(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -7121,7 +7121,7 @@ int FUN_180225667(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -7129,7 +7129,7 @@ int FUN_180225667(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -7147,7 +7147,7 @@ int FUN_180225667(void)
   }
   if (unaff_EBX == 6) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 7) {
@@ -7161,7 +7161,7 @@ int FUN_180225667(void)
   }
   if (unaff_EBX == 6) {
     while (lVar3 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
       unaff_RSI = lVar3 + 1;
       if (lVar3 + 1 == 7) {
         return (int)lVar3 + 0x23;
@@ -7195,15 +7195,15 @@ int FUN_1802256a7(void)
 
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar3;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar3;
+  int64_t unaff_RDI;
   
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4952_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4952_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -7211,7 +7211,7 @@ int FUN_1802256a7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4932_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4932_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -7221,7 +7221,7 @@ int FUN_1802256a7(void)
   }
   if (unaff_EBX == 3) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4940_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4940_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -7229,7 +7229,7 @@ int FUN_1802256a7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4972_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4972_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -7237,7 +7237,7 @@ int FUN_1802256a7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4976_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4976_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -7245,7 +7245,7 @@ int FUN_1802256a7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4960_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4960_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -7255,7 +7255,7 @@ int FUN_1802256a7(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4964_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4964_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -7263,7 +7263,7 @@ int FUN_1802256a7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4988_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4988_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -7273,7 +7273,7 @@ int FUN_1802256a7(void)
   }
   if (unaff_EBX == 3) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4996_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4996_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -7281,7 +7281,7 @@ int FUN_1802256a7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4980_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4980_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -7289,7 +7289,7 @@ int FUN_1802256a7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -7311,7 +7311,7 @@ int FUN_1802256a7(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -7321,7 +7321,7 @@ int FUN_1802256a7(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -7339,7 +7339,7 @@ int FUN_1802256a7(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -7347,7 +7347,7 @@ int FUN_1802256a7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -7355,7 +7355,7 @@ int FUN_1802256a7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -7363,7 +7363,7 @@ int FUN_1802256a7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -7381,7 +7381,7 @@ int FUN_1802256a7(void)
   }
   if (unaff_EBX == 6) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 7) {
@@ -7395,7 +7395,7 @@ int FUN_1802256a7(void)
   }
   if (unaff_EBX == 6) {
     while (lVar3 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
       unaff_RSI = lVar3 + 1;
       if (lVar3 + 1 == 7) {
         return (int)lVar3 + 0x23;
@@ -7429,15 +7429,15 @@ int FUN_1802256e7(void)
 
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar3;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar3;
+  int64_t unaff_RDI;
   
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4932_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4932_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -7447,7 +7447,7 @@ int FUN_1802256e7(void)
   }
   if (unaff_EBX == 3) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4940_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4940_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -7455,7 +7455,7 @@ int FUN_1802256e7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4972_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4972_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -7463,7 +7463,7 @@ int FUN_1802256e7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4976_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4976_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -7471,7 +7471,7 @@ int FUN_1802256e7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4960_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4960_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -7481,7 +7481,7 @@ int FUN_1802256e7(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4964_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4964_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -7489,7 +7489,7 @@ int FUN_1802256e7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4988_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4988_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -7499,7 +7499,7 @@ int FUN_1802256e7(void)
   }
   if (unaff_EBX == 3) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4996_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4996_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -7507,7 +7507,7 @@ int FUN_1802256e7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4980_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4980_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -7515,7 +7515,7 @@ int FUN_1802256e7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -7537,7 +7537,7 @@ int FUN_1802256e7(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -7547,7 +7547,7 @@ int FUN_1802256e7(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -7565,7 +7565,7 @@ int FUN_1802256e7(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -7573,7 +7573,7 @@ int FUN_1802256e7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -7581,7 +7581,7 @@ int FUN_1802256e7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -7589,7 +7589,7 @@ int FUN_1802256e7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -7607,7 +7607,7 @@ int FUN_1802256e7(void)
   }
   if (unaff_EBX == 6) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 7) {
@@ -7621,7 +7621,7 @@ int FUN_1802256e7(void)
   }
   if (unaff_EBX == 6) {
     while (lVar3 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
       unaff_RSI = lVar3 + 1;
       if (lVar3 + 1 == 7) {
         return (int)lVar3 + 0x23;
@@ -7655,15 +7655,15 @@ int FUN_180225727(void)
 
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar3;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar3;
+  int64_t unaff_RDI;
   
   if (unaff_EBX == 3) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4940_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4940_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -7671,7 +7671,7 @@ int FUN_180225727(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4972_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4972_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -7679,7 +7679,7 @@ int FUN_180225727(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4976_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4976_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -7687,7 +7687,7 @@ int FUN_180225727(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4960_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4960_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -7697,7 +7697,7 @@ int FUN_180225727(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4964_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4964_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -7705,7 +7705,7 @@ int FUN_180225727(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4988_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4988_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -7715,7 +7715,7 @@ int FUN_180225727(void)
   }
   if (unaff_EBX == 3) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4996_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4996_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -7723,7 +7723,7 @@ int FUN_180225727(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4980_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4980_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -7731,7 +7731,7 @@ int FUN_180225727(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -7753,7 +7753,7 @@ int FUN_180225727(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -7763,7 +7763,7 @@ int FUN_180225727(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -7781,7 +7781,7 @@ int FUN_180225727(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -7789,7 +7789,7 @@ int FUN_180225727(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -7797,7 +7797,7 @@ int FUN_180225727(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -7805,7 +7805,7 @@ int FUN_180225727(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -7823,7 +7823,7 @@ int FUN_180225727(void)
   }
   if (unaff_EBX == 6) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 7) {
@@ -7837,7 +7837,7 @@ int FUN_180225727(void)
   }
   if (unaff_EBX == 6) {
     while (lVar3 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
       unaff_RSI = lVar3 + 1;
       if (lVar3 + 1 == 7) {
         return (int)lVar3 + 0x23;
@@ -7871,15 +7871,15 @@ int FUN_180225767(void)
 
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar3;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar3;
+  int64_t unaff_RDI;
   
   if (unaff_EBX == 3) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4972_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4972_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -7887,7 +7887,7 @@ int FUN_180225767(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4976_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4976_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -7895,7 +7895,7 @@ int FUN_180225767(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4960_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4960_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -7905,7 +7905,7 @@ int FUN_180225767(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4964_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4964_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -7913,7 +7913,7 @@ int FUN_180225767(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4988_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4988_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -7923,7 +7923,7 @@ int FUN_180225767(void)
   }
   if (unaff_EBX == 3) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4996_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4996_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -7931,7 +7931,7 @@ int FUN_180225767(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4980_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4980_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -7939,7 +7939,7 @@ int FUN_180225767(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -7961,7 +7961,7 @@ int FUN_180225767(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -7971,7 +7971,7 @@ int FUN_180225767(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -7989,7 +7989,7 @@ int FUN_180225767(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -7997,7 +7997,7 @@ int FUN_180225767(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -8005,7 +8005,7 @@ int FUN_180225767(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -8013,7 +8013,7 @@ int FUN_180225767(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -8031,7 +8031,7 @@ int FUN_180225767(void)
   }
   if (unaff_EBX == 6) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 7) {
@@ -8045,7 +8045,7 @@ int FUN_180225767(void)
   }
   if (unaff_EBX == 6) {
     while (lVar3 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
       unaff_RSI = lVar3 + 1;
       if (lVar3 + 1 == 7) {
         return (int)lVar3 + 0x23;
@@ -8079,15 +8079,15 @@ int FUN_1802257a7(void)
 
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar3;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar3;
+  int64_t unaff_RDI;
   
   if (unaff_EBX == 3) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4976_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4976_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -8095,7 +8095,7 @@ int FUN_1802257a7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4960_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4960_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -8105,7 +8105,7 @@ int FUN_1802257a7(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4964_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4964_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -8113,7 +8113,7 @@ int FUN_1802257a7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4988_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4988_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -8123,7 +8123,7 @@ int FUN_1802257a7(void)
   }
   if (unaff_EBX == 3) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4996_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4996_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -8131,7 +8131,7 @@ int FUN_1802257a7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4980_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4980_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -8139,7 +8139,7 @@ int FUN_1802257a7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -8161,7 +8161,7 @@ int FUN_1802257a7(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -8171,7 +8171,7 @@ int FUN_1802257a7(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -8189,7 +8189,7 @@ int FUN_1802257a7(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -8197,7 +8197,7 @@ int FUN_1802257a7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -8205,7 +8205,7 @@ int FUN_1802257a7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -8213,7 +8213,7 @@ int FUN_1802257a7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -8231,7 +8231,7 @@ int FUN_1802257a7(void)
   }
   if (unaff_EBX == 6) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 7) {
@@ -8245,7 +8245,7 @@ int FUN_1802257a7(void)
   }
   if (unaff_EBX == 6) {
     while (lVar3 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
       unaff_RSI = lVar3 + 1;
       if (lVar3 + 1 == 7) {
         return (int)lVar3 + 0x23;
@@ -8279,15 +8279,15 @@ int FUN_1802257e7(void)
 
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar3;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar3;
+  int64_t unaff_RDI;
   
   if (unaff_EBX == 3) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4960_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4960_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -8297,7 +8297,7 @@ int FUN_1802257e7(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4964_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4964_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -8305,7 +8305,7 @@ int FUN_1802257e7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4988_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4988_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -8315,7 +8315,7 @@ int FUN_1802257e7(void)
   }
   if (unaff_EBX == 3) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4996_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4996_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -8323,7 +8323,7 @@ int FUN_1802257e7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4980_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4980_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -8331,7 +8331,7 @@ int FUN_1802257e7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -8353,7 +8353,7 @@ int FUN_1802257e7(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -8363,7 +8363,7 @@ int FUN_1802257e7(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -8381,7 +8381,7 @@ int FUN_1802257e7(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -8389,7 +8389,7 @@ int FUN_1802257e7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -8397,7 +8397,7 @@ int FUN_1802257e7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -8405,7 +8405,7 @@ int FUN_1802257e7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -8423,7 +8423,7 @@ int FUN_1802257e7(void)
   }
   if (unaff_EBX == 6) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 7) {
@@ -8437,7 +8437,7 @@ int FUN_1802257e7(void)
   }
   if (unaff_EBX == 6) {
     while (lVar3 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
       unaff_RSI = lVar3 + 1;
       if (lVar3 + 1 == 7) {
         return (int)lVar3 + 0x23;
@@ -8471,15 +8471,15 @@ int FUN_180225827(void)
 
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar3;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar3;
+  int64_t unaff_RDI;
   
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4964_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4964_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -8487,7 +8487,7 @@ int FUN_180225827(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4988_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4988_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -8497,7 +8497,7 @@ int FUN_180225827(void)
   }
   if (unaff_EBX == 3) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4996_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4996_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -8505,7 +8505,7 @@ int FUN_180225827(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4980_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4980_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -8513,7 +8513,7 @@ int FUN_180225827(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -8535,7 +8535,7 @@ int FUN_180225827(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -8545,7 +8545,7 @@ int FUN_180225827(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -8563,7 +8563,7 @@ int FUN_180225827(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -8571,7 +8571,7 @@ int FUN_180225827(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -8579,7 +8579,7 @@ int FUN_180225827(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -8587,7 +8587,7 @@ int FUN_180225827(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -8605,7 +8605,7 @@ int FUN_180225827(void)
   }
   if (unaff_EBX == 6) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 7) {
@@ -8619,7 +8619,7 @@ int FUN_180225827(void)
   }
   if (unaff_EBX == 6) {
     while (lVar3 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
       unaff_RSI = lVar3 + 1;
       if (lVar3 + 1 == 7) {
         return (int)lVar3 + 0x23;
@@ -8653,15 +8653,15 @@ int FUN_180225867(void)
 
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar3;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar3;
+  int64_t unaff_RDI;
   
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4988_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4988_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -8671,7 +8671,7 @@ int FUN_180225867(void)
   }
   if (unaff_EBX == 3) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4996_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4996_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -8679,7 +8679,7 @@ int FUN_180225867(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4980_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4980_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -8687,7 +8687,7 @@ int FUN_180225867(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -8709,7 +8709,7 @@ int FUN_180225867(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -8719,7 +8719,7 @@ int FUN_180225867(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -8737,7 +8737,7 @@ int FUN_180225867(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -8745,7 +8745,7 @@ int FUN_180225867(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -8753,7 +8753,7 @@ int FUN_180225867(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -8761,7 +8761,7 @@ int FUN_180225867(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -8779,7 +8779,7 @@ int FUN_180225867(void)
   }
   if (unaff_EBX == 6) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 7) {
@@ -8793,7 +8793,7 @@ int FUN_180225867(void)
   }
   if (unaff_EBX == 6) {
     while (lVar3 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
       unaff_RSI = lVar3 + 1;
       if (lVar3 + 1 == 7) {
         return (int)lVar3 + 0x23;
@@ -8827,15 +8827,15 @@ int FUN_1802258a7(void)
 
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar3;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar3;
+  int64_t unaff_RDI;
   
   if (unaff_EBX == 3) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4996_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4996_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -8843,7 +8843,7 @@ int FUN_1802258a7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4980_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4980_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -8851,7 +8851,7 @@ int FUN_1802258a7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -8873,7 +8873,7 @@ int FUN_1802258a7(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -8883,7 +8883,7 @@ int FUN_1802258a7(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -8901,7 +8901,7 @@ int FUN_1802258a7(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -8909,7 +8909,7 @@ int FUN_1802258a7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -8917,7 +8917,7 @@ int FUN_1802258a7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -8925,7 +8925,7 @@ int FUN_1802258a7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -8943,7 +8943,7 @@ int FUN_1802258a7(void)
   }
   if (unaff_EBX == 6) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 7) {
@@ -8957,7 +8957,7 @@ int FUN_1802258a7(void)
   }
   if (unaff_EBX == 6) {
     while (lVar3 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
       unaff_RSI = lVar3 + 1;
       if (lVar3 + 1 == 7) {
         return (int)lVar3 + 0x23;
@@ -8991,15 +8991,15 @@ int FUN_1802258e7(void)
 
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar3;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar3;
+  int64_t unaff_RDI;
   
   if (unaff_EBX == 3) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4980_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4980_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -9007,7 +9007,7 @@ int FUN_1802258e7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -9029,7 +9029,7 @@ int FUN_1802258e7(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9039,7 +9039,7 @@ int FUN_1802258e7(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -9057,7 +9057,7 @@ int FUN_1802258e7(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9065,7 +9065,7 @@ int FUN_1802258e7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9073,7 +9073,7 @@ int FUN_1802258e7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9081,7 +9081,7 @@ int FUN_1802258e7(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9099,7 +9099,7 @@ int FUN_1802258e7(void)
   }
   if (unaff_EBX == 6) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 7) {
@@ -9113,7 +9113,7 @@ int FUN_1802258e7(void)
   }
   if (unaff_EBX == 6) {
     while (lVar3 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
       unaff_RSI = lVar3 + 1;
       if (lVar3 + 1 == 7) {
         return (int)lVar3 + 0x23;
@@ -9147,15 +9147,15 @@ int FUN_180225927(void)
 
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar3;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar3;
+  int64_t unaff_RDI;
   
   if (unaff_EBX == 3) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_4984_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 4) {
@@ -9177,7 +9177,7 @@ int FUN_180225927(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9187,7 +9187,7 @@ int FUN_180225927(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -9205,7 +9205,7 @@ int FUN_180225927(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9213,7 +9213,7 @@ int FUN_180225927(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9221,7 +9221,7 @@ int FUN_180225927(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9229,7 +9229,7 @@ int FUN_180225927(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9247,7 +9247,7 @@ int FUN_180225927(void)
   }
   if (unaff_EBX == 6) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 7) {
@@ -9261,7 +9261,7 @@ int FUN_180225927(void)
   }
   if (unaff_EBX == 6) {
     while (lVar3 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
       unaff_RSI = lVar3 + 1;
       if (lVar3 + 1 == 7) {
         return (int)lVar3 + 0x23;
@@ -9295,11 +9295,11 @@ int FUN_180225967(void)
 
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar3;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar3;
+  int64_t unaff_RDI;
   
   if ((unaff_EBX == 0xd) &&
      (iVar1 = strcmp(*(uint64_t *)(unaff_RDI + 8),&unknown_var_5032_ptr), iVar1 == 0)) {
@@ -9315,7 +9315,7 @@ int FUN_180225967(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9325,7 +9325,7 @@ int FUN_180225967(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -9343,7 +9343,7 @@ int FUN_180225967(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9351,7 +9351,7 @@ int FUN_180225967(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9359,7 +9359,7 @@ int FUN_180225967(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9367,7 +9367,7 @@ int FUN_180225967(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9385,7 +9385,7 @@ int FUN_180225967(void)
   }
   if (unaff_EBX == 6) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 7) {
@@ -9399,7 +9399,7 @@ int FUN_180225967(void)
   }
   if (unaff_EBX == 6) {
     while (lVar3 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
       unaff_RSI = lVar3 + 1;
       if (lVar3 + 1 == 7) {
         return (int)lVar3 + 0x23;
@@ -9433,11 +9433,11 @@ int FUN_180225993(void)
 
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar3;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar3;
+  int64_t unaff_RDI;
   
   if ((unaff_EBX == 0x11) &&
      (iVar1 = strcmp(*(uint64_t *)(unaff_RDI + 8),&unknown_var_5048_ptr), iVar1 == 0)) {
@@ -9449,7 +9449,7 @@ int FUN_180225993(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9459,7 +9459,7 @@ int FUN_180225993(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -9477,7 +9477,7 @@ int FUN_180225993(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9485,7 +9485,7 @@ int FUN_180225993(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9493,7 +9493,7 @@ int FUN_180225993(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9501,7 +9501,7 @@ int FUN_180225993(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9519,7 +9519,7 @@ int FUN_180225993(void)
   }
   if (unaff_EBX == 6) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 7) {
@@ -9533,7 +9533,7 @@ int FUN_180225993(void)
   }
   if (unaff_EBX == 6) {
     while (lVar3 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
       unaff_RSI = lVar3 + 1;
       if (lVar3 + 1 == 7) {
         return (int)lVar3 + 0x23;
@@ -9567,11 +9567,11 @@ int FUN_1802259bf(void)
 
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar3;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar3;
+  int64_t unaff_RDI;
   
   if ((unaff_EBX == 0x12) &&
      (iVar1 = strcmp(*(uint64_t *)(unaff_RDI + 8),&unknown_var_5000_ptr), iVar1 == 0)) {
@@ -9579,7 +9579,7 @@ int FUN_1802259bf(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9589,7 +9589,7 @@ int FUN_1802259bf(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -9607,7 +9607,7 @@ int FUN_1802259bf(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9615,7 +9615,7 @@ int FUN_1802259bf(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9623,7 +9623,7 @@ int FUN_1802259bf(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9631,7 +9631,7 @@ int FUN_1802259bf(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9649,7 +9649,7 @@ int FUN_1802259bf(void)
   }
   if (unaff_EBX == 6) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 7) {
@@ -9663,7 +9663,7 @@ int FUN_1802259bf(void)
   }
   if (unaff_EBX == 6) {
     while (lVar3 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
       unaff_RSI = lVar3 + 1;
       if (lVar3 + 1 == 7) {
         return (int)lVar3 + 0x23;
@@ -9697,15 +9697,15 @@ int FUN_1802259eb(void)
 
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar3;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar3;
+  int64_t unaff_RDI;
   
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5020_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9715,7 +9715,7 @@ int FUN_1802259eb(void)
   }
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -9733,7 +9733,7 @@ int FUN_1802259eb(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9741,7 +9741,7 @@ int FUN_1802259eb(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9749,7 +9749,7 @@ int FUN_1802259eb(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9757,7 +9757,7 @@ int FUN_1802259eb(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9775,7 +9775,7 @@ int FUN_1802259eb(void)
   }
   if (unaff_EBX == 6) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 7) {
@@ -9789,7 +9789,7 @@ int FUN_1802259eb(void)
   }
   if (unaff_EBX == 6) {
     while (lVar3 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
       unaff_RSI = lVar3 + 1;
       if (lVar3 + 1 == 7) {
         return (int)lVar3 + 0x23;
@@ -9823,15 +9823,15 @@ int FUN_180225a27(void)
 
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar3;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar3;
+  int64_t unaff_RDI;
   
   if (unaff_EBX == 5) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5096_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 6) {
@@ -9849,7 +9849,7 @@ int FUN_180225a27(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9857,7 +9857,7 @@ int FUN_180225a27(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9865,7 +9865,7 @@ int FUN_180225a27(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9873,7 +9873,7 @@ int FUN_180225a27(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9891,7 +9891,7 @@ int FUN_180225a27(void)
   }
   if (unaff_EBX == 6) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 7) {
@@ -9905,7 +9905,7 @@ int FUN_180225a27(void)
   }
   if (unaff_EBX == 6) {
     while (lVar3 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
       unaff_RSI = lVar3 + 1;
       if (lVar3 + 1 == 7) {
         return (int)lVar3 + 0x23;
@@ -9939,11 +9939,11 @@ int FUN_180225a67(void)
 
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar3;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar3;
+  int64_t unaff_RDI;
   
   if ((unaff_EBX == 10) &&
      (iVar1 = strcmp(*(uint64_t *)(unaff_RDI + 8),&unknown_var_5104_ptr), iVar1 == 0)) {
@@ -9955,7 +9955,7 @@ int FUN_180225a67(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9963,7 +9963,7 @@ int FUN_180225a67(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9971,7 +9971,7 @@ int FUN_180225a67(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9979,7 +9979,7 @@ int FUN_180225a67(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -9997,7 +9997,7 @@ int FUN_180225a67(void)
   }
   if (unaff_EBX == 6) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 7) {
@@ -10011,7 +10011,7 @@ int FUN_180225a67(void)
   }
   if (unaff_EBX == 6) {
     while (lVar3 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
       unaff_RSI = lVar3 + 1;
       if (lVar3 + 1 == 7) {
         return (int)lVar3 + 0x23;
@@ -10045,11 +10045,11 @@ int FUN_180225a93(void)
 
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar3;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar3;
+  int64_t unaff_RDI;
   
   if ((unaff_EBX == 0xd) &&
      (iVar1 = strcmp(*(uint64_t *)(unaff_RDI + 8),&unknown_var_5072_ptr), iVar1 == 0)) {
@@ -10057,7 +10057,7 @@ int FUN_180225a93(void)
   }
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -10065,7 +10065,7 @@ int FUN_180225a93(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -10073,7 +10073,7 @@ int FUN_180225a93(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -10081,7 +10081,7 @@ int FUN_180225a93(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -10099,7 +10099,7 @@ int FUN_180225a93(void)
   }
   if (unaff_EBX == 6) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 7) {
@@ -10113,7 +10113,7 @@ int FUN_180225a93(void)
   }
   if (unaff_EBX == 6) {
     while (lVar3 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
       unaff_RSI = lVar3 + 1;
       if (lVar3 + 1 == 7) {
         return (int)lVar3 + 0x23;
@@ -10147,15 +10147,15 @@ int FUN_180225abf(void)
 
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar3;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar3;
+  int64_t unaff_RDI;
   
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5088_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -10163,7 +10163,7 @@ int FUN_180225abf(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -10171,7 +10171,7 @@ int FUN_180225abf(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -10179,7 +10179,7 @@ int FUN_180225abf(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -10197,7 +10197,7 @@ int FUN_180225abf(void)
   }
   if (unaff_EBX == 6) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 7) {
@@ -10211,7 +10211,7 @@ int FUN_180225abf(void)
   }
   if (unaff_EBX == 6) {
     while (lVar3 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
       unaff_RSI = lVar3 + 1;
       if (lVar3 + 1 == 7) {
         return (int)lVar3 + 0x23;
@@ -10245,15 +10245,15 @@ int FUN_180225b07(void)
 
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar3;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar3;
+  int64_t unaff_RDI;
   
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5140_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -10261,7 +10261,7 @@ int FUN_180225b07(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -10269,7 +10269,7 @@ int FUN_180225b07(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -10287,7 +10287,7 @@ int FUN_180225b07(void)
   }
   if (unaff_EBX == 6) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 7) {
@@ -10301,7 +10301,7 @@ int FUN_180225b07(void)
   }
   if (unaff_EBX == 6) {
     while (lVar3 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
       unaff_RSI = lVar3 + 1;
       if (lVar3 + 1 == 7) {
         return (int)lVar3 + 0x23;
@@ -10335,15 +10335,15 @@ int FUN_180225b47(void)
 
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar3;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar3;
+  int64_t unaff_RDI;
   
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5148_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -10351,7 +10351,7 @@ int FUN_180225b47(void)
       }
     }
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -10369,7 +10369,7 @@ int FUN_180225b47(void)
   }
   if (unaff_EBX == 6) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 7) {
@@ -10383,7 +10383,7 @@ int FUN_180225b47(void)
   }
   if (unaff_EBX == 6) {
     while (lVar3 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
       unaff_RSI = lVar3 + 1;
       if (lVar3 + 1 == 7) {
         return (int)lVar3 + 0x23;
@@ -10417,15 +10417,15 @@ int FUN_180225b87(void)
 
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar3;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar3;
+  int64_t unaff_RDI;
   
   if (unaff_EBX == 4) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5116_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 5) {
@@ -10443,7 +10443,7 @@ int FUN_180225b87(void)
   }
   if (unaff_EBX == 6) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 7) {
@@ -10457,7 +10457,7 @@ int FUN_180225b87(void)
   }
   if (unaff_EBX == 6) {
     while (lVar3 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
       unaff_RSI = lVar3 + 1;
       if (lVar3 + 1 == 7) {
         return (int)lVar3 + 0x23;
@@ -10491,11 +10491,11 @@ int FUN_180225bc7(void)
 
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar3;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar3;
+  int64_t unaff_RDI;
   
   if ((unaff_EBX == 10) &&
      (iVar1 = strcmp(*(uint64_t *)(unaff_RDI + 8),&unknown_var_5128_ptr), iVar1 == 0)) {
@@ -10507,7 +10507,7 @@ int FUN_180225bc7(void)
   }
   if (unaff_EBX == 6) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 7) {
@@ -10521,7 +10521,7 @@ int FUN_180225bc7(void)
   }
   if (unaff_EBX == 6) {
     while (lVar3 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
       unaff_RSI = lVar3 + 1;
       if (lVar3 + 1 == 7) {
         return (int)lVar3 + 0x23;
@@ -10555,11 +10555,11 @@ int FUN_180225bf3(void)
 
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar3;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar3;
+  int64_t unaff_RDI;
   
   if ((unaff_EBX == 9) &&
      (iVar1 = strcmp(*(uint64_t *)(unaff_RDI + 8),&unknown_var_5192_ptr), iVar1 == 0)) {
@@ -10567,7 +10567,7 @@ int FUN_180225bf3(void)
   }
   if (unaff_EBX == 6) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 7) {
@@ -10581,7 +10581,7 @@ int FUN_180225bf3(void)
   }
   if (unaff_EBX == 6) {
     while (lVar3 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
       unaff_RSI = lVar3 + 1;
       if (lVar3 + 1 == 7) {
         return (int)lVar3 + 0x23;
@@ -10615,15 +10615,15 @@ int FUN_180225c1f(void)
 
 {
   int iVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar3;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar3;
+  int64_t unaff_RDI;
   
   if (unaff_EBX == 6) {
     lVar3 = unaff_RSI;
-    while (lVar2 = lVar3, *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
+    while (lVar2 = lVar3, *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5204_ptr)[lVar2]
           ) {
       lVar3 = lVar2 + 1;
       if (lVar2 + 1 == 7) {
@@ -10637,7 +10637,7 @@ int FUN_180225c1f(void)
   }
   if (unaff_EBX == 6) {
     while (lVar3 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar3) == (&unknown_var_5156_ptr)[lVar3]) {
       unaff_RSI = lVar3 + 1;
       if (lVar3 + 1 == 7) {
         return (int)lVar3 + 0x23;
@@ -10672,9 +10672,9 @@ int FUN_180225c59(void)
 {
   int iVar1;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar2;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar2;
+  int64_t unaff_RDI;
   
   if ((unaff_EBX == 10) &&
      (iVar1 = strcmp(*(uint64_t *)(unaff_RDI + 8),&unknown_var_5216_ptr), iVar1 == 0)) {
@@ -10682,7 +10682,7 @@ int FUN_180225c59(void)
   }
   if (unaff_EBX == 6) {
     while (lVar2 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5156_ptr)[lVar2]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5156_ptr)[lVar2]) {
       unaff_RSI = lVar2 + 1;
       if (lVar2 + 1 == 7) {
         return (int)lVar2 + 0x23;
@@ -10717,13 +10717,13 @@ int FUN_180225c85(void)
 {
   int iVar1;
   int unaff_EBX;
-  longlong unaff_RSI;
-  longlong lVar2;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t lVar2;
+  int64_t unaff_RDI;
   
   if (unaff_EBX == 6) {
     while (lVar2 = unaff_RSI,
-          *(char *)(*(longlong *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5156_ptr)[lVar2]) {
+          *(char *)(*(int64_t *)(unaff_RDI + 8) + lVar2) == (&unknown_var_5156_ptr)[lVar2]) {
       unaff_RSI = lVar2 + 1;
       if (lVar2 + 1 == 7) {
         return (int)lVar2 + 0x23;
@@ -10773,7 +10773,7 @@ int32_t 检查字符串匹配返回标识符版本1(void)
 {
   int 比较结果;
   int 寄存器EBX;
-  longlong 寄存器RDI;
+  int64_t 寄存器RDI;
   
   // 检查EBX=0x11且字符串匹配
   if ((寄存器EBX == 0x11) &&
@@ -10809,7 +10809,7 @@ int32_t FUN_180225cf2(void)
 {
   int iVar1;
   int unaff_EBX;
-  longlong unaff_RDI;
+  int64_t unaff_RDI;
   
   if (unaff_EBX == 0xe) {
     iVar1 = strcmp(*(uint64_t *)(unaff_RDI + 8),&unknown_var_5248_ptr);
@@ -10835,7 +10835,7 @@ int32_t FUN_180225d1e(void)
 {
   int iVar1;
   int unaff_EBX;
-  longlong unaff_RDI;
+  int64_t unaff_RDI;
   
   if (unaff_EBX == 0xe) {
     iVar1 = strcmp(*(uint64_t *)(unaff_RDI + 8),&unknown_var_5264_ptr);
@@ -10859,7 +10859,7 @@ int32_t FUN_180225d4a(void)
 {
   int iVar1;
   int unaff_EBX;
-  longlong unaff_RDI;
+  int64_t unaff_RDI;
   
   if (unaff_EBX == 0xb) {
     iVar1 = strcmp(*(uint64_t *)(unaff_RDI + 8),&unknown_var_5232_ptr);

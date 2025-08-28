@@ -75,12 +75,12 @@ static uint global_transform_state = 0;
  * @param transform_params 变换参数数组
  * @param context 上下文指针
  */
-void apply_3d_transform(uint object_id, Vector4* transform_params, longlong context) {
+void apply_3d_transform(uint object_id, Vector4* transform_params, int64_t context) {
     float transform_x, transform_y, transform_z, transform_w;
     char transform_result;
-    longlong matrix_base;
+    int64_t matrix_base;
     int transform_index;
-    ulonglong matrix_offset;
+    uint64_t matrix_offset;
     int* matrix_data;
     float* vector_data;
     bool transform_valid;
@@ -90,7 +90,7 @@ void apply_3d_transform(uint object_id, Vector4* transform_params, longlong cont
     
     matrix_offset = MATRIX_CACHE_SIZE;
     if (!transform_valid) {
-        matrix_offset = (ulonglong)object_id;
+        matrix_offset = (uint64_t)object_id;
     }
     
     matrix_data = (int*)(matrix_offset + context);
@@ -101,13 +101,13 @@ void apply_3d_transform(uint object_id, Vector4* transform_params, longlong cont
         stack_transform_y = transform_params[3];
         
         // 验证变换矩阵一致性
-        if ((*(int*)(context + 0x1cfc) == *(int*)(*(longlong*)(context + 0x1af8) + 0x16c)) &&
+        if ((*(int*)(context + 0x1cfc) == *(int*)(*(int64_t*)(context + 0x1af8) + 0x16c)) &&
             (transform_result = validate_transform_matrix(matrix_data, &transform_params, context, 
-            *(longlong*)(context + 0x1af8), *transform_params), transform_result != '\0')) {
+            *(int64_t*)(context + 0x1af8), *transform_params), transform_result != '\0')) {
             
             // 应用变换矩阵
             *matrix_data = transform_index;
-            *(longlong*)(matrix_data + 2) = matrix_base;
+            *(int64_t*)(matrix_data + 2) = matrix_base;
             matrix_data[7] = (int)transform_x;
             matrix_data[8] = (int)transform_y;
             matrix_data[9] = (int)transform_z;
@@ -140,12 +140,12 @@ void apply_3d_transform(uint object_id, Vector4* transform_params, longlong cont
             stack_transform_y = vector_data[3];
             
             // 应用边界变换
-            if ((*(int*)(context + 0x1cfc) == *(int*)(*(longlong*)(context + 0x1af8) + 0x16c)) &&
+            if ((*(int*)(context + 0x1cfc) == *(int*)(*(int64_t*)(context + 0x1af8) + 0x16c)) &&
                 (transform_result = validate_transform_matrix(context + 0x1d68, &transform_params, temp_y,
-                *(longlong*)(context + 0x1af8), *vector_data), transform_result != '\0')) {
+                *(int64_t*)(context + 0x1af8), *vector_data), transform_result != '\0')) {
                 
                 *(int*)(context + 0x1d68) = transform_index;
-                *(longlong*)(context + 0x1d70) = matrix_base;
+                *(int64_t*)(context + 0x1d70) = matrix_base;
                 *(int*)(context + 0x1d84) = (int)transform_x;
                 *(int*)(context + 0x1d88) = (int)transform_y;
                 *(int*)(context + 0x1d8c) = (int)transform_z;
@@ -156,13 +156,13 @@ void apply_3d_transform(uint object_id, Vector4* transform_params, longlong cont
     
     // 更新变换状态
     if (*(int*)(context + 0x1ca0) == transform_index) {
-        *(longlong*)(context + 0x1c98) = matrix_base;
+        *(int64_t*)(context + 0x1c98) = matrix_base;
         *(int*)(context + 0x1cfc) = *(int*)(matrix_base + 0x16c);
         *(char*)(context + 0x1d04) = 1;
         *(int*)(context + 0x1d00) = *(int*)(matrix_base + 0x3f4);
         
         // 更新矩阵数据
-        matrix_data = (int*)(matrix_base + ((longlong)*(int*)(matrix_base + 0x16c) + 0x3d) * 0x10);
+        matrix_data = (int*)(matrix_base + ((int64_t)*(int*)(matrix_base + 0x16c) + 0x3d) * 0x10);
         *matrix_data = (int)transform_x;
         matrix_data[1] = (int)transform_y;
         matrix_data[2] = (int)transform_z;
@@ -182,12 +182,12 @@ void apply_3d_transform(uint object_id, Vector4* transform_params, longlong cont
  * @param param2 变换参数2
  * @param context 上下文指针
  */
-void apply_simplified_3d_transform(uint64_t param1, uint64_t param2, longlong context) {
+void apply_simplified_3d_transform(uint64_t param1, uint64_t param2, int64_t context) {
     Vector4* vector_params;
     float boundary_min, boundary_max;
     float temp_y, temp_z, temp_w;
     char transform_result;
-    longlong matrix_base;
+    int64_t matrix_base;
     int transform_index;
     float* vector_data;
     float temp_x, temp_y2;
@@ -220,12 +220,12 @@ void apply_simplified_3d_transform(uint64_t param1, uint64_t param2, longlong co
             stack_transform_y = vector_data[3];
             
             // 应用边界变换
-            if ((*(int*)(context + 0x1cfc) == *(int*)(*(longlong*)(context + 0x1af8) + 0x16c)) &&
+            if ((*(int*)(context + 0x1cfc) == *(int*)(*(int64_t*)(context + 0x1af8) + 0x16c)) &&
                 (transform_result = validate_transform_matrix(context + 0x1d68, &vector_params, temp_w,
-                *(longlong*)(context + 0x1af8), *vector_data), transform_result != '\0')) {
+                *(int64_t*)(context + 0x1af8), *vector_data), transform_result != '\0')) {
                 
                 *(int*)(context + 0x1d68) = transform_index;
-                *(longlong*)(context + 0x1d70) = matrix_base;
+                *(int64_t*)(context + 0x1d70) = matrix_base;
                 matrix_components[0] = (int)temp_x;
                 matrix_components[1] = (int)temp_y;
                 matrix_components[2] = (int)temp_z;
@@ -236,13 +236,13 @@ void apply_simplified_3d_transform(uint64_t param1, uint64_t param2, longlong co
     
     // 更新变换状态
     if (*(int*)(context + 0x1ca0) == transform_index) {
-        *(longlong*)(context + 0x1c98) = matrix_base;
+        *(int64_t*)(context + 0x1c98) = matrix_base;
         *(int*)(context + 0x1cfc) = *(int*)(matrix_base + 0x16c);
         *(char*)(context + 0x1d04) = 1;
         *(int*)(context + 0x1d00) = *(int*)(matrix_base + 0x3f4);
         
         // 更新矩阵数据
-        vector_params = (Vector4*)(matrix_base + ((longlong)*(int*)(matrix_base + 0x16c) + 0x3d) * 0x10);
+        vector_params = (Vector4*)(matrix_base + ((int64_t)*(int*)(matrix_base + 0x16c) + 0x3d) * 0x10);
         *vector_params = *(Vector4*)matrix_components;
     }
 }
@@ -259,19 +259,19 @@ void apply_simplified_3d_transform(uint64_t param1, uint64_t param2, longlong co
  * @param param2 参数2
  * @param context 上下文指针
  */
-void update_transform_matrix_state(uint64_t param1, uint64_t param2, longlong context) {
+void update_transform_matrix_state(uint64_t param1, uint64_t param2, int64_t context) {
     Vector4* vector_params;
-    longlong matrix_base;
+    int64_t matrix_base;
     int matrix_components[MATRIX_COMPONENT_COUNT];
     
     // 更新矩阵状态
-    *(longlong*)(context + 0x1c98) = matrix_base;
+    *(int64_t*)(context + 0x1c98) = matrix_base;
     *(int*)(context + 0x1cfc) = *(int*)(matrix_base + 0x16c);
     *(char*)(context + 0x1d04) = 1;
     *(int*)(context + 0x1d00) = *(int*)(matrix_base + 0x3f4);
     
     // 更新矩阵组件
-    vector_params = (Vector4*)(matrix_base + ((longlong)*(int*)(matrix_base + 0x16c) + 0x3d) * 0x10);
+    vector_params = (Vector4*)(matrix_base + ((int64_t)*(int*)(matrix_base + 0x16c) + 0x3d) * 0x10);
     *vector_params = *(Vector4*)matrix_components;
 }
 
@@ -296,12 +296,12 @@ void process_camera_transform_params(int camera_id, int transform_mode) {
         return; // 无变换
     }
     
-    transform_value = *(float*)(global_matrix_cache + 0x1488 + (longlong)camera_id * 4);
+    transform_value = *(float*)(global_matrix_cache + 0x1488 + (int64_t)camera_id * 4);
     if (transform_value < 0.0) {
         if (transform_mode != 2) {
             return;
         }
-        camera_param = (float*)(global_matrix_cache + 0x14dc + (longlong)camera_id * 4);
+        camera_param = (float*)(global_matrix_cache + 0x14dc + (int64_t)camera_id * 4);
         if (*camera_param <= 0.0 && *camera_param != 0.0) {
             return;
         }
@@ -350,14 +350,14 @@ apply_transform:
  * @return float* 返回计算结果向量
  */
 float* calculate_vector_transform(float* result_vector, uint transform_mask, uint param3, float scale_factor1, float scale_factor2) {
-    longlong matrix_base;
-    ulonglong mask_x, mask_y;
-    ulonglong param3_ulong;
+    int64_t matrix_base;
+    uint64_t mask_x, mask_y;
+    uint64_t param3_ulong;
     float component_x, component_y, component_z, component_w;
     float accumulator;
     
-    param3_ulong = (ulonglong)param3;
-    mask_x = (ulonglong)transform_mask;
+    param3_ulong = (uint64_t)param3;
+    mask_x = (uint64_t)transform_mask;
     
     // 初始化结果向量
     result_vector[0] = 0.0;
@@ -397,7 +397,7 @@ float* calculate_vector_transform(float* result_vector, uint transform_mask, uin
         *result_vector = (component_y - component_z) + *result_vector;
     }
     
-    matrix_base = (longlong)global_matrix_cache;
+    matrix_base = (int64_t)global_matrix_cache;
     
     // 应用缩放因子1
     if ((scale_factor1 != 0.0) && (0.0 < *(float*)(global_matrix_cache + 0x370))) {
@@ -431,16 +431,16 @@ float* calculate_vector_transform(float* result_vector, uint transform_mask, uin
  * @return float* 返回计算结果向量
  */
 float* calculate_enhanced_vector_transform(float* result_vector, uint transform_mask, uint param3, float scale_factor) {
-    longlong matrix_base;
+    int64_t matrix_base;
     uint64_t register_param;
-    ulonglong mask_x, mask_y;
-    ulonglong param3_ulong;
+    uint64_t mask_x, mask_y;
+    uint64_t param3_ulong;
     float component_x, component_y, component_z, component_w;
     float accumulator;
     float stack_scale_factor;
     
-    param3_ulong = (ulonglong)param3;
-    mask_x = (ulonglong)transform_mask;
+    param3_ulong = (uint64_t)param3;
+    mask_x = (uint64_t)transform_mask;
     
     // 初始化结果向量
     *(uint64_t*)result_vector = register_param;
@@ -479,7 +479,7 @@ float* calculate_enhanced_vector_transform(float* result_vector, uint transform_
         *result_vector = (component_y - component_z) + *result_vector;
     }
     
-    matrix_base = (longlong)global_matrix_cache;
+    matrix_base = (int64_t)global_matrix_cache;
     
     // 应用缩放因子
     if ((scale_factor != 0.0) && (0.0 < *(float*)(global_matrix_cache + 0x370))) {
@@ -513,7 +513,7 @@ float* calculate_enhanced_vector_transform(float* result_vector, uint transform_
  * @return float* 返回变换后的矩阵数据
  */
 float* apply_matrix_scale_transform(uint64_t param1, float scale_value, uint64_t param3, float* matrix_data) {
-    longlong matrix_base;
+    int64_t matrix_base;
     float threshold_value;
     float scale_factor;
     float stack_scale_factor;
@@ -549,7 +549,7 @@ float* apply_matrix_scale_transform(uint64_t param1, float scale_value, uint64_t
  * @return float* 返回变换后的矩阵数据
  */
 float* apply_simplified_matrix_scale(uint64_t param1, float scale_value, float scale_factor, float* matrix_data) {
-    longlong matrix_base;
+    int64_t matrix_base;
     float threshold_value;
     
     // 检查缩放阈值

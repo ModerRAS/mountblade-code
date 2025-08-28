@@ -151,17 +151,17 @@ void heap_sort_sink_float(float *heap, float *start, float *end)
  * @param context 上下文参数
  * @return 排序后的数组指针
  */
-longlong * compare_and_sort_longlong_array(longlong *array1, longlong *array2, longlong *array3, longlong context)
+int64_t * compare_and_sort_longlong_array(int64_t *array1, int64_t *array2, int64_t *array3, int64_t context)
 {
   byte byte_val;
-  longlong long_val1;
-  longlong long_val2;
+  int64_t long_val1;
+  int64_t long_val2;
   bool comparison_result;
-  longlong *temp_ptr;
+  int64_t *temp_ptr;
   byte *byte_ptr;
   uint uint_val;
-  longlong long_val3;
-  longlong long_val4;
+  int64_t long_val3;
+  int64_t long_val4;
   float float_val1;
   float float_val2;
   int8_t stack_buffer1[8];
@@ -172,8 +172,8 @@ longlong * compare_and_sort_longlong_array(longlong *array1, longlong *array2, l
   long_val2 = *array3;
   do {
     long_val1 = *array1;
-    temp_ptr = (longlong *)get_object_property(context + 0x90, stack_buffer1, long_val1 + 0x20);
-    temp_ptr = (longlong *)get_object_property(*(int32_t *)(*temp_ptr + 0x40), stack_buffer2, long_val2 + 0x20);
+    temp_ptr = (int64_t *)get_object_property(context + 0x90, stack_buffer1, long_val1 + 0x20);
+    temp_ptr = (int64_t *)get_object_property(*(int32_t *)(*temp_ptr + 0x40), stack_buffer2, long_val2 + 0x20);
     
     // 比较浮点数值
     if (float_val1 == *(float *)(*temp_ptr + 0x40)) {
@@ -186,7 +186,7 @@ longlong * compare_and_sort_longlong_array(longlong *array1, longlong *array2, l
       }
       else {
         byte_ptr = *(byte **)(long_val1 + 0x28);
-        long_val3 = *(longlong *)(long_val2 + 0x28) - (longlong)byte_ptr;
+        long_val3 = *(int64_t *)(long_val2 + 0x28) - (int64_t)byte_ptr;
         do {
           byte_val = *byte_ptr;
           uint_val = (uint)byte_ptr[long_val3];
@@ -207,8 +207,8 @@ longlong * compare_and_sort_longlong_array(longlong *array1, longlong *array2, l
       do {
         long_val3 = array2[-1];
         array2 = array2 - 1;
-        temp_ptr = (longlong *)get_object_property(context + 0x90, stack_buffer3, long_val2 + 0x20);
-        temp_ptr = (longlong *)get_object_property(*(int32_t *)(*temp_ptr + 0x40), stack_buffer4, long_val3 + 0x20);
+        temp_ptr = (int64_t *)get_object_property(context + 0x90, stack_buffer3, long_val2 + 0x20);
+        temp_ptr = (int64_t *)get_object_property(*(int32_t *)(*temp_ptr + 0x40), stack_buffer4, long_val3 + 0x20);
         
         if (float_val2 == *(float *)(*temp_ptr + 0x40)) {
           if (*(int *)(long_val2 + 0x30) == 0) {
@@ -219,7 +219,7 @@ longlong * compare_and_sort_longlong_array(longlong *array1, longlong *array2, l
           }
           else {
             byte_ptr = *(byte **)(long_val2 + 0x28);
-            long_val4 = *(longlong *)(long_val3 + 0x28) - (longlong)byte_ptr;
+            long_val4 = *(int64_t *)(long_val3 + 0x28) - (int64_t)byte_ptr;
             do {
               byte_val = *byte_ptr;
               uint_val = (uint)byte_ptr[long_val4];
@@ -374,34 +374,34 @@ FIND_POSITION4:
  * @param temp_array 临时数组指针
  * @param context 上下文参数
  */
-void heap_sort_longlong_array(longlong array, longlong start, longlong end, longlong heap_size,
-                              longlong *temp_array, longlong context)
+void heap_sort_longlong_array(int64_t array, int64_t start, int64_t end, int64_t heap_size,
+                              int64_t *temp_array, int64_t context)
 {
-  longlong temp_val;
+  int64_t temp_val;
   byte byte_val;
   bool comparison_result;
-  longlong long_val1;
-  longlong long_val2;
-  longlong *ptr1;
-  longlong *ptr2;
+  int64_t long_val1;
+  int64_t long_val2;
+  int64_t *ptr1;
+  int64_t *ptr2;
   byte *byte_ptr;
   uint uint_val;
-  longlong long_val3;
-  longlong long_val4;
+  int64_t long_val3;
+  int64_t long_val4;
   float float_val1;
   float float_val2;
   int8_t stack_buffer[8];
-  longlong stack_val;
+  int64_t stack_val;
   
   long_val2 = context;
   temp_val = heap_size * 2;
   ptr1 = temp_array;
   
   while (long_val1 = temp_val + 2, long_val1 < end) {
-    long_val3 = *(longlong *)(array + long_val1 * 8);
-    long_val4 = *(longlong *)(array + -8 + long_val1 * 8);
+    long_val3 = *(int64_t *)(array + long_val1 * 8);
+    long_val4 = *(int64_t *)(array + -8 + long_val1 * 8);
     get_object_property(long_val2 + 0x90, &context, long_val3 + 0x20);
-    ptr1 = (longlong *)get_object_property(long_val2 + 0x90, stack_buffer, long_val4 + 0x20);
+    ptr1 = (int64_t *)get_object_property(long_val2 + 0x90, stack_buffer, long_val4 + 0x20);
     
     if (float_val1 == *(float *)(*ptr1 + 0x40)) {
       if (*(int *)(long_val3 + 0x30) == 0) {
@@ -412,7 +412,7 @@ void heap_sort_longlong_array(longlong array, longlong start, longlong end, long
       }
       else {
         byte_ptr = *(byte **)(long_val3 + 0x28);
-        long_val3 = *(longlong *)(long_val4 + 0x28) - (longlong)byte_ptr;
+        long_val3 = *(int64_t *)(long_val4 + 0x28) - (int64_t)byte_ptr;
         do {
           byte_val = *byte_ptr;
           uint_val = (uint)byte_ptr[long_val3];
@@ -447,9 +447,9 @@ void heap_sort_longlong_array(longlong array, longlong start, longlong end, long
     do {
       temp_val = *ptr1;
       long_val3 = heap_size + -1 >> 1;
-      long_val1 = *(longlong *)(array + long_val3 * 8);
+      long_val1 = *(int64_t *)(array + long_val3 * 8);
       get_object_property(long_val2 + 0x90, &stack_val, long_val1 + 0x20);
-      ptr2 = (longlong *)get_object_property(long_val2 + 0x90, &temp_array, temp_val + 0x20);
+      ptr2 = (int64_t *)get_object_property(long_val2 + 0x90, &temp_array, temp_val + 0x20);
       
       if (float_val2 == *(float *)(*ptr2 + 0x40)) {
         if (*(int *)(long_val1 + 0x30) == 0) {
@@ -460,7 +460,7 @@ void heap_sort_longlong_array(longlong array, longlong start, longlong end, long
         }
         else {
           byte_ptr = *(byte **)(long_val1 + 0x28);
-          long_val4 = *(longlong *)(temp_val + 0x28) - (longlong)byte_ptr;
+          long_val4 = *(int64_t *)(temp_val + 0x28) - (int64_t)byte_ptr;
           do {
             byte_val = *byte_ptr;
             uint_val = (uint)byte_ptr[long_val4];
@@ -475,16 +475,16 @@ void heap_sort_longlong_array(longlong array, longlong start, longlong end, long
       }
       
       if (!comparison_result) {
-        *(longlong *)(array + heap_size * 8) = temp_val;
+        *(int64_t *)(array + heap_size * 8) = temp_val;
         return;
       }
-      *(longlong *)(array + heap_size * 8) = long_val1;
+      *(int64_t *)(array + heap_size * 8) = long_val1;
       heap_size = long_val3;
     } while (start < long_val3);
-    *(longlong *)(array + long_val3 * 8) = *ptr1;
+    *(int64_t *)(array + long_val3 * 8) = *ptr1;
   }
   else {
-    *(longlong *)(array + heap_size * 8) = *ptr1;
+    *(int64_t *)(array + heap_size * 8) = *ptr1;
   }
   return;
 }
@@ -500,18 +500,18 @@ void heap_sort_longlong_array(longlong array, longlong start, longlong end, long
  * @param temp_array 临时数组指针
  * @param context 上下文指针数组
  */
-void heap_sort_int_array(longlong array, longlong start, longlong end, longlong heap_size,
+void heap_sort_int_array(int64_t array, int64_t start, int64_t end, int64_t heap_size,
                         int *temp_array, uint64_t *context)
 {
   int int_val1;
   uint64_t *node_ptr1;
-  longlong long_val;
+  int64_t long_val;
   int int_val2;
   uint64_t *node_ptr2;
   uint64_t *node_ptr3;
-  longlong long_val1;
+  int64_t long_val1;
   uint64_t *node_ptr4;
-  longlong long_val2;
+  int64_t long_val2;
   
   long_val2 = heap_size * 2;
   while (long_val = long_val2 + 2, long_val < end) {
@@ -645,7 +645,7 @@ FIND_NODE4:
  */
 uint64_t * copy_unknown_structure(uint64_t *dest, uint64_t *src, uint64_t param3, uint64_t param4)
 {
-  longlong *ptr;
+  int64_t *ptr;
   int32_t val1;
   int32_t val2;
   int32_t val3;
@@ -661,9 +661,9 @@ uint64_t * copy_unknown_structure(uint64_t *dest, uint64_t *src, uint64_t param3
   *(int32_t *)(dest + 2) = val2;
   *(int32_t *)((size_t)dest + 0x14) = val3;
   *(int32_t *)(dest + 3) = *(int32_t *)(src + 3);
-  ptr = (longlong *)src[4];
+  ptr = (int64_t *)src[4];
   dest[4] = ptr;
-  if (ptr != (longlong *)0x0) {
+  if (ptr != (int64_t *)0x0) {
     // 调用对象的引用增加方法
     (**(code **)(*ptr + 0x28))();
   }
@@ -675,9 +675,9 @@ uint64_t * copy_unknown_structure(uint64_t *dest, uint64_t *src, uint64_t param3
   *(int32_t *)((size_t)dest + 0x4c) = val1;
   *(int32_t *)(dest + 10) = val2;
   *(int32_t *)((size_t)dest + 0x54) = val3;
-  ptr = (longlong *)src[0xb];
+  ptr = (int64_t *)src[0xb];
   dest[0xb] = ptr;
-  if (ptr != (longlong *)0x0) {
+  if (ptr != (int64_t *)0x0) {
     // 调用对象的引用增加方法
     (**(code **)(*ptr + 0x28))();
   }
@@ -690,23 +690,23 @@ uint64_t * copy_unknown_structure(uint64_t *dest, uint64_t *src, uint64_t param3
  * 
  * @param object_ptr 对象指针
  */
-void release_object_resources(longlong object_ptr)
+void release_object_resources(int64_t object_ptr)
 {
-  if (*(longlong **)(object_ptr + 0x58) != (longlong *)0x0) {
+  if (*(int64_t **)(object_ptr + 0x58) != (int64_t *)0x0) {
     // 调用对象的释放方法
-    (**(code **)(**(longlong **)(object_ptr + 0x58) + 0x38))();
+    (**(code **)(**(int64_t **)(object_ptr + 0x58) + 0x38))();
   }
   *(uint64_t *)(object_ptr + 0x28) = &GLOBAL_UNKNOWN_CONSTANT_1;
-  if (*(longlong *)(object_ptr + 0x30) != 0) {
+  if (*(int64_t *)(object_ptr + 0x30) != 0) {
     // 此函数不会返回
     trigger_error_handler();
   }
   *(uint64_t *)(object_ptr + 0x30) = 0;
   *(int32_t *)(object_ptr + 0x40) = 0;
   *(uint64_t *)(object_ptr + 0x28) = &GLOBAL_UNKNOWN_CONSTANT_2;
-  if (*(longlong **)(object_ptr + 0x20) != (longlong *)0x0) {
+  if (*(int64_t **)(object_ptr + 0x20) != (int64_t *)0x0) {
     // 调用对象的释放方法
-    (**(code **)(**(longlong **)(object_ptr + 0x20) + 0x38))();
+    (**(code **)(**(int64_t **)(object_ptr + 0x20) + 0x38))();
   }
   return;
 }
@@ -719,10 +719,10 @@ void release_object_resources(longlong object_ptr)
  * @param param2 第二个参数
  * @param param3 第三个参数
  */
-void process_unknown_operation(uint64_t param1, uint64_t param2, longlong param3)
+void process_unknown_operation(uint64_t param1, uint64_t param2, int64_t param3)
 {
   uint64_t val1;
-  longlong long_val;
+  int64_t long_val;
   int8_t stack_buffer1[32];
   int32_t stack_val1;
   uint64_t stack_val2;
@@ -731,11 +731,11 @@ void process_unknown_operation(uint64_t param1, uint64_t param2, longlong param3
   int8_t *stack_ptr2;
   int32_t stack_val4;
   int8_t stack_buffer2[72];
-  ulonglong stack_val5;
+  uint64_t stack_val5;
   
   val1 = GLOBAL_DATA_VARIABLE_1;
   stack_val3 = 0xfffffffffffffffe;
-  stack_val5 = GLOBAL_DATA_VARIABLE_2 ^ (ulonglong)stack_buffer1;
+  stack_val5 = GLOBAL_DATA_VARIABLE_2 ^ (uint64_t)stack_buffer1;
   stack_val1 = 0;
   stack_ptr1 = &GLOBAL_UNKNOWN_CONSTANT_3;
   stack_ptr2 = stack_buffer2;
@@ -756,7 +756,7 @@ void process_unknown_operation(uint64_t param1, uint64_t param2, longlong param3
   stack_val1 = 1;
   stack_ptr1 = &GLOBAL_UNKNOWN_CONSTANT_2;
   // 此函数不会返回
-  execute_final_operation(stack_val5 ^ (ulonglong)stack_buffer1);
+  execute_final_operation(stack_val5 ^ (uint64_t)stack_buffer1);
 }
 
 /**
@@ -769,7 +769,7 @@ void process_unknown_operation(uint64_t param1, uint64_t param2, longlong param3
  */
 int32_t * copy_float_data_structure(int32_t *dest, int32_t *src)
 {
-  longlong *ptr;
+  int64_t *ptr;
   
   *dest = *src;
   dest[1] = src[1];
@@ -783,9 +783,9 @@ int32_t * copy_float_data_structure(int32_t *dest, int32_t *src)
   *(int8_t *)((size_t)dest + 0x21) = *(int8_t *)((size_t)src + 0x21);
   *(int8_t *)((size_t)dest + 0x22) = *(int8_t *)((size_t)src + 0x22);
   *(int8_t *)((size_t)dest + 0x23) = *(int8_t *)((size_t)src + 0x23);
-  ptr = *(longlong **)(src + 10);
-  *(longlong **)(dest + 10) = ptr;
-  if (ptr != (longlong *)0x0) {
+  ptr = *(int64_t **)(src + 10);
+  *(int64_t **)(dest + 10) = ptr;
+  if (ptr != (int64_t *)0x0) {
     // 调用对象的引用增加方法
     (**(code **)(*ptr + 0x28))();
   }
@@ -800,11 +800,11 @@ int32_t * copy_float_data_structure(int32_t *dest, int32_t *src)
  * 
  * @param object_ptr 对象指针
  */
-void release_object_resources2(longlong object_ptr)
+void release_object_resources2(int64_t object_ptr)
 {
-  if (*(longlong **)(object_ptr + 0x28) != (longlong *)0x0) {
+  if (*(int64_t **)(object_ptr + 0x28) != (int64_t *)0x0) {
     // 调用对象的释放方法
-    (**(code **)(**(longlong **)(object_ptr + 0x28) + 0x38))();
+    (**(code **)(**(int64_t **)(object_ptr + 0x28) + 0x38))();
   }
   return;
 }
@@ -818,7 +818,7 @@ void release_object_resources2(longlong object_ptr)
  */
 uint64_t * initialize_unknown_structure(uint64_t *struct_ptr)
 {
-  longlong *ptr;
+  int64_t *ptr;
   
   struct_ptr[5] = 0;
   *struct_ptr = 0;
@@ -827,9 +827,9 @@ uint64_t * initialize_unknown_structure(uint64_t *struct_ptr)
   *(uint64_t *)((size_t)struct_ptr + 0x14) = 0;
   *(int32_t *)((size_t)struct_ptr + 0x1c) = 0;
   *(int32_t *)(struct_ptr + 4) = 1;
-  ptr = (longlong *)struct_ptr[5];
+  ptr = (int64_t *)struct_ptr[5];
   struct_ptr[5] = 0;
-  if (ptr != (longlong *)0x0) {
+  if (ptr != (int64_t *)0x0) {
     // 调用对象的释放方法
     (**(code **)(*ptr + 0x38))();
   }
@@ -868,16 +868,16 @@ uint64_t * initialize_stream_buffer(uint64_t *stream_ptr)
  * @param param4 第四个参数
  * @return 流指针（成功）或NULL（失败）
  */
-longlong open_file_stream(longlong stream_ptr, uint64_t filename, int32_t mode)
+int64_t open_file_stream(int64_t stream_ptr, uint64_t filename, int32_t mode)
 {
   char char_val;
-  longlong file_handle;
+  int64_t file_handle;
   uint64_t locale_val;
   uint64_t *ptr;
   int8_t stack_buffer[8];
-  longlong *stack_ptr;
+  int64_t *stack_ptr;
   
-  if (*(longlong *)(stream_ptr + 0x80) == 0) {
+  if (*(int64_t *)(stream_ptr + 0x80) == 0) {
     file_handle = open_file_std(filename, mode, 0x40, filename, 0xfffffffffffffffe);
     if (file_handle != 0) {
       initialize_stream_file(stream_ptr, file_handle, 1);
@@ -891,7 +891,7 @@ longlong open_file_stream(longlong stream_ptr, uint64_t filename, int32_t mode)
       else {
         *(uint64_t *)(stream_ptr + 0x68) = 0;
       }
-      if (stack_ptr != (longlong *)0x0) {
+      if (stack_ptr != (int64_t *)0x0) {
         ptr = (uint64_t *)(**(code **)(*stack_ptr + 0x10))();
         if (ptr != (uint64_t *)0x0) {
           (**(code **)*ptr)(ptr, 1);
@@ -911,7 +911,7 @@ longlong open_file_stream(longlong stream_ptr, uint64_t filename, int32_t mode)
  * @param flags 标志位
  * @return 流指针
  */
-longlong close_and_free_stream(longlong stream_ptr, ulonglong flags)
+int64_t close_and_free_stream(int64_t stream_ptr, uint64_t flags)
 {
   stream_ptr = stream_ptr - 0xa8;
   cleanup_stream_resources(stream_ptr);
@@ -929,7 +929,7 @@ longlong close_and_free_stream(longlong stream_ptr, ulonglong flags)
  * @param flags 标志位
  * @return 流指针
  */
-uint64_t free_stream_object(uint64_t stream_ptr, ulonglong flags)
+uint64_t free_stream_object(uint64_t stream_ptr, uint64_t flags)
 {
   cleanup_stream_buffer();
   if ((flags & 1) != 0) {
@@ -946,39 +946,39 @@ uint64_t free_stream_object(uint64_t stream_ptr, ulonglong flags)
  * @param character 要写入的字符
  * @return 写入的字符或EOF
  */
-uint write_character_to_stream(longlong stream_ptr, uint character)
+uint write_character_to_stream(int64_t stream_ptr, uint character)
 {
   int8_t *ptr1;
-  ulonglong buffer_size;
+  uint64_t buffer_size;
   int8_t *ptr2;
   int result;
   
-  buffer_size = **(ulonglong **)(stream_ptr + 0x38);
-  if (((buffer_size != 0) && (**(ulonglong **)(stream_ptr + 0x18) < buffer_size)) &&
+  buffer_size = **(uint64_t **)(stream_ptr + 0x38);
+  if (((buffer_size != 0) && (**(uint64_t **)(stream_ptr + 0x18) < buffer_size)) &&
      ((character == 0xffffffff || (*(byte *)(buffer_size - 1) == character)))) {
     **(int **)(stream_ptr + 0x50) = **(int **)(stream_ptr + 0x50) + 1;
-    **(longlong **)(stream_ptr + 0x38) = **(longlong **)(stream_ptr + 0x38) + -1;
+    **(int64_t **)(stream_ptr + 0x38) = **(int64_t **)(stream_ptr + 0x38) + -1;
     if (character == 0xffffffff) {
       character = 0;
     }
     return character;
   }
   
-  if ((*(longlong *)(stream_ptr + 0x80) != 0) && (character != 0xffffffff)) {
-    if ((*(longlong *)(stream_ptr + 0x68) == 0) && (result = ungetc(character & 0xff), result != -1)) {
+  if ((*(int64_t *)(stream_ptr + 0x80) != 0) && (character != 0xffffffff)) {
+    if ((*(int64_t *)(stream_ptr + 0x68) == 0) && (result = ungetc(character & 0xff), result != -1)) {
       return character;
     }
     ptr1 = (int8_t *)(stream_ptr + 0x70);
-    if ((int8_t *)**(longlong **)(stream_ptr + 0x38) != ptr1) {
+    if ((int8_t *)**(int64_t **)(stream_ptr + 0x38) != ptr1) {
       *ptr1 = (char)character;
-      ptr2 = (int8_t *)**(longlong **)(stream_ptr + 0x18);
+      ptr2 = (int8_t *)**(int64_t **)(stream_ptr + 0x18);
       if (ptr2 != ptr1) {
         *(int8_t **)(stream_ptr + 0x88) = ptr2;
-        *(longlong *)(stream_ptr + 0x90) =
-             (longlong)**(int **)(stream_ptr + 0x50) + **(longlong **)(stream_ptr + 0x38);
+        *(int64_t *)(stream_ptr + 0x90) =
+             (int64_t)**(int **)(stream_ptr + 0x50) + **(int64_t **)(stream_ptr + 0x38);
       }
-      **(longlong **)(stream_ptr + 0x18) = (longlong)ptr1;
-      **(longlong **)(stream_ptr + 0x38) = (longlong)ptr1;
+      **(int64_t **)(stream_ptr + 0x18) = (int64_t)ptr1;
+      **(int64_t **)(stream_ptr + 0x38) = (int64_t)ptr1;
       **(int **)(stream_ptr + 0x50) = ((int)stream_ptr - (int)ptr1) + 0x71;
       return character;
     }
@@ -993,20 +993,20 @@ uint write_character_to_stream(longlong stream_ptr, uint character)
  * @param stream_ptr 流指针
  * @return 读取的字符或EOF
  */
-ulonglong read_character_from_stream(longlong stream_ptr)
+uint64_t read_character_from_stream(int64_t stream_ptr)
 {
   int8_t *ptr1;
   byte *buffer_ptr;
-  ulonglong char_val;
+  uint64_t char_val;
   int8_t *ptr2;
   int result;
-  ulonglong buffer_pos;
-  ulonglong buffer_size;
-  ulonglong final_char;
+  uint64_t buffer_pos;
+  uint64_t buffer_size;
+  uint64_t final_char;
   
   buffer_ptr = (byte *)**(uint64_t **)(stream_ptr + 0x38);
   if ((buffer_ptr != (byte *)0x0) && (buffer_ptr < buffer_ptr + **(int **)(stream_ptr + 0x50))) {
-    return (ulonglong)*buffer_ptr;
+    return (uint64_t)*buffer_ptr;
   }
   
   buffer_pos = read_next_character(stream_ptr);
@@ -1015,29 +1015,29 @@ ulonglong read_character_from_stream(longlong stream_ptr)
     return buffer_pos;
   }
   
-  buffer_size = **(ulonglong **)(stream_ptr + 0x38);
-  if (((buffer_size != 0) && (**(ulonglong **)(stream_ptr + 0x18) < buffer_size)) &&
+  buffer_size = **(uint64_t **)(stream_ptr + 0x38);
+  if (((buffer_size != 0) && (**(uint64_t **)(stream_ptr + 0x18) < buffer_size)) &&
      ((uint)*(byte *)(buffer_size - 1) == (uint)buffer_pos)) {
     **(int **)(stream_ptr + 0x50) = **(int **)(stream_ptr + 0x50) + 1;
-    **(longlong **)(stream_ptr + 0x38) = **(longlong **)(stream_ptr + 0x38) + -1;
+    **(int64_t **)(stream_ptr + 0x38) = **(int64_t **)(stream_ptr + 0x38) + -1;
     return buffer_pos & 0xffffffff;
   }
   
-  if (*(longlong *)(stream_ptr + 0x80) != 0) {
-    if ((*(longlong *)(stream_ptr + 0x68) == 0) && (result = ungetc(buffer_pos & 0xff), result != -1)) {
+  if (*(int64_t *)(stream_ptr + 0x80) != 0) {
+    if ((*(int64_t *)(stream_ptr + 0x68) == 0) && (result = ungetc(buffer_pos & 0xff), result != -1)) {
       return final_char;
     }
     ptr1 = (int8_t *)(stream_ptr + 0x70);
-    if ((int8_t *)**(longlong **)(stream_ptr + 0x38) != ptr1) {
+    if ((int8_t *)**(int64_t **)(stream_ptr + 0x38) != ptr1) {
       *ptr1 = (char)final_char;
-      ptr2 = (int8_t *)**(longlong **)(stream_ptr + 0x18);
+      ptr2 = (int8_t *)**(int64_t **)(stream_ptr + 0x18);
       if (ptr2 != ptr1) {
         *(int8_t **)(stream_ptr + 0x88) = ptr2;
-        *(longlong *)(stream_ptr + 0x90) =
-             (longlong)**(int **)(stream_ptr + 0x50) + **(longlong **)(stream_ptr + 0x38);
+        *(int64_t *)(stream_ptr + 0x90) =
+             (int64_t)**(int **)(stream_ptr + 0x50) + **(int64_t **)(stream_ptr + 0x38);
       }
-      **(longlong **)(stream_ptr + 0x18) = (longlong)ptr1;
-      **(longlong **)(stream_ptr + 0x38) = (longlong)ptr1;
+      **(int64_t **)(stream_ptr + 0x18) = (int64_t)ptr1;
+      **(int64_t **)(stream_ptr + 0x38) = (int64_t)ptr1;
       **(int **)(stream_ptr + 0x50) = ((int)stream_ptr - (int)ptr1) + 0x71;
     }
   }
@@ -1050,16 +1050,16 @@ ulonglong read_character_from_stream(longlong stream_ptr)
  * 
  * @return 读取的字符或EOF
  */
-ulonglong read_character_from_stdin(void)
+uint64_t read_character_from_stdin(void)
 {
   int8_t *ptr1;
-  ulonglong buffer_size;
+  uint64_t buffer_size;
   int8_t *ptr2;
   int result;
-  ulonglong char_val;
-  ulonglong buffer_pos;
-  longlong stdin_ptr;
-  ulonglong final_char;
+  uint64_t char_val;
+  uint64_t buffer_pos;
+  int64_t stdin_ptr;
+  uint64_t final_char;
   
   char_val = read_next_character();
   final_char = char_val & 0xffffffff;
@@ -1067,29 +1067,29 @@ ulonglong read_character_from_stdin(void)
     return char_val;
   }
   
-  buffer_size = **(ulonglong **)(stdin_ptr + 0x38);
-  if (((buffer_size != 0) && (**(ulonglong **)(stdin_ptr + 0x18) < buffer_size)) &&
+  buffer_size = **(uint64_t **)(stdin_ptr + 0x38);
+  if (((buffer_size != 0) && (**(uint64_t **)(stdin_ptr + 0x18) < buffer_size)) &&
      ((uint)*(byte *)(buffer_size - 1) == (uint)char_val)) {
     **(int **)(stdin_ptr + 0x50) = **(int **)(stdin_ptr + 0x50) + 1;
-    **(longlong **)(stdin_ptr + 0x38) = **(longlong **)(stdin_ptr + 0x38) + -1;
+    **(int64_t **)(stdin_ptr + 0x38) = **(int64_t **)(stdin_ptr + 0x38) + -1;
     return char_val & 0xffffffff;
   }
   
-  if (*(longlong *)(stdin_ptr + 0x80) != 0) {
-    if ((*(longlong *)(stdin_ptr + 0x68) == 0) && (result = ungetc(char_val & 0xff), result != -1)) {
+  if (*(int64_t *)(stdin_ptr + 0x80) != 0) {
+    if ((*(int64_t *)(stdin_ptr + 0x68) == 0) && (result = ungetc(char_val & 0xff), result != -1)) {
       return final_char;
     }
     ptr1 = (int8_t *)(stdin_ptr + 0x70);
-    if ((int8_t *)**(longlong **)(stdin_ptr + 0x38) != ptr1) {
+    if ((int8_t *)**(int64_t **)(stdin_ptr + 0x38) != ptr1) {
       *ptr1 = (char)final_char;
-      ptr2 = (int8_t *)**(longlong **)(stdin_ptr + 0x18);
+      ptr2 = (int8_t *)**(int64_t **)(stdin_ptr + 0x18);
       if (ptr2 != ptr1) {
         *(int8_t **)(stdin_ptr + 0x88) = ptr2;
-        *(longlong *)(stdin_ptr + 0x90) =
-             (longlong)**(int **)(stdin_ptr + 0x50) + **(longlong **)(stdin_ptr + 0x38);
+        *(int64_t *)(stdin_ptr + 0x90) =
+             (int64_t)**(int **)(stdin_ptr + 0x50) + **(int64_t **)(stdin_ptr + 0x38);
       }
-      **(longlong **)(stdin_ptr + 0x18) = (longlong)ptr1;
-      **(longlong **)(stdin_ptr + 0x38) = (longlong)ptr1;
+      **(int64_t **)(stdin_ptr + 0x18) = (int64_t)ptr1;
+      **(int64_t **)(stdin_ptr + 0x38) = (int64_t)ptr1;
       **(int **)(stdin_ptr + 0x50) = ((int)stdin_ptr - (int)ptr1) + 0x71;
     }
   }
@@ -1105,35 +1105,35 @@ ulonglong read_character_from_stdin(void)
 uint check_and_unget_character(void)
 {
   int8_t *ptr1;
-  ulonglong buffer_size;
+  uint64_t buffer_size;
   int8_t *ptr2;
   int result;
-  longlong stdin_ptr;
+  int64_t stdin_ptr;
   uint character;
   
-  buffer_size = **(ulonglong **)(stdin_ptr + 0x38);
-  if (((buffer_size != 0) && (**(ulonglong **)(stdin_ptr + 0x18) < buffer_size)) &&
+  buffer_size = **(uint64_t **)(stdin_ptr + 0x38);
+  if (((buffer_size != 0) && (**(uint64_t **)(stdin_ptr + 0x18) < buffer_size)) &&
      (*(byte *)(buffer_size - 1) == character)) {
     **(int **)(stdin_ptr + 0x50) = **(int **)(stdin_ptr + 0x50) + 1;
-    **(longlong **)(stdin_ptr + 0x38) = **(longlong **)(stdin_ptr + 0x38) + -1;
+    **(int64_t **)(stdin_ptr + 0x38) = **(int64_t **)(stdin_ptr + 0x38) + -1;
     return character;
   }
   
-  if (*(longlong *)(stdin_ptr + 0x80) != 0) {
-    if ((*(longlong *)(stdin_ptr + 0x68) == 0) && (result = ungetc(character & 0xff), result != -1)) {
+  if (*(int64_t *)(stdin_ptr + 0x80) != 0) {
+    if ((*(int64_t *)(stdin_ptr + 0x68) == 0) && (result = ungetc(character & 0xff), result != -1)) {
       return character;
     }
     ptr1 = (int8_t *)(stdin_ptr + 0x70);
-    if ((int8_t *)**(longlong **)(stdin_ptr + 0x38) != ptr1) {
+    if ((int8_t *)**(int64_t **)(stdin_ptr + 0x38) != ptr1) {
       *ptr1 = (char)character;
-      ptr2 = (int8_t *)**(longlong **)(stdin_ptr + 0x18);
+      ptr2 = (int8_t *)**(int64_t **)(stdin_ptr + 0x18);
       if (ptr2 != ptr1) {
         *(int8_t **)(stdin_ptr + 0x88) = ptr2;
-        *(longlong *)(stdin_ptr + 0x90) =
-             (longlong)**(int **)(stdin_ptr + 0x50) + **(longlong **)(stdin_ptr + 0x38);
+        *(int64_t *)(stdin_ptr + 0x90) =
+             (int64_t)**(int **)(stdin_ptr + 0x50) + **(int64_t **)(stdin_ptr + 0x38);
       }
-      **(longlong **)(stdin_ptr + 0x18) = (longlong)ptr1;
-      **(longlong **)(stdin_ptr + 0x38) = (longlong)ptr1;
+      **(int64_t **)(stdin_ptr + 0x18) = (int64_t)ptr1;
+      **(int64_t **)(stdin_ptr + 0x38) = (int64_t)ptr1;
       **(int **)(stdin_ptr + 0x50) = ((int)stdin_ptr - (int)ptr1) + 0x71;
     }
   }
@@ -1151,24 +1151,24 @@ uint force_unget_character(void)
   int8_t *ptr1;
   int8_t *ptr2;
   int result;
-  longlong stdin_ptr;
+  int64_t stdin_ptr;
   uint character;
   
-  if (*(longlong *)(stdin_ptr + 0x80) != 0) {
-    if ((*(longlong *)(stdin_ptr + 0x68) == 0) && (result = ungetc(character & 0xff), result != -1)) {
+  if (*(int64_t *)(stdin_ptr + 0x80) != 0) {
+    if ((*(int64_t *)(stdin_ptr + 0x68) == 0) && (result = ungetc(character & 0xff), result != -1)) {
       return character;
     }
     ptr1 = (int8_t *)(stdin_ptr + 0x70);
-    if ((int8_t *)**(longlong **)(stdin_ptr + 0x38) != ptr1) {
+    if ((int8_t *)**(int64_t **)(stdin_ptr + 0x38) != ptr1) {
       *ptr1 = (char)character;
-      ptr2 = (int8_t *)**(longlong **)(stdin_ptr + 0x18);
+      ptr2 = (int8_t *)**(int64_t **)(stdin_ptr + 0x18);
       if (ptr2 != ptr1) {
         *(int8_t **)(stdin_ptr + 0x88) = ptr2;
-        *(longlong *)(stdin_ptr + 0x90) =
-             (longlong)**(int **)(stdin_ptr + 0x50) + **(longlong **)(stdin_ptr + 0x38);
+        *(int64_t *)(stdin_ptr + 0x90) =
+             (int64_t)**(int **)(stdin_ptr + 0x50) + **(int64_t **)(stdin_ptr + 0x38);
       }
-      **(longlong **)(stdin_ptr + 0x18) = (longlong)ptr1;
-      **(longlong **)(stdin_ptr + 0x38) = (longlong)ptr1;
+      **(int64_t **)(stdin_ptr + 0x18) = (int64_t)ptr1;
+      **(int64_t **)(stdin_ptr + 0x38) = (int64_t)ptr1;
       **(int **)(stdin_ptr + 0x50) = ((int)stdin_ptr - (int)ptr1) + 0x71;
     }
   }

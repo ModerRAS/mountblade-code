@@ -67,15 +67,15 @@ void process_render_pipeline_data(long long render_context, long long pipeline_d
     int vertex_count;
     uint texture_id;
     int material_id;
-    ulonglong buffer_size;
+    uint64_t buffer_size;
     char *buffer_ptr;
     uint *index_buffer;
     int index_count;
     int batch_size;
     int *vertex_indices;
     uint *index_ptr;
-    ulonglong page_index;
-    ulonglong total_pages;
+    uint64_t page_index;
+    uint64_t total_pages;
     bool allocation_success;
     
     // 获取渲染系统全局数据
@@ -116,8 +116,8 @@ void process_render_pipeline_data(long long render_context, long long pipeline_d
         // 计算顶点缓冲区位置
         material_data = *(long long *)
                   ((long long)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc30 +
-                  (ulonglong)vertex_offset * 8);
-        buffer_offset = (ulonglong)(texture_id + vertex_offset * -0x2000) * 0x40;
+                  (uint64_t)vertex_offset * 8);
+        buffer_offset = (uint64_t)(texture_id + vertex_offset * -0x2000) * 0x40;
         
         // 复制顶点数据
         matrix_buffer = ((void **)(material_data + buffer_offset))[1];
@@ -210,7 +210,7 @@ void process_render_pipeline_data(long long render_context, long long pipeline_d
             else {
                 // 处理顶点缓冲区分配
                 texture_index = *(char *)(material_data + 0x44);
-                buffer_size = (ulonglong)texture_index;
+                buffer_size = (uint64_t)texture_index;
                 render_data = (long long *)(material_data + 0x38);
                 index_count = (int)texture_index;
                 
@@ -300,7 +300,7 @@ void process_render_pipeline_data(long long render_context, long long pipeline_d
                             batch_size = batch_size + 1;
                             texture_data = (byte *)(*(long long *)(material_data + 0x10) + buffer_offset);
                             buffer_offset = buffer_offset + 1;
-                            *(int *)(*render_data + (ulonglong)*texture_data * 4) = vertex_count;
+                            *(int *)(*render_data + (uint64_t)*texture_data * 4) = vertex_count;
                         } while (buffer_offset < material_id);
                     }
                 }
@@ -318,8 +318,8 @@ void process_render_pipeline_data(long long render_context, long long pipeline_d
                     *index_buffer = *index_buffer + (int)texture_index;
                     UNLOCK();
                     
-                    page_index = (ulonglong)(vertex_offset >> 0xb);
-                    total_pages = (ulonglong)(texture_index + -1 + vertex_offset >> 0xb);
+                    page_index = (uint64_t)(vertex_offset >> 0xb);
+                    total_pages = (uint64_t)(texture_index + -1 + vertex_offset >> 0xb);
                     
                     if (page_index <= total_pages) {
                         buffer_ptr = (char *)((long long)index_buffer + page_index + 0x108);
@@ -355,7 +355,7 @@ void process_render_pipeline_data(long long render_context, long long pipeline_d
                                 do {
                                 } while (*buffer_ptr != '\0');
                             }
-                            page_index = (ulonglong)(material_id + 1);
+                            page_index = (uint64_t)(material_id + 1);
                             index_ptr = index_ptr + 2;
                             buffer_ptr = buffer_ptr + 1;
                             buffer_offset = buffer_offset - 1;
@@ -369,8 +369,8 @@ void process_render_pipeline_data(long long render_context, long long pipeline_d
                 *(uint *)(material_data + 0x2c) = vertex_offset;
                 
                 if (texture_id == (int)texture_index + vertex_offset >> 0xb) {
-                    memcpy(*(long long *)(index_buffer + (ulonglong)texture_id * 2 + 2) +
-                           (ulonglong)(vertex_offset + texture_id * -INDEX_BUFFER_ALIGNMENT) * 4, 
+                    memcpy(*(long long *)(index_buffer + (uint64_t)texture_id * 2 + 2) +
+                           (uint64_t)(vertex_offset + texture_id * -INDEX_BUFFER_ALIGNMENT) * 4, 
                            vertex_indices, (buffer_size & 0xffffffff) << 2);
                 }
                 
@@ -380,8 +380,8 @@ void process_render_pipeline_data(long long render_context, long long pipeline_d
                         matrix_index = *vertex_indices;
                         vertex_indices = vertex_indices + 1;
                         *(int *)
-                         (*(long long *)(index_buffer + (ulonglong)(vertex_offset >> 0xb) * 2 + 2) +
-                         (ulonglong)(vertex_offset + (vertex_offset >> 0xb) * -INDEX_BUFFER_ALIGNMENT) * 4) = matrix_index;
+                         (*(long long *)(index_buffer + (uint64_t)(vertex_offset >> 0xb) * 2 + 2) +
+                         (uint64_t)(vertex_offset + (vertex_offset >> 0xb) * -INDEX_BUFFER_ALIGNMENT) * 4) = matrix_index;
                         buffer_size = buffer_size - 1;
                         vertex_offset = vertex_offset + 1;
                     } while (buffer_size != 0);
@@ -430,15 +430,15 @@ void process_render_pipeline_optimized(long long render_context)
     int vertex_count;
     uint texture_id;
     int material_id;
-    ulonglong buffer_size;
+    uint64_t buffer_size;
     char *buffer_ptr;
     uint *index_buffer;
     int index_count;
     int batch_size;
     int *vertex_indices;
     uint *index_ptr;
-    ulonglong page_index;
-    ulonglong total_pages;
+    uint64_t page_index;
+    uint64_t total_pages;
     bool zero_flag;
     bool allocation_success;
     long long pipeline_data;  // 通过寄存器传递的参数
@@ -481,8 +481,8 @@ void process_render_pipeline_optimized(long long render_context)
         // 计算顶点缓冲区位置
         material_data = *(long long *)
                   ((long long)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc30 +
-                  (ulonglong)vertex_offset * 8);
-        buffer_offset = (ulonglong)(texture_id + vertex_offset * -0x2000) * 0x40;
+                  (uint64_t)vertex_offset * 8);
+        buffer_offset = (uint64_t)(texture_id + vertex_offset * -0x2000) * 0x40;
         
         // 复制顶点数据（优化路径）
         matrix_buffer = ((void **)(material_data + buffer_offset))[1];
@@ -575,7 +575,7 @@ void process_render_pipeline_optimized(long long render_context)
             else {
                 // 处理顶点缓冲区分配（优化版本）
                 texture_index = *(char *)(material_data + 0x44);
-                buffer_size = (ulonglong)texture_index;
+                buffer_size = (uint64_t)texture_index;
                 render_data = (long long *)(material_data + 0x38);
                 index_count = (int)texture_index;
                 
@@ -664,7 +664,7 @@ void process_render_pipeline_optimized(long long render_context)
                             batch_size = batch_size + 1;
                             texture_data = (byte *)(*(long long *)(material_data + 0x10) + buffer_offset);
                             buffer_offset = buffer_offset + 1;
-                            *(int *)(*render_data + (ulonglong)*texture_data * 4) = vertex_count;
+                            *(int *)(*render_data + (uint64_t)*texture_data * 4) = vertex_count;
                         } while (buffer_offset < material_id);
                     }
                 }
@@ -682,8 +682,8 @@ void process_render_pipeline_optimized(long long render_context)
                     *index_buffer = *index_buffer + (int)texture_index;
                     UNLOCK();
                     
-                    page_index = (ulonglong)(vertex_offset >> 0xb);
-                    total_pages = (ulonglong)(texture_index + -1 + vertex_offset >> 0xb);
+                    page_index = (uint64_t)(vertex_offset >> 0xb);
+                    total_pages = (uint64_t)(texture_index + -1 + vertex_offset >> 0xb);
                     
                     if (page_index <= total_pages) {
                         buffer_ptr = (char *)((long long)index_buffer + page_index + 0x108);
@@ -719,7 +719,7 @@ void process_render_pipeline_optimized(long long render_context)
                                 do {
                                 } while (*buffer_ptr != '\0');
                             }
-                            page_index = (ulonglong)(material_id + 1);
+                            page_index = (uint64_t)(material_id + 1);
                             index_ptr = index_ptr + 2;
                             buffer_ptr = buffer_ptr + 1;
                             buffer_offset = buffer_offset - 1;
@@ -733,8 +733,8 @@ void process_render_pipeline_optimized(long long render_context)
                 *(uint *)(material_data + 0x2c) = vertex_offset;
                 
                 if (texture_id == (int)texture_index + vertex_offset >> 0xb) {
-                    memcpy(*(long long *)(index_buffer + (ulonglong)texture_id * 2 + 2) +
-                           (ulonglong)(vertex_offset + texture_id * -INDEX_BUFFER_ALIGNMENT) * 4, 
+                    memcpy(*(long long *)(index_buffer + (uint64_t)texture_id * 2 + 2) +
+                           (uint64_t)(vertex_offset + texture_id * -INDEX_BUFFER_ALIGNMENT) * 4, 
                            vertex_indices, (buffer_size & 0xffffffff) << 2);
                 }
                 
@@ -744,8 +744,8 @@ void process_render_pipeline_optimized(long long render_context)
                         matrix_index = *vertex_indices;
                         vertex_indices = vertex_indices + 1;
                         *(int *)
-                         (*(long long *)(index_buffer + (ulonglong)(vertex_offset >> 0xb) * 2 + 2) +
-                         (ulonglong)(vertex_offset + (vertex_offset >> 0xb) * -INDEX_BUFFER_ALIGNMENT) * 4) = matrix_index;
+                         (*(long long *)(index_buffer + (uint64_t)(vertex_offset >> 0xb) * 2 + 2) +
+                         (uint64_t)(vertex_offset + (vertex_offset >> 0xb) * -INDEX_BUFFER_ALIGNMENT) * 4) = matrix_index;
                         buffer_size = buffer_size - 1;
                         vertex_offset = vertex_offset + 1;
                     } while (buffer_size != 0);

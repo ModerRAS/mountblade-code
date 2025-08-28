@@ -30,12 +30,12 @@
 #define OFFSET_0XF 0xf
 
 // 函数声明
-longlong *allocate_data_block(longlong size, char flags);
+int64_t *allocate_data_block(int64_t size, char flags);
 void free_memory_block(void *ptr);
-void *get_string_buffer(void *context, longlong offset);
+void *get_string_buffer(void *context, int64_t offset);
 void process_string_data(void *str_ptr, uint length);
-longlong *expand_data_structure(longlong *base_ptr, longlong *end_ptr, longlong new_size);
-void copy_data_structure(longlong *dest, longlong *src);
+int64_t *expand_data_structure(int64_t *base_ptr, int64_t *end_ptr, int64_t new_size);
+void copy_data_structure(int64_t *dest, int64_t *src);
 void invoke_callback_function(void *func_ptr);
 
 /**
@@ -48,20 +48,20 @@ void invoke_callback_function(void *func_ptr);
  * 3. 解析处理后的字符串数据
  * 4. 根据解析结果更新相关数据结构
  */
-void process_config_string_data(longlong *config_ptr)
+void process_config_string_data(int64_t *config_ptr)
 {
   int temp_int1;
-  longlong temp_long1;
-  longlong temp_long2;
-  longlong temp_long3;
+  int64_t temp_long1;
+  int64_t temp_long2;
+  int64_t temp_long3;
   uint64_t *temp_ptr1;
   uint64_t *temp_ptr2;
   uint temp_uint1;
   uint64_t *temp_ptr3;
   int temp_int2;
-  longlong *temp_stack_ptr;
+  int64_t *temp_stack_ptr;
   void *temp_stack_ptr1;
-  longlong temp_stack_long1;
+  int64_t temp_stack_long1;
   uint temp_stack_uint1;
   
   // 获取配置中的字符串数据
@@ -84,7 +84,7 @@ void process_config_string_data(longlong *config_ptr)
     
     // 移除标记，移动后续数据
     if (temp_uint1 < temp_stack_uint1) {
-      temp_long1 = (longlong)(int)temp_uint1;
+      temp_long1 = (int64_t)(int)temp_uint1;
       do {
         *(int8_t *)((temp_long1 - temp_int2) + temp_stack_long1) = 
             *(int8_t *)(temp_long1 + temp_stack_long1);
@@ -94,7 +94,7 @@ void process_config_string_data(longlong *config_ptr)
     }
     
     temp_stack_uint1 = temp_stack_uint1 - temp_int2;
-    *(int8_t *)((ulonglong)temp_stack_uint1 + temp_stack_long1) = 0;
+    *(int8_t *)((uint64_t)temp_stack_uint1 + temp_stack_long1) = 0;
   }
   
   // 解析处理后的字符串
@@ -105,7 +105,7 @@ void process_config_string_data(longlong *config_ptr)
     
     // 获取处理回调函数
     if (temp_long3 != 0) {
-      if (*(longlong *)(temp_long3 + OFFSET_0X1B0) == 0) {
+      if (*(int64_t *)(temp_long3 + OFFSET_0X1B0) == 0) {
         temp_long3 = temp_long3 + OFFSET_0X10;
       }
       else {
@@ -114,14 +114,14 @@ void process_config_string_data(longlong *config_ptr)
       
       // 调用处理函数
       FUN_1800b32c0(system_resource_state, &temp_stack_ptr, temp_long3, 0, 0);
-      if (temp_stack_ptr != (longlong *)0x0) {
+      if (temp_stack_ptr != (int64_t *)0x0) {
         invoke_callback_function((void *)(*temp_stack_ptr + OFFSET_0X38));
       }
     }
     
     // 处理解析结果数据块
     temp_int1 = 0;
-    if (*(longlong *)(temp_long1 + OFFSET_0X40) - *(longlong *)(temp_long1 + OFFSET_0X38) >> 4 != 0) {
+    if (*(int64_t *)(temp_long1 + OFFSET_0X40) - *(int64_t *)(temp_long1 + OFFSET_0X38) >> 4 != 0) {
       temp_ptr2 = (uint64_t *)config_ptr[OFFSET_0XC];
       
       do {
@@ -135,7 +135,7 @@ void process_config_string_data(longlong *config_ptr)
         else {
           // 扩展数据结构
           temp_ptr3 = (uint64_t *)config_ptr[OFFSET_0XB];
-          temp_long3 = ((longlong)temp_ptr2 - (longlong)temp_ptr3) / OFFSET_0XC;
+          temp_long3 = ((int64_t)temp_ptr2 - (int64_t)temp_ptr3) / OFFSET_0XC;
           
           if (temp_long3 == 0) {
             temp_long3 = 1;
@@ -152,13 +152,13 @@ void process_config_string_data(longlong *config_ptr)
           
           // 复制现有数据
           if (temp_ptr3 != temp_ptr2) {
-            memmove(temp_ptr1, temp_ptr3, (longlong)temp_ptr2 - (longlong)temp_ptr3);
+            memmove(temp_ptr1, temp_ptr3, (int64_t)temp_ptr2 - (int64_t)temp_ptr3);
           }
           
           // 初始化新数据块
           *temp_ptr1 = INVALID_HANDLE_64;
           *(int32_t *)(temp_ptr1 + 1) = INVALID_HANDLE_32;
-          temp_ptr2 = (uint64_t *)((longlong)temp_ptr1 + OFFSET_0XC);
+          temp_ptr2 = (uint64_t *)((int64_t)temp_ptr1 + OFFSET_0XC);
           
           // 释放旧内存
           if (config_ptr[OFFSET_0XB] != 0) {
@@ -166,14 +166,14 @@ void process_config_string_data(longlong *config_ptr)
           }
           
           // 更新指针
-          config_ptr[OFFSET_0XB] = (longlong)temp_ptr1;
-          config_ptr[OFFSET_0XC] = (longlong)temp_ptr2;
-          config_ptr[OFFSET_0XD] = (longlong)temp_ptr1 + temp_long3 * OFFSET_0XC;
+          config_ptr[OFFSET_0XB] = (int64_t)temp_ptr1;
+          config_ptr[OFFSET_0XC] = (int64_t)temp_ptr2;
+          config_ptr[OFFSET_0XD] = (int64_t)temp_ptr1 + temp_long3 * OFFSET_0XC;
         }
         
         temp_int1 = temp_int1 + 1;
-      } while ((ulonglong)(longlong)temp_int1 < 
-               (ulonglong)(*(longlong *)(temp_long1 + OFFSET_0X40) - *(longlong *)(temp_long1 + OFFSET_0X38) >> 4));
+      } while ((uint64_t)(int64_t)temp_int1 < 
+               (uint64_t)(*(int64_t *)(temp_long1 + OFFSET_0X40) - *(int64_t *)(temp_long1 + OFFSET_0X38) >> 4));
     }
   }
   
@@ -194,39 +194,39 @@ void process_config_string_data(longlong *config_ptr)
  * 
  * 该函数向动态数据结构中添加新元素，如果空间不足则自动扩展
  */
-longlong *add_data_structure_element(longlong *data_struct_ptr, longlong *element_ptr)
+int64_t *add_data_structure_element(int64_t *data_struct_ptr, int64_t *element_ptr)
 {
   uint temp_uint1;
-  longlong *temp_ptr1;
+  int64_t *temp_ptr1;
   int32_t temp_uint4_1;
   int32_t temp_uint4_2;
-  longlong temp_long1;
-  longlong *temp_ptr2;
-  longlong temp_long2;
-  longlong temp_long3;
-  longlong temp_long4;
-  longlong *temp_stack_ptr;
+  int64_t temp_long1;
+  int64_t *temp_ptr2;
+  int64_t temp_long2;
+  int64_t temp_long3;
+  int64_t temp_long4;
+  int64_t *temp_stack_ptr;
   
-  temp_ptr2 = (longlong *)data_struct_ptr[1];
+  temp_ptr2 = (int64_t *)data_struct_ptr[1];
   
   // 检查是否有足够空间
-  if (temp_ptr2 < (longlong *)data_struct_ptr[2]) {
-    data_struct_ptr[1] = (longlong)(temp_ptr2 + OFFSET_0XF);
-    temp_ptr1 = (longlong *)*element_ptr;
-    *temp_ptr2 = (longlong)temp_ptr1;
+  if (temp_ptr2 < (int64_t *)data_struct_ptr[2]) {
+    data_struct_ptr[1] = (int64_t)(temp_ptr2 + OFFSET_0XF);
+    temp_ptr1 = (int64_t *)*element_ptr;
+    *temp_ptr2 = (int64_t)temp_ptr1;
     temp_stack_ptr = temp_ptr2;
     
     // 处理元素指针引用计数
-    if (temp_ptr1 != (longlong *)0x0) {
+    if (temp_ptr1 != (int64_t *)0x0) {
       invoke_callback_function((void *)(*temp_ptr1 + OFFSET_0X28));
     }
     
     // 复制元素数据
     temp_ptr2[1] = element_ptr[1];
-    temp_ptr1 = (longlong *)element_ptr[2];
-    temp_ptr2[2] = (longlong)temp_ptr1;
+    temp_ptr1 = (int64_t *)element_ptr[2];
+    temp_ptr2[2] = (int64_t)temp_ptr1;
     
-    if (temp_ptr1 != (longlong *)0x0) {
+    if (temp_ptr1 != (int64_t *)0x0) {
       invoke_callback_function((void *)(*temp_ptr1 + OFFSET_0X28));
     }
     
@@ -239,23 +239,23 @@ longlong *add_data_structure_element(longlong *data_struct_ptr, longlong *elemen
     temp_ptr2[6] = temp_long3;
     
     // 复制32位数据
-    temp_uint4_1 = *(int32_t *)((longlong)element_ptr + OFFSET_0X3C);
+    temp_uint4_1 = *(int32_t *)((int64_t)element_ptr + OFFSET_0X3C);
     temp_long3 = element_ptr[8];
-    temp_uint4_2 = *(int32_t *)((longlong)element_ptr + OFFSET_0X44);
+    temp_uint4_2 = *(int32_t *)((int64_t)element_ptr + OFFSET_0X44);
     
     *(int *)(temp_ptr2 + 7) = (int)element_ptr[7];
-    *(int32_t *)((longlong)temp_ptr2 + OFFSET_0X3C) = temp_uint4_1;
+    *(int32_t *)((int64_t)temp_ptr2 + OFFSET_0X3C) = temp_uint4_1;
     *(int *)(temp_ptr2 + 8) = (int)temp_long3;
-    *(int32_t *)((longlong)temp_ptr2 + OFFSET_0X44) = temp_uint4_2;
+    *(int32_t *)((int64_t)temp_ptr2 + OFFSET_0X44) = temp_uint4_2;
     
-    temp_uint4_1 = *(int32_t *)((longlong)element_ptr + OFFSET_0X4C);
+    temp_uint4_1 = *(int32_t *)((int64_t)element_ptr + OFFSET_0X4C);
     temp_long3 = element_ptr[10];
-    temp_uint4_2 = *(int32_t *)((longlong)element_ptr + OFFSET_0X54);
+    temp_uint4_2 = *(int32_t *)((int64_t)element_ptr + OFFSET_0X54);
     
     *(int *)(temp_ptr2 + 9) = (int)element_ptr[9];
-    *(int32_t *)((longlong)temp_ptr2 + OFFSET_0X4C) = temp_uint4_1;
+    *(int32_t *)((int64_t)temp_ptr2 + OFFSET_0X4C) = temp_uint4_1;
     *(int *)(temp_ptr2 + 10) = (int)temp_long3;
-    *(int32_t *)((longlong)temp_ptr2 + OFFSET_0X54) = temp_uint4_2;
+    *(int32_t *)((int64_t)temp_ptr2 + OFFSET_0X54) = temp_uint4_2;
     
     // 计算并分配子数据块
     temp_long3 = (element_ptr[OFFSET_0XC] - element_ptr[OFFSET_0XB]) / 6 + 
@@ -290,8 +290,8 @@ longlong *add_data_structure_element(longlong *data_struct_ptr, longlong *elemen
   
   // 需要扩展数据结构
   temp_long3 = *data_struct_ptr;
-  temp_long2 = SUB168(SEXT816(-0x7777777777777777) * SEXT816((longlong)temp_ptr2 - temp_long3), 8) + 
-              ((longlong)temp_ptr2 - temp_long3);
+  temp_long2 = SUB168(SEXT816(-0x7777777777777777) * SEXT816((int64_t)temp_ptr2 - temp_long3), 8) + 
+              ((int64_t)temp_ptr2 - temp_long3);
   temp_long2 = (temp_long2 >> BIT_SHIFT_6) - (temp_long2 >> BIT_SHIFT_0X3F);
   
   if (temp_long2 == 0) {
@@ -306,7 +306,7 @@ longlong *add_data_structure_element(longlong *data_struct_ptr, longlong *elemen
   }
   
   temp_long1 = allocate_data_block(system_memory_pool_ptr, temp_long2 * DATA_BLOCK_SIZE_0X78, (char)data_struct_ptr[3]);
-  temp_ptr2 = (longlong *)data_struct_ptr[1];
+  temp_ptr2 = (int64_t *)data_struct_ptr[1];
   temp_long3 = *data_struct_ptr;
   
 LAB_1802097bc:
@@ -330,10 +330,10 @@ LAB_1802097bc:
     free_memory_block((void *)temp_long4);
   }
   
-  temp_ptr2 = (longlong *)(temp_long2 * DATA_BLOCK_SIZE_0X78 + temp_long1);
+  temp_ptr2 = (int64_t *)(temp_long2 * DATA_BLOCK_SIZE_0X78 + temp_long1);
   *data_struct_ptr = temp_long1;
-  data_struct_ptr[1] = (longlong)(temp_stack_ptr + OFFSET_0XF);
-  data_struct_ptr[2] = (longlong)temp_ptr2;
+  data_struct_ptr[1] = (int64_t)(temp_stack_ptr + OFFSET_0XF);
+  data_struct_ptr[2] = (int64_t)temp_ptr2;
   
   return temp_ptr2;
 }
@@ -346,17 +346,17 @@ LAB_1802097bc:
  * 
  * 该函数扩展数据结构的容量，用于存储更多元素
  */
-void expand_data_structure_capacity(uint64_t struct_ptr, uint64_t param2, longlong size_factor)
+void expand_data_structure_capacity(uint64_t struct_ptr, uint64_t param2, int64_t size_factor)
 {
-  longlong temp_long1;
-  longlong temp_long2;
-  longlong temp_rax;
-  longlong temp_long3;
-  longlong temp_long4;
-  longlong temp_long5;
-  longlong *unaff_rdi;
-  longlong temp_r10;
-  longlong temp_stack_param;
+  int64_t temp_long1;
+  int64_t temp_long2;
+  int64_t temp_rax;
+  int64_t temp_long3;
+  int64_t temp_long4;
+  int64_t temp_long5;
+  int64_t *unaff_rdi;
+  int64_t temp_r10;
+  int64_t temp_stack_param;
   
   // 计算新的容量大小
   temp_long4 = SUB168(SEXT816(temp_rax) * SEXT816(size_factor - temp_r10), 8) + 
@@ -432,31 +432,31 @@ void handle_critical_error(void)
  * 
  * 该函数将数据结构元素从源位置复制到目标位置
  */
-longlong *copy_data_structure_element(longlong *dest_ptr, longlong *src_ptr, uint64_t param3, uint64_t param4)
+int64_t *copy_data_structure_element(int64_t *dest_ptr, int64_t *src_ptr, uint64_t param3, uint64_t param4)
 {
   uint temp_uint1;
-  longlong *temp_ptr1;
+  int64_t *temp_ptr1;
   int32_t temp_uint4_1;
   int32_t temp_uint4_2;
-  longlong temp_long1;
-  longlong temp_long2;
+  int64_t temp_long1;
+  int64_t temp_long2;
   uint64_t temp_uint8_1;
   
   temp_uint8_1 = 0xfffffffffffffffeULL;
-  temp_ptr1 = (longlong *)*src_ptr;
-  *dest_ptr = (longlong)temp_ptr1;
+  temp_ptr1 = (int64_t *)*src_ptr;
+  *dest_ptr = (int64_t)temp_ptr1;
   
   // 处理指针引用计数
-  if (temp_ptr1 != (longlong *)0x0) {
+  if (temp_ptr1 != (int64_t *)0x0) {
     invoke_callback_function((void *)(*temp_ptr1 + OFFSET_0X28));
   }
   
   // 复制基本数据
   dest_ptr[1] = src_ptr[1];
-  temp_ptr1 = (longlong *)src_ptr[2];
-  dest_ptr[2] = (longlong)temp_ptr1;
+  temp_ptr1 = (int64_t *)src_ptr[2];
+  dest_ptr[2] = (int64_t)temp_ptr1;
   
-  if (temp_ptr1 != (longlong *)0x0) {
+  if (temp_ptr1 != (int64_t *)0x0) {
     invoke_callback_function((void *)(*temp_ptr1 + OFFSET_0X28));
   }
   
@@ -469,23 +469,23 @@ longlong *copy_data_structure_element(longlong *dest_ptr, longlong *src_ptr, uin
   dest_ptr[6] = temp_long2;
   
   // 复制32位数据
-  temp_uint4_1 = *(int32_t *)((longlong)src_ptr + OFFSET_0X3C);
+  temp_uint4_1 = *(int32_t *)((int64_t)src_ptr + OFFSET_0X3C);
   temp_long2 = src_ptr[8];
-  temp_uint4_2 = *(int32_t *)((longlong)src_ptr + OFFSET_0X44);
+  temp_uint4_2 = *(int32_t *)((int64_t)src_ptr + OFFSET_0X44);
   
   *(int *)(dest_ptr + 7) = (int)src_ptr[7];
-  *(int32_t *)((longlong)dest_ptr + OFFSET_0X3C) = temp_uint4_1;
+  *(int32_t *)((int64_t)dest_ptr + OFFSET_0X3C) = temp_uint4_1;
   *(int *)(dest_ptr + 8) = (int)temp_long2;
-  *(int32_t *)((longlong)dest_ptr + OFFSET_0X44) = temp_uint4_2;
+  *(int32_t *)((int64_t)dest_ptr + OFFSET_0X44) = temp_uint4_2;
   
-  temp_uint4_1 = *(int32_t *)((longlong)src_ptr + OFFSET_0X4C);
+  temp_uint4_1 = *(int32_t *)((int64_t)src_ptr + OFFSET_0X4C);
   temp_long2 = src_ptr[10];
-  temp_uint4_2 = *(int32_t *)((longlong)src_ptr + OFFSET_0X54);
+  temp_uint4_2 = *(int32_t *)((int64_t)src_ptr + OFFSET_0X54);
   
   *(int *)(dest_ptr + 9) = (int)src_ptr[9];
-  *(int32_t *)((longlong)dest_ptr + OFFSET_0X4C) = temp_uint4_1;
+  *(int32_t *)((int64_t)dest_ptr + OFFSET_0X4C) = temp_uint4_1;
   *(int *)(dest_ptr + 10) = (int)temp_long2;
-  *(int32_t *)((longlong)dest_ptr + OFFSET_0X54) = temp_uint4_2;
+  *(int32_t *)((int64_t)dest_ptr + OFFSET_0X54) = temp_uint4_2;
   
   // 计算并分配子数据块
   temp_long2 = (src_ptr[OFFSET_0XC] - src_ptr[OFFSET_0XB]) / 6 + 
@@ -529,36 +529,36 @@ longlong *copy_data_structure_element(longlong *dest_ptr, longlong *src_ptr, uin
  * 
  * 该函数批量复制数据结构元素，支持动态扩展
  */
-longlong *batch_copy_data_elements(longlong *dest_ptr, longlong *src_start_ptr, 
-                                  longlong *src_end_ptr, longlong *dest_base_ptr)
+int64_t *batch_copy_data_elements(int64_t *dest_ptr, int64_t *src_start_ptr, 
+                                  int64_t *src_end_ptr, int64_t *dest_base_ptr)
 {
   uint temp_uint1;
-  longlong *temp_ptr1;
+  int64_t *temp_ptr1;
   int32_t temp_uint4_1;
   int32_t temp_uint4_2;
-  longlong temp_long1;
-  longlong temp_long2;
-  longlong *temp_ptr2;
+  int64_t temp_long1;
+  int64_t temp_long2;
+  int64_t *temp_ptr2;
   
-  *dest_ptr = (longlong)dest_base_ptr;
+  *dest_ptr = (int64_t)dest_base_ptr;
   
   if (src_start_ptr != src_end_ptr) {
     temp_ptr2 = src_start_ptr + OFFSET_0XC;
     
     do {
       // 复制单个元素
-      temp_ptr1 = (longlong *)temp_ptr2[-OFFSET_0XC];
-      *dest_base_ptr = (longlong)temp_ptr1;
+      temp_ptr1 = (int64_t *)temp_ptr2[-OFFSET_0XC];
+      *dest_base_ptr = (int64_t)temp_ptr1;
       
-      if (temp_ptr1 != (longlong *)0x0) {
+      if (temp_ptr1 != (int64_t *)0x0) {
         invoke_callback_function((void *)(*temp_ptr1 + OFFSET_0X28));
       }
       
       dest_base_ptr[1] = temp_ptr2[-0xb];
-      temp_ptr1 = (longlong *)temp_ptr2[-10];
-      dest_base_ptr[2] = (longlong)temp_ptr1;
+      temp_ptr1 = (int64_t *)temp_ptr2[-10];
+      dest_base_ptr[2] = (int64_t)temp_ptr1;
       
-      if (temp_ptr1 != (longlong *)0x0) {
+      if (temp_ptr1 != (int64_t *)0x0) {
         invoke_callback_function((void *)(*temp_ptr1 + OFFSET_0X28));
       }
       
@@ -571,23 +571,23 @@ longlong *batch_copy_data_elements(longlong *dest_ptr, longlong *src_start_ptr,
       dest_base_ptr[6] = temp_long2;
       
       // 复制32位数据
-      temp_uint4_1 = *(int32_t *)((longlong)temp_ptr2 + -0x24);
+      temp_uint4_1 = *(int32_t *)((int64_t)temp_ptr2 + -0x24);
       temp_long2 = temp_ptr2[-4];
-      temp_uint4_2 = *(int32_t *)((longlong)temp_ptr2 + -0x1c);
+      temp_uint4_2 = *(int32_t *)((int64_t)temp_ptr2 + -0x1c);
       
       *(int *)(dest_base_ptr + 7) = (int)temp_ptr2[-5];
-      *(int32_t *)((longlong)dest_base_ptr + OFFSET_0X3C) = temp_uint4_1;
+      *(int32_t *)((int64_t)dest_base_ptr + OFFSET_0X3C) = temp_uint4_1;
       *(int *)(dest_base_ptr + 8) = (int)temp_long2;
-      *(int32_t *)((longlong)dest_base_ptr + OFFSET_0X44) = temp_uint4_2;
+      *(int32_t *)((int64_t)dest_base_ptr + OFFSET_0X44) = temp_uint4_2;
       
-      temp_uint4_1 = *(int32_t *)((longlong)temp_ptr2 + -0x14);
+      temp_uint4_1 = *(int32_t *)((int64_t)temp_ptr2 + -0x14);
       temp_long2 = temp_ptr2[-2];
-      temp_uint4_2 = *(int32_t *)((longlong)temp_ptr2 + -0xc);
+      temp_uint4_2 = *(int32_t *)((int64_t)temp_ptr2 + -0xc);
       
       *(int *)(dest_base_ptr + 9) = (int)temp_ptr2[-3];
-      *(int32_t *)((longlong)dest_base_ptr + OFFSET_0X4C) = temp_uint4_1;
+      *(int32_t *)((int64_t)dest_base_ptr + OFFSET_0X4C) = temp_uint4_1;
       *(int *)(dest_base_ptr + 10) = (int)temp_long2;
-      *(int32_t *)((longlong)dest_base_ptr + OFFSET_0X54) = temp_uint4_2;
+      *(int32_t *)((int64_t)dest_base_ptr + OFFSET_0X54) = temp_uint4_2;
       
       // 计算并分配子数据块
       temp_long2 = (*temp_ptr2 - temp_ptr2[-1]) / 6 + (*temp_ptr2 - temp_ptr2[-1] >> BIT_SHIFT_0X3F);
@@ -619,7 +619,7 @@ longlong *batch_copy_data_elements(longlong *dest_ptr, longlong *src_start_ptr,
       
       // 移动到下一个目标位置
       *dest_ptr = *dest_ptr + DATA_BLOCK_SIZE_0X78;
-      dest_base_ptr = (longlong *)*dest_ptr;
+      dest_base_ptr = (int64_t *)*dest_ptr;
       temp_ptr1 = temp_ptr2 + 3;
       temp_ptr2 = temp_ptr2 + OFFSET_0XF;
     } while (temp_ptr1 != src_end_ptr);
@@ -629,15 +629,15 @@ longlong *batch_copy_data_elements(longlong *dest_ptr, longlong *src_start_ptr,
 }
 
 // 全局变量声明（简化实现）
-static const longlong system_memory_ff10 = 0;  // 字符串匹配模式
-static const longlong system_resource_state = 0; // 配置数据基址
-static const longlong system_memory_pool_ptr = 0; // 内存分配器基址
-static const longlong system_data_buffer_ptr = 0;  // 未知常量
+static const int64_t system_memory_ff10 = 0;  // 字符串匹配模式
+static const int64_t system_resource_state = 0; // 配置数据基址
+static const int64_t system_memory_pool_ptr = 0; // 内存分配器基址
+static const int64_t system_data_buffer_ptr = 0;  // 未知常量
 
 // 简化实现 - 这些函数在实际代码中应该有完整的实现
-longlong *allocate_data_block(longlong size, char flags) {
+int64_t *allocate_data_block(int64_t size, char flags) {
     // 简化实现：内存分配函数
-    return (longlong *)malloc(size);
+    return (int64_t *)malloc(size);
 }
 
 void free_memory_block(void *ptr) {
@@ -645,7 +645,7 @@ void free_memory_block(void *ptr) {
     if (ptr) free(ptr);
 }
 
-void *get_string_buffer(void *context, longlong offset) {
+void *get_string_buffer(void *context, int64_t offset) {
     // 简化实现：获取字符串缓冲区
     return (void *)((char *)context + offset);
 }
@@ -654,12 +654,12 @@ void process_string_data(void *str_ptr, uint length) {
     // 简化实现：处理字符串数据
 }
 
-longlong *expand_data_structure(longlong *base_ptr, longlong *end_ptr, longlong new_size) {
+int64_t *expand_data_structure(int64_t *base_ptr, int64_t *end_ptr, int64_t new_size) {
     // 简化实现：扩展数据结构
-    return (longlong *)realloc(base_ptr, new_size);
+    return (int64_t *)realloc(base_ptr, new_size);
 }
 
-void copy_data_structure(longlong *dest, longlong *src) {
+void copy_data_structure(int64_t *dest, int64_t *src) {
     // 简化实现：复制数据结构
     memcpy(dest, src, 0x78); // 复制一个数据块大小
 }

@@ -21,16 +21,16 @@ void process_render_batch(void)
   int element_count;
   uint64_t texture_handle;
   char *string_buffer;
-  longlong context_ptr;
+  int64_t context_ptr;
   int current_index;
-  longlong data_ptr;
+  int64_t data_ptr;
   uint loop_counter;
-  longlong render_context;
-  ulonglong color_value;
-  longlong position_offset;
+  int64_t render_context;
+  uint64_t color_value;
+  int64_t position_offset;
   uint64_t matrix_data;
   int texture_id;
-  longlong transform_ptr;
+  int64_t transform_ptr;
   float position_x;
   float position_y;
   float position_z;
@@ -55,7 +55,7 @@ void process_render_batch(void)
   float temp_float5;
   float temp_float6;
   float temp_float7;
-  longlong stack_param2;
+  int64_t stack_param2;
   float temp_float8;
   float temp_float9;
   
@@ -65,7 +65,7 @@ void process_render_batch(void)
   }
   state_flag1 = (char)texture_id;
   if (((((*(int *)(render_context + 0x1b18) == texture_id) || (*(char *)(render_context + 0x1b1c) != state_flag1))
-       && (data_ptr = *(longlong *)(render_context + 0x1af8), *(longlong *)(render_context + 0x1b00) == data_ptr))
+       && (data_ptr = *(int64_t *)(render_context + 0x1af8), *(int64_t *)(render_context + 0x1b00) == data_ptr))
       && (((*(int *)(render_context + 0x1b2c) == texture_id || (*(char *)(render_context + 0x1b3d) != state_flag1))
           && ((state_flag2 = FUN_180128040(&stack0x00000070,&stack0x00000078), state_flag2 != '\0' &&
               ((*(char *)(render_context + 0x1d07) == state_flag1 &&
@@ -78,7 +78,7 @@ void process_render_batch(void)
   else {
     is_enabled = false;
   }
-  render_flags = (int32_t)((ulonglong)stack_param1 >> 0x20);
+  render_flags = (int32_t)((uint64_t)stack_param1 >> 0x20);
   color_a = *(float *)(transform_ptr + 0xd8);
   render_index = *(int *)(transform_ptr + 0xc0);
   scale_y = *(float *)(transform_ptr + 0xe0);
@@ -89,7 +89,7 @@ void process_render_batch(void)
       texture_handle = *(uint64_t *)(transform_ptr + 0xb8);
       do {
         alpha_value = (float)func_0x00018011a9b0(texture_handle,texture_id);
-        render_flags = (int32_t)((ulonglong)stack_param1 >> 0x20);
+        render_flags = (int32_t)((uint64_t)stack_param1 >> 0x20);
         if (alpha_value <= temp_float3) {
           temp_float3 = alpha_value;
         }
@@ -115,7 +115,7 @@ void process_render_batch(void)
   temp_float2 = *(float *)(render_context + 0x1744) * *(float *)(render_context + 0x1628);
   blend_mode = func_0x000180121e20(&stack0x00000040);
   depth_value = (double)CONCAT44(render_flags,*(int32_t *)(transform_ptr + 0x1664));
-  *(ulonglong *)(transform_ptr + -0x78) = CONCAT44(color_r,blend_mode);
+  *(uint64_t *)(transform_ptr + -0x78) = CONCAT44(color_r,blend_mode);
   FUN_180122960(CONCAT44(color_r,blend_mode),*(uint64_t *)(transform_ptr + -0x70),blend_mode,1,
                 depth_value);
   data_ptr = SYSTEM_DATA_MANAGER_A;
@@ -127,7 +127,7 @@ void process_render_batch(void)
       current_index = (int)color_g;
     }
     loop_counter = current_index - 1;
-    color_value = (ulonglong)loop_counter;
+    color_value = (uint64_t)loop_counter;
     if (is_enabled) {
       temp_float3 = (*(float *)(transform_ptr + 0x118) - color_g) / (color_a - color_g);
       temp_float4 = alpha_value;
@@ -137,10 +137,10 @@ void process_render_batch(void)
       current_index = (int)((float)(render_index + -1) * temp_float4);
       temp_index = current_index;
       temp_float4 = (float)func_0x00018011a9b0(*(uint64_t *)(transform_ptr + 0xb8),
-                                          (longlong)(current_index + batch_count) % (longlong)render_index & 0xffffffff)
+                                          (int64_t)(current_index + batch_count) % (int64_t)render_index & 0xffffffff)
       ;
       texture_handle = *(uint64_t *)(transform_ptr + 0xb8);
-      temp_float3 = (float)func_0x00018011a9b0(texture_handle,(longlong)(current_index + batch_count + 1) % (longlong)render_index &
+      temp_float3 = (float)func_0x00018011a9b0(texture_handle,(int64_t)(current_index + batch_count + 1) % (int64_t)render_index &
                                                 0xffffffff);
       depth_value = (double)temp_float3;
       FUN_18012ea30(&unknown_var_2256_ptr,current_index,(double)temp_float4,current_index + 1,depth_value);
@@ -152,7 +152,7 @@ void process_render_batch(void)
     if (color_a != scale_y) {
       temp_float4 = 1.0 / (scale_y - color_a);
     }
-    scale_y = (float)func_0x00018011a9b0(texture_handle,(longlong)batch_count % (longlong)render_index & 0xffffffff);
+    scale_y = (float)func_0x00018011a9b0(texture_handle,(int64_t)batch_count % (int64_t)render_index & 0xffffffff);
     data_ptr = SYSTEM_DATA_MANAGER_A;
     temp_float3 = (scale_y - color_a) * temp_float4;
     scale_y = alpha_value;
@@ -179,12 +179,12 @@ void process_render_batch(void)
       *(float *)(transform_ptr + 0xb0) = *(float *)(transform_ptr + 0xb0) - *(float *)(transform_ptr + 0xa0);
       temp_float7 = alpha_value;
       do {
-        render_flags = (int32_t)((ulonglong)depth_value >> 0x20);
+        render_flags = (int32_t)((uint64_t)depth_value >> 0x20);
         position_x = (float)(render_index + -1) * temp_float7;
         temp_float7 = temp_float7 + 1.0 / (float)(int)loop_counter;
         element_count = (int)(position_x + 0.5);
         position_x = (float)func_0x00018011a9b0(*(uint64_t *)(transform_ptr + 0xb8),
-                                            (longlong)(element_count + batch_count + 1) % (longlong)render_index &
+                                            (int64_t)(element_count + batch_count + 1) % (int64_t)render_index &
                                             0xffffffff);
         position_y = (position_x - color_a) * temp_float4;
         position_x = alpha_value;
@@ -203,7 +203,7 @@ void process_render_batch(void)
              *(float *)(transform_ptr + 0xb0) * temp_float2 + *(float *)(transform_ptr + 0xa0);
         temp_float1 = temp_float5 * scale_y + temp_float6;
         position_w = *(float *)(transform_ptr + 0xb0) * temp_float7 + *(float *)(transform_ptr + 0xa0);
-        FUN_180293d20(*(uint64_t *)(*(longlong *)(transform_ptr + -0x80) + 0x2e8),&stack0x00000070,
+        FUN_180293d20(*(uint64_t *)(*(int64_t *)(transform_ptr + -0x80) + 0x2e8),&stack0x00000070,
                       &stack0x00000040,position_x,depth_value);
         color_value = color_value - 1;
         data_ptr = SYSTEM_DATA_MANAGER_A;
@@ -228,7 +228,7 @@ void process_render_batch(void)
       }
     }
     if (((int)string_buffer != (int)text_ptr) &&
-       (FUN_1801224c0(*(uint64_t *)(*(longlong *)(data_ptr + 0x1af8) + 0x2e8),transform_ptr + 0xb0,
+       (FUN_1801224c0(*(uint64_t *)(*(int64_t *)(data_ptr + 0x1af8) + 0x2e8),transform_ptr + 0xb0,
                       transform_ptr + -0x70,text_ptr,string_buffer), *(char *)(data_ptr + 0x2e38) != '\0')) {
       FUN_18013c800(transform_ptr + 0xb0,text_ptr,string_buffer);
     }
@@ -254,10 +254,10 @@ void process_text_elements(void)
 
 {
   char *text_ptr;
-  longlong transform_ptr;
-  longlong context_ptr;
+  int64_t transform_ptr;
+  int64_t context_ptr;
   char *string_data;
-  longlong render_data;
+  int64_t render_data;
   float alpha_value;
   float color_value;
   int32_t blend_mode;
@@ -275,7 +275,7 @@ void process_text_elements(void)
     }
   }
   if ((int)text_ptr != (int)string_data) {
-    FUN_1801224c0(*(uint64_t *)(*(longlong *)(context_ptr + 0x1af8) + 0x2e8),transform_ptr + 0xb0,
+    FUN_1801224c0(*(uint64_t *)(*(int64_t *)(context_ptr + 0x1af8) + 0x2e8),transform_ptr + 0xb0,
                   transform_ptr + -0x70);
     if (*(char *)(context_ptr + 0x2e38) != '\0') {
       FUN_18013c800(transform_ptr + 0xb0);
@@ -299,8 +299,8 @@ void process_text_elements(void)
 void execute_render_command(void)
 
 {
-  longlong transform_ptr;
-  longlong render_data;
+  int64_t transform_ptr;
+  int64_t render_data;
   
   FUN_180122320(*(float *)(transform_ptr + -0x70) + *(float *)(render_data + 0x1674));
   return;
@@ -336,10 +336,10 @@ void process_text_with_params(void)
 
 {
   char *text_ptr;
-  longlong context_ptr;
+  int64_t context_ptr;
   char *string_end;
-  longlong transform_ptr;
-  longlong render_data;
+  int64_t transform_ptr;
+  int64_t render_data;
   float alpha_value;
   float color_value;
   int32_t blend_mode;
@@ -358,7 +358,7 @@ void process_text_with_params(void)
       }
     }
     if ((int)string_end != (int)text_ptr) {
-      FUN_1801224c0(*(uint64_t *)(*(longlong *)(context_ptr + 0x1af8) + 0x2e8),transform_ptr + 0xb0,
+      FUN_1801224c0(*(uint64_t *)(*(int64_t *)(context_ptr + 0x1af8) + 0x2e8),transform_ptr + 0xb0,
                     transform_ptr + -0x70,text_ptr,string_end);
       if (*(char *)(context_ptr + 0x2e38) != '\0') {
         FUN_18013c800(transform_ptr + 0xb0,text_ptr,string_end);
@@ -380,32 +380,32 @@ void process_text_with_params(void)
  * 功能：渲染带特效的文本，处理文本渲染和特效
  * 这个函数负责渲染带有各种视觉特效的文本
  */
-ulonglong render_text_with_effects(char *text_data,ulonglong position_data,char effect_flag,uint64_t render_params)
+uint64_t render_text_with_effects(char *text_data,uint64_t position_data,char effect_flag,uint64_t render_params)
 
 {
   float position_x;
   float position_y;
   float position_z;
-  longlong context_ptr;
-  longlong render_data;
+  int64_t context_ptr;
+  int64_t render_data;
   byte is_enabled;
   int32_t render_flags;
-  ulonglong result;
+  uint64_t result;
   char *text_ptr;
   float *font_data;
   float font_size;
   float extraout_XMM0_Da;
   float text_width;
-  ulonglong stack_param;
+  uint64_t stack_param;
   int32_t stack_buffer1;
   int32_t stack_buffer2;
   int32_t stack_buffer3;
   float stack_buffer4;
   
   render_data = SYSTEM_DATA_MANAGER_A;
-  result = *(ulonglong *)(SYSTEM_DATA_MANAGER_A + 0x1af8);
+  result = *(uint64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8);
   *(int8_t *)(result + 0xb1) = 1;
-  context_ptr = *(longlong *)(render_data + 0x1af8);
+  context_ptr = *(int64_t *)(render_data + 0x1af8);
   if (*(char *)(context_ptr + 0xb4) == '\0') {
     position_x = *(float *)(context_ptr + 0x100);
     position_y = *(float *)(context_ptr + 0x104);
@@ -441,7 +441,7 @@ ulonglong render_text_with_effects(char *text_data,ulonglong position_data,char 
       FUN_18013e000(render_data + 0x1b90,&stack_buffer1);
       *(float *)(render_data + 0x166c) = position_x + position_x;
       *(float *)(render_data + 0x1670) = position_y + position_y;
-      stack_param = (ulonglong)(uint)text_width;
+      stack_param = (uint64_t)(uint)text_width;
       is_enabled = FUN_180119960(text_data,0,0x1000,&stack_param);
       FUN_18012dad0(1);
       *(float *)(context_ptr + 0x100) =
@@ -451,7 +451,7 @@ ulonglong render_text_with_effects(char *text_data,ulonglong position_data,char 
       func_0x00018011aa50(context_ptr + 0x288);
       font_data = (float *)func_0x00018012df80(&stack_param);
       text_width = *font_data - extraout_XMM0_Da;
-      stack_param = (ulonglong)(uint)extraout_XMM0_Da;
+      stack_param = (uint64_t)(uint)extraout_XMM0_Da;
       if (text_width <= 0.0) {
         text_width = 0.0;
       }
@@ -468,7 +468,7 @@ ulonglong render_text_with_effects(char *text_data,ulonglong position_data,char 
                       font_size * 0.866);
       }
     }
-    result = (ulonglong)is_enabled;
+    result = (uint64_t)is_enabled;
   }
   else {
     result = result & 0xffffffffffffff00;
@@ -495,9 +495,9 @@ int8_t render_text_element(void)
   int32_t render_flags;
   char *text_ptr;
   float *font_data;
-  longlong context_ptr;
+  int64_t context_ptr;
   char *string_data;
-  longlong render_context;
+  int64_t render_context;
   char effect_flag;
   float font_size;
   uint64_t stack_param1;
@@ -591,8 +591,8 @@ int8_t simple_render_operation(void)
   float position_x;
   float position_y;
   int8_t result;
-  longlong context_ptr;
-  longlong render_context;
+  int64_t context_ptr;
+  int64_t render_context;
   uint64_t stack_param1;
   int32_t stack_param2;
   int32_t stack_param3;

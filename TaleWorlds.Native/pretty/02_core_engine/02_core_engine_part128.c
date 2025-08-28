@@ -55,10 +55,10 @@ void update_material_state(void)
     if (material_index == 0) {
         material_ptr = *(float **)(engine_base + 0xb0);
         if (material_ptr == NULL) {
-            material_ptr = (float *)**(void **)(*(longlong *)(engine_base + 0xa0) + 0x48);
+            material_ptr = (float *)**(void **)(*(int64_t *)(engine_base + 0xa0) + 0x48);
         }
     } else {
-        material_ptr = *(float **)(*(longlong *)(engine_base + 0x1ba8) + -0x10 + (longlong)material_index * 8);
+        material_ptr = *(float **)(*(int64_t *)(engine_base + 0x1ba8) + -0x10 + (int64_t)material_index * 8);
     }
     
     // 更新渲染状态
@@ -67,15 +67,15 @@ void update_material_state(void)
     render_ctx->material_scale = scale_factor;
     
     // 计算颜色乘数
-    if (*(longlong *)(engine_base + 0x1af8) == 0) {
+    if (*(int64_t *)(engine_base + 0x1af8) == 0) {
         render_ctx->color_multiplier = 0.0f;
     } else {
-        render_ctx->color_multiplier = scale_factor * *(float *)((longlong)engine_base + 0x2d8) * 
-                                     *(float *)((longlong)engine_base + 0x2dc);
+        render_ctx->color_multiplier = scale_factor * *(float *)((int64_t)engine_base + 0x2d8) * 
+                                     *(float *)((int64_t)engine_base + 0x2dc);
     }
     
     // 更新纹理和着色器状态
-    *(void **)(engine_base + 0x1a00) = *(void **)(*(longlong *)(material_ptr + 0x16) + 0x38);
+    *(void **)(engine_base + 0x1a00) = *(void **)(*(int64_t *)(material_ptr + 0x16) + 0x38);
     render_ctx->texture_pointer = material_ptr;
     
     return;
@@ -89,7 +89,7 @@ void set_material_property(int property_index, void *property_data)
     uint64_t property_value;
     
     render_ctx = (render_state_t *)engine_context;
-    property_table = (material_property_t *)(engine_base + 0x16c8 + (longlong)property_index * 0x10);
+    property_table = (material_property_t *)(engine_base + 0x16c8 + (int64_t)property_index * 0x10);
     
     // 保存当前属性值
     material_property_t old_property = *property_table;
@@ -111,35 +111,35 @@ void set_material_property_value(int property_index, uint32_t property_value)
     material_property_t *property_table;
     uint property_id;
     void *engine_base;
-    longlong property_offset;
+    int64_t property_offset;
     
     engine_base = engine_context;
-    property_offset = (longlong)property_index;
+    property_offset = (int64_t)property_index;
     
     // 检查属性类型和格式
     if ((*(int *)(&unknown_var_6048_ptr + property_offset * 0xc) == 4) && 
         (*(int *)(&unknown_var_6052_ptr + property_offset * 0xc) == 1)) {
         
         property_id = *(uint *)(&unknown_var_6056_ptr + property_offset * 0xc);
-        uint32_t old_value = *(uint32_t *)((ulonglong)property_id + 0x1628 + engine_base);
+        uint32_t old_value = *(uint32_t *)((uint64_t)property_id + 0x1628 + engine_base);
         
         // 调用属性设置回调
         FUN_18013e000(engine_base + 0x1b90, &property_index);
         
         // 设置新值
-        *(uint32_t *)((ulonglong)property_id + 0x1628 + engine_base) = property_value;
+        *(uint32_t *)((uint64_t)property_id + 0x1628 + engine_base) = property_value;
     }
     
     return;
 }
 
 // 函数：更新材质属性（带参数）
-void update_material_property_ex(uint32_t property_type, longlong property_offset, 
+void update_material_property_ex(uint32_t property_type, int64_t property_offset, 
                                 uint64_t param1, uint64_t param2)
 {
     uint property_id;
     void *engine_base;
-    longlong register_value;
+    int64_t register_value;
     uint32_t property_value;
     
     engine_base = engine_context;
@@ -149,7 +149,7 @@ void update_material_property_ex(uint32_t property_type, longlong property_offse
     FUN_18013e000(engine_base + 0x1b90, &property_offset, param1, param2, property_type);
     
     // 设置属性值
-    *(uint32_t *)((ulonglong)property_id + 0x1628 + engine_base) = property_value;
+    *(uint32_t *)((uint64_t)property_id + 0x1628 + engine_base) = property_value;
     
     return;
 }
@@ -164,19 +164,19 @@ void nop_function(void)
 void set_material_property_array(int property_index, uint64_t *property_array)
 {
     render_state_t *render_ctx;
-    longlong property_offset;
-    ulonglong property_id;
+    int64_t property_offset;
+    uint64_t property_id;
     int stack_index;
     uint64_t old_values[2];
     
     render_ctx = (render_state_t *)engine_context;
-    property_offset = (longlong)property_index;
+    property_offset = (int64_t)property_index;
     
     // 检查属性类型和格式
     if ((*(int *)(&unknown_var_6048_ptr + property_offset * 0xc) == 4) && 
         *(int *)(&unknown_var_6052_ptr + property_offset * 0xc) == 2) {
         
-        property_id = (ulonglong)*(uint *)(&unknown_var_6056_ptr + property_offset * 0xc);
+        property_id = (uint64_t)*(uint *)(&unknown_var_6056_ptr + property_offset * 0xc);
         old_values[0] = *(uint64_t *)(property_id + 0x1628 + engine_base);
         old_values[1] = *(uint64_t *)(property_id + 0x1630 + engine_base);
         
@@ -192,16 +192,16 @@ void set_material_property_array(int property_index, uint64_t *property_array)
 
 // 函数：更新材质属性数组
 void update_material_property_array(uint32_t property_type, uint64_t property_array, 
-                                   longlong property_offset, uint64_t param2)
+                                   int64_t property_offset, uint64_t param2)
 {
     render_state_t *render_ctx;
-    longlong register_value;
-    ulonglong property_id;
+    int64_t register_value;
+    uint64_t property_id;
     uint64_t *source_array;
     uint32_t second_value;
     
     render_ctx = (render_state_t *)engine_context;
-    property_id = (ulonglong)*(uint *)(register_value + 8 + property_offset * 4);
+    property_id = (uint64_t)*(uint *)(register_value + 8 + property_offset * 4);
     second_value = *(uint32_t *)(property_id + 0x1630 + engine_base);
     
     // 调用属性更新回调
@@ -223,29 +223,29 @@ void nop_function_2(void)
 void batch_update_material_properties(int property_count)
 {
     int current_count;
-    longlong engine_base;
-    longlong property_buffer;
-    longlong property_index;
+    int64_t engine_base;
+    int64_t property_buffer;
+    int64_t property_index;
     uint property_id;
-    longlong temp_offset;
-    ulonglong buffer_offset;
-    ulonglong loop_counter;
+    int64_t temp_offset;
+    uint64_t buffer_offset;
+    uint64_t loop_counter;
     
-    engine_base = (longlong)engine_context;
+    engine_base = (int64_t)engine_context;
     
     // 批量处理属性（每次处理4个）
     if (3 < property_count) {
         loop_counter = (property_count - 4U >> 2) + 1;
-        buffer_offset = (ulonglong)loop_counter;
+        buffer_offset = (uint64_t)loop_counter;
         property_count = property_count + loop_counter * -4;
         
         do {
             // 处理4个属性
             for (int i = 0; i < 4; i++) {
-                temp_offset = (longlong)*(int *)(engine_base + 0x1b90);
-                property_buffer = *(longlong *)(engine_base + 0x1b98);
-                property_index = (longlong)*(int *)(property_buffer + -0xc + temp_offset * 0xc);
-                buffer_offset = (ulonglong)*(uint *)(&unknown_var_6056_ptr + property_index * 0xc);
+                temp_offset = (int64_t)*(int *)(engine_base + 0x1b90);
+                property_buffer = *(int64_t *)(engine_base + 0x1b98);
+                property_index = (int64_t)*(int *)(property_buffer + -0xc + temp_offset * 0xc);
+                buffer_offset = (uint64_t)*(uint *)(&unknown_var_6056_ptr + property_index * 0xc);
                 
                 if (*(int *)(&unknown_var_6048_ptr + property_index * 0xc) == 4) {
                     if (*(int *)(&unknown_var_6052_ptr + property_index * 0xc) == 1) {
@@ -270,10 +270,10 @@ void batch_update_material_properties(int property_count)
     
     // 处理剩余的属性
     for (; 0 < property_count; property_count--) {
-        temp_offset = (longlong)*(int *)(engine_base + 0x1b90);
-        property_buffer = *(longlong *)(engine_base + 0x1b98);
-        property_index = (longlong)*(int *)(property_buffer + -0xc + temp_offset * 0xc);
-        buffer_offset = (ulonglong)*(uint *)(&unknown_var_6056_ptr + property_index * 0xc);
+        temp_offset = (int64_t)*(int *)(engine_base + 0x1b90);
+        property_buffer = *(int64_t *)(engine_base + 0x1b98);
+        property_index = (int64_t)*(int *)(property_buffer + -0xc + temp_offset * 0xc);
+        buffer_offset = (uint64_t)*(uint *)(&unknown_var_6056_ptr + property_index * 0xc);
         
         if (*(int *)(&unknown_var_6048_ptr + property_index * 0xc) == 4) {
             if (*(int *)(&unknown_var_6052_ptr + property_index * 0xc) == 1) {
@@ -294,27 +294,27 @@ void batch_update_material_properties(int property_count)
 }
 
 // 函数：批量更新材质属性（扩展版本）
-void batch_update_material_properties_ex(int property_count, longlong context_ptr)
+void batch_update_material_properties_ex(int property_count, int64_t context_ptr)
 {
     int current_count;
-    longlong property_buffer;
+    int64_t property_buffer;
     uint property_id;
-    longlong property_index;
-    ulonglong buffer_offset;
-    ulonglong loop_counter;
-    longlong property_table;
+    int64_t property_index;
+    uint64_t buffer_offset;
+    uint64_t loop_counter;
+    int64_t property_table;
     
     loop_counter = (property_id >> 2) + 1;
-    buffer_offset = (ulonglong)loop_counter;
+    buffer_offset = (uint64_t)loop_counter;
     property_count = property_count + loop_counter * -4;
     
     do {
         // 批量处理4个属性
         for (int i = 0; i < 4; i++) {
-            property_buffer = (longlong)*(int *)(context_ptr + 0x1b90);
-            property_buffer = *(longlong *)(context_ptr + 0x1b98);
-            property_index = (longlong)*(int *)(property_buffer + -0xc + property_buffer * 0xc);
-            buffer_offset = (ulonglong)*(uint *)(property_table + 8 + property_index * 0xc);
+            property_buffer = (int64_t)*(int *)(context_ptr + 0x1b90);
+            property_buffer = *(int64_t *)(context_ptr + 0x1b98);
+            property_index = (int64_t)*(int *)(property_buffer + -0xc + property_buffer * 0xc);
+            buffer_offset = (uint64_t)*(uint *)(property_table + 8 + property_index * 0xc);
             
             if (*(int *)(property_table + property_index * 0xc) == 4) {
                 current_count = *(int *)(property_table + 4 + property_index * 0xc);
@@ -338,10 +338,10 @@ void batch_update_material_properties_ex(int property_count, longlong context_pt
     
     // 处理剩余属性
     for (; 0 < property_count; property_count--) {
-        property_buffer = (longlong)*(int *)(context_ptr + 0x1b90);
-        property_buffer = *(longlong *)(context_ptr + 0x1b98);
-        property_index = (longlong)*(int *)(property_buffer + -0xc + property_buffer * 0xc);
-        buffer_offset = (ulonglong)*(uint *)(property_table + 8 + property_index * 0xc);
+        property_buffer = (int64_t)*(int *)(context_ptr + 0x1b90);
+        property_buffer = *(int64_t *)(context_ptr + 0x1b98);
+        property_index = (int64_t)*(int *)(property_buffer + -0xc + property_buffer * 0xc);
+        buffer_offset = (uint64_t)*(uint *)(property_table + 8 + property_index * 0xc);
         
         if (*(int *)(property_table + property_index * 0xc) == 4) {
             current_count = *(int *)(property_table + 4 + property_index * 0xc);
@@ -363,21 +363,21 @@ void batch_update_material_properties_ex(int property_count, longlong context_pt
 }
 
 // 函数：快速更新材质属性
-void fast_update_material_properties(uint64_t param1, longlong context_ptr)
+void fast_update_material_properties(uint64_t param1, int64_t context_ptr)
 {
     int current_count;
-    longlong property_buffer;
-    longlong property_index;
-    longlong property_table;
-    ulonglong buffer_offset;
+    int64_t property_buffer;
+    int64_t property_index;
+    int64_t property_table;
+    uint64_t buffer_offset;
     int iteration_count;
     
     if (0 < iteration_count) {
         do {
-            property_buffer = (longlong)*(int *)(context_ptr + 0x1b90);
-            property_buffer = *(longlong *)(context_ptr + 0x1b98);
-            property_index = (longlong)*(int *)(property_buffer + -0xc + property_buffer * 0xc);
-            buffer_offset = (ulonglong)*(uint *)(property_table + 8 + property_index * 0xc);
+            property_buffer = (int64_t)*(int *)(context_ptr + 0x1b90);
+            property_buffer = *(int64_t *)(context_ptr + 0x1b98);
+            property_index = (int64_t)*(int *)(property_buffer + -0xc + property_buffer * 0xc);
+            buffer_offset = (uint64_t)*(uint *)(property_table + 8 + property_index * 0xc);
             
             if (*(int *)(property_table + property_index * 0xc) == 4) {
                 current_count = *(int *)(property_table + 4 + property_index * 0xc);
@@ -405,12 +405,12 @@ uint64_t get_material_status(void)
 {
     uint property_id;
     uint64_t result;
-    longlong engine_base;
-    longlong material_context;
+    int64_t engine_base;
+    int64_t material_context;
     
-    material_context = *(longlong *)(engine_context + 0x1b00);
-    if (material_context == *(longlong *)(engine_context + 0x1af8)) {
-        engine_base = (longlong)engine_context;
+    material_context = *(int64_t *)(engine_context + 0x1b00);
+    if (material_context == *(int64_t *)(engine_context + 0x1af8)) {
+        engine_base = (int64_t)engine_context;
         result = func_0x000180124000(*(uint64_t *)(engine_context + 0x1b08), 8);
         
         if ((char)result != '\0') {
@@ -432,18 +432,18 @@ void update_render_parameters(void)
 {
     float param1, param2, param3, param4;
     float param5, param6, param7, param8;
-    longlong engine_base;
-    longlong render_context;
-    longlong material_context;
+    int64_t engine_base;
+    int64_t render_context;
+    int64_t material_context;
     char update_flag;
     
-    engine_base = (longlong)engine_context;
-    render_context = *(longlong *)(engine_context + 0x1af8);
+    engine_base = (int64_t)engine_context;
+    render_context = *(int64_t *)(engine_context + 0x1af8);
     
     // 检查是否需要更新渲染参数
     if ((((*(char *)(render_context + 0xb5) != '\0') &&
-          (material_context = *(longlong *)(engine_context + 0x1c98), 
-           material_context == *(longlong *)(render_context + 0x3b8))) &&
+          (material_context = *(int64_t *)(engine_context + 0x1c98), 
+           material_context == *(int64_t *)(render_context + 0x3b8))) &&
          ((*(char *)(engine_context + 0x1d09) != '\0' || 
            *(int *)(engine_context + 0x1d0c) != 0))) &&
         *(int *)(engine_context + 0x1cfc) == *(int *)(material_context + 0x16c)) {
@@ -472,12 +472,12 @@ void update_render_parameters(void)
         update_flag = func_0x000180128350();
         if (update_flag == '\0') {
             *(char *)(render_context + 0xb1) = 1;
-            render_context = *(longlong *)(engine_base + 0x1af8);
+            render_context = *(int64_t *)(engine_base + 0x1af8);
             param1 = *(float *)(render_context + 0x130);
             param2 = *(float *)(render_context + 0x10c);
             param3 = *(float *)(render_context + 0x44);
             *(char *)(render_context + 0xb1) = 1;
-            render_context = *(longlong *)(engine_base + 0x1af8);
+            render_context = *(int64_t *)(engine_base + 0x1af8);
             *(int *)(render_context + 0xa0) = 0x3f000000; // 0.5f
             *(float *)(render_context + 0x98) = 
                 (float)((int)((param2 - param3) + param1 * 0.5 + *(float *)(render_context + 0x90)));
@@ -490,14 +490,14 @@ void update_render_parameters(void)
 // 函数：添加纹理到渲染队列
 void add_texture_to_render_queue(uint64_t texture_handle)
 {
-    longlong render_context;
+    int64_t render_context;
     uint32_t texture_id;
     int texture_count;
     int max_count;
     int new_count;
     int *texture_array;
     
-    render_context = *(longlong *)(engine_context + 0x1af8);
+    render_context = *(int64_t *)(engine_context + 0x1af8);
     texture_array = (int *)(render_context + 0x218);
     texture_count = *texture_array;
     max_count = *(int *)(render_context + 0x21c);
@@ -519,8 +519,8 @@ void add_texture_to_render_queue(uint64_t texture_handle)
     }
     
     // 添加纹理ID
-    *(uint32_t *)(*(longlong *)(render_context + 0x220) + (longlong)texture_count * 4) = 
-        FUN_180121250(texture_handle, 0, *(uint32_t *)(max_count + -4 + (longlong)texture_count * 4));
+    *(uint32_t *)(*(int64_t *)(render_context + 0x220) + (int64_t)texture_count * 4) = 
+        FUN_180121250(texture_handle, 0, *(uint32_t *)(max_count + -4 + (int64_t)texture_count * 4));
     *texture_array = *texture_array + 1;
     
     return;
@@ -530,13 +530,13 @@ void add_texture_to_render_queue(uint64_t texture_handle)
 void add_shader_to_render_queue(uint64_t shader_handle)
 {
     int *shader_array;
-    longlong render_context;
+    int64_t render_context;
     uint32_t shader_id;
     int shader_count;
     int max_count;
     int new_count;
     
-    render_context = *(longlong *)(engine_context + 0x1af8);
+    render_context = *(int64_t *)(engine_context + 0x1af8);
     shader_array = (int *)(render_context + 0x218);
     shader_id = func_0x000180123d70(render_context, shader_handle);
     shader_count = *shader_array;
@@ -558,7 +558,7 @@ void add_shader_to_render_queue(uint64_t shader_handle)
     }
     
     // 添加着色器ID
-    *(uint32_t *)(*(longlong *)(render_context + 0x220) + (longlong)shader_count * 4) = shader_id;
+    *(uint32_t *)(*(int64_t *)(render_context + 0x220) + (int64_t)shader_count * 4) = shader_id;
     *shader_array = *shader_array + 1;
     
     return;
@@ -568,15 +568,15 @@ void add_shader_to_render_queue(uint64_t shader_handle)
 void add_material_id_to_queue(int material_id)
 {
     int *material_array;
-    longlong render_context;
+    int64_t render_context;
     uint32_t material_index;
     int material_count;
     int max_count;
     int new_count;
     
-    render_context = *(longlong *)(engine_context + 0x1af8);
+    render_context = *(int64_t *)(engine_context + 0x1af8);
     material_array = (int *)(render_context + 0x218);
-    material_index = func_0x000180123d70(render_context, (longlong)material_id);
+    material_index = func_0x000180123d70(render_context, (int64_t)material_id);
     material_count = *material_array;
     max_count = *(int *)(render_context + 0x21c);
     
@@ -596,7 +596,7 @@ void add_material_id_to_queue(int material_id)
     }
     
     // 添加材质索引
-    *(uint32_t *)(*(longlong *)(render_context + 0x220) + (longlong)material_count * 4) = material_index;
+    *(uint32_t *)(*(int64_t *)(render_context + 0x220) + (int64_t)material_count * 4) = material_index;
     *material_array = *material_array + 1;
     
     return;
@@ -605,13 +605,13 @@ void add_material_id_to_queue(int material_id)
 // 函数：验证材质ID
 void validate_material_id(uint64_t material_handle)
 {
-    longlong engine_base;
+    int64_t engine_base;
     int material_id;
     
-    engine_base = (longlong)engine_context;
+    engine_base = (int64_t)engine_context;
     material_id = FUN_180121250(material_handle, 0,
-        *(uint32_t *)(*(longlong *)(*(longlong *)(engine_context + 0x1af8) + 0x220) + -4 +
-        (longlong)*(int *)(*(longlong *)(engine_context + 0x1af8) + 0x218) * 4));
+        *(uint32_t *)(*(int64_t *)(*(int64_t *)(engine_context + 0x1af8) + 0x220) + -4 +
+        (int64_t)*(int *)(*(int64_t *)(engine_context + 0x1af8) + 0x218) * 4));
     
     // 检查材质ID是否匹配
     if (*(int *)(engine_base + 0x1b2c) == material_id) {
@@ -629,20 +629,20 @@ void validate_material_id(uint64_t material_handle)
 // 函数：初始化渲染状态
 void initialize_render_state(void)
 {
-    longlong engine_base;
-    longlong render_context;
-    longlong state_buffer;
-    longlong buffer_ptr;
+    int64_t engine_base;
+    int64_t render_context;
+    int64_t state_buffer;
+    int64_t buffer_ptr;
     float depth_value;
     
-    engine_base = (longlong)engine_context;
-    *(char *)(*(longlong *)(engine_context + 0x1af8) + 0xb1) = 1;
+    engine_base = (int64_t)engine_context;
+    *(char *)(*(int64_t *)(engine_context + 0x1af8) + 0xb1) = 1;
     
-    render_context = *(longlong *)(engine_base + 0x1af8);
+    render_context = *(int64_t *)(engine_base + 0x1af8);
     FUN_18013db40(render_context + 0x1e8, *(int *)(render_context + 0x1e8) + 1);
     
-    buffer_ptr = (longlong)*(int *)(render_context + 0x1e8);
-    state_buffer = *(longlong *)(render_context + 0x1f0);
+    buffer_ptr = (int64_t)*(int *)(render_context + 0x1e8);
+    state_buffer = *(int64_t *)(render_context + 0x1f0);
     
     // 初始化渲染状态缓冲区
     *(uint64_t *)(state_buffer + -0x30 + buffer_ptr * 0x30) = *(uint64_t *)(render_context + 0x100);
@@ -672,22 +672,22 @@ void update_render_buffer(void)
 {
     float min_x, max_x, min_y, max_y;
     float depth_min, depth_max;
-    longlong engine_base;
-    longlong render_context;
-    longlong buffer_ptr;
-    longlong state_buffer;
+    int64_t engine_base;
+    int64_t render_context;
+    int64_t buffer_ptr;
+    int64_t state_buffer;
     char update_flag;
     int material_id;
-    longlong temp_context;
+    int64_t temp_context;
     float depth_value;
     float position[4];
     
-    engine_base = (longlong)engine_context;
-    *(char *)(*(longlong *)(engine_context + 0x1af8) + 0xb1) = 1;
+    engine_base = (int64_t)engine_context;
+    *(char *)(*(int64_t *)(engine_context + 0x1af8) + 0xb1) = 1;
     
-    render_context = *(longlong *)(engine_base + 0x1af8);
-    state_buffer = *(longlong *)(render_context + 0x1f0);
-    buffer_ptr = (longlong)*(int *)(render_context + 0x1e8);
+    render_context = *(int64_t *)(engine_base + 0x1af8);
+    state_buffer = *(int64_t *)(render_context + 0x1f0);
+    buffer_ptr = (int64_t)*(int *)(render_context + 0x1e8);
     
     // 获取当前深度范围
     depth_max = (float)*(uint64_t *)(render_context + 0x118);
@@ -736,14 +736,14 @@ void update_render_buffer(void)
         position[3] = min_x;
         func_0x000180124080(&position[0], *(int *)(state_buffer + -0x10 + buffer_ptr * 0x30));
         
-        temp_context = *(longlong *)(engine_base + 0x1af8);
+        temp_context = *(int64_t *)(engine_base + 0x1af8);
         *(uint64_t *)(temp_context + 0x144) = 0;
         *(float *)(temp_context + 0x14c) = max_x;
         *(float *)(temp_context + 0x150) = min_x;
         *(float *)(temp_context + 0x154) = depth_min;
         *(float *)(temp_context + 0x158) = max_y;
         
-        temp_context = *(longlong *)(engine_base + 0x1af8);
+        temp_context = *(int64_t *)(engine_base + 0x1af8);
         if ((((((*(float *)(temp_context + 0x22c) <= max_y && max_y != *(float *)(temp_context + 0x22c)) &&
                (min_x < *(float *)(temp_context + 0x234))) &&
               (*(float *)(temp_context + 0x228) <= depth_max && depth_max != *(float *)(temp_context + 0x228))) &&
@@ -780,22 +780,22 @@ void update_render_buffer_ex(uint64_t param1, uint64_t param2, char param3, uint
 {
     float min_x, max_x, min_y, max_y;
     float depth_min, depth_max;
-    longlong engine_base;
-    longlong render_context;
-    longlong buffer_ptr;
-    longlong state_buffer;
+    int64_t engine_base;
+    int64_t render_context;
+    int64_t buffer_ptr;
+    int64_t state_buffer;
     char update_flag;
     int material_id;
-    longlong temp_context;
+    int64_t temp_context;
     float depth_value;
     float position[4];
-    longlong register_value;
+    int64_t register_value;
     
-    *(char *)(*(longlong *)(register_value + 0x1af8) + 0xb1) = 1;
+    *(char *)(*(int64_t *)(register_value + 0x1af8) + 0xb1) = 1;
     
-    render_context = *(longlong *)(engine_base + 0x1af8);
-    state_buffer = *(longlong *)(render_context + 0x1f0);
-    buffer_ptr = (longlong)*(int *)(render_context + 0x1e8);
+    render_context = *(int64_t *)(engine_base + 0x1af8);
+    state_buffer = *(int64_t *)(render_context + 0x1f0);
+    buffer_ptr = (int64_t)*(int *)(render_context + 0x1e8);
     
     // 获取当前深度范围
     depth_max = (float)*(uint64_t *)(render_context + 0x118);
@@ -844,14 +844,14 @@ void update_render_buffer_ex(uint64_t param1, uint64_t param2, char param3, uint
         position[3] = min_x;
         func_0x000180124080(&position[0], *(int *)(state_buffer + -0x10 + buffer_ptr * 0x30), param3, param4, max_x);
         
-        temp_context = *(longlong *)(engine_base + 0x1af8);
+        temp_context = *(int64_t *)(engine_base + 0x1af8);
         *(uint64_t *)(temp_context + 0x144) = 0;
         *(float *)(temp_context + 0x14c) = max_x;
         *(float *)(temp_context + 0x150) = min_x;
         *(float *)(temp_context + 0x154) = depth_min;
         *(float *)(temp_context + 0x158) = max_y;
         
-        temp_context = *(longlong *)(engine_base + 0x1af8);
+        temp_context = *(int64_t *)(engine_base + 0x1af8);
         if ((((((*(float *)(temp_context + 0x22c) <= max_y && max_y != *(float *)(temp_context + 0x22c)) &&
                (min_x < *(float *)(temp_context + 0x234))) &&
               (*(float *)(temp_context + 0x228) <= depth_max && depth_max != *(float *)(temp_context + 0x228))) &&

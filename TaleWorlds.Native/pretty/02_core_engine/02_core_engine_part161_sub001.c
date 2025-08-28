@@ -6,19 +6,19 @@
 
 #include "TaleWorlds.Native.Split.h"
 
-// 函数: void FUN_18014ae70(longlong param_1,longlong *param_2,longlong param_3,longlong param_4)
+// 函数: void FUN_18014ae70(int64_t param_1,int64_t *param_2,int64_t param_3,int64_t param_4)
 // 功能: 调整数组大小并复制数据，处理内存重新分配
-void resize_and_copy_array(longlong param_1, longlong *param_2, longlong param_3, longlong param_4)
+void resize_and_copy_array(int64_t param_1, int64_t *param_2, int64_t param_3, int64_t param_4)
 
 {
-  longlong lVar1;
-  longlong in_RAX;
-  longlong lVar2;
-  longlong lVar3;
-  ulonglong uVar4;
-  ulonglong uVar5;
-  longlong unaff_RSI;
-  longlong *unaff_RDI;
+  int64_t lVar1;
+  int64_t in_RAX;
+  int64_t lVar2;
+  int64_t lVar3;
+  uint64_t uVar4;
+  uint64_t uVar5;
+  int64_t unaff_RSI;
+  int64_t *unaff_RDI;
   void *puVar6;
   
   lVar2 = *param_2;
@@ -26,7 +26,7 @@ void resize_and_copy_array(longlong param_1, longlong *param_2, longlong param_3
   lVar3 = SUB168(SEXT816(in_RAX) * SEXT816(lVar1 - lVar2), 8);
   uVar5 = (lVar3 >> 3) - (lVar3 >> 0x3f);
   lVar3 = SUB168(SEXT816(param_4) * SEXT816(param_1 - param_3), 8);
-  if ((ulonglong)((lVar3 >> 3) - (lVar3 >> 0x3f)) < uVar5) {
+  if ((uint64_t)((lVar3 >> 3) - (lVar3 >> 0x3f)) < uVar5) {
     if (uVar5 == 0) {
       lVar3 = 0;
     }
@@ -60,8 +60,8 @@ void resize_and_copy_array(longlong param_1, longlong *param_2, longlong param_3
     unaff_RDI[1] = lVar2;
   }
   FUN_18014e160(unaff_RDI + 4, unaff_RSI + 0x20);
-  if (unaff_RDI + 8 != (longlong *)(unaff_RSI + 0x40)) {
-    FUN_18014eff0(unaff_RDI + 8, *(longlong *)(unaff_RSI + 0x40), *(uint64_t *)(unaff_RSI + 0x48));
+  if (unaff_RDI + 8 != (int64_t *)(unaff_RSI + 0x40)) {
+    FUN_18014eff0(unaff_RDI + 8, *(int64_t *)(unaff_RSI + 0x40), *(uint64_t *)(unaff_RSI + 0x48));
   }
   *(int32_t *)(unaff_RDI + 0xe) = *(int32_t *)(unaff_RSI + 0x70);
   puVar6 = &system_buffer_ptr;
@@ -85,13 +85,13 @@ void resize_and_copy_array(longlong param_1, longlong *param_2, longlong param_3
 void initialize_array_with_defaults(void)
 
 {
-  longlong lVar1;
-  longlong unaff_RBX;
-  longlong unaff_RSI;
-  longlong *unaff_RDI;
+  int64_t lVar1;
+  int64_t unaff_RBX;
+  int64_t unaff_RSI;
+  int64_t *unaff_RDI;
   void *puVar2;
-  longlong unaff_R14;
-  longlong unaff_R15;
+  int64_t unaff_R14;
+  int64_t unaff_R15;
   
   if (unaff_RBX == 0) {
     lVar1 = 0;
@@ -112,8 +112,8 @@ void initialize_array_with_defaults(void)
   unaff_RDI[1] = lVar1;
   unaff_RDI[2] = lVar1;
   FUN_18014e160(unaff_RDI + 4, unaff_RSI + 0x20);
-  if (unaff_RDI + 8 != (longlong *)(unaff_RSI + 0x40)) {
-    FUN_18014eff0(unaff_RDI + 8, *(longlong *)(unaff_RSI + 0x40), *(uint64_t *)(unaff_RSI + 0x48));
+  if (unaff_RDI + 8 != (int64_t *)(unaff_RSI + 0x40)) {
+    FUN_18014eff0(unaff_RDI + 8, *(int64_t *)(unaff_RSI + 0x40), *(uint64_t *)(unaff_RSI + 0x48));
   }
   *(int32_t *)(unaff_RDI + 0xe) = *(int32_t *)(unaff_RSI + 0x70);
   puVar2 = &system_buffer_ptr;
@@ -130,21 +130,21 @@ void initialize_array_with_defaults(void)
 
 
 
-// 函数: void FUN_18014af28(uint64_t param_1,uint64_t param_2,longlong param_3,longlong param_4)
+// 函数: void FUN_18014af28(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t param_4)
 // 功能: 调整缓冲区大小并处理数据迁移
-void adjust_buffer_size(uint64_t param_1, uint64_t param_2, longlong param_3, longlong param_4)
+void adjust_buffer_size(uint64_t param_1, uint64_t param_2, int64_t param_3, int64_t param_4)
 
 {
   uint64_t uVar1;
-  longlong lVar2;
-  ulonglong uVar3;
-  ulonglong unaff_RBX;
-  longlong unaff_RSI;
-  longlong unaff_RDI;
+  int64_t lVar2;
+  uint64_t uVar3;
+  uint64_t unaff_RBX;
+  int64_t unaff_RSI;
+  int64_t unaff_RDI;
   void *puVar4;
-  longlong unaff_R14;
+  int64_t unaff_R14;
   
-  lVar2 = SUB168(SEXT816(param_4) * SEXT816(*(longlong *)(unaff_RDI + 8) - param_3), 8);
+  lVar2 = SUB168(SEXT816(param_4) * SEXT816(*(int64_t *)(unaff_RDI + 8) - param_3), 8);
   uVar3 = (lVar2 >> 3) - (lVar2 >> 0x3f);
   if (uVar3 < unaff_RBX) {
     FUN_18014fb60();
@@ -179,8 +179,8 @@ void adjust_buffer_size(uint64_t param_1, uint64_t param_2, longlong param_3, lo
 void copy_structure_data(void)
 
 {
-  longlong unaff_RSI;
-  longlong unaff_RDI;
+  int64_t unaff_RSI;
+  int64_t unaff_RDI;
   void *puVar1;
   
   FUN_18014e160(unaff_RDI + 0x20, unaff_RSI + 0x20);
@@ -212,16 +212,16 @@ void calculate_bounding_box(uint64_t *param_1)
   float fVar2;
   float fVar3;
   float fVar4;
-  longlong lVar5;
-  longlong lVar6;
+  int64_t lVar5;
+  int64_t lVar6;
   float *pfVar7;
-  ulonglong uVar8;
-  ulonglong uVar9;
+  uint64_t uVar8;
+  uint64_t uVar9;
   uint uVar10;
-  longlong lVar12;
-  ulonglong uVar13;
-  longlong lVar14;
-  ulonglong uVar15;
+  int64_t lVar12;
+  uint64_t uVar13;
+  int64_t lVar14;
+  uint64_t uVar15;
   float fStack_d8;
   float fStack_d4;
   float fStack_d0;
@@ -248,7 +248,7 @@ void calculate_bounding_box(uint64_t *param_1)
   uint64_t uStack_78;
   uint64_t uStack_70;
   int32_t uStack_68;
-  ulonglong uVar11;
+  uint64_t uVar11;
   
   uVar9 = 0;
   fStack_b8 = -3.4028235e+38;
@@ -272,8 +272,8 @@ void calculate_bounding_box(uint64_t *param_1)
   fStack_a0 = fStack_b0;
   if (lVar14 != lVar12) {
     do {
-      lVar6 = *(longlong *)(lVar5 + 0x28 + uVar8);
-      uVar15 = *(longlong *)(lVar5 + 0x30 + uVar8) - lVar6 >> 4;
+      lVar6 = *(int64_t *)(lVar5 + 0x28 + uVar8);
+      uVar15 = *(int64_t *)(lVar5 + 0x30 + uVar8) - lVar6 >> 4;
       if (uVar15 != 0) {
         pfVar7 = (float *)(lVar6 + 8);
         uVar11 = uVar9;
@@ -310,22 +310,22 @@ void calculate_bounding_box(uint64_t *param_1)
           fStack_c4 = fStack_a4;
           fStack_c0 = fStack_a0;
           uVar10 = (int)uVar11 + 1;
-          uVar11 = (ulonglong)uVar10;
+          uVar11 = (uint64_t)uVar10;
           pfVar7 = pfVar7 + 4;
           uStack_7c = uStack_9c;
-        } while ((ulonglong)(longlong)(int)uVar10 < uVar15);
+        } while ((uint64_t)(int64_t)(int)uVar10 < uVar15);
       }
       uVar10 = (int)uVar13 + 1;
       uVar8 = uVar8 + 0x88;
-      uVar13 = (ulonglong)uVar10;
+      uVar13 = (uint64_t)uVar10;
       fStack_b8 = fStack_a8;
       fStack_b4 = fStack_a4;
       fStack_b0 = fStack_a0;
-    } while ((ulonglong)(longlong)(int)uVar10 < (ulonglong)(lVar14 - lVar12));
+    } while ((uint64_t)(int64_t)(int)uVar10 < (uint64_t)(lVar14 - lVar12));
   }
   pfVar7 = (float *)*param_1;
-  lVar5 = param_1[1] - (longlong)pfVar7 >> 0x3f;
-  lVar12 = (param_1[1] - (longlong)pfVar7) / 0x30 + lVar5;
+  lVar5 = param_1[1] - (int64_t)pfVar7 >> 0x3f;
+  lVar12 = (param_1[1] - (int64_t)pfVar7) / 0x30 + lVar5;
   uVar8 = uVar9;
   if (lVar12 != lVar5) {
     do {
@@ -390,9 +390,9 @@ void calculate_bounding_box(uint64_t *param_1)
       fStack_c0 = fStack_b0;
       uVar10 = (int)uVar8 + 1;
       pfVar7 = pfVar7 + 0xc;
-      uVar8 = (ulonglong)uVar10;
+      uVar8 = (uint64_t)uVar10;
       uStack_7c = uStack_ac;
-    } while ((ulonglong)(longlong)(int)uVar10 < (ulonglong)(lVar12 - lVar5));
+    } while ((uint64_t)(int64_t)(int)uVar10 < (uint64_t)(lVar12 - lVar5));
   }
   lVar5 = param_1[4];
   uVar13 = param_1[5] - lVar5 >> 5;
@@ -436,9 +436,9 @@ void calculate_bounding_box(uint64_t *param_1)
       fStack_c0 = fStack_b0;
       uVar10 = (int)uVar8 + 1;
       uVar9 = uVar9 + 0x20;
-      uVar8 = (ulonglong)uVar10;
+      uVar8 = (uint64_t)uVar10;
       uStack_7c = uStack_ac;
-    } while ((ulonglong)(longlong)(int)uVar10 < uVar13);
+    } while ((uint64_t)(int64_t)(int)uVar10 < uVar13);
   }
   fStack_98 = fStack_d8;
   fStack_94 = fStack_d4;
@@ -462,33 +462,33 @@ void calculate_bounding_box(uint64_t *param_1)
 
 
 
-// 函数: void FUN_18014b01e(uint64_t param_1,longlong param_2,uint64_t param_3)
+// 函数: void FUN_18014b01e(uint64_t param_1,int64_t param_2,uint64_t param_3)
 // 功能: 处理边界框数据的详细计算和更新
-void process_bounding_box_data(uint64_t param_1, longlong param_2, uint64_t param_3)
+void process_bounding_box_data(uint64_t param_1, int64_t param_2, uint64_t param_3)
 
 {
   float fVar1;
-  longlong lVar2;
-  longlong lVar3;
+  int64_t lVar2;
+  int64_t lVar3;
   uint64_t uVar4;
   uint64_t uVar5;
   uint64_t uVar6;
   uint64_t uVar7;
-  longlong in_RAX;
-  longlong in_RCX;
+  int64_t in_RAX;
+  int64_t in_RCX;
   float *pfVar8;
   uint uVar9;
-  longlong lVar10;
-  ulonglong uVar11;
+  int64_t lVar10;
+  uint64_t uVar11;
   uint64_t unaff_RBX;
-  longlong lVar12;
-  longlong unaff_RBP;
+  int64_t lVar12;
+  int64_t unaff_RBP;
   uint64_t *unaff_RSI;
   uint64_t unaff_RDI;
-  ulonglong uVar13;
-  ulonglong uVar14;
+  uint64_t uVar13;
+  uint64_t uVar14;
   int in_R10D;
-  ulonglong in_R11;
+  uint64_t in_R11;
   float fVar15;
   float fVar16;
   float fVar17;
@@ -505,17 +505,17 @@ void process_bounding_box_data(uint64_t param_1, longlong param_2, uint64_t para
   float fVar24;
   float fVar25;
   
-  uVar23 = (int32_t)((ulonglong)param_3 >> 0x20);
+  uVar23 = (int32_t)((uint64_t)param_3 >> 0x20);
   uVar20 = (int32_t)param_3;
   *(uint64_t *)(in_RAX + 8) = unaff_RBX;
   *(uint64_t *)(in_RAX + 0x10) = unaff_RDI;
-  lVar2 = *(longlong *)(in_RCX + 0x40);
+  lVar2 = *(int64_t *)(in_RCX + 0x40);
   *(int32_t *)(unaff_RBP + -0x69) = uVar20;
   *(int32_t *)(unaff_RBP + -0x65) = uVar23;
   *(int32_t *)(unaff_RBP + -0x61) = in_XMM2_Dc;
   *(int32_t *)(unaff_RBP + -0x5d) = in_XMM2_Dd;
   *(int *)(unaff_RBP + -0x79) = (int)param_1;
-  *(int *)(unaff_RBP + -0x75) = (int)((ulonglong)param_1 >> 0x20);
+  *(int *)(unaff_RBP + -0x75) = (int)((uint64_t)param_1 >> 0x20);
   *(int32_t *)(unaff_RBP + -0x71) = in_XMM0_Dc;
   *(int32_t *)(unaff_RBP + -0x6d) = in_XMM0_Dd;
   lVar10 = param_2 - lVar2 >> 0x3f;
@@ -523,9 +523,9 @@ void process_bounding_box_data(uint64_t param_1, longlong param_2, uint64_t para
   if (lVar12 != lVar10) {
     uVar14 = in_R11 & 0xffffffff;
     do {
-      lVar3 = *(longlong *)(lVar2 + 0x28 + uVar14);
+      lVar3 = *(int64_t *)(lVar2 + 0x28 + uVar14);
       uVar11 = in_R11 & 0xffffffff;
-      uVar13 = *(longlong *)(lVar2 + 0x30 + uVar14) - lVar3 >> 4;
+      uVar13 = *(int64_t *)(lVar2 + 0x30 + uVar14) - lVar3 >> 4;
       if (uVar13 != 0) {
         pfVar8 = (float *)(lVar3 + 8);
         do {
@@ -575,22 +575,22 @@ void process_bounding_box_data(uint64_t param_1, longlong param_2, uint64_t para
           in_XMM2_Dc = *(int32_t *)(unaff_RBP + -0x41);
           in_XMM2_Dd = *(int32_t *)(unaff_RBP + -0x3d);
           uVar9 = (int)uVar11 + 1;
-          uVar11 = (ulonglong)uVar9;
+          uVar11 = (uint64_t)uVar9;
           pfVar8 = pfVar8 + 4;
           *(int32_t *)(unaff_RBP + -0x69) = uVar20;
           *(int32_t *)(unaff_RBP + -0x65) = uVar23;
           *(int32_t *)(unaff_RBP + -0x61) = in_XMM2_Dc;
           *(int32_t *)(unaff_RBP + -0x5d) = in_XMM2_Dd;
-        } while ((ulonglong)(longlong)(int)uVar9 < uVar13);
+        } while ((uint64_t)(int64_t)(int)uVar9 < uVar13);
       }
       in_R10D = in_R10D + 1;
       uVar14 = uVar14 + 0x88;
-    } while ((ulonglong)(longlong)in_R10D < (ulonglong)(lVar12 - lVar10));
+    } while ((uint64_t)(int64_t)in_R10D < (uint64_t)(lVar12 - lVar10));
   }
   pfVar8 = (float *)*unaff_RSI;
   uVar14 = in_R11 & 0xffffffff;
-  lVar2 = unaff_RSI[1] - (longlong)pfVar8 >> 0x3f;
-  lVar10 = (unaff_RSI[1] - (longlong)pfVar8) / 0x30 + lVar2;
+  lVar2 = unaff_RSI[1] - (int64_t)pfVar8 >> 0x3f;
+  lVar10 = (unaff_RSI[1] - (int64_t)pfVar8) / 0x30 + lVar2;
   if (lVar10 != lVar2) {
     do {
       fVar18 = *pfVar8;
@@ -664,13 +664,13 @@ void process_bounding_box_data(uint64_t param_1, longlong param_2, uint64_t para
       in_XMM2_Dc = *(int32_t *)(unaff_RBP + -0x51);
       in_XMM2_Dd = *(int32_t *)(unaff_RBP + -0x4d);
       uVar9 = (int)uVar14 + 1;
-      uVar14 = (ulonglong)uVar9;
+      uVar14 = (uint64_t)uVar9;
       pfVar8 = pfVar8 + 0xc;
       *(int32_t *)(unaff_RBP + -0x69) = uVar20;
       *(int32_t *)(unaff_RBP + -0x65) = uVar23;
       *(int32_t *)(unaff_RBP + -0x61) = in_XMM2_Dc;
       *(int32_t *)(unaff_RBP + -0x5d) = in_XMM2_Dd;
-    } while ((ulonglong)(longlong)(int)uVar9 < (ulonglong)(lVar10 - lVar2));
+    } while ((uint64_t)(int64_t)(int)uVar9 < (uint64_t)(lVar10 - lVar2));
   }
   lVar2 = unaff_RSI[4];
   uVar11 = unaff_RSI[5] - lVar2 >> 5;
@@ -735,8 +735,8 @@ void process_bounding_box_data(uint64_t param_1, longlong param_2, uint64_t para
       *(int32_t *)(unaff_RBP + -0x65) = uVar23;
       *(int32_t *)(unaff_RBP + -0x61) = in_XMM2_Dc;
       *(int32_t *)(unaff_RBP + -0x5d) = in_XMM2_Dd;
-      uVar14 = (ulonglong)uVar9;
-    } while ((ulonglong)(longlong)(int)uVar9 < uVar11);
+      uVar14 = (uint64_t)uVar9;
+    } while ((uint64_t)(int64_t)(int)uVar9 < uVar11);
   }
   *(int32_t *)(unaff_RBP + -0x39) = *(int32_t *)(unaff_RBP + -0x79);
   *(int32_t *)(unaff_RBP + -0x35) = *(int32_t *)(unaff_RBP + -0x75);

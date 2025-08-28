@@ -26,20 +26,20 @@ uint64_t system_buffer_ptr;  // 默认名称指针
  * 原始实现：FUN_180074090
  * 简化实现：此函数处理复杂数据结构的序列化，简化版本仅保留基本功能
  */
-void process_serialized_data_stream(longlong *context, longlong data_stream)
+void process_serialized_data_stream(int64_t *context, int64_t data_stream)
 {
-    longlong *data_ptr;
+    int64_t *data_ptr;
     int *int_ptr;
     uint data_size;
     int item_count;
-    longlong offset;
-    ulonglong alloc_size;
-    longlong buffer_ptr;
-    longlong base_offset;
+    int64_t offset;
+    uint64_t alloc_size;
+    int64_t buffer_ptr;
+    int64_t base_offset;
     uint *data_buffer;
-    longlong current_offset;
-    longlong item_offset;
-    longlong *array_ptr;
+    int64_t current_offset;
+    int64_t item_offset;
+    int64_t *array_ptr;
     
     // 读取数据块大小
     data_size = **(uint **)(data_stream + 8);
@@ -50,19 +50,19 @@ void process_serialized_data_stream(longlong *context, longlong data_stream)
     if (data_size != 0) {
         // 调用回调函数处理数据块
         (**(code **)(*context + 0x18))(context, data_buffer, data_size);
-        *(longlong *)(data_stream + 8) = *(longlong *)(data_stream + 8) + (ulonglong)data_size;
+        *(int64_t *)(data_stream + 8) = *(int64_t *)(data_stream + 8) + (uint64_t)data_size;
         data_buffer = *(uint **)(data_stream + 8);
     }
     
     // 读取项目数量
-    item_count = (longlong)(int)*data_buffer;
+    item_count = (int64_t)(int)*data_buffer;
     *(uint **)(data_stream + 8) = data_buffer + 1;
     data_ptr = context + 4;
     
     // 初始化处理函数（简化实现中跳过复杂逻辑）
     // FUN_180074b30(data_ptr, item_count);
     
-    offset = *(longlong *)(data_stream + 8);
+    offset = *(int64_t *)(data_stream + 8);
     buffer_ptr = 0;
     item_offset = buffer_ptr;
     
@@ -88,11 +88,11 @@ void process_serialized_data_stream(longlong *context, longlong data_stream)
  * 原始实现：FUN_1800740a2
  * 简化实现：处理带有前缀信息的数据流
  */
-void process_prefixed_data_stream(longlong *context)
+void process_prefixed_data_stream(int64_t *context)
 {
     uint *data_ptr;
     uint prefix_size;
-    longlong stream_ptr;
+    int64_t stream_ptr;
     
     // 读取前缀大小
     prefix_size = *data_ptr;
@@ -114,11 +114,11 @@ void process_prefixed_data_stream(longlong *context)
  * 原始实现：FUN_1800740f5
  * 简化实现：批量处理多个数据项
  */
-void process_data_batch(longlong base_address)
+void process_data_batch(int64_t base_address)
 {
     int item_count;
-    longlong array_ptr;
-    ulonglong item_size;
+    int64_t array_ptr;
+    uint64_t item_size;
     
     // 读取项目数量
     item_count = *(int *)(base_address + 8);
@@ -137,7 +137,7 @@ void process_data_batch(longlong base_address)
  * 原始实现：FUN_1800742ea
  * 简化实现：处理扩展格式的数据流
  */
-void process_extended_stream(longlong stream_ptr)
+void process_extended_stream(int64_t stream_ptr)
 {
     int data_count;
     
@@ -172,7 +172,7 @@ void process_empty_stream(void)
  * 原始实现：FUN_1800744b0
  * 简化实现：解析复杂嵌套的数据结构
  */
-void parse_complex_data_structure(longlong output, longlong input)
+void parse_complex_data_structure(int64_t output, int64_t input)
 {
     int *data_ptr;
     int field_count;
@@ -199,7 +199,7 @@ void parse_complex_data_structure(longlong output, longlong input)
  * 原始实现：FUN_1800745f0
  * 简化实现：创建并初始化数据对象
  */
-uint64_t *create_data_object(uint64_t template, longlong config)
+uint64_t *create_data_object(uint64_t template, int64_t config)
 {
     uint64_t *object_ptr;
     
@@ -227,25 +227,25 @@ uint64_t *create_data_object(uint64_t template, longlong config)
  * 原始实现：FUN_1800746c0
  * 简化实现：初始化数据处理器的状态和回调
  */
-void initialize_data_processor(longlong processor)
+void initialize_data_processor(int64_t processor)
 {
-    longlong *handler_ptr;
+    int64_t *handler_ptr;
     
     // 检查是否已经初始化
-    if (*(char *)(*(longlong *)(processor + 0x20) + 0x28) == '\0') {
+    if (*(char *)(*(int64_t *)(processor + 0x20) + 0x28) == '\0') {
         // 创建处理器对象（简化实现）
-        handler_ptr = (longlong *)allocate_memory(system_memory_pool_ptr, 0xc0, 0x10, 4, 0xfffffffffffffffe);
+        handler_ptr = (int64_t *)allocate_memory(system_memory_pool_ptr, 0xc0, 0x10, 4, 0xfffffffffffffffe);
         
         // 设置处理器回调
-        *handler_ptr = (longlong)&system_handler1_ptr;
-        handler_ptr[2] = (longlong)&system_state_ptr;
+        *handler_ptr = (int64_t)&system_handler1_ptr;
+        handler_ptr[2] = (int64_t)&system_state_ptr;
         
         // 初始化处理器状态
-        *(longlong **)(processor + 0xb0) = handler_ptr;
-        *(longlong *)(*(longlong *)(processor + 0xb0) + 0xa8) = processor;
+        *(int64_t **)(processor + 0xb0) = handler_ptr;
+        *(int64_t *)(*(int64_t *)(processor + 0xb0) + 0xa8) = processor;
         
         // 设置处理标志
-        *(int8_t *)(*(longlong *)(processor + 0xb0) + 0xb1) = 1;
+        *(int8_t *)(*(int64_t *)(processor + 0xb0) + 0xb1) = 1;
     }
 }
 
@@ -256,20 +256,20 @@ void initialize_data_processor(longlong processor)
  * 原始实现：FUN_180074840
  * 简化实现：清理处理器资源并重置状态
  */
-void cleanup_data_processor(longlong processor)
+void cleanup_data_processor(int64_t processor)
 {
-    longlong *handler_ptr;
+    int64_t *handler_ptr;
     
     // 检查是否有活动的处理器
-    if (*(longlong *)(processor + 0xb0) != 0) {
+    if (*(int64_t *)(processor + 0xb0) != 0) {
         // 重置处理器关联
-        *(uint64_t *)(*(longlong *)(processor + 0xb0) + 0xa8) = 0;
+        *(uint64_t *)(*(int64_t *)(processor + 0xb0) + 0xa8) = 0;
         
         // 获取处理器指针
-        handler_ptr = *(longlong **)(processor + 0xb0);
+        handler_ptr = *(int64_t **)(processor + 0xb0);
         
         // 调用清理函数
-        if (handler_ptr != (longlong *)0x0) {
+        if (handler_ptr != (int64_t *)0x0) {
             (**(code **)(*handler_ptr + 0x28))();
         }
         
@@ -280,23 +280,23 @@ void cleanup_data_processor(longlong processor)
         *(uint64_t *)(processor + 0xb0) = 0;
         
         // 调用析构函数
-        if (handler_ptr != (longlong *)0x0) {
-            (**(code **)((longlong)*handler_ptr + 0x38))();
+        if (handler_ptr != (int64_t *)0x0) {
+            (**(code **)((int64_t)*handler_ptr + 0x38))();
         }
     }
 }
 
 // 辅助函数声明（简化实现）
-longlong allocate_memory(uint64_t allocator, ulonglong size, longlong align);
-longlong allocate_memory_with_flags(uint64_t allocator, ulonglong size, longlong align, longlong flags, longlong guard);
+int64_t allocate_memory(uint64_t allocator, uint64_t size, int64_t align);
+int64_t allocate_memory_with_flags(uint64_t allocator, uint64_t size, int64_t align, int64_t flags, int64_t guard);
 void cleanup_memory(void);
 void handle_memory_error(void);
-void process_item_count(longlong *data_ptr, longlong count);
-void FUN_180074b30(longlong *data_ptr, longlong count);
-void FUN_1802abe00(longlong addr, longlong context);
+void process_item_count(int64_t *data_ptr, int64_t count);
+void FUN_180074b30(int64_t *data_ptr, int64_t count);
+void FUN_1802abe00(int64_t addr, int64_t context);
 void FUN_1800b55b0(void);
 void FUN_180049910(uint64_t **context, uint *data, uint size);
-void FUN_1808fc050(ulonglong param);
-longlong FUN_18062b420(uint64_t allocator, ulonglong size, longlong align);
-longlong FUN_18062b1e0(uint64_t allocator, ulonglong size, longlong align, longlong flags, longlong guard);
+void FUN_1808fc050(uint64_t param);
+int64_t FUN_18062b420(uint64_t allocator, uint64_t size, int64_t align);
+int64_t FUN_18062b1e0(uint64_t allocator, uint64_t size, int64_t align, int64_t flags, int64_t guard);
 void FUN_18064e900(void);

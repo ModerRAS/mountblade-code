@@ -39,24 +39,24 @@
  * 
  * @param render_queue 渲染队列结构体指针
  */
-void update_render_queue_state(longlong render_queue)
+void update_render_queue_state(int64_t render_queue)
 {
     uint64_t *puVar1;
-    longlong lVar2;
+    int64_t lVar2;
     uint64_t uVar3;
-    longlong lVar4;
-    longlong lVar5;
+    int64_t lVar4;
+    int64_t lVar5;
     
     // 获取渲染队列上下文
     lVar4 = SYSTEM_DATA_MANAGER_A;
-    lVar2 = *(longlong *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x210);
+    lVar2 = *(int64_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x210);
     
     // 计算渲染条目位置
-    lVar5 = (longlong)*(int *)(lVar2 + 0xc) * 0x1c + *(longlong *)(lVar2 + 0x38);
+    lVar5 = (int64_t)*(int *)(lVar2 + 0xc) * 0x1c + *(int64_t *)(lVar2 + 0x38);
     
     // 设置渲染状态标志
-    *(int8_t *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
-    lVar2 = *(longlong *)(lVar4 + 0x1af8);
+    *(int8_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
+    lVar2 = *(int64_t *)(lVar4 + 0x1af8);
     
     // 执行渲染队列更新
     RenderQueueProcessor(*(uint64_t *)(lVar2 + 0x2e8),*(uint64_t *)(lVar5 + 0xc),
@@ -64,8 +64,8 @@ void update_render_queue_state(longlong render_queue)
     
     // 获取渲染参数
     puVar1 = (uint64_t *)
-             (*(longlong *)(*(longlong *)(lVar2 + 0x2e8) + 0x68) + -0x10 +
-             (longlong)*(int *)(*(longlong *)(lVar2 + 0x2e8) + 0x60) * 0x10);
+             (*(int64_t *)(*(int64_t *)(lVar2 + 0x2e8) + 0x68) + -0x10 +
+             (int64_t)*(int *)(*(int64_t *)(lVar2 + 0x2e8) + 0x60) * 0x10);
     uVar3 = puVar1[1];
     
     // 更新渲染队列参数
@@ -90,22 +90,22 @@ void update_render_queue_state(longlong render_queue)
  * @param search_key 搜索键值
  * @return 找到或创建的渲染条目指针
  */
-int * find_or_create_render_entry(longlong render_context, int render_id, ulonglong search_key)
+int * find_or_create_render_entry(int64_t render_context, int render_id, uint64_t search_key)
 {
     uint64_t *puVar1;
     int iVar2;
     int iVar3;
     uint64_t uVar4;
     int *piVar5;
-    ulonglong uVar6;
-    longlong lVar7;
+    uint64_t uVar6;
+    int64_t lVar7;
     int iVar8;
-    longlong lVar9;
+    int64_t lVar9;
     ushort uStack_46;
     uint uStack_24;
     
     uVar6 = 0;
-    lVar9 = (longlong)*(int *)(render_context + 0x2c8);
+    lVar9 = (int64_t)*(int *)(render_context + 0x2c8);
     
     // 搜索现有的渲染条目
     if (0 < lVar9) {
@@ -113,12 +113,12 @@ int * find_or_create_render_entry(longlong render_context, int render_id, ulongl
         search_key = uVar6;
         do {
             if (*piVar5 == render_id) {
-                return *(int **)(render_context + 0x2d0) + (longlong)(int)uVar6 * 0x10;
+                return *(int **)(render_context + 0x2d0) + (int64_t)(int)uVar6 * 0x10;
             }
-            uVar6 = (ulonglong)((int)uVar6 + 1);
+            uVar6 = (uint64_t)((int)uVar6 + 1);
             search_key = search_key + 1;
             piVar5 = piVar5 + 0x10;
-        } while ((longlong)search_key < lVar9);
+        } while ((int64_t)search_key < lVar9);
     }
     
     // 检查是否需要扩展队列容量
@@ -138,11 +138,11 @@ int * find_or_create_render_entry(longlong render_context, int render_id, ulongl
             if (SYSTEM_DATA_MANAGER_A != 0) {
                 *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
             }
-            uVar4 = MemoryAllocator((longlong)iVar8 << 6,SYSTEM_DATA_MANAGER_B,search_key,lVar9,
+            uVar4 = MemoryAllocator((int64_t)iVar8 << 6,SYSTEM_DATA_MANAGER_B,search_key,lVar9,
                                       0xfffffffffffffffe);
-            if (*(longlong *)(render_context + 0x2d0) != 0) {
+            if (*(int64_t *)(render_context + 0x2d0) != 0) {
                 // 复制现有数据到新内存块
-                memcpy(uVar4,*(longlong *)(render_context + 0x2d0),(longlong)*(int *)(render_context + 0x2c8) << 6);
+                memcpy(uVar4,*(int64_t *)(render_context + 0x2d0),(int64_t)*(int *)(render_context + 0x2c8) << 6);
             }
             *(uint64_t *)(render_context + 0x2d0) = uVar4;
             *(int *)(render_context + 0x2cc) = iVar8;
@@ -150,24 +150,24 @@ int * find_or_create_render_entry(longlong render_context, int render_id, ulongl
     }
     
     // 初始化新的渲染条目
-    lVar7 = (longlong)*(int *)(render_context + 0x2c8) * 0x40;
-    lVar9 = *(longlong *)(render_context + 0x2d0);
+    lVar7 = (int64_t)*(int *)(render_context + 0x2c8) * 0x40;
+    lVar9 = *(int64_t *)(render_context + 0x2d0);
     *(uint64_t *)(lVar7 + lVar9) = 0;
-    ((uint64_t *)(lVar7 + lVar9))[1] = (ulonglong)uStack_46 << 0x10;
+    ((uint64_t *)(lVar7 + lVar9))[1] = (uint64_t)uStack_46 << 0x10;
     puVar1 = (uint64_t *)(lVar7 + 0x10 + lVar9);
     *puVar1 = 1;
     puVar1[1] = 0;
     puVar1 = (uint64_t *)(lVar7 + 0x20 + lVar9);
     *puVar1 = 0;
-    puVar1[1] = (ulonglong)uStack_24 << 0x20;
+    puVar1[1] = (uint64_t)uStack_24 << 0x20;
     puVar1 = (uint64_t *)(lVar7 + 0x30 + lVar9);
     *puVar1 = 0;
     puVar1[1] = 0;
     
     // 更新队列计数器
     *(int *)(render_context + 0x2c8) = *(int *)(render_context + 0x2c8) + 1;
-    piVar5 = (int *)(*(longlong *)(render_context + 0x2d0) + -0x40 +
-                    (longlong)*(int *)(render_context + 0x2c8) * 0x40);
+    piVar5 = (int *)(*(int64_t *)(render_context + 0x2d0) + -0x40 +
+                    (int64_t)*(int *)(render_context + 0x2c8) * 0x40);
     *piVar5 = render_id;
     return piVar5;
 }
@@ -192,23 +192,23 @@ void process_animation_render_effects(void *animation_data, int frame_count, int
     uint64_t *puVar2;
     int32_t uVar3;
     float fVar4;
-    longlong lVar5;
-    longlong lVar6;
-    longlong lVar7;
+    int64_t lVar5;
+    int64_t lVar6;
+    int64_t lVar7;
     int iVar8;
     uint64_t uVar9;
     int iVar10;
     int iVar11;
     uint uVar12;
     int iVar13;
-    longlong lVar14;
+    int64_t lVar14;
     void *puVar15;
     int *piVar16;
-    ulonglong uVar17;
-    longlong lVar18;
+    uint64_t uVar17;
+    int64_t lVar18;
     int iVar19;
     uint64_t unaff_RDI;
-    ulonglong uVar20;
+    uint64_t uVar20;
     uint uVar21;
     float fVar22;
     float fVar23;
@@ -222,8 +222,8 @@ void process_animation_render_effects(void *animation_data, int frame_count, int
     }
     
     // 设置动画状态标志
-    *(int8_t *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
-    lVar5 = *(longlong *)(lVar6 + 0x1af8);
+    *(int8_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
+    lVar5 = *(int64_t *)(lVar6 + 0x1af8);
     
     // 初始化动画参数
     AnimationInitializer(iVar11 + 0x11223347);
@@ -235,7 +235,7 @@ void process_animation_render_effects(void *animation_data, int frame_count, int
     // 获取动画ID
     iVar11 = AnimationIDResolver(puVar15,0,
                              *(int32_t *)
-                              (*(longlong *)(lVar5 + 0x220) + -4 + (longlong)*(int *)(lVar5 + 0x218) * 4
+                              (*(int64_t *)(lVar5 + 0x220) + -4 + (int64_t)*(int *)(lVar5 + 0x218) * 4
                               ));
     
     // 处理动画状态
@@ -248,7 +248,7 @@ void process_animation_render_effects(void *animation_data, int frame_count, int
     }
     
     // 更新动画计数器
-    piVar16 = (int *)(*(longlong *)(lVar14 + 0x1af8) + 0x218);
+    piVar16 = (int *)(*(int64_t *)(lVar14 + 0x1af8) + 0x218);
     *piVar16 = *piVar16 + -1;
     
     // 创建新的渲染条目
@@ -259,7 +259,7 @@ void process_animation_render_effects(void *animation_data, int frame_count, int
     
     // 计算动画参数
     fVar23 = *(float *)(lVar5 + 0x68);
-    *(longlong *)(lVar5 + 0x210) = lVar14;
+    *(int64_t *)(lVar5 + 0x210) = lVar14;
     if (fVar23 == 0.0) {
         fVar23 = *(float *)(lVar5 + 0x260) - *(float *)(lVar5 + 0x40);
     }
@@ -289,7 +289,7 @@ void process_animation_render_effects(void *animation_data, int frame_count, int
             uVar12 = iVar11 / 2 + iVar11;
             uVar17 = uVar20;
             if (0 < (int)uVar12) {
-                uVar17 = (ulonglong)uVar12;
+                uVar17 = (uint64_t)uVar12;
             }
             AnimationParameterUpdater(lVar14 + 0x30,uVar17);
         }
@@ -322,12 +322,12 @@ void process_animation_render_effects(void *animation_data, int frame_count, int
                     AnimationParameterUpdater(lVar14 + 0x30,iVar8);
                     iVar10 = *(int *)(lVar14 + 0x30);
                 }
-                lVar6 = *(longlong *)(lVar14 + 0x38);
+                lVar6 = *(int64_t *)(lVar14 + 0x38);
                 uVar12 = iVar19 + 1;
-                uVar17 = (ulonglong)uVar12;
-                lVar18 = (longlong)iVar10 * 0x1c;
-                *(ulonglong *)(lVar18 + lVar6) = (ulonglong)(uint)((float)iVar19 * (1.0 / (float)frame_count));
-                ((ulonglong *)(lVar18 + lVar6))[1] = 0x7f7fffff00000000;
+                uVar17 = (uint64_t)uVar12;
+                lVar18 = (int64_t)iVar10 * 0x1c;
+                *(uint64_t *)(lVar18 + lVar6) = (uint64_t)(uint)((float)iVar19 * (1.0 / (float)frame_count));
+                ((uint64_t *)(lVar18 + lVar6))[1] = 0x7f7fffff00000000;
                 *(uint64_t *)(lVar18 + 0x10 + lVar6) = 0xff7fffff7f7fffff;
                 *(int32_t *)(lVar18 + 0x18 + lVar6) = 0xff7fffff;
                 *(int *)(lVar14 + 0x30) = *(int *)(lVar14 + 0x30) + 1;
@@ -342,8 +342,8 @@ void process_animation_render_effects(void *animation_data, int frame_count, int
     if (0 < frame_count) {
         do {
             iVar10 = (int)uVar20;
-            lVar18 = *(longlong *)(lVar14 + 0x38);
-            lVar7 = *(longlong *)(*(longlong *)(lVar6 + 0x1af8) + 0x210);
+            lVar18 = *(int64_t *)(lVar14 + 0x38);
+            lVar7 = *(int64_t *)(*(int64_t *)(lVar6 + 0x1af8) + 0x210);
             iVar11 = iVar10;
             if (iVar10 < 0) {
                 iVar11 = *(int *)(lVar7 + 0xc);
@@ -356,11 +356,11 @@ void process_animation_render_effects(void *animation_data, int frame_count, int
             if ((int)uVar21 < 0) {
                 uVar12 = *(uint *)(lVar7 + 0xc);
             }
-            uVar20 = (ulonglong)uVar21;
-            fVar4 = *(float *)((longlong)(int)uVar12 * 0x1c + *(longlong *)(lVar7 + 0x38));
+            uVar20 = (uint64_t)uVar21;
+            fVar4 = *(float *)((int64_t)(int)uVar12 * 0x1c + *(int64_t *)(lVar7 + 0x38));
             pfVar1 = (float *)(uVar17 + 0xc + lVar18);
-            *pfVar1 = (float)(int)((fVar22 * *(float *)((longlong)iVar11 * 0x1c +
-                                                   *(longlong *)(lVar7 + 0x38)) + fVar23 + fVar24) -
+            *pfVar1 = (float)(int)((fVar22 * *(float *)((int64_t)iVar11 * 0x1c +
+                                                   *(int64_t *)(lVar7 + 0x38)) + fVar23 + fVar24) -
                                   1.0);
             pfVar1[1] = -3.4028235e+38;
             pfVar1[2] = (float)(int)((fVar22 * fVar4 + fVar23 + fVar24) - 1.0);
@@ -393,28 +393,28 @@ void process_animation_render_effects(void *animation_data, int frame_count, int
     // 应用渲染效果
     RenderQueueFinalizer(*(uint64_t *)(lVar5 + 0x2e8),*(int32_t *)(lVar14 + 0x10));
     lVar5 = SYSTEM_DATA_MANAGER_A;
-    lVar6 = *(longlong *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x210);
-    lVar14 = (longlong)*(int *)(lVar6 + 0xc) * 0x1c + *(longlong *)(lVar6 + 0x38);
-    *(int8_t *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
-    lVar6 = *(longlong *)(lVar5 + 0x1af8);
+    lVar6 = *(int64_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x210);
+    lVar14 = (int64_t)*(int *)(lVar6 + 0xc) * 0x1c + *(int64_t *)(lVar6 + 0x38);
+    *(int8_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
+    lVar6 = *(int64_t *)(lVar5 + 0x1af8);
     RenderQueueProcessor(*(uint64_t *)(lVar6 + 0x2e8),*(uint64_t *)(lVar14 + 0xc),
                   *(uint64_t *)(lVar14 + 0x14),0);
     lVar5 = SYSTEM_DATA_MANAGER_A;
     puVar2 = (uint64_t *)
-             (*(longlong *)(*(longlong *)(lVar6 + 0x2e8) + 0x68) + -0x10 +
-             (longlong)*(int *)(*(longlong *)(lVar6 + 0x2e8) + 0x60) * 0x10);
+             (*(int64_t *)(*(int64_t *)(lVar6 + 0x2e8) + 0x68) + -0x10 +
+             (int64_t)*(int *)(*(int64_t *)(lVar6 + 0x2e8) + 0x60) * 0x10);
     uVar9 = puVar2[1];
     *(uint64_t *)(lVar6 + 0x228) = *puVar2;
     *(uint64_t *)(lVar6 + 0x230) = uVar9;
     
     // 计算最终动画参数
-    lVar6 = *(longlong *)(*(longlong *)(lVar5 + 0x1af8) + 0x210);
+    lVar6 = *(int64_t *)(*(int64_t *)(lVar5 + 0x1af8) + 0x210);
     fVar23 = *(float *)(lVar6 + 0x18);
     fVar22 = *(float *)(lVar6 + 0x14);
-    fVar24 = *(float *)(((longlong)*(int *)(lVar6 + 0xc) + 1) * 0x1c + *(longlong *)(lVar6 + 0x38));
-    fVar4 = *(float *)((longlong)*(int *)(lVar6 + 0xc) * 0x1c + *(longlong *)(lVar6 + 0x38));
-    *(int8_t *)(*(longlong *)(lVar5 + 0x1af8) + 0xb1) = 1;
-    lVar5 = *(longlong *)(lVar5 + 0x1af8);
+    fVar24 = *(float *)(((int64_t)*(int *)(lVar6 + 0xc) + 1) * 0x1c + *(int64_t *)(lVar6 + 0x38));
+    fVar4 = *(float *)((int64_t)*(int *)(lVar6 + 0xc) * 0x1c + *(int64_t *)(lVar6 + 0x38));
+    *(int8_t *)(*(int64_t *)(lVar5 + 0x1af8) + 0xb1) = 1;
+    lVar5 = *(int64_t *)(lVar5 + 0x1af8);
     fVar23 = (fVar24 - fVar4) * (fVar23 - fVar22) * 0.65;
     if (fVar23 == 0.0) {
         fVar23 = *(float *)(lVar5 + 0x284);
@@ -439,7 +439,7 @@ void process_animation_render_effects(void *animation_data, int frame_count, int
         RenderEffectProcessor(piVar16,iVar13,iVar13,lVar6,unaff_RDI);
         iVar11 = *piVar16;
     }
-    *(float *)(*(longlong *)(lVar5 + 0x1d0) + (longlong)iVar11 * 4) = *(float *)(lVar5 + 0x1ac);
+    *(float *)(*(int64_t *)(lVar5 + 0x1d0) + (int64_t)iVar11 * 4) = *(float *)(lVar5 + 0x1ac);
     *piVar16 = *piVar16 + 1;
     return;
 }
@@ -469,27 +469,27 @@ void process_advanced_animation_render_effects(void *animation_data, int frame_c
     uint64_t *puVar2;
     int32_t uVar3;
     float fVar4;
-    longlong lVar5;
-    longlong lVar6;
-    longlong lVar7;
+    int64_t lVar5;
+    int64_t lVar6;
+    int64_t lVar7;
     int iVar8;
     uint64_t uVar9;
     int iVar10;
     int iVar11;
     uint uVar12;
     int iVar13;
-    longlong in_RAX;
-    longlong lVar14;
+    int64_t in_RAX;
+    int64_t lVar14;
     void *puVar15;
     int *piVar16;
-    ulonglong uVar17;
-    longlong lVar18;
+    uint64_t uVar17;
+    int64_t lVar18;
     uint64_t unaff_RBX;
     int iVar19;
     uint64_t unaff_RBP;
     uint64_t unaff_RSI;
     uint64_t unaff_RDI;
-    ulonglong uVar20;
+    uint64_t uVar20;
     uint uVar21;
     uint64_t unaff_R13;
     uint64_t unaff_R14;
@@ -534,8 +534,8 @@ void process_advanced_animation_render_effects(void *animation_data, int frame_c
     *(int32_t *)(in_RAX + -0x3c) = unaff_XMM8_Dd;
     
     // 设置动画状态标志
-    *(int8_t *)(*(longlong *)(lVar6 + 0x1af8) + 0xb1) = 1;
-    lVar5 = *(longlong *)(lVar6 + 0x1af8);
+    *(int8_t *)(*(int64_t *)(lVar6 + 0x1af8) + 0xb1) = 1;
+    lVar5 = *(int64_t *)(lVar6 + 0x1af8);
     
     // 初始化动画
     AnimationInitializer(iVar11 + 0x11223347);
@@ -547,7 +547,7 @@ void process_advanced_animation_render_effects(void *animation_data, int frame_c
     // 获取动画ID
     iVar11 = AnimationIDResolver(puVar15,0,
                              *(int32_t *)
-                              (*(longlong *)(lVar5 + 0x220) + -4 + (longlong)*(int *)(lVar5 + 0x218) * 4
+                              (*(int64_t *)(lVar5 + 0x220) + -4 + (int64_t)*(int *)(lVar5 + 0x218) * 4
                               ));
     
     // 处理动画状态
@@ -560,7 +560,7 @@ void process_advanced_animation_render_effects(void *animation_data, int frame_c
     }
     
     // 更新动画计数器
-    piVar16 = (int *)(*(longlong *)(lVar14 + 0x1af8) + 0x218);
+    piVar16 = (int *)(*(int64_t *)(lVar14 + 0x1af8) + 0x218);
     *piVar16 = *piVar16 + -1;
     
     // 创建新的渲染条目
@@ -571,7 +571,7 @@ void process_advanced_animation_render_effects(void *animation_data, int frame_c
     
     // 计算动画参数
     fVar23 = *(float *)(lVar5 + 0x68);
-    *(longlong *)(lVar5 + 0x210) = lVar14;
+    *(int64_t *)(lVar5 + 0x210) = lVar14;
     if (fVar23 == 0.0) {
         fVar23 = *(float *)(lVar5 + 0x260) - *(float *)(lVar5 + 0x40);
     }
@@ -601,7 +601,7 @@ void process_advanced_animation_render_effects(void *animation_data, int frame_c
             uVar12 = iVar11 / 2 + iVar11;
             uVar17 = uVar20;
             if (0 < (int)uVar12) {
-                uVar17 = (ulonglong)uVar12;
+                uVar17 = (uint64_t)uVar12;
             }
             AnimationParameterUpdater(lVar14 + 0x30,uVar17);
         }
@@ -634,12 +634,12 @@ void process_advanced_animation_render_effects(void *animation_data, int frame_c
                     AnimationParameterUpdater(lVar14 + 0x30,iVar8);
                     iVar10 = *(int *)(lVar14 + 0x30);
                 }
-                lVar6 = *(longlong *)(lVar14 + 0x38);
+                lVar6 = *(int64_t *)(lVar14 + 0x38);
                 uVar12 = iVar19 + 1;
-                uVar17 = (ulonglong)uVar12;
-                lVar18 = (longlong)iVar10 * 0x1c;
-                *(ulonglong *)(lVar18 + lVar6) = (ulonglong)(uint)((float)iVar19 * (1.0 / (float)frame_count));
-                ((ulonglong *)(lVar18 + lVar6))[1] = 0x7f7fffff00000000;
+                uVar17 = (uint64_t)uVar12;
+                lVar18 = (int64_t)iVar10 * 0x1c;
+                *(uint64_t *)(lVar18 + lVar6) = (uint64_t)(uint)((float)iVar19 * (1.0 / (float)frame_count));
+                ((uint64_t *)(lVar18 + lVar6))[1] = 0x7f7fffff00000000;
                 *(uint64_t *)(lVar18 + 0x10 + lVar6) = 0xff7fffff7f7fffff;
                 *(int32_t *)(lVar18 + 0x18 + lVar6) = 0xff7fffff;
                 *(int *)(lVar14 + 0x30) = *(int *)(lVar14 + 0x30) + 1;
@@ -654,8 +654,8 @@ void process_advanced_animation_render_effects(void *animation_data, int frame_c
     if (0 < frame_count) {
         do {
             iVar10 = (int)uVar20;
-            lVar18 = *(longlong *)(lVar14 + 0x38);
-            lVar7 = *(longlong *)(*(longlong *)(lVar6 + 0x1af8) + 0x210);
+            lVar18 = *(int64_t *)(lVar14 + 0x38);
+            lVar7 = *(int64_t *)(*(int64_t *)(lVar6 + 0x1af8) + 0x210);
             iVar11 = iVar10;
             if (iVar10 < 0) {
                 iVar11 = *(int *)(lVar7 + 0xc);
@@ -668,11 +668,11 @@ void process_advanced_animation_render_effects(void *animation_data, int frame_c
             if ((int)uVar21 < 0) {
                 uVar12 = *(uint *)(lVar7 + 0xc);
             }
-            uVar20 = (ulonglong)uVar21;
-            fVar4 = *(float *)((longlong)(int)uVar12 * 0x1c + *(longlong *)(lVar7 + 0x38));
+            uVar20 = (uint64_t)uVar21;
+            fVar4 = *(float *)((int64_t)(int)uVar12 * 0x1c + *(int64_t *)(lVar7 + 0x38));
             pfVar1 = (float *)(uVar17 + 0xc + lVar18);
-            *pfVar1 = (float)(int)((fVar22 * *(float *)((longlong)iVar11 * 0x1c +
-                                                   *(longlong *)(lVar7 + 0x38)) + fVar23 + fVar24) -
+            *pfVar1 = (float)(int)((fVar22 * *(float *)((int64_t)iVar11 * 0x1c +
+                                                   *(int64_t *)(lVar7 + 0x38)) + fVar23 + fVar24) -
                                   1.0);
             pfVar1[1] = -3.4028235e+38;
             pfVar1[2] = (float)(int)((fVar22 * fVar4 + fVar23 + fVar24) - 1.0);
@@ -705,28 +705,28 @@ void process_advanced_animation_render_effects(void *animation_data, int frame_c
     // 应用渲染效果
     RenderQueueFinalizer(*(uint64_t *)(lVar5 + 0x2e8),*(int32_t *)(lVar14 + 0x10));
     lVar5 = SYSTEM_DATA_MANAGER_A;
-    lVar6 = *(longlong *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x210);
-    lVar14 = (longlong)*(int *)(lVar6 + 0xc) * 0x1c + *(longlong *)(lVar6 + 0x38);
-    *(int8_t *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
-    lVar6 = *(longlong *)(lVar5 + 0x1af8);
+    lVar6 = *(int64_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x210);
+    lVar14 = (int64_t)*(int *)(lVar6 + 0xc) * 0x1c + *(int64_t *)(lVar6 + 0x38);
+    *(int8_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
+    lVar6 = *(int64_t *)(lVar5 + 0x1af8);
     RenderQueueProcessor(*(uint64_t *)(lVar6 + 0x2e8),*(uint64_t *)(lVar14 + 0xc),
                   *(uint64_t *)(lVar14 + 0x14),0);
     lVar5 = SYSTEM_DATA_MANAGER_A;
     puVar2 = (uint64_t *)
-             (*(longlong *)(*(longlong *)(lVar6 + 0x2e8) + 0x68) + -0x10 +
-             (longlong)*(int *)(*(longlong *)(lVar6 + 0x2e8) + 0x60) * 0x10);
+             (*(int64_t *)(*(int64_t *)(lVar6 + 0x2e8) + 0x68) + -0x10 +
+             (int64_t)*(int *)(*(int64_t *)(lVar6 + 0x2e8) + 0x60) * 0x10);
     uVar9 = puVar2[1];
     *(uint64_t *)(lVar6 + 0x228) = *puVar2;
     *(uint64_t *)(lVar6 + 0x230) = uVar9;
     
     // 计算最终动画参数
-    lVar6 = *(longlong *)(*(longlong *)(lVar5 + 0x1af8) + 0x210);
+    lVar6 = *(int64_t *)(*(int64_t *)(lVar5 + 0x1af8) + 0x210);
     fVar23 = *(float *)(lVar6 + 0x18);
     fVar22 = *(float *)(lVar6 + 0x14);
-    fVar24 = *(float *)(((longlong)*(int *)(lVar6 + 0xc) + 1) * 0x1c + *(longlong *)(lVar6 + 0x38));
-    fVar4 = *(float *)((longlong)*(int *)(lVar6 + 0xc) * 0x1c + *(longlong *)(lVar6 + 0x38));
-    *(int8_t *)(*(longlong *)(lVar5 + 0x1af8) + 0xb1) = 1;
-    lVar6 = *(longlong *)(lVar5 + 0x1af8);
+    fVar24 = *(float *)(((int64_t)*(int *)(lVar6 + 0xc) + 1) * 0x1c + *(int64_t *)(lVar6 + 0x38));
+    fVar4 = *(float *)((int64_t)*(int *)(lVar6 + 0xc) * 0x1c + *(int64_t *)(lVar6 + 0x38));
+    *(int8_t *)(*(int64_t *)(lVar5 + 0x1af8) + 0xb1) = 1;
+    lVar6 = *(int64_t *)(lVar5 + 0x1af8);
     fVar23 = (fVar24 - fVar4) * (fVar23 - fVar22) * 0.65;
     if (fVar23 == 0.0) {
         fVar23 = *(float *)(lVar6 + 0x284);
@@ -751,7 +751,7 @@ void process_advanced_animation_render_effects(void *animation_data, int frame_c
         RenderEffectProcessor(piVar16,iVar13);
         iVar11 = *piVar16;
     }
-    *(float *)(*(longlong *)(lVar6 + 0x1d0) + (longlong)iVar11 * 4) = *(float *)(lVar6 + 0x1ac);
+    *(float *)(*(int64_t *)(lVar6 + 0x1d0) + (int64_t)iVar11 * 4) = *(float *)(lVar6 + 0x1ac);
     *piVar16 = *piVar16 + 1;
     return;
 }
@@ -779,25 +779,25 @@ void process_optimized_animation_render_effects(uint64_t matrix_data, int frame_
     uint64_t *puVar2;
     int32_t uVar3;
     float fVar4;
-    longlong lVar5;
-    longlong lVar6;
-    longlong lVar7;
+    int64_t lVar5;
+    int64_t lVar6;
+    int64_t lVar7;
     int iVar8;
     int iVar9;
     int iVar10;
     uint uVar11;
     int iVar12;
-    longlong in_RAX;
-    longlong lVar13;
+    int64_t in_RAX;
+    int64_t lVar13;
     int *piVar14;
-    ulonglong uVar15;
-    longlong lVar16;
-    longlong unaff_RBX;
+    uint64_t uVar15;
+    int64_t lVar16;
+    int64_t unaff_RBX;
     int iVar17;
     uint64_t unaff_RBP;
     uint64_t unaff_RSI;
     uint64_t unaff_RDI;
-    ulonglong uVar18;
+    uint64_t uVar18;
     uint uVar19;
     uint64_t unaff_R13;
     uint64_t unaff_R14;
@@ -842,14 +842,14 @@ void process_optimized_animation_render_effects(uint64_t matrix_data, int frame_
     *(int32_t *)(in_RAX + -0x3c) = unaff_XMM8_Dd;
     
     // 设置渲染状态标志
-    *(int8_t *)(*(longlong *)(lVar6 + 0x1af8) + 0xb1) = 1;
-    lVar5 = *(longlong *)(lVar6 + 0x1af8);
+    *(int8_t *)(*(int64_t *)(lVar6 + 0x1af8) + 0xb1) = 1;
+    lVar5 = *(int64_t *)(lVar6 + 0x1af8);
     
     // 初始化动画系统
     uVar21 = AnimationInitializer(iVar10 + 0x11223347);
     iVar10 = AnimationIDResolver(uVar21,0,*(int32_t *)
-                                   (*(longlong *)(lVar5 + 0x220) + -4 +
-                                   (longlong)*(int *)(lVar5 + 0x218) * 4));
+                                   (*(int64_t *)(lVar5 + 0x220) + -4 +
+                                   (int64_t)*(int *)(lVar5 + 0x218) * 4));
     
     // 处理动画状态同步
     lVar13 = SYSTEM_DATA_MANAGER_A;
@@ -861,7 +861,7 @@ void process_optimized_animation_render_effects(uint64_t matrix_data, int frame_
     }
     
     // 更新动画引用计数
-    piVar14 = (int *)(*(longlong *)(lVar13 + 0x1af8) + 0x218);
+    piVar14 = (int *)(*(int64_t *)(lVar13 + 0x1af8) + 0x218);
     *piVar14 = *piVar14 + -1;
     
     // 创建优化的渲染条目
@@ -872,7 +872,7 @@ void process_optimized_animation_render_effects(uint64_t matrix_data, int frame_
     
     // 计算优化动画参数
     fVar22 = *(float *)(lVar5 + 0x68);
-    *(longlong *)(lVar5 + 0x210) = lVar13;
+    *(int64_t *)(lVar5 + 0x210) = lVar13;
     if (fVar22 == 0.0) {
         fVar22 = *(float *)(lVar5 + 0x260) - *(float *)(lVar5 + 0x40);
     }
@@ -902,7 +902,7 @@ void process_optimized_animation_render_effects(uint64_t matrix_data, int frame_
             uVar11 = iVar10 / 2 + iVar10;
             uVar15 = uVar18;
             if (0 < (int)uVar11) {
-                uVar15 = (ulonglong)uVar11;
+                uVar15 = (uint64_t)uVar11;
             }
             AnimationParameterUpdater(lVar13 + 0x30,uVar15);
         }
@@ -935,12 +935,12 @@ void process_optimized_animation_render_effects(uint64_t matrix_data, int frame_
                     AnimationParameterUpdater(lVar13 + 0x30,iVar8);
                     iVar9 = *(int *)(lVar13 + 0x30);
                 }
-                lVar6 = *(longlong *)(lVar13 + 0x38);
+                lVar6 = *(int64_t *)(lVar13 + 0x38);
                 uVar11 = iVar17 + 1;
-                uVar15 = (ulonglong)uVar11;
-                lVar16 = (longlong)iVar9 * 0x1c;
-                *(ulonglong *)(lVar16 + lVar6) = (ulonglong)(uint)((float)iVar17 * (1.0 / (float)frame_count));
-                ((ulonglong *)(lVar16 + lVar6))[1] = 0x7f7fffff00000000;
+                uVar15 = (uint64_t)uVar11;
+                lVar16 = (int64_t)iVar9 * 0x1c;
+                *(uint64_t *)(lVar16 + lVar6) = (uint64_t)(uint)((float)iVar17 * (1.0 / (float)frame_count));
+                ((uint64_t *)(lVar16 + lVar6))[1] = 0x7f7fffff00000000;
                 *(uint64_t *)(lVar16 + 0x10 + lVar6) = 0xff7fffff7f7fffff;
                 *(int32_t *)(lVar16 + 0x18 + lVar6) = 0xff7fffff;
                 *(int *)(lVar13 + 0x30) = *(int *)(lVar13 + 0x30) + 1;
@@ -955,8 +955,8 @@ void process_optimized_animation_render_effects(uint64_t matrix_data, int frame_
     if (0 < frame_count) {
         do {
             iVar9 = (int)uVar18;
-            lVar16 = *(longlong *)(lVar13 + 0x38);
-            lVar7 = *(longlong *)(*(longlong *)(lVar6 + 0x1af8) + 0x210);
+            lVar16 = *(int64_t *)(lVar13 + 0x38);
+            lVar7 = *(int64_t *)(*(int64_t *)(lVar6 + 0x1af8) + 0x210);
             iVar10 = iVar9;
             if (iVar9 < 0) {
                 iVar10 = *(int *)(lVar7 + 0xc);
@@ -969,11 +969,11 @@ void process_optimized_animation_render_effects(uint64_t matrix_data, int frame_
             if ((int)uVar19 < 0) {
                 uVar11 = *(uint *)(lVar7 + 0xc);
             }
-            uVar18 = (ulonglong)uVar19;
-            fVar4 = *(float *)((longlong)(int)uVar11 * 0x1c + *(longlong *)(lVar7 + 0x38));
+            uVar18 = (uint64_t)uVar19;
+            fVar4 = *(float *)((int64_t)(int)uVar11 * 0x1c + *(int64_t *)(lVar7 + 0x38));
             pfVar1 = (float *)(uVar15 + 0xc + lVar16);
-            *pfVar1 = (float)(int)((fVar20 * *(float *)((longlong)iVar10 * 0x1c +
-                                                   *(longlong *)(lVar7 + 0x38)) + fVar22 + fVar23) -
+            *pfVar1 = (float)(int)((fVar20 * *(float *)((int64_t)iVar10 * 0x1c +
+                                                   *(int64_t *)(lVar7 + 0x38)) + fVar22 + fVar23) -
                                   1.0);
             pfVar1[1] = -3.4028235e+38;
             pfVar1[2] = (float)(int)((fVar20 * fVar4 + fVar22 + fVar23) - 1.0);
@@ -1006,28 +1006,28 @@ void process_optimized_animation_render_effects(uint64_t matrix_data, int frame_
     // 应用优化的渲染效果
     RenderQueueFinalizer(*(uint64_t *)(lVar5 + 0x2e8),*(int32_t *)(lVar13 + 0x10));
     lVar5 = SYSTEM_DATA_MANAGER_A;
-    lVar6 = *(longlong *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x210);
-    lVar13 = (longlong)*(int *)(lVar6 + 0xc) * 0x1c + *(longlong *)(lVar6 + 0x38);
-    *(int8_t *)(*(longlong *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
-    lVar6 = *(longlong *)(lVar5 + 0x1af8);
+    lVar6 = *(int64_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x210);
+    lVar13 = (int64_t)*(int *)(lVar6 + 0xc) * 0x1c + *(int64_t *)(lVar6 + 0x38);
+    *(int8_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
+    lVar6 = *(int64_t *)(lVar5 + 0x1af8);
     RenderQueueProcessor(*(uint64_t *)(lVar6 + 0x2e8),*(uint64_t *)(lVar13 + 0xc),
                   *(uint64_t *)(lVar13 + 0x14),0);
     lVar5 = SYSTEM_DATA_MANAGER_A;
     puVar2 = (uint64_t *)
-             (*(longlong *)(*(longlong *)(lVar6 + 0x2e8) + 0x68) + -0x10 +
-             (longlong)*(int *)(*(longlong *)(lVar6 + 0x2e8) + 0x60) * 0x10);
+             (*(int64_t *)(*(int64_t *)(lVar6 + 0x2e8) + 0x68) + -0x10 +
+             (int64_t)*(int *)(*(int64_t *)(lVar6 + 0x2e8) + 0x60) * 0x10);
     uVar21 = puVar2[1];
     *(uint64_t *)(lVar6 + 0x228) = *puVar2;
     *(uint64_t *)(lVar6 + 0x230) = uVar21;
     
     // 计算最终优化动画参数
-    lVar6 = *(longlong *)(*(longlong *)(lVar5 + 0x1af8) + 0x210);
+    lVar6 = *(int64_t *)(*(int64_t *)(lVar5 + 0x1af8) + 0x210);
     fVar22 = *(float *)(lVar6 + 0x18);
     fVar20 = *(float *)(lVar6 + 0x14);
-    fVar23 = *(float *)(((longlong)*(int *)(lVar6 + 0xc) + 1) * 0x1c + *(longlong *)(lVar6 + 0x38));
-    fVar4 = *(float *)((longlong)*(int *)(lVar6 + 0xc) * 0x1c + *(longlong *)(lVar6 + 0x38));
-    *(int8_t *)(*(longlong *)(lVar5 + 0x1af8) + 0xb1) = 1;
-    lVar6 = *(longlong *)(lVar5 + 0x1af8);
+    fVar23 = *(float *)(((int64_t)*(int *)(lVar6 + 0xc) + 1) * 0x1c + *(int64_t *)(lVar6 + 0x38));
+    fVar4 = *(float *)((int64_t)*(int *)(lVar6 + 0xc) * 0x1c + *(int64_t *)(lVar6 + 0x38));
+    *(int8_t *)(*(int64_t *)(lVar5 + 0x1af8) + 0xb1) = 1;
+    lVar6 = *(int64_t *)(lVar5 + 0x1af8);
     fVar22 = (fVar23 - fVar4) * (fVar22 - fVar20) * 0.65;
     if (fVar22 == 0.0) {
         fVar22 = *(float *)(lVar6 + 0x284);
@@ -1052,7 +1052,7 @@ void process_optimized_animation_render_effects(uint64_t matrix_data, int frame_
         RenderEffectProcessor(piVar14,iVar12);
         iVar10 = *piVar14;
     }
-    *(float *)(*(longlong *)(lVar6 + 0x1d0) + (longlong)iVar10 * 4) = *(float *)(lVar6 + 0x1ac);
+    *(float *)(*(int64_t *)(lVar6 + 0x1d0) + (int64_t)iVar10 * 4) = *(float *)(lVar6 + 0x1ac);
     *piVar14 = *piVar14 + 1;
     return;
 }

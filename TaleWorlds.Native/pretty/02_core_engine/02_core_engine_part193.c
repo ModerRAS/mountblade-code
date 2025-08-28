@@ -4,28 +4,28 @@
 // 本文件包含3个函数：GPU缓存创建、瓦片集处理和引擎资源清理
 
 // 函数：处理GPU缓存创建和管理的核心函数
-void process_gpu_cache_creation(longlong engine_context, longlong *cache_manager, uint32_t cache_flags, int cache_id)
+void process_gpu_cache_creation(int64_t engine_context, int64_t *cache_manager, uint32_t cache_flags, int cache_id)
 
 {
   uint64_t *cache_node_ptr;
   uint64_t *next_cache_node;
-  longlong cache_handle;
+  int64_t cache_handle;
   int creation_result;
   uint64_t *current_cache;
   int8_t stack_buffer_168 [32];
   int *cache_params_ptr;
   int cache_params_array[2];
-  longlong cache_size;
+  int64_t cache_size;
   int8_t stack_buffer_104 [8];
   int gpu_params[5];
   int texture_id;
-  ulonglong security_cookie;
+  uint64_t security_cookie;
   
-  security_cookie = SECURITY_COOKIE_VALUE ^ (ulonglong)stack_buffer_168;
+  security_cookie = SECURITY_COOKIE_VALUE ^ (uint64_t)stack_buffer_168;
   cache_size = 0;
   initialize_gpu_cache_parameters(gpu_params);
   cache_params_ptr = gpu_params;
-  creation_result = (**(code **)(*cache_manager + 0x40))(cache_manager, cache_flags, 4, (longlong)cache_id);
+  creation_result = (**(code **)(*cache_manager + 0x40))(cache_manager, cache_flags, 4, (int64_t)cache_id);
   cache_node_ptr = (uint64_t *)(engine_context + 0x1b0);
   cache_params_array[0] = texture_id;
   current_cache = cache_node_ptr;
@@ -48,8 +48,8 @@ void process_gpu_cache_creation(longlong engine_context, longlong *cache_manager
     if (creation_result != 0) {
       log_error(&ERROR_CACHE_CREATION_FAILED);
     }
-    creation_result = (**(code **)(**(longlong **)(engine_context + 0xe8) + 0x118))
-                      (*(longlong **)(engine_context + 0xe8), gpu_params, &cache_size);
+    creation_result = (**(code **)(**(int64_t **)(engine_context + 0xe8) + 0x118))
+                      (*(int64_t **)(engine_context + 0xe8), gpu_params, &cache_size);
     if ((cache_size == 0) || (creation_result != 0)) {
       log_error(&ERROR_CACHE_SIZE_INVALID);
     }
@@ -92,7 +92,7 @@ void process_gpu_cache_creation(longlong engine_context, longlong *cache_manager
     }
   }
   // 安全检查：此函数不返回
-  security_check(security_cookie ^ (ulonglong)stack_buffer_168);
+  security_check(security_cookie ^ (uint64_t)stack_buffer_168);
 }
 
 
@@ -100,35 +100,35 @@ void process_gpu_cache_creation(longlong engine_context, longlong *cache_manager
 // 警告：全局变量名在相同地址上重叠
 
 // 函数：处理瓦片集(tileset)创建和纹理管理的核心函数
-void process_tileset_creation(longlong engine_context, void **texture_array, longlong tileset_params, void **output_buffer)
+void process_tileset_creation(int64_t engine_context, void **texture_array, int64_t tileset_params, void **output_buffer)
 
 {
   void **texture_ptr1;
   void **texture_ptr2;
   uint texture_width;
   int operation_result;
-  longlong texture_handle;
+  int64_t texture_handle;
   void **tileset_ptr;
-  longlong *cache_manager;
+  int64_t *cache_manager;
   void *texture_data;
   int8_t *texture_buffer;
-  longlong *memory_pool;
-  ulonglong data_size;
-  longlong *resource_ptr;
+  int64_t *memory_pool;
+  uint64_t data_size;
+  int64_t *resource_ptr;
   void *resource_data;
   int8_t stack_buffer_1816 [32];
   void *string_buffer;
   int8_t *char_buffer;
   int buffer_length;
-  ulonglong buffer_capacity;
-  longlong tileset_id;
+  uint64_t buffer_capacity;
+  int64_t tileset_id;
   int32_t creation_flags;
   void **output_ptr;
   int32_t format_flags;
-  longlong *cpu_cache_params;
-  longlong *gpu_cache_params;
+  int64_t *cpu_cache_params;
+  int64_t *gpu_cache_params;
   void *texture_manager;
-  longlong *data_buffer;
+  int64_t *data_buffer;
   uint texture_height;
   uint64_t dimension_info;
   int32_t quality_flags;
@@ -136,13 +136,13 @@ void process_tileset_creation(longlong engine_context, void **texture_array, lon
   uint64_t pool_size;
   void *texture_cache [68];
   void *wchar_buffer [128];
-  ulonglong security_cookie;
+  uint64_t security_cookie;
   
   pool_size = 0xfffffffffffffffe;
-  security_cookie = SECURITY_COOKIE_VALUE ^ (ulonglong)stack_buffer_1816;
-  memory_pool = *(longlong **)(engine_context + 200);
+  security_cookie = SECURITY_COOKIE_VALUE ^ (uint64_t)stack_buffer_1816;
+  memory_pool = *(int64_t **)(engine_context + 200);
   texture_array_ptr[0] = texture_array;
-  for (resource_ptr = *(longlong **)(engine_context + 0xc0); tileset_id = tileset_params, output_ptr = output_buffer,
+  for (resource_ptr = *(int64_t **)(engine_context + 0xc0); tileset_id = tileset_params, output_ptr = output_buffer,
       resource_ptr != memory_pool; resource_ptr = resource_ptr + 1) {
     creation_flags = 0;
     texture_handle = *resource_ptr;
@@ -155,7 +155,7 @@ void process_tileset_creation(longlong engine_context, void **texture_array, lon
       // 警告：此函数不返回
       memcpy(char_buffer, *(uint64_t *)(texture_handle + 0xb0), *(int *)(texture_handle + 0xb8) + 1);
     }
-    if (*(longlong *)(texture_handle + 0xb0) != 0) {
+    if (*(int64_t *)(texture_handle + 0xb0) != 0) {
       buffer_length = 0;
       if (char_buffer != (int8_t *)0x0) {
         *char_buffer = 0;
@@ -189,9 +189,9 @@ void process_tileset_creation(longlong engine_context, void **texture_array, lon
       texture_data = *(void **)(texture_handle + 8);
     }
     // 警告：此函数不返回
-    memcpy(char_buffer, texture_data, (longlong)(*(int *)(texture_handle + 0x10) + 1));
+    memcpy(char_buffer, texture_data, (int64_t)(*(int *)(texture_handle + 0x10) + 1));
   }
-  if ((*(longlong *)(texture_handle + 8) != 0) && (buffer_length = 0, char_buffer != (int8_t *)0x0)) {
+  if ((*(int64_t *)(texture_handle + 8) != 0) && (buffer_length = 0, char_buffer != (int8_t *)0x0)) {
     *char_buffer = 0;
   }
   texture_cache[0] = &EMPTY_WSTRING;
@@ -199,13 +199,13 @@ void process_tileset_creation(longlong engine_context, void **texture_array, lon
   if (char_buffer != (int8_t *)0x0) {
     texture_buffer = char_buffer;
   }
-  mbstowcs(wchar_buffer, texture_buffer, (longlong)(buffer_length + 1));
+  mbstowcs(wchar_buffer, texture_buffer, (int64_t)(buffer_length + 1));
   output_ptr = wchar_buffer;
   format_flags = 0;
-  operation_result = (**(code **)(**(longlong **)(engine_context + 0xe8) + 0x48))
-                    (*(longlong **)(engine_context + 0xe8), &output_ptr, &cpu_cache_params);
+  operation_result = (**(code **)(**(int64_t **)(engine_context + 0xe8) + 0x48))
+                    (*(int64_t **)(engine_context + 0xe8), &output_ptr, &cpu_cache_params);
   resource_ptr = cpu_cache_params;
-  if ((cpu_cache_params == (longlong *)0x0) || (operation_result != 0)) {
+  if ((cpu_cache_params == (int64_t *)0x0) || (operation_result != 0)) {
     if (DEBUG_MODE_ENABLED == '\0') {
       texture_data = &DEFAULT_TEXTURE_DATA;
       if (texture_ptr1[1] != (void *)0x0) {
@@ -236,16 +236,16 @@ void process_tileset_creation(longlong engine_context, void **texture_array, lon
   buffer_capacity = buffer_capacity & 0xffffffff00000000;
   string_buffer = &EMPTY_WSTRING;
   tileset_id = 0;
-  (**(code **)(**(longlong **)(engine_context + 0xe8) + 0x140))
-          (*(longlong **)(engine_context + 0xe8), cpu_cache_params, &tileset_id);
+  (**(code **)(**(int64_t **)(engine_context + 0xe8) + 0x140))
+          (*(int64_t **)(engine_context + 0xe8), cpu_cache_params, &tileset_id);
   if (tileset_id == 0) {
     initialize_cpu_cache_parameters(texture_array_ptr);
     operation_result = (**(code **)(*resource_ptr + 0x38))(resource_ptr, 0x3fffc00, texture_array_ptr);
     if (operation_result != 0) {
       log_error(&ERROR_CPU_CACHE_INIT);
     }
-    operation_result = (**(code **)(**(longlong **)(engine_context + 0xe8) + 0x120))
-                      (*(longlong **)(engine_context + 0xe8), texture_array_ptr, &tileset_id);
+    operation_result = (**(code **)(**(int64_t **)(engine_context + 0xe8) + 0x120))
+                      (*(int64_t **)(engine_context + 0xe8), texture_array_ptr, &tileset_id);
     if ((tileset_id == 0) || (operation_result != 0)) {
       log_error(&ERROR_CACHE_ALLOCATION);
     }
@@ -257,23 +257,23 @@ void process_tileset_creation(longlong engine_context, void **texture_array, lon
   texture_array_ptr[0] = &texture_manager;
   texture_manager = &EMPTY_STRING;
   dimension_info = 0;
-  data_buffer = (longlong *)0x0;
+  data_buffer = (int64_t *)0x0;
   texture_height = 0;
   gpu_cache_params = cpu_cache_params;
   texture_width = *(uint *)(tileset_params + 0x10);
-  data_size = (ulonglong)texture_width;
-  if (*(longlong *)(tileset_params + 8) != 0) {
+  data_size = (uint64_t)texture_width;
+  if (*(int64_t *)(tileset_params + 8) != 0) {
     allocate_data_buffer(&texture_manager, data_size);
   }
   if (texture_width != 0) {
     // 警告：此函数不返回
     memcpy(data_buffer, *(uint64_t *)(tileset_params + 8), data_size);
   }
-  if (data_buffer != (longlong *)0x0) {
-    *(int8_t *)(data_size + (longlong)data_buffer) = 0;
+  if (data_buffer != (int64_t *)0x0) {
+    *(int8_t *)(data_size + (int64_t)data_buffer) = 0;
   }
   dimension_info = CONCAT44(*(int32_t *)(tileset_params + 0x1c), (int32_t)dimension_info);
-  quality_flags = (int32_t)(*(longlong *)(engine_context + 200) - *(longlong *)(engine_context + 0xc0) >> 3);
+  quality_flags = (int32_t)(*(int64_t *)(engine_context + 200) - *(int64_t *)(engine_context + 0xc0) >> 3);
   texture_height = texture_width;
   tileset_ptr = (void **)allocate_memory_pool(MEMORY_POOL_ID, 0x1c0, 8, 3);
   output_ptr = tileset_ptr + 1;
@@ -307,8 +307,8 @@ void process_tileset_creation(longlong engine_context, void **texture_array, lon
   *(int8_t *)(tileset_ptr + 0x33) = 0;
   tileset_ptr[0x34] = (void *)0x0;
   tileset_ptr[0x29] = (void *)gpu_cache_params;
-  data_size = (ulonglong)texture_height;
-  if (data_buffer != (longlong *)0x0) {
+  data_size = (uint64_t)texture_height;
+  if (data_buffer != (int64_t *)0x0) {
     allocate_data_buffer(texture_ptr1, data_size);
   }
   if (texture_width != 0) {
@@ -319,49 +319,49 @@ void process_tileset_creation(longlong engine_context, void **texture_array, lon
   if (tileset_ptr[0x16] != (void *)0x0) {
     tileset_ptr[0x16][data_size] = 0;
   }
-  *(int32_t *)((longlong)tileset_ptr + 0xc4) = dimension_info._4_4_;
+  *(int32_t *)((int64_t)tileset_ptr + 0xc4) = dimension_info._4_4_;
   *(int32_t *)tileset_ptr = quality_flags;
   *(int32_t *)(tileset_ptr + 0x36) = *(int32_t *)output_buffer;
-  *(int32_t *)((longlong)tileset_ptr + 0x1b4) = *(int32_t *)((longlong)output_buffer + 4);
+  *(int32_t *)((int64_t)tileset_ptr + 0x1b4) = *(int32_t *)((int64_t)output_buffer + 4);
   *(int32_t *)(tileset_ptr + 0x37) = *(int32_t *)(output_buffer + 1);
-  *(int32_t *)((longlong)tileset_ptr + 0x1bc) = *(int32_t *)((longlong)output_buffer + 0xc);
-  resource_ptr = *(longlong **)(engine_context + 200);
-  if (resource_ptr < *(longlong **)(engine_context + 0xd0)) {
-    *(longlong **)(engine_context + 200) = resource_ptr + 1;
-    *resource_ptr = (longlong)tileset_ptr;
+  *(int32_t *)((int64_t)tileset_ptr + 0x1bc) = *(int32_t *)((int64_t)output_buffer + 0xc);
+  resource_ptr = *(int64_t **)(engine_context + 200);
+  if (resource_ptr < *(int64_t **)(engine_context + 0xd0)) {
+    *(int64_t **)(engine_context + 200) = resource_ptr + 1;
+    *resource_ptr = (int64_t)tileset_ptr;
     memory_pool = data_buffer;
   }
   else {
-    memory_pool = *(longlong **)(engine_context + 0xc0);
-    texture_handle = (longlong)resource_ptr - (longlong)memory_pool >> 3;
+    memory_pool = *(int64_t **)(engine_context + 0xc0);
+    texture_handle = (int64_t)resource_ptr - (int64_t)memory_pool >> 3;
     if (texture_handle == 0) {
       texture_handle = 1;
 EXPAND_MEMORY_POOL:
-      cache_manager = (longlong *)expand_memory_pool(MEMORY_POOL_ID, texture_handle * 8, *(int8_t *)(engine_context + 0xd8));
-      resource_ptr = *(longlong **)(engine_context + 200);
-      memory_pool = *(longlong **)(engine_context + 0xc0);
+      cache_manager = (int64_t *)expand_memory_pool(MEMORY_POOL_ID, texture_handle * 8, *(int8_t *)(engine_context + 0xd8));
+      resource_ptr = *(int64_t **)(engine_context + 200);
+      memory_pool = *(int64_t **)(engine_context + 0xc0);
     }
     else {
       texture_handle = texture_handle * 2;
       if (texture_handle != 0) goto EXPAND_MEMORY_POOL;
-      cache_manager = (longlong *)0x0;
+      cache_manager = (int64_t *)0x0;
     }
     if (memory_pool != resource_ptr) {
       // 警告：此函数不返回
-      memmove(cache_manager, memory_pool, (longlong)resource_ptr - (longlong)memory_pool);
+      memmove(cache_manager, memory_pool, (int64_t)resource_ptr - (int64_t)memory_pool);
     }
-    *cache_manager = (longlong)tileset_ptr;
-    if (*(longlong *)(engine_context + 0xc0) != 0) {
+    *cache_manager = (int64_t)tileset_ptr;
+    if (*(int64_t *)(engine_context + 0xc0) != 0) {
       // 警告：此函数不返回
       free_memory_buffer();
     }
-    *(longlong **)(engine_context + 0xc0) = cache_manager;
-    *(longlong **)(engine_context + 200) = cache_manager + 1;
-    *(longlong **)(engine_context + 0xd0) = cache_manager + texture_handle;
+    *(int64_t **)(engine_context + 0xc0) = cache_manager;
+    *(int64_t **)(engine_context + 200) = cache_manager + 1;
+    *(int64_t **)(engine_context + 0xd0) = cache_manager + texture_handle;
   }
   cleanup_engine_resources(engine_context, memory_pool);
-  memory_pool = *(longlong **)(engine_context + 200);
-  for (resource_ptr = *(longlong **)(engine_context + 0xc0); resource_ptr != memory_pool; resource_ptr = resource_ptr + 1) {
+  memory_pool = *(int64_t **)(engine_context + 200);
+  for (resource_ptr = *(int64_t **)(engine_context + 0xc0); resource_ptr != memory_pool; resource_ptr = resource_ptr + 1) {
     texture_handle = *resource_ptr;
     texture_ptr1 = (void **)(texture_handle + 0x58);
     texture_array_ptr[0] = texture_ptr1;
@@ -369,7 +369,7 @@ EXPAND_MEMORY_POOL:
     if (operation_result != 0) {
       throw_thread_error(operation_result);
     }
-    cache_manager = *(longlong **)(texture_handle + 0x148);
+    cache_manager = *(int64_t **)(texture_handle + 0x148);
     (**(code **)(*cache_manager + 0x110))(cache_manager, 2);
     operation_result = unlock_mutex(texture_ptr1);
     if (operation_result != 0) {
@@ -378,16 +378,16 @@ EXPAND_MEMORY_POOL:
   }
   texture_array_ptr[0] = &texture_manager;
   texture_manager = &EMPTY_STRING;
-  if (data_buffer != (longlong *)0x0) {
+  if (data_buffer != (int64_t *)0x0) {
     // 警告：此函数不返回
     free_memory_buffer();
   }
-  data_buffer = (longlong *)0x0;
+  data_buffer = (int64_t *)0x0;
   dimension_info = dimension_info & 0xffffffff00000000;
   texture_manager = &EMPTY_WSTRING;
 CLEANUP_AND_EXIT:
   // 警告：此函数不返回
-  security_check(security_cookie ^ (ulonglong)stack_buffer_1816);
+  security_check(security_cookie ^ (uint64_t)stack_buffer_1816);
 }
 
 
@@ -395,60 +395,60 @@ CLEANUP_AND_EXIT:
 // 警告：全局变量名在相同地址上重叠
 
 // 函数：清理引擎资源和管理内存的核心函数
-void cleanup_engine_resources(longlong engine_context)
+void cleanup_engine_resources(int64_t engine_context)
 
 {
-  longlong *resource_manager;
+  int64_t *resource_manager;
   int resource_type;
   uint resource_count;
-  longlong resource_handle;
-  longlong *resource_array;
+  int64_t resource_handle;
+  int64_t *resource_array;
   uint64_t operation_result;
   int mip_level;
-  longlong *cache_manager;
-  longlong *texture_manager;
-  longlong *memory_pool;
+  int64_t *cache_manager;
+  int64_t *texture_manager;
+  int64_t *memory_pool;
   uint texture_index;
-  ulonglong pool_size;
-  ulonglong array_size;
+  uint64_t pool_size;
+  uint64_t array_size;
   uint64_t *texture_node;
-  longlong *temp_ptr;
-  longlong allocation_size;
+  int64_t *temp_ptr;
+  int64_t allocation_size;
   int32_t quality_setting;
   float scale_factor;
   int8_t stack_buffer_200 [32];
   uint texture_id;
-  longlong *data_buffer;
-  longlong *active_resources;
-  longlong *resource_list;
-  longlong *max_resources;
+  int64_t *data_buffer;
+  int64_t *active_resources;
+  int64_t *resource_list;
+  int64_t *max_resources;
   int32_t pool_flags;
-  longlong *start_pointer;
+  int64_t *start_pointer;
   uint64_t context_handle;
   uint64_t engine_handle;
   int render_width;
   int render_height;
-  ulonglong security_cookie;
+  uint64_t security_cookie;
   
   context_handle = 0xfffffffffffffffe;
-  security_cookie = SECURITY_COOKIE_VALUE ^ (ulonglong)stack_buffer_200;
+  security_cookie = SECURITY_COOKIE_VALUE ^ (uint64_t)stack_buffer_200;
   engine_handle = engine_context;
   initialize_engine_system();
-  active_resources = (longlong *)0x0;
-  resource_list = (longlong *)0x0;
-  memory_pool = (longlong *)0x0;
-  max_resources = (longlong *)0x0;
+  active_resources = (int64_t *)0x0;
+  resource_list = (int64_t *)0x0;
+  memory_pool = (int64_t *)0x0;
+  max_resources = (int64_t *)0x0;
   pool_flags = 3;
-  data_buffer = *(longlong **)(engine_context + 0xc0);
-  start_pointer = *(longlong **)(engine_context + 200);
-  texture_manager = (longlong *)0x0;
-  resource_array = (longlong *)0x0;
+  data_buffer = *(int64_t **)(engine_context + 0xc0);
+  start_pointer = *(int64_t **)(engine_context + 200);
+  texture_manager = (int64_t *)0x0;
+  resource_array = (int64_t *)0x0;
   cache_manager = texture_manager;
   temp_ptr = resource_array;
   if (data_buffer != start_pointer) {
     do {
       texture_index = 0;
-      resource_manager = *(longlong **)(*data_buffer + 0x148);
+      resource_manager = *(int64_t **)(*data_buffer + 0x148);
       texture_id = 0;
       resource_type = (**(code **)(*resource_manager + 0x20))(resource_manager);
       texture_manager = cache_manager;
@@ -465,24 +465,24 @@ void cleanup_engine_resources(longlong engine_context)
               resource_list = texture_manager;
             }
             else {
-              allocation_size = (longlong)cache_manager - (longlong)temp_ptr >> 3;
+              allocation_size = (int64_t)cache_manager - (int64_t)temp_ptr >> 3;
               if (allocation_size == 0) {
                 allocation_size = 1;
 EXPAND_RESOURCE_ARRAY:
-                resource_array = (longlong *)allocate_resource_memory(RESOURCE_MEMORY_ID, allocation_size * 8, 3);
+                resource_array = (int64_t *)allocate_resource_memory(RESOURCE_MEMORY_ID, allocation_size * 8, 3);
               }
               else {
                 allocation_size = allocation_size * 2;
                 if (allocation_size != 0) goto EXPAND_RESOURCE_ARRAY;
-                resource_array = (longlong *)0x0;
+                resource_array = (int64_t *)0x0;
               }
               if (temp_ptr != cache_manager) {
                 // 警告：此函数不返回
-                memmove(resource_array, temp_ptr, (longlong)cache_manager - (longlong)temp_ptr);
+                memmove(resource_array, temp_ptr, (int64_t)cache_manager - (int64_t)temp_ptr);
               }
               *resource_array = resource_handle;
               texture_manager = resource_array + 1;
-              if (temp_ptr != (longlong *)0x0) {
+              if (temp_ptr != (int64_t *)0x0) {
                 // 警告：此函数不返回
                 free_memory(temp_ptr);
               }
@@ -508,15 +508,15 @@ EXPAND_RESOURCE_ARRAY:
     } while (data_buffer != start_pointer);
   }
   pool_size = 0;
-  array_size = (ulonglong)((longlong)texture_manager + (7 - (longlong)resource_array)) >> 3;
+  array_size = (uint64_t)((int64_t)texture_manager + (7 - (int64_t)resource_array)) >> 3;
   if (texture_manager < resource_array) {
     array_size = pool_size;
   }
   memory_pool = resource_array;
   if (array_size != 0) {
     do {
-      (**(code **)(**(longlong **)(engine_context + 0xe8) + 0x128))
-                (*(longlong **)(engine_context + 0xe8), *memory_pool);
+      (**(code **)(**(int64_t **)(engine_context + 0xe8) + 0x128))
+                (*(int64_t **)(engine_context + 0xe8), *memory_pool);
       pool_size = pool_size + 1;
       memory_pool = memory_pool + 1;
     } while (pool_size != array_size);
@@ -528,21 +528,21 @@ EXPAND_RESOURCE_ARRAY:
     // 警告：此函数不返回
     free_memory(texture_node);
   }
-  *(longlong *)resource_handle = resource_handle;
-  *(longlong *)(engine_context + 0x1b8) = resource_handle;
+  *(int64_t *)resource_handle = resource_handle;
+  *(int64_t *)(engine_context + 0x1b8) = resource_handle;
   *(uint64_t *)(engine_context + 0x1c0) = 0;
   *(int8_t *)(engine_context + 0x1c8) = 0;
   *(uint64_t *)(engine_context + 0x1d0) = 0;
-  memory_pool = *(longlong **)(engine_context + 200);
-  texture_manager = *(longlong **)(engine_context + 0xc0);
+  memory_pool = *(int64_t **)(engine_context + 200);
+  texture_manager = *(int64_t **)(engine_context + 0xc0);
   do {
     if (texture_manager == memory_pool) {
-      if (resource_array != (longlong *)0x0) {
+      if (resource_array != (int64_t *)0x0) {
         // 警告：此函数不返回
         free_memory(resource_array);
       }
       // 警告：此函数不返回
-      security_check(security_cookie ^ (ulonglong)stack_buffer_200);
+      security_check(security_cookie ^ (uint64_t)stack_buffer_200);
     }
     resource_handle = *texture_manager;
     resource_type = *(int *)(RENDER_QUALITY_SETTINGS + 0x380);
@@ -562,7 +562,7 @@ EXPAND_RESOURCE_ARRAY:
     if (resource_type == 2) {
       quality_setting = 0;
 APPLY_QUALITY_SETTINGS:
-      (**(code **)(**(longlong **)(resource_handle + 0x148) + 0xd0))(*(longlong **)(resource_handle + 0x148), quality_setting);
+      (**(code **)(**(int64_t **)(resource_handle + 0x148) + 0xd0))(*(int64_t **)(resource_handle + 0x148), quality_setting);
     }
     else {
       if (resource_type == 1) {
@@ -574,7 +574,7 @@ APPLY_QUALITY_SETTINGS:
         goto APPLY_QUALITY_SETTINGS;
       }
     }
-    resource_array = *(longlong **)(resource_handle + 0x148);
+    resource_array = *(int64_t **)(resource_handle + 0x148);
     scale_factor = (float)(mip_level << 0x24);
     engine_handle = CONCAT44((int)(scale_factor * *(float *)(resource_handle + 0x1b4)),
                          (int)(scale_factor * *(float *)(resource_handle + 0x1b0)));
@@ -591,7 +591,7 @@ APPLY_QUALITY_SETTINGS:
           log_error(&ERROR_RESOURCE_CLEANUP);
         }
         resource_count = resource_count + 1;
-        texture_node = (uint64_t *)((longlong)texture_node + 4);
+        texture_node = (uint64_t *)((int64_t)texture_node + 4);
       } while (resource_count < texture_index);
     }
     texture_manager = texture_manager + 1;

@@ -6,23 +6,23 @@
 
 // 函数：释放资源管理器中的资源
 // 原始函数名：FUN_180095420
-void release_resource_manager_resources(longlong resource_manager)
+void release_resource_manager_resources(int64_t resource_manager)
 
 {
-  longlong *resource_ptr1;
-  longlong *resource_ptr2;
+  int64_t *resource_ptr1;
+  int64_t *resource_ptr2;
   
   // 释放第一个资源（偏移0x10处）
-  resource_ptr1 = *(longlong **)(resource_manager + 0x10);
+  resource_ptr1 = *(int64_t **)(resource_manager + 0x10);
   *(uint64_t *)(resource_manager + 0x10) = 0;
-  if (resource_ptr1 != (longlong *)0x0) {
+  if (resource_ptr1 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr1 + 0x38))(); // 调用资源的释放函数
   }
   
   // 释放第二个资源（偏移0x18处）
-  resource_ptr2 = *(longlong **)(resource_manager + 0x18);
+  resource_ptr2 = *(int64_t **)(resource_manager + 0x18);
   *(uint64_t *)(resource_manager + 0x18) = 0;
-  if (resource_ptr2 != (longlong *)0x0) {
+  if (resource_ptr2 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr2 + 0x38))(); // 调用资源的释放函数
   }
   return;
@@ -66,7 +66,7 @@ void initialize_core_engine_data(uint64_t engine_context, int32_t param2, int32_
   uint64_t *engine_data_ptr;
   int lock_result;
   uint64_t timestamp;
-  ulonglong data_size;
+  uint64_t data_size;
   int32_t *data_ptr;
   uint64_t temp_value;
   
@@ -108,7 +108,7 @@ void initialize_core_engine_data(uint64_t engine_context, int32_t param2, int32_
   // 初始化第一个数据区域
   FUN_180080ca0(engine_data_ptr + 0xf, 0x96);
   data_ptr = (int32_t *)engine_data_ptr[0xf];
-  data_size = (ulonglong)((longlong)engine_data_ptr[0x10] + (3 - (longlong)data_ptr)) >> 2;
+  data_size = (uint64_t)((int64_t)engine_data_ptr[0x10] + (3 - (int64_t)data_ptr)) >> 2;
   if ((int32_t *)engine_data_ptr[0x10] < data_ptr) {
     data_size = 0;
   }
@@ -122,7 +122,7 @@ void initialize_core_engine_data(uint64_t engine_context, int32_t param2, int32_
   // 初始化第二个数据区域
   FUN_180080ca0(engine_data_ptr + 0x13, 0x96);
   data_ptr = (int32_t *)engine_data_ptr[0x13];
-  data_size = (ulonglong)((longlong)engine_data_ptr[0x14] + (3 - (longlong)data_ptr)) >> 2;
+  data_size = (uint64_t)((int64_t)engine_data_ptr[0x14] + (3 - (int64_t)data_ptr)) >> 2;
   if ((int32_t *)engine_data_ptr[0x14] < data_ptr) {
     data_size = 0;
   }
@@ -153,7 +153,7 @@ void initialize_core_engine_data(uint64_t engine_context, int32_t param2, int32_
 // 函数：处理引擎核心更新逻辑
 // 原始函数名：FUN_180095da0
 // 这是一个简化实现，原函数包含复杂的更新和递归调用逻辑
-void process_engine_core_update(uint64_t context, longlong param2, longlong param3, char flag)
+void process_engine_core_update(uint64_t context, int64_t param2, int64_t param3, char flag)
 {
   // 简化实现：处理引擎核心更新逻辑
   // 原函数包含复杂的更新和递归调用逻辑，这里仅做简单处理
@@ -190,7 +190,7 @@ void reset_engine_resource_manager(void)
 // 函数：批量处理引擎资源
 // 原始函数名：FUN_180096240
 // 这是一个简化实现，原函数包含复杂的批量处理和排序逻辑
-void batch_process_engine_resources(uint64_t context, longlong param2, uint64_t *param3)
+void batch_process_engine_resources(uint64_t context, int64_t param2, uint64_t *param3)
 {
   // 简化实现：批量处理引擎资源
   // 原函数包含复杂的批量处理和排序逻辑，这里仅做简单处理
@@ -203,7 +203,7 @@ void batch_process_engine_resources(uint64_t context, longlong param2, uint64_t 
 // 函数：比较两个引擎资源
 // 原始函数名：FUN_180096a80
 // 这是一个简化实现，原函数包含复杂的资源比较逻辑
-bool compare_engine_resources(longlong *resource1, longlong param2, longlong param3)
+bool compare_engine_resources(int64_t *resource1, int64_t param2, int64_t param3)
 {
   // 简化实现：返回默认的比较结果
   // 原函数包含复杂的比较逻辑，这里返回false作为默认值
