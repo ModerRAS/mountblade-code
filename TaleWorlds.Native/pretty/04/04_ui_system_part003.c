@@ -901,25 +901,44 @@ void ui_library_operation_wrapper(void *operation_data, void *root_node, void *p
 
 
 
-longlong FUN_180650aa0(longlong param_1,longlong param_2)
+// 函数: longlong ui_copy_library_data(library_data_t *dest_data, library_data_t *src_data)
+// 功能: 复制库数据结构，包括基本信息和扩展数据
+// 参数:
+//   dest_data - 目标数据结构指针
+//   src_data - 源数据结构指针
+// 返回值: 返回目标数据结构指针
+// 说明: 该函数复制库数据结构的各个字段，包括偏移量20、32、40、64、88、120、152、160、168、172等位置的数据
+longlong ui_copy_library_data(library_data_t *dest_data, library_data_t *src_data)
 
 {
-  undefined8 uVar1;
+  undefined8 temp_data;
   
-  FUN_180627be0();
-  FUN_180627be0(param_1 + 0x20,param_2 + 0x20);
-  *(undefined1 *)(param_1 + 0x40) = *(undefined1 *)(param_2 + 0x40);
-  *(undefined4 *)(param_1 + 0x44) = *(undefined4 *)(param_2 + 0x44);
-  *(undefined8 *)(param_1 + 0x48) = *(undefined8 *)(param_2 + 0x48);
-  *(undefined4 *)(param_1 + 0x50) = *(undefined4 *)(param_2 + 0x50);
-  FUN_180627be0(param_1 + 0x58,param_2 + 0x58);
-  FUN_180627be0(param_1 + 0x78,param_2 + 0x78);
-  uVar1 = *(undefined8 *)(param_2 + 0xa0);
-  *(undefined8 *)(param_1 + 0x98) = *(undefined8 *)(param_2 + 0x98);
-  *(undefined8 *)(param_1 + 0xa0) = uVar1;
-  *(undefined4 *)(param_1 + 0xa8) = *(undefined4 *)(param_2 + 0xa8);
-  *(undefined4 *)(param_1 + 0xac) = *(undefined4 *)(param_2 + 0xac);
-  return param_1;
+  // 初始化复制操作
+  ui_memory_copy_init();
+  
+  // 复制偏移量32处的数据
+  ui_memory_copy_init(dest_data + 0x20, src_data + 0x20);
+  
+  // 复制各个字段
+  *(undefined1 *)(dest_data + 0x40) = *(undefined1 *)(src_data + 0x40);  // 标志字段
+  *(undefined4 *)(dest_data + 0x44) = *(undefined4 *)(src_data + 0x44);  // 整数字段1
+  *(undefined8 *)(dest_data + 0x48) = *(undefined8 *)(src_data + 0x48);  // 长整数字段1
+  *(undefined4 *)(dest_data + 0x50) = *(undefined4 *)(src_data + 0x50);  // 整数字段2
+  
+  // 复制偏移量88处的数据
+  ui_memory_copy_init(dest_data + 0x58, src_data + 0x58);
+  
+  // 复制偏移量120处的数据
+  ui_memory_copy_init(dest_data + 0x78, src_data + 0x78);
+  
+  // 复制偏移量160处的数据
+  temp_data = *(undefined8 *)(src_data + 0xa0);
+  *(undefined8 *)(dest_data + 0x98) = *(undefined8 *)(src_data + 0x98);  // 长整数字段2
+  *(undefined8 *)(dest_data + 0xa0) = temp_data;                      // 长整数字段3
+  *(undefined4 *)(dest_data + 0xa8) = *(undefined4 *)(src_data + 0xa8);  // 整数字段3
+  *(undefined4 *)(dest_data + 0xac) = *(undefined4 *)(src_data + 0xac);  // 整数字段4
+  
+  return (longlong)dest_data;
 }
 
 
