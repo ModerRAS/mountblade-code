@@ -881,7 +881,7 @@ undefined8 * copy_and_initialize_data_structure(undefined8 *dest, longlong src)
   *(undefined4 *)((longlong)param_1 + 0x3c) = *(undefined4 *)(param_2 + 0x3c);
   *(undefined4 *)(param_1 + 7) = *(undefined4 *)(param_2 + 0x38);
   *(undefined4 *)(param_2 + 0x30) = 0;
-  *(undefined8 *)(param_2 + 0x28) = 0;
+  *(undefined8 *)(structure + 0x28) = 0; // 清理指针
   *(undefined8 *)(param_2 + 0x38) = 0;
   return param_1;
 }
@@ -1293,16 +1293,18 @@ longlong copy_and_initialize_simple_structure(longlong dest, longlong src)
 
 
 
-// 函数: void FUN_18005d1f0(undefined8 param_1,longlong param_2)
-void FUN_18005d1f0(undefined8 param_1,longlong param_2)
+// 函数: void cleanup_structure_safety(undefined8 param_1, longlong structure)
+// 功能: 安全清理数据结构
+// 参数: param_1 - 未使用参数，structure - 要清理的结构
+void cleanup_structure_safety(undefined8 param_1, longlong structure)
 
 {
-  *(undefined8 *)(param_2 + 0x20) = &UNK_180a3c3e0;
+  *(undefined8 *)(structure + 0x20) = &UNK_180a3c3e0; // 设置安全标记
   if (*(longlong *)(param_2 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  *(undefined8 *)(param_2 + 0x28) = 0;
+  *(undefined8 *)(structure + 0x28) = 0; // 清理指针
   *(undefined4 *)(param_2 + 0x38) = 0;
   *(undefined8 *)(param_2 + 0x20) = &UNK_18098bcb0;
   if (param_2 != 0) {
