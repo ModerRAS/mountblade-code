@@ -729,7 +729,7 @@ void Resource_Release(void)
  * @param param4 未使用参数
  * @return 目标位置指针
  */
-longlong Resource_Copy(longlong dest_ptr,longlong src_ptr,undefined8 param3,undefined8 param4)
+longlong Resource_Copy_Callback(longlong dest_ptr,longlong src_ptr,longlong param3,undefined8 param4)
 
 {
   code *callback_func;

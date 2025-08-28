@@ -75,11 +75,13 @@ void process_initialization_parameters(undefined8 param_1, longlong param_2, und
   if ((_GLOBAL_INIT_FLAG_1 != '\0') || (_GLOBAL_INIT_FLAG_2 != '\0')) {
     goto LAB_180072d7b;
   }
+  
+  // 初始化字符串缓冲区
   uStack_58 = 0;
   uStack_50 = 0;
-  FUN_1800634b0(&uStack_58,0x10,&UNK_1809fd0a0,param_3);
-  lVar9 = FUN_180627910(&puStack_f0,param_4);
-  puStack_110 = &UNK_180a3c3e0;
+  initialize_string_buffer(&uStack_58, 0x10, &GLOBAL_STRING_DATA, param_3);
+  lVar9 = create_string_handler(&puStack_f0, param_4);
+  puStack_110 = &GLOBAL_STRING_END;
   uVar16 = 0;
   uStack_f8 = 0;
   puStack_108 = (undefined1 *)0x0;
@@ -88,38 +90,44 @@ void process_initialization_parameters(undefined8 param_1, longlong param_2, und
   uVar6 = *(uint *)(lVar9 + 0x10);
   uVar19 = (ulonglong)uVar6;
   uVar4 = 0;
+  
+  // 处理字符串数据
   if (*(longlong *)(lVar9 + 8) == 0) {
 LAB_180072120:
     uVar16 = uVar4;
     if (uVar6 != 0) {
-                    // WARNING: Subroutine does not return
-      memcpy(puVar10,*(undefined8 *)(lVar9 + 8),uVar19);
+      // 复制字符串数据
+      memcpy(puVar10, *(undefined8 *)(lVar9 + 8), uVar19);
     }
   }
   else if (uVar6 != 0) {
+    // 分配内存并复制字符串
     iVar3 = uVar6 + 1;
     if (iVar3 < 0x10) {
       iVar3 = 0x10;
     }
-    puVar10 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)iVar3,0x13);
+    puVar10 = (undefined1 *)allocate_string_memory(_DAT_180c8ed18, (longlong)iVar3, 0x13);
     *puVar10 = 0;
     puStack_108 = puVar10;
-    uVar4 = FUN_18064e990(puVar10);
-    uStack_f8 = CONCAT44(uStack_f8._4_4_,uVar4);
+    uVar4 = get_string_length(puVar10);
+    uStack_f8 = CONCAT44(uStack_f8._4_4_, uVar4);
     goto LAB_180072120;
   }
   if (puVar10 != (undefined1 *)0x0) {
-    puVar10[uVar19] = 0;
+    puVar10[uVar19] = 0;  // 字符串终止符
   }
   uVar4 = *(uint *)(lVar9 + 0x1c);
   uStack_100 = uVar6;
   uStack_f8._4_4_ = uVar4;
+  
+  // 处理第二个参数（字符串）
   if (param_2 != 0) {
     lVar9 = -1;
     do {
       lVar17 = lVar9;
       lVar9 = lVar17 + 1;
-    } while (*(char *)(param_2 + lVar9) != '\0');
+    } while (*(char *)(param_2 + lVar9) != '\0');  // 计算字符串长度
+    
     if (0 < (int)lVar9) {
       iVar3 = uVar6 + (int)lVar9;
       if (iVar3 != 0) {
@@ -128,45 +136,49 @@ LAB_180072120:
           if ((int)uVar6 < 0x10) {
             uVar6 = 0x10;
           }
-          puVar10 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)(int)uVar6,0x13);
+          puVar10 = (undefined1 *)allocate_string_memory(_DAT_180c8ed18, (longlong)(int)uVar6, 0x13);
           *puVar10 = 0;
         }
         else {
           if (uVar6 <= uVar16) goto LAB_1800721e1;
           puStack_148 = (undefined1 *)CONCAT71(puStack_148._1_7_,0x13);
-          puVar10 = (undefined1 *)FUN_18062b8b0(_DAT_180c8ed18,puVar10,uVar6,0x10);
+          puVar10 = (undefined1 *)reallocate_string_memory(_DAT_180c8ed18, puVar10, uVar6, 0x10);
         }
         puStack_108 = puVar10;
-        uStack_f8._0_4_ = FUN_18064e990(puVar10);
+        uStack_f8._0_4_ = get_string_length(puVar10);
       }
 LAB_1800721e1:
-                    // WARNING: Subroutine does not return
-      memcpy(puVar10 + uVar19,param_2,(longlong)((int)lVar17 + 2));
+      // 复制字符串数据
+      memcpy(puVar10 + uVar19, param_2, (longlong)((int)lVar17 + 2));
     }
   }
-  FUN_180627e10(&puStack_110,&puStack_a8,&uStack_58);
+  // 清理字符串缓冲区
+  cleanup_string_buffer(&puStack_110, &puStack_a8, &uStack_58);
   uStack_114 = 0;
-  puStack_110 = &UNK_180a3c3e0;
+  puStack_110 = &GLOBAL_STRING_END;
+  
+  // 释放内存
   if (puVar10 != (undefined1 *)0x0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900(puVar10);
+    release_string_memory(puVar10);
   }
   puStack_108 = (undefined1 *)0x0;
   uStack_f8 = (ulonglong)uStack_f8._4_4_ << 0x20;
-  puStack_110 = &UNK_18098bcb0;
-  puStack_f0 = &UNK_180a3c3e0;
+  puStack_110 = &GLOBAL_STRING_HANDLER;
+  puStack_f0 = &GLOBAL_STRING_END;
+  
   if (lStack_e8 != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+    release_memory_handler();
   }
   lStack_e8 = 0;
   uStack_d8 = 0;
-  puStack_f0 = &UNK_18098bcb0;
-  puVar15 = &DAT_18098bc73;
+  puStack_f0 = &GLOBAL_STRING_HANDLER;
+  
+  // 获取调试状态
+  puVar15 = &EMPTY_STRING;
   if (puStack_a0 != (undefined *)0x0) {
     puVar15 = puStack_a0;
   }
-  cVar2 = FUN_1800f9600(puVar15);
+  cVar2 = get_debug_status(puVar15);
   if (cVar2 == '\0') {
     iVar3 = WaitForSingleObject(_DAT_180c91900,0);
     if (iVar3 == 0) {
