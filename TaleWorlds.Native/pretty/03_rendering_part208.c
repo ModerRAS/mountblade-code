@@ -380,7 +380,7 @@ void FUN_18038aae0(longlong param_1,longlong param_2,uint64_t param_3,uint64_t p
     } while ((int)uVar6 < (int)(uint)*(byte *)(param_2 + 0xa8));
   }
                     // WARNING: Subroutine does not return
-  FUN_180062300(_DAT_180c86928,&unknown_var_5280_ptr);
+  FUN_180062300(system_message_context,&unknown_var_5280_ptr);
 }
 
 

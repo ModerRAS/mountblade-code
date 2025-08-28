@@ -566,8 +566,8 @@ uint64_t * FUN_1806a3140(longlong *param_1)
     return (uint64_t *)0x0;
   }
   puVar2 = (uint64_t *)
-           (**(code **)(*_DAT_180be0050 + 8))
-                     (_DAT_180be0050,0x1f8,&unknown_var_4256_ptr,&unknown_var_3824_ptr,0x360);
+           (**(code **)(*system_system_buffer_config + 8))
+                     (system_system_buffer_config,0x1f8,&unknown_var_4256_ptr,&unknown_var_3824_ptr,0x360);
   if (puVar2 != (uint64_t *)0x0) {
     uVar1 = (**(code **)(*param_1 + 0x70))(param_1);
     uVar3 = (**(code **)(*param_1 + 0x68))(param_1);

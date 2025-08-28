@@ -883,7 +883,7 @@ void render_resource_allocator(longlong param_1)
     uVar3 = *(uint64_t *)(*(longlong *)(param_1 + 0x18) + 0x20);
     
     /* 分配渲染资源内存 */
-    uVar5 = render_memory_allocator(_DAT_180c8ed18, RENDER_STATE_SIZE, RENDER_PARAM_SIZE, RENDER_FLAG_SIZE);
+    uVar5 = render_memory_allocator(system_memory_pool_ptr, RENDER_STATE_SIZE, RENDER_PARAM_SIZE, RENDER_FLAG_SIZE);
     plVar6 = (longlong *)FUN_1802e6b00(uVar5, MEMORY_ALLOC_SIZE);
     plStackX_10 = plVar6;
     if (plVar6 != (longlong *)0x0) {

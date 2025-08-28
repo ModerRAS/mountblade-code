@@ -1232,7 +1232,7 @@ LAB_18013f3f7:
   }
   uVar10 = 0;
 LAB_18013f440:
-  lVar7 = FUN_18062b420(_DAT_180c8ed18,0x48,(char)param_1[5]);
+  lVar7 = FUN_18062b420(system_memory_pool_ptr,0x48,(char)param_1[5]);
   FUN_180627ae0(lVar7 + 0x20,param_5);
   *(uint64_t *)(lVar7 + 0x40) = 0;
                     // WARNING: Subroutine does not return

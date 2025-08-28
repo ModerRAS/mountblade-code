@@ -190,8 +190,8 @@ FUN_180547f00(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
     
     // 执行渲染状态检查
     if ((((*(int *)(param_5 + 1) == 0) && (!bVar3)) && (*(int *)(param_1 + 0x154) == 0)) &&
-       ((*(longlong *)(_DAT_180c86870 + 0x3d8) == 0 ||
-        (*(int *)(*(longlong *)(_DAT_180c86870 + 0x3d8) + 0x110) != 2)))) {
+       ((*(longlong *)(system_main_module_state + 0x3d8) == 0 ||
+        (*(int *)(*(longlong *)(system_main_module_state + 0x3d8) + 0x110) != 2)))) {
       FUN_180548880(param_1, *(int8_t *)(param_1 + 0x191));
     }
   }
@@ -507,7 +507,7 @@ uint64_t * FUN_180548160(longlong param_1,uint64_t *param_2)
   }
   
   // 创建主上下文
-  uVar3 = FUN_18062b1e0(_DAT_180c8ed18, 0x1a8, 8, 0x12);
+  uVar3 = FUN_18062b1e0(system_memory_pool_ptr, 0x1a8, 8, 0x12);
   plStackX_8 = (longlong *)CONCAT71(plStackX_8._1_7_, *(int8_t *)(param_1 + 0x191));
   uStackX_18 = *(int8_t *)(param_1 + 0x192);
   uVar1 = *(uint64_t *)(param_1 + 0xd8);
@@ -822,7 +822,7 @@ void FUN_180548880(longlong ******param_1,int8_t param_2)
   if ((*(char *)((longlong)param_1 + 0x192) == '\0') && (*(char *)(param_1 + 0x32) == '\0')) {
     *(int8_t *)(param_1 + 0x1a) = 1;
     FUN_180049550(param_1 + 6,0);
-    ppppppplVar4 = (longlong *******)FUN_18062b1e0(_DAT_180c8ed18,0x118,8,3);
+    ppppppplVar4 = (longlong *******)FUN_18062b1e0(system_memory_pool_ptr,0x118,8,3);
     pppppplStackX_8 =
          (longlong ******)CONCAT71(pppppplStackX_8._1_7_,param_1[0x1b] != (longlong *****)0x0);
     pppppplStackX_18 =
@@ -861,7 +861,7 @@ void FUN_180548880(longlong ******param_1,int8_t param_2)
     *(int8_t *)((longlong)ppppppplVar4 + 0x112) = pppppplStackX_8._0_1_;
     *(int8_t *)((longlong)ppppppplVar4 + 0x111) = pppppplStackX_18._0_1_;
     FUN_180056f10(param_1 + 0x33,ppppppplVar4);
-    uVar3 = _DAT_180c82868;
+    uVar3 = system_context_ptr;
     pppppplStackX_18 = (longlong ******)&pppppplStackX_8;
     pppppplStackX_8 = (longlong ******)param_1[0x33];
     if ((longlong *******)pppppplStackX_8 != (longlong *******)0x0) {

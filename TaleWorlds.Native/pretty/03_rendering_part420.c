@@ -36,7 +36,7 @@ void FUN_18049947f(longlong *param_1,longlong *param_2)
       lVar10 = 0;
     }
     else {
-      lVar10 = FUN_18062b420(_DAT_180c8ed18,(uVar9 & 0xffff) << 4,4);
+      lVar10 = FUN_18062b420(system_memory_pool_ptr,(uVar9 & 0xffff) << 4,4);
       uVar9 = (ulonglong)*(ushort *)(param_1 + 2);
     }
     uVar14 = 0;
@@ -44,7 +44,7 @@ void FUN_18049947f(longlong *param_1,longlong *param_2)
     *param_1 = lVar10;
     uVar11 = uVar14;
     if ((uVar9 & 0xffff) != 0) {
-      uVar11 = FUN_18062b420(_DAT_180c8ed18,(uVar9 & 0xffff) * 4,4);
+      uVar11 = FUN_18062b420(system_memory_pool_ptr,(uVar9 & 0xffff) * 4,4);
       sVar8 = (short)param_1[2];
     }
     param_1[1] = uVar11;
@@ -210,7 +210,7 @@ FUN_180499720(longlong param_1,longlong *param_2,uint64_t param_3,uint64_t param
   if (lVar3 == 0) {
     FUN_18066c220(param_1 + 0x20,&param_5,*(int32_t *)(param_1 + 0x10),
                   *(int32_t *)(param_1 + 0x18),1);
-    lVar3 = FUN_18062b420(_DAT_180c8ed18,0xa0,*(int8_t *)(param_1 + 0x2c));
+    lVar3 = FUN_18062b420(system_memory_pool_ptr,0xa0,*(int8_t *)(param_1 + 0x2c));
     FUN_180627ae0(lVar3,param_4);
                     // WARNING: Subroutine does not return
     memset(lVar3 + 0x20,0,0x78);
@@ -242,7 +242,7 @@ FUN_1804999e0(int8_t *param_1,int8_t *param_2,uint64_t param_3,uint64_t param_4)
     lVar2 = 0;
   }
   else {
-    lVar2 = FUN_18062b420(_DAT_180c8ed18,lVar3 * 4,uVar1 & 0xff,param_4,0xfffffffffffffffe);
+    lVar2 = FUN_18062b420(system_memory_pool_ptr,lVar3 * 4,uVar1 & 0xff,param_4,0xfffffffffffffffe);
   }
   *(longlong *)(param_1 + 8) = lVar2;
   *(longlong *)(param_1 + 0x10) = lVar2;
@@ -290,7 +290,7 @@ void FUN_180499b00(longlong *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
     if (lVar10 == 0) goto LAB_180499b83;
   }
   puVar4 = (int8_t *)
-           FUN_18062b420(_DAT_180c8ed18,lVar10 * 0x28,(char)param_1[3],param_4,0xfffffffffffffffe);
+           FUN_18062b420(system_memory_pool_ptr,lVar10 * 0x28,(char)param_1[3],param_4,0xfffffffffffffffe);
   puVar9 = (int32_t *)param_1[1];
   puVar5 = (int32_t *)*param_1;
 LAB_180499b83:
@@ -389,7 +389,7 @@ void FUN_180499ca0(longlong *param_1,longlong param_2,longlong param_3)
     lVar4 = 0;
   }
   else {
-    lVar4 = FUN_18062b420(_DAT_180c8ed18,uVar3 * 0x28,(char)param_1[3]);
+    lVar4 = FUN_18062b420(system_memory_pool_ptr,uVar3 * 0x28,(char)param_1[3]);
   }
   FUN_18049a030(param_2,param_3,lVar4);
   lVar5 = *param_1;
@@ -506,7 +506,7 @@ longlong FUN_180499f50(longlong *param_1,longlong *param_2,int param_3)
   }
   else {
     if (param_3 == 1) {
-      puVar3 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x30,8,system_allocation_flags,0xfffffffffffffffe);
+      puVar3 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x30,8,system_allocation_flags,0xfffffffffffffffe);
       puVar1 = (uint64_t *)*param_2;
       uVar2 = puVar1[1];
       *puVar3 = *puVar1;
@@ -559,7 +559,7 @@ FUN_18049a030(longlong *param_1,longlong *param_2,int8_t *param_3,uint64_t param
         lVar2 = 0;
       }
       else {
-        lVar2 = FUN_18062b420(_DAT_180c8ed18,lVar3 * 4,uVar1 & 0xff,param_4,uVar7);
+        lVar2 = FUN_18062b420(system_memory_pool_ptr,lVar3 * 4,uVar1 & 0xff,param_4,uVar7);
       }
       *plVar5 = lVar2;
       *(longlong *)(lVar6 + (longlong)plVar4) = lVar2;
@@ -636,7 +636,7 @@ int8_t * FUN_18049a1a0(longlong param_1,longlong param_2,int8_t *param_3)
             lVar6 = 0;
           }
           else {
-            lVar6 = FUN_18062b420(_DAT_180c8ed18,uVar10 * 4,(char)plVar9[2]);
+            lVar6 = FUN_18062b420(system_memory_pool_ptr,uVar10 * 4,(char)plVar9[2]);
           }
           if (lVar4 != lVar3) {
                     // WARNING: Subroutine does not return
@@ -736,7 +736,7 @@ int8_t * FUN_18049a1d8(longlong param_1,longlong param_2,longlong param_3)
           lVar6 = 0;
         }
         else {
-          lVar6 = FUN_18062b420(_DAT_180c8ed18,uVar9 * 4,(char)plVar8[2]);
+          lVar6 = FUN_18062b420(system_memory_pool_ptr,uVar9 * 4,(char)plVar8[2]);
         }
         if (lVar4 != lVar3) {
                     // WARNING: Subroutine does not return

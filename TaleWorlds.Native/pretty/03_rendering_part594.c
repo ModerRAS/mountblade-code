@@ -523,9 +523,9 @@ void FUN_180595690(longlong param_1,float param_2,float param_3,longlong param_4
     fVar2 = fVar2 + -6.2831855;
   }
   if (1e-08 < ABS(fVar2)) {
-    fVar1 = _DAT_180c963a0;
+    fVar1 = render_system_config;
     if ((*(uint *)(param_4 + 0x24) & 0x800) != 0) {
-      fVar1 = _DAT_180c9639c;
+      fVar1 = render_system_config;
     }
     fVar1 = fVar1 * param_3;
     if (fVar1 < ABS(fVar2)) {
@@ -568,9 +568,9 @@ void FUN_180595790(longlong param_1,longlong param_2,longlong param_3)
      (fVar8 = 1.0 - (fVar5 - *(float *)(param_1 + 0x14)) * 0.75, fVar8 <= 0.3)) {
     fVar8 = 0.3;
   }
-  fVar5 = _DAT_180c963c0;
+  fVar5 = render_system_config;
   if ((*(int *)(param_3 + 0x78) != 0x1a) && (fVar5 = 1.0, *(int *)(param_3 + 0x78) == 0x1b)) {
-    fVar5 = _DAT_180c963c4;
+    fVar5 = render_system_config;
   }
   fVar1 = *(float *)(param_1 + 0x1c);
   fVar2 = *(float *)(param_1 + 0x20);
@@ -686,9 +686,9 @@ void FUN_1805957ac(longlong param_1,float param_2,longlong param_3)
      (fVar9 = 1.0 - (*(float *)(in_RAX + 0x3ec4) - param_2) * 0.75, fVar9 <= 0.3)) {
     fVar9 = 0.3;
   }
-  fVar6 = _DAT_180c963c0;
+  fVar6 = render_system_config;
   if ((*(int *)(param_3 + 0x78) != 0x1a) && (fVar6 = 1.0, *(int *)(param_3 + 0x78) == 0x1b)) {
-    fVar6 = _DAT_180c963c4;
+    fVar6 = render_system_config;
   }
   fVar1 = *(float *)(param_1 + 0x1c);
   fVar2 = *(float *)(param_1 + 0x20);
@@ -809,10 +809,10 @@ void FUN_1805957d0(float param_1,float param_2,longlong param_3)
   if ((in_CF) && (fVar9 = unaff_XMM9_Da - (param_1 - param_2) * 0.75, fVar9 <= 0.3)) {
     fVar9 = 0.3;
   }
-  fVar6 = _DAT_180c963c0;
+  fVar6 = render_system_config;
   if ((*(int *)(param_3 + 0x78) != 0x1a) &&
      (fVar6 = unaff_XMM9_Da, *(int *)(param_3 + 0x78) == 0x1b)) {
-    fVar6 = _DAT_180c963c4;
+    fVar6 = render_system_config;
   }
   fVar1 = *(float *)(in_RCX + 0x1c);
   fVar2 = *(float *)(in_RCX + 0x20);

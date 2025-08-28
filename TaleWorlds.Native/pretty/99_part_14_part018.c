@@ -26,7 +26,7 @@ void FUN_1808f9b70(uint64_t param_1)
   uint64_t uStack_40;
   ulonglong uStack_38;
   
-  pcVar3 = _DAT_180c69f70;
+  pcVar3 = system_system_memory;
   uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_c8;
   apuStack_68[0] = &unknown_var_6608_ptr;
   puVar10 = &unknown_var_6800_ptr;
@@ -43,14 +43,14 @@ void FUN_1808f9b70(uint64_t param_1)
   apuStack_98[2] = &unknown_var_6864_ptr;
   apuStack_98[3] = &unknown_var_6896_ptr;
   apuStack_98[4] = (void *)0x0;
-  _guard_check_icall(_DAT_180c69f70);
+  _guard_check_icall(system_system_memory);
   iStack_a0 = 0;
   pcStack_a8 = (char *)0x0;
   iVar4 = (*pcVar3)(param_1,4,1,0);
   pcVar5 = pcVar7;
   if ((iVar4 != 0) &&
-     (pcVar5 = (char *)LocalAlloc(0x40,iVar4), pcVar3 = _DAT_180c69f70, pcVar5 != (char *)0x0)) {
-    _guard_check_icall(_DAT_180c69f70);
+     (pcVar5 = (char *)LocalAlloc(0x40,iVar4), pcVar3 = system_system_memory, pcVar5 != (char *)0x0)) {
+    _guard_check_icall(system_system_memory);
     pcStack_a8 = pcVar5;
     iStack_a0 = iVar4;
     iVar4 = (*pcVar3)(param_1,4,1);
@@ -66,16 +66,16 @@ void FUN_1808f9b70(uint64_t param_1)
         } while (cVar2 != '\0');
         if (cVar1 == cVar2) {
           LocalFree(pcVar5);
-          pcVar3 = _DAT_180c69f70;
+          pcVar3 = system_system_memory;
           pcVar5 = (char *)0x0;
-          _guard_check_icall(_DAT_180c69f70);
+          _guard_check_icall(system_system_memory);
           iStack_a0 = 0;
           pcStack_a8 = (char *)0x0;
           iVar4 = (*pcVar3)(param_1,4,0);
           if ((iVar4 == 0) ||
-             (pcVar5 = (char *)LocalAlloc(0x40,iVar4), pcVar3 = _DAT_180c69f70,
+             (pcVar5 = (char *)LocalAlloc(0x40,iVar4), pcVar3 = system_system_memory,
              pcVar5 == (char *)0x0)) goto LAB_1808f9c53;
-          _guard_check_icall(_DAT_180c69f70);
+          _guard_check_icall(system_system_memory);
           pcStack_a8 = pcVar5;
           iStack_a0 = iVar4;
           iVar4 = (*pcVar3)(param_1,4,0);

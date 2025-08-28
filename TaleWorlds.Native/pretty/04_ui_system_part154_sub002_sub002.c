@@ -4914,7 +4914,7 @@ uint64_t FUN_18075d580(longlong *param_1,longlong *param_2)
 uint64_t FUN_18075d5e0(void)
 
 {
-  (**(code **)(_DAT_180c0c6d0 + 0x10))();
+  (**(code **)(ui_system_config + 0x10))();
   return 0;
 }
 

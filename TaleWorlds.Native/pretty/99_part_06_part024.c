@@ -487,7 +487,7 @@ LAB_1803bc764:
             if (pcVar2 <= pcVar8) {
 LAB_1803bc7f0:
               do {
-                uVar3 = FUN_18062b1e0(_DAT_180c8ed18,0x2f0,0x10,0xd);
+                uVar3 = FUN_18062b1e0(system_memory_pool_ptr,0x2f0,0x10,0xd);
                 plVar4 = (longlong *)FUN_1802e6b00(uVar3,*(int8_t *)(param_1[5] + 0x2e5));
                 plVar10 = plVar4;
                 if (plVar4 != (longlong *)0x0) {

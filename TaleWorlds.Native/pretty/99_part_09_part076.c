@@ -191,7 +191,7 @@ FUN_1805ef6e0(uint64_t *param_1,longlong param_2,longlong param_3,longlong *para
       uVar25 = uVar15;
     } while (cVar19 < *(char *)(param_3 + 0x148));
     if ((int)uVar15 == 1) {
-      uVar16 = FUN_18062b1e0(_DAT_180c8ed18,0x270,8,CONCAT71((int7)((ulonglong)lVar22 >> 8),3));
+      uVar16 = FUN_18062b1e0(system_memory_pool_ptr,0x270,8,CONCAT71((int7)((ulonglong)lVar22 >> 8),3));
       uVar17 = FUN_18061e9c0(uVar16,param_3);
       goto LAB_1805ef98b;
     }

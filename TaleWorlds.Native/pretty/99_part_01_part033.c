@@ -51,7 +51,7 @@ void FUN_1800c0da0(longlong param_1,longlong param_2,uint64_t param_3,uint64_t *
   plVar4[1] = param_2;
   puVar5 = *(uint64_t **)*param_4;
   if ((*(char *)((longlong)puVar5 + 0x66) == '\0') && (*(char *)(puVar5 + 2) != '\0')) {
-    uVar9 = FUN_18062b420(_DAT_180c8ed18,puVar5[1],CONCAT71((int7)((ulonglong)lVar2 >> 8),3));
+    uVar9 = FUN_18062b420(system_memory_pool_ptr,puVar5[1],CONCAT71((int7)((ulonglong)lVar2 >> 8),3));
                     // WARNING: Subroutine does not return
     memcpy(uVar9,*puVar5,puVar5[1]);
   }
@@ -328,7 +328,7 @@ void FUN_1800c1420(uint64_t param_1,uint64_t param_2,longlong param_3,int8_t par
   int8_t auStack_70 [72];
   ulonglong uStack_28;
   
-  uVar1 = _DAT_180c86930;
+  uVar1 = system_resource_state;
   uStack_a0 = 0xfffffffffffffffe;
   uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_c8;
   uStack_a8 = 0;
@@ -468,8 +468,8 @@ longlong * FUN_1800c1670(uint64_t param_1,longlong *param_2,uint64_t param_3,uin
   
   uVar8 = 0xfffffffffffffffe;
   uVar7 = 0;
-  puVar4 = (uint64_t *)(_DAT_180c86970 + 0x50);
-  puVar5 = *(uint64_t **)(_DAT_180c86970 + 0x60);
+  puVar4 = (uint64_t *)(system_system_data_config + 0x50);
+  puVar5 = *(uint64_t **)(system_system_data_config + 0x60);
   puVar3 = puVar4;
   if (puVar5 != (uint64_t *)0x0) {
     do {
@@ -513,8 +513,8 @@ longlong * FUN_1800c1750(uint64_t param_1,longlong *param_2,int param_3)
   if (-1 < param_3) {
     if ((ulonglong)(longlong)param_3 <
         (ulonglong)
-        (*(longlong *)(_DAT_180c86970 + 0x88) - *(longlong *)(_DAT_180c86970 + 0x80) >> 3)) {
-      plVar1 = *(longlong **)(*(longlong *)(_DAT_180c86970 + 0x80) + (longlong)param_3 * 8);
+        (*(longlong *)(system_system_data_config + 0x88) - *(longlong *)(system_system_data_config + 0x80) >> 3)) {
+      plVar1 = *(longlong **)(*(longlong *)(system_system_data_config + 0x80) + (longlong)param_3 * 8);
       *param_2 = (longlong)plVar1;
       if (plVar1 == (longlong *)0x0) {
         return param_2;
@@ -550,8 +550,8 @@ int32_t FUN_1800c17c0(void)
   byte *pbStack_28;
   int iStack_20;
   
-  lVar12 = _DAT_180c86970;
-  puVar1 = (uint64_t *)(_DAT_180c86970 + 0xa0);
+  lVar12 = system_system_data_config;
+  puVar1 = (uint64_t *)(system_system_data_config + 0xa0);
   FUN_1806279c0(&puStack_30);
   puVar10 = *(uint64_t **)(lVar12 + 0xb0);
   puVar8 = puVar1;

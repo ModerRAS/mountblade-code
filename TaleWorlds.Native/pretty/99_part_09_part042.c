@@ -573,7 +573,7 @@ LAB_1805d0bad:
     if ((lVar2 != 0) &&
        ((*(byte *)((longlong)
                    *(int *)((longlong)*(int *)(lVar2 + 0xf0) * 0xa0 + 100 +
-                           *(longlong *)(lVar2 + 0xd0)) * 0x170 + 0x140 + _DAT_180c95ff0) & 0x10) !=
+                           *(longlong *)(lVar2 + 0xd0)) * 0x170 + 0x140 + system_system_config) & 0x10) !=
         0)) {
       func_0x0001805cef70(param_1);
     }
@@ -703,7 +703,7 @@ LAB_1805d0bad:
     if ((lVar2 != 0) &&
        ((*(byte *)((longlong)
                    *(int *)((longlong)*(int *)(lVar2 + 0xf0) * 0xa0 + 100 +
-                           *(longlong *)(lVar2 + 0xd0)) * 0x170 + 0x140 + _DAT_180c95ff0) & 0x10) !=
+                           *(longlong *)(lVar2 + 0xd0)) * 0x170 + 0x140 + system_system_config) & 0x10) !=
         0)) {
       in_XMM0_Da = (float)func_0x0001805cef70();
     }
@@ -833,7 +833,7 @@ LAB_1805d0bad:
     if ((lVar2 != 0) &&
        ((*(byte *)((longlong)
                    *(int *)((longlong)*(int *)(lVar2 + 0xf0) * 0xa0 + 100 +
-                           *(longlong *)(lVar2 + 0xd0)) * 0x170 + 0x140 + _DAT_180c95ff0) & 0x10) !=
+                           *(longlong *)(lVar2 + 0xd0)) * 0x170 + 0x140 + system_system_config) & 0x10) !=
         0)) {
       param_1 = (float)func_0x0001805cef70();
     }

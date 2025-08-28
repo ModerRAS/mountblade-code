@@ -467,7 +467,7 @@ void FUN_180237d00(longlong *param_1)
       uVar3 = 0;
     }
     else {
-      uVar3 = FUN_18062b420(_DAT_180c8ed18,(longlong)*(int *)(lVar2 + 0x14) << 4);
+      uVar3 = FUN_18062b420(system_memory_pool_ptr,(longlong)*(int *)(lVar2 + 0x14) << 4);
     }
                     // WARNING: Subroutine does not return
     memcpy(uVar3,*(uint64_t *)(lVar2 + 0x18),(longlong)iVar1 << 4);
@@ -543,7 +543,7 @@ void FUN_180238950(longlong *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
         if (lVar10 == 0) {
           lVar10 = 1;
 LAB_180238a80:
-          puVar9 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,lVar10 * 0xc,3,puStack_c0,uVar16);
+          puVar9 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,lVar10 * 0xc,3,puStack_c0,uVar16);
           puVar14 = puVar9;
         }
         else {
@@ -614,7 +614,7 @@ LAB_180238a80:
   }
   iStack_e0 = (int)uVar1;
   lVar2 = *(longlong *)(lVar2 + 0x68);
-  lVar7 = FUN_18062b420(_DAT_180c8ed18,0x28,(int8_t)uStack_78,param_4,uVar16);
+  lVar7 = FUN_18062b420(system_memory_pool_ptr,0x28,(int8_t)uStack_78,param_4,uVar16);
   uVar11 = *(uint *)((longlong)iStack_e0 * 0x5c + lVar2);
   *(uint *)(lVar7 + 0x20) = uVar11;
   bVar15 = true;
@@ -669,7 +669,7 @@ void FUN_180239390(uint64_t *param_1,uint64_t param_2,uint *param_3)
   uint64_t uVar5;
   bool bVar6;
   
-  lVar3 = FUN_18062b420(_DAT_180c8ed18,0x28,*(int8_t *)(param_1 + 5));
+  lVar3 = FUN_18062b420(system_memory_pool_ptr,0x28,*(int8_t *)(param_1 + 5));
   uVar1 = *param_3;
   bVar6 = true;
   *(uint *)(lVar3 + 0x20) = uVar1;
@@ -858,7 +858,7 @@ longlong FUN_180239530(longlong *param_1,longlong *param_2,int param_3)
   }
   else {
     if (param_3 == 1) {
-      puVar3 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x28,8,system_allocation_flags,0xfffffffffffffffe);
+      puVar3 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x28,8,system_allocation_flags,0xfffffffffffffffe);
       puVar1 = (uint64_t *)*param_2;
       uVar2 = puVar1[1];
       *puVar3 = *puVar1;
@@ -951,7 +951,7 @@ longlong FUN_180239720(longlong *param_1,longlong *param_2,int param_3)
   }
   else {
     if (param_3 == 1) {
-      puVar3 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x28,8,system_allocation_flags,0xfffffffffffffffe);
+      puVar3 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x28,8,system_allocation_flags,0xfffffffffffffffe);
       puVar1 = (uint64_t *)*param_2;
       uVar2 = puVar1[1];
       *puVar3 = *puVar1;

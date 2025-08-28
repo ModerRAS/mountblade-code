@@ -60,9 +60,9 @@ void FUN_180837990(float *param_1,uint param_2,longlong param_3,longlong *param_
     auVar20._0_16_ = auVar9;
     auVar20 = vpaddq_avx2(auVar20,auVar19);
     puVar16 = auStack_148;
-    auVar23 = ZEXT3264(_DAT_180980c00);
-    auVar24 = ZEXT3264(_DAT_180a40840);
-    auVar25 = ZEXT3264(_DAT_180980ca0);
+    auVar23 = ZEXT3264(ui_system_memory_config);
+    auVar24 = ZEXT3264(ui_system_config);
+    auVar25 = ZEXT3264(ui_system_memory_config);
     do {
       auStack_140 = auVar20;
       auVar20 = vpermd_avx2(auVar23._0_32_,auStack_140);
@@ -127,7 +127,7 @@ void FUN_180837990(float *param_1,uint param_2,longlong param_3,longlong *param_
       param_1[0xe] = (auVar22._24_4_ * auVar5._24_4_ * 4.656613e-10 + auVar11._24_4_) *
                      3.0517578e-05;
       param_1[0xf] = fVar15;
-      auVar23 = ZEXT3264(_DAT_180980c00);
+      auVar23 = ZEXT3264(ui_system_memory_config);
       param_1[0x10] = (auVar8._0_4_ * auVar6._0_4_ * 4.656613e-10 + auVar12._0_4_) * 3.0517578e-05;
       param_1[0x11] = (auVar8._4_4_ * auVar6._4_4_ * 4.656613e-10 + auVar12._4_4_) * 3.0517578e-05;
       param_1[0x12] = (auVar8._8_4_ * auVar6._8_4_ * 4.656613e-10 + auVar12._8_4_) * 3.0517578e-05;
@@ -140,7 +140,7 @@ void FUN_180837990(float *param_1,uint param_2,longlong param_3,longlong *param_
       param_1[0x16] =
            (auVar8._24_4_ * auVar6._24_4_ * 4.656613e-10 + auVar12._24_4_) * 3.0517578e-05;
       param_1[0x17] = fVar15 + auVar12._28_4_;
-      auVar24 = ZEXT3264(_DAT_180a40840);
+      auVar24 = ZEXT3264(ui_system_config);
       param_1[0x18] = (auVar19._0_4_ * auVar21._0_4_ * 4.656613e-10 + auVar13._0_4_) * 3.0517578e-05
       ;
       param_1[0x19] = (auVar19._4_4_ * auVar21._4_4_ * 4.656613e-10 + auVar13._4_4_) * 3.0517578e-05
@@ -158,7 +158,7 @@ void FUN_180837990(float *param_1,uint param_2,longlong param_3,longlong *param_
       param_1[0x1f] = fVar15 + auVar11._28_4_;
       param_1 = param_1 + 0x20;
       iVar17 = iVar17 + -1;
-      auVar25 = ZEXT3264(_DAT_180980ca0);
+      auVar25 = ZEXT3264(ui_system_memory_config);
     } while (iVar17 != 0);
     *param_4 = auVar20._0_8_;
     lStack_f8 = lStack_100;
@@ -237,11 +237,11 @@ void FUN_180837d30(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
   int8_t auVar24 [32];
   
   uVar7 = (ulonglong)param_1 & 0x1f;
-  auVar8 = _DAT_180980cc0;
-  auVar9 = _DAT_180980c40;
+  auVar8 = ui_system_memory_config;
+  auVar9 = ui_system_memory_config;
                     // WARNING: Read-only address (ram,0x000180980c40) is written
                     // WARNING: Read-only address (ram,0x000180980cc0) is written
-  for (; (_DAT_180980c40 = auVar9, _DAT_180980cc0 = auVar8, uVar7 != 0 && (param_2 != 0));
+  for (; (ui_system_memory_config = auVar9, ui_system_memory_config = auVar8, uVar7 != 0 && (param_2 != 0));
       param_2 = param_2 - 1) {
     fVar4 = (float)(int)*(short *)(param_3 + (ulonglong)param_4[1] * 2) * 3.0517578e-05;
     *param_1 = ((float)(int)*(short *)(param_3 + (ulonglong)(param_4[1] + 1) * 2) * 3.0517578e-05 -
@@ -249,8 +249,8 @@ void FUN_180837d30(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
     param_1 = param_1 + 1;
     *(longlong *)param_4 = *(longlong *)param_4 + *param_5;
     uVar7 = (ulonglong)param_1 & 0x1f;
-    auVar8 = _DAT_180980cc0;
-    auVar9 = _DAT_180980c40;
+    auVar8 = ui_system_memory_config;
+    auVar9 = ui_system_memory_config;
   }
   iVar13 = (int)param_2 >> 3;
   if (iVar13 != 0) {
@@ -406,11 +406,11 @@ void FUN_180837d61(float *param_1,uint64_t param_2,longlong param_3,uint *param_
   
   *(uint64_t *)(in_RAX + 8) = unaff_R15;
   uVar7 = (ulonglong)param_1 & 0x1f;
-  auVar8 = _DAT_180980c40;
-  auVar9 = _DAT_180980cc0;
+  auVar8 = ui_system_memory_config;
+  auVar9 = ui_system_memory_config;
                     // WARNING: Read-only address (ram,0x000180980c40) is written
                     // WARNING: Read-only address (ram,0x000180980cc0) is written
-  for (; (_DAT_180980c40 = auVar8, _DAT_180980cc0 = auVar9, uVar7 != 0 && (unaff_ESI != 0));
+  for (; (ui_system_memory_config = auVar8, ui_system_memory_config = auVar9, uVar7 != 0 && (unaff_ESI != 0));
       unaff_ESI = unaff_ESI - 1) {
     fVar4 = (float)(int)*(short *)(param_3 + (ulonglong)param_4[1] * 2) * 3.0517578e-05;
     *param_1 = ((float)(int)*(short *)(param_3 + (ulonglong)(param_4[1] + 1) * 2) * 3.0517578e-05 -
@@ -418,8 +418,8 @@ void FUN_180837d61(float *param_1,uint64_t param_2,longlong param_3,uint *param_
     param_1 = param_1 + 1;
     *(longlong *)param_4 = *(longlong *)param_4 + *unaff_R12;
     uVar7 = (ulonglong)param_1 & 0x1f;
-    auVar8 = _DAT_180980c40;
-    auVar9 = _DAT_180980cc0;
+    auVar8 = ui_system_memory_config;
+    auVar9 = ui_system_memory_config;
   }
   iVar14 = (int)unaff_ESI >> 3;
   if (iVar14 != 0) {
@@ -572,7 +572,7 @@ void FUN_180837e0a(uint64_t param_1)
   int8_t auVar19 [32];
   int8_t auVar20 [32];
   
-  auVar6 = _DAT_180980c40;
+  auVar6 = ui_system_memory_config;
   lVar1 = in_R11 * 8;
   iVar5 = (int)in_R11;
   iVar7 = iVar5 * 8;

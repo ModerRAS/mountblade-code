@@ -103,10 +103,10 @@ void FUN_1806502e0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   uStackX_10 = param_2;
   uStackX_18 = param_3;
   uStackX_20 = param_4;
-  if (_DAT_180bfbdb4 == 0) {
+  if (ui_system_control_config == 0) {
     FUN_180650490(&system_ptr_bdb0);
   }
-  if (_DAT_180bfbdb0 != 0) {
+  if (ui_system_control_config != 0) {
     FUN_1806501d0(0,0,&unknown_var_9496_ptr,param_1,&uStackX_10);
   }
   return;
@@ -131,22 +131,22 @@ void FUN_180650340(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   uStackX_10 = param_2;
   uStackX_18 = param_3;
   uStackX_20 = param_4;
-  if (_DAT_180bfbd84 == 0) {
+  if (ui_system_control_config == 0) {
     FUN_180650490(&system_ptr_bd80);
   }
-  if (_DAT_180bfbd80 == 0) {
-    if (_DAT_180bfbdb4 == 0) {
+  if (ui_system_control_config == 0) {
+    if (ui_system_control_config == 0) {
       FUN_180650490(&system_ptr_bdb0);
     }
-    if (_DAT_180bfbdb0 == 0) {
+    if (ui_system_control_config == 0) {
       return;
     }
   }
   LOCK();
-  lVar2 = _DAT_180c9e910 + 1;
+  lVar2 = ui_system_config + 1;
   UNLOCK();
-  bVar1 = _DAT_180c9e910 <= _DAT_180bf72a8;
-  _DAT_180c9e910 = lVar2;
+  bVar1 = ui_system_config <= ui_system_control_config;
+  ui_system_config = lVar2;
   if (bVar1) {
     FUN_1806501d0(0,0,&unknown_var_9448_ptr,param_1,&uStackX_10);
   }
@@ -170,26 +170,26 @@ void FUN_1806503d0(int32_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   
   uStackX_18 = param_3;
   uStackX_20 = param_4;
-  if (_DAT_180bfbd84 == 0) {
+  if (ui_system_control_config == 0) {
     FUN_180650490(&system_ptr_bd80);
   }
-  if (_DAT_180bfbd80 == 0) {
-    if (_DAT_180bfbdb4 == 0) {
+  if (ui_system_control_config == 0) {
+    if (ui_system_control_config == 0) {
       FUN_180650490(&system_ptr_bdb0);
     }
-    if (_DAT_180bfbdb0 == 0) goto LAB_180650464;
+    if (ui_system_control_config == 0) goto LAB_180650464;
   }
   LOCK();
-  uVar2 = _DAT_180ca8b88 + 1;
+  uVar2 = ui_system_config + 1;
   UNLOCK();
-  bVar1 = _DAT_180ca8b88 <= _DAT_180bf7308;
-  _DAT_180ca8b88 = uVar2;
+  bVar1 = ui_system_config <= ui_system_control_config;
+  ui_system_config = uVar2;
   if (bVar1) {
     FUN_1806501d0(0,0,&unknown_var_9424_ptr,param_2,&uStackX_18);
   }
 LAB_180650464:
-  if (_DAT_180c9e908 != (code *)0x0) {
-    (*_DAT_180c9e908)(param_1,_DAT_180c9eb48);
+  if (ui_system_config != (code *)0x0) {
+    (*ui_system_config)(param_1,ui_system_config);
   }
   return;
 }
@@ -702,7 +702,7 @@ void FUN_180650950(longlong param_1,longlong param_2)
 void FUN_180650a70(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  FUN_180651560(param_1,_DAT_180c967a0,param_3,param_4,0xfffffffffffffffe);
+  FUN_180651560(param_1,ui_system_config,param_3,param_4,0xfffffffffffffffe);
   return;
 }
 
@@ -827,9 +827,9 @@ void FUN_180650c20(longlong param_1)
   psVar1 = (short *)LoadLibraryA(puVar4);
   if (psVar1 != (short *)0x0) {
     puVar5 = (uint64_t *)&system_ptr_6790;
-    puVar2 = _DAT_180c967a0;
+    puVar2 = ui_system_config;
     psStack_1f8 = psVar1;
-    if (_DAT_180c967a0 != (uint64_t *)0x0) {
+    if (ui_system_config != (uint64_t *)0x0) {
       do {
         if ((short *)puVar2[4] < psVar1) {
           puVar3 = (uint64_t *)*puVar2;
@@ -864,7 +864,7 @@ void FUN_180650c20(longlong param_1)
       FUN_180650b30(alStack_1d8,psStack_190,psStack_190);
     }
     puVar5 = (uint64_t *)&system_ptr_6790;
-    puVar2 = _DAT_180c967a0;
+    puVar2 = ui_system_config;
     while (puVar2 != (uint64_t *)0x0) {
       if ((short *)puVar2[4] < psVar1) {
         puVar2 = (uint64_t *)*puVar2;
@@ -944,7 +944,7 @@ void FUN_180650e00(void)
 void FUN_180651540(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  FUN_180651560(param_1,_DAT_180c967a0,param_3,param_4,0xfffffffffffffffe);
+  FUN_180651560(param_1,ui_system_config,param_3,param_4,0xfffffffffffffffe);
   return;
 }
 
@@ -982,8 +982,8 @@ FUN_1806515e0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,longlong *para
   int32_t uVar6;
   bool bVar7;
   
-  if ((param_4 == _DAT_180c96790) || (param_4 == (longlong *)&system_ptr_6790)) {
-    if ((_DAT_180c967b0 != 0) && (param_4 = _DAT_180c96790, (ulonglong)_DAT_180c96790[4] < *param_5)
+  if ((param_4 == ui_system_config) || (param_4 == (longlong *)&system_ptr_6790)) {
+    if ((ui_system_config != 0) && (param_4 = ui_system_config, (ulonglong)ui_system_config[4] < *param_5)
        ) goto LAB_18065166c;
   }
   else {
@@ -1001,8 +1001,8 @@ LAB_18065166c:
   }
   puVar5 = (uint64_t *)&system_ptr_6790;
   bVar7 = true;
-  if (_DAT_180c967a0 != (uint64_t *)0x0) {
-    puVar2 = _DAT_180c967a0;
+  if (ui_system_config != (uint64_t *)0x0) {
+    puVar2 = ui_system_config;
     do {
       puVar5 = puVar2;
       bVar7 = *param_5 < (ulonglong)puVar5[4];
@@ -1016,7 +1016,7 @@ LAB_18065166c:
   }
   puVar2 = puVar5;
   if (bVar7) {
-    if (puVar5 == _DAT_180c96798) {
+    if (puVar5 == ui_system_config) {
       uVar3 = *param_5;
       goto LAB_1806516e0;
     }
@@ -1034,7 +1034,7 @@ LAB_1806516e0:
   else {
     uVar6 = 1;
   }
-  lVar4 = FUN_18062b420(_DAT_180c8ed18,0xd8,system_ptr_67b8);
+  lVar4 = FUN_18062b420(system_memory_pool_ptr,0xd8,system_ptr_67b8);
   *(ulonglong *)(lVar4 + 0x20) = *param_5;
   FUN_18063ccc0(lVar4 + 0x28);
                     // WARNING: Subroutine does not return
@@ -1062,7 +1062,7 @@ void FUN_180651770(uint64_t param_1,uint64_t param_2,void *param_3,uint64_t para
   else {
     uVar2 = 0;
   }
-  lVar1 = FUN_18062b420(_DAT_180c8ed18,0xd8,system_ptr_67b8,param_4,0xfffffffffffffffe);
+  lVar1 = FUN_18062b420(system_memory_pool_ptr,0xd8,system_ptr_67b8,param_4,0xfffffffffffffffe);
   *(ulonglong *)(lVar1 + 0x20) = *param_5;
   FUN_18063ccc0(lVar1 + 0x28);
                     // WARNING: Subroutine does not return
@@ -1134,7 +1134,7 @@ void pass_managed_library_callback_method_pointers(uint64_t param_1)
                     // 0x651890  36  pass_managed_library_callback_method_pointers
                     // WARNING: Could not recover jumptable at 0x00018065189d. Too many branches
                     // WARNING: Treating indirect jump as call
-  (**(code **)(*_DAT_180c8f008 + 0x40))(_DAT_180c8f008,param_1);
+  (**(code **)(*system_cache_buffer + 0x40))(system_cache_buffer,param_1);
   return;
 }
 
@@ -1146,7 +1146,7 @@ void pass_controller_methods(uint64_t param_1)
 
 {
                     // 0x6518b0  34  pass_controller_methods
-  _DAT_180c8f018 = param_1;
+  ui_system_data_config = param_1;
   return;
 }
 
@@ -1158,7 +1158,7 @@ void pass_managed_initialize_method_pointer(uint64_t param_1)
 
 {
                     // 0x6518c0  35  pass_managed_initialize_method_pointer
-  _DAT_180c8f010 = param_1;
+  ui_system_data_config = param_1;
   return;
 }
 
@@ -1185,7 +1185,7 @@ void FUN_180651910(uint64_t *param_1)
 
 {
   *param_1 = &unknown_var_9808_ptr;
-  _DAT_180c8f008 = 0;
+  system_cache_buffer = 0;
   if (param_1[0x2d] != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();

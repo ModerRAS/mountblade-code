@@ -17,8 +17,8 @@ static const int AUDIO_BUFFER_SIZE = 0x430;                // 音频缓冲区大
 static const int AUDIO_CONFIG_OFFSET = 0x10c0;             // 音频配置偏移量
 
 // 全局变量引用
-extern const float _g_audio_max_values[16];     // 音频最大值数组 (原 _DAT_180a401b0)
-extern const float _g_audio_min_values[16];     // 音频最小值数组 (原 _DAT_18094ed40)
+extern const float _g_audio_max_values[16];     // 音频最大值数组 (原 ui_system_audio)
+extern const float _g_audio_min_values[16];     // 音频最小值数组 (原 ui_system_audio)
 extern const void* _g_audio_format_table[16];  // 音频格式表 (原 global_config_9664)
 
 /**

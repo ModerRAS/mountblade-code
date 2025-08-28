@@ -790,8 +790,8 @@ void FUN_1807b1250(int param_1)
   
   uVar2 = *(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x128);
   FUN_180768360(uVar2);
-  puVar3 = _DAT_180be4cc8;
-  if (_DAT_180be4cc8 != (uint64_t *)&system_data_4cc8) {
+  puVar3 = system_system_buffer_config;
+  if (system_system_buffer_config != (uint64_t *)&system_data_4cc8) {
     do {
       if (*(int *)(puVar3 + 3) == param_1) {
         piVar1 = (int *)((longlong)puVar3 + 0x34);
@@ -939,8 +939,8 @@ void FUN_1807b15d0(longlong param_1,int32_t param_2,uint64_t param_3,int32_t par
   *(int32_t *)(param_1 + 0x178) = 0;
   uVar2 = *(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x128);
   FUN_180768360(uVar2);
-  puVar4 = _DAT_180be4cc8;
-  if (_DAT_180be4cc8 != (uint64_t *)&system_data_4cc8) {
+  puVar4 = system_system_buffer_config;
+  if (system_system_buffer_config != (uint64_t *)&system_data_4cc8) {
     do {
       if (*(int *)(puVar4 + 3) == iVar3) break;
       puVar4 = (uint64_t *)*puVar4;

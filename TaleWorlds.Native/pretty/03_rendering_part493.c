@@ -30,7 +30,7 @@ void FUN_18052f7be(void)
   
   if (((in_R9B & 0x20) != 0) && (-1 < (char)in_R9B)) {
     iVar5 = *(int *)(*(longlong *)(unaff_RDI + 0x590) + 0x2450);
-    if ((iVar5 == -1) || (*(int *)((longlong)iVar5 * 0x68 + 0x58 + _DAT_180c96150) != 0x17)) {
+    if ((iVar5 == -1) || (*(int *)((longlong)iVar5 * 0x68 + 0x58 + render_system_config) != 0x17)) {
       fVar11 = *(float *)(unaff_RBX + 0x7c) * *(float *)(unaff_RDI + 0x534) +
                *(float *)(unaff_RBX + 0x78) * *(float *)(unaff_RDI + 0x530) +
                *(float *)(unaff_RBX + 0x80) * *(float *)(unaff_RDI + 0x538);
@@ -750,7 +750,7 @@ int32_t FUN_180530280(longlong param_1)
   longlong lVar2;
   longlong lVar3;
   
-  lVar2 = _DAT_180c8aa00;
+  lVar2 = render_system_data_config;
   if (*(float *)(param_1 + 0x668) < *(float *)(param_1 + 0x558) ||
       *(float *)(param_1 + 0x668) == *(float *)(param_1 + 0x558)) {
     lVar3 = *(longlong *)(param_1 + 0x20);
@@ -765,7 +765,7 @@ int32_t FUN_180530280(longlong param_1)
     }
   }
   else {
-    lVar3 = *(longlong *)(_DAT_180c8aa00 + 0x20);
+    lVar3 = *(longlong *)(render_system_data_config + 0x20);
 LAB_1805302d6:
     if (lVar3 != 0) goto LAB_1805302df;
   }

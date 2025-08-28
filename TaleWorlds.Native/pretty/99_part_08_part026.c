@@ -31,7 +31,7 @@ void FUN_1804f93fb(void)
         lVar2 = 1;
 LAB_1804f9479:
         plVar3 = (longlong *)
-                 FUN_18062b420(_DAT_180c8ed18,lVar2 * 8,*(int8_t *)(unaff_RDI + 0x87b380));
+                 FUN_18062b420(system_memory_pool_ptr,lVar2 * 8,*(int8_t *)(unaff_RDI + 0x87b380));
         plVar4 = *(longlong **)(unaff_RDI + 0x87b368);
         plVar5 = *(longlong **)(unaff_RDI + 0x87b370);
       }

@@ -51,7 +51,7 @@ void FUN_180261c20(longlong *param_1,ulonglong param_2)
   puVar4 = (uint64_t *)0x0;
   if (uVar11 != 0) {
     puVar4 = (uint64_t *)
-             FUN_18062b420(_DAT_180c8ed18,uVar11 * 0x30,(char)param_1[3],puVar5,0xfffffffffffffffe);
+             FUN_18062b420(system_memory_pool_ptr,uVar11 * 0x30,(char)param_1[3],puVar5,0xfffffffffffffffe);
     puVar5 = (uint64_t *)param_1[1];
     puVar9 = (uint64_t *)*param_1;
   }
@@ -142,7 +142,7 @@ void FUN_180261ea0(longlong *param_1,longlong param_2,longlong param_3)
   if ((ulonglong)((param_1[2] - lVar2) / 0x48) < uVar5) {
     lVar2 = 0;
     if (uVar5 != 0) {
-      lVar2 = FUN_18062b420(_DAT_180c8ed18,uVar5 * 0x48,(char)param_1[3]);
+      lVar2 = FUN_18062b420(system_memory_pool_ptr,uVar5 * 0x48,(char)param_1[3]);
     }
     FUN_180262560(param_2,param_3,lVar2);
     lVar4 = param_1[1];
@@ -220,7 +220,7 @@ void FUN_1802620c0(longlong *param_1,longlong param_2,longlong param_3)
   if ((ulonglong)((param_1[2] - lVar3) / 0x38) < uVar2) {
     lVar3 = 0;
     if (uVar2 != 0) {
-      lVar3 = FUN_18062b420(_DAT_180c8ed18,uVar2 * 0x38,(char)param_1[3]);
+      lVar3 = FUN_18062b420(system_memory_pool_ptr,uVar2 * 0x38,(char)param_1[3]);
     }
     FUN_1802626f0(param_2,param_3,lVar3);
     lVar5 = param_1[1];
@@ -301,7 +301,7 @@ void FUN_1802622c0(longlong *param_1,longlong param_2,longlong param_3)
       lVar2 = 0;
     }
     else {
-      lVar2 = FUN_18062b420(_DAT_180c8ed18,uVar4 * 0x30,(char)param_1[3]);
+      lVar2 = FUN_18062b420(system_memory_pool_ptr,uVar4 * 0x30,(char)param_1[3]);
     }
     FUN_180262830(param_2,param_3,lVar2);
     lVar5 = param_1[1];
@@ -752,7 +752,7 @@ longlong * FUN_180262830(longlong *param_1,longlong *param_2,longlong *param_3,u
         lVar3 = 0;
       }
       else {
-        lVar3 = FUN_18062b420(_DAT_180c8ed18,lVar4 << 5,uVar2 & 0xff,param_4,uVar8);
+        lVar3 = FUN_18062b420(system_memory_pool_ptr,lVar4 << 5,uVar2 & 0xff,param_4,uVar8);
       }
       *param_3 = lVar3;
       *(longlong *)(lVar7 + (longlong)plVar6) = lVar3;

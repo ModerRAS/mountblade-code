@@ -12,10 +12,10 @@ void FUN_18064c2bf(longlong param_1)
   longlong unaff_RDI;
   
   uVar1 = *unaff_RBX;
-  if (_DAT_180bfbdfc == 0) {
+  if (render_system_control_ui == 0) {
     FUN_180650490(&system_data_bdf8);
   }
-  if (_DAT_180bfbdf8 == 0) {
+  if (render_system_control_ui == 0) {
     FUN_1806492c0((((param_1 - unaff_RDI) + -0x80) / 0x50) * 0x10000 + unaff_RDI,
                   (ulonglong)uVar1 << 0x10);
   }

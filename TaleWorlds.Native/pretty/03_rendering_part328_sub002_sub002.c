@@ -1143,7 +1143,7 @@ int32_t * FUN_18043e720(int32_t *param_1)
   int32_t uStack_1c;
   int32_t uStack_14;
   
-  uVar3 = FUN_18062b1e0(_DAT_180c8ed18,0x2f0,0x10,3,0xfffffffffffffffe);
+  uVar3 = FUN_18062b1e0(system_memory_pool_ptr,0x2f0,0x10,3,0xfffffffffffffffe);
   plVar4 = (longlong *)FUN_1802e6b00(uVar3,4);
   if (plVar4 != (longlong *)0x0) {
     (**(code **)(*plVar4 + 0x28))(plVar4);
@@ -1222,7 +1222,7 @@ bool FUN_18043e7f0(longlong param_1,byte param_2,char param_3)
     uStack_8c = 1;
   }
   alStack_b8[0] = 0;
-  alStack_b8[0] = FUN_18062b420(_DAT_180c8ed18,0x1000,0xd);
+  alStack_b8[0] = FUN_18062b420(system_memory_pool_ptr,0x1000,0xd);
   LOCK();
   alStack_b8[1] = 0;
   UNLOCK();

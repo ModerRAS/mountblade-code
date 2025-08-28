@@ -404,7 +404,7 @@ void FUN_18069ca80(longlong param_1,int param_2,int8_t (*param_3) [16])
   auVar77._0_8_ = auVar73._8_8_;
   auVar142 = psubusb(auVar77,auVar44);
   auVar127 = psubusb(auVar44,auVar77);
-  auVar127 = (auVar127 | auVar142) & _DAT_180d9e5c0;
+  auVar127 = (auVar127 | auVar142) & ui_system_config;
   auVar128._0_2_ = auVar127._0_2_ >> 1;
   auVar128._2_2_ = auVar127._2_2_ >> 1;
   auVar128._4_2_ = auVar127._4_2_ >> 1;
@@ -434,13 +434,13 @@ void FUN_18069ca80(longlong param_1,int param_2,int8_t (*param_3) [16])
   auVar119[0xd] = -(auVar127[0xd] == '\0');
   auVar119[0xe] = -(auVar127[0xe] == '\0');
   auVar119[0xf] = -(auVar127[0xf] == '\0');
-  auVar127 = psubsb(auVar44 ^ _DAT_180d9e5d0,auVar77 ^ _DAT_180d9e5d0);
-  auVar142 = psubsb(auVar74 ^ _DAT_180d9e5d0,auVar70 ^ _DAT_180d9e5d0);
+  auVar127 = psubsb(auVar44 ^ ui_system_config,auVar77 ^ ui_system_config);
+  auVar142 = psubsb(auVar74 ^ ui_system_config,auVar70 ^ ui_system_config);
   auVar127 = paddsb(auVar127,auVar142);
   auVar127 = paddsb(auVar127,auVar142);
   auVar127 = paddsb(auVar127,auVar142);
-  auVar120 = paddsb(auVar119 & auVar127,_DAT_180d9e5f0);
-  auVar127 = paddsb(auVar119 & auVar127,_DAT_180d9e600);
+  auVar120 = paddsb(auVar119 & auVar127,ui_system_config);
+  auVar127 = paddsb(auVar119 & auVar127,ui_system_config);
   auVar143[0] = -(auVar127[0] < '\0');
   auVar143[1] = -(auVar127[1] < '\0');
   auVar143[2] = -(auVar127[2] < '\0');
@@ -465,7 +465,7 @@ void FUN_18069ca80(longlong param_1,int param_2,int8_t (*param_3) [16])
   auVar45._10_2_ = auVar127._10_2_ >> 3;
   auVar45._12_2_ = auVar127._12_2_ >> 3;
   auVar45._14_2_ = auVar127._14_2_ >> 3;
-  auVar142 = psubsb(auVar74 ^ _DAT_180d9e5d0,auVar45 & _DAT_180d9e650 | auVar143 & _DAT_180d9e640);
+  auVar142 = psubsb(auVar74 ^ ui_system_config,auVar45 & ui_system_config | auVar143 & ui_system_config);
   auVar144[0] = -(auVar120[0] < '\0');
   auVar144[1] = -(auVar120[1] < '\0');
   auVar144[2] = -(auVar120[2] < '\0');
@@ -490,9 +490,9 @@ void FUN_18069ca80(longlong param_1,int param_2,int8_t (*param_3) [16])
   auVar121._10_2_ = auVar120._10_2_ >> 3;
   auVar121._12_2_ = auVar120._12_2_ >> 3;
   auVar121._14_2_ = auVar120._14_2_ >> 3;
-  auVar127 = paddsb(auVar70 ^ _DAT_180d9e5d0,auVar121 & _DAT_180d9e650 | auVar144 & _DAT_180d9e640);
-  auVar142 = auVar142 ^ _DAT_180d9e5d0;
-  auVar127 = auVar127 ^ _DAT_180d9e5d0;
+  auVar127 = paddsb(auVar70 ^ ui_system_config,auVar121 & ui_system_config | auVar144 & ui_system_config);
+  auVar142 = auVar142 ^ ui_system_config;
+  auVar127 = auVar127 ^ ui_system_config;
   puVar3 = puVar1 + lVar32;
   auVar53._0_14_ = auVar44._0_14_;
   auVar53[0xe] = (char)uVar11;

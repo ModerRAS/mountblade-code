@@ -179,7 +179,7 @@ LAB_1802b515c:
       puVar13 = *(void **)(unaff_RSI + 0x50);
     }
                     // WARNING: Subroutine does not return
-    FUN_180062300(_DAT_180c86928,&unknown_var_5104_ptr,puVar13,puVar17);
+    FUN_180062300(system_message_context,&unknown_var_5104_ptr,puVar13,puVar17);
   }
   pcVar9 = "emitters";
   do {
@@ -551,7 +551,7 @@ LAB_1802b515c:
       puVar12 = *(void **)(unaff_RSI + 0x50);
     }
                     // WARNING: Subroutine does not return
-    FUN_180062300(_DAT_180c86928,&unknown_var_5104_ptr,puVar12,puVar17);
+    FUN_180062300(system_message_context,&unknown_var_5104_ptr,puVar12,puVar17);
   }
   pcVar14 = "emitters";
   do {

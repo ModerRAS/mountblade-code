@@ -208,7 +208,7 @@ longlong FUN_18022dd60(longlong param_1)
             lVar7 = 1;
 LAB_18022de69:
             puVar6 = (uint64_t *)
-                     FUN_18062b420(_DAT_180c8ed18,lVar7 * 0x58,*(int8_t *)(param_1 + 0x380),
+                     FUN_18062b420(system_memory_pool_ptr,lVar7 * 0x58,*(int8_t *)(param_1 + 0x380),
                                    lVar15,uVar16);
             uVar11 = *(ulonglong *)(param_1 + 0x370);
             uVar14 = *puVar1;
@@ -366,9 +366,9 @@ void FUN_18022dfe0(longlong param_1,uint64_t param_2,longlong param_3)
     if (((*plVar18 != 0) || (plVar18[1] != 0)) &&
        (*(int *)(*(longlong *)(param_1 + 0x1e0) + 0x1c40 + lVar10) != 0)) {
       lVar11 = FUN_180255f80(*(uint64_t *)(param_1 + 0xa8),&unknown_var_1168_ptr);
-      lVar7 = _DAT_180c86898;
+      lVar7 = core_system_data_config;
       if (lVar11 == 0) {
-        if (*(longlong *)(_DAT_180c86898 + 0x98) == 0) {
+        if (*(longlong *)(core_system_data_config + 0x98) == 0) {
           puVar12 = (uint64_t *)FUN_1800c1420(extraout_XMM0_Da,&plStack_c0,&unknown_var_9256_ptr,1);
           uVar2 = *puVar12;
           *puVar12 = 0;
@@ -463,10 +463,10 @@ void FUN_18022dfe0(longlong param_1,uint64_t param_2,longlong param_3)
   *(int32_t *)(param_1 + 0x280) = *(int32_t *)(param_3 + 0x1c0);
   *(int32_t *)(param_1 + 0x284) = *(int32_t *)(param_3 + 0x1c4);
   lVar10 = *(longlong *)(param_1 + 0xa8);
-  puVar21 = (uint64_t *)(_DAT_180c8a9d0 + 0x180);
+  puVar21 = (uint64_t *)(core_system_data_config + 0x180);
   puVar12 = puVar21;
-  puVar16 = *(uint64_t **)(_DAT_180c8a9d0 + 400);
-  if (*(uint64_t **)(_DAT_180c8a9d0 + 400) != (uint64_t *)0x0) {
+  puVar16 = *(uint64_t **)(core_system_data_config + 400);
+  if (*(uint64_t **)(core_system_data_config + 400) != (uint64_t *)0x0) {
     do {
       iVar9 = memcmp(puVar16 + 4,lVar10 + 0xc,0x10);
       if (iVar9 < 0) {

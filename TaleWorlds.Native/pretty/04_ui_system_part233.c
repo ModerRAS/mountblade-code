@@ -61,7 +61,7 @@ void FUN_18079fa70(longlong param_1,longlong param_2,int param_3)
       uVar1 = uVar1 - 1;
     } while (uVar1 != 0);
   }
-  fVar11 = _DAT_180c19958;
+  fVar11 = ui_system_config;
   if (iVar9 < param_3 * 5) {
     pfVar5 = (float *)(param_2 + ((longlong)iVar9 + lVar7 * 2) * 4);
     uVar1 = (ulonglong)((param_3 - 1U >> 1) + 1);

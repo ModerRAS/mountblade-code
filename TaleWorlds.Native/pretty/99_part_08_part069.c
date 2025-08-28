@@ -142,8 +142,8 @@ void FUN_1805b8300(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
   *(int32_t *)(param_1 + 0x26d) = 0x7f7fffff;
   *(int32_t *)(param_1 + 0x272) = 0x41c64e6d;
   *(int32_t *)(param_1 + 0x274) = 1;
-  uVar1 = _DAT_180c8ed38;
-  param_1[0x273] = _DAT_180c8ed38;
+  uVar1 = system_system_data_config;
+  param_1[0x273] = system_system_data_config;
   *(int32_t *)(param_1 + 0x276) = 1;
   param_1[0x275] = uVar1;
   *(int32_t *)(param_1 + 0x279) = 1;

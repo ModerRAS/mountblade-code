@@ -45,7 +45,7 @@ void FUN_1802fc520(longlong param_1,char param_2,uint64_t param_3,uint64_t param
       }
       if (((*(longlong *)(param_1 + 0xd0) != 0) &&
           (*(longlong *)(*(longlong *)(param_1 + 0xd0) + 0x1000) != 0)) &&
-         (*(int *)(_DAT_180c8a9c8 + 0xaf0) != 0)) {
+         (*(int *)(system_system_data_config + 0xaf0) != 0)) {
         (**(code **)(**(longlong **)(lVar3 + 0x318) + 0xe0))();
         *(uint64_t *)(*(longlong *)(param_1 + 0xd0) + 0x1000) = 0;
       }

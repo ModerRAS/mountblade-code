@@ -241,7 +241,7 @@ longlong * FUN_180505560(longlong *param_1,longlong *param_2,uint64_t param_3,ui
         lVar9 = 0;
       }
       else {
-        lVar9 = FUN_18062b420(_DAT_180c8ed18,uVar12 * 8,(char)param_1[5]);
+        lVar9 = FUN_18062b420(system_memory_pool_ptr,uVar12 * 8,(char)param_1[5]);
       }
       if (lVar4 != lVar3) {
                     // WARNING: Subroutine does not return

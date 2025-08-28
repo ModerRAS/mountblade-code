@@ -324,7 +324,7 @@ void DataFlowProcessor(longlong param_1, longlong param_2, longlong param_3)
             if ((int)(uVar9 + 1) < 0x10) {
                 uVar7 = 0x10;
             }
-            puStack_2b8 = (int8_t *)SystemMemoryAllocator(_DAT_180c8ed18, (longlong)(int)uVar7, 0x13);
+            puStack_2b8 = (int8_t *)SystemMemoryAllocator(system_memory_pool_ptr, (longlong)(int)uVar7, 0x13);
             *puStack_2b8 = 0;
             uVar8 = SystemValidator(puStack_2b8);
             uStack_2a8 = CONCAT44(uStack_2a8._4_4_, uVar8);
@@ -346,7 +346,7 @@ void DataFlowProcessor(longlong param_1, longlong param_2, longlong param_3)
             if ((int)uVar9 < 0x10) {
                 uVar9 = 0x10;
             }
-            puStack_2b8 = (int8_t *)SystemMemoryAllocator(_DAT_180c8ed18, (longlong)(int)uVar9, 0x13);
+            puStack_2b8 = (int8_t *)SystemMemoryAllocator(system_memory_pool_ptr, (longlong)(int)uVar9, 0x13);
             *puStack_2b8 = 0;
         }
         else {
@@ -356,7 +356,7 @@ void DataFlowProcessor(longlong param_1, longlong param_2, longlong param_3)
             }
             /* 重新分配更大的缓冲区 */
             puStack_2d8 = (uint *)CONCAT71(puStack_2d8._1_7_, 0x13);
-            puStack_2b8 = (int8_t *)SystemMemoryReallocator(_DAT_180c8ed18, puStack_2b8, uVar9, 0x10);
+            puStack_2b8 = (int8_t *)SystemMemoryReallocator(system_memory_pool_ptr, puStack_2b8, uVar9, 0x10);
         }
         uVar8 = SystemValidator(puStack_2b8);
         uStack_2a8 = CONCAT44(uStack_2a8._4_4_, uVar8);
@@ -444,7 +444,7 @@ LAB_1801d907b:
                 *(uint *)(param_1 + 0x90) = uVar9;
                 piVar20 = (int *)(puStack_270 + 2);
                 puStack_270 = (uint *)piVar20;
-                uVar11 = SystemMemoryAllocator(_DAT_180c8ed18, (longlong)(int)uVar9, 3);
+                uVar11 = SystemMemoryAllocator(system_memory_pool_ptr, (longlong)(int)uVar9, 3);
                 *(uint64_t *)(param_1 + 0x88) = uVar11;
                 SystemDataCopier(uVar11, piVar20, (longlong)(int)*(uint *)(param_1 + 0x90));
             }
@@ -507,7 +507,7 @@ LAB_1801d907b:
                             uStack_58 = uVar9;
                             
                             /* 分配内存并插入数据 */
-                            lVar25 = SystemMemoryAllocator(_DAT_180c8ed18, 0x38, *(int8_t *)(lVar22 + 0x28));
+                            lVar25 = SystemMemoryAllocator(system_memory_pool_ptr, 0x38, *(int8_t *)(lVar22 + 0x28));
                             *(uint64_t *)(lVar25 + 0x20) = uVar11;
                             *(uint64_t *)(lVar25 + 0x28) = uVar3;
                             *(uint *)(lVar25 + 0x30) = uVar9;
@@ -661,7 +661,7 @@ LAB_1801d94be:
                     uVar19 = (ulonglong)uVar9;
                     do {
                         /* 分配和初始化数据结构 */
-                        puVar14 = (uint *)SystemMemoryAllocator(_DAT_180c8ed18, 0x20, 8, 0x11);
+                        puVar14 = (uint *)SystemMemoryAllocator(system_memory_pool_ptr, 0x20, 8, 0x11);
                         puVar14[2] = 0;
                         puVar14[3] = 0;
                         puVar14[4] = 0xffffffff;
@@ -736,7 +736,7 @@ LAB_1801d94be:
             puVar21 = puStack_270;
             
             /* 处理调试信息输出 */
-            if ((*(char *)(_DAT_180c8aa08 + 9) != '\0') && (lStack_218 != 0)) {
+            if ((*(char *)(system_global_data_ptr + 9) != '\0') && (lStack_218 != 0)) {
                 puStack_298 = &unknown_var_3456_ptr;
                 uStack_280 = 0;
                 puStack_290 = (int8_t *)0x0;
@@ -804,7 +804,7 @@ LAB_1801d94be:
                             uVar11 = 0;
                         }
                         else {
-                            uVar11 = SystemMemoryAllocator(_DAT_180c8ed18, (longlong)*(int *)(puVar1 + 2), 3);
+                            uVar11 = SystemMemoryAllocator(system_memory_pool_ptr, (longlong)*(int *)(puVar1 + 2), 3);
                             iVar18 = *(int *)(puVar1 + 2);
                         }
                         *puVar1 = uVar11;

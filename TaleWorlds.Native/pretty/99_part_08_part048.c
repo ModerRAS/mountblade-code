@@ -178,7 +178,7 @@ void FUN_1805a97d0(uint64_t param_1,longlong param_2,int param_3,int param_4,uin
     uStack_164 = uStack_174;
     iStack_138 = param_4;
     func_0x0001805345e0(&uStack_2c8);
-    lVar6 = _DAT_180c8ece0;
+    lVar6 = system_system_data_memory;
     uStack_2c8 = 0x1000000;
     uStack_2c0 = 0;
     uStack_2a8 = 0xffffffffffffffff;
@@ -210,12 +210,12 @@ void FUN_1805a97d0(uint64_t param_1,longlong param_2,int param_3,int param_4,uin
     uStack_2aa = uVar8;
     uStack_25c = uVar3;
     uStack_254 = uVar4;
-    if ((iVar1 != 0) && (_DAT_180c8f008 != 0)) {
-      (**(code **)(_DAT_180c8f008 + 0x30))(iVar1);
+    if ((iVar1 != 0) && (system_cache_buffer != 0)) {
+      (**(code **)(system_cache_buffer + 0x30))(iVar1);
     }
     iVar2 = *(int *)((longlong)param_4 * 0xa60 + 0x30b8 + param_2);
-    if ((iVar2 != 0) && (_DAT_180c8f008 != 0)) {
-      (**(code **)(_DAT_180c8f008 + 0x30))(iVar2);
+    if ((iVar2 != 0) && (system_cache_buffer != 0)) {
+      (**(code **)(system_cache_buffer + 0x30))(iVar2);
     }
     uStack_108 = uStack_1e8;
     uStack_100 = uStack_1e0;
@@ -248,11 +248,11 @@ void FUN_1805a97d0(uint64_t param_1,longlong param_2,int param_3,int param_4,uin
     uStack_48 = CONCAT44(uStack_124,uStack_128);
     (**(code **)(lVar6 + 0x1c8))
               (*(int32_t *)(param_2 + 0x98d928),&uStack_2c8,&uStack_108,iVar2,iVar1);
-    if ((iVar2 != 0) && (_DAT_180c8f008 != 0)) {
-      (**(code **)(_DAT_180c8f008 + 0x18))(iVar2);
+    if ((iVar2 != 0) && (system_cache_buffer != 0)) {
+      (**(code **)(system_cache_buffer + 0x18))(iVar2);
     }
-    if ((iVar1 != 0) && (_DAT_180c8f008 != 0)) {
-      (**(code **)(_DAT_180c8f008 + 0x18))(iVar1);
+    if ((iVar1 != 0) && (system_cache_buffer != 0)) {
+      (**(code **)(system_cache_buffer + 0x18))(iVar1);
     }
   }
   return;

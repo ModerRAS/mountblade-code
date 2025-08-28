@@ -1287,18 +1287,18 @@ int FUN_1800418e0(void)
   FUN_1808fc838(0x180c96248,8,5,&SUB_18005d5f0,FUN_180045af0);
   FUN_1808fc838(0x180c96298,8,5,&SUB_18005d5f0,FUN_180045af0);
   _Mtx_init_in_situ(0x180c962c0,2);
-  _DAT_180c96310 = 0;
-  _DAT_180c96318 = 0;
-  _DAT_180c96320 = 0;
-  _DAT_180c96328 = 3;
-  _DAT_180c96330 = 0;
-  _DAT_180c96338 = 0;
-  _DAT_180c96340 = 0;
-  _DAT_180c96348 = 3;
-  _DAT_180c96350 = 0;
+  core_system_ui = 0;
+  core_system_ui = 0;
+  core_system_ui = 0;
+  core_system_ui = 3;
+  core_system_ui = 0;
+  core_system_ui = 0;
+  core_system_ui = 0;
+  core_system_ui = 3;
+  core_system_ui = 0;
   uRam0000000180c96358 = 0;
-  _DAT_180c96360 = 0;
-  _DAT_180c96368 = 3;
+  core_system_ui = 0;
+  core_system_ui = 3;
   FUN_1804ac640();
   lVar1 = FUN_1808fc7d0(&unknown_var_2448_ptr);
   return (lVar1 != 0) - 1;
@@ -1314,7 +1314,7 @@ int FUN_180041a10(void)
   longlong lVar1;
   uint64_t in_R9;
   
-  _DAT_180bf64f8 = &unknown_var_672_ptr;
-  _DAT_180bf6500 = &system_data_6510;
+  core_system_control_ui = &unknown_var_672_ptr;
+  core_system_control_ui = &system_data_6510;
 
 

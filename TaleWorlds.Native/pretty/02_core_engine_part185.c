@@ -871,7 +871,7 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, longlong config_da
             __Throw_C_error_std__YAXH_Z(resource_id);
         }
         if (int_stack_b8 != 0) {
-            quad_pointer = (QuadPointer *)MemoryAllocator(_DAT_180c8ed18, 0xe8, 8, 3);
+            quad_pointer = (QuadPointer *)MemoryAllocator(system_memory_pool_ptr, 0xe8, 8, 3);
             quad_stack_ptr10 = (QuadPointer *)&int_stack_a8;
             quad_stack_ptr8 = quad_pointer;
             system_data = (uint64_t *)StringInitializer(&int_stack_a8, &ptr_stack_c8);
@@ -911,7 +911,7 @@ void core_engine_data_flow_processor(TriplePointer *data_ptr, longlong config_da
             *system_data = &unknown_var_720_ptr;
             quad_stack_88 = quad_pointer;
             ((code *)(*quad_pointer)[5])(quad_pointer, temp_offset);
-            temp_offset = _DAT_180c82868;
+            temp_offset = system_context_ptr;
             quad_stack_ptr10 = (QuadPointer *)&quad_stack_ptr8;
             quad_stack_ptr8 = quad_pointer;
             ((code *)(*quad_pointer)[5])(quad_pointer);

@@ -90,9 +90,9 @@ uint64_t FUN_180153ab0(longlong param_1,longlong param_2,longlong param_3)
       puVar4 = *(void **)(param_3 + 8);
     }
     auStackX_10[0] = atoi(puVar4);
-    lVar1 = _DAT_180c86908;
-    if ((*(longlong *)(_DAT_180c86908 + 0x530) != 0) &&
-       (cVar2 = (**(code **)(_DAT_180c86908 + 0x538))(auStackX_10), cVar2 == '\0')) {
+    lVar1 = system_module_state;
+    if ((*(longlong *)(system_module_state + 0x530) != 0) &&
+       (cVar2 = (**(code **)(system_module_state + 0x538))(auStackX_10), cVar2 == '\0')) {
       if (system_debug_flag == '\0') {
         puVar4 = &system_buffer_ptr;
         if (*(void **)(lVar1 + 0x4e0) != (void *)0x0) {
@@ -163,7 +163,7 @@ void FUN_180153c60(longlong param_1)
   auStack_38[0] = 0;
   uStack_40 = 0x1b;
   strcpy_s(auStack_38,0x20,&unknown_var_6328_ptr);
-  cVar2 = FUN_180051f00(_DAT_180c86870,&puStack_50);
+  cVar2 = FUN_180051f00(system_main_module_state,&puStack_50);
   puStack_50 = &unknown_var_720_ptr;
   if (cVar2 != '\0') {
     FUN_18010d670(param_1,10);

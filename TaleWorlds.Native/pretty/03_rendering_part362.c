@@ -570,7 +570,7 @@ ulonglong FUN_1804661f0(longlong param_1,uint64_t param_2,uint64_t param_3)
   
   lVar1 = *(longlong *)(param_1 + 0xd8);
   lVar2 = *(longlong *)(param_1 + 0xd0);
-  uVar3 = FUN_18062b1e0(_DAT_180c8ed18,0xd8,8,3);
+  uVar3 = FUN_18062b1e0(system_memory_pool_ptr,0xd8,8,3);
   uStackX_8 = func_0x000180464d70(uVar3,param_2,param_3);
   FUN_18005ea90(param_1 + 0xd0,&uStackX_8);
   *(int *)(param_1 + 0x70) = *(int *)(param_1 + 0x70) + 1;

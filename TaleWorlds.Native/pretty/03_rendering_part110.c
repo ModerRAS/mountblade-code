@@ -96,7 +96,7 @@ void RenderingSystem_RemoveResourceData(longlong resource_context, uint resource
   
   uStack_68 = 0xfffffffffffffffe;
   uVar21 = (ulonglong)param_2;
-  puVar7 = (ulonglong *)FUN_18062b1e0(_DAT_180c8ed18,0xe0,8,3);
+  puVar7 = (ulonglong *)FUN_18062b1e0(system_memory_pool_ptr,0xe0,8,3);
   FUN_180049830(puVar7);
   *puVar7 = (ulonglong)&unknown_var_7880_ptr;
   puVar1 = puVar7 + 0x18;
@@ -130,7 +130,7 @@ void RenderingSystem_RemoveResourceData(longlong resource_context, uint resource
       }
       FUN_18066c220(param_1 + 0xa10,&puStackX_18,(ulonglong)*(uint *)(param_1 + 0xa00),
                     *(int32_t *)(param_1 + 0xa08),1);
-      puVar8 = (uint *)FUN_18062b420(_DAT_180c8ed18,0x18,*(int8_t *)(param_1 + 0xa1c));
+      puVar8 = (uint *)FUN_18062b420(system_memory_pool_ptr,0x18,*(int8_t *)(param_1 + 0xa1c));
       *puVar8 = uVar2;
       puVar8[2] = 0;
       puVar8[3] = 0;
@@ -193,7 +193,7 @@ LAB_180333bee:
         if (lVar10 == 0) {
           lVar10 = 1;
 LAB_180333cae:
-          puVar11 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,lVar10 * 8,(char)puVar7[0x1b]);
+          puVar11 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,lVar10 * 8,(char)puVar7[0x1b]);
           puVar22 = (uint64_t *)puVar7[0x19];
           puVar18 = (uint64_t *)*puVar1;
         }
@@ -226,7 +226,7 @@ LAB_180333cae:
   if (iVar6 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar6);
   }
-  uVar23 = _DAT_180c82868;
+  uVar23 = system_context_ptr;
   ppuStackX_20 = &puStackX_18;
   puStackX_18 = puVar7;
   (**(code **)(*puVar7 + 0x28))(puVar7);
@@ -250,7 +250,7 @@ LAB_180333cae:
       }
       FUN_18066c220(param_1 + 0x6d8,&puStackX_18,(ulonglong)*(uint *)(param_1 + 0x6c8),
                     *(int32_t *)(param_1 + 0x6d0),1);
-      puVar12 = (uint *)FUN_18062b420(_DAT_180c8ed18,0x18,*(int8_t *)(param_1 + 0x6e4));
+      puVar12 = (uint *)FUN_18062b420(system_memory_pool_ptr,0x18,*(int8_t *)(param_1 + 0x6e4));
       *puVar12 = uVar2;
       puVar12[2] = 0;
       puVar12[3] = 0;
@@ -517,7 +517,7 @@ void RenderingSystem_InitializeResourceHandler(longlong resource_manager, char i
     }
     *(uint64_t *)(param_1 + 0x200) = 0;
   }
-  puVar1 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,3,uVar5);
+  puVar1 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x18,8,3,uVar5);
   if (param_2 == '\0') {
     puVar4 = &unknown_var_7864_ptr;
     if (param_3 != '\0') {
@@ -721,7 +721,7 @@ void RenderingSystem_ManageResourceData(longlong resource_context, ulonglong *da
       if (lVar2 == 0) {
         lVar2 = 1;
 LAB_180334893:
-        puVar3 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,lVar2 * 8,(char)param_2[3]);
+        puVar3 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,lVar2 * 8,(char)param_2[3]);
         puVar7 = (uint64_t *)*param_2;
         puVar5 = (uint64_t *)param_2[1];
       }
@@ -786,7 +786,7 @@ void RenderingSystem_OptimizeResourceData(void)
       if (lVar2 == 0) {
         lVar2 = 1;
 LAB_180334893:
-        puVar3 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,lVar2 * 8,(char)unaff_RBX[3]);
+        puVar3 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,lVar2 * 8,(char)unaff_RBX[3]);
         puVar4 = (uint64_t *)*unaff_RBX;
         puVar5 = (uint64_t *)unaff_RBX[1];
       }
@@ -889,13 +889,13 @@ LAB_1803349b9:
         plStackX_8 = (longlong *)CONCAT44(plStackX_8._4_4_,iVar3);
         plVar5 = (longlong *)FUN_18033a740(param_1 + 0xb48,&plStackX_8);
         lVar2 = *plVar5;
-        uVar9 = FUN_18062b1e0(_DAT_180c8ed18,0x300,0x10,9,uVar8,uVar9);
+        uVar9 = FUN_18062b1e0(system_memory_pool_ptr,0x300,0x10,9,uVar8,uVar9);
         plVar5 = (longlong *)FUN_180075030(uVar9,0,1);
         plStackX_20 = plVar5;
         if (plVar5 != (longlong *)0x0) {
           (**(code **)(*plVar5 + 0x28))(plVar5);
         }
-        plVar6 = (longlong *)FUN_1800b30d0(_DAT_180c86930,&plStackX_8,param_2 + 0x110,1);
+        plVar6 = (longlong *)FUN_1800b30d0(system_resource_state,&plStackX_8,param_2 + 0x110,1);
         plVar6 = (longlong *)*plVar6;
         if (plStackX_8 != (longlong *)0x0) {
           (**(code **)(*plStackX_8 + 0x38))();

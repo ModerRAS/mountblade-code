@@ -417,7 +417,7 @@ longlong * FUN_18035b1b0(longlong *param_1,longlong *param_2)
         lVar4 = 0;
       }
       else {
-        lVar4 = FUN_18062b420(_DAT_180c8ed18,uVar6 * 8,(char)param_1[3]);
+        lVar4 = FUN_18062b420(system_memory_pool_ptr,uVar6 * 8,(char)param_1[3]);
       }
       if (lVar1 != lVar2) {
                     // WARNING: Subroutine does not return
@@ -495,7 +495,7 @@ void FUN_18035b1cd(longlong param_1,longlong *param_2)
       lVar3 = 0;
     }
     else {
-      lVar3 = FUN_18062b420(_DAT_180c8ed18,uVar5 * 8,(char)unaff_RBX[3]);
+      lVar3 = FUN_18062b420(system_memory_pool_ptr,uVar5 * 8,(char)unaff_RBX[3]);
     }
     if (lVar1 != lVar2) {
                     // WARNING: Subroutine does not return
@@ -565,7 +565,7 @@ void FUN_18035b201(void)
     lVar2 = 0;
   }
   else {
-    lVar2 = FUN_18062b420(_DAT_180c8ed18,unaff_RBP * 8,(char)unaff_RBX[3]);
+    lVar2 = FUN_18062b420(system_memory_pool_ptr,unaff_RBP * 8,(char)unaff_RBX[3]);
   }
   if (unaff_RSI != unaff_R14) {
                     // WARNING: Subroutine does not return
@@ -677,7 +677,7 @@ void FUN_18035b330(longlong param_1)
   longlong **pplStackX_18;
   
   if (*(longlong *)(param_1 + 0x110) == 0) {
-    uVar3 = FUN_18062b1e0(_DAT_180c8ed18,0x3d0,8,0x16);
+    uVar3 = FUN_18062b1e0(system_memory_pool_ptr,0x3d0,8,0x16);
     plVar4 = (longlong *)FUN_180275090(uVar3);
     if (plVar4 != (longlong *)0x0) {
       plStackX_8 = plVar4;
@@ -700,7 +700,7 @@ void FUN_18035b330(longlong param_1)
       (**(code **)(*plStackX_8 + 0x38))();
     }
   }
-  uVar3 = FUN_18062b1e0(_DAT_180c8ed18,0x3d0,8,0x16);
+  uVar3 = FUN_18062b1e0(system_memory_pool_ptr,0x3d0,8,0x16);
   plVar4 = (longlong *)FUN_180275090(uVar3);
   if (plVar4 != (longlong *)0x0) {
     (**(code **)(*plVar4 + 0x28))(plVar4);
@@ -732,7 +732,7 @@ void FUN_18035b330(longlong param_1)
       *(int16_t *)(lVar2 + 0x2b0) = *(int16_t *)(lVar2 + 0x2b4);
     }
                     // WARNING: Subroutine does not return
-    FUN_180062300(_DAT_180c86928,&unknown_var_3104_ptr);
+    FUN_180062300(system_message_context,&unknown_var_3104_ptr);
   }
   pcVar1 = *(code **)(**(longlong **)(param_1 + 0xd0) + 0x198);
   if (pcVar1 != (code *)&unknown_var_2544_ptr) {

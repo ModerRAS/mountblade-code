@@ -102,7 +102,7 @@ LAB_1804b9820:
         uVar1 = 0;
       }
       else {
-        uVar1 = FUN_18062b420(_DAT_180c8ed18,(longlong)iVar9 << 4,
+        uVar1 = FUN_18062b420(system_memory_pool_ptr,(longlong)iVar9 << 4,
                               CONCAT71((int7)((ulonglong)pcVar11 >> 8),0x12));
       }
       *(uint64_t *)(unaff_R14 + 0x5c8) = uVar1;

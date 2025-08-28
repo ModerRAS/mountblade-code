@@ -100,7 +100,7 @@ void RenderingSystemProcessFileData(longlong render_context, longlong file_conte
         
         if (0 < stack_item_count) {
           resource_pool = (uint64_t *)(render_context + 0x818);
-          data_buffer = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18, RENDERING_FILE_BUFFER_SIZE, RENDERING_ALIGNMENT_SIZE, 3);
+          data_buffer = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr, RENDERING_FILE_BUFFER_SIZE, RENDERING_ALIGNMENT_SIZE, 3);
           resource_ptr = (longlong *)(data_buffer + 6);
           *resource_ptr = (longlong)&unknown_var_720_ptr;
           *(uint64_t *)(data_buffer + 8) = 0;
@@ -173,7 +173,7 @@ void RenderingSystemProcessFileData(longlong render_context, longlong file_conte
           }
           
           stack_buffer_size = data_size;
-          memory_block = FUN_18062b420(_DAT_180c8ed18, RENDERING_RESOURCE_BLOCK_SIZE, *(int8_t *)(render_context + 0x840));
+          memory_block = FUN_18062b420(system_memory_pool_ptr, RENDERING_RESOURCE_BLOCK_SIZE, *(int8_t *)(render_context + 0x840));
           *(uint *)(memory_block + 0x20) = stack_buffer_size;
           *(int32_t *)(memory_block + 0x24) = stack_buffer_data;
           *(int32_t *)(memory_block + 0x28) = (int32_t)stack_memory_block;
@@ -206,7 +206,7 @@ void RenderingSystemProcessFileData(longlong render_context, longlong file_conte
     FUN_18033af10(render_context + 0x638, &stack_buffer_size);
     memory_block = CONCAT44(stack_buffer_data, stack_buffer_size);
     resource_allocator = (uint64_t *)(memory_block + 8);
-    resource_handle = FUN_18062b420(_DAT_180c8ed18, 0x28, *(int8_t *)(memory_block + 0x30));
+    resource_handle = FUN_18062b420(system_memory_pool_ptr, 0x28, *(int8_t *)(memory_block + 0x30));
     *(int *)(resource_handle + 0x20) = stack_item_count;
     allocation_success = true;
     resource_pool = resource_allocator;
@@ -251,7 +251,7 @@ LAB_18032d19c:
   }
   
   fread(&stack_item_count, 4, 1, *(uint64_t *)(file_context + 8), allocation_size);
-  resource_handle = FUN_18062b420(_DAT_180c8ed18, 0x28, *(int8_t *)(memory_block + 0x30));
+  resource_handle = FUN_18062b420(system_memory_pool_ptr, 0x28, *(int8_t *)(memory_block + 0x30));
   *(int *)(resource_handle + 0x20) = stack_item_count;
   allocation_success = true;
   resource_allocator = resource_pool;
@@ -462,7 +462,7 @@ void RenderingSystemFileResourceProcessor(longlong render_context, longlong file
         if (data_info >> 2 == 0) {
           resource_handle = 1;
 LAB_18032d78f:
-          resource_buffer = (int32_t *)FUN_18062b420(_DAT_180c8ed18, resource_handle * 4, 3);
+          resource_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, resource_handle * 4, 3);
         }
         else {
           resource_handle = (data_info >> 2) * 2;

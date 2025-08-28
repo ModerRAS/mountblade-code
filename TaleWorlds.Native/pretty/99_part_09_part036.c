@@ -315,7 +315,7 @@ LAB_1805cde99:
         }
         if ((*(byte *)((longlong)
                        *(int *)((longlong)*(int *)(lVar6 + 0xf0) * 0xa0 + 100 +
-                               *(longlong *)(lVar6 + 0xd0)) * 0x170 + 0x140 + _DAT_180c95ff0) & 0x10
+                               *(longlong *)(lVar6 + 0xd0)) * 0x170 + 0x140 + system_system_ui) & 0x10
             ) == 0) goto LAB_1805cdb67;
 LAB_1805cdf8d:
         if (*(int *)((longlong)unaff_RSI + 0x178c) == 9) goto LAB_1805cdfa0;
@@ -342,7 +342,7 @@ LAB_1805cdf8d:
          (lVar6 = func_0x0001805b6e80(unaff_RSI + 1),
          (*(byte *)((longlong)
                     *(int *)((longlong)*(int *)(lVar6 + 0xf0) * 0xa0 + 100 +
-                            *(longlong *)(lVar6 + 0xd0)) * 0x170 + 0x140 + _DAT_180c95ff0) & 0x10)
+                            *(longlong *)(lVar6 + 0xd0)) * 0x170 + 0x140 + system_system_ui) & 0x10)
          != 0)) goto LAB_1805cd86d;
       if ((*(uint *)(unaff_RSI + 2) & 0x200) == 0) {
         func_0x0001805d4cd0(unaff_RSI + 1);
@@ -419,7 +419,7 @@ LAB_1805cd7f2:
            *(int *)(lVar6 + 0x1fc) != 2)) goto LAB_1805cd7f2;
         plVar1 = *(longlong **)(lVar6 + 0x590);
         if (((int)plVar1[0x493] == -1) ||
-           (((*(int *)((longlong)(int)plVar1[0x493] * 0x68 + 0x58 + _DAT_180c96150) != 0x14 ||
+           (((*(int *)((longlong)(int)plVar1[0x493] * 0x68 + 0x58 + system_system_ui) != 0x14 ||
              (uVar18 = (**(code **)(*plVar1 + 0x90))(plVar1,1), (float)uVar18 < 0.1)) ||
             (uVar18 = (**(code **)(**(longlong **)(lVar6 + 0x590) + 0x90))
                                 (*(longlong **)(lVar6 + 0x590),1), 0.4 <= (float)uVar18))))
@@ -484,10 +484,10 @@ LAB_1805cdfa0:
            >> 1 & 1) != 0) {
         lVar6 = FUN_1805b74c0(unaff_RSI + 1);
         iVar5 = *(int *)(*(longlong *)(lVar6 + 0x590) + 0x2498);
-        if ((iVar5 != -1) && (0xe < *(int *)((longlong)iVar5 * 0x68 + 0x58 + _DAT_180c96150))) {
+        if ((iVar5 != -1) && (0xe < *(int *)((longlong)iVar5 * 0x68 + 0x58 + system_system_ui))) {
           lVar6 = FUN_1805b74c0(unaff_RSI + 1);
           iVar5 = *(int *)(*(longlong *)(lVar6 + 0x590) + 0x2498);
-          if ((iVar5 == -1) || (*(int *)((longlong)iVar5 * 0x68 + 0x58 + _DAT_180c96150) < 0x12)) {
+          if ((iVar5 == -1) || (*(int *)((longlong)iVar5 * 0x68 + 0x58 + system_system_ui) < 0x12)) {
             if ((*(uint *)(unaff_RSI + 2) & 0x8000000) == 0) {
               bVar4 = (byte)((uint)*(int32_t *)(*(longlong *)unaff_RSI[1] + 0x564) >> 0x1f) ^ 1;
               *(byte *)((longlong)unaff_RSI + 0x11c) = bVar4;
@@ -572,10 +572,10 @@ void FUN_1805cdfb9(void)
            >> 1 & 1) != 0) {
         lVar4 = FUN_1805b74c0(unaff_RSI + 1);
         iVar1 = *(int *)(*(longlong *)(lVar4 + 0x590) + 0x2498);
-        if ((iVar1 != -1) && (0xe < *(int *)((longlong)iVar1 * 0x68 + 0x58 + _DAT_180c96150))) {
+        if ((iVar1 != -1) && (0xe < *(int *)((longlong)iVar1 * 0x68 + 0x58 + system_system_ui))) {
           lVar4 = FUN_1805b74c0(unaff_RSI + 1);
           iVar1 = *(int *)(*(longlong *)(lVar4 + 0x590) + 0x2498);
-          if ((iVar1 == -1) || (*(int *)((longlong)iVar1 * 0x68 + 0x58 + _DAT_180c96150) < 0x12)) {
+          if ((iVar1 == -1) || (*(int *)((longlong)iVar1 * 0x68 + 0x58 + system_system_ui) < 0x12)) {
             if ((*(uint *)(unaff_RSI + 2) & 0x8000000) == 0) {
               bVar3 = (byte)((uint)*(int32_t *)(*(longlong *)unaff_RSI[1] + 0x564) >> 0x1f) ^ 1;
               *(byte *)((longlong)unaff_RSI + 0x11c) = bVar3;
@@ -660,10 +660,10 @@ void FUN_1805cdfd9(void)
            >> 1 & 1) != 0) {
         lVar4 = FUN_1805b74c0(unaff_RSI + 1);
         iVar1 = *(int *)(*(longlong *)(lVar4 + 0x590) + 0x2498);
-        if ((iVar1 != -1) && (0xe < *(int *)((longlong)iVar1 * 0x68 + 0x58 + _DAT_180c96150))) {
+        if ((iVar1 != -1) && (0xe < *(int *)((longlong)iVar1 * 0x68 + 0x58 + system_system_ui))) {
           lVar4 = FUN_1805b74c0(unaff_RSI + 1);
           iVar1 = *(int *)(*(longlong *)(lVar4 + 0x590) + 0x2498);
-          if ((iVar1 == -1) || (*(int *)((longlong)iVar1 * 0x68 + 0x58 + _DAT_180c96150) < 0x12)) {
+          if ((iVar1 == -1) || (*(int *)((longlong)iVar1 * 0x68 + 0x58 + system_system_ui) < 0x12)) {
             if ((*(uint *)(unaff_RSI + 2) & 0x8000000) == 0) {
               bVar2 = (byte)((uint)*(int32_t *)(*(longlong *)unaff_RSI[1] + 0x564) >> 0x1f) ^ 1;
               *(byte *)((longlong)unaff_RSI + 0x11c) = bVar2;

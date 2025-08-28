@@ -81,7 +81,7 @@ void FUN_18005e630(longlong param_1)
   longlong lVar2;
   
   FUN_18020f150(*(uint64_t *)(*(longlong *)(param_1 + 8) + 8));
-  lVar2 = _DAT_180c86938 + 0x20;
+  lVar2 = system_message_buffer + 0x20;
   iVar1 = _Mtx_lock(lVar2);
   if (iVar1 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar1);
@@ -271,7 +271,7 @@ uint64_t * FUN_18005e950(uint64_t *param_1)
   param_1[9] = puVar3;
   do {
     *(int32_t *)puVar3 = 0;
-    uVar1 = _DAT_180c8ed18;
+    uVar1 = system_memory_pool_ptr;
     puVar3 = puVar3 + 2;
     lVar8 = lVar8 + -1;
   } while (lVar8 != 0);

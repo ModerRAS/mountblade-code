@@ -26,9 +26,9 @@ void FUN_1806ce700(longlong param_1,longlong *param_2,int32_t param_3)
   if ((int *)param_2[5] != (int *)0x0) {
     piStackX_10 = (int *)param_2[5];
   }
-  if (_DAT_180be0560 != 0) {
+  if (system_system_buffer_config != 0) {
     plVar7 = (longlong *)&system_data_0560;
-    lVar3 = _DAT_180be0560;
+    lVar3 = system_system_buffer_config;
     do {
       FUN_1806d7170(param_2,lVar3);
       iVar2 = (**(code **)(param_1 + 0x1f0))(param_2[2],(int)plVar7[1]);
@@ -42,7 +42,7 @@ void FUN_1806ce700(longlong param_1,longlong *param_2,int32_t param_3)
       }
       plVar4 = (longlong *)&system_data_05d0;
       plVar6 = (longlong *)param_2[1];
-      if (_DAT_180be05d0 != 0) {
+      if (system_system_buffer_config != 0) {
         do {
           if ((int)plVar4[1] == iVar2) {
             (**(code **)(*plVar6 + 0x10))(plVar6,puVar5,*plVar4);
@@ -1354,7 +1354,7 @@ int FUN_1806d08f0(longlong param_1,longlong *param_2,int param_3)
   plVar12 = (longlong *)param_2[1];
   plVar9 = (longlong *)&system_data_0100;
   uVar4 = auStackX_8[0];
-  if (_DAT_180be0100 != 0) {
+  if (system_system_buffer_config != 0) {
     do {
       if (*(uint *)(plVar9 + 1) == uVar4) {
         (**(code **)(*plVar12 + 0x10))(plVar12,puVar11,*plVar9);
@@ -1386,7 +1386,7 @@ int FUN_1806d08f0(longlong param_1,longlong *param_2,int param_3)
                (*(longlong *)(lVar7 + 8) + (ulonglong)(*(int *)(lVar7 + 0x10) - 1) * 0x10);
   }
   plVar12 = (longlong *)param_2[1];
-  if (_DAT_180be0100 != 0) {
+  if (system_system_buffer_config != 0) {
     do {
       if ((int)plVar8[1] == iVar5) {
         (**(code **)(*plVar12 + 0x10))(plVar12,puVar10,*plVar8);

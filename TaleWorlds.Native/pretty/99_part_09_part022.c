@@ -95,7 +95,7 @@ LAB_1805c80dc:
       lVar3 = *(longlong *)(uVar9 * 0x1f8 + 0xd8 + *(longlong *)(*unaff_RBX + 0x8f8));
       if (((*(byte *)(lVar3 + 0x50 + uVar13 * 0xa0) & 0x40) == 0) ||
          ((*(byte *)((longlong)*(int *)(lVar3 + 100 + uVar13 * 0xa0) * 0x170 + 0x140 +
-                    _DAT_180c95ff0) & 0x10) == 0)) {
+                    system_system_ui) & 0x10) == 0)) {
         fVar17 = 5.0 / (unaff_XMM6_Da + 0.01);
       }
       else {
@@ -111,7 +111,7 @@ LAB_1805c80dc:
         (lVar3 = func_0x0001805b6e80(unaff_RBX + 1),
         (*(byte *)((longlong)
                    *(int *)((longlong)*(int *)(lVar3 + 0xf0) * 0xa0 + 100 +
-                           *(longlong *)(lVar3 + 0xd0)) * 0x170 + 0x140 + _DAT_180c95ff0) & 0x10) ==
+                           *(longlong *)(lVar3 + 0xd0)) * 0x170 + 0x140 + system_system_ui) & 0x10) ==
         0)))) {
       if ((*(uint *)(unaff_RBX + 2) & 0x8000000) == 0) {
         bVar2 = (byte)((uint)*(int32_t *)(*(longlong *)unaff_RBX[1] + 0x564) >> 0x1f) ^ 1;
@@ -321,7 +321,7 @@ LAB_1805c80dc:
       lVar3 = *(longlong *)(uVar10 * 0x1f8 + 0xd8 + *(longlong *)(*unaff_RBX + 0x8f8));
       if (((*(byte *)(lVar3 + 0x50 + uVar13 * 0xa0) & 0x40) == 0) ||
          ((*(byte *)((longlong)*(int *)(lVar3 + 100 + uVar13 * 0xa0) * 0x170 + 0x140 +
-                    _DAT_180c95ff0) & 0x10) == 0)) {
+                    system_system_ui) & 0x10) == 0)) {
         fVar17 = 5.0 / (unaff_XMM6_Da + 0.01);
       }
       else {
@@ -337,7 +337,7 @@ LAB_1805c80dc:
         (lVar3 = func_0x0001805b6e80(unaff_RBX + 1),
         (*(byte *)((longlong)
                    *(int *)((longlong)*(int *)(lVar3 + 0xf0) * 0xa0 + 100 +
-                           *(longlong *)(lVar3 + 0xd0)) * 0x170 + 0x140 + _DAT_180c95ff0) & 0x10) ==
+                           *(longlong *)(lVar3 + 0xd0)) * 0x170 + 0x140 + system_system_ui) & 0x10) ==
         0)))) {
       if ((*(uint *)(unaff_RBX + 2) & 0x8000000) == 0) {
         bVar2 = (byte)((uint)*(int32_t *)(*(longlong *)unaff_RBX[1] + 0x564) >> 0x1f) ^ 1;
@@ -506,7 +506,7 @@ void FUN_1805c80f4(int32_t param_1,uint64_t param_2,uint64_t param_3)
     lVar2 = *(longlong *)(uVar8 * 0x1f8 + 0xd8 + *(longlong *)(*unaff_RBX + 0x8f8));
     if (((*(byte *)(lVar2 + 0x50 + (longlong)(int)uStack0000000000000050 * 0xa0) & 0x40) == 0) ||
        ((*(byte *)((longlong)*(int *)(lVar2 + 100 + (longlong)(int)uStack0000000000000050 * 0xa0) *
-                   0x170 + 0x140 + _DAT_180c95ff0) & 0x10) == 0)) {
+                   0x170 + 0x140 + system_system_ui) & 0x10) == 0)) {
       fVar13 = unaff_XMM13_Da / (unaff_XMM6_Da + unaff_XMM11_Da);
     }
     else {
@@ -522,7 +522,7 @@ void FUN_1805c80f4(int32_t param_1,uint64_t param_2,uint64_t param_3)
       (lVar2 = func_0x0001805b6e80(unaff_RBX + 1),
       (*(byte *)((longlong)
                  *(int *)((longlong)*(int *)(lVar2 + 0xf0) * 0xa0 + 100 +
-                         *(longlong *)(lVar2 + 0xd0)) * 0x170 + 0x140 + _DAT_180c95ff0) & 0x10) == 0
+                         *(longlong *)(lVar2 + 0xd0)) * 0x170 + 0x140 + system_system_ui) & 0x10) == 0
       )))) {
     if ((*(uint *)(unaff_RBX + 2) & 0x8000000) == 0) {
       bVar1 = (byte)((uint)*(int32_t *)(*(longlong *)unaff_RBX[1] + 0x564) >> 0x1f) ^ 1;
@@ -698,7 +698,7 @@ LAB_1805c823b:
       lVar4 = *(longlong *)(uVar10 * 0x1f8 + 0xd8 + *(longlong *)(*unaff_RBX + 0x8f8));
       if (((*(byte *)(lVar4 + 0x50 + uVar11 * 0xa0) & 0x40) == 0) ||
          ((*(byte *)((longlong)*(int *)(lVar4 + 100 + uVar11 * 0xa0) * 0x170 + 0x140 +
-                    _DAT_180c95ff0) & 0x10) == 0)) {
+                    system_system_ui) & 0x10) == 0)) {
         fVar15 = unaff_XMM13_Da / (unaff_XMM6_Da + 0.01);
       }
       else {
@@ -714,7 +714,7 @@ LAB_1805c823b:
         (lVar4 = func_0x0001805b6e80(unaff_RBX + 1),
         (*(byte *)((longlong)
                    *(int *)((longlong)*(int *)(lVar4 + 0xf0) * 0xa0 + 100 +
-                           *(longlong *)(lVar4 + 0xd0)) * 0x170 + 0x140 + _DAT_180c95ff0) & 0x10) ==
+                           *(longlong *)(lVar4 + 0xd0)) * 0x170 + 0x140 + system_system_ui) & 0x10) ==
         0)))) {
       if ((*(uint *)(unaff_RBX + 2) & 0x8000000) == 0) {
         bVar3 = (byte)((uint)*(int32_t *)(*(longlong *)unaff_RBX[1] + 0x564) >> 0x1f) ^ 1;

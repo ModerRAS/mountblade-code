@@ -28,15 +28,15 @@ longlong FUN_18058b980(longlong param_1,int param_2)
   
   if (param_2 != -1) {
     iVar1 = FUN_18053a410(&system_data_5f30,*(int32_t *)(param_1 + 0xac),param_2);
-    iVar1 = *(int *)(_DAT_180c95f68 + (longlong)iVar1 * 4);
+    iVar1 = *(int *)(render_system_config + (longlong)iVar1 * 4);
     if (iVar1 == -1) {
       lVar2 = 0;
     }
     else {
-      lVar2 = *(longlong *)(_DAT_180c95f88 + (longlong)iVar1 * 8);
+      lVar2 = *(longlong *)(render_system_config + (longlong)iVar1 * 8);
     }
     if (*(short *)(lVar2 + 0x7e) != -1) {
-      return (longlong)*(short *)(lVar2 + 0x7e) * 0x68 + _DAT_180c95ed0;
+      return (longlong)*(short *)(lVar2 + 0x7e) * 0x68 + render_system_config;
     }
   }
   return 0;
@@ -69,7 +69,7 @@ void FUN_18058b9f0(longlong param_1,int param_2,float *param_3,float *param_4,fl
   longlong lVar14;
   longlong lVar15;
   
-  lVar9 = _DAT_180c95ed0;
+  lVar9 = render_system_config;
   lVar11 = 0;
   *param_4 = 0.0;
   lVar15 = param_1 + 0xf0 + (longlong)param_2 * 0x11b0;
@@ -204,22 +204,22 @@ void FUN_18058bcc0(longlong param_1,int param_2,float *param_3,float *param_4)
     do {
       if ((*(short *)(*(longlong *)(pfVar3 + -0x15) + 0x7e) != -1) &&
          ((lVar5 = (longlong)*(short *)(*(longlong *)(pfVar3 + -0x15) + 0x7e) * 0x68 +
-                   _DAT_180c95ed0, *(float *)(lVar5 + 0x30) != 0.0 ||
+                   render_system_config, *(float *)(lVar5 + 0x30) != 0.0 ||
           (*(float *)(lVar5 + 0x2c) != 0.0)))) {
         fVar10 = fVar10 + pfVar3[-0x12];
       }
       if ((*(short *)(*(longlong *)(pfVar3 + -3) + 0x7e) != -1) &&
-         ((lVar5 = (longlong)*(short *)(*(longlong *)(pfVar3 + -3) + 0x7e) * 0x68 + _DAT_180c95ed0,
+         ((lVar5 = (longlong)*(short *)(*(longlong *)(pfVar3 + -3) + 0x7e) * 0x68 + render_system_config,
           *(float *)(lVar5 + 0x30) != 0.0 || (*(float *)(lVar5 + 0x2c) != 0.0)))) {
         fVar10 = fVar10 + *pfVar3;
       }
       if ((*(short *)(*(longlong *)(pfVar3 + 0xf) + 0x7e) != -1) &&
-         ((lVar5 = (longlong)*(short *)(*(longlong *)(pfVar3 + 0xf) + 0x7e) * 0x68 + _DAT_180c95ed0,
+         ((lVar5 = (longlong)*(short *)(*(longlong *)(pfVar3 + 0xf) + 0x7e) * 0x68 + render_system_config,
           *(float *)(lVar5 + 0x30) != 0.0 || (*(float *)(lVar5 + 0x2c) != 0.0)))) {
         fVar10 = fVar10 + pfVar3[0x12];
       }
       if ((*(short *)(*(longlong *)(pfVar3 + 0x21) + 0x7e) != -1) &&
-         ((lVar5 = (longlong)*(short *)(*(longlong *)(pfVar3 + 0x21) + 0x7e) * 0x68 + _DAT_180c95ed0
+         ((lVar5 = (longlong)*(short *)(*(longlong *)(pfVar3 + 0x21) + 0x7e) * 0x68 + render_system_config
           , *(float *)(lVar5 + 0x30) != 0.0 || (*(float *)(lVar5 + 0x2c) != 0.0)))) {
         fVar10 = fVar10 + pfVar3[0x24];
       }
@@ -232,7 +232,7 @@ void FUN_18058bcc0(longlong param_1,int param_2,float *param_3,float *param_4)
     plVar2 = (longlong *)(param_1 + 0x108 + lVar6 * 0x48);
     do {
       if ((*(short *)(*plVar2 + 0x7e) != -1) &&
-         ((lVar6 = (longlong)*(short *)(*plVar2 + 0x7e) * 0x68 + _DAT_180c95ed0,
+         ((lVar6 = (longlong)*(short *)(*plVar2 + 0x7e) * 0x68 + render_system_config,
           *(float *)(lVar6 + 0x30) != 0.0 || (*(float *)(lVar6 + 0x2c) != 0.0)))) {
         fVar10 = fVar10 + *(float *)((longlong)plVar2 + 0xc);
       }
@@ -240,7 +240,7 @@ void FUN_18058bcc0(longlong param_1,int param_2,float *param_3,float *param_4)
       lVar8 = lVar8 + -1;
     } while (lVar8 != 0);
   }
-  lVar6 = _DAT_180c95ed0;
+  lVar6 = render_system_config;
   if (3 < lVar7) {
     pfVar3 = (float *)(param_1 + 0x15c);
     lVar8 = (lVar7 - 4U >> 2) + 1;
@@ -257,7 +257,7 @@ void FUN_18058bcc0(longlong param_1,int param_2,float *param_3,float *param_4)
         }
         *param_3 = fVar9 * *(float *)(lVar5 + 0x2c) + *param_3;
         *param_4 = fVar9 * *(float *)(lVar5 + 0x30) + *param_4;
-        lVar6 = _DAT_180c95ed0;
+        lVar6 = render_system_config;
       }
       if ((*(short *)(*(longlong *)(pfVar3 + -3) + 0x7e) != -1) &&
          ((lVar5 = (longlong)*(short *)(*(longlong *)(pfVar3 + -3) + 0x7e) * 0x68 + lVar6,
@@ -270,7 +270,7 @@ void FUN_18058bcc0(longlong param_1,int param_2,float *param_3,float *param_4)
         }
         *param_3 = fVar9 * *(float *)(lVar5 + 0x2c) + *param_3;
         *param_4 = fVar9 * *(float *)(lVar5 + 0x30) + *param_4;
-        lVar6 = _DAT_180c95ed0;
+        lVar6 = render_system_config;
       }
       if ((*(short *)(*(longlong *)(pfVar3 + 0xf) + 0x7e) != -1) &&
          ((lVar5 = (longlong)*(short *)(*(longlong *)(pfVar3 + 0xf) + 0x7e) * 0x68 + lVar6,
@@ -283,7 +283,7 @@ void FUN_18058bcc0(longlong param_1,int param_2,float *param_3,float *param_4)
         }
         *param_3 = fVar9 * *(float *)(lVar5 + 0x2c) + *param_3;
         *param_4 = fVar9 * *(float *)(lVar5 + 0x30) + *param_4;
-        lVar6 = _DAT_180c95ed0;
+        lVar6 = render_system_config;
       }
       if ((*(short *)(*(longlong *)(pfVar3 + 0x21) + 0x7e) != -1) &&
          ((lVar5 = (longlong)*(short *)(*(longlong *)(pfVar3 + 0x21) + 0x7e) * 0x68 + lVar6,
@@ -296,7 +296,7 @@ void FUN_18058bcc0(longlong param_1,int param_2,float *param_3,float *param_4)
         }
         *param_3 = fVar9 * *(float *)(lVar5 + 0x2c) + *param_3;
         *param_4 = fVar9 * *(float *)(lVar5 + 0x30) + *param_4;
-        lVar6 = _DAT_180c95ed0;
+        lVar6 = render_system_config;
       }
       pfVar3 = pfVar3 + 0x48;
       lVar8 = lVar8 + -1;
@@ -317,7 +317,7 @@ void FUN_18058bcc0(longlong param_1,int param_2,float *param_3,float *param_4)
         }
         *param_3 = fVar9 * *(float *)(lVar4 + 0x2c) + *param_3;
         *param_4 = fVar9 * *(float *)(lVar4 + 0x30) + *param_4;
-        lVar6 = _DAT_180c95ed0;
+        lVar6 = render_system_config;
       }
       plVar2 = plVar2 + 9;
       lVar7 = lVar7 + -1;
@@ -403,7 +403,7 @@ void FUN_18058c410(longlong param_1,uint64_t param_2,float *param_3,float *param
   *param_3 = 0.0;
   *param_4 = 0.0;
   *param_5 = -3.1415927;
-  lVar4 = _DAT_180c95ed0;
+  lVar4 = render_system_config;
   if (0 < lVar6) {
     pfVar5 = (float *)(param_1 + 0x12c8);
     lVar7 = lVar8;

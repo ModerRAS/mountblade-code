@@ -57,11 +57,11 @@ void FUN_1807ac340(longlong param_1)
     *(int8_t *)(param_1 + 0x198) = 1;
     *(uint64_t *)(param_1 + 0x1a0) = 0;
     *(int32_t *)(param_1 + 0x19c) = 0;
-    if ((_DAT_180c2c830 != (code *)0x0) ||
-       (((_DAT_180c2c838 != 0 ||
-         (_DAT_180c2c838 = LoadLibraryA(&unknown_var_9128_ptr), _DAT_180c2c838 != 0)) &&
-        (_DAT_180c2c830 = (code *)GetProcAddress(_DAT_180c2c838,&unknown_var_9144_ptr),
-        _DAT_180c2c830 != (code *)0x0)))) {
+    if ((system_system_memory != (code *)0x0) ||
+       (((system_system_memory != 0 ||
+         (system_system_memory = LoadLibraryA(&unknown_var_9128_ptr), system_system_memory != 0)) &&
+        (system_system_memory = (code *)GetProcAddress(system_system_memory,&unknown_var_9144_ptr),
+        system_system_memory != (code *)0x0)))) {
       *(uint64_t *)(param_1 + 0x1b0) = 0;
       *(uint64_t *)(param_1 + 0x1b8) = 0;
       *(uint64_t *)(param_1 + 0x1c0) = 0;
@@ -75,7 +75,7 @@ void FUN_1807ac340(longlong param_1)
       if ((iVar6 == 0) && (iVar6 = FUN_18076a440(*(uint64_t *)(param_1 + 0x170),0,0), iVar6 == 0))
       {
         puVar1 = (uint64_t *)(param_1 + 0x178);
-        iVar6 = (*_DAT_180c2c830)(0,0,puVar1);
+        iVar6 = (*system_system_memory)(0,0,puVar1);
         if (-1 < iVar6) {
           plStack_2b8 = (longlong *)((ulonglong)plStack_2b8 & 0xffffffff00000000);
           puVar7 = (uint64_t *)
@@ -96,7 +96,7 @@ void FUN_1807ac340(longlong param_1)
               iVar6 = CoInitializeEx(0,2);
               if (iVar6 < 0) goto FUN_1807ac5e4;
               (**(code **)(*(longlong *)*puVar1 + 0x10))();
-              iVar6 = (*_DAT_180c2c830)(0,0,puVar1);
+              iVar6 = (*system_system_memory)(0,0,puVar1);
               if ((iVar6 < 0) ||
                  (iVar6 = FUN_18076a440(*(uint64_t *)(param_1 + 0x170),0,0), iVar6 != 0))
               goto FUN_1807ac5e4;
@@ -304,11 +304,11 @@ void FUN_1807ac3e3(void)
     *(code **)(unaff_RDI + 0x1a0) = unaff_RBX;
     uVar11 = (uint)unaff_RBX;
     *(uint *)(unaff_RDI + 0x19c) = uVar11;
-    if ((_DAT_180c2c830 != unaff_RBX) ||
-       (((_DAT_180c2c838 != 0 ||
-         (_DAT_180c2c838 = LoadLibraryA(&unknown_var_9128_ptr), _DAT_180c2c838 != 0)) &&
-        (_DAT_180c2c830 = (code *)GetProcAddress(_DAT_180c2c838,&unknown_var_9144_ptr),
-        _DAT_180c2c830 != (code *)0x0)))) {
+    if ((system_system_memory != unaff_RBX) ||
+       (((system_system_memory != 0 ||
+         (system_system_memory = LoadLibraryA(&unknown_var_9128_ptr), system_system_memory != 0)) &&
+        (system_system_memory = (code *)GetProcAddress(system_system_memory,&unknown_var_9144_ptr),
+        system_system_memory != (code *)0x0)))) {
       *(uint64_t *)(unaff_RDI + 0x1b0) = 0;
       *(uint64_t *)(unaff_RDI + 0x1b8) = 0;
       *(uint64_t *)(unaff_RDI + 0x1c0) = 0;
@@ -322,7 +322,7 @@ void FUN_1807ac3e3(void)
       if ((iVar6 == 0) &&
          (iVar6 = FUN_18076a440(*(uint64_t *)(unaff_RDI + 0x170),0,0), iVar6 == 0)) {
         puVar1 = (uint64_t *)(unaff_RDI + 0x178);
-        iVar6 = (*_DAT_180c2c830)(0,0,puVar1);
+        iVar6 = (*system_system_memory)(0,0,puVar1);
         if (-1 < iVar6) {
           uVar13 = CONCAT44(uVar14,uVar11);
           pcVar7 = (code *)FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x18,&unknown_var_9168_ptr
@@ -343,7 +343,7 @@ void FUN_1807ac3e3(void)
               iVar6 = CoInitializeEx(0,2);
               if (iVar6 < 0) goto LAB_1807ac5c4;
               (**(code **)(*(longlong *)*puVar1 + 0x10))();
-              iVar6 = (*_DAT_180c2c830)(0,0,puVar1);
+              iVar6 = (*system_system_memory)(0,0,puVar1);
               if ((iVar6 < 0) ||
                  (iVar6 = FUN_18076a440(*(uint64_t *)(unaff_RDI + 0x170),0,0), iVar6 != 0))
               goto LAB_1807ac5c4;

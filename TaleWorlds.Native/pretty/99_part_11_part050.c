@@ -864,7 +864,7 @@ void FUN_1807afa40(longlong param_1,int param_2,longlong *param_3,int *param_4)
   lVar4 = *(longlong *)(param_1 + 0x178);
   uStack_70 = 0x200000001;
   uStack_68 = 0x800000006;
-  auStack_60 = _DAT_18095d420;
+  auStack_60 = system_system_config;
   uStack_40 = 0xac44;
   uStack_50 = 0x562200003e80;
   uStack_48 = 0x7d0000005dc0;

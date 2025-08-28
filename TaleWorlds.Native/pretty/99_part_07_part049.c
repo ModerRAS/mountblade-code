@@ -683,7 +683,7 @@ void FUN_1804cb810(longlong param_1,longlong param_2,int8_t param_3)
         ((*(longlong *)(uVar27 + 0x18 + uVar35 * 0x28) - *(longlong *)(uVar27 + 8 + uVar35 * 0x28))
         / 0x60) < 8) {
       puStack_1e8 = (uint64_t *)
-                    FUN_18062b420(_DAT_180c8ed18,0x300,
+                    FUN_18062b420(system_memory_pool_ptr,0x300,
                                   *(int8_t *)(uVar27 + 0x20 + uVar35 * 0x28));
       puVar36 = *(uint64_t **)(uVar27 + 0x10 + uVar35 * 0x28);
       puVar32 = *(uint64_t **)(uVar27 + 8 + uVar35 * 0x28);

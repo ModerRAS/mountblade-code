@@ -292,7 +292,7 @@ void InitializationSystem_ResourceCleaner(void* param_1)
     }
     
     // 清理系统全局资源
-    cleanup_handle = _DAT_180c86918;
+    cleanup_handle = init_system_data_config;
     if (cleanup_handle != 0) {
         PerformGlobalCleanup(cleanup_handle);
     }
@@ -350,12 +350,12 @@ void InitializationSystem_StatusUpdater(void* param_1)
     
     // 获取状态指针和当前值
     status_ptr = (int *)(param_1 + 0x3d0);
-    current_value = *(init_float_t *)(_DAT_180c86950 + 0x17ec);
+    current_value = *(init_float_t *)(system_operation_state + 0x17ec);
     target_value = (init_float_t)*status_ptr;
     
     // 检查是否需要更新状态
     needs_update = ((int)current_value != (int)(param_1 + 0x3cc)) || 
-                  ((int)*(init_float_t *)(_DAT_180c86950 + 0x17f0) != *status_ptr);
+                  ((int)*(init_float_t *)(system_operation_state + 0x17f0) != *status_ptr);
     
     if (needs_update) {
         // 执行状态更新

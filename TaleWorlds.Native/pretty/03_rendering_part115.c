@@ -66,19 +66,19 @@ longlong * RenderingSystem_ResourceAllocator(longlong param_1)
   switch(uVar1) {
   case 0:
   case 7:
-    uVar2 = FUN_18062b1e0(_DAT_180c8ed18,RENDERING_SYSTEM_RESOURCE_SIZE_1,RENDERING_SYSTEM_LONG_SIZE,3);
+    uVar2 = FUN_18062b1e0(system_memory_pool_ptr,RENDERING_SYSTEM_RESOURCE_SIZE_1,RENDERING_SYSTEM_LONG_SIZE,3);
     plVar3 = (longlong *)FUN_180339110(uVar2);
     (**(code **)(*plVar3 + 0x20))(plVar3,param_1,0);
     *(int32_t *)((longlong)plVar3 + 0x8c) = uVar1;
     return plVar3;
   case 1:
-    uVar2 = FUN_18062b1e0(_DAT_180c8ed18,RENDERING_SYSTEM_RESOURCE_SIZE_2,RENDERING_SYSTEM_LONG_SIZE,3);
+    uVar2 = FUN_18062b1e0(system_memory_pool_ptr,RENDERING_SYSTEM_RESOURCE_SIZE_2,RENDERING_SYSTEM_LONG_SIZE,3);
     plVar3 = (longlong *)FUN_180339920(uVar2);
     (**(code **)(*plVar3 + 0x20))(plVar3,param_1,0);
     *(int32_t *)((longlong)plVar3 + 0x8c) = 1;
     return plVar3;
   case 2:
-    uVar2 = FUN_18062b1e0(_DAT_180c8ed18,RENDERING_SYSTEM_RESOURCE_SIZE_3,RENDERING_SYSTEM_LONG_SIZE,3);
+    uVar2 = FUN_18062b1e0(system_memory_pool_ptr,RENDERING_SYSTEM_RESOURCE_SIZE_3,RENDERING_SYSTEM_LONG_SIZE,3);
     plVar3 = (longlong *)FUN_18033a200(uVar2);
     (**(code **)(*plVar3 + 0x20))(plVar3,param_1,0);
     *(int32_t *)((longlong)plVar3 + 0x8c) = 2;
@@ -86,13 +86,13 @@ longlong * RenderingSystem_ResourceAllocator(longlong param_1)
   default:
     return (longlong *)0x0;
   case 4:
-    uVar2 = FUN_18062b1e0(_DAT_180c8ed18,RENDERING_SYSTEM_RESOURCE_SIZE_4,RENDERING_SYSTEM_LONG_SIZE,3);
+    uVar2 = FUN_18062b1e0(system_memory_pool_ptr,RENDERING_SYSTEM_RESOURCE_SIZE_4,RENDERING_SYSTEM_LONG_SIZE,3);
     plVar3 = (longlong *)FUN_180339d70(uVar2);
     (**(code **)(*plVar3 + 0x20))(plVar3,param_1,0);
     *(int32_t *)((longlong)plVar3 + 0x8c) = 4;
     return plVar3;
   case 6:
-    plVar3 = (longlong *)(*_DAT_180c918d8)(&system_buffer_18c0);
+    plVar3 = (longlong *)(*render_system_config)(&system_buffer_18c0);
     (**(code **)(*plVar3 + 0x20))(plVar3,param_1,0);
     *(int32_t *)((longlong)plVar3 + 0x8c) = 6;
     return plVar3;
@@ -143,7 +143,7 @@ void RenderingSystem_DataProcessor(longlong param_1,uint64_t param_2,ulonglong *
         if (lVar1 == 0) {
           lVar1 = 1;
 LAB_180337de9:
-          plVar2 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar1 * 8,(char)param_3[3]);
+          plVar2 = (longlong *)FUN_18062b420(system_memory_pool_ptr,lVar1 * 8,(char)param_3[3]);
           plVar4 = (longlong *)*param_3;
           plVar5 = (longlong *)param_3[1];
         }
@@ -211,7 +211,7 @@ void RenderingSystem_BufferHandler(uint64_t param_1,uint64_t param_2,longlong pa
       if (lVar3 == 0) {
         lVar3 = 1;
 LAB_180337de9:
-        plVar1 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar3 * 8,(char)unaff_RBX[3]);
+        plVar1 = (longlong *)FUN_18062b420(system_memory_pool_ptr,lVar3 * 8,(char)unaff_RBX[3]);
         plVar2 = (longlong *)*unaff_RBX;
         plVar4 = (longlong *)unaff_RBX[1];
       }
@@ -337,7 +337,7 @@ longlong RenderingSystem_DataCopier(longlong param_1,longlong param_2)
         if (lVar7 == 0) {
           lVar7 = 1;
 LAB_180337feb:
-          lVar6 = FUN_18062b420(_DAT_180c8ed18,lVar7 * RENDERING_SYSTEM_RESOURCE_SIZE_1,*(int8_t *)(param_1 + 0xa8));
+          lVar6 = FUN_18062b420(system_memory_pool_ptr,lVar7 * RENDERING_SYSTEM_RESOURCE_SIZE_1,*(int8_t *)(param_1 + 0xa8));
           uVar10 = *(ulonglong *)(param_1 + 0x98);
           lVar9 = *(longlong *)(param_1 + 0x90);
         }
@@ -415,7 +415,7 @@ void RenderingSystem_BufferManager(void)
       if (lVar3 == 0) {
         lVar3 = 1;
 LAB_180337feb:
-        lVar2 = FUN_18062b420(_DAT_180c8ed18,lVar3 * RENDERING_SYSTEM_RESOURCE_SIZE_1,*(int8_t *)(unaff_RDI + 0xa8));
+        lVar2 = FUN_18062b420(system_memory_pool_ptr,lVar3 * RENDERING_SYSTEM_RESOURCE_SIZE_1,*(int8_t *)(unaff_RDI + 0xa8));
         uVar5 = *(ulonglong *)(unaff_RDI + 0x98);
         lVar7 = *(longlong *)(unaff_RDI + 0x90);
       }

@@ -346,31 +346,31 @@ float FUN_1805d7bf0(longlong *param_1)
   uVar9 = 0;
   lVar4 = *param_1;
   iVar2 = -1;
-  lVar11 = _DAT_180c95ff0;
+  lVar11 = system_system_config;
   if (((*(int *)(lVar4 + 0x1fc) == 7) && ((*(uint *)(lVar4 + 0x4c8) & 0x7c00) != 0)) &&
      ((*(uint *)(lVar4 + 0x56c) & 0x4000) != 0)) {
     lVar4 = *(longlong *)(*(longlong *)(lVar4 + 0x8f8) + 0x9f0);
     if (lVar4 == 0) {
 LAB_1805d7c8a:
       lVar4 = func_0x0001805b6e80(param_1 + 1);
-      lVar11 = _DAT_180c95ff0;
+      lVar11 = system_system_config;
       if (lVar4 != 0) {
         uVar1 = func_0x000180525320(*param_1);
-        lVar11 = _DAT_180c95ff0;
+        lVar11 = system_system_config;
         piVar3 = (int *)func_0x00018054fc00((longlong)
                                             *(int *)((longlong)*(int *)(lVar4 + 0xf0) * 0xa0 + 100 +
                                                     *(longlong *)(lVar4 + 0xd0)) * 0x170 +
-                                            _DAT_180c95ff0,uVar1);
+                                            system_system_config,uVar1);
         if (piVar3 != (int *)0x0) goto LAB_1805d7cdc;
       }
     }
     else {
       uVar1 = func_0x000180525320();
-      lVar11 = _DAT_180c95ff0;
+      lVar11 = system_system_config;
       piVar3 = (int *)func_0x00018054fc00((longlong)
                                           *(int *)((longlong)*(int *)(lVar4 + 0xf0) * 0xa0 + 100 +
                                                   *(longlong *)(lVar4 + 0xd0)) * 0x170 +
-                                          _DAT_180c95ff0,uVar1);
+                                          system_system_config,uVar1);
       if (piVar3 == (int *)0x0) goto LAB_1805d7c8a;
 LAB_1805d7cdc:
       iVar8 = *piVar3;
@@ -406,11 +406,11 @@ LAB_1805d7cdc:
 LAB_1805d7d58:
   iVar2 = FUN_18053a410(&system_data_5f30,*(int32_t *)(*(longlong *)(*param_1 + 0x590) + 0xac),iVar8
                        );
-  iVar2 = *(int *)(_DAT_180c95f68 + (longlong)iVar2 * 4);
+  iVar2 = *(int *)(system_system_config + (longlong)iVar2 * 4);
   if (iVar2 != -1) {
-    uVar9 = *(ulonglong *)(_DAT_180c95f88 + (longlong)iVar2 * 8);
+    uVar9 = *(ulonglong *)(system_system_config + (longlong)iVar2 * 8);
   }
-  lVar4 = (longlong)*(short *)(uVar9 + 0x7e) * 0x68 + _DAT_180c95ed0;
+  lVar4 = (longlong)*(short *)(uVar9 + 0x7e) * 0x68 + system_system_config;
   FUN_18040c880(*(uint64_t *)(*(longlong *)(*param_1 + 0x658) + 0x208),auStack_28,uVar9,
                 *(int8_t *)(lVar4 + 100),
                 (*(float *)(lVar4 + 0x28) + *(float *)(lVar4 + 0x20)) * 0.5,1);

@@ -176,7 +176,7 @@ void FUN_18077f380(longlong param_1,longlong param_2,longlong param_3,uint param
         uStack_158 = *(int32_t *)(param_1 + 0x330);
         uStack_160 = *(int32_t *)(param_1 + 0x340);
         uStack_168 = *(int32_t *)(param_1 + 0x228);
-        (*(code *)_DAT_180c0e170[3])(param_2,param_3,lVar17,param_4);
+        (*(code *)ui_system_config[3])(param_2,param_3,lVar17,param_4);
         goto LAB_18077fe2b;
       }
     }
@@ -190,7 +190,7 @@ void FUN_18077f380(longlong param_1,longlong param_2,longlong param_3,uint param
         uStack_158 = *(int32_t *)(param_1 + 0x330);
         uStack_160 = *(int32_t *)(param_1 + 0x340);
         uStack_168 = *(int32_t *)(param_1 + 0x228);
-        (*(code *)_DAT_180c0e170[2])(param_2,param_3,lVar17,param_4);
+        (*(code *)ui_system_config[2])(param_2,param_3,lVar17,param_4);
         goto LAB_18077fe2b;
       }
     }
@@ -204,7 +204,7 @@ void FUN_18077f380(longlong param_1,longlong param_2,longlong param_3,uint param
         uStack_158 = *(int32_t *)(param_1 + 0x330);
         uStack_160 = *(int32_t *)(param_1 + 0x340);
         uStack_168 = *(int32_t *)(param_1 + 0x228);
-        (*(code *)_DAT_180c0e170[1])(param_2,param_3,lVar17,param_4);
+        (*(code *)ui_system_config[1])(param_2,param_3,lVar17,param_4);
         goto LAB_18077fe2b;
       }
     }
@@ -218,7 +218,7 @@ void FUN_18077f380(longlong param_1,longlong param_2,longlong param_3,uint param
         uStack_158 = *(int32_t *)(param_1 + 0x330);
         uStack_160 = *(int32_t *)(param_1 + 0x340);
         uStack_168 = *(int32_t *)(param_1 + 0x228);
-        (*(code *)*_DAT_180c0e170)(param_2,param_3,lVar17,param_4);
+        (*(code *)*ui_system_config)(param_2,param_3,lVar17,param_4);
         goto LAB_18077fe2b;
       }
     }

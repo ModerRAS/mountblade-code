@@ -26,7 +26,7 @@ void FUN_1800b8911(longlong param_1,uint64_t param_2,longlong *param_3)
     plVar5 = plVar2;
     if (lVar3 == 0) goto joined_r0x0001800b8970;
   }
-  plVar2 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar3 * 8,(char)unaff_RDI[3]);
+  plVar2 = (longlong *)FUN_18062b420(system_memory_pool_ptr,lVar3 * 8,(char)unaff_RDI[3]);
   param_3 = (longlong *)unaff_RDI[1];
   in_RAX = (longlong *)*unaff_RDI;
   plVar5 = plVar2;

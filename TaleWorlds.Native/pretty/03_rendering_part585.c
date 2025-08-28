@@ -18,7 +18,7 @@ void FUN_18058c7f0(longlong param_1,uint64_t param_2,float *param_3,float *param
   longlong lVar9;
   longlong lVar10;
   
-  lVar4 = _DAT_180c95ed0;
+  lVar4 = render_system_config;
   lVar9 = (longlong)*(int *)(param_1 + 0x12b0);
   lVar6 = 0;
   *param_3 = 0.0;

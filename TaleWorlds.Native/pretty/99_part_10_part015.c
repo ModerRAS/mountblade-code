@@ -126,8 +126,8 @@ FUN_1806ab920(longlong *param_1,uint64_t *param_2,uint64_t *param_3,uint64_t *pa
   if ((lVar10 == 0) && (lStack_1e8 = FUN_1806ac530(param_1,param_3), lStack_1e8 != 0)) {
     lVar10 = param_1[0x1c];
     puVar11 = (uint64_t *)
-              (**(code **)(*_DAT_180be0050 + 8))
-                        (_DAT_180be0050,0x90,&unknown_var_5552_ptr,&unknown_var_5360_ptr,0x45c);
+              (**(code **)(*system_system_buffer_memory + 8))
+                        (system_system_buffer_memory,0x90,&unknown_var_5552_ptr,&unknown_var_5360_ptr,0x45c);
     if (puVar11 == (uint64_t *)0x0) {
       puVar11 = (uint64_t *)0x0;
       puStack_1f0 = (uint64_t *)0x0;
@@ -440,7 +440,7 @@ LAB_1806abc5a:
 LAB_1806abfac:
   if (puVar11 != (uint64_t *)0x0) {
     (**(code **)*puVar11)(puVar11,0);
-    (**(code **)(*_DAT_180be0050 + 0x10))(_DAT_180be0050,puVar11);
+    (**(code **)(*system_system_buffer_memory + 0x10))(system_system_buffer_memory,puVar11);
   }
   goto LAB_1806abfce;
 }

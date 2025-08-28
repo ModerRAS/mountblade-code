@@ -304,7 +304,7 @@ LAB_1804aeba4:
               puVar8 = puStack_158;
             }
                     // WARNING: Subroutine does not return
-            FUN_180062300(_DAT_180c86928,&unknown_var_6024_ptr,puVar8,pcVar15);
+            FUN_180062300(system_message_context,&unknown_var_6024_ptr,puVar8,pcVar15);
           }
           if ((int)pcVar15 != 0) {
             plVar1 = *(longlong **)(param_1 + 0x2a0);
@@ -358,7 +358,7 @@ LAB_1804aee40:
             }
           }
         }
-        uVar5 = FUN_1800b6de0(_DAT_180c86930,&puStack_160,1);
+        uVar5 = FUN_1800b6de0(system_resource_state,&puStack_160,1);
         lVar7 = lStack_d0;
         *(uint64_t *)(lStack_d0 + 0x2d0) = uVar5;
         pcVar14 = "hands_mesh";
@@ -394,7 +394,7 @@ LAB_1804aeee4:
             }
           }
         }
-        lVar9 = FUN_1800b6de0(_DAT_180c86930,&puStack_160,1);
+        lVar9 = FUN_1800b6de0(system_resource_state,&puStack_160,1);
         *(longlong *)(lVar7 + 0x2b8) = lVar9;
         pcVar14 = (char *)0x0;
         if ((lVar9 != 0) &&
@@ -446,7 +446,7 @@ LAB_1804aeff0:
             }
           }
         }
-        uVar5 = FUN_1800b6de0(_DAT_180c86930,&puStack_160,1);
+        uVar5 = FUN_1800b6de0(system_resource_state,&puStack_160,1);
         *(uint64_t *)(lVar7 + 0x2c0) = uVar5;
         pcVar15 = "underwear_top_mesh";
         do {
@@ -481,7 +481,7 @@ LAB_1804af090:
             }
           }
         }
-        uVar5 = FUN_1800b6de0(_DAT_180c86930,&puStack_160,1);
+        uVar5 = FUN_1800b6de0(system_resource_state,&puStack_160,1);
         *(uint64_t *)(lVar7 + 0x2c8) = uVar5;
         pcVar15 = "face_meta_mesh";
         do {
@@ -516,7 +516,7 @@ LAB_1804af134:
             }
           }
         }
-        uVar5 = FUN_1800b6de0(_DAT_180c86930,&puStack_160,1);
+        uVar5 = FUN_1800b6de0(system_resource_state,&puStack_160,1);
         *(uint64_t *)(lVar7 + 0x370) = uVar5;
         FUN_180283e70(uVar5);
         if (*(int *)(*(longlong *)(lVar7 + 0x370) + 0x58) == 0) {

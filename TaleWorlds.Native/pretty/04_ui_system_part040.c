@@ -67,7 +67,7 @@ void FUN_180675e28(uint64_t param_1,uint64_t param_2,longlong param_3)
     auVar27[1] = (char)uVar1;
     auVar27._8_8_ = 0;
     auVar25 = *(int8_t (*) [16])((ulonglong)(unaff_EBX & 0xf) * 0x10 + in_stack_00000070);
-    auVar16 = pshufb(auVar25,_DAT_180946f70);
+    auVar16 = pshufb(auVar25,ui_system_string);
     auVar28 = pmaddubsw(auVar27,auVar16);
     uVar1 = *(int32_t *)((longlong)puVar13 + unaff_R14 * 5);
     uVar2 = *(int32_t *)((longlong)puVar13 + unaff_R14 * 6);
@@ -80,7 +80,7 @@ void FUN_180675e28(uint64_t param_1,uint64_t param_2,longlong param_3)
     auVar26[0] = (int8_t)uVar3;
     auVar26[1] = (char)uVar1;
     auVar26._8_8_ = 0;
-    auVar16 = pshufb(auVar25,_DAT_180946f90);
+    auVar16 = pshufb(auVar25,ui_system_string);
     auVar26 = pmaddubsw(auVar26,auVar16);
     uVar1 = *(int32_t *)(unaff_R14 * 7 + (longlong)puVar13);
     auVar24._4_4_ =
@@ -92,8 +92,8 @@ void FUN_180675e28(uint64_t param_1,uint64_t param_2,longlong param_3)
     auVar24[0] = (int8_t)uVar2;
     auVar24[1] = (char)uVar1;
     auVar24._8_8_ = 0;
-    auVar16 = pshufb(auVar25,_DAT_180946fa0);
-    auVar25 = pshufb(auVar25,_DAT_180946f40);
+    auVar16 = pshufb(auVar25,ui_system_string);
+    auVar25 = pshufb(auVar25,ui_system_string);
     auVar24 = pmaddubsw(auVar24,auVar16);
     uVar1 = *(int32_t *)((longlong)puVar13 + unaff_R14);
     auVar16._4_4_ =
@@ -141,7 +141,7 @@ void FUN_180675e28(uint64_t param_1,uint64_t param_2,longlong param_3)
     auVar16 = paddsw(auVar24,auVar16);
     auVar25 = paddsw(auVar16,auVar25);
     auVar25 = paddsw(auVar25,auVar28);
-    auVar25 = pmulhrsw(auVar25,_DAT_180946f30);
+    auVar25 = pmulhrsw(auVar25,ui_system_string);
     sVar5 = auVar25._0_2_;
     sVar6 = auVar25._2_2_;
     sVar7 = auVar25._4_2_;
@@ -288,7 +288,7 @@ void FUN_180675f70(longlong param_1,longlong param_2,uint64_t *param_3,longlong 
       auVar48[0] = (int8_t)uVar2;
       auVar48[1] = (char)uVar1;
       auVar47 = *(int8_t (*) [16])((ulonglong)(param_6 & 0xf) * 0x10 + param_5);
-      auVar16 = pshufb(auVar47,_DAT_180946f70);
+      auVar16 = pshufb(auVar47,ui_system_string);
       auVar56 = pmaddubsw(auVar48,auVar16);
       uVar1 = *(uint64_t *)((longlong)puVar13 + param_2 * 5);
       uVar2 = *(ulonglong *)((longlong)puVar13 + param_2 * 6);
@@ -328,7 +328,7 @@ void FUN_180675f70(longlong param_1,longlong param_2,uint64_t *param_3,longlong 
       auVar46[2] = (char)(uVar3 >> 8);
       auVar46[0] = (int8_t)uVar3;
       auVar46[1] = (char)uVar1;
-      auVar16 = pshufb(auVar47,_DAT_180946f90);
+      auVar16 = pshufb(auVar47,ui_system_string);
       auVar46 = pmaddubsw(auVar46,auVar16);
       uVar1 = *(uint64_t *)(param_2 * 7 + (longlong)puVar13);
       auVar37._8_6_ = 0;
@@ -367,8 +367,8 @@ void FUN_180675f70(longlong param_1,longlong param_2,uint64_t *param_3,longlong 
       auVar38[2] = (char)(uVar2 >> 8);
       auVar38[0] = (int8_t)uVar2;
       auVar38[1] = (char)uVar1;
-      auVar16 = pshufb(auVar47,_DAT_180946fa0);
-      auVar47 = pshufb(auVar47,_DAT_180946f40);
+      auVar16 = pshufb(auVar47,ui_system_string);
+      auVar47 = pshufb(auVar47,ui_system_string);
       auVar38 = pmaddubsw(auVar38,auVar16);
       uVar1 = *(uint64_t *)((longlong)puVar13 + param_2);
       auVar30._8_6_ = 0;
@@ -443,7 +443,7 @@ void FUN_180675f70(longlong param_1,longlong param_2,uint64_t *param_3,longlong 
       auVar16 = paddsw(auVar38,auVar16);
       auVar47 = paddsw(auVar16,auVar47);
       auVar47 = paddsw(auVar47,auVar56);
-      auVar47 = pmulhrsw(auVar47,_DAT_180946f30);
+      auVar47 = pmulhrsw(auVar47,ui_system_string);
       sVar5 = auVar47._0_2_;
       sVar6 = auVar47._2_2_;
       sVar7 = auVar47._4_2_;

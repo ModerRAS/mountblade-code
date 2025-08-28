@@ -18,7 +18,7 @@ void FUN_18017dd60(uint64_t param_1,uint64_t param_2)
   int32_t uStack_70;
   uint64_t uStack_68;
   
-  puVar3 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x98,8,3);
+  puVar3 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x98,8,3);
   uVar6 = 0xfffffffffffffffe;
   puVar5 = puVar3;
   FUN_1803456e0(puVar3,param_2,param_1);
@@ -37,7 +37,7 @@ void FUN_18017dd60(uint64_t param_1,uint64_t param_2)
   uStack_68 = 0;
   puStack_78 = (int32_t *)0x0;
   uStack_70 = 0;
-  puVar4 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,0x1f,0x13);
+  puVar4 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x1f,0x13);
   *(int8_t *)puVar4 = 0;
   puStack_78 = puVar4;
   uVar2 = FUN_18064e990(puVar4);
@@ -72,16 +72,16 @@ void FUN_18017ee80(longlong *param_1)
   longlong *plVar3;
   longlong *plStackX_8;
   
-  lVar2 = _DAT_180c86870;
+  lVar2 = system_main_module_state;
   plStackX_8 = param_1;
-  plVar3 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,200,8,3,0xfffffffffffffffe);
+  plVar3 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,200,8,3,0xfffffffffffffffe);
   plStackX_8 = plVar3;
   FUN_180049830(plVar3);
   *plVar3 = (longlong)&unknown_var_7960_ptr;
   plVar3[0x18] = lVar2 + 0x38;
   plVar3[3] = -3;
   (**(code **)(*plVar3 + 0x28))(plVar3);
-  uVar1 = _DAT_180c82868;
+  uVar1 = system_context_ptr;
   plStackX_8 = plVar3;
   (**(code **)(*plVar3 + 0x28))(plVar3);
   FUN_18005e110(uVar1,&plStackX_8);

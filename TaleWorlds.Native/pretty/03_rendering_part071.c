@@ -776,14 +776,14 @@ FUN_180309740(uint64_t *param_1,int param_2,int32_t param_3,int32_t param_4,
   *(int32_t *)(param_1 + 0x27) = 0;
   *(int32_t *)(param_1 + 0x22) = 0;
   LOCK();
-  piVar1 = (int *)(*(longlong *)(*(longlong *)(_DAT_180c8a980 + 0x140) + (longlong)param_2 * 8) +
+  piVar1 = (int *)(*(longlong *)(*(longlong *)(render_system_data_memory + 0x140) + (longlong)param_2 * 8) +
                   0x1a0);
   *piVar1 = *piVar1 + 1;
   UNLOCK();
   if (*(int *)((longlong)param_1 + 0x1c) != -1) {
     LOCK();
     piVar1 = (int *)(*(longlong *)
-                      (*(longlong *)(_DAT_180c8a980 + 0x160) +
+                      (*(longlong *)(render_system_data_memory + 0x160) +
                       (longlong)*(int *)((longlong)param_1 + 0x1c) * 8) + 0x18);
     *piVar1 = *piVar1 + 1;
     UNLOCK();
@@ -826,11 +826,11 @@ void FUN_180309950(uint64_t *param_1)
   longlong *plStackX_20;
   
   *param_1 = &unknown_var_4176_ptr;
-  lVar5 = _DAT_180c8a980;
+  lVar5 = render_system_data_memory;
   iVar6 = *(int *)((longlong)param_1 + 0x24);
   lVar7 = (longlong)iVar6;
   if ((iVar6 != -1) && (*(int *)((longlong)param_1 + 0x14) == 0)) {
-    lVar1 = _DAT_180c8a980 + 0x2b8;
+    lVar1 = render_system_data_memory + 0x2b8;
     aiStackX_10[0] = iVar6;
     AcquireSRWLockExclusive(lVar1);
     *(int8_t *)(lVar5 + 3) = 1;
@@ -847,10 +847,10 @@ void FUN_180309950(uint64_t *param_1)
     *(int32_t *)((longlong)param_1 + 0x24) = 0xffffffff;
     ReleaseSRWLockExclusive(lVar1);
   }
-  lVar5 = _DAT_180c8a980;
+  lVar5 = render_system_data_memory;
   iVar4 = *(int *)(param_1 + 3);
   LOCK();
-  piVar2 = (int *)(*(longlong *)(*(longlong *)(_DAT_180c8a980 + 0x140) + (longlong)iVar4 * 8) +
+  piVar2 = (int *)(*(longlong *)(*(longlong *)(render_system_data_memory + 0x140) + (longlong)iVar4 * 8) +
                   0x1a0);
   iVar6 = *piVar2;
   *piVar2 = *piVar2 + -1;
@@ -874,11 +874,11 @@ void FUN_180309950(uint64_t *param_1)
       __Throw_C_error_std__YAXH_Z(iVar6);
     }
   }
-  lVar5 = _DAT_180c8a980;
+  lVar5 = render_system_data_memory;
   if (*(int *)((longlong)param_1 + 0x1c) != -1) {
     lVar7 = (longlong)*(int *)((longlong)param_1 + 0x1c) * 8;
     LOCK();
-    piVar2 = (int *)(*(longlong *)(lVar7 + *(longlong *)(_DAT_180c8a980 + 0x160)) + 0x18);
+    piVar2 = (int *)(*(longlong *)(lVar7 + *(longlong *)(render_system_data_memory + 0x160)) + 0x18);
     iVar6 = *piVar2;
     *piVar2 = *piVar2 + -1;
     UNLOCK();

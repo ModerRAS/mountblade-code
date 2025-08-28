@@ -131,7 +131,7 @@ LAB_18059c6f5:
     }
     plVar4 = *(longlong **)(*(longlong *)(unaff_RBX + 0x108) + 0x590);
     fVar11 = (float)(**(code **)(*plVar4 + 0xa8))(plVar4,unaff_ESI);
-    fVar10 = _DAT_180c963e4;
+    fVar10 = render_system_ui;
     if (0.2 <= fVar11) {
       return;
     }
@@ -190,7 +190,7 @@ void FUN_18059c722(void)
     }
     plVar4 = *(longlong **)(*(longlong *)(unaff_RBX + 0x108) + 0x590);
     fVar6 = (float)(**(code **)(*plVar4 + 0xa8))(plVar4,unaff_ESI);
-    fVar5 = _DAT_180c963e4;
+    fVar5 = render_system_ui;
     if (0.2 <= fVar6) {
       return;
     }

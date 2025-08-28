@@ -584,8 +584,8 @@ uint64_t * FUN_1806a7720(void)
   uint64_t *puVar1;
   
   puVar1 = (uint64_t *)
-           (**(code **)(*_DAT_180be0050 + 8))
-                     (_DAT_180be0050,0xb8,&unknown_var_5432_ptr,&unknown_var_5360_ptr,0x5de);
+           (**(code **)(*system_system_buffer_memory + 8))
+                     (system_system_buffer_memory,0xb8,&unknown_var_5432_ptr,&unknown_var_5360_ptr,0x5de);
   if (puVar1 != (uint64_t *)0x0) {
     *puVar1 = &unknown_var_5064_ptr;
     puVar1[1] = 0;
@@ -631,8 +631,8 @@ uint64_t FUN_1806a7780(void)
   longlong lVar1;
   uint64_t uVar2;
   
-  lVar1 = (**(code **)(*_DAT_180be0050 + 8))
-                    (_DAT_180be0050,0xf0,&unknown_var_5584_ptr,&unknown_var_5360_ptr,0x5d0);
+  lVar1 = (**(code **)(*system_system_buffer_memory + 8))
+                    (system_system_buffer_memory,0xf0,&unknown_var_5584_ptr,&unknown_var_5360_ptr,0x5d0);
   if (lVar1 != 0) {
     uVar2 = FUN_1806a9b80(lVar1);
     FUN_1806ae700(uVar2);
@@ -652,8 +652,8 @@ uint64_t FUN_1806a77f0(uint64_t param_1)
   longlong lVar1;
   uint64_t uVar2;
   
-  lVar1 = (**(code **)(*_DAT_180be0050 + 8))
-                    (_DAT_180be0050,0xf0,&unknown_var_5584_ptr,&unknown_var_5360_ptr,0x5d7);
+  lVar1 = (**(code **)(*system_system_buffer_memory + 8))
+                    (system_system_buffer_memory,0xf0,&unknown_var_5584_ptr,&unknown_var_5360_ptr,0x5d7);
   if (lVar1 == 0) {
     uVar2 = 0;
   }

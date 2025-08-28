@@ -1083,7 +1083,7 @@ void RenderingSystem_DataDeserializer(longlong deserialize_context, longlong fil
       
       do {
         // 分配资源块
-        block_ptr = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x68, 8, 3);
+        block_ptr = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x68, 8, 3);
         data_ptr = (longlong *)(block_ptr + 0x12);
         *data_ptr = (longlong)&unknown_var_720_ptr;
         *(uint64_t *)(block_ptr + 0x14) = 0;
@@ -1174,7 +1174,7 @@ void RenderingSystem_DataDeserializer(longlong deserialize_context, longlong fil
             buffer_size = 1;
           LAB_1803358a2:
             resource_list = (uint64_t *)
-                     FUN_18062b420(_DAT_180c8ed18, buffer_size * 8, *(int8_t *)(current_resource + 8));
+                     FUN_18062b420(system_memory_pool_ptr, buffer_size * 8, *(int8_t *)(current_resource + 8));
             next_resource = (uint64_t *)current_resource[6];
             temp_ptr = (uint64_t *)current_resource[5];
           }

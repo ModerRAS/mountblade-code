@@ -164,7 +164,7 @@ configure_engine_parameters(uint64_t *config_ptr,uint64_t param2,uint64_t param3
 {
   int32_t *instance_data;
   
-  *(int32_t *)(_DAT_180c8a980 + 0x2f8) = *(int32_t *)(_DAT_180c86870 + 0x224);
+  *(int32_t *)(core_system_data_config + 0x2f8) = *(int32_t *)(system_main_module_state + 0x224);
   *config_ptr = &unknown_var_720_ptr;
   config_ptr[1] = 0;
   *(int32_t *)(config_ptr + 2) = 0;

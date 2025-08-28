@@ -39,7 +39,7 @@ void FUN_1804d2430(longlong *param_1,uint param_2,int param_3)
   if ((int)param_2 < param_3) {
     do {
       lVar13 = SYSTEM_STATE_MANAGER;
-      lVar16 = _DAT_180c86870;
+      lVar16 = system_main_module_state;
       lVar6 = *param_1;
       uVar14 = (uint)uVar12;
       if ((int)uVar14 < *(int *)(lVar6 + 0x564)) {
@@ -192,7 +192,7 @@ void FUN_1804d2454(uint64_t param_1,uint64_t param_2,int param_3)
   uVar15 = unaff_R14;
   do {
     lVar5 = SYSTEM_STATE_MANAGER;
-    lVar8 = _DAT_180c86870;
+    lVar8 = system_main_module_state;
     lVar11 = *unaff_R15;
     uVar9 = (uint)unaff_R14;
     if ((int)uVar9 < *(int *)(lVar11 + 0x564)) {
@@ -348,7 +348,7 @@ void FUN_1804d27d7(uint64_t param_1,uint64_t param_2,code *param_3)
         do {
           do {
             lVar11 = SYSTEM_STATE_MANAGER;
-            lVar8 = _DAT_180c86870;
+            lVar8 = system_main_module_state;
             unaff_R14D = unaff_R14D + 1;
             unaff_R12 = unaff_R12 + 1;
             if (in_stack_000000d0 <= unaff_R14D) {

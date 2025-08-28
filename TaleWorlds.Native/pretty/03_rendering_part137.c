@@ -251,7 +251,7 @@ void FUN_18034df10(longlong param_1)
         if ((*(byte *)(lVar3 + 0xa8) & 1) == 0) {
           uStack_30 = 0x18034df5c;
           FUN_1802fcbe0(lVar3,*(longlong *)(param_1 + 0x70) + 0x70);
-          *(int32_t *)(lVar3 + 0x50) = *(int32_t *)(_DAT_180c86870 + 0x224);
+          *(int32_t *)(lVar3 + 0x50) = *(int32_t *)(system_main_module_state + 0x224);
           *(ushort *)(lVar3 + 0xa8) = *(ushort *)(lVar3 + 0xa8) | 1;
         }
         uStack_58 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_128;
@@ -420,7 +420,7 @@ void FUN_18034df2d(longlong param_1,longlong param_2)
       if ((*(byte *)(lVar3 + 0xa8) & 1) == 0) {
         uStack_8 = 0x18034df5c;
         FUN_1802fcbe0(lVar3,param_2 + 0x70);
-        *(int32_t *)(lVar3 + 0x50) = *(int32_t *)(_DAT_180c86870 + 0x224);
+        *(int32_t *)(lVar3 + 0x50) = *(int32_t *)(system_main_module_state + 0x224);
         *(ushort *)(lVar3 + 0xa8) = *(ushort *)(lVar3 + 0xa8) | 1;
       }
       uStack_30 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_100;
@@ -561,7 +561,7 @@ void FUN_18034dfa0(longlong param_1)
       cStack_168 = *(char *)(lVar1 + 0x20);
       uVar9 = (ulonglong)cStack_168;
       if (cStack_168 != '\0') {
-        puVar3 = (ulonglong *)FUN_18062b420(_DAT_180c8ed18,uVar9 * 8 + 0x10,3);
+        puVar3 = (ulonglong *)FUN_18062b420(system_memory_pool_ptr,uVar9 * 8 + 0x10,3);
         *puVar3 = uVar9 << 0x20 | 8;
         puVar7 = puVar5;
         puVar8 = puVar3 + 2;

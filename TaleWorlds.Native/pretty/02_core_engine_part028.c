@@ -13,20 +13,20 @@ void FUN_180073730(uint64_t param_1,uint64_t param_2)
   void *puStack_30;
   longlong lStack_28;
   
-  FUN_1800623b0(_DAT_180c86928,0,0x100000000,1,&unknown_var_4968_ptr,param_2,0xfffffffffffffffe);
+  FUN_1800623b0(system_message_context,0,0x100000000,1,&unknown_var_4968_ptr,param_2,0xfffffffffffffffe);
   if (system_debug_flag == '\0') {
     auStackX_18[0] = 0xff00ff00;
     FUN_180627910(&puStack_30,param_2);
-    puVar1 = *(void **)*_DAT_180c8ed08;
+    puVar1 = *(void **)*core_system_data_config;
     if (puVar1 == &unknown_var_424_ptr) {
-      cVar2 = *(int *)(_DAT_180c8a9c8 + 0xc40) != 0;
+      cVar2 = *(int *)(core_system_data_config + 0xc40) != 0;
     }
     else {
-      cVar2 = (**(code **)(puVar1 + 0x50))((uint64_t *)*_DAT_180c8ed08);
+      cVar2 = (**(code **)(puVar1 + 0x50))((uint64_t *)*core_system_data_config);
     }
     if (cVar2 == '\0') {
-      (**(code **)(*(longlong *)_DAT_180c8ed08[1] + 0x18))
-                ((longlong *)_DAT_180c8ed08[1],&puStack_30,auStackX_18);
+      (**(code **)(*(longlong *)core_system_data_config[1] + 0x18))
+                ((longlong *)core_system_data_config[1],&puStack_30,auStackX_18);
     }
     puStack_30 = &unknown_var_3456_ptr;
     if (lStack_28 != 0) {
@@ -53,20 +53,20 @@ void FUN_180073830(uint64_t param_1,int32_t param_2,uint64_t param_3)
   void *puStack_30;
   longlong lStack_28;
   
-  FUN_1800623b0(_DAT_180c86928,0,0x100000000,0xc,&unknown_var_5000_ptr,param_3,0xfffffffffffffffe);
+  FUN_1800623b0(system_message_context,0,0x100000000,0xc,&unknown_var_5000_ptr,param_3,0xfffffffffffffffe);
   if (system_debug_flag == '\0') {
     auStackX_20[0] = param_2;
     FUN_180627910(&puStack_30,param_3);
-    puVar1 = *(void **)*_DAT_180c8ed08;
+    puVar1 = *(void **)*core_system_data_config;
     if (puVar1 == &unknown_var_424_ptr) {
-      cVar2 = *(int *)(_DAT_180c8a9c8 + 0xc40) != 0;
+      cVar2 = *(int *)(core_system_data_config + 0xc40) != 0;
     }
     else {
-      cVar2 = (**(code **)(puVar1 + 0x50))((uint64_t *)*_DAT_180c8ed08);
+      cVar2 = (**(code **)(puVar1 + 0x50))((uint64_t *)*core_system_data_config);
     }
     if (cVar2 == '\0') {
-      (**(code **)(*(longlong *)_DAT_180c8ed08[1] + 0x18))
-                ((longlong *)_DAT_180c8ed08[1],&puStack_30,auStackX_20);
+      (**(code **)(*(longlong *)core_system_data_config[1] + 0x18))
+                ((longlong *)core_system_data_config[1],&puStack_30,auStackX_20);
     }
     puStack_30 = &unknown_var_3456_ptr;
     if (lStack_28 != 0) {

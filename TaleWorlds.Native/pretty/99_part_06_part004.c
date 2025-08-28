@@ -11,7 +11,7 @@ void FUN_1803a6d01(void)
   uint64_t *unaff_RDI;
   longlong unaff_R14;
   
-  lVar1 = FUN_18062b420(_DAT_180c8ed18,0x30,*(int8_t *)(unaff_R14 + 0x28));
+  lVar1 = FUN_18062b420(system_memory_pool_ptr,0x30,*(int8_t *)(unaff_R14 + 0x28));
   *(uint64_t *)(lVar1 + 0x20) = *unaff_RDI;
   *(int32_t *)(lVar1 + 0x28) = *(int32_t *)(unaff_RDI + 1);
   *(int32_t *)(lVar1 + 0x2c) = 0;
@@ -121,7 +121,7 @@ LAB_1803a6e5b:
 LAB_1803a6ea6:
   uVar4 = 0;
 LAB_1803a6ea8:
-  lVar3 = FUN_18062b420(_DAT_180c8ed18,0x30,*(int8_t *)(param_1 + 5));
+  lVar3 = FUN_18062b420(system_memory_pool_ptr,0x30,*(int8_t *)(param_1 + 5));
   *(uint64_t *)(lVar3 + 0x20) = *(uint64_t *)param_4;
   *(int *)(lVar3 + 0x28) = param_4[2];
   *(int32_t *)(lVar3 + 0x2c) = 0;

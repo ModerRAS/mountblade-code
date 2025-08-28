@@ -18,14 +18,14 @@ void FUN_1806277c0(longlong param_1,int param_2)
       if ((int)uVar2 < 0x10) {
         uVar2 = 0x10;
       }
-      puVar4 = (int8_t *)FUN_18062b420(_DAT_180c8ed18,(longlong)(int)uVar2,0x13);
+      puVar4 = (int8_t *)FUN_18062b420(system_memory_pool_ptr,(longlong)(int)uVar2,0x13);
       *(int8_t **)(param_1 + 8) = puVar4;
       *puVar4 = 0;
       uVar1 = FUN_18064e990(*(uint64_t *)(param_1 + 8));
       *(int32_t *)(param_1 + 0x18) = uVar1;
     }
     else if (*(uint *)(param_1 + 0x18) < uVar2) {
-      uVar3 = FUN_18062b8b0(_DAT_180c8ed18,*(longlong *)(param_1 + 8),uVar2,0x10,0x13);
+      uVar3 = FUN_18062b8b0(system_memory_pool_ptr,*(longlong *)(param_1 + 8),uVar2,0x10,0x13);
       *(uint64_t *)(param_1 + 8) = uVar3;
       uVar1 = FUN_18064e990(uVar3);
       *(int32_t *)(param_1 + 0x18) = uVar1;
@@ -457,7 +457,7 @@ void FUN_180628040(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   else {
     iVar1 = iVar1 + 1;
     if (iVar1 != 0) {
-      lVar3 = FUN_18062b420(_DAT_180c8ed18,(longlong)iVar1,3);
+      lVar3 = FUN_18062b420(system_memory_pool_ptr,(longlong)iVar1,3);
     }
     FUN_18004b9b0(lVar3,(longlong)iVar1,param_2,&uStackX_18);
     FUN_1806281a0(param_1,lVar3);

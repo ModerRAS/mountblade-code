@@ -308,7 +308,7 @@ LAB_180714c0e:
   auVar40._8_4_ = uVar17;
   auVar40._12_4_ = uVar17;
   iVar13 = (iVar13 - iVar14) - uVar17 * uVar20;
-  if (((param_2 < (int)uStackX_10) && (0xf < uStackX_10 - param_2)) && (1 < _DAT_180bf00b0)) {
+  if (((param_2 < (int)uStackX_10) && (0xf < uStackX_10 - param_2)) && (1 < ui_system_control_config)) {
     plVar1 = (longlong *)(param_16 + uVar15 * 4);
     plVar2 = (longlong *)(param_16 + (longlong)(int)(uStackX_10 - 1) * 4);
     if ((((longlong *)(lVar8 + lVar23 * 2) < plVar1) || (plVar2 < (longlong *)(lVar8 + uVar15 * 2)))
