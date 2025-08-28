@@ -1233,8 +1233,153 @@ void FUN_1803fa7e0(longlong param_1, undefined8 param_2, longlong param_3, undef
  * @param param_2 渲染参数
  */
 void FUN_1803fa980(longlong *param_1, longlong param_2) {
-    // 系统渲染处理实现
-    // 包含渲染数据准备、参数设置、操作执行等逻辑
+    longlong lVar1;
+    longlong *plVar2;
+    undefined1 auStack_1e8 [32];
+    longlong *plStack_1c8;
+    longlong *plStack_1c0;
+    longlong *plStack_1b8;
+    undefined4 uStack_1b0;
+    undefined4 uStack_1ac;
+    undefined4 uStack_1a8;
+    undefined4 uStack_1a4;
+    undefined4 uStack_1a0;
+    undefined8 uStack_19c;
+    undefined8 uStack_194;
+    undefined1 uStack_18c;
+    undefined8 uStack_18b;
+    undefined4 uStack_180;
+    undefined1 uStack_17c;
+    undefined8 uStack_178;
+    undefined *puStack_168;
+    undefined1 *puStack_160;
+    undefined4 uStack_158;
+    undefined1 auStack_150 [136];
+    undefined *puStack_c8;
+    undefined1 *puStack_c0;
+    undefined4 uStack_b8;
+    undefined1 auStack_b0 [136];
+    ulonglong uStack_28;
+    
+    // 系统初始化和配置
+    uStack_178 = 0xfffffffffffffffe;
+    uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_1e8;
+    FUN_1801f9270();
+    
+    // 渲染参数初始化
+    uStack_19c = 0;
+    uStack_194 = 0x3f80000000000000;
+    uStack_18b = 1;
+    uStack_18c = 0;
+    uStack_17c = 0;
+    uStack_1a8 = 1;
+    uStack_1a0 = (undefined4)param_1[0xe];
+    uStack_1a4 = 1;
+    uStack_180 = *(undefined4 *)(param_2 + 0x1bd4);
+    
+    // 渲染数据处理
+    if (*(char *)((longlong)param_1 + 0x4c) == '\0') {
+        uStack_1b0 = (undefined4)(longlong)(double)param_1[0xb];
+        uStack_1ac = (undefined4)(longlong)(double)param_1[0xc];
+        
+        // 渲染数据准备
+        if (param_1[0x8a] == 0) {
+            puStack_c8 = &UNK_1809fcc28;
+            puStack_c0 = auStack_b0;
+            auStack_b0[0] = 0;
+            uStack_b8 = 0xe;
+            strcpy_s(auStack_b0,0x80,&UNK_180a26270);
+            plVar2 = (longlong *)FUN_1800b1230(_DAT_180c86930,&plStack_1b8,&puStack_c8,&uStack_1b0);
+            lVar1 = *plVar2;
+            *plVar2 = 0;
+            plStack_1c8 = (longlong *)param_1[0x8a];
+            param_1[0x8a] = lVar1;
+            if (plStack_1c8 != (longlong *)0x0) {
+                (**(code **)(*plStack_1c8 + 0x38))();
+            }
+            if (plStack_1b8 != (longlong *)0x0) {
+                (**(code **)(*plStack_1b8 + 0x38))();
+            }
+            puStack_c8 = &UNK_18098bcb0;
+        }
+        
+        // 渲染数据处理
+        if (param_1[0x8b] == 0) {
+            puStack_168 = &UNK_1809fcc28;
+            puStack_160 = auStack_150;
+            auStack_150[0] = 0;
+            uStack_158 = 0xe;
+            strcpy_s(auStack_150,0x80,&UNK_180a26280);
+            plVar2 = (longlong *)FUN_1800b1230(_DAT_180c86930,&plStack_1c0,&puStack_168,&uStack_1b0);
+            lVar1 = *plVar2;
+            *plVar2 = 0;
+            plStack_1c8 = (longlong *)param_1[0x8b];
+            param_1[0x8b] = lVar1;
+            if (plStack_1c8 != (longlong *)0x0) {
+                (**(code **)(*plStack_1c8 + 0x38))();
+            }
+            if (plStack_1c0 != (longlong *)0x0) {
+                (**(code **)(*plStack_1c0 + 0x38))();
+            }
+            puStack_168 = &UNK_18098bcb0;
+        }
+    }
+    else {
+        // 渲染参数计算
+        uStack_1b0 = (undefined4)(longlong)((double)*(int *)(param_2 + 0x3590) * (double)param_1[0xb]);
+        uStack_1ac = (undefined4)(longlong)((double)*(int *)(param_2 + 0x3594) * (double)param_1[0xc]);
+        
+        // 渲染数据处理
+        puStack_168 = &UNK_1809fcc28;
+        puStack_160 = auStack_150;
+        auStack_150[0] = 0;
+        uStack_158 = 0xe;
+        strcpy_s(auStack_150,0x80,&UNK_180a26270);
+        plVar2 = (longlong *)FUN_1800b1230(_DAT_180c86930,&plStack_1b8,&puStack_168,&uStack_1b0);
+        lVar1 = *plVar2;
+        *plVar2 = 0;
+        plStack_1c0 = (longlong *)param_1[0x8a];
+        param_1[0x8a] = lVar1;
+        if (plStack_1c0 != (longlong *)0x0) {
+            (**(code **)(*plStack_1c0 + 0x38))();
+        }
+        if (plStack_1b8 != (longlong *)0x0) {
+            (**(code **)(*plStack_1b8 + 0x38))();
+        }
+        puStack_168 = &UNK_18098bcb0;
+        
+        // 渲染数据处理
+        puStack_c8 = &UNK_1809fcc28;
+        puStack_c0 = auStack_b0;
+        auStack_b0[0] = 0;
+        uStack_b8 = 0xe;
+        strcpy_s(auStack_b0,0x80,&UNK_180a26280);
+        plVar2 = (longlong *)FUN_1800b1230(_DAT_180c86930,&plStack_1c8,&puStack_c8,&uStack_1b0);
+        lVar1 = *plVar2;
+        *plVar2 = 0;
+        plStack_1c0 = (longlong *)param_1[0x8b];
+        param_1[0x8b] = lVar1;
+        if (plStack_1c0 != (longlong *)0x0) {
+            (**(code **)(*plStack_1c0 + 0x38))();
+        }
+        if (plStack_1c8 != (longlong *)0x0) {
+            (**(code **)(*plStack_1c8 + 0x38))();
+        }
+        puStack_c8 = &UNK_18098bcb0;
+    }
+    
+    // 渲染操作执行
+    (**(code **)(*param_1 + 0x40))(param_1,0,0);
+    
+    // 渲染资源清理
+    plStack_1c8 = (longlong *)param_1[0x89];
+    param_1[0x89] = 0;
+    if (plStack_1c8 != (longlong *)0x0) {
+        (**(code **)(*plStack_1c8 + 0x38))();
+    }
+    
+    // 系统退出处理
+    FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_1e8);
 }
 
 /* ============================================================================
