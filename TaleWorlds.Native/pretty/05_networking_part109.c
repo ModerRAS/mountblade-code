@@ -115,6 +115,66 @@
 // 网络系统事件处理器
 #define NetworkingSystem_EventHandler FUN_18089ffe0
 
+// 网络系统连接状态检查器
+#define NetworkingSystem_ConnectionStatusChecker NetworkingSystem_ConnectionStatusChecker
+
+// 网络系统数据处理器
+#define NetworkingSystem_DataProcessor NetworkingSystem_DataProcessor
+
+// 网络系统连接管理器
+#define NetworkingSystem_ConnectionManager2 NetworkingSystem_ConnectionManager2
+
+// 网络系统内存分配器
+#define NetworkingSystem_MemoryAllocator NetworkingSystem_MemoryAllocator
+
+// 网络系统连接验证器2
+#define NetworkingSystem_ConnectionValidator2 FUN_180898e70
+
+// 网络系统资源管理器
+#define NetworkingSystem_ResourceManager FUN_1808de000
+
+// 网络系统协议处理器2
+#define NetworkingSystem_ProtocolHandler2 FUN_1808a7c40
+
+// 网络系统状态管理器
+#define NetworkingSystem_StateManager FUN_1808a7c90
+
+// 网络系统连接管理器3
+#define NetworkingSystem_ConnectionManager3 FUN_1808a1090
+
+// 网络系统会话处理器
+#define NetworkingSystem_SessionProcessor FUN_1808a1610
+
+// 网络系统连接管理器4
+#define NetworkingSystem_ConnectionManager4 FUN_1808a1870
+
+// 网络系统连接管理器5
+#define NetworkingSystem_ConnectionManager5 FUN_1808a3d50
+
+// 网络系统协议栈管理器2
+#define NetworkingSystem_ProtocolStackManager2 FUN_1808a4fb0
+
+// 网络系统连接管理器6
+#define NetworkingSystem_ConnectionManager6 FUN_1808a6e50
+
+// 网络系统协议管理器2
+#define NetworkingSystem_ProtocolManager2 FUN_1808a7b00
+
+// 网络系统性能优化器
+#define NetworkingSystem_PerformanceOptimizer FUN_1808a87d0
+
+// 网络系统连接管理器7
+#define NetworkingSystem_ConnectionManager7 FUN_1808acf30
+
+// 网络系统连接管理器8
+#define NetworkingSystem_ConnectionManager8 FUN_1808afd90
+
+// 网络系统协议栈管理器3
+#define NetworkingSystem_ProtocolStackManager3 NetworkingSystem_DataProcessor
+
+// 网络系统资源管理器2
+#define NetworkingSystem_ResourceManager2 FUN_1808de000
+
 /* ============================================================================
  * 常量定义
  * ============================================================================ */
@@ -220,12 +280,12 @@ uint64_t NetworkingSystem_ProtocolValidator(longlong param_1,longlong *param_2)
         auStackX_10[0] = *(int32_t *)(param_1 + 0x60);
         uVar1 = (**(code **)**(uint64_t **)(*param_2 + 8))
                           (*(uint64_t **)(*param_2 + 8),auStackX_10,4);
-        if (((((int)uVar1 == 0) && (uVar1 = FUN_180898eb0(param_2,param_1 + 100), (int)uVar1 == 0))
-            && (uVar1 = FUN_180898eb0(param_2,param_1 + 0x68), (int)uVar1 == 0)) &&
-           (((uVar1 = FUN_180898eb0(param_2,param_1 + 0x6c), (int)uVar1 == 0 &&
-             (uVar1 = FUN_180898eb0(param_2,param_1 + 0x70), (int)uVar1 == 0)) &&
-            ((uVar1 = FUN_180898eb0(param_2,param_1 + 0x74), (int)uVar1 == 0 &&
-             (uVar1 = FUN_180898eb0(param_2,param_1 + 0x78), (int)uVar1 == 0)))))) {
+        if (((((int)uVar1 == 0) && (uVar1 = NetworkingSystem_ConnectionStatusChecker(param_2,param_1 + 100), (int)uVar1 == 0))
+            && (uVar1 = NetworkingSystem_ConnectionStatusChecker(param_2,param_1 + 0x68), (int)uVar1 == 0)) &&
+           (((uVar1 = NetworkingSystem_ConnectionStatusChecker(param_2,param_1 + 0x6c), (int)uVar1 == 0 &&
+             (uVar1 = NetworkingSystem_ConnectionStatusChecker(param_2,param_1 + 0x70), (int)uVar1 == 0)) &&
+            ((uVar1 = NetworkingSystem_ConnectionStatusChecker(param_2,param_1 + 0x74), (int)uVar1 == 0 &&
+             (uVar1 = NetworkingSystem_ConnectionStatusChecker(param_2,param_1 + 0x78), (int)uVar1 == 0)))))) {
           // 处理协议验证成功的情况
           uVar1 = FUN_1808a7c40(param_2,param_1 + 0x5c,0x74);
         }
@@ -258,11 +318,11 @@ uint64_t NetworkingSystem_ConnectionManager(longlong param_1,longlong *param_2)
   int8_t auStack_28 [32];
   
   // 验证协议标识符
-  uVar1 = FUN_1808ddd30(param_2,auStack_28,1,PROTOCOL_ID_LIST,PROTOCOL_ID_BEFB);
+  uVar1 = NetworkingSystem_DataProcessor(param_2,auStack_28,1,PROTOCOL_ID_LIST,PROTOCOL_ID_BEFB);
   if (((int)uVar1 == 0) &&
-     (uVar1 = FUN_1808ddd30(param_2,auStack_68,0,PROTOCOL_ID_BEFB,0), (int)uVar1 == 0)) {
+     (uVar1 = NetworkingSystem_DataProcessor(param_2,auStack_68,0,PROTOCOL_ID_BEFB,0), (int)uVar1 == 0)) {
     if (*(int *)(param_2[1] + 0x18) == 0) {
-      uVar1 = FUN_180899ef0(*param_2,param_1 + 0x10);
+      uVar1 = NetworkingSystem_ConnectionManager2(*param_2,param_1 + 0x10);
       if (((int)uVar1 == 0) &&
          ((NETWORKING_MAX_CONNECTIONS < *(uint *)(param_2 + 8) ||
           (uVar1 = FUN_1808afd90(param_2,param_1 + 0x44), (int)uVar1 == 0)))) {
@@ -424,7 +484,7 @@ uint64_t NetworkingSystem_StateProcessor(void)
   
   // 检查连接状态
   if (*(int *)(in_RAX + 0x18) == 0) {
-    uVar1 = FUN_180899ef0(*unaff_RBX,unaff_RSI + 0x10);
+    uVar1 = NetworkingSystem_ConnectionManager2(*unaff_RBX,unaff_RSI + 0x10);
     if (((int)uVar1 == 0) &&
        ((NETWORKING_MAX_CONNECTIONS < *(uint *)(unaff_RBX + 8) || (uVar1 = FUN_1808afd90(), (int)uVar1 == 0)))) {
       if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
@@ -594,7 +654,7 @@ void NetworkingSystem_ErrorHandler(void)
     }
   }
   else if ((in_EAX == 0x12) && (*(uint *)(unaff_RBX + 8) < NETWORKING_MAX_ROUTES)) {
-    iVar1 = FUN_1808ddd30();
+    iVar1 = NetworkingSystem_DataProcessor();
     if (iVar1 != 0) {
       return;
     }
@@ -699,11 +759,11 @@ ulonglong NetworkingSystem_PacketProcessor(longlong param_1,uint64_t *param_2,in
   int8_t auStack_30 [40];
   
   // 验证协议标识符
-  uVar2 = FUN_1808ddd30(param_2,auStack_30,1,PROTOCOL_ID_LIST,param_3);
-  if (((int)uVar2 == 0) && (uVar2 = FUN_1808ddd30(param_2,auStack_70,0,param_4,0), (int)uVar2 == 0))
+  uVar2 = NetworkingSystem_DataProcessor(param_2,auStack_30,1,PROTOCOL_ID_LIST,param_3);
+  if (((int)uVar2 == 0) && (uVar2 = NetworkingSystem_DataProcessor(param_2,auStack_70,0,param_4,0), (int)uVar2 == 0))
   {
     if (*(int *)(param_2[1] + 0x18) == 0) {
-      uVar1 = FUN_180899ef0(*param_2,param_1 + 0x10);
+      uVar1 = NetworkingSystem_ConnectionManager2(*param_2,param_1 + 0x10);
       uVar2 = (ulonglong)uVar1;
       if ((uVar1 == 0) &&
          ((param_5 == '\0' || (uVar2 = FUN_1808a1870(param_1 + 0x48,param_2), (int)uVar2 == 0)))) {
@@ -741,10 +801,10 @@ ulonglong NetworkingSystem_RouteManager(void)
   char in_stack_000000d0;
   
   // 验证路由协议
-  uVar2 = FUN_1808ddd30();
+  uVar2 = NetworkingSystem_DataProcessor();
   if ((int)uVar2 == 0) {
     if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-      uVar1 = FUN_180899ef0(*unaff_RBX,unaff_RBP + 0x10);
+      uVar1 = NetworkingSystem_ConnectionManager2(*unaff_RBX,unaff_RBP + 0x10);
       uVar2 = (ulonglong)uVar1;
       if ((uVar1 == 0) &&
          ((in_stack_000000d0 == '\0' || (uVar2 = FUN_1808a1870(unaff_RBP + 0x48), (int)uVar2 == 0)))
@@ -800,13 +860,13 @@ uint64_t NetworkingSystem_ProtocolManager(longlong param_1,longlong *param_2)
   int8_t auStack_28 [32];
   
   // 验证协议标识符
-  uVar1 = FUN_1808ddd30(param_2,auStack_28,1,PROTOCOL_ID_LIST,PROTOCOL_ID_IDMC);
+  uVar1 = NetworkingSystem_DataProcessor(param_2,auStack_28,1,PROTOCOL_ID_LIST,PROTOCOL_ID_IDMC);
   if (((int)uVar1 == 0) &&
-     (uVar1 = FUN_1808ddd30(param_2,auStack_48,0,PROTOCOL_ID_BDMC,0), (int)uVar1 == 0)) {
+     (uVar1 = NetworkingSystem_DataProcessor(param_2,auStack_48,0,PROTOCOL_ID_BDMC,0), (int)uVar1 == 0)) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar1 = FUN_180899ef0(*param_2,param_1 + 0x10);
+    uVar1 = NetworkingSystem_ConnectionManager2(*param_2,param_1 + 0x10);
     if ((int)uVar1 == 0) {
       if (*(int *)(param_2[1] + 0x18) != 0) {
         return 0x1c;
@@ -818,7 +878,7 @@ uint64_t NetworkingSystem_ProtocolManager(longlong param_1,longlong *param_2)
         if (*(int *)(param_2[1] + 0x18) != 0) {
           return 0x1c;
         }
-        uVar1 = FUN_180899ef0(*param_2,param_1 + 0xdc);
+        uVar1 = NetworkingSystem_ConnectionManager2(*param_2,param_1 + 0xdc);
         if (((int)uVar1 == 0) &&
            (uVar1 = FUN_1808a7c40(param_2,param_1 + 0xec,0x80), (int)uVar1 == 0)) {
                     // 协议管理成功，执行后续操作
@@ -861,25 +921,25 @@ ulonglong NetworkingSystem_ConnectionProcessor(longlong param_1,longlong *param_
   int8_t auStack_40 [40];
   
   // 获取连接配置
-  puVar3 = (int32_t *)FUN_180847820();
+  puVar3 = (int32_t *)NetworkingSystem_MemoryAllocator();
   uStack_50 = *puVar3;
   uStack_4c = puVar3[1];
   uStack_48 = puVar3[2];
   uStack_44 = puVar3[3];
   
   // 验证路由协议
-  uVar4 = FUN_1808ddd30(param_2,auStack_40,0,PROTOCOL_ID_LRTC,0);
+  uVar4 = NetworkingSystem_DataProcessor(param_2,auStack_40,0,PROTOCOL_ID_LRTC,0);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
   if (*(int *)(param_2[1] + 0x18) == 0) {
-    uVar2 = FUN_180899ef0(*param_2,param_1 + 0x10);
+    uVar2 = NetworkingSystem_ConnectionManager2(*param_2,param_1 + 0x10);
     uVar4 = (ulonglong)uVar2;
     if (uVar2 == 0) {
       if (*(int *)(param_2[1] + 0x18) != 0) {
         return 0x1c;
       }
-      uVar2 = FUN_180899ef0(*param_2,param_1 + 0x20);
+      uVar2 = NetworkingSystem_ConnectionManager2(*param_2,param_1 + 0x20);
       uVar4 = (ulonglong)uVar2;
       if (uVar2 == 0) {
         uVar4 = 0x1c;
@@ -908,7 +968,7 @@ ulonglong NetworkingSystem_ConnectionProcessor(longlong param_1,longlong *param_
           return (ulonglong)uVar2;
         }
         if (*(int *)(param_2[1] + 0x18) == 0) {
-          uVar2 = FUN_180899ef0(*param_2,param_1 + 0x30);
+          uVar2 = NetworkingSystem_ConnectionManager2(*param_2,param_1 + 0x30);
           uVar4 = (ulonglong)uVar2;
           if (uVar2 == 0) {
             uVar4 = FUN_180898e70(param_2,param_1 + 0x40);
@@ -960,13 +1020,13 @@ ulonglong NetworkingSystem_StateChecker(void)
   if (*(uint *)(in_RAX + 0x18) != unaff_ESI) {
     return 0x1c;
   }
-  uVar2 = FUN_180899ef0(*unaff_RDI,unaff_RBP + 0x10);
+  uVar2 = NetworkingSystem_ConnectionManager2(*unaff_RDI,unaff_RBP + 0x10);
   uVar3 = (ulonglong)uVar2;
   if (uVar2 == 0) {
     if (*(uint *)(unaff_RDI[1] + 0x18) != unaff_ESI) {
       return 0x1c;
     }
-    uVar2 = FUN_180899ef0(*unaff_RDI,unaff_RBP + 0x20);
+    uVar2 = NetworkingSystem_ConnectionManager2(*unaff_RDI,unaff_RBP + 0x20);
     uVar3 = (ulonglong)uVar2;
     if (uVar2 == 0) {
       uVar3 = 0x1c;
@@ -996,7 +1056,7 @@ ulonglong NetworkingSystem_StateChecker(void)
         return (ulonglong)uVar2;
       }
       if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-        uVar2 = FUN_180899ef0(*unaff_RDI,unaff_RBP + 0x30);
+        uVar2 = NetworkingSystem_ConnectionManager2(*unaff_RDI,unaff_RBP + 0x30);
         uVar3 = (ulonglong)uVar2;
         if (uVar2 == 0) {
           uVar3 = FUN_180898e70();
@@ -1042,7 +1102,7 @@ ulonglong NetworkingSystem_ConnectionValidator(void)
   int16_t in_stack_000000a8;
   
   // 验证连接配置
-  uVar2 = FUN_180899ef0(*unaff_RDI,unaff_RBP + 0x20);
+  uVar2 = NetworkingSystem_ConnectionManager2(*unaff_RDI,unaff_RBP + 0x20);
   uVar3 = (ulonglong)uVar2;
   if (uVar2 == 0) {
     uVar3 = 0x1c;
@@ -1072,7 +1132,7 @@ ulonglong NetworkingSystem_ConnectionValidator(void)
       return (ulonglong)uVar2;
     }
     if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-      uVar2 = FUN_180899ef0(*unaff_RDI,unaff_RBP + 0x30);
+      uVar2 = NetworkingSystem_ConnectionManager2(*unaff_RDI,unaff_RBP + 0x30);
       uVar3 = (ulonglong)uVar2;
       if (uVar2 == 0) {
         uVar3 = FUN_180898e70();
@@ -1134,7 +1194,7 @@ ulonglong NetworkingSystem_DataSender(void)
     return (ulonglong)uVar2;
   }
   if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-    uVar2 = FUN_180899ef0(*unaff_RDI,unaff_RBP + 0x30);
+    uVar2 = NetworkingSystem_ConnectionManager2(*unaff_RDI,unaff_RBP + 0x30);
     unaff_RBX = (ulonglong)uVar2;
     if (uVar2 == 0) {
       uVar3 = FUN_180898e70();
@@ -1176,7 +1236,7 @@ ulonglong NetworkingSystem_DataReceiver(void)
     return (ulonglong)unaff_ESI;
   }
   if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-    uVar1 = FUN_180899ef0(*unaff_RDI,unaff_RBP + 0x30);
+    uVar1 = NetworkingSystem_ConnectionManager2(*unaff_RDI,unaff_RBP + 0x30);
     unaff_RBX = (ulonglong)uVar1;
     if (uVar1 == 0) {
       uVar2 = FUN_180898e70();
@@ -1214,7 +1274,7 @@ ulonglong NetworkingSystem_SessionManager(void)
   
   // 管理会话状态
   if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-    uVar1 = FUN_180899ef0(*unaff_RDI,unaff_RBP + 0x30);
+    uVar1 = NetworkingSystem_ConnectionManager2(*unaff_RDI,unaff_RBP + 0x30);
     unaff_RBX = (ulonglong)uVar1;
     if (uVar1 == 0) {
       uVar2 = FUN_180898e70();
@@ -1293,7 +1353,7 @@ void NetworkingSystem_ConnectionCleaner(longlong param_1,uint64_t param_2)
   int8_t auStack_28 [32];
   
   // 执行连接清理
-  iVar1 = FUN_1808ddd30(param_2,auStack_28,0,PROTOCOL_ID_ORTC,0);
+  iVar1 = NetworkingSystem_DataProcessor(param_2,auStack_28,0,PROTOCOL_ID_ORTC,0);
   if (iVar1 == 0) {
     iVar1 = FUN_1808a7b00(param_2,param_1 + 8);
     if (iVar1 == 0) {
@@ -1325,17 +1385,17 @@ uint64_t NetworkingSystem_ValidationProcessor(longlong param_1,uint64_t *param_2
   int8_t auStack_28 [32];
   
   // 执行验证处理
-  uVar1 = FUN_1808ddd30(param_2,auStack_28,0,PROTOCOL_ID_VRUC,0);
+  uVar1 = NetworkingSystem_DataProcessor(param_2,auStack_28,0,PROTOCOL_ID_VRUC,0);
   if ((int)uVar1 == 0) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar1 = FUN_180899ef0(*param_2,param_1 + 0x10);
+    uVar1 = NetworkingSystem_ConnectionManager2(*param_2,param_1 + 0x10);
     if ((int)uVar1 == 0) {
       if (*(int *)(param_2[1] + 0x18) != 0) {
         return 0x1c;
       }
-      uVar1 = FUN_180899ef0(*param_2,param_1 + 0x20);
+      uVar1 = NetworkingSystem_ConnectionManager2(*param_2,param_1 + 0x20);
       if (((int)uVar1 == 0) && (uVar1 = FUN_1808a4fb0(param_2,param_1 + 0x30,1,0), (int)uVar1 == 0))
       {
                     // 验证处理成功，执行后续操作
@@ -1368,18 +1428,18 @@ uint64_t NetworkingSystem_ProtocolHandler(longlong param_1,uint64_t *param_2)
   int8_t auStack_28 [32];
   
   // 验证协议标识符
-  uVar1 = FUN_1808ddd30(param_2,auStack_28,1,PROTOCOL_ID_LIST,PROTOCOL_ID_TIFE);
+  uVar1 = NetworkingSystem_DataProcessor(param_2,auStack_28,1,PROTOCOL_ID_LIST,PROTOCOL_ID_TIFE);
   if (((int)uVar1 == 0) &&
-     (uVar1 = FUN_1808ddd30(param_2,auStack_48,0,PROTOCOL_ID_BIFE,0), (int)uVar1 == 0)) {
+     (uVar1 = NetworkingSystem_DataProcessor(param_2,auStack_48,0,PROTOCOL_ID_BIFE,0), (int)uVar1 == 0)) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar1 = FUN_180899ef0(*param_2,param_1 + 0x10);
+    uVar1 = NetworkingSystem_ConnectionManager2(*param_2,param_1 + 0x10);
     if ((int)uVar1 == 0) {
       if (*(int *)(param_2[1] + 0x18) != 0) {
         return 0x1c;
       }
-      uVar1 = FUN_180899ef0(*param_2,param_1 + 0xd8);
+      uVar1 = NetworkingSystem_ConnectionManager2(*param_2,param_1 + 0xd8);
       if ((int)uVar1 == 0) {
                     // 协议处理成功，执行后续操作
         FUN_1808de000(param_2,auStack_48);
@@ -1461,17 +1521,17 @@ uint64_t NetworkingSystem_ConfigManager(longlong param_1,longlong *param_2)
       if (*(int *)(param_2[1] + 0x18) != 0) {
         return 0x1c;
       }
-      uVar1 = FUN_180899ef0(*param_2,param_1 + 0x60);
+      uVar1 = NetworkingSystem_ConnectionManager2(*param_2,param_1 + 0x60);
       if ((int)uVar1 != 0) {
         return uVar1;
       }
     }
     else {
-      uVar1 = FUN_180898eb0(param_2,param_1 + 0x70);
+      uVar1 = NetworkingSystem_ConnectionStatusChecker(param_2,param_1 + 0x70);
       if ((int)uVar1 != 0) {
         return uVar1;
       }
-      uVar1 = FUN_180898eb0(param_2,param_1 + 0x74);
+      uVar1 = NetworkingSystem_ConnectionStatusChecker(param_2,param_1 + 0x74);
       if ((int)uVar1 != 0) {
         return uVar1;
       }
@@ -1504,19 +1564,19 @@ uint64_t NetworkingSystem_ProtocolStackManager(longlong param_1,uint64_t *param_
   int8_t auStack_28 [32];
   
   // 验证协议栈标识符
-  uVar1 = FUN_1808ddd30(param_2,auStack_28,1,PROTOCOL_ID_LIST,PROTOCOL_ID_TIVE);
+  uVar1 = NetworkingSystem_DataProcessor(param_2,auStack_28,1,PROTOCOL_ID_LIST,PROTOCOL_ID_TIVE);
   if (((int)uVar1 == 0) &&
-     (uVar1 = FUN_1808ddd30(param_2,auStack_48,0,PROTOCOL_ID_BIVE,0), (int)uVar1 == 0)) {
+     (uVar1 = NetworkingSystem_DataProcessor(param_2,auStack_48,0,PROTOCOL_ID_BIVE,0), (int)uVar1 == 0)) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar1 = FUN_180899ef0(*param_2,param_1 + 0x10);
+    uVar1 = NetworkingSystem_ConnectionManager2(*param_2,param_1 + 0x10);
     if ((int)uVar1 == 0) {
       if (*(int *)(param_2[1] + 0x18) != 0) {
         return 0x1c;
       }
-      uVar1 = FUN_180899ef0(*param_2,param_1 + 0xd8);
-      if ((((int)uVar1 == 0) && (uVar1 = FUN_180898eb0(param_2,param_1 + 0xf8), (int)uVar1 == 0)) &&
+      uVar1 = NetworkingSystem_ConnectionManager2(*param_2,param_1 + 0xd8);
+      if ((((int)uVar1 == 0) && (uVar1 = NetworkingSystem_ConnectionStatusChecker(param_2,param_1 + 0xf8), (int)uVar1 == 0)) &&
          (uVar1 = FUN_1808a6e50(param_2,param_1 + 0xe8,1,param_1), (int)uVar1 == 0)) {
                     // 协议栈管理成功，执行后续操作
         FUN_1808de000(param_2,auStack_48);
@@ -1554,7 +1614,7 @@ uint64_t NetworkingSystem_EventHandler(uint64_t param_1,longlong param_2)
     }
   }
   else {
-    uVar1 = FUN_1808ddd30(param_2,auStack_28,1,PROTOCOL_ID_LIST,PROTOCOL_ID_TNVE);
+    uVar1 = NetworkingSystem_DataProcessor(param_2,auStack_28,1,PROTOCOL_ID_LIST,PROTOCOL_ID_TNVE);
     if ((int)uVar1 == 0) {
       uVar1 = FUN_1808a3d50(param_1,param_2,PROTOCOL_ID_BTVE);
       if ((int)uVar1 == 0) {

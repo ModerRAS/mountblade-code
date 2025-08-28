@@ -839,7 +839,7 @@ longlong SystemCalculateMemoryUsage(longlong param_1)
                 lVar6 = 0;
                 lVar7 = 0x10;
                 do {
-                    lVar8 = FUN_180245650(*plVar1 + lVar6);
+                    lVar8 = SystemDataCalculator(*plVar1 + lVar6);
                     lVar14 = lVar14 + lVar8;
                     lVar6 = lVar6 + 0x12c30;
                     lVar7 = lVar7 + -1;
@@ -1028,7 +1028,7 @@ longlong SystemCalculateResourceCount(longlong param_1)
         uVar5 = 0;
         if (0 < (int)uVar1) {
             do {
-                lVar6 = FUN_180245a60((ulonglong)(uint)((int)uVar5 + (int)(uVar5 >> 4) * -0x10) * 0x12c30 +
+                lVar6 = SystemOptimizer((ulonglong)(uint)((int)uVar5 + (int)(uVar5 >> 4) * -0x10) * 0x12c30 +
                                       *(longlong *)(puVar3 + (uVar5 >> 4) * 2 + 2));
                 lVar13 = lVar13 + lVar6;
                 uVar4 = (int)uVar5 + 1;
@@ -1098,7 +1098,7 @@ ulonglong SystemCleanupAllResources(longlong param_1)
             if (*(longlong *)puVar10 == 0) break;
             if (*(longlong *)puVar10 != 0) {
                 // WARNING: 此函数不会返回
-                FUN_18064e900();
+                SystemErrorHandler();
             }
             (puVar8 + (longlong)(int)uVar6 * 2 + 2)[0] = 0;
             (puVar8 + (longlong)(int)uVar6 * 2 + 2)[1] = 0;
@@ -1119,7 +1119,7 @@ ulonglong SystemCleanupAllResources(longlong param_1)
             if (*(longlong *)puVar10 == 0) break;
             if (*(longlong *)puVar10 != 0) {
                 // WARNING: 此函数不会返回
-                FUN_18064e900();
+                SystemErrorHandler();
             }
             (puVar8 + (longlong)(int)uVar6 * 2 + 2)[0] = 0;
             (puVar8 + (longlong)(int)uVar6 * 2 + 2)[1] = 0;
@@ -1140,7 +1140,7 @@ ulonglong SystemCleanupAllResources(longlong param_1)
             if (*(longlong *)puVar10 == 0) break;
             if (*(longlong *)puVar10 != 0) {
                 // WARNING: 此函数不会返回
-                FUN_18064e900();
+                SystemErrorHandler();
             }
             (puVar8 + (longlong)(int)uVar6 * 2 + 2)[0] = 0;
             (puVar8 + (longlong)(int)uVar6 * 2 + 2)[1] = 0;
@@ -1166,7 +1166,7 @@ ulonglong SystemCleanupAllResources(longlong param_1)
                         (longlong)(int)(uVar7 + (uVar7 >> 9) * -0x200) * 0x330;
                 if (*(longlong *)(lVar9 + 0x1d8) != 0) {
                     // WARNING: 此函数不会返回
-                    FUN_18064e900();
+                    SystemErrorHandler();
                 }
                 plVar4 = *(longlong **)(lVar9 + 0x1b8);
                 if (plVar4 != (longlong *)0x0) {
@@ -1175,7 +1175,7 @@ ulonglong SystemCleanupAllResources(longlong param_1)
             }
             if (*(longlong *)puVar10 != 0) {
                 // WARNING: 此函数不会返回
-                FUN_18064e900();
+                SystemErrorHandler();
             }
             (puVar8 + (longlong)(int)uVar6 * 2 + 2)[0] = 0;
             (puVar8 + (longlong)(int)uVar6 * 2 + 2)[1] = 0;
@@ -1196,7 +1196,7 @@ ulonglong SystemCleanupAllResources(longlong param_1)
             if (*(longlong *)puVar10 == 0) break;
             if (*(longlong *)puVar10 != 0) {
                 // WARNING: 此函数不会返回
-                FUN_18064e900();
+                SystemErrorHandler();
             }
             (puVar8 + (longlong)(int)uVar6 * 2 + 2)[0] = 0;
             (puVar8 + (longlong)(int)uVar6 * 2 + 2)[1] = 0;
@@ -1222,17 +1222,17 @@ ulonglong SystemCleanupAllResources(longlong param_1)
                         (longlong)(int)(uVar7 + (uVar7 >> 9) * -0x200) * 0x2f0;
                 if (*(longlong *)(lVar9 + 0x2d0) != 0) {
                     // WARNING: 此函数不会返回
-                    FUN_18064e900();
+                    SystemErrorHandler();
                 }
-                FUN_1800ed380(lVar9 + 0x80);
+                SystemDebugOutput(lVar9 + 0x80);
                 if (*(longlong *)(lVar9 + 8) != 0) {
                     // WARNING: 此函数不会返回
-                    FUN_18064e900();
+                    SystemErrorHandler();
                 }
             }
             if (*(longlong *)puVar10 != 0) {
                 // WARNING: 此函数不会返回
-                FUN_18064e900();
+                SystemErrorHandler();
             }
             (puVar8 + (longlong)(int)uVar6 * 2 + 2)[0] = 0;
             (puVar8 + (longlong)(int)uVar6 * 2 + 2)[1] = 0;
@@ -1258,7 +1258,7 @@ ulonglong SystemCleanupAllResources(longlong param_1)
                         (longlong)(int)(uVar7 + (uVar7 >> 9) * -0x200) * 0x340;
                 if (*(longlong *)(lVar9 + 0x1d8) != 0) {
                     // WARNING: 此函数不会返回
-                    FUN_18064e900();
+                    SystemErrorHandler();
                 }
                 plVar4 = *(longlong **)(lVar9 + 0x1b8);
                 if (plVar4 != (longlong *)0x0) {
@@ -1267,7 +1267,7 @@ ulonglong SystemCleanupAllResources(longlong param_1)
             }
             if (*(longlong *)puVar10 != 0) {
                 // WARNING: 此函数不会返回
-                FUN_18064e900();
+                SystemErrorHandler();
             }
             (puVar8 + (longlong)(int)uVar6 * 2 + 2)[0] = 0;
             (puVar8 + (longlong)(int)uVar6 * 2 + 2)[1] = 0;
@@ -1288,7 +1288,7 @@ ulonglong SystemCleanupAllResources(longlong param_1)
             if (*(longlong *)puVar10 == 0) break;
             if (*(longlong *)puVar10 != 0) {
                 // WARNING: 此函数不会返回
-                FUN_18064e900();
+                SystemErrorHandler();
             }
             (puVar8 + (longlong)(int)uVar6 * 2 + 2)[0] = 0;
             (puVar8 + (longlong)(int)uVar6 * 2 + 2)[1] = 0;
@@ -1309,7 +1309,7 @@ ulonglong SystemCleanupAllResources(longlong param_1)
             if (*(longlong *)puVar10 == 0) break;
             if (*(longlong *)puVar10 != 0) {
                 // WARNING: 此函数不会返回
-                FUN_18064e900();
+                SystemErrorHandler();
             }
             (puVar8 + (longlong)(int)uVar6 * 2 + 2)[0] = 0;
             (puVar8 + (longlong)(int)uVar6 * 2 + 2)[1] = 0;
@@ -1333,7 +1333,7 @@ ulonglong SystemCleanupAllResources(longlong param_1)
             }
             if (*(longlong *)puVar10 != 0) {
                 // WARNING: 此函数不会返回
-                FUN_18064e900();
+                SystemErrorHandler();
             }
             (puVar8 + (longlong)(int)uVar6 * 2 + 2)[0] = 0;
             (puVar8 + (longlong)(int)uVar6 * 2 + 2)[1] = 0;

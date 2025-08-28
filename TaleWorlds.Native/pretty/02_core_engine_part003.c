@@ -158,9 +158,9 @@ void core_engine_data_processor_type4(void);
 void core_engine_math_calculator(void);
 
 /** 系统注册表管理函数 */
-longlong *core_engine_registry_manager_get(void);
-longlong core_engine_memory_allocator_calculate(longlong *registry_manager);
-void core_engine_memory_allocator_allocate(longlong *registry_manager, uint64_t **allocated_node, uint64_t *parent_node, longlong total_size, longlong data_size);
+int64_t *core_engine_registry_manager_get(void);
+int64_t core_engine_memory_allocator_calculate(int64_t *registry_manager);
+void core_engine_memory_allocator_allocate(int64_t *registry_manager, uint64_t **allocated_node, uint64_t *parent_node, int64_t total_size, int64_t data_size);
 
 /** 系统回调函数 */
 code *core_engine_callback_handler_type1(void);
@@ -195,8 +195,8 @@ void core_engine_system_initializer_type1(void)
     char system_status;
     uint64_t *system_root;
     int comparison_result;
-    longlong *registry_manager;
-    longlong allocation_size;
+    int64_t *registry_manager;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -208,7 +208,7 @@ void core_engine_system_initializer_type1(void)
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
-    system_status = *(char *)((longlong)system_root[1] + 0x19);
+    system_status = *(char *)((int64_t)system_root[1] + 0x19);
     stack_value = 0;
     parent_node = system_root;
     current_node = (uint64_t *)system_root[1];
@@ -224,7 +224,7 @@ void core_engine_system_initializer_type1(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        system_status = *(char *)((longlong)next_node + 0x19);
+        system_status = *(char *)((int64_t)next_node + 0x19);
     }
 
     // 分配新节点或使用现有节点
@@ -261,8 +261,8 @@ void core_engine_system_initializer_type2(void)
     char system_status;
     uint64_t *system_root;
     int comparison_result;
-    longlong *registry_manager;
-    longlong allocation_size;
+    int64_t *registry_manager;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -274,7 +274,7 @@ void core_engine_system_initializer_type2(void)
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
-    system_status = *(char *)((longlong)system_root[1] + 0x19);
+    system_status = *(char *)((int64_t)system_root[1] + 0x19);
     callback_function = &global_var_2048_ptr;
     parent_node = system_root;
     current_node = (uint64_t *)system_root[1];
@@ -290,7 +290,7 @@ void core_engine_system_initializer_type2(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        system_status = *(char *)((longlong)next_node + 0x19);
+        system_status = *(char *)((int64_t)next_node + 0x19);
     }
 
     // 分配新节点或使用现有节点
@@ -327,8 +327,8 @@ void core_engine_system_initializer_type3(void)
     char system_status;
     uint64_t *system_root;
     int comparison_result;
-    longlong *registry_manager;
-    longlong allocation_size;
+    int64_t *registry_manager;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -340,7 +340,7 @@ void core_engine_system_initializer_type3(void)
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
-    system_status = *(char *)((longlong)system_root[1] + 0x19);
+    system_status = *(char *)((int64_t)system_root[1] + 0x19);
     stack_value = 0;
     parent_node = system_root;
     current_node = (uint64_t *)system_root[1];
@@ -356,7 +356,7 @@ void core_engine_system_initializer_type3(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        system_status = *(char *)((longlong)next_node + 0x19);
+        system_status = *(char *)((int64_t)next_node + 0x19);
     }
 
     // 分配新节点或使用现有节点
@@ -422,7 +422,7 @@ void core_engine_system_initializer_type4(void)
  */
 int core_engine_system_initializer_type5(void)
 {
-    longlong status_value;
+    int64_t status_value;
     uint64_t parameter_register;
 
     // 设置系统状态指针
@@ -613,8 +613,8 @@ void core_engine_system_initializer_type11(void)
     char system_status;
     uint64_t *system_root;
     int comparison_result;
-    longlong *registry_manager;
-    longlong allocation_size;
+    int64_t *registry_manager;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -626,7 +626,7 @@ void core_engine_system_initializer_type11(void)
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
-    system_status = *(char *)((longlong)system_root[1] + 0x19);
+    system_status = *(char *)((int64_t)system_root[1] + 0x19);
     callback_function = core_engine_callback_handler_type1;
     parent_node = system_root;
     current_node = (uint64_t *)system_root[1];
@@ -642,7 +642,7 @@ void core_engine_system_initializer_type11(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        system_status = *(char *)((longlong)next_node + 0x19);
+        system_status = *(char *)((int64_t)next_node + 0x19);
     }
 
     // 分配新节点或使用现有节点
@@ -679,8 +679,8 @@ void core_engine_system_initializer_type12(void)
     char system_status;
     uint64_t *system_root;
     int comparison_result;
-    longlong *registry_manager;
-    longlong allocation_size;
+    int64_t *registry_manager;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -692,7 +692,7 @@ void core_engine_system_initializer_type12(void)
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
-    system_status = *(char *)((longlong)system_root[1] + 0x19);
+    system_status = *(char *)((int64_t)system_root[1] + 0x19);
     callback_function = core_engine_callback_handler_type2;
     parent_node = system_root;
     current_node = (uint64_t *)system_root[1];
@@ -708,7 +708,7 @@ void core_engine_system_initializer_type12(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        system_status = *(char *)((longlong)next_node + 0x19);
+        system_status = *(char *)((int64_t)next_node + 0x19);
     }
 
     // 分配新节点或使用现有节点
@@ -745,8 +745,8 @@ void core_engine_system_initializer_type13(void)
     char system_status;
     uint64_t *system_root;
     int comparison_result;
-    longlong *registry_manager;
-    longlong allocation_size;
+    int64_t *registry_manager;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -758,7 +758,7 @@ void core_engine_system_initializer_type13(void)
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
-    system_status = *(char *)((longlong)system_root[1] + 0x19);
+    system_status = *(char *)((int64_t)system_root[1] + 0x19);
     callback_function = core_engine_callback_handler_type3;
     parent_node = system_root;
     current_node = (uint64_t *)system_root[1];
@@ -774,7 +774,7 @@ void core_engine_system_initializer_type13(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        system_status = *(char *)((longlong)next_node + 0x19);
+        system_status = *(char *)((int64_t)next_node + 0x19);
     }
 
     // 分配新节点或使用现有节点
@@ -811,8 +811,8 @@ void core_engine_system_initializer_type14(void)
     char system_status;
     uint64_t *system_root;
     int comparison_result;
-    longlong *registry_manager;
-    longlong allocation_size;
+    int64_t *registry_manager;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -824,7 +824,7 @@ void core_engine_system_initializer_type14(void)
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
-    system_status = *(char *)((longlong)system_root[1] + 0x19);
+    system_status = *(char *)((int64_t)system_root[1] + 0x19);
     callback_function = core_engine_callback_handler_type4;
     parent_node = system_root;
     current_node = (uint64_t *)system_root[1];
@@ -840,7 +840,7 @@ void core_engine_system_initializer_type14(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        system_status = *(char *)((longlong)next_node + 0x19);
+        system_status = *(char *)((int64_t)next_node + 0x19);
     }
 
     // 分配新节点或使用现有节点
@@ -877,8 +877,8 @@ void core_engine_system_initializer_type15(void)
     char system_status;
     uint64_t *system_root;
     int comparison_result;
-    longlong *registry_manager;
-    longlong allocation_size;
+    int64_t *registry_manager;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -890,7 +890,7 @@ void core_engine_system_initializer_type15(void)
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
-    system_status = *(char *)((longlong)system_root[1] + 0x19);
+    system_status = *(char *)((int64_t)system_root[1] + 0x19);
     stack_value = 0;
     parent_node = system_root;
     current_node = (uint64_t *)system_root[1];
@@ -906,7 +906,7 @@ void core_engine_system_initializer_type15(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        system_status = *(char *)((longlong)next_node + 0x19);
+        system_status = *(char *)((int64_t)next_node + 0x19);
     }
 
     // 分配新节点或使用现有节点
@@ -943,8 +943,8 @@ void core_engine_system_initializer_type16(void)
     char system_status;
     uint64_t *system_root;
     int comparison_result;
-    longlong *registry_manager;
-    longlong allocation_size;
+    int64_t *registry_manager;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -956,7 +956,7 @@ void core_engine_system_initializer_type16(void)
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
-    system_status = *(char *)((longlong)system_root[1] + 0x19);
+    system_status = *(char *)((int64_t)system_root[1] + 0x19);
     callback_function = core_engine_callback_handler_type5;
     parent_node = system_root;
     current_node = (uint64_t *)system_root[1];
@@ -972,7 +972,7 @@ void core_engine_system_initializer_type16(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        system_status = *(char *)((longlong)next_node + 0x19);
+        system_status = *(char *)((int64_t)next_node + 0x19);
     }
 
     // 分配新节点或使用现有节点
@@ -1009,8 +1009,8 @@ void core_engine_system_initializer_type17(void)
     char system_status;
     uint64_t *system_root;
     int comparison_result;
-    longlong *registry_manager;
-    longlong allocation_size;
+    int64_t *registry_manager;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -1022,7 +1022,7 @@ void core_engine_system_initializer_type17(void)
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
-    system_status = *(char *)((longlong)system_root[1] + 0x19);
+    system_status = *(char *)((int64_t)system_root[1] + 0x19);
     stack_value = 0;
     parent_node = system_root;
     current_node = (uint64_t *)system_root[1];
@@ -1038,7 +1038,7 @@ void core_engine_system_initializer_type17(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        system_status = *(char *)((longlong)next_node + 0x19);
+        system_status = *(char *)((int64_t)next_node + 0x19);
     }
 
     // 分配新节点或使用现有节点
@@ -1075,8 +1075,8 @@ void core_engine_system_initializer_type18(void)
     char system_status;
     uint64_t *system_root;
     int comparison_result;
-    longlong *registry_manager;
-    longlong allocation_size;
+    int64_t *registry_manager;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -1088,7 +1088,7 @@ void core_engine_system_initializer_type18(void)
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
-    system_status = *(char *)((longlong)system_root[1] + 0x19);
+    system_status = *(char *)((int64_t)system_root[1] + 0x19);
     callback_function = &global_var_2048_ptr;
     parent_node = system_root;
     current_node = (uint64_t *)system_root[1];
@@ -1104,7 +1104,7 @@ void core_engine_system_initializer_type18(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        system_status = *(char *)((longlong)next_node + 0x19);
+        system_status = *(char *)((int64_t)next_node + 0x19);
     }
 
     // 分配新节点或使用现有节点
@@ -1141,8 +1141,8 @@ void core_engine_system_initializer_type19(void)
     char system_status;
     uint64_t *system_root;
     int comparison_result;
-    longlong *registry_manager;
-    longlong allocation_size;
+    int64_t *registry_manager;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -1154,7 +1154,7 @@ void core_engine_system_initializer_type19(void)
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
-    system_status = *(char *)((longlong)system_root[1] + 0x19);
+    system_status = *(char *)((int64_t)system_root[1] + 0x19);
     stack_value = 0;
     parent_node = system_root;
     current_node = (uint64_t *)system_root[1];
@@ -1170,7 +1170,7 @@ void core_engine_system_initializer_type19(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        system_status = *(char *)((longlong)next_node + 0x19);
+        system_status = *(char *)((int64_t)next_node + 0x19);
     }
 
     // 分配新节点或使用现有节点
@@ -1207,8 +1207,8 @@ void core_engine_system_initializer_type20(void)
     char system_status;
     uint64_t *system_root;
     int comparison_result;
-    longlong *registry_manager;
-    longlong allocation_size;
+    int64_t *registry_manager;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -1220,7 +1220,7 @@ void core_engine_system_initializer_type20(void)
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
-    system_status = *(char *)((longlong)system_root[1] + 0x19);
+    system_status = *(char *)((int64_t)system_root[1] + 0x19);
     callback_function = core_engine_callback_handler_type3;
     parent_node = system_root;
     current_node = (uint64_t *)system_root[1];
@@ -1236,7 +1236,7 @@ void core_engine_system_initializer_type20(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        system_status = *(char *)((longlong)next_node + 0x19);
+        system_status = *(char *)((int64_t)next_node + 0x19);
     }
 
     // 分配新节点或使用现有节点
@@ -1273,8 +1273,8 @@ void core_engine_system_initializer_type21(void)
     char system_status;
     uint64_t *system_root;
     int comparison_result;
-    longlong *registry_manager;
-    longlong allocation_size;
+    int64_t *registry_manager;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -1286,7 +1286,7 @@ void core_engine_system_initializer_type21(void)
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
-    system_status = *(char *)((longlong)system_root[1] + 0x19);
+    system_status = *(char *)((int64_t)system_root[1] + 0x19);
     callback_function = core_engine_callback_handler_type4;
     parent_node = system_root;
     current_node = (uint64_t *)system_root[1];
@@ -1302,7 +1302,7 @@ void core_engine_system_initializer_type21(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        system_status = *(char *)((longlong)next_node + 0x19);
+        system_status = *(char *)((int64_t)next_node + 0x19);
     }
 
     // 分配新节点或使用现有节点
@@ -1339,8 +1339,8 @@ void core_engine_system_initializer_type22(void)
     char system_status;
     uint64_t *system_root;
     int comparison_result;
-    longlong *registry_manager;
-    longlong allocation_size;
+    int64_t *registry_manager;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -1352,7 +1352,7 @@ void core_engine_system_initializer_type22(void)
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
-    system_status = *(char *)((longlong)system_root[1] + 0x19);
+    system_status = *(char *)((int64_t)system_root[1] + 0x19);
     stack_value = 0;
     parent_node = system_root;
     current_node = (uint64_t *)system_root[1];
@@ -1368,7 +1368,7 @@ void core_engine_system_initializer_type22(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        system_status = *(char *)((longlong)next_node + 0x19);
+        system_status = *(char *)((int64_t)next_node + 0x19);
     }
 
     // 分配新节点或使用现有节点
@@ -1405,8 +1405,8 @@ void core_engine_system_initializer_type23(void)
     char system_status;
     uint64_t *system_root;
     int comparison_result;
-    longlong *registry_manager;
-    longlong allocation_size;
+    int64_t *registry_manager;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -1418,7 +1418,7 @@ void core_engine_system_initializer_type23(void)
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
-    system_status = *(char *)((longlong)system_root[1] + 0x19);
+    system_status = *(char *)((int64_t)system_root[1] + 0x19);
     callback_function = core_engine_callback_handler_type5;
     parent_node = system_root;
     current_node = (uint64_t *)system_root[1];
@@ -1434,7 +1434,7 @@ void core_engine_system_initializer_type23(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        system_status = *(char *)((longlong)next_node + 0x19);
+        system_status = *(char *)((int64_t)next_node + 0x19);
     }
 
     // 分配新节点或使用现有节点
@@ -1471,8 +1471,8 @@ void core_engine_system_initializer_type24(void)
     char system_status;
     uint64_t *system_root;
     int comparison_result;
-    longlong *registry_manager;
-    longlong allocation_size;
+    int64_t *registry_manager;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -1484,7 +1484,7 @@ void core_engine_system_initializer_type24(void)
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
-    system_status = *(char *)((longlong)system_root[1] + 0x19);
+    system_status = *(char *)((int64_t)system_root[1] + 0x19);
     stack_value = 0;
     parent_node = system_root;
     current_node = (uint64_t *)system_root[1];
@@ -1500,7 +1500,7 @@ void core_engine_system_initializer_type24(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        system_status = *(char *)((longlong)next_node + 0x19);
+        system_status = *(char *)((int64_t)next_node + 0x19);
     }
 
     // 分配新节点或使用现有节点
@@ -1534,12 +1534,12 @@ void core_engine_system_initializer_type24(void)
  */
 void core_engine_math_calculator(void)
 {
-    ulonglong iteration_count;
+    uint64_t iteration_count;
     float *data_pointer;
     int inner_index;
-    ulonglong outer_index;
+    uint64_t outer_index;
     uint index_value;
-    ulonglong inner_limit;
+    uint64_t inner_limit;
     int calculation_index;
     float *result_pointer;
     float calculated_value;
@@ -1552,7 +1552,7 @@ void core_engine_math_calculator(void)
 
     // 外层循环：处理数据块
     do {
-        if (0 < (longlong)inner_limit) {
+        if (0 < (int64_t)inner_limit) {
             inner_index = -3;
             iteration_count = outer_index;
             data_pointer = result_pointer;
@@ -1560,8 +1560,8 @@ void core_engine_math_calculator(void)
             // 内层循环：处理单个数据块
             do {
                 calculated_value = FLOAT_ZERO;
-                if (-1 < (longlong)iteration_count) {
-                    if ((longlong)iteration_count < 3) {
+                if (-1 < (int64_t)iteration_count) {
+                    if ((int64_t)iteration_count < 3) {
                         calculated_value = FLOAT_075;
                     }
                     else {
@@ -1573,12 +1573,12 @@ void core_engine_math_calculator(void)
                 inner_index = inner_index + 1;
                 data_pointer = data_pointer + 1;
                 iteration_count = iteration_count + 1;
-            } while ((longlong)iteration_count < (longlong)inner_limit);
+            } while ((int64_t)iteration_count < (int64_t)inner_limit);
         }
         calculation_index = calculation_index + 1;
         inner_limit = inner_limit + 1;
         result_pointer = result_pointer + 0x40;
-    } while ((longlong)result_pointer < 0x180c8ea71);
+    } while ((int64_t)result_pointer < 0x180c8ea71);
 
     // 第二部分计算：处理平方根计算
     result_pointer = (float *)0x180c8eb70;
@@ -1586,7 +1586,7 @@ void core_engine_math_calculator(void)
         index_value = (int)outer_index + 1;
         *result_pointer = FLOAT_ONE / SQRT((float)outer_index) + FLOAT_ONE / SQRT((float)outer_index);
         result_pointer = result_pointer + 1;
-        outer_index = (ulonglong)index_value;
+        outer_index = (uint64_t)index_value;
     } while (index_value < MAX_ITERATIONS);
     
     return;
@@ -1608,8 +1608,8 @@ void core_engine_data_processor_type1(void)
     char system_status;
     uint64_t *system_root;
     int comparison_result;
-    longlong *registry_manager;
-    longlong allocation_size;
+    int64_t *registry_manager;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -1621,7 +1621,7 @@ void core_engine_data_processor_type1(void)
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
-    system_status = *(char *)((longlong)system_root[1] + 0x19);
+    system_status = *(char *)((int64_t)system_root[1] + 0x19);
     callback_function = core_engine_callback_handler_type6;
     parent_node = system_root;
     current_node = (uint64_t *)system_root[1];
@@ -1637,7 +1637,7 @@ void core_engine_data_processor_type1(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        system_status = *(char *)((longlong)next_node + 0x19);
+        system_status = *(char *)((int64_t)next_node + 0x19);
     }
 
     // 分配新节点或使用现有节点
@@ -1674,8 +1674,8 @@ void core_engine_data_processor_type2(void)
     char system_status;
     uint64_t *system_root;
     int comparison_result;
-    longlong *registry_manager;
-    longlong allocation_size;
+    int64_t *registry_manager;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -1687,7 +1687,7 @@ void core_engine_data_processor_type2(void)
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
-    system_status = *(char *)((longlong)system_root[1] + 0x19);
+    system_status = *(char *)((int64_t)system_root[1] + 0x19);
     callback_function = core_engine_callback_handler_type7;
     parent_node = system_root;
     current_node = (uint64_t *)system_root[1];
@@ -1703,7 +1703,7 @@ void core_engine_data_processor_type2(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        system_status = *(char *)((longlong)next_node + 0x19);
+        system_status = *(char *)((int64_t)next_node + 0x19);
     }
 
     // 分配新节点或使用现有节点
@@ -1740,8 +1740,8 @@ void core_engine_data_processor_type3(void)
     char system_status;
     uint64_t *system_root;
     int comparison_result;
-    longlong *registry_manager;
-    longlong allocation_size;
+    int64_t *registry_manager;
+    int64_t allocation_size;
     uint64_t *current_node;
     uint64_t *parent_node;
     uint64_t *next_node;
@@ -1753,7 +1753,7 @@ void core_engine_data_processor_type3(void)
     system_root = (uint64_t *)*registry_manager;
     
     // 检查系统状态
-    system_status = *(char *)((longlong)system_root[1] + 0x19);
+    system_status = *(char *)((int64_t)system_root[1] + 0x19);
     callback_function = core_engine_callback_handler_type8;
     parent_node = system_root;
     current_node = (uint64_t *)system_root[1];
@@ -1769,7 +1769,7 @@ void core_engine_data_processor_type3(void)
         }
         parent_node = current_node;
         current_node = next_node;
-        system_status = *(char *)((longlong)next_node + 0x19);
+        system_status = *(char *)((int64_t)next_node + 0x19);
     }
 
     // 分配新节点或使用现有节点
@@ -1820,11 +1820,11 @@ void core_engine_data_processor_type4(void)
  * 
  * @note 这是简化实现，原始实现包含复杂的注册表管理
  */
-longlong *core_engine_registry_manager_get(void)
+int64_t *core_engine_registry_manager_get(void)
 {
     // 返回系统注册表管理器
     // 原始实现包含复杂的注册表管理逻辑
-    return (longlong *)0x18008d070;
+    return (int64_t *)0x18008d070;
 }
 
 /**
@@ -1840,7 +1840,7 @@ longlong *core_engine_registry_manager_get(void)
  * 
  * @note 这是简化实现，原始实现包含复杂的内存计算
  */
-longlong core_engine_memory_allocator_calculate(longlong *registry_manager)
+int64_t core_engine_memory_allocator_calculate(int64_t *registry_manager)
 {
     // 计算内存分配大小
     // 原始实现包含复杂的内存计算和对齐处理
@@ -1863,7 +1863,7 @@ longlong core_engine_memory_allocator_calculate(longlong *registry_manager)
  * 
  * @note 这是简化实现，原始实现包含复杂的内存分配逻辑
  */
-void core_engine_memory_allocator_allocate(longlong *registry_manager, uint64_t **allocated_node, uint64_t *parent_node, longlong total_size, longlong data_size)
+void core_engine_memory_allocator_allocate(int64_t *registry_manager, uint64_t **allocated_node, uint64_t *parent_node, int64_t total_size, int64_t data_size)
 {
     // 分配内存块
     // 原始实现包含复杂的内存分配和管理逻辑
