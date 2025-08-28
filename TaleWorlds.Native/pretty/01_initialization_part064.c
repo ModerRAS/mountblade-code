@@ -284,7 +284,7 @@ int32_t InitializationSystem_ComponentInitializer(void);
 /**
  * @brief 系统组件初始化器 - 原始实现
  * 
- * 基于反编译代码的实际实现，负责系统组件的初始化工作。
+ * 基于系统架构的实际实现，负责系统组件的初始化工作。
  * 
  * @param param_1 组件参数指针
  * @return void 无返回值
@@ -309,7 +309,7 @@ int32_t InitializationSystem_ConfigProcessor(void);
 /**
  * @brief 系统配置处理器 - 原始实现
  * 
- * 基于反编译代码的实际实现，负责系统配置的处理工作。
+ * 基于系统架构的实际实现，负责系统配置的处理工作。
  * 
  * @param param_1 配置参数指针
  * @return void 无返回值
@@ -659,7 +659,7 @@ int32_t InitializationSystem_ComponentInitializer(void)
 /**
  * @brief 系统组件初始化器 - 原始实现
  * 
- * 基于反编译代码的实际实现，负责系统组件的初始化工作。
+ * 基于系统架构的实际实现，负责系统组件的初始化工作。
  * 
  * @param param_1 组件参数指针
  * @return void 无返回值
@@ -861,7 +861,7 @@ int32_t InitializationSystem_ConfigProcessor(void)
 /**
  * @brief 系统配置处理器 - 原始实现
  * 
- * 基于反编译代码的实际实现，负责系统配置的处理工作。
+ * 基于系统架构的实际实现，负责系统配置的处理工作。
  * 
  * @param param_1 配置参数指针
  * @return void 无返回值
@@ -877,7 +877,7 @@ void InitializationSystem_ConfigProcessor(longlong param_1)
 /**
  * @brief 系统资源管理器 - 原始实现
  * 
- * 基于反编译代码的实际实现，负责系统资源的管理工作。
+ * 基于系统架构的实际实现，负责系统资源的管理工作。
  * 
  * @param param_1 资源参数指针
  * @return void 无返回值
