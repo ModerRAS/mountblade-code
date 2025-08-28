@@ -777,7 +777,7 @@ void RenderingSystem_ConnectionProcessor(RenderContextHandle param_1,
                 *(uint*)(new_connection_handle + RENDER_OFFSET_GEOMETRY_DATA) = source_connection_index;
                 
                 RenderingSystem_ConnectionHandleCleanup(optimization_result);
-                FUN_18038af00(optimization_result);
+                RenderingSystem_ConnectionAllocator(optimization_result);
                 
                 if (*(longlong*)(optimization_result + 0xb0) != 0) {
                     middle_handle = *(uint*)(*(longlong*)(optimization_result + 0xb0) + RENDER_OFFSET_GEOMETRY_DATA);

@@ -230,7 +230,7 @@ void SystemResource_Manager_Init_Cleanup(uint64_t param_1,char param_2,char para
         plVar9 = (longlong *)*plVar8;
       }
       plVar7 = plVar9 + uVar11;
-    LAB_1800b5291:
+LAB_1800b5291:
       plVar8[1] = (longlong)plVar7;
     }
     lVar15 = lVar15 + 1;
@@ -343,7 +343,7 @@ void SystemResource_Manager_Init_Cleanup(uint64_t param_1,char param_2,char para
           plVar9 = *(longlong **)(lVar15 + 0x28);
         }
         plVar8 = plVar9 + uVar11;
-      LAB_1800b547f:
+LAB_1800b547f:
         *(longlong **)(lVar15 + 0x30) = plVar8;
       }
       lVar15 = func_0x00018066bd70(lVar15);
@@ -397,6 +397,10 @@ void SystemResource_Manager_Init_Cleanup(uint64_t param_1,char param_2,char para
 
 // 原始函数别名（保持向后兼容性）
 #define FUN_1800b4ec0                     SystemResource_Manager_Init_Cleanup
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 函数: char FUN_1800b55b0(uint64_t param_1,longlong *param_2)
 // 字符串匹配和资源查找函数 - 匹配字符串并查找相应资源
@@ -463,7 +467,7 @@ char StringMatch_Resource_Find(uint64_t param_1,longlong *param_2)
       *(int8_t *)(puVar8 + 0x12) = 1;
     }
     else {
-    LAB_1800b56df:
+LAB_1800b56df:
       *(int8_t *)(puVar8 + 0x12) = 1;
     }
   }
@@ -510,6 +514,13 @@ char StringMatch_Resource_Find(uint64_t param_1,longlong *param_2)
 
 // 原始函数别名（保持向后兼容性）
 #define FUN_1800b55b0                     StringMatch_Resource_Find
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
 
 // 函数: void FUN_1800b57a0(uint64_t param_1,longlong *param_2)
 // 参数处理和资源分配函数 - 处理参数并分配资源
@@ -578,7 +589,7 @@ void ParameterProcess_Resource_Allocate(uint64_t param_1,longlong *param_2)
         lVar10 = ((longlong)puVar4 - (longlong)puVar3) / 0x58;
         if (lVar10 == 0) {
           lVar10 = 1;
-        LAB_1800b5909:
+LAB_1800b5909:
           puVar1 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,lVar10 * 0x58,(char)param_2[3]);
           puVar4 = (uint64_t *)param_2[1];
           puVar3 = (uint64_t *)*param_2;
@@ -651,12 +662,15 @@ void ParameterProcess_Resource_Allocate(uint64_t param_1,longlong *param_2)
   FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_d8);
 }
 
-// 原始函数别名（保持向后兼容性）
-#define FUN_1800b57a0                     ParameterProcess_Resource_Allocate
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
 
 // 函数: void FUN_1800b5ac0(uint64_t param_1,longlong *param_2,float param_3)
-// 浮点参数处理和初始化函数 - 处理浮点参数并执行初始化
-void FloatParameter_Process_Init(uint64_t param_1,longlong *param_2,float param_3)
+void FUN_1800b5ac0(uint64_t param_1,longlong *param_2,float param_3)
 
 {
   longlong lVar1;
@@ -743,12 +757,15 @@ void FloatParameter_Process_Init(uint64_t param_1,longlong *param_2,float param_
   FUN_1808fc050(uStack_40 ^ (ulonglong)auStack_b8);
 }
 
-// 原始函数别名（保持向后兼容性）
-#define FUN_1800b5ac0                     FloatParameter_Process_Init
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
 
 // 函数: void FUN_1800b5cc0(uint64_t param_1,longlong *param_2,uint64_t param_3,uint64_t param_4)
-// 多参数资源管理函数 - 管理多参数的资源操作
-void MultiParameter_Resource_Manager(uint64_t param_1,longlong *param_2,uint64_t param_3,uint64_t param_4)
+void FUN_1800b5cc0(uint64_t param_1,longlong *param_2,uint64_t param_3,uint64_t param_4)
 
 {
   longlong *plVar1;
@@ -785,7 +802,7 @@ void MultiParameter_Resource_Manager(uint64_t param_1,longlong *param_2,uint64_t
   lVar6 = (longlong)puVar8 - (longlong)puVar4 >> 3;
   if (lVar6 == 0) {
     lVar6 = 1;
-  LAB_1802abea0:
+LAB_1802abea0:
     puVar3 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,lVar6 * 8,(char)plVar5[3],param_4,uVar10);
     puVar8 = (uint64_t *)plVar5[1];
     puVar4 = (uint64_t *)*plVar5;
@@ -829,12 +846,15 @@ LAB_1802abf36:
   return;
 }
 
-// 原始函数别名（保持向后兼容性）
-#define FUN_1800b5cc0                     MultiParameter_Resource_Manager
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
 
 // 函数: void FUN_1800b5d10(uint64_t param_1,longlong *param_2)
-// 资源状态管理函数 - 管理资源状态
-void ResourceState_Manager(uint64_t param_1,longlong *param_2)
+void FUN_1800b5d10(uint64_t param_1,longlong *param_2)
 
 {
   longlong lVar1;
@@ -864,7 +884,7 @@ void ResourceState_Manager(uint64_t param_1,longlong *param_2)
         lVar3 = (longlong)plVar4 - (longlong)plVar5 >> 3;
         if (lVar3 == 0) {
           lVar3 = 1;
-        LAB_1800b5da5:
+LAB_1800b5da5:
           plVar2 = (longlong *)FUN_18062b420(system_memory_pool_ptr,lVar3 * 8);
           plVar4 = (longlong *)param_2[1];
           plVar5 = (longlong *)*param_2;
@@ -910,12 +930,15 @@ void ResourceState_Manager(uint64_t param_1,longlong *param_2)
   return;
 }
 
-// 原始函数别名（保持向后兼容性）
-#define FUN_1800b5d10                     ResourceState_Manager
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
 
 // 函数: void FUN_1800b5d38(void)
-// 资源队列处理函数 - 处理资源队列操作
-void ResourceQueue_Process(void)
+void FUN_1800b5d38(void)
 
 {
   longlong *plVar1;
@@ -943,7 +966,7 @@ void ResourceQueue_Process(void)
       lVar2 = (longlong)plVar3 - (longlong)plVar4 >> 3;
       if (lVar2 == 0) {
         lVar2 = 1;
-      LAB_1800b5da5:
+LAB_1800b5da5:
         plVar1 = (longlong *)FUN_18062b420(system_memory_pool_ptr,lVar2 * 8);
         plVar3 = (longlong *)unaff_RDI[1];
         plVar4 = (longlong *)*unaff_RDI;
@@ -990,43 +1013,40 @@ void ResourceQueue_Process(void)
   } while( true );
 }
 
-// 原始函数别名（保持向后兼容性）
-#define FUN_1800b5d38                     ResourceQueue_Process
+
+
+
+
 
 // 函数: void FUN_1800b5e73(void)
-// 空函数 - 不执行任何操作
-void Empty_Function(void)
+void FUN_1800b5e73(void)
 
 {
   return;
 }
 
-// 原始函数别名（保持向后兼容性）
-#define FUN_1800b5e73                     Empty_Function
 
-// 函数: uint64_t FUN_1800b5e80(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-// 系统数据内存管理函数 - 管理系统数据内存
-uint64_t SystemData_Memory_Manager(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+uint64_t
+FUN_1800b5e80(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   FUN_1800be9a0(system_system_data_memory,param_2,0,param_4,0,0xfffffffffffffffe);
   return param_2;
 }
 
-// 原始函数别名（保持向后兼容性）
-#define FUN_1800b5e80                     SystemData_Memory_Manager
 
-// 函数: uint64_t FUN_1800b5ec0(uint64_t param_1,uint64_t param_2)
-// 系统初始化函数 - 执行系统初始化操作
-uint64_t System_Init_Function(uint64_t param_1,uint64_t param_2)
+
+uint64_t FUN_1800b5ec0(uint64_t param_1,uint64_t param_2)
 
 {
   FUN_1800bed00();
   return param_2;
 }
 
-// 原始函数别名（保持向后兼容性）
-#define FUN_1800b5ec0                     System_Init_Function
+
 
 // WARNING: Removing unreachable block (ram,0x0001800b6113)
 // WARNING: Removing unreachable block (ram,0x0001800b611a)
@@ -1039,47 +1059,6 @@ uint64_t System_Init_Function(uint64_t param_1,uint64_t param_2)
 // WARNING: Removing unreachable block (ram,0x0001800b617c)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-//==============================================================================
-// 技术架构说明
-//==============================================================================
 
-/**
- * 系统资源管理架构
- * ===================
- * 
- * 本模块实现了复杂的系统资源管理功能，包括：
- * 
- * 1. 资源生命周期管理
- *    - 资源分配和释放
- *    - 资源状态跟踪
- *    - 资源清理和回收
- * 
- * 2. 并发控制
- *    - 互斥锁保护
- *    - 线程安全操作
- *    - 原子操作
- * 
- * 3. 内存管理
- *    - 动态内存分配
- *    - 内存池管理
- *    - 内存碎片整理
- * 
- * 4. 参数处理
- *    - 类型转换
- *    - 参数验证
- *    - 默认值处理
- * 
- * 关键数据结构：
- * - 系统资源状态表
- * - 互斥锁数组
- * - 内存池管理器
- * - 参数处理队列
- * 
- * 设计模式：
- * - 资源管理模式
- * - 观察者模式
- * - 工厂模式
- * - 状态模式
- */
 
-//==============================================================================
+

@@ -951,7 +951,7 @@ uint64_t ResourceStatusGet(uint64_t resource_handle, longlong resource_ptr)
 
 
 
-uint64_t FUN_1808daa70(longlong param_1,uint *param_2)
+uint64_t ResourceSearch(longlong search_key, uint *result_ptr)
 
 {
   longlong *plVar1;
