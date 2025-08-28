@@ -576,24 +576,27 @@ DataDistributionProcessor(longlong *param_1,longlong *param_2,longlong param_3,u
   longlong lStack_50;
   undefined1 auStack_48 [32];
   
+  // 根据数据类型分发处理
   switch(*(undefined4 *)(param_3 + 0x28)) {
-  case 0:
+  case 0: // 递归处理数据类型
     plVar6 = (longlong *)*param_2;
     lVar7 = param_2[1];
     for (lVar5 = *(longlong *)(param_3 + 0x30); lVar5 != 0; lVar5 = *(longlong *)(lVar5 + 0x58)) {
       plStack_58 = plVar6;
       lStack_50 = lVar7;
-      plVar1 = (longlong *)FUN_1800a1310(auStack_48,&plStack_58,lVar5,param_4 & 0xffffffff,param_5);
+      plVar1 = (longlong *)DataDistributionProcessor(auStack_48,&plStack_58,lVar5,param_4 & 0xffffffff,param_5);
       plVar6 = (longlong *)*plVar1;
       lVar7 = plVar1[1];
     }
     goto code_r0x0001800a1605;
-  case 1:
+    
+  case 1: // 类型1处理
     plStack_58 = (longlong *)*param_2;
     lStack_50 = param_2[1];
     plVar1 = (longlong *)FUN_18009fc60(auStack_48,&plStack_58,param_3,param_4,param_5);
     break;
-  case 2:
+    
+  case 2: // 类型2处理
     if ((param_4 & 1) == 0) {
       plVar1 = (longlong *)*param_2;
       lVar7 = param_2[1];
@@ -602,9 +605,9 @@ DataDistributionProcessor(longlong *param_1,longlong *param_2,longlong param_3,u
         plStack_58 = plVar1;
         lStack_50 = lVar7;
         do {
-          FUN_1800a0e50(lVar7,9);
+          StreamOutputOperator(lVar7,STREAM_CHAR_TAB);
           if (plVar1 != (longlong *)0x0) {
-            FUN_1800a1160(lVar7,plVar1);
+            StringStreamOutputter(lVar7,plVar1);
           }
           uVar4 = uVar4 - 1;
         } while (uVar4 != 0);
@@ -614,30 +617,33 @@ DataDistributionProcessor(longlong *param_1,longlong *param_2,longlong param_3,u
     lStack_50 = param_2[1];
     lVar7 = *(longlong *)(param_3 + 8);
     if (lVar7 == 0) {
-      lVar2 = 0x180d48d24;
+      lVar2 = GLOBAL_DATA_ADDRESS_1;
       lVar5 = 0;
     }
     else {
       lVar5 = *(longlong *)(param_3 + 0x18);
       lVar2 = lVar7;
     }
-    lVar3 = 0x180d48d24;
+    lVar3 = GLOBAL_DATA_ADDRESS_1;
     if (lVar7 != 0) {
       lVar3 = lVar7;
     }
     plVar1 = (longlong *)FUN_1800a0350(auStack_48,lVar3,lVar5 + lVar2,0,&plStack_58);
     break;
-  case 3:
+    
+  case 3: // 类型3处理
     plStack_58 = (longlong *)*param_2;
     lStack_50 = param_2[1];
     plVar1 = (longlong *)FUN_1800a0040(auStack_48,&plStack_58,param_3,param_4,param_5);
     break;
-  case 4:
+    
+  case 4: // 类型4处理
     plStack_58 = (longlong *)*param_2;
     lStack_50 = param_2[1];
     plVar1 = (longlong *)FUN_1800a0820(auStack_48,&plStack_58,param_3,param_4,param_5);
     break;
-  case 5:
+    
+  case 5: // 类型5处理 - XML格式
     plVar1 = (longlong *)*param_2;
     lVar7 = param_2[1];
     plStack_58 = plVar1;
@@ -646,9 +652,9 @@ DataDistributionProcessor(longlong *param_1,longlong *param_2,longlong param_3,u
       if (0 < (int)param_5) {
         uVar4 = (ulonglong)param_5;
         do {
-          FUN_1800a0e50(lVar7,9);
+          StreamOutputOperator(lVar7,STREAM_CHAR_TAB);
           if (plVar1 != (longlong *)0x0) {
-            FUN_1800a1160(lVar7,plVar1);
+            StringStreamOutputter(lVar7,plVar1);
           }
           uVar4 = uVar4 - 1;
         } while (uVar4 != 0);
@@ -657,67 +663,72 @@ DataDistributionProcessor(longlong *param_1,longlong *param_2,longlong param_3,u
       lStack_50 = param_2[1];
     }
     lVar7 = lStack_50;
-    FUN_1800a0e50(lStack_50,0x3c);
+    StreamOutputOperator(lStack_50,STREAM_CHAR_LESS_THAN);
     plVar1 = plStack_58;
     if (plStack_58 != (longlong *)0x0) {
-      FUN_1800a1160(lVar7,plStack_58);
+      StringStreamOutputter(lVar7,plStack_58);
     }
-    FUN_1800a0e50(lVar7,0x3f);
+    StreamOutputOperator(lVar7,STREAM_CHAR_QUESTION);
     if (plVar1 != (longlong *)0x0) {
-      FUN_1800a1160(lVar7,plVar1);
+      StringStreamOutputter(lVar7,plVar1);
     }
-    FUN_1800a0e50(lVar7,0x78);
+    StreamOutputOperator(lVar7,STREAM_CHAR_X);
     if (plVar1 != (longlong *)0x0) {
-      FUN_1800a1160(lVar7,plVar1);
+      StringStreamOutputter(lVar7,plVar1);
     }
-    FUN_1800a0e50(lVar7,0x6d);
+    StreamOutputOperator(lVar7,STREAM_CHAR_M);
     if (plVar1 != (longlong *)0x0) {
-      FUN_1800a1160(lVar7,plVar1);
+      StringStreamOutputter(lVar7,plVar1);
     }
-    FUN_1800a0e50(lVar7,0x6c);
+    StreamOutputOperator(lVar7,STREAM_CHAR_L);
     if (plVar1 != (longlong *)0x0) {
-      FUN_1800a1160(lVar7,plVar1);
+      StringStreamOutputter(lVar7,plVar1);
     }
     plStack_58 = (longlong *)*param_2;
     lStack_50 = param_2[1];
     plVar1 = (longlong *)FUN_1800a05a0(auStack_48,&plStack_58,param_3);
     lVar7 = *plVar1;
     lVar5 = plVar1[1];
-    FUN_1800a0e50(lVar5,0x3f);
+    StreamOutputOperator(lVar5,STREAM_CHAR_QUESTION);
     if (lVar7 != 0) {
-      FUN_1800a1160(lVar5,lVar7);
+      StringStreamOutputter(lVar5,lVar7);
     }
-    FUN_1800a0e50(lVar5,0x3e);
+    StreamOutputOperator(lVar5,STREAM_CHAR_GREATER_THAN);
     if (lVar7 != 0) {
-      FUN_1800a1160(lVar5,lVar7);
+      StringStreamOutputter(lVar5,lVar7);
     }
     *param_2 = lVar7;
     param_2[1] = lVar5;
-    goto FUN_1800a1618;
-  case 6:
+    goto DataTransferProcessor;
+    
+  case 6: // 类型6处理
     plStack_58 = (longlong *)*param_2;
     lStack_50 = param_2[1];
     plVar1 = (longlong *)FUN_1800a0a00(auStack_48,&plStack_58,param_3,param_4,param_5);
     break;
-  case 7:
+    
+  case 7: // 类型7处理 - 数据流处理
     plStack_58 = (longlong *)*param_2;
     lStack_50 = param_2[1];
-    plVar1 = (longlong *)FUN_1800a0c50(auStack_48,&plStack_58,param_3,param_4,param_5);
+    plVar1 = (longlong *)DataStreamProcessor(auStack_48,&plStack_58,param_3,param_4,param_5);
     break;
+    
   default:
-    goto FUN_1800a1618;
+    goto DataTransferProcessor;
   }
+  
+  // 处理结果
   plVar6 = (longlong *)*plVar1;
   lVar7 = plVar1[1];
 code_r0x0001800a1605:
   *param_2 = (longlong)plVar6;
   param_2[1] = lVar7;
-FUN_1800a1618:
+DataTransferProcessor:
   if ((param_4 & 1) == 0) {
     lVar7 = param_2[1];
-    FUN_1800a0e50(lVar7,10);
+    StreamOutputOperator(lVar7,STREAM_CHAR_LINE_FEED);
     if (*param_2 != 0) {
-      FUN_1800a1160(lVar7);
+      StringStreamOutputter(lVar7);
     }
   }
   lVar7 = param_2[1];
@@ -728,7 +739,19 @@ FUN_1800a1618:
 
 
 
-longlong * FUN_1800a1326(longlong *param_1,undefined8 param_2,undefined8 param_3,uint param_4)
+/**
+ * @brief 数据格式化处理器
+ * 
+ * 处理数据格式化操作，支持多种格式转换。
+ * 包含跳转表处理和格式化输出。
+ * 
+ * @param param_1 输出缓冲区指针
+ * @param param_2 格式化参数
+ * @param param_3 附加参数
+ * @param param_4 控制标志
+ * @return longlong* 格式化结果指针
+ */
+longlong * DataFormattingProcessor(longlong *param_1,undefined8 param_2,undefined8 param_3,uint param_4)
 
 {
   longlong lVar1;
