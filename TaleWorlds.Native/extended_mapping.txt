@@ -1,0 +1,21 @@
+# 扩展的FUN_函数到语义化别名的映射
+FUN_18005cb60=SystemDataTransformer
+FUN_1800587d0=SystemBufferManager
+FUN_180058710=SystemStreamProcessor
+FUN_18022f390=SystemAlgorithmOptimizer
+FUN_18020eba0=SystemQueueManager
+FUN_1800b94f0=SystemStackHandler
+FUN_1800b9270=SystemHeapManager
+FUN_1800b9210=SystemMemoryController
+FUN_1800b9030=SystemPoolAllocator
+FUN_180058210=SystemCacheManager
+FUN_1801b9690=SystemThreadManager
+FUN_1800e7d00=SystemLockHandler
+FUN_1800e7c40=SystemSemaphoreManager
+FUN_1800a19c0=SystemEventProcessor
+FUN_180069530=SystemTimerController
+FUN_18013ea00=SystemFileHandler
+FUN_18011d900=SystemDirectoryManager
+FUN_1800ba100=SystemPathProcessor
+FUN_180152b00=SystemIOController
+FUN_1800f7320=SystemDeviceManager
