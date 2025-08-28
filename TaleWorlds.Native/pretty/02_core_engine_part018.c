@@ -861,9 +861,9 @@ void FUN_1800593f0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t 
 void FUN_1800594b0(uint64_t *param_1)
 
 {
-  FUN_1808fc8a8(param_1 + 0x7d,0x58,4,FUN_180044a30,0xfffffffffffffffe);
-  FUN_1808fc8a8(param_1 + 0x51,0x58,4,FUN_180044a30);
-  FUN_1808fc8a8(param_1 + 0x11,0x20,0x10,FUN_180059620);
+  SystemDataValidator(param_1 + 0x7d,0x58,4,FUN_180044a30,0xfffffffffffffffe);
+  SystemDataValidator(param_1 + 0x51,0x58,4,FUN_180044a30);
+  SystemDataValidator(param_1 + 0x11,0x20,0x10,FUN_180059620);
   param_1[8] = &system_data_buffer_ptr;
   if (param_1[9] != 0) {
                     // WARNING: Subroutine does not return

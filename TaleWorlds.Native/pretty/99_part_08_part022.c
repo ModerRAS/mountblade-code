@@ -751,7 +751,7 @@ void FUN_1804f6330(int64_t param_1,uint64_t param_2,uint64_t param_3)
   char cVar1;
   int8_t auStack_578 [1376];
   
-  FUN_180627be0(param_1 + 0x98d990);
+  SystemCore_ConfigurationHandler0(param_1 + 0x98d990);
   FUN_1804fb680(param_1 + 0x87bd28);
   *(int8_t *)(param_1 + 0x98d2d0) = 0;
   *(int32_t *)(param_1 + 0x98d930) = 0xffffffff;

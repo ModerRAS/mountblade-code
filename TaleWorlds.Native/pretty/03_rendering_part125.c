@@ -278,7 +278,7 @@ void FUN_180341100(uint64_t param_1,int64_t param_2,uint64_t param_3)
   puVar1[3] = 0x2f736563;
   *(int8_t *)(puVar1 + 4) = 0;
   uStack_b0 = uVar4;
-  FUN_180627be0(param_2,param_3);
+  SystemCore_ConfigurationHandler0(param_2,param_3);
   iVar5 = *(int *)(param_2 + 0x10) + 10;
   CoreMemoryPoolProcessor(param_2,iVar5);
   puVar2 = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
@@ -401,7 +401,7 @@ void FUN_180341380(uint64_t param_1,int64_t param_2,uint64_t param_3)
   puVar1[3] = 0x2f736563;
   *(int8_t *)(puVar1 + 4) = 0;
   uStack_b0 = uVar4;
-  FUN_180627be0(param_2,param_3);
+  SystemCore_ConfigurationHandler0(param_2,param_3);
   iVar5 = *(int *)(param_2 + 0x10) + 0xb;
   CoreMemoryPoolProcessor(param_2,iVar5);
   puVar2 = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));

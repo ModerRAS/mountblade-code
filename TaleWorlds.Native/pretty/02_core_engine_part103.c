@@ -465,7 +465,7 @@ uint64_t * FUN_18011fd90(uint64_t *param_1)
   *(int32_t *)(param_1 + 0x13) = 0;
   *(uint64_t *)((int64_t)param_1 + 0xac) = 0;
   *(uint64_t *)((int64_t)param_1 + 0xa4) = 0;
-  FUN_1808fc838(param_1 + 0x17,0x10,2,&SUB_18013d940,FUN_18011d900);
+  DataStructureManager(param_1 + 0x17,0x10,2,&SUB_18013d940,FUN_18011d900);
   param_1[10] = 0xffffffffffffffff;
   param_1[0xb] = 0xffffffffffffffff;
   *(int32_t *)(param_1 + 0xc) = 0;
@@ -491,7 +491,7 @@ uint64_t * FUN_18011fd90(uint64_t *param_1)
 void FUN_18011fef0(uint64_t param_1)
 
 {
-  FUN_1808fc8a8(param_1,0x10,2,FUN_18011d900,0xfffffffffffffffe);
+  SystemDataValidator(param_1,0x10,2,FUN_18011d900,0xfffffffffffffffe);
   return;
 }
 

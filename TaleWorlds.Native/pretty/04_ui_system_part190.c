@@ -32,7 +32,7 @@ uint64_t FUN_18077a0e0(int64_t param_1,int param_2,uint param_3)
     plVar5 = (int64_t *)(param_1 + 0x228);
     do {
       if (*plVar5 == 0) {
-        lVar3 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x10010,&unknown_var_6016_ptr,0x1c8,0
+        lVar3 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x10010,&unknown_var_6016_ptr,0x1c8,0
                              );
         *plVar5 = lVar3;
         if (lVar3 == 0) {
@@ -57,7 +57,7 @@ uint64_t FUN_18077a0e0(int64_t param_1,int param_2,uint param_3)
       SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(param_1 + 0x328),
                     &unknown_var_6016_ptr,0x1d9,1);
     }
-    lVar3 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar4 * param_2 * 4 + 0x10,
+    lVar3 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar4 * param_2 * 4 + 0x10,
                           &unknown_var_6016_ptr,0x1db,0);
     *(int64_t *)(param_1 + 0x328) = lVar3;
     if (lVar3 == 0) {
@@ -73,7 +73,7 @@ uint64_t FUN_18077a0e0(int64_t param_1,int param_2,uint param_3)
         SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(param_1 + 0x220),
                       &unknown_var_6016_ptr,0x1eb,1);
       }
-      lVar3 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_3 * 8 + 0x10,
+      lVar3 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_3 * 8 + 0x10,
                             &unknown_var_6016_ptr,0x1ed,0);
       *(int64_t *)(param_1 + 0x220) = lVar3;
       if (lVar3 == 0) {

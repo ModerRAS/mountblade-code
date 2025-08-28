@@ -612,7 +612,7 @@ int64_t * FUN_1802f63a0(int64_t param_1,int64_t *param_2)
     (**(code **)(*plVar3 + 0x28))(plVar3);
   }
   plVar3 = (int64_t *)*param_2;
-  FUN_180627be0(plVar3 + 0x27,param_1 + 0x138);
+  SystemCore_ConfigurationHandler0(plVar3 + 0x27,param_1 + 0x138);
   *(int8_t *)((int64_t)plVar3 + 0x3a) = *(int8_t *)(param_1 + 0x3a);
   (**(code **)(*plVar3 + 0x148))(plVar3,param_1 + 0x180);
   *(int32_t *)((int64_t)plVar3 + 0x174) = *(int32_t *)(param_1 + 0x174);

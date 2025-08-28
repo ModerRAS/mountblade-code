@@ -447,7 +447,7 @@ uint64_t FUN_180768c70(int64_t param_1)
   
   lVar1 = *(int64_t *)(param_1 + 0x1e8);
   lVar2 = *(int64_t *)(param_1 + 0x1e0);
-  lVar3 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int *)(param_1 + 0x15c) + 1,
+  lVar3 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int *)(param_1 + 0x15c) + 1,
                         &unknown_var_1664_ptr,0x6d0,0);
   *(int64_t *)(param_1 + 0x1e8) = lVar3;
   if (lVar3 == 0) {

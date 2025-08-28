@@ -344,7 +344,7 @@ uint64_t FUN_1807aeff0(int64_t param_1,char param_2)
               iVar5 = 4;
             }
             *(int32_t *)(param_1 + 0x1c8) = 0x2000;
-            lVar4 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
+            lVar4 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
                                   iVar1 * iVar5 * 0x2000 + 0x10,&unknown_var_9808_ptr,0x17e,
                                   (uint64_t)pcVar6 & 0xffffffff00000000);
             *(int64_t *)(param_1 + 0x1c0) = lVar4;

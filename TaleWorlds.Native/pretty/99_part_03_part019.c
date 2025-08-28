@@ -274,7 +274,7 @@ void FUN_1801de7d0(void)
         *(int32_t *)(puVar8 + 1) = 0;
         *puVar8 = &system_handler3_ptr;
         puStack_88 = puVar8;
-        FUN_1808fc838(puVar8 + 2,0x70,6,FUN_1801ecb30,FUN_1801ecbb0);
+        DataStructureManager(puVar8 + 2,0x70,6,FUN_1801ecb30,FUN_1801ecbb0);
         puVar1 = puVar8 + 0x56;
         *puVar1 = &system_state_ptr;
         puVar8[0x57] = 0;
@@ -610,7 +610,7 @@ void FUN_1801df040(uint64_t *param_1)
   param_1[0x57] = 0;
   *(int32_t *)(param_1 + 0x59) = 0;
   param_1[0x56] = &system_state_ptr;
-  FUN_1808fc8a8(param_1 + 2,0x70,6,FUN_1801ecbb0);
+  SystemDataValidator(param_1 + 2,0x70,6,FUN_1801ecbb0);
   *param_1 = &system_handler2_ptr;
   *param_1 = &system_handler1_ptr;
   return;

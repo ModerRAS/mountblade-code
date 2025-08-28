@@ -342,7 +342,7 @@ void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
             puStack_148 = puStack_1b8;
             
             // 处理渲染数据
-            FUN_180627ae0(auStack_120, &puStack_190);
+            SystemCore_NetworkHandler0(auStack_120, &puStack_190);
             uStack_100 = (int32_t)uStack_170;
             uStack_fc = uStack_170._4_4_;
             uStack_f8 = (int32_t)uStack_168;

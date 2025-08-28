@@ -1228,7 +1228,7 @@ void FUN_1800ba6f0(uint64_t module_param)
     if (path_length == 0) {
         FUN_180627160(&unknown_var_8696_ptr);
         debug_value = FUN_180628ca0();
-        FUN_180627ae0(module_param, debug_value);
+        SystemCore_NetworkHandler0(module_param, debug_value);
         buffer_value8 = 1;
         SystemSecurityChecker(stack_checksum ^ (uint64_t)debug_buffer);
     }

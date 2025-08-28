@@ -1,3 +1,6 @@
+/* SystemEventHandler - SystemDataProcessor 的语义化别名 */
+#define SystemEventHandler SystemDataProcessor
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 

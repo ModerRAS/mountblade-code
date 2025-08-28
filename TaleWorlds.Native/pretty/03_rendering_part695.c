@@ -2,8 +2,8 @@
 
 // 03_rendering_part695.c - 8 个函数
 
-// 函数: void FUN_18066bdc0(int64_t *param_1,uint64_t *param_2,uint64_t *param_3,int param_4)
-void FUN_18066bdc0(int64_t *param_1,uint64_t *param_2,uint64_t *param_3,int param_4)
+// 函数: void SystemNetworkHandler(int64_t *param_1,uint64_t *param_2,uint64_t *param_3,int param_4)
+void SystemNetworkHandler(int64_t *param_1,uint64_t *param_2,uint64_t *param_3,int param_4)
 
 {
   int64_t *plVar1;

@@ -72,7 +72,7 @@ FUN_180772160(int64_t param_1,int64_t *param_2,uint *param_3,int32_t *param_4,in
   }
   uVar16 = 0;
   plVar11 = (int64_t *)
-            FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x80,&unknown_var_2864_ptr,0x37e,0);
+            SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x80,&unknown_var_2864_ptr,0x37e,0);
   if (plVar11 == (int64_t *)0x0) {
 LAB_180772526:
     uVar13 = 0x26;
@@ -108,7 +108,7 @@ LAB_180772526:
     *(int32_t *)((int64_t)plVar11 + 0x3c) = uVar7;
     if (param_3 != (uint *)0x0) {
       puVar12 = (uint64_t *)
-                FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_3[0x18] * 0x68 + 0xd8,
+                SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_3[0x18] * 0x68 + 0xd8,
                               &unknown_var_2864_ptr,0x38d,0);
       if (puVar12 == (uint64_t *)0x0) goto LAB_180772526;
       uVar13 = *(uint64_t *)(param_3 + 2);
@@ -302,7 +302,7 @@ int32_t FUN_180772560(int64_t param_1,int64_t *param_2,int32_t *param_3,int64_t 
   }
   else if ((int)*param_2 == 5) {
     plVar4 = (int64_t *)
-             FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x110,&unknown_var_2864_ptr,0x3fd,0);
+             SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x110,&unknown_var_2864_ptr,0x3fd,0);
     if (plVar4 == (int64_t *)0x0) {
       uVar3 = 0x26;
     }

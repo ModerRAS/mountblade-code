@@ -228,11 +228,11 @@ LAB_180877bb2:
       (iVar4 = FUN_180868a80(bVar12,&lStack_e0,lVar7 + 0x170,param_2), iVar4 != 0)))) {
 LAB_180877e87:
     iVar4 = SystemLockProcessor(&lStack_e0);
-    if ((iVar4 == 0) && (iVar4 = FUN_1808744f0(&lStack_d0), iVar4 == 0)) {
+    if ((iVar4 == 0) && (iVar4 = SystemCore_FileSystem0(&lStack_d0), iVar4 == 0)) {
       uStack_c0 = 0xffffffff;
       iStack_bc = 0;
     }
-    FUN_1808744f0(&lStack_d0);
+    SystemCore_FileSystem0(&lStack_d0);
     SystemLockProcessor(&lStack_e0);
                     // WARNING: Subroutine does not return
     SystemSecurityChecker(uStack_58 ^ (uint64_t)auStack_158);

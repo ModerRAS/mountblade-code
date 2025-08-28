@@ -676,7 +676,7 @@ int64_t *render_system_initialize_render_object(int64_t *render_obj)
     render_obj[0xcd] = 0;                                      // 字节参数8
     
     // 初始化渲染队列
-    FUN_1808fc838(render_obj + 0xce, 8, 2, &SUB_18005d5f0, FUN_180045af0);
+    DataStructureManager(render_obj + 0xce, 8, 2, &SUB_18005d5f0, FUN_180045af0);
     render_obj[0xda] = 0;  // 渲染队列指针
     FUN_180094c20(render_obj + 0xdc); // 初始化渲染数据
     

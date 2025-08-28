@@ -616,7 +616,7 @@ void rendering_system_process_render_parameters(int64_t render_context, int64_t 
                 data_value_48 = 3;
                 buffer_position = parameter_index + 5;
                 parameter_value = FUN_18062b1e0(system_memory_pool_ptr, 0x20, 8, 3);
-                data_value_70 = FUN_180627ae0(parameter_value, &buffer_pointer);
+                data_value_70 = SystemCore_NetworkHandler0(parameter_value, &buffer_pointer);
                 data_pointer = (uint64_t *)(**(code **)(**(int64_t **)(render_context + 0x1b0) + 0x60))();
                 if ((void *)*data_pointer == &unknown_var_8720_ptr) {
                     LOCK();

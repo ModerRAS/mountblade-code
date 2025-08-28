@@ -371,7 +371,7 @@ void FUN_1801fddb0(int64_t param_1)
     CoreEngineMemoryPoolCleaner();
   }
   FUN_1800596a0(lVar1 + 0x1f8);
-  FUN_1808fc8a8(lVar1,0x48,7,FUN_1800596a0);
+  SystemMemoryManager(lVar1,0x48,7,FUN_1800596a0);
                     // WARNING: Subroutine does not return
   CoreEngineMemoryPoolCleaner(lVar1);
 }

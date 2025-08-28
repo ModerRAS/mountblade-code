@@ -121,7 +121,7 @@ uint64_t FUN_180769220(int64_t param_1,uint param_2,int64_t param_3)
     }
   }
   else {
-    lVar6 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar5 + 1,&unknown_var_1664_ptr,0x717,1);
+    lVar6 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar5 + 1,&unknown_var_1664_ptr,0x717,1);
     *(int64_t *)(param_1 + 0x1e8) = lVar6;
     if (lVar6 != 0) {
                     // WARNING: Subroutine does not return

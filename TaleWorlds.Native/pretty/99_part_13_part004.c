@@ -51,11 +51,11 @@ uint64_t FUN_1808a7e10(uint64_t *param_1,int64_t param_2)
   int8_t auStack_48 [32];
   int8_t auStack_28 [32];
   
-  uVar1 = FUN_1808ddc20(param_1,auStack_28,1,0x49444d43);
+  uVar1 = DataFlowProcessor(param_1,auStack_28,1,0x49444d43);
   if ((int)uVar1 != 0) {
     return uVar1;
   }
-  uVar1 = FUN_1808ddc20(param_1,auStack_48,0,0x42444d43);
+  uVar1 = DataFlowProcessor(param_1,auStack_48,0,0x42444d43);
   if ((int)uVar1 != 0) {
     return uVar1;
   }
@@ -427,7 +427,7 @@ uint64_t FUN_1808a8620(int64_t param_1,int64_t *param_2)
   uint auStackX_20 [2];
   int8_t auStack_38 [32];
   
-  uVar3 = FUN_1808ddc20(param_2,auStack_38,0,0x46454d50);
+  uVar3 = DataFlowProcessor(param_2,auStack_38,0,0x46454d50);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
@@ -857,7 +857,7 @@ uint64_t FUN_1808a89b0(uint64_t param_1,int64_t param_2,int32_t param_3)
   uint64_t *puStack_58;
   int8_t auStack_50 [40];
   
-  uVar3 = FUN_1808ddc20(param_1,auStack_50,1,param_3);
+  uVar3 = DataFlowProcessor(param_1,auStack_50,1,param_3);
   if ((int)uVar3 == 0) {
     aiStackX_20[0] = 0;
     uVar1 = FUN_1808de650(param_1,aiStackX_20);
@@ -886,7 +886,7 @@ uint64_t FUN_1808a89b0(uint64_t param_1,int64_t param_2,int32_t param_3)
               puVar4[9] = &unknown_var_1520_ptr;
               puStack_58 = puVar4;
               iVar2 = FUN_18089ae50(puVar4,param_1,0x53554247,0x42534247,1);
-              if ((iVar2 != 0) || (iVar2 = FUN_18087dc70(param_2,&puStack_58), iVar2 != 0)) {
+              if ((iVar2 != 0) || (iVar2 = DataStreamProcessor(param_2,&puStack_58), iVar2 != 0)) {
                 (**(code **)*puVar4)(puVar4,0);
                     // WARNING: Subroutine does not return
                 SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar4,&unknown_var_2144_ptr,0xc6,1);
@@ -945,7 +945,7 @@ uint64_t FUN_1808a89dc(void)
             *puVar4 = &unknown_var_1472_ptr;
             puVar4[9] = &unknown_var_1520_ptr;
             iVar2 = FUN_18089ae50(puVar4);
-            if ((iVar2 != 0) || (iVar2 = FUN_18087dc70(), iVar2 != 0)) {
+            if ((iVar2 != 0) || (iVar2 = DataStreamProcessor(), iVar2 != 0)) {
               (**(code **)*puVar4)(puVar4,0);
                     // WARNING: Subroutine does not return
               SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar4,&unknown_var_2144_ptr,0xc6,1);
@@ -989,7 +989,7 @@ int FUN_1808a8a3f(int param_1)
         *puVar2 = &unknown_var_1472_ptr;
         puVar2[9] = &unknown_var_1520_ptr;
         iVar1 = FUN_18089ae50(puVar2);
-        if ((iVar1 != 0) || (iVar1 = FUN_18087dc70(), iVar1 != 0)) {
+        if ((iVar1 != 0) || (iVar1 = DataStreamProcessor(), iVar1 != 0)) {
           (**(code **)*puVar2)(puVar2,0);
                     // WARNING: Subroutine does not return
           SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar2,&unknown_var_2144_ptr,0xc6,1);

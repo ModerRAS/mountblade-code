@@ -107,7 +107,7 @@ void FUN_1803b5630(int64_t *param_1,char param_2,char param_3)
   uStack_858 = 0xfffffffffffffffe;
   uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_ac8;
   cStack_a88 = param_3;
-  FUN_180627ae0(&puStack_a00);
+  SystemCore_NetworkHandler0(&puStack_a00);
   lStack_a70 = 0;
   piStack_a68 = (int *)0x0;
   iVar22 = 0;

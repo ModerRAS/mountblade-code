@@ -491,8 +491,8 @@ LAB_1804c2774:
       if (-1 < iVar5) {
         lVar9 = (int64_t)iVar5 * 200 + system_system_memory;
         *(int8_t *)(param_1 + 0x30) = *(int8_t *)(lVar9 + 0x30);
-        FUN_180627be0(param_1 + 0x88,lVar9 + 0x88);
-        FUN_180627be0(param_1 + 0xa8,lVar9 + 0xa8);
+        SystemCore_ConfigurationHandler0(param_1 + 0x88,lVar9 + 0x88);
+        SystemCore_ConfigurationHandler0(param_1 + 0xa8,lVar9 + 0xa8);
         *(int8_t *)(param_1 + 8) = *(int8_t *)(lVar9 + 8);
         uVar3 = *(uint64_t *)(lVar9 + 0x14);
         *(uint64_t *)(param_1 + 0xc) = *(uint64_t *)(lVar9 + 0xc);

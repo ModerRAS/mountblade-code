@@ -1,3 +1,6 @@
+/* SystemController - SystemCore_StateProcessor0 的语义化别名 */
+#define SystemController SystemCore_StateProcessor0
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -691,7 +694,7 @@ void system_parameter_setup(uint64_t *system_params, uint64_t param_set1, uint64
                           (*(int64_t **)(param_set4 + 0x4b8), temp_ptr2, 1);
         if (temp_var3 == 0) {
             // 错误处理
-            FUN_18084b240(temp_ptr2, stack_buffer_48);
+            SystemController(temp_ptr2, stack_buffer_48);
         }
         system_params[0x12] = temp_var3;
     }
@@ -718,7 +721,7 @@ void system_state_manager(int64_t *state_manager)
     temp_var1 = (**(code **)(*state_manager + 0x260))();
     if (temp_var1 == 0) {
         // 错误处理
-        FUN_18084b240();
+        SystemController();
     }
     *(int64_t *)(reg_rbx + 0x90) = temp_var1;
     
@@ -1411,7 +1414,7 @@ void advanced_resource_manager(int64_t *resource_manager, uint64_t *resource_par
         temp_var4 = (**(code **)(*(int64_t *)*resource_params + 0x290))((int64_t *)*resource_params, temp_var1, 1);
         if (temp_var4 == 0) {
             // 错误处理
-            FUN_18084b240(temp_var1, stack_buffer_48);
+            SystemController(temp_var1, stack_buffer_48);
         }
     }
     
@@ -1487,7 +1490,7 @@ void system_resource_handler(int64_t *resource_processor, uint64_t *resource_par
         temp_var4 = (**(code **)(*(int64_t *)*resource_params + 0x290))((int64_t *)*resource_params, temp_var1, 1);
         if (temp_var4 == 0) {
             // 错误处理
-            FUN_18084b240(temp_var1, stack_buffer_48);
+            SystemController(temp_var1, stack_buffer_48);
         }
     }
     

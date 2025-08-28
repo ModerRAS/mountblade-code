@@ -49,8 +49,8 @@ int64_t FUN_1801c9340(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t 
   
   uVar1 = 0xfffffffffffffffe;
   FUN_18009e8e0();
-  FUN_180627ae0(param_1 + 0x60,param_2 + 0x60,param_3,param_4,uVar1);
-  FUN_180627ae0(param_1 + 0x80,param_2 + 0x80);
+  SystemCore_NetworkHandler0(param_1 + 0x60,param_2 + 0x60,param_3,param_4,uVar1);
+  SystemCore_NetworkHandler0(param_1 + 0x80,param_2 + 0x80);
   *(int32_t *)(param_1 + 0xa0) = *(int32_t *)(param_2 + 0xa0);
   *(int32_t *)(param_1 + 0xa4) = *(int32_t *)(param_2 + 0xa4);
   *(int32_t *)(param_1 + 0xa8) = *(int32_t *)(param_2 + 0xa8);
@@ -802,7 +802,7 @@ LAB_1801c9f0f:
   }
   lVar20 = CoreEngine_MemoryAllocator(system_memory_pool_ptr,0x70,(int8_t)uStack_1c8);
   lStack_188 = lVar20 + 0x20;
-  FUN_180627ae0(lStack_188,plVar3 + 6);
+  SystemCore_NetworkHandler0(lStack_188,plVar3 + 6);
   lStack_180 = lVar20 + 0x40;
   *(uint64_t *)(lVar20 + 0x58) = 0;
   *(int32_t *)(lVar20 + 0x68) = 3;

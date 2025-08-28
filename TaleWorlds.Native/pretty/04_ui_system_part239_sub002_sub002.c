@@ -464,7 +464,7 @@ int32_t FUN_180804980(int64_t param_1,int *param_2)
   lStack_38 = 0;
   plStack_30 = (int64_t *)0x0;
   puVar2 = (uint64_t *)
-           FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x18,&unknown_var_7648_ptr,0x312,
+           SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x18,&unknown_var_7648_ptr,0x312,
                          in_stack_ffffffffffffffa8 & 0xffffffff00000000);
   if (puVar2 == (uint64_t *)0x0) {
     uVar3 = 0x26;

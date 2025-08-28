@@ -78,7 +78,7 @@
 #define SystemInitializer2 FUN_180062300        // 系统初始化器2
 #define SystemStringHandler FUN_1800baa80       // 系统字符串处理器
 #define SystemResourceBinder FUN_18005d190      // 系统资源绑定器
-#define SystemPathProcessor FUN_180627be0       // 系统路径处理器
+#define SystemPathProcessor SystemEventProcessor       // 系统路径处理器
 #define SystemDataComparator FUN_1801eb6f0      // 系统数据比较器
 
 // 系统常量和函数指针

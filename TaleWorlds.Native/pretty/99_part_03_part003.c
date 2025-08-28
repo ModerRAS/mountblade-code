@@ -94,7 +94,7 @@ void FUN_1801c6120(void)
         else {
           uStack_d8 = 0;
           lStack_d0 = 0;
-          FUN_180627ae0(&puStack_f8,uVar9 + 0x30 + lVar6);
+          SystemCore_NetworkHandler0(&puStack_f8,uVar9 + 0x30 + lVar6);
           iVar5 = *(int *)(lVar6 + 0x10 + uVar9);
           if (0 < iVar5) {
             CoreMemoryPoolProcessor(&puStack_f8,uStack_e8 + iVar5);

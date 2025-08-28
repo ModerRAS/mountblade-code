@@ -289,7 +289,7 @@ LAB_18037d51b:
                  (ppuVar15[1] == (uint64_t *)0x9c552acd3ed5548d)) {
                 puVar6 = ppuVar15[7];
                 uVar23 = uVar23 + (int64_t)puVar6;
-                FUN_180627ae0(&puStack_250,pppppuVar3 + 0xd);
+                SystemCore_NetworkHandler0(&puStack_250,pppppuVar3 + 0xd);
                 fStack_230 = (float)(int64_t)puVar6;
                 if ((int64_t)puVar6 < 0) {
                   fStack_230 = fStack_230 + 1.8446744e+19;

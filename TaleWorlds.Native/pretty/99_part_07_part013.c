@@ -1152,7 +1152,7 @@ LAB_1804a799b:
 int64_t * FUN_1804a7a40(int64_t *param_1)
 
 {
-  FUN_1808fc8a8(param_1 + 0x12,8,8,FUN_180045af0,0xfffffffffffffffe);
+  SystemDataValidator(param_1 + 0x12,8,8,FUN_180045af0,0xfffffffffffffffe);
   if (param_1[0xd] != 0) {
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
@@ -1196,7 +1196,7 @@ void FUN_1804a7ac0(uint64_t *param_1)
       lVar1 = (int64_t)(int)(*(uint *)(param_1 + 10) & uVar5) * 0xd8;
       if ((*(int *)(lVar2 + lVar1) != -1) &&
          (plVar3 = (int64_t *)(lVar1 + 8 + lVar2), plVar3 != (int64_t *)0x0)) {
-        FUN_1808fc8a8(plVar3 + 0x12,8,8,FUN_180045af0,uVar7);
+        SystemDataValidator(plVar3 + 0x12,8,8,FUN_180045af0,uVar7);
         if (plVar3[0xd] != 0) {
                     // WARNING: Subroutine does not return
           CoreEngineMemoryPoolCleaner();

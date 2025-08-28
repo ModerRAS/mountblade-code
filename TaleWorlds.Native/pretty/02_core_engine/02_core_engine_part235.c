@@ -957,7 +957,7 @@ void complex_initialization(uint64_t param_1, int64_t *param_2, uint64_t param_3
   lVar1 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x2c0,8,0x20);
   pcStack_1f8 = FUN_1800586e0;
   lStack_1d0 = lVar1;
-  FUN_1808fc838(lVar1,0x18,0x10,FUN_180207e00);
+  DataStructureManager(lVar1,0x18,0x10,FUN_180207e00);
   *(uint64_t *)(lVar1 + 0x184) = 0xffffffffffffffff;
   *(uint64_t *)(lVar1 + 0x18c) = 0xffffffffffffffff;
   *(int16_t *)(lVar1 + 0x180) = 0x902;
@@ -1031,7 +1031,7 @@ void release_resource(uint64_t param_1, uint64_t param_2)
         lVar8 = core_system_data_config;
       } while ((int)uVar5 < *(int *)(param_2 + 0x188));
     }
-    FUN_1808fc8a8(param_2,0x18,0x10,FUN_1800586e0,uVar9);
+    SystemDataValidator(param_2,0x18,0x10,FUN_1800586e0,uVar9);
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner(param_2);
   }

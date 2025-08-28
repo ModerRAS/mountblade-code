@@ -85,11 +85,11 @@ void FUN_180373d90(int64_t param_1)
   _Mtx_destroy_in_situ();
   FUN_1800b9270(lVar3,*(uint64_t *)(param_1 + 0x2210));
   FUN_180057830();
-  FUN_1808fc8a8(param_1 + 0x2160,0x20,4,FUN_180046860);
+  SystemDataValidator(param_1 + 0x2160,0x20,4,FUN_180046860);
   _Mtx_destroy_in_situ();
   FUN_180057830();
   if (*(int64_t *)(param_1 + 0x20b0) == 0) {
-    FUN_1808fc8a8(param_1 + 0xb0,0x20,0x100,FUN_180046860);
+    SystemDataValidator(param_1 + 0xb0,0x20,0x100,FUN_180046860);
     if (*(int64_t *)(param_1 + 0x88) == 0) {
       return;
     }

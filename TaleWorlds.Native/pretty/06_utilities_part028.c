@@ -947,7 +947,7 @@ void FUN_180942d30(void)
         
         // 执行清理操作
         if (system_config_data_6138 != 0) {
-            FUN_1808fc8a8(system_config_data_6138 + 0x360, 0xcc8, 8, FUN_1804aa030, 0xfffffffffffffffe);
+            SystemDataValidator(system_config_data_6138 + 0x360, 0xcc8, 8, FUN_1804aa030, 0xfffffffffffffffe);
             _Mtx_destroy_in_situ();
             _Cnd_destroy_in_situ();
             FUN_1804a9f00(lVar1 + 0x60);

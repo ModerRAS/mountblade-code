@@ -557,7 +557,7 @@ void FUN_1804591a0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,int32_t p
   uStack_128 = 0xfffffffffffffffe;
   uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_198;
   pcStack_178 = FUN_18004a130;
-  FUN_1808fc838(alStack_118,0x30,4,FUN_1801c2890);
+  DataStructureManager(alStack_118,0x30,4,FUN_1801c2890);
   iStack_58 = 0;
   lVar2 = CoreMemoryPoolValidator(&puStack_168,param_3);
   lVar4 = (int64_t)iStack_58;
@@ -589,7 +589,7 @@ void FUN_1804591a0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,int32_t p
   lStack_140 = 0;
   uStack_130 = 0;
   puStack_148 = &system_state_ptr;
-  FUN_1808fc8a8(alStack_118,0x30,4,FUN_18004a130);
+  SystemDataValidator(alStack_118,0x30,4,FUN_18004a130);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_198);
 }

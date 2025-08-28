@@ -1075,7 +1075,7 @@ void RenderingSystemAdvancedFunctionCallProcessor(int64_t *param_1, int64_t *par
     
     // 获取并执行主函数调用
     functionPtr = *(code **)(*param_1 + 0x78);
-    tempVar1 = FUN_180627ae0(&tempPtr2, *param_2 + 0x60, param_3, param_4, 0, RENDERING_OFFSET_MASK);
+    tempVar1 = SystemCore_NetworkHandler0(&tempPtr2, *param_2 + 0x60, param_3, param_4, 0, RENDERING_OFFSET_MASK);
     FUN_180628a40(&tempPtr2);
     tempPtr1 = (int64_t *)(*functionPtr)(param_1, tempVar1);
     tempPtr1 = (int64_t *)(**(code **)(*tempPtr1 + 0x70))(tempPtr1, &unknown_var_1532_ptr);
@@ -1094,7 +1094,7 @@ void RenderingSystemAdvancedFunctionCallProcessor(int64_t *param_1, int64_t *par
     if (4 < (uint64_t)(param_2[1] - *param_2 >> 5)) {
         (**(code **)(*param_1 + 0x70))(param_1, &system_temp_buffer);
         functionPtr = *(code **)(*param_1 + 0x78);
-        tempVar1 = FUN_180627ae0(&tempPtr2, *param_2 + 0x80);
+        tempVar1 = SystemCore_NetworkHandler0(&tempPtr2, *param_2 + 0x80);
         FUN_180628a40(&tempPtr2);
         tempPtr1 = (int64_t *)(*functionPtr)(param_1, tempVar1);
         tempPtr1 = (int64_t *)(**(code **)(*tempPtr1 + 0x70))(tempPtr1, &unknown_var_1532_ptr);

@@ -842,8 +842,8 @@ void FUN_18034b2c0(uint64_t *param_1)
   puVar2 = param_1;
   FUN_1803456e0();
   *puVar2 = &unknown_var_7952_ptr;
-  FUN_1808fc838(puVar2 + 0xe,0x20,4,FUN_180627850,FUN_180627b90);
-  FUN_1808fc838(param_1 + 0x1e,0x20,4,FUN_180627850,FUN_180627b90);
+  DataStructureManager(puVar2 + 0xe,0x20,4,FUN_180627850,FUN_180627b90);
+  DataStructureManager(param_1 + 0x1e,0x20,4,FUN_180627850,FUN_180627b90);
   param_1[0x2f] = 0;
   puStack_b8 = &system_data_buffer_ptr;
   uStack_a0 = 0;
@@ -878,8 +878,8 @@ uint64_t * FUN_18034b610(uint64_t *param_1,uint64_t param_2)
   if ((int64_t *)param_1[0x2f] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[0x2f] + 0x38))();
   }
-  FUN_1808fc8a8(param_1 + 0x1e,0x20,4,FUN_180627b90,uVar1);
-  FUN_1808fc8a8(param_1 + 0xe,0x20,4,FUN_180627b90);
+  SystemDataValidator(param_1 + 0x1e,0x20,4,FUN_180627b90,uVar1);
+  SystemDataValidator(param_1 + 0xe,0x20,4,FUN_180627b90);
   FUN_1803457d0(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1,0x180);

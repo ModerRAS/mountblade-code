@@ -500,7 +500,7 @@ LAB_18052c185:
     if (100.0 <= fVar10 * fVar10 + fVar9 * fVar9 + fVar8 * fVar8) goto LAB_18052c185;
   }
   pcStack_1a8 = FUN_18004a130;
-  FUN_1808fc838(aplStack_138,0x30,4,FUN_1801c2890);
+  DataStructureManager(aplStack_138,0x30,4,FUN_1801c2890);
   iStack_78 = 0;
   if (*(char *)(param_2 + 0x15) == '\0') {
     cVar1 = *(char *)(param_1 + 0x744);
@@ -571,7 +571,7 @@ LAB_18052c185:
   if (plStack_170 != (int64_t *)0x0) {
     (**(code **)(*plStack_170 + 0x38))();
   }
-  FUN_1808fc8a8(aplStack_138,0x30,4,FUN_18004a130);
+  SystemDataValidator(aplStack_138,0x30,4,FUN_18004a130);
   if (plVar3 != (int64_t *)0x0) {
     (**(code **)(*plVar3 + 0x38))(plVar3);
   }

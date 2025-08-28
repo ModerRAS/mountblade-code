@@ -510,7 +510,7 @@ void FUN_180545230(uint64_t *param_1,uint param_2,float *param_3,char param_4,fl
   pcStack_1e8 = FUN_18004a130;
   cStack_1d8 = param_4;
   uStack_1d0 = param_2;
-  FUN_1808fc838(auStack_138,0x30,4,FUN_1801c2890);
+  DataStructureManager(auStack_138,0x30,4,FUN_1801c2890);
   uVar10 = 0;
   iStack_78 = 0;
   if (param_8 != 0) {
@@ -678,7 +678,7 @@ void FUN_180545230(uint64_t *param_1,uint param_2,float *param_3,char param_4,fl
     }
   }
 LAB_180545885:
-  FUN_1808fc8a8(auStack_138,0x30,4,FUN_18004a130);
+  SystemDataValidator(auStack_138,0x30,4,FUN_18004a130);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_68 ^ (uint64_t)auStack_208);
 }
@@ -718,7 +718,7 @@ void FUN_1805458e0(uint64_t *param_1,int param_2,int64_t param_3,float *param_4,
   uStack_58 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_178;
   fVar1 = *(float *)(*(int64_t *)*param_1 + 4 + (int64_t)param_2 * 0x14);
   pcStack_158 = FUN_18004a130;
-  FUN_1808fc838(auStack_128,0x30,4,FUN_1801c2890);
+  DataStructureManager(auStack_128,0x30,4,FUN_1801c2890);
   iStack_68 = 0;
   if (param_3 != 0) {
     FUN_18033dc50(auStack_128,param_3);
@@ -741,7 +741,7 @@ void FUN_1805458e0(uint64_t *param_1,int param_2,int64_t param_3,float *param_4,
             **(int8_t **)(puVar8 + 8) = 0;
           }
           lVar6 = (int64_t)(iStack_68 + -1);
-          FUN_180627be0(puVar8,auStack_128 + lVar6 * 0x30);
+          SystemCore_ConfigurationHandler0(puVar8,auStack_128 + lVar6 * 0x30);
           *(int32_t *)(puVar8 + 0x20) = auStack_108[lVar6 * 0xc];
           *(int32_t *)(puVar8 + 0x24) = auStack_108[lVar6 * 0xc + 1];
           puVar8[0x28] = auStack_100[lVar6 * 0x30];

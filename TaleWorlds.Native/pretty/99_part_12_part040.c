@@ -568,7 +568,7 @@ LAB_1807e613d:
         SystemDataValidator(lVar7 + 0x30,*(int64_t *)(param_1 + 0x270),&system_buffer_ptr,0,1);
       }
       if (auStackX_8[0] != 0) {
-        lVar7 = FUN_180742050(lVar7 + 0x30,*(int *)(param_1 + 0x288) + 0x20,&system_buffer_ptr,0,
+        lVar7 = SystemCore_TransformationEngine0(lVar7 + 0x30,*(int *)(param_1 + 0x288) + 0x20,&system_buffer_ptr,0,
                               uVar9 & 0xffffffff00000000);
         *(int64_t *)(param_1 + 0x270) = lVar7;
         if (lVar7 == 0) goto LAB_1807e61c9;
@@ -609,7 +609,7 @@ LAB_1807e613d:
     }
     if (aiStackX_10[0] == 0) goto LAB_1807e60dd;
     uVar9 = uVar9 & 0xffffffff00000000;
-    lVar6 = FUN_180742050(lVar7 + 0x30,*(int32_t *)(param_1 + 0x328),&system_buffer_ptr,0,uVar9);
+    lVar6 = SystemCore_TransformationEngine0(lVar7 + 0x30,*(int32_t *)(param_1 + 0x328),&system_buffer_ptr,0,uVar9);
     *(int64_t *)(param_1 + 800) = lVar6;
     if (lVar6 != 0) goto LAB_1807e60dd;
 LAB_1807e61c9:
@@ -670,7 +670,7 @@ LAB_1807e613d:
         SystemDataValidator(unaff_R15 + 0x30,*(int64_t *)(unaff_RBX + 0x270),&system_buffer_ptr,0,1);
       }
       if (param_2 != 0) {
-        lVar4 = FUN_180742050(unaff_R15 + 0x30,*(int *)(unaff_RBX + 0x288) + 0x20,&system_buffer_ptr,0,
+        lVar4 = SystemCore_TransformationEngine0(unaff_R15 + 0x30,*(int *)(unaff_RBX + 0x288) + 0x20,&system_buffer_ptr,0,
                               unaff_R12 & 0xffffffff);
         *(int64_t *)(unaff_RBX + 0x270) = lVar4;
         if (lVar4 == 0) goto LAB_1807e61c9;
@@ -709,7 +709,7 @@ LAB_1807e613d:
       SystemDataValidator(unaff_R15 + 0x30,*(int64_t *)(unaff_RBX + 800),&system_buffer_ptr,0,1);
     }
     if (in_EAX == 0) goto LAB_1807e60dd;
-    lVar4 = FUN_180742050(unaff_R15 + 0x30,*(int32_t *)(unaff_RBX + 0x328),&system_buffer_ptr,0,
+    lVar4 = SystemCore_TransformationEngine0(unaff_R15 + 0x30,*(int32_t *)(unaff_RBX + 0x328),&system_buffer_ptr,0,
                           unaff_R12 & 0xffffffff);
     *(int64_t *)(unaff_RBX + 800) = lVar4;
     param_2 = in_stack_00000080;

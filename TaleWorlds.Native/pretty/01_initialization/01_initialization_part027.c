@@ -753,11 +753,11 @@ bool validate_and_process_condition(int64_t context, uint64_t param_2)
         }
         SystemDataInitializer(&unknown_var_544_ptr,puVar2);
       }
-      FUN_180627be0(param_1,param_1 + 0x80);
+      SystemCore_ConfigurationHandler0(param_1,param_1 + 0x80);
       return false;
     }
   }
-  FUN_180627be0(param_1,param_2);
+  SystemCore_ConfigurationHandler0(param_1,param_2);
   return true;
 }
 
@@ -813,7 +813,7 @@ LAB_18005c9be:
     uVar6 = 1;
   }
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar4,puVar3,param_1,uVar6);
+  SystemCoreOptimizer(lVar4,puVar3,param_1,uVar6);
 }
 
 
@@ -951,7 +951,7 @@ void register_or_add_component(void **registry, uint64_t param_2, uint64_t param
   ppuStackX_8 = param_1;
   FUN_180058080(ppuVar6,&ppuStackX_8,param_2,param_4,0,0xfffffffffffffffe);
   if (ppuStackX_8 != ppuVar6) {
-    FUN_180627be0(ppuStackX_8 + 8,param_3);
+    SystemCore_ConfigurationHandler0(ppuStackX_8 + 8,param_3);
     return;
   }
   CoreEngineDataTransformer(&puStack_68,param_2);
@@ -999,7 +999,7 @@ void register_or_add_component(void **registry, uint64_t param_2, uint64_t param
   uVar8 = 1;
 LAB_18005ccff:
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar3,ppuVar4,ppuVar6,uVar8,uVar9);
+  SystemCoreOptimizer(lVar3,ppuVar4,ppuVar6,uVar8,uVar9);
 }
 
 

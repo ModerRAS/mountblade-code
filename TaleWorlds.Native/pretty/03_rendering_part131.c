@@ -46,7 +46,7 @@ void FUN_1803461b0(int64_t *param_1,uint64_t param_2,int32_t *param_3,uint64_t p
   if (iVar4 == 0) {
     uVar2 = CoreMemoryPoolValidator(&puStack_30,param_3 + 0x20,param_3,param_4,0xfffffffffffffffe);
     lVar3 = FUN_1803466a0(param_1,param_2);
-    FUN_180627be0(*(uint64_t *)(lVar3 + 0x20),uVar2);
+    SystemCore_ConfigurationHandler0(*(uint64_t *)(lVar3 + 0x20),uVar2);
     if (param_5 != '\0') {
       (**(code **)(*param_1 + 0xb0))(param_1,param_2);
     }
@@ -280,7 +280,7 @@ void FUN_180346640(int64_t *param_1,uint64_t param_2,uint64_t param_3,char param
   int64_t lVar1;
   
   lVar1 = FUN_1803466a0();
-  FUN_180627be0(*(uint64_t *)(lVar1 + 0x20),param_3);
+  SystemCore_ConfigurationHandler0(*(uint64_t *)(lVar1 + 0x20),param_3);
   if (param_4 != '\0') {
     (**(code **)(*param_1 + 0xb0))(param_1,param_2);
   }

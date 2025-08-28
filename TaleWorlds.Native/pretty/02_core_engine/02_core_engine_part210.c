@@ -209,7 +209,7 @@ int64_t copy_scene_object_data(int64_t dest_object, int64_t src_object, uint64_t
   uint64_t ulong_var1;
   
   ulong_var1 = 0xfffffffffffffffe;
-  FUN_180627be0(dest_object + 8,src_object + 8,param_3,param_4,0xfffffffffffffffe);
+  SystemCore_ConfigurationHandler0(dest_object + 8,src_object + 8,param_3,param_4,0xfffffffffffffffe);
   *(int32_t *)(dest_object + 0x28) = *(int32_t *)(src_object + 0x28);
   *(int32_t *)(dest_object + 0x2c) = *(int32_t *)(src_object + 0x2c);
   *(int32_t *)(dest_object + 0x30) = *(int32_t *)(src_object + 0x30);
@@ -217,7 +217,7 @@ int64_t copy_scene_object_data(int64_t dest_object, int64_t src_object, uint64_t
   *(int32_t *)(dest_object + 0x38) = *(int32_t *)(src_object + 0x38);
   *(int32_t *)(dest_object + 0x3c) = *(int32_t *)(src_object + 0x3c);
   *(int32_t *)(dest_object + 0x40) = *(int32_t *)(src_object + 0x40);
-  FUN_180627be0(dest_object + 0x48,src_object + 0x48);
+  SystemCore_ConfigurationHandler0(dest_object + 0x48,src_object + 0x48);
   long_ptr1 = *(int64_t **)(src_object + 0x68);
   if (long_ptr1 != (int64_t *)0x0) {
     (**(code **)(*long_ptr1 + 0x28))(long_ptr1);
@@ -227,7 +227,7 @@ int64_t copy_scene_object_data(int64_t dest_object, int64_t src_object, uint64_t
   if (long_ptr2 != (int64_t *)0x0) {
     (**(code **)(*long_ptr2 + 0x38))();
   }
-  FUN_180627be0(dest_object + 0x70,src_object + 0x70,param_3,param_4,ulong_var1);
+  SystemCore_ConfigurationHandler0(dest_object + 0x70,src_object + 0x70,param_3,param_4,ulong_var1);
   long_ptr1 = *(int64_t **)(src_object + 0x90);
   if (long_ptr1 != (int64_t *)0x0) {
     (**(code **)(*long_ptr1 + 0x28))(long_ptr1);
@@ -274,7 +274,7 @@ int64_t copy_scene_object_data(int64_t dest_object, int64_t src_object, uint64_t
   *(int32_t *)(dest_object + 0x124) = *(int32_t *)(src_object + 0x124);
   *(int32_t *)(dest_object + 0x128) = *(int32_t *)(src_object + 0x128);
   *(int32_t *)(dest_object + 300) = *(int32_t *)(src_object + 300);
-  FUN_180627be0(dest_object + 0x130,src_object + 0x130);
+  SystemCore_ConfigurationHandler0(dest_object + 0x130,src_object + 0x130);
   long_ptr1 = *(int64_t **)(src_object + 0x150);
   if (long_ptr1 != (int64_t *)0x0) {
     (**(code **)(*long_ptr1 + 0x28))(long_ptr1);
@@ -284,7 +284,7 @@ int64_t copy_scene_object_data(int64_t dest_object, int64_t src_object, uint64_t
   if (long_ptr2 != (int64_t *)0x0) {
     (**(code **)(*long_ptr2 + 0x38))();
   }
-  FUN_180627be0(dest_object + 0x158,src_object + 0x158);
+  SystemCore_ConfigurationHandler0(dest_object + 0x158,src_object + 0x158);
   long_ptr1 = *(int64_t **)(src_object + 0x178);
   if (long_ptr1 != (int64_t *)0x0) {
     (**(code **)(*long_ptr1 + 0x28))(long_ptr1);
@@ -295,7 +295,7 @@ int64_t copy_scene_object_data(int64_t dest_object, int64_t src_object, uint64_t
     (**(code **)(*long_ptr2 + 0x38))();
   }
   *(int32_t *)(dest_object + 0x180) = *(int32_t *)(src_object + 0x180);
-  FUN_180627be0(dest_object + 0x188,src_object + 0x188);
+  SystemCore_ConfigurationHandler0(dest_object + 0x188,src_object + 0x188);
   long_ptr1 = *(int64_t **)(src_object + 0x1a8);
   if (long_ptr1 != (int64_t *)0x0) {
     (**(code **)(*long_ptr1 + 0x28))(long_ptr1);
@@ -349,7 +349,7 @@ int64_t copy_scene_object_data(int64_t dest_object, int64_t src_object, uint64_t
   *(int32_t *)(dest_object + 0x22c) = *(int32_t *)(src_object + 0x22c);
   *(int32_t *)(dest_object + 0x230) = *(int32_t *)(src_object + 0x230);
   *(int32_t *)(dest_object + 0x234) = *(int32_t *)(src_object + 0x234);
-  FUN_180627be0(dest_object + 0x238,src_object + 0x238);
+  SystemCore_ConfigurationHandler0(dest_object + 0x238,src_object + 0x238);
   long_ptr1 = *(int64_t **)(src_object + 600);
   if (long_ptr1 != (int64_t *)0x0) {
     (**(code **)(*long_ptr1 + 0x28))(long_ptr1);
@@ -359,7 +359,7 @@ int64_t copy_scene_object_data(int64_t dest_object, int64_t src_object, uint64_t
   if (long_ptr2 != (int64_t *)0x0) {
     (**(code **)(*long_ptr2 + 0x38))();
   }
-  FUN_180627be0(dest_object + 0x260,src_object + 0x260);
+  SystemCore_ConfigurationHandler0(dest_object + 0x260,src_object + 0x260);
   long_ptr1 = *(int64_t **)(src_object + 0x280);
   if (long_ptr1 != (int64_t *)0x0) {
     (**(code **)(*long_ptr1 + 0x28))(long_ptr1);
@@ -411,7 +411,7 @@ int64_t copy_scene_object_data(int64_t dest_object, int64_t src_object, uint64_t
   *(int32_t *)(dest_object + 0x310) = *(int32_t *)(src_object + 0x310);
   *(int32_t *)(dest_object + 0x314) = *(int32_t *)(src_object + 0x314);
   *(int8_t *)(dest_object + 0x318) = *(int8_t *)(src_object + 0x318);
-  FUN_180627be0(dest_object + 800,src_object + 800);
+  SystemCore_ConfigurationHandler0(dest_object + 800,src_object + 800);
   *(int32_t *)(dest_object + 0x340) = *(int32_t *)(src_object + 0x340);
   return dest_object;
 }

@@ -813,7 +813,7 @@ uint64_t * FUN_1805887f0(uint64_t *param_1)
   *param_1 = &unknown_var_2040_ptr;
   param_1[0x12] = 0;
   lVar1 = 2;
-  FUN_1808fc838(param_1 + 0x1e,0x11b0,2,FUN_180434170,FUN_180434250);
+  DataStructureManager(param_1 + 0x1e,0x11b0,2,FUN_180434170,FUN_180434250);
   puVar2 = param_1 + 0x48a;
   do {
     func_0x00018058d8e0(puVar2);
@@ -849,7 +849,7 @@ void FUN_180588910(uint64_t *param_1)
 
 {
   *param_1 = &unknown_var_2040_ptr;
-  FUN_1808fc8a8(param_1 + 0x1e,0x11b0,2,FUN_180434250,0xfffffffffffffffe);
+  SystemMemoryManager(param_1 + 0x1e,0x11b0,2,FUN_180434250,0xfffffffffffffffe);
   *param_1 = &unknown_var_1608_ptr;
   *param_1 = &unknown_var_1864_ptr;
   return;

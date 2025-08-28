@@ -224,7 +224,7 @@ LAB_180319bc0:
   uStack_158 = 2;
   uStack_150 = 0;
   uStack_160 = uStack_1c8;
-  FUN_180627ae0(auStack_148,&plStack_1b0);
+  SystemCore_NetworkHandler0(auStack_148,&plStack_1b0);
   uStack_128 = CONCAT44(uStack_18c,uStack_190);
   uStack_120 = CONCAT44(uStack_184,uStack_188);
   plStack_118 = plStack_180;

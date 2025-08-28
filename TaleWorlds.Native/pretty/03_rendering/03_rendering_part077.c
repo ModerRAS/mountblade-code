@@ -184,7 +184,7 @@ uint64_t rendering_system_check_render_object_state(int64_t object_handle)
 uint64_t *rendering_system_reset_render_object_data(uint64_t *object_ptr)
 
 {
-  FUN_1808fc838(object_ptr + 3, 0x20, 2, FUN_180627850, FUN_180627b90);
+  DataStructureManager(object_ptr + 3, 0x20, 2, FUN_180627850, FUN_180627b90);
   *object_ptr = 0xffffffffffffffff;
   object_ptr[1] = 0;
   *(int32_t *)(object_ptr + 2) = 0;
@@ -237,8 +237,8 @@ uint64_t *rendering_system_initialize_render_object_controller(uint64_t *control
   controller_ptr[0x21] = 0;
   controller_ptr[0x1f] = 0;
   *(int32_t *)(controller_ptr + 0x20) = 0;
-  FUN_1808fc838(controller_ptr + 0x26, 0x20, 2, FUN_180056e10, FUN_18004c030);
-  FUN_1808fc838(controller_ptr + 0x2e, 0x20, 2, FUN_180056e10, FUN_18004c030);
+  DataStructureManager(controller_ptr + 0x26, 0x20, 2, FUN_180056e10, FUN_18004c030);
+  DataStructureManager(controller_ptr + 0x2e, 0x20, 2, FUN_180056e10, FUN_18004c030);
   controller_ptr[0x36] = 0;
   object_ptr = controller_ptr + 0x37;
   controller_ptr[0x3a] = 0;
@@ -412,8 +412,8 @@ void rendering_system_cleanup_render_object_controller(uint64_t *controller_ptr)
   if ((int64_t *)controller_ptr[0x36] != (int64_t *)0x0) {
     ((**(code **)(*(int64_t *)controller_ptr[0x36] + 0x38))();
   }
-  FUN_1808fc8a8(controller_ptr + 0x2e, 0x20, 2, FUN_18004c030);
-  FUN_1808fc8a8(controller_ptr + 0x26, 0x20, 2, FUN_18004c030);
+  SystemDataValidator(controller_ptr + 0x2e, 0x20, 2, FUN_18004c030);
+  SystemDataValidator(controller_ptr + 0x26, 0x20, 2, FUN_18004c030);
   controller_ptr[0x1e] = &system_data_buffer_ptr;
   if (controller_ptr[0x1f] != 0) {
     CoreEngine_MemoryPoolManager();

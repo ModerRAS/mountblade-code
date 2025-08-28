@@ -1177,7 +1177,7 @@ int32_t FUN_1806565a0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t
   void *puStack_30;
   int64_t lStack_28;
   
-  FUN_180627ae0(&puStack_30,param_1 + 0x10,param_3,param_4,0xfffffffffffffffe);
+  SystemCore_NetworkHandler0(&puStack_30,param_1 + 0x10,param_3,param_4,0xfffffffffffffffe);
   uVar1 = (**(code **)(*system_cache_buffer + 0x70))(system_cache_buffer,&puStack_30);
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {

@@ -189,7 +189,7 @@ LAB_1803e1e98:
           *(uint64_t *)(lVar15 + 0x40) = 0;
           *(int32_t *)(lVar15 + 0x48) = 3;
                     // WARNING: Subroutine does not return
-          FUN_18066bdc0(lVar15,puVar11,param_1,uVar22);
+          SystemNetworkHandler(lVar15,puVar11,param_1,uVar22);
         }
       }
       else {

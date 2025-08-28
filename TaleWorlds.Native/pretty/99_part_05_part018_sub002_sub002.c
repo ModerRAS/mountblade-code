@@ -185,8 +185,8 @@ void FUN_1802e1bb0(int *param_1,int64_t param_2,float param_3)
         uStack_4e8 = *puVar7;
         *puVar7 = 0;
         func_0x0001800865f0(&uStack_4e8,param_1 + 6);
-        FUN_180045af0(&uStack_4e8);
-        FUN_180045af0(&uStack_528);
+        SystemTimer(&uStack_4e8);
+        SystemTimer(&uStack_528);
       }
       else {
         CoreMemoryPoolValidator(&uStack_188,&unknown_var_9976_ptr);
@@ -196,8 +196,8 @@ void FUN_1802e1bb0(int *param_1,int64_t param_2,float param_3)
         uStack_4e8 = *puVar7;
         *puVar7 = 0;
         func_0x0001800865f0(&uStack_4e8,param_1 + 6);
-        FUN_180045af0(&uStack_4e8);
-        FUN_180045af0(&uStack_528);
+        SystemTimer(&uStack_4e8);
+        SystemTimer(&uStack_528);
       }
       apuStack_368[0] = &system_state_ptr;
       FUN_180627b90(&uStack_188);

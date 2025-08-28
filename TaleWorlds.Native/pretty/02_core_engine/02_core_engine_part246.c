@@ -800,7 +800,7 @@ uint64_t *initialize_thread_manager(uint64_t *manager_ptr)
   manager_ptr[0x83] = 0;
   manager_ptr[0x84] = 0;
   *(int32_t *)(manager_ptr + 0x85) = 3;
-  FUN_1808fc838(manager_ptr + 0x87, 8, 9, &SUB_18005d5f0, FUN_180045af0);
+  DataStructureManager(manager_ptr + 0x87, 8, 9, &SUB_18005d5f0, FUN_180045af0);
   *(int32_t *)(manager_ptr + 0x90) = 0;
   manager_ptr[0x91] = 0;
   manager_ptr[0x60] = 0;
@@ -870,7 +870,7 @@ void cleanup_thread_manager(uint64_t *manager_ptr)
   }
   
   // 清理各种资源
-  FUN_1808fc8a8(manager_ptr + 0x87, 8, 9, FUN_180045af0, cleanup_param);
+  SystemDataValidator(manager_ptr + 0x87, 8, 9, FUN_180045af0, cleanup_param);
   temp_resource = manager_ptr + 0x82;
   if (*temp_resource != 0) {
     CoreEngineMemoryPoolCleaner();  // 错误处理

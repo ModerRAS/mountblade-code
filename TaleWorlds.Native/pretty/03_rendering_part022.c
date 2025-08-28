@@ -66,7 +66,7 @@ void FUN_18027c650(uint64_t *param_1,int64_t param_2,int64_t param_3,uint64_t *p
   uint64_t uStack_68;
   
   uStack_68 = 0xfffffffffffffffe;
-  puVar8 = (uint64_t *)FUN_1804c1300(param_2 + 0x60,0x60);
+  puVar8 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x60);
   *puVar8 = 0;
   puVar8[1] = 0;
   puVar8[4] = 0;
@@ -229,7 +229,7 @@ LAB_18027c801:
         uStack_f8 = uStack_f8 - iVar26;
         pbStack_100[uStack_f8] = 0;
       }
-      puVar13 = (uint64_t *)FUN_1804c1300(param_2 + 0x60,0x60);
+      puVar13 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x60);
       *puVar13 = 0;
       puVar13[1] = 0;
       puVar13[4] = 0;

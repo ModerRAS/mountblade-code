@@ -105,8 +105,8 @@ void FUN_1802e5f00(uint64_t param_1,int64_t *param_2)
     uStack_298 = 0;
     uStack_294 = 0;
     uStack_2a0 = 0x10000010001;
-    pcStack_3c8 = FUN_180045af0;
-    FUN_1808fc838(auStack_228,8,0x10,&SUB_18005d5f0);
+    pcStack_3c8 = SystemTimer;
+    DataStructureManager(auStack_228,8,0x10,&SUB_18005d5f0);
     plStack_3a0 = (int64_t *)0x0;
     puStack_3c0 = auStack_1a8;
     FUN_180206da0(puStack_3c0,*(uint64_t *)(*param_2 + 0x18),&uStack_2a0);
@@ -297,7 +297,7 @@ void FUN_1802e5f00(uint64_t param_1,int64_t *param_2)
       }
     }
     (**(code **)(*plVar13 + 0x38))(plVar13);
-    FUN_1808fc8a8(auStack_228,8,0x10,FUN_180045af0);
+    SystemMemoryManager(auStack_228,8,0x10,SystemTimer);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_58 ^ (uint64_t)auStack_3e8);

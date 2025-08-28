@@ -20,7 +20,7 @@ void FUN_1801b8770(int64_t param_1,uint64_t param_2,uint param_3)
   if (9.223372036854776e+18 <= dVar1) {
     dVar1 = dVar1 - 9.223372036854776e+18;
   }
-  FUN_180627ae0(&puStack_30,param_2);
+  SystemCore_NetworkHandler0(&puStack_30,param_2);
   FUN_18005d190(param_1 + 8 + (int64_t)dVar1 * 0x20,&puStack_30);
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 == 0) {

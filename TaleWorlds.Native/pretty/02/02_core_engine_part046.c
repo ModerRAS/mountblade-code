@@ -470,7 +470,7 @@ LAB_180087418:
         (uint64_t)(int64_t)param_1) goto LAB_180087418;
     lVar2 = (int64_t)param_1 * 0x20 + lVar2;
   }
-  FUN_180627ae0(&puStack_58,lVar2);
+  SystemCore_NetworkHandler0(&puStack_58,lVar2);
   puStack_78 = &system_data_buffer_ptr;
   uStack_60 = 0;
   lStack_70 = 0;

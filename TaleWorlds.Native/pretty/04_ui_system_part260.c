@@ -63,7 +63,7 @@ void FUN_1808168c0(int64_t param_1,uint param_2,char param_3)
               uVar8 = 0x28;
             }
             piStack_c8 = (int *)((uint64_t)piStack_c8 & 0xffffffff00000000);
-            lVar4 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar8,&system_state_ptr,0x48)
+            lVar4 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar8,&system_state_ptr,0x48)
             ;
             *(int64_t *)(param_1 + 0x230) = lVar4;
             if (lVar4 == 0) break;
@@ -86,7 +86,7 @@ joined_r0x000180816c9e:
                               ,&system_state_ptr,0x77);
               }
               piStack_c8 = (int *)((uint64_t)piStack_c8 & 0xffffffff00000000);
-              lVar4 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
+              lVar4 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
                                     *(int *)(param_1 + 0x1e0) * 0x13c,&system_state_ptr,0x7a);
               *(int64_t *)(param_1 + 0x1e8) = lVar4;
               if (lVar4 == 0) break;
@@ -261,7 +261,7 @@ void FUN_180816928(void)
           if (uVar6 < 0x28) {
             uVar6 = 0x28;
           }
-          lVar3 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar6,&system_state_ptr,0x48,
+          lVar3 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar6,&system_state_ptr,0x48,
                                 uVar8 & 0xffffffff00000000);
           *(int64_t *)(unaff_RBX + 0x230) = lVar3;
           if (lVar3 == 0) break;
@@ -282,7 +282,7 @@ joined_r0x000180816c9e:
               SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(unaff_RBX + 0x1e8)
                             ,&system_state_ptr,0x77,1);
             }
-            lVar3 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
+            lVar3 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
                                   *(int *)(unaff_RBX + 0x1e0) * 0x13c,&system_state_ptr,0x7a,
                                   uVar8 & 0xffffffff00000000);
             *(int64_t *)(unaff_RBX + 0x1e8) = lVar3;
@@ -475,7 +475,7 @@ void FUN_180816a57(void)
           SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(unaff_RBX + 0x1e8),
                         &system_state_ptr,0x77,1);
         }
-        lVar3 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
+        lVar3 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
                               *(int *)(unaff_RBX + 0x1e0) * 0x13c,&system_state_ptr,0x7a,
                               unaff_R13 & 0xffffffff);
         *(int64_t *)(unaff_RBX + 0x1e8) = lVar3;
@@ -622,7 +622,7 @@ LAB_180816b9b:
         if (uVar7 < 0x28) {
           uVar7 = 0x28;
         }
-        lVar3 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar7,&system_state_ptr,0x48,
+        lVar3 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar7,&system_state_ptr,0x48,
                               CONCAT44(uVar9,iVar6));
         *(int64_t *)(unaff_RBX + 0x230) = lVar3;
         if (lVar3 == 0) goto LAB_180816a24;

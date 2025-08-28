@@ -467,7 +467,7 @@ void FUN_18023ccc0(int64_t *param_1)
   }
   *(byte *)(param_1 + 0x5c) = *(byte *)(param_1 + 0x5c) & 0xfe;
   *(byte *)(param_1 + 0x5c) = *(byte *)(param_1 + 0x5c) | bVar5;
-  FUN_180627be0(param_1 + 0x71);
+  SystemCore_ConfigurationHandler0(param_1 + 0x71);
   param_1[0x4f] = *(int64_t *)(lVar12 + 0x68);
   *(int32_t *)((int64_t)param_1 + 0x35c) = 0;
   if (((*(uint *)(lVar12 + 0x24) & 0x200000) != 0) &&

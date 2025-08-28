@@ -183,7 +183,7 @@ void FUN_18076ac40(int param_1,int64_t *param_2)
   SystemStateManager(uVar3);
   if (*plVar2 == 0) {
     uStack_168 = 0x200000;
-    lVar5 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x178,&unknown_var_1824_ptr);
+    lVar5 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x178,&unknown_var_1824_ptr);
     if (lVar5 == 0) {
                     // WARNING: Subroutine does not return
       SystemConfigManager(uVar3);

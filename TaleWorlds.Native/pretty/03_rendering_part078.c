@@ -339,7 +339,7 @@ LAB_18030e1b3:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar21,puVar16,puVar1,uVar22);
+  SystemNetworkHandler(lVar21,puVar16,puVar1,uVar22);
 }
 
 

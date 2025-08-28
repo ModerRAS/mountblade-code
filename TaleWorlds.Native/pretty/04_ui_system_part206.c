@@ -444,7 +444,7 @@ int32_t FUN_180789e60(uint64_t *param_1)
   uVar8 = iVar2 + 0x37U & uVar5;
   uVar13 = iVar2 + -1 + uVar10 * 0x18 & uVar5;
   uVar5 = iVar2 + -1 + uVar10 * 8 & uVar5;
-  lVar4 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
+  lVar4 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
                         uVar12 * uVar10 + iVar2 + uVar5 + uVar13 + uVar8,&unknown_var_272_ptr,0x24,
                         0x200000);
   if (lVar4 != 0) {

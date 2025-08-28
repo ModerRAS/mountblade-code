@@ -1,3 +1,6 @@
+/* SystemController - SystemPhysicsEngine 的语义化别名 */
+#define SystemController SystemPhysicsEngine
+
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_09_part007.c - 2 个函数

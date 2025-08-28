@@ -775,7 +775,7 @@ void FUN_180548460(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
                (uint64_t)(*(int64_t *)(param_5 + 0x40) - *(int64_t *)(param_5 + 0x38) >> 4));
     }
   }
-  FUN_1808fc8a8(&plStack_50,8,4,FUN_180045af0);
+  SystemDataValidator(&plStack_50,8,4,FUN_180045af0);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_30 ^ (uint64_t)auStack_78);
 }

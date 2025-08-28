@@ -371,7 +371,7 @@ void FUN_1803fb0e0(uint64_t *param_1,uint64_t param_2,void **param_3,int32_t par
     puStack_200 = puStack_268;
     uStack_1f0 = uStack_258;
     ppuStack_1a0 = &puStack_200;
-    FUN_180627ae0(auStack_1d8,&puStack_240);
+    SystemCore_NetworkHandler0(auStack_1d8,&puStack_240);
     uStack_1b8 = CONCAT44(uStack_21c,uStack_220);
     uStack_1b0 = CONCAT44(uStack_214,uStack_218);
     plStack_1a8 = plStack_210;
@@ -704,7 +704,7 @@ void FUN_1803fbd40(int64_t param_1,uint64_t param_2,uint64_t param_3)
   uStack_f0 = 0;
   uStack_110 = uStack_178;
   uStack_100 = uStack_168;
-  FUN_180627ae0(auStack_e8,&puStack_150);
+  SystemCore_NetworkHandler0(auStack_e8,&puStack_150);
   uStack_c8 = CONCAT44(uStack_12c,uStack_130);
   uStack_c0 = CONCAT44(uStack_124,uStack_128);
   plStack_b8 = plStack_120;

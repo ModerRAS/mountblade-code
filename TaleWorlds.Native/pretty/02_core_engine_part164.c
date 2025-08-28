@@ -429,7 +429,7 @@ int64_t FUN_18014d6f0(int64_t param_1,uint64_t param_2)
 
 {
   if ((param_2 & 2) != 0) {
-    FUN_1808fc8a8(param_1,0x20,*(uint64_t *)(param_1 + -8),FUN_1806d84a0,0xfffffffffffffffe);
+    SystemDataValidator(param_1,0x20,*(uint64_t *)(param_1 + -8),FUN_1806d84a0,0xfffffffffffffffe);
     if ((param_2 & 1) != 0) {
       free(param_1 + -8,*(int64_t *)(param_1 + -8) * 0x20 + 8);
     }

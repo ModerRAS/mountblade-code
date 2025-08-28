@@ -107,7 +107,7 @@ LAB_180193610:
       }
     }
   }
-  FUN_180627be0(param_1 + 0x28,param_1 + 8);
+  SystemCore_ConfigurationHandler0(param_1 + 0x28,param_1 + 8);
 LAB_18019368b:
   lVar4 = FUN_180631000(param_2,&unknown_var_1992_ptr,acStackX_8);
   if ((lVar4 != 0) && (acStackX_8[0] != '\0')) {

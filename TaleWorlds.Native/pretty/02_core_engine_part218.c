@@ -475,7 +475,7 @@ LAB_180194acf:
 void FUN_180194b30(uint64_t param_1)
 
 {
-  FUN_1808fc8a8(param_1,0x30,4,FUN_18004a130,0xfffffffffffffffe);
+  SystemDataValidator(param_1,0x30,4,FUN_18004a130,0xfffffffffffffffe);
   return;
 }
 

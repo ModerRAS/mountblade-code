@@ -530,7 +530,7 @@ void rendering_system_shader_manager(uint64_t *param_1)
   *param_1 = &unknown_var_2120_ptr;
   pcStack_98 = FUN_180627b90;
   puStack_58 = param_1;
-  FUN_1808fc838(param_1 + 2, 0x20, 0x20, FUN_180627850);
+  DataStructureManager(param_1 + 2, 0x20, 0x20, FUN_180627850);
   param_1[0x83] = 0;
   *(int32_t *)(param_1 + 0x82) = 0xffffffff;
   FUN_18049dc80();

@@ -248,7 +248,7 @@ void FUN_1804ec4e0(int64_t param_1,int64_t param_2,int param_3,int64_t param_4,c
       } while ((char)bVar12 < '@');
       if (puVar17 != (uint64_t *)0x0) {
         puStack_f0 = puVar17;
-        FUN_1808fc8a8(puVar17,0x10,0x40,FUN_180534590,uVar20,uVar21,uVar22);
+        SystemDataValidator(puVar17,0x10,0x40,FUN_180534590,uVar20,uVar21,uVar22);
                     // WARNING: Subroutine does not return
         CoreEngine_MemoryPoolManager(puVar17);
       }

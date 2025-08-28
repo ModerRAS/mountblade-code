@@ -326,7 +326,7 @@ void rendering_system_process_data(int64_t context, uint64_t param2, uint64_t pa
         data_ptr3 = g_rendering_system_resource_array + 9;
         stack_long1 = allocated_memory;
         do {
-            FUN_180627ae0(allocated_memory, data_ptr3 + -9);
+            SystemCore_NetworkHandler0(allocated_memory, data_ptr3 + -9);
             *(int32_t *)(allocated_memory + 0x20) = data_ptr3[-1];
             *(int32_t *)(allocated_memory + 0x24) = *data_ptr3;
             *(int32_t *)(allocated_memory + 0x28) = data_ptr3[1];
@@ -351,7 +351,7 @@ void rendering_system_process_data(int64_t context, uint64_t param2, uint64_t pa
             temp_long1 = stack_var1 + stack_long2;
             
             // 复制数据到缓冲区
-            FUN_180627ae0(stack_buffer1, temp_long1);
+            SystemCore_NetworkHandler0(stack_buffer1, temp_long1);
             stack_value1 = *(int32_t *)(temp_long1 + 0x20);
             stack_value2 = *(int32_t *)(temp_long1 + 0x24);
             stack_value3 = *(int32_t *)(temp_long1 + 0x28);

@@ -223,7 +223,7 @@ FUN_18045ca80(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   int64_t lStack_20;
   
   pcVar1 = *(code **)(*system_cache_buffer + 0x70);
-  uVar3 = FUN_180627ae0(&puStack_28,system_main_module_state + 0x2c0,param_3,param_4,0,0xfffffffffffffffe);
+  uVar3 = SystemCore_NetworkHandler0(&puStack_28,system_main_module_state + 0x2c0,param_3,param_4,0,0xfffffffffffffffe);
   uVar2 = (*pcVar1)(system_cache_buffer,uVar3,param_3,param_4,1);
   puStack_28 = &system_data_buffer_ptr;
   if (lStack_20 != 0) {
@@ -823,7 +823,7 @@ void FUN_18045da50(uint64_t param_1)
   
   FUN_18005e630(system_context_ptr);
   FUN_1800bc000(&puStack_50,param_1);
-  FUN_180627ae0(auStack_30,&puStack_50);
+  SystemCore_NetworkHandler0(auStack_30,&puStack_50);
   FUN_180056c50();
   FUN_18005e630(system_context_ptr);
   puStack_50 = &system_data_buffer_ptr;

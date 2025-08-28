@@ -85,7 +85,7 @@ extern void FUN_180198980(int64_t param1, int64_t *param2, uint64_t param3, uint
 extern void FUN_1801b32d0(uint64_t param1);
 extern void FUN_1803048f0(int64_t param1, uint64_t *param2, uint64_t param3, uint64_t param4, uint64_t param5);
 extern void FUN_180095420(int64_t param1);
-extern void FUN_1808fc8a8(int64_t param1, int64_t param2, int64_t param3, void *param4);
+extern void SystemDataValidator(int64_t param1, int64_t param2, int64_t param3, void *param4);
 extern void FUN_180045af0(void);
 extern void FUN_1808fc050(uint64_t param1);
 
@@ -294,7 +294,7 @@ void RenderingSystem_UpdateRenderContext(uint64_t context_id, int64_t *render_co
   }
   
   // 执行资源插入操作
-  FUN_1808fc8a8(memory_block, resource_pointer, resource_array, resource_value, stack_param);
+  SystemDataValidator(memory_block, resource_pointer, resource_array, resource_value, stack_param);
 }
 
 /**

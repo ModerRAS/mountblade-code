@@ -573,7 +573,7 @@ void batch_process_system_data(void)
         if (total_size < *(uint64_t *)(data_limit + 0x18)) {
           *(uint64_t *)(data_limit + 0x10) = total_size + 0x60;
           buffer_ptr_ptr = (void **)total_size;
-          FUN_180627ae0(total_size);
+          SystemCore_NetworkHandler0(total_size);
           FUN_18004b640(total_size + 0x20, &buffer_ptr_ptr);
           *(int8_t *)(total_size + 0x58) = temp_buffer_3[0];
           *(int *)(total_size + 0x5c) = item_index;

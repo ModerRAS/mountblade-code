@@ -1,3 +1,6 @@
+/* SystemController - SystemCore_StateProcessor0 的语义化别名 */
+#define SystemController SystemCore_StateProcessor0
+
 #define SystemInitializer System_Initializer2  // 系统初始化器
 
 #include "TaleWorlds.Native.Split.h"
@@ -33,7 +36,7 @@ void FUN_180859ba0(int64_t param_1,int64_t *param_2)
                             (*(int64_t **)(param_1 + 0x170),piVar1,1);
       if (lStack_78 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(piVar1,auStack_70,0);
+        SystemController(piVar1,auStack_70,0);
       }
     }
     puVar2 = (uint64_t *)(lVar3 + 0xb0);

@@ -719,7 +719,7 @@ LAB_1804f15ca:
 LAB_1804f15d8:
   if ((*(uint *)(lVar18 + 0x56c) & 0x4000) != 0) {
     piVar7 = (int *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0xa30,8,3);
-    FUN_1808fc838(piVar7 + 2,0x1f8,5,FUN_18058f390,FUN_18058f420);
+    DataStructureManager(piVar7 + 2,0x1f8,5,FUN_18058f390,FUN_18058f420);
     FUN_1805369a0(piVar7);
     *(int **)(lVar18 + 0x8f8) = piVar7;
     iVar9 = *(int *)(lVar18 + 0x10);

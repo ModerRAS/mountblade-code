@@ -242,7 +242,7 @@ void FUN_1807f4270(int64_t param_1)
                       iVar1 = SystemDataAnalyzer(*(uint64_t *)(param_1 + 0x170),auStack_b4,2);
                       if ((iVar1 == 0) && (uStack_b8 == 1)) {
                         puStack_d8 = (uint *)((uint64_t)puStack_d8 & 0xffffffff00000000);
-                        lVar3 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),auStack_b4[0],
+                        lVar3 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),auStack_b4[0],
                                               &unknown_var_4032_ptr,0x42d);
                         if (lVar3 != 0) {
                           puStack_d8 = &uStack_b8;
@@ -453,7 +453,7 @@ LAB_1807f4bf6:
                     ((iVar3 = SystemDataAnalyzer(*(uint64_t *)(unaff_RBX + 0x170),unaff_RBP + -0x55,2,1
                                             ,unaff_RBP + -0x59), iVar3 == 0 &&
                      ((*(int *)(unaff_RBP + -0x59) == 1 &&
-                      (lVar5 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
+                      (lVar5 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
                                              *(int16_t *)(unaff_RBP + -0x55),&unknown_var_4032_ptr,0x42d
                                              ,unaff_R14D), lVar5 != 0)))))) &&
                    ((iVar3 = SystemDataAnalyzer(*(uint64_t *)(unaff_RBX + 0x170),lVar5,1,

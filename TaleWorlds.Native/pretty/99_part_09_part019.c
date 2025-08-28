@@ -1,3 +1,6 @@
+/* SystemController - SystemPhysicsEngine 的语义化别名 */
+#define SystemController SystemPhysicsEngine
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 

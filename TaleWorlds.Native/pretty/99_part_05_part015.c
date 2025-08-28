@@ -340,7 +340,7 @@ int64_t FUN_1802de020(int64_t param_1,int64_t param_2)
     System_DataHandler(plVar2,&unknown_var_9920_ptr,puVar15);
   }
   uVar8 = FUN_180628ca0();
-  FUN_180627be0(puVar3,uVar8);
+  SystemCore_ConfigurationHandler0(puVar3,uVar8);
   System_DataHandler(puVar3,&unknown_var_9904_ptr,uStackX_18,uVar11);
   *(int *)(param_2 + 0x88) = iVar10;
   *(int *)(param_2 + 0x8c) = iVar14;

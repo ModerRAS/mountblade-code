@@ -767,7 +767,7 @@ void FUN_1803b27a0(int64_t param_1)
   LOCK();
   *(int8_t *)(param_1 + 0x1c41) = 0;
   UNLOCK();
-  FUN_180627ae0(&puStack_210,*(int64_t *)(param_1 + 0x68) + 0x608f0);
+  SystemCore_NetworkHandler0(&puStack_210,*(int64_t *)(param_1 + 0x68) + 0x608f0);
   puStack_238 = &system_data_buffer_ptr;
   uStack_220 = 0;
   puStack_230 = (int8_t *)0x0;

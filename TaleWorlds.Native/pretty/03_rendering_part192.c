@@ -139,7 +139,7 @@ extern void* system_buffer_ptr;          // 系统缓冲区指针
 #define RenderSystem_CreateRenderState          FUN_18037f020
 #define RenderSystem_UpdateRenderStatistics     System_DataHandler
 #define RenderSystem_CleanupRenderData          FUN_18037f790
-#define RenderSystem_LinkRenderResource        FUN_18066bdc0
+#define RenderSystem_LinkRenderResource        SystemNetworkHandler
 #define RenderSystem_FindRenderResource        FUN_180048980
 #define RenderSystem_ReleaseRenderMemory       FUN_18004b790
 #define RenderSystem_GetRenderData             CoreEngineDataTransformer

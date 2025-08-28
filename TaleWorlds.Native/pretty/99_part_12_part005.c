@@ -34,7 +34,7 @@ void FUN_1807ca2e5(int64_t param_1)
   iVar2 = *(int *)(*(int64_t *)(unaff_RBX + 8) + 8);
   if ((((iVar2 == 1) || (iVar2 == 2)) || (iVar2 == 3)) || ((iVar2 == 4 || (iVar2 == 5)))) {
     if (*(int *)(unaff_RBX + 0x200) != 0) {
-      lVar3 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int *)(unaff_RBX + 0x200),
+      lVar3 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int *)(unaff_RBX + 0x200),
                             &unknown_var_8368_ptr,0x178);
       *(int64_t *)(unaff_RBX + 0x1f8) = lVar3;
       if (lVar3 == 0) goto LAB_1807ca2b6;

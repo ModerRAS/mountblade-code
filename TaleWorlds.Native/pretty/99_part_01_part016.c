@@ -21,7 +21,7 @@ void FUN_1800b01b0(int64_t param_1,int64_t param_2)
     do {
       if (*(uint64_t *)(param_2 + 8) < *(uint64_t *)(param_2 + 0x10)) {
         *(uint64_t *)(param_2 + 8) = *(uint64_t *)(param_2 + 8) + 0x20;
-        FUN_180627ae0();
+        SystemCore_NetworkHandler0();
       }
       else {
         FUN_180059820(param_2,*(int64_t *)(uVar4 + lVar1) + 8);
@@ -40,7 +40,7 @@ void FUN_1800b01b0(int64_t param_1,int64_t param_2)
     do {
       if (*(uint64_t *)(param_2 + 8) < *(uint64_t *)(param_2 + 0x10)) {
         *(uint64_t *)(param_2 + 8) = *(uint64_t *)(param_2 + 8) + 0x20;
-        FUN_180627ae0();
+        SystemCore_NetworkHandler0();
       }
       else {
         FUN_180059820(param_2,*(int64_t *)(uVar4 + lVar1) + 8);
@@ -59,7 +59,7 @@ void FUN_1800b01b0(int64_t param_1,int64_t param_2)
     do {
       if (*(uint64_t *)(param_2 + 8) < *(uint64_t *)(param_2 + 0x10)) {
         *(uint64_t *)(param_2 + 8) = *(uint64_t *)(param_2 + 8) + 0x20;
-        FUN_180627ae0();
+        SystemCore_NetworkHandler0();
       }
       else {
         FUN_180059820(param_2,*(int64_t *)(uVar4 + lVar1) + 0x40);
@@ -77,7 +77,7 @@ void FUN_1800b01b0(int64_t param_1,int64_t param_2)
     do {
       if (*(uint64_t *)(param_2 + 8) < *(uint64_t *)(param_2 + 0x10)) {
         *(uint64_t *)(param_2 + 8) = *(uint64_t *)(param_2 + 8) + 0x20;
-        FUN_180627ae0();
+        SystemCore_NetworkHandler0();
       }
       else {
         FUN_180059820(param_2,*(int64_t *)(uVar5 + lVar1) + 0x10);
@@ -111,7 +111,7 @@ void FUN_1800b01cf(int64_t param_1)
     do {
       if (*(uint64_t *)(unaff_RBX + 8) < *(uint64_t *)(unaff_RBX + 0x10)) {
         *(uint64_t *)(unaff_RBX + 8) = *(uint64_t *)(unaff_RBX + 8) + 0x20;
-        FUN_180627ae0();
+        SystemCore_NetworkHandler0();
       }
       else {
         FUN_180059820();
@@ -125,7 +125,7 @@ void FUN_1800b01cf(int64_t param_1)
     do {
       if (*(uint64_t *)(unaff_RBX + 8) < *(uint64_t *)(unaff_RBX + 0x10)) {
         *(uint64_t *)(unaff_RBX + 8) = *(uint64_t *)(unaff_RBX + 8) + 0x20;
-        FUN_180627ae0();
+        SystemCore_NetworkHandler0();
       }
       else {
         FUN_180059820();
@@ -139,7 +139,7 @@ void FUN_1800b01cf(int64_t param_1)
     do {
       if (*(uint64_t *)(unaff_RBX + 8) < *(uint64_t *)(unaff_RBX + 0x10)) {
         *(uint64_t *)(unaff_RBX + 8) = *(uint64_t *)(unaff_RBX + 8) + 0x20;
-        FUN_180627ae0();
+        SystemCore_NetworkHandler0();
       }
       else {
         FUN_180059820();
@@ -152,7 +152,7 @@ void FUN_1800b01cf(int64_t param_1)
     do {
       if (*(uint64_t *)(unaff_RBX + 8) < *(uint64_t *)(unaff_RBX + 0x10)) {
         *(uint64_t *)(unaff_RBX + 8) = *(uint64_t *)(unaff_RBX + 8) + 0x20;
-        FUN_180627ae0();
+        SystemCore_NetworkHandler0();
       }
       else {
         FUN_180059820();
@@ -180,7 +180,7 @@ void FUN_1800b030f(void)
   do {
     if (*(uint64_t *)(unaff_RBX + 8) < *(uint64_t *)(unaff_RBX + 0x10)) {
       *(uint64_t *)(unaff_RBX + 8) = *(uint64_t *)(unaff_RBX + 8) + 0x20;
-      FUN_180627ae0();
+      SystemCore_NetworkHandler0();
     }
     else {
       FUN_180059820();
@@ -720,11 +720,11 @@ uint64_t FUN_1800b0680(int64_t param_1,uint64_t param_2)
         }
         SystemCore_ResourceManager0(&unknown_var_544_ptr,puVar2);
       }
-      FUN_180627be0(param_1 + 0x20,param_1 + 0x80);
+      SystemCore_ConfigurationHandler0(param_1 + 0x20,param_1 + 0x80);
       return 0;
     }
   }
-  FUN_180627be0(param_1 + 0x20,param_2);
+  SystemCore_ConfigurationHandler0(param_1 + 0x20,param_2);
   return 1;
 }
 

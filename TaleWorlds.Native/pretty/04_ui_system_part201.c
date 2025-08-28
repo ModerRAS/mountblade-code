@@ -385,7 +385,7 @@ uint64_t FUN_1807869c0(int64_t *param_1,int param_2,int param_3,int param_4,int 
   *(int *)(param_1 + 2) = iVar1;
   *(int *)((int64_t)param_1 + 0x14) = iVar4;
   *(int *)((int64_t)param_1 + 0x2c) = iVar1;
-  lVar2 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar4,&unknown_var_9968_ptr,0x75b,0);
+  lVar2 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar4,&unknown_var_9968_ptr,0x75b,0);
   *param_1 = lVar2;
   if (lVar2 == 0) {
     uVar3 = 0x26;

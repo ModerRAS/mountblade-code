@@ -78,7 +78,7 @@ int64_t FUN_1801eb3d0(int64_t *param_1,int64_t *param_2,int param_3)
       puVar3 = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x28,8,system_allocation_flags,0xfffffffffffffffe);
       puVar1 = (uint64_t *)*param_2;
       *puVar3 = *puVar1;
-      FUN_180627ae0(puVar3 + 1,puVar1 + 1);
+      SystemCore_NetworkHandler0(puVar3 + 1,puVar1 + 1);
       *param_1 = (int64_t)puVar3;
       return 0;
     }
@@ -102,7 +102,7 @@ void FUN_1801eb560(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
 {
   int8_t auStack_30 [40];
   
-  FUN_180627ae0(auStack_30,*param_1 + 0x10,param_3,param_4,0xfffffffffffffffe);
+  SystemCore_NetworkHandler0(auStack_30,*param_1 + 0x10,param_3,param_4,0xfffffffffffffffe);
   FUN_1801cb3e0();
   return;
 }
@@ -145,7 +145,7 @@ int64_t FUN_1801eb5a0(int64_t *param_1,int64_t *param_2,int param_3)
       puVar1 = (uint64_t *)*param_2;
       *puVar3 = *puVar1;
       *(int8_t *)(puVar3 + 1) = *(int8_t *)(puVar1 + 1);
-      FUN_180627ae0(puVar3 + 2,puVar1 + 2);
+      SystemCore_NetworkHandler0(puVar3 + 2,puVar1 + 2);
       *param_1 = (int64_t)puVar3;
       return 0;
     }
@@ -546,7 +546,7 @@ int64_t * FUN_1801ebe20(int64_t *param_1,int64_t *param_2,uint64_t param_3,uint6
   lVar3 = *param_1;
   lVar2 = param_2[1];
   for (lVar4 = *param_2; lVar4 != lVar2; lVar4 = lVar4 + 0x20) {
-    FUN_180627ae0(lVar3,lVar4);
+    SystemCore_NetworkHandler0(lVar3,lVar4);
     lVar3 = lVar3 + 0x20;
   }
   param_1[1] = lVar3;
@@ -587,7 +587,7 @@ uint64_t * FUN_1801ebee0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64
   lVar4 = puVar2[5];
   lVar3 = *(int64_t *)(param_2 + 0x30);
   for (lVar5 = *(int64_t *)(param_2 + 0x28); lVar5 != lVar3; lVar5 = lVar5 + 0x20) {
-    FUN_180627ae0(lVar4,lVar5);
+    SystemCore_NetworkHandler0(lVar4,lVar5);
     lVar4 = lVar4 + 0x20;
   }
   puVar2[6] = lVar4;
@@ -641,7 +641,7 @@ uint64_t * FUN_1801ebff0(int64_t param_1,int64_t *param_2,uint64_t param_3,uint6
     lVar8 = *plVar1;
     lVar9 = plVar3[6];
     for (lVar10 = plVar3[5]; lVar10 != lVar9; lVar10 = lVar10 + 0x20) {
-      FUN_180627ae0(lVar8,lVar10);
+      SystemCore_NetworkHandler0(lVar8,lVar10);
       lVar8 = lVar8 + 0x20;
     }
     puVar7[6] = lVar8;
@@ -704,7 +704,7 @@ FUN_1801ec160(uint64_t *param_1,int64_t param_2,uint64_t *param_3,uint64_t param
     param_1[0x19] = puVar5;
     param_1[0x1c] = *(uint64_t *)(param_2 + 0x20);
   }
-  FUN_180627ae0(param_1 + 0x1e,param_3);
+  SystemCore_NetworkHandler0(param_1 + 0x1e,param_3);
   SystemCore_EncryptionEngine0(param_1 + 0x22,param_4);
   SystemCore_EncryptionEngine0(param_1 + 0x26,param_5);
   param_1[3] = 0xfffffffffffffffc;

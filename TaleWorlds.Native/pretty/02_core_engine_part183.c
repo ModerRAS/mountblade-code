@@ -311,16 +311,16 @@ typedef void (*code)(void);
 
 /* 数据处理函数 */
 #define CoreEngineDataInitializer CoreEngineDataTransformer
-#define CoreEngineDataProcessor FUN_180627ae1
+#define CoreEngineDataProcessor SystemCore_NetworkHandler1
 #define CoreEngineDataValidator FUN_180044a30
-#define CoreEngineDataTransformer FUN_180627ae2
+#define CoreEngineDataTransformer SystemCore_NetworkHandler2
 #define CoreEngineDataOptimizer SystemCommunicationProcessor
-#define CoreEngineDataSerializer FUN_180627ae3
-#define CoreEngineDataDeserializer FUN_180627ae4
-#define CoreEngineDataCompressor FUN_180627ae5
-#define CoreEngineDataDecompressor FUN_180627ae6
-#define CoreEngineDataEncryptor FUN_180627ae7
-#define CoreEngineDataDecryptor FUN_180627ae8
+#define CoreEngineDataSerializer SystemCore_NetworkHandler3
+#define CoreEngineDataDeserializer SystemCore_NetworkHandler4
+#define CoreEngineDataCompressor SystemCore_NetworkHandler5
+#define CoreEngineDataDecompressor SystemCore_NetworkHandler6
+#define CoreEngineDataEncryptor SystemCore_NetworkHandler7
+#define CoreEngineDataDecryptor SystemCore_NetworkHandler8
 
 /* 内存管理函数 */
 #define CoreEngineMemoryPool CoreEngineMemoryPoolAllocator
@@ -333,13 +333,13 @@ typedef void (*code)(void);
 
 /* 字符串处理函数 */
 #define CoreEngineStringProcessor FUN_180169350
-#define CoreEngineStringValidator FUN_180627ae9
-#define CoreEngineStringFormatter FUN_180627aea
-#define CoreEngineStringConverter FUN_180627aeb
-#define CoreEngineStringTokenizer FUN_180627aec
-#define CoreEngineStringNormalizer FUN_180627aed
-#define CoreEngineStringComparator FUN_180627aee
-#define CoreEngineStringMatcher FUN_180627aef
+#define CoreEngineStringValidator SystemCore_NetworkHandler9
+#define CoreEngineStringFormatter SystemCore_NetworkHandlera
+#define CoreEngineStringConverter SystemCore_NetworkHandlerb
+#define CoreEngineStringTokenizer SystemCore_NetworkHandlerc
+#define CoreEngineStringNormalizer SystemCore_NetworkHandlerd
+#define CoreEngineStringComparator SystemCore_NetworkHandlere
+#define CoreEngineStringMatcher SystemCore_NetworkHandlerf
 #define CoreEngineStringEncoder FUN_180627af0
 #define CoreEngineStringDecoder FUN_180627af1
 
@@ -362,7 +362,7 @@ typedef void (*code)(void);
 #define CoreEngineResourceScheduler FUN_180627af7
 #define CoreEngineResourceOptimizer FUN_180627af8
 #define CoreEngineResourceValidator FUN_180627af9
-#define CoreEngineResourceCleaner FUN_18062cb00
+#define CoreEngineResourceCleaner CoreEngineController
 
 /* 系统监控函数 */
 #define CoreEngineSystemMonitor FUN_18062d320
@@ -535,7 +535,7 @@ typedef void (*code)(void);
 #define CoreEngineResourceAllocator FUN_18062ca10
 #define CoreEngineResourceDeallocator FUN_18062ca60
 #define CoreEngineResourceTracker FUN_18062cab0
-#define CoreEngineResourceCleaner FUN_18062cb00
+#define CoreEngineResourceCleaner CoreEngineController
 #define CoreEngineResourceAuditor FUN_18062cb50
 
 /* 性能监控函数 */

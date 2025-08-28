@@ -495,7 +495,7 @@ initialize_error_handler_callback(uint64_t *callback_struct,uint64_t param_2,uin
   callback_struct[0x10] = 0;
   
   // 初始化回调环境
-  FUN_180627be0();
+  SystemCore_ConfigurationHandler0();
   *(int32_t *)(callback_struct + 4) = 0;
   
   // 如果有回调函数，执行它
@@ -543,7 +543,7 @@ setup_error_handler_callback(uint64_t *callback_struct,uint64_t param_2,uint64_t
   callback_struct[0x10] = 0;
   
   // 初始化回调环境
-  FUN_180627be0();
+  SystemCore_ConfigurationHandler0();
   *(int32_t *)(callback_struct + 4) = 1;
   
   // 如果回调目标不同，执行回调切换
@@ -886,7 +886,7 @@ LAB_18016195a:
         if (*(int64_t *)(command_context + 0x70) == 0) {
           if (*(int64_t *)(command_context + 0x78) == 0) {
             if (*(int64_t *)(command_context + 0x80) != 0) {
-              FUN_180627be0();
+              SystemCore_ConfigurationHandler0();
             }
           }
           else {

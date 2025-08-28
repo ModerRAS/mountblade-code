@@ -89,7 +89,7 @@ void FUN_18026ad00(int64_t param_1,uint64_t *param_2,int64_t *param_3)
   *(uint64_t *)(param_1 + 0x34) = *param_2;
   *(uint64_t *)(param_1 + 0x3c) = uVar4;
   aplStack_588[0] = param_3;
-  FUN_180627be0(param_1 + 0x48,param_2 + 8);
+  SystemCore_ConfigurationHandler0(param_1 + 0x48,param_2 + 8);
   lVar16 = lVar11;
   if (((param_2[4] != 0) || (lVar10 = lVar11, param_2[5] != 0)) &&
      (lVar10 = FUN_180087070(system_system_data_config,&system_data_12f0), lVar10 != 0)) {

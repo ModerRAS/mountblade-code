@@ -771,7 +771,7 @@ LAB_180500318:
                   + plVar5[1] & *plVar5 - 1U) * 8) + 8);
     }
     else if (lVar9 == 0) goto LAB_180500318;
-    FUN_1808fc8a8((uint64_t)((uint)uVar10 & 0x1f) * 0x100 + lVar9 + 0x38,0x30,4,FUN_18004a130,
+    SystemDataValidator((uint64_t)((uint)uVar10 & 0x1f) * 0x100 + lVar9 + 0x38,0x30,4,FUN_18004a130,
                   uVar12);
   }
   lVar9 = param_1[8];

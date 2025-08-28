@@ -232,7 +232,7 @@ void FUN_1803e8ff0(int64_t *param_1)
   uStack_310 = 0;
   uStack_308 = 0;
   FUN_1803f4370(&uStack_318,apuStack_158,auStack_b8);
-  FUN_1808fc8a8(apuStack_158,0x20,5,FUN_1800670d0);
+  SystemMemoryManager(apuStack_158,0x20,5,FUN_1800670d0);
   plVar8 = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,8,8,3);
   puStack_300 = &uStack_2e8;
   uStack_2d8 = 0;
@@ -272,7 +272,7 @@ void FUN_1803e8ff0(int64_t *param_1)
   uStack_398 = 0x70;
   *plVar8 = (int64_t)plStack_348;
   FUN_1803f32c0(pplVar9);
-  FUN_180067070(&uStack_2e8);
+  SystemPerformanceOptimizer(&uStack_2e8);
   param_1[0x2f] = (int64_t)plVar8;
   FUN_180481b70(plVar8,acStack_188);
   if (acStack_188[0] != '\0') {
@@ -453,21 +453,21 @@ void FUN_1803e8ff0(int64_t *param_1)
   if (lStack_380 != 0) {
     FUN_1803f53b0();
   }
-  FUN_180067070(&uStack_2e8);
+  SystemPerformanceOptimizer(&uStack_2e8);
   uStack_398 = 0xf0;
   if (lStack_350 != 0) {
     FUN_1803f53b0();
   }
-  FUN_180067070(auStack_248);
+  SystemPerformanceOptimizer(auStack_248);
   if (lStack_2f8 != 0) {
     FUN_1803f53b0();
   }
-  FUN_180067070(auStack_228);
+  SystemPerformanceOptimizer(auStack_228);
   uStack_398 = 0x70;
   if (lStack_280 != 0) {
     FUN_1803f53b0();
   }
-  FUN_180067070(&plStack_2c8);
+  SystemPerformanceOptimizer(&plStack_2c8);
   puStack_378 = &system_data_buffer_ptr;
   uStack_360 = 0;
   puStack_370 = (int32_t *)0x0;
@@ -596,19 +596,19 @@ LAB_1803e9d62:
   }
   if (acStack_1e8[0] != '\0') {
     pplStack_388 = &plStack_1e0;
-    FUN_180067070(appppuStack_1d8);
+    SystemPerformanceOptimizer(appppuStack_1d8);
   }
   if (acStack_1b8[0] != '\0') {
     pplStack_388 = &plStack_1b0;
-    FUN_180067070(appppuStack_1a8);
+    SystemPerformanceOptimizer(appppuStack_1a8);
   }
   if (acStack_188[0] != '\0') {
     pplStack_388 = &plStack_180;
-    FUN_180067070(appppuStack_178);
+    SystemPerformanceOptimizer(appppuStack_178);
   }
   FUN_1803f32c0(&uStack_318);
-  FUN_180067070(appppuStack_208);
-  FUN_180067070(appppuStack_268);
+  SystemPerformanceOptimizer(appppuStack_208);
+  SystemPerformanceOptimizer(appppuStack_268);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_3c8);
 }

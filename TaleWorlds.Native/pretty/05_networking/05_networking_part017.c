@@ -1,3 +1,6 @@
+/* SystemController - SystemCore_StateProcessor0 的语义化别名 */
+#define SystemController SystemCore_StateProcessor0
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -145,7 +148,7 @@ void network_connection_handler(uint64_t *param_1, uint64_t param_2, int64_t par
     lStack_e8 = lVar8;
     if (lVar8 == 0) {
         // 网络连接初始化失败
-        FUN_18084b240(param_2, auStack_78);
+        SystemController(param_2, auStack_78);
     }
     
     // 检查连接状态

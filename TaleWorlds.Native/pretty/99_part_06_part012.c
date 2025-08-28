@@ -77,8 +77,8 @@ void FUN_1803af8d0(uint64_t *param_1)
   if ((int64_t *)param_1[0x2c] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[0x2c] + 0x38))();
   }
-  FUN_1808fc8a8(param_1 + 0x27,8,3,FUN_180045af0);
-  FUN_1808fc8a8(param_1 + 0x24,8,3,FUN_180045af0);
+  SystemDataValidator(param_1 + 0x27,8,3,FUN_180045af0);
+  SystemDataValidator(param_1 + 0x24,8,3,FUN_180045af0);
   FUN_180057830();
   if ((int64_t *)param_1[0xe] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[0xe] + 0x38))();

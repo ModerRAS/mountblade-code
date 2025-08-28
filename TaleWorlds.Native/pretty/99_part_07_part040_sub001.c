@@ -373,7 +373,7 @@ int64_t * FUN_1804c0770(int64_t param_1,uint64_t param_2,int64_t *param_3)
   pcVar3 = (char *)*param_3;
   if (*pcVar3 != '!') {
     if (*pcVar3 != '?') {
-      plVar4 = (int64_t *)FUN_1804c1300(param_1 + 0x60,0x60);
+      plVar4 = (int64_t *)DataPipelineManager(param_1 + 0x60,0x60);
       *plVar4 = 0;
       plVar4[1] = 0;
       plVar4[4] = 0;
@@ -838,7 +838,7 @@ int64_t * FUN_1804c0d90(int64_t param_1,uint64_t param_2,uint64_t *param_3)
   byte *pbStack_28;
   uint64_t uStack_20;
   
-  plVar3 = (int64_t *)FUN_1804c1300(param_1 + 0x60,0x60);
+  plVar3 = (int64_t *)DataPipelineManager(param_1 + 0x60,0x60);
   *plVar3 = 0;
   plVar3[1] = 0;
   plVar3[4] = 0;

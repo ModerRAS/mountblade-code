@@ -665,7 +665,7 @@ uint64_t * FUN_180211fa0(uint64_t *param_1)
   param_1[0x83] = 0;
   param_1[0x84] = 0;
   *(int32_t *)(param_1 + 0x85) = 3;
-  FUN_1808fc838(param_1 + 0x87,8,9,&SUB_18005d5f0,FUN_180045af0);
+  DataStructureManager(param_1 + 0x87,8,9,&SUB_18005d5f0,FUN_180045af0);
   *(int32_t *)(param_1 + 0x90) = 0;
   param_1[0x91] = 0;
   param_1[0x60] = 0;
@@ -723,7 +723,7 @@ void FUN_1802121b0(uint64_t *param_1)
   if ((int64_t *)param_1[0x91] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[0x91] + 0x38))();
   }
-  FUN_1808fc8a8(param_1 + 0x87,8,9,FUN_180045af0,uVar12);
+  SystemDataValidator(param_1 + 0x87,8,9,FUN_180045af0,uVar12);
   plStackX_10 = param_1 + 0x82;
   if (*plStackX_10 != 0) {
                     // WARNING: Subroutine does not return

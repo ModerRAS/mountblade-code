@@ -238,7 +238,7 @@ void FUN_180402a70(int64_t param_1,uint64_t param_2,int64_t param_3,float param_
     uStack_1e0 = uStack_248;
     uStack_1d0 = uStack_238;
     uStack_180 = (void **)&uStack_1e0;
-    FUN_180627ae0(auStack_1b8,&puStack_220);
+    SystemCore_NetworkHandler0(auStack_1b8,&puStack_220);
     uStack_198 = uStack_200;
     uStack_190 = uStack_1f8;
     plStack_188 = plStack_1f0;

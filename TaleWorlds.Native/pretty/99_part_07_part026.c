@@ -740,7 +740,7 @@ LAB_1804b5a86:
         puVar8[2] = 0;
         *puVar8 = 0;
         *(int32_t *)(puVar8 + 1) = 0;
-        FUN_1808fc838(puVar8 + 9,0x30,6,FUN_1802092f0,FUN_180209450);
+        DataStructureManager(puVar8 + 9,0x30,6,FUN_1802092f0,FUN_180209450);
         puVar8[3] = 0;
         puVar8[4] = 0;
         puVar8[5] = 0;

@@ -167,7 +167,7 @@ void FUN_1804013a0(int64_t param_1,uint64_t param_2,int64_t param_3,int32_t para
   auStack_108[0] = CONCAT44(auStack_108[0]._4_4_,2);
   auStack_108[1] = 0;
   puStack_118 = (uint64_t *)plStack_1b0;
-  FUN_180627ae0(auStack_f8,&plStack_190);
+  SystemCore_NetworkHandler0(auStack_f8,&plStack_190);
   uStack_d8 = uStack_170;
   uStack_d0 = uStack_168;
   plStack_c8 = plStack_160;
@@ -239,7 +239,7 @@ void FUN_1804013a0(int64_t param_1,uint64_t param_2,int64_t param_3,int32_t para
   uStack_110 = uStack_218;
   auStack_108[0] = CONCAT44(auStack_108[0]._4_4_,2);
   auStack_108[1] = 0;
-  FUN_180627ae0(auStack_f8,&plStack_200);
+  SystemCore_NetworkHandler0(auStack_f8,&plStack_200);
   uStack_d8 = uStack_1e0;
   uStack_d0 = uStack_1d8;
   plStack_c8 = plStack_1d0;
@@ -487,7 +487,7 @@ void FUN_1804013a0(int64_t param_1,uint64_t param_2,int64_t param_3,int32_t para
       plStack_198 = (int64_t *)0x0;
       plStack_1b8 = plStack_228;
       uStack_1a8 = uStack_218;
-      FUN_180627ae0(&plStack_190,&plStack_200);
+      SystemCore_NetworkHandler0(&plStack_190,&plStack_200);
       uStack_170 = uStack_1e0;
       uStack_168 = uStack_1d8;
       plStack_160 = plStack_1d0;

@@ -340,7 +340,7 @@ apply_parameters:
     texture_handle = cache_handle;
     
     // 处理纹理块
-    FUN_180627ae0(texture_block, &allocator_ptr);
+    SystemCore_NetworkHandler0(texture_block, &allocator_ptr);
     block_size = CONCAT44(texture_height, texture_width);
     block_handle = CONCAT44(texture_format, texture_depth);
     data_ptr = texture_manager;

@@ -1,3 +1,6 @@
+/* SystemEventHandler - FUN_1808fd200 的语义化别名 */
+#define SystemEventHandler FUN_1808fd200
+
 /**
  * @file 03_rendering_part517.c
  * @brief 渲染系统高级数据处理和管理模块

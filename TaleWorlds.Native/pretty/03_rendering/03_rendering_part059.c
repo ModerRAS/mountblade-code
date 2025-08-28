@@ -37,7 +37,7 @@ extern void FUN_18029c700(uint64_t *param_1);
 extern void FUN_18029c460(uint64_t *param_1);
 extern void FUN_1800f74f0(uint64_t *param_1, uint64_t param_2);
 extern void FUN_180058370(uint64_t *param_1, uint64_t param_2);
-extern void FUN_1808fc8a8(uint64_t *param_1, int param_2, int param_3, code *param_4);
+extern void SystemDataValidator(uint64_t *param_1, int param_2, int param_3, code *param_4);
 extern void FUN_180152b00(int64_t *param_1);
 extern void CoreEngine_MemoryPoolManager(uint64_t *param_1);
 extern uint64_t FUN_18062b1e0(uint64_t *param_1, int param_2, int param_3, int param_4);
@@ -281,7 +281,7 @@ void render_resource_manager_destroy(uint64_t *context_ptr)
   FUN_180058370(context_ptr + 0x103b,context_ptr[0x103d]);
   FUN_180058370(context_ptr + 0x1035,context_ptr[0x1037]);
   FUN_180058370(context_ptr + 0x102f,context_ptr[0x1031]);
-  FUN_1808fc8a8(context_ptr + 0x101b,0x20,5,FUN_180046860);
+  SystemDataValidator(context_ptr + 0x101b,0x20,5,FUN_180046860);
   
   // 释放资源数组内存
   if (*resource_array != 0) {
@@ -289,7 +289,7 @@ void render_resource_manager_destroy(uint64_t *context_ptr)
   }
   
   // 清理其他系统
-  FUN_1808fc8a8(context_ptr + 0xffd,0x20,5,FUN_180046860);
+  SystemDataValidator(context_ptr + 0xffd,0x20,5,FUN_180046860);
   array_start = context_ptr[0xffa];
   for (array_end = context_ptr[0xff9]; array_end != array_start; array_end = array_end + 0x40) {
     FUN_180152b00(array_end);

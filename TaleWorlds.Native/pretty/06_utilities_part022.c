@@ -23,9 +23,9 @@ uint64_t FUN_18089dcf0(int64_t param_1,uint64_t *param_2)
   int8_t auStack_58 [32];
   int8_t auStack_38 [32];
   
-  uVar3 = FUN_1808ddc20(param_2,auStack_38,1,0x54495053);
+  uVar3 = DataFlowProcessor(param_2,auStack_38,1,0x54495053);
   if ((((int)uVar3 == 0) &&
-      (uVar3 = FUN_1808ddc20(param_2,auStack_58,0,0x42495053), (int)uVar3 == 0)) &&
+      (uVar3 = DataFlowProcessor(param_2,auStack_58,0,0x42495053), (int)uVar3 == 0)) &&
      (uVar3 = FUN_180899360(param_2,param_1 + 0x10), (int)uVar3 == 0)) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
@@ -435,9 +435,9 @@ uint64_t FUN_18089df40(int64_t param_1,uint64_t *param_2)
   int8_t auStack_48 [32];
   int8_t auStack_28 [32];
   
-  uVar2 = FUN_1808ddc20(param_2,auStack_28,1,0x46464553);
+  uVar2 = DataFlowProcessor(param_2,auStack_28,1,0x46464553);
   if (((((int)uVar2 == 0) &&
-       (uVar2 = FUN_1808ddc20(param_2,auStack_48,0,0x42464553), (int)uVar2 == 0)) &&
+       (uVar2 = DataFlowProcessor(param_2,auStack_48,0,0x42464553), (int)uVar2 == 0)) &&
       (uVar2 = FUN_180899360(param_2,param_1 + 0x10), (int)uVar2 == 0)) &&
      ((0x5a < *(uint *)(param_2 + 8) ||
       (uVar2 = FUN_1808afc70(param_2,param_1 + 0x44), (int)uVar2 == 0)))) {
@@ -616,10 +616,10 @@ uint64_t FUN_18089e0d0(int64_t param_1,uint64_t *param_2)
   int8_t auStack_28 [32];
   
   if ((0x87 < *(uint *)(param_2 + 8)) &&
-     (uVar1 = FUN_1808ddc20(param_2,auStack_28,1,0x46464353), (int)uVar1 != 0)) {
+     (uVar1 = DataFlowProcessor(param_2,auStack_28,1,0x46464353), (int)uVar1 != 0)) {
     return uVar1;
   }
-  uVar1 = FUN_1808ddc20(param_2,auStack_48,0,0x46454353);
+  uVar1 = DataFlowProcessor(param_2,auStack_48,0,0x46454353);
   if (((int)uVar1 == 0) && (uVar1 = FUN_180899360(param_2,param_1 + 0x10), (int)uVar1 == 0)) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
@@ -669,11 +669,11 @@ uint64_t FUN_18089e230(int64_t param_1,int64_t *param_2)
   int8_t auStack_48 [32];
   uint64_t uVar5;
   
-  uVar2 = FUN_1808ddc20(param_2,auStack_48,1,0x50414e53);
+  uVar2 = DataFlowProcessor(param_2,auStack_48,1,0x50414e53);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
-  uVar2 = FUN_1808ddc20(param_2,auStack_68,0,0x42414e53);
+  uVar2 = DataFlowProcessor(param_2,auStack_68,0,0x42414e53);
   if ((int)uVar2 != 0) {
     return uVar2;
   }

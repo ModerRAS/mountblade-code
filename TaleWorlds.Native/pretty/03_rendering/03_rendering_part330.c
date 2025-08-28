@@ -1234,7 +1234,7 @@ void RenderingSystemAdvancedRenderer(
         (**(RenderingSystemCallback)(*resource_ptr + 0x28))();
     }
     
-    FUN_180627ae0(&data_ptr, param_1 + 0x118);
+    SystemCore_NetworkHandler0(&data_ptr, param_1 + 0x118);
     stack_param[0] = *(RenderingSystemParameter *)(param_1 + 0x138);
     stack_param[1] = *(RenderingSystemParameter)(param_1 + 0x140);
     stack_count = *(RenderingSystemCount *)(param_1 + 0x148);

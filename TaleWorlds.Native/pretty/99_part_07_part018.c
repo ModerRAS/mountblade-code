@@ -121,7 +121,7 @@ void FUN_1804ac720(int64_t param_1,int64_t *param_2,int64_t *param_3,int64_t par
     if (plStack_68 != (int64_t *)0x0) {
       (**(code **)(*plStack_68 + 0x28))();
     }
-    FUN_180627ae0(puVar2 + 2,&puStack_60);
+    SystemCore_NetworkHandler0(puVar2 + 2,&puStack_60);
     *(int32_t *)(puVar2 + 6) = uStack_40;
   }
   else {
@@ -211,7 +211,7 @@ void FUN_1804ac910(uint64_t param_1,int32_t param_2,int64_t param_3,int64_t *par
     puVar3 = system_system_config + 0x10;
     *system_system_config = auStack_58[0];
     system_system_config = puVar3;
-    FUN_180627ae0(puVar2 + 2,&puStack_50);
+    SystemCore_NetworkHandler0(puVar2 + 2,&puStack_50);
     *(int64_t **)(puVar2 + 10) = plStack_30;
     if (plStack_30 != (int64_t *)0x0) {
       (**(code **)(*plStack_30 + 0x28))();

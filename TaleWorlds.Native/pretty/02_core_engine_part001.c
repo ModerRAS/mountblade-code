@@ -105,7 +105,7 @@ void* FUN_1802285e0;  // SystemConfigurationLoader - 系统配置加载器
 ==============================================================================*/
 
 // 函数: 内存池管理器
-void* FUN_180045af0;  // MemoryPoolManager - 内存池管理器
+void* SystemTimer;  // MemoryPoolManager - 内存池管理器
 void* system_memory_6330;   // 小对象内存池 (16-32字节)
 void* system_memory_6340;   // 中对象内存池 (64-128字节)
 void* system_memory_6348;   // 大对象内存池 (256-512字节)

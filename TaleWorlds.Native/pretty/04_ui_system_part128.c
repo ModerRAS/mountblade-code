@@ -315,7 +315,7 @@ FUN_180742cd0(int64_t param_1,int param_2,uint64_t param_3,int32_t param_4,int32
   
   if (*(int64_t *)((int64_t)param_2 * 8 + 0x10f90 + param_1) == 0) {
     plVar1 = (int64_t *)
-             FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x3c0,&unknown_var_8208_ptr,0x264,0);
+             SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x3c0,&unknown_var_8208_ptr,0x264,0);
     if (plVar1 == (int64_t *)0x0) {
       return 0x26;
     }
@@ -396,7 +396,7 @@ int32_t FUN_180742e60(int64_t param_1)
     return 0x26;
   }
   plVar2 = (int64_t *)
-           FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&unknown_var_8208_ptr,0x7e,0);
+           SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x20,&unknown_var_8208_ptr,0x7e,0);
   if (plVar2 != (int64_t *)0x0) {
     plVar2[2] = 0;
     plVar2[3] = lVar1;
@@ -427,7 +427,7 @@ void FUN_180742eec(int64_t param_1,uint64_t param_2,uint64_t param_3,int param_4
   int32_t unaff_R12D;
   int32_t unaff_000000a4;
   
-  plVar1 = (int64_t *)FUN_180742050(*(uint64_t *)(param_1 + 0x1a0),param_4 + -0x5e);
+  plVar1 = (int64_t *)SystemCore_TransformationEngine0(*(uint64_t *)(param_1 + 0x1a0),param_4 + -0x5e);
   if (plVar1 != (int64_t *)0x0) {
     plVar1[2] = CONCAT44(unaff_000000a4,unaff_R12D);
     plVar1[3] = unaff_RBP;

@@ -630,7 +630,7 @@ int64_t FUN_1804b4a30(int64_t param_1)
   *(uint64_t *)(param_1 + 0x68) = 0;
   *(uint64_t *)(param_1 + 0x58) = 0;
   *(int32_t *)(param_1 + 0x60) = 0;
-  FUN_1808fc838(param_1 + 0x70,0x28,0xc,&unknown_var_704_ptr,FUN_1804bfc50);
+  DataStructureManager(param_1 + 0x70,0x28,0xc,&unknown_var_704_ptr,FUN_1804bfc50);
   *(uint64_t *)(param_1 + 0x250) = 0;
   *(uint64_t *)(param_1 + 600) = 0;
   *(uint64_t *)(param_1 + 0x260) = 0;
@@ -641,8 +641,8 @@ int64_t FUN_1804b4a30(int64_t param_1)
   *(uint64_t *)(param_1 + 0x280) = 0;
   *(int32_t *)(param_1 + 0x288) = 3;
   plVar3 = (int64_t *)(param_1 + 0x2a0);
-  FUN_1808fc838(plVar3,8,3,&SUB_18005d5f0,FUN_180045af0);
-  FUN_1808fc838(param_1 + 0x2d8,0x30,3,FUN_1800ae3f0,FUN_18004b6f0);
+  DataStructureManager(plVar3,8,3,&SUB_18005d5f0,FUN_180045af0);
+  DataStructureManager(param_1 + 0x2d8,0x30,3,FUN_1800ae3f0,FUN_18004b6f0);
   *(uint64_t *)(param_1 + 0x9e0) = 0;
   *(uint64_t *)(param_1 + 0x9e8) = 0;
   *(uint64_t *)(param_1 + 0x9f0) = 0;

@@ -392,7 +392,7 @@ LAB_180191a1c:
     param_4 = lVar15;
   }
   param_1 = param_4 * 0x348 + param_1;
-  FUN_180627be0(param_1 + 8,param_5 + 8);
+  SystemCore_ConfigurationHandler0(param_1 + 8,param_5 + 8);
   *(int32_t *)(param_1 + 0x28) = *(int32_t *)(param_5 + 0x28);
   *(int32_t *)(param_1 + 0x2c) = *(int32_t *)(param_5 + 0x2c);
   *(int32_t *)(param_1 + 0x30) = *(int32_t *)(param_5 + 0x30);
@@ -400,7 +400,7 @@ LAB_180191a1c:
   *(int32_t *)(param_1 + 0x38) = *(int32_t *)(param_5 + 0x38);
   *(int32_t *)(param_1 + 0x3c) = *(int32_t *)(param_5 + 0x3c);
   *(int32_t *)(param_1 + 0x40) = *(int32_t *)(param_5 + 0x40);
-  FUN_180627be0(param_1 + 0x48,param_5 + 0x48);
+  SystemCore_ConfigurationHandler0(param_1 + 0x48,param_5 + 0x48);
   plVar2 = *(int64_t **)(param_5 + 0x68);
   if (plVar2 != (int64_t *)0x0) {
     (**(code **)(*plVar2 + 0x28))(plVar2);
@@ -410,7 +410,7 @@ LAB_180191a1c:
   if (plVar3 != (int64_t *)0x0) {
     (**(code **)(*plVar3 + 0x38))();
   }
-  FUN_180627be0(param_1 + 0x70,param_5 + 0x70);
+  SystemCore_ConfigurationHandler0(param_1 + 0x70,param_5 + 0x70);
   plVar2 = *(int64_t **)(param_5 + 0x90);
   if (plVar2 != (int64_t *)0x0) {
     (**(code **)(*plVar2 + 0x28))(plVar2);
@@ -457,7 +457,7 @@ LAB_180191a1c:
   *(int32_t *)(param_1 + 0x124) = *(int32_t *)(param_5 + 0x124);
   *(int32_t *)(param_1 + 0x128) = *(int32_t *)(param_5 + 0x128);
   *(int32_t *)(param_1 + 300) = *(int32_t *)(param_5 + 300);
-  FUN_180627be0(param_1 + 0x130,param_5 + 0x130);
+  SystemCore_ConfigurationHandler0(param_1 + 0x130,param_5 + 0x130);
   plVar2 = *(int64_t **)(param_5 + 0x150);
   if (plVar2 != (int64_t *)0x0) {
     (**(code **)(*plVar2 + 0x28))(plVar2);
@@ -467,7 +467,7 @@ LAB_180191a1c:
   if (plVar3 != (int64_t *)0x0) {
     (**(code **)(*plVar3 + 0x38))();
   }
-  FUN_180627be0(param_1 + 0x158,param_5 + 0x158);
+  SystemCore_ConfigurationHandler0(param_1 + 0x158,param_5 + 0x158);
   plVar2 = *(int64_t **)(param_5 + 0x178);
   if (plVar2 != (int64_t *)0x0) {
     (**(code **)(*plVar2 + 0x28))(plVar2);
@@ -478,7 +478,7 @@ LAB_180191a1c:
     (**(code **)(*plVar3 + 0x38))();
   }
   *(int32_t *)(param_1 + 0x180) = *(int32_t *)(param_5 + 0x180);
-  FUN_180627be0(param_1 + 0x188,param_5 + 0x188);
+  SystemCore_ConfigurationHandler0(param_1 + 0x188,param_5 + 0x188);
   plVar2 = *(int64_t **)(param_5 + 0x1a8);
   if (plVar2 != (int64_t *)0x0) {
     (**(code **)(*plVar2 + 0x28))(plVar2);
@@ -532,7 +532,7 @@ LAB_180191a1c:
   *(int32_t *)(param_1 + 0x22c) = *(int32_t *)(param_5 + 0x22c);
   *(int32_t *)(param_1 + 0x230) = *(int32_t *)(param_5 + 0x230);
   *(int32_t *)(param_1 + 0x234) = *(int32_t *)(param_5 + 0x234);
-  FUN_180627be0(param_1 + 0x238,param_5 + 0x238);
+  SystemCore_ConfigurationHandler0(param_1 + 0x238,param_5 + 0x238);
   plVar2 = *(int64_t **)(param_5 + 600);
   if (plVar2 != (int64_t *)0x0) {
     (**(code **)(*plVar2 + 0x28))(plVar2);
@@ -542,7 +542,7 @@ LAB_180191a1c:
   if (plVar3 != (int64_t *)0x0) {
     (**(code **)(*plVar3 + 0x38))();
   }
-  FUN_180627be0(param_1 + 0x260,param_5 + 0x260);
+  SystemCore_ConfigurationHandler0(param_1 + 0x260,param_5 + 0x260);
   plVar2 = *(int64_t **)(param_5 + 0x280);
   if (plVar2 != (int64_t *)0x0) {
     (**(code **)(*plVar2 + 0x28))(plVar2);
@@ -594,7 +594,7 @@ LAB_180191a1c:
   *(int32_t *)(param_1 + 0x310) = *(int32_t *)(param_5 + 0x310);
   *(int32_t *)(param_1 + 0x314) = *(int32_t *)(param_5 + 0x314);
   *(int8_t *)(param_1 + 0x318) = *(int8_t *)(param_5 + 0x318);
-  FUN_180627be0(param_1 + 800,param_5 + 800);
+  SystemCore_ConfigurationHandler0(param_1 + 800,param_5 + 800);
   *(int32_t *)(param_1 + 0x340) = *(int32_t *)(param_5 + 0x340);
   return param_1;
 }

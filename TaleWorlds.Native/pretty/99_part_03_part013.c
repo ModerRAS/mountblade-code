@@ -823,7 +823,7 @@ void FUN_1801d7c90(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t *
     if (lVar14 / 0x30 + lVar2 != lVar2) {
       do {
         lVar15 = lVar15 + (int64_t)puVar9;
-        FUN_180627ae0(&puStack_300,lVar15);
+        SystemCore_NetworkHandler0(&puStack_300,lVar15);
         pcStack_2e0 = *(code **)(lVar15 + 0x20);
         cStack_2d8 = *(char *)(lVar15 + 0x28);
         uVar7 = SystemCore_LoggingSystem0(lStack_338,&puStack_300,0);

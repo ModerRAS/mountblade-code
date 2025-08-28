@@ -1,9 +1,12 @@
+/* UIManager - FUN_18086b47c 的语义化别名 */
+#define UIManager FUN_18086b47c
+
 #include "TaleWorlds.Native.Split.h"
 
 // 05_networking_part053_sub002.c - 1 个函数
 
-// 函数: void FUN_18086b47c(void)
-void FUN_18086b47c(void)
+// 函数: void UIManager(void)
+void UIManager(void)
 
 {
   uint64_t in_stack_00000050;

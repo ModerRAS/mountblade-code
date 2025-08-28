@@ -1,3 +1,6 @@
+/* SystemEventHandler - FUN_1808fd200 的语义化别名 */
+#define SystemEventHandler FUN_1808fd200
+
 /**
  * TaleWorlds.Native 高级系统资源管理和事件处理模块
  * 

@@ -235,7 +235,7 @@ uint64_t * FUN_18046c1c0(uint64_t *param_1,uint param_2)
 
 {
   *param_1 = &unknown_var_2376_ptr;
-  FUN_1808fc8a8(param_1 + 2,0x20,0x200,FUN_180046860,0xfffffffffffffffe);
+  SystemDataValidator(param_1 + 2,0x20,0x200,FUN_180046860,0xfffffffffffffffe);
   *param_1 = &system_handler2_ptr;
   *param_1 = &system_handler1_ptr;
   if ((param_2 & 1) != 0) {

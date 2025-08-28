@@ -47,7 +47,7 @@ void FUN_18010af70(uint64_t *param_1,int64_t param_2,int64_t param_3)
   puStack_170 = param_1;
   if ((iVar11 == 0x11) && (iVar1 = strcmp(*(uint64_t *)(param_2 + 8),&unknown_var_1320_ptr), iVar1 == 0))
   {
-    FUN_180627ae0(&puStack_1b8,param_3);
+    SystemCore_NetworkHandler0(&puStack_1b8,param_3);
     if ((0 < (int)uStack_1a8) && (lVar3 = strstr(puStack_1b0,&unknown_var_7168_ptr), lVar3 != 0)) {
       iVar11 = 5;
       uVar9 = (int)lVar3 - (int)puStack_1b0;
@@ -83,7 +83,7 @@ void FUN_18010af70(uint64_t *param_1,int64_t param_2,int64_t param_3)
                     // WARNING: Subroutine does not return
       CoreEngine_MemoryPoolManager(puVar4);
     }
-    puVar5 = (uint64_t *)FUN_180627ae0(&puStack_190,&puStack_1b8);
+    puVar5 = (uint64_t *)SystemCore_NetworkHandler0(&puStack_190,&puStack_1b8);
     puStack_168 = puVar5;
     FUN_18005c8a0(puStack_170 + 0x124,puVar5);
     *puVar5 = &system_data_buffer_ptr;
@@ -150,7 +150,7 @@ void FUN_18010af70(uint64_t *param_1,int64_t param_2,int64_t param_3)
       puStack_1b8 = &system_data_buffer_ptr;
       if ((uint64_t)puStack_170[1] < (uint64_t)puStack_170[2]) {
         puStack_170[1] = puStack_170[1] + 0x20;
-        FUN_180627ae0();
+        SystemCore_NetworkHandler0();
       }
       else {
         FUN_180059820(puStack_170,&puStack_1b8);
@@ -362,7 +362,7 @@ void FUN_18010b7d0(int64_t param_1,int64_t param_2)
       uVar6 = uVar5;
       if (lVar1 - lVar2 >> 5 != 1) {
         do {
-          FUN_180627ae0(&puStack_b8,lVar2 + uVar4 * 0x20);
+          SystemCore_NetworkHandler0(&puStack_b8,lVar2 + uVar4 * 0x20);
           while ((0 < (int)uStack_a8 && (lVar1 = strstr(puStack_b0,&system_data_c8e4), lVar1 != 0))) {
             iVar11 = 1;
             iVar7 = (int)lVar1 - (int)puStack_b0;
@@ -411,7 +411,7 @@ void FUN_18010b7d0(int64_t param_1,int64_t param_2)
           uVar6 = (uint64_t)uVar10;
         } while ((uint64_t)(int64_t)(int)uVar10 < (lVar1 - lVar2 >> 5) - 1U);
       }
-      FUN_180627ae0(&puStack_98,lVar2 + ((lVar1 - lVar2 & 0xffffffffffffffe0U) - 0x20));
+      SystemCore_NetworkHandler0(&puStack_98,lVar2 + ((lVar1 - lVar2 & 0xffffffffffffffe0U) - 0x20));
       while ((0 < (int)uStack_88 && (lVar1 = strstr(puStack_90,&system_data_c8e4), lVar1 != 0))) {
         iVar11 = 1;
         iVar7 = (int)lVar1 - (int)puStack_90;

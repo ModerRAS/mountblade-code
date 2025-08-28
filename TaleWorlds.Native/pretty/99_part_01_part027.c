@@ -772,7 +772,7 @@ void FUN_1800ba6f0(uint64_t param_1)
   if (iVar2 == 0) {
     FUN_180627160(&unknown_var_8696_ptr);
     uVar3 = FUN_180628ca0();
-    FUN_180627ae0(param_1,uVar3);
+    SystemCore_NetworkHandler0(param_1,uVar3);
     uStack_398 = 1;
                     // WARNING: Subroutine does not return
     SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_3f8);

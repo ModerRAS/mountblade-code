@@ -20,7 +20,7 @@ void FUN_180209470(int64_t *param_1)
   int64_t lStack_48;
   uint uStack_40;
   
-  FUN_180627ae0(&puStack_50,*param_1 + 0x1f0);
+  SystemCore_NetworkHandler0(&puStack_50,*param_1 + 0x1f0);
   while (0 < (int)uStack_40) {
     lVar2 = strstr(lStack_48,&system_data_ff10);
     if (lVar2 == 0) break;

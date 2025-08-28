@@ -606,7 +606,7 @@ LAB_1801cff8d:
   if (puVar2 == *(uint64_t **)(lVar1 + *(int64_t *)(param_1 + 0x158) * 8)) {
     return 0;
   }
-  FUN_180627be0(param_3,puVar2 + 2);
+  SystemCore_ConfigurationHandler0(param_3,puVar2 + 2);
   return 1;
 }
 

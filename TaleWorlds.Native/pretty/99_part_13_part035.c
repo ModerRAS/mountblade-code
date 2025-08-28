@@ -28,7 +28,7 @@ void FUN_1808bcca0(int64_t *param_1)
       SystemMemoryAllocator(lVar3);
     }
     iVar4 = SystemStatusChecker(param_1);
-    if ((iVar4 == 0) && (iVar4 = FUN_1808744f0(param_1 + 2), iVar4 == 0)) {
+    if ((iVar4 == 0) && (iVar4 = SystemThreadScheduler(param_1 + 2), iVar4 == 0)) {
       *(int32_t *)(param_1 + 4) = 0xffffffff;
       *(int32_t *)((int64_t)param_1 + 0x24) = 0;
     }
@@ -378,7 +378,7 @@ uint64_t FUN_1808bcf40(int64_t param_1)
     FUN_1808741f0(param_1 + 0x240,&uStack_50,aiStack_48);
     if (aiStack_48[0] == -1) {
       iVar3 = SystemStatusChecker(param_1 + 0x240);
-      if ((iVar3 == 0) && (iVar3 = FUN_1808744f0(param_1 + 0x250), iVar3 == 0)) {
+      if ((iVar3 == 0) && (iVar3 = SystemThreadScheduler(param_1 + 0x250), iVar3 == 0)) {
         *(int32_t *)(param_1 + 0x260) = 0xffffffff;
         *(int32_t *)(param_1 + 0x264) = 0;
       }
@@ -639,7 +639,7 @@ uint64_t FUN_1808bd05e(void)
     FUN_1808741f0(lVar1,unaff_RBP + -0x28,unaff_RBP + -0x20);
     if (*(int *)(unaff_RBP + -0x20) == -1) {
       iVar3 = SystemStatusChecker(lVar1);
-      if ((iVar3 == 0) && (iVar3 = FUN_1808744f0(unaff_RSI + 0x250), iVar3 == 0)) {
+      if ((iVar3 == 0) && (iVar3 = SystemThreadScheduler(unaff_RSI + 0x250), iVar3 == 0)) {
         *(int32_t *)(unaff_RSI + 0x260) = 0xffffffff;
         *(uint *)(unaff_RSI + 0x264) = uVar11;
       }
@@ -873,7 +873,7 @@ uint64_t FUN_1808bd222(void)
   FUN_1808741f0(lVar1,unaff_RBP + -0x28,unaff_RBP + -0x20);
   if (*(int *)(unaff_RBP + -0x20) == -1) {
     iVar3 = SystemStatusChecker(lVar1);
-    if ((iVar3 == 0) && (iVar3 = FUN_1808744f0(unaff_RSI + 0x250), iVar3 == 0)) {
+    if ((iVar3 == 0) && (iVar3 = SystemThreadScheduler(unaff_RSI + 0x250), iVar3 == 0)) {
       *(int32_t *)(unaff_RSI + 0x260) = 0xffffffff;
       *(int *)(unaff_RSI + 0x264) = (int)unaff_R12;
     }

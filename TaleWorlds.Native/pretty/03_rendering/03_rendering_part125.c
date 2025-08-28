@@ -817,7 +817,7 @@ void FUN_1803415f0(uint64_t param_1, int64_t param_2, int64_t param_3, uint64_t 
 // 缓冲区管理函数别名
 #define SystemCore_EncryptionEngine0              BufferAllocator
 #define FUN_1806277c0              BufferExpander
-#define FUN_180627be0              ShaderConfigSetter
+#define SystemCore_ConfigurationHandler0              ShaderConfigSetter
 #define FUN_18062dee0              FileStreamOpener
 #define FUN_1808fc050              SecurityCheckHandler
 

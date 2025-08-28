@@ -1,3 +1,6 @@
+/* SystemController - SystemCore_StateProcessor0 的语义化别名 */
+#define SystemController SystemCore_StateProcessor0
+
 /**
  * @file pretty/99_part_10_part049_sub002_sub002.c
  * @brief 高级系统组件管理和数据处理模块

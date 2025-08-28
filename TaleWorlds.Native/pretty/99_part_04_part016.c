@@ -55,7 +55,7 @@ void FUN_180267ee0(int64_t param_1,int64_t param_2,int64_t param_3)
   }
   if (param_3 == 0) {
 LAB_180267faf:
-    FUN_180627be0(param_1 + 0x40,param_2 + 0x40);
+    SystemCore_ConfigurationHandler0(param_1 + 0x40,param_2 + 0x40);
   }
   else {
     iVar2 = *(int *)(param_3 + 0x50);
@@ -401,7 +401,7 @@ LAB_180268c75:
   }
   if (param_3 == 0) {
 LAB_180268ecf:
-    FUN_180627be0(param_1 + 0x8d8,param_2 + 0x8d8);
+    SystemCore_ConfigurationHandler0(param_1 + 0x8d8,param_2 + 0x8d8);
   }
   else {
     iVar2 = *(int *)(param_3 + 0x8e8);
@@ -440,7 +440,7 @@ LAB_180268ecd:
     else if (iVar2 != 0) goto LAB_180268f42;
     if (iVar10 != 0) goto LAB_180268f42;
   }
-  FUN_180627be0(param_1 + 0x8b8,param_2 + 0x8b8);
+  SystemCore_ConfigurationHandler0(param_1 + 0x8b8,param_2 + 0x8b8);
 LAB_180268f42:
   if ((param_3 == 0) || (*(int *)(param_3 + 0x80) == *(int *)(param_1 + 0x80))) {
     *(int32_t *)(param_1 + 0x80) = *(int32_t *)(param_2 + 0x80);

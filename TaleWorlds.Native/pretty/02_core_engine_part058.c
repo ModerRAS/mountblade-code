@@ -297,7 +297,7 @@ FUN_1800940b0(int8_t *param_1,int8_t *param_2,uint64_t param_3,uint64_t param_4)
   *(int32_t *)(param_1 + 8) = uVar1;
   *(int32_t *)(param_1 + 0xc) = uVar2;
   *(int32_t *)(param_1 + 0x10) = uVar3;
-  FUN_180627ae0(param_1 + 0x18,param_2 + 0x18,param_3,param_4,0xfffffffffffffffe);
+  SystemCore_NetworkHandler0(param_1 + 0x18,param_2 + 0x18,param_3,param_4,0xfffffffffffffffe);
   *(int32_t *)(param_1 + 0x38) = *(int32_t *)(param_2 + 0x38);
   *(uint64_t *)(param_1 + 0x3c) = *(uint64_t *)(param_2 + 0x3c);
   *(int32_t *)(param_1 + 0x44) = *(int32_t *)(param_2 + 0x44);

@@ -178,7 +178,7 @@ LAB_18034bcb4:
   if (iVar3 == (int)lVar8) {
     FUN_18034bd70(param_1,lVar8);
   }
-  FUN_180627be0(lVar1 + 0xf0,plVar9);
+  SystemCore_ConfigurationHandler0(lVar1 + 0xf0,plVar9);
   if (plStackX_8 != (int64_t *)0x0) {
     (**(code **)(*plStackX_8 + 0x38))();
   }

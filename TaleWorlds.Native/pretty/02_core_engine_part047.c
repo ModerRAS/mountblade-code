@@ -571,7 +571,7 @@ void FUN_180089420(void)
         if (uVar7 < *(uint64_t *)(lVar3 + 0x18)) {
           *(uint64_t *)(lVar3 + 0x10) = uVar7 + 0x60;
           ppuStack_a8 = (void **)uVar7;
-          FUN_180627ae0(uVar7);
+          SystemCore_NetworkHandler0(uVar7);
           FUN_18004b640(uVar7 + 0x20,&puStack_78);
           *(int8_t *)(uVar7 + 0x58) = auStack_40[0];
           *(int *)(uVar7 + 0x5c) = iStack_3c;

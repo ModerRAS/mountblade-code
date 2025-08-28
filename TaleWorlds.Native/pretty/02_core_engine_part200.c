@@ -587,7 +587,7 @@ LAB_180180381:
             uStack_128 = 1;
             FUN_180058080((code ******)(lVar13 + 0x70),&pppppcStack_178,&puStack_148);
             if ((code ******)pppppcStack_178 != (code ******)(lVar13 + 0x70)) {
-              FUN_180627be0(&pppcStack_170,pppppcStack_178 + 8);
+              SystemCore_ConfigurationHandler0(&pppcStack_170,pppppcStack_178 + 8);
               if ((int)uStack_160 == 3) {
                 do {
                   uVar16 = uVar15 + 1;

@@ -43,7 +43,7 @@ uint64_t FUN_1808ab460(uint64_t param_1,int64_t param_2,int32_t param_3)
   int8_t auStack_68 [32];
   int8_t auStack_48 [32];
   
-  uVar3 = FUN_1808ddc20(param_1,auStack_48,1,param_3);
+  uVar3 = DataFlowProcessor(param_1,auStack_48,1,param_3);
   if ((int)uVar3 == 0) {
     iVar6 = 0;
     aiStack_98[0] = 0;
@@ -75,9 +75,9 @@ uint64_t FUN_1808ab460(uint64_t param_1,int64_t param_2,int32_t param_3)
               *puVar4 = &unknown_var_48_ptr;
               puVar4[6] = &unknown_var_9792_ptr;
               puStack_90 = puVar4;
-              iVar2 = FUN_1808ddc20(param_1,auStack_68,1,0x5449554d);
+              iVar2 = DataFlowProcessor(param_1,auStack_68,1,0x5449554d);
               if (((iVar2 == 0) &&
-                  (iVar2 = FUN_1808ddc20(param_1,auStack_88,0,0x4249554d), iVar2 == 0)) &&
+                  (iVar2 = DataFlowProcessor(param_1,auStack_88,0,0x4249554d), iVar2 == 0)) &&
                  (iVar2 = FUN_180899360(param_1,puVar4 + 2), iVar2 == 0)) {
                     // WARNING: Subroutine does not return
                 AdvancedSystemManager(param_1,auStack_88);
@@ -144,8 +144,8 @@ uint64_t FUN_1808ab48f(void)
             *(int32_t *)((int64_t)puVar4 + 0xec) = 2;
             *puVar4 = &unknown_var_48_ptr;
             puVar4[6] = &unknown_var_9792_ptr;
-            iVar2 = FUN_1808ddc20();
-            if (((iVar2 == 0) && (iVar2 = FUN_1808ddc20(), iVar2 == 0)) &&
+            iVar2 = DataFlowProcessor();
+            if (((iVar2 == 0) && (iVar2 = DataFlowProcessor(), iVar2 == 0)) &&
                (iVar2 = FUN_180899360(), iVar2 == 0)) {
                     // WARNING: Subroutine does not return
               AdvancedSystemManager();
@@ -200,8 +200,8 @@ int FUN_1808ab4ea(int param_1)
         *(int32_t *)((int64_t)puVar2 + 0xec) = 2;
         *puVar2 = &unknown_var_48_ptr;
         puVar2[6] = &unknown_var_9792_ptr;
-        iVar1 = FUN_1808ddc20();
-        if (((iVar1 == 0) && (iVar1 = FUN_1808ddc20(), iVar1 == 0)) &&
+        iVar1 = DataFlowProcessor();
+        if (((iVar1 == 0) && (iVar1 = DataFlowProcessor(), iVar1 == 0)) &&
            (iVar1 = FUN_180899360(), iVar1 == 0)) {
                     // WARNING: Subroutine does not return
           AdvancedSystemManager();
@@ -289,7 +289,7 @@ uint64_t FUN_1808ab6f0(uint64_t param_1,int64_t param_2,int32_t param_3)
   uint64_t *puStack_50;
   int8_t auStack_48 [32];
   
-  uVar6 = FUN_1808ddc20(param_1,auStack_48,1,param_3);
+  uVar6 = DataFlowProcessor(param_1,auStack_48,1,param_3);
   if ((int)uVar6 == 0) {
     iVar10 = 0;
     aiStack_58[0] = 0;
@@ -604,7 +604,7 @@ uint64_t FUN_1808ab910(uint64_t param_1,int64_t param_2,int32_t param_3)
   uint64_t *puStack_40;
   int8_t auStack_38 [32];
   
-  uVar4 = FUN_1808ddc20(param_1,auStack_38,1,param_3);
+  uVar4 = DataFlowProcessor(param_1,auStack_38,1,param_3);
   if ((int)uVar4 == 0) {
     iVar7 = 0;
     aiStack_48[0] = 0;

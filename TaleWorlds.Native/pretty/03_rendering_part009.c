@@ -320,7 +320,7 @@ int32_t * FUN_180272880(int32_t *param_1)
   *(uint64_t *)(param_1 + 0x90) = 0;
   *(uint64_t *)(param_1 + 0x8c) = 0;
   param_1[0x8e] = 0;
-  FUN_1808fc838(param_1 + 0x92,0x58,0x10,FUN_180049cd0,FUN_180044a30);
+  DataStructureManager(param_1 + 0x92,0x58,0x10,FUN_180049cd0,FUN_180044a30);
   FUN_180241f10(param_1 + 500);
   *param_1 = 0;
   param_1[0x1f2] = 0;

@@ -1,3 +1,6 @@
+/* SystemController - SystemCore_StateProcessor0 的语义化别名 */
+#define SystemController SystemCore_StateProcessor0
+
 #define ControlFlowHandler ControlFlowHandler  // 控制流处理器
 
 #include "TaleWorlds.Native.Split.h"

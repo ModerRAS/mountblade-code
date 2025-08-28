@@ -1102,7 +1102,7 @@ void RenderingSystem_CleanupResourceTable(int64_t resource_context, uint resourc
   while (temp_ptr = hash_ptr, temp_ptr != table_data) {
     table_size = temp_ptr[5];
     if (table_size != 0) {
-      FUN_1808fc8a8(table_size + 0x38, 0x30, 4, FUN_18004a130);
+      SystemDataValidator(table_size + 0x38, 0x30, 4, FUN_18004a130);
       buffer_ptr8 = (uint64_t *)(table_size + 0x18);
       *buffer_ptr8 = &RENDERING_DATA_ARRAY_ADDRESS;
       

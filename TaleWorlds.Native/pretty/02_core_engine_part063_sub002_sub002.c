@@ -1210,7 +1210,7 @@ LAB_18009be87:
   uVar10 = 0;
 LAB_18009bed0:
   lVar7 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x48,(char)param_1[5]);
-  FUN_180627ae0(lVar7 + 0x20,param_5);
+  SystemCore_NetworkHandler0(lVar7 + 0x20,param_5);
   *(int32_t *)(lVar7 + 0x40) = 0;
                     // WARNING: Subroutine does not return
   SystemConfigProcessor(lVar7,plVar8,param_1,uVar10);
@@ -1442,7 +1442,7 @@ LAB_18009c267:
   uVar10 = 0;
 LAB_18009c2b0:
   lVar7 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x48,(char)param_1[5]);
-  FUN_180627ae0(lVar7 + 0x20,param_5);
+  SystemCore_NetworkHandler0(lVar7 + 0x20,param_5);
   *(int8_t *)(lVar7 + 0x40) = 0;
                     // WARNING: Subroutine does not return
   SystemConfigProcessor(lVar7,plVar8,param_1,uVar10);
@@ -1602,7 +1602,7 @@ LAB_18009c4f7:
   uVar10 = 0;
 LAB_18009c540:
   lVar7 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x1c0,(char)param_1[5]);
-  FUN_180627ae0(lVar7 + 0x20,param_5);
+  SystemCore_NetworkHandler0(lVar7 + 0x20,param_5);
   FUN_18009ad10(lVar7 + 0x40);
                     // WARNING: Subroutine does not return
   SystemConfigProcessor(lVar7,plVar8,param_1,uVar10);

@@ -181,7 +181,7 @@ void FUN_1803c2600(int64_t param_1,uint64_t param_2,uint64_t param_3)
           if (puVar17 < puVar19) {
             puVar4 = puVar17 + 8;
             puStack_2c8 = puVar4;
-            FUN_180627ae0(puVar17);
+            SystemCore_NetworkHandler0(puVar17);
             puVar21 = puVar20;
           }
           else {
@@ -197,7 +197,7 @@ LAB_1803c29ae:
             }
             puStack_2f8 = puVar4;
             lVar14 = FUN_180059780(puVar20,puVar17,puVar4);
-            FUN_180627ae0(lVar14);
+            SystemCore_NetworkHandler0(lVar14);
             puVar4 = (uint *)(lVar14 + 0x20);
             puVar21 = puStack_2f8;
             for (puVar19 = puVar20; puStack_2f8 = puVar21, uStack_2f0 = puVar4, puVar19 != puVar17;

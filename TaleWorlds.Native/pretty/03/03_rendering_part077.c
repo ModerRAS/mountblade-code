@@ -200,7 +200,7 @@ uint64_t render_system_resource_status_checker(int64_t resource_context)
 uint64_t * render_system_buffer_cleaner(uint64_t *buffer_context)
 {
   // 清理缓冲区数据
-  FUN_1808fc838(buffer_context + 3, 0x20, 2, FUN_180627850, FUN_180627b90);
+  DataStructureManager(buffer_context + 3, 0x20, 2, FUN_180627850, FUN_180627b90);
   *buffer_context = 0xffffffffffffffff;
   buffer_context[1] = 0;
   *(int32_t *)(buffer_context + 2) = 0;
@@ -277,8 +277,8 @@ uint64_t * render_system_advanced_resource_manager(uint64_t *resource_context)
   resource_context[0x1f] = 0;
   *(int32_t *)(resource_context + 0x20) = 0;
   // 初始化缓冲区
-  FUN_1808fc838(resource_context + 0x26, 0x20, 2, FUN_180056e10, FUN_18004c030);
-  FUN_1808fc838(resource_context + 0x2e, 0x20, 2, FUN_180056e10, FUN_18004c030);
+  DataStructureManager(resource_context + 0x26, 0x20, 2, FUN_180056e10, FUN_18004c030);
+  DataStructureManager(resource_context + 0x2e, 0x20, 2, FUN_180056e10, FUN_18004c030);
   resource_context[0x36] = 0;
   temp_ptr3 = resource_context + 0x37;
   resource_context[0x3a] = 0;
@@ -483,8 +483,8 @@ void render_system_resource_cleaner(uint64_t *resource_context)
     (**(code **)(*(int64_t *)resource_context[0x36] + 0x38))();
   }
   // 清理缓冲区
-  FUN_1808fc8a8(resource_context + 0x2e, 0x20, 2, FUN_18004c030);
-  FUN_1808fc8a8(resource_context + 0x26, 0x20, 2, FUN_18004c030);
+  SystemDataValidator(resource_context + 0x2e, 0x20, 2, FUN_18004c030);
+  SystemDataValidator(resource_context + 0x26, 0x20, 2, FUN_18004c030);
   // 重置资源状态
   resource_context[0x1e] = &system_data_buffer_ptr;
   if (resource_context[0x1f] != 0) {

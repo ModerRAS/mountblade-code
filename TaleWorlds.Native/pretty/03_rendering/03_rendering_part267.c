@@ -447,7 +447,7 @@ void FUN_180416900(int64_t param_1, uint64_t param_2, int64_t param_3, int64_t p
     /* 检查数据有效性 */
     if (*(int64_t *)(param_1 + 8) != *(int64_t *)(param_1 + 0x10)) {
         /* 创建曲线对象 */
-        puVar7 = (uint64_t *)FUN_1804c1300(param_3 + 0x60, 0x60);
+        puVar7 = (uint64_t *)DataPipelineManager(param_3 + 0x60, 0x60);
         *puVar7 = 0;
         puVar7[1] = 0;
         puVar7[4] = 0;
@@ -483,7 +483,7 @@ void FUN_180416900(int64_t param_1, uint64_t param_2, int64_t param_3, int64_t p
         puVar7[0xb] = 0;
         
         /* 创建关键帧容器 */
-        puVar9 = (uint64_t *)FUN_1804c1300(param_3 + 0x60, 0x60);
+        puVar9 = (uint64_t *)DataPipelineManager(param_3 + 0x60, 0x60);
         *puVar9 = 0;
         puVar9[1] = 0;
         puVar9[4] = 0;
@@ -525,7 +525,7 @@ void FUN_180416900(int64_t param_1, uint64_t param_2, int64_t param_3, int64_t p
                 iVar6 = piVar11[7];
                 
                 /* 创建颜色关键帧 */
-                puVar7 = (uint64_t *)FUN_1804c1300(param_3 + 0x60, 0x60);
+                puVar7 = (uint64_t *)DataPipelineManager(param_3 + 0x60, 0x60);
                 *puVar7 = 0;
                 puVar7[1] = 0;
                 puVar7[4] = 0;
@@ -563,7 +563,7 @@ void FUN_180416900(int64_t param_1, uint64_t param_2, int64_t param_3, int64_t p
                 puVar7[0xb] = 0;
                 
                 /* 创建透明度关键帧 */
-                puVar7 = (uint64_t *)FUN_1804c1300(param_3 + 0x60, 0x60);
+                puVar7 = (uint64_t *)DataPipelineManager(param_3 + 0x60, 0x60);
                 *puVar7 = 0;
                 puVar7[1] = 0;
                 puVar7[4] = 0;
@@ -667,7 +667,7 @@ static void interpolate_alpha_values(float* target_array, float* source_array, f
 static void* allocate_animation_memory(size_t size)
 {
     /* 实现动画内存分配 */
-    return FUN_1804c1300(size, 0);
+    return DataPipelineManager(size, 0);
 }
 
 /**

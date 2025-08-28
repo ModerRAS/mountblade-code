@@ -319,15 +319,15 @@ int64_t * FUN_180241f10(int64_t *param_1)
   *(int32_t *)(param_1 + 0x32) = 3;
   plVar3 = param_1 + 0x33;
   lVar5 = 5;
-  FUN_1808fc838(plVar3,0x98,5,FUN_180049970,FUN_180044a30);
+  DataStructureManager(plVar3,0x98,5,FUN_180049970,FUN_180044a30);
   param_1[0x92] = 0;
   param_1[0x93] = 0;
   param_1[0x94] = 0;
   *(int32_t *)(param_1 + 0x95) = 3;
-  FUN_1808fc838(param_1 + 0x96,0x58,0x10,FUN_180049cd0,FUN_180044a30);
+  DataStructureManager(param_1 + 0x96,0x58,0x10,FUN_180049cd0,FUN_180044a30);
   plVar4 = param_1 + 0x146;
   lVar8 = 9;
-  FUN_1808fc838(plVar4,0x98,9,FUN_180049970,FUN_180044a30);
+  DataStructureManager(plVar4,0x98,9,FUN_180049970,FUN_180044a30);
   plVar1 = param_1 + 0x1f1;
   *plVar1 = (int64_t)&system_state_ptr;
   param_1[0x1f2] = 0;
@@ -455,7 +455,7 @@ void FUN_1802423f0(uint64_t *param_1)
   }
   FUN_180057830();
   FUN_180057170();
-  FUN_1808fc8a8(param_1 + 0x386,0x58,0x10,FUN_180044a30);
+  SystemDataValidator(param_1 + 0x386,0x58,0x10,FUN_180044a30);
   param_1[0x37b] = &system_state_ptr;
   param_1[0x370] = &system_state_ptr;
   param_1[0x365] = &system_state_ptr;
@@ -472,7 +472,7 @@ void FUN_1802423f0(uint64_t *param_1)
   param_1[0x2ec] = &system_state_ptr;
   param_1[0x2e1] = &system_state_ptr;
   param_1[0x2d6] = &system_state_ptr;
-  FUN_1808fc8a8(param_1 + 0x2cf,8,7,FUN_180045af0);
+  SystemDataValidator(param_1 + 0x2cf,8,7,FUN_180045af0);
   param_1[0x2c3] = &system_state_ptr;
   FUN_180242610();
   FUN_180170900(param_1 + 0x1d);

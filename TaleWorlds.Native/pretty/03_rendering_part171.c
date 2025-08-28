@@ -732,7 +732,7 @@ void FUN_180373d40(uint64_t *param_1)
   int64_t lVar3;
   uint64_t uVar4;
   
-  FUN_1808fc8a8(param_1 + 5,0x20,0x100,FUN_180046860,0xfffffffffffffffe);
+  SystemMemoryManager(param_1 + 5,0x20,0x100,FUN_180046860,0xfffffffffffffffe);
   puVar2 = (uint64_t *)*param_1;
   if (puVar2 == (uint64_t *)0x0) {
     return;

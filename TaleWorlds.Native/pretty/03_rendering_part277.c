@@ -259,8 +259,8 @@ uint64_t * FUN_18041bf60(uint64_t *param_1,uint64_t param_2,int64_t param_3)
   UNLOCK();
   param_1[0x18] = param_2;
   FUN_18029a300(param_1 + 0x19,param_3);
-  FUN_180627be0(param_1 + 0x25,param_3 + 0x60);
-  FUN_180627be0(param_1 + 0x29,param_3 + 0x80);
+  SystemCore_ConfigurationHandler0(param_1 + 0x25,param_3 + 0x60);
+  SystemCore_ConfigurationHandler0(param_1 + 0x29,param_3 + 0x80);
   *(int32_t *)(param_1 + 0x2d) = *(int32_t *)(param_3 + 0xa0);
   *(int32_t *)((int64_t)param_1 + 0x16c) = *(int32_t *)(param_3 + 0xa4);
   *(int32_t *)(param_1 + 0x2e) = *(int32_t *)(param_3 + 0xa8);

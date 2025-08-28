@@ -773,7 +773,7 @@ uint64_t FUN_1807861b0(int *param_1,uint64_t param_2,uint64_t param_3,int param_
   }
   else {
     if (param_4 != 0) {
-      lVar2 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_4 * 8,&unknown_var_9840_ptr,0x38,
+      lVar2 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_4 * 8,&unknown_var_9840_ptr,0x38,
                             0);
       *(int64_t *)(param_1 + 6) = lVar2;
       if (lVar2 == 0) {

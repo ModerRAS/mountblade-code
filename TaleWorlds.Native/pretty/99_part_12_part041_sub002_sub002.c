@@ -945,7 +945,7 @@ uint64_t FUN_1807e6ed0(int64_t param_1)
   if ((piVar1 != (int *)0x0) && (*piVar1 == 0x56737450)) {
     *(int **)(param_1 + 0x220) = piVar1;
     plVar2 = (int64_t *)
-             FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x18,&unknown_var_2528_ptr,0x8c,
+             SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x18,&unknown_var_2528_ptr,0x8c,
                            in_stack_ffffffffffffffc8 & 0xffffffff00000000);
     if (plVar2 == (int64_t *)0x0) {
       return 0x26;

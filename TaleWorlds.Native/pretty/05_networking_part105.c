@@ -272,7 +272,7 @@ uint64_t NetworkingDataProcessor(int64_t param_1, int64_t *param_2) {
     int8_t auStack_38[32];
     
     // 初始化网络协议验证
-    uVar3 = FUN_1808ddc20(param_2, auStack_38, 0, NETWORK_PROTOCOL_FEMP);
+    uVar3 = DataFlowProcessor(param_2, auStack_38, 0, NETWORK_PROTOCOL_FEMP);
     if ((int)uVar3 != 0) {
         return uVar3;
     }
@@ -506,7 +506,7 @@ uint64_t NetworkingConnectionValidator(int64_t param_1, int64_t *param_2) {
     int8_t auStack_48[32];
     
     // 初始化传输层安全协议验证
-    uVar2 = FUN_1808ddc20(param_2, auStack_48, 0, NETWORK_PROTOCOL_TSLP);
+    uVar2 = DataFlowProcessor(param_2, auStack_48, 0, NETWORK_PROTOCOL_TSLP);
     if ((int)uVar2 != 0) {
         return uVar2;
     }
@@ -908,9 +908,9 @@ uint64_t NetworkingTransferManager(int64_t param_1, uint64_t *param_2) {
     int8_t auStack_28[32];
     
     // 初始化快速前端协议验证
-    uVar2 = FUN_1808ddc20(param_2, auStack_28, 1, NETWORK_PROTOCOL_FFEP);
+    uVar2 = DataFlowProcessor(param_2, auStack_28, 1, NETWORK_PROTOCOL_FFEP);
     if (((((int)uVar2 != 0) ||
-          (uVar2 = FUN_1808ddc20(param_2, auStack_48, 0, NETWORK_PROTOCOL_BFEP), (int)uVar2 != 0)) ||
+          (uVar2 = DataFlowProcessor(param_2, auStack_48, 0, NETWORK_PROTOCOL_BFEP), (int)uVar2 != 0)) ||
          (uVar2 = FUN_180899360(param_2, param_1 + NETWORK_OFFSET_CONNECTION_DATA), (int)uVar2 != 0)) ||
         ((*(uint *)(param_2 + 8) < NETWORK_HEADER_SIZE_MIN &&
           (uVar2 = FUN_1808afc70(param_2, param_1 + NETWORK_OFFSET_SECURITY_DATA), (int)uVar2 != 0)))) {
@@ -1174,8 +1174,8 @@ void NetworkingConfigManager(int64_t param_1, uint64_t *param_2) {
     int8_t auStack_28[32];
     
     // 初始化联合操作协议验证
-    iVar1 = FUN_1808ddc20(param_2, auStack_28, 1, NETWORK_PROTOCOL_JORP);
-    if (((iVar1 == 0) && (iVar1 = FUN_1808ddc20(param_2, auStack_48, 0, NETWORK_PROTOCOL_IKNB), iVar1 == 0)) &&
+    iVar1 = DataFlowProcessor(param_2, auStack_28, 1, NETWORK_PROTOCOL_JORP);
+    if (((iVar1 == 0) && (iVar1 = DataFlowProcessor(param_2, auStack_48, 0, NETWORK_PROTOCOL_IKNB), iVar1 == 0)) &&
         (iVar1 = FUN_180899360(param_2, param_1 + NETWORK_OFFSET_CONNECTION_DATA), iVar1 == 0)) {
         if (*(uint *)(param_2 + 8) < NETWORK_DATA_SIZE_MIN_3) {
             iVar1 = 0;
@@ -1240,7 +1240,7 @@ void NetworkingConfigFinalizer(int32_t param_1) {
     int64_t unaff_RDI;
     int32_t extraout_XMM0_Da;
     
-    iVar1 = FUN_1808ddc20(param_1, &stack0x00000030, 0);
+    iVar1 = DataFlowProcessor(param_1, &stack0x00000030, 0);
     if (iVar1 == 0) {
         iVar1 = FUN_180899360(extraout_XMM0_Da, unaff_RDI + NETWORK_OFFSET_CONNECTION_DATA);
         if (iVar1 == 0) {

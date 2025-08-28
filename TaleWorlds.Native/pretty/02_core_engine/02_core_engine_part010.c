@@ -824,7 +824,7 @@ void initialize_system_components(int64_t *system_ptr,uint64_t *config_ptr)
   FUN_18005e300(stack_guard,&temp_ptr);
   (**(code **)(*new_system + 0x38))(new_system);
   core_system_control_pointer = (int64_t)*(int *)(system_main_module_state + 0x224);
-  FUN_180627be0(&system_memory_52c0,config_ptr);
+  SystemCore_ConfigurationHandler0(&system_memory_52c0,config_ptr);
   *config_ptr = &system_data_buffer_ptr;
   if (config_ptr[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -1232,7 +1232,7 @@ LAB_CONTINUE_SEARCH:
   current_ptr = (uint64_t *)FUN_180048cc0(resource_ptr,&resource_data_copy);
   current_ptr = (uint64_t *)*current_ptr;
 LAB_FOUND_RESOURCE:
-  FUN_180627be0(current_ptr + 8,resource_data);
+  SystemCore_ConfigurationHandler0(current_ptr + 8,resource_data);
   current_ptr[0xc] = param_4;
   return;
 }

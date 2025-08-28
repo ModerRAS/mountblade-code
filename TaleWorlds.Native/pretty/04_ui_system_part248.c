@@ -418,7 +418,7 @@ uint64_t FUN_18080ce10(int64_t param_1,int param_2)
   
   *(int *)(param_1 + 0x5d0) = param_2;
   uVar8 = 0;
-  lVar3 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 200,&unknown_var_9952_ptr,0x255,0
+  lVar3 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 200,&unknown_var_9952_ptr,0x255,0
                        );
   *(int64_t *)(param_1 + 0x5d8) = lVar3;
   if (lVar3 != 0) {
@@ -436,7 +436,7 @@ uint64_t FUN_18080ce10(int64_t param_1,int param_2)
       } while ((int)uVar5 < *(int *)(param_1 + 0x5d0));
     }
     *(int *)(param_1 + 0x3cc) = param_2 * 2;
-    lVar3 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 0x460,&unknown_var_9952_ptr,
+    lVar3 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 0x460,&unknown_var_9952_ptr,
                           0x264,0);
     *(int64_t *)(param_1 + 0x5e0) = lVar3;
     if (lVar3 != 0) {
@@ -459,7 +459,7 @@ uint64_t FUN_18080ce10(int64_t param_1,int param_2)
           uVar9 = uVar9 + 0x230;
         } while ((int)uVar5 < iVar7);
       }
-      lVar3 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar7 * 0x308,&unknown_var_9952_ptr,
+      lVar3 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar7 * 0x308,&unknown_var_9952_ptr,
                             0x271,0);
       *(int64_t *)(param_1 + 0x5e8) = lVar3;
       if (lVar3 != 0) {

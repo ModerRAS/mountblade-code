@@ -578,7 +578,7 @@ uint64_t *render_data_structure_copy(uint64_t *dest_buffer,uint64_t *src_buffer,
     (**(code **)(*plVar2 + 0x38))(); // 减少目标资源引用计数
   }
   // 执行深度数据复制和递归资源处理
-  FUN_180627be0(param_1 + 5,param_2 + 5,param_3,param_4,uVar6);
+  SystemCore_ConfigurationHandler0(param_1 + 5,param_2 + 5,param_3,param_4,uVar6);
   uVar3 = *(int32_t *)((int64_t)param_2 + 0x4c); // 获取辅助纹理ID
   uVar4 = *(int32_t *)(param_2 + 10); // 获取辅助着色器ID
   uVar5 = *(int32_t *)((int64_t)param_2 + 0x54); // 获取辅助材质ID

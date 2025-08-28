@@ -480,7 +480,7 @@ FUN_18074fc70(int64_t param_1,uint param_2,int param_3,int64_t param_4,int64_t *
   uint uVar6;
   
   if (*(int64_t *)(param_1 + 0xf0) == 0) {
-    lVar2 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x78,&system_string1_ptr,0x8b0,0);
+    lVar2 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x78,&system_string1_ptr,0x8b0,0);
     *(int64_t *)(param_1 + 0xf0) = lVar2;
     if (lVar2 == 0) {
       return 0x26;
@@ -622,7 +622,7 @@ uint64_t FUN_18074ffa0(int64_t param_1)
   
   lVar1 = *(int64_t *)(param_1 + 0x38);
   if (lVar1 == 0) {
-    lVar1 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x100,&system_string1_ptr,0x5a0,0);
+    lVar1 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x100,&system_string1_ptr,0x5a0,0);
     *(int64_t *)(param_1 + 0x38) = lVar1;
     if (lVar1 == 0) {
       return 0x26;

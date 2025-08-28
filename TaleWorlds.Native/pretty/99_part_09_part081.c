@@ -498,7 +498,7 @@ int64_t FUN_1805f3120(int64_t param_1)
   FUN_1805f4e90(param_1 + 0x60);
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(param_1 + 0x310,2);
-  FUN_1808fc838(param_1 + 0x360,0xcc8,8,FUN_1805f32b0,FUN_1804aa030);
+  DataStructureManager(param_1 + 0x360,0xcc8,8,FUN_1805f32b0,FUN_1804aa030);
   *(int32_t *)(param_1 + 4) = 0x40000000;
   return param_1;
 }
@@ -515,8 +515,8 @@ int64_t * FUN_1805f32b0(int64_t *param_1)
   
   *param_1 = system_system_data_memory + 0x1b8;
   lVar1 = 0x18;
-  FUN_1808fc838(param_1 + 1,8,0x18,&SUB_18005d5f0,FUN_180045af0);
-  FUN_1808fc838(param_1 + 0x19,0x20,0x18,FUN_180056de0,FUN_180046860);
+  DataStructureManager(param_1 + 1,8,0x18,&SUB_18005d5f0,SystemTimer);
+  DataStructureManager(param_1 + 0x19,0x20,0x18,FUN_180056de0,FUN_180046860);
   plVar2 = param_1 + 0xf1;
   do {
     func_0x0001805f5f90(plVar2);

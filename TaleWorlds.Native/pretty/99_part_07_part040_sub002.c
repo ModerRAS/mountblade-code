@@ -10,7 +10,7 @@ void FUN_1804c12a0(uint64_t param_1,int32_t param_2,char *param_3)
   uint64_t *puVar2;
   char *pcVar3;
   
-  puVar2 = (uint64_t *)FUN_1804c1300(param_1,0x60);
+  puVar2 = (uint64_t *)DataPipelineManager(param_1,0x60);
   *puVar2 = 0;
   puVar2[1] = 0;
   puVar2[4] = 0;
@@ -32,7 +32,7 @@ void FUN_1804c12a0(uint64_t param_1,int32_t param_2,char *param_3)
 
 
 
-int64_t FUN_1804c1300(int64_t *param_1,uint64_t param_2)
+int64_t DataPipelineManager(int64_t *param_1,uint64_t param_2)
 
 {
   int64_t *plVar1;

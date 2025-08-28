@@ -702,7 +702,7 @@ void process_material_batch_update(int64_t material_system, int64_t* texture_dat
         texture_format = 2;
     }
     else {
-        texture_source_ptr = (void**)FUN_180627ae0(&stack_buffer, *texture_data + 0x1f0);
+        texture_source_ptr = (void**)SystemCore_NetworkHandler0(&stack_buffer, *texture_data + 0x1f0);
         texture_format = 1;
     }
     

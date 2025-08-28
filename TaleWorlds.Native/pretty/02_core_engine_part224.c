@@ -21,7 +21,7 @@ void FUN_18019aac0(int64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t pa
   uint64_t uStack_50;
   int32_t uStack_48;
   
-  FUN_180627ae0(&puStack_88,param_3,param_3,param_4,0,0xfffffffffffffffe);
+  SystemCore_NetworkHandler0(&puStack_88,param_3,param_3,param_4,0,0xfffffffffffffffe);
   System_DataHandler(&puStack_88,&unknown_var_2452_ptr,*(uint64_t *)(param_2 + 0x20));
   lVar3 = *param_1;
   if (0 < iStack_78) {
@@ -50,7 +50,7 @@ void FUN_18019aac0(int64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t pa
   puVar1[1] = puVar4;
   for (lVar3 = *(int64_t *)(param_2 + 8); lVar3 != param_2; lVar3 = func_0x00018066bd70(lVar3)) {
     lVar5 = param_1[1];
-    FUN_180627ae0(&puStack_68,lVar3 + 0x20);
+    SystemCore_NetworkHandler0(&puStack_68,lVar3 + 0x20);
     uStack_48 = *(int32_t *)(lVar3 + 0x40);
     puVar1 = *(uint64_t **)(lVar5 + 8);
     if (puVar1 < *(uint64_t **)(lVar5 + 0x10)) {

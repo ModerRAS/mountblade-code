@@ -89,10 +89,10 @@ int64_t FUN_180650aa0(int64_t param_1, int64_t param_2)
   uint64_t uVar1;
   
   // 执行基础内存初始化操作
-  FUN_180627be0();
+  SystemCore_ConfigurationHandler0();
   
   // 复制基础数据块（0x20偏移）
-  FUN_180627be0(param_1 + 0x20, param_2 + 0x20);
+  SystemCore_ConfigurationHandler0(param_1 + 0x20, param_2 + 0x20);
   
   // 复制状态标志和数据
   *(int8_t *)(param_1 + 0x40) = *(int8_t *)(param_2 + 0x40);
@@ -101,8 +101,8 @@ int64_t FUN_180650aa0(int64_t param_1, int64_t param_2)
   *(int32_t *)(param_1 + 0x50) = *(int32_t *)(param_2 + 0x50);
   
   // 复制扩展数据块
-  FUN_180627be0(param_1 + 0x58, param_2 + 0x58);
-  FUN_180627be0(param_1 + 0x78, param_2 + 0x78);
+  SystemCore_ConfigurationHandler0(param_1 + 0x58, param_2 + 0x58);
+  SystemCore_ConfigurationHandler0(param_1 + 0x78, param_2 + 0x78);
   
   // 复制高级数据结构
   uVar1 = *(uint64_t *)(param_2 + 0xa0);
@@ -227,7 +227,7 @@ uint64_t FUN_180650c00(int64_t param_1, uint64_t param_2)
   }
   
   // 执行内存管理操作
-  uVar2 = FUN_180627be0(lVar1, param_2);
+  uVar2 = SystemCore_ConfigurationHandler0(lVar1, param_2);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -320,7 +320,7 @@ uint64_t FUN_180650e00(int64_t param_1, uint64_t param_2)
   }
   
   // 执行状态转换操作
-  uVar2 = FUN_180627be0(param_1, param_2);
+  uVar2 = SystemCore_ConfigurationHandler0(param_1, param_2);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -368,7 +368,7 @@ uint64_t FUN_180650f00(int64_t param_1, uint64_t param_2)
   }
   
   // 执行资源清理操作
-  uVar2 = FUN_180627be0(lVar1, param_2);
+  uVar2 = SystemCore_ConfigurationHandler0(lVar1, param_2);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -411,7 +411,7 @@ uint64_t FUN_180651000(int64_t param_1, uint64_t param_2)
   }
   
   // 执行性能优化操作
-  uVar2 = FUN_180627be0(param_1, param_2);
+  uVar2 = SystemCore_ConfigurationHandler0(param_1, param_2);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -454,7 +454,7 @@ uint64_t FUN_180651100(int64_t param_1, uint64_t param_2)
   }
   
   // 执行配置管理操作
-  uVar2 = FUN_180627be0(lVar1, param_2);
+  uVar2 = SystemCore_ConfigurationHandler0(lVar1, param_2);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -497,7 +497,7 @@ uint64_t FUN_180651200(int64_t param_1, uint64_t param_2)
   }
   
   // 执行错误处理操作
-  uVar2 = FUN_180627be0(param_1, param_2);
+  uVar2 = SystemCore_ConfigurationHandler0(param_1, param_2);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -540,7 +540,7 @@ uint64_t FUN_180651300(int64_t param_1, uint64_t param_2)
   }
   
   // 执行同步操作
-  uVar2 = FUN_180627be0(lVar1, param_2);
+  uVar2 = SystemCore_ConfigurationHandler0(lVar1, param_2);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -583,7 +583,7 @@ uint64_t FUN_180651400(int64_t param_1, uint64_t param_2)
   }
   
   // 执行调试操作
-  uVar2 = FUN_180627be0(param_1, param_2);
+  uVar2 = SystemCore_ConfigurationHandler0(param_1, param_2);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -626,7 +626,7 @@ uint64_t FUN_180651500(int64_t param_1, uint64_t param_2)
   }
   
   // 执行特性处理操作
-  uVar2 = FUN_180627be0(lVar1, param_2);
+  uVar2 = SystemCore_ConfigurationHandler0(lVar1, param_2);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -669,7 +669,7 @@ uint64_t FUN_180651560(int64_t param_1, uint64_t param_2, uint64_t param_3, uint
   }
   
   // 执行批处理操作
-  uVar2 = FUN_180627be0(param_1, param_2);
+  uVar2 = SystemCore_ConfigurationHandler0(param_1, param_2);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -712,7 +712,7 @@ uint64_t FUN_180651600(int64_t param_1, uint64_t param_2)
   }
   
   // 执行资源分配操作
-  uVar2 = FUN_180627be0(lVar1, param_2);
+  uVar2 = SystemCore_ConfigurationHandler0(lVar1, param_2);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -755,7 +755,7 @@ uint64_t FUN_180651700(int64_t param_1, uint64_t param_2)
   }
   
   // 执行缓存管理操作
-  uVar2 = FUN_180627be0(param_1, param_2);
+  uVar2 = SystemCore_ConfigurationHandler0(param_1, param_2);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -798,7 +798,7 @@ uint64_t FUN_180651800(int64_t param_1, uint64_t param_2)
   }
   
   // 执行高级渲染操作
-  uVar2 = FUN_180627be0(lVar1, param_2);
+  uVar2 = SystemCore_ConfigurationHandler0(lVar1, param_2);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -841,7 +841,7 @@ uint64_t FUN_180651900(int64_t param_1, uint64_t param_2)
   }
   
   // 执行数据流处理操作
-  uVar2 = FUN_180627be0(param_1, param_2);
+  uVar2 = SystemCore_ConfigurationHandler0(param_1, param_2);
   if ((int)uVar2 != 0) {
     return uVar2;
   }

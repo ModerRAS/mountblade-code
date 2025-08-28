@@ -160,7 +160,7 @@ void rendering_system_advanced_processor(code **render_context, code *render_dat
             index_guard = 0;
             vertex_data = temp_value;
             resource_base = context_backup;
-            FUN_180627ae0(vertex_buffer, &fragment_resource);
+            SystemCore_NetworkHandler0(vertex_buffer, &fragment_resource);
             vertex_size_1 = (int32_t)index_guard;
             vertex_size_2 = index_guard._4_4_;
             vertex_size_3 = (int32_t)vertex_data;

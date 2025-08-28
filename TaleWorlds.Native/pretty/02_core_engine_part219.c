@@ -166,7 +166,7 @@ uint64_t * FUN_1801954d0(uint64_t *param_1,int64_t param_2)
   param_1[0x5b] = 0;
   param_1[0x5c] = 0;
   *(int32_t *)(param_1 + 0x5d) = 3;
-  FUN_1808fc838(param_1 + 0x5e,8,4,&SUB_18005d5f0,FUN_180045af0);
+  DataStructureManager(param_1 + 0x5e,8,4,&SUB_18005d5f0,SystemTimer);
   param_1[100] = 0;
   param_1[0x6c] = 0;
   param_1[0x6d] = 0;
@@ -360,7 +360,7 @@ uint64_t * FUN_1801954d0(uint64_t *param_1,int64_t param_2)
     UNLOCK();
     uVar8 = uVar8 + 1;
   } while (uVar8 < 8);
-  FUN_1808fc838(param_1 + 0x7f7,0x908,2,&unknown_var_1248_ptr,FUN_1800e7d00);
+  DataStructureManager(param_1 + 0x7f7,0x908,2,&unknown_var_1248_ptr,FUN_1800e7d00);
   *(int32_t *)(param_1 + 0xa39) = 0;
   LOCK();
   *(int32_t *)(param_1 + 0xa3a) = 0;
@@ -407,7 +407,7 @@ uint64_t * FUN_1801954d0(uint64_t *param_1,int64_t param_2)
   param_1[0xb94] = 0;
   param_1[0xb95] = 0;
   *(int32_t *)(param_1 + 0xb96) = 3;
-  FUN_1808fc838(param_1 + 0xb97,0x2408,1,&ui_config_ptr,FUN_1801b99e0);
+  DataStructureManager(param_1 + 0xb97,0x2408,1,&ui_config_ptr,FUN_1801b99e0);
   *(int32_t *)(param_1 + 0x1018) = 0;
   _Mtx_init_in_situ(param_1 + 0x1019,2);
   param_1[0x1023] = 0;
@@ -948,7 +948,7 @@ void FUN_180196b80(int64_t param_1)
   
   uVar1 = 0xfffffffffffffffe;
   FUN_1800e7d00(param_1 + 0x1218);
-  FUN_1808fc8a8(param_1,0x908,2,FUN_1800e7d00,uVar1);
+  SystemMemoryManager(param_1,0x908,2,FUN_1800e7d00,uVar1);
   return;
 }
 
@@ -975,7 +975,7 @@ uint64_t * FUN_180196bd0(uint64_t *param_1)
 void FUN_180196c10(uint64_t param_1)
 
 {
-  FUN_1808fc8a8(param_1,0x2408,1,FUN_1801b99e0,0xfffffffffffffffe);
+  SystemMemoryManager(param_1,0x2408,1,FUN_1801b99e0,0xfffffffffffffffe);
   return;
 }
 
@@ -996,7 +996,7 @@ void FUN_180196c40(int64_t param_1)
     CoreMemoryPoolInitializer();
   }
   _Mtx_destroy_in_situ();
-  FUN_1808fc8a8(param_1 + 0x30,8,2,FUN_180045af0);
+  SystemMemoryManager(param_1 + 0x30,8,2,SystemTimer);
   if (*(int64_t **)(param_1 + 0x20) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(param_1 + 0x20) + 0x38))();
   }
@@ -1017,7 +1017,7 @@ void FUN_180196c40(int64_t param_1)
 void FUN_180196cf0(int64_t param_1)
 
 {
-  FUN_1808fc8a8(param_1 + 8,0x20,0x20,FUN_18004a130,0xfffffffffffffffe);
+  SystemMemoryManager(param_1 + 8,0x20,0x20,FUN_18004a130,0xfffffffffffffffe);
   return;
 }
 

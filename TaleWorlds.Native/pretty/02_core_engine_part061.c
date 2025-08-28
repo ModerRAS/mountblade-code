@@ -491,7 +491,7 @@ void FUN_180099430(int64_t param_1,int64_t param_2)
       uStack_26c = 0;
       plStack_278 = (int64_t *)0x10000010001;
       pcStack_2d8 = FUN_180045af0;
-      FUN_1808fc838(auStack_238,8,0x10,&SUB_18005d5f0);
+      DataStructureManager(auStack_238,8,0x10,&SUB_18005d5f0);
       plStack_2b0 = (int64_t *)0x0;
       puStack_2d0 = auStack_1b8;
       FUN_180206da0(puStack_2d0,*(uint64_t *)(*(int64_t *)(param_1 + 0x10) + 0x18),&plStack_278,
@@ -812,7 +812,7 @@ void FUN_180099430(int64_t param_1,int64_t param_2)
         (**(code **)(*plStack_278 + 0x38))();
       }
       (**(code **)(*plVar19 + 0x38))(plVar19);
-      FUN_1808fc8a8(auStack_238,8,0x10,FUN_180045af0);
+      SystemDataValidator(auStack_238,8,0x10,FUN_180045af0);
     }
   }
                     // WARNING: Subroutine does not return
@@ -848,7 +848,7 @@ void SystemDataBufferManager(uint64_t param_1)
   // - 0x10: 缓冲区头部大小
   // - FUN_180045af0: 内存清理回调函数
   // - 0xfffffffffffffffe: 安全Cookie掩码
-  FUN_1808fc8a8(param_1, 8, 0x10, FUN_180045af0, SYSTEM_SECURITY_COOKIE_MASK);
+  SystemDataValidator(param_1, 8, 0x10, FUN_180045af0, SYSTEM_SECURITY_COOKIE_MASK);
   
   // 函数执行完成，返回调用者
   return;
@@ -1198,7 +1198,7 @@ void DataProcessingAndSortingFunction(uint64_t param_1, uint64_t param_2, int64_
   }
   
   // 初始化输出数据结构
-  puVar8 = (uint64_t *)FUN_1804c1300(param_3 + 0x60, 0x60);
+  puVar8 = (uint64_t *)DataPipelineManager(param_3 + 0x60, 0x60);
   uVar15 = 0;
   *puVar8 = 0;
   puVar8[1] = 0;

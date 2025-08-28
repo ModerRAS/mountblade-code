@@ -580,7 +580,7 @@ void FUN_1801c1880(void *param_1,int64_t param_2,uint64_t param_3,int8_t *param_
   uStack_a8 = uStack_100;
   puStack_90 = param_1;
   puStack_88 = (uint *)uStack_100;
-  FUN_180627ae0(auStack_68,&puStack_e0);
+  SystemCore_NetworkHandler0(auStack_68,&puStack_e0);
   uStack_48 = uStack_c0;
   uStack_44 = uStack_bc;
   uStack_40 = uStack_b8;

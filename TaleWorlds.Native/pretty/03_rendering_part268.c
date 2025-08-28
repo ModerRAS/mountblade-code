@@ -35,7 +35,7 @@ void FUN_180416926(uint64_t param_1,uint64_t param_2,int64_t param_3)
   *(uint64_t *)(in_R11 + 0x10) = unaff_RBX;
   *(uint64_t *)(in_R11 + 0x18) = unaff_R12;
   *(uint64_t *)(in_R11 + -0x28) = unaff_R14;
-  puVar5 = (uint64_t *)FUN_1804c1300(param_3 + 0x60,0x60);
+  puVar5 = (uint64_t *)DataPipelineManager(param_3 + 0x60,0x60);
   *puVar5 = 0;
   puVar5[1] = 0;
   puVar5[4] = 0;
@@ -64,7 +64,7 @@ void FUN_180416926(uint64_t param_1,uint64_t param_2,int64_t param_3)
   *(uint64_t **)(unaff_RDI + 0x38) = puVar5;
   puVar5[4] = unaff_RDI;
   puVar5[0xb] = 0;
-  puVar7 = (uint64_t *)FUN_1804c1300(unaff_R15 + 0x60,0x60);
+  puVar7 = (uint64_t *)DataPipelineManager(unaff_R15 + 0x60,0x60);
   *puVar7 = 0;
   puVar7[1] = 0;
   puVar7[4] = 0;
@@ -100,7 +100,7 @@ void FUN_180416926(uint64_t param_1,uint64_t param_2,int64_t param_3)
       iStack0000000000000044 = piVar9[5];
       fVar4 = (float)piVar9[6];
       iStack000000000000004c = piVar9[7];
-      puVar5 = (uint64_t *)FUN_1804c1300(unaff_R15 + 0x60,0x60);
+      puVar5 = (uint64_t *)DataPipelineManager(unaff_R15 + 0x60,0x60);
       *puVar5 = 0;
       puVar5[1] = 0;
       puVar5[4] = 0;
@@ -129,7 +129,7 @@ void FUN_180416926(uint64_t param_1,uint64_t param_2,int64_t param_3)
       puVar7[7] = puVar5;
       puVar5[4] = puVar7;
       puVar5[0xb] = 0;
-      puVar5 = (uint64_t *)FUN_1804c1300(unaff_R15 + 0x60,0x60);
+      puVar5 = (uint64_t *)DataPipelineManager(unaff_R15 + 0x60,0x60);
       *puVar5 = 0;
       puVar5[1] = 0;
       puVar5[4] = 0;
@@ -202,7 +202,7 @@ void FUN_180416a8c(void)
     iStack0000000000000044 = unaff_RSI[5];
     fStack0000000000000048 = (float)unaff_RSI[6];
     iStack000000000000004c = unaff_RSI[7];
-    plVar1 = (int64_t *)FUN_1804c1300(unaff_R15 + 0x60,0x60);
+    plVar1 = (int64_t *)DataPipelineManager(unaff_R15 + 0x60,0x60);
     *plVar1 = unaff_R12;
     plVar1[1] = unaff_R12;
     plVar1[4] = unaff_R12;
@@ -232,7 +232,7 @@ void FUN_180416a8c(void)
     *(int64_t **)(unaff_RDI + 0x38) = plVar1;
     plVar1[4] = unaff_RDI;
     plVar1[0xb] = unaff_R12;
-    plVar1 = (int64_t *)FUN_1804c1300(unaff_R15 + 0x60,0x60);
+    plVar1 = (int64_t *)DataPipelineManager(unaff_R15 + 0x60,0x60);
     *plVar1 = unaff_R12;
     plVar1[1] = unaff_R12;
     plVar1[4] = unaff_R12;

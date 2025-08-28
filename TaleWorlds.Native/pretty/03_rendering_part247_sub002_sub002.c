@@ -1034,7 +1034,7 @@ LAB_180409e3f:
                     *(int8_t *)((int64_t)puVar18 + 0x11) =
                          *(int8_t *)((int64_t)puVar18 + lVar11 + 0x11);
                     puVar18[5] = *(int32_t *)((int64_t)puVar18 + lVar11 + 0x14);
-                    FUN_180627be0(puVar18 + 7,lVar11 + 0x1c + (int64_t)puVar18);
+                    SystemCore_ConfigurationHandler0(puVar18 + 7,lVar11 + 0x1c + (int64_t)puVar18);
                     puVar18 = puVar18 + 0x10;
                     lVar19 = lVar19 + -1;
                   } while (lVar19 != 0);

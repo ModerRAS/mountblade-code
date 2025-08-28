@@ -453,7 +453,7 @@ LAB_1802e0d97:
     if (plVar21 != (int64_t *)0x0) {
       (**(code **)(*plVar21 + 0x38))();
     }
-    FUN_180627be0(&uStack_d0,&puStack_130);
+    SystemCore_ConfigurationHandler0(&uStack_d0,&puStack_130);
     plVar7 = plStack_100;
     uStack_b0 = CONCAT44(uStack_10c,uStack_110);
     uStack_a8 = CONCAT44(uStack_104,uStack_108);
@@ -538,7 +538,7 @@ LAB_1802e0f33:
     }
     FUN_1801c92a0(&puStack_f8);
     if (cStack_1c7 != '\0') {
-      FUN_180627be0(&puStack_130,*(uint64_t *)(param_2 + 0x168));
+      SystemCore_ConfigurationHandler0(&puStack_130,*(uint64_t *)(param_2 + 0x168));
       aplStack_1b0[0] =
            (int64_t *)FUN_1803d0880(param_2,&puStack_188,*(uint64_t *)(param_2 + 0x170));
       if (0 < (int)aplStack_1b0[0][2]) {

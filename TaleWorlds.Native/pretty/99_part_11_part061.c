@@ -106,7 +106,7 @@ void FUN_1807bf5f8(void)
         *(int *)(unaff_RDI + 0xbd0) = iVar8;
         iVar3 = SystemDataAnalyzer(*(uint64_t *)(unaff_RDI + 0x170),unaff_RDI + 0x178,1);
         if (iVar3 == 0) {
-          lVar4 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
+          lVar4 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
                                 *(int *)(unaff_RDI + 0x8fc) << 3,&unknown_var_7040_ptr,0x542,
                                 unaff_R14 & 0xffffffff);
           *(int64_t *)(unaff_RDI + 0x848) = lVar4;
@@ -278,7 +278,7 @@ void FUN_1807bf683(void)
   *(int *)(unaff_RDI + 0xbd0) = iVar8;
   iVar3 = SystemDataAnalyzer(*(uint64_t *)(unaff_RDI + 0x170),unaff_RDI + 0x178,1);
   if (iVar3 == 0) {
-    lVar4 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int *)(unaff_RDI + 0x8fc) << 3,
+    lVar4 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int *)(unaff_RDI + 0x8fc) << 3,
                           &unknown_var_7040_ptr,0x542,unaff_R14 & 0xffffffff);
     *(int64_t *)(unaff_RDI + 0x848) = lVar4;
     if (lVar4 != 0) {
@@ -363,7 +363,7 @@ void FUN_1807bf8f8(int64_t param_1,int param_2,uint64_t param_3,uint64_t param_4
   int64_t unaff_RDI;
   uint64_t unaff_R14;
   
-  lVar4 = FUN_180742050(*(uint64_t *)(param_1 + 0x1a0),param_2 << 3,param_3,param_4,
+  lVar4 = SystemCore_TransformationEngine0(*(uint64_t *)(param_1 + 0x1a0),param_2 << 3,param_3,param_4,
                         unaff_R14 & 0xffffffff);
   *(int64_t *)(unaff_RDI + 0x848) = lVar4;
   if (lVar4 != 0) {

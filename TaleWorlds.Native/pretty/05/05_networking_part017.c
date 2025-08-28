@@ -1,3 +1,6 @@
+/* SystemController - SystemCore_StateProcessor0 的语义化别名 */
+#define SystemController SystemCore_StateProcessor0
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -129,7 +132,7 @@ void process_network_connection_state(uint64_t *network_context, uint64_t connec
   // 验证连接句柄有效性
   if (connection_handle == 0) {
     // 连接句柄无效，触发错误处理
-    FUN_18084b240(connection_id, protocol_buffer);
+    SystemController(connection_id, protocol_buffer);
   }
   
   // 检查连接状态

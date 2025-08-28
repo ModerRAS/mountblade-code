@@ -1,3 +1,6 @@
+/* SystemEventHandler - FUN_1808fd200 的语义化别名 */
+#define SystemEventHandler FUN_1808fd200
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -63,9 +66,9 @@
 // 功能: CoreEngineFileHandler - 核心引擎函数的语义化别名
 #define FUN_18063ba00 CoreEngineFileHandler
 
-// FUN_1808fc8a8 的别名定义
+// SystemDataValidator 的别名定义
 // 功能: CoreEngineSystemConfigurator - 核心引擎函数的语义化别名
-#define FUN_1808fc8a8 CoreEngineSystemConfigurator
+#define SystemDataValidator CoreEngineSystemConfigurator
 
 // FUN_1800693f0 的别名定义
 // 功能: CoreEngineDataInitializer - 核心引擎函数的语义化别名

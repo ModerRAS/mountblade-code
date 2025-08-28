@@ -1,3 +1,6 @@
+/* UIManager - FUN_18086b47c 的语义化别名 */
+#define UIManager FUN_18086b47c
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 

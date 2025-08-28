@@ -26,7 +26,7 @@ uint64_t FUN_18089b7d0(int64_t param_1,int64_t *param_2)
   uint auStackX_20 [2];
   int8_t auStack_48 [32];
   
-  uVar5 = FUN_1808ddc20(param_2,auStack_48,0,0x54534e49);
+  uVar5 = DataFlowProcessor(param_2,auStack_48,0,0x54534e49);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
@@ -661,7 +661,7 @@ void FUN_18089bc10(int64_t param_1,uint64_t *param_2)
   uint auStackX_20 [2];
   int8_t auStack_48 [32];
   
-  iVar4 = FUN_1808ddc20(param_2,auStack_48,0,0x2050414d);
+  iVar4 = DataFlowProcessor(param_2,auStack_48,0,0x2050414d);
   if ((iVar4 == 0) && (iVar4 = FUN_180899360(param_2,param_1 + 0x10), iVar4 == 0)) {
     auStackX_20[0] = 0;
     iVar4 = FUN_1808afe30(*param_2,auStackX_20);

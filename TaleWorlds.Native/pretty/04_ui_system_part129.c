@@ -31,7 +31,7 @@ uint64_t FUN_180743010(int64_t param_1)
   *plVar1 = (int64_t)plVar1;
   plVar1[2] = 0;
   plVar2 = (int64_t *)
-           FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x2000,&unknown_var_8208_ptr,0xd6,0);
+           SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x2000,&unknown_var_8208_ptr,0xd6,0);
   if (plVar2 == (int64_t *)0x0) {
                     // WARNING: Subroutine does not return
     SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar1,&unknown_var_8208_ptr,0xd9,1);

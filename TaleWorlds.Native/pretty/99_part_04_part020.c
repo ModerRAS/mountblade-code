@@ -595,7 +595,7 @@ void FUN_18026a4b0(int64_t param_1)
     if (plVar2 != (int64_t *)0x0) {
       (**(code **)(*plVar2 + 0x28))(plVar2);
     }
-    FUN_180627be0(plVar2 + 9,param_1 + 0x68);
+    SystemCore_ConfigurationHandler0(plVar2 + 9,param_1 + 0x68);
     plVar2[2] = param_1;
     *(int32_t *)(plVar2 + 0xe) = 1;
     plStackX_8 = (int64_t *)0x0;
@@ -703,7 +703,7 @@ void FUN_18026a670(int64_t param_1,int64_t param_2)
     lVar8 = *plVar10;
   }
   *(int64_t *)(param_1 + 0x90) = lVar8;
-  FUN_180627be0(param_1 + 0x18,param_2);
+  SystemCore_ConfigurationHandler0(param_1 + 0x18,param_2);
   uVar16 = 0;
   iVar1 = (int)(*(int64_t *)(param_2 + 0x28) - *(int64_t *)(param_2 + 0x20) >> 3);
   lVar11 = (int64_t)iVar1;

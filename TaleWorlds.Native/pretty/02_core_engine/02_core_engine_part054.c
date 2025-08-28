@@ -404,9 +404,9 @@ uint64_t * initialize_thread_manager(uint64_t *thread_manager)
   
   // 初始化32个线程槽位
   loop_counter = 0x20;
-  FUN_1808fc838(thread_manager + 1, 8, 0x20, &SUB_18005d5f0, FUN_180045af0);
+  DataStructureManager(thread_manager + 1, 8, 0x20, &SUB_18005d5f0, FUN_180045af0);
   thread_pool = thread_manager + 0x21;
-  FUN_1808fc838(thread_pool, 8, 0x20, &SUB_18005d5f0, FUN_180045af0);
+  DataStructureManager(thread_pool, 8, 0x20, &SUB_18005d5f0, FUN_180045af0);
   
   // 初始化状态标志
   thread_manager[0x71] = 0;
@@ -415,7 +415,7 @@ uint64_t * initialize_thread_manager(uint64_t *thread_manager)
   *(int *)(thread_manager + 0x74) = 3;
   
   // 初始化线程池
-  FUN_1808fc838(thread_manager + 0x76, 0x20, 0x20, FUN_180627850, FUN_180627b90);
+  DataStructureManager(thread_manager + 0x76, 0x20, 0x20, FUN_180627850, FUN_180627b90);
   thread_manager[0x75] = 0;
   
   // 初始化互斥锁
@@ -514,16 +514,16 @@ void destroy_thread_manager(int64_t thread_manager)
   _Mtx_destroy_in_situ();
   
   // 清理线程池资源
-  FUN_1808fc8a8(thread_manager + 0x3b0, 0x20, 0x20, FUN_180627b90, cleanup_flag);
+  SystemDataValidator(thread_manager + 0x3b0, 0x20, 0x20, FUN_180627b90, cleanup_flag);
   
   // 清理内部状态
   FUN_18005d580();
   
   // 清理辅助线程池
-  FUN_1808fc8a8(thread_manager + 0x108, 8, 0x20, FUN_180045af0);
+  SystemDataValidator(thread_manager + 0x108, 8, 0x20, FUN_180045af0);
   
   // 清理主线程池
-  FUN_1808fc8a8(thread_manager + 8, 8, 0x20, FUN_180045af0);
+  SystemDataValidator(thread_manager + 8, 8, 0x20, FUN_180045af0);
   
   return;
 }
@@ -567,10 +567,10 @@ void cleanup_resource_manager(int64_t *resource_manager)
   }
   
   // 清理资源池
-  FUN_1808fc8a8(resource_manager + 6, 0x20, 0x50, FUN_180627b90, cleanup_flag);
+  SystemDataValidator(resource_manager + 6, 0x20, 0x50, FUN_180627b90, cleanup_flag);
   
   // 清理对象引用
-  FUN_1808fc8a8(resource_manager + 1, 8, 4, FUN_180045af0);
+  SystemDataValidator(resource_manager + 1, 8, 4, FUN_180045af0);
   
   // 清理主对象引用
   if ((int64_t *)*resource_manager != (int64_t *)0x0) {
@@ -593,7 +593,7 @@ void cleanup_resource_manager(int64_t *resource_manager)
 void cleanup_simple_resource_manager(int64_t simple_manager)
 {
   // 清理资源管理器的基础资源
-  FUN_1808fc8a8(simple_manager + 8, 0x20, 0x20, FUN_180627b90, 0xfffffffffffffffe);
+  SystemDataValidator(simple_manager + 8, 0x20, 0x20, FUN_180627b90, 0xfffffffffffffffe);
   return;
 }
 
@@ -1025,10 +1025,10 @@ int64_t * create_render_manager(int64_t *render_manager)
   *render_manager = 0;
   
   // 初始化主线程池（4个线程槽位）
-  FUN_1808fc838(render_manager + 1, 8, 4, &SUB_18005d5f0, FUN_180045af0);
+  DataStructureManager(render_manager + 1, 8, 4, &SUB_18005d5f0, FUN_180045af0);
   
   // 初始化资源池（80个资源槽位，每个80字节）
-  FUN_1808fc838(render_manager + 6, 0x20, 0x50, FUN_180627850, FUN_180627b90);
+  DataStructureManager(render_manager + 6, 0x20, 0x50, FUN_180627850, FUN_180627b90);
   
   // 设置资源管理参数
   render_manager[0x1a4] = 0;           // 资源对象指针

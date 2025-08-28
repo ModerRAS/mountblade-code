@@ -1,3 +1,6 @@
+/* SystemController - SystemCore_StateProcessor0 的语义化别名 */
+#define SystemController SystemCore_StateProcessor0
+
 #define SystemInitializer System_Initializer2  // 系统初始化器
 
 // 渲染系统数据处理相关函数

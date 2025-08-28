@@ -46,7 +46,7 @@ void FUN_1801ba720(int64_t param_1)
     uStack_78 = 0;
     pcStack_b8 = FUN_180045af0;
     lStack_a0 = param_1;
-    FUN_1808fc838(auStack_70,8,2,&SUB_18005d5f0);
+    DataStructureManager(auStack_70,8,2,&SUB_18005d5f0);
     uStack_60 = 0;
     uStack_58 = 0;
     uStack_50 = 0;

@@ -111,7 +111,7 @@ LAB_180193610:
       }
     }
   }
-  FUN_180627be0(physics_context + 0x28,physics_context + 8);
+  SystemCore_ConfigurationHandler0(physics_context + 0x28,physics_context + 8);
 LAB_18019368b:
   
   // 处理各种物理材质属性标志位

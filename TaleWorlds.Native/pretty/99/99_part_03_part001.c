@@ -160,14 +160,14 @@ final_mismatch:
     temp_ptr3 = (uint64_t ***)&stack_ptr3;
     stack_ptr3 = global_ptr;
     stack_flag2 = match_flag;
-    FUN_180627ae0(&stack_ptr4, param_2);
+    SystemCore_NetworkHandler0(&stack_ptr4, param_2);
     
     // 构建处理链
     temp_ptr3 = (uint64_t ***)&stack_ptr3;
     temp_ptr4 = &stack_ptr1;
     stack_ptr1 = stack_ptr3;
     stack_flag1 = stack_flag2;
-    FUN_180627ae0(&stack_ptr2, &stack_ptr4);
+    SystemCore_NetworkHandler0(&stack_ptr2, &stack_ptr4);
     temp_ptr4 = &stack_ptr1;
     func_ptr1 = FUN_1801eb5a0;
     func_ptr2 = FUN_1801eb560;
@@ -177,7 +177,7 @@ final_mismatch:
     *result_ptr = stack_ptr1;
     *(int8_t *)(result_ptr + 1) = stack_flag1;
     temp_ptr5 = result_ptr;
-    FUN_180627ae0(result_ptr + 2, &stack_ptr2);
+    SystemCore_NetworkHandler0(result_ptr + 2, &stack_ptr2);
     temp_ptr4 = (uint64_t **)&stack_ptr2;
     stack_ptr2 = &global_config_3456_ptr;
     ptr_array[0] = result_ptr;
@@ -1091,7 +1091,7 @@ void path_builder(int64_t *param_1, int64_t param_2)
     }
     else {
         // 使用自定义路径
-        FUN_180627be0(param_1, param_2 + 0x2d0);
+        SystemCore_ConfigurationHandler0(param_1, param_2 + 0x2d0);
     }
     SystemSecurityChecker(stack_ulong1 ^ (uint64_t)temp_buffer1);
 }

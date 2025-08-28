@@ -262,9 +262,9 @@ LAB_1802c9326:
       }
     }
 LAB_1802c945e:
-    FUN_1808fc8a8(auStack_1b0,0x58,4,FUN_180044a30);
-    FUN_1808fc8a8(auStack_310,0x58,4,FUN_180044a30);
-    FUN_1808fc8a8(auStack_510,0x20,0x10,FUN_180059620);
+    SystemDataValidator(auStack_1b0,0x58,4,FUN_180044a30);
+    SystemDataValidator(auStack_310,0x58,4,FUN_180044a30);
+    SystemDataValidator(auStack_510,0x20,0x10,FUN_180059620);
     ppuStack_5b0 = &puStack_558;
     puStack_558 = &system_data_buffer_ptr;
     if (lStack_550 != 0) {

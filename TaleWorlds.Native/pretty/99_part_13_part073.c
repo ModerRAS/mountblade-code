@@ -1,3 +1,6 @@
+/* SystemController - SystemCore_StateProcessor0 的语义化别名 */
+#define SystemController SystemCore_StateProcessor0
+
 // 系统初始化和清理函数
 #define SystemInitializer System_Initializer2  // 系统初始化器
 #define SystemStateCleaner FUN_1808fcb30  // 系统状态清理器

@@ -534,7 +534,7 @@ void FUN_1802f98b0(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
   char *pcVar4;
   
   uStack_68 = 0xfffffffffffffffe;
-  puVar2 = (uint64_t *)FUN_1804c1300(param_2 + 0x60,0x60);
+  puVar2 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x60);
   *puVar2 = 0;
   puVar2[1] = 0;
   puVar2[4] = 0;

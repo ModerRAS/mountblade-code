@@ -36,7 +36,7 @@ LAB_18013f51b:
 LAB_18013f524:
   lVar5 = CoreEngine_MemoryAllocator(system_memory_pool_ptr,0x48,*(int8_t *)(param_1 + 0x28),param_4,
                         0xfffffffffffffffe);
-  FUN_180627ae0(lVar5 + 0x20,param_5);
+  SystemCore_NetworkHandler0(lVar5 + 0x20,param_5);
   *(uint64_t *)(lVar5 + 0x40) = 0;
                     // WARNING: Subroutine does not return
   SystemConfigProcessor(lVar5,param_3,param_1,uVar4);
@@ -340,7 +340,7 @@ uint64_t FUN_180141820(int64_t *param_1)
   uint64_t uStack_40;
   
   uStack_40 = 0xfffffffffffffffe;
-  FUN_180627ae0(&puStack_c0);
+  SystemCore_NetworkHandler0(&puStack_c0);
   puStack_a0 = &system_data_buffer_ptr;
   uStack_88 = 0;
   puStack_98 = (uint64_t *)0x0;

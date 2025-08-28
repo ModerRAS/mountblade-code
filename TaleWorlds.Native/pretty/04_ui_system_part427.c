@@ -32,11 +32,11 @@ uint64_t FUN_18089e820(int64_t param_1,int64_t *param_2)
   int8_t auStack_58 [32];
   
   uVar6 = 1;
-  uVar4 = FUN_1808ddc20(param_2,auStack_58,1,0x4e415254);
+  uVar4 = DataFlowProcessor(param_2,auStack_58,1,0x4e415254);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
-  uVar4 = FUN_1808ddc20(param_2,auStack_78,0,0x424e5254);
+  uVar4 = DataFlowProcessor(param_2,auStack_78,0,0x424e5254);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
@@ -949,9 +949,9 @@ uint64_t FUN_18089ede0(int64_t param_1,uint64_t *param_2)
   int8_t auStack_48 [32];
   int8_t auStack_28 [32];
   
-  uVar2 = FUN_1808ddc20(param_2,auStack_28,1,0x54494157);
+  uVar2 = DataFlowProcessor(param_2,auStack_28,1,0x54494157);
   if (((((int)uVar2 == 0) &&
-       (uVar2 = FUN_1808ddc20(param_2,auStack_48,0,0x42494157), (int)uVar2 == 0)) &&
+       (uVar2 = DataFlowProcessor(param_2,auStack_48,0,0x42494157), (int)uVar2 == 0)) &&
       (uVar2 = FUN_180899360(param_2,param_1 + 0x10), (int)uVar2 == 0)) &&
      ((0x45 < *(uint *)(param_2 + 8) ||
       (uVar2 = FUN_1808a2d50(param_2,param_1 + 0xd8), (int)uVar2 == 0)))) {

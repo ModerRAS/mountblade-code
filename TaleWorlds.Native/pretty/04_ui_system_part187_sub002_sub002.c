@@ -79,7 +79,7 @@ LAB_18077788a:
     iVar12 = iVar12 * 4;
     uStack_118 = 0;
     *(int *)(param_1 + 0x2f0) = iVar12;
-    lVar11 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar12 + 0x10,&unknown_var_5616_ptr);
+    lVar11 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar12 + 0x10,&unknown_var_5616_ptr);
     *(int64_t *)(param_1 + 0x2e8) = lVar11;
     *(uint64_t *)(param_1 + 0x2e0) = lVar11 + 0xfU & 0xfffffffffffffff0;
     if (lVar11 == 0) goto LAB_180778681;

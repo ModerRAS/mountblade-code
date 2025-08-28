@@ -178,12 +178,12 @@ void FUN_18029ace0(uint64_t *param_1)
   FUN_180058370(param_1 + 0x103b,param_1[0x103d]);
   FUN_180058370(param_1 + 0x1035,param_1[0x1037]);
   FUN_180058370(param_1 + 0x102f,param_1[0x1031]);
-  FUN_1808fc8a8(param_1 + 0x101b,0x20,5,FUN_180046860);
+  SystemDataValidator(param_1 + 0x101b,0x20,5,FUN_180046860);
   if (*plVar1 != 0) {
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
   }
-  FUN_1808fc8a8(param_1 + 0xffd,0x20,5,FUN_180046860);
+  SystemDataValidator(param_1 + 0xffd,0x20,5,FUN_180046860);
   lVar3 = param_1[0xffa];
   for (lVar4 = param_1[0xff9]; lVar4 != lVar3; lVar4 = lVar4 + 0x40) {
     FUN_180152b00(lVar4);

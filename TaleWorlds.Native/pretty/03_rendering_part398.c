@@ -105,7 +105,7 @@ LAB_18048bc4f:
     *(int16_t *)(puStack_50 + 1) = 0x6c;
     uStack_48 = 9;
     ppuStackX_20 = &puStack_58;
-    FUN_180627be0(lVar1 + 0x858,&puStack_58);
+    SystemCore_ConfigurationHandler0(lVar1 + 0x858,&puStack_58);
     puStack_58 = &system_data_buffer_ptr;
     if (puStack_50 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return

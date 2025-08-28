@@ -231,7 +231,7 @@ void FUN_180582ab0(int64_t param_1,float param_2)
       (**(code **)(render_system_data_config + 0x210))
                 (*(int32_t *)(lVar11 + 0x98d928),*(int32_t *)(param_1 + 0xc),&fStack_1d0);
       pcStack_288 = FUN_18004a130;
-      FUN_1808fc838(auStack_1a8,0x30,4,FUN_1801c2890);
+      DataStructureManager(auStack_1a8,0x30,4,FUN_1801c2890);
       uStack_e8 = 0;
       puStack_270 = (int8_t *)0x0;
       if (0.0 < fStack_1b0) {
@@ -249,7 +249,7 @@ void FUN_180582ab0(int64_t param_1,float param_2)
       uStack_278 = 0xffffffff;
       pcStack_288 = (code *)((uint64_t)pcStack_288 & 0xffffffffffffff00);
       FUN_1804f83f0(*(uint64_t *)(param_1 + 0x10),iVar5,&uStack_258,1);
-      FUN_1808fc8a8(auStack_1a8,0x30,4,FUN_18004a130);
+      SystemMemoryManager(auStack_1a8,0x30,4,FUN_18004a130);
     }
   }
   if ((*(int64_t **)(param_1 + 0xd0) != (int64_t *)0x0) &&

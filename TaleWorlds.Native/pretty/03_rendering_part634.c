@@ -782,7 +782,7 @@ LAB_18061fb27:
   *puVar13 = &unknown_var_3672_ptr;
   *puVar13 = &unknown_var_2488_ptr;
   puStackX_18 = puVar13;
-  FUN_1808fc838(puVar13 + 1,0x38,2,FUN_18061cb70,FUN_18061cd80);
+  DataStructureManager(puVar13 + 1,0x38,2,FUN_18061cb70,FUN_18061cd80);
   *(int32_t *)(puVar13 + 0xf) = 0;
   param_1[0x48] = puVar13;
   puVar13 = (uint64_t *)FUN_1808fc418(0xb8);
@@ -798,7 +798,7 @@ LAB_18061fb27:
   *(int32_t *)(puVar13 + 6) = 3;
   *(int32_t *)(puVar13 + 7) = 0;
   puStackX_18 = puVar13;
-  FUN_1808fc838(puVar13 + 8,0x38,2,FUN_18061cb70,FUN_18061cd80);
+  DataStructureManager(puVar13 + 8,0x38,2,FUN_18061cb70,FUN_18061cd80);
   *(int32_t *)(puVar13 + 0x16) = 0;
   param_1[0x49] = puVar13;
   FUN_180080ca0(param_1 + 0x3c,param_1[10] - *plVar1 >> 3);

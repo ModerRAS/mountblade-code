@@ -626,7 +626,7 @@ LAB_1801e7757:
   uVar7 = 0;
 LAB_1801e7762:
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar3,lVar4,param_1,uVar7);
+  SystemNetworkHandler(lVar3,lVar4,param_1,uVar7);
 }
 
 
@@ -739,7 +739,7 @@ LAB_1801e79ad:
     uVar5 = 1;
   }
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar4,puVar2,param_1,uVar5);
+  SystemNetworkHandler(lVar4,puVar2,param_1,uVar5);
 }
 
 

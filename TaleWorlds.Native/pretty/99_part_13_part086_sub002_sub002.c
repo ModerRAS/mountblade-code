@@ -1177,7 +1177,7 @@ uint64_t thunk_FUN_1808e3970(uint64_t param_1,int64_t *param_2)
     puStack_58 = &unknown_var_9416_ptr;
     iVar1 = (int)uStack_60;
     iVar4 = iVar1 + 0xc;
-    piVar3 = (int *)FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar4,&unknown_var_9024_ptr,0x28,
+    piVar3 = (int *)SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar4,&unknown_var_9024_ptr,0x28,
                                   0);
     if (piVar3 == (int *)0x0) {
       uVar2 = 0x26;

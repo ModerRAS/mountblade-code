@@ -35,7 +35,7 @@ uint64_t FUN_1808aa190(uint64_t param_1,int64_t param_2,int32_t param_3)
   uint64_t *puStack_50;
   int8_t auStack_48 [32];
   
-  uVar6 = FUN_1808ddc20(param_1,auStack_48,1,param_3);
+  uVar6 = DataFlowProcessor(param_1,auStack_48,1,param_3);
   if ((int)uVar6 == 0) {
     aiStack_58[0] = 0;
     uVar4 = FUN_1808de650(param_1,aiStack_58);
@@ -347,7 +347,7 @@ uint64_t FUN_1808aa3a0(uint64_t *param_1,int64_t param_2,int32_t param_3)
   int8_t auStack_68 [32];
   int8_t auStack_48 [32];
   
-  uVar6 = FUN_1808ddc20(param_1,auStack_48,1,param_3);
+  uVar6 = DataFlowProcessor(param_1,auStack_48,1,param_3);
   aiStack_78[0] = (int)uVar6;
   if (aiStack_78[0] == 0) {
     uVar4 = FUN_1808de650(param_1,aiStack_78);
@@ -393,7 +393,7 @@ uint64_t FUN_1808aa3a0(uint64_t *param_1,int64_t param_2,int32_t param_3)
             puVar7[6] = 0;
             puVar7[7] = 0;
             puStack_70 = puVar7;
-            iVar5 = FUN_1808ddc20(param_1,auStack_68,0,0x56525543);
+            iVar5 = DataFlowProcessor(param_1,auStack_68,0,0x56525543);
             if ((iVar5 == 0) && (iVar5 = FUN_180899360(param_1,puVar7 + 2), iVar5 == 0)) {
               if (*(int *)(param_1[1] + 0x18) == 0) {
                 iVar5 = FUN_180899090(*param_1,puVar7 + 4);
@@ -501,7 +501,7 @@ uint64_t FUN_1808aa3d1(void)
         puVar7[6] = 0;
         puVar7[7] = 0;
         in_stack_00000048 = puVar7;
-        iVar5 = FUN_1808ddc20(uVar11,&stack0x00000050,0,0x56525543);
+        iVar5 = DataFlowProcessor(uVar11,&stack0x00000050,0,0x56525543);
         uVar11 = extraout_XMM0_Da_01;
         if ((iVar5 == 0) &&
            (iVar5 = FUN_180899360(extraout_XMM0_Da_01,puVar7 + 2), uVar11 = extraout_XMM0_Da_02,
@@ -606,7 +606,7 @@ uint64_t FUN_1808aa407(int param_1)
         puVar6[6] = 0;
         puVar6[7] = 0;
         in_stack_00000048 = puVar6;
-        iVar4 = FUN_1808ddc20(uVar10,&stack0x00000050,0,0x56525543);
+        iVar4 = DataFlowProcessor(uVar10,&stack0x00000050,0,0x56525543);
         uVar10 = extraout_XMM0_Da_00;
         if ((iVar4 == 0) &&
            (iVar4 = FUN_180899360(extraout_XMM0_Da_00,puVar6 + 2), uVar10 = extraout_XMM0_Da_01,
@@ -701,7 +701,7 @@ int FUN_1808aa42a(int32_t param_1)
         puVar5[6] = 0;
         puVar5[7] = 0;
         in_stack_00000048 = puVar5;
-        iVar4 = FUN_1808ddc20(uVar8,&stack0x00000050,0,0x56525543);
+        iVar4 = DataFlowProcessor(uVar8,&stack0x00000050,0,0x56525543);
         uVar8 = extraout_XMM0_Da;
         if ((iVar4 == 0) &&
            (iVar4 = FUN_180899360(extraout_XMM0_Da,puVar5 + 2), uVar8 = extraout_XMM0_Da_00,

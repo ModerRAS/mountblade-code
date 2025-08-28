@@ -1,3 +1,6 @@
+/* SystemEventHandler - FUN_1808fd200 的语义化别名 */
+#define SystemEventHandler FUN_1808fd200
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -947,11 +950,11 @@ void FUN_1800b4550(int64_t param_1)
   uVar1 = 0xfffffffffffffffe;
   FUN_1800b3fe0();
   FUN_180057830();
-  FUN_1808fc8a8(param_1 + 0xc60,8,0x14,FUN_180045af0,uVar1);
+  SystemDataValidator(param_1 + 0xc60,8,0x14,FUN_180045af0,uVar1);
   if (*(int64_t **)(param_1 + 0xc58) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(param_1 + 0xc58) + 0x38))();
   }
-  FUN_1808fc8a8(param_1 + 0xc08,8,10,FUN_180045af0,uVar1);
+  SystemDataValidator(param_1 + 0xc08,8,10,FUN_180045af0,uVar1);
   FUN_180058370(param_1 + 0xbd8,*(uint64_t *)(param_1 + 0xbe8));
   FUN_1800b9270(param_1 + 0xba8,*(uint64_t *)(param_1 + 3000));
   _Mtx_destroy_in_situ();
@@ -972,7 +975,7 @@ void FUN_1800b4550(int64_t param_1)
   FUN_180057830();
   FUN_180057830();
   FUN_180057830();
-  FUN_1808fc8a8(param_1 + 0x5a0,0x20,9,FUN_18004c030);
+  SystemDataValidator(param_1 + 0x5a0,0x20,9,FUN_18004c030);
   FUN_180057830();
   *(uint64_t *)(param_1 + 0x560) = &system_data_buffer_ptr;
   if (*(int64_t *)(param_1 + 0x568) != 0) {
@@ -982,7 +985,7 @@ void FUN_1800b4550(int64_t param_1)
   *(uint64_t *)(param_1 + 0x568) = 0;
   *(int32_t *)(param_1 + 0x578) = 0;
   *(uint64_t *)(param_1 + 0x560) = &system_state_ptr;
-  FUN_1808fc8a8(param_1 + 8,0x98,9,FUN_1802ab7f0);
+  SystemDataValidator(param_1 + 8,0x98,9,FUN_1802ab7f0);
   return;
 }
 
@@ -1042,7 +1045,7 @@ void FUN_1800b4830(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
 void FUN_1800b4860(uint64_t param_1)
 
 {
-  FUN_1808fc8a8(param_1,8,10,FUN_180045af0,0xfffffffffffffffe);
+  SystemDataValidator(param_1,8,10,FUN_180045af0,0xfffffffffffffffe);
   return;
 }
 
@@ -1150,7 +1153,7 @@ uint64_t * FUN_1800b4a40(uint64_t *param_1)
 {
   uint64_t *puVar1;
   
-  FUN_1808fc838(param_1 + 1,0x98,9,FUN_1802ab780,FUN_1802ab7f0);
+  DataStructureManager(param_1 + 1,0x98,9,FUN_1802ab780,FUN_1802ab7f0);
   param_1[0xac] = &system_state_ptr;
   param_1[0xad] = 0;
   *(int32_t *)(param_1 + 0xae) = 0;
@@ -1162,7 +1165,7 @@ uint64_t * FUN_1800b4a40(uint64_t *param_1)
   param_1[0xb1] = 0;
   param_1[0xb2] = 0;
   *(int32_t *)(param_1 + 0xb3) = 3;
-  FUN_1808fc838(param_1 + 0xb4,0x20,9,FUN_180056e10,FUN_18004c030);
+  DataStructureManager(param_1 + 0xb4,0x20,9,FUN_180056e10,FUN_18004c030);
   param_1[0xd8] = 0;
   param_1[0xd9] = 0;
   param_1[0xda] = 0;
@@ -1232,9 +1235,9 @@ uint64_t * FUN_1800b4a40(uint64_t *param_1)
   param_1[0x17d] = 0;
   *(int8_t *)(param_1 + 0x17e) = 0;
   param_1[0x17f] = 0;
-  FUN_1808fc838(param_1 + 0x181,8,10,&SUB_18005d5f0,FUN_180045af0);
+  DataStructureManager(param_1 + 0x181,8,10,&SUB_18005d5f0,FUN_180045af0);
   param_1[0x18b] = 0;
-  FUN_1808fc838(param_1 + 0x18c,8,0x14,&SUB_18005d5f0,FUN_180045af0);
+  DataStructureManager(param_1 + 0x18c,8,0x14,&SUB_18005d5f0,FUN_180045af0);
   param_1[0x1a0] = 0;
   param_1[0x1a1] = 0;
   param_1[0x1a2] = 0;

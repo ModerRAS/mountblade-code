@@ -458,7 +458,7 @@ LAB_18030c154:
     // 第五阶段：点数据处理和权重计算
     // 处理胶囊体的端点数据和相关权重计算
     pcStack_1f8 = FUN_1800f88f0;
-    FUN_1808fc838(auStack_178,0x58,2,FUN_18030cdf0);
+    DataStructureManager(auStack_178,0x58,2,FUN_18030cdf0);
     ppuStack_1d8 = &puStack_70;
     puStack_70 = &system_data_buffer_ptr;
     uStack_58 = 0;
@@ -918,7 +918,7 @@ LAB_18030c89f:
     lStack_68 = 0;
     uStack_58 = uStack_58 & 0xffffffff00000000;
     puStack_70 = &system_state_ptr;
-    FUN_1808fc8a8(auStack_178,RENDERING_STACK_BUFFER_SIZE,2,FUN_1800f88f0);
+    SystemDataValidator(auStack_178,RENDERING_STACK_BUFFER_SIZE,2,FUN_1800f88f0);
     if (puVar9 == (uint64_t *)0x0) goto LAB_18030c93f;
     goto LAB_18030c154;
 LAB_18030c575:

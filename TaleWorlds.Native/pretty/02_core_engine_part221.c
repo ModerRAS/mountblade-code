@@ -233,7 +233,7 @@ void ObjectManagerDestructor(uint64_t *param_1)
     FUN_18005d580();
     
     /* 清理事件队列 */
-    FUN_1808fc8a8(param_1 + 0xc061, 0x20, 0x20, FUN_18004a130);
+    SystemDataValidator(param_1 + 0xc061, 0x20, 0x20, FUN_18004a130);
     FUN_180196c40(param_1 + 0x1045);
     if ((int64_t *)param_1[0x1043] != (int64_t *)0x0) {
         (**(code **)(*(int64_t *)param_1[0x1043] + 0x38))();
@@ -269,7 +269,7 @@ void ObjectManagerDestructor(uint64_t *param_1)
         CoreEngine_MemoryPoolManager();
     }
     _Mtx_destroy_in_situ();
-    FUN_1808fc8a8(param_1 + 0xb97, 0x2408, 1, FUN_1801b99e0);
+    SystemDataValidator(param_1 + 0xb97, 0x2408, 1, FUN_1801b99e0);
     if (param_1[0xb93] != 0) {
         CoreEngine_MemoryPoolManager();
     }
@@ -288,7 +288,7 @@ void ObjectManagerDestructor(uint64_t *param_1)
     /* 清理渲染资源 */
     FUN_1800e7c40(param_1 + 0xb5b);
     FUN_1800e7d00(param_1 + 0xa3a);
-    FUN_1808fc8a8(param_1 + 0x7f7, 0x908, 2, FUN_1800e7d00);
+    SystemDataValidator(param_1 + 0x7f7, 0x908, 2, FUN_1800e7d00);
     FUN_1800e7c40(param_1 + 0x7ed);
     param_1[0x7da] = &system_data_buffer_ptr;
     if (param_1[0x7db] != 0) {
@@ -425,7 +425,7 @@ void ObjectManagerDestructor(uint64_t *param_1)
     }
     
     /* 清理系统事件 */
-    FUN_1808fc8a8(param_1 + 0x5e, 8, 4, FUN_180045af0);
+    SystemDataValidator(param_1 + 0x5e, 8, 4, FUN_180045af0);
     if (param_1[0x5a] != 0) {
         CoreEngine_MemoryPoolManager();
     }

@@ -833,7 +833,7 @@ void FUN_1802d1460(int32_t *param_1,uint64_t param_2)
   puStack_98 = puVar1;
   puStack_88 = param_1;
   puStack_80 = param_1;
-  FUN_1808fc838(param_1 + 0x22,8,2,&SUB_18005d5f0);
+  DataStructureManager(param_1 + 0x22,8,2,&SUB_18005d5f0);
   *(uint64_t *)(param_1 + 0x26) = 0;
   *(uint64_t *)(param_1 + 0x28) = 0;
   *(uint64_t *)(param_1 + 0x2a) = 0;
@@ -845,9 +845,9 @@ void FUN_1802d1460(int32_t *param_1,uint64_t param_2)
     lVar3 = lVar3 + -1;
   } while (lVar3 != 0);
   pcStack_a8 = FUN_180046860;
-  FUN_1808fc838(param_1 + 0x5a,0x20,6,FUN_180056de0);
+  DataStructureManager(param_1 + 0x5a,0x20,6,FUN_180056de0);
   pcStack_a8 = FUN_180046860;
-  FUN_1808fc838(param_1 + 0x90,0x20,6,FUN_180056de0);
+  DataStructureManager(param_1 + 0x90,0x20,6,FUN_180056de0);
   uStack_78 = 0x40;
   uStack_70 = 0x80;
   uStack_6c = 0x200;
@@ -869,10 +869,10 @@ void FUN_1802d1460(int32_t *param_1,uint64_t param_2)
   func_0x0001802d1250(puVar1,0,&uStack_48);
   FUN_1801be9f0(puVar1,*(int32_t *)(SYSTEM_STATE_MANAGER + 0xb60));
   pcStack_a8 = FUN_180045af0;
-  FUN_1808fc838(param_1 + 0xc4,8,2,&SUB_18005d5f0);
+  DataStructureManager(param_1 + 0xc4,8,2,&SUB_18005d5f0);
   *(uint64_t *)(param_1 + 200) = 0;
   pcStack_a8 = FUN_180045af0;
-  FUN_1808fc838(param_1 + 0xca,8,2,&SUB_18005d5f0);
+  DataStructureManager(param_1 + 0xca,8,2,&SUB_18005d5f0);
   *(uint64_t *)(param_1 + 0xce) = 0;
   *(uint64_t *)(param_1 + 0xd0) = 0;
   *(uint64_t *)(param_1 + 0xd2) = 0;

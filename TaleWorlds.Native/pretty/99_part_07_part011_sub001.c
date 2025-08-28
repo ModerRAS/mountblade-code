@@ -97,7 +97,7 @@ void FUN_1804a45f0(uint64_t param_1,int64_t *param_2)
       if (((((int64_t)puStack_58 - (int64_t)puStack_60 & 0xffffffffffffffe0U) == 0x40) &&
           (0 < *(int *)(puStack_60 + 2))) && (0 < *(int *)(puStack_60 + 6))) {
         uVar7 = FUN_1801427a0(param_2,puStack_60);
-        FUN_180627be0(uVar7,puVar4 + 4);
+        SystemCore_ConfigurationHandler0(uVar7,puVar4 + 4);
       }
       for (; puVar3 != puVar5; puVar3 = puVar3 + 4) {
         (**(code **)*puVar3)(puVar3,0);

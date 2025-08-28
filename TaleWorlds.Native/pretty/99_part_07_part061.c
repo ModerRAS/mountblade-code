@@ -301,7 +301,7 @@ LAB_1804d4bf3:
   pcStack_378 = FUN_180045af0;
   uStack_34c = uVar4;
   plStack_348 = plVar48;
-  FUN_1808fc838(plVar48 + 0x12,8,8,&SUB_18005d5f0);
+  DataStructureManager(plVar48 + 0x12,8,8,&SUB_18005d5f0);
   FUN_1804dff20(plVar48);
   pcStack_378 = (code *)param_3;
   FUN_1804dd2e0(param_1 + 0x2b20,alStack_248);

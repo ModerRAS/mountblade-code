@@ -280,9 +280,9 @@ uint64_t * FUN_18022a720(uint64_t *param_1,uint64_t *param_2)
   
   lVar1 = param_1[0xb];
   lVar2 = param_2[0xb];
-  FUN_180627be0(lVar1,lVar2);
-  FUN_180627be0(lVar1 + 0x20,lVar2 + 0x20);
-  FUN_180627be0(lVar1 + 0x40,lVar2 + 0x40);
+  SystemCore_ConfigurationHandler0(lVar1,lVar2);
+  SystemCore_ConfigurationHandler0(lVar1 + 0x20,lVar2 + 0x20);
+  SystemCore_ConfigurationHandler0(lVar1 + 0x40,lVar2 + 0x40);
   uVar3 = param_2[1];
   *param_1 = *param_2;
   param_1[1] = uVar3;

@@ -1,3 +1,6 @@
+/* SystemController - SystemCore_StateProcessor0 的语义化别名 */
+#define SystemController SystemCore_StateProcessor0
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -119,7 +122,7 @@ void FUN_1805238b0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
   *(uint64_t *)(param_1 + 0x6b0) = 0;
   lVar4 = *(int64_t *)(param_1 + 0x8f8);
   if (lVar4 != 0) {
-    FUN_1808fc8a8(lVar4 + 8,0x1f8,5,FUN_18058f420);
+    SystemDataValidator(lVar4 + 8,0x1f8,5,FUN_18058f420);
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner(lVar4);
   }
@@ -320,7 +323,7 @@ void FUN_1805238b0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
       }
       return;
     }
-    FUN_1808fc8a8(lVar4,0x10,0x40,FUN_180534590,uVar10,uVar2,uVar11,uVar12,uVar14,uVar13,uVar8,
+    SystemDataValidator(lVar4,0x10,0x40,FUN_180534590,uVar10,uVar2,uVar11,uVar12,uVar14,uVar13,uVar8,
                   uVar16,uVar17);
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner(lVar4);

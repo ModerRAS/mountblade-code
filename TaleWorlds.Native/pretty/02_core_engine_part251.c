@@ -37,7 +37,7 @@ void FUN_180217300(int64_t *param_1)
     DataTransformer(iVar2,3,lVar1,&unknown_var_7112_ptr);
   }
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    SystemDataProcessor();
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_158);
@@ -722,7 +722,7 @@ FUN_180218290(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4
     FUN_18066c220(param_1 + 0x20,&param_5,*(int32_t *)(param_1 + 0x10),
                   *(int32_t *)(param_1 + 0x18),1);
     lVar3 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x88,*(int8_t *)(param_1 + 0x2c));
-    FUN_180627ae0(lVar3,param_4);
+    SystemCore_NetworkHandler0(lVar3,param_4);
                     // WARNING: Subroutine does not return
     memset(lVar3 + 0x20,0,0x60);
   }

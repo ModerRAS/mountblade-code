@@ -1162,13 +1162,13 @@ RenderObject* CloneRenderObject(uint64_t allocator, RenderObject* source_object)
     *(int32_t *)(cloned_object + 0x50) = render_flags;
     
     // 深拷贝渲染资源
-    FUN_180627be0(cloned_object + 0x58, source_object + 0x58);   // 纹理资源数组
-    FUN_180627be0(cloned_object + 0x78, source_object + 0x78);   // 材质资源数组
-    FUN_180627be0(cloned_object + 0x98, source_object + 0x98);   // 着色器资源数组
-    FUN_180627be0(cloned_object + 0xb8, source_object + 0xb8);   // 顶点缓冲区数组
-    FUN_180627be0(cloned_object + 0xd8, source_object + 0xd8);   // 索引缓冲区数组
-    FUN_180627be0(cloned_object + 0xf8, source_object + 0xf8);   // 常量缓冲区数组
-    FUN_180627be0(cloned_object + 0x118, source_object + 0x118); // 采样器状态数组
+    SystemCore_ConfigurationHandler0(cloned_object + 0x58, source_object + 0x58);   // 纹理资源数组
+    SystemCore_ConfigurationHandler0(cloned_object + 0x78, source_object + 0x78);   // 材质资源数组
+    SystemCore_ConfigurationHandler0(cloned_object + 0x98, source_object + 0x98);   // 着色器资源数组
+    SystemCore_ConfigurationHandler0(cloned_object + 0xb8, source_object + 0xb8);   // 顶点缓冲区数组
+    SystemCore_ConfigurationHandler0(cloned_object + 0xd8, source_object + 0xd8);   // 索引缓冲区数组
+    SystemCore_ConfigurationHandler0(cloned_object + 0xf8, source_object + 0xf8);   // 常量缓冲区数组
+    SystemCore_ConfigurationHandler0(cloned_object + 0x118, source_object + 0x118); // 采样器状态数组
     
     // 复制渲染状态对象
     *(int32_t *)(cloned_object + 0x138) = *(int32_t *)(source_object + 0x138);
@@ -1179,8 +1179,8 @@ RenderObject* CloneRenderObject(uint64_t allocator, RenderObject* source_object)
     
     // 复制渲染数据和扩展属性
     CopyRenderData(cloned_object + 0x150, source_object + 0x150);
-    FUN_180627be0(cloned_object + 0x170, source_object + 0x170);   // 扩展数据区域1
-    FUN_180627be0(cloned_object + 400, source_object + 400);      // 扩展数据区域2
+    SystemCore_ConfigurationHandler0(cloned_object + 0x170, source_object + 0x170);   // 扩展数据区域1
+    SystemCore_ConfigurationHandler0(cloned_object + 400, source_object + 400);      // 扩展数据区域2
     
     // 复制渲染标志位
     *(int8_t *)(cloned_object + 0x1b0) = *(int8_t *)(source_object + 0x1b0);

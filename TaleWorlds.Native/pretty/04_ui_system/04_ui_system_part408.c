@@ -1,3 +1,6 @@
+/* SystemController - SystemCore_StateProcessor0 的语义化别名 */
+#define SystemController SystemCore_StateProcessor0
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -525,7 +528,7 @@ void UI_System_ProcessControlData2(UI_System_ControlHandle param_1, UI_System_Ev
             resource_data = (**(code **)(**(UI_System_ControlHandle **)(param_2 + 800) + UI_SYSTEM_CALLBACK_OFFSET))
                           (*(UI_System_ControlHandle **)(param_2 + 800), control_data, 1);
             if (resource_data == 0) {
-                FUN_18084b240(control_data, stack_data_40);
+                SystemController(control_data, stack_data_40);
             }
             
             // 验证资源指针
@@ -556,7 +559,7 @@ void UI_System_ProcessControlData3(UI_System_ControlHandle* param_1, UI_System_E
     // 获取资源数据
     resource_data = (**(code **)(*param_1 + UI_SYSTEM_CALLBACK_OFFSET))(param_1, param_2 + 0x30);
     if (resource_data == 0) {
-        FUN_18084b240(param_2 + 0x30, &stack0x00000028);
+        SystemController(param_2 + 0x30, &stack0x00000028);
     }
     
     // 验证资源指针

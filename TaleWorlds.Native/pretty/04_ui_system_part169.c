@@ -71,7 +71,7 @@ int FUN_180769c60(int64_t *param_1,int64_t param_2,int param_3,int param_4,int64
   *(int *)((int64_t)param_1 + 0x15c) = iVar4;
   if ((iVar4 != 0) && (param_1[0x3c] == 0)) {
     lVar6 = param_1[0x3d];
-    lVar7 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar4 + 1,&unknown_var_1664_ptr,0x6d0,0);
+    lVar7 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar4 + 1,&unknown_var_1664_ptr,0x6d0,0);
     param_1[0x3d] = lVar7;
     if (lVar7 == 0) {
       return 0x26;

@@ -1,3 +1,6 @@
+/* SystemController - SystemCore_StateProcessor0 的语义化别名 */
+#define SystemController SystemCore_StateProcessor0
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -1390,7 +1393,7 @@ void ui_system_resource_manager_type1(int64_t ui_manager, uint64_t resource_data
     // 错误处理
     if (handle_result == 0) {
         // 警告：子函数不返回
-        FUN_18084b240(resource_data, stack_protector_2);
+        SystemController(resource_data, stack_protector_2);
     }
     
     // 警告：子函数不返回

@@ -188,10 +188,10 @@ extern uint64_t FUN_1801b4cd0(uint64_t param_1);
 extern char FUN_18063e7e0(uint64_t param_1, uint64_t *param_2);
 extern float FUN_1801a5620(uint64_t param_1, int64_t param_2, int8_t param_3);
 extern code *FUN_18004a130(void);
-extern void FUN_1808fc838(int8_t *param_1, int param_2, int param_3, code *param_4);
+extern void DataStructureManager(int8_t *param_1, int param_2, int param_3, code *param_4);
 extern void FUN_1801594d0(int8_t *param_1, float *param_2);
 extern void FUN_1804f83f0(uint64_t param_1, int param_2, uint64_t *param_3, int param_4);
-extern void FUN_1808fc8a8(int8_t *param_1, int param_2, int param_3, code *param_4);
+extern void SystemDataValidator(int8_t *param_1, int param_2, int param_3, code *param_4);
 extern void FUN_1808fc050(uint64_t param_1);
 
 // ============================================================================

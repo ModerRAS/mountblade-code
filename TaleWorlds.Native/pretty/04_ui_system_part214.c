@@ -56,7 +56,7 @@ void FUN_18078ea55(void)
   if (in_ZF) {
     if ((in_R11D >> 0x10 & 1) == 0) {
       uVar22 = CONCAT44(uVar5,(int)unaff_R14);
-      lVar6 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x160,&unknown_var_1936_ptr,0x445,
+      lVar6 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x160,&unknown_var_1936_ptr,0x445,
                             uVar22);
       uVar5 = (uint)((uint64_t)uVar22 >> 0x20);
       if ((lVar6 == 0) || (lVar6 = FUN_1807f7c50(lVar6), lVar6 == 0)) {
@@ -108,7 +108,7 @@ void FUN_18078ea55(void)
       unaff_RBP[-5] = unaff_R14;
       if ((in_R11D >> 0x10 & 1) == 0) {
         uVar22 = CONCAT44(uVar5,(int)unaff_R14);
-        lVar6 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x198,&unknown_var_1936_ptr,0x47a,
+        lVar6 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x198,&unknown_var_1936_ptr,0x47a,
                               uVar22);
         uVar5 = (uint)((uint64_t)uVar22 >> 0x20);
         if (lVar6 != 0) {
@@ -275,7 +275,7 @@ LAB_18078ec15:
             if (iVar4 != 0) goto LAB_18078f72d;
             plVar23 = (int64_t *)unaff_RBP[-0xb];
           }
-          lVar6 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),200,&unknown_var_1936_ptr,0x516,
+          lVar6 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),200,&unknown_var_1936_ptr,0x516,
                                 uVar15 & 0xffffffff00000000);
           if (lVar6 != 0) {
             lVar6 = FUN_1807f3070(lVar6);
@@ -307,7 +307,7 @@ LAB_18078f72d:
     if (0 < iStack0000000000000064) {
       if ((in_R11D >> 0x10 & 1) == 0) {
         in_stack_00000020 = (uint64_t)uVar5 << 0x20;
-        lVar6 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x160,&unknown_var_1936_ptr,0x63b,
+        lVar6 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x160,&unknown_var_1936_ptr,0x63b,
                               in_stack_00000020);
         if (lVar6 != 0) {
           plVar10 = (int64_t *)FUN_1807f7c50(lVar6);

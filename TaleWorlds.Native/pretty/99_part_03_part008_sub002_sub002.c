@@ -115,7 +115,7 @@ void FUN_1801cdb50(uint64_t *******param_1,int64_t param_2,int64_t *param_3,uint
   pppppppuStack_170 = pppppppuVar12;
   for (lVar21 = *param_3; lVar21 != lVar18; lVar21 = lVar21 + 0x30) {
     pppppppuStackX_8 = pppppppuVar12;
-    FUN_180627ae0(pppppppuVar12,lVar21);
+    SystemCore_NetworkHandler0(pppppppuVar12,lVar21);
     pppppppuVar12[4] = *(uint64_t *******)(lVar21 + 0x20);
     *(int8_t *)(pppppppuVar12 + 5) = *(int8_t *)(lVar21 + 0x28);
     pppppppuVar12 = pppppppuVar12 + 6;

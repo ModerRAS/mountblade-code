@@ -1,3 +1,6 @@
+/* SystemController - SystemCore_StateProcessor0 的语义化别名 */
+#define SystemController SystemCore_StateProcessor0
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -542,7 +545,7 @@ FUN_1807d84c0(uint64_t *param_1,int param_2,uint64_t param_3,uint64_t param_4,in
         iVar1 = param_5 + 2;
       }
     }
-    lVar4 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar1,&unknown_var_1760_ptr,0x2f,0);
+    lVar4 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar1,&unknown_var_1760_ptr,0x2f,0);
     puVar3[5] = lVar4;
     if (lVar4 != 0) {
                     // WARNING: Subroutine does not return
@@ -582,7 +585,7 @@ int32_t FUN_1807d8594(void)
   else if (in_stack_00000098 - 4U < 2) {
     unaff_EBP = unaff_EBP + 2;
   }
-  lVar1 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),unaff_EBP,&unknown_var_1760_ptr,0x2f);
+  lVar1 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),unaff_EBP,&unknown_var_1760_ptr,0x2f);
   unaff_RBX[5] = lVar1;
   if (lVar1 != 0) {
                     // WARNING: Subroutine does not return
@@ -629,7 +632,7 @@ int32_t FUN_1807d85db(void)
   uint64_t in_stack_00000088;
   char in_stack_000000a0;
   
-  lVar1 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),unaff_EBP + 1,&unknown_var_1760_ptr,0x2f);
+  lVar1 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),unaff_EBP + 1,&unknown_var_1760_ptr,0x2f);
   unaff_RBX[5] = lVar1;
   if (lVar1 != 0) {
                     // WARNING: Subroutine does not return

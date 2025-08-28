@@ -911,7 +911,7 @@ void utilities_check_system_state_9(void)
         
         if (system_pointer_data_6138 != 0) {
             // 调用系统清理函数
-            FUN_1808fc8a8(system_pointer_data_6138 + 0x360, 0xcc8, 8, FUN_1804aa030, 0xfffffffffffffffe);
+            SystemDataValidator(system_pointer_data_6138 + 0x360, 0xcc8, 8, FUN_1804aa030, 0xfffffffffffffffe);
             _Mtx_destroy_in_situ();
             _Cnd_destroy_in_situ();
             FUN_1804a9f00(state_ptr + 0x60);

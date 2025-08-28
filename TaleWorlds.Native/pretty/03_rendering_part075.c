@@ -215,7 +215,7 @@ void FUN_18030b680(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
   uint64_t uVar4;
   char *pcVar3;
   
-  puVar1 = (uint64_t *)FUN_1804c1300(param_2 + 0x60,0x60);
+  puVar1 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x60);
   uVar4 = 0;
   *puVar1 = 0;
   puVar1[1] = 0;

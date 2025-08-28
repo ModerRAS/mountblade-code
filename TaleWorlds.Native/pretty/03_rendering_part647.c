@@ -1,3 +1,6 @@
+/* SystemController - SystemCore_StateProcessor0 的语义化别名 */
+#define SystemController SystemCore_StateProcessor0
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -405,7 +408,7 @@ void FUN_180632a40(uint64_t param_1,char *param_2)
     cVar1 = *pcVar3;
   }
   pcVar3 = pcVar3 + (1 - (int64_t)param_2);
-  puVar2 = (int8_t *)FUN_1804c1300(param_1,pcVar3);
+  puVar2 = (int8_t *)DataPipelineManager(param_1,pcVar3);
   if (pcVar3 != (char *)0x0) {
     lVar4 = (int64_t)param_2 - (int64_t)puVar2;
     do {

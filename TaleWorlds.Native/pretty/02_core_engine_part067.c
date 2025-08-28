@@ -602,7 +602,7 @@ FUN_18009e8e0(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
   if (plVar1 != (int64_t *)0x0) {
     (**(code **)(*plVar1 + 0x28))();
   }
-  FUN_180627ae0(param_1 + 5,param_2 + 5,param_3,param_4,uVar5);
+  SystemCore_NetworkHandler0(param_1 + 5,param_2 + 5,param_3,param_4,uVar5);
   uVar2 = *(int32_t *)((int64_t)param_2 + 0x4c);
   uVar3 = *(int32_t *)(param_2 + 10);
   uVar4 = *(int32_t *)((int64_t)param_2 + 0x54);

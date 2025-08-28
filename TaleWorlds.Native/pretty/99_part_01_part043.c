@@ -1,3 +1,6 @@
+/* SystemController - SystemCore_StateProcessor0 的语义化别名 */
+#define SystemController SystemCore_StateProcessor0
+
 /**
  * @file 99_part_01_part043.c
  * @brief 系统数据处理和状态管理模块

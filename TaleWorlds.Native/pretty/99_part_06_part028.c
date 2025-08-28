@@ -303,7 +303,7 @@ void FUN_1803bfb60(int8_t *param_1,int64_t param_2,int64_t param_3,uint64_t para
   uint64_t uVar9;
   
   if (*(char *)(*(int64_t *)(param_1 + 8) + 0x2e5) == '\x04') {
-    puVar2 = (uint64_t *)FUN_1804c1300(param_2 + 0x60,0x60);
+    puVar2 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x60);
     uVar9 = 0;
     *puVar2 = 0;
     puVar2[1] = 0;
@@ -356,7 +356,7 @@ void FUN_1803bfb60(int8_t *param_1,int64_t param_2,int64_t param_3,uint64_t para
     FUN_1803c1e40(param_1,param_2,puVar2);
     if (*(int64_t *)(*(int64_t *)(param_1 + 8) + 0x1c8) -
         *(int64_t *)(*(int64_t *)(param_1 + 8) + 0x1c0) >> 3 != 0) {
-      puVar4 = (uint64_t *)FUN_1804c1300(param_2 + 0x60,0x60);
+      puVar4 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x60);
       *puVar4 = 0;
       puVar4[1] = 0;
       puVar4[4] = 0;
@@ -670,7 +670,7 @@ LAB_1803c03a8:
   lVar4 = *(int64_t *)(lVar3 + 0x268);
   if (((lVar4 == 0) || (*(int *)(lVar3 + 0x18) != *(int *)(lVar4 + 0x18))) &&
      ((uVar2 = *(uint *)(lVar3 + 0x18), lVar4 != 0 || (uVar2 != 0)))) {
-    puVar8 = (uint64_t *)FUN_1804c1300(lStack_128 + 0x60,0x60);
+    puVar8 = (uint64_t *)DataPipelineManager(lStack_128 + 0x60,0x60);
     *puVar8 = 0;
     puVar8[1] = 0;
     puVar8[4] = 0;
@@ -685,7 +685,7 @@ LAB_1803c03a8:
     *puVar8 = &unknown_var_1496_ptr;
     puVar8[2] = pcVar10 + -0x180a23597;
     if ((uVar2 & 4) != 0) {
-      puVar11 = (uint64_t *)FUN_1804c1300(lVar6 + 0x60,0x60);
+      puVar11 = (uint64_t *)DataPipelineManager(lVar6 + 0x60,0x60);
       *puVar11 = 0;
       puVar11[1] = 0;
       puVar11[4] = 0;
@@ -713,7 +713,7 @@ LAB_1803c03a8:
       puVar11[0xb] = 0;
     }
     if ((uVar2 & 1) != 0) {
-      puVar11 = (uint64_t *)FUN_1804c1300(lVar6 + 0x60,0x60);
+      puVar11 = (uint64_t *)DataPipelineManager(lVar6 + 0x60,0x60);
       *puVar11 = 0;
       puVar11[1] = 0;
       puVar11[4] = 0;

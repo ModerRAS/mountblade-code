@@ -977,7 +977,7 @@ LAB_180333fbc:
   while (puStack_a8 = puVar7, puVar15 != puVar11) {
     lVar10 = puVar15[5];
     if (lVar10 != 0) {
-      FUN_1808fc8a8(lVar10 + 0x38,0x30,4,FUN_18004a130);
+      SystemDataValidator(lVar10 + 0x38,0x30,4,FUN_18004a130);
       puStack_58 = (uint64_t *)(lVar10 + 0x18);
       *puStack_58 = &system_data_buffer_ptr;
       if (*(int64_t *)(lVar10 + 0x20) == 0) {

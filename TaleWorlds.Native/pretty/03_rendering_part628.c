@@ -594,7 +594,7 @@ uint64_t * FUN_18061ce90(uint64_t *param_1,uint param_2)
 
 {
   *param_1 = &unknown_var_2488_ptr;
-  FUN_1808fc8a8(param_1 + 1,0x38,2,FUN_18061cd80,0xfffffffffffffffe);
+  SystemDataValidator(param_1 + 1,0x38,2,FUN_18061cd80,0xfffffffffffffffe);
   *param_1 = &unknown_var_3672_ptr;
   if ((param_2 & 1) != 0) {
     free(param_1,0x80);
@@ -608,7 +608,7 @@ uint64_t * FUN_18061cf30(uint64_t *param_1,uint param_2)
 
 {
   *param_1 = &unknown_var_2376_ptr;
-  FUN_1808fc8a8(param_1 + 8,0x38,2,FUN_18061cd80,0xfffffffffffffffe);
+  SystemDataValidator(param_1 + 8,0x38,2,FUN_18061cd80,0xfffffffffffffffe);
   FUN_18061cd80(param_1 + 1);
   *param_1 = &unknown_var_2456_ptr;
   if ((param_2 & 1) != 0) {

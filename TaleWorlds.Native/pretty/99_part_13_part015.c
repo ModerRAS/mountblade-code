@@ -794,7 +794,7 @@ uint64_t FUN_1808ad6a0(int64_t param_1,int64_t *param_2)
   if (*(uint *)(param_2 + 8) < 0x2d) {
     return 0;
   }
-  uVar2 = FUN_1808ddc20(param_2,auStack_38,0,0x4c425453);
+  uVar2 = SystemFileHandler(param_2,auStack_38,0,0x4c425453);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -976,7 +976,7 @@ uint64_t FUN_1808ad840(int64_t param_1,int64_t *param_2)
   int8_t auStack_38 [4];
   int iStack_34;
   
-  uVar2 = FUN_1808ddc20(param_2,auStack_38,0,0x54445453);
+  uVar2 = SystemFileHandler(param_2,auStack_38,0,0x54445453);
   if ((int)uVar2 != 0) {
     return uVar2;
   }

@@ -624,7 +624,7 @@ void FUN_180065160(uint64_t param_1)
         puVar17 = puStack_140;
         puVar18 = puStack_140;
         if (((int64_t)puStack_138 - (int64_t)puStack_140 & 0xffffffffffffffe0U) == 0x40) {
-          FUN_180627ae0(&puStack_2a0,puStack_140);
+          SystemCore_NetworkHandler0(&puStack_2a0,puStack_140);
           if (pcStack_298 != (char *)0x0) {
             iStack_290 = 0;
             lVar14 = 0;
@@ -900,7 +900,7 @@ void FUN_180065f00(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t pa
   
   uStack_48 = 0xfffffffffffffffe;
   plStack_b0 = *(int64_t **)(init_system_data_memory + 0x18);
-  FUN_180627ae0(&puStack_a8,system_main_module_state + 0x170,param_3,param_4,0);
+  SystemCore_NetworkHandler0(&puStack_a8,system_main_module_state + 0x170,param_3,param_4,0);
   iVar5 = uStack_98 + 3;
   SystemConfigController(&puStack_a8,iVar5);
   *(int32_t *)((uint64_t)uStack_98 + lStack_a0) = 0x706d74;
@@ -914,7 +914,7 @@ void FUN_180065f00(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t pa
   FUN_180066140(&ppuStack_68,SYSTEM_STATE_MANAGER,&system_memory_c7d8);
   FUN_180066140(&ppuStack_68,init_system_data_memory,&system_memory_cfc0);
   pcVar1 = *(code **)(*plStack_b0 + 0x40);
-  uVar3 = FUN_180627ae0(&ppuStack_68,system_message_context + 0x28);
+  uVar3 = SystemCore_NetworkHandler0(&ppuStack_68,system_message_context + 0x28);
   (*pcVar1)(plStack_b0,uVar3);
   ppuStack_68 = (void **)&system_data_buffer_ptr;
   if (pplStack_60 != (int64_t **)0x0) {
@@ -925,7 +925,7 @@ void FUN_180065f00(uint64_t param_1,int64_t param_2,uint64_t param_3,uint64_t pa
   uStack_50 = 0;
   ppuStack_68 = (void **)&system_state_ptr;
   pcVar1 = *(code **)(*plStack_b0 + 0x40);
-  uVar3 = FUN_180627ae0(&puStack_88,system_message_context + 0xe0);
+  uVar3 = SystemCore_NetworkHandler0(&puStack_88,system_message_context + 0xe0);
   (*pcVar1)(plStack_b0,uVar3);
   puStack_88 = &system_data_buffer_ptr;
   if (lStack_80 != 0) {

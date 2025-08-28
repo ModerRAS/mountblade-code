@@ -846,7 +846,7 @@ void FUN_180303590(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
   if ((int64_t *)param_1[0xda] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[0xda] + 0x38))();
   }
-  FUN_1808fc8a8(param_1 + 0xce,8,2,FUN_180045af0);
+  SystemDataValidator(param_1 + 0xce,8,2,FUN_180045af0);
   if ((int64_t *)param_1[0xcd] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[0xcd] + 0x38))();
   }

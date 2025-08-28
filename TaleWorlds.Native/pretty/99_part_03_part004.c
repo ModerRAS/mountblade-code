@@ -28,7 +28,7 @@ void FUN_1801c79a0(uint64_t param_1,int64_t param_2,int64_t param_3,uint64_t *pa
   uint64_t uStack_48;
   
   lVar1 = param_3 + 0x60;
-  puVar2 = (uint64_t *)FUN_1804c1300(lVar1,0x38,param_3,param_4,0xfffffffffffffffe);
+  puVar2 = (uint64_t *)DataPipelineManager(lVar1,0x38,param_3,param_4,0xfffffffffffffffe);
   *puVar2 = 0;
   puVar2[1] = 0;
   puVar2[4] = 0;
@@ -63,7 +63,7 @@ void FUN_1801c79a0(uint64_t param_1,int64_t param_2,int64_t param_3,uint64_t *pa
   }
   SystemAllocationProcessor(param_3,param_2,&unknown_var_248_ptr,puVar10);
   FUN_18062f640(param_3,param_2,&unknown_var_176_ptr,*(int32_t *)(param_4 + 0x14));
-  puVar2 = (uint64_t *)FUN_1804c1300(lVar1,0x60);
+  puVar2 = (uint64_t *)DataPipelineManager(lVar1,0x60);
   *puVar2 = 0;
   puVar2[1] = 0;
   puVar2[4] = 0;
@@ -82,7 +82,7 @@ void FUN_1801c79a0(uint64_t param_1,int64_t param_2,int64_t param_3,uint64_t *pa
   lVar13 = 0x20;
   do {
     if ((*(uint *)(param_4 + 2) & uVar7) != 0) {
-      puVar3 = (uint64_t *)FUN_1804c1300(lVar1,0x60);
+      puVar3 = (uint64_t *)DataPipelineManager(lVar1,0x60);
       *puVar3 = 0;
       puVar3[1] = 0;
       puVar3[4] = 0;
@@ -128,7 +128,7 @@ void FUN_1801c79a0(uint64_t param_1,int64_t param_2,int64_t param_3,uint64_t *pa
   *(uint64_t **)(param_2 + 0x38) = puVar2;
   puVar2[4] = param_2;
   puVar2[0xb] = 0;
-  puVar2 = (uint64_t *)FUN_1804c1300(lVar1,0x60);
+  puVar2 = (uint64_t *)DataPipelineManager(lVar1,0x60);
   *puVar2 = 0;
   puVar2[1] = 0;
   puVar2[4] = 0;
@@ -151,7 +151,7 @@ void FUN_1801c79a0(uint64_t param_1,int64_t param_2,int64_t param_3,uint64_t *pa
     lVar14 = 0;
     do {
       if ((param_4[1] & uVar8) != 0) {
-        puVar12 = (uint64_t *)FUN_1804c1300(lVar1,0x60);
+        puVar12 = (uint64_t *)DataPipelineManager(lVar1,0x60);
         *puVar12 = 0;
         puVar12[1] = 0;
         puVar12[4] = 0;
@@ -200,7 +200,7 @@ void FUN_1801c79a0(uint64_t param_1,int64_t param_2,int64_t param_3,uint64_t *pa
   *(uint64_t **)(param_2 + 0x38) = puVar2;
   puVar2[4] = param_2;
   puVar2[0xb] = 0;
-  puVar2 = (uint64_t *)FUN_1804c1300(lVar1,0x60);
+  puVar2 = (uint64_t *)DataPipelineManager(lVar1,0x60);
   *puVar2 = 0;
   puVar2[1] = 0;
   puVar2[4] = 0;

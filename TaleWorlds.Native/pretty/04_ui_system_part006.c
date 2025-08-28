@@ -1242,7 +1242,7 @@ UISystem_DataValidator(uint64_t validation_context, uint64_t data_source, uint64
   int64_t string_buffer_ptr;
   uint string_length_count;
   
-  FUN_180627ae0(&stack_buffer,validation_context,data_source,validation_flag,0xfffffffffffffffe);
+  SystemCore_NetworkHandler0(&stack_buffer,validation_context,data_source,validation_flag,0xfffffffffffffffe);
   char_count = 0;
   if (string_length_count != 0) {
     string_length = 0;
@@ -1576,7 +1576,7 @@ LAB_1806578a7:
   conversion_flag = 0;
 LAB_1806578f0:
   string_length = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x48,system_memory_6808);
-  FUN_180627ae0(string_length + 0x20,param_5);
+  SystemCore_NetworkHandler0(string_length + 0x20,param_5);
   *(uint64_t *)(string_length + 0x40) = 0;
   FUN_18066bdc0(string_length,conversion_result,&system_memory_67e0,conversion_flag);
 }

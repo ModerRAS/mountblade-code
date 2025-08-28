@@ -31,7 +31,7 @@ uint64_t FUN_1808a8bb0(uint64_t param_1,int64_t param_2,int32_t param_3)
   uint64_t *puStack_58;
   int8_t auStack_50 [40];
   
-  uVar3 = FUN_1808ddc20(param_1,auStack_50,1,param_3);
+  uVar3 = DataFlowProcessor(param_1,auStack_50,1,param_3);
   if ((int)uVar3 == 0) {
     aiStackX_20[0] = 0;
     uVar1 = FUN_1808de650(param_1,aiStackX_20);
@@ -60,7 +60,7 @@ uint64_t FUN_1808a8bb0(uint64_t param_1,int64_t param_2,int32_t param_3)
               puVar4[9] = &unknown_var_1520_ptr;
               puStack_58 = puVar4;
               iVar2 = FUN_18089ae50(puVar4,param_1,0x53554249,0x42534249,1);
-              if ((iVar2 != 0) || (iVar2 = FUN_18087dc70(param_2,&puStack_58), iVar2 != 0)) {
+              if ((iVar2 != 0) || (iVar2 = DataStreamProcessor(param_2,&puStack_58), iVar2 != 0)) {
                 (**(code **)*puVar4)(puVar4,0);
                     // WARNING: Subroutine does not return
                 SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar4,&unknown_var_2144_ptr,0xc6,1);
@@ -119,7 +119,7 @@ uint64_t FUN_1808a8bdc(void)
             *puVar4 = &unknown_var_1472_ptr;
             puVar4[9] = &unknown_var_1520_ptr;
             iVar2 = FUN_18089ae50(puVar4);
-            if ((iVar2 != 0) || (iVar2 = FUN_18087dc70(), iVar2 != 0)) {
+            if ((iVar2 != 0) || (iVar2 = DataStreamProcessor(), iVar2 != 0)) {
               (**(code **)*puVar4)(puVar4,0);
                     // WARNING: Subroutine does not return
               SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar4,&unknown_var_2144_ptr,0xc6,1);
@@ -163,7 +163,7 @@ int FUN_1808a8c3f(int param_1)
         *puVar2 = &unknown_var_1472_ptr;
         puVar2[9] = &unknown_var_1520_ptr;
         iVar1 = FUN_18089ae50(puVar2);
-        if ((iVar1 != 0) || (iVar1 = FUN_18087dc70(), iVar1 != 0)) {
+        if ((iVar1 != 0) || (iVar1 = DataStreamProcessor(), iVar1 != 0)) {
           (**(code **)*puVar2)(puVar2,0);
                     // WARNING: Subroutine does not return
           SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar2,&unknown_var_2144_ptr,0xc6,1);
@@ -235,7 +235,7 @@ uint64_t FUN_1808a8db0(uint64_t param_1,int64_t param_2,int32_t param_3)
   uint64_t *puStack_58;
   int8_t auStack_50 [40];
   
-  uVar3 = FUN_1808ddc20(param_1,auStack_50,1,param_3);
+  uVar3 = DataFlowProcessor(param_1,auStack_50,1,param_3);
   if ((int)uVar3 == 0) {
     aiStackX_20[0] = 0;
     uVar1 = FUN_1808de650(param_1,aiStackX_20);
@@ -264,7 +264,7 @@ uint64_t FUN_1808a8db0(uint64_t param_1,int64_t param_2,int32_t param_3)
               puVar4[9] = &unknown_var_1520_ptr;
               puStack_58 = puVar4;
               iVar2 = FUN_18089ae50(puVar4,param_1,0x54524f50,0x42545250,1);
-              if ((iVar2 != 0) || (iVar2 = FUN_18087dc70(param_2,&puStack_58), iVar2 != 0)) {
+              if ((iVar2 != 0) || (iVar2 = DataStreamProcessor(param_2,&puStack_58), iVar2 != 0)) {
                 (**(code **)*puVar4)(puVar4,0);
                     // WARNING: Subroutine does not return
                 SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar4,&unknown_var_2144_ptr,0xc6,1);
@@ -323,7 +323,7 @@ uint64_t FUN_1808a8ddc(void)
             *puVar4 = &unknown_var_1472_ptr;
             puVar4[9] = &unknown_var_1520_ptr;
             iVar2 = FUN_18089ae50(puVar4);
-            if ((iVar2 != 0) || (iVar2 = FUN_18087dc70(), iVar2 != 0)) {
+            if ((iVar2 != 0) || (iVar2 = DataStreamProcessor(), iVar2 != 0)) {
               (**(code **)*puVar4)(puVar4,0);
                     // WARNING: Subroutine does not return
               SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar4,&unknown_var_2144_ptr,0xc6,1);
@@ -367,7 +367,7 @@ int FUN_1808a8e3f(int param_1)
         *puVar2 = &unknown_var_1472_ptr;
         puVar2[9] = &unknown_var_1520_ptr;
         iVar1 = FUN_18089ae50(puVar2);
-        if ((iVar1 != 0) || (iVar1 = FUN_18087dc70(), iVar1 != 0)) {
+        if ((iVar1 != 0) || (iVar1 = DataStreamProcessor(), iVar1 != 0)) {
           (**(code **)*puVar2)(puVar2,0);
                     // WARNING: Subroutine does not return
           SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar2,&unknown_var_2144_ptr,0xc6,1);
@@ -439,7 +439,7 @@ uint64_t FUN_1808a8fb0(uint64_t param_1,int64_t param_2,int32_t param_3)
   uint64_t *puStack_48;
   int8_t auStack_40 [40];
   
-  uVar2 = FUN_1808ddc20(param_1,auStack_40,1,param_3);
+  uVar2 = DataFlowProcessor(param_1,auStack_40,1,param_3);
   if ((int)uVar2 == 0) {
     aiStackX_20[0] = 0;
     uVar1 = FUN_1808de650(param_1,aiStackX_20);
@@ -465,7 +465,7 @@ uint64_t FUN_1808a8fb0(uint64_t param_1,int64_t param_2,int32_t param_3)
               puVar4 = (uint64_t *)FUN_18084da70(lVar3);
               puStack_48 = puVar4;
               uVar1 = FUN_18089c630(puVar4,param_1);
-              if ((uVar1 != 0) || (uVar1 = FUN_18087dc70(param_2,&puStack_48), uVar1 != 0)) {
+              if ((uVar1 != 0) || (uVar1 = DataStreamProcessor(param_2,&puStack_48), uVar1 != 0)) {
                 if (puVar4 == (uint64_t *)0x0) {
                   return (uint64_t)uVar1;
                 }
@@ -524,7 +524,7 @@ uint64_t FUN_1808a8fd9(void)
             }
             puVar4 = (uint64_t *)FUN_18084da70(lVar3);
             uVar1 = FUN_18089c630(puVar4);
-            if ((uVar1 != 0) || (uVar1 = FUN_18087dc70(), uVar1 != 0)) {
+            if ((uVar1 != 0) || (uVar1 = DataStreamProcessor(), uVar1 != 0)) {
               if (puVar4 == (uint64_t *)0x0) {
                 return (uint64_t)uVar1;
               }
@@ -569,7 +569,7 @@ int FUN_1808a903c(int param_1)
         }
         puVar3 = (uint64_t *)FUN_18084da70(lVar2);
         iVar1 = FUN_18089c630(puVar3);
-        if ((iVar1 != 0) || (iVar1 = FUN_18087dc70(), iVar1 != 0)) {
+        if ((iVar1 != 0) || (iVar1 = DataStreamProcessor(), iVar1 != 0)) {
           if (puVar3 == (uint64_t *)0x0) {
             return iVar1;
           }
@@ -644,7 +644,7 @@ uint64_t FUN_1808a9170(uint64_t param_1,int64_t param_2,int32_t param_3)
   uint64_t *puStack_58;
   int8_t auStack_50 [40];
   
-  uVar3 = FUN_1808ddc20(param_1,auStack_50,1,param_3);
+  uVar3 = DataFlowProcessor(param_1,auStack_50,1,param_3);
   if ((int)uVar3 == 0) {
     aiStackX_20[0] = 0;
     uVar1 = FUN_1808de650(param_1,aiStackX_20);
@@ -673,7 +673,7 @@ uint64_t FUN_1808a9170(uint64_t param_1,int64_t param_2,int32_t param_3)
               puVar4[9] = &unknown_var_1520_ptr;
               puStack_58 = puVar4;
               iVar2 = FUN_18089ae50(puVar4,param_1,0x53554252,0x42534252,1);
-              if ((iVar2 != 0) || (iVar2 = FUN_18087dc70(param_2,&puStack_58), iVar2 != 0)) {
+              if ((iVar2 != 0) || (iVar2 = DataStreamProcessor(param_2,&puStack_58), iVar2 != 0)) {
                 (**(code **)*puVar4)(puVar4,0);
                     // WARNING: Subroutine does not return
                 SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar4,&unknown_var_2144_ptr,0xc6,1);
@@ -732,7 +732,7 @@ uint64_t FUN_1808a919c(void)
             *puVar4 = &unknown_var_1472_ptr;
             puVar4[9] = &unknown_var_1520_ptr;
             iVar2 = FUN_18089ae50(puVar4);
-            if ((iVar2 != 0) || (iVar2 = FUN_18087dc70(), iVar2 != 0)) {
+            if ((iVar2 != 0) || (iVar2 = DataStreamProcessor(), iVar2 != 0)) {
               (**(code **)*puVar4)(puVar4,0);
                     // WARNING: Subroutine does not return
               SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar4,&unknown_var_2144_ptr,0xc6,1);
@@ -776,7 +776,7 @@ int FUN_1808a91ff(int param_1)
         *puVar2 = &unknown_var_1472_ptr;
         puVar2[9] = &unknown_var_1520_ptr;
         iVar1 = FUN_18089ae50(puVar2);
-        if ((iVar1 != 0) || (iVar1 = FUN_18087dc70(), iVar1 != 0)) {
+        if ((iVar1 != 0) || (iVar1 = DataStreamProcessor(), iVar1 != 0)) {
           (**(code **)*puVar2)(puVar2,0);
                     // WARNING: Subroutine does not return
           SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar2,&unknown_var_2144_ptr,0xc6,1);
@@ -848,7 +848,7 @@ uint64_t FUN_1808a9370(uint64_t param_1,int64_t param_2,int32_t param_3)
   uint64_t *puStack_48;
   int8_t auStack_40 [40];
   
-  uVar2 = FUN_1808ddc20(param_1,auStack_40,1,param_3);
+  uVar2 = DataFlowProcessor(param_1,auStack_40,1,param_3);
   if ((int)uVar2 == 0) {
     aiStackX_20[0] = 0;
     uVar1 = FUN_1808de650(param_1,aiStackX_20);
@@ -874,7 +874,7 @@ uint64_t FUN_1808a9370(uint64_t param_1,int64_t param_2,int32_t param_3)
               puVar4 = (uint64_t *)FUN_1808d9af0(lVar3);
               puStack_48 = puVar4;
               uVar1 = FUN_18089df40(puVar4,param_1);
-              if ((uVar1 != 0) || (uVar1 = FUN_18087dc70(param_2,&puStack_48), uVar1 != 0)) {
+              if ((uVar1 != 0) || (uVar1 = DataStreamProcessor(param_2,&puStack_48), uVar1 != 0)) {
                 if (puVar4 == (uint64_t *)0x0) {
                   return (uint64_t)uVar1;
                 }
@@ -933,7 +933,7 @@ uint64_t FUN_1808a9399(void)
             }
             puVar4 = (uint64_t *)FUN_1808d9af0(lVar3);
             uVar1 = FUN_18089df40(puVar4);
-            if ((uVar1 != 0) || (uVar1 = FUN_18087dc70(), uVar1 != 0)) {
+            if ((uVar1 != 0) || (uVar1 = DataStreamProcessor(), uVar1 != 0)) {
               if (puVar4 == (uint64_t *)0x0) {
                 return (uint64_t)uVar1;
               }
@@ -978,7 +978,7 @@ int FUN_1808a93fc(int param_1)
         }
         puVar3 = (uint64_t *)FUN_1808d9af0(lVar2);
         iVar1 = FUN_18089df40(puVar3);
-        if ((iVar1 != 0) || (iVar1 = FUN_18087dc70(), iVar1 != 0)) {
+        if ((iVar1 != 0) || (iVar1 = DataStreamProcessor(), iVar1 != 0)) {
           if (puVar3 == (uint64_t *)0x0) {
             return iVar1;
           }

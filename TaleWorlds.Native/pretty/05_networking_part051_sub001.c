@@ -1,3 +1,6 @@
+/* SystemController - SystemCore_StateProcessor0 的语义化别名 */
+#define SystemController SystemCore_StateProcessor0
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -68,7 +71,7 @@ LAB_180869e7a:
           lVar4 = (**(code **)(*(int64_t *)*param_2 + 0x318))((int64_t *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            SystemController(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0x88);
           if (lVar4 == 0) goto LAB_180869e7a;
@@ -148,7 +151,7 @@ LAB_180869e7a:
         lVar3 = (**(code **)(*(int64_t *)*unaff_R14 + 0x318))((int64_t *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          SystemController(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x88);
         if (lVar3 == 0) goto LAB_180869e7a;
@@ -217,7 +220,7 @@ LAB_180869e7a:
       lVar3 = (**(code **)(*(int64_t *)*unaff_R14 + 0x318))((int64_t *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        SystemController(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x88);
       if (lVar3 == 0) goto LAB_180869e7a;
@@ -333,7 +336,7 @@ LAB_18086a07a:
           lVar4 = (**(code **)(*(int64_t *)*param_2 + 0x2d8))((int64_t *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            SystemController(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0x118);
           if (lVar4 == 0) goto LAB_18086a07a;
@@ -413,7 +416,7 @@ LAB_18086a07a:
         lVar3 = (**(code **)(*(int64_t *)*unaff_R14 + 0x2d8))((int64_t *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          SystemController(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x118);
         if (lVar3 == 0) goto LAB_18086a07a;
@@ -482,7 +485,7 @@ LAB_18086a07a:
       lVar3 = (**(code **)(*(int64_t *)*unaff_R14 + 0x2d8))((int64_t *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        SystemController(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x118);
       if (lVar3 == 0) goto LAB_18086a07a;
@@ -598,7 +601,7 @@ LAB_18086a27a:
           lVar4 = (**(code **)(*(int64_t *)*param_2 + 0x298))((int64_t *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            SystemController(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0x188);
           if (lVar4 == 0) goto LAB_18086a27a;
@@ -678,7 +681,7 @@ LAB_18086a27a:
         lVar3 = (**(code **)(*(int64_t *)*unaff_R14 + 0x298))((int64_t *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          SystemController(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x188);
         if (lVar3 == 0) goto LAB_18086a27a;
@@ -747,7 +750,7 @@ LAB_18086a27a:
       lVar3 = (**(code **)(*(int64_t *)*unaff_R14 + 0x298))((int64_t *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        SystemController(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x188);
       if (lVar3 == 0) goto LAB_18086a27a;
@@ -863,7 +866,7 @@ LAB_18086a47a:
           lVar4 = (**(code **)(*(int64_t *)*param_2 + 0x268))((int64_t *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            SystemController(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0x1d8);
           if (lVar4 == 0) goto LAB_18086a47a;
@@ -943,7 +946,7 @@ LAB_18086a47a:
         lVar3 = (**(code **)(*(int64_t *)*unaff_R14 + 0x268))((int64_t *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          SystemController(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x1d8);
         if (lVar3 == 0) goto LAB_18086a47a;
@@ -1012,7 +1015,7 @@ LAB_18086a47a:
       lVar3 = (**(code **)(*(int64_t *)*unaff_R14 + 0x268))((int64_t *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        SystemController(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x1d8);
       if (lVar3 == 0) goto LAB_18086a47a;

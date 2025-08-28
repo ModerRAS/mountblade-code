@@ -495,8 +495,8 @@ LAB_180299f92:
         }
         plStack_1d8 = alStack_1c0;
         FUN_18009e8e0(alStack_1c0,auStack_108);
-        FUN_180627ae0(auStack_160,auStack_a8);
-        uVar15 = FUN_180627ae0(auStack_140,auStack_88);
+        SystemCore_NetworkHandler0(auStack_160,auStack_a8);
+        uVar15 = SystemCore_NetworkHandler0(auStack_140,auStack_88);
         uStack_120 = uStack_68;
         uStack_11c = uStack_64;
         uStack_118 = uStack_60;
@@ -590,7 +590,7 @@ render_data_structure_copy(uint64_t *dest_buffer,uint64_t *src_buffer,uint64_t p
   if (plVar2 != (int64_t *)0x0) {
     (**(code **)(*plVar2 + 0x38))();
   }
-  FUN_180627be0(param_1 + 5,param_2 + 5,param_3,param_4,uVar6);
+  SystemCore_ConfigurationHandler0(param_1 + 5,param_2 + 5,param_3,param_4,uVar6);
   uVar3 = *(int32_t *)((int64_t)param_2 + 0x4c);
   uVar4 = *(int32_t *)(param_2 + 10);
   uVar5 = *(int32_t *)((int64_t)param_2 + 0x54);

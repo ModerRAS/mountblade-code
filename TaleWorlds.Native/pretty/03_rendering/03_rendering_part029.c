@@ -277,7 +277,7 @@ void create_render_object_context(uint64_t *render_object, uint64_t context_data
   context_offset = context_handle;
   
   // 处理渲染对象名称
-  FUN_180627ae0(&name_buffer_ptr, render_object + 0x3e);
+  SystemCore_NetworkHandler0(&name_buffer_ptr, render_object + 0x3e);
   
   // 清理字符串中的特殊字符
   while ((0 < (int)texture_buffer_size && (resource_data = strstr(texture_buffer_ptr, &RENDER_STRING_PTR), resource_data != 0))) {

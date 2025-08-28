@@ -867,7 +867,7 @@ uint64 FUN_1808c24f0(int64 param_1)
       return uVar3;
     }
     
-    uVar3 = FUN_1808744f0(param_1 + 0x250);
+    uVar3 = SystemCore_FileSystem0(param_1 + 0x250);
     if ((int32)uVar3 != SUCCESS_CODE) {
       return uVar3;
     }

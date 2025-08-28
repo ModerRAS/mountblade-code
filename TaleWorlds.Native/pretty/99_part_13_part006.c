@@ -45,7 +45,7 @@ uint64_t FUN_1808a9530(uint64_t param_1,int64_t param_2,int32_t param_3)
   uint64_t *puStack_48;
   int8_t auStack_40 [40];
   
-  uVar2 = FUN_1808ddc20(param_1,auStack_40,1,param_3);
+  uVar2 = DataFlowProcessor(param_1,auStack_40,1,param_3);
   if ((int)uVar2 == 0) {
     aiStackX_20[0] = 0;
     uVar1 = FUN_1808de650(param_1,aiStackX_20);
@@ -250,7 +250,7 @@ uint64_t FUN_1808a96f0(uint64_t param_1,int64_t param_2,int32_t param_3)
   uint64_t *puStack_48;
   int8_t auStack_40 [40];
   
-  uVar2 = FUN_1808ddc20(param_1,auStack_40,1,param_3);
+  uVar2 = DataFlowProcessor(param_1,auStack_40,1,param_3);
   if ((int)uVar2 == 0) {
     aiStackX_20[0] = 0;
     uVar1 = FUN_1808de650(param_1,aiStackX_20);
@@ -459,7 +459,7 @@ uint64_t FUN_1808a98b0(uint64_t param_1,int64_t param_2,int32_t param_3)
   uint64_t *puStack_58;
   int8_t auStack_50 [40];
   
-  uVar6 = FUN_1808ddc20(param_1,auStack_50,1,param_3);
+  uVar6 = DataFlowProcessor(param_1,auStack_50,1,param_3);
   if ((int)uVar6 == 0) {
     aiStackX_20[0] = 0;
     uVar4 = FUN_1808de650(param_1,aiStackX_20);

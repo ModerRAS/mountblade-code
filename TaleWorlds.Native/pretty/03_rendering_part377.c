@@ -126,7 +126,7 @@ void FUN_180472d60(uint64_t *param_1,int8_t *param_2,uint64_t *param_3,int64_t p
   lStack_50 = 0;
   puStack_c8 = param_2;
   if (&uStack_98 != param_3) {
-    FUN_180067070(&uStack_98);
+    SystemPerformanceOptimizer(&uStack_98);
     uStack_98 = *param_3;
     uStack_90 = param_3[1];
     uStack_88 = param_3[2];
@@ -144,7 +144,7 @@ void FUN_180472d60(uint64_t *param_1,int8_t *param_2,uint64_t *param_3,int64_t p
   }
   uVar3 = uStack_a0;
   uVar2 = uStack_a8;
-  FUN_180067070(&uStack_78);
+  SystemPerformanceOptimizer(&uStack_78);
   uVar5 = uStack_80;
   uVar4 = uStack_88;
   uStack_180 = uStack_98;
@@ -198,14 +198,14 @@ void FUN_180472d60(uint64_t *param_1,int8_t *param_2,uint64_t *param_3,int64_t p
   lStack_d8 = lStack_138;
   lStack_58 = lStack_140;
   lStack_50 = lStack_138;
-  FUN_180067070(auStack_160);
-  FUN_180067070(&uStack_180);
+  SystemPerformanceOptimizer(auStack_160);
+  SystemPerformanceOptimizer(&uStack_180);
   uStack_188 = 2;
-  FUN_180067070(&uStack_100);
-  FUN_180067070(&uStack_120);
+  SystemPerformanceOptimizer(&uStack_100);
+  SystemPerformanceOptimizer(&uStack_120);
   uStack_188 = 1;
-  FUN_180067070(&uStack_78);
-  FUN_180067070(&uStack_98);
+  SystemPerformanceOptimizer(&uStack_78);
+  SystemPerformanceOptimizer(&uStack_98);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_1a8);
 }

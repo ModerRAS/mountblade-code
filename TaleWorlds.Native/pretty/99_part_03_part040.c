@@ -961,7 +961,7 @@ uint64_t * FUN_1801f36a0(uint64_t *param_1,uint param_2)
 
 {
   *param_1 = &unknown_var_7888_ptr;
-  FUN_1808fc8a8(param_1 + 0x8b,8,3,FUN_180045af0,0xfffffffffffffffe);
+  SystemDataValidator(param_1 + 0x8b,8,3,FUN_180045af0,0xfffffffffffffffe);
   FUN_1801f9920(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1,0x470);

@@ -18,7 +18,7 @@ void FUN_1801805d0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   void *puStack_20;
   uint uStack_18;
   
-  FUN_180627ae0(&puStack_28,param_1 + 0x270,param_3,param_4,0xfffffffffffffffe);
+  SystemCore_NetworkHandler0(&puStack_28,param_1 + 0x270,param_3,param_4,0xfffffffffffffffe);
   iVar3 = uStack_18 + 0x11;
   CoreMemoryPoolProcessor(&puStack_28,iVar3);
   puVar1 = (int32_t *)(puStack_20 + uStack_18);

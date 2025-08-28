@@ -624,8 +624,8 @@ void FUN_1801e4b90(int64_t *param_1,int64_t param_2,int64_t param_3,int param_4,
   uStack_50 = 0xfffffffffffffffe;
   lStackX_18 = param_3;
   iStackX_20 = param_4;
-  FUN_180627ae0(&puStack_70,param_2 + 0x60);
-  FUN_180627ae0(&puStack_90,param_2 + 0x80);
+  SystemCore_NetworkHandler0(&puStack_70,param_2 + 0x60);
+  SystemCore_NetworkHandler0(&puStack_90,param_2 + 0x80);
   pplStackX_10 = (int64_t **)CONCAT44(pplStackX_10._4_4_,(uint)*(ushort *)(param_2 + 0x14));
   plStackX_8 = (int64_t *)CONCAT44(plStackX_8._4_4_,*(int *)(param_2 + 0xa4));
   puVar11 = (int8_t *)0x0;

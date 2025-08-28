@@ -675,8 +675,8 @@ int FUN_1808fc820(void)
 
 
 
-// 函数: void FUN_1808fc838(int64_t param_1,int64_t param_2,int64_t param_3)
-void FUN_1808fc838(int64_t param_1,int64_t param_2,int64_t param_3)
+// 函数: void DataStructureManager(int64_t param_1,int64_t param_2,int64_t param_3)
+void DataStructureManager(int64_t param_1,int64_t param_2,int64_t param_3)
 
 {
   int64_t lVar1;
@@ -693,8 +693,8 @@ void FUN_1808fc838(int64_t param_1,int64_t param_2,int64_t param_3)
 
 
 
-// 函数: void FUN_1808fc8a8(int64_t param_1,int64_t param_2,int64_t param_3)
-void FUN_1808fc8a8(int64_t param_1,int64_t param_2,int64_t param_3)
+// 函数: void SystemDataValidator(int64_t param_1,int64_t param_2,int64_t param_3)
+void SystemDataValidator(int64_t param_1,int64_t param_2,int64_t param_3)
 
 {
   param_1 = param_2 * param_3 + param_1;

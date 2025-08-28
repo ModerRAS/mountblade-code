@@ -474,7 +474,7 @@ int64_t * FUN_180301040(int64_t *param_1)
   param_1[0xcb] = 0;
   param_1[0xcc] = 0;
   param_1[0xcd] = 0;
-  FUN_1808fc838(param_1 + 0xce,8,2,&SUB_18005d5f0,FUN_180045af0);
+  DataStructureManager(param_1 + 0xce,8,2,&SUB_18005d5f0,FUN_180045af0);
   param_1[0xda] = 0;
   FUN_180094c20(param_1 + 0xdc);
   param_1[0x106] = (int64_t)&system_state_ptr;

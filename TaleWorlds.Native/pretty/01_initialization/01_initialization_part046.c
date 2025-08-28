@@ -920,7 +920,7 @@ void DestroyTransformObject(uint64_t *object)
   }
   lVar3 = param_1[0x3c];
   if (lVar3 != 0) {
-    FUN_1808fc8a8(lVar3,0x18,0x10,FUN_18007bb70,uVar4,lVar3);
+    SystemDataValidator(lVar3,0x18,0x10,FUN_18007bb70,uVar4,lVar3);
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner(lVar3);
   }

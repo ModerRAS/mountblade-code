@@ -63,7 +63,7 @@ void FUN_1803c1a30(int64_t param_1,int64_t param_2,int64_t param_3,uint64_t para
   uint64_t *puStack_70;
   uint64_t *puStack_68;
   
-  puVar4 = (uint64_t *)FUN_1804c1300(param_2 + 0x60,0x60,param_3,param_4,0xfffffffffffffffe);
+  puVar4 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x60,param_3,param_4,0xfffffffffffffffe);
   *puVar4 = 0;
   puVar4[1] = 0;
   puVar4[4] = 0;
@@ -174,7 +174,7 @@ LAB_1803c1cdd:
   lVar8 = *(int64_t *)(*(int64_t *)(param_1 + 8) + 0x198);
   if (lVar8 != *(int64_t *)(param_1 + 8) + 400) {
     do {
-      puVar5 = (uint64_t *)FUN_1804c1300(param_2 + 0x60,0x60);
+      puVar5 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x60);
       *puVar5 = 0;
       puVar5[1] = 0;
       puVar5[4] = 0;
@@ -260,7 +260,7 @@ void FUN_1803c1e40(int64_t param_1,int64_t param_2,int64_t param_3,uint64_t para
   uint64_t uVar20;
   
   lVar1 = param_2 + 0x60;
-  puVar6 = (uint64_t *)FUN_1804c1300(lVar1,0x60,param_3,param_4,0xfffffffffffffffe);
+  puVar6 = (uint64_t *)DataPipelineManager(lVar1,0x60,param_3,param_4,0xfffffffffffffffe);
   uVar14 = 0;
   *puVar6 = 0;
   puVar6[1] = 0;
@@ -290,7 +290,7 @@ void FUN_1803c1e40(int64_t param_1,int64_t param_2,int64_t param_3,uint64_t para
         if (lVar13 != 0) {
           uVar14 = *(uint64_t *)(uVar20 + *(int64_t *)(lVar13 + 0x200));
         }
-        puVar7 = (uint64_t *)FUN_1804c1300(lVar1,0x60);
+        puVar7 = (uint64_t *)DataPipelineManager(lVar1,0x60);
         *puVar7 = 0;
         puVar7[1] = 0;
         puVar7[4] = 0;
@@ -304,7 +304,7 @@ void FUN_1803c1e40(int64_t param_1,int64_t param_2,int64_t param_3,uint64_t para
         } while (*pcVar11 != '\0');
         *puVar7 = &unknown_var_1436_ptr;
         puVar7[2] = pcVar8 + -0x180a2355b;
-        puVar9 = (uint64_t *)FUN_1804c1300(lVar1,0x60);
+        puVar9 = (uint64_t *)DataPipelineManager(lVar1,0x60);
         *puVar9 = 0;
         puVar9[1] = 0;
         puVar9[4] = 0;
@@ -430,7 +430,7 @@ void FUN_1803c21c0(int64_t param_1,int64_t param_2,int64_t param_3)
   uint64_t *puVar7;
   bool bVar8;
   
-  puVar3 = (uint64_t *)FUN_1804c1300(param_2 + 0x60,0x60);
+  puVar3 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x60);
   *puVar3 = 0;
   puVar3[1] = 0;
   puVar3[4] = 0;
@@ -459,7 +459,7 @@ void FUN_1803c21c0(int64_t param_1,int64_t param_2,int64_t param_3)
     return;
   }
 LAB_1803c2297:
-  puVar5 = (uint64_t *)FUN_1804c1300(param_2 + 0x60,0x60);
+  puVar5 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x60);
   *puVar5 = 0;
   puVar5[1] = 0;
   puVar5[4] = 0;
@@ -487,7 +487,7 @@ LAB_1803c2297:
   puVar3[7] = puVar5;
   puVar5[4] = puVar3;
   puVar5[0xb] = 0;
-  puVar7 = (uint64_t *)FUN_1804c1300(param_2 + 0x60,0x60);
+  puVar7 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x60);
   *puVar7 = 0;
   puVar7[1] = 0;
   puVar7[4] = 0;
@@ -545,7 +545,7 @@ void FUN_1803c229c(void)
   int64_t unaff_R14;
   char *pcVar3;
   
-  plVar1 = (int64_t *)FUN_1804c1300(unaff_R14 + 0x60);
+  plVar1 = (int64_t *)DataPipelineManager(unaff_R14 + 0x60);
   *plVar1 = unaff_R12;
   plVar1[1] = unaff_R12;
   plVar1[4] = unaff_R12;
@@ -572,7 +572,7 @@ void FUN_1803c229c(void)
   *(int64_t **)(unaff_RBX + 0x38) = plVar1;
   plVar1[4] = unaff_RBX;
   plVar1[0xb] = unaff_R12;
-  plVar4 = (int64_t *)FUN_1804c1300(unaff_R14 + 0x60,0x60);
+  plVar4 = (int64_t *)DataPipelineManager(unaff_R14 + 0x60,0x60);
   *plVar4 = unaff_R12;
   plVar4[1] = unaff_R12;
   plVar4[4] = unaff_R12;

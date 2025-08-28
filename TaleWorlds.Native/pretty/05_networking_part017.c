@@ -50,7 +50,7 @@
 #define NetworkingSystem_StateCleaner FUN_180851421
 
 // 网络错误处理器
-#define NetworkingSystem_ErrorHandler FUN_18084b240
+#define NetworkingSystem_ErrorHandler SystemPhysicsEngine
 
 // 网络资源管理器
 #define NetworkingSystem_ResourceManager FUN_180851c50

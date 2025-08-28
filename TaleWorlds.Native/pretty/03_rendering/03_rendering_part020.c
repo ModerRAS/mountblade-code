@@ -1041,7 +1041,7 @@ void load_mdm_model_data(int64_t model_context, int64_t file_data)
                     // 处理材质数据
                     if (*(uint64_t *)(model_context + 8) < *(uint64_t *)(model_context + 0x10)) {
                         *(uint64_t *)(model_context + 8) = *(uint64_t *)(model_context + 8) + 0x20;
-                        FUN_180627ae0();
+                        SystemCore_NetworkHandler0();
                     } else {
                         FUN_180059820(model_context, &texture_manager);
                     }
@@ -1113,7 +1113,7 @@ void load_mdm_model_data(int64_t model_context, int64_t file_data)
                 // 处理网格数据
                 if (*(uint64_t *)(model_context + 8) < *(uint64_t *)(model_context + 0x10)) {
                     *(uint64_t *)(model_context + 8) = *(uint64_t *)(model_context + 8) + 0x20;
-                    FUN_180627ae0();
+                    SystemCore_NetworkHandler0();
                 } else {
                     FUN_180059820(model_context, &texture_manager);
                 }

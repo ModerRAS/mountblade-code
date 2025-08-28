@@ -165,7 +165,7 @@ int32_t * FUN_1803201f0(int32_t *param_1)
   *(uint64_t *)(param_1 + 0xc) = 0;
   *(uint64_t *)(param_1 + 8) = 0;
   param_1[10] = 0;
-  FUN_1808fc838(param_1 + 0xe,0x30,4,FUN_1801c2890,FUN_18004a130);
+  DataStructureManager(param_1 + 0xe,0x30,4,FUN_1801c2890,FUN_18004a130);
   param_1[0x3e] = 0;
   *param_1 = 0;
   (**(code **)(*plVar1 + 0x10))(plVar1,&system_buffer_ptr);

@@ -447,7 +447,7 @@ void advanced_system_resource_manager(uint64_t system_handle, uint64_t *resource
                             }
                         }
                         if (node_ptr_2 != resource_manager_ptr) {
-                            FUN_180627ae0(&stack_ptr_a8, &stack_ptr_d0);
+                            SystemCore_NetworkHandler0(&stack_ptr_a8, &stack_ptr_d0);
                             stack_value_88 = 0;
                             FUN_1801eac40(resource_manager_ptr, stack_buffer_48);
                             stack_ptr_58 = &stack_ptr_a8;

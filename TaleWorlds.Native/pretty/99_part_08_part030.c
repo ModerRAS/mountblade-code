@@ -957,7 +957,7 @@ void FUN_1804fe500(uint64_t param_1,char param_2,uint64_t param_3,int32_t *param
     }
     puVar3 = puStack_120;
     pcVar1 = *(code **)(alStack_e8[0] + 0x78);
-    uVar6 = FUN_180627ae0(&puStack_140,puStack_120);
+    uVar6 = SystemCore_NetworkHandler0(&puStack_140,puStack_120);
     uStack_168 = 1;
     FUN_180628a40(&puStack_140);
     plVar5 = (int64_t *)(*pcVar1)(alStack_e8,uVar6);

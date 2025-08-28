@@ -331,7 +331,7 @@ uint64_t * FUN_1804c6e20(uint64_t *param_1)
   param_1[0xb] = 0x900;
   param_1[0xc] = 0;
   param_1[0xd] = 0;
-  FUN_1808fc838(param_1 + 0xe,8,2,&SUB_18005d5f0,FUN_180045af0);
+  DataStructureManager(param_1 + 0xe,8,2,&SUB_18005d5f0,SystemTimer);
   param_1[0x10] = 0;
   param_1[0x11] = 0;
   param_1[0x12] = 0;
@@ -364,7 +364,7 @@ uint64_t * FUN_1804c6f10(uint64_t *param_1,uint64_t param_2)
   if ((int64_t *)param_1[0x10] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[0x10] + 0x38))();
   }
-  FUN_1808fc8a8(param_1 + 0xe,8,2,FUN_180045af0);
+  SystemMemoryManager(param_1 + 0xe,8,2,SystemTimer);
   if ((int64_t *)param_1[0xd] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[0xd] + 0x38))();
   }

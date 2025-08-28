@@ -316,7 +316,7 @@ uint64_t FUN_18078b010(int64_t param_1,int param_2)
       }
       uVar12 = (uint64_t)piVar11 & 0xffffffff00000000;
       puVar6 = (uint64_t *)
-               FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),200,&unknown_var_400_ptr,0x181,uVar12
+               SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),200,&unknown_var_400_ptr,0x181,uVar12
                             );
       puVar7 = puVar9;
       if (puVar6 != (uint64_t *)0x0) {
@@ -370,7 +370,7 @@ uint64_t FUN_18078b010(int64_t param_1,int param_2)
     uStack_38 = puVar7[6];
     uStack_30 = puVar7[7];
     puStack_48 = &uStack_80;
-    lVar8 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x2d8,&unknown_var_400_ptr,0x1c6,piVar11
+    lVar8 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x2d8,&unknown_var_400_ptr,0x1c6,piVar11
                          );
     if (lVar8 != 0) {
       puVar9 = (uint64_t *)FUN_1807e4c10(lVar8);
@@ -420,7 +420,7 @@ uint64_t FUN_18078b010(int64_t param_1,int param_2)
     uStack_88 = 0;
     func_0x000180746360(param_1,&uStack_88,&uStack_84);
     iVar2 = *(int *)(param_1 + 0x6d4);
-    lVar8 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x30,&unknown_var_400_ptr,0x1ee,
+    lVar8 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x30,&unknown_var_400_ptr,0x1ee,
                           (uint64_t)piVar11 & 0xffffffff00000000);
     *(int64_t *)(param_1 + 0x10f88) = lVar8;
     if (lVar8 == 0) {
@@ -474,7 +474,7 @@ uint64_t FUN_18078b543(int64_t param_1)
     *(int32_t *)(unaff_RBP + -0x29) = unaff_R15D;
     func_0x000180746360();
     iVar3 = *(int *)(unaff_RBX + 0x6d4);
-    lVar4 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x30,&unknown_var_400_ptr,0x1ee,
+    lVar4 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x30,&unknown_var_400_ptr,0x1ee,
                           CONCAT44(uVar6,unaff_R15D));
     *(int64_t *)(unaff_RBX + 0x10f88) = lVar4;
     if (lVar4 == 0) {

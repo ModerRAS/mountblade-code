@@ -246,7 +246,7 @@ int32_t * FUN_18038a910(int32_t *param_1)
   int32_t *puVar2;
   int64_t lVar3;
   
-  FUN_1808fc838();
+  DataStructureManager();
   puVar1 = param_1 + 0x102;
   *(uint64_t *)(param_1 + 0x108) = 0;
   param_1[0x10c] = 3;

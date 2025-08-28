@@ -72,8 +72,8 @@ void FUN_1804a9fe0(int64_t *param_1)
 void FUN_1804aa030(int64_t param_1)
 
 {
-  FUN_1808fc8a8(param_1 + 200,0x20,0x18,FUN_180046860,0xfffffffffffffffe);
-  FUN_1808fc8a8(param_1 + 8,8,0x18,FUN_180045af0);
+  SystemMemoryManager(param_1 + 200,0x20,0x18,FUN_180046860,0xfffffffffffffffe);
+  SystemMemoryManager(param_1 + 8,8,0x18,SystemTimer);
   return;
 }
 
@@ -805,7 +805,7 @@ LAB_1804aaee7:
   }
 LAB_1804aaef2:
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar5,lVar8,param_2,uVar13);
+  SystemNetworkHandler(lVar5,lVar8,param_2,uVar13);
 }
 
 

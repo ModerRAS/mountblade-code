@@ -834,7 +834,7 @@ void process_async_operation(uint64_t param_1,uint64_t *param_2,int32_t param_3)
   uStack_70 = 0x17;
   puStack_120 = param_2;
   uVar1 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x20,8,3);
-  uStack_58 = FUN_180627ae0(uVar1,param_2);
+  uStack_58 = SystemCore_NetworkHandler0(uVar1,param_2);
   uStack_50 = param_3;
   uVar1 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x100,8,3);
   ppuVar2 = (void **)FUN_18005ce30(uVar1,&puStack_108);

@@ -87,7 +87,7 @@ void FUN_180184da0(uint64_t param_1,int param_2,int64_t *param_3,int64_t *param_
             *(int8_t *)(puStack_78 + 8) = uStack_38;
             puStack_78 = puStack_78 + 10;
           }
-          FUN_180067070(&uStack_58);
+          SystemPerformanceOptimizer(&uStack_58);
           uVar7 = uVar7 + 1;
           uVar4 = uVar4 + 0x10;
         } while (uVar7 < (uint64_t)param_3[1]);
@@ -106,7 +106,7 @@ void FUN_180184da0(uint64_t param_1,int param_2,int64_t *param_3,int64_t *param_
       puVar5 = puStack_80;
       if (puStack_80 != (uint *)0x0) {
         for (; puStack_90 = puVar5, puVar5 != puVar3; puVar5 = puVar5 + 10) {
-          FUN_180067070(puVar5);
+          SystemPerformanceOptimizer(puVar5);
         }
         uVar4 = (((int64_t)puStack_70 - (int64_t)puStack_80) / 0x28) * 0x28;
         puVar5 = puStack_80;
@@ -155,7 +155,7 @@ void FUN_180185040(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
     lVar3 = param_1[1];
     if (lVar2 != lVar3) {
       do {
-        FUN_180067070(lVar2);
+        SystemPerformanceOptimizer(lVar2);
         lVar2 = lVar2 + 0x28;
       } while (lVar2 != lVar3);
       lVar2 = *param_1;
@@ -984,7 +984,7 @@ void FUN_180186360(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   uint64_t uVar5;
   
   uVar5 = 0xfffffffffffffffe;
-  FUN_180067070(param_1 + 0x90);
+  SystemPerformanceOptimizer(param_1 + 0x90);
   plVar2 = *(int64_t **)(param_1 + 0x78);
   if (plVar2 != (int64_t *)0x0) {
     (**(code **)(*plVar2 + 0x20))(plVar2,plVar2 != (int64_t *)(param_1 + 0x40));
@@ -1006,7 +1006,7 @@ void FUN_180186360(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
     *(uint64_t *)(param_1 + 0x28) = 0;
     *(uint64_t *)(param_1 + 0x30) = 0;
   }
-  FUN_180067070(param_1);
+  SystemPerformanceOptimizer(param_1);
   return;
 }
 

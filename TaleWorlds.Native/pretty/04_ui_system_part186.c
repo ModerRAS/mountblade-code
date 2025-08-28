@@ -478,7 +478,7 @@ uint64_t FUN_180776880(int64_t param_1,uint param_2)
   }
   iVar2 = iVar2 * 2;
   *(int *)(param_1 + 0x248) = iVar2;
-  lVar3 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar2 + 0x10,&unknown_var_4256_ptr,0x262,0)
+  lVar3 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar2 + 0x10,&unknown_var_4256_ptr,0x262,0)
   ;
   *(int64_t *)(param_1 + 0x240) = lVar3;
   *(uint64_t *)(param_1 + 0x238) = lVar3 + 0xfU & 0xfffffffffffffff0;
@@ -702,7 +702,7 @@ uint64_t FUN_180776b70(int64_t param_1)
     *(int *)(param_1 + 0x2f0) = iVar5;
     iVar5 = iVar5 * 4;
     *(int *)(param_1 + 0x2f0) = iVar5;
-    lVar3 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar5 + 0x10,&unknown_var_5616_ptr,0xba,0
+    lVar3 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),iVar5 + 0x10,&unknown_var_5616_ptr,0xba,0
                          );
     *(int64_t *)(param_1 + 0x2e8) = lVar3;
     *(uint64_t *)(param_1 + 0x2e0) = lVar3 + 0xfU & 0xfffffffffffffff0;

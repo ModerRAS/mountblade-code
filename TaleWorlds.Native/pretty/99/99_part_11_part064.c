@@ -385,7 +385,7 @@ void resource_allocator_and_batch_operation_processor(int64_t param_1, int param
 {
   int64_t lVar1;
   
-  lVar1 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_2 * param_3, &unknown_var_7376_ptr,
+  lVar1 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_2 * param_3, &unknown_var_7376_ptr,
                         0x22, 0);
   if ((lVar1 != 0) && (param_1 != 0)) {
     *(int *)(param_1 + 0x4f0) = *(int *)(param_1 + 0x4f0) + param_2 * param_3;

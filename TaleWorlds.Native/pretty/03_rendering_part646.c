@@ -43,7 +43,7 @@ void FUN_1806307a0(int64_t param_1,int64_t param_2,char *param_3,uint64_t *param
     acStack_138[0] = *pcVar8;
   }
   pcVar8 = pcVar8 + (1 - (int64_t)acStack_138);
-  pcVar4 = (char *)FUN_1804c1300(param_1,pcVar8);
+  pcVar4 = (char *)DataPipelineManager(param_1,pcVar8);
   if (pcVar8 != (char *)0x0) {
     pcVar7 = pcVar4;
     do {
@@ -61,7 +61,7 @@ void FUN_1806307a0(int64_t param_1,int64_t param_2,char *param_3,uint64_t *param
       cVar1 = *pcVar8;
     }
     pcVar8 = pcVar8 + (1 - (int64_t)param_3);
-    puVar6 = (int8_t *)FUN_1804c1300(param_1,pcVar8);
+    puVar6 = (int8_t *)DataPipelineManager(param_1,pcVar8);
     if (pcVar8 != (char *)0x0) {
       puVar9 = puVar6;
       do {
@@ -133,7 +133,7 @@ void FUN_180630980(int64_t param_1,int64_t param_2,uint64_t param_3,int32_t *par
     acStack_138[0] = *pcVar5;
   }
   pcVar5 = pcVar5 + (1 - (int64_t)acStack_138);
-  pcVar2 = (char *)FUN_1804c1300(param_1,pcVar5);
+  pcVar2 = (char *)DataPipelineManager(param_1,pcVar5);
   if (pcVar5 != (char *)0x0) {
     pcVar6 = pcVar2;
     do {
@@ -150,7 +150,7 @@ void FUN_180630980(int64_t param_1,int64_t param_2,uint64_t param_3,int32_t *par
       pcVar5 = pcVar6 + 1;
     } while (*pcVar5 != '\0');
     pcVar6 = pcVar6 + -0x180a0696a;
-    puVar4 = (int8_t *)FUN_1804c1300(param_1,pcVar6);
+    puVar4 = (int8_t *)DataPipelineManager(param_1,pcVar6);
     if (pcVar6 != (char *)0x0) {
       puVar7 = puVar4;
       do {
@@ -214,7 +214,7 @@ void SystemAllocationProcessor(int64_t param_1,int64_t param_2,char *param_3,cha
     cVar1 = *pcVar6;
   }
   pcVar6 = pcVar6 + (1 - (int64_t)param_4);
-  pcVar2 = (char *)FUN_1804c1300(param_1,pcVar6);
+  pcVar2 = (char *)DataPipelineManager(param_1,pcVar6);
   if (pcVar6 != (char *)0x0) {
     pcVar5 = pcVar2;
     do {
@@ -232,7 +232,7 @@ void SystemAllocationProcessor(int64_t param_1,int64_t param_2,char *param_3,cha
       } while (*pcVar6 != '\0');
     }
     pcVar6 = pcVar6 + (1 - (int64_t)param_3);
-    puVar4 = (int8_t *)FUN_1804c1300(param_1,pcVar6);
+    puVar4 = (int8_t *)DataPipelineManager(param_1,pcVar6);
     if (pcVar6 != (char *)0x0) {
       puVar7 = puVar4;
       do {
@@ -301,7 +301,7 @@ void FUN_180630c80(int64_t param_1,int64_t param_2,char *param_3)
     cVar1 = *pcVar5;
   }
   pcVar5 = pcVar5 + (1 - (int64_t)acStack_78);
-  puVar2 = (int8_t *)FUN_1804c1300(param_1,pcVar5);
+  puVar2 = (int8_t *)DataPipelineManager(param_1,pcVar5);
   if (pcVar5 != (char *)0x0) {
     puVar4 = puVar2;
     do {
@@ -319,7 +319,7 @@ void FUN_180630c80(int64_t param_1,int64_t param_2,char *param_3)
       cVar1 = *pcVar5;
     }
     pcVar5 = pcVar5 + (1 - (int64_t)param_3);
-    puVar4 = (int8_t *)FUN_1804c1300(param_1,pcVar5);
+    puVar4 = (int8_t *)DataPipelineManager(param_1,pcVar5);
     if (pcVar5 != (char *)0x0) {
       puVar6 = puVar4;
       do {
@@ -388,7 +388,7 @@ void FUN_180630e10(int64_t param_1,int64_t param_2,char *param_3)
     cVar1 = *pcVar5;
   }
   pcVar5 = pcVar5 + (1 - (int64_t)acStack_78);
-  puVar2 = (int8_t *)FUN_1804c1300(param_1,pcVar5);
+  puVar2 = (int8_t *)DataPipelineManager(param_1,pcVar5);
   if (pcVar5 != (char *)0x0) {
     puVar4 = puVar2;
     do {
@@ -406,7 +406,7 @@ void FUN_180630e10(int64_t param_1,int64_t param_2,char *param_3)
       cVar1 = *pcVar5;
     }
     pcVar5 = pcVar5 + (1 - (int64_t)param_3);
-    puVar4 = (int8_t *)FUN_1804c1300(param_1,pcVar5);
+    puVar4 = (int8_t *)DataPipelineManager(param_1,pcVar5);
     if (pcVar5 != (char *)0x0) {
       puVar6 = puVar4;
       do {

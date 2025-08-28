@@ -46,7 +46,7 @@ void FUN_180062920(int *param_1)
   lStack_160 = 0;
   uStack_158 = 0;
   uStack_150 = 3;
-  lVar4 = FUN_180627ae0(&puStack_188,system_main_module_state + 0x2c0);
+  lVar4 = SystemCore_NetworkHandler0(&puStack_188,system_main_module_state + 0x2c0);
   uStack_190 = 1;
   auStack_1b8[0] = 0x20;
   if (*(int64_t *)(lVar4 + 8) != 0) {
@@ -521,7 +521,7 @@ void FUN_180063820(uint64_t param_1)
   uStack_248 = 0xfffffffffffffffe;
   uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_2e8;
   uStack_240 = param_1;
-  FUN_180627ae0(auStack_288,system_message_context + 0x28);
+  SystemCore_NetworkHandler0(auStack_288,system_message_context + 0x28);
                     // WARNING: Subroutine does not return
   memset(auStack_238,0,0x200);
 }

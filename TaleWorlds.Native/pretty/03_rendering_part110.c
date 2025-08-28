@@ -387,7 +387,7 @@ LAB_180333fbc:
     ppuVar5 = (uint64_t **)puVar16[5];
     ppuStackX_20 = ppuVar5;
     if (ppuVar5 != (uint64_t **)0x0) {
-      FUN_1808fc8a8(ppuVar5 + 7,0x30,4,FUN_18004a130);
+      SystemDataValidator(ppuVar5 + 7,0x30,4,FUN_18004a130);
       ppuStack_58 = ppuVar5 + 3;
       *ppuStack_58 = (uint64_t *)&system_data_buffer_ptr;
       if (ppuVar5[4] == (uint64_t *)0x0) {
@@ -572,7 +572,7 @@ RenderingSystem_CreateResourcePath(int64_t resource_context, uint64_t *path_buff
   param_2[3] = 0;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  FUN_180627be0(param_2,param_1 + 0x208,0,param_4,2,0xfffffffffffffffe);
+  SystemCore_ConfigurationHandler0(param_2,param_1 + 0x208,0,param_4,2,0xfffffffffffffffe);
   iVar1 = *(int *)(param_2 + 2);
   CoreEngineDataBufferProcessor(param_2,iVar1 + 0xd);
   puVar2 = (uint64_t *)((uint64_t)*(uint *)(param_2 + 2) + param_2[1]);
@@ -611,7 +611,7 @@ RenderingSystem_CreateDataPath(int64_t resource_context, uint64_t *path_buffer, 
   param_2[3] = 0;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  FUN_180627be0(param_2,param_1 + 0x208,0,param_4,2,0xfffffffffffffffe);
+  SystemCore_ConfigurationHandler0(param_2,param_1 + 0x208,0,param_4,2,0xfffffffffffffffe);
   iVar1 = *(int *)(param_2 + 2);
   CoreEngineDataBufferProcessor(param_2,iVar1 + 0x10);
   puVar2 = (uint64_t *)((uint64_t)*(uint *)(param_2 + 2) + param_2[1]);

@@ -226,7 +226,7 @@ uint64_t FUN_18077e250(int64_t param_1,int param_2)
           SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar11[2],&unknown_var_7552_ptr,0x1eb,1);
         }
         piVar10[-4] = *piVar10 * 4;
-        uVar8 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*piVar10 * 4 + 0x80,
+        uVar8 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*piVar10 * 4 + 0x80,
                               &unknown_var_7552_ptr,0x1f2,0);
         puVar11[2] = uVar8;
         if (uVar8 == 0) {

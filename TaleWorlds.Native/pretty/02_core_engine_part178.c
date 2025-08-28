@@ -64,7 +64,7 @@ FUN_180160d20(uint64_t *param_1,uint64_t param_2,int64_t *param_3,uint64_t param
     *(int8_t *)param_1[1] = 0;
   }
   uVar11 = 1;
-  FUN_180627ae0(&puStack_68,param_2);
+  SystemCore_NetworkHandler0(&puStack_68,param_2);
   if (param_3[1] - *param_3 >> 5 == 0) {
     puVar7 = &system_buffer_ptr;
     if (puStack_60 != (void *)0x0) {
@@ -149,7 +149,7 @@ FUN_180160d20(uint64_t *param_1,uint64_t param_2,int64_t *param_3,uint64_t param
     *(int *)(param_1 + 2) = iVar9;
   }
   else {
-    FUN_180627ae0(&puStack_48);
+    SystemCore_NetworkHandler0(&puStack_48);
     puVar7 = &system_buffer_ptr;
     if (puStack_60 != (void *)0x0) {
       puVar7 = puStack_60;
@@ -255,7 +255,7 @@ FUN_180161170(uint64_t *param_1,uint64_t param_2,int64_t *param_3,uint64_t param
     *(int8_t *)param_1[1] = 0;
   }
   uVar8 = 1;
-  FUN_180627ae0(&puStack_68,param_2);
+  SystemCore_NetworkHandler0(&puStack_68,param_2);
   if (param_3[1] - *param_3 >> 5 == 0) {
     puVar4 = &system_buffer_ptr;
     if (puStack_60 != (void *)0x0) {
@@ -334,7 +334,7 @@ FUN_180161170(uint64_t *param_1,uint64_t param_2,int64_t *param_3,uint64_t param
     *(int *)(param_1 + 2) = iVar6 + 1;
   }
   else {
-    FUN_180627ae0(&puStack_48);
+    SystemCore_NetworkHandler0(&puStack_48);
     FUN_1800af2c0(core_system_data_config,&puStack_68,&puStack_48,param_4,uVar8);
     iVar6 = *(int *)(param_1 + 2);
     CoreMemoryPoolProcessor(param_1,iVar6 + 0x23);
@@ -391,7 +391,7 @@ FUN_1801614d0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   param_1[0xe] = 0;
   param_1[0xf] = 0;
   param_1[0x10] = 0;
-  FUN_180627be0();
+  SystemCore_ConfigurationHandler0();
   *(int32_t *)(param_1 + 4) = 0;
   if ((code *)param_1[0xc] != (code *)0x0) {
     (*(code *)param_1[0xc])(param_1 + 10,0,0,param_4,uVar1);
@@ -430,7 +430,7 @@ FUN_1801615a0(uint64_t *param_1,uint64_t param_2,uint64_t *param_3,uint64_t para
   param_1[0xe] = 0;
   param_1[0xf] = 0;
   param_1[0x10] = 0;
-  FUN_180627be0();
+  SystemCore_ConfigurationHandler0();
   *(int32_t *)(param_1 + 4) = 1;
   if (puVar1 != param_3) {
     if ((code *)param_1[0xc] != (code *)0x0) {
@@ -716,7 +716,7 @@ LAB_18016195a:
         if (*(int64_t *)(param_1 + 0x70) == 0) {
           if (*(int64_t *)(param_1 + 0x78) == 0) {
             if (*(int64_t *)(param_1 + 0x80) != 0) {
-              FUN_180627be0();
+              SystemCore_ConfigurationHandler0();
             }
           }
           else {

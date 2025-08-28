@@ -31,11 +31,11 @@ uint64_t FUN_18089c630(int64_t param_1,int64_t *param_2)
   uint64_t uVar6;
   
   uVar5 = 1;
-  uVar3 = FUN_1808ddc20(param_2,auStack_60,1,0x4d524150);
+  uVar3 = DataFlowProcessor(param_2,auStack_60,1,0x4d524150);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
-  uVar3 = FUN_1808ddc20(param_2,auStack_80,0,0x424d5250);
+  uVar3 = DataFlowProcessor(param_2,auStack_80,0,0x424d5250);
   if ((int)uVar3 != 0) {
     return uVar3;
   }

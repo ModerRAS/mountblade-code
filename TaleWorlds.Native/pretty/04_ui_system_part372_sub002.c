@@ -1,3 +1,6 @@
+/* UIManager - FUN_18086b47c 的语义化别名 */
+#define UIManager FUN_18086b47c
+
 /**
  * @file 04_ui_system_part372_sub002.c
  * @brief UI系统安全检查和初始化模块
@@ -42,7 +45,7 @@
 #define UISystem_SecurityChecker SystemSecurityChecker
 
 // UI系统初始化器
-#define UISystem_Initializer FUN_18086b47c
+#define UISystem_Initializer UIManager
 
 /* ============================================================================
  * 系统常量定义

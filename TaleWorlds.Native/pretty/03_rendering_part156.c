@@ -204,11 +204,11 @@ LAB_180364c1e:
   else {
     lVar4 = FUN_180213440(render_system_data_memory,param_1 + 0x90,0);
     if (lVar4 == 0) {
-      FUN_180627be0(param_1 + 0x158,param_1 + 0x90);
+      SystemCore_ConfigurationHandler0(param_1 + 0x158,param_1 + 0x90);
     }
     else {
       uVar5 = FUN_180628ca0();
-      FUN_180627be0(param_1 + 0x158,uVar5);
+      SystemCore_ConfigurationHandler0(param_1 + 0x158,uVar5);
       plStack_98 = (int64_t *)((uint64_t)plStack_98 & 0xffffffff00000000);
       FUN_1808464f0(lVar4,&plStack_98);
       if (0 < (int)plStack_98) {

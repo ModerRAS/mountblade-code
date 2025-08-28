@@ -315,7 +315,7 @@ LAB_18030c136:
   goto LAB_18030c071;
 LAB_18030c154:
   pcStack_1f8 = FUN_1800f88f0;
-  FUN_1808fc838(auStack_178,0x58,2,FUN_18030cdf0);
+  DataStructureManager(auStack_178,0x58,2,FUN_18030cdf0);
   ppuStack_1d8 = &puStack_70;
   puStack_70 = &system_data_buffer_ptr;
   uStack_58 = 0;
@@ -743,7 +743,7 @@ LAB_18030c89f:
   lStack_68 = 0;
   uStack_58 = uStack_58 & 0xffffffff00000000;
   puStack_70 = &system_state_ptr;
-  FUN_1808fc8a8(auStack_178,0x58,2,FUN_1800f88f0);
+  SystemDataValidator(auStack_178,0x58,2,FUN_1800f88f0);
   if (puVar9 == (uint64_t *)0x0) goto LAB_18030c93f;
   goto LAB_18030c154;
 LAB_18030c575:

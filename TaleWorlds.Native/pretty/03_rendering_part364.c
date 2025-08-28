@@ -255,7 +255,7 @@ LAB_180466b24:
               }
               FUN_180627c50(&puStack_218,lVar12);
               puStackX_8 = &uStack_1b8;
-              uVar5 = FUN_180627ae0(&uStack_1b8,&puStack_218);
+              uVar5 = SystemCore_NetworkHandler0(&uStack_1b8,&puStack_218);
               uVar3 = FUN_1804660e0(extraout_XMM0_Da,uVar5);
               *(int32_t *)(param_1 + 0x1b0) = uVar3;
               break;

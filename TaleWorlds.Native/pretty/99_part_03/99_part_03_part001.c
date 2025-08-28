@@ -917,7 +917,7 @@ void build_save_path(int64_t *path_ptr, int64_t context_ptr)
         FUN_18062c1e0(path_ptr, 1);
     }
     else {
-        FUN_180627be0(path_ptr, context_ptr + 0x2d0);
+        SystemCore_ConfigurationHandler0(path_ptr, context_ptr + 0x2d0);
     }
     SystemSecurityChecker(stack_data8 ^ (uint64_t)stack_data1);
 }

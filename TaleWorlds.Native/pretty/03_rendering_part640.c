@@ -209,7 +209,7 @@ void FUN_180627b90(uint64_t *param_1)
 
 
 
-int64_t FUN_180627be0(int64_t param_1,int64_t param_2)
+int64_t SystemCore_ConfigurationHandler0(int64_t param_1,int64_t param_2)
 
 {
   uint uVar1;
@@ -280,7 +280,7 @@ FUN_180627ce0(uint64_t param_1,uint64_t *param_2,int64_t param_3,uint64_t param_
   param_2[3] = 0;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  FUN_180627be0(param_2,param_1,param_3,param_4,1,0xfffffffffffffffe);
+  SystemCore_ConfigurationHandler0(param_2,param_1,param_3,param_4,1,0xfffffffffffffffe);
   if (0 < *(int *)(param_3 + 0x10)) {
     CoreEngineDataBufferProcessor(param_2,*(int *)(param_2 + 2) + *(int *)(param_3 + 0x10));
                     // WARNING: Subroutine does not return
@@ -303,7 +303,7 @@ FUN_180627d90(uint64_t param_1,uint64_t *param_2,int32_t param_3,uint64_t param_
   param_2[3] = 0;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  FUN_180627be0(param_2,param_1,param_3,param_4,1,0xfffffffffffffffe);
+  SystemCore_ConfigurationHandler0(param_2,param_1,param_3,param_4,1,0xfffffffffffffffe);
   FUN_180628380(param_2,param_3);
   return param_2;
 }
@@ -321,7 +321,7 @@ FUN_180627e10(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
   param_2[3] = 0;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  FUN_180627be0(param_2,param_1,param_3,param_4,1,0xfffffffffffffffe);
+  SystemCore_ConfigurationHandler0(param_2,param_1,param_3,param_4,1,0xfffffffffffffffe);
   FUN_1806281a0(param_2,param_3);
   return param_2;
 }

@@ -490,7 +490,7 @@ void FUN_1802f75e0(uint64_t *param_1,int64_t param_2,int64_t param_3,uint64_t pa
   int8_t auStack_38 [32];
   char *pcVar4;
   
-  puVar2 = (uint64_t *)FUN_1804c1300(param_2 + 0x60,0x60);
+  puVar2 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x60);
   *puVar2 = 0;
   puVar2[1] = 0;
   puVar2[4] = 0;
@@ -647,7 +647,7 @@ void FUN_1802f75f0(uint64_t *param_1,int64_t param_2,int64_t param_3,uint64_t pa
   *(int32_t *)(in_RAX + -0x24) = unaff_XMM6_Db;
   *(int32_t *)(in_RAX + -0x20) = unaff_XMM6_Dc;
   *(int32_t *)(in_RAX + -0x1c) = unaff_XMM6_Dd;
-  puVar2 = (uint64_t *)FUN_1804c1300(param_2 + 0x60,0x60);
+  puVar2 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x60);
   *puVar2 = 0;
   puVar2[1] = 0;
   puVar2[4] = 0;

@@ -510,7 +510,7 @@ int64_t FUN_1801f8ea0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t 
   int64_t lVar13;
   
   *(uint64_t *)(param_1 + 8) = *(uint64_t *)(param_2 + 8);
-  FUN_180627be0(param_1 + 0x10,param_2 + 0x10,param_3,param_4,0xfffffffffffffffe);
+  SystemCore_ConfigurationHandler0(param_1 + 0x10,param_2 + 0x10,param_3,param_4,0xfffffffffffffffe);
   plVar9 = *(int64_t **)(param_2 + 0x30);
   if (plVar9 != (int64_t *)0x0) {
     (**(code **)(*plVar9 + 0x28))(plVar9);

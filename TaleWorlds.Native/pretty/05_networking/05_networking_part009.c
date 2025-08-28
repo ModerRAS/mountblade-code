@@ -1,3 +1,6 @@
+/* SystemController - SystemCore_StateProcessor0 的语义化别名 */
+#define SystemController SystemCore_StateProcessor0
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -52,7 +55,7 @@
 #define network_connection_status_checker     FUN_18084b180
 
 /** 网络数据包发送器 */
-#define network_packet_sender                FUN_18084b240
+#define network_packet_sender                SystemController
 
 /** 网络连接初始化器 */
 #define network_connection_initializer        FUN_18084b2f0

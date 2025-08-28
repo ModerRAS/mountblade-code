@@ -491,7 +491,7 @@ void FUN_180853230(int64_t param_1)
   }
 LAB_18073d93d:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    SystemDataProcessor();
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_158);

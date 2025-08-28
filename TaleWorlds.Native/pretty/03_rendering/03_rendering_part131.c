@@ -111,7 +111,7 @@ void rendering_system_process_render_parameters(int64_t *render_context, uint64_
     // 基础参数类型处理
     parameter_value = FUN_180627910(&error_handler_ptr, param_data + 0x20, param_data, param_size, 0xfffffffffffffffe);
     render_object_ptr = FUN_1803466a0(render_context, render_param);
-    FUN_180627be0(*(uint64_t *)(render_object_ptr + 0x20), parameter_value);
+    SystemCore_ConfigurationHandler0(*(uint64_t *)(render_object_ptr + 0x20), parameter_value);
     if (execute_callback != '\0') {
       // 执行渲染回调函数
       (**(code **)(*render_context + 0xb0))(render_context, render_param);
@@ -363,7 +363,7 @@ void rendering_system_set_render_parameter_data(int64_t *render_context, uint64_
   int64_t render_object_ptr;
   
   render_object_ptr = FUN_1803466a0();
-  FUN_180627be0(*(uint64_t *)(render_object_ptr + 0x20), param_data);
+  SystemCore_ConfigurationHandler0(*(uint64_t *)(render_object_ptr + 0x20), param_data);
   if (execute_callback != '\0') {
     // 执行渲染回调函数
     (**(code **)(*render_context + 0xb0))(render_context, render_param);

@@ -128,8 +128,8 @@ void FUN_18017ca10(uint64_t param_1,uint64_t param_2)
   puVar3 = puVar2;
   FUN_1803456e0(puVar2,param_2,param_1);
   *puVar3 = &unknown_var_7952_ptr;
-  FUN_1808fc838(puVar3 + 0xe,0x20,4,FUN_180627850,FUN_180627b90);
-  FUN_1808fc838(puVar2 + 0x1e,0x20,4,FUN_180627850,FUN_180627b90);
+  DataStructureManager(puVar3 + 0xe,0x20,4,FUN_180627850,FUN_180627b90);
+  DataStructureManager(puVar2 + 0x1e,0x20,4,FUN_180627850,FUN_180627b90);
   puVar2[0x2f] = 0;
   puStack_b8 = &system_data_buffer_ptr;
   uStack_a0 = 0;

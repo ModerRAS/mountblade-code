@@ -584,7 +584,7 @@ LAB_1803994f0:
         } while (-1 < lVar5);
       }
 LAB_18039967d:
-      FUN_180627be0(param_1,param_2);
+      SystemCore_ConfigurationHandler0(param_1,param_2);
       return;
     }
     lVar5 = (int64_t)&unknown_var_4448_ptr - (int64_t)pcVar3;

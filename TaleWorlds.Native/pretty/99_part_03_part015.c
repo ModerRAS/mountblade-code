@@ -111,7 +111,7 @@
 #define SystemStateChecker FUN_180624af0         /** 系统状态检查器 */
 #define SystemStateSetter FUN_18062c1e0         /** 系统状态设置器 */
 #define SystemStringHandler FUN_1800baa80       /** 系统字符串处理器 */
-#define SystemPathProcessor FUN_180627be0       /** 系统路径处理器 */
+#define SystemPathProcessor SystemCore_ConfigurationHandler0       /** 系统路径处理器 */
 #define SystemResourceTracker FUN_1801c9940     /** 系统资源跟踪器 */
 #define SystemDataManager FUN_1803e8a40          /** 系统数据管理器 */
 

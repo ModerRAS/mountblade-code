@@ -492,11 +492,11 @@ LAB_18077086b:
     if (uVar6 == 0) {
       iVar7 = 0;
       uVar11 = uVar11 & 0xffffffff00000000;
-      lVar9 = FUN_180742050(plVar1,param_4 * 8,&system_buffer_ptr,0,uVar11);
+      lVar9 = SystemCore_TransformationEngine0(plVar1,param_4 * 8,&system_buffer_ptr,0,uVar11);
       param_1[3] = lVar9;
       if (lVar9 != 0) {
         uVar11 = uVar11 & 0xffffffff00000000;
-        lVar9 = FUN_180742050(plVar1,param_4,&system_buffer_ptr,0,uVar11);
+        lVar9 = SystemCore_TransformationEngine0(plVar1,param_4,&system_buffer_ptr,0,uVar11);
         param_1[4] = lVar9;
         plVar12 = plVar14;
         if (lVar9 != 0) {
@@ -511,7 +511,7 @@ LAB_18077086b:
               iStack_90 = iStack_b8;
               uStack_8c = 0;
               uVar11 = uVar11 & 0xffffffff00000000;
-              lVar9 = FUN_180742050(param_1 + 6,iStack_ac,&system_buffer_ptr,0,uVar11);
+              lVar9 = SystemCore_TransformationEngine0(param_1 + 6,iStack_ac,&system_buffer_ptr,0,uVar11);
               if (lVar9 == 0) goto FUN_180770ccf;
               plVar14 = (int64_t *)(lVar9 + 0xfU & 0xfffffffffffffff0);
               if (param_2 == 0) {
@@ -536,7 +536,7 @@ LAB_18077086b:
               if (uVar6 != 0) goto LAB_180770cd4;
               if (iVar13 != 0) {
                 uVar11 = uVar11 & 0xffffffff00000000;
-                lVar9 = FUN_180742050(param_1 + 6,iVar13,&system_buffer_ptr,0,uVar11);
+                lVar9 = SystemCore_TransformationEngine0(param_1 + 6,iVar13,&system_buffer_ptr,0,uVar11);
                 plVar14[99] = lVar9;
                 if (lVar9 == 0) goto FUN_180770ccf;
                 *(int32_t *)(lVar9 + 0x28) = *(int32_t *)(lVar9 + 0x90);
@@ -790,11 +790,11 @@ LAB_18077086b:
     if (uVar16 == 0) {
       iVar17 = 0;
       uVar15 = uVar15 & 0xffffffff00000000;
-      lVar11 = FUN_180742050(plVar1,unaff_R15D * 8,&system_buffer_ptr,0,uVar15);
+      lVar11 = SystemCore_TransformationEngine0(plVar1,unaff_R15D * 8,&system_buffer_ptr,0,uVar15);
       unaff_RSI[3] = lVar11;
       if (lVar11 != 0) {
         uVar15 = uVar15 & 0xffffffff00000000;
-        lVar11 = FUN_180742050(plVar1,unaff_R15D,&system_buffer_ptr,0,uVar15);
+        lVar11 = SystemCore_TransformationEngine0(plVar1,unaff_R15D,&system_buffer_ptr,0,uVar15);
         unaff_RSI[4] = lVar11;
         if (lVar11 != 0) {
           unaff_R14 = (int64_t *)unaff_RSI[3];
@@ -808,7 +808,7 @@ LAB_18077086b:
               *(int32_t *)(unaff_RBP + -0x39) = *(int32_t *)(unaff_RBP + -0x61);
               *(int8_t *)(unaff_RBP + -0x35) = 0;
               uVar15 = uVar15 & 0xffffffff00000000;
-              lVar11 = FUN_180742050(unaff_RSI + 6,*(int32_t *)(unaff_RBP + -0x55),&system_buffer_ptr
+              lVar11 = SystemCore_TransformationEngine0(unaff_RSI + 6,*(int32_t *)(unaff_RBP + -0x55),&system_buffer_ptr
                                      ,0,uVar15);
               if (lVar11 == 0) goto FUN_180770ccf;
               puVar10 = (uint64_t *)(lVar11 + 0xfU & 0xfffffffffffffff0);
@@ -837,7 +837,7 @@ LAB_18077086b:
               else {
                 lVar11 = *(int64_t *)(unaff_RBP + -0x69);
                 uVar15 = uVar15 & 0xffffffff00000000;
-                lVar12 = FUN_180742050(unaff_RSI + 6,iVar18,&system_buffer_ptr,0,uVar15);
+                lVar12 = SystemCore_TransformationEngine0(unaff_RSI + 6,iVar18,&system_buffer_ptr,0,uVar15);
                 *(int64_t *)(lVar11 + 0x318) = lVar12;
                 if (lVar12 == 0) goto FUN_180770ccf;
                 *(int32_t *)(lVar12 + 0x28) = *(int32_t *)(lVar12 + 0x90);

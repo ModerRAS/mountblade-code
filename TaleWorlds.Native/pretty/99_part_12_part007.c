@@ -78,7 +78,7 @@ void FUN_1807cb8fe(void)
             do {
               uVar25 = uVar25 & 0xffffffff00000000;
               plVar5 = (int64_t *)
-                       FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x130,&unknown_var_8528_ptr,
+                       SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x130,&unknown_var_8528_ptr,
                                      0x90b,uVar25);
               plVar6 = plVar17;
               if (plVar5 != (int64_t *)0x0) {
@@ -116,7 +116,7 @@ void FUN_1807cb8fe(void)
               uVar16 = (uint)uStack0000000000000048;
             }
             *(uint *)(unaff_RDI + 0x8f4) = uVar16;
-            lVar7 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar16 << 4,&unknown_var_8528_ptr
+            lVar7 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uVar16 << 4,&unknown_var_8528_ptr
                                   ,0x92b,uVar25);
             *(int64_t *)(unaff_RDI + 0x278) = lVar7;
             if (lVar7 != 0) {
@@ -135,7 +135,7 @@ void FUN_1807cb8fe(void)
                      iVar4 != 0)) goto LAB_1807cc69d;
                   *(uint *)((int64_t)plVar21 + lVar7) = (uint)uStack0000000000000054;
                   uVar25 = uVar25 & 0xffffffff00000000;
-                  pbVar13 = (byte *)FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
+                  pbVar13 = (byte *)SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
                                                   (uint)uStack0000000000000054 *
                                                   *(int *)(unaff_RDI + 0x3c8) * 5,&unknown_var_8528_ptr,
                                                   0x95e,uVar25);
@@ -200,7 +200,7 @@ LAB_1807cbd3d:
                   lVar18 = *(int64_t *)(unaff_RDI + 0x278);
                   uVar25 = uVar25 & 0xffffffff00000000;
                   *(int32_t *)(lVar7 + lVar18) = 0x40;
-                  lVar8 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
+                  lVar8 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
                                         *(int *)(unaff_RDI + 0x3c8) * 0x140,&unknown_var_8528_ptr,0x9d8,
                                         uVar25);
                   *(int64_t *)(lVar7 + 8 + lVar18) = lVar8;
@@ -211,7 +211,7 @@ LAB_1807cbd3d:
               }
               lVar18 = 0;
               uVar25 = uVar25 & 0xffffffff00000000;
-              lVar7 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
+              lVar7 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
                                     *(int *)(unaff_RDI + 0x8f8) * 0x618,&unknown_var_8528_ptr,0x9e5,uVar25)
               ;
               *(int64_t *)(unaff_RDI + 0x900) = lVar7;
@@ -392,7 +392,7 @@ LAB_1807cbd3d:
                 *(uint64_t *)(unaff_RDI + 0x848) = 0;
                 if (*(int *)(unaff_RDI + 0x8fc) != 0) {
                   uVar25 = uVar25 & 0xffffffff00000000;
-                  lVar18 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
+                  lVar18 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
                                          *(int *)(unaff_RDI + 0x8fc) * 8,&unknown_var_8528_ptr,0xbdc,uVar25
                                         );
                   *(int64_t *)(unaff_RDI + 0x848) = lVar18;
@@ -468,7 +468,7 @@ LAB_1807cbd3d:
                       uVar24 = extraout_XMM0_Da_00;
                     }
                     else {
-                      lVar7 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
+                      lVar7 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
                                             *(int *)(unaff_RDI + 0x8ec) << 8,&unknown_var_8528_ptr,0xc29,
                                             uVar25 & 0xffffffff00000000);
                       *(int64_t *)(unaff_RDI + 0x288) = lVar7;

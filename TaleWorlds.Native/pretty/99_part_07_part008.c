@@ -468,7 +468,7 @@ FUN_1804a2230(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
     *(int32_t *)(param_2 + 2) = 0x17;
   }
   else {
-    FUN_180627ae0(&puStack_58,*(int64_t *)(system_system_config + 0x18) + 0x3020);
+    SystemCore_NetworkHandler0(&puStack_58,*(int64_t *)(system_system_config + 0x18) + 0x3020);
     uVar8 = 0;
     puStack_78 = &system_data_buffer_ptr;
     uStack_60 = 0;

@@ -761,8 +761,8 @@ FUN_180572550(uint64_t *param_1,int64_t param_2,uint64_t param_3,uint64_t param_
   param_1[7] = 0;
   param_1[5] = 0;
   *(int32_t *)(param_1 + 6) = 0;
-  FUN_180627be0(param_1);
-  FUN_180627be0(puVar1,param_2 + 0x20,param_3,param_4,uVar2);
+  SystemCore_ConfigurationHandler0(param_1);
+  SystemCore_ConfigurationHandler0(puVar1,param_2 + 0x20,param_3,param_4,uVar2);
   *(int8_t *)(param_1 + 8) = *(int8_t *)(param_2 + 0x40);
   param_1[9] = *(uint64_t *)(param_2 + 0x48);
   *(uint64_t *)(param_2 + 0x48) = 0;

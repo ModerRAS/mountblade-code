@@ -235,7 +235,7 @@ void FUN_1804d9b70(uint64_t *param_1)
   *(int32_t *)(param_1 + 0x10) = 3;
   pcStack_118 = FUN_1804a7600;
   puStack_d0 = param_1;
-  FUN_1808fc838(param_1 + 0x16,0x58,8,FUN_1804dc080);
+  DataStructureManager(param_1 + 0x16,0x58,8,FUN_1804dc080);
   param_1[0x70] = 0;
   param_1[0x71] = 0;
   param_1[0x72] = 0;

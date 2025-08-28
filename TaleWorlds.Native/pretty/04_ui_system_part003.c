@@ -713,14 +713,14 @@ int64_t FUN_180650aa0(int64_t param_1,int64_t param_2)
 {
   uint64_t uVar1;
   
-  FUN_180627be0();
-  FUN_180627be0(param_1 + 0x20,param_2 + 0x20);
+  SystemCore_ConfigurationHandler0();
+  SystemCore_ConfigurationHandler0(param_1 + 0x20,param_2 + 0x20);
   *(int8_t *)(param_1 + 0x40) = *(int8_t *)(param_2 + 0x40);
   *(int32_t *)(param_1 + 0x44) = *(int32_t *)(param_2 + 0x44);
   *(uint64_t *)(param_1 + 0x48) = *(uint64_t *)(param_2 + 0x48);
   *(int32_t *)(param_1 + 0x50) = *(int32_t *)(param_2 + 0x50);
-  FUN_180627be0(param_1 + 0x58,param_2 + 0x58);
-  FUN_180627be0(param_1 + 0x78,param_2 + 0x78);
+  SystemCore_ConfigurationHandler0(param_1 + 0x58,param_2 + 0x58);
+  SystemCore_ConfigurationHandler0(param_1 + 0x78,param_2 + 0x78);
   uVar1 = *(uint64_t *)(param_2 + 0xa0);
   *(uint64_t *)(param_1 + 0x98) = *(uint64_t *)(param_2 + 0x98);
   *(uint64_t *)(param_1 + 0xa0) = uVar1;
@@ -1038,7 +1038,7 @@ LAB_1806516e0:
   *(uint64_t *)(lVar4 + 0x20) = *param_5;
   FUN_18063ccc0(lVar4 + 0x28);
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar4,puVar5,&system_ptr_6790,uVar6);
+  SystemNetworkHandler(lVar4,puVar5,&system_ptr_6790,uVar6);
 }
 
 
@@ -1066,7 +1066,7 @@ void FUN_180651770(uint64_t param_1,uint64_t param_2,void *param_3,uint64_t para
   *(uint64_t *)(lVar1 + 0x20) = *param_5;
   FUN_18063ccc0(lVar1 + 0x28);
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar1,param_3,&system_ptr_6790,uVar2);
+  SystemNetworkHandler(lVar1,param_3,&system_ptr_6790,uVar2);
 }
 
 

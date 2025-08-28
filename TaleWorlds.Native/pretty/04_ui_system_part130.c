@@ -349,7 +349,7 @@ int32_t SystemMemoryProcessor(int64_t param_1,int param_2)
 
 
 
-uint64_t FUN_180743d80(int64_t param_1)
+uint64_t SystemDataProcessor(int64_t param_1)
 
 {
   if (*(int64_t *)(param_1 + 0x11598) != 0) {
@@ -684,7 +684,7 @@ uint64_t FUN_180744780(int64_t param_1)
   uVar5 = (uint64_t)*(uint *)(param_1 + 0x6dc) / (uint64_t)uVar6;
   iVar1 = (int)uVar5;
   plVar2 = (int64_t *)
-           FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),(uVar6 + 0x16) * iVar1 * 4 + 0x40,
+           SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),(uVar6 + 0x16) * iVar1 * 4 + 0x40,
                          &unknown_var_8576_ptr,0x3b5,0);
   if (plVar2 == (int64_t *)0x0) {
     return 0x26;

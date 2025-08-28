@@ -1,3 +1,6 @@
+/* SystemController - SystemPhysicsEngine 的语义化别名 */
+#define SystemController SystemPhysicsEngine
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -22,7 +25,7 @@ void FUN_1808b7730(uint64_t *param_1,uint64_t param_2,int32_t param_3,int64_t pa
   lVar2 = (**(code **)(*(int64_t *)*param_1 + 0x288))((int64_t *)*param_1,param_2,1);
   if (lVar2 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18084b240(param_2,auStack_70);
+    SystemController(param_2,auStack_70);
   }
   uStack_88 = (**(code **)(*(int64_t *)(param_4 + 8) + 0x30))(param_4 + 8);
   puStack_80 = &uStack_78;
@@ -158,7 +161,7 @@ void FUN_1808b79f0(uint64_t *param_1,uint64_t param_2,uint64_t param_3)
   lVar1 = (**(code **)(*(int64_t *)*param_1 + 0x270))((int64_t *)*param_1,param_2,1);
   if (lVar1 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18084b240(param_2,auStack_48);
+    SystemController(param_2,auStack_48);
   }
   FUN_1808b7a70(param_1,lVar1,param_3);
                     // WARNING: Subroutine does not return
@@ -192,7 +195,7 @@ void FUN_1808b7a70(uint64_t *param_1,int64_t param_2,int64_t *param_3)
     lVar2 = (**(code **)(*(int64_t *)*param_1 + 0x278))((int64_t *)*param_1,param_2 + 0x38,1);
     if (lVar2 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18084b240(param_2 + 0x38,auStack_58);
+      SystemController(param_2 + 0x38,auStack_58);
     }
     puVar4 = param_1;
     if ((*(byte *)(lVar2 + 0x34) & 1) != 0) {
@@ -249,7 +252,7 @@ void FUN_1808b7abf(int64_t *param_1)
   lVar2 = (**(code **)(*param_1 + 0x278))();
   if (lVar2 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18084b240(unaff_RDI + 0x38,&stack0x00000030);
+    SystemController(unaff_RDI + 0x38,&stack0x00000030);
   }
   lVar4 = unaff_R14;
   if ((*(byte *)(lVar2 + 0x34) & 1) != 0) {
@@ -424,7 +427,7 @@ void FUN_1808b7c00(uint64_t *param_1,int64_t param_2,int64_t *param_3,int64_t pa
     lVar5 = (**(code **)(*(int64_t *)*param_1 + 0x260))((int64_t *)*param_1,param_2 + 0x30,1);
     if (lVar5 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18084b240(param_2 + 0x30,auStack_a0);
+      SystemController(param_2 + 0x30,auStack_a0);
     }
     if (lVar5 == 0) {
       plVar6 = (int64_t *)(**(code **)*param_3)(param_3);

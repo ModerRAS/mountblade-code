@@ -289,7 +289,7 @@ void FUN_180416cb2(void)
  */
 static void* RenderingSystemAllocateMemory(size_t size)
 {
-    return FUN_1804c1300(size, size);
+    return DataPipelineManager(size, size);
 }
 
 /**
@@ -400,7 +400,7 @@ static void RenderingSystemLinkAnimationNode(void* parent, void* child)
  * 技术实现要点：
  * 
  * 1. 内存管理：
- *    - 使用统一的内存分配接口FUN_1804c1300
+ *    - 使用统一的内存分配接口DataPipelineManager
  *    - 节点大小固定为0x60字节
  *    - 采用链表结构管理节点关系
  * 

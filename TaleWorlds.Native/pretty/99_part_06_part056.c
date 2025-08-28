@@ -558,7 +558,7 @@ void FUN_1803dfc60(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
   int64_t lVar7;
   bool bVar8;
   
-  puVar4 = (uint64_t *)FUN_1804c1300(param_2 + 0x60,0x60);
+  puVar4 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x60);
   *puVar4 = 0;
   puVar4[1] = 0;
   puVar4[4] = 0;
@@ -996,10 +996,10 @@ uint64_t * FUN_1803e04d0(int64_t param_1,uint64_t *param_2)
   *(int32_t *)((int64_t)plVar6 + 0x15c) = uVar1;
   *(int32_t *)(plVar6 + 0x2c) = uVar2;
   *(int32_t *)((int64_t)plVar6 + 0x164) = uVar3;
-  FUN_180627be0(plVar6 + 0x27,param_1 + 0x138);
-  FUN_180627be0(plVar6 + 0x23,param_1 + 0x118);
+  SystemCore_ConfigurationHandler0(plVar6 + 0x27,param_1 + 0x138);
+  SystemCore_ConfigurationHandler0(plVar6 + 0x23,param_1 + 0x118);
   *(int32_t *)(plVar6 + 0x2d) = *(int32_t *)(param_1 + 0x168);
-  FUN_180627be0(plVar6 + 0x81,param_1 + 0x408);
+  SystemCore_ConfigurationHandler0(plVar6 + 0x81,param_1 + 0x408);
   FUN_1803e0bc0(plVar6);
   *param_2 = plVar6;
   (**(code **)(*plVar6 + 0x28))(plVar6);

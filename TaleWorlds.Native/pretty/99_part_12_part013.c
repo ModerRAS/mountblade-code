@@ -1134,7 +1134,7 @@ uint64_t FUN_1807d3650(int64_t param_1)
   
   *(uint64_t *)(param_1 + 0x4c) = 300;
   *(int32_t *)(param_1 + 0x48) = 0;
-  lVar1 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x6e3c,&unknown_var_448_ptr,0x2c,0);
+  lVar1 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x6e3c,&unknown_var_448_ptr,0x2c,0);
   *(int64_t *)(param_1 + 0x30) = lVar1;
   if (lVar1 == 0) {
     return 0x26;

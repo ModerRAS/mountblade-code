@@ -1,3 +1,6 @@
+/* SystemController - SystemCore_StateProcessor0 的语义化别名 */
+#define SystemController SystemCore_StateProcessor0
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -142,9 +145,9 @@
 #define CoreEngineDataHandler FUN_1800587d0                // 核心引擎数据处理器
 #define CoreEngineResourceCleaner FUN_18005cb60           // 核心引擎资源清理器
 #define CoreEngineSystemManager FUN_18005e570             // 核心引擎系统管理器
-#define CoreEngineMemoryTransfer FUN_180627ae0             // 核心引擎内存传输器
+#define CoreEngineMemoryTransfer SystemCore_NetworkHandler0             // 核心引擎内存传输器
 #define CoreEngineDataTransformer FUN_180628210            // 核心引擎数据转换器
-#define CoreEngineSystemConfigurator2 FUN_180627ae0        // 核心引擎系统配置器2
+#define CoreEngineSystemConfigurator2 SystemCore_NetworkHandler0        // 核心引擎系统配置器2
 #define CoreEngineResourceAllocator FUN_1800590b0         // 核心引擎资源分配器
 #define CoreEngineSystemInitializer2 FUN_18005d1f0        // 核心引擎系统初始化器2
 #define CoreEngineDataProcessor2 SystemConfigProcessor             // 核心引擎数据处理器2
@@ -1079,7 +1082,7 @@ void FUN_180057980(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
         pcVar4 = pcVar3 + 1;
         if (*(uint64_t *)(param_2 + 8) < *(uint64_t *)(param_2 + 0x10)) {
           *(uint64_t *)(param_2 + 8) = *(uint64_t *)(param_2 + 8) + 0x20;
-          FUN_180627ae0();
+          SystemCore_NetworkHandler0();
         }
         else {
           FUN_180059820(param_2,&puStack_50);
@@ -1104,7 +1107,7 @@ void FUN_180057980(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
       FUN_180628210(&puStack_50,pcVar4,(int)pcVar3 - (int)pcVar4,param_4,uVar5);
       if (*(uint64_t *)(param_2 + 8) < *(uint64_t *)(param_2 + 0x10)) {
         *(uint64_t *)(param_2 + 8) = *(uint64_t *)(param_2 + 8) + 0x20;
-        FUN_180627ae0();
+        SystemCore_NetworkHandler0();
       }
       else {
         FUN_180059820(param_2,&puStack_50);
@@ -1136,7 +1139,7 @@ int64_t * FUN_180057b00(int64_t param_1,int64_t *param_2,uint64_t param_3)
   char acStackX_8 [8];
   
   lVar3 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x40,*(int8_t *)(param_1 + 0x28));
-  FUN_180627ae0(lVar3 + 0x20,param_3);
+  SystemCore_NetworkHandler0(lVar3 + 0x20,param_3);
   lVar4 = FUN_1800590b0(param_1,acStackX_8,lVar3 + 0x20);
   if (acStackX_8[0] == '\0') {
     FUN_18005d1f0();

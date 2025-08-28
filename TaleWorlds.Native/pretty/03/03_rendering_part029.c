@@ -668,7 +668,7 @@ void initialize_rendering_system(void) {
 #define setup_shadow_rendering FUN_1803276a0
 #define allocate_render_data CoreMemoryPoolReallocator
 #define create_render_object FUN_180339110
-#define process_material_path FUN_180627ae0
+#define process_material_path SystemCore_NetworkHandler0
 #define initialize_scene_object FUN_180284720
 #define setup_scene_objects FUN_180284580
 #define setup_object_data FUN_1803263e0

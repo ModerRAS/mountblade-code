@@ -468,7 +468,7 @@ void FUN_1803530c0(int64_t *param_1, int64_t param_2, uint64_t param_3)
     plStack_6a0 = param_1;             // 渲染对象指针
     
     // 调用数据准备函数
-    FUN_180627ae0(&puStack_698, param_1[2] + 8);
+    SystemCore_NetworkHandler0(&puStack_698, param_1[2] + 8);
     
     // 初始化数据处理参数
     puStack_6d0 = (uint64_t *)0x0;  // 数据缓冲区1
@@ -512,7 +512,7 @@ void FUN_1803530c0(int64_t *param_1, int64_t param_2, uint64_t param_3)
         }
         
         // 创建变量数据结构
-        puVar2 = (uint64_t *)FUN_1804c1300(param_2 + 0x60, 0x60);
+        puVar2 = (uint64_t *)DataPipelineManager(param_2 + 0x60, 0x60);
         *puVar2 = 0;                    // 初始化字段1
         puVar2[1] = 0;                  // 初始化字段2
         puVar2[4] = 0;                  // 初始化字段3
@@ -694,8 +694,8 @@ void FUN_180353e50(int64_t *param_1,int64_t param_2)
     uStack_58 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_3b8;  // 安全检查异或值
     
     // 调用数据准备函数
-    FUN_180627ae0(&puStack_328, *(int64_t *)(param_2 + 0x10) + 8);
-    FUN_180627ae0(&puStack_348, param_1[2] + 8);
+    SystemCore_NetworkHandler0(&puStack_328, *(int64_t *)(param_2 + 0x10) + 8);
+    SystemCore_NetworkHandler0(&puStack_348, param_1[2] + 8);
     
     // 初始化数据缓冲区
     puStack_388 = (uint64_t *)0x0;  // 数据缓冲区1
@@ -880,7 +880,7 @@ int64_t * FUN_1803543b0(int64_t param_1,uint64_t *param_2,char param_3,char para
   plVar4 = (int64_t *)FUN_180355030(render_system_data_memory,aplStack_90,param_2,param_4,0);
   if (*plVar4 == lVar2) {
     aplStack_a0[0] = alStack_48;
-    uVar5 = FUN_180627ae0(alStack_48,param_2);
+    uVar5 = SystemCore_NetworkHandler0(alStack_48,param_2);
     uVar5 = FUN_180354db0(&puStack_70,uVar5);
     FUN_18005d190(param_2,uVar5);
     puStack_70 = &system_data_buffer_ptr;

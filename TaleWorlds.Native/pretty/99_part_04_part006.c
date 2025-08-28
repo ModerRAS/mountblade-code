@@ -577,7 +577,7 @@ uint64_t * FUN_18025bb00(uint64_t param_1,int64_t param_2)
     puVar6[6] = *(uint64_t *)(param_2 + 0x30);
     *(int32_t *)(puVar6 + 7) = *(int32_t *)(param_2 + 0x38);
     *(int32_t *)((int64_t)puVar6 + 0x3c) = *(int32_t *)(param_2 + 0x3c);
-    FUN_180627be0(puVar1,param_2 + 0x40);
+    SystemEventProcessor(puVar1,param_2 + 0x40);
     puVar6[0xc] = *(uint64_t *)(param_2 + 0x60);
     puVar6[0xd] = *(uint64_t *)(param_2 + 0x68);
     FUN_18014e160(puVar6 + 0xe,param_2 + 0x70);

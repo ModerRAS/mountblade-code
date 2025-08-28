@@ -830,7 +830,7 @@ void FUN_1800b7840(uint64_t *param_1,int64_t *param_2)
   uVar11 = 1;
 LAB_1800b79d4:
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar5,lVar6,lVar9,uVar11);
+  SystemNetworkHandler(lVar5,lVar6,lVar9,uVar11);
 }
 
 

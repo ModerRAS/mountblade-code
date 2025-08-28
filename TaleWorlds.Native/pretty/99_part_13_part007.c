@@ -36,7 +36,7 @@ uint64_t FUN_1808a9ac0(uint64_t *param_1,int64_t param_2,int32_t param_3,uint64_
   int8_t auStack_68 [32];
   int8_t auStack_48 [32];
   
-  uVar6 = FUN_1808ddc20(param_1,auStack_48,1,param_3);
+  uVar6 = DataFlowProcessor(param_1,auStack_48,1,param_3);
   aiStack_78[0] = (int)uVar6;
   if (aiStack_78[0] == 0) {
     uVar4 = FUN_1808de650(param_1,aiStack_78);
@@ -79,7 +79,7 @@ uint64_t FUN_1808a9ac0(uint64_t *param_1,int64_t param_2,int32_t param_3,uint64_
               puVar7[8] = 0;
               puVar7[9] = 0;
               puStack_70 = puVar7;
-              iVar5 = FUN_1808ddc20(param_1,auStack_68,0,0x20564157);
+              iVar5 = DataFlowProcessor(param_1,auStack_68,0,0x20564157);
               if (iVar5 == 0) {
                 puVar7[6] = param_4;
                 iVar5 = FUN_180899360(param_1,puVar7 + 2);
@@ -203,7 +203,7 @@ uint64_t FUN_1808a9af6(void)
             puVar7[8] = 0;
             puVar7[9] = 0;
             in_stack_00000048 = puVar7;
-            iVar5 = FUN_1808ddc20(uVar11,&stack0x00000050,0,0x20564157);
+            iVar5 = DataFlowProcessor(uVar11,&stack0x00000050,0,0x20564157);
             uVar11 = extraout_XMM0_Da_01;
             if (iVar5 == 0) {
               puVar7[6] = unaff_R12;
@@ -318,7 +318,7 @@ int FUN_1808a9b41(int32_t param_1)
         puVar5[8] = 0;
         puVar5[9] = 0;
         in_stack_00000048 = puVar5;
-        iVar4 = FUN_1808ddc20(uVar8,&stack0x00000050,0,0x20564157);
+        iVar4 = DataFlowProcessor(uVar8,&stack0x00000050,0,0x20564157);
         uVar8 = extraout_XMM0_Da;
         if (iVar4 == 0) {
           puVar5[6] = unaff_R12;
@@ -427,7 +427,7 @@ uint64_t FUN_1808a9da0(uint64_t param_1,int64_t param_2,int32_t param_3)
   uint64_t *puStack_40;
   int8_t auStack_38 [32];
   
-  uVar4 = FUN_1808ddc20(param_1,auStack_38,1,param_3);
+  uVar4 = DataFlowProcessor(param_1,auStack_38,1,param_3);
   if ((int)uVar4 == 0) {
     iVar7 = 0;
     aiStack_48[0] = 0;
@@ -465,7 +465,7 @@ uint64_t FUN_1808a9da0(uint64_t param_1,int64_t param_2,int32_t param_3)
               *(int32_t *)(puVar5 + 0xc) = 0;
               puStack_40 = puVar5;
               iVar3 = FUN_18089abe0(puVar5,param_1);
-              if ((iVar3 != 0) || (iVar3 = FUN_18087dc70(param_2,&puStack_40), iVar3 != 0)) {
+              if ((iVar3 != 0) || (iVar3 = SystemAllocator(param_2,&puStack_40), iVar3 != 0)) {
                 (**(code **)*puVar5)(puVar5,0);
                     // WARNING: Subroutine does not return
                 SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar5,&unknown_var_2144_ptr,0xc6,1);
@@ -534,7 +534,7 @@ uint64_t FUN_1808a9dc9(void)
             *puVar5 = &unknown_var_9568_ptr;
             *(int32_t *)(puVar5 + 0xc) = 0;
             iVar3 = FUN_18089abe0(puVar5);
-            if ((iVar3 != 0) || (iVar3 = FUN_18087dc70(), iVar3 != 0)) {
+            if ((iVar3 != 0) || (iVar3 = SystemAllocator(), iVar3 != 0)) {
               (**(code **)*puVar5)(puVar5,0);
                     // WARNING: Subroutine does not return
               SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar5,&unknown_var_2144_ptr,0xc6,1);
@@ -593,7 +593,7 @@ int FUN_1808a9e20(int param_1)
         *puVar3 = &unknown_var_9568_ptr;
         *(int32_t *)(puVar3 + 0xc) = uVar6;
         iVar2 = FUN_18089abe0(puVar3);
-        if ((iVar2 != 0) || (iVar2 = FUN_18087dc70(), iVar2 != 0)) {
+        if ((iVar2 != 0) || (iVar2 = SystemAllocator(), iVar2 != 0)) {
           (**(code **)*puVar3)(puVar3,0);
                     // WARNING: Subroutine does not return
           SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar3,&unknown_var_2144_ptr,0xc6,1);
@@ -666,7 +666,7 @@ uint64_t FUN_1808a9f90(uint64_t param_1,int64_t param_2,int32_t param_3,uint64_t
   uint64_t *puStack_50;
   int8_t auStack_48 [32];
   
-  uVar3 = FUN_1808ddc20(param_1,auStack_48,1,param_3);
+  uVar3 = DataFlowProcessor(param_1,auStack_48,1,param_3);
   if ((int)uVar3 == 0) {
     aiStack_58[0] = 0;
     uVar1 = FUN_1808de650(param_1,aiStack_58);
@@ -699,7 +699,7 @@ uint64_t FUN_1808a9f90(uint64_t param_1,int64_t param_2,int32_t param_3,uint64_t
               *(int32_t *)((int64_t)puVar4 + 0xec) = 0;
               puStack_50 = puVar4;
               iVar2 = FUN_1808a7e10(param_1,puVar4,param_4);
-              if ((iVar2 != 0) || (iVar2 = FUN_18087dc70(param_2,&puStack_50), iVar2 != 0)) {
+              if ((iVar2 != 0) || (iVar2 = SystemAllocator(param_2,&puStack_50), iVar2 != 0)) {
                 (**(code **)*puVar4)(puVar4,0);
                     // WARNING: Subroutine does not return
                 SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar4,&unknown_var_2144_ptr,0xc6,1);
@@ -762,7 +762,7 @@ uint64_t FUN_1808a9fc1(void)
             *(uint64_t *)((int64_t)puVar4 + 0xe4) = 0;
             *(int32_t *)((int64_t)puVar4 + 0xec) = 0;
             iVar2 = FUN_1808a7e10();
-            if ((iVar2 != 0) || (iVar2 = FUN_18087dc70(), iVar2 != 0)) {
+            if ((iVar2 != 0) || (iVar2 = SystemAllocator(), iVar2 != 0)) {
               (**(code **)*puVar4)(puVar4,0);
                     // WARNING: Subroutine does not return
               SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar4,&unknown_var_2144_ptr,0xc6,1);
@@ -812,7 +812,7 @@ int FUN_1808aa019(int param_1)
         *(uint64_t *)((int64_t)puVar2 + 0xe4) = 0;
         *(int *)((int64_t)puVar2 + 0xec) = unaff_R12D;
         iVar1 = FUN_1808a7e10();
-        if ((iVar1 != 0) || (iVar1 = FUN_18087dc70(), iVar1 != 0)) {
+        if ((iVar1 != 0) || (iVar1 = SystemAllocator(), iVar1 != 0)) {
           (**(code **)*puVar2)(puVar2,0);
                     // WARNING: Subroutine does not return
           SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar2,&unknown_var_2144_ptr,0xc6,1);

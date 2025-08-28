@@ -968,7 +968,7 @@ void FUN_18062c5f0(uint64_t param_1,int64_t param_2)
           }
           if (*(uint64_t *)(param_2 + 8) < *(uint64_t *)(param_2 + 0x10)) {
             *(uint64_t *)(param_2 + 8) = *(uint64_t *)(param_2 + 8) + 0x20;
-            FUN_180627ae0();
+            SystemCore_NetworkHandler0();
           }
           else {
             FUN_180059820(param_2,&puStack_738);

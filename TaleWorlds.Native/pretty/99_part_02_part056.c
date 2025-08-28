@@ -763,7 +763,7 @@ uint64_t * FUN_1801c2890(uint64_t *param_1)
 int64_t FUN_1801c28f0(int64_t param_1)
 
 {
-  FUN_1808fc838(param_1,0x30,4,FUN_1801c2890,FUN_18004a130);
+  DataStructureManager(param_1,0x30,4,FUN_1801c2890,FUN_18004a130);
   *(int32_t *)(param_1 + 0xc0) = 0;
   return param_1;
 }

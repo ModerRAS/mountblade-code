@@ -40,7 +40,7 @@ extern uint64_t *cloth_string_constants;
 
 // 辅助函数声明
 void FUN_18005d4b0(int64_t param1, void *param2, int param3, uint64_t param4, uint64_t memory_flags);
-void FUN_1804c1300(int64_t param1, int param2);
+void DataPipelineManager(int64_t param1, int param2);
 void FUN_18062b1e0(void *allocator, int size, int alignment, int flags, uint64_t memory_flags);
 void CoreEngine_MemoryAllocator(void *allocator, int size, int flags, uint64_t param4, int param5, uint64_t memory_flags);
 void FUN_180275090(uint64_t param1);
@@ -363,7 +363,7 @@ void rendering_system_setup_cloth_simulator(
     uint64_t source_param = 0;
     
     // 分配模拟器数据内存
-    simulator_data = (uint64_t *)FUN_1804c1300(simulator_param + 0x60, 0x60);
+    simulator_data = (uint64_t *)DataPipelineManager(simulator_param + 0x60, 0x60);
     source_param = 0;
     
     // 初始化模拟器数据结构

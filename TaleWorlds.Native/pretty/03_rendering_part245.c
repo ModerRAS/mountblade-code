@@ -1006,7 +1006,7 @@ void FUN_1804079e0(void)
           uVar2 = uVar6 >> 0x20;
           if ((int)(uVar6 >> 0x20) != 0) {
             do {
-              FUN_1808fc8a8(uVar4 + lVar1,0x40,0xb,FUN_18006b8f0,uVar7);
+              SystemDataValidator(uVar4 + lVar1,0x40,0xb,FUN_18006b8f0,uVar7);
               uVar4 = (uint64_t)(uint)((int)uVar4 + (int)uVar6);
               uVar2 = uVar2 - 1;
             } while (uVar2 != 0);
@@ -1100,7 +1100,7 @@ void FUN_180407bd0(void)
         puVar4 = puVar9;
         puVar6 = puVar9;
         do {
-          FUN_1808fc838(puVar3 + 2 + (int64_t)puVar4 * 0x58,0x40,0xb,FUN_180407960,FUN_18006b8f0);
+          DataStructureManager(puVar3 + 2 + (int64_t)puVar4 * 0x58,0x40,0xb,FUN_180407960,FUN_18006b8f0);
           uVar5 = (int)puVar6 + 1;
           puVar6 = (uint64_t *)(uint64_t)uVar5;
           puVar4 = (uint64_t *)(int64_t)(int)uVar5;

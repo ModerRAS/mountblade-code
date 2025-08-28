@@ -710,7 +710,7 @@ FUN_180657450(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   int64_t lStack_28;
   uint uStack_20;
   
-  FUN_180627ae0(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
+  SystemCore_NetworkHandler0(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
   uVar1 = 0;
   if (uStack_20 != 0) {
     lVar3 = 0;
@@ -1011,7 +1011,7 @@ LAB_1806578a7:
   uVar12 = 0;
 LAB_1806578f0:
   lVar9 = CoreEngine_MemoryAllocator(system_memory_pool_ptr,0x48,system_data_6808);
-  FUN_180627ae0(lVar9 + 0x20,param_5);
+  SystemCore_NetworkHandler0(lVar9 + 0x20,param_5);
   *(uint64_t *)(lVar9 + 0x40) = 0;
                     // WARNING: Subroutine does not return
   FUN_18066bdc0(lVar9,puVar3,&system_data_67e0,uVar12);

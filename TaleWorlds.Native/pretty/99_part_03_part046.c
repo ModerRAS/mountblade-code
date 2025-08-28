@@ -64,9 +64,9 @@ uint64_t * FUN_1801fa180(uint64_t *param_1)
   *(uint64_t *)((int64_t)param_1 + 0x124) = 0;
   *(int32_t *)((int64_t)param_1 + 300) = 0;
   param_1[0x26] = 0x900;
-  FUN_1808fc838(param_1 + 0x27,8,0x10,&SUB_18005d5f0,FUN_180045af0);
-  FUN_1808fc838(param_1 + 0x39,0x98,4,FUN_180049970,FUN_180044a30);
-  FUN_1808fc838(param_1 + 0x85,8,4,&SUB_18005d5f0,FUN_180045af0);
+  DataStructureManager(param_1 + 0x27,8,0x10,&SUB_18005d5f0,FUN_180045af0);
+  DataStructureManager(param_1 + 0x39,0x98,4,FUN_180049970,FUN_180044a30);
+  DataStructureManager(param_1 + 0x85,8,4,&SUB_18005d5f0,FUN_180045af0);
   param_1[0x89] = 0;
   param_1[1] = 0x3f8000003f800000;
   param_1[8] = 0;
@@ -103,7 +103,7 @@ int64_t FUN_1801fa330(int64_t param_1)
   uint64_t uStack_48;
   
   lVar7 = 7;
-  FUN_1808fc838(param_1,0x48,7,FUN_1801feca0,FUN_1800596a0);
+  DataStructureManager(param_1,0x48,7,FUN_1801feca0,FUN_1800596a0);
   puVar1 = (uint64_t *)(param_1 + 0x1f8);
   *puVar1 = &system_state_ptr;
   *(uint64_t *)(param_1 + 0x200) = 0;
@@ -165,7 +165,7 @@ int64_t FUN_1801fa330(int64_t param_1)
   *(int32_t *)(param_1 + 0x3b8) = 0;
   *(uint64_t *)(param_1 + 0x3c8) = 0;
   uVar4 = FUN_180628ca0();
-  FUN_180627be0(puVar2,uVar4);
+  SystemCore_ConfigurationHandler0(puVar2,uVar4);
   *(int8_t *)(param_1 + 0x380) = 1;
   *(uint64_t *)(param_1 + 0x288) = 0;
   *(int8_t *)(param_1 + 0x290) = 0;

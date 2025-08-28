@@ -741,7 +741,7 @@ void FUN_1800d85c5(void)
 void FUN_1800d8a40(int64_t param_1)
 
 {
-  FUN_1808fc8a8(param_1 + 8,0x18,2,FUN_1800e7f20,0xfffffffffffffffe);
+  SystemDataValidator(param_1 + 8,0x18,2,FUN_1800e7f20,0xfffffffffffffffe);
   return;
 }
 
@@ -808,7 +808,7 @@ void FUN_1800d8a80(int64_t param_1)
 void FUN_1800d8b10(uint64_t param_1)
 
 {
-  FUN_1808fc8a8(param_1,0x488,2,FUN_1800e7ca0,0xfffffffffffffffe);
+  SystemDataValidator(param_1,0x488,2,FUN_1800e7ca0,0xfffffffffffffffe);
   return;
 }
 
@@ -821,7 +821,7 @@ void FUN_1800d8b10(uint64_t param_1)
 void FUN_1800d8b40(uint64_t param_1)
 
 {
-  FUN_1808fc8a8(param_1,0x248,2,FUN_1800e7b80,0xfffffffffffffffe);
+  SystemDataValidator(param_1,0x248,2,FUN_1800e7b80,0xfffffffffffffffe);
   return;
 }
 
@@ -834,7 +834,7 @@ void FUN_1800d8b40(uint64_t param_1)
 void FUN_1800d8b70(uint64_t param_1)
 
 {
-  FUN_1808fc8a8(param_1,0x908,2,FUN_1800e7d00,0xfffffffffffffffe);
+  SystemDataValidator(param_1,0x908,2,FUN_1800e7d00,0xfffffffffffffffe);
   return;
 }
 
@@ -847,7 +847,7 @@ void FUN_1800d8b70(uint64_t param_1)
 void FUN_1800d8ba0(uint64_t param_1)
 
 {
-  FUN_1808fc8a8(param_1,0x50,2,FUN_1800e7c40,0xfffffffffffffffe);
+  SystemDataValidator(param_1,0x50,2,FUN_1800e7c40,0xfffffffffffffffe);
   return;
 }
 

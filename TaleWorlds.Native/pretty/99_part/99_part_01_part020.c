@@ -1060,7 +1060,7 @@ void SystemDataProcessor_Type2(SystemInt64 param_1)
     FUN_180057830();
     
     /* 初始化内存管理器 */
-    FUN_1808fc8a8(param_1 + 0xc60, 8, 0x14, FUN_180045af0, cleanup_flags);
+    SystemDataValidator(param_1 + 0xc60, 8, 0x14, FUN_180045af0, cleanup_flags);
     
     /* 清理资源管理器 */
     if (*(SystemInt64 **)(param_1 + 0xc58) != (SystemInt64 *)0x0) {
@@ -1068,7 +1068,7 @@ void SystemDataProcessor_Type2(SystemInt64 param_1)
     }
     
     /* 配置数据管道 */
-    FUN_1808fc8a8(param_1 + 0xc08, 8, 10, FUN_180045af0, cleanup_flags);
+    SystemDataValidator(param_1 + 0xc08, 8, 10, FUN_180045af0, cleanup_flags);
     FUN_180058370(param_1 + 0xbd8, *(SystemUInt8 *)(param_1 + 0xbe8));
     FUN_1800b9270(param_1 + 0xba8, *(SystemUInt8 *)(param_1 + 3000));
     
@@ -1096,7 +1096,7 @@ void SystemDataProcessor_Type2(SystemInt64 param_1)
     FUN_180057830();
     
     /* 配置线程同步 */
-    FUN_1808fc8a8(param_1 + 0x5a0, 0x20, 9, FUN_18004c030);
+    SystemDataValidator(param_1 + 0x5a0, 0x20, 9, FUN_18004c030);
     FUN_180057830();
     
     /* 设置系统句柄 */
@@ -1110,7 +1110,7 @@ void SystemDataProcessor_Type2(SystemInt64 param_1)
     *(SystemUInt8 *)(param_1 + 0x560) = &system_state_ptr;
     
     /* 初始化配置管理器 */
-    FUN_1808fc8a8(param_1 + 8, 0x98, 9, FUN_1802ab7f0);
+    SystemDataValidator(param_1 + 8, 0x98, 9, FUN_1802ab7f0);
     
     return;
 }
@@ -1349,7 +1349,7 @@ void SystemStateTracker(SystemInt64 param_1, SystemUInt64 param_2, SystemUInt64 
  */
 void SystemResourceAllocator(SystemUInt64 param_1)
 {
-    FUN_1808fc8a8(param_1, 8, 10, FUN_180045af0, 0xfffffffffffffffe);
+    SystemDataValidator(param_1, 8, 10, FUN_180045af0, 0xfffffffffffffffe);
     return;
 }
 
@@ -1744,7 +1744,7 @@ SystemUInt64* SystemInitializer(SystemUInt64 *param_1)
     SystemUInt64 *resource_ptr;                       /* 资源指针 */
     
     /* 初始化基础组件 */
-    FUN_1808fc838(param_1 + 1, 0x98, 9, FUN_1802ab780, FUN_1802ab7f0);
+    DataStructureManager(param_1 + 1, 0x98, 9, FUN_1802ab780, FUN_1802ab7f0);
     
     /* 配置系统参数 */
     param_1[0xac] = &system_state_ptr;
@@ -1760,7 +1760,7 @@ SystemUInt64* SystemInitializer(SystemUInt64 *param_1)
     *(SystemUInt32 *)(param_1 + 0xb3) = 3;
     
     /* 初始化数据管道 */
-    FUN_1808fc838(param_1 + 0xb4, 0x20, 9, FUN_180056e10, FUN_18004c030);
+    DataStructureManager(param_1 + 0xb4, 0x20, 9, FUN_180056e10, FUN_18004c030);
     
     /* 配置内存管理器 */
     param_1[0xd8] = 0;
@@ -1844,11 +1844,11 @@ SystemUInt64* SystemInitializer(SystemUInt64 *param_1)
     param_1[0x17f] = 0;
     
     /* 初始化数据处理器 */
-    FUN_1808fc838(param_1 + 0x181, 8, 10, &SUB_18005d5f0, FUN_180045af0);
+    DataStructureManager(param_1 + 0x181, 8, 10, &SUB_18005d5f0, FUN_180045af0);
     
     /* 初始化错误处理器 */
     param_1[0x18b] = 0;
-    FUN_1808fc838(param_1 + 0x18c, 8, 0x14, &SUB_18005d5f0, FUN_180045af0);
+    DataStructureManager(param_1 + 0x18c, 8, 0x14, &SUB_18005d5f0, FUN_180045af0);
     
     /* 配置系统参数 */
     param_1[0x1a0] = 0;

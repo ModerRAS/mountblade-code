@@ -45,7 +45,7 @@ uint64_t * FUN_1803f6670(uint64_t *param_1)
   
   FUN_1801fa180();
   *param_1 = &unknown_var_3864_ptr;
-  FUN_1808fc838(param_1 + 0x8a,8,2,&SUB_18005d5f0,FUN_180045af0);
+  DataStructureManager(param_1 + 0x8a,8,2,&SUB_18005d5f0,FUN_180045af0);
   *(int32_t *)(param_1 + 0x8c) = 0;
   *(int32_t *)((int64_t)param_1 + 0x464) = 4;
   plVar1 = (int64_t *)param_1[0x8b];
@@ -71,7 +71,7 @@ uint64_t * FUN_1803f6750(uint64_t *param_1,uint param_2)
 
 {
   *param_1 = &unknown_var_3864_ptr;
-  FUN_1808fc8a8(param_1 + 0x8a,8,2,FUN_180045af0,0xfffffffffffffffe);
+  SystemDataValidator(param_1 + 0x8a,8,2,FUN_180045af0,0xfffffffffffffffe);
   FUN_1801f9920(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1,0x468);
@@ -453,8 +453,8 @@ uint64_t * FUN_1803f7080(uint64_t *param_1)
   
   FUN_1801fa180();
   *param_1 = &unknown_var_3776_ptr;
-  FUN_1808fc838(param_1 + 0x8a,8,2,&SUB_18005d5f0,FUN_180045af0);
-  FUN_1808fc838(param_1 + 0x8c,8,2,&SUB_18005d5f0,FUN_180045af0);
+  DataStructureManager(param_1 + 0x8a,8,2,&SUB_18005d5f0,FUN_180045af0);
+  DataStructureManager(param_1 + 0x8c,8,2,&SUB_18005d5f0,FUN_180045af0);
   *(int8_t *)(param_1 + 0x8e) = 1;
   plVar1 = (int64_t *)param_1[0x8b];
   param_1[0x8b] = 0;
@@ -479,8 +479,8 @@ uint64_t * FUN_1803f7180(uint64_t *param_1,uint param_2)
 
 {
   *param_1 = &unknown_var_3776_ptr;
-  FUN_1808fc8a8(param_1 + 0x8c,8,2,FUN_180045af0,0xfffffffffffffffe);
-  FUN_1808fc8a8(param_1 + 0x8a,8,2,FUN_180045af0);
+  SystemDataValidator(param_1 + 0x8c,8,2,FUN_180045af0,0xfffffffffffffffe);
+  SystemDataValidator(param_1 + 0x8a,8,2,FUN_180045af0);
   FUN_1801f9920(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1,0x478);

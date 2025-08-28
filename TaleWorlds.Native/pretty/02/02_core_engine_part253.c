@@ -848,7 +848,7 @@ void process_resource_file(int64_t param_1, uint64_t param_2, uint64_t param_3, 
         file_data = data_ptr;
         if (current_entry < *(uint64_t *)(param_1 + 0x290)) {
           *(uint64_t *)(param_1 + 0x288) = current_entry + 0x28;
-          FUN_180627ae0(current_entry);
+          SystemCore_NetworkHandler0(current_entry);
           *(uint64_t *)(current_entry + 0x20) = entry_data;
         }
         else {

@@ -560,7 +560,7 @@ void rendering_system_initialize_render_manager(uint64_t *param1)
   *param1 = &unknown_var_2120_ptr;
   init_function = FUN_180627b90;
   alloc_ptr = param1;
-  FUN_1808fc838(param1 + 2,0x20,0x20,FUN_180627850);
+  DataStructureManager(param1 + 2,0x20,0x20,FUN_180627850);
   param1[0x83] = 0;
   *(int32_t *)(param1 + 0x82) = 0xffffffff;
   FUN_18049dc80();

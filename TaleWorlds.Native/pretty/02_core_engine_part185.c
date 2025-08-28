@@ -1,3 +1,6 @@
+/* SystemController - SystemCore_StateProcessor0 的语义化别名 */
+#define SystemController SystemCore_StateProcessor0
+
 /**
  * @file 02_core_engine_part185.c
  * @brief 核心引擎高级数据流处理和同步管理模块

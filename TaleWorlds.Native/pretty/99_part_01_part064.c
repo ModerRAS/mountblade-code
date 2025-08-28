@@ -143,7 +143,7 @@ void FUN_1800e2c60(uint64_t param_1,int64_t param_2)
   uStack_178 = 2;
   uStack_170 = 0;
   uStack_1e8 = CONCAT26(uStack_ac._2_2_,0x400000000);
-  FUN_180627ae0(auStack_168,&plStack_1d0);
+  SystemCore_NetworkHandler0(auStack_168,&plStack_1d0);
   uStack_148 = (int32_t)uStack_1b0;
   uStack_144 = uStack_1b0._4_4_;
   uStack_140 = (int32_t)uStack_1a8;
@@ -250,7 +250,7 @@ void FUN_1800e31a0(uint64_t param_1,int64_t *param_2,int64_t **param_3)
       uStack_248 = 0x1010101;
       uStack_244 = 0x101;
       pcStack_298 = FUN_180045af0;
-      FUN_1808fc838(auStack_218,8,0x10,&SUB_18005d5f0);
+      DataStructureManager(auStack_218,8,0x10,&SUB_18005d5f0);
       puStack_290 = auStack_198;
       FUN_180206da0();
       plVar2 = alStack_208;
@@ -341,7 +341,7 @@ void FUN_1800e31a0(uint64_t param_1,int64_t *param_2,int64_t **param_3)
         lVar4 = lVar4 + -1;
       } while (lVar4 != 0);
       FUN_180207110(plVar3,pplStack_280[3],auStack_218);
-      FUN_1808fc8a8(auStack_218,8,0x10,FUN_180045af0);
+      SystemDataValidator(auStack_218,8,0x10,FUN_180045af0);
       goto LAB_1800e353e;
     }
     FUN_180205470();

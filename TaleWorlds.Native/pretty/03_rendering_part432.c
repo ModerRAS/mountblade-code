@@ -773,7 +773,7 @@ int64_t FUN_1805037f0(int64_t *param_1,int64_t *param_2,int param_3)
 void FUN_1805038d0(int64_t *param_1)
 
 {
-  FUN_1808fc8a8((uint64_t)(*(uint *)(param_1 + 1) & 0x1f) * 0x100 + *param_1 + 0x38,0x30,4,
+  SystemDataValidator((uint64_t)(*(uint *)(param_1 + 1) & 0x1f) * 0x100 + *param_1 + 0x38,0x30,4,
                 FUN_18004a130,0xfffffffffffffffe);
   *(int8_t *)((*param_1 - (uint64_t)(*(uint *)(param_1 + 1) & 0x1f)) + 0x202f) = 1;
   return;
@@ -819,7 +819,7 @@ uint64_t FUN_180503930(int64_t param_1,uint64_t param_2)
       lVar10 = (uint64_t)((uint)uVar8 & 0x1f) * 0x100 + uVar6;
       lVar7 = *(int64_t *)(param_1 + 0x50);
       FUN_180506460(param_2,lVar10,uVar11,plVar1,0xfffffffffffffffe,uVar6,uVar8,lVar5);
-      FUN_1808fc8a8(lVar10 + 0x38,0x30,4,FUN_18004a130);
+      SystemDataValidator(lVar10 + 0x38,0x30,4,FUN_18004a130);
       LOCK();
       puVar2 = (uint64_t *)(uVar6 + 0x2008);
       uVar8 = *puVar2;
@@ -885,7 +885,7 @@ void FUN_180503ac0(int64_t *param_1)
   int64_t lVar7;
   bool bVar8;
   
-  FUN_1808fc8a8((uint64_t)(*(uint *)(param_1 + 1) & 0x1f) * 0x100 + *param_1 + 0x38,0x30,4,
+  SystemDataValidator((uint64_t)(*(uint *)(param_1 + 1) & 0x1f) * 0x100 + *param_1 + 0x38,0x30,4,
                 FUN_18004a130,0xfffffffffffffffe);
   LOCK();
   plVar1 = (int64_t *)(*param_1 + 0x2008);

@@ -32,7 +32,7 @@ void FUN_180268e8b(void)
     }
 LAB_180268ecd:
     if (iVar5 == 0) {
-      FUN_180627be0(unaff_RBP + 0x8d8,unaff_R14 + 0x8d8);
+      SystemCore_ConfigurationHandler0(unaff_RBP + 0x8d8,unaff_R14 + 0x8d8);
     }
   }
   else if (iVar2 == 0) goto LAB_180268ecd;
@@ -54,7 +54,7 @@ LAB_180268ecd:
     else if (iVar2 != 0) goto LAB_180268f42;
     if (iVar5 != 0) goto LAB_180268f42;
   }
-  FUN_180627be0(unaff_RBP + 0x8b8,unaff_R14 + 0x8b8);
+  SystemCore_ConfigurationHandler0(unaff_RBP + 0x8b8,unaff_R14 + 0x8b8);
 LAB_180268f42:
   if ((unaff_RSI == 0) || (*(int *)(unaff_RSI + 0x80) == *(int *)(unaff_RBP + 0x80))) {
     *(int32_t *)(unaff_RBP + 0x80) = *(int32_t *)(unaff_R14 + 0x80);

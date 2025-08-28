@@ -324,7 +324,7 @@ void RenderingSystemAdvancedPipelineManager(int64_t param_1, int64_t *param_2, i
         uStack_2f0 = (int32_t)param_2[0xf];
         
         // 处理字符串资源
-        FUN_180627ae0(&puStack_3b8, param_2 + 10);
+        SystemCore_NetworkHandler0(&puStack_3b8, param_2 + 10);
         if (RENDERING_MAX_STRING_LENGTH < (int)uStack_3a8) {
             // 处理长字符串资源
             puStack_3f0 = &system_data_buffer_ptr;
@@ -855,8 +855,8 @@ int64_t * RenderingSystemResourceStateSynchronizer(int64_t *param_1, int64_t *pa
     }
     
     // 同步字符串资源
-    FUN_180627be0(param_1 + 6, param_2 + 6);
-    FUN_180627be0(param_1 + 10, param_2 + 10);
+    SystemCore_ConfigurationHandler0(param_1 + 6, param_2 + 6);
+    SystemCore_ConfigurationHandler0(param_1 + 10, param_2 + 10);
     
     // 同步配置参数
     *(int *)(param_1 + 0xe) = (int)param_2[0xe];

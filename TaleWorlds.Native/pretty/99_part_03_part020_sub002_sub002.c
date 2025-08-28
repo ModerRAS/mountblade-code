@@ -555,7 +555,7 @@ LAB_1801dfdfe:
                   puVar22 = auStack_4f0;
                 }
               }
-              FUN_180046240(SYSTEM_STATE_MANAGER + 0xe70,puVar22);
+              SystemAudioManager(SYSTEM_STATE_MANAGER + 0xe70,puVar22);
               lVar37 = lStack_450;
               uStack_4d8 = uVar36 & 0x80000003;
               if ((int)uStack_4d8 < 0) {
@@ -608,7 +608,7 @@ LAB_1801dfdfe:
               (**(code **)(plVar14[0x9b] + 0x10))(plVar14 + 0x9b,puVar23);
               lVar37 = lStack_378;
               uVar10 = FUN_1800bb630(&puStack_320,lStack_450 + lStack_378);
-              FUN_180627be0(plVar14 + 0x4f9,uVar10);
+              SystemEventProcessor(plVar14 + 0x4f9,uVar10);
               puStack_320 = &system_data_buffer_ptr;
               if (lStack_318 != 0) {
                     // WARNING: Subroutine does not return
@@ -686,7 +686,7 @@ LAB_1801dfdfe:
                     *ppuVar15 = &system_handler3_ptr;
                     pcStack_638 = FUN_1801ecbb0;
                     ppuStack_530 = ppuVar15;
-                    FUN_1808fc838(ppuVar15 + 2,0x70,6,FUN_1801ecb30);
+                    DataStructureManager(ppuVar15 + 2,0x70,6,FUN_1801ecb30);
                     ppuStack_2a8 = ppuVar15 + 0x56;
                     *ppuStack_2a8 = &system_state_ptr;
                     ppuVar15[0x57] = (void *)0x0;
@@ -855,7 +855,7 @@ LAB_1801e05b5:
                     ppppppplStack_3a8 = ppppppplVar18;
                   }
 LAB_1801e0603:
-                  FUN_180627be0(ppppppplVar18 + 5,pppppppuVar20 + 0xe);
+                  SystemEventProcessor(ppppppplVar18 + 5,pppppppuVar20 + 0xe);
                   pppppppuVar20 = (uint64_t *******)func_0x00018066bd70(pppppppuVar20);
                 } while ((uint64_t ********)pppppppuVar20 != &pppppppuStack_480);
               }

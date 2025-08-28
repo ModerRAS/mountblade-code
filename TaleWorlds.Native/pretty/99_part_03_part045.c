@@ -267,9 +267,9 @@ void FUN_1801f9920(uint64_t *param_1)
   if ((int64_t *)param_1[0x89] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[0x89] + 0x38))();
   }
-  FUN_1808fc8a8(param_1 + 0x85,8,4,FUN_180045af0,uVar1);
-  FUN_1808fc8a8(param_1 + 0x39,0x98,4,FUN_180044a30);
-  FUN_1808fc8a8(param_1 + 0x27,8,0x10,FUN_180045af0);
+  SystemMemoryManager(param_1 + 0x85,8,4,SystemTimer,uVar1);
+  SystemMemoryManager(param_1 + 0x39,0x98,4,FUN_180044a30);
+  SystemMemoryManager(param_1 + 0x27,8,0x10,SystemTimer);
   if ((int64_t *)param_1[6] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[6] + 0x38))();
   }
@@ -792,9 +792,9 @@ void FUN_1801fa030(uint64_t *param_1)
   if ((int64_t *)param_1[0x89] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[0x89] + 0x38))();
   }
-  FUN_1808fc8a8(param_1 + 0x85,8,4,FUN_180045af0,uVar1);
-  FUN_1808fc8a8(param_1 + 0x39,0x98,4,FUN_180044a30);
-  FUN_1808fc8a8(param_1 + 0x27,8,0x10,FUN_180045af0);
+  SystemMemoryManager(param_1 + 0x85,8,4,SystemTimer,uVar1);
+  SystemMemoryManager(param_1 + 0x39,0x98,4,FUN_180044a30);
+  SystemMemoryManager(param_1 + 0x27,8,0x10,SystemTimer);
   if ((int64_t *)param_1[6] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[6] + 0x38))();
   }

@@ -1225,11 +1225,11 @@ int64_t * FUN_1801f4eb0(int64_t *param_1)
   param_1[0xb] = 0;
   param_1[9] = 0;
   *(int32_t *)(param_1 + 10) = 0;
-  FUN_1808fc838(param_1 + 0x11,0x20,0x10,FUN_1801f9cf0,FUN_180059620);
+  DataStructureManager(param_1 + 0x11,0x20,0x10,FUN_1801f9cf0,FUN_180059620);
   lVar3 = 4;
-  FUN_1808fc838(param_1 + 0x51,0x58,4,FUN_180049cd0,FUN_180044a30);
+  DataStructureManager(param_1 + 0x51,0x58,4,FUN_180049cd0,FUN_180044a30);
   plVar2 = param_1 + 0x7d;
-  FUN_1808fc838(plVar2,0x58,4,FUN_180049cd0,FUN_180044a30);
+  DataStructureManager(plVar2,0x58,4,FUN_180049cd0,FUN_180044a30);
   *(int8_t *)(param_1 + 0xc) = 0;
   (**(code **)(*param_1 + 0x10))(param_1,&system_buffer_ptr);
   (**(code **)(*plVar1 + 0x10))(plVar1,&system_buffer_ptr);

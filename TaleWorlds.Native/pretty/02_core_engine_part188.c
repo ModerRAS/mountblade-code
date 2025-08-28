@@ -469,10 +469,10 @@ void FUN_180170900(uint64_t *param_1)
   FUN_18006b6f0();
   param_1[0x204] = &system_state_ptr;
   param_1[0x1f1] = &system_state_ptr;
-  FUN_1808fc8a8(param_1 + 0x146,0x98,9,FUN_180044a30);
-  FUN_1808fc8a8(param_1 + 0x96,0x58,0x10,FUN_180044a30);
+  SystemDataValidator(param_1 + 0x146,0x98,9,FUN_180044a30);
+  SystemDataValidator(param_1 + 0x96,0x58,0x10,FUN_180044a30);
   FUN_18006b6f0();
-  FUN_1808fc8a8(param_1 + 0x33,0x98,5,FUN_180044a30);
+  SystemDataValidator(param_1 + 0x33,0x98,5,FUN_180044a30);
   FUN_18006b6f0();
   param_1[0x1c] = &system_state_ptr;
   param_1[8] = &system_state_ptr;

@@ -553,7 +553,7 @@ void FUN_18038bfe0(int64_t param_1)
     CoreMemoryPoolInitializer();
   }
   FUN_18004b730();
-  FUN_1808fc8a8(param_1 + 8,0x20,0x20,FUN_180046860,uVar1);
+  SystemDataValidator(param_1 + 8,0x20,0x20,FUN_180046860,uVar1);
   return;
 }
 

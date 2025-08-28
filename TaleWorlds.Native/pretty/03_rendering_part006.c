@@ -11,7 +11,7 @@ void FUN_180270e30(int64_t param_1)
   
   uVar1 = 0xfffffffffffffffe;
   FUN_180170900(param_1 + 2000);
-  FUN_1808fc8a8(param_1 + 0x248,0x58,0x10,FUN_180044a30,uVar1);
+  SystemDataValidator(param_1 + 0x248,0x58,0x10,FUN_180044a30,uVar1);
   *(uint64_t *)(param_1 + 0x228) = &system_data_buffer_ptr;
   if (*(int64_t *)(param_1 + 0x230) != 0) {
                     // WARNING: Subroutine does not return
@@ -182,26 +182,26 @@ int32_t * FUN_1802711e0(int32_t *param_1,int32_t *param_2)
   void *puVar4;
   
   *param_1 = *param_2;
-  FUN_180627be0(param_1 + 2,param_2 + 2);
-  FUN_180627be0(param_1 + 10,param_2 + 10);
-  FUN_180627be0(param_1 + 0x12,param_2 + 0x12);
-  FUN_180627be0(param_1 + 0x1a,param_2 + 0x1a);
-  FUN_180627be0(param_1 + 0x22,param_2 + 0x22);
-  FUN_180627be0(param_1 + 0x2a,param_2 + 0x2a);
-  FUN_180627be0(param_1 + 0x32,param_2 + 0x32);
-  FUN_180627be0(param_1 + 0x3a,param_2 + 0x3a);
-  FUN_180627be0(param_1 + 0x42,param_2 + 0x42);
+  SystemCore_ConfigurationHandler0(param_1 + 2,param_2 + 2);
+  SystemCore_ConfigurationHandler0(param_1 + 10,param_2 + 10);
+  SystemCore_ConfigurationHandler0(param_1 + 0x12,param_2 + 0x12);
+  SystemCore_ConfigurationHandler0(param_1 + 0x1a,param_2 + 0x1a);
+  SystemCore_ConfigurationHandler0(param_1 + 0x22,param_2 + 0x22);
+  SystemCore_ConfigurationHandler0(param_1 + 0x2a,param_2 + 0x2a);
+  SystemCore_ConfigurationHandler0(param_1 + 0x32,param_2 + 0x32);
+  SystemCore_ConfigurationHandler0(param_1 + 0x3a,param_2 + 0x3a);
+  SystemCore_ConfigurationHandler0(param_1 + 0x42,param_2 + 0x42);
   if (param_1 + 0x4a != param_2 + 0x4a) {
     FUN_180241a50(param_1 + 0x4a,*(uint64_t *)(param_2 + 0x4a),*(uint64_t *)(param_2 + 0x4c));
   }
-  FUN_180627be0(param_1 + 0x52,param_2 + 0x52);
-  FUN_180627be0(param_1 + 0x5a,param_2 + 0x5a);
-  FUN_180627be0(param_1 + 0x62,param_2 + 0x62);
-  FUN_180627be0(param_1 + 0x6a,param_2 + 0x6a);
-  FUN_180627be0(param_1 + 0x72,param_2 + 0x72);
-  FUN_180627be0(param_1 + 0x7a,param_2 + 0x7a);
-  FUN_180627be0(param_1 + 0x82,param_2 + 0x82);
-  FUN_180627be0(param_1 + 0x8a,param_2 + 0x8a);
+  SystemCore_ConfigurationHandler0(param_1 + 0x52,param_2 + 0x52);
+  SystemCore_ConfigurationHandler0(param_1 + 0x5a,param_2 + 0x5a);
+  SystemCore_ConfigurationHandler0(param_1 + 0x62,param_2 + 0x62);
+  SystemCore_ConfigurationHandler0(param_1 + 0x6a,param_2 + 0x6a);
+  SystemCore_ConfigurationHandler0(param_1 + 0x72,param_2 + 0x72);
+  SystemCore_ConfigurationHandler0(param_1 + 0x7a,param_2 + 0x7a);
+  SystemCore_ConfigurationHandler0(param_1 + 0x82,param_2 + 0x82);
+  SystemCore_ConfigurationHandler0(param_1 + 0x8a,param_2 + 0x8a);
   puVar2 = param_1 + 0x96;
   lVar3 = 0x10;
   do {

@@ -1,3 +1,6 @@
+/* SystemController - SystemCore_StateProcessor0 的语义化别名 */
+#define SystemController SystemCore_StateProcessor0
+
 /**
  * @file 04_ui_system_part205_original.c
  * @brief UI系统管理模块（美化版本）

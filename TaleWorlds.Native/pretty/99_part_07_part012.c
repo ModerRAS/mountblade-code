@@ -160,7 +160,7 @@ void create_game_application(void)
   *puVar1 = &unknown_var_2120_ptr;
   pcStack_98 = FUN_180627b90;
   puStack_58 = puVar1;
-  FUN_1808fc838(puVar1 + 2,0x20,0x20,FUN_180627850);
+  DataStructureManager(puVar1 + 2,0x20,0x20,FUN_180627850);
   puVar1[0x83] = 0;
   *(int32_t *)(puVar1 + 0x82) = 0xffffffff;
   FUN_18049dc80();

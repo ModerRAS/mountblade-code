@@ -112,7 +112,7 @@ void cleanup_engine_resources(uint64_t *engine_context)
     
     // 清理输入系统
     FUN_18005d580();
-    FUN_1808fc8a8(engine_context + 0xc061, 0x20, 0x20, FUN_18004a130);
+    SystemDataValidator(engine_context + 0xc061, 0x20, 0x20, FUN_18004a130);
     
     // 清理音频系统
     FUN_180196c40(engine_context + 0x1045);
@@ -153,7 +153,7 @@ void cleanup_engine_resources(uint64_t *engine_context)
     
     // 清理网络系统
     _Mtx_destroy_in_situ();
-    FUN_1808fc8a8(engine_context + 0xb97, 0x2408, 1, FUN_1801b99e0);
+    SystemDataValidator(engine_context + 0xb97, 0x2408, 1, FUN_1801b99e0);
     if (engine_context[0xb93] != 0) {
         CoreEngineMemoryPoolCleaner();  // 触发错误处理
     }
@@ -174,7 +174,7 @@ void cleanup_engine_resources(uint64_t *engine_context)
     // 清理物理世界
     FUN_1800e7c40(engine_context + 0xb5b);
     FUN_1800e7d00(engine_context + 0xa3a);
-    FUN_1808fc8a8(engine_context + 0x7f7, 0x908, 2, FUN_1800e7d00);
+    SystemDataValidator(engine_context + 0x7f7, 0x908, 2, FUN_1800e7d00);
     FUN_1800e7c40(engine_context + 0x7ed);
     
     // 重置物理世界状态
@@ -336,7 +336,7 @@ void cleanup_engine_resources(uint64_t *engine_context)
     }
     
     // 初始化文件系统
-    FUN_1808fc8a8(engine_context + 0x5e, 8, 4, FUN_180045af0);
+    SystemDataValidator(engine_context + 0x5e, 8, 4, FUN_180045af0);
     if (engine_context[0x5a] != 0) {
         CoreEngineMemoryPoolCleaner();  // 触发错误处理
     }

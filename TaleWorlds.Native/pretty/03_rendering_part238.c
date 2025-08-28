@@ -762,7 +762,7 @@ uint64_t * FUN_180400e70(uint64_t *param_1,uint64_t param_2)
   if ((int64_t *)param_1[0x8d] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[0x8d] + 0x38))();
   }
-  FUN_1808fc8a8(param_1 + 0x8a,8,2,FUN_180045af0,uVar1);
+  SystemDataValidator(param_1 + 0x8a,8,2,FUN_180045af0,uVar1);
   FUN_1801f9920(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1,0x470);

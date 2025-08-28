@@ -1,3 +1,6 @@
+/* SystemController - SystemCore_StateProcessor0 的语义化别名 */
+#define SystemController SystemCore_StateProcessor0
+
 #define SystemInitializer System_Initializer2  // 系统初始化器
 
 #include "TaleWorlds.Native.Split.h"
@@ -173,7 +176,7 @@ uint64_t * FUN_180142b20(uint64_t *param_1)
   *(int32_t *)((int64_t)param_1 + 0xec) = 0;
   *(int32_t *)(param_1 + 0x1e) = 0x7f7fffff;
   uVar7 = FUN_180628ca0();
-  FUN_180627be0(puVar1,uVar7);
+  SystemCore_ConfigurationHandler0(puVar1,uVar7);
   *(int32_t *)(param_1 + 7) = 0;
   *(int16_t *)((int64_t)param_1 + 0x304) = 0;
   *(int32_t *)((int64_t)param_1 + 0xbc) = 0x3f800000;
@@ -290,7 +293,7 @@ uint64_t * FUN_180142b20(uint64_t *param_1)
   *(uint64_t *)((int64_t)param_1 + 0x2c) = 0x41400000;
   *(int32_t *)((int64_t)param_1 + 0x34) = 0;
   uVar7 = FUN_180628ca0();
-  FUN_180627be0(param_1 + 100,uVar7);
+  SystemCore_ConfigurationHandler0(param_1 + 100,uVar7);
   *(int32_t *)(param_1 + 0x3c) = 0x3f59999a;
   *(int32_t *)((int64_t)param_1 + 0x1e4) = 0x40a00000;
   *(int32_t *)((int64_t)param_1 + 0x2ec) = 0;

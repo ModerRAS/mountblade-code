@@ -114,7 +114,7 @@ struct UIMemoryBlock {
 // 内存管理相关函数别名
 #define UISystem_MemoryAllocator(param1, param2, param3, param4, param5, param6, param7) SystemCore_DatabaseManager0(param1, param2, param3, param4, param5, param6, param7)
 #define UISystem_MemoryReleaser(param1, param2, param3, param4, param5) SystemInitializer(param1, param2, param3, param4, param5)
-#define UISystem_MemoryAllocatorEx(param1, param2, param3, param4, param5) FUN_180742050(param1, param2, param3, param4, param5)
+#define UISystem_MemoryAllocatorEx(param1, param2, param3, param4, param5) SystemCore_TransformationEngine0(param1, param2, param3, param4, param5)
 #define UISystem_ParameterUpdater(param1, param2, param3, param4, param5) FUN_180742650(param1, param2, param3, param4, param5)
 
 // 组件搜索相关函数别名
@@ -1290,7 +1290,7 @@ uint64_t UISystem_AddComponentSimple(int32_t param_1)
     uVar6 = UISystem_ComponentRemover(param_1,unaff_RDI & 0xffffffff);
     if ((int)uVar6 == 0) {
       puVar7 = (int32_t *)
-               FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x60,&unknown_var_8576_ptr,0x1432,0);
+               SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x60,&unknown_var_8576_ptr,0x1432,0);
       if (puVar7 == (int32_t *)0x0) {
         uVar6 = 0x26;
       }
@@ -1359,7 +1359,7 @@ uint64_t UISystem_AddComponentWithContext(int32_t param_1)
   uVar6 = UISystem_ComponentRemover(param_1,unaff_EDI);
   if ((int)uVar6 == 0) {
     puVar7 = (int32_t *)
-             FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x60,&unknown_var_8576_ptr,0x1432,0);
+             SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x60,&unknown_var_8576_ptr,0x1432,0);
     if (puVar7 == (int32_t *)0x0) {
       uVar6 = 0x26;
     }

@@ -70,7 +70,7 @@
 #define UISystem_ControlPropertyHandler FUN_18075e390  // UI控件属性处理器
 
 // 上下文管理函数
-#define UISystem_ContextAllocator FUN_180742050  // UI系统上下文分配器
+#define UISystem_ContextAllocator SystemCore_TransformationEngine0  // UI系统上下文分配器
 #define UISystem_ContextManager SystemResourceManager  // UI系统上下文管理器
 #define UISystem_ContextCleaner FUN_180743d60  // UI系统上下文清理器
 

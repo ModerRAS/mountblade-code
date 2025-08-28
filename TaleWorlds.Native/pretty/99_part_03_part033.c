@@ -184,7 +184,7 @@ uint64_t * FUN_1801ecc70(uint64_t *param_1)
   *param_1 = &system_handler2_ptr;
   *(int32_t *)(param_1 + 1) = 0;
   *param_1 = &system_handler3_ptr;
-  FUN_1808fc838(param_1 + 2,0x70,6,FUN_1801ecb30,FUN_1801ecbb0);
+  DataStructureManager(param_1 + 2,0x70,6,FUN_1801ecb30,FUN_1801ecbb0);
   param_1[0x56] = &system_state_ptr;
   param_1[0x57] = 0;
   *(int32_t *)(param_1 + 0x58) = 0;

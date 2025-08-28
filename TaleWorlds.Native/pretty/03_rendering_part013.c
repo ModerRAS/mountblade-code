@@ -21,7 +21,7 @@ void FUN_180275a60(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t pa
   int64_t lVar12;
   int64_t *plStackX_10;
   
-  FUN_180627be0(param_2 + 0x3e,param_1 + 0x1f0,param_3,param_4,0xfffffffffffffffe);
+  SystemCore_ConfigurationHandler0(param_2 + 0x3e,param_1 + 0x1f0,param_3,param_4,0xfffffffffffffffe);
   param_2[6] = *(int64_t *)(param_1 + 0x30);
   *(int32_t *)(param_2 + 0xb) = *(int32_t *)(param_1 + 0x58);
   uVar4 = *(uint64_t *)(param_1 + 0x21c);
@@ -75,8 +75,8 @@ void FUN_180275a60(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t pa
     puVar10 = *(void **)(param_1 + 0x120);
   }
   strcpy_s(param_2[0x24],0x80,puVar10);
-  FUN_180627be0(param_2 + 0x36,param_1 + 0x1b0);
-  FUN_180627be0(param_2 + 0x3a,param_1 + 0x1d0);
+  SystemCore_ConfigurationHandler0(param_2 + 0x36,param_1 + 0x1b0);
+  SystemCore_ConfigurationHandler0(param_2 + 0x3a,param_1 + 0x1d0);
   plVar1 = *(int64_t **)(param_1 + 0x3c8);
   if (plVar1 != (int64_t *)0x0) {
     (**(code **)(*plVar1 + 0x28))(plVar1);

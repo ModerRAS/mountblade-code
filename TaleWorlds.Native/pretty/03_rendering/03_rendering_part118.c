@@ -742,7 +742,7 @@ int64_t Rendering_ObjectCopy_18033b460(int64_t param_1,int64_t param_2,uint64_t 
   *(int32_t *)(param_1 + 0x104) = uVar2;
   *(int32_t *)(param_1 + 0x108) = uVar3;
   *(int32_t *)(param_1 + 0x10c) = uVar4;
-  FUN_180627ae0(param_1 + 0x110,param_2 + 0x110);
+  SystemCore_NetworkHandler0(param_1 + 0x110,param_2 + 0x110);
   lVar8 = *(int64_t *)(param_2 + 0x138) - *(int64_t *)(param_2 + 0x130) >> 3;
   uVar1 = *(uint *)(param_2 + 0x148);
   *(uint *)(param_1 + 0x148) = uVar1;

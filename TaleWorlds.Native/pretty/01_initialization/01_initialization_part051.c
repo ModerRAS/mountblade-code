@@ -632,7 +632,7 @@ uint64_t * FUN_1800784e0(uint64_t *param_1, uint64_t param_2)
   memory_flag = 0xfffffffffffffffe;
   *param_1 = &unknown_var_7192_ptr;
   FUN_180078550();
-  FUN_1808fc8a8(param_1 + 1, 8, 7, FUN_180045af0, memory_flag);
+  SystemDataValidator(param_1 + 1, 8, 7, FUN_180045af0, memory_flag);
   if ((param_2 & 1) != 0) {
     free(param_1, 0x158);
   }

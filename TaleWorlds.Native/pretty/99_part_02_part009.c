@@ -868,7 +868,7 @@ int64_t FUN_1800ed9c0(int64_t param_1)
   *(uint64_t *)(param_1 + 0x10) = 0;
   *(int8_t *)(param_1 + 0x18) = 0;
   *(uint64_t *)(param_1 + 0x20) = 0;
-  FUN_1808fc838(param_1 + 0x30,0x30,0xe,FUN_1800edda0,FUN_1800edc10);
+  DataStructureManager(param_1 + 0x30,0x30,0xe,FUN_1800edda0,FUN_1800edc10);
   lVar3 = param_1 + 0x2d0;
   *(uint64_t *)(param_1 + 0x2e8) = 0;
   *(int32_t *)(param_1 + 0x2f8) = 3;

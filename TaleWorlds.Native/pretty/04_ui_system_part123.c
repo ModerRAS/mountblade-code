@@ -30,7 +30,7 @@ void FUN_18073dba0(uint64_t param_1,int32_t param_2)
   }
 LAB_18073dc41:
   if (lStack_138 != 0) {
-    FUN_180743d80();
+    SystemDataProcessor();
   }
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_168);
@@ -69,7 +69,7 @@ void FUN_18073dc80(uint64_t param_1,int8_t param_2)
   }
 LAB_18073dd1d:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    SystemDataProcessor();
   }
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_158);
@@ -108,7 +108,7 @@ void FUN_18073dd60(uint64_t param_1)
   }
 LAB_18073dde3:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    SystemDataProcessor();
   }
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_158);

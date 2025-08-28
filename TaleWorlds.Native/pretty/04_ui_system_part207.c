@@ -770,7 +770,7 @@ uint64_t FUN_18078aa60(int64_t param_1)
   uStack_18 = puVar2[6];
   uStack_10 = puVar2[7];
   puStack_28 = &uStack_58;
-  lVar3 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x2d8,&unknown_var_400_ptr,0x1c6,0);
+  lVar3 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x2d8,&unknown_var_400_ptr,0x1c6,0);
   if (lVar3 != 0) {
     lVar4 = FUN_1807e4c10(lVar3);
   }
@@ -825,7 +825,7 @@ uint64_t FUN_18078ac40(int64_t param_1,int param_2,int param_3)
     auStackX_10[0] = 0;
     func_0x000180746360(param_1,auStackX_10,auStackX_20);
     iVar1 = *(int *)(param_1 + 0x6d4);
-    lVar2 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x30,&unknown_var_400_ptr,0x1ee,0);
+    lVar2 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x30,&unknown_var_400_ptr,0x1ee,0);
     *(int64_t *)(param_1 + 0x10f88) = lVar2;
     if (lVar2 == 0) {
       return 0x26;
@@ -855,7 +855,7 @@ uint64_t FUN_18078ac65(uint64_t param_1)
   uStack0000000000000058 = 0;
   func_0x000180746360(param_1,&stack0x00000058);
   iVar1 = *(int *)(unaff_RSI + 0x6d4);
-  lVar2 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x30,&unknown_var_400_ptr,0x1ee,0);
+  lVar2 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x30,&unknown_var_400_ptr,0x1ee,0);
   *(int64_t *)(unaff_RSI + 0x10f88) = lVar2;
   if (lVar2 == 0) {
     return 0x26;

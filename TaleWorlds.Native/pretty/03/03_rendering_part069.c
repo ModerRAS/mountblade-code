@@ -383,7 +383,7 @@ void rendering_system_advanced_data_processor(int64_t render_context, uint64_t p
     local_stack_var_3 = local_long_1;
     do {
       // 复制数据块
-      FUN_180627ae0(local_long_1, local_ptr_6 + -9);
+      SystemCore_NetworkHandler0(local_long_1, local_ptr_6 + -9);
       *(int32_t *)(local_long_1 + 0x20) = local_ptr_6[-1];
       *(int32_t *)(local_long_1 + 0x24) = *local_ptr_6;
       *(int32_t *)(local_long_1 + 0x28) = local_ptr_6[1];
@@ -408,7 +408,7 @@ void rendering_system_advanced_data_processor(int64_t render_context, uint64_t p
       local_long_2 = local_stack_var_1 + local_stack_var_2;
       
       // 处理队列数据
-      FUN_180627ae0(local_stack_array_1, local_long_2);
+      SystemCore_NetworkHandler0(local_stack_array_1, local_long_2);
       local_stack_var_6 = *(int32_t *)(local_long_2 + 0x20);
       local_stack_var_7 = *(int32_t *)(local_long_2 + 0x24);
       local_stack_var_8 = *(int32_t *)(local_long_2 + 0x28);

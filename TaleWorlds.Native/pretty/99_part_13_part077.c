@@ -482,7 +482,7 @@ uint64_t FUN_1808de260(int64_t *param_1,int param_2)
         param_1[1] = (int64_t)plVar1;
         *(uint64_t *)(*param_1 + 0x10) =
              (uint64_t)*(uint *)((int64_t)param_1 + 0x24) + param_1[5];
-        uVar2 = FUN_1808ddc20(param_1,auStack_28,0,0x20544d46);
+        uVar2 = DataFlowProcessor(param_1,auStack_28,0,0x20544d46);
         if ((int)uVar2 == 0) {
           if (*(int *)(param_1[1] + 0x18) != 0) {
             return 0x1c;
@@ -529,7 +529,7 @@ uint64_t FUN_1808de286(int64_t param_1)
         unaff_RBX[1] = (int64_t)piVar1;
         *(uint64_t *)(*unaff_RBX + 0x10) =
              (uint64_t)*(uint *)(param_1 + 0x24) + *(int64_t *)(param_1 + 0x28);
-        uVar2 = FUN_1808ddc20();
+        uVar2 = DataFlowProcessor();
         if ((int)uVar2 == 0) {
           if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
             return 0x1c;
@@ -562,7 +562,7 @@ uint64_t FUN_1808de2fd(void)
   unaff_RBX[1] = unaff_RDI;
   *(uint64_t *)(*unaff_RBX + 0x10) =
        (uint64_t)*(uint *)(unaff_RDI + 4) + *(int64_t *)(unaff_RDI + 8);
-  uVar1 = FUN_1808ddc20();
+  uVar1 = DataFlowProcessor();
   if ((int)uVar1 == 0) {
     if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
       return 0x1c;
@@ -815,7 +815,7 @@ uint64_t FUN_1808de580(int64_t *param_1,int32_t param_2)
   int64_t lStack_20;
   int64_t lStack_18;
   
-  uVar1 = FUN_1808ddc20(param_1,auStack_28,1,param_2);
+  uVar1 = DataFlowProcessor(param_1,auStack_28,1,param_2);
   if ((int)uVar1 == 0) {
     if (auStack_28 != (int8_t *)param_1[1]) {
       return 0x1c;
@@ -860,7 +860,7 @@ uint64_t FUN_1808de650(uint64_t *param_1,int *param_2)
   uint64_t uVar1;
   int8_t auStack_28 [32];
   
-  uVar1 = FUN_1808ddc20(param_1,auStack_28,0,0x544e434c);
+  uVar1 = DataFlowProcessor(param_1,auStack_28,0,0x544e434c);
   if ((int)uVar1 == 0x12) {
     return uVar1;
   }

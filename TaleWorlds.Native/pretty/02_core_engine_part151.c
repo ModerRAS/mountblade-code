@@ -107,7 +107,7 @@ void FUN_18013a920(int32_t *param_1)
              (float)puVar7[uVar12 + 0x10] + *(float *)((int64_t)&uStack_d8 + uVar12 * 4);
         if ((*(byte *)(param_1 + 1) & 0x20) == 0) {
           FUN_18012e2d0(*param_1);
-          FUN_1808fc838(auStack_a0,0x10,2,&SUB_18013d940,FUN_18011d900);
+          DataStructureManager(auStack_a0,0x10,2,&SUB_18013d940,FUN_18011d900);
           fVar3 = *(float *)(lVar5 + 0x163c + lVar16);
           fVar19 = fVar3 + *(float *)(lVar5 + 0x38 + *(int64_t *)(param_1 + 4));
           fVar18 = (*(float *)(lVar5 + 0x40 + *(int64_t *)(param_1 + 6)) +
@@ -256,7 +256,7 @@ void FUN_18013a920(int32_t *param_1)
           }
           piVar2 = (int *)(*(int64_t *)(lVar5 + 0x1af8) + 0x218);
           *piVar2 = *piVar2 + -1;
-          FUN_1808fc8a8(auStack_a0,0x10,2,FUN_18011d900);
+          SystemDataValidator(auStack_a0,0x10,2,FUN_18011d900);
         }
         else {
           afStack_b8[2] = *(float *)(lVar16 + 0x1878);

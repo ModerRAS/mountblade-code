@@ -108,7 +108,7 @@ void FUN_1803ba550(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t par
       lVar7 = (uint64_t)(uVar12 + uVar5 * -0x1000) * 0x30;
       *(uint64_t *)(lVar6 + lVar7) = uVar1;
       *(uint64_t *)(lVar6 + 8 + lVar7) = param_2;
-      FUN_180627be0(lVar7 + lVar6 + 0x10,&puStack_b8);
+      SystemCore_ConfigurationHandler0(lVar7 + lVar6 + 0x10,&puStack_b8);
       puStack_b8 = &system_data_buffer_ptr;
       if (lStack_b0 != 0) {
                     // WARNING: Subroutine does not return

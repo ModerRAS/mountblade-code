@@ -5351,7 +5351,7 @@ uint64_t FUN_1807b8f20(uint64_t *param_1,uint64_t param_2,int param_3,char param
   uint64_t uVar4;
   
   if (param_4 != '\0') {
-    lVar3 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_3,&unknown_var_6512_ptr,0x909,0);
+    lVar3 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_3,&unknown_var_6512_ptr,0x909,0);
     if (lVar3 == 0) {
       uVar4 = 0x26;
     }

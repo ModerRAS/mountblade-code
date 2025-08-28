@@ -144,7 +144,7 @@ LAB_1801cb4f5:
       puVar11 = (uint64_t *)0x0;
       if (puStack_2b0 < puStack_2a8) {
         puStack_2b0 = puStack_2b0 + 4;
-        FUN_180627ae0(puVar23,lVar13 + 0x20);
+        SystemCore_NetworkHandler0(puVar23,lVar13 + 0x20);
       }
       else {
         lVar20 = (int64_t)puStack_2b0 - (int64_t)puStack_2b8 >> 5;
@@ -158,7 +158,7 @@ LAB_1801cb5d2:
           if (lVar20 != 0) goto LAB_1801cb5d2;
         }
         lVar12 = FUN_180059780(puStack_2b8,puStack_2b0);
-        FUN_180627ae0(lVar12,lVar13 + 0x20);
+        SystemCore_NetworkHandler0(lVar12,lVar13 + 0x20);
         puVar7 = puStack_2b0;
         for (puVar23 = puStack_2b8; puVar23 != puVar7; puVar23 = puVar23 + 4) {
           (**(code **)*puVar23)(puVar23,0);

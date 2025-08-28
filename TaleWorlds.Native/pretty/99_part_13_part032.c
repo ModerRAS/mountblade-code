@@ -97,19 +97,19 @@ uint64_t FUN_1808bb660(int64_t *param_1)
   }
   FUN_18084f040(param_1 + 6);
   iVar3 = SystemStatusChecker(param_1 + 6);
-  if ((iVar3 == 0) && (iVar3 = FUN_1808744f0(param_1 + 8), iVar3 == 0)) {
+  if ((iVar3 == 0) && (iVar3 = SystemCore_FileSystem0(param_1 + 8), iVar3 == 0)) {
     *(int32_t *)(param_1 + 10) = 0xffffffff;
     *(int32_t *)((int64_t)param_1 + 0x54) = 0;
   }
-  FUN_1808744f0(param_1 + 8);
+  SystemCore_FileSystem0(param_1 + 8);
   SystemStatusChecker(param_1 + 6);
   FUN_18084f040(param_1);
   iVar3 = SystemStatusChecker(param_1);
-  if ((iVar3 == 0) && (iVar3 = FUN_1808744f0(param_1 + 2), iVar3 == 0)) {
+  if ((iVar3 == 0) && (iVar3 = SystemCore_FileSystem0(param_1 + 2), iVar3 == 0)) {
     *(int32_t *)(param_1 + 4) = 0xffffffff;
     *(int32_t *)((int64_t)param_1 + 0x24) = 0;
   }
-  FUN_1808744f0(param_1 + 2);
+  SystemCore_FileSystem0(param_1 + 2);
   uVar5 = *(uint *)((int64_t)param_1 + 0xc);
   if ((int)((uVar5 ^ (int)uVar5 >> 0x1f) - ((int)uVar5 >> 0x1f)) < 0) {
     if (0 < (int)param_1[1]) {
@@ -159,19 +159,19 @@ uint64_t FUN_1808bb730(int64_t *param_1)
   }
   FUN_18084f2d0(param_1 + 6);
   iVar3 = SystemStatusChecker(param_1 + 6);
-  if ((iVar3 == 0) && (iVar3 = FUN_1808744f0(param_1 + 8), iVar3 == 0)) {
+  if ((iVar3 == 0) && (iVar3 = SystemCore_FileSystem0(param_1 + 8), iVar3 == 0)) {
     *(int32_t *)(param_1 + 10) = 0xffffffff;
     *(int32_t *)((int64_t)param_1 + 0x54) = 0;
   }
-  FUN_1808744f0(param_1 + 8);
+  SystemCore_FileSystem0(param_1 + 8);
   SystemStatusChecker(param_1 + 6);
   FUN_18084f2d0(param_1);
   iVar3 = SystemStatusChecker(param_1);
-  if ((iVar3 == 0) && (iVar3 = FUN_1808744f0(param_1 + 2), iVar3 == 0)) {
+  if ((iVar3 == 0) && (iVar3 = SystemCore_FileSystem0(param_1 + 2), iVar3 == 0)) {
     *(int32_t *)(param_1 + 4) = 0xffffffff;
     *(int32_t *)((int64_t)param_1 + 0x24) = 0;
   }
-  FUN_1808744f0(param_1 + 2);
+  SystemCore_FileSystem0(param_1 + 2);
   uVar5 = *(uint *)((int64_t)param_1 + 0xc);
   if ((int)((uVar5 ^ (int)uVar5 >> 0x1f) - ((int)uVar5 >> 0x1f)) < 0) {
     if (0 < (int)param_1[1]) {
@@ -221,19 +221,19 @@ uint64_t FUN_1808bb800(int64_t *param_1)
   }
   FUN_1808bcca0(param_1 + 6);
   iVar3 = SystemStatusChecker(param_1 + 6);
-  if ((iVar3 == 0) && (iVar3 = FUN_1808744f0(param_1 + 8), iVar3 == 0)) {
+  if ((iVar3 == 0) && (iVar3 = SystemCore_FileSystem0(param_1 + 8), iVar3 == 0)) {
     *(int32_t *)(param_1 + 10) = 0xffffffff;
     *(int32_t *)((int64_t)param_1 + 0x54) = 0;
   }
-  FUN_1808744f0(param_1 + 8);
+  SystemCore_FileSystem0(param_1 + 8);
   SystemStatusChecker(param_1 + 6);
   FUN_1808bcca0(param_1);
   iVar3 = SystemStatusChecker(param_1);
-  if ((iVar3 == 0) && (iVar3 = FUN_1808744f0(param_1 + 2), iVar3 == 0)) {
+  if ((iVar3 == 0) && (iVar3 = SystemCore_FileSystem0(param_1 + 2), iVar3 == 0)) {
     *(int32_t *)(param_1 + 4) = 0xffffffff;
     *(int32_t *)((int64_t)param_1 + 0x24) = 0;
   }
-  FUN_1808744f0(param_1 + 2);
+  SystemCore_FileSystem0(param_1 + 2);
   uVar5 = *(uint *)((int64_t)param_1 + 0xc);
   if ((int)((uVar5 ^ (int)uVar5 >> 0x1f) - ((int)uVar5 >> 0x1f)) < 0) {
     if (0 < (int)param_1[1]) {
@@ -283,19 +283,19 @@ uint64_t FUN_1808bb8d0(int64_t *param_1)
   }
   FUN_18084f560(param_1 + 6);
   iVar3 = SystemStatusChecker(param_1 + 6);
-  if ((iVar3 == 0) && (iVar3 = FUN_1808744f0(param_1 + 8), iVar3 == 0)) {
+  if ((iVar3 == 0) && (iVar3 = SystemCore_FileSystem0(param_1 + 8), iVar3 == 0)) {
     *(int32_t *)(param_1 + 10) = 0xffffffff;
     *(int32_t *)((int64_t)param_1 + 0x54) = 0;
   }
-  FUN_1808744f0(param_1 + 8);
+  SystemCore_FileSystem0(param_1 + 8);
   SystemStatusChecker(param_1 + 6);
   FUN_18084f560(param_1);
   iVar3 = SystemStatusChecker(param_1);
-  if ((iVar3 == 0) && (iVar3 = FUN_1808744f0(param_1 + 2), iVar3 == 0)) {
+  if ((iVar3 == 0) && (iVar3 = SystemCore_FileSystem0(param_1 + 2), iVar3 == 0)) {
     *(int32_t *)(param_1 + 4) = 0xffffffff;
     *(int32_t *)((int64_t)param_1 + 0x24) = 0;
   }
-  FUN_1808744f0(param_1 + 2);
+  SystemCore_FileSystem0(param_1 + 2);
   uVar5 = *(uint *)((int64_t)param_1 + 0xc);
   if ((int)((uVar5 ^ (int)uVar5 >> 0x1f) - ((int)uVar5 >> 0x1f)) < 0) {
     if (0 < (int)param_1[1]) {
@@ -740,11 +740,11 @@ void FUN_1808bbb80(uint64_t *param_1)
   FUN_1808555a0(param_1 + 0x4f);
   SystemStatusChecker(param_1 + 0x4d);
   iVar1 = SystemStatusChecker(param_1 + 0x48);
-  if ((iVar1 == 0) && (iVar1 = FUN_1808744f0(param_1 + 0x4a), iVar1 == 0)) {
+  if ((iVar1 == 0) && (iVar1 = SystemCore_FileSystem0(param_1 + 0x4a), iVar1 == 0)) {
     *(int32_t *)(param_1 + 0x4c) = 0xffffffff;
     *(int32_t *)((int64_t)param_1 + 0x264) = 0;
   }
-  FUN_1808744f0(param_1 + 0x4a);
+  SystemCore_FileSystem0(param_1 + 0x4a);
   SystemStatusChecker(param_1 + 0x48);
   FUN_1808bb8d0(param_1 + 0x3b);
   FUN_1808bb660(param_1 + 0x2e);

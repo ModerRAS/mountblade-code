@@ -1,3 +1,6 @@
+/* SystemController - SystemCore_StateProcessor0 的语义化别名 */
+#define SystemController SystemCore_StateProcessor0
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -195,13 +198,13 @@ LAB_180868b10:
           lVar2 = (**(code **)(*param_4 + 0x260))(param_4,plVar6 + 6,1);
           if (lVar2 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(plVar6 + 6,auStack_78);
+            SystemController(plVar6 + 6,auStack_78);
           }
           lVar4 = plVar6[4];
           lVar3 = (**(code **)(*param_4 + 0x298))(param_4,lVar4,1);
           if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar4,auStack_78);
+            SystemController(lVar4,auStack_78);
           }
           lVar4 = FUN_180869a50(param_4,lVar3 + 0x30);
           if (lVar4 != 0) {
@@ -854,7 +857,7 @@ void FUN_180869a50(int64_t *param_1,uint64_t param_2)
   lVar1 = (**(code **)(*param_1 + 0x268))(param_1,param_2,1);
   if (lVar1 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18084b240(param_2,auStack_38);
+    SystemController(param_2,auStack_38);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_10 ^ (uint64_t)auStack_58);
@@ -879,7 +882,7 @@ void FUN_180869ab0(int64_t *param_1,uint64_t param_2)
   lVar1 = (**(code **)(*param_1 + 0x260))(param_1,param_2,1);
   if (lVar1 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18084b240(param_2,auStack_38);
+    SystemController(param_2,auStack_38);
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_10 ^ (uint64_t)auStack_58);
@@ -934,7 +937,7 @@ LAB_180869c7a:
           lVar4 = (**(code **)(*(int64_t *)*param_2 + 0x2a0))((int64_t *)*param_2,lVar1,1);
           if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1,auStack_70);
+            SystemController(lVar1,auStack_70);
           }
           iVar6 = *(int *)(param_1 + 0x148);
           if (lVar4 == 0) goto LAB_180869c7a;
@@ -1013,7 +1016,7 @@ LAB_180869c7a:
         lVar3 = (**(code **)(*(int64_t *)*unaff_R14 + 0x2a0))((int64_t *)*unaff_R14,lVar1,1);
         if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar1,&stack0x00000028);
+          SystemController(lVar1,&stack0x00000028);
         }
         iVar5 = *(int *)(unaff_RBP + 0x148);
         if (lVar3 == 0) goto LAB_180869c7a;
@@ -1081,7 +1084,7 @@ LAB_180869c7a:
       lVar3 = (**(code **)(*(int64_t *)*unaff_R14 + 0x2a0))((int64_t *)*unaff_R14,lVar1,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,&stack0x00000028);
+        SystemController(lVar1,&stack0x00000028);
       }
       unaff_EDI = *(int *)(unaff_RBP + 0x148);
       if (lVar3 == 0) goto LAB_180869c7a;

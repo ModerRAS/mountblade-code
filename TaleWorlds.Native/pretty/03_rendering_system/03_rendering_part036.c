@@ -176,7 +176,7 @@ void InitializeRenderingSystem(uint64_t *renderContext)
       do {
         renderFlags = frameIndex;
         renderInterface = (uint64_t *)0x0;
-        FUN_180627ae0(&vertexData,(int64_t)frameIndex * 0x20 + renderContext[0x27]);
+        SystemCore_NetworkHandler0(&vertexData,(int64_t)frameIndex * 0x20 + renderContext[0x27]);
         FUN_1800b08e0(system_resource_state,&renderTarget,&vertexData,1);
         *(uint *)(renderTarget + 0x65) = *(uint *)(renderTarget + 0x65) | 0x20000000;
         

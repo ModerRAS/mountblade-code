@@ -942,7 +942,7 @@ LAB_1804e9faf:
         }
       }
       plStack_4b8 = alStack_1a0;
-      FUN_1808fc8a8(alStack_1a0,0x30,4,FUN_18004a130);
+      SystemDataValidator(alStack_1a0,0x30,4,FUN_18004a130);
       pplStack_488 = (int64_t **)0x0;
       while( true ) {
         cVar14 = FUN_1805012c0(param_1 + 0x263576,&pplStack_488);

@@ -114,7 +114,7 @@ void RenderingSystemProcessFileData(int64_t render_context, int64_t file_context
           stack_resource_ptr = resource_ptr;
           stack_allocator_ptr = data_stream;
           
-          FUN_1808fc838(data_stream, RENDERING_RESOURCE_BLOCK_SIZE, 4, FUN_1801c2890, FUN_18004a130);
+          DataStructureManager(data_stream, RENDERING_RESOURCE_BLOCK_SIZE, 4, FUN_1801c2890, FUN_18004a130);
           data_buffer[0x3e] = 0;
           *data_buffer = 0;
           (**(code **)(*resource_ptr + 0x10))(resource_ptr, &system_buffer_ptr);

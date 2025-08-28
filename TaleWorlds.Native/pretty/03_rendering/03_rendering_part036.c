@@ -157,7 +157,7 @@ void initialize_rendering_manager(uint64_t *render_manager)
             do {
                 texture_index = stack_index;
                 material_ptr = (uint64_t *)0x0;
-                FUN_180627ae0(&stack_data_ptr, (int64_t)stack_index * 0x20 + render_manager[0x27]);
+                SystemCore_NetworkHandler0(&stack_data_ptr, (int64_t)stack_index * 0x20 + render_manager[0x27]);
                 FUN_1800b08e0(system_resource_state, &stack_buffer_ptr, &stack_data_ptr, 1);
                 *(uint *)(stack_buffer_ptr + 0x65) = *(uint *)(stack_buffer_ptr + 0x65) | 0x20000000;
                 

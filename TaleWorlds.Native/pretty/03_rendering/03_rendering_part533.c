@@ -231,7 +231,7 @@ int64_t * FindResourceInHashTable(int64_t param_1, int64_t *param_2, uint64_t pa
                     *(int32_t *)(param_1 + 0x18), 1);
       lVar7 = CoreEngine_MemoryAllocator(system_memory_pool_ptr, 0x30, *(int8_t *)(param_1 + 0x2c));
       lStackX_10 = lVar7;
-      FUN_180627ae0(lVar7);
+      SystemCore_NetworkHandler0(lVar7);
       
       // 初始化新资源节点
       *(int32_t *)(lVar7 + 0x20) = 0;

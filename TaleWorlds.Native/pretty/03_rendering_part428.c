@@ -782,8 +782,8 @@ void FUN_18049f560(uint64_t param_1,int8_t *param_2)
   *param_2 = 0;
   (**(code **)(*(int64_t *)(param_2 + 8) + 0x10))(param_2 + 8,&system_flag_f500);
   (**(code **)(render_system_memory + 0x10))(&system_flag_24d0,&system_flag_d128);
-  FUN_180627be0(param_2 + 0x80,&system_flag_24d0);
-  FUN_180627be0(param_2 + 0xa0,&system_flag_24f0);
+  SystemCore_ConfigurationHandler0(param_2 + 0x80,&system_flag_24d0);
+  SystemCore_ConfigurationHandler0(param_2 + 0xa0,&system_flag_24f0);
   param_2[0x7c] = 1;
   (**(code **)(*(int64_t *)(param_2 + 0x38) + 0x10))(param_2 + 0x38,&unknown_var_9976_ptr);
   (**(code **)(*(int64_t *)(param_2 + 0x58) + 0x10))(param_2 + 0x58,&system_flag_cc08);

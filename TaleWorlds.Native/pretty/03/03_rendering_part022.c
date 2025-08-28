@@ -74,7 +74,7 @@ void process_mesh_component(uint64_t *mesh_component_ptr, int64_t render_context
   
   // 初始化组件数据结构
   stack_guard = 0xfffffffffffffffe;
-  component_data_ptr = (uint64_t *)FUN_1804c1300(render_context_ptr + 0x60, 0x60);
+  component_data_ptr = (uint64_t *)DataPipelineManager(render_context_ptr + 0x60, 0x60);
   *component_data_ptr = 0;
   component_data_ptr[1] = 0;
   component_data_ptr[4] = 0;
@@ -261,7 +261,7 @@ LAB_18027c801:
       }
       
       // 创建子网格组件
-      mesh_data_ptr = (uint64_t *)FUN_1804c1300(render_context_ptr + 0x60, 0x60);
+      mesh_data_ptr = (uint64_t *)DataPipelineManager(render_context_ptr + 0x60, 0x60);
       *mesh_data_ptr = 0;
       mesh_data_ptr[1] = 0;
       mesh_data_ptr[4] = 0;

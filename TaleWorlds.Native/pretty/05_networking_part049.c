@@ -1,3 +1,6 @@
+/* SystemController - SystemCore_StateProcessor0 的语义化别名 */
+#define SystemController SystemCore_StateProcessor0
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -593,7 +596,7 @@ LAB_1808683fc:
                               ((int64_t *)*param_2,lVar1 + 0x10,1);
             if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-              FUN_18084b240(lVar1 + 0x10,auStack_58);
+              SystemController(lVar1 + 0x10,auStack_58);
             }
             *(int64_t *)((int64_t)plVar6 + *(int64_t *)(param_1 + 0x20) + 0x10) = lVar3;
           }
@@ -668,7 +671,7 @@ LAB_1808683fc:
                             ((int64_t *)*unaff_R15,lVar1 + 0x10,1);
           if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar1 + 0x10,auStackX_20);
+            SystemController(lVar1 + 0x10,auStackX_20);
           }
           *(int64_t *)(uVar6 + 0x10 + *(int64_t *)(unaff_RBP + 0x20)) = lVar3;
         }
@@ -734,7 +737,7 @@ void FUN_180868490(int64_t param_1,int64_t param_2,int64_t param_3)
                           (*(int64_t **)(param_2 + 800),uVar3,1);
         if (lVar2 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(uVar3,auStack_68);
+          SystemController(uVar3,auStack_68);
         }
         lVar2 = FUN_18083fb90(*(uint64_t *)(param_2 + 800),lVar2 + 0x38);
         if (lVar2 == 0) goto LAB_1808685dc;

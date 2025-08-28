@@ -265,7 +265,7 @@ LAB_18006650a:
       FUN_180625690(&puStack_198);
     }
     ppuStack_a8 = &puStack_138;
-    uVar5 = FUN_180627ae0(&puStack_138,&puStack_198);
+    uVar5 = SystemCore_NetworkHandler0(&puStack_138,&puStack_198);
     FUN_180063820(uVar5);
     FUN_180063b30(&puStack_198,param_5);
     FUN_180063cf0(&puStack_198);

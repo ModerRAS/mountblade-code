@@ -449,8 +449,8 @@ LAB_1804aba26:
     uVar13 = uVar13 + 0x20;
     plVar11 = plVar11 + 1;
     if (4 < (int)uVar12) {
-      FUN_1808fc8a8(&puStack_118,0x20,5,FUN_180627b90);
-      FUN_1808fc8a8(&puStack_1b8,0x20,5,FUN_180627b90);
+      SystemDataValidator(&puStack_118,0x20,5,FUN_180627b90);
+      SystemDataValidator(&puStack_1b8,0x20,5,FUN_180627b90);
                     // WARNING: Subroutine does not return
       SystemSecurityChecker(uStack_78 ^ (uint64_t)auStack_3b8);
     }

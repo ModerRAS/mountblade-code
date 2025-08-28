@@ -500,7 +500,7 @@ void FUN_1801d6680(int64_t param_1)
             *ppuVar11 = &system_handler3_ptr;
             pcStack_318 = FUN_1801ecbb0;
             ppuStack_300 = ppuVar11;
-            FUN_1808fc838(ppuVar11 + 2,0x70,6,FUN_1801ecb30);
+            DataStructureManager(ppuVar11 + 2,0x70,6,FUN_1801ecb30);
             ppuVar18 = ppuVar11 + 0x56;
             *ppuVar18 = &system_state_ptr;
             ppuVar11[0x57] = (void *)0x0;

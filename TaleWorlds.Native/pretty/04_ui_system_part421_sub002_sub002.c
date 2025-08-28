@@ -120,11 +120,11 @@ uint64_t FUN_18089c190(int64_t param_1,uint64_t *param_2)
   int8_t auStack_68 [32];
   int8_t auStack_48 [32];
   
-  uVar7 = FUN_1808ddc20(param_2,auStack_48,1,0x4f4c4d50);
+  uVar7 = DataFlowProcessor(param_2,auStack_48,1,0x4f4c4d50);
   if ((int)uVar7 != 0) {
     return uVar7;
   }
-  uVar7 = FUN_1808ddc20(param_2,auStack_68,0,0x424c4d50);
+  uVar7 = DataFlowProcessor(param_2,auStack_68,0,0x424c4d50);
   if ((int)uVar7 != 0) {
     return uVar7;
   }

@@ -28,7 +28,7 @@ void FUN_18048cf00(int64_t param_1,uint64_t param_2,int64_t param_3,uint64_t par
   }
   *(uint64_t *)(lVar2 + 0x28) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar2,param_3,param_1,uVar3);
+  SystemNetworkHandler(lVar2,param_3,param_1,uVar3);
 }
 
 

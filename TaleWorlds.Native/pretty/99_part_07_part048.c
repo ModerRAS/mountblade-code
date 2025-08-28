@@ -415,7 +415,7 @@ void FUN_1804ca960(uint64_t *param_1)
   *param_1 = &unknown_var_2320_ptr;
   FUN_1804cd320();
   _Mtx_destroy_in_situ();
-  FUN_1808fc8a8(param_1 + 0x35,0x28,8,FUN_1804ce100,uVar6);
+  SystemDataValidator(param_1 + 0x35,0x28,8,FUN_1804ce100,uVar6);
   if (param_1[0x31] != 0) {
                     // WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();

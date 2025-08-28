@@ -1110,7 +1110,7 @@ void animation_parameter_configurator(int64_t param_1, uint64_t param_2, int64_t
     
     // 检查并创建动画曲线
     if (*(int64_t *)(param_1 + 8) != *(int64_t *)(param_1 + 0x10)) {
-        render_state_ptr1 = (uint64_t *)FUN_1804c1300(param_3 + 0x60, 0x60);
+        render_state_ptr1 = (uint64_t *)DataPipelineManager(param_3 + 0x60, 0x60);
         *render_state_ptr1 = 0;
         render_state_ptr1[1] = 0;
         render_state_ptr1[4] = 0;
@@ -1146,7 +1146,7 @@ void animation_parameter_configurator(int64_t param_1, uint64_t param_2, int64_t
         render_state_ptr1[0xb] = 0;
         
         // 创建关键帧容器
-        render_state_ptr2 = (uint64_t *)FUN_1804c1300(param_3 + 0x60, 0x60);
+        render_state_ptr2 = (uint64_t *)DataPipelineManager(param_3 + 0x60, 0x60);
         *render_state_ptr2 = 0;
         render_state_ptr2[1] = 0;
         render_state_ptr2[4] = 0;
@@ -1189,7 +1189,7 @@ void animation_parameter_configurator(int64_t param_1, uint64_t param_2, int64_t
                 temp_int4 = int_ptr1[7];
                 
                 // 创建时间关键帧
-                render_state_ptr1 = (uint64_t *)FUN_1804c1300(param_3 + 0x60, 0x60);
+                render_state_ptr1 = (uint64_t *)DataPipelineManager(param_3 + 0x60, 0x60);
                 *render_state_ptr1 = 0;
                 render_state_ptr1[1] = 0;
                 render_state_ptr1[4] = 0;
@@ -1224,7 +1224,7 @@ void animation_parameter_configurator(int64_t param_1, uint64_t param_2, int64_t
                 render_state_ptr1[0xb] = 0;
                 
                 // 创建数值关键帧
-                render_state_ptr1 = (uint64_t *)FUN_1804c1300(param_3 + 0x60, 0x60);
+                render_state_ptr1 = (uint64_t *)DataPipelineManager(param_3 + 0x60, 0x60);
                 *render_state_ptr1 = 0;
                 render_state_ptr1[1] = 0;
                 render_state_ptr1[4] = 0;

@@ -1,3 +1,6 @@
+/* SystemEventHandler - FUN_1808fd200 的语义化别名 */
+#define SystemEventHandler FUN_1808fd200
+
 /**
  * @file 99_part_14_part009_sub002_sub001.c
  * @brief 模块99未匹配函数第14部分第9个子部分第2个子部分第1个文件

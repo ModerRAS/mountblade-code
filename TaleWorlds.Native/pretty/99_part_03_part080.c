@@ -624,7 +624,7 @@ int64_t FUN_180245b90(int64_t param_1)
   *(uint64_t *)(param_1 + 0x9848) = 0;
   *(uint64_t *)(param_1 + 0x9850) = 0;
   *(uint64_t *)(param_1 + 39000) = 0;
-  FUN_1808fc838(param_1 + 0x9860,8,2,&SUB_18005d5f0,FUN_180045af0);
+  DataStructureManager(param_1 + 0x9860,8,2,&SUB_18005d5f0,FUN_180045af0);
   *(uint64_t *)(param_1 + 0x9870) = 0;
   *(uint64_t *)(param_1 + 0x9890) = 0;
   *(uint64_t *)(param_1 + 0x9898) = 0;
@@ -964,7 +964,7 @@ void FUN_1802467d0(int64_t *param_1)
   if ((int64_t *)param_1[7] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[7] + 0x38))();
   }
-  FUN_1808fc8a8(param_1 + 5,8,2,FUN_180045af0);
+  SystemDataValidator(param_1 + 5,8,2,FUN_180045af0);
   if ((int64_t *)param_1[4] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[4] + 0x38))();
   }

@@ -666,7 +666,7 @@ uint64_t FUN_18087dbf0(int64_t param_1,uint64_t param_2,uint64_t param_3)
 
 
 
-uint64_t FUN_18087dc70(int64_t *param_1,int64_t *param_2)
+uint64_t DataStreamProcessor(int64_t *param_1,int64_t *param_2)
 
 {
   int64_t lVar1;

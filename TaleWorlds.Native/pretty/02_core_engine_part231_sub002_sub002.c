@@ -121,7 +121,7 @@ void FUN_180200780(uint64_t param_1,int param_2,void **param_3)
       *(int8_t *)(lVar5 + 0xd9) = 1;
       FUN_1806289a0(param_3);
     }
-    FUN_180627be0(lVar5,param_3);
+    SystemCore_ConfigurationHandler0(lVar5,param_3);
     goto LAB_180202111;
   }
   uVar19 = 0;
@@ -1243,7 +1243,7 @@ LAB_1802020ad:
     goto LAB_180202111;
   }
   if (param_2 == 3) {
-    FUN_180627be0(core_system_data_memory,param_3);
+    SystemCore_ConfigurationHandler0(core_system_data_memory,param_3);
   }
   else if (param_2 == 4) {
     FUN_180202660(core_system_data_memory);

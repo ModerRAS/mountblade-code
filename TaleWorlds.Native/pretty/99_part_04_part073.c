@@ -490,7 +490,7 @@ void FUN_1802ca920(int64_t *param_1)
   param_1[4] = 0;
   pcStack_178 = FUN_180045af0;
   plStack_f0 = param_1;
-  FUN_1808fc838(param_1 + 5,8,2,&SUB_18005d5f0);
+  DataStructureManager(param_1 + 5,8,2,&SUB_18005d5f0);
   param_1[7] = 0;
   param_1[8] = 0;
   param_1[9] = 0;

@@ -459,8 +459,8 @@ uint64_t * FUN_18024f160(uint64_t *param_1)
   param_1[0x18] = 0;
   param_1[0x19] = 0;
   *(int32_t *)(param_1 + 0x1a) = 0x24;
-  FUN_1808fc838(param_1 + 0x1b,0x20,0x80,FUN_18005c060,FUN_180046860);
-  FUN_1808fc838(param_1 + 0x21b,0x20,0x80,FUN_18005c060,FUN_180046860);
+  DataStructureManager(param_1 + 0x1b,0x20,0x80,FUN_18005c060,FUN_180046860);
+  DataStructureManager(param_1 + 0x21b,0x20,0x80,FUN_18005c060,FUN_180046860);
   param_1[0x41b] = 0;
   param_1[0x41c] = 0;
   param_1[0x41d] = 0;
@@ -491,8 +491,8 @@ void FUN_18024f2c0(int64_t param_1)
   uVar7 = 0xfffffffffffffffe;
   FUN_18024e890();
   FUN_180253ab0();
-  FUN_1808fc8a8(param_1 + 0x10d8,0x20,0x80,FUN_180046860,uVar7);
-  FUN_1808fc8a8(param_1 + 0xd8,0x20,0x80,FUN_180046860);
+  SystemDataValidator(param_1 + 0x10d8,0x20,0x80,FUN_180046860,uVar7);
+  SystemDataValidator(param_1 + 0xd8,0x20,0x80,FUN_180046860);
   if (*(int64_t *)(param_1 + 0xb8) != 0) {
                     // WARNING: Subroutine does not return
     CoreMemoryPoolInitializer();

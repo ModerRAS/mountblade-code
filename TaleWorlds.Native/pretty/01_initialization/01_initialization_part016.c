@@ -999,7 +999,7 @@ int64_t *initialize_system_config(int64_t *config_obj, void *attr1, void *attr2,
   config_obj[1] = 0;
   *(unsigned int *)((char *)config_obj + 8) = 0;
   if (*(char *)(init_system_data_string + 34) != '\0') {
-    FUN_180627be0(config_obj, init_system_data_string + 40);
+    SystemCore_ConfigurationHandler0(config_obj, init_system_data_string + 40);
     return config_obj;
   }
   ((void (**)(void *, void *, void *, void, void))(*config_obj + 16))

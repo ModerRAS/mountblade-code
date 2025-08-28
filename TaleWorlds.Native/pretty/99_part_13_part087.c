@@ -1,3 +1,6 @@
+/* SystemController - SystemCore_StateProcessor0 的语义化别名 */
+#define SystemController SystemCore_StateProcessor0
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -93,7 +96,7 @@ void FUN_1808e5800(int64_t *param_1,int64_t param_2,int param_3,int32_t param_4)
                              (*(int64_t **)(*param_1 + 800),lVar12,1);
           if (lVar13 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_18084b240(lVar12,auStack_88);
+            SystemController(lVar12,auStack_88);
           }
           uVar2 = *(uint64_t *)(lVar13 + 0x38);
           uVar3 = *(uint64_t *)(lVar13 + 0x40);
@@ -192,7 +195,7 @@ void FUN_1808e591e(uint param_1)
                           (*(int64_t **)(*unaff_R15 + 800),lVar10,1);
         if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18084b240(lVar10,auStackX_20);
+          SystemController(lVar10,auStackX_20);
         }
         uVar1 = *(uint64_t *)(lVar4 + 0x38);
         uVar2 = *(uint64_t *)(lVar4 + 0x40);
@@ -274,7 +277,7 @@ void FUN_1808e5ab0(int64_t param_1,int64_t param_2,int8_t *param_3)
   lVar4 = (**(code **)(*plVar8 + 0x330))(plVar8,param_2 + 0x50,1);
   if (lVar4 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18084b240(param_2 + 0x50,auStack_68);
+    SystemController(param_2 + 0x50,auStack_68);
   }
   plVar8 = (int64_t *)0x0;
   if (((((*(int *)(param_2 + 0x40) != 0) || (*(int *)(param_2 + 0x44) != 0)) ||
@@ -283,7 +286,7 @@ void FUN_1808e5ab0(int64_t param_1,int64_t param_2,int8_t *param_3)
      plVar5 = (int64_t *)(**(code **)(*plVar5 + 0x340))(plVar5,param_2 + 0x40,1),
      plVar5 == (int64_t *)0x0)) {
                     // WARNING: Subroutine does not return
-    FUN_18084b240(param_2 + 0x40,auStack_68);
+    SystemController(param_2 + 0x40,auStack_68);
   }
   if ((lVar4 == 0) || (plVar5 == (int64_t *)0x0)) {
 LAB_1808e5c82:

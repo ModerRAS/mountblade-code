@@ -706,7 +706,7 @@ void FUN_180416900(int64_t param_1,uint64_t param_2,int64_t param_3,int64_t para
   int iStackX_c;
   
   if (*(int64_t *)(param_1 + 8) != *(int64_t *)(param_1 + 0x10)) {
-    puVar7 = (uint64_t *)FUN_1804c1300(param_3 + 0x60,0x60);
+    puVar7 = (uint64_t *)DataPipelineManager(param_3 + 0x60,0x60);
     *puVar7 = 0;
     puVar7[1] = 0;
     puVar7[4] = 0;
@@ -735,7 +735,7 @@ void FUN_180416900(int64_t param_1,uint64_t param_2,int64_t param_3,int64_t para
     *(uint64_t **)(param_4 + 0x38) = puVar7;
     puVar7[4] = param_4;
     puVar7[0xb] = 0;
-    puVar9 = (uint64_t *)FUN_1804c1300(param_3 + 0x60,0x60);
+    puVar9 = (uint64_t *)DataPipelineManager(param_3 + 0x60,0x60);
     *puVar9 = 0;
     puVar9[1] = 0;
     puVar9[4] = 0;
@@ -769,7 +769,7 @@ void FUN_180416900(int64_t param_1,uint64_t param_2,int64_t param_3,int64_t para
         iVar4 = piVar11[4];
         fVar5 = (float)piVar11[6];
         iVar6 = piVar11[7];
-        puVar7 = (uint64_t *)FUN_1804c1300(param_3 + 0x60,0x60);
+        puVar7 = (uint64_t *)DataPipelineManager(param_3 + 0x60,0x60);
         *puVar7 = 0;
         puVar7[1] = 0;
         puVar7[4] = 0;
@@ -798,7 +798,7 @@ void FUN_180416900(int64_t param_1,uint64_t param_2,int64_t param_3,int64_t para
         puVar9[7] = puVar7;
         puVar7[4] = puVar9;
         puVar7[0xb] = 0;
-        puVar7 = (uint64_t *)FUN_1804c1300(param_3 + 0x60,0x60);
+        puVar7 = (uint64_t *)DataPipelineManager(param_3 + 0x60,0x60);
         *puVar7 = 0;
         puVar7[1] = 0;
         puVar7[4] = 0;

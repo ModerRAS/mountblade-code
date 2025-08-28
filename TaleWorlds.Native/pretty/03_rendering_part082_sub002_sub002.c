@@ -1,3 +1,12 @@
+/* UIManager - FUN_18086b47c 的语义化别名 */
+#define UIManager FUN_18086b47c
+
+/* SystemController - SystemCore_StateProcessor0 的语义化别名 */
+#define SystemController SystemCore_StateProcessor0
+
+/* SystemEventHandler - FUN_1808fd200 的语义化别名 */
+#define SystemEventHandler FUN_1808fd200
+
 #include "TaleWorlds.Native.Split.h"
 
 // ============================================================================

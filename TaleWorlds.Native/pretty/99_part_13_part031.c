@@ -1,3 +1,6 @@
+/* SystemController - SystemPhysicsEngine 的语义化别名 */
+#define SystemController SystemPhysicsEngine
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -227,7 +230,7 @@ void FUN_1808b9df0(int64_t param_1,int64_t param_2)
     lVar1 = lStack_68;
     if (iVar2 == 0x4a) {
                     // WARNING: Subroutine does not return
-      FUN_18084b240(param_2 + 0x10,auStack_60);
+      SystemController(param_2 + 0x10,auStack_60);
     }
     if (iVar2 != 0) goto LAB_1808b9e6b;
     if (lStack_68 != 0) {

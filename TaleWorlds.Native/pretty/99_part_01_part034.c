@@ -966,7 +966,7 @@ LAB_1800c2f37:
   uVar10 = 0;
 LAB_1800c2f80:
   lVar7 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x48,(char)param_1[5]);
-  FUN_180627ae0(lVar7 + 0x20,param_5);
+  SystemCore_NetworkHandler0(lVar7 + 0x20,param_5);
   *(uint64_t *)(lVar7 + 0x40) = 0;
                     // WARNING: Subroutine does not return
   FUN_18066bdc0(lVar7,plVar8,param_1,uVar10);

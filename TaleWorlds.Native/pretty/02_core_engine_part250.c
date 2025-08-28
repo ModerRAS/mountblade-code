@@ -27,7 +27,7 @@ void FUN_180216250(uint64_t param_1,uint64_t *param_2,int32_t param_3)
   lVar2 = FUN_180213700(param_1,param_3,0);
   if (lVar2 == 0) {
     uVar3 = FUN_180628ca0();
-    FUN_180627ae0(param_2,uVar3);
+    SystemCore_NetworkHandler0(param_2,uVar3);
   }
   else {
     FUN_180846610(lVar2,acStack_228,0x200,auStack_244);
@@ -795,7 +795,7 @@ void FUN_180216860(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
         puStack_a0 = puVar7;
         if (uVar1 < *(uint64_t *)(param_1 + 1000)) {
           *(uint64_t *)(param_1 + 0x3e0) = uVar1 + 0x28;
-          FUN_180627ae0(uVar1);
+          SystemCore_NetworkHandler0(uVar1);
           *(uint64_t *)(uVar1 + 0x20) = uStack_b0;
         }
         else {

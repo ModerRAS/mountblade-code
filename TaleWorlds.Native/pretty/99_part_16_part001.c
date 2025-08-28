@@ -58,7 +58,7 @@ typedef void (*CallbackFunction)(int64_t, uint64_t, uint64_t, uint64_t, uint64_t
 #define system_event_dispatcher FUN_18005ab50
 
 // 回调参数处理器
-#define callback_parameter_processor FUN_1808fc838
+#define callback_parameter_processor DataStructureManager
 
 // 系统状态同步器
 #define system_state_synchronizer FUN_1808fc7d0

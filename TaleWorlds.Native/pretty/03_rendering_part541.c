@@ -18,7 +18,7 @@ void FUN_180562f60(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
   
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_68;
   if (param_4 == '\0') {
-    puVar2 = (uint64_t *)FUN_1804c1300(param_2 + 0x60,0x38);
+    puVar2 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x38);
     *puVar2 = 0;
     puVar2[1] = 0;
     puVar2[4] = 0;
@@ -50,7 +50,7 @@ void FUN_180562f60(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
   }
   FUN_180626eb0(&cStack_48,0x20,&system_data_6430,(double)*(float *)(param_1 + 8));
   param_2 = param_2 + 0x60;
-  puVar2 = (uint64_t *)FUN_1804c1300(param_2,0x38);
+  puVar2 = (uint64_t *)DataPipelineManager(param_2,0x38);
   *puVar2 = 0;
   puVar2[1] = 0;
   puVar2[4] = 0;
@@ -81,7 +81,7 @@ void FUN_180562f60(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
   puVar2[4] = param_3;
   puVar2[6] = 0;
   FUN_180626eb0(&cStack_48,0x20,&system_data_6430,(double)*(float *)(param_1 + 0xc));
-  puVar2 = (uint64_t *)FUN_1804c1300(param_2,0x38);
+  puVar2 = (uint64_t *)DataPipelineManager(param_2,0x38);
   *puVar2 = 0;
   puVar2[1] = 0;
   puVar2[4] = 0;
@@ -112,7 +112,7 @@ void FUN_180562f60(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
   puVar2[4] = param_3;
   puVar2[6] = 0;
   FUN_180626eb0(&cStack_48,0x20,&system_data_6430,(double)*(float *)(param_1 + 0x10));
-  puVar2 = (uint64_t *)FUN_1804c1300(param_2,0x38);
+  puVar2 = (uint64_t *)DataPipelineManager(param_2,0x38);
   *puVar2 = 0;
   puVar2[1] = 0;
   puVar2[4] = 0;
@@ -316,7 +316,7 @@ void FUN_1805634b0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
   
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_68;
   if (param_4 == '\0') {
-    puVar2 = (uint64_t *)FUN_1804c1300(param_2 + 0x60,0x38);
+    puVar2 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x38);
     *puVar2 = 0;
     puVar2[1] = 0;
     puVar2[4] = 0;
@@ -347,7 +347,7 @@ void FUN_1805634b0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
     puVar2[6] = 0;
   }
   FUN_180626eb0(&cStack_48,0x20,&system_data_6430,(double)*(float *)(param_1 + 8));
-  puVar2 = (uint64_t *)FUN_1804c1300(param_2 + 0x60,0x38);
+  puVar2 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x38);
   *puVar2 = 0;
   puVar2[1] = 0;
   puVar2[4] = 0;
@@ -378,7 +378,7 @@ void FUN_1805634b0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
   puVar2[4] = param_3;
   puVar2[6] = 0;
   FUN_180626eb0(&cStack_48,0x20,&system_data_6430,(double)*(float *)(param_1 + 0xc));
-  puVar2 = (uint64_t *)FUN_1804c1300(param_2 + 0x60,0x38);
+  puVar2 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x38);
   *puVar2 = 0;
   puVar2[1] = 0;
   puVar2[4] = 0;
@@ -545,7 +545,7 @@ void FUN_1805638a0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
   
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_68;
   if (param_4 == '\0') {
-    puVar2 = (uint64_t *)FUN_1804c1300(param_2 + 0x60,0x38);
+    puVar2 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x38);
     *puVar2 = 0;
     puVar2[1] = 0;
     puVar2[4] = 0;
@@ -576,7 +576,7 @@ void FUN_1805638a0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
     puVar2[6] = 0;
   }
   FUN_180626eb0(&cStack_48,0x20,&system_data_6430,(double)*(float *)(param_1 + 8));
-  puVar2 = (uint64_t *)FUN_1804c1300(param_2 + 0x60,0x38);
+  puVar2 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x38);
   *puVar2 = 0;
   puVar2[1] = 0;
   puVar2[4] = 0;
@@ -607,7 +607,7 @@ void FUN_1805638a0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
   puVar2[4] = param_3;
   puVar2[6] = 0;
   FUN_180626eb0(&cStack_48,0x20,&system_data_6430,(double)*(float *)(param_1 + 0xc));
-  puVar2 = (uint64_t *)FUN_1804c1300(param_2 + 0x60,0x38);
+  puVar2 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x38);
   *puVar2 = 0;
   puVar2[1] = 0;
   puVar2[4] = 0;
@@ -775,7 +775,7 @@ void FUN_180563ca0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
   
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_68;
   if (param_4 == '\0') {
-    puVar2 = (uint64_t *)FUN_1804c1300(param_2 + 0x60,0x38);
+    puVar2 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x38);
     *puVar2 = 0;
     puVar2[1] = 0;
     puVar2[4] = 0;
@@ -807,7 +807,7 @@ void FUN_180563ca0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
   }
   FUN_180626eb0(&cStack_48,0x20,&system_data_6430,(double)*(float *)(param_1 + 8));
   param_2 = param_2 + 0x60;
-  puVar2 = (uint64_t *)FUN_1804c1300(param_2,0x38);
+  puVar2 = (uint64_t *)DataPipelineManager(param_2,0x38);
   *puVar2 = 0;
   puVar2[1] = 0;
   puVar2[4] = 0;
@@ -838,7 +838,7 @@ void FUN_180563ca0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
   puVar2[4] = param_3;
   puVar2[6] = 0;
   FUN_180626eb0(&cStack_48,0x20,&system_data_6430,(double)*(float *)(param_1 + 0xc));
-  puVar2 = (uint64_t *)FUN_1804c1300(param_2,0x38);
+  puVar2 = (uint64_t *)DataPipelineManager(param_2,0x38);
   *puVar2 = 0;
   puVar2[1] = 0;
   puVar2[4] = 0;
@@ -869,7 +869,7 @@ void FUN_180563ca0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
   puVar2[4] = param_3;
   puVar2[6] = 0;
   FUN_180626eb0(&cStack_48,0x20,&system_data_6430,(double)*(float *)(param_1 + 0x10));
-  puVar2 = (uint64_t *)FUN_1804c1300(param_2,0x38);
+  puVar2 = (uint64_t *)DataPipelineManager(param_2,0x38);
   *puVar2 = 0;
   puVar2[1] = 0;
   puVar2[4] = 0;
@@ -1068,7 +1068,7 @@ void FUN_1805641f0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
   char *pcVar3;
   
   if (param_4 == '\0') {
-    puVar1 = (uint64_t *)FUN_1804c1300(param_2 + 0x60,0x38);
+    puVar1 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x38);
     *puVar1 = 0;
     puVar1[1] = 0;
     puVar1[4] = 0;
@@ -1098,7 +1098,7 @@ void FUN_1805641f0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
     puVar1[4] = param_3;
     puVar1[6] = 0;
   }
-  puVar1 = (uint64_t *)FUN_1804c1300(param_2 + 0x60,0x38);
+  puVar1 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x38);
   *puVar1 = 0;
   puVar1[1] = 0;
   puVar1[4] = 0;

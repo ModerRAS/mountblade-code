@@ -206,7 +206,7 @@ int64_t FUN_18018d8f0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t 
   uint64_t uVar6;
   
   uVar6 = 0xfffffffffffffffe;
-  FUN_180627be0(param_1 + 8,param_2 + 8,param_3,param_4,0xfffffffffffffffe);
+  SystemCore_ConfigurationHandler0(param_1 + 8,param_2 + 8,param_3,param_4,0xfffffffffffffffe);
   *(int32_t *)(param_1 + 0x28) = *(int32_t *)(param_2 + 0x28);
   *(int32_t *)(param_1 + 0x2c) = *(int32_t *)(param_2 + 0x2c);
   *(int32_t *)(param_1 + 0x30) = *(int32_t *)(param_2 + 0x30);
@@ -214,7 +214,7 @@ int64_t FUN_18018d8f0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t 
   *(int32_t *)(param_1 + 0x38) = *(int32_t *)(param_2 + 0x38);
   *(int32_t *)(param_1 + 0x3c) = *(int32_t *)(param_2 + 0x3c);
   *(int32_t *)(param_1 + 0x40) = *(int32_t *)(param_2 + 0x40);
-  FUN_180627be0(param_1 + 0x48,param_2 + 0x48);
+  SystemCore_ConfigurationHandler0(param_1 + 0x48,param_2 + 0x48);
   plVar1 = *(int64_t **)(param_2 + 0x68);
   if (plVar1 != (int64_t *)0x0) {
     (**(code **)(*plVar1 + 0x28))(plVar1);
@@ -224,7 +224,7 @@ int64_t FUN_18018d8f0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t 
   if (plVar2 != (int64_t *)0x0) {
     (**(code **)(*plVar2 + 0x38))();
   }
-  FUN_180627be0(param_1 + 0x70,param_2 + 0x70,param_3,param_4,uVar6);
+  SystemCore_ConfigurationHandler0(param_1 + 0x70,param_2 + 0x70,param_3,param_4,uVar6);
   plVar1 = *(int64_t **)(param_2 + 0x90);
   if (plVar1 != (int64_t *)0x0) {
     (**(code **)(*plVar1 + 0x28))(plVar1);
@@ -271,7 +271,7 @@ int64_t FUN_18018d8f0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t 
   *(int32_t *)(param_1 + 0x124) = *(int32_t *)(param_2 + 0x124);
   *(int32_t *)(param_1 + 0x128) = *(int32_t *)(param_2 + 0x128);
   *(int32_t *)(param_1 + 300) = *(int32_t *)(param_2 + 300);
-  FUN_180627be0(param_1 + 0x130,param_2 + 0x130);
+  SystemCore_ConfigurationHandler0(param_1 + 0x130,param_2 + 0x130);
   plVar1 = *(int64_t **)(param_2 + 0x150);
   if (plVar1 != (int64_t *)0x0) {
     (**(code **)(*plVar1 + 0x28))(plVar1);
@@ -281,7 +281,7 @@ int64_t FUN_18018d8f0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t 
   if (plVar2 != (int64_t *)0x0) {
     (**(code **)(*plVar2 + 0x38))();
   }
-  FUN_180627be0(param_1 + 0x158,param_2 + 0x158);
+  SystemCore_ConfigurationHandler0(param_1 + 0x158,param_2 + 0x158);
   plVar1 = *(int64_t **)(param_2 + 0x178);
   if (plVar1 != (int64_t *)0x0) {
     (**(code **)(*plVar1 + 0x28))(plVar1);
@@ -292,7 +292,7 @@ int64_t FUN_18018d8f0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t 
     (**(code **)(*plVar2 + 0x38))();
   }
   *(int32_t *)(param_1 + 0x180) = *(int32_t *)(param_2 + 0x180);
-  FUN_180627be0(param_1 + 0x188,param_2 + 0x188);
+  SystemCore_ConfigurationHandler0(param_1 + 0x188,param_2 + 0x188);
   plVar1 = *(int64_t **)(param_2 + 0x1a8);
   if (plVar1 != (int64_t *)0x0) {
     (**(code **)(*plVar1 + 0x28))(plVar1);
@@ -346,7 +346,7 @@ int64_t FUN_18018d8f0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t 
   *(int32_t *)(param_1 + 0x22c) = *(int32_t *)(param_2 + 0x22c);
   *(int32_t *)(param_1 + 0x230) = *(int32_t *)(param_2 + 0x230);
   *(int32_t *)(param_1 + 0x234) = *(int32_t *)(param_2 + 0x234);
-  FUN_180627be0(param_1 + 0x238,param_2 + 0x238);
+  SystemCore_ConfigurationHandler0(param_1 + 0x238,param_2 + 0x238);
   plVar1 = *(int64_t **)(param_2 + 600);
   if (plVar1 != (int64_t *)0x0) {
     (**(code **)(*plVar1 + 0x28))(plVar1);
@@ -356,7 +356,7 @@ int64_t FUN_18018d8f0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t 
   if (plVar2 != (int64_t *)0x0) {
     (**(code **)(*plVar2 + 0x38))();
   }
-  FUN_180627be0(param_1 + 0x260,param_2 + 0x260);
+  SystemCore_ConfigurationHandler0(param_1 + 0x260,param_2 + 0x260);
   plVar1 = *(int64_t **)(param_2 + 0x280);
   if (plVar1 != (int64_t *)0x0) {
     (**(code **)(*plVar1 + 0x28))(plVar1);
@@ -408,7 +408,7 @@ int64_t FUN_18018d8f0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t 
   *(int32_t *)(param_1 + 0x310) = *(int32_t *)(param_2 + 0x310);
   *(int32_t *)(param_1 + 0x314) = *(int32_t *)(param_2 + 0x314);
   *(int8_t *)(param_1 + 0x318) = *(int8_t *)(param_2 + 0x318);
-  FUN_180627be0(param_1 + 800,param_2 + 800);
+  SystemCore_ConfigurationHandler0(param_1 + 800,param_2 + 800);
   *(int32_t *)(param_1 + 0x340) = *(int32_t *)(param_2 + 0x340);
   return param_1;
 }

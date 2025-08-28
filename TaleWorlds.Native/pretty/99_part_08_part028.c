@@ -1031,7 +1031,7 @@ void FUN_1804fbe90(uint64_t param_1)
   
   uVar1 = 0xfffffffffffffffe;
   FUN_1804fbb80();
-  FUN_1808fc8a8(param_1,0xa60,0x7f8,FUN_180523570,uVar1);
+  SystemDataValidator(param_1,0xa60,0x7f8,FUN_180523570,uVar1);
   return;
 }
 

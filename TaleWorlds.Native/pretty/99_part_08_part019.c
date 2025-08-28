@@ -167,7 +167,7 @@ uint64_t * FUN_1804f2420(uint64_t *param_1)
   FUN_1804ca350(param_1 + 0x5a8,0x7f80);
   *param_1 = &unknown_var_5632_ptr;
   param_1[2] = &unknown_var_5736_ptr;
-  FUN_1808fc838(param_1 + 0x614,0xa60,0x7f8,FUN_180522fd0,FUN_180523570);
+  DataStructureManager(param_1 + 0x614,0xa60,0x7f8,FUN_180522fd0,FUN_180523570);
   puVar3 = param_1 + 0x616;
   lVar6 = 0x7f8;
   do {
@@ -956,7 +956,7 @@ void FUN_1804f30c0(uint64_t *param_1)
     FUN_1804fbfb0(param_1 + 0xc5db3);
     FUN_1804fc3f0(param_1 + 0xa5db4);
     FUN_1804fbb80(param_1 + 0x614);
-    FUN_1808fc8a8(param_1 + 0x614,0xa60,0x7f8,FUN_180523570);
+    SystemDataValidator(param_1 + 0x614,0xa60,0x7f8,FUN_180523570);
     param_1[2] = &unknown_var_1920_ptr;
     FUN_1804ca960(param_1 + 0x5a8);
     FUN_1804a7f00(param_1 + 4);

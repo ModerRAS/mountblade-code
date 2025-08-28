@@ -33,7 +33,7 @@ void initialize_rendering_data(int64_t src_data_ptr, int64_t *dest_data_ptr, uin
   int64_t *buffer_ptr;
   
   // 初始化渲染参数
-  FUN_180627be0(dest_data_ptr + 0x3e, src_data_ptr + 0x1f0, render_flag, texture_param, 0xfffffffffffffffe);
+  SystemCore_ConfigurationHandler0(dest_data_ptr + 0x3e, src_data_ptr + 0x1f0, render_flag, texture_param, 0xfffffffffffffffe);
   
   // 复制基础渲染数据
   dest_data_ptr[6] = *(int64_t *)(src_data_ptr + 0x30);
@@ -107,8 +107,8 @@ void initialize_rendering_data(int64_t src_data_ptr, int64_t *dest_data_ptr, uin
   strcpy_s(dest_data_ptr[0x24], 0x80, vertex_data);
   
   // 初始化变换矩阵
-  FUN_180627be0(dest_data_ptr + 0x36, src_data_ptr + 0x1b0);
-  FUN_180627be0(dest_data_ptr + 0x3a, src_data_ptr + 0x1d0);
+  SystemCore_ConfigurationHandler0(dest_data_ptr + 0x36, src_data_ptr + 0x1b0);
+  SystemCore_ConfigurationHandler0(dest_data_ptr + 0x3a, src_data_ptr + 0x1d0);
   
   // 处理着色器引用
   material_ptr = *(int64_t **)(src_data_ptr + 0x3c8);

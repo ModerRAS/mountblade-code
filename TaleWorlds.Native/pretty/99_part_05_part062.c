@@ -561,7 +561,7 @@ void FUN_1802fef20(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
   uint64_t uStack_40;
   int32_t uStack_38;
   
-  puVar2 = (uint64_t *)FUN_1804c1300(param_2 + 0x60,0x60);
+  puVar2 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x60);
   *puVar2 = 0;
   puVar2[1] = 0;
   puVar2[4] = 0;
@@ -609,7 +609,7 @@ void FUN_1802fef20(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
       ;
     }
   }
-  puVar4 = (uint64_t *)FUN_1804c1300(param_2 + 0x60,0x60);
+  puVar4 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x60);
   *puVar4 = 0;
   puVar4[1] = 0;
   puVar4[4] = 0;

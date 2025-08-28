@@ -1,3 +1,6 @@
+/* SystemController - SystemCore_StateProcessor0 的语义化别名 */
+#define SystemController SystemCore_StateProcessor0
+
 /**
  * @file 05_networking_part105.c
  * @brief 网络系统高级协议处理和数据传输模块
@@ -321,7 +324,7 @@ uint64_t NetworkConnectionManager(int64_t param_1, int64_t *param_2)
     int8_t temp_buffer_38[32];
     
     /* 验证协议头和初始化参数 */
-    result = FUN_1808ddc20(param_2, temp_buffer_38, 0, NETWORK_PROTOCOL_FEMP);
+    result = DataFlowProcessor(param_2, temp_buffer_38, 0, NETWORK_PROTOCOL_FEMP);
     if ((int)result != 0) {
         return result;
     }
@@ -552,7 +555,7 @@ uint64_t NetworkProtocolValidator(int64_t param_1, int64_t *param_2)
     int8_t temp_buffer_48[32];
     
     /* 验证协议标识符 */
-    validation_result = FUN_1808ddc20(param_2, temp_buffer_48, 0, NETWORK_PROTOCOL_TSLP);
+    validation_result = DataFlowProcessor(param_2, temp_buffer_48, 0, NETWORK_PROTOCOL_TSLP);
     if ((int)validation_result != 0) {
         return validation_result;
     }
@@ -752,9 +755,9 @@ uint64_t NetworkDataTransmitter(int64_t param_1, uint64_t *param_2)
     int8_t temp_buffer_28[32];
     
     /* 验证传输协议 */
-    operation_result = FUN_1808ddc20(param_2, temp_buffer_28, 1, NETWORK_PROTOCOL_FFEP);
+    operation_result = DataFlowProcessor(param_2, temp_buffer_28, 1, NETWORK_PROTOCOL_FFEP);
     if (((((int)operation_result != 0) ||
-         (operation_result = FUN_1808ddc20(param_2, temp_buffer_48, 0, NETWORK_PROTOCOL_BFEP), (int)operation_result != 0)) ||
+         (operation_result = DataFlowProcessor(param_2, temp_buffer_48, 0, NETWORK_PROTOCOL_BFEP), (int)operation_result != 0)) ||
         (operation_result = FUN_180899360(param_2, param_1 + 0x10), (int)operation_result != 0)) ||
        ((*(uint *)(param_2 + 8) < NETWORK_MIN_PACKET_SIZE &&
         (operation_result = FUN_1808afc70(param_2, param_1 + 0x44), (int)operation_result != 0)))) {
@@ -949,7 +952,7 @@ uint64_t NetworkPacketProcessor(uint64_t param_1, int64_t *param_2)
     int8_t temp_buffer_38[32];
     
     /* 验证数据包协议 */
-    processing_result = FUN_1808ddc20(param_2, temp_buffer_38, 1, NETWORK_PROTOCOL_SPRP);
+    processing_result = DataFlowProcessor(param_2, temp_buffer_38, 1, NETWORK_PROTOCOL_SPRP);
     if ((int)processing_result != 0) {
         return processing_result;
     }
@@ -970,7 +973,7 @@ packet_cleanup:
     if (validation_result[0] < 1) goto packet_cleanup;
     
     /* 验证数据包格式 */
-    processing_result = FUN_1808ddc20(param_2, temp_buffer_58, 0, NETWORK_PROTOCOL_POPR);
+    processing_result = DataFlowProcessor(param_2, temp_buffer_58, 0, NETWORK_PROTOCOL_POPR);
     if ((int)processing_result != 0) {
         return processing_result;
     }
@@ -1086,7 +1089,7 @@ packet_validation_cleanup:
     if (validation_flags < 1) goto packet_validation_cleanup;
     
     /* 验证数据包协议 */
-    validation_result = FUN_1808ddc20();
+    validation_result = DataFlowProcessor();
     if ((int)validation_result != 0) {
         return validation_result;
     }
@@ -1246,9 +1249,9 @@ void NetworkDataSynchronizer(int64_t param_1, uint64_t *param_2)
     int8_t temp_buffer_28[32];
     
     /* 验证同步协议 */
-    sync_result = FUN_1808ddc20(param_2, temp_buffer_28, 1, NETWORK_PROTOCOL_KORP);
+    sync_result = DataFlowProcessor(param_2, temp_buffer_28, 1, NETWORK_PROTOCOL_KORP);
     if (((sync_result == 0) && 
-         (sync_result = FUN_1808ddc20(param_2, temp_buffer_48, 0, NETWORK_PROTOCOL_IKNB), sync_result == 0)) &&
+         (sync_result = DataFlowProcessor(param_2, temp_buffer_48, 0, NETWORK_PROTOCOL_IKNB), sync_result == 0)) &&
         (sync_result = FUN_180899360(param_2, param_1 + 0x10), sync_result == 0)) {
         
         /* 处理同步数据 */
@@ -1317,7 +1320,7 @@ void NetworkProtocolManager(int32_t param_1)
     int32_t protocol_param;
     
     /* 验证协议参数 */
-    protocol_result = FUN_1808ddc20(param_1, &protocol_param, 0);
+    protocol_result = DataFlowProcessor(param_1, &protocol_param, 0);
     if (protocol_result == 0) {
         protocol_result = FUN_180899360(protocol_param, data_ptr + 0x10);
         if (protocol_result == 0) {

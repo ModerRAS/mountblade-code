@@ -23,7 +23,7 @@ void FUN_18039b3a0(int64_t param_1,uint64_t param_2)
   int64_t lStack_48;
   uint uStack_40;
   
-  FUN_180627ae0(&puStack_50);
+  SystemCore_NetworkHandler0(&puStack_50);
   iVar6 = uStack_40 + 0xc;
   CoreMemoryPoolProcessor(&puStack_50,iVar6);
   puVar7 = (uint64_t *)((uint64_t)uStack_40 + lStack_48);
@@ -237,7 +237,7 @@ LAB_18039b640:
                     }
                     lVar13 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x48,(int8_t)uStack_180);
                     ppuStack_f8 = (void **)(lVar13 + 0x20);
-                    FUN_180627ae0(ppuStack_f8,&puStack_138);
+                    SystemCore_NetworkHandler0(ppuStack_f8,&puStack_138);
                     *(int32_t *)(lVar13 + 0x40) = 0;
                     // WARNING: Subroutine does not return
                     FUN_18066bdc0(lVar13,ppppuVar7,&pppuStack_1a8,pcVar15);
@@ -320,7 +320,7 @@ LAB_18039b85d:
                     // WARNING: Subroutine does not return
               CoreEngine_MemoryPoolManager(puVar8);
             }
-            FUN_180627ae0(&puStack_f0,&puStack_138);
+            SystemCore_NetworkHandler0(&puStack_f0,&puStack_138);
             uStack_d0 = 4;
             FUN_18039dbd0(&pppuStack_1a8,auStack_58,&puStack_f0);
             ppuStack_f8 = &puStack_f0;

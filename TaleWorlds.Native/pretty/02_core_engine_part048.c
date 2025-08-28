@@ -526,7 +526,7 @@ LAB_180089891:
       if (lStack_1e0 - lStack_1e8 >> 3 != 0) {
         lVar11 = lVar16 + 0x48;
         lVar28 = CoreEngine_MemoryAllocator(system_memory_pool_ptr,0x40,*(int8_t *)(lVar16 + 0x70));
-        FUN_180627ae0(lVar28 + 0x20,&puStack_330);
+        SystemCore_NetworkHandler0(lVar28 + 0x20,&puStack_330);
         lVar9 = FUN_1800590b0(lVar11,acStack_3e8,lVar28 + 0x20);
         if (acStack_3e8[0] != '\0') {
           if (lVar9 == lVar11) goto LAB_18008a32f;

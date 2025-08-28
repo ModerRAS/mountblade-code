@@ -1,3 +1,6 @@
+/* SystemController - SystemCore_StateProcessor0 的语义化别名 */
+#define SystemController SystemCore_StateProcessor0
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -361,7 +364,7 @@ uint64_t * FUN_1805064a0(uint64_t *param_1,uint64_t *param_2)
   *(int32_t *)(param_1 + 5) = uVar3;
   *(int32_t *)((int64_t)param_1 + 0x2c) = uVar4;
   param_1[6] = param_2[6];
-  FUN_1808fc838(param_1 + 7,0x30,4,FUN_1801c2890,FUN_18004a130);
+  DataStructureManager(param_1 + 7,0x30,4,FUN_1801c2890,FUN_18004a130);
   iVar1 = *(int *)(param_2 + 0x1f);
   *(int *)(param_1 + 0x1f) = iVar1;
   iVar7 = 0;

@@ -1,3 +1,6 @@
+/* UIManager - FUN_18086b47c 的语义化别名 */
+#define UIManager FUN_18086b47c
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -30,8 +33,8 @@
 
 /* 系统安全检查函数 */
 #define SystemSecurityChecker_VerifyAccess() SystemSecurityChecker()
-#define SystemSecurityChecker_CheckPermissions() FUN_1808fc838()
-#define SystemSecurityChecker_ValidateContext() FUN_1808fc8a8()
+#define SystemSecurityChecker_CheckPermissions() DataStructureManager()
+#define SystemSecurityChecker_ValidateContext() SystemDataValidator()
 
 /* 数据处理函数 */
 #define DataProcessor_TransformData() FUN_180244ff0()

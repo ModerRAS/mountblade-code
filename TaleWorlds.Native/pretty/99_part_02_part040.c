@@ -98,7 +98,7 @@ void FUN_1801afbc0(int64_t param_1)
     puVar1[3] = 0;
     *(int32_t *)(puVar1 + 4) = 3;
     *puVar1 = &unknown_var_5952_ptr;
-    FUN_1808fc838(puVar1 + 0xe,0x20,0x100,FUN_1800ed810,FUN_180046860);
+    DataStructureManager(puVar1 + 0xe,0x20,0x100,FUN_1800ed810,FUN_180046860);
     puVar1[0x40e] = 0;
     puVar1[0xd] = 0;
     *(uint64_t **)(param_1 + 0x330) = puVar1;

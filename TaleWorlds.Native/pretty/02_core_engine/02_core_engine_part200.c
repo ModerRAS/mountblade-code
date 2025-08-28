@@ -381,7 +381,7 @@ void CoreEngineSystemStateManager(void)
             version_info = 1;
             FUN_180058080((code ******)(system_context + 0x70),&manager_stack,&memory_buffer);
             if ((code ******)manager_stack != (code ******)(system_context + 0x70)) {
-              FUN_180627be0(&callback_array,manager_stack + 8);
+              SystemCore_ConfigurationHandler0(&callback_array,manager_stack + 8);
               if ((int)context_data == 3) {
                 do {
                   security_cookie = loop_counter + 1;

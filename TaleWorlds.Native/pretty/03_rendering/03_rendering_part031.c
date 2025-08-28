@@ -1195,7 +1195,7 @@ find_in_rendering_string_hash(int64_t hash_table, int64_t *result_ptr, uint64_t 
     // 创建新的字符串哈希表项
     FUN_18066c220(hash_table + 0x20, &param5, *(uint *)(hash_table + 0x10), *(int32_t *)(hash_table + 0x18), 1);
     string_data = CoreEngine_MemoryAllocator(system_memory_pool_ptr, 0x48, *(int8_t *)(hash_table + 0x2c));
-    FUN_180627ae0(string_data, string_ptr);
+    SystemCore_NetworkHandler0(string_data, string_ptr);
     *(uint64_t *)(string_data + 0x20) = 0;
     *(uint64_t *)(string_data + 0x28) = 0;
     *(uint64_t *)(string_data + 0x30) = 0;

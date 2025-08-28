@@ -241,7 +241,7 @@ void FUN_1802ef920(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t pa
     if (plVar1 != (int64_t *)0x0) {
       (**(code **)(*plVar1 + 0x38))();
     }
-    FUN_180627be0(param_1 + 0x240,*(int64_t *)(param_1 + 0x268) + 0x288);
+    SystemCore_ConfigurationHandler0(param_1 + 0x240,*(int64_t *)(param_1 + 0x268) + 0x288);
   }
   if ((lVar5 != *(int64_t *)(param_1 + 0x268)) &&
      (iVar3 = (int)(*(int64_t *)(param_1 + 0xf8) - *(int64_t *)(param_1 + 0xf0) >> 3), 0 < iVar3))
@@ -311,7 +311,7 @@ void FUN_1802efa20(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
     if (plVar1 != (int64_t *)0x0) {
       (**(code **)(*plVar1 + 0x38))();
     }
-    FUN_180627be0(param_1 + 0x240,*(int64_t *)(param_1 + 0x268) + 0x288);
+    SystemCore_ConfigurationHandler0(param_1 + 0x240,*(int64_t *)(param_1 + 0x268) + 0x288);
   }
   if ((lVar2 != *(int64_t *)(param_1 + 0x268)) &&
      (iVar4 = (int)(*(int64_t *)(param_1 + 0xf8) - *(int64_t *)(param_1 + 0xf0) >> 3), 0 < iVar4))
@@ -377,7 +377,7 @@ void FUN_1802efa51(uint64_t param_1,uint64_t param_2,int64_t param_3)
     if (plVar1 != (int64_t *)0x0) {
       (**(code **)(*plVar1 + 0x38))();
     }
-    FUN_180627be0(unaff_RSI + 0x240,*(int64_t *)(unaff_RSI + 0x268) + 0x288);
+    SystemCore_ConfigurationHandler0(unaff_RSI + 0x240,*(int64_t *)(unaff_RSI + 0x268) + 0x288);
   }
   if ((lVar6 != *(int64_t *)(unaff_RSI + 0x268)) &&
      (iVar4 = (int)(*(int64_t *)(unaff_RSI + 0xf8) - *(int64_t *)(unaff_RSI + 0xf0) >> 3),
@@ -435,7 +435,7 @@ void FUN_1802efab2(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
     if (plVar1 != (int64_t *)0x0) {
       (**(code **)(*plVar1 + 0x38))();
     }
-    FUN_180627be0(unaff_RSI + 0x240,*(int64_t *)(unaff_RSI + 0x268) + 0x288,param_3,param_4,uVar7);
+    SystemCore_ConfigurationHandler0(unaff_RSI + 0x240,*(int64_t *)(unaff_RSI + 0x268) + 0x288,param_3,param_4,uVar7);
   }
   if ((lVar6 != *(int64_t *)(unaff_RSI + 0x268)) &&
      (iVar4 = (int)(*(int64_t *)(unaff_RSI + 0xf8) - *(int64_t *)(unaff_RSI + 0xf0) >> 3),

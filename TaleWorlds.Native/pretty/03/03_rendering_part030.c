@@ -648,7 +648,7 @@ void rendering_object_initializer(int64_t init_context, int64_t *object_data, ui
     }
     else {
         // 处理特定对象
-        data_ptr_ptr = (void **)FUN_180627ae0(&stack_data_2, *object_data + 0x1f0);
+        data_ptr_ptr = (void **)SystemCore_NetworkHandler0(&stack_data_2, *object_data + 0x1f0);
         init_flags = 1;
     }
     

@@ -656,7 +656,7 @@ LAB_180583e24:
                      ((int64_t)*(int *)(param_1[0x1e] + 0xf0) * 0xa0 + 0x50 +
                      *(int64_t *)(param_1[0x1e] + 0xd0)) & 0x5000000000) != 0)))) {
                 pfStack_778 = (float *)FUN_18004a130;
-                FUN_1808fc838(alStack_1a8,0x30,4,FUN_1801c2890);
+                DataStructureManager(alStack_1a8,0x30,4,FUN_1801c2890);
                 iStack_e8 = 0;
                 puStack_258 = &unknown_var_1808_ptr;
                 puStack_250 = auStack_240;
@@ -713,7 +713,7 @@ LAB_180583e24:
                 plStack_768 = alStack_1a8;
                 pfStack_778 = &fStack_700;
                 FUN_1804f8630(param_1[2],(int)param_1[0x54],lVar17,pfVar13[6]);
-                FUN_1808fc8a8(alStack_1a8,0x30,4,FUN_18004a130);
+                SystemDataValidator(alStack_1a8,0x30,4,FUN_18004a130);
               }
             }
             break;

@@ -867,10 +867,10 @@ LAB_180249d7b:
             *piStack_1f0 = aiStack_198[0];
             piVar7 = piStack_1f0 + 2;
             piStack_1f0 = piStack_1f0 + 0x26;
-            FUN_180627ae0(piVar7,&puStack_190);
-            FUN_180627ae0(piVar12 + 10,&puStack_170);
-            FUN_180627ae0(piVar12 + 0x12,&puStack_150);
-            FUN_180627ae0(piVar12 + 0x1a,&puStack_130);
+            SystemCore_NetworkHandler0(piVar7,&puStack_190);
+            SystemCore_NetworkHandler0(piVar12 + 10,&puStack_170);
+            SystemCore_NetworkHandler0(piVar12 + 0x12,&puStack_150);
+            SystemCore_NetworkHandler0(piVar12 + 0x1a,&puStack_130);
             piVar12[0x22] = iStack_110;
             piVar12[0x23] = iStack_10c;
             piVar12[0x24] = iStack_108;

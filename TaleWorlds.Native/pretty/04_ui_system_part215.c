@@ -262,7 +262,7 @@ int FUN_180790500(int64_t param_1,int param_2,int64_t *param_3)
   do {
     if (plVar2 == plVar1) {
       iVar5 = 0;
-      lVar4 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x70,&unknown_var_2272_ptr,0x5c,0);
+      lVar4 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x70,&unknown_var_2272_ptr,0x5c,0);
       *param_3 = lVar4;
       if (lVar4 == 0) {
         iVar5 = 0x26;
@@ -323,7 +323,7 @@ int FUN_180790523(uint64_t param_1)
   do {
     if (plVar2 == plVar1) {
       iVar5 = 0;
-      lVar4 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x70,&unknown_var_2272_ptr,0x5c,0);
+      lVar4 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x70,&unknown_var_2272_ptr,0x5c,0);
       *unaff_RDI = lVar4;
       if (lVar4 == 0) {
         iVar5 = 0x26;

@@ -50,7 +50,7 @@ uint64_t FUN_1808aad80(uint64_t *param_1,int64_t param_2,int32_t param_3)
   int8_t auStack_68 [32];
   int8_t auStack_48 [32];
   
-  uVar6 = FUN_1808ddc20(param_1,auStack_48,1,param_3);
+  uVar6 = DataFlowProcessor(param_1,auStack_48,1,param_3);
   if ((int)uVar6 == 0) {
     aiStack_78[0] = 0;
     uVar4 = FUN_1808de650(param_1,aiStack_78);
@@ -92,7 +92,7 @@ uint64_t FUN_1808aad80(uint64_t *param_1,int64_t param_2,int32_t param_3)
             puVar7[8] = 0;
             *(int32_t *)(puVar7 + 9) = 0;
             puStack_70 = puVar7;
-            iVar5 = FUN_1808ddc20(param_1,auStack_68,0,0x5641574c);
+            iVar5 = DataFlowProcessor(param_1,auStack_68,0,0x5641574c);
             if ((iVar5 == 0) && (iVar5 = FUN_180899360(param_1,puVar7 + 2), iVar5 == 0)) {
               if (*(int *)(param_1[1] + 0x18) == 0) {
                 iVar5 = FUN_1808a2740(*param_1,puVar7 + 6);
@@ -212,7 +212,7 @@ uint64_t FUN_1808aadb1(int32_t param_1)
         puVar7[8] = 0;
         *(int32_t *)(puVar7 + 9) = 0;
         in_stack_00000048 = puVar7;
-        iVar5 = FUN_1808ddc20(uVar11,&stack0x00000050,0,0x5641574c);
+        iVar5 = DataFlowProcessor(uVar11,&stack0x00000050,0,0x5641574c);
         if ((iVar5 == 0) && (iVar5 = FUN_180899360(extraout_XMM0_Da_01,puVar7 + 2), iVar5 == 0)) {
           if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
             iVar5 = FUN_1808a2740(*unaff_RDI,puVar7 + 6);
@@ -326,7 +326,7 @@ uint64_t FUN_1808aadeb(int32_t param_1)
         puVar6[8] = 0;
         *(int32_t *)(puVar6 + 9) = 0;
         in_stack_00000048 = puVar6;
-        iVar4 = FUN_1808ddc20(uVar10,&stack0x00000050,0,0x5641574c);
+        iVar4 = DataFlowProcessor(uVar10,&stack0x00000050,0,0x5641574c);
         if ((iVar4 == 0) && (iVar4 = FUN_180899360(extraout_XMM0_Da_00,puVar6 + 2), iVar4 == 0)) {
           if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
             iVar4 = FUN_1808a2740(*unaff_RDI,puVar6 + 6);
@@ -430,7 +430,7 @@ int FUN_1808aae0d(int32_t param_1)
         puVar5[8] = 0;
         *(int32_t *)(puVar5 + 9) = 0;
         in_stack_00000048 = puVar5;
-        iVar4 = FUN_1808ddc20(uVar8,&stack0x00000050,0,0x5641574c);
+        iVar4 = DataFlowProcessor(uVar8,&stack0x00000050,0,0x5641574c);
         if ((iVar4 == 0) && (iVar4 = FUN_180899360(extraout_XMM0_Da,puVar5 + 2), iVar4 == 0)) {
           if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
             iVar4 = FUN_1808a2740(*unaff_RDI,puVar5 + 6);
@@ -538,7 +538,7 @@ uint64_t FUN_1808ab060(uint64_t param_1,int64_t param_2,int32_t param_3)
   uint64_t *puStack_50;
   int8_t auStack_48 [32];
   
-  uVar6 = FUN_1808ddc20(param_1,auStack_48,1,param_3);
+  uVar6 = DataFlowProcessor(param_1,auStack_48,1,param_3);
   if ((int)uVar6 == 0) {
     iVar10 = 0;
     aiStack_58[0] = 0;
@@ -804,7 +804,7 @@ uint64_t FUN_1808ab250(int64_t param_1,int64_t param_2,int32_t param_3,int8_t *p
   uint64_t *puStack_50;
   int8_t auStack_48 [32];
   
-  uVar3 = FUN_1808ddc20(param_1,auStack_48,1,param_3);
+  uVar3 = DataFlowProcessor(param_1,auStack_48,1,param_3);
   if ((int)uVar3 == 0) {
     aiStack_58[0] = 0;
     uVar1 = FUN_1808de650(param_1,aiStack_58);

@@ -1110,7 +1110,7 @@ uint64_t * FUN_180258930(uint64_t param_1,int64_t param_2)
   *(int32_t *)(puVar7 + 0xe) = 0;
   if (param_2 != 0) {
     *(int32_t *)(puVar7 + 1) = *(int32_t *)(param_2 + 8);
-    FUN_180627be0(puVar1,param_2 + 0x10);
+    SystemCore_ConfigurationHandler0(puVar1,param_2 + 0x10);
     uVar3 = *(int32_t *)(param_2 + 0x34);
     uVar4 = *(int32_t *)(param_2 + 0x38);
     uVar5 = *(int32_t *)(param_2 + 0x3c);
@@ -1172,7 +1172,7 @@ uint64_t * FUN_180258ab0(uint64_t param_1,int64_t param_2)
   *(int32_t *)(puVar3 + 0xd) = 3;
   puVar3[5] = 0;
   if (param_2 != 0) {
-    FUN_180627be0(puVar1,param_2 + 8);
+    SystemCore_ConfigurationHandler0(puVar1,param_2 + 8);
     puVar3[5] = *(uint64_t *)(param_2 + 0x28);
     FUN_18014e160(puVar3 + 6,param_2 + 0x30);
     if (puVar2 != (uint64_t *)(param_2 + 0x50)) {

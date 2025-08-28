@@ -300,7 +300,7 @@ void FUN_1803fdcd0(int64_t *param_1,int64_t param_2,int64_t param_3,int32_t para
     puStack_208 = puStack_278;
     uStack_1f8 = uStack_268;
     ppuStack_1a8 = &puStack_208;
-    FUN_180627ae0(auStack_1e0,&puStack_250);
+    SystemCore_NetworkHandler0(auStack_1e0,&puStack_250);
     uStack_1c0 = CONCAT44(uStack_22c,uStack_230);
     uStack_1b8 = CONCAT44(uStack_224,uStack_228);
     plStack_1b0 = plStack_220;

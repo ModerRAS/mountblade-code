@@ -708,7 +708,7 @@ void FUN_18033fa60(uint64_t param_1,int64_t param_2,uint64_t param_3)
   puVar1[3] = 0x2f736563;
   *(int8_t *)(puVar1 + 4) = 0;
   uStack_b0 = uVar3;
-  FUN_180627be0(param_2,param_3);
+  SystemCore_ConfigurationHandler0(param_2,param_3);
   if (0 < *(int *)(param_2 + 0x10)) {
     CoreMemoryPoolProcessor(&puStack_c0,uStack_b0 + *(int *)(param_2 + 0x10));
                     // WARNING: Subroutine does not return

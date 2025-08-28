@@ -23,7 +23,7 @@
 #define get_string_hash FUN_18064e990
 #define initialize_resource_array FUN_180059780
 #define cleanup_resource_array FUN_18005d580
-#define process_resource_entry FUN_180627ae0
+#define process_resource_entry SystemCore_NetworkHandler0
 #define get_time_value FUN_1800b6b20
 #define generate_random_hash FUN_1800b08e0
 #define find_resource_in_hash FUN_180057110

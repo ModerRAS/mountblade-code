@@ -28,7 +28,7 @@ void Material_Serialize(int64_t *source_material, int64_t *target_material, uint
   int64_t *temp_stack_ptr;
   
   // 复制材质参数
-  FUN_180627be0(target_material + 0x3e, source_material + 0x1f0, serialize_flag, extra_param, 0xfffffffffffffffe);
+  SystemCore_ConfigurationHandler0(target_material + 0x3e, source_material + 0x1f0, serialize_flag, extra_param, 0xfffffffffffffffe);
   target_material[6] = *(int64_t *)(source_material + 0x30);
   *(int32_t *)(target_material + 0xb) = *(int32_t *)(source_material + 0x58);
   
@@ -102,8 +102,8 @@ void Material_Serialize(int64_t *source_material, int64_t *target_material, uint
   strcpy_s(target_material[0x24], 0x80, material_name);
   
   // 复制着色器数据
-  FUN_180627be0(target_material + 0x36, source_material + 0x1b0);
-  FUN_180627be0(target_material + 0x3a, source_material + 0x1d0);
+  SystemCore_ConfigurationHandler0(target_material + 0x36, source_material + 0x1b0);
+  SystemCore_ConfigurationHandler0(target_material + 0x3a, source_material + 0x1d0);
   
   // 处理着色器引用
   texture_ptr1 = *(int64_t **)(source_material + 0x3c8);

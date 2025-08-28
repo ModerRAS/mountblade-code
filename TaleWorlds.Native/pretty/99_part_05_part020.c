@@ -167,7 +167,7 @@ LAB_1802e4fb4:
   uVar13 = 1;
 LAB_1802e4fa0:
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar6,puVar4,puVar1,uVar13);
+  SystemNetworkHandler(lVar6,puVar4,puVar1,uVar13);
 }
 
 
@@ -489,9 +489,9 @@ void FUN_1802e5470(uint64_t *param_1)
   param_1[2] = 0;
   param_1[3] = 0;
   param_1[4] = 0;
-  pcStack_118 = FUN_180045af0;
+  pcStack_118 = SystemTimer;
   puStack_a8 = param_1;
-  FUN_1808fc838(param_1 + 6,8,2,&SUB_18005d5f0);
+  DataStructureManager(param_1 + 6,8,2,&SUB_18005d5f0);
   plStack_108 = param_1 + 8;
   _Mtx_init_in_situ(plStack_108,2);
   param_1[0x12] = 0;

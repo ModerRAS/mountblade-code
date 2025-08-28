@@ -71,7 +71,7 @@ void FUN_180791615(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
       puVar6 = unaff_RDI;
       if ((iVar9 == 0) || (unaff_R14[2] == 0)) {
         puVar5 = (uint64_t *)
-                 FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x88,&unknown_var_2784_ptr,0x12d);
+                 SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x88,&unknown_var_2784_ptr,0x12d);
         if (puVar5 != (uint64_t *)0x0) {
           *puVar5 = &unknown_var_2456_ptr;
           puVar6 = puVar5;
@@ -79,7 +79,7 @@ void FUN_180791615(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
       }
       else {
         puVar5 = (uint64_t *)
-                 FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0xb0,&unknown_var_2784_ptr,0x132);
+                 SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0xb0,&unknown_var_2784_ptr,0x132);
         if (puVar5 != (uint64_t *)0x0) {
           puVar6 = puVar5 + 0x12;
           *puVar5 = &unknown_var_2520_ptr;

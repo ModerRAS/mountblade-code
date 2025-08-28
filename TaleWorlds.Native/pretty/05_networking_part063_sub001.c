@@ -33,7 +33,7 @@ void FUN_180874760(int64_t *param_1)
       SystemMemoryAllocator(lVar7);
     }
     iVar4 = SystemStatusChecker(param_1);
-    if ((iVar4 == 0) && (iVar4 = FUN_1808744f0(param_1 + 2), iVar4 == 0)) {
+    if ((iVar4 == 0) && (iVar4 = SystemCore_FileSystem0(param_1 + 2), iVar4 == 0)) {
       *(int32_t *)(param_1 + 4) = 0xffffffff;
       *(int32_t *)((int64_t)param_1 + 0x24) = 0;
     }
@@ -120,7 +120,7 @@ uint64_t FUN_180874940(int64_t *param_1)
       SystemMemoryAllocator(lVar4);
     }
     uVar5 = SystemStatusChecker(param_1);
-    if (((int)uVar5 == 0) && (uVar5 = FUN_1808744f0(param_1 + 2), (int)uVar5 == 0)) {
+    if (((int)uVar5 == 0) && (uVar5 = SystemCore_FileSystem0(param_1 + 2), (int)uVar5 == 0)) {
       *(int32_t *)(param_1 + 4) = 0xffffffff;
       *(int32_t *)((int64_t)param_1 + 0x24) = 0;
     }
@@ -210,7 +210,7 @@ uint64_t FUN_18087494c(int64_t *param_1)
       SystemMemoryAllocator(lVar6);
     }
     uVar5 = SystemStatusChecker(param_1);
-    if (((int)uVar5 == 0) && (uVar5 = FUN_1808744f0(param_1 + 2), (int)uVar5 == 0)) {
+    if (((int)uVar5 == 0) && (uVar5 = SystemCore_FileSystem0(param_1 + 2), (int)uVar5 == 0)) {
       *(int32_t *)(param_1 + 4) = 0xffffffff;
       *(int32_t *)((int64_t)param_1 + 0x24) = 0;
     }
@@ -339,7 +339,7 @@ uint64_t FUN_180874aba(void)
   }
   uVar2 = SystemStatusChecker();
   if ((int)uVar2 == 0) {
-    uVar2 = FUN_1808744f0(unaff_RBX + 0x10);
+    uVar2 = SystemCore_FileSystem0(unaff_RBX + 0x10);
     if ((int)uVar2 == 0) {
       *(int32_t *)(unaff_RBX + 0x20) = 0xffffffff;
       *(int32_t *)(unaff_RBX + 0x24) = unaff_R15D;

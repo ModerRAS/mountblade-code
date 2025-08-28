@@ -1,3 +1,6 @@
+/* SystemController - SystemCore_StateProcessor0 的语义化别名 */
+#define SystemController SystemCore_StateProcessor0
+
 #define SystemInitializer System_Initializer2  // 系统初始化器
 
 /**
@@ -154,7 +157,7 @@ void UISystem_AdvancedDataProcessor(int64_t system_context, int64_t *data_buffer
                             (*(int64_t **)(system_context + 0x170),state_flag_ptr,1);
       if (operation_result == 0) {
         // 处理失败，调用错误处理函数（不返回）
-        FUN_18084b240(state_flag_ptr,temp_buffer,0);
+        SystemController(state_flag_ptr,temp_buffer,0);
       }
     }
     

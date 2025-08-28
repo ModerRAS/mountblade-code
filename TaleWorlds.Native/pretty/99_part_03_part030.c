@@ -102,7 +102,7 @@ LAB_1801e8d7c:
     else {
         uVar6 = 1;
     }
-    FUN_18066bdc0(lVar4, puVar3, param_1, uVar6);
+    SystemNetworkHandler(lVar4, puVar3, param_1, uVar6);
 }
 
 /**
@@ -186,7 +186,7 @@ LAB_1801e8eaa:
     else {
         uVar8 = 1;
     }
-    FUN_18066bdc0(lVar6, puVar4, param_1, uVar8);
+    SystemNetworkHandler(lVar6, puVar4, param_1, uVar8);
 }
 
 /**
@@ -911,7 +911,7 @@ LAB_1801e9d8e:
     *(int32_t *)(lVar6 + MULTI_FIELD_OFFSET_0x34) = uVar2;
     *(int32_t *)(lVar6 + MULTI_FIELD_OFFSET_0x38) = uVar3;
     *(int32_t *)(lVar6 + MULTI_FIELD_OFFSET_0x3c) = uVar4;
-    FUN_18066bdc0(lVar6, param_3, param_1, uVar7);
+    SystemNetworkHandler(lVar6, param_3, param_1, uVar7);
 }
 
 /**
@@ -1049,7 +1049,7 @@ void OptimizedDataInserter(int64_t param_1, uint64_t param_2, int64_t param_3, u
     *(uint64_t *)(lVar1 + MULTI_FIELD_OFFSET_0x30) = 0;
     *(uint64_t *)(lVar1 + MULTI_FIELD_OFFSET_0x38) = 0;
     *(int32_t *)(lVar1 + MULTI_FIELD_OFFSET_0x40) = 3;
-    FUN_18066bdc0(lVar1, param_3, param_1, uVar2);
+    SystemNetworkHandler(lVar1, param_3, param_1, uVar2);
 }
 
 // 技术说明：

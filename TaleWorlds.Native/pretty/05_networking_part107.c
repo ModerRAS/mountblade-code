@@ -32,9 +32,9 @@ uint64_t FUN_18089e4f0(int64_t param_1,uint64_t *param_2)
   int8_t auStack_58 [32];
   int8_t auStack_38 [32];
   
-  uVar4 = FUN_1808ddc20(param_2,auStack_38,1,0x4e4c4d54);
+  uVar4 = DataFlowProcessor(param_2,auStack_38,1,0x4e4c4d54);
   if ((((int)uVar4 == 0) &&
-      (uVar4 = FUN_1808ddc20(param_2,auStack_58,0,0x424e4c54), (int)uVar4 == 0)) &&
+      (uVar4 = DataFlowProcessor(param_2,auStack_58,0,0x424e4c54), (int)uVar4 == 0)) &&
      (uVar4 = FUN_180899360(param_2,param_1 + 0x10), (int)uVar4 == 0)) {
     puVar5 = (int32_t *)SystemCoreProcessor();
     uVar4 = 0;

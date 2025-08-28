@@ -333,7 +333,7 @@ LAB_1800aff9c:
     } while ((uint64_t)(int64_t)iVar15 < uVar9);
   }
   uVar6 = FUN_180628ca0();
-  FUN_180627ae0(param_2,uVar6);
+  SystemCore_NetworkHandler0(param_2,uVar6);
   uStack_80 = uStack_80 & 0xffffffff00000000;
 LAB_1800affe3:
   uStack_78 = 1;

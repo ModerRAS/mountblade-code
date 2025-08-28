@@ -1,3 +1,6 @@
+/* SystemController - SystemCore_StateProcessor0 的语义化别名 */
+#define SystemController SystemCore_StateProcessor0
+
 /**
  * @file 03_rendering_part568.c
  * @brief 渲染系统高级数学计算和矩阵变换处理器

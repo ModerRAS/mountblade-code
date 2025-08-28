@@ -1,3 +1,6 @@
+/* SystemController - SystemCore_StateProcessor0 的语义化别名 */
+#define SystemController SystemCore_StateProcessor0
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -22,7 +25,7 @@ void FUN_1808cc0e7(int64_t *param_1)
   lVar2 = (**(code **)(*param_1 + 0x2c0))(param_1,unaff_RDI + 0x10);
   if (lVar2 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18084b240(unaff_RDI + 0x10,auStackX_20);
+    SystemController(unaff_RDI + 0x10,auStackX_20);
   }
   *(int64_t *)(unaff_RBX + 0x218) = lVar2;
   iVar1 = FUN_1808ccd40();
@@ -297,7 +300,7 @@ void FUN_1808cc360(int64_t param_1,uint64_t *param_2)
     lVar3 = (**(code **)(*(int64_t *)*param_2 + 0x2b8))((int64_t *)*param_2,lVar1 + 0x10,1);
     if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18084b240(lVar1 + 0x10,auStack_48);
+      SystemController(lVar1 + 0x10,auStack_48);
     }
     *(int64_t *)(param_1 + 0x218) = lVar3;
   }
@@ -364,7 +367,7 @@ void FUN_1808cc378(int64_t param_1,uint64_t *param_2)
     lVar3 = (**(code **)(*plVar5 + 0x2b8))(plVar5,lVar1 + 0x10,1);
     if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18084b240(lVar1 + 0x10,auStackX_20);
+      SystemController(lVar1 + 0x10,auStackX_20);
     }
     *(int64_t *)(param_1 + 0x218) = lVar3;
   }
@@ -429,7 +432,7 @@ void FUN_1808cc394(int64_t *param_1)
   lVar3 = (**(code **)(*param_1 + 0x2b8))(param_1,unaff_RSI + 0x10);
   if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18084b240(unaff_RSI + 0x10,auStackX_20);
+    SystemController(unaff_RSI + 0x10,auStackX_20);
   }
   *(int64_t *)(unaff_RBX + 0x218) = lVar3;
   iVar2 = FUN_1808ccd40();

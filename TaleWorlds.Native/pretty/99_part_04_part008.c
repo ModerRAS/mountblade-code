@@ -670,7 +670,7 @@ int64_t FUN_18025de70(uint64_t param_1,int64_t param_2)
   lVar5 = FUN_18025f2a0(uVar4);
   if (param_2 != 0) {
     *(int32_t *)(lVar5 + 8) = *(int32_t *)(param_2 + 8);
-    FUN_180627be0(lVar5 + 0x10,param_2 + 0x10);
+    SystemEventProcessor(lVar5 + 0x10,param_2 + 0x10);
     uVar1 = *(int32_t *)(param_2 + 0x34);
     uVar2 = *(int32_t *)(param_2 + 0x38);
     uVar3 = *(int32_t *)(param_2 + 0x3c);

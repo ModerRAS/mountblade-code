@@ -36,7 +36,7 @@ void FUN_180052200(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
       do {
         if (*(uint64_t *)(param_2 + 8) < *(uint64_t *)(param_2 + 0x10)) {
           *(uint64_t *)(param_2 + 8) = *(uint64_t *)(param_2 + 8) + 0x20;
-          FUN_180627ae0();
+          SystemCore_NetworkHandler0();
         }
         else {
           FUN_180059820(param_2,*plVar1 + lVar6);
@@ -107,7 +107,7 @@ uint64_t FUN_1800524c0(uint64_t param_1,uint64_t param_2)
   
   lVar1 = system_main_module_state;
   if (*(int *)(system_main_module_state + 200) != 0) {
-    FUN_180627ae0(param_2,system_main_module_state + 0xb8);
+    SystemCore_NetworkHandler0(param_2,system_main_module_state + 0xb8);
     return param_2;
   }
   puStack_68 = &system_data_buffer_ptr;

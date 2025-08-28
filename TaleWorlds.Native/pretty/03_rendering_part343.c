@@ -71,7 +71,7 @@ void FUN_18044edc0(int64_t param_1,int param_2)
   uStack_38 = 7;
   *(int32_t *)(param_1 + 0x60300) = 0;
   FUN_1801b8450((int32_t *)(param_1 + 0x60300),apuStack_a8 + (int64_t)param_2 * 4);
-  FUN_1808fc8a8(apuStack_a8,0x20,4,FUN_180627b90);
+  SystemDataValidator(apuStack_a8,0x20,4,FUN_180627b90);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_d8);
 }

@@ -728,7 +728,7 @@ void FUN_1802eced0(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t pa
   if (plVar2 != (int64_t *)0x0) {
     (**(code **)(*plVar2 + 0x38))();
   }
-  FUN_180627be0(param_1 + 0x118,param_2 + 1,param_3,param_4,uVar6);
+  SystemCore_ConfigurationHandler0(param_1 + 0x118,param_2 + 1,param_3,param_4,uVar6);
   lVar5 = param_2[6];
   *(int64_t *)(param_1 + 0x138) = param_2[5];
   *(int64_t *)(param_1 + 0x140) = lVar5;

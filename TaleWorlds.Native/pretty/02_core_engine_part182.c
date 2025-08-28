@@ -61,7 +61,7 @@ FUN_180167f80(uint64_t param_1,uint64_t *param_2,uint64_t param_3,int64_t *param
     ppuVar4 = &puStack_88;
   }
   else {
-    ppuVar4 = (void **)FUN_180627ae0(&puStack_48);
+    ppuVar4 = (void **)SystemCore_NetworkHandler0(&puStack_48);
   }
   puStack_68 = &system_data_buffer_ptr;
   puStack_50 = (void *)0x0;
@@ -184,7 +184,7 @@ FUN_1801681e0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,int64_t *param
     ppuVar4 = &puStack_88;
   }
   else {
-    ppuVar4 = (void **)FUN_180627ae0(&puStack_48);
+    ppuVar4 = (void **)SystemCore_NetworkHandler0(&puStack_48);
   }
   puStack_68 = &system_data_buffer_ptr;
   puStack_50 = (void *)0x0;

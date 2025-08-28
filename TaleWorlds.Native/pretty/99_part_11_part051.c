@@ -110,7 +110,7 @@ LAB_1807aff2e:
     if (puVar9 == (uint64_t *)0x0) {
       uStack_f8 = uStack_f8 & 0xffffffff00000000;
       puVar8 = (uint64_t *)
-               FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x50,&unknown_var_9968_ptr,0x26d);
+               SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x50,&unknown_var_9968_ptr,0x26d);
       puVar9 = puVar15;
       if (puVar8 != (uint64_t *)0x0) {
         *puVar8 = puVar8;
@@ -612,7 +612,7 @@ LAB_1807b0a45:
           if (param_3[0x15] != 0) {
             lVar3 = param_3[0x1d];
             if (lVar3 == 0) {
-              lVar3 = FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
+              lVar3 = SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),
                                     *(int *)(param_1 + 0x18) << 2,&unknown_var_9968_ptr,0x38c,0);
               param_3[0x1d] = lVar3;
               if (lVar3 == 0) {

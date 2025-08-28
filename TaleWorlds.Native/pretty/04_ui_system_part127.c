@@ -116,7 +116,7 @@ void FUN_1807418b0(uint64_t param_1,int32_t param_2)
   }
 LAB_180741958:
   if (lStack_138 != 0) {
-    FUN_180743d80();
+    SystemDataProcessor();
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_168);
@@ -173,7 +173,7 @@ void FUN_1807419a0(uint64_t param_1,uint64_t param_2,int32_t param_3,int32_t par
   }
 FUN_180741b27:
   if (lStack_158 != 0) {
-    FUN_180743d80();
+    SystemDataProcessor();
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_198);
@@ -236,7 +236,7 @@ void FUN_1807419bd(uint64_t param_1,uint64_t param_2,int32_t param_3,int32_t par
   }
 FUN_180741b27:
   if (lStack0000000000000040 != 0) {
-    FUN_180743d80();
+    SystemDataProcessor();
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(in_stack_00000150 ^ (uint64_t)&stack0x00000000);
@@ -284,7 +284,7 @@ void FUN_180741b27(void)
   uint64_t in_stack_00000150;
   
   if (in_stack_00000040 != 0) {
-    FUN_180743d80();
+    SystemDataProcessor();
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(in_stack_00000150 ^ (uint64_t)&stack0x00000000);
@@ -300,7 +300,7 @@ void FUN_180741b59(void)
 {
   uint64_t in_stack_00000150;
   
-  FUN_180743d80();
+  SystemDataProcessor();
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(in_stack_00000150 ^ (uint64_t)&stack0x00000000);
 }
@@ -559,8 +559,8 @@ LAB_180741fc4:
 
 
 
-// 函数: void FUN_180742050(void)
-void FUN_180742050(void)
+// 函数: void SystemCore_TransformationEngine0(void)
+void SystemCore_TransformationEngine0(void)
 
 {
   SystemResourceManager();

@@ -533,7 +533,7 @@ bool FUN_180365b50(int64_t param_1,uint64_t param_2,int8_t param_3,uint64_t para
   lStack_50 = 0;
   uStack_48 = 0;
   uStack_40 = 3;
-  FUN_180627ae0(&puStack_c0,param_1 + 0x90,param_3,param_4,0);
+  SystemCore_NetworkHandler0(&puStack_c0,param_1 + 0x90,param_3,param_4,0);
   puStack_a0 = &system_data_ff70;
   puStack_98 = &system_data_buffer_ptr;
   uStack_88 = uStack_b0;

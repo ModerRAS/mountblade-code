@@ -277,7 +277,7 @@ LAB_1804aeba4:
         FUN_1800b3970();
         *(int64_t **)(param_1 + 0xa78) = plStack_f0;
         pcStack_178 = FUN_180627b90;
-        FUN_1808fc838(&lStack_b8,0x20,3,FUN_180627850);
+        DataStructureManager(&lStack_b8,0x20,3,FUN_180627850);
         (**(code **)(lStack_b8 + 0x10))(&lStack_b8,&unknown_var_5744_ptr);
         (**(code **)(alStack_b0[3] + 0x10))(alStack_b0 + 3,&unknown_var_5960_ptr);
         (**(code **)(alStack_78[0] + 0x10))(alStack_78,&unknown_var_5928_ptr);
@@ -623,7 +623,7 @@ LAB_1804af38e:
           puStack_158 = (void *)0x0;
           uStack_148 = uStack_148 & 0xffffffff00000000;
           puStack_160 = &system_state_ptr;
-          FUN_1808fc8a8(&lStack_b8,0x20,3,FUN_180627b90);
+          SystemDataValidator(&lStack_b8,0x20,3,FUN_180627b90);
           if (plStack_f0 != (int64_t *)0x0) {
             (**(code **)(*plStack_f0 + 0x38))();
           }

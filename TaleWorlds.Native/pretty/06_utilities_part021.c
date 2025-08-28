@@ -44,7 +44,7 @@ uint64_t FUN_18089cc80(int64_t param_1,int64_t *param_2)
   uint auStackX_20 [2];
   int8_t auStack_38 [32];
   
-  uVar3 = FUN_1808ddc20(param_2,auStack_38,0,0x46454d50);
+  uVar3 = DataFlowProcessor(param_2,auStack_38,0,0x46454d50);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
@@ -224,7 +224,7 @@ uint64_t FUN_18089ce30(int64_t param_1,int64_t *param_2)
   uint auStackX_20 [2];
   int8_t auStack_48 [32];
   
-  uVar2 = FUN_1808ddc20(param_2,auStack_48,0,0x54534c50);
+  uVar2 = DataFlowProcessor(param_2,auStack_48,0,0x54534c50);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -552,9 +552,9 @@ uint64_t FUN_18089d0f0(int64_t param_1,uint64_t *param_2)
   int8_t auStack_48 [32];
   int8_t auStack_28 [32];
   
-  uVar2 = FUN_1808ddc20(param_2,auStack_28,1,0x46464550);
+  uVar2 = DataFlowProcessor(param_2,auStack_28,1,0x46464550);
   if (((((int)uVar2 != 0) ||
-       (uVar2 = FUN_1808ddc20(param_2,auStack_48,0,0x42464550), (int)uVar2 != 0)) ||
+       (uVar2 = DataFlowProcessor(param_2,auStack_48,0,0x42464550), (int)uVar2 != 0)) ||
       (uVar2 = FUN_180899360(param_2,param_1 + 0x10), (int)uVar2 != 0)) ||
      ((*(uint *)(param_2 + 8) < 0x5b &&
       (uVar2 = FUN_1808afc70(param_2,param_1 + 0x44), (int)uVar2 != 0)))) {
@@ -720,7 +720,7 @@ uint64_t FUN_18089d250(uint64_t param_1,int64_t *param_2)
   int8_t auStack_58 [32];
   int8_t auStack_38 [32];
   
-  uVar3 = FUN_1808ddc20(param_2,auStack_38,1,0x53505250);
+  uVar3 = DataFlowProcessor(param_2,auStack_38,1,0x53505250);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
@@ -735,7 +735,7 @@ LAB_18089d455:
     return uVar3;
   }
   if (aiStackX_18[0] < 1) goto LAB_18089d455;
-  uVar3 = FUN_1808ddc20(param_2,auStack_58,0,0x504f5250);
+  uVar3 = DataFlowProcessor(param_2,auStack_58,0,0x504f5250);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
@@ -834,7 +834,7 @@ LAB_18089d455:
     return uVar3;
   }
   if (iStack00000000000000b0 < 1) goto LAB_18089d455;
-  uVar3 = FUN_1808ddc20();
+  uVar3 = DataFlowProcessor();
   if ((int)uVar3 != 0) {
     return uVar3;
   }
@@ -965,8 +965,8 @@ void FUN_18089d520(int64_t param_1,uint64_t *param_2)
   int8_t auStack_48 [32];
   int8_t auStack_28 [32];
   
-  iVar1 = FUN_1808ddc20(param_2,auStack_28,1,0x4a4f5250);
-  if (((iVar1 == 0) && (iVar1 = FUN_1808ddc20(param_2,auStack_48,0,0x494b4e42), iVar1 == 0)) &&
+  iVar1 = DataFlowProcessor(param_2,auStack_28,1,0x4a4f5250);
+  if (((iVar1 == 0) && (iVar1 = DataFlowProcessor(param_2,auStack_48,0,0x494b4e42), iVar1 == 0)) &&
      (iVar1 = FUN_180899360(param_2,param_1 + 0x10), iVar1 == 0)) {
     if (*(uint *)(param_2 + 8) < 0x37) {
       iVar1 = 0;
@@ -1025,7 +1025,7 @@ void FUN_18089d557(int32_t param_1)
   int64_t unaff_RDI;
   int32_t extraout_XMM0_Da;
   
-  iVar1 = FUN_1808ddc20(param_1,&stack0x00000030,0);
+  iVar1 = DataFlowProcessor(param_1,&stack0x00000030,0);
   if (iVar1 == 0) {
     iVar1 = FUN_180899360(extraout_XMM0_Da,unaff_RDI + 0x10);
     if (iVar1 == 0) {

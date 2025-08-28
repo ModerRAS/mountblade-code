@@ -345,7 +345,7 @@ FUN_1808ed250(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4
   }
 LAB_18073fff8:
   if (lStack_128 != 0) {
-    FUN_180743d80();
+    SystemDataProcessor();
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker((uint64_t)puStack_18 ^ (uint64_t)auStack_158);
@@ -395,7 +395,7 @@ void FUN_1808ed27b(void)
   }
 LAB_18073fff8:
   if (lStack_f0 != 0) {
-    FUN_180743d80();
+    SystemDataProcessor();
   }
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uVar3 ^ (uint64_t)auStack_120);

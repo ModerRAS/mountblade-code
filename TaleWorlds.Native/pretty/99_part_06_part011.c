@@ -35,8 +35,8 @@ void FUN_1803af3d0(uint64_t *param_1)
   param_1[0x21] = 0;
   param_1[0x22] = 0;
   *(int32_t *)(param_1 + 0x23) = 3;
-  FUN_1808fc838(param_1 + 0x24,8,3,&SUB_18005d5f0,FUN_180045af0);
-  FUN_1808fc838(param_1 + 0x27,8,3,&SUB_18005d5f0,FUN_180045af0);
+  DataStructureManager(param_1 + 0x24,8,3,&SUB_18005d5f0,SystemTimer);
+  DataStructureManager(param_1 + 0x27,8,3,&SUB_18005d5f0,SystemTimer);
   param_1[0x2c] = 0;
   param_1[0x2d] = 0;
   *(int32_t *)(param_1 + 0x30) = 0;

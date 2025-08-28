@@ -537,8 +537,8 @@ void FUN_1801fec30(int64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t p
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  FUN_180627be0();
-  FUN_180627be0(param_1 + 0x20,param_2,param_3,param_4,uVar1);
+  SystemCore_ConfigurationHandler0();
+  SystemCore_ConfigurationHandler0(param_1 + 0x20,param_2,param_3,param_4,uVar1);
   *(int8_t *)(param_1 + 0x40) = 0;
   *param_2 = &system_data_buffer_ptr;
   if (param_2[1] != 0) {
@@ -916,7 +916,7 @@ LAB_1801ff207:
   uVar9 = 0;
 LAB_1801ff250:
   lVar8 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x70,*(int8_t *)(param_1 + 5));
-  FUN_180627ae0(lVar8 + 0x20,param_4);
+  SystemCore_NetworkHandler0(lVar8 + 0x20,param_4);
   lVar7 = lVar8 + 0x40;
   *(uint64_t *)(lVar8 + 0x58) = 0;
   *(int32_t *)(lVar8 + 0x68) = 3;
@@ -970,7 +970,7 @@ LAB_1801ff35a:
 LAB_1801ff365:
   lVar5 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x70,*(int8_t *)(param_1 + 0x28),param_4,
                         0xfffffffffffffffe);
-  FUN_180627ae0(lVar5 + 0x20,param_5);
+  SystemCore_NetworkHandler0(lVar5 + 0x20,param_5);
   lVar4 = lVar5 + 0x40;
   *(uint64_t *)(lVar5 + 0x58) = 0;
   *(int32_t *)(lVar5 + 0x68) = 3;

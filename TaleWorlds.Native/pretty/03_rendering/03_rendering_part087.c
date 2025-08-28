@@ -279,7 +279,7 @@ apply_final_colors:
   shader_param3 = 2;
   shader_param2 = 0;
   texture_info2 = context_param2;
-  FUN_180627ae0(texture_data, &data_stream);
+  SystemCore_NetworkHandler0(texture_data, &data_stream);
   texture_info1 = CONCAT44(render_flag2, render_flag1);
   texture_info2 = CONCAT44(render_flag4, render_flag3);
   texture_handle = render_target;

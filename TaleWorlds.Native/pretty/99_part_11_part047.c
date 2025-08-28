@@ -90,7 +90,7 @@ void FUN_1807ac600(void)
                             (in_stack_00000058,&stack0x00000040,&unknown_var_9296_ptr,&stack0x00000050,0);
           if ((-1 < iVar5) &&
              (plVar6 = (int64_t *)
-                       FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uStack0000000000000044,
+                       SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),uStack0000000000000044,
                                      &unknown_var_9168_ptr,0x199,uVar10 & 0xffffffff00000000),
              plVar6 != (int64_t *)0x0)) {
             iVar5 = (**(code **)(*in_stack_00000058 + 0x28))
@@ -124,7 +124,7 @@ LAB_1807ac9fe:
                              &stack0x00000050);
           if (-1 < iVar5) {
             plVar6 = (int64_t *)
-                     FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),in_stack_00000050,
+                     SystemCore_TransformationEngine0(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),in_stack_00000050,
                                    &unknown_var_9168_ptr,0x152,in_stack_00000020 & 0xffffffff00000000);
             plVar4 = (int64_t *)CONCAT44(uStack000000000000004c,uStack0000000000000048);
             if (plVar6 == (int64_t *)0x0) {

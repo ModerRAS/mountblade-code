@@ -24,7 +24,7 @@ void copy_rendering_object_properties(int64_t source_object, int64_t *target_obj
   int64_t *temp_bone_ref;
   
   // 复制变换矩阵数据
-  FUN_180627be0(target_object + 0x3e, source_object + 0x1f0, param_3, param_4, 0xfffffffffffffffe);
+  SystemCore_ConfigurationHandler0(target_object + 0x3e, source_object + 0x1f0, param_3, param_4, 0xfffffffffffffffe);
   target_object[6] = *(int64_t *)(source_object + 0x30);
   *(int32_t *)(target_object + 0xb) = *(int32_t *)(source_object + 0x58);
   transform_matrix1 = *(uint64_t *)(source_object + 0x21c);
@@ -92,8 +92,8 @@ void copy_rendering_object_properties(int64_t source_object, int64_t *target_obj
   strcpy_s(target_object[0x24], 0x80, default_name);
   
   // 复制材质和纹理数据
-  FUN_180627be0(target_object + 0x36, source_object + 0x1b0);
-  FUN_180627be0(target_object + 0x3a, source_object + 0x1d0);
+  SystemCore_ConfigurationHandler0(target_object + 0x36, source_object + 0x1b0);
+  SystemCore_ConfigurationHandler0(target_object + 0x3a, source_object + 0x1d0);
   
   // 管理材质引用
   source_ref_manager = *(int64_t **)(source_object + 0x3c8);

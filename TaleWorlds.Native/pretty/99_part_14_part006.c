@@ -1,3 +1,6 @@
+/* SystemController - SystemCore_StateProcessor0 的语义化别名 */
+#define SystemController SystemCore_StateProcessor0
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -1140,7 +1143,7 @@ void FUN_1808ecc30(int64_t param_1,uint64_t *param_2,int64_t *param_3)
     lVar2 = (**(code **)(*(int64_t *)*param_2 + 0x2b0))((int64_t *)*param_2,lVar1 + 0x10,1);
     if (lVar2 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18084b240(lVar1 + 0x10,auStack_48);
+      SystemController(lVar1 + 0x10,auStack_48);
     }
     *(int64_t *)(param_1 + 8) = lVar2;
     *param_3 = param_1;
@@ -1168,7 +1171,7 @@ void FUN_1808ecc60(int64_t *param_1)
   lVar1 = (**(code **)(*param_1 + 0x2b0))();
   if (lVar1 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18084b240(unaff_RBP + 0x10,auStackX_20);
+    SystemController(unaff_RBP + 0x10,auStackX_20);
   }
   *(int64_t *)(unaff_RBX + 8) = lVar1;
   *unaff_RDI = unaff_RBX;

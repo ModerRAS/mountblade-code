@@ -979,7 +979,7 @@ void SystemResourceHandler(int64_t *param_1,uint64_t *param_2)
   FUN_18005e300(uVar3,&plStackX_8);
   (**(code **)(*plVar1 + 0x38))(plVar1);
   init_system_control_memory = (int64_t)*(int *)(system_main_module_state + 0x224);
-  FUN_180627be0(&system_memory_52c0,param_2);
+  SystemCore_ConfigurationHandler0(&system_memory_52c0,param_2);
   *param_2 = &system_data_buffer_ptr;
   if (param_2[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -1381,7 +1381,7 @@ LAB_180047f2c:
   puVar4 = (uint64_t *)FUN_180048cc0(puVar7,&uStackX_8);
   puVar4 = (uint64_t *)*puVar4;
 LAB_180047f93:
-  FUN_180627be0(puVar4 + 8,param_3);
+  SystemCore_ConfigurationHandler0(puVar4 + 8,param_3);
   puVar4[0xc] = param_4;
   return;
 }

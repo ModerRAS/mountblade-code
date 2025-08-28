@@ -279,14 +279,14 @@ uint64_t * FUN_180090130(uint64_t *param_1)
   int64_t *plVar7;
   
   lVar6 = 0x20;
-  FUN_1808fc838(param_1 + 1,8,0x20,&SUB_18005d5f0,FUN_180045af0);
+  DataStructureManager(param_1 + 1,8,0x20,&SUB_18005d5f0,FUN_180045af0);
   plVar7 = param_1 + 0x21;
-  FUN_1808fc838(plVar7,8,0x20,&SUB_18005d5f0,FUN_180045af0);
+  DataStructureManager(plVar7,8,0x20,&SUB_18005d5f0,FUN_180045af0);
   param_1[0x71] = 0;
   param_1[0x72] = 0;
   param_1[0x73] = 0;
   *(int32_t *)(param_1 + 0x74) = 3;
-  FUN_1808fc838(param_1 + 0x76,0x20,0x20,FUN_180627850,FUN_180627b90);
+  DataStructureManager(param_1 + 0x76,0x20,0x20,FUN_180627850,FUN_180627b90);
   param_1[0x75] = 0;
   _Mtx_init_in_situ(param_1 + 0x106,0x102);
   do {
@@ -351,10 +351,10 @@ void FUN_180090380(int64_t param_1)
   
   uVar1 = 0xfffffffffffffffe;
   _Mtx_destroy_in_situ();
-  FUN_1808fc8a8(param_1 + 0x3b0,0x20,0x20,FUN_180627b90,uVar1);
+  SystemDataValidator(param_1 + 0x3b0,0x20,0x20,FUN_180627b90,uVar1);
   FUN_18005d580();
-  FUN_1808fc8a8(param_1 + 0x108,8,0x20,FUN_180045af0);
-  FUN_1808fc8a8(param_1 + 8,8,0x20,FUN_180045af0);
+  SystemDataValidator(param_1 + 0x108,8,0x20,FUN_180045af0);
+  SystemDataValidator(param_1 + 8,8,0x20,FUN_180045af0);
   return;
 }
 
@@ -381,8 +381,8 @@ void FUN_180090420(int64_t *param_1)
   if ((int64_t *)param_1[0x1a4] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)param_1[0x1a4] + 0x38))();
   }
-  FUN_1808fc8a8(param_1 + 6,0x20,0x50,FUN_180627b90,uVar2);
-  FUN_1808fc8a8(param_1 + 1,8,4,FUN_180045af0);
+  SystemDataValidator(param_1 + 6,0x20,0x50,FUN_180627b90,uVar2);
+  SystemDataValidator(param_1 + 1,8,4,FUN_180045af0);
   if ((int64_t *)*param_1 != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)*param_1 + 0x38))();
   }
@@ -397,7 +397,7 @@ void FUN_180090420(int64_t *param_1)
 void FUN_1800904f0(int64_t param_1)
 
 {
-  FUN_1808fc8a8(param_1 + 8,0x20,0x20,FUN_180627b90,0xfffffffffffffffe);
+  SystemDataValidator(param_1 + 8,0x20,0x20,FUN_180627b90,0xfffffffffffffffe);
   return;
 }
 
@@ -702,8 +702,8 @@ int64_t * FUN_180090c80(int64_t *param_1)
   int64_t *plVar3;
   
   *param_1 = 0;
-  FUN_1808fc838(param_1 + 1,8,4,&SUB_18005d5f0,FUN_180045af0);
-  FUN_1808fc838(param_1 + 6,0x20,0x50,FUN_180627850,FUN_180627b90);
+  DataStructureManager(param_1 + 1,8,4,&SUB_18005d5f0,FUN_180045af0);
+  DataStructureManager(param_1 + 6,0x20,0x50,FUN_180627850,FUN_180627b90);
   param_1[0x1a4] = 0;
   *(int32_t *)(param_1 + 0x1a6) = 0;
   param_1[0x1a5] = system_error_code;

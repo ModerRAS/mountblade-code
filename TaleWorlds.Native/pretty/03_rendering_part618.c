@@ -780,7 +780,7 @@ LAB_18060df4d:
       if (puVar19 < puVar16) {
         puVar18 = puVar19 + 4;
         puStack_48 = puVar18;
-        FUN_180627ae0(puVar19,lVar4 + 8);
+        SystemCore_NetworkHandler0(puVar19,lVar4 + 8);
         puVar7 = puVar17;
       }
       else {
@@ -794,7 +794,7 @@ LAB_18060df9c:
           if (lVar11 != 0) goto LAB_18060df9c;
         }
         lVar8 = FUN_180059780(puVar17,puVar19,puVar7);
-        FUN_180627ae0(lVar8,lVar4 + 8);
+        SystemCore_NetworkHandler0(lVar8,lVar4 + 8);
         puVar18 = (uint64_t *)(lVar8 + 0x20);
         for (puVar16 = puVar17; puVar16 != puVar19; puVar16 = puVar16 + 4) {
           (**(code **)*puVar16)(puVar16,0);

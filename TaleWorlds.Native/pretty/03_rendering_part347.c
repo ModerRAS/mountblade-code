@@ -47,7 +47,7 @@ uint64_t FUN_180453e40(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_
     return uVar3;
   }
   UNRECOVERED_JUMPTABLE = *(code **)(*system_cache_buffer + 0x70);
-  uVar2 = FUN_180627ae0(&puStack_28,param_1 + 0x27c8,param_3,param_4,0,0xfffffffffffffffe);
+  uVar2 = SystemCore_NetworkHandler0(&puStack_28,param_1 + 0x27c8,param_3,param_4,0,0xfffffffffffffffe);
   uVar1 = (*UNRECOVERED_JUMPTABLE)(system_cache_buffer,uVar2,param_3,param_4,1);
   puStack_28 = &system_data_buffer_ptr;
   if (lStack_20 != 0) {
@@ -697,7 +697,7 @@ uint64_t FUN_180455090(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_
       if (puVar6 < puVar4) {
         puVar7 = puVar6 + 4;
         puVar13 = puVar7;
-        FUN_180627ae0(puVar6,lVar9);
+        SystemCore_NetworkHandler0(puVar6,lVar9);
       }
       else {
         lVar5 = (int64_t)puVar6 - (int64_t)puVar3 >> 5;
@@ -714,7 +714,7 @@ LAB_180455145:
           puVar1 = (uint64_t *)0x0;
         }
         lVar2 = FUN_180059780(puVar3,puVar6,puVar1);
-        FUN_180627ae0(lVar2,lVar9);
+        SystemCore_NetworkHandler0(lVar2,lVar9);
         puVar7 = (uint64_t *)(lVar2 + 0x20);
         for (puVar12 = puVar3; puVar12 != puVar6; puVar12 = puVar12 + 4) {
           (**(code **)*puVar12)(puVar12,0);

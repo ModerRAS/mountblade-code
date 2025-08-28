@@ -265,7 +265,7 @@ void FUN_1803073e0(int64_t param_1,uint64_t param_2,uint64_t param_3,int8_t para
     puVar9 = render_system_control_config + 9;
     lStack_90 = lVar3;
     do {
-      FUN_180627ae0(lVar3,puVar9 + -9);
+      SystemCore_NetworkHandler0(lVar3,puVar9 + -9);
       *(int32_t *)(lVar3 + 0x20) = puVar9[-1];
       *(int32_t *)(lVar3 + 0x24) = *puVar9;
       *(int32_t *)(lVar3 + 0x28) = puVar9[1];
@@ -285,7 +285,7 @@ void FUN_1803073e0(int64_t param_1,uint64_t param_2,uint64_t param_3,int8_t para
     do {
       uVar4 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x560,8,3,uVar11);
       lVar7 = lStackX_10 + lStack_98;
-      FUN_180627ae0(auStack_78,lVar7);
+      SystemCore_NetworkHandler0(auStack_78,lVar7);
       uStack_58 = *(int32_t *)(lVar7 + 0x20);
       uStack_54 = *(int32_t *)(lVar7 + 0x24);
       uStack_50 = *(int32_t *)(lVar7 + 0x28);

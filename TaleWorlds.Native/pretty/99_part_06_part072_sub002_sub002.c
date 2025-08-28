@@ -1053,7 +1053,7 @@ void FUN_1803ec310(int64_t param_1,int32_t *param_2)
               if (lStack_4f8 != 0) {
                 FUN_1803f53b0();
               }
-              FUN_180067070(auStack_120);
+              SystemPerformanceOptimizer(auStack_120);
               LOCK();
               *(int *)(param_1 + 0x434) = *(int *)(param_1 + 0x434) + 1;
               UNLOCK();
@@ -1126,7 +1126,7 @@ void FUN_1803ec310(int64_t param_1,int32_t *param_2)
                   puVar15 = (uint64_t *)*puVar15;
                 }
                 SystemDataInitializer(&unknown_var_1416_ptr,puVar15);
-                FUN_180067070(auStack_60);
+                SystemPerformanceOptimizer(auStack_60);
                 *puStack_658 = 6;
                 if (lStack_738 != 0) {
                   FUN_1803f53b0();
@@ -1143,7 +1143,7 @@ void FUN_1803ec310(int64_t param_1,int32_t *param_2)
               if (lStack_4d8 != 0) {
                 FUN_1803f53b0();
               }
-              FUN_180067070(auStack_e0);
+              SystemPerformanceOptimizer(auStack_e0);
             }
             LOCK();
             *(int *)(param_1 + 0x434) = *(int *)(param_1 + 0x434) + 1;
@@ -1182,7 +1182,7 @@ void FUN_1803ec310(int64_t param_1,int32_t *param_2)
       if (lStack_4c8 != 0) {
         FUN_1803f53b0();
       }
-      FUN_180067070(auStack_c0);
+      SystemPerformanceOptimizer(auStack_c0);
       puStack_678 = &system_data_buffer_ptr;
       uStack_660 = 0;
       puStack_670 = (void *)0x0;
@@ -1209,7 +1209,7 @@ void FUN_1803ec310(int64_t param_1,int32_t *param_2)
       FUN_1800671b0(auStack_a0);
       pplStack_758 = (int64_t **)0x0;
       FUN_1803e8510(*(uint64_t *)(param_1 + 0x198),1,auStack_a0,auStack_5d0);
-      FUN_180067070(auStack_a0);
+      SystemPerformanceOptimizer(auStack_a0);
       if (lStack_5c8 != 0) {
         FUN_1803f53b0();
       }
@@ -1258,7 +1258,7 @@ void FUN_1803ec310(int64_t param_1,int32_t *param_2)
       FUN_1800671b0(auStack_80,puVar17,lVar23);
       pplStack_758 = &plStack_5b0;
       FUN_1803e8510(*(uint64_t *)(param_1 + 0x198),0,auStack_80,auStack_5c0);
-      FUN_180067070(auStack_80);
+      SystemPerformanceOptimizer(auStack_80);
       if (lStack_5b8 != 0) {
         FUN_1803f53b0();
       }

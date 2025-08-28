@@ -183,7 +183,7 @@ void RenderingSystem_DebugStringFormatter1(uint64_t param_1, uint64_t param_2, u
     puStack_b8 = &system_state_ptr;
     
     /* 执行最终清理 */
-    FUN_1808fc8a8(auStack_88, 0x20, 3, FUN_180627b90);
+    SystemDataValidator(auStack_88, 0x20, 3, FUN_180627b90);
     
     /* 执行安全退出 */
     SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_d8);
@@ -267,7 +267,7 @@ void RenderingSystem_DebugStringFormatter2(uint64_t param_1, uint64_t param_2, u
     puStack_d8 = &system_state_ptr;
     
     /* 执行最终清理 */
-    FUN_1808fc8a8(auStack_a8, 0x20, 4, FUN_180627b90);
+    SystemDataValidator(auStack_a8, 0x20, 4, FUN_180627b90);
     
     /* 执行安全退出 */
     SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_f8);

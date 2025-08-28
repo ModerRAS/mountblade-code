@@ -616,7 +616,7 @@ void generate_system_info_report(uint64_t report_param)
                 temp_ptr5 = stack_ptr22;
                 temp_ptr7 = stack_ptr22;
                 if (((int64_t)stack_ptr23 - (int64_t)stack_ptr22 & 0xffffffffffffffe0U) == 0x40) {
-                    FUN_180627ae0(&stack_ptr8, stack_ptr22);
+                    SystemCore_NetworkHandler0(&stack_ptr8, stack_ptr22);
                     if (char_ptr != (char *)0x0) {
                         stack_int2 = 0;
                         temp_long2 = 0;
@@ -882,7 +882,7 @@ void execute_engine_core_operation(uint64_t operation_type, int64_t operation_pa
     
     stack_ulong = 0xfffffffffffffffe;
     long_ptr_ptr = *(int64_t **)(core_system_data_pointer + 0x18);
-    FUN_180627ae0(&ptr1, system_main_module_state + 0x170, extra_data1, extra_data2, 0);
+    SystemCore_NetworkHandler0(&ptr1, system_main_module_state + 0x170, extra_data1, extra_data2, 0);
     temp_int = stack_uint + 3;
     CoreMemoryPoolProcessor(&ptr1, temp_int);
     *(int32_t *)((uint64_t)stack_uint + stack_long1) = 0x706d74;
@@ -896,7 +896,7 @@ void execute_engine_core_operation(uint64_t operation_type, int64_t operation_pa
     FUN_180066140(&ptr_ptr, SYSTEM_STATE_MANAGER, &system_memory_c7d8);
     FUN_180066140(&ptr_ptr, core_system_data_pointer, &system_memory_cfc0);
     code_ptr = *(code **)(*long_ptr_ptr + 0x40);
-    temp_ulong = FUN_180627ae0(&ptr_ptr, system_message_context + 0x28);
+    temp_ulong = SystemCore_NetworkHandler0(&ptr_ptr, system_message_context + 0x28);
     (*code_ptr)(long_ptr_ptr, temp_ulong);
     ptr_ptr = (void **)&system_data_buffer_ptr;
     if (long_ptr_ptr_ptr != (int64_t **)0x0) {
@@ -907,7 +907,7 @@ void execute_engine_core_operation(uint64_t operation_type, int64_t operation_pa
     stack_uint2 = 0;
     ptr_ptr = (void **)&system_state_ptr;
     code_ptr = *(code **)(*long_ptr_ptr + 0x40);
-    temp_ulong = FUN_180627ae0(&ptr2, system_message_context + 0xe0);
+    temp_ulong = SystemCore_NetworkHandler0(&ptr2, system_message_context + 0xe0);
     (*code_ptr)(long_ptr_ptr, temp_ulong);
     ptr2 = &system_data_buffer_ptr;
     if (stack_long2 != 0) {
