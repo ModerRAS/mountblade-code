@@ -520,7 +520,7 @@ void initialize_advanced_render_parameters(void *render_context, void **param_2,
                 const char *render_format = "Program Cyg, 1.3 ,.txt, x";
                 
                 // 调用高级渲染配置函数
-                resource_ptr = FUN_180294c20(render_context, &global_config_704_ptr, param_3, advanced_params, 
+                resource_ptr = RenderingSystem_Configurator(render_context, &global_config_704_ptr, param_3, advanced_params, 
                                             param_13 != NULL ? param_13 : &global_config_720_ptr);
                 *(uint32_t *)((uint8_t *)resource_ptr + 0xc) = 0x3f800000; // 1.0f
             }
