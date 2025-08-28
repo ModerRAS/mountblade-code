@@ -928,25 +928,42 @@ void UI_EmptyFunction2(void)
 
 
 
-// 函数: void FUN_1807892d6(void)
-void FUN_1807892d6(void)
-
+/**
+ * UI_EmptyFunction3 - UI系统空函数3
+ * 
+ * 空函数，用于占位或作为默认函数指针
+ * 
+ * 原始实现：FUN_1807892d6
+ */
+void UI_EmptyFunction3(void)
 {
-  return;
+    // 空函数实现
+    return;
 }
 
 
 
-uint64_t FUN_180789300(longlong param_1)
-
+/**
+ * UI_CheckStatus - UI系统状态检查
+ * 
+ * 检查UI系统状态，调用状态检查函数并返回检查结果
+ * 
+ * @param system_ptr 系统指针
+ * @return 检查结果：0=正常，其他=状态代码
+ * 
+ * 原始实现：FUN_180789300
+ */
+uint64_t UI_CheckStatus(longlong system_ptr)
 {
-  uint64_t uVar1;
-  
-  if ((*(code **)(param_1 + 0x370) != (code *)0x0) &&
-     (uVar1 = (**(code **)(param_1 + 0x370))(param_1 + 8), (int)uVar1 != 0)) {
-    return uVar1;
-  }
-  return 0;
+    uint64_t status_result;
+    
+    // 检查状态检查函数是否存在
+    if ((*(code **)(system_ptr + UI_OFFSET_STATUS) != (code *)0x0) &&
+        (status_result = (**(code **)(system_ptr + UI_OFFSET_STATUS))(system_ptr + 8), (int)status_result != 0)) {
+        return status_result;
+    }
+    
+    return UI_SYSTEM_SUCCESS;
 }
 
 
