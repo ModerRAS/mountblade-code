@@ -28,6 +28,45 @@
 #define RENDERING_DISTANCE_THRESHOLD 50.0f
 #define RENDERING_MAX_FLOAT_VALUE 0x7f7fffff
 #define RENDERING_RESOURCE_HANDLE 0xfffffffffffffffe
+#define RENDERING_MEMORY_FLAG_EXCLUSIVE 0xfffffffffffffffe
+#define RENDERING_LOCK_OFFSET 0x2b8
+#define RENDERING_RESOURCE_TABLE_OFFSET 0x180
+#define RENDERING_ENTRY_SIZE 0x30
+#define RENDERING_INIT_OFFSET 0xe0
+#define RENDERING_CLEANUP_OFFSET 0x38
+#define RENDERING_INVALID_HANDLE 0xffffffff
+#define RENDERING_FLAG_FREE_MEMORY 1
+#define RENDERING_RESOURCE_SIZE 0x188
+#define RENDERING_BLOCK_SIZE 0x18
+#define RENDERING_MAX_BLOCK_SIZE 0xffffffff
+#define RENDERING_PARAM_SIZE 0x1c
+#define RENDERING_STRING_BUFFER_SIZE 0x80
+
+// 全局变量声明
+extern uint64_t *rendering_resource_table;
+extern longlong global_resource_manager;
+extern uint64_t *rendering_null_pointer;
+extern uint64_t *rendering_cleanup_sequence1;
+extern uint64_t *rendering_cleanup_sequence2;
+extern uint64_t *global_memory_allocator;
+extern uint64_t *rendering_param_structure;
+extern uint64_t *rendering_param_string;
+
+// 辅助函数声明
+void AcquireSRWLockExclusive(longlong lock_handle);
+void ReleaseSRWLockExclusive(longlong lock_handle);
+void FUN_1800571e0(longlong param1, int *param2, uint64_t param3, uint64_t param4, uint64_t param5, longlong param6, int param7);
+void FUN_1800f89b0(void);
+void FUN_18064e900(void *ptr);
+void *FUN_18062b1e0(void *allocator, int size, int alignment, int flags, uint64_t memory_flags);
+void free(void *ptr, int size);
+void func_0x00018030a230(void);
+void func_0x00018030a230(float *param1, float param2, float param3, float param4, float param5);
+errno_t strcpy_s(char *dest, size_t dest_size, const char *src, ...);
+int _Mtx_lock(void *mtx);
+int _Mtx_unlock(void *mtx);
+void __Throw_C_error_std__YAXH_Z(int error_code);
+float SQRT(float value);
 
 /**
  * 渲染系统变换数据处理函数
@@ -875,135 +914,213 @@ unlock_and_return:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18030a460(longlong param_1,undefined8 param_2)
-void FUN_18030a460(longlong param_1,undefined8 param_2)
-
-{
-  int iVar1;
-  int iVar2;
-  longlong *plVar3;
-  longlong lVar4;
-  longlong *plVar5;
-  int iVar6;
-  undefined8 *puVar7;
-  int iStackX_14;
-  undefined8 uVar8;
-  
-  uVar8 = 0xfffffffffffffffe;
-  iVar6 = _Mtx_lock(param_1 + 0x18);
-  if (iVar6 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar6);
-  }
-  plVar3 = *(longlong **)(param_1 + 8);
-  iVar6 = (int)param_2;
-  iStackX_14 = (int)((ulonglong)param_2 >> 0x20);
-  do {
-    if (plVar3 == (longlong *)0x0) {
-      lVar4 = *(longlong *)(param_1 + 0x10);
-      if (lVar4 == 0) {
-        puVar7 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,3,uVar8);
-        *(int *)((longlong)puVar7 + 0x14) = iVar6;
-        *(int *)(puVar7 + 2) = iStackX_14;
-        *puVar7 = 0;
-        puVar7[1] = 0;
-        *(undefined8 **)(param_1 + 0x10) = puVar7;
-LAB_18030a65e:
-        *(undefined8 **)(param_1 + 8) = puVar7;
-      }
-      else if (*(int *)(lVar4 + 0x14) + *(int *)(lVar4 + 0x10) == iVar6) {
-        *(int *)(lVar4 + 0x10) = iStackX_14 + *(int *)(lVar4 + 0x10);
-      }
-      else {
-        puVar7 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,3,uVar8);
-        puVar7[1] = 0;
-        *(int *)((longlong)puVar7 + 0x14) = iVar6;
-        *(int *)(puVar7 + 2) = iStackX_14;
-        *puVar7 = 0;
-        puVar7[1] = *(undefined8 *)(param_1 + 0x10);
-        **(undefined8 **)(param_1 + 0x10) = puVar7;
-        *(undefined8 **)(param_1 + 0x10) = puVar7;
-      }
-LAB_18030a662:
-      iVar6 = _Mtx_unlock(param_1 + 0x18);
-      if (iVar6 != 0) {
-        __Throw_C_error_std__YAXH_Z(iVar6);
-      }
-      return;
+/**
+ * 渲染系统数据处理器
+ * 
+ * 处理渲染系统的数据插入和管理，包括数据块的分割、合并和链表操作。
+ * 
+ * @param data_manager 数据管理器指针
+ * @param data_size 数据大小
+ */
+void rendering_system_data_handler(
+    longlong data_manager, 
+    uint64_t data_size
+) {
+    int block_start;
+    int block_capacity;
+    longlong *current_block;
+    longlong *tail_block;
+    longlong *next_block;
+    int lock_status;
+    uint64_t *new_block;
+    int size_high;
+    uint64_t memory_flags;
+    
+    memory_flags = RENDERING_MEMORY_FLAG_EXCLUSIVE;
+    
+    // 获取数据管理器锁
+    lock_status = _Mtx_lock(data_manager + 0x18);
+    if (lock_status != 0) {
+        __Throw_C_error_std__YAXH_Z(lock_status);
     }
-    iVar1 = *(int *)((longlong)plVar3 + 0x14);
-    if (iVar6 < iVar1) {
-      plVar5 = (longlong *)plVar3[1];
-      if (plVar5 == (longlong *)0x0) {
-        if (iStackX_14 + iVar6 != iVar1) {
-          puVar7 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,3,uVar8);
-          *(int *)((longlong)puVar7 + 0x14) = iVar6;
-          *(int *)(puVar7 + 2) = iStackX_14;
-          *puVar7 = plVar3;
-          puVar7[1] = 0;
-          plVar3[1] = (longlong)puVar7;
-          goto LAB_18030a65e;
-        }
-        *(int *)((longlong)plVar3 + 0x14) = iVar1 - iStackX_14;
-        *(int *)(plVar3 + 2) = (int)plVar3[2] + iStackX_14;
-      }
-      else {
-        iVar2 = (int)plVar5[2];
-        if (*(int *)((longlong)plVar5 + 0x14) + iVar2 == iVar6) {
-          if (iStackX_14 + iVar6 == iVar1) {
-            if (plVar3 == *(longlong **)(param_1 + 0x10)) {
-              *(longlong **)(param_1 + 0x10) = plVar5;
-              iVar2 = (int)plVar5[2];
+    
+    current_block = *(longlong **)(data_manager + 8);
+    lock_status = (int)data_size;
+    size_high = (int)((uint64_t)data_size >> 0x20);
+    
+    do {
+        if (current_block == (longlong *)0x0) {
+            tail_block = *(longlong *)(data_manager + 0x10);
+            
+            if (tail_block == 0) {
+                // 创建新的数据块
+                new_block = (uint64_t *)FUN_18062b1e0(
+                    global_memory_allocator, 
+                    RENDERING_BLOCK_SIZE, 
+                    8, 
+                    3, 
+                    memory_flags
+                );
+                *(int *)((longlong)new_block + 0x14) = lock_status;
+                *(int *)(new_block + 2) = size_high;
+                *new_block = 0;
+                new_block[1] = 0;
+                *(uint64_t **)(data_manager + 0x10) = new_block;
+                
+set_new_block:
+                *(uint64_t **)(data_manager + 8) = new_block;
             }
-            *(int *)(plVar5 + 2) = (int)plVar3[2] + iVar2 + iStackX_14;
-            lVar4 = *plVar3;
-            *plVar5 = lVar4;
-            if (lVar4 != 0) {
-              *(longlong **)(lVar4 + 8) = plVar5;
+            else if (*(int *)(tail_block + 0x14) + *(int *)(tail_block + 0x10) == lock_status) {
+                // 扩展现有块
+                *(int *)(tail_block + 0x10) = size_high + *(int *)(tail_block + 0x10);
             }
-                    // WARNING: Subroutine does not return
-            FUN_18064e900(plVar3);
-          }
-          *(int *)(plVar5 + 2) = iVar2 + iStackX_14;
+            else {
+                // 在链表中插入新块
+                new_block = (uint64_t *)FUN_18062b1e0(
+                    global_memory_allocator, 
+                    RENDERING_BLOCK_SIZE, 
+                    8, 
+                    3, 
+                    memory_flags
+                );
+                new_block[1] = 0;
+                *(int *)((longlong)new_block + 0x14) = lock_status;
+                *(int *)(new_block + 2) = size_high;
+                *new_block = 0;
+                new_block[1] = *(uint64_t *)(data_manager + 0x10);
+                **(uint64_t **)(data_manager + 0x10) = new_block;
+                *(uint64_t **)(data_manager + 0x10) = new_block;
+            }
+            
+unlock_and_return:
+            lock_status = _Mtx_unlock(data_manager + 0x18);
+            if (lock_status != 0) {
+                __Throw_C_error_std__YAXH_Z(lock_status);
+            }
+            return;
         }
-        else if (iStackX_14 + iVar6 == iVar1) {
-          *(int *)((longlong)plVar3 + 0x14) = iVar1 - iStackX_14;
-          *(int *)(plVar3 + 2) = (int)plVar3[2] + iStackX_14;
+        
+        block_start = *(int *)((longlong)current_block + 0x14);
+        
+        if (lock_status < block_start) {
+            next_block = (longlong *)current_block[1];
+            
+            if (next_block == (longlong *)0x0) {
+                if (size_high + lock_status != block_start) {
+                    // 在当前块前插入新块
+                    new_block = (uint64_t *)FUN_18062b1e0(
+                        global_memory_allocator, 
+                        RENDERING_BLOCK_SIZE, 
+                        8, 
+                        3, 
+                        memory_flags
+                    );
+                    *(int *)((longlong)new_block + 0x14) = lock_status;
+                    *(int *)(new_block + 2) = size_high;
+                    *new_block = current_block;
+                    new_block[1] = 0;
+                    current_block[1] = (longlong)new_block;
+                    goto set_new_block;
+                }
+                
+                // 调整当前块
+                *(int *)((longlong)current_block + 0x14) = block_start - size_high;
+                *(int *)(current_block + 2) = (int)current_block[2] + size_high;
+            }
+            else {
+                block_capacity = (int)next_block[2];
+                
+                if (*(int *)((longlong)next_block + 0x14) + block_capacity == lock_status) {
+                    if (size_high + lock_status == block_start) {
+                        // 合并相邻块
+                        if (current_block == *(longlong **)(data_manager + 0x10)) {
+                            *(longlong **)(data_manager + 0x10) = next_block;
+                            block_capacity = (int)next_block[2];
+                        }
+                        *(int *)(next_block + 2) = (int)current_block[2] + block_capacity + size_high;
+                        tail_block = *current_block;
+                        *next_block = tail_block;
+                        if (tail_block != 0) {
+                            *(longlong **)(tail_block + 8) = next_block;
+                        }
+                        
+                        // 释放当前块
+                        FUN_18064e900(current_block);
+                    }
+                    
+                    *(int *)(next_block + 2) = block_capacity + size_high;
+                }
+                else if (size_high + lock_status == block_start) {
+                    // 调整当前块
+                    *(int *)((longlong)current_block + 0x14) = block_start - size_high;
+                    *(int *)(current_block + 2) = (int)current_block[2] + size_high;
+                }
+                else {
+                    // 在两个块之间插入新块
+                    new_block = (uint64_t *)FUN_18062b1e0(
+                        global_memory_allocator, 
+                        RENDERING_BLOCK_SIZE, 
+                        8, 
+                        3, 
+                        memory_flags
+                    );
+                    *(int *)((longlong)new_block + 0x14) = lock_status;
+                    *(int *)(new_block + 2) = size_high;
+                    *new_block = current_block;
+                    new_block[1] = next_block;
+                    *next_block = (longlong)new_block;
+                    current_block[1] = (longlong)new_block;
+                }
+            }
+            
+            goto unlock_and_return;
         }
-        else {
-          puVar7 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,3,uVar8);
-          *(int *)((longlong)puVar7 + 0x14) = iVar6;
-          *(int *)(puVar7 + 2) = iStackX_14;
-          *puVar7 = plVar3;
-          puVar7[1] = plVar5;
-          *plVar5 = (longlong)puVar7;
-          plVar3[1] = (longlong)puVar7;
-        }
-      }
-      goto LAB_18030a662;
-    }
-    plVar3 = (longlong *)*plVar3;
-  } while( true );
+        
+        current_block = (longlong *)*current_block;
+    } while (true);
 }
 
 
 
-undefined8 *
-FUN_18030a6a0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
-
-{
-  *param_2 = &UNK_18098bcb0;
-  param_2[1] = 0;
-  *(undefined4 *)(param_2 + 2) = 0;
-  *param_2 = &UNK_1809fcc28;
-  param_2[1] = param_2 + 3;
-  *(undefined1 *)(param_2 + 3) = 0;
-  *(undefined4 *)(param_2 + 2) = 0x1c;
-  strcpy_s(param_2[1],0x80,&UNK_180a1a450,param_4,0,0xfffffffffffffffe);
-  return param_2;
+/**
+ * 渲染系统参数处理器
+ * 
+ * 初始化和处理渲染系统参数，包括参数结构体的设置和字符串操作。
+ * 
+ * @param unused_param 未使用参数
+ * @param param_buffer 参数缓冲区指针
+ * @param param_param1 参数1
+ * @param param_param2 参数2
+ * @return 参数缓冲区指针
+ */
+uint64_t *rendering_system_parameter_processor(
+    uint64_t unused_param, 
+    uint64_t *param_buffer, 
+    uint64_t param_param1, 
+    uint64_t param_param2
+) {
+    // 初始化参数缓冲区
+    *param_buffer = &rendering_null_pointer;
+    param_buffer[1] = 0;
+    *(uint32_t *)(param_buffer + 2) = 0;
+    
+    // 设置参数结构体
+    *param_buffer = &rendering_param_structure;
+    param_buffer[1] = param_buffer + 3;
+    *(uint8_t *)(param_buffer + 3) = 0;
+    *(uint32_t *)(param_buffer + 2) = RENDERING_PARAM_SIZE;
+    
+    // 复制参数字符串
+    strcpy_s(
+        param_buffer[1], 
+        RENDERING_STRING_BUFFER_SIZE, 
+        &rendering_param_string, 
+        param_param2, 
+        0, 
+        RENDERING_MEMORY_FLAG_EXCLUSIVE
+    );
+    
+    return param_buffer;
 }
 
 
