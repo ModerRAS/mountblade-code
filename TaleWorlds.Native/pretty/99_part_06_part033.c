@@ -265,7 +265,7 @@ static void* system_data_fc60 = NULL;
 #define SystemTerminator FUN_1803c5f10
 
 /** 系统清理执行器 - 执行系统清理 */
-#define SystemCleanupExecutor FUN_1803c5fe0
+#define SystemCleanupExecutor SystemCleanupExecutor
 
 /** 系统数值处理器 - 处理系统数值计算 */
 #define SystemValueProcessor FUN_1803c6040
@@ -293,6 +293,36 @@ static void* system_data_fc60 = NULL;
 
 /** 系统清理函数 - 清理系统资源 */
 #define SystemCleanupFunction FUN_18064e900
+
+/** 系统ID生成器 - 生成系统唯一ID */
+#define SystemIDGenerator FUN_180628ca0
+
+/** 系统ID设置器 - 设置系统ID */
+#define SystemIDSetter FUN_180627ae0
+
+/** 系统函数调用器 - 调用系统函数 */
+#define SystemFunctionCaller FUN_1800f6ad0
+
+/** 系统数据复制器 - 复制系统数据 */
+#define SystemDataCopier FUN_18005d190
+
+/** 系统配置处理器 - 处理系统配置 */
+#define SystemConfigProcessor FUN_18005ea90
+
+/** 系统内存清理器 - 清理系统内存 */
+#define SystemMemoryCleaner FUN_1803cec30
+
+/** 系统内存终结器 - 终结系统内存 */
+#define SystemMemoryFinalizer FUN_18064d630
+
+/** 系统基础清理器 - 执行基础清理 */
+#define SystemBaseCleaner FUN_18004b730
+
+/** 系统资源终结器 - 终结系统资源 */
+#define SystemResourceFinalizer FUN_1801c2640
+
+/** 系统关闭初始化器 - 初始化系统关闭 */
+#define SystemShutdownInitiator FUN_1803c8ef0
 
 /* ==============================================
  * 核心函数实现
@@ -456,7 +486,7 @@ void SystemConfigInitializer(uint64_t param_1, longlong *param_2, int param_3)
     
     /* 复制配置数据并执行初始化 */
     strcpy_s(stack_buffer, 0x40, &system_data_fc60);
-    FUN_1802037e0();
+    SystemInitializer();
     resource_ptr = &system_state_ptr;
     
     /* 分配内存资源 */
@@ -834,7 +864,7 @@ uint64_t *SystemResourceManager(uint64_t *param_1, uint64_t *param_2, longlong *
     stack_param3 = 0;
     stack_status = 0;
     resource_context = &system_state_ptr;
-    FUN_18064e900(resource_ptr);
+    SystemCleanupFunction(resource_ptr);
 }
 
 /**
@@ -975,7 +1005,7 @@ uint64_t SystemBatchProcessor(longlong param_1, longlong param_2, uint param_3)
     }
     
     /* 完成批处理 */
-    FUN_180396dd0(*(uint64_t *)(param_1 + 8), stack_buffer);
+    SystemDataProcessor(*(uint64_t *)(param_1 + 8), stack_buffer);
     *(int8_t *)(param_1 + 0x20) = 1;
     return 1;
 }
@@ -1087,7 +1117,7 @@ uint64_t SystemStreamProcessor(uint64_t param_1, longlong param_2, ulonglong par
     } while (param_3 != 0);
     
     /* 完成流处理 */
-    FUN_180396dd0(*(uint64_t *)(context_ptr + 8), stack_buffer);
+    SystemDataProcessor(*(uint64_t *)(context_ptr + 8), stack_buffer);
     *(int8_t *)(context_ptr + 0x20) = 1;
     return 1;
 }
@@ -1105,7 +1135,7 @@ int8_t SystemStateChecker(void)
     int8_t stack_buffer[8];
     
     /* 检查系统状态 */
-    FUN_180396dd0(*(uint64_t *)(context_ptr + 8), stack_buffer);
+    SystemDataProcessor(*(uint64_t *)(context_ptr + 8), stack_buffer);
     *(int8_t *)(context_ptr + 0x20) = 1;
     return 1;
 }
@@ -1167,7 +1197,7 @@ uint64_t *SystemConfigManager(uint64_t *param_1, uint64_t param_2, uint64_t para
     param_1[3] = 0;
     *(int32_t *)(param_1 + 4) = 3;
     stack_param = param_2;
-    FUN_18005ea90(config_ptr, &stack_param, param_3, param_4, 0xfffffffffffffffe);
+    SystemConfigProcessor(config_ptr, &stack_param, param_3, param_4, 0xfffffffffffffffe);
     param_1[5] = 0;
     return param_1;
 }
@@ -1242,7 +1272,7 @@ void SystemMemoryManager(longlong param_1)
     ulonglong memory_address;
     
     /* 执行内存清理 */
-    FUN_1803cec30();
+    SystemMemoryCleaner();
     
     /* 检查是否有内存需要管理 */
     if ((1 < *(ulonglong *)(param_1 + 0x10)) &&
@@ -1261,7 +1291,7 @@ void SystemMemoryManager(longlong param_1)
                 reference_count = (int *)(memory_info + 0x18);
                 *reference_count = *reference_count + -1;
                 if (*reference_count == 0) {
-                    FUN_18064d630();
+                    SystemMemoryFinalizer();
                     return;
                 }
             } else {
@@ -1289,7 +1319,7 @@ void SystemResourceCleaner(longlong param_1)
     ulonglong resource_address;
     
     /* 执行资源清理 */
-    FUN_1803cec30();
+    SystemMemoryCleaner();
     
     /* 检查是否有资源需要清理 */
     if ((1 < *(ulonglong *)(param_1 + 0x10)) &&
@@ -1308,7 +1338,7 @@ void SystemResourceCleaner(longlong param_1)
                 reference_count = (int *)(resource_info + 0x18);
                 *reference_count = *reference_count + -1;
                 if (*reference_count == 0) {
-                    FUN_18064d630();
+                    SystemMemoryFinalizer();
                     return;
                 }
             } else {
@@ -1392,7 +1422,7 @@ void SystemObjectDestroyer(uint64_t param_1, uint64_t *param_2)
         object_ref = __RTCastToVoid(param_2);
         (**(code **)*param_2)(param_2, 0);
         if (object_ref != 0) {
-            FUN_18064e900(object_ref);
+            SystemCleanupFunction(object_ref);
         }
     }
 }
@@ -1413,7 +1443,7 @@ void SystemObjectProcessor(uint64_t param_1, uint64_t *param_2)
     object_ref = __RTCastToVoid();
     (**(code **)*param_2)(param_2, 0);
     if (object_ref != 0) {
-        FUN_18064e900(object_ref);
+        SystemCleanupFunction(object_ref);
     }
 }
 
@@ -1447,7 +1477,7 @@ uint64_t *SystemTerminator(uint64_t *param_1, ulonglong param_2, uint64_t param_
     *param_1 = &unknown_var_4128_ptr;
     
     /* 执行系统清理 */
-    FUN_1803c8ef0();
+    SystemShutdownInitiator();
     _Mtx_destroy_in_situ();
     
     /* 检查系统状态 */
@@ -1456,11 +1486,11 @@ uint64_t *SystemTerminator(uint64_t *param_1, ulonglong param_2, uint64_t param_
     }
     
     /* 执行清理操作 */
-    FUN_1803c5fe0(param_1 + 0x26);
+    SystemCleanupExecutor(param_1 + 0x26);
     param_1[0x1d] = &unknown_var_4912_ptr;
     param_1[0x1d] = &unknown_var_4872_ptr;
     param_1[0x1b] = &unknown_var_4760_ptr;
-    FUN_1801c2640(param_1);
+    SystemResourceFinalizer(param_1);
     
     /* 释放资源 */
     if ((param_2 & 1) != 0) {
@@ -1485,8 +1515,8 @@ void SystemCleanupExecutor(longlong param_1)
     ulonglong resource_address;
     
     /* 执行基础清理 */
-    FUN_18004b730();
-    FUN_1803cec30(param_1 + 0x20);
+    SystemBaseCleaner();
+    SystemMemoryCleaner(param_1 + 0x20);
     
     /* 检查是否有资源需要清理 */
     if ((1 < *(ulonglong *)(param_1 + 0x30)) &&
@@ -1505,7 +1535,7 @@ void SystemCleanupExecutor(longlong param_1)
                 reference_count = (int *)(resource_info + 0x18);
                 *reference_count = *reference_count + -1;
                 if (*reference_count == 0) {
-                    FUN_18064d630();
+                    SystemMemoryFinalizer();
                     return;
                 }
             } else {

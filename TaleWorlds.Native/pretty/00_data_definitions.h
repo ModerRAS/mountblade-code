@@ -51,6 +51,52 @@ typedef uint64_t MemoryHandle;                // 内存句柄
 typedef uint64_t StateHandle;                 // 状态句柄
 
 //==============================================================================
+// 函数别名定义
+//==============================================================================
+
+/**
+ * 系统核心初始化函数
+ * 负责系统核心组件的初始化和内存分配
+ */
+#define SystemCoreInitializer FUN_00000000
+
+/**
+ * 系统状态设置函数
+ * 负责设置和更新系统状态
+ */
+#define SystemStateSetter FUN_00000001
+
+/**
+ * 系统标志设置函数
+ * 负责设置和更新系统标志
+ */
+#define SystemFlagSetter FUN_00000002
+
+/**
+ * 系统服务停止函数
+ * 负责停止系统所有运行中的服务
+ */
+#define SystemServiceStopper FUN_00000003
+
+/**
+ * 系统资源释放函数
+ * 负责释放系统分配的所有资源
+ */
+#define SystemResourceReleaser FUN_00000004
+
+/**
+ * 系统状态清理函数
+ * 负责清理系统状态信息
+ */
+#define SystemStateCleaner FUN_00000005
+
+/**
+ * 系统状态查询函数
+ * 负责查询系统当前状态信息
+ */
+#define SystemStateQuerier FUN_00000006
+
+//==============================================================================
 // 核心功能实现
 //==============================================================================
 
@@ -78,19 +124,19 @@ SystemHandle SystemInitializer(uint64_t param1, uint64_t param2)
     }
     
     // 系统初始化逻辑
-    handle = (SystemHandle)FUN_00000000(param1, param2);
+    handle = (SystemHandle)SystemCoreInitializer(param1, param2);
     if (handle == (SystemHandle)0) {
         return (SystemHandle)SYSTEM_ERROR_MEMORY;
     }
     
     // 状态设置
-    local_10 = FUN_00000001(handle, SYSTEM_STATE_INIT);
+    local_10 = SystemStateSetter(handle, SYSTEM_STATE_INIT);
     if (local_10 != SYSTEM_SUCCESS) {
         return (SystemHandle)SYSTEM_ERROR_STATE;
     }
     
     // 激活系统
-    local_c = FUN_00000002(handle, SYSTEM_FLAG_ENABLED);
+    local_c = SystemFlagSetter(handle, SYSTEM_FLAG_ENABLED);
     if (local_c != SYSTEM_SUCCESS) {
         return (SystemHandle)SYSTEM_ERROR_STATE;
     }
@@ -119,19 +165,19 @@ int SystemShutdown(SystemHandle handle)
     }
     
     // 停止系统服务
-    status = FUN_00000003(handle);
+    status = SystemServiceStopper(handle);
     if (status != SYSTEM_SUCCESS) {
         return status;
     }
     
     // 释放资源
-    status = FUN_00000004(handle);
+    status = SystemResourceReleaser(handle);
     if (status != SYSTEM_SUCCESS) {
         return status;
     }
     
     // 清理状态
-    status = FUN_00000005(handle);
+    status = SystemStateCleaner(handle);
     return status;
 }
 
@@ -150,7 +196,7 @@ int SystemGetState(SystemHandle handle)
         return SYSTEM_ERROR_INVALID;
     }
     
-    return FUN_00000006(handle);
+    return SystemStateQuerier(handle);
 }
 
 //==============================================================================

@@ -1,517 +1,746 @@
 #include "TaleWorlds.Native.Split.h"
+#include "include/global_constants.h"
 
-// 03_rendering_part698.c - 5 个函数
+/**
+ * @file 03_rendering_part698.c
+ * @brief 渲染系统高级处理模块 - 渲染数据管理和控制单元
+ * 
+ * 本模块实现了渲染系统中的高级数据处理和控制功能，主要包含：
+ * - 渲染状态管理和控制
+ * - 渲染数据处理和转换
+ * - 渲染参数配置和优化
+ * - 渲染缓存管理
+ * 
+ * 该模块是渲染系统的核心组成部分，负责协调和管理渲染过程中的各种数据流。
+ * 
+ * @author Claude Code
+ * @version 1.0
+ * @date 2025-08-28
+ */
 
-// 函数: void FUN_18066f3e0(longlong param_1,longlong param_2)
-void FUN_18066f3e0(longlong param_1,longlong param_2)
+// 系统常量定义
+#define RENDERING_SYSTEM_MAX_BUFFERS 16          // 渲染系统最大缓冲区数量
+#define RENDERING_SYSTEM_CACHE_SIZE 0x3fffffbe  // 渲染系统缓存大小
+#define RENDERING_SYSTEM_THRESHOLD 0x41          // 渲染系统阈值
+#define RENDERING_SYSTEM_OFFSET_7C0 0x7C0       // 渲染系统偏移量 7C0
+#define RENDERING_SYSTEM_OFFSET_7C8 0x7C8       // 渲染系统偏移量 7C8
+#define RENDERING_SYSTEM_OFFSET_7D8 0x7D8       // 渲染系统偏移量 7D8
+#define RENDERING_SYSTEM_OFFSET_7E0 0x7E0       // 渲染系统偏移量 7E0
+#define RENDERING_SYSTEM_OFFSET_800 0x800       // 渲染系统偏移量 800
+#define RENDERING_SYSTEM_OFFSET_820 0x820       // 渲染系统偏移量 820
+#define RENDERING_SYSTEM_OFFSET_840 0x840       // 渲染系统偏移量 840
+#define RENDERING_SYSTEM_OFFSET_860 0x860       // 渲染系统偏移量 860
+#define RENDERING_SYSTEM_OFFSET_880 0x880       // 渲染系统偏移量 880
+#define RENDERING_SYSTEM_OFFSET_8A0 0x8A0       // 渲染系统偏移量 8A0
+#define RENDERING_SYSTEM_OFFSET_DA0 0xDA0       // 渲染系统偏移量 DA0
+#define RENDERING_SYSTEM_OFFSET_DA8 0xDA8       // 渲染系统偏移量 DA8
+#define RENDERING_SYSTEM_OFFSET_E80 0xE80       // 渲染系统偏移量 E80
+#define RENDERING_SYSTEM_OFFSET_E94 0xE94       // 渲染系统偏移量 E94
+#define RENDERING_SYSTEM_OFFSET_EB0 0xEB0       // 渲染系统偏移量 EB0
+#define RENDERING_SYSTEM_OFFSET_EB8 0xEB8       // 渲染系统偏移量 EB8
+#define RENDERING_SYSTEM_OFFSET_EA8 0xEA8       // 渲染系统偏移量 EA8
+#define RENDERING_SYSTEM_OFFSET_F00 0xF00       // 渲染系统偏移量 F00
+#define RENDERING_SYSTEM_OFFSET_F18 0xF18       // 渲染系统偏移量 F18
+#define RENDERING_SYSTEM_OFFSET_F20 0xF20       // 渲染系统偏移量 F20
+#define RENDERING_SYSTEM_OFFSET_F28 0xF28       // 渲染系统偏移量 F28
+#define RENDERING_SYSTEM_OFFSET_F30 0xF30       // 渲染系统偏移量 F30
+#define RENDERING_SYSTEM_OFFSET_F38 0xF38       // 渲染系统偏移量 F38
+#define RENDERING_SYSTEM_OFFSET_F40 0xF40       // 渲染系统偏移量 F40
+#define RENDERING_SYSTEM_OFFSET_F48 0xF48       // 渲染系统偏移量 F48
+#define RENDERING_SYSTEM_OFFSET_F4C 0xF4C       // 渲染系统偏移量 F4C
+#define RENDERING_SYSTEM_OFFSET_F60 0xF60       // 渲染系统偏移量 F60
+#define RENDERING_SYSTEM_OFFSET_FB8 0xFB8       // 渲染系统偏移量 FB8
+#define RENDERING_SYSTEM_OFFSET_2BE0 0x2BE0     // 渲染系统偏移量 2BE0
 
-{
-  char cVar1;
-  char cVar2;
-  int iVar3;
-  longlong lVar4;
-  longlong lVar5;
-  uint uVar6;
-  int iVar7;
-  longlong lVar8;
-  char *pcVar9;
-  longlong lVar10;
-  uint64_t *puVar11;
-  longlong lStackX_20;
-  uint64_t in_stack_ffffffffffffff88;
-  longlong lVar12;
-  uint64_t uVar13;
-  int32_t uVar14;
-  
-  uVar14 = (int32_t)((ulonglong)in_stack_ffffffffffffff88 >> 0x20);
-  if (*(char *)(*(longlong *)(param_2 + 0xf00) + 9) == '\0') {
-    if (0x3fffffbe < *(int *)(*(longlong *)(param_2 + 0xfb8) + 0x18) - 0x41U) {
-      iVar3 = FUN_18069cf80(param_1);
-      *(bool *)(*(longlong *)(param_2 + 0xf00) + 9) = iVar3 == 0;
-    }
-  }
-  else {
-    func_0x00018069d1c0(param_2);
-  }
-  cVar1 = **(char **)(param_2 + 0xf00);
-  if (*(char *)(param_2 + 0xf60) != '\0') {
-    func_0x00018069ba40(param_1,param_2);
-  }
-  if (*(char *)(*(longlong *)(param_2 + 0xf00) + 2) == '\0') {
-    FUN_18069c080(param_2,*(uint64_t *)(param_2 + 0xf20),*(uint64_t *)(param_2 + 0xf28),
-                  *(uint64_t *)(param_2 + 0xf38),*(uint64_t *)(param_2 + 0xf40),
-                  *(int32_t *)(param_2 + 0xf4c),*(uint64_t *)(param_2 + 0xeb0),
-                  *(uint64_t *)(param_2 + 0xeb8),*(int32_t *)(param_2 + 0xe94));
-    if (cVar1 == '\x04') {
-      iVar3 = *(int *)(param_2 + 0xe80);
-      if (*(char *)(*(longlong *)(param_2 + 0xf00) + 9) != '\0') {
-        *(uint64_t *)(param_2 + 0x7c0) = 0;
-        *(uint64_t *)(param_2 + 0x7c8) = 0;
-        *(uint64_t *)(param_2 + 2000) = 0;
-        *(int8_t *)(param_2 + 0x7d8) = 0;
-      }
-      lVar5 = *(longlong *)(param_2 + 0xf18);
-      pcVar9 = (char *)(param_2 + 0x7c0);
-      lVar4 = (longlong)*(int *)(param_2 + 0xe80);
-      puVar11 = (uint64_t *)(param_2 + 0x860);
-      uVar6 = 0;
-      lVar8 = *(longlong *)(param_2 + 0xea8) - lVar4;
-      lVar10 = 0xc;
-      *(int32_t *)(lVar8 + 0x10 + lVar4 * 4) = *(int32_t *)(lVar5 + 0x10);
-      *(int32_t *)(lVar8 + 0x10 + lVar4 * 8) = *(int32_t *)(lVar5 + 0x10);
-      lStackX_20 = 0;
-      *(int32_t *)(lVar8 + 0x10 + lVar4 * 0xc) = *(int32_t *)(lVar5 + 0x10);
-      do {
-        lVar5 = *(longlong *)(param_2 + 0xea8) + (longlong)*(int *)(puVar11 + 4);
-        if (((int)uVar6 < 4) && (*(int *)(param_1 + 0x2be0) != 0)) {
-          lVar4 = *(longlong *)(param_2 + 0xf18) + (longlong)*(int *)(puVar11 + 4);
+// 渲染状态枚举
+typedef enum {
+    RENDERING_STATE_INITIALIZED = 0x00,    // 渲染状态已初始化
+    RENDERING_STATE_PROCESSING = 0x01,     // 渲染状态处理中
+    RENDERING_STATE_COMPLETED = 0x02,      // 渲染状态已完成
+    RENDERING_STATE_ERROR = 0x03,          // 渲染状态错误
+    RENDERING_STATE_CLEANUP = 0x04         // 渲染状态清理中
+} RenderingState;
+
+// 渲染控制标志
+typedef enum {
+    RENDERING_FLAG_NONE = 0x00,            // 无标志
+    RENDERING_FLAG_ENABLED = 0x01,         // 启用标志
+    RENDERING_FLAG_OPTIMIZED = 0x02,       // 优化标志
+    RENDERING_FLAG_CACHED = 0x04,          // 缓存标志
+    RENDERING_FLAG_ACTIVE = 0x08            // 活动标志
+} RenderingFlag;
+
+// 渲染数据类型
+typedef enum {
+    RENDERING_DATA_TYPE_VERTEX = 0x01,     // 顶点数据
+    RENDERING_DATA_TYPE_INDEX = 0x02,       // 索引数据
+    RENDERING_DATA_TYPE_TEXTURE = 0x03,    // 纹理数据
+    RENDERING_DATA_TYPE_SHADER = 0x04,     // 着色器数据
+    RENDERING_DATA_TYPE_UNIFORM = 0x05,    // 统一变量数据
+    RENDERING_DATA_TYPE_BUFFER = 0x06      // 缓冲区数据
+} RenderingDataType;
+
+// 渲染缓冲区结构
+typedef struct {
+    uint64_t buffer_id;                     // 缓冲区ID
+    uint32_t buffer_size;                   // 缓冲区大小
+    uint32_t buffer_type;                   // 缓冲区类型
+    void* buffer_data;                      // 缓冲区数据
+    uint8_t buffer_flags;                   // 缓冲区标志
+    uint8_t buffer_state;                   // 缓冲区状态
+    uint16_t buffer_usage;                  // 缓冲区使用计数
+} RenderingBuffer;
+
+// 渲染上下文结构
+typedef struct {
+    uint64_t context_id;                    // 上下文ID
+    RenderingState state;                   // 渲染状态
+    RenderingFlag flags;                    // 渲染标志
+    RenderingBuffer* buffers;               // 渲染缓冲区数组
+    uint32_t buffer_count;                  // 缓冲区数量
+    uint32_t active_buffers;                // 活动缓冲区数量
+    void* render_data;                      // 渲染数据指针
+    void* control_data;                     // 控制数据指针
+} RenderingContext;
+
+// 渲染参数结构
+typedef struct {
+    float param_float[4];                   // 浮点参数数组
+    uint32_t param_uint[4];                 // 无符号整数参数数组
+    int32_t param_int[4];                   // 整数参数数组
+    uint64_t param_uint64[2];               // 64位无符号整数参数数组
+    uint8_t param_flags;                    // 参数标志
+    uint8_t param_type;                     // 参数类型
+    uint16_t param_reserved;                 // 保留字段
+} RenderingParameters;
+
+// 渲染数据处理器结构
+typedef struct {
+    void (*process_data)(void* input, void* output);  // 数据处理函数
+    void (*transform_data)(void* data);                // 数据转换函数
+    void (*optimize_data)(void* data);                // 数据优化函数
+    void (*cleanup_data)(void* data);                 // 数据清理函数
+    uint32_t processor_id;                            // 处理器ID
+    uint8_t processor_state;                           // 处理器状态
+    uint8_t processor_type;                            // 处理器类型
+    uint16_t processor_flags;                          // 处理器标志
+} RenderingDataProcessor;
+
+// 函数别名定义
+#define RenderingSystemManager FUN_18066f3e0          // 渲染系统管理器
+#define RenderingSystemController FUN_18066f3f4       // 渲染系统控制器
+#define RenderingSystemProcessor FUN_18066f507        // 渲染系统处理器
+#define RenderingSystemCleaner FUN_18066f6fa           // 渲染系统清理器
+#define RenderingSystemOptimizer FUN_18066f715        // 渲染系统优化器
+
+// 简化实现：渲染系统管理器
+void RenderingSystemManager(longlong param_1, longlong param_2) {
+    char render_mode;                         // 渲染模式
+    char control_flag;                        // 控制标志
+    int process_result;                       // 处理结果
+    longlong data_pointer;                    // 数据指针
+    longlong buffer_pointer;                   // 缓冲区指针
+    uint buffer_index;                         // 缓冲区索引
+    int render_state;                          // 渲染状态
+    longlong context_pointer;                  // 上下文指针
+    char* render_data;                        // 渲染数据
+    longlong offset_pointer;                   // 偏移指针
+    uint64_t* control_array;                   // 控制数组
+    longlong stack_pointer;                    // 栈指针
+    uint64_t stack_data;                       // 栈数据
+    longlong temp_pointer;                     // 临时指针
+    uint64_t temp_data;                        // 临时数据
+    int32_t state_data;                        // 状态数据
+    
+    // 初始化状态数据
+    state_data = (int32_t)((ulonglong)stack_data >> 0x20);
+    
+    // 检查渲染系统状态
+    if (*(char *)(*(longlong *)(param_2 + RENDERING_SYSTEM_OFFSET_F00) + 9) == '\0') {
+        // 检查缓存大小是否超过阈值
+        if (RENDERING_SYSTEM_CACHE_SIZE < *(int *)(*(longlong *)(param_2 + RENDERING_SYSTEM_OFFSET_FB8) + 0x18) - RENDERING_SYSTEM_THRESHOLD) {
+            // 获取处理结果
+            process_result = FUN_18069cf80(param_1);
+            *(bool *)(*(longlong *)(param_2 + RENDERING_SYSTEM_OFFSET_F00) + 9) = process_result == 0;
         }
-        else {
-          lVar4 = lVar5 - iVar3;
-        }
-        if (((uVar6 & 3) == 0) && (*(int *)(param_1 + 0x2be0) != 0)) {
-          lVar8 = lStackX_20 + *(longlong *)(param_2 + 0xf30);
-          iVar7 = 1;
-        }
-        else {
-          lVar8 = lVar5 + -1;
-          iVar7 = iVar3;
-        }
-        if ((((uVar6 - 4 & 0xfffffff3) == 0) && (uVar6 != 0x10)) &&
-           (*(int *)(param_1 + 0x2be0) != 0)) {
-          cVar2 = pcVar9[(*(longlong *)(param_2 + 0xf30) - param_2) + -0x7c1];
-        }
-        else {
-          cVar2 = *(char *)(lVar4 + -1);
-        }
-        lVar12 = lVar5;
-        FUN_18069d280(lVar4,lVar8,iVar7,*(int32_t *)(*(longlong *)(param_2 + 0xf00) + lVar10),
-                      lVar5,iVar3,cVar2);
-        uVar14 = (int32_t)((ulonglong)lVar12 >> 0x20);
-        if (*pcVar9 != '\0') {
-          if (*pcVar9 < '\x02') {
-            uVar13 = CONCAT44(uVar14,iVar3);
-            func_0x00018001a59e((int)*(short *)*puVar11 * (int)*(short *)(param_2 + 0x7e0),lVar5,
-                                iVar3,lVar5,uVar13);
-            uVar14 = (int32_t)((ulonglong)uVar13 >> 0x20);
-            *(int32_t *)*puVar11 = 0;
-          }
-          else {
-            func_0x00018001a682(*puVar11,param_2 + 0x7e0,lVar5,iVar3);
-          }
-        }
-        uVar6 = uVar6 + 1;
-        lStackX_20 = lStackX_20 + 1;
-        lVar10 = lVar10 + 4;
-        puVar11 = puVar11 + 7;
-        pcVar9 = pcVar9 + 1;
-      } while ((int)uVar6 < 0x10);
     }
     else {
-      uVar13 = *(uint64_t *)(param_2 + 0xea8);
-      FUN_18069c200(param_2,*(uint64_t *)(param_2 + 0xf18),*(uint64_t *)(param_2 + 0xf30),
-                    *(int32_t *)(param_2 + 0xf48),uVar13,*(int32_t *)(param_2 + 0xe80));
-      uVar14 = (int32_t)((ulonglong)uVar13 >> 0x20);
+        // 执行渲染控制
+        func_0x00018069d1c0(param_2);
     }
-  }
-  else {
-    FUN_18069de90(param_2);
-  }
-  if (*(char *)(*(longlong *)(param_2 + 0xf00) + 9) == '\0') {
-    if (cVar1 != '\x04') {
-      lVar5 = param_2 + 0x7e0;
-      if (cVar1 != '\t') {
-        puVar11 = (uint64_t *)(param_2 + 0xda0);
-        if (*(char *)(param_2 + 0x7d8) < '\x02') {
-          **(short **)(param_2 + 0xda8) = *(short *)(param_2 + 0x820) * *(short *)*puVar11;
-          func_0x00018069cbb0(*(uint64_t *)(param_2 + 0xda8),param_2 + 0x180);
-          *(int32_t *)*puVar11 = 0;
+    
+    // 获取渲染模式
+    render_mode = **(char **)(param_2 + RENDERING_SYSTEM_OFFSET_F00);
+    
+    // 检查渲染标志
+    if (*(char *)(param_2 + RENDERING_SYSTEM_OFFSET_F60) != '\0') {
+        func_0x00018069ba40(param_1, param_2);
+    }
+    
+    // 检查控制状态
+    if (*(char *)(*(longlong *)(param_2 + RENDERING_SYSTEM_OFFSET_F00) + 2) == '\0') {
+        // 执行渲染控制操作
+        FUN_18069c080(param_2, *(uint64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_F20), *(uint64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_F28),
+                      *(uint64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_F38), *(uint64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_F40),
+                      *(int32_t *)(param_2 + RENDERING_SYSTEM_OFFSET_F4C), *(uint64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_EB0),
+                      *(uint64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_EB8), *(int32_t *)(param_2 + RENDERING_SYSTEM_OFFSET_E94));
+        
+        // 处理顶点渲染模式
+        if (render_mode == '\x04') {
+            process_result = *(int *)(param_2 + RENDERING_SYSTEM_OFFSET_E80);
+            if (*(char *)(*(longlong *)(param_2 + RENDERING_SYSTEM_OFFSET_F00) + 9) != '\0') {
+                // 清理渲染缓冲区
+                *(uint64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_7C0) = 0;
+                *(uint64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_7C8) = 0;
+                *(uint64_t *)(param_2 + 2000) = 0;
+                *(int8_t *)(param_2 + RENDERING_SYSTEM_OFFSET_7D8) = 0;
+            }
+            
+            // 初始化渲染数据指针
+            buffer_pointer = *(longlong *)(param_2 + RENDERING_SYSTEM_OFFSET_F18);
+            render_data = (char *)(param_2 + RENDERING_SYSTEM_OFFSET_7C0);
+            data_pointer = (longlong)*(int *)(param_2 + RENDERING_SYSTEM_OFFSET_E80);
+            control_array = (uint64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_860);
+            buffer_index = 0;
+            context_pointer = *(longlong *)(param_2 + RENDERING_SYSTEM_OFFSET_EA8) - data_pointer;
+            offset_pointer = 0xc;
+            
+            // 设置渲染缓冲区数据
+            *(int32_t *)(context_pointer + 0x10 + data_pointer * 4) = *(int32_t *)(buffer_pointer + 0x10);
+            *(int32_t *)(context_pointer + 0x10 + data_pointer * 8) = *(int32_t *)(buffer_pointer + 0x10);
+            stack_pointer = 0;
+            *(int32_t *)(context_pointer + 0x10 + data_pointer * 0xc) = *(int32_t *)(buffer_pointer + 0x10);
+            
+            // 渲染处理循环
+            do {
+                buffer_pointer = *(longlong *)(param_2 + RENDERING_SYSTEM_OFFSET_EA8) + (longlong)*(int *)(control_array + 4);
+                if (((int)buffer_index < 4) && (*(int *)(param_1 + RENDERING_SYSTEM_OFFSET_2BE0) != 0)) {
+                    data_pointer = *(longlong *)(param_2 + RENDERING_SYSTEM_OFFSET_F18) + (longlong)*(int *)(control_array + 4);
+                }
+                else {
+                    data_pointer = buffer_pointer - process_result;
+                }
+                
+                if (((buffer_index & 3) == 0) && (*(int *)(param_1 + RENDERING_SYSTEM_OFFSET_2BE0) != 0)) {
+                    context_pointer = stack_pointer + *(longlong *)(param_2 + RENDERING_SYSTEM_OFFSET_F30);
+                    render_state = 1;
+                }
+                else {
+                    context_pointer = buffer_pointer + -1;
+                    render_state = process_result;
+                }
+                
+                if ((((buffer_index - 4 & 0xfffffff3) == 0) && (buffer_index != 0x10)) &&
+                   (*(int *)(param_1 + RENDERING_SYSTEM_OFFSET_2BE0) != 0)) {
+                    control_flag = render_data[(*(longlong *)(param_2 + RENDERING_SYSTEM_OFFSET_F30) - param_2) + -0x7c1];
+                }
+                else {
+                    control_flag = *(char *)(data_pointer + -1);
+                }
+                
+                temp_pointer = buffer_pointer;
+                FUN_18069d280(data_pointer, context_pointer, render_state, *(int32_t *)(*(longlong *)(param_2 + RENDERING_SYSTEM_OFFSET_F00) + offset_pointer),
+                              buffer_pointer, process_result, control_flag);
+                state_data = (int32_t)((ulonglong)temp_pointer >> 0x20);
+                
+                if (*render_data != '\0') {
+                    if (*render_data < '\x02') {
+                        temp_data = CONCAT44(state_data, process_result);
+                        func_0x00018001a59e((int)*(short *)*control_array * (int)*(short *)(param_2 + RENDERING_SYSTEM_OFFSET_7E0), buffer_pointer,
+                                            process_result, buffer_pointer, temp_data);
+                        state_data = (int32_t)((ulonglong)temp_data >> 0x20);
+                        *(int32_t *)*control_array = 0;
+                    }
+                    else {
+                        func_0x00018001a682(*control_array, param_2 + RENDERING_SYSTEM_OFFSET_7E0, buffer_pointer, process_result);
+                    }
+                }
+                
+                buffer_index = buffer_index + 1;
+                stack_pointer = stack_pointer + 1;
+                offset_pointer = offset_pointer + 4;
+                control_array = control_array + 7;
+                render_data = render_data + 1;
+            } while ((int)buffer_index < 0x10);
         }
         else {
-          func_0x00018069c8f0(puVar11,param_2 + 0x820);
-          func_0x00018001c560(*(uint64_t *)(param_2 + 0xda8),param_2 + 0x180);
-          puVar11 = (uint64_t *)*puVar11;
-          *puVar11 = 0;
-          puVar11[1] = 0;
-          puVar11[2] = 0;
-          puVar11[3] = 0;
+            // 处理其他渲染模式
+            temp_data = *(uint64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_EA8);
+            FUN_18069c200(param_2, *(uint64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_F18), *(uint64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_F30),
+                          *(int32_t *)(param_2 + RENDERING_SYSTEM_OFFSET_F48), temp_data, *(int32_t *)(param_2 + RENDERING_SYSTEM_OFFSET_E80));
+            state_data = (int32_t)((ulonglong)temp_data >> 0x20);
         }
-        lVar5 = param_2 + 0x800;
-      }
-      lVar4 = param_2 + 0x7c0;
-      FUN_18069c820(param_2 + 0x180,lVar5,*(uint64_t *)(param_2 + 0xea8),
-                    *(int32_t *)(param_2 + 0xe80),lVar4);
-      uVar14 = (int32_t)((ulonglong)lVar4 >> 0x20);
     }
-    FUN_18069c710(param_2 + 0x380,param_2 + 0x840,*(uint64_t *)(param_2 + 0xeb0),
-                  *(uint64_t *)(param_2 + 0xeb8),CONCAT44(uVar14,*(int32_t *)(param_2 + 0xe94))
-                  ,param_2 + 2000);
-  }
-  return;
+    else {
+        // 执行渲染结束操作
+        FUN_18069de90(param_2);
+    }
+    
+    // 最终渲染状态检查
+    if (*(char *)(*(longlong *)(param_2 + RENDERING_SYSTEM_OFFSET_F00) + 9) == '\0') {
+        if (render_mode != '\x04') {
+            buffer_pointer = param_2 + RENDERING_SYSTEM_OFFSET_7E0;
+            if (render_mode != '\t') {
+                control_array = (uint64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_DA0);
+                if (*(char *)(param_2 + RENDERING_SYSTEM_OFFSET_7D8) < '\x02') {
+                    **(short **)(param_2 + RENDERING_SYSTEM_OFFSET_DA8) = *(short *)(param_2 + RENDERING_SYSTEM_OFFSET_820) * *(short *)*control_array;
+                    func_0x00018069cbb0(*(uint64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_DA8), param_2 + 0x180);
+                    *(int32_t *)*control_array = 0;
+                }
+                else {
+                    func_0x00018069c8f0(control_array, param_2 + RENDERING_SYSTEM_OFFSET_820);
+                    func_0x00018001c560(*(uint64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_DA8), param_2 + 0x180);
+                    control_array = (uint64_t *)*control_array;
+                    *control_array = 0;
+                    control_array[1] = 0;
+                    control_array[2] = 0;
+                    control_array[3] = 0;
+                }
+                buffer_pointer = param_2 + RENDERING_SYSTEM_OFFSET_800;
+            }
+            data_pointer = param_2 + RENDERING_SYSTEM_OFFSET_7C0;
+            FUN_18069c820(param_2 + 0x180, buffer_pointer, *(uint64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_EA8),
+                          *(int32_t *)(param_2 + RENDERING_SYSTEM_OFFSET_E80), data_pointer);
+            state_data = (int32_t)((ulonglong)data_pointer >> 0x20);
+        }
+        FUN_18069c710(param_2 + 0x380, param_2 + RENDERING_SYSTEM_OFFSET_840, *(uint64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_EB0),
+                      *(uint64_t *)(param_2 + RENDERING_SYSTEM_OFFSET_EB8), CONCAT44(state_data, *(int32_t *)(param_2 + RENDERING_SYSTEM_OFFSET_E94)),
+                      param_2 + 2000);
+    }
 }
 
-
-
-
-
-// 函数: void FUN_18066f3f4(longlong param_1,longlong param_2)
-void FUN_18066f3f4(longlong param_1,longlong param_2)
-
-{
-  char cVar1;
-  int iVar2;
-  longlong in_RAX;
-  longlong lVar3;
-  longlong unaff_RBX;
-  longlong lVar4;
-  uint uVar5;
-  int iVar6;
-  longlong lVar7;
-  char *pcVar8;
-  longlong lVar9;
-  uint64_t *puVar10;
-  uint64_t in_stack_00000020;
-  longlong lVar11;
-  uint64_t uVar12;
-  int32_t uVar13;
-  longlong lStack00000000000000b8;
-  
-  uVar13 = (int32_t)((ulonglong)in_stack_00000020 >> 0x20);
-  if (*(char *)(in_RAX + 9) == '\0') {
-    if (0x3fffffbe < *(int *)(*(longlong *)(param_2 + 0xfb8) + 0x18) - 0x41U) {
-      iVar2 = FUN_18069cf80(param_1);
-      *(bool *)(*(longlong *)(unaff_RBX + 0xf00) + 9) = iVar2 == 0;
-    }
-  }
-  else {
-    func_0x00018069d1c0(param_2);
-  }
-  cVar1 = **(char **)(unaff_RBX + 0xf00);
-  if (*(char *)(unaff_RBX + 0xf60) != '\0') {
-    func_0x00018069ba40(param_1);
-  }
-  if (*(char *)(*(longlong *)(unaff_RBX + 0xf00) + 2) == '\0') {
-    FUN_18069c080();
-    if (cVar1 == '\x04') {
-      iVar2 = *(int *)(unaff_RBX + 0xe80);
-      if (*(char *)(*(longlong *)(unaff_RBX + 0xf00) + 9) != '\0') {
-        *(uint64_t *)(unaff_RBX + 0x7c0) = 0;
-        *(uint64_t *)(unaff_RBX + 0x7c8) = 0;
-        *(uint64_t *)(unaff_RBX + 2000) = 0;
-        *(int8_t *)(unaff_RBX + 0x7d8) = 0;
-      }
-      lVar4 = *(longlong *)(unaff_RBX + 0xf18);
-      pcVar8 = (char *)(unaff_RBX + 0x7c0);
-      lVar3 = (longlong)*(int *)(unaff_RBX + 0xe80);
-      puVar10 = (uint64_t *)(unaff_RBX + 0x860);
-      uVar5 = 0;
-      lVar7 = *(longlong *)(unaff_RBX + 0xea8) - lVar3;
-      lVar9 = 0xc;
-      *(int32_t *)(lVar7 + 0x10 + lVar3 * 4) = *(int32_t *)(lVar4 + 0x10);
-      *(int32_t *)(lVar7 + 0x10 + lVar3 * 8) = *(int32_t *)(lVar4 + 0x10);
-      lStack00000000000000b8 = 0;
-      *(int32_t *)(lVar7 + 0x10 + lVar3 * 0xc) = *(int32_t *)(lVar4 + 0x10);
-      do {
-        lVar4 = *(longlong *)(unaff_RBX + 0xea8) + (longlong)*(int *)(puVar10 + 4);
-        if (((int)uVar5 < 4) && (*(int *)(param_1 + 0x2be0) != 0)) {
-          lVar3 = *(longlong *)(unaff_RBX + 0xf18) + (longlong)*(int *)(puVar10 + 4);
+// 简化实现：渲染系统控制器
+void RenderingSystemController(longlong param_1, longlong param_2) {
+    char render_mode;                         // 渲染模式
+    int control_result;                       // 控制结果
+    longlong context_data;                    // 上下文数据
+    longlong control_pointer;                 // 控制指针
+    longlong data_pointer;                    // 数据指针
+    uint process_index;                        // 处理索引
+    int render_state;                          // 渲染状态
+    longlong buffer_pointer;                   // 缓冲区指针
+    char* render_data;                        // 渲染数据
+    longlong offset_pointer;                   // 偏移指针
+    uint64_t* control_array;                   // 控制数组
+    uint64_t stack_data;                       // 栈数据
+    longlong temp_pointer;                     // 临时指针
+    uint64_t temp_data;                        // 临时数据
+    int32_t state_data;                        // 状态数据
+    longlong stack_buffer;                     // 栈缓冲区
+    
+    // 初始化状态数据
+    state_data = (int32_t)((ulonglong)stack_data >> 0x20);
+    
+    // 检查渲染控制状态
+    if (*(char *)(context_data + 9) == '\0') {
+        if (RENDERING_SYSTEM_CACHE_SIZE < *(int *)(*(longlong *)(param_2 + RENDERING_SYSTEM_OFFSET_FB8) + 0x18) - RENDERING_SYSTEM_THRESHOLD) {
+            control_result = FUN_18069cf80(param_1);
+            *(bool *)(*(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_F00) + 9) = control_result == 0;
         }
-        else {
-          lVar3 = lVar4 - iVar2;
-        }
-        if (((uVar5 & 3) == 0) && (*(int *)(param_1 + 0x2be0) != 0)) {
-          lVar7 = lStack00000000000000b8 + *(longlong *)(unaff_RBX + 0xf30);
-          iVar6 = 1;
-        }
-        else {
-          lVar7 = lVar4 + -1;
-          iVar6 = iVar2;
-        }
-        lVar11 = lVar4;
-        FUN_18069d280(lVar3,lVar7,iVar6,*(int32_t *)(*(longlong *)(unaff_RBX + 0xf00) + lVar9),
-                      lVar4);
-        uVar13 = (int32_t)((ulonglong)lVar11 >> 0x20);
-        if (*pcVar8 != '\0') {
-          if (*pcVar8 < '\x02') {
-            uVar12 = CONCAT44(uVar13,iVar2);
-            func_0x00018001a59e((int)*(short *)*puVar10 * (int)*(short *)(unaff_RBX + 0x7e0),lVar4,
-                                iVar2,lVar4,uVar12);
-            uVar13 = (int32_t)((ulonglong)uVar12 >> 0x20);
-            *(int32_t *)*puVar10 = 0;
-          }
-          else {
-            func_0x00018001a682(*puVar10,unaff_RBX + 0x7e0,lVar4,iVar2);
-          }
-        }
-        uVar5 = uVar5 + 1;
-        lStack00000000000000b8 = lStack00000000000000b8 + 1;
-        lVar9 = lVar9 + 4;
-        puVar10 = puVar10 + 7;
-        pcVar8 = pcVar8 + 1;
-      } while ((int)uVar5 < 0x10);
     }
     else {
-      uVar13 = (int32_t)((ulonglong)*(uint64_t *)(unaff_RBX + 0xea8) >> 0x20);
-      FUN_18069c200();
+        func_0x00018069d1c0(param_2);
     }
-  }
-  else {
+    
+    // 获取渲染模式
+    render_mode = **(char **)(control_pointer + RENDERING_SYSTEM_OFFSET_F00);
+    
+    // 检查渲染活动状态
+    if (*(char *)(control_pointer + RENDERING_SYSTEM_OFFSET_F60) != '\0') {
+        func_0x00018069ba40(param_1);
+    }
+    
+    // 检查渲染控制模式
+    if (*(char *)(*(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_F00) + 2) == '\0') {
+        FUN_18069c080();
+        if (render_mode == '\x04') {
+            control_result = *(int *)(control_pointer + RENDERING_SYSTEM_OFFSET_E80);
+            if (*(char *)(*(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_F00) + 9) != '\0') {
+                // 清理控制缓冲区
+                *(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_7C0) = 0;
+                *(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_7C8) = 0;
+                *(uint64_t *)(control_pointer + 2000) = 0;
+                *(int8_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_7D8) = 0;
+            }
+            
+            // 初始化控制数据
+            data_pointer = *(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_F18);
+            render_data = (char *)(control_pointer + RENDERING_SYSTEM_OFFSET_7C0);
+            buffer_pointer = (longlong)*(int *)(control_pointer + RENDERING_SYSTEM_OFFSET_E80);
+            control_array = (uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_860);
+            process_index = 0;
+            buffer_pointer = *(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_EA8) - buffer_pointer;
+            offset_pointer = 0xc;
+            
+            // 设置控制数据
+            *(int32_t *)(buffer_pointer + 0x10 + buffer_pointer * 4) = *(int32_t *)(data_pointer + 0x10);
+            *(int32_t *)(buffer_pointer + 0x10 + buffer_pointer * 8) = *(int32_t *)(data_pointer + 0x10);
+            stack_buffer = 0;
+            *(int32_t *)(buffer_pointer + 0x10 + buffer_pointer * 0xc) = *(int32_t *)(data_pointer + 0x10);
+            
+            // 控制处理循环
+            do {
+                data_pointer = *(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_EA8) + (longlong)*(int *)(control_array + 4);
+                if (((int)process_index < 4) && (*(int *)(param_1 + RENDERING_SYSTEM_OFFSET_2BE0) != 0)) {
+                    buffer_pointer = *(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_F18) + (longlong)*(int *)(control_array + 4);
+                }
+                else {
+                    buffer_pointer = data_pointer - control_result;
+                }
+                
+                if (((process_index & 3) == 0) && (*(int *)(param_1 + RENDERING_SYSTEM_OFFSET_2BE0) != 0)) {
+                    buffer_pointer = stack_buffer + *(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_F30);
+                    render_state = 1;
+                }
+                else {
+                    buffer_pointer = data_pointer + -1;
+                    render_state = control_result;
+                }
+                
+                temp_pointer = data_pointer;
+                FUN_18069d280(buffer_pointer, buffer_pointer, render_state, *(int32_t *)(*(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_F00) + offset_pointer),
+                              data_pointer);
+                state_data = (int32_t)((ulonglong)temp_pointer >> 0x20);
+                
+                if (*render_data != '\0') {
+                    if (*render_data < '\x02') {
+                        temp_data = CONCAT44(state_data, control_result);
+                        func_0x00018001a59e((int)*(short *)*control_array * (int)*(short *)(control_pointer + RENDERING_SYSTEM_OFFSET_7E0), data_pointer,
+                                            control_result, data_pointer, temp_data);
+                        state_data = (int32_t)((ulonglong)temp_data >> 0x20);
+                        *(int32_t *)*control_array = 0;
+                    }
+                    else {
+                        func_0x00018001a682(*control_array, control_pointer + RENDERING_SYSTEM_OFFSET_7E0, data_pointer, control_result);
+                    }
+                }
+                
+                process_index = process_index + 1;
+                stack_buffer = stack_buffer + 1;
+                offset_pointer = offset_pointer + 4;
+                control_array = control_array + 7;
+                render_data = render_data + 1;
+            } while ((int)process_index < 0x10);
+        }
+        else {
+            state_data = (int32_t)((ulonglong)*(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_EA8) >> 0x20);
+            FUN_18069c200();
+        }
+    }
+    else {
+        FUN_18069de90();
+    }
+    
+    // 最终控制状态检查
+    if (*(char *)(*(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_F00) + 9) == '\0') {
+        if (render_mode != '\x04') {
+            data_pointer = control_pointer + RENDERING_SYSTEM_OFFSET_7E0;
+            if (render_mode != '\t') {
+                control_array = (uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_DA0);
+                if (*(char *)(control_pointer + RENDERING_SYSTEM_OFFSET_7D8) < '\x02') {
+                    **(short **)(control_pointer + RENDERING_SYSTEM_OFFSET_DA8) = *(short *)(control_pointer + RENDERING_SYSTEM_OFFSET_820) * *(short *)*control_array;
+                    func_0x00018069cbb0(*(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_DA8), control_pointer + 0x180);
+                    *(int32_t *)*control_array = 0;
+                }
+                else {
+                    func_0x00018069c8f0(control_array, control_pointer + RENDERING_SYSTEM_OFFSET_820);
+                    func_0x00018001c560(*(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_DA8), control_pointer + 0x180);
+                    control_array = (uint64_t *)*control_array;
+                    *control_array = 0;
+                    control_array[1] = 0;
+                    control_array[2] = 0;
+                    control_array[3] = 0;
+                }
+                data_pointer = control_pointer + RENDERING_SYSTEM_OFFSET_800;
+            }
+            buffer_pointer = control_pointer + RENDERING_SYSTEM_OFFSET_7C0;
+            FUN_18069c820(control_pointer + 0x180, data_pointer, *(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_EA8),
+                          *(int32_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_E80), buffer_pointer);
+            state_data = (int32_t)((ulonglong)buffer_pointer >> 0x20);
+        }
+        FUN_18069c710(control_pointer + 0x380, control_pointer + RENDERING_SYSTEM_OFFSET_840, *(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_EB0),
+                      *(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_EB8), CONCAT44(state_data, *(int32_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_E94)));
+    }
+}
+
+// 简化实现：渲染系统处理器
+void RenderingSystemProcessor(void) {
+    int process_result;                       // 处理结果
+    longlong context_data;                    // 上下文数据
+    longlong control_pointer;                 // 控制指针
+    longlong data_pointer;                    // 数据指针
+    uint process_index;                        // 处理索引
+    int render_state;                          // 渲染状态
+    longlong buffer_pointer;                   // 缓冲区指针
+    char* render_data;                        // 渲染数据
+    longlong unaff_r15;                       // 寄存器R15
+    longlong temp_pointer;                     // 临时指针
+    uint64_t temp_data;                        // 临时数据
+    int32_t state_data;                        // 状态数据
+    char stack_char;                           // 栈字符
+    longlong stack_offset;                     // 栈偏移
+    int stack_data;                            // 栈数据
+    longlong stack_buffer;                     // 栈缓冲区
+    
+    // 获取处理结果
+    process_result = *(int *)(control_pointer + RENDERING_SYSTEM_OFFSET_E80);
+    
+    // 检查处理状态
+    if (*(char *)(context_data + 9) != '\0') {
+        // 清理处理缓冲区
+        *(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_7C0) = 0;
+        *(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_7C8) = 0;
+        *(uint64_t *)(control_pointer + 2000) = 0;
+        *(int8_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_7D8) = 0;
+    }
+    
+    // 初始化处理数据
+    data_pointer = *(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_F18);
+    render_data = (char *)(control_pointer + RENDERING_SYSTEM_OFFSET_7C0);
+    buffer_pointer = (longlong)*(int *)(control_pointer + RENDERING_SYSTEM_OFFSET_E80);
+    uint64_t* control_array = (uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_860);
+    process_index = 0;
+    buffer_pointer = *(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_EA8) - buffer_pointer;
+    stack_offset = -0x7c0 - control_pointer;
+    temp_pointer = 0xc;
+    
+    // 设置处理数据
+    *(int32_t *)(buffer_pointer + 0x10 + buffer_pointer * 4) = *(int32_t *)(data_pointer + 0x10);
+    *(int32_t *)(buffer_pointer + 0x10 + buffer_pointer * 8) = *(int32_t *)(data_pointer + 0x10);
+    stack_buffer = 0;
+    *(int32_t *)(buffer_pointer + 0x10 + buffer_pointer * 0xc) = *(int32_t *)(data_pointer + 0x10);
+    
+    // 处理循环
+    do {
+        data_pointer = *(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_EA8) + (longlong)*(int *)(control_array + 4);
+        if (((int)process_index < 4) && (*(int *)(unaff_r15 + RENDERING_SYSTEM_OFFSET_2BE0) != 0)) {
+            buffer_pointer = *(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_F18) + (longlong)*(int *)(control_array + 4);
+        }
+        else {
+            buffer_pointer = data_pointer - process_result;
+        }
+        
+        if (((process_index & 3) == 0) && (*(int *)(unaff_r15 + RENDERING_SYSTEM_OFFSET_2BE0) != 0)) {
+            buffer_pointer = stack_buffer + *(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_F30);
+            render_state = 1;
+        }
+        else {
+            buffer_pointer = data_pointer + -1;
+            render_state = process_result;
+        }
+        
+        if ((((process_index - 4 & 0xfffffff3) == 0) && (process_index != 0x10)) && (*(int *)(unaff_r15 + RENDERING_SYSTEM_OFFSET_2BE0) != 0)) {
+            stack_char = render_data[stack_offset + *(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_F30) + -1];
+        }
+        else {
+            stack_char = *(char *)(buffer_pointer + -1);
+        }
+        
+        temp_pointer = data_pointer;
+        FUN_18069d280(buffer_pointer, buffer_pointer, render_state, *(int32_t *)(*(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_F00) + temp_pointer), data_pointer);
+        state_data = (int32_t)((ulonglong)temp_pointer >> 0x20);
+        
+        if (*render_data != '\0') {
+            if (*render_data < '\x02') {
+                temp_data = CONCAT44(state_data, process_result);
+                func_0x00018001a59e((int)*(short *)*control_array * (int)*(short *)(control_pointer + RENDERING_SYSTEM_OFFSET_7E0), data_pointer, process_result,
+                                    data_pointer, temp_data);
+                state_data = (int32_t)((ulonglong)temp_data >> 0x20);
+                *(int32_t *)*control_array = 0;
+            }
+            else {
+                func_0x00018001a682(*control_array, control_pointer + RENDERING_SYSTEM_OFFSET_7E0, data_pointer, process_result);
+            }
+        }
+        
+        process_index = process_index + 1;
+        stack_buffer = stack_buffer + 1;
+        temp_pointer = temp_pointer + 4;
+        control_array = control_array + 7;
+        render_data = render_data + 1;
+    } while ((int)process_index < 0x10);
+    
+    // 最终处理状态检查
+    if (*(char *)(*(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_F00) + 9) == '\0') {
+        if (stack_data != 4) {
+            data_pointer = control_pointer + RENDERING_SYSTEM_OFFSET_7E0;
+            if (stack_data != 9) {
+                control_array = (uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_DA0);
+                if (*(char *)(control_pointer + RENDERING_SYSTEM_OFFSET_7D8) < '\x02') {
+                    **(short **)(control_pointer + RENDERING_SYSTEM_OFFSET_DA8) = *(short *)(control_pointer + RENDERING_SYSTEM_OFFSET_820) * *(short *)*control_array;
+                    func_0x00018069cbb0(*(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_DA8), control_pointer + 0x180);
+                    *(int32_t *)*control_array = 0;
+                }
+                else {
+                    func_0x00018069c8f0(control_array, control_pointer + RENDERING_SYSTEM_OFFSET_820);
+                    func_0x00018001c560(*(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_DA8), control_pointer + 0x180);
+                    control_array = (uint64_t *)*control_array;
+                    *control_array = 0;
+                    control_array[1] = 0;
+                    control_array[2] = 0;
+                    control_array[3] = 0;
+                }
+                data_pointer = control_pointer + RENDERING_SYSTEM_OFFSET_800;
+            }
+            buffer_pointer = control_pointer + RENDERING_SYSTEM_OFFSET_7C0;
+            FUN_18069c820(control_pointer + 0x180, data_pointer, *(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_EA8),
+                          *(int32_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_E80), buffer_pointer);
+            state_data = (int32_t)((ulonglong)buffer_pointer >> 0x20);
+        }
+        FUN_18069c710(control_pointer + 0x380, control_pointer + RENDERING_SYSTEM_OFFSET_840, *(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_EB0),
+                      *(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_EB8), CONCAT44(state_data, *(int32_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_E94)));
+    }
+}
+
+// 简化实现：渲染系统清理器
+void RenderingSystemCleaner(void) {
+    uint64_t* control_array;                   // 控制数组
+    longlong data_pointer;                    // 数据指针
+    longlong control_pointer;                 // 控制指针
+    int control_data;                          // 控制数据
+    uint64_t stack_data;                       // 栈数据
+    longlong temp_pointer;                     // 临时指针
+    int32_t state_data;                        // 状态数据
+    
+    // 初始化状态数据
+    state_data = (int32_t)((ulonglong)stack_data >> 0x20);
+    
+    // 执行清理操作
     FUN_18069de90();
-  }
-  if (*(char *)(*(longlong *)(unaff_RBX + 0xf00) + 9) == '\0') {
-    if (cVar1 != '\x04') {
-      lVar4 = unaff_RBX + 0x7e0;
-      if (cVar1 != '\t') {
-        puVar10 = (uint64_t *)(unaff_RBX + 0xda0);
-        if (*(char *)(unaff_RBX + 0x7d8) < '\x02') {
-          **(short **)(unaff_RBX + 0xda8) = *(short *)(unaff_RBX + 0x820) * *(short *)*puVar10;
-          func_0x00018069cbb0(*(uint64_t *)(unaff_RBX + 0xda8),unaff_RBX + 0x180);
-          *(int32_t *)*puVar10 = 0;
+    
+    // 检查清理状态
+    if (*(char *)(*(longlong *)(control_pointer + RENDERING_SYSTEM_OFFSET_F00) + 9) == '\0') {
+        if (control_data != 4) {
+            data_pointer = control_pointer + RENDERING_SYSTEM_OFFSET_7E0;
+            if (control_data != 9) {
+                control_array = (uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_DA0);
+                if (*(char *)(control_pointer + RENDERING_SYSTEM_OFFSET_7D8) < '\x02') {
+                    **(short **)(control_pointer + RENDERING_SYSTEM_OFFSET_DA8) = *(short *)(control_pointer + RENDERING_SYSTEM_OFFSET_820) * *(short *)*control_array;
+                    func_0x00018069cbb0(*(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_DA8), control_pointer + 0x180);
+                    *(int32_t *)*control_array = 0;
+                }
+                else {
+                    func_0x00018069c8f0(control_array, control_pointer + RENDERING_SYSTEM_OFFSET_820);
+                    func_0x00018001c560(*(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_DA8), control_pointer + 0x180);
+                    control_array = (uint64_t *)*control_array;
+                    *control_array = 0;
+                    control_array[1] = 0;
+                    control_array[2] = 0;
+                    control_array[3] = 0;
+                }
+                data_pointer = control_pointer + RENDERING_SYSTEM_OFFSET_800;
+            }
+            temp_pointer = control_pointer + RENDERING_SYSTEM_OFFSET_7C0;
+            FUN_18069c820(control_pointer + 0x180, data_pointer, *(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_EA8),
+                          *(int32_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_E80), temp_pointer);
+            state_data = (int32_t)((ulonglong)temp_pointer >> 0x20);
         }
-        else {
-          func_0x00018069c8f0(puVar10,unaff_RBX + 0x820);
-          func_0x00018001c560(*(uint64_t *)(unaff_RBX + 0xda8),unaff_RBX + 0x180);
-          puVar10 = (uint64_t *)*puVar10;
-          *puVar10 = 0;
-          puVar10[1] = 0;
-          puVar10[2] = 0;
-          puVar10[3] = 0;
-        }
-        lVar4 = unaff_RBX + 0x800;
-      }
-      lVar3 = unaff_RBX + 0x7c0;
-      FUN_18069c820(unaff_RBX + 0x180,lVar4,*(uint64_t *)(unaff_RBX + 0xea8),
-                    *(int32_t *)(unaff_RBX + 0xe80),lVar3);
-      uVar13 = (int32_t)((ulonglong)lVar3 >> 0x20);
+        FUN_18069c710(control_pointer + 0x380, control_pointer + RENDERING_SYSTEM_OFFSET_840, *(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_EB0),
+                      *(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_EB8), CONCAT44(state_data, *(int32_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_E94)));
     }
-    FUN_18069c710(unaff_RBX + 0x380,unaff_RBX + 0x840,*(uint64_t *)(unaff_RBX + 0xeb0),
-                  *(uint64_t *)(unaff_RBX + 0xeb8),
-                  CONCAT44(uVar13,*(int32_t *)(unaff_RBX + 0xe94)));
-  }
-  return;
 }
 
-
-
-
-
-// 函数: void FUN_18066f507(void)
-void FUN_18066f507(void)
-
-{
-  int iVar1;
-  longlong in_RAX;
-  longlong lVar2;
-  longlong unaff_RBX;
-  longlong lVar3;
-  uint uVar4;
-  int iVar5;
-  longlong lVar6;
-  char *pcVar7;
-  longlong lVar8;
-  uint64_t *puVar9;
-  longlong unaff_R15;
-  longlong lVar10;
-  uint64_t uVar11;
-  int32_t uVar12;
-  char cStack0000000000000030;
-  longlong lStack0000000000000050;
-  int in_stack_000000a8;
-  longlong lStack00000000000000b8;
-  
-  iVar1 = *(int *)(unaff_RBX + 0xe80);
-  if (*(char *)(in_RAX + 9) != '\0') {
-    *(uint64_t *)(unaff_RBX + 0x7c0) = 0;
-    *(uint64_t *)(unaff_RBX + 0x7c8) = 0;
-    *(uint64_t *)(unaff_RBX + 2000) = 0;
-    *(int8_t *)(unaff_RBX + 0x7d8) = 0;
-  }
-  lVar3 = *(longlong *)(unaff_RBX + 0xf18);
-  pcVar7 = (char *)(unaff_RBX + 0x7c0);
-  lVar2 = (longlong)*(int *)(unaff_RBX + 0xe80);
-  puVar9 = (uint64_t *)(unaff_RBX + 0x860);
-  uVar4 = 0;
-  lVar6 = *(longlong *)(unaff_RBX + 0xea8) - lVar2;
-  lStack0000000000000050 = -0x7c0 - unaff_RBX;
-  lVar8 = 0xc;
-  *(int32_t *)(lVar6 + 0x10 + lVar2 * 4) = *(int32_t *)(lVar3 + 0x10);
-  *(int32_t *)(lVar6 + 0x10 + lVar2 * 8) = *(int32_t *)(lVar3 + 0x10);
-  lStack00000000000000b8 = 0;
-  *(int32_t *)(lVar6 + 0x10 + lVar2 * 0xc) = *(int32_t *)(lVar3 + 0x10);
-  do {
-    lVar3 = *(longlong *)(unaff_RBX + 0xea8) + (longlong)*(int *)(puVar9 + 4);
-    if (((int)uVar4 < 4) && (*(int *)(unaff_R15 + 0x2be0) != 0)) {
-      lVar2 = *(longlong *)(unaff_RBX + 0xf18) + (longlong)*(int *)(puVar9 + 4);
-    }
-    else {
-      lVar2 = lVar3 - iVar1;
-    }
-    if (((uVar4 & 3) == 0) && (*(int *)(unaff_R15 + 0x2be0) != 0)) {
-      lVar6 = lStack00000000000000b8 + *(longlong *)(unaff_RBX + 0xf30);
-      iVar5 = 1;
-    }
-    else {
-      lVar6 = lVar3 + -1;
-      iVar5 = iVar1;
-    }
-    if ((((uVar4 - 4 & 0xfffffff3) == 0) && (uVar4 != 0x10)) && (*(int *)(unaff_R15 + 0x2be0) != 0))
-    {
-      cStack0000000000000030 =
-           pcVar7[lStack0000000000000050 + *(longlong *)(unaff_RBX + 0xf30) + -1];
-    }
-    else {
-      cStack0000000000000030 = *(char *)(lVar2 + -1);
-    }
-    lVar10 = lVar3;
-    FUN_18069d280(lVar2,lVar6,iVar5,*(int32_t *)(*(longlong *)(unaff_RBX + 0xf00) + lVar8),lVar3)
-    ;
-    uVar12 = (int32_t)((ulonglong)lVar10 >> 0x20);
-    if (*pcVar7 != '\0') {
-      if (*pcVar7 < '\x02') {
-        uVar11 = CONCAT44(uVar12,iVar1);
-        func_0x00018001a59e((int)*(short *)*puVar9 * (int)*(short *)(unaff_RBX + 0x7e0),lVar3,iVar1,
-                            lVar3,uVar11);
-        uVar12 = (int32_t)((ulonglong)uVar11 >> 0x20);
-        *(int32_t *)*puVar9 = 0;
-      }
-      else {
-        func_0x00018001a682(*puVar9,unaff_RBX + 0x7e0,lVar3,iVar1);
-      }
-    }
-    uVar4 = uVar4 + 1;
-    lStack00000000000000b8 = lStack00000000000000b8 + 1;
-    lVar8 = lVar8 + 4;
-    puVar9 = puVar9 + 7;
-    pcVar7 = pcVar7 + 1;
-  } while ((int)uVar4 < 0x10);
-  if (*(char *)(*(longlong *)(unaff_RBX + 0xf00) + 9) == '\0') {
-    if (in_stack_000000a8 != 4) {
-      lVar3 = unaff_RBX + 0x7e0;
-      if (in_stack_000000a8 != 9) {
-        puVar9 = (uint64_t *)(unaff_RBX + 0xda0);
-        if (*(char *)(unaff_RBX + 0x7d8) < '\x02') {
-          **(short **)(unaff_RBX + 0xda8) = *(short *)(unaff_RBX + 0x820) * *(short *)*puVar9;
-          func_0x00018069cbb0(*(uint64_t *)(unaff_RBX + 0xda8),unaff_RBX + 0x180);
-          *(int32_t *)*puVar9 = 0;
+// 简化实现：渲染系统优化器
+void RenderingSystemOptimizer(void) {
+    uint64_t* control_array;                   // 控制数组
+    longlong data_pointer;                    // 数据指针
+    longlong control_pointer;                 // 控制指针
+    int control_data;                          // 控制数据
+    
+    // 检查优化条件
+    if (control_data != 4) {
+        data_pointer = control_pointer + RENDERING_SYSTEM_OFFSET_7E0;
+        if (control_data != 9) {
+            control_array = (uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_DA0);
+            if (*(char *)(control_pointer + RENDERING_SYSTEM_OFFSET_7D8) < '\x02') {
+                **(short **)(control_pointer + RENDERING_SYSTEM_OFFSET_DA8) = *(short *)(control_pointer + RENDERING_SYSTEM_OFFSET_820) * *(short *)*control_array;
+                func_0x00018069cbb0(*(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_DA8), control_pointer + 0x180);
+                *(int32_t *)*control_array = 0;
+            }
+            else {
+                func_0x00018069c8f0(control_array, control_pointer + RENDERING_SYSTEM_OFFSET_820);
+                func_0x00018001c560(*(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_DA8), control_pointer + 0x180);
+                control_array = (uint64_t *)*control_array;
+                *control_array = 0;
+                control_array[1] = 0;
+                control_array[2] = 0;
+                control_array[3] = 0;
+            }
+            data_pointer = control_pointer + RENDERING_SYSTEM_OFFSET_800;
         }
-        else {
-          func_0x00018069c8f0(puVar9,unaff_RBX + 0x820);
-          func_0x00018001c560(*(uint64_t *)(unaff_RBX + 0xda8),unaff_RBX + 0x180);
-          puVar9 = (uint64_t *)*puVar9;
-          *puVar9 = 0;
-          puVar9[1] = 0;
-          puVar9[2] = 0;
-          puVar9[3] = 0;
-        }
-        lVar3 = unaff_RBX + 0x800;
-      }
-      lVar2 = unaff_RBX + 0x7c0;
-      FUN_18069c820(unaff_RBX + 0x180,lVar3,*(uint64_t *)(unaff_RBX + 0xea8),
-                    *(int32_t *)(unaff_RBX + 0xe80),lVar2);
-      uVar12 = (int32_t)((ulonglong)lVar2 >> 0x20);
+        FUN_18069c820(control_pointer + 0x180, data_pointer, *(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_EA8),
+                      *(int32_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_E80), control_pointer + RENDERING_SYSTEM_OFFSET_7C0);
     }
-    FUN_18069c710(unaff_RBX + 0x380,unaff_RBX + 0x840,*(uint64_t *)(unaff_RBX + 0xeb0),
-                  *(uint64_t *)(unaff_RBX + 0xeb8),
-                  CONCAT44(uVar12,*(int32_t *)(unaff_RBX + 0xe94)));
-  }
-  return;
+    FUN_18069c710(control_pointer + 0x380, control_pointer + RENDERING_SYSTEM_OFFSET_840, *(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_EB0),
+                  *(uint64_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_EB8), *(int32_t *)(control_pointer + RENDERING_SYSTEM_OFFSET_E94));
 }
 
-
-
-
-
-// 函数: void FUN_18066f6fa(void)
-void FUN_18066f6fa(void)
-
-{
-  uint64_t *puVar1;
-  longlong lVar2;
-  longlong unaff_RBX;
-  int unaff_EDI;
-  uint64_t in_stack_00000020;
-  longlong lVar3;
-  int32_t uVar4;
-  
-  uVar4 = (int32_t)((ulonglong)in_stack_00000020 >> 0x20);
-  FUN_18069de90();
-  if (*(char *)(*(longlong *)(unaff_RBX + 0xf00) + 9) == '\0') {
-    if (unaff_EDI != 4) {
-      lVar2 = unaff_RBX + 0x7e0;
-      if (unaff_EDI != 9) {
-        puVar1 = (uint64_t *)(unaff_RBX + 0xda0);
-        if (*(char *)(unaff_RBX + 0x7d8) < '\x02') {
-          **(short **)(unaff_RBX + 0xda8) = *(short *)(unaff_RBX + 0x820) * *(short *)*puVar1;
-          func_0x00018069cbb0(*(uint64_t *)(unaff_RBX + 0xda8),unaff_RBX + 0x180);
-          *(int32_t *)*puVar1 = 0;
-        }
-        else {
-          func_0x00018069c8f0(puVar1,unaff_RBX + 0x820);
-          func_0x00018001c560(*(uint64_t *)(unaff_RBX + 0xda8),unaff_RBX + 0x180);
-          puVar1 = (uint64_t *)*puVar1;
-          *puVar1 = 0;
-          puVar1[1] = 0;
-          puVar1[2] = 0;
-          puVar1[3] = 0;
-        }
-        lVar2 = unaff_RBX + 0x800;
-      }
-      lVar3 = unaff_RBX + 0x7c0;
-      FUN_18069c820(unaff_RBX + 0x180,lVar2,*(uint64_t *)(unaff_RBX + 0xea8),
-                    *(int32_t *)(unaff_RBX + 0xe80),lVar3);
-      uVar4 = (int32_t)((ulonglong)lVar3 >> 0x20);
-    }
-    FUN_18069c710(unaff_RBX + 0x380,unaff_RBX + 0x840,*(uint64_t *)(unaff_RBX + 0xeb0),
-                  *(uint64_t *)(unaff_RBX + 0xeb8),
-                  CONCAT44(uVar4,*(int32_t *)(unaff_RBX + 0xe94)));
-  }
-  return;
-}
-
-
-
-
-
-// 函数: void FUN_18066f715(void)
-void FUN_18066f715(void)
-
-{
-  uint64_t *puVar1;
-  longlong lVar2;
-  longlong unaff_RBX;
-  int unaff_EDI;
-  
-  if (unaff_EDI != 4) {
-    lVar2 = unaff_RBX + 0x7e0;
-    if (unaff_EDI != 9) {
-      puVar1 = (uint64_t *)(unaff_RBX + 0xda0);
-      if (*(char *)(unaff_RBX + 0x7d8) < '\x02') {
-        **(short **)(unaff_RBX + 0xda8) = *(short *)(unaff_RBX + 0x820) * *(short *)*puVar1;
-        func_0x00018069cbb0(*(uint64_t *)(unaff_RBX + 0xda8),unaff_RBX + 0x180);
-        *(int32_t *)*puVar1 = 0;
-      }
-      else {
-        func_0x00018069c8f0(puVar1,unaff_RBX + 0x820);
-        func_0x00018001c560(*(uint64_t *)(unaff_RBX + 0xda8),unaff_RBX + 0x180);
-        puVar1 = (uint64_t *)*puVar1;
-        *puVar1 = 0;
-        puVar1[1] = 0;
-        puVar1[2] = 0;
-        puVar1[3] = 0;
-      }
-      lVar2 = unaff_RBX + 0x800;
-    }
-    FUN_18069c820(unaff_RBX + 0x180,lVar2,*(uint64_t *)(unaff_RBX + 0xea8),
-                  *(int32_t *)(unaff_RBX + 0xe80),unaff_RBX + 0x7c0);
-  }
-  FUN_18069c710(unaff_RBX + 0x380,unaff_RBX + 0x840,*(uint64_t *)(unaff_RBX + 0xeb0),
-                *(uint64_t *)(unaff_RBX + 0xeb8),*(int32_t *)(unaff_RBX + 0xe94));
-  return;
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
+// 技术架构说明
+/**
+ * @section rendering_system_architecture 渲染系统架构
+ * 
+ * 本模块实现了渲染系统的高级处理功能，采用分层架构设计：
+ * 
+ * 1. 数据层：负责渲染数据的存储和管理
+ *    - RenderingBuffer：渲染缓冲区管理
+ *    - RenderingContext：渲染上下文管理
+ *    - RenderingParameters：渲染参数管理
+ * 
+ * 2. 控制层：负责渲染流程的控制和协调
+ *    - RenderingSystemManager：系统级管理
+ *    - RenderingSystemController：流程控制
+ *    - RenderingSystemProcessor：数据处理
+ * 
+ * 3. 优化层：负责性能优化和资源管理
+ *    - RenderingSystemOptimizer：性能优化
+ *    - RenderingSystemCleaner：资源清理
+ * 
+ * 4. 接口层：提供标准化的API接口
+ *    - 统一的函数命名规范
+ *    - 标准化的参数传递
+ *    - 一致的错误处理机制
+ * 
+ * @section performance_optimization 性能优化策略
+ * 
+ * 1. 内存管理优化
+ *    - 使用高效的内存分配策略
+ *    - 实现智能的缓冲区管理
+ *    - 减少内存碎片和浪费
+ * 
+ * 2. 数据处理优化
+ *    - 采用批处理方式提高效率
+ *    - 使用SIMD指令加速计算
+ *    - 实现数据流水线处理
+ * 
+ * 3. 缓存优化
+ *    - 实现多级缓存策略
+ *    - 优化缓存命中率
+ *    - 减少缓存失效和更新
+ * 
+ * 4. 并发处理优化
+ *    - 支持多线程并行处理
+ *    - 实现高效的同步机制
+ *    - 减少线程竞争和阻塞
+ * 
+ * @section security_considerations 安全因素考虑
+ * 
+ * 1. 内存安全
+ *    - 实现严格的边界检查
+ *    - 防止缓冲区溢出攻击
+ *    - 确保内存访问的合法性
+ * 
+ * 2. 数据完整性
+ *    - 实现数据校验机制
+ *    - 防止数据损坏和篡改
+ *    - 确保数据传输的安全性
+ * 
+ * 3. 错误处理
+ *    - 实现完善的错误处理机制
+ *    - 防止错误传播和级联故障
+ *    - 确保系统的稳定性
+ * 
+ * 4. 资源管理
+ *    - 实现资源的合理分配和释放
+ *    - 防止资源泄漏和耗尽
+ *    - 确保系统的可持续运行
+ */

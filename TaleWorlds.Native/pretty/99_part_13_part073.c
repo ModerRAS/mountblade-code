@@ -131,6 +131,144 @@ typedef struct SystemStateManager {
  */
 #define ResourceConfigurationApply FUN_1808da5c0
 
+/**
+ * @brief 资源对象创建函数
+ * @param resource_handle 资源句柄
+ * @param create_flags 创建标志
+ * @param output_ptr 输出指针
+ * @return 创建状态码
+ */
+#define ResourceObjectCreate FUN_1808da7b0
+
+/**
+ * @brief 资源初始化函数
+ * @param init_params 初始化参数
+ * @param resource_ptr 资源指针
+ */
+#define ResourceInitialize FUN_1808da82b
+
+/**
+ * @brief 空资源函数
+ * @note 空实现函数，用于占位
+ */
+#define ResourceEmptyFunction FUN_1808da8ec
+
+/**
+ * @brief 资源配置设置函数
+ * @param config_ptr 配置指针
+ * @param resource_ptr 资源指针
+ */
+#define ResourceConfigurationSet FUN_1808da910
+
+/**
+ * @brief 资源状态获取函数
+ * @param resource_handle 资源句柄
+ * @param resource_ptr 资源指针
+ * @return 状态码
+ */
+#define ResourceStatusGet FUN_1808daa00
+
+/**
+ * @brief 资源查找函数
+ * @param search_key 搜索键值
+ * @param resource_ptr 资源指针
+ * @return 查找状态码
+ */
+#define ResourceSearch FUN_1808daa70
+
+/**
+ * @brief 资源快速查找函数
+ * @param resource_handle 资源句柄
+ * @return 查找状态码
+ */
+#define ResourceQuickSearch FUN_1808daaa9
+
+/**
+ * @brief 资源清理启动函数
+ * @note 启动资源清理流程
+ */
+#define ResourceCleanupStart FUN_1808dab52
+
+/**
+ * @brief 资源状态检查函数
+ * @return 状态码
+ */
+#define ResourceStatusCheck FUN_1808dab64
+
+/**
+ * @brief 资源验证函数
+ * @param resource_ptr 资源指针
+ * @param validation_data 验证数据
+ * @return 验证状态码
+ */
+#define ResourceValidate FUN_1808dab90
+
+/**
+ * @brief 资源同步函数
+ * @param resource_ptr 资源指针
+ * @param sync_data 同步数据
+ * @return 同步状态码
+ */
+#define ResourceSynchronize FUN_1808dac90
+
+/**
+ * @brief 资源权限检查函数
+ * @param resource_handle 资源句柄
+ * @param resource_ptr 资源指针
+ * @return 权限状态码
+ */
+#define ResourcePermissionCheck FUN_1808dad20
+
+/**
+ * @brief 资源锁定函数
+ * @param resource_ptr 资源指针
+ * @param lock_data 锁定数据
+ * @return 锁定状态码
+ */
+#define ResourceLock FUN_1808dad80
+
+/**
+ * @brief 资源释放函数
+ * @param resource_handle 资源句柄
+ * @param release_data 释放数据
+ * @return 释放状态码
+ */
+#define ResourceRelease FUN_1808dae30
+
+/**
+ * @brief 资源批量释放函数
+ * @param batch_params 批量参数
+ * @param resource_ptr 资源指针
+ * @return 批量释放状态码
+ */
+#define ResourceBatchRelease FUN_1808dae4c
+
+/**
+ * @brief 资源删除函数
+ * @param resource_ptr 资源指针
+ * @return 删除状态码
+ */
+#define ResourceDelete FUN_1808dae5f
+
+/**
+ * @brief 资源快速删除函数
+ * @param resource_ptr 资源指针
+ * @return 删除状态码
+ */
+#define ResourceQuickDelete FUN_1808dae64
+
+/**
+ * @brief 资源销毁函数
+ * @note 销毁资源对象
+ */
+#define ResourceDestroy FUN_1808daf2a
+
+/**
+ * @brief 资源计数获取函数
+ * @return 资源计数
+ */
+#define ResourceCountGet FUN_1808daf3b
+
 // ========================= 核心实现函数 =========================
 
 /**

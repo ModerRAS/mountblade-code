@@ -1248,7 +1248,7 @@ uint64_t UISystem_AddComponent(longlong param_1,int param_2,longlong param_3,int
             if (iVar5 != 0) {
               UISystem_ComponentUnregistrar(*(uint64_t *)(param_1 + 0x670),puVar7);
                     // WARNING: Subroutine does not return
-              FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar7,&unknown_var_8576_ptr,0x1446,1);
+              UISystem_MemoryReleaser(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar7,&unknown_var_8576_ptr,0x1446,1);
             }
             *(int32_t **)(*(longlong *)(param_1 + 0x6a0) + 0x30 + lVar8) = puVar7;
             uVar6 = 0;
@@ -1314,7 +1314,7 @@ uint64_t UISystem_AddComponentSimple(int32_t param_1)
         if (iVar5 != 0) {
           FUN_180788d20(*(uint64_t *)(unaff_RBX + 0x670),puVar7);
                     // WARNING: Subroutine does not return
-          FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar7,&unknown_var_8576_ptr,0x1446,1);
+          UISystem_MemoryReleaser(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar7,&unknown_var_8576_ptr,0x1446,1);
         }
         *(int32_t **)(*(longlong *)(unaff_RBX + 0x6a0) + 0x30 + lVar8) = puVar7;
         uVar6 = 0;
@@ -1383,7 +1383,7 @@ uint64_t UISystem_AddComponentWithContext(int32_t param_1)
       if (iVar5 != 0) {
         FUN_180788d20(*(uint64_t *)(unaff_RBX + 0x670),puVar7);
                     // WARNING: Subroutine does not return
-        FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar7,&unknown_var_8576_ptr,0x1446,1);
+        UISystem_MemoryReleaser(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar7,&unknown_var_8576_ptr,0x1446,1);
       }
       *(int32_t **)(*(longlong *)(unaff_RBX + 0x6a0) + 0x30 + unaff_RBP) = puVar7;
       uVar6 = 0;

@@ -157,6 +157,31 @@ typedef uint64_t UIAlgorithmHandle;               // UI算法句柄
 #define UISystemDecompressionEngine               FUN_18072ad20
 #define UISystemRestoreHandler                    FUN_18072ad20
 
+// UI系统组件初始化器
+#define UISystemComponentInitializer              FUN_1807249d0
+#define UISystemUIBuilder                         FUN_1807249d0
+#define UISystemElementCreator                    FUN_1807249d0
+
+// UI系统数据验证器
+#define UISystemDataValidator                      FUN_18072f4d0
+#define UISystemIntegrityChecker                  FUN_18072f4d0
+#define UISystemSecurityVerifier                  FUN_18072f4d0
+
+// UI系统状态管理器
+#define UISystemStateManager                      FUN_180734390
+#define UISystemContextController                 FUN_180734390
+#define UISystemLifecycleManager                  FUN_180734390
+
+// UI系统事件处理器
+#define UISystemEventHandler                      FUN_1807342b0
+#define UISystemCallbackManager                   FUN_1807342b0
+#define UISystemMessageDispatcher                 FUN_1807342b0
+
+// UI系统安全检查器
+#define UISystemSecurityChecker                   FUN_1808fc050
+#define UISystemAccessController                  FUN_1808fc050
+#define UISystemPermissionManager                 FUN_1808fc050
+
 //------------------------------------------------------------------------------
 // UI系统高级数据处理函数
 // 功能：执行UI系统的高级数据处理和状态管理，包括：
@@ -506,10 +531,10 @@ void UISystemDataTransformer(longlong param_1, longlong param_2, int param_3)
     uStack_88 = *(int32_t *)(param_1 + 0x914);
     
     // 执行数据处理操作
-    FUN_1807249d0(param_2 + 0x10, param_1 + 0xac8, param_1 + 0x908, param_3 == 2);
-    FUN_180734390(asStack_78, param_1 + 0xad0, *(uint64_t *)(param_1 + 0xac0));
-    FUN_18072f4d0(param_2 + 0x40, asStack_78, *(int32_t *)(param_1 + 0x924),
-                  *(int32_t *)(param_1 + 0x1060));
+    UISystemComponentInitializer(param_2 + 0x10, param_1 + 0xac8, param_1 + 0x908, param_3 == 2);
+    UISystemStateManager(asStack_78, param_1 + 0xad0, *(uint64_t *)(param_1 + 0xac0));
+    UISystemDataValidator(param_2 + 0x40, asStack_78, *(int32_t *)(param_1 + 0x924),
+                         *(int32_t *)(param_1 + 0x1060));
     
     // 检查系统配置
     if (*(int *)(param_1 + 0x948) == 1) {
@@ -542,7 +567,7 @@ void UISystemDataTransformer(longlong param_1, longlong param_2, int param_3)
     }
     
     // 执行最终数据处理
-    FUN_18072f4d0(param_2 + 0x20, asStack_58, (longlong)(int)uVar2, *(int32_t *)(param_1 + 0x1060));
+    UISystemDataValidator(param_2 + 0x20, asStack_58, (longlong)(int)uVar2, *(int32_t *)(param_1 + 0x1060));
     
     // 执行内存复制操作
     memcpy(param_1 + 0x928, asStack_78, (longlong)*(int *)(param_1 + 0x924) * 2);

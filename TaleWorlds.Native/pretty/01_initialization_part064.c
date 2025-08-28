@@ -262,6 +262,10 @@ extern uint64_t system_cpu_usage_stats;              // 系统统计信息2 - CP
 extern int64_t system_disk_io_stats;               // 系统统计信息3 - 磁盘I/O统计
 extern void **system_global_pointer_table;                 // 系统全局指针表 - 全局函数指针表
 
+// 系统虚函数表声明
+extern void *system_vtable_default;                 // 系统默认虚函数表
+extern void *system_vtable_active;                  // 系统活动虚函数表
+
 /* ============================================================================
  * 函数声明
  * ============================================================================ */
@@ -664,7 +668,7 @@ int32_t InitializationSystem_ComponentInitializer(void)
  * @param param_1 组件参数指针
  * @return void 无返回值
  */
-void InitializationSystem_ComponentInitializer(longlong param_1)
+void InitializationSystem_ComponentInitializer(long long param_1)
 {
     // 调用初始化准备函数
     InitializationSystem_PrepareInit();
@@ -673,7 +677,7 @@ void InitializationSystem_ComponentInitializer(longlong param_1)
     *(uint64_t *)(param_1 + 8) = &system_vtable_default;
     
     // 检查组件是否已经初始化
-    if (*(longlong *)(param_1 + 0x10) != 0) {
+    if (*(long long *)(param_1 + 0x10) != 0) {
         // 如果已经初始化，执行错误处理
         InitializationSystem_HandleInitError();
     }
@@ -866,7 +870,7 @@ int32_t InitializationSystem_ConfigProcessor(void)
  * @param param_1 配置参数指针
  * @return void 无返回值
  */
-void InitializationSystem_ConfigProcessor(longlong param_1)
+void InitializationSystem_ConfigProcessor(long long param_1)
 {
     // 调用配置初始化函数
     InitializationSystem_InitConfig(param_1 + 0x60);
