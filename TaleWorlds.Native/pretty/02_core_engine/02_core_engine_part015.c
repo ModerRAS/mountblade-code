@@ -1,124 +1,157 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part015.c - 23 个函数
+// 02_core_engine_part015.c - 核心引擎模块第15部分 - 23个函数
 
-// 函数: void FUN_180055e60(longlong param_1)
-void FUN_180055e60(longlong param_1)
+// 函数: void cleanup_resource_manager(longlong resource_manager)
+// 功能: 清理资源管理器中的所有资源
+void cleanup_resource_manager(longlong resource_manager)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  ulonglong uVar3;
-  ulonglong uVar4;
+  longlong resource_array;
+  longlong resource_ptr;
+  ulonglong resource_count;
+  ulonglong index;
   
-  uVar3 = *(ulonglong *)(param_1 + 0x10);
-  lVar1 = *(longlong *)(param_1 + 8);
-  uVar4 = 0;
-  if (uVar3 != 0) {
+  resource_count = *(ulonglong *)(resource_manager + 0x10);
+  resource_array = *(longlong *)(resource_manager + 8);
+  index = 0;
+  if (resource_count != 0) {
     do {
-      lVar2 = *(longlong *)(lVar1 + uVar4 * 8);
-      if (lVar2 != 0) {
-        if (*(longlong **)(lVar2 + 0x10) != (longlong *)0x0) {
-          (**(code **)(**(longlong **)(lVar2 + 0x10) + 0x38))();
+      resource_ptr = *(longlong *)(resource_array + index * 8);
+      if (resource_ptr != 0) {
+        if (*(longlong **)(resource_ptr + 0x10) != (longlong *)0x0) {
+          // 调用资源的清理函数
+          (**(code **)(**(longlong **)(resource_ptr + 0x10) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
-        FUN_18064e900(lVar2);
+        // 释放资源
+        free_resource(resource_ptr);
       }
-      *(undefined8 *)(lVar1 + uVar4 * 8) = 0;
-      uVar4 = uVar4 + 1;
-    } while (uVar4 < uVar3);
-    uVar3 = *(ulonglong *)(param_1 + 0x10);
+      *(undefined8 *)(resource_array + index * 8) = 0;
+      index = index + 1;
+    } while (index < resource_count);
+    resource_count = *(ulonglong *)(resource_manager + 0x10);
   }
-  *(undefined8 *)(param_1 + 0x18) = 0;
-  if ((1 < uVar3) && (*(longlong *)(param_1 + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  *(undefined8 *)(resource_manager + 0x18) = 0;
+  if ((1 < resource_count) && (*(longlong *)(resource_manager + 8) != 0)) {
+    free_resource();
   }
   return;
 }
 
 
 
-longlong FUN_180055e80(longlong param_1)
+// 函数: longlong initialize_resource_manager(longlong resource_manager)
+// 功能: 初始化资源管理器结构
+longlong initialize_resource_manager(longlong resource_manager)
 
 {
-  *(undefined8 *)(param_1 + 8) = &UNK_18098bcb0;
-  *(undefined8 *)(param_1 + 0x10) = 0;
-  *(undefined4 *)(param_1 + 0x18) = 0;
-  *(undefined8 *)(param_1 + 8) = &UNK_180a3c3e0;
-  *(undefined8 *)(param_1 + 0x20) = 0;
-  *(undefined8 *)(param_1 + 0x10) = 0;
-  *(undefined4 *)(param_1 + 0x18) = 0;
-  return param_1;
-}
-
-
-
-
-
-// 函数: void FUN_180055ed0(longlong param_1)
-void FUN_180055ed0(longlong param_1)
-
-{
-  *(undefined8 *)(param_1 + 8) = &UNK_180a3c3e0;
-  if (*(longlong *)(param_1 + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
-  }
-  *(undefined8 *)(param_1 + 0x10) = 0;
-  *(undefined4 *)(param_1 + 0x20) = 0;
-  *(undefined8 *)(param_1 + 8) = &UNK_18098bcb0;
-  return;
-}
-
-
-
-
-
-// 函数: void FUN_180055f20(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180055f20(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
-{
-  FUN_180058210(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
-  return;
-}
-
-
-
-
-
-// 函数: void FUN_180055f50(longlong param_1)
-void FUN_180055f50(longlong param_1)
-
-{
-  longlong lVar1;
-  longlong lVar2;
-  ulonglong uVar3;
-  ulonglong uVar4;
+  // 初始化资源数组指针
+  *(undefined8 *)(resource_manager + 8) = &UNK_18098bcb0;
+  // 设置资源数量为0
+  *(undefined8 *)(resource_manager + 0x10) = 0;
+  // 设置状态标志为0
+  *(undefined4 *)(resource_manager + 0x18) = 0;
   
-  uVar3 = *(ulonglong *)(param_1 + 0x10);
-  lVar1 = *(longlong *)(param_1 + 8);
-  uVar4 = 0;
-  if (uVar3 != 0) {
-    do {
-      lVar2 = *(longlong *)(lVar1 + uVar4 * 8);
-      if (lVar2 != 0) {
-        if (*(longlong **)(lVar2 + 0x10) != (longlong *)0x0) {
-          (**(code **)(**(longlong **)(lVar2 + 0x10) + 0x38))();
-        }
-                    // WARNING: Subroutine does not return
-        FUN_18064e900(lVar2);
-      }
-      *(undefined8 *)(lVar1 + uVar4 * 8) = 0;
-      uVar4 = uVar4 + 1;
-    } while (uVar4 < uVar3);
-    uVar3 = *(ulonglong *)(param_1 + 0x10);
-  }
-  *(undefined8 *)(param_1 + 0x18) = 0;
-  if ((1 < uVar3) && (*(longlong *)(param_1 + 8) != 0)) {
-                    // WARNING: Subroutine does not return
+  // 设置备用资源数组指针
+  *(undefined8 *)(resource_manager + 8) = &UNK_180a3c3e0;
+  // 设置备用资源数量为0
+  *(undefined8 *)(resource_manager + 0x20) = 0;
+  // 重置资源数量为0
+  *(undefined8 *)(resource_manager + 0x10) = 0;
+  // 重置状态标志为0
+  *(undefined4 *)(resource_manager + 0x18) = 0;
+  
+  return resource_manager;
+}
+
+
+
+
+
+// 函数: void reset_resource_manager(longlong resource_manager)
+// 功能: 重置资源管理器，清空所有资源
+void reset_resource_manager(longlong resource_manager)
+
+{
+  // 设置资源数组指针为空
+  *(undefined8 *)(resource_manager + 8) = &UNK_180a3c3e0;
+  
+  // 检查是否有资源存在
+  if (*(longlong *)(resource_manager + 0x10) != 0) {
+    // 如果有资源存在，触发错误（不返回的子程序）
     FUN_18064e900();
   }
+  
+  // 重置资源数量为0
+  *(undefined8 *)(resource_manager + 0x10) = 0;
+  // 重置备用资源数量为0
+  *(undefined4 *)(resource_manager + 0x20) = 0;
+  // 设置资源数组指针为空
+  *(undefined8 *)(resource_manager + 8) = &UNK_18098bcb0;
+  
+  return;
+}
+
+
+
+
+
+// 函数: void process_resource_request(longlong resource_manager, undefined8 unused_param, undefined8 param_3, undefined8 param_4)
+// 功能: 处理资源请求，调用资源处理函数
+void process_resource_request(longlong resource_manager, undefined8 unused_param, undefined8 param_3, undefined8 param_4)
+
+{
+  // 调用资源处理函数，传入资源管理器、资源数量、参数3和参数4
+  FUN_180058210(resource_manager, *(undefined8 *)(resource_manager + 0x10), param_3, param_4, 0xfffffffffffffffe);
+  return;
+}
+
+
+
+
+
+// 函数: void force_cleanup_resource_manager(longlong resource_manager)
+// 功能: 强制清理资源管理器中的所有资源（不安全的清理方式）
+void force_cleanup_resource_manager(longlong resource_manager)
+
+{
+  longlong resource_array;
+  longlong resource_ptr;
+  ulonglong resource_count;
+  ulonglong index;
+  
+  // 获取资源数量和资源数组
+  resource_count = *(ulonglong *)(resource_manager + 0x10);
+  resource_array = *(longlong *)(resource_manager + 8);
+  index = 0;
+  
+  if (resource_count != 0) {
+    do {
+      // 获取当前资源指针
+      resource_ptr = *(longlong *)(resource_array + index * 8);
+      if (resource_ptr != 0) {
+        // 如果资源有清理函数，调用它
+        if (*(longlong **)(resource_ptr + 0x10) != (longlong *)0x0) {
+          (**(code **)(**(longlong **)(resource_ptr + 0x10) + 0x38))();
+        }
+        // 强制释放资源（不返回的子程序）
+        FUN_18064e900(resource_ptr);
+      }
+      // 清空资源指针
+      *(undefined8 *)(resource_array + index * 8) = 0;
+      index = index + 1;
+    } while (index < resource_count);
+    resource_count = *(ulonglong *)(resource_manager + 0x10);
+  }
+  
+  // 重置状态标志
+  *(undefined8 *)(resource_manager + 0x18) = 0;
+  
+  // 如果资源数量大于1且资源数组存在，触发错误
+  if ((1 < resource_count) && (*(longlong *)(resource_manager + 8) != 0)) {
+    FUN_18064e900();
+  }
+  
   return;
 }
 

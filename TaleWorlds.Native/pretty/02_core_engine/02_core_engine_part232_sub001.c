@@ -1,6 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 核心引擎模块第232部分子文件1 - 统计分析和排序函数
+// 02_core_engine_part232_sub001.c - 13 个函数
+// 核心引擎模块第232部分子文件001 - 浮点数排序和统计计算模块
 
 // 函数: void process_statistics_and_sort_data(longlong context_ptr)
 // 功能: 处理统计数据并对数据进行排序

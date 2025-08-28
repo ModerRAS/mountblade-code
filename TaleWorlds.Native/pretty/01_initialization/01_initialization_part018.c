@@ -780,60 +780,68 @@ void manage_config_buffers(undefined8 param_1, undefined8 param_2, undefined8 pa
   uint buffer_size_total;     // 总缓冲区大小
   undefined8 result_flags;    // 结果标志
   
-  lVar3 = _DAT_180c868b0;
-  puStack_68 = &UNK_180a3c3e0;
-  uStack_50 = 0;
-  lStack_60 = 0;
-  uStack_58 = 0;
+  config_ptr1 = _DAT_180c868b0;
+  cleanup_ptr = &UNK_180a3c3e0;
+  result_flags = 0;
+  buffer_ptr = 0;
+  buffer_size_total = 0;
+  
+  // 处理第一个配置块
   if (*(int *)(_DAT_180c86920 + 0x1ea0) == 0) {
-    uVar1 = *(uint *)(_DAT_180c868b0 + 0xe40);
-    uVar5 = (ulonglong)uVar1;
+    buffer_size1 = *(uint *)(_DAT_180c868b0 + 0xe40);
+    data_size = (ulonglong)buffer_size1;
     if (*(longlong *)(_DAT_180c868b0 + 0xe38) != 0) {
-      FUN_1806277c0(&puStack_68,uVar5,param_3,param_4,0xfffffffffffffffe);
+      FUN_1806277c0(&cleanup_ptr, data_size, param_3, param_4, 0xfffffffffffffffe);
     }
-    if (uVar1 != 0) {
-                    // WARNING: Subroutine does not return
-      memcpy(lStack_60,*(undefined8 *)(lVar3 + 0xe38),uVar5);
+    if (buffer_size1 != 0) {
+      // 警告：子程序不返回
+      memcpy(buffer_ptr, *(undefined8 *)(config_ptr1 + 0xe38), data_size);
     }
-    if (lStack_60 != 0) {
-      *(undefined1 *)(uVar5 + lStack_60) = 0;
+    if (buffer_ptr != 0) {
+      *(undefined1 *)(data_size + buffer_ptr) = 0;
     }
-    uStack_50 = CONCAT44(*(undefined4 *)(lVar3 + 0xe4c),(undefined4)uStack_50);
+    result_flags = CONCAT44(*(undefined4 *)(config_ptr1 + 0xe4c), (undefined4)result_flags);
   }
-  lVar3 = _DAT_180c868b0;
-  uStack_58 = 0;
-  uVar1 = *(uint *)(_DAT_180c868b0 + 0xf00);
-  uVar5 = (ulonglong)uVar1;
+  
+  // 处理第二个配置块
+  config_ptr1 = _DAT_180c868b0;
+  buffer_size_total = 0;
+  buffer_size1 = *(uint *)(_DAT_180c868b0 + 0xf00);
+  data_size = (ulonglong)buffer_size1;
   if (*(longlong *)(_DAT_180c868b0 + 0xef8) != 0) {
-    FUN_1806277c0(&puStack_68,uVar5);
+    FUN_1806277c0(&cleanup_ptr, data_size);
   }
-  if (uVar1 != 0) {
-                    // WARNING: Subroutine does not return
-    memcpy(lStack_60,*(undefined8 *)(lVar3 + 0xef8),uVar5);
+  if (buffer_size1 != 0) {
+    // 警告：子程序不返回
+    memcpy(buffer_ptr, *(undefined8 *)(config_ptr1 + 0xef8), data_size);
   }
-  if (lStack_60 != 0) {
-    *(undefined1 *)(uVar5 + lStack_60) = 0;
+  if (buffer_ptr != 0) {
+    *(undefined1 *)(data_size + buffer_ptr) = 0;
   }
-  lVar4 = _DAT_180c868b0;
-  uStack_50 = CONCAT44(*(undefined4 *)(lVar3 + 0xf0c),(undefined4)uStack_50);
-  uVar2 = *(uint *)(_DAT_180c868b0 + 0xfc0);
-  uVar5 = (ulonglong)uVar2;
-  uStack_58 = uVar1;
+  
+  // 处理第三个配置块
+  config_ptr2 = _DAT_180c868b0;
+  result_flags = CONCAT44(*(undefined4 *)(config_ptr1 + 0xf0c), (undefined4)result_flags);
+  buffer_size2 = *(uint *)(_DAT_180c868b0 + 0xfc0);
+  data_size = (ulonglong)buffer_size2;
+  buffer_size_total = buffer_size1;
   if (*(longlong *)(_DAT_180c868b0 + 0xfb8) != 0) {
-    FUN_1806277c0(&puStack_68,uVar5);
+    FUN_1806277c0(&cleanup_ptr, data_size);
   }
-  if (uVar2 != 0) {
-                    // WARNING: Subroutine does not return
-    memcpy(lStack_60,*(undefined8 *)(lVar4 + 0xfb8),uVar5);
+  if (buffer_size2 != 0) {
+    // 警告：子程序不返回
+    memcpy(buffer_ptr, *(undefined8 *)(config_ptr2 + 0xfb8), data_size);
   }
-  if (lStack_60 != 0) {
-    *(undefined1 *)(uVar5 + lStack_60) = 0;
+  if (buffer_ptr != 0) {
+    *(undefined1 *)(data_size + buffer_ptr) = 0;
   }
-  uStack_50 = CONCAT44(*(undefined4 *)(lVar4 + 0xfcc),(undefined4)uStack_50);
-  puStack_68 = &UNK_180a3c3e0;
-  if (lStack_60 != 0) {
-    uStack_58 = uVar2;
-                    // WARNING: Subroutine does not return
+  result_flags = CONCAT44(*(undefined4 *)(config_ptr2 + 0xfcc), (undefined4)result_flags);
+  cleanup_ptr = &UNK_180a3c3e0;
+  
+  // 清理缓冲区
+  if (buffer_ptr != 0) {
+    buffer_size_total = buffer_size2;
+    // 警告：子程序不返回
     FUN_18064e900();
   }
   return;
@@ -845,34 +853,40 @@ void manage_config_buffers(undefined8 param_1, undefined8 param_2, undefined8 pa
 
 
 
-// 函数: void FUN_18004ef60(void)
-void FUN_18004ef60(void)
+/**
+ * 初始化系统参数和配置
+ * 主要功能：初始化系统的各种参数和配置，包括时间戳、渲染参数等
+ * 
+ * 原始实现：FUN_18004ef60
+ * 简化实现：系统参数初始化函数
+ */
+void initialize_system_parameters(void)
 
 {
-  int iVar1;
-  longlong lVar2;
-  longlong lVar3;
-  longlong lVar4;
-  int *piVar5;
-  undefined8 *puVar6;
-  undefined4 *puVar7;
-  undefined *puVar8;
-  char cVar9;
-  float fVar10;
-  undefined4 uVar11;
-  float fVar12;
-  undefined1 auStack_208 [32];
-  longlong lStack_1e8;
-  longlong lStack_1d8;
-  longlong lStack_1d0;
-  undefined8 *apuStack_1c8 [10];
-  undefined8 uStack_178;
-  undefined1 auStack_170 [8];
-  undefined *puStack_168;
-  undefined1 *puStack_160;
-  undefined4 uStack_158;
-  undefined1 auStack_150 [264];
-  ulonglong uStack_48;
+  int temp_int;               // 临时整型
+  longlong engine_config;     // 引擎配置
+  longlong main_engine;      // 主引擎指针
+  longlong subsystem_config;  // 子系统配置
+  int *config_ptr;           // 配置指针
+  undefined8 *resource_ptr;  // 资源指针
+  undefined4 *flag_ptr;      // 标志指针
+  undefined *string_ptr;      // 字符串指针
+  char is_enabled;           // 是否启用标志
+  float scale_factor;        // 缩放因子
+  undefined4 log_result;     // 对数计算结果
+  float quality_factor;      // 质量因子
+  undefined1 temp_buffer1 [32]; // 临时缓冲区1
+  longlong temp_ptr1;        // 临时指针1
+  longlong temp_ptr2;        // 临时指针2
+  longlong temp_ptr3;        // 临时指针3
+  undefined8 *resource_array [10]; // 资源数组
+  undefined8 stack_guard;    // 栈保护
+  undefined1 temp_buffer2 [8]; // 临时缓冲区2
+  undefined *cleanup_ptr;     // 清理指针
+  undefined1 *data_ptr;      // 数据指针
+  undefined4 data_size;      // 数据大小
+  undefined1 temp_buffer3 [264]; // 临时缓冲区3
+  ulonglong security_hash;   // 安全哈希
   
   lVar3 = _DAT_180c86870;
   uStack_178 = 0xfffffffffffffffe;
