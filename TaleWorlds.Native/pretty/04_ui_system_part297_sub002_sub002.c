@@ -153,12 +153,15 @@ uint64_t UISystem_DataMixer(int64_t *data_source, int64_t *data_target)
     int stack_offset;
     int64_t stack_temp;
   
-  lVar28 = *param_1;
-  piVar3 = (int *)param_1[0xe];
-  piVar4 = *(int **)(lVar28 + 0x20);
-  iVar14 = piVar4[0x4ca];
-  if ((param_2 != (int64_t *)0x0) &&
-     ((*(int *)((int64_t)param_1 + 0x1c) <= (int)param_1[4] || ((int)param_1[4] == -1)))) {
+    // 初始化数据源和目标指针
+    data_offset = *data_source;
+    control_ptr = (int *)data_source[0xe];
+    state_ptr = *(int **)(data_offset + 0x20);
+    buffer_index = state_ptr[0x4ca];
+    
+    // 检查参数有效性
+    if ((data_target != (int64_t *)0x0) &&
+        ((*(int *)((int64_t)data_source + 0x1c) <= (int)data_source[4] || ((int)data_source[4] == -1)))) {
     *(int *)((int64_t)param_1 + 0x2c) = (int)param_1[6];
     *(int32_t *)(param_1 + 6) = *(int32_t *)((int64_t)param_2 + 0x2c);
     *(int32_t *)((int64_t)param_1 + 0x34) = 0xffffffff;
