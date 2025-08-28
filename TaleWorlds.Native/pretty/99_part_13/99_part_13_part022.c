@@ -79,10 +79,10 @@ uint64_t rendering_system_allocate_matrix(int64_t matrix_id, int64_t* matrix_dat
 uint64_t rendering_system_transform_matrix(int64_t matrix_id, int64_t transform_data);
 float rendering_system_calculate_interpolation(uint32_t* state_data, float target_value, int interpolation_mode);
 int rendering_system_set_render_target(int64_t* render_context, int64_t render_target);
-uint8_t rendering_system_check_state(longlong context, longlong parameter);
-void rendering_system_set_parameters(longlong render_context, int32_t param_a, int32_t param_b, char param_c);
-void rendering_system_process_queue(longlong *queue_ptr);
-void rendering_system_cleanup_queue(longlong *queue_ptr);
+uint8_t rendering_system_check_state(int64_t context, int64_t parameter);
+void rendering_system_set_parameters(int64_t render_context, int32_t param_a, int32_t param_b, char param_c);
+void rendering_system_process_queue(int64_t *queue_ptr);
+void rendering_system_cleanup_queue(int64_t *queue_ptr);
 
 // 函数别名定义
 #define 渲染系统初始化器 rendering_system_initialize
@@ -114,9 +114,9 @@ void rendering_system_cleanup_queue(longlong *queue_ptr);
  * - 配置默认渲染参数
  */
 void rendering_system_initialize(void) {
-    longlong *queue_ptr;                // 队列指针
+    int64_t *queue_ptr;                // 队列指针
     int parameter_type;                 // 参数类型
-    longlong *command_ptr;              // 命令指针
+    int64_t *command_ptr;              // 命令指针
     int render_mode;                    // 渲染模式
     int32_t param_a;                 // 参数A
     int32_t param_b;                 // 参数B
@@ -127,14 +127,14 @@ void rendering_system_initialize(void) {
     int32_t param_g;                 // 参数G
     int32_t param_h;                 // 参数H
     char state_flag;                    // 状态标志
-    longlong context_ptr;               // 上下文指针
-    longlong result_value;              // 结果值
+    int64_t context_ptr;               // 上下文指针
+    int64_t result_value;              // 结果值
     uint64_t render_context;          // 渲染上下文
-    longlong *next_command;             // 下一个命令
-    longlong *base_context;             // 基础上下文
-    longlong queue_base;                // 队列基础地址
+    int64_t *next_command;             // 下一个命令
+    int64_t *base_context;             // 基础上下文
+    int64_t queue_base;                // 队列基础地址
     int queue_count;                    // 队列计数
-    longlong render_object;             // 渲染对象
+    int64_t render_object;             // 渲染对象
     float scale_factor;                 // 缩放因子
     float time_value;                   // 时间值
     float calculated_value;             // 计算值
@@ -146,12 +146,12 @@ void rendering_system_initialize(void) {
     int32_t queue_param_b;           // 队列参数B
     int processing_mode;                // 处理模式
     uint64_t context_data;            // 上下文数据
-    longlong queue_context;             // 队列上下文
+    int64_t queue_context;             // 队列上下文
     int render_parameter;               // 渲染参数
     float accumulated_time;             // 累计时间
     float final_time;                   // 最终时间
     int matrix_index;                   // 矩阵索引
-    ulonglong stack_ptr;                // 栈指针
+    uint64_t stack_ptr;                // 栈指针
     int32_t stack_param_a;           // 栈参数A
     int32_t stack_param_b;           // 栈参数B
     int32_t stack_param_c;           // 栈参数C
@@ -159,8 +159,8 @@ void rendering_system_initialize(void) {
     
     // 初始化渲染模式和相关参数
     render_mode = render_parameter;
-    queue_ptr = (longlong *)(queue_base + 0x38);
-    next_command = (longlong *)(context_ptr + -8);
+    queue_ptr = (int64_t *)(queue_base + 0x38);
+    next_command = (int64_t *)(context_ptr + -8);
     if (context_ptr == 0) {
         next_command = base_context;
     }
@@ -177,7 +177,7 @@ void rendering_system_initialize(void) {
     param_a = stack_param_a;
     
     // 命令处理循环
-    if (next_command != (longlong *)0x0) {
+    if (next_command != (int64_t *)0x0) {
         command_ptr = next_command + 1;
         param_e = queue_param_b;
         param_f = queue_param_a;
@@ -189,7 +189,7 @@ void rendering_system_initialize(void) {
     while (stack_param_c = param_h, stack_param_d = param_g, stack_param_a = param_f,
            stack_param_b = param_e, processed_value = base_time, command_ptr != queue_ptr) {
         next_command = command_ptr + -1;
-        if (command_ptr == (longlong *)0x0) {
+        if (command_ptr == (int64_t *)0x0) {
             next_command = base_context;
         }
         
@@ -239,7 +239,7 @@ void rendering_system_initialize(void) {
         
         // 检查是否完成队列处理
         if (command_ptr == queue_ptr) break;
-        next_command = (longlong *)(*command_ptr + -8);
+        next_command = (int64_t *)(*command_ptr + -8);
         if (*command_ptr == 0) {
             next_command = base_context;
         }
@@ -249,7 +249,7 @@ void rendering_system_initialize(void) {
         param_g = stack_param_d;
         param_h = stack_param_c;
         base_time = processed_value;
-        if (next_command != (longlong *)0x0) {
+        if (next_command != (int64_t *)0x0) {
             command_ptr = next_command + 1;
         }
     }
@@ -267,16 +267,16 @@ void rendering_system_initialize(void) {
     
     // 第二阶段处理：插值计算
     do {
-        calculated_value = *(float *)(&render_parameter + 0x12 + (longlong)base_context * 4);
+        calculated_value = *(float *)(&render_parameter + 0x12 + (int64_t)base_context * 4);
         if (calculated_value != queue_time) {
             time_value = (float)rendering_system_calculate_interpolation(&render_parameter,
-                                                                         *(int32_t *)(&render_parameter + 0x10 + (longlong)base_context * 4),
+                                                                         *(int32_t *)(&render_parameter + 0x10 + (int64_t)base_context * 4),
                                                                          render_mode + 1);
             time_value = (time_value - scale_factor) * calculated_value;
             scale_factor = scale_factor + time_value;
         }
-        base_context = (longlong *)((longlong)base_context + 1);
-    } while ((longlong)base_context < 2);
+        base_context = (int64_t *)((int64_t)base_context + 1);
+    } while ((int64_t)base_context < 2);
     
     // 根据队列计数进行最终计算
     if (queue_count == 1) {
@@ -301,13 +301,13 @@ void rendering_system_initialize(void) {
             func_0x0001808b20c0(queue_base, calculated_value, render_context);
         }
         else {
-            (**(code **)(**(longlong **)(queue_base + 0x28) + 0x10))
-                      (*(longlong **)(queue_base + 0x28), queue_base);
+            (**(code **)(**(int64_t **)(queue_base + 0x28) + 0x10))
+                      (*(int64_t **)(queue_base + 0x28), queue_base);
         }
     }
     
     // 清理栈空间
-    func_0x0001808fc050(stack_ptr ^ (ulonglong)&render_parameter);
+    func_0x0001808fc050(stack_ptr ^ (uint64_t)&render_parameter);
 }
 
 /**
@@ -325,14 +325,14 @@ void rendering_system_initialize(void) {
  * @param sample_rate 采样率配置
  * @param security_token 安全验证令牌
  */
-void audio_processor_alternate(longlong audio_context, int processing_mode, float volume_threshold,
-                              int channel_config, uint effect_flags, longlong buffer_manager,
-                              int sample_rate, ulonglong security_token)
+void audio_processor_alternate(int64_t audio_context, int processing_mode, float volume_threshold,
+                              int channel_config, uint effect_flags, int64_t buffer_manager,
+                              int sample_rate, uint64_t security_token)
 {
     // 变量声明和初始化
-    longlong *audio_processor_ptr;
+    int64_t *audio_processor_ptr;
     int audio_state;
-    longlong *effect_chain_ptr;
+    int64_t *effect_chain_ptr;
     int volume_mode;
     int32_t effect_params[4];
     float base_volume;
@@ -341,15 +341,15 @@ void audio_processor_alternate(longlong audio_context, int processing_mode, floa
     float final_output;
     float channel_mix[AUDIO_CHANNEL_COUNT];
     float sample_buffer[AUDIO_PROCESSING_STACK_SIZE];
-    longlong audio_device;
-    longlong resource_manager;
+    int64_t audio_device;
+    int64_t resource_manager;
     char audio_flag;
     float mix_result;
     float temp_volume;
     float channel_volume;
     float output_volume;
-    longlong stack_base;
-    longlong stack_offset;
+    int64_t stack_base;
+    int64_t stack_offset;
     int stack_index;
     int stack_mode;
     int stack_counter;
@@ -360,25 +360,25 @@ void audio_processor_alternate(longlong audio_context, int processing_mode, floa
     uint stack_param;
     int stack_loop;
     int stack_iter;
-    longlong stack_pos;
-    longlong stack_context;
-    ulonglong stack_security;
+    int64_t stack_pos;
+    int64_t stack_context;
+    uint64_t stack_security;
     bool processing_flag;
     
     // 安全检查和初始化
-    stack_security = security_token ^ (ulonglong)sample_buffer;
+    stack_security = security_token ^ (uint64_t)sample_buffer;
     audio_state = processing_mode;
-    audio_processor_ptr = (longlong *)(audio_context + 0x38);
+    audio_processor_ptr = (int64_t *)(audio_context + 0x38);
     
     // 音频处理循环（备用路径）
     while (effect_params[2] = effect_flags, effect_params[3] = effect_flags >> 1,
            effect_params[0] = effect_flags >> 2, effect_params[1] = effect_flags >> 3,
-           final_output = volume_threshold, audio_processor_ptr != (longlong *)(audio_context + 0x38)) {
+           final_output = volume_threshold, audio_processor_ptr != (int64_t *)(audio_context + 0x38)) {
         
         // 获取音频处理器
         effect_chain_ptr = audio_processor_ptr + -1;
-        if (audio_processor_ptr == (longlong *)0x0) {
-            effect_chain_ptr = (longlong *)0x0;
+        if (audio_processor_ptr == (int64_t *)0x0) {
+            effect_chain_ptr = (int64_t *)0x0;
         }
         
         // 处理音频数据（备用算法）
@@ -423,18 +423,18 @@ void audio_processor_alternate(longlong audio_context, int processing_mode, floa
         effect_params[2] = effect_flags >> 2;
         effect_params[3] = effect_flags >> 3;
         
-        if (audio_processor_ptr == (longlong *)(audio_context + 0x38)) break;
+        if (audio_processor_ptr == (int64_t *)(audio_context + 0x38)) break;
         
         // 继续处理链
-        effect_chain_ptr = (longlong *)(*audio_processor_ptr + -8);
+        effect_chain_ptr = (int64_t *)(*audio_processor_ptr + -8);
         if (*audio_processor_ptr == 0) {
-            effect_chain_ptr = (longlong *)0x0;
+            effect_chain_ptr = (int64_t *)0x0;
         }
-        audio_processor_ptr = (longlong *)0x0;
+        audio_processor_ptr = (int64_t *)0x0;
         effect_flags = effect_params[1];
         effect_flags = effect_params[0];
         volume_threshold = final_output;
-        if (effect_chain_ptr != (longlong *)0x0) {
+        if (effect_chain_ptr != (int64_t *)0x0) {
             audio_processor_ptr = effect_chain_ptr + 1;
         }
     }
@@ -450,7 +450,7 @@ void audio_processor_alternate(longlong audio_context, int processing_mode, floa
     processed_volume = (float)audio_system_calculate_parameters(sample_buffer);
     base_volume = processed_volume;
     do {
-        threshold_volume = *(float *)(&sample_buffer[20] + (longlong)buffer_manager * 4);
+        threshold_volume = *(float *)(&sample_buffer[20] + (int64_t)buffer_manager * 4);
         if (threshold_volume != channel_mix[2]) {
             processed_volume = (float)audio_system_calculate_parameters(sample_buffer,
                                         effect_params[3],
@@ -458,8 +458,8 @@ void audio_processor_alternate(longlong audio_context, int processing_mode, floa
             processed_volume = (processed_volume - base_volume) * threshold_volume;
             base_volume = base_volume + processed_volume;
         }
-        buffer_manager = (longlong *)((longlong)buffer_manager + 1);
-    } while ((longlong)buffer_manager < AUDIO_CHANNEL_COUNT);
+        buffer_manager = (int64_t *)((int64_t)buffer_manager + 1);
+    } while ((int64_t)buffer_manager < AUDIO_CHANNEL_COUNT);
     
     // 应用音效处理（备用算法）
     if (stack_index == 1) {
@@ -485,13 +485,13 @@ void audio_processor_alternate(longlong audio_context, int processing_mode, floa
             audio_system_configure_effect(audio_context, threshold_volume, stack_base);
         }
         else {
-            (**(code **)(**(longlong **)(audio_context + 0x28) + 0x10))
-                      (*(longlong **)(audio_context + 0x28), audio_context);
+            (**(code **)(**(int64_t **)(audio_context + 0x28) + 0x10))
+                      (*(int64_t **)(audio_context + 0x28), audio_context);
         }
     }
     
     // 安全退出
-    FUN_1808fc050(security_token ^ (ulonglong)sample_buffer);
+    FUN_1808fc050(security_token ^ (uint64_t)sample_buffer);
 }
 
 /**
@@ -508,18 +508,18 @@ void audio_processor_alternate(longlong audio_context, int processing_mode, floa
  * @param sample_rate 采样率配置
  * @param security_token 安全验证令牌
  */
-void audio_processor_stream(longlong *audio_stream, int processing_mode, float volume_threshold,
-                           uint effect_flags, longlong buffer_manager, int sample_rate,
-                           ulonglong security_token)
+void audio_processor_stream(int64_t *audio_stream, int processing_mode, float volume_threshold,
+                           uint effect_flags, int64_t buffer_manager, int sample_rate,
+                           uint64_t security_token)
 {
     // 变量声明和初始化
     int stream_state;
     char audio_flag;
-    longlong audio_device;
+    int64_t audio_device;
     int channel_config;
-    longlong *stream_processor;
-    longlong *resource_manager;
-    longlong audio_context;
+    int64_t *stream_processor;
+    int64_t *resource_manager;
+    int64_t audio_context;
     float processed_volume;
     float stream_volume;
     float mix_volume;
@@ -529,16 +529,16 @@ void audio_processor_stream(longlong *audio_stream, int processing_mode, float v
     float stream_buffer[AUDIO_PROCESSING_STACK_SIZE];
     float channel_mix[AUDIO_CHANNEL_COUNT];
     int stack_mode;
-    longlong stack_base;
-    longlong stack_offset;
+    int64_t stack_base;
+    int64_t stack_offset;
     float stack_volume;
     int stack_state;
-    ulonglong stack_security;
+    uint64_t stack_security;
     
     // 音频流处理循环
     do {
         stream_processor = audio_stream + -1;
-        if (audio_stream == (longlong *)0x0) {
+        if (audio_stream == (int64_t *)0x0) {
             stream_processor = resource_manager;
         }
         
@@ -580,12 +580,12 @@ void audio_processor_stream(longlong *audio_stream, int processing_mode, float v
         if (audio_stream == audio_context) break;
         
         // 继续处理流
-        stream_processor = (longlong *)(*audio_stream + -8);
+        stream_processor = (int64_t *)(*audio_stream + -8);
         if (*audio_stream == 0) {
             stream_processor = resource_manager;
         }
         audio_stream = resource_manager;
-        if (stream_processor != (longlong *)0x0) {
+        if (stream_processor != (int64_t *)0x0) {
             audio_stream = stream_processor + 1;
         }
         volume_threshold = output_volume;
@@ -596,7 +596,7 @@ void audio_processor_stream(longlong *audio_stream, int processing_mode, float v
     mix_volume = (float)audio_system_calculate_parameters(stream_buffer);
     processed_volume = mix_volume;
     do {
-        base_volume = *(float *)(&stream_buffer[20] + (longlong)resource_manager * 4);
+        base_volume = *(float *)(&stream_buffer[20] + (int64_t)resource_manager * 4);
         if (base_volume != threshold_volume) {
             mix_volume = (float)audio_system_calculate_parameters(stream_buffer,
                                     effect_params[3],
@@ -604,8 +604,8 @@ void audio_processor_stream(longlong *audio_stream, int processing_mode, float v
             mix_volume = (mix_volume - processed_volume) * base_volume;
             processed_volume = processed_volume + mix_volume;
         }
-        resource_manager = (longlong *)((longlong)resource_manager + 1);
-    } while ((longlong)resource_manager < AUDIO_CHANNEL_COUNT);
+        resource_manager = (int64_t *)((int64_t)resource_manager + 1);
+    } while ((int64_t)resource_manager < AUDIO_CHANNEL_COUNT);
     
     // 应用流效果
     if (stack_mode == 1) {
@@ -631,13 +631,13 @@ void audio_processor_stream(longlong *audio_stream, int processing_mode, float v
             audio_system_configure_effect(stack_base, base_volume, stack_offset);
         }
         else {
-            (**(code **)(**(longlong **)(stack_base + 0x28) + 0x10))
-                      (*(longlong **)(stack_base + 0x28), stack_base);
+            (**(code **)(**(int64_t **)(stack_base + 0x28) + 0x10))
+                      (*(int64_t **)(stack_base + 0x28), stack_base);
         }
     }
     
     // 安全退出
-    FUN_1808fc050(security_token ^ (ulonglong)stream_buffer);
+    FUN_1808fc050(security_token ^ (uint64_t)stream_buffer);
 }
 
 /**
@@ -654,13 +654,13 @@ void audio_processor_stream(longlong *audio_stream, int processing_mode, float v
  * @param param6 音频参数6
  */
 void audio_processor_parametric(uint64_t param1, uint64_t param2, int param3, 
-                               uint param4, int param5, ulonglong param6)
+                               uint param4, int param5, uint64_t param6)
 {
     // 变量声明和初始化
     int audio_state;
     char audio_flag;
-    longlong audio_context;
-    longlong resource_manager;
+    int64_t audio_context;
+    int64_t resource_manager;
     int channel_config;
     float processed_volume;
     float base_volume;
@@ -669,7 +669,7 @@ void audio_processor_parametric(uint64_t param1, uint64_t param2, int param3,
     float channel_mix[AUDIO_CHANNEL_COUNT];
     float volume_threshold;
     float output_volume;
-    ulonglong security_token;
+    uint64_t security_token;
     
     // 音频状态初始化
     audio_state = param5;
@@ -714,12 +714,12 @@ void audio_processor_parametric(uint64_t param1, uint64_t param2, int param3,
             audio_system_configure_effect(processed_volume, final_volume);
         }
         else {
-            (**(code **)(**(longlong **)(audio_context + 0x28) + 0x10))();
+            (**(code **)(**(int64_t **)(audio_context + 0x28) + 0x10))();
         }
     }
     
     // 安全退出
-    FUN_1808fc050(param6 ^ (ulonglong)channel_mix);
+    FUN_1808fc050(param6 ^ (uint64_t)channel_mix);
 }
 
 /**
@@ -734,13 +734,13 @@ void audio_processor_parametric(uint64_t param1, uint64_t param2, int param3,
  * @param effect_flags 效果标志
  * @param security_token 安全验证令牌
  */
-void audio_processor_volume_adjust(float volume_input, longlong audio_context, int channel_config,
-                                  float effect_flags, ulonglong security_token)
+void audio_processor_volume_adjust(float volume_input, int64_t audio_context, int channel_config,
+                                  float effect_flags, uint64_t security_token)
 {
     // 变量声明和初始化
     char audio_flag;
     int sample_rate;
-    longlong resource_manager;
+    int64_t resource_manager;
     float processed_volume;
     float base_volume;
     float threshold_volume;
@@ -748,7 +748,7 @@ void audio_processor_volume_adjust(float volume_input, longlong audio_context, i
     float channel_mix[AUDIO_CHANNEL_COUNT];
     float volume_threshold;
     float output_volume;
-    ulonglong stack_security;
+    uint64_t stack_security;
     
     // 音量调整处理
     do {
@@ -788,12 +788,12 @@ void audio_processor_volume_adjust(float volume_input, longlong audio_context, i
             audio_system_configure_effect(volume_input, final_volume);
         }
         else {
-            (**(code **)(**(longlong **)(audio_context + 0x28) + 0x10))();
+            (**(code **)(**(int64_t **)(audio_context + 0x28) + 0x10))();
         }
     }
     
     // 安全退出
-    FUN_1808fc050(security_token ^ (ulonglong)channel_mix);
+    FUN_1808fc050(security_token ^ (uint64_t)channel_mix);
 }
 
 /**
@@ -807,15 +807,15 @@ void audio_processor_volume_adjust(float volume_input, longlong audio_context, i
  * @param channel_mix 通道混合参数
  * @param security_token 安全验证令牌
  */
-void audio_processor_simple_mix(longlong audio_context, float mix_volume, 
-                               float channel_mix, ulonglong security_token)
+void audio_processor_simple_mix(int64_t audio_context, float mix_volume, 
+                               float channel_mix, uint64_t security_token)
 {
     // 变量声明和初始化
     char audio_flag;
     float final_volume;
     float threshold_volume;
     float output_volume;
-    ulonglong stack_security;
+    uint64_t stack_security;
     
     // 简单混合处理
     final_volume = mix_volume;
@@ -833,12 +833,12 @@ void audio_processor_simple_mix(longlong audio_context, float mix_volume,
             audio_system_configure_effect();
         }
         else {
-            (**(code **)(**(longlong **)(audio_context + 0x28) + 0x10))();
+            (**(code **)(**(int64_t **)(audio_context + 0x28) + 0x10))();
         }
     }
     
     // 安全退出
-    FUN_1808fc050(security_token ^ (ulonglong)final_volume);
+    FUN_1808fc050(security_token ^ (uint64_t)final_volume);
 }
 
 /**
@@ -851,12 +851,12 @@ void audio_processor_simple_mix(longlong audio_context, float mix_volume,
  * @param update_value 更新值
  * @param security_token 安全验证令牌
  */
-void audio_processor_direct_update(longlong audio_context, int32_t update_value, 
-                                  ulonglong security_token)
+void audio_processor_direct_update(int64_t audio_context, int32_t update_value, 
+                                  uint64_t security_token)
 {
     // 变量声明和初始化
     char audio_flag;
-    ulonglong stack_security;
+    uint64_t stack_security;
     
     // 直接更新处理
     audio_flag = audio_system_validation();
@@ -866,12 +866,12 @@ void audio_processor_direct_update(longlong audio_context, int32_t update_value,
             audio_system_configure_effect();
         }
         else {
-            (**(code **)(**(longlong **)(audio_context + 0x28) + 0x10))();
+            (**(code **)(**(int64_t **)(audio_context + 0x28) + 0x10))();
         }
     }
     
     // 安全退出
-    FUN_1808fc050(security_token ^ (ulonglong)update_value);
+    FUN_1808fc050(security_token ^ (uint64_t)update_value);
 }
 
 /**
@@ -884,28 +884,28 @@ void audio_processor_direct_update(longlong audio_context, int32_t update_value,
  * @param target_resource 目标资源指针
  * @return 操作结果状态码
  */
-uint64_t audio_system_resource_manager(longlong resource_context, longlong *target_resource)
+uint64_t audio_system_resource_manager(int64_t resource_context, int64_t *target_resource)
 {
     // 变量声明和初始化
-    longlong *resource_ptr;
+    int64_t *resource_ptr;
     uint64_t *resource_data;
     char resource_flag;
-    longlong *resource_chain;
+    int64_t *resource_chain;
     uint64_t operation_result;
-    longlong *resource_stack;
-    longlong *resource_list;
+    int64_t *resource_stack;
+    int64_t *resource_list;
     
     // 资源管理初始化
-    resource_ptr = (longlong *)(resource_context + 0x10);
-    resource_list = (longlong *)0x0;
-    resource_stack = (longlong *)(*(longlong *)(resource_context + 0x10) + -8);
-    if (*(longlong *)(resource_context + 0x10) == 0) {
+    resource_ptr = (int64_t *)(resource_context + 0x10);
+    resource_list = (int64_t *)0x0;
+    resource_stack = (int64_t *)(*(int64_t *)(resource_context + 0x10) + -8);
+    if (*(int64_t *)(resource_context + 0x10) == 0) {
         resource_stack = resource_list;
     }
     
     // 资源链表处理
-    if (resource_stack == (longlong *)0x0) {
-        resource_stack = (longlong *)0x0;
+    if (resource_stack == (int64_t *)0x0) {
+        resource_stack = (int64_t *)0x0;
     }
     else {
         resource_stack = resource_stack + 1;
@@ -914,10 +914,10 @@ uint64_t audio_system_resource_manager(longlong resource_context, longlong *targ
     // 资源查找和处理
     if (resource_stack == resource_ptr) {
         if (resource_stack != resource_ptr) {
-            *(longlong *)resource_stack[1] = *resource_stack;
-            *(longlong *)(*resource_stack + 8) = resource_stack[1];
-            resource_stack[1] = (longlong)resource_stack;
-            *resource_stack = (longlong)resource_stack;
+            *(int64_t *)resource_stack[1] = *resource_stack;
+            *(int64_t *)(*resource_stack + 8) = resource_stack[1];
+            resource_stack[1] = (int64_t)resource_stack;
+            *resource_stack = (int64_t)resource_stack;
             resource_flag = audio_system_cleanup_handler(resource_context);
             if (resource_flag == '\0') {
                 // 遍历资源链表
@@ -939,7 +939,7 @@ uint64_t audio_system_resource_manager(longlong resource_context, longlong *targ
     else {
         do {
             resource_chain = resource_stack + -1;
-            if (resource_stack == (longlong *)0x0) {
+            if (resource_stack == (int64_t *)0x0) {
                 resource_chain = resource_list;
             }
             if (resource_chain == target_resource) {
@@ -951,12 +951,12 @@ uint64_t audio_system_resource_manager(longlong resource_context, longlong *targ
             if (resource_stack == resource_ptr) {
                 return 0x1c;
             }
-            resource_chain = (longlong *)(*resource_stack + -8);
+            resource_chain = (int64_t *)(*resource_stack + -8);
             if (*resource_stack == 0) {
                 resource_chain = resource_list;
             }
             resource_stack = resource_list;
-            if (resource_chain != (longlong *)0x0) {
+            if (resource_chain != (int64_t *)0x0) {
                 resource_stack = resource_chain + 1;
             }
         } while (resource_stack != resource_ptr);
@@ -974,44 +974,44 @@ uint64_t audio_system_resource_manager(longlong resource_context, longlong *targ
  * @param effect_param 效果参数指针
  * @return 操作结果状态码
  */
-uint64_t audio_system_effect_processor(longlong effect_context, longlong effect_param)
+uint64_t audio_system_effect_processor(int64_t effect_context, int64_t effect_param)
 {
     // 变量声明和初始化
-    longlong *effect_processor;
+    int64_t *effect_processor;
     char effect_flag;
-    longlong audio_device;
+    int64_t audio_device;
     uint effect_config;
-    longlong *effect_chain;
+    int64_t *effect_chain;
     float *effect_buffer;
-    longlong buffer_offset;
+    int64_t buffer_offset;
     int32_t effect_value;
     float volume_params[2];
-    longlong buffer_position;
-    longlong *effect_list;
-    longlong *effect_manager;
+    int64_t buffer_position;
+    int64_t *effect_list;
+    int64_t *effect_manager;
     
     // 效果处理初始化
-    effect_manager = (longlong *)0x0;
-    effect_chain = (longlong *)(*(longlong *)(effect_context + 0x10) + -8);
-    if (*(longlong *)(effect_context + 0x10) == 0) {
+    effect_manager = (int64_t *)0x0;
+    effect_chain = (int64_t *)(*(int64_t *)(effect_context + 0x10) + -8);
+    if (*(int64_t *)(effect_context + 0x10) == 0) {
         effect_chain = effect_manager;
     }
     
     // 效果处理器链表
     effect_processor = effect_manager;
-    if (effect_chain != (longlong *)0x0) {
+    if (effect_chain != (int64_t *)0x0) {
         effect_processor = effect_chain + 1;
     }
     
     // 效果处理循环
     do {
-        if (effect_processor == (longlong *)(effect_context + 0x10)) {
+        if (effect_processor == (int64_t *)(effect_context + 0x10)) {
             return 0;
         }
         
         // 处理单个效果
         effect_chain = effect_processor + -1;
-        if (effect_processor == (longlong *)0x0) {
+        if (effect_processor == (int64_t *)0x0) {
             effect_chain = effect_manager;
         }
         
@@ -1023,8 +1023,8 @@ uint64_t audio_system_effect_processor(longlong effect_context, longlong effect_
             effect_value = (**(code **)(*effect_chain + 0x10))(effect_chain, volume_params);
             
             // 音量效果处理
-            if ((*(int *)(effect_param + 4) == 1) && (*(longlong *)(effect_param + 0x30) != 0)) {
-                effect_value = func_0x0001808c6590(*(longlong *)(effect_param + 0x30), effect_value);
+            if ((*(int *)(effect_param + 4) == 1) && (*(int64_t *)(effect_param + 0x30) != 0)) {
+                effect_value = func_0x0001808c6590(*(int64_t *)(effect_param + 0x30), effect_value);
             }
             
             // 缓冲区处理
@@ -1057,24 +1057,24 @@ uint64_t audio_system_effect_processor(longlong effect_context, longlong effect_
                 }
                 
                 *(float *)(buffer_offset + effect_param) = volume_params[0];
-                *(int32_t *)((ulonglong)effect_config + effect_param) = *(int32_t *)(effect_param + 0xc);
+                *(int32_t *)((uint64_t)effect_config + effect_param) = *(int32_t *)(effect_param + 0xc);
                 audio_system_configure_effect(effect_param, effect_value);
                 *(int *)(effect_param + 0x28) = *(int *)(effect_param + 0x28) + -1;
             }
         }
         
         // 继续效果链
-        if (effect_processor == (longlong *)(effect_context + 0x10)) {
+        if (effect_processor == (int64_t *)(effect_context + 0x10)) {
             return 0;
         }
         
-        effect_chain = (longlong *)(*effect_processor + -8);
+        effect_chain = (int64_t *)(*effect_processor + -8);
         if (*effect_processor == 0) {
             effect_chain = effect_manager;
         }
         
         effect_processor = effect_chain + 1;
-        if (effect_chain == (longlong *)0x0) {
+        if (effect_chain == (int64_t *)0x0) {
             effect_processor = effect_manager;
         }
     } while (true);
@@ -1099,8 +1099,8 @@ float audio_system_calculate_parameters(int32_t *param_buffer, float volume_para
     // 参数计算逻辑
     if (sample_param < 1) {
         calculated_value = (float)param_buffer[2];
-        if ((param_buffer[1] == 0) && (*(longlong *)(param_buffer + 0xc) != 0)) {
-            calculated_value = (float)func_0x0001808c6500(*(longlong *)(param_buffer + 0xc), calculated_value);
+        if ((param_buffer[1] == 0) && (*(int64_t *)(param_buffer + 0xc) != 0)) {
+            calculated_value = (float)func_0x0001808c6500(*(int64_t *)(param_buffer + 0xc), calculated_value);
         }
         return calculated_value;
     }
@@ -1114,10 +1114,10 @@ float audio_system_calculate_parameters(int32_t *param_buffer, float volume_para
             return volume_param;
         case 2:
             if (param_buffer[1] != 1) {
-                if (*(longlong *)(param_buffer + 0xc) == 0) {
+                if (*(int64_t *)(param_buffer + 0xc) == 0) {
                     return volume_param + 0.0;
                 }
-                calculated_value = (float)func_0x0001808c6500(*(longlong *)(param_buffer + 0xc), 0);
+                calculated_value = (float)func_0x0001808c6500(*(int64_t *)(param_buffer + 0xc), 0);
                 return calculated_value + volume_param;
             }
             if (volume_param <= AUDIO_VOLUME_THRESHOLD) {
@@ -1141,10 +1141,10 @@ float audio_system_calculate_parameters(int32_t *param_buffer, float volume_para
  * @param target_state 目标状态
  * @return 操作结果状态码
  */
-int audio_system_state_manager(longlong *state_context, longlong target_state)
+int audio_system_state_manager(int64_t *state_context, int64_t target_state)
 {
     // 变量声明和初始化
-    longlong *state_ptr;
+    int64_t *state_ptr;
     int state_result;
     int state_index;
     
@@ -1155,10 +1155,10 @@ int audio_system_state_manager(longlong *state_context, longlong target_state)
     
     // 状态更新
     if (state_context[9] != 0) {
-        *(longlong *)state_context[1] = *state_context;
-        *(longlong *)(*state_context + 8) = state_context[1];
-        state_context[1] = (longlong)state_context;
-        *state_context = (longlong)state_context;
+        *(int64_t *)state_context[1] = *state_context;
+        *(int64_t *)(*state_context + 8) = state_context[1];
+        state_context[1] = (int64_t)state_context;
+        *state_context = (int64_t)state_context;
         audio_system_cleanup_handler();
     }
     
@@ -1168,12 +1168,12 @@ int audio_system_state_manager(longlong *state_context, longlong target_state)
     }
     
     // 状态链表处理
-    state_ptr = (longlong *)*state_context;
+    state_ptr = (int64_t *)*state_context;
     state_index = 0;
     if (state_ptr != state_context) {
         state_result = 0;
         do {
-            state_ptr = (longlong *)*state_ptr;
+            state_ptr = (int64_t *)*state_ptr;
             state_result = state_result + 1;
         } while (state_ptr != state_context);
         
@@ -1184,10 +1184,10 @@ int audio_system_state_manager(longlong *state_context, longlong target_state)
     }
     
     // 状态更新完成
-    state_context[1] = *(longlong *)(target_state + 0x28);
+    state_context[1] = *(int64_t *)(target_state + 0x28);
     *state_context = target_state + 0x20;
-    *(longlong **)(target_state + 0x28) = state_context;
-    *(longlong **)state_context[1] = state_context;
+    *(int64_t **)(target_state + 0x28) = state_context;
+    *(int64_t **)state_context[1] = state_context;
     
     if (state_index == 0) {
         return 0;
@@ -1205,7 +1205,7 @@ int audio_system_state_manager(longlong *state_context, longlong target_state)
  * @param validation_param 验证参数
  * @return 验证结果
  */
-uint64_t audio_system_validation(longlong validation_context, longlong validation_param)
+uint64_t audio_system_validation(int64_t validation_context, int64_t validation_param)
 {
     // 变量声明和初始化
     char validation_result;
@@ -1215,7 +1215,7 @@ uint64_t audio_system_validation(longlong validation_context, longlong validatio
         return 1;
     }
     
-    validation_result = (**(code **)(**(longlong **)(validation_context + 0x28) + 0x20))();
+    validation_result = (**(code **)(**(int64_t **)(validation_context + 0x28) + 0x20))();
     if ((validation_result == '\0') && (validation_result = audio_system_effect_processor(validation_context), validation_result == '\0')) {
         return 1;
     }
@@ -1233,7 +1233,7 @@ uint64_t audio_system_validation(longlong validation_context, longlong validatio
  * @param config_param2 配置参数2
  * @param config_flag 配置标志
  */
-void audio_system_configure_effect(longlong config_context, int32_t config_param1, 
+void audio_system_configure_effect(int64_t config_context, int32_t config_param1, 
                                    int32_t config_param2, char config_flag)
 {
     // 变量声明和初始化
@@ -1241,7 +1241,7 @@ void audio_system_configure_effect(longlong config_context, int32_t config_param
     
     // 效果配置逻辑
     effect_param = 5;
-    if ((config_flag != '\0') && (effect_param = 5, *(short *)(*(longlong *)(config_context + 0x20) + 0x4a) == 1)) {
+    if ((config_flag != '\0') && (effect_param = 5, *(short *)(*(int64_t *)(config_context + 0x20) + 0x4a) == 1)) {
         effect_param = 4;
     }
     
@@ -1257,14 +1257,14 @@ void audio_system_configure_effect(longlong config_context, int32_t config_param
  * 
  * @param cleanup_context 清理上下文指针
  */
-void audio_system_cleanup_handler(longlong *cleanup_context)
+void audio_system_cleanup_handler(int64_t *cleanup_context)
 {
     // 变量声明和初始化
     uint64_t *resource_data;
-    longlong resource_offset;
+    int64_t resource_offset;
     int resource_state;
     uint64_t resource_value;
-    longlong resource_position;
+    int64_t resource_position;
     
     // 资源清理逻辑
     resource_data = (uint64_t *)cleanup_context[1];
@@ -1272,7 +1272,7 @@ void audio_system_cleanup_handler(longlong *cleanup_context)
         ((resource_data[0xb] == 0 ||
           (((*(uint *)(resource_data + 0x11) >> 2 & 1) == 0 || (resource_state = audio_system_resource_manager(resource_data), resource_state == 0)))))) &&
         ((resource_data[9] == 0 ||
-          (((*(int *)(resource_data + 0xe) == -1 && (*(int *)((longlong)resource_data + 0x74) == -1)) ||
+          (((*(int *)(resource_data + 0xe) == -1 && (*(int *)((int64_t)resource_data + 0x74) == -1)) ||
            (resource_state = audio_system_state_manager(resource_data[9], resource_data), resource_state == 0)))))) {
         
         resource_value = (**(code **)*resource_data)(resource_data);
@@ -1315,12 +1315,12 @@ void audio_system_cleanup_handler(longlong *cleanup_context)
  * 
  * @param callback_context 回调上下文指针
  */
-void audio_system_process_callback(longlong *callback_context)
+void audio_system_process_callback(int64_t *callback_context)
 {
     // 变量声明和初始化
-    longlong resource_offset;
+    int64_t resource_offset;
     int resource_state;
-    longlong resource_position;
+    int64_t resource_position;
     uint64_t *resource_data;
     
     // 回调处理逻辑
@@ -1332,7 +1332,7 @@ void audio_system_process_callback(longlong *callback_context)
         }
         
         if (((resource_data[9] != 0) &&
-            ((*(int *)(resource_data + 0xe) != -1 || (*(int *)((longlong)resource_data + 0x74) != -1)))) &&
+            ((*(int *)(resource_data + 0xe) != -1 || (*(int *)((int64_t)resource_data + 0x74) != -1)))) &&
             (resource_state = audio_system_state_manager(), resource_state != 0)) {
             return;
         }

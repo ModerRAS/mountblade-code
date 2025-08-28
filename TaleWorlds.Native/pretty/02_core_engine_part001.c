@@ -30,7 +30,7 @@
 ==============================================================================*/
 
 // 类型定义和常量声明
-typedef longlong CoreEngineHandle;
+typedef int64_t CoreEngineHandle;
 typedef int SystemStatus;
 typedef uint SystemFlags;
 typedef void* EngineContext;
@@ -333,17 +333,17 @@ uint8_t system_memory_0018;   // 配置系统常量1
 uint8_t system_memory_0010;   // 配置系统常量2
 uint8_t unknown_var_1800;   // 配置文件压缩器
 uint8_t unknown_var_1856;   // 配置文件解压器
-longlong unknown_var_296;    // 配置系统大小限制
+int64_t unknown_var_296;    // 配置系统大小限制
 uint8_t system_memory_0000;   // 配置系统空值
 uint8_t unknown_var_1904;   // 配置文件校验器
 uint8_t unknown_var_1960;   // 配置文件签名器
-ulonglong unknown_var_456;   // 配置文件哈希种子
-ulonglong unknown_var_464;   // 配置文件加密密钥
-ulonglong unknown_var_472;   // 配置文件解密密钥
+uint64_t unknown_var_456;   // 配置文件哈希种子
+uint64_t unknown_var_464;   // 配置文件加密密钥
+uint64_t unknown_var_472;   // 配置文件解密密钥
 uint64_t unknown_var_480;  // 配置文件压缩级别
 uint64_t unknown_var_488;  // 配置文件加密级别
 uint64_t unknown_var_496;  // 配置文件缓存大小
-longlong unknown_var_504;    // 配置文件超时时间
+int64_t unknown_var_504;    // 配置文件超时时间
 int8_t system_allocation_flags; // 配置系统标志位5
 uint8_t unknown_var_2008;   // 配置文件监控器
 uint8_t unknown_var_2280;   // 配置文件同步器

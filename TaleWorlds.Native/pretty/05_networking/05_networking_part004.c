@@ -36,7 +36,7 @@ extern uint64_t NETWORK_SECURITY_CONTEXT;
 // =============================================================================
 
 // 网络连接初始化函数
-void initialize_network_connection(longlong connection_context, uint64_t protocol_data, int32_t connection_flags)
+void initialize_network_connection(int64_t connection_context, uint64_t protocol_data, int32_t connection_flags)
 {
   // 调用底层网络初始化函数
   // 参数：连接上下文、协议数据、协议处理器、连接ID、会话ID
@@ -47,7 +47,7 @@ void initialize_network_connection(longlong connection_context, uint64_t protoco
 }
 
 // 网络连接配置函数
-void configure_network_settings(longlong connection_context, uint64_t config_data, int32_t config_flags)
+void configure_network_settings(int64_t connection_context, uint64_t config_data, int32_t config_flags)
 {
   // 配置网络连接参数
   // 参数：连接上下文、配置数据、配置处理器、连接ID、会话ID
@@ -62,7 +62,7 @@ void configure_network_settings(longlong connection_context, uint64_t config_dat
 // =============================================================================
 
 // 基础网络数据包序列化函数
-int serialize_basic_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
+int serialize_basic_network_packet(int64_t packet_context, int64_t data_buffer, int buffer_size)
 {
   int32_t connection_id;
   int32_t session_id;
@@ -89,7 +89,7 @@ int serialize_basic_network_packet(longlong packet_context, longlong data_buffer
 }
 
 // 扩展网络数据包序列化函数
-int serialize_extended_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
+int serialize_extended_network_packet(int64_t packet_context, int64_t data_buffer, int buffer_size)
 {
   int32_t connection_id;
   int32_t session_id;
@@ -119,7 +119,7 @@ int serialize_extended_network_packet(longlong packet_context, longlong data_buf
 }
 
 // 安全网络数据包序列化函数
-int serialize_secure_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
+int serialize_secure_network_packet(int64_t packet_context, int64_t data_buffer, int buffer_size)
 {
   int32_t connection_id;
   int32_t session_id;
@@ -149,7 +149,7 @@ int serialize_secure_network_packet(longlong packet_context, longlong data_buffe
 }
 
 // 压缩网络数据包序列化函数
-int serialize_compressed_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
+int serialize_compressed_network_packet(int64_t packet_context, int64_t data_buffer, int buffer_size)
 {
   int32_t connection_id;
   int32_t session_id;
@@ -179,7 +179,7 @@ int serialize_compressed_network_packet(longlong packet_context, longlong data_b
 }
 
 // 优先级网络数据包序列化函数
-int serialize_priority_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
+int serialize_priority_network_packet(int64_t packet_context, int64_t data_buffer, int buffer_size)
 {
   int32_t connection_id;
   int32_t session_id;
@@ -209,7 +209,7 @@ int serialize_priority_network_packet(longlong packet_context, longlong data_buf
 }
 
 // 简单网络数据包序列化函数
-int serialize_simple_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
+int serialize_simple_network_packet(int64_t packet_context, int64_t data_buffer, int buffer_size)
 {
   int32_t connection_id;
   int processed_bytes;
@@ -231,7 +231,7 @@ int serialize_simple_network_packet(longlong packet_context, longlong data_buffe
 // =============================================================================
 
 // 多媒体网络数据包序列化函数
-int serialize_multimedia_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
+int serialize_multimedia_network_packet(int64_t packet_context, int64_t data_buffer, int buffer_size)
 {
   int32_t connection_id;
   int32_t session_id;
@@ -261,7 +261,7 @@ int serialize_multimedia_network_packet(longlong packet_context, longlong data_b
 }
 
 // 实时网络数据包序列化函数
-int serialize_realtime_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
+int serialize_realtime_network_packet(int64_t packet_context, int64_t data_buffer, int buffer_size)
 {
   int32_t connection_id;
   int32_t session_id;
@@ -295,7 +295,7 @@ int serialize_realtime_network_packet(longlong packet_context, longlong data_buf
 // =============================================================================
 
 // 复杂网络数据包序列化函数
-int serialize_complex_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
+int serialize_complex_network_packet(int64_t packet_context, int64_t data_buffer, int buffer_size)
 {
   int32_t connection_id;
   int32_t session_id;
@@ -336,7 +336,7 @@ int serialize_complex_network_packet(longlong packet_context, longlong data_buff
 }
 
 // 双协议网络数据包序列化函数
-int serialize_dual_protocol_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
+int serialize_dual_protocol_network_packet(int64_t packet_context, int64_t data_buffer, int buffer_size)
 {
   int32_t connection_id;
   int32_t session_id;
@@ -364,7 +364,7 @@ int serialize_dual_protocol_network_packet(longlong packet_context, longlong dat
 }
 
 // 多层网络数据包序列化函数
-int serialize_multi_layer_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
+int serialize_multi_layer_network_packet(int64_t packet_context, int64_t data_buffer, int buffer_size)
 {
   int32_t connection_id;
   int32_t session_id;
@@ -410,7 +410,7 @@ int serialize_multi_layer_network_packet(longlong packet_context, longlong data_
 // =============================================================================
 
 // 增强网络数据包序列化函数
-int serialize_enhanced_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
+int serialize_enhanced_network_packet(int64_t packet_context, int64_t data_buffer, int buffer_size)
 {
   int8_t checksum_flag;
   int32_t connection_id;
@@ -454,7 +454,7 @@ int serialize_enhanced_network_packet(longlong packet_context, longlong data_buf
 }
 
 // 快速网络数据包序列化函数
-int serialize_fast_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
+int serialize_fast_network_packet(int64_t packet_context, int64_t data_buffer, int buffer_size)
 {
   int32_t connection_id;
   int32_t session_id;
@@ -478,7 +478,7 @@ int serialize_fast_network_packet(longlong packet_context, longlong data_buffer,
 }
 
 // 最小化网络数据包序列化函数
-int serialize_minimal_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
+int serialize_minimal_network_packet(int64_t packet_context, int64_t data_buffer, int buffer_size)
 {
   int32_t connection_id;
   int processed_bytes;
@@ -500,7 +500,7 @@ int serialize_minimal_network_packet(longlong packet_context, longlong data_buff
 // =============================================================================
 
 // 流式网络数据包序列化函数
-int serialize_stream_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
+int serialize_stream_network_packet(int64_t packet_context, int64_t data_buffer, int buffer_size)
 {
   int32_t connection_id;
   int8_t stream_flag;
@@ -530,7 +530,7 @@ int serialize_stream_network_packet(longlong packet_context, longlong data_buffe
 }
 
 // 块状网络数据包序列化函数
-int serialize_block_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
+int serialize_block_network_packet(int64_t packet_context, int64_t data_buffer, int buffer_size)
 {
   int8_t block_flag;
   int processed_bytes;
@@ -558,7 +558,7 @@ int serialize_block_network_packet(longlong packet_context, longlong data_buffer
 }
 
 // 缓冲网络数据包序列化函数
-int serialize_buffered_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
+int serialize_buffered_network_packet(int64_t packet_context, int64_t data_buffer, int buffer_size)
 {
   int32_t connection_id;
   int8_t buffer_flag;
@@ -586,7 +586,7 @@ int serialize_buffered_network_packet(longlong packet_context, longlong data_buf
 }
 
 // 分段网络数据包序列化函数
-int serialize_segmented_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
+int serialize_segmented_network_packet(int64_t packet_context, int64_t data_buffer, int buffer_size)
 {
   int8_t segment_flag;
   int processed_bytes;
@@ -616,7 +616,7 @@ int serialize_segmented_network_packet(longlong packet_context, longlong data_bu
 // =============================================================================
 
 // 简单消息网络数据包序列化函数
-int serialize_simple_message_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
+int serialize_simple_message_network_packet(int64_t packet_context, int64_t data_buffer, int buffer_size)
 {
   int processed_bytes;
   int total_bytes;
@@ -630,7 +630,7 @@ int serialize_simple_message_network_packet(longlong packet_context, longlong da
 }
 
 // 标准网络数据包序列化函数
-int serialize_standard_network_packet(longlong packet_context, longlong data_buffer, int buffer_size)
+int serialize_standard_network_packet(int64_t packet_context, int64_t data_buffer, int buffer_size)
 {
   int32_t connection_id;
   int32_t session_id;
@@ -658,7 +658,7 @@ int serialize_standard_network_packet(longlong packet_context, longlong data_buf
 // =============================================================================
 
 // 网络连接信息获取函数
-void get_network_connection_info(ulonglong connection_handle, uint64_t *connection_info)
+void get_network_connection_info(uint64_t connection_handle, uint64_t *connection_info)
 {
   int32_t info_field1;
   int32_t info_field2;
@@ -669,17 +669,17 @@ void get_network_connection_info(ulonglong connection_handle, uint64_t *connecti
   int8_t *buffer_ptr;
   uint64_t stack_buffer1;
   uint64_t stack_buffer2;
-  longlong stack_buffer3;
-  longlong stack_buffer4;
+  int64_t stack_buffer3;
+  int64_t stack_buffer4;
   int8_t local_buffer[256];
-  ulonglong security_token;
+  uint64_t security_token;
   
   // 安全检查
-  security_token = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer;
+  security_token = GET_SECURITY_COOKIE() ^ (uint64_t)temp_buffer;
   if (connection_info == (uint64_t *)0x0) {
     if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
       // 安全验证失败
-      FUN_1808fc050(security_token ^ (ulonglong)temp_buffer);
+      FUN_1808fc050(security_token ^ (uint64_t)temp_buffer);
     }
     func_0x00018074bda0(local_buffer, 0x100, 0);
     buffer_ptr = local_buffer;
@@ -714,35 +714,35 @@ void get_network_connection_info(ulonglong connection_handle, uint64_t *connecti
   info_field2 = *(int32_t *)(stack_buffer3 + 0x50);
   info_field3 = *(int32_t *)(stack_buffer3 + 0x54);
   *(int32_t *)(connection_info + 2) = *(int32_t *)(stack_buffer3 + 0x48);
-  *(int32_t *)((longlong)connection_info + 0x14) = info_field1;
+  *(int32_t *)((int64_t)connection_info + 0x14) = info_field1;
   *(int32_t *)(connection_info + 3) = info_field2;
-  *(int32_t *)((longlong)connection_info + 0x1c) = info_field3;
+  *(int32_t *)((int64_t)connection_info + 0x1c) = info_field3;
   info_field1 = *(int32_t *)(stack_buffer3 + 0x5c);
   info_field2 = *(int32_t *)(stack_buffer3 + 0x60);
   info_field3 = *(int32_t *)(stack_buffer3 + 100);
   *(int32_t *)(connection_info + 4) = *(int32_t *)(stack_buffer3 + 0x58);
-  *(int32_t *)((longlong)connection_info + 0x24) = info_field1;
+  *(int32_t *)((int64_t)connection_info + 0x24) = info_field1;
   *(int32_t *)(connection_info + 5) = info_field2;
-  *(int32_t *)((longlong)connection_info + 0x2c) = info_field3;
+  *(int32_t *)((int64_t)connection_info + 0x2c) = info_field3;
   
   // 清理资源
   FUN_18088c790(&stack_buffer1);
 }
 
 // 网络连接设置函数
-void set_network_connection_settings(uint64_t connection_handle, longlong settings_data)
+void set_network_connection_settings(uint64_t connection_handle, int64_t settings_data)
 {
   int status_code;
   int error_code;
   int8_t temp_buffer[32];
   int8_t *buffer_ptr;
   uint64_t stack_buffer;
-  longlong connection_ptr;
+  int64_t connection_ptr;
   int8_t local_buffer[256];
-  ulonglong security_token;
+  uint64_t security_token;
   
   // 安全检查
-  security_token = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer;
+  security_token = GET_SECURITY_COOKIE() ^ (uint64_t)temp_buffer;
   if (settings_data == 0) {
     if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) {
       func_0x00018074bda0(local_buffer, 0x100, 0);
@@ -751,7 +751,7 @@ void set_network_connection_settings(uint64_t connection_handle, longlong settin
       FUN_180749ef0(0x1f, 0xb, connection_handle, &NETWORK_CONNECTION_POOL);
     }
     // 安全验证失败
-    FUN_1808fc050(security_token ^ (ulonglong)temp_buffer);
+    FUN_1808fc050(security_token ^ (uint64_t)temp_buffer);
   }
   
   // 初始化连接设置
@@ -788,10 +788,10 @@ void broadcast_network_connection(uint64_t connection_handle, uint64_t message_d
   int8_t temp_buffer[32];
   int8_t *buffer_ptr;
   int8_t local_buffer[256];
-  ulonglong security_token;
+  uint64_t security_token;
   
   // 安全检查
-  security_token = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer;
+  security_token = GET_SECURITY_COOKIE() ^ (uint64_t)temp_buffer;
   status_code = FUN_18083fc50();
   if ((status_code != 0) && ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
     error_code = FUN_18074b880(local_buffer, 0x100, message_data);
@@ -802,7 +802,7 @@ void broadcast_network_connection(uint64_t connection_handle, uint64_t message_d
     FUN_180749ef0(status_code, 0xb, connection_handle, &NETWORK_CONNECTION_POOL);
   }
   // 安全验证失败
-  FUN_1808fc050(security_token ^ (ulonglong)temp_buffer);
+  FUN_1808fc050(security_token ^ (uint64_t)temp_buffer);
 }
 
 // 网络连接错误处理函数
@@ -822,10 +822,10 @@ void handle_network_connection_error(uint64_t connection_handle)
 // 网络连接清理函数
 void cleanup_network_connection(uint64_t connection_handle)
 {
-  ulonglong cleanup_token;
+  uint64_t cleanup_token;
   
   // 执行清理操作
-  FUN_1808fc050(cleanup_token ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(cleanup_token ^ (uint64_t)&stack0x00000000);
 }
 
 // 网络连接验证函数
@@ -836,12 +836,12 @@ void validate_network_connection(uint64_t connection_handle, int32_t *validation
   int validation_length;
   int8_t temp_buffer[32];
   int8_t *buffer_ptr;
-  longlong connection_buffers[2];
+  int64_t connection_buffers[2];
   int8_t local_buffer[256];
-  ulonglong security_token;
+  uint64_t security_token;
   
   // 安全检查
-  security_token = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer;
+  security_token = GET_SECURITY_COOKIE() ^ (uint64_t)temp_buffer;
   status_code = func_0x00018088c590(connection_handle, connection_buffers);
   if ((status_code == 0) && ((*(uint *)(connection_buffers[0] + 0x24) >> 1 & 1) == 0)) {
     status_code = 0x4b;
@@ -861,7 +861,7 @@ void validate_network_connection(uint64_t connection_handle, int32_t *validation
   }
 validation_success:
   // 安全验证失败
-  FUN_1808fc050(security_token ^ (ulonglong)temp_buffer);
+  FUN_1808fc050(security_token ^ (uint64_t)temp_buffer);
 }
 
 // 网络连接重置函数
@@ -881,10 +881,10 @@ void reset_network_connection(uint64_t connection_handle)
 // 网络连接终止函数
 void terminate_network_connection(uint64_t connection_handle)
 {
-  ulonglong termination_token;
+  uint64_t termination_token;
   
   // 执行终止操作
-  FUN_1808fc050(termination_token ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(termination_token ^ (uint64_t)&stack0x00000000);
 }
 
 // 网络连接状态查询函数
@@ -894,17 +894,17 @@ void query_network_connection_status(uint64_t connection_handle, uint64_t *statu
   int error_code;
   int8_t temp_buffer[32];
   int8_t *buffer_ptr;
-  longlong connection_buffers[2];
+  int64_t connection_buffers[2];
   uint64_t *status_buffers[2];
   int8_t local_buffer[256];
-  ulonglong security_token;
+  uint64_t security_token;
   
   // 安全检查
-  security_token = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer;
+  security_token = GET_SECURITY_COOKIE() ^ (uint64_t)temp_buffer;
   if (status_info == (uint64_t *)0x0) {
     if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
       // 安全验证失败
-      FUN_1808fc050(security_token ^ (ulonglong)temp_buffer);
+      FUN_1808fc050(security_token ^ (uint64_t)temp_buffer);
     }
     func_0x00018074bda0(local_buffer, 0x100, 0);
     buffer_ptr = local_buffer;
@@ -949,12 +949,12 @@ void get_network_connection_id(uint64_t connection_handle, uint64_t *connection_
   int status_code;
   int8_t temp_buffer[32];
   int8_t *buffer_ptr;
-  longlong connection_buffers[2];
+  int64_t connection_buffers[2];
   int8_t local_buffer[256];
-  ulonglong security_token;
+  uint64_t security_token;
   
   // 安全检查
-  security_token = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer;
+  security_token = GET_SECURITY_COOKIE() ^ (uint64_t)temp_buffer;
   if (connection_id == (uint64_t *)0x0) {
     status_code = 0x1f;
   }
@@ -974,7 +974,7 @@ void get_network_connection_id(uint64_t connection_handle, uint64_t *connection_
   }
 success_handler:
   // 安全验证失败
-  FUN_1808fc050(security_token ^ (ulonglong)temp_buffer);
+  FUN_1808fc050(security_token ^ (uint64_t)temp_buffer);
 }
 
 // =============================================================================

@@ -13,7 +13,7 @@ void FUN_1807a2720(void)
 
 
 
-uint64_t FUN_1807a2a30(longlong param_1,float *param_2,float *param_3,int param_4,uint param_5)
+uint64_t FUN_1807a2a30(int64_t param_1,float *param_2,float *param_3,int param_4,uint param_5)
 
 {
   float fVar1;
@@ -21,10 +21,10 @@ uint64_t FUN_1807a2a30(longlong param_1,float *param_2,float *param_3,int param_
   float fVar3;
   float fVar4;
   float fVar5;
-  longlong lVar6;
+  int64_t lVar6;
   int iVar7;
   float *pfVar8;
-  longlong lVar9;
+  int64_t lVar9;
   uint uVar10;
   float fVar11;
   float fVar12;
@@ -382,9 +382,9 @@ uint64_t FUN_1807a2a30(longlong param_1,float *param_2,float *param_3,int param_
           iVar7 = *(int *)(param_1 + 0x25ec);
           if (iVar7 == 0) {
             fVar11 = *param_2;
-            lVar9 = (longlong)(int)uVar10;
+            lVar9 = (int64_t)(int)uVar10;
             pfVar8 = (float *)((lVar9 + 0x5a) * 0x10 + param_1);
-            lVar6 = *(longlong *)(pfVar8 + 2);
+            lVar6 = *(int64_t *)(pfVar8 + 2);
             fVar27 = *pfVar8;
             fVar12 = pfVar8[1];
             fVar16 = *(float *)(lVar6 + 0x18);
@@ -395,7 +395,7 @@ uint64_t FUN_1807a2a30(longlong param_1,float *param_2,float *param_3,int param_
             *pfVar8 = fVar14;
             pfVar8[1] = fVar27;
             pfVar8 = (float *)((lVar9 + 0xda) * 0x10 + param_1);
-            lVar6 = *(longlong *)(pfVar8 + 2);
+            lVar6 = *(int64_t *)(pfVar8 + 2);
             fVar1 = *pfVar8;
             fVar2 = pfVar8[1];
             fVar19 = *(float *)(lVar6 + 0x18);
@@ -405,7 +405,7 @@ uint64_t FUN_1807a2a30(longlong param_1,float *param_2,float *param_3,int param_
             pfVar8[1] = fVar1;
             *pfVar8 = fVar15;
             pfVar8 = (float *)((lVar9 + 0x15a) * 0x10 + param_1);
-            lVar6 = *(longlong *)(pfVar8 + 2);
+            lVar6 = *(int64_t *)(pfVar8 + 2);
             fVar3 = *pfVar8;
             fVar4 = pfVar8[1];
             fVar5 = *(float *)(lVar6 + 0x18);
@@ -416,7 +416,7 @@ uint64_t FUN_1807a2a30(longlong param_1,float *param_2,float *param_3,int param_
             pfVar8[1] = fVar3;
             *pfVar8 = fVar13;
             pfVar8 = (float *)((lVar9 + 0x1da) * 0x10 + param_1);
-            lVar6 = *(longlong *)(pfVar8 + 2);
+            lVar6 = *(int64_t *)(pfVar8 + 2);
             fVar2 = *pfVar8;
             fVar15 = (fVar11 - fVar2 * *(float *)(lVar6 + 0x1c)) -
                      pfVar8[1] * *(float *)(lVar6 + 0x20);
@@ -438,9 +438,9 @@ LAB_1807a41a0:
           else {
             if (iVar7 == 1) {
               fVar11 = *param_2;
-              lVar9 = (longlong)(int)uVar10;
+              lVar9 = (int64_t)(int)uVar10;
               pfVar8 = (float *)((lVar9 + 0x5a) * 0x10 + param_1);
-              lVar6 = *(longlong *)(pfVar8 + 2);
+              lVar6 = *(int64_t *)(pfVar8 + 2);
               fVar27 = *pfVar8;
               fVar12 = pfVar8[1];
               fVar16 = *(float *)(lVar6 + 0x14);
@@ -451,7 +451,7 @@ LAB_1807a41a0:
               *pfVar8 = fVar13;
               pfVar8[1] = fVar27;
               pfVar8 = (float *)((lVar9 + 0x7a) * 0x10 + param_1);
-              lVar6 = *(longlong *)(pfVar8 + 2);
+              lVar6 = *(int64_t *)(pfVar8 + 2);
               fVar1 = *pfVar8;
               fVar2 = pfVar8[1];
               fVar19 = *(float *)(lVar6 + 0x18);
@@ -462,7 +462,7 @@ LAB_1807a41a0:
               *pfVar8 = fVar24;
               pfVar8[1] = fVar1;
               pfVar8 = (float *)((lVar9 + 0xda) * 0x10 + param_1);
-              lVar6 = *(longlong *)(pfVar8 + 2);
+              lVar6 = *(int64_t *)(pfVar8 + 2);
               fVar12 = *pfVar8;
               fVar16 = pfVar8[1];
               fVar18 = *(float *)(lVar6 + 0x14);
@@ -473,7 +473,7 @@ LAB_1807a41a0:
               pfVar8[1] = fVar12;
               *pfVar8 = fVar20;
               pfVar8 = (float *)((lVar9 + 0xfa) * 0x10 + param_1);
-              lVar6 = *(longlong *)(pfVar8 + 2);
+              lVar6 = *(int64_t *)(pfVar8 + 2);
               fVar3 = *pfVar8;
               fVar4 = pfVar8[1];
               fVar5 = *(float *)(lVar6 + 0x14);
@@ -484,7 +484,7 @@ LAB_1807a41a0:
               *pfVar8 = fVar14;
               pfVar8[1] = fVar3;
               pfVar8 = (float *)((lVar9 + 0x15a) * 0x10 + param_1);
-              lVar6 = *(longlong *)(pfVar8 + 2);
+              lVar6 = *(int64_t *)(pfVar8 + 2);
               fVar18 = *pfVar8;
               fVar26 = pfVar8[1];
               fVar13 = *(float *)(lVar6 + 0x18);
@@ -495,7 +495,7 @@ LAB_1807a41a0:
               pfVar8[1] = fVar18;
               *pfVar8 = fVar14;
               pfVar8 = (float *)((lVar9 + 0x17a) * 0x10 + param_1);
-              lVar6 = *(longlong *)(pfVar8 + 2);
+              lVar6 = *(int64_t *)(pfVar8 + 2);
               fVar16 = *pfVar8;
               fVar3 = pfVar8[1];
               fVar4 = *(float *)(lVar6 + 0x18);
@@ -506,7 +506,7 @@ LAB_1807a41a0:
               *pfVar8 = fVar25;
               pfVar8[1] = fVar16;
               pfVar8 = (float *)((lVar9 + 0x1da) * 0x10 + param_1);
-              lVar6 = *(longlong *)(pfVar8 + 2);
+              lVar6 = *(int64_t *)(pfVar8 + 2);
               fVar18 = *pfVar8;
               fVar26 = pfVar8[1];
               fVar13 = *(float *)(lVar6 + 0x18);
@@ -517,7 +517,7 @@ LAB_1807a41a0:
               pfVar8[1] = fVar18;
               *pfVar8 = fVar21;
               pfVar8 = (float *)((lVar9 + 0x1fa) * 0x10 + param_1);
-              lVar6 = *(longlong *)(pfVar8 + 2);
+              lVar6 = *(int64_t *)(pfVar8 + 2);
               fVar14 = *pfVar8;
               fVar15 = pfVar8[1];
               fVar23 = *(float *)(lVar6 + 0x18);
@@ -537,9 +537,9 @@ LAB_1807a41a0:
             }
             if (iVar7 == 2) {
               fVar11 = *param_2;
-              lVar9 = (longlong)(int)uVar10;
+              lVar9 = (int64_t)(int)uVar10;
               pfVar8 = (float *)((lVar9 + 0x5a) * 0x10 + param_1);
-              lVar6 = *(longlong *)(pfVar8 + 2);
+              lVar6 = *(int64_t *)(pfVar8 + 2);
               fVar27 = *pfVar8;
               fVar12 = pfVar8[1];
               fVar16 = *(float *)(lVar6 + 0x14);
@@ -550,7 +550,7 @@ LAB_1807a41a0:
               pfVar8[1] = fVar27;
               *pfVar8 = fVar13;
               pfVar8 = (float *)((lVar9 + 0x7a) * 0x10 + param_1);
-              lVar6 = *(longlong *)(pfVar8 + 2);
+              lVar6 = *(int64_t *)(pfVar8 + 2);
               fVar1 = *pfVar8;
               fVar2 = pfVar8[1];
               fVar19 = *(float *)(lVar6 + 0x18);
@@ -561,7 +561,7 @@ LAB_1807a41a0:
               *pfVar8 = fVar13;
               pfVar8[1] = fVar1;
               pfVar8 = (float *)((lVar9 + 0x9a) * 0x10 + param_1);
-              lVar6 = *(longlong *)(pfVar8 + 2);
+              lVar6 = *(int64_t *)(pfVar8 + 2);
               fVar12 = *pfVar8;
               fVar16 = pfVar8[1];
               fVar18 = *(float *)(lVar6 + 0x18);
@@ -572,7 +572,7 @@ LAB_1807a41a0:
               pfVar8[1] = fVar12;
               *pfVar8 = fVar19;
               pfVar8 = (float *)((lVar9 + 0xba) * 0x10 + param_1);
-              lVar6 = *(longlong *)(pfVar8 + 2);
+              lVar6 = *(int64_t *)(pfVar8 + 2);
               fVar1 = *pfVar8;
               fVar2 = pfVar8[1];
               fVar13 = *(float *)(lVar6 + 0x14);
@@ -583,7 +583,7 @@ LAB_1807a41a0:
               *pfVar8 = fVar21;
               pfVar8[1] = fVar1;
               pfVar8 = (float *)((lVar9 + 0xda) * 0x10 + param_1);
-              lVar6 = *(longlong *)(pfVar8 + 2);
+              lVar6 = *(int64_t *)(pfVar8 + 2);
               fVar16 = *pfVar8;
               fVar18 = pfVar8[1];
               fVar26 = *(float *)(lVar6 + 0x14);
@@ -594,7 +594,7 @@ LAB_1807a41a0:
               pfVar8[1] = fVar16;
               *pfVar8 = fVar14;
               pfVar8 = (float *)((lVar9 + 0xfa) * 0x10 + param_1);
-              lVar6 = *(longlong *)(pfVar8 + 2);
+              lVar6 = *(int64_t *)(pfVar8 + 2);
               fVar3 = *pfVar8;
               fVar4 = pfVar8[1];
               fVar5 = *(float *)(lVar6 + 0x14);
@@ -605,7 +605,7 @@ LAB_1807a41a0:
               *pfVar8 = fVar14;
               pfVar8[1] = fVar3;
               pfVar8 = (float *)((lVar9 + 0x11a) * 0x10 + param_1);
-              lVar6 = *(longlong *)(pfVar8 + 2);
+              lVar6 = *(int64_t *)(pfVar8 + 2);
               fVar18 = *pfVar8;
               fVar26 = pfVar8[1];
               fVar19 = *(float *)(lVar6 + 0x14);
@@ -616,7 +616,7 @@ LAB_1807a41a0:
               pfVar8[1] = fVar18;
               *pfVar8 = fVar20;
               pfVar8 = (float *)((lVar9 + 0x13a) * 0x10 + param_1);
-              lVar6 = *(longlong *)(pfVar8 + 2);
+              lVar6 = *(int64_t *)(pfVar8 + 2);
               fVar3 = *pfVar8;
               fVar4 = pfVar8[1];
               fVar5 = *(float *)(lVar6 + 0x18);
@@ -627,7 +627,7 @@ LAB_1807a41a0:
               *pfVar8 = fVar14;
               pfVar8[1] = fVar3;
               pfVar8 = (float *)((lVar9 + 0x15a) * 0x10 + param_1);
-              lVar6 = *(longlong *)(pfVar8 + 2);
+              lVar6 = *(int64_t *)(pfVar8 + 2);
               fVar26 = *pfVar8;
               fVar19 = pfVar8[1];
               fVar17 = *(float *)(lVar6 + 0x14);
@@ -638,7 +638,7 @@ LAB_1807a41a0:
               *pfVar8 = fVar14;
               pfVar8[1] = fVar26;
               pfVar8 = (float *)((lVar9 + 0x17a) * 0x10 + param_1);
-              lVar6 = *(longlong *)(pfVar8 + 2);
+              lVar6 = *(int64_t *)(pfVar8 + 2);
               fVar18 = *pfVar8;
               fVar3 = pfVar8[1];
               fVar4 = *(float *)(lVar6 + 0x14);
@@ -649,7 +649,7 @@ LAB_1807a41a0:
               *pfVar8 = fVar14;
               pfVar8[1] = fVar18;
               pfVar8 = (float *)((lVar9 + 0x19a) * 0x10 + param_1);
-              lVar6 = *(longlong *)(pfVar8 + 2);
+              lVar6 = *(int64_t *)(pfVar8 + 2);
               fVar26 = *pfVar8;
               fVar19 = pfVar8[1];
               fVar17 = *(float *)(lVar6 + 0x14);
@@ -660,7 +660,7 @@ LAB_1807a41a0:
               pfVar8[1] = fVar26;
               *pfVar8 = fVar14;
               pfVar8 = (float *)((lVar9 + 0x1ba) * 0x10 + param_1);
-              lVar6 = *(longlong *)(pfVar8 + 2);
+              lVar6 = *(int64_t *)(pfVar8 + 2);
               fVar18 = *pfVar8;
               fVar3 = pfVar8[1];
               fVar4 = *(float *)(lVar6 + 0x14);
@@ -671,7 +671,7 @@ LAB_1807a41a0:
               *pfVar8 = fVar22;
               pfVar8[1] = fVar18;
               pfVar8 = (float *)((lVar9 + 0x1da) * 0x10 + param_1);
-              lVar6 = *(longlong *)(pfVar8 + 2);
+              lVar6 = *(int64_t *)(pfVar8 + 2);
               fVar26 = *pfVar8;
               fVar19 = pfVar8[1];
               fVar17 = *(float *)(lVar6 + 0x18);
@@ -682,7 +682,7 @@ LAB_1807a41a0:
               *pfVar8 = fVar25;
               pfVar8[1] = fVar26;
               pfVar8 = (float *)((lVar9 + 0x1fa) * 0x10 + param_1);
-              lVar6 = *(longlong *)(pfVar8 + 2);
+              lVar6 = *(int64_t *)(pfVar8 + 2);
               fVar14 = *pfVar8;
               fVar15 = pfVar8[1];
               fVar23 = *(float *)(lVar6 + 0x18);
@@ -693,7 +693,7 @@ LAB_1807a41a0:
               pfVar8[1] = fVar14;
               *pfVar8 = fVar19;
               pfVar8 = (float *)((lVar9 + 0x21a) * 0x10 + param_1);
-              lVar6 = *(longlong *)(pfVar8 + 2);
+              lVar6 = *(int64_t *)(pfVar8 + 2);
               fVar26 = *pfVar8;
               fVar17 = pfVar8[1];
               fVar20 = *(float *)(lVar6 + 0x18);
@@ -704,7 +704,7 @@ LAB_1807a41a0:
               pfVar8[1] = fVar26;
               *pfVar8 = fVar23;
               pfVar8 = (float *)((lVar9 + 0x23a) * 0x10 + param_1);
-              lVar6 = *(longlong *)(pfVar8 + 2);
+              lVar6 = *(int64_t *)(pfVar8 + 2);
               fVar15 = *pfVar8;
               fVar19 = pfVar8[1] * *(float *)(lVar6 + 0x18);
               fVar11 = fVar15 * *(float *)(lVar6 + 0x14);
@@ -738,15 +738,15 @@ uint64_t FUN_1807a2a57(void)
   float fVar3;
   float fVar4;
   float fVar5;
-  longlong lVar6;
+  int64_t lVar6;
   int iVar7;
   float *pfVar8;
-  longlong lVar9;
+  int64_t lVar9;
   float *unaff_RBX;
   int unaff_EDI;
   uint uVar10;
   uint in_R9D;
-  longlong in_R10;
+  int64_t in_R10;
   float *in_R11;
   float fVar11;
   float fVar12;
@@ -1103,9 +1103,9 @@ uint64_t FUN_1807a2a57(void)
         iVar7 = *(int *)(in_R10 + 0x25ec);
         if (iVar7 == 0) {
           fVar11 = *unaff_RBX;
-          lVar9 = (longlong)(int)uVar10;
+          lVar9 = (int64_t)(int)uVar10;
           pfVar8 = (float *)((lVar9 + 0x5a) * 0x10 + in_R10);
-          lVar6 = *(longlong *)(pfVar8 + 2);
+          lVar6 = *(int64_t *)(pfVar8 + 2);
           fVar27 = *pfVar8;
           fVar12 = pfVar8[1];
           fVar16 = *(float *)(lVar6 + 0x18);
@@ -1115,7 +1115,7 @@ uint64_t FUN_1807a2a57(void)
           *pfVar8 = fVar14;
           pfVar8[1] = fVar27;
           pfVar8 = (float *)((lVar9 + 0xda) * 0x10 + in_R10);
-          lVar6 = *(longlong *)(pfVar8 + 2);
+          lVar6 = *(int64_t *)(pfVar8 + 2);
           fVar1 = *pfVar8;
           fVar2 = pfVar8[1];
           fVar19 = *(float *)(lVar6 + 0x18);
@@ -1125,7 +1125,7 @@ uint64_t FUN_1807a2a57(void)
           pfVar8[1] = fVar1;
           *pfVar8 = fVar15;
           pfVar8 = (float *)((lVar9 + 0x15a) * 0x10 + in_R10);
-          lVar6 = *(longlong *)(pfVar8 + 2);
+          lVar6 = *(int64_t *)(pfVar8 + 2);
           fVar3 = *pfVar8;
           fVar4 = pfVar8[1];
           fVar5 = *(float *)(lVar6 + 0x18);
@@ -1136,7 +1136,7 @@ uint64_t FUN_1807a2a57(void)
           pfVar8[1] = fVar3;
           *pfVar8 = fVar13;
           pfVar8 = (float *)((lVar9 + 0x1da) * 0x10 + in_R10);
-          lVar6 = *(longlong *)(pfVar8 + 2);
+          lVar6 = *(int64_t *)(pfVar8 + 2);
           fVar2 = *pfVar8;
           fVar15 = (fVar11 - fVar2 * *(float *)(lVar6 + 0x1c)) -
                    pfVar8[1] * *(float *)(lVar6 + 0x20);
@@ -1157,9 +1157,9 @@ LAB_1807a41a0:
         else {
           if (iVar7 == 1) {
             fVar11 = *unaff_RBX;
-            lVar9 = (longlong)(int)uVar10;
+            lVar9 = (int64_t)(int)uVar10;
             pfVar8 = (float *)((lVar9 + 0x5a) * 0x10 + in_R10);
-            lVar6 = *(longlong *)(pfVar8 + 2);
+            lVar6 = *(int64_t *)(pfVar8 + 2);
             fVar27 = *pfVar8;
             fVar12 = pfVar8[1];
             fVar16 = *(float *)(lVar6 + 0x14);
@@ -1170,7 +1170,7 @@ LAB_1807a41a0:
             *pfVar8 = fVar13;
             pfVar8[1] = fVar27;
             pfVar8 = (float *)((lVar9 + 0x7a) * 0x10 + in_R10);
-            lVar6 = *(longlong *)(pfVar8 + 2);
+            lVar6 = *(int64_t *)(pfVar8 + 2);
             fVar1 = *pfVar8;
             fVar2 = pfVar8[1];
             fVar19 = *(float *)(lVar6 + 0x18);
@@ -1181,7 +1181,7 @@ LAB_1807a41a0:
             *pfVar8 = fVar24;
             pfVar8[1] = fVar1;
             pfVar8 = (float *)((lVar9 + 0xda) * 0x10 + in_R10);
-            lVar6 = *(longlong *)(pfVar8 + 2);
+            lVar6 = *(int64_t *)(pfVar8 + 2);
             fVar12 = *pfVar8;
             fVar16 = pfVar8[1];
             fVar18 = *(float *)(lVar6 + 0x14);
@@ -1192,7 +1192,7 @@ LAB_1807a41a0:
             pfVar8[1] = fVar12;
             *pfVar8 = fVar20;
             pfVar8 = (float *)((lVar9 + 0xfa) * 0x10 + in_R10);
-            lVar6 = *(longlong *)(pfVar8 + 2);
+            lVar6 = *(int64_t *)(pfVar8 + 2);
             fVar3 = *pfVar8;
             fVar4 = pfVar8[1];
             fVar5 = *(float *)(lVar6 + 0x14);
@@ -1203,7 +1203,7 @@ LAB_1807a41a0:
             *pfVar8 = fVar14;
             pfVar8[1] = fVar3;
             pfVar8 = (float *)((lVar9 + 0x15a) * 0x10 + in_R10);
-            lVar6 = *(longlong *)(pfVar8 + 2);
+            lVar6 = *(int64_t *)(pfVar8 + 2);
             fVar18 = *pfVar8;
             fVar26 = pfVar8[1];
             fVar13 = *(float *)(lVar6 + 0x18);
@@ -1214,7 +1214,7 @@ LAB_1807a41a0:
             pfVar8[1] = fVar18;
             *pfVar8 = fVar14;
             pfVar8 = (float *)((lVar9 + 0x17a) * 0x10 + in_R10);
-            lVar6 = *(longlong *)(pfVar8 + 2);
+            lVar6 = *(int64_t *)(pfVar8 + 2);
             fVar16 = *pfVar8;
             fVar3 = pfVar8[1];
             fVar4 = *(float *)(lVar6 + 0x18);
@@ -1225,7 +1225,7 @@ LAB_1807a41a0:
             *pfVar8 = fVar25;
             pfVar8[1] = fVar16;
             pfVar8 = (float *)((lVar9 + 0x1da) * 0x10 + in_R10);
-            lVar6 = *(longlong *)(pfVar8 + 2);
+            lVar6 = *(int64_t *)(pfVar8 + 2);
             fVar18 = *pfVar8;
             fVar26 = pfVar8[1];
             fVar13 = *(float *)(lVar6 + 0x18);
@@ -1236,7 +1236,7 @@ LAB_1807a41a0:
             pfVar8[1] = fVar18;
             *pfVar8 = fVar21;
             pfVar8 = (float *)((lVar9 + 0x1fa) * 0x10 + in_R10);
-            lVar6 = *(longlong *)(pfVar8 + 2);
+            lVar6 = *(int64_t *)(pfVar8 + 2);
             fVar14 = *pfVar8;
             fVar15 = pfVar8[1];
             fVar23 = *(float *)(lVar6 + 0x18);
@@ -1256,9 +1256,9 @@ LAB_1807a41a0:
           }
           if (iVar7 == 2) {
             fVar11 = *unaff_RBX;
-            lVar9 = (longlong)(int)uVar10;
+            lVar9 = (int64_t)(int)uVar10;
             pfVar8 = (float *)((lVar9 + 0x5a) * 0x10 + in_R10);
-            lVar6 = *(longlong *)(pfVar8 + 2);
+            lVar6 = *(int64_t *)(pfVar8 + 2);
             fVar27 = *pfVar8;
             fVar12 = pfVar8[1];
             fVar16 = *(float *)(lVar6 + 0x14);
@@ -1269,7 +1269,7 @@ LAB_1807a41a0:
             pfVar8[1] = fVar27;
             *pfVar8 = fVar13;
             pfVar8 = (float *)((lVar9 + 0x7a) * 0x10 + in_R10);
-            lVar6 = *(longlong *)(pfVar8 + 2);
+            lVar6 = *(int64_t *)(pfVar8 + 2);
             fVar1 = *pfVar8;
             fVar2 = pfVar8[1];
             fVar19 = *(float *)(lVar6 + 0x18);
@@ -1280,7 +1280,7 @@ LAB_1807a41a0:
             *pfVar8 = fVar13;
             pfVar8[1] = fVar1;
             pfVar8 = (float *)((lVar9 + 0x9a) * 0x10 + in_R10);
-            lVar6 = *(longlong *)(pfVar8 + 2);
+            lVar6 = *(int64_t *)(pfVar8 + 2);
             fVar12 = *pfVar8;
             fVar16 = pfVar8[1];
             fVar18 = *(float *)(lVar6 + 0x18);
@@ -1291,7 +1291,7 @@ LAB_1807a41a0:
             pfVar8[1] = fVar12;
             *pfVar8 = fVar19;
             pfVar8 = (float *)((lVar9 + 0xba) * 0x10 + in_R10);
-            lVar6 = *(longlong *)(pfVar8 + 2);
+            lVar6 = *(int64_t *)(pfVar8 + 2);
             fVar1 = *pfVar8;
             fVar2 = pfVar8[1];
             fVar13 = *(float *)(lVar6 + 0x14);
@@ -1302,7 +1302,7 @@ LAB_1807a41a0:
             *pfVar8 = fVar21;
             pfVar8[1] = fVar1;
             pfVar8 = (float *)((lVar9 + 0xda) * 0x10 + in_R10);
-            lVar6 = *(longlong *)(pfVar8 + 2);
+            lVar6 = *(int64_t *)(pfVar8 + 2);
             fVar16 = *pfVar8;
             fVar18 = pfVar8[1];
             fVar26 = *(float *)(lVar6 + 0x14);
@@ -1313,7 +1313,7 @@ LAB_1807a41a0:
             pfVar8[1] = fVar16;
             *pfVar8 = fVar14;
             pfVar8 = (float *)((lVar9 + 0xfa) * 0x10 + in_R10);
-            lVar6 = *(longlong *)(pfVar8 + 2);
+            lVar6 = *(int64_t *)(pfVar8 + 2);
             fVar3 = *pfVar8;
             fVar4 = pfVar8[1];
             fVar5 = *(float *)(lVar6 + 0x14);
@@ -1324,7 +1324,7 @@ LAB_1807a41a0:
             *pfVar8 = fVar14;
             pfVar8[1] = fVar3;
             pfVar8 = (float *)((lVar9 + 0x11a) * 0x10 + in_R10);
-            lVar6 = *(longlong *)(pfVar8 + 2);
+            lVar6 = *(int64_t *)(pfVar8 + 2);
             fVar18 = *pfVar8;
             fVar26 = pfVar8[1];
             fVar19 = *(float *)(lVar6 + 0x14);
@@ -1335,7 +1335,7 @@ LAB_1807a41a0:
             pfVar8[1] = fVar18;
             *pfVar8 = fVar20;
             pfVar8 = (float *)((lVar9 + 0x13a) * 0x10 + in_R10);
-            lVar6 = *(longlong *)(pfVar8 + 2);
+            lVar6 = *(int64_t *)(pfVar8 + 2);
             fVar3 = *pfVar8;
             fVar4 = pfVar8[1];
             fVar5 = *(float *)(lVar6 + 0x18);
@@ -1346,7 +1346,7 @@ LAB_1807a41a0:
             *pfVar8 = fVar14;
             pfVar8[1] = fVar3;
             pfVar8 = (float *)((lVar9 + 0x15a) * 0x10 + in_R10);
-            lVar6 = *(longlong *)(pfVar8 + 2);
+            lVar6 = *(int64_t *)(pfVar8 + 2);
             fVar26 = *pfVar8;
             fVar19 = pfVar8[1];
             fVar17 = *(float *)(lVar6 + 0x14);
@@ -1357,7 +1357,7 @@ LAB_1807a41a0:
             *pfVar8 = fVar14;
             pfVar8[1] = fVar26;
             pfVar8 = (float *)((lVar9 + 0x17a) * 0x10 + in_R10);
-            lVar6 = *(longlong *)(pfVar8 + 2);
+            lVar6 = *(int64_t *)(pfVar8 + 2);
             fVar18 = *pfVar8;
             fVar3 = pfVar8[1];
             fVar4 = *(float *)(lVar6 + 0x14);
@@ -1368,7 +1368,7 @@ LAB_1807a41a0:
             *pfVar8 = fVar14;
             pfVar8[1] = fVar18;
             pfVar8 = (float *)((lVar9 + 0x19a) * 0x10 + in_R10);
-            lVar6 = *(longlong *)(pfVar8 + 2);
+            lVar6 = *(int64_t *)(pfVar8 + 2);
             fVar26 = *pfVar8;
             fVar19 = pfVar8[1];
             fVar17 = *(float *)(lVar6 + 0x14);
@@ -1379,7 +1379,7 @@ LAB_1807a41a0:
             pfVar8[1] = fVar26;
             *pfVar8 = fVar14;
             pfVar8 = (float *)((lVar9 + 0x1ba) * 0x10 + in_R10);
-            lVar6 = *(longlong *)(pfVar8 + 2);
+            lVar6 = *(int64_t *)(pfVar8 + 2);
             fVar18 = *pfVar8;
             fVar3 = pfVar8[1];
             fVar4 = *(float *)(lVar6 + 0x14);
@@ -1390,7 +1390,7 @@ LAB_1807a41a0:
             *pfVar8 = fVar22;
             pfVar8[1] = fVar18;
             pfVar8 = (float *)((lVar9 + 0x1da) * 0x10 + in_R10);
-            lVar6 = *(longlong *)(pfVar8 + 2);
+            lVar6 = *(int64_t *)(pfVar8 + 2);
             fVar26 = *pfVar8;
             fVar19 = pfVar8[1];
             fVar17 = *(float *)(lVar6 + 0x18);
@@ -1401,7 +1401,7 @@ LAB_1807a41a0:
             *pfVar8 = fVar25;
             pfVar8[1] = fVar26;
             pfVar8 = (float *)((lVar9 + 0x1fa) * 0x10 + in_R10);
-            lVar6 = *(longlong *)(pfVar8 + 2);
+            lVar6 = *(int64_t *)(pfVar8 + 2);
             fVar14 = *pfVar8;
             fVar15 = pfVar8[1];
             fVar23 = *(float *)(lVar6 + 0x18);
@@ -1412,7 +1412,7 @@ LAB_1807a41a0:
             pfVar8[1] = fVar14;
             *pfVar8 = fVar19;
             pfVar8 = (float *)((lVar9 + 0x21a) * 0x10 + in_R10);
-            lVar6 = *(longlong *)(pfVar8 + 2);
+            lVar6 = *(int64_t *)(pfVar8 + 2);
             fVar26 = *pfVar8;
             fVar17 = pfVar8[1];
             fVar20 = *(float *)(lVar6 + 0x18);
@@ -1423,7 +1423,7 @@ LAB_1807a41a0:
             pfVar8[1] = fVar26;
             *pfVar8 = fVar23;
             pfVar8 = (float *)((lVar9 + 0x23a) * 0x10 + in_R10);
-            lVar6 = *(longlong *)(pfVar8 + 2);
+            lVar6 = *(int64_t *)(pfVar8 + 2);
             fVar15 = *pfVar8;
             fVar19 = pfVar8[1] * *(float *)(lVar6 + 0x18);
             fVar11 = fVar15 * *(float *)(lVar6 + 0x14);
@@ -1461,7 +1461,7 @@ uint64_t FUN_1807a41dd(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint64_t
-FUN_1807a41f0(longlong param_1,longlong param_2,longlong param_3,uint param_4,uint param_5)
+FUN_1807a41f0(int64_t param_1,int64_t param_2,int64_t param_3,uint param_4,uint param_5)
 
 {
   int iVar1;
@@ -1469,7 +1469,7 @@ FUN_1807a41f0(longlong param_1,longlong param_2,longlong param_3,uint param_4,ui
   uint uVar3;
   uint64_t uVar4;
   int iVar5;
-  ulonglong uVar6;
+  uint64_t uVar6;
   float fVar7;
   float fVar8;
   
@@ -1589,7 +1589,7 @@ FUN_1807a41f0(longlong param_1,longlong param_2,longlong param_3,uint param_4,ui
                      *(int32_t *)(param_1 + 0x25a4),*(int32_t *)(param_1 + 0x25b8),
                      *(int32_t *)(param_1 + 0x25cc));
         }
-        uVar6 = (ulonglong)(iVar5 + 1U);
+        uVar6 = (uint64_t)(iVar5 + 1U);
       } while (iVar5 + 1U < param_5);
     }
   }
@@ -1600,21 +1600,21 @@ FUN_1807a41f0(longlong param_1,longlong param_2,longlong param_3,uint param_4,ui
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_1807a424a(longlong param_1,float param_2)
+uint64_t FUN_1807a424a(int64_t param_1,float param_2)
 
 {
   int iVar1;
   uint uVar2;
   uint64_t uVar3;
-  longlong unaff_RBX;
+  int64_t unaff_RBX;
   uint64_t unaff_RBP;
   uint unaff_ESI;
   int iVar4;
-  ulonglong unaff_RDI;
-  longlong in_R11;
-  longlong unaff_R12;
+  uint64_t unaff_RDI;
+  int64_t in_R11;
+  int64_t unaff_R12;
   int32_t unaff_R14D;
-  longlong unaff_R15;
+  int64_t unaff_R15;
   bool in_ZF;
   float fVar5;
   int32_t uVar6;
@@ -1723,7 +1723,7 @@ uint64_t FUN_1807a424a(longlong param_1,float param_2)
                     (unaff_R12 + unaff_RDI * 4,unaff_R15 + unaff_RDI * 4,unaff_R14D,
                      in_stack_000000b0,iVar4);
         }
-        unaff_RDI = (ulonglong)(iVar4 + 1U);
+        unaff_RDI = (uint64_t)(iVar4 + 1U);
       } while (iVar4 + 1U < in_stack_000000b0);
     }
     uVar3 = 0;
@@ -1744,13 +1744,13 @@ uint64_t FUN_1807a43c5(int32_t param_1)
   float fVar1;
   int iVar2;
   uint64_t uVar3;
-  longlong unaff_RBX;
+  int64_t unaff_RBX;
   uint uVar4;
   int iVar5;
-  ulonglong unaff_RDI;
-  longlong unaff_R12;
+  uint64_t unaff_RDI;
+  int64_t unaff_R12;
   int32_t unaff_R14D;
-  longlong unaff_R15;
+  int64_t unaff_R15;
   int32_t uVar6;
   uint in_stack_000000b0;
   
@@ -1798,7 +1798,7 @@ uint64_t FUN_1807a43c5(int32_t param_1)
                     (unaff_R12 + unaff_RDI * 4,unaff_R15 + unaff_RDI * 4,unaff_R14D,
                      in_stack_000000b0,iVar5);
         }
-        unaff_RDI = (ulonglong)(iVar5 + 1U);
+        unaff_RDI = (uint64_t)(iVar5 + 1U);
       } while (iVar5 + 1U < in_stack_000000b0);
     }
     uVar3 = 0;

@@ -131,17 +131,17 @@ static RenderParameterConfigurator g_param_config;      /**< 全局参数配置�
  * @note 函数内部包含复杂的字符串比较逻辑和资源配置逻辑
  * @note 最后会调用渲染状态清理器和系统初始化器
  */
-void render_string_comparator(longlong param_1, longlong param_2)
+void render_string_comparator(int64_t param_1, int64_t param_2)
 {
     char cVar1;
     char cVar2;
     int iVar3;
     char *pcVar4;
     uint64_t *puVar5;
-    longlong lVar6;
+    int64_t lVar6;
     bool bVar7;
     int8_t auStack_6c8 [32];
-    longlong *plStack_6a8;
+    int64_t *plStack_6a8;
     uint64_t uStack_6a0;
     void *puStack_698;
     int8_t *puStack_690;
@@ -211,11 +211,11 @@ void render_string_comparator(longlong param_1, longlong param_2)
     int8_t *puStack_90;
     int32_t uStack_88;
     int8_t auStack_80 [72];
-    ulonglong uStack_38;
+    uint64_t uStack_38;
     
     /* 初始化渲染状态和超时设置 */
     uStack_6a0 = RENDER_TIMEOUT_DEFAULT;
-    uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_6c8;
+    uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_6c8;
     
     /* 设置字符串比较器初始状态 */
     puStack_338 = &unknown_var_672_ptr;
@@ -235,7 +235,7 @@ LAB_180358c7e:
         else {
             /* 执行字符串内容比较 */
             pcVar4 = *(char **)(param_2 + 8);
-            lVar6 = (longlong)puStack_330 - (longlong)pcVar4;
+            lVar6 = (int64_t)puStack_330 - (int64_t)pcVar4;
             do {
                 cVar1 = *pcVar4;
                 cVar2 = pcVar4[lVar6];
@@ -575,7 +575,7 @@ LAB_180359b5e:
             }
             else {
                 pcVar4 = *(char **)(param_2 + 8);
-                lVar6 = (longlong)puStack_330 - (longlong)pcVar4;
+                lVar6 = (int64_t)puStack_330 - (int64_t)pcVar4;
                 do {
                     cVar1 = *pcVar4;
                     cVar2 = pcVar4[lVar6];
@@ -832,17 +832,17 @@ LAB_180359b66:
 LAB_18035a6fd:
     /* 调用渲染状态初始化器和资源清理器 */
     puVar5 = (uint64_t *)
-           render_state_initializer(*(longlong *)(*(longlong *)(param_1 + 0x18) + 0x20) + 0x2970, &plStack_6a8,
+           render_state_initializer(*(int64_t *)(*(int64_t *)(param_1 + 0x18) + 0x20) + 0x2970, &plStack_6a8,
                          param_1 + 0x70);
     *(uint64_t *)(param_1 + MEMORY_OFFSET_108) = *puVar5;
-    if (plStack_6a8 != (longlong *)0x0) {
+    if (plStack_6a8 != (int64_t *)0x0) {
         (**(code **)(*plStack_6a8 + 0x38))();
     }
-    if (*(longlong *)(param_1 + MEMORY_OFFSET_108) != 0) {
+    if (*(int64_t *)(param_1 + MEMORY_OFFSET_108) != 0) {
         render_resource_cleaner(param_1);
     }
     /* 系统调用结束 */
-    FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_6c8);
+    FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_6c8);
 }
 
 /**
@@ -862,31 +862,31 @@ LAB_18035a6fd:
  * @note 函数内部包含复杂的资源分配逻辑和状态控制逻辑
  * @note 会调用渲染系统初始化器和状态控制器
  */
-void render_resource_allocator(longlong param_1)
+void render_resource_allocator(int64_t param_1)
 {
     uint uVar1;
-    longlong lVar2;
+    int64_t lVar2;
     uint64_t uVar3;
     int iVar4;
     uint64_t uVar5;
-    longlong *plVar6;
-    longlong lVar7;
+    int64_t *plVar6;
+    int64_t lVar7;
     byte bVar8;
     char cVar9;
-    longlong lVar10;
-    longlong *plStackX_8;
-    longlong *plStackX_10;
-    longlong *plStackX_18;
-    longlong **pplStackX_20;
+    int64_t lVar10;
+    int64_t *plStackX_8;
+    int64_t *plStackX_10;
+    int64_t *plStackX_18;
+    int64_t **pplStackX_20;
     
     /* 获取渲染资源基础信息 */
-    uVar3 = *(uint64_t *)(*(longlong *)(param_1 + 0x18) + 0x20);
+    uVar3 = *(uint64_t *)(*(int64_t *)(param_1 + 0x18) + 0x20);
     
     /* 分配渲染资源内存 */
     uVar5 = render_memory_allocator(system_memory_pool_ptr, RENDER_STATE_SIZE, RENDER_PARAM_SIZE, RENDER_FLAG_SIZE);
-    plVar6 = (longlong *)FUN_1802e6b00(uVar5, MEMORY_ALLOC_SIZE);
+    plVar6 = (int64_t *)FUN_1802e6b00(uVar5, MEMORY_ALLOC_SIZE);
     plStackX_10 = plVar6;
-    if (plVar6 != (longlong *)0x0) {
+    if (plVar6 != (int64_t *)0x0) {
         (**(code **)(*plVar6 + 0x28))(plVar6);
     }
     
@@ -901,29 +901,29 @@ void render_resource_allocator(longlong param_1)
     
     /* 配置渲染系统参数 */
     FUN_180198b90(uVar3, &plStackX_8, 1, 1, 0, 1, 0);
-    plStackX_10 = (longlong *)0x0;
-    plStackX_18 = *(longlong **)(param_1 + MEMORY_OFFSET_118);
-    *(longlong **)(param_1 + MEMORY_OFFSET_118) = plVar6;
-    if (plStackX_18 != (longlong *)0x0) {
+    plStackX_10 = (int64_t *)0x0;
+    plStackX_18 = *(int64_t **)(param_1 + MEMORY_OFFSET_118);
+    *(int64_t **)(param_1 + MEMORY_OFFSET_118) = plVar6;
+    if (plStackX_18 != (int64_t *)0x0) {
         (**(code **)(*plStackX_18 + 0x38))();
     }
     
     /* 设置渲染资源属性 */
     render_system_initializer(*(uint64_t *)(param_1 + MEMORY_OFFSET_118), &unknown_var_2984_ptr);
-    lVar7 = *(longlong *)(param_1 + MEMORY_OFFSET_118);
+    lVar7 = *(int64_t *)(param_1 + MEMORY_OFFSET_118);
     uVar1 = *(uint *)(lVar7 + MEMORY_OFFSET_2AC);
     *(uint *)(lVar7 + MEMORY_OFFSET_2AC) = uVar1 | RENDER_CONTROL_FLAG;
     render_state_controller(lVar7, uVar1);
     
     /* 处理渲染资源状态变更 */
-    lVar2 = *(longlong *)(lVar7 + MEMORY_OFFSET_260);
+    lVar2 = *(int64_t *)(lVar7 + MEMORY_OFFSET_260);
     if ((lVar2 != 0) && (((*(uint *)(lVar7 + MEMORY_OFFSET_2AC) ^ uVar1) >> 0x16 & 1) != 0)) {
         bVar8 = ~(byte)(*(uint *)(lVar7 + MEMORY_OFFSET_2AC) >> 0x16) & 1;
-        iVar4 = (int)(*(longlong *)(lVar2 + 0x1b0) - *(longlong *)(lVar2 + 0x1a8) >> 3);
+        iVar4 = (int)(*(int64_t *)(lVar2 + 0x1b0) - *(int64_t *)(lVar2 + 0x1a8) >> 3);
         if (0 < iVar4) {
             lVar7 = 0;
             do {
-                plVar6 = *(longlong **)(*(longlong *)(lVar2 + 0x1a8) + lVar7 * 8);
+                plVar6 = *(int64_t **)(*(int64_t *)(lVar2 + 0x1a8) + lVar7 * 8);
                 (**(code **)(*plVar6 + 0xe0))(plVar6, bVar8);
                 lVar7 = lVar7 + 1;
             } while (lVar7 < iVar4);
@@ -932,11 +932,11 @@ void render_resource_allocator(longlong param_1)
         if ('\0' < *(char *)(lVar2 + 0x20)) {
             do {
                 lVar7 = 0;
-                lVar10 = (longlong)cVar9 * 0x100 + *(longlong *)(lVar2 + 0x18);
-                iVar4 = (int)(*(longlong *)(lVar10 + 0xb8) - *(longlong *)(lVar10 + 0xb0) >> 3);
+                lVar10 = (int64_t)cVar9 * 0x100 + *(int64_t *)(lVar2 + 0x18);
+                iVar4 = (int)(*(int64_t *)(lVar10 + 0xb8) - *(int64_t *)(lVar10 + 0xb0) >> 3);
                 if (0 < iVar4) {
                     do {
-                        plVar6 = *(longlong **)(*(longlong *)(lVar10 + 0xb0) + lVar7 * 8);
+                        plVar6 = *(int64_t **)(*(int64_t *)(lVar10 + 0xb0) + lVar7 * 8);
                         (**(code **)(*plVar6 + 0xe0))(plVar6, bVar8);
                         lVar7 = lVar7 + 1;
                     } while (lVar7 < iVar4);

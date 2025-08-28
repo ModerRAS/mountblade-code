@@ -765,7 +765,7 @@ void FUN_180779d80(uint64_t destination, uint64_t source, uint64_t data_ptr, int
  * @param matrix_size 矩阵大小参数
  * @return uint64_t 变换结果，成功返回UI_SYSTEM_SUCCESS
  */
-uint64_t FUN_180779df5(int32_t transform_params, ulonglong matrix_size);
+uint64_t FUN_180779df5(int32_t transform_params, uint64_t matrix_size);
 
 /* ============================================================================
  * UI系统全局数据定义

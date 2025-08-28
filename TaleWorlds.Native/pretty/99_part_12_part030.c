@@ -33,12 +33,12 @@ void FUN_1807ddd40(float *param_1,float *param_2,int param_3,float *param_4,uint
   float fVar24;
   float fVar25;
   uint uVar26;
-  ulonglong uVar27;
+  uint64_t uVar27;
   int iVar28;
   
   if (param_7 != 0) {
                     // WARNING: Subroutine does not return
-    memset(param_2,0,(ulonglong)(uint)(param_3 * 6) << 2);
+    memset(param_2,0,(uint64_t)(uint)(param_3 * 6) << 2);
   }
   iVar28 = 0;
   if (3 < param_3) {
@@ -51,7 +51,7 @@ void FUN_1807ddd40(float *param_1,float *param_2,int param_3,float *param_4,uint
     fVar7 = param_4[0x22];
     fVar8 = param_4[0x23];
     uVar26 = (param_3 - 4U >> 2) + 1;
-    uVar27 = (ulonglong)uVar26;
+    uVar27 = (uint64_t)uVar26;
     iVar28 = uVar26 * 4;
     do {
       fVar9 = param_1[1];
@@ -194,7 +194,7 @@ void FUN_1807ddd40(float *param_1,float *param_2,int param_3,float *param_4,uint
     fVar6 = param_4[0x20];
     fVar7 = param_4[0x22];
     fVar8 = param_4[0x23];
-    uVar27 = (ulonglong)(uint)(param_3 - iVar28);
+    uVar27 = (uint64_t)(uint)(param_3 - iVar28);
     do {
       fVar9 = param_1[-1];
       fVar10 = param_1[-2];
@@ -362,7 +362,7 @@ void FUN_1807de660(float *param_1,float *param_2,uint param_3,float *param_4,uin
   else {
     if (param_7 != 0) {
                     // WARNING: Subroutine does not return
-      memset(param_2,0,(ulonglong)(param_3 * 6) << 2);
+      memset(param_2,0,(uint64_t)(param_3 * 6) << 2);
     }
     for (uVar17 = param_3 >> 2; uVar17 != 0; uVar17 = uVar17 - 1) {
       fVar1 = param_1[1];
@@ -443,7 +443,7 @@ void FUN_1807dedd0(float *param_1,float *param_2,uint param_3,float *param_4,uin
       ((2e-05 <= ABS(fVar11) || (2e-05 <= ABS(param_4[0xe1]))))))) {
     if (param_7 != 0) {
                     // WARNING: Subroutine does not return
-      memset(param_2,0,(ulonglong)(param_3 * 8) << 2);
+      memset(param_2,0,(uint64_t)(param_3 * 8) << 2);
     }
     for (uVar18 = param_3 >> 1; uVar18 != 0; uVar18 = uVar18 - 1) {
       fVar12 = *param_1;
@@ -507,7 +507,7 @@ void FUN_1807dedd0(float *param_1,float *param_2,uint param_3,float *param_4,uin
   else {
     if (param_7 != 0) {
                     // WARNING: Subroutine does not return
-      memset(param_2,0,(ulonglong)(param_3 * 8) << 2);
+      memset(param_2,0,(uint64_t)(param_3 * 8) << 2);
     }
     for (uVar18 = param_3 >> 2; uVar18 != 0; uVar18 = uVar18 - 1) {
       fVar1 = param_1[1];
@@ -559,7 +559,7 @@ void FUN_1807df470(float *param_1,float *param_2,uint param_3,float *param_4,uin
   float fVar7;
   float fVar8;
   uint uVar9;
-  longlong lVar10;
+  int64_t lVar10;
   
   fVar1 = *param_4;
   fVar2 = param_4[1];
@@ -588,10 +588,10 @@ void FUN_1807df470(float *param_1,float *param_2,uint param_3,float *param_4,uin
     }
     param_3 = param_3 & 3;
     if (param_3 != 0) {
-      lVar10 = (longlong)param_1 - (longlong)param_2;
+      lVar10 = (int64_t)param_1 - (int64_t)param_2;
       do {
-        fVar5 = *(float *)(lVar10 + 4 + (longlong)param_2);
-        fVar6 = *(float *)(lVar10 + (longlong)param_2);
+        fVar5 = *(float *)(lVar10 + 4 + (int64_t)param_2);
+        fVar6 = *(float *)(lVar10 + (int64_t)param_2);
         *param_2 = fVar5 * fVar2 + fVar6 * fVar1 + *param_2;
         param_2[1] = fVar5 * fVar4 + fVar6 * fVar3 + param_2[1];
         param_2 = param_2 + 2;
@@ -601,7 +601,7 @@ void FUN_1807df470(float *param_1,float *param_2,uint param_3,float *param_4,uin
     return;
   }
                     // WARNING: Subroutine does not return
-  memset(param_2,0,(ulonglong)(param_3 * param_6) << 2);
+  memset(param_2,0,(uint64_t)(param_3 * param_6) << 2);
 }
 
 

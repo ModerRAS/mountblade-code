@@ -110,32 +110,32 @@
 // =============================================================================
 
 // 基础类型别名
-typedef longlong           RenderHandle;           // 渲染句柄
+typedef int64_t           RenderHandle;           // 渲染句柄
 typedef float*             RenderCoordinatePtr;    // 渲染坐标指针
 typedef uint64_t         RenderDataBlock;        // 渲染数据块
 typedef int32_t         RenderFlag;             // 渲染标志
 typedef byte               RenderState;            // 渲染状态
 typedef uint               RenderIndex;            // 渲染索引
-typedef ulonglong          RenderMemoryAddress;    // 渲染内存地址
+typedef uint64_t          RenderMemoryAddress;    // 渲染内存地址
 typedef float              RenderDepth;            // 渲染深度
 typedef char               RenderMode;             // 渲染模式
 typedef bool               RenderCondition;        // 渲染条件
 
 // 指针类型别名
-typedef longlong*          RenderHandlePtr;        // 渲染句柄指针
+typedef int64_t*          RenderHandlePtr;        // 渲染句柄指针
 typedef float**            RenderCoordinatePtrPtr; // 渲染坐标指针指针
 typedef uint64_t*        RenderDataBlockPtr;     // 渲染数据块指针
 typedef int32_t*        RenderFlagPtr;          // 渲染标志指针
 typedef byte*              RenderStatePtr;         // 渲染状态指针
 typedef uint*              RenderIndexPtr;         // 渲染索引指针
-typedef ulonglong*         RenderMemoryAddressPtr; // 渲染内存地址指针
+typedef uint64_t*         RenderMemoryAddressPtr; // 渲染内存地址指针
 typedef float*             RenderDepthPtr;         // 渲染深度指针
 typedef char*              RenderModePtr;          // 渲染模式指针
 typedef bool*              RenderConditionPtr;     // 渲染条件指针
 
 // 数组类型别名
 typedef float              RenderCoordinateArray[4];     // 渲染坐标数组
-typedef longlong           RenderHandleArray[2];         // 渲染句柄数组
+typedef int64_t           RenderHandleArray[2];         // 渲染句柄数组
 typedef uint64_t         RenderDataBlockArray[2];      // 渲染数据块数组
 typedef uint               RenderIndexArray[2];          // 渲染索引数组
 typedef float              RenderDepthArray[2];          // 渲染深度数组
@@ -341,7 +341,7 @@ void RenderTransformCoordinates(RenderHandle systemHandle, RenderCoordinatePtr c
     float                  tempFloat1, tempFloat2, tempFloat3;
     byte                   stackBuffer[64];
     float                  stackFloats[8];
-    longlong               stackLongs[2];
+    int64_t               stackLongs[2];
     
     // 获取变换句柄和深度信息
     transformHandle = *(RenderHandlePtr)(systemHandle + RENDER_SYSTEM_OFFSET_980);
@@ -460,7 +460,7 @@ ApplyFinalTransform:
     // 更新缓冲区数据
     if (-1 < *(int*)(systemHandle + RENDER_SYSTEM_OFFSET_560)) {
         transformHandle = *(RenderHandlePtr)(systemHandle + RENDER_SYSTEM_OFFSET_8D8);
-        depthValue = (longlong)*(int*)(systemHandle + RENDER_SYSTEM_OFFSET_560) * RENDER_COORDINATE_MULTIPLIER;
+        depthValue = (int64_t)*(int*)(systemHandle + RENDER_SYSTEM_OFFSET_560) * RENDER_COORDINATE_MULTIPLIER;
         depthThreshold = *(RenderDepthPtr)(depthValue + RENDER_BUFFER_VERTEX + transformHandle);
         
         *(RenderDataBlockPtr)(depthThreshold + 0x0c) = &dataBlock1;
@@ -503,13 +503,13 @@ void RenderProcessState(RenderDataBlock param1, RenderHandle param2, RenderFlag 
     float                  tempFloat1, tempFloat2, tempFloat3;
     byte                   stackBuffer[64];
     float                  stackFloats[8];
-    longlong               stackLongs[2];
-    longlong               unaff_RBX, unaff_RSI;
+    int64_t               stackLongs[2];
+    int64_t               unaff_RBX, unaff_RSI;
     RenderCoordinatePtr    coordinatePtr;
     float                  in_XMM0_Dc;
     
     // 初始化栈变量
-    stackFloats[3] = (float)((ulonglong)param1 >> 0x20);
+    stackFloats[3] = (float)((uint64_t)param1 >> 0x20);
     stackFloats[2] = (float)param1;
     localState = 0;
     stackFloats[6] = 0.0;
@@ -600,7 +600,7 @@ ApplyTransform:
     // 更新缓冲区数据
     if (-1 < *(int*)(unaff_RBX + RENDER_SYSTEM_OFFSET_560)) {
         handle1 = *(RenderHandlePtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_8D8);
-        handle2 = (longlong)*(int*)(unaff_RBX + RENDER_SYSTEM_OFFSET_560) * RENDER_COORDINATE_MULTIPLIER;
+        handle2 = (int64_t)*(int*)(unaff_RBX + RENDER_SYSTEM_OFFSET_560) * RENDER_COORDINATE_MULTIPLIER;
         handle1 = *(RenderHandlePtr)(handle2 + RENDER_BUFFER_VERTEX + handle1);
         
         *(RenderDataBlockPtr)(handle1 + 0x0c) = &dataBlock1;
@@ -637,8 +637,8 @@ void RenderCalculateProjection(float param1, RenderDataBlock param2, RenderDataB
     float                  tempFloat1, tempFloat2, tempFloat3;
     float                  in_XMM4_Da, in_stack_00000048;
     float                  stackFloats[4];
-    longlong               handle1, handle2, handle3;
-    longlong               unaff_RBX, unaff_RSI;
+    int64_t               handle1, handle2, handle3;
+    int64_t               unaff_RBX, unaff_RSI;
     RenderCoordinatePtr    coordinatePtr;
     
     // 获取缩放因子
@@ -688,7 +688,7 @@ void RenderCalculateProjection(float param1, RenderDataBlock param2, RenderDataB
     // 更新缓冲区数据
     if (-1 < *(int*)(unaff_RBX + RENDER_SYSTEM_OFFSET_560)) {
         handle1 = *(RenderHandlePtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_8D8);
-        handle2 = (longlong)*(int*)(unaff_RBX + RENDER_SYSTEM_OFFSET_560) * RENDER_COORDINATE_MULTIPLIER;
+        handle2 = (int64_t)*(int*)(unaff_RBX + RENDER_SYSTEM_OFFSET_560) * RENDER_COORDINATE_MULTIPLIER;
         handle1 = *(RenderHandlePtr)(handle2 + RENDER_BUFFER_VERTEX + handle1);
         
         *(RenderDataBlockPtr)(handle1 + 0x0c) = &param2;
@@ -716,9 +716,9 @@ void RenderUpdateBuffer(float param1) {
     // 局部变量定义
     float                  coordinateX, coordinateY, coordinateZ, coordinateW;
     float                  depthValue;
-    longlong               handle1, handle2;
+    int64_t               handle1, handle2;
     RenderDataBlock        dataBlock1, dataBlock2;
-    longlong               unaff_RBX, unaff_RSI;
+    int64_t               unaff_RBX, unaff_RSI;
     RenderCoordinatePtr    coordinatePtr;
     
     // 获取坐标值
@@ -755,7 +755,7 @@ ApplyBufferUpdate:
     // 更新缓冲区数据
     if (-1 < *(int*)(unaff_RBX + RENDER_SYSTEM_OFFSET_560)) {
         handle1 = *(RenderHandlePtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_8D8);
-        handle2 = (longlong)*(int*)(unaff_RBX + RENDER_SYSTEM_OFFSET_560) * RENDER_COORDINATE_MULTIPLIER;
+        handle2 = (int64_t)*(int*)(unaff_RBX + RENDER_SYSTEM_OFFSET_560) * RENDER_COORDINATE_MULTIPLIER;
         handle1 = *(RenderHandlePtr)(handle2 + RENDER_BUFFER_VERTEX + handle1);
         
         *(RenderDataBlockPtr)(handle1 + 0x0c) = &dataBlock1;
@@ -781,9 +781,9 @@ void RenderApplyTransform(void) {
     // 局部变量定义
     float                  coordinateX, coordinateY, coordinateZ, coordinateW;
     float                  depthValue;
-    longlong               handle1, handle2;
+    int64_t               handle1, handle2;
     RenderDataBlock        dataBlock1, dataBlock2;
-    longlong               unaff_RBX, unaff_RSI;
+    int64_t               unaff_RBX, unaff_RSI;
     RenderCoordinatePtr    coordinatePtr;
     
     // 获取坐标值
@@ -809,7 +809,7 @@ void RenderApplyTransform(void) {
     // 更新缓冲区数据
     if (-1 < *(int*)(unaff_RBX + RENDER_SYSTEM_OFFSET_560)) {
         handle1 = *(RenderHandlePtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_8D8);
-        handle2 = (longlong)*(int*)(unaff_RBX + RENDER_SYSTEM_OFFSET_560) * RENDER_COORDINATE_MULTIPLIER;
+        handle2 = (int64_t)*(int*)(unaff_RBX + RENDER_SYSTEM_OFFSET_560) * RENDER_COORDINATE_MULTIPLIER;
         handle1 = *(RenderHandlePtr)(handle2 + RENDER_BUFFER_VERTEX + handle1);
         
         *(RenderDataBlockPtr)(handle1 + 0x0c) = &dataBlock1;
@@ -834,10 +834,10 @@ void RenderApplyTransform(void) {
  * @param param1 参数1（数据块）
  * @param param2 参数2（索引）
  */
-void RenderSetCoordinates(RenderDataBlock param1, longlong param2) {
+void RenderSetCoordinates(RenderDataBlock param1, int64_t param2) {
     // 局部变量定义
-    longlong               handle1, handle2;
-    longlong               handle3;
+    int64_t               handle1, handle2;
+    int64_t               handle3;
     RenderDataBlock        in_XMM0_Qb;
     
     // 获取句柄和索引
@@ -925,13 +925,13 @@ void RenderUpdateState(RenderHandle param1, RenderFlag param2) {
     // 局部变量定义
     ushort*                ushortPtr;
     int                    currentState, newState;
-    longlong               handle1, handle2, handle3, handle4;
+    int64_t               handle1, handle2, handle3, handle4;
     RenderDataBlock        dataBlock;
     uint                   indexValue;
-    longlong               memoryAddress;
+    int64_t               memoryAddress;
     int                    bitIndex;
-    ulonglong              loopCounter;
-    longlong               tempHandle;
+    uint64_t              loopCounter;
+    int64_t               tempHandle;
     
     // 获取当前状态
     currentState = *(int*)(param1 + RENDER_SYSTEM_OFFSET_980);
@@ -940,7 +940,7 @@ void RenderUpdateState(RenderHandle param1, RenderFlag param2) {
     // 检查状态更新条件
     if (*(char*)(param1 + RENDER_SYSTEM_OFFSET_984) == 0) goto StateUpdateComplete;
     if (*(char*)(*(RenderHandlePtr)(param1 + RENDER_SYSTEM_OFFSET_738) + 0x99) != 0) {
-        handle4 = (longlong)*(int*)(param1 + RENDER_SYSTEM_OFFSET_560) * RENDER_COORDINATE_MULTIPLIER;
+        handle4 = (int64_t)*(int*)(param1 + RENDER_SYSTEM_OFFSET_560) * RENDER_COORDINATE_MULTIPLIER;
         if (*(int*)(handle4 + 0x3608 + *(RenderHandlePtr)(param1 + RENDER_SYSTEM_OFFSET_8D8)) == 1) {
             param2 = *(RenderFlagPtr)(handle4 + RENDER_BUFFER_FRAME + *(RenderHandlePtr)(param1 + RENDER_SYSTEM_OFFSET_8D8));
         }
@@ -951,12 +951,12 @@ void RenderUpdateState(RenderHandle param1, RenderFlag param2) {
     if (*(int*)(param1 + RENDER_SYSTEM_OFFSET_564) < 0) goto StateUpdateComplete;
     
     // 处理状态链
-    handle4 = (longlong)*(int*)(param1 + RENDER_SYSTEM_OFFSET_564) * RENDER_COORDINATE_MULTIPLIER + *(RenderHandlePtr)(param1 + RENDER_SYSTEM_OFFSET_8D8);
+    handle4 = (int64_t)*(int*)(param1 + RENDER_SYSTEM_OFFSET_564) * RENDER_COORDINATE_MULTIPLIER + *(RenderHandlePtr)(param1 + RENDER_SYSTEM_OFFSET_8D8);
     if (*(char*)(*(RenderHandlePtr)(handle4 + 0x37d8) + 0x99) == 0) {
 ProcessDataBlock:
         dataBlock = *(RenderFlagPtr)(handle4 + RENDER_BUFFER_FRAME);
     } else {
-        memoryAddress = (longlong)*(int*)(handle4 + 0x3600) * RENDER_COORDINATE_MULTIPLIER;
+        memoryAddress = (int64_t)*(int*)(handle4 + 0x3600) * RENDER_COORDINATE_MULTIPLIER;
         if (*(int*)(memoryAddress + 0x3608 + *(RenderHandlePtr)(handle4 + 0x3978)) != 1) goto ProcessDataBlock;
         dataBlock = *(RenderFlagPtr)(memoryAddress + RENDER_BUFFER_FRAME + *(RenderHandlePtr)(handle4 + 0x3978));
     }
@@ -983,7 +983,7 @@ StateUpdateComplete:
             // 处理状态链表
             if (0 < (int)indexValue) {
                 handle4 = 0;
-                loopCounter = (ulonglong)indexValue;
+                loopCounter = (uint64_t)indexValue;
                 do {
                     handle1 = *(RenderHandlePtr)(param1 + RENDER_SYSTEM_OFFSET_8D8);
                     memoryAddress = handle1 + 0x876958;
@@ -999,10 +999,10 @@ StateUpdateComplete:
                         bitIndex = *(int*)(handle1 + 0x87b770) >> 3;
                         
                         // 检查位标志
-                        if (((*(byte*)((longlong)(bitIndex * currentState + ((int)indexValue >> 3)) +
+                        if (((*(byte*)((int64_t)(bitIndex * currentState + ((int)indexValue >> 3)) +
                                        *(RenderHandlePtr)(handle1 + 0x87b768)) & 
                                        (&unknown_var_6480_ptr)[indexValue & 7]) != 0) &&
-                            ((*(byte*)((longlong)(bitIndex * newState + ((int)indexValue >> 3)) +
+                            ((*(byte*)((int64_t)(bitIndex * newState + ((int)indexValue >> 3)) +
                                        *(RenderHandlePtr)(handle1 + 0x87b768)) & 
                                        (&unknown_var_6480_ptr)[indexValue & 7]) == 0)) {
                             
@@ -1010,7 +1010,7 @@ StateUpdateComplete:
                             *(RenderFlagPtr)(handle2 + 0x1b6c) = 0;
                             *(byte*)(handle2 + 0x17a8) = 0;
                             *(RenderDataBlockPtr)(handle2 + 0x1798) =
-                                *(RenderDataBlockPtr)(&system_error_code + (longlong)*(int*)(handle2 + 0x17a0) * 8);
+                                *(RenderDataBlockPtr)(&system_error_code + (int64_t)*(int*)(handle2 + 0x17a0) * 8);
                             *(RenderFlagPtr)(handle2 + 0x1c0c) = 0xffffffff;
                             *(RenderFlagPtr)(handle2 + 0x1c14) = 0xffffffff;
                             *(RenderFlagPtr)(handle2 + 0x1c1c) = 0xffffffff;
@@ -1019,7 +1019,7 @@ StateUpdateComplete:
                             *(RenderFlagPtr)(handle2 + 0x200c) = 0;
                             *(byte*)(handle2 + 0x1c48) = 0;
                             *(RenderDataBlockPtr)(handle2 + 0x1c38) =
-                                *(RenderDataBlockPtr)(&system_error_code + (longlong)*(int*)(handle2 + 0x1c40) * 8);
+                                *(RenderDataBlockPtr)(&system_error_code + (int64_t)*(int*)(handle2 + 0x1c40) * 8);
                         }
                     }
                     handle4 += RENDER_MEMORY_BLOCK_SIZE;
@@ -1045,13 +1045,13 @@ void RenderProcessStateChange(void) {
     // 局部变量定义
     ushort*                ushortPtr;
     int                    currentState, newState;
-    longlong               handle1, handle2, handle3;
+    int64_t               handle1, handle2, handle3;
     uint                   indexValue;
-    longlong               memoryAddress;
+    int64_t               memoryAddress;
     int                    bitIndex;
-    ulonglong              loopCounter;
+    uint64_t              loopCounter;
     int                    unaff_EBP;
-    longlong               in_R9;
+    int64_t               in_R9;
     
     // 获取当前状态
     currentState = *(int*)(in_R9 + RENDER_SYSTEM_OFFSET_980);
@@ -1076,7 +1076,7 @@ void RenderProcessStateChange(void) {
             // 处理状态链表
             if (0 < (int)indexValue) {
                 handle3 = 0;
-                loopCounter = (ulonglong)indexValue;
+                loopCounter = (uint64_t)indexValue;
                 do {
                     handle1 = *(RenderHandlePtr)(in_R9 + RENDER_SYSTEM_OFFSET_8D8);
                     memoryAddress = handle1 + 0x876958;
@@ -1092,10 +1092,10 @@ void RenderProcessStateChange(void) {
                         bitIndex = *(int*)(handle1 + 0x87b770) >> 3;
                         
                         // 检查位标志
-                        if (((*(byte*)((longlong)(bitIndex * unaff_EBP + ((int)indexValue >> 3)) +
+                        if (((*(byte*)((int64_t)(bitIndex * unaff_EBP + ((int)indexValue >> 3)) +
                                        *(RenderHandlePtr)(handle1 + 0x87b768)) & 
                                        (&unknown_var_6480_ptr)[indexValue & 7]) != 0) &&
-                            ((*(byte*)((longlong)(bitIndex * currentState + ((int)indexValue >> 3)) +
+                            ((*(byte*)((int64_t)(bitIndex * currentState + ((int)indexValue >> 3)) +
                                        *(RenderHandlePtr)(handle1 + 0x87b768)) & 
                                        (&unknown_var_6480_ptr)[indexValue & 7]) == 0)) {
                             
@@ -1103,7 +1103,7 @@ void RenderProcessStateChange(void) {
                             *(RenderFlagPtr)(handle2 + 0x1b6c) = 0;
                             *(byte*)(handle2 + 0x17a8) = 0;
                             *(RenderDataBlockPtr)(handle2 + 0x1798) =
-                                *(RenderDataBlockPtr)(&system_error_code + (longlong)*(int*)(handle2 + 0x17a0) * 8);
+                                *(RenderDataBlockPtr)(&system_error_code + (int64_t)*(int*)(handle2 + 0x17a0) * 8);
                             *(RenderFlagPtr)(handle2 + 0x1c0c) = 0xffffffff;
                             *(RenderFlagPtr)(handle2 + 0x1c14) = 0xffffffff;
                             *(RenderFlagPtr)(handle2 + 0x1c1c) = 0xffffffff;
@@ -1112,7 +1112,7 @@ void RenderProcessStateChange(void) {
                             *(RenderFlagPtr)(handle2 + 0x200c) = 0;
                             *(byte*)(handle2 + 0x1c48) = 0;
                             *(RenderDataBlockPtr)(handle2 + 0x1c38) =
-                                *(RenderDataBlockPtr)(&system_error_code + (longlong)*(int*)(handle2 + 0x1c40) * 8);
+                                *(RenderDataBlockPtr)(&system_error_code + (int64_t)*(int*)(handle2 + 0x1c40) * 8);
                         }
                     }
                     handle3 += RENDER_MEMORY_BLOCK_SIZE;
@@ -1139,16 +1139,16 @@ void RenderProcessStateChange(void) {
 void RenderProcessBatch(uint param1) {
     // 局部变量定义
     uint                   indexValue;
-    longlong               handle1, handle2, handle3;
-    longlong               memoryAddress;
+    int64_t               handle1, handle2, handle3;
+    int64_t               memoryAddress;
     int                    bitIndex;
-    ulonglong              loopCounter;
+    uint64_t              loopCounter;
     int                    unaff_EBP, unaff_ESI;
-    longlong               in_R9;
+    int64_t               in_R9;
     
     // 初始化循环
     handle3 = 0;
-    loopCounter = (ulonglong)param1;
+    loopCounter = (uint64_t)param1;
     
     // 批量处理循环
     do {
@@ -1166,10 +1166,10 @@ void RenderProcessBatch(uint param1) {
             bitIndex = *(int*)(handle1 + 0x87b770) >> 3;
             
             // 检查位标志
-            if (((*(byte*)((longlong)(bitIndex * unaff_EBP + ((int)indexValue >> 3)) +
+            if (((*(byte*)((int64_t)(bitIndex * unaff_EBP + ((int)indexValue >> 3)) +
                            *(RenderHandlePtr)(handle1 + 0x87b768)) & 
                            (&unknown_var_6480_ptr)[indexValue & 7]) != 0) &&
-                ((*(byte*)((longlong)(bitIndex * unaff_ESI + ((int)indexValue >> 3)) +
+                ((*(byte*)((int64_t)(bitIndex * unaff_ESI + ((int)indexValue >> 3)) +
                            *(RenderHandlePtr)(handle1 + 0x87b768)) & 
                            (&unknown_var_6480_ptr)[indexValue & 7]) == 0)) {
                 
@@ -1177,7 +1177,7 @@ void RenderProcessBatch(uint param1) {
                 *(RenderFlagPtr)(handle2 + 0x1b6c) = 0;
                 *(byte*)(handle2 + 0x17a8) = 0;
                 *(RenderDataBlockPtr)(handle2 + 0x1798) =
-                    *(RenderDataBlockPtr)(&system_error_code + (longlong)*(int*)(handle2 + 0x17a0) * 8);
+                    *(RenderDataBlockPtr)(&system_error_code + (int64_t)*(int*)(handle2 + 0x17a0) * 8);
                 *(RenderFlagPtr)(handle2 + 0x1c0c) = 0xffffffff;
                 *(RenderFlagPtr)(handle2 + 0x1c14) = 0xffffffff;
                 *(RenderFlagPtr)(handle2 + 0x1c1c) = 0xffffffff;
@@ -1186,7 +1186,7 @@ void RenderProcessBatch(uint param1) {
                 *(RenderFlagPtr)(handle2 + 0x200c) = 0;
                 *(byte*)(handle2 + 0x1c48) = 0;
                 *(RenderDataBlockPtr)(handle2 + 0x1c38) =
-                    *(RenderDataBlockPtr)(&system_error_code + (longlong)*(int*)(handle2 + 0x1c40) * 8);
+                    *(RenderDataBlockPtr)(&system_error_code + (int64_t)*(int*)(handle2 + 0x1c40) * 8);
             }
         }
         handle3 += RENDER_MEMORY_BLOCK_SIZE;
@@ -1240,13 +1240,13 @@ void RenderDebugFunction2(void) {
  */
 void RenderSwitchMode(RenderHandle param1, int param2) {
     // 局部变量定义
-    longlong               handle1, handle2, handle3, handle4;
+    int64_t               handle1, handle2, handle3, handle4;
     char                   modeFlag;
     int8_t             stateFlag;
     uint                   indexValue;
-    longlong               memoryAddress;
+    int64_t               memoryAddress;
     int                    currentIndex, targetIndex;
-    ulonglong              loopCounter;
+    uint64_t              loopCounter;
     bool                   condition1, condition2;
     RenderDataBlock        stackData;
     
@@ -1294,7 +1294,7 @@ ModeSwitchComplete:
         // 处理后处理模式
         if (0 < (int)indexValue) {
             handle4 = 0;
-            loopCounter = (ulonglong)indexValue;
+            loopCounter = (uint64_t)indexValue;
             do {
                 handle1 = *(RenderHandlePtr)(param1 + RENDER_SYSTEM_OFFSET_8D8);
                 memoryAddress = handle1 + 0x876958;
@@ -1344,14 +1344,14 @@ SetStateFlag:
             if (currentIndex != -1) {
                 handle4 = *(RenderHandlePtr)(param1 + RENDER_SYSTEM_OFFSET_8D8);
                 RenderCallSetupFunction(param1, 0xffffffff, 0, 0);
-                RenderCallInitFunction((longlong)currentIndex * RENDER_COORDINATE_MULTIPLIER + handle4 + 0x30a0, 0xffffffff);
+                RenderCallInitFunction((int64_t)currentIndex * RENDER_COORDINATE_MULTIPLIER + handle4 + 0x30a0, 0xffffffff);
             }
         } else {
             currentIndex = *(int*)(param1 + RENDER_SYSTEM_OFFSET_560);
             if (currentIndex != -1) {
                 handle4 = *(RenderHandlePtr)(param1 + RENDER_SYSTEM_OFFSET_8D8);
                 RenderCallInitFunction(param1, 0xffffffff);
-                RenderCallSetupFunction((longlong)currentIndex * RENDER_COORDINATE_MULTIPLIER + handle4 + 0x30a0, 0xffffffff, 0, 0);
+                RenderCallSetupFunction((int64_t)currentIndex * RENDER_COORDINATE_MULTIPLIER + handle4 + 0x30a0, 0xffffffff, 0, 0);
             }
         }
     } else if (param2 == RENDER_MODE_SHADOW) {
@@ -1365,7 +1365,7 @@ SetStateFlag:
         // 处理阴影模式
         if (0 < (int)indexValue) {
             handle4 = 0;
-            loopCounter = (ulonglong)indexValue;
+            loopCounter = (uint64_t)indexValue;
             do {
                 handle1 = *(RenderHandlePtr)(param1 + RENDER_SYSTEM_OFFSET_8D8);
                 memoryAddress = handle1 + 0x876958;
@@ -1413,12 +1413,12 @@ SetStateFlag:
         // 处理缓冲区更新
         if ((param2 != RENDER_MODE_POST_PROCESS) && (*(char*)(handle4 + 0x98) != 0)) {
             handle4 = *(RenderHandlePtr)(param1 + RENDER_SYSTEM_OFFSET_8D8);
-            memoryAddress = (longlong)*(int*)(param1 + RENDER_SYSTEM_OFFSET_564) * RENDER_COORDINATE_MULTIPLIER;
+            memoryAddress = (int64_t)*(int*)(param1 + RENDER_SYSTEM_OFFSET_564) * RENDER_COORDINATE_MULTIPLIER;
             handle1 = *(RenderHandlePtr)(memoryAddress + 0x37d8 + handle4);
             
             // 检查缓冲区状态
             if (*(char*)(handle1 + 0x99) != 0) {
-                handle3 = (longlong)*(int*)(memoryAddress + 0x3600 + handle4) * RENDER_COORDINATE_MULTIPLIER;
+                handle3 = (int64_t)*(int*)(memoryAddress + 0x3600 + handle4) * RENDER_COORDINATE_MULTIPLIER;
                 handle2 = *(RenderHandlePtr)(memoryAddress + 0x3978 + handle4);
                 
                 // 检查帧缓冲区状态

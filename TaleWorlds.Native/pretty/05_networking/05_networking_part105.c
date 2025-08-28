@@ -68,9 +68,9 @@
  ==============================================================================*/
 
 /** 网络句柄类型别名 */
-typedef longlong* NetworkHandlePtr;  /**< 网络句柄指针类型 */
+typedef int64_t* NetworkHandlePtr;  /**< 网络句柄指针类型 */
 typedef uint NetworkSize;  /**< 网络大小类型 */
-typedef ulonglong NetworkResult;  /**< 网络结果类型 */
+typedef uint64_t NetworkResult;  /**< 网络结果类型 */
 typedef bool NetworkStatus;  /**< 网络状态类型 */
 typedef void* NetworkBuffer;  /**< 网络缓冲区类型 */
 
@@ -170,8 +170,8 @@ typedef struct {
  * @brief 网络统计信息结构体
  */
 typedef struct {
-    ulonglong bytes_sent;  /**< 发送字节数 */
-    ulonglong bytes_received;  /**< 接收字节数 */
+    uint64_t bytes_sent;  /**< 发送字节数 */
+    uint64_t bytes_received;  /**< 接收字节数 */
     uint packets_sent;  /**< 发送包数 */
     uint packets_received;  /**< 接收包数 */
     uint connection_count;  /**< 连接数 */
@@ -308,13 +308,13 @@ void NetworkSystemReset(void)
  * 
  * @param param_1 连接上下文参数
  * @param param_2 连接句柄指针
- * @return ulonglong 操作结果状态码
+ * @return uint64_t 操作结果状态码
  */
-ulonglong NetworkConnectionManager(longlong param_1, longlong *param_2)
+uint64_t NetworkConnectionManager(int64_t param_1, int64_t *param_2)
 {
-    longlong *connection_ptr;
+    int64_t *connection_ptr;
     uint data_size;
-    ulonglong result;
+    uint64_t result;
     int iteration_count;
     uint stack_buffer_18[2];
     uint stack_buffer_20[2];
@@ -332,7 +332,7 @@ ulonglong NetworkConnectionManager(longlong param_1, longlong *param_2)
     
     /* 验证连接状态 */
     if (*(int *)(param_2[1] + 0x18) == 0) {
-        connection_ptr = (longlong *)*param_2;
+        connection_ptr = (int64_t *)*param_2;
         if (*connection_ptr == 0) {
             result = 0x1c;
         }
@@ -344,7 +344,7 @@ ulonglong NetworkConnectionManager(longlong param_1, longlong *param_2)
                 if ((int)result != 0) {
                     return result;
                 }
-                if ((ulonglong)connection_ptr[2] < (ulonglong)stack_buffer_20[0] + 4) {
+                if ((uint64_t)connection_ptr[2] < (uint64_t)stack_buffer_20[0] + 4) {
                     result = 0x11;
                     goto cleanup_label;
                 }
@@ -397,7 +397,7 @@ process_connections:
         /* 清理网络资源 */
         FUN_1808ddf80(param_2, temp_buffer_38);
     }
-    return (ulonglong)data_size;
+    return (uint64_t)data_size;
 }
 
 /**
@@ -406,23 +406,23 @@ process_connections:
  * 验证网络连接的有效性和状态一致性。
  * 检查连接参数、协议兼容性和数据完整性。
  * 
- * @return ulonglong 验证结果状态码
+ * @return uint64_t 验证结果状态码
  */
-ulonglong NetworkConnectionValidator(void)
+uint64_t NetworkConnectionValidator(void)
 {
-    longlong *connection_ptr;
+    int64_t *connection_ptr;
     uint validation_result;
-    longlong context_ptr;
-    ulonglong operation_result;
+    int64_t context_ptr;
+    uint64_t operation_result;
     int process_index;
-    longlong stack_frame_ptr;
-    longlong *stack_ptr;
+    int64_t stack_frame_ptr;
+    int64_t *stack_ptr;
     uint stack_param_80;
     uint stack_param_88;
     
     validation_result = 0x1c;
     if (*(int *)(context_ptr + 0x18) == 0) {
-        connection_ptr = (longlong *)*stack_ptr;
+        connection_ptr = (int64_t *)*stack_ptr;
         if (*connection_ptr == 0) {
             operation_result = 0x1c;
         }
@@ -434,7 +434,7 @@ ulonglong NetworkConnectionValidator(void)
                 if ((int)operation_result != 0) {
                     return operation_result;
                 }
-                if ((ulonglong)connection_ptr[2] < (ulonglong)stack_param_88 + 4) {
+                if ((uint64_t)connection_ptr[2] < (uint64_t)stack_param_88 + 4) {
                     operation_result = 0x11;
                     goto validation_complete;
                 }
@@ -484,7 +484,7 @@ process_validation:
     }
     
     if (validation_result != 0) {
-        return (ulonglong)validation_result;
+        return (uint64_t)validation_result;
     }
     
     /* 清理验证资源 */
@@ -539,12 +539,12 @@ void NetworkProtocolProcessor(void)
  * 
  * @param param_1 协议上下文参数
  * @param param_2 协议数据指针
- * @return ulonglong 验证结果状态码
+ * @return uint64_t 验证结果状态码
  */
-ulonglong NetworkProtocolValidator(longlong param_1, longlong *param_2)
+uint64_t NetworkProtocolValidator(int64_t param_1, int64_t *param_2)
 {
-    longlong *protocol_ptr;
-    ulonglong validation_result;
+    int64_t *protocol_ptr;
+    uint64_t validation_result;
     uint protocol_size;
     bool is_valid;
     uint stack_buffer_18[2];
@@ -562,7 +562,7 @@ ulonglong NetworkProtocolValidator(longlong param_1, longlong *param_2)
         return NETWORK_ERROR_PROTOCOL_ERROR;
     }
     
-    protocol_ptr = (longlong *)*param_2;
+    protocol_ptr = (int64_t *)*param_2;
     protocol_size = 0x1c;
     if (*protocol_ptr == 0) {
         validation_result = 0x1c;
@@ -575,7 +575,7 @@ ulonglong NetworkProtocolValidator(longlong param_1, longlong *param_2)
             if ((int)validation_result != 0) {
                 return validation_result;
             }
-            if ((ulonglong)protocol_ptr[2] < (ulonglong)stack_buffer_18[0] + 4) {
+            if ((uint64_t)protocol_ptr[2] < (uint64_t)stack_buffer_18[0] + 4) {
                 validation_result = 0x11;
                 goto protocol_validation_complete;
             }
@@ -603,7 +603,7 @@ protocol_validation_complete:
         return NETWORK_ERROR_PROTOCOL_ERROR;
     }
     
-    protocol_ptr = (longlong *)*param_2;
+    protocol_ptr = (int64_t *)*param_2;
     if (*protocol_ptr == 0) {
         validation_result = 0x1c;
     }
@@ -615,7 +615,7 @@ protocol_validation_complete:
             if ((int)validation_result != 0) {
                 return validation_result;
             }
-            if ((ulonglong)protocol_ptr[2] < (ulonglong)stack_buffer_18[0] + 4) {
+            if ((uint64_t)protocol_ptr[2] < (uint64_t)stack_buffer_18[0] + 4) {
                 validation_result = 0x11;
                 goto config_validation_complete;
             }
@@ -648,7 +648,7 @@ config_validation_complete:
     is_valid = false;
     if (*(int *)(param_2[1] + 0x18) != 0) goto protocol_cleanup;
     
-    protocol_ptr = (longlong *)*param_2;
+    protocol_ptr = (int64_t *)*param_2;
     if (*protocol_ptr != 0) {
         if (protocol_ptr[2] == 0) {
 data_processing:
@@ -658,7 +658,7 @@ data_processing:
             stack_buffer_20[0] = 0;
             protocol_size = func_0x00018076a7d0(*protocol_ptr, stack_buffer_20);
             if (protocol_size == 0) {
-                if ((ulonglong)stack_buffer_20[0] + 1 <= (ulonglong)protocol_ptr[2]) goto data_processing;
+                if ((uint64_t)stack_buffer_20[0] + 1 <= (uint64_t)protocol_ptr[2]) goto data_processing;
                 protocol_size = 0x11;
             }
         }
@@ -671,7 +671,7 @@ data_processing:
     
     if (protocol_size != 0) {
 protocol_cleanup:
-        return (ulonglong)protocol_size;
+        return (uint64_t)protocol_size;
     }
     
     if (is_valid) {
@@ -721,7 +721,7 @@ void NetworkResourceCleanup(void)
  * @param param_2 状态数据指针
  * @return void 无返回值
  */
-void NetworkStatusChecker(longlong param_1, uint64_t param_2)
+void NetworkStatusChecker(int64_t param_1, uint64_t param_2)
 {
     int status_result;
     
@@ -741,13 +741,13 @@ void NetworkStatusChecker(longlong param_1, uint64_t param_2)
  * 
  * @param param_1 传输上下文参数
  * @param param_2 传输数据指针
- * @return ulonglong 传输结果状态码
+ * @return uint64_t 传输结果状态码
  */
-ulonglong NetworkDataTransmitter(longlong param_1, uint64_t *param_2)
+uint64_t NetworkDataTransmitter(int64_t param_1, uint64_t *param_2)
 {
     uint transmission_result;
-    ulonglong operation_result;
-    ulonglong final_result;
+    uint64_t operation_result;
+    uint64_t final_result;
     int8_t temp_buffer_48[32];
     int8_t temp_buffer_28[32];
     
@@ -767,7 +767,7 @@ ulonglong NetworkDataTransmitter(longlong param_1, uint64_t *param_2)
     }
     
     transmission_result = FUN_1808a2740(*param_2, param_1 + 0x60);
-    operation_result = (ulonglong)transmission_result;
+    operation_result = (uint64_t)transmission_result;
     if (transmission_result == 0) {
         operation_result = 0x1c;
         if (*(uint *)(param_2 + 8) < NETWORK_HEADER_SIZE_0x36) {
@@ -787,7 +787,7 @@ ulonglong NetworkDataTransmitter(longlong param_1, uint64_t *param_2)
         }
         else if (*(int *)(param_2[1] + 0x18) == 0) {
             transmission_result = FUN_1808a2e00(*param_2, param_1 + 0x40);
-            operation_result = (ulonglong)transmission_result;
+            operation_result = (uint64_t)transmission_result;
         }
         if ((int)operation_result == 0) {
             /* 清理传输资源 */
@@ -803,16 +803,16 @@ ulonglong NetworkDataTransmitter(longlong param_1, uint64_t *param_2)
  * 处理网络数据的接收和处理。
  * 支持多种协议的数据接收和验证。
  * 
- * @return ulonglong 接收结果状态码
+ * @return uint64_t 接收结果状态码
  */
-ulonglong NetworkDataReceiver(void)
+uint64_t NetworkDataReceiver(void)
 {
     uint receive_result;
-    longlong context_ptr;
-    ulonglong operation_result;
+    int64_t context_ptr;
+    uint64_t operation_result;
     uint64_t *data_ptr;
-    longlong connection_ptr;
-    ulonglong final_result;
+    int64_t connection_ptr;
+    uint64_t final_result;
     
     /* 检查接收状态 */
     if (*(int *)(context_ptr + 0x18) != 0) {
@@ -820,7 +820,7 @@ ulonglong NetworkDataReceiver(void)
     }
     
     receive_result = FUN_1808a2740(*data_ptr, connection_ptr + 0x60);
-    final_result = (ulonglong)receive_result;
+    final_result = (uint64_t)receive_result;
     if (receive_result == 0) {
         final_result = 0x1c;
         if (*(uint *)(data_ptr + 8) < NETWORK_HEADER_SIZE_0x36) {
@@ -840,7 +840,7 @@ ulonglong NetworkDataReceiver(void)
         }
         else if (*(int *)(data_ptr[1] + 0x18) == 0) {
             receive_result = FUN_1808a2e00(*data_ptr, connection_ptr + 0x40);
-            final_result = (ulonglong)receive_result;
+            final_result = (uint64_t)receive_result;
         }
         if ((int)final_result == 0) {
             /* 清理接收资源 */
@@ -856,19 +856,19 @@ ulonglong NetworkDataReceiver(void)
  * 处理网络系统中的错误和异常。
  * 提供错误恢复和错误报告功能。
  * 
- * @return ulonglong 错误处理结果状态码
+ * @return uint64_t 错误处理结果状态码
  */
-ulonglong NetworkErrorHandler(void)
+uint64_t NetworkErrorHandler(void)
 {
     uint error_result;
-    ulonglong operation_result;
+    uint64_t operation_result;
     uint64_t *error_ptr;
-    longlong context_ptr;
-    ulonglong final_result;
+    int64_t context_ptr;
+    uint64_t final_result;
     
     /* 执行错误检测和处理 */
     error_result = FUN_1808a2740(*error_ptr, context_ptr + 0x60);
-    final_result = (ulonglong)error_result;
+    final_result = (uint64_t)error_result;
     if (error_result == 0) {
         final_result = 0x1c;
         if (*(uint *)(error_ptr + 8) < NETWORK_HEADER_SIZE_0x36) {
@@ -888,7 +888,7 @@ ulonglong NetworkErrorHandler(void)
         }
         else if (*(int *)(error_ptr[1] + 0x18) == 0) {
             error_result = FUN_1808a2e00(*error_ptr, context_ptr + 0x40);
-            final_result = (ulonglong)error_result;
+            final_result = (uint64_t)error_result;
         }
         if ((int)final_result == 0) {
             /* 清理错误处理资源 */
@@ -936,15 +936,15 @@ void NetworkAdvancedProcessor(void)
  * @param param_2 数据包数据指针
  * @return uint64_t 处理结果状态
  */
-uint64_t NetworkPacketProcessor(uint64_t param_1, longlong *param_2)
+uint64_t NetworkPacketProcessor(uint64_t param_1, int64_t *param_2)
 {
-    longlong *packet_ptr;
-    longlong packet_size;
+    int64_t *packet_ptr;
+    int64_t packet_size;
     uint64_t processing_result;
     int validation_result[2];
     uint size_buffer[2];
     int32_t packet_header[2];
-    longlong packet_data;
+    int64_t packet_data;
     int8_t temp_buffer_58[32];
     int8_t temp_buffer_38[32];
     
@@ -980,7 +980,7 @@ packet_cleanup:
         return NETWORK_ERROR_PROTOCOL_ERROR;
     }
     
-    packet_ptr = (longlong *)*param_2;
+    packet_ptr = (int64_t *)*param_2;
     if (*packet_ptr == 0) {
         processing_result = 0x1c;
     }
@@ -992,7 +992,7 @@ packet_cleanup:
             if ((int)processing_result != 0) {
                 return processing_result;
             }
-            if ((ulonglong)packet_ptr[2] < (ulonglong)size_buffer[0] + 4) {
+            if ((uint64_t)packet_ptr[2] < (uint64_t)size_buffer[0] + 4) {
                 processing_result = 0x11;
                 goto buffer_validation_complete;
             }
@@ -1061,12 +1061,12 @@ packet_finalization:
  */
 uint64_t NetworkPacketValidator(void)
 {
-    longlong *packet_ptr;
-    longlong packet_size;
+    int64_t *packet_ptr;
+    int64_t packet_size;
     uint64_t validation_result;
-    longlong *context_ptr;
+    int64_t *context_ptr;
     int32_t packet_header;
-    longlong packet_data;
+    int64_t packet_data;
     int validation_flags;
     uint size_param;
     
@@ -1096,7 +1096,7 @@ packet_validation_cleanup:
         return NETWORK_ERROR_PROTOCOL_ERROR;
     }
     
-    packet_ptr = (longlong *)*context_ptr;
+    packet_ptr = (int64_t *)*context_ptr;
     if (*packet_ptr == 0) {
         validation_result = 0x1c;
     }
@@ -1108,7 +1108,7 @@ packet_validation_cleanup:
             if ((int)validation_result != 0) {
                 return validation_result;
             }
-            if ((ulonglong)packet_ptr[2] < (ulonglong)size_param + 4) {
+            if ((uint64_t)packet_ptr[2] < (uint64_t)size_param + 4) {
                 validation_result = 0x11;
                 goto validation_complete;
             }
@@ -1204,7 +1204,7 @@ uint64_t NetworkErrorCodeHandler(void)
  * @param param_2 配置数据指针
  * @return uint64_t 配置管理结果
  */
-uint64_t NetworkConfigurationManager(longlong param_1, uint64_t *param_2)
+uint64_t NetworkConfigurationManager(int64_t param_1, uint64_t *param_2)
 {
     uint64_t config_result;
     
@@ -1239,7 +1239,7 @@ uint64_t NetworkConfigurationManager(longlong param_1, uint64_t *param_2)
  * @param param_2 同步数据指针
  * @return void 无返回值
  */
-void NetworkDataSynchronizer(longlong param_1, uint64_t *param_2)
+void NetworkDataSynchronizer(int64_t param_1, uint64_t *param_2)
 {
     int sync_result;
     int8_t temp_buffer_48[32];
@@ -1313,7 +1313,7 @@ void NetworkProtocolManager(int32_t param_1)
 {
     int protocol_result;
     uint64_t *context_ptr;
-    longlong data_ptr;
+    int64_t data_ptr;
     int32_t protocol_param;
     
     /* 验证协议参数 */

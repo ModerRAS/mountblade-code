@@ -143,18 +143,18 @@ void FUN_180110540(int param_1)
     int32_t *puVar1;                              // 位置指针
     float fVar2;                                  // 浮点计算变量
     int iVar3;                                  // 整型计算变量
-    longlong lVar4;                              // 上下文指针
+    int64_t lVar4;                              // 上下文指针
     bool bVar5;                                  // 布尔状态标志
-    longlong lVar6;                              // 引擎上下文
-    longlong lVar7;                              // 临时指针
+    int64_t lVar6;                              // 引擎上下文
+    int64_t lVar7;                              // 临时指针
     int iVar8;                                  // 索引变量
     uint uVar9;                                 // 无符号整型
     int32_t uVar10;                              // 整型值
     void *puVar11;                              // 通用指针
     char cVar12;                                // 字符标志
-    longlong lVar13;                             // 偏移量指针
+    int64_t lVar13;                             // 偏移量指针
     uint uVar14;                                // 无符号整型值
-    ulonglong uVar15;                            // 长整型值
+    uint64_t uVar15;                            // 长整型值
     float fVar16;                                // 浮点计算变量
     float fVar17;                                // 浮点计算变量
     float fVar18;                                // 浮点计算变量
@@ -180,7 +180,7 @@ void FUN_180110540(int param_1)
     // 初始化引擎上下文和计算参数
     lVar6 = SYSTEM_DATA_MANAGER_A;                       // 获取引擎上下文
     puVar11 = &unknown_var_2064_ptr;                     // 初始化数据指针
-    lVar4 = *(longlong *)(SYSTEM_DATA_MANAGER_A + ENGINE_OFFSET_CONTEXT);  // 获取上下文数据
+    lVar4 = *(int64_t *)(SYSTEM_DATA_MANAGER_A + ENGINE_OFFSET_CONTEXT);  // 获取上下文数据
     
     // 根据参数选择不同的计算路径
     if (param_1 == 0) {
@@ -190,7 +190,7 @@ void FUN_180110540(int param_1)
     // 执行初始计算和索引获取
     iVar8 = FUN_180121250(puVar11, 0,
                           *(int32_t *)
-                           (*(longlong *)(lVar4 + ENGINE_OFFSET_CONFIG) + -4 + (longlong)*(int *)(lVar4 + ENGINE_OFFSET_STATE) * 4)
+                           (*(int64_t *)(lVar4 + ENGINE_OFFSET_CONFIG) + -4 + (int64_t)*(int *)(lVar4 + ENGINE_OFFSET_STATE) * 4)
                          );
     
     // 更新引擎状态和标志
@@ -232,7 +232,7 @@ void FUN_180110540(int param_1)
     }
     else {
         // 模式1的坐标计算
-        uVar15 = (ulonglong)*(uint *)(lVar4 + 0xc);         // 获取状态标志
+        uVar15 = (uint64_t)*(uint *)(lVar4 + 0xc);         // 获取状态标志
         fVar16 = *(float *)(lVar4 + 0x44) + fVar18;         // 计算X轴位置
         fStack_f8 = fStackX_18 - *(float *)(lVar6 + ENGINE_OFFSET_BOUNDARY);  // 计算X轴差值
         fStack_f0 = fStackX_18 - fVar18;                   // 计算Y轴差值
@@ -397,7 +397,7 @@ void FUN_180110540(int param_1)
         
         // 检查缓冲区状态并执行最终的位置计算
         if (acStackX_8[0] == '\0') {
-            lVar13 = (ulonglong)(acStackX_10[0] != '\0') + 0xf;  // 计算偏移量
+            lVar13 = (uint64_t)(acStackX_10[0] != '\0') + 0xf;  // 计算偏移量
         }
         else {
             // 执行精确的位置计算
@@ -567,13 +567,13 @@ void FUN_180110753(void)
     float fVar2;                                  // 浮点计算变量
     int iVar3;                                  // 整型计算变量
     bool bVar4;                                  // 布尔状态标志
-    longlong lVar5;                              // 引擎上下文
+    int64_t lVar5;                              // 引擎上下文
     float fVar6;                                  // 浮点计算变量
     int32_t uVar7;                               // 整型值
-    longlong lVar8;                              // 偏移量指针
-    longlong unaff_RBX;                           // 系统寄存器RBX
-    longlong unaff_RBP;                           // 系统寄存器RBP
-    longlong unaff_RDI;                           // 系统寄存器RDI
+    int64_t lVar8;                              // 偏移量指针
+    int64_t unaff_RBX;                           // 系统寄存器RBX
+    int64_t unaff_RBP;                           // 系统寄存器RBP
+    int64_t unaff_RDI;                           // 系统寄存器RDI
     int unaff_R14D;                              // 系统寄存器R14D
     int unaff_R15D;                              // 系统寄存器R15D
     float fVar9;                                  // 浮点计算变量
@@ -714,7 +714,7 @@ void FUN_180110753(void)
         
         // 检查缓冲区状态并执行最终的位置计算
         if (*(char *)(unaff_RBP + 0x67) == '\0') {
-            lVar8 = (ulonglong)(*(char *)(unaff_RBP + 0x6f) != '\0') + 0xf;  // 计算偏移量
+            lVar8 = (uint64_t)(*(char *)(unaff_RBP + 0x6f) != '\0') + 0xf;  // 计算偏移量
         }
         else {
             // 执行精确的位置计算
@@ -885,13 +885,13 @@ void FUN_18011077f(void)
     float fVar2;                                  // 浮点计算变量
     int iVar3;                                  // 整型计算变量
     bool bVar4;                                  // 布尔状态标志
-    longlong lVar5;                              // 引擎上下文
+    int64_t lVar5;                              // 引擎上下文
     float fVar6;                                  // 浮点计算变量
     int32_t uVar7;                               // 整型值
-    longlong lVar8;                              // 偏移量指针
-    longlong unaff_RBX;                           // 系统寄存器RBX
-    longlong unaff_RBP;                           // 系统寄存器RBP
-    longlong unaff_RDI;                           // 系统寄存器RDI
+    int64_t lVar8;                              // 偏移量指针
+    int64_t unaff_RBX;                           // 系统寄存器RBX
+    int64_t unaff_RBP;                           // 系统寄存器RBP
+    int64_t unaff_RDI;                           // 系统寄存器RDI
     int unaff_R14D;                              // 系统寄存器R14D
     int unaff_R15D;                              // 系统寄存器R15D
     float fVar9;                                  // 浮点计算变量
@@ -1032,7 +1032,7 @@ void FUN_18011077f(void)
     
     // 检查增强的缓冲区状态并执行最终的位置计算
     if (*(char *)(unaff_RBP + 0x67) == '\0') {
-        lVar8 = (ulonglong)(*(char *)(unaff_RBP + 0x6f) != '\0') + 0xf;  // 计算偏移量
+        lVar8 = (uint64_t)(*(char *)(unaff_RBP + 0x6f) != '\0') + 0xf;  // 计算偏移量
     }
     else {
         // 执行增强的精确位置计算
@@ -1199,9 +1199,9 @@ void FUN_180110b7d(void)
 {
     // 局部变量定义
     int32_t in_EAX;                              // 输入参数
-    longlong unaff_RBX;                           // 系统寄存器RBX
-    longlong unaff_RBP;                           // 系统寄存器RBP
-    longlong unaff_RDI;                           // 系统寄存器RDI
+    int64_t unaff_RBX;                           // 系统寄存器RBX
+    int64_t unaff_RBP;                           // 系统寄存器RBP
+    int64_t unaff_RDI;                           // 系统寄存器RDI
     float unaff_XMM6_Da;                          // 系统寄存器XMM6
     float unaff_XMM7_Da;                          // 系统寄存器XMM7
     float unaff_XMM9_Da;                          // 系统寄存器XMM9

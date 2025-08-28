@@ -65,7 +65,7 @@
  * @param param_2 连接配置参数
  * @return void 无返回值
  */
-void network_connection_initializer_and_validator(longlong param_1, longlong param_2);
+void network_connection_initializer_and_validator(int64_t param_1, int64_t param_2);
 
 /**
  * @brief 网络连接简化处理器
@@ -77,7 +77,7 @@ void network_connection_initializer_and_validator(longlong param_1, longlong par
  * @param param_2 连接参数
  * @return void 无返回值
  */
-void network_connection_simplified_processor(longlong param_1, longlong param_2);
+void network_connection_simplified_processor(int64_t param_1, int64_t param_2);
 
 /**
  * @brief 网络连接高级处理器
@@ -89,7 +89,7 @@ void network_connection_simplified_processor(longlong param_1, longlong param_2)
  * @param param_2 连接配置参数
  * @return void 无返回值
  */
-void network_connection_advanced_processor(longlong param_1, longlong param_2);
+void network_connection_advanced_processor(int64_t param_1, int64_t param_2);
 
 /**
  * @brief 网络连接状态查询器
@@ -101,7 +101,7 @@ void network_connection_advanced_processor(longlong param_1, longlong param_2);
  * @param param_2 查询参数
  * @return uint64_t 状态信息
  */
-uint64_t network_connection_status_query(longlong param_1, longlong param_2);
+uint64_t network_connection_status_query(int64_t param_1, int64_t param_2);
 
 /**
  * @brief 网络连接数据管理器
@@ -113,7 +113,7 @@ uint64_t network_connection_status_query(longlong param_1, longlong param_2);
  * @param param_2 数据参数
  * @return uint64_t 操作结果
  */
-uint64_t network_connection_data_manager(longlong param_1, longlong param_2);
+uint64_t network_connection_data_manager(int64_t param_1, int64_t param_2);
 
 /** @} */
 
@@ -137,7 +137,7 @@ uint64_t network_connection_data_manager(longlong param_1, longlong param_2);
  * @param param_2 输入数据
  * @return uint64_t 处理结果码
  */
-uint64_t network_data_validator_and_processor(longlong param_1, longlong param_2);
+uint64_t network_data_validator_and_processor(int64_t param_1, int64_t param_2);
 
 /**
  * @brief 网络数据索引管理器
@@ -149,7 +149,7 @@ uint64_t network_data_validator_and_processor(longlong param_1, longlong param_2
  * @param param_2 索引参数
  * @return uint64_t 操作结果
  */
-uint64_t network_data_index_manager(longlong param_1, longlong param_2);
+uint64_t network_data_index_manager(int64_t param_1, int64_t param_2);
 
 /**
  * @brief 网络数据遍历处理器
@@ -171,7 +171,7 @@ uint64_t network_data_traversal_processor(void);
  * @param param_2 浮点数据
  * @return uint64_t 验证结果
  */
-uint64_t network_float_validator(longlong param_1, longlong param_2);
+uint64_t network_float_validator(int64_t param_1, int64_t param_2);
 
 /**
  * @brief 网络浮点数高级处理器
@@ -183,7 +183,7 @@ uint64_t network_float_validator(longlong param_1, longlong param_2);
  * @param param_2 浮点参数
  * @return uint64_t 处理结果
  */
-uint64_t network_float_advanced_processor(longlong param_1, longlong param_2);
+uint64_t network_float_advanced_processor(int64_t param_1, int64_t param_2);
 
 /**
  * @brief 网络浮点数范围检查器
@@ -195,7 +195,7 @@ uint64_t network_float_advanced_processor(longlong param_1, longlong param_2);
  * @param param_2 浮点数据
  * @return uint64_t 检查结果
  */
-uint64_t network_float_range_checker(longlong param_1, longlong param_2);
+uint64_t network_float_range_checker(int64_t param_1, int64_t param_2);
 
 /**
  * @brief 网络浮点数优化处理器
@@ -207,7 +207,7 @@ uint64_t network_float_range_checker(longlong param_1, longlong param_2);
  * @param param_2 浮点参数
  * @return uint64_t 优化结果
  */
-uint64_t network_float_optimization_processor(longlong param_1, longlong param_2);
+uint64_t network_float_optimization_processor(int64_t param_1, int64_t param_2);
 
 /** @} */
 
@@ -231,7 +231,7 @@ uint64_t network_float_optimization_processor(longlong param_1, longlong param_2
  * @param param_2 分配参数
  * @return uint64_t 分配结果
  */
-uint64_t network_memory_allocator(longlong param_1, longlong param_2);
+uint64_t network_memory_allocator(int64_t param_1, int64_t param_2);
 
 /**
  * @brief 网络数据结构管理器
@@ -243,7 +243,7 @@ uint64_t network_memory_allocator(longlong param_1, longlong param_2);
  * @param param_2 结构参数
  * @return uint64_t 操作结果
  */
-uint64_t network_data_structure_manager(longlong param_1, longlong param_2);
+uint64_t network_data_structure_manager(int64_t param_1, int64_t param_2);
 
 /**
  * @brief 网络资源清理器
@@ -255,7 +255,7 @@ uint64_t network_data_structure_manager(longlong param_1, longlong param_2);
  * @param param_2 清理参数
  * @return void 无返回值
  */
-void network_resource_cleaner(longlong param_1, longlong param_2);
+void network_resource_cleaner(int64_t param_1, int64_t param_2);
 
 /**
  * @brief 网络缓冲区管理器
@@ -267,7 +267,7 @@ void network_resource_cleaner(longlong param_1, longlong param_2);
  * @param param_2 缓冲区参数
  * @return void 无返回值
  */
-void network_buffer_manager(longlong param_1, longlong param_2);
+void network_buffer_manager(int64_t param_1, int64_t param_2);
 
 /**
  * @brief 网络数据传输器
@@ -279,7 +279,7 @@ void network_buffer_manager(longlong param_1, longlong param_2);
  * @param param_2 传输参数
  * @return void 无返回值
  */
-void network_data_transmitter(longlong *param_1, longlong param_2);
+void network_data_transmitter(int64_t *param_1, int64_t param_2);
 
 /** @} */
 
@@ -367,7 +367,7 @@ uint64_t network_exception_handler(void);
  * @param param_4 扩展参数
  * @return uint64_t 配置结果
  */
-uint64_t network_parameter_configurator(longlong param_1, longlong param_2, uint64_t param_3, uint64_t param_4);
+uint64_t network_parameter_configurator(int64_t param_1, int64_t param_2, uint64_t param_3, uint64_t param_4);
 
 /**
  * @brief 网络批量数据处理器
@@ -379,7 +379,7 @@ uint64_t network_parameter_configurator(longlong param_1, longlong param_2, uint
  * @param param_2 数据参数
  * @return uint64_t 处理结果
  */
-uint64_t network_batch_data_processor(longlong param_1, longlong param_2);
+uint64_t network_batch_data_processor(int64_t param_1, int64_t param_2);
 
 /**
  * @brief 网络数据同步器
@@ -471,25 +471,25 @@ extern int network_data_processed;        /**< 网络数据处理量 */
 /* ================================ */
 
 /* 网络连接管理函数声明 */
-uint8_t FUN_180892090(longlong param_1, longlong param_2);              /**< 网络连接初始化函数 */
-uint8_t FUN_1808920e0(longlong param_1, longlong param_2);              /**< 网络连接简化处理函数 */
-uint8_t FUN_180892120(longlong param_1, longlong param_2);              /**< 网络连接高级处理函数 */
-uint8_t FUN_180892170(longlong param_1, longlong param_2);              /**< 网络连接状态查询函数 */
-uint8_t FUN_1808921f0(longlong param_1, longlong param_2);              /**< 网络连接数据管理函数 */
+uint8_t FUN_180892090(int64_t param_1, int64_t param_2);              /**< 网络连接初始化函数 */
+uint8_t FUN_1808920e0(int64_t param_1, int64_t param_2);              /**< 网络连接简化处理函数 */
+uint8_t FUN_180892120(int64_t param_1, int64_t param_2);              /**< 网络连接高级处理函数 */
+uint8_t FUN_180892170(int64_t param_1, int64_t param_2);              /**< 网络连接状态查询函数 */
+uint8_t FUN_1808921f0(int64_t param_1, int64_t param_2);              /**< 网络连接数据管理函数 */
 
 /* 数据验证和浮点处理函数声明 */
-uint8_t FUN_180892270(longlong param_1, longlong param_2);              /**< 网络数据验证处理函数 */
+uint8_t FUN_180892270(int64_t param_1, int64_t param_2);              /**< 网络数据验证处理函数 */
 uint8_t FUN_1808922ad(void);                                          /**< 网络数据索引管理函数 */
-uint8_t FUN_180892370(longlong param_1, longlong param_2);              /**< 网络浮点数验证函数 */
-uint8_t FUN_1808924f0(longlong param_1, longlong param_2);              /**< 网络浮点数高级处理函数 */
-uint8_t FUN_180892780(longlong param_1, longlong param_2);              /**< 网络浮点数范围检查函数 */
-uint8_t FUN_180892880(longlong param_1, longlong param_2);              /**< 网络浮点数优化处理函数 */
+uint8_t FUN_180892370(int64_t param_1, int64_t param_2);              /**< 网络浮点数验证函数 */
+uint8_t FUN_1808924f0(int64_t param_1, int64_t param_2);              /**< 网络浮点数高级处理函数 */
+uint8_t FUN_180892780(int64_t param_1, int64_t param_2);              /**< 网络浮点数范围检查函数 */
+uint8_t FUN_180892880(int64_t param_1, int64_t param_2);              /**< 网络浮点数优化处理函数 */
 
 /* 内存管理和数据结构函数声明 */
-uint8_t FUN_180892410(longlong param_1, longlong param_2);              /**< 网络内存分配函数 */
-uint8_t FUN_18089246a(longlong *param_1, longlong param_2);            /**< 网络数据结构管理函数 */
-uint8_t FUN_180892720(longlong param_1, longlong param_2);              /**< 网络资源清理函数 */
-uint8_t FUN_180892e50(longlong param_1, uint64_t param_2);           /**< 网络缓冲区管理函数 */
+uint8_t FUN_180892410(int64_t param_1, int64_t param_2);              /**< 网络内存分配函数 */
+uint8_t FUN_18089246a(int64_t *param_1, int64_t param_2);            /**< 网络数据结构管理函数 */
+uint8_t FUN_180892720(int64_t param_1, int64_t param_2);              /**< 网络资源清理函数 */
+uint8_t FUN_180892e50(int64_t param_1, uint64_t param_2);           /**< 网络缓冲区管理函数 */
 uint8_t FUN_180892983(void);                                          /**< 网络系统初始化函数 */
 
 /* 错误处理和异常管理函数声明 */
@@ -499,8 +499,8 @@ uint8_t FUN_1808924c8(void);                                          /**< 网�
 uint8_t FUN_180892e35(void);                                          /**< 网络异常处理函数 */
 
 /* 高级网络处理函数声明 */
-uint8_t FUN_180892bd0(longlong param_1, longlong param_2, uint64_t param_3, uint64_t param_4); /**< 网络参数配置函数 */
-uint8_t FUN_180892cc0(longlong param_1, longlong param_2);              /**< 网络批量数据处理函数 */
+uint8_t FUN_180892bd0(int64_t param_1, int64_t param_2, uint64_t param_3, uint64_t param_4); /**< 网络参数配置函数 */
+uint8_t FUN_180892cc0(int64_t param_1, int64_t param_2);              /**< 网络批量数据处理函数 */
 uint8_t FUN_180892ceb(void);                                          /**< 网络数据同步函数 */
 
 /* 辅助函数声明 */
@@ -509,8 +509,8 @@ uint8_t FUN_1808928f1(void);                                          /**< 网�
 uint8_t FUN_180892909(int32_t param_1);                           /**< 网络辅助处理函数3 */
 uint8_t FUN_180892920(int32_t param_1);                           /**< 网络辅助处理函数4 */
 uint8_t FUN_180892974(void);                                          /**< 网络辅助处理函数5 */
-uint8_t FUN_180892990(longlong param_1, longlong param_2);              /**< 网络辅助处理函数6 */
-uint8_t FUN_180892ac0(longlong param_1, longlong param_2);              /**< 网络辅助处理函数7 */
+uint8_t FUN_180892990(int64_t param_1, int64_t param_2);              /**< 网络辅助处理函数6 */
+uint8_t FUN_180892ac0(int64_t param_1, int64_t param_2);              /**< 网络辅助处理函数7 */
 uint8_t FUN_180892e2d(void);                                          /**< 网络辅助处理函数8 */
 
 /* ================================ */

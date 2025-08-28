@@ -78,7 +78,7 @@
 // ============================================================================
 
 /** 网络连接句柄类型 */
-typedef ulonglong NetworkingConnectionHandle;
+typedef uint64_t NetworkingConnectionHandle;
 
 /** 数据缓冲区指针类型 */
 typedef void* NetworkingDataBuffer;
@@ -102,10 +102,10 @@ typedef uint NetworkingConnectionId;
 typedef uint NetworkingPacketId;
 
 /** 数据传输大小类型 */
-typedef ulonglong NetworkingDataSize;
+typedef uint64_t NetworkingDataSize;
 
 /** 系统时间戳类型 */
-typedef ulonglong NetworkingTimestamp;
+typedef uint64_t NetworkingTimestamp;
 
 /** 网络地址类型 */
 typedef struct NetworkingAddress NetworkingAddress;
@@ -361,7 +361,7 @@ void FUN_180883a30(uint64_t param_1)
  * @param param_3 目标数据指针，指定数据传输的目标位置
  * @param param_4 传输结果指针，用于返回传输操作的结果
  * 
- * @return ulonglong 数据传输操作的结果代码
+ * @return uint64_t 数据传输操作的结果代码
  * 
  * 功能说明：
  * - 验证数据传输参数的有效性
@@ -391,22 +391,22 @@ void FUN_180883a30(uint64_t param_1)
  * @note 此函数为网络系统数据传输的核心处理器
  * @see NetworkingSystem_HashCalculator, NetworkingSystem_DataValidator
  */
-ulonglong FUN_180883a80(longlong *param_1, longlong *param_2, uint64_t *param_3, ulonglong *param_4)
+uint64_t FUN_180883a80(int64_t *param_1, int64_t *param_2, uint64_t *param_3, uint64_t *param_4)
 {
-    longlong *data_context;          // 数据传输上下文
-    longlong resource_handle;         // 资源句柄
+    int64_t *data_context;          // 数据传输上下文
+    int64_t resource_handle;         // 资源句柄
     uint hash_value;                  // 哈希值
     int validation_result;            // 验证结果
-    longlong *data_node;              // 数据节点指针
-    ulonglong transfer_result;        // 传输结果
-    ulonglong operation_result;       // 操作结果
-    longlong calculation_result;      // 计算结果
-    longlong index_result;            // 索引结果
+    int64_t *data_node;              // 数据节点指针
+    uint64_t transfer_result;        // 传输结果
+    uint64_t operation_result;       // 操作结果
+    int64_t calculation_result;      // 计算结果
+    int64_t index_result;            // 索引结果
     int *validation_pointer;          // 验证指针
-    longlong *node_pointer;           // 节点指针
-    ulonglong search_result;          // 搜索结果
-    longlong *stack_pointer_8;        // 栈指针8
-    longlong *stack_pointer_10;       // 栈指针10
+    int64_t *node_pointer;           // 节点指针
+    uint64_t search_result;          // 搜索结果
+    int64_t *stack_pointer_8;        // 栈指针8
+    int64_t *stack_pointer_10;       // 栈指针10
     uint64_t stack_data_48;         // 栈数据48
     uint stack_data_40;               // 栈数据40
     uint stack_data_3c;               // 栈数据3c
@@ -416,10 +416,10 @@ ulonglong FUN_180883a80(longlong *param_1, longlong *param_2, uint64_t *param_3,
     *param_4 = 0;
     
     // 获取数据传输上下文
-    data_context = (longlong *)param_1[1];
-    stack_data_48 = (longlong *)param_2[2];
+    data_context = (int64_t *)param_1[1];
+    stack_data_48 = (int64_t *)param_2[2];
     stack_data_40 = *(uint *)(param_2 + 3);
-    stack_data_3c = *(uint *)((longlong)param_2 + 0x1c);
+    stack_data_3c = *(uint *)((int64_t)param_2 + 0x1c);
     
     // 获取资源句柄
     resource_handle = data_context[5];
@@ -444,21 +444,21 @@ ulonglong FUN_180883a80(longlong *param_1, longlong *param_2, uint64_t *param_3,
         }
         
         // 计算数据索引
-        index_result = (longlong)
+        index_result = (int64_t)
                 (int)((stack_data_48._4_4_ ^ (uint)stack_data_48 ^ stack_data_40 ^ stack_data_3c) & 
                      (int)data_context[1] - 1U);
         
         // 查找数据节点
-        node_pointer = (longlong *)(*data_context + index_result * 4);
+        node_pointer = (int64_t *)(*data_context + index_result * 4);
         validation_result = *(int *)(*data_context + index_result * 4);
         
         // 如果找到有效节点，进行数据验证
         if (validation_result != -1) {
             do {
-                data_node = (longlong *)((longlong)validation_result * 0x20 + data_context[2]);
+                data_node = (int64_t *)((int64_t)validation_result * 0x20 + data_context[2]);
                 
                 // 验证数据匹配性
-                if (((longlong *)*data_node == stack_data_48) && 
+                if (((int64_t *)*data_node == stack_data_48) && 
                     (data_node[1] == CONCAT44(stack_data_3c, stack_data_40))) {
                     search_result = data_node[3];
                     goto validation_complete;
@@ -475,7 +475,7 @@ ulonglong FUN_180883a80(longlong *param_1, longlong *param_2, uint64_t *param_3,
     }
     else {
 validation_successful:
-        operation_result = (ulonglong)hash_value;
+        operation_result = (uint64_t)hash_value;
         if (hash_value != 0) {
 cleanup_and_return:
             // 清理资源并返回结果
@@ -506,13 +506,13 @@ validation_complete:
     }
     
     // 设置数据传输参数
-    stack_pointer_10 = (longlong *)0x0;
+    stack_pointer_10 = (int64_t *)0x0;
     operation_result = FUN_18086f7c0(param_3, search_result, param_3, &stack_pointer_10);
     if ((int)operation_result != 0) {
         return operation_result;
     }
     
-    stack_data_48 = (longlong *)0x0;
+    stack_data_48 = (int64_t *)0x0;
     operation_result = FUN_18086f7c0(param_3, param_2, param_3 + 2, &stack_data_48);
     if ((int)operation_result != 0) {
         return operation_result;
@@ -521,24 +521,24 @@ validation_complete:
     // 比较数据是否匹配
     if ((stack_pointer_10 == stack_data_48) && 
         (validation_result = memcmp(*param_3, param_3[2]), validation_result == 0)) {
-        *param_4 = (ulonglong)param_2;
+        *param_4 = (uint64_t)param_2;
         return 0;
     }
     
     // 更新数据节点信息
     node_pointer = stack_pointer_8;
-    *(ushort *)((longlong)param_2 + 0xeU) =
-         *(ushort *)((longlong)param_2 + 0xeU) ^
-         (*(ushort *)((longlong)param_2 + 0xe) ^ *(ushort *)(search_result + 0xe)) & 0x7fff;
+    *(ushort *)((int64_t)param_2 + 0xeU) =
+         *(ushort *)((int64_t)param_2 + 0xeU) ^
+         (*(ushort *)((int64_t)param_2 + 0xe) ^ *(ushort *)(search_result + 0xe)) & 0x7fff;
     *(ushort *)(search_result + 0xe) = *(ushort *)(search_result + 0xe) & 0x8000;
     
     // 获取数据缓冲区信息
-    stack_data_48 = *(longlong **)(search_result + 0x10);
+    stack_data_48 = *(int64_t **)(search_result + 0x10);
     stack_data_40 = *(uint *)(search_result + 0x18);
     stack_data_3c = *(uint *)(search_result + 0x1c);
     
     // 重新获取数据上下文和资源句柄
-    data_context = (longlong *)node_pointer[1];
+    data_context = (int64_t *)node_pointer[1];
     resource_handle = data_context[5];
     
     // 锁定资源
@@ -547,13 +547,13 @@ validation_complete:
     }
     
     // 处理数据上下文
-    if (*(int *)((longlong)data_context + 0x24) != 0) {
+    if (*(int *)((int64_t)data_context + 0x24) != 0) {
         if ((int)data_context[1] == 0) {
             transfer_result = 0x1c;
         }
         else {
             // 计算数据索引
-            index_result = (longlong)
+            index_result = (int64_t)
                     (int)(((uint)stack_data_48 ^ stack_data_48._4_4_ ^ stack_data_40 ^ stack_data_3c) &
                          (int)data_context[1] - 1U);
             
@@ -564,21 +564,21 @@ validation_complete:
             if (validation_result != -1) {
                 index_result = data_context[2];
                 do {
-                    calculation_result = (longlong)validation_result * 0x20;
+                    calculation_result = (int64_t)validation_result * 0x20;
                     
                     // 验证数据匹配性
-                    if (((longlong *)*(longlong *)(calculation_result + index_result) == stack_data_48) &&
-                       (*(longlong *)(calculation_result + 8 + index_result) == 
+                    if (((int64_t *)*(int64_t *)(calculation_result + index_result) == stack_data_48) &&
+                       (*(int64_t *)(calculation_result + 8 + index_result) == 
                         CONCAT44(stack_data_3c, stack_data_40))) {
                         validation_result = *validation_pointer;
-                        calculation_result = (longlong)validation_result * 0x20;
+                        calculation_result = (int64_t)validation_result * 0x20;
                         
                         // 更新数据节点信息
                         *(uint64_t *)(calculation_result + 0x18 + index_result) = 0;
                         *validation_pointer = *(int *)(calculation_result + 0x10 + index_result);
                         *(int *)(calculation_result + 0x10 + index_result) = (int)data_context[4];
-                        *(int *)((longlong)data_context + 0x24) = 
-                            *(int *)((longlong)data_context + 0x24) + -1;
+                        *(int *)((int64_t)data_context + 0x24) = 
+                            *(int *)((int64_t)data_context + 0x24) + -1;
                         *(int *)(data_context + 4) = validation_result;
                         transfer_result = 0;
                         break;
@@ -603,10 +603,10 @@ validation_complete:
     }
     
     // 重新设置数据传输参数
-    data_context = (longlong *)node_pointer[1];
-    stack_data_48 = (longlong *)param_2[2];
+    data_context = (int64_t *)node_pointer[1];
+    stack_data_48 = (int64_t *)param_2[2];
     stack_data_40 = *(uint *)(param_2 + 3);
-    stack_data_3c = *(uint *)((longlong)param_2 + 0x1c);
+    stack_data_3c = *(uint *)((int64_t)param_2 + 0x1c);
     resource_handle = data_context[5];
     stack_pointer_8 = param_2;
     
@@ -624,7 +624,7 @@ validation_complete:
         }
         
         // 计算数据索引
-        index_result = (longlong)
+        index_result = (int64_t)
                 (int)(((uint)stack_data_48 ^ stack_data_48._4_4_ ^ stack_data_40 ^ stack_data_3c) & 
                      (int)data_context[1] - 1U);
         
@@ -635,11 +635,11 @@ validation_complete:
         if (validation_result != -1) {
             index_result = data_context[2];
             do {
-                calculation_result = (longlong)validation_result * 0x20;
+                calculation_result = (int64_t)validation_result * 0x20;
                 
                 // 验证数据匹配性
-                if (((longlong *)*(longlong *)(calculation_result + index_result) == stack_data_48) &&
-                   (*(longlong *)(calculation_result + 8 + index_result) == 
+                if (((int64_t *)*(int64_t *)(calculation_result + index_result) == stack_data_48) &&
+                   (*(int64_t *)(calculation_result + 8 + index_result) == 
                     CONCAT44(stack_data_3c, stack_data_40))) {
                     hash_value = 0x1c;
                     goto final_cleanup;
@@ -658,7 +658,7 @@ validation_complete:
     }
     else {
 data_validation_complete:
-        operation_result = (ulonglong)hash_value;
+        operation_result = (uint64_t)hash_value;
         if (hash_value != 0) {
 final_cleanup:
             // 清理资源并返回
@@ -672,7 +672,7 @@ final_cleanup:
     
     // 处理数据验证结果
     if (hash_value != 0) {
-        operation_result = (ulonglong)hash_value;
+        operation_result = (uint64_t)hash_value;
     }
     else {
         operation_result = 0x1c;

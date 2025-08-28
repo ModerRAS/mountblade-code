@@ -231,15 +231,15 @@ static bool check_state_condition(uint32_t state_flags, uint32_t condition_mask)
  * - 空间复杂度: O(1) 使用固定大小的栈空间
  * - 支持批量处理和条件跳过
  */
-void DataStructureProcessor_Primary(longlong param_1, byte *param_2, uint64_t *param_3)
+void DataStructureProcessor_Primary(int64_t param_1, byte *param_2, uint64_t *param_3)
 {
     // 局部变量声明
     float comparison_value;                   // 比较值
-    longlong *element_pointer;               // 元素指针
-    longlong start_offset;                    // 起始偏移
+    int64_t *element_pointer;               // 元素指针
+    int64_t start_offset;                    // 起始偏移
     byte condition_result;                   // 条件结果
     int iteration_index;                      // 迭代索引
-    longlong current_offset;                  // 当前偏移
+    int64_t current_offset;                  // 当前偏移
     float processed_value;                    // 处理后的值
     
     // 栈空间分配和初始化
@@ -252,7 +252,7 @@ void DataStructureProcessor_Primary(longlong param_1, byte *param_2, uint64_t *p
     stack_buffer[2] = param_3[2];             // 复制参数2
     stack_buffer[3] = param_3[3];             // 复制参数3
     
-    start_offset = *(longlong *)(param_1 + OFFSET_F0);  // 获取起始偏移
+    start_offset = *(int64_t *)(param_1 + OFFSET_F0);  // 获取起始偏移
     stack_buffer[6] = param_3[4];             // 复制参数4
     stack_buffer[7] = param_3[5];             // 复制参数5
     stack_buffer[10] = param_3[8];            // 复制参数8
@@ -262,9 +262,9 @@ void DataStructureProcessor_Primary(longlong param_1, byte *param_2, uint64_t *p
     
     // 复制参数到栈
     stack_params[0] = *(int32_t *)(param_3 + 0xc);    // 参数12
-    stack_params[1] = *(int32_t *)((longlong)param_3 + 100);  // 参数13
+    stack_params[1] = *(int32_t *)((int64_t)param_3 + 100);  // 参数13
     stack_params[2] = *(int32_t *)(param_3 + 0xd);    // 参数14
-    stack_params[3] = *(int32_t *)((longlong)param_3 + 0x6c);  // 参数15
+    stack_params[3] = *(int32_t *)((int64_t)param_3 + 0x6c);  // 参数15
     
     stack_buffer[4] = param_3[10];            // 复制参数10
     stack_buffer[5] = param_3[11];            // 复制参数11
@@ -272,12 +272,12 @@ void DataStructureProcessor_Primary(longlong param_1, byte *param_2, uint64_t *p
     iteration_index = 0;
     
     // 主处理循环
-    if (*(longlong *)(param_1 + OFFSET_F8) - start_offset >> 3 != 0) {
+    if (*(int64_t *)(param_1 + OFFSET_F8) - start_offset >> 3 != 0) {
         current_offset = 0;
         do {
             // 获取比较值
             comparison_value = *(float *)(param_2 + BUFFER_SIZE_0x174);
-            start_offset = (*(code (**)(void))(**(longlong **)(current_offset + start_offset) + 0x1f8))();
+            start_offset = (*(code (**)(void))(**(int64_t **)(current_offset + start_offset) + 0x1f8))();
             
             // 浮点数比较逻辑
             if ((comparison_value <= FLOAT_ZERO_THRESHOLD) ||
@@ -296,19 +296,19 @@ void DataStructureProcessor_Primary(longlong param_1, byte *param_2, uint64_t *p
             
             // 条件处理
             if (condition_result == 0) {
-                element_pointer = *(longlong **)(current_offset + *(longlong *)(param_1 + OFFSET_F0));
+                element_pointer = *(int64_t **)(current_offset + *(int64_t *)(param_1 + OFFSET_F0));
                 (*(code **)(*element_pointer + 0x1c8))(element_pointer, param_2, *(uint64_t *)(param_1 + OFFSET_20), param_1 + OFFSET_70, stack_buffer);
             }
             
-            start_offset = *(longlong *)(param_1 + OFFSET_F0);
+            start_offset = *(int64_t *)(param_1 + OFFSET_F0);
             iteration_index = iteration_index + 1;
             current_offset = current_offset + DATA_STRUCTURE_ELEMENT_SIZE;
-        } while ((ulonglong)(longlong)iteration_index < (ulonglong)(*(longlong *)(param_1 + OFFSET_F8) - start_offset >> 3));
+        } while ((uint64_t)(int64_t)iteration_index < (uint64_t)(*(int64_t *)(param_1 + OFFSET_F8) - start_offset >> 3));
     }
     
     // 后处理
-    if (*(longlong *)(param_1 + OFFSET_260) != 0) {
-        FUN_1802fa300(*(longlong *)(param_1 + OFFSET_260), param_2, stack_buffer);
+    if (*(int64_t *)(param_1 + OFFSET_260) != 0) {
+        FUN_1802fa300(*(int64_t *)(param_1 + OFFSET_260), param_2, stack_buffer);
     }
     
     // 更新状态标志
@@ -334,12 +334,12 @@ void DataStructureProcessor_Primary(longlong param_1, byte *param_2, uint64_t *p
  * - 实现高效的循环处理
  * - 支持动态状态更新
  */
-void DataStructureProcessor_Secondary(uint64_t param_1, longlong param_2)
+void DataStructureProcessor_Secondary(uint64_t param_1, int64_t param_2)
 {
     // 局部变量声明
     float comparison_value;                   // 比较值
-    longlong register_data;                  // 寄存器数据
-    longlong element_offset;                  // 元素偏移
+    int64_t register_data;                  // 寄存器数据
+    int64_t element_offset;                  // 元素偏移
     byte condition_result;                   // 条件结果
     int iteration_index;                      // 迭代索引
     float processed_value;                    // 处理后的值
@@ -348,7 +348,7 @@ void DataStructureProcessor_Secondary(uint64_t param_1, longlong param_2)
     uint64_t register_rbp;                 // RBP寄存器
     byte *register_rsi;                       // RSI寄存器
     uint64_t register_rdi;                  // RDI寄存器
-    longlong register_r14;                    // R14寄存器
+    int64_t register_r14;                    // R14寄存器
     float register_xmm6[4];                  // XMM6寄存器
     float register_xmm7[4];                  // XMM7寄存器
     
@@ -356,7 +356,7 @@ void DataStructureProcessor_Secondary(uint64_t param_1, longlong param_2)
     *(uint64_t *)(param_2 + 8) = register_rbp;
     iteration_index = 0;
     *(int *)(param_2 + -0x38) = (int)param_1;
-    *(int *)(param_2 + -0x34) = (int)((ulonglong)param_1 >> 0x20);
+    *(int *)(param_2 + -0x34) = (int)((uint64_t)param_1 >> 0x20);
     
     // 处理主循环
     if (register_data >> 3 != 0) {
@@ -376,7 +376,7 @@ void DataStructureProcessor_Secondary(uint64_t param_1, longlong param_2)
         do {
             // 获取比较值
             comparison_value = *(float *)(register_rsi + BUFFER_SIZE_0x174);
-            register_data = (*(code (**)(void))(**(longlong **)(element_offset + param_2) + 0x1f8))();
+            register_data = (*(code (**)(void))(**(int64_t **)(element_offset + param_2) + 0x1f8))();
             
             // 浮点数比较
             if ((comparison_value <= FLOAT_ZERO_THRESHOLD) ||
@@ -395,17 +395,17 @@ void DataStructureProcessor_Secondary(uint64_t param_1, longlong param_2)
             
             // 条件执行
             if (condition_result == 0) {
-                (*(code (**)(void))(**(longlong **)(element_offset + *(longlong *)(register_data + OFFSET_F0)) + 0x1c8))();
+                (*(code (**)(void))(**(int64_t **)(element_offset + *(int64_t *)(register_data + OFFSET_F0)) + 0x1c8))();
             }
             
-            param_2 = *(longlong *)(register_data + OFFSET_F0);
+            param_2 = *(int64_t *)(register_data + OFFSET_F0);
             iteration_index = iteration_index + 1;
             element_offset = element_offset + DATA_STRUCTURE_ELEMENT_SIZE;
-        } while ((ulonglong)(longlong)iteration_index < (ulonglong)(*(longlong *)(register_data + OFFSET_F8) - param_2 >> 3));
+        } while ((uint64_t)(int64_t)iteration_index < (uint64_t)(*(int64_t *)(register_data + OFFSET_F8) - param_2 >> 3));
     }
     
     // 后处理和状态更新
-    if (*(longlong *)(register_data + OFFSET_260) != 0) {
+    if (*(int64_t *)(register_data + OFFSET_260) != 0) {
         FUN_1802fa300();
     }
     *(byte *)(register_data + OFFSET_2e9) = *(byte *)(register_data + OFFSET_2e9) | 2;
@@ -430,11 +430,11 @@ void DataStructureProcessor_Secondary(uint64_t param_1, longlong param_2)
  * - 实现高效的无限循环处理
  * - 支持动态状态更新
  */
-void DataStructureProcessor_Tertiary(uint64_t param_1, longlong param_2)
+void DataStructureProcessor_Tertiary(uint64_t param_1, int64_t param_2)
 {
     // 局部变量声明
     float comparison_value;                   // 比较值
-    longlong element_offset;                  // 元素偏移
+    int64_t element_offset;                  // 元素偏移
     byte condition_result;                   // 条件结果
     uint loop_counter;                       // 循环计数器
     float processed_value;                    // 处理后的值
@@ -443,17 +443,17 @@ void DataStructureProcessor_Tertiary(uint64_t param_1, longlong param_2)
     uint64_t register_rdi;                  // RDI寄存器
     uint register_ebp;                       // EBP寄存器
     byte *register_rsi;                       // RSI寄存器
-    ulonglong current_offset;                 // 当前偏移
+    uint64_t current_offset;                 // 当前偏移
     
     // 初始化
     *(uint64_t *)(param_2 + 0x10) = register_rdi;
-    current_offset = (ulonglong)register_ebp;
+    current_offset = (uint64_t)register_ebp;
     
     // 主处理循环
     do {
         // 获取比较值
         comparison_value = *(float *)(register_rsi + BUFFER_SIZE_0x174);
-        element_offset = (*(code (**)(void))(**(longlong **)(current_offset + param_2) + 0x1f8))();
+        element_offset = (*(code (**)(void))(**(int64_t **)(current_offset + param_2) + 0x1f8))();
         
         // 条件判断（使用goto优化）
         if (comparison_value <= FLOAT_ZERO_THRESHOLD) {
@@ -473,17 +473,17 @@ void DataStructureProcessor_Tertiary(uint64_t param_1, longlong param_2)
         
         // 条件执行
         if (condition_result == 0) {
-            (*(code (**)(void))(**(longlong **)(current_offset + *(longlong *)(param_1 + OFFSET_F0)) + 0x1c8))();
+            (*(code (**)(void))(**(int64_t **)(current_offset + *(int64_t *)(param_1 + OFFSET_F0)) + 0x1c8))();
         }
         
-        param_2 = *(longlong *)(param_1 + OFFSET_F0);
+        param_2 = *(int64_t *)(param_1 + OFFSET_F0);
         register_ebp = register_ebp + 1;
         current_offset = current_offset + DATA_STRUCTURE_ELEMENT_SIZE;
         
         // 循环条件检查
-        if ((ulonglong)(*(longlong *)(param_1 + OFFSET_F8) - param_2 >> 3) <= (ulonglong)(longlong)(int)register_ebp) {
+        if ((uint64_t)(*(int64_t *)(param_1 + OFFSET_F8) - param_2 >> 3) <= (uint64_t)(int64_t)(int)register_ebp) {
             // 后处理
-            if (*(longlong *)(param_1 + OFFSET_260) != 0) {
+            if (*(int64_t *)(param_1 + OFFSET_260) != 0) {
                 FUN_1802fa300();
             }
             *(byte *)(param_1 + OFFSET_2e9) = *(byte *)(param_1 + OFFSET_2e9) | 2;
@@ -506,10 +506,10 @@ void DataStructureProcessor_Tertiary(uint64_t param_1, longlong param_2)
  */
 void StateManager_Simple(void)
 {
-    longlong context_pointer;                 // 上下文指针
+    int64_t context_pointer;                 // 上下文指针
     
     // 条件状态更新
-    if (*(longlong *)(context_pointer + OFFSET_260) != 0) {
+    if (*(int64_t *)(context_pointer + OFFSET_260) != 0) {
         FUN_1802fa300();
     }
     *(byte *)(context_pointer + OFFSET_2e9) = *(byte *)(context_pointer + OFFSET_2e9) | 2;
@@ -530,7 +530,7 @@ void StateManager_Simple(void)
  */
 void StateManager_Complex(void)
 {
-    longlong context_pointer;                 // 上下文指针
+    int64_t context_pointer;                 // 上下文指针
     
     // 强制状态处理
     FUN_1802fa300();
@@ -560,7 +560,7 @@ void StateManager_Complex(void)
  * - 包含行列式计算逻辑
  * - 优化矩阵运算性能
  */
-void MatrixTransformer_Advanced(longlong param_1, uint64_t param_2, int32_t param_3, uint64_t param_4)
+void MatrixTransformer_Advanced(int64_t param_1, uint64_t param_2, int32_t param_3, uint64_t param_4)
 {
     // 矩阵运算变量
     float matrix_elements[12];                // 矩阵元素数组
@@ -569,14 +569,14 @@ void MatrixTransformer_Advanced(longlong param_1, uint64_t param_2, int32_t para
     float determinant_value;                  // 行列式值
     
     // 指针和索引变量
-    longlong *matrix_pointer;                 // 矩阵指针
-    longlong row_offset;                      // 行偏移
+    int64_t *matrix_pointer;                 // 矩阵指针
+    int64_t row_offset;                      // 行偏移
     float *vector_pointer;                    // 向量指针
     int iteration_index;                      // 迭代索引
-    longlong element_pointer;                 // 元素指针
+    int64_t element_pointer;                 // 元素指针
     
     // 栈变量
-    longlong *stack_pointer;                  // 栈指针
+    int64_t *stack_pointer;                  // 栈指针
     uint64_t stack_data[2];                 // 栈数据
     uint64_t transform_param;               // 变换参数
     
@@ -586,20 +586,20 @@ void MatrixTransformer_Advanced(longlong param_1, uint64_t param_2, int32_t para
     stack_data[0] = param_2;
     
     // 矩阵元素处理循环
-    if (*(longlong *)(param_1 + OFFSET_F8) - *(longlong *)(param_1 + OFFSET_F0) >> 3 != 0) {
+    if (*(int64_t *)(param_1 + OFFSET_F8) - *(int64_t *)(param_1 + OFFSET_F0) >> 3 != 0) {
         row_offset = 0;
         do {
-            matrix_pointer = *(longlong **)(row_offset + *(longlong *)(param_1 + OFFSET_F0));
+            matrix_pointer = *(int64_t **)(row_offset + *(int64_t *)(param_1 + OFFSET_F0));
             (*(code **)(*matrix_pointer + 0x1d0))(matrix_pointer, param_2, param_3, param_1 + OFFSET_70, transform_param);
             iteration_index = iteration_index + 1;
             row_offset = row_offset + DATA_STRUCTURE_ELEMENT_SIZE;
-        } while ((ulonglong)(longlong)iteration_index < (ulonglong)(*(longlong *)(param_1 + OFFSET_F8) - *(longlong *)(param_1 + OFFSET_F0) >> 3));
+        } while ((uint64_t)(int64_t)iteration_index < (uint64_t)(*(int64_t *)(param_1 + OFFSET_F8) - *(int64_t *)(param_1 + OFFSET_F0) >> 3));
     }
     
     // 获取矩阵数据
     row_offset = FUN_1803a0010(param_4, param_1);
     if (row_offset != 0) {
-        matrix_pointer = *(longlong **)(row_offset + 8);
+        matrix_pointer = *(int64_t **)(row_offset + 8);
         element_pointer = *matrix_pointer;
         matrix_pointer = matrix_pointer;
         
@@ -614,7 +614,7 @@ void MatrixTransformer_Advanced(longlong param_1, uint64_t param_2, int32_t para
         }
         
         // 矩阵处理循环
-        if (element_pointer != matrix_pointer[*(longlong *)(row_offset + 0x10)]) {
+        if (element_pointer != matrix_pointer[*(int64_t *)(row_offset + 0x10)]) {
             do {
                 FUN_1803a02b0(param_4, &stack_pointer, *(uint64_t *)(element_pointer + 8));
                 (*(code **)(*stack_pointer + 0xe0))(stack_pointer, CONCAT31((uint3)(*(uint *)(param_1 + OFFSET_2ac) >> STATUS_FLAG_SHIFT_30), ~(byte)(*(uint *)(param_1 + OFFSET_2ac) >> STATUS_FLAG_SHIFT_22)) & 0xffffff01);
@@ -676,16 +676,16 @@ void MatrixTransformer_Advanced(longlong param_1, uint64_t param_2, int32_t para
                 FUN_180279640(matrix_pointer, *(uint64_t *)(element_pointer + 8), 1);
                 
                 // 清理栈数据
-                if (stack_pointer != (longlong *)0x0) {
+                if (stack_pointer != (int64_t *)0x0) {
                     (*(code **)(*stack_pointer + 0x38))();
                 }
                 
-                element_pointer = *(longlong *)(element_pointer + 0x10);
+                element_pointer = *(int64_t *)(element_pointer + 0x10);
                 while (element_pointer == 0) {
                     matrix_pointer = matrix_pointer + 1;
                     element_pointer = *matrix_pointer;
                 }
-            } while (element_pointer != *(longlong *)(*(longlong *)(row_offset + 8) + *(longlong *)(row_offset + 0x10) * 8));
+            } while (element_pointer != *(int64_t *)(*(int64_t *)(row_offset + 8) + *(int64_t *)(row_offset + 0x10) * 8));
         }
     }
     return;
@@ -712,23 +712,23 @@ void MatrixTransformer_Advanced(longlong param_1, uint64_t param_2, int32_t para
 void MatrixTransformer_Batched(uint64_t param_1, int32_t param_2)
 {
     // 批量处理变量
-    longlong *batch_pointer[4];              // 批量指针数组
-    longlong *current_pointer;               // 当前指针
-    longlong *next_pointer;                   // 下一个指针
+    int64_t *batch_pointer[4];              // 批量指针数组
+    int64_t *current_pointer;               // 当前指针
+    int64_t *next_pointer;                   // 下一个指针
     void *data_pointer;                  // 数据指针
     int batch_index;                          // 批量索引
-    longlong *element_pointer;                // 元素指针
-    ulonglong element_count;                  // 元素计数
+    int64_t *element_pointer;                // 元素指针
+    uint64_t element_count;                  // 元素计数
     
     // 栈变量
-    longlong *stack_pointers[2];              // 栈指针
+    int64_t *stack_pointers[2];              // 栈指针
     uint64_t stack_data[2];                 // 栈数据
     int32_t stack_params[2];               // 栈参数
     
     // 初始化批量处理参数
     stack_data[0] = 0xfffffffffffffffe;
-    stack_pointers[0] = (longlong *)0x0;
-    stack_pointers[1] = (longlong *)0x0;
+    stack_pointers[0] = (int64_t *)0x0;
+    stack_pointers[1] = (int64_t *)0x0;
     batch_index = 0;
     stack_data[1] = 0;
     stack_params[0] = 3;
@@ -737,17 +737,17 @@ void MatrixTransformer_Batched(uint64_t param_1, int32_t param_2)
     FUN_1802e92b0(0, &stack_pointers[0], 1);
     batch_pointer[1] = stack_pointers[1];
     batch_pointer[0] = stack_pointers[0];
-    element_count = (longlong)stack_pointers[1] - (longlong)stack_pointers[0] >> 3;
+    element_count = (int64_t)stack_pointers[1] - (int64_t)stack_pointers[0] >> 3;
     element_pointer = stack_pointers[0];
     current_pointer = batch_pointer[0];
     
     // 批量处理循环
     if (element_count != 0) {
         do {
-            next_pointer = *(longlong **)(*element_pointer + 0x1b8);
+            next_pointer = *(int64_t **)(*element_pointer + 0x1b8);
             if ((char)next_pointer[0x7b] == '\0') {
                 stack_pointers[2] = next_pointer;
-                if (next_pointer != (longlong *)0x0) {
+                if (next_pointer != (int64_t *)0x0) {
                     (*(code **)(*next_pointer + 0x28))(next_pointer);
                 }
                 FUN_18022cb40(next_pointer, &stack_pointers[3]);
@@ -758,28 +758,28 @@ void MatrixTransformer_Batched(uint64_t param_1, int32_t param_2)
                 (*(code **)(stack_pointers[3][2] + 0x10))(stack_pointers[3] + 2, data_pointer);
                 *(int8_t *)(stack_pointers[3] + 0x7b) = 1;
                 FUN_180076910(*element_pointer, &stack_pointers[3]);
-                if (stack_pointers[3] != (longlong *)0x0) {
+                if (stack_pointers[3] != (int64_t *)0x0) {
                     (*(code **)(*stack_pointers[3] + 0x38))();
                 }
-                if (next_pointer != (longlong *)0x0) {
+                if (next_pointer != (int64_t *)0x0) {
                     (*(code **)(*next_pointer + 0x38))();
                 }
             }
             FUN_18022bc30(*(uint64_t *)(*element_pointer + 0x1b8), param_2);
             batch_index = batch_index + 1;
             element_pointer = element_pointer + 1;
-        } while ((ulonglong)(longlong)batch_index < element_count);
+        } while ((uint64_t)(int64_t)batch_index < element_count);
     }
     
     // 清理批量数据
     for (; current_pointer != batch_pointer[1]; current_pointer = current_pointer + 1) {
-        if ((longlong *)*current_pointer != (longlong *)0x0) {
-            (*(code **)(*(longlong *)*current_pointer + 0x38))();
+        if ((int64_t *)*current_pointer != (int64_t *)0x0) {
+            (*(code **)(*(int64_t *)*current_pointer + 0x38))();
         }
     }
     
     // 最终清理
-    if (batch_pointer[0] != (longlong *)0x0) {
+    if (batch_pointer[0] != (int64_t *)0x0) {
         FUN_18064e900(batch_pointer[0]);
     }
     return;
@@ -799,23 +799,23 @@ void MatrixTransformer_Batched(uint64_t param_1, int32_t param_2)
  * @param param_2 - 累加参数
  * 
  * 返回值：
- * @return ulonglong - 累加结果
+ * @return uint64_t - 累加结果
  * 
  * 技术说明：
  * - 实现多级累加算法
  * - 支持条件判断处理
  * - 包含递归处理逻辑
  */
-ulonglong Counter_Accumulator(longlong param_1, longlong param_2)
+uint64_t Counter_Accumulator(int64_t param_1, int64_t param_2)
 {
     // 累加变量
-    longlong *data_pointer;                   // 数据指针
+    int64_t *data_pointer;                   // 数据指针
     int partial_result;                       // 部分结果
     int iteration_index;                      // 迭代索引
-    longlong offset_value;                    // 偏移值
-    ulonglong total_result;                   // 总结果
-    longlong context_offset;                  // 上下文偏移
-    ulonglong intermediate_result[4];         // 中间结果数组
+    int64_t offset_value;                    // 偏移值
+    uint64_t total_result;                   // 总结果
+    int64_t context_offset;                  // 上下文偏移
+    uint64_t intermediate_result[4];         // 中间结果数组
     uint result_index;                         // 结果索引
     
     // 初始化累加器
@@ -825,50 +825,50 @@ ulonglong Counter_Accumulator(longlong param_1, longlong param_2)
     intermediate_result[1] = intermediate_result[0];
     
     // 主累加循环
-    if (*(longlong *)(param_1 + OFFSET_F8) - *(longlong *)(param_1 + OFFSET_F0) >> 3 != 0) {
+    if (*(int64_t *)(param_1 + OFFSET_F8) - *(int64_t *)(param_1 + OFFSET_F0) >> 3 != 0) {
         do {
-            data_pointer = *(longlong **)(intermediate_result[3] + *(longlong *)(param_1 + OFFSET_F0));
+            data_pointer = *(int64_t **)(intermediate_result[3] + *(int64_t *)(param_1 + OFFSET_F0));
             partial_result = (*(code **)(*data_pointer + 0x1a8))(data_pointer, param_2);
             result_index = (int)intermediate_result[1] + 1;
-            intermediate_result[2] = (ulonglong)(uint)((int)intermediate_result[2] + partial_result);
+            intermediate_result[2] = (uint64_t)(uint)((int)intermediate_result[2] + partial_result);
             intermediate_result[3] = intermediate_result[3] + DATA_STRUCTURE_ELEMENT_SIZE;
-            intermediate_result[1] = (ulonglong)result_index;
-        } while ((ulonglong)(longlong)(int)result_index < (ulonglong)(*(longlong *)(param_1 + OFFSET_F8) - *(longlong *)(param_1 + OFFSET_F0) >> 3));
+            intermediate_result[1] = (uint64_t)result_index;
+        } while ((uint64_t)(int64_t)(int)result_index < (uint64_t)(*(int64_t *)(param_1 + OFFSET_F8) - *(int64_t *)(param_1 + OFFSET_F0) >> 3));
     }
     
     // 上下文处理
-    context_offset = *(longlong *)(param_1 + OFFSET_260);
+    context_offset = *(int64_t *)(param_1 + OFFSET_260);
     if (context_offset != 0) {
-        offset_value = *(longlong *)(context_offset + 0x1a8);
+        offset_value = *(int64_t *)(context_offset + 0x1a8);
         intermediate_result[3] = intermediate_result[0];
         intermediate_result[1] = intermediate_result[0];
-        if (*(longlong *)(context_offset + 0x1b0) - offset_value >> 3 != 0) {
+        if (*(int64_t *)(context_offset + 0x1b0) - offset_value >> 3 != 0) {
             do {
-                partial_result = (*(code **)(**(longlong **)(intermediate_result[1] + offset_value) + 0x1a8))((*(longlong **)(intermediate_result[1] + offset_value)), param_2);
-                offset_value = *(longlong *)(context_offset + 0x1a8);
+                partial_result = (*(code **)(**(int64_t **)(intermediate_result[1] + offset_value) + 0x1a8))((*(int64_t **)(intermediate_result[1] + offset_value)), param_2);
+                offset_value = *(int64_t *)(context_offset + 0x1a8);
                 result_index = (int)intermediate_result[3] + 1;
-                intermediate_result[2] = (ulonglong)(uint)((int)intermediate_result[2] + partial_result);
-                intermediate_result[3] = (ulonglong)result_index;
+                intermediate_result[2] = (uint64_t)(uint)((int)intermediate_result[2] + partial_result);
+                intermediate_result[3] = (uint64_t)result_index;
                 intermediate_result[1] = intermediate_result[1] + DATA_STRUCTURE_ELEMENT_SIZE;
-            } while ((ulonglong)(longlong)(int)result_index < (ulonglong)(*(longlong *)(context_offset + 0x1b0) - offset_value >> 3));
-            context_offset = *(longlong *)(param_1 + OFFSET_260);
+            } while ((uint64_t)(int64_t)(int)result_index < (uint64_t)(*(int64_t *)(context_offset + 0x1b0) - offset_value >> 3));
+            context_offset = *(int64_t *)(param_1 + OFFSET_260);
         }
         
         // 扩展处理
         if ('\0' < (char)*(byte *)(context_offset + 0x20)) {
-            intermediate_result[1] = (ulonglong)*(byte *)(context_offset + 0x20);
+            intermediate_result[1] = (uint64_t)*(byte *)(context_offset + 0x20);
             intermediate_result[3] = intermediate_result[0];
             do {
-                context_offset = *(longlong *)(*(longlong *)(param_1 + OFFSET_260) + 0x18);
-                partial_result = (int)(*(longlong *)(context_offset + 0xb8 + intermediate_result[3]) - *(longlong *)(context_offset + 0xb0 + intermediate_result[3]) >> 3);
+                context_offset = *(int64_t *)(*(int64_t *)(param_1 + OFFSET_260) + 0x18);
+                partial_result = (int)(*(int64_t *)(context_offset + 0xb8 + intermediate_result[3]) - *(int64_t *)(context_offset + 0xb0 + intermediate_result[3]) >> 3);
                 intermediate_result[0] = intermediate_result[0];
                 if (0 < partial_result) {
                     do {
-                        data_pointer = *(longlong **)(*(longlong *)(context_offset + 0xb0 + intermediate_result[3]) + intermediate_result[0] * 8);
+                        data_pointer = *(int64_t **)(*(int64_t *)(context_offset + 0xb0 + intermediate_result[3]) + intermediate_result[0] * 8);
                         iteration_index = (*(code **)(*data_pointer + 0x1a8))(data_pointer, param_2);
-                        intermediate_result[2] = (ulonglong)(uint)((int)intermediate_result[2] + iteration_index);
+                        intermediate_result[2] = (uint64_t)(uint)((int)intermediate_result[2] + iteration_index);
                         intermediate_result[0] = intermediate_result[0] + 1;
-                    } while ((longlong)intermediate_result[0] < (longlong)partial_result);
+                    } while ((int64_t)intermediate_result[0] < (int64_t)partial_result);
                 }
                 intermediate_result[3] = intermediate_result[3] + 0x100;
                 intermediate_result[1] = intermediate_result[1] - 1;
@@ -877,19 +877,19 @@ ulonglong Counter_Accumulator(longlong param_1, longlong param_2)
     }
     
     // 递归处理
-    context_offset = *(longlong *)(param_1 + OFFSET_1c0);
+    context_offset = *(int64_t *)(param_1 + OFFSET_1c0);
     intermediate_result[3] = intermediate_result[0];
-    if (*(longlong *)(param_1 + OFFSET_1c8) - context_offset >> 3 != 0) {
+    if (*(int64_t *)(param_1 + OFFSET_1c8) - context_offset >> 3 != 0) {
         do {
-            if ((*(char *)(param_2 + 0x11) == '\0') || ((*(byte *)(*(longlong *)(intermediate_result[0] + context_offset) + 0x2e8) & STATUS_FLAG_MASK_0x0b) == STATUS_FLAG_MASK_0x0b)) {
+            if ((*(char *)(param_2 + 0x11) == '\0') || ((*(byte *)(*(int64_t *)(intermediate_result[0] + context_offset) + 0x2e8) & STATUS_FLAG_MASK_0x0b) == STATUS_FLAG_MASK_0x0b)) {
                 partial_result = Counter_Accumulator(*(uint64_t *)(intermediate_result[0] + context_offset), param_2);
-                intermediate_result[2] = (ulonglong)(uint)((int)intermediate_result[2] + partial_result);
+                intermediate_result[2] = (uint64_t)(uint)((int)intermediate_result[2] + partial_result);
             }
-            context_offset = *(longlong *)(param_1 + OFFSET_1c0);
+            context_offset = *(int64_t *)(param_1 + OFFSET_1c0);
             result_index = (int)intermediate_result[3] + 1;
             intermediate_result[0] = intermediate_result[0] + DATA_STRUCTURE_ELEMENT_SIZE;
-            intermediate_result[3] = (ulonglong)result_index;
-        } while ((ulonglong)(longlong)(int)result_index < (ulonglong)(*(longlong *)(param_1 + OFFSET_1c8) - context_offset >> 3));
+            intermediate_result[3] = (uint64_t)result_index;
+        } while ((uint64_t)(int64_t)(int)result_index < (uint64_t)(*(int64_t *)(param_1 + OFFSET_1c8) - context_offset >> 3));
     }
     return intermediate_result[2];
 }
@@ -904,28 +904,28 @@ ulonglong Counter_Accumulator(longlong param_1, longlong param_2)
  * - 多级处理支持
  * 
  * 返回值：
- * @return ulonglong - 处理结果
+ * @return uint64_t - 处理结果
  * 
  * 技术说明：
  * - 使用寄存器优化性能
  * - 实现高效的遍历算法
  * - 支持多级数据处理
  */
-ulonglong Counter_Processor(void)
+uint64_t Counter_Processor(void)
 {
     // 寄存器优化的变量
     int partial_result;                       // 部分结果
     int iteration_index;                      // 迭代索引
-    longlong register_data;                   // 寄存器数据
-    ulonglong total_result;                   // 总结果
-    longlong context_offset;                  // 上下文偏移
-    ulonglong intermediate_result[3];         // 中间结果
+    int64_t register_data;                   // 寄存器数据
+    uint64_t total_result;                   // 总结果
+    int64_t context_offset;                  // 上下文偏移
+    uint64_t intermediate_result[3];         // 中间结果
     uint result_index;                         // 结果索引
     
     // 寄存器变量
-    ulonglong register_rbp;                   // RBP寄存器
-    longlong register_rsi;                     // RSI寄存器
-    ulonglong register_r14;                    // R14寄存器
+    uint64_t register_rbp;                   // RBP寄存器
+    int64_t register_rsi;                     // RSI寄存器
+    uint64_t register_r14;                    // R14寄存器
     uint register_index;                       // 寄存器索引
     
     // 初始化寄存器数据
@@ -936,46 +936,46 @@ ulonglong Counter_Processor(void)
     if (register_data != 0) {
         intermediate_result[2] = register_rbp & 0xffffffff;
         do {
-            partial_result = (*(code **)(**(longlong **)(intermediate_result[2] + *(longlong *)(register_r14 + OFFSET_F0)) + 0x1a8))();
+            partial_result = (*(code **)(**(int64_t **)(intermediate_result[2] + *(int64_t *)(register_r14 + OFFSET_F0)) + 0x1a8))();
             intermediate_result[2] = intermediate_result[2] + DATA_STRUCTURE_ELEMENT_SIZE;
             result_index = (int)intermediate_result[1] + 1;
-            intermediate_result[1] = (ulonglong)result_index;
-            intermediate_result[0] = (ulonglong)(uint)((int)intermediate_result[0] + partial_result);
-        } while ((ulonglong)(longlong)(int)result_index < (ulonglong)(*(longlong *)(register_r14 + OFFSET_F8) - *(longlong *)(register_r14 + OFFSET_F0) >> 3));
+            intermediate_result[1] = (uint64_t)result_index;
+            intermediate_result[0] = (uint64_t)(uint)((int)intermediate_result[0] + partial_result);
+        } while ((uint64_t)(int64_t)(int)result_index < (uint64_t)(*(int64_t *)(register_r14 + OFFSET_F8) - *(int64_t *)(register_r14 + OFFSET_F0) >> 3));
     }
     
     // 上下文处理
-    context_offset = *(longlong *)(register_r14 + OFFSET_260);
+    context_offset = *(int64_t *)(register_r14 + OFFSET_260);
     if (context_offset != 0) {
-        register_data = *(longlong *)(context_offset + 0x1a8);
+        register_data = *(int64_t *)(context_offset + 0x1a8);
         intermediate_result[2] = register_rbp & 0xffffffff;
         intermediate_result[1] = register_rbp;
-        if (*(longlong *)(context_offset + 0x1b0) - register_data >> 3 != 0) {
+        if (*(int64_t *)(context_offset + 0x1b0) - register_data >> 3 != 0) {
             do {
-                partial_result = (*(code **)(**(longlong **)(intermediate_result[1] + register_data) + 0x1a8))();
-                register_data = *(longlong *)(context_offset + 0x1a8);
+                partial_result = (*(code **)(**(int64_t **)(intermediate_result[1] + register_data) + 0x1a8))();
+                register_data = *(int64_t *)(context_offset + 0x1a8);
                 result_index = (int)intermediate_result[2] + 1;
-                intermediate_result[2] = (ulonglong)result_index;
-                intermediate_result[0] = (ulonglong)(uint)((int)intermediate_result[0] + partial_result);
+                intermediate_result[2] = (uint64_t)result_index;
+                intermediate_result[0] = (uint64_t)(uint)((int)intermediate_result[0] + partial_result);
                 intermediate_result[1] = intermediate_result[1] + DATA_STRUCTURE_ELEMENT_SIZE;
-            } while ((ulonglong)(longlong)(int)result_index < (ulonglong)(*(longlong *)(context_offset + 0x1b0) - register_data >> 3));
-            context_offset = *(longlong *)(register_r14 + OFFSET_260);
+            } while ((uint64_t)(int64_t)(int)result_index < (uint64_t)(*(int64_t *)(context_offset + 0x1b0) - register_data >> 3));
+            context_offset = *(int64_t *)(register_r14 + OFFSET_260);
         }
         
         // 扩展处理
         if ('\0' < (char)*(byte *)(context_offset + 0x20)) {
-            intermediate_result[2] = (ulonglong)*(byte *)(context_offset + 0x20);
+            intermediate_result[2] = (uint64_t)*(byte *)(context_offset + 0x20);
             intermediate_result[1] = register_rbp;
             do {
-                context_offset = *(longlong *)(*(longlong *)(register_r14 + OFFSET_260) + 0x18);
-                partial_result = (int)(*(longlong *)(context_offset + 0xb8 + intermediate_result[1]) - *(longlong *)(context_offset + 0xb0 + intermediate_result[1]) >> 3);
+                context_offset = *(int64_t *)(*(int64_t *)(register_r14 + OFFSET_260) + 0x18);
+                partial_result = (int)(*(int64_t *)(context_offset + 0xb8 + intermediate_result[1]) - *(int64_t *)(context_offset + 0xb0 + intermediate_result[1]) >> 3);
                 intermediate_result[0] = register_rbp;
                 if (0 < partial_result) {
                     do {
-                        iteration_index = (*(code **)(**(longlong **)(*(longlong *)(context_offset + 0xb0 + intermediate_result[1]) + intermediate_result[0] * 8) + 0x1a8))();
-                        intermediate_result[0] = (ulonglong)(uint)((int)intermediate_result[0] + iteration_index);
+                        iteration_index = (*(code **)(**(int64_t **)(*(int64_t *)(context_offset + 0xb0 + intermediate_result[1]) + intermediate_result[0] * 8) + 0x1a8))();
+                        intermediate_result[0] = (uint64_t)(uint)((int)intermediate_result[0] + iteration_index);
                         intermediate_result[0] = intermediate_result[0] + 1;
-                    } while ((longlong)intermediate_result[0] < (longlong)partial_result);
+                    } while ((int64_t)intermediate_result[0] < (int64_t)partial_result);
                 }
                 intermediate_result[1] = intermediate_result[1] + 0x100;
                 intermediate_result[2] = intermediate_result[2] - 1;
@@ -984,19 +984,19 @@ ulonglong Counter_Processor(void)
     }
     
     // 递归处理
-    context_offset = *(longlong *)(register_r14 + OFFSET_1c0);
+    context_offset = *(int64_t *)(register_r14 + OFFSET_1c0);
     intermediate_result[1] = register_rbp;
-    if (*(longlong *)(register_r14 + OFFSET_1c8) - context_offset >> 3 != 0) {
+    if (*(int64_t *)(register_r14 + OFFSET_1c8) - context_offset >> 3 != 0) {
         do {
-            if ((*(char *)(register_rsi + 0x11) == '\0') || ((*(byte *)(*(longlong *)(register_rbp + context_offset) + 0x2e8) & STATUS_FLAG_MASK_0x0b) == STATUS_FLAG_MASK_0x0b)) {
+            if ((*(char *)(register_rsi + 0x11) == '\0') || ((*(byte *)(*(int64_t *)(register_rbp + context_offset) + 0x2e8) & STATUS_FLAG_MASK_0x0b) == STATUS_FLAG_MASK_0x0b)) {
                 partial_result = Counter_Accumulator(*(uint64_t *)(register_rbp + context_offset));
-                intermediate_result[0] = (ulonglong)(uint)((int)intermediate_result[0] + partial_result);
+                intermediate_result[0] = (uint64_t)(uint)((int)intermediate_result[0] + partial_result);
             }
-            context_offset = *(longlong *)(register_r14 + OFFSET_1c0);
+            context_offset = *(int64_t *)(register_r14 + OFFSET_1c0);
             result_index = (int)intermediate_result[1] + 1;
             register_rbp = register_rbp + DATA_STRUCTURE_ELEMENT_SIZE;
-            intermediate_result[1] = (ulonglong)result_index;
-        } while ((ulonglong)(longlong)(int)result_index < (ulonglong)(*(longlong *)(register_r14 + OFFSET_1c8) - context_offset >> 3));
+            intermediate_result[1] = (uint64_t)result_index;
+        } while ((uint64_t)(int64_t)(int)result_index < (uint64_t)(*(int64_t *)(register_r14 + OFFSET_1c8) - context_offset >> 3));
     }
     return intermediate_result[0];
 }
@@ -1022,23 +1022,23 @@ ulonglong Counter_Processor(void)
  * - 支持多级数据遍历
  * - 包含状态检查逻辑
  */
-int Counter_Validator(uint64_t param_1, longlong param_2)
+int Counter_Validator(uint64_t param_1, int64_t param_2)
 {
     // 验证变量
     int validation_result;                    // 验证结果
     int iteration_result;                     // 迭代结果
-    longlong register_data;                   // 寄存器数据
-    ulonglong validation_offset;               // 验证偏移
-    longlong context_offset;                  // 上下文偏移
+    int64_t register_data;                   // 寄存器数据
+    uint64_t validation_offset;               // 验证偏移
+    int64_t context_offset;                  // 上下文偏移
     uint validation_index;                    // 验证索引
-    ulonglong intermediate_result[3];         // 中间结果
+    uint64_t intermediate_result[3];         // 中间结果
     
     // 寄存器变量
-    longlong register_rbx;                    // RBX寄存器
-    ulonglong register_rbp;                   // RBP寄存器
-    longlong register_rsi;                    // RSI寄存器
+    int64_t register_rbx;                    // RBX寄存器
+    uint64_t register_rbp;                   // RBP寄存器
+    int64_t register_rsi;                    // RSI寄存器
     int register_edi;                         // EDI寄存器
-    longlong register_r14;                    // R14寄存器
+    int64_t register_r14;                    // R14寄存器
     
     // 初始化验证数据
     intermediate_result[0] = register_rbp & 0xffffffff;
@@ -1047,30 +1047,30 @@ int Counter_Validator(uint64_t param_1, longlong param_2)
     // 主验证循环
     if (register_data >> 3 != 0) {
         do {
-            validation_result = (*(code **)(**(longlong **)(intermediate_result[2] + param_2) + 0x1a8))();
-            param_2 = *(longlong *)(register_rbx + OFFSET_1a8);
+            validation_result = (*(code **)(**(int64_t **)(intermediate_result[2] + param_2) + 0x1a8))();
+            param_2 = *(int64_t *)(register_rbx + OFFSET_1a8);
             validation_index = (int)intermediate_result[0] + 1;
-            intermediate_result[0] = (ulonglong)validation_index;
+            intermediate_result[0] = (uint64_t)validation_index;
             register_edi = register_edi + validation_result;
             intermediate_result[2] = intermediate_result[2] + DATA_STRUCTURE_ELEMENT_SIZE;
-        } while ((ulonglong)(longlong)(int)validation_index < (ulonglong)(*(longlong *)(register_rbx + OFFSET_1b0) - param_2 >> 3));
-        register_rbx = *(longlong *)(register_r14 + OFFSET_260);
+        } while ((uint64_t)(int64_t)(int)validation_index < (uint64_t)(*(int64_t *)(register_rbx + OFFSET_1b0) - param_2 >> 3));
+        register_rbx = *(int64_t *)(register_r14 + OFFSET_260);
     }
     
     // 扩展验证
     if ('\0' < (char)*(byte *)(register_rbx + 0x20)) {
-        intermediate_result[0] = (ulonglong)*(byte *)(register_rbx + 0x20);
+        intermediate_result[0] = (uint64_t)*(byte *)(register_rbx + 0x20);
         intermediate_result[2] = register_rbp;
         do {
-            context_offset = *(longlong *)(*(longlong *)(register_r14 + OFFSET_260) + 0x18);
-            validation_result = (int)(*(longlong *)(context_offset + 0xb8 + intermediate_result[2]) - *(longlong *)(context_offset + 0xb0 + intermediate_result[2]) >> 3);
+            context_offset = *(int64_t *)(*(int64_t *)(register_r14 + OFFSET_260) + 0x18);
+            validation_result = (int)(*(int64_t *)(context_offset + 0xb8 + intermediate_result[2]) - *(int64_t *)(context_offset + 0xb0 + intermediate_result[2]) >> 3);
             validation_offset = register_rbp;
             if (0 < validation_result) {
                 do {
-                    iteration_result = (*(code **)(**(longlong **)(*(longlong *)(context_offset + 0xb0 + intermediate_result[2]) + validation_offset * 8) + 0x1a8))();
+                    iteration_result = (*(code **)(**(int64_t **)(*(int64_t *)(context_offset + 0xb0 + intermediate_result[2]) + validation_offset * 8) + 0x1a8))();
                     register_edi = register_edi + iteration_result;
                     validation_offset = validation_offset + 1;
-                } while ((longlong)validation_offset < (longlong)validation_result);
+                } while ((int64_t)validation_offset < (int64_t)validation_result);
             }
             intermediate_result[2] = intermediate_result[2] + 0x100;
             intermediate_result[0] = intermediate_result[0] - 1;
@@ -1078,19 +1078,19 @@ int Counter_Validator(uint64_t param_1, longlong param_2)
     }
     
     // 递归验证
-    context_offset = *(longlong *)(register_r14 + OFFSET_1c0);
+    context_offset = *(int64_t *)(register_r14 + OFFSET_1c0);
     intermediate_result[2] = register_rbp;
-    if (*(longlong *)(register_r14 + OFFSET_1c8) - context_offset >> 3 != 0) {
+    if (*(int64_t *)(register_r14 + OFFSET_1c8) - context_offset >> 3 != 0) {
         do {
-            if ((*(char *)(register_rsi + 0x11) == '\0') || ((*(byte *)(*(longlong *)(register_rbp + context_offset) + 0x2e8) & STATUS_FLAG_MASK_0x0b) == STATUS_FLAG_MASK_0x0b)) {
+            if ((*(char *)(register_rsi + 0x11) == '\0') || ((*(byte *)(*(int64_t *)(register_rbp + context_offset) + 0x2e8) & STATUS_FLAG_MASK_0x0b) == STATUS_FLAG_MASK_0x0b)) {
                 validation_result = Counter_Accumulator(*(uint64_t *)(register_rbp + context_offset));
                 register_edi = register_edi + validation_result;
             }
-            context_offset = *(longlong *)(register_r14 + OFFSET_1c0);
+            context_offset = *(int64_t *)(register_r14 + OFFSET_1c0);
             validation_index = (int)intermediate_result[2] + 1;
             register_rbp = register_rbp + DATA_STRUCTURE_ELEMENT_SIZE;
-            intermediate_result[2] = (ulonglong)validation_index;
-        } while ((ulonglong)(longlong)(int)validation_index < (ulonglong)(*(longlong *)(register_r14 + OFFSET_1c8) - context_offset >> 3));
+            intermediate_result[2] = (uint64_t)validation_index;
+        } while ((uint64_t)(int64_t)(int)validation_index < (uint64_t)(*(int64_t *)(register_r14 + OFFSET_1c8) - context_offset >> 3));
     }
     return register_edi;
 }
@@ -1121,17 +1121,17 @@ int Counter_Optimizer(uint64_t param_1, int32_t param_2)
     // 优化变量
     int optimization_result;                  // 优化结果
     int iteration_result;                     // 迭代结果
-    ulonglong optimization_offset;             // 优化偏移
+    uint64_t optimization_offset;             // 优化偏移
     uint optimization_index;                  // 优化索引
-    longlong context_offset;                  // 上下文偏移
-    ulonglong intermediate_result[3];         // 中间结果
+    int64_t context_offset;                  // 上下文偏移
+    uint64_t intermediate_result[3];         // 中间结果
     
     // 寄存器变量
-    ulonglong register_rbp;                   // RBP寄存器
-    longlong register_rsi;                    // RSI寄存器
+    uint64_t register_rbp;                   // RBP寄存器
+    int64_t register_rsi;                    // RSI寄存器
     int register_edi;                         // EDI寄存器
-    longlong register_r14;                    // R14寄存器
-    longlong stack_parameter;                 // 栈参数
+    int64_t register_r14;                    // R14寄存器
+    int64_t stack_parameter;                 // 栈参数
     
     // 初始化优化数据
     intermediate_result[2] = register_rbp;
@@ -1139,35 +1139,35 @@ int Counter_Optimizer(uint64_t param_1, int32_t param_2)
     
     // 主优化循环
     do {
-        context_offset = *(longlong *)(*(longlong *)(register_r14 + OFFSET_260) + 0x18);
-        iteration_result = (int)(*(longlong *)(context_offset + 0xb8 + intermediate_result[2]) - *(longlong *)(context_offset + 0xb0 + intermediate_result[2]) >> 3);
+        context_offset = *(int64_t *)(*(int64_t *)(register_r14 + OFFSET_260) + 0x18);
+        iteration_result = (int)(*(int64_t *)(context_offset + 0xb8 + intermediate_result[2]) - *(int64_t *)(context_offset + 0xb0 + intermediate_result[2]) >> 3);
         optimization_offset = register_rbp;
         if (0 < iteration_result) {
             do {
-                optimization_result = (*(code **)(**(longlong **)(*(longlong *)(context_offset + 0xb0 + intermediate_result[2]) + optimization_offset * 8) + 0x1a8))();
+                optimization_result = (*(code **)(**(int64_t **)(*(int64_t *)(context_offset + 0xb0 + intermediate_result[2]) + optimization_offset * 8) + 0x1a8))();
                 register_edi = register_edi + optimization_result;
                 optimization_offset = optimization_offset + 1;
-            } while ((longlong)optimization_offset < (longlong)iteration_result);
+            } while ((int64_t)optimization_offset < (int64_t)iteration_result);
         }
         intermediate_result[2] = intermediate_result[2] + 0x100;
         stack_parameter = stack_parameter + -1;
     } while (stack_parameter != 0);
     
     // 递归优化
-    context_offset = *(longlong *)(register_r14 + OFFSET_1c0);
-    if (*(longlong *)(register_r14 + OFFSET_1c8) - context_offset >> 3 != 0) {
+    context_offset = *(int64_t *)(register_r14 + OFFSET_1c0);
+    if (*(int64_t *)(register_r14 + OFFSET_1c8) - context_offset >> 3 != 0) {
         stack_parameter = 0;
         intermediate_result[2] = register_rbp;
         do {
-            if ((*(char *)(register_rsi + 0x11) == '\0') || ((*(byte *)(*(longlong *)(register_rbp + context_offset) + 0x2e8) & STATUS_FLAG_MASK_0x0b) == STATUS_FLAG_MASK_0x0b)) {
+            if ((*(char *)(register_rsi + 0x11) == '\0') || ((*(byte *)(*(int64_t *)(register_rbp + context_offset) + 0x2e8) & STATUS_FLAG_MASK_0x0b) == STATUS_FLAG_MASK_0x0b)) {
                 iteration_result = Counter_Accumulator(*(uint64_t *)(register_rbp + context_offset));
                 register_edi = register_edi + iteration_result;
             }
-            context_offset = *(longlong *)(register_r14 + OFFSET_1c0);
+            context_offset = *(int64_t *)(register_r14 + OFFSET_1c0);
             optimization_index = (int)intermediate_result[2] + 1;
-            intermediate_result[2] = (ulonglong)optimization_index;
+            intermediate_result[2] = (uint64_t)optimization_index;
             register_rbp = register_rbp + DATA_STRUCTURE_ELEMENT_SIZE;
-        } while ((ulonglong)(longlong)(int)optimization_index < (ulonglong)(*(longlong *)(register_r14 + OFFSET_1c8) - context_offset >> 3));
+        } while ((uint64_t)(int64_t)(int)optimization_index < (uint64_t)(*(int64_t *)(register_r14 + OFFSET_1c8) - context_offset >> 3));
     }
     return register_edi;
 }
@@ -1194,29 +1194,29 @@ int Counter_Simple(void)
     // 简单处理变量
     int processing_result;                    // 处理结果
     uint processing_index;                    // 处理索引
-    ulonglong processing_offset;               // 处理偏移
-    longlong context_offset;                  // 上下文偏移
+    uint64_t processing_offset;               // 处理偏移
+    int64_t context_offset;                  // 上下文偏移
     
     // 寄存器变量
-    ulonglong register_rbp;                   // RBP寄存器
-    ulonglong register_rsi;                    // RSI寄存器
+    uint64_t register_rbp;                   // RBP寄存器
+    uint64_t register_rsi;                    // RSI寄存器
     int register_edi;                         // EDI寄存器
-    longlong register_r14;                    // R14寄存器
+    int64_t register_r14;                    // R14寄存器
     
     // 简单处理
-    context_offset = *(longlong *)(register_r14 + OFFSET_1c0);
+    context_offset = *(int64_t *)(register_r14 + OFFSET_1c0);
     processing_offset = register_rbp;
-    if (*(longlong *)(register_r14 + OFFSET_1c8) - context_offset >> 3 != 0) {
+    if (*(int64_t *)(register_r14 + OFFSET_1c8) - context_offset >> 3 != 0) {
         do {
-            if ((*(char *)(register_rsi + 0x11) == '\0') || ((*(byte *)(*(longlong *)(register_rbp + context_offset) + 0x2e8) & STATUS_FLAG_MASK_0x0b) == STATUS_FLAG_MASK_0x0b)) {
+            if ((*(char *)(register_rsi + 0x11) == '\0') || ((*(byte *)(*(int64_t *)(register_rbp + context_offset) + 0x2e8) & STATUS_FLAG_MASK_0x0b) == STATUS_FLAG_MASK_0x0b)) {
                 processing_result = Counter_Accumulator(*(uint64_t *)(register_rbp + context_offset));
                 register_edi = register_edi + processing_result;
             }
-            context_offset = *(longlong *)(register_r14 + OFFSET_1c0);
+            context_offset = *(int64_t *)(register_r14 + OFFSET_1c0);
             processing_index = (int)processing_offset + 1;
             register_rbp = register_rbp + DATA_STRUCTURE_ELEMENT_SIZE;
-            processing_offset = (ulonglong)processing_index;
-        } while ((ulonglong)(longlong)(int)processing_index < (ulonglong)(*(longlong *)(register_r14 + OFFSET_1c8) - context_offset >> 3));
+            processing_offset = (uint64_t)processing_index;
+        } while ((uint64_t)(int64_t)(int)processing_index < (uint64_t)(*(int64_t *)(register_r14 + OFFSET_1c8) - context_offset >> 3));
     }
     return register_edi;
 }
@@ -1243,29 +1243,29 @@ int Counter_Alternative(void)
     // 替代处理变量
     int processing_result;                    // 处理结果
     uint processing_index;                    // 处理索引
-    ulonglong processing_offset;               // 处理偏移
-    longlong context_offset;                  // 上下文偏移
+    uint64_t processing_offset;               // 处理偏移
+    int64_t context_offset;                  // 上下文偏移
     
     // 寄存器变量
-    ulonglong register_rbp;                   // RBP寄存器
-    ulonglong register_rsi;                    // RSI寄存器
+    uint64_t register_rbp;                   // RBP寄存器
+    uint64_t register_rsi;                    // RSI寄存器
     int register_edi;                         // EDI寄存器
-    longlong register_r14;                    // R14寄存器
+    int64_t register_r14;                    // R14寄存器
     
     // 替代处理
-    context_offset = *(longlong *)(register_r14 + OFFSET_1c0);
+    context_offset = *(int64_t *)(register_r14 + OFFSET_1c0);
     processing_offset = register_rbp;
-    if (*(longlong *)(register_r14 + OFFSET_1c8) - context_offset >> 3 != 0) {
+    if (*(int64_t *)(register_r14 + OFFSET_1c8) - context_offset >> 3 != 0) {
         do {
-            if ((*(char *)(register_rsi + 0x11) == '\0') || ((*(byte *)(*(longlong *)(register_rbp + context_offset) + 0x2e8) & STATUS_FLAG_MASK_0x0b) == STATUS_FLAG_MASK_0x0b)) {
+            if ((*(char *)(register_rsi + 0x11) == '\0') || ((*(byte *)(*(int64_t *)(register_rbp + context_offset) + 0x2e8) & STATUS_FLAG_MASK_0x0b) == STATUS_FLAG_MASK_0x0b)) {
                 processing_result = Counter_Accumulator(*(uint64_t *)(register_rbp + context_offset));
                 register_edi = register_edi + processing_result;
             }
-            context_offset = *(longlong *)(register_r14 + OFFSET_1c0);
+            context_offset = *(int64_t *)(register_r14 + OFFSET_1c0);
             processing_index = (int)processing_offset + 1;
             register_rbp = register_rbp + DATA_STRUCTURE_ELEMENT_SIZE;
-            processing_offset = (ulonglong)processing_index;
-        } while ((ulonglong)(longlong)(int)processing_index < (ulonglong)(*(longlong *)(register_r14 + OFFSET_1c8) - context_offset >> 3));
+            processing_offset = (uint64_t)processing_index;
+        } while ((uint64_t)(int64_t)(int)processing_index < (uint64_t)(*(int64_t *)(register_r14 + OFFSET_1c8) - context_offset >> 3));
     }
     return register_edi;
 }
@@ -1292,32 +1292,32 @@ int Counter_Alternative(void)
  * - 支持参数化处理
  * - 包含动态状态管理
  */
-int Counter_Conditional(uint64_t param_1, uint64_t param_2, longlong param_3)
+int Counter_Conditional(uint64_t param_1, uint64_t param_2, int64_t param_3)
 {
     // 条件处理变量
     int condition_result;                    // 条件结果
     uint condition_index;                     // 条件索引
-    ulonglong condition_offset;                // 条件偏移
+    uint64_t condition_offset;                // 条件偏移
     
     // 寄存器变量
-    ulonglong register_rbp;                   // RBP寄存器
-    longlong register_rsi;                    // RSI寄存器
+    uint64_t register_rbp;                   // RBP寄存器
+    int64_t register_rsi;                    // RSI寄存器
     int register_edi;                         // EDI寄存器
-    longlong register_r14;                    // R14寄存器
-    ulonglong intermediate_result;             // 中间结果
+    int64_t register_r14;                    // R14寄存器
+    uint64_t intermediate_result;             // 中间结果
     
     // 条件处理
     intermediate_result = register_rbp;
     do {
-        if ((*(char *)(register_rsi + 0x11) == '\0') || ((*(byte *)(*(longlong *)(register_rbp + param_3) + 0x2e8) & STATUS_FLAG_MASK_0x0b) == STATUS_FLAG_MASK_0x0b)) {
+        if ((*(char *)(register_rsi + 0x11) == '\0') || ((*(byte *)(*(int64_t *)(register_rbp + param_3) + 0x2e8) & STATUS_FLAG_MASK_0x0b) == STATUS_FLAG_MASK_0x0b)) {
             condition_result = Counter_Accumulator(*(uint64_t *)(register_rbp + param_3));
             register_edi = register_edi + condition_result;
         }
-        param_3 = *(longlong *)(register_r14 + OFFSET_1c0);
+        param_3 = *(int64_t *)(register_r14 + OFFSET_1c0);
         condition_index = (int)intermediate_result + 1;
-        intermediate_result = (ulonglong)condition_index;
+        intermediate_result = (uint64_t)condition_index;
         register_rbp = register_rbp + DATA_STRUCTURE_ELEMENT_SIZE;
-    } while ((ulonglong)(longlong)(int)condition_index < (ulonglong)(*(longlong *)(register_r14 + OFFSET_1c8) - param_3 >> 3));
+    } while ((uint64_t)(int64_t)(int)condition_index < (uint64_t)(*(int64_t *)(register_r14 + OFFSET_1c8) - param_3 >> 3));
     return register_edi;
 }
 
@@ -1338,7 +1338,7 @@ int Counter_Conditional(uint64_t param_1, uint64_t param_2, longlong param_3)
  * - 支持状态同步
  * - 包含系统更新逻辑
  */
-void StatusUpdater(longlong param_1)
+void StatusUpdater(int64_t param_1)
 {
     // 状态检查和更新
     if (*(short *)(param_1 + OFFSET_2b0) != *(short *)(param_1 + OFFSET_2b4)) {
@@ -1346,7 +1346,7 @@ void StatusUpdater(longlong param_1)
             FUN_1802e7e20();
         }
         else {
-            FUN_18063ad30(*(longlong *)(param_1 + OFFSET_28), *(longlong *)(param_1 + OFFSET_28) + 0xf8, param_1 + OFFSET_70);
+            FUN_18063ad30(*(int64_t *)(param_1 + OFFSET_28), *(int64_t *)(param_1 + OFFSET_28) + 0xf8, param_1 + OFFSET_70);
         }
         *(int16_t *)(param_1 + OFFSET_2b0) = *(int16_t *)(param_1 + OFFSET_2b4);
     }

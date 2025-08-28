@@ -47,7 +47,7 @@
 /*========================== 系统常量和类型定义 ==========================*/
 
 // 渲染上下文句柄类型定义
-typedef longlong RenderContextHandle;
+typedef int64_t RenderContextHandle;
 typedef uint64_t RenderBufferHandle;
 typedef void* RenderResourcePtr;
 
@@ -178,12 +178,12 @@ extern void* system_buffer_ptr;          // 系统缓冲区指针
  */
 void FUN_18037c8d0(RenderContextHandle contextHandle, uint64_t bufferFlags)
 {
-    longlong bufferArrayPtr;
+    int64_t bufferArrayPtr;
     uint64_t resourceHandle;
-    longlong *resourcePtr;
-    longlong bufferInfoPtr;
+    int64_t *resourcePtr;
+    int64_t bufferInfoPtr;
     int bufferIndex;
-    longlong arrayOffset;
+    int64_t arrayOffset;
     char isBufferReady;
     int stackBufferCount[2];
     uint64_t allocationFlags;
@@ -199,8 +199,8 @@ void FUN_18037c8d0(RenderContextHandle contextHandle, uint64_t bufferFlags)
     allocationFlags = 0xfffffffffffffffe;
     
     // 计算缓冲区数组大小
-    stackBufferCount[0] = (int)(*(longlong *)(contextHandle + 0x20b8) - 
-                                *(longlong *)(contextHandle + 0x20b0) >> 3);
+    stackBufferCount[0] = (int)(*(int64_t *)(contextHandle + 0x20b8) - 
+                                *(int64_t *)(contextHandle + 0x20b0) >> 3);
     
     // 遍历缓冲区数组
     if (0 < stackBufferCount[0]) {
@@ -208,8 +208,8 @@ void FUN_18037c8d0(RenderContextHandle contextHandle, uint64_t bufferFlags)
         arrayOffset = 0;
         do {
             // 获取当前缓冲区指针
-            bufferArrayPtr = *(longlong *)(arrayOffset + *(longlong *)(contextHandle + 0x20b0));
-            resourcePtr = *(longlong **)(bufferArrayPtr + 0x20);
+            bufferArrayPtr = *(int64_t *)(arrayOffset + *(int64_t *)(contextHandle + 0x20b0));
+            resourcePtr = *(int64_t **)(bufferArrayPtr + 0x20);
             
             // 检查缓冲区是否就绪
             if (*(code **)(*resourcePtr + 0xc0) == (code *)&unknown_var_9120_ptr) {
@@ -221,18 +221,18 @@ void FUN_18037c8d0(RenderContextHandle contextHandle, uint64_t bufferFlags)
             
             // 获取缓冲区信息指针
             if (isBufferReady == '\0') {
-                bufferInfoPtr = *(longlong *)resourcePtr[7];
+                bufferInfoPtr = *(int64_t *)resourcePtr[7];
             }
             else {
                 bufferInfoPtr = 0;
             }
-            bufferInfoPtr = *(longlong *)(bufferInfoPtr + 0x1b8);
+            bufferInfoPtr = *(int64_t *)(bufferInfoPtr + 0x1b8);
             
             // 检查是否需要分配主渲染缓冲区
-            if (*(longlong *)(bufferInfoPtr + 0xb8) == 0) {
+            if (*(int64_t *)(bufferInfoPtr + 0xb8) == 0) {
                 resourceHandle = RenderSystem_AllocateRenderBuffer(system_memory_pool_ptr, 0x3b0, 0x10, 3, allocationFlags);
-                resourcePtr = (longlong *)RenderSystem_CreateRenderResource(resourceHandle, 1);
-                if (resourcePtr != (longlong *)0x0) {
+                resourcePtr = (int64_t *)RenderSystem_CreateRenderResource(resourceHandle, 1);
+                if (resourcePtr != (int64_t *)0x0) {
                     (**(code **)(*resourcePtr + 0x28))(resourcePtr);
                 }
                 (**(code **)(resourcePtr[2] + 0x10))(resourcePtr + 2, &system_data_1858);
@@ -241,10 +241,10 @@ void FUN_18037c8d0(RenderContextHandle contextHandle, uint64_t bufferFlags)
             }
             
             // 检查是否需要分配辅助渲染缓冲区
-            if (*(longlong *)(bufferInfoPtr + 200) == 0) {
+            if (*(int64_t *)(bufferInfoPtr + 200) == 0) {
                 resourceHandle = RenderSystem_AllocateRenderBuffer(system_memory_pool_ptr, 0x3b0, 0x10, 3, allocationFlags);
-                resourcePtr = (longlong *)RenderSystem_CreateRenderResource(resourceHandle, 1);
-                if (resourcePtr != (longlong *)0x0) {
+                resourcePtr = (int64_t *)RenderSystem_CreateRenderResource(resourceHandle, 1);
+                if (resourcePtr != (int64_t *)0x0) {
                     (**(code **)(*resourcePtr + 0x28))(resourcePtr);
                 }
                 (**(code **)(resourcePtr[2] + 0x10))(resourcePtr + 2, &system_data_1838);
@@ -264,7 +264,7 @@ void FUN_18037c8d0(RenderContextHandle contextHandle, uint64_t bufferFlags)
         stackPtr1 = &unknown_var_1040_ptr;
         stackPtr2 = &unknown_var_1024_ptr;
         contextLow = (int32_t)contextHandle;
-        contextHigh = (int32_t)((ulonglong)contextHandle >> 0x20);
+        contextHigh = (int32_t)((uint64_t)contextHandle >> 0x20);
         stackLow = contextLow;
         stackHigh = contextHigh;
         RenderSystem_ExecuteRenderCommand(&stackPtr);
@@ -300,14 +300,14 @@ void FUN_18037c8d0(RenderContextHandle contextHandle, uint64_t bufferFlags)
 void FUN_18037caf0(uint64_t *objectArray, uint64_t filterFlags, uint64_t memoryType, uint64_t allocationSize)
 {
     uint64_t *currentObject;
-    longlong arraySize;
+    int64_t arraySize;
     uint64_t *filteredObjects;
     uint64_t *tempArray;
     uint64_t *newArray;
     uint64_t *arrayEnd;
     int objectIndex;
-    longlong newArraySize;
-    longlong arrayOffset;
+    int64_t newArraySize;
+    int64_t arrayOffset;
     uint64_t allocationFlags;
     uint64_t *prevArray;
     uint64_t *nextArray;
@@ -328,7 +328,7 @@ void FUN_18037caf0(uint64_t *objectArray, uint64_t filterFlags, uint64_t memoryT
         newArray = tempArray;
         filteredObjects = (uint64_t *)0x0;
         do {
-            currentObject = *(uint64_t **)(arrayOffset + *(longlong *)(objectArray[1] + 0x20b0));
+            currentObject = *(uint64_t **)(arrayOffset + *(int64_t *)(objectArray[1] + 0x20b0));
             
             // 检查对象是否有效
             if ((*(int *)*currentObject == 1) && (*(int *)currentObject[1] == 1)) {
@@ -343,7 +343,7 @@ void FUN_18037caf0(uint64_t *objectArray, uint64_t filterFlags, uint64_t memoryT
             }
             else {
                 // 需要扩展数组容量
-                newArraySize = (longlong)filteredObjects - (longlong)newArray >> 3;
+                newArraySize = (int64_t)filteredObjects - (int64_t)newArray >> 3;
                 if (newArraySize == 0) {
                     newArraySize = 1;
 LAB_18037cbba:
@@ -358,7 +358,7 @@ LAB_18037cbba:
                 
                 // 拷贝现有数据到新数组
                 if (newArray != filteredObjects) {
-                    memmove(tempArray, newArray, (longlong)filteredObjects - (longlong)newArray);
+                    memmove(tempArray, newArray, (int64_t)filteredObjects - (int64_t)newArray);
                 }
                 
                 *tempArray = currentObject;
@@ -381,8 +381,8 @@ LAB_18037cbba:
     
     // 更新对象数组元数据
     newArraySize = objectArray[1];
-    arraySize = *(longlong *)(newArraySize + 0x20b0);
-    *(longlong *)(newArraySize + 0x20b0) = (longlong)tempArray;
+    arraySize = *(int64_t *)(newArraySize + 0x20b0);
+    *(int64_t *)(newArraySize + 0x20b0) = (int64_t)tempArray;
     *(uint64_t **)(newArraySize + 0x20b8) = filteredObjects;
     *(uint64_t **)(newArraySize + 0x20c0) = newArray;
     *(int32_t *)(newArraySize + 0x20c8) = 3;
@@ -420,57 +420,57 @@ LAB_18037cbba:
  */
 void FUN_18037ccb0(RenderContextHandle contextHandle, uint64_t *stateArray)
 {
-    longlong *stateInfoPtr;
-    ulonglong stateKey;
+    int64_t *stateInfoPtr;
+    uint64_t stateKey;
     uint64_t *stateDataPtr;
-    longlong **stateInfoArray;
+    int64_t **stateInfoArray;
     uint64_t stateFlags;
-    longlong *currentState;
-    longlong dependencyChain;
+    int64_t *currentState;
+    int64_t dependencyChain;
     uint64_t *hashTablePtr;
-    longlong hashIndex;
-    longlong tableSize;
+    int64_t hashIndex;
+    int64_t tableSize;
     int dependencyIndex;
-    longlong bucketSize;
-    longlong bucketStart;
-    longlong bucketEnd;
+    int64_t bucketSize;
+    int64_t bucketStart;
+    int64_t bucketEnd;
     bool hasDependency;
     int chainIndex;
     int maxChainIndex;
-    longlong arraySize;
-    longlong stateSize;
-    longlong allocationSize;
+    int64_t arraySize;
+    int64_t stateSize;
+    int64_t allocationSize;
     uint allocationFlags;
-    longlong *tempArray;
-    longlong *stateArrayPtr;
+    int64_t *tempArray;
+    int64_t *stateArrayPtr;
     int32_t tempLow;
     int32_t tempHigh;
-    longlong *tempPtr;
+    int64_t *tempPtr;
     uint64_t *tempPtr2;
-    longlong *tempPtr3;
+    int64_t *tempPtr3;
     int aiStack_78 [2];
     uint64_t tempValue1;
     uint64_t tempValue2;
-    longlong *tempPtr4;
+    int64_t *tempPtr4;
     int8_t tempBuffer [32];
     
     tempValue2 = 0xfffffffffffffffe;
-    tempPtr4 = (longlong *)
-             (((longlong)*(int *)(*(longlong *)(contextHandle + 0x2148) + 0x3054) + 0x10b) * 0x20 +
+    tempPtr4 = (int64_t *)
+             (((int64_t)*(int *)(*(int64_t *)(contextHandle + 0x2148) + 0x3054) + 0x10b) * 0x20 +
              contextHandle);
-    arraySize = (longlong)(int)(tempPtr4[1] - *tempPtr4 >> 3);
+    arraySize = (int64_t)(int)(tempPtr4[1] - *tempPtr4 >> 3);
     
     // 遍历状态数组
     if (0 < arraySize) {
         stateSize = 0;
         do {
-            currentState = *(longlong **)(*tempPtr4 + stateSize * 8);
+            currentState = *(int64_t **)(*tempPtr4 + stateSize * 8);
             dependencyIndex = (int)currentState[6];
             
             // 检查状态是否需要同步
             if (((dependencyIndex == -1) ||
-                (dependencyChain = *(longlong *)(*(longlong *)(contextHandle + 0x2148) + 0x60b80), dependencyChain == 0)) ||
-               (*(char *)(*(longlong *)(dependencyChain + 0x80 + (longlong)dependencyIndex * 8) + 0x152) != '\0')) {
+                (dependencyChain = *(int64_t *)(*(int64_t *)(contextHandle + 0x2148) + 0x60b80), dependencyChain == 0)) ||
+               (*(char *)(*(int64_t *)(dependencyChain + 0x80 + (int64_t)dependencyIndex * 8) + 0x152) != '\0')) {
                 
                 dependencyChain = *currentState;
                 maxChainIndex = 0;
@@ -484,58 +484,58 @@ void FUN_18037ccb0(RenderContextHandle contextHandle, uint64_t *stateArray)
                         if (0 < dependencyIndex) {
                             do {
                                 dependencyIndex = dependencyIndex * maxChainIndex + chainIndex;
-                                bucketSize = *(longlong *)(dependencyChain + 0x110);
+                                bucketSize = *(int64_t *)(dependencyChain + 0x110);
                                 hashTablePtr = (uint64_t *)
-                                         (bucketSize + ((ulonglong)(longlong)dependencyIndex % (ulonglong)*(uint *)(dependencyChain + 0x118)) * 8);
+                                         (bucketSize + ((uint64_t)(int64_t)dependencyIndex % (uint64_t)*(uint *)(dependencyChain + 0x118)) * 8);
                                 
                                 // 查找哈希表中的状态
-                                currentState = (longlong *)*hashTablePtr;
-                                for (stateInfoPtr = currentState; stateInfoPtr != (longlong *)0x0; stateInfoPtr = (longlong *)stateInfoPtr[2]) {
+                                currentState = (int64_t *)*hashTablePtr;
+                                for (stateInfoPtr = currentState; stateInfoPtr != (int64_t *)0x0; stateInfoPtr = (int64_t *)stateInfoPtr[2]) {
                                     if (dependencyIndex == (int)*stateInfoPtr) {
                                         tempPtr3 = stateInfoPtr;
                                         tempPtr2 = hashTablePtr;
                                         stateInfoArray = &tempPtr3;
-                                        bucketSize = *(longlong *)(dependencyChain + 0x118);
+                                        bucketSize = *(int64_t *)(dependencyChain + 0x118);
                                         goto LAB_18037cdee;
                                     }
                                 }
                                 
-                                bucketSize = *(longlong *)(dependencyChain + 0x118);
+                                bucketSize = *(int64_t *)(dependencyChain + 0x118);
                                 tempPtr2 = (uint64_t *)(bucketSize + bucketSize * 8);
-                                tempPtr3 = (longlong *)*tempPtr2;
+                                tempPtr3 = (int64_t *)*tempPtr2;
                                 stateInfoArray = &tempPtr3;
 LAB_18037cdee:
-                                stateInfoPtr = *(longlong **)(bucketSize + bucketSize * 8);
+                                stateInfoPtr = *(int64_t **)(bucketSize + bucketSize * 8);
                                 
                                 // 检查状态一致性
                                 if (*stateInfoArray != stateInfoPtr) {
                                     dependencyIndex = dependencyIndex * maxChainIndex + chainIndex;
-                                    for (; (currentState = stateInfoPtr, tempPtr3 != (longlong *)0x0 &&
-                                           (currentState = currentState, dependencyIndex != (int)*tempPtr3)); tempPtr3 = (longlong *)tempPtr3[2]) {
+                                    for (; (currentState = stateInfoPtr, tempPtr3 != (int64_t *)0x0 &&
+                                           (currentState = currentState, dependencyIndex != (int)*tempPtr3)); tempPtr3 = (int64_t *)tempPtr3[2]) {
                                     }
                                     
                                     if (currentState == stateInfoPtr) {
                                         stateFlags = RenderSystem_AllocateRenderBuffer(system_memory_pool_ptr, 0x178, 8,
-                                              CONCAT71((int7)((ulonglong)bucketSize >> 8), 3));
+                                              CONCAT71((int7)((uint64_t)bucketSize >> 8), 3));
                                         tempValue1 = RenderSystem_InitializeRenderContext(stateFlags, *(uint64_t *)(dependencyChain + 0x68));
                                         aiStack_78[0] = dependencyIndex;
-                                        tempPtr3 = (longlong *)RenderSystem_CreateRenderState(dependencyChain + 0x108, tempBuffer, aiStack_78);
-                                        currentState = (longlong *)*tempPtr3;
+                                        tempPtr3 = (int64_t *)RenderSystem_CreateRenderState(dependencyChain + 0x108, tempBuffer, aiStack_78);
+                                        currentState = (int64_t *)*tempPtr3;
                                         tempLow = (int32_t)tempPtr3[1];
-                                        tempHigh = *(int32_t *)((longlong)tempPtr3 + 0xc);
+                                        tempHigh = *(int32_t *)((int64_t)tempPtr3 + 0xc);
                                         tempPtr = currentState;
                                     }
                                     
                                     // 处理状态同步
                                     bucketSize = currentState[1] + 0x118;
-                                    dependencyChain = *(longlong *)(currentState[1] + 0x120);
+                                    dependencyChain = *(int64_t *)(currentState[1] + 0x120);
                                     allocationSize = bucketSize;
                                     
                                     if (dependencyChain != bucketSize) {
                                         tempPtr4 = &stateSize;
                                         do {
-                                            stateSize = *(longlong *)(dependencyChain + 0x20);
-                                            stateSize = *(longlong *)(dependencyChain + 0x30) - *(longlong *)(dependencyChain + 0x28) >> 5;
+                                            stateSize = *(int64_t *)(dependencyChain + 0x20);
+                                            stateSize = *(int64_t *)(dependencyChain + 0x30) - *(int64_t *)(dependencyChain + 0x28) >> 5;
                                             allocationFlags = *(uint *)(dependencyChain + 0x40);
                                             
                                             if (stateSize == 0) {
@@ -546,25 +546,25 @@ LAB_18037cdee:
                                             }
                                             
                                             allocationSize = stateSize * 0x20 + stateSize;
-                                            stateSize = *(longlong *)(dependencyChain + 0x28);
+                                            stateSize = *(int64_t *)(dependencyChain + 0x28);
                                             stateSize = allocationSize;
                                             
-                                            if (stateSize != *(longlong *)(dependencyChain + 0x30)) {
-                                                memmove(allocationSize, stateSize, *(longlong *)(dependencyChain + 0x30) - stateSize);
+                                            if (stateSize != *(int64_t *)(dependencyChain + 0x30)) {
+                                                memmove(allocationSize, stateSize, *(int64_t *)(dependencyChain + 0x30) - stateSize);
                                             }
                                             
-                                            tempPtr3 = *(longlong **)(stateSize + 0x38);
-                                            if (*(longlong *)(stateSize + 0x40) - (longlong)tempPtr3 >> 4 != 0) {
-                                                stateKey = *(ulonglong *)(*tempPtr3 + 0x1b8);
+                                            tempPtr3 = *(int64_t **)(stateSize + 0x38);
+                                            if (*(int64_t *)(stateSize + 0x40) - (int64_t)tempPtr3 >> 4 != 0) {
+                                                stateKey = *(uint64_t *)(*tempPtr3 + 0x1b8);
                                                 stateSize = RenderSystem_AllocateMemory(system_memory_pool_ptr, 0x28, *(int8_t *)(stateArray + 5));
-                                                *(ulonglong *)(stateSize + 0x20) = stateKey;
+                                                *(uint64_t *)(stateSize + 0x20) = stateKey;
                                                 hasDependency = true;
                                                 hashTablePtr = (uint64_t *)stateArray[2];
                                                 stateDataPtr = stateArray;
                                                 
                                                 // 处理状态依赖关系
                                                 while (hashTablePtr != (uint64_t *)0x0) {
-                                                    hasDependency = stateKey < (ulonglong)hashTablePtr[4];
+                                                    hasDependency = stateKey < (uint64_t)hashTablePtr[4];
                                                     stateDataPtr = hashTablePtr;
                                                     if (hasDependency) {
                                                         hashTablePtr = (uint64_t *)hashTablePtr[1];
@@ -580,12 +580,12 @@ LAB_18037cdee:
                                                     hashTablePtr = (uint64_t *)RenderSystem_PrevRenderNode(stateDataPtr);
                                                 }
                                                 
-                                                if (*(ulonglong *)(stateSize + 0x20) <= (ulonglong)hashTablePtr[4]) {
+                                                if (*(uint64_t *)(stateSize + 0x20) <= (uint64_t)hashTablePtr[4]) {
                                                     RenderSystem_FreeRenderResource(stateSize);
                                                 }
 LAB_18037cfde:
                                                 if ((stateDataPtr == stateArray) ||
-                                                   (*(ulonglong *)(stateSize + 0x20) < (ulonglong)stateDataPtr[4])) {
+                                                   (*(uint64_t *)(stateSize + 0x20) < (uint64_t)stateDataPtr[4])) {
                                                     stateFlags = 0;
                                                 }
                                                 else {
@@ -642,7 +642,7 @@ LAB_18037cfde:
  *   - 支持时间序列分析
  *   - 提供聚合计算功能
  */
-ulonglong FUN_18037d0d0(uint64_t statsHandle)
+uint64_t FUN_18037d0d0(uint64_t statsHandle)
 {
     char isStatValid;
     uint64_t ******ppppppuVar2;
@@ -654,18 +654,18 @@ ulonglong FUN_18037d0d0(uint64_t statsHandle)
     uint tempFlags;
     uint64_t *******pppppppuVar9;
     uint64_t *******pppppppuVar10;
-    longlong **pplVar11;
-    longlong *plVar12;
+    int64_t **pplVar11;
+    int64_t *plVar12;
     uint64_t **ppuVar13;
     int tempIndex;
     uint64_t **ppuVar15;
-    ulonglong totalStats;
-    ulonglong tempValue;
+    uint64_t totalStats;
+    uint64_t tempValue;
     int arraySize;
     void *tempPtr3;
     uint64_t ******ppppppuVar20;
-    longlong tempSize;
-    ulonglong tempValue2;
+    int64_t tempSize;
+    uint64_t tempValue2;
     bool isValid;
     float frameTime;
     float fps;
@@ -676,19 +676,19 @@ ulonglong FUN_18037d0d0(uint64_t statsHandle)
     uint64_t tempValue4;
     int32_t tempValue5;
     void *tempPtr4;
-    longlong tempValue6;
+    int64_t tempValue6;
     int32_t tempValue7;
     uint64_t tempValue8;
     float tempFloat1;
     void *tempPtr5;
-    longlong tempValue9;
+    int64_t tempValue9;
     int32_t tempValue10;
-    ulonglong tempValue11;
+    uint64_t tempValue11;
     void *tempPtr6;
-    longlong tempValue12;
+    int64_t tempValue12;
     int32_t tempValue13;
-    ulonglong tempValue14;
-    longlong tempValue15;
+    uint64_t tempValue14;
+    int64_t tempValue15;
     uint64_t *tempPtr7;
     uint64_t *tempPtr8;
     int32_t tempValue16;
@@ -701,17 +701,17 @@ ulonglong FUN_18037d0d0(uint64_t statsHandle)
     void *tempPtr10;
     uint64_t tempValue20;
     int32_t tempValue21;
-    ulonglong tempValue22;
+    uint64_t tempValue22;
     uint64_t *apuStack_178 [2];
     code *pcStack_168;
     void *tempPtr11;
     uint64_t tempValue23;
     uint64_t tempValue24;
     uint64_t tempValue25;
-    longlong tempValue26;
-    longlong *tempPtr12;
+    int64_t tempValue26;
+    int64_t *tempPtr12;
     uint64_t **ppuStack_130;
-    longlong *tempPtr13;
+    int64_t *tempPtr13;
     uint64_t **ppuStack_120;
     uint64_t tempValue27;
     
@@ -811,7 +811,7 @@ LAB_18037d26b:
                 
                 // 调用性能统计回调
                 (*(code *)(*pppppuVar3[0x11])[0xc])
-                          (pppppuVar3[0x11], &system_data_1028, (longlong)pppppuVar3 + 0xc, 0, apuStack_178);
+                          (pppppuVar3[0x11], &system_data_1028, (int64_t)pppppuVar3 + 0xc, 0, apuStack_178);
                 
                 if (pcStack_168 != (code *)0x0) {
                     (*pcStack_168)(apuStack_178, 0, 0);
@@ -854,20 +854,20 @@ LAB_18037d26b:
                 pppuVar4 = pppppuVar3[0x11][1];
                 ppuVar13 = pppuVar4[0x10];
                 
-                for (plVar12 = ppuVar13[(*(ulonglong *)((longlong)pppppuVar3 + 0x14) ^
-                                *(ulonglong *)((longlong)pppppuVar3 + 0xc)) %
-                                (ulonglong)*(uint *)(pppuVar4 + 0x11)]; plVar12 != (longlong *)0x0;
-                    plVar12 = (longlong *)plVar12[3]) {
+                for (plVar12 = ppuVar13[(*(uint64_t *)((int64_t)pppppuVar3 + 0x14) ^
+                                *(uint64_t *)((int64_t)pppppuVar3 + 0xc)) %
+                                (uint64_t)*(uint *)(pppuVar4 + 0x11)]; plVar12 != (int64_t *)0x0;
+                    plVar12 = (int64_t *)plVar12[3]) {
                     
-                    if ((*(longlong *)((longlong)pppppuVar3 + 0xc) == *plVar12) &&
-                       (*(longlong *)((longlong)pppppuVar3 + 0x14) == plVar12[1])) {
+                    if ((*(int64_t *)((int64_t)pppppuVar3 + 0xc) == *plVar12) &&
+                       (*(int64_t *)((int64_t)pppppuVar3 + 0x14) == plVar12[1])) {
                         
-                        if (plVar12 != (longlong *)0x0) {
+                        if (plVar12 != (int64_t *)0x0) {
                             tempPtr12 = plVar12;
                             ppuStack_130 = ppuVar13 +
-                                           (*(ulonglong *)((longlong)pppppuVar3 + 0x14) ^
-                                           *(ulonglong *)((longlong)pppppuVar3 + 0xc)) %
-                                           (ulonglong)*(uint *)(pppuVar4 + 0x11);
+                                           (*(uint64_t *)((int64_t)pppppuVar3 + 0x14) ^
+                                           *(uint64_t *)((int64_t)pppppuVar3 + 0xc)) %
+                                           (uint64_t)*(uint *)(pppuVar4 + 0x11);
                             pplVar11 = &tempPtr12;
                             ppuVar15 = pppuVar4[0x11];
                             goto LAB_18037d51b;
@@ -877,31 +877,31 @@ LAB_18037d26b:
                 }
                 
                 ppuVar15 = pppuVar4[0x11];
-                tempPtr13 = ppuVar13[(longlong)ppuVar15];
-                ppuStack_120 = ppuVar13 + (longlong)ppuVar15;
+                tempPtr13 = ppuVar13[(int64_t)ppuVar15];
+                ppuStack_120 = ppuVar13 + (int64_t)ppuVar15;
                 pplVar11 = &tempPtr13;
 LAB_18037d51b:
                 plVar12 = *pplVar11;
                 
-                if (plVar12 != ppuVar13[(longlong)ppuVar15]) {
+                if (plVar12 != ppuVar13[(int64_t)ppuVar15]) {
                     tempIndex = (int)plVar12[2];
-                    arraySize = *(int *)((longlong)plVar12 + 0x14) + tempIndex;
+                    arraySize = *(int *)((int64_t)plVar12 + 0x14) + tempIndex;
                     if (tempIndex < arraySize) {
                         do {
-                            ppuVar13 = pppuVar4[0x15] + (longlong)tempIndex * 0x12;
+                            ppuVar13 = pppuVar4[0x15] + (int64_t)tempIndex * 0x12;
                             
                             // 检查性能数据匹配
-                            if ((((ppuVar13[4] == *(uint64_t **)((longlong)pppppuVar3 + 0xc)) &&
-                                 (ppuVar13[5] == *(uint64_t **)((longlong)pppppuVar3 + 0x14))) &&
+                            if ((((ppuVar13[4] == *(uint64_t **)((int64_t)pppppuVar3 + 0xc)) &&
+                                 (ppuVar13[5] == *(uint64_t **)((int64_t)pppppuVar3 + 0x14))) &&
                                 (*ppuVar13 == (uint64_t *)0x4b2d79e470ee4e2c)) &&
                                (ppuVar13[1] == (uint64_t *)0x9c552acd3ed5548d)) {
                                 
                                 tempPtr2 = ppuVar13[7];
-                                tempValue2 = tempValue2 + (longlong)tempPtr2;
+                                tempValue2 = tempValue2 + (int64_t)tempPtr2;
                                 RenderSystem_GetRenderData(&tempPtr1, pppppuVar3 + 0xd);
-                                tempFloat1 = (float)(longlong)tempPtr2;
+                                tempFloat1 = (float)(int64_t)tempPtr2;
                                 
-                                if ((longlong)tempPtr2 < 0) {
+                                if ((int64_t)tempPtr2 < 0) {
                                     tempFloat1 = tempFloat1 + 1.8446744e+19;
                                 }
                                 
@@ -918,7 +918,7 @@ LAB_18037d51b:
                                     *(int32_t *)(tempPtr7 + 2) = 0;
                                     *(int32_t *)(tempPtr7 + 2) = tempValue7;
                                     tempPtr7[1] = tempValue6;
-                                    *(int32_t *)((longlong)tempPtr7 + 0x1c) = tempValue8._4_4_;
+                                    *(int32_t *)((int64_t)tempPtr7 + 0x1c) = tempValue8._4_4_;
                                     *(int32_t *)(tempPtr7 + 3) = (int32_t)tempValue8;
                                     tempValue7 = 0;
                                     tempValue6 = 0;
@@ -972,7 +972,7 @@ LAB_18037d51b:
     tempValue11 = totalStats;
     
     // 处理最终的统计数据
-    if (((longlong)tempPtr7 - tempValue15) / 0x28 != 0) {
+    if (((int64_t)tempPtr7 - tempValue15) / 0x28 != 0) {
         do {
             tempPtr1 = *(void **)(tempValue15 + 8 + totalStats);
             tempPtr3 = &system_buffer_ptr;
@@ -985,9 +985,9 @@ LAB_18037d51b:
                                               (double)*(float *)(tempValue15 + 0x20 + totalStats));
             tempFlags = (int)tempValue11 + 1;
             totalStats = totalStats + 0x28;
-            tempValue11 = (ulonglong)tempFlags;
-        } while ((ulonglong)(longlong)(int)tempFlags <
-                 (ulonglong)(((longlong)tempPtr7 - tempValue15) / 0x28));
+            tempValue11 = (uint64_t)tempFlags;
+        } while ((uint64_t)(int64_t)(int)tempFlags <
+                 (uint64_t)(((int64_t)tempPtr7 - tempValue15) / 0x28));
     }
     
     tempPtr6 = &system_data_buffer_ptr;

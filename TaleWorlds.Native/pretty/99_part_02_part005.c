@@ -56,7 +56,7 @@ void conditional_sort_processor_type2(void) __attribute__((alias("FUN_1800eb341"
  * @param param_3 递归深度参数
  * @param param_4 比较函数指针
  */
-void quick_sort_implementation(uint64_t *param_1, uint64_t *param_2, longlong param_3) __attribute__((alias("FUN_1800eb380")));
+void quick_sort_implementation(uint64_t *param_1, uint64_t *param_2, int64_t param_3) __attribute__((alias("FUN_1800eb380")));
 
 /**
  * 堆排序实现器
@@ -67,7 +67,7 @@ void quick_sort_implementation(uint64_t *param_1, uint64_t *param_2, longlong pa
  * @param param_3 递归深度参数
  * @param param_4 比较函数指针
  */
-void heap_sort_implementation(uint64_t *param_1, uint64_t *param_2, longlong param_3) __attribute__((alias("FUN_1800eb38b")));
+void heap_sort_implementation(uint64_t *param_1, uint64_t *param_2, int64_t param_3) __attribute__((alias("FUN_1800eb38b")));
 
 /**
  * 数据排序处理器
@@ -114,21 +114,21 @@ void FUN_1800eb09b(void)
 
 {
   int32_t *puVar1;
-  longlong lVar2;
+  int64_t lVar2;
   int32_t uVar3;
   int32_t uVar4;
   int32_t uVar5;
   int32_t uVar6;
-  longlong lVar7;
+  int64_t lVar7;
   uint64_t uVar8;
   uint64_t uVar9;
-  longlong lVar10;
-  longlong lVar11;
+  int64_t lVar10;
+  int64_t lVar11;
   char cVar12;
-  longlong in_RAX;
-  ulonglong uVar13;
+  int64_t in_RAX;
+  uint64_t uVar13;
   uint uVar14;
-  longlong unaff_RBX;
+  int64_t unaff_RBX;
   uint64_t *puVar15;
   uint64_t *puVar16;
   uint64_t unaff_RBP;
@@ -137,13 +137,13 @@ void FUN_1800eb09b(void)
   uint64_t unaff_RDI;
   uint64_t *puVar18;
   uint uVar19;
-  longlong in_R10;
+  int64_t in_R10;
   int iVar20;
-  ulonglong in_R11;
+  uint64_t in_R11;
   uint64_t unaff_R12;
   uint64_t unaff_R13;
-  longlong *unaff_R14;
-  longlong *unaff_R15;
+  int64_t *unaff_R14;
+  int64_t *unaff_R15;
   int32_t unaff_XMM6_Da;
   int32_t unaff_XMM6_Db;
   int32_t unaff_XMM6_Dc;
@@ -151,21 +151,21 @@ void FUN_1800eb09b(void)
   uint uStack0000000000000028;
   uint64_t in_stack_00000030;
   uint64_t in_stack_00000038;
-  longlong in_stack_00000040;
+  int64_t in_stack_00000040;
   uint uStack0000000000000048;
-  longlong in_stack_00000050;
-  longlong in_stack_00000058;
-  longlong in_stack_00000060;
-  longlong in_stack_00000068;
-  longlong in_stack_00000070;
-  longlong in_stack_00000078;
+  int64_t in_stack_00000050;
+  int64_t in_stack_00000058;
+  int64_t in_stack_00000060;
+  int64_t in_stack_00000068;
+  int64_t in_stack_00000070;
+  int64_t in_stack_00000078;
   int32_t in_stack_00000080;
   int32_t uStack0000000000000084;
   int32_t in_stack_00000088;
   int32_t uStack000000000000008c;
-  longlong *in_stack_000000f0;
-  longlong *in_stack_000000f8;
-  longlong in_stack_00000100;
+  int64_t *in_stack_000000f0;
+  int64_t *in_stack_000000f8;
+  int64_t in_stack_00000100;
   int in_stack_00000108;
   
   // 寄存器状态保存
@@ -188,17 +188,17 @@ void FUN_1800eb09b(void)
     uVar14 = uVar19 >> 0xb;
     iVar20 = (int)in_R11;
     puVar18 = (uint64_t *)
-              (*(longlong *)(*unaff_R14 + 8 + (ulonglong)uVar14 * 8) +
-              (ulonglong)(uVar19 + uVar14 * -0x800) * 0x10);
-    uVar14 = (int)(((longlong)(int)in_R10 - (longlong)iVar20) / 2) + iVar20;
+              (*(int64_t *)(*unaff_R14 + 8 + (uint64_t)uVar14 * 8) +
+              (uint64_t)(uVar19 + uVar14 * -0x800) * 0x10);
+    uVar14 = (int)(((int64_t)(int)in_R10 - (int64_t)iVar20) / 2) + iVar20;
     uVar19 = uVar14 >> 0xb;
     puVar15 = (uint64_t *)
-              (*(longlong *)(*unaff_R15 + 8 + (ulonglong)uVar19 * 8) +
-              (ulonglong)(uVar14 + uVar19 * -0x800) * 0x10);
+              (*(int64_t *)(*unaff_R15 + 8 + (uint64_t)uVar19 * 8) +
+              (uint64_t)(uVar14 + uVar19 * -0x800) * 0x10);
     uVar13 = in_R11 >> 0xb & 0x1fffff;
     puVar17 = (uint64_t *)
-              (*(longlong *)(*unaff_R15 + 8 + uVar13 * 8) +
-              (ulonglong)(uint)(iVar20 + (int)uVar13 * -0x800) * 0x10);
+              (*(int64_t *)(*unaff_R15 + 8 + uVar13 * 8) +
+              (uint64_t)(uint)(iVar20 + (int)uVar13 * -0x800) * 0x10);
     
     // 枢轴元素选择和比较
     cVar12 = func_0x0001800d40c0(puVar17,puVar15);
@@ -232,7 +232,7 @@ LAB_1800eb177:
     lVar11 = *unaff_R15;
     lVar10 = *unaff_R15;
     uStack0000000000000028 = *(uint *)(unaff_R15 + 1);
-    uVar3 = *(int32_t *)((longlong)unaff_R15 + 0xc);
+    uVar3 = *(int32_t *)((int64_t)unaff_R15 + 0xc);
     uVar14 = uStack0000000000000048;
     in_stack_00000040 = lVar7;
     
@@ -240,36 +240,36 @@ LAB_1800eb177:
     while( true ) {
       while( true ) {
         uVar19 = uStack0000000000000028 >> 0xb;
-        cVar12 = func_0x0001800d40c0(*(longlong *)(lVar10 + 8 + (ulonglong)uVar19 * 8) +
-                                     (ulonglong)(uStack0000000000000028 + uVar19 * -0x800) * 0x10,
+        cVar12 = func_0x0001800d40c0(*(int64_t *)(lVar10 + 8 + (uint64_t)uVar19 * 8) +
+                                     (uint64_t)(uStack0000000000000028 + uVar19 * -0x800) * 0x10,
                                      &stack0x00000030);
         if (cVar12 == '\0') break;
         uStack0000000000000028 = uStack0000000000000028 + 1;
       }
       uVar14 = uVar14 - 1;
       cVar12 = func_0x0001800d40c0(&stack0x00000030,
-                                   (ulonglong)(uVar14 + (uVar14 >> 0xb) * -0x800) * 0x10 +
-                                   *(longlong *)(lVar7 + 8 + (ulonglong)(uVar14 >> 0xb) * 8));
+                                   (uint64_t)(uVar14 + (uVar14 >> 0xb) * -0x800) * 0x10 +
+                                   *(int64_t *)(lVar7 + 8 + (uint64_t)(uVar14 >> 0xb) * 8));
       unaff_R14 = in_stack_000000f8;
       while (in_stack_000000f8 = unaff_R14, cVar12 != '\0') {
         uVar14 = uVar14 - 1;
         cVar12 = func_0x0001800d40c0(&stack0x00000030,
-                                     (ulonglong)(uVar14 + (uVar14 >> 0xb) * -0x800) * 0x10 +
-                                     *(longlong *)(lVar7 + 8 + (ulonglong)(uVar14 >> 0xb) * 8));
+                                     (uint64_t)(uVar14 + (uVar14 >> 0xb) * -0x800) * 0x10 +
+                                     *(int64_t *)(lVar7 + 8 + (uint64_t)(uVar14 >> 0xb) * 8));
         unaff_R14 = in_stack_000000f8;
       }
       if ((int)uVar14 <= (int)uStack0000000000000028) break;
       
       // 元素交换
-      uVar13 = (ulonglong)(uStack0000000000000028 + uVar19 * -0x800);
+      uVar13 = (uint64_t)(uStack0000000000000028 + uVar19 * -0x800);
       puVar17 = (uint64_t *)
-                ((ulonglong)(uVar14 + (uVar14 >> 0xb) * -0x800) * 0x10 +
-                *(longlong *)(lVar7 + 8 + (ulonglong)(uVar14 >> 0xb) * 8));
-      lVar2 = *(longlong *)(lVar10 + 8 + (ulonglong)uVar19 * 8);
+                ((uint64_t)(uVar14 + (uVar14 >> 0xb) * -0x800) * 0x10 +
+                *(int64_t *)(lVar7 + 8 + (uint64_t)(uVar14 >> 0xb) * 8));
+      lVar2 = *(int64_t *)(lVar10 + 8 + (uint64_t)uVar19 * 8);
       uStack0000000000000028 = uStack0000000000000028 + 1;
-      uVar4 = *(int32_t *)((longlong)puVar17 + 4);
+      uVar4 = *(int32_t *)((int64_t)puVar17 + 4);
       uVar5 = *(int32_t *)(puVar17 + 1);
-      uVar6 = *(int32_t *)((longlong)puVar17 + 0xc);
+      uVar6 = *(int32_t *)((int64_t)puVar17 + 0xc);
       puVar15 = (uint64_t *)(lVar2 + uVar13 * 0x10);
       uVar8 = *puVar15;
       uVar9 = puVar15[1];
@@ -291,21 +291,21 @@ LAB_1800eb177:
     in_stack_00000058 = lVar7;
     in_stack_00000100 = unaff_RBX;
     FUN_1800eb050(&stack0x00000050,&stack0x00000040,unaff_RBX,&SUB_1800d40c0);
-    in_R11 = (ulonglong)in_stack_00000108;
+    in_R11 = (uint64_t)in_stack_00000108;
     *unaff_R14 = lVar11;
     unaff_R14[1] = lVar7;
-    in_R10 = (longlong)(int)unaff_R14[1];
+    in_R10 = (int64_t)(int)unaff_R14[1];
     unaff_R15 = in_stack_000000f0;
-  } while (0x1c < (longlong)(in_R10 - in_R11));
+  } while (0x1c < (int64_t)(in_R10 - in_R11));
   
   // 最终处理
   if (unaff_RBX == 0) {
     in_stack_00000060 = *unaff_R14;
     in_stack_00000068 = unaff_R14[1];
     in_stack_00000080 = (int32_t)*unaff_R15;
-    uStack0000000000000084 = *(int32_t *)((longlong)unaff_R15 + 4);
+    uStack0000000000000084 = *(int32_t *)((int64_t)unaff_R15 + 4);
     in_stack_00000088 = (int32_t)unaff_R15[1];
-    uStack000000000000008c = *(int32_t *)((longlong)unaff_R15 + 0xc);
+    uStack000000000000008c = *(int32_t *)((int64_t)unaff_R15 + 0xc);
     in_stack_00000070 = in_stack_00000060;
     in_stack_00000078 = in_stack_00000068;
     FUN_1800ebe90(&stack0x00000080,&stack0x00000070,&stack0x00000060);
@@ -329,7 +329,7 @@ LAB_1800eb177:
 void FUN_1800eb334(void)
 
 {
-  longlong unaff_RBX;
+  int64_t unaff_RBX;
   uint64_t *unaff_R14;
   int32_t *unaff_R15;
   uint64_t uStack0000000000000060;
@@ -426,33 +426,33 @@ void FUN_1800eb341(void)
  * - 尾递归优化
  * - 三数取中法
  */
-void FUN_1800eb380(uint64_t *param_1,uint64_t *param_2,longlong param_3)
+void FUN_1800eb380(uint64_t *param_1,uint64_t *param_2,int64_t param_3)
 
 {
   uint64_t uVar1;
   uint64_t uVar2;
   char cVar3;
-  ulonglong uVar4;
-  longlong lVar5;
+  uint64_t uVar4;
+  int64_t lVar5;
   uint64_t *puVar6;
-  longlong lVar7;
+  int64_t lVar7;
   uint64_t *puVar8;
   uint64_t *puVar9;
-  longlong lVar10;
-  longlong lVar11;
-  longlong lVar12;
+  int64_t lVar10;
+  int64_t lVar11;
+  int64_t lVar12;
   bool bVar13;
   
-  uVar4 = (longlong)param_2 - (longlong)param_1;
+  uVar4 = (int64_t)param_2 - (int64_t)param_1;
   do {
     // 小数组或递归深度不足时的处理
-    if (((longlong)(uVar4 & 0xfffffffffffffff8) < 0xe1) || (param_3 < 1)) {
+    if (((int64_t)(uVar4 & 0xfffffffffffffff8) < 0xe1) || (param_3 < 1)) {
       if (param_3 != 0) {
         return;
       }
       
       // 堆排序阶段 - 建堆
-      lVar5 = (longlong)param_2 - (longlong)param_1 >> 3;
+      lVar5 = (int64_t)param_2 - (int64_t)param_1 >> 3;
       if (1 < lVar5) {
         lVar7 = (lVar5 + -2 >> 1) + 1;
         lVar12 = lVar7 * 2 + 2;
@@ -521,7 +521,7 @@ void FUN_1800eb380(uint64_t *param_1,uint64_t *param_2,longlong param_3)
           }
           param_2 = param_2 + -1;
           param_1[lVar12] = uVar1;
-          lVar5 = (8 - (longlong)param_1) + (longlong)param_2 >> 3;
+          lVar5 = (8 - (int64_t)param_1) + (int64_t)param_2 >> 3;
         } while (1 < lVar5);
       }
       return;
@@ -529,7 +529,7 @@ void FUN_1800eb380(uint64_t *param_1,uint64_t *param_2,longlong param_3)
     
     // 快速排序分区阶段
     puVar6 = param_2 + -1;
-    lVar5 = (longlong)param_2 - (longlong)param_1 >> 3;
+    lVar5 = (int64_t)param_2 - (int64_t)param_1 >> 3;
     if (lVar5 < 0) {
       lVar5 = lVar5 + 1;
     }
@@ -585,7 +585,7 @@ LAB_1800eb431:
     // 递归处理子数组
     param_3 = param_3 + -1;
     FUN_1800eb380(puVar8,param_2,param_3,&SUB_1800da750);
-    uVar4 = (longlong)puVar8 - (longlong)param_1;
+    uVar4 = (int64_t)puVar8 - (int64_t)param_1;
     param_2 = puVar8;
   } while( true );
 }
@@ -615,34 +615,34 @@ LAB_1800eb431:
  * - 内存受限环境
  * - 需要最坏情况下 O(n log n) 性能
  */
-void FUN_1800eb38b(uint64_t *param_1,uint64_t *param_2,longlong param_3)
+void FUN_1800eb38b(uint64_t *param_1,uint64_t *param_2,int64_t param_3)
 
 {
   uint64_t uVar1;
   uint64_t uVar2;
   char cVar3;
-  longlong in_RAX;
-  ulonglong uVar4;
-  longlong lVar5;
+  int64_t in_RAX;
+  uint64_t uVar4;
+  int64_t lVar5;
   uint64_t *puVar6;
-  longlong lVar7;
+  int64_t lVar7;
   uint64_t *puVar8;
   uint64_t *puVar9;
-  longlong lVar10;
-  longlong lVar11;
-  longlong lVar12;
+  int64_t lVar10;
+  int64_t lVar11;
+  int64_t lVar12;
   bool bVar13;
   
-  uVar4 = in_RAX - (longlong)param_1;
+  uVar4 = in_RAX - (int64_t)param_1;
   do {
     // 小数组或递归深度不足时的处理
-    if (((longlong)(uVar4 & 0xfffffffffffffff8) < 0xe1) || (param_3 < 1)) {
+    if (((int64_t)(uVar4 & 0xfffffffffffffff8) < 0xe1) || (param_3 < 1)) {
       if (param_3 != 0) {
         return;
       }
       
       // 堆排序阶段 - 建堆
-      lVar5 = (longlong)param_2 - (longlong)param_1 >> 3;
+      lVar5 = (int64_t)param_2 - (int64_t)param_1 >> 3;
       if (1 < lVar5) {
         lVar7 = (lVar5 + -2 >> 1) + 1;
         lVar12 = lVar7 * 2 + 2;
@@ -711,7 +711,7 @@ void FUN_1800eb38b(uint64_t *param_1,uint64_t *param_2,longlong param_3)
           }
           param_2 = param_2 + -1;
           param_1[lVar12] = uVar1;
-          lVar5 = (8 - (longlong)param_1) + (longlong)param_2 >> 3;
+          lVar5 = (8 - (int64_t)param_1) + (int64_t)param_2 >> 3;
         } while (1 < lVar5);
       }
       return;
@@ -719,7 +719,7 @@ void FUN_1800eb38b(uint64_t *param_1,uint64_t *param_2,longlong param_3)
     
     // 快速排序分区阶段
     puVar6 = param_2 + -1;
-    lVar5 = (longlong)param_2 - (longlong)param_1 >> 3;
+    lVar5 = (int64_t)param_2 - (int64_t)param_1 >> 3;
     if (lVar5 < 0) {
       lVar5 = lVar5 + 1;
     }
@@ -775,7 +775,7 @@ LAB_1800eb431:
     // 递归处理子数组
     param_3 = param_3 + -1;
     FUN_1800eb380(puVar8,param_2,param_3,&SUB_1800da750);
-    uVar4 = (longlong)puVar8 - (longlong)param_1;
+    uVar4 = (int64_t)puVar8 - (int64_t)param_1;
     param_2 = puVar8;
   } while( true );
 }
@@ -804,24 +804,24 @@ void FUN_1800eb3ac(void)
   uint64_t uVar1;
   uint64_t uVar2;
   char cVar3;
-  longlong lVar4;
+  int64_t lVar4;
   uint64_t *puVar5;
   uint64_t *unaff_RBP;
   uint64_t *puVar6;
-  longlong lVar7;
+  int64_t lVar7;
   uint64_t *puVar8;
-  longlong lVar9;
-  longlong lVar10;
-  longlong lVar11;
+  int64_t lVar9;
+  int64_t lVar10;
+  int64_t lVar11;
   uint64_t *unaff_R14;
-  longlong unaff_R15;
+  int64_t unaff_R15;
   bool bVar12;
   
   do {
     puVar6 = unaff_RBP;
     if (unaff_R15 < 1) break;
     puVar6 = unaff_RBP + -1;
-    lVar4 = (longlong)unaff_RBP - (longlong)unaff_R14 >> 3;
+    lVar4 = (int64_t)unaff_RBP - (int64_t)unaff_R14 >> 3;
     if (lVar4 < 0) {
       lVar4 = lVar4 + 1;
     }
@@ -878,13 +878,13 @@ LAB_1800eb431:
     unaff_R15 = unaff_R15 + -1;
     FUN_1800eb380(puVar6,unaff_RBP,unaff_R15,&SUB_1800da750);
     unaff_RBP = puVar6;
-  } while (0xe0 < (longlong)((longlong)puVar6 - (longlong)unaff_R14 & 0xfffffffffffffff8U));
+  } while (0xe0 < (int64_t)((int64_t)puVar6 - (int64_t)unaff_R14 & 0xfffffffffffffff8U));
   
   // 最终堆排序处理
   if (unaff_R15 != 0) {
     return;
   }
-  lVar4 = (longlong)puVar6 - (longlong)unaff_R14 >> 3;
+  lVar4 = (int64_t)puVar6 - (int64_t)unaff_R14 >> 3;
   if (1 < lVar4) {
     lVar7 = (lVar4 + -2 >> 1) + 1;
     lVar11 = lVar7 * 2 + 2;
@@ -953,7 +953,7 @@ LAB_1800eb431:
       }
       puVar6 = puVar6 + -1;
       unaff_R14[lVar11] = uVar1;
-      lVar4 = (8 - (longlong)unaff_R14) + (longlong)puVar6 >> 3;
+      lVar4 = (8 - (int64_t)unaff_R14) + (int64_t)puVar6 >> 3;
     } while (1 < lVar4);
   }
   return;
@@ -982,14 +982,14 @@ void FUN_1800eb4d9(void)
 {
   uint64_t uVar1;
   char cVar2;
-  longlong unaff_RBP;
-  longlong lVar3;
-  longlong lVar4;
-  longlong lVar5;
-  longlong lVar6;
+  int64_t unaff_RBP;
+  int64_t lVar3;
+  int64_t lVar4;
+  int64_t lVar5;
+  int64_t lVar6;
   uint64_t *unaff_R14;
-  longlong lVar7;
-  longlong unaff_R15;
+  int64_t lVar7;
+  int64_t unaff_R15;
   uint64_t *puVar8;
   bool bVar9;
   
@@ -999,7 +999,7 @@ void FUN_1800eb4d9(void)
   }
   
   // 堆排序阶段 - 建堆
-  lVar7 = unaff_RBP - (longlong)unaff_R14 >> 3;
+  lVar7 = unaff_RBP - (int64_t)unaff_R14 >> 3;
   if (1 < lVar7) {
     lVar3 = (lVar7 + -2 >> 1) + 1;
     lVar6 = lVar3 * 2 + 2;
@@ -1068,7 +1068,7 @@ void FUN_1800eb4d9(void)
       }
       puVar8 = puVar8 + -1;
       unaff_R14[lVar6] = uVar1;
-      lVar7 = (8 - (longlong)unaff_R14) + (longlong)puVar8 >> 3;
+      lVar7 = (8 - (int64_t)unaff_R14) + (int64_t)puVar8 >> 3;
     } while (1 < lVar7);
   }
   return;
@@ -1102,18 +1102,18 @@ void FUN_1800eb4e3(void)
 {
   uint64_t uVar1;
   char cVar2;
-  longlong unaff_RBP;
-  longlong lVar3;
-  longlong lVar4;
-  longlong lVar5;
-  longlong lVar6;
+  int64_t unaff_RBP;
+  int64_t lVar3;
+  int64_t lVar4;
+  int64_t lVar5;
+  int64_t lVar6;
   uint64_t *unaff_R14;
-  longlong lVar7;
+  int64_t lVar7;
   uint64_t *puVar8;
   bool bVar9;
   
   // 堆排序阶段 - 建堆
-  lVar7 = unaff_RBP - (longlong)unaff_R14 >> 3;
+  lVar7 = unaff_RBP - (int64_t)unaff_R14 >> 3;
   if (1 < lVar7) {
     lVar3 = (lVar7 + -2 >> 1) + 1;
     lVar6 = lVar3 * 2 + 2;
@@ -1182,7 +1182,7 @@ void FUN_1800eb4e3(void)
       }
       puVar8 = puVar8 + -1;
       unaff_R14[lVar6] = uVar1;
-      lVar7 = (8 - (longlong)unaff_R14) + (longlong)puVar8 >> 3;
+      lVar7 = (8 - (int64_t)unaff_R14) + (int64_t)puVar8 >> 3;
     } while (1 < lVar7);
   }
   return;

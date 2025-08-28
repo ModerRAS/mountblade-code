@@ -56,7 +56,7 @@
  * 
  * @note 本函数包含复杂的数学运算，涉及SIMD指令和优化算法
  */
-void rendering_system_advanced_math_calculator(longlong param_1, uint64_t param_2)
+void rendering_system_advanced_math_calculator(int64_t param_1, uint64_t param_2)
 {
   /* ============================================================================
    * 变量声明区域
@@ -68,13 +68,13 @@ void rendering_system_advanced_math_calculator(longlong param_1, uint64_t param_
   uint64_t uVar5, uVar6, uVar7, uVar8;        // 8位未定义变量，用于数据传输和存储
   float fVar9, fVar10, fVar11;                   // 浮点数计算变量，用于向量运算
   float *pfVar12;                                // 浮点数指针，指向渲染数据数组
-  longlong lVar13;                               // 长整型临时变量，用于内存地址计算
+  int64_t lVar13;                               // 长整型临时变量，用于内存地址计算
   
   // 寄存器相关变量
-  longlong unaff_RBX;                           // RBX寄存器值，存储渲染对象指针
+  int64_t unaff_RBX;                           // RBX寄存器值，存储渲染对象指针
   float *unaff_RBP;                             // RBP寄存器值，作为栈基址指针
   char unaff_R13B;                              // R13B寄存器值，用于索引计算
-  longlong unaff_R14;                           // R14寄存器值，存储渲染上下文
+  int64_t unaff_R14;                           // R14寄存器值，存储渲染上下文
   
   // SIMD和数学计算相关变量
   float in_XMM1_Da;                             // XMM1寄存器值，用于SIMD计算
@@ -264,7 +264,7 @@ LAB_18057aad4:
     fVar31 = fVar31 + -6.2831855;
   }
   fVar25 = *(float *)(unaff_RBX + 0xf8);
-  lVar13 = *(longlong *)(*(longlong *)(unaff_R14 + 0x10) + 0x168);
+  lVar13 = *(int64_t *)(*(int64_t *)(unaff_R14 + 0x10) + 0x168);
   fVar23 = unaff_RBP[-0x1c] - *(float *)(lVar13 + 0xa0);
   fVar14 = unaff_RBP[-0x1b] - *(float *)(lVar13 + 0xa4);
   fVar15 = *(float *)(unaff_RBX + 0x68);
@@ -583,8 +583,8 @@ LAB_18057b795:
   unaff_RBP[0x17] = fVar25 * fVar19 + fVar31 * fVar19 + fVar18 * fVar19;
   FUN_1801c1720(unaff_RBP + 0xc,&stack0x00000030);
   fVar31 = *(float *)(unaff_R14 + 0x38);
-  lVar13 = ((longlong)unaff_R13B + -1) * 0x1b0;
-  *(longlong *)(unaff_RBP + -0xc) = lVar13;
+  lVar13 = ((int64_t)unaff_R13B + -1) * 0x1b0;
+  *(int64_t *)(unaff_RBP + -0xc) = lVar13;
   fVar30 = fStack0000000000000030 * 100.0 * fVar31 + *(float *)(unaff_RBX + 0x58);
   fVar22 = fStack0000000000000034 * 100.0 * fVar31 + *(float *)(unaff_RBX + 0x5c);
   fVar19 = fStack0000000000000038 * 100.0 * fVar31 + *(float *)(unaff_RBX + 0x60);
@@ -592,12 +592,12 @@ LAB_18057b795:
   *(float *)(unaff_RBX + 0x5c) = fVar22;
   *(float *)(unaff_RBX + 0x60) = fVar19;
   in_stack_00000048 =
-       *(int *)(lVar13 + 0x110 + *(longlong *)(*(longlong *)(unaff_R14 + 0x208) + 0x140));
+       *(int *)(lVar13 + 0x110 + *(int64_t *)(*(int64_t *)(unaff_R14 + 0x208) + 0x140));
   fVar25 = *(float *)(unaff_RBX + 0x58);
   fVar18 = *(float *)(unaff_RBX + 0x5c);
   fVar14 = *(float *)(unaff_RBX + 0x60);
-  lVar13 = (longlong)in_stack_00000048 * 0x60 +
-           *(longlong *)(*(longlong *)(unaff_R14 + 0x208) + 0x158);
+  lVar13 = (int64_t)in_stack_00000048 * 0x60 +
+           *(int64_t *)(*(int64_t *)(unaff_R14 + 0x208) + 0x158);
   fVar16 = 1.0 - (*(float *)(lVar13 + 0x40) + *(float *)(lVar13 + 0x3c));
   fVar24 = fVar18 * fVar18 + fVar25 * fVar25 + fVar14 * fVar14;
   unaff_RBP[0xc] = 1.1754944e-38;

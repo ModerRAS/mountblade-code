@@ -74,10 +74,10 @@ void FUN_1801538d0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_180153ab0(longlong param_1,longlong param_2,longlong param_3)
+uint64_t FUN_180153ab0(int64_t param_1,int64_t param_2,int64_t param_3)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   char cVar2;
   int iVar3;
   void *puVar4;
@@ -91,7 +91,7 @@ uint64_t FUN_180153ab0(longlong param_1,longlong param_2,longlong param_3)
     }
     auStackX_10[0] = atoi(puVar4);
     lVar1 = system_module_state;
-    if ((*(longlong *)(system_module_state + 0x530) != 0) &&
+    if ((*(int64_t *)(system_module_state + 0x530) != 0) &&
        (cVar2 = (**(code **)(system_module_state + 0x538))(auStackX_10), cVar2 == '\0')) {
       if (system_debug_flag == '\0') {
         puVar4 = &system_buffer_ptr;
@@ -114,7 +114,7 @@ uint64_t FUN_180153ab0(longlong param_1,longlong param_2,longlong param_3)
     }
     iVar3 = atoi(puVar4);
     auStackX_10[0] = (uint)(iVar3 != 0);
-    if ((*(longlong *)(param_1 + 0xa00) != 0) &&
+    if ((*(int64_t *)(param_1 + 0xa00) != 0) &&
        (cVar2 = (**(code **)(param_1 + 0xa08))(auStackX_10), cVar2 == '\0')) {
       if (system_debug_flag == '\0') {
         puVar4 = &system_buffer_ptr;
@@ -137,8 +137,8 @@ uint64_t FUN_180153ab0(longlong param_1,longlong param_2,longlong param_3)
 
 
 
-// 函数: void FUN_180153c60(longlong param_1)
-void FUN_180153c60(longlong param_1)
+// 函数: void FUN_180153c60(int64_t param_1)
+void FUN_180153c60(int64_t param_1)
 
 {
   int iVar1;
@@ -149,10 +149,10 @@ void FUN_180153c60(longlong param_1)
   int8_t *puStack_48;
   int32_t uStack_40;
   int8_t auStack_38 [32];
-  ulonglong uStack_18;
+  uint64_t uStack_18;
   
   uStack_58 = 0xfffffffffffffffe;
-  uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_78;
+  uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_78;
   iVar1 = *(int *)(param_1 + 0xbd0);
   if (*(int *)(param_1 + 0xbd0) < 1) {
     iVar1 = 1;
@@ -169,7 +169,7 @@ void FUN_180153c60(longlong param_1)
     FUN_18010d670(param_1,10);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_78);
+  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_78);
 }
 
 

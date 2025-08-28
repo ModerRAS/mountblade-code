@@ -231,11 +231,11 @@ typedef void* TerminationManager;
 void SystemResourceCleanerAndReleaser(void* param_1)
 {
     void** system_obj_ptr;
-    longlong** resource_ptr;
+    int64_t** resource_ptr;
     int resource_count;
-    longlong operation_result;
+    int64_t operation_result;
     void** callback_ptr;
-    longlong** cleanup_ptr;
+    int64_t** cleanup_ptr;
     uint current_index;
     uint64_t loop_counter;
     uint current_count;
@@ -250,7 +250,7 @@ void SystemResourceCleanerAndReleaser(void* param_1)
         
         do {
             // 获取资源指针
-            cleanup_ptr = *(longlong***)(param_1[3] + (uint64_t)(resource_count - 1) * 8);
+            cleanup_ptr = *(int64_t***)(param_1[3] + (uint64_t)(resource_count - 1) * 8);
             
             // 锁定互斥量
             if (system_obj_ptr != (void**)0x0) {
@@ -272,13 +272,13 @@ void SystemResourceCleanerAndReleaser(void* param_1)
                     if (current_count != 0) {
                         do {
                             // 查找匹配的资源
-                            if (*(longlong***)(loop_counter * 8 + param_1[3]) == cleanup_ptr) {
+                            if (*(int64_t***)(loop_counter * 8 + param_1[3]) == cleanup_ptr) {
                                 cleanup_counter = 0;
                                 
                                 // 执行回调函数
                                 if (*(int*)(param_1 + 7) != 0) {
                                     do {
-                                        resource_ptr = *(longlong***)(param_1[6] + cleanup_counter * 8);
+                                        resource_ptr = *(int64_t***)(param_1[6] + cleanup_counter * 8);
                                         (**(code**)(*resource_ptr + 0x10))(resource_ptr, cleanup_ptr);
                                         current_count = (int)cleanup_counter + 1;
                                         cleanup_counter = (uint64_t)current_count;
@@ -300,7 +300,7 @@ void SystemResourceCleanerAndReleaser(void* param_1)
                 }
                 else {
                     // 执行替代清理流程
-                    cleanup_ptr = (longlong**)(**(code**)(*cleanup_ptr + 0x38))();
+                    cleanup_ptr = (int64_t**)(**(code**)(*cleanup_ptr + 0x38))();
                     (**(code**)(*cleanup_ptr + 0x18))(cleanup_ptr);
                 }
             }
@@ -319,19 +319,19 @@ void SystemResourceCleanerAndReleaser(void* param_1)
     operation_result = param_1[8];
     
     if (operation_result != 0) {
-        cleanup_ptr = (longlong**)GetAllocatorImplementation();
+        cleanup_ptr = (int64_t**)GetAllocatorImplementation();
         (**(code**)(*cleanup_ptr + 0x10))(cleanup_ptr, operation_result);
     }
     
     // 执行最终清理
     if ((((*(uint*)((uint64_t)param_1 + 0x3c) & 0x7fffffff) != 0) &&
         (-1 < (int)*(uint*)((uint64_t)param_1 + 0x3c))) && (param_1[6] != 0)) {
-        (**(code**)(**(longlong***)param_1[5] + 0x10))();
+        (**(code**)(**(int64_t***)param_1[5] + 0x10))();
     }
     
     if ((((*(uint*)((uint64_t)param_1 + 0x24) & 0x7fffffff) != 0) &&
         (-1 < (int)*(uint*)((uint64_t)param_1 + 0x24))) && (param_1[3] != 0)) {
-        (**(code**)(**(longlong***)param_1[2] + 0x10))();
+        (**(code**)(**(int64_t***)param_1[2] + 0x10))();
     }
     
     *param_1 = &SystemResourceCleanerAndReleaser;
@@ -353,12 +353,12 @@ void SystemResourceCleanerAndReleaser(void* param_1)
 void AdvancedSystemResourceManager(void* param_1)
 {
     void** system_obj_ptr;
-    longlong** resource_ptr;
+    int64_t** resource_ptr;
     int resource_count;
     void* system_handle;
-    longlong operation_result;
+    int64_t operation_result;
     void** callback_ptr;
-    longlong** cleanup_ptr;
+    int64_t** cleanup_ptr;
     uint current_index;
     uint64_t loop_counter;
     uint current_count;
@@ -373,7 +373,7 @@ void AdvancedSystemResourceManager(void* param_1)
         
         do {
             // 获取资源指针
-            cleanup_ptr = *(longlong***)(param_1[3] + (uint64_t)(resource_count - 1) * 8);
+            cleanup_ptr = *(int64_t***)(param_1[3] + (uint64_t)(resource_count - 1) * 8);
             
             // 锁定互斥量
             if (system_obj_ptr != (void**)0x0) {
@@ -395,13 +395,13 @@ void AdvancedSystemResourceManager(void* param_1)
                     if (current_count != 0) {
                         do {
                             // 查找匹配的资源
-                            if (*(longlong***)(loop_counter * 8 + param_1[3]) == cleanup_ptr) {
+                            if (*(int64_t***)(loop_counter * 8 + param_1[3]) == cleanup_ptr) {
                                 cleanup_counter = 0;
                                 
                                 // 执行回调函数
                                 if (*(int*)(param_1 + 7) != 0) {
                                     do {
-                                        resource_ptr = *(longlong***)(param_1[6] + cleanup_counter * 8);
+                                        resource_ptr = *(int64_t***)(param_1[6] + cleanup_counter * 8);
                                         (**(code**)(*resource_ptr + 0x10))(resource_ptr, cleanup_ptr);
                                         current_count = (int)cleanup_counter + 1;
                                         cleanup_counter = (uint64_t)current_count;
@@ -423,7 +423,7 @@ void AdvancedSystemResourceManager(void* param_1)
                 }
                 else {
                     // 执行替代管理流程
-                    cleanup_ptr = (longlong**)(**(code**)(*cleanup_ptr + 0x38))();
+                    cleanup_ptr = (int64_t**)(**(code**)(*cleanup_ptr + 0x38))();
                     (**(code**)(*cleanup_ptr + 0x18))(cleanup_ptr);
                 }
             }
@@ -442,19 +442,19 @@ void AdvancedSystemResourceManager(void* param_1)
     operation_result = param_1[8];
     
     if (operation_result != 0) {
-        cleanup_ptr = (longlong**)GetAllocatorImplementation();
+        cleanup_ptr = (int64_t**)GetAllocatorImplementation();
         (**(code**)(*cleanup_ptr + 0x10))(cleanup_ptr, operation_result);
     }
     
     // 执行最终管理
     if ((((*(uint*)((uint64_t)param_1 + 0x3c) & 0x7fffffff) != 0) &&
         (-1 < (int)*(uint*)((uint64_t)param_1 + 0x3c))) && (param_1[6] != 0)) {
-        (**(code**)(**(longlong***)param_1[5] + 0x10))();
+        (**(code**)(**(int64_t***)param_1[5] + 0x10))();
     }
     
     if ((((*(uint*)((uint64_t)param_1 + 0x24) & 0x7fffffff) != 0) &&
         (-1 < (int)*(uint*)((uint64_t)param_1 + 0x24))) && (param_1[3] != 0)) {
-        (**(code**)(**(longlong***)param_1[2] + 0x10))();
+        (**(code**)(**(int64_t***)param_1[2] + 0x10))();
     }
     
     *param_1 = &AdvancedSystemResourceManager;
@@ -476,11 +476,11 @@ void AdvancedSystemResourceManager(void* param_1)
 void SystemLifecycleController(uint64_t param_1)
 {
     void** mutex_ptr;
-    longlong** resource_ptr;
+    int64_t** resource_ptr;
     int state_flag;
-    longlong operation_result;
+    int64_t operation_result;
     void** callback_ptr;
-    longlong** cleanup_ptr;
+    int64_t** cleanup_ptr;
     uint current_index;
     uint64_t loop_counter;
     uint current_count;
@@ -492,7 +492,7 @@ void SystemLifecycleController(uint64_t param_1)
     
     while (true) {
         // 获取系统资源
-        cleanup_ptr = *(longlong***)(system_ptr[3] + (uint64_t)(state_flag - 1) * 8);
+        cleanup_ptr = *(int64_t***)(system_ptr[3] + (uint64_t)(state_flag - 1) * 8);
         
         if (mutex_ptr != (void**)0x0) {
             LockMutexImplementation(*mutex_ptr);
@@ -513,13 +513,13 @@ void SystemLifecycleController(uint64_t param_1)
                 if (current_count != 0) {
                     do {
                         // 查找匹配的资源
-                        if (*(longlong***)(loop_counter * 8 + system_ptr[3]) == cleanup_ptr) {
+                        if (*(int64_t***)(loop_counter * 8 + system_ptr[3]) == cleanup_ptr) {
                             cleanup_counter = 0;
                             
                             // 执行回调函数
                             if (*(int*)(system_ptr + 7) != 0) {
                                 do {
-                                    resource_ptr = *(longlong***)(system_ptr[6] + cleanup_counter * 8);
+                                    resource_ptr = *(int64_t***)(system_ptr[6] + cleanup_counter * 8);
                                     (**(code**)(*resource_ptr + 0x10))(resource_ptr, cleanup_ptr);
                                     current_count = (int)cleanup_counter + 1;
                                     cleanup_counter = (uint64_t)current_count;
@@ -541,7 +541,7 @@ void SystemLifecycleController(uint64_t param_1)
             }
             else {
                 // 执行替代生命周期处理
-                cleanup_ptr = (longlong**)(**(code**)(*cleanup_ptr + 0x38))();
+                cleanup_ptr = (int64_t**)(**(code**)(*cleanup_ptr + 0x38))();
                 (**(code**)(*cleanup_ptr + 0x18))(cleanup_ptr);
             }
         }
@@ -555,19 +555,19 @@ void SystemLifecycleController(uint64_t param_1)
             operation_result = system_ptr[8];
             
             if (operation_result != 0) {
-                cleanup_ptr = (longlong**)GetAllocatorImplementation();
+                cleanup_ptr = (int64_t**)GetAllocatorImplementation();
                 (**(code**)(*cleanup_ptr + 0x10))(cleanup_ptr, operation_result);
             }
             
             // 执行最终清理
             if ((((*(uint*)((uint64_t)system_ptr + 0x3c) & 0x7fffffff) != 0) &&
                 (-1 < (int)*(uint*)((uint64_t)system_ptr + 0x3c))) && (system_ptr[6] != 0)) {
-                (**(code**)(**(longlong***)system_ptr[5] + 0x10))();
+                (**(code**)(**(int64_t***)system_ptr[5] + 0x10))();
             }
             
             if ((((*(uint*)((uint64_t)system_ptr + 0x24) & 0x7fffffff) != 0) &&
                 (-1 < (int)*(uint*)((uint64_t)system_ptr + 0x24))) && (system_ptr[3] != 0)) {
-                (**(code**)(**(longlong***)system_ptr[2] + 0x10))();
+                (**(code**)(**(int64_t***)system_ptr[2] + 0x10))();
             }
             
             *system_ptr = &SystemLifecycleController;
@@ -591,8 +591,8 @@ void SystemLifecycleController(uint64_t param_1)
  */
 void SystemStateManager(void)
 {
-    longlong operation_result;
-    longlong** resource_ptr;
+    int64_t operation_result;
+    int64_t** resource_ptr;
     void** system_ptr;
     
     // 执行系统状态管理
@@ -600,19 +600,19 @@ void SystemStateManager(void)
     operation_result = system_ptr[8];
     
     if (operation_result != 0) {
-        resource_ptr = (longlong**)GetAllocatorImplementation();
+        resource_ptr = (int64_t**)GetAllocatorImplementation();
         (**(code**)(*resource_ptr + 0x10))(resource_ptr, operation_result);
     }
     
     // 执行状态检查
     if ((((*(uint*)((uint64_t)system_ptr + 0x3c) & 0x7fffffff) != 0) &&
         (-1 < (int)*(uint*)((uint64_t)system_ptr + 0x3c))) && (system_ptr[6] != 0)) {
-        (**(code**)(**(longlong***)system_ptr[5] + 0x10))();
+        (**(code**)(**(int64_t***)system_ptr[5] + 0x10))();
     }
     
     if ((((*(uint*)((uint64_t)system_ptr + 0x24) & 0x7fffffff) != 0) &&
         (-1 < (int)*(uint*)((uint64_t)system_ptr + 0x24))) && (system_ptr[3] != 0)) {
-        (**(code**)(**(longlong***)system_ptr[2] + 0x10))();
+        (**(code**)(**(int64_t***)system_ptr[2] + 0x10))();
     }
     
     *system_ptr = &SystemStateManager;
@@ -639,13 +639,13 @@ void AdvancedParameterProcessor(void* param_1, int64_t param_2)
     
     // 处理系统参数
     if ((-1 < parameter_flag) && (param_2 != 0)) {
-        (**(code**)(**(longlong***)system_ptr[5] + 0x10))();
+        (**(code**)(**(int64_t***)system_ptr[5] + 0x10))();
     }
     
     // 执行参数验证
     if ((((*(uint*)((uint64_t)system_ptr + 0x24) & 0x7fffffff) != 0) &&
         (-1 < (int)*(uint*)((uint64_t)system_ptr + 0x24))) && (system_ptr[3] != 0)) {
-        (**(code**)(**(longlong***)system_ptr[2] + 0x10))();
+        (**(code**)(**(int64_t***)system_ptr[2] + 0x10))();
     }
     
     *system_ptr = &AdvancedParameterProcessor;

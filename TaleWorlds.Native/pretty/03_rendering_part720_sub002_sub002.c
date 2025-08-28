@@ -11,7 +11,7 @@ void FUN_180690700(int8_t (*param_1) [32],int param_2,int8_t (*param_3) [32],int
   int8_t auVar1 [32];
   int8_t auVar2 [32];
   int8_t auVar3 [32];
-  longlong lVar4;
+  int64_t lVar4;
   int8_t auVar5 [32];
   int8_t auVar6 [32];
   int8_t auVar7 [32];
@@ -66,7 +66,7 @@ int FUN_180690800(int8_t (*param_1) [32],int param_2,int param_3,int param_4,
                  uint param_9,int *param_10)
 
 {
-  ulonglong uVar1;
+  uint64_t uVar1;
   int8_t auVar2 [32];
   int8_t auVar3 [32];
   int8_t auVar4 [32];
@@ -85,7 +85,7 @@ int FUN_180690800(int8_t (*param_1) [32],int param_2,int param_3,int param_4,
   if (param_3 == 0) {
     if (param_4 == 0) {
       if (0 < (int)param_9) {
-        uVar1 = (ulonglong)param_9;
+        uVar1 = (uint64_t)param_9;
         do {
           auVar4 = vpavgb_avx2(*param_7,*param_1);
           auVar5 = vpunpcklbw_avx2(*param_5,auVar3);
@@ -111,7 +111,7 @@ int FUN_180690800(int8_t (*param_1) [32],int param_2,int param_3,int param_4,
     }
     else if (param_4 == 8) {
       if (0 < (int)param_9) {
-        uVar1 = (ulonglong)param_9;
+        uVar1 = (uint64_t)param_9;
         do {
           auVar4 = vpavgb_avx2(*param_1,*(int8_t (*) [32])(*param_1 + param_2));
           auVar4 = vpavgb_avx2(auVar4,*param_7);
@@ -137,7 +137,7 @@ int FUN_180690800(int8_t (*param_1) [32],int param_2,int param_3,int param_4,
       }
     }
     else if (0 < (int)param_9) {
-      uVar1 = (ulonglong)param_9;
+      uVar1 = (uint64_t)param_9;
       do {
         auVar4 = *param_1;
         auVar5 = *param_5;
@@ -175,7 +175,7 @@ int FUN_180690800(int8_t (*param_1) [32],int param_2,int param_3,int param_4,
   else if (param_3 == 8) {
     if (param_4 == 0) {
       if (0 < (int)param_9) {
-        uVar1 = (ulonglong)param_9;
+        uVar1 = (uint64_t)param_9;
         do {
           auVar4 = vpavgb_avx2(*param_1,*(int8_t (*) [32])(*param_1 + 1));
           auVar4 = vpavgb_avx2(auVar4,*param_7);
@@ -203,7 +203,7 @@ int FUN_180690800(int8_t (*param_1) [32],int param_2,int param_3,int param_4,
     else if (param_4 == 8) {
       auVar7 = vpavgb_avx2(*param_1,*(int8_t (*) [32])(*param_1 + 1));
       if (0 < (int)param_9) {
-        uVar1 = (ulonglong)param_9;
+        uVar1 = (uint64_t)param_9;
         do {
           auVar4 = *param_5;
           param_1 = (int8_t (*) [32])(*param_1 + param_2);
@@ -234,7 +234,7 @@ int FUN_180690800(int8_t (*param_1) [32],int param_2,int param_3,int param_4,
     else {
       auVar7 = vpavgb_avx2(*param_1,*(int8_t (*) [32])(*param_1 + 1));
       if (0 < (int)param_9) {
-        uVar1 = (ulonglong)param_9;
+        uVar1 = (uint64_t)param_9;
         do {
           auVar4 = *param_5;
           param_1 = (int8_t (*) [32])(*param_1 + param_2);
@@ -275,7 +275,7 @@ int FUN_180690800(int8_t (*param_1) [32],int param_2,int param_3,int param_4,
     param_3 = param_3 << 5;
     if (param_4 == 0) {
       if (0 < (int)param_9) {
-        uVar1 = (ulonglong)param_9;
+        uVar1 = (uint64_t)param_9;
         do {
           auVar4 = vpunpckhbw_avx2(*param_1,*(int8_t (*) [32])(*param_1 + 1));
           auVar4 = vpmaddubsw_avx2(auVar4,*(int8_t (*) [32])(&unknown_var_2656_ptr + param_3));
@@ -322,7 +322,7 @@ int FUN_180690800(int8_t (*param_1) [32],int param_2,int param_3,int param_4,
         auVar7 = vpsraw_avx2(auVar7,4);
         auVar7 = vpackuswb_avx2(auVar7,auVar2);
         if (0 < (int)param_9) {
-          uVar1 = (ulonglong)param_9;
+          uVar1 = (uint64_t)param_9;
           do {
             auVar4 = *param_5;
             param_1 = (int8_t (*) [32])(*param_1 + param_2);
@@ -369,7 +369,7 @@ int FUN_180690800(int8_t (*param_1) [32],int param_2,int param_3,int param_4,
         auVar7 = vpsraw_avx2(auVar7,4);
         auVar7 = vpackuswb_avx2(auVar7,auVar2);
         if (0 < (int)param_9) {
-          uVar1 = (ulonglong)param_9;
+          uVar1 = (uint64_t)param_9;
           do {
             auVar4 = *param_5;
             param_1 = (int8_t (*) [32])(*param_1 + param_2);
@@ -441,7 +441,7 @@ int FUN_180691080(int8_t (*param_1) [32],int param_2,int param_3,int param_4,
                  int8_t (*param_5) [32],int param_6,uint param_7,int *param_8)
 
 {
-  ulonglong uVar1;
+  uint64_t uVar1;
   int8_t auVar2 [32];
   int8_t auVar3 [32];
   int8_t auVar4 [32];
@@ -461,7 +461,7 @@ int FUN_180691080(int8_t (*param_1) [32],int param_2,int param_3,int param_4,
   if (param_3 == 0) {
     if (param_4 == 0) {
       if (0 < (int)param_7) {
-        uVar1 = (ulonglong)param_7;
+        uVar1 = (uint64_t)param_7;
         do {
           auVar9 = vpunpcklbw_avx2(*param_5,auVar3);
           auVar5 = vpunpcklbw_avx2(*param_1,auVar3);
@@ -485,7 +485,7 @@ int FUN_180691080(int8_t (*param_1) [32],int param_2,int param_3,int param_4,
     }
     else if (param_4 == 8) {
       if (0 < (int)param_7) {
-        uVar1 = (ulonglong)param_7;
+        uVar1 = (uint64_t)param_7;
         do {
           auVar5 = vpavgb_avx2(*param_1,*(int8_t (*) [32])(*param_1 + param_2));
           auVar9 = *param_5;
@@ -510,7 +510,7 @@ int FUN_180691080(int8_t (*param_1) [32],int param_2,int param_3,int param_4,
       }
     }
     else if (0 < (int)param_7) {
-      uVar1 = (ulonglong)param_7;
+      uVar1 = (uint64_t)param_7;
       do {
         auVar9 = *param_1;
         auVar5 = *param_5;
@@ -543,7 +543,7 @@ int FUN_180691080(int8_t (*param_1) [32],int param_2,int param_3,int param_4,
   else if (param_3 == 8) {
     if (param_4 == 0) {
       if (0 < (int)param_7) {
-        uVar1 = (ulonglong)param_7;
+        uVar1 = (uint64_t)param_7;
         do {
           auVar9 = vpavgb_avx2(*param_1,*(int8_t (*) [32])(*param_1 + 1));
           auVar5 = vpunpcklbw_avx2(*param_5,auVar3);
@@ -569,7 +569,7 @@ int FUN_180691080(int8_t (*param_1) [32],int param_2,int param_3,int param_4,
     else if (param_4 == 8) {
       auVar6 = vpavgb_avx2(*param_1,*(int8_t (*) [32])(*param_1 + 1));
       if (0 < (int)param_7) {
-        uVar1 = (ulonglong)param_7;
+        uVar1 = (uint64_t)param_7;
         do {
           auVar9 = *param_5;
           param_1 = (int8_t (*) [32])(*param_1 + param_2);
@@ -598,7 +598,7 @@ int FUN_180691080(int8_t (*param_1) [32],int param_2,int param_3,int param_4,
     else {
       auVar6 = vpavgb_avx2(*param_1,*(int8_t (*) [32])(*param_1 + 1));
       if (0 < (int)param_7) {
-        uVar1 = (ulonglong)param_7;
+        uVar1 = (uint64_t)param_7;
         do {
           auVar9 = *param_5;
           param_1 = (int8_t (*) [32])(*param_1 + param_2);
@@ -634,7 +634,7 @@ int FUN_180691080(int8_t (*param_1) [32],int param_2,int param_3,int param_4,
     param_3 = param_3 << 5;
     if (param_4 == 0) {
       if (0 < (int)param_7) {
-        uVar1 = (ulonglong)param_7;
+        uVar1 = (uint64_t)param_7;
         do {
           auVar9 = vpunpcklbw_avx2(*param_1,*(int8_t (*) [32])(*param_1 + 1));
           auVar9 = vpmaddubsw_avx2(auVar9,*(int8_t (*) [32])(&unknown_var_2656_ptr + param_3));
@@ -676,7 +676,7 @@ int FUN_180691080(int8_t (*param_1) [32],int param_2,int param_3,int param_4,
         auVar6 = vpsraw_avx2(auVar6,4);
         auVar6 = vpackuswb_avx2(auVar6,auVar2);
         if (0 < (int)param_7) {
-          uVar1 = (ulonglong)param_7;
+          uVar1 = (uint64_t)param_7;
           do {
             auVar9 = *param_5;
             param_1 = (int8_t (*) [32])(*param_1 + param_2);
@@ -721,7 +721,7 @@ int FUN_180691080(int8_t (*param_1) [32],int param_2,int param_3,int param_4,
         auVar6 = vpsraw_avx2(auVar6,4);
         auVar6 = vpackuswb_avx2(auVar6,auVar2);
         if (0 < (int)param_7) {
-          uVar1 = (ulonglong)param_7;
+          uVar1 = (uint64_t)param_7;
           do {
             auVar9 = *param_5;
             param_1 = (int8_t (*) [32])(*param_1 + param_2);

@@ -284,7 +284,7 @@ void FUN_18082e1e0(uint *param_1)
     int iVar5;                         // 整数变量5：当前值
     int iVar6;                         // 整数变量6：乘积结果
     int iVar7;                         // 整数变量7：乘积结果
-    ulonglong uVar8;                    // 无符号长整型变量8：循环计数器
+    uint64_t uVar8;                    // 无符号长整型变量8：循环计数器
     uint64_t extraout_XMM0_Qa;       // XMM0寄存器输出
     int8_t auVar9 [16];             // 数组变量9：SIMD数据
     int8_t auVar10 [16];            // 数组变量10：SIMD数据
@@ -302,7 +302,7 @@ void FUN_18082e1e0(uint *param_1)
     // 精度验证和调整
     if ((iVar5 != -0x80000000) && ((float)iVar5 != auVar9._0_4_)) {
         // 提取高位部分
-        uVar11 = (int32_t)((ulonglong)extraout_XMM0_Qa >> 0x20);
+        uVar11 = (int32_t)((uint64_t)extraout_XMM0_Qa >> 0x20);
         auVar10._8_4_ = uVar11;
         auVar10._0_8_ = extraout_XMM0_Qa;
         auVar10._12_4_ = uVar11;
@@ -323,7 +323,7 @@ void FUN_18082e1e0(uint *param_1)
         
         // 计算幂的乘积
         if (0 < (int)uVar1) {
-            uVar8 = (ulonglong)uVar1;
+            uVar8 = (uint64_t)uVar1;
             do {
                 iVar6 = iVar6 * iVar5;         // 计算iVar5^uVar1
                 iVar7 = iVar7 * (iVar5 + 1);    // 计算(iVar5+1)^uVar1
@@ -367,25 +367,25 @@ void FUN_18082e1e0(uint *param_1)
  * - 状态同步机制
  * - 错误恢复处理
  * 
- * @return longlong 处理结果句柄，失败返回0
+ * @return int64_t 处理结果句柄，失败返回0
  */
-longlong FUN_18082e290(uint64_t param_1, uint *param_2, int param_3, int *param_4)
+int64_t FUN_18082e290(uint64_t param_1, uint *param_2, int param_3, int *param_4)
 {
     uint uVar1;                         // 变量1：数据大小
     int iVar2;                         // 整数变量2：临时计算值
     int32_t uVar3;                  // 变量3：浮点结果
     uint uVar4;                         // 变量4：掩码结果
     int iVar5;                         // 整数变量5：索引值
-    longlong lVar6;                     // 长整型变量6：结果句柄
+    int64_t lVar6;                     // 长整型变量6：结果句柄
     uint uVar7;                         // 变量7：循环计数器
-    ulonglong uVar8;                    // 无符号长整型变量8：循环计数器
-    ulonglong uVar9;                    // 无符号长整型变量9：数据计数器
+    uint64_t uVar8;                    // 无符号长整型变量8：循环计数器
+    uint64_t uVar9;                    // 无符号长整型变量9：数据计数器
     int iVar10;                        // 整数变量10：状态计数器
     int iVar11;                        // 整数变量11：乘积结果
     int iVar12;                        // 整数变量12：当前值
     int iVar13;                        // 整数变量13：临时计算值
     int *piVar14;                       // 整数指针变量14：状态指针
-    longlong lVar15;                    // 长整型变量15：偏移量
+    int64_t lVar15;                    // 长整型变量15：偏移量
     float fVar16;                       // 浮点变量16：计算结果
     double dVar17;                      // 双精度变量17：缩放因子1
     double dVar18;                      // 双精度变量18：缩放因子2
@@ -412,7 +412,7 @@ longlong FUN_18082e290(uint64_t param_1, uint *param_2, int param_3, int *param_
         // 模式1处理
         if (param_2[4] == 1) {
             uVar7 = *param_2;
-            uVar9 = (ulonglong)uVar7;
+            uVar9 = (uint64_t)uVar7;
             uVar1 = param_2[1];
             
             // 计算幂函数
@@ -422,7 +422,7 @@ longlong FUN_18082e290(uint64_t param_1, uint *param_2, int param_3, int *param_
             
             // 精度验证和调整
             if ((iVar12 != -0x80000000) && ((float)iVar12 != auVar19._0_4_)) {
-                uVar21 = (int32_t)((ulonglong)extraout_XMM0_Qa >> 0x20);
+                uVar21 = (int32_t)((uint64_t)extraout_XMM0_Qa >> 0x20);
                 auVar20._8_4_ = uVar21;
                 auVar20._0_8_ = extraout_XMM0_Qa;
                 auVar20._12_4_ = uVar21;
@@ -467,7 +467,7 @@ longlong FUN_18082e290(uint64_t param_1, uint *param_2, int param_3, int *param_
                 piVar14 = param_4;
                 do {
                     // 检查状态有效性
-                    if ((param_4 == (int *)0x0) || (*(int *)(lVar15 + *(longlong *)(param_2 + 2)) != 0)) {
+                    if ((param_4 == (int *)0x0) || (*(int *)(lVar15 + *(int64_t *)(param_2 + 2)) != 0)) {
                         iVar2 = 0;
                         auVar19._0_4_ = 0.0;
                         iVar13 = 1;
@@ -476,14 +476,14 @@ longlong FUN_18082e290(uint64_t param_1, uint *param_2, int param_3, int *param_
                         if (0 < (int)uVar9) {
                             do {
                                 // 计算浮点数值
-                                fVar16 = ABS((float)*(int *)(*(longlong *)(param_2 + 10) +
-                                            (longlong)
-                                            (int)((longlong)
-                                                  ((ulonglong)
-                                                   (uint)((int)((longlong)iVar11 / (longlong)iVar13)
+                                fVar16 = ABS((float)*(int *)(*(int64_t *)(param_2 + 10) +
+                                            (int64_t)
+                                            (int)((int64_t)
+                                                  ((uint64_t)
+                                                   (uint)((int)((int64_t)iVar11 / (int64_t)iVar13)
                                                          >> 0x1f) << 0x20 |
-                                                  (longlong)iVar11 / (longlong)iVar13 & 0xffffffffU)
-                                                 % (longlong)iVar12) * 4)) * (float)dVar18 +
+                                                  (int64_t)iVar11 / (int64_t)iVar13 & 0xffffffffU)
+                                                 % (int64_t)iVar12) * 4)) * (float)dVar18 +
                                          (float)dVar17 + auVar19._0_4_;
                                 
                                 // 累加处理
@@ -501,8 +501,8 @@ longlong FUN_18082e290(uint64_t param_1, uint *param_2, int param_3, int *param_
                                 iVar2 = iVar2 + 1;
                                 
                                 // 存储计算结果
-                                *(float *)(lVar6 + (longlong)iVar5 * 4) = fVar16;
-                                uVar9 = (ulonglong)*param_2;
+                                *(float *)(lVar6 + (int64_t)iVar5 * 4) = fVar16;
+                                uVar9 = (uint64_t)*param_2;
                             } while (iVar2 < (int)*param_2);
                         }
                         
@@ -522,7 +522,7 @@ longlong FUN_18082e290(uint64_t param_1, uint *param_2, int param_3, int *param_
             piVar14 = param_4;
             do {
                 // 检查状态有效性
-                if ((param_4 == (int *)0x0) || (*(int *)(lVar15 + *(longlong *)(param_2 + 2)) != 0)) {
+                if ((param_4 == (int *)0x0) || (*(int *)(lVar15 + *(int64_t *)(param_2 + 2)) != 0)) {
                     uVar7 = *param_2;
                     iVar11 = 0;
                     auVar19._0_4_ = 0.0;
@@ -531,8 +531,8 @@ longlong FUN_18082e290(uint64_t param_1, uint *param_2, int param_3, int *param_
                     if (0 < (int)uVar7) {
                         do {
                             // 计算浮点数值
-                            fVar16 = ABS((float)*(int *)(*(longlong *)(param_2 + 10) +
-                                        (longlong)(int)(uVar7 * iVar12 + iVar11) * 4)) *
+                            fVar16 = ABS((float)*(int *)(*(int64_t *)(param_2 + 10) +
+                                        (int64_t)(int)(uVar7 * iVar12 + iVar11) * 4)) *
                                      (float)dVar18 + (float)dVar17 + auVar19._0_4_;
                             
                             // 累加处理
@@ -549,7 +549,7 @@ longlong FUN_18082e290(uint64_t param_1, uint *param_2, int param_3, int *param_
                             iVar11 = iVar11 + 1;
                             
                             // 存储计算结果
-                            *(float *)(lVar6 + (longlong)iVar2 * 4) = fVar16;
+                            *(float *)(lVar6 + (int64_t)iVar2 * 4) = fVar16;
                             uVar7 = *param_2;
                         } while (iVar11 < (int)uVar7);
                     }
@@ -596,15 +596,15 @@ void FUN_18082e42e(void)
     int iVar5;                         // 整数变量5：当前值
     int iVar6;                         // 整数变量6：当前值
     int iVar7;                         // 整数变量7：乘积结果
-    ulonglong uVar8;                    // 无符号长整型变量8：循环计数器
-    ulonglong unaff_RBX;               // 未使用的RBX寄存器
+    uint64_t uVar8;                    // 无符号长整型变量8：循环计数器
+    uint64_t unaff_RBX;               // 未使用的RBX寄存器
     int unaff_EBP;                     // 未使用的EBP寄存器
-    longlong unaff_RSI;                 // 未使用的RSI寄存器
+    int64_t unaff_RSI;                 // 未使用的RSI寄存器
     uint *unaff_RDI;                   // 未使用的RDI寄存器
     int iVar9;                         // 整数变量9：临时计算值
     int *piVar10;                       // 整数指针变量10：状态指针
     int *unaff_R14;                     // 未使用的R14寄存器
-    longlong lVar11;                    // 长整型变量11：偏移量
+    int64_t lVar11;                    // 长整型变量11：偏移量
     float fVar12;                       // 浮点变量12：计算结果
     uint64_t extraout_XMM0_Qa;       // XMM0寄存器输出
     int8_t auVar13 [16];            // 数组变量13：SIMD数据
@@ -623,7 +623,7 @@ void FUN_18082e42e(void)
     
     // 精度验证和调整
     if ((iVar6 != -0x80000000) && ((float)iVar6 != auVar13._0_4_)) {
-        uVar15 = (int32_t)((ulonglong)extraout_XMM0_Qa >> 0x20);
+        uVar15 = (int32_t)((uint64_t)extraout_XMM0_Qa >> 0x20);
         auVar14._8_4_ = uVar15;
         auVar14._0_8_ = extraout_XMM0_Qa;
         auVar14._12_4_ = uVar15;
@@ -668,7 +668,7 @@ void FUN_18082e42e(void)
         piVar10 = unaff_R14;
         do {
             // 检查状态有效性
-            if ((unaff_R14 == (int *)0x0) || (*(int *)(lVar11 + *(longlong *)(unaff_RDI + 2)) != 0)) {
+            if ((unaff_R14 == (int *)0x0) || (*(int *)(lVar11 + *(int64_t *)(unaff_RDI + 2)) != 0)) {
                 iVar7 = 0;
                 auVar13._0_4_ = 0.0;
                 iVar9 = 1;
@@ -677,14 +677,14 @@ void FUN_18082e42e(void)
                 if (0 < (int)unaff_RBX) {
                     do {
                         // 计算状态值
-                        fVar12 = ABS((float)*(int *)(*(longlong *)(unaff_RDI + 10) +
-                                    (longlong)
-                                    (int)((longlong)
-                                          ((ulonglong)
-                                           (uint)((int)((longlong)iVar4 / (longlong)iVar9) >>
+                        fVar12 = ABS((float)*(int *)(*(int64_t *)(unaff_RDI + 10) +
+                                    (int64_t)
+                                    (int)((int64_t)
+                                          ((uint64_t)
+                                           (uint)((int)((int64_t)iVar4 / (int64_t)iVar9) >>
                                                  0x1f) << 0x20 |
-                                          (longlong)iVar4 / (longlong)iVar9 & 0xffffffffU) %
-                                         (longlong)iVar6) * 4)) * unaff_XMM6_Da + unaff_XMM7_Da
+                                          (int64_t)iVar4 / (int64_t)iVar9 & 0xffffffffU) %
+                                         (int64_t)iVar6) * 4)) * unaff_XMM6_Da + unaff_XMM7_Da
                                  + auVar13._0_4_;
                         
                         // 累加处理
@@ -702,8 +702,8 @@ void FUN_18082e42e(void)
                         iVar7 = iVar7 + 1;
                         
                         // 存储状态值
-                        *(float *)(unaff_RSI + (longlong)iVar5 * 4) = fVar12;
-                        unaff_RBX = (ulonglong)*unaff_RDI;
+                        *(float *)(unaff_RSI + (int64_t)iVar5 * 4) = fVar12;
+                        unaff_RBX = (uint64_t)*unaff_RDI;
                     } while (iVar7 < (int)*unaff_RDI);
                 }
                 
@@ -761,13 +761,13 @@ void FUN_18082e592(void)
  */
 void FUN_18082e5c0(uint64_t param_1, uint64_t param_2, int param_3, int param_4)
 {
-    longlong lVar1;                     // 长整型变量1：内存句柄
+    int64_t lVar1;                     // 长整型变量1：内存句柄
     int8_t auStack_f8 [32];         // 栈数组变量f8
     int8_t auStack_d8 [144];        // 栈数组变量d8
-    ulonglong uStack_48;                // 栈变量48：异或值
+    uint64_t uStack_48;                // 栈变量48：异或值
     
     // 计算异或值
-    uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_f8;
+    uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_f8;
     
     // 参数验证和调整
     if (param_4 != 0) {
@@ -784,7 +784,7 @@ void FUN_18082e5c0(uint64_t param_1, uint64_t param_2, int param_3, int param_4)
     
     // WARNING: 子程序不返回
     // 执行系统调用
-    FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_f8);
+    FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_f8);
 }
 
 /**
@@ -838,11 +838,11 @@ void FUN_18082e60c(uint64_t param_1, uint64_t param_2)
  */
 void FUN_18082e78c(void)
 {
-    ulonglong in_stack_000000b0;        // 栈输入变量
+    uint64_t in_stack_000000b0;        // 栈输入变量
     
     // WARNING: 子程序不返回
     // 执行错误处理调用
-    FUN_1808fc050(in_stack_000000b0 ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(in_stack_000000b0 ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -892,7 +892,7 @@ void FUN_18082e7ab(void)
  * 
  * @return int32_t 状态值，失败返回0xffffffff
  */
-int32_t FUN_18082e7c0(longlong param_1)
+int32_t FUN_18082e7c0(int64_t param_1)
 {
     int iVar1;                         // 整数变量1：状态索引
     
@@ -901,7 +901,7 @@ int32_t FUN_18082e7c0(longlong param_1)
         iVar1 = FUN_18082f650();
         if (-1 < iVar1) {
             // 返回有效状态值
-            return *(int32_t *)(*(longlong *)(param_1 + 0x28) + (longlong)iVar1 * 4);
+            return *(int32_t *)(*(int64_t *)(param_1 + 0x28) + (int64_t)iVar1 * 4);
         }
     }
     
@@ -933,31 +933,31 @@ int32_t FUN_18082e7c0(longlong param_1)
  * 
  * @return uint64_t 成功返回0，失败返回0xffffffff
  */
-uint64_t FUN_18082e800(int *param_1, longlong param_2, uint64_t param_3, uint param_4)
+uint64_t FUN_18082e800(int *param_1, int64_t param_2, uint64_t param_3, uint param_4)
 {
     int iVar1;                         // 整数变量1：资源类型
     float fVar2;                       // 浮点变量2：资源值
-    longlong lVar3;                    // 长整型变量3：数据偏移
+    int64_t lVar3;                    // 长整型变量3：数据偏移
     int iVar4;                         // 整数变量4：索引值
     uint uVar5;                        // 无符号变量5：掩码值
     int iVar6;                         // 整数变量6：临时值
-    ulonglong uVar7;                   // 无符号长整型变量7：循环计数器
-    longlong lVar8;                    // 长整型变量8：临时值
-    longlong lVar9;                    // 长整型变量9：临时值
+    uint64_t uVar7;                   // 无符号长整型变量7：循环计数器
+    int64_t lVar8;                    // 长整型变量8：临时值
+    int64_t lVar9;                    // 长整型变量9：临时值
     uint uVar10;                       // 无符号变量10：偏移值
-    ulonglong uVar11;                  // 无符号长整型变量11：资源数量
-    ulonglong uVar12;                  // 无符号长整型变量12：循环计数器
+    uint64_t uVar11;                  // 无符号长整型变量11：资源数量
+    uint64_t uVar12;                  // 无符号长整型变量12：循环计数器
     int iVar13;                        // 整数变量13：层级值
     int iVar14;                        // 整数变量14：临时值
     int iVar15;                        // 整数变量15：临时值
     float *pfVar16;                    // 浮点指针变量16：资源数据
-    ulonglong uVar17;                  // 无符号长整型变量17：临时值
-    ulonglong uVar18;                  // 无符号长整型变量18：临时值
-    longlong lVar19;                   // 长整型变量19：数据偏移
+    uint64_t uVar17;                  // 无符号长整型变量17：临时值
+    uint64_t uVar18;                  // 无符号长整型变量18：临时值
+    int64_t lVar19;                   // 长整型变量19：数据偏移
     int iVar20;                        // 整数变量20：索引值
     
     // 初始化资源数量
-    uVar11 = (ulonglong)(int)param_4;
+    uVar11 = (uint64_t)(int)param_4;
     
     // 验证资源管理器状态
     if (0 < param_1[2]) {
@@ -1007,12 +1007,12 @@ LAB_18082ea71:
                                 iVar15 = iVar15 >> 1;
                                 iVar1 = iVar15 + uVar10;
                                 iVar6 = iVar15;
-                                if (uVar5 < *(uint *)(*(longlong *)(param_1 + 8) + (longlong)iVar1 * 4)) {
+                                if (uVar5 < *(uint *)(*(int64_t *)(param_1 + 8) + (int64_t)iVar1 * 4)) {
                                     iVar6 = iVar14;
                                 }
                                 uVar10 = uVar10 + iVar6;
                                 iVar6 = iVar14;
-                                if (uVar5 < *(uint *)(*(longlong *)(param_1 + 8) + (longlong)iVar1 * 4)) {
+                                if (uVar5 < *(uint *)(*(int64_t *)(param_1 + 8) + (int64_t)iVar1 * 4)) {
                                     iVar6 = iVar15;
                                 }
                                 iVar4 = iVar4 - iVar6;
@@ -1021,20 +1021,20 @@ LAB_18082ea71:
                         }
                         
                         // 获取资源索引
-                        iVar4 = (int)*(char *)(*(longlong *)(param_1 + 0xc) + (longlong)(int)uVar10);
+                        iVar4 = (int)*(char *)(*(int64_t *)(param_1 + 0xc) + (int64_t)(int)uVar10);
                         if (iVar13 < iVar4) goto LAB_18082eccb;
-                        uVar11 = (ulonglong)param_4;
+                        uVar11 = (uint64_t)param_4;
                     }
                     else {
                         // 获取偏移值
-                        uVar10 = *(uint *)(*(longlong *)(param_1 + 0xe) + (longlong)iVar4 * 4);
+                        uVar10 = *(uint *)(*(int64_t *)(param_1 + 0xe) + (int64_t)iVar4 * 4);
                         if ((int)uVar10 < 0) {
                             iVar4 = param_1[2] - (uVar10 & 0x7fff);
                             uVar10 = (int)uVar10 >> 0xf & 0x7fff;
                             goto LAB_18082ea71;
                         }
                         uVar10 = uVar10 - 1;
-                        iVar4 = (int)*(char *)(*(longlong *)(param_1 + 0xc) + (longlong)(int)uVar10);
+                        iVar4 = (int)*(char *)(*(int64_t *)(param_1 + 0xc) + (int64_t)(int)uVar10);
                     }
                     
                     // 处理资源数据
@@ -1044,8 +1044,8 @@ LAB_18082ea71:
                     }
                     
                     // 计算数据偏移
-                    lVar3 = *(longlong *)(param_1 + 6);
-                    lVar19 = (longlong)(int)(*param_1 * uVar10);
+                    lVar3 = *(int64_t *)(param_1 + 6);
+                    lVar19 = (int64_t)(int)(*param_1 * uVar10);
                     uVar18 = uVar7;
                     uVar17 = uVar7;
                     
@@ -1053,57 +1053,57 @@ LAB_18082ea71:
                     switch (*param_1) {
                     case 8:
                         iVar14 = 1;
-                        lVar8 = (longlong)iVar20;
+                        lVar8 = (int64_t)iVar20;
                         uVar18 = 1;
                         iVar20 = iVar20 + 1;
                         *(float *)(param_2 + lVar8 * 4) =
                              *(float *)(lVar3 + lVar19 * 4) + *(float *)(param_2 + lVar8 * 4);
                     case 7:
-                        lVar8 = (longlong)iVar20;
+                        lVar8 = (int64_t)iVar20;
                         iVar14 = iVar14 + 1;
                         uVar17 = uVar18 + 1;
                         iVar20 = iVar20 + 1;
                         *(float *)(param_2 + lVar8 * 4) =
                              *(float *)(lVar3 + (uVar18 + lVar19) * 4) + *(float *)(param_2 + lVar8 * 4);
                     case 6:
-                        lVar8 = (longlong)iVar20;
+                        lVar8 = (int64_t)iVar20;
                         iVar14 = iVar14 + 1;
                         uVar18 = uVar17 + 1;
                         iVar20 = iVar20 + 1;
                         *(float *)(param_2 + lVar8 * 4) =
                              *(float *)(lVar3 + (uVar17 + lVar19) * 4) + *(float *)(param_2 + lVar8 * 4);
                     case 5:
-                        lVar8 = (longlong)iVar20;
+                        lVar8 = (int64_t)iVar20;
                         iVar14 = iVar14 + 1;
                         uVar17 = uVar18 + 1;
                         iVar20 = iVar20 + 1;
                         *(float *)(param_2 + lVar8 * 4) =
                              *(float *)(lVar3 + (uVar18 + lVar19) * 4) + *(float *)(param_2 + lVar8 * 4);
                     case 4:
-                        lVar8 = (longlong)iVar20;
+                        lVar8 = (int64_t)iVar20;
                         iVar14 = iVar14 + 1;
                         uVar18 = uVar17 + 1;
                         iVar20 = iVar20 + 1;
                         *(float *)(param_2 + lVar8 * 4) =
                              *(float *)(lVar3 + (uVar17 + lVar19) * 4) + *(float *)(param_2 + lVar8 * 4);
                     case 3:
-                        lVar8 = (longlong)iVar20;
+                        lVar8 = (int64_t)iVar20;
                         iVar14 = iVar14 + 1;
                         iVar20 = iVar20 + 1;
                         *(float *)(param_2 + lVar8 * 4) =
                              *(float *)(lVar3 + (uVar18 + lVar19) * 4) + *(float *)(param_2 + lVar8 * 4);
                     case 2:
-                        lVar9 = (longlong)iVar20;
-                        lVar8 = (longlong)iVar14;
+                        lVar9 = (int64_t)iVar20;
+                        lVar8 = (int64_t)iVar14;
                         iVar14 = iVar14 + 1;
                         iVar20 = iVar20 + 1;
                         *(float *)(param_2 + lVar9 * 4) =
                              *(float *)(lVar3 + (lVar8 + lVar19) * 4) + *(float *)(param_2 + lVar9 * 4);
                     case 1:
-                        uVar12 = (ulonglong)(iVar20 + 1);
-                        *(float *)(param_2 + (longlong)iVar20 * 4) =
+                        uVar12 = (uint64_t)(iVar20 + 1);
+                        *(float *)(param_2 + (int64_t)iVar20 * 4) =
                              *(float *)(lVar3 + (iVar14 + lVar19) * 4) +
-                             *(float *)(param_2 + (longlong)iVar20 * 4);
+                             *(float *)(param_2 + (int64_t)iVar20 * 4);
                     }
                 } while ((int)uVar12 < (int)uVar11);
             }
@@ -1148,12 +1148,12 @@ LAB_18082e8a4:
                             iVar14 = iVar14 >> 1;
                             iVar20 = iVar14 + uVar10;
                             iVar15 = iVar14;
-                            if (uVar5 < *(uint *)(*(longlong *)(param_1 + 8) + (longlong)iVar20 * 4)) {
+                            if (uVar5 < *(uint *)(*(int64_t *)(param_1 + 8) + (int64_t)iVar20 * 4)) {
                                 iVar15 = 0;
                             }
                             uVar10 = uVar10 + iVar15;
                             iVar15 = 0;
-                            if (uVar5 < *(uint *)(*(longlong *)(param_1 + 8) + (longlong)iVar20 * 4)) {
+                            if (uVar5 < *(uint *)(*(int64_t *)(param_1 + 8) + (int64_t)iVar20 * 4)) {
                                 iVar15 = iVar14;
                             }
                             iVar4 = iVar4 - iVar15;
@@ -1162,7 +1162,7 @@ LAB_18082e8a4:
                     }
                     
                     // 获取资源索引
-                    iVar4 = (int)*(char *)(*(longlong *)(param_1 + 0xc) + (longlong)(int)uVar10);
+                    iVar4 = (int)*(char *)(*(int64_t *)(param_1 + 0xc) + (int64_t)(int)uVar10);
                     if (iVar13 < iVar4) {
 LAB_18082eccb:
                         func_0x00018082d690(param_3, iVar13);
@@ -1171,14 +1171,14 @@ LAB_18082eccb:
                 }
                 else {
                     // 获取偏移值
-                    uVar10 = *(uint *)(*(longlong *)(param_1 + 0xe) + (longlong)iVar4 * 4);
+                    uVar10 = *(uint *)(*(int64_t *)(param_1 + 0xe) + (int64_t)iVar4 * 4);
                     if ((int)uVar10 < 0) {
                         iVar4 = param_1[2] - (uVar10 & 0x7fff);
                         uVar10 = (int)uVar10 >> 0xf & 0x7fff;
                         goto LAB_18082e8a4;
                     }
                     uVar10 = uVar10 - 1;
-                    iVar4 = (int)*(char *)(*(longlong *)(param_1 + 0xc) + (longlong)(int)uVar10);
+                    iVar4 = (int)*(char *)(*(int64_t *)(param_1 + 0xc) + (int64_t)(int)uVar10);
                 }
                 
                 // 处理资源数据
@@ -1188,7 +1188,7 @@ LAB_18082eccb:
                 }
                 
                 // 获取资源数据指针
-                pfVar16 = (float *)(*(longlong *)(param_1 + 6) + (longlong)(int)(*param_1 * uVar10) * 4);
+                pfVar16 = (float *)(*(int64_t *)(param_1 + 6) + (int64_t)(int)(*param_1 * uVar10) * 4);
                 uVar7 = 0;
                 
                 // 处理资源数据
@@ -1199,10 +1199,10 @@ LAB_18082eccb:
                         pfVar16 = pfVar16 + 1;
                         *(float *)(param_2 + uVar12 * 4) = *(float *)(param_2 + uVar12 * 4) + fVar2;
                         uVar12 = uVar12 + 1;
-                        uVar7 = (ulonglong)uVar10;
+                        uVar7 = (uint64_t)uVar10;
                     } while ((int)uVar10 < *param_1);
                 }
-            } while ((longlong)uVar12 < (longlong)uVar11);
+            } while ((int64_t)uVar12 < (int64_t)uVar11);
         }
     }
     

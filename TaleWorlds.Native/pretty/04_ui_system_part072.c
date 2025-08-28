@@ -51,19 +51,19 @@
  * - 优化内存访问模式
  * - 处理边界情况
  */
-void UISystem_VectorDotProduct_Optimized(float *result_x, float *result_y, longlong data_end)
+void UISystem_VectorDotProduct_Optimized(float *result_x, float *result_y, int64_t data_end)
 {
-  longlong remaining_elements;
+  int64_t remaining_elements;
   float *vector_ptr;
   float *temp_ptr1;
   float *temp_ptr2;
   float *base_data_ptr;
-  longlong offset_x;
-  longlong offset_y;
-  longlong element_count;
-  longlong current_position;
-  longlong start_offset;
-  longlong data_base;
+  int64_t offset_x;
+  int64_t offset_y;
+  int64_t element_count;
+  int64_t current_position;
+  int64_t start_offset;
+  int64_t data_base;
   
   // 初始化指针和偏移量
   base_data_ptr = (float *)(data_base + 4 + start_offset * 4);
@@ -75,20 +75,20 @@ void UISystem_VectorDotProduct_Optimized(float *result_x, float *result_y, longl
   // 主循环：处理4个元素的块（循环展开优化）
   do {
     // 第一个元素：使用前一个元素的值
-    *result_x = *(float *)((longlong)base_data_ptr + offset_x + -4) * base_data_ptr[-1] + *result_x;
-    *result_y = *(float *)((longlong)base_data_ptr + offset_y + -4) * base_data_ptr[-1] + *result_y;
+    *result_x = *(float *)((int64_t)base_data_ptr + offset_x + -4) * base_data_ptr[-1] + *result_x;
+    *result_y = *(float *)((int64_t)base_data_ptr + offset_y + -4) * base_data_ptr[-1] + *result_y;
     
     // 第二个元素：使用当前元素的值
-    *result_x = *(float *)(offset_x + (longlong)base_data_ptr) * *base_data_ptr + *result_x;
-    *result_y = *(float *)((longlong)base_data_ptr + offset_y) * *base_data_ptr + *result_y;
+    *result_x = *(float *)(offset_x + (int64_t)base_data_ptr) * *base_data_ptr + *result_x;
+    *result_y = *(float *)((int64_t)base_data_ptr + offset_y) * *base_data_ptr + *result_y;
     
     // 第三个元素：使用下一个元素的值
-    *result_x = *(float *)((longlong)base_data_ptr + offset_x + 4) * base_data_ptr[1] + *result_x;
-    *result_y = *(float *)((longlong)base_data_ptr + offset_y + 4) * base_data_ptr[1] + *result_y;
+    *result_x = *(float *)((int64_t)base_data_ptr + offset_x + 4) * base_data_ptr[1] + *result_x;
+    *result_y = *(float *)((int64_t)base_data_ptr + offset_y + 4) * base_data_ptr[1] + *result_y;
     
     // 第四个元素：使用下两个元素的值
-    *result_x = *(float *)((longlong)base_data_ptr + offset_x + 8) * base_data_ptr[2] + *result_x;
-    temp_ptr2 = (float *)((longlong)base_data_ptr + offset_y + 8);
+    *result_x = *(float *)((int64_t)base_data_ptr + offset_x + 8) * base_data_ptr[2] + *result_x;
+    temp_ptr2 = (float *)((int64_t)base_data_ptr + offset_y + 8);
     temp_ptr1 = base_data_ptr + 2;
     base_data_ptr = base_data_ptr + 4;
     *result_y = *temp_ptr2 * *temp_ptr1 + *result_y;
@@ -101,8 +101,8 @@ void UISystem_VectorDotProduct_Optimized(float *result_x, float *result_y, longl
     base_data_ptr = (float *)(data_base + current_position * 4);
     data_end = data_end - current_position;
     do {
-      *result_x = *(float *)((data_base - data_base) + (longlong)base_data_ptr) * *base_data_ptr + *result_x;
-      temp_ptr1 = (float *)((longlong)base_data_ptr + (data_base - data_base));
+      *result_x = *(float *)((data_base - data_base) + (int64_t)base_data_ptr) * *base_data_ptr + *result_x;
+      temp_ptr1 = (float *)((int64_t)base_data_ptr + (data_base - data_base));
       float element_value = *base_data_ptr;
       base_data_ptr = base_data_ptr + 1;
       *result_y = *temp_ptr1 * element_value + *result_y;
@@ -131,14 +131,14 @@ void UISystem_VectorDotProduct_Optimized(float *result_x, float *result_y, longl
  * - 优化的内存访问模式
  * - 边界条件检查
  */
-void UISystem_VectorDotProduct_Simplified(float *result_x, float *result_y, longlong data_end)
+void UISystem_VectorDotProduct_Simplified(float *result_x, float *result_y, int64_t data_end)
 {
   float *vector_ptr;
   float element_value;
   float *data_ptr;
-  longlong data_base;
-  longlong start_offset;
-  longlong end_offset;
+  int64_t data_base;
+  int64_t start_offset;
+  int64_t end_offset;
   
   // 检查边界条件
   if (start_offset < data_end) {
@@ -146,10 +146,10 @@ void UISystem_VectorDotProduct_Simplified(float *result_x, float *result_y, long
     data_end = data_end - start_offset;
     do {
       // 计算X坐标贡献
-      *result_x = *(float *)((end_offset - data_base) + (longlong)data_ptr) * *data_ptr + *result_x;
+      *result_x = *(float *)((end_offset - data_base) + (int64_t)data_ptr) * *data_ptr + *result_x;
       
       // 计算Y坐标贡献
-      vector_ptr = (float *)((longlong)data_ptr + (data_base - data_base));
+      vector_ptr = (float *)((int64_t)data_ptr + (data_base - data_base));
       element_value = *data_ptr;
       data_ptr = data_ptr + 1;
       *result_y = *vector_ptr * element_value + *result_y;
@@ -181,7 +181,7 @@ void UISystem_VectorDotProduct_Simplified(float *result_x, float *result_y, long
  * - 处理边界情况
  * - 支持批量矩阵运算
  */
-void UISystem_MatrixMultiplier(float *matrix_a, longlong matrix_b_offset, float *result_matrix, int element_count)
+void UISystem_MatrixMultiplier(float *matrix_a, int64_t matrix_b_offset, float *result_matrix, int element_count)
 {
   float *matrix_b_ptr;
   float *matrix_c_ptr;
@@ -196,7 +196,7 @@ void UISystem_MatrixMultiplier(float *matrix_a, longlong matrix_b_offset, float 
   uint block_count;
   int remaining_elements;
   int processed_elements;
-  ulonglong iteration_count;
+  uint64_t iteration_count;
   float *matrix_a_ptr;
   float result_00;
   float result_01;
@@ -221,7 +221,7 @@ void UISystem_MatrixMultiplier(float *matrix_a, longlong matrix_b_offset, float 
   // 主循环：处理4x4块的矩阵乘法
   if (0 < element_count + -3) {
     block_count = (element_count - 4U >> 2) + 1;
-    iteration_count = (ulonglong)block_count;
+    iteration_count = (uint64_t)block_count;
     processed_elements = block_count * 4;
     matrix_a_ptr = matrix_a;
     do {
@@ -232,9 +232,9 @@ void UISystem_MatrixMultiplier(float *matrix_a, longlong matrix_b_offset, float 
       element_a3 = matrix_a_ptr[3];
       
       // 获取矩阵B的对应元素
-      matrix_b_ptr = (float *)((matrix_b_offset - (longlong)matrix_a) + (longlong)matrix_a_ptr);
+      matrix_b_ptr = (float *)((matrix_b_offset - (int64_t)matrix_a) + (int64_t)matrix_a_ptr);
       element_b0 = matrix_b_ptr[2];
-      matrix_c_ptr = (float *)((matrix_b_offset - (longlong)matrix_a) + 0xc + (longlong)matrix_a_ptr);
+      matrix_c_ptr = (float *)((matrix_b_offset - (int64_t)matrix_a) + 0xc + (int64_t)matrix_a_ptr);
       element_b1 = matrix_c_ptr[1];
       
       matrix_a_ptr = matrix_a_ptr + 4;
@@ -259,7 +259,7 @@ void UISystem_MatrixMultiplier(float *matrix_a, longlong matrix_b_offset, float 
   if (processed_elements < element_count) {
     remaining_elements = processed_elements + 1;
     element_a0 = matrix_a[processed_elements];
-    matrix_a_ptr = (float *)(matrix_b_offset + (longlong)processed_elements * 4);
+    matrix_a_ptr = (float *)(matrix_b_offset + (int64_t)processed_elements * 4);
     result_00 = result_00 + element_a0 * *matrix_a_ptr;
     result_01 = result_01 + element_a0 * matrix_a_ptr[1];
     result_02 = result_02 + element_a0 * matrix_a_ptr[2];
@@ -268,7 +268,7 @@ void UISystem_MatrixMultiplier(float *matrix_a, longlong matrix_b_offset, float 
     if (remaining_elements < element_count) {
       processed_elements = processed_elements + 2;
       element_a0 = matrix_a[remaining_elements];
-      matrix_a_ptr = (float *)(matrix_b_offset + (longlong)remaining_elements * 4);
+      matrix_a_ptr = (float *)(matrix_b_offset + (int64_t)remaining_elements * 4);
       result_10 = result_10 + element_a0 * *matrix_a_ptr;
       result_11 = result_11 + element_a0 * matrix_a_ptr[1];
       result_12 = result_12 + element_a0 * matrix_a_ptr[2];
@@ -276,7 +276,7 @@ void UISystem_MatrixMultiplier(float *matrix_a, longlong matrix_b_offset, float 
       
       if (processed_elements < element_count) {
         element_a0 = matrix_a[processed_elements];
-        matrix_a_ptr = (float *)(matrix_b_offset + (longlong)processed_elements * 4);
+        matrix_a_ptr = (float *)(matrix_b_offset + (int64_t)processed_elements * 4);
         result_00 = result_00 + element_a0 * *matrix_a_ptr;
         result_01 = result_01 + element_a0 * matrix_a_ptr[1];
         result_02 = result_02 + element_a0 * matrix_a_ptr[2];
@@ -323,11 +323,11 @@ void UISystem_MemoryAllocator(uint64_t context_ptr, uint64_t param2, uint64_t pa
   uint64_t stack_param3;
   uint64_t stack_param4;
   uint64_t stack_context;
-  longlong memory_size;
-  ulonglong stack_protector;
+  int64_t memory_size;
+  uint64_t stack_protector;
   
   // 栈保护机制
-  stack_protector = GET_SECURITY_COOKIE() ^ (ulonglong)&stack_param3;
+  stack_protector = GET_SECURITY_COOKIE() ^ (uint64_t)&stack_param3;
   stack_param3 = param3;
   stack_param4 = param4;
   stack_context = context_ptr;
@@ -350,11 +350,11 @@ void UISystem_MemoryAllocator(uint64_t context_ptr, uint64_t param2, uint64_t pa
     height = height * 2;
     // 精确的除法计算，处理负数情况
     height = height / 3 + (height >> 0x1f) +
-             (int)(((longlong)height / 3 + ((longlong)height >> 0x3f) & 0xffffffffU) >> 0x1f);
+             (int)(((int64_t)height / 3 + ((int64_t)height >> 0x3f) & 0xffffffffU) >> 0x1f);
   }
   
   // 计算所需内存大小（每个元素4字节）
-  memory_size = (longlong)width * 4;
+  memory_size = (int64_t)width * 4;
   
   // WARNING: Subroutine does not return
   FUN_1808fd200(memory_size, height, 0xffffffffffffff0);
@@ -389,30 +389,30 @@ void UISystem_MemoryAllocator(uint64_t context_ptr, uint64_t param2, uint64_t pa
  * - 动态性能调整
  * - 内存优化和缓存管理
  */
-void UISystem_StateManager_Main(longlong ui_context, uint64_t param2, longlong param3, uint process_flags, int process_count,
+void UISystem_StateManager_Main(int64_t ui_context, uint64_t param2, int64_t param3, uint process_flags, int process_count,
                                 int32_t param6, int32_t param7, int32_t param8, int param9,
                                 int32_t param10, uint64_t param11, uint64_t *result_data)
 {
-  ulonglong loop_counter;
+  uint64_t loop_counter;
   uint64_t *data_ptr;
   uint64_t data_value;
   int temp_var;
-  longlong buffer_offset;
-  longlong remaining_count;
+  int64_t buffer_offset;
+  int64_t remaining_count;
   float *float_ptr;
-  ulonglong processed_count;
+  uint64_t processed_count;
   int batch_size;
   int remaining_items;
   int current_batch;
   int cache_index;
-  ulonglong iteration_index;
+  uint64_t iteration_index;
   uint max_process_count;
   int buffer_head;
   bool has_more_data;
   float current_value;
   float min_value;
   float sum_value;
-  ulonglong sample_count;
+  uint64_t sample_count;
   
   // 主要处理循环
   if (param3 != 0) {
@@ -466,7 +466,7 @@ void UISystem_StateManager_Main(longlong ui_context, uint64_t param2, longlong p
     cache_index = 99;
   }
   
-  processed_count = (ulonglong)cache_index;
+  processed_count = (uint64_t)cache_index;
   buffer_offset = processed_count * 0x38;
   
   // 从缓存中读取数据
@@ -487,7 +487,7 @@ void UISystem_StateManager_Main(longlong ui_context, uint64_t param2, longlong p
   result_data[6] = *(uint64_t *)(buffer_offset + 0x209c + ui_context);
   
   // 性能统计计算
-  sum_value = *(float *)((longlong)result_data + 4);
+  sum_value = *(float *)((int64_t)result_data + 4);
   sample_count = iteration_index;
   min_value = sum_value;
   
@@ -499,11 +499,11 @@ void UISystem_StateManager_Main(longlong ui_context, uint64_t param2, longlong p
       processed_count = loop_counter;
     }
     current_value = min_value;
-    if (processed_count == (longlong)*(int *)(ui_context + 0x2050)) break;
+    if (processed_count == (int64_t)*(int *)(ui_context + 0x2050)) break;
     
     remaining_items = remaining_items + 1;
     max_process_count = (int)sample_count + 1;
-    sample_count = (ulonglong)max_process_count;
+    sample_count = (uint64_t)max_process_count;
     
     current_value = *(float *)(processed_count * 0x38 + 0x2070 + ui_context);
     sum_value = sum_value + current_value;
@@ -518,7 +518,7 @@ void UISystem_StateManager_Main(longlong ui_context, uint64_t param2, longlong p
   if (sum_value / (float)remaining_items <= current_value - 0.2) {
     min_value = current_value - 0.2;
   }
-  *(float *)((longlong)result_data + 4) = min_value;
+  *(float *)((int64_t)result_data + 4) = min_value;
   
   // 更新统计计数器
   *(int *)(ui_context + 0x2058) = *(int *)(ui_context + 0x2058) + process_count / (*(int *)(ui_context + 8) / 400);
@@ -546,7 +546,7 @@ void UISystem_StateManager_Main(longlong ui_context, uint64_t param2, longlong p
   if (current_batch + -1 < 1) {
     buffer_head = temp_var;
   }
-  buffer_offset = (longlong)(100 - buffer_head);
+  buffer_offset = (int64_t)(100 - buffer_head);
   
   // 批量数据计算（4个元素一组）
   if (3 < buffer_offset) {
@@ -562,7 +562,7 @@ void UISystem_StateManager_Main(longlong ui_context, uint64_t param2, longlong p
   }
   
   // 处理剩余数据
-  if ((longlong)iteration_index < buffer_offset) {
+  if ((int64_t)iteration_index < buffer_offset) {
     buffer_offset = buffer_offset - iteration_index;
     float_ptr = (float *)(ui_context + 0x1eb0 + iteration_index * 4);
     temp_var = temp_var + (int)buffer_offset;
@@ -573,7 +573,7 @@ void UISystem_StateManager_Main(longlong ui_context, uint64_t param2, longlong p
     } while (buffer_offset != 0);
   }
   
-  buffer_offset = (longlong)temp_var;
+  buffer_offset = (int64_t)temp_var;
   
   // 补充数据计算
   if (buffer_offset < 100) {
@@ -600,7 +600,7 @@ void UISystem_StateManager_Main(longlong ui_context, uint64_t param2, longlong p
   }
   
   // 最终结果计算
-  *(float *)((longlong)result_data + 0x14) =
+  *(float *)((int64_t)result_data + 0x14) =
        (1.0 - sum_value) * *(float *)(ui_context + 0x2040) + sum_value * *(float *)(ui_context + 0x2044);
   return;
 }
@@ -628,28 +628,28 @@ void UISystem_StateManager_Main(longlong ui_context, uint64_t param2, longlong p
  */
 void UISystem_StateManager_Enhanced(int batch_size, uint64_t param2, uint64_t param3, int max_iterations)
 {
-  ulonglong loop_counter;
+  uint64_t loop_counter;
   uint64_t *data_ptr;
   uint64_t data_value;
   int register_value;
   int temp_var;
-  longlong buffer_offset;
-  longlong remaining_count;
+  int64_t buffer_offset;
+  int64_t remaining_count;
   float *float_ptr;
-  ulonglong processed_count;
+  uint64_t processed_count;
   int current_batch;
   int remaining_items;
   int cache_index;
   uint64_t saved_rbx;
-  longlong context_ptr;
+  int64_t context_ptr;
   int buffer_head;
   int buffer_tail;
   uint64_t saved_rsi;
   uint64_t saved_rdi;
   int cache_position;
-  ulonglong iteration_index;
+  uint64_t iteration_index;
   uint max_process_count;
-  longlong stack_ptr;
+  int64_t stack_ptr;
   int saved_r12d;
   uint64_t saved_r14;
   bool has_more_data;
@@ -668,7 +668,7 @@ void UISystem_StateManager_Enhanced(int batch_size, uint64_t param2, uint64_t pa
   int32_t stack_param10;
   uint64_t stack_param11;
   uint64_t *result_ptr;
-  ulonglong sample_count;
+  uint64_t sample_count;
   
   // 保存寄存器状态
   *(uint64_t *)(stack_ptr + 8) = saved_rbx;
@@ -676,7 +676,7 @@ void UISystem_StateManager_Enhanced(int batch_size, uint64_t param2, uint64_t pa
   *(uint64_t *)(stack_ptr + -0x28) = saved_r14;
   
   // 计算批处理参数
-  buffer_head = (int)((ulonglong)((longlong)register_value * (longlong)(batch_size * 0x5f)) >> 0x20);
+  buffer_head = (int)((uint64_t)((int64_t)register_value * (int64_t)(batch_size * 0x5f)) >> 0x20);
   buffer_head = (buffer_head >> 4) - (buffer_head >> 0x1f);
   if (max_iterations <= buffer_head) {
     buffer_head = max_iterations;
@@ -730,7 +730,7 @@ void UISystem_StateManager_Enhanced(int batch_size, uint64_t param2, uint64_t pa
     cache_position = 99;
   }
   
-  processed_count = (ulonglong)cache_position;
+  processed_count = (uint64_t)cache_position;
   buffer_offset = processed_count * 0x38;
   
   // 从缓存中读取数据
@@ -751,7 +751,7 @@ void UISystem_StateManager_Enhanced(int batch_size, uint64_t param2, uint64_t pa
   result_ptr[6] = *(uint64_t *)(buffer_offset + 0x209c + context_ptr);
   
   // 性能统计
-  sum_value = *(float *)((longlong)result_ptr + 4);
+  sum_value = *(float *)((int64_t)result_ptr + 4);
   sample_count = iteration_index;
   min_value = sum_value;
   
@@ -763,11 +763,11 @@ void UISystem_StateManager_Enhanced(int batch_size, uint64_t param2, uint64_t pa
       processed_count = loop_counter;
     }
     current_value = min_value;
-    if (processed_count == (longlong)*(int *)(context_ptr + 0x2050)) break;
+    if (processed_count == (int64_t)*(int *)(context_ptr + 0x2050)) break;
     
     remaining_items = remaining_items + 1;
     max_process_count = (int)sample_count + 1;
-    sample_count = (ulonglong)max_process_count;
+    sample_count = (uint64_t)max_process_count;
     
     current_value = *(float *)(processed_count * 0x38 + 0x2070 + context_ptr);
     sum_value = sum_value + current_value;
@@ -782,7 +782,7 @@ void UISystem_StateManager_Enhanced(int batch_size, uint64_t param2, uint64_t pa
   if (sum_value / (float)remaining_items <= current_value - 0.2) {
     min_value = current_value - 0.2;
   }
-  *(float *)((longlong)result_ptr + 4) = min_value;
+  *(float *)((int64_t)result_ptr + 4) = min_value;
   
   // 更新统计计数器
   *(int *)(context_ptr + 0x2058) =
@@ -811,7 +811,7 @@ void UISystem_StateManager_Enhanced(int batch_size, uint64_t param2, uint64_t pa
   if (buffer_tail + -1 < 1) {
     buffer_head = temp_var;
   }
-  buffer_offset = (longlong)(100 - buffer_head);
+  buffer_offset = (int64_t)(100 - buffer_head);
   
   // 批量数据计算
   if (3 < buffer_offset) {
@@ -827,7 +827,7 @@ void UISystem_StateManager_Enhanced(int batch_size, uint64_t param2, uint64_t pa
   }
   
   // 处理剩余数据
-  if ((longlong)iteration_index < buffer_offset) {
+  if ((int64_t)iteration_index < buffer_offset) {
     buffer_offset = buffer_offset - iteration_index;
     float_ptr = (float *)(context_ptr + 0x1eb0 + iteration_index * 4);
     temp_var = temp_var + (int)buffer_offset;
@@ -838,7 +838,7 @@ void UISystem_StateManager_Enhanced(int batch_size, uint64_t param2, uint64_t pa
     } while (buffer_offset != 0);
   }
   
-  buffer_offset = (longlong)temp_var;
+  buffer_offset = (int64_t)temp_var;
   
   // 补充数据计算
   if (buffer_offset < 100) {
@@ -865,7 +865,7 @@ void UISystem_StateManager_Enhanced(int batch_size, uint64_t param2, uint64_t pa
   }
   
   // 最终结果计算
-  *(float *)((longlong)result_ptr + 0x14) =
+  *(float *)((int64_t)result_ptr + 0x14) =
        (1.0 - sum_value) * *(float *)(context_ptr + 0x2040) + sum_value * *(float *)(context_ptr + 0x2044);
   return;
 }
@@ -891,28 +891,28 @@ void UISystem_StateManager_Enhanced(int batch_size, uint64_t param2, uint64_t pa
  */
 void UISystem_BatchProcessor(uint64_t context_ptr, int batch_param)
 {
-  ulonglong loop_counter;
+  uint64_t loop_counter;
   uint64_t *data_ptr;
   uint64_t data_value;
   int temp_var;
   int batch_size;
-  longlong buffer_offset;
-  longlong remaining_count;
+  int64_t buffer_offset;
+  int64_t remaining_count;
   float *float_ptr;
   int current_batch;
-  ulonglong processed_count;
+  uint64_t processed_count;
   int remaining_items;
   int cache_index;
   int work_counter;
   int cache_position;
-  longlong context_base;
+  int64_t context_base;
   int buffer_head;
   int buffer_tail;
   uint64_t saved_rdi;
   int buffer_position;
-  ulonglong iteration_index;
+  uint64_t iteration_index;
   uint max_process_count;
-  longlong stack_ptr;
+  int64_t stack_ptr;
   bool has_more_data;
   float current_value;
   float min_value;
@@ -926,7 +926,7 @@ void UISystem_BatchProcessor(uint64_t context_ptr, int batch_param)
   int32_t stack_param7;
   int32_t stack_param8;
   uint64_t *result_ptr;
-  ulonglong sample_count;
+  uint64_t sample_count;
   
   // 保存寄存器状态
   *(uint64_t *)(stack_ptr + 0x18) = saved_rdi;
@@ -973,7 +973,7 @@ void UISystem_BatchProcessor(uint64_t context_ptr, int batch_param)
     buffer_position = 99;
   }
   
-  processed_count = (ulonglong)buffer_position;
+  processed_count = (uint64_t)buffer_position;
   buffer_offset = processed_count * 0x38;
   
   // 从缓存中读取数据
@@ -994,7 +994,7 @@ void UISystem_BatchProcessor(uint64_t context_ptr, int batch_param)
   result_ptr[6] = *(uint64_t *)(buffer_offset + 0x209c + context_base);
   
   // 性能统计计算
-  sum_value = *(float *)((longlong)result_ptr + 4);
+  sum_value = *(float *)((int64_t)result_ptr + 4);
   sample_count = iteration_index;
   min_value = sum_value;
   
@@ -1006,11 +1006,11 @@ void UISystem_BatchProcessor(uint64_t context_ptr, int batch_param)
       processed_count = loop_counter;
     }
     current_value = min_value;
-    if (processed_count == (longlong)*(int *)(context_base + 0x2050)) break;
+    if (processed_count == (int64_t)*(int *)(context_base + 0x2050)) break;
     
     remaining_items = remaining_items + 1;
     max_process_count = (int)sample_count + 1;
-    sample_count = (ulonglong)max_process_count;
+    sample_count = (uint64_t)max_process_count;
     
     current_value = *(float *)(processed_count * 0x38 + 0x2070 + context_base);
     sum_value = sum_value + current_value;
@@ -1025,7 +1025,7 @@ void UISystem_BatchProcessor(uint64_t context_ptr, int batch_param)
   if (sum_value / (float)remaining_items <= current_value - 0.2) {
     min_value = current_value - 0.2;
   }
-  *(float *)((longlong)result_ptr + 4) = min_value;
+  *(float *)((int64_t)result_ptr + 4) = min_value;
   
   // 更新统计计数器
   *(int *)(context_base + 0x2058) =
@@ -1054,7 +1054,7 @@ void UISystem_BatchProcessor(uint64_t context_ptr, int batch_param)
   if (buffer_tail + -1 < 1) {
     current_batch = temp_var;
   }
-  buffer_offset = (longlong)(100 - current_batch);
+  buffer_offset = (int64_t)(100 - current_batch);
   
   // 批量数据计算（4个元素一组）
   if (3 < buffer_offset) {
@@ -1070,7 +1070,7 @@ void UISystem_BatchProcessor(uint64_t context_ptr, int batch_param)
   }
   
   // 处理剩余数据
-  if ((longlong)iteration_index < buffer_offset) {
+  if ((int64_t)iteration_index < buffer_offset) {
     buffer_offset = buffer_offset - iteration_index;
     float_ptr = (float *)(context_base + 0x1eb0 + iteration_index * 4);
     temp_var = temp_var + (int)buffer_offset;
@@ -1081,7 +1081,7 @@ void UISystem_BatchProcessor(uint64_t context_ptr, int batch_param)
     } while (buffer_offset != 0);
   }
   
-  buffer_offset = (longlong)temp_var;
+  buffer_offset = (int64_t)temp_var;
   
   // 补充数据计算
   if (buffer_offset < 100) {
@@ -1108,7 +1108,7 @@ void UISystem_BatchProcessor(uint64_t context_ptr, int batch_param)
   }
   
   // 最终结果计算
-  *(float *)((longlong)result_ptr + 0x14) =
+  *(float *)((int64_t)result_ptr + 0x14) =
        (1.0 - sum_value) * *(float *)(context_base + 0x2040) + sum_value * *(float *)(context_base + 0x2044);
   return;
 }
@@ -1131,31 +1131,31 @@ void UISystem_BatchProcessor(uint64_t context_ptr, int batch_param)
  */
 void UISystem_StateUpdater(void)
 {
-  ulonglong loop_counter;
+  uint64_t loop_counter;
   uint64_t *data_ptr;
   uint64_t data_value;
   int temp_var;
   int batch_size;
-  longlong buffer_offset;
-  longlong remaining_count;
+  int64_t buffer_offset;
+  int64_t remaining_count;
   float *float_ptr;
   int current_batch;
-  ulonglong processed_count;
+  uint64_t processed_count;
   int sample_count;
   int cache_index;
-  longlong context_ptr;
+  int64_t context_ptr;
   int buffer_head;
   int buffer_tail;
-  ulonglong iteration_index;
+  uint64_t iteration_index;
   int cache_position;
-  ulonglong max_process_count;
+  uint64_t max_process_count;
   uint process_count;
   bool has_more_data;
   float current_value;
   float min_value;
   float sum_value;
   uint64_t *result_ptr;
-  ulonglong sample_index;
+  uint64_t sample_index;
   
   // 更新状态计数器
   *(int *)(context_ptr + 0x1d1c) = sample_count - process_count;
@@ -1189,7 +1189,7 @@ void UISystem_StateUpdater(void)
     cache_position = 99;
   }
   
-  processed_count = (ulonglong)cache_position;
+  processed_count = (uint64_t)cache_position;
   buffer_offset = processed_count * 0x38;
   
   // 从缓存中读取数据
@@ -1210,7 +1210,7 @@ void UISystem_StateUpdater(void)
   result_ptr[6] = *(uint64_t *)(buffer_offset + 0x209c + context_ptr);
   
   // 性能统计计算
-  sum_value = *(float *)((longlong)result_ptr + 4);
+  sum_value = *(float *)((int64_t)result_ptr + 4);
   sample_index = iteration_index;
   min_value = sum_value;
   
@@ -1222,11 +1222,11 @@ void UISystem_StateUpdater(void)
       processed_count = loop_counter;
     }
     current_value = min_value;
-    if (processed_count == (longlong)*(int *)(context_ptr + 0x2050)) break;
+    if (processed_count == (int64_t)*(int *)(context_ptr + 0x2050)) break;
     
     sample_count = sample_count + 1;
     process_count = (int)sample_index + 1;
-    sample_index = (ulonglong)process_count;
+    sample_index = (uint64_t)process_count;
     
     current_value = *(float *)(processed_count * 0x38 + 0x2070 + context_ptr);
     sum_value = sum_value + current_value;
@@ -1241,7 +1241,7 @@ void UISystem_StateUpdater(void)
   if (sum_value / (float)sample_count <= current_value - 0.2) {
     min_value = current_value - 0.2;
   }
-  *(float *)((longlong)result_ptr + 4) = min_value;
+  *(float *)((int64_t)result_ptr + 4) = min_value;
   
   // 更新统计计数器
   *(int *)(context_ptr + 0x2058) =
@@ -1270,7 +1270,7 @@ void UISystem_StateUpdater(void)
   if (buffer_tail + -1 < 1) {
     current_batch = temp_var;
   }
-  buffer_offset = (longlong)(100 - current_batch);
+  buffer_offset = (int64_t)(100 - current_batch);
   
   // 批量数据计算（4个元素一组）
   if (3 < buffer_offset) {
@@ -1286,7 +1286,7 @@ void UISystem_StateUpdater(void)
   }
   
   // 处理剩余数据
-  if ((longlong)iteration_index < buffer_offset) {
+  if ((int64_t)iteration_index < buffer_offset) {
     buffer_offset = buffer_offset - iteration_index;
     float_ptr = (float *)(context_ptr + 0x1eb0 + iteration_index * 4);
     temp_var = temp_var + (int)buffer_offset;
@@ -1297,7 +1297,7 @@ void UISystem_StateUpdater(void)
     } while (buffer_offset != 0);
   }
   
-  buffer_offset = (longlong)temp_var;
+  buffer_offset = (int64_t)temp_var;
   
   // 补充数据计算
   if (buffer_offset < 100) {
@@ -1324,7 +1324,7 @@ void UISystem_StateUpdater(void)
   }
   
   // 最终结果计算
-  *(float *)((longlong)result_ptr + 0x14) =
+  *(float *)((int64_t)result_ptr + 0x14) =
        (1.0 - sum_value) * *(float *)(context_ptr + 0x2040) + sum_value * *(float *)(context_ptr + 0x2044);
   return;
 }

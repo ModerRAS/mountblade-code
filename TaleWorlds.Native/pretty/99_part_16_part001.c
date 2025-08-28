@@ -45,7 +45,7 @@
 /*
  * 回调函数类型定义
  */
-typedef void (*CallbackFunction)(longlong, uint64_t, uint64_t, uint64_t, uint64_t);
+typedef void (*CallbackFunction)(int64_t, uint64_t, uint64_t, uint64_t, uint64_t);
 
 /*
  * 函数别名定义 - 用于代码可读性和维护性
@@ -86,7 +86,7 @@ uint32_t callback_error_count;
  * 回调函数参数结构体
  */
 typedef struct {
-    longlong object_handle;          // 对象句柄
+    int64_t object_handle;          // 对象句柄
     uint64_t param1;               // 参数1
     uint64_t param2;               // 参数2
     uint64_t param3;               // 参数3
@@ -128,7 +128,7 @@ typedef struct {
  * - 提供错误处理机制
  * - 支持异步回调执行
  */
-void system_callback_handler(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void system_callback_handler(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 获取回调函数指针
     CallbackFunction *callback_ptr = (CallbackFunction *)(param_1 + CALLBACK_POINTER_OFFSET);
@@ -167,7 +167,7 @@ void system_callback_handler(longlong param_1, uint64_t param_2, uint64_t param_
  * - 包含错误恢复机制
  * - 支持异步事件处理
  */
-void system_event_dispatcher(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void system_event_dispatcher(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 获取事件处理函数指针
     CallbackFunction *event_handler = (CallbackFunction *)(param_1 + 0x68);
@@ -182,7 +182,7 @@ void system_event_dispatcher(longlong param_1, uint64_t param_2, uint64_t param_
     *(uint64_t *)(param_1 + 0x30) = &system_data_buffer_ptr;
     
     // 检查系统状态
-    if (*(longlong *)(param_1 + 0x38) != 0) {
+    if (*(int64_t *)(param_1 + 0x38) != 0) {
         // 调用错误处理函数
         callback_error_handler();
     }
@@ -216,7 +216,7 @@ void system_event_dispatcher(longlong param_1, uint64_t param_2, uint64_t param_
  * - 包含内存管理功能
  * - 提供参数转换接口
  */
-void callback_parameter_processor(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5)
+void callback_parameter_processor(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5)
 {
     // 参数处理逻辑
     // 这里添加参数验证、转换和处理的具体实现
@@ -246,9 +246,9 @@ void callback_parameter_processor(longlong param_1, uint64_t param_2, uint64_t p
  * - 包含状态验证机制
  * - 提供状态恢复功能
  */
-longlong system_state_synchronizer(longlong param_1)
+int64_t system_state_synchronizer(int64_t param_1)
 {
-    longlong result;
+    int64_t result;
     
     // 状态同步逻辑
     // 这里添加状态同步的具体实现

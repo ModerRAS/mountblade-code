@@ -291,14 +291,14 @@ typedef uint64_t UIMatrixTransformHandle;          // UI矩阵变换句柄
 //------------------------------------------------------------------------------
 
 // 函数: UI向量数据处理器 - 主要向量运算函数
-void UIVectorDataProcessor(int8_t (*param_1) [32],uint param_2,longlong param_3,longlong *param_4,
-                           longlong *param_5)
+void UIVectorDataProcessor(int8_t (*param_1) [32],uint param_2,int64_t param_3,int64_t *param_4,
+                           int64_t *param_5)
 
 {
   float *pfVar1;
   int32_t uVar2;
-  longlong lVar3;
-  longlong lVar4;
+  int64_t lVar3;
+  int64_t lVar4;
   int8_t auVar5 [16];
   int8_t auVar6 [32];
   float fVar7;
@@ -311,8 +311,8 @@ void UIVectorDataProcessor(int8_t (*param_1) [32],uint param_2,longlong param_3,
   float fVar14;
   int8_t auVar15 [32];
   uint uVar16;
-  ulonglong uVar17;
-  ulonglong *puVar18;
+  uint64_t uVar17;
+  uint64_t *puVar18;
   int iVar19;
   int8_t auVar20 [16];
   int8_t auVar21 [32];
@@ -334,11 +334,11 @@ void UIVectorDataProcessor(int8_t (*param_1) [32],uint param_2,longlong param_3,
   int8_t auVar36 [32];
   int8_t auStack_f8 [24];
   int8_t auStack_e0 [32];
-  ulonglong auStack_b8 [22];
+  uint64_t auStack_b8 [22];
   
   puVar18 = auStack_b8;
-  auStack_b8[0] = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_b8;
-  uVar17 = (ulonglong)param_1 & 0x1f;
+  auStack_b8[0] = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_b8;
+  uVar17 = (uint64_t)param_1 & 0x1f;
                     // WARNING: Read-only address (ram,0x000180980c00) is written
                     // WARNING: Read-only address (ram,0x000180980ca0) is written
                     // WARNING: Read-only address (ram,0x000180a40840) is written
@@ -353,7 +353,7 @@ void UIVectorDataProcessor(int8_t (*param_1) [32],uint param_2,longlong param_3,
     auVar21._20_4_ = uVar2;
     auVar21._24_4_ = uVar2;
     auVar21._28_4_ = uVar2;
-    uVar17 = (ulonglong)(uint)(*(int *)((longlong)param_4 + 4) << 3);
+    uVar17 = (uint64_t)(uint)(*(int *)((int64_t)param_4 + 4) << 3);
     auVar21 = vpsrld_avx2(auVar21,1);
     auVar21 = vcvtdq2ps_avx(auVar21);
     auVar23 = vsubps_avx(*(int8_t (*) [32])(param_3 + 0x20 + uVar17 * 4),
@@ -387,7 +387,7 @@ void UIVectorDataProcessor(int8_t (*param_1) [32],uint param_2,longlong param_3,
     *(float *)(*param_1 + 0x1c) = fVar7 + fVar14;
     param_1 = param_1 + 1;
     *param_4 = *param_4 + *param_5;
-    uVar17 = (ulonglong)param_1 & 0x1f;
+    uVar17 = (uint64_t)param_1 & 0x1f;
   }
   iVar19 = (int)param_2 >> 2;
   if (iVar19 != 0) {
@@ -409,7 +409,7 @@ void UIVectorDataProcessor(int8_t (*param_1) [32],uint param_2,longlong param_3,
     auVar36._0_8_ = lVar3;
     auVar36._16_8_ = lVar3;
     auVar36._24_8_ = lVar3;
-    puVar18 = (ulonglong *)auStack_f8;
+    puVar18 = (uint64_t *)auStack_f8;
     auVar23 = ui_system_memory_ui;
     auVar26 = ui_system_ui;
     auVar24 = ui_system_memory_ui;
@@ -419,7 +419,7 @@ void UIVectorDataProcessor(int8_t (*param_1) [32],uint param_2,longlong param_3,
       auVar23 = vpermd_avx2(auVar23,auStack_e0);
       auVar21 = vpermd_avx2(SUB6432(ZEXT1664((int8_t  [16])0x0),0),auStack_e0);
       auVar22 = vpsrld_avx2(auVar21,1);
-      auVar21 = *(int8_t (*) [32])(param_3 + (ulonglong)(uint)(auStack_e0._4_4_ << 3) * 4);
+      auVar21 = *(int8_t (*) [32])(param_3 + (uint64_t)(uint)(auStack_e0._4_4_ << 3) * 4);
       auVar22 = vcvtdq2ps_avx(auVar22);
       auVar6 = vpermd_avx2(auVar26,auStack_e0);
       auVar33 = vpermd_avx2(auVar24,auStack_e0);
@@ -430,10 +430,10 @@ void UIVectorDataProcessor(int8_t (*param_1) [32],uint param_2,longlong param_3,
       auVar23 = vpsrld_avx2(auVar33,1);
       auVar6 = vcvtdq2ps_avx(auVar23);
       auVar33 = vsubps_avx(*(int8_t (*) [32])
-                            (param_3 + 0x20 + (ulonglong)(uint)(auStack_e0._4_4_ << 3) * 4),auVar21)
+                            (param_3 + 0x20 + (uint64_t)(uint)(auStack_e0._4_4_ << 3) * 4),auVar21)
       ;
       fVar7 = auVar6._28_4_;
-      auVar23 = *(int8_t (*) [32])(param_3 + (ulonglong)(uint)(auStack_e0._12_4_ << 3) * 4);
+      auVar23 = *(int8_t (*) [32])(param_3 + (uint64_t)(uint)(auStack_e0._12_4_ << 3) * 4);
       uVar16 = auStack_e0._20_4_ << 3;
       auVar35._0_4_ = auVar33._0_4_ * auVar22._0_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar21._0_4_;
       auVar35._4_4_ = auVar33._4_4_ * auVar22._4_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar21._4_4_;
@@ -444,10 +444,10 @@ void UIVectorDataProcessor(int8_t (*param_1) [32],uint param_2,longlong param_3,
       auVar35._24_4_ = auVar33._24_4_ * auVar22._24_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar21._24_4_;
       auVar35._28_4_ = fVar7 + auVar21._28_4_;
       auVar21 = vsubps_avx(*(int8_t (*) [32])
-                            (param_3 + 0x20 + (ulonglong)(uint)(auStack_e0._12_4_ << 3) * 4),auVar23
+                            (param_3 + 0x20 + (uint64_t)(uint)(auStack_e0._12_4_ << 3) * 4),auVar23
                           );
-      auVar22 = vsubps_avx(*(int8_t (*) [32])(param_3 + 0x20 + (ulonglong)uVar16 * 4),
-                           *(int8_t (*) [32])(param_3 + (ulonglong)uVar16 * 4));
+      auVar22 = vsubps_avx(*(int8_t (*) [32])(param_3 + 0x20 + (uint64_t)uVar16 * 4),
+                           *(int8_t (*) [32])(param_3 + (uint64_t)uVar16 * 4));
       auVar34._0_4_ = auVar21._0_4_ * auVar26._0_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar23._0_4_;
       auVar34._4_4_ = auVar21._4_4_ * auVar26._4_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar23._4_4_;
       auVar34._8_4_ = auVar21._8_4_ * auVar26._8_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar23._8_4_;
@@ -456,8 +456,8 @@ void UIVectorDataProcessor(int8_t (*param_1) [32],uint param_2,longlong param_3,
       auVar34._20_4_ = auVar21._20_4_ * auVar26._20_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar23._20_4_;
       auVar34._24_4_ = auVar21._24_4_ * auVar26._24_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar23._24_4_;
       auVar34._28_4_ = fVar7 + auVar23._28_4_;
-      uVar17 = (ulonglong)(uint)(auStack_e0._28_4_ << 3);
-      pfVar1 = (float *)(param_3 + (ulonglong)uVar16 * 4);
+      uVar17 = (uint64_t)(uint)(auStack_e0._28_4_ << 3);
+      pfVar1 = (float *)(param_3 + (uint64_t)uVar16 * 4);
       auVar33._0_4_ = auVar22._0_4_ * auVar24._0_4_ * UI_VECTOR_CONST_SCALE_FACTOR + *pfVar1;
       auVar33._4_4_ = auVar22._4_4_ * auVar24._4_4_ * UI_VECTOR_CONST_SCALE_FACTOR + pfVar1[1];
       auVar33._8_4_ = auVar22._8_4_ * auVar24._8_4_ * UI_VECTOR_CONST_SCALE_FACTOR + pfVar1[2];
@@ -505,7 +505,7 @@ void UIVectorDataProcessor(int8_t (*param_1) [32],uint param_2,longlong param_3,
     auVar24._20_4_ = uVar2;
     auVar24._24_4_ = uVar2;
     auVar24._28_4_ = uVar2;
-    uVar17 = (ulonglong)(uint)(*(int *)((longlong)param_4 + 4) << 3);
+    uVar17 = (uint64_t)(uint)(*(int *)((int64_t)param_4 + 4) << 3);
     auVar21 = vpsrld_avx2(auVar24,1);
     auVar21 = vcvtdq2ps_avx(auVar21);
     auVar23 = vsubps_avx(*(int8_t (*) [32])(param_3 + 0x20 + uVar17 * 4),
@@ -541,8 +541,8 @@ void UIVectorDataProcessor(int8_t (*param_1) [32],uint param_2,longlong param_3,
     param_1 = param_1 + 1;
   }
                     // WARNING: Subroutine does not return
-  *(uint64_t *)((longlong)puVar18 + -8) = 0x180836966;
-  FUN_1808fc050(auStack_b8[0] ^ (ulonglong)auStack_b8);
+  *(uint64_t *)((int64_t)puVar18 + -8) = 0x180836966;
+  FUN_1808fc050(auStack_b8[0] ^ (uint64_t)auStack_b8);
 }
 
 
@@ -551,16 +551,16 @@ void UIVectorDataProcessor(int8_t (*param_1) [32],uint param_2,longlong param_3,
 
 
 // 函数: UI插值计算器 - 浮点数插值和变换
-void UIInterpolatorCalculator(int8_t (*param_1) [32],uint param_2,longlong param_3,uint *param_4,
-                               longlong *param_5)
+void UIInterpolatorCalculator(int8_t (*param_1) [32],uint param_2,int64_t param_3,uint *param_4,
+                               int64_t *param_5)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   float fVar2;
-  longlong lVar3;
-  longlong lVar4;
+  int64_t lVar3;
+  int64_t lVar4;
   int8_t auVar5 [32];
-  ulonglong uVar6;
+  uint64_t uVar6;
   int8_t auVar7 [32];
   int iVar8;
   int32_t uVar9;
@@ -579,25 +579,25 @@ void UIInterpolatorCalculator(int8_t (*param_1) [32],uint param_2,longlong param
   int8_t auVar22 [32];
   int8_t auVar23 [32];
   
-  uVar6 = (ulonglong)param_1 & 0x1f;
+  uVar6 = (uint64_t)param_1 & 0x1f;
   auVar7 = ui_system_memory_ui;
   while ((ui_system_memory_ui = auVar7, uVar6 != 0 && (param_2 != 0))) {
     param_2 = param_2 - 1;
-    fVar2 = *(float *)(param_3 + (ulonglong)param_4[1] * 4);
+    fVar2 = *(float *)(param_3 + (uint64_t)param_4[1] * 4);
     auVar13 = vfmadd213ss_fma(SUB6416(ZEXT464(UI_VECTOR_CONST_FLOAT_SCALE),0),
-                              ZEXT416((uint)((*(float *)(param_3 + (ulonglong)(param_4[1] + 1) * 4)
+                              ZEXT416((uint)((*(float *)(param_3 + (uint64_t)(param_4[1] + 1) * 4)
                                              - fVar2) * (float)(*param_4 >> 1))),
                               ZEXT416((uint)fVar2));
     *(int *)*param_1 = auVar13._0_4_;
     param_1 = (int8_t (*) [32])(*param_1 + 4);
-    *(longlong *)param_4 = *(longlong *)param_4 + *param_5;
-    uVar6 = (ulonglong)param_1 & 0x1f;
+    *(int64_t *)param_4 = *(int64_t *)param_4 + *param_5;
+    uVar6 = (uint64_t)param_1 & 0x1f;
     auVar7 = ui_system_memory_ui;
   }
   iVar11 = (int)param_2 >> 3;
   if (iVar11 != 0) {
     lVar3 = *param_5;
-    lVar4 = *(longlong *)param_4;
+    lVar4 = *(int64_t *)param_4;
     iVar10 = (int)lVar3;
     auVar13 = vpinsrd_avx((int8_t  [16])0x0,iVar10,1);
     lVar1 = lVar3 * 8;
@@ -678,17 +678,17 @@ void UIInterpolatorCalculator(int8_t (*param_1) [32],uint param_2,longlong param
       auVar16 = vpaddq_avx2(auVar16,auVar22);
       iVar11 = iVar11 + -1;
     } while (iVar11 != 0);
-    *(longlong *)param_4 = auVar15._0_8_;
+    *(int64_t *)param_4 = auVar15._0_8_;
   }
   for (param_2 = param_2 & 7; param_2 != 0; param_2 = param_2 - 1) {
                     // WARNING: Read-only address (ram,0x000180980c40) is written
-    fVar2 = *(float *)(param_3 + (ulonglong)param_4[1] * 4);
+    fVar2 = *(float *)(param_3 + (uint64_t)param_4[1] * 4);
     auVar13 = vfmadd213ss_fma(SUB6416(ZEXT464(UI_VECTOR_CONST_FLOAT_SCALE),0),
-                              ZEXT416((uint)((*(float *)(param_3 + (ulonglong)(param_4[1] + 1) * 4)
+                              ZEXT416((uint)((*(float *)(param_3 + (uint64_t)(param_4[1] + 1) * 4)
                                              - fVar2) * (float)(*param_4 >> 1))),
                               ZEXT416((uint)fVar2));
     *(int *)*param_1 = auVar13._0_4_;
-    *(longlong *)param_4 = *(longlong *)param_4 + *param_5;
+    *(int64_t *)param_4 = *(int64_t *)param_4 + *param_5;
     param_1 = (int8_t (*) [32])(*param_1 + 4);
   }
                     // WARNING: Read-only address (ram,0x000180980c40) is written
@@ -701,22 +701,22 @@ void UIInterpolatorCalculator(int8_t (*param_1) [32],uint param_2,longlong param
 
 
 // 函数: UI批量变换器 - 批量坐标转换
-void UIBatchTransformer(int8_t (*param_1) [32],uint param_2,longlong param_3,uint *param_4)
+void UIBatchTransformer(int8_t (*param_1) [32],uint param_2,int64_t param_3,uint *param_4)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   float fVar2;
-  longlong lVar3;
-  longlong lVar4;
+  int64_t lVar3;
+  int64_t lVar4;
   int8_t auVar5 [32];
-  ulonglong uVar6;
+  uint64_t uVar6;
   int8_t auVar7 [32];
   int iVar8;
   int32_t uVar9;
   uint *unaff_RDI;
   int iVar10;
   int iVar11;
-  longlong *unaff_R15;
+  int64_t *unaff_R15;
   int8_t auVar12 [16];
   int8_t auVar13 [16];
   int8_t auVar14 [32];
@@ -730,25 +730,25 @@ void UIBatchTransformer(int8_t (*param_1) [32],uint param_2,longlong param_3,uin
   int8_t auVar22 [32];
   int8_t auVar23 [32];
   
-  uVar6 = (ulonglong)param_1 & 0x1f;
+  uVar6 = (uint64_t)param_1 & 0x1f;
   auVar7 = ui_system_memory_ui;
   while ((ui_system_memory_ui = auVar7, uVar6 != 0 && (param_2 != 0))) {
     param_2 = param_2 - 1;
-    fVar2 = *(float *)(param_3 + (ulonglong)param_4[1] * 4);
+    fVar2 = *(float *)(param_3 + (uint64_t)param_4[1] * 4);
     auVar13 = vfmadd213ss_fma(SUB6416(ZEXT464(UI_VECTOR_CONST_FLOAT_SCALE),0),
-                              ZEXT416((uint)((*(float *)(param_3 + (ulonglong)(param_4[1] + 1) * 4)
+                              ZEXT416((uint)((*(float *)(param_3 + (uint64_t)(param_4[1] + 1) * 4)
                                              - fVar2) * (float)(*param_4 >> 1))),
                               ZEXT416((uint)fVar2));
     *(int *)*param_1 = auVar13._0_4_;
     param_1 = (int8_t (*) [32])(*param_1 + 4);
-    *(longlong *)param_4 = *(longlong *)param_4 + *unaff_R15;
-    uVar6 = (ulonglong)param_1 & 0x1f;
+    *(int64_t *)param_4 = *(int64_t *)param_4 + *unaff_R15;
+    uVar6 = (uint64_t)param_1 & 0x1f;
     auVar7 = ui_system_memory_ui;
   }
   iVar11 = (int)param_2 >> 3;
   if (iVar11 != 0) {
     lVar3 = *unaff_R15;
-    lVar4 = *(longlong *)param_4;
+    lVar4 = *(int64_t *)param_4;
     iVar10 = (int)lVar3;
     auVar13 = vpinsrd_avx((int8_t  [16])0x0,iVar10,1);
     lVar1 = lVar3 * 8;
@@ -829,17 +829,17 @@ void UIBatchTransformer(int8_t (*param_1) [32],uint param_2,longlong param_3,uin
       auVar16 = vpaddq_avx2(auVar16,auVar22);
       iVar11 = iVar11 + -1;
     } while (iVar11 != 0);
-    *(longlong *)unaff_RDI = auVar15._0_8_;
+    *(int64_t *)unaff_RDI = auVar15._0_8_;
   }
   for (param_2 = param_2 & 7; param_2 != 0; param_2 = param_2 - 1) {
                     // WARNING: Read-only address (ram,0x000180980c40) is written
-    fVar2 = *(float *)(param_3 + (ulonglong)unaff_RDI[1] * 4);
+    fVar2 = *(float *)(param_3 + (uint64_t)unaff_RDI[1] * 4);
     auVar13 = vfmadd213ss_fma(SUB6416(ZEXT464(UI_VECTOR_CONST_FLOAT_SCALE),0),
-                              ZEXT416((uint)((*(float *)(param_3 + (ulonglong)(unaff_RDI[1] + 1) * 4
+                              ZEXT416((uint)((*(float *)(param_3 + (uint64_t)(unaff_RDI[1] + 1) * 4
                                                         ) - fVar2) * (float)(*unaff_RDI >> 1))),
                               ZEXT416((uint)fVar2));
     *(int *)*param_1 = auVar13._0_4_;
-    *(longlong *)unaff_RDI = *(longlong *)unaff_RDI + *unaff_R15;
+    *(int64_t *)unaff_RDI = *(int64_t *)unaff_RDI + *unaff_R15;
     param_1 = (int8_t (*) [32])(*param_1 + 4);
   }
                     // WARNING: Read-only address (ram,0x000180980c40) is written

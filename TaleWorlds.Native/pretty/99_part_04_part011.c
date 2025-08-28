@@ -277,18 +277,18 @@ typedef struct {
  * @note 这是核心数据处理函数，涉及复杂的内存操作
  * @see ContainerInitializer
  */
-void DataStructureProcessor(uint64_t context_ptr, longlong data_buffer, uint *result_ptr)
+void DataStructureProcessor(uint64_t context_ptr, int64_t data_buffer, uint *result_ptr)
 {
     // 语义化变量定义
     uint *data_iterator;                                     /**< 数据迭代器 */
     byte *buffer_ptr;                                        /**< 缓冲区指针 */
     uint data_value;                                         /**< 数据值 */
-    longlong string_length;                                  /**< 字符串长度 */
+    int64_t string_length;                                  /**< 字符串长度 */
     byte *string_ptr;                                        /**< 字符串指针 */
     int comparison_result;                                   /**< 比较结果 */
-    ulonglong iteration_count;                               /**< 迭代计数 */
-    longlong *table_ptr;                                     /**< 表指针 */
-    longlong table_index;                                    /**< 表索引 */
+    uint64_t iteration_count;                               /**< 迭代计数 */
+    int64_t *table_ptr;                                     /**< 表指针 */
+    int64_t table_index;                                    /**< 表索引 */
     
     // 栈变量定义
     int8_t stack_buffer[32];                             /**< 栈缓冲区 */
@@ -297,14 +297,14 @@ void DataStructureProcessor(uint64_t context_ptr, longlong data_buffer, uint *re
     byte *stack_buffer_ptr;                                  /**< 栈缓冲区指针 */
     int stack_flag;                                          /**< 栈标志 */
     byte large_buffer[1032];                                 /**< 大缓冲区 */
-    ulonglong stack_checksum;                                /**< 栈校验和 */
+    uint64_t stack_checksum;                                /**< 栈校验和 */
     
     // 初始化栈保护
     stack_guard = MEMORY_STACK_GUARD;
-    stack_checksum = GET_SECURITY_COOKIE() ^ (ulonglong)stack_buffer;
+    stack_checksum = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer;
     
     // 更新数据缓冲区位置
-    *(longlong *)(data_buffer + 8) = *(longlong *)(data_buffer + 8) + 4;
+    *(int64_t *)(data_buffer + 8) = *(int64_t *)(data_buffer + 8) + 4;
     *result_ptr = 0;
     
     // 获取当前数据值
@@ -313,7 +313,7 @@ void DataStructureProcessor(uint64_t context_ptr, longlong data_buffer, uint *re
     
     // 处理数据值
     if (data_value != 0) {
-        iteration_count = (ulonglong)data_value;
+        iteration_count = (uint64_t)data_value;
         do {
             // 初始化处理环境
             stack_data_ptr = &unknown_var_336_ptr;
@@ -329,11 +329,11 @@ void DataStructureProcessor(uint64_t context_ptr, longlong data_buffer, uint *re
             // 处理数据值
             if (data_value != 0) {
                 FUN_180045f60(&stack_data_ptr, data_iterator, data_value);
-                *(longlong *)(data_buffer + 8) = *(longlong *)(data_buffer + 8) + (ulonglong)data_value;
+                *(int64_t *)(data_buffer + 8) = *(int64_t *)(data_buffer + 8) + (uint64_t)data_value;
             }
             
             // 遍历数据表进行匹配
-            table_ptr = (longlong *)&unknown_var_8416_ptr;
+            table_ptr = (int64_t *)&unknown_var_8416_ptr;
             table_index = 0;
             do {
                 // 计算字符串长度
@@ -349,7 +349,7 @@ void DataStructureProcessor(uint64_t context_ptr, longlong data_buffer, uint *re
                     if (stack_flag != 0) {
                         string_ptr = stack_buffer_ptr;
                         do {
-                            buffer_ptr = string_ptr + (*table_ptr - (longlong)stack_buffer_ptr);
+                            buffer_ptr = string_ptr + (*table_ptr - (int64_t)stack_buffer_ptr);
                             comparison_result = (uint)*string_ptr - (uint)*buffer_ptr;
                             if (comparison_result != 0) break;
                             string_ptr = string_ptr + 1;
@@ -371,7 +371,7 @@ void DataStructureProcessor(uint64_t context_ptr, longlong data_buffer, uint *re
                 
                 table_index = table_index + 1;
                 table_ptr = table_ptr + 2;
-            } while ((longlong)table_ptr < 0x18098dc90);
+            } while ((int64_t)table_ptr < 0x18098dc90);
             
             // 重置处理环境
             stack_data_ptr = &system_state_ptr;
@@ -380,7 +380,7 @@ void DataStructureProcessor(uint64_t context_ptr, longlong data_buffer, uint *re
     }
     
     // 清理和保护栈
-    FUN_1808fc050(stack_checksum ^ (ulonglong)stack_buffer);
+    FUN_1808fc050(stack_checksum ^ (uint64_t)stack_buffer);
 }
 
 /**
@@ -402,22 +402,22 @@ void DataStructureProcessor(uint64_t context_ptr, longlong data_buffer, uint *re
  * @note 这是容器初始化的核心函数
  * @see DataStructureProcessor
  */
-void ContainerInitializer(uint64_t context_ptr, uint init_flag, longlong *container_ptr)
+void ContainerInitializer(uint64_t context_ptr, uint init_flag, int64_t *container_ptr)
 {
     // 语义化变量定义
-    longlong container_start;                                 /**< 容器起始位置 */
+    int64_t container_start;                                 /**< 容器起始位置 */
     int32_t *data_ptr;                                    /**< 数据指针 */
-    longlong current_position;                               /**< 当前位置 */
+    int64_t current_position;                               /**< 当前位置 */
     uint64_t *table_ptr;                                   /**< 表指针 */
     int item_count;                                           /**< 项目计数 */
-    longlong available_space;                                 /**< 可用空间 */
+    int64_t available_space;                                 /**< 可用空间 */
     
     // 获取容器数据指针
     data_ptr = (int32_t *)container_ptr[1];
     
     // 检查是否需要扩容
-    if ((ulonglong)((*container_ptr - (longlong)data_ptr) + container_ptr[2]) < 5) {
-        System_BufferManager(container_ptr, (longlong)data_ptr + (4 - *container_ptr));
+    if ((uint64_t)((*container_ptr - (int64_t)data_ptr) + container_ptr[2]) < 5) {
+        System_BufferManager(container_ptr, (int64_t)data_ptr + (4 - *container_ptr));
         data_ptr = (int32_t *)container_ptr[1];
     }
     
@@ -435,7 +435,7 @@ void ContainerInitializer(uint64_t context_ptr, uint init_flag, longlong *contai
     }
     
     // 检查是否需要再次扩容
-    if ((ulonglong)((container_start - current_position) + container_ptr[2]) < 5) {
+    if ((uint64_t)((container_start - current_position) + container_ptr[2]) < 5) {
         System_BufferManager(container_ptr, (current_position - container_start) + 4);
         current_position = container_ptr[1];
     }
@@ -451,7 +451,7 @@ void ContainerInitializer(uint64_t context_ptr, uint init_flag, longlong *contai
             item_count = item_count + 1;
         }
         table_ptr = table_ptr + 2;
-    } while ((longlong)table_ptr < 0x18098dc90);
+    } while ((int64_t)table_ptr < 0x18098dc90);
     
     // 设置项目计数
     *(int *)(available_space + *container_ptr) = item_count;
@@ -477,13 +477,13 @@ void ContainerInitializer(uint64_t context_ptr, uint init_flag, longlong *contai
  * @note 这是容器大小调整的核心函数
  * @see ContainerInitializer
  */
-void ContainerResizer(longlong *container_ptr, ulonglong new_capacity)
+void ContainerResizer(int64_t *container_ptr, uint64_t new_capacity)
 {
     // 语义化变量定义
-    longlong container_end;                                   /**< 容器结束位置 */
-    ulonglong current_capacity;                              /**< 当前容量 */
-    longlong expansion_count;                                 /**< 扩展计数 */
-    longlong new_end_position;                                /**< 新结束位置 */
+    int64_t container_end;                                   /**< 容器结束位置 */
+    uint64_t current_capacity;                              /**< 当前容量 */
+    int64_t expansion_count;                                 /**< 扩展计数 */
+    int64_t new_end_position;                                /**< 新结束位置 */
     
     // 获取容器当前状态
     container_end = container_ptr[1];
@@ -503,7 +503,7 @@ void ContainerResizer(longlong *container_ptr, ulonglong new_capacity)
             // 清理多余的容器空间
             do {
                 *(uint64_t *)(new_end_position + 0x28) = &system_data_buffer_ptr;
-                if (*(longlong *)(new_end_position + 0x30) != 0) {
+                if (*(int64_t *)(new_end_position + 0x30) != 0) {
                     FUN_18064e900();
                 }
                 *(uint64_t *)(new_end_position + 0x30) = 0;
@@ -539,13 +539,13 @@ void ContainerResizer(longlong *container_ptr, ulonglong new_capacity)
  * @note 这是小容器大小调整的核心函数
  * @see ContainerResizer
  */
-void SmallContainerResizer(longlong *container_ptr, ulonglong new_capacity)
+void SmallContainerResizer(int64_t *container_ptr, uint64_t new_capacity)
 {
     // 语义化变量定义
-    longlong container_end;                                   /**< 容器结束位置 */
-    ulonglong current_capacity;                              /**< 当前容量 */
-    longlong expansion_count;                                 /**< 扩展计数 */
-    longlong new_end_position;                                /**< 新结束位置 */
+    int64_t container_end;                                   /**< 容器结束位置 */
+    uint64_t current_capacity;                              /**< 当前容量 */
+    int64_t expansion_count;                                 /**< 扩展计数 */
+    int64_t new_end_position;                                /**< 新结束位置 */
     
     // 获取容器当前状态
     container_end = container_ptr[1];
@@ -565,7 +565,7 @@ void SmallContainerResizer(longlong *container_ptr, ulonglong new_capacity)
             // 清理多余的容器空间
             do {
                 *(uint64_t *)(new_end_position + 0x18) = &system_data_buffer_ptr;
-                if (*(longlong *)(new_end_position + 0x20) != 0) {
+                if (*(int64_t *)(new_end_position + 0x20) != 0) {
                     FUN_18064e900();
                 }
                 *(uint64_t *)(new_end_position + 0x20) = 0;
@@ -600,11 +600,11 @@ void SmallContainerResizer(longlong *container_ptr, ulonglong new_capacity)
  * @note 这是容器清理的核心函数
  * @see ContainerInitializer
  */
-void ContainerCleaner(longlong *container_ptr)
+void ContainerCleaner(int64_t *container_ptr)
 {
     // 语义化变量定义
-    longlong container_end;                                   /**< 容器结束位置 */
-    longlong current_position;                               /**< 当前位置 */
+    int64_t container_end;                                   /**< 容器结束位置 */
+    int64_t current_position;                               /**< 当前位置 */
     
     // 获取容器范围
     container_end = container_ptr[1];
@@ -642,13 +642,13 @@ void ContainerCleaner(longlong *container_ptr)
  * @note 这是中等容器大小调整的核心函数
  * @see ContainerResizer
  */
-void MediumContainerResizer(longlong *container_ptr, ulonglong new_capacity)
+void MediumContainerResizer(int64_t *container_ptr, uint64_t new_capacity)
 {
     // 语义化变量定义
-    longlong container_end;                                   /**< 容器结束位置 */
-    ulonglong current_capacity;                              /**< 当前容量 */
-    longlong expansion_count;                                 /**< 扩展计数 */
-    longlong new_end_position;                                /**< 新结束位置 */
+    int64_t container_end;                                   /**< 容器结束位置 */
+    uint64_t current_capacity;                              /**< 当前容量 */
+    int64_t expansion_count;                                 /**< 扩展计数 */
+    int64_t new_end_position;                                /**< 新结束位置 */
     
     // 获取容器当前状态
     container_end = container_ptr[1];
@@ -698,22 +698,22 @@ void MediumContainerResizer(longlong *container_ptr, ulonglong new_capacity)
  * @note 这是小数据容器管理的核心函数
  * @see SmallContainerResizer
  */
-void SmallDataContainerManager(longlong *container_ptr, ulonglong required_space)
+void SmallDataContainerManager(int64_t *container_ptr, uint64_t required_space)
 {
     // 语义化变量定义
-    longlong container_end;                                   /**< 容器结束位置 */
-    ulonglong available_capacity;                            /**< 可用容量 */
+    int64_t container_end;                                   /**< 容器结束位置 */
+    uint64_t available_capacity;                            /**< 可用容量 */
     int32_t *data_ptr;                                     /**< 数据指针 */
-    longlong container_start;                                 /**< 容器起始位置 */
-    longlong current_capacity;                                /**< 当前容量 */
-    ulonglong new_capacity;                                   /**< 新容量 */
-    longlong allocated_memory;                                /**< 分配的内存 */
+    int64_t container_start;                                 /**< 容器起始位置 */
+    int64_t current_capacity;                                /**< 当前容量 */
+    uint64_t new_capacity;                                   /**< 新容量 */
+    int64_t allocated_memory;                                /**< 分配的内存 */
     
     // 获取容器当前状态
     container_end = container_ptr[1];
     
     // 检查是否有足够空间
-    if (required_space <= (ulonglong)((container_ptr[2] - container_end) / CONTAINER_SIZE_0x18)) {
+    if (required_space <= (uint64_t)((container_ptr[2] - container_end) / CONTAINER_SIZE_0x18)) {
         if (required_space != 0) {
             // 初始化新分配的空间
             data_ptr = (int32_t *)(container_end + 0x14);
@@ -805,15 +805,15 @@ void SmallDataContainerManager(longlong *container_ptr, ulonglong required_space
 void SmallDataExpander(void)
 {
     // 语义化变量定义
-    longlong register_data;                                    /**< 寄存器数据 */
-    longlong calculated_size;                                 /**< 计算的大小 */
+    int64_t register_data;                                    /**< 寄存器数据 */
+    int64_t calculated_size;                                 /**< 计算的大小 */
     int32_t *data_ptr;                                     /**< 数据指针 */
-    longlong current_position;                               /**< 当前位置 */
-    longlong *container_ptr;                                 /**< 容器指针 */
-    longlong base_pointer;                                    /**< 基础指针 */
-    longlong index_pointer;                                   /**< 索引指针 */
-    longlong data_pointer;                                    /**< 数据指针 */
-    ulonglong required_capacity;                              /**< 需要的容量 */
+    int64_t current_position;                               /**< 当前位置 */
+    int64_t *container_ptr;                                 /**< 容器指针 */
+    int64_t base_pointer;                                    /**< 基础指针 */
+    int64_t index_pointer;                                   /**< 索引指针 */
+    int64_t data_pointer;                                    /**< 数据指针 */
+    uint64_t required_capacity;                              /**< 需要的容量 */
     
     // 计算需要的容量
     calculated_size = SUB168(SEXT816(register_data) * SEXT816(index_pointer - data_pointer), 8);
@@ -826,7 +826,7 @@ void SmallDataExpander(void)
     }
     
     // 确保容量足够
-    if (required_capacity < (ulonglong)(calculated_size + data_pointer)) {
+    if (required_capacity < (uint64_t)(calculated_size + data_pointer)) {
         required_capacity = calculated_size + data_pointer;
     }
     
@@ -889,10 +889,10 @@ void SmallDataAppender(void)
 {
     // 语义化变量定义
     int32_t *data_ptr;                                     /**< 数据指针 */
-    longlong data_count;                                      /**< 数据计数 */
-    longlong container_start;                                 /**< 容器起始位置 */
-    longlong container_end;                                   /**< 容器结束位置 */
-    longlong append_count;                                     /**< 添加计数 */
+    int64_t data_count;                                      /**< 数据计数 */
+    int64_t container_start;                                 /**< 容器起始位置 */
+    int64_t container_end;                                   /**< 容器结束位置 */
+    int64_t append_count;                                     /**< 添加计数 */
     
     // 获取容器参数
     append_count = data_count;
@@ -904,11 +904,11 @@ void SmallDataAppender(void)
             data_ptr = data_ptr + 6;
             data_count = data_count + -1;
         } while (data_count != 0);
-        container_end = *(longlong *)(container_start + 8);
+        container_end = *(int64_t *)(container_start + 8);
     }
     
     // 更新容器结束位置
-    *(longlong *)(container_start + 8) = container_end + append_count * CONTAINER_SIZE_0x18;
+    *(int64_t *)(container_start + 8) = container_end + append_count * CONTAINER_SIZE_0x18;
     
     return;
 }
@@ -931,16 +931,16 @@ void SmallDataAppender(void)
  * @note 这是大容器管理的核心函数
  * @see MediumContainerManager
  */
-void LargeContainerManager(longlong *container_ptr, ulonglong required_capacity)
+void LargeContainerManager(int64_t *container_ptr, uint64_t required_capacity)
 {
     // 语义化变量定义
-    longlong container_start;                                 /**< 容器起始位置 */
+    int64_t container_start;                                 /**< 容器起始位置 */
     uint64_t *data_ptr;                                     /**< 数据指针 */
-    longlong current_capacity;                                /**< 当前容量 */
-    ulonglong new_capacity;                                   /**< 新容量 */
-    ulonglong available_capacity;                            /**< 可用容量 */
+    int64_t current_capacity;                                /**< 当前容量 */
+    uint64_t new_capacity;                                   /**< 新容量 */
+    uint64_t available_capacity;                            /**< 可用容量 */
     uint64_t *new_data_ptr;                                 /**< 新数据指针 */
-    longlong allocated_memory;                                /**< 分配的内存 */
+    int64_t allocated_memory;                                /**< 分配的内存 */
     uint64_t *temp_ptr1;                                    /**< 临时指针1 */
     uint64_t *temp_ptr2;                                    /**< 临时指针2 */
     
@@ -949,9 +949,9 @@ void LargeContainerManager(longlong *container_ptr, ulonglong required_capacity)
     data_ptr = (uint64_t *)container_ptr[1];
     
     // 检查是否有足够空间
-    if ((ulonglong)((container_ptr[2] - (longlong)data_ptr) / CONTAINER_SIZE_0x88) < required_capacity) {
+    if ((uint64_t)((container_ptr[2] - (int64_t)data_ptr) / CONTAINER_SIZE_0x88) < required_capacity) {
         container_start = *container_ptr;
-        current_capacity = ((longlong)data_ptr - container_start) / CONTAINER_SIZE_0x88;
+        current_capacity = ((int64_t)data_ptr - container_start) / CONTAINER_SIZE_0x88;
         new_capacity = current_capacity * MEMORY_EXPANSION_FACTOR;
         
         // 确保最小容量
@@ -1025,7 +1025,7 @@ void LargeContainerManager(longlong *container_ptr, ulonglong required_capacity)
         
         // 更新容器信息
         *container_ptr = current_capacity;
-        container_ptr[1] = (longlong)(data_ptr + required_capacity * 0x11);
+        container_ptr[1] = (int64_t)(data_ptr + required_capacity * 0x11);
         container_ptr[2] = new_capacity * CONTAINER_SIZE_0x88 + current_capacity;
     }
     else {
@@ -1059,7 +1059,7 @@ void LargeContainerManager(longlong *container_ptr, ulonglong required_capacity)
         }
         
         // 更新容器结束位置
-        container_ptr[1] = (longlong)(data_ptr + required_capacity * 0x11);
+        container_ptr[1] = (int64_t)(data_ptr + required_capacity * 0x11);
     }
     
     return;
@@ -1083,12 +1083,12 @@ void LargeContainerManager(longlong *container_ptr, ulonglong required_capacity)
  * @note 这是索引容器管理的核心函数
  * @see LargeContainerManager
  */
-void IndexedContainerManager(longlong *container_ptr, ulonglong required_capacity)
+void IndexedContainerManager(int64_t *container_ptr, uint64_t required_capacity)
 {
     // 语义化变量定义
-    longlong container_start;                                 /**< 容器起始位置 */
+    int64_t container_start;                                 /**< 容器起始位置 */
     uint64_t *data_ptr;                                     /**< 数据指针 */
-    ulonglong available_capacity;                            /**< 可用容量 */
+    uint64_t available_capacity;                            /**< 可用容量 */
     int32_t *index_ptr;                                    /**< 索引指针 */
     int32_t *temp_ptr;                                     /**< 临时指针 */
     
@@ -1096,9 +1096,9 @@ void IndexedContainerManager(longlong *container_ptr, ulonglong required_capacit
     index_ptr = (int32_t *)container_ptr[1];
     
     // 检查是否有足够空间
-    if ((ulonglong)((container_ptr[2] - (longlong)index_ptr) / CONTAINER_SIZE_0x14) < required_capacity) {
+    if ((uint64_t)((container_ptr[2] - (int64_t)index_ptr) / CONTAINER_SIZE_0x14) < required_capacity) {
         temp_ptr = (int32_t *)*container_ptr;
-        container_start = ((longlong)index_ptr - (longlong)temp_ptr) / CONTAINER_SIZE_0x14;
+        container_start = ((int64_t)index_ptr - (int64_t)temp_ptr) / CONTAINER_SIZE_0x14;
         available_capacity = container_start * MEMORY_EXPANSION_FACTOR;
         
         // 确保最小容量
@@ -1122,7 +1122,7 @@ void IndexedContainerManager(longlong *container_ptr, ulonglong required_capacit
         
         // 处理数据迁移
         if (temp_ptr != index_ptr) {
-            memmove(container_start, temp_ptr, (longlong)index_ptr - (longlong)temp_ptr);
+            memmove(container_start, temp_ptr, (int64_t)index_ptr - (int64_t)temp_ptr);
         }
         
         // 初始化新分配的空间
@@ -1130,10 +1130,10 @@ void IndexedContainerManager(longlong *container_ptr, ulonglong required_capacit
             data_ptr = (uint64_t *)(container_start + 4);
             available_capacity = required_capacity;
             do {
-                *(int32_t *)((longlong)data_ptr + -4) = 0;
+                *(int32_t *)((int64_t)data_ptr + -4) = 0;
                 data_ptr[1] = 0xffffffffffffffff;
                 *data_ptr = 0xffffffffffffffff;
-                data_ptr = (uint64_t *)((longlong)data_ptr + CONTAINER_SIZE_0x14);
+                data_ptr = (uint64_t *)((int64_t)data_ptr + CONTAINER_SIZE_0x14);
                 available_capacity = available_capacity - 1;
             } while (available_capacity != 0);
         }
@@ -1163,7 +1163,7 @@ void IndexedContainerManager(longlong *container_ptr, ulonglong required_capacit
         }
         
         // 更新容器结束位置
-        container_ptr[1] = (longlong)(index_ptr + required_capacity * 5);
+        container_ptr[1] = (int64_t)(index_ptr + required_capacity * 5);
     }
     
     return;
@@ -1189,16 +1189,16 @@ void IndexedContainerManager(longlong *container_ptr, ulonglong required_capacit
  * @note 这是索引容器扩展的核心函数
  * @see IndexedContainerManager
  */
-void IndexedContainerExpander(longlong param_1, uint64_t param_2, uint64_t param_3, longlong param_4)
+void IndexedContainerExpander(int64_t param_1, uint64_t param_2, uint64_t param_3, int64_t param_4)
 {
     // 语义化变量定义
-    longlong register_data;                                    /**< 寄存器数据 */
+    int64_t register_data;                                    /**< 寄存器数据 */
     uint64_t *data_ptr;                                     /**< 数据指针 */
-    longlong calculated_size;                                 /**< 计算的大小 */
-    longlong current_position;                               /**< 当前位置 */
-    longlong *container_ptr;                                 /**< 容器指针 */
-    longlong append_count;                                     /**< 添加计数 */
-    ulonglong required_capacity;                              /**< 需要的容量 */
+    int64_t calculated_size;                                 /**< 计算的大小 */
+    int64_t current_position;                               /**< 当前位置 */
+    int64_t *container_ptr;                                 /**< 容器指针 */
+    int64_t append_count;                                     /**< 添加计数 */
+    uint64_t required_capacity;                              /**< 需要的容量 */
     
     // 计算需要的容量
     calculated_size = SUB168(SEXT816(register_data) * SEXT816(param_1 - param_4), 8);
@@ -1211,7 +1211,7 @@ void IndexedContainerExpander(longlong param_1, uint64_t param_2, uint64_t param
     }
     
     // 确保容量足够
-    if (required_capacity < (ulonglong)(calculated_size + append_count)) {
+    if (required_capacity < (uint64_t)(calculated_size + append_count)) {
         required_capacity = calculated_size + append_count;
     }
     
@@ -1234,10 +1234,10 @@ void IndexedContainerExpander(longlong param_1, uint64_t param_2, uint64_t param
         data_ptr = (uint64_t *)(calculated_size + 4);
         current_position = append_count;
         do {
-            *(int32_t *)((longlong)data_ptr + -4) = 0;
+            *(int32_t *)((int64_t)data_ptr + -4) = 0;
             data_ptr[1] = 0xffffffffffffffff;
             *data_ptr = 0xffffffffffffffff;
-            data_ptr = (uint64_t *)((longlong)data_ptr + CONTAINER_SIZE_0x14);
+            data_ptr = (uint64_t *)((int64_t)data_ptr + CONTAINER_SIZE_0x14);
             current_position = current_position + -1;
         } while (current_position != 0);
     }
@@ -1271,13 +1271,13 @@ void IndexedContainerExpander(longlong param_1, uint64_t param_2, uint64_t param
  * @note 这是索引容器添加的核心函数
  * @see IndexedContainerExpander
  */
-void IndexedContainerAppender(longlong param_1)
+void IndexedContainerAppender(int64_t param_1)
 {
     // 语义化变量定义
-    longlong data_count;                                      /**< 数据计数 */
+    int64_t data_count;                                      /**< 数据计数 */
     int32_t *index_ptr;                                    /**< 索引指针 */
-    longlong container_start;                                 /**< 容器起始位置 */
-    longlong append_count;                                     /**< 添加计数 */
+    int64_t container_start;                                 /**< 容器起始位置 */
+    int64_t append_count;                                     /**< 添加计数 */
     
     // 获取参数
     data_count = append_count;
@@ -1318,16 +1318,16 @@ void IndexedContainerAppender(longlong param_1)
  * @note 这是中等容器管理的核心函数
  * @see IndexedContainerManager
  */
-void MediumContainerManager(longlong *container_ptr, ulonglong required_capacity)
+void MediumContainerManager(int64_t *container_ptr, uint64_t required_capacity)
 {
     // 语义化变量定义
-    longlong container_start;                                 /**< 容器起始位置 */
+    int64_t container_start;                                 /**< 容器起始位置 */
     uint64_t *data_ptr;                                     /**< 数据指针 */
-    longlong current_capacity;                                /**< 当前容量 */
-    ulonglong new_capacity;                                   /**< 新容量 */
+    int64_t current_capacity;                                /**< 当前容量 */
+    uint64_t new_capacity;                                   /**< 新容量 */
     uint64_t *new_data_ptr;                                 /**< 新数据指针 */
-    ulonglong available_capacity;                            /**< 可用容量 */
-    longlong allocated_memory;                                /**< 分配的内存 */
+    uint64_t available_capacity;                            /**< 可用容量 */
+    int64_t allocated_memory;                                /**< 分配的内存 */
     uint64_t *temp_ptr1;                                    /**< 临时指针1 */
     uint64_t *temp_ptr2;                                    /**< 临时指针2 */
     
@@ -1335,9 +1335,9 @@ void MediumContainerManager(longlong *container_ptr, ulonglong required_capacity
     data_ptr = (uint64_t *)container_ptr[1];
     
     // 检查是否有足够空间
-    if ((ulonglong)((container_ptr[2] - (longlong)data_ptr) / CONTAINER_SIZE_0x60) < required_capacity) {
+    if ((uint64_t)((container_ptr[2] - (int64_t)data_ptr) / CONTAINER_SIZE_0x60) < required_capacity) {
         container_start = *container_ptr;
-        current_capacity = ((longlong)data_ptr - container_start) / CONTAINER_SIZE_0x60;
+        current_capacity = ((int64_t)data_ptr - container_start) / CONTAINER_SIZE_0x60;
         new_capacity = current_capacity * MEMORY_EXPANSION_FACTOR;
         
         // 确保最小容量
@@ -1369,15 +1369,15 @@ void MediumContainerManager(longlong *container_ptr, ulonglong required_capacity
             available_capacity = required_capacity;
             do {
                 temp_ptr1 = new_data_ptr + -0xb;
-                *(uint64_t *)((longlong)new_data_ptr + -0x3c) = 0;
-                *(uint64_t *)((longlong)new_data_ptr + -0x34) = 0;
-                *(uint64_t *)((longlong)new_data_ptr + -0x2c) = 0;
-                *(uint64_t *)((longlong)new_data_ptr + -0x24) = 0;
-                *(uint64_t *)((longlong)new_data_ptr + -0x1c) = 0;
-                *(uint64_t *)((longlong)new_data_ptr + -0x14) = 0;
-                *(uint64_t *)((longlong)new_data_ptr + -0xc) = 0;
-                *(uint64_t *)((longlong)new_data_ptr + -4) = 0;
-                *(int32_t *)((longlong)new_data_ptr + 4) = 0;
+                *(uint64_t *)((int64_t)new_data_ptr + -0x3c) = 0;
+                *(uint64_t *)((int64_t)new_data_ptr + -0x34) = 0;
+                *(uint64_t *)((int64_t)new_data_ptr + -0x2c) = 0;
+                *(uint64_t *)((int64_t)new_data_ptr + -0x24) = 0;
+                *(uint64_t *)((int64_t)new_data_ptr + -0x1c) = 0;
+                *(uint64_t *)((int64_t)new_data_ptr + -0x14) = 0;
+                *(uint64_t *)((int64_t)new_data_ptr + -0xc) = 0;
+                *(uint64_t *)((int64_t)new_data_ptr + -4) = 0;
+                *(int32_t *)((int64_t)new_data_ptr + 4) = 0;
                 *temp_ptr1 = 0;
                 new_data_ptr[-10] = 0;
                 new_data_ptr[-9] = 0;
@@ -1414,7 +1414,7 @@ void MediumContainerManager(longlong *container_ptr, ulonglong required_capacity
         
         // 更新容器信息
         *container_ptr = current_capacity;
-        container_ptr[1] = (longlong)(data_ptr + required_capacity * 0xc);
+        container_ptr[1] = (int64_t)(data_ptr + required_capacity * 0xc);
         container_ptr[2] = new_capacity * CONTAINER_SIZE_0x60 + current_capacity;
     }
     else {
@@ -1425,7 +1425,7 @@ void MediumContainerManager(longlong *container_ptr, ulonglong required_capacity
         }
         
         // 更新容器结束位置
-        container_ptr[1] = (longlong)data_ptr;
+        container_ptr[1] = (int64_t)data_ptr;
     }
     
     return;
@@ -1449,7 +1449,7 @@ void MediumContainerManager(longlong *container_ptr, ulonglong required_capacity
  * @note 这是大容器扩展的核心函数
  * @see MediumContainerManager
  */
-void LargeContainerExpander(longlong *container_ptr, ulonglong required_capacity)
+void LargeContainerExpander(int64_t *container_ptr, uint64_t required_capacity)
 {
     // 语义化变量定义
     int32_t *data_ptr;                                     /**< 数据指针 */
@@ -1463,19 +1463,19 @@ void LargeContainerExpander(longlong *container_ptr, ulonglong required_capacity
     uint64_t *temp_ptr3;                                    /**< 临时指针3 */
     uint64_t *temp_ptr4;                                    /**< 临时指针4 */
     uint64_t *temp_ptr5;                                    /**< 临时指针5 */
-    longlong current_position;                               /**< 当前位置 */
-    longlong start_position;                                  /**< 起始位置 */
-    ulonglong available_capacity;                            /**< 可用容量 */
-    ulonglong new_capacity;                                   /**< 新容量 */
-    longlong allocated_memory;                                /**< 分配的内存 */
+    int64_t current_position;                               /**< 当前位置 */
+    int64_t start_position;                                  /**< 起始位置 */
+    uint64_t available_capacity;                            /**< 可用容量 */
+    uint64_t new_capacity;                                   /**< 新容量 */
+    int64_t allocated_memory;                                /**< 分配的内存 */
     
     // 获取容器当前状态
     temp_ptr5 = (uint64_t *)container_ptr[1];
     
     // 检查是否有足够空间
-    if ((ulonglong)((container_ptr[2] - (longlong)temp_ptr5) / CONTAINER_SIZE_0x48) < required_capacity) {
+    if ((uint64_t)((container_ptr[2] - (int64_t)temp_ptr5) / CONTAINER_SIZE_0x48) < required_capacity) {
         temp_ptr4 = (uint64_t *)*container_ptr;
-        start_position = ((longlong)temp_ptr5 - (longlong)temp_ptr4) / CONTAINER_SIZE_0x48;
+        start_position = ((int64_t)temp_ptr5 - (int64_t)temp_ptr4) / CONTAINER_SIZE_0x48;
         new_capacity = start_position * MEMORY_EXPANSION_FACTOR;
         
         // 确保最小容量
@@ -1501,23 +1501,23 @@ void LargeContainerExpander(longlong *container_ptr, ulonglong required_capacity
         // 处理数据迁移
         temp_ptr2 = temp_ptr1;
         if (temp_ptr4 != temp_ptr5) {
-            start_position = (longlong)temp_ptr4 - (longlong)temp_ptr1;
+            start_position = (int64_t)temp_ptr4 - (int64_t)temp_ptr1;
             temp_ptr4 = (uint64_t *)(temp_ptr1 + 0xc);
             do {
-                *temp_ptr2 = *(int32_t *)(start_position + -0x30 + (longlong)temp_ptr4);
-                temp_ptr3 = (uint64_t *)(start_position + -0x2c + (longlong)temp_ptr4);
+                *temp_ptr2 = *(int32_t *)(start_position + -0x30 + (int64_t)temp_ptr4);
+                temp_ptr3 = (uint64_t *)(start_position + -0x2c + (int64_t)temp_ptr4);
                 temp_value5 = temp_ptr3[1];
-                *(uint64_t *)((longlong)temp_ptr4 + -0x2c) = *temp_ptr3;
-                *(uint64_t *)((longlong)temp_ptr4 + -0x24) = temp_value5;
-                data_ptr = (int32_t *)(start_position + -0x1c + (longlong)temp_ptr4);
+                *(uint64_t *)((int64_t)temp_ptr4 + -0x2c) = *temp_ptr3;
+                *(uint64_t *)((int64_t)temp_ptr4 + -0x24) = temp_value5;
+                data_ptr = (int32_t *)(start_position + -0x1c + (int64_t)temp_ptr4);
                 temp_value1 = data_ptr[1];
                 temp_value2 = data_ptr[2];
                 temp_value3 = data_ptr[3];
-                *(int32_t *)((longlong)temp_ptr4 + -0x1c) = *data_ptr;
+                *(int32_t *)((int64_t)temp_ptr4 + -0x1c) = *data_ptr;
                 *(int32_t *)(temp_ptr4 + -3) = temp_value1;
-                *(int32_t *)((longlong)temp_ptr4 + -0x14) = temp_value2;
+                *(int32_t *)((int64_t)temp_ptr4 + -0x14) = temp_value2;
                 *(int32_t *)(temp_ptr4 + -2) = temp_value3;
-                *(int32_t *)((longlong)temp_ptr4 + -0xc) = *(int32_t *)(start_position + -0xc + (longlong)temp_ptr4);
+                *(int32_t *)((int64_t)temp_ptr4 + -0xc) = *(int32_t *)(start_position + -0xc + (int64_t)temp_ptr4);
                 temp_ptr4[-1] = &system_state_ptr;
                 *temp_ptr4 = 0;
                 *(int32_t *)(temp_ptr4 + 1) = 0;
@@ -1525,15 +1525,15 @@ void LargeContainerExpander(longlong *container_ptr, ulonglong required_capacity
                 temp_ptr4[2] = 0;
                 *temp_ptr4 = 0;
                 *(int32_t *)(temp_ptr4 + 1) = 0;
-                *(int32_t *)(temp_ptr4 + 1) = *(int32_t *)(start_position + 8 + (longlong)temp_ptr4);
-                *temp_ptr4 = *(uint64_t *)(start_position + (longlong)temp_ptr4);
-                *(int32_t *)((longlong)temp_ptr4 + 0x14) = *(int32_t *)(start_position + 0x14 + (longlong)temp_ptr4);
-                *(int32_t *)(temp_ptr4 + 2) = *(int32_t *)(start_position + 0x10 + (longlong)temp_ptr4);
-                *(int32_t *)(start_position + 8 + (longlong)temp_ptr4) = 0;
-                *(uint64_t *)(start_position + (longlong)temp_ptr4) = 0;
-                *(uint64_t *)(start_position + 0x10 + (longlong)temp_ptr4) = 0;
+                *(int32_t *)(temp_ptr4 + 1) = *(int32_t *)(start_position + 8 + (int64_t)temp_ptr4);
+                *temp_ptr4 = *(uint64_t *)(start_position + (int64_t)temp_ptr4);
+                *(int32_t *)((int64_t)temp_ptr4 + 0x14) = *(int32_t *)(start_position + 0x14 + (int64_t)temp_ptr4);
+                *(int32_t *)(temp_ptr4 + 2) = *(int32_t *)(start_position + 0x10 + (int64_t)temp_ptr4);
+                *(int32_t *)(start_position + 8 + (int64_t)temp_ptr4) = 0;
+                *(uint64_t *)(start_position + (int64_t)temp_ptr4) = 0;
+                *(uint64_t *)(start_position + 0x10 + (int64_t)temp_ptr4) = 0;
                 temp_ptr2 = temp_ptr2 + 0x12;
-                temp_ptr3 = (uint64_t *)((longlong)temp_ptr4 + start_position + 0x18);
+                temp_ptr3 = (uint64_t *)((int64_t)temp_ptr4 + start_position + 0x18);
                 temp_ptr4 = temp_ptr4 + 9;
             } while (temp_ptr3 != temp_ptr5);
         }
@@ -1548,8 +1548,8 @@ void LargeContainerExpander(longlong *container_ptr, ulonglong required_capacity
                 temp_ptr5[-4] = 0;
                 temp_ptr5[-3] = 0;
                 temp_ptr5[-2] = 0;
-                *(uint64_t *)((longlong)temp_ptr5 + 0xc) = 0;
-                *(int32_t *)((longlong)temp_ptr5 + 0x14) = 0;
+                *(uint64_t *)((int64_t)temp_ptr5 + 0xc) = 0;
+                *(int32_t *)((int64_t)temp_ptr5 + 0x14) = 0;
                 temp_ptr5[-1] = &system_state_ptr;
                 *temp_ptr5 = 0;
                 *(int32_t *)(temp_ptr5 + 1) = 0;
@@ -1568,7 +1568,7 @@ void LargeContainerExpander(longlong *container_ptr, ulonglong required_capacity
         if (current_position != start_position) {
             do {
                 *(uint64_t *)(current_position + 0x28) = &system_data_buffer_ptr;
-                if (*(longlong *)(current_position + 0x30) != 0) {
+                if (*(int64_t *)(current_position + 0x30) != 0) {
                     FUN_18064e900();
                 }
                 *(uint64_t *)(current_position + 0x30) = 0;
@@ -1585,9 +1585,9 @@ void LargeContainerExpander(longlong *container_ptr, ulonglong required_capacity
         }
         
         // 更新容器信息
-        *container_ptr = (longlong)temp_ptr1;
-        container_ptr[1] = (longlong)(temp_ptr2 + required_capacity * 0x12);
-        container_ptr[2] = (longlong)(temp_ptr1 + new_capacity * 0x12);
+        *container_ptr = (int64_t)temp_ptr1;
+        container_ptr[1] = (int64_t)(temp_ptr2 + required_capacity * 0x12);
+        container_ptr[2] = (int64_t)(temp_ptr1 + new_capacity * 0x12);
     }
     else {
         // 初始化现有空间
@@ -1619,7 +1619,7 @@ void LargeContainerExpander(longlong *container_ptr, ulonglong required_capacity
         }
         
         // 更新容器结束位置
-        container_ptr[1] = (longlong)(temp_ptr5 + required_capacity * 9);
+        container_ptr[1] = (int64_t)(temp_ptr5 + required_capacity * 9);
     }
     
     return;
@@ -1643,7 +1643,7 @@ void LargeContainerExpander(longlong *container_ptr, ulonglong required_capacity
  * @note 这是中等容器扩展的核心函数
  * @see LargeContainerExpander
  */
-void MediumContainerExpander(longlong *container_ptr, ulonglong required_capacity)
+void MediumContainerExpander(int64_t *container_ptr, uint64_t required_capacity)
 {
     // 语义化变量定义
     int32_t *data_ptr;                                     /**< 数据指针 */
@@ -1655,18 +1655,18 @@ void MediumContainerExpander(longlong *container_ptr, ulonglong required_capacit
     uint64_t *temp_ptr3;                                    /**< 临时指针3 */
     uint64_t *temp_ptr4;                                    /**< 临时指针4 */
     uint64_t *temp_ptr5;                                    /**< 临时指针5 */
-    longlong current_position;                               /**< 当前位置 */
-    longlong start_position;                                  /**< 起始位置 */
-    ulonglong available_capacity;                            /**< 可用容量 */
-    ulonglong new_capacity;                                   /**< 新容量 */
+    int64_t current_position;                               /**< 当前位置 */
+    int64_t start_position;                                  /**< 起始位置 */
+    uint64_t available_capacity;                            /**< 可用容量 */
+    uint64_t new_capacity;                                   /**< 新容量 */
     
     // 获取容器当前状态
     temp_ptr5 = (uint64_t *)container_ptr[1];
     
     // 检查是否有足够空间
-    if ((ulonglong)((container_ptr[2] - (longlong)temp_ptr5) / CONTAINER_SIZE_0x38) < required_capacity) {
+    if ((uint64_t)((container_ptr[2] - (int64_t)temp_ptr5) / CONTAINER_SIZE_0x38) < required_capacity) {
         temp_ptr4 = (uint64_t *)*container_ptr;
-        start_position = ((longlong)temp_ptr5 - (longlong)temp_ptr4) / CONTAINER_SIZE_0x38;
+        start_position = ((int64_t)temp_ptr5 - (int64_t)temp_ptr4) / CONTAINER_SIZE_0x38;
         new_capacity = start_position * MEMORY_EXPANSION_FACTOR;
         
         // 确保最小容量
@@ -1692,19 +1692,19 @@ void MediumContainerExpander(longlong *container_ptr, ulonglong required_capacit
         // 处理数据迁移
         temp_ptr2 = temp_ptr1;
         if (temp_ptr4 != temp_ptr5) {
-            start_position = (longlong)temp_ptr4 - (longlong)temp_ptr1;
+            start_position = (int64_t)temp_ptr4 - (int64_t)temp_ptr1;
             temp_ptr4 = (uint64_t *)(temp_ptr1 + 8);
             do {
-                *temp_ptr2 = *(int32_t *)(start_position + -0x20 + (longlong)temp_ptr4);
-                data_ptr = (int32_t *)(start_position + -0x1c + (longlong)temp_ptr4);
+                *temp_ptr2 = *(int32_t *)(start_position + -0x20 + (int64_t)temp_ptr4);
+                data_ptr = (int32_t *)(start_position + -0x1c + (int64_t)temp_ptr4);
                 temp_value1 = data_ptr[1];
                 temp_value2 = data_ptr[2];
                 temp_value3 = data_ptr[3];
-                *(int32_t *)((longlong)temp_ptr4 + -0x1c) = *data_ptr;
+                *(int32_t *)((int64_t)temp_ptr4 + -0x1c) = *data_ptr;
                 *(int32_t *)(temp_ptr4 + -3) = temp_value1;
-                *(int32_t *)((longlong)temp_ptr4 + -0x14) = temp_value2;
+                *(int32_t *)((int64_t)temp_ptr4 + -0x14) = temp_value2;
                 *(int32_t *)(temp_ptr4 + -2) = temp_value3;
-                *(int32_t *)((longlong)temp_ptr4 + -0xc) = *(int32_t *)(start_position + -0xc + (longlong)temp_ptr4);
+                *(int32_t *)((int64_t)temp_ptr4 + -0xc) = *(int32_t *)(start_position + -0xc + (int64_t)temp_ptr4);
                 temp_ptr4[-1] = &system_state_ptr;
                 *temp_ptr4 = 0;
                 *(int32_t *)(temp_ptr4 + 1) = 0;
@@ -1712,15 +1712,15 @@ void MediumContainerExpander(longlong *container_ptr, ulonglong required_capacit
                 temp_ptr4[2] = 0;
                 *temp_ptr4 = 0;
                 *(int32_t *)(temp_ptr4 + 1) = 0;
-                *(int32_t *)(temp_ptr4 + 1) = *(int32_t *)(start_position + 8 + (longlong)temp_ptr4);
-                *temp_ptr4 = *(uint64_t *)(start_position + (longlong)temp_ptr4);
-                *(int32_t *)((longlong)temp_ptr4 + 0x14) = *(int32_t *)(start_position + 0x14 + (longlong)temp_ptr4);
-                *(int32_t *)(temp_ptr4 + 2) = *(int32_t *)(start_position + 0x10 + (longlong)temp_ptr4);
-                *(int32_t *)(start_position + 8 + (longlong)temp_ptr4) = 0;
-                *(uint64_t *)(start_position + (longlong)temp_ptr4) = 0;
-                *(uint64_t *)(start_position + 0x10 + (longlong)temp_ptr4) = 0;
+                *(int32_t *)(temp_ptr4 + 1) = *(int32_t *)(start_position + 8 + (int64_t)temp_ptr4);
+                *temp_ptr4 = *(uint64_t *)(start_position + (int64_t)temp_ptr4);
+                *(int32_t *)((int64_t)temp_ptr4 + 0x14) = *(int32_t *)(start_position + 0x14 + (int64_t)temp_ptr4);
+                *(int32_t *)(temp_ptr4 + 2) = *(int32_t *)(start_position + 0x10 + (int64_t)temp_ptr4);
+                *(int32_t *)(start_position + 8 + (int64_t)temp_ptr4) = 0;
+                *(uint64_t *)(start_position + (int64_t)temp_ptr4) = 0;
+                *(uint64_t *)(start_position + 0x10 + (int64_t)temp_ptr4) = 0;
                 temp_ptr2 = temp_ptr2 + 0xe;
-                temp_ptr3 = (uint64_t *)((longlong)temp_ptr4 + start_position + 0x18);
+                temp_ptr3 = (uint64_t *)((int64_t)temp_ptr4 + start_position + 0x18);
                 temp_ptr4 = temp_ptr4 + 7;
             } while (temp_ptr3 != temp_ptr5);
         }
@@ -1733,8 +1733,8 @@ void MediumContainerExpander(longlong *container_ptr, ulonglong required_capacit
                 temp_ptr5[-4] = 0;
                 temp_ptr5[-3] = 0;
                 temp_ptr5[-2] = 0;
-                *(uint64_t *)((longlong)temp_ptr5 + 0xc) = 0;
-                *(int32_t *)((longlong)temp_ptr5 + 0x14) = 0;
+                *(uint64_t *)((int64_t)temp_ptr5 + 0xc) = 0;
+                *(int32_t *)((int64_t)temp_ptr5 + 0x14) = 0;
                 temp_ptr5[-1] = &system_state_ptr;
                 *temp_ptr5 = 0;
                 *(int32_t *)(temp_ptr5 + 1) = 0;
@@ -1753,7 +1753,7 @@ void MediumContainerExpander(longlong *container_ptr, ulonglong required_capacit
         if (current_position != start_position) {
             do {
                 *(uint64_t *)(current_position + 0x18) = &system_data_buffer_ptr;
-                if (*(longlong *)(current_position + 0x20) != 0) {
+                if (*(int64_t *)(current_position + 0x20) != 0) {
                     FUN_18064e900();
                 }
                 *(uint64_t *)(current_position + 0x20) = 0;
@@ -1770,9 +1770,9 @@ void MediumContainerExpander(longlong *container_ptr, ulonglong required_capacit
         }
         
         // 更新容器信息
-        *container_ptr = (longlong)temp_ptr1;
-        container_ptr[1] = (longlong)(temp_ptr2 + required_capacity * 0xe);
-        container_ptr[2] = (longlong)(temp_ptr1 + new_capacity * 0xe);
+        *container_ptr = (int64_t)temp_ptr1;
+        container_ptr[1] = (int64_t)(temp_ptr2 + required_capacity * 0xe);
+        container_ptr[2] = (int64_t)(temp_ptr1 + new_capacity * 0xe);
     }
     else {
         // 初始化现有空间
@@ -1802,7 +1802,7 @@ void MediumContainerExpander(longlong *container_ptr, ulonglong required_capacit
         }
         
         // 更新容器结束位置
-        container_ptr[1] = (longlong)(temp_ptr5 + required_capacity * 7);
+        container_ptr[1] = (int64_t)(temp_ptr5 + required_capacity * 7);
     }
     
     return;
@@ -1817,12 +1817,12 @@ void MediumContainerExpander(longlong *container_ptr, ulonglong required_capacit
  * @details 定义数据结构管理的标准接口函数
  */
 typedef struct {
-    void (*process_data)(uint64_t, longlong, uint*);        /**< 数据处理函数指针 */
-    void (*initialize_container)(uint64_t, uint, longlong*); /**< 容器初始化函数指针 */
-    void (*resize_container)(longlong*, ulonglong);          /**< 容器调整函数指针 */
-    void (*cleanup_container)(longlong*);                    /**< 容器清理函数指针 */
-    void (*expand_container)(longlong*, ulonglong);          /**< 容器扩展函数指针 */
-    DataStructStatus (*validate_container)(longlong*);       /**< 容器验证函数指针 */
+    void (*process_data)(uint64_t, int64_t, uint*);        /**< 数据处理函数指针 */
+    void (*initialize_container)(uint64_t, uint, int64_t*); /**< 容器初始化函数指针 */
+    void (*resize_container)(int64_t*, uint64_t);          /**< 容器调整函数指针 */
+    void (*cleanup_container)(int64_t*);                    /**< 容器清理函数指针 */
+    void (*expand_container)(int64_t*, uint64_t);          /**< 容器扩展函数指针 */
+    DataStructStatus (*validate_container)(int64_t*);       /**< 容器验证函数指针 */
 } DataStructManagerInterface;
 
 /**

@@ -1,1 +1,4482 @@
 longlong/ulonglong类型处理日志 - 2025年 08月 28日 星期四 19:19:38 UTC
+处理文件: ./pretty/99_part_12_part078_sub002.c
+  - 发现 longlong: 5 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part356_sub002_sub002.c
+  - 发现 longlong: 240 个
+  - 发现 ulonglong: 16 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_10_part018.c
+  - 发现 longlong: 186 个
+  - 发现 ulonglong: 72 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part140.c
+  - 发现 longlong: 94 个
+  - 发现 ulonglong: 29 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part040_sub002_sub002.c
+  - 发现 longlong: 256 个
+  - 发现 ulonglong: 51 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_05_part021.c
+  - 发现 longlong: 169 个
+  - 发现 ulonglong: 23 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part033.c
+  - 发现 longlong: 3 个
+  - 发现 ulonglong: 2 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part296_sub002_sub002.c
+  - 发现 longlong: 159 个
+  - 发现 ulonglong: 29 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/01_initialization_part063_sub002_sub002.c
+  - 发现 longlong: 105 个
+  - 发现 ulonglong: 38 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part305.c
+  - 发现 longlong: 62 个
+  - 发现 ulonglong: 32 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_06_part059.c
+  - 发现 longlong: 172 个
+  - 发现 ulonglong: 26 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_01_part059.c
+  - 发现 longlong: 152 个
+  - 发现 ulonglong: 3 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_04_part008.c
+  - 发现 longlong: 286 个
+  - 发现 ulonglong: 46 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_01_part041_sub002_sub002.c
+  - 发现 longlong: 154 个
+  - 发现 ulonglong: 38 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_09_part006.c
+  - 发现 longlong: 81 个
+  - 发现 ulonglong: 4 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part105.c
+  - 发现 longlong: 108 个
+  - 发现 ulonglong: 15 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_06_part069.c
+  - 发现 longlong: 109 个
+  - 发现 ulonglong: 23 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part025.c
+  - 发现 longlong: 22 个
+  - 发现 ulonglong: 14 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part083.c
+  - 发现 longlong: 25 个
+  - 发现 ulonglong: 5 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part576.c
+  - 发现 longlong: 54 个
+  - 发现 ulonglong: 4 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part189.c
+  - 发现 longlong: 1 个
+  - 发现 ulonglong: 1 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part195_sub002.c
+  - 发现 longlong: 3 个
+  - 发现 ulonglong: 1 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part319.c
+  - 发现 longlong: 151 个
+  - 发现 ulonglong: 32 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part533.c
+  - 发现 longlong: 210 个
+  - 发现 ulonglong: 51 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/01_initialization_part039.c
+  - 发现 longlong: 225 个
+  - 发现 ulonglong: 83 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_12_part029.c
+  - 发现 longlong: 14 个
+  - 发现 ulonglong: 4 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part532.c
+  - 发现 longlong: 117 个
+  - 发现 ulonglong: 31 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking_part096.c
+  - 发现 longlong: 112 个
+  - 发现 ulonglong: 27 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_10_part016.c
+  - 发现 longlong: 123 个
+  - 发现 ulonglong: 33 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part519.c
+  - 发现 longlong: 313 个
+  - 发现 ulonglong: 16 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part164_sub002_sub002.c
+  - 发现 longlong: 199 个
+  - 发现 ulonglong: 9 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_09_part026.c
+  - 发现 longlong: 123 个
+  - 发现 ulonglong: 28 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part036.c
+  - 发现 longlong: 156 个
+  - 发现 ulonglong: 23 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_09_part095.c
+  - 发现 longlong: 201 个
+  - 发现 ulonglong: 52 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part538.c
+  - 发现 longlong: 117 个
+  - 发现 ulonglong: 33 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_13_part078_sub002_sub002.c
+  - 发现 longlong: 235 个
+  - 发现 ulonglong: 38 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_11_part014.c
+  - 发现 longlong: 64 个
+  - 发现 ulonglong: 13 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_12_part041_sub001.c
+  - 发现 longlong: 19 个
+  - 发现 ulonglong: 3 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_01_part043.c
+  - 发现 longlong: 109 个
+  - 发现 ulonglong: 9 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_02_part035.c
+  - 发现 longlong: 167 个
+  - 发现 ulonglong: 92 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking_part088_sub001_sub001.c
+  - 发现 longlong: 201 个
+  - 发现 ulonglong: 3 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part074.c
+  - 发现 longlong: 39 个
+  - 发现 ulonglong: 7 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part153.c
+  - 发现 longlong: 98 个
+  - 发现 ulonglong: 12 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part149.c
+  - 发现 longlong: 24 个
+  - 发现 ulonglong: 11 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part060.c
+  - 发现 longlong: 168 个
+  - 发现 ulonglong: 20 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_12_part025.c
+  - 发现 longlong: 130 个
+  - 发现 ulonglong: 58 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part557.c
+  - 发现 longlong: 103 个
+  - 发现 ulonglong: 17 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking_part090.c
+  - 发现 longlong: 141 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part223_sub002_sub002.c
+  - 发现 longlong: 117 个
+  - 发现 ulonglong: 22 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/01_initialization_part004_sub001.c
+  - 发现 longlong: 111 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part235.c
+  - 发现 longlong: 161 个
+  - 发现 ulonglong: 37 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part192.c
+  - 发现 longlong: 143 个
+  - 发现 ulonglong: 28 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part391.c
+  - 发现 longlong: 292 个
+  - 发现 ulonglong: 3 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part129.c
+  - 发现 longlong: 195 个
+  - 发现 ulonglong: 63 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_06_part011.c
+  - 发现 longlong: 27 个
+  - 发现 ulonglong: 2 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part463_sub001.c
+  - 发现 longlong: 70 个
+  - 发现 ulonglong: 13 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_05_part025.c
+  - 发现 longlong: 170 个
+  - 发现 ulonglong: 19 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_07_part047_sub001.c
+  - 发现 longlong: 5 个
+  - 发现 ulonglong: 3 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_04_part049.c
+  - 发现 longlong: 183 个
+  - 发现 ulonglong: 25 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part727.c
+  - 发现 longlong: 19 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_12_part076.c
+  - 发现 longlong: 103 个
+  - 发现 ulonglong: 45 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part166.c
+  - 发现 longlong: 91 个
+  - 发现 ulonglong: 12 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_05_part065.c
+  - 发现 longlong: 200 个
+  - 发现 ulonglong: 16 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part208.c
+  - 发现 longlong: 209 个
+  - 发现 ulonglong: 33 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part199_sub001.c
+  - 发现 longlong: 38 个
+  - 发现 ulonglong: 17 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_12_part043.c
+  - 发现 longlong: 11 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part550.c
+  - 发现 longlong: 162 个
+  - 发现 ulonglong: 29 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking_part070_sub001.c
+  - 发现 longlong: 193 个
+  - 发现 ulonglong: 27 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part410.c
+  - 发现 longlong: 158 个
+  - 发现 ulonglong: 31 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_02_part009.c
+  - 发现 longlong: 325 个
+  - 发现 ulonglong: 117 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_02_part005.c
+  - 发现 longlong: 127 个
+  - 发现 ulonglong: 20 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part350.c
+  - 发现 longlong: 210 个
+  - 发现 ulonglong: 28 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_11_part056_sub002_sub002.c
+  - 发现 longlong: 291 个
+  - 发现 ulonglong: 26 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_04_part075.c
+  - 发现 longlong: 103 个
+  - 发现 ulonglong: 3 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part581.c
+  - 发现 longlong: 105 个
+  - 发现 ulonglong: 12 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_04_part006.c
+  - 发现 longlong: 277 个
+  - 发现 ulonglong: 16 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_11_part029.c
+  - 发现 longlong: 203 个
+  - 发现 ulonglong: 27 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_10_part031.c
+  - 发现 longlong: 59 个
+  - 发现 ulonglong: 14 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_13_part020.c
+  - 发现 longlong: 226 个
+  - 发现 ulonglong: 15 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_04_part041.c
+  - 发现 longlong: 94 个
+  - 发现 ulonglong: 1 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part423.c
+  - 发现 longlong: 195 个
+  - 发现 ulonglong: 61 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part030.c
+  - 发现 longlong: 292 个
+  - 发现 ulonglong: 18 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part374_sub002.c
+  - 发现 longlong: 2 个
+  - 发现 ulonglong: 2 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_03_part045.c
+  - 发现 longlong: 152 个
+  - 发现 ulonglong: 15 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part171.c
+  - 发现 longlong: 137 个
+  - 发现 ulonglong: 40 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part381.c
+  - 发现 longlong: 229 个
+  - 发现 ulonglong: 79 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part122.c
+  - 发现 longlong: 157 个
+  - 发现 ulonglong: 56 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part521.c
+  - 发现 longlong: 84 个
+  - 发现 ulonglong: 11 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking_part085.c
+  - 发现 longlong: 45 个
+  - 发现 ulonglong: 5 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_13/99_part_13_part022.c
+  - 发现 longlong: 171 个
+  - 发现 ulonglong: 22 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_13/99_part_13_part001.c
+  - 发现 longlong: 100 个
+  - 发现 ulonglong: 11 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_13/99_part_13_part022_simplified.c
+  - 发现 longlong: 11 个
+  - 发现 ulonglong: 6 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_13/99_part_13_part069.c
+  - 发现 longlong: 222 个
+  - 发现 ulonglong: 5 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part179_sub002_sub002.c
+  - 发现 longlong: 235 个
+  - 发现 ulonglong: 26 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_06_part067.c
+  - 发现 longlong: 255 个
+  - 发现 ulonglong: 22 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_14_part016.c
+  - 发现 longlong: 48 个
+  - 发现 ulonglong: 12 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_04_part055.c
+  - 发现 longlong: 75 个
+  - 发现 ulonglong: 5 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_04_part065.c
+  - 发现 longlong: 176 个
+  - 发现 ulonglong: 27 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part604.c
+  - 发现 longlong: 113 个
+  - 发现 ulonglong: 19 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_11_part034_sub002_sub002.c
+  - 发现 longlong: 166 个
+  - 发现 ulonglong: 55 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_10_part025.c
+  - 发现 longlong: 188 个
+  - 发现 ulonglong: 55 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_05_part007.c
+  - 发现 longlong: 236 个
+  - 发现 ulonglong: 72 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part345.c
+  - 发现 longlong: 182 个
+  - 发现 ulonglong: 26 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part107.c
+  - 发现 longlong: 123 个
+  - 发现 ulonglong: 42 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_13_part015.c
+  - 发现 longlong: 114 个
+  - 发现 ulonglong: 29 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part163_sub002_sub002.c
+  - 发现 longlong: 215 个
+  - 发现 ulonglong: 19 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part453.c
+  - 发现 longlong: 52 个
+  - 发现 ulonglong: 3 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part010.c
+  - 发现 longlong: 162 个
+  - 发现 ulonglong: 34 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_11_part020.c
+  - 发现 longlong: 110 个
+  - 发现 ulonglong: 55 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking_part035.c
+  - 发现 longlong: 135 个
+  - 发现 ulonglong: 10 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_05_part044.c
+  - 发现 longlong: 194 个
+  - 发现 ulonglong: 40 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_02_part015.c
+  - 发现 longlong: 230 个
+  - 发现 ulonglong: 13 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part568.c
+  - 发现 longlong: 13 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part706.c
+  - 发现 longlong: 81 个
+  - 发现 ulonglong: 35 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_01_part023.c
+  - 发现 longlong: 96 个
+  - 发现 ulonglong: 11 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking_part019.c
+  - 发现 longlong: 58 个
+  - 发现 ulonglong: 22 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part320.c
+  - 发现 longlong: 47 个
+  - 发现 ulonglong: 15 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_09_part062.c
+  - 发现 longlong: 20 个
+  - 发现 ulonglong: 3 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_13_part035.c
+  - 发现 longlong: 213 个
+  - 发现 ulonglong: 5 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_09_part051.c
+  - 发现 longlong: 184 个
+  - 发现 ulonglong: 18 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part078.c
+  - 发现 longlong: 257 个
+  - 发现 ulonglong: 75 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_03_part085.c
+  - 发现 longlong: 256 个
+  - 发现 ulonglong: 18 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_12_part079.c
+  - 发现 longlong: 55 个
+  - 发现 ulonglong: 32 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part019_sub002_sub002.c
+  - 发现 longlong: 19 个
+  - 发现 ulonglong: 12 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part641.c
+  - 发现 longlong: 130 个
+  - 发现 ulonglong: 32 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking_part034.c
+  - 发现 longlong: 302 个
+  - 发现 ulonglong: 13 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part279.c
+  - 发现 longlong: 130 个
+  - 发现 ulonglong: 93 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_04_part011.c
+  - 发现 longlong: 214 个
+  - 发现 ulonglong: 43 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part295.c
+  - 发现 longlong: 66 个
+  - 发现 ulonglong: 9 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part262.c
+  - 发现 longlong: 86 个
+  - 发现 ulonglong: 19 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part044.c
+  - 发现 longlong: 77 个
+  - 发现 ulonglong: 27 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking_part056_sub001.c
+  - 发现 longlong: 258 个
+  - 发现 ulonglong: 42 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part001.c
+  - 发现 longlong: 6 个
+  - 发现 ulonglong: 3 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part624.c
+  - 发现 longlong: 121 个
+  - 发现 ulonglong: 69 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/01_initialization_part019.c
+  - 发现 longlong: 211 个
+  - 发现 ulonglong: 42 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part320.c
+  - 发现 longlong: 200 个
+  - 发现 ulonglong: 66 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_08_part072_sub002_sub002.c
+  - 发现 longlong: 209 个
+  - 发现 ulonglong: 21 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part026.c
+  - 发现 longlong: 94 个
+  - 发现 ulonglong: 7 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_07_part046.c
+  - 发现 longlong: 209 个
+  - 发现 ulonglong: 20 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_12_part026.c
+  - 发现 longlong: 138 个
+  - 发现 ulonglong: 54 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part143.c
+  - 发现 longlong: 73 个
+  - 发现 ulonglong: 7 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part092.c
+  - 发现 longlong: 80 个
+  - 发现 ulonglong: 34 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_10_part036.c
+  - 发现 longlong: 49 个
+  - 发现 ulonglong: 17 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking_part038.c
+  - 发现 longlong: 249 个
+  - 发现 ulonglong: 17 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_09_part061.c
+  - 发现 longlong: 85 个
+  - 发现 ulonglong: 10 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_07_part037.c
+  - 发现 longlong: 63 个
+  - 发现 ulonglong: 32 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part356.c
+  - 发现 longlong: 148 个
+  - 发现 ulonglong: 15 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_03_part048.c
+  - 发现 longlong: 124 个
+  - 发现 ulonglong: 4 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part600.c
+  - 发现 longlong: 34 个
+  - 发现 ulonglong: 3 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_09_part007.c
+  - 发现 longlong: 112 个
+  - 发现 ulonglong: 6 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_08_part071.c
+  - 发现 longlong: 230 个
+  - 发现 ulonglong: 22 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part206.c
+  - 发现 longlong: 273 个
+  - 发现 ulonglong: 16 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_14/99_part_14_part016.c
+  - 发现 longlong: 31 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_14/99_part_14_part024.c
+  - 发现 longlong: 57 个
+  - 发现 ulonglong: 51 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_14/99_part_14_part023.c
+  - 发现 longlong: 60 个
+  - 发现 ulonglong: 38 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_10_part027.c
+  - 发现 longlong: 191 个
+  - 发现 ulonglong: 41 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_11_part031_sub002_sub002.c
+  - 发现 longlong: 125 个
+  - 发现 ulonglong: 23 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_12_part077.c
+  - 发现 longlong: 108 个
+  - 发现 ulonglong: 19 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part219.c
+  - 发现 longlong: 173 个
+  - 发现 ulonglong: 5 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part335.c
+  - 发现 longlong: 122 个
+  - 发现 ulonglong: 4 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part081.c
+  - 发现 longlong: 54 个
+  - 发现 ulonglong: 18 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_12_part028.c
+  - 发现 longlong: 71 个
+  - 发现 ulonglong: 44 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part382_sub001.c
+  - 发现 longlong: 209 个
+  - 发现 ulonglong: 3 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part080.c
+  - 发现 longlong: 184 个
+  - 发现 ulonglong: 33 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_09_part019.c
+  - 发现 longlong: 92 个
+  - 发现 ulonglong: 20 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part411.c
+  - 发现 longlong: 134 个
+  - 发现 ulonglong: 10 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part553.c
+  - 发现 longlong: 139 个
+  - 发现 ulonglong: 13 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_13_part031.c
+  - 发现 longlong: 276 个
+  - 发现 ulonglong: 34 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_13_part028.c
+  - 发现 longlong: 236 个
+  - 发现 ulonglong: 53 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_04_part076.c
+  - 发现 longlong: 144 个
+  - 发现 ulonglong: 34 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_06_part016.c
+  - 发现 longlong: 249 个
+  - 发现 ulonglong: 31 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part274.c
+  - 发现 longlong: 216 个
+  - 发现 ulonglong: 37 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part197.c
+  - 发现 longlong: 27 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part325.c
+  - 发现 longlong: 148 个
+  - 发现 ulonglong: 41 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_04_part078.c
+  - 发现 longlong: 96 个
+  - 发现 ulonglong: 15 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part245.c
+  - 发现 longlong: 187 个
+  - 发现 ulonglong: 76 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part024.c
+  - 发现 longlong: 143 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part437.c
+  - 发现 longlong: 16 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part124.c
+  - 发现 longlong: 142 个
+  - 发现 ulonglong: 43 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_13_part007.c
+  - 发现 longlong: 54 个
+  - 发现 ulonglong: 21 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_01_part042.c
+  - 发现 longlong: 312 个
+  - 发现 ulonglong: 4 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_09_part077_sub002_sub002.c
+  - 发现 longlong: 98 个
+  - 发现 ulonglong: 19 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part237.c
+  - 发现 longlong: 172 个
+  - 发现 ulonglong: 31 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking_part107.c
+  - 发现 longlong: 28 个
+  - 发现 ulonglong: 12 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part243.c
+  - 发现 longlong: 187 个
+  - 发现 ulonglong: 44 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part403.c
+  - 发现 longlong: 132 个
+  - 发现 ulonglong: 23 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part228.c
+  - 发现 longlong: 111 个
+  - 发现 ulonglong: 7 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_04_part077.c
+  - 发现 longlong: 184 个
+  - 发现 ulonglong: 54 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part149_sub002_sub002.c
+  - 发现 longlong: 168 个
+  - 发现 ulonglong: 25 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part139.c
+  - 发现 longlong: 61 个
+  - 发现 ulonglong: 4 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_13_part001.c
+  - 发现 longlong: 25 个
+  - 发现 ulonglong: 4 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_06_part072_sub002_sub002.c
+  - 发现 longlong: 203 个
+  - 发现 ulonglong: 32 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part436.c
+  - 发现 longlong: 152 个
+  - 发现 ulonglong: 7 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part026_sub002_sub002.c
+  - 发现 longlong: 263 个
+  - 发现 ulonglong: 49 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_12_part082.c
+  - 发现 longlong: 79 个
+  - 发现 ulonglong: 33 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part027.c
+  - 发现 longlong: 94 个
+  - 发现 ulonglong: 15 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_13_part050.c
+  - 发现 longlong: 183 个
+  - 发现 ulonglong: 41 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_08_part012.c
+  - 发现 longlong: 150 个
+  - 发现 ulonglong: 31 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part263.c
+  - 发现 longlong: 179 个
+  - 发现 ulonglong: 35 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_14_part024.c
+  - 发现 longlong: 59 个
+  - 发现 ulonglong: 53 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_06_part020.c
+  - 发现 longlong: 238 个
+  - 发现 ulonglong: 56 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part442.c
+  - 发现 longlong: 274 个
+  - 发现 ulonglong: 3 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part120.c
+  - 发现 longlong: 152 个
+  - 发现 ulonglong: 15 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part617.c
+  - 发现 longlong: 120 个
+  - 发现 ulonglong: 46 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_02_part025_sub002_sub002.c
+  - 发现 longlong: 42 个
+  - 发现 ulonglong: 24 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part015.c
+  - 发现 longlong: 110 个
+  - 发现 ulonglong: 5 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part163.c
+  - 发现 longlong: 8 个
+  - 发现 ulonglong: 5 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part669.c
+  - 发现 longlong: 297 个
+  - 发现 ulonglong: 69 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_14_part022_sub002_sub002.c
+  - 发现 longlong: 79 个
+  - 发现 ulonglong: 69 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part573.c
+  - 发现 longlong: 204 个
+  - 发现 ulonglong: 54 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_02_part032.c
+  - 发现 longlong: 121 个
+  - 发现 ulonglong: 5 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part023.c
+  - 发现 longlong: 136 个
+  - 发现 ulonglong: 23 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part656.c
+  - 发现 longlong: 105 个
+  - 发现 ulonglong: 21 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_04_part005.c
+  - 发现 longlong: 90 个
+  - 发现 ulonglong: 22 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part336.c
+  - 发现 longlong: 198 个
+  - 发现 ulonglong: 13 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_10_part058.c
+  - 发现 longlong: 39 个
+  - 发现 ulonglong: 2 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part499.c
+  - 发现 longlong: 106 个
+  - 发现 ulonglong: 42 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_08_part028.c
+  - 发现 longlong: 204 个
+  - 发现 ulonglong: 50 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part632.c
+  - 发现 longlong: 116 个
+  - 发现 ulonglong: 31 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part547_sub002_sub002.c
+  - 发现 longlong: 22 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part474.c
+  - 发现 longlong: 210 个
+  - 发现 ulonglong: 16 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part330.c
+  - 发现 longlong: 139 个
+  - 发现 ulonglong: 68 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part293.c
+  - 发现 longlong: 102 个
+  - 发现 ulonglong: 34 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part368.c
+  - 发现 longlong: 227 个
+  - 发现 ulonglong: 42 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part088.c
+  - 发现 longlong: 213 个
+  - 发现 ulonglong: 7 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part330.c
+  - 发现 longlong: 205 个
+  - 发现 ulonglong: 9 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part147.c
+  - 发现 longlong: 126 个
+  - 发现 ulonglong: 42 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_08_part038_sub002_sub002.c
+  - 发现 longlong: 136 个
+  - 发现 ulonglong: 5 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part070_sub002_sub002.c
+  - 发现 longlong: 95 个
+  - 发现 ulonglong: 68 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_13_part019.c
+  - 发现 longlong: 148 个
+  - 发现 ulonglong: 13 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part336.c
+  - 发现 longlong: 126 个
+  - 发现 ulonglong: 21 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking_part013.c
+  - 发现 longlong: 188 个
+  - 发现 ulonglong: 15 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_11_part049.c
+  - 发现 longlong: 174 个
+  - 发现 ulonglong: 41 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_04_part047.c
+  - 发现 longlong: 161 个
+  - 发现 ulonglong: 26 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part089.c
+  - 发现 longlong: 131 个
+  - 发现 ulonglong: 31 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part192_sub002_sub002.c
+  - 发现 longlong: 169 个
+  - 发现 ulonglong: 147 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking_part016.c
+  - 发现 longlong: 122 个
+  - 发现 ulonglong: 4 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part407_sub001_sub002.c
+  - 发现 longlong: 2 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking_part049.c
+  - 发现 longlong: 227 个
+  - 发现 ulonglong: 42 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part084_sub002_sub002.c
+  - 发现 longlong: 274 个
+  - 发现 ulonglong: 11 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_01_part037.c
+  - 发现 longlong: 162 个
+  - 发现 ulonglong: 17 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_05_part018_sub002_sub002.c
+  - 发现 longlong: 47 个
+  - 发现 ulonglong: 11 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part438_sub002_sub002.c
+  - 发现 longlong: 110 个
+  - 发现 ulonglong: 21 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part223_sub002_sub002.c
+  - 发现 longlong: 331 个
+  - 发现 ulonglong: 50 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part469.c
+  - 发现 longlong: 92 个
+  - 发现 ulonglong: 13 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part278.c
+  - 发现 longlong: 151 个
+  - 发现 ulonglong: 45 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_03_part012.c
+  - 发现 longlong: 141 个
+  - 发现 ulonglong: 47 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part100.c
+  - 发现 longlong: 70 个
+  - 发现 ulonglong: 16 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_01_part015_sub001.c
+  - 发现 longlong: 84 个
+  - 发现 ulonglong: 24 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_08_part032.c
+  - 发现 longlong: 294 个
+  - 发现 ulonglong: 37 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part172.c
+  - 发现 longlong: 150 个
+  - 发现 ulonglong: 42 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part146.c
+  - 发现 longlong: 89 个
+  - 发现 ulonglong: 6 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part352.c
+  - 发现 longlong: 182 个
+  - 发现 ulonglong: 22 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part220.c
+  - 发现 longlong: 77 个
+  - 发现 ulonglong: 12 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/01_initialization_part016.c
+  - 发现 longlong: 77 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part116.c
+  - 发现 longlong: 264 个
+  - 发现 ulonglong: 41 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part303.c
+  - 发现 longlong: 60 个
+  - 发现 ulonglong: 32 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_12_part040.c
+  - 发现 longlong: 124 个
+  - 发现 ulonglong: 18 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_04_part048.c
+  - 发现 longlong: 111 个
+  - 发现 ulonglong: 10 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_06_part062.c
+  - 发现 longlong: 60 个
+  - 发现 ulonglong: 4 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part405.c
+  - 发现 longlong: 184 个
+  - 发现 ulonglong: 5 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking_part095.c
+  - 发现 longlong: 77 个
+  - 发现 ulonglong: 13 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_08_part048.c
+  - 发现 longlong: 69 个
+  - 发现 ulonglong: 6 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_04_part054.c
+  - 发现 longlong: 114 个
+  - 发现 ulonglong: 13 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_11_part053.c
+  - 发现 longlong: 98 个
+  - 发现 ulonglong: 11 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part153.c
+  - 发现 longlong: 167 个
+  - 发现 ulonglong: 8 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part377.c
+  - 发现 longlong: 159 个
+  - 发现 ulonglong: 58 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_11_part021_sub001.c
+  - 发现 longlong: 133 个
+  - 发现 ulonglong: 45 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part077.c
+  - 发现 longlong: 92 个
+  - 发现 ulonglong: 21 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_04_part013.c
+  - 发现 longlong: 269 个
+  - 发现 ulonglong: 63 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part103.c
+  - 发现 longlong: 202 个
+  - 发现 ulonglong: 55 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_04_part081.c
+  - 发现 longlong: 250 个
+  - 发现 ulonglong: 40 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part218_sub002_sub002.c
+  - 发现 longlong: 88 个
+  - 发现 ulonglong: 10 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part266.c
+  - 发现 longlong: 135 个
+  - 发现 ulonglong: 49 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part293.c
+  - 发现 longlong: 62 个
+  - 发现 ulonglong: 9 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part297_sub002_sub002.c
+  - 发现 longlong: 603 个
+  - 发现 ulonglong: 11 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part040_sub002_sub002.c
+  - 发现 longlong: 185 个
+  - 发现 ulonglong: 89 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_09_part081.c
+  - 发现 longlong: 154 个
+  - 发现 ulonglong: 25 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part432.c
+  - 发现 longlong: 276 个
+  - 发现 ulonglong: 65 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part180.c
+  - 发现 longlong: 133 个
+  - 发现 ulonglong: 19 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part363.c
+  - 发现 longlong: 118 个
+  - 发现 ulonglong: 54 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part701.c
+  - 发现 longlong: 43 个
+  - 发现 ulonglong: 7 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_10_part007.c
+  - 发现 longlong: 89 个
+  - 发现 ulonglong: 10 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking_part106.c
+  - 发现 longlong: 95 个
+  - 发现 ulonglong: 65 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking_part051_sub002.c
+  - 发现 longlong: 2 个
+  - 发现 ulonglong: 2 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part185.c
+  - 发现 longlong: 153 个
+  - 发现 ulonglong: 22 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_03_part053.c
+  - 发现 longlong: 52 个
+  - 发现 ulonglong: 1 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part178_sub002_sub002.c
+  - 发现 longlong: 148 个
+  - 发现 ulonglong: 10 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_13_part084.c
+  - 发现 longlong: 170 个
+  - 发现 ulonglong: 27 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/06_utilities_part012.c
+  - 发现 longlong: 112 个
+  - 发现 ulonglong: 27 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part208.c
+  - 发现 longlong: 138 个
+  - 发现 ulonglong: 42 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part307.c
+  - 发现 longlong: 83 个
+  - 发现 ulonglong: 28 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_12_part080.c
+  - 发现 longlong: 69 个
+  - 发现 ulonglong: 48 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part702.c
+  - 发现 longlong: 208 个
+  - 发现 ulonglong: 51 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_04_part046_sub002_sub002.c
+  - 发现 longlong: 59 个
+  - 发现 ulonglong: 4 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part585.c
+  - 发现 longlong: 129 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part048.c
+  - 发现 longlong: 219 个
+  - 发现 ulonglong: 8 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part399.c
+  - 发现 longlong: 208 个
+  - 发现 ulonglong: 7 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part097.c
+  - 发现 longlong: 55 个
+  - 发现 ulonglong: 12 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part148.c
+  - 发现 longlong: 162 个
+  - 发现 ulonglong: 15 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part580_sub001.c
+  - 发现 longlong: 153 个
+  - 发现 ulonglong: 10 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_02_part018.c
+  - 发现 longlong: 218 个
+  - 发现 ulonglong: 39 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part137.c
+  - 发现 longlong: 137 个
+  - 发现 ulonglong: 32 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part003.c
+  - 发现 longlong: 117 个
+  - 发现 ulonglong: 59 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part666_sub002.c
+  - 发现 longlong: 9 个
+  - 发现 ulonglong: 1 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking_part046.c
+  - 发现 longlong: 214 个
+  - 发现 ulonglong: 18 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_10_part043.c
+  - 发现 longlong: 181 个
+  - 发现 ulonglong: 45 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_13_part013.c
+  - 发现 longlong: 77 个
+  - 发现 ulonglong: 31 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part406.c
+  - 发现 longlong: 68 个
+  - 发现 ulonglong: 58 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part028.c
+  - 发现 longlong: 245 个
+  - 发现 ulonglong: 91 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_03_part065.c
+  - 发现 longlong: 185 个
+  - 发现 ulonglong: 27 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part203.c
+  - 发现 longlong: 281 个
+  - 发现 ulonglong: 57 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part198.c
+  - 发现 longlong: 50 个
+  - 发现 ulonglong: 8 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_05_part029.c
+  - 发现 longlong: 163 个
+  - 发现 ulonglong: 32 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/01_initialization_part037.c
+  - 发现 longlong: 179 个
+  - 发现 ulonglong: 55 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part199.c
+  - 发现 longlong: 11 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_07_part056.c
+  - 发现 longlong: 285 个
+  - 发现 ulonglong: 24 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_07_part017.c
+  - 发现 longlong: 206 个
+  - 发现 ulonglong: 16 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_03_part028.c
+  - 发现 longlong: 154 个
+  - 发现 ulonglong: 19 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part275.c
+  - 发现 longlong: 165 个
+  - 发现 ulonglong: 10 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_11_part001_sub002.c
+  - 发现 longlong: 126 个
+  - 发现 ulonglong: 44 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part695.c
+  - 发现 longlong: 143 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part552.c
+  - 发现 longlong: 123 个
+  - 发现 ulonglong: 24 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_06_part044.c
+  - 发现 longlong: 175 个
+  - 发现 ulonglong: 25 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_12_part006_sub002_sub002.c
+  - 发现 longlong: 64 个
+  - 发现 ulonglong: 10 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part594.c
+  - 发现 longlong: 66 个
+  - 发现 ulonglong: 5 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_11_part059.c
+  - 发现 longlong: 122 个
+  - 发现 ulonglong: 39 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part209.c
+  - 发现 longlong: 103 个
+  - 发现 ulonglong: 19 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part191_sub002_sub002.c
+  - 发现 longlong: 106 个
+  - 发现 ulonglong: 15 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part570.c
+  - 发现 longlong: 194 个
+  - 发现 ulonglong: 13 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part065.c
+  - 发现 longlong: 88 个
+  - 发现 ulonglong: 29 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part065.c
+  - 发现 longlong: 156 个
+  - 发现 ulonglong: 9 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_12_part010.c
+  - 发现 longlong: 149 个
+  - 发现 ulonglong: 25 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_01_part022.c
+  - 发现 longlong: 187 个
+  - 发现 ulonglong: 10 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_10_part004.c
+  - 发现 longlong: 107 个
+  - 发现 ulonglong: 24 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part720_sub002_sub002.c
+  - 发现 longlong: 21 个
+  - 发现 ulonglong: 20 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_01_part024_sub002.c
+  - 发现 longlong: 30 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_11_part062_sub002_sub002.c
+  - 发现 longlong: 336 个
+  - 发现 ulonglong: 17 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/01_initialization_part031.c
+  - 发现 longlong: 261 个
+  - 发现 ulonglong: 129 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part194.c
+  - 发现 longlong: 119 个
+  - 发现 ulonglong: 30 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_06_part054.c
+  - 发现 longlong: 168 个
+  - 发现 ulonglong: 49 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part686.c
+  - 发现 longlong: 69 个
+  - 发现 ulonglong: 21 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part222.c
+  - 发现 longlong: 155 个
+  - 发现 ulonglong: 31 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/06_utilities_part014.c
+  - 发现 longlong: 95 个
+  - 发现 ulonglong: 14 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_13_part072.c
+  - 发现 longlong: 258 个
+  - 发现 ulonglong: 12 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_10_part040.c
+  - 发现 longlong: 203 个
+  - 发现 ulonglong: 42 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part283_sub002_sub002.c
+  - 发现 longlong: 19 个
+  - 发现 ulonglong: 11 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part344.c
+  - 发现 longlong: 171 个
+  - 发现 ulonglong: 22 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking_part021.c
+  - 发现 longlong: 154 个
+  - 发现 ulonglong: 12 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part264.c
+  - 发现 longlong: 180 个
+  - 发现 ulonglong: 26 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_11_part046.c
+  - 发现 longlong: 138 个
+  - 发现 ulonglong: 18 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_13_part011_sub001_sub002.c
+  - 发现 longlong: 11 个
+  - 发现 ulonglong: 9 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_09_part049.c
+  - 发现 longlong: 158 个
+  - 发现 ulonglong: 7 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_10_part055_sub002_sub002.c
+  - 发现 longlong: 313 个
+  - 发现 ulonglong: 83 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_04_part053.c
+  - 发现 longlong: 86 个
+  - 发现 ulonglong: 14 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part731.c
+  - 发现 longlong: 154 个
+  - 发现 ulonglong: 38 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_03/99_part_03_part001.c
+  - 发现 longlong: 112 个
+  - 发现 ulonglong: 31 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_03/99_part_03_part017.c
+  - 发现 longlong: 96 个
+  - 发现 ulonglong: 39 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_03/99_part_03_part054.c
+  - 发现 longlong: 104 个
+  - 发现 ulonglong: 11 个
+  - 替换后剩余 longlong: 2 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_03/99_part_03_part079.c
+  - 发现 longlong: 51 个
+  - 发现 ulonglong: 9 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part043.c
+  - 发现 longlong: 302 个
+  - 发现 ulonglong: 17 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_14_part018.c
+  - 发现 longlong: 101 个
+  - 发现 ulonglong: 60 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_07_part041.c
+  - 发现 longlong: 152 个
+  - 发现 ulonglong: 14 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_02_part029.c
+  - 发现 longlong: 50 个
+  - 发现 ulonglong: 8 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_04_part040.c
+  - 发现 longlong: 133 个
+  - 发现 ulonglong: 9 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part230.c
+  - 发现 longlong: 56 个
+  - 发现 ulonglong: 11 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_03_part047_sub002_sub002.c
+  - 发现 longlong: 227 个
+  - 发现 ulonglong: 37 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_12_part019.c
+  - 发现 longlong: 173 个
+  - 发现 ulonglong: 29 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part480.c
+  - 发现 longlong: 208 个
+  - 发现 ulonglong: 21 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part380.c
+  - 发现 longlong: 69 个
+  - 发现 ulonglong: 21 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part025.c
+  - 发现 longlong: 105 个
+  - 发现 ulonglong: 21 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/06_utilities_part025.c
+  - 发现 longlong: 73 个
+  - 发现 ulonglong: 37 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part207.c
+  - 发现 longlong: 225 个
+  - 发现 ulonglong: 37 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part609_sub002_sub002.c
+  - 发现 longlong: 209 个
+  - 发现 ulonglong: 16 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_05_part026.c
+  - 发现 longlong: 302 个
+  - 发现 ulonglong: 44 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking_part036.c
+  - 发现 longlong: 179 个
+  - 发现 ulonglong: 21 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_12_part046.c
+  - 发现 longlong: 111 个
+  - 发现 ulonglong: 20 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking_part055_sub001.c
+  - 发现 longlong: 258 个
+  - 发现 ulonglong: 42 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part100_sub002_sub002.c
+  - 发现 longlong: 155 个
+  - 发现 ulonglong: 32 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part527.c
+  - 发现 longlong: 128 个
+  - 发现 ulonglong: 10 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part329.c
+  - 发现 longlong: 274 个
+  - 发现 ulonglong: 11 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part622_sub001.c
+  - 发现 longlong: 139 个
+  - 发现 ulonglong: 30 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_09_part036.c
+  - 发现 longlong: 161 个
+  - 发现 ulonglong: 7 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part154_sub002_sub002.c
+  - 发现 longlong: 761 个
+  - 发现 ulonglong: 473 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part099.c
+  - 发现 longlong: 80 个
+  - 发现 ulonglong: 19 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_14_part015.c
+  - 发现 longlong: 45 个
+  - 发现 ulonglong: 15 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part601.c
+  - 发现 longlong: 57 个
+  - 发现 ulonglong: 8 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part076.c
+  - 发现 longlong: 8 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_10_part015.c
+  - 发现 longlong: 57 个
+  - 发现 ulonglong: 11 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part401.c
+  - 发现 longlong: 271 个
+  - 发现 ulonglong: 39 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking_part048.c
+  - 发现 longlong: 178 个
+  - 发现 ulonglong: 13 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part233.c
+  - 发现 longlong: 128 个
+  - 发现 ulonglong: 8 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part391.c
+  - 发现 longlong: 141 个
+  - 发现 ulonglong: 36 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part285_sub002_sub002.c
+  - 发现 longlong: 131 个
+  - 发现 ulonglong: 43 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part012.c
+  - 发现 longlong: 207 个
+  - 发现 ulonglong: 36 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part082.c
+  - 发现 longlong: 132 个
+  - 发现 ulonglong: 26 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part201.c
+  - 发现 longlong: 246 个
+  - 发现 ulonglong: 33 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part110.c
+  - 发现 longlong: 188 个
+  - 发现 ulonglong: 91 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_04_part083.c
+  - 发现 longlong: 33 个
+  - 发现 ulonglong: 6 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_02_part033_sub001.c
+  - 发现 longlong: 121 个
+  - 发现 ulonglong: 32 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part096.c
+  - 发现 longlong: 96 个
+  - 发现 ulonglong: 15 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/01_initialization_part043.c
+  - 发现 longlong: 70 个
+  - 发现 ulonglong: 16 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_09_part012.c
+  - 发现 longlong: 93 个
+  - 发现 ulonglong: 1 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part733.c
+  - 发现 longlong: 147 个
+  - 发现 ulonglong: 40 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part145.c
+  - 发现 longlong: 143 个
+  - 发现 ulonglong: 19 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_06_part049.c
+  - 发现 longlong: 253 个
+  - 发现 ulonglong: 24 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_07_part010.c
+  - 发现 longlong: 78 个
+  - 发现 ulonglong: 4 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part012.c
+  - 发现 longlong: 47 个
+  - 发现 ulonglong: 7 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_03_part057_sub002_sub002.c
+  - 发现 longlong: 166 个
+  - 发现 ulonglong: 14 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking_part099.c
+  - 发现 longlong: 45 个
+  - 发现 ulonglong: 7 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part195.c
+  - 发现 longlong: 91 个
+  - 发现 ulonglong: 21 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part072.c
+  - 发现 longlong: 111 个
+  - 发现 ulonglong: 30 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_12_part055_sub002.c
+  - 发现 longlong: 20 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_08_part039_sub002_sub002.c
+  - 发现 longlong: 129 个
+  - 发现 ulonglong: 4 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_14_part002.c
+  - 发现 longlong: 255 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part114.c
+  - 发现 longlong: 145 个
+  - 发现 ulonglong: 35 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part375.c
+  - 发现 longlong: 196 个
+  - 发现 ulonglong: 71 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking_part075_sub002_sub002.c
+  - 发现 longlong: 67 个
+  - 发现 ulonglong: 10 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part249.c
+  - 发现 longlong: 230 个
+  - 发现 ulonglong: 44 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part709.c
+  - 发现 longlong: 18 个
+  - 发现 ulonglong: 5 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_01_part054.c
+  - 发现 longlong: 193 个
+  - 发现 ulonglong: 18 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part224.c
+  - 发现 longlong: 108 个
+  - 发现 ulonglong: 35 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_04_part074.c
+  - 发现 longlong: 160 个
+  - 发现 ulonglong: 16 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_06_part074.c
+  - 发现 longlong: 38 个
+  - 发现 ulonglong: 19 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_08_part042.c
+  - 发现 longlong: 163 个
+  - 发现 ulonglong: 11 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part156.c
+  - 发现 longlong: 13 个
+  - 发现 ulonglong: 3 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part115.c
+  - 发现 longlong: 218 个
+  - 发现 ulonglong: 57 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/06_utilities_part010.c
+  - 发现 longlong: 77 个
+  - 发现 ulonglong: 16 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part094.c
+  - 发现 longlong: 146 个
+  - 发现 ulonglong: 27 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part066.c
+  - 发现 longlong: 201 个
+  - 发现 ulonglong: 24 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_11_part018.c
+  - 发现 longlong: 127 个
+  - 发现 ulonglong: 26 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_12_part078_sub001.c
+  - 发现 longlong: 96 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part054.c
+  - 发现 longlong: 69 个
+  - 发现 ulonglong: 13 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_03_part088.c
+  - 发现 longlong: 90 个
+  - 发现 ulonglong: 7 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part486.c
+  - 发现 longlong: 65 个
+  - 发现 ulonglong: 8 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_09_part022.c
+  - 发现 longlong: 187 个
+  - 发现 ulonglong: 50 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part493.c
+  - 发现 longlong: 147 个
+  - 发现 ulonglong: 14 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_07_part049.c
+  - 发现 longlong: 295 个
+  - 发现 ulonglong: 134 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_09_part054.c
+  - 发现 longlong: 360 个
+  - 发现 ulonglong: 110 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_16_part001.c
+  - 发现 longlong: 9 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part113.c
+  - 发现 longlong: 98 个
+  - 发现 ulonglong: 19 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part264.c
+  - 发现 longlong: 130 个
+  - 发现 ulonglong: 16 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_01_part065.c
+  - 发现 longlong: 216 个
+  - 发现 ulonglong: 22 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part157.c
+  - 发现 longlong: 168 个
+  - 发现 ulonglong: 5 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part305.c
+  - 发现 longlong: 106 个
+  - 发现 ulonglong: 28 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part047.c
+  - 发现 longlong: 117 个
+  - 发现 ulonglong: 9 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part692_sub002_sub002.c
+  - 发现 longlong: 219 个
+  - 发现 ulonglong: 36 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking_part068.c
+  - 发现 longlong: 91 个
+  - 发现 ulonglong: 6 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_11_part050.c
+  - 发现 longlong: 166 个
+  - 发现 ulonglong: 37 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_09_part076.c
+  - 发现 longlong: 109 个
+  - 发现 ulonglong: 9 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part408.c
+  - 发现 longlong: 182 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part607.c
+  - 发现 longlong: 45 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking_part097.c
+  - 发现 longlong: 118 个
+  - 发现 ulonglong: 24 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_06_part001.c
+  - 发现 longlong: 222 个
+  - 发现 ulonglong: 36 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part204.c
+  - 发现 longlong: 239 个
+  - 发现 ulonglong: 44 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_13_part060.c
+  - 发现 longlong: 43 个
+  - 发现 ulonglong: 13 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_08_part061.c
+  - 发现 longlong: 74 个
+  - 发现 ulonglong: 19 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_06_part024.c
+  - 发现 longlong: 137 个
+  - 发现 ulonglong: 11 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part194_sub002.c
+  - 发现 longlong: 16 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/01_initialization_part049.c
+  - 发现 longlong: 133 个
+  - 发现 ulonglong: 24 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking_part054_sub002.c
+  - 发现 longlong: 2 个
+  - 发现 ulonglong: 2 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_01_part003.c
+  - 发现 longlong: 26 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part292.c
+  - 发现 longlong: 22 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_12_part070.c
+  - 发现 longlong: 69 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_13_part027.c
+  - 发现 longlong: 199 个
+  - 发现 ulonglong: 54 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_02_part033_sub002.c
+  - 发现 longlong: 14 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part382.c
+  - 发现 longlong: 124 个
+  - 发现 ulonglong: 45 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_10/99_part_10_part022.c
+  - 发现 longlong: 37 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part210.c
+  - 发现 longlong: 108 个
+  - 发现 ulonglong: 10 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part416.c
+  - 发现 longlong: 118 个
+  - 发现 ulonglong: 24 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_12_part022.c
+  - 发现 longlong: 66 个
+  - 发现 ulonglong: 28 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part108.c
+  - 发现 longlong: 129 个
+  - 发现 ulonglong: 13 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_08_part025.c
+  - 发现 longlong: 235 个
+  - 发现 ulonglong: 40 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_03_part077.c
+  - 发现 longlong: 59 个
+  - 发现 ulonglong: 6 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_05_part003.c
+  - 发现 longlong: 116 个
+  - 发现 ulonglong: 29 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part302.c
+  - 发现 longlong: 48 个
+  - 发现 ulonglong: 34 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_08_part067.c
+  - 发现 longlong: 185 个
+  - 发现 ulonglong: 44 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_08_part053.c
+  - 发现 longlong: 117 个
+  - 发现 ulonglong: 7 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/01_initialization_part018.c
+  - 发现 longlong: 23 个
+  - 发现 ulonglong: 4 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part631.c
+  - 发现 longlong: 289 个
+  - 发现 ulonglong: 69 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part497.c
+  - 发现 longlong: 78 个
+  - 发现 ulonglong: 9 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part712.c
+  - 发现 longlong: 114 个
+  - 发现 ulonglong: 69 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_04_part038.c
+  - 发现 longlong: 180 个
+  - 发现 ulonglong: 52 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_07_part020.c
+  - 发现 longlong: 93 个
+  - 发现 ulonglong: 14 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part508.c
+  - 发现 longlong: 238 个
+  - 发现 ulonglong: 68 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part136_sub002.c
+  - 发现 longlong: 23 个
+  - 发现 ulonglong: 8 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part122.c
+  - 发现 longlong: 125 个
+  - 发现 ulonglong: 67 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part146.c
+  - 发现 longlong: 141 个
+  - 发现 ulonglong: 23 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_01_part010_sub001.c
+  - 发现 longlong: 5 个
+  - 发现 ulonglong: 3 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_07_part034.c
+  - 发现 longlong: 134 个
+  - 发现 ulonglong: 27 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part011_sub001_sub001.c
+  - 发现 longlong: 126 个
+  - 发现 ulonglong: 20 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_01_part039.c
+  - 发现 longlong: 74 个
+  - 发现 ulonglong: 1 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part518.c
+  - 发现 longlong: 335 个
+  - 发现 ulonglong: 50 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part328_sub002_sub002.c
+  - 发现 longlong: 41 个
+  - 发现 ulonglong: 5 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_01_part014.c
+  - 发现 longlong: 142 个
+  - 发现 ulonglong: 40 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_04_part030.c
+  - 发现 longlong: 153 个
+  - 发现 ulonglong: 65 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_02_part024.c
+  - 发现 longlong: 116 个
+  - 发现 ulonglong: 3 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_07_part068.c
+  - 发现 longlong: 195 个
+  - 发现 ulonglong: 5 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking_part070_sub002.c
+  - 发现 longlong: 2 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_03_part067.c
+  - 发现 longlong: 90 个
+  - 发现 ulonglong: 2 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part040.c
+  - 发现 longlong: 77 个
+  - 发现 ulonglong: 42 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part170_sub002_sub002.c
+  - 发现 longlong: 147 个
+  - 发现 ulonglong: 55 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part626.c
+  - 发现 longlong: 158 个
+  - 发现 ulonglong: 28 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_04_part007_sub002.c
+  - 发现 longlong: 2 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part020.c
+  - 发现 longlong: 53 个
+  - 发现 ulonglong: 14 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part338.c
+  - 发现 longlong: 58 个
+  - 发现 ulonglong: 22 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part145.c
+  - 发现 longlong: 43 个
+  - 发现 ulonglong: 3 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking_part065.c
+  - 发现 longlong: 122 个
+  - 发现 ulonglong: 18 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_01_part060.c
+  - 发现 longlong: 82 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_08_part069.c
+  - 发现 longlong: 205 个
+  - 发现 ulonglong: 6 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part234.c
+  - 发现 longlong: 137 个
+  - 发现 ulonglong: 5 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part415.c
+  - 发现 longlong: 44 个
+  - 发现 ulonglong: 27 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part205.c
+  - 发现 longlong: 175 个
+  - 发现 ulonglong: 9 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_13_part079.c
+  - 发现 longlong: 96 个
+  - 发现 ulonglong: 23 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_02_part051.c
+  - 发现 longlong: 230 个
+  - 发现 ulonglong: 27 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part187.c
+  - 发现 longlong: 98 个
+  - 发现 ulonglong: 18 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_09_part015.c
+  - 发现 longlong: 156 个
+  - 发现 ulonglong: 3 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_08_part026.c
+  - 发现 longlong: 153 个
+  - 发现 ulonglong: 20 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part528.c
+  - 发现 longlong: 64 个
+  - 发现 ulonglong: 1 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part584.c
+  - 发现 longlong: 139 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_03_part021.c
+  - 发现 longlong: 203 个
+  - 发现 ulonglong: 13 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_01_part033.c
+  - 发现 longlong: 132 个
+  - 发现 ulonglong: 6 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_10_part001.c
+  - 发现 longlong: 209 个
+  - 发现 ulonglong: 43 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part343.c
+  - 发现 longlong: 230 个
+  - 发现 ulonglong: 30 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part473.c
+  - 发现 longlong: 62 个
+  - 发现 ulonglong: 12 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part739.c
+  - 发现 longlong: 118 个
+  - 发现 ulonglong: 64 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part250.c
+  - 发现 longlong: 18 个
+  - 发现 ulonglong: 2 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part071.c
+  - 发现 longlong: 290 个
+  - 发现 ulonglong: 55 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part434.c
+  - 发现 longlong: 264 个
+  - 发现 ulonglong: 31 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_08_part060.c
+  - 发现 longlong: 192 个
+  - 发现 ulonglong: 34 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_03_part009.c
+  - 发现 longlong: 194 个
+  - 发现 ulonglong: 67 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_04_part032.c
+  - 发现 longlong: 125 个
+  - 发现 ulonglong: 50 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part090.c
+  - 发现 longlong: 95 个
+  - 发现 ulonglong: 14 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_03_part070.c
+  - 发现 longlong: 200 个
+  - 发现 ulonglong: 9 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part309.c
+  - 发现 longlong: 90 个
+  - 发现 ulonglong: 41 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_11_part037_sub002_sub002.c
+  - 发现 longlong: 85 个
+  - 发现 ulonglong: 6 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_13_part086_sub002_sub002.c
+  - 发现 longlong: 162 个
+  - 发现 ulonglong: 12 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part160.c
+  - 发现 longlong: 225 个
+  - 发现 ulonglong: 65 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/01_initialization_part012.c
+  - 发现 longlong: 122 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking_part071.c
+  - 发现 longlong: 341 个
+  - 发现 ulonglong: 4 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking_part083.c
+  - 发现 longlong: 120 个
+  - 发现 ulonglong: 13 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_02_part039.c
+  - 发现 longlong: 240 个
+  - 发现 ulonglong: 31 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part111.c
+  - 发现 longlong: 125 个
+  - 发现 ulonglong: 34 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part155_sub002_sub002.c
+  - 发现 longlong: 222 个
+  - 发现 ulonglong: 63 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part460.c
+  - 发现 longlong: 130 个
+  - 发现 ulonglong: 19 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking/05_networking_part017.c
+  - 发现 longlong: 124 个
+  - 发现 ulonglong: 21 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking/05_networking_part109.c
+  - 发现 longlong: 72 个
+  - 发现 ulonglong: 37 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking/05_networking_part089.c
+  - 发现 longlong: 71 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking/05_networking_part019.c
+  - 发现 longlong: 58 个
+  - 发现 ulonglong: 22 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking/05_networking_part008.c
+  - 发现 longlong: 101 个
+  - 发现 ulonglong: 45 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking/05_networking_part006.c
+  - 发现 longlong: 137 个
+  - 发现 ulonglong: 58 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking/05_networking_part007.c
+  - 发现 longlong: 121 个
+  - 发现 ulonglong: 27 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking/05_networking_part001.c
+  - 发现 longlong: 166 个
+  - 发现 ulonglong: 76 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking/05_networking_part005.c
+  - 发现 longlong: 104 个
+  - 发现 ulonglong: 66 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking/05_networking_part002.c
+  - 发现 longlong: 137 个
+  - 发现 ulonglong: 3 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking/05_networking_part018.c
+  - 发现 longlong: 149 个
+  - 发现 ulonglong: 11 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking/05_networking_part004.c
+  - 发现 longlong: 76 个
+  - 发现 ulonglong: 23 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking/05_networking_part079_sub002_sub002.c
+  - 发现 longlong: 55 个
+  - 发现 ulonglong: 13 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking/05_networking_part105.c
+  - 发现 longlong: 81 个
+  - 发现 ulonglong: 47 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking/05_networking_part009.c
+  - 发现 longlong: 187 个
+  - 发现 ulonglong: 51 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_12_part090.c
+  - 发现 longlong: 80 个
+  - 发现 ulonglong: 30 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part540.c
+  - 发现 longlong: 282 个
+  - 发现 ulonglong: 63 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part169.c
+  - 发现 longlong: 11 个
+  - 发现 ulonglong: 3 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part112.c
+  - 发现 longlong: 179 个
+  - 发现 ulonglong: 42 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part219.c
+  - 发现 longlong: 113 个
+  - 发现 ulonglong: 21 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_04_part002.c
+  - 发现 longlong: 240 个
+  - 发现 ulonglong: 42 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_03_part062_sub002_sub002.c
+  - 发现 longlong: 130 个
+  - 发现 ulonglong: 9 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part133.c
+  - 发现 longlong: 74 个
+  - 发现 ulonglong: 22 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part244.c
+  - 发现 longlong: 269 个
+  - 发现 ulonglong: 41 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_10_part021.c
+  - 发现 longlong: 170 个
+  - 发现 ulonglong: 24 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part392.c
+  - 发现 longlong: 296 个
+  - 发现 ulonglong: 4 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part310.c
+  - 发现 longlong: 22 个
+  - 发现 ulonglong: 7 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part063.c
+  - 发现 longlong: 244 个
+  - 发现 ulonglong: 33 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_11_part009.c
+  - 发现 longlong: 38 个
+  - 发现 ulonglong: 3 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_05_part024.c
+  - 发现 longlong: 155 个
+  - 发现 ulonglong: 26 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part362.c
+  - 发现 longlong: 138 个
+  - 发现 ulonglong: 28 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part185.c
+  - 发现 longlong: 56 个
+  - 发现 ulonglong: 12 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_07_part013.c
+  - 发现 longlong: 234 个
+  - 发现 ulonglong: 37 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part673.c
+  - 发现 longlong: 128 个
+  - 发现 ulonglong: 39 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part384.c
+  - 发现 longlong: 122 个
+  - 发现 ulonglong: 18 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part131.c
+  - 发现 longlong: 103 个
+  - 发现 ulonglong: 11 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_07_part040_sub001.c
+  - 发现 longlong: 205 个
+  - 发现 ulonglong: 14 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part132.c
+  - 发现 longlong: 157 个
+  - 发现 ulonglong: 43 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_09_part042.c
+  - 发现 longlong: 175 个
+  - 发现 ulonglong: 9 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_06_part077.c
+  - 发现 longlong: 155 个
+  - 发现 ulonglong: 55 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_13_part032.c
+  - 发现 longlong: 138 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_09_part008.c
+  - 发现 longlong: 66 个
+  - 发现 ulonglong: 2 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_12_part008.c
+  - 发现 longlong: 17 个
+  - 发现 ulonglong: 2 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_09_part063.c
+  - 发现 longlong: 142 个
+  - 发现 ulonglong: 5 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part007.c
+  - 发现 longlong: 127 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part394_sub002_sub002.c
+  - 发现 longlong: 67 个
+  - 发现 ulonglong: 10 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_04_part018.c
+  - 发现 longlong: 26 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part032.c
+  - 发现 longlong: 137 个
+  - 发现 ulonglong: 52 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part245.c
+  - 发现 longlong: 141 个
+  - 发现 ulonglong: 54 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part113.c
+  - 发现 longlong: 335 个
+  - 发现 ulonglong: 101 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_06_part071.c
+  - 发现 longlong: 126 个
+  - 发现 ulonglong: 38 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_02_part008.c
+  - 发现 longlong: 352 个
+  - 发现 ulonglong: 185 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part056.c
+  - 发现 longlong: 242 个
+  - 发现 ulonglong: 37 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_05_part043.c
+  - 发现 longlong: 207 个
+  - 发现 ulonglong: 32 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part024.c
+  - 发现 longlong: 213 个
+  - 发现 ulonglong: 62 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part148.c
+  - 发现 longlong: 75 个
+  - 发现 ulonglong: 10 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part224.c
+  - 发现 longlong: 31 个
+  - 发现 ulonglong: 3 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part513.c
+  - 发现 longlong: 315 个
+  - 发现 ulonglong: 31 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part340.c
+  - 发现 longlong: 154 个
+  - 发现 ulonglong: 12 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part603_sub001.c
+  - 发现 longlong: 84 个
+  - 发现 ulonglong: 4 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_09_part002.c
+  - 发现 longlong: 210 个
+  - 发现 ulonglong: 8 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_04_part012.c
+  - 发现 longlong: 214 个
+  - 发现 ulonglong: 22 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_10_part029.c
+  - 发现 longlong: 209 个
+  - 发现 ulonglong: 43 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_04_part021.c
+  - 发现 longlong: 160 个
+  - 发现 ulonglong: 17 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_05_part022.c
+  - 发现 longlong: 295 个
+  - 发现 ulonglong: 85 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part184_sub002_sub002.c
+  - 发现 longlong: 138 个
+  - 发现 ulonglong: 49 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_06_part004.c
+  - 发现 longlong: 302 个
+  - 发现 ulonglong: 115 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part058.c
+  - 发现 longlong: 207 个
+  - 发现 ulonglong: 31 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_12_part030.c
+  - 发现 longlong: 13 个
+  - 发现 ulonglong: 8 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part640.c
+  - 发现 longlong: 235 个
+  - 发现 ulonglong: 70 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part153.c
+  - 发现 longlong: 61 个
+  - 发现 ulonglong: 13 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_11_part065.c
+  - 发现 longlong: 61 个
+  - 发现 ulonglong: 37 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part059.c
+  - 发现 longlong: 176 个
+  - 发现 ulonglong: 22 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_03_part015.c
+  - 发现 longlong: 95 个
+  - 发现 ulonglong: 31 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part246.c
+  - 发现 longlong: 78 个
+  - 发现 ulonglong: 5 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part420.c
+  - 发现 longlong: 169 个
+  - 发现 ulonglong: 30 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_04_part001.c
+  - 发现 longlong: 251 个
+  - 发现 ulonglong: 27 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_11_part051.c
+  - 发现 longlong: 147 个
+  - 发现 ulonglong: 36 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_12_part052.c
+  - 发现 longlong: 140 个
+  - 发现 ulonglong: 10 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/02_core_engine_part016.c
+  - 发现 longlong: 227 个
+  - 发现 ulonglong: 77 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/05_networking_part098.c
+  - 发现 longlong: 95 个
+  - 发现 ulonglong: 14 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_12_part074.c
+  - 发现 longlong: 21 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/01_initialization_part029.c
+  - 发现 longlong: 76 个
+  - 发现 ulonglong: 18 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_05_part055.c
+  - 发现 longlong: 187 个
+  - 发现 ulonglong: 19 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part294.c
+  - 发现 longlong: 103 个
+  - 发现 ulonglong: 28 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part037.c
+  - 发现 longlong: 96 个
+  - 发现 ulonglong: 28 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_08_part005.c
+  - 发现 longlong: 124 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_03_part066.c
+  - 发现 longlong: 129 个
+  - 发现 ulonglong: 20 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part105.c
+  - 发现 longlong: 144 个
+  - 发现 ulonglong: 5 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part104.c
+  - 发现 longlong: 61 个
+  - 发现 ulonglong: 15 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/03_rendering_part491.c
+  - 发现 longlong: 172 个
+  - 发现 ulonglong: 8 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_12_part004.c
+  - 发现 longlong: 122 个
+  - 发现 ulonglong: 28 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_12_part048.c
+  - 发现 longlong: 81 个
+  - 发现 ulonglong: 26 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/99_part_08_part057.c
+  - 发现 longlong: 58 个
+  - 发现 ulonglong: 12 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/04_ui_system_part409.c
+  - 发现 longlong: 141 个
+  - 发现 ulonglong: 0 个
+  - 替换后剩余 longlong: 0 个
+  - 替换后剩余 ulonglong: 0 个
+  - 处理完成
+
+处理文件: ./pretty/01_initialization_part044.c

@@ -77,10 +77,10 @@ extern int32_t global_config_3656;
 extern void *global_config_3664;
 extern int8_t *global_config_3672;
 extern int32_t global_config_3680;
-extern longlong global_config_3752;
-extern longlong global_config_3760;
-extern longlong global_config_3784;
-extern longlong global_config_3792;
+extern int64_t global_config_3752;
+extern int64_t global_config_3760;
+extern int64_t global_config_3784;
+extern int64_t global_config_3792;
 extern int32_t global_config_3816;
 extern int32_t global_config_3820;
 extern uint8_t system_resource_config;
@@ -88,10 +88,10 @@ extern uint8_t system_module_config;
 extern uint8_t system_cache_config;
 extern uint8_t system_temp_config;
 extern uint8_t global_config_4856;
-extern longlong global_config_4872;
+extern int64_t global_config_4872;
 extern uint64_t global_config_4880;
-extern longlong global_config_4888;
-extern longlong *global_config_9112;
+extern int64_t global_config_4888;
+extern int64_t *global_config_9112;
 
 /* ============================================================================
  * 函数声明
@@ -111,7 +111,7 @@ extern longlong *global_config_9112;
  * @param param_3 处理数量
  * @return void 无返回值
  */
-void AdvancedMatrixTransformer(longlong param_1, longlong param_2, uint param_3);
+void AdvancedMatrixTransformer(int64_t param_1, int64_t param_2, uint param_3);
 
 /**
  * @brief 系统初始化器
@@ -140,7 +140,7 @@ void SystemInitializer(void);
  * @param param_3 处理数量
  * @return void 无返回值
  */
-void AdvancedDataProcessor(longlong param_1, longlong *param_2, uint param_3);
+void AdvancedDataProcessor(int64_t param_1, int64_t *param_2, uint param_3);
 
 /**
  * @brief 矩阵数据代码分析器
@@ -156,7 +156,7 @@ void AdvancedDataProcessor(longlong param_1, longlong *param_2, uint param_3);
  * @param param_3 处理数量
  * @return void 无返回值
  */
-void MatrixDataConverter(longlong param_1, longlong param_2, uint param_3);
+void MatrixDataConverter(int64_t param_1, int64_t param_2, uint param_3);
 
 /**
  * @brief 系统清理器
@@ -185,7 +185,7 @@ void SystemCleaner(void);
  * @param param_3 处理数量
  * @return void 无返回值
  */
-void FloatDataProcessor(longlong param_1, longlong *param_2, uint param_3);
+void FloatDataProcessor(int64_t param_1, int64_t *param_2, uint param_3);
 
 /**
  * @brief SIMD数据处理器
@@ -201,7 +201,7 @@ void FloatDataProcessor(longlong param_1, longlong *param_2, uint param_3);
  * @param param_3 处理数量
  * @return void 无返回值
  */
-void SIMDDataProcessor(longlong param_1, uint64_t param_2, uint param_3);
+void SIMDDataProcessor(int64_t param_1, uint64_t param_2, uint param_3);
 
 /**
  * @brief 系统重置器
@@ -230,7 +230,7 @@ void SystemResetter(void);
  * @param param_3 处理数量
  * @return void 无返回值
  */
-void AdvancedMathProcessor(longlong param_1, longlong *param_2, uint param_3);
+void AdvancedMathProcessor(int64_t param_1, int64_t *param_2, uint param_3);
 
 /* ============================================================================
  * 类型别名定义 - 用于代码可读性和维护性
@@ -243,7 +243,7 @@ typedef int32_t DataElement;           // 数据元素
 typedef uint64_t ProcessFlags;          // 处理标志
 typedef float Float32;                    // 32位浮点数
 typedef uint ProcessCount;                // 处理计数
-typedef longlong DataPointer;             // 数据指针
+typedef int64_t DataPointer;             // 数据指针
 
 // 枚举类型别名
 typedef enum {
@@ -299,15 +299,15 @@ typedef struct {
  * @param param_3 处理数量
  * @return void 无返回值
  */
-void AdvancedMatrixTransformer(longlong param_1, longlong param_2, uint param_3)
+void AdvancedMatrixTransformer(int64_t param_1, int64_t param_2, uint param_3)
 {
     float *pfVar1;                          // 浮点数指针1
     float *pfVar2;                          // 浮点数指针2
-    longlong lVar3;                         // 长整型变量3
-    longlong lVar4;                         // 长整型变量4
-    longlong lVar5;                         // 长整型变量5
-    longlong lVar6;                         // 长整型变量6
-    longlong lVar7;                         // 长整型变量7
+    int64_t lVar3;                         // 长整型变量3
+    int64_t lVar4;                         // 长整型变量4
+    int64_t lVar5;                         // 长整型变量5
+    int64_t lVar6;                         // 长整型变量6
+    int64_t lVar7;                         // 长整型变量7
     float fVar8;                            // 浮点数变量8
     float fVar9;                            // 浮点数变量9
     float fVar10;                           // 浮点数变量10
@@ -340,14 +340,14 @@ void AdvancedMatrixTransformer(longlong param_1, longlong param_2, uint param_3)
     float fVar37;                           // 浮点数变量37
     float fVar38;                           // 浮点数变量38
     uint uVar39;                            // 无符号整型变量39
-    longlong in_RAX;                        // 输入寄存器RAX
-    ulonglong uVar40;                       // 无符号长整型变量40
+    int64_t in_RAX;                        // 输入寄存器RAX
+    uint64_t uVar40;                       // 无符号长整型变量40
     uint64_t unaff_RBX;                  // 未关联寄存器RBX
     uint64_t unaff_RBP;                  // 未关联寄存器RBP
     uint64_t unaff_RSI;                  // 未关联寄存器RSI
     uint64_t unaff_RDI;                  // 未关联寄存器RDI
     uint in_R10D;                           // 输入寄存器R10D
-    longlong in_R11;                        // 输入寄存器R11
+    int64_t in_R11;                        // 输入寄存器R11
     uint64_t unaff_R14;                  // 未关联寄存器R14
     int32_t unaff_XMM6_Da;              // 未关联XMM6寄存器a分量
     int32_t unaff_XMM6_Db;              // 未关联XMM6寄存器b分量
@@ -392,15 +392,15 @@ void AdvancedMatrixTransformer(longlong param_1, longlong param_2, uint param_3)
     
     // 保存寄存器状态到栈空间
     *(uint64_t *)(in_RAX + 8) = unaff_RBX;
-    lVar3 = *(longlong *)(param_2 + 8);
+    lVar3 = *(int64_t *)(param_2 + 8);
     *(uint64_t *)(in_RAX + 0x10) = unaff_RBP;
-    lVar4 = *(longlong *)(param_2 + 0x20);
+    lVar4 = *(int64_t *)(param_2 + 0x20);
     *(uint64_t *)(in_RAX + 0x18) = unaff_RSI;
-    lVar5 = *(longlong *)(param_2 + 0x18);
+    lVar5 = *(int64_t *)(param_2 + 0x18);
     *(uint64_t *)(in_RAX + 0x20) = unaff_RDI;
-    lVar6 = *(longlong *)(param_2 + 0x10);
+    lVar6 = *(int64_t *)(param_2 + 0x10);
     *(uint64_t *)(in_RAX + -8) = unaff_R14;
-    lVar7 = *(longlong *)(param_2 + 0x28);
+    lVar7 = *(int64_t *)(param_2 + 0x28);
     
     // 保存SIMD寄存器状态
     *(int32_t *)(in_RAX + -0x18) = unaff_XMM6_Da;
@@ -431,56 +431,56 @@ void AdvancedMatrixTransformer(longlong param_1, longlong param_2, uint param_3)
     // 主处理循环：批量处理矩阵变换
     do {
         uVar39 = in_R10D * BATCH_PROCESS_SIZE;
-        pfVar1 = (float *)(param_1 + (ulonglong)uVar39 * MATRIX_ELEMENT_SIZE);
+        pfVar1 = (float *)(param_1 + (uint64_t)uVar39 * MATRIX_ELEMENT_SIZE);
         fVar8 = pfVar1[1];  // 读取矩阵元素
         fVar9 = pfVar1[2];
         fVar10 = pfVar1[3];
         
         // 读取下一组矩阵数据
-        pfVar2 = (float *)(param_1 + (ulonglong)(uVar39 + 4) * MATRIX_ELEMENT_SIZE);
+        pfVar2 = (float *)(param_1 + (uint64_t)(uVar39 + 4) * MATRIX_ELEMENT_SIZE);
         fVar11 = *pfVar2;
         fVar12 = pfVar2[1];
         fVar13 = pfVar2[2];
         fVar14 = pfVar2[3];
         
         // 继续读取矩阵数据
-        pfVar2 = (float *)(param_1 + (ulonglong)(uVar39 + 8) * MATRIX_ELEMENT_SIZE);
+        pfVar2 = (float *)(param_1 + (uint64_t)(uVar39 + 8) * MATRIX_ELEMENT_SIZE);
         fVar15 = *pfVar2;
         fVar16 = pfVar2[1];
         fVar17 = pfVar2[2];
         fVar18 = pfVar2[3];
         
-        pfVar2 = (float *)(param_1 + (ulonglong)(uVar39 + 0xc) * MATRIX_ELEMENT_SIZE);
+        pfVar2 = (float *)(param_1 + (uint64_t)(uVar39 + 0xc) * MATRIX_ELEMENT_SIZE);
         fVar19 = *pfVar2;
         fVar20 = pfVar2[1];
         fVar21 = pfVar2[2];
         fVar22 = pfVar2[3];
         
-        pfVar2 = (float *)(param_1 + (ulonglong)(uVar39 + 0x10) * MATRIX_ELEMENT_SIZE);
+        pfVar2 = (float *)(param_1 + (uint64_t)(uVar39 + 0x10) * MATRIX_ELEMENT_SIZE);
         fVar23 = *pfVar2;
         fVar24 = pfVar2[1];
         fVar25 = pfVar2[2];
         fVar26 = pfVar2[3];
         
-        pfVar2 = (float *)(param_1 + (ulonglong)(uVar39 + 0x14) * MATRIX_ELEMENT_SIZE);
+        pfVar2 = (float *)(param_1 + (uint64_t)(uVar39 + 0x14) * MATRIX_ELEMENT_SIZE);
         fVar27 = *pfVar2;
         fVar28 = pfVar2[1];
         fVar29 = pfVar2[2];
         fVar30 = pfVar2[3];
         
-        pfVar2 = (float *)(param_1 + (ulonglong)(uVar39 + 0x18) * MATRIX_ELEMENT_SIZE);
+        pfVar2 = (float *)(param_1 + (uint64_t)(uVar39 + 0x18) * MATRIX_ELEMENT_SIZE);
         fVar31 = *pfVar2;
         fVar32 = pfVar2[1];
         fVar33 = pfVar2[2];
         fVar34 = pfVar2[3];
         
-        pfVar2 = (float *)(param_1 + (ulonglong)(uVar39 + 0x1c) * MATRIX_ELEMENT_SIZE);
+        pfVar2 = (float *)(param_1 + (uint64_t)(uVar39 + 0x1c) * MATRIX_ELEMENT_SIZE);
         fVar35 = *pfVar2;
         fVar36 = pfVar2[1];
         fVar37 = pfVar2[2];
         fVar38 = pfVar2[3];
         
-        uVar40 = (ulonglong)(in_R10D * 4);
+        uVar40 = (uint64_t)(in_R10D * 4);
         in_R10D = in_R10D + 1;
         
         // 执行矩阵变换运算：使用SIMD寄存器进行优化计算
@@ -570,18 +570,18 @@ void SystemInitializer(void)
  * @param param_3 处理数量
  * @return void 无返回值
  */
-void AdvancedDataProcessor(longlong param_1, longlong *param_2, uint param_3)
+void AdvancedDataProcessor(int64_t param_1, int64_t *param_2, uint param_3)
 {
     int32_t *puVar1;                     // 无符号整型指针1
     int32_t *puVar2;                     // 无符号整型指针2
-    longlong lVar3;                         // 长整型变量3
-    longlong lVar4;                         // 长整型变量4
-    longlong lVar5;                         // 长整型变量5
-    longlong lVar6;                         // 长整型变量6
-    longlong lVar7;                         // 长整型变量7
-    longlong lVar8;                         // 长整型变量8
-    longlong lVar9;                         // 长整型变量9
-    longlong lVar10;                        // 长整型变量10
+    int64_t lVar3;                         // 长整型变量3
+    int64_t lVar4;                         // 长整型变量4
+    int64_t lVar5;                         // 长整型变量5
+    int64_t lVar6;                         // 长整型变量6
+    int64_t lVar7;                         // 长整型变量7
+    int64_t lVar8;                         // 长整型变量8
+    int64_t lVar9;                         // 长整型变量9
+    int64_t lVar10;                        // 长整型变量10
     int32_t uVar11;                     // 无符号整型变量11
     int32_t uVar12;                     // 无符号整型变量12
     int32_t uVar13;                     // 无符号整型变量13
@@ -614,7 +614,7 @@ void AdvancedDataProcessor(longlong param_1, longlong *param_2, uint param_3)
     int32_t uVar40;                     // 无符号整型变量40
     int32_t uVar41;                     // 无符号整型变量41
     uint uVar42;                           // 无符号整型变量42
-    ulonglong uVar43;                      // 无符号长整型变量43
+    uint64_t uVar43;                      // 无符号长整型变量43
     uint uVar44;                           // 无符号整型变量44
     
     uVar44 = 0;
@@ -632,56 +632,56 @@ void AdvancedDataProcessor(longlong param_1, longlong *param_2, uint param_3)
         // 批量数据处理循环
         do {
             uVar42 = uVar44 * BATCH_PROCESS_SIZE;
-            puVar1 = (int32_t *)(param_1 + (ulonglong)uVar42 * MATRIX_ELEMENT_SIZE);
+            puVar1 = (int32_t *)(param_1 + (uint64_t)uVar42 * MATRIX_ELEMENT_SIZE);
             uVar11 = puVar1[1];  // 读取数据元素
             uVar12 = puVar1[2];
             uVar13 = puVar1[3];
             
             // 读取下一组数据
-            puVar2 = (int32_t *)(param_1 + (ulonglong)(uVar42 + 4) * MATRIX_ELEMENT_SIZE);
+            puVar2 = (int32_t *)(param_1 + (uint64_t)(uVar42 + 4) * MATRIX_ELEMENT_SIZE);
             uVar14 = *puVar2;
             uVar15 = puVar2[1];
             uVar16 = puVar2[2];
             uVar17 = puVar2[3];
             
             // 继续读取数据
-            puVar2 = (int32_t *)(param_1 + (ulonglong)(uVar42 + 8) * MATRIX_ELEMENT_SIZE);
+            puVar2 = (int32_t *)(param_1 + (uint64_t)(uVar42 + 8) * MATRIX_ELEMENT_SIZE);
             uVar18 = *puVar2;
             uVar19 = puVar2[1];
             uVar20 = puVar2[2];
             uVar21 = puVar2[3];
             
-            puVar2 = (int32_t *)(param_1 + (ulonglong)(uVar42 + 0xc) * MATRIX_ELEMENT_SIZE);
+            puVar2 = (int32_t *)(param_1 + (uint64_t)(uVar42 + 0xc) * MATRIX_ELEMENT_SIZE);
             uVar22 = *puVar2;
             uVar23 = puVar2[1];
             uVar24 = puVar2[2];
             uVar25 = puVar2[3];
             
-            puVar2 = (int32_t *)(param_1 + (ulonglong)(uVar42 + 0x10) * MATRIX_ELEMENT_SIZE);
+            puVar2 = (int32_t *)(param_1 + (uint64_t)(uVar42 + 0x10) * MATRIX_ELEMENT_SIZE);
             uVar26 = *puVar2;
             uVar27 = puVar2[1];
             uVar28 = puVar2[2];
             uVar29 = puVar2[3];
             
-            puVar2 = (int32_t *)(param_1 + (ulonglong)(uVar42 + 0x14) * MATRIX_ELEMENT_SIZE);
+            puVar2 = (int32_t *)(param_1 + (uint64_t)(uVar42 + 0x14) * MATRIX_ELEMENT_SIZE);
             uVar30 = *puVar2;
             uVar31 = puVar2[1];
             uVar32 = puVar2[2];
             uVar33 = puVar2[3];
             
-            puVar2 = (int32_t *)(param_1 + (ulonglong)(uVar42 + 0x18) * MATRIX_ELEMENT_SIZE);
+            puVar2 = (int32_t *)(param_1 + (uint64_t)(uVar42 + 0x18) * MATRIX_ELEMENT_SIZE);
             uVar34 = *puVar2;
             uVar35 = puVar2[1];
             uVar36 = puVar2[2];
             uVar37 = puVar2[3];
             
-            puVar2 = (int32_t *)(param_1 + (ulonglong)(uVar42 + 0x1c) * MATRIX_ELEMENT_SIZE);
+            puVar2 = (int32_t *)(param_1 + (uint64_t)(uVar42 + 0x1c) * MATRIX_ELEMENT_SIZE);
             uVar38 = *puVar2;
             uVar39 = puVar2[1];
             uVar40 = puVar2[2];
             uVar41 = puVar2[3];
             
-            uVar43 = (ulonglong)(uVar44 * 4);
+            uVar43 = (uint64_t)(uVar44 * 4);
             uVar44 = uVar44 + 1;
             
             // 数据重排和复制到输出缓冲区
@@ -751,17 +751,17 @@ void AdvancedDataProcessor(longlong param_1, longlong *param_2, uint param_3)
  * @param param_3 处理数量
  * @return void 无返回值
  */
-void MatrixDataConverter(longlong param_1, longlong param_2, uint param_3)
+void MatrixDataConverter(int64_t param_1, int64_t param_2, uint param_3)
 {
     int32_t *puVar1;                     // 无符号整型指针1
     int32_t *puVar2;                     // 无符号整型指针2
-    longlong lVar3;                         // 长整型变量3
-    longlong lVar4;                         // 长整型变量4
-    longlong lVar5;                         // 长整型变量5
-    longlong lVar6;                         // 长整型变量6
-    longlong lVar7;                         // 长整型变量7
-    longlong lVar8;                         // 长整型变量8
-    longlong lVar9;                         // 长整型变量9
+    int64_t lVar3;                         // 长整型变量3
+    int64_t lVar4;                         // 长整型变量4
+    int64_t lVar5;                         // 长整型变量5
+    int64_t lVar6;                         // 长整型变量6
+    int64_t lVar7;                         // 长整型变量7
+    int64_t lVar8;                         // 长整型变量8
+    int64_t lVar9;                         // 长整型变量9
     int32_t uVar10;                      // 无符号整型变量10
     int32_t uVar11;                     // 无符号整型变量11
     int32_t uVar12;                     // 无符号整型变量12
@@ -794,14 +794,14 @@ void MatrixDataConverter(longlong param_1, longlong param_2, uint param_3)
     int32_t uVar39;                     // 无符号整型变量39
     int32_t uVar40;                     // 无符号整型变量40
     uint uVar41;                           // 无符号整型变量41
-    longlong in_RAX;                        // 输入寄存器RAX
-    ulonglong uVar42;                      // 无符号长整型变量42
+    int64_t in_RAX;                        // 输入寄存器RAX
+    uint64_t uVar42;                      // 无符号长整型变量42
     uint64_t unaff_RBX;                  // 未关联寄存器RBX
     uint64_t unaff_RBP;                  // 未关联寄存器RBP
     uint64_t unaff_RSI;                  // 未关联寄存器RSI
     uint64_t unaff_RDI;                  // 未关联寄存器RDI
     uint in_R10D;                           // 输入寄存器R10D
-    longlong in_R11;                        // 输入寄存器R11
+    int64_t in_R11;                        // 输入寄存器R11
     uint64_t unaff_R12;                  // 未关联寄存器R12
     uint64_t unaff_R14;                  // 未关联寄存器R14
     uint64_t unaff_R15;                  // 未关联寄存器R15
@@ -828,19 +828,19 @@ void MatrixDataConverter(longlong param_1, longlong param_2, uint param_3)
     
     // 保存寄存器状态到栈空间
     *(uint64_t *)(in_RAX + 8) = unaff_RBX;
-    lVar3 = *(longlong *)(param_2 + 8);
+    lVar3 = *(int64_t *)(param_2 + 8);
     *(uint64_t *)(in_RAX + 0x10) = unaff_RBP;
-    lVar4 = *(longlong *)(param_2 + 0x20);
+    lVar4 = *(int64_t *)(param_2 + 0x20);
     *(uint64_t *)(in_RAX + 0x18) = unaff_RSI;
-    lVar5 = *(longlong *)(param_2 + 0x18);
+    lVar5 = *(int64_t *)(param_2 + 0x18);
     *(uint64_t *)(in_RAX + 0x20) = unaff_RDI;
-    lVar6 = *(longlong *)(param_2 + 0x10);
+    lVar6 = *(int64_t *)(param_2 + 0x10);
     *(uint64_t *)(in_RAX + -8) = unaff_R12;
-    lVar7 = *(longlong *)(param_2 + 0x38);
+    lVar7 = *(int64_t *)(param_2 + 0x38);
     *(uint64_t *)(in_RAX + -0x10) = unaff_R14;
-    lVar8 = *(longlong *)(param_2 + 0x28);
+    lVar8 = *(int64_t *)(param_2 + 0x28);
     *(uint64_t *)(in_RAX + -0x18) = unaff_R15;
-    lVar9 = *(longlong *)(param_2 + 0x30);
+    lVar9 = *(int64_t *)(param_2 + 0x30);
     
     // 保存SIMD寄存器状态
     *(int32_t *)(in_RAX + -0x28) = unaff_XMM6_Da;
@@ -867,56 +867,56 @@ void MatrixDataConverter(longlong param_1, longlong param_2, uint param_3)
     // 主处理循环：矩阵数据转换
     do {
         uVar41 = in_R10D * BATCH_PROCESS_SIZE;
-        puVar1 = (int32_t *)(param_1 + (ulonglong)uVar41 * MATRIX_ELEMENT_SIZE);
+        puVar1 = (int32_t *)(param_1 + (uint64_t)uVar41 * MATRIX_ELEMENT_SIZE);
         uVar10 = puVar1[1];  // 读取矩阵数据
         uVar11 = puVar1[2];
         uVar12 = puVar1[3];
         
         // 读取下一组数据
-        puVar2 = (int32_t *)(param_1 + (ulonglong)(uVar41 + 4) * MATRIX_ELEMENT_SIZE);
+        puVar2 = (int32_t *)(param_1 + (uint64_t)(uVar41 + 4) * MATRIX_ELEMENT_SIZE);
         uVar13 = *puVar2;
         uVar14 = puVar2[1];
         uVar15 = puVar2[2];
         uVar16 = puVar2[3];
         
         // 继续读取数据
-        puVar2 = (int32_t *)(param_1 + (ulonglong)(uVar41 + 8) * MATRIX_ELEMENT_SIZE);
+        puVar2 = (int32_t *)(param_1 + (uint64_t)(uVar41 + 8) * MATRIX_ELEMENT_SIZE);
         uVar17 = *puVar2;
         uVar18 = puVar2[1];
         uVar19 = puVar2[2];
         uVar20 = puVar2[3];
         
-        puVar2 = (int32_t *)(param_1 + (ulonglong)(uVar41 + 0xc) * MATRIX_ELEMENT_SIZE);
+        puVar2 = (int32_t *)(param_1 + (uint64_t)(uVar41 + 0xc) * MATRIX_ELEMENT_SIZE);
         uVar21 = *puVar2;
         uVar22 = puVar2[1];
         uVar23 = puVar2[2];
         uVar24 = puVar2[3];
         
-        puVar2 = (int32_t *)(param_1 + (ulonglong)(uVar41 + 0x10) * MATRIX_ELEMENT_SIZE);
+        puVar2 = (int32_t *)(param_1 + (uint64_t)(uVar41 + 0x10) * MATRIX_ELEMENT_SIZE);
         uVar25 = *puVar2;
         uVar26 = puVar2[1];
         uVar27 = puVar2[2];
         uVar28 = puVar2[3];
         
-        puVar2 = (int32_t *)(param_1 + (ulonglong)(uVar41 + 0x14) * MATRIX_ELEMENT_SIZE);
+        puVar2 = (int32_t *)(param_1 + (uint64_t)(uVar41 + 0x14) * MATRIX_ELEMENT_SIZE);
         uVar29 = *puVar2;
         uVar30 = puVar2[1];
         uVar31 = puVar2[2];
         uVar32 = puVar2[3];
         
-        puVar2 = (int32_t *)(param_1 + (ulonglong)(uVar41 + 0x18) * MATRIX_ELEMENT_SIZE);
+        puVar2 = (int32_t *)(param_1 + (uint64_t)(uVar41 + 0x18) * MATRIX_ELEMENT_SIZE);
         uVar33 = *puVar2;
         uVar34 = puVar2[1];
         uVar35 = puVar2[2];
         uVar36 = puVar2[3];
         
-        puVar2 = (int32_t *)(param_1 + (ulonglong)(uVar41 + 0x1c) * MATRIX_ELEMENT_SIZE);
+        puVar2 = (int32_t *)(param_1 + (uint64_t)(uVar41 + 0x1c) * MATRIX_ELEMENT_SIZE);
         uVar37 = *puVar2;
         uVar38 = puVar2[1];
         uVar39 = puVar2[2];
         uVar40 = puVar2[3];
         
-        uVar42 = (ulonglong)(in_R10D * 4);
+        uVar42 = (uint64_t)(in_R10D * 4);
         in_R10D = in_R10D + 1;
         
         // 执行矩阵数据转换：重排数据到输出缓冲区
@@ -1017,12 +1017,12 @@ void SystemCleaner(void)
  * @param param_3 处理数量
  * @return void 无返回值
  */
-void FloatDataProcessor(longlong param_1, longlong *param_2, uint param_3)
+void FloatDataProcessor(int64_t param_1, int64_t *param_2, uint param_3)
 {
     float *pfVar1;                          // 浮点数指针1
     float *pfVar2;                          // 浮点数指针2
     float *pfVar3;                          // 浮点数指针3
-    longlong lVar4;                         // 长整型变量4
+    int64_t lVar4;                         // 长整型变量4
     float fVar5;                            // 浮点数变量5
     float fVar6;                            // 浮点数变量6
     float fVar7;                            // 浮点数变量7
@@ -1054,38 +1054,38 @@ void FloatDataProcessor(longlong param_1, longlong *param_2, uint param_3)
         // 批量处理浮点数数据
         do {
             uVar26 = uVar27 * BATCH_PROCESS_SIZE;
-            pfVar1 = (float *)(param_1 + (ulonglong)uVar26 * MATRIX_ELEMENT_SIZE);
-            pfVar2 = (float *)(param_1 + (ulonglong)(uVar26 + 4) * MATRIX_ELEMENT_SIZE);
-            pfVar3 = (float *)(param_1 + (ulonglong)(uVar26 + 8) * MATRIX_ELEMENT_SIZE);
+            pfVar1 = (float *)(param_1 + (uint64_t)uVar26 * MATRIX_ELEMENT_SIZE);
+            pfVar2 = (float *)(param_1 + (uint64_t)(uVar26 + 4) * MATRIX_ELEMENT_SIZE);
+            pfVar3 = (float *)(param_1 + (uint64_t)(uVar26 + 8) * MATRIX_ELEMENT_SIZE);
             
             // 读取浮点数数据
             fVar5 = *pfVar3;
             fVar6 = pfVar3[1];
             fVar7 = pfVar3[2];
             
-            pfVar3 = (float *)(param_1 + (ulonglong)(uVar26 + 0xc) * MATRIX_ELEMENT_SIZE);
+            pfVar3 = (float *)(param_1 + (uint64_t)(uVar26 + 0xc) * MATRIX_ELEMENT_SIZE);
             fVar8 = *pfVar3;
             fVar9 = pfVar3[1];
             fVar10 = pfVar3[2];
             fVar11 = pfVar3[3];
             
-            pfVar3 = (float *)(param_1 + (ulonglong)(uVar26 + 0x10) * MATRIX_ELEMENT_SIZE);
+            pfVar3 = (float *)(param_1 + (uint64_t)(uVar26 + 0x10) * MATRIX_ELEMENT_SIZE);
             fVar12 = *pfVar3;
             fVar13 = pfVar3[1];
             fVar14 = pfVar3[2];
             
-            pfVar3 = (float *)(param_1 + (ulonglong)(uVar26 + 0x14) * MATRIX_ELEMENT_SIZE);
+            pfVar3 = (float *)(param_1 + (uint64_t)(uVar26 + 0x14) * MATRIX_ELEMENT_SIZE);
             fVar15 = *pfVar3;
             fVar16 = pfVar3[1];
             fVar17 = pfVar3[2];
             fVar18 = pfVar3[3];
             
-            pfVar3 = (float *)(param_1 + (ulonglong)(uVar26 + 0x18) * MATRIX_ELEMENT_SIZE);
+            pfVar3 = (float *)(param_1 + (uint64_t)(uVar26 + 0x18) * MATRIX_ELEMENT_SIZE);
             fVar19 = *pfVar3;
             fVar20 = pfVar3[1];
             fVar21 = pfVar3[2];
             
-            pfVar3 = (float *)(param_1 + (ulonglong)(uVar26 + 0x1c) * MATRIX_ELEMENT_SIZE);
+            pfVar3 = (float *)(param_1 + (uint64_t)(uVar26 + 0x1c) * MATRIX_ELEMENT_SIZE);
             fVar22 = *pfVar3;
             fVar23 = pfVar3[1];
             fVar24 = pfVar3[2];
@@ -1095,7 +1095,7 @@ void FloatDataProcessor(longlong param_1, longlong *param_2, uint param_3)
             uVar27 = uVar27 + 1;
             
             // 执行浮点数加权计算和归一化
-            pfVar3 = (float *)(lVar4 + (ulonglong)uVar26 * MATRIX_ELEMENT_SIZE);
+            pfVar3 = (float *)(lVar4 + (uint64_t)uVar26 * MATRIX_ELEMENT_SIZE);
             *pfVar3 = (pfVar1[2] + pfVar2[2] + *pfVar2 + *pfVar1 + pfVar2[1] + pfVar1[1] + pfVar2[3]) *
                       FLOAT_NORMALIZATION_FACTOR;  // 归一化计算
             pfVar3[1] = (fVar7 + fVar10 + fVar8 + fVar5 + fVar9 + fVar6 + fVar11) * FLOAT_NORMALIZATION_FACTOR;
@@ -1120,7 +1120,7 @@ void FloatDataProcessor(longlong param_1, longlong *param_2, uint param_3)
  * @param param_3 处理数量
  * @return void 无返回值
  */
-void SIMDDataProcessor(longlong param_1, uint64_t param_2, uint param_3)
+void SIMDDataProcessor(int64_t param_1, uint64_t param_2, uint param_3)
 {
     float *pfVar1;                          // 浮点数指针1
     float *pfVar2;                          // 浮点数指针2
@@ -1148,7 +1148,7 @@ void SIMDDataProcessor(longlong param_1, uint64_t param_2, uint param_3)
     float fVar24;                           // 浮点数变量24
     uint uVar25;                            // 无符号整型变量25
     uint in_R10D;                           // 输入寄存器R10D
-    longlong in_R11;                        // 输入寄存器R11
+    int64_t in_R11;                        // 输入寄存器R11
     float unaff_XMM12_Da;                   // 未关联XMM12寄存器a分量
     float unaff_XMM12_Db;                   // 未关联XMM12寄存器b分量
     float unaff_XMM12_Dc;                   // 未关联XMM12寄存器c分量
@@ -1157,38 +1157,38 @@ void SIMDDataProcessor(longlong param_1, uint64_t param_2, uint param_3)
     // SIMD优化的数据处理循环
     do {
         uVar25 = in_R10D * BATCH_PROCESS_SIZE;
-        pfVar1 = (float *)(param_1 + (ulonglong)uVar25 * MATRIX_ELEMENT_SIZE);
-        pfVar2 = (float *)(param_1 + (ulonglong)(uVar25 + 4) * MATRIX_ELEMENT_SIZE);
-        pfVar3 = (float *)(param_1 + (ulonglong)(uVar25 + 8) * MATRIX_ELEMENT_SIZE);
+        pfVar1 = (float *)(param_1 + (uint64_t)uVar25 * MATRIX_ELEMENT_SIZE);
+        pfVar2 = (float *)(param_1 + (uint64_t)(uVar25 + 4) * MATRIX_ELEMENT_SIZE);
+        pfVar3 = (float *)(param_1 + (uint64_t)(uVar25 + 8) * MATRIX_ELEMENT_SIZE);
         
         // 读取SIMD数据
         fVar4 = *pfVar3;
         fVar5 = pfVar3[1];
         fVar6 = pfVar3[2];
         
-        pfVar3 = (float *)(param_1 + (ulonglong)(uVar25 + 0xc) * MATRIX_ELEMENT_SIZE);
+        pfVar3 = (float *)(param_1 + (uint64_t)(uVar25 + 0xc) * MATRIX_ELEMENT_SIZE);
         fVar7 = *pfVar3;
         fVar8 = pfVar3[1];
         fVar9 = pfVar3[2];
         fVar10 = pfVar3[3];
         
-        pfVar3 = (float *)(param_1 + (ulonglong)(uVar25 + 0x10) * MATRIX_ELEMENT_SIZE);
+        pfVar3 = (float *)(param_1 + (uint64_t)(uVar25 + 0x10) * MATRIX_ELEMENT_SIZE);
         fVar11 = *pfVar3;
         fVar12 = pfVar3[1];
         fVar13 = pfVar3[2];
         
-        pfVar3 = (float *)(param_1 + (ulonglong)(uVar25 + 0x14) * MATRIX_ELEMENT_SIZE);
+        pfVar3 = (float *)(param_1 + (uint64_t)(uVar25 + 0x14) * MATRIX_ELEMENT_SIZE);
         fVar14 = *pfVar3;
         fVar15 = pfVar3[1];
         fVar16 = pfVar3[2];
         fVar17 = pfVar3[3];
         
-        pfVar3 = (float *)(param_1 + (ulonglong)(uVar25 + 0x18) * MATRIX_ELEMENT_SIZE);
+        pfVar3 = (float *)(param_1 + (uint64_t)(uVar25 + 0x18) * MATRIX_ELEMENT_SIZE);
         fVar18 = *pfVar3;
         fVar19 = pfVar3[1];
         fVar20 = pfVar3[2];
         
-        pfVar3 = (float *)(param_1 + (ulonglong)(uVar25 + 0x1c) * MATRIX_ELEMENT_SIZE);
+        pfVar3 = (float *)(param_1 + (uint64_t)(uVar25 + 0x1c) * MATRIX_ELEMENT_SIZE);
         fVar21 = *pfVar3;
         fVar22 = pfVar3[1];
         fVar23 = pfVar3[2];
@@ -1198,7 +1198,7 @@ void SIMDDataProcessor(longlong param_1, uint64_t param_2, uint param_3)
         in_R10D = in_R10D + 1;
         
         // 执行SIMD优化的加权计算
-        pfVar3 = (float *)(in_R11 + (ulonglong)uVar25 * MATRIX_ELEMENT_SIZE);
+        pfVar3 = (float *)(in_R11 + (uint64_t)uVar25 * MATRIX_ELEMENT_SIZE);
         *pfVar3 = (pfVar1[2] + pfVar2[2] + *pfVar2 + *pfVar1 + pfVar2[1] + pfVar1[1] + pfVar2[3]) *
                   unaff_XMM12_Da;  // SIMD优化的计算
         pfVar3[1] = (fVar6 + fVar9 + fVar7 + fVar4 + fVar8 + fVar5 + fVar10) * unaff_XMM12_Db;
@@ -1254,13 +1254,13 @@ void SystemResetter(void)
  * @param param_3 处理数量
  * @return void 无返回值
  */
-void AdvancedMathProcessor(longlong param_1, longlong *param_2, uint param_3)
+void AdvancedMathProcessor(int64_t param_1, int64_t *param_2, uint param_3)
 {
     float *pfVar1;                          // 浮点数指针1
-    longlong lVar2;                         // 长整型变量2
-    longlong lVar3;                         // 长整型变量3
-    longlong lVar4;                         // 长整型变量4
-    longlong lVar5;                         // 长整型变量5
+    int64_t lVar2;                         // 长整型变量2
+    int64_t lVar3;                         // 长整型变量3
+    int64_t lVar4;                         // 长整型变量4
+    int64_t lVar5;                         // 长整型变量5
     float fVar6;                            // 浮点数变量6
     float fVar7;                            // 浮点数变量7
     float fVar8;                            // 浮点数变量8
@@ -1290,7 +1290,7 @@ void AdvancedMathProcessor(longlong param_1, longlong *param_2, uint param_3)
     float fVar32;                           // 浮点数变量32
     float fVar33;                           // 浮点数变量33
     uint uVar34;                            // 无符号整型变量34
-    ulonglong uVar35;                      // 无符号长整型变量35
+    uint64_t uVar35;                      // 无符号长整型变量35
     uint uVar36;                            // 无符号整型变量36
     
     uVar36 = 0;
@@ -1303,51 +1303,51 @@ void AdvancedMathProcessor(longlong param_1, longlong *param_2, uint param_3)
         // 批量处理高级数学计算
         do {
             uVar34 = uVar36 * BATCH_PROCESS_SIZE;
-            pfVar1 = (float *)(param_1 + (ulonglong)uVar34 * MATRIX_ELEMENT_SIZE);
+            pfVar1 = (float *)(param_1 + (uint64_t)uVar34 * MATRIX_ELEMENT_SIZE);
             fVar6 = *pfVar1;      // 读取浮点数数据
             fVar7 = pfVar1[1];
             fVar8 = pfVar1[2];
             
-            pfVar1 = (float *)(param_1 + (ulonglong)(uVar34 + 4) * MATRIX_ELEMENT_SIZE);
+            pfVar1 = (float *)(param_1 + (uint64_t)(uVar34 + 4) * MATRIX_ELEMENT_SIZE);
             fVar9 = *pfVar1;
             fVar10 = pfVar1[1];
             fVar11 = pfVar1[2];
             fVar12 = pfVar1[3];
             
-            pfVar1 = (float *)(param_1 + (ulonglong)(uVar34 + 8) * MATRIX_ELEMENT_SIZE);
+            pfVar1 = (float *)(param_1 + (uint64_t)(uVar34 + 8) * MATRIX_ELEMENT_SIZE);
             fVar13 = *pfVar1;
             fVar14 = pfVar1[1];
             fVar15 = pfVar1[2];
             
-            pfVar1 = (float *)(param_1 + (ulonglong)(uVar34 + 0xc) * MATRIX_ELEMENT_SIZE);
+            pfVar1 = (float *)(param_1 + (uint64_t)(uVar34 + 0xc) * MATRIX_ELEMENT_SIZE);
             fVar16 = *pfVar1;
             fVar17 = pfVar1[1];
             fVar18 = pfVar1[2];
             fVar19 = pfVar1[3];
             
-            pfVar1 = (float *)(param_1 + (ulonglong)(uVar34 + 0x10) * MATRIX_ELEMENT_SIZE);
+            pfVar1 = (float *)(param_1 + (uint64_t)(uVar34 + 0x10) * MATRIX_ELEMENT_SIZE);
             fVar20 = *pfVar1;
             fVar21 = pfVar1[1];
             fVar22 = pfVar1[2];
             
-            pfVar1 = (float *)(param_1 + (ulonglong)(uVar34 + 0x14) * MATRIX_ELEMENT_SIZE);
+            pfVar1 = (float *)(param_1 + (uint64_t)(uVar34 + 0x14) * MATRIX_ELEMENT_SIZE);
             fVar23 = *pfVar1;
             fVar24 = pfVar1[1];
             fVar25 = pfVar1[2];
             fVar26 = pfVar1[3];
             
-            pfVar1 = (float *)(param_1 + (ulonglong)(uVar34 + 0x18) * MATRIX_ELEMENT_SIZE);
+            pfVar1 = (float *)(param_1 + (uint64_t)(uVar34 + 0x18) * MATRIX_ELEMENT_SIZE);
             fVar27 = *pfVar1;
             fVar28 = pfVar1[1];
             fVar29 = pfVar1[2];
             
-            pfVar1 = (float *)(param_1 + (ulonglong)(uVar34 + 0x1c) * MATRIX_ELEMENT_SIZE);
+            pfVar1 = (float *)(param_1 + (uint64_t)(uVar34 + 0x1c) * MATRIX_ELEMENT_SIZE);
             fVar30 = *pfVar1;
             fVar31 = pfVar1[1];
             fVar32 = pfVar1[2];
             fVar33 = pfVar1[3];
             
-            uVar35 = (ulonglong)(uVar36 * 4);
+            uVar35 = (uint64_t)(uVar36 * 4);
             uVar36 = uVar36 + 1;
             
             // 执行高级数学运算：三角函数变换和矩阵运算

@@ -3,8 +3,8 @@
 
 // 03_rendering_part709.c - 1 个函数
 
-// 函数: void FUN_180675b40(longlong param_1,longlong param_2,char *param_3,longlong param_4,longlong param_5
-void FUN_180675b40(longlong param_1,longlong param_2,char *param_3,longlong param_4,longlong param_5
+// 函数: void FUN_180675b40(int64_t param_1,int64_t param_2,char *param_3,int64_t param_4,int64_t param_5
+void FUN_180675b40(int64_t param_1,int64_t param_2,char *param_3,int64_t param_4,int64_t param_5
                   ,uint param_6,int param_7,int param_8,uint param_9)
 
 {
@@ -21,11 +21,11 @@ void FUN_180675b40(longlong param_1,longlong param_2,char *param_3,longlong para
   short sVar11;
   short sVar12;
   int8_t auVar13 [16];
-  longlong lVar14;
+  int64_t lVar14;
   int8_t (*pauVar15) [16];
   char *pcVar16;
-  ulonglong uVar17;
-  ulonglong uVar18;
+  uint64_t uVar17;
+  uint64_t uVar18;
   int8_t auVar20 [16];
   int8_t auVar22 [16];
   int8_t auVar23 [16];
@@ -80,31 +80,31 @@ void FUN_180675b40(longlong param_1,longlong param_2,char *param_3,longlong para
   int8_t auVar56 [16];
   
   if (0 < (int)param_9) {
-    uVar18 = (ulonglong)param_9;
+    uVar18 = (uint64_t)param_9;
     do {
       auVar13 = render_system_config;
-      lVar14 = ((longlong)(int)param_6 >> 4) * param_2 + param_1 + param_2 * -3;
+      lVar14 = ((int64_t)(int)param_6 >> 4) * param_2 + param_1 + param_2 * -3;
       if ((param_6 & 0xf) == 0) {
                     // WARNING: Subroutine does not return
-        memcpy(param_3,param_2 * 3 + lVar14,(longlong)param_8);
+        memcpy(param_3,param_2 * 3 + lVar14,(int64_t)param_8);
       }
-      auVar67 = *(int8_t (*) [16])((ulonglong)(param_6 & 0xf) * 0x10 + param_5);
+      auVar67 = *(int8_t (*) [16])((uint64_t)(param_6 & 0xf) * 0x10 + param_5);
       auVar68 = pshufb(auVar67,render_system_config);
       auVar69 = pshufb(auVar67,render_system_config);
       auVar70 = pshufb(auVar67,render_system_config);
       auVar67 = pshufb(auVar67,render_system_config);
       if (0 < param_8) {
         pauVar15 = (int8_t (*) [16])(lVar14 + param_2 * 2);
-        uVar17 = (ulonglong)((param_8 - 1U >> 4) + 1);
+        uVar17 = (uint64_t)((param_8 - 1U >> 4) + 1);
         pcVar16 = param_3;
         do {
           puVar1 = *pauVar15 + param_2;
           puVar2 = *pauVar15 + param_2 * 3;
           auVar22 = *pauVar15;
           auVar39 = *(int8_t (*) [16])(*pauVar15 + param_2 * 2);
-          auVar23 = *(int8_t (*) [16])(param_2 * -2 + (longlong)pauVar15);
+          auVar23 = *(int8_t (*) [16])(param_2 * -2 + (int64_t)pauVar15);
           auVar48 = *(int8_t (*) [16])(*pauVar15 + param_2 * 4);
-          puVar3 = (int8_t *)((longlong)pauVar15 - param_2);
+          puVar3 = (int8_t *)((int64_t)pauVar15 - param_2);
           puVar4 = *pauVar15 + param_2 * 5;
           pauVar15 = pauVar15 + 1;
           auVar64[1] = puVar1[8];

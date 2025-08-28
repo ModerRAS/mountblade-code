@@ -194,7 +194,7 @@ typedef ui_status_code_t (*ui_event_dispatcher_t)(const ui_event_context_t* cont
  * 3. 调用相应的事件处理器
  * 4. 更新控件状态
  */
-void ui_system_event_handler_base(longlong control_handle, longlong event_context)
+void ui_system_event_handler_base(int64_t control_handle, int64_t event_context)
 {
     ui_status_code_t status_code;
     ui_event_context_t processed_context;
@@ -226,7 +226,7 @@ void ui_system_event_handler_base(longlong control_handle, longlong event_contex
  * - 更快的处理速度
  * - 适用于高频率事件
  */
-void ui_system_event_handler_simple(longlong control_handle, longlong event_context)
+void ui_system_event_handler_simple(int64_t control_handle, int64_t event_context)
 {
     ui_status_code_t status_code;
     ui_event_context_t processed_context;
@@ -254,7 +254,7 @@ void ui_system_event_handler_simple(longlong control_handle, longlong event_cont
  * - 状态一致性检查
  * - 详细的错误处理
  */
-void ui_system_event_handler_enhanced(longlong control_handle, longlong event_context)
+void ui_system_event_handler_enhanced(int64_t control_handle, int64_t event_context)
 {
     ui_status_code_t status_code;
     ui_event_context_t processed_context;
@@ -287,10 +287,10 @@ void ui_system_event_handler_enhanced(longlong control_handle, longlong event_co
  * - UI_STATUS_NULL_POINTER: 空指针错误
  * - 其他错误码: 具体错误类型
  */
-ui_status_code_t ui_control_property_getter(longlong control_handle, longlong property_context)
+ui_status_code_t ui_control_property_getter(int64_t control_handle, int64_t property_context)
 {
     ui_status_code_t status_code;
-    longlong property_container;
+    int64_t property_container;
     
     // 获取属性容器
     status_code = func_0x00018088c530(*(uint32_t*)(control_handle + UI_CONTROL_OFFSET_BASE), &property_container);
@@ -301,13 +301,13 @@ ui_status_code_t ui_control_property_getter(longlong control_handle, longlong pr
         }
         
         // 检查属性是否可用
-        if (*(longlong*)(property_container + 0x10) == 0) {
+        if (*(int64_t*)(property_container + 0x10) == 0) {
             return UI_STATUS_RESOURCE_NOT_FOUND;
         }
         
         // 获取属性值
         *(uint64_t*)(control_handle + UI_CONTROL_OFFSET_STATE) = 
-            *(uint64_t*)(*(longlong*)(*(longlong*)(property_container + 0x10) + 0x2b0) + 0x78);
+            *(uint64_t*)(*(int64_t*)(*(int64_t*)(property_container + 0x10) + 0x2b0) + 0x78);
         
         // 调用属性获取处理函数
         return FUN_18088d7c0(*(uint64_t*)(property_context + UI_CONTROL_OFFSET_EVENT), control_handle);
@@ -330,10 +330,10 @@ ui_status_code_t ui_control_property_getter(longlong control_handle, longlong pr
  * - 类型转换
  * - 状态更新
  */
-ui_status_code_t ui_control_property_setter_base(longlong control_handle, longlong property_context)
+ui_status_code_t ui_control_property_setter_base(int64_t control_handle, int64_t property_context)
 {
     ui_status_code_t status_code;
-    longlong property_container;
+    int64_t property_container;
     
     // 获取属性容器
     status_code = func_0x00018088c530(*(uint32_t*)(control_handle + UI_CONTROL_OFFSET_BASE), &property_container);
@@ -344,13 +344,13 @@ ui_status_code_t ui_control_property_setter_base(longlong control_handle, longlo
         }
         
         // 检查属性存储位置
-        if (*(longlong*)(property_container + 0x18) == 0) {
+        if (*(int64_t*)(property_container + 0x18) == 0) {
             return UI_STATUS_RESOURCE_NOT_FOUND;
         }
         
         // 设置属性值
         status_code = func_0x00018088c500(
-            *(uint64_t*)(*(longlong*)(property_container + 0x18) + 0xd0),
+            *(uint64_t*)(*(int64_t*)(property_container + 0x18) + 0xd0),
             control_handle + UI_CONTROL_OFFSET_STATE);
         if (status_code == UI_STATUS_SUCCESS) {
             // 调用属性设置处理函数
@@ -375,9 +375,9 @@ ui_status_code_t ui_control_property_setter_base(longlong control_handle, longlo
  * - 高效处理
  * - 统一验证
  */
-ui_status_code_t ui_control_property_setter_batch(longlong control_handle, longlong property_context)
+ui_status_code_t ui_control_property_setter_batch(int64_t control_handle, int64_t property_context)
 {
-    longlong data_offset;
+    int64_t data_offset;
     int validation_result;
     ui_status_code_t status_code;
     void* property_name;
@@ -385,7 +385,7 @@ ui_status_code_t ui_control_property_setter_batch(longlong control_handle, longl
     uint64_t current_index;
     uint64_t total_properties;
     uint64_t property_offset;
-    longlong property_container;
+    int64_t property_container;
     
     // 验证数据有效性
     if (control_handle + 0x1c == 0) {
@@ -405,8 +405,8 @@ ui_status_code_t ui_control_property_setter_batch(longlong control_handle, longl
         if (0 < *(int*)(property_offset + 0x28)) {
             do {
                 // 遍历属性列表
-                data_offset = *(longlong*)(property_offset + 0x20) + total_properties;
-                longlong property_data = *(longlong*)(data_offset + 0x10);
+                data_offset = *(int64_t*)(property_offset + 0x20) + total_properties;
+                int64_t property_data = *(int64_t*)(data_offset + 0x10);
                 if (property_data == 0) {
                     return UI_STATUS_NULL_POINTER;
                 }
@@ -453,7 +453,7 @@ ui_status_code_t ui_control_property_setter_batch(longlong control_handle, longl
  */
 ui_status_code_t ui_system_batch_property_processor(void)
 {
-    longlong property_data;
+    int64_t property_data;
     int validation_result;
     ui_status_code_t status_code;
     void* property_name;
@@ -461,9 +461,9 @@ ui_status_code_t ui_system_batch_property_processor(void)
     uint64_t current_index;
     uint64_t total_properties;
     uint64_t property_offset;
-    longlong property_container;
-    longlong context_param1;
-    longlong context_param2;
+    int64_t property_container;
+    int64_t context_param1;
+    int64_t context_param2;
     
     current_index = 0;
     property_offset = current_index;
@@ -475,8 +475,8 @@ ui_status_code_t ui_system_batch_property_processor(void)
     if (0 < *(int*)(property_offset + 0x28)) {
         do {
             // 处理单个属性
-            property_data = *(longlong*)(property_offset + 0x20) + total_properties;
-            longlong property_item = *(longlong*)(property_data + 0x10);
+            property_data = *(int64_t*)(property_offset + 0x20) + total_properties;
+            int64_t property_item = *(int64_t*)(property_data + 0x10);
             if (property_item == 0) {
                 return UI_STATUS_NULL_POINTER;
             }
@@ -528,7 +528,7 @@ void ui_system_no_operation(void)
 void ui_system_simple_validator(void)
 {
     int validation_result;
-    longlong context_param;
+    int64_t context_param;
     
     // 执行系统验证
     validation_result = func_0x00018088c500();
@@ -551,12 +551,12 @@ void ui_system_simple_validator(void)
  * - 状态一致性验证
  * - 控件有效性检查
  */
-ui_status_code_t ui_control_state_validator(longlong control_handle, longlong validation_context)
+ui_status_code_t ui_control_state_validator(int64_t control_handle, int64_t validation_context)
 {
     int property_index;
     ui_status_code_t status_code;
-    longlong state_container;
-    longlong property_container;
+    int64_t state_container;
+    int64_t property_container;
     
     // 获取状态容器
     status_code = func_0x00018088c530(*(uint32_t*)(control_handle + UI_CONTROL_OFFSET_BASE), &property_container);
@@ -576,20 +576,20 @@ ui_status_code_t ui_control_state_validator(longlong control_handle, longlong va
     }
     
     // 检查属性数据有效性
-    if (*(longlong*)(*(longlong*)(state_container + 0x20) + 0x10 + (longlong)property_index * 0x18) == 0) {
+    if (*(int64_t*)(*(int64_t*)(state_container + 0x20) + 0x10 + (int64_t)property_index * 0x18) == 0) {
         return UI_STATUS_NULL_POINTER;
     }
     
     // 设置属性值
     status_code = func_0x00018088c500(
-        *(longlong*)(state_container + 0x20) + (longlong)property_index * 0x18,
+        *(int64_t*)(state_container + 0x20) + (int64_t)property_index * 0x18,
         control_handle + 0x1c);
     if (status_code != UI_STATUS_SUCCESS) {
         return status_code;
     }
     
     // 获取验证上下文
-    state_container = *(longlong*)(validation_context + UI_CONTROL_OFFSET_EVENT);
+    state_container = *(int64_t*)(validation_context + UI_CONTROL_OFFSET_EVENT);
     if (*(int*)(state_container + 0x200) == 0) {
         return UI_STATUS_SUCCESS;
     }
@@ -598,7 +598,7 @@ ui_status_code_t ui_control_state_validator(longlong control_handle, longlong va
     if ((*(int*)(state_container + 0x180) != 0) || (*(int*)(state_container + 0x184) != 0)) {
         property_container = 0;
         FUN_180768b50(&property_container);
-        if (property_container == *(longlong*)((longlong)*(int*)(state_container + 0x17c) * 8 + 0x180c4f450)) {
+        if (property_container == *(int64_t*)((int64_t)*(int*)(state_container + 0x17c) * 8 + 0x180c4f450)) {
             status_code = FUN_18088dd60(state_container, control_handle);
             goto validation_complete;
         }
@@ -630,14 +630,14 @@ validation_complete:
  * 3. 初始化控件属性
  * 4. 注册到系统
  */
-void ui_control_creator(longlong control_handle, longlong creation_context)
+void ui_control_creator(int64_t control_handle, int64_t creation_context)
 {
-    longlong control_data;
+    int64_t control_data;
     int creation_result;
-    longlong memory_block;
-    longlong* control_pointer;
+    int64_t memory_block;
+    int64_t* control_pointer;
     uint8_t stack_data[32];
-    longlong stack_context;
+    int64_t stack_context;
     uint8_t temp_data[40];
     uint64_t security_cookie;
     
@@ -652,18 +652,18 @@ void ui_control_creator(longlong control_handle, longlong creation_context)
         }
         
         // 检查控件数据有效性
-        if (*(longlong*)(stack_context + 0x18) != 0) {
-            control_data = *(longlong*)(stack_context + 0x18) + 0x30;
-            memory_block = (**(code**)(**(longlong***)(creation_context + 800) + 0x2f0))
-                            (*(longlong***)(creation_context + 800), control_data, 1);
+        if (*(int64_t*)(stack_context + 0x18) != 0) {
+            control_data = *(int64_t*)(stack_context + 0x18) + 0x30;
+            memory_block = (**(code**)(**(int64_t***)(creation_context + 800) + 0x2f0))
+                            (*(int64_t***)(creation_context + 800), control_data, 1);
             if (memory_block == 0) {
                 // 内存分配失败，调用错误处理函数（不返回）
                 FUN_18084b240(control_data, temp_data);
             }
             
             // 验证控件指针
-            control_pointer = (longlong*)(memory_block + 0x58);
-            if (((longlong*)*control_pointer != control_pointer) || (*(longlong**)(memory_block + 0x60) != control_pointer)) {
+            control_pointer = (int64_t*)(memory_block + 0x58);
+            if (((int64_t*)*control_pointer != control_pointer) || (*(int64_t**)(memory_block + 0x60) != control_pointer)) {
                 // 指针验证失败，调用错误处理函数（不返回）
                 FUN_18088d720(*(uint64_t*)(creation_context + UI_CONTROL_OFFSET_EVENT), control_handle);
             }
@@ -683,11 +683,11 @@ void ui_control_creator(longlong control_handle, longlong creation_context)
  * @param init_context 初始化上下文，包含初始化相关信息
  * @return 无返回值
  */
-void ui_control_initializer(longlong* control_pointer, longlong init_context)
+void ui_control_initializer(int64_t* control_pointer, int64_t init_context)
 {
-    longlong memory_block;
-    longlong* pointer_check;
-    longlong context_param;
+    int64_t memory_block;
+    int64_t* pointer_check;
+    int64_t context_param;
     uint64_t stack_security;
     
     // 创建控件实例
@@ -698,8 +698,8 @@ void ui_control_initializer(longlong* control_pointer, longlong init_context)
     }
     
     // 验证控件指针
-    pointer_check = (longlong*)(memory_block + 0x58);
-    if (((longlong*)*pointer_check == pointer_check) && (*(longlong**)(memory_block + 0x60) == pointer_check)) {
+    pointer_check = (int64_t*)(memory_block + 0x58);
+    if (((int64_t*)*pointer_check == pointer_check) && (*(int64_t**)(memory_block + 0x60) == pointer_check)) {
         // 初始化成功，调用完成处理函数（不返回）
         FUN_1808fc050(stack_security ^ (uint64_t)&stack0x00000000);
     }
@@ -737,7 +737,7 @@ void ui_system_cleaner(void)
  * - 属性数据完整性
  * - 数值范围验证
  */
-ui_status_code_t ui_control_data_validator(longlong control_handle, longlong validation_context)
+ui_status_code_t ui_control_data_validator(int64_t control_handle, int64_t validation_context)
 {
     ui_float_t float_value;
     uint32_t float_flags;
@@ -749,8 +749,8 @@ ui_status_code_t ui_control_data_validator(longlong control_handle, longlong val
     int validation_flag2;
     int validation_flag3;
     int validation_flag4;
-    longlong data_pointer;
-    longlong temp_data[2];
+    int64_t data_pointer;
+    int64_t temp_data[2];
     uint32_t temp_value;
     ui_float_t stack_float;
     
@@ -865,13 +865,13 @@ ui_status_code_t ui_control_data_validator(longlong control_handle, longlong val
         *(uint32_t*)(data_pointer + 0x5c) = float_data1;
         *(uint32_t*)(data_pointer + 0x60) = float_data2;
         *(uint32_t*)(data_pointer + 100) = float_data3;
-        data_pointer = *(longlong*)(validation_context + UI_CONTROL_OFFSET_EVENT);
+        data_pointer = *(int64_t*)(validation_context + UI_CONTROL_OFFSET_EVENT);
         
         // 检查验证标志
         if ((*(int*)(data_pointer + 0x180) != 0) || (*(int*)(data_pointer + 0x184) != 0)) {
             temp_data[0] = 0;
             FUN_180768b50(temp_data);
-            if (temp_data[0] == *(longlong*)((longlong)*(int*)(data_pointer + 0x17c) * 8 + 0x180c4f450)) {
+            if (temp_data[0] == *(int64_t*)((int64_t)*(int*)(data_pointer + 0x17c) * 8 + 0x180c4f450)) {
                 status_code = FUN_18088dd60(data_pointer, control_handle);
                 if (status_code == UI_STATUS_SUCCESS) {
                     return UI_STATUS_SUCCESS;
@@ -900,10 +900,10 @@ ui_status_code_t ui_control_data_validator(longlong control_handle, longlong val
  * @param state_context 状态上下文，包含状态设置信息
  * @return 无返回值
  */
-void ui_system_state_setter(longlong control_handle, longlong state_context)
+void ui_system_state_setter(int64_t control_handle, int64_t state_context)
 {
     int status_code;
-    longlong state_data;
+    int64_t state_data;
     uint64_t temp_state;
     
     // 验证控件状态
@@ -937,15 +937,15 @@ void ui_system_state_setter(longlong control_handle, longlong state_context)
  * - 数值范围检查
  * - 属性一致性
  */
-ui_status_code_t ui_float_property_validator(longlong control_handle, longlong validation_context)
+ui_status_code_t ui_float_property_validator(int64_t control_handle, int64_t validation_context)
 {
     ui_float_t float_value;
-    longlong property_data;
+    int64_t property_data;
     ui_status_code_t status_code;
     ui_float_t min_value;
     ui_float_t max_value;
-    longlong property_container;
-    longlong temp_data[2];
+    int64_t property_container;
+    int64_t temp_data[2];
     
     // 验证浮点数参数
     property_container = CONCAT44(property_container._4_4_, *(uint32_t*)(control_handle + UI_CONTROL_OFFSET_DATA));
@@ -970,7 +970,7 @@ ui_status_code_t ui_float_property_validator(longlong control_handle, longlong v
             }
             
             // 验证属性数据
-            property_data = *(longlong*)(property_container + 0x10);
+            property_data = *(int64_t*)(property_container + 0x10);
             if (property_data == 0) {
                 return UI_STATUS_NULL_POINTER;
             }
@@ -1014,13 +1014,13 @@ ui_status_code_t ui_float_property_validator(longlong control_handle, longlong v
  * - 自动调整超出范围的值
  * - 更新相关属性
  */
-ui_status_code_t ui_float_property_adjuster(longlong control_handle, longlong adjustment_context)
+ui_status_code_t ui_float_property_adjuster(int64_t control_handle, int64_t adjustment_context)
 {
     ui_float_t float_value;
-    longlong property_data;
+    int64_t property_data;
     ui_status_code_t status_code;
-    longlong property_container;
-    longlong temp_data[2];
+    int64_t property_container;
+    int64_t temp_data[2];
     
     // 获取属性容器
     status_code = func_0x00018088c530(*(uint32_t*)(control_handle + UI_CONTROL_OFFSET_BASE), temp_data);
@@ -1039,7 +1039,7 @@ ui_status_code_t ui_float_property_adjuster(longlong control_handle, longlong ad
             }
             
             // 验证属性数据
-            property_data = *(longlong*)(property_container + 0x10);
+            property_data = *(int64_t*)(property_container + 0x10);
             if (property_data == 0) {
                 return UI_STATUS_NULL_POINTER;
             }
@@ -1076,19 +1076,19 @@ ui_status_code_t ui_float_property_adjuster(longlong control_handle, longlong ad
 ui_status_code_t ui_float_property_adjuster_context(void)
 {
     ui_float_t float_value;
-    longlong property_data;
+    int64_t property_data;
     ui_status_code_t status_code;
-    longlong context_param1;
-    longlong context_param2;
-    longlong context_param3;
-    longlong stack_param;
+    int64_t context_param1;
+    int64_t context_param2;
+    int64_t context_param3;
+    int64_t stack_param;
     
     if (stack_param == 0) {
         return UI_STATUS_RESOURCE_NOT_FOUND;
     }
     
     // 验证属性数据
-    property_data = *(longlong*)(stack_param + 0x10);
+    property_data = *(int64_t*)(stack_param + 0x10);
     if (property_data == 0) {
         return UI_STATUS_NULL_POINTER;
     }
@@ -1126,16 +1126,16 @@ ui_status_code_t ui_float_property_adjuster_context(void)
 ui_status_code_t ui_float_property_adjuster_register1(void)
 {
     ui_float_t float_value;
-    longlong property_data;
+    int64_t property_data;
     ui_status_code_t status_code;
-    longlong context_param1;
-    longlong context_param2;
-    longlong context_param3;
-    longlong context_param4;
-    longlong stack_param;
+    int64_t context_param1;
+    int64_t context_param2;
+    int64_t context_param3;
+    int64_t context_param4;
+    int64_t stack_param;
     
     // 验证属性数据
-    property_data = *(longlong*)(context_param1 + 0x10);
+    property_data = *(int64_t*)(context_param1 + 0x10);
     if (property_data == 0) {
         return UI_STATUS_NULL_POINTER;
     }
@@ -1174,11 +1174,11 @@ ui_status_code_t ui_float_property_adjuster_register2(uint32_t param1)
 {
     ui_float_t float_value;
     ui_status_code_t status_code;
-    longlong context_param1;
-    longlong context_param2;
-    longlong context_param3;
-    longlong context_param4;
-    longlong stack_param;
+    int64_t context_param1;
+    int64_t context_param2;
+    int64_t context_param3;
+    int64_t context_param4;
+    int64_t stack_param;
     
     // 验证属性数据
     if ((*(uint8_t*)(context_param1 + 0x34) & 0x11) != 0) {
@@ -1216,11 +1216,11 @@ ui_status_code_t ui_float_property_adjuster_direct(uint32_t param1)
 {
     ui_float_t float_value;
     ui_status_code_t status_code;
-    longlong context_param1;
-    longlong context_param2;
-    longlong context_param3;
-    longlong context_param4;
-    longlong stack_param;
+    int64_t context_param1;
+    int64_t context_param2;
+    int64_t context_param3;
+    int64_t context_param4;
+    int64_t stack_param;
     
     // 调整浮点数值
     status_code = FUN_18084de40(param1, context_param3 + 0x25, context_param3 + UI_CONTROL_OFFSET_DATA);
@@ -1277,16 +1277,16 @@ void ui_system_no_operation2(void)
  * 3. 验证属性索引
  * 4. 设置属性值
  */
-ui_status_code_t ui_control_property_index_validator(longlong control_handle, longlong validation_context)
+ui_status_code_t ui_control_property_index_validator(int64_t control_handle, int64_t validation_context)
 {
     ui_float_t float_value;
-    longlong property_data;
-    longlong list_data;
+    int64_t property_data;
+    int64_t list_data;
     ui_status_code_t status_code;
-    longlong property_container;
+    int64_t property_container;
     ui_float_t adjusted_value;
     uint32_t temp_data[2];
-    longlong stack_param;
+    int64_t stack_param;
     
     // 验证浮点数参数
     temp_data[0] = *(uint32_t*)(control_handle + UI_CONTROL_OFFSET_STATE);
@@ -1307,7 +1307,7 @@ ui_status_code_t ui_control_property_index_validator(longlong control_handle, lo
         }
         
         // 验证属性列表
-        property_data = *(longlong*)(property_container + 0x18);
+        property_data = *(int64_t*)(property_container + 0x18);
         if (property_data == 0) {
             return UI_STATUS_NULL_POINTER;
         }
@@ -1320,8 +1320,8 @@ ui_status_code_t ui_control_property_index_validator(longlong control_handle, lo
         }
         
         // 验证属性数据
-        list_data = *(longlong*)(property_container + 0x20);
-        property_data = *(longlong*)(list_data + 0x10 + (longlong)(int)temp_data[0] * MEMORY_POOL_BLOCK_SIZE);
+        list_data = *(int64_t*)(property_container + 0x20);
+        property_data = *(int64_t*)(list_data + 0x10 + (int64_t)(int)temp_data[0] * MEMORY_POOL_BLOCK_SIZE);
         if ((*(uint8_t*)(property_data + 0x34) & 0x11) == 0) {
             float_value = *(ui_float_t*)(control_handle + UI_CONTROL_OFFSET_STATE);
             adjusted_value = *(ui_float_t*)(property_data + 0x38);
@@ -1334,9 +1334,9 @@ ui_status_code_t ui_control_property_index_validator(longlong control_handle, lo
             
             // 更新属性值
             *(ui_float_t*)(control_handle + UI_CONTROL_OFFSET_STATE) = adjusted_value;
-            property_data = *(longlong*)(property_data + 0x90);
-            *(ui_float_t*)(list_data + 4 + (longlong)(int)temp_data[0] * MEMORY_POOL_BLOCK_SIZE) = adjusted_value;
-            *(uint64_t*)(control_handle + UI_CONTROL_OFFSET_DATA) = *(uint64_t*)(property_data + (longlong)(int)temp_data[0] * 8);
+            property_data = *(int64_t*)(property_data + 0x90);
+            *(ui_float_t*)(list_data + 4 + (int64_t)(int)temp_data[0] * MEMORY_POOL_BLOCK_SIZE) = adjusted_value;
+            *(uint64_t*)(control_handle + UI_CONTROL_OFFSET_DATA) = *(uint64_t*)(property_data + (int64_t)(int)temp_data[0] * 8);
             
             // 调用验证处理函数（不返回）
             FUN_18088d720(*(uint64_t*)(validation_context + UI_CONTROL_OFFSET_EVENT), control_handle);
@@ -1359,16 +1359,16 @@ ui_status_code_t ui_control_property_index_validator(longlong control_handle, lo
  * - 多重验证
  * - 属性值同步
  */
-ui_status_code_t ui_control_property_index_adjuster(longlong control_handle, longlong adjustment_context)
+ui_status_code_t ui_control_property_index_adjuster(int64_t control_handle, int64_t adjustment_context)
 {
     ui_float_t float_value;
-    longlong property_data;
-    longlong list_data;
+    int64_t property_data;
+    int64_t list_data;
     ui_status_code_t status_code;
-    longlong property_container;
-    longlong index_data;
+    int64_t property_container;
+    int64_t index_data;
     int temp_data[2];
-    longlong stack_param;
+    int64_t stack_param;
     
     // 验证属性容器
     if (control_handle + 0x28 != 0) {
@@ -1383,7 +1383,7 @@ ui_status_code_t ui_control_property_index_adjuster(longlong control_handle, lon
         }
         
         // 验证属性列表
-        property_data = *(longlong*)(property_container + 0x18);
+        property_data = *(int64_t*)(property_container + 0x18);
         if (property_data == 0) {
             return UI_STATUS_NULL_POINTER;
         }
@@ -1396,9 +1396,9 @@ ui_status_code_t ui_control_property_index_adjuster(longlong control_handle, lon
         }
         
         // 计算索引位置
-        index_data = (longlong)temp_data[0];
-        list_data = *(longlong*)(property_container + 0x20);
-        property_data = *(longlong*)(list_data + 0x10 + index_data * MEMORY_POOL_BLOCK_SIZE);
+        index_data = (int64_t)temp_data[0];
+        list_data = *(int64_t*)(property_container + 0x20);
+        property_data = *(int64_t*)(list_data + 0x10 + index_data * MEMORY_POOL_BLOCK_SIZE);
         if ((*(uint8_t*)(property_data + 0x34) & 0x11) == 0) {
             status_code = FUN_18084de40(property_data, control_handle + 0xa8, control_handle + UI_CONTROL_OFFSET_STATE);
             if (status_code != UI_STATUS_SUCCESS) {
@@ -1409,9 +1409,9 @@ ui_status_code_t ui_control_property_index_adjuster(longlong control_handle, lon
             float_value = *(ui_float_t*)(control_handle + UI_CONTROL_OFFSET_STATE);
             if ((*(ui_float_t*)(property_data + 0x38) <= float_value) &&
                (float_value < *(ui_float_t*)(property_data + 0x3c) || float_value == *(ui_float_t*)(property_data + 0x3c))) {
-                property_data = *(longlong*)(property_data + 0x90);
+                property_data = *(int64_t*)(property_data + 0x90);
                 *(ui_float_t*)(list_data + 4 + index_data * MEMORY_POOL_BLOCK_SIZE) = float_value;
-                *(uint64_t*)(control_handle + UI_CONTROL_OFFSET_DATA) = *(uint64_t*)(property_data + (longlong)temp_data[0] * 8);
+                *(uint64_t*)(control_handle + UI_CONTROL_OFFSET_DATA) = *(uint64_t*)(property_data + (int64_t)temp_data[0] * 8);
                 
                 // 调用调整处理函数（不返回）
                 FUN_18088d720(*(uint64_t*)(adjustment_context + UI_CONTROL_OFFSET_EVENT), control_handle);
@@ -1439,16 +1439,16 @@ ui_status_code_t ui_control_property_index_adjuster(longlong control_handle, lon
  * 3. 处理属性索引
  * 4. 更新状态
  */
-ui_status_code_t ui_control_property_index_processor(longlong control_handle, longlong process_context, uint64_t param3, uint64_t param4)
+ui_status_code_t ui_control_property_index_processor(int64_t control_handle, int64_t process_context, uint64_t param3, uint64_t param4)
 {
     ui_float_t float_value;
     int property_index;
-    longlong property_data;
+    int64_t property_data;
     ui_status_code_t status_code;
-    longlong property_container;
+    int64_t property_container;
     uint64_t extra_param;
     ui_float_t adjusted_value;
-    longlong stack_param;
+    int64_t stack_param;
     
     // 验证浮点数参数
     stack_param = CONCAT44(stack_param._4_4_, *(uint32_t*)(control_handle + UI_CONTROL_OFFSET_DATA));
@@ -1474,8 +1474,8 @@ ui_status_code_t ui_control_property_index_processor(longlong control_handle, lo
     }
     
     // 处理属性数据
-    property_container = *(longlong*)(property_container + 0x20) + (longlong)property_index * MEMORY_POOL_BLOCK_SIZE;
-    property_data = *(longlong*)(property_container + 0x10);
+    property_container = *(int64_t*)(property_container + 0x20) + (int64_t)property_index * MEMORY_POOL_BLOCK_SIZE;
+    property_data = *(int64_t*)(property_container + 0x10);
     if (property_data == 0) {
         return UI_STATUS_NULL_POINTER;
     }
@@ -1502,11 +1502,11 @@ ui_status_code_t ui_control_property_index_processor(longlong control_handle, lo
         }
         
         // 获取处理上下文
-        property_container = *(longlong*)(process_context + UI_CONTROL_OFFSET_EVENT);
+        property_container = *(int64_t*)(process_context + UI_CONTROL_OFFSET_EVENT);
         if ((*(int*)(property_container + 0x180) != 0) || (*(int*)(property_container + 0x184) != 0)) {
             stack_param = 0;
             FUN_180768b50(&stack_param, control_handle, param3, param4, extra_param);
-            if (stack_param == *(longlong*)((longlong)*(int*)(property_container + 0x17c) * 8 + 0x180c4f450)) {
+            if (stack_param == *(int64_t*)((int64_t)*(int*)(property_container + 0x17c) * 8 + 0x180c4f450)) {
                 status_code = FUN_18088dd60(property_container, control_handle);
                 if (status_code == UI_STATUS_SUCCESS) {
                     return UI_STATUS_SUCCESS;
@@ -1540,13 +1540,13 @@ ui_status_code_t ui_control_property_index_processor(longlong control_handle, lo
  * - 数组边界检查
  * - 统一错误处理
  */
-ui_status_code_t ui_float_array_processor(longlong control_handle, longlong process_context)
+ui_status_code_t ui_float_array_processor(int64_t control_handle, int64_t process_context)
 {
     int array_index;
     int property_index;
     ui_status_code_t status_code;
     ui_float_t* float_array;
-    longlong property_data;
+    int64_t property_data;
     uint64_t array_offset;
     ui_float_t* array_pointer;
     uint64_t current_index;
@@ -1572,7 +1572,7 @@ ui_status_code_t ui_float_array_processor(longlong control_handle, longlong proc
     
     // 获取数组信息
     property_index = *(int*)(array_offset + 0x28);
-    float_array = (ui_float_t*)(control_handle + UI_CONTROL_OFFSET_DATA + (longlong)*(int*)(control_handle + UI_CONTROL_OFFSET_STATE) * 4);
+    float_array = (ui_float_t*)(control_handle + UI_CONTROL_OFFSET_DATA + (int64_t)*(int*)(control_handle + UI_CONTROL_OFFSET_STATE) * 4);
     
     // 处理浮点数数组
     if (0 < *(int*)(control_handle + UI_CONTROL_OFFSET_STATE)) {
@@ -1580,7 +1580,7 @@ ui_status_code_t ui_float_array_processor(longlong control_handle, longlong proc
         current_index = array_size;
         do {
             // 验证数组元素
-            property_index = *(int*)(((control_handle + UI_CONTROL_OFFSET_DATA) - (longlong)float_array) + (longlong)array_pointer);
+            property_index = *(int*)(((control_handle + UI_CONTROL_OFFSET_DATA) - (int64_t)float_array) + (int64_t)array_pointer);
             if (property_index != -1) {
                 stack_float = *array_pointer;
                 if (((uint32_t)stack_float & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
@@ -1591,11 +1591,11 @@ ui_status_code_t ui_float_array_processor(longlong control_handle, longlong proc
                 }
                 
                 // 获取属性数据
-                property_data = *(longlong*)(array_offset + 0x20) + (longlong)property_index * MEMORY_POOL_BLOCK_SIZE;
+                property_data = *(int64_t*)(array_offset + 0x20) + (int64_t)property_index * MEMORY_POOL_BLOCK_SIZE;
                 if (property_data == 0) {
                     return UI_STATUS_VALIDATION_FAILED;
                 }
-                property_data = *(longlong*)(property_data + 0x10);
+                property_data = *(int64_t*)(property_data + 0x10);
                 if (property_data == 0) {
                     return UI_STATUS_NULL_POINTER;
                 }
@@ -1618,11 +1618,11 @@ ui_status_code_t ui_float_array_processor(longlong control_handle, longlong proc
         
         // 更新属性值
         if (0 < *(int*)(control_handle + UI_CONTROL_OFFSET_STATE)) {
-            property_data = (control_handle + UI_CONTROL_OFFSET_DATA) - (longlong)float_array;
+            property_data = (control_handle + UI_CONTROL_OFFSET_DATA) - (int64_t)float_array;
             do {
-                property_index = *(int*)((longlong)float_array + property_data);
+                property_index = *(int*)((int64_t)float_array + property_data);
                 if (property_index != -1) {
-                    *(ui_float_t*)(*(longlong*)(array_offset + 0x20) + 4 + (longlong)property_index * MEMORY_POOL_BLOCK_SIZE) = *float_array;
+                    *(ui_float_t*)(*(int64_t*)(array_offset + 0x20) + 4 + (int64_t)property_index * MEMORY_POOL_BLOCK_SIZE) = *float_array;
                 }
                 array_index = (int)array_size + 1;
                 array_size = (uint64_t)array_index;
@@ -1652,15 +1652,15 @@ ui_status_code_t ui_float_array_processor_context(void)
     ui_float_t float_value;
     int array_index;
     int property_index;
-    longlong property_data;
+    int64_t property_data;
     ui_status_code_t status_code;
     ui_float_t* float_array;
-    longlong context_param1;
-    longlong context_param2;
-    longlong context_param3;
-    longlong context_param4;
-    longlong context_param5;
-    longlong context_param6;
+    int64_t context_param1;
+    int64_t context_param2;
+    int64_t context_param3;
+    int64_t context_param4;
+    int64_t context_param5;
+    int64_t context_param6;
     ui_float_t* array_pointer;
     uint64_t current_index;
     ui_float_t array_value;
@@ -1675,7 +1675,7 @@ ui_status_code_t ui_float_array_processor_context(void)
     
     // 获取数组信息
     property_index = *(int*)(context_param6 + 0x28);
-    float_array = (ui_float_t*)(context_param2 + UI_CONTROL_OFFSET_DATA + (longlong)*(int*)(context_param2 + UI_CONTROL_OFFSET_STATE) * 4);
+    float_array = (ui_float_t*)(context_param2 + UI_CONTROL_OFFSET_DATA + (int64_t)*(int*)(context_param2 + UI_CONTROL_OFFSET_STATE) * 4);
     
     // 处理浮点数数组
     if (0 < *(int*)(context_param2 + UI_CONTROL_OFFSET_STATE)) {
@@ -1683,7 +1683,7 @@ ui_status_code_t ui_float_array_processor_context(void)
         current_index = context_param5;
         do {
             // 验证数组元素
-            property_index = *(int*)(((context_param2 + UI_CONTROL_OFFSET_DATA) - (longlong)float_array) + (longlong)array_pointer);
+            property_index = *(int*)(((context_param2 + UI_CONTROL_OFFSET_DATA) - (int64_t)float_array) + (int64_t)array_pointer);
             if (property_index != -1) {
                 float_value = *array_pointer;
                 if (((uint32_t)float_value & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
@@ -1694,11 +1694,11 @@ ui_status_code_t ui_float_array_processor_context(void)
                 }
                 
                 // 获取属性数据
-                property_data = *(longlong*)(context_param6 + 0x20) + (longlong)property_index * MEMORY_POOL_BLOCK_SIZE;
+                property_data = *(int64_t*)(context_param6 + 0x20) + (int64_t)property_index * MEMORY_POOL_BLOCK_SIZE;
                 if (property_data == 0) {
                     return UI_STATUS_VALIDATION_FAILED;
                 }
-                property_data = *(longlong*)(property_data + 0x10);
+                property_data = *(int64_t*)(property_data + 0x10);
                 if (property_data == 0) {
                     return UI_STATUS_NULL_POINTER;
                 }
@@ -1720,11 +1720,11 @@ ui_status_code_t ui_float_array_processor_context(void)
         
         // 更新属性值
         if (0 < *(int*)(context_param2 + UI_CONTROL_OFFSET_STATE)) {
-            property_data = (context_param2 + UI_CONTROL_OFFSET_DATA) - (longlong)float_array;
+            property_data = (context_param2 + UI_CONTROL_OFFSET_DATA) - (int64_t)float_array;
             do {
-                property_index = *(int*)((longlong)float_array + property_data);
+                property_index = *(int*)((int64_t)float_array + property_data);
                 if (property_index != -1) {
-                    *(ui_float_t*)(*(longlong*)(context_param6 + 0x20) + 4 + (longlong)property_index * MEMORY_POOL_BLOCK_SIZE) = *float_array;
+                    *(ui_float_t*)(*(int64_t*)(context_param6 + 0x20) + 4 + (int64_t)property_index * MEMORY_POOL_BLOCK_SIZE) = *float_array;
                 }
                 context_param5 = context_param5 + 1;
                 float_array = float_array + 1;
@@ -1774,14 +1774,14 @@ ui_status_code_t ui_status_code_returner2(void)
  * - 内存对齐
  * - 错误处理
  */
-void ui_system_memory_allocator(longlong control_handle, uint64_t allocation_size)
+void ui_system_memory_allocator(int64_t control_handle, uint64_t allocation_size)
 {
     int allocation_result;
-    longlong data_size;
+    int64_t data_size;
     uint64_t aligned_size;
     bool alignment_check;
-    longlong temp_data[3];
-    longlong stack_param;
+    int64_t temp_data[3];
+    int64_t stack_param;
     uint64_t temp_param;
     uint64_t security_cookie;
     
@@ -1799,7 +1799,7 @@ void ui_system_memory_allocator(longlong control_handle, uint64_t allocation_siz
         }
         
         // 计算内存需求
-        data_size = (longlong)*(int*)(control_handle + UI_CONTROL_OFFSET_STATE);
+        data_size = (int64_t)*(int*)(control_handle + UI_CONTROL_OFFSET_STATE);
         aligned_size = data_size * 4 + MEMORY_ALIGNMENT_SIZE;
         stack_param = control_handle + UI_CONTROL_OFFSET_DATA + data_size * 8;
         

@@ -76,7 +76,7 @@ void FUN_180285cf0(float *param_1,float *param_2,float *param_3)
 
 
 
-uint64_t * FUN_180285df0(uint64_t *param_1,ulonglong param_2)
+uint64_t * FUN_180285df0(uint64_t *param_1,uint64_t param_2)
 
 {
   *param_1 = &unknown_var_9288_ptr;
@@ -130,7 +130,7 @@ int32_t * FUN_180285e20(int32_t *param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_180286010(longlong param_1,uint64_t param_2,char param_3)
+uint64_t FUN_180286010(int64_t param_1,uint64_t param_2,char param_3)
 
 {
   double dVar1;
@@ -205,7 +205,7 @@ uint64_t FUN_180286010(longlong param_1,uint64_t param_2,char param_3)
       uStack_e8 = 0;
       auStack_188._8_8_ = 0;
       auStack_148._8_4_ = SUB84(dVar7,0);
-      auStack_148._12_4_ = (int)((ulonglong)dVar7 >> 0x20);
+      auStack_148._12_4_ = (int)((uint64_t)dVar7 >> 0x20);
       auStack_138._8_4_ = 0;
       auStack_138._0_8_ = -1.0 - (double)auStack_138._0_8_;
       auStack_138._12_4_ = 0xbff00000;

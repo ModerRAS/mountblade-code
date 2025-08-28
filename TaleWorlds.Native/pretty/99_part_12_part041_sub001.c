@@ -54,13 +54,13 @@ typedef uint64_t PersistenceHandle;             // 持久化句柄
 //------------------------------------------------------------------------------
 
 // 文件系统操作函数
-uint64_t FileSystemOperation(longlong context, uint64_t operation, uint64_t *buffer);
+uint64_t FileSystemOperation(int64_t context, uint64_t operation, uint64_t *buffer);
 
 // 存储空间管理函数
-uint64_t StorageSpaceManager(longlong context, uint64_t *buffer);
+uint64_t StorageSpaceManager(int64_t context, uint64_t *buffer);
 
 // 文件操作控制函数
-uint64_t FileOperationController(longlong context, uint64_t *buffer);
+uint64_t FileOperationController(int64_t context, uint64_t *buffer);
 
 //------------------------------------------------------------------------------
 // 函数别名定义
@@ -115,18 +115,18 @@ uint64_t FUN_180012349(uint64_t param_1, uint64_t param_2)
 {
     // 局部变量定义
     uint64_t uVar1;                            // 操作结果
-    longlong lVar2;                              // 上下文指针
+    int64_t lVar2;                              // 上下文指针
     int iVar3;                                  // 状态标志
     uint64_t auStack_28 [4];                   // 栈缓冲区 (32字节)
-    ulonglong uStack_8;                         // 安全检查值
+    uint64_t uStack_8;                         // 安全检查值
     
     // 安全检查：栈保护机制
-    uStack_8 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_28;
+    uStack_8 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_28;
     
     // 参数有效性检查
     if (param_1 != 0 && param_2 != 0) {
         // 获取文件系统上下文
-        lVar2 = (longlong)param_1;
+        lVar2 = (int64_t)param_1;
         
         // 检查文件系统管理器状态
         iVar3 = *(int *)(lVar2 + 0x28);
@@ -153,7 +153,7 @@ uint64_t FUN_180012349(uint64_t param_1, uint64_t param_2)
     }
     
     // 安全退出：栈保护检查
-    FUN_1808fc050(uStack_8 ^ (ulonglong)auStack_28);
+    FUN_1808fc050(uStack_8 ^ (uint64_t)auStack_28);
     
     return uVar1;                                // 返回操作结果
 }
@@ -227,7 +227,7 @@ uint64_t FUN_180012349(uint64_t param_1, uint64_t param_2)
 //   buffer - 操作缓冲区
 // 返回值：操作结果
 //------------------------------------------------------------------------------
-uint64_t FileSystemOperation(longlong context, uint64_t operation, uint64_t *buffer)
+uint64_t FileSystemOperation(int64_t context, uint64_t operation, uint64_t *buffer)
 {
     uint64_t result = FILE_SUCCESS;
     
@@ -261,7 +261,7 @@ uint64_t FileSystemOperation(longlong context, uint64_t operation, uint64_t *buf
 //   buffer - 操作缓冲区
 // 返回值：操作结果
 //------------------------------------------------------------------------------
-uint64_t StorageSpaceManager(longlong context, uint64_t *buffer)
+uint64_t StorageSpaceManager(int64_t context, uint64_t *buffer)
 {
     uint64_t result = FILE_SUCCESS;
     
@@ -289,7 +289,7 @@ uint64_t StorageSpaceManager(longlong context, uint64_t *buffer)
 //   buffer - 操作缓冲区
 // 返回值：操作结果
 //------------------------------------------------------------------------------
-uint64_t FileOperationController(longlong context, uint64_t *buffer)
+uint64_t FileOperationController(int64_t context, uint64_t *buffer)
 {
     uint64_t result = FILE_SUCCESS;
     
@@ -312,11 +312,11 @@ uint64_t FileOperationController(longlong context, uint64_t *buffer)
 //------------------------------------------------------------------------------
 // 辅助函数声明
 //------------------------------------------------------------------------------
-uint64_t MountFileSystem(longlong context, uint64_t *buffer);
-uint64_t UnmountFileSystem(longlong context, uint64_t *buffer);
-uint64_t CheckFileSystem(longlong context, uint64_t *buffer);
-uint64_t RepairFileSystem(longlong context, uint64_t *buffer);
-uint64_t CheckStorageSpace(longlong context, uint64_t *buffer);
-uint64_t OptimizeStorageSpace(longlong context, uint64_t *buffer);
-uint64_t CheckFileAccess(longlong context, uint64_t *buffer);
-uint64_t ExecuteFileOperation(longlong context, uint64_t *buffer);
+uint64_t MountFileSystem(int64_t context, uint64_t *buffer);
+uint64_t UnmountFileSystem(int64_t context, uint64_t *buffer);
+uint64_t CheckFileSystem(int64_t context, uint64_t *buffer);
+uint64_t RepairFileSystem(int64_t context, uint64_t *buffer);
+uint64_t CheckStorageSpace(int64_t context, uint64_t *buffer);
+uint64_t OptimizeStorageSpace(int64_t context, uint64_t *buffer);
+uint64_t CheckFileAccess(int64_t context, uint64_t *buffer);
+uint64_t ExecuteFileOperation(int64_t context, uint64_t *buffer);

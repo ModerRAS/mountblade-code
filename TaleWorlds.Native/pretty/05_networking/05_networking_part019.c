@@ -604,28 +604,28 @@ void FUN_180852090(uint64_t *param_1, uint64_t *param_2)
     char cVar3;                                  // 字符变量3
     short sVar4;                                 // 短整型变量4
     int iVar5;                                   // 整型变量5
-    longlong lVar6;                              // 长整型变量6
-    longlong lVar7;                              // 长整型变量7
+    int64_t lVar6;                              // 长整型变量6
+    int64_t lVar7;                              // 长整型变量7
     uint64_t *puVar8;                          // 通用8字节指针变量8
     uint64_t *puVar9;                          // 通用8字节指针变量9
     int iVar10;                                  // 整型变量10
     uint64_t *puVar11;                         // 通用8字节指针变量11
     uint64_t *puVar12;                         // 通用8字节指针变量12
-    longlong *plVar13;                           // 长整型指针变量13
-    ulonglong uVar14;                            // 无符号长整型变量14
-    ulonglong uVar15;                            // 无符号长整型变量15
+    int64_t *plVar13;                           // 长整型指针变量13
+    uint64_t uVar14;                            // 无符号长整型变量14
+    uint64_t uVar15;                            // 无符号长整型变量15
     int iVar16;                                  // 整型变量16
     uint uVar17;                                 // 无符号整型变量17
     int iVar18;                                  // 整型变量18
-    ulonglong uVar19;                            // 无符号长整型变量19
+    uint64_t uVar19;                            // 无符号长整型变量19
     uint64_t *puVar20;                         // 通用8字节指针变量20
     code *pcVar21;                               // 代码指针变量21
     uint uVar22;                                 // 无符号整型变量22
-    ulonglong uVar23;                            // 无符号长整型变量23
+    uint64_t uVar23;                            // 无符号长整型变量23
     
     // 安全栈变量
     int8_t auStack_338 [32];                 // 32字节安全栈缓冲区
-    longlong *plStack_318;                       // 长整型栈指针318
+    int64_t *plStack_318;                       // 长整型栈指针318
     uint64_t *puStack_310;                     // 通用8字节栈指针310
     uint uStack_308;                             // 无符号整型栈变量308
     uint uStack_300;                             // 无符号整型栈变量300
@@ -637,21 +637,21 @@ void FUN_180852090(uint64_t *param_1, uint64_t *param_2)
     uint uStack_2d0;                             // 无符号整型栈变量2d0
     uint64_t uStack_2c8;                       // 通用8字节栈变量2c8
     uint64_t uStack_2c0;                       // 通用8字节栈变量2c0
-    ulonglong uStack_2b8;                        // 无符号长整型栈变量2b8
+    uint64_t uStack_2b8;                        // 无符号长整型栈变量2b8
     uint64_t *puStack_2b0;                     // 通用8字节栈指针2b0
-    longlong lStack_2a8;                         // 长整型栈变量2a8
-    longlong lStack_2a0;                         // 长整型栈变量2a0
+    int64_t lStack_2a8;                         // 长整型栈变量2a8
+    int64_t lStack_2a0;                         // 长整型栈变量2a0
     uint64_t auStack_298 [2];                  // 16字节栈数组298
     int8_t *puStack_288;                     // 通用1字节栈指针288
     int iStack_280;                              // 整型栈变量280
     int32_t uStack_27c;                       // 通用4字节栈变量27c
     int8_t auStack_278 [512];                // 512字节栈缓冲区278
     int8_t auStack_78 [40];                  // 40字节栈缓冲区78
-    ulonglong uStack_50;                         // 无符号长整型栈变量50
+    uint64_t uStack_50;                         // 无符号长整型栈变量50
     
     // 第一阶段：安全初始化和栈保护
     // 初始化安全栈变量，防止栈溢出和内存破坏攻击
-    uStack_50 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_338;
+    uStack_50 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_338;
     
     // 第二阶段：会话参数验证和初始化
     // 验证会话句柄的有效性并初始化会话状态
@@ -663,8 +663,8 @@ void FUN_180852090(uint64_t *param_1, uint64_t *param_2)
     if (lVar6 != 0) {
         // 连接状态处理
         uStack_2c8 = *(uint64_t **)(lVar6 + 0x10);
-        uStack_2c0 = *(ulonglong *)(lVar6 + 0x18);
-        lVar6 = (**(code **)(*(longlong *)*param_2 + 0x150))((longlong *)*param_2, &uStack_2c8);
+        uStack_2c0 = *(uint64_t *)(lVar6 + 0x18);
+        lVar6 = (**(code **)(*(int64_t *)*param_2 + 0x150))((int64_t *)*param_2, &uStack_2c8);
         
         // 协议处理错误检查
         if (lVar6 == 0) {
@@ -678,10 +678,10 @@ void FUN_180852090(uint64_t *param_1, uint64_t *param_2)
             uStack_300 = (uint)uStack_2c0._1_1_;
             uStack_308 = (uint)(byte)uStack_2c0;
             puStack_310 = (uint64_t *)CONCAT44(puStack_310._4_4_, (uint)uStack_2c8._6_2_);
-            plStack_318 = (longlong *)CONCAT44(plStack_318._4_4_, (uint)uStack_2c8._4_2_);
+            plStack_318 = (int64_t *)CONCAT44(plStack_318._4_4_, (uint)uStack_2c8._4_2_);
             
             // 警告：子函数不返回
-            FUN_18076b390(auStack_78, 0x27, &unknown_var_8960_ptr, (ulonglong)uStack_2c8 & 0xffffffff);
+            FUN_18076b390(auStack_78, 0x27, &unknown_var_8960_ptr, (uint64_t)uStack_2c8 & 0xffffffff);
         }
         
         // 更新会话状态
@@ -722,7 +722,7 @@ LAB_1808522f9:
                 }
                 
                 // 数据排序和处理
-                lVar6 = (longlong)iStack_280;
+                lVar6 = (int64_t)iStack_280;
                 if (iStack_280 != 0) {
                     lVar7 = (**(code **)*param_1)(param_1);
                     iVar5 = *(int *)(lVar7 + 0xd0);
@@ -744,10 +744,10 @@ LAB_180852282:
                     }
                     
                     // 数据验证和处理
-                    lVar6 = (longlong)(iVar18 + -1);
+                    lVar6 = (int64_t)(iVar18 + -1);
                     if (-1 < iVar18 + -1) {
                         do {
-                            if (((*(uint *)(*(longlong *)(puStack_288 + lVar6 * 8) + 0x2d8) >> 6 & 1) != 0) &&
+                            if (((*(uint *)(*(int64_t *)(puStack_288 + lVar6 * 8) + 0x2d8) >> 6 & 1) != 0) &&
                                (iVar5 = FUN_18084e710(param_1), iVar5 != 0)) goto LAB_1808522f9;
                             lVar6 = lVar6 + -1;
                         } while (-1 < lVar6);
@@ -777,13 +777,13 @@ LAB_180852302:
         else {
             lVar6 = (*(code *)**(uint64_t **)param_1[0xc])();
             uStack_2c8 = *(uint64_t **)(lVar6 + 0x10);
-            uStack_2c0 = *(ulonglong *)(lVar6 + 0x18);
+            uStack_2c0 = *(uint64_t *)(lVar6 + 0x18);
         }
         
         // 连接验证和状态检查
         lVar6 = param_1[8];
         if ((*(uint64_t **)(lVar6 + 0x58) != uStack_2c8) ||
-           (*(ulonglong *)(lVar6 + 0x60) != uStack_2c0)) {
+           (*(uint64_t *)(lVar6 + 0x60) != uStack_2c0)) {
             if ((*(int *)(lVar6 + 0x58) == 0) &&
                (((*(int *)(lVar6 + 0x5c) == 0 && (*(int *)(lVar6 + 0x60) == 0)) &&
                 (*(int *)(lVar6 + 100) == 0)))) goto FUN_180852aaa;
@@ -818,14 +818,14 @@ joined_r0x0001808523af:
                 lVar6 = (**(code **)*puVar9)(puVar9);
                 iVar5 = *(int *)(param_1[8] + 0x40);
                 if (0 < iVar5) {
-                    lVar7 = *(longlong *)(param_1[8] + 0x38);
+                    lVar7 = *(int64_t *)(param_1[8] + 0x38);
                     puVar20 = puVar11;
                     do {
                         iVar18 = (int)puVar20;
-                        if ((*(longlong *)(lVar7 + (longlong)iVar18 * 0x10) == *(longlong *)(lVar6 + 0x10)) &&
-                           (*(longlong *)(lVar7 + 8 + (longlong)iVar18 * 0x10) == *(longlong *)(lVar6 + 0x18)))
+                        if ((*(int64_t *)(lVar7 + (int64_t)iVar18 * 0x10) == *(int64_t *)(lVar6 + 0x10)) &&
+                           (*(int64_t *)(lVar7 + 8 + (int64_t)iVar18 * 0x10) == *(int64_t *)(lVar6 + 0x18)))
                             goto joined_r0x0001808523af;
-                        puVar20 = (uint64_t *)(ulonglong)(iVar18 + 1U);
+                        puVar20 = (uint64_t *)(uint64_t)(iVar18 + 1U);
                     } while ((int)(iVar18 + 1U) < iVar5);
                 }
                 iVar5 = FUN_1808c4370(puVar9, param_1);
@@ -854,12 +854,12 @@ LAB_180852a22:
     // 错误处理和清理
 FUN_180852aaa:
     // 警告：子函数不返回
-    FUN_1808fc050(uStack_50 ^ (ulonglong)auStack_338);
+    FUN_1808fc050(uStack_50 ^ (uint64_t)auStack_338);
     
     // 连接验证和处理
 LAB_18085243e:
     if ((puVar12 < *(uint64_t **)(lVar6 + 0x38)) ||
-       (*(uint64_t **)(lVar6 + 0x38) + (longlong)*(int *)(lVar6 + 0x40) * 2 <= puVar12))
+       (*(uint64_t **)(lVar6 + 0x38) + (int64_t)*(int *)(lVar6 + 0x40) * 2 <= puVar12))
         goto LAB_180852518;
     
     // 协议处理和状态同步
@@ -869,7 +869,7 @@ LAB_18085243e:
     if (puVar9 != puVar8) {
         while ((lVar7 = (*(code *)**(uint64_t **)puVar9[2])(),
                uStack_2c8 != *(uint64_t **)(lVar7 + 0x10) ||
-               (uStack_2c0 != *(ulonglong *)(lVar7 + 0x18)))) {
+               (uStack_2c0 != *(uint64_t *)(lVar7 + 0x18)))) {
             if ((puVar9 == puVar8) || (puVar9 = (uint64_t *)*puVar9, puVar9 == puVar8))
                 goto LAB_1808524b7;
         }
@@ -881,7 +881,7 @@ LAB_18085243e:
     // 安全验证和错误检查
 LAB_1808524b7:
     if (((int)uStack_2c8 != 0) ||
-       ((((int)((ulonglong)uStack_2c8 >> 0x20) != 0 || ((int)uStack_2c0 != 0)) ||
+       ((((int)((uint64_t)uStack_2c8 >> 0x20) != 0 || ((int)uStack_2c0 != 0)) ||
         ((int)(uStack_2c0 >> 0x20) != 0)))) {
         uStack_2b8 = 0;
         iVar5 = FUN_1808bc240(param_1[7], &uStack_2c8, 0xffffffff, &uStack_2b8);
@@ -914,7 +914,7 @@ LAB_180852518:
             do {
                 iVar18 = (int)uVar15;
                 iVar5 = FUN_18073cdf0(param_1[0xf],
-                                      *(uint64_t *)(*(longlong *)(param_1[0x10] + lStack_2a0) + 0x30));
+                                      *(uint64_t *)(*(int64_t *)(param_1[0x10] + lStack_2a0) + 0x30));
                 if (iVar5 != 0) goto LAB_180852943;
                 lStack_2a8 = param_1[0x10];
                 iVar10 = (int)uVar19 + 1;
@@ -946,29 +946,29 @@ LAB_180852518:
                 }
                 iVar5 = (int)uVar23;
                 uVar22 = iVar5 + 1;
-                uVar23 = (ulonglong)uVar22;
+                uVar23 = (uint64_t)uVar22;
                 uVar17 = iVar16 + 1;
-                uVar14 = (ulonglong)uVar17;
-                uVar19 = (ulonglong)uVar17;
+                uVar14 = (uint64_t)uVar17;
+                uVar19 = (uint64_t)uVar17;
                 uStack_2c0 = CONCAT44(uStack_2c0._4_4_, uVar17);
                 lStack_2a0 = lStack_2a0 + 8;
-                puVar11[iVar16] = *(uint64_t *)(lStack_2a8 + (longlong)iVar5 * 8);
+                puVar11[iVar16] = *(uint64_t *)(lStack_2a8 + (int64_t)iVar5 * 8);
             } while ((int)uVar22 < *(int *)(param_1 + 0x11));
         }
         
         // 内存管理和资源清理
         uVar23 = 0;
         plVar13 = param_1 + 0x10;
-        uVar17 = *(uint *)((longlong)param_1 + 0x8c);
+        uVar17 = *(uint *)((int64_t)param_1 + 0x8c);
         if ((int)((uVar17 ^ (int)uVar17 >> 0x1f) - ((int)uVar17 >> 0x1f)) < 0) {
             if (*(int *)(param_1 + 0x11) < 1) {
                 if ((0 < (int)uVar17) && (*plVar13 != 0)) {
-                    plStack_318 = (longlong *)CONCAT71(plStack_318._1_7_, 1);
+                    plStack_318 = (int64_t *)CONCAT71(plStack_318._1_7_, 1);
                     // 警告：子函数不返回
                     FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *plVar13, &unknown_var_8432_ptr, 0x100);
                 }
                 *plVar13 = 0;
-                *(int32_t *)((longlong)param_1 + 0x8c) = 0;
+                *(int32_t *)((int64_t)param_1 + 0x8c) = 0;
                 goto LAB_1808526bf;
             }
 LAB_180852954:
@@ -982,7 +982,7 @@ LAB_1808526bf:
         iVar5 = *(int *)(param_1 + 0x11);
         if (iVar5 < 0) {
             // 警告：子函数不返回
-            memset(*plVar13 + (longlong)iVar5 * 8, 0, (longlong)-iVar5 << 3);
+            memset(*plVar13 + (int64_t)iVar5 * 8, 0, (int64_t)-iVar5 << 3);
         }
         *(int32_t *)(param_1 + 0x11) = 0;
         uVar19 = uVar23;
@@ -990,7 +990,7 @@ LAB_1808526bf:
             do {
                 iVar18 = (int)uVar15;
                 iVar5 = FUN_18073cdf0(param_1[0xf],
-                                      *(uint64_t *)(*(longlong *)(param_1[0x12] + uVar23) + 0x30));
+                                      *(uint64_t *)(*(int64_t *)(param_1[0x12] + uVar23) + 0x30));
                 if (iVar5 != 0) goto LAB_180852943;
                 lStack_2a8 = param_1[0x12];
                 iVar10 = (int)uVar14 + 1;
@@ -1022,32 +1022,32 @@ LAB_1808526bf:
                 }
                 uVar23 = uVar23 + 8;
                 uVar17 = (int)uVar19 + 1;
-                uVar14 = (ulonglong)(iVar16 + 1U);
+                uVar14 = (uint64_t)(iVar16 + 1U);
                 uStack_2c0 = CONCAT44(uStack_2c0._4_4_, iVar16 + 1U);
-                puVar11[iVar16] = *(uint64_t *)(lStack_2a8 + (longlong)(int)uVar19 * 8);
-                uVar19 = (ulonglong)uVar17;
+                puVar11[iVar16] = *(uint64_t *)(lStack_2a8 + (int64_t)(int)uVar19 * 8);
+                uVar19 = (uint64_t)uVar17;
             } while ((int)uVar17 < *(int *)(param_1 + 0x13));
         }
         
         // 内存清理和资源释放
         plVar13 = param_1 + 0x12;
-        uVar17 = *(uint *)((longlong)param_1 + 0x9c);
+        uVar17 = *(uint *)((int64_t)param_1 + 0x9c);
         if ((int)((uVar17 ^ (int)uVar17 >> 0x1f) - ((int)uVar17 >> 0x1f)) < 0) {
             if (0 < *(int *)(param_1 + 0x13)) goto LAB_180852954;
             if ((0 < (int)uVar17) && (*plVar13 != 0)) {
-                plStack_318 = (longlong *)CONCAT71(plStack_318._1_7_, 1);
+                plStack_318 = (int64_t *)CONCAT71(plStack_318._1_7_, 1);
                 // 警告：子函数不返回
                 FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *plVar13, &unknown_var_8432_ptr, 0x100);
             }
             *plVar13 = 0;
-            *(int32_t *)((longlong)param_1 + 0x9c) = 0;
+            *(int32_t *)((int64_t)param_1 + 0x9c) = 0;
         }
         
         // 最终清理和状态更新
         iVar5 = *(int *)(param_1 + 0x13);
         if (iVar5 < 0) {
             // 警告：子函数不返回
-            memset(*plVar13 + (longlong)iVar5 * 8, 0, (longlong)-iVar5 << 3);
+            memset(*plVar13 + (int64_t)iVar5 * 8, 0, (int64_t)-iVar5 << 3);
         }
         *(int32_t *)(param_1 + 0x13) = 0;
         iVar5 = FUN_18073c380(param_1[0xf], 0xfffffffe, auStack_298);
@@ -1101,9 +1101,9 @@ LAB_180852980:
     if (0 < *(int *)(param_1 + 0x11)) {
         do {
             FUN_1808b5c90(*(uint64_t *)(param_1[0x10] + uVar19),
-                          *(int32_t *)(*(longlong *)(param_1[8] + 0xa0) + uVar23));
+                          *(int32_t *)(*(int64_t *)(param_1[8] + 0xa0) + uVar23));
             uVar17 = (int)uVar14 + 1;
-            uVar14 = (ulonglong)uVar17;
+            uVar14 = (uint64_t)uVar17;
             uVar23 = uVar23 + 4;
             uVar19 = uVar19 + 8;
         } while ((int)uVar17 < *(int *)(param_1 + 0x11));
@@ -1114,12 +1114,12 @@ LAB_180852980:
     if (0 < *(int *)(param_1 + 0x13)) {
         do {
             FUN_1808b5c90(*(uint64_t *)(param_1[0x12] + uVar15),
-                          *(int32_t *)(*(longlong *)(param_1[8] + 0xb0) + uVar14));
+                          *(int32_t *)(*(int64_t *)(param_1[8] + 0xb0) + uVar14));
             uVar17 = (int)uVar23 + 1;
             uVar15 = uVar15 + 8;
             uVar14 = uVar14 + 4;
             param_2 = puStack_2b0;
-            uVar23 = (ulonglong)uVar17;
+            uVar23 = (uint64_t)uVar17;
         } while ((int)uVar17 < *(int *)(param_1 + 0x13));
     }
     goto LAB_180852a22;

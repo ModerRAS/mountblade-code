@@ -94,10 +94,10 @@
 // =============================================================================
 
 /** 基础类型别名 */
-typedef longlong NetworkHandle;
-typedef longlong NetworkSize;
-typedef longlong NetworkOffset;
-typedef longlong NetworkTime;
+typedef int64_t NetworkHandle;
+typedef int64_t NetworkSize;
+typedef int64_t NetworkOffset;
+typedef int64_t NetworkTime;
 typedef uint64_t NetworkFlags;
 typedef uint NetworkStatus;
 typedef char NetworkChar;
@@ -274,7 +274,7 @@ void NetworkConnectionInitialize(void)
  * @param param_2 要添加的连接数据
  * @return 添加操作的状态码，0表示成功，非0表示错误
  */
-uint64_t NetworkConnectionAdd(longlong param_1, uint64_t param_2)
+uint64_t NetworkConnectionAdd(int64_t param_1, uint64_t param_2)
 {
     int iVar1;
     uint64_t uVar2;
@@ -297,15 +297,15 @@ uint64_t NetworkConnectionAdd(longlong param_1, uint64_t param_2)
         }
         
         // 重新分配队列空间
-        uVar2 = NetworkQueueInitialize((longlong *)(param_1 + NETWORK_OFFSET_CONNECTION_DATA), iVar3);
+        uVar2 = NetworkQueueInitialize((int64_t *)(param_1 + NETWORK_OFFSET_CONNECTION_DATA), iVar3);
         if ((int)uVar2 != 0) {
             return uVar2;
         }
     }
     
     // 添加新的连接数据
-    *(uint64_t *)(*(longlong *)(param_1 + NETWORK_OFFSET_CONNECTION_DATA) + 
-                 (longlong)*(int *)(param_1 + NETWORK_OFFSET_CONNECTION_COUNT) * 8) = param_2;
+    *(uint64_t *)(*(int64_t *)(param_1 + NETWORK_OFFSET_CONNECTION_DATA) + 
+                 (int64_t)*(int *)(param_1 + NETWORK_OFFSET_CONNECTION_COUNT) * 8) = param_2;
     *(int *)(param_1 + NETWORK_OFFSET_CONNECTION_COUNT) = *(int *)(param_1 + NETWORK_OFFSET_CONNECTION_COUNT) + 1;
     
     return NETWORK_STATUS_SUCCESS;
@@ -334,7 +334,7 @@ uint64_t NetworkConnectionCreate(uint64_t param_1, uint64_t param_2, uint64_t pa
 {
     uint64_t uVar1;
     uint uVar2;
-    longlong alStack_18[2];
+    int64_t alStack_18[2];
     
     alStack_18[0] = 0;
     uVar1 = NetworkSocketCreate(param_1, param_2, alStack_18, 1);
@@ -382,18 +382,18 @@ uint64_t NetworkConnectionCreate(uint64_t param_1, uint64_t param_2, uint64_t pa
  * @param param_4 查询结果数据指针
  * @return 查询操作的状态码，0表示成功，非0表示错误
  */
-uint64_t NetworkConnectionQuery(longlong param_1, float param_2, int *param_3, float *param_4)
+uint64_t NetworkConnectionQuery(int64_t param_1, float param_2, int *param_3, float *param_4)
 {
     int iVar1;
     uint64_t uVar2;
-    longlong lVar3;
-    longlong alStackX_18[2];
+    int64_t lVar3;
+    int64_t alStackX_18[2];
     
     if (*param_3 == 0) {
         return NETWORK_STATUS_ERROR_INVALID_PARAM;
     }
     
-    lVar3 = *(longlong *)(*(longlong *)(param_1 + NETWORK_OFFSET_NETWORK_HANDLE) + 0x30);
+    lVar3 = *(int64_t *)(*(int64_t *)(param_1 + NETWORK_OFFSET_NETWORK_HANDLE) + 0x30);
     iVar1 = NetworkTimerGet(param_1 + 200);
     lVar3 = iVar1 + lVar3;
     
@@ -420,15 +420,15 @@ uint64_t NetworkConnectionQuery(longlong param_1, float param_2, int *param_3, f
  * @param param_1 网络连接句柄
  * @return 状态获取操作的结果码，0表示成功，非0表示错误
  */
-uint64_t NetworkConnectionGetStatus(longlong param_1)
+uint64_t NetworkConnectionGetStatus(int64_t param_1)
 {
     int iVar1;
     uint64_t uVar2;
-    longlong lVar3;
+    int64_t lVar3;
     float *unaff_R14;
     float unaff_XMM6_Da;
     
-    lVar3 = *(longlong *)(*(longlong *)(param_1 + NETWORK_OFFSET_NETWORK_HANDLE) + 0x30);
+    lVar3 = *(int64_t *)(*(int64_t *)(param_1 + NETWORK_OFFSET_NETWORK_HANDLE) + 0x30);
     iVar1 = NetworkTimerGet(param_1 + 200);
     lVar3 = iVar1 + lVar3;
     
@@ -455,9 +455,9 @@ uint64_t NetworkConnectionGetStatus(longlong param_1)
  */
 uint64_t NetworkConnectionUpdate(void)
 {
-    longlong unaff_RDI;
+    int64_t unaff_RDI;
     float *unaff_R14;
-    longlong in_stack_00000060;
+    int64_t in_stack_00000060;
     
     *unaff_R14 = (float)(in_stack_00000060 - unaff_RDI);
     return NETWORK_STATUS_SUCCESS;
@@ -475,14 +475,14 @@ uint64_t NetworkConnectionUpdate(void)
  * @param param_1 网络连接管理器句柄
  * @return 处理操作的状态码，0表示成功，非0表示错误
  */
-uint64_t NetworkConnectionProcess(longlong param_1)
+uint64_t NetworkConnectionProcess(int64_t param_1)
 {
-    longlong *plVar1;
-    longlong *plVar2;
+    int64_t *plVar1;
+    int64_t *plVar2;
     int iVar3;
     uint64_t uVar4;
-    longlong *plVar5;
-    longlong *plVar6;
+    int64_t *plVar5;
+    int64_t *plVar6;
     
     iVar3 = NetworkConnectionManager();
     if (iVar3 != 2) {
@@ -491,25 +491,25 @@ uint64_t NetworkConnectionProcess(longlong param_1)
             return uVar4;
         }
         
-        NetworkResourceRelease(param_1 + 0x378, *(uint64_t *)(*(longlong *)(param_1 + NETWORK_OFFSET_NETWORK_HANDLE) + 0x30));
-        NetworkResourceRelease(param_1 + 0x3f8, *(uint64_t *)(*(longlong *)(param_1 + NETWORK_OFFSET_NETWORK_HANDLE) + 0x30));
+        NetworkResourceRelease(param_1 + 0x378, *(uint64_t *)(*(int64_t *)(param_1 + NETWORK_OFFSET_NETWORK_HANDLE) + 0x30));
+        NetworkResourceRelease(param_1 + 0x3f8, *(uint64_t *)(*(int64_t *)(param_1 + NETWORK_OFFSET_NETWORK_HANDLE) + 0x30));
         
-        plVar6 = (longlong *)0x0;
-        plVar1 = (longlong *)(param_1 + 0x380);
-        plVar5 = (longlong *)(*plVar1 + -0x20);
+        plVar6 = (int64_t *)0x0;
+        plVar1 = (int64_t *)(param_1 + 0x380);
+        plVar5 = (int64_t *)(*plVar1 + -0x20);
         
         if (*plVar1 == 0) {
             plVar5 = plVar6;
         }
         
         plVar2 = plVar6;
-        if (plVar5 != (longlong *)0x0) {
+        if (plVar5 != (int64_t *)0x0) {
             plVar2 = plVar5 + 4;
         }
         
         while (plVar2 != plVar1) {
             plVar5 = plVar2 + -4;
-            if (plVar2 == (longlong *)0x0) {
+            if (plVar2 == (int64_t *)0x0) {
                 plVar5 = plVar6;
             }
             uVar4 = (**(code **)(*plVar5 + 0x80))();
@@ -518,31 +518,31 @@ uint64_t NetworkConnectionProcess(longlong param_1)
             }
             if (plVar2 == plVar1) break;
             
-            plVar5 = (longlong *)(*plVar2 + -0x20);
+            plVar5 = (int64_t *)(*plVar2 + -0x20);
             if (*plVar2 == 0) {
                 plVar5 = plVar6;
             }
             plVar2 = plVar6;
-            if (plVar5 != (longlong *)0x0) {
+            if (plVar5 != (int64_t *)0x0) {
                 plVar2 = plVar5 + 4;
             }
         }
         
-        plVar1 = (longlong *)(param_1 + 0x400);
-        plVar5 = (longlong *)(*plVar1 + -0x20);
+        plVar1 = (int64_t *)(param_1 + 0x400);
+        plVar5 = (int64_t *)(*plVar1 + -0x20);
         
         if (*plVar1 == 0) {
             plVar5 = plVar6;
         }
         
         plVar2 = plVar6;
-        if (plVar5 != (longlong *)0x0) {
+        if (plVar5 != (int64_t *)0x0) {
             plVar2 = plVar5 + 4;
         }
         
         while (plVar2 != plVar1) {
             plVar5 = plVar2 + -4;
-            if (plVar2 == (longlong *)0x0) {
+            if (plVar2 == (int64_t *)0x0) {
                 plVar5 = plVar6;
             }
             uVar4 = (**(code **)(*plVar5 + 0x80))();
@@ -553,12 +553,12 @@ uint64_t NetworkConnectionProcess(longlong param_1)
                 return 0;
             }
             
-            plVar5 = (longlong *)(*plVar2 + -0x20);
+            plVar5 = (int64_t *)(*plVar2 + -0x20);
             if (*plVar2 == 0) {
                 plVar5 = plVar6;
             }
             plVar2 = plVar6;
-            if (plVar5 != (longlong *)0x0) {
+            if (plVar5 != (int64_t *)0x0) {
                 plVar2 = plVar5 + 4;
             }
         }
@@ -579,10 +579,10 @@ uint64_t NetworkConnectionProcess(longlong param_1)
  * @param param_1 网络连接句柄
  * @return 验证操作的结果，0表示有效，非0表示无效
  */
-ulonglong NetworkConnectionValidate(longlong param_1)
+uint64_t NetworkConnectionValidate(int64_t param_1)
 {
     char cVar1;
-    ulonglong uVar2;
+    uint64_t uVar2;
     
     // 检查连接状态和超时
     if ((0.0 < *(float *)(param_1 + NETWORK_OFFSET_TIMEOUT_VALUE) || 
@@ -590,7 +590,7 @@ ulonglong NetworkConnectionValidate(longlong param_1)
         (*(char *)(param_1 + 0x5c) == '\0')) {
         cVar1 = NetworkTimeoutCheck(*(uint64_t *)(param_1 + NETWORK_OFFSET_NETWORK_CONFIG));
         if (cVar1 == '\0') {
-            return (ulonglong)*(uint *)(param_1 + NETWORK_OFFSET_TIMEOUT_VALUE);
+            return (uint64_t)*(uint *)(param_1 + NETWORK_OFFSET_TIMEOUT_VALUE);
         }
     }
     
@@ -614,10 +614,10 @@ ulonglong NetworkConnectionValidate(longlong param_1)
  * @param param_2 重置模式标志
  * @return 重置操作的状态码，0表示成功，非0表示错误
  */
-uint64_t NetworkConnectionReset(longlong param_1, char param_2)
+uint64_t NetworkConnectionReset(int64_t param_1, char param_2)
 {
     uint64_t *puVar1;
-    longlong lVar2;
+    int64_t lVar2;
     int32_t uVar3;
     uint64_t uVar4;
     uint64_t *puVar5;
@@ -629,7 +629,7 @@ uint64_t NetworkConnectionReset(longlong param_1, char param_2)
         // 清理队列数据
         puVar5 = (uint64_t *)(param_1 + NETWORK_OFFSET_QUEUE_DATA);
         for (puVar1 = (uint64_t *)*puVar5; puVar1 != puVar5; puVar1 = (uint64_t *)*puVar1) {
-            *(uint *)((longlong)puVar1 + 0x1c) = *(uint *)((longlong)puVar1 + 0x1c) & NETWORK_MASK_QUEUE_FLAGS;
+            *(uint *)((int64_t)puVar1 + 0x1c) = *(uint *)((int64_t)puVar1 + 0x1c) & NETWORK_MASK_QUEUE_FLAGS;
             puVar1[4] = 0;
             puVar1[5] = 0;
             *(int32_t *)(puVar1 + 3) = 0;
@@ -649,11 +649,11 @@ uint64_t NetworkConnectionReset(longlong param_1, char param_2)
             
             uVar4 = NetworkConnectionCheck(*(uint64_t *)(param_1 + NETWORK_OFFSET_NETWORK_HANDLE));
             if ((((int)uVar4 == 0) &&
-                ((*(longlong *)(param_1 + NETWORK_OFFSET_PROCESS_HANDLE) == 0 ||
-                 (uVar4 = NetworkAuthentication(*(longlong *)(param_1 + NETWORK_OFFSET_PROCESS_HANDLE), 0), 
+                ((*(int64_t *)(param_1 + NETWORK_OFFSET_PROCESS_HANDLE) == 0 ||
+                 (uVar4 = NetworkAuthentication(*(int64_t *)(param_1 + NETWORK_OFFSET_PROCESS_HANDLE), 0), 
                   (int)uVar4 == 0)))) &&
                 ((1 < *(int *)(param_1 + NETWORK_OFFSET_STATE_VALUE) - 1U ||
-                 (uVar4 = NetworkProtocolValidate(*(uint64_t *)(*(longlong *)(param_1 + NETWORK_OFFSET_NETWORK_HANDLE) + 0x78),
+                 (uVar4 = NetworkProtocolValidate(*(uint64_t *)(*(int64_t *)(param_1 + NETWORK_OFFSET_NETWORK_HANDLE) + 0x78),
                                                   *(uint *)(param_1 + NETWORK_OFFSET_CONNECTION_FLAGS) >> 0xc & 
                                                   NETWORK_MASK_STATUS_BITS), (int)uVar4 == 0)))
                 ) {
@@ -662,11 +662,11 @@ uint64_t NetworkConnectionReset(longlong param_1, char param_2)
                     *(uint *)(param_1 + NETWORK_OFFSET_CONNECTION_FLAGS) & NETWORK_MASK_CONNECTION_FLAGS;
                 uVar4 = NetworkStateConfigure(param_1);
                 if (((int)uVar4 == 0) &&
-                   ((*(longlong *)(param_1 + NETWORK_OFFSET_SYNC_HANDLE) == 0 ||
-                    (uVar4 = NetworkEventProcess(*(longlong *)(param_1 + NETWORK_OFFSET_SYNC_HANDLE), param_1,
+                   ((*(int64_t *)(param_1 + NETWORK_OFFSET_SYNC_HANDLE) == 0 ||
+                    (uVar4 = NetworkEventProcess(*(int64_t *)(param_1 + NETWORK_OFFSET_SYNC_HANDLE), param_1,
                                                  *(uint64_t *)(param_1 + NETWORK_OFFSET_NETWORK_CONFIG)), 
                      (int)uVar4 == 0)))) {
-                    lVar2 = *(longlong *)(param_1 + NETWORK_OFFSET_CALLBACK_HANDLE);
+                    lVar2 = *(int64_t *)(param_1 + NETWORK_OFFSET_CALLBACK_HANDLE);
                     if (lVar2 != 0) {
                         uVar3 = NetworkConnectionManager(param_1);
                         *(int32_t *)(lVar2 + 0x80) = uVar3;
@@ -701,16 +701,16 @@ uint64_t NetworkConnectionReset(longlong param_1, char param_2)
  */
 uint64_t NetworkConnectionCleanup(uint64_t *param_1)
 {
-    longlong lVar1;
+    int64_t lVar1;
     int32_t uVar2;
     uint64_t uVar3;
     uint64_t *puVar4;
-    longlong unaff_RBX;
+    int64_t unaff_RBX;
     char unaff_SIL;
     
     // 清理队列数据
     for (puVar4 = (uint64_t *)*param_1; puVar4 != param_1; puVar4 = (uint64_t *)*puVar4) {
-        *(uint *)((longlong)puVar4 + 0x1c) = *(uint *)((longlong)puVar4 + 0x1c) & NETWORK_MASK_QUEUE_FLAGS;
+        *(uint *)((int64_t)puVar4 + 0x1c) = *(uint *)((int64_t)puVar4 + 0x1c) & NETWORK_MASK_QUEUE_FLAGS;
         puVar4[4] = 0;
         puVar4[5] = 0;
         *(int32_t *)(puVar4 + 3) = 0;
@@ -730,11 +730,11 @@ uint64_t NetworkConnectionCleanup(uint64_t *param_1)
         
         uVar3 = NetworkConnectionCheck(*(uint64_t *)(unaff_RBX + NETWORK_OFFSET_NETWORK_HANDLE));
         if ((((int)uVar3 == 0) &&
-            ((*(longlong *)(unaff_RBX + NETWORK_OFFSET_PROCESS_HANDLE) == 0 ||
-             (uVar3 = NetworkAuthentication(*(longlong *)(unaff_RBX + NETWORK_OFFSET_PROCESS_HANDLE), 0), 
+            ((*(int64_t *)(unaff_RBX + NETWORK_OFFSET_PROCESS_HANDLE) == 0 ||
+             (uVar3 = NetworkAuthentication(*(int64_t *)(unaff_RBX + NETWORK_OFFSET_PROCESS_HANDLE), 0), 
               (int)uVar3 == 0)))) &&
             ((1 < *(int *)(unaff_RBX + NETWORK_OFFSET_STATE_VALUE) - 1U ||
-             (uVar3 = NetworkProtocolValidate(*(uint64_t *)(*(longlong *)(unaff_RBX + NETWORK_OFFSET_NETWORK_HANDLE) + 0x78),
+             (uVar3 = NetworkProtocolValidate(*(uint64_t *)(*(int64_t *)(unaff_RBX + NETWORK_OFFSET_NETWORK_HANDLE) + 0x78),
                                             *(uint *)(unaff_RBX + NETWORK_OFFSET_CONNECTION_FLAGS) >> 0xc & 
                                             NETWORK_MASK_STATUS_BITS), (int)uVar3 == 0)))
             ) {
@@ -743,9 +743,9 @@ uint64_t NetworkConnectionCleanup(uint64_t *param_1)
                 *(uint *)(unaff_RBX + NETWORK_OFFSET_CONNECTION_FLAGS) & NETWORK_MASK_CONNECTION_FLAGS;
             uVar3 = NetworkStateConfigure();
             if (((int)uVar3 == 0) &&
-               ((*(longlong *)(unaff_RBX + NETWORK_OFFSET_SYNC_HANDLE) == 0 || 
+               ((*(int64_t *)(unaff_RBX + NETWORK_OFFSET_SYNC_HANDLE) == 0 || 
                  (uVar3 = NetworkEventProcess(), (int)uVar3 == 0)))) {
-                lVar1 = *(longlong *)(unaff_RBX + NETWORK_OFFSET_CALLBACK_HANDLE);
+                lVar1 = *(int64_t *)(unaff_RBX + NETWORK_OFFSET_CALLBACK_HANDLE);
                 if (lVar1 != 0) {
                     uVar2 = NetworkConnectionManager();
                     *(int32_t *)(lVar1 + 0x80) = uVar2;
@@ -779,10 +779,10 @@ uint64_t NetworkConnectionCleanup(uint64_t *param_1)
  */
 uint64_t NetworkConnectionRemove(uint64_t *param_1)
 {
-    longlong lVar1;
+    int64_t lVar1;
     int32_t uVar2;
     uint64_t uVar3;
-    longlong unaff_RBX;
+    int64_t unaff_RBX;
     int32_t unaff_EBP;
     char unaff_SIL;
     
@@ -796,13 +796,13 @@ uint64_t NetworkConnectionRemove(uint64_t *param_1)
     
     uVar3 = NetworkConnectionCheck(*(uint64_t *)(unaff_RBX + NETWORK_OFFSET_NETWORK_HANDLE));
     if ((int)uVar3 == 0) {
-        if ((*(longlong *)(unaff_RBX + NETWORK_OFFSET_PROCESS_HANDLE) != 0) &&
-           (uVar3 = NetworkAuthentication(*(longlong *)(unaff_RBX + NETWORK_OFFSET_PROCESS_HANDLE), 0), 
+        if ((*(int64_t *)(unaff_RBX + NETWORK_OFFSET_PROCESS_HANDLE) != 0) &&
+           (uVar3 = NetworkAuthentication(*(int64_t *)(unaff_RBX + NETWORK_OFFSET_PROCESS_HANDLE), 0), 
             (int)uVar3 != 0)) {
             return uVar3;
         }
         if ((*(int *)(unaff_RBX + NETWORK_OFFSET_STATE_VALUE) - 1U < 2) &&
-           (uVar3 = NetworkProtocolValidate(*(uint64_t *)(*(longlong *)(unaff_RBX + NETWORK_OFFSET_NETWORK_HANDLE) + 0x78),
+           (uVar3 = NetworkProtocolValidate(*(uint64_t *)(*(int64_t *)(unaff_RBX + NETWORK_OFFSET_NETWORK_HANDLE) + 0x78),
                                           *(uint *)(unaff_RBX + NETWORK_OFFSET_CONNECTION_FLAGS) >> 0xc & 
                                           NETWORK_MASK_STATUS_BITS), (int)uVar3 != 0)) {
             return uVar3;
@@ -812,11 +812,11 @@ uint64_t NetworkConnectionRemove(uint64_t *param_1)
             *(uint *)(unaff_RBX + NETWORK_OFFSET_CONNECTION_FLAGS) & NETWORK_MASK_CONNECTION_FLAGS;
         uVar3 = NetworkStateConfigure();
         if ((int)uVar3 == 0) {
-            if ((*(longlong *)(unaff_RBX + NETWORK_OFFSET_SYNC_HANDLE) != 0) &&
+            if ((*(int64_t *)(unaff_RBX + NETWORK_OFFSET_SYNC_HANDLE) != 0) &&
                (uVar3 = NetworkEventProcess(), (int)uVar3 != 0)) {
                 return uVar3;
             }
-            lVar1 = *(longlong *)(unaff_RBX + NETWORK_OFFSET_CALLBACK_HANDLE);
+            lVar1 = *(int64_t *)(unaff_RBX + NETWORK_OFFSET_CALLBACK_HANDLE);
             if (lVar1 != 0) {
                 uVar2 = NetworkConnectionManager();
                 *(int32_t *)(lVar1 + 0x80) = uVar2;
@@ -887,20 +887,20 @@ void NetworkDataValidator(void)
  * @param param_1 网络连接句柄
  * @return 传输操作的状态码，0表示成功，非0表示错误
  */
-uint64_t NetworkDataTransmitter(longlong param_1)
+uint64_t NetworkDataTransmitter(int64_t param_1)
 {
     int32_t uVar1;
     uint64_t uVar2;
-    longlong lVar3;
+    int64_t lVar3;
     
     uVar2 = NetworkConnectionProcess();
     if ((int)uVar2 == 0) {
-        lVar3 = (ulonglong)*(uint *)(*(longlong *)(param_1 + NETWORK_OFFSET_NETWORK_CONFIG) + 0x778) +
-                *(longlong *)(*(longlong *)(param_1 + NETWORK_OFFSET_NETWORK_HANDLE) + 0x30);
-        *(longlong *)(param_1 + 0x328) = lVar3;
+        lVar3 = (uint64_t)*(uint *)(*(int64_t *)(param_1 + NETWORK_OFFSET_NETWORK_CONFIG) + 0x778) +
+                *(int64_t *)(*(int64_t *)(param_1 + NETWORK_OFFSET_NETWORK_HANDLE) + 0x30);
+        *(int64_t *)(param_1 + 0x328) = lVar3;
         NetworkBufferCreate(param_1 + 0x378, lVar3, 1);
         NetworkBufferCreate(param_1 + 0x3f8, *(uint64_t *)(param_1 + 0x328), 1);
-        lVar3 = *(longlong *)(param_1 + NETWORK_OFFSET_CALLBACK_HANDLE);
+        lVar3 = *(int64_t *)(param_1 + NETWORK_OFFSET_CALLBACK_HANDLE);
         *(int32_t *)(param_1 + NETWORK_OFFSET_STATE_VALUE) = 5;
         if (lVar3 != 0) {
             uVar1 = NetworkConnectionManager(param_1);
@@ -925,16 +925,16 @@ uint64_t NetworkDataTransmitter(longlong param_1)
  */
 uint64_t NetworkDataReceiver(void)
 {
-    longlong lVar1;
+    int64_t lVar1;
     int32_t uVar2;
-    longlong in_RAX;
-    longlong unaff_RBX;
+    int64_t in_RAX;
+    int64_t unaff_RBX;
     
-    *(ulonglong *)(unaff_RBX + 0x328) =
-         (ulonglong)*(uint *)(in_RAX + 0x778) + *(longlong *)(*(longlong *)(unaff_RBX + NETWORK_OFFSET_NETWORK_HANDLE) + 0x30);
+    *(uint64_t *)(unaff_RBX + 0x328) =
+         (uint64_t)*(uint *)(in_RAX + 0x778) + *(int64_t *)(*(int64_t *)(unaff_RBX + NETWORK_OFFSET_NETWORK_HANDLE) + 0x30);
     NetworkBufferCreate();
     NetworkBufferCreate(unaff_RBX + 0x3f8, *(uint64_t *)(unaff_RBX + 0x328), 1);
-    lVar1 = *(longlong *)(unaff_RBX + NETWORK_OFFSET_CALLBACK_HANDLE);
+    lVar1 = *(int64_t *)(unaff_RBX + NETWORK_OFFSET_CALLBACK_HANDLE);
     *(int32_t *)(unaff_RBX + NETWORK_OFFSET_STATE_VALUE) = 5;
     if (lVar1 != 0) {
         uVar2 = NetworkConnectionManager();
@@ -974,18 +974,18 @@ void NetworkDataBuffer(void)
  * @param param_1 网络连接句柄
  * @return 队列操作的状态码，0表示成功，非0表示错误
  */
-uint64_t NetworkDataQueue(longlong param_1)
+uint64_t NetworkDataQueue(int64_t param_1)
 {
-    longlong lVar1;
+    int64_t lVar1;
     int32_t uVar2;
     uint64_t uVar3;
     
     uVar3 = NetworkConnectionProcess();
     if ((int)uVar3 == 0) {
         uVar3 = NetworkConnectionPool(param_1 + NETWORK_OFFSET_DATA_BUFFER, 
-                                      *(uint64_t *)(*(longlong *)(param_1 + NETWORK_OFFSET_NETWORK_HANDLE) + 0x30));
+                                      *(uint64_t *)(*(int64_t *)(param_1 + NETWORK_OFFSET_NETWORK_HANDLE) + 0x30));
         if ((int)uVar3 == 0) {
-            lVar1 = *(longlong *)(param_1 + NETWORK_OFFSET_CALLBACK_HANDLE);
+            lVar1 = *(int64_t *)(param_1 + NETWORK_OFFSET_CALLBACK_HANDLE);
             *(int32_t *)(param_1 + NETWORK_OFFSET_STATE_VALUE) = 4;
             if (lVar1 != 0) {
                 uVar2 = NetworkConnectionManager(param_1);
@@ -1011,11 +1011,11 @@ uint64_t NetworkDataQueue(longlong param_1)
  */
 uint64_t NetworkDataFlush(void)
 {
-    longlong lVar1;
+    int64_t lVar1;
     int32_t uVar2;
-    longlong unaff_RBX;
+    int64_t unaff_RBX;
     
-    lVar1 = *(longlong *)(unaff_RBX + NETWORK_OFFSET_CALLBACK_HANDLE);
+    lVar1 = *(int64_t *)(unaff_RBX + NETWORK_OFFSET_CALLBACK_HANDLE);
     *(int32_t *)(unaff_RBX + NETWORK_OFFSET_STATE_VALUE) = 4;
     if (lVar1 != 0) {
         uVar2 = NetworkConnectionManager();
@@ -1055,7 +1055,7 @@ void NetworkDataCompare(void)
  * @param param_1 网络连接句柄
  * @return 处理操作的状态码，0表示成功，非0表示错误
  */
-uint64_t NetworkDataProcess(longlong param_1)
+uint64_t NetworkDataProcess(int64_t param_1)
 {
     uint64_t uVar1;
     uint64_t *puVar2;
@@ -1086,7 +1086,7 @@ uint64_t NetworkDataProcess(longlong param_1)
  * @param param_2 目标连接句柄
  * @return 发送操作的状态码，0表示成功，非0表示错误
  */
-uint NetworkDataSend(longlong param_1, longlong param_2)
+uint NetworkDataSend(int64_t param_1, int64_t param_2)
 {
     char cVar1;
     uint uVar2;
@@ -1143,14 +1143,14 @@ LAB_18085f593:
  * @param param_6 状态参数5
  * @return 更新操作的状态码，0表示成功，非0表示错误
  */
-uint64_t NetworkStateUpdate(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4,
+uint64_t NetworkStateUpdate(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4,
                            uint64_t param_5, uint64_t param_6)
 {
-    longlong *plVar1;
+    int64_t *plVar1;
     uint64_t uVar2;
     
-    plVar1 = *(longlong **)(param_1 + 0x480);
-    if ((plVar1 != (longlong *)0x0) &&
+    plVar1 = *(int64_t **)(param_1 + 0x480);
+    if ((plVar1 != (int64_t *)0x0) &&
        (uVar2 = (**(code **)(*plVar1 + 8))(plVar1, param_1, param_3, param_4, param_5, param_6),
        (int)uVar2 != 0)) {
         return uVar2;
@@ -1175,14 +1175,14 @@ uint64_t NetworkStateUpdate(longlong param_1, uint64_t param_2, uint64_t param_3
  * @param param_5 同步参数4
  * @return 同步操作的状态码，0表示成功，非0表示错误
  */
-uint64_t NetworkStateSync(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4,
+uint64_t NetworkStateSync(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4,
                          uint64_t param_5)
 {
-    longlong *plVar1;
+    int64_t *plVar1;
     uint64_t uVar2;
     
-    plVar1 = *(longlong **)(param_1 + 0x480);
-    if ((plVar1 != (longlong *)0x0) &&
+    plVar1 = *(int64_t **)(param_1 + 0x480);
+    if ((plVar1 != (int64_t *)0x0) &&
        (uVar2 = (**(code **)(*plVar1 + 8))(plVar1, param_1, param_2, param_3, param_4, param_5),
        (int)uVar2 != 0)) {
         return uVar2;
@@ -1203,30 +1203,30 @@ uint64_t NetworkStateSync(longlong param_1, uint64_t param_2, uint64_t param_3, 
  * @param param_1 网络连接句柄
  * @return 清理操作的状态码，0表示成功，非0表示错误
  */
-void NetworkStateCleanup(longlong param_1)
+void NetworkStateCleanup(int64_t param_1)
 {
-    longlong *plVar1;
-    longlong *plVar2;
+    int64_t *plVar1;
+    int64_t *plVar2;
     int iVar3;
-    longlong *plVar4;
-    longlong *plVar5;
+    int64_t *plVar4;
+    int64_t *plVar5;
     
-    plVar5 = (longlong *)0x0;
-    plVar1 = (longlong *)(param_1 + 0x240);
-    plVar4 = (longlong *)(*plVar1 + -0x18);
+    plVar5 = (int64_t *)0x0;
+    plVar1 = (int64_t *)(param_1 + 0x240);
+    plVar4 = (int64_t *)(*plVar1 + -0x18);
     
     if (*plVar1 == 0) {
         plVar4 = plVar5;
     }
     
     plVar2 = plVar5;
-    if (plVar4 != (longlong *)0x0) {
+    if (plVar4 != (int64_t *)0x0) {
         plVar2 = plVar4 + 3;
     }
     
     while (plVar2 != plVar1) {
         plVar4 = plVar2 + -3;
-        if (plVar2 == (longlong *)0x0) {
+        if (plVar2 == (int64_t *)0x0) {
             plVar4 = plVar5;
         }
         iVar3 = NetworkSessionUpdate(plVar4);
@@ -1235,42 +1235,42 @@ void NetworkStateCleanup(longlong param_1)
         }
         if (plVar2 == plVar1) break;
         
-        plVar4 = (longlong *)(*plVar2 + -0x18);
+        plVar4 = (int64_t *)(*plVar2 + -0x18);
         if (*plVar2 == 0) {
             plVar4 = plVar5;
         }
         plVar2 = plVar5;
-        if (plVar4 != (longlong *)0x0) {
+        if (plVar4 != (int64_t *)0x0) {
             plVar2 = plVar4 + 3;
         }
     }
     
-    plVar1 = (longlong *)(param_1 + 0x250);
-    plVar4 = (longlong *)(*plVar1 + -8);
+    plVar1 = (int64_t *)(param_1 + 0x250);
+    plVar4 = (int64_t *)(*plVar1 + -8);
     
     if (*plVar1 == 0) {
         plVar4 = plVar5;
     }
     
     plVar2 = plVar5;
-    if (plVar4 != (longlong *)0x0) {
+    if (plVar4 != (int64_t *)0x0) {
         plVar2 = plVar4 + 1;
     }
     
     while (plVar2 != plVar1) {
         plVar4 = plVar2 + -1;
-        if (plVar2 == (longlong *)0x0) {
+        if (plVar2 == (int64_t *)0x0) {
             plVar4 = plVar5;
         }
         NetworkBufferRelease(plVar4, 0);
         if (plVar2 == plVar1) break;
         
-        plVar4 = (longlong *)(*plVar2 + -8);
+        plVar4 = (int64_t *)(*plVar2 + -8);
         if (*plVar2 == 0) {
             plVar4 = plVar5;
         }
         plVar2 = plVar5;
-        if (plVar4 != (longlong *)0x0) {
+        if (plVar4 != (int64_t *)0x0) {
             plVar2 = plVar4 + 1;
         }
     }
@@ -1296,12 +1296,12 @@ void NetworkStateCleanup(longlong param_1)
  * @param param_6 状态标志3
  * @return 处理操作的状态码，0表示成功，非0表示错误
  */
-uint64_t NetworkStateHandler(longlong param_1, uint64_t param_2, uint64_t param_3, char param_4, char param_5,
+uint64_t NetworkStateHandler(int64_t param_1, uint64_t param_2, uint64_t param_3, char param_4, char param_5,
                             byte param_6)
 {
     uint uVar1;
     int iVar2;
-    longlong lVar3;
+    int64_t lVar3;
     uint64_t uVar4;
     uint uVar5;
     int8_t auStack_28[16];
@@ -1316,11 +1316,11 @@ uint64_t NetworkStateHandler(longlong param_1, uint64_t param_2, uint64_t param_
         return 0;
     }
     
-    if ((param_4 == '\0') && (*(longlong *)(lVar3 + 0x20 + (ulonglong)param_6 * 8) != 0)) {
+    if ((param_4 == '\0') && (*(int64_t *)(lVar3 + 0x20 + (uint64_t)param_6 * 8) != 0)) {
         return NETWORK_STATUS_ERROR_QUEUE_FULL;
     }
     
-    *(uint64_t *)(lVar3 + 0x20 + (ulonglong)param_6 * 8) = 0;
+    *(uint64_t *)(lVar3 + 0x20 + (uint64_t)param_6 * 8) = 0;
     uVar1 = ~uVar1 & *(uint *)(lVar3 + 0x1c);
     *(uint *)(lVar3 + 0x1c) = uVar1;
     uVar5 = (param_6 + 1) * 0x100;
@@ -1330,8 +1330,8 @@ uint64_t NetworkStateHandler(longlong param_1, uint64_t param_2, uint64_t param_
         iVar2 = (int)uVar4;
     } else {
         if ((uVar5 & uVar1) == 0) goto LAB_18085f8b2;
-        (**(code **)(**(longlong **)(lVar3 + 0x10) + 0x30))(*(longlong **)(lVar3 + 0x10), auStack_28);
-        uVar4 = NetworkSessionTerminate(param_1 + 0x378 + (ulonglong)(~(uVar1 >> 1) & 1) * 0x80, auStack_28, param_3
+        (**(code **)(**(int64_t **)(lVar3 + 0x10) + 0x30))(*(int64_t **)(lVar3 + 0x10), auStack_28);
+        uVar4 = NetworkSessionTerminate(param_1 + 0x378 + (uint64_t)(~(uVar1 >> 1) & 1) * 0x80, auStack_28, param_3
                                        , param_6);
         iVar2 = (int)uVar4;
     }
@@ -1361,8 +1361,8 @@ uint64_t NetworkStateReset(void)
     int iVar1;
     uint64_t uVar2;
     int unaff_ESI;
-    longlong unaff_RDI;
-    longlong unaff_R12;
+    int64_t unaff_RDI;
+    int64_t unaff_R12;
     char unaff_R15B;
     
     *(uint *)(unaff_RDI + 0x1c) = in_EAX;
@@ -1371,9 +1371,9 @@ uint64_t NetworkStateReset(void)
         iVar1 = (int)uVar2;
     } else {
         if ((unaff_ESI << 8 & in_EAX) == 0) goto LAB_18085f8b2;
-        (**(code **)(**(longlong **)(unaff_RDI + 0x10) + 0x30))
-                  (*(longlong **)(unaff_RDI + 0x10), &stack0x00000030);
-        uVar2 = NetworkSessionTerminate(unaff_R12 + 0x378 + (ulonglong)(~(in_EAX >> 1) & 1) * 0x80,
+        (**(code **)(**(int64_t **)(unaff_RDI + 0x10) + 0x30))
+                  (*(int64_t **)(unaff_RDI + 0x10), &stack0x00000030);
+        uVar2 = NetworkSessionTerminate(unaff_R12 + 0x378 + (uint64_t)(~(in_EAX >> 1) & 1) * 0x80,
                                       &stack0x00000030);
         iVar1 = (int)uVar2;
     }

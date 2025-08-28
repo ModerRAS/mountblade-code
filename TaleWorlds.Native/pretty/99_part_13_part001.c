@@ -158,14 +158,14 @@ void ContainerInitializer(void)
  * @param param_2 参数指针
  * @return uint64_t 操作结果状态码
  */
-uint64_t DataProcessor(uint64_t *param_1, longlong *param_2)
+uint64_t DataProcessor(uint64_t *param_1, int64_t *param_2)
 {
     // 语义化变量定义
     uint bit_mask;                /**< 位掩码 */
     uint64_t operation_result;  /**< 操作结果 */
     uint64_t process_result;    /**< 处理结果 */
     uint capacity_check;          /**< 容量检查 */
-    longlong element_count;       /**< 元素数量 */
+    int64_t element_count;       /**< 元素数量 */
     uint iteration_index;         /**< 迭代索引 */
     int current_size;             /**< 当前大小 */
     uint traversal_flags;         /**< 遍历标志 */
@@ -180,12 +180,12 @@ uint64_t DataProcessor(uint64_t *param_1, longlong *param_2)
     // 步骤2：检查操作结果
     if ((int)operation_result == 0) {
         // 步骤3：计算容量和元素数量
-        capacity_check = (int)*(uint *)((longlong)param_2 + 0xc) >> 0x1f;
+        capacity_check = (int)*(uint *)((int64_t)param_2 + 0xc) >> 0x1f;
         traversal_flags = temp_buffer[0] & 1;
         element_count = temp_buffer[0] >> 1;
         
         // 步骤4：容量验证和扩展
-        if (((int)element_count <= (int)((*(uint *)((longlong)param_2 + 0xc) ^ capacity_check) - capacity_check)) ||
+        if (((int)element_count <= (int)((*(uint *)((int64_t)param_2 + 0xc) ^ capacity_check) - capacity_check)) ||
             (operation_result = FUN_180748010(param_2, element_count), (int)operation_result == 0)) {
             
             // 步骤5：获取当前大小
@@ -194,7 +194,7 @@ uint64_t DataProcessor(uint64_t *param_1, longlong *param_2)
             // 步骤6：检查并扩展容量
             if (current_size < (int)element_count) {
                 // 内存扩展操作
-                memset((longlong)current_size * 0x10 + *param_2, 0, (longlong)(int)(element_count - current_size) << 4);
+                memset((int64_t)current_size * 0x10 + *param_2, 0, (int64_t)(int)(element_count - current_size) << 4);
             }
             
             // 步骤7：更新元素数量
@@ -215,7 +215,7 @@ uint64_t DataProcessor(uint64_t *param_1, longlong *param_2)
                     if (*(int *)(param_1[1] + 0x18) == 0) {
                         // 步骤8.3：数据元素处理
                         operation_result = *param_1;
-                        element_count = (longlong)current_size * 0x10 + *param_2;
+                        element_count = (int64_t)current_size * 0x10 + *param_2;
                         process_result = FUN_1808aed00(operation_result, element_count, 4);
                         if ((int)process_result != 0) {
                             return process_result;
@@ -268,18 +268,18 @@ uint64_t DataProcessor(uint64_t *param_1, longlong *param_2)
  * - 内存管理
  * - 性能优化
  * 
- * @return ulonglong 操作结果状态码
+ * @return uint64_t 操作结果状态码
  */
-ulonglong ContainerOperator(void)
+uint64_t ContainerOperator(void)
 {
     // 语义化变量定义
     uint64_t check_result;        /**< 检查结果 */
     uint operation_flags;          /**< 操作标志 */
-    ulonglong final_result;        /**< 最终结果 */
+    uint64_t final_result;        /**< 最终结果 */
     uint capacity_value;           /**< 容量值 */
-    longlong element_address;       /**< 元素地址 */
+    int64_t element_address;       /**< 元素地址 */
     uint iteration_count;          /**< 迭代计数 */
-    longlong *container_ptr;       /**< 容器指针 */
+    int64_t *container_ptr;       /**< 容器指针 */
     uint64_t *data_ptr;          /**< 数据指针 */
     uint stack_flags;              /**< 栈标志 */
     
@@ -294,12 +294,12 @@ ulonglong ContainerOperator(void)
         iteration_count = (int)container_ptr[1];
         if (iteration_count < (int)capacity_value) {
             // 内存扩展操作
-            memset((longlong)iteration_count * 0x10 + *container_ptr, 0, (longlong)(int)(capacity_value - iteration_count) << 4);
+            memset((int64_t)iteration_count * 0x10 + *container_ptr, 0, (int64_t)(int)(capacity_value - iteration_count) << 4);
         }
         
         // 步骤4：更新容器容量
         *(uint *)(container_ptr + 1) = capacity_value;
-        final_result = (ulonglong)operation_flags;
+        final_result = (uint64_t)operation_flags;
         
         // 步骤5：元素处理循环
         if (operation_flags == 0) {
@@ -316,7 +316,7 @@ ulonglong ContainerOperator(void)
                     if (*(int *)(data_ptr[1] + 0x18) == 0) {
                         // 步骤5.3：数据元素处理
                         check_result = *data_ptr;
-                        element_address = (longlong)iteration_count * 0x10 + *container_ptr;
+                        element_address = (int64_t)iteration_count * 0x10 + *container_ptr;
                         final_result = FUN_1808aed00(check_result, element_address, 4);
                         if ((int)final_result != 0) {
                             return final_result;
@@ -376,9 +376,9 @@ uint64_t DataTraversal(void)
     uint64_t traversal_result;   /**< 遍历结果 */
     uint64_t process_result;    /**< 处理结果 */
     uint traversal_flags;         /**< 遍历标志 */
-    longlong element_address;      /**< 元素地址 */
+    int64_t element_address;      /**< 元素地址 */
     int iteration_limit;          /**< 迭代限制 */
-    longlong *container_ptr;      /**< 容器指针 */
+    int64_t *container_ptr;      /**< 容器指针 */
     uint64_t *data_ptr;         /**< 数据指针 */
     int element_index;            /**< 元素索引 */
     uint stack_flags;             /**< 栈标志 */
@@ -399,7 +399,7 @@ uint64_t DataTraversal(void)
             if (*(int *)(data_ptr[1] + 0x18) == 0) {
                 // 步骤2.3：数据元素处理
                 traversal_result = *data_ptr;
-                element_address = (longlong)(int)traversal_flags * 0x10 + *container_ptr;
+                element_address = (int64_t)(int)traversal_flags * 0x10 + *container_ptr;
                 process_result = FUN_1808aed00(traversal_result, element_address, 4);
                 if ((int)process_result != 0) {
                     return process_result;
@@ -487,13 +487,13 @@ void StructureValidator(void)
  * @param param_2 参数指针
  * @return uint64_t 操作结果状态码
  */
-uint64_t ExtendedOperator(uint64_t *param_1, longlong *param_2)
+uint64_t ExtendedOperator(uint64_t *param_1, int64_t *param_2)
 {
     // 语义化变量定义
     uint operation_mask;           /**< 操作掩码 */
     uint64_t operation_result;  /**< 操作结果 */
     uint64_t process_result;    /**< 处理结果 */
-    longlong element_address;      /**< 元素地址 */
+    int64_t element_address;      /**< 元素地址 */
     int element_index;            /**< 元素索引 */
     uint iteration_count;          /**< 迭代计数 */
     uint traversal_flags;         /**< 遍历标志 */
@@ -527,7 +527,7 @@ uint64_t ExtendedOperator(uint64_t *param_1, longlong *param_2)
                     }
                     
                     // 步骤5.2：计算元素地址
-                    element_address = (longlong)element_index * 0x20 + *param_2;
+                    element_address = (int64_t)element_index * 0x20 + *param_2;
                     
                     // 步骤5.3：检查元素状态
                     if (*(int *)(param_1[1] + 0x18) == 0) {
@@ -609,8 +609,8 @@ uint64_t BatchProcessor(void)
     uint64_t batch_result;       /**< 批量处理结果 */
     uint64_t process_result;     /**< 处理结果 */
     int operation_flags;           /**< 操作标志 */
-    longlong element_address;       /**< 元素地址 */
-    longlong *container_ptr;       /**< 容器指针 */
+    int64_t element_address;       /**< 元素地址 */
+    int64_t *container_ptr;       /**< 容器指针 */
     uint64_t *data_ptr;          /**< 数据指针 */
     uint batch_flags;              /**< 批量标志 */
     
@@ -627,7 +627,7 @@ uint64_t BatchProcessor(void)
                 }
                 
                 // 步骤2.2：计算元素地址
-                element_address = (longlong)operation_flags * 0x20 + *container_ptr;
+                element_address = (int64_t)operation_flags * 0x20 + *container_ptr;
                 
                 // 步骤2.3：检查元素状态
                 if (*(int *)(data_ptr[1] + 0x18) == 0) {

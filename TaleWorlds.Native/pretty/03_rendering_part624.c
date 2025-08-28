@@ -120,7 +120,7 @@
  * - 支持多种渲染参数的计算和转换
  * - 包含完整的错误处理机制
  */
-void RenderingSystem_ParameterProcessor(longlong param_1, uint64_t *param_2)
+void RenderingSystem_ParameterProcessor(int64_t param_1, uint64_t *param_2)
 {
     uint uVar1;
     float fVar2;
@@ -131,7 +131,7 @@ void RenderingSystem_ParameterProcessor(longlong param_1, uint64_t *param_2)
     float fVar7;
     float fVar8;
     float fVar9;
-    longlong lVar10;
+    int64_t lVar10;
     int8_t auStack_1c8[44];
     int32_t uStack_19c;
     int32_t uStack_18c;
@@ -184,23 +184,23 @@ void RenderingSystem_ParameterProcessor(longlong param_1, uint64_t *param_2)
     float fStack_a4;
     float fStack_a0;
     uint uStack_9c;
-    ulonglong uStack_98;
+    uint64_t uStack_98;
     
     // 执行堆栈安全检查
-    uStack_98 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_1c8;
+    uStack_98 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_1c8;
     
     // 从参数数组中提取数据
     uStack_158 = *(int32_t *)(param_2 + 4);
     uStack_178 = *param_2;
     uStack_170 = param_2[1];
     uStack_168 = *(int32_t *)(param_2 + 2);
-    uStack_164 = *(int32_t *)((longlong)param_2 + 0x14);
+    uStack_164 = *(int32_t *)((int64_t)param_2 + 0x14);
     uStack_160 = *(int32_t *)(param_2 + 3);
-    uStack_15c = *(int32_t *)((longlong)param_2 + 0x1c);
+    uStack_15c = *(int32_t *)((int64_t)param_2 + 0x1c);
     
     // 获取渲染系统相关指针
-    lVar10 = *(longlong *)(*(longlong *)(param_1 + 0x6d8) + 0x8a8);
-    puVar6 = *(uint **)(*(longlong *)(param_1 + 0x658) + 0x18);
+    lVar10 = *(int64_t *)(*(int64_t *)(param_1 + 0x6d8) + 0x8a8);
+    puVar6 = *(uint **)(*(int64_t *)(param_1 + 0x658) + 0x18);
     
     // 线程安全的数据访问
     do {
@@ -275,7 +275,7 @@ void RenderingSystem_ParameterProcessor(longlong param_1, uint64_t *param_2)
     RenderingSystem_ValidateIntegerParameter(&uStack_178, &fStack_f8);
     
     // 执行堆栈安全清理
-    RenderingSystem_ClearMemory(uStack_98 ^ (ulonglong)auStack_1c8);
+    RenderingSystem_ClearMemory(uStack_98 ^ (uint64_t)auStack_1c8);
 }
 
 // ================================================
@@ -302,15 +302,15 @@ void RenderingSystem_ParameterProcessor(longlong param_1, uint64_t *param_2)
  * - 支持线程安全的内存操作
  * - 包含完整的错误处理机制
  */
-void RenderingSystem_BufferManager(longlong *param_1, longlong param_2, uint64_t param_3, uint64_t param_4)
+void RenderingSystem_BufferManager(int64_t *param_1, int64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    longlong lVar1;
-    longlong lVar2;
-    longlong lVar3;
+    int64_t lVar1;
+    int64_t lVar2;
+    int64_t lVar3;
     uint64_t *puVar4;
-    longlong lVar5;
-    longlong lVar6;
-    longlong lVar7;
+    int64_t lVar5;
+    int64_t lVar6;
+    int64_t lVar7;
     
     // 计算当前缓冲区大小
     lVar5 = param_1[1];
@@ -343,7 +343,7 @@ LAB_180614ba5:
         
         // 执行数据复制操作
         do {
-            RenderingSystem_ProcessStringLength(lVar3, (longlong)puVar4 + lVar6 + -0x50);
+            RenderingSystem_ProcessStringLength(lVar3, (int64_t)puVar4 + lVar6 + -0x50);
             puVar4[-1] = &system_state_ptr;
             *puVar4 = 0;
             *(int32_t *)(puVar4 + 1) = 0;
@@ -351,16 +351,16 @@ LAB_180614ba5:
             puVar4[2] = 0;
             *puVar4 = 0;
             *(int32_t *)(puVar4 + 1) = 0;
-            *(int32_t *)(puVar4 + 1) = *(int32_t *)(lVar6 + 8 + (longlong)puVar4);
-            *puVar4 = *(uint64_t *)(lVar6 + (longlong)puVar4);
-            *(int32_t *)((longlong)puVar4 + 0x14) = *(int32_t *)(lVar6 + 0x14 + (longlong)puVar4);
-            *(int32_t *)(puVar4 + 2) = *(int32_t *)(lVar6 + 0x10 + (longlong)puVar4);
-            *(int32_t *)(lVar6 + 8 + (longlong)puVar4) = 0;
-            *(uint64_t *)(lVar6 + (longlong)puVar4) = 0;
-            *(uint64_t *)(lVar6 + 0x10 + (longlong)puVar4) = 0;
-            *(int8_t *)(puVar4 + 3) = *(int8_t *)(lVar6 + 0x18 + (longlong)puVar4);
+            *(int32_t *)(puVar4 + 1) = *(int32_t *)(lVar6 + 8 + (int64_t)puVar4);
+            *puVar4 = *(uint64_t *)(lVar6 + (int64_t)puVar4);
+            *(int32_t *)((int64_t)puVar4 + 0x14) = *(int32_t *)(lVar6 + 0x14 + (int64_t)puVar4);
+            *(int32_t *)(puVar4 + 2) = *(int32_t *)(lVar6 + 0x10 + (int64_t)puVar4);
+            *(int32_t *)(lVar6 + 8 + (int64_t)puVar4) = 0;
+            *(uint64_t *)(lVar6 + (int64_t)puVar4) = 0;
+            *(uint64_t *)(lVar6 + 0x10 + (int64_t)puVar4) = 0;
+            *(int8_t *)(puVar4 + 3) = *(int8_t *)(lVar6 + 0x18 + (int64_t)puVar4);
             lVar3 = lVar3 + 0x70;
-            lVar2 = (longlong)puVar4 + lVar6 + 0x20;
+            lVar2 = (int64_t)puVar4 + lVar6 + 0x20;
             puVar4 = puVar4 + 0xe;
         } while (lVar2 != lVar5);
     }
@@ -407,10 +407,10 @@ void RenderingSystem_GetIntegerParameter(uint64_t param_1, int32_t *param_2)
 {
     int8_t auStack_238[32];
     int8_t auStack_218[512];
-    ulonglong uStack_18;
+    uint64_t uStack_18;
     
     // 执行堆栈安全检查
-    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_238;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_238;
     *param_2 = 0;
     
     // 检查系统状态
@@ -424,7 +424,7 @@ void RenderingSystem_GetIntegerParameter(uint64_t param_1, int32_t *param_2)
     }
     
     // 执行堆栈安全清理
-    RenderingSystem_ClearMemory(uStack_18 ^ (ulonglong)auStack_238);
+    RenderingSystem_ClearMemory(uStack_18 ^ (uint64_t)auStack_238);
 }
 
 /**
@@ -437,10 +437,10 @@ void RenderingSystem_ValidateIntegerParameter(uint64_t param_1, int32_t *param_2
 {
     int8_t auStack_238[32];
     int8_t auStack_218[512];
-    ulonglong uStack_18;
+    uint64_t uStack_18;
     
     // 执行堆栈安全检查
-    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_238;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_238;
     *param_2 = 0;
     
     // 检查系统状态
@@ -454,7 +454,7 @@ void RenderingSystem_ValidateIntegerParameter(uint64_t param_1, int32_t *param_2
     }
     
     // 执行堆栈安全清理
-    RenderingSystem_ClearMemory(uStack_18 ^ (ulonglong)auStack_238);
+    RenderingSystem_ClearMemory(uStack_18 ^ (uint64_t)auStack_238);
 }
 
 /**
@@ -467,10 +467,10 @@ void RenderingSystem_GetUnsignedParameter(uint64_t param_1, uint64_t *param_2)
 {
     int8_t auStack_238[32];
     int8_t auStack_218[512];
-    ulonglong uStack_18;
+    uint64_t uStack_18;
     
     // 执行堆栈安全检查
-    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_238;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_238;
     *param_2 = 0;
     
     // 检查系统状态
@@ -484,7 +484,7 @@ void RenderingSystem_GetUnsignedParameter(uint64_t param_1, uint64_t *param_2)
     }
     
     // 执行堆栈安全清理
-    RenderingSystem_ClearMemory(uStack_18 ^ (ulonglong)auStack_238);
+    RenderingSystem_ClearMemory(uStack_18 ^ (uint64_t)auStack_238);
 }
 
 /**
@@ -493,20 +493,20 @@ void RenderingSystem_GetUnsignedParameter(uint64_t param_1, uint64_t *param_2)
  * @param param_1 内存区域的指针数组
  * @param param_2 输出数据的指针
  */
-void RenderingSystem_ReadMemoryRegion(ulonglong *param_1, ulonglong *param_2)
+void RenderingSystem_ReadMemoryRegion(uint64_t *param_1, uint64_t *param_2)
 {
-    ulonglong uVar1;
-    ulonglong uVar2;
+    uint64_t uVar1;
+    uint64_t uVar2;
     char cVar3;
     int8_t auStack_268[32];
-    ulonglong uStack_248;
+    uint64_t uStack_248;
     void *puStack_240;
-    longlong alStack_238[2];
+    int64_t alStack_238[2];
     int8_t auStack_228[512];
-    ulonglong uStack_28;
+    uint64_t uStack_28;
     
     // 执行堆栈安全检查
-    uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_268;
+    uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_268;
     *param_2 = 0;
     
     // 检查系统状态
@@ -536,7 +536,7 @@ void RenderingSystem_ReadMemoryRegion(ulonglong *param_1, ulonglong *param_2)
     }
     
     // 执行堆栈安全清理
-    RenderingSystem_ClearMemory(uStack_28 ^ (ulonglong)auStack_268);
+    RenderingSystem_ClearMemory(uStack_28 ^ (uint64_t)auStack_268);
 }
 
 /**
@@ -549,10 +549,10 @@ void RenderingSystem_GetBooleanParameter(uint64_t param_1, int32_t *param_2)
 {
     int8_t auStack_238[32];
     int8_t auStack_218[512];
-    ulonglong uStack_18;
+    uint64_t uStack_18;
     
     // 执行堆栈安全检查
-    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_238;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_238;
     *param_2 = 0;
     
     // 检查系统状态
@@ -566,7 +566,7 @@ void RenderingSystem_GetBooleanParameter(uint64_t param_1, int32_t *param_2)
     }
     
     // 执行堆栈安全清理
-    RenderingSystem_ClearMemory(uStack_18 ^ (ulonglong)auStack_238);
+    RenderingSystem_ClearMemory(uStack_18 ^ (uint64_t)auStack_238);
 }
 
 // ================================================
@@ -580,25 +580,25 @@ void RenderingSystem_GetBooleanParameter(uint64_t param_1, int32_t *param_2)
  */
 void RenderingSystem_GetStringParameter(char *param_1)
 {
-    longlong lVar1;
+    int64_t lVar1;
     char cVar2;
     int iVar3;
     int32_t uVar4;
     int iVar5;
-    longlong lVar6;
+    int64_t lVar6;
     int8_t auStack_888[32];
     void *puStack_868;
     int8_t *puStack_860;
     int32_t uStack_858;
-    ulonglong uStack_850;
+    uint64_t uStack_850;
     int8_t auStack_848[8];
     uint64_t uStack_840;
     char acStack_838[2048];
-    ulonglong uStack_38;
+    uint64_t uStack_38;
     
     // 初始化变量
     uStack_840 = 0xfffffffffffffffe;
-    uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_888;
+    uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_888;
     
     // 检查系统状态
     if (render_system_memory == 0) {
@@ -632,7 +632,7 @@ void RenderingSystem_GetStringParameter(char *param_1)
                     iVar3 = 0x10;
                 }
                 
-                puStack_860 = (int8_t *)RenderingSystem_InitializePort(system_memory_pool_ptr, (longlong)iVar3, 0x13);
+                puStack_860 = (int8_t *)RenderingSystem_InitializePort(system_memory_pool_ptr, (int64_t)iVar3, 0x13);
                 *puStack_860 = 0;
                 uVar4 = RenderingSystem_ValidateIntegerIndex(puStack_860);
                 uStack_850 = CONCAT44(uStack_850._4_4_, uVar4);
@@ -660,7 +660,7 @@ void RenderingSystem_GetStringParameter(char *param_1)
     
 LAB_1806152c2:
     // 执行堆栈安全清理
-    RenderingSystem_ClearMemory(uStack_38 ^ (ulonglong)auStack_888);
+    RenderingSystem_ClearMemory(uStack_38 ^ (uint64_t)auStack_888);
 }
 
 // ================================================
@@ -679,10 +679,10 @@ void RenderingSystem_ValidateIntegerIndex(int param_1, int *param_2)
     int iStack_228;
     void *puStack_220;
     int8_t auStack_218[512];
-    ulonglong uStack_18;
+    uint64_t uStack_18;
     
     // 执行堆栈安全检查
-    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_248;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_248;
     
     // 验证索引范围
     if ((param_1 < *param_2) || (param_2[1] < param_1)) {
@@ -703,7 +703,7 @@ void RenderingSystem_ValidateIntegerIndex(int param_1, int *param_2)
     }
     
     // 执行堆栈安全清理
-    RenderingSystem_ClearMemory(uStack_18 ^ (ulonglong)auStack_248);
+    RenderingSystem_ClearMemory(uStack_18 ^ (uint64_t)auStack_248);
 }
 
 /**
@@ -718,10 +718,10 @@ void RenderingSystem_ValidateUnsignedIndex(uint param_1, uint *param_2)
     uint uStack_228;
     void *puStack_220;
     int8_t auStack_218[512];
-    ulonglong uStack_18;
+    uint64_t uStack_18;
     
     // 执行堆栈安全检查
-    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_248;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_248;
     
     // 验证索引范围
     if ((param_1 < *param_2) || (param_2[1] < param_1)) {
@@ -742,7 +742,7 @@ void RenderingSystem_ValidateUnsignedIndex(uint param_1, uint *param_2)
     }
     
     // 执行堆栈安全清理
-    RenderingSystem_ClearMemory(uStack_18 ^ (ulonglong)auStack_248);
+    RenderingSystem_ClearMemory(uStack_18 ^ (uint64_t)auStack_248);
 }
 
 /**
@@ -751,16 +751,16 @@ void RenderingSystem_ValidateUnsignedIndex(uint param_1, uint *param_2)
  * @param param_1 索引值
  * @param param_2 有效范围的指针
  */
-void RenderingSystem_ValidateLongIndex(longlong param_1, longlong *param_2)
+void RenderingSystem_ValidateLongIndex(int64_t param_1, int64_t *param_2)
 {
     int8_t auStack_248[32];
-    longlong lStack_228;
+    int64_t lStack_228;
     void *puStack_220;
     int8_t auStack_218[512];
-    ulonglong uStack_18;
+    uint64_t uStack_18;
     
     // 执行堆栈安全检查
-    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_248;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_248;
     
     // 验证索引范围
     if ((param_1 < *param_2) || (param_2[1] < param_1)) {
@@ -781,7 +781,7 @@ void RenderingSystem_ValidateLongIndex(longlong param_1, longlong *param_2)
     }
     
     // 执行堆栈安全清理
-    RenderingSystem_ClearMemory(uStack_18 ^ (ulonglong)auStack_248);
+    RenderingSystem_ClearMemory(uStack_18 ^ (uint64_t)auStack_248);
 }
 
 /**
@@ -790,16 +790,16 @@ void RenderingSystem_ValidateLongIndex(longlong param_1, longlong *param_2)
  * @param param_1 索引值
  * @param param_2 有效范围的指针
  */
-void RenderingSystem_ValidateUnsignedLongIndex(ulonglong param_1, ulonglong *param_2)
+void RenderingSystem_ValidateUnsignedLongIndex(uint64_t param_1, uint64_t *param_2)
 {
     int8_t auStack_248[32];
-    ulonglong uStack_228;
+    uint64_t uStack_228;
     void *puStack_220;
     int8_t auStack_218[512];
-    ulonglong uStack_18;
+    uint64_t uStack_18;
     
     // 执行堆栈安全检查
-    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_248;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_248;
     
     // 验证索引范围
     if ((param_1 < *param_2) || (param_2[1] < param_1)) {
@@ -820,7 +820,7 @@ void RenderingSystem_ValidateUnsignedLongIndex(ulonglong param_1, ulonglong *par
     }
     
     // 执行堆栈安全清理
-    RenderingSystem_ClearMemory(uStack_18 ^ (ulonglong)auStack_248);
+    RenderingSystem_ClearMemory(uStack_18 ^ (uint64_t)auStack_248);
 }
 
 /**
@@ -835,10 +835,10 @@ void RenderingSystem_ValidateFloatParameter(float param_1, float *param_2)
     double dStack_238;
     void *puStack_230;
     int8_t auStack_228[512];
-    ulonglong uStack_28;
+    uint64_t uStack_28;
     
     // 执行堆栈安全检查
-    uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_258;
+    uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_258;
     
     // 验证浮点数范围
     if ((param_2[1] + param_2[2] * 0.5 < param_1) || (param_1 < *param_2 - param_2[2] * 0.5)) {
@@ -859,7 +859,7 @@ void RenderingSystem_ValidateFloatParameter(float param_1, float *param_2)
     }
     
     // 执行堆栈安全清理
-    RenderingSystem_ClearMemory(uStack_28 ^ (ulonglong)auStack_258);
+    RenderingSystem_ClearMemory(uStack_28 ^ (uint64_t)auStack_258);
 }
 
 // ================================================
@@ -873,15 +873,15 @@ void RenderingSystem_ValidateFloatParameter(float param_1, float *param_2)
  */
 void RenderingSystem_ProcessStringLength(uint64_t param_1)
 {
-    longlong lVar1;
+    int64_t lVar1;
     int32_t uVar2;
     int8_t auStack_238[32];
     int8_t auStack_218[512];
-    ulonglong uStack_18;
+    uint64_t uStack_18;
     
     // 获取系统状态
     lVar1 = render_system_memory;
-    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_238;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_238;
     
     // 检查系统状态
     if (render_system_memory == 0) {
@@ -895,7 +895,7 @@ void RenderingSystem_ProcessStringLength(uint64_t param_1)
     }
     
     // 执行堆栈安全清理
-    RenderingSystem_ClearMemory(uStack_18 ^ (ulonglong)auStack_238);
+    RenderingSystem_ClearMemory(uStack_18 ^ (uint64_t)auStack_238);
 }
 
 /**
@@ -905,14 +905,14 @@ void RenderingSystem_ProcessStringLength(uint64_t param_1)
  * @param param_2 偏移量
  * @param param_3 数据长度
  */
-void RenderingSystem_ProcessDataBlock(longlong *param_1, int param_2, int32_t param_3)
+void RenderingSystem_ProcessDataBlock(int64_t *param_1, int param_2, int32_t param_3)
 {
     int8_t auStack_248[32];
     int8_t auStack_228[512];
-    ulonglong uStack_28;
+    uint64_t uStack_28;
     
     // 执行堆栈安全检查
-    uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_248;
+    uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_248;
     
     // 检查系统状态
     if (render_system_memory == 0) {
@@ -921,11 +921,11 @@ void RenderingSystem_ProcessDataBlock(longlong *param_1, int param_2, int32_t pa
         RenderingSystem_ValidateIntegerParameter(auStack_228);
     } else {
         // 系统已初始化，处理数据块
-        RenderingSystem_ProcessDataBlock(render_system_memory, (longlong)param_2 + *param_1, param_3);
+        RenderingSystem_ProcessDataBlock(render_system_memory, (int64_t)param_2 + *param_1, param_3);
     }
     
     // 执行堆栈安全清理
-    RenderingSystem_ClearMemory(uStack_28 ^ (ulonglong)auStack_248);
+    RenderingSystem_ClearMemory(uStack_28 ^ (uint64_t)auStack_248);
 }
 
 /**
@@ -936,10 +936,10 @@ void RenderingSystem_ReadPerformanceCounter(void)
     int8_t auStack_248[32];
     int8_t auStack_228[16];
     int8_t auStack_218[512];
-    ulonglong uStack_18;
+    uint64_t uStack_18;
     
     // 执行堆栈安全检查
-    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_248;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_248;
     
     // 检查性能计数器状态
     if (system_status_flag == 1) {
@@ -953,7 +953,7 @@ void RenderingSystem_ReadPerformanceCounter(void)
     }
     
     // 执行堆栈安全清理
-    RenderingSystem_ClearMemory(uStack_18 ^ (ulonglong)auStack_248);
+    RenderingSystem_ClearMemory(uStack_18 ^ (uint64_t)auStack_248);
 }
 
 /**
@@ -967,10 +967,10 @@ void RenderingSystem_SetThreadStatus(int8_t param_1)
     uint64_t uVar2;
     int8_t auStack_238[32];
     int8_t auStack_218[512];
-    ulonglong uStack_18;
+    uint64_t uStack_18;
     
     // 执行堆栈安全检查
-    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_238;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_238;
     
     // 获取线程锁
     iVar1 = _Mtx_lock(0x180c95d70);
@@ -990,7 +990,7 @@ void RenderingSystem_SetThreadStatus(int8_t param_1)
     }
     
     // 执行堆栈安全清理
-    RenderingSystem_ClearMemory(uStack_18 ^ (ulonglong)auStack_238);
+    RenderingSystem_ClearMemory(uStack_18 ^ (uint64_t)auStack_238);
 }
 
 /**
@@ -1003,10 +1003,10 @@ void RenderingSystem_ClearThreadStatus(int8_t param_1)
     int iVar1;
     int8_t auStack_238[32];
     int8_t auStack_218[512];
-    ulonglong uStack_18;
+    uint64_t uStack_18;
     
     // 执行堆栈安全检查
-    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_238;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_238;
     
     // 清理线程状态
     render_system_memory = 0;
@@ -1027,7 +1027,7 @@ void RenderingSystem_ClearThreadStatus(int8_t param_1)
     }
     
     // 执行堆栈安全清理
-    RenderingSystem_ClearMemory(uStack_18 ^ (ulonglong)auStack_238);
+    RenderingSystem_ClearMemory(uStack_18 ^ (uint64_t)auStack_238);
 }
 
 /**
@@ -1118,9 +1118,9 @@ void RenderingSystem_ClearMemory(int32_t param_1)
  */
 void RenderingSystem_ProcessNetworkAddress(void)
 {
-    longlong lVar1;
-    longlong lVar2;
-    longlong lVar3;
+    int64_t lVar1;
+    int64_t lVar2;
+    int64_t lVar3;
     int8_t auStack_78[32];
     uint64_t uStack_58;
     void *puStack_50;
@@ -1128,11 +1128,11 @@ void RenderingSystem_ProcessNetworkAddress(void)
     int32_t uStack_40;
     int8_t auStack_38[16];
     char acStack_28[16];
-    ulonglong uStack_18;
+    uint64_t uStack_18;
     
     // 初始化变量
     uStack_58 = 0xfffffffffffffffe;
-    uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_78;
+    uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_78;
     
     // 获取网络地址
     lVar2 = inet_ntoa();
@@ -1163,7 +1163,7 @@ void RenderingSystem_ProcessNetworkAddress(void)
     puStack_50 = &system_state_ptr;
     
     // 执行堆栈安全清理
-    RenderingSystem_ClearMemory(uStack_18 ^ (ulonglong)auStack_78);
+    RenderingSystem_ClearMemory(uStack_18 ^ (uint64_t)auStack_78);
 }
 
 /**
@@ -1173,14 +1173,14 @@ void RenderingSystem_ProcessNetworkAddress(void)
  * 
  * @return 初始化状态
  */
-ulonglong RenderingSystem_InitializePort(int16_t param_1)
+uint64_t RenderingSystem_InitializePort(int16_t param_1)
 {
     int *piVar1;
     byte bVar2;
     int *piVar3;
-    ulonglong uVar4;
+    uint64_t uVar4;
     void *puVar5;
-    longlong lVar6;
+    int64_t lVar6;
     int iVar7;
     int iStack_34;
     
@@ -1232,7 +1232,7 @@ ulonglong RenderingSystem_InitializePort(int16_t param_1)
                 piVar3[2] = 0;
                 piVar3[3] = 0;
             } else {
-                lVar6 = (longlong)piRam0000000180c95ba0 - (longlong)piRam0000000180c95b98 >> 4;
+                lVar6 = (int64_t)piRam0000000180c95ba0 - (int64_t)piRam0000000180c95b98 >> 4;
                 if (lVar6 == 0) {
                     lVar6 = 1;
 LAB_18055cd27:
@@ -1244,7 +1244,7 @@ LAB_18055cd27:
                 }
                 if (piRam0000000180c95b98 != piRam0000000180c95ba0) {
                     memmove(piVar3, piRam0000000180c95b98, 
-                            (longlong)piRam0000000180c95ba0 - (longlong)piRam0000000180c95b98);
+                            (int64_t)piRam0000000180c95ba0 - (int64_t)piRam0000000180c95b98);
                 }
                 *piVar3 = iVar7;
                 piVar3[1] = iStack_34;
@@ -1261,7 +1261,7 @@ LAB_18055cd27:
         } while (-1 < iVar7);
     }
     
-    return (ulonglong)bVar2;
+    return (uint64_t)bVar2;
 }
 
 /**
@@ -1277,9 +1277,9 @@ void RenderingSystem_ManageConnection(uint64_t param_1, int16_t param_2, int32_t
     uint64_t uVar1;
     uint64_t *puVar2;
     char cVar3;
-    longlong lVar4;
-    longlong lVar5;
-    longlong alStack_28[2];
+    int64_t lVar4;
+    int64_t lVar5;
+    int64_t alStack_28[2];
     
     // 执行连接管理初始化
     RenderingSystem_ProcessStringLength(*(uint64_t *)(render_system_data_memory + 0x10));
@@ -1331,9 +1331,9 @@ void RenderingSystem_MonitorConnection(uint64_t param_1, int16_t param_2, int32_
     uint64_t uVar1;
     uint64_t *puVar2;
     char cVar3;
-    longlong lVar4;
-    longlong lVar5;
-    longlong lStackX_20;
+    int64_t lVar4;
+    int64_t lVar5;
+    int64_t lStackX_20;
     
     // 执行连接监控初始化
     RenderingSystem_ProcessStringLength(*(uint64_t *)(render_system_data_memory + 0x10));
@@ -1384,16 +1384,16 @@ void RenderingSystem_MonitorConnection(uint64_t param_1, int16_t param_2, int32_
  * @param param_3 数据长度
  * @param param_4 输出缓冲区
  */
-void RenderingSystem_ReadDataBlock(longlong *param_1, int param_2, int32_t param_3, char *param_4)
+void RenderingSystem_ReadDataBlock(int64_t *param_1, int param_2, int32_t param_3, char *param_4)
 {
     char cVar1;
     int8_t auStack_268[32];
     int32_t auStack_248[4];
     int8_t auStack_238[512];
-    ulonglong uStack_38;
+    uint64_t uStack_38;
     
     // 执行堆栈安全检查
-    uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_268;
+    uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_268;
     
     // 检查系统状态
     if (render_system_memory == 0) {
@@ -1403,7 +1403,7 @@ void RenderingSystem_ReadDataBlock(longlong *param_1, int param_2, int32_t param
     } else {
         // 系统已初始化，读取数据块
         auStack_248[0] = 0;
-        cVar1 = RenderingSystem_ValidateFloatParameter(render_system_memory, (longlong)param_2 + *param_1, param_3, auStack_248);
+        cVar1 = RenderingSystem_ValidateFloatParameter(render_system_memory, (int64_t)param_2 + *param_1, param_3, auStack_248);
         *param_4 = cVar1;
         if (cVar1 != '\0') goto LAB_180615392;
     }
@@ -1412,7 +1412,7 @@ void RenderingSystem_ReadDataBlock(longlong *param_1, int param_2, int32_t param
     
 LAB_180615392:
     // 执行堆栈安全清理
-    RenderingSystem_ClearMemory(uStack_38 ^ (ulonglong)auStack_268);
+    RenderingSystem_ClearMemory(uStack_38 ^ (uint64_t)auStack_268);
 }
 
 // ================================================

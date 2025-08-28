@@ -22,29 +22,29 @@
 
 // 渲染系统文件数据处理器
 // 处理渲染系统文件数据的读取、解析和管理
-void RenderingSystemProcessFileData(longlong render_context, longlong file_context, uint64_t file_offset, uint data_size, int process_flag)
+void RenderingSystemProcessFileData(int64_t render_context, int64_t file_context, uint64_t file_offset, uint data_size, int process_flag)
 {
-  longlong *resource_ptr;
+  int64_t *resource_ptr;
   uint processed_size;
   int read_count;
-  longlong resource_handle;
+  int64_t resource_handle;
   uint64_t *resource_manager;
   int32_t *data_buffer;
-  longlong memory_block;
+  int64_t memory_block;
   uint64_t *resource_allocator;
   uint64_t *resource_pool;
   int *data_index;
   uint *data_array;
-  longlong *data_stream;
+  int64_t *data_stream;
   uint64_t process_parameter;
-  ulonglong file_size;
+  uint64_t file_size;
   int item_count;
   bool allocation_success;
   uint stack_data_array [2];
-  ulonglong allocation_size;
+  uint64_t allocation_size;
   int stack_item_count;
   uint stack_data_size;
-  longlong stack_data_handle;
+  int64_t stack_data_handle;
   uint *stack_data_ptr;
   uint64_t stack_context;
   int16_t stack_flags;
@@ -54,8 +54,8 @@ void RenderingSystemProcessFileData(longlong render_context, longlong file_conte
   uint64_t stack_memory_block;
   int32_t *stack_buffer_ptr;
   uint64_t stack_allocator;
-  longlong *stack_resource_ptr;
-  longlong *stack_allocator_ptr;
+  int64_t *stack_resource_ptr;
+  int64_t *stack_allocator_ptr;
   
   stack_allocator = RENDERING_STACK_ALIGNMENT;
   stack_data_array[0] = data_size;
@@ -63,8 +63,8 @@ void RenderingSystemProcessFileData(longlong render_context, longlong file_conte
   process_flag = 0;
   stack_item_count = 0;
   fread(&process_flag, 4, 1, *(uint64_t *)(file_context + 8));
-  file_size = (ulonglong)data_size;
-  allocation_size = (ulonglong)data_size;
+  file_size = (uint64_t)data_size;
+  allocation_size = (uint64_t)data_size;
   stack_data_size = data_size;
   
   // 初始化资源处理
@@ -101,15 +101,15 @@ void RenderingSystemProcessFileData(longlong render_context, longlong file_conte
         if (0 < stack_item_count) {
           resource_pool = (uint64_t *)(render_context + 0x818);
           data_buffer = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr, RENDERING_FILE_BUFFER_SIZE, RENDERING_ALIGNMENT_SIZE, 3);
-          resource_ptr = (longlong *)(data_buffer + 6);
-          *resource_ptr = (longlong)&system_state_ptr;
+          resource_ptr = (int64_t *)(data_buffer + 6);
+          *resource_ptr = (int64_t)&system_state_ptr;
           *(uint64_t *)(data_buffer + 8) = 0;
           data_buffer[10] = 0;
-          *resource_ptr = (longlong)&system_data_buffer_ptr;
+          *resource_ptr = (int64_t)&system_data_buffer_ptr;
           *(uint64_t *)(data_buffer + 0xc) = 0;
           *(uint64_t *)(data_buffer + 8) = 0;
           data_buffer[10] = 0;
-          data_stream = (longlong *)(data_buffer + 0xe);
+          data_stream = (int64_t *)(data_buffer + 0xe);
           stack_buffer_ptr = data_buffer;
           stack_resource_ptr = resource_ptr;
           stack_allocator_ptr = data_stream;
@@ -131,7 +131,7 @@ void RenderingSystemProcessFileData(longlong render_context, longlong file_conte
           if (processed_size != 0) {
             stack_data_ptr = (uint *)data_index;
             (**(code **)(*resource_ptr + 0x18))(resource_ptr, data_index, processed_size);
-            data_index = (int *)((longlong)data_index + (ulonglong)processed_size);
+            data_index = (int *)((int64_t)data_index + (uint64_t)processed_size);
           }
           
           item_count = *data_index;
@@ -147,11 +147,11 @@ void RenderingSystemProcessFileData(longlong render_context, longlong file_conte
               if (processed_size != 0) {
                 stack_data_ptr = data_array;
                 (**(code **)(*data_stream + 0x18))(data_stream, data_array, processed_size);
-                data_array = (uint *)((longlong)data_array + (ulonglong)processed_size);
+                data_array = (uint *)((int64_t)data_array + (uint64_t)processed_size);
               }
               
               *(uint *)(data_stream + 4) = *data_array;
-              *(uint *)((longlong)data_stream + 0x24) = data_array[1];
+              *(uint *)((int64_t)data_stream + 0x24) = data_array[1];
               stack_data_ptr = data_array + 2;
               read_count = read_count + 1;
               data_stream = data_stream + 6;
@@ -196,7 +196,7 @@ void RenderingSystemProcessFileData(longlong render_context, longlong file_conte
         }
       }
       
-      FUN_180332560(render_context, file_context, (ulonglong)data_size);
+      FUN_180332560(render_context, file_context, (uint64_t)data_size);
       FUN_1800571e0(render_context + 0x230, stack_data_array);
       return;
     }
@@ -302,10 +302,10 @@ uint64_t *RenderingSystemResourceSerializer(uint64_t process_context, uint64_t *
   char process_result;
   uint data_length;
   int string_length;
-  ulonglong buffer_size;
+  uint64_t buffer_size;
   int array_index;
   void *buffer_ptr;
-  longlong data_handle;
+  int64_t data_handle;
   uint buffer_capacity;
   int32_t buffer_data;
   int32_t buffer_info;
@@ -319,7 +319,7 @@ uint64_t *RenderingSystemResourceSerializer(uint64_t process_context, uint64_t *
   FUN_1800baa40(&buffer_ptr);
   data_length = buffer_capacity + 7;
   FUN_1806277c0(&buffer_ptr, data_length);
-  *(uint64_t *)((ulonglong)buffer_capacity + data_handle) = RENDERING_MAGIC_NUMBER;
+  *(uint64_t *)((uint64_t)buffer_capacity + data_handle) = RENDERING_MAGIC_NUMBER;
   buffer_capacity = data_length;
   process_result = FUN_180624a00(&buffer_ptr);
   
@@ -338,7 +338,7 @@ uint64_t *RenderingSystemResourceSerializer(uint64_t process_context, uint64_t *
   
   do {
     data_length = buffer_capacity;
-    buffer_size = (ulonglong)buffer_capacity;
+    buffer_size = (uint64_t)buffer_capacity;
     
     if (data_handle != 0) {
       FUN_1806277c0(resource_data, buffer_size);
@@ -357,9 +357,9 @@ uint64_t *RenderingSystemResourceSerializer(uint64_t process_context, uint64_t *
       string_length = *(int *)(resource_data + 2);
     }
     
-    *(int32_t *)((longlong)resource_data + 0x1c) = buffer_data;
+    *(int32_t *)((int64_t)resource_data + 0x1c) = buffer_data;
     FUN_1806277c0(resource_data, string_length + 1);
-    *(int16_t *)((ulonglong)*(uint *)(resource_data + 2) + resource_data[1]) = RENDERING_PATH_SEPARATOR;
+    *(int16_t *)((uint64_t)*(uint *)(resource_data + 2) + resource_data[1]) = RENDERING_PATH_SEPARATOR;
     *(int *)(resource_data + 2) = string_length + 1;
     FUN_180628380(resource_data, array_index);
     array_index = array_index + 1;
@@ -378,18 +378,18 @@ uint64_t *RenderingSystemResourceSerializer(uint64_t process_context, uint64_t *
 
 // 渲染系统文件资源处理器
 // 处理渲染系统文件资源的读取、写入和管理
-void RenderingSystemFileResourceProcessor(longlong render_context, longlong file_context, longlong resource_context)
+void RenderingSystemFileResourceProcessor(int64_t render_context, int64_t file_context, int64_t resource_context)
 {
-  longlong *context_ptr;
+  int64_t *context_ptr;
   int32_t *resource_buffer;
   void *memory_ptr;
   int8_t *data_ptr;
-  longlong resource_handle;
-  longlong *data_stream;
+  int64_t resource_handle;
+  int64_t *data_stream;
   uint resource_size;
   int data_count;
-  longlong file_handle;
-  longlong context_offset;
+  int64_t file_handle;
+  int64_t context_offset;
   int32_t *output_buffer;
   int32_t *temp_buffer;
   int32_t *final_buffer;
@@ -398,8 +398,8 @@ void RenderingSystemFileResourceProcessor(longlong render_context, longlong file
   void *stack_ptr;
   int8_t *string_ptr;
   uint string_length;
-  ulonglong path_size;
-  longlong path_data [3];
+  uint64_t path_size;
+  int64_t path_data [3];
   int16_t path_flags;
   int8_t path_mode;
   int32_t *write_buffer;
@@ -407,26 +407,26 @@ void RenderingSystemFileResourceProcessor(longlong render_context, longlong file
   int32_t *process_buffer;
   int32_t buffer_data;
   uint64_t buffer_context;
-  longlong context_data;
+  int64_t context_data;
   uint64_t process_info;
-  longlong file_data;
+  int64_t file_data;
   int8_t buffer_flag;
-  longlong data_info;
+  int64_t data_info;
   int32_t *data_buffer;
-  longlong memory_info;
-  longlong allocation_info;
+  int64_t memory_info;
+  int64_t allocation_info;
   uint64_t allocation_context;
   char temp_path [32];
-  ulonglong stack_guard;
+  uint64_t stack_guard;
   
   allocation_context = RENDERING_STACK_ALIGNMENT;
-  stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)path_buffer;
+  stack_guard = GET_SECURITY_COOKIE() ^ (uint64_t)path_buffer;
   count_array[0] = 0;
   write_buffer = (int32_t *)0x0;
   read_buffer = (int32_t *)0x0;
   process_buffer = (int32_t *)0x0;
   buffer_data = 3;
-  context_ptr = *(longlong **)(render_context + 0xb50);
+  context_ptr = *(int64_t **)(render_context + 0xb50);
   resource_handle = *context_ptr;
   data_stream = context_ptr;
   
@@ -445,7 +445,7 @@ void RenderingSystemFileResourceProcessor(longlong render_context, longlong file
   memory_info = render_context;
   allocation_info = file_context;
   
-  if (resource_handle != context_ptr[*(longlong *)(render_context + 0xb58)]) {
+  if (resource_handle != context_ptr[*(int64_t *)(render_context + 0xb58)]) {
     final_buffer = (int32_t *)0x0;
     
     do {
@@ -457,7 +457,7 @@ void RenderingSystemFileResourceProcessor(longlong render_context, longlong file
         resource_buffer = output_buffer;
       }
       else {
-        data_info = (longlong)final_buffer - (longlong)output_buffer;
+        data_info = (int64_t)final_buffer - (int64_t)output_buffer;
         
         if (data_info >> 2 == 0) {
           resource_handle = 1;
@@ -503,10 +503,10 @@ LAB_18032d78f:
         }
         
         // 警告：子函数不返回
-        memcpy(string_ptr, memory_ptr, (longlong)(*(int *)(context_data + 0x10) + 1));
+        memcpy(string_ptr, memory_ptr, (int64_t)(*(int *)(context_data + 0x10) + 1));
       }
       
-      if ((*(longlong *)(context_data + 8) != 0) && (string_length = 0, string_ptr != (int8_t *)0x0)) {
+      if ((*(int64_t *)(context_data + 8) != 0) && (string_length = 0, string_ptr != (int8_t *)0x0)) {
         *string_ptr = 0;
       }
       
@@ -527,13 +527,13 @@ LAB_18032d78f:
       if (0 < data_count) {
         FUN_1806277c0(&stack_ptr, string_length + data_count);
         // 警告：子函数不返回
-        memcpy(string_ptr + string_length, temp_path, (longlong)((int)context_offset + 2));
+        memcpy(string_ptr + string_length, temp_path, (int64_t)((int)context_offset + 2));
       }
       
       data_count = string_length + 4;
       FUN_1806277c0(&stack_ptr, data_count);
       *(int32_t *)(string_ptr + string_length) = 0x6664652e;
-      *(int8_t *)((longlong)(string_ptr + string_length) + 4) = 0;
+      *(int8_t *)((int64_t)(string_ptr + string_length) + 4) = 0;
       data_ptr = &system_buffer_ptr;
       
       if (string_ptr != (int8_t *)0x0) {
@@ -550,7 +550,7 @@ LAB_18032d78f:
       path_flags = 0;
       path_mode = 3;
       System_BufferManager(path_data, RENDERING_MAX_PATH_LENGTH);
-      FUN_18007e5b0(*(uint64_t *)(*(longlong *)(resource_handle + 8) + 8), path_data);
+      FUN_18007e5b0(*(uint64_t *)(*(int64_t *)(resource_handle + 8) + 8), path_data);
       resource_handle = file_data;
       buffer_context = path_data[2];
       fwrite(&buffer_context, 8, 1, file_data);
@@ -597,28 +597,28 @@ LAB_18032d78f:
       string_ptr = (int8_t *)0x0;
       path_size = path_size & 0xffffffff00000000;
       stack_ptr = &system_state_ptr;
-      resource_handle = *(longlong *)(resource_handle + 0x10);
+      resource_handle = *(int64_t *)(resource_handle + 0x10);
       
       while (resource_handle == 0) {
         data_stream = data_stream + 1;
         resource_handle = *data_stream;
       }
-    } while (resource_handle != *(longlong *)
-                       (*(longlong *)(memory_info + 0xb50) + *(longlong *)(memory_info + 0xb58) * 8));
+    } while (resource_handle != *(int64_t *)
+                       (*(int64_t *)(memory_info + 0xb50) + *(int64_t *)(memory_info + 0xb58) * 8));
   }
   
   resource_handle = allocation_info;
   fwrite(count_array, 4, 1, *(uint64_t *)(resource_handle + 8));
   
   if (0 < count_array[0]) {
-    fwrite(output_buffer, 4, (longlong)count_array[0], *(uint64_t *)(resource_handle + 8));
+    fwrite(output_buffer, 4, (int64_t)count_array[0], *(uint64_t *)(resource_handle + 8));
   }
   
   _ftelli64(*(uint64_t *)(resource_handle + 8));
   
   if (output_buffer == (int32_t *)0x0) {
     // 警告：子函数不返回
-    FUN_1808fc050(stack_guard ^ (ulonglong)path_buffer);
+    FUN_1808fc050(stack_guard ^ (uint64_t)path_buffer);
   }
   
   // 警告：子函数不返回

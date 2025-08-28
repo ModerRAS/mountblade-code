@@ -3,8 +3,8 @@
 
 // 99_part_14_part016.c - 8 个函数
 
-// 函数: void FUN_1808f7cc0(longlong param_1)
-void FUN_1808f7cc0(longlong param_1)
+// 函数: void FUN_1808f7cc0(int64_t param_1)
+void FUN_1808f7cc0(int64_t param_1)
 
 {
   if (param_1 != 0) {
@@ -41,14 +41,14 @@ int FUN_1808f7ec0(int *param_1,short param_2,short param_3,short param_4,float *
   if (*param_1 == 0) {
     return 0;
   }
-  *(short *)((longlong)param_1 + 0x92) = *(short *)((longlong)param_1 + 0x92) + 1;
+  *(short *)((int64_t)param_1 + 0x92) = *(short *)((int64_t)param_1 + 0x92) + 1;
   iVar3 = (int)param_2;
   param_1[0x21] = param_1[0x21] + iVar3;
   iVar7 = (int)param_3;
   param_1[0x22] = param_1[0x22] + iVar7;
   iVar2 = (int)param_4;
   param_1[0x23] = param_1[0x23] + iVar2;
-  if (*(short *)((longlong)param_1 + 0x92) == 1) {
+  if (*(short *)((int64_t)param_1 + 0x92) == 1) {
     param_1[0x1b] = iVar3;
     param_1[0x1c] = iVar7;
     param_1[0x1d] = iVar2;
@@ -93,7 +93,7 @@ LAB_1808f7faa:
     if (iVar2 < iVar6) goto LAB_1808f7faa;
   }
   uVar1 = *(ushort *)(param_1 + 0x24);
-  if (*(ushort *)((longlong)param_1 + 0x92) != uVar1) {
+  if (*(ushort *)((int64_t)param_1 + 0x92) != uVar1) {
     return 0;
   }
   iVar2 = param_1[0x13];
@@ -189,7 +189,7 @@ LAB_1808f823c:
   param_1[0x12] = 0;
   param_1[0x13] = (int)uVar10;
 LAB_1808f826b:
-  *(short *)((longlong)param_1 + 0x92) = (short)uVar10;
+  *(short *)((int64_t)param_1 + 0x92) = (short)uVar10;
   param_1[0x1b] = 0;
   param_1[0x1c] = 0;
   param_1[0x1d] = 0;
@@ -204,19 +204,19 @@ LAB_1808f826b:
 
 
 
-ulonglong FUN_1808f7fdb(longlong param_1,float param_2,int param_3,int param_4)
+uint64_t FUN_1808f7fdb(int64_t param_1,float param_2,int param_3,int param_4)
 
 {
   int iVar1;
   int iVar2;
   bool bVar3;
   int unaff_EBX;
-  ulonglong unaff_RBP;
+  uint64_t unaff_RBP;
   int unaff_ESI;
   int unaff_EDI;
   uint64_t uVar4;
   int in_R10D;
-  ulonglong uVar5;
+  uint64_t uVar5;
   int in_R11D;
   int unaff_R12D;
   int unaff_R13D;
@@ -340,7 +340,7 @@ int32_t FUN_1808f829d(void)
 
 
 
-void NVSDK_NGX_Parameter_GetD(longlong *param_1,uint64_t param_2,uint64_t param_3)
+void NVSDK_NGX_Parameter_GetD(int64_t *param_1,uint64_t param_2,uint64_t param_3)
 
 {
   code *UNRECOVERED_JUMPTABLE;
@@ -356,7 +356,7 @@ void NVSDK_NGX_Parameter_GetD(longlong *param_1,uint64_t param_2,uint64_t param_
 
 
 
-void NVSDK_NGX_Parameter_GetD3d11Resource(longlong *param_1,uint64_t param_2,uint64_t param_3)
+void NVSDK_NGX_Parameter_GetD3d11Resource(int64_t *param_1,uint64_t param_2,uint64_t param_3)
 
 {
   code *UNRECOVERED_JUMPTABLE;
@@ -372,7 +372,7 @@ void NVSDK_NGX_Parameter_GetD3d11Resource(longlong *param_1,uint64_t param_2,uin
 
 
 
-void NVSDK_NGX_Parameter_GetD3d12Resource(longlong *param_1,uint64_t param_2,uint64_t param_3)
+void NVSDK_NGX_Parameter_GetD3d12Resource(int64_t *param_1,uint64_t param_2,uint64_t param_3)
 
 {
   code *UNRECOVERED_JUMPTABLE;
@@ -388,7 +388,7 @@ void NVSDK_NGX_Parameter_GetD3d12Resource(longlong *param_1,uint64_t param_2,uin
 
 
 
-void NVSDK_NGX_Parameter_GetF(longlong *param_1,uint64_t param_2,uint64_t param_3)
+void NVSDK_NGX_Parameter_GetF(int64_t *param_1,uint64_t param_2,uint64_t param_3)
 
 {
   code *UNRECOVERED_JUMPTABLE;
@@ -404,7 +404,7 @@ void NVSDK_NGX_Parameter_GetF(longlong *param_1,uint64_t param_2,uint64_t param_
 
 
 
-void NVSDK_NGX_Parameter_GetI(longlong *param_1,uint64_t param_2,uint64_t param_3)
+void NVSDK_NGX_Parameter_GetI(int64_t *param_1,uint64_t param_2,uint64_t param_3)
 
 {
   code *UNRECOVERED_JUMPTABLE;
@@ -420,7 +420,7 @@ void NVSDK_NGX_Parameter_GetI(longlong *param_1,uint64_t param_2,uint64_t param_
 
 
 
-void NVSDK_NGX_Parameter_GetUI(longlong *param_1,uint64_t param_2,uint64_t param_3)
+void NVSDK_NGX_Parameter_GetUI(int64_t *param_1,uint64_t param_2,uint64_t param_3)
 
 {
   code *UNRECOVERED_JUMPTABLE;
@@ -436,7 +436,7 @@ void NVSDK_NGX_Parameter_GetUI(longlong *param_1,uint64_t param_2,uint64_t param
 
 
 
-void NVSDK_NGX_Parameter_GetULL(longlong *param_1,uint64_t param_2,uint64_t param_3)
+void NVSDK_NGX_Parameter_GetULL(int64_t *param_1,uint64_t param_2,uint64_t param_3)
 
 {
   code *UNRECOVERED_JUMPTABLE;
@@ -452,7 +452,7 @@ void NVSDK_NGX_Parameter_GetULL(longlong *param_1,uint64_t param_2,uint64_t para
 
 
 
-void NVSDK_NGX_Parameter_GetVoidPointer(longlong *param_1,uint64_t param_2,uint64_t param_3)
+void NVSDK_NGX_Parameter_GetVoidPointer(int64_t *param_1,uint64_t param_2,uint64_t param_3)
 
 {
   code *UNRECOVERED_JUMPTABLE;
@@ -468,7 +468,7 @@ void NVSDK_NGX_Parameter_GetVoidPointer(longlong *param_1,uint64_t param_2,uint6
 
 
 
-void NVSDK_NGX_Parameter_SetD(longlong *param_1,uint64_t param_2,int32_t param_3)
+void NVSDK_NGX_Parameter_SetD(int64_t *param_1,uint64_t param_2,int32_t param_3)
 
 {
   code *UNRECOVERED_JUMPTABLE;
@@ -484,7 +484,7 @@ void NVSDK_NGX_Parameter_SetD(longlong *param_1,uint64_t param_2,int32_t param_3
 
 
 
-void NVSDK_NGX_Parameter_SetD3d11Resource(longlong *param_1,uint64_t param_2,uint64_t param_3)
+void NVSDK_NGX_Parameter_SetD3d11Resource(int64_t *param_1,uint64_t param_2,uint64_t param_3)
 
 {
   code *UNRECOVERED_JUMPTABLE;
@@ -500,7 +500,7 @@ void NVSDK_NGX_Parameter_SetD3d11Resource(longlong *param_1,uint64_t param_2,uin
 
 
 
-void NVSDK_NGX_Parameter_SetD3d12Resource(longlong *param_1,uint64_t param_2,uint64_t param_3)
+void NVSDK_NGX_Parameter_SetD3d12Resource(int64_t *param_1,uint64_t param_2,uint64_t param_3)
 
 {
   code *UNRECOVERED_JUMPTABLE;
@@ -516,7 +516,7 @@ void NVSDK_NGX_Parameter_SetD3d12Resource(longlong *param_1,uint64_t param_2,uin
 
 
 
-void NVSDK_NGX_Parameter_SetF(longlong *param_1,uint64_t param_2,int32_t param_3)
+void NVSDK_NGX_Parameter_SetF(int64_t *param_1,uint64_t param_2,int32_t param_3)
 
 {
   code *UNRECOVERED_JUMPTABLE;
@@ -532,7 +532,7 @@ void NVSDK_NGX_Parameter_SetF(longlong *param_1,uint64_t param_2,int32_t param_3
 
 
 
-void NVSDK_NGX_Parameter_SetI(longlong *param_1,uint64_t param_2,int32_t param_3)
+void NVSDK_NGX_Parameter_SetI(int64_t *param_1,uint64_t param_2,int32_t param_3)
 
 {
   code *UNRECOVERED_JUMPTABLE;
@@ -548,7 +548,7 @@ void NVSDK_NGX_Parameter_SetI(longlong *param_1,uint64_t param_2,int32_t param_3
 
 
 
-void NVSDK_NGX_Parameter_SetUI(longlong *param_1,uint64_t param_2,int32_t param_3)
+void NVSDK_NGX_Parameter_SetUI(int64_t *param_1,uint64_t param_2,int32_t param_3)
 
 {
   code *UNRECOVERED_JUMPTABLE;
@@ -564,7 +564,7 @@ void NVSDK_NGX_Parameter_SetUI(longlong *param_1,uint64_t param_2,int32_t param_
 
 
 
-void NVSDK_NGX_Parameter_SetULL(longlong *param_1,uint64_t param_2,uint64_t param_3)
+void NVSDK_NGX_Parameter_SetULL(int64_t *param_1,uint64_t param_2,uint64_t param_3)
 
 {
   code *UNRECOVERED_JUMPTABLE;
@@ -603,15 +603,15 @@ void NVSDK_NGX_Parameter_SetVoidPointer(uint64_t *param_1,uint64_t param_2,uint6
 
 // 函数: void FUN_1808f88b0(code *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4,
 void FUN_1808f88b0(code *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4,
-                  longlong param_5)
+                  int64_t param_5)
 
 {
   code *pcVar1;
-  longlong *plVar2;
+  int64_t *plVar2;
   
   pcVar1 = (code *)0x0;
-  plVar2 = (longlong *)
-           (*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0x40);
+  plVar2 = (int64_t *)
+           (*(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8) + 0x40);
   if (param_5 != 0) {
     pcVar1 = FUN_1808f8b00;
   }
@@ -634,16 +634,16 @@ void FUN_1808f8940(uint64_t *param_1,uint64_t *param_2)
 
 {
   code *pcVar1;
-  longlong *plVar2;
+  int64_t *plVar2;
   int iVar3;
   int8_t auStack_188 [32];
-  longlong *plStack_168;
-  longlong *plStack_160;
+  int64_t *plStack_168;
+  int64_t *plStack_160;
   int8_t auStack_158 [296];
   uint64_t uStack_30;
-  ulonglong uStack_28;
+  uint64_t uStack_28;
   
-  uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_188;
+  uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_188;
   pcVar1 = *(code **)*param_1;
   _guard_check_icall(pcVar1);
   iVar3 = (*pcVar1)(param_1,&unknown_var_6640_ptr,&plStack_168);
@@ -687,7 +687,7 @@ void FUN_1808f8940(uint64_t *param_1,uint64_t *param_2)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_188);
+  FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_188);
 }
 
 
@@ -701,12 +701,12 @@ void FUN_1808f89b5(void)
 {
   code *pcVar1;
   int iVar2;
-  longlong *unaff_RDI;
+  int64_t *unaff_RDI;
   uint64_t *unaff_R14;
-  longlong *plStackX_20;
-  longlong *in_stack_00000028;
+  int64_t *plStackX_20;
+  int64_t *in_stack_00000028;
   uint64_t in_stack_00000158;
-  ulonglong in_stack_00000160;
+  uint64_t in_stack_00000160;
   
   pcVar1 = *(code **)(*unaff_RDI + 0x38);
   _guard_check_icall(pcVar1);
@@ -741,7 +741,7 @@ void FUN_1808f89b5(void)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000160 ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(in_stack_00000160 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -753,10 +753,10 @@ void FUN_1808f89b5(void)
 void FUN_1808f8add(void)
 
 {
-  ulonglong in_stack_00000160;
+  uint64_t in_stack_00000160;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000160 ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(in_stack_00000160 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -772,8 +772,8 @@ void FUN_1808f8b00(int32_t param_1,uint64_t param_2)
 {
   code *pcVar1;
   
-  pcVar1 = *(code **)(*(longlong *)
-                       ((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0x40);
+  pcVar1 = *(code **)(*(int64_t *)
+                       ((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8) + 0x40);
   if (pcVar1 != (code *)0x0) {
     _guard_check_icall(pcVar1);
     (*pcVar1)(param_1,param_2);

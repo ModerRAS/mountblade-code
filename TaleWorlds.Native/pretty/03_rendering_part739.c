@@ -228,14 +228,14 @@ RenderingResult RenderingSystem_AdvancedStateManager(RenderingSystemHandle syste
 {
     byte bVar1;
     int iVar2;
-    ulonglong uVar3;
-    ulonglong uVar4;
-    longlong unaff_RBX;
+    uint64_t uVar3;
+    uint64_t uVar4;
+    int64_t unaff_RBX;
     uint uVar5;
     uint uVar6;
-    longlong unaff_R13;
+    int64_t unaff_R13;
     int8_t unaff_R14B;
-    longlong lVar7;
+    int64_t lVar7;
     bool bVar8;
     
     /* 设置系统状态标志 */
@@ -258,8 +258,8 @@ RenderingResult RenderingSystem_AdvancedStateManager(RenderingSystemHandle syste
                 }
                 
                 /* 处理数据块 */
-                uVar4 = *(ulonglong *)(unaff_RBX + 0x10);
-                uVar3 = (ulonglong)uVar6 << 0x38;
+                uVar4 = *(uint64_t *)(unaff_RBX + 0x10);
+                uVar3 = (uint64_t)uVar6 << 0x38;
                 bVar8 = uVar3 <= uVar4;
                 
                 if (bVar8) {
@@ -271,7 +271,7 @@ RenderingResult RenderingSystem_AdvancedStateManager(RenderingSystemHandle syste
                 bVar1 = (&unknown_var_8608_ptr)[uVar6];
                 *(int *)(unaff_RBX + 0x18) = *(int *)(unaff_RBX + 0x18) - (uint)bVar1;
                 uVar5 = uVar5 | (uint)bVar8 << ((byte)iVar2 & 0x1f);
-                *(ulonglong *)(unaff_RBX + 0x10) = uVar4 << (bVar1 & 0x3f);
+                *(uint64_t *)(unaff_RBX + 0x10) = uVar4 << (bVar1 & 0x3f);
                 iVar2 = iVar2 + -1;
                 *(uint *)(unaff_RBX + 0x1c) = uVar6 << (bVar1 & 0x1f);
             } while (-1 < iVar2);
@@ -299,8 +299,8 @@ RenderingResult RenderingSystem_AdvancedStateManager(RenderingSystemHandle syste
                 }
                 
                 /* 执行数据处理 */
-                uVar4 = *(ulonglong *)(unaff_RBX + 0x10);
-                uVar3 = (ulonglong)uVar6 << 0x38;
+                uVar4 = *(uint64_t *)(unaff_RBX + 0x10);
+                uVar3 = (uint64_t)uVar6 << 0x38;
                 bVar8 = uVar3 <= uVar4;
                 
                 if (bVar8) {
@@ -312,7 +312,7 @@ RenderingResult RenderingSystem_AdvancedStateManager(RenderingSystemHandle syste
                 bVar1 = (&unknown_var_8608_ptr)[uVar6];
                 *(int *)(unaff_RBX + 0x18) = *(int *)(unaff_RBX + 0x18) - (uint)bVar1;
                 uVar5 = uVar5 | (uint)bVar8 << ((byte)iVar2 & 0x1f);
-                *(ulonglong *)(unaff_RBX + 0x10) = uVar4 << (bVar1 & 0x3f);
+                *(uint64_t *)(unaff_RBX + 0x10) = uVar4 << (bVar1 & 0x3f);
                 iVar2 = iVar2 + -1;
                 *(uint *)(unaff_RBX + 0x1c) = uVar6 << (bVar1 & 0x1f);
             } while (-1 < iVar2);
@@ -353,12 +353,12 @@ void RenderingSystem_EmptyOperationProcessor(void)
  * @param param_2 数据输入缓冲区
  * @return int 处理结果代码
  */
-int RenderingSystem_AdvancedDataProcessor(longlong param_1, longlong param_2)
+int RenderingSystem_AdvancedDataProcessor(int64_t param_1, int64_t param_2)
 {
     byte bVar1;
     char cVar2;
-    ulonglong uVar3;
-    ulonglong uVar4;
+    uint64_t uVar3;
+    uint64_t uVar4;
     uint uVar5;
     bool bVar6;
     
@@ -368,7 +368,7 @@ int RenderingSystem_AdvancedDataProcessor(longlong param_1, longlong param_2)
     /* 数据处理主循环 */
     do {
         /* 计算数据处理参数 */
-        uVar5 = ((uint)*(byte *)(((longlong)cVar2 >> 1) + param_2) * 
+        uVar5 = ((uint)*(byte *)(((int64_t)cVar2 >> 1) + param_2) * 
                 (*(int *)(param_1 + 0x1c) + -1)) >> 8) + 1;
         
         /* 检查数据完整性 */
@@ -377,8 +377,8 @@ int RenderingSystem_AdvancedDataProcessor(longlong param_1, longlong param_2)
         }
         
         /* 执行数据操作 */
-        uVar4 = *(ulonglong *)(param_1 + 0x10);
-        uVar3 = (ulonglong)uVar5 << 0x38;
+        uVar4 = *(uint64_t *)(param_1 + 0x10);
+        uVar3 = (uint64_t)uVar5 << 0x38;
         bVar6 = uVar3 <= uVar4;
         
         if (bVar6) {
@@ -389,11 +389,11 @@ int RenderingSystem_AdvancedDataProcessor(longlong param_1, longlong param_2)
         /* 获取操作参数 */
         bVar1 = (&unknown_var_8608_ptr)[uVar5];
         *(int *)(param_1 + 0x18) = *(int *)(param_1 + 0x18) - (uint)bVar1;
-        *(ulonglong *)(param_1 + 0x10) = uVar4 << (bVar1 & 0x3f);
+        *(uint64_t *)(param_1 + 0x10) = uVar4 << (bVar1 & 0x3f);
         *(uint *)(param_1 + 0x1c) = uVar5 << (bVar1 & 0x1f);
         
         /* 更新处理状态 */
-        cVar2 = (&unknown_var_3784_ptr)[(longlong)(int)(uint)bVar6 + (longlong)cVar2];
+        cVar2 = (&unknown_var_3784_ptr)[(int64_t)(int)(uint)bVar6 + (int64_t)cVar2];
     } while ('\0' < cVar2);
     
     return -(int)cVar2;
@@ -410,7 +410,7 @@ int RenderingSystem_AdvancedDataProcessor(longlong param_1, longlong param_2)
  * @param param_2 配置数据指针
  * @return void
  */
-void RenderingSystem_ConfigManager(longlong param_1, char *param_2)
+void RenderingSystem_ConfigManager(int64_t param_1, char *param_2)
 {
     int iVar1;
     char cVar2;
@@ -437,7 +437,7 @@ void RenderingSystem_ConfigManager(longlong param_1, char *param_2)
         /* 配置项处理循环 */
         do {
             if ((uVar6 & 0xfffffffc) == 0) {
-                cVar2 = param_2[(longlong)iVar1 * -0x4c];
+                cVar2 = param_2[(int64_t)iVar1 * -0x4c];
                 if (cVar2 == '\0') {
 LAB_18069f812:
                     iVar3 = 0;
@@ -453,9 +453,9 @@ LAB_18069f812:
                 }
                 else {
                     if (cVar2 != '\x04') goto LAB_18069f812;
-                    iVar3 = *(int *)((char *)((0x34 - (longlong)param_2) + 
-                                    (longlong)piVar5) +
-                                    (longlong)(param_2 + (longlong)iVar1 * -0x4c));
+                    iVar3 = *(int *)((char *)((0x34 - (int64_t)param_2) + 
+                                    (int64_t)piVar5) +
+                                    (int64_t)(param_2 + (int64_t)iVar1 * -0x4c));
                 }
             }
             else {
@@ -490,7 +490,7 @@ LAB_18069f85f:
             /* 应用配置项 */
             piVar5 = piVar5 + 1;
             iVar3 = FUN_18069f6a0(param_1, &unknown_var_4240_ptr + 
-                                  ((longlong)iVar4 + (longlong)iVar3 * 10) * 9);
+                                  ((int64_t)iVar4 + (int64_t)iVar3 * 10) * 9);
             uVar6 = uVar6 + 1;
             *piVar5 = iVar3;
         } while ((int)uVar6 < 0x10);
@@ -513,13 +513,13 @@ LAB_18069f85f:
  * @param param_2 参数缓冲区
  * @return void
  */
-void RenderingSystem_ParameterProcessor(longlong param_1, char *param_2)
+void RenderingSystem_ParameterProcessor(int64_t param_1, char *param_2)
 {
     int8_t uVar1;
     int32_t uVar2;
     int32_t *puVar3;
     int iVar4;
-    longlong unaff_RDI;
+    int64_t unaff_RDI;
     
     /* 初始化参数处理 */
     iVar4 = 0;
@@ -550,10 +550,10 @@ void RenderingSystem_ParameterProcessor(longlong param_1, char *param_2)
  * @param param_1 系统句柄
  * @return void
  */
-void RenderingSystem_StateSynchronizer(longlong param_1)
+void RenderingSystem_StateSynchronizer(int64_t param_1)
 {
     int8_t uVar1;
-    longlong unaff_RDI;
+    int64_t unaff_RDI;
     
     /* 执行状态同步 */
     uVar1 = FUN_1806a02d0();
@@ -572,12 +572,12 @@ void RenderingSystem_StateSynchronizer(longlong param_1)
  * @param param_2 数据流配置
  * @return int 处理结果
  */
-int RenderingSystem_DataFlowProcessor(longlong param_1, longlong param_2)
+int RenderingSystem_DataFlowProcessor(int64_t param_1, int64_t param_2)
 {
     byte bVar1;
     char cVar2;
-    ulonglong uVar3;
-    ulonglong uVar4;
+    uint64_t uVar3;
+    uint64_t uVar4;
     uint uVar5;
     bool bVar6;
     
@@ -587,7 +587,7 @@ int RenderingSystem_DataFlowProcessor(longlong param_1, longlong param_2)
     /* 数据流处理主循环 */
     do {
         /* 计算数据流参数 */
-        uVar5 = ((uint)*(byte *)(((longlong)cVar2 >> 1) + param_2) * 
+        uVar5 = ((uint)*(byte *)(((int64_t)cVar2 >> 1) + param_2) * 
                 (*(int *)(param_1 + 0x1c) + -1)) >> 8) + 1;
         
         /* 检查数据流状态 */
@@ -596,8 +596,8 @@ int RenderingSystem_DataFlowProcessor(longlong param_1, longlong param_2)
         }
         
         /* 执行数据流操作 */
-        uVar4 = *(ulonglong *)(param_1 + 0x10);
-        uVar3 = (ulonglong)uVar5 << 0x38;
+        uVar4 = *(uint64_t *)(param_1 + 0x10);
+        uVar3 = (uint64_t)uVar5 << 0x38;
         bVar6 = uVar3 <= uVar4;
         
         if (bVar6) {
@@ -608,9 +608,9 @@ int RenderingSystem_DataFlowProcessor(longlong param_1, longlong param_2)
         /* 更新数据流状态 */
         bVar1 = (&unknown_var_8608_ptr)[uVar5];
         *(int *)(param_1 + 0x18) = *(int *)(param_1 + 0x18) - (uint)bVar1;
-        *(ulonglong *)(param_1 + 0x10) = uVar4 << (bVar1 & 0x3f);
+        *(uint64_t *)(param_1 + 0x10) = uVar4 << (bVar1 & 0x3f);
         *(uint *)(param_1 + 0x1c) = uVar5 << (bVar1 & 0x1f);
-        cVar2 = (&unknown_var_3816_ptr)[(longlong)(int)(uint)bVar6 + (longlong)cVar2];
+        cVar2 = (&unknown_var_3816_ptr)[(int64_t)(int)(uint)bVar6 + (int64_t)cVar2];
     } while ('\0' < cVar2);
     
     return -(int)cVar2;
@@ -628,20 +628,20 @@ int RenderingSystem_DataFlowProcessor(longlong param_1, longlong param_2)
  * @param param_3 输出缓冲区
  * @return void
  */
-void RenderingSystem_AdvancedPipelineManager(longlong param_1, longlong param_2, char *param_3)
+void RenderingSystem_AdvancedPipelineManager(int64_t param_1, int64_t param_2, char *param_3)
 {
-    longlong lVar1;
+    int64_t lVar1;
     uint uVar2;
     char *pcVar3;
     char *pcVar4;
-    longlong lVar5;
+    int64_t lVar5;
     char cVar6;
     short sVar7;
     int iVar8;
     int iVar9;
     int iVar10;
     int32_t uVar11;
-    longlong lVar12;
+    int64_t lVar12;
     int iVar13;
     int32_t *puVar14;
     uint uVar15;
@@ -650,7 +650,7 @@ void RenderingSystem_AdvancedPipelineManager(longlong param_1, longlong param_2,
     int8_t auStack_f8 [32];
     char *pcStack_d8;
     int32_t uStack_d0;
-    longlong lStack_c8;
+    int64_t lStack_c8;
     int iStack_c0;
     int32_t uStack_b8;
     int iStack_b0;
@@ -660,16 +660,16 @@ void RenderingSystem_AdvancedPipelineManager(longlong param_1, longlong param_2,
     int iStack_88;
     char *pcStack_80;
     char *pcStack_78;
-    longlong lStack_70;
+    int64_t lStack_70;
     int32_t uStack_68;
     uint64_t uStack_64;
     uint64_t uStack_58;
     int iStack_50;
     int iStack_4c;
-    ulonglong uStack_48;
+    uint64_t uStack_48;
     
     /* 初始化渲染管线 */
-    uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_f8;
+    uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_f8;
     lVar1 = param_1 + 0x42c0;
     lStack_70 = param_2;
     
@@ -711,7 +711,7 @@ void RenderingSystem_AdvancedPipelineManager(longlong param_1, longlong param_2,
     iVar8 = *(int *)(param_1 + 0xf08);
     piVar17 = (int *)&uStack_58;
     param_3[10] = '\0';
-    pcStack_78 = (char *)(param_2 + (longlong)iVar8 * -0x4c);
+    pcStack_78 = (char *)(param_2 + (int64_t)iVar8 * -0x4c);
     iVar8 = FUN_18069bbd0(lVar1, *(int8_t *)(param_1 + 0x4415));
     
     if (iVar8 != 0) {
@@ -736,21 +736,21 @@ void RenderingSystem_AdvancedPipelineManager(longlong param_1, longlong param_2,
         if (uVar2 != 0) {
             puStack_90 = (uint *)&uStack_64;
             uVar15 = uVar2;
-            if (*(int *)(param_1 + 0x2c04 + (ulonglong)(byte)pcStack_78[2] * 4) !=
-                *(int *)(param_1 + 0x2c04 + (ulonglong)(byte)param_3[2] * 4)) {
+            if (*(int *)(param_1 + 0x2c04 + (uint64_t)(byte)pcStack_78[2] * 4) !=
+                *(int *)(param_1 + 0x2c04 + (uint64_t)(byte)param_3[2] * 4)) {
                 uStack_64._0_2_ = (short)uVar2;
                 uStack_64._0_4_ = CONCAT22(-(short)(uVar2 >> 0x10), -(short)uStack_64);
                 uVar15 = (uint)uStack_64;
             }
-            uStack_64 = (ulonglong)uVar15;
-            piVar17 = (int *)((longlong)&uStack_58 + 4);
+            uStack_64 = (uint64_t)uVar15;
+            piVar17 = (int *)((int64_t)&uStack_58 + 4);
         }
         *piVar17 = *piVar17 + 2;
         iVar8 = (int)uStack_58;
     }
     
     /* 管线状态更新 */
-    uStack_98 = (ulonglong)uStack_98._4_4_ << 0x20;
+    uStack_98 = (uint64_t)uStack_98._4_4_ << 0x20;
     if (pcStack_80[2] != 0) {
         uVar2 = *(uint *)(pcStack_80 + 4);
         if (uVar2 == 0) {
@@ -759,8 +759,8 @@ void RenderingSystem_AdvancedPipelineManager(longlong param_1, longlong param_2,
         }
         else {
             uStack_98._0_4_ = uVar2;
-            if (*(int *)(param_1 + 0x2c04 + (ulonglong)(byte)pcStack_80[2] * 4) !=
-                *(int *)(param_1 + 0x2c04 + (ulonglong)(byte)param_3[2] * 4)) {
+            if (*(int *)(param_1 + 0x2c04 + (uint64_t)(byte)pcStack_80[2] * 4) !=
+                *(int *)(param_1 + 0x2c04 + (uint64_t)(byte)param_3[2] * 4)) {
                 uStack_98._0_2_ = (short)uVar2;
                 uStack_98._2_2_ = (short)(uVar2 >> 0x10);
                 uStack_98._0_4_ = CONCAT22(-uStack_98._2_2_, -(short)uStack_98);
@@ -789,8 +789,8 @@ LAB_18069fbb4:
             goto LAB_18069fbb4;
         }
         uStack_98._0_4_ = uVar16;
-        if (*(int *)(param_1 + 0x2c04 + (ulonglong)(byte)pcStack_78[-0x4a] * 4) !=
-            *(int *)(param_1 + 0x2c04 + (ulonglong)(byte)param_3[2] * 4)) {
+        if (*(int *)(param_1 + 0x2c04 + (uint64_t)(byte)pcStack_78[-0x4a] * 4) !=
+            *(int *)(param_1 + 0x2c04 + (uint64_t)(byte)param_3[2] * 4)) {
             uStack_98._0_2_ = (short)uVar16;
             uStack_98._2_2_ = (short)(uVar16 >> 0x10);
             uStack_98._0_4_ = CONCAT22(-uStack_98._2_2_, -(short)uStack_98);
@@ -807,7 +807,7 @@ LAB_18069fbb4:
     }
     
     /* 管线执行 */
-    iVar9 = FUN_18069bbd0(lVar1, *(int32_t *)(&unknown_var_1232_ptr + (longlong)iVar8 * 0x10));
+    iVar9 = FUN_18069bbd0(lVar1, *(int32_t *)(&unknown_var_1232_ptr + (int64_t)iVar8 * 0x10));
     if (iVar9 == 0) {
         *param_3 = '\a';
         param_3[4] = '\0';
@@ -828,14 +828,14 @@ LAB_18069fbb4:
         iVar13 = iVar10;
     }
     uStack_98 = CONCAT44(uStack_98._4_4_, iVar13);
-    iVar10 = FUN_18069bbd0(lVar1, *(int32_t *)(&unknown_var_1236_ptr + (longlong)iVar13 * 0x10));
+    iVar10 = FUN_18069bbd0(lVar1, *(int32_t *)(&unknown_var_1236_ptr + (int64_t)iVar13 * 0x10));
     
     if (iVar10 == 0) {
         *param_3 = '\x05';
         *(uint *)(param_3 + 4) = uVar16;
     }
     else {
-        iVar10 = FUN_18069bbd0(lVar1, *(int32_t *)(&unknown_var_1240_ptr + (longlong)iVar9 * 0x10));
+        iVar10 = FUN_18069bbd0(lVar1, *(int32_t *)(&unknown_var_1240_ptr + (int64_t)iVar9 * 0x10));
         pcVar4 = pcStack_78;
         pcVar3 = pcStack_80;
         if (iVar10 != 0) {
@@ -846,15 +846,15 @@ LAB_18069fbb4:
             uStack_58 = param_1 + 0x34b5;
             iStack_88 = *(int *)(param_1 + 0xf84) + -0x80;
             puStack_90 = (uint *)CONCAT44(puStack_90._4_4_, iVar10);
-            lVar12 = (longlong)(int)(uint)(iVar8 <= (int)(uint)uStack_98);
+            lVar12 = (int64_t)(int)(uint)(iVar8 <= (int)(uint)uStack_98);
             uStack_98 = lVar12 * 4;
-            iVar8 = (int)*(short *)((longlong)&uStack_68 + uStack_98 + 2);
+            iVar8 = (int)*(short *)((int64_t)&uStack_68 + uStack_98 + 2);
             
             /* 参数边界检查 */
             if (iVar8 < iStack_88) {
                 sVar7 = *(short *)(param_1 + 0xf84) + -0x80;
 LAB_18069fcd2:
-                *(short *)((longlong)&uStack_68 + uStack_98 + 2) = sVar7;
+                *(short *)((int64_t)&uStack_68 + uStack_98 + 2) = sVar7;
             }
             else if (iVar10 < iVar8) {
                 sVar7 = *(short *)(param_1 + 0xf88) + 0x80;
@@ -874,9 +874,9 @@ LAB_18069fcfe:
             /* 渲染数据计算 */
             iVar8 = FUN_18069bbd0(lVar1, *(int32_t *)
                                  (&unknown_var_1244_ptr +
-                                 ((ulonglong)(pcStack_78[-0x4c] == '\t') +
-                                 ((ulonglong)(*pcStack_80 == '\t') +
-                                 (ulonglong)(*pcStack_78 == '\t')) * 2) * 0x10));
+                                 ((uint64_t)(pcStack_78[-0x4c] == '\t') +
+                                 ((uint64_t)(*pcStack_80 == '\t') +
+                                 (uint64_t)(*pcStack_78 == '\t')) * 2) * 0x10));
             lVar5 = uStack_58;
             lVar12 = lStack_70;
             
@@ -887,9 +887,9 @@ LAB_18069fcfe:
                 sVar7 = FUN_18069ff30(lVar1, lVar5 + 0x13);
                 *(short *)(param_3 + 6) = sVar7 * 2;
                 *(short *)(param_3 + 4) =
-                     *(short *)(param_3 + 4) + *(short *)((longlong)&uStack_68 + uStack_98);
+                     *(short *)(param_3 + 4) + *(short *)((int64_t)&uStack_68 + uStack_98);
                 *(short *)(param_3 + 6) =
-                     *(short *)(param_3 + 6) + *(short *)((longlong)&uStack_68 + uStack_98 + 2);
+                     *(short *)(param_3 + 6) + *(short *)((int64_t)&uStack_68 + uStack_98 + 2);
                 *param_3 = '\b';
                 param_3[10] = ((*(short *)(param_3 + 6) < iStack_88 ||
                                (int)puStack_90 < *(short *)(param_3 + 6)) ||
@@ -897,7 +897,7 @@ LAB_18069fcfe:
             }
             else {
                 /* 高级渲染处理 */
-                uStack_d0 = *(int32_t *)((longlong)&uStack_68 + uStack_98);
+                uStack_d0 = *(int32_t *)((int64_t)&uStack_68 + uStack_98);
                 uStack_b8 = (int)puStack_90;
                 iStack_c0 = iStack_88;
                 lStack_c8 = uStack_58;
@@ -934,7 +934,7 @@ LAB_18069fe59:
     
 LAB_18069fefd:
     /* 完成管线管理 */
-    FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_f8);
+    FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_f8);
 }
 
 /**
@@ -948,14 +948,14 @@ LAB_18069fefd:
  * @param param_2 纹理数据指针
  * @return uint 采样结果
  */
-uint RenderingSystem_AdvancedTextureSampler(longlong param_1, int8_t *param_2)
+uint RenderingSystem_AdvancedTextureSampler(int64_t param_1, int8_t *param_2)
 {
     byte bVar1;
     char cVar2;
     int iVar3;
     byte bVar4;
-    ulonglong uVar5;
-    ulonglong uVar6;
+    uint64_t uVar5;
+    uint64_t uVar6;
     uint uVar7;
     uint uVar8;
     byte *pbVar9;
@@ -969,7 +969,7 @@ uint RenderingSystem_AdvancedTextureSampler(longlong param_1, int8_t *param_2)
         /* 基础纹理采样 */
         cVar2 = '\0';
         do {
-            uVar7 = ((uint)(byte)param_2[((longlong)cVar2 >> 1) + 2] * 
+            uVar7 = ((uint)(byte)param_2[((int64_t)cVar2 >> 1) + 2] * 
                     (*(int *)(param_1 + 0x1c) + -1)) >> 8) + 1;
             
             /* 检查纹理状态 */
@@ -978,8 +978,8 @@ uint RenderingSystem_AdvancedTextureSampler(longlong param_1, int8_t *param_2)
             }
             
             /* 执行纹理采样 */
-            uVar6 = *(ulonglong *)(param_1 + 0x10);
-            uVar5 = (ulonglong)uVar7 << 0x38;
+            uVar6 = *(uint64_t *)(param_1 + 0x10);
+            uVar5 = (uint64_t)uVar7 << 0x38;
             bVar10 = uVar5 <= uVar6;
             
             if (bVar10) {
@@ -990,9 +990,9 @@ uint RenderingSystem_AdvancedTextureSampler(longlong param_1, int8_t *param_2)
             /* 更新采样状态 */
             bVar1 = (&unknown_var_8608_ptr)[uVar7];
             *(int *)(param_1 + 0x18) = *(int *)(param_1 + 0x18) - (uint)bVar1;
-            *(ulonglong *)(param_1 + 0x10) = uVar6 << (bVar1 & 0x3f);
+            *(uint64_t *)(param_1 + 0x10) = uVar6 << (bVar1 & 0x3f);
             *(uint *)(param_1 + 0x1c) = uVar7 << (bVar1 & 0x1f);
-            cVar2 = (&unknown_var_4152_ptr)[(longlong)(int)(uint)bVar10 + (longlong)cVar2];
+            cVar2 = (&unknown_var_4152_ptr)[(int64_t)(int)(uint)bVar10 + (int64_t)cVar2];
         } while ('\0' < cVar2);
         uVar7 = -(int)cVar2;
     }
@@ -1009,8 +1009,8 @@ uint RenderingSystem_AdvancedTextureSampler(longlong param_1, int8_t *param_2)
                 FUN_18069ec80(param_1);
             }
             
-            uVar6 = *(ulonglong *)(param_1 + 0x10);
-            uVar5 = (ulonglong)uVar8 << 0x38;
+            uVar6 = *(uint64_t *)(param_1 + 0x10);
+            uVar5 = (uint64_t)uVar8 << 0x38;
             bVar10 = uVar5 <= uVar6;
             
             if (bVar10) {
@@ -1024,7 +1024,7 @@ uint RenderingSystem_AdvancedTextureSampler(longlong param_1, int8_t *param_2)
             bVar4 = (byte)iVar3;
             iVar3 = iVar3 + 1;
             uVar7 = uVar7 + ((uint)bVar10 << (bVar4 & 0x1f));
-            *(ulonglong *)(param_1 + 0x10) = uVar6 << (bVar1 & 0x3f);
+            *(uint64_t *)(param_1 + 0x10) = uVar6 << (bVar1 & 0x3f);
             *(uint *)(param_1 + 0x1c) = uVar8 << (bVar1 & 0x1f);
         } while (iVar3 < 3);
         
@@ -1038,8 +1038,8 @@ uint RenderingSystem_AdvancedTextureSampler(longlong param_1, int8_t *param_2)
                 FUN_18069ec80(param_1);
             }
             
-            uVar6 = *(ulonglong *)(param_1 + 0x10);
-            uVar5 = (ulonglong)uVar8 << 0x38;
+            uVar6 = *(uint64_t *)(param_1 + 0x10);
+            uVar5 = (uint64_t)uVar8 << 0x38;
             bVar10 = uVar5 <= uVar6;
             
             if (bVar10) {
@@ -1053,7 +1053,7 @@ uint RenderingSystem_AdvancedTextureSampler(longlong param_1, int8_t *param_2)
             bVar4 = (byte)iVar3;
             iVar3 = iVar3 + -1;
             uVar7 = uVar7 + ((uint)bVar10 << (bVar4 & 0x1f));
-            *(ulonglong *)(param_1 + 0x10) = uVar6 << (bVar1 & 0x3f);
+            *(uint64_t *)(param_1 + 0x10) = uVar6 << (bVar1 & 0x3f);
             *(uint *)(param_1 + 0x1c) = uVar8 << (bVar1 & 0x1f);
         } while (3 < iVar3);
         
@@ -1087,14 +1087,14 @@ LAB_1806a011c:
  * @param param_2 纹理数据指针
  * @return uint 映射结果
  */
-uint RenderingSystem_AdvancedTextureMapper(longlong param_1, int8_t *param_2)
+uint RenderingSystem_AdvancedTextureMapper(int64_t param_1, int8_t *param_2)
 {
     byte bVar1;
     char cVar2;
     int iVar3;
     byte bVar4;
-    ulonglong uVar5;
-    ulonglong uVar6;
+    uint64_t uVar5;
+    uint64_t uVar6;
     uint uVar7;
     uint uVar8;
     byte *pbVar9;
@@ -1108,7 +1108,7 @@ uint RenderingSystem_AdvancedTextureMapper(longlong param_1, int8_t *param_2)
         /* 基础纹理映射 */
         cVar2 = '\0';
         do {
-            uVar7 = ((uint)(byte)param_2[((longlong)cVar2 >> 1) + 2] * 
+            uVar7 = ((uint)(byte)param_2[((int64_t)cVar2 >> 1) + 2] * 
                     (*(int *)(param_1 + 0x1c) + -1)) >> 8) + 1;
             
             /* 检查映射状态 */
@@ -1117,8 +1117,8 @@ uint RenderingSystem_AdvancedTextureMapper(longlong param_1, int8_t *param_2)
             }
             
             /* 执行纹理映射 */
-            uVar6 = *(ulonglong *)(param_1 + 0x10);
-            uVar5 = (ulonglong)uVar7 << 0x38;
+            uVar6 = *(uint64_t *)(param_1 + 0x10);
+            uVar5 = (uint64_t)uVar7 << 0x38;
             bVar10 = uVar5 <= uVar6;
             
             if (bVar10) {
@@ -1129,9 +1129,9 @@ uint RenderingSystem_AdvancedTextureMapper(longlong param_1, int8_t *param_2)
             /* 更新映射状态 */
             bVar1 = (&unknown_var_8608_ptr)[uVar7];
             *(int *)(param_1 + 0x18) = *(int *)(param_1 + 0x18) - (uint)bVar1;
-            *(ulonglong *)(param_1 + 0x10) = uVar6 << (bVar1 & 0x3f);
+            *(uint64_t *)(param_1 + 0x10) = uVar6 << (bVar1 & 0x3f);
             *(uint *)(param_1 + 0x1c) = uVar7 << (bVar1 & 0x1f);
-            cVar2 = (&unknown_var_4152_ptr)[(longlong)(int)(uint)bVar10 + (longlong)cVar2];
+            cVar2 = (&unknown_var_4152_ptr)[(int64_t)(int)(uint)bVar10 + (int64_t)cVar2];
         } while ('\0' < cVar2);
         uVar7 = -(int)cVar2;
     }
@@ -1148,8 +1148,8 @@ uint RenderingSystem_AdvancedTextureMapper(longlong param_1, int8_t *param_2)
                 FUN_18069ec80(param_1);
             }
             
-            uVar6 = *(ulonglong *)(param_1 + 0x10);
-            uVar5 = (ulonglong)uVar8 << 0x38;
+            uVar6 = *(uint64_t *)(param_1 + 0x10);
+            uVar5 = (uint64_t)uVar8 << 0x38;
             bVar10 = uVar5 <= uVar6;
             
             if (bVar10) {
@@ -1163,7 +1163,7 @@ uint RenderingSystem_AdvancedTextureMapper(longlong param_1, int8_t *param_2)
             bVar4 = (byte)iVar3;
             iVar3 = iVar3 + 1;
             uVar7 = uVar7 + ((uint)bVar10 << (bVar4 & 0x1f));
-            *(ulonglong *)(param_1 + 0x10) = uVar6 << (bVar1 & 0x3f);
+            *(uint64_t *)(param_1 + 0x10) = uVar6 << (bVar1 & 0x3f);
             *(uint *)(param_1 + 0x1c) = uVar8 << (bVar1 & 0x1f);
         } while (iVar3 < 3);
         
@@ -1177,8 +1177,8 @@ uint RenderingSystem_AdvancedTextureMapper(longlong param_1, int8_t *param_2)
                 FUN_18069ec80(param_1);
             }
             
-            uVar6 = *(ulonglong *)(param_1 + 0x10);
-            uVar5 = (ulonglong)uVar8 << 0x38;
+            uVar6 = *(uint64_t *)(param_1 + 0x10);
+            uVar5 = (uint64_t)uVar8 << 0x38;
             bVar10 = uVar5 <= uVar6;
             
             if (bVar10) {
@@ -1192,7 +1192,7 @@ uint RenderingSystem_AdvancedTextureMapper(longlong param_1, int8_t *param_2)
             bVar4 = (byte)iVar3;
             iVar3 = iVar3 + -1;
             uVar7 = uVar7 + ((uint)bVar10 << (bVar4 & 0x1f));
-            *(ulonglong *)(param_1 + 0x10) = uVar6 << (bVar1 & 0x3f);
+            *(uint64_t *)(param_1 + 0x10) = uVar6 << (bVar1 & 0x3f);
             *(uint *)(param_1 + 0x1c) = uVar8 << (bVar1 & 0x1f);
         } while (3 < iVar3);
         
@@ -1228,13 +1228,13 @@ uint RenderingSystem_VectorOperationExecutor(void)
 {
     byte bVar1;
     byte bVar2;
-    ulonglong uVar3;
-    ulonglong uVar4;
-    longlong unaff_RBX;
+    uint64_t uVar3;
+    uint64_t uVar4;
+    int64_t unaff_RBX;
     uint unaff_ESI;
     uint uVar5;
-    longlong unaff_R12;
-    longlong unaff_R13;
+    int64_t unaff_R12;
+    int64_t unaff_R13;
     byte *pbVar6;
     int iVar7;
     bool bVar8;
@@ -1251,8 +1251,8 @@ uint RenderingSystem_VectorOperationExecutor(void)
             FUN_18069ec80();
         }
         
-        uVar4 = *(ulonglong *)(unaff_RBX + 0x10);
-        uVar3 = (ulonglong)uVar5 << 0x38;
+        uVar4 = *(uint64_t *)(unaff_RBX + 0x10);
+        uVar3 = (uint64_t)uVar5 << 0x38;
         bVar8 = uVar3 <= uVar4;
         
         if (bVar8) {
@@ -1261,12 +1261,12 @@ uint RenderingSystem_VectorOperationExecutor(void)
         }
         
         pbVar6 = pbVar6 + 1;
-        bVar1 = *(byte *)((ulonglong)uVar5 + 0x9495c0 + unaff_R12);
+        bVar1 = *(byte *)((uint64_t)uVar5 + 0x9495c0 + unaff_R12);
         *(int *)(unaff_RBX + 0x18) = *(int *)(unaff_RBX + 0x18) - (uint)bVar1;
         bVar2 = (byte)iVar7;
         iVar7 = iVar7 + 1;
         unaff_ESI = unaff_ESI + ((uint)bVar8 << (bVar2 & 0x1f));
-        *(ulonglong *)(unaff_RBX + 0x10) = uVar4 << (bVar1 & 0x3f);
+        *(uint64_t *)(unaff_RBX + 0x10) = uVar4 << (bVar1 & 0x3f);
         *(uint *)(unaff_RBX + 0x1c) = uVar5 << (bVar1 & 0x1f);
     } while (iVar7 < 3);
     
@@ -1280,8 +1280,8 @@ uint RenderingSystem_VectorOperationExecutor(void)
             FUN_18069ec80();
         }
         
-        uVar4 = *(ulonglong *)(unaff_RBX + 0x10);
-        uVar3 = (ulonglong)uVar5 << 0x38;
+        uVar4 = *(uint64_t *)(unaff_RBX + 0x10);
+        uVar3 = (uint64_t)uVar5 << 0x38;
         bVar8 = uVar3 <= uVar4;
         
         if (bVar8) {
@@ -1290,12 +1290,12 @@ uint RenderingSystem_VectorOperationExecutor(void)
         }
         
         pbVar6 = pbVar6 + -1;
-        bVar1 = *(byte *)((ulonglong)uVar5 + 0x9495c0 + unaff_R12);
+        bVar1 = *(byte *)((uint64_t)uVar5 + 0x9495c0 + unaff_R12);
         *(int *)(unaff_RBX + 0x18) = *(int *)(unaff_RBX + 0x18) - (uint)bVar1;
         bVar2 = (byte)iVar7;
         iVar7 = iVar7 + -1;
         unaff_ESI = unaff_ESI + ((uint)bVar8 << (bVar2 & 0x1f));
-        *(ulonglong *)(unaff_RBX + 0x10) = uVar4 << (bVar1 & 0x3f);
+        *(uint64_t *)(unaff_RBX + 0x10) = uVar4 << (bVar1 & 0x3f);
         *(uint *)(unaff_RBX + 0x1c) = uVar5 << (bVar1 & 0x1f);
     } while (3 < iVar7);
     

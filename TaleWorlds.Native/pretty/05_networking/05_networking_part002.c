@@ -75,13 +75,13 @@ void process_network_packet(uint64_t packet_ptr)
   int processing_result;
   int8_t security_buffer [32];
   int8_t *error_data_ptr;
-  longlong connection_context [2];
+  int64_t connection_context [2];
   uint64_t *packet_header [2];
   int8_t packet_buffer [256];
-  ulonglong security_cookie;
+  uint64_t security_cookie;
   
   // 栈保护cookie
-  security_cookie = NETWORK_SECURITY_KEY ^ (ulonglong)security_buffer;
+  security_cookie = NETWORK_SECURITY_KEY ^ (uint64_t)security_buffer;
   
   // 获取连接信息
   processing_result = get_connection_info(packet_ptr, connection_context);
@@ -97,7 +97,7 @@ LAB_packet_processing_error:
     processing_result = validate_packet_data(*(uint64_t *)(connection_context[0] + 0x98), 1);
     if (processing_result == 0) {
       // 检查是否有活动连接
-      if (*(int *)(*(longlong *)(connection_context[0] + 0x98) + 0x200) != 0) {
+      if (*(int *)(*(int64_t *)(connection_context[0] + 0x98) + 0x200) != 0) {
         connection_context[1] = 0;
         processing_result = process_connection_data(connection_context + 1);
         if ((processing_result == 0) &&
@@ -127,14 +127,14 @@ LAB_packet_processing_error:
   
 LAB_packet_processing_success:
                     // WARNING: Subroutine does not return
-  validate_security_cookie(security_cookie ^ (ulonglong)security_buffer);
+  validate_security_cookie(security_cookie ^ (uint64_t)security_buffer);
 }
 
-// 函数: int calculate_network_checksum(longlong data_ptr, longlong offset, int length)
+// 函数: int calculate_network_checksum(int64_t data_ptr, int64_t offset, int length)
 // 计算网络数据包的校验和
 // 参数: data_ptr - 数据指针, offset - 数据偏移量, length - 数据长度
 // 功能: 计算网络数据包的校验和，确保数据传输的完整性
-int calculate_network_checksum(longlong data_ptr, longlong offset, int length)
+int calculate_network_checksum(int64_t data_ptr, int64_t offset, int length)
 
 {
   int32_t packet_header_value;
@@ -152,22 +152,22 @@ int calculate_network_checksum(longlong data_ptr, longlong offset, int length)
   // 处理剩余数据并应用校验和
   bytes_processed = apply_checksum(checksum_total + offset, length - checksum_total, packet_header_value);
   return bytes_processed + checksum_total;
-// 函数: void send_network_packet(longlong connection_ptr, uint64_t packet_data, int32_t packet_size)
+// 函数: void send_network_packet(int64_t connection_ptr, uint64_t packet_data, int32_t packet_size)
 // 发送网络数据包
 // 参数: connection_ptr - 连接指针, packet_data - 数据包数据, packet_size - 数据包大小
 // 功能: 通过指定的连接发送网络数据包
-void send_network_packet(longlong connection_ptr, uint64_t packet_data, int32_t packet_size)
+void send_network_packet(int64_t connection_ptr, uint64_t packet_data, int32_t packet_size)
 
 {
   send_packet_data(packet_data, packet_size, *(int32_t *)(connection_ptr + 0x10), *(int32_t *)(connection_ptr + 0x18),
                    *(int32_t *)(connection_ptr + 0x1c));
   return;
 }
-// 函数: int process_encrypted_data(longlong encryption_info, longlong data_ptr, int data_size)
+// 函数: int process_encrypted_data(int64_t encryption_info, int64_t data_ptr, int data_size)
 // 处理加密数据的传输
 // 参数: encryption_info - 加密信息指针, data_ptr - 数据指针, data_size - 数据大小
 // 功能: 处理网络加密数据，包括加密方法应用、填充处理和密钥管理
-int process_encrypted_data(longlong encryption_info, longlong data_ptr, int data_size)
+int process_encrypted_data(int64_t encryption_info, int64_t data_ptr, int data_size)
 
 {
   int32_t encryption_key;
@@ -212,9 +212,9 @@ int process_encrypted_data(longlong encryption_info, longlong data_ptr, int data
   bytes_remaining = initialize_checksum(bytes_processed + data_ptr, data_size - bytes_processed, encryption_key);
   return bytes_remaining + bytes_processed;
 }
-// 函数: int compress_network_data(longlong compression_info, longlong data_ptr, int data_size)
+// 函数: int compress_network_data(int64_t compression_info, int64_t data_ptr, int data_size)
 // 压缩网络数据
-int compress_network_data(longlong compression_info, longlong data_ptr, int data_size)
+int compress_network_data(int64_t compression_info, int64_t data_ptr, int data_size)
 
 {
   uint64_t compression_algorithm;
@@ -233,9 +233,9 @@ int compress_network_data(longlong compression_info, longlong data_ptr, int data
   processed_bytes = compress_data(compressed_size + data_ptr, data_size - compressed_size, compression_algorithm);
   return processed_bytes + compressed_size;
 }
-// 函数: int validate_packet_signature(longlong signature_info, longlong data_ptr, int data_size)
+// 函数: int validate_packet_signature(int64_t signature_info, int64_t data_ptr, int data_size)
 // 验证数据包签名
-int validate_packet_signature(longlong signature_info, longlong data_ptr, int data_size)
+int validate_packet_signature(int64_t signature_info, int64_t data_ptr, int data_size)
 
 {
   int8_t signature_key;
@@ -254,9 +254,9 @@ int validate_packet_signature(longlong signature_info, longlong data_ptr, int da
   validated_bytes = validate_packet_signature(signature_size + data_ptr, data_size - signature_size, signature_key);
   return validated_bytes + signature_size;
 }
-// 函数: int encode_network_data(longlong encoding_info, longlong data_ptr, int data_size)
+// 函数: int encode_network_data(int64_t encoding_info, int64_t data_ptr, int data_size)
 // 编码网络数据
-int encode_network_data(longlong encoding_info, longlong data_ptr, int data_size)
+int encode_network_data(int64_t encoding_info, int64_t data_ptr, int data_size)
 
 {
   int32_t encoding_type;
@@ -275,9 +275,9 @@ int encode_network_data(longlong encoding_info, longlong data_ptr, int data_size
   processed_bytes = encode_data(encoded_size + data_ptr, data_size - encoded_size, encoding_type);
   return processed_bytes + encoded_size;
 }
-// 函数: int verify_data_integrity(longlong integrity_info, longlong data_ptr, int data_size)
+// 函数: int verify_data_integrity(int64_t integrity_info, int64_t data_ptr, int data_size)
 // 验证数据完整性
-int verify_data_integrity(longlong integrity_info, longlong data_ptr, int data_size)
+int verify_data_integrity(int64_t integrity_info, int64_t data_ptr, int data_size)
 
 {
   int32_t integrity_key;
@@ -296,9 +296,9 @@ int verify_data_integrity(longlong integrity_info, longlong data_ptr, int data_s
   processed_bytes = func_0x00018074b800(verified_size + data_ptr, data_size - verified_size, integrity_key);
   return processed_bytes + verified_size;
 }
-// 函数: int process_secure_connection(longlong security_info, longlong data_ptr, int data_size)
+// 函数: int process_secure_connection(int64_t security_info, int64_t data_ptr, int data_size)
 // 处理安全连接数据
-int process_secure_connection(longlong security_info, longlong data_ptr, int data_size)
+int process_secure_connection(int64_t security_info, int64_t data_ptr, int data_size)
 
 {
   int32_t secondary_key;
@@ -327,9 +327,9 @@ int process_secure_connection(longlong security_info, longlong data_ptr, int dat
   processed_bytes = func_0x00018074b7d0(secure_size + data_ptr, data_size - secure_size, secondary_key);
   return processed_bytes + secure_size;
 }
-// 函数: int handle_network_handshake(longlong handshake_info, longlong data_ptr, int data_size)
+// 函数: int handle_network_handshake(int64_t handshake_info, int64_t data_ptr, int data_size)
 // 处理网络握手协议
-int handle_network_handshake(longlong handshake_info, longlong data_ptr, int data_size)
+int handle_network_handshake(int64_t handshake_info, int64_t data_ptr, int data_size)
 
 {
   int32_t client_key;
@@ -358,9 +358,9 @@ int handle_network_handshake(longlong handshake_info, longlong data_ptr, int dat
   processed_bytes = func_0x00018074b800(handshake_size + data_ptr, data_size - handshake_size, client_key);
   return processed_bytes + handshake_size;
 }
-// 函数: int initialize_network_protocol(longlong protocol_info, longlong data_ptr, int data_size)
+// 函数: int initialize_network_protocol(int64_t protocol_info, int64_t data_ptr, int data_size)
 // 初始化网络协议
-int initialize_network_protocol(longlong protocol_info, longlong data_ptr, int data_size)
+int initialize_network_protocol(int64_t protocol_info, int64_t data_ptr, int data_size)
 
 {
   int protocol_size;
@@ -400,11 +400,11 @@ int initialize_network_protocol(longlong protocol_info, longlong data_ptr, int d
 
 
 
-// 函数: int process_basic_data_validation(longlong config_info, longlong data_ptr, int data_size)
+// 函数: int process_basic_data_validation(int64_t config_info, int64_t data_ptr, int data_size)
 // 基础数据验证处理
 // 参数: config_info - 配置信息指针, data_ptr - 数据指针, data_size - 数据大小
 // 功能: 执行基础数据验证，包括初始化校验和、缓冲区处理和最终验证
-int process_basic_data_validation(longlong config_info, longlong data_ptr, int data_size)
+int process_basic_data_validation(int64_t config_info, int64_t data_ptr, int data_size)
 
 {
   int32_t validation_key;
@@ -426,11 +426,11 @@ int process_basic_data_validation(longlong config_info, longlong data_ptr, int d
 
 
 
-// 函数: int process_encrypted_packet_validation(longlong encryption_config, longlong data_ptr, int data_size)
+// 函数: int process_encrypted_packet_validation(int64_t encryption_config, int64_t data_ptr, int data_size)
 // 加密数据包验证处理
 // 参数: encryption_config - 加密配置信息, data_ptr - 数据指针, data_size - 数据大小
 // 功能: 处理加密数据包的验证，包括初始化、加密处理、编码和签名验证
-int process_encrypted_packet_validation(longlong encryption_config, longlong data_ptr, int data_size)
+int process_encrypted_packet_validation(int64_t encryption_config, int64_t data_ptr, int data_size)
 
 {
   int32_t encoding_method;
@@ -472,11 +472,11 @@ int process_encrypted_packet_validation(longlong encryption_config, longlong dat
 
 
 
-// 函数: int process_secure_data_validation(longlong security_config, longlong data_ptr, int data_size)
+// 函数: int process_secure_data_validation(int64_t security_config, int64_t data_ptr, int data_size)
 // 安全数据验证处理
 // 参数: security_config - 安全配置信息, data_ptr - 数据指针, data_size - 数据大小
 // 功能: 处理安全数据的验证，包括安全参数应用、数据处理和签名验证
-int process_secure_data_validation(longlong security_config, longlong data_ptr, int data_size)
+int process_secure_data_validation(int64_t security_config, int64_t data_ptr, int data_size)
 
 {
   int8_t signature_key;
@@ -516,11 +516,11 @@ int process_secure_data_validation(longlong security_config, longlong data_ptr, 
 
 
 
-// 函数: int process_composite_data_validation(longlong validation_config, longlong data_ptr, int data_size)
+// 函数: int process_composite_data_validation(int64_t validation_config, int64_t data_ptr, int data_size)
 // 复合数据验证处理
 // 参数: validation_config - 验证配置信息, data_ptr - 数据指针, data_size - 数据大小
 // 功能: 处理复合数据的验证，包括初始化、数据处理、编码和签名验证
-int process_composite_data_validation(longlong validation_config, longlong data_ptr, int data_size)
+int process_composite_data_validation(int64_t validation_config, int64_t data_ptr, int data_size)
 
 {
   int32_t encoding_method;
@@ -560,11 +560,11 @@ int process_composite_data_validation(longlong validation_config, longlong data_
 
 
 
-// 函数: int process_extended_data_validation(longlong extended_config, longlong data_ptr, int data_size)
+// 函数: int process_extended_data_validation(int64_t extended_config, int64_t data_ptr, int data_size)
 // 扩展数据验证处理
 // 参数: extended_config - 扩展验证配置信息, data_ptr - 数据指针, data_size - 数据大小
 // 功能: 处理扩展数据的验证，包括初始化、多重数据处理和签名验证
-int process_extended_data_validation(longlong extended_config, longlong data_ptr, int data_size)
+int process_extended_data_validation(int64_t extended_config, int64_t data_ptr, int data_size)
 
 {
   int8_t signature_key;
@@ -602,11 +602,11 @@ int process_extended_data_validation(longlong extended_config, longlong data_ptr
 
 
 
-// 函数: int process_dual_layer_data_validation(longlong dual_config, longlong data_ptr, int data_size)
+// 函数: int process_dual_layer_data_validation(int64_t dual_config, int64_t data_ptr, int data_size)
 // 双层数据验证处理
 // 参数: dual_config - 双层验证配置信息, data_ptr - 数据指针, data_size - 数据大小
 // 功能: 处理双层数据验证，包括初始化、第一层验证、第二层编码
-int process_dual_layer_data_validation(longlong dual_config, longlong data_ptr, int data_size)
+int process_dual_layer_data_validation(int64_t dual_config, int64_t data_ptr, int data_size)
 
 {
   int32_t primary_key;
@@ -638,11 +638,11 @@ int process_dual_layer_data_validation(longlong dual_config, longlong data_ptr, 
 
 
 
-// 函数: int process_multi_param_data_validation(longlong multi_config, longlong data_ptr, int data_size)
+// 函数: int process_multi_param_data_validation(int64_t multi_config, int64_t data_ptr, int data_size)
 // 多参数数据验证处理
 // 参数: multi_config - 多参数配置信息, data_ptr - 数据指针, data_size - 数据大小
 // 功能: 处理多参数数据的验证，包括填充处理和最终验证
-int process_multi_param_data_validation(longlong multi_config, longlong data_ptr, int data_size)
+int process_multi_param_data_validation(int64_t multi_config, int64_t data_ptr, int data_size)
 
 {
   int32_t final_key;
@@ -672,11 +672,11 @@ int process_multi_param_data_validation(longlong multi_config, longlong data_ptr
 
 
 
-// 函数: int process_double_encryption_validation(longlong encryption_config, longlong data_ptr, int data_size)
+// 函数: int process_double_encryption_validation(int64_t encryption_config, int64_t data_ptr, int data_size)
 // 双重加密验证处理
 // 参数: encryption_config - 加密配置信息, data_ptr - 数据指针, data_size - 数据大小
 // 功能: 处理双重加密数据的验证，包括初始化加密和二次加密
-int process_double_encryption_validation(longlong encryption_config, longlong data_ptr, int data_size)
+int process_double_encryption_validation(int64_t encryption_config, int64_t data_ptr, int data_size)
 
 {
   int32_t secondary_key;
@@ -698,11 +698,11 @@ int process_double_encryption_validation(longlong encryption_config, longlong da
 
 
 
-// 函数: int process_encrypted_checksum_validation(longlong checksum_config, longlong data_ptr, int data_size)
+// 函数: int process_encrypted_checksum_validation(int64_t checksum_config, int64_t data_ptr, int data_size)
 // 加密校验和验证处理
 // 参数: checksum_config - 校验和配置信息, data_ptr - 数据指针, data_size - 数据大小
 // 功能: 处理加密校验和的验证，包括加密处理和校验和计算
-int process_encrypted_checksum_validation(longlong checksum_config, longlong data_ptr, int data_size)
+int process_encrypted_checksum_validation(int64_t checksum_config, int64_t data_ptr, int data_size)
 
 {
   int32_t checksum_key;
@@ -724,11 +724,11 @@ int process_encrypted_checksum_validation(longlong checksum_config, longlong dat
 
 
 
-// 函数: int process_protocol_data_validation(longlong protocol_config, longlong data_ptr, int data_size)
+// 函数: int process_protocol_data_validation(int64_t protocol_config, int64_t data_ptr, int data_size)
 // 协议数据验证处理
 // 参数: protocol_config - 协议配置信息, data_ptr - 数据指针, data_size - 数据大小
 // 功能: 处理协议数据的验证，包括协议初始化、参数设置和最终验证
-int process_protocol_data_validation(longlong protocol_config, longlong data_ptr, int data_size)
+int process_protocol_data_validation(int64_t protocol_config, int64_t data_ptr, int data_size)
 
 {
   int32_t primary_param;
@@ -778,11 +778,11 @@ int process_protocol_data_validation(longlong protocol_config, longlong data_ptr
 
 
 
-// 函数: int process_buffered_data_validation(longlong buffer_config, longlong data_ptr, int data_size)
+// 函数: int process_buffered_data_validation(int64_t buffer_config, int64_t data_ptr, int data_size)
 // 缓冲区数据验证处理
 // 参数: buffer_config - 缓冲区配置信息, data_ptr - 数据指针, data_size - 数据大小
 // 功能: 处理缓冲区数据的验证，包括缓冲区处理和双重校验和计算
-int process_buffered_data_validation(longlong buffer_config, longlong data_ptr, int data_size)
+int process_buffered_data_validation(int64_t buffer_config, int64_t data_ptr, int data_size)
 
 {
   int32_t primary_key;
@@ -814,11 +814,11 @@ int process_buffered_data_validation(longlong buffer_config, longlong data_ptr, 
 
 
 
-// 函数: int process_quad_layer_data_validation(longlong quad_config, longlong data_ptr, int data_size)
+// 函数: int process_quad_layer_data_validation(int64_t quad_config, int64_t data_ptr, int data_size)
 // 四层数据验证处理
 // 参数: quad_config - 四层验证配置信息, data_ptr - 数据指针, data_size - 数据大小
 // 功能: 处理四层数据验证，包括压缩、双重加密和双重校验和
-int process_quad_layer_data_validation(longlong quad_config, longlong data_ptr, int data_size)
+int process_quad_layer_data_validation(int64_t quad_config, int64_t data_ptr, int data_size)
 
 {
   int32_t final_key;
@@ -870,11 +870,11 @@ int process_quad_layer_data_validation(longlong quad_config, longlong data_ptr, 
 
 
 
-// 函数: int process_extended_security_validation(longlong security_config, longlong data_ptr, int data_size)
+// 函数: int process_extended_security_validation(int64_t security_config, int64_t data_ptr, int data_size)
 // 扩展安全验证处理
 // 参数: security_config - 安全配置信息, data_ptr - 数据指针, data_size - 数据大小
 // 功能: 处理扩展安全验证，包括多重加密、协议处理和签名验证
-int process_extended_security_validation(longlong security_config, longlong data_ptr, int data_size)
+int process_extended_security_validation(int64_t security_config, int64_t data_ptr, int data_size)
 
 {
   int8_t signature_flag;
@@ -932,11 +932,11 @@ int process_extended_security_validation(longlong security_config, longlong data
 
 
 
-// 函数: int process_simple_encryption_validation(longlong encryption_config, longlong data_ptr, int data_size)
+// 函数: int process_simple_encryption_validation(int64_t encryption_config, int64_t data_ptr, int data_size)
 // 简单加密验证处理
 // 参数: encryption_config - 加密配置信息, data_ptr - 数据指针, data_size - 数据大小
 // 功能: 处理简单加密验证，包括加密处理和编码验证
-int process_simple_encryption_validation(longlong encryption_config, longlong data_ptr, int data_size)
+int process_simple_encryption_validation(int64_t encryption_config, int64_t data_ptr, int data_size)
 
 {
   int32_t encryption_key;
@@ -958,11 +958,11 @@ int process_simple_encryption_validation(longlong encryption_config, longlong da
 
 
 
-// 函数: int process_secure_connection_validation(longlong connection_config, longlong data_ptr, int data_size)
+// 函数: int process_secure_connection_validation(int64_t connection_config, int64_t data_ptr, int data_size)
 // 安全连接验证处理
 // 参数: connection_config - 连接配置信息, data_ptr - 数据指针, data_size - 数据大小
 // 功能: 处理安全连接验证，包括连接参数应用、编码处理和签名验证
-int process_secure_connection_validation(longlong connection_config, longlong data_ptr, int data_size)
+int process_secure_connection_validation(int64_t connection_config, int64_t data_ptr, int data_size)
 
 {
   int32_t encoding_key;
@@ -996,11 +996,11 @@ int process_secure_connection_validation(longlong connection_config, longlong da
 
 
 
-// 函数: int process_extended_connection_validation(longlong connection_config, longlong data_ptr, int data_size)
+// 函数: int process_extended_connection_validation(int64_t connection_config, int64_t data_ptr, int data_size)
 // 扩展连接验证处理
 // 参数: connection_config - 连接配置信息, data_ptr - 数据指针, data_size - 数据大小
 // 功能: 处理扩展连接验证，包括连接参数应用、密钥处理和签名验证
-int process_extended_connection_validation(longlong connection_config, longlong data_ptr, int data_size)
+int process_extended_connection_validation(int64_t connection_config, int64_t data_ptr, int data_size)
 
 {
   int8_t signature_flag;
@@ -1032,11 +1032,11 @@ int process_extended_connection_validation(longlong connection_config, longlong 
 
 
 
-// 函数: int process_data_stream_validation(longlong stream_config, longlong data_ptr, int data_size)
+// 函数: int process_data_stream_validation(int64_t stream_config, int64_t data_ptr, int data_size)
 // 数据流验证处理
 // 参数: stream_config - 流配置信息, data_ptr - 数据指针, data_size - 数据大小
 // 功能: 处理数据流验证，包括流数据处理、编码和签名验证
-int process_data_stream_validation(longlong stream_config, longlong data_ptr, int data_size)
+int process_data_stream_validation(int64_t stream_config, int64_t data_ptr, int data_size)
 
 {
   int32_t stream_key;
@@ -1068,11 +1068,11 @@ int process_data_stream_validation(longlong stream_config, longlong data_ptr, in
 
 
 
-// 函数: int process_extended_stream_validation(longlong stream_config, longlong data_ptr, int data_size)
+// 函数: int process_extended_stream_validation(int64_t stream_config, int64_t data_ptr, int data_size)
 // 扩展流验证处理
 // 参数: stream_config - 流配置信息, data_ptr - 数据指针, data_size - 数据大小
 // 功能: 处理扩展流验证，包括多重流处理和签名验证
-int process_extended_stream_validation(longlong stream_config, longlong data_ptr, int data_size)
+int process_extended_stream_validation(int64_t stream_config, int64_t data_ptr, int data_size)
 
 {
   int8_t signature_flag;
@@ -1104,11 +1104,11 @@ int process_extended_stream_validation(longlong stream_config, longlong data_ptr
 
 
 
-// 函数: void send_basic_network_packet(longlong connection_info, uint64_t packet_data, int32_t packet_size)
+// 函数: void send_basic_network_packet(int64_t connection_info, uint64_t packet_data, int32_t packet_size)
 // 发送基础网络数据包
 // 参数: connection_info - 连接信息, packet_data - 数据包数据, packet_size - 数据包大小
 // 功能: 发送基础网络数据包，使用连接信息和数据包参数
-void send_basic_network_packet(longlong connection_info, uint64_t packet_data, int32_t packet_size)
+void send_basic_network_packet(int64_t connection_info, uint64_t packet_data, int32_t packet_size)
 
 {
   send_basic_packet(packet_data, packet_size, &BASIC_PACKET_CONFIG, *(int32_t *)(connection_info + 0x10),
@@ -1120,11 +1120,11 @@ void send_basic_network_packet(longlong connection_info, uint64_t packet_data, i
 
 
 
-// 函数: void send_extended_network_packet(longlong connection_info, uint64_t packet_data, int32_t packet_size)
+// 函数: void send_extended_network_packet(int64_t connection_info, uint64_t packet_data, int32_t packet_size)
 // 发送扩展网络数据包
 // 参数: connection_info - 连接信息, packet_data - 数据包数据, packet_size - 数据包大小
 // 功能: 发送扩展网络数据包，使用三重连接参数
-void send_extended_network_packet(longlong connection_info, uint64_t packet_data, int32_t packet_size)
+void send_extended_network_packet(int64_t connection_info, uint64_t packet_data, int32_t packet_size)
 
 {
   send_extended_packet(packet_data, packet_size, &EXTENDED_PACKET_CONFIG, *(int32_t *)(connection_info + 0x10),
@@ -1134,11 +1134,11 @@ void send_extended_network_packet(longlong connection_info, uint64_t packet_data
 
 
 
-// 函数: int process_comprehensive_data_validation(longlong comprehensive_config, longlong data_ptr, int data_size)
+// 函数: int process_comprehensive_data_validation(int64_t comprehensive_config, int64_t data_ptr, int data_size)
 // 综合数据验证处理
 // 参数: comprehensive_config - 综合配置信息, data_ptr - 数据指针, data_size - 数据大小
 // 功能: 处理综合数据验证，包括多重参数处理、加密、填充和校验和
-int process_comprehensive_data_validation(longlong comprehensive_config, longlong data_ptr, int data_size)
+int process_comprehensive_data_validation(int64_t comprehensive_config, int64_t data_ptr, int data_size)
 
 {
   int32_t final_key;
@@ -1199,11 +1199,11 @@ int process_comprehensive_data_validation(longlong comprehensive_config, longlon
 
 
 
-// 函数: void send_alternate_network_packet(longlong connection_info, uint64_t packet_data, int32_t packet_size)
+// 函数: void send_alternate_network_packet(int64_t connection_info, uint64_t packet_data, int32_t packet_size)
 // 发送备用网络数据包
 // 参数: connection_info - 连接信息, packet_data - 数据包数据, packet_size - 数据包大小
 // 功能: 发送备用网络数据包，使用备用连接参数
-void send_alternate_network_packet(longlong connection_info, uint64_t packet_data, int32_t packet_size)
+void send_alternate_network_packet(int64_t connection_info, uint64_t packet_data, int32_t packet_size)
 
 {
   send_basic_packet(packet_data, packet_size, &ALTERNATE_PACKET_CONFIG, *(int32_t *)(connection_info + 0x10),
@@ -1215,11 +1215,11 @@ void send_alternate_network_packet(longlong connection_info, uint64_t packet_dat
 
 
 
-// 函数: void send_secondary_network_packet(longlong connection_info, uint64_t packet_data, int32_t packet_size)
+// 函数: void send_secondary_network_packet(int64_t connection_info, uint64_t packet_data, int32_t packet_size)
 // 发送次要网络数据包
 // 参数: connection_info - 连接信息, packet_data - 数据包数据, packet_size - 数据包大小
 // 功能: 发送次要网络数据包，使用次要连接参数
-void send_secondary_network_packet(longlong connection_info, uint64_t packet_data, int32_t packet_size)
+void send_secondary_network_packet(int64_t connection_info, uint64_t packet_data, int32_t packet_size)
 
 {
   send_extended_packet(packet_data, packet_size, &SECONDARY_PACKET_CONFIG, *(int32_t *)(connection_info + 0x10),
@@ -1229,11 +1229,11 @@ void send_secondary_network_packet(longlong connection_info, uint64_t packet_dat
 
 
 
-// 函数: int process_alternate_comprehensive_validation(longlong alternate_config, longlong data_ptr, int data_size)
+// 函数: int process_alternate_comprehensive_validation(int64_t alternate_config, int64_t data_ptr, int data_size)
 // 备用综合验证处理
 // 参数: alternate_config - 备用配置信息, data_ptr - 数据指针, data_size - 数据大小
 // 功能: 处理备用综合验证，包括多重参数处理、加密、填充和校验和
-int process_alternate_comprehensive_validation(longlong alternate_config, longlong data_ptr, int data_size)
+int process_alternate_comprehensive_validation(int64_t alternate_config, int64_t data_ptr, int data_size)
 
 {
   int32_t final_key;
@@ -1294,11 +1294,11 @@ int process_alternate_comprehensive_validation(longlong alternate_config, longlo
 
 
 
-// 函数: void send_primary_network_packet(longlong connection_info, uint64_t packet_data, int32_t packet_size)
+// 函数: void send_primary_network_packet(int64_t connection_info, uint64_t packet_data, int32_t packet_size)
 // 发送主要网络数据包
 // 参数: connection_info - 连接信息, packet_data - 数据包数据, packet_size - 数据包大小
 // 功能: 发送主要网络数据包，使用主要连接参数
-void send_primary_network_packet(longlong connection_info, uint64_t packet_data, int32_t packet_size)
+void send_primary_network_packet(int64_t connection_info, uint64_t packet_data, int32_t packet_size)
 
 {
   send_basic_packet(packet_data, packet_size, &PRIMARY_PACKET_CONFIG, *(int32_t *)(connection_info + 0x10),
@@ -1310,11 +1310,11 @@ void send_primary_network_packet(longlong connection_info, uint64_t packet_data,
 
 
 
-// 函数: void send_urgent_network_packet(longlong connection_info, uint64_t packet_data, int32_t packet_size)
+// 函数: void send_urgent_network_packet(int64_t connection_info, uint64_t packet_data, int32_t packet_size)
 // 发送紧急网络数据包
 // 参数: connection_info - 连接信息, packet_data - 数据包数据, packet_size - 数据包大小
 // 功能: 发送紧急网络数据包，使用紧急连接参数
-void send_urgent_network_packet(longlong connection_info, uint64_t packet_data, int32_t packet_size)
+void send_urgent_network_packet(int64_t connection_info, uint64_t packet_data, int32_t packet_size)
 
 {
   send_basic_packet(packet_data, packet_size, &URGENT_PACKET_CONFIG, *(int32_t *)(connection_info + 0x10),
@@ -1326,11 +1326,11 @@ void send_urgent_network_packet(longlong connection_info, uint64_t packet_data, 
 
 
 
-// 函数: void send_final_network_packet(longlong connection_info, uint64_t packet_data, int32_t packet_size)
+// 函数: void send_final_network_packet(int64_t connection_info, uint64_t packet_data, int32_t packet_size)
 // 发送最终网络数据包
 // 参数: connection_info - 连接信息, packet_data - 数据包数据, packet_size - 数据包大小
 // 功能: 发送最终网络数据包，使用最终连接参数
-void send_final_network_packet(longlong connection_info, uint64_t packet_data, int32_t packet_size)
+void send_final_network_packet(int64_t connection_info, uint64_t packet_data, int32_t packet_size)
 
 {
   send_basic_packet(packet_data, packet_size, &FINAL_PACKET_CONFIG, *(int32_t *)(connection_info + 0x10),

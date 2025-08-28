@@ -78,7 +78,7 @@ static void unmatched_system_no_operation(void);
  * 参数：param_2 - 分配标志
  * 返回值：uint64_t* - 分配的资源指针
  */
-static uint64_t *unmatched_resource_allocator_manager(uint64_t *param_1, ulonglong param_2);
+static uint64_t *unmatched_resource_allocator_manager(uint64_t *param_1, uint64_t param_2);
 
 /**
  * 高级资源处理器
@@ -86,7 +86,7 @@ static uint64_t *unmatched_resource_allocator_manager(uint64_t *param_1, ulonglo
  * 参数：param_1 - 系统上下文指针
  * 返回值：void - 无返回值
  */
-static void unmatched_advanced_resource_processor(longlong param_1);
+static void unmatched_advanced_resource_processor(int64_t param_1);
 
 /**
  * 系统资源管理器
@@ -94,7 +94,7 @@ static void unmatched_advanced_resource_processor(longlong param_1);
  * 参数：param_1 - 系统管理器指针
  * 返回值：void - 无返回值
  */
-static void unmatched_system_resource_manager(longlong param_1);
+static void unmatched_system_resource_manager(int64_t param_1);
 
 /**
  * 生命周期清理器
@@ -102,7 +102,7 @@ static void unmatched_system_resource_manager(longlong param_1);
  * 参数：param_1 - 系统上下文指针
  * 返回值：void - 无返回值
  */
-static void unmatched_lifecycle_cleanup(longlong param_1);
+static void unmatched_lifecycle_cleanup(int64_t param_1);
 
 // ============================================================================
 // 函数实现
@@ -140,7 +140,7 @@ static void unmatched_system_no_operation(void)
     return;
 }
 
-static uint64_t *unmatched_resource_allocator_manager(uint64_t *param_1, ulonglong param_2)
+static uint64_t *unmatched_resource_allocator_manager(uint64_t *param_1, uint64_t param_2)
 {
     // 实现资源分配和内存管理功能
     // 原始实现：FUN_180244f00
@@ -148,13 +148,13 @@ static uint64_t *unmatched_resource_allocator_manager(uint64_t *param_1, ulonglo
     
     // 简化实现：
     uint64_t *allocated_resource;
-    longlong *memory_block;
+    int64_t *memory_block;
     
     // 初始化资源
     *param_1 = &unknown_var_9624_ptr;
-    memory_block = (longlong *)param_1[0x1c];
+    memory_block = (int64_t *)param_1[0x1c];
     
-    if (memory_block == (longlong *)0x0) {
+    if (memory_block == (int64_t *)0x0) {
         // 分配新资源
         param_1[0x1c] = 0;
         param_1[0x18] = &system_data_buffer_ptr;
@@ -181,7 +181,7 @@ static uint64_t *unmatched_resource_allocator_manager(uint64_t *param_1, ulonglo
     }
     
     // 处理已存在的内存块
-    if (*(char *)((longlong)memory_block + 0x11) == '\0') {
+    if (*(char *)((int64_t)memory_block + 0x11) == '\0') {
         if (((char)memory_block[2] == '\0') && (*memory_block != 0)) {
             // 错误处理
             return param_1;
@@ -196,7 +196,7 @@ static uint64_t *unmatched_resource_allocator_manager(uint64_t *param_1, ulonglo
     return param_1;
 }
 
-static void unmatched_advanced_resource_processor(longlong param_1)
+static void unmatched_advanced_resource_processor(int64_t param_1)
 {
     // 实现高级资源处理功能
     // 原始实现：FUN_180244ff0
@@ -210,13 +210,13 @@ static void unmatched_advanced_resource_processor(longlong param_1)
     int8_t *buffer_ptr;
     uint buffer_size;
     int8_t local_buffer[136];
-    ulonglong stack_guard;
+    uint64_t stack_guard;
     
     // 初始化栈保护
-    stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)local_buffer;
+    stack_guard = GET_SECURITY_COOKIE() ^ (uint64_t)local_buffer;
     
     // 检查系统状态
-    if ((*(char *)(param_1 + 0x9a31) != '\0') && (*(longlong *)(param_1 + 0x99b8) != 0)) {
+    if ((*(char *)(param_1 + 0x9a31) != '\0') && (*(int64_t *)(param_1 + 0x99b8) != 0)) {
         // 获取参数
         param1 = *(int *)(param_1 + 0x3590);
         param2 = *(int *)(param_1 + 0x3594);
@@ -237,7 +237,7 @@ static void unmatched_advanced_resource_processor(longlong param_1)
         }
         
         // 计算字符串长度
-        longlong str_len = -1;
+        int64_t str_len = -1;
         do {
             str_len = str_len + 1;
         } while (string_resource[str_len] != '\0');
@@ -246,7 +246,7 @@ static void unmatched_advanced_resource_processor(longlong param_1)
         
         // 安全复制字符串
         if ((0 < length) && (buffer_size + length < 0x7f)) {
-            memcpy(buffer_ptr + buffer_size, string_resource, (longlong)(length + 1));
+            memcpy(buffer_ptr + buffer_size, string_resource, (int64_t)(length + 1));
         }
         
         // 处理颜色值
@@ -257,7 +257,7 @@ static void unmatched_advanced_resource_processor(longlong param_1)
         float red = (float)(color_value & 0xff) * 0.003921569;
         
         // 分配资源
-        resource_handle = (uint64_t *)FUN_1800b1230((ulonglong)(uint)green, NULL, &string_resource, NULL);
+        resource_handle = (uint64_t *)FUN_1800b1230((uint64_t)(uint)green, NULL, &string_resource, NULL);
         
         // 清理资源
         if (resource_handle != (uint64_t *)0x0) {
@@ -272,10 +272,10 @@ static void unmatched_advanced_resource_processor(longlong param_1)
     }
     
     // 恢复栈保护
-    FUN_1808fc050(stack_guard ^ (ulonglong)local_buffer);
+    FUN_1808fc050(stack_guard ^ (uint64_t)local_buffer);
 }
 
-static void unmatched_system_resource_manager(longlong param_1)
+static void unmatched_system_resource_manager(int64_t param_1)
 {
     // 实现系统资源管理功能
     // 原始实现：FUN_180245280
@@ -283,18 +283,18 @@ static void unmatched_system_resource_manager(longlong param_1)
     
     // 简化实现：
     uint64_t resource_handle;
-    longlong allocation_result;
+    int64_t allocation_result;
     uint64_t *manager_ptr;
     uint resource_flags;
     int32_t resource_params[4];
     int8_t local_buffer[136];
-    ulonglong stack_guard;
+    uint64_t stack_guard;
     
     // 初始化栈保护
-    stack_guard = GET_SECURITY_COOKIE() ^ (ulonglong)local_buffer;
+    stack_guard = GET_SECURITY_COOKIE() ^ (uint64_t)local_buffer;
     
     // 检查系统状态
-    if (((*(byte *)(param_1 + 4) & 0x80) != 0) && (*(longlong *)(param_1 + 0x96a8) == 0)) {
+    if (((*(byte *)(param_1 + 4) & 0x80) != 0) && (*(int64_t *)(param_1 + 0x96a8) == 0)) {
         resource_flags = 1;
         allocation_result = FUN_180244ff0();
         
@@ -325,106 +325,106 @@ static void unmatched_system_resource_manager(longlong param_1)
     }
     
     // 恢复栈保护
-    FUN_1808fc050(stack_guard ^ (ulonglong)local_buffer);
+    FUN_1808fc050(stack_guard ^ (uint64_t)local_buffer);
 }
 
-static void unmatched_lifecycle_cleanup(longlong param_1)
+static void unmatched_lifecycle_cleanup(int64_t param_1)
 {
     // 实现生命周期清理功能
     // 原始实现：FUN_180245420
     // 功能：清理系统资源，释放内存，重置系统状态
     
     // 简化实现：
-    longlong *resource_ptr;
+    int64_t *resource_ptr;
     
     // 清理系统组件资源
-    resource_ptr = *(longlong **)(param_1 + 0x9690);
+    resource_ptr = *(int64_t **)(param_1 + 0x9690);
     *(uint64_t *)(param_1 + 0x9690) = 0;
-    if (resource_ptr != (longlong *)0x0) {
+    if (resource_ptr != (int64_t *)0x0) {
         (**(code **)(*resource_ptr + 0x38))();
     }
     
     // 清理资源管理器
-    resource_ptr = *(longlong **)(param_1 + 0x9698);
+    resource_ptr = *(int64_t **)(param_1 + 0x9698);
     *(uint64_t *)(param_1 + 0x9698) = 0;
-    if (resource_ptr != (longlong *)0x0) {
+    if (resource_ptr != (int64_t *)0x0) {
         (**(code **)(*resource_ptr + 0x38))();
     }
     
     // 清理系统资源
-    resource_ptr = *(longlong **)(param_1 + 0x96a8);
+    resource_ptr = *(int64_t **)(param_1 + 0x96a8);
     *(uint64_t *)(param_1 + 0x96a8) = 0;
-    if (resource_ptr != (longlong *)0x0) {
+    if (resource_ptr != (int64_t *)0x0) {
         (**(code **)(*resource_ptr + 0x38))();
     }
     
     // 清理高级资源
-    resource_ptr = *(longlong **)(param_1 + 0x96e8);
+    resource_ptr = *(int64_t **)(param_1 + 0x96e8);
     *(uint64_t *)(param_1 + 0x96e8) = 0;
-    if (resource_ptr != (longlong *)0x0) {
+    if (resource_ptr != (int64_t *)0x0) {
         (**(code **)(*resource_ptr + 0x38))();
     }
     
     // 清理生命周期资源
-    resource_ptr = *(longlong **)(param_1 + 0x96f0);
+    resource_ptr = *(int64_t **)(param_1 + 0x96f0);
     *(uint64_t *)(param_1 + 0x96f0) = 0;
-    if (resource_ptr != (longlong *)0x0) {
+    if (resource_ptr != (int64_t *)0x0) {
         (**(code **)(*resource_ptr + 0x38))();
     }
     
     // 清理附加资源
-    resource_ptr = *(longlong **)(param_1 + 0x96d8);
+    resource_ptr = *(int64_t **)(param_1 + 0x96d8);
     *(uint64_t *)(param_1 + 0x96d8) = 0;
-    if (resource_ptr != (longlong *)0x0) {
+    if (resource_ptr != (int64_t *)0x0) {
         (**(code **)(*resource_ptr + 0x38))();
     }
     
     // 清理管理器资源
-    resource_ptr = *(longlong **)(param_1 + 0x96e0);
+    resource_ptr = *(int64_t **)(param_1 + 0x96e0);
     *(uint64_t *)(param_1 + 0x96e0) = 0;
-    if (resource_ptr != (longlong *)0x0) {
+    if (resource_ptr != (int64_t *)0x0) {
         (**(code **)(*resource_ptr + 0x38))();
     }
     
     // 清理分配器资源
-    resource_ptr = *(longlong **)(param_1 + 0x96d0);
+    resource_ptr = *(int64_t **)(param_1 + 0x96d0);
     *(uint64_t *)(param_1 + 0x96d0) = 0;
-    if (resource_ptr != (longlong *)0x0) {
+    if (resource_ptr != (int64_t *)0x0) {
         (**(code **)(*resource_ptr + 0x38))();
     }
     
     // 清理系统表资源
-    resource_ptr = *(longlong **)(param_1 + 0x96f8);
+    resource_ptr = *(int64_t **)(param_1 + 0x96f8);
     *(uint64_t *)(param_1 + 0x96f8) = 0;
-    if (resource_ptr != (longlong *)0x0) {
+    if (resource_ptr != (int64_t *)0x0) {
         (**(code **)(*resource_ptr + 0x38))();
     }
     
     // 清理配置资源
-    resource_ptr = *(longlong **)(param_1 + 0x9960);
+    resource_ptr = *(int64_t **)(param_1 + 0x9960);
     *(uint64_t *)(param_1 + 0x9960) = 0;
-    if (resource_ptr != (longlong *)0x0) {
+    if (resource_ptr != (int64_t *)0x0) {
         (**(code **)(*resource_ptr + 0x38))();
     }
     
     // 清理状态资源
-    resource_ptr = *(longlong **)(param_1 + 0x9968);
+    resource_ptr = *(int64_t **)(param_1 + 0x9968);
     *(uint64_t *)(param_1 + 0x9968) = 0;
-    if (resource_ptr != (longlong *)0x0) {
+    if (resource_ptr != (int64_t *)0x0) {
         (**(code **)(*resource_ptr + 0x38))();
     }
     
     // 清理核心资源
-    resource_ptr = *(longlong **)(param_1 + 0x99b8);
+    resource_ptr = *(int64_t **)(param_1 + 0x99b8);
     *(uint64_t *)(param_1 + 0x99b8) = 0;
-    if (resource_ptr != (longlong *)0x0) {
+    if (resource_ptr != (int64_t *)0x0) {
         (**(code **)(*resource_ptr + 0x38))();
     }
     
     // 清理上下文资源
-    resource_ptr = *(longlong **)(param_1 + 0x12498);
+    resource_ptr = *(int64_t **)(param_1 + 0x12498);
     *(uint64_t *)(param_1 + 0x12498) = 0;
-    if (resource_ptr != (longlong *)0x0) {
+    if (resource_ptr != (int64_t *)0x0) {
         (**(code **)(*resource_ptr + 0x38))();
     }
 }

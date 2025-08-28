@@ -72,42 +72,42 @@
  * - 内存泄漏防护
  * - 异常安全处理
  */
-void RenderingSystem_TexturePathProcessor(longlong render_context, longlong file_handle, uint64_t texture_param)
+void RenderingSystem_TexturePathProcessor(int64_t render_context, int64_t file_handle, uint64_t texture_param)
 
 {
     // 局部变量声明
     char path_separator;
     uint texture_count;
     int path_length;
-    longlong path_buffer;
+    int64_t path_buffer;
     int8_t *texture_data;
     int32_t *texture_ids;
     int16_t *path_buffer_wide;
     int16_t *temp_path_buffer;
     uint path_hash;
-    longlong texture_manager;
+    int64_t texture_manager;
     uint64_t *texture_ptr;
-    longlong *shader_ptr;
+    int64_t *shader_ptr;
     uint64_t *data_ptr;
     uint64_t *buffer_ptr;
     char *current_path;
     int path_index;
-    ulonglong data_offset;
-    longlong base_address;
+    uint64_t data_offset;
+    int64_t base_address;
     uint *index_ptr;
-    ulonglong *offset_ptr;
+    uint64_t *offset_ptr;
     float *float_ptr;
-    longlong calculation_base;
+    int64_t calculation_base;
     uint *param_ptr;
     uint64_t *temp_ptr;
     bool is_allocated;
     int32_t format_flag;
     int8_t alignment_buffer[32];
-    ulonglong *stack_pointer;
+    uint64_t *stack_pointer;
     int8_t temp_buffer1[16];
     int8_t temp_buffer2[16];
-    longlong param_save1;
-    longlong param_save2;
+    int64_t param_save1;
+    int64_t param_save2;
     int8_t temp_buffer3[8];
     int8_t temp_buffer4[8];
     int8_t temp_buffer5[8];
@@ -116,15 +116,15 @@ void RenderingSystem_TexturePathProcessor(longlong render_context, longlong file
     uint render_flag1;
     uint render_flag2;
     uint render_flag3;
-    ulonglong frame_sync;
+    uint64_t frame_sync;
     
     // 初始化渲染系统基础地址
     base_address = system_parameter_buffer;
-    frame_sync = GET_SECURITY_COOKIE() ^ (ulonglong)alignment_buffer;
+    frame_sync = GET_SECURITY_COOKIE() ^ (uint64_t)alignment_buffer;
     calculation_base = system_parameter_buffer + 0x7440;
     
     // 获取纹理索引指针
-    index_ptr = (uint *)((longlong)*(int *)(system_parameter_buffer + 0x74e0) * 0x50 + calculation_base);
+    index_ptr = (uint *)((int64_t)*(int *)(system_parameter_buffer + 0x74e0) * 0x50 + calculation_base);
     
     // 原子操作获取纹理计数
     LOCK();
@@ -134,9 +134,9 @@ void RenderingSystem_TexturePathProcessor(longlong render_context, longlong file
     
     // 计算纹理块索引
     path_hash = texture_count >> 9;
-    data_offset = (ulonglong)path_hash;
-    current_path = (char *)((longlong)index_ptr + data_offset + 0x48);
-    param_ptr = index_ptr + (ulonglong)path_hash * 2 + 2;
+    data_offset = (uint64_t)path_hash;
+    current_path = (char *)((int64_t)index_ptr + data_offset + 0x48);
+    param_ptr = index_ptr + (uint64_t)path_hash * 2 + 2;
     
     // 保存参数
     param_save1 = file_handle;
@@ -145,19 +145,19 @@ void RenderingSystem_TexturePathProcessor(longlong render_context, longlong file
     // 处理纹理数据分配
     do {
         // 检查纹理数据指针有效性
-        if (*(longlong *)param_ptr == 0) {
+        if (*(int64_t *)param_ptr == 0) {
             // 分配纹理数据内存
             path_buffer = FUN_18062b420(system_memory_pool_ptr, 0x48000, 0x25);
             LOCK();
-            is_allocated = *(longlong *)(param_ptr + (longlong)path_index * 2 + 2) == 0;
+            is_allocated = *(int64_t *)(param_ptr + (int64_t)path_index * 2 + 2) == 0;
             if (is_allocated) {
-                *(longlong *)(param_ptr + (longlong)path_index * 2 + 2) = path_buffer;
+                *(int64_t *)(param_ptr + (int64_t)path_index * 2 + 2) = path_buffer;
             }
             UNLOCK();
             
             if (is_allocated) {
                 LOCK();
-                *(int8_t *)((longlong)path_index + 0x48 + (longlong)param_ptr) = 0;
+                *(int8_t *)((int64_t)path_index + 0x48 + (int64_t)param_ptr) = 0;
                 UNLOCK();
             }
             else {
@@ -178,15 +178,15 @@ void RenderingSystem_TexturePathProcessor(longlong render_context, longlong file
         
         path_buffer = param_save1;
         current_path = current_path + 1;
-        texture_count = (ulonglong)(path_index + 1);
+        texture_count = (uint64_t)(path_index + 1);
         param_ptr = param_ptr + 2;
-    } while ((longlong)(current_path + (-0x48 - (longlong)param_ptr)) <= (longlong)(ulonglong)texture_param);
+    } while ((int64_t)(current_path + (-0x48 - (int64_t)param_ptr)) <= (int64_t)(uint64_t)texture_param);
     
     // 处理纹理路径规范化
     texture_ptr = (uint64_t *)
-            (*(longlong *)
-              ((longlong)*(int *)(base_address + 0x74e0) * 0x50 + calculation_base + 8 + (ulonglong)texture_param * 8) +
-            (ulonglong)(texture_count - (texture_count & 0xfffffe00)) * 0x240);
+            (*(int64_t *)
+              ((int64_t)*(int *)(base_address + 0x74e0) * 0x50 + calculation_base + 8 + (uint64_t)texture_param * 8) +
+            (uint64_t)(texture_count - (texture_count & 0xfffffe00)) * 0x240);
     
     // 读取纹理数据
     texture_data = (int8_t *)FUN_1803de8d0(path_buffer, workspace);
@@ -195,31 +195,31 @@ void RenderingSystem_TexturePathProcessor(longlong render_context, longlong file
     texture_ptr[1] = texture_param;
     
     // 设置纹理参数
-    *(int32_t *)((longlong)texture_ptr + 0xc) = *(int32_t *)(path_buffer + 0x34);
+    *(int32_t *)((int64_t)texture_ptr + 0xc) = *(int32_t *)(path_buffer + 0x34);
     *(int32_t *)(texture_ptr + 2) = *(int32_t *)(path_buffer + 0x38);
-    *(int32_t *)((longlong)texture_ptr + 0x14) = 0x7fc00001;
+    *(int32_t *)((int64_t)texture_ptr + 0x14) = 0x7fc00001;
     *(float *)(texture_ptr + 3) = 1.0 / (float)*(int *)(path_buffer + 0x3ec);
-    *(float *)((longlong)texture_ptr + 0x1c) = (float)(*(int *)(path_buffer + 200) != 0);
+    *(float *)((int64_t)texture_ptr + 0x1c) = (float)(*(int *)(path_buffer + 200) != 0);
     
     // 清理工作空间
     FUN_180094c20(workspace + 0x88);
     FUN_1803e0670(path_buffer, 0, workspace + 0x88);
     
     // 设置渲染标志
-    *(uint *)((longlong)texture_ptr + 0x24) = render_flag1 ^ 0x80000000;
+    *(uint *)((int64_t)texture_ptr + 0x24) = render_flag1 ^ 0x80000000;
     *(uint *)(texture_ptr + 5) = render_flag2 ^ 0x80000000;
-    *(uint *)((longlong)texture_ptr + 0x2c) = render_flag3 ^ 0x80000000;
+    *(uint *)((int64_t)texture_ptr + 0x2c) = render_flag3 ^ 0x80000000;
     *(float *)(texture_ptr + 4) = (float)(*(uint *)(path_buffer + 0xc0) & 0x80);
     
     // 计算纹理变换参数
     texture_param = cosf(*(float *)(path_buffer + 0xec) * 0.017453292);
     *(int32_t *)(texture_ptr + 6) = texture_param;
     texture_param = cosf(*(float *)(path_buffer + 0xe8) * 0.017453292);
-    *(int32_t *)((longlong)texture_ptr + 0x34) = texture_param;
+    *(int32_t *)((int64_t)texture_ptr + 0x34) = texture_param;
     *(float *)(texture_ptr + 7) = (float)*(int *)(path_buffer + 0x394);
-    *(float *)((longlong)texture_ptr + 0x3c) = (float)(*(uint *)(path_buffer + 0xc0) & 8);
+    *(float *)((int64_t)texture_ptr + 0x3c) = (float)(*(uint *)(path_buffer + 0xc0) & 8);
     *(int32_t *)(texture_ptr + 8) = *(int32_t *)(path_buffer + 0x398);
-    *(int32_t *)((longlong)texture_ptr + 0x44) = *(int32_t *)(path_buffer + 0x39c);
+    *(int32_t *)((int64_t)texture_ptr + 0x44) = *(int32_t *)(path_buffer + 0x39c);
     texture_param = *(uint64_t *)(path_buffer + 0xb8);
     texture_ptr[0x46] = *(uint64_t *)(path_buffer + 0xb0);
     texture_ptr[0x47] = texture_param;
@@ -238,7 +238,7 @@ void RenderingSystem_TexturePathProcessor(longlong render_context, longlong file
                 texture_ptr = texture_data;
                 if (temp_ptr != (int8_t *)0x0) {
                     do {
-                        if ((ulonglong)temp_ptr[4] < *temp_path_buffer) {
+                        if ((uint64_t)temp_ptr[4] < *temp_path_buffer) {
                             temp_ptr = (int8_t *)*temp_ptr;
                         }
                         else {
@@ -248,12 +248,12 @@ void RenderingSystem_TexturePathProcessor(longlong render_context, longlong file
                     } while (temp_ptr != (int8_t *)0x0);
                 }
                 
-                if ((texture_ptr == texture_data) || (*temp_path_buffer < (ulonglong)texture_ptr[4])) {
+                if ((texture_ptr == texture_data) || (*temp_path_buffer < (uint64_t)texture_ptr[4])) {
                     texture_ptr = (int8_t *)FUN_180387860(texture_data, workspace + 0x168);
                     texture_ptr = (int8_t *)*texture_ptr;
                 }
                 
-                if (*(longlong *)(base_address + (longlong)texture_ptr) == 0) {
+                if (*(int64_t *)(base_address + (int64_t)texture_ptr) == 0) {
                     goto texture_processing_complete;
                 }
                 base_address = base_address + 8;
@@ -262,14 +262,14 @@ void RenderingSystem_TexturePathProcessor(longlong render_context, longlong file
             // 处理纹理数据变换
             temp_ptr = texture_ptr + 0x16;
             float_ptr = (float *)(texture_ptr + 10);
-            base_address = path_buffer - (longlong)texture_ptr;
+            base_address = path_buffer - (int64_t)texture_ptr;
             
             do {
                 texture_ptr = *(int8_t **)(path_buffer + 0x180);
                 texture_data = texture_data;
                 if (texture_ptr != (int8_t *)0x0) {
                     do {
-                        if ((ulonglong)texture_ptr[4] < *temp_path_buffer) {
+                        if ((uint64_t)texture_ptr[4] < *temp_path_buffer) {
                             texture_ptr = (int8_t *)*texture_ptr;
                         }
                         else {
@@ -279,18 +279,18 @@ void RenderingSystem_TexturePathProcessor(longlong render_context, longlong file
                     } while (texture_ptr != (int8_t *)0x0);
                 }
                 
-                if ((texture_data == texture_data) || (*temp_path_buffer < (ulonglong)texture_data[4])) {
+                if ((texture_data == texture_data) || (*temp_path_buffer < (uint64_t)texture_data[4])) {
                     texture_data = (int8_t *)FUN_180387860(texture_data, workspace + 0x200);
                     texture_data = (int8_t *)*texture_data;
                 }
                 
-                path_index = *(int *)(*(longlong *)(path_buffer + (longlong)texture_data) + 0xc);
-                path_length = *(int *)(*(longlong *)(path_buffer + (longlong)texture_data) + 0x10);
+                path_index = *(int *)(*(int64_t *)(path_buffer + (int64_t)texture_data) + 0xc);
+                path_length = *(int *)(*(int64_t *)(path_buffer + (int64_t)texture_data) + 0x10);
                 texture_ptr = *(int8_t **)(path_buffer + 0x180);
                 texture_data = texture_data;
                 if (texture_ptr != (int8_t *)0x0) {
                     do {
-                        if ((ulonglong)texture_ptr[4] < *temp_path_buffer) {
+                        if ((uint64_t)texture_ptr[4] < *temp_path_buffer) {
                             texture_ptr = (int8_t *)*texture_ptr;
                         }
                         else {
@@ -300,18 +300,18 @@ void RenderingSystem_TexturePathProcessor(longlong render_context, longlong file
                     } while (texture_ptr != (int8_t *)0x0);
                 }
                 
-                if ((texture_data == texture_data) || (*temp_path_buffer < (ulonglong)texture_data[4])) {
+                if ((texture_data == texture_data) || (*temp_path_buffer < (uint64_t)texture_data[4])) {
                     texture_data = (int8_t *)FUN_180387860(texture_data, workspace + 0x1f8);
                     texture_data = (int8_t *)*texture_data;
                 }
                 
-                texture_count = *(int *)(*(longlong *)(path_buffer + (longlong)texture_data) + 0xc);
-                texture_hash = *(int *)(*(longlong *)(path_buffer + (longlong)texture_data) + 0x10);
+                texture_count = *(int *)(*(int64_t *)(path_buffer + (int64_t)texture_data) + 0xc);
+                texture_hash = *(int *)(*(int64_t *)(path_buffer + (int64_t)texture_data) + 0x10);
                 texture_ptr = *(int8_t **)(path_buffer + 0x180);
                 texture_data = texture_data;
                 if (texture_ptr != (int8_t *)0x0) {
                     do {
-                        if ((ulonglong)texture_ptr[4] < *temp_path_buffer) {
+                        if ((uint64_t)texture_ptr[4] < *temp_path_buffer) {
                             texture_ptr = (int8_t *)*texture_ptr;
                         }
                         else {
@@ -321,18 +321,18 @@ void RenderingSystem_TexturePathProcessor(longlong render_context, longlong file
                     } while (texture_ptr != (int8_t *)0x0);
                 }
                 
-                if ((texture_data == texture_data) || (*temp_path_buffer < (ulonglong)texture_data[4])) {
+                if ((texture_data == texture_data) || (*temp_path_buffer < (uint64_t)texture_data[4])) {
                     texture_data = (int8_t *)FUN_180387860(texture_data, workspace + 0x1f0);
                     texture_data = (int8_t *)*texture_data;
                 }
                 
-                path_hash = *(int *)(*(longlong *)(path_buffer + (longlong)texture_data) + 0x10);
-                texture_param = *(float *)(*(longlong *)(path_buffer + (longlong)texture_data) + 4);
+                path_hash = *(int *)(*(int64_t *)(path_buffer + (int64_t)texture_data) + 0x10);
+                texture_param = *(float *)(*(int64_t *)(path_buffer + (int64_t)texture_data) + 4);
                 texture_data = *(int8_t **)(path_buffer + 0x180);
                 texture_ptr = texture_data;
                 if (texture_data != (int8_t *)0x0) {
                     do {
-                        if ((ulonglong)texture_data[4] < *temp_path_buffer) {
+                        if ((uint64_t)texture_data[4] < *temp_path_buffer) {
                             texture_data = (int8_t *)*texture_data;
                         }
                         else {
@@ -342,31 +342,31 @@ void RenderingSystem_TexturePathProcessor(longlong render_context, longlong file
                     } while (texture_data != (int8_t *)0x0);
                 }
                 
-                if ((texture_ptr == texture_data) || (*temp_path_buffer < (ulonglong)texture_ptr[4])) {
+                if ((texture_ptr == texture_data) || (*temp_path_buffer < (uint64_t)texture_ptr[4])) {
                     texture_ptr = (int8_t *)FUN_180387860(texture_data, workspace + 0x228);
                     texture_ptr = (int8_t *)*texture_ptr;
                 }
                 
-                texture_data = (int8_t *)(path_buffer + (longlong)texture_ptr);
+                texture_data = (int8_t *)(path_buffer + (int64_t)texture_ptr);
                 path_buffer = path_buffer + 8;
                 *float_ptr = 0.05 / (float)(int)((float *)*texture_data)[4] + *(float *)*texture_data;
                 float_ptr[1] = 0.05 / (float)path_hash + texture_param;
                 float_ptr[2] = ((float)texture_count * 0.9) / (float)path_length;
                 float_ptr[3] = ((float)path_index * 0.9) / (float)texture_hash;
                 float_ptr = float_ptr + 4;
-                texture_data = (int8_t *)((longlong)temp_ptr + base_address + 0x120);
+                texture_data = (int8_t *)((int64_t)temp_ptr + base_address + 0x120);
                 texture_param = texture_data[1];
                 *temp_ptr = *texture_data;
                 temp_ptr[1] = texture_param;
-                texture_data = (int8_t *)((longlong)temp_ptr + base_address + 0x130);
+                texture_data = (int8_t *)((int64_t)temp_ptr + base_address + 0x130);
                 texture_param = texture_data[1];
                 temp_ptr[2] = *texture_data;
                 temp_ptr[3] = texture_param;
-                texture_data = (int8_t *)((longlong)temp_ptr + base_address + 0x140);
+                texture_data = (int8_t *)((int64_t)temp_ptr + base_address + 0x140);
                 texture_param = texture_data[1];
                 temp_ptr[4] = *texture_data;
                 temp_ptr[5] = texture_param;
-                texture_data = (int8_t *)((longlong)temp_ptr + base_address + 0x150);
+                texture_data = (int8_t *)((int64_t)temp_ptr + base_address + 0x150);
                 texture_param = texture_data[1];
                 temp_ptr[6] = *texture_data;
                 temp_ptr[7] = texture_param;
@@ -375,26 +375,26 @@ void RenderingSystem_TexturePathProcessor(longlong render_context, longlong file
         }
         else {
             // 处理高级纹理特性
-            shader_ptr = (longlong *)FUN_180387380(texture_data, temp_path_buffer);
+            shader_ptr = (int64_t *)FUN_180387380(texture_data, temp_path_buffer);
             if (*shader_ptr == 0) {
 texture_processing_complete:
-                *(int32_t *)((longlong)texture_ptr + 0x1c) = 0;
+                *(int32_t *)((int64_t)texture_ptr + 0x1c) = 0;
             }
             else {
-                shader_ptr = (longlong *)FUN_180387380(texture_data, temp_path_buffer);
+                shader_ptr = (int64_t *)FUN_180387380(texture_data, temp_path_buffer);
                 path_index = *(int *)(*shader_ptr + 0xc);
                 path_length = *(int *)(*shader_ptr + 0x10);
-                shader_ptr = (longlong *)FUN_180387380(texture_data, temp_path_buffer);
+                shader_ptr = (int64_t *)FUN_180387380(texture_data, temp_path_buffer);
                 texture_count = *(int *)(*shader_ptr + 0xc);
                 texture_hash = *(int *)(*shader_ptr + 0x10);
-                shader_ptr = (longlong *)FUN_180387380(texture_data, temp_path_buffer);
+                shader_ptr = (int64_t *)FUN_180387380(texture_data, temp_path_buffer);
                 path_hash = *(int *)(*shader_ptr + 0x10);
                 texture_param = *(float *)(*shader_ptr + 4);
                 texture_data = (int8_t *)FUN_180387380(texture_data, temp_path_buffer);
                 *(float *)(texture_ptr + 10) = 0.05 / (float)(int)((float *)*texture_data)[4] + *(float *)*texture_data;
-                *(float *)((longlong)texture_ptr + 0x54) = 0.05 / (float)path_hash + texture_param;
+                *(float *)((int64_t)texture_ptr + 0x54) = 0.05 / (float)path_hash + texture_param;
                 *(float *)(texture_ptr + 0xb) = ((float)texture_count * 0.9) / (float)texture_hash;
-                *(float *)((longlong)texture_ptr + 0x5c) = ((float)path_index * 0.9) / (float)path_length;
+                *(float *)((int64_t)texture_ptr + 0x5c) = ((float)path_index * 0.9) / (float)path_length;
                 texture_param = *(uint64_t *)(path_buffer + 0x1d8);
                 texture_ptr[0x16] = *(uint64_t *)(path_buffer + 0x1d0);
                 texture_ptr[0x17] = texture_param;
@@ -412,11 +412,11 @@ texture_processing_complete:
     }
     
     // 清理资源并返回
-    FUN_1808fc050(frame_sync ^ (ulonglong)workspace);
+    FUN_1808fc050(frame_sync ^ (uint64_t)workspace);
 }
 
 // 函数别名：保持向后兼容性
-void FUN_180330ab0(longlong param_1, longlong param_2, uint64_t param_3) __attribute__((alias("RenderingSystem_TexturePathProcessor")));
+void FUN_180330ab0(int64_t param_1, int64_t param_2, uint64_t param_3) __attribute__((alias("RenderingSystem_TexturePathProcessor")));
 
 // ===================================================================
 // 函数实现：渲染参数插值器
@@ -462,7 +462,7 @@ void RenderingSystem_ParameterInterpolator(uint64_t render_context, float *targe
     uint mask_result;
     float *source_ptr1;
     float *source_ptr2;
-    ulonglong data_offset;
+    uint64_t data_offset;
     uint64_t *data_ptr;
     float target_value1;
     float target_value2;
@@ -504,10 +504,10 @@ void RenderingSystem_ParameterInterpolator(uint64_t render_context, float *targe
     int32_t ustack_e0;
     int32_t ustack_dc;
     float float_array[8];
-    ulonglong frame_sync;
+    uint64_t frame_sync;
     
     // 初始化帧同步
-    frame_sync = GET_SECURITY_COOKIE() ^ (ulonglong)workspace;
+    frame_sync = GET_SECURITY_COOKIE() ^ (uint64_t)workspace;
     
     // 复制源数据到目标缓冲区
     simd_result = source_buffer1[1];
@@ -518,16 +518,16 @@ void RenderingSystem_ParameterInterpolator(uint64_t render_context, float *targe
     *(uint64_t *)(target_buffer + 6) = simd_result;
     
     // 处理浮点参数
-    target_value1 = *(float *)((longlong)source_buffer1 + 0x24);
+    target_value1 = *(float *)((int64_t)source_buffer1 + 0x24);
     target_value2 = *(float *)(source_buffer1 + 5);
-    target_value3 = *(float *)((longlong)source_buffer1 + 0x2c);
+    target_value3 = *(float *)((int64_t)source_buffer1 + 0x2c);
     target_buffer[8] = *(float *)(source_buffer1 + 4);
     target_buffer[9] = target_value1;
     target_buffer[10] = target_value2;
     target_buffer[0xb] = target_value3;
-    target_value1 = *(float *)((longlong)source_buffer1 + 0x34);
+    target_value1 = *(float *)((int64_t)source_buffer1 + 0x34);
     target_value2 = *(float *)(source_buffer1 + 7);
-    target_value3 = *(float *)((longlong)source_buffer1 + 0x3c);
+    target_value3 = *(float *)((int64_t)source_buffer1 + 0x3c);
     target_buffer[0xc] = *(float *)(source_buffer1 + 6);
     target_buffer[0xd] = target_value1;
     target_buffer[0xe] = target_value2;
@@ -542,13 +542,13 @@ void RenderingSystem_ParameterInterpolator(uint64_t render_context, float *targe
     ustack_138 = *source_buffer1;
     ustack_130 = source_buffer1[1];
     ustack_128 = *(int32_t *)(source_buffer1 + 2);
-    ustack_124 = *(int32_t *)((longlong)source_buffer1 + 0x14);
+    ustack_124 = *(int32_t *)((int64_t)source_buffer1 + 0x14);
     ustack_120 = *(int32_t *)(source_buffer1 + 3);
-    ustack_11c = *(int32_t *)((longlong)source_buffer1 + 0x1c);
+    ustack_11c = *(int32_t *)((int64_t)source_buffer1 + 0x1c);
     ustack_118 = *(int32_t *)(source_buffer1 + 4);
-    ustack_114 = *(int32_t *)((longlong)source_buffer1 + 0x24);
+    ustack_114 = *(int32_t *)((int64_t)source_buffer1 + 0x24);
     ustack_110 = *(int32_t *)(source_buffer1 + 5);
-    ustack_10c = *(int32_t *)((longlong)source_buffer1 + 0x2c);
+    ustack_10c = *(int32_t *)((int64_t)source_buffer1 + 0x2c);
     
     // 计算插值结果
     target_value1 = (*source_ptr1 - *source_ptr2) * interpolation_factor + *source_ptr2;
@@ -560,13 +560,13 @@ void RenderingSystem_ParameterInterpolator(uint64_t render_context, float *targe
     ustack_108 = *data_ptr;
     ustack_100 = data_ptr[1];
     ustack_f8 = *(int32_t *)(data_ptr + 2);
-    ustack_f4 = *(int32_t *)((longlong)data_ptr + 0x14);
+    ustack_f4 = *(int32_t *)((int64_t)data_ptr + 0x14);
     ustack_f0 = *(int32_t *)(data_ptr + 3);
-    ustack_ec = *(int32_t *)((longlong)data_ptr + 0x1c);
+    ustack_ec = *(int32_t *)((int64_t)data_ptr + 0x1c);
     ustack_e8 = *(int32_t *)(data_ptr + 4);
-    ustack_e4 = *(int32_t *)((longlong)data_ptr + 0x24);
+    ustack_e4 = *(int32_t *)((int64_t)data_ptr + 0x24);
     ustack_e0 = *(int32_t *)(data_ptr + 5);
-    ustack_dc = *(int32_t *)((longlong)data_ptr + 0x2c);
+    ustack_dc = *(int32_t *)((int64_t)data_ptr + 0x2c);
     
     FUN_1802bfc90(&ustack_108, float_array);
     FUN_18063b470(float_array, &ustack_108);
@@ -601,7 +601,7 @@ void RenderingSystem_ParameterInterpolator(uint64_t render_context, float *targe
             float_array[3] = 1.0;
             
             mask_result = movmskps(interpolation_result, simd_vector2);
-            data_offset = (ulonglong)(mask_result & 1);
+            data_offset = (uint64_t)(mask_result & 1);
             target_value8 = float_array[data_offset * 4];
             target_value9 = float_array[data_offset * 4 + 1];
             target_value10 = float_array[data_offset * 4 + 2];
@@ -662,10 +662,10 @@ void RenderingSystem_ParameterInterpolator(uint64_t render_context, float *targe
     FUN_18063b5f0(&ustack_138, &temp_value1);
     *(uint64_t *)target_buffer = ustack_138;
     *(uint64_t *)(target_buffer + 2) = ustack_130;
-    *(ulonglong *)(target_buffer + 4) = CONCAT44(ustack_124, ustack_128);
-    *(ulonglong *)(target_buffer + 6) = CONCAT44(ustack_11c, ustack_120);
-    *(ulonglong *)(target_buffer + 8) = CONCAT44(ustack_114, ustack_118);
-    *(ulonglong *)(target_buffer + 10) = CONCAT44(ustack_10c, ustack_110);
+    *(uint64_t *)(target_buffer + 4) = CONCAT44(ustack_124, ustack_128);
+    *(uint64_t *)(target_buffer + 6) = CONCAT44(ustack_11c, ustack_120);
+    *(uint64_t *)(target_buffer + 8) = CONCAT44(ustack_114, ustack_118);
+    *(uint64_t *)(target_buffer + 10) = CONCAT44(ustack_10c, ustack_110);
     
     target_value1 = 1.0 - interpolation_factor;
     target_buffer[1] = target_value1 * target_buffer[1];
@@ -679,7 +679,7 @@ void RenderingSystem_ParameterInterpolator(uint64_t render_context, float *targe
     target_buffer[10] = target_value3 * target_buffer[10];
     
     target_value1 = *(float *)(source_buffer2 + 7);
-    target_value2 = interpolation_factor * *(float *)((longlong)source_buffer2 + 0x34) + target_value1 * target_buffer[0xd];
+    target_value2 = interpolation_factor * *(float *)((int64_t)source_buffer2 + 0x34) + target_value1 * target_buffer[0xd];
     target_buffer[0xc] = interpolation_factor * *(float *)(source_buffer2 + 6) + target_value1 * target_buffer[0xc];
     target_buffer[0xd] = target_value2;
     target_buffer[0xe] = interpolation_factor * target_value1 + target_value1 * target_buffer[0xe];
@@ -743,8 +743,8 @@ void RenderingSystem_AdvancedMatrixTransformer(uint64_t param1, uint64_t param2,
     int32_t register_eax;
     uint mask_result;
     float *source_buffer;
-    longlong transform_matrix;
-    longlong data_buffer;
+    int64_t transform_matrix;
+    int64_t data_buffer;
     float transform_factor1;
     float transform_factor2;
     float transform_factor3;
@@ -782,13 +782,13 @@ void RenderingSystem_AdvancedMatrixTransformer(uint64_t param1, uint64_t param2,
     
     // 设置变换矩阵参数
     *(int *)(transform_matrix + -0x60) = (int)param2;
-    *(int *)(transform_matrix + -0x5c) = (int)((ulonglong)param2 >> 0x20);
+    *(int *)(transform_matrix + -0x5c) = (int)((uint64_t)param2 >> 0x20);
     *(int32_t *)(transform_matrix + -0x58) = register_xmm1_dc;
     *(int32_t *)(transform_matrix + -0x54) = register_xmm1_dd;
     
     // 计算SIMD向量变换
     simd_vector3._0_4_ = register_xmm0_dc + (float)param1;
-    simd_vector3._4_4_ = register_xmm0_dd + (float)((ulonglong)param1 >> 0x20);
+    simd_vector3._4_4_ = register_xmm0_dd + (float)((uint64_t)param1 >> 0x20);
     simd_vector3._8_4_ = register_xmm0_dc + register_xmm0_dc;
     simd_vector3._12_4_ = register_xmm0_dd + register_xmm0_dd;
     simd_vector2._4_12_ = simd_vector3._4_12_;
@@ -800,11 +800,11 @@ void RenderingSystem_AdvancedMatrixTransformer(uint64_t param1, uint64_t param2,
     
     // 执行SIMD掩码操作
     mask_result = movmskps(register_eax, simd_vector2);
-    target_buffer = (float *)(transform_matrix + -0x70 + (ulonglong)(mask_result & 1) * 0x10);
+    target_buffer = (float *)(transform_matrix + -0x70 + (uint64_t)(mask_result & 1) * 0x10);
     
     // 计算变换因子
     transform_factor5 = *target_buffer * (float)param4;
-    transform_factor6 = target_buffer[1] * (float)((ulonglong)param4 >> 0x20);
+    transform_factor6 = target_buffer[1] * (float)((uint64_t)param4 >> 0x20);
     
     // 处理高精度变换
     if (RENDERING_QUATERNION_NORMALIZATION_THRESHOLD < ABS(simd_vector2._0_4_)) {
@@ -879,7 +879,7 @@ void RenderingSystem_AdvancedMatrixTransformer(uint64_t param1, uint64_t param2,
     source_buffer[0xf] = RENDERING_FLOAT_MAX_VALUE;
     
     // 清理资源
-    FUN_1808fc050(*(ulonglong *)(transform_matrix + -0x50) ^ (ulonglong)&stack0x00000000, transform_factor6);
+    FUN_1808fc050(*(uint64_t *)(transform_matrix + -0x50) ^ (uint64_t)&stack0x00000000, transform_factor6);
 }
 
 // 函数别名：保持向后兼容性
@@ -921,8 +921,8 @@ void RenderingSystem_QuaternionRotationProcessor(void)
 {
     // 局部变量声明
     float *target_buffer;
-    longlong transform_matrix;
-    longlong data_buffer;
+    int64_t transform_matrix;
+    int64_t data_buffer;
     float rotation_factor1;
     float rotation_factor2;
     float rotation_factor3;
@@ -983,7 +983,7 @@ void RenderingSystem_QuaternionRotationProcessor(void)
     target_buffer[0xf] = RENDERING_FLOAT_MAX_VALUE;
     
     // 清理资源
-    FUN_1808fc050(*(ulonglong *)(transform_matrix + -0x50) ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(*(uint64_t *)(transform_matrix + -0x50) ^ (uint64_t)&stack0x00000000);
 }
 
 // 函数别名：保持向后兼容性
@@ -1023,8 +1023,8 @@ void RenderingSystem_VectorNormalizationProcessor(void)
 {
     // 局部变量声明
     float *target_buffer;
-    longlong transform_matrix;
-    longlong data_buffer;
+    int64_t transform_matrix;
+    int64_t data_buffer;
     float normalization_factor1;
     float normalization_factor2;
     int8_t register_xmm2[16];
@@ -1108,7 +1108,7 @@ void RenderingSystem_VectorNormalizationProcessor(void)
     target_buffer[0xf] = RENDERING_FLOAT_MAX_VALUE;
     
     // 清理资源
-    FUN_1808fc050(*(ulonglong *)(transform_matrix + -0x50) ^ (ulonglong)&stack0x00000000, normalization_factor6);
+    FUN_1808fc050(*(uint64_t *)(transform_matrix + -0x50) ^ (uint64_t)&stack0x00000000, normalization_factor6);
 }
 
 // 函数别名：保持向后兼容性
@@ -1150,8 +1150,8 @@ void RenderingSystem_FastTransformProcessor(void)
     float transform_factor1;
     float transform_factor2;
     float *target_buffer;
-    longlong transform_matrix;
-    longlong data_buffer;
+    int64_t transform_matrix;
+    int64_t data_buffer;
     float register_xmm9_da;
     float register_xmm11_da;
     float transform_factor3;
@@ -1197,7 +1197,7 @@ void RenderingSystem_FastTransformProcessor(void)
     target_buffer[0xf] = RENDERING_FLOAT_MAX_VALUE;
     
     // 清理资源
-    FUN_1808fc050(*(ulonglong *)(transform_matrix + -0x50) ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(*(uint64_t *)(transform_matrix + -0x50) ^ (uint64_t)&stack0x00000000);
 }
 
 // 函数别名：保持向后兼容性

@@ -96,7 +96,7 @@
  * @brief 系统内存块指针类型
  * 用于内存操作和管理的指针类型
  */
-typedef longlong* SystemMemoryBlockPtr;
+typedef int64_t* SystemMemoryBlockPtr;
 
 /**
  * @brief 系统数据指针类型
@@ -296,8 +296,8 @@ SystemErrorCode SystemDataProcessor(SystemDataPtr data_ptr, short x, short y, sh
     }
     
     // 更新计数器
-    *(short *)((longlong)data_ptr + SYSTEM_DATA_OFFSET_92) = 
-        *(short *)((longlong)data_ptr + SYSTEM_DATA_OFFSET_92) + 1;
+    *(short *)((int64_t)data_ptr + SYSTEM_DATA_OFFSET_92) = 
+        *(short *)((int64_t)data_ptr + SYSTEM_DATA_OFFSET_92) + 1;
     
     // 坐标累加
     int x_total = (int)x;
@@ -312,7 +312,7 @@ SystemErrorCode SystemDataProcessor(SystemDataPtr data_ptr, short x, short y, sh
     // 最大值和最小值追踪
     int x_max, x_min, y_max, y_min, z_max, z_min;
     
-    if (*(short *)((longlong)data_ptr + SYSTEM_DATA_OFFSET_92) == 1) {
+    if (*(short *)((int64_t)data_ptr + SYSTEM_DATA_OFFSET_92) == 1) {
         // 第一次采样时的初始化
         data_ptr[SYSTEM_DATA_OFFSET_1B] = x_total;
         data_ptr[SYSTEM_DATA_OFFSET_1C] = y_total;
@@ -362,7 +362,7 @@ SystemErrorCode SystemDataProcessor(SystemDataPtr data_ptr, short x, short y, sh
     
     // 阈值验证
     ushort threshold = *(ushort *)(data_ptr + SYSTEM_DATA_OFFSET_24);
-    if (*(ushort *)((longlong)data_ptr + SYSTEM_DATA_OFFSET_92) != threshold) {
+    if (*(ushort *)((int64_t)data_ptr + SYSTEM_DATA_OFFSET_92) != threshold) {
         return SYSTEM_ERROR_NONE;
     }
     
@@ -408,7 +408,7 @@ SystemErrorCode SystemDataProcessor(SystemDataPtr data_ptr, short x, short y, sh
     data_ptr[SYSTEM_DATA_OFFSET_13] = 0;
     
     // 重置状态
-    *(short *)((longlong)data_ptr + SYSTEM_DATA_OFFSET_92) = 0;
+    *(short *)((int64_t)data_ptr + SYSTEM_DATA_OFFSET_92) = 0;
     data_ptr[SYSTEM_DATA_OFFSET_1B] = 0;
     data_ptr[SYSTEM_DATA_OFFSET_1C] = 0;
     data_ptr[SYSTEM_DATA_OFFSET_1D] = 0;
@@ -482,7 +482,7 @@ SystemErrorCode NVSDKNGXParameterGetterD(void* params, unsigned long long param_
     }
     
     // 通过函数指针表调用实际的参数获取函数
-    void* function_ptr = *(void**)((longlong)params + 0x68);
+    void* function_ptr = *(void**)((int64_t)params + 0x68);
     if (function_ptr == NULL) {
         return SYSTEM_ERROR_NVSDK_FAILED;
     }
@@ -511,7 +511,7 @@ SystemErrorCode NVSDKNGXParameterGetterD3D11Resource(void* params, unsigned long
     }
     
     // 通过函数指针表调用实际的参数获取函数
-    void* function_ptr = *(void**)((longlong)params + 0x50);
+    void* function_ptr = *(void**)((int64_t)params + 0x50);
     if (function_ptr == NULL) {
         return SYSTEM_ERROR_NVSDK_FAILED;
     }
@@ -540,7 +540,7 @@ SystemErrorCode NVSDKNGXParameterGetterD3D12Resource(void* params, unsigned long
     }
     
     // 通过函数指针表调用实际的参数获取函数
-    void* function_ptr = *(void**)((longlong)params + 0x48);
+    void* function_ptr = *(void**)((int64_t)params + 0x48);
     if (function_ptr == NULL) {
         return SYSTEM_ERROR_NVSDK_FAILED;
     }
@@ -569,7 +569,7 @@ SystemErrorCode NVSDKNGXParameterGetterF(void* params, unsigned long long param_
     }
     
     // 通过函数指针表调用实际的参数获取函数
-    void* function_ptr = *(void**)((longlong)params + 0x70);
+    void* function_ptr = *(void**)((int64_t)params + 0x70);
     if (function_ptr == NULL) {
         return SYSTEM_ERROR_NVSDK_FAILED;
     }
@@ -598,7 +598,7 @@ SystemErrorCode NVSDKNGXParameterGetterI(void* params, unsigned long long param_
     }
     
     // 通过函数指针表调用实际的参数获取函数
-    void* function_ptr = *(void**)((longlong)params + 0x58);
+    void* function_ptr = *(void**)((int64_t)params + 0x58);
     if (function_ptr == NULL) {
         return SYSTEM_ERROR_NVSDK_FAILED;
     }
@@ -627,7 +627,7 @@ SystemErrorCode NVSDKNGXParameterGetterUI(void* params, unsigned long long param
     }
     
     // 通过函数指针表调用实际的参数获取函数
-    void* function_ptr = *(void**)((longlong)params + 0x60);
+    void* function_ptr = *(void**)((int64_t)params + 0x60);
     if (function_ptr == NULL) {
         return SYSTEM_ERROR_NVSDK_FAILED;
     }
@@ -656,7 +656,7 @@ SystemErrorCode NVSDKNGXParameterGetterULL(void* params, unsigned long long para
     }
     
     // 通过函数指针表调用实际的参数获取函数
-    void* function_ptr = *(void**)((longlong)params + 0x78);
+    void* function_ptr = *(void**)((int64_t)params + 0x78);
     if (function_ptr == NULL) {
         return SYSTEM_ERROR_NVSDK_FAILED;
     }
@@ -685,7 +685,7 @@ SystemErrorCode NVSDKNGXParameterGetterVoidPointer(void* params, unsigned long l
     }
     
     // 通过函数指针表调用实际的参数获取函数
-    void* function_ptr = *(void**)((longlong)params + 0x40);
+    void* function_ptr = *(void**)((int64_t)params + 0x40);
     if (function_ptr == NULL) {
         return SYSTEM_ERROR_NVSDK_FAILED;
     }
@@ -714,7 +714,7 @@ SystemErrorCode NVSDKNGXParameterSetterD(void* params, unsigned long long param_
     }
     
     // 通过函数指针表调用实际的参数设置函数
-    void* function_ptr = *(void**)((longlong)params + 0x28);
+    void* function_ptr = *(void**)((int64_t)params + 0x28);
     if (function_ptr == NULL) {
         return SYSTEM_ERROR_NVSDK_FAILED;
     }
@@ -743,7 +743,7 @@ SystemErrorCode NVSDKNGXParameterSetterD3D11Resource(void* params, unsigned long
     }
     
     // 通过函数指针表调用实际的参数设置函数
-    void* function_ptr = *(void**)((longlong)params + 0x10);
+    void* function_ptr = *(void**)((int64_t)params + 0x10);
     if (function_ptr == NULL) {
         return SYSTEM_ERROR_NVSDK_FAILED;
     }
@@ -772,7 +772,7 @@ SystemErrorCode NVSDKNGXParameterSetterD3D12Resource(void* params, unsigned long
     }
     
     // 通过函数指针表调用实际的参数设置函数
-    void* function_ptr = *(void**)((longlong)params + 8);
+    void* function_ptr = *(void**)((int64_t)params + 8);
     if (function_ptr == NULL) {
         return SYSTEM_ERROR_NVSDK_FAILED;
     }
@@ -801,7 +801,7 @@ SystemErrorCode NVSDKNGXParameterSetterF(void* params, unsigned long long param_
     }
     
     // 通过函数指针表调用实际的参数设置函数
-    void* function_ptr = *(void**)((longlong)params + 0x30);
+    void* function_ptr = *(void**)((int64_t)params + 0x30);
     if (function_ptr == NULL) {
         return SYSTEM_ERROR_NVSDK_FAILED;
     }
@@ -830,7 +830,7 @@ SystemErrorCode NVSDKNGXParameterSetterI(void* params, unsigned long long param_
     }
     
     // 通过函数指针表调用实际的参数设置函数
-    void* function_ptr = *(void**)((longlong)params + 0x18);
+    void* function_ptr = *(void**)((int64_t)params + 0x18);
     if (function_ptr == NULL) {
         return SYSTEM_ERROR_NVSDK_FAILED;
     }
@@ -859,7 +859,7 @@ SystemErrorCode NVSDKNGXParameterSetterUI(void* params, unsigned long long param
     }
     
     // 通过函数指针表调用实际的参数设置函数
-    void* function_ptr = *(void**)((longlong)params + 0x20);
+    void* function_ptr = *(void**)((int64_t)params + 0x20);
     if (function_ptr == NULL) {
         return SYSTEM_ERROR_NVSDK_FAILED;
     }
@@ -888,7 +888,7 @@ SystemErrorCode NVSDKNGXParameterSetterULL(void* params, unsigned long long para
     }
     
     // 通过函数指针表调用实际的参数设置函数
-    void* function_ptr = *(void**)((longlong)params + 0x38);
+    void* function_ptr = *(void**)((int64_t)params + 0x38);
     if (function_ptr == NULL) {
         return SYSTEM_ERROR_NVSDK_FAILED;
     }
@@ -917,7 +917,7 @@ SystemErrorCode NVSDKNGXParameterSetterVoidPointer(void* params, unsigned long l
     }
     
     // 通过函数指针表调用实际的参数设置函数
-    void* function_ptr = *(void**)((longlong)params);
+    void* function_ptr = *(void**)((int64_t)params);
     if (function_ptr == NULL) {
         return SYSTEM_ERROR_NVSDK_FAILED;
     }
@@ -951,7 +951,7 @@ SystemErrorCode ThreadSafeFunctionWrapper(void* function_ptr, void* param1, void
     
     // 获取线程本地存储
     void** tls_ptr = (void**)
-        (*(longlong *)((longlong)ThreadLocalStoragePointer + (unsigned long long)__tls_index * 8) + SYSTEM_TLS_INDEX_OFFSET);
+        (*(int64_t *)((int64_t)ThreadLocalStoragePointer + (unsigned long long)__tls_index * 8) + SYSTEM_TLS_INDEX_OFFSET);
     
     // 设置回调函数
     void* current_callback = NULL;
@@ -997,7 +997,7 @@ SystemErrorCode D3D11AllocateParameters(void* d3d11_device)
     // 调用实际的分配函数
     void* result = ((void* (*)(void*))function_ptr)(d3d11_device);
     
-    return (SystemErrorCode)(longlong)result;
+    return (SystemErrorCode)(int64_t)result;
 }
 
 /**
@@ -1027,7 +1027,7 @@ SystemErrorCode D3D11CreateFeature(void* d3d11_device, int feature_type, void* i
     // 调用实际的创建函数
     void* result = ((void* (*)(void*, int, void*, void*))function_ptr)(d3d11_device, feature_type, init_params, feature_handle);
     
-    return (SystemErrorCode)(longlong)result;
+    return (SystemErrorCode)(int64_t)result;
 }
 
 /**
@@ -1054,7 +1054,7 @@ SystemErrorCode D3D11DestroyParameters(void* parameter_block)
     // 调用实际的销毁函数
     void* result = ((void* (*)(void*))function_ptr)(parameter_block);
     
-    return (SystemErrorCode)(longlong)result;
+    return (SystemErrorCode)(int64_t)result;
 }
 
 /**
@@ -1084,7 +1084,7 @@ SystemErrorCode D3D11EvaluateFeature(void* d3d11_device, void* feature_handle, v
     // 调用实际的评估函数
     void* eval_result = ((void* (*)(void*, void*, void*, void*))function_ptr)(d3d11_device, feature_handle, eval_params, result);
     
-    return (SystemErrorCode)(longlong)eval_result;
+    return (SystemErrorCode)(int64_t)eval_result;
 }
 
 /**
@@ -1133,7 +1133,7 @@ SystemErrorCode D3D11GetCapabilityParameters(void* d3d11_device)
     // 调用实际的参数获取函数
     void* result = ((void* (*)(void*))function_ptr)(d3d11_device);
     
-    return (SystemErrorCode)(longlong)result;
+    return (SystemErrorCode)(int64_t)result;
 }
 
 /** @} */
@@ -1160,7 +1160,7 @@ static void ThreadLocalStorageCallback(unsigned int param1, void* param2)
 {
     // 获取线程本地存储中的回调函数
     void** tls_ptr = (void**)
-        (*(longlong *)((longlong)ThreadLocalStoragePointer + (unsigned long long)__tls_index * 8) + SYSTEM_TLS_INDEX_OFFSET);
+        (*(int64_t *)((int64_t)ThreadLocalStoragePointer + (unsigned long long)__tls_index * 8) + SYSTEM_TLS_INDEX_OFFSET);
     
     void* callback = *tls_ptr;
     if (callback != NULL) {

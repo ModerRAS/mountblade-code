@@ -176,11 +176,11 @@ void AudioSystem_ExecuteSystemReset(void);
 void AudioSystem_ExecuteSystemConfigure(float param_1, uint64_t param_2, uint64_t param_3, int64_t param_4);
 void AudioSystem_ExecuteSystemProcess(uint64_t param_1, uint64_t param_2, float param_3, float param_4);
 void AudioSystem_ExecuteSystemValidate(uint64_t param_1, uint64_t param_2, int32_t* param_3);
-void AudioSystem_ExecuteSystemSynchronize(longlong param_1);
-void AudioSystem_ExecuteSystemControl(longlong param_1);
-void AudioSystem_ExecuteSystemAdjust(longlong param_1);
-void AudioSystem_ExecuteSystemCalculate(longlong param_1);
-void AudioSystem_ExecuteSystemManage(longlong param_1, ulonglong param_2, uint64_t param_3, int64_t param_4);
+void AudioSystem_ExecuteSystemSynchronize(int64_t param_1);
+void AudioSystem_ExecuteSystemControl(int64_t param_1);
+void AudioSystem_ExecuteSystemAdjust(int64_t param_1);
+void AudioSystem_ExecuteSystemCalculate(int64_t param_1);
+void AudioSystem_ExecuteSystemManage(int64_t param_1, uint64_t param_2, uint64_t param_3, int64_t param_4);
 void AudioSystem_ExecuteSystemHandle(uint64_t param_1, float param_2, float param_3);
 void AudioSystem_ExecuteSystemProcess(float param_1);
 
@@ -484,7 +484,7 @@ void AudioSystem_EffectProcessor(uint64_t param_1, int64_t param_2, int32_t* par
  * - 简化版本保留了核心功能框架
  * - 实际的距离计算逻辑被简化为基本验证
  */
-void Physics_DistanceCalculator_Simplified(longlong param_1)
+void Physics_DistanceCalculator_Simplified(int64_t param_1)
 {
     // 简化实现：基本的距离计算
     if (param_1 == 0) {
@@ -513,7 +513,7 @@ void Physics_DistanceCalculator_Simplified(longlong param_1)
 /**
  * @brief 物理系统距离计算器
  */
-void Physics_DistanceCalculator(longlong param_1)
+void Physics_DistanceCalculator(int64_t param_1)
 {
     // 简化实现：基本的距离计算
     if (param_1 == 0) {
@@ -536,7 +536,7 @@ void Physics_DistanceCalculator(longlong param_1)
  * - 简化版本保留了核心功能框架
  * - 实际的碰撞检测逻辑被简化为基本验证
  */
-void Physics_CollisionDetector_Simplified(longlong param_1)
+void Physics_CollisionDetector_Simplified(int64_t param_1)
 {
     // 简化实现：基本的碰撞检测
     if (param_1 == 0) {
@@ -565,7 +565,7 @@ void Physics_CollisionDetector_Simplified(longlong param_1)
 /**
  * @brief 物理系统碰撞检测器
  */
-void Physics_CollisionDetector(longlong param_1)
+void Physics_CollisionDetector(int64_t param_1)
 {
     // 简化实现：基本的碰撞检测
     if (param_1 == 0) {
@@ -588,7 +588,7 @@ void Physics_CollisionDetector(longlong param_1)
  * - 简化版本保留了核心功能框架
  * - 实际的状态管理逻辑被简化为基本验证
  */
-void Physics_StateManager_Simplified(longlong param_1)
+void Physics_StateManager_Simplified(int64_t param_1)
 {
     // 简化实现：基本的状态管理
     if (param_1 == 0) {
@@ -617,7 +617,7 @@ void Physics_StateManager_Simplified(longlong param_1)
 /**
  * @brief 物理系统状态管理器
  */
-void Physics_StateManager(longlong param_1)
+void Physics_StateManager(int64_t param_1)
 {
     // 简化实现：基本的状态管理
     if (param_1 == 0) {
@@ -808,7 +808,7 @@ void System_CallbackManager(uint64_t param_1, uint64_t param_2, int32_t* param_3
  * - 简化版本保留了核心功能框架
  * - 实际的参数验证逻辑被简化为基本验证
  */
-void System_ParameterValidator_Simplified(longlong param_1)
+void System_ParameterValidator_Simplified(int64_t param_1)
 {
     // 简化实现：基本的参数验证
     if (param_1 == 0) {
@@ -837,7 +837,7 @@ void System_ParameterValidator_Simplified(longlong param_1)
 /**
  * @brief 系统参数验证器
  */
-void System_ParameterValidator(longlong param_1)
+void System_ParameterValidator(int64_t param_1)
 {
     // 简化实现：基本的参数验证
     if (param_1 == 0) {
@@ -860,7 +860,7 @@ void System_ParameterValidator(longlong param_1)
  * - 简化版本保留了核心功能框架
  * - 实际的状态同步逻辑被简化为基本验证
  */
-void System_StateSynchronizer_Simplified(longlong param_1)
+void System_StateSynchronizer_Simplified(int64_t param_1)
 {
     // 简化实现：基本的状态同步
     if (param_1 == 0) {
@@ -889,7 +889,7 @@ void System_StateSynchronizer_Simplified(longlong param_1)
 /**
  * @brief 系统状态同步器
  */
-void System_StateSynchronizer(longlong param_1)
+void System_StateSynchronizer(int64_t param_1)
 {
     // 简化实现：基本的状态同步
     if (param_1 == 0) {
@@ -915,7 +915,7 @@ void System_StateSynchronizer(longlong param_1)
  * - 简化版本保留了核心功能框架
  * - 实际的数据处理逻辑被简化为基本验证
  */
-void System_DataProcessor_Simplified(longlong param_1, ulonglong param_2, uint64_t param_3, int64_t param_4)
+void System_DataProcessor_Simplified(int64_t param_1, uint64_t param_2, uint64_t param_3, int64_t param_4)
 {
     // 简化实现：基本的数据处理
     if (param_1 == 0 || param_4 == 0) {
@@ -947,7 +947,7 @@ void System_DataProcessor_Simplified(longlong param_1, ulonglong param_2, uint64
 /**
  * @brief 系统数据处理器
  */
-void System_DataProcessor(longlong param_1, ulonglong param_2, uint64_t param_3, int64_t param_4)
+void System_DataProcessor(int64_t param_1, uint64_t param_2, uint64_t param_3, int64_t param_4)
 {
     // 简化实现：基本的数据处理
     if (param_1 == 0 || param_4 == 0) {

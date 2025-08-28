@@ -111,27 +111,27 @@ typedef uint64_t CleanupStateHandle;             // 清理状态句柄
  * - 需要处理清理过程中的错误
  * - 需要确保内存访问的安全性
  */
-void FUN_18027f4d0(longlong param_1)
+void FUN_18027f4d0(int64_t param_1)
 
 {
   // 语义化变量定义
-  ulonglong *resource_array_ptr;                  // 资源数组指针
-  ulonglong resource_count;                       // 资源数量
-  ulonglong *current_resource_ptr;                // 当前资源指针
-  longlong current_resource_value;                // 当前资源值
-  ulonglong resource_index;                       // 资源索引
+  uint64_t *resource_array_ptr;                  // 资源数组指针
+  uint64_t resource_count;                       // 资源数量
+  uint64_t *current_resource_ptr;                // 当前资源指针
+  int64_t current_resource_value;                // 当前资源值
+  uint64_t resource_index;                       // 资源索引
   uint64_t *state_flag_ptr;                     // 状态标志指针
   
   // 获取渲染上下文信息
-  resource_count = *(ulonglong *)(param_1 + 0x10);
-  resource_array_ptr = *(ulonglong **)(param_1 + 8);
+  resource_count = *(uint64_t *)(param_1 + 0x10);
+  resource_array_ptr = *(uint64_t **)(param_1 + 8);
   resource_index = 0;
   
   // 遍历和清理资源
   if (resource_count != 0) {
     do {
       // 获取当前资源
-      current_resource_value = *(longlong *)(resource_array_ptr + resource_index * 8);
+      current_resource_value = *(int64_t *)(resource_array_ptr + resource_index * 8);
       if (current_resource_value != 0) {
         // 调用渲染系统清理预处理
         RenderSystemCleanup();
@@ -142,7 +142,7 @@ void FUN_18027f4d0(longlong param_1)
       *(uint64_t *)(resource_array_ptr + resource_index * 8) = 0;
       resource_index = resource_index + 1;
     } while (resource_index < resource_count);
-    resource_count = *(ulonglong *)(param_1 + 0x10);
+    resource_count = *(uint64_t *)(param_1 + 0x10);
   }
   
   // 重置状态标志
@@ -150,7 +150,7 @@ void FUN_18027f4d0(longlong param_1)
   *state_flag_ptr = 0;
   
   // 处理特殊情况：当资源数量大于1且资源数组存在时的特殊清理
-  if ((1 < resource_count) && (*(longlong *)(param_1 + 8) != 0)) {
+  if ((1 < resource_count) && (*(int64_t *)(param_1 + 8) != 0)) {
     // 执行深度清理操作
     ResourceManager();
   }
@@ -196,27 +196,27 @@ void FUN_18027f4d0(longlong param_1)
  * - 处理更复杂的资源依赖关系
  * - 提供更完整的资源释放保证
  */
-void FUN_18027f4f0(longlong param_1)
+void FUN_18027f4f0(int64_t param_1)
 
 {
   // 语义化变量定义
-  ulonglong *resource_array_ptr;                  // 资源数组指针
-  ulonglong resource_count;                       // 资源数量
-  ulonglong *current_resource_ptr;                // 当前资源指针
-  longlong current_resource_value;                // 当前资源值
-  ulonglong resource_index;                       // 资源索引
+  uint64_t *resource_array_ptr;                  // 资源数组指针
+  uint64_t resource_count;                       // 资源数量
+  uint64_t *current_resource_ptr;                // 当前资源指针
+  int64_t current_resource_value;                // 当前资源值
+  uint64_t resource_index;                       // 资源索引
   uint64_t *state_flag_ptr;                     // 状态标志指针
   
   // 获取渲染上下文信息
-  resource_count = *(ulonglong *)(param_1 + 0x10);
-  resource_array_ptr = *(ulonglong **)(param_1 + 8);
+  resource_count = *(uint64_t *)(param_1 + 0x10);
+  resource_array_ptr = *(uint64_t **)(param_1 + 8);
   resource_index = 0;
   
   // 深度遍历和清理资源
   if (resource_count != 0) {
     do {
       // 获取当前资源
-      current_resource_value = *(longlong *)(resource_array_ptr + resource_index * 8);
+      current_resource_value = *(int64_t *)(resource_array_ptr + resource_index * 8);
       if (current_resource_value != 0) {
         // 调用渲染系统清理预处理
         RenderSystemCleanup();
@@ -227,7 +227,7 @@ void FUN_18027f4f0(longlong param_1)
       *(uint64_t *)(resource_array_ptr + resource_index * 8) = 0;
       resource_index = resource_index + 1;
     } while (resource_index < resource_count);
-    resource_count = *(ulonglong *)(param_1 + 0x10);
+    resource_count = *(uint64_t *)(param_1 + 0x10);
   }
   
   // 完全重置状态标志
@@ -235,7 +235,7 @@ void FUN_18027f4f0(longlong param_1)
   *state_flag_ptr = 0;
   
   // 处理特殊情况：当资源数量大于1且资源数组存在时的特殊深度清理
-  if ((1 < resource_count) && (*(longlong *)(param_1 + 8) != 0)) {
+  if ((1 < resource_count) && (*(int64_t *)(param_1 + 8) != 0)) {
     // 执行深度清理操作
     ResourceManager();
   }

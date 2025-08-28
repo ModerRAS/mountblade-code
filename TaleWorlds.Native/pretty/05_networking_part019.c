@@ -131,28 +131,28 @@ void FUN_180852090(uint64_t *param_1, uint64_t *param_2)
     char cVar3;                                      // 字符状态变量
     short sVar4;                                      // 短整型网络变量
     int iVar5;                                       // 整型网络变量
-    longlong lVar6;                                   // 长整型网络变量
-    longlong lVar7;                                   // 长整型网络变量
+    int64_t lVar6;                                   // 长整型网络变量
+    int64_t lVar7;                                   // 长整型网络变量
     uint64_t *puVar8;                               // 网络数据指针
     uint64_t *puVar9;                               // 网络数据指针
     int iVar10;                                      // 整型索引变量
     uint64_t *puVar11;                              // 网络数据指针
     uint64_t *puVar12;                              // 网络数据指针
-    longlong *plVar13;                                // 网络长整型指针
-    ulonglong uVar14;                                 // 无符号长整型变量
-    ulonglong uVar15;                                 // 无符号长整型变量
+    int64_t *plVar13;                                // 网络长整型指针
+    uint64_t uVar14;                                 // 无符号长整型变量
+    uint64_t uVar15;                                 // 无符号长整型变量
     int iVar16;                                      // 整型计数变量
     uint uVar17;                                     // 无符号整型变量
     int iVar18;                                      // 整型索引变量
-    ulonglong uVar19;                                 // 无符号长整型变量
+    uint64_t uVar19;                                 // 无符号长整型变量
     uint64_t *puVar20;                              // 网络数据指针
     code *pcVar21;                                    // 代码指针变量
     uint uVar22;                                     // 无符号整型变量
-    ulonglong uVar23;                                 // 无符号长整型变量
+    uint64_t uVar23;                                 // 无符号长整型变量
     
     // 网络系统栈变量
     int8_t auStack_338 [32];                     // 32字节网络栈缓冲区
-    longlong *plStack_318;                            // 网络长整型栈指针
+    int64_t *plStack_318;                            // 网络长整型栈指针
     uint64_t *puStack_310;                          // 网络数据栈指针
     uint uStack_308;                                  // 无符号整型栈变量
     uint uStack_300;                                  // 无符号整型栈变量
@@ -164,21 +164,21 @@ void FUN_180852090(uint64_t *param_1, uint64_t *param_2)
     uint uStack_2d0;                                  // 无符号整型栈变量
     uint64_t uStack_2c8;                            // 8字节网络栈变量
     uint64_t uStack_2c0;                            // 8字节网络栈变量
-    ulonglong uStack_2b8;                            // 无符号长整型栈变量
+    uint64_t uStack_2b8;                            // 无符号长整型栈变量
     uint64_t *puStack_2b0;                          // 网络数据栈指针
-    longlong lStack_2a8;                              // 长整型栈变量
-    longlong lStack_2a0;                              // 长整型栈变量
+    int64_t lStack_2a8;                              // 长整型栈变量
+    int64_t lStack_2a0;                              // 长整型栈变量
     uint64_t auStack_298 [2];                       // 16字节网络栈数组
     int8_t *puStack_288;                          // 网络数据栈指针
     int iStack_280;                                   // 整型栈变量
     int32_t uStack_27c;                            // 4字节网络栈变量
     int8_t auStack_278 [512];                     // 512字节网络栈缓冲区
     int8_t auStack_78 [40];                        // 40字节网络栈缓冲区
-    ulonglong uStack_50;                              // 无符号长整型栈变量
+    uint64_t uStack_50;                              // 无符号长整型栈变量
     
     // 第一阶段：网络系统初始化和安全检查
     // 初始化网络系统状态和执行安全保护机制
-    uStack_50 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_338;  // 计算网络安全保护密钥
+    uStack_50 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_338;  // 计算网络安全保护密钥
     
     // 第二阶段：网络连接状态检查和初始化
     // 获取网络连接状态并执行必要的初始化操作
@@ -189,10 +189,10 @@ void FUN_180852090(uint64_t *param_1, uint64_t *param_2)
     if (lVar6 != 0) {
         // 获取网络连接配置信息
         uStack_2c8 = *(uint64_t **)(lVar6 + 0x10);   // 获取连接配置指针
-        uStack_2c0 = *(ulonglong *)(lVar6 + 0x18);     // 获取连接配置大小
+        uStack_2c0 = *(uint64_t *)(lVar6 + 0x18);     // 获取连接配置大小
         
         // 执行网络连接配置操作
-        lVar6 = (**(code **)(*(longlong *)*param_2 + 0x150))((longlong *)*param_2, &uStack_2c8);
+        lVar6 = (**(code **)(*(int64_t *)*param_2 + 0x150))((int64_t *)*param_2, &uStack_2c8);
         
         // 检查配置操作是否成功
         if (lVar6 == 0) {
@@ -206,10 +206,10 @@ void FUN_180852090(uint64_t *param_1, uint64_t *param_2)
             uStack_300 = (uint)uStack_2c0._1_1_;        // 提取配置状态位
             uStack_308 = (uint)(byte)uStack_2c0;         // 提取配置状态位
             puStack_310 = (uint64_t *)CONCAT44(puStack_310._4_4_, (uint)uStack_2c8._6_2_);
-            plStack_318 = (longlong *)CONCAT44(plStack_318._4_4_, (uint)uStack_2c8._4_2_);
+            plStack_318 = (int64_t *)CONCAT44(plStack_318._4_4_, (uint)uStack_2c8._4_2_);
             
             // 调用网络错误处理函数
-            FUN_18076b390(auStack_78, 0x27, &unknown_var_8960_ptr, (ulonglong)uStack_2c8 & 0xffffffff);
+            FUN_18076b390(auStack_78, 0x27, &unknown_var_8960_ptr, (uint64_t)uStack_2c8 & 0xffffffff);
         }
         
         // 更新网络连接状态
@@ -259,7 +259,7 @@ void FUN_180852090(uint64_t *param_1, uint64_t *param_2)
                 
                 // 第六阶段：资源数据处理和排序
                 // 执行资源数据的处理和排序操作
-                lVar6 = (longlong)iStack_280;            // 获取资源数量
+                lVar6 = (int64_t)iStack_280;            // 获取资源数量
                 if (iStack_280 != 0) {
                     // 获取数据处理配置
                     lVar7 = (**(code **)*param_1)(param_1);
@@ -282,11 +282,11 @@ LAB_180852282:
                     
                     // 第七阶段：资源验证和过滤
                     // 验证资源的有效性和执行过滤操作
-                    lVar6 = (longlong)(iVar18 + -1);       // 计算资源索引
+                    lVar6 = (int64_t)(iVar18 + -1);       // 计算资源索引
                     if (-1 < iVar18 + -1) {
                         do {
                             // 检查资源状态标志
-                            if (((*(uint *)(*(longlong *)(puStack_288 + lVar6 * 8) + 0x2d8) >> 6 & 1) != 0) &&
+                            if (((*(uint *)(*(int64_t *)(puStack_288 + lVar6 * 8) + 0x2d8) >> 6 & 1) != 0) &&
                                 (iVar5 = FUN_18084e710(param_1), iVar5 != 0)) {
                                 goto LAB_1808522f9;      // 资源验证失败，跳转到清理
                             }
@@ -322,14 +322,14 @@ LAB_180852302:
             // 使用现有的网络连接配置
             lVar6 = (*(code *)**(uint64_t **)param_1[0xc])();  // 获取现有配置
             uStack_2c8 = *(uint64_t **)(lVar6 + 0x10);        // 获取配置数据
-            uStack_2c0 = *(ulonglong *)(lVar6 + 0x18);          // 获取配置大小
+            uStack_2c0 = *(uint64_t *)(lVar6 + 0x18);          // 获取配置大小
         }
         
         // 第十阶段：网络连接状态同步
         // 同步网络连接状态和配置信息
         lVar6 = param_1[8];                               // 获取网络连接句柄
         if ((*(uint64_t **)(lVar6 + 0x58) != uStack_2c8) ||
-            (*(ulonglong *)(lVar6 + 0x60) != uStack_2c0)) {
+            (*(uint64_t *)(lVar6 + 0x60) != uStack_2c0)) {
             // 连接状态需要同步
             if ((*(int *)(lVar6 + 0x58) == 0) &&
                 (((*(int *)(lVar6 + 0x5c) == 0 && (*(int *)(lVar6 + 0x60) == 0)) &&
@@ -379,18 +379,18 @@ joined_r0x0001808523af:
                 
                 // 检查是否有活动连接
                 if (0 < iVar5) {
-                    lVar7 = *(longlong *)(param_1[8] + 0x38);  // 获取连接表
+                    lVar7 = *(int64_t *)(param_1[8] + 0x38);  // 获取连接表
                     puVar20 = puVar11;                     // 初始化连接指针
                     
                     // 遍历活动连接
                     do {
                         iVar18 = (int)puVar20;            // 获取连接索引
                         // 检查连接是否已存在
-                        if ((*(longlong *)(lVar7 + (longlong)iVar18 * 0x10) == *(longlong *)(lVar6 + 0x10)) &&
-                            (*(longlong *)(lVar7 + 8 + (longlong)iVar18 * 0x10) == *(longlong *)(lVar6 + 0x18))) {
+                        if ((*(int64_t *)(lVar7 + (int64_t)iVar18 * 0x10) == *(int64_t *)(lVar6 + 0x10)) &&
+                            (*(int64_t *)(lVar7 + 8 + (int64_t)iVar18 * 0x10) == *(int64_t *)(lVar6 + 0x18))) {
                             goto joined_r0x0001808523af;   // 连接已存在，跳转到连接处理
                         }
-                        puVar20 = (uint64_t *)(ulonglong)(iVar18 + 1U);  // 移动到下一个连接
+                        puVar20 = (uint64_t *)(uint64_t)(iVar18 + 1U);  // 移动到下一个连接
                     } while ((int)(iVar18 + 1U) < iVar5);
                 }
                 
@@ -425,13 +425,13 @@ LAB_180852a22:
     // 执行网络系统的错误处理和资源清理操作
 FUN_180852aaa:
     // 执行系统安全检查和资源清理
-    FUN_1808fc050(uStack_50 ^ (ulonglong)auStack_338);  // 安全检查和资源清理
+    FUN_1808fc050(uStack_50 ^ (uint64_t)auStack_338);  // 安全检查和资源清理
     
     // 第十五阶段：网络连接处理和验证
     // 处理网络连接和执行连接验证操作
 LAB_18085243e:
     if ((puVar12 < *(uint64_t **)(lVar6 + 0x38)) ||
-        (*(uint64_t **)(lVar6 + 0x38) + (longlong)*(int *)(lVar6 + 0x40) * 2 <= puVar12)) {
+        (*(uint64_t **)(lVar6 + 0x38) + (int64_t)*(int *)(lVar6 + 0x40) * 2 <= puVar12)) {
         goto LAB_180852518;                               // 连接无效，跳转到状态检查
     }
     
@@ -444,7 +444,7 @@ LAB_18085243e:
     if (puVar9 != puVar8) {
         while ((lVar7 = (*(code *)**(uint64_t **)puVar9[2])(),  // 执行连接验证
                uStack_2c8 != *(uint64_t **)(lVar7 + 0x10) ||
-               (uStack_2c0 != *(ulonglong *)(lVar7 + 0x18)))) {
+               (uStack_2c0 != *(uint64_t *)(lVar7 + 0x18)))) {
             if ((puVar9 == puVar8) || (puVar9 = (uint64_t *)*puVar9, puVar9 == puVar8)) {
                 goto LAB_1808524b7;                       // 连接验证完成，跳转到状态检查
             }
@@ -460,7 +460,7 @@ LAB_1808524b7:
     // 第十六阶段：网络连接状态验证和处理
     // 验证网络连接状态并执行相应的处理操作
     if (((int)uStack_2c8 != 0) ||
-        ((((int)((ulonglong)uStack_2c8 >> 0x20) != 0 || ((int)uStack_2c0 != 0)) ||
+        ((((int)((uint64_t)uStack_2c8 >> 0x20) != 0 || ((int)uStack_2c0 != 0)) ||
             ((int)(uStack_2c0 >> 0x20) != 0)))) {
         // 连接状态需要处理
         uStack_2b8 = 0;                                  // 初始化状态变量
@@ -506,7 +506,7 @@ LAB_180852518:
                 iVar18 = (int)uVar15;                    // 获取数据索引
                 // 处理当前数据项
                 iVar5 = FUN_18073cdf0(param_1[0xf],
-                                      *(uint64_t *)(*(longlong *)(param_1[0x10] + lStack_2a0) + 0x30));
+                                      *(uint64_t *)(*(int64_t *)(param_1[0x10] + lStack_2a0) + 0x30));
                 if (iVar5 != 0) goto LAB_180852943;     // 数据处理失败，跳转到清理
                 
                 // 获取数据源信息
@@ -554,15 +554,15 @@ LAB_180852518:
                 // 更新数据计数器
                 iVar5 = (int)uVar23;                     // 获取当前计数
                 uVar22 = iVar5 + 1;                       // 计算新的计数
-                uVar23 = (ulonglong)uVar22;              // 更新计数器
+                uVar23 = (uint64_t)uVar22;              // 更新计数器
                 uVar17 = iVar16 + 1;                      // 计算新的数据大小
-                uVar14 = (ulonglong)uVar17;               // 更新数据大小
-                uVar19 = (ulonglong)uVar17;               // 更新数据计数
+                uVar14 = (uint64_t)uVar17;               // 更新数据大小
+                uVar19 = (uint64_t)uVar17;               // 更新数据计数
                 uStack_2c0 = CONCAT44(uStack_2c0._4_4_, uVar17);  // 更新缓冲区大小
                 
                 // 复制数据到缓冲区
                 lStack_2a0 = lStack_2a0 + 8;             // 移动到下一个数据项
-                puVar11[iVar16] = *(uint64_t *)(lStack_2a8 + (longlong)iVar5 * 8);  // 复制数据
+                puVar11[iVar16] = *(uint64_t *)(lStack_2a8 + (int64_t)iVar5 * 8);  // 复制数据
             } while ((int)uVar22 < *(int *)(param_1 + 0x11));  // 继续处理数据
         }
         
@@ -570,7 +570,7 @@ LAB_180852518:
         // 验证网络数据的完整性和执行清理操作
         uVar23 = 0;                                       // 初始化验证计数器
         plVar13 = param_1 + 0x10;                        // 获取数据指针
-        uVar17 = *(uint *)((longlong)param_1 + 0x8c);   // 获取验证标志
+        uVar17 = *(uint *)((int64_t)param_1 + 0x8c);   // 获取验证标志
         
         // 检查数据验证标志
         if ((int)((uVar17 ^ (int)uVar17 >> 0x1f) - ((int)uVar17 >> 0x1f)) < 0) {
@@ -578,14 +578,14 @@ LAB_180852518:
             if (*(int *)(param_1 + 0x11) < 1) {
                 // 检查是否有数据需要验证
                 if ((0 < (int)uVar17) && (*plVar13 != 0)) {
-                    plStack_318 = (longlong *)CONCAT71(plStack_318._1_7_, 1);  // 设置验证标志
+                    plStack_318 = (int64_t *)CONCAT71(plStack_318._1_7_, 1);  // 设置验证标志
                     // 执行数据验证操作
                     FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *plVar13, &unknown_var_8432_ptr, 0x100);
                 }
                 
                 // 清理数据指针
                 *plVar13 = 0;
-                *(int32_t *)((longlong)param_1 + 0x8c) = 0;
+                *(int32_t *)((int64_t)param_1 + 0x8c) = 0;
                 goto LAB_1808526bf;                       // 跳转到下一阶段
             }
             
@@ -601,7 +601,7 @@ LAB_1808526bf:
         iVar5 = *(int *)(param_1 + 0x11);               // 获取数据数量
         if (iVar5 < 0) {
             // 清理无效数据
-            memset(*plVar13 + (longlong)iVar5 * 8, 0, (longlong)-iVar5 << 3);  // 清理数据区域
+            memset(*plVar13 + (int64_t)iVar5 * 8, 0, (int64_t)-iVar5 << 3);  // 清理数据区域
         }
         
         // 重置数据计数器
@@ -616,7 +616,7 @@ LAB_1808526bf:
                 iVar18 = (int)uVar15;                    // 获取数据索引
                 // 处理当前数据项
                 iVar5 = FUN_18073cdf0(param_1[0xf],
-                                      *(uint64_t *)(*(longlong *)(param_1[0x12] + uVar23) + 0x30));
+                                      *(uint64_t *)(*(int64_t *)(param_1[0x12] + uVar23) + 0x30));
                 if (iVar5 != 0) goto LAB_180852943;     // 数据处理失败，跳转到清理
                 
                 // 获取数据源信息
@@ -664,18 +664,18 @@ LAB_1808526bf:
                 // 更新数据计数器
                 uVar23 = uVar23 + 8;                      // 更新循环计数器
                 uVar17 = (int)uVar19 + 1;                 // 计算新的计数
-                uVar14 = (ulonglong)(iVar16 + 1U);        // 更新数据大小
+                uVar14 = (uint64_t)(iVar16 + 1U);        // 更新数据大小
                 uStack_2c0 = CONCAT44(uStack_2c0._4_4_, iVar16 + 1U);  // 更新缓冲区大小
                 
                 // 复制数据到缓冲区
-                puVar11[iVar16] = *(uint64_t *)(lStack_2a8 + (longlong)(int)uVar19 * 8);  // 复制数据
-                uVar19 = (ulonglong)uVar17;               // 更新数据计数
+                puVar11[iVar16] = *(uint64_t *)(lStack_2a8 + (int64_t)(int)uVar19 * 8);  // 复制数据
+                uVar19 = (uint64_t)uVar17;               // 更新数据计数
             } while ((int)uVar17 < *(int *)(param_1 + 0x13));  // 继续处理数据
         }
         
         // 获取第二组数据指针
         plVar13 = param_1 + 0x12;                        // 获取数据指针
-        uVar17 = *(uint *)((longlong)param_1 + 0x9c);   // 获取验证标志
+        uVar17 = *(uint *)((int64_t)param_1 + 0x9c);   // 获取验证标志
         
         // 检查第二组数据验证标志
         if ((int)((uVar17 ^ (int)uVar17 >> 0x1f) - ((int)uVar17 >> 0x1f)) < 0) {
@@ -684,14 +684,14 @@ LAB_1808526bf:
             
             // 检查是否有数据需要验证
             if ((0 < (int)uVar17) && (*plVar13 != 0)) {
-                plStack_318 = (longlong *)CONCAT71(plStack_318._1_7_, 1);  // 设置验证标志
+                plStack_318 = (int64_t *)CONCAT71(plStack_318._1_7_, 1);  // 设置验证标志
                 // 执行数据验证操作
                 FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *plVar13, &unknown_var_8432_ptr, 0x100);
             }
             
             // 清理第二组数据指针
             *plVar13 = 0;
-            *(int32_t *)((longlong)param_1 + 0x9c) = 0;
+            *(int32_t *)((int64_t)param_1 + 0x9c) = 0;
         }
         
         // 第二十三阶段：第二组数据清理和重置
@@ -699,7 +699,7 @@ LAB_1808526bf:
         iVar5 = *(int *)(param_1 + 0x13);               // 获取数据数量
         if (iVar5 < 0) {
             // 清理无效数据
-            memset(*plVar13 + (longlong)iVar5 * 8, 0, (longlong)-iVar5 << 3);  // 清理数据区域
+            memset(*plVar13 + (int64_t)iVar5 * 8, 0, (int64_t)-iVar5 << 3);  // 清理数据区域
         }
         
         // 重置第二组数据计数器
@@ -780,9 +780,9 @@ LAB_180852980:
         do {
             // 处理每个数据项
             FUN_1808b5c90(*(uint64_t *)(param_1[0x10] + uVar19),
-                          *(int32_t *)(*(longlong *)(param_1[8] + 0xa0) + uVar23));
+                          *(int32_t *)(*(int64_t *)(param_1[8] + 0xa0) + uVar23));
             uVar17 = (int)uVar14 + 1;                     // 更新计数器
-            uVar14 = (ulonglong)uVar17;                  // 更新数据计数
+            uVar14 = (uint64_t)uVar17;                  // 更新数据计数
             uVar23 = uVar23 + 4;                          // 更新循环计数器
             uVar19 = uVar19 + 8;                          // 更新数据索引
         } while ((int)uVar17 < *(int *)(param_1 + 0x11));  // 继续处理数据
@@ -799,12 +799,12 @@ LAB_180852980:
         do {
             // 处理每个数据项
             FUN_1808b5c90(*(uint64_t *)(param_1[0x12] + uVar15),
-                          *(int32_t *)(*(longlong *)(param_1[8] + 0xb0) + uVar14));
+                          *(int32_t *)(*(int64_t *)(param_1[8] + 0xb0) + uVar14));
             uVar17 = (int)uVar23 + 1;                     // 更新计数器
             uVar15 = uVar15 + 8;                          // 更新数据索引
             uVar14 = uVar14 + 4;                          // 更新数据计数
             param_2 = puStack_2b0;                         // 恢复参数指针
-            uVar23 = (ulonglong)uVar17;                   // 更新循环计数器
+            uVar23 = (uint64_t)uVar17;                   // 更新循环计数器
         } while ((int)uVar17 < *(int *)(param_1 + 0x13));  // 继续处理数据
     }
     

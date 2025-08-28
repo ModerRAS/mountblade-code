@@ -70,7 +70,7 @@ void FUN_180420ca0(char *param_1,int param_2,short *param_3)
   short sVar61;
   uint6 uVar62;
   uint6 uVar63;
-  longlong lVar64;
+  int64_t lVar64;
   int iVar65;
   int iVar72;
   int iVar73;
@@ -277,7 +277,7 @@ void FUN_180420ca0(char *param_1,int param_2,short *param_3)
   auVar78._12_4_ = auVar79._12_4_;
   auVar78._0_10_ = auVar79._0_10_;
   auVar78._10_2_ = param_3[0x22] + param_3[2];
-  lVar64 = (ulonglong)auVar78._10_6_ << 0x10;
+  lVar64 = (uint64_t)auVar78._10_6_ << 0x10;
   auVar81._2_8_ = lVar64;
   auVar81._0_2_ = param_3[0x21] + param_3[1];
   auVar81._10_6_ = 0;
@@ -312,7 +312,7 @@ void FUN_180420ca0(char *param_1,int param_2,short *param_3)
   auVar107._12_4_ = auVar145._12_4_;
   auVar107._0_10_ = auVar145._0_10_;
   auVar107._10_2_ = param_3[2] - param_3[0x22];
-  lVar64 = (ulonglong)auVar107._10_6_ << 0x10;
+  lVar64 = (uint64_t)auVar107._10_6_ << 0x10;
   auVar99._2_8_ = lVar64;
   auVar99._0_2_ = param_3[1] - param_3[0x21];
   auVar99._10_6_ = 0;
@@ -554,7 +554,7 @@ void FUN_180420ca0(char *param_1,int param_2,short *param_3)
   sVar150 = auVar107._10_2_;
   sVar113 = auVar107._14_2_;
   auVar125._2_8_ =
-       (longlong)
+       (int64_t)
        (CONCAT64(CONCAT42(CONCAT22(auVar147._4_2_,uVar119),auVar138._4_2_),
                  CONCAT22(auVar81._4_2_,uVar119)) >> 0x10);
   auVar125._0_2_ = auVar107._4_2_;
@@ -592,7 +592,7 @@ void FUN_180420ca0(char *param_1,int param_2,short *param_3)
   auVar85._12_4_ = auVar86._12_4_;
   auVar85._0_10_ = auVar86._0_10_;
   auVar85._10_2_ = auVar145._8_2_ + auVar145._0_2_;
-  lVar64 = (ulonglong)auVar85._10_6_ << 0x10;
+  lVar64 = (uint64_t)auVar85._10_6_ << 0x10;
   auVar105._2_8_ = lVar64;
   auVar105._0_2_ = auVar200._8_2_ + auVar200._0_2_;
   auVar105._10_6_ = 0;
@@ -621,7 +621,7 @@ void FUN_180420ca0(char *param_1,int param_2,short *param_3)
   auVar188._12_4_ = auVar198._12_4_;
   auVar188._0_10_ = auVar198._0_10_;
   auVar188._10_2_ = auVar145._0_2_ - auVar145._8_2_;
-  lVar64 = (ulonglong)auVar188._10_6_ << 0x10;
+  lVar64 = (uint64_t)auVar188._10_6_ << 0x10;
   auVar67._2_8_ = lVar64;
   auVar67._0_2_ = auVar200._0_2_ - auVar200._8_2_;
   auVar67._10_6_ = 0;
@@ -836,7 +836,7 @@ void FUN_180420ca0(char *param_1,int param_2,short *param_3)
   auVar71._4_4_ = iVar94 - iVar160 >> 0x11;
   auVar71._8_4_ = iVar96 - iVar166 >> 0x11;
   auVar71._12_4_ = iVar104 - iVar167 >> 0x11;
-  lVar64 = (longlong)param_2;
+  lVar64 = (int64_t)param_2;
   auVar116._0_4_ = iVar120 - iVar195 >> 0x11;
   auVar116._4_4_ = iVar131 - iVar211 >> 0x11;
   auVar116._8_4_ = iVar132 - iVar213 >> 0x11;
@@ -973,19 +973,19 @@ void FUN_180420ca0(char *param_1,int param_2,short *param_3)
 
 
 
-ulonglong FUN_1804214d0(longlong *param_1)
+uint64_t FUN_1804214d0(int64_t *param_1)
 
 {
   byte bVar1;
   char cVar2;
-  longlong lVar3;
+  int64_t lVar3;
   char *pcVar4;
   byte *pbVar5;
   
   bVar1 = *(byte *)(param_1 + 0x905);
   if (bVar1 != 0xff) {
     *(int8_t *)(param_1 + 0x905) = 0xff;
-    return (ulonglong)bVar1;
+    return (uint64_t)bVar1;
   }
   lVar3 = *param_1;
   pcVar4 = *(char **)(lVar3 + 0xb8);
@@ -1011,23 +1011,23 @@ ulonglong FUN_1804214d0(longlong *param_1)
       bVar1 = *pbVar5;
       *(byte **)(lVar3 + 0xb8) = pbVar5 + 1;
     } while (bVar1 == 0xff);
-    return (ulonglong)bVar1;
+    return (uint64_t)bVar1;
   }
 FUN_180421588:
-  return CONCAT71((int7)((ulonglong)pcVar4 >> 8),0xff);
+  return CONCAT71((int7)((uint64_t)pcVar4 >> 8),0xff);
 }
 
 
 
-ulonglong FUN_1804214f1(longlong *param_1)
+uint64_t FUN_1804214f1(int64_t *param_1)
 
 {
   char cVar1;
   byte bVar2;
-  longlong lVar3;
+  int64_t lVar3;
   char *pcVar4;
   byte *pbVar5;
-  longlong *unaff_RDI;
+  int64_t *unaff_RDI;
   
   lVar3 = *param_1;
   pcVar4 = *(char **)(lVar3 + 0xb8);
@@ -1053,10 +1053,10 @@ ulonglong FUN_1804214f1(longlong *param_1)
       bVar2 = *pbVar5;
       *(byte **)(lVar3 + 0xb8) = pbVar5 + 1;
     } while (bVar2 == 0xff);
-    return (ulonglong)bVar2;
+    return (uint64_t)bVar2;
   }
 FUN_180421588:
-  return CONCAT71((int7)((ulonglong)pcVar4 >> 8),0xff);
+  return CONCAT71((int7)((uint64_t)pcVar4 >> 8),0xff);
 }
 
 

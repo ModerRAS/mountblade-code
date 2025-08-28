@@ -49,26 +49,26 @@ void RenderingData_CompressHashBased(int64_t input_data, int data_size, int* out
   byte bVar7;
   byte bVar8;
   uint uVar9;
-  longlong lVar10;
-  ulonglong uVar11;
-  longlong lVar12;
+  int64_t lVar10;
+  uint64_t uVar11;
+  int64_t lVar12;
   uint uVar13;
   uint uVar14;
   int iVar15;
   int iVar16;
-  ulonglong uVar17;
+  uint64_t uVar17;
   uint uVar18;
   int iVar19;
-  longlong *plVar20;
-  longlong lVar21;
-  longlong lVar22;
+  int64_t *plVar20;
+  int64_t lVar21;
+  int64_t lVar22;
   byte *pbVar23;
-  ulonglong uVar24;
+  uint64_t uVar24;
   int iStackX_8;
   uint uStack_78;
-  longlong lStack_70;
+  int64_t lStack_70;
   int *piStack_60;
-  longlong lStack_58;
+  int64_t lStack_58;
   
   piStack_60 = (int *)0x0;
   puVar3 = (int32_t *)realloc(0,10);
@@ -77,12 +77,12 @@ void RenderingData_CompressHashBased(int64_t input_data, int data_size, int* out
     puVar3[1] = 0;
     *puVar3 = 2;
   }
-  *(int8_t *)((longlong)piStack_60[-1] + (longlong)piStack_60) = 0x78;
+  *(int8_t *)((int64_t)piStack_60[-1] + (int64_t)piStack_60) = 0x78;
   piStack_60[-1] = piStack_60[-1] + 1;
   iVar15 = piStack_60[-2];
   if (iVar15 <= piStack_60[-1] + 1) {
     iVar15 = iVar15 * 2 + 1;
-    piVar4 = (int *)realloc(piStack_60 + -2,(longlong)iVar15 + 8);
+    piVar4 = (int *)realloc(piStack_60 + -2,(int64_t)iVar15 + 8);
     if (piVar4 != (int *)0x0) {
       piStack_60 = piVar4 + 2;
       *piVar4 = iVar15;
@@ -91,7 +91,7 @@ void RenderingData_CompressHashBased(int64_t input_data, int data_size, int* out
   lStack_58 = 0x4000;
   uVar18 = 3;
   iVar15 = 0;
-  *(int8_t *)((longlong)piStack_60[-1] + (longlong)piStack_60) = 0x5e;
+  *(int8_t *)((int64_t)piStack_60[-1] + (int64_t)piStack_60) = 0x5e;
   uVar9 = 3;
   piStack_60[-1] = piStack_60[-1] + 1;
   plVar20 = param_4;
@@ -103,7 +103,7 @@ void RenderingData_CompressHashBased(int64_t input_data, int data_size, int* out
   if (0 < param_2 + -3) {
     do {
       lVar21 = 0;
-      lVar22 = (longlong)iVar19;
+      lVar22 = (int64_t)iVar19;
       uVar14 = 3;
       pbVar23 = (byte *)(param_1 + lVar22);
       uStack_78 = 3;
@@ -124,8 +124,8 @@ void RenderingData_CompressHashBased(int64_t input_data, int data_size, int* out
       }
       if (0 < iVar15) {
         do {
-          lVar12 = *(longlong *)(lVar10 + lVar21 * 8);
-          if ((longlong)(iVar19 + -0x8000) < lVar12 - param_1) {
+          lVar12 = *(int64_t *)(lVar10 + lVar21 * 8);
+          if ((int64_t)(iVar19 + -0x8000) < lVar12 - param_1) {
             uVar13 = 0;
             if (0 < param_2 - iVar19) {
               uVar11 = 0;
@@ -133,12 +133,12 @@ void RenderingData_CompressHashBased(int64_t input_data, int data_size, int* out
               do {
                 uVar13 = (uint)uVar24;
                 uVar14 = uStack_78;
-                if ((0x101 < (longlong)uVar11) || (*(byte *)(lVar12 + uVar11) != pbVar23[uVar11]))
+                if ((0x101 < (int64_t)uVar11) || (*(byte *)(lVar12 + uVar11) != pbVar23[uVar11]))
                 break;
                 uVar13 = uVar13 + 1;
-                uVar24 = (ulonglong)uVar13;
+                uVar24 = (uint64_t)uVar13;
                 uVar11 = uVar11 + 1;
-              } while ((longlong)uVar11 < (longlong)(param_2 - iVar19));
+              } while ((int64_t)uVar11 < (int64_t)(param_2 - iVar19));
             }
             if ((int)uVar14 <= (int)uVar13) {
               uStack_78 = uVar13;
@@ -160,12 +160,12 @@ LAB_18042dd33:
         if (lVar10 == 0) {
           lVar21 = 0;
         }
-        piVar4 = (int *)realloc(lVar21,(longlong)(iVar15 * 8) + 8);
+        piVar4 = (int *)realloc(lVar21,(int64_t)(iVar15 * 8) + 8);
         if (piVar4 != (int *)0x0) {
           if (*plVar20 == 0) {
             piVar4[1] = 0;
           }
-          *plVar20 = (longlong)(piVar4 + 2);
+          *plVar20 = (int64_t)(piVar4 + 2);
           *piVar4 = iVar15;
         }
       }
@@ -175,7 +175,7 @@ LAB_18042dd33:
         }
         goto LAB_18042dd33;
       }
-      *(byte **)(*plVar20 + (longlong)*(int *)(*plVar20 + -4) * 8) = pbVar23;
+      *(byte **)(*plVar20 + (int64_t)*(int *)(*plVar20 + -4) * 8) = pbVar23;
       *(int *)(*plVar20 + -4) = *(int *)(*plVar20 + -4) + 1;
       bVar7 = (byte)uVar9;
       if (lStack_70 == 0) {
@@ -190,13 +190,13 @@ LAB_18042e428:
             uVar13 = uVar14 & 1;
             uVar14 = (int)uVar14 >> 1;
             uVar13 = (int)piVar4 * 2 | uVar13;
-            piVar4 = (int *)(ulonglong)uVar13;
+            piVar4 = (int *)(uint64_t)uVar13;
             iVar15 = iVar16 + -1;
           } while (iVar15 != 0);
           uVar9 = uVar9 + 8;
           uVar18 = uVar18 | uVar13 << (bVar7 & 0x1f);
           if (7 < (int)uVar9) {
-            uVar11 = (ulonglong)(uVar9 >> 3);
+            uVar11 = (uint64_t)(uVar9 >> 3);
             uVar9 = uVar9 + (uVar9 >> 3) * -8;
             do {
               iVar15 = iVar16;
@@ -206,7 +206,7 @@ LAB_18042e49d:
                 if (piStack_60 == (int *)0x0) {
                   piVar4 = (int *)0x0;
                 }
-                piVar4 = (int *)realloc(piVar4,(longlong)(iVar15 + 1) + 8);
+                piVar4 = (int *)realloc(piVar4,(int64_t)(iVar15 + 1) + 8);
                 if (piVar4 != (int *)0x0) {
                   if (piStack_60 == (int *)0x0) {
                     piVar4[1] = 0;
@@ -219,7 +219,7 @@ LAB_18042e49d:
                 iVar15 = piStack_60[-2] * 2;
                 goto LAB_18042e49d;
               }
-              *(char *)((longlong)piStack_60[-1] + (longlong)piStack_60) = (char)uVar18;
+              *(char *)((int64_t)piStack_60[-1] + (int64_t)piStack_60) = (char)uVar18;
               piStack_60[-1] = piStack_60[-1] + 1;
               uVar18 = uVar18 >> 8;
               uVar11 = uVar11 - 1;
@@ -235,13 +235,13 @@ LAB_18042e49d:
             uVar13 = uVar14 & 1;
             uVar14 = (int)uVar14 >> 1;
             uVar13 = (int)piVar4 * 2 | uVar13;
-            piVar4 = (int *)(ulonglong)uVar13;
+            piVar4 = (int *)(uint64_t)uVar13;
             iVar15 = iVar16 + -1;
           } while (iVar15 != 0);
           uVar9 = uVar9 + 9;
           uVar18 = uVar18 | uVar13 << (bVar7 & 0x1f);
           if (7 < (int)uVar9) {
-            uVar11 = (ulonglong)(uVar9 >> 3);
+            uVar11 = (uint64_t)(uVar9 >> 3);
             uVar9 = uVar9 + (uVar9 >> 3) * -8;
             do {
               iVar15 = iVar16;
@@ -251,7 +251,7 @@ LAB_18042e54d:
                 if (piStack_60 == (int *)0x0) {
                   piVar4 = (int *)0x0;
                 }
-                piVar4 = (int *)realloc(piVar4,(longlong)(iVar15 + 1) + 8);
+                piVar4 = (int *)realloc(piVar4,(int64_t)(iVar15 + 1) + 8);
                 if (piVar4 != (int *)0x0) {
                   if (piStack_60 == (int *)0x0) {
                     piVar4[1] = 0;
@@ -264,7 +264,7 @@ LAB_18042e54d:
                 iVar15 = piStack_60[-2] * 2;
                 goto LAB_18042e54d;
               }
-              *(char *)((longlong)piStack_60[-1] + (longlong)piStack_60) = (char)uVar18;
+              *(char *)((int64_t)piStack_60[-1] + (int64_t)piStack_60) = (char)uVar18;
               piStack_60[-1] = piStack_60[-1] + 1;
               uVar18 = uVar18 >> 8;
               uVar11 = uVar11 - 1;
@@ -290,8 +290,8 @@ LAB_18042e54d:
         if (0 < iVar15) {
           do {
             iVar16 = 0;
-            lVar22 = *(longlong *)(lVar10 + lVar21 * 8);
-            if ((longlong)(iVar19 + -0x7fff) < lVar22 - param_1) {
+            lVar22 = *(int64_t *)(lVar10 + lVar21 * 8);
+            if ((int64_t)(iVar19 + -0x7fff) < lVar22 - param_1) {
               lVar12 = 0;
               iVar1 = (param_2 - iVar19) + -1;
               if (0 < iVar1) {
@@ -318,7 +318,7 @@ LAB_18042e54d:
             lVar10 = uVar24 * 2;
             uVar24 = uVar24 + 1;
             uVar14 = (int)uVar11 + 1;
-            uVar11 = (ulonglong)uVar14;
+            uVar11 = (uint64_t)uVar14;
           } while ((int)(*(ushort *)(&unknown_var_5140_ptr + lVar10) - 1) < (int)uStack_78);
         }
         iVar16 = uVar14 + 0x101;
@@ -330,14 +330,14 @@ LAB_18042e54d:
             uVar13 = uVar14 & 1;
             uVar14 = (int)uVar14 >> 1;
             uVar13 = (int)uVar17 * 2 | uVar13;
-            uVar17 = (ulonglong)uVar13;
+            uVar17 = (uint64_t)uVar13;
             iVar16 = iVar1 + -1;
           } while (iVar16 != 0);
           iVar1 = iVar1 + 1;
           uVar18 = uVar18 | uVar13 << (bVar7 & 0x1f);
           uVar14 = uVar9 + 8;
           if (7 < (int)uVar14) {
-            uVar11 = (ulonglong)(uVar14 >> 3);
+            uVar11 = (uint64_t)(uVar14 >> 3);
             uVar14 = uVar14 + (uVar14 >> 3) * -8;
             do {
               iVar16 = iVar1;
@@ -360,7 +360,7 @@ LAB_18042df4f:
                 iVar16 = piStack_60[-2] * 2 + 1;
                 goto LAB_18042df4f;
               }
-              *(char *)((longlong)piStack_60[-1] + (longlong)piStack_60) = (char)uVar18;
+              *(char *)((int64_t)piStack_60[-1] + (int64_t)piStack_60) = (char)uVar18;
               piStack_60[-1] = piStack_60[-1] + 1;
               uVar18 = uVar18 >> 8;
               uVar11 = uVar11 - 1;
@@ -375,14 +375,14 @@ LAB_18042df4f:
             uVar13 = uVar14 & 1;
             uVar14 = (int)uVar14 >> 1;
             uVar13 = (int)uVar17 * 2 | uVar13;
-            uVar17 = (ulonglong)uVar13;
+            uVar17 = (uint64_t)uVar13;
             iVar16 = iVar1 + -1;
           } while (iVar16 != 0);
           iVar1 = iVar1 + 1;
           uVar18 = uVar18 | uVar13 << (bVar7 & 0x1f);
           uVar14 = uVar9 + 9;
           if (7 < (int)uVar14) {
-            uVar11 = (ulonglong)(uVar14 >> 3);
+            uVar11 = (uint64_t)(uVar14 >> 3);
             uVar14 = uVar14 + (uVar14 >> 3) * -8;
             do {
               iVar16 = iVar1;
@@ -405,7 +405,7 @@ LAB_18042e00e:
                 iVar16 = piStack_60[-2] * 2 + 1;
                 goto LAB_18042e00e;
               }
-              *(char *)((longlong)piStack_60[-1] + (longlong)piStack_60) = (char)uVar18;
+              *(char *)((int64_t)piStack_60[-1] + (int64_t)piStack_60) = (char)uVar18;
               piStack_60[-1] = piStack_60[-1] + 1;
               uVar18 = uVar18 >> 8;
               uVar11 = uVar11 - 1;
@@ -420,14 +420,14 @@ LAB_18042e00e:
             uVar13 = uVar14 & 1;
             uVar14 = (int)uVar14 >> 1;
             uVar13 = (int)uVar17 * 2 | uVar13;
-            uVar17 = (ulonglong)uVar13;
+            uVar17 = (uint64_t)uVar13;
             iVar16 = iVar1 + -1;
           } while (iVar16 != 0);
           iVar1 = iVar1 + 1;
           uVar18 = uVar18 | uVar13 << (bVar7 & 0x1f);
           uVar14 = uVar9 + 7;
           if (7 < (int)uVar14) {
-            uVar11 = (ulonglong)(uVar14 >> 3);
+            uVar11 = (uint64_t)(uVar14 >> 3);
             uVar14 = uVar14 + (uVar14 >> 3) * -8;
             do {
               iVar16 = iVar1;
@@ -450,7 +450,7 @@ LAB_18042e0ce:
                 iVar16 = piStack_60[-2] * 2 + 1;
                 goto LAB_18042e0ce;
               }
-              *(char *)((longlong)piStack_60[-1] + (longlong)piStack_60) = (char)uVar18;
+              *(char *)((int64_t)piStack_60[-1] + (int64_t)piStack_60) = (char)uVar18;
               piStack_60[-1] = piStack_60[-1] + 1;
               uVar18 = uVar18 >> 8;
               uVar11 = uVar11 - 1;
@@ -465,14 +465,14 @@ LAB_18042e0ce:
             uVar13 = uVar14 & 1;
             uVar14 = (int)uVar14 >> 1;
             uVar13 = (int)uVar17 * 2 | uVar13;
-            uVar17 = (ulonglong)uVar13;
+            uVar17 = (uint64_t)uVar13;
             iVar16 = iVar1 + -1;
           } while (iVar16 != 0);
           iVar1 = iVar1 + 1;
           uVar18 = uVar18 | uVar13 << (bVar7 & 0x1f);
           uVar14 = uVar9 + 8;
           if (7 < (int)uVar14) {
-            uVar11 = (ulonglong)(uVar14 >> 3);
+            uVar11 = (uint64_t)(uVar14 >> 3);
             uVar14 = uVar14 + (uVar14 >> 3) * -8;
             do {
               iVar16 = iVar1;
@@ -495,7 +495,7 @@ LAB_18042e17e:
                 iVar16 = piStack_60[-2] * 2 + 1;
                 goto LAB_18042e17e;
               }
-              *(char *)((longlong)piStack_60[-1] + (longlong)piStack_60) = (char)uVar18;
+              *(char *)((int64_t)piStack_60[-1] + (int64_t)piStack_60) = (char)uVar18;
               piStack_60[-1] = piStack_60[-1] + 1;
               uVar18 = uVar18 >> 8;
               uVar11 = uVar11 - 1;
@@ -507,7 +507,7 @@ LAB_18042e17e:
           uVar14 = uVar14 + (byte)(&unknown_var_5104_ptr)[uVar24];
           uVar18 = uVar18 | uStack_78 - *(ushort *)(&unknown_var_5136_ptr + uVar24 * 2) << (bVar7 & 0x1f);
           if (7 < (int)uVar14) {
-            uVar11 = (ulonglong)(uVar14 >> 3);
+            uVar11 = (uint64_t)(uVar14 >> 3);
             uVar14 = uVar14 + (uVar14 >> 3) * -8;
             do {
               iVar16 = iVar1;
@@ -530,7 +530,7 @@ LAB_18042e23e:
                 iVar16 = piStack_60[-2] * 2 + 1;
                 goto LAB_18042e23e;
               }
-              *(char *)((longlong)piStack_60[-1] + (longlong)piStack_60) = (char)uVar18;
+              *(char *)((int64_t)piStack_60[-1] + (int64_t)piStack_60) = (char)uVar18;
               piStack_60[-1] = piStack_60[-1] + 1;
               uVar18 = uVar18 >> 8;
               uVar11 = uVar11 - 1;
@@ -557,7 +557,7 @@ LAB_18042e23e:
         uVar9 = uVar14 + 5;
         uVar18 = uVar18 | uVar13 << ((byte)uVar14 & 0x1f);
         if (7 < (int)uVar9) {
-          uVar11 = (ulonglong)(uVar9 >> 3);
+          uVar11 = (uint64_t)(uVar9 >> 3);
           uVar9 = uVar9 + (uVar9 >> 3) * -8;
           do {
             iVar16 = iVar1;
@@ -567,7 +567,7 @@ LAB_18042e311:
               if (piStack_60 == (int *)0x0) {
                 piVar4 = (int *)0x0;
               }
-              piVar4 = (int *)realloc(piVar4,(longlong)iVar16 + 8);
+              piVar4 = (int *)realloc(piVar4,(int64_t)iVar16 + 8);
               if (piVar4 != (int *)0x0) {
                 if (piStack_60 == (int *)0x0) {
                   piVar4[1] = 0;
@@ -580,7 +580,7 @@ LAB_18042e311:
               iVar16 = piStack_60[-2] * 2 + 1;
               goto LAB_18042e311;
             }
-            *(char *)((longlong)piStack_60[-1] + (longlong)piStack_60) = (char)uVar18;
+            *(char *)((int64_t)piStack_60[-1] + (int64_t)piStack_60) = (char)uVar18;
             piStack_60[-1] = piStack_60[-1] + 1;
             uVar18 = uVar18 >> 8;
             uVar11 = uVar11 - 1;
@@ -591,7 +591,7 @@ LAB_18042e311:
                             ((byte)uVar9 & 0x1f);
           uVar9 = uVar9 + (byte)(&unknown_var_6224_ptr)[lVar10];
           if (7 < (int)uVar9) {
-            uVar11 = (ulonglong)(uVar9 >> 3);
+            uVar11 = (uint64_t)(uVar9 >> 3);
             uVar9 = uVar9 + (uVar9 >> 3) * -8;
             do {
               iVar15 = iVar1;
@@ -601,7 +601,7 @@ LAB_18042e3d3:
                 if (piStack_60 == (int *)0x0) {
                   piVar4 = (int *)0x0;
                 }
-                piVar4 = (int *)realloc(piVar4,(longlong)iVar15 + 8);
+                piVar4 = (int *)realloc(piVar4,(int64_t)iVar15 + 8);
                 if (piVar4 != (int *)0x0) {
                   if (piStack_60 == (int *)0x0) {
                     piVar4[1] = 0;
@@ -614,7 +614,7 @@ LAB_18042e3d3:
                 iVar15 = piStack_60[-2] * 2 + 1;
                 goto LAB_18042e3d3;
               }
-              *(char *)((longlong)piStack_60[-1] + (longlong)piStack_60) = (char)uVar18;
+              *(char *)((int64_t)piStack_60[-1] + (int64_t)piStack_60) = (char)uVar18;
               piStack_60[-1] = piStack_60[-1] + 1;
               uVar18 = uVar18 >> 8;
               uVar11 = uVar11 - 1;
@@ -626,8 +626,8 @@ LAB_18042e3d3:
       iVar19 = iVar15;
     } while (iVar15 < param_2 + -3);
   }
-  lVar21 = (longlong)param_2;
-  lVar10 = (longlong)iVar15;
+  lVar21 = (int64_t)param_2;
+  lVar10 = (int64_t)iVar15;
   if (lVar10 < lVar21) {
     pbVar23 = (byte *)(param_1 + lVar10);
     lVar10 = lVar21 - lVar10;
@@ -647,7 +647,7 @@ LAB_18042e3d3:
         uVar9 = uVar9 + 8;
         uVar18 = uVar18 | uVar14 << (bVar8 & 0x1f);
         if (7 < (int)uVar9) {
-          uVar11 = (ulonglong)(uVar9 >> 3);
+          uVar11 = (uint64_t)(uVar9 >> 3);
           uVar9 = uVar9 + (uVar9 >> 3) * -8;
           do {
             if (piStack_60 == (int *)0x0) {
@@ -657,7 +657,7 @@ LAB_18042e665:
               if (piStack_60 == (int *)0x0) {
                 piVar4 = (int *)0x0;
               }
-              piVar4 = (int *)realloc(piVar4,(longlong)iVar15 + 8);
+              piVar4 = (int *)realloc(piVar4,(int64_t)iVar15 + 8);
               if (piVar4 != (int *)0x0) {
                 if (piStack_60 == (int *)0x0) {
                   piVar4[1] = 0;
@@ -670,7 +670,7 @@ LAB_18042e665:
               iVar15 = piStack_60[-2] * 2 + 1;
               goto LAB_18042e665;
             }
-            *(char *)((longlong)piStack_60[-1] + (longlong)piStack_60) = (char)uVar18;
+            *(char *)((int64_t)piStack_60[-1] + (int64_t)piStack_60) = (char)uVar18;
             piStack_60[-1] = piStack_60[-1] + 1;
             uVar18 = uVar18 >> 8;
             uVar11 = uVar11 - 1;
@@ -689,7 +689,7 @@ LAB_18042e665:
         uVar9 = uVar9 + 9;
         uVar18 = uVar18 | uVar14 << (bVar8 & 0x1f);
         if (7 < (int)uVar9) {
-          uVar11 = (ulonglong)(uVar9 >> 3);
+          uVar11 = (uint64_t)(uVar9 >> 3);
           uVar9 = uVar9 + (uVar9 >> 3) * -8;
           do {
             if (piStack_60 == (int *)0x0) {
@@ -699,7 +699,7 @@ LAB_18042e711:
               if (piStack_60 == (int *)0x0) {
                 piVar4 = (int *)0x0;
               }
-              piVar4 = (int *)realloc(piVar4,(longlong)iVar15 + 8);
+              piVar4 = (int *)realloc(piVar4,(int64_t)iVar15 + 8);
               if (piVar4 != (int *)0x0) {
                 if (piStack_60 == (int *)0x0) {
                   piVar4[1] = 0;
@@ -712,7 +712,7 @@ LAB_18042e711:
               iVar15 = piStack_60[-2] * 2 + 1;
               goto LAB_18042e711;
             }
-            *(char *)((longlong)piStack_60[-1] + (longlong)piStack_60) = (char)uVar18;
+            *(char *)((int64_t)piStack_60[-1] + (int64_t)piStack_60) = (char)uVar18;
             piStack_60[-1] = piStack_60[-1] + 1;
             uVar18 = uVar18 >> 8;
             uVar11 = uVar11 - 1;
@@ -732,7 +732,7 @@ LAB_18042e711:
   uVar14 = uVar9 + 7;
   uVar18 = uVar18 | 0 << ((byte)uVar9 & 0x1f);
   if (7 < (int)uVar14) {
-    uVar11 = (ulonglong)(uVar14 >> 3);
+    uVar11 = (uint64_t)(uVar14 >> 3);
     uVar14 = uVar14 + (uVar14 >> 3) * -8;
     do {
       iVar15 = iVar19;
@@ -742,7 +742,7 @@ LAB_18042e7e2:
         if (piStack_60 == (int *)0x0) {
           piVar5 = piVar4;
         }
-        piVar5 = (int *)realloc(piVar5,(longlong)(iVar15 + 1) + 8);
+        piVar5 = (int *)realloc(piVar5,(int64_t)(iVar15 + 1) + 8);
         if (piVar5 != (int *)0x0) {
           if (piStack_60 == (int *)0x0) {
             piVar5[1] = 0;
@@ -755,7 +755,7 @@ LAB_18042e7e2:
         iVar15 = piStack_60[-2] * 2;
         goto LAB_18042e7e2;
       }
-      *(char *)((longlong)piStack_60[-1] + (longlong)piStack_60) = (char)uVar18;
+      *(char *)((int64_t)piStack_60[-1] + (int64_t)piStack_60) = (char)uVar18;
       piStack_60[-1] = piStack_60[-1] + 1;
       uVar18 = uVar18 >> 8;
       uVar11 = uVar11 - 1;
@@ -764,7 +764,7 @@ LAB_18042e7e2:
   while (plVar20 = param_4, uVar14 != 0) {
     uVar14 = uVar14 + 1;
     if (7 < (int)uVar14) {
-      uVar11 = (ulonglong)(uVar14 >> 3);
+      uVar11 = (uint64_t)(uVar14 >> 3);
       uVar14 = uVar14 + (uVar14 >> 3) * -8;
       do {
         if (piStack_60 == (int *)0x0) {
@@ -774,7 +774,7 @@ LAB_18042e87d:
           if (piStack_60 == (int *)0x0) {
             piVar5 = piVar4;
           }
-          piVar5 = (int *)realloc(piVar5,(longlong)iVar15 + 8);
+          piVar5 = (int *)realloc(piVar5,(int64_t)iVar15 + 8);
           if (piVar5 != (int *)0x0) {
             if (piStack_60 == (int *)0x0) {
               piVar5[1] = 0;
@@ -787,7 +787,7 @@ LAB_18042e87d:
           iVar15 = piStack_60[-2] * 2 + 1;
           goto LAB_18042e87d;
         }
-        *(char *)((longlong)piStack_60[-1] + (longlong)piStack_60) = (char)uVar18;
+        *(char *)((int64_t)piStack_60[-1] + (int64_t)piStack_60) = (char)uVar18;
         piStack_60[-1] = piStack_60[-1] + 1;
         uVar18 = uVar18 >> 8;
         uVar11 = uVar11 - 1;
@@ -804,23 +804,23 @@ LAB_18042e87d:
   free(param_4);
   uVar9 = 1;
   if (0 < lVar21) {
-    lVar10 = (longlong)(param_2 % 0x15b0);
+    lVar10 = (int64_t)(param_2 % 0x15b0);
     piVar5 = piVar4;
     do {
       lVar22 = 0;
       if (0 < lVar10) {
         do {
           lVar12 = lVar22 + 1;
-          uVar9 = uVar9 + *(byte *)((longlong)piVar5 + lVar22 + param_1);
-          piVar4 = (int *)(ulonglong)((int)piVar4 + uVar9);
+          uVar9 = uVar9 + *(byte *)((int64_t)piVar5 + lVar22 + param_1);
+          piVar4 = (int *)(uint64_t)((int)piVar4 + uVar9);
           lVar22 = lVar12;
         } while (lVar12 < lVar10);
       }
-      piVar5 = (int *)((longlong)piVar5 + lVar10);
+      piVar5 = (int *)((int64_t)piVar5 + lVar10);
       lVar10 = 0x15b0;
       uVar9 = uVar9 % 0xfff1;
-      piVar4 = (int *)(ulonglong)(uint)((int)piVar4 + (int)((ulonglong)piVar4 / 0xfff1) * -0xfff1);
-    } while ((longlong)piVar5 < lVar21);
+      piVar4 = (int *)(uint64_t)(uint)((int)piVar4 + (int)((uint64_t)piVar4 / 0xfff1) * -0xfff1);
+    } while ((int64_t)piVar5 < lVar21);
   }
   if (piStack_60 == (int *)0x0) {
     iVar15 = 2;
@@ -834,7 +834,7 @@ LAB_18042e87d:
   if (piStack_60 == (int *)0x0) {
     piVar5 = (int *)0x0;
   }
-  piVar5 = (int *)realloc(piVar5,(longlong)iVar15 + 8);
+  piVar5 = (int *)realloc(piVar5,(int64_t)iVar15 + 8);
   if (piVar5 != (int *)0x0) {
     if (piStack_60 == (int *)0x0) {
       piVar5[1] = 0;
@@ -844,45 +844,45 @@ LAB_18042e87d:
   }
 LAB_18042e9f9:
   piVar5 = piStack_60 + -2;
-  *(char *)((longlong)piStack_60[-1] + (longlong)piStack_60) = (char)((ulonglong)piVar4 >> 8);
+  *(char *)((int64_t)piStack_60[-1] + (int64_t)piStack_60) = (char)((uint64_t)piVar4 >> 8);
   piStack_60[-1] = piStack_60[-1] + 1;
   if (*piVar5 <= piStack_60[-1] + 1) {
     iVar15 = *piVar5 * 2 + 1;
-    piVar6 = (int *)realloc(piVar5,(longlong)iVar15 + 8);
+    piVar6 = (int *)realloc(piVar5,(int64_t)iVar15 + 8);
     if (piVar6 != (int *)0x0) {
       piStack_60 = piVar6 + 2;
       *piVar6 = iVar15;
       piVar5 = piVar6;
     }
   }
-  *(char *)((longlong)piStack_60[-1] + (longlong)piStack_60) = (char)piVar4;
+  *(char *)((int64_t)piStack_60[-1] + (int64_t)piStack_60) = (char)piVar4;
   piStack_60[-1] = piStack_60[-1] + 1;
   if (*piVar5 <= piStack_60[-1] + 1) {
     iVar15 = *piVar5 * 2 + 1;
-    piVar4 = (int *)realloc(piVar5,(longlong)iVar15 + 8);
+    piVar4 = (int *)realloc(piVar5,(int64_t)iVar15 + 8);
     if (piVar4 != (int *)0x0) {
       piStack_60 = piVar4 + 2;
       *piVar4 = iVar15;
       piVar5 = piVar4;
     }
   }
-  *(char *)((longlong)piStack_60[-1] + (longlong)piStack_60) = (char)(uVar9 >> 8);
+  *(char *)((int64_t)piStack_60[-1] + (int64_t)piStack_60) = (char)(uVar9 >> 8);
   piStack_60[-1] = piStack_60[-1] + 1;
   if (*piVar5 <= piStack_60[-1] + 1) {
     iVar15 = *piVar5 * 2 + 1;
-    piVar4 = (int *)realloc(piVar5,(longlong)iVar15 + 8);
+    piVar4 = (int *)realloc(piVar5,(int64_t)iVar15 + 8);
     if (piVar4 != (int *)0x0) {
       piStack_60 = piVar4 + 2;
       *piVar4 = iVar15;
       piVar5 = piVar4;
     }
   }
-  *(char *)((longlong)piStack_60[-1] + (longlong)piStack_60) = (char)uVar9;
+  *(char *)((int64_t)piStack_60[-1] + (int64_t)piStack_60) = (char)uVar9;
   piStack_60[-1] = piStack_60[-1] + 1;
   iVar15 = piStack_60[-1];
   *param_3 = iVar15;
                     // WARNING: Subroutine does not return
-  memmove(piVar5,piStack_60,(longlong)iVar15);
+  memmove(piVar5,piStack_60,(int64_t)iVar15);
 }
 
 
@@ -930,7 +930,7 @@ uint RenderingColor_CalculateDistance(uint color1, uint color2, uint color3)
 // =============================================================================
 
 // 原始函数名称映射
-void FUN_18042dad0(longlong param_1, int param_2, int* param_3, longlong* param_4)
+void FUN_18042dad0(int64_t param_1, int param_2, int* param_3, int64_t* param_4)
     __attribute__((alias("RenderingData_CompressHashBased")));
 uint FUN_18042eb00(uint param_1, uint param_2, uint param_3)
     __attribute__((alias("RenderingColor_CalculateDistance")));

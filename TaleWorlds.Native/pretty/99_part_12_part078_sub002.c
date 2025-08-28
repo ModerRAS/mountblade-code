@@ -6,14 +6,14 @@
 void FUN_1808a0552(int32_t param_1)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t *puVar2;
   int in_EAX;
   int iVar3;
   int32_t *puVar4;
-  longlong unaff_RBP;
+  int64_t unaff_RBP;
   int32_t unaff_ESI;
-  longlong *unaff_RDI;
+  int64_t *unaff_RDI;
   int32_t extraout_XMM0_Da;
   int32_t extraout_XMM0_Da_00;
   uint64_t in_stack_00000030;
@@ -25,7 +25,7 @@ void FUN_1808a0552(int32_t param_1)
     uStack0000000000000098 = unaff_ESI;
     while( true ) {
       if ((puVar4 < *(int32_t **)(unaff_RBP + 0x20)) ||
-         (*(int32_t **)(unaff_RBP + 0x20) + (longlong)*(int *)(unaff_RBP + 0x28) * 2 <= puVar4))
+         (*(int32_t **)(unaff_RBP + 0x20) + (int64_t)*(int *)(unaff_RBP + 0x28) * 2 <= puVar4))
       {
                     // WARNING: Subroutine does not return
         FUN_1808de000(param_1,&stack0x00000040);
@@ -35,7 +35,7 @@ void FUN_1808a0552(int32_t param_1)
       lVar1 = *unaff_RDI;
       in_stack_00000030._4_4_ = *puVar4;
       puVar2 = *(uint64_t **)(lVar1 + 8);
-      iVar3 = (**(code **)*puVar2)(puVar2,(longlong)&stack0x00000030 + 4,4);
+      iVar3 = (**(code **)*puVar2)(puVar2,(int64_t)&stack0x00000030 + 4,4);
       if (iVar3 != 0) {
         return;
       }

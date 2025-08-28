@@ -2,8 +2,8 @@
 
 // 04_ui_system_part194_sub002.c - 1 个函数
 
-// 函数: void FUN_18077ed00(longlong *param_1)
-void FUN_18077ed00(longlong *param_1)
+// 函数: void FUN_18077ed00(int64_t *param_1)
+void FUN_18077ed00(int64_t *param_1)
 
 {
                     // WARNING: Subroutine does not return
@@ -12,19 +12,19 @@ void FUN_18077ed00(longlong *param_1)
 
 
 
-uint64_t FUN_18077ed40(longlong *param_1,int param_2)
+uint64_t FUN_18077ed40(int64_t *param_1,int param_2)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   uint64_t uVar2;
   
   if (param_2 == 0) {
     return 0;
   }
   lVar1 = *param_1;
-  if ((*(longlong *)(lVar1 + 0x350) == 0) &&
-     (uVar2 = (**(code **)(*(longlong *)(lVar1 + 0xd8) + 0x40))
-                        (lVar1 + 0xb0,(longlong *)(lVar1 + 0x350),0,0), (int)uVar2 != 0)) {
+  if ((*(int64_t *)(lVar1 + 0x350) == 0) &&
+     (uVar2 = (**(code **)(*(int64_t *)(lVar1 + 0xd8) + 0x40))
+                        (lVar1 + 0xb0,(int64_t *)(lVar1 + 0x350),0,0), (int)uVar2 != 0)) {
     return uVar2;
   }
   return 6;
@@ -32,10 +32,10 @@ uint64_t FUN_18077ed40(longlong *param_1,int param_2)
 
 
 
-uint64_t FUN_18077edf0(longlong *param_1,int param_2,int32_t *param_3,longlong param_4)
+uint64_t FUN_18077edf0(int64_t *param_1,int param_2,int32_t *param_3,int64_t param_4)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   float fVar2;
   
   lVar1 = *param_1;
@@ -83,10 +83,10 @@ uint64_t FUN_18077edf0(longlong *param_1,int param_2,int32_t *param_3,longlong p
 
 
 
-uint64_t FUN_18077eef0(longlong *param_1,int param_2,int32_t *param_3,longlong param_4)
+uint64_t FUN_18077eef0(int64_t *param_1,int param_2,int32_t *param_3,int64_t param_4)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   void *puVar2;
   
   if (param_2 != 6) {
@@ -108,11 +108,11 @@ uint64_t FUN_18077eef0(longlong *param_1,int param_2,int32_t *param_3,longlong p
 
 
 uint64_t
-FUN_18077ef70(longlong *param_1,int param_2,uint64_t *param_3,int32_t *param_4,longlong param_5
+FUN_18077ef70(int64_t *param_1,int param_2,uint64_t *param_3,int32_t *param_4,int64_t param_5
              )
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   void *puVar2;
   
   if (param_2 == 5) {

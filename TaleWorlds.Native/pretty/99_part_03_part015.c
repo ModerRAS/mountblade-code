@@ -176,18 +176,18 @@
  * - 提供了系统状态监控和动态调整功能
  * - 支持大文件和复杂数据结构的处理
  */
-void DataFlowProcessor(longlong param_1, longlong param_2, longlong param_3)
+void DataFlowProcessor(int64_t param_1, int64_t param_2, int64_t param_3)
 {
     uint64_t *puVar1;
     uint uVar2;
     uint64_t uVar3;
-    longlong lVar4;
-    longlong lVar5;
+    int64_t lVar4;
+    int64_t lVar5;
     char cVar6;
     uint uVar7;
     int32_t uVar8;
     uint uVar9;
-    ulonglong uVar10;
+    uint64_t uVar10;
     uint64_t uVar11;
     uint64_t *puVar12;
     uint *puVar13;
@@ -196,14 +196,14 @@ void DataFlowProcessor(longlong param_1, longlong param_2, longlong param_3)
     uint64_t *puVar16;
     int8_t *puVar17;
     int iVar18;
-    ulonglong uVar19;
+    uint64_t uVar19;
     int *piVar20;
     uint *puVar21;
-    longlong lVar22;
-    ulonglong uVar23;
-    ulonglong uVar24;
-    longlong lVar25;
-    longlong lVar26;
+    int64_t lVar22;
+    uint64_t uVar23;
+    uint64_t uVar24;
+    int64_t lVar25;
+    int64_t lVar26;
     int8_t auStack_2f8 [32];
     uint *puStack_2d8;
     char acStack_2c8 [8];
@@ -216,58 +216,58 @@ void DataFlowProcessor(longlong param_1, longlong param_2, longlong param_3)
     int8_t *puStack_290;
     uint uStack_288;
     uint64_t uStack_280;
-    longlong lStack_278;
+    int64_t lStack_278;
     uint *puStack_270;
     uint64_t uStack_268;
     int16_t uStack_260;
     int8_t uStack_25e;
     uint uStack_258;
     uint uStack_254;
-    longlong lStack_250;
-    longlong lStack_248;
+    int64_t lStack_250;
+    int64_t lStack_248;
     uint uStack_240;
     uint uStack_23c;
     uint64_t uStack_238;
     uint64_t uStack_230;
     uint64_t uStack_228;
     uint uStack_220;
-    longlong lStack_218;
-    longlong alStack_210 [2];
-    longlong lStack_200;
-    longlong alStack_1f8 [2];
-    longlong lStack_1e8;
+    int64_t lStack_218;
+    int64_t alStack_210 [2];
+    int64_t lStack_200;
+    int64_t alStack_1f8 [2];
+    int64_t lStack_1e8;
     int8_t uStack_1e0;
-    longlong lStack_1d8;
+    int64_t lStack_1d8;
     int8_t uStack_1d0;
-    longlong lStack_1c8;
+    int64_t lStack_1c8;
     int8_t uStack_1c0;
-    longlong lStack_1b8;
+    int64_t lStack_1b8;
     int8_t uStack_1b0;
-    longlong lStack_1a8;
+    int64_t lStack_1a8;
     int8_t uStack_1a0;
-    longlong lStack_198;
+    int64_t lStack_198;
     uint64_t *puStack_190;
     uint64_t *puStack_188;
     uint64_t *puStack_180;
-    longlong lStack_178;
+    int64_t lStack_178;
     uint *puStack_170;
-    longlong lStack_168;
+    int64_t lStack_168;
     uint64_t *puStack_160;
     uint64_t *puStack_158;
     uint64_t *puStack_150;
-    longlong lStack_148;
+    int64_t lStack_148;
     uint64_t *puStack_140;
-    longlong lStack_138;
+    int64_t lStack_138;
     uint64_t *puStack_130;
     uint64_t *puStack_128;
     uint64_t *puStack_120;
-    longlong lStack_118;
+    int64_t lStack_118;
     uint64_t *puStack_110;
-    longlong lStack_108;
+    int64_t lStack_108;
     uint64_t *puStack_100;
     uint64_t *puStack_f8;
     uint64_t *puStack_f0;
-    longlong lStack_e8;
+    int64_t lStack_e8;
     uint *puStack_e0;
     uint64_t uStack_d8;
     int8_t auStack_d0 [8];
@@ -280,11 +280,11 @@ void DataFlowProcessor(longlong param_1, longlong param_2, longlong param_3)
     uint64_t uStack_68;
     uint64_t uStack_60;
     uint uStack_58;
-    ulonglong uStack_50;
+    uint64_t uStack_50;
     
     /* 初始化安全参数和缓冲区 */
     uStack_d8 = 0xfffffffffffffffe;
-    uStack_50 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_2f8;
+    uStack_50 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_2f8;
     lStack_248 = param_3;
     lStack_218 = param_2;
     
@@ -293,7 +293,7 @@ void DataFlowProcessor(longlong param_1, longlong param_2, longlong param_3)
     lVar22 = param_2;
     
     /* 处理参数选择逻辑 */
-    if ((param_2 == 0) && (lVar22 = *(longlong *)(param_1 + 0x50), param_3 != 0)) {
+    if ((param_2 == 0) && (lVar22 = *(int64_t *)(param_1 + 0x50), param_3 != 0)) {
         lVar22 = param_3;
     }
     
@@ -311,11 +311,11 @@ void DataFlowProcessor(longlong param_1, longlong param_2, longlong param_3)
     }
     else {
         uVar9 = *(uint *)(lVar22 + 0x2e0);
-        if (*(longlong *)(lVar22 + 0x2d8) == 0) {
+        if (*(int64_t *)(lVar22 + 0x2d8) == 0) {
             /* 处理空指针情况下的字符串复制 */
             if (uVar9 != 0) {
                 /* 安全复制字符串数据 */
-                SystemDataCopier(puStack_2b8, *(uint64_t *)(lVar22 + 0x2d8), (ulonglong)uVar9);
+                SystemDataCopier(puStack_2b8, *(uint64_t *)(lVar22 + 0x2d8), (uint64_t)uVar9);
             }
         }
         else if (uVar9 != 0) {
@@ -324,7 +324,7 @@ void DataFlowProcessor(longlong param_1, longlong param_2, longlong param_3)
             if ((int)(uVar9 + 1) < 0x10) {
                 uVar7 = 0x10;
             }
-            puStack_2b8 = (int8_t *)SystemMemoryAllocator(system_memory_pool_ptr, (longlong)(int)uVar7, 0x13);
+            puStack_2b8 = (int8_t *)SystemMemoryAllocator(system_memory_pool_ptr, (int64_t)(int)uVar7, 0x13);
             *puStack_2b8 = 0;
             uVar8 = SystemValidator(puStack_2b8);
             uStack_2a8 = CONCAT44(uStack_2a8._4_4_, uVar8);
@@ -346,7 +346,7 @@ void DataFlowProcessor(longlong param_1, longlong param_2, longlong param_3)
             if ((int)uVar9 < 0x10) {
                 uVar9 = 0x10;
             }
-            puStack_2b8 = (int8_t *)SystemMemoryAllocator(system_memory_pool_ptr, (longlong)(int)uVar9, 0x13);
+            puStack_2b8 = (int8_t *)SystemMemoryAllocator(system_memory_pool_ptr, (int64_t)(int)uVar9, 0x13);
             *puStack_2b8 = 0;
         }
         else {
@@ -395,7 +395,7 @@ LAB_1801d907b:
             }
             uStack_258 = 0;
             puStack_2d8 = (uint *)0x0;
-            iVar18 = ReadFile(lVar25, (longlong)auStack_2a0 + uVar19, uVar23, &uStack_258);
+            iVar18 = ReadFile(lVar25, (int64_t)auStack_2a0 + uVar19, uVar23, &uStack_258);
         } while (((iVar18 != 0) && (uStack_258 != 0)) && (uVar19 = uVar19 + uStack_258, uVar19 < 4));
         
         /* 分配数据处理缓冲区 */
@@ -410,7 +410,7 @@ LAB_1801d907b:
         }
         
         lVar26 = lStack_278;
-        uVar23 = (ulonglong)auStack_2a0[0];
+        uVar23 = (uint64_t)auStack_2a0[0];
         uVar19 = 0;
         
         /* 处理文件数据 */
@@ -444,13 +444,13 @@ LAB_1801d907b:
                 *(uint *)(param_1 + 0x90) = uVar9;
                 piVar20 = (int *)(puStack_270 + 2);
                 puStack_270 = (uint *)piVar20;
-                uVar11 = SystemMemoryAllocator(system_memory_pool_ptr, (longlong)(int)uVar9, 3);
+                uVar11 = SystemMemoryAllocator(system_memory_pool_ptr, (int64_t)(int)uVar9, 3);
                 *(uint64_t *)(param_1 + 0x88) = uVar11;
-                SystemDataCopier(uVar11, piVar20, (longlong)(int)*(uint *)(param_1 + 0x90));
+                SystemDataCopier(uVar11, piVar20, (int64_t)(int)*(uint *)(param_1 + 0x90));
             }
             
             uVar9 = *puVar21;
-            uVar19 = (ulonglong)uVar9;
+            uVar19 = (uint64_t)uVar9;
             puVar21 = puStack_270 + 2;
             puStack_270 = puVar21;
             
@@ -482,7 +482,7 @@ LAB_1801d907b:
                 }
                 else {
                     /* 处理子系统数据结构 */
-                    lVar22 = *(longlong *)(lStack_248 + 800);
+                    lVar22 = *(int64_t *)(lStack_248 + 800);
                     lStack_1d8 = lStack_248 + 0x360;
                     uStack_1d0 = 0;
                     AcquireSRWLockExclusive(lStack_1d8);
@@ -567,7 +567,7 @@ LAB_1801d960a:
                 uStack_1e0 = 1;
                 
                 if (0 < (int)uVar9) {
-                    uVar19 = (ulonglong)uVar9;
+                    uVar19 = (uint64_t)uVar9;
                     do {
                         uStack_240 = *puVar21;
                         uStack_23c = puVar21[1];
@@ -583,17 +583,17 @@ LAB_1801d960a:
                         /* 搜索数据结构位置 */
                         while (puVar16 != (uint64_t *)0x0) {
                             puStack_140 = puVar16 + 4;
-                            lStack_198 = (longlong)&uStack_228 + 4;
+                            lStack_198 = (int64_t)&uStack_228 + 4;
                             puStack_190 = &uStack_228;
                             puStack_188 = &uStack_230;
                             puStack_180 = &uStack_238;
-                            lStack_178 = (longlong)&uStack_230 + 4;
+                            lStack_178 = (int64_t)&uStack_230 + 4;
                             puStack_170 = &uStack_240;
-                            lStack_168 = (longlong)puVar16 + 0x3c;
+                            lStack_168 = (int64_t)puVar16 + 0x3c;
                             puStack_160 = puVar16 + 7;
                             puStack_158 = puVar16 + 6;
                             puStack_150 = puVar16 + 5;
-                            lStack_148 = (longlong)puVar16 + 0x34;
+                            lStack_148 = (int64_t)puVar16 + 0x34;
                             cVar6 = DataStructureSearcher(&lStack_168, &lStack_198);
                             
                             if (cVar6 == '\0') {
@@ -615,16 +615,16 @@ LAB_1801d94be:
                         else {
                             /* 验证现有数据结构 */
                             puStack_110 = puVar12 + 4;
-                            lStack_138 = (longlong)puVar12 + 0x3c;
+                            lStack_138 = (int64_t)puVar12 + 0x3c;
                             puStack_130 = puVar12 + 7;
                             puStack_128 = puVar12 + 6;
                             puStack_120 = puVar12 + 5;
-                            lStack_118 = (longlong)puVar12 + 0x34;
-                            lStack_108 = (longlong)&uStack_228 + 4;
+                            lStack_118 = (int64_t)puVar12 + 0x34;
+                            lStack_108 = (int64_t)&uStack_228 + 4;
                             puStack_100 = &uStack_228;
                             puStack_f8 = &uStack_230;
                             puStack_f0 = &uStack_238;
-                            lStack_e8 = (longlong)&uStack_230 + 4;
+                            lStack_e8 = (int64_t)&uStack_230 + 4;
                             puStack_e0 = &uStack_240;
                             cVar6 = DataStructureSearcher(&lStack_108, &lStack_138);
                             
@@ -658,7 +658,7 @@ LAB_1801d94be:
                 puStack_270 = puVar21;
                 
                 if (0 < (int)uVar9) {
-                    uVar19 = (ulonglong)uVar9;
+                    uVar19 = (uint64_t)uVar9;
                     do {
                         /* 分配和初始化数据结构 */
                         puVar14 = (uint *)SystemMemoryAllocator(system_memory_pool_ptr, 0x20, 8, 0x11);
@@ -753,8 +753,8 @@ LAB_1801d94be:
                 }
                 else {
                     uVar9 = *(uint *)(lVar4 + 0x2e0);
-                    uVar19 = (ulonglong)uVar9;
-                    if (*(longlong *)(lVar4 + 0x2d8) != 0) {
+                    uVar19 = (uint64_t)uVar9;
+                    if (*(int64_t *)(lVar4 + 0x2d8) != 0) {
                         SystemConfigurator(&puStack_298, uVar19);
                     }
                     if (uVar9 != 0) {
@@ -794,7 +794,7 @@ LAB_1801d94be:
                     AcquireSRWLockExclusive(lVar26);
                     uStack_1a0 = 1;
                     
-                    for (lVar25 = *(longlong *)(lVar26 + -0x28); lVar25 != lVar26 + -0x30;
+                    for (lVar25 = *(int64_t *)(lVar26 + -0x28); lVar25 != lVar26 + -0x30;
                         lVar25 = Synchronizer(lVar25)) {
                         puVar1 = *(uint64_t **)(lVar25 + 0x28);
                         SetFilePointerEx(lVar22, puVar1[1], auStack_c0, 0);
@@ -804,11 +804,11 @@ LAB_1801d94be:
                             uVar11 = 0;
                         }
                         else {
-                            uVar11 = SystemMemoryAllocator(system_memory_pool_ptr, (longlong)*(int *)(puVar1 + 2), 3);
+                            uVar11 = SystemMemoryAllocator(system_memory_pool_ptr, (int64_t)*(int *)(puVar1 + 2), 3);
                             iVar18 = *(int *)(puVar1 + 2);
                         }
                         *puVar1 = uVar11;
-                        SystemSecurityChecker(alStack_210, uVar11, (longlong)iVar18);
+                        SystemSecurityChecker(alStack_210, uVar11, (int64_t)iVar18);
                     }
                     
                     ReleaseSRWLockExclusive(lVar26);
@@ -857,7 +857,7 @@ LAB_1801d94be:
         uStack_2a8 = uStack_2a8 & 0xffffffff00000000;
         puStack_2c0 = &system_state_ptr;
         DataStructureCleaner(auStack_b8);
-        SystemCleanupHandler(uStack_50 ^ (ulonglong)auStack_2f8);
+        SystemCleanupHandler(uStack_50 ^ (uint64_t)auStack_2f8);
     }
     SystemErrorHandler();
 }
@@ -888,12 +888,12 @@ LAB_1801d94be:
  */
 void DataFlowValidator(uint64_t param_1, uint64_t param_2, uint64_t param_3)
 {
-    longlong lVar1;
+    int64_t lVar1;
     int iVar2;
-    ulonglong uVar3;
+    uint64_t uVar3;
     uint64_t uVar4;
     uint64_t *puVar5;
-    longlong lVar6;
+    int64_t lVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
     int iVar9;
@@ -912,12 +912,12 @@ void DataFlowValidator(uint64_t param_1, uint64_t param_2, uint64_t param_3)
     int8_t *puStack_60;
     int32_t uStack_58;
     int8_t auStack_50 [16];
-    ulonglong uStack_40;
-    ulonglong uVar11;
+    uint64_t uStack_40;
+    uint64_t uVar11;
     
     /* 初始化验证参数 */
     uStack_98 = 0xfffffffffffffffe;
-    uStack_40 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
+    uStack_40 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_d8;
     iVar9 = -1;
     puStack_b8 = (uint64_t *)0x0;
     puStack_b0 = (uint64_t *)0x0;
@@ -1028,8 +1028,8 @@ void DataFlowValidator(uint64_t param_1, uint64_t param_2, uint64_t param_3)
     puStack_90 = &system_state_ptr;
     
     /* 计算处理范围 */
-    lVar1 = (longlong)puVar5 - (longlong)puStack_b8 >> 0x3f;
-    lVar6 = ((longlong)puVar5 - (longlong)puStack_b8) / 0x28 + lVar1;
+    lVar1 = (int64_t)puVar5 - (int64_t)puStack_b8 >> 0x3f;
+    lVar6 = ((int64_t)puVar5 - (int64_t)puStack_b8) / 0x28 + lVar1;
     uVar11 = uVar3;
     
     /* 执行验证处理 */
@@ -1041,9 +1041,9 @@ void DataFlowValidator(uint64_t param_1, uint64_t param_2, uint64_t param_3)
                 iVar2 = iVar9;
             }
             iVar9 = iVar2;
-            uVar3 = (ulonglong)(int)(iVar10 + 1U);
-            uVar11 = (ulonglong)(iVar10 + 1U);
-        } while (uVar3 < (ulonglong)(lVar6 - lVar1));
+            uVar3 = (uint64_t)(int)(iVar10 + 1U);
+            uVar11 = (uint64_t)(iVar10 + 1U);
+        } while (uVar3 < (uint64_t)(lVar6 - lVar1));
     }
     
     /* 执行回调函数 */
@@ -1067,7 +1067,7 @@ void DataFlowValidator(uint64_t param_1, uint64_t param_2, uint64_t param_3)
     if (puVar8 != (uint64_t *)0x0) {
         SystemErrorHandler(puVar8);
     }
-    SystemCleanupHandler(uStack_40 ^ (ulonglong)auStack_d8);
+    SystemCleanupHandler(uStack_40 ^ (uint64_t)auStack_d8);
 }
 
 /**
@@ -1095,7 +1095,7 @@ void DataFlowValidator(uint64_t param_1, uint64_t param_2, uint64_t param_3)
  * - 包含资源管理和缓存优化
  * - 提供详细的性能统计信息
  */
-void DataFlowOptimizer(longlong *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void DataFlowOptimizer(int64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     uint64_t *puVar1;
     uint64_t *puVar2;
@@ -1145,41 +1145,41 @@ void DataFlowOptimizer(longlong *param_1, uint64_t param_2, uint64_t param_3, ui
  * - 包含并发控制和死锁预防
  * - 提供状态一致性保证
  */
-void DataFlowSynchronizer(uint64_t param_1, longlong param_2, uint64_t param_3, uint64_t param_4,
-                         longlong *param_5, longlong *param_6, int param_7)
+void DataFlowSynchronizer(uint64_t param_1, int64_t param_2, uint64_t param_3, uint64_t param_4,
+                         int64_t *param_5, int64_t *param_6, int param_7)
 {
     uint uVar1;
     uint uVar2;
     uint64_t uVar3;
     uint64_t uVar4;
     byte bVar5;
-    ulonglong uVar6;
-    longlong lVar7;
-    longlong lVar8;
+    uint64_t uVar6;
+    int64_t lVar7;
+    int64_t lVar8;
     int iVar9;
     ushort uVar10;
-    ulonglong uVar11;
+    uint64_t uVar11;
     int8_t auStack_118 [32];
-    longlong lStack_f8;
-    ulonglong uStack_f0;
+    int64_t lStack_f8;
+    uint64_t uStack_f0;
     uint64_t uStack_e8;
     uint64_t uStack_e0;
     uint64_t uStack_d8;
-    longlong lStack_d0;
-    ulonglong uStack_c8;
+    int64_t lStack_d0;
+    uint64_t uStack_c8;
     uint uStack_c0;
     ushort uStack_bc;
     uint64_t uStack_b8;
-    longlong *plStack_b0;
+    int64_t *plStack_b0;
     void *puStack_a8;
     int8_t *puStack_a0;
     int32_t uStack_98;
     int8_t auStack_90 [72];
-    ulonglong uStack_48;
+    uint64_t uStack_48;
     
     /* 初始化同步参数 */
     uStack_b8 = 0xfffffffffffffffe;
-    uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_118;
+    uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_118;
     plStack_b0 = param_6;
     uVar11 = param_5[1] - *param_5 >> 2;
     uVar3 = *(uint64_t *)(param_2 + 0x1e0);
@@ -1271,7 +1271,7 @@ LAB_1801da102:
             if (param_6[1] - lVar7 >> 3 != 0) {
                 lVar8 = 0;
                 do {
-                    uVar11 = *(ulonglong *)(lVar8 + lVar7);
+                    uVar11 = *(uint64_t *)(lVar8 + lVar7);
                     
                     /* 处理同步标志 */
                     if ((1 < (ushort)(uVar10 - 10)) || ((uVar1 >> 8 & 1) == 0)) {
@@ -1291,7 +1291,7 @@ LAB_1801da102:
                     lVar8 = lVar8 + 8;
                     lVar7 = *param_6;
                     param_2 = lStack_d0;
-                } while ((ulonglong)(longlong)iVar9 < (ulonglong)(param_6[1] - lVar7 >> 3));
+                } while ((uint64_t)(int64_t)iVar9 < (uint64_t)(param_6[1] - lVar7 >> 3));
             }
             
             lStack_f8 = lStack_f8 + 4;
@@ -1301,7 +1301,7 @@ LAB_1801da102:
     
     /* 清理资源 */
     if (*param_6 == 0) {
-        SystemCleanupHandler(uStack_48 ^ (ulonglong)auStack_118);
+        SystemCleanupHandler(uStack_48 ^ (uint64_t)auStack_118);
     }
     SystemErrorHandler();
 }

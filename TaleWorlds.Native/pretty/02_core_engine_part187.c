@@ -38,8 +38,8 @@ void execute_engine_initialization(uint64_t);
 void configure_engine_environment(uint64_t, uint64_t, uint64_t, uint64_t);
 void initialize_core_system_components(uint64_t, uint64_t, uint64_t, uint64_t, uint64_t, uint64_t);
 void initialize_engine_manager(uint64_t);
-longlong acquire_mutex(longlong);
-longlong release_mutex(longlong);
+int64_t acquire_mutex(int64_t);
+int64_t release_mutex(int64_t);
 void throw_mutex_error(int);
 void prepare_engine_system(void);
 void initialize_resource_table(uint64_t *, uint64_t, uint64_t, uint64_t, uint64_t, uint64_t);
@@ -80,11 +80,11 @@ void run_system_diagnostics(uint64_t, uint64_t, uint64_t, uint64_t, uint64_t, ui
 void initialize_config_manager(uint64_t);
 void setup_config_buffers(uint64_t, uint64_t, uint64_t);
 void process_config_data(uint64_t);
-void acquire_mutex(longlong);
-void release_mutex(longlong);
+void acquire_mutex(int64_t);
+void release_mutex(int64_t);
 void throw_mutex_error(int);
 void apply_config_settings(uint64_t, void *, uint64_t, uint64_t, uint64_t, uint64_t);
-void move_config_items(uint64_t *, uint64_t *, longlong);
+void move_config_items(uint64_t *, uint64_t *, int64_t);
 void add_config_item(uint64_t *, uint64_t *);
 void initialize_event_buffer(uint64_t *, uint64_t *, uint64_t, char, uint64_t);
 void process_event_data(uint64_t *, uint64_t **);
@@ -116,10 +116,10 @@ void initialize_engine_core_module(uint64_t *module_config)
   int8_t *string_ptr;
   int32_t buffer_size;
   int8_t name_buffer [16];
-  ulonglong stack_guard_2;
+  uint64_t stack_guard_2;
   
   stack_guard_1 = 0xfffffffffffffffe;
-  stack_guard_2 = GET_SECURITY_COOKIE() ^ (ulonglong)temp_buffer_1;
+  stack_guard_2 = GET_SECURITY_COOKIE() ^ (uint64_t)temp_buffer_1;
   init_status = 0;
   buffer_ptr = temp_buffer_2;
   resource_ptr = &system_config_ptr;
@@ -145,7 +145,7 @@ void initialize_engine_core_module(uint64_t *module_config)
   *(int32_t *)(module_config + 2) = 4;
   init_status = 1;
                     // WARNING: Subroutine does not return
-  execute_engine_initialization(stack_guard_2 ^ (ulonglong)temp_buffer_1);
+  execute_engine_initialization(stack_guard_2 ^ (uint64_t)temp_buffer_1);
 }
 
 
@@ -274,42 +274,42 @@ create_engine_instance_with_config(uint64_t *param_1,uint64_t param2,uint64_t pa
 void initialize_engine_system_components(uint64_t *param_1)
 
 {
-  longlong *system_ptr;
+  int64_t *system_ptr;
   int32_t *status_ptr;
-  longlong config_offset;
-  longlong max_entries;
+  int64_t config_offset;
+  int64_t max_entries;
   uint entry_count;
-  ulonglong valid_entries;
-  ulonglong current_index;
+  uint64_t valid_entries;
+  uint64_t current_index;
   int8_t temp_buffer_1 [32];
   int32_t init_status;
   uint64_t stack_guard;
   uint64_t *system_config;
-  ulonglong stack_guard_2;
+  uint64_t stack_guard_2;
   
   config_offset = engine_system_config;
   stack_guard = 0xfffffffffffffffe;
-  stack_guard_2 = engine_stack_guard ^ (ulonglong)temp_buffer_1;
+  stack_guard_2 = engine_stack_guard ^ (uint64_t)temp_buffer_1;
   valid_entries = 0;
   init_status = 0;
-  max_entries = *(longlong *)(engine_system_config + 0x1868);
+  max_entries = *(int64_t *)(engine_system_config + 0x1868);
   current_index = valid_entries;
   system_config = param_1;
-  if (*(longlong *)(engine_system_config + 0x1870) - max_entries >> 3 != 0) {
+  if (*(int64_t *)(engine_system_config + 0x1870) - max_entries >> 3 != 0) {
     do {
-      system_ptr = *(longlong **)(current_index + max_entries);
-      if ((((*(char *)((longlong)system_ptr + 0xde) == '\0') &&
-           (*(char *)((longlong)system_ptr + 0xdd) != '\0')) &&
-          (*(float *)((longlong)system_ptr + 0x24) == 1920.0)) &&
+      system_ptr = *(int64_t **)(current_index + max_entries);
+      if ((((*(char *)((int64_t)system_ptr + 0xde) == '\0') &&
+           (*(char *)((int64_t)system_ptr + 0xdd) != '\0')) &&
+          (*(float *)((int64_t)system_ptr + 0x24) == 1920.0)) &&
          (max_entries = (**(code **)(*system_ptr + 0xb8))(system_ptr), max_entries != 0)) {
-        valid_entries = (ulonglong)((int)valid_entries + 1);
+        valid_entries = (uint64_t)((int)valid_entries + 1);
       }
       entry_count = (int)valid_entries + 1;
-      valid_entries = (ulonglong)entry_count;
-      max_entries = *(longlong *)(config_offset + 0x1868);
+      valid_entries = (uint64_t)entry_count;
+      max_entries = *(int64_t *)(config_offset + 0x1868);
       current_index = current_index + 8;
-    } while ((ulonglong)(longlong)(int)entry_count <
-             (ulonglong)(*(longlong *)(config_offset + 0x1870) - max_entries >> 3));
+    } while ((uint64_t)(int64_t)(int)entry_count <
+             (uint64_t)(*(int64_t *)(config_offset + 0x1870) - max_entries >> 3));
     if (1 < (int)valid_entries) {
                     // WARNING: Subroutine does not return
       report_engine_error(engine_error_handler,&engine_error_message);
@@ -329,7 +329,7 @@ void initialize_engine_system_components(uint64_t *param_1)
   *(int32_t *)(param_1 + 2) = 4;
   init_status = 1;
                     // WARNING: Subroutine does not return
-  finalize_engine_initialization(stack_guard_2 ^ (ulonglong)temp_buffer_1);
+  finalize_engine_initialization(stack_guard_2 ^ (uint64_t)temp_buffer_1);
 }
 
 
@@ -358,9 +358,9 @@ uint64_t execute_engine_component_initialization(uint64_t engine_handle,uint64_t
 uint64_t * initialize_engine_configuration(uint64_t *param_1)
 
 {
-  longlong config_base;
+  int64_t config_base;
   uint64_t *instance_ptr;
-  longlong mutex_addr;
+  int64_t mutex_addr;
   int lock_status;
   
   initialize_engine_manager(engine_manager_config);
@@ -370,9 +370,9 @@ uint64_t * initialize_engine_configuration(uint64_t *param_1)
   if (lock_status != 0) {
     throw_mutex_error(lock_status);
   }
-  (**(code **)(**(longlong **)(mutex_addr + 0xe8) + 0xe0))();
+  (**(code **)(**(int64_t **)(mutex_addr + 0xe8) + 0xe0))();
   if (*(char *)(mutex_addr + 0x1f0) != '\0') {
-    (**(code **)(**(longlong **)(mutex_addr + 0xe8) + 0xc0))();
+    (**(code **)(**(int64_t **)(mutex_addr + 0xe8) + 0xc0))();
   }
   lock_status = release_mutex(mutex_addr);
   if (lock_status != 0) {
@@ -389,8 +389,8 @@ uint64_t * initialize_engine_configuration(uint64_t *param_1)
   instance_ptr = (uint64_t *)param_1[1];
   *instance_ptr = 0x6c63206568636143;
   *(int32_t *)(instance_ptr + 1) = 0x65726165;
-  *(int16_t *)((longlong)instance_ptr + 0xc) = 0x2e64;
-  *(int8_t *)((longlong)instance_ptr + 0xe) = 0;
+  *(int16_t *)((int64_t)instance_ptr + 0xc) = 0x2e64;
+  *(int8_t *)((int64_t)instance_ptr + 0xe) = 0;
   *(int32_t *)(param_1 + 2) = 0xe;
   return param_1;
 }
@@ -544,19 +544,19 @@ configure_engine_environment_params(uint64_t env_ptr,uint64_t param2,uint64_t pa
  * @return 事件处理器指针
  */
 uint64_t *
-process_engine_event_and_update_status(uint64_t *param_1,uint64_t param2,uint64_t *param_3,longlong *param_4)
+process_engine_event_and_update_status(uint64_t *param_1,uint64_t param2,uint64_t *param_3,int64_t *param_4)
 
 {
   int32_t *instance_data;
   uint64_t event_handler;
   uint64_t event_context;
   uint64_t event_data;
-  longlong *event_info;
+  int64_t *event_info;
   void *event_buffer;
-  longlong buffer_status;
+  int64_t buffer_status;
   int32_t buffer_size;
   void *resource_ptr;
-  longlong resource_status;
+  int64_t resource_status;
   int32_t resource_size;
   uint64_t resource_handle;
   int8_t *data_ptr;
@@ -577,8 +577,8 @@ process_engine_event_and_update_status(uint64_t *param_1,uint64_t param2,uint64_
   buffer_length = event_data;
   process_event_buffer(temp_buffer_1,&event_buffer);
   event_data = handle_event_processing(temp_buffer_2,&buffer_length);
-  event_info = (longlong *)register_event_handler(event_context,event_data);
-  if (event_info != (longlong *)0x0) {
+  event_info = (int64_t *)register_event_handler(event_context,event_data);
+  if (event_info != (int64_t *)0x0) {
     (**(code **)(*event_info + 0x28))(event_info);
   }
   cleanup_event_handler(event_handler,&event_info);
@@ -669,8 +669,8 @@ traverse_and_initialize_engine_components(uint64_t *param_1,uint64_t param2,uint
 
 {
   int32_t *instance_data;
-  longlong component_list;
-  longlong current_component;
+  int64_t component_list;
+  int64_t current_component;
   int component_index;
   int32_t component_id;
   uint64_t stack_guard;
@@ -678,15 +678,15 @@ traverse_and_initialize_engine_components(uint64_t *param_1,uint64_t param2,uint
   component_list = engine_component_list;
   stack_guard = 0xfffffffffffffffe;
   component_id = 0;
-  for (current_component = *(longlong *)(engine_component_list + 8); current_component != component_list; current_component = get_next_component(current_component)
+  for (current_component = *(int64_t *)(engine_component_list + 8); current_component != component_list; current_component = get_next_component(current_component)
       ) {
     component_index = 0;
-    if (*(longlong *)(current_component + 0x30) - *(longlong *)(current_component + 0x28) >> 3 != 0) {
+    if (*(int64_t *)(current_component + 0x30) - *(int64_t *)(current_component + 0x28) >> 3 != 0) {
       do {
         initialize_component(component_list,*(int32_t *)(current_component + 0x20),component_index,param_4,component_id,stack_guard);
         component_index = component_index + 1;
-      } while ((ulonglong)(longlong)component_index <
-               (ulonglong)(*(longlong *)(current_component + 0x30) - *(longlong *)(current_component + 0x28) >> 3));
+      } while ((uint64_t)(int64_t)component_index <
+               (uint64_t)(*(int64_t *)(current_component + 0x30) - *(int64_t *)(current_component + 0x28) >> 3));
     }
   }
   *param_1 = &default_engine_config;
@@ -765,7 +765,7 @@ initialize_engine_memory_manager(uint64_t memory_ptr,uint64_t param2,uint64_t pa
  * @param param_3 配置参数指针
  * @return 配置指针
  */
-uint64_t get_engine_configuration_info(uint64_t config_ptr,uint64_t param2,longlong *param_3)
+uint64_t get_engine_configuration_info(uint64_t config_ptr,uint64_t param2,int64_t *param_3)
 
 {
   void *config_info;
@@ -791,24 +791,24 @@ uint64_t get_engine_configuration_info(uint64_t config_ptr,uint64_t param2,longl
  * @param param4 参数4
  * @return 配置指针
  */
-uint64_t process_engine_config_params(uint64_t config_ptr,uint64_t param2,longlong *param_3,uint64_t param4)
+uint64_t process_engine_config_params(uint64_t config_ptr,uint64_t param2,int64_t *param_3,uint64_t param4)
 
 {
-  longlong context_ptr;
+  int64_t context_ptr;
   uint config_value;
   int lock_status;
   void *config_data;
   void *resource_table;
   void *resource_ptr;
   int32_t resource_size;
-  ulonglong resource_handle;
+  uint64_t resource_handle;
   
   if (param_3[1] - *param_3 >> 5 == 0) {
     resource_table = &engine_resource_table;
     resource_handle = 0;
     resource_ptr = (void *)0x0;
     resource_size = 0;
-    setup_config_resource(&resource_table,*(int32_t *)(*(longlong *)(engine_context + 0x3d8) + 0x160),param_3
+    setup_config_resource(&resource_table,*(int32_t *)(*(int64_t *)(engine_context + 0x3d8) + 0x160),param_3
                   ,param_4,0,0xfffffffffffffffe);
     config_data = &default_config_string;
     if (resource_ptr != (void *)0x0) {
@@ -824,12 +824,12 @@ uint64_t process_engine_config_params(uint64_t config_ptr,uint64_t param2,longlo
     resource_table = &default_engine_config;
   }
   else {
-    context_ptr = *(longlong *)(engine_context + 0x3d8);
+    context_ptr = *(int64_t *)(engine_context + 0x3d8);
     config_value = atoi(*(uint64_t *)(*param_3 + 8));
     if (*(int *)(context_ptr + 0x110) == 3) {
       initialize_config_manager(context_ptr);
     }
-    if ((ulonglong)config_value < *(longlong *)(context_ptr + 0x160) - 2U) {
+    if ((uint64_t)config_value < *(int64_t *)(context_ptr + 0x160) - 2U) {
       setup_config_buffers(context_ptr,4,2);
       *(uint64_t *)(context_ptr + 0x158) = 0xffffffffffffffff;
       *(uint64_t *)(context_ptr + 0xb0) = 0;
@@ -843,7 +843,7 @@ uint64_t process_engine_config_params(uint64_t config_ptr,uint64_t param2,longlo
       if (lock_status != 0) {
         throw_mutex_error(lock_status);
       }
-      *(longlong *)(context_ptr + 0x150) = (longlong)(int)config_value;
+      *(int64_t *)(context_ptr + 0x150) = (int64_t)(int)config_value;
       apply_config_settings(context_ptr);
       *(int32_t *)(context_ptr + 0x144) = 0;
       finalize_config_setup(context_ptr,10);
@@ -870,8 +870,8 @@ setup_engine_rendering_params(uint64_t *param_1,uint64_t param2,uint64_t param3,
 {
   int32_t *render_data;
   
-  configure_rendering_settings(*(longlong *)(engine_context + 0x3d8),
-                1.0 / *(float *)(*(longlong *)(engine_context + 0x3d8) + 0x13c),param_3,param_4,0,
+  configure_rendering_settings(*(int64_t *)(engine_context + 0x3d8),
+                1.0 / *(float *)(*(int64_t *)(engine_context + 0x3d8) + 0x13c),param_3,param_4,0,
                 0xfffffffffffffffe);
   *param_1 = &default_engine_config;
   param_1[1] = 0;
@@ -884,7 +884,7 @@ setup_engine_rendering_params(uint64_t *param_1,uint64_t param2,uint64_t param3,
   render_data = (int32_t *)param_1[1];
   *render_data = 0x65766153;
   *(int16_t *)(render_data + 1) = 0x2164;
-  *(int8_t *)((longlong)render_data + 6) = 0;
+  *(int8_t *)((int64_t)render_data + 6) = 0;
   *(int32_t *)(param_1 + 2) = 6;
   return param_1;
 }
@@ -905,7 +905,7 @@ initialize_engine_rendering_pipeline(uint64_t *param_1,uint64_t param2,uint64_t 
 {
   int32_t *render_data;
   void *render_resource;
-  longlong resource_status;
+  int64_t resource_status;
   int32_t resource_size;
   
   setup_rendering_pipeline(*(uint64_t *)(engine_context + 0x3d8),&render_resource,param_3,param_4,0,
@@ -929,7 +929,7 @@ initialize_engine_rendering_pipeline(uint64_t *param_1,uint64_t param2,uint64_t 
   render_data = (int32_t *)param_1[1];
   *render_data = 0x65766153;
   *(int16_t *)(render_data + 1) = 0x2164;
-  *(int8_t *)((longlong)render_data + 6) = 0;
+  *(int8_t *)((int64_t)render_data + 6) = 0;
   *(int32_t *)(param_1 + 2) = 6;
   return param_1;
 }
@@ -945,32 +945,32 @@ initialize_engine_rendering_pipeline(uint64_t *param_1,uint64_t param2,uint64_t 
  * @return 配置管理器指针
  */
 uint64_t *
-manage_engine_config_params(uint64_t *param_1,uint64_t param2,longlong *param_3,uint64_t param4)
+manage_engine_config_params(uint64_t *param_1,uint64_t param2,int64_t *param_3,uint64_t param4)
 
 {
   int *config_item;
-  longlong context_ptr;
+  int64_t context_ptr;
   int *config_end;
   int32_t *instance_data;
   int config_value;
   int *config_start;
   int config_index;
-  ulonglong config_count;
+  uint64_t config_count;
   uint64_t config_param;
   
   config_index = 0;
   config_param = param4;
   if ((param_3[1] - *param_3 & 0xffffffffffffffe0U) == 0) {
-    *(bool *)(*(longlong *)(engine_context + 0x3d8) + 0xae0) =
-         *(char *)(*(longlong *)(engine_context + 0x3d8) + 0xae0) == '\0';
+    *(bool *)(*(int64_t *)(engine_context + 0x3d8) + 0xae0) =
+         *(char *)(*(int64_t *)(engine_context + 0x3d8) + 0xae0) == '\0';
   }
   else {
     config_value = atoi(*(uint64_t *)(*param_3 + 8));
     config_param = CONCAT44(config_param._4_4_,config_value);
-    context_ptr = *(longlong *)(engine_context + 0x3d8);
+    context_ptr = *(int64_t *)(engine_context + 0x3d8);
     config_end = *(int **)(context_ptr + 0xac8);
     config_start = *(int **)(context_ptr + 0xac0);
-    config_count = (longlong)config_end - (longlong)config_start >> 2;
+    config_count = (int64_t)config_end - (int64_t)config_start >> 2;
     if (config_count != 0) {
       do {
         if (*config_start == config_value) {
@@ -980,14 +980,14 @@ manage_engine_config_params(uint64_t *param_1,uint64_t param2,longlong *param_3,
           config_item = config_start + 1;
           if ((config_item < config_end) && (config_item != config_end)) {
                     // WARNING: Subroutine does not return
-            move_config_items(config_start,config_item,(longlong)config_end - (longlong)config_item);
+            move_config_items(config_start,config_item,(int64_t)config_end - (int64_t)config_item);
           }
           *(int **)(context_ptr + 0xac8) = config_end + -1;
           goto CONFIG_UPDATED;
         }
         config_index = config_index + 1;
         config_start = config_start + 1;
-      } while ((ulonglong)(longlong)config_index < config_count);
+      } while ((uint64_t)(int64_t)config_index < config_count);
     }
     add_config_item(context_ptr + 0xac0,&config_param);
   }
@@ -1118,13 +1118,13 @@ initialize_engine_resource_manager(uint64_t *param_1,uint64_t param2,uint64_t pa
 
 {
   int32_t *resource_data;
-  longlong resource_handle;
+  int64_t resource_handle;
   
   resource_handle = engine_resource_manager;
   setup_resource_manager(engine_resource_manager,*(uint64_t *)(engine_resource_manager + 0x10),param_3,param_4,0,
                 0xfffffffffffffffe);
-  *(longlong *)resource_handle = resource_handle;
-  *(longlong *)(resource_handle + 8) = resource_handle;
+  *(int64_t *)resource_handle = resource_handle;
+  *(int64_t *)(resource_handle + 8) = resource_handle;
   *(uint64_t *)(resource_handle + 0x10) = 0;
   *(int8_t *)(resource_handle + 0x18) = 0;
   *(uint64_t *)(resource_handle + 0x20) = 0;
@@ -1218,8 +1218,8 @@ initialize_engine_event_handler(uint64_t *param_1,uint64_t param2,uint64_t param
   
   stack_guard = 0xfffffffffffffffe;
   init_status = 0;
-  if (*(longlong **)(engine_event_database + 0x18) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(engine_event_database + 0x18) + 0x50))();
+  if (*(int64_t **)(engine_event_database + 0x18) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(engine_event_database + 0x18) + 0x50))();
   }
   *param_1 = &default_engine_config;
   param_1[1] = 0;
@@ -1271,13 +1271,13 @@ configure_engine_network_settings(uint64_t network_ptr,uint64_t param2,uint64_t 
  * @param param_4 任务数据指针
  * @return 任务处理器指针
  */
-uint64_t process_engine_async_tasks(uint64_t param_1,uint64_t param2,longlong *param_3,longlong *param_4)
+uint64_t process_engine_async_tasks(uint64_t param_1,uint64_t param2,int64_t *param_3,int64_t *param_4)
 
 {
   uint64_t task_context;
-  longlong *task_handler;
-  longlong *task_data;
-  longlong task_params [2];
+  int64_t *task_handler;
+  int64_t *task_data;
+  int64_t task_params [2];
   void *callback_ptr;
   code *callback_func;
   
@@ -1287,19 +1287,19 @@ uint64_t process_engine_async_tasks(uint64_t param_1,uint64_t param2,longlong *p
   task_params[0] = *param_4;
   callback_ptr = &task_completion_callback;
   callback_func = complete_task_callback;
-  task_handler = (longlong *)create_task_handler(task_context,task_params);
+  task_handler = (int64_t *)create_task_handler(task_context,task_params);
   task_data = task_handler;
-  if (task_handler != (longlong *)0x0) {
+  if (task_handler != (int64_t *)0x0) {
     (**(code **)(*task_handler + 0x28))(task_handler);
   }
   *(int32_t *)*param_4 = 1;
   task_context = engine_memory_pool;
   task_data = task_handler;
-  if (task_handler != (longlong *)0x0) {
+  if (task_handler != (int64_t *)0x0) {
     (**(code **)(*task_handler + 0x28))(task_handler);
   }
   cleanup_task_handler(task_context,&task_data);
-  if (task_handler != (longlong *)0x0) {
+  if (task_handler != (int64_t *)0x0) {
     (**(code **)(*task_handler + 0x38))(task_handler);
   }
   setup_task_completion(param_1,&default_config_string);
@@ -1451,9 +1451,9 @@ uint64_t *
 process_engine_resource_request(uint64_t *param_1,uint64_t param2,uint64_t param_3,uint64_t *param_4)
 
 {
-  longlong resource_info;
+  int64_t resource_info;
   void *resource_buffer;
-  longlong buffer_status;
+  int64_t buffer_status;
   
   resource_info = ((code *)*param_4)(&resource_buffer);
   *param_1 = &default_engine_config;
@@ -1465,7 +1465,7 @@ process_engine_resource_request(uint64_t *param_1,uint64_t param2,uint64_t param
   *(int32_t *)(param_1 + 2) = 0;
   *(int32_t *)(param_1 + 2) = *(int32_t *)(resource_info + 0x10);
   param_1[1] = *(uint64_t *)(resource_info + 8);
-  *(int32_t *)((longlong)param_1 + 0x1c) = *(int32_t *)(resource_info + 0x1c);
+  *(int32_t *)((int64_t)param_1 + 0x1c) = *(int32_t *)(resource_info + 0x1c);
   *(int32_t *)(param_1 + 3) = *(int32_t *)(resource_info + 0x18);
   *(int32_t *)(resource_info + 0x10) = 0;
   *(uint64_t *)(resource_info + 8) = 0;

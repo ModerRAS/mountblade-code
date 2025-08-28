@@ -30,13 +30,13 @@
  * @param data_ptr 数据指针数组
  * @param context_ptr 上下文指针
  */
-void process_save_data(uint64_t **data_ptr, longlong context_ptr)
+void process_save_data(uint64_t **data_ptr, int64_t context_ptr)
 {
     uint64_t *global_data;
     int context_type;
-    longlong loop_counter;
+    int64_t loop_counter;
     uint64_t allocated_buffer;
-    longlong *processed_data;
+    int64_t *processed_data;
     uint64_t **temp_ptr1;
     uint64_t ***temp_ptr2;
     uint64_t **temp_ptr3;
@@ -44,12 +44,12 @@ void process_save_data(uint64_t **data_ptr, longlong context_ptr)
     uint64_t *stack_data1;
     int8_t stack_data2;
     void *stack_data3;
-    longlong stack_data4;
+    int64_t stack_data4;
     int32_t stack_data5;
     uint64_t *stack_data6;
     int8_t stack_data7;
     void *stack_data8;
-    longlong stack_data9;
+    int64_t stack_data9;
     int32_t stack_data10;
     uint64_t *stack_array1[2];
     code *function_ptr1;
@@ -67,7 +67,7 @@ void process_save_data(uint64_t **data_ptr, longlong context_ptr)
         loop_counter = 0;
         do {
             // 检查字符串匹配
-            if (*(char *)(*(longlong *)(context_ptr + 8) + loop_counter) != (&system_pattern2_ptr)[loop_counter])
+            if (*(char *)(*(int64_t *)(context_ptr + 8) + loop_counter) != (&system_pattern2_ptr)[loop_counter])
                 goto validation_failed;
             loop_counter = loop_counter + 1;
         } while (loop_counter != 8);
@@ -78,7 +78,7 @@ validation_failed:
             loop_counter = 0;
             do {
                 // 检查备用字符串匹配
-                if (*(char *)(*(longlong *)(context_ptr + 8) + loop_counter) != (&system_pattern1_ptr)[loop_counter])
+                if (*(char *)(*(int64_t *)(context_ptr + 8) + loop_counter) != (&system_pattern1_ptr)[loop_counter])
                     goto validation_failed2;
                 loop_counter = loop_counter + 1;
             } while (loop_counter != 6);
@@ -96,7 +96,7 @@ final_validation:
     FUN_18005e630(system_context_ptr);
     FUN_1801c9940(global_data);
     allocated_buffer = FUN_18062b1e0(system_memory_pool_ptr, SERIALIZATION_BUFFER_SIZE, 8, 3);
-    processed_data = (longlong *)FUN_1803e8a40(allocated_buffer, context_ptr);
+    processed_data = (int64_t *)FUN_1803e8a40(allocated_buffer, context_ptr);
     *global_data = processed_data;
     (**(code **)(*processed_data + 0x28))(processed_data);
     *(int8_t *)(system_main_module_state + 0x60) = 1;
@@ -172,10 +172,10 @@ final_validation:
  * 初始化存档上下文
  * @param context_ptr 上下文指针
  */
-void initialize_save_context(longlong context_ptr)
+void initialize_save_context(int64_t context_ptr)
 {
     *(uint64_t *)(context_ptr + 0x10) = &system_data_buffer_ptr;
-    if (*(longlong *)(context_ptr + 0x18) != 0) {
+    if (*(int64_t *)(context_ptr + 0x18) != 0) {
         FUN_18064e900();
     }
     *(uint64_t *)(context_ptr + 0x18) = 0;
@@ -189,7 +189,7 @@ void initialize_save_context(longlong context_ptr)
  * @param param1 参数1
  * @param context_ptr 上下文指针
  */
-void load_game_data(uint64_t param1, longlong context_ptr)
+void load_game_data(uint64_t param1, int64_t context_ptr)
 {
     uint64_t *global_data;
     uint file_size1;
@@ -198,22 +198,22 @@ void load_game_data(uint64_t param1, longlong context_ptr)
     bool comparison_result;
     char temp_char;
     uint64_t temp_data1;
-    longlong file_position;
+    int64_t file_position;
     uint64_t *temp_ptr2;
     uint64_t *temp_ptr3;
     int32_t *temp_ptr4;
     uint64_t *temp_ptr5;
     void *temp_ptr6;
-    ulonglong file_size_total;
+    uint64_t file_size_total;
     int file_descriptor;
-    longlong temp_long1;
-    longlong temp_long2;
+    int64_t temp_long1;
+    int64_t temp_long2;
     uint *temp_uint1;
     int8_t stack_data1[32];
     uint *temp_uint2;
     int8_t stack_data2;
     char stack_data3[7];
-    longlong stack_data4;
+    int64_t stack_data4;
     uint *temp_uint3;
     uint64_t stack_data5;
     int16_t stack_data6;
@@ -221,46 +221,46 @@ void load_game_data(uint64_t param1, longlong context_ptr)
     void *stack_data8;
     void *stack_data9;
     uint stack_data10;
-    ulonglong stack_data11;
+    uint64_t stack_data11;
     uint stack_data12;
     uint stack_data13;
     uint64_t stack_data14;
     uint64_t stack_data15;
     uint64_t stack_data16;
     void *stack_data17;
-    longlong stack_data18;
+    int64_t stack_data18;
     int stack_data19;
-    ulonglong stack_data20;
+    uint64_t stack_data20;
     uint64_t *stack_data21;
-    longlong stack_data22;
+    int64_t stack_data22;
     int8_t stack_data23;
-    longlong stack_data24;
+    int64_t stack_data24;
     uint64_t stack_data25;
-    longlong stack_data26;
+    int64_t stack_data26;
     uint64_t *stack_data27;
-    longlong stack_data28;
+    int64_t stack_data28;
     int8_t stack_data29;
-    longlong stack_data30;
+    int64_t stack_data30;
     int8_t stack_data31;
-    longlong stack_data32;
+    int64_t stack_data32;
     int8_t stack_data33;
-    longlong stack_data34;
+    int64_t stack_data34;
     uint64_t *stack_data35;
     uint64_t *stack_data36;
     uint64_t *stack_data37;
-    longlong stack_data38;
+    int64_t stack_data38;
     uint64_t *stack_data39;
-    longlong stack_data40;
+    int64_t stack_data40;
     uint64_t *stack_data41;
     uint64_t *stack_data42;
     uint64_t *stack_data43;
-    longlong stack_data44;
+    int64_t stack_data44;
     uint64_t *stack_data45;
-    longlong stack_data46;
+    int64_t stack_data46;
     uint64_t *stack_data47;
     uint64_t *stack_data48;
     uint64_t *stack_data49;
-    longlong stack_data50;
+    int64_t stack_data50;
     uint *temp_uint4;
     uint64_t stack_data51;
     uint stack_data52;
@@ -268,11 +268,11 @@ void load_game_data(uint64_t param1, longlong context_ptr)
     uint stack_data54;
     uint stack_data55;
     int32_t stack_data56;
-    ulonglong stack_data57;
+    uint64_t stack_data57;
     
     temp_long1 = system_global_data_ptr;
     stack_data51 = 0xfffffffffffffffe;
-    stack_data57 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_data1;
+    stack_data57 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_data1;
     stack_data22 = system_global_data_ptr;
     FUN_1801d8e90(system_global_data_ptr, context_ptr, 0);
     stack_data8 = &system_data_buffer_ptr;
@@ -288,7 +288,7 @@ void load_game_data(uint64_t param1, longlong context_ptr)
     temp_ptr4[2] = 0x69707061;  // "appi"
     temp_ptr4[3] = 0x622e676e;  // "ng.b"
     *(int16_t *)(temp_ptr4 + 4) = 0x6e69;  // "in"
-    *(int8_t *)((longlong)temp_ptr4 + 0x12) = 0;
+    *(int8_t *)((int64_t)temp_ptr4 + 0x12) = 0;
     stack_data16 = 0;
     stack_data26 = 0;
     temp_ptr6 = &system_buffer_ptr;
@@ -314,23 +314,23 @@ void load_game_data(uint64_t param1, longlong context_ptr)
         stack_data20 = 0;
         stack_data18 = 0;
         stack_data19 = 0;
-        file_size1 = *(uint *)((longlong)temp_uint3 + 4);
-        temp_uint1 = (uint *)((longlong)temp_uint3 + 8);
+        file_size1 = *(uint *)((int64_t)temp_uint3 + 4);
+        temp_uint1 = (uint *)((int64_t)temp_uint3 + 8);
         if (file_size1 != 0) {
             temp_uint3 = temp_uint1;
             FUN_180628f30(&stack_data17, temp_uint1, file_size1);
-            temp_uint1 = (uint *)((longlong)temp_uint1 + (ulonglong)file_size1);
+            temp_uint1 = (uint *)((int64_t)temp_uint1 + (uint64_t)file_size1);
         }
         file_descriptor = stack_data19 + 8;
         temp_uint3 = temp_uint1;
         if (context_ptr == 0) {
-            temp_long1 = *(longlong *)(temp_long1 + 0x50);
+            temp_long1 = *(int64_t *)(temp_long1 + 0x50);
             stack_data28 = temp_long1 + 0x360;
             stack_data29 = 0;
             stack_data24 = temp_long1;
             AcquireSRWLockExclusive(stack_data28);
             stack_data29 = 1;
-            file_size_total = (ulonglong)(file_position - file_descriptor) / 0x18;
+            file_size_total = (uint64_t)(file_position - file_descriptor) / 0x18;
             file_position = stack_data28;
             if (0 < (int)file_size_total) {
                 file_size_total = file_size_total & 0xffffffff;
@@ -352,13 +352,13 @@ void load_game_data(uint64_t param1, longlong context_ptr)
                             ((*(uint *)(temp_ptr2 + 4) <= stack_data52 &&
                              ((*(ushort *)(temp_ptr2 + 6) < (ushort)stack_data56 ||
                               ((*(ushort *)(temp_ptr2 + 6) <= (ushort)stack_data56 &&
-                               ((*(uint *)((longlong)temp_ptr2 + 0x24) < stack_data53 ||
-                                ((*(uint *)((longlong)temp_ptr2 + 0x24) <= stack_data53 &&
+                               ((*(uint *)((int64_t)temp_ptr2 + 0x24) < stack_data53 ||
+                                ((*(uint *)((int64_t)temp_ptr2 + 0x24) <= stack_data53 &&
                                  ((*(uint *)(temp_ptr2 + 5) < stack_data54 ||
                                   ((*(uint *)(temp_ptr2 + 5) <= stack_data54 &&
-                                   ((*(uint *)((longlong)temp_ptr2 + 0x2c) < stack_data55 ||
-                                    ((*(uint *)((longlong)temp_ptr2 + 0x2c) <= stack_data55 &&
-                                     (*(byte *)((longlong)temp_ptr2 + 0x32) < stack_data56._2_1_))))))))))))))))))) {
+                                   ((*(uint *)((int64_t)temp_ptr2 + 0x2c) < stack_data55 ||
+                                    ((*(uint *)((int64_t)temp_ptr2 + 0x2c) <= stack_data55 &&
+                                     (*(byte *)((int64_t)temp_ptr2 + 0x32) < stack_data56._2_1_))))))))))))))))))) {
                             comparison_result = true;
                             temp_ptr5 = (uint64_t *)*temp_ptr2;
                         }
@@ -377,13 +377,13 @@ void load_game_data(uint64_t param1, longlong context_ptr)
                         ((temp_ptr2 = stack_data21, stack_data52 <= *(uint *)(temp_ptr5 + 4) &&
                          (((ushort)stack_data56 < *(ushort *)(temp_ptr5 + 6) ||
                            (((ushort)stack_data56 <= *(ushort *)(temp_ptr5 + 6) &&
-                            ((stack_data53 < *(uint *)((longlong)temp_ptr5 + 0x24) ||
-                             ((stack_data53 <= *(uint *)((longlong)temp_ptr5 + 0x24) &&
+                            ((stack_data53 < *(uint *)((int64_t)temp_ptr5 + 0x24) ||
+                             ((stack_data53 <= *(uint *)((int64_t)temp_ptr5 + 0x24) &&
                               ((stack_data54 < *(uint *)(temp_ptr5 + 5) ||
                                ((stack_data54 <= *(uint *)(temp_ptr5 + 5) &&
-                                ((stack_data55 < *(uint *)((longlong)temp_ptr5 + 0x2c) ||
-                                 ((stack_data55 <= *(uint *)((longlong)temp_ptr5 + 0x2c) &&
-                                  (stack_data56._2_1_ < *(byte *)((longlong)temp_ptr5 + 0x32))))))))))))))))))))) {
+                                ((stack_data55 < *(uint *)((int64_t)temp_ptr5 + 0x2c) ||
+                                 ((stack_data55 <= *(uint *)((int64_t)temp_ptr5 + 0x2c) &&
+                                  (stack_data56._2_1_ < *(byte *)((int64_t)temp_ptr5 + 0x32))))))))))))))))))))) {
                         stack_data56 = file_size1;
                         temp_long1 = FUN_1801ea180(temp_ptr1, temp_ptr5, &stack_data2, &stack_data52);
                         if (temp_long1 == 0) {
@@ -408,8 +408,8 @@ void load_game_data(uint64_t param1, longlong context_ptr)
                     }
                     stack_data56 = file_size1;
                     stack_data21 = temp_ptr2;
-                    *(uint *)((longlong)temp_ptr5 + 0x34) = file_size2;
-                    temp_long2 = (ulonglong)stack_data56._2_1_ * 0x70 + *(longlong *)(stack_data22 + 0x50);
+                    *(uint *)((int64_t)temp_ptr5 + 0x34) = file_size2;
+                    temp_long2 = (uint64_t)stack_data56._2_1_ * 0x70 + *(int64_t *)(stack_data22 + 0x50);
                     temp_long1 = temp_long2 + 0x70;
                     stack_data33 = 0;
                     stack_data34 = temp_long1;
@@ -441,7 +441,7 @@ void load_game_data(uint64_t param1, longlong context_ptr)
                     stack_data13 = temp_uint1[1];
                     stack_data14 = *(uint64_t *)(temp_uint1 + 2);
                     stack_data15 = *(uint64_t *)(temp_uint1 + 4);
-                    stack_data16 = *(ulonglong *)(temp_uint1 + 6);
+                    stack_data16 = *(uint64_t *)(temp_uint1 + 6);
                     file_size1 = temp_uint1[8];
                     temp_uint1 = temp_uint1 + 9;
                     temp_ptr3 = temp_ptr1;
@@ -449,16 +449,16 @@ void load_game_data(uint64_t param1, longlong context_ptr)
                     temp_ptr2 = *(uint64_t **)(context_ptr + 0x338);
                     while (temp_ptr2 != (uint64_t *)0x0) {
                         stack_data45 = temp_ptr2 + 4;
-                        stack_data34 = (longlong)&stack_data16 + 4;
+                        stack_data34 = (int64_t)&stack_data16 + 4;
                         stack_data35 = &stack_data16;
                         stack_data36 = &stack_data15;
                         stack_data37 = &stack_data14;
-                        stack_data38 = (longlong)&stack_data15 + 4;
+                        stack_data38 = (int64_t)&stack_data15 + 4;
                         temp_uint4 = &stack_data12;
                         stack_data39 = temp_ptr2 + 7;
                         stack_data40 = temp_ptr2 + 6;
                         stack_data41 = temp_ptr2 + 5;
-                        stack_data42 = (longlong)temp_ptr2 + 0x3c;
+                        stack_data42 = (int64_t)temp_ptr2 + 0x3c;
                         temp_char = func_0x0001801eb6f0(&stack_data42, &stack_data34);
                         if (temp_char == '\0') {
                             temp_ptr3 = temp_ptr2;
@@ -476,16 +476,16 @@ data_not_found:
                     }
                     else {
                         stack_data46 = temp_ptr3 + 4;
-                        stack_data40 = (longlong)temp_ptr3 + 0x3c;
+                        stack_data40 = (int64_t)temp_ptr3 + 0x3c;
                         stack_data47 = temp_ptr3 + 7;
                         stack_data48 = temp_ptr3 + 6;
                         stack_data49 = temp_ptr3 + 5;
-                        stack_data50 = (longlong)temp_ptr3 + 0x34;
-                        stack_data44 = (longlong)&stack_data16 + 4;
+                        stack_data50 = (int64_t)temp_ptr3 + 0x34;
+                        stack_data44 = (int64_t)&stack_data16 + 4;
                         stack_data35 = &stack_data16;
                         stack_data36 = &stack_data15;
                         stack_data37 = &stack_data14;
-                        stack_data30 = (longlong)&stack_data15 + 4;
+                        stack_data30 = (int64_t)&stack_data15 + 4;
                         temp_uint4 = &stack_data12;
                         temp_char = func_0x0001801eb6f0(&stack_data44, &stack_data40);
                         if (temp_char != '\0') goto data_not_found;
@@ -531,7 +531,7 @@ data_not_found:
         stack_data9 = (void *)0x0;
         stack_data11 = stack_data11 & 0xffffffff00000000;
         stack_data8 = &system_state_ptr;
-        FUN_1808fc050(stack_data57 ^ (ulonglong)stack_data1);
+        FUN_1808fc050(stack_data57 ^ (uint64_t)stack_data1);
     }
     FUN_18064e900();
 }
@@ -541,20 +541,20 @@ data_not_found:
  * @param file_handle 文件句柄
  * @return 验证结果
  */
-bool validate_save_file(longlong file_handle)
+bool validate_save_file(int64_t file_handle)
 {
-    longlong temp_long1;
+    int64_t temp_long1;
     int32_t *temp_ptr1;
     void *temp_ptr2;
     int temp_int1;
-    ulonglong bytes_read1;
-    ulonglong bytes_read2;
-    ulonglong bytes_read3;
+    uint64_t bytes_read1;
+    uint64_t bytes_read2;
+    uint64_t bytes_read3;
     bool validation_result;
     int stack_array1[2];
     uint stack_array2[2];
     uint stack_array3[2];
-    longlong stack_array4[2];
+    int64_t stack_array4[2];
     void *stack_data1;
     void *stack_data2;
     uint stack_data3;
@@ -594,7 +594,7 @@ bool validate_save_file(longlong file_handle)
                 bytes_read3 = 4 - bytes_read1 & 0xffffffff;
             }
             stack_array2[0] = 0;
-            temp_int1 = ReadFile(temp_long1, (longlong)stack_array1 + bytes_read1, bytes_read3, stack_array2, 0);
+            temp_int1 = ReadFile(temp_long1, (int64_t)stack_array1 + bytes_read1, bytes_read3, stack_array2, 0);
         } while (((temp_int1 != 0) && (stack_array2[0] != 0)) && (bytes_read1 = bytes_read1 + stack_array2[0], bytes_read1 < 4))
         ;
         do {
@@ -603,7 +603,7 @@ bool validate_save_file(longlong file_handle)
                 bytes_read1 = 4 - bytes_read2 & 0xffffffff;
             }
             stack_array3[0] = 0;
-            temp_int1 = ReadFile(temp_long1, (longlong)stack_array1 + bytes_read2, bytes_read1, stack_array3, 0);
+            temp_int1 = ReadFile(temp_long1, (int64_t)stack_array1 + bytes_read2, bytes_read1, stack_array3, 0);
         } while (((temp_int1 != 0) && (stack_array3[0] != 0)) && (bytes_read2 = bytes_read2 + stack_array3[0], bytes_read2 < 4))
         ;
         LOCK();
@@ -644,7 +644,7 @@ bool validate_save_file(longlong file_handle)
  */
 void process_save_chunk(uint64_t param1)
 {
-    longlong temp_long1;
+    int64_t temp_long1;
     uint64_t temp_data1;
     int32_t *temp_ptr1;
     void *temp_ptr2;
@@ -655,18 +655,18 @@ void process_save_chunk(uint64_t param1)
     void *stack_data3;
     void *stack_data4;
     uint stack_data5;
-    ulonglong stack_data6;
+    uint64_t stack_data6;
     uint64_t stack_data7;
-    longlong stack_data8;
+    int64_t stack_data8;
     uint64_t stack_data9;
     void *stack_data10;
     int8_t *stack_data11;
     int32_t stack_data12;
     int8_t stack_data13[32];
-    ulonglong stack_data14;
+    uint64_t stack_data14;
     
     stack_data9 = 0xfffffffffffffffe;
-    stack_data14 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_data1;
+    stack_data14 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_data1;
     temp_data1 = 0;
     stack_array1[1] = 0;
     stack_data3 = &system_data_buffer_ptr;
@@ -682,7 +682,7 @@ void process_save_chunk(uint64_t param1)
     temp_ptr1[2] = 0x69707061;  // "appi"
     temp_ptr1[3] = 0x622e676e;  // "ng.b"
     *(int16_t *)(temp_ptr1 + 4) = 0x6e69;  // "in"
-    *(int8_t *)((longlong)temp_ptr1 + 0x12) = 0;
+    *(int8_t *)((int64_t)temp_ptr1 + 0x12) = 0;
     stack_data7 = 0;
     stack_data8 = 0;
     temp_ptr2 = &system_buffer_ptr;
@@ -706,9 +706,9 @@ void process_save_chunk(uint64_t param1)
             fread(&stack_data2, 4, 1, temp_long1);
             if (stack_data2 < 9) {
                 if (stack_data2 + 1 != 0) {
-                    temp_data1 = FUN_18062b420(system_memory_pool_ptr, (longlong)(stack_data2 + 1), 3);
+                    temp_data1 = FUN_18062b420(system_memory_pool_ptr, (int64_t)(stack_data2 + 1), 3);
                 }
-                memset(temp_data1, 0, (longlong)(stack_data2 + 1));
+                memset(temp_data1, 0, (int64_t)(stack_data2 + 1));
             }
             stack_array1[1] = 0;
             stack_data10 = &system_state_ptr;
@@ -731,7 +731,7 @@ void process_save_chunk(uint64_t param1)
         stack_data4 = (void *)0x0;
         stack_data6 = stack_data6 & 0xffffffff00000000;
         stack_data3 = &system_state_ptr;
-        FUN_1808fc050(stack_data14 ^ (ulonglong)stack_data1);
+        FUN_1808fc050(stack_data14 ^ (uint64_t)stack_data1);
     }
     FUN_18064e900();
 }
@@ -741,7 +741,7 @@ void process_save_chunk(uint64_t param1)
  */
 void create_save_file(void)
 {
-    longlong temp_long1;
+    int64_t temp_long1;
     char temp_char;
     int32_t *temp_ptr1;
     int8_t *temp_ptr2;
@@ -751,24 +751,24 @@ void create_save_file(void)
     void *stack_data2;
     int8_t *stack_data3;
     uint stack_data4;
-    ulonglong stack_data5;
+    uint64_t stack_data5;
     int stack_array1[2];
     void *stack_data6;
-    longlong stack_data7;
+    int64_t stack_data7;
     int stack_data8;
-    ulonglong stack_data9;
+    uint64_t stack_data9;
     int32_t stack_array2[2];
     uint64_t stack_data10;
-    longlong stack_data11;
+    int64_t stack_data11;
     uint64_t stack_data12;
     void *stack_data13;
     void *stack_data14;
     int stack_data15;
     uint8_t stack_data16[32];
-    ulonglong stack_data17;
+    uint64_t stack_data17;
     
     stack_data12 = 0xfffffffffffffffe;
-    stack_data17 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_data1;
+    stack_data17 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_data1;
     stack_array1[1] = 0;
     if (*(char *)(system_main_module_state + 0x168) == '\0') {
         stack_data6 = &system_data_buffer_ptr;
@@ -799,7 +799,7 @@ void create_save_file(void)
         temp_ptr1[2] = 0x69707061;  // "appi"
         temp_ptr1[3] = 0x622e676e;  // "ng.b"
         *(int16_t *)(temp_ptr1 + 4) = 0x6e69;  // "in"
-        *(int8_t *)((longlong)temp_ptr1 + 0x12) = 0;
+        *(int8_t *)((int64_t)temp_ptr1 + 0x12) = 0;
         stack_data4 = temp_int1;
         temp_char = FUN_180624af0(&stack_data2);
         if (temp_char == '\0') {
@@ -829,7 +829,7 @@ void create_save_file(void)
             if (stack_data14 != (void *)0x0) {
                 temp_ptr3 = stack_data14;
             }
-            fwrite(temp_ptr3, 1, (longlong)stack_array1[0], temp_long1);
+            fwrite(temp_ptr3, 1, (int64_t)stack_array1[0], temp_long1);
             fclose(temp_long1);
             stack_data11 = 0;
             LOCK();
@@ -853,7 +853,7 @@ void create_save_file(void)
         stack_data9 = stack_data9 & 0xffffffff00000000;
         stack_data6 = &system_state_ptr;
     }
-    FUN_1808fc050(stack_data17 ^ (ulonglong)stack_data1);
+    FUN_1808fc050(stack_data17 ^ (uint64_t)stack_data1);
 }
 
 /**
@@ -861,11 +861,11 @@ void create_save_file(void)
  * @param path_ptr 路径指针
  * @param context_ptr 上下文指针
  */
-void build_save_path(longlong *path_ptr, longlong context_ptr)
+void build_save_path(int64_t *path_ptr, int64_t context_ptr)
 {
     uint temp_uint1;
-    longlong temp_long1;
-    longlong temp_long2;
+    int64_t temp_long1;
+    int64_t temp_long2;
     int32_t *temp_ptr1;
     void *temp_ptr2;
     int temp_int1;
@@ -876,10 +876,10 @@ void build_save_path(longlong *path_ptr, longlong context_ptr)
     void *stack_data5;
     int32_t stack_data6;
     uint8_t stack_data7[16];
-    ulonglong stack_data8;
+    uint64_t stack_data8;
     
     stack_data3 = 0xfffffffffffffffe;
-    stack_data8 = GET_SECURITY_COOKIE() ^ (ulonglong)stack_data1;
+    stack_data8 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_data1;
     stack_data2 = 0;
     *(int32_t *)(path_ptr + 2) = 0;
     if ((int8_t *)path_ptr[1] != (int8_t *)0x0) {
@@ -904,22 +904,22 @@ void build_save_path(longlong *path_ptr, longlong context_ptr)
         FUN_1806277c0(path_ptr, temp_int1);
         temp_uint1 = *(uint *)(path_ptr + 2);
         temp_long1 = path_ptr[1];
-        *(uint64_t *)((ulonglong)temp_uint1 + temp_long1) = 0x2f73726564616853;  // "Shared/"
-        *(int8_t *)((uint64_t *)((ulonglong)temp_uint1 + temp_long1) + 1) = 0;
+        *(uint64_t *)((uint64_t)temp_uint1 + temp_long1) = 0x2f73726564616853;  // "Shared/"
+        *(int8_t *)((uint64_t *)((uint64_t)temp_uint1 + temp_long1) + 1) = 0;
         *(int *)(path_ptr + 2) = temp_int1;
         temp_int1 = (int)temp_long2 + 0xe;
         FUN_1806277c0(path_ptr, temp_int1);
-        temp_ptr1 = (int32_t *)((ulonglong)*(uint *)(path_ptr + 2) + path_ptr[1]);
+        temp_ptr1 = (int32_t *)((uint64_t)*(uint *)(path_ptr + 2) + path_ptr[1]);
         *temp_ptr1 = 0x31443344;  // "D3D1"
         *(int16_t *)(temp_ptr1 + 1) = 0x2f31;  // "/1"
-        *(int8_t *)((longlong)temp_ptr1 + 6) = 0;
+        *(int8_t *)((int64_t)temp_ptr1 + 6) = 0;
         *(int *)(path_ptr + 2) = temp_int1;
         FUN_18062c1e0(path_ptr, 1);
     }
     else {
         FUN_180627be0(path_ptr, context_ptr + 0x2d0);
     }
-    FUN_1808fc050(stack_data8 ^ (ulonglong)stack_data1);
+    FUN_1808fc050(stack_data8 ^ (uint64_t)stack_data1);
 }
 
 /**
@@ -928,15 +928,15 @@ void build_save_path(longlong *path_ptr, longlong context_ptr)
  * @param context_ptr 上下文指针
  * @return 解析结果
  */
-longlong resolve_save_path(longlong path_ptr, longlong context_ptr)
+int64_t resolve_save_path(int64_t path_ptr, int64_t context_ptr)
 {
     uint temp_uint1;
     uint64_t temp_data1;
     uint64_t *temp_ptr1;
     int temp_int1;
-    ulonglong buffer_size;
+    uint64_t buffer_size;
     void *stack_data1;
-    longlong stack_data2;
+    int64_t stack_data2;
     int32_t stack_data3;
     
     *(int32_t *)(path_ptr + 0x10) = 0;
@@ -955,17 +955,17 @@ longlong resolve_save_path(longlong path_ptr, longlong context_ptr)
         stack_data1 = &system_state_ptr;
         temp_int1 = *(int *)(path_ptr + 0x10) + 0x12;
         FUN_1806277c0(path_ptr, temp_int1);
-        temp_ptr1 = (uint64_t *)((ulonglong)*(uint *)(path_ptr + 0x10) + *(longlong *)(path_ptr + 8));
+        temp_ptr1 = (uint64_t *)((uint64_t)*(uint *)(path_ptr + 0x10) + *(int64_t *)(path_ptr + 8));
         *temp_ptr1 = 0x6461685365726f43;  // "CoreShared"
         temp_ptr1[1] = 0x314433442f737265;  // "res/D3D1"
         *(int16_t *)(temp_ptr1 + 2) = 0x2f31;  // "/1"
-        *(int8_t *)((longlong)temp_ptr1 + 0x12) = 0;
+        *(int8_t *)((int64_t)temp_ptr1 + 0x12) = 0;
         *(int *)(path_ptr + 0x10) = temp_int1;
         return 0;
     }
     temp_uint1 = *(uint *)(context_ptr + 0x2c0);
-    buffer_size = (ulonglong)temp_uint1;
-    if (*(longlong *)(context_ptr + 0x2b8) != 0) {
+    buffer_size = (uint64_t)temp_uint1;
+    if (*(int64_t *)(context_ptr + 0x2b8) != 0) {
         stack_data1 = (void *)0x180627c06;
         FUN_1806277c0(path_ptr, buffer_size);
     }
@@ -974,8 +974,8 @@ longlong resolve_save_path(longlong path_ptr, longlong context_ptr)
         memcpy(*(uint64_t *)(path_ptr + 8), *(uint64_t *)(context_ptr + 0x2b8), buffer_size);
     }
     *(int32_t *)(path_ptr + 0x10) = 0;
-    if (*(longlong *)(path_ptr + 8) != 0) {
-        *(int8_t *)(buffer_size + *(longlong *)(path_ptr + 8)) = 0;
+    if (*(int64_t *)(path_ptr + 8) != 0) {
+        *(int8_t *)(buffer_size + *(int64_t *)(path_ptr + 8)) = 0;
     }
     *(int32_t *)(path_ptr + 0x1c) = *(int32_t *)(context_ptr + 0x2cc);
     return path_ptr;

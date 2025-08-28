@@ -6,8 +6,8 @@
 void FUN_180839208(void)
 
 {
-  longlong in_RAX;
-  longlong in_R11;
+  int64_t in_RAX;
+  int64_t in_R11;
   uint64_t unaff_R12;
   uint64_t unaff_R13;
   uint64_t unaff_R15;
@@ -33,8 +33,8 @@ void FUN_180839208(void)
   *(uint64_t *)(in_R11 + -0x70) = unaff_XMM9_Qb;
                     // WARNING: Could not recover jumptable at 0x000180839239. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((ulonglong)*(uint *)(&unknown_var_4848_ptr + in_RAX * 4) + 0x180000000))
-            ((code *)((ulonglong)*(uint *)(&unknown_var_4848_ptr + in_RAX * 4) + 0x180000000));
+  (*(code *)((uint64_t)*(uint *)(&unknown_var_4848_ptr + in_RAX * 4) + 0x180000000))
+            ((code *)((uint64_t)*(uint *)(&unknown_var_4848_ptr + in_RAX * 4) + 0x180000000));
   return;
 }
 
@@ -241,7 +241,7 @@ uint64_t FUN_180839750(uint *param_1,float *param_2,uint64_t param_3,int param_4
   uint uVar15;
   uint uVar16;
   uint uVar17;
-  longlong lVar18;
+  int64_t lVar18;
   int iVar19;
   int iVar20;
   uint uVar21;
@@ -259,7 +259,7 @@ uint64_t FUN_180839750(uint *param_1,float *param_2,uint64_t param_3,int param_4
   uint extraout_XMM0_Dd_01;
   int8_t auVar22 [16];
   
-  uVar21 = (uint)*(char *)((longlong)param_1 + 0x66);
+  uVar21 = (uint)*(char *)((int64_t)param_1 + 0x66);
   uVar14 = *param_1;
   uVar15 = param_1[1];
   uVar16 = param_1[2];
@@ -297,11 +297,11 @@ uint64_t FUN_180839750(uint *param_1,float *param_2,uint64_t param_3,int param_4
           param_2[1] = (float)(int)(extraout_XMM0_Db_00 & uVar15) * fVar8 + fVar4 + param_2[1];
           param_2[2] = (float)(int)(extraout_XMM0_Dc_00 & uVar16) * fVar9 + fVar5 + param_2[2];
           param_2[3] = (float)(int)(extraout_XMM0_Dd_00 & uVar17) * fVar10 + fVar6 + param_2[3];
-          pfVar1 = param_2 + (longlong)(iVar20 / 2) * 4;
+          pfVar1 = param_2 + (int64_t)(iVar20 / 2) * 4;
           fVar11 = pfVar1[1];
           fVar12 = pfVar1[2];
           fVar13 = pfVar1[3];
-          pfVar2 = param_2 + (longlong)(iVar20 / 2) * 4;
+          pfVar2 = param_2 + (int64_t)(iVar20 / 2) * 4;
           *pfVar2 = (float)(int)((int)extraout_XMM0_Da_00 >> auVar22 & uVar14) * fVar7 + fVar3 +
                     *pfVar1;
           pfVar2[1] = (float)(int)((int)extraout_XMM0_Db_00 >> auVar22 & uVar15) * fVar8 + fVar4 +
@@ -318,7 +318,7 @@ uint64_t FUN_180839750(uint *param_1,float *param_2,uint64_t param_3,int param_4
     default:
       iVar19 = param_4 >> 4;
       if (iVar19 != 0) {
-        lVar18 = (longlong)((int)(iVar20 + (param_4 >> 0x1f & 3U)) >> 2);
+        lVar18 = (int64_t)((int)(iVar20 + (param_4 >> 0x1f & 3U)) >> 2);
         do {
           FUN_180838f80(param_1,param_3);
           auVar22 = ZEXT416(uVar21);
@@ -380,14 +380,14 @@ uint64_t FUN_180839750(uint *param_1,float *param_2,uint64_t param_3,int param_4
 
 
 
-// 函数: void FUN_1808397b0(uint64_t param_1,longlong param_2)
-void FUN_1808397b0(uint64_t param_1,longlong param_2)
+// 函数: void FUN_1808397b0(uint64_t param_1,int64_t param_2)
+void FUN_1808397b0(uint64_t param_1,int64_t param_2)
 
 {
-  longlong in_RAX;
+  int64_t in_RAX;
   code *UNRECOVERED_JUMPTABLE;
   
-  UNRECOVERED_JUMPTABLE = (code *)((ulonglong)*(uint *)(param_2 + 0x83998c + in_RAX * 4) + param_2);
+  UNRECOVERED_JUMPTABLE = (code *)((uint64_t)*(uint *)(param_2 + 0x83998c + in_RAX * 4) + param_2);
                     // WARNING: Could not recover jumptable at 0x0001808397c2. Too many branches
                     // WARNING: Treating indirect jump as call
   (*UNRECOVERED_JUMPTABLE)(UNRECOVERED_JUMPTABLE);
@@ -405,7 +405,7 @@ uint64_t FUN_180839883(void)
   float fVar4;
   float fVar5;
   int in_EAX;
-  longlong lVar6;
+  int64_t lVar6;
   float *unaff_RBX;
   int unaff_EBP;
   uint unaff_R15D;
@@ -427,7 +427,7 @@ uint64_t FUN_180839883(void)
   float unaff_XMM8_Dc;
   float unaff_XMM8_Dd;
   
-  lVar6 = (longlong)((int)(in_EAX + (in_EAX >> 0x1f & 3U)) >> 2);
+  lVar6 = (int64_t)((int)(in_EAX + (in_EAX >> 0x1f & 3U)) >> 2);
   do {
     FUN_180838f80();
     auVar7 = ZEXT416(unaff_R15D);
@@ -505,7 +505,7 @@ uint64_t FUN_18083996e(void)
 
 
 uint64_t
-FUN_1808399b0(int8_t (*param_1) [16],longlong *param_2,int param_3,uint64_t param_4,
+FUN_1808399b0(int8_t (*param_1) [16],int64_t *param_2,int param_3,uint64_t param_4,
              uint64_t param_5,int param_6)
 
 {
@@ -552,8 +552,8 @@ FUN_1808399b0(int8_t (*param_1) [16],longlong *param_2,int param_3,uint64_t para
   fVar7 = *(float *)(param_1[2] + 4);
   fVar8 = *(float *)(param_1[2] + 8);
   fVar9 = *(float *)(param_1[2] + 0xc);
-  pfVar12 = (float *)(*param_2 + (longlong)param_3 * 4);
-  pfVar10 = (float *)(param_2[1] + (longlong)param_3 * 4);
+  pfVar12 = (float *)(*param_2 + (int64_t)param_3 * 4);
+  pfVar10 = (float *)(param_2[1] + (int64_t)param_3 * 4);
   iVar11 = param_6 >> 2;
   if ((byte)param_1[6][4] < 9) {
     param_6 = param_6 >> 3;
@@ -587,9 +587,9 @@ FUN_1808399b0(int8_t (*param_1) [16],longlong *param_2,int param_3,uint64_t para
         auVar16 = ZEXT416(uVar13);
         auVar18 = auVar17 & auVar1;
         auVar23._0_4_ = (int)auVar17._0_8_ >> auVar16;
-        auVar23._4_4_ = (int)((ulonglong)auVar17._0_8_ >> 0x20) >> auVar16;
+        auVar23._4_4_ = (int)((uint64_t)auVar17._0_8_ >> 0x20) >> auVar16;
         auVar23._8_4_ = (int)extraout_XMM0_Qb_01 >> auVar16;
-        auVar23._12_4_ = (int)((ulonglong)extraout_XMM0_Qb_01 >> 0x20) >> auVar16;
+        auVar23._12_4_ = (int)((uint64_t)extraout_XMM0_Qb_01 >> 0x20) >> auVar16;
         auVar23 = auVar23 & auVar1;
         *pfVar12 = (float)auVar18._0_4_ * fVar6 + fVar2 + *pfVar12;
         pfVar12[1] = (float)auVar18._4_4_ * fVar7 + fVar3 + pfVar12[1];
@@ -612,10 +612,10 @@ FUN_1808399b0(int8_t (*param_1) [16],longlong *param_2,int param_3,uint64_t para
           auVar18 = ZEXT416(uVar13);
           iVar11 = (int)auVar16._0_8_;
           auVar19._0_4_ = iVar11 >> auVar18;
-          iVar20 = (int)((ulonglong)auVar16._0_8_ >> 0x20);
+          iVar20 = (int)((uint64_t)auVar16._0_8_ >> 0x20);
           auVar19._4_4_ = iVar20 >> auVar18;
           iVar21 = (int)extraout_XMM0_Qb_02;
-          iVar22 = (int)((ulonglong)extraout_XMM0_Qb_02 >> 0x20);
+          iVar22 = (int)((uint64_t)extraout_XMM0_Qb_02 >> 0x20);
           auVar19._8_4_ = iVar21 >> auVar18;
           auVar19._12_4_ = iVar22 >> auVar18;
           auVar19 = auVar19 & auVar1;

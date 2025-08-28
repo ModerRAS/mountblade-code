@@ -69,13 +69,13 @@ void SystemObjectInitializer(void)
 //   - param_2: 内存管理参数
 // 返回: uint64_t - 操作状态码
 // ============================================================================
-uint64_t DataStructureProcessor(uint64_t *param_1, longlong *param_2)
+uint64_t DataStructureProcessor(uint64_t *param_1, int64_t *param_2)
 {
     uint uVar1;
     uint64_t uVar2;
     uint64_t uVar3;
     uint uVar4;
-    longlong lVar5;
+    int64_t lVar5;
     uint uVar6;
     int iVar7;
     uint uVar8;
@@ -89,18 +89,18 @@ uint64_t DataStructureProcessor(uint64_t *param_1, longlong *param_2)
     
     // 检查数据结构处理状态
     if ((int)uVar2 == 0) {
-        uVar4 = (int)*(uint *)((longlong)param_2 + 0xc) >> 0x1f;
+        uVar4 = (int)*(uint *)((int64_t)param_2 + 0xc) >> 0x1f;
         uVar8 = auStackX_20[0] & 1;
         uVar6 = auStackX_20[0] >> 1;
         
         // 验证数据结构容量
-        if (((int)uVar6 <= (int)((*(uint *)((longlong)param_2 + 0xc) ^ uVar4) - uVar4)) ||
+        if (((int)uVar6 <= (int)((*(uint *)((int64_t)param_2 + 0xc) ^ uVar4) - uVar4)) ||
            (uVar2 = FUN_180748010(param_2, uVar6), (int)uVar2 == 0)) {
             
             iVar7 = (int)param_2[1];
             if (iVar7 < (int)uVar6) {
                 // 扩展内存容量
-                memset((longlong)iVar7 * 0x10 + *param_2, 0, (longlong)(int)(uVar6 - iVar7) << 4);
+                memset((int64_t)iVar7 * 0x10 + *param_2, 0, (int64_t)(int)(uVar6 - iVar7) << 4);
             }
             
             *(uint *)(param_2 + 1) = uVar6;
@@ -118,7 +118,7 @@ uint64_t DataStructureProcessor(uint64_t *param_1, longlong *param_2)
                     // 处理系统对象状态
                     if (*(int *)(param_1[1] + 0x18) == 0) {
                         uVar2 = *param_1;
-                        lVar5 = (longlong)iVar7 * 0x10 + *param_2;
+                        lVar5 = (int64_t)iVar7 * 0x10 + *param_2;
                         uVar3 = FUN_1808aed00(uVar2, lVar5, 4);
                         if ((int)uVar3 != 0) {
                             return uVar3;
@@ -160,18 +160,18 @@ uint64_t DataStructureProcessor(uint64_t *param_1, longlong *param_2)
 // 函数: MemoryManager - 内存管理器
 // 功能: 管理系统内存的分配、释放和验证操作
 // 参数: 无
-// 返回: ulonglong - 内存管理状态码
+// 返回: uint64_t - 内存管理状态码
 // ============================================================================
-ulonglong MemoryManager(void)
+uint64_t MemoryManager(void)
 {
     uint64_t uVar1;
     uint in_EAX;
-    ulonglong uVar2;
+    uint64_t uVar2;
     uint unaff_EBX;
-    longlong lVar3;
+    int64_t lVar3;
     uint uVar4;
     int iVar5;
-    longlong *unaff_R13;
+    int64_t *unaff_R13;
     uint64_t *unaff_R14;
     uint in_stack_00000068;
     
@@ -184,11 +184,11 @@ ulonglong MemoryManager(void)
         iVar5 = (int)unaff_R13[1];
         if (iVar5 < (int)uVar4) {
             // 分配内存空间
-            memset((longlong)iVar5 * 0x10 + *unaff_R13, 0, (longlong)(int)(uVar4 - iVar5) << 4);
+            memset((int64_t)iVar5 * 0x10 + *unaff_R13, 0, (int64_t)(int)(uVar4 - iVar5) << 4);
         }
         
         *(uint *)(unaff_R13 + 1) = uVar4;
-        uVar2 = (ulonglong)unaff_EBX;
+        uVar2 = (uint64_t)unaff_EBX;
         
         // 处理内存块
         if (unaff_EBX == 0) {
@@ -203,7 +203,7 @@ ulonglong MemoryManager(void)
                     // 处理系统对象状态
                     if (*(int *)(unaff_R14[1] + 0x18) == 0) {
                         uVar1 = *unaff_R14;
-                        lVar3 = (longlong)iVar5 * 0x10 + *unaff_R13;
+                        lVar3 = (int64_t)iVar5 * 0x10 + *unaff_R13;
                         uVar2 = FUN_1808aed00(uVar1, lVar3, 4);
                         if ((int)uVar2 != 0) {
                             return uVar2;
@@ -251,9 +251,9 @@ uint64_t ObjectLifecycleHandler(void)
     uint64_t uVar1;
     uint64_t uVar2;
     uint unaff_EBX;
-    longlong lVar3;
+    int64_t lVar3;
     int unaff_EBP;
-    longlong *unaff_R13;
+    int64_t *unaff_R13;
     uint64_t *unaff_R14;
     int unaff_R15D;
     uint uStack0000000000000050;
@@ -271,7 +271,7 @@ uint64_t ObjectLifecycleHandler(void)
             // 处理系统对象状态
             if (*(int *)(unaff_R14[1] + 0x18) == 0) {
                 uVar1 = *unaff_R14;
-                lVar3 = (longlong)(int)unaff_EBX * 0x10 + *unaff_R13;
+                lVar3 = (int64_t)(int)unaff_EBX * 0x10 + *unaff_R13;
                 uVar2 = FUN_1808aed00(uVar1, lVar3, 4);
                 if ((int)uVar2 != 0) {
                     return uVar2;
@@ -340,12 +340,12 @@ void ContainerOperator(void)
 //   - param_2: 内存管理参数
 // 返回: uint64_t - 数据处理状态码
 // ============================================================================
-uint64_t AdvancedDataProcessor(uint64_t *param_1, longlong *param_2)
+uint64_t AdvancedDataProcessor(uint64_t *param_1, int64_t *param_2)
 {
     uint uVar1;
     uint64_t uVar2;
     uint64_t uVar3;
-    longlong lVar4;
+    int64_t lVar4;
     int iVar5;
     uint uVar6;
     uint uVar7;
@@ -375,7 +375,7 @@ uint64_t AdvancedDataProcessor(uint64_t *param_1, longlong *param_2)
                         return uVar2;
                     }
                     
-                    lVar4 = (longlong)iVar5 * 0x20 + *param_2;
+                    lVar4 = (int64_t)iVar5 * 0x20 + *param_2;
                     
                     // 处理系统对象状态
                     if (*(int *)(param_1[1] + 0x18) == 0) {
@@ -444,8 +444,8 @@ uint64_t ExtendedMemoryManager(void)
     uint64_t uVar1;
     uint64_t uVar2;
     int unaff_EBX;
-    longlong lVar3;
-    longlong *unaff_R13;
+    int64_t lVar3;
+    int64_t *unaff_R13;
     uint64_t *unaff_R14;
     uint in_stack_00000078;
     
@@ -460,7 +460,7 @@ uint64_t ExtendedMemoryManager(void)
                     return uVar1;
                 }
                 
-                lVar3 = (longlong)unaff_EBX * 0x20 + *unaff_R13;
+                lVar3 = (int64_t)unaff_EBX * 0x20 + *unaff_R13;
                 
                 // 处理系统对象状态
                 if (*(int *)(unaff_R14[1] + 0x18) == 0) {
@@ -527,9 +527,9 @@ uint64_t ResourceAllocator(void)
     uint64_t uVar1;
     uint64_t uVar2;
     uint unaff_EBX;
-    longlong lVar3;
+    int64_t lVar3;
     int unaff_R12D;
-    longlong *unaff_R13;
+    int64_t *unaff_R13;
     uint64_t *unaff_R14;
     int unaff_R15D;
     uint uStack0000000000000060;
@@ -544,7 +544,7 @@ uint64_t ResourceAllocator(void)
                 return uVar1;
             }
             
-            lVar3 = (longlong)(int)unaff_EBX * 0x20 + *unaff_R13;
+            lVar3 = (int64_t)(int)unaff_EBX * 0x20 + *unaff_R13;
             
             // 处理系统对象状态
             if (*(int *)(unaff_R14[1] + 0x18) == 0) {
@@ -634,11 +634,11 @@ void GarbageCollector(void)
 //   - param_3: 链表操作标志
 // 返回: uint64_t - 链表管理状态码
 // ============================================================================
-uint64_t LinkListManager(longlong *param_1, ulonglong *param_2, uint param_3)
+uint64_t LinkListManager(int64_t *param_1, uint64_t *param_2, uint param_3)
 {
-    longlong lVar1;
+    int64_t lVar1;
     uint *puVar2;
-    ulonglong uVar3;
+    uint64_t uVar3;
     uint64_t uVar4;
     uint uVar5;
     uint auStackX_8 [2];
@@ -668,7 +668,7 @@ uint64_t LinkListManager(longlong *param_1, ulonglong *param_2, uint param_3)
         
         // 处理链表元素
         for (uVar3 = *param_2;
-            (*param_2 <= uVar3 && (uVar3 < (longlong)(int)param_2[1] * 0x20 + *param_2));
+            (*param_2 <= uVar3 && (uVar3 < (int64_t)(int)param_2[1] * 0x20 + *param_2));
             uVar3 = uVar3 + 0x20) {
             
             uVar4 = FUN_1808ddf00(param_1, auStackX_8[0]);
@@ -734,11 +734,11 @@ uint64_t LinkListManager(longlong *param_1, ulonglong *param_2, uint param_3)
 // ============================================================================
 uint64_t DataStructureValidator(int32_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    longlong lVar1;
+    int64_t lVar1;
     uint64_t uVar2;
-    ulonglong uVar3;
-    longlong *unaff_RSI;
-    ulonglong *unaff_R14;
+    uint64_t uVar3;
+    int64_t *unaff_RSI;
+    uint64_t *unaff_R14;
     int unaff_R15D;
     int32_t extraout_XMM0_Da;
     int32_t extraout_XMM0_Da_00;
@@ -752,7 +752,7 @@ uint64_t DataStructureValidator(int32_t param_1, uint64_t param_2, uint64_t para
     
     // 验证数据结构
     while (true) {
-        if ((uVar3 < *unaff_R14) || ((longlong)(int)unaff_R14[1] * 0x20 + *unaff_R14 <= uVar3)) {
+        if ((uVar3 < *unaff_R14) || ((int64_t)(int)unaff_R14[1] * 0x20 + *unaff_R14 <= uVar3)) {
             return 0;
         }
         
@@ -829,17 +829,17 @@ void ObjectPoolManager(void)
 //   - param_2: 资源数据
 // 返回: uint64_t - 系统资源管理状态码
 // ============================================================================
-uint64_t SystemResourceManager(uint64_t *param_1, longlong param_2)
+uint64_t SystemResourceManager(uint64_t *param_1, int64_t param_2)
 {
     uint64_t uVar1;
-    longlong *plVar2;
-    longlong *plVar3;
+    int64_t *plVar2;
+    int64_t *plVar3;
     int iVar4;
     int iVar5;
     uint uVar6;
     uint uVar7;
     uint auStackX_8 [2];
-    longlong lStackX_10;
+    int64_t lStackX_10;
     uint auStackX_20 [2];
     
     iVar5 = 0;
@@ -862,16 +862,16 @@ uint64_t SystemResourceManager(uint64_t *param_1, longlong param_2)
                 }
                 
                 // 分配内存资源
-                plVar2 = (longlong *)
+                plVar2 = (int64_t *)
                          FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x28, &unknown_var_816_ptr, 0x269, 0,
                                        (char)uVar1, 1);
-                if (plVar2 == (longlong *)0x0) {
+                if (plVar2 == (int64_t *)0x0) {
                     return 0x26;
                 }
                 
                 // 初始化资源对象
-                *plVar2 = (longlong)plVar2;
-                plVar2[1] = (longlong)plVar2;
+                *plVar2 = (int64_t)plVar2;
+                plVar2[1] = (int64_t)plVar2;
                 plVar2[2] = 0;
                 plVar2[3] = 0;
                 *(int32_t *)(plVar2 + 4) = 0;
@@ -892,47 +892,47 @@ uint64_t SystemResourceManager(uint64_t *param_1, longlong param_2)
 LAB_1808a674a:
                     if (iVar4 != 0) {
                         FUN_180840270(plVar2 + 2);
-                        *(longlong *)plVar2[1] = *plVar2;
-                        *(longlong *)(*plVar2 + 8) = plVar2[1];
-                        plVar2[1] = (longlong)plVar2;
-                        *plVar2 = (longlong)plVar2;
-                        *(longlong **)plVar2[1] = plVar2;
-                        *(longlong *)(*plVar2 + 8) = plVar2[1];
-                        plVar2[1] = (longlong)plVar2;
-                        *plVar2 = (longlong)plVar2;
+                        *(int64_t *)plVar2[1] = *plVar2;
+                        *(int64_t *)(*plVar2 + 8) = plVar2[1];
+                        plVar2[1] = (int64_t)plVar2;
+                        *plVar2 = (int64_t)plVar2;
+                        *(int64_t **)plVar2[1] = plVar2;
+                        *(int64_t *)(*plVar2 + 8) = plVar2[1];
+                        plVar2[1] = (int64_t)plVar2;
+                        *plVar2 = (int64_t)plVar2;
                         // 释放资源
                         FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &unknown_var_2144_ptr, 0xc6, 1);
                     }
                 }
                 
                 // 验证资源对象
-                plVar3 = (longlong *)*plVar2;
+                plVar3 = (int64_t *)*plVar2;
                 if (plVar3 != plVar2) {
                     iVar4 = 0;
                     do {
-                        plVar3 = (longlong *)*plVar3;
+                        plVar3 = (int64_t *)*plVar3;
                         iVar4 = iVar4 + 1;
                     } while (plVar3 != plVar2);
                     if (iVar4 != 0) {
                         FUN_180840270(plVar2 + 2);
-                        *(longlong *)plVar2[1] = *plVar2;
-                        *(longlong *)(*plVar2 + 8) = plVar2[1];
-                        plVar2[1] = (longlong)plVar2;
-                        *plVar2 = (longlong)plVar2;
-                        *(longlong **)plVar2[1] = plVar2;
-                        *(longlong *)(*plVar2 + 8) = plVar2[1];
-                        plVar2[1] = (longlong)plVar2;
-                        *plVar2 = (longlong)plVar2;
+                        *(int64_t *)plVar2[1] = *plVar2;
+                        *(int64_t *)(*plVar2 + 8) = plVar2[1];
+                        plVar2[1] = (int64_t)plVar2;
+                        *plVar2 = (int64_t)plVar2;
+                        *(int64_t **)plVar2[1] = plVar2;
+                        *(int64_t *)(*plVar2 + 8) = plVar2[1];
+                        plVar2[1] = (int64_t)plVar2;
+                        *plVar2 = (int64_t)plVar2;
                         // 释放资源
                         FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &unknown_var_2144_ptr, 0xc6, 1);
                     }
                 }
                 
                 // 添加资源到管理器
-                plVar2[1] = *(longlong *)(lStackX_10 + 8);
+                plVar2[1] = *(int64_t *)(lStackX_10 + 8);
                 *plVar2 = lStackX_10;
-                *(longlong **)(lStackX_10 + 8) = plVar2;
-                *(longlong **)plVar2[1] = plVar2;
+                *(int64_t **)(lStackX_10 + 8) = plVar2;
+                *(int64_t **)plVar2[1] = plVar2;
                 uVar1 = FUN_1808de0e0(param_1, auStackX_8);
                 if ((int)uVar1 != 0) {
                     return uVar1;
@@ -956,15 +956,15 @@ LAB_1808a674a:
 uint64_t DynamicMemoryHandler(void)
 {
     uint64_t uVar1;
-    longlong *plVar2;
-    longlong *plVar3;
+    int64_t *plVar2;
+    int64_t *plVar3;
     int iVar4;
     uint uVar5;
-    ulonglong uVar6;
-    ulonglong unaff_RDI;
+    uint64_t uVar6;
+    uint64_t unaff_RDI;
     uint64_t *unaff_R14;
     uint uStack0000000000000080;
-    longlong in_stack_00000088;
+    int64_t in_stack_00000088;
     uint in_stack_00000098;
     
     uStack0000000000000080 = (uint)unaff_RDI;
@@ -979,16 +979,16 @@ LAB_1808a68ad:
         // 处理动态内存
         while (uVar1 = FUN_1808dde10(), (int)uVar1 == 0) {
             // 分配动态内存
-            plVar2 = (longlong *)
+            plVar2 = (int64_t *)
                      FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 0x28, &unknown_var_816_ptr, 0x269,
                                    (int)unaff_RDI);
-            if (plVar2 == (longlong *)0x0) {
+            if (plVar2 == (int64_t *)0x0) {
                 return 0x26;
             }
             
             // 初始化内存对象
-            *plVar2 = (longlong)plVar2;
-            plVar2[1] = (longlong)plVar2;
+            *plVar2 = (int64_t)plVar2;
+            plVar2[1] = (int64_t)plVar2;
             plVar2[2] = unaff_RDI;
             plVar2[3] = 0;
             *(int *)(plVar2 + 4) = (int)unaff_RDI;
@@ -1009,54 +1009,54 @@ LAB_1808a68ad:
 LAB_1808a674a:
                 if (iVar4 != 0) {
                     FUN_180840270(plVar2 + 2);
-                    *(longlong *)plVar2[1] = *plVar2;
-                    *(longlong *)(*plVar2 + 8) = plVar2[1];
-                    plVar2[1] = (longlong)plVar2;
-                    *plVar2 = (longlong)plVar2;
-                    *(longlong **)plVar2[1] = plVar2;
-                    *(longlong *)(*plVar2 + 8) = plVar2[1];
-                    plVar2[1] = (longlong)plVar2;
-                    *plVar2 = (longlong)plVar2;
+                    *(int64_t *)plVar2[1] = *plVar2;
+                    *(int64_t *)(*plVar2 + 8) = plVar2[1];
+                    plVar2[1] = (int64_t)plVar2;
+                    *plVar2 = (int64_t)plVar2;
+                    *(int64_t **)plVar2[1] = plVar2;
+                    *(int64_t *)(*plVar2 + 8) = plVar2[1];
+                    plVar2[1] = (int64_t)plVar2;
+                    *plVar2 = (int64_t)plVar2;
                     // 释放内存
                     FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &unknown_var_2144_ptr, 0xc6, 1);
                 }
             }
             
             // 验证内存对象
-            plVar3 = (longlong *)*plVar2;
+            plVar3 = (int64_t *)*plVar2;
             if (plVar3 != plVar2) {
                 iVar4 = 0;
                 do {
-                    plVar3 = (longlong *)*plVar3;
+                    plVar3 = (int64_t *)*plVar3;
                     iVar4 = iVar4 + 1;
                 } while (plVar3 != plVar2);
                 if (iVar4 != 0) {
                     FUN_180840270(plVar2 + 2);
-                    *(longlong *)plVar2[1] = *plVar2;
-                    *(longlong *)(*plVar2 + 8) = plVar2[1];
-                    plVar2[1] = (longlong)plVar2;
-                    *plVar2 = (longlong)plVar2;
-                    *(longlong **)plVar2[1] = plVar2;
-                    *(longlong *)(*plVar2 + 8) = plVar2[1];
-                    plVar2[1] = (longlong)plVar2;
-                    *plVar2 = (longlong)plVar2;
+                    *(int64_t *)plVar2[1] = *plVar2;
+                    *(int64_t *)(*plVar2 + 8) = plVar2[1];
+                    plVar2[1] = (int64_t)plVar2;
+                    *plVar2 = (int64_t)plVar2;
+                    *(int64_t **)plVar2[1] = plVar2;
+                    *(int64_t *)(*plVar2 + 8) = plVar2[1];
+                    plVar2[1] = (int64_t)plVar2;
+                    *plVar2 = (int64_t)plVar2;
                     // 释放内存
                     FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), plVar2, &unknown_var_2144_ptr, 0xc6, 1);
                 }
             }
             
             // 添加内存到管理器
-            plVar2[1] = *(longlong *)(in_stack_00000088 + 8);
+            plVar2[1] = *(int64_t *)(in_stack_00000088 + 8);
             *plVar2 = in_stack_00000088;
-            *(longlong **)(in_stack_00000088 + 8) = plVar2;
-            *(longlong **)plVar2[1] = plVar2;
+            *(int64_t **)(in_stack_00000088 + 8) = plVar2;
+            *(int64_t **)plVar2[1] = plVar2;
             uVar1 = FUN_1808de0e0();
             if ((int)uVar1 != 0) {
                 return uVar1;
             }
             
             uVar5 = (int)uVar6 + 1;
-            uVar6 = (ulonglong)uVar5;
+            uVar6 = (uint64_t)uVar5;
             uStack0000000000000080 = uStack0000000000000080 & -(in_stack_00000098 & 1);
             if ((int)(in_stack_00000098 >> 1) <= (int)uVar5) goto LAB_1808a68ad;
             unaff_RDI = 0;
@@ -1087,7 +1087,7 @@ void SystemFinalizer(void)
 //   - param_3: 验证标志
 // 返回: uint64_t - 容器验证状态码
 // ============================================================================
-uint64_t ContainerValidator(longlong *param_1, uint64_t *param_2, uint param_3)
+uint64_t ContainerValidator(int64_t *param_1, uint64_t *param_2, uint param_3)
 {
     uint64_t *puVar1;
     int iVar2;
@@ -1180,7 +1180,7 @@ uint64_t StructureIntegrityChecker(int32_t param_1)
     uint64_t *puVar1;
     uint64_t uVar2;
     uint unaff_EBX;
-    longlong *unaff_RSI;
+    int64_t *unaff_RSI;
     uint64_t *unaff_R14;
     int unaff_R15D;
     int32_t extraout_XMM0_Da;

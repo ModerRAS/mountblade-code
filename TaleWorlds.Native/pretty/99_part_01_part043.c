@@ -251,10 +251,10 @@ extern void* system_message_buffer;           // 系统消息缓冲区指针
  * ============================================================================ */
 
 // 系统数据处理器 - 处理系统数据的转换和验证
-void SystemDataProcessor(SystemHandle system_interface, longlong config_data, SystemHandle param_3, SystemHandle param_4)
+void SystemDataProcessor(SystemHandle system_interface, int64_t config_data, SystemHandle param_3, SystemHandle param_4)
 
 {
-  longlong validation_result;
+  int64_t validation_result;
   SystemHandle temp_handle;
   SystemContext system_context;
   ConfigContext config_context;
@@ -307,13 +307,13 @@ void SystemDataProcessor(SystemHandle system_interface, longlong config_data, Sy
 
 
 // 系统配置管理器 - 处理系统配置的初始化和状态管理
-void SystemConfigManager(SystemHandle system_handle, longlong config_data, char init_flag, int8_t param_4)
+void SystemConfigManager(SystemHandle system_handle, int64_t config_data, char init_flag, int8_t param_4)
 
 {
   SystemHandle *data_ptr;
   float float_param1;
   float float_param2;
-  longlong system_state;
+  int64_t system_state;
   SystemHandle data_handle1;
   SystemHandle data_handle2;
   SystemHandle data_handle3;
@@ -333,17 +333,17 @@ void SystemConfigManager(SystemHandle system_handle, longlong config_data, char 
   SystemHandle data_handle17;
   SystemHandle data_handle18;
   int status_code;
-  longlong context_ptr;
+  int64_t context_ptr;
   uint flag_value;
-  longlong *iterator_ptr1;
-  longlong *iterator_ptr2;
-  ulonglong data_offset;
+  int64_t *iterator_ptr1;
+  int64_t *iterator_ptr2;
+  uint64_t data_offset;
   uint counter;
-  longlong message_buffer;
-  longlong system_context;
+  int64_t message_buffer;
+  int64_t system_context;
   SystemHandle temp_handle;
   int32_t config_value;
-  longlong stack_buffer [2];
+  int64_t stack_buffer [2];
   char stack_flag;
   uint8_t stack_byte;
   int8_t security_buffer [24];
@@ -357,8 +357,8 @@ void SystemConfigManager(SystemHandle system_handle, longlong config_data, char 
   uint64_t stack_data5;
   int32_t stack_data6;
   int32_t stack_data7;
-  ulonglong security_cookie;
-  ulonglong temp_offset;
+  uint64_t security_cookie;
+  uint64_t temp_offset;
   
   // 设置栈保护和安全检查
   stack_flag = System_Concat71Bits(stack_byte, param_4);
@@ -375,14 +375,14 @@ void SystemConfigManager(SystemHandle system_handle, longlong config_data, char 
   data_offset = 0;
   
   // 清理系统数据区域
-  *(uint64_t *)(*(longlong *)(system_message_buffer + 0x1cd8) + 0x83b8) = 0;
-  *(uint64_t *)(*(longlong *)(message_buffer + 0x1cd8) + 0x83c0) = 0;
-  *(uint64_t *)(*(longlong *)(message_buffer + 0x1cd8) + 0x83c8) = 0;
-  *(uint64_t *)(*(longlong *)(message_buffer + 0x1cd8) + 0x83d0) = 0;
-  *(uint64_t *)(*(longlong *)(message_buffer + 0x1cd8) + 0x83d8) = 0;
-  *(uint64_t *)(*(longlong *)(message_buffer + 0x1cd8) + 0x83e0) = 0;
-  *(uint64_t *)(*(longlong *)(message_buffer + 0x1cd8) + 0x83e8) = 0;
-  *(uint64_t *)(*(longlong *)(message_buffer + 0x1cd8) + 0x83f0) = 0;
+  *(uint64_t *)(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x83b8) = 0;
+  *(uint64_t *)(*(int64_t *)(message_buffer + 0x1cd8) + 0x83c0) = 0;
+  *(uint64_t *)(*(int64_t *)(message_buffer + 0x1cd8) + 0x83c8) = 0;
+  *(uint64_t *)(*(int64_t *)(message_buffer + 0x1cd8) + 0x83d0) = 0;
+  *(uint64_t *)(*(int64_t *)(message_buffer + 0x1cd8) + 0x83d8) = 0;
+  *(uint64_t *)(*(int64_t *)(message_buffer + 0x1cd8) + 0x83e0) = 0;
+  *(uint64_t *)(*(int64_t *)(message_buffer + 0x1cd8) + 0x83e8) = 0;
+  *(uint64_t *)(*(int64_t *)(message_buffer + 0x1cd8) + 0x83f0) = 0;
   
   // 调用系统数据管理器
   stack_address = 0x1800cd4d6;
@@ -395,29 +395,29 @@ void SystemConfigManager(SystemHandle system_handle, longlong config_data, char 
   
   // 系统数据初始化循环
   do {
-    context_ptr = *(longlong *)(system_message_buffer + 0x1cd8);
-    if (((*(longlong *)(system_context + context_ptr) != 0) || 
+    context_ptr = *(int64_t *)(system_message_buffer + 0x1cd8);
+    if (((*(int64_t *)(system_context + context_ptr) != 0) || 
          (*(int *)(context_ptr + -0x200 + message_buffer) != -1)) ||
         (*(int *)(message_buffer + context_ptr) != 0x10)) {
       stack_buffer[0] = 0;
       stack_address = 0x1800cd539;
-      System_MethodCall(*(longlong **)(context_ptr + 0x8400), 0x40)
-                (*(longlong **)(context_ptr + 0x8400), temp_offset, 1, stack_buffer);
+      System_MethodCall(*(int64_t **)(context_ptr + 0x8400), 0x40)
+                (*(int64_t **)(context_ptr + 0x8400), temp_offset, 1, stack_buffer);
       *(uint64_t *)(system_context + context_ptr) = 0;
       *(int32_t *)(context_ptr + -0x200 + message_buffer) = 0xffffffff;
       *(int32_t *)(message_buffer + context_ptr) = 0x10;
       *(int *)(context_ptr + 0x82b4) = *(int *)(context_ptr + 0x82b4) + 1;
     }
     counter = (int)temp_offset + 1;
-    temp_offset = (ulonglong)counter;
+    temp_offset = (uint64_t)counter;
     system_context = system_context + 8;
     message_buffer = message_buffer + 4;
   } while ((int)counter < 0x10);
   
   // 处理系统状态
-  if (*(longlong *)(config_data + 0x99b8) != 0) {
+  if (*(int64_t *)(config_data + 0x99b8) != 0) {
     stack_address = 0x1800cd578;
-    SystemStateProcessor(*(longlong *)(config_data + 0x99b8), config_data);
+    SystemStateProcessor(*(int64_t *)(config_data + 0x99b8), config_data);
   }
   
   // 执行系统转换和验证链
@@ -438,15 +438,15 @@ void SystemConfigManager(SystemHandle system_handle, longlong config_data, char 
   if ((*(char *)(config_data + 0x20) != '\0') || (*(char *)(config_data + 0x21) != '\0')) {
     // WARNING: Subroutine does not return
     stack_address = 0x1800cd5e1;
-    memcpy(*(longlong *)(system_message_buffer + 0x1cd8) + 0x1f20, 
+    memcpy(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x1f20, 
            config_data + 0x35c4, 0x6000);
   }
   
   // 执行系统复制操作
   stack_address = 0x1800cd628;
-  SystemCopier(*(longlong *)(system_message_buffer + 0x1cd8), 
+  SystemCopier(*(int64_t *)(system_message_buffer + 0x1cd8), 
                *(uint64_t *)(system_message_buffer + 0x1c70),
-               *(longlong *)(system_message_buffer + 0x1cd8) + 0x1100, 0x6d0);
+               *(int64_t *)(system_message_buffer + 0x1cd8) + 0x1100, 0x6d0);
   
   // 处理系统状态管理
   message_buffer = system_system_data_ui;
@@ -454,8 +454,8 @@ void SystemConfigManager(SystemHandle system_handle, longlong config_data, char 
       ((*(byte *)(config_data + 0x1bd8) & 0x20) != 0)) {
     flag_value = *(uint *)(system_main_module_state + 0x224) & 1;
     *(uint *)(system_system_data_ui + 0x1ec) = flag_value;
-    iterator_ptr1 = *(longlong **)(message_buffer + 0xc0);
-    iterator_ptr2 = *(longlong **)(message_buffer + 200);
+    iterator_ptr1 = *(int64_t **)(message_buffer + 0xc0);
+    iterator_ptr2 = *(int64_t **)(message_buffer + 200);
     system_context = system_message_buffer;
     
     // 处理系统数据迭代
@@ -471,8 +471,8 @@ void SystemConfigManager(SystemHandle system_handle, longlong config_data, char 
           SystemErrorHandler(status_code);
         }
         stack_address = 0x1800cd6bf;
-        System_MethodCall(*(longlong **)(context_ptr + 0x148), 0xc0)
-                  (*(longlong **)(context_ptr + 0x148), (uint64_t *)(context_ptr + 200));
+        System_MethodCall(*(int64_t **)(context_ptr + 0x148), 0xc0)
+                  (*(int64_t **)(context_ptr + 0x148), (uint64_t *)(context_ptr + 200));
         stack_address = 0x1800cd6c9;
         status_code = SystemLockReleaser(system_context);
         if (status_code != 0) {
@@ -495,7 +495,7 @@ void SystemConfigManager(SystemHandle system_handle, longlong config_data, char 
         data_handle12 = *(uint64_t *)(context_ptr + 0x130);
         data_handle13 = *(uint64_t *)(context_ptr + 0x138);
         data_handle14 = *(uint64_t *)(context_ptr + 0x140);
-        system_state = *(longlong *)(system_message_buffer + 0x1cd8);
+        system_state = *(int64_t *)(system_message_buffer + 0x1cd8);
         data_ptr = (uint64_t *)(system_state + 0x17d0 + data_offset);
         *data_ptr = *(uint64_t *)(context_ptr + 200);
         data_ptr[1] = temp_handle;
@@ -527,15 +527,15 @@ void SystemConfigManager(SystemHandle system_handle, longlong config_data, char 
     }
     
     // 更新系统状态
-    *(float *)(*(longlong *)(system_context + 0x1cd8) + 0x19d0) = (float)(int)flag_value;
+    *(float *)(*(int64_t *)(system_context + 0x1cd8) + 0x19d0) = (float)(int)flag_value;
     stack_address = 0x1800cd799;
-    SystemCopier(*(longlong *)(system_context + 0x1cd8), 
+    SystemCopier(*(int64_t *)(system_context + 0x1cd8), 
                  *(uint64_t *)(system_context + 0x1cb8),
-                 *(longlong *)(system_context + 0x1cd8) + 0x17d0, 0x210);
+                 *(int64_t *)(system_context + 0x1cd8) + 0x17d0, 0x210);
   }
   
   // 设置安全cookie
-  security_cookie = SystemSecurityCookie ^ (ulonglong)security_buffer;
+  security_cookie = SystemSecurityCookie ^ (uint64_t)security_buffer;
   message_buffer = SystemStateGetter();
   
   // 处理系统状态获取
@@ -543,46 +543,46 @@ void SystemConfigManager(SystemHandle system_handle, longlong config_data, char 
     system_context = SystemStateGetter(config_data);
     message_buffer = system_main_module_state;
     status_code = *(int *)(config_data + 0x3578);
-    if (*(longlong *)(system_context + 0x1d8) != 0) {
+    if (*(int64_t *)(system_context + 0x1d8) != 0) {
       if (system_main_module_state != 0) {
-        *(longlong *)(system_context + 0x340) = (longlong)*(int *)(system_main_module_state + 0x224);
+        *(int64_t *)(system_context + 0x340) = (int64_t)*(int *)(system_main_module_state + 0x224);
       }
-      iterator_ptr1 = (longlong *)
-                ((longlong)(int)((uint)*(byte *)(system_context + 0x335) * status_code) * 0x10 +
-                *(longlong *)(system_context + 0x1d8));
+      iterator_ptr1 = (int64_t *)
+                ((int64_t)(int)((uint)*(byte *)(system_context + 0x335) * status_code) * 0x10 +
+                *(int64_t *)(system_context + 0x1d8));
       goto STATE_HANDLER_COMPLETE;
     }
   }
-  iterator_ptr1 = (longlong *)0x0;
+  iterator_ptr1 = (int64_t *)0x0;
   message_buffer = system_main_module_state;
   
 STATE_HANDLER_COMPLETE:
-  iterator_ptr2 = *(longlong **)(system_message_buffer + 0x1cd8);
-  if ((iterator_ptr1 != (longlong *)0x0) && (*iterator_ptr1 != 0)) {
+  iterator_ptr2 = *(int64_t **)(system_message_buffer + 0x1cd8);
+  if ((iterator_ptr1 != (int64_t *)0x0) && (*iterator_ptr1 != 0)) {
     System_MethodCall(*iterator_ptr2, 0x70)(iterator_ptr2, *iterator_ptr1, 1);
     message_buffer = system_main_module_state;
   }
-  iterator_ptr2[0x1077] = (longlong)iterator_ptr1;
+  iterator_ptr2[0x1077] = (int64_t)iterator_ptr1;
   status_code = 0;
   system_context = 0;
   
   // 处理系统状态循环
   do {
-    if ((ulonglong)(*(longlong *)(config_data + 0x96b8) - *(longlong *)(config_data + 0x96b0) >> 3) <=
-        (ulonglong)(longlong)status_code) break;
-    context_ptr = *(longlong *)(*(longlong *)(config_data + 0x96b0) + system_context);
-    iterator_ptr1 = *(longlong **)(context_ptr + 0x1d8);
-    iterator_ptr2 = *(longlong **)(system_message_buffer + 0x1cd8);
-    if (iterator_ptr1 != (longlong *)0x0) {
+    if ((uint64_t)(*(int64_t *)(config_data + 0x96b8) - *(int64_t *)(config_data + 0x96b0) >> 3) <=
+        (uint64_t)(int64_t)status_code) break;
+    context_ptr = *(int64_t *)(*(int64_t *)(config_data + 0x96b0) + system_context);
+    iterator_ptr1 = *(int64_t **)(context_ptr + 0x1d8);
+    iterator_ptr2 = *(int64_t **)(system_message_buffer + 0x1cd8);
+    if (iterator_ptr1 != (int64_t *)0x0) {
       if (message_buffer != 0) {
-        *(longlong *)(context_ptr + 0x340) = (longlong)*(int *)(message_buffer + 0x224);
+        *(int64_t *)(context_ptr + 0x340) = (int64_t)*(int *)(message_buffer + 0x224);
       }
       if (*iterator_ptr1 != 0) {
         System_MethodCall(*iterator_ptr2, 0x70)(iterator_ptr2, *iterator_ptr1, 1);
         message_buffer = system_main_module_state;
       }
     }
-    *(longlong **)((longlong)iterator_ptr2 + system_context + 0x83c0) = iterator_ptr1;
+    *(int64_t **)((int64_t)iterator_ptr2 + system_context + 0x83c0) = iterator_ptr1;
     status_code = status_code + 1;
     system_context = system_context + 8;
   } while (status_code < 4);
@@ -591,37 +591,37 @@ STATE_HANDLER_COMPLETE:
   
   // 处理系统消息和缓冲区
   if (((*(char *)(config_data + 0x20) != '\0') || (*(char *)(config_data + 0x21) != '\0')) &&
-     ((system_context = *(longlong *)(system_message_buffer + 0x1cd8), 
-       *(longlong *)(system_context + 0x8550) != 0 ||
+     ((system_context = *(int64_t *)(system_message_buffer + 0x1cd8), 
+       *(int64_t *)(system_context + 0x8550) != 0 ||
       ((*(int *)(system_context + 0x88c4) != -1 || (*(int *)(system_context + 0x8ac4) != 0x10)))))) {
     stack_data1 = 0;
-    System_MethodCall(*(longlong **)(system_context + 0x8400), 0x40)
-              (*(longlong **)(system_context + 0x8400), 0x23, 1, &stack_data1);
+    System_MethodCall(*(int64_t **)(system_context + 0x8400), 0x40)
+              (*(int64_t **)(system_context + 0x8400), 0x23, 1, &stack_data1);
     *(uint64_t *)(system_context + 0x8550) = 0;
     *(int32_t *)(system_context + 0x88c4) = 0xffffffff;
     *(int32_t *)(system_context + 0x8ac4) = 0x10;
     *(int *)(system_context + 0x82b4) = *(int *)(system_context + 0x82b4) + 1;
   }
   
-  iterator_ptr2 = (longlong *)0x0;
-  iterator_ptr1 = *(longlong **)(system_message_buffer + 0x1cd8);
+  iterator_ptr2 = (int64_t *)0x0;
+  iterator_ptr1 = *(int64_t **)(system_message_buffer + 0x1cd8);
   if (message_buffer != 0) {
     status_code = *(int *)(config_data + 0x357c);
-    if (*(longlong *)(message_buffer + 0x1e0) != 0) {
+    if (*(int64_t *)(message_buffer + 0x1e0) != 0) {
       if (system_main_module_state != 0) {
-        *(longlong *)(message_buffer + 0x340) = (longlong)*(int *)(system_main_module_state + 0x224);
+        *(int64_t *)(message_buffer + 0x340) = (int64_t)*(int *)(system_main_module_state + 0x224);
       }
-      iterator_ptr2 = (longlong *)((longlong)(status_code * 2 + 1) * 0x10 + *(longlong *)(message_buffer + 0x1e0));
-      if ((iterator_ptr2 != (longlong *)0x0) && (*iterator_ptr2 != 0)) {
+      iterator_ptr2 = (int64_t *)((int64_t)(status_code * 2 + 1) * 0x10 + *(int64_t *)(message_buffer + 0x1e0));
+      if ((iterator_ptr2 != (int64_t *)0x0) && (*iterator_ptr2 != 0)) {
         System_MethodCall(*iterator_ptr1, 0x70)(iterator_ptr1, *iterator_ptr2, 4);
       }
     }
   }
   
   system_context = system_message_buffer;
-  iterator_ptr1[0x107e] = (longlong)iterator_ptr2;
+  iterator_ptr1[0x107e] = (int64_t)iterator_ptr2;
   SystemDataManager(*(uint64_t *)(system_context + 0x1cd8),
-                (int)(*(longlong *)(config_data + 0x96b8) - *(longlong *)(config_data + 0x96b0) >> 3) + 1);
+                (int)(*(int64_t *)(config_data + 0x96b8) - *(int64_t *)(config_data + 0x96b0) >> 3) + 1);
   
   // 处理配置标志
   if (*(int *)(config_data + 8) == -1) {
@@ -647,13 +647,13 @@ STATE_HANDLER_COMPLETE:
                       *(uint64_t *)(config_data + 0x98e0));
     SystemBufferManager(*(uint64_t *)(system_message_buffer + 0x1cd8), 4, 0, 
                        *(uint64_t *)(config_data + 0x98f0));
-    system_context = *(longlong *)(system_message_buffer + 0x1cd8);
-    if (((*(longlong *)(system_context + 0x8558) != 0) || 
+    system_context = *(int64_t *)(system_message_buffer + 0x1cd8);
+    if (((*(int64_t *)(system_context + 0x8558) != 0) || 
          (*(int *)(system_context + 0x88c8) != -1)) ||
         (*(int *)(system_context + 0x8ac8) != 0x10)) {
       stack_data1 = 0;
-      System_MethodCall(*(longlong **)(system_context + 0x8400), 0x40)
-                (*(longlong **)(system_context + 0x8400), 0x24, 1, &stack_data1);
+      System_MethodCall(*(int64_t **)(system_context + 0x8400), 0x40)
+                (*(int64_t **)(system_context + 0x8400), 0x24, 1, &stack_data1);
       context_ptr = system_message_buffer;
       *(uint64_t *)(system_context + 0x8558) = 0;
       *(int32_t *)(system_context + 0x88c8) = 0xffffffff;
@@ -661,7 +661,7 @@ STATE_HANDLER_COMPLETE:
       *(int *)(system_context + 0x82b4) = *(int *)(system_context + 0x82b4) + 1;
     }
     stack_data2 = 0;
-    iterator_ptr1 = *(longlong **)(*(longlong *)(context_ptr + 0x1cd8) + 0x8400);
+    iterator_ptr1 = *(int64_t **)(*(int64_t *)(context_ptr + 0x1cd8) + 0x8400);
     System_MethodCall(*iterator_ptr1, 0x40)(iterator_ptr1, 0x42, 1, &stack_data2);
   }
   
@@ -669,13 +669,13 @@ STATE_HANDLER_COMPLETE:
   stack_data4 = *(uint64_t *)(config_data + 0x11c18);
   stack_data5 = *(uint64_t *)(config_data + 0x11c20);
   stack_data7 = *(int32_t *)(config_data + 0x11c2c);
-  system_context = *(longlong *)(system_message_buffer + 0x1cd8);
+  system_context = *(int64_t *)(system_message_buffer + 0x1cd8);
   float_param1 = *(float *)(config_data + 0x11c24);
-  iterator_ptr1 = *(longlong **)(system_context + 0x8400);
+  iterator_ptr1 = *(int64_t **)(system_context + 0x8400);
   float_param2 = *(float *)(config_data + 0x11c20);
   stack_data6 = *(int32_t *)(config_data + 0x11c28);
   System_MethodCall(*iterator_ptr1, 0x160)(iterator_ptr1, 1, &stack_data4);
-  iterator_ptr1 = *(longlong **)(system_context + 0x8400);
+  iterator_ptr1 = *(int64_t **)(system_context + 0x8400);
   flag_value = 0;
   counter = 0;
   stack_data2 = 0;
@@ -722,37 +722,37 @@ STATE_HANDLER_COMPLETE:
     flag_value = *(uint *)(config_data + 0x18);
   }
   if ((flag_value & 2) != 0) {
-    message_buffer = *(longlong *)(config_data + 0x98d0);
+    message_buffer = *(int64_t *)(config_data + 0x98d0);
     stack_data1._0_4_ = 0xffffffff;
-    system_context = *(longlong *)(system_message_buffer + 0x1cd8);
-    *(longlong *)(message_buffer + 0x340) = (longlong)*(int *)(system_main_module_state + 0x224);
-    iterator_ptr1 = *(longlong **)(system_context + 0x8400);
+    system_context = *(int64_t *)(system_message_buffer + 0x1cd8);
+    *(int64_t *)(message_buffer + 0x340) = (int64_t)*(int *)(system_main_module_state + 0x224);
+    iterator_ptr1 = *(int64_t **)(system_context + 0x8400);
     System_MethodCall(*iterator_ptr1, 0x198)(iterator_ptr1, 
                  *(uint64_t *)(message_buffer + 0x208), &stack_data1);
-    message_buffer = *(longlong *)(config_data + 0x98d8);
-    stack_data1 = (ulonglong)stack_data1._4_4_ << 0x20;
-    system_context = *(longlong *)(system_message_buffer + 0x1cd8);
-    *(longlong *)(message_buffer + 0x340) = (longlong)*(int *)(system_main_module_state + 0x224);
-    iterator_ptr1 = *(longlong **)(system_context + 0x8400);
+    message_buffer = *(int64_t *)(config_data + 0x98d8);
+    stack_data1 = (uint64_t)stack_data1._4_4_ << 0x20;
+    system_context = *(int64_t *)(system_message_buffer + 0x1cd8);
+    *(int64_t *)(message_buffer + 0x340) = (int64_t)*(int *)(system_main_module_state + 0x224);
+    iterator_ptr1 = *(int64_t **)(system_context + 0x8400);
     System_MethodCall(*iterator_ptr1, 0x198)(iterator_ptr1, 
                  *(uint64_t *)(message_buffer + 0x208), &stack_data1);
-    message_buffer = *(longlong *)(config_data + 0x98e0);
-    system_context = *(longlong *)(system_message_buffer + 0x1cd8);
-    *(longlong *)(message_buffer + 0x340) = (longlong)*(int *)(system_main_module_state + 0x224);
-    iterator_ptr1 = *(longlong **)(system_context + 0x8400);
+    message_buffer = *(int64_t *)(config_data + 0x98e0);
+    system_context = *(int64_t *)(system_message_buffer + 0x1cd8);
+    *(int64_t *)(message_buffer + 0x340) = (int64_t)*(int *)(system_main_module_state + 0x224);
+    iterator_ptr1 = *(int64_t **)(system_context + 0x8400);
     System_MethodCall(*iterator_ptr1, 0x198)(iterator_ptr1, 
                  *(uint64_t *)(message_buffer + 0x208), &stack_data1);
-    message_buffer = *(longlong *)(config_data + 0x98f0);
-    system_context = *(longlong *)(system_message_buffer + 0x1cd8);
+    message_buffer = *(int64_t *)(config_data + 0x98f0);
+    system_context = *(int64_t *)(system_message_buffer + 0x1cd8);
     *(int32_t *)(message_buffer + 0x16c) = *(int32_t *)(system_main_module_state + 0x224);
-    iterator_ptr1 = *(longlong **)(system_context + 0x8400);
+    iterator_ptr1 = *(int64_t **)(system_context + 0x8400);
     System_MethodCall(*iterator_ptr1, 0x198)(iterator_ptr1, 
                  *(uint64_t *)(message_buffer + 0x20), &stack_data1);
   }
   
   // 清理安全cookie并退出
   // WARNING: Subroutine does not return
-  SystemCleaner(security_cookie ^ (ulonglong)local_buffer);
+  SystemCleaner(security_cookie ^ (uint64_t)local_buffer);
 }
 
 

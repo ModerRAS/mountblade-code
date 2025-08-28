@@ -137,7 +137,7 @@ static AudioSample Int16ToFloat(Int16Sample sample);
  * @param enable_clipping 是否启用限幅
  * @param channel_config 声道配置
  */
-void FUN_1807e78c0(float *param_1,float *param_2,longlong param_3,uint param_4,uint param_5,
+void FUN_1807e78c0(float *param_1,float *param_2,int64_t param_3,uint param_4,uint param_5,
                   uint *param_6,uint *param_7,uint param_8,float param_9,float param_10,
                   float param_11,int param_12,uint param_13)
 {
@@ -617,8 +617,8 @@ static void ProcessCustomChannel(AudioProcessParams* params, ChannelCount channe
                     SampleCount channel_processed = 0;
                     
                     // 向量化处理
-                    if (VECTOR_PROCESSING_SIZE < (longlong)channel_config) {
-                        BufferOffset input_offset = (longlong)params->input_buffer - (longlong)params->output_buffer;
+                    if (VECTOR_PROCESSING_SIZE < (int64_t)channel_config) {
+                        BufferOffset input_offset = (int64_t)params->input_buffer - (int64_t)params->output_buffer;
                         SampleCount vector_count = (channel_config - VECTOR_PROCESSING_SIZE) >> 2;
                         channel_processed = vector_count * VECTOR_PROCESSING_SIZE;
                         
@@ -628,8 +628,8 @@ static void ProcessCustomChannel(AudioProcessParams* params, ChannelCount channe
                         for (SampleCount i = 0; i < vector_count; i++) {
                             // 处理4个声道
                             for (int j = 0; j < VECTOR_PROCESSING_SIZE; j++) {
-                                AudioSample input_gain = *(AudioSample*)((longlong)output_ptr + input_offset - VECTOR_PROCESSING_SIZE);
-                                AudioSample source_sample = Int16ToFloat(*(Int16Sample*)((longlong)dest_ptr + source_offset - VECTOR_PROCESSING_SIZE + j * SAMPLE_SIZE_BYTES));
+                                AudioSample input_gain = *(AudioSample*)((int64_t)output_ptr + input_offset - VECTOR_PROCESSING_SIZE);
+                                AudioSample source_sample = Int16ToFloat(*(Int16Sample*)((int64_t)dest_ptr + source_offset - VECTOR_PROCESSING_SIZE + j * SAMPLE_SIZE_BYTES));
                                 
                                 AudioSample processed_sample = source_sample * params->process_gain + input_gain;
                                 output_ptr[-1] = source_sample * params->gain_factor + input_gain * params->mix_gain;
@@ -642,14 +642,14 @@ static void ProcessCustomChannel(AudioProcessParams* params, ChannelCount channe
                     }
 
                     // 处理剩余声道
-                    if (channel_processed < (longlong)channel_config) {
+                    if (channel_processed < (int64_t)channel_config) {
                         SampleCount remaining_channels = channel_config - channel_processed;
                         Int16Sample* dest_ptr = (Int16Sample*)(dest_offset + channel_processed * SAMPLE_SIZE_BYTES);
                         AudioSample* output_ptr = params->output_buffer + channel_processed;
                         
                         for (SampleCount i = 0; i < remaining_channels; i++) {
-                            AudioSample input_gain = *(AudioSample*)((longlong)output_ptr + ((longlong)params->input_buffer - (longlong)params->output_buffer));
-                            AudioSample source_sample = Int16ToFloat(*(Int16Sample*)(source_offset + (longlong)dest_ptr));
+                            AudioSample input_gain = *(AudioSample*)((int64_t)output_ptr + ((int64_t)params->input_buffer - (int64_t)params->output_buffer));
+                            AudioSample source_sample = Int16ToFloat(*(Int16Sample*)(source_offset + (int64_t)dest_ptr));
                             
                             AudioSample processed_sample = source_sample * params->process_gain + input_gain;
                             *output_ptr = source_sample * params->gain_factor + input_gain * params->mix_gain;

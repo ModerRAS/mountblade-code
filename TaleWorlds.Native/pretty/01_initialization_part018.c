@@ -211,7 +211,7 @@ typedef struct {
  */
 void InitializationSystem_ParameterCalculator(void* param_1)
 {
-    longlong system_base;               // 系统基地址
+    int64_t system_base;               // 系统基地址
     int parameter_index;                // 参数索引
     int calculated_index;               // 计算索引
     init_float_t scale_values[8];       // 缩放值数组
@@ -276,10 +276,10 @@ void InitializationSystem_ParameterCalculator(void* param_1)
 void InitializationSystem_ResourceCleaner(void* param_1)
 {
     void* resource_ptr;                 // 资源指针
-    longlong cleanup_handle;            // 清理句柄
+    int64_t cleanup_handle;            // 清理句柄
     
     // 清理主资源块
-    resource_ptr = (void*)*((longlong*)param_1 + 0x7c);
+    resource_ptr = (void*)*((int64_t*)param_1 + 0x7c);
     if (resource_ptr != NULL) {
         // 清理资源块的各个部分
         CleanupResourceBlock(resource_ptr);
@@ -467,13 +467,13 @@ void InitializationSystem_PerformanceTuner(void* param_1)
  */
 void InitializationSystem_ResourceReclaimer(void* param_1)
 {
-    ulonglong resource_count;            // 资源计数
-    ulonglong resource_index;            // 资源索引
-    longlong resource_handle;            // 资源句柄
+    uint64_t resource_count;            // 资源计数
+    uint64_t resource_index;            // 资源索引
+    int64_t resource_handle;            // 资源句柄
     
     // 获取资源信息
-    resource_count = *(ulonglong *)(param_1 + 0x10);
-    resource_handle = *(longlong *)(param_1 + 8);
+    resource_count = *(uint64_t *)(param_1 + 0x10);
+    resource_handle = *(int64_t *)(param_1 + 8);
     resource_index = 0;
     
     // 遍历并回收资源
@@ -520,14 +520,14 @@ static void CleanResourceLinkedList(void* param_1)
 {
     // 清理资源链表中的所有节点
     // 包括内存块、文件句柄、线程等
-    longlong list_head = *((longlong*)param_1 + 1);
+    int64_t list_head = *((int64_t*)param_1 + 1);
     
     if (list_head != 0) {
         // 递归清理链表
         CleanResourceLinkedListRecursive(list_head);
         
         // 重置链表头
-        *((longlong*)param_1 + 1) = 0;
+        *((int64_t*)param_1 + 1) = 0;
     }
 }
 
@@ -546,7 +546,7 @@ static void DefragmentMemoryBlocks(void)
  * @brief 执行全局清理
  * @param cleanup_handle 清理句柄
  */
-static void PerformGlobalCleanup(longlong cleanup_handle)
+static void PerformGlobalCleanup(int64_t cleanup_handle)
 {
     // 执行系统全局清理
     // 包括全局变量、静态资源等
@@ -608,7 +608,7 @@ static void TriggerStatusChangeEvent(void* param_1)
 {
     // 触发状态变更事件
     // 通知相关组件状态变更
-    if (*((longlong*)param_1 + 9) != NULL) {
+    if (*((int64_t*)param_1 + 9) != NULL) {
         ExecuteStatusChangeEventHandlers(param_1);
     }
 }
@@ -736,18 +736,18 @@ static void UpdatePerformanceMonitor(void* param_1)
  * @param resource_handle 资源句柄
  * @param resource_index 资源索引
  */
-static void ReclaimSingleResource(longlong resource_handle, ulonglong resource_index)
+static void ReclaimSingleResource(int64_t resource_handle, uint64_t resource_index)
 {
     // 回收单个资源
     // 包括内存释放、句柄关闭等
-    longlong resource_ptr = *(longlong *)(resource_handle + resource_index * 8);
+    int64_t resource_ptr = *(int64_t *)(resource_handle + resource_index * 8);
     
     if (resource_ptr != 0) {
         // 释放资源
         ReleaseResource(resource_ptr);
         
         // 清理引用
-        *(longlong *)(resource_handle + resource_index * 8) = 0;
+        *(int64_t *)(resource_handle + resource_index * 8) = 0;
     }
 }
 
@@ -772,14 +772,14 @@ static void CleanupResourceManagerState(void* param_1)
 // 函数别名映射（保持与原始函数的兼容性）
 //------------------------------------------------------------------------------
 
-void FUN_18004caf0(longlong param_1) __attribute__((alias("InitializationSystem_ParameterCalculator")));
-void FUN_18004cc20(longlong *param_1) __attribute__((alias("InitializationSystem_ResourceCleaner")));
-void FUN_18004d020(uint64_t param_1, longlong param_2) __attribute__((alias("InitializationSystem_DataProcessor")));
-void FUN_18004e5f0(longlong param_1) __attribute__((alias("InitializationSystem_StatusUpdater")));
+void FUN_18004caf0(int64_t param_1) __attribute__((alias("InitializationSystem_ParameterCalculator")));
+void FUN_18004cc20(int64_t *param_1) __attribute__((alias("InitializationSystem_ResourceCleaner")));
+void FUN_18004d020(uint64_t param_1, int64_t param_2) __attribute__((alias("InitializationSystem_DataProcessor")));
+void FUN_18004e5f0(int64_t param_1) __attribute__((alias("InitializationSystem_StatusUpdater")));
 int32_t FUN_18004e7a0(void) __attribute__((alias("InitializationSystem_ConfigManager")));
 void FUN_18004eb00(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4) __attribute__((alias("InitializationSystem_MemoryOptimizer")));
 void FUN_18004ef60(void) __attribute__((alias("InitializationSystem_PerformanceTuner")));
-void FUN_18004f8e0(longlong param_1) __attribute__((alias("InitializationSystem_ResourceReclaimer")));
+void FUN_18004f8e0(int64_t param_1) __attribute__((alias("InitializationSystem_ResourceReclaimer")));
 
 //==============================================================================
 // 技术说明和实现细节

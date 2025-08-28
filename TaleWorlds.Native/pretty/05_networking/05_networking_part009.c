@@ -142,7 +142,7 @@ void network_connection_status_checker(uint64_t param_1, int8_t param_2)
 {
     int connection_status;          // 连接状态变量
     int validation_result;          // 验证结果变量
-    longlong connection_context[2]; // 连接上下文数据
+    int64_t connection_context[2]; // 连接上下文数据
     uint64_t *connection_data[2];  // 连接数据指针
     
     // 初始化连接上下文
@@ -189,11 +189,11 @@ void network_packet_sender(int32_t *param_1, uint64_t param_2)
 {
     // 发送数据包到目标地址
     FUN_18076b390(param_2, PACKET_TYPE_DATA, &unknown_var_8960_ptr, *param_1, 
-                 *(int16_t *)(param_1 + 1), *(int16_t *)((longlong)param_1 + 6),
-                 *(int8_t *)(param_1 + 2), *(int8_t *)((longlong)param_1 + 9),
-                 *(int8_t *)((longlong)param_1 + 10), *(int8_t *)((longlong)param_1 + 0xb),
-                 *(int8_t *)(param_1 + 3), *(int8_t *)((longlong)param_1 + 0xd),
-                 *(int8_t *)((longlong)param_1 + 0xe), *(int8_t *)((longlong)param_1 + 0xf));
+                 *(int16_t *)(param_1 + 1), *(int16_t *)((int64_t)param_1 + 6),
+                 *(int8_t *)(param_1 + 2), *(int8_t *)((int64_t)param_1 + 9),
+                 *(int8_t *)((int64_t)param_1 + 10), *(int8_t *)((int64_t)param_1 + 0xb),
+                 *(int8_t *)(param_1 + 3), *(int8_t *)((int64_t)param_1 + 0xd),
+                 *(int8_t *)((int64_t)param_1 + 0xe), *(int8_t *)((int64_t)param_1 + 0xf));
 }
 
 /**
@@ -215,10 +215,10 @@ void network_connection_initializer(uint64_t param_1)
     int8_t protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
     int8_t *message_buffer;   // 消息缓冲区指针
     int8_t large_buffer[LARGE_BUFFER_SIZE]; // 大缓冲区
-    ulonglong stack_protection;  // 栈保护变量
+    uint64_t stack_protection;  // 栈保护变量
     
     // 设置栈保护
-    stack_protection = GET_SECURITY_COOKIE() ^ (ulonglong)protection_stack;
+    stack_protection = GET_SECURITY_COOKIE() ^ (uint64_t)protection_stack;
     
     // 获取初始化状态
     initialization_status = FUN_1808401c0();
@@ -233,7 +233,7 @@ void network_connection_initializer(uint64_t param_1)
     }
     
     // 执行清理操作
-    FUN_1808fc050(stack_protection ^ (ulonglong)protection_stack);
+    FUN_1808fc050(stack_protection ^ (uint64_t)protection_stack);
 }
 
 /**
@@ -255,10 +255,10 @@ void network_connection_processor(uint64_t param_1)
     int8_t protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
     int8_t *message_buffer;    // 消息缓冲区指针
     int8_t large_buffer[LARGE_BUFFER_SIZE]; // 大缓冲区
-    ulonglong stack_protection;   // 栈保护变量
+    uint64_t stack_protection;   // 栈保护变量
     
     // 设置栈保护
-    stack_protection = GET_SECURITY_COOKIE() ^ (ulonglong)protection_stack;
+    stack_protection = GET_SECURITY_COOKIE() ^ (uint64_t)protection_stack;
     
     // 检查连接状态
     processing_status = network_connection_status_checker(param_1, 0);
@@ -273,7 +273,7 @@ void network_connection_processor(uint64_t param_1)
     }
     
     // 执行清理操作
-    FUN_1808fc050(stack_protection ^ (ulonglong)protection_stack);
+    FUN_1808fc050(stack_protection ^ (uint64_t)protection_stack);
 }
 
 /**
@@ -294,12 +294,12 @@ void network_connection_validator(uint64_t param_1)
     int validation_status;         // 验证状态变量
     int8_t protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
     int8_t *message_buffer;    // 消息缓冲区指针
-    longlong connection_data[2];   // 连接数据
+    int64_t connection_data[2];   // 连接数据
     int8_t large_buffer[LARGE_BUFFER_SIZE]; // 大缓冲区
-    ulonglong stack_protection;   // 栈保护变量
+    uint64_t stack_protection;   // 栈保护变量
     
     // 设置栈保护
-    stack_protection = GET_SECURITY_COOKIE() ^ (ulonglong)protection_stack;
+    stack_protection = GET_SECURITY_COOKIE() ^ (uint64_t)protection_stack;
     
     // 获取连接数据
     validation_status = func_0x00018088c590(param_1, connection_data);
@@ -328,7 +328,7 @@ void network_connection_validator(uint64_t param_1)
 
 validation_complete:
     // 执行清理操作
-    FUN_1808fc050(stack_protection ^ (ulonglong)protection_stack);
+    FUN_1808fc050(stack_protection ^ (uint64_t)protection_stack);
 }
 
 /**
@@ -346,10 +346,10 @@ validation_complete:
  * @param param_3 处理器上下文
  * @return void
  */
-void network_packet_processor(uint64_t param_1, uint64_t *param_2, longlong *param_3)
+void network_packet_processor(uint64_t param_1, uint64_t *param_2, int64_t *param_3)
 {
     int processing_result;         // 处理结果变量
-    longlong *handler_pointer;     // 处理器指针
+    int64_t *handler_pointer;     // 处理器指针
     int32_t *packet_data;       // 数据包数据指针
     int8_t protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
     uint packet_field_50;           // 数据包字段50
@@ -363,31 +363,31 @@ void network_packet_processor(uint64_t param_1, uint64_t *param_2, longlong *par
     uint packet_field_90;           // 数据包字段90
     uint packet_field_98;           // 数据包字段98
     int8_t packet_buffer[40];  // 数据包缓冲区
-    ulonglong stack_protection;    // 栈保护变量
+    uint64_t stack_protection;    // 栈保护变量
     
     // 设置栈保护
-    stack_protection = GET_SECURITY_COOKIE() ^ (ulonglong)protection_stack;
+    stack_protection = GET_SECURITY_COOKIE() ^ (uint64_t)protection_stack;
     
     // 遍历数据包数据
     for (packet_data = (int32_t *)*param_2;
          ((int32_t *)*param_2 <= packet_data &&
-         (packet_data < (int32_t *)*param_2 + (longlong)*(int *)(param_2 + 1) * 4)); 
+         (packet_data < (int32_t *)*param_2 + (int64_t)*(int *)(param_2 + 1) * 4)); 
          packet_data = packet_data + 4) {
         
         // 获取数据处理器
-        handler_pointer = (longlong *)(**(code **)(*param_3 + 0x140))(param_3, packet_data, 1);
+        handler_pointer = (int64_t *)(**(code **)(*param_3 + 0x140))(param_3, packet_data, 1);
         
-        if (handler_pointer == (longlong *)0x0) {
+        if (handler_pointer == (int64_t *)0x0) {
             // 提取数据包字段
-            packet_field_50 = (uint)*(byte *)((longlong)packet_data + 0xf);
-            packet_field_58 = (uint)*(byte *)((longlong)packet_data + 0xe);
-            packet_field_60 = (uint)*(byte *)((longlong)packet_data + 0xd);
+            packet_field_50 = (uint)*(byte *)((int64_t)packet_data + 0xf);
+            packet_field_58 = (uint)*(byte *)((int64_t)packet_data + 0xe);
+            packet_field_60 = (uint)*(byte *)((int64_t)packet_data + 0xd);
             packet_field_68 = (uint)*(byte *)(packet_data + 3);
-            packet_field_70 = (uint)*(byte *)((longlong)packet_data + 0xb);
-            packet_field_78 = (uint)*(byte *)((longlong)packet_data + 10);
-            packet_field_80 = (uint)*(byte *)((longlong)packet_data + 9);
+            packet_field_70 = (uint)*(byte *)((int64_t)packet_data + 0xb);
+            packet_field_78 = (uint)*(byte *)((int64_t)packet_data + 10);
+            packet_field_80 = (uint)*(byte *)((int64_t)packet_data + 9);
             packet_field_88 = (uint)*(byte *)(packet_data + 2);
-            packet_field_90 = (uint)*(ushort *)((longlong)packet_data + 6);
+            packet_field_90 = (uint)*(ushort *)((int64_t)packet_data + 6);
             packet_field_98 = (uint)*(ushort *)(packet_data + 1);
             
             // 发送数据包
@@ -400,7 +400,7 @@ void network_packet_processor(uint64_t param_1, uint64_t *param_2, longlong *par
     }
     
     // 执行清理操作
-    FUN_1808fc050(stack_protection ^ (ulonglong)protection_stack);
+    FUN_1808fc050(stack_protection ^ (uint64_t)protection_stack);
 }
 
 /**
@@ -417,16 +417,16 @@ void network_packet_processor(uint64_t param_1, uint64_t *param_2, longlong *par
  * @param param_2 连接参数
  * @return void
  */
-void network_state_manager(longlong param_1, longlong param_2)
+void network_state_manager(int64_t param_1, int64_t param_2)
 {
-    longlong connection_handle;     // 连接句柄
+    int64_t connection_handle;     // 连接句柄
     bool is_connected;             // 连接状态标志
     int8_t protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
     int8_t connection_buffer[40]; // 连接缓冲区
-    ulonglong stack_protection;    // 栈保护变量
+    uint64_t stack_protection;    // 栈保护变量
     
     // 设置栈保护
-    stack_protection = GET_SECURITY_COOKIE() ^ (ulonglong)protection_stack;
+    stack_protection = GET_SECURITY_COOKIE() ^ (uint64_t)protection_stack;
     
     // 检查连接状态
     is_connected = *(int *)(param_2 + 0xb0) != -1;
@@ -434,8 +434,8 @@ void network_state_manager(longlong param_1, longlong param_2)
     
     if (is_connected) {
         // 获取连接句柄
-        connection_handle = (**(code **)(**(longlong **)(param_1 + 0x10) + 0x288))
-                            (*(longlong **)(param_1 + 0x10), param_2 + 0xd8, 1);
+        connection_handle = (**(code **)(**(int64_t **)(param_1 + 0x10) + 0x288))
+                            (*(int64_t **)(param_1 + 0x10), param_2 + 0xd8, 1);
         
         if (connection_handle == 0) {
             // 发送连接数据
@@ -447,7 +447,7 @@ void network_state_manager(longlong param_1, longlong param_2)
     }
     
     // 执行清理操作
-    FUN_1808fc050(stack_protection ^ (ulonglong)protection_stack);
+    FUN_1808fc050(stack_protection ^ (uint64_t)protection_stack);
 }
 
 /**
@@ -464,27 +464,27 @@ void network_state_manager(longlong param_1, longlong param_2)
  * @param param_2 传输参数
  * @return void
  */
-void network_data_transmitter(longlong param_1, longlong param_2)
+void network_data_transmitter(int64_t param_1, int64_t param_2)
 {
     int transmission_status;       // 传输状态变量
-    longlong transmission_handle;   // 传输句柄
+    int64_t transmission_handle;   // 传输句柄
     int8_t protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
     byte status_flags[8];         // 状态标志
     int8_t transmission_buffer[40]; // 传输缓冲区
-    ulonglong stack_protection;    // 栈保护变量
+    uint64_t stack_protection;    // 栈保护变量
     
     // 设置栈保护
-    stack_protection = GET_SECURITY_COOKIE() ^ (ulonglong)protection_stack;
+    stack_protection = GET_SECURITY_COOKIE() ^ (uint64_t)protection_stack;
     
     // 检查传输参数
     if (1.1920929e-07 < *(float *)(param_2 + 0x94)) {
         *(int8_t *)(param_1 + 8) = 1;
-        FUN_1808fc050(stack_protection ^ (ulonglong)protection_stack);
+        FUN_1808fc050(stack_protection ^ (uint64_t)protection_stack);
     }
     
     // 获取传输句柄
-    transmission_handle = (**(code **)(**(longlong **)(param_1 + 0x10) + 0x288))
-                        (*(longlong **)(param_1 + 0x10), param_2 + 0xd8, 1);
+    transmission_handle = (**(code **)(**(int64_t **)(param_1 + 0x10) + 0x288))
+                        (*(int64_t **)(param_1 + 0x10), param_2 + 0xd8, 1);
     
     if (transmission_handle == 0) {
         // 发送传输数据
@@ -500,7 +500,7 @@ void network_data_transmitter(longlong param_1, longlong param_2)
     }
     
     // 执行清理操作
-    FUN_1808fc050(stack_protection ^ (ulonglong)protection_stack);
+    FUN_1808fc050(stack_protection ^ (uint64_t)protection_stack);
 }
 
 /**
@@ -517,10 +517,10 @@ void network_data_transmitter(longlong param_1, longlong param_2)
  * @param param_2 消息参数
  * @return void
  */
-void network_message_processor(longlong param_1, longlong param_2)
+void network_message_processor(int64_t param_1, int64_t param_2)
 {
     int32_t *message_pointer;    // 消息指针
-    longlong *handler_pointer;     // 处理器指针
+    int64_t *handler_pointer;     // 处理器指针
     int32_t *current_message;   // 当前消息
     int8_t protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
     uint message_field_88;          // 消息字段88
@@ -534,10 +534,10 @@ void network_message_processor(longlong param_1, longlong param_2)
     uint message_field_48;          // 消息字段48
     uint message_field_40;          // 消息字段40
     int8_t message_buffer[40];  // 消息缓冲区
-    ulonglong stack_protection;    // 栈保护变量
+    uint64_t stack_protection;    // 栈保护变量
     
     // 设置栈保护
-    stack_protection = GET_SECURITY_COOKIE() ^ (ulonglong)protection_stack;
+    stack_protection = GET_SECURITY_COOKIE() ^ (uint64_t)protection_stack;
     
     // 设置连接状态
     *(bool *)(param_1 + 8) = *(int *)(param_2 + 0xb0) != -1;
@@ -545,26 +545,26 @@ void network_message_processor(longlong param_1, longlong param_2)
     
     // 遍历消息队列
     while (((message_pointer = *(int32_t **)(param_2 + 0xd8), message_pointer <= current_message &&
-            (current_message < message_pointer + (longlong)*(int *)(param_2 + 0xe0) * 5)) &&
+            (current_message < message_pointer + (int64_t)*(int *)(param_2 + 0xe0) * 5)) &&
            (*(char *)(param_1 + 8) != '\0'))) {
         
         // 获取消息处理器
-        handler_pointer = (longlong *)
-                         (**(code **)(**(longlong **)(param_1 + 0x10) + 0x128))
-                                   (*(longlong **)(param_1 + 0x10), current_message,
-                                    CONCAT71((int7)((ulonglong)message_pointer >> 8), 1));
+        handler_pointer = (int64_t *)
+                         (**(code **)(**(int64_t **)(param_1 + 0x10) + 0x128))
+                                   (*(int64_t **)(param_1 + 0x10), current_message,
+                                    CONCAT71((int7)((uint64_t)message_pointer >> 8), 1));
         
-        if (handler_pointer == (longlong *)0x0) {
+        if (handler_pointer == (int64_t *)0x0) {
             // 提取消息字段
-            message_field_40 = (uint)*(byte *)((longlong)current_message + 0xf);
-            message_field_48 = (uint)*(byte *)((longlong)current_message + 0xe);
-            message_field_50 = (uint)*(byte *)((longlong)current_message + 0xd);
+            message_field_40 = (uint)*(byte *)((int64_t)current_message + 0xf);
+            message_field_48 = (uint)*(byte *)((int64_t)current_message + 0xe);
+            message_field_50 = (uint)*(byte *)((int64_t)current_message + 0xd);
             message_field_58 = (uint)*(byte *)(current_message + 3);
-            message_field_60 = (uint)*(byte *)((longlong)current_message + 0xb);
-            message_field_68 = (uint)*(byte *)((longlong)current_message + 10);
-            message_field_70 = (uint)*(byte *)((longlong)current_message + 9);
+            message_field_60 = (uint)*(byte *)((int64_t)current_message + 0xb);
+            message_field_68 = (uint)*(byte *)((int64_t)current_message + 10);
+            message_field_70 = (uint)*(byte *)((int64_t)current_message + 9);
             message_field_78 = (uint)*(byte *)(current_message + 2);
-            message_field_80 = (uint)*(ushort *)((longlong)current_message + 6);
+            message_field_80 = (uint)*(ushort *)((int64_t)current_message + 6);
             message_field_88 = (uint)*(ushort *)(current_message + 1);
             
             // 发送消息数据
@@ -577,7 +577,7 @@ void network_message_processor(longlong param_1, longlong param_2)
     }
     
     // 执行清理操作
-    FUN_1808fc050(stack_protection ^ (ulonglong)protection_stack);
+    FUN_1808fc050(stack_protection ^ (uint64_t)protection_stack);
 }
 
 /**
@@ -612,10 +612,10 @@ void network_system_terminator1(void)
  */
 void network_system_terminator2(void)
 {
-    ulonglong stack_protection;    // 栈保护变量
+    uint64_t stack_protection;    // 栈保护变量
     
     // 执行系统清理
-    FUN_1808fc050(stack_protection ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(stack_protection ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -633,7 +633,7 @@ void network_system_terminator2(void)
  * @param param_3 处理器上下文
  * @return void
  */
-void network_data_manager(longlong *param_1, longlong param_2, longlong *param_3)
+void network_data_manager(int64_t *param_1, int64_t param_2, int64_t *param_3)
 {
     byte data_field_2;             // 数据字段2
     byte data_field_3;             // 数据字段3
@@ -647,9 +647,9 @@ void network_data_manager(longlong *param_1, longlong param_2, longlong *param_3
     int32_t data_field_11;      // 数据字段11
     char processing_flag;           // 处理标志
     int processing_result;         // 处理结果
-    longlong data_handle_1;        // 数据句柄1
-    longlong data_handle_2;        // 数据句柄2
-    longlong *handler_pointer;     // 处理器指针
+    int64_t data_handle_1;        // 数据句柄1
+    int64_t data_handle_2;        // 数据句柄2
+    int64_t *handler_pointer;     // 处理器指针
     int32_t *data_pointer;      // 数据指针
     int32_t *current_data;      // 当前数据
     int8_t protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
@@ -664,10 +664,10 @@ void network_data_manager(longlong *param_1, longlong param_2, longlong *param_3
     uint data_field_a0;            // 数据字段a0
     uint data_field_a8;            // 数据字段a8
     int8_t data_buffer[40];    // 数据缓冲区
-    ulonglong stack_protection;    // 栈保护变量
+    uint64_t stack_protection;    // 栈保护变量
     
     // 设置栈保护
-    stack_protection = GET_SECURITY_COOKIE() ^ (ulonglong)protection_stack;
+    stack_protection = GET_SECURITY_COOKIE() ^ (uint64_t)protection_stack;
     
     // 初始化数据处理
     (**(code **)(*param_1 + 0x48))();
@@ -677,7 +677,7 @@ void network_data_manager(longlong *param_1, longlong param_2, longlong *param_3
         // 遍历数据集合
         for (current_data = *(int32_t **)(param_2 + 0x80);
             (*(int32_t **)(param_2 + 0x80) <= current_data &&
-            (current_data < *(int32_t **)(param_2 + 0x80) + (longlong)*(int *)(param_2 + 0x88) * 4));
+            (current_data < *(int32_t **)(param_2 + 0x80) + (int64_t)*(int *)(param_2 + 0x88) * 4));
             current_data = current_data + 4) {
             
             // 获取数据处理器
@@ -685,15 +685,15 @@ void network_data_manager(longlong *param_1, longlong param_2, longlong *param_3
             
             if (data_handle_1 == 0) {
                 // 提取数据字段
-                data_field_2 = *(byte *)((longlong)current_data + 0xf);
-                data_field_3 = *(byte *)((longlong)current_data + 0xe);
-                data_field_4 = *(byte *)((longlong)current_data + 0xd);
+                data_field_2 = *(byte *)((int64_t)current_data + 0xf);
+                data_field_3 = *(byte *)((int64_t)current_data + 0xe);
+                data_field_4 = *(byte *)((int64_t)current_data + 0xd);
                 data_field_5 = *(byte *)(current_data + 3);
-                data_field_6 = *(byte *)((longlong)current_data + 0xb);
-                data_field_7 = *(byte *)((longlong)current_data + 10);
-                data_field_8 = *(byte *)((longlong)current_data + 9);
+                data_field_6 = *(byte *)((int64_t)current_data + 0xb);
+                data_field_7 = *(byte *)((int64_t)current_data + 10);
+                data_field_8 = *(byte *)((int64_t)current_data + 9);
                 data_field_8 = *(byte *)(current_data + 2);
-                data_field_9 = *(ushort *)((longlong)current_data + 6);
+                data_field_9 = *(ushort *)((int64_t)current_data + 6);
                 data_field_10 = *(ushort *)(current_data + 1);
                 data_field_11 = *current_data;
                 
@@ -724,23 +724,23 @@ void network_data_manager(longlong *param_1, longlong param_2, longlong *param_3
             // 遍历子数据集合
             for (data_pointer = *(int32_t **)(data_handle_1 + 0x58);
                 (*(int32_t **)(data_handle_1 + 0x58) <= data_pointer &&
-                (data_pointer < *(int32_t **)(data_handle_1 + 0x58) + (longlong)*(int *)(data_handle_1 + 0x60) * 4));
+                (data_pointer < *(int32_t **)(data_handle_1 + 0x58) + (int64_t)*(int *)(data_handle_1 + 0x60) * 4));
                 data_pointer = data_pointer + 4) {
                 
                 // 获取子数据处理器
-                handler_pointer = (longlong *)(**(code **)(*param_3 + 0x128))(param_3, data_pointer, 1);
+                handler_pointer = (int64_t *)(**(code **)(*param_3 + 0x128))(param_3, data_pointer, 1);
                 
-                if (handler_pointer == (longlong *)0x0) {
+                if (handler_pointer == (int64_t *)0x0) {
                     // 提取子数据字段
-                    data_field_6 = *(byte *)((longlong)data_pointer + 0xb);
-                    data_field_2 = *(byte *)((longlong)data_pointer + 0xf);
-                    data_field_3 = *(byte *)((longlong)data_pointer + 0xe);
-                    data_field_4 = *(byte *)((longlong)data_pointer + 0xd);
+                    data_field_6 = *(byte *)((int64_t)data_pointer + 0xb);
+                    data_field_2 = *(byte *)((int64_t)data_pointer + 0xf);
+                    data_field_3 = *(byte *)((int64_t)data_pointer + 0xe);
+                    data_field_4 = *(byte *)((int64_t)data_pointer + 0xd);
                     data_field_5 = *(byte *)(data_pointer + 3);
-                    data_field_7 = *(byte *)((longlong)data_pointer + 10);
-                    data_field_8 = *(byte *)((longlong)data_pointer + 9);
+                    data_field_7 = *(byte *)((int64_t)data_pointer + 10);
+                    data_field_8 = *(byte *)((int64_t)data_pointer + 9);
                     data_field_8 = *(byte *)(data_pointer + 2);
-                    data_field_9 = *(ushort *)((longlong)data_pointer + 6);
+                    data_field_9 = *(ushort *)((int64_t)data_pointer + 6);
                     data_field_10 = *(ushort *)(data_pointer + 1);
                     data_field_11 = *data_pointer;
                     
@@ -768,7 +768,7 @@ void network_data_manager(longlong *param_1, longlong param_2, longlong *param_3
 
 processing_complete:
     // 执行清理操作
-    FUN_1808fc050(stack_protection ^ (ulonglong)protection_stack);
+    FUN_1808fc050(stack_protection ^ (uint64_t)protection_stack);
 }
 
 /**
@@ -785,10 +785,10 @@ processing_complete:
  * @param param_2 连接参数
  * @return void
  */
-void network_connection_manager(longlong param_1, longlong param_2)
+void network_connection_manager(int64_t param_1, int64_t param_2)
 {
     int management_result;          // 管理结果变量
-    longlong *handler_pointer;     // 处理器指针
+    int64_t *handler_pointer;     // 处理器指针
     int32_t *connection_data;   // 连接数据指针
     int8_t protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
     uint connection_field_50;      // 连接字段50
@@ -802,35 +802,35 @@ void network_connection_manager(longlong param_1, longlong param_2)
     uint connection_field_90;      // 连接字段90
     uint connection_field_98;      // 连接字段98
     int8_t connection_buffer[40]; // 连接缓冲区
-    ulonglong stack_protection;   // 栈保护变量
+    uint64_t stack_protection;   // 栈保护变量
     
     // 设置栈保护
-    stack_protection = GET_SECURITY_COOKIE() ^ (ulonglong)protection_stack;
+    stack_protection = GET_SECURITY_COOKIE() ^ (uint64_t)protection_stack;
     
     // 检查传输参数
     if (*(float *)(param_2 + 0x94) <= 1.1920929e-07) {
         // 遍历连接数据
         for (connection_data = *(int32_t **)(param_2 + 0xd8);
             (*(int32_t **)(param_2 + 0xd8) <= connection_data &&
-            (connection_data < *(int32_t **)(param_2 + 0xd8) + (longlong)*(int *)(param_2 + 0xe0) * 5));
+            (connection_data < *(int32_t **)(param_2 + 0xd8) + (int64_t)*(int *)(param_2 + 0xe0) * 5));
             connection_data = connection_data + 5) {
             
             // 获取连接处理器
-            handler_pointer = (longlong *)
-                             (**(code **)(**(longlong **)(param_1 + 0x10) + 0x128))
-                                       (*(longlong **)(param_1 + 0x10), connection_data, 1);
+            handler_pointer = (int64_t *)
+                             (**(code **)(**(int64_t **)(param_1 + 0x10) + 0x128))
+                                       (*(int64_t **)(param_1 + 0x10), connection_data, 1);
             
-            if (handler_pointer == (longlong *)0x0) {
+            if (handler_pointer == (int64_t *)0x0) {
                 // 提取连接字段
-                connection_field_50 = (uint)*(byte *)((longlong)connection_data + 0xf);
-                connection_field_58 = (uint)*(byte *)((longlong)connection_data + 0xe);
-                connection_field_60 = (uint)*(byte *)((longlong)connection_data + 0xd);
+                connection_field_50 = (uint)*(byte *)((int64_t)connection_data + 0xf);
+                connection_field_58 = (uint)*(byte *)((int64_t)connection_data + 0xe);
+                connection_field_60 = (uint)*(byte *)((int64_t)connection_data + 0xd);
                 connection_field_68 = (uint)*(byte *)(connection_data + 3);
-                connection_field_70 = (uint)*(byte *)((longlong)connection_data + 0xb);
-                connection_field_78 = (uint)*(byte *)((longlong)connection_data + 10);
-                connection_field_80 = (uint)*(byte *)((longlong)connection_data + 9);
+                connection_field_70 = (uint)*(byte *)((int64_t)connection_data + 0xb);
+                connection_field_78 = (uint)*(byte *)((int64_t)connection_data + 10);
+                connection_field_80 = (uint)*(byte *)((int64_t)connection_data + 9);
                 connection_field_88 = (uint)*(byte *)(connection_data + 2);
-                connection_field_90 = (uint)*(ushort *)((longlong)connection_data + 6);
+                connection_field_90 = (uint)*(ushort *)((int64_t)connection_data + 6);
                 connection_field_98 = (uint)*(ushort *)(connection_data + 1);
                 
                 // 发送连接数据
@@ -847,7 +847,7 @@ void network_connection_manager(longlong param_1, longlong param_2)
     }
     
     // 执行清理操作
-    FUN_1808fc050(stack_protection ^ (ulonglong)protection_stack);
+    FUN_1808fc050(stack_protection ^ (uint64_t)protection_stack);
 }
 
 /**
@@ -864,27 +864,27 @@ void network_connection_manager(longlong param_1, longlong param_2)
  * @param param_2 接收上下文
  * @return void
  */
-void network_data_receiver(uint64_t param_1, longlong param_2)
+void network_data_receiver(uint64_t param_1, int64_t param_2)
 {
     int reception_result;          // 接收结果变量
-    longlong *handler_pointer;    // 处理器指针
-    longlong unaff_RBX;           // 未使用的RBX寄存器
-    longlong unaff_RDI;           // 未使用的RDI寄存器
+    int64_t *handler_pointer;    // 处理器指针
+    int64_t unaff_RBX;           // 未使用的RBX寄存器
+    int64_t unaff_RDI;           // 未使用的RDI寄存器
     int32_t *data_pointer;     // 数据指针
-    ulonglong stack_protection;   // 栈保护变量
+    uint64_t stack_protection;   // 栈保护变量
     
     // 遍历接收数据
     for (data_pointer = *(int32_t **)(param_2 + 0xd8);
         (*(int32_t **)(unaff_RBX + 0xd8) <= data_pointer &&
-        (data_pointer < *(int32_t **)(unaff_RBX + 0xd8) + (longlong)*(int *)(unaff_RBX + 0xe0) * 5));
+        (data_pointer < *(int32_t **)(unaff_RBX + 0xd8) + (int64_t)*(int *)(unaff_RBX + 0xe0) * 5));
         data_pointer = data_pointer + 5) {
         
         // 获取数据处理器
-        handler_pointer = (longlong *)
-                         (**(code **)(**(longlong **)(unaff_RDI + 0x10) + 0x128))
-                                   (*(longlong **)(unaff_RDI + 0x10), data_pointer, 1);
+        handler_pointer = (int64_t *)
+                         (**(code **)(**(int64_t **)(unaff_RDI + 0x10) + 0x128))
+                                   (*(int64_t **)(unaff_RDI + 0x10), data_pointer, 1);
         
-        if (handler_pointer == (longlong *)0x0) {
+        if (handler_pointer == (int64_t *)0x0) {
             // 发送数据
             FUN_18076b390(&stack0x00000070, PACKET_TYPE_DATA, &unknown_var_8960_ptr, *data_pointer, *(int16_t *)(data_pointer + 1));
         }
@@ -895,7 +895,7 @@ void network_data_receiver(uint64_t param_1, longlong param_2)
     }
     
     // 执行清理操作
-    FUN_1808fc050(stack_protection ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(stack_protection ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -912,7 +912,7 @@ void network_data_receiver(uint64_t param_1, longlong param_2)
  */
 void network_error_handler(void)
 {
-    longlong unaff_R14;           // 未使用的R14寄存器
+    int64_t unaff_R14;           // 未使用的R14寄存器
     uint error_code;              // 错误代码
     
     // 获取错误代码
@@ -936,10 +936,10 @@ void network_error_handler(void)
  */
 void network_system_cleaner(void)
 {
-    ulonglong stack_protection;   // 栈保护变量
+    uint64_t stack_protection;   // 栈保护变量
     
     // 执行系统清理
-    FUN_1808fc050(stack_protection ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(stack_protection ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -956,10 +956,10 @@ void network_system_cleaner(void)
  */
 void network_system_resetter(void)
 {
-    ulonglong stack_protection;   // 栈保护变量
+    uint64_t stack_protection;   // 栈保护变量
     
     // 执行系统重置
-    FUN_1808fc050(stack_protection ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(stack_protection ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -977,13 +977,13 @@ void network_system_resetter(void)
  * @param param_3 处理器上下文
  * @return void
  */
-void network_buffer_manager(longlong *param_1, longlong param_2, longlong *param_3)
+void network_buffer_manager(int64_t *param_1, int64_t param_2, int64_t *param_3)
 {
     char processing_flag;          // 处理标志
     int management_result;        // 管理结果变量
-    longlong buffer_handle;       // 缓冲区句柄
-    longlong *handler_pointer;    // 处理器指针
-    ulonglong buffer_address;     // 缓冲区地址
+    int64_t buffer_handle;       // 缓冲区句柄
+    int64_t *handler_pointer;    // 处理器指针
+    uint64_t buffer_address;     // 缓冲区地址
     int32_t *buffer_data;      // 缓冲区数据指针
     int8_t protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
     uint buffer_field_60;         // 缓冲区字段60
@@ -997,10 +997,10 @@ void network_buffer_manager(longlong *param_1, longlong param_2, longlong *param
     uint buffer_field_a0;         // 缓冲区字段a0
     uint buffer_field_a8;         // 缓冲区字段a8
     int8_t buffer_data_buffer[40]; // 缓冲区数据缓冲区
-    ulonglong stack_protection;   // 栈保护变量
+    uint64_t stack_protection;   // 栈保护变量
     
     // 设置栈保护
-    stack_protection = GET_SECURITY_COOKIE() ^ (ulonglong)protection_stack;
+    stack_protection = GET_SECURITY_COOKIE() ^ (uint64_t)protection_stack;
     
     // 初始化缓冲区管理
     (**(code **)(*param_1 + 0x40))();
@@ -1016,15 +1016,15 @@ void network_buffer_manager(longlong *param_1, longlong param_2, longlong *param
         }
         
         // 遍历缓冲区数据
-        for (buffer_address = *(ulonglong *)(buffer_handle + 0x38);
-            (*(ulonglong *)(buffer_handle + 0x38) <= buffer_address &&
-            (buffer_address < *(ulonglong *)(buffer_handle + 0x38) + (longlong)*(int *)(buffer_handle + 0x40) * 0x18));
+        for (buffer_address = *(uint64_t *)(buffer_handle + 0x38);
+            (*(uint64_t *)(buffer_handle + 0x38) <= buffer_address &&
+            (buffer_address < *(uint64_t *)(buffer_handle + 0x38) + (int64_t)*(int *)(buffer_handle + 0x40) * 0x18));
             buffer_address = buffer_address + 0x18) {
             
             // 获取缓冲区处理器
-            handler_pointer = (longlong *)(**(code **)(*param_3 + 0x128))(param_3, buffer_address, 1);
+            handler_pointer = (int64_t *)(**(code **)(*param_3 + 0x128))(param_3, buffer_address, 1);
             
-            if (handler_pointer == (longlong *)0x0) {
+            if (handler_pointer == (int64_t *)0x0) {
                 // 发送缓冲区数据
                 network_packet_sender(buffer_address, buffer_data_buffer);
             }
@@ -1042,23 +1042,23 @@ void network_buffer_manager(longlong *param_1, longlong param_2, longlong *param
             // 遍历二级缓冲区数据
             for (buffer_data = *(int32_t **)(buffer_handle + 0x48);
                 (*(int32_t **)(buffer_handle + 0x48) <= buffer_data &&
-                (buffer_data < *(int32_t **)(buffer_handle + 0x48) + (longlong)*(int *)(buffer_handle + 0x50) * 6));
+                (buffer_data < *(int32_t **)(buffer_handle + 0x48) + (int64_t)*(int *)(buffer_handle + 0x50) * 6));
                 buffer_data = buffer_data + 6) {
                 
                 // 获取二级缓冲区处理器
-                handler_pointer = (longlong *)(**(code **)(*param_3 + 0x128))(param_3, buffer_data, 1);
+                handler_pointer = (int64_t *)(**(code **)(*param_3 + 0x128))(param_3, buffer_data, 1);
                 
-                if (handler_pointer == (longlong *)0x0) {
+                if (handler_pointer == (int64_t *)0x0) {
                     // 提取缓冲区字段
-                    buffer_field_60 = (uint)*(byte *)((longlong)buffer_data + 0xf);
-                    buffer_field_68 = (uint)*(byte *)((longlong)buffer_data + 0xe);
-                    buffer_field_70 = (uint)*(byte *)((longlong)buffer_data + 0xd);
+                    buffer_field_60 = (uint)*(byte *)((int64_t)buffer_data + 0xf);
+                    buffer_field_68 = (uint)*(byte *)((int64_t)buffer_data + 0xe);
+                    buffer_field_70 = (uint)*(byte *)((int64_t)buffer_data + 0xd);
                     buffer_field_78 = (uint)*(byte *)(buffer_data + 3);
-                    buffer_field_80 = (uint)*(byte *)((longlong)buffer_data + 0xb);
-                    buffer_field_88 = (uint)*(byte *)((longlong)buffer_data + 10);
-                    buffer_field_90 = (uint)*(byte *)((longlong)buffer_data + 9);
+                    buffer_field_80 = (uint)*(byte *)((int64_t)buffer_data + 0xb);
+                    buffer_field_88 = (uint)*(byte *)((int64_t)buffer_data + 10);
+                    buffer_field_90 = (uint)*(byte *)((int64_t)buffer_data + 9);
                     buffer_field_98 = (uint)*(byte *)(buffer_data + 2);
-                    buffer_field_a0 = (uint)*(ushort *)((longlong)buffer_data + 6);
+                    buffer_field_a0 = (uint)*(ushort *)((int64_t)buffer_data + 6);
                     buffer_field_a8 = (uint)*(ushort *)(buffer_data + 1);
                     
                     // 发送缓冲区数据
@@ -1074,7 +1074,7 @@ void network_buffer_manager(longlong *param_1, longlong param_2, longlong *param
 
 buffer_management_complete:
     // 执行清理操作
-    FUN_1808fc050(stack_protection ^ (ulonglong)protection_stack);
+    FUN_1808fc050(stack_protection ^ (uint64_t)protection_stack);
 }
 
 /**
@@ -1109,10 +1109,10 @@ void network_system_terminator3(void)
  */
 void network_system_terminator4(void)
 {
-    ulonglong stack_protection;   // 栈保护变量
+    uint64_t stack_protection;   // 栈保护变量
     
     // 执行系统重置
-    FUN_1808fc050(stack_protection ^ (ulonglong)&stack0x00000000);
+    FUN_1808fc050(stack_protection ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -1139,7 +1139,7 @@ uint64_t * string_parser_processor(char *param_1, uint64_t *param_2)
     char *temp_pointer;            // 临时指针
     int8_t *field_pointer;     // 字段指针
     int8_t *temp_pointer2;     // 临时指针2
-    longlong field_index;          // 字段索引
+    int64_t field_index;          // 字段索引
     int8_t *field_array[5];    // 字段数组
     int8_t stack_protection_var; // 栈保护变量
     int8_t protection_stack[STACK_PROTECTION_SIZE]; // 栈保护区域
@@ -1159,10 +1159,10 @@ uint64_t * string_parser_processor(char *param_1, uint64_t *param_2)
     int8_t field_9;            // 字段9
     int8_t field_buffer_5[10]; // 字段缓冲区5
     int8_t final_buffer[5];    // 最终缓冲区
-    ulonglong stack_protection;    // 栈保护变量
+    uint64_t stack_protection;    // 栈保护变量
     
     // 设置栈保护
-    stack_protection = GET_SECURITY_COOKIE() ^ (ulonglong)protection_stack;
+    stack_protection = GET_SECURITY_COOKIE() ^ (uint64_t)protection_stack;
     
     if (param_2 != (uint64_t *)0x0) {
         // 验证输入参数
@@ -1222,7 +1222,7 @@ uint64_t * string_parser_processor(char *param_1, uint64_t *param_2)
             field_2 = CONCAT22(length_result, (int16_t)field_2);
             length_result = func_0x00018076b320(field_buffer_4);
             
-            temp_pointer2 = (int8_t *)((longlong)&field_4 + 3);
+            temp_pointer2 = (int8_t *)((int64_t)&field_4 + 3);
             field_3 = CONCAT31(CONCAT21(field_3._2_2_, (char)length_result), (char)((ushort)length_result >> 8));
             
             field_pointer = final_buffer;
@@ -1242,15 +1242,15 @@ uint64_t * string_parser_processor(char *param_1, uint64_t *param_2)
             
             // 设置解析结果
             *(int32_t *)param_2 = field_1;
-            *(int32_t *)((longlong)param_2 + 4) = field_2;
+            *(int32_t *)((int64_t)param_2 + 4) = field_2;
             *(int32_t *)(param_2 + 1) = field_3;
-            *(int32_t *)((longlong)param_2 + 0xc) = field_4;
+            *(int32_t *)((int64_t)param_2 + 0xc) = field_4;
         }
     }
 
 parsing_complete:
     // 执行清理操作
-    FUN_1808fc050(stack_protection ^ (ulonglong)protection_stack);
+    FUN_1808fc050(stack_protection ^ (uint64_t)protection_stack);
     
     return param_2;
 }
@@ -1283,7 +1283,7 @@ uint64_t * network_config_initializer(uint64_t *param_1, uint64_t param_2, byte 
     param_1[8] = 0;
     param_1[9] = &unknown_var_1456_ptr;
     *(int32_t *)(param_1 + 10) = 0;
-    *(int32_t *)((longlong)param_1 + 0x54) = 0xffffffff;
+    *(int32_t *)((int64_t)param_1 + 0x54) = 0xffffffff;
     
     // 获取配置数据
     config_pointer = (uint64_t *)FUN_180847820();
@@ -1295,7 +1295,7 @@ uint64_t * network_config_initializer(uint64_t *param_1, uint64_t param_2, byte 
     *param_1 = &unknown_var_1472_ptr;
     param_1[9] = &unknown_var_1520_ptr;
     param_1[0xd] = 0;
-    *(int16_t *)((longlong)param_1 + 0x74) = 0;
+    *(int16_t *)((int64_t)param_1 + 0x74) = 0;
     *(int32_t *)(param_1 + 0xe) = 0x3f800000;
     param_1[0xf] = 0xffffffffffffffff;
     param_1[0x10] = 0;
@@ -1307,10 +1307,10 @@ uint64_t * network_config_initializer(uint64_t *param_1, uint64_t param_2, byte 
     param_1[0x16] = 0;
     param_1[0x17] = 0;
     *(int32_t *)(param_1 + 0x18) = 0;
-    *(uint *)((longlong)param_1 + 0xc4) = (uint)param_3;
-    *(int32_t *)((longlong)param_1 + 0xd4) = 0;
+    *(uint *)((int64_t)param_1 + 0xc4) = (uint)param_3;
+    *(int32_t *)((int64_t)param_1 + 0xd4) = 0;
     *(int32_t *)(param_1 + 0x19) = 0xffffffff;
-    *(uint64_t *)((longlong)param_1 + 0xcc) = 0x7fffffff;
+    *(uint64_t *)((int64_t)param_1 + 0xcc) = 0x7fffffff;
     
     return param_1;
 }
@@ -1328,16 +1328,16 @@ uint64_t * network_config_initializer(uint64_t *param_1, uint64_t param_2, byte 
  * @param param_1 资源管理器指针
  * @return uint 清理结果
  */
-uint network_resource_cleaner1(longlong *param_1)
+uint network_resource_cleaner1(int64_t *param_1)
 {
     int cleanup_status;            // 清理状态变量
     uint resource_count;           // 资源计数
-    ulonglong resource_index;      // 资源索引
+    uint64_t resource_index;      // 资源索引
     int32_t *resource_pointer;  // 资源指针
     uint cleanup_result;           // 清理结果
     
     // 获取资源计数
-    resource_count = *(uint *)((longlong)param_1 + 0xc);
+    resource_count = *(uint *)((int64_t)param_1 + 0xc);
     cleanup_result = resource_count ^ (int)resource_count >> 0x1f;
     
     if ((int)(cleanup_result - ((int)resource_count >> 0x1f)) < 0) {
@@ -1352,15 +1352,15 @@ uint network_resource_cleaner1(longlong *param_1)
         
         *param_1 = 0;
         resource_count = 0;
-        *(int32_t *)((longlong)param_1 + 0xc) = 0;
+        *(int32_t *)((int64_t)param_1 + 0xc) = 0;
     }
     
     cleanup_status = (int)param_1[1];
     if (cleanup_status < 0) {
-        resource_pointer = (int32_t *)(*param_1 + (longlong)cleanup_status * 4);
+        resource_pointer = (int32_t *)(*param_1 + (int64_t)cleanup_status * 4);
         
         if (cleanup_status < 0) {
-            resource_index = (ulonglong)(uint)-cleanup_status;
+            resource_index = (uint64_t)(uint)-cleanup_status;
             
             do {
                 if (resource_pointer != (int32_t *)0x0) {
@@ -1371,7 +1371,7 @@ uint network_resource_cleaner1(longlong *param_1)
                 resource_index = resource_index - 1;
             } while (resource_index != 0);
             
-            resource_count = *(uint *)((longlong)param_1 + 0xc);
+            resource_count = *(uint *)((int64_t)param_1 + 0xc);
         }
     }
     
@@ -1386,13 +1386,13 @@ uint network_resource_cleaner1(longlong *param_1)
         return 0x1c;
     }
     
-    if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
+    if ((0 < *(int *)((int64_t)param_1 + 0xc)) && (*param_1 != 0)) {
         // 清理资源
         FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
     }
     
     *param_1 = 0;
-    *(int32_t *)((longlong)param_1 + 0xc) = 0;
+    *(int32_t *)((int64_t)param_1 + 0xc) = 0;
     
     return 0;
 }
@@ -1410,14 +1410,14 @@ uint network_resource_cleaner1(longlong *param_1)
  * @param param_1 资源管理器指针
  * @return uint 清理结果
  */
-uint network_resource_cleaner2(longlong *param_1)
+uint network_resource_cleaner2(int64_t *param_1)
 {
     int cleanup_status;            // 清理状态变量
     uint resource_count;           // 资源计数
     uint cleanup_result;            // 清理结果
     
     // 获取资源计数
-    resource_count = *(uint *)((longlong)param_1 + 0xc);
+    resource_count = *(uint *)((int64_t)param_1 + 0xc);
     cleanup_result = resource_count ^ (int)resource_count >> 0x1f;
     
     if ((int)(cleanup_result - ((int)resource_count >> 0x1f)) < 0) {
@@ -1432,13 +1432,13 @@ uint network_resource_cleaner2(longlong *param_1)
         
         *param_1 = 0;
         resource_count = 0;
-        *(int32_t *)((longlong)param_1 + 0xc) = 0;
+        *(int32_t *)((int64_t)param_1 + 0xc) = 0;
     }
     
     cleanup_status = (int)param_1[1];
     if (cleanup_status < 0) {
         // 清理内存
-        memset((longlong)cleanup_status * 0x10 + *param_1, 0, (longlong)-cleanup_status << 4);
+        memset((int64_t)cleanup_status * 0x10 + *param_1, 0, (int64_t)-cleanup_status << 4);
     }
     
     *(int32_t *)(param_1 + 1) = 0;
@@ -1452,13 +1452,13 @@ uint network_resource_cleaner2(longlong *param_1)
         return 0x1c;
     }
     
-    if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
+    if ((0 < *(int *)((int64_t)param_1 + 0xc)) && (*param_1 != 0)) {
         // 清理资源
         FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
     }
     
     *param_1 = 0;
-    *(int32_t *)((longlong)param_1 + 0xc) = 0;
+    *(int32_t *)((int64_t)param_1 + 0xc) = 0;
     
     return 0;
 }

@@ -2,8 +2,8 @@
 
 // 99_part_04_part007_sub002.c - 1 个函数
 
-// 函数: void FUN_18025d270(longlong param_1,uint64_t param_2,uint64_t param_3)
-void FUN_18025d270(longlong param_1,uint64_t param_2,uint64_t param_3)
+// 函数: void FUN_18025d270(int64_t param_1,uint64_t param_2,uint64_t param_3)
+void FUN_18025d270(int64_t param_1,uint64_t param_2,uint64_t param_3)
 
 {
   int32_t *puVar1;

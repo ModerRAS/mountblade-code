@@ -243,7 +243,7 @@ void FUN_18066f94e(uint64_t param_1, uint64_t param_2, int param_3) {
             
             // 设置纹理数据指针
             context->textures[texture_index].data = 
-                (void*)((longlong)texture_index * 0x30 + (longlong)context);
+                (void*)((int64_t)texture_index * 0x30 + (int64_t)context);
             
             // 初始化纹理数据
             for (int i = 0; i < 0x10; i++) {
@@ -252,7 +252,7 @@ void FUN_18066f94e(uint64_t param_1, uint64_t param_2, int param_3) {
         } else {
             // 压缩纹理处理
             context->textures[texture_index].data = 
-                (void*)((longlong)texture_index * 0x30 + (longlong)context + 0x20);
+                (void*)((int64_t)texture_index * 0x30 + (int64_t)context + 0x20);
             context->textures[texture_index].data_size = 1;
         }
         
@@ -281,7 +281,7 @@ void FUN_18066f94e(uint64_t param_1, uint64_t param_2, int param_3) {
                 
                 // 移动到下一个纹理数据位置
                 context->textures[texture_index].data = 
-                    (void*)((longlong)context->textures[texture_index].data + 0x10);
+                    (void*)((int64_t)context->textures[texture_index].data + 0x10);
                 
                 mipmap_index++;
             } while (mipmap_index < context->texture_count);
@@ -291,10 +291,10 @@ void FUN_18066f94e(uint64_t param_1, uint64_t param_2, int param_3) {
         if (context->state.state == RENDER_STATE_DEFAULT) {
             // 调用缓冲区优化器
             RenderingBufferReleaser(
-                (void*)((longlong)texture_index + 0x20),
-                (longlong)context->textures[texture_index].data + 0x10,
-                (longlong)context->textures[texture_index].data + 8,
-                (longlong)context->textures[texture_index].data + 8
+                (void*)((int64_t)texture_index + 0x20),
+                (int64_t)context->textures[texture_index].data + 0x10,
+                (int64_t)context->textures[texture_index].data + 8,
+                (int64_t)context->textures[texture_index].data + 8
             );
         }
         
@@ -303,12 +303,12 @@ void FUN_18066f94e(uint64_t param_1, uint64_t param_2, int param_3) {
     
     // 释放信号量并返回
     if (texture_index == context->texture_count - 1) {
-        ReleaseSemaphore(*(uint64_t*)((longlong)context + 0x4400), 1);
+        ReleaseSemaphore(*(uint64_t*)((int64_t)context + 0x4400), 1);
     }
     
     // 调用渲染状态设置器
-    RenderingStateSetter(*(ulonglong*)((longlong)context + 0x50) ^ 
-                        (ulonglong)&texture_index);
+    RenderingStateSetter(*(uint64_t*)((int64_t)context + 0x50) ^ 
+                        (uint64_t)&texture_index);
 }
 
 /**
@@ -318,16 +318,16 @@ void FUN_18066f94e(uint64_t param_1, uint64_t param_2, int param_3) {
  * @param context 渲染上下文
  */
 void FUN_1806704b6(void) {
-    RenderContext* context = (RenderContext*)((longlong)&context - 0x50);
+    RenderContext* context = (RenderContext*)((int64_t)&context - 0x50);
     
     // 检查是否为最后一个纹理
     if (context->texture_count == context->texture_count - 1) {
-        ReleaseSemaphore(*(uint64_t*)((longlong)context + 0x4400), 1);
+        ReleaseSemaphore(*(uint64_t*)((int64_t)context + 0x4400), 1);
     }
     
     // 调用渲染状态设置器
-    RenderingStateSetter(*(ulonglong*)((longlong)context + 0x50) ^ 
-                        (ulonglong)&context);
+    RenderingStateSetter(*(uint64_t*)((int64_t)context + 0x50) ^ 
+                        (uint64_t)&context);
 }
 
 /**
@@ -337,14 +337,14 @@ void FUN_1806704b6(void) {
  * @param context 渲染上下文
  */
 void FUN_1806704db(void) {
-    RenderContext* context = (RenderContext*)((longlong)&context - 0x50);
+    RenderContext* context = (RenderContext*)((int64_t)&context - 0x50);
     
     // 释放信号量
-    ReleaseSemaphore(*(uint64_t*)((longlong)context + 0x4400), 1);
+    ReleaseSemaphore(*(uint64_t*)((int64_t)context + 0x4400), 1);
     
     // 调用渲染状态设置器
-    RenderingStateSetter(*(ulonglong*)((longlong)context + 0x50) ^ 
-                        (ulonglong)&context);
+    RenderingStateSetter(*(uint64_t*)((int64_t)context + 0x50) ^ 
+                        (uint64_t)&context);
 }
 
 /**
@@ -356,7 +356,7 @@ void FUN_1806704db(void) {
  * @param param_3 缓冲区指针
  * @param param_4 纹理数量
  */
-void FUN_180670510(longlong param_1, longlong param_2, longlong param_3, int param_4) {
+void FUN_180670510(int64_t param_1, int64_t param_2, int64_t param_3, int param_4) {
     RenderContext* context = (RenderContext*)param_1;
     TextureDescriptor* manager = (TextureDescriptor*)param_2;
     BufferDescriptor* buffer = (BufferDescriptor*)param_3;
@@ -366,40 +366,40 @@ void FUN_180670510(longlong param_1, longlong param_2, longlong param_3, int par
     if (texture_count > 0) {
         int texture_index = 0;
         TextureDescriptor* current_texture = 
-            (TextureDescriptor*)((longlong)buffer + 4000);
+            (TextureDescriptor*)((int64_t)buffer + 4000);
         
         do {
             // 复制纹理数据
-            current_texture[-1] = *(TextureDescriptor*)((longlong)manager + 0xf98);
-            *current_texture = *(TextureDescriptor*)((longlong)manager + 4000);
-            current_texture[1] = *(TextureDescriptor*)((longlong)manager + 0xfa8);
-            current_texture[2] = *(TextureDescriptor*)((longlong)manager + 0xfb0);
+            current_texture[-1] = *(TextureDescriptor*)((int64_t)manager + 0xf98);
+            *current_texture = *(TextureDescriptor*)((int64_t)manager + 4000);
+            current_texture[1] = *(TextureDescriptor*)((int64_t)manager + 0xfa8);
+            current_texture[2] = *(TextureDescriptor*)((int64_t)manager + 0xfb0);
             
             // 设置纹理偏移
             current_texture[-0x14] = 
-                (longlong)(context->texture_count * texture_index) * 0x4c + 
-                (longlong)context + 0x1eb0;
+                (int64_t)(context->texture_count * texture_index) * 0x4c + 
+                (int64_t)context + 0x1eb0;
             
             // 设置纹理属性
             current_texture[-0x13] = context->texture_count;
-            current_texture[-0x94] = *(uint32*)((longlong)context + 0x1e64);
+            current_texture[-0x94] = *(uint32*)((int64_t)context + 0x1e64);
             
             // 复制着色器数据
             for (int i = 0; i < 16; i++) {
                 current_texture[-0x38 + i] = 
-                    *(TextureDescriptor*)((longlong)manager + 0xde0 + i * 0x10);
+                    *(TextureDescriptor*)((int64_t)manager + 0xde0 + i * 0x10);
             }
             
             // 设置纹理标志
             *(uint32*)(current_texture + -0x39) = 0xffffffff;
             
             // 设置纹理指针
-            current_texture[3] = (TextureDescriptor*)((longlong)context + 0x4140);
+            current_texture[3] = (TextureDescriptor*)((int64_t)context + 0x4140);
             
             // 复制缓冲区数据
             for (int i = 0; i < 8; i++) {
                 current_texture[-0xf4 + i] = 
-                    *(TextureDescriptor*)((longlong)manager + 0x800 + i * 0x10);
+                    *(TextureDescriptor*)((int64_t)manager + 0x800 + i * 0x10);
             }
             
             // 设置纹理属性标志
@@ -419,8 +419,8 @@ void FUN_180670510(longlong param_1, longlong param_2, longlong param_3, int par
     if (context->texture_count > 0) {
         do {
             texture_count++;
-            *(uint32*)((longlong)context->texture_count + 
-                       (longlong)context + 0x43a8) = 0xffffffff;
+            *(uint32*)((int64_t)context->texture_count + 
+                       (int64_t)context + 0x43a8) = 0xffffffff;
         } while (texture_count < context->texture_count);
     }
     
@@ -560,8 +560,8 @@ void FUN_18069c990(uint64_t param_1, uint64_t param_2, uint64_t param_3,
  * @param param_3 释放大小
  * @param param_4 释放选项
  */
-void FUN_18069cbd0(uint64_t param_1, longlong param_2, longlong param_3, 
-                   longlong param_4) {
+void FUN_18069cbd0(uint64_t param_1, int64_t param_2, int64_t param_3, 
+                   int64_t param_4) {
     // 缓冲区释放实现
     // 包含资源清理、内存释放、状态重置等工作
 }
@@ -572,7 +572,7 @@ void FUN_18069cbd0(uint64_t param_1, longlong param_2, longlong param_3,
  * 
  * @param param_1 状态参数
  */
-void FUN_1808fc050(ulonglong param_1) {
+void FUN_1808fc050(uint64_t param_1) {
     // 渲染状态设置实现
     // 包含状态验证、硬件设置、同步处理等工作
 }

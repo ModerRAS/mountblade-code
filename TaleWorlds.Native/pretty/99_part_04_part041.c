@@ -148,8 +148,8 @@
 typedef int SystemStatus;
 typedef int ErrorCode;
 typedef uint SystemFlags;
-typedef ulonglong SystemHandle;
-typedef longlong SystemPointer;
+typedef uint64_t SystemHandle;
+typedef int64_t SystemPointer;
 typedef float SystemFloat;
 typedef double SystemDouble;
 typedef char SystemChar;
@@ -160,7 +160,7 @@ typedef int32_t SystemUndefined4;
 typedef uint64_t SystemUndefined8;
 
 // 内存管理类型别名
-typedef longlong* MemoryPointer;
+typedef int64_t* MemoryPointer;
 typedef void* MemoryHandle;
 typedef size_t MemorySize;
 typedef uint32_t MemoryFlags;
@@ -431,32 +431,32 @@ typedef struct {
 // ============================================================================
 
 // 核心函数别名
-typedef void (*AdvancedDataProcessor)(longlong param_1, uint64_t param_2, longlong param_3, longlong param_4, int param_5);
-typedef uint64_t* (*ObjectManagerProcessor)(longlong param_1, uint64_t* param_2);
-typedef void (*SystemStateManager)(longlong param_1, longlong* param_2);
-typedef void (*ResourceCleanupHandler)(longlong param_1);
-typedef void (*ParameterValidationSystem)(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4);
-typedef void (*MemoryManagementHandler)(longlong param_1);
-typedef byte (*ConditionChecker)(longlong param_1);
-typedef void (*SystemInitializer)(longlong param_1);
-typedef void (*ConfigurationManager)(longlong param_1, longlong* param_2);
-typedef void (*DataFlowController)(longlong param_1, longlong* param_2);
-typedef void (*ErrorHandler)(longlong param_1);
-typedef void (*StateSynchronizer)(longlong param_1, longlong param_2);
-typedef void (*SystemCleanupHandler)(longlong param_1);
+typedef void (*AdvancedDataProcessor)(int64_t param_1, uint64_t param_2, int64_t param_3, int64_t param_4, int param_5);
+typedef uint64_t* (*ObjectManagerProcessor)(int64_t param_1, uint64_t* param_2);
+typedef void (*SystemStateManager)(int64_t param_1, int64_t* param_2);
+typedef void (*ResourceCleanupHandler)(int64_t param_1);
+typedef void (*ParameterValidationSystem)(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4);
+typedef void (*MemoryManagementHandler)(int64_t param_1);
+typedef byte (*ConditionChecker)(int64_t param_1);
+typedef void (*SystemInitializer)(int64_t param_1);
+typedef void (*ConfigurationManager)(int64_t param_1, int64_t* param_2);
+typedef void (*DataFlowController)(int64_t param_1, int64_t* param_2);
+typedef void (*ErrorHandler)(int64_t param_1);
+typedef void (*StateSynchronizer)(int64_t param_1, int64_t param_2);
+typedef void (*SystemCleanupHandler)(int64_t param_1);
 
 // 辅助函数别名
-typedef void (*SystemResetHandler)(longlong param_1, longlong param_2);
-typedef void (*DataStructureProcessor)(longlong param_1);
-typedef void (*MemoryAllocator)(longlong param_1, uint64_t param_2);
-typedef void (*ObjectValidator)(longlong param_1);
-typedef void (*SystemConfigurator)(longlong param_1);
-typedef void (*PerformanceOptimizer)(longlong param_1);
-typedef void (*SecurityManager)(longlong param_1);
-typedef void (*NetworkManager)(longlong param_1);
-typedef void (*ThreadManager)(longlong param_1);
-typedef void (*FileManager)(longlong param_1);
-typedef void (*Logger)(longlong param_1);
+typedef void (*SystemResetHandler)(int64_t param_1, int64_t param_2);
+typedef void (*DataStructureProcessor)(int64_t param_1);
+typedef void (*MemoryAllocator)(int64_t param_1, uint64_t param_2);
+typedef void (*ObjectValidator)(int64_t param_1);
+typedef void (*SystemConfigurator)(int64_t param_1);
+typedef void (*PerformanceOptimizer)(int64_t param_1);
+typedef void (*SecurityManager)(int64_t param_1);
+typedef void (*NetworkManager)(int64_t param_1);
+typedef void (*ThreadManager)(int64_t param_1);
+typedef void (*FileManager)(int64_t param_1);
+typedef void (*Logger)(int64_t param_1);
 
 // ============================================================================
 // 核心函数实现
@@ -473,44 +473,44 @@ typedef void (*Logger)(longlong param_1);
  * @param param_4 源数据指针
  * @param param_5 处理标志
  */
-void AdvancedDataProcessor(longlong param_1, uint64_t param_2, longlong param_3, longlong param_4, int param_5)
+void AdvancedDataProcessor(int64_t param_1, uint64_t param_2, int64_t param_3, int64_t param_4, int param_5)
 {
-    longlong **context_manager;
-    longlong data_size;
-    longlong source_data;
+    int64_t **context_manager;
+    int64_t data_size;
+    int64_t source_data;
     uint processing_flags;
-    longlong *data_buffer;
+    int64_t *data_buffer;
     bool validation_result;
-    longlong *temp_buffer_1;
-    longlong *temp_buffer_2;
+    int64_t *temp_buffer_1;
+    int64_t *temp_buffer_2;
     uint buffer_flags;
     uint64_t system_handle;
-    longlong *memory_manager;
+    int64_t *memory_manager;
     
     system_handle = SYSTEM_VALID_HANDLE;
-    data_buffer = (longlong *)SYSTEM_NULL_PTR;
+    data_buffer = (int64_t *)SYSTEM_NULL_PTR;
     
     // 初始化数据缓冲区
     if (param_4 == SYSTEM_NULL_PTR) {
-        temp_buffer_1 = (longlong *)SYSTEM_NULL_PTR;
+        temp_buffer_1 = (int64_t *)SYSTEM_NULL_PTR;
         context_manager = &temp_buffer_1;
         processing_flags = SYSTEM_FLAG_INIT;
         buffer_flags = SYSTEM_FLAG_INIT;
     } else {
-        context_manager = (longlong **)SystemMemoryAllocator(param_4, &temp_buffer_2, param_3, param_4, SYSTEM_NULL_PTR, SYSTEM_VALID_HANDLE);
+        context_manager = (int64_t **)SystemMemoryAllocator(param_4, &temp_buffer_2, param_3, param_4, SYSTEM_NULL_PTR, SYSTEM_VALID_HANDLE);
         processing_flags = SYSTEM_FLAG_PROCESS;
         buffer_flags = SYSTEM_FLAG_PROCESS;
         data_buffer = *context_manager;
     }
     
-    *context_manager = (longlong *)SYSTEM_NULL_PTR;
+    *context_manager = (int64_t *)SYSTEM_NULL_PTR;
     memory_manager = data_buffer;
     
     // 处理初始化标志
     if ((processing_flags & SYSTEM_FLAG_INIT) != SYSTEM_NULL_PTR) {
         processing_flags = processing_flags & SYSTEM_FLAG_CLEAR_INIT;
         buffer_flags = processing_flags;
-        if (temp_buffer_1 != (longlong *)SYSTEM_NULL_PTR) {
+        if (temp_buffer_1 != (int64_t *)SYSTEM_NULL_PTR) {
             SystemCleanupHandler(temp_buffer_1);
         }
     }
@@ -518,27 +518,27 @@ void AdvancedDataProcessor(longlong param_1, uint64_t param_2, longlong param_3,
     // 处理进程标志
     if ((processing_flags & SYSTEM_FLAG_PROCESS) != SYSTEM_NULL_PTR) {
         buffer_flags = processing_flags & SYSTEM_FLAG_CLEAR_PROCESS;
-        if (temp_buffer_2 != (longlong *)SYSTEM_NULL_PTR) {
+        if (temp_buffer_2 != (int64_t *)SYSTEM_NULL_PTR) {
             SystemCleanupHandler(temp_buffer_2);
         }
     }
     
     // 验证数据指针
-    if (data_buffer == *(longlong **)(param_1 + MEMORY_OFFSET_0x48)) {
+    if (data_buffer == *(int64_t **)(param_1 + MEMORY_OFFSET_0x48)) {
         goto cleanup_section;
     }
     
     data_size = SystemDataProcessor(param_2, SYSTEM_FLAG_PROCESS, &system_memory_9dc0);
     
     // 验证数据缓冲区
-    if (data_buffer == (longlong *)SYSTEM_NULL_PTR) {
+    if (data_buffer == (int64_t *)SYSTEM_NULL_PTR) {
     validation_failed:
         validation_result = SYSTEM_TRUE;
-        source_data = *(longlong *)(param_1 + MEMORY_OFFSET_0x48);
+        source_data = *(int64_t *)(param_1 + MEMORY_OFFSET_0x48);
     } else {
-        source_data = *(longlong *)(param_1 + MEMORY_OFFSET_0x48);
-        if ((*(longlong *)(data_buffer[2] + MEMORY_OFFSET_0x10) != *(longlong *)(*(longlong *)(source_data + MEMORY_OFFSET_0x10) + MEMORY_OFFSET_0x10)) ||
-            (*(longlong *)(data_buffer[2] + MEMORY_OFFSET_0x14) != *(longlong *)(*(longlong *)(source_data + MEMORY_OFFSET_0x10) + MEMORY_OFFSET_0x14))) {
+        source_data = *(int64_t *)(param_1 + MEMORY_OFFSET_0x48);
+        if ((*(int64_t *)(data_buffer[2] + MEMORY_OFFSET_0x10) != *(int64_t *)(*(int64_t *)(source_data + MEMORY_OFFSET_0x10) + MEMORY_OFFSET_0x10)) ||
+            (*(int64_t *)(data_buffer[2] + MEMORY_OFFSET_0x14) != *(int64_t *)(*(int64_t *)(source_data + MEMORY_OFFSET_0x10) + MEMORY_OFFSET_0x14))) {
             goto validation_failed;
         }
         validation_result = param_4 == SYSTEM_NULL_PTR;
@@ -548,27 +548,27 @@ void AdvancedDataProcessor(longlong param_1, uint64_t param_2, longlong param_3,
     SystemDataOperation(source_data, param_2, data_size, validation_result, buffer_flags, system_handle, memory_manager);
     
     // 检查数据状态
-    if ((*(longlong *)(data_size + MEMORY_OFFSET_0x30) != SYSTEM_NULL_PTR) || (*(longlong *)(data_size + MEMORY_OFFSET_0x40) != SYSTEM_NULL_PTR)) {
+    if ((*(int64_t *)(data_size + MEMORY_OFFSET_0x30) != SYSTEM_NULL_PTR) || (*(int64_t *)(data_size + MEMORY_OFFSET_0x40) != SYSTEM_NULL_PTR)) {
         if (param_5 != SYSTEM_NULL_PTR) {
             SystemDataValidator(param_2, data_size, &unknown_var_9168_ptr);
         }
         
         // 管理数据队列
-        if (*(longlong *)(param_3 + MEMORY_OFFSET_0x30) == SYSTEM_NULL_PTR) {
+        if (*(int64_t *)(param_3 + MEMORY_OFFSET_0x30) == SYSTEM_NULL_PTR) {
             *(uint64_t *)(data_size + MEMORY_OFFSET_0x50) = SYSTEM_NULL_PTR;
-            *(longlong *)(param_3 + MEMORY_OFFSET_0x30) = data_size;
+            *(int64_t *)(param_3 + MEMORY_OFFSET_0x30) = data_size;
         } else {
             *(uint64_t *)(data_size + MEMORY_OFFSET_0x50) = *(uint64_t *)(param_3 + MEMORY_OFFSET_0x38);
-            *(longlong *)(*(longlong *)(param_3 + MEMORY_OFFSET_0x38) + MEMORY_OFFSET_0x58) = data_size;
+            *(int64_t *)(*(int64_t *)(param_3 + MEMORY_OFFSET_0x38) + MEMORY_OFFSET_0x58) = data_size;
         }
         
-        *(longlong *)(param_3 + MEMORY_OFFSET_0x38) = data_size;
-        *(longlong *)(data_size + MEMORY_OFFSET_0x20) = param_3;
+        *(int64_t *)(param_3 + MEMORY_OFFSET_0x38) = data_size;
+        *(int64_t *)(data_size + MEMORY_OFFSET_0x20) = param_3;
         *(uint64_t *)(data_size + MEMORY_OFFSET_0x58) = SYSTEM_NULL_PTR;
     }
     
 cleanup_section:
-    if (data_buffer != (longlong *)SYSTEM_NULL_PTR) {
+    if (data_buffer != (int64_t *)SYSTEM_NULL_PTR) {
         SystemCleanupHandler(data_buffer);
     }
     return;
@@ -583,9 +583,9 @@ cleanup_section:
  * @param param_2 对象参数指针
  * @return 处理后的对象指针
  */
-uint64_t* ObjectManagerProcessor(longlong param_1, uint64_t* param_2)
+uint64_t* ObjectManagerProcessor(int64_t param_1, uint64_t* param_2)
 {
-    longlong *object_factory;
+    int64_t *object_factory;
     int32_t param_field_1;
     int32_t param_field_2;
     int32_t param_field_3;
@@ -603,20 +603,20 @@ uint64_t* ObjectManagerProcessor(longlong param_1, uint64_t* param_2)
     int32_t param_field_15;
     int32_t param_field_16;
     uint64_t object_handle;
-    longlong *object_instance;
-    longlong **context_manager;
-    longlong *temp_buffer_1;
+    int64_t *object_instance;
+    int64_t **context_manager;
+    int64_t *temp_buffer_1;
     uint64_t *parameter_buffer;
-    longlong *temp_buffer_2;
-    longlong **temp_context_manager;
+    int64_t *temp_buffer_2;
+    int64_t **temp_context_manager;
     
     parameter_buffer = param_2;
     object_handle = SystemObjectFactory(system_memory_pool_ptr, MEMORY_POOL_SIZE, MEMORY_ALIGNMENT, SYSTEM_FLAG_PROCESS, SYSTEM_NULL_PTR, SYSTEM_VALID_HANDLE);
-    object_instance = (longlong *)SystemObjectInitializer(object_handle);
+    object_instance = (int64_t *)SystemObjectInitializer(object_handle);
     temp_buffer_2 = object_instance;
     
     // 初始化对象实例
-    if (object_instance != (longlong *)SYSTEM_NULL_PTR) {
+    if (object_instance != (int64_t *)SYSTEM_NULL_PTR) {
         SystemObjectInitializer(object_instance);
     }
     
@@ -639,38 +639,38 @@ uint64_t* ObjectManagerProcessor(longlong param_1, uint64_t* param_2)
     
     // 设置对象属性
     *(int32_t *)(object_instance + MEMORY_OFFSET_0x0A) = *(int32_t *)(param_1 + MEMORY_OFFSET_0x50);
-    *(int32_t *)((longlong)object_instance + MEMORY_OFFSET_0x54) = param_field_1;
+    *(int32_t *)((int64_t)object_instance + MEMORY_OFFSET_0x54) = param_field_1;
     *(int32_t *)(object_instance + MEMORY_OFFSET_0x0B) = param_field_2;
-    *(int32_t *)((longlong)object_instance + MEMORY_OFFSET_0x5C) = param_field_3;
+    *(int32_t *)((int64_t)object_instance + MEMORY_OFFSET_0x5C) = param_field_3;
     *(int32_t *)(object_instance + MEMORY_OFFSET_0x0C) = param_field_4;
-    *(int32_t *)((longlong)object_instance + MEMORY_OFFSET_0x64) = param_field_5;
+    *(int32_t *)((int64_t)object_instance + MEMORY_OFFSET_0x64) = param_field_5;
     *(int32_t *)(object_instance + MEMORY_OFFSET_0x0D) = param_field_6;
-    *(int32_t *)((longlong)object_instance + MEMORY_OFFSET_0x6C) = param_field_7;
+    *(int32_t *)((int64_t)object_instance + MEMORY_OFFSET_0x6C) = param_field_7;
     *(int32_t *)(object_instance + MEMORY_OFFSET_0x0E) = param_field_8;
-    *(int32_t *)((longlong)object_instance + MEMORY_OFFSET_0x74) = param_field_9;
+    *(int32_t *)((int64_t)object_instance + MEMORY_OFFSET_0x74) = param_field_9;
     *(int32_t *)(object_instance + MEMORY_OFFSET_0x0F) = param_field_10;
-    *(int32_t *)((longlong)object_instance + MEMORY_OFFSET_0x7C) = param_field_11;
+    *(int32_t *)((int64_t)object_instance + MEMORY_OFFSET_0x7C) = param_field_11;
     *(int32_t *)(object_instance + MEMORY_OFFSET_0x10) = param_field_12;
-    *(int32_t *)((longlong)object_instance + MEMORY_OFFSET_0x84) = param_field_13;
+    *(int32_t *)((int64_t)object_instance + MEMORY_OFFSET_0x84) = param_field_13;
     *(int32_t *)(object_instance + MEMORY_OFFSET_0x11) = param_field_14;
-    *(int32_t *)((longlong)object_instance + MEMORY_OFFSET_0x8C) = param_field_15;
+    *(int32_t *)((int64_t)object_instance + MEMORY_OFFSET_0x8C) = param_field_15;
     
     // 复制字符串数据
-    if (object_instance + MEMORY_OFFSET_0x22 != (longlong *)(param_1 + MEMORY_OFFSET_0x110)) {
-        SystemStringCopy(object_instance + MEMORY_OFFSET_0x22, *(longlong *)(param_1 + MEMORY_OFFSET_0x110), *(uint64_t *)(param_1 + MEMORY_OFFSET_0x118));
+    if (object_instance + MEMORY_OFFSET_0x22 != (int64_t *)(param_1 + MEMORY_OFFSET_0x110)) {
+        SystemStringCopy(object_instance + MEMORY_OFFSET_0x22, *(int64_t *)(param_1 + MEMORY_OFFSET_0x110), *(uint64_t *)(param_1 + MEMORY_OFFSET_0x118));
     }
     
     // 设置布尔标志
-    *(int8_t *)((longlong)object_instance + MEMORY_OFFSET_0x159) = *(int8_t *)(param_1 + MEMORY_OFFSET_0x159);
-    *(int32_t *)((longlong)object_instance + MEMORY_OFFSET_0x34) = *(int32_t *)(param_1 + MEMORY_OFFSET_0x34);
-    *(int8_t *)((longlong)object_instance + MEMORY_OFFSET_0x164) = *(int8_t *)(param_1 + MEMORY_OFFSET_0x164);
+    *(int8_t *)((int64_t)object_instance + MEMORY_OFFSET_0x159) = *(int8_t *)(param_1 + MEMORY_OFFSET_0x159);
+    *(int32_t *)((int64_t)object_instance + MEMORY_OFFSET_0x34) = *(int32_t *)(param_1 + MEMORY_OFFSET_0x34);
+    *(int8_t *)((int64_t)object_instance + MEMORY_OFFSET_0x164) = *(int8_t *)(param_1 + MEMORY_OFFSET_0x164);
     
     // 处理对象引用
-    object_factory = *(longlong **)(param_1 + MEMORY_OFFSET_0x48);
-    if (object_factory != (longlong *)SYSTEM_NULL_PTR) {
+    object_factory = *(int64_t **)(param_1 + MEMORY_OFFSET_0x48);
+    if (object_factory != (int64_t *)SYSTEM_NULL_PTR) {
         temp_context_manager = &temp_buffer_1;
         if ((int)object_factory[0x0E] == SYSTEM_NULL_PTR) {
-            context_manager = (longlong **)SystemObjectFactory(object_factory, &temp_buffer_1);
+            context_manager = (int64_t **)SystemObjectFactory(object_factory, &temp_buffer_1);
         } else {
             temp_buffer_1 = object_factory;
             SystemObjectInitializer(object_factory);

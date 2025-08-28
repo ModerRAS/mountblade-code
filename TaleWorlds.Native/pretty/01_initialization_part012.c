@@ -299,8 +299,8 @@ uint8_t SystemCallbackRegister_1(void)
     char cVar1;
     uint64_t *puVar2;
     int iVar3;
-    longlong *plVar4;
-    longlong lVar5;
+    int64_t *plVar4;
+    int64_t lVar5;
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
@@ -308,9 +308,9 @@ uint8_t SystemCallbackRegister_1(void)
     uint64_t uStackX_18;
     
     // 获取系统管理器指针
-    plVar4 = (longlong *)SystemCoreFunction_1();
+    plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
-    cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+    cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
     uStackX_18 = 0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
@@ -326,7 +326,7 @@ uint8_t SystemCallbackRegister_1(void)
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
-        cVar1 = *(char *)((longlong)puVar8 + 0x19);
+        cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
     
     // 如果需要创建新的回调节点
@@ -364,8 +364,8 @@ uint8_t SystemCallbackRegister_2(void)
     char cVar1;
     uint64_t *puVar2;
     int iVar3;
-    longlong *plVar4;
-    longlong lVar5;
+    int64_t *plVar4;
+    int64_t lVar5;
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
@@ -373,9 +373,9 @@ uint8_t SystemCallbackRegister_2(void)
     uint64_t uStackX_18;
     
     // 获取系统管理器指针
-    plVar4 = (longlong *)SystemCoreFunction_1();
+    plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
-    cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+    cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
     uStackX_18 = 0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
@@ -391,7 +391,7 @@ uint8_t SystemCallbackRegister_2(void)
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
-        cVar1 = *(char *)((longlong)puVar8 + 0x19);
+        cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
     
     // 如果需要创建新的回调节点
@@ -429,8 +429,8 @@ uint8_t SystemCallbackRegister_3(void)
     char cVar1;
     uint64_t *puVar2;
     int iVar3;
-    longlong *plVar4;
-    longlong lVar5;
+    int64_t *plVar4;
+    int64_t lVar5;
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
@@ -438,9 +438,9 @@ uint8_t SystemCallbackRegister_3(void)
     uint64_t uStackX_18;
     
     // 获取系统管理器指针
-    plVar4 = (longlong *)SystemCoreFunction_1();
+    plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
-    cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+    cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
     uStackX_18 = 0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
@@ -456,7 +456,7 @@ uint8_t SystemCallbackRegister_3(void)
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
-        cVar1 = *(char *)((longlong)puVar8 + 0x19);
+        cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
     
     // 如果需要创建新的回调节点
@@ -494,8 +494,8 @@ uint8_t SystemCallbackRegister_4(void)
     char cVar1;
     uint64_t *puVar2;
     int iVar3;
-    longlong *plVar4;
-    longlong lVar5;
+    int64_t *plVar4;
+    int64_t lVar5;
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
@@ -503,9 +503,9 @@ uint8_t SystemCallbackRegister_4(void)
     uint64_t uStackX_18;
     
     // 获取系统管理器指针
-    plVar4 = (longlong *)SystemCoreFunction_1();
+    plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
-    cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+    cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
     uStackX_18 = 0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
@@ -521,7 +521,7 @@ uint8_t SystemCallbackRegister_4(void)
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
-        cVar1 = *(char *)((longlong)puVar8 + 0x19);
+        cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
     
     // 如果需要创建新的回调节点
@@ -559,8 +559,8 @@ uint8_t SystemCallbackRegister_5(void)
     char cVar1;
     uint64_t *puVar2;
     int iVar3;
-    longlong *plVar4;
-    longlong lVar5;
+    int64_t *plVar4;
+    int64_t lVar5;
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
@@ -568,9 +568,9 @@ uint8_t SystemCallbackRegister_5(void)
     code *pcStackX_18;
     
     // 获取系统管理器指针
-    plVar4 = (longlong *)SystemCoreFunction_1();
+    plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
-    cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+    cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
     pcStackX_18 = FUN_1802281a0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
@@ -586,7 +586,7 @@ uint8_t SystemCallbackRegister_5(void)
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
-        cVar1 = *(char *)((longlong)puVar8 + 0x19);
+        cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
     
     // 如果需要创建新的回调节点
@@ -624,8 +624,8 @@ uint8_t SystemCallbackRegister_6(void)
     char cVar1;
     uint64_t *puVar2;
     int iVar3;
-    longlong *plVar4;
-    longlong lVar5;
+    int64_t *plVar4;
+    int64_t lVar5;
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
@@ -633,9 +633,9 @@ uint8_t SystemCallbackRegister_6(void)
     code *pcStackX_18;
     
     // 获取系统管理器指针
-    plVar4 = (longlong *)SystemCoreFunction_1();
+    plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
-    cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+    cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
     pcStackX_18 = FUN_1802285e0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
@@ -651,7 +651,7 @@ uint8_t SystemCallbackRegister_6(void)
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
-        cVar1 = *(char *)((longlong)puVar8 + 0x19);
+        cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
     
     // 如果需要创建新的回调节点
@@ -689,8 +689,8 @@ uint8_t SystemCallbackRegister_7(void)
     char cVar1;
     uint64_t *puVar2;
     int iVar3;
-    longlong *plVar4;
-    longlong lVar5;
+    int64_t *plVar4;
+    int64_t lVar5;
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
@@ -698,9 +698,9 @@ uint8_t SystemCallbackRegister_7(void)
     code *pcStackX_18;
     
     // 获取系统管理器指针
-    plVar4 = (longlong *)SystemCoreFunction_1();
+    plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
-    cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+    cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
     pcStackX_18 = FUN_18025cc00;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
@@ -716,7 +716,7 @@ uint8_t SystemCallbackRegister_7(void)
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
-        cVar1 = *(char *)((longlong)puVar8 + 0x19);
+        cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
     
     // 如果需要创建新的回调节点
@@ -754,8 +754,8 @@ uint8_t SystemCallbackRegister_8(void)
     char cVar1;
     uint64_t *puVar2;
     int iVar3;
-    longlong *plVar4;
-    longlong lVar5;
+    int64_t *plVar4;
+    int64_t lVar5;
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
@@ -763,9 +763,9 @@ uint8_t SystemCallbackRegister_8(void)
     code *pcStackX_18;
     
     // 获取系统管理器指针
-    plVar4 = (longlong *)SystemCoreFunction_1();
+    plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
-    cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+    cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
     pcStackX_18 = FUN_18025c000;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
@@ -781,7 +781,7 @@ uint8_t SystemCallbackRegister_8(void)
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
-        cVar1 = *(char *)((longlong)puVar8 + 0x19);
+        cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
     
     // 如果需要创建新的回调节点
@@ -819,8 +819,8 @@ uint8_t SystemCallbackRegister_9(void)
     char cVar1;
     uint64_t *puVar2;
     int iVar3;
-    longlong *plVar4;
-    longlong lVar5;
+    int64_t *plVar4;
+    int64_t lVar5;
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
@@ -828,9 +828,9 @@ uint8_t SystemCallbackRegister_9(void)
     uint64_t uStackX_18;
     
     // 获取系统管理器指针
-    plVar4 = (longlong *)SystemCoreFunction_1();
+    plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
-    cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+    cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
     uStackX_18 = 0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
@@ -846,7 +846,7 @@ uint8_t SystemCallbackRegister_9(void)
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
-        cVar1 = *(char *)((longlong)puVar8 + 0x19);
+        cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
     
     // 如果需要创建新的回调节点
@@ -884,8 +884,8 @@ uint8_t SystemCallbackRegister_10(void)
     char cVar1;
     uint64_t *puVar2;
     int iVar3;
-    longlong *plVar4;
-    longlong lVar5;
+    int64_t *plVar4;
+    int64_t lVar5;
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
@@ -893,9 +893,9 @@ uint8_t SystemCallbackRegister_10(void)
     code *pcStackX_18;
     
     // 获取系统管理器指针
-    plVar4 = (longlong *)SystemCoreFunction_1();
+    plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
-    cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+    cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
     pcStackX_18 = FUN_18025d270;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
@@ -911,7 +911,7 @@ uint8_t SystemCallbackRegister_10(void)
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
-        cVar1 = *(char *)((longlong)puVar8 + 0x19);
+        cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
     
     // 如果需要创建新的回调节点
@@ -949,8 +949,8 @@ uint8_t SystemCallbackRegister_11(void)
     char cVar1;
     uint64_t *puVar2;
     int iVar3;
-    longlong *plVar4;
-    longlong lVar5;
+    int64_t *plVar4;
+    int64_t lVar5;
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
@@ -958,9 +958,9 @@ uint8_t SystemCallbackRegister_11(void)
     uint64_t uStackX_18;
     
     // 获取系统管理器指针
-    plVar4 = (longlong *)SystemCoreFunction_1();
+    plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
-    cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+    cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
     uStackX_18 = 0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
@@ -976,7 +976,7 @@ uint8_t SystemCallbackRegister_11(void)
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
-        cVar1 = *(char *)((longlong)puVar8 + 0x19);
+        cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
     
     // 如果需要创建新的回调节点
@@ -1014,8 +1014,8 @@ uint8_t SystemCallbackRegister_12(void)
     char cVar1;
     uint64_t *puVar2;
     int iVar3;
-    longlong *plVar4;
-    longlong lVar5;
+    int64_t *plVar4;
+    int64_t lVar5;
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
@@ -1023,9 +1023,9 @@ uint8_t SystemCallbackRegister_12(void)
     void *puStackX_18;
     
     // 获取系统管理器指针
-    plVar4 = (longlong *)SystemCoreFunction_1();
+    plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
-    cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+    cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
     puStackX_18 = &global_state_2048_ptr;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
@@ -1041,7 +1041,7 @@ uint8_t SystemCallbackRegister_12(void)
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
-        cVar1 = *(char *)((longlong)puVar8 + 0x19);
+        cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
     
     // 如果需要创建新的回调节点
@@ -1079,8 +1079,8 @@ uint8_t SystemCallbackRegister_13(void)
     char cVar1;
     uint64_t *puVar2;
     int iVar3;
-    longlong *plVar4;
-    longlong lVar5;
+    int64_t *plVar4;
+    int64_t lVar5;
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
@@ -1088,9 +1088,9 @@ uint8_t SystemCallbackRegister_13(void)
     uint64_t uStackX_18;
     
     // 获取系统管理器指针
-    plVar4 = (longlong *)SystemCoreFunction_1();
+    plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
-    cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+    cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
     uStackX_18 = 0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
@@ -1106,7 +1106,7 @@ uint8_t SystemCallbackRegister_13(void)
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
-        cVar1 = *(char *)((longlong)puVar8 + 0x19);
+        cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
     
     // 如果需要创建新的回调节点
@@ -1144,8 +1144,8 @@ uint8_t SystemCallbackRegister_14(void)
     char cVar1;
     uint64_t *puVar2;
     int iVar3;
-    longlong *plVar4;
-    longlong lVar5;
+    int64_t *plVar4;
+    int64_t lVar5;
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
@@ -1153,9 +1153,9 @@ uint8_t SystemCallbackRegister_14(void)
     code *pcStackX_18;
     
     // 获取系统管理器指针
-    plVar4 = (longlong *)SystemCoreFunction_1();
+    plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
-    cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+    cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
     pcStackX_18 = FUN_18007fcd0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
@@ -1171,7 +1171,7 @@ uint8_t SystemCallbackRegister_14(void)
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
-        cVar1 = *(char *)((longlong)puVar8 + 0x19);
+        cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
     
     // 如果需要创建新的回调节点
@@ -1209,8 +1209,8 @@ uint8_t SystemCallbackRegister_15(void)
     char cVar1;
     uint64_t *puVar2;
     int iVar3;
-    longlong *plVar4;
-    longlong lVar5;
+    int64_t *plVar4;
+    int64_t lVar5;
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
@@ -1218,9 +1218,9 @@ uint8_t SystemCallbackRegister_15(void)
     uint64_t uStackX_18;
     
     // 获取系统管理器指针
-    plVar4 = (longlong *)SystemCoreFunction_1();
+    plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
-    cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+    cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
     uStackX_18 = 0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
@@ -1236,7 +1236,7 @@ uint8_t SystemCallbackRegister_15(void)
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
-        cVar1 = *(char *)((longlong)puVar8 + 0x19);
+        cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
     
     // 如果需要创建新的回调节点
@@ -1274,8 +1274,8 @@ uint8_t SystemCallbackRegister_16(void)
     char cVar1;
     uint64_t *puVar2;
     int iVar3;
-    longlong *plVar4;
-    longlong lVar5;
+    int64_t *plVar4;
+    int64_t lVar5;
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
@@ -1283,9 +1283,9 @@ uint8_t SystemCallbackRegister_16(void)
     uint64_t uStackX_18;
     
     // 获取系统管理器指针
-    plVar4 = (longlong *)SystemCoreFunction_1();
+    plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
-    cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+    cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
     uStackX_18 = 0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
@@ -1301,7 +1301,7 @@ uint8_t SystemCallbackRegister_16(void)
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
-        cVar1 = *(char *)((longlong)puVar8 + 0x19);
+        cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
     
     // 如果需要创建新的回调节点
@@ -1339,8 +1339,8 @@ uint8_t SystemCallbackRegister_17(void)
     char cVar1;
     uint64_t *puVar2;
     int iVar3;
-    longlong *plVar4;
-    longlong lVar5;
+    int64_t *plVar4;
+    int64_t lVar5;
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
@@ -1348,9 +1348,9 @@ uint8_t SystemCallbackRegister_17(void)
     uint64_t uStackX_18;
     
     // 获取系统管理器指针
-    plVar4 = (longlong *)SystemCoreFunction_1();
+    plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
-    cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+    cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
     uStackX_18 = 0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
@@ -1366,7 +1366,7 @@ uint8_t SystemCallbackRegister_17(void)
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
-        cVar1 = *(char *)((longlong)puVar8 + 0x19);
+        cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
     
     // 如果需要创建新的回调节点
@@ -1404,8 +1404,8 @@ uint8_t SystemCallbackRegister_18(void)
     char cVar1;
     uint64_t *puVar2;
     int iVar3;
-    longlong *plVar4;
-    longlong lVar5;
+    int64_t *plVar4;
+    int64_t lVar5;
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
@@ -1413,9 +1413,9 @@ uint8_t SystemCallbackRegister_18(void)
     uint64_t uStackX_18;
     
     // 获取系统管理器指针
-    plVar4 = (longlong *)SystemCoreFunction_1();
+    plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
-    cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+    cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
     uStackX_18 = 0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
@@ -1431,7 +1431,7 @@ uint8_t SystemCallbackRegister_18(void)
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
-        cVar1 = *(char *)((longlong)puVar8 + 0x19);
+        cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
     
     // 如果需要创建新的回调节点
@@ -1469,8 +1469,8 @@ uint8_t SystemCallbackRegister_19(void)
     char cVar1;
     uint64_t *puVar2;
     int iVar3;
-    longlong *plVar4;
-    longlong lVar5;
+    int64_t *plVar4;
+    int64_t lVar5;
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
@@ -1478,9 +1478,9 @@ uint8_t SystemCallbackRegister_19(void)
     uint64_t uStackX_18;
     
     // 获取系统管理器指针
-    plVar4 = (longlong *)SystemCoreFunction_1();
+    plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
-    cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+    cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
     uStackX_18 = 0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
@@ -1496,7 +1496,7 @@ uint8_t SystemCallbackRegister_19(void)
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
-        cVar1 = *(char *)((longlong)puVar8 + 0x19);
+        cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
     
     // 如果需要创建新的回调节点
@@ -1534,8 +1534,8 @@ uint8_t SystemCallbackRegister_20(void)
     char cVar1;
     uint64_t *puVar2;
     int iVar3;
-    longlong *plVar4;
-    longlong lVar5;
+    int64_t *plVar4;
+    int64_t lVar5;
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
@@ -1543,9 +1543,9 @@ uint8_t SystemCallbackRegister_20(void)
     uint64_t uStackX_18;
     
     // 获取系统管理器指针
-    plVar4 = (longlong *)SystemCoreFunction_1();
+    plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
-    cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+    cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
     uStackX_18 = 0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
@@ -1561,7 +1561,7 @@ uint8_t SystemCallbackRegister_20(void)
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
-        cVar1 = *(char *)((longlong)puVar8 + 0x19);
+        cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
     
     // 如果需要创建新的回调节点
@@ -1599,8 +1599,8 @@ uint8_t SystemCallbackRegister_21(void)
     char cVar1;
     uint64_t *puVar2;
     int iVar3;
-    longlong *plVar4;
-    longlong lVar5;
+    int64_t *plVar4;
+    int64_t lVar5;
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
@@ -1608,9 +1608,9 @@ uint8_t SystemCallbackRegister_21(void)
     uint64_t uStackX_18;
     
     // 获取系统管理器指针
-    plVar4 = (longlong *)SystemCoreFunction_1();
+    plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
-    cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+    cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
     uStackX_18 = 0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
@@ -1626,7 +1626,7 @@ uint8_t SystemCallbackRegister_21(void)
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
-        cVar1 = *(char *)((longlong)puVar8 + 0x19);
+        cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
     
     // 如果需要创建新的回调节点
@@ -1664,8 +1664,8 @@ uint8_t SystemCallbackRegister_22(void)
     char cVar1;
     uint64_t *puVar2;
     int iVar3;
-    longlong *plVar4;
-    longlong lVar5;
+    int64_t *plVar4;
+    int64_t lVar5;
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
@@ -1673,9 +1673,9 @@ uint8_t SystemCallbackRegister_22(void)
     code *pcStackX_18;
     
     // 获取系统管理器指针
-    plVar4 = (longlong *)SystemCoreFunction_1();
+    plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
-    cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+    cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
     pcStackX_18 = FUN_180073930;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
@@ -1691,7 +1691,7 @@ uint8_t SystemCallbackRegister_22(void)
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
-        cVar1 = *(char *)((longlong)puVar8 + 0x19);
+        cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
     
     // 如果需要创建新的回调节点
@@ -1729,8 +1729,8 @@ uint8_t SystemCallbackRegister_23(void)
     char cVar1;
     uint64_t *puVar2;
     int iVar3;
-    longlong *plVar4;
-    longlong lVar5;
+    int64_t *plVar4;
+    int64_t lVar5;
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
@@ -1738,9 +1738,9 @@ uint8_t SystemCallbackRegister_23(void)
     uint64_t uStackX_18;
     
     // 获取系统管理器指针
-    plVar4 = (longlong *)SystemCoreFunction_1();
+    plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
-    cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
+    cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
     uStackX_18 = 0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
@@ -1756,7 +1756,7 @@ uint8_t SystemCallbackRegister_23(void)
         }
         puVar7 = puVar6;
         puVar6 = puVar8;
-        cVar1 = *(char *)((longlong)puVar8 + 0x19);
+        cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
     
     // 如果需要创建新的回调节点
@@ -1880,7 +1880,7 @@ uint8_t SystemInitializer_1(void)
  */
 int SystemInitializer_2(void)
 {
-    longlong lVar1;
+    int64_t lVar1;
     
     // 调用系统初始化函数
     SystemCoreFunction_5();
@@ -1903,7 +1903,7 @@ int SystemInitializer_2(void)
  */
 int SystemInitializer_3(void)
 {
-    longlong lVar1;
+    int64_t lVar1;
     
     // 初始化互斥锁
     _Mtx_init_in_situ(0x180c966f0, 2, param_3, param_4, 0xfffffffffffffffe);
@@ -1926,7 +1926,7 @@ int SystemInitializer_3(void)
  */
 int SystemInitializer_4(void)
 {
-    longlong lVar1;
+    int64_t lVar1;
     
     // 初始化互斥锁
     _Mtx_init_in_situ(0x180c96740, 2, param_3, param_4, 0xfffffffffffffffe);
@@ -1957,7 +1957,7 @@ int SystemInitializer_4(void)
  */
 int MutexInitializer_1(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    longlong lVar1;
+    int64_t lVar1;
     
     // 初始化互斥锁
     _Mtx_init_in_situ(0x180c96690, 2, param_3, param_4, 0xfffffffffffffffe);
@@ -1984,7 +1984,7 @@ int MutexInitializer_1(uint64_t param_1, uint64_t param_2, uint64_t param_3, uin
  */
 int MutexInitializer_2(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    longlong lVar1;
+    int64_t lVar1;
     
     // 初始化互斥锁
     _Mtx_init_in_situ(0x180c966f0, 2, param_3, param_4, 0xfffffffffffffffe);
@@ -2011,7 +2011,7 @@ int MutexInitializer_2(uint64_t param_1, uint64_t param_2, uint64_t param_3, uin
  */
 int MutexInitializer_3(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    longlong lVar1;
+    int64_t lVar1;
     
     // 初始化互斥锁
     _Mtx_init_in_situ(0x180c96740, 2, param_3, param_4, 0xfffffffffffffffe);
@@ -2039,7 +2039,7 @@ int MutexInitializer_3(uint64_t param_1, uint64_t param_2, uint64_t param_3, uin
  */
 int SystemAdvancedInitializer(void)
 {
-    longlong lVar1;
+    int64_t lVar1;
     
     // 设置系统状态标志
     system_memory_67b8 = 3;

@@ -17,8 +17,8 @@ void FUN_18082d350(int8_t (*param_1) [32],uint *param_2,float *param_3,float *pa
   int8_t auVar6 [32];
   int8_t auVar7 [32];
   int iVar8;
-  longlong lVar9;
-  longlong lVar10;
+  int64_t lVar9;
+  int64_t lVar10;
   int8_t in_ZMM0 [64];
   int8_t auVar11 [64];
   int8_t auVar12 [64];
@@ -193,18 +193,18 @@ void FUN_18082d350(int8_t (*param_1) [32],uint *param_2,float *param_3,float *pa
   }
   param_10 = param_10 & 7;
   if (param_10 != 0) {
-    lVar9 = (longlong)param_4 - (longlong)param_3;
-    lVar10 = (longlong)param_5 - (longlong)param_3;
+    lVar9 = (int64_t)param_4 - (int64_t)param_3;
+    lVar10 = (int64_t)param_5 - (int64_t)param_3;
     do {
       pfVar1 = param_6 + -1;
       param_6 = param_6 + -1;
       param_2 = param_2 + -1;
       auVar4 = vfmsub132ss_fma(ZEXT416(*param_2),ZEXT416((uint)(*pfVar1 * *param_3)),
-                               ZEXT416(*(uint *)(lVar9 + (longlong)param_3)));
+                               ZEXT416(*(uint *)(lVar9 + (int64_t)param_3)));
       *(int *)*param_1 = auVar4._0_4_;
       in_ZMM2 = ZEXT464((uint)(param_7[-1] * *param_3));
       auVar4 = vfmsub132ss_fma(ZEXT416(*param_2),ZEXT416((uint)(param_7[-1] * *param_3)),
-                               ZEXT416(*(uint *)(lVar10 + (longlong)param_3)));
+                               ZEXT416(*(uint *)(lVar10 + (int64_t)param_3)));
       param_7 = param_7 + -1;
       param_3 = param_3 + 1;
       *(int *)(*param_1 + 4) = auVar4._0_4_;
@@ -248,10 +248,10 @@ void FUN_18082d350(int8_t (*param_1) [32],uint *param_2,float *param_3,float *pa
   }
   param_11 = param_11 & 7;
   if (param_11 != 0) {
-    lVar9 = (longlong)param_6 - (longlong)param_7;
+    lVar9 = (int64_t)param_6 - (int64_t)param_7;
     do {
       param_7 = param_7 + -1;
-      *(uint *)*param_1 = *(uint *)(lVar9 + (longlong)param_7) ^ 0x80000000;
+      *(uint *)*param_1 = *(uint *)(lVar9 + (int64_t)param_7) ^ 0x80000000;
       *(float *)(*param_1 + 4) = -*param_7;
       param_11 = param_11 - 1;
       param_1 = (int8_t (*) [32])(*param_1 + 8);
@@ -279,9 +279,9 @@ void FUN_18082d365(int8_t (*param_1) [32],uint param_2,float *param_3,float *par
   int8_t auVar7 [32];
   int in_EAX;
   int iVar8;
-  longlong lVar9;
+  int64_t lVar9;
   float *in_R10;
-  longlong lVar10;
+  int64_t lVar10;
   uint *in_R11;
   int8_t in_ZMM0 [64];
   int8_t auVar11 [64];
@@ -463,18 +463,18 @@ void FUN_18082d365(int8_t (*param_1) [32],uint param_2,float *param_3,float *par
   }
   in_stack_00000068 = in_stack_00000068 & 7;
   if (in_stack_00000068 != 0) {
-    lVar9 = (longlong)param_4 - (longlong)param_3;
-    lVar10 = (longlong)in_R10 - (longlong)param_3;
+    lVar9 = (int64_t)param_4 - (int64_t)param_3;
+    lVar10 = (int64_t)in_R10 - (int64_t)param_3;
     do {
       pfVar1 = in_stack_00000048 + -1;
       in_stack_00000048 = in_stack_00000048 + -1;
       in_R11 = in_R11 + -1;
       auVar4 = vfmsub132ss_fma(ZEXT416(*in_R11),ZEXT416((uint)(*pfVar1 * *param_3)),
-                               ZEXT416(*(uint *)(lVar9 + (longlong)param_3)));
+                               ZEXT416(*(uint *)(lVar9 + (int64_t)param_3)));
       *(int *)*param_1 = auVar4._0_4_;
       in_ZMM2 = ZEXT464((uint)(in_stack_00000050[-1] * *param_3));
       auVar4 = vfmsub132ss_fma(ZEXT416(*in_R11),ZEXT416((uint)(in_stack_00000050[-1] * *param_3)),
-                               ZEXT416(*(uint *)(lVar10 + (longlong)param_3)));
+                               ZEXT416(*(uint *)(lVar10 + (int64_t)param_3)));
       in_stack_00000050 = in_stack_00000050 + -1;
       param_3 = param_3 + 1;
       *(int *)(*param_1 + 4) = auVar4._0_4_;
@@ -518,10 +518,10 @@ void FUN_18082d365(int8_t (*param_1) [32],uint param_2,float *param_3,float *par
   }
   in_stack_00000070 = in_stack_00000070 & 7;
   if (in_stack_00000070 != 0) {
-    lVar9 = (longlong)in_stack_00000048 - (longlong)in_stack_00000050;
+    lVar9 = (int64_t)in_stack_00000048 - (int64_t)in_stack_00000050;
     do {
       in_stack_00000050 = in_stack_00000050 + -1;
-      *(uint *)*param_1 = *(uint *)(lVar9 + (longlong)in_stack_00000050) ^ 0x80000000;
+      *(uint *)*param_1 = *(uint *)(lVar9 + (int64_t)in_stack_00000050) ^ 0x80000000;
       *(float *)(*param_1 + 4) = -*in_stack_00000050;
       in_stack_00000070 = in_stack_00000070 - 1;
       param_1 = (int8_t (*) [32])(*param_1 + 8);

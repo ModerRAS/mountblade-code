@@ -95,11 +95,11 @@
  * @param process_flag 处理标志
  * @return 处理状态码（0表示成功，非0表示错误）
  */
-void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, longlong data_params, uint config_data, char process_flag)
+void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, int64_t data_params, uint config_data, char process_flag)
 
 {
-  longlong temp_context_1;
-  longlong temp_context_2;
+  int64_t temp_context_1;
+  int64_t temp_context_2;
   int operation_result;
   int validation_result;
   int process_result;
@@ -111,8 +111,8 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, longlong dat
   void *resource_handler;
   int resource_count;
   uint64_t context_data;
-  ulonglong security_cookie;
-  longlong resource_manager;
+  uint64_t security_cookie;
+  int64_t resource_manager;
   uint64_t config_context;
   uint64_t state_context;
   uint64_t data_context;
@@ -120,13 +120,13 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, longlong dat
   int32_t process_flags;
   uint timeout_value;
   void *data_processor;
-  longlong session_manager;
-  longlong auth_manager;
-  longlong cleanup_manager;
+  int64_t session_manager;
+  int64_t auth_manager;
+  int64_t cleanup_manager;
   int8_t data_buffer [520];
   
   // 安全检查：设置栈保护cookie
-  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
+  security_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)security_buffer;
   process_result = 0;
   
   // 处理配置数据
@@ -162,9 +162,9 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, longlong dat
       else {
         // 设置数据处理器参数
         resource_handler = &unknown_var_2024_ptr;
-        resource_manager = (ulonglong)config_data << 0x20;
+        resource_manager = (uint64_t)config_data << 0x20;
         context_data = *(uint64_t *)(data_params + 0x228);
-        state_context = (ulonglong)CONCAT14(operation_result != 1,*(int32_t *)(data_params + 0x230));
+        state_context = (uint64_t)CONCAT14(operation_result != 1,*(int32_t *)(data_params + 0x230));
         operation_result = FUN_180897520(system_context,&resource_handler);
       }
     }
@@ -187,7 +187,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, longlong dat
     
     // 处理资源循环
     cleanup_result = 0;
-    operation_result = *(int *)(*(longlong *)(data_params + 0x2e8) + 0x2c);
+    operation_result = *(int *)(*(int64_t *)(data_params + 0x2e8) + 0x2c);
     if (0 < operation_result) {
       do {
         resource_count = 0;
@@ -201,13 +201,13 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, longlong dat
   }
   
   // 处理主要数据流
-  if (((process_flag != '\0') || (*(int *)(*(longlong *)(data_params + 0x2e8) + 0x34) == 0)) &&
+  if (((process_flag != '\0') || (*(int *)(*(int64_t *)(data_params + 0x2e8) + 0x34) == 0)) &&
      (operation_result = FUN_180897b40(system_context,data_params,config_data), operation_result == 0)) {
     
     // 处理第一组数据
     for (operation_result = 0; (-1 < operation_result && (operation_result < *(int *)(data_params + 0x48))); operation_result = operation_result + 1) {
-      temp_context_1 = *(longlong *)(*(longlong *)(data_params + 0x40) + (longlong)operation_result * 8);
-      temp_context_2 = *(longlong *)(temp_context_1 + 0x68);
+      temp_context_1 = *(int64_t *)(*(int64_t *)(data_params + 0x40) + (int64_t)operation_result * 8);
+      temp_context_2 = *(int64_t *)(temp_context_1 + 0x68);
       if (((*(byte *)(temp_context_1 + 0xc4) & 1) != 0) && (temp_context_2 != 0)) {
         status_flag = 0;
         cleanup_result = func_0x00018088c500(temp_context_2,&status_flag);
@@ -263,8 +263,8 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, longlong dat
     
     // 处理第二组数据
     for (operation_result = 0; (-1 < operation_result && (operation_result < *(int *)(data_params + 0x58))); operation_result = operation_result + 1) {
-      temp_context_1 = *(longlong *)(*(longlong *)(data_params + 0x50) + (longlong)operation_result * 8);
-      temp_context_2 = *(longlong *)(temp_context_1 + 0x68);
+      temp_context_1 = *(int64_t *)(*(int64_t *)(data_params + 0x50) + (int64_t)operation_result * 8);
+      temp_context_2 = *(int64_t *)(temp_context_1 + 0x68);
       if (((*(byte *)(temp_context_1 + 0xc4) & 1) != 0) && (temp_context_2 != 0)) {
         status_flag = 0;
         cleanup_result = func_0x00018088c500(temp_context_2,&status_flag);
@@ -320,8 +320,8 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, longlong dat
     
     // 处理第三组数据
     for (operation_result = 0; (-1 < operation_result && (operation_result < *(int *)(data_params + 0x68))); operation_result = operation_result + 1) {
-      temp_context_1 = *(longlong *)(*(longlong *)(data_params + 0x60) + (longlong)operation_result * 8);
-      temp_context_2 = *(longlong *)(temp_context_1 + 0x68);
+      temp_context_1 = *(int64_t *)(*(int64_t *)(data_params + 0x60) + (int64_t)operation_result * 8);
+      temp_context_2 = *(int64_t *)(temp_context_1 + 0x68);
       if (((*(byte *)(temp_context_1 + 0xc4) & 1) != 0) && (temp_context_2 != 0)) {
         status_flag = 0;
         cleanup_result = func_0x00018088c500(temp_context_2,&status_flag);
@@ -377,8 +377,8 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, longlong dat
     
     // 处理第四组数据
     for (operation_result = 0; (-1 < operation_result && (operation_result < *(int *)(data_params + 0x78))); operation_result = operation_result + 1) {
-      temp_context_1 = *(longlong *)(*(longlong *)(data_params + 0x70) + (longlong)operation_result * 8);
-      temp_context_2 = *(longlong *)(temp_context_1 + 0x68);
+      temp_context_1 = *(int64_t *)(*(int64_t *)(data_params + 0x70) + (int64_t)operation_result * 8);
+      temp_context_2 = *(int64_t *)(temp_context_1 + 0x68);
       if (((*(byte *)(temp_context_1 + 0xc4) & 1) != 0) && (temp_context_2 != 0)) {
         status_flag = 0;
         cleanup_result = func_0x00018088c500(temp_context_2,&status_flag);
@@ -437,8 +437,8 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, longlong dat
     operation_result = 0;
     do {
       if ((operation_result < 0) || (*(int *)(data_params + 200) <= operation_result)) break;
-      temp_context_1 = *(longlong *)(*(longlong *)(data_params + 0xc0) + (longlong)operation_result * 8);
-      temp_context_2 = *(longlong *)(temp_context_1 + 0x48);
+      temp_context_1 = *(int64_t *)(*(int64_t *)(data_params + 0xc0) + (int64_t)operation_result * 8);
+      temp_context_2 = *(int64_t *)(temp_context_1 + 0x48);
       if (temp_context_2 != 0) {
         status_flag = 0;
         cleanup_result = func_0x00018088c500(temp_context_2,&status_flag);
@@ -475,7 +475,7 @@ void UtilitiesSystem_AdvancedDataProcessor(uint64_t system_context, longlong dat
   
 PROCESS_ERROR:
   // 清理安全cookie并退出
-  FUN_1808fc050(security_cookie ^ (ulonglong)security_buffer);
+  FUN_1808fc050(security_cookie ^ (uint64_t)security_buffer);
 }
 
 /**
@@ -494,8 +494,8 @@ PROCESS_ERROR:
 void UtilitiesSystem_StateManager(void)
 
 {
-  longlong context_1;
-  longlong context_2;
+  int64_t context_1;
+  int64_t context_2;
   int32_t data_param_1;
   int32_t data_param_2;
   int32_t data_param_3;
@@ -504,9 +504,9 @@ void UtilitiesSystem_StateManager(void)
   int validation_result;
   int process_result;
   int32_t unaff_param;
-  longlong unaff_context;
+  int64_t unaff_context;
   int unaff_value;
-  longlong unaff_data;
+  int64_t unaff_data;
   char unaff_flag;
   float transform_result;
   float extra_data;
@@ -518,13 +518,13 @@ void UtilitiesSystem_StateManager(void)
   float stack_transform;
   
   // 处理系统状态和资源
-  if (((unaff_flag != '\0') || (*(int *)(*(longlong *)(unaff_data + 0x2e8) + 0x34) == unaff_value)) &&
+  if (((unaff_flag != '\0') || (*(int *)(*(int64_t *)(unaff_data + 0x2e8) + 0x34) == unaff_value)) &&
      (operation_result = FUN_180897b40(), operation_result == 0)) {
     
     // 处理第一组状态数据
     for (operation_result = 0; (-1 < operation_result && (operation_result < *(int *)(unaff_data + 0x48))); operation_result = operation_result + 1) {
-      context_1 = *(longlong *)(*(longlong *)(unaff_data + 0x40) + (longlong)operation_result * 8);
-      context_2 = *(longlong *)(context_1 + 0x68);
+      context_1 = *(int64_t *)(*(int64_t *)(unaff_data + 0x40) + (int64_t)operation_result * 8);
+      context_2 = *(int64_t *)(context_1 + 0x68);
       if (((*(byte *)(context_1 + 0xc4) & 1) != 0) && (context_2 != 0)) {
         stack_param = 0;
         validation_result = func_0x00018088c500(context_2,&stack_param);
@@ -586,8 +586,8 @@ void UtilitiesSystem_StateManager(void)
     
     // 处理第二组状态数据（重复类似模式）
     for (operation_result = 0; (-1 < operation_result && (operation_result < *(int *)(unaff_data + 0x58))); operation_result = operation_result + 1) {
-      context_1 = *(longlong *)(*(longlong *)(unaff_data + 0x50) + (longlong)operation_result * 8);
-      context_2 = *(longlong *)(context_1 + 0x68);
+      context_1 = *(int64_t *)(*(int64_t *)(unaff_data + 0x50) + (int64_t)operation_result * 8);
+      context_2 = *(int64_t *)(context_1 + 0x68);
       if (((*(byte *)(context_1 + 0xc4) & 1) != 0) && (context_2 != 0)) {
         stack_param = 0;
         validation_result = func_0x00018088c500(context_2,&stack_param);
@@ -649,16 +649,16 @@ void UtilitiesSystem_StateManager(void)
     
     // 处理第三组和第四组状态数据（重复类似模式）
     for (operation_result = 0; (-1 < operation_result && (operation_result < *(int *)(unaff_data + 0x68))); operation_result = operation_result + 1) {
-      context_1 = *(longlong *)(*(longlong *)(unaff_data + 0x60) + (longlong)operation_result * 8);
-      context_2 = *(longlong *)(context_1 + 0x68);
+      context_1 = *(int64_t *)(*(int64_t *)(unaff_data + 0x60) + (int64_t)operation_result * 8);
+      context_2 = *(int64_t *)(context_1 + 0x68);
       if (((*(byte *)(context_1 + 0xc4) & 1) != 0) && (context_2 != 0)) {
         // 类似的处理逻辑...
       }
     }
     
     for (operation_result = 0; (-1 < operation_result && (operation_result < *(int *)(unaff_data + 0x78))); operation_result = operation_result + 1) {
-      context_1 = *(longlong *)(*(longlong *)(unaff_data + 0x70) + (longlong)operation_result * 8);
-      context_2 = *(longlong *)(context_1 + 0x68);
+      context_1 = *(int64_t *)(*(int64_t *)(unaff_data + 0x70) + (int64_t)operation_result * 8);
+      context_2 = *(int64_t *)(context_1 + 0x68);
       if (((*(byte *)(context_1 + 0xc4) & 1) != 0) && (context_2 != 0)) {
         // 类似的处理逻辑...
       }
@@ -669,8 +669,8 @@ void UtilitiesSystem_StateManager(void)
     operation_result = 0;
     do {
       if ((operation_result < 0) || (*(int *)(unaff_data + 200) <= operation_result)) break;
-      context_1 = *(longlong *)(*(longlong *)(unaff_data + 0xc0) + (longlong)operation_result * 8);
-      context_2 = *(longlong *)(context_1 + 0x48);
+      context_1 = *(int64_t *)(*(int64_t *)(unaff_data + 0xc0) + (int64_t)operation_result * 8);
+      context_2 = *(int64_t *)(context_1 + 0x48);
       if (context_2 != 0) {
         stack_param = 0;
         process_result = func_0x00018088c500(context_2,&stack_param);
@@ -711,7 +711,7 @@ void UtilitiesSystem_StateManager(void)
   
 STATE_ERROR:
   // 清理安全cookie并退出
-  FUN_1808fc050(*(ulonglong *)(unaff_context + 0x1d0) ^ (ulonglong)&stack_handler);
+  FUN_1808fc050(*(uint64_t *)(unaff_context + 0x1d0) ^ (uint64_t)&stack_handler);
 }
 
 /**
@@ -730,10 +730,10 @@ STATE_ERROR:
 void UtilitiesSystem_ResourceCleaner(void)
 
 {
-  longlong context_data;
+  int64_t context_data;
   
   // 清理安全cookie并退出
-  FUN_1808fc050(*(ulonglong *)(context_data + 0x1d0) ^ (ulonglong)&stack_handler);
+  FUN_1808fc050(*(uint64_t *)(context_data + 0x1d0) ^ (uint64_t)&stack_handler);
 }
 
 /**
@@ -750,17 +750,17 @@ void UtilitiesSystem_ResourceCleaner(void)
  * @param validation_data 验证数据指针
  * @return 验证状态码（0表示成功，非0表示错误）
  */
-void UtilitiesSystem_ParameterValidator(longlong *param_handler, longlong *validation_data)
+void UtilitiesSystem_ParameterValidator(int64_t *param_handler, int64_t *validation_data)
 
 {
-  longlong handler_context;
+  int64_t handler_context;
   int validation_result;
   int8_t security_buffer [32];
   int8_t data_buffer [512];
-  ulonglong security_cookie;
+  uint64_t security_cookie;
   
   // 安全检查：设置栈保护cookie
-  security_cookie = GET_SECURITY_COOKIE() ^ (ulonglong)security_buffer;
+  security_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)security_buffer;
   handler_context = param_handler[4];
   
   // 验证参数和处理数据
@@ -777,7 +777,7 @@ void UtilitiesSystem_ParameterValidator(longlong *param_handler, longlong *valid
   }
   
   // 清理安全cookie并退出
-  FUN_1808fc050(security_cookie ^ (ulonglong)security_buffer);
+  FUN_1808fc050(security_cookie ^ (uint64_t)security_buffer);
 }
 
 /**
@@ -797,11 +797,11 @@ void UtilitiesSystem_EventHandler(void)
 
 {
   int operation_result;
-  longlong context_data;
+  int64_t context_data;
   char system_flag;
-  longlong *handler_ptr;
+  int64_t *handler_ptr;
   int8_t event_buffer [8];
-  ulonglong security_cookie;
+  uint64_t security_cookie;
   
   // 处理系统事件
   operation_result = (**(code **)(context_data + 0x10))();
@@ -815,7 +815,7 @@ void UtilitiesSystem_EventHandler(void)
   }
   
   // 清理安全cookie并退出
-  FUN_1808fc050(security_cookie ^ (ulonglong)&event_buffer);
+  FUN_1808fc050(security_cookie ^ (uint64_t)&event_buffer);
 }
 
 /**
@@ -836,8 +836,8 @@ void UtilitiesSystem_StateChecker(void)
 {
   int operation_result;
   char system_flag;
-  longlong *handler_ptr;
-  ulonglong security_cookie;
+  int64_t *handler_ptr;
+  uint64_t security_cookie;
   
   // 检查系统状态
   if ((system_flag == '\0') && (operation_result = (**(code **)(*handler_ptr + 0x18))(), operation_result == 0)) {
@@ -845,7 +845,7 @@ void UtilitiesSystem_StateChecker(void)
   }
   
   // 清理安全cookie并退出
-  FUN_1808fc050(security_cookie ^ (ulonglong)&system_flag);
+  FUN_1808fc050(security_cookie ^ (uint64_t)&system_flag);
 }
 
 /* ============================================================================

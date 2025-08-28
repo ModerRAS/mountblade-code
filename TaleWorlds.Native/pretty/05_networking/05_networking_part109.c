@@ -113,7 +113,7 @@ void networking_system_initializer(void) {
  * @param param_2 连接数据数组指针
  * @return 验证结果，0表示成功，其他值表示错误
  */
-uint64_t networking_connection_validator(longlong param_1, longlong *param_2) {
+uint64_t networking_connection_validator(int64_t param_1, int64_t *param_2) {
     uint64_t result;
     int32_t stack_buffer[6];
     
@@ -178,7 +178,7 @@ uint64_t networking_connection_validator(longlong param_1, longlong *param_2) {
  * @param param_2 协议数据数组指针
  * @return 处理结果，0表示成功，其他值表示错误
  */
-uint64_t networking_protocol_processor(longlong param_1, longlong *param_2) {
+uint64_t networking_protocol_processor(int64_t param_1, int64_t *param_2) {
     uint64_t result;
     int32_t stack_buffer_18[2];
     int8_t stack_buffer_68[64];
@@ -342,10 +342,10 @@ uint64_t networking_protocol_processor(longlong param_1, longlong *param_2) {
  * @return 处理结果
  */
 uint64_t networking_connection_handler(void) {
-    longlong in_rax;
+    int64_t in_rax;
     uint64_t result;
-    longlong *unaff_rbx;
-    longlong unaff_rsi;
+    int64_t *unaff_rbx;
+    int64_t unaff_rsi;
     int32_t stack_param_b0;
     
     if (*(int *)(in_rax + 0x18) == 0) {
@@ -498,9 +498,9 @@ void networking_system_cleaner(void) {
     int in_eax;
     int result1;
     int result2;
-    longlong *unaff_rbx;
+    int64_t *unaff_rbx;
     int unaff_ebp;
-    longlong unaff_rsi;
+    int64_t unaff_rsi;
     int32_t stack_param_b0;
     
     if (in_eax == 0x1b) {
@@ -597,9 +597,9 @@ void networking_resource_manager(void) {
  * @param param_5 传输模式标志
  * @return 传输结果
  */
-ulonglong networking_data_transmitter(longlong param_1, uint64_t *param_2, int32_t param_3, int32_t param_4, char param_5) {
+uint64_t networking_data_transmitter(int64_t param_1, uint64_t *param_2, int32_t param_3, int32_t param_4, char param_5) {
     uint validation_result;
-    ulonglong result;
+    uint64_t result;
     int8_t stack_buffer_70[64];
     int8_t stack_buffer_30[40];
     
@@ -610,7 +610,7 @@ ulonglong networking_data_transmitter(longlong param_1, uint64_t *param_2, int32
         
         if (*(int *)(param_2[1] + 0x18) == 0) {
             validation_result = FUN_180899ef0(*param_2, param_1 + 0x10);
-            result = (ulonglong)validation_result;
+            result = (uint64_t)validation_result;
             
             if ((validation_result == 0) &&
                 ((param_5 == '\0' || (result = FUN_1808a1870(param_1 + 0x48, param_2), (int)result == 0)))) {
@@ -633,11 +633,11 @@ ulonglong networking_data_transmitter(longlong param_1, uint64_t *param_2, int32
  * 
  * @return 发送结果
  */
-ulonglong networking_packet_sender(void) {
+uint64_t networking_packet_sender(void) {
     uint validation_result;
-    ulonglong result;
+    uint64_t result;
     uint64_t *unaff_rbx;
-    longlong unaff_rbp;
+    int64_t unaff_rbp;
     char stack_param_d0;
     
     result = FUN_1808ddd30();
@@ -645,7 +645,7 @@ ulonglong networking_packet_sender(void) {
     if ((int)result == 0) {
         if (*(int *)(unaff_rbx[1] + 0x18) == 0) {
             validation_result = FUN_180899ef0(*unaff_rbx, unaff_rbp + 0x10);
-            result = (ulonglong)validation_result;
+            result = (uint64_t)validation_result;
             
             if ((validation_result == 0) &&
                 ((stack_param_d0 == '\0' || (result = FUN_1808a1870(unaff_rbp + 0x48), (int)result == 0)))) {
@@ -680,7 +680,7 @@ void networking_system_terminator(void) {
  * @param param_2 协议数据数组指针
  * @return 处理结果
  */
-uint64_t networking_protocol_handler(longlong param_1, longlong *param_2) {
+uint64_t networking_protocol_handler(int64_t param_1, int64_t *param_2) {
     uint64_t result;
     int32_t stack_buffer_18[4];
     int8_t stack_buffer_48[32];
@@ -734,11 +734,11 @@ uint64_t networking_protocol_handler(longlong param_1, longlong *param_2) {
  * @param param_2 连接数据数组指针
  * @return 管理结果
  */
-ulonglong networking_connection_manager(longlong param_1, longlong *param_2) {
-    longlong temp_var;
+uint64_t networking_connection_manager(int64_t param_1, int64_t *param_2) {
+    int64_t temp_var;
     uint validation_result;
     int32_t *data_ptr;
-    ulonglong result;
+    uint64_t result;
     int16_t stack_buffer_18[4];
     int16_t stack_buffer_20[4];
     int32_t stack_buffer_58[2];
@@ -762,7 +762,7 @@ ulonglong networking_connection_manager(longlong param_1, longlong *param_2) {
     
     if (*(int *)(param_2[1] + 0x18) == 0) {
         validation_result = FUN_180899ef0(*param_2, param_1 + 0x10);
-        result = (ulonglong)validation_result;
+        result = (uint64_t)validation_result;
         
         if (validation_result == 0) {
             if (*(int *)(param_2[1] + 0x18) != 0) {
@@ -770,7 +770,7 @@ ulonglong networking_connection_manager(longlong param_1, longlong *param_2) {
             }
             
             validation_result = FUN_180899ef0(*param_2, param_1 + 0x20);
-            result = (ulonglong)validation_result;
+            result = (uint64_t)validation_result;
             
             if (validation_result == 0) {
                 result = NETWORK_ERROR_CONNECTION_FAILED;
@@ -801,12 +801,12 @@ ulonglong networking_connection_manager(longlong param_1, longlong *param_2) {
                 }
                 
                 if (validation_result != 0) {
-                    return (ulonglong)validation_result;
+                    return (uint64_t)validation_result;
                 }
                 
                 if (*(int *)(param_2[1] + 0x18) == 0) {
                     validation_result = FUN_180899ef0(*param_2, param_1 + 0x30);
-                    result = (ulonglong)validation_result;
+                    result = (uint64_t)validation_result;
                     
                     if (validation_result == 0) {
                         result = FUN_180898e70(param_2, param_1 + 0x40);
@@ -833,14 +833,14 @@ ulonglong networking_connection_manager(longlong param_1, longlong *param_2) {
  * 
  * @return 管理结果
  */
-ulonglong networking_session_manager(void) {
-    longlong temp_var;
+uint64_t networking_session_manager(void) {
+    int64_t temp_var;
     uint validation_result;
-    longlong in_rax;
-    ulonglong result;
-    longlong unaff_rbp;
+    int64_t in_rax;
+    uint64_t result;
+    int64_t unaff_rbp;
     uint unaff_esi;
-    longlong *unaff_rdi;
+    int64_t *unaff_rdi;
     int32_t stack_param_30;
     int32_t stack_38;
     int16_t stack_3c;
@@ -853,7 +853,7 @@ ulonglong networking_session_manager(void) {
     }
     
     validation_result = FUN_180899ef0(*unaff_rdi, unaff_rbp + 0x10);
-    result = (ulonglong)validation_result;
+    result = (uint64_t)validation_result;
     
     if (validation_result == 0) {
         if (*(uint *)(unaff_rdi[1] + 0x18) != unaff_esi) {
@@ -861,7 +861,7 @@ ulonglong networking_session_manager(void) {
         }
         
         validation_result = FUN_180899ef0(*unaff_rdi, unaff_rbp + 0x20);
-        result = (ulonglong)validation_result;
+        result = (uint64_t)validation_result;
         
         if (validation_result == 0) {
             result = NETWORK_ERROR_CONNECTION_FAILED;
@@ -894,12 +894,12 @@ ulonglong networking_session_manager(void) {
             }
             
             if (validation_result != 0) {
-                return (ulonglong)validation_result;
+                return (uint64_t)validation_result;
             }
             
             if (*(int *)(unaff_rdi[1] + 0x18) == 0) {
                 validation_result = FUN_180899ef0(*unaff_rdi, unaff_rbp + 0x30);
-                result = (ulonglong)validation_result;
+                result = (uint64_t)validation_result;
                 
                 if (validation_result == 0) {
                     result = FUN_180898e70();
@@ -924,13 +924,13 @@ ulonglong networking_session_manager(void) {
  * 
  * @return 处理结果
  */
-ulonglong networking_data_processor(void) {
-    longlong temp_var;
+uint64_t networking_data_processor(void) {
+    int64_t temp_var;
     uint validation_result;
-    ulonglong result;
-    longlong unaff_rbp;
+    uint64_t result;
+    int64_t unaff_rbp;
     uint unaff_esi;
-    longlong *unaff_rdi;
+    int64_t *unaff_rdi;
     int32_t stack_param_30;
     int32_t stack_38;
     int16_t stack_3c;
@@ -939,7 +939,7 @@ ulonglong networking_data_processor(void) {
     int16_t stack_param_a8;
     
     validation_result = FUN_180899ef0(*unaff_rdi, unaff_rbp + 0x20);
-    result = (ulonglong)validation_result;
+    result = (uint64_t)validation_result;
     
     if (validation_result == 0) {
         result = NETWORK_ERROR_CONNECTION_FAILED;
@@ -972,12 +972,12 @@ ulonglong networking_data_processor(void) {
         }
         
         if (validation_result != 0) {
-            return (ulonglong)validation_result;
+            return (uint64_t)validation_result;
         }
         
         if (*(int *)(unaff_rdi[1] + 0x18) == 0) {
             validation_result = FUN_180899ef0(*unaff_rdi, unaff_rbp + 0x30);
-            result = (ulonglong)validation_result;
+            result = (uint64_t)validation_result;
             
             if (validation_result == 0) {
                 result = FUN_180898e70();
@@ -1001,13 +1001,13 @@ ulonglong networking_data_processor(void) {
  * 
  * @return 处理结果
  */
-ulonglong networking_message_handler(void) {
-    longlong temp_var;
+uint64_t networking_message_handler(void) {
+    int64_t temp_var;
     uint validation_result;
-    ulonglong result;
-    ulonglong unaff_rbx;
-    longlong unaff_rbp;
-    longlong *unaff_rdi;
+    uint64_t result;
+    uint64_t unaff_rbx;
+    int64_t unaff_rbp;
+    int64_t *unaff_rdi;
     uint64_t stack_param_38;
     int16_t stack_param_a0;
     int16_t stack_param_a8;
@@ -1033,12 +1033,12 @@ ulonglong networking_message_handler(void) {
     }
     
     if (validation_result != 0) {
-        return (ulonglong)validation_result;
+        return (uint64_t)validation_result;
     }
     
     if (*(int *)(unaff_rdi[1] + 0x18) == 0) {
         validation_result = FUN_180899ef0(*unaff_rdi, unaff_rbp + 0x30);
-        unaff_rbx = (ulonglong)validation_result;
+        unaff_rbx = (uint64_t)validation_result;
         
         if (validation_result == 0) {
             result = FUN_180898e70();
@@ -1061,21 +1061,21 @@ ulonglong networking_message_handler(void) {
  * 
  * @return 处理结果
  */
-ulonglong networking_error_processor(void) {
+uint64_t networking_error_processor(void) {
     uint validation_result;
-    ulonglong result;
-    ulonglong unaff_rbx;
-    longlong unaff_rbp;
+    uint64_t result;
+    uint64_t unaff_rbx;
+    int64_t unaff_rbp;
     uint unaff_esi;
     uint64_t *unaff_rdi;
     
     if (unaff_esi != 0) {
-        return (ulonglong)unaff_esi;
+        return (uint64_t)unaff_esi;
     }
     
     if (*(int *)(unaff_rdi[1] + 0x18) == 0) {
         validation_result = FUN_180899ef0(*unaff_rdi, unaff_rbp + 0x30);
-        unaff_rbx = (ulonglong)validation_result;
+        unaff_rbx = (uint64_t)validation_result;
         
         if (validation_result == 0) {
             result = FUN_180898e70();
@@ -1098,16 +1098,16 @@ ulonglong networking_error_processor(void) {
  * 
  * @return 监控结果
  */
-ulonglong networking_connection_monitor(void) {
+uint64_t networking_connection_monitor(void) {
     uint validation_result;
-    ulonglong result;
-    ulonglong unaff_rbx;
-    longlong unaff_rbp;
+    uint64_t result;
+    uint64_t unaff_rbx;
+    int64_t unaff_rbp;
     uint64_t *unaff_rdi;
     
     if (*(int *)(unaff_rdi[1] + 0x18) == 0) {
         validation_result = FUN_180899ef0(*unaff_rdi, unaff_rbp + 0x30);
-        unaff_rbx = (ulonglong)validation_result;
+        unaff_rbx = (uint64_t)validation_result;
         
         if (validation_result == 0) {
             result = FUN_180898e70();
@@ -1131,7 +1131,7 @@ ulonglong networking_connection_monitor(void) {
  * @param param_1 连接参数指针
  * @param param_2 连接数据指针
  */
-void networking_connection_initializer(longlong param_1, uint64_t param_2) {
+void networking_connection_initializer(int64_t param_1, uint64_t param_2) {
     int result;
     int8_t stack_buffer_28[32];
     
@@ -1158,7 +1158,7 @@ void networking_connection_initializer(longlong param_1, uint64_t param_2) {
  * @param param_2 验证数据数组指针
  * @return 验证结果
  */
-uint64_t networking_connection_verifier(longlong param_1, uint64_t *param_2) {
+uint64_t networking_connection_verifier(int64_t param_1, uint64_t *param_2) {
     uint64_t result;
     int8_t stack_buffer_28[32];
     
@@ -1197,7 +1197,7 @@ uint64_t networking_connection_verifier(longlong param_1, uint64_t *param_2) {
  * @param param_2 序列化数据数组指针
  * @return 序列化结果
  */
-uint64_t networking_data_serializer(longlong param_1, uint64_t *param_2) {
+uint64_t networking_data_serializer(int64_t param_1, uint64_t *param_2) {
     uint64_t result;
     int8_t stack_buffer_48[32];
     int8_t stack_buffer_28[32];
@@ -1239,7 +1239,7 @@ uint64_t networking_data_serializer(longlong param_1, uint64_t *param_2) {
  * @param param_2 处理数据数组指针
  * @return 处理结果
  */
-uint64_t networking_packet_processor(longlong param_1, longlong *param_2) {
+uint64_t networking_packet_processor(int64_t param_1, int64_t *param_2) {
     uint64_t result;
     int32_t stack_buffer_10[6];
     
@@ -1343,7 +1343,7 @@ uint64_t networking_packet_processor(longlong param_1, longlong *param_2) {
  * @param param_2 验证数据数组指针
  * @return 验证结果
  */
-uint64_t networking_data_validator(longlong param_1, uint64_t *param_2) {
+uint64_t networking_data_validator(int64_t param_1, uint64_t *param_2) {
     uint64_t result;
     int8_t stack_buffer_48[32];
     int8_t stack_buffer_28[32];
@@ -1386,7 +1386,7 @@ uint64_t networking_data_validator(longlong param_1, uint64_t *param_2) {
  * @param param_2 终结数据指针
  * @return 终结结果
  */
-uint64_t networking_protocol_finalizer(uint64_t param_1, longlong param_2) {
+uint64_t networking_protocol_finalizer(uint64_t param_1, int64_t param_2) {
     uint64_t result;
     int8_t stack_buffer_28[32];
     

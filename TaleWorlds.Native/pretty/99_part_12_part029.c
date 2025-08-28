@@ -29,10 +29,10 @@ void FUN_1807dc41f(void)
   float fVar20;
   float fVar21;
   float *unaff_RBX;
-  longlong unaff_RBP;
+  int64_t unaff_RBP;
   float *pfVar22;
   float *unaff_RSI;
-  longlong unaff_RDI;
+  int64_t unaff_RDI;
   
   pfVar22 = (float *)(unaff_RBP + 8);
   fVar1 = *unaff_RBX;
@@ -116,25 +116,25 @@ void FUN_1807dc8f5(void)
 
 
 
-// 函数: void FUN_1807dc910(float *param_1,float *param_2,int param_3,longlong param_4,uint64_t param_5,
-void FUN_1807dc910(float *param_1,float *param_2,int param_3,longlong param_4,uint64_t param_5,
+// 函数: void FUN_1807dc910(float *param_1,float *param_2,int param_3,int64_t param_4,uint64_t param_5,
+void FUN_1807dc910(float *param_1,float *param_2,int param_3,int64_t param_4,uint64_t param_5,
                   int param_6,int param_7)
 
 {
   float fVar1;
   bool bVar2;
-  longlong lVar3;
+  int64_t lVar3;
   float *pfVar4;
   float *pfVar5;
-  longlong lVar6;
+  int64_t lVar6;
   float *pfVar7;
   float *pfVar8;
   int8_t auStack_d8 [32];
   float afStack_b8 [32];
-  ulonglong uStack_38;
+  uint64_t uStack_38;
   
-  uStack_38 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
-  lVar6 = (longlong)param_6;
+  uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_d8;
+  lVar6 = (int64_t)param_6;
   lVar3 = 0;
   bVar2 = true;
   if (3 < lVar6) {
@@ -182,13 +182,13 @@ void FUN_1807dc910(float *param_1,float *param_2,int param_3,longlong param_4,ui
       memcpy(param_2,param_1);
     }
                     // WARNING: Subroutine does not return
-    memset(param_2,0,(ulonglong)(uint)(param_3 * param_6) << 2);
+    memset(param_2,0,(uint64_t)(uint)(param_3 * param_6) << 2);
   }
   if (bVar2) {
     if (param_3 != 0) {
-      lVar3 = (longlong)param_1 - (longlong)param_2;
+      lVar3 = (int64_t)param_1 - (int64_t)param_2;
       do {
-        pfVar5 = (float *)(lVar3 + (longlong)param_2);
+        pfVar5 = (float *)(lVar3 + (int64_t)param_2);
         pfVar4 = param_2;
         switch(param_6) {
         case 0x20:
@@ -555,7 +555,7 @@ void FUN_1807dc910(float *param_1,float *param_2,int param_3,longlong param_4,ui
     } while (param_3 != 0);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_d8);
+  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_d8);
 }
 
 

@@ -3,13 +3,13 @@
 
 // 04_ui_system_part307.c - 6 个函数
 
-// 函数: void FUN_180837990(float *param_1,uint param_2,longlong param_3,longlong *param_4,longlong *param_5)
-void FUN_180837990(float *param_1,uint param_2,longlong param_3,longlong *param_4,longlong *param_5)
+// 函数: void FUN_180837990(float *param_1,uint param_2,int64_t param_3,int64_t *param_4,int64_t *param_5)
+void FUN_180837990(float *param_1,uint param_2,int64_t param_3,int64_t *param_4,int64_t *param_5)
 
 {
   int32_t uVar1;
-  longlong lVar2;
-  longlong lVar3;
+  int64_t lVar2;
+  int64_t lVar3;
   int8_t auVar4 [32];
   int8_t auVar5 [32];
   int8_t auVar6 [32];
@@ -35,14 +35,14 @@ void FUN_180837990(float *param_1,uint param_2,longlong param_3,longlong *param_
   int8_t auStack_148 [8];
   int8_t auStack_140 [32];
   int8_t auStack_108 [8];
-  longlong lStack_100;
-  longlong lStack_f8;
-  longlong lStack_f0;
-  longlong lStack_e8;
-  ulonglong uStack_e0;
+  int64_t lStack_100;
+  int64_t lStack_f8;
+  int64_t lStack_f0;
+  int64_t lStack_e8;
+  uint64_t uStack_e0;
   
   puVar16 = auStack_108;
-  uStack_e0 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_108;
+  uStack_e0 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_108;
   iVar17 = (int)param_2 >> 2;
   if (iVar17 != 0) {
     lVar3 = *param_5;
@@ -72,10 +72,10 @@ void FUN_180837990(float *param_1,uint param_2,longlong param_3,longlong *param_
       auVar22 = vpermd_avx2(auVar24._0_32_,auStack_140);
       auVar20 = vpsrld_avx2(auVar20,1);
       auVar5 = vcvtdq2ps_avx(auVar20);
-      auVar19 = *(int8_t (*) [32])(param_3 + (ulonglong)(uint)(auStack_140._4_4_ << 3) * 2);
+      auVar19 = *(int8_t (*) [32])(param_3 + (uint64_t)(uint)(auStack_140._4_4_ << 3) * 2);
       auVar20 = vpsrld_avx2(auVar22,1);
       auVar6 = vcvtdq2ps_avx(auVar20);
-      auVar22 = *(int8_t (*) [32])(param_3 + (ulonglong)(uint)(auStack_140._12_4_ << 3) * 2);
+      auVar22 = *(int8_t (*) [32])(param_3 + (uint64_t)(uint)(auStack_140._12_4_ << 3) * 2);
       auVar21 = vpermd_avx2(auVar25._0_32_,auStack_140);
       auVar10._8_8_ = lStack_100;
       auVar10._0_8_ = lStack_100;
@@ -88,7 +88,7 @@ void FUN_180837990(float *param_1,uint param_2,longlong param_3,longlong *param_
       auVar10 = vcvtdq2ps_avx(auVar10);
       auVar19 = vpmovsxwd_avx2(auVar19._16_16_);
       auVar7 = vcvtdq2ps_avx(auVar19);
-      auVar19 = *(int8_t (*) [32])(param_3 + (ulonglong)(uint)(auStack_140._20_4_ << 3) * 2);
+      auVar19 = *(int8_t (*) [32])(param_3 + (uint64_t)(uint)(auStack_140._20_4_ << 3) * 2);
       auVar11 = vpmovsxwd_avx2(auVar22._0_16_);
       auVar11 = vcvtdq2ps_avx(auVar11);
       auVar22 = vpmovsxwd_avx2(auVar22._16_16_);
@@ -97,7 +97,7 @@ void FUN_180837990(float *param_1,uint param_2,longlong param_3,longlong *param_
       auVar12 = vcvtdq2ps_avx(auVar12);
       auVar19 = vpmovsxwd_avx2(auVar19._16_16_);
       auVar8 = vcvtdq2ps_avx(auVar19);
-      auVar19 = *(int8_t (*) [32])(param_3 + (ulonglong)(uint)(auStack_140._28_4_ << 3) * 2);
+      auVar19 = *(int8_t (*) [32])(param_3 + (uint64_t)(uint)(auStack_140._28_4_ << 3) * 2);
       auVar13 = vpmovsxwd_avx2(auVar19._0_16_);
       auVar13 = vcvtdq2ps_avx(auVar13);
       auVar14 = vpmovsxwd_avx2(auVar19._16_16_);
@@ -167,7 +167,7 @@ void FUN_180837990(float *param_1,uint param_2,longlong param_3,longlong *param_
   }
   for (param_2 = param_2 & 3; param_2 != 0; param_2 = param_2 - 1) {
     auVar20 = *(int8_t (*) [32])
-               (param_3 + (ulonglong)(uint)(*(int *)((longlong)param_4 + 4) << 3) * 2);
+               (param_3 + (uint64_t)(uint)(*(int *)((int64_t)param_4 + 4) << 3) * 2);
     auVar19 = vpmovsxwd_avx2(auVar20._0_16_);
     auVar19 = vcvtdq2ps_avx(auVar19);
     auVar20 = vpmovsxwd_avx2(auVar20._16_16_);
@@ -197,7 +197,7 @@ void FUN_180837990(float *param_1,uint param_2,longlong param_3,longlong *param_
   }
                     // WARNING: Subroutine does not return
   *(uint64_t *)(puVar16 + -8) = 0x180837cc0;
-  FUN_1808fc050(uStack_e0 ^ (ulonglong)auStack_108);
+  FUN_1808fc050(uStack_e0 ^ (uint64_t)auStack_108);
 }
 
 
@@ -207,17 +207,17 @@ void FUN_180837990(float *param_1,uint param_2,longlong param_3,longlong *param_
 
 
 
-// 函数: void FUN_180837d30(float *param_1,uint param_2,longlong param_3,uint *param_4,longlong *param_5)
-void FUN_180837d30(float *param_1,uint param_2,longlong param_3,uint *param_4,longlong *param_5)
+// 函数: void FUN_180837d30(float *param_1,uint param_2,int64_t param_3,uint *param_4,int64_t *param_5)
+void FUN_180837d30(float *param_1,uint param_2,int64_t param_3,uint *param_4,int64_t *param_5)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  longlong lVar3;
+  int64_t lVar1;
+  int64_t lVar2;
+  int64_t lVar3;
   float fVar4;
   int8_t auVar5 [32];
   int8_t auVar6 [32];
-  ulonglong uVar7;
+  uint64_t uVar7;
   int8_t auVar8 [32];
   int8_t auVar9 [32];
   int iVar10;
@@ -236,26 +236,26 @@ void FUN_180837d30(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
   int8_t auVar23 [32];
   int8_t auVar24 [32];
   
-  uVar7 = (ulonglong)param_1 & 0x1f;
+  uVar7 = (uint64_t)param_1 & 0x1f;
   auVar8 = ui_system_memory_config;
   auVar9 = ui_system_memory_config;
                     // WARNING: Read-only address (ram,0x000180980c40) is written
                     // WARNING: Read-only address (ram,0x000180980cc0) is written
   for (; (ui_system_memory_config = auVar9, ui_system_memory_config = auVar8, uVar7 != 0 && (param_2 != 0));
       param_2 = param_2 - 1) {
-    fVar4 = (float)(int)*(short *)(param_3 + (ulonglong)param_4[1] * 2) * 3.0517578e-05;
-    *param_1 = ((float)(int)*(short *)(param_3 + (ulonglong)(param_4[1] + 1) * 2) * 3.0517578e-05 -
+    fVar4 = (float)(int)*(short *)(param_3 + (uint64_t)param_4[1] * 2) * 3.0517578e-05;
+    *param_1 = ((float)(int)*(short *)(param_3 + (uint64_t)(param_4[1] + 1) * 2) * 3.0517578e-05 -
                fVar4) * (float)(*param_4 >> 1) * 4.656613e-10 + fVar4;
     param_1 = param_1 + 1;
-    *(longlong *)param_4 = *(longlong *)param_4 + *param_5;
-    uVar7 = (ulonglong)param_1 & 0x1f;
+    *(int64_t *)param_4 = *(int64_t *)param_4 + *param_5;
+    uVar7 = (uint64_t)param_1 & 0x1f;
     auVar8 = ui_system_memory_config;
     auVar9 = ui_system_memory_config;
   }
   iVar13 = (int)param_2 >> 3;
   if (iVar13 != 0) {
     lVar2 = *param_5;
-    lVar3 = *(longlong *)param_4;
+    lVar3 = *(int64_t *)param_4;
     iVar12 = (int)lVar2;
     auVar15 = vpinsrd_avx((int8_t  [16])0x0,iVar12,1);
     lVar1 = lVar2 * 8;
@@ -345,15 +345,15 @@ void FUN_180837d30(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
       auVar18 = vpaddq_avx2(auVar18,auVar23);
       iVar13 = iVar13 + -1;
     } while (iVar13 != 0);
-    *(longlong *)param_4 = auVar17._0_8_;
+    *(int64_t *)param_4 = auVar17._0_8_;
   }
   for (param_2 = param_2 & 7; param_2 != 0; param_2 = param_2 - 1) {
                     // WARNING: Read-only address (ram,0x000180980c40) is written
                     // WARNING: Read-only address (ram,0x000180980cc0) is written
-    fVar4 = (float)(int)*(short *)(param_3 + (ulonglong)param_4[1] * 2) * 3.0517578e-05;
-    *param_1 = ((float)(int)*(short *)(param_3 + (ulonglong)(param_4[1] + 1) * 2) * 3.0517578e-05 -
+    fVar4 = (float)(int)*(short *)(param_3 + (uint64_t)param_4[1] * 2) * 3.0517578e-05;
+    *param_1 = ((float)(int)*(short *)(param_3 + (uint64_t)(param_4[1] + 1) * 2) * 3.0517578e-05 -
                fVar4) * (float)(*param_4 >> 1) * 4.656613e-10 + fVar4;
-    *(longlong *)param_4 = *(longlong *)param_4 + *param_5;
+    *(int64_t *)param_4 = *(int64_t *)param_4 + *param_5;
     param_1 = param_1 + 1;
   }
                     // WARNING: Read-only address (ram,0x000180980c40) is written
@@ -368,28 +368,28 @@ void FUN_180837d30(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
 
 
 
-// 函数: void FUN_180837d61(float *param_1,uint64_t param_2,longlong param_3,uint *param_4)
-void FUN_180837d61(float *param_1,uint64_t param_2,longlong param_3,uint *param_4)
+// 函数: void FUN_180837d61(float *param_1,uint64_t param_2,int64_t param_3,uint *param_4)
+void FUN_180837d61(float *param_1,uint64_t param_2,int64_t param_3,uint *param_4)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  longlong lVar3;
+  int64_t lVar1;
+  int64_t lVar2;
+  int64_t lVar3;
   float fVar4;
   int8_t auVar5 [32];
   int8_t auVar6 [32];
-  ulonglong uVar7;
+  uint64_t uVar7;
   int8_t auVar8 [32];
   int8_t auVar9 [32];
   int iVar10;
-  longlong in_RAX;
+  int64_t in_RAX;
   int32_t uVar11;
   uint unaff_ESI;
   uint uVar12;
   uint *unaff_RDI;
   int iVar13;
-  longlong *unaff_R12;
-  longlong unaff_R14;
+  int64_t *unaff_R12;
+  int64_t unaff_R14;
   int iVar14;
   uint64_t unaff_R15;
   int8_t auVar15 [16];
@@ -405,26 +405,26 @@ void FUN_180837d61(float *param_1,uint64_t param_2,longlong param_3,uint *param_
   int8_t auVar25 [32];
   
   *(uint64_t *)(in_RAX + 8) = unaff_R15;
-  uVar7 = (ulonglong)param_1 & 0x1f;
+  uVar7 = (uint64_t)param_1 & 0x1f;
   auVar8 = ui_system_memory_config;
   auVar9 = ui_system_memory_config;
                     // WARNING: Read-only address (ram,0x000180980c40) is written
                     // WARNING: Read-only address (ram,0x000180980cc0) is written
   for (; (ui_system_memory_config = auVar8, ui_system_memory_config = auVar9, uVar7 != 0 && (unaff_ESI != 0));
       unaff_ESI = unaff_ESI - 1) {
-    fVar4 = (float)(int)*(short *)(param_3 + (ulonglong)param_4[1] * 2) * 3.0517578e-05;
-    *param_1 = ((float)(int)*(short *)(param_3 + (ulonglong)(param_4[1] + 1) * 2) * 3.0517578e-05 -
+    fVar4 = (float)(int)*(short *)(param_3 + (uint64_t)param_4[1] * 2) * 3.0517578e-05;
+    *param_1 = ((float)(int)*(short *)(param_3 + (uint64_t)(param_4[1] + 1) * 2) * 3.0517578e-05 -
                fVar4) * (float)(*param_4 >> 1) * 4.656613e-10 + fVar4;
     param_1 = param_1 + 1;
-    *(longlong *)param_4 = *(longlong *)param_4 + *unaff_R12;
-    uVar7 = (ulonglong)param_1 & 0x1f;
+    *(int64_t *)param_4 = *(int64_t *)param_4 + *unaff_R12;
+    uVar7 = (uint64_t)param_1 & 0x1f;
     auVar8 = ui_system_memory_config;
     auVar9 = ui_system_memory_config;
   }
   iVar14 = (int)unaff_ESI >> 3;
   if (iVar14 != 0) {
     lVar2 = *unaff_R12;
-    lVar3 = *(longlong *)param_4;
+    lVar3 = *(int64_t *)param_4;
     iVar13 = (int)lVar2;
     auVar16 = vpinsrd_avx((int8_t  [16])0x0,iVar13,1);
     lVar1 = lVar2 * 8;
@@ -514,15 +514,15 @@ void FUN_180837d61(float *param_1,uint64_t param_2,longlong param_3,uint *param_
       auVar19 = vpaddq_avx2(auVar19,auVar24);
       iVar14 = iVar14 + -1;
     } while (iVar14 != 0);
-    *(longlong *)unaff_RDI = auVar18._0_8_;
+    *(int64_t *)unaff_RDI = auVar18._0_8_;
   }
   for (uVar12 = unaff_ESI & 7; uVar12 != 0; uVar12 = uVar12 - 1) {
                     // WARNING: Read-only address (ram,0x000180980c40) is written
                     // WARNING: Read-only address (ram,0x000180980cc0) is written
-    fVar4 = (float)(int)*(short *)(unaff_R14 + (ulonglong)unaff_RDI[1] * 2) * 3.0517578e-05;
-    *param_1 = ((float)(int)*(short *)(unaff_R14 + (ulonglong)(unaff_RDI[1] + 1) * 2) *
+    fVar4 = (float)(int)*(short *)(unaff_R14 + (uint64_t)unaff_RDI[1] * 2) * 3.0517578e-05;
+    *param_1 = ((float)(int)*(short *)(unaff_R14 + (uint64_t)(unaff_RDI[1] + 1) * 2) *
                 3.0517578e-05 - fVar4) * (float)(*unaff_RDI >> 1) * 4.656613e-10 + fVar4;
-    *(longlong *)unaff_RDI = *(longlong *)unaff_RDI + *unaff_R12;
+    *(int64_t *)unaff_RDI = *(int64_t *)unaff_RDI + *unaff_R12;
     param_1 = param_1 + 1;
   }
                     // WARNING: Read-only address (ram,0x000180980c40) is written
@@ -541,7 +541,7 @@ void FUN_180837d61(float *param_1,uint64_t param_2,longlong param_3,uint *param_
 void FUN_180837e0a(uint64_t param_1)
 
 {
-  longlong lVar1;
+  int64_t lVar1;
   float fVar2;
   int8_t auVar3 [32];
   int8_t auVar4 [32];
@@ -553,9 +553,9 @@ void FUN_180837e0a(uint64_t param_1)
   uint unaff_ESI;
   uint uVar9;
   uint *unaff_RDI;
-  longlong in_R11;
-  longlong *unaff_R12;
-  longlong unaff_R14;
+  int64_t in_R11;
+  int64_t *unaff_R12;
+  int64_t unaff_R14;
   int unaff_R15D;
   int8_t auVar10 [16];
   int8_t auVar11 [16];
@@ -661,13 +661,13 @@ void FUN_180837e0a(uint64_t param_1)
     auVar14 = vpaddq_avx2(auVar14,auVar19);
     unaff_R15D = unaff_R15D + -1;
   } while (unaff_R15D != 0);
-  *(longlong *)unaff_RDI = auVar13._0_8_;
+  *(int64_t *)unaff_RDI = auVar13._0_8_;
   for (uVar9 = unaff_ESI & 7; uVar9 != 0; uVar9 = uVar9 - 1) {
                     // WARNING: Read-only address (ram,0x000180980c40) is written
-    fVar2 = (float)(int)*(short *)(unaff_R14 + (ulonglong)unaff_RDI[1] * 2) * unaff_XMM6_Da;
-    *unaff_RBX = ((float)(int)*(short *)(unaff_R14 + (ulonglong)(unaff_RDI[1] + 1) * 2) *
+    fVar2 = (float)(int)*(short *)(unaff_R14 + (uint64_t)unaff_RDI[1] * 2) * unaff_XMM6_Da;
+    *unaff_RBX = ((float)(int)*(short *)(unaff_R14 + (uint64_t)(unaff_RDI[1] + 1) * 2) *
                   unaff_XMM6_Da - fVar2) * (float)(*unaff_RDI >> 1) * 4.656613e-10 + fVar2;
-    *(longlong *)unaff_RDI = *(longlong *)unaff_RDI + *unaff_R12;
+    *(int64_t *)unaff_RDI = *(int64_t *)unaff_RDI + *unaff_R12;
     unaff_RBX = unaff_RBX + 1;
   }
                     // WARNING: Read-only address (ram,0x000180980c40) is written
@@ -687,16 +687,16 @@ void FUN_180837fef(void)
   uint unaff_ESI;
   uint uVar2;
   uint *unaff_RDI;
-  longlong *unaff_R12;
-  longlong unaff_R14;
+  int64_t *unaff_R12;
+  int64_t unaff_R14;
   float unaff_XMM6_Da;
   float unaff_XMM7_Da;
   
   for (uVar2 = unaff_ESI & 7; uVar2 != 0; uVar2 = uVar2 - 1) {
-    fVar1 = (float)(int)*(short *)(unaff_R14 + (ulonglong)unaff_RDI[1] * 2) * unaff_XMM6_Da;
-    *unaff_RBX = ((float)(int)*(short *)(unaff_R14 + (ulonglong)(unaff_RDI[1] + 1) * 2) *
+    fVar1 = (float)(int)*(short *)(unaff_R14 + (uint64_t)unaff_RDI[1] * 2) * unaff_XMM6_Da;
+    *unaff_RBX = ((float)(int)*(short *)(unaff_R14 + (uint64_t)(unaff_RDI[1] + 1) * 2) *
                   unaff_XMM6_Da - fVar1) * (float)(*unaff_RDI >> 1) * unaff_XMM7_Da + fVar1;
-    *(longlong *)unaff_RDI = *(longlong *)unaff_RDI + *unaff_R12;
+    *(int64_t *)unaff_RDI = *(int64_t *)unaff_RDI + *unaff_R12;
     unaff_RBX = unaff_RBX + 1;
   }
   return;
@@ -714,16 +714,16 @@ void FUN_180838000(void)
   float *unaff_RBX;
   int unaff_ESI;
   uint *unaff_RDI;
-  longlong *unaff_R12;
-  longlong unaff_R14;
+  int64_t *unaff_R12;
+  int64_t unaff_R14;
   float unaff_XMM6_Da;
   float unaff_XMM7_Da;
   
   do {
-    fVar1 = (float)(int)*(short *)(unaff_R14 + (ulonglong)unaff_RDI[1] * 2) * unaff_XMM6_Da;
-    *unaff_RBX = ((float)(int)*(short *)(unaff_R14 + (ulonglong)(unaff_RDI[1] + 1) * 2) *
+    fVar1 = (float)(int)*(short *)(unaff_R14 + (uint64_t)unaff_RDI[1] * 2) * unaff_XMM6_Da;
+    *unaff_RBX = ((float)(int)*(short *)(unaff_R14 + (uint64_t)(unaff_RDI[1] + 1) * 2) *
                   unaff_XMM6_Da - fVar1) * (float)(*unaff_RDI >> 1) * unaff_XMM7_Da + fVar1;
-    *(longlong *)unaff_RDI = *(longlong *)unaff_RDI + *unaff_R12;
+    *(int64_t *)unaff_RDI = *(int64_t *)unaff_RDI + *unaff_R12;
     unaff_ESI = unaff_ESI + -1;
     unaff_RBX = unaff_RBX + 1;
   } while (unaff_ESI != 0);

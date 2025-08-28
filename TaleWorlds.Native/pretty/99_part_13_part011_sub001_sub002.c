@@ -18,12 +18,12 @@ void FUN_1808abac9(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_1808abb10(uint64_t *param_1,longlong param_2,int32_t param_3)
+uint64_t FUN_1808abb10(uint64_t *param_1,int64_t param_2,int32_t param_3)
 
 {
   uint uVar1;
   int iVar2;
-  ulonglong uVar3;
+  uint64_t uVar3;
   uint64_t *puVar4;
   uint uVar5;
   int iVar6;
@@ -47,7 +47,7 @@ ulonglong FUN_1808abb10(uint64_t *param_1,longlong param_2,int32_t param_3)
          (uVar3 = FUN_180747f10(param_2,aiStack_98[0]), (int)uVar3 == 0)) {
         if (uVar1 != 0x12) {
           if (uVar1 != 0) {
-            return (ulonglong)uVar1;
+            return (uint64_t)uVar1;
           }
           if (0 < aiStack_98[0]) {
             do {
@@ -100,17 +100,17 @@ ulonglong FUN_1808abb10(uint64_t *param_1,longlong param_2,int32_t param_3)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_1808abb3f(void)
+uint64_t FUN_1808abb3f(void)
 
 {
   uint uVar1;
   int iVar2;
-  ulonglong uVar3;
+  uint64_t uVar3;
   uint64_t *puVar4;
   uint uVar5;
   int iVar6;
   uint64_t *unaff_RDI;
-  longlong unaff_R15;
+  int64_t unaff_R15;
   int iStack0000000000000040;
   
   iVar6 = 0;
@@ -125,7 +125,7 @@ ulonglong FUN_1808abb3f(void)
        (uVar3 = FUN_180747f10(), (int)uVar3 == 0)) {
       if (uVar1 != 0x12) {
         if (uVar1 != 0) {
-          return (ulonglong)uVar1;
+          return (uint64_t)uVar1;
         }
         if (0 < iStack0000000000000040) {
           do {
@@ -182,9 +182,9 @@ int FUN_1808abb9b(int param_1)
   uint64_t *puVar2;
   int unaff_EBX;
   uint uVar3;
-  ulonglong uVar4;
+  uint64_t uVar4;
   uint64_t *unaff_RDI;
-  ulonglong unaff_R12;
+  uint64_t unaff_R12;
   int in_stack_00000040;
   
   if (unaff_EBX != 0x12) {
@@ -225,7 +225,7 @@ int FUN_1808abb9b(int param_1)
           FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar2,&unknown_var_2144_ptr,0xc6,1);
         }
         uVar3 = (int)uVar4 + 1;
-        uVar4 = (ulonglong)uVar3;
+        uVar4 = (uint64_t)uVar3;
       } while ((int)uVar3 < in_stack_00000040);
     }
   }

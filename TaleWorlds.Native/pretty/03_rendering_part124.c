@@ -32,7 +32,7 @@
  * @param param_2 着色器参数缓冲区
  * @param param_3 着色器配置选项
  */
-void ShaderFileGenerator(uint64_t param_1, longlong param_2, uint64_t param_3)
+void ShaderFileGenerator(uint64_t param_1, int64_t param_2, uint64_t param_3)
 
 {
   int32_t *puVar1;
@@ -40,7 +40,7 @@ void ShaderFileGenerator(uint64_t param_1, longlong param_2, uint64_t param_3)
   void *puVar3;
   uint uVar4;
   int iVar5;
-  longlong lVar6;
+  int64_t lVar6;
   int8_t auStack_e8 [32];
   int32_t uStack_c8;
   void *puStack_c0;
@@ -48,7 +48,7 @@ void ShaderFileGenerator(uint64_t param_1, longlong param_2, uint64_t param_3)
   uint uStack_b0;
   int32_t uStack_a8;
   uint64_t uStack_a0;
-  longlong lStack_98;
+  int64_t lStack_98;
   void *puStack_88;
   void *puStack_80;
   int iStack_78;
@@ -58,10 +58,10 @@ void ShaderFileGenerator(uint64_t param_1, longlong param_2, uint64_t param_3)
   int8_t *puStack_58;
   int32_t uStack_50;
   int8_t auStack_48 [16];
-  ulonglong uStack_38;
+  uint64_t uStack_38;
   
   uStack_68 = 0xfffffffffffffffe;
-  uStack_38 = g_SecurityChecksum ^ (ulonglong)auStack_e8;
+  uStack_38 = g_SecurityChecksum ^ (uint64_t)auStack_e8;
   uStack_c8 = 0;
   ShaderParameterInitializer(param_1, &puStack_88);
   puStack_60 = &g_DefaultShaderConfig;
@@ -85,7 +85,7 @@ void ShaderFileGenerator(uint64_t param_1, longlong param_2, uint64_t param_3)
   ShaderConfigSetter(param_2, param_3);
   iVar5 = *(int *)(param_2 + 0x10) + 8;
   BufferExpander(param_2, iVar5);
-  puVar2 = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  puVar2 = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *puVar2 = 0x726566667562675f;
   *(int8_t *)(puVar2 + 1) = 0;
   *(int *)(param_2 + 0x10) = iVar5;
@@ -93,7 +93,7 @@ void ShaderFileGenerator(uint64_t param_1, longlong param_2, uint64_t param_3)
     BufferExpander(&puStack_c0, iVar5 + uStack_b0);
                     // WARNING: Subroutine does not return
     memcpy(puStack_b8 + uStack_b0,*(uint64_t *)(param_2 + 8),
-           (longlong)(*(int *)(param_2 + 0x10) + 1));
+           (int64_t)(*(int *)(param_2 + 0x10) + 1));
   }
   iVar5 = uStack_b0 + 3;
   BufferExpander(&puStack_c0, iVar5);
@@ -111,7 +111,7 @@ void ShaderFileGenerator(uint64_t param_1, longlong param_2, uint64_t param_3)
   if (puStack_80 != (void *)0x0) {
     puVar3 = puStack_80;
   }
-  fwrite(puVar3,(longlong)iStack_78,1,lStack_98);
+  fwrite(puVar3,(int64_t)iStack_78,1,lStack_98);
   if (lVar6 != 0) {
     fclose(lVar6);
     lStack_98 = 0;
@@ -144,7 +144,7 @@ void ShaderFileGenerator(uint64_t param_1, longlong param_2, uint64_t param_3)
   uStack_70 = 0;
   puStack_88 = &g_BufferAllocator;
                     // WARNING: Subroutine does not return
-  SecurityCheckHandler(uStack_38 ^ (ulonglong)auStack_e8);
+  SecurityCheckHandler(uStack_38 ^ (uint64_t)auStack_e8);
 }
 
 
@@ -180,7 +180,7 @@ uint64_t *ShaderParameterInitializer(uint64_t param_1, uint64_t *param_2, uint64
   *(int32_t *)(param_2 + 2) = 0;
   iVar1 = *(int *)(param_2 + 2);
   BufferExpander(param_2, iVar1 + 0x15, param_3, param_4, 1, 0xfffffffffffffffe);
-  puVar2 = (int32_t *)((ulonglong)*(uint *)(param_2 + 2) + param_2[1]);
+  puVar2 = (int32_t *)((uint64_t)*(uint *)(param_2 + 2) + param_2[1]);
   *puVar2 = 0x66656423;
   puVar2[1] = 0x20656e69;
   puVar2[2] = 0x46554247;
@@ -228,7 +228,7 @@ uint64_t *ShaderHeaderGenerator(uint64_t param_1, uint64_t *param_2, uint64_t pa
   *(int32_t *)(param_2 + 2) = 0;
   iVar1 = *(int *)(param_2 + 2);
   BufferExpander(param_2, iVar1 + 0x17, param_3, param_4, 1, 0xfffffffffffffffe);
-  puVar2 = (int32_t *)((ulonglong)*(uint *)(param_2 + 2) + param_2[1]);
+  puVar2 = (int32_t *)((uint64_t)*(uint *)(param_2 + 2) + param_2[1]);
   *puVar2 = 0x66656423;
   puVar2[1] = 0x20656e69;
   puVar2[2] = 0x44414853;
@@ -275,7 +275,7 @@ uint64_t *ShaderPipelineGenerator(uint64_t param_1, uint64_t *param_2, uint64_t 
   *(int32_t *)(param_2 + 2) = 0;
   iVar1 = *(int *)(param_2 + 2);
   BufferExpander(param_2, iVar1 + 0x22, param_3, param_4, 1, 0xfffffffffffffffe);
-  puVar2 = (int32_t *)((ulonglong)*(uint *)(param_2 + 2) + param_2[1]);
+  puVar2 = (int32_t *)((uint64_t)*(uint *)(param_2 + 2) + param_2[1]);
   *puVar2 = 0x66656423;
   puVar2[1] = 0x20656e69;
   puVar2[2] = 0x4e494f50;
@@ -285,7 +285,7 @@ uint64_t *ShaderPipelineGenerator(uint64_t param_1, uint64_t *param_2, uint64_t 
   puVar2[6] = 0x50414d57;
   puVar2[7] = 0x5341505f;
   *(int16_t *)(puVar2 + 8) = 0xa53;
-  *(int8_t *)((longlong)puVar2 + 0x22) = 0;
+  *(int8_t *)((int64_t)puVar2 + 0x22) = 0;
   *(int *)(param_2 + 2) = iVar1 + 0x22;
   uVar3 = ShaderValidator(puVar2, param_2, param_3);
   uVar3 = ShaderOptimizer(uVar3, param_2, param_3);
@@ -398,7 +398,7 @@ uint64_t *ShaderPipelineGenerator(uint64_t param_1, uint64_t *param_2, uint64_t 
  * @param param_3 着色器参数
  * @param param_4 编译选项
  */
-void ShaderSourceCompiler(uint64_t param_1, longlong param_2, longlong param_3, uint64_t param_4)
+void ShaderSourceCompiler(uint64_t param_1, int64_t param_2, int64_t param_3, uint64_t param_4)
 
 {
   int32_t uVar1;
@@ -409,17 +409,17 @@ void ShaderSourceCompiler(uint64_t param_1, longlong param_2, longlong param_3, 
   int32_t *puVar6;
   uint64_t *puVar7;
   int16_t *puVar8;
-  longlong lVar9;
+  int64_t lVar9;
   uint64_t *puVar10;
   uint64_t *puVar11;
   uint uVar12;
-  longlong lVar14;
+  int64_t lVar14;
   int iVar15;
   int iVar16;
   int iVar17;
-  ulonglong uVar18;
+  uint64_t uVar18;
   int32_t uVar19;
-  ulonglong uVar13;
+  uint64_t uVar13;
   
   uVar13 = 0;
   puVar5 = (int32_t *)
@@ -435,7 +435,7 @@ void ShaderSourceCompiler(uint64_t param_1, longlong param_2, longlong param_3, 
   iVar17 = *(int *)(param_2 + 0x10);
   iVar15 = iVar17 + 0x11;
   BufferExpander(param_2, iVar15);
-  puVar6 = (int32_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  puVar6 = (int32_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *puVar6 = 0x20666923;
   puVar6[1] = 0x45584950;
   puVar6[2] = 0x48535f4c;
@@ -444,18 +444,18 @@ void ShaderSourceCompiler(uint64_t param_1, longlong param_2, longlong param_3, 
   *(int *)(param_2 + 0x10) = iVar15;
   if (*(char *)(param_3 + 0x10f8) == '\0') {
     BufferExpander(param_2, iVar17 + 0x39);
-    puVar7 = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+    puVar7 = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
     *puVar7 = 0x504c412120666923;
     puVar7[1] = 0x20545345545f4148;
     *(int32_t *)(puVar7 + 2) = 0x21202626;
-    *(int32_t *)((longlong)puVar7 + 0x14) = 0x5f455355;
+    *(int32_t *)((int64_t)puVar7 + 0x14) = 0x5f455355;
     *(int32_t *)(puVar7 + 3) = 0x4f4f4d53;
-    *(int32_t *)((longlong)puVar7 + 0x1c) = 0x465f4854;
+    *(int32_t *)((int64_t)puVar7 + 0x1c) = 0x465f4854;
     puVar7[4] = 0xa54554f5f454441;
     *(int8_t *)(puVar7 + 5) = 0;
     *(int *)(param_2 + 0x10) = iVar17 + 0x39;
     BufferExpander(param_2, iVar17 + 0x4d);
-    puVar6 = (int32_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+    puVar6 = (int32_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
     *puVar6 = 0x7261655b;
     puVar6[1] = 0x6564796c;
     puVar6[2] = 0x73687470;
@@ -465,22 +465,22 @@ void ShaderSourceCompiler(uint64_t param_1, longlong param_2, longlong param_3, 
     *(int *)(param_2 + 0x10) = iVar17 + 0x4d;
     iVar15 = iVar17 + 0x54;
     BufferExpander(param_2, iVar15);
-    *(uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8)) =
+    *(uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8)) =
          0xa6669646e6523;
     *(int *)(param_2 + 0x10) = iVar15;
   }
   BufferExpander(param_2, iVar15 + 0x1a);
-  puVar6 = (int32_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  puVar6 = (int32_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *puVar6 = 0x4f5f5350;
   puVar6[1] = 0x55505455;
   puVar6[2] = 0x42475f54;
   puVar6[3] = 0x45464655;
   *(uint64_t *)(puVar6 + 4) = 0x705f6e69616d2052;
   *(int16_t *)(puVar6 + 6) = 0x2873;
-  *(int8_t *)((longlong)puVar6 + 0x1a) = 0;
+  *(int8_t *)((int64_t)puVar6 + 0x1a) = 0;
   *(int *)(param_2 + 0x10) = iVar15 + 0x1a;
   BufferExpander(param_2, iVar15 + 0x31);
-  puVar6 = (int32_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  puVar6 = (int32_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   uVar19 = puVar5[1];
   uVar1 = puVar5[2];
   uVar2 = puVar5[3];
@@ -491,32 +491,32 @@ void ShaderSourceCompiler(uint64_t param_1, longlong param_2, longlong param_3, 
   *(uint64_t *)(puVar6 + 4) = *(uint64_t *)(puVar5 + 4);
   *(int *)(param_2 + 0x10) = iVar15 + 0x31;
   BufferExpander(param_2, iVar15 + 0x36);
-  puVar6 = (int32_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  puVar6 = (int32_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *puVar6 = 0x296e4920;
   *(int16_t *)(puVar6 + 1) = 10;
   *(int *)(param_2 + 0x10) = iVar15 + 0x36;
   BufferExpander(param_2, iVar15 + 0x38);
-  puVar8 = (int16_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  puVar8 = (int16_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *puVar8 = 0xa7b;
   *(int8_t *)(puVar8 + 1) = 0;
   *(int *)(param_2 + 0x10) = iVar15 + 0x38;
   BufferExpander(param_2, iVar15 + 0x6a);
-  puVar7 = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  puVar7 = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *puVar7 = 0x5054554f5f535009;
   puVar7[1] = 0x46465542475f5455;
   *(int32_t *)(puVar7 + 2) = 0x4f205245;
-  *(int32_t *)((longlong)puVar7 + 0x14) = 0x75707475;
+  *(int32_t *)((int64_t)puVar7 + 0x14) = 0x75707475;
   *(int32_t *)(puVar7 + 3) = 0x203d2074;
-  *(int32_t *)((longlong)puVar7 + 0x1c) = 0x5f535028;
+  *(int32_t *)((int64_t)puVar7 + 0x1c) = 0x5f535028;
   *(int32_t *)(puVar7 + 4) = 0x5054554f;
-  *(int32_t *)((longlong)puVar7 + 0x24) = 0x475f5455;
+  *(int32_t *)((int64_t)puVar7 + 0x24) = 0x475f5455;
   *(int32_t *)(puVar7 + 5) = 0x46465542;
-  *(int32_t *)((longlong)puVar7 + 0x2c) = 0x30295245;
+  *(int32_t *)((int64_t)puVar7 + 0x2c) = 0x30295245;
   *(int16_t *)(puVar7 + 6) = 0xa3b;
-  *(int8_t *)((longlong)puVar7 + 0x32) = 0;
+  *(int8_t *)((int64_t)puVar7 + 0x32) = 0;
   *(int *)(param_2 + 0x10) = iVar15 + 0x6a;
   BufferExpander(param_2, iVar15 + 0xb1);
-  puVar7 = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  puVar7 = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *puVar7 = 0x7869705f72655009;
   puVar7[1] = 0x69746174735f6c65;
   puVar7[2] = 0x6261697261765f63;
@@ -524,13 +524,13 @@ void ShaderSourceCompiler(uint64_t param_1, longlong param_2, longlong param_3, 
   puVar7[4] = 0x203d206369746174;
   puVar7[5] = 0x7869705f72655028;
   *(int32_t *)(puVar7 + 6) = 0x735f6c65;
-  *(int32_t *)((longlong)puVar7 + 0x34) = 0x69746174;
+  *(int32_t *)((int64_t)puVar7 + 0x34) = 0x69746174;
   *(int32_t *)(puVar7 + 7) = 0x61765f63;
-  *(int32_t *)((longlong)puVar7 + 0x3c) = 0x62616972;
+  *(int32_t *)((int64_t)puVar7 + 0x3c) = 0x62616972;
   puVar7[8] = 0xa3b302973656c;
   *(int *)(param_2 + 0x10) = iVar15 + 0xb1;
   BufferExpander(param_2, iVar15 + 0x105);
-  puVar7 = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  puVar7 = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *puVar7 = 0x7869705f72655009;
   puVar7[1] = 0x6669646f6d5f6c65;
   puVar7[2] = 0x61765f656c626169;
@@ -538,18 +538,18 @@ void ShaderSourceCompiler(uint64_t param_1, longlong param_2, longlong param_3, 
   puVar7[4] = 0x6669646f6d5f7070;
   puVar7[5] = 0x203d20656c626169;
   *(int32_t *)(puVar7 + 6) = 0x72655028;
-  *(int32_t *)((longlong)puVar7 + 0x34) = 0x7869705f;
+  *(int32_t *)((int64_t)puVar7 + 0x34) = 0x7869705f;
   *(int32_t *)(puVar7 + 7) = 0x6d5f6c65;
-  *(int32_t *)((longlong)puVar7 + 0x3c) = 0x6669646f;
+  *(int32_t *)((int64_t)puVar7 + 0x3c) = 0x6669646f;
   *(int32_t *)(puVar7 + 8) = 0x6c626169;
-  *(int32_t *)((longlong)puVar7 + 0x44) = 0x61765f65;
+  *(int32_t *)((int64_t)puVar7 + 0x44) = 0x61765f65;
   *(int32_t *)(puVar7 + 9) = 0x62616972;
-  *(int32_t *)((longlong)puVar7 + 0x4c) = 0x2973656c;
+  *(int32_t *)((int64_t)puVar7 + 0x4c) = 0x2973656c;
   *(int32_t *)(puVar7 + 10) = 0xa0a3b30;
-  *(int8_t *)((longlong)puVar7 + 0x54) = 0;
+  *(int8_t *)((int64_t)puVar7 + 0x54) = 0;
   *(int *)(param_2 + 0x10) = iVar15 + 0x105;
   BufferExpander(param_2, iVar15 + 0x150);
-  puVar7 = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  puVar7 = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *puVar7 = 0x7869705f72655009;
   puVar7[1] = 0x6c697875615f6c65;
   puVar7[2] = 0x7261765f79726169;
@@ -557,56 +557,56 @@ void ShaderSourceCompiler(uint64_t param_1, longlong param_2, longlong param_3, 
   puVar7[4] = 0x203d207875615f70;
   puVar7[5] = 0x7869705f72655028;
   *(int32_t *)(puVar7 + 6) = 0x615f6c65;
-  *(int32_t *)((longlong)puVar7 + 0x34) = 0x6c697875;
+  *(int32_t *)((int64_t)puVar7 + 0x34) = 0x6c697875;
   *(int32_t *)(puVar7 + 7) = 0x79726169;
-  *(int32_t *)((longlong)puVar7 + 0x3c) = 0x7261765f;
+  *(int32_t *)((int64_t)puVar7 + 0x3c) = 0x7261765f;
   puVar7[8] = 0x302973656c626169;
   *(int32_t *)(puVar7 + 9) = 0xa0a3b;
   *(int *)(param_2 + 0x10) = iVar15 + 0x150;
   iVar15 = iVar15 + 0x187;
   BufferExpander(param_2, iVar15);
-  puVar7 = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  puVar7 = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *puVar7 = 0x616c75636c616309;
   puVar7[1] = 0x705f7265705f6574;
   puVar7[2] = 0x6174735f6c657869;
   puVar7[3] = 0x697261765f636974;
   uVar19 = 0x656c6261;
   *(int32_t *)(puVar7 + 4) = 0x656c6261;
-  *(int32_t *)((longlong)puVar7 + 0x24) = 0x6e492873;
+  *(int32_t *)((int64_t)puVar7 + 0x24) = 0x6e492873;
   *(int32_t *)(puVar7 + 5) = 0x7070202c;
-  *(int32_t *)((longlong)puVar7 + 0x2c) = 0x6174735f;
+  *(int32_t *)((int64_t)puVar7 + 0x2c) = 0x6174735f;
   puVar7[6] = 0xa0a3b29636974;
   *(int *)(param_2 + 0x10) = iVar15;
-  lVar9 = *(longlong *)(param_3 + 0x498) - *(longlong *)(param_3 + 0x490);
+  lVar9 = *(int64_t *)(param_3 + 0x498) - *(int64_t *)(param_3 + 0x490);
   lVar14 = lVar9 >> 0x3f;
   uVar18 = uVar13;
   if (lVar9 / 0x98 + lVar14 != lVar14) {
     do {
       iVar16 = iVar15 + 1;
       BufferExpander(param_2, iVar16);
-      *(int16_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8)) = 9;
+      *(int16_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8)) = 9;
       *(int *)(param_2 + 0x10) = iVar16;
-      lVar14 = *(longlong *)(param_3 + 0x490);
+      lVar14 = *(int64_t *)(param_3 + 0x490);
       iVar17 = *(int *)(lVar14 + 0x10 + uVar18);
       if (0 < iVar17) {
         BufferExpander(param_2, iVar16 + iVar17);
                     // WARNING: Subroutine does not return
-        memcpy((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8),
-               *(uint64_t *)(lVar14 + 8 + uVar18),(longlong)(*(int *)(lVar14 + 0x10 + uVar18) + 1)
+        memcpy((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8),
+               *(uint64_t *)(lVar14 + 8 + uVar18),(int64_t)(*(int *)(lVar14 + 0x10 + uVar18) + 1)
               );
       }
       iVar15 = iVar15 + 7;
       uVar19 = BufferExpander(param_2, iVar15);
-      puVar6 = (int32_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+      puVar6 = (int32_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
       *puVar6 = 0x296e4928;
       *(int16_t *)(puVar6 + 1) = 0xa3b;
-      *(int8_t *)((longlong)puVar6 + 6) = 0;
+      *(int8_t *)((int64_t)puVar6 + 6) = 0;
       *(int *)(param_2 + 0x10) = iVar15;
       uVar12 = (int)uVar13 + 1;
-      uVar13 = (ulonglong)uVar12;
+      uVar13 = (uint64_t)uVar12;
       uVar18 = uVar18 + 0x98;
-    } while ((ulonglong)(longlong)(int)uVar12 <
-             (ulonglong)((*(longlong *)(param_3 + 0x498) - *(longlong *)(param_3 + 0x490)) / 0x98));
+    } while ((uint64_t)(int64_t)(int)uVar12 <
+             (uint64_t)((*(int64_t *)(param_3 + 0x498) - *(int64_t *)(param_3 + 0x490)) / 0x98));
   }
   lVar14 = 0;
   do {
@@ -616,17 +616,17 @@ void ShaderSourceCompiler(uint64_t param_1, longlong param_2, longlong param_3, 
         iVar17 = *(int *)(param_2 + 0x10);
         iVar15 = iVar17 + 1;
         BufferExpander(param_2, iVar15);
-        *(int16_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8)) = 9;
+        *(int16_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8)) = 9;
         *(int *)(param_2 + 0x10) = iVar15;
         if (0 < *(int *)(lVar9 + 0xa40)) {
           BufferExpander(param_2, iVar15 + *(int *)(lVar9 + 0xa40));
                     // WARNING: Subroutine does not return
-          memcpy((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8),
-                 *(uint64_t *)(lVar9 + 0xa38),(longlong)(*(int *)(lVar9 + 0xa40) + 1));
+          memcpy((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8),
+                 *(uint64_t *)(lVar9 + 0xa38),(int64_t)(*(int *)(lVar9 + 0xa40) + 1));
         }
         iVar17 = iVar17 + 0x2b;
         BufferExpander(param_2, iVar17);
-        puVar7 = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+        puVar7 = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
         *puVar7 = 0x7070202c206e4928;
         puVar7[1] = 0x206369746174735f;
         puVar7[2] = 0x646f6d5f7070202c;
@@ -634,7 +634,7 @@ void ShaderSourceCompiler(uint64_t param_1, longlong param_2, longlong param_3, 
         uVar19 = 0x5f707020;
         puVar7[4] = 0x297875615f707020;
         *(int16_t *)(puVar7 + 5) = 0xa3b;
-        *(int8_t *)((longlong)puVar7 + 0x2a) = 0;
+        *(int8_t *)((int64_t)puVar7 + 0x2a) = 0;
         *(int *)(param_2 + 0x10) = iVar17;
       }
       if (lVar14 == 1) {
@@ -645,21 +645,21 @@ void ShaderSourceCompiler(uint64_t param_1, longlong param_2, longlong param_3, 
   } while (lVar14 < 7);
   iVar17 = *(int *)(param_2 + 0x10);
   BufferExpander(param_2, iVar17 + 0x39);
-  puVar7 = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  puVar7 = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *puVar7 = 0x6f2074616f6c6609;
   puVar7[1] = 0x6e6f6973756c6363;
   puVar7[2] = 0x203d206f666e695f;
   puVar7[3] = 0x6669646f6d5f7070;
   *(int32_t *)(puVar7 + 4) = 0x6c626169;
-  *(int32_t *)((longlong)puVar7 + 0x24) = 0x6d612e65;
+  *(int32_t *)((int64_t)puVar7 + 0x24) = 0x6d612e65;
   *(int32_t *)(puVar7 + 5) = 0x6e656962;
-  *(int32_t *)((longlong)puVar7 + 0x2c) = 0x6f615f74;
+  *(int32_t *)((int64_t)puVar7 + 0x2c) = 0x6f615f74;
   puVar7[6] = 0x3b726f746361665f;
   *(int16_t *)(puVar7 + 7) = 10;
   *(int *)(param_2 + 0x10) = iVar17 + 0x39;
   BufferExpander(param_2, iVar17 + 0x14f);
   lVar14 = 2;
-  puVar7 = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  puVar7 = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   puVar4 = (uint64_t *)&g_ShaderTextureData;
   do {
     puVar11 = puVar4;
@@ -685,56 +685,56 @@ void ShaderSourceCompiler(uint64_t param_1, longlong param_2, longlong param_3, 
     uVar3 = puVar11[0xd];
     puVar10[0xc] = puVar11[0xc];
     puVar10[0xd] = uVar3;
-    uVar19 = *(int32_t *)((longlong)puVar11 + 0x74);
+    uVar19 = *(int32_t *)((int64_t)puVar11 + 0x74);
     uVar1 = *(int32_t *)(puVar11 + 0xf);
-    uVar2 = *(int32_t *)((longlong)puVar11 + 0x7c);
+    uVar2 = *(int32_t *)((int64_t)puVar11 + 0x7c);
     *(int32_t *)(puVar10 + 0xe) = *(int32_t *)(puVar11 + 0xe);
-    *(int32_t *)((longlong)puVar10 + 0x74) = uVar19;
+    *(int32_t *)((int64_t)puVar10 + 0x74) = uVar19;
     *(int32_t *)(puVar10 + 0xf) = uVar1;
-    *(int32_t *)((longlong)puVar10 + 0x7c) = uVar2;
+    *(int32_t *)((int64_t)puVar10 + 0x7c) = uVar2;
     lVar14 = lVar14 + -1;
     puVar7 = puVar10 + 0x10;
     puVar4 = puVar11 + 0x10;
   } while (lVar14 != 0);
-  uVar19 = *(int32_t *)((longlong)puVar11 + 0x84);
+  uVar19 = *(int32_t *)((int64_t)puVar11 + 0x84);
   uVar1 = *(int32_t *)(puVar11 + 0x11);
-  uVar2 = *(int32_t *)((longlong)puVar11 + 0x8c);
+  uVar2 = *(int32_t *)((int64_t)puVar11 + 0x8c);
   *(int32_t *)(puVar10 + 0x10) = *(int32_t *)(puVar11 + 0x10);
-  *(int32_t *)((longlong)puVar10 + 0x84) = uVar19;
+  *(int32_t *)((int64_t)puVar10 + 0x84) = uVar19;
   *(int32_t *)(puVar10 + 0x11) = uVar1;
-  *(int32_t *)((longlong)puVar10 + 0x8c) = uVar2;
+  *(int32_t *)((int64_t)puVar10 + 0x8c) = uVar2;
   *(int32_t *)(puVar10 + 0x12) = *(int32_t *)(puVar11 + 0x12);
-  *(int16_t *)((longlong)puVar10 + 0x94) = *(int16_t *)((longlong)puVar11 + 0x94);
-  *(void *)((longlong)puVar10 + 0x96) = *(void *)((longlong)puVar11 + 0x96);
+  *(int16_t *)((int64_t)puVar10 + 0x94) = *(int16_t *)((int64_t)puVar11 + 0x94);
+  *(void *)((int64_t)puVar10 + 0x96) = *(void *)((int64_t)puVar11 + 0x96);
   *(int *)(param_2 + 0x10) = iVar17 + 0x14f;
   BufferExpander(param_2, iVar17 + 0x177);
-  puVar7 = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  puVar7 = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *puVar7 = 0x7562675f74657309;
   puVar7[1] = 0x746f6d5f72656666;
   *(int32_t *)(puVar7 + 2) = 0x5f6e6f69;
-  *(int32_t *)((longlong)puVar7 + 0x14) = 0x74636576;
+  *(int32_t *)((int64_t)puVar7 + 0x14) = 0x74636576;
   *(int32_t *)(puVar7 + 3) = 0x4928726f;
-  *(int32_t *)((longlong)puVar7 + 0x1c) = 0x4f202c6e;
+  *(int32_t *)((int64_t)puVar7 + 0x1c) = 0x4f202c6e;
   puVar7[4] = 0xa3b297475707475;
   *(int8_t *)(puVar7 + 5) = 0;
   *(int *)(param_2 + 0x10) = iVar17 + 0x177;
   BufferExpander(param_2, iVar17 + 0x1b6);
-  puVar7 = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  puVar7 = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *puVar7 = 0x7562675f74657309;
   puVar7[1] = 0x746e655f72656666;
   puVar7[2] = 0x492864695f797469;
   puVar7[3] = 0x74735f7070202c6e;
   *(int32_t *)(puVar7 + 4) = 0x63697461;
-  *(int32_t *)((longlong)puVar7 + 0x24) = 0x7070202c;
+  *(int32_t *)((int64_t)puVar7 + 0x24) = 0x7070202c;
   *(int32_t *)(puVar7 + 5) = 0x646f6d5f;
-  *(int32_t *)((longlong)puVar7 + 0x2c) = 0x61696669;
+  *(int32_t *)((int64_t)puVar7 + 0x2c) = 0x61696669;
   *(int32_t *)(puVar7 + 6) = 0x2c656c62;
-  *(int32_t *)((longlong)puVar7 + 0x34) = 0x74754f20;
+  *(int32_t *)((int64_t)puVar7 + 0x34) = 0x74754f20;
   *(int32_t *)(puVar7 + 7) = 0x29747570;
-  *(int32_t *)((longlong)puVar7 + 0x3c) = 0xa0a3b;
+  *(int32_t *)((int64_t)puVar7 + 0x3c) = 0xa0a3b;
   *(int *)(param_2 + 0x10) = iVar17 + 0x1b6;
   BufferExpander(param_2, iVar17 + 0x1d7);
-  puVar6 = (int32_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  puVar6 = (int32_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *puVar6 = 0x64666923;
   puVar6[1] = 0x53206665;
   puVar6[2] = 0x45545359;
@@ -746,7 +746,7 @@ void ShaderSourceCompiler(uint64_t param_1, longlong param_2, longlong param_3, 
   *(int16_t *)(puVar6 + 8) = 10;
   *(int *)(param_2 + 0x10) = iVar17 + 0x1d7;
   BufferExpander(param_2, iVar17 + 0x22d);
-  puVar7 = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  puVar7 = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *puVar7 = 0x414d282066692309;
   puVar7[1] = 0x495f4c4149524554;
   puVar7[2] = 0x4941525245545f44;
@@ -754,19 +754,19 @@ void ShaderSourceCompiler(uint64_t param_1, longlong param_2, longlong param_3, 
   puVar7[4] = 0x6c6169726574616d;
   puVar7[5] = 0x202626202964695f;
   *(int32_t *)(puVar7 + 6) = 0x54414d28;
-  *(int32_t *)((longlong)puVar7 + 0x34) = 0x41495245;
+  *(int32_t *)((int64_t)puVar7 + 0x34) = 0x41495245;
   *(int32_t *)(puVar7 + 7) = 0x44495f4c;
-  *(int32_t *)((longlong)puVar7 + 0x3c) = 0x4152475f;
+  *(int32_t *)((int64_t)puVar7 + 0x3c) = 0x4152475f;
   *(int32_t *)(puVar7 + 8) = 0x21205353;
-  *(int32_t *)((longlong)puVar7 + 0x44) = 0x796d203d;
+  *(int32_t *)((int64_t)puVar7 + 0x44) = 0x796d203d;
   *(int32_t *)(puVar7 + 9) = 0x74616d5f;
-  *(int32_t *)((longlong)puVar7 + 0x4c) = 0x61697265;
+  *(int32_t *)((int64_t)puVar7 + 0x4c) = 0x61697265;
   *(int32_t *)(puVar7 + 10) = 0x64695f6c;
-  *(int16_t *)((longlong)puVar7 + 0x54) = 0xa29;
-  *(int8_t *)((longlong)puVar7 + 0x56) = 0;
+  *(int16_t *)((int64_t)puVar7 + 0x54) = 0xa29;
+  *(int8_t *)((int64_t)puVar7 + 0x56) = 0;
   *(int *)(param_2 + 0x10) = iVar17 + 0x22d;
   BufferExpander(param_2, iVar17 + 0x288);
-  puVar7 = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  puVar7 = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *puVar7 = 0x74757074754f0909;
   puVar7[1] = 0x726566667562672e;
   puVar7[2] = 0x5f6f6465626c615f;
@@ -776,23 +776,23 @@ void ShaderSourceCompiler(uint64_t param_1, longlong param_2, longlong param_3, 
   puVar7[6] = 0x65747265765f6465;
   puVar7[7] = 0x28726f6c6f635f78;
   *(int32_t *)(puVar7 + 8) = 0x762e6e49;
-  *(int32_t *)((longlong)puVar7 + 0x44) = 0x65747265;
+  *(int32_t *)((int64_t)puVar7 + 0x44) = 0x65747265;
   *(int32_t *)(puVar7 + 9) = 0x6f635f78;
-  *(int32_t *)((longlong)puVar7 + 0x4c) = 0x2e726f6c;
+  *(int32_t *)((int64_t)puVar7 + 0x4c) = 0x2e726f6c;
   puVar7[10] = 0x67722e2961626772;
   *(int32_t *)(puVar7 + 0xb) = 0xa3b62;
   *(int *)(param_2 + 0x10) = iVar17 + 0x288;
   BufferExpander(param_2, iVar17 + 0x290);
-  puVar7 = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  puVar7 = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *puVar7 = 0xa6669646e652309;
   *(int8_t *)(puVar7 + 1) = 0;
   *(int *)(param_2 + 0x10) = iVar17 + 0x290;
   BufferExpander(param_2, iVar17 + 0x297);
-  *(uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8)) =
+  *(uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8)) =
        0xa6669646e6523;
   *(int *)(param_2 + 0x10) = iVar17 + 0x297;
   BufferExpander(param_2, iVar17 + 0x2a7);
-  puVar6 = (int32_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  puVar6 = (int32_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *puVar6 = 0x74657209;
   puVar6[1] = 0x206e7275;
   puVar6[2] = 0x7074754f;
@@ -800,12 +800,12 @@ void ShaderSourceCompiler(uint64_t param_1, longlong param_2, longlong param_3, 
   *(int8_t *)(puVar6 + 4) = 0;
   *(int *)(param_2 + 0x10) = iVar17 + 0x2a7;
   BufferExpander(param_2, iVar17 + 0x2a9);
-  puVar8 = (int16_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  puVar8 = (int16_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
   *puVar8 = 0xa7d;
   *(int8_t *)(puVar8 + 1) = 0;
   *(int *)(param_2 + 0x10) = iVar17 + 0x2a9;
   BufferExpander(param_2, iVar17 + 0x2b0);
-  *(uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8)) =
+  *(uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8)) =
        0xa6669646e6523;
   *(int *)(param_2 + 0x10) = iVar17 + 0x2b0;
                     // WARNING: Subroutine does not return

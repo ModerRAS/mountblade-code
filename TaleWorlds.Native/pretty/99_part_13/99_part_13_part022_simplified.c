@@ -52,7 +52,7 @@
  * @param flags 处理标志
  * @param security 安全令牌
  */
-void audio_processor_simple(longlong context, float volume, uint flags, ulonglong security)
+void audio_processor_simple(int64_t context, float volume, uint flags, uint64_t security)
 {
     // 简化音频处理逻辑
     float processed_volume = volume * AUDIO_VOLUME_MULTIPLIER;
@@ -72,7 +72,7 @@ void audio_processor_simple(longlong context, float volume, uint flags, ulonglon
     *(float *)(context + 0x54) = final_output;
     
     // 安全退出
-    FUN_1808fc050(security ^ (ulonglong)&final_output);
+    FUN_1808fc050(security ^ (uint64_t)&final_output);
 }
 
 /**
@@ -90,7 +90,7 @@ void audio_processor_simple(longlong context, float volume, uint flags, ulonglon
  * @param context 音频上下文
  * @param security 安全令牌
  */
-void audio_volume_adjust(float volume_input, longlong context, ulonglong security)
+void audio_volume_adjust(float volume_input, int64_t context, uint64_t security)
 {
     // 简化的音量调整逻辑
     float adjusted_volume = volume_input;
@@ -107,7 +107,7 @@ void audio_volume_adjust(float volume_input, longlong context, ulonglong securit
     *(float *)(context + 0x54) = adjusted_volume;
     
     // 安全退出
-    FUN_1808fc050(security ^ (ulonglong)&adjusted_volume);
+    FUN_1808fc050(security ^ (uint64_t)&adjusted_volume);
 }
 
 /**
@@ -128,7 +128,7 @@ void audio_volume_adjust(float volume_input, longlong context, ulonglong securit
  * @param security 安全令牌
  */
 void audio_effect_apply(uint64_t param1, uint64_t param2, int param3, 
-                      uint param4, ulonglong security)
+                      uint param4, uint64_t security)
 {
     // 简化的音效应用逻辑
     float effect_value = (float)param2;
@@ -148,7 +148,7 @@ void audio_effect_apply(uint64_t param1, uint64_t param2, int param3,
     *(float *)(param1 + 0x54) = result_value;
     
     // 安全退出
-    FUN_1808fc050(security ^ (ulonglong)&result_value);
+    FUN_1808fc050(security ^ (uint64_t)&result_value);
 }
 
 /**
@@ -166,10 +166,10 @@ void audio_effect_apply(uint64_t param1, uint64_t param2, int param3,
  * @param target 目标资源
  * @return 操作结果
  */
-uint64_t audio_resource_manager(longlong context, longlong *target)
+uint64_t audio_resource_manager(int64_t context, int64_t *target)
 {
     // 简化的资源管理逻辑
-    if (target == (longlong *)0x0) {
+    if (target == (int64_t *)0x0) {
         return 0x1c; // 错误码：无效目标
     }
     

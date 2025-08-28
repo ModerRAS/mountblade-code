@@ -3,14 +3,14 @@
 
 // 03_rendering_part528.c - 2 个函数
 
-// 函数: void FUN_1805554f0(longlong param_1,longlong param_2)
-void FUN_1805554f0(longlong param_1,longlong param_2)
+// 函数: void FUN_1805554f0(int64_t param_1,int64_t param_2)
+void FUN_1805554f0(int64_t param_1,int64_t param_2)
 
 {
   byte bVar1;
   uint64_t uVar2;
   bool bVar3;
-  longlong lVar4;
+  int64_t lVar4;
   char *pcVar5;
   uint64_t *puVar6;
   uint64_t *puVar7;
@@ -36,12 +36,12 @@ void FUN_1805554f0(longlong param_1,longlong param_2)
   *(int32_t *)(lVar4 + 0x19) = 0;
   *(int16_t *)(lVar4 + 0x1d) = 0;
   *(int8_t *)(lVar4 + 0x1f) = 0;
-  *(longlong *)lVar4 = lVar4;
-  *(longlong *)(lVar4 + 8) = lVar4;
+  *(int64_t *)lVar4 = lVar4;
+  *(int64_t *)(lVar4 + 8) = lVar4;
   *(uint64_t *)(lVar4 + 0x10) = 0;
   *(int8_t *)(lVar4 + 0x18) = 0;
   *(uint64_t *)(lVar4 + 0x20) = 0;
-  *(longlong *)(param_1 + 0x10) = lVar4;
+  *(int64_t *)(param_1 + 0x10) = lVar4;
   if (param_2 != 0) {
     pcVar13 = "monster_usage_set";
     do {
@@ -59,9 +59,9 @@ void FUN_1805554f0(longlong param_1,longlong param_2)
         pcVar5 = (char *)puVar11[2];
       }
       if (pcVar5 == pcVar17 + -0x180a34ecf) {
-        pcVar5 = pcVar5 + (longlong)pcVar13;
+        pcVar5 = pcVar5 + (int64_t)pcVar13;
         if (pcVar5 <= pcVar13) goto LAB_1805555e0;
-        lVar4 = (longlong)&unknown_var_3488_ptr - (longlong)pcVar13;
+        lVar4 = (int64_t)&unknown_var_3488_ptr - (int64_t)pcVar13;
         while (*pcVar13 == pcVar13[lVar4]) {
           pcVar13 = pcVar13 + 1;
           if (pcVar5 <= pcVar13) goto LAB_1805555e0;
@@ -92,7 +92,7 @@ LAB_1805555e0:
         pcVar5 = (char *)puVar14[2];
       }
       if (pcVar5 == pcVar17 + -0x180a0ae27) {
-        pcVar5 = pcVar5 + (longlong)pcVar13;
+        pcVar5 = pcVar5 + (int64_t)pcVar13;
         if (pcVar5 <= pcVar13) {
 LAB_180555693:
           lVar4 = 0x180d48d24;
@@ -102,7 +102,7 @@ LAB_180555693:
           FUN_180627c50(&puStack_60,lVar4);
           break;
         }
-        lVar4 = (longlong)&unknown_var_1288_ptr - (longlong)pcVar13;
+        lVar4 = (int64_t)&unknown_var_1288_ptr - (int64_t)pcVar13;
         while (*pcVar13 == pcVar13[lVar4]) {
           pcVar13 = pcVar13 + 1;
           if (pcVar5 <= pcVar13) goto LAB_180555693;
@@ -129,7 +129,7 @@ LAB_180555769:
           else {
             pbVar9 = pbStack_58;
             do {
-              uVar10 = (uint)pbVar9[puVar15[5] - (longlong)pbStack_58];
+              uVar10 = (uint)pbVar9[puVar15[5] - (int64_t)pbStack_58];
               iVar12 = *pbVar9 - uVar10;
               if (*pbVar9 != uVar10) break;
               pbVar9 = pbVar9 + 1;
@@ -154,7 +154,7 @@ LAB_18055572b:
       if (*(int *)(puVar7 + 6) != 0) {
         if (iStack_50 != 0) {
           pbVar9 = (byte *)puVar7[5];
-          lVar4 = (longlong)pbStack_58 - (longlong)pbVar9;
+          lVar4 = (int64_t)pbStack_58 - (int64_t)pbVar9;
           do {
             bVar1 = *pbVar9;
             uVar10 = (uint)pbVar9[lVar4];
@@ -198,9 +198,9 @@ LAB_18055576c:
         pcVar5 = (char *)puVar11[2];
       }
     } while (pcVar5 != pcVar17 + -0x180a34ecf);
-    pcVar5 = pcVar5 + (longlong)pcVar13;
+    pcVar5 = pcVar5 + (int64_t)pcVar13;
     if (pcVar5 <= pcVar13) break;
-    lVar4 = (longlong)&unknown_var_3488_ptr - (longlong)pcVar13;
+    lVar4 = (int64_t)&unknown_var_3488_ptr - (int64_t)pcVar13;
     while (*pcVar13 == pcVar13[lVar4]) {
       pcVar13 = pcVar13 + 1;
       if (pcVar5 <= pcVar13) goto LAB_1805555e0;
@@ -213,8 +213,8 @@ LAB_18055576c:
 
 
 
-// 函数: void FUN_180555820(longlong *param_1,longlong param_2)
-void FUN_180555820(longlong *param_1,longlong param_2)
+// 函数: void FUN_180555820(int64_t *param_1,int64_t param_2)
+void FUN_180555820(int64_t *param_1,int64_t param_2)
 
 {
   byte bVar1;
@@ -227,7 +227,7 @@ void FUN_180555820(longlong *param_1,longlong param_2)
   char *pcVar8;
   char *pcVar9;
   uint uVar10;
-  longlong lVar11;
+  int64_t lVar11;
   byte *pbVar12;
   uint64_t *puVar13;
   int iVar14;
@@ -236,10 +236,10 @@ void FUN_180555820(longlong *param_1,longlong param_2)
   uint64_t *puVar17;
   uint64_t *puVar18;
   char *pcVar19;
-  longlong lVar20;
-  longlong *plVar21;
+  int64_t lVar20;
+  int64_t *plVar21;
   int8_t auStackX_8 [8];
-  longlong lStackX_10;
+  int64_t lStackX_10;
   void *puStack_60;
   byte *pbStack_58;
   int iStack_50;
@@ -269,10 +269,10 @@ void FUN_180555820(longlong *param_1,longlong param_2)
       pcVar8 = (char *)puVar13[2];
     }
     if (pcVar8 == pcVar19 + -0x180a34ecf) {
-      pcVar8 = pcVar8 + (longlong)pcVar7;
+      pcVar8 = pcVar8 + (int64_t)pcVar7;
       pcVar6 = pcVar16;
       if (pcVar8 <= pcVar7) goto LAB_1805558f1;
-      lVar11 = (longlong)&unknown_var_3488_ptr - (longlong)pcVar7;
+      lVar11 = (int64_t)&unknown_var_3488_ptr - (int64_t)pcVar7;
       while (*pcVar7 == pcVar7[lVar11]) {
         pcVar7 = pcVar7 + 1;
         if (pcVar8 <= pcVar7) goto LAB_1805558f1;
@@ -299,9 +299,9 @@ LAB_180555b20:
       pcVar6 = *(char **)(pcVar19 + 0x10);
     }
     if (pcVar6 == pcVar7 + -0x180a34ecf) {
-      pcVar6 = pcVar6 + (longlong)pcVar8;
+      pcVar6 = pcVar6 + (int64_t)pcVar8;
       if (pcVar6 <= pcVar8) goto LAB_180555b71;
-      lVar11 = (longlong)&unknown_var_3488_ptr - (longlong)pcVar8;
+      lVar11 = (int64_t)&unknown_var_3488_ptr - (int64_t)pcVar8;
       while (*pcVar8 == pcVar8[lVar11]) {
         pcVar8 = pcVar8 + 1;
         if (pcVar6 <= pcVar8) goto LAB_180555b71;
@@ -331,7 +331,7 @@ LAB_1805558f1:
         pcVar8 = (char *)puVar17[2];
       }
       if (pcVar8 == pcVar7 + -0x180a0ae27) {
-        pcVar8 = pcVar8 + (longlong)pcVar19;
+        pcVar8 = pcVar8 + (int64_t)pcVar19;
         if (pcVar8 <= pcVar19) {
 LAB_180555981:
           lVar11 = 0x180d48d24;
@@ -341,7 +341,7 @@ LAB_180555981:
           FUN_180627c50(&puStack_60,lVar11);
           break;
         }
-        lVar11 = (longlong)&unknown_var_1288_ptr - (longlong)pcVar19;
+        lVar11 = (int64_t)&unknown_var_1288_ptr - (int64_t)pcVar19;
         while (*pcVar19 == pcVar19[lVar11]) {
           pcVar19 = pcVar19 + 1;
           if (pcVar8 <= pcVar19) goto LAB_180555981;
@@ -350,7 +350,7 @@ LAB_180555981:
     }
     lVar11 = *param_1;
     piVar4 = (int *)FUN_1800c2970(param_1[2],&puStack_60);
-    plVar21 = (longlong *)((longlong)*piVar4 * 0x1a8 + lVar11);
+    plVar21 = (int64_t *)((int64_t)*piVar4 * 0x1a8 + lVar11);
     pcVar19 = "id";
     do {
       pcVar7 = pcVar19;
@@ -367,7 +367,7 @@ LAB_180555981:
         pcVar8 = (char *)puVar17[2];
       }
       if (pcVar8 == pcVar7 + -0x180a0ae27) {
-        pcVar8 = pcVar19 + (longlong)pcVar8;
+        pcVar8 = pcVar19 + (int64_t)pcVar8;
         if (pcVar8 <= pcVar19) {
 LAB_180555a34:
           lVar11 = 0x180d48d24;
@@ -377,7 +377,7 @@ LAB_180555a34:
           (**(code **)(*plVar21 + 0x10))(plVar21,lVar11);
           break;
         }
-        lVar11 = (longlong)&unknown_var_1288_ptr - (longlong)pcVar19;
+        lVar11 = (int64_t)&unknown_var_1288_ptr - (int64_t)pcVar19;
         while (*pcVar19 == pcVar19[lVar11]) {
           pcVar19 = pcVar19 + 1;
           if (pcVar8 <= pcVar19) goto LAB_180555a34;
@@ -389,7 +389,7 @@ LAB_180555a34:
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
-    pcVar6 = (char *)(ulonglong)((int)pcVar6 + 1);
+    pcVar6 = (char *)(uint64_t)((int)pcVar6 + 1);
     pcVar19 = "monster_usage_set";
     do {
       pcVar7 = pcVar19;
@@ -407,9 +407,9 @@ LAB_180555a34:
           pcVar8 = (char *)puVar13[2];
         }
         if (pcVar8 == pcVar7 + -0x180a34ecf) {
-          pcVar8 = pcVar19 + (longlong)pcVar8;
+          pcVar8 = pcVar19 + (int64_t)pcVar8;
           if (pcVar8 <= pcVar19) goto LAB_1805558f1;
-          lVar11 = (longlong)&unknown_var_3488_ptr - (longlong)pcVar19;
+          lVar11 = (int64_t)&unknown_var_3488_ptr - (int64_t)pcVar19;
           while (*pcVar19 == pcVar19[lVar11]) {
             pcVar19 = pcVar19 + 1;
             if (pcVar8 <= pcVar19) goto LAB_1805558f1;
@@ -442,7 +442,7 @@ LAB_180555b71:
       pcVar6 = (char *)puVar13[2];
     }
     if (pcVar6 == pcVar8 + -0x180a0ae27) {
-      pcVar6 = pcVar6 + (longlong)pcVar7;
+      pcVar6 = pcVar6 + (int64_t)pcVar7;
       if (pcVar6 <= pcVar7) {
 LAB_180555bf4:
         lVar11 = 0x180d48d24;
@@ -452,7 +452,7 @@ LAB_180555bf4:
         FUN_180627c50(&puStack_60,lVar11);
         break;
       }
-      lVar11 = (longlong)&unknown_var_1288_ptr - (longlong)pcVar7;
+      lVar11 = (int64_t)&unknown_var_1288_ptr - (int64_t)pcVar7;
       while (*pcVar7 == pcVar7[lVar11]) {
         pcVar7 = pcVar7 + 1;
         if (pcVar6 <= pcVar7) goto LAB_180555bf4;
@@ -475,7 +475,7 @@ LAB_180555bf4:
       else {
         pbVar12 = pbStack_58;
         do {
-          uVar10 = (uint)pbVar12[puVar17[5] - (longlong)pbStack_58];
+          uVar10 = (uint)pbVar12[puVar17[5] - (int64_t)pbStack_58];
           iVar14 = *pbVar12 - uVar10;
           if (*pbVar12 != uVar10) break;
           pbVar12 = pbVar12 + 1;
@@ -503,7 +503,7 @@ LAB_180555cdb:
   else if (*(int *)(puVar5 + 6) != 0) {
     if (iStack_50 != 0) {
       pbVar12 = (byte *)puVar5[5];
-      lVar20 = (longlong)pbStack_58 - (longlong)pbVar12;
+      lVar20 = (int64_t)pbStack_58 - (int64_t)pbVar12;
       do {
         bVar1 = *pbVar12;
         uVar10 = (uint)pbVar12[lVar20];
@@ -531,7 +531,7 @@ LAB_180555cfe:
       else {
         pbVar12 = pbStack_58;
         do {
-          uVar10 = (uint)pbVar12[puVar17[5] - (longlong)pbStack_58];
+          uVar10 = (uint)pbVar12[puVar17[5] - (int64_t)pbStack_58];
           iVar15 = *pbVar12 - uVar10;
           if (*pbVar12 != uVar10) break;
           pbVar12 = pbVar12 + 1;
@@ -559,7 +559,7 @@ LAB_180555dac:
   else if (*(int *)(puVar5 + 6) != 0) {
     if (iStack_50 != 0) {
       pbVar12 = (byte *)puVar5[5];
-      lVar20 = (longlong)pbStack_58 - (longlong)pbVar12;
+      lVar20 = (int64_t)pbStack_58 - (int64_t)pbVar12;
       do {
         bVar1 = *pbVar12;
         uVar10 = (uint)pbVar12[lVar20];
@@ -571,7 +571,7 @@ LAB_180555dac:
     goto LAB_180555dac;
   }
 LAB_180555dc7:
-  FUN_180555f60(lVar11 + (longlong)iVar14 * 0x1a8,*(int32_t *)(puVar5 + 8),pcVar19);
+  FUN_180555f60(lVar11 + (int64_t)iVar14 * 0x1a8,*(int32_t *)(puVar5 + 8),pcVar19);
   puStack_60 = &system_data_buffer_ptr;
   if (pbStack_58 != (byte *)0x0) {
                     // WARNING: Subroutine does not return
@@ -593,10 +593,10 @@ LAB_180555dc7:
       pcVar9 = *(char **)(pcVar7 + 0x10);
     }
     if (pcVar9 == pcVar8 + -0x180a34ecf) {
-      pcVar9 = pcVar9 + (longlong)pcVar6;
+      pcVar9 = pcVar9 + (int64_t)pcVar6;
       pcVar19 = pcVar7;
       if (pcVar9 <= pcVar6) break;
-      lVar11 = (longlong)&unknown_var_3488_ptr - (longlong)pcVar6;
+      lVar11 = (int64_t)&unknown_var_3488_ptr - (int64_t)pcVar6;
       while (*pcVar6 == pcVar6[lVar11]) {
         pcVar6 = pcVar6 + 1;
         if (pcVar9 <= pcVar6) goto LAB_180555e7a;
@@ -612,7 +612,7 @@ LAB_180555e7a:
 
 
 
-int FUN_180555eb0(longlong *param_1,longlong param_2)
+int FUN_180555eb0(int64_t *param_1,int64_t param_2)
 
 {
   byte *pbVar1;
@@ -621,7 +621,7 @@ int FUN_180555eb0(longlong *param_1,longlong param_2)
   byte *pbVar4;
   int iVar5;
   void *puVar6;
-  longlong lVar7;
+  int64_t lVar7;
   uint64_t *puVar8;
   int iVar9;
   
@@ -635,7 +635,7 @@ int FUN_180555eb0(longlong *param_1,longlong param_2)
       if (iVar3 == iVar2) {
         if (iVar3 != 0) {
           pbVar4 = (byte *)*puVar8;
-          lVar7 = *(longlong *)(param_2 + 8) - (longlong)pbVar4;
+          lVar7 = *(int64_t *)(param_2 + 8) - (int64_t)pbVar4;
           do {
             pbVar1 = pbVar4 + lVar7;
             iVar5 = (uint)*pbVar4 - (uint)*pbVar1;

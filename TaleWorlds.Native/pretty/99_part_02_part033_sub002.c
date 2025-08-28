@@ -2,13 +2,13 @@
 
 // 99_part_02_part033_sub002.c - 1 个函数
 
-// 函数: void FUN_1801a5ca0(longlong param_1,longlong param_2)
-void FUN_1801a5ca0(longlong param_1,longlong param_2)
+// 函数: void FUN_1801a5ca0(int64_t param_1,int64_t param_2)
+void FUN_1801a5ca0(int64_t param_1,int64_t param_2)
 
 {
   uint64_t *puVar1;
   char *pcVar2;
-  longlong lVar3;
+  int64_t lVar3;
   uint64_t *puVar4;
   float *pfVar5;
   char *pcVar6;
@@ -33,7 +33,7 @@ void FUN_1801a5ca0(longlong param_1,longlong param_2)
       pcVar2 = (char *)puVar4[2];
     }
     if (pcVar2 == pcVar7 + -0x180a0b63f) {
-      pcVar2 = pcVar2 + (longlong)pcVar6;
+      pcVar2 = pcVar2 + (int64_t)pcVar6;
       if (pcVar2 <= pcVar6) {
 FUN_1801a5d17:
         pcVar6 = "near_plane";
@@ -52,7 +52,7 @@ FUN_1801a5d17:
             pcVar2 = (char *)puVar1[2];
           }
           if (pcVar2 == pcVar7 + -0x180a0b66f) {
-            pcVar2 = pcVar2 + (longlong)pcVar6;
+            pcVar2 = pcVar2 + (int64_t)pcVar6;
             if (pcVar2 <= pcVar6) {
 LAB_1801a5d96:
               lVar3 = 0x180d48d24;
@@ -61,7 +61,7 @@ LAB_1801a5d96:
               }
               goto LAB_1801a5db1;
             }
-            lVar3 = (longlong)&unknown_var_3408_ptr - (longlong)pcVar6;
+            lVar3 = (int64_t)&unknown_var_3408_ptr - (int64_t)pcVar6;
             while (*pcVar6 == pcVar6[lVar3]) {
               pcVar6 = pcVar6 + 1;
               if (pcVar2 <= pcVar6) goto LAB_1801a5d96;
@@ -102,7 +102,7 @@ LAB_1801a5e49:
             pcVar2 = (char *)puVar4[2];
           }
           if (pcVar2 == pcVar7 + -0x180a0b65f) {
-            pcVar2 = pcVar2 + (longlong)pcVar6;
+            pcVar2 = pcVar2 + (int64_t)pcVar6;
             if (pcVar2 <= pcVar6) {
 LAB_1801a5e31:
               lVar3 = 0x180d48d24;
@@ -111,7 +111,7 @@ LAB_1801a5e31:
               }
               goto LAB_1801a5e49;
             }
-            lVar3 = (longlong)&unknown_var_3392_ptr - (longlong)pcVar6;
+            lVar3 = (int64_t)&unknown_var_3392_ptr - (int64_t)pcVar6;
             while (*pcVar6 == pcVar6[lVar3]) {
               pcVar6 = pcVar6 + 1;
               if (pcVar2 <= pcVar6) goto LAB_1801a5e31;
@@ -120,7 +120,7 @@ LAB_1801a5e31:
           puVar4 = (uint64_t *)puVar4[6];
         } while( true );
       }
-      lVar3 = (longlong)&unknown_var_3360_ptr - (longlong)pcVar6;
+      lVar3 = (int64_t)&unknown_var_3360_ptr - (int64_t)pcVar6;
       while (*pcVar6 == pcVar6[lVar3]) {
         pcVar6 = pcVar6 + 1;
         if (pcVar2 <= pcVar6) goto FUN_1801a5d17;
