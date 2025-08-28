@@ -2039,168 +2039,208 @@ LAB_180885619:
 
 
 
+/*=============================================================================
+ * 网络数据包哈希表处理函数变体8
+ * 
+ * 功能：在网络哈希表中查找指定数据包，执行相应的处理操作（使用FUN_18086fd10处理函数）
+ * 
+ * 参数：
+ *   param_1 - 网络哈希表上下文指针
+ *   param_2 - 要查找的网络数据包指针
+ *   param_3 - 处理函数参数数组
+ *   param_4 - 输出参数，返回找到的数据包指针
+ * 
+ * 返回值：
+ *   0 - 成功找到并处理数据包
+ *   非0 - 错误代码
+ * 
+ * 技术说明：
+ * - 使用开放寻址法哈希表进行快速查找
+ * - 支持哈希冲突的链式解决
+ * - 使用FUN_18086fd10作为数据包处理函数
+ * - 提供网络数据包的状态同步机制
+ =============================================================================*/
 ulonglong FUN_180885680(longlong *param_1,longlong *param_2,undefined8 *param_3,ulonglong *param_4)
 
 {
-  longlong *plVar1;
-  longlong lVar2;
-  uint uVar3;
-  int iVar4;
-  longlong *plVar5;
-  ulonglong uVar6;
-  ulonglong uVar7;
-  longlong lVar8;
-  longlong lVar9;
-  int *piVar10;
-  longlong *plVar11;
-  ulonglong uVar12;
-  longlong *plStackX_8;
-  longlong *plStackX_10;
-  undefined8 uStack_48;
-  uint uStack_40;
-  uint uStack_3c;
+  longlong *hash_table_context;      // 哈希表上下文指针
+  longlong *lock_context;            // 锁上下文指针
+  uint hash_result;                  // 哈希计算结果
+  int current_index;                 // 当前索引
+  longlong *current_entry;           // 当前条目指针
+  ulonglong return_value;            // 返回值
+  ulonglong error_code;              // 错误代码
+  longlong entry_offset;             // 条目偏移量
+  longlong hash_index;                // 哈希索引
+  int *previous_index;                // 前一个索引指针
+  longlong *network_context;          // 网络上下文指针
+  ulonglong found_entry;              // 找到的条目
+  longlong *packet_context;           // 数据包上下文指针
+  longlong *packet_data;              // 数据包数据指针
+  undefined8 packet_key;              // 数据包键值
+  uint packet_hash1;                  // 数据包哈希值1
+  uint packet_hash2;                  // 数据包哈希值2;
   
-  uVar6 = 0;
+  return_value = 0;
   *param_4 = 0;
-  plVar1 = (longlong *)param_1[1];
-  uStack_48 = (longlong *)param_2[2];
-  uStack_40 = *(uint *)(param_2 + 3);
-  uStack_3c = *(uint *)((longlong)param_2 + 0x1c);
-  lVar2 = plVar1[5];
-  plStackX_8 = param_1;
-  plStackX_10 = param_2;
-  if (lVar2 != 0) {
-    FUN_180768360(lVar2);
+  hash_table_context = (longlong *)param_1[1];
+  packet_key = (longlong *)param_2[2];
+  packet_hash1 = *(uint *)(param_2 + 3);
+  packet_hash2 = *(uint *)((longlong)param_2 + 0x1c);
+  lock_context = hash_table_context[5];
+  packet_context = param_1;
+  network_context = param_2;
+  if (lock_context != 0) {
+    // 获取哈希表锁
+    FUN_180768360(lock_context);
   }
-  uVar3 = FUN_180851a40(plVar1);
-  uVar12 = uVar6;
-  if (uVar3 == 0) {
-    if ((int)plVar1[1] == 0) {
-      uVar7 = 0x1c;
-      goto LAB_1808859d3;
+  hash_result = FUN_180851a40(hash_table_context);
+  found_entry = return_value;
+  if (hash_result == 0) {
+    if ((int)hash_table_context[1] == 0) {
+      error_code = 0x1c;
+      goto HANDLE_ERROR;
     }
-    lVar9 = (longlong)
-            (int)((uStack_48._4_4_ ^ (uint)uStack_48 ^ uStack_40 ^ uStack_3c) & (int)plVar1[1] - 1U)
-    ;
-    plVar11 = (longlong *)(*plVar1 + lVar9 * 4);
-    iVar4 = *(int *)(*plVar1 + lVar9 * 4);
-    if (iVar4 != -1) {
+    // 计算哈希索引
+    hash_index = (longlong)
+            (int)(((uint)packet_key ^ packet_key._4_4_ ^ packet_hash1 ^ packet_hash2) & (int)hash_table_context[1] - 1U);
+    
+    previous_index = (int *)(*hash_table_context + hash_index * 4);
+    current_index = *(int *)(*hash_table_context + hash_index * 4);
+    if (current_index != -1) {
       do {
-        plVar5 = (longlong *)((longlong)iVar4 * 0x20 + plVar1[2]);
-        if (((longlong *)*plVar5 == uStack_48) && (plVar5[1] == CONCAT44(uStack_3c,uStack_40))) {
-          uVar12 = plVar5[3];
-          goto LAB_18088575e;
+        current_entry = (longlong *)((longlong)current_index * 0x20 + hash_table_context[2]);
+        if (((longlong *)*current_entry == packet_key) && (current_entry[1] == CONCAT44(packet_hash2,packet_hash1))) {
+          found_entry = current_entry[3];
+          goto ENTRY_FOUND;
         }
-        plVar11 = plVar5 + 2;
-        iVar4 = (int)plVar5[2];
-      } while (iVar4 != -1);
+        previous_index = current_entry + 2;
+        current_index = (int)current_entry[2];
+      } while (current_index != -1);
     }
-    uVar3 = FUN_18084e8f0(plVar1,&uStack_48,&plStackX_10,plVar11);
-    if (uVar3 != 0) goto LAB_180885756;
+    // 未找到条目，尝试插入新条目
+    hash_result = FUN_18084e8f0(hash_table_context,&packet_key,&network_context,previous_index);
+    if (hash_result != 0) goto HANDLE_INSERT_ERROR;
   }
   else {
-LAB_180885756:
-    uVar7 = (ulonglong)uVar3;
-    if (uVar3 != 0) {
-LAB_1808859d3:
-      if (lVar2 != 0) {
-                    // WARNING: Subroutine does not return
-        FUN_180768400(lVar2);
+HANDLE_INSERT_ERROR:
+    error_code = (ulonglong)hash_result;
+    if (hash_result != 0) {
+HANDLE_ERROR:
+      if (lock_context != 0) {
+        // 释放哈希表锁
+        FUN_180768400(lock_context);
       }
-      return uVar7;
+      return error_code;
     }
   }
-LAB_18088575e:
-  if (lVar2 != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_180768400(lVar2);
+ENTRY_FOUND:
+  if (lock_context != 0) {
+    // 释放哈希表锁
+    FUN_180768400(lock_context);
   }
-  if (uVar12 == 0) {
-    uVar6 = (**(code **)*plStackX_8)(plStackX_8,param_2);
-    if ((int)uVar6 == 0) {
+  if (found_entry == 0) {
+    return_value = (**(code **)*packet_context)(packet_context,network_context);
+    if ((int)return_value == 0) {
       return 0;
     }
-    return uVar6;
+    return return_value;
   }
-  plStackX_10 = (longlong *)0x0;
-  uVar7 = FUN_18086ff40(param_3,uVar12,param_3,&plStackX_10);
-  if ((int)uVar7 != 0) {
-    return uVar7;
+  packet_data = (longlong *)0x0;
+  error_code = FUN_18086ff40(param_3,found_entry,param_3,&packet_data);
+  if ((int)error_code != 0) {
+    return error_code;
   }
-  uStack_48 = (longlong *)0x0;
-  uVar7 = FUN_18086ff40(param_3,param_2,param_3 + 2,&uStack_48);
-  if ((int)uVar7 != 0) {
-    return uVar7;
+  
+  // 比较数据包内容（使用FUN_18086ff40）
+  packet_key = (longlong *)0x0;
+  error_code = FUN_18086ff40(param_3,network_context,param_3 + 2,&packet_key);
+  if ((int)error_code != 0) {
+    return error_code;
   }
-  if ((plStackX_10 == uStack_48) && (iVar4 = memcmp(*param_3,param_3[2]), iVar4 == 0)) {
-    *param_4 = (ulonglong)param_2;
+  
+  // 检查数据包是否相同
+  if ((packet_data == packet_key) && (current_index = memcmp(*param_3,param_3[2]), current_index == 0)) {
+    *param_4 = (ulonglong)network_context;
     return 0;
   }
-  plVar11 = plStackX_8;
-  *(ushort *)((longlong)param_2 + 0xeU) =
-       *(ushort *)((longlong)param_2 + 0xeU) ^
-       (*(ushort *)((longlong)param_2 + 0xe) ^ *(ushort *)(uVar12 + 0xe)) & 0x7fff;
-  *(ushort *)(uVar12 + 0xe) = *(ushort *)(uVar12 + 0xe) & 0x8000;
-  uStack_48 = *(longlong **)(uVar12 + 0x10);
-  uStack_40 = *(uint *)(uVar12 + 0x18);
-  uStack_3c = *(uint *)(uVar12 + 0x1c);
-  plVar1 = (longlong *)plStackX_8[1];
-  lVar2 = plVar1[5];
-  if (lVar2 != 0) {
-    FUN_180768360(lVar2);
+  
+  // 更新数据包状态
+  network_context = packet_context;
+  *(ushort *)((longlong)network_context + 0xeU) =
+       *(ushort *)((longlong)network_context + 0xeU) ^
+       (*(ushort *)((longlong)network_context + 0xe) ^ *(ushort *)(found_entry + 0xe)) & 0x7fff;
+  *(ushort *)(found_entry + 0xe) = *(ushort *)(found_entry + 0xe) & 0x8000;
+  
+  // 提取数据包信息
+  packet_key = *(longlong **)(found_entry + 0x10);
+  packet_hash1 = *(uint *)(found_entry + 0x18);
+  packet_hash2 = *(uint *)(found_entry + 0x1c);
+  
+  hash_table_context = (longlong *)packet_context[1];
+  lock_context = hash_table_context[5];
+  
+  if (lock_context != 0) {
+    FUN_180768360(lock_context);
   }
-  if (*(int *)((longlong)plVar1 + 0x24) != 0) {
-    if ((int)plVar1[1] == 0) {
-      uVar6 = 0x1c;
+  
+  // 清理旧的哈希表条目
+  if (*(int *)((longlong)hash_table_context + 0x24) != 0) {
+    if ((int)hash_table_context[1] == 0) {
+      return_value = 0x1c;
     }
     else {
-      lVar9 = (longlong)
-              (int)(((uint)uStack_48 ^ uStack_48._4_4_ ^ uStack_40 ^ uStack_3c) &
-                   (int)plVar1[1] - 1U);
-      piVar10 = (int *)(*plVar1 + lVar9 * 4);
-      iVar4 = *(int *)(*plVar1 + lVar9 * 4);
-      if (iVar4 != -1) {
-        lVar9 = plVar1[2];
+      // 计算哈希索引
+      hash_index = (longlong)
+              (int)(((uint)packet_key ^ packet_key._4_4_ ^ packet_hash1 ^ packet_hash2) &
+                   (int)hash_table_context[1] - 1U);
+      previous_index = (int *)(*hash_table_context + hash_index * 4);
+      current_index = *(int *)(*hash_table_context + hash_index * 4);
+      if (current_index != -1) {
+        hash_index = hash_table_context[2];
         do {
-          lVar8 = (longlong)iVar4 * 0x20;
-          if (((longlong *)*(longlong *)(lVar8 + lVar9) == uStack_48) &&
-             (*(longlong *)(lVar8 + 8 + lVar9) == CONCAT44(uStack_3c,uStack_40))) {
-            iVar4 = *piVar10;
-            lVar8 = (longlong)iVar4 * 0x20;
-            *(undefined8 *)(lVar8 + 0x18 + lVar9) = 0;
-            *piVar10 = *(int *)(lVar8 + 0x10 + lVar9);
-            *(int *)(lVar8 + 0x10 + lVar9) = (int)plVar1[4];
-            *(int *)((longlong)plVar1 + 0x24) = *(int *)((longlong)plVar1 + 0x24) + -1;
-            *(int *)(plVar1 + 4) = iVar4;
-            uVar6 = 0;
+          entry_offset = (longlong)current_index * 0x20;
+          if (((longlong *)*(longlong *)(entry_offset + hash_index) == packet_key) &&
+             (*(longlong *)(entry_offset + 8 + hash_index) == CONCAT44(packet_hash2,packet_hash1))) {
+            // 找到条目，从链表中移除
+            current_index = *previous_index;
+            entry_offset = (longlong)current_index * 0x20;
+            *(undefined8 *)(entry_offset + 0x18 + hash_index) = 0;
+            *previous_index = *(int *)(entry_offset + 0x10 + hash_index);
+            *(int *)(entry_offset + 0x10 + hash_index) = (int)hash_table_context[4];
+            *(int *)((longlong)hash_table_context + 0x24) = *(int *)((longlong)hash_table_context + 0x24) + -1;
+            *(int *)(hash_table_context + 4) = current_index;
+            return_value = 0;
             break;
           }
-          piVar10 = (int *)(lVar9 + 0x10 + lVar8);
-          iVar4 = *piVar10;
-        } while (iVar4 != -1);
+          previous_index = (int *)(hash_index + 0x10 + entry_offset);
+          current_index = *previous_index;
+        } while (current_index != -1);
       }
     }
   }
-  if (lVar2 != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_180768400(lVar2);
+  if (lock_context != 0) {
+    // 释放哈希表锁
+    FUN_180768400(lock_context);
   }
-  if ((int)uVar6 != 0) {
-    return uVar6;
+  if ((int)return_value != 0) {
+    return return_value;
   }
-  plVar1 = (longlong *)plVar11[1];
-  uStack_48 = (longlong *)param_2[2];
-  uStack_40 = *(uint *)(param_2 + 3);
-  uStack_3c = *(uint *)((longlong)param_2 + 0x1c);
-  lVar2 = plVar1[5];
-  plStackX_8 = param_2;
-  if (lVar2 != 0) {
-    FUN_180768360(lVar2);
+  
+  // 第二次处理：使用FUN_18086fd10处理函数
+  hash_table_context = (longlong *)network_context[1];
+  packet_key = (longlong *)param_2[2];
+  packet_hash1 = *(uint *)(param_2 + 3);
+  packet_hash2 = *(uint *)((longlong)param_2 + 0x1c);
+  lock_context = hash_table_context[5];
+  packet_context = param_2;
+  if (lock_context != 0) {
+    FUN_180768360(lock_context);
   }
-  uVar3 = FUN_180851a40(plVar1);
-  if (uVar3 == 0) {
-    if ((int)plVar1[1] == 0) {
-LAB_1808859b7:
+  hash_result = FUN_180851a40(hash_table_context);
+  if (hash_result == 0) {
+    if ((int)hash_table_context[1] == 0) {
+HANDLE_RETURN_ERROR:
       uVar3 = 0x1c;
       goto LAB_1808859b9;
     }
@@ -2251,52 +2291,75 @@ LAB_180885999:
 
 
 
+/*=============================================================================
+ * 网络数据包哈希表处理函数变体9
+ * 
+ * 功能：在网络哈希表中查找指定数据包，执行相应的处理操作（使用FUN_18086fe30处理函数）
+ * 
+ * 参数：
+ *   param_1 - 网络哈希表上下文指针
+ *   param_2 - 要查找的网络数据包指针
+ *   param_3 - 处理函数参数数组
+ *   param_4 - 输出参数，返回找到的数据包指针
+ * 
+ * 返回值：
+ *   0 - 成功找到并处理数据包
+ *   非0 - 错误代码
+ * 
+ * 技术说明：
+ * - 使用开放寻址法哈希表进行快速查找
+ * - 支持哈希冲突的链式解决
+ * - 使用FUN_18086fe30作为数据包处理函数
+ * - 提供网络数据包的状态同步机制
+ =============================================================================*/
 ulonglong FUN_180885a00(longlong *param_1,longlong *param_2,undefined8 *param_3,ulonglong *param_4)
 
 {
-  longlong *plVar1;
-  longlong lVar2;
-  uint uVar3;
-  int iVar4;
-  longlong *plVar5;
-  ulonglong uVar6;
-  ulonglong uVar7;
-  longlong lVar8;
-  longlong lVar9;
-  int *piVar10;
-  longlong *plVar11;
-  ulonglong uVar12;
-  longlong *plStackX_8;
-  longlong *plStackX_10;
-  undefined8 uStack_48;
-  uint uStack_40;
-  uint uStack_3c;
+  longlong *hash_table_context;      // 哈希表上下文指针
+  longlong *lock_context;            // 锁上下文指针
+  uint hash_result;                  // 哈希计算结果
+  int current_index;                 // 当前索引
+  longlong *current_entry;           // 当前条目指针
+  ulonglong return_value;            // 返回值
+  ulonglong error_code;              // 错误代码
+  longlong entry_offset;             // 条目偏移量
+  longlong hash_index;                // 哈希索引
+  int *previous_index;                // 前一个索引指针
+  longlong *network_context;          // 网络上下文指针
+  ulonglong found_entry;              // 找到的条目
+  longlong *packet_context;           // 数据包上下文指针
+  longlong *packet_data;              // 数据包数据指针
+  undefined8 packet_key;              // 数据包键值
+  uint packet_hash1;                  // 数据包哈希值1
+  uint packet_hash2;                  // 数据包哈希值2;
   
-  uVar6 = 0;
+  return_value = 0;
   *param_4 = 0;
-  plVar1 = (longlong *)param_1[1];
-  uStack_48 = (longlong *)param_2[2];
-  uStack_40 = *(uint *)(param_2 + 3);
-  uStack_3c = *(uint *)((longlong)param_2 + 0x1c);
-  lVar2 = plVar1[5];
-  plStackX_8 = param_1;
-  plStackX_10 = param_2;
-  if (lVar2 != 0) {
-    FUN_180768360(lVar2);
+  hash_table_context = (longlong *)param_1[1];
+  packet_key = (longlong *)param_2[2];
+  packet_hash1 = *(uint *)(param_2 + 3);
+  packet_hash2 = *(uint *)((longlong)param_2 + 0x1c);
+  lock_context = hash_table_context[5];
+  packet_context = param_1;
+  network_context = param_2;
+  if (lock_context != 0) {
+    // 获取哈希表锁
+    FUN_180768360(lock_context);
   }
-  uVar3 = FUN_180851a40(plVar1);
-  uVar12 = uVar6;
-  if (uVar3 == 0) {
-    if ((int)plVar1[1] == 0) {
-      uVar7 = 0x1c;
-      goto LAB_180885d53;
+  hash_result = FUN_180851a40(hash_table_context);
+  found_entry = return_value;
+  if (hash_result == 0) {
+    if ((int)hash_table_context[1] == 0) {
+      error_code = 0x1c;
+      goto HANDLE_ERROR;
     }
-    lVar9 = (longlong)
-            (int)((uStack_48._4_4_ ^ (uint)uStack_48 ^ uStack_40 ^ uStack_3c) & (int)plVar1[1] - 1U)
-    ;
-    plVar11 = (longlong *)(*plVar1 + lVar9 * 4);
-    iVar4 = *(int *)(*plVar1 + lVar9 * 4);
-    if (iVar4 != -1) {
+    // 计算哈希索引
+    hash_index = (longlong)
+            (int)(((uint)packet_key ^ packet_key._4_4_ ^ packet_hash1 ^ packet_hash2) & (int)hash_table_context[1] - 1U);
+    
+    previous_index = (int *)(*hash_table_context + hash_index * 4);
+    current_index = *(int *)(*hash_table_context + hash_index * 4);
+    if (current_index != -1) {
       do {
         plVar5 = (longlong *)((longlong)iVar4 * 0x20 + plVar1[2]);
         if (((longlong *)*plVar5 == uStack_48) && (plVar5[1] == CONCAT44(uStack_3c,uStack_40))) {
@@ -6664,142 +6727,216 @@ LAB_180889e8c:
 
 
 
+/*=============================================================================
+ * 网络数据收集和统计函数
+ * 
+ * 功能：收集网络哈希表中的数据，进行统计分析和处理
+ * 
+ * 参数：
+ *   param_1 - 网络统计上下文指针
+ *   param_2 - 统计参数配置
+ *   param_3 - 哈希表上下文指针
+ * 
+ * 返回值：
+ *   0 - 成功完成数据收集和统计
+ *   非0 - 错误代码
+ * 
+ * 技术说明：
+ * - 遍历哈希表中的所有条目
+ * - 收集网络数据包的统计信息
+ * - 进行数据分析和处理
+ * - 支持动态内存分配和数据缓存
+ * - 提供网络性能监控功能
+ =============================================================================*/
 undefined4 FUN_180889d5e(undefined8 param_1,undefined8 param_2,longlong *param_3)
 
 {
-  undefined8 *puVar1;
-  longlong lVar2;
-  undefined8 uVar3;
-  undefined8 uVar4;
-  int iVar5;
-  undefined4 uVar6;
-  longlong lVar7;
-  int iVar8;
-  int iVar9;
-  int unaff_EBX;
-  longlong unaff_RBP;
-  int unaff_EDI;
-  int unaff_R12D;
-  undefined8 *puVar10;
-  bool bVar11;
+  undefined8 *data_buffer;          // 数据缓冲区指针
+  longlong *hash_context;           // 哈希表上下文指针
+  undefined8 stat_param1;            // 统计参数1
+  undefined8 stat_param2;            // 统计参数2
+  int collection_result;             // 数据收集结果
+  undefined4 stat_result;            // 统计处理结果
+  longlong entry_data;               // 条目数据指针
+  int buffer_size;                   // 缓冲区大小
+  int current_count;                 // 当前计数
+  int growth_factor;                 // 增长因子
+  int buffer_capacity;               // 缓冲区容量
+  int hash_index;                    // 哈希索引
+  longlong stack_base;               // 栈基址
+  int data_index;                    // 数据索引
+  int next_index;                    // 下一个索引
+  undefined8 *data_entry;            // 数据条目指针
+  bool needs_expansion;              // 是否需要扩展缓冲区;
   
   do {
     do {
-      lVar7 = *(longlong *)(param_3[2] + 0x18 + (longlong)unaff_R12D * 0x20);
-      for (puVar10 = *(undefined8 **)(lVar7 + 0x288);
-          (*(undefined8 **)(lVar7 + 0x288) <= puVar10 &&
-          (puVar10 < (undefined8 *)
-                     ((longlong)*(undefined8 **)(lVar7 + 0x288) +
-                     (longlong)*(int *)(lVar7 + 0x290) * 0x14)));
-          puVar10 = (undefined8 *)((longlong)puVar10 + 0x14)) {
-        iVar8 = *(int *)(unaff_RBP + -0x50) + 1;
-        iVar5 = unaff_EBX;
-        if (unaff_EBX < 0) {
-          iVar5 = -unaff_EBX;
+      // 获取哈希表条目数据
+      entry_data = *(longlong *)(param_3[2] + 0x18 + (longlong)hash_index * 0x20);
+      
+      // 遍历数据缓冲区中的所有条目
+      for (data_entry = *(undefined8 **)(entry_data + 0x288);
+          (*(undefined8 **)(entry_data + 0x288) <= data_entry &&
+          (data_entry < (undefined8 *)
+                     ((longlong)*(undefined8 **)(entry_data + 0x288) +
+                     (longlong)*(int *)(entry_data + 0x290) * 0x14)));
+          data_entry = (undefined8 *)((longlong)data_entry + 0x14)) {
+        
+        // 计算新的缓冲区大小
+        buffer_size = *(int *)(stack_base + -0x50) + 1;
+        buffer_capacity = growth_factor;
+        if (growth_factor < 0) {
+          buffer_capacity = -growth_factor;
         }
-        if (iVar5 < iVar8) {
-          if (unaff_EBX < 0) {
-            unaff_EBX = -unaff_EBX;
+        
+        // 检查是否需要扩展缓冲区
+        if (buffer_capacity < buffer_size) {
+          if (growth_factor < 0) {
+            growth_factor = -growth_factor;
           }
-          iVar9 = (int)((float)unaff_EBX * 1.5);
-          iVar5 = iVar8;
-          if (iVar8 <= iVar9) {
-            iVar5 = iVar9;
+          
+          // 计算增长因子（1.5倍增长）
+          growth_factor = (int)((float)growth_factor * 1.5);
+          buffer_capacity = buffer_size;
+          if (buffer_size <= growth_factor) {
+            buffer_capacity = growth_factor;
           }
-          if (iVar5 < 3) {
-            iVar9 = 3;
+          
+          // 确保最小容量为3
+          if (buffer_capacity < 3) {
+            growth_factor = 3;
           }
-          else if (iVar9 < iVar8) {
-            iVar9 = iVar8;
+          else if (growth_factor < buffer_size) {
+            growth_factor = buffer_size;
           }
-          iVar5 = FUN_180849120(unaff_RBP + -0x58,iVar9);
-          if (iVar5 == 0) goto LAB_180889e09;
+          
+          // 重新分配缓冲区
+          buffer_capacity = FUN_180849120(stack_base + -0x58,growth_factor);
+          if (buffer_capacity == 0) goto COPY_DATA_ENTRY;
         }
         else {
-LAB_180889e09:
-          iVar5 = *(int *)(unaff_RBP + -0x50);
-          uVar3 = puVar10[1];
-          lVar2 = *(longlong *)(unaff_RBP + -0x58);
-          puVar1 = (undefined8 *)(lVar2 + (longlong)iVar5 * 0x14);
-          *puVar1 = *puVar10;
-          puVar1[1] = uVar3;
-          *(undefined4 *)(lVar2 + 0x10 + (longlong)iVar5 * 0x14) = *(undefined4 *)(puVar10 + 2);
-          *(int *)(unaff_RBP + -0x50) = *(int *)(unaff_RBP + -0x50) + 1;
-        }
-        unaff_EBX = *(int *)(unaff_RBP + -0x4c);
+COPY_DATA_ENTRY:
+          // 复制数据条目到缓冲区
+          buffer_capacity = *(int *)(stack_base + -0x50);
+          stat_param2 = data_entry[1];
+          hash_context = *(longlong *)(stack_base + -0x58);
+          data_buffer = (undefined8 *)(hash_context + (longlong)buffer_capacity * 0x14);
+          *data_buffer = *data_entry;
+          data_buffer[1] = stat_param2;
+          *(undefined4 *)(hash_context + 0x10 + (longlong)buffer_capacity * 0x14) = *(undefined4 *)(data_entry + 2);
+          *(int *)(stack_base + -0x50) = *(int *)(stack_base + -0x50) + 1;
+              }
+        growth_factor = *(int *)(stack_base + -0x4c);
       }
-      param_3 = *(longlong **)(unaff_RBP + -0x48);
-    } while ((unaff_R12D != -1) &&
-            (unaff_R12D = *(int *)(param_3[2] + 0x10 + (longlong)unaff_R12D * 0x20),
-            unaff_R12D != -1));
-    iVar5 = unaff_EDI + 1;
-    bVar11 = unaff_EDI != -1;
-    unaff_EDI = 0;
-    if (bVar11) {
-      unaff_EDI = iVar5;
+      hash_context = *(longlong **)(stack_base + -0x48);
+    } while ((hash_index != -1) &&
+            (hash_index = *(int *)(hash_context[2] + 0x10 + (longlong)hash_index * 0x20),
+            hash_index != -1));
+    
+    // 寻找下一个可用的哈希表索引
+    next_index = data_index + 1;
+    needs_expansion = data_index != -1;
+    data_index = 0;
+    if (needs_expansion) {
+      data_index = next_index;
     }
-    if (unaff_EDI != (int)param_3[1]) {
-      lVar7 = (longlong)unaff_EDI;
+    
+    if (data_index != (int)hash_context[1]) {
+      entry_data = (longlong)data_index;
       do {
-        if (*(int *)(*param_3 + lVar7 * 4) != -1) {
-          unaff_R12D = *(int *)(*param_3 + (longlong)unaff_EDI * 4);
-          goto LAB_180889e8c;
+        if (*(int *)(*hash_context + entry_data * 4) != -1) {
+          hash_index = *(int *)(*hash_context + (longlong)data_index * 4);
+          goto PROCESS_NEXT_ENTRY;
         }
-        unaff_EDI = unaff_EDI + 1;
-        lVar7 = lVar7 + 1;
-      } while (lVar7 != (int)param_3[1]);
+        data_index = data_index + 1;
+        entry_data = entry_data + 1;
+      } while (entry_data != (int)hash_context[1]);
     }
-    unaff_R12D = -1;
-    unaff_EDI = unaff_R12D;
-LAB_180889e8c:
-    if (unaff_R12D == -1) {
-      lVar7 = *(longlong *)(unaff_RBP + 0x28);
-      if (*(longlong *)(unaff_RBP + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-        FUN_180768400(*(longlong *)(unaff_RBP + 0x30));
+    
+    // 没有找到更多条目，处理统计结果
+    hash_index = -1;
+    data_index = hash_index;
+PROCESS_NEXT_ENTRY:
+    if (hash_index == -1) {
+      // 所有条目处理完毕，执行最终的统计处理
+      entry_data = *(longlong *)(stack_base + 0x28);
+      if (*(longlong *)(stack_base + 0x30) != 0) {
+        // 释放锁资源
+        FUN_180768400(*(longlong *)(stack_base + 0x30));
       }
-      puVar10 = (undefined8 *)FUN_180847820();
-      uVar3 = *(undefined8 *)(lVar7 + 0x80);
-      uVar4 = puVar10[1];
-      *(undefined8 *)(unaff_RBP + -0x48) = *puVar10;
-      *(undefined8 *)(unaff_RBP + -0x40) = uVar4;
-      uVar6 = FUN_180866f50(uVar3,unaff_RBP + -0x48,unaff_RBP + -0x58);
-      FUN_180840100(unaff_RBP + -0x58);
-      return uVar6;
+      
+      // 获取统计参数并处理
+      data_entry = (undefined8 *)FUN_180847820();
+      stat_param1 = *(undefined8 *)(entry_data + 0x80);
+      stat_param2 = data_entry[1];
+      *(undefined8 *)(stack_base + -0x48) = *data_entry;
+      *(undefined8 *)(stack_base + -0x40) = stat_param2;
+      stat_result = FUN_180866f50(stat_param1,stack_base + -0x48,stack_base + -0x58);
+      FUN_180840100(stack_base + -0x58);
+      return stat_result;
     }
   } while( true );
 }
 
 
 
+/*=============================================================================
+ * 网络统计处理函数
+ * 
+ * 功能：执行网络统计数据的处理和清理工作
+ * 
+ * 参数：无
+ * 
+ * 返回值：
+ *   0 - 成功完成统计处理
+ *   非0 - 错误代码
+ * 
+ * 技术说明：
+ * - 释放网络系统占用的资源
+ * - 执行最终的统计数据处理
+ * - 清理临时缓冲区
+ * - 返回统计处理结果
+ * - 提供网络性能监控的最终结果
+ =============================================================================*/
 undefined4 FUN_180889eb2(void)
 
 {
-  undefined8 uVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  undefined4 uVar4;
-  undefined4 *puVar5;
-  longlong unaff_RBP;
-  longlong unaff_RSI;
-  longlong unaff_RDI;
+  undefined8 stat_context;           // 统计上下文指针
+  undefined4 stat_result1;           // 统计结果1
+  undefined4 stat_result2;           // 统计结果2
+  undefined4 stat_result3;           // 统计结果3
+  undefined4 stat_result4;           // 统计结果4
+  undefined4 *stat_buffer;           // 统计缓冲区指针
+  longlong stack_base;               // 栈基址
+  longlong network_context;          // 网络上下文指针
+  longlong lock_context;             // 锁上下文指针;
   
-  if (unaff_RDI != 0) {
-                    // WARNING: Subroutine does not return
+  // 检查并释放锁资源
+  if (lock_context != 0) {
+    // 释放网络锁
     FUN_180768400();
   }
-  puVar5 = (undefined4 *)FUN_180847820();
-  uVar1 = *(undefined8 *)(unaff_RSI + 0x80);
-  uVar4 = puVar5[1];
-  uVar2 = puVar5[2];
-  uVar3 = puVar5[3];
-  *(undefined4 *)(unaff_RBP + -0x48) = *puVar5;
-  *(undefined4 *)(unaff_RBP + -0x44) = uVar4;
-  *(undefined4 *)(unaff_RBP + -0x40) = uVar2;
-  *(undefined4 *)(unaff_RBP + -0x3c) = uVar3;
-  uVar4 = FUN_180866f50(uVar1,unaff_RBP + -0x48,unaff_RBP + -0x58);
-  FUN_180840100(unaff_RBP + -0x58);
-  return uVar4;
+  
+  // 获取统计缓冲区数据
+  stat_buffer = (undefined4 *)FUN_180847820();
+  stat_context = *(undefined8 *)(network_context + 0x80);
+  stat_result4 = stat_buffer[1];
+  stat_result2 = stat_buffer[2];
+  stat_result3 = stat_buffer[3];
+  
+  // 复制统计数据到栈缓冲区
+  *(undefined4 *)(stack_base + -0x48) = *stat_buffer;
+  *(undefined4 *)(stack_base + -0x44) = stat_result4;
+  *(undefined4 *)(stack_base + -0x40) = stat_result2;
+  *(undefined4 *)(stack_base + -0x3c) = stat_result3;
+  
+  // 执行统计处理
+  stat_result4 = FUN_180866f50(stat_context,stack_base + -0x48,stack_base + -0x58);
+  
+  // 清理临时缓冲区
+  FUN_180840100(stack_base + -0x58);
+  
+  return stat_result4;
 }
 
 

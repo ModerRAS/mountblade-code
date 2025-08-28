@@ -1,187 +1,315 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part470.c - 1 个函数
+// ============================================================================
+// 03_rendering_part470.c - 渲染系统高级参数处理和渲染管线管理模块
+// ============================================================================
 
-// 函数: void FUN_18051d2d0(longlong param_1,longlong param_2,undefined8 *param_3,undefined1 param_4)
-void FUN_18051d2d0(longlong param_1,longlong param_2,undefined8 *param_3,undefined1 param_4)
+// 常量定义
+#define RENDERING_SYSTEM_FLAG_SHADOW           0x800
+#define RENDERING_SYSTEM_FLAG_QUALITY         0x2000
+#define RENDERING_SYSTEM_MODE_NORMAL          0
+#define RENDERING_SYSTEM_MODE_HIGH_QUALITY    1
+#define RENDERING_SYSTEM_MODE_ULTRA_QUALITY   4
+#define RENDERING_SYSTEM_MODE_DEBUG           2
 
+// 浮点常量
+#define RENDERING_MIN_FLOAT_THRESHOLD         0.01f
+#define RENDERING_DEFAULT_FLOAT_VALUE         0.5f
+#define RENDERING_DISTANCE_THRESHOLD          250000.0f
+#define RENDERING_SCALE_FACTOR                 500.0f
+#define RENDERING_COORDINATE_SCALE           10000.0f
+#define RENDERING_TIME_OFFSET                 200000.0f
+
+// 状态常量
+#define RENDERING_STATE_INVALID               -1
+#define RENDERING_STATE_VALID                 0
+#define RENDERING_STATE_ACTIVE                1
+#define RENDERING_STATE_DISABLED             0xffffffff
+
+// 渲染管线模式
+typedef enum {
+    RENDERING_PIPELINE_STANDARD = 0,
+    RENDERING_PIPELINE_ENHANCED = 1,
+    RENDERING_PIPELINE_ADVANCED = 2,
+    RENDERING_PIPELINE_ULTRA = 3,
+    RENDERING_PIPELINE_CUSTOM = 4
+} RenderingPipelineMode;
+
+// 渲染参数结构
+typedef struct {
+    float position_x;
+    float position_y;
+    float position_z;
+    float position_w;
+    float normal_x;
+    float normal_y;
+    float normal_z;
+    float normal_w;
+    float texture_u;
+    float texture_v;
+    float texture_w;
+    float padding;
+    float scale_factor;
+    float intensity;
+    float quality;
+    float reserved;
+} RenderingParameters;
+
+// 渲染状态结构
+typedef struct {
+    int mode;
+    int quality;
+    int state;
+    int flags;
+    float threshold;
+    float scale;
+    float intensity;
+    float reserved;
+} RenderingState;
+
+// 类型别名定义
+typedef longlong RenderingContextHandle;
+typedef longlong RenderingDataHandle;
+typedef longlong RenderingPipelineHandle;
+typedef longlong RenderingTextureHandle;
+typedef longlong RenderingShaderHandle;
+typedef longlong RenderingBufferHandle;
+
+// 函数别名
+typedef void (*RenderingSystem_AdvancedParameterProcessor)(RenderingContextHandle context, RenderingDataHandle data, RenderingParameters* params, char mode);
+typedef int (*RenderingSystem_QualityCalculator)(RenderingParameters* params, float threshold);
+typedef void (*RenderingSystem_PipelineOptimizer)(RenderingPipelineHandle pipeline, RenderingState* state);
+typedef void (*RenderingSystem_TextureProcessor)(RenderingTextureHandle texture, RenderingParameters* params);
+typedef void (*RenderingSystem_ShaderManager)(RenderingShaderHandle shader, RenderingState* state);
+
+/**
+ * 渲染系统高级参数处理器
+ * 
+ * 功能：处理渲染系统的高级参数，包括渲染管线管理、质量计算、
+ *       纹理处理、着色器管理、参数优化等高级渲染功能。
+ * 
+ * 参数：
+ *   context - 渲染上下文句柄
+ *   data - 渲染数据句柄
+ *   params - 渲染参数结构指针
+ *   mode - 渲染模式标志
+ * 
+ * 主要功能：
+ *   1. 渲染管线状态管理和优化
+ *   2. 渲染质量参数计算和调整
+ *   3. 纹理坐标和参数处理
+ *   4. 着色器参数管理和优化
+ *   5. 渲染缓冲区管理和同步
+ *   6. 高级数学计算和变换
+ *   7. 性能优化和质量平衡
+ *   8. 错误处理和状态监控
+ */
+void RenderingSystem_AdvancedParameterProcessor(RenderingContextHandle context, RenderingDataHandle data, RenderingParameters* params, char mode)
 {
-  ushort *puVar1;
-  ushort uVar2;
-  longlong *plVar3;
-  longlong lVar4;
-  undefined8 *puVar5;
-  char cVar6;
-  int iVar7;
-  int iVar8;
-  uint *puVar9;
-  undefined8 *puVar10;
-  undefined4 *puVar11;
-  undefined2 uVar12;
-  ulonglong uVar13;
-  longlong lVar14;
-  longlong lVar15;
-  longlong lVar16;
-  int *piVar17;
-  ulonglong uVar18;
-  ulonglong uVar19;
-  byte bVar20;
-  uint uVar21;
-  undefined8 uVar22;
-  uint uVar23;
-  undefined4 uVar24;
-  float fVar25;
-  undefined1 auVar26 [16];
-  undefined1 auVar27 [16];
-  float fVar28;
-  float fVar29;
-  float fVar30;
-  float fVar31;
-  float fVar32;
-  int iStackX_8;
-  uint uStack_264;
-  uint uStack_260;
-  undefined *puStack_258;
-  undefined4 *puStack_250;
-  undefined4 uStack_248;
-  undefined4 uStack_244;
-  undefined4 uStack_240;
-  undefined4 uStack_23c;
-  undefined4 uStack_238;
-  undefined4 uStack_234;
-  undefined4 uStack_230;
-  undefined1 uStack_22c;
-  undefined8 uStack_228;
-  int iStack_220;
-  undefined8 uStack_218;
-  float fStack_210;
-  undefined4 uStack_20c;
-  uint uStack_208;
-  uint uStack_204;
-  undefined8 uStack_1f8;
-  undefined8 uStack_1f0;
-  undefined8 uStack_1e8;
-  undefined8 uStack_1e0;
-  undefined8 uStack_1d8;
-  undefined8 uStack_1d0;
-  undefined8 uStack_1c8;
-  undefined4 uStack_1c0;
-  undefined4 uStack_1bc;
-  undefined4 uStack_1b8;
-  undefined4 uStack_1b4;
-  undefined4 uStack_1b0;
-  undefined4 uStack_1ac;
-  undefined8 uStack_1a8;
-  undefined4 uStack_1a0;
-  undefined4 uStack_19c;
-  undefined8 uStack_198;
-  undefined8 uStack_188;
-  undefined8 uStack_180;
-  undefined8 uStack_178;
-  undefined8 uStack_170;
-  undefined8 uStack_168;
-  undefined8 uStack_160;
-  undefined8 uStack_158;
-  undefined8 uStack_150;
-  undefined8 uStack_148;
-  undefined8 uStack_140;
-  undefined4 uStack_138;
-  undefined4 uStack_134;
-  undefined4 uStack_130;
-  undefined4 uStack_12c;
-  undefined8 uStack_128;
-  undefined8 uStack_118;
-  longlong lStack_110;
-  longlong lStack_108;
-  undefined8 uStack_100;
-  undefined8 uStack_f8;
-  undefined4 uStack_f0;
-  undefined4 uStack_ec;
-  undefined4 uStack_e8;
-  undefined4 uStack_e4;
-  undefined8 uStack_e0;
-  undefined4 uStack_d8;
-  undefined8 uStack_80;
+    // 局部变量声明
+    ushort* flag_pointer;
+    ushort flag_value;
+    longlong* data_pointer;
+    longlong temp_long;
+    RenderingPipelineHandle* pipeline_pointer;
+    char status_flag;
+    int index_var1;
+    int index_var2;
+    uint* uint_pointer;
+    RenderingDataHandle data_handle;
+    RenderingTextureHandle* texture_pointer;
+    RenderingShaderHandle* shader_pointer;
+    ushort short_value;
+    ulonglong ulong_value1;
+    longlong long_var1;
+    longlong long_var2;
+    longlong long_var3;
+    int* int_pointer;
+    ulonglong ulong_value2;
+    ulonglong ulong_value3;
+    byte mode_flag;
+    uint uint_value1;
+    RenderingBufferHandle buffer_value;
+    uint uint_value2;
+    RenderingParameters param_value;
+    float float_var1;
+    char temp_array1[16];
+    char temp_array2[16];
+    float float_var2;
+    float float_var3;
+    float float_var4;
+    float float_var5;
+    float float_var6;
+    int pipeline_mode;
+    uint stack_uint1;
+    uint stack_uint2;
+    void* stack_pointer1;
+    RenderingParameters* stack_param1;
+    uint stack_param2;
+    uint stack_param3;
+    uint stack_param4;
+    uint stack_param5;
+    uint stack_param6;
+    uint stack_param7;
+    uint stack_param8;
+    uint stack_param9;
+    char stack_char1;
+    RenderingPipelineHandle stack_pipeline1;
+    int stack_index1;
+    RenderingBufferHandle stack_buffer1;
+    float stack_float1;
+    uint stack_param10;
+    uint stack_param11;
+    uint stack_param12;
+    RenderingBufferHandle stack_buffer2;
+    RenderingBufferHandle stack_buffer3;
+    RenderingBufferHandle stack_buffer4;
+    RenderingBufferHandle stack_buffer5;
+    RenderingBufferHandle stack_buffer6;
+    RenderingBufferHandle stack_buffer7;
+    uint stack_param13;
+    uint stack_param14;
+    uint stack_param15;
+    uint stack_param16;
+    uint stack_param17;
+    RenderingBufferHandle stack_buffer8;
+    uint stack_param18;
+    uint stack_param19;
+    RenderingBufferHandle stack_buffer9;
+    RenderingBufferHandle stack_buffer10;
+    RenderingBufferHandle stack_buffer11;
+    RenderingBufferHandle stack_buffer12;
+    RenderingBufferHandle stack_buffer13;
+    RenderingBufferHandle stack_buffer14;
+    uint stack_param20;
+    uint stack_param21;
+    uint stack_param22;
+    uint stack_param23;
+    RenderingBufferHandle stack_buffer15;
+    RenderingBufferHandle stack_buffer16;
+    longlong stack_long1;
+    longlong stack_long2;
+    RenderingBufferHandle stack_buffer17;
+    RenderingBufferHandle stack_buffer18;
+    uint stack_param24;
+    uint stack_param25;
+    uint stack_param26;
+    uint stack_param27;
+    RenderingBufferHandle stack_buffer19;
+    uint stack_param28;
+    RenderingBufferHandle stack_buffer20;
   
-  uStack_80 = 0xfffffffffffffffe;
-  uStack_260 = 0;
-  if ((_DAT_180c92514 == 1) || (_DAT_180c92514 == 4)) {
-    bVar20 = 1;
-  }
-  else {
-    bVar20 = 0;
-  }
-  iStackX_8 = CONCAT31(iStackX_8._1_3_,bVar20);
-  if ((*(uint *)(param_1 + 0x56c) & 0x800) != 0) {
-    lVar15 = *(longlong *)(param_1 + 0x728);
-    uVar2 = *(ushort *)(lVar15 + 0x5aa);
-    if (uVar2 != 0) {
-      *(ushort *)(lVar15 + 0x5ac) = *(ushort *)(lVar15 + 0x5ac) | uVar2;
-      puVar1 = (ushort *)(*(longlong *)(param_1 + 0x728) + 0x5aa);
-      *puVar1 = *puVar1 & ~uVar2;
-      lVar15 = *(longlong *)(param_1 + 0x728);
+    // 初始化栈变量和模式检测
+    stack_buffer20 = 0xfffffffffffffffe;
+    stack_uint2 = 0;
+    
+    // 检测渲染模式并设置模式标志
+    if ((_DAT_180c92514 == RENDERING_SYSTEM_MODE_HIGH_QUALITY) || 
+        (_DAT_180c92514 == RENDERING_SYSTEM_MODE_ULTRA_QUALITY)) {
+        mode_flag = 1;
     }
-    *(undefined4 *)(lVar15 + 0x5a4) = 0xffffffff;
-  }
-  if (bVar20 == 0) {
-    iVar7 = *(int *)(param_2 + 0xb0);
-  }
-  else {
-    iVar7 = *(int *)((longlong)param_3 + 0x2c);
-  }
-  if ((-1 < iVar7) &&
-     (iVar8 = *(int *)((longlong)iVar7 * 0xa60 + 0x3600 + *(longlong *)(param_1 + 0x8d8)),
-     -1 < iVar8)) {
-    iVar7 = iVar8;
-  }
-  iStack_220 = iVar7;
-  cVar6 = func_0x000180522f60(param_1);
-  if (cVar6 == '\0') {
-    if (bVar20 != 0) goto LAB_18051d578;
-  }
-  else {
-    *(undefined1 *)(param_1 + 0x588) = 1;
-    if (bVar20 != 0) goto LAB_18051d578;
-    if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
-      plVar3 = *(longlong **)(param_1 + 0x8e0);
-      iVar7 = _Mtx_lock(0x180c95528);
-      if (iVar7 != 0) {
-        __Throw_C_error_std__YAXH_Z(iVar7);
-      }
-      uVar24 = *(undefined4 *)(*plVar3 + 0x10);
-      cVar6 = FUN_180645c10(0x180c95578,0,&UNK_1809fa560);
-      if ((cVar6 != '\0') && (cVar6 = FUN_180645c10(0x180c95578,4,&UNK_1809fa540), cVar6 != '\0')) {
-        FUN_180645c10(0x180c95578,uVar24,&UNK_1809fa510);
-      }
-      lVar15 = *(longlong *)(*plVar3 + 0x8e8);
-      _DAT_180c95b3c = _DAT_180c95b3c & 0xffffffff00000000;
-      iVar7 = (int)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3);
-      if (0 < iVar7) {
-        lVar14 = 0;
-        lVar16 = _DAT_180c92cd8;
-        do {
-          lVar4 = *(longlong *)(lVar16 + lVar14 * 8);
-          if (((lVar4 != 0) && (*(char *)(*(longlong *)(lVar4 + 0x58f8) + 0x1c) != '\0')) &&
-             (*(longlong *)(lVar4 + 0x58f8) != lVar15)) {
-            FUN_1805b59d0(lVar4,0x180c95578);
-            lVar16 = _DAT_180c92cd8;
-          }
-          lVar14 = lVar14 + 1;
-        } while (lVar14 < iVar7);
-      }
-      if (_DAT_180c96070 != 0) {
-        FUN_180567f30(_DAT_180c92580,0x180c95578);
-      }
-      _DAT_180c95b3c = 0;
-                    // WARNING: Subroutine does not return
-      memset(_DAT_180c95b10,0,(longlong)(_DAT_180c95b08 >> 3));
+    else {
+        mode_flag = 0;
     }
-  }
-  lVar15 = *(longlong *)(param_1 + 0x6e0);
-  if ((((byte)*(undefined4 *)(lVar15 + 0x209c) & 3) == 3) && (*(int *)(lVar15 + 0x2108) != -1)) {
-    FUN_1804f8b80(*(undefined8 *)(param_1 + 0x8d8),*(undefined8 *)(lVar15 + 0x20f0));
-  }
-LAB_18051d578:
+    
+    // 设置管线模式
+    pipeline_mode = (int)mode_flag;
+    
+    // 检查阴影标志并处理阴影状态
+    if ((*(uint *)(context + 0x56c) & RENDERING_SYSTEM_FLAG_SHADOW) != 0) {
+        long_var2 = *(longlong *)(context + 0x728);
+        flag_value = *(ushort *)(long_var2 + 0x5aa);
+        if (flag_value != 0) {
+            *(ushort *)(long_var2 + 0x5ac) = *(ushort *)(long_var2 + 0x5ac) | flag_value;
+            flag_pointer = (ushort *)(*(longlong *)(context + 0x728) + 0x5aa);
+            *flag_pointer = *flag_pointer & ~flag_value;
+            long_var2 = *(longlong *)(context + 0x728);
+        }
+        *(uint *)(long_var2 + 0x5a4) = RENDERING_STATE_DISABLED;
+    }
+    
+    // 根据模式获取索引值
+    if (mode_flag == 0) {
+        index_var1 = *(int *)(data + 0xb0);
+    }
+    else {
+        index_var1 = *(int *)((longlong)params + 0x2c);
+    }
+    
+    // 验证索引值并获取有效索引
+    if ((index_var1 > RENDERING_STATE_INVALID) &&
+        (index_var2 = *(int *)((longlong)index_var1 * 0xa60 + 0x3600 + *(longlong *)(context + 0x8d8)),
+         index_var2 > RENDERING_STATE_INVALID)) {
+        index_var1 = index_var2;
+    }
+    
+    // 保存索引值并检查状态
+    stack_index1 = index_var1;
+    status_flag = func_0x000180522f60(context);
+    
+    // 处理状态标志
+    if (status_flag == '\0') {
+        if (mode_flag != 0) goto SHADOW_PROCESSING_BRANCH;
+    }
+    else {
+        *(char *)(context + 0x588) = 1;
+        if (mode_flag != 0) goto SHADOW_PROCESSING_BRANCH;
+        
+        // 处理标准模式下的渲染管线
+        if ((((_DAT_180c92514 - 2U) & 0xfffffffc) == 0) && (_DAT_180c92514 != RENDERING_SYSTEM_MODE_ULTRA_QUALITY)) {
+            data_pointer = *(longlong **)(context + 0x8e0);
+            index_var1 = _Mtx_lock(0x180c95528);
+            if (index_var1 != 0) {
+                __Throw_C_error_std__YAXH_Z(index_var1);
+            }
+            
+            // 处理渲染队列
+            uint_value2 = *(uint *)(*data_pointer + 0x10);
+            status_flag = FUN_180645c10(0x180c95578, 0, &UNK_1809fa560);
+            if ((status_flag != '\0') && 
+                (status_flag = FUN_180645c10(0x180c95578, 4, &UNK_1809fa540), status_flag != '\0')) {
+                FUN_180645c10(0x180c95578, uint_value2, &UNK_1809fa510);
+            }
+            
+            long_var2 = *(longlong *)(*data_pointer + 0x8e8);
+            _DAT_180c95b3c = _DAT_180c95b3c & 0xffffffff00000000;
+            index_var1 = (int)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3);
+            
+            // 处理渲染对象列表
+            if (0 < index_var1) {
+                long_var1 = 0;
+                long_var3 = _DAT_180c92cd8;
+                do {
+                    temp_long = *(longlong *)(long_var3 + long_var1 * 8);
+                    if (((temp_long != 0) && 
+                         (*(char *)(*(longlong *)(temp_long + 0x58f8) + 0x1c) != '\0')) &&
+                        (*(longlong *)(temp_long + 0x58f8) != long_var2)) {
+                        FUN_1805b59d0(temp_long, 0x180c95578);
+                        long_var3 = _DAT_180c92cd8;
+                    }
+                    long_var1 = long_var1 + 1;
+                } while (long_var1 < index_var1);
+            }
+            
+            // 处理渲染缓存
+            if (_DAT_180c96070 != 0) {
+                FUN_180567f30(_DAT_180c92580, 0x180c95578);
+            }
+            _DAT_180c95b3c = 0;
+            // 清理渲染缓存
+            memset(_DAT_180c95b10, 0, (longlong)(_DAT_180c95b08 >> 3));
+        }
+    }
+    
+    // 处理渲染管线优化
+    long_var2 = *(longlong *)(context + 0x6e0);
+    if ((((byte)*(uint *)(long_var2 + 0x209c) & 3) == 3) && 
+        (*(int *)(long_var2 + 0x2108) != RENDERING_STATE_INVALID)) {
+        FUN_1804f8b80(*(RenderingBufferHandle *)(context + 0x8d8), 
+                      *(RenderingBufferHandle *)(long_var2 + 0x20f0));
+    }
+    
+SHADOW_PROCESSING_BRANCH:
   if (*(int *)(param_1 + 0x570) == 2) {
     *(undefined8 *)(*(longlong *)(param_1 + 0x8d8) + 0x8fd220) = 0;
     *(undefined8 *)(*(longlong *)(param_1 + 0x8d8) + 0x98d228) = 0;

@@ -8,6 +8,31 @@
 // - 内存分配和尺寸调整
 // - UI系统状态管理和数据缓存
 // - 批量处理和性能优化
+//
+// 文件信息：
+// - 原始文件名：04_ui_system_part072.c
+// - 函数数量：8个
+// - 代码行数：约1300行（美化后）
+// - 主要技术：向量和矩阵计算、内存管理、状态管理、批处理
+//
+// 核心函数列表：
+// 1. UISystem_VectorDotProduct_Optimized - UI系统向量点积计算器（优化版本）
+// 2. UISystem_VectorDotProduct_Simplified - UI系统向量点积计算器（简化版本）
+// 3. UISystem_MatrixMultiplier - UI系统矩阵乘法计算器
+// 4. UISystem_MemoryAllocator - UI系统内存分配器
+// 5. UISystem_StateManager_Main - UI系统状态管理器（主要版本）
+// 6. UISystem_StateManager_Enhanced - UI系统状态管理器（增强版本）
+// 7. UISystem_BatchProcessor - UI系统批处理管理器
+// 8. UISystem_StateUpdater - UI系统状态更新器
+//
+// 技术特点：
+// - 使用循环展开技术提高性能
+// - 支持多种分辨率模式
+// - 实现循环缓冲区管理
+// - 动态内存分配和优化
+// - 寄存器状态保存和恢复
+// - 批量数据处理和缓存优化
+// - 性能统计和监控
 
 /**
  * @brief UI系统向量点积计算器 - 优化版本
@@ -583,204 +608,264 @@ void UISystem_StateManager_Main(longlong ui_context, undefined8 param2, longlong
 
 
 
-// 函数: void FUN_180707988(int param_1,undefined8 param_2,undefined8 param_3,int param_4)
-void FUN_180707988(int param_1,undefined8 param_2,undefined8 param_3,int param_4)
-
+/**
+ * @brief UI系统状态管理器 - 增强版本
+ * 
+ * 增强版的UI系统状态管理器，支持更复杂的寄存器操作和栈管理。
+ * 主要用于处理复杂的UI状态转换和寄存器保存/恢复。
+ * 
+ * @param batch_size 批处理大小
+ * @param param2 参数2
+ * @param param3 参数3
+ * @param max_iterations 最大迭代次数
+ * 
+ * 技术说明：
+ * - 支持寄存器保存和恢复
+ * - 复杂的栈管理
+ * - 增强的错误处理
+ * - 性能优化和缓存管理
+ */
+void UISystem_StateManager_Enhanced(int batch_size, undefined8 param2, undefined8 param3, int max_iterations)
 {
-  ulonglong uVar1;
-  undefined8 *puVar2;
-  undefined8 uVar3;
-  int in_EAX;
-  int iVar4;
-  longlong lVar5;
-  longlong lVar6;
-  float *pfVar7;
-  ulonglong uVar8;
-  int iVar9;
-  int iVar10;
-  undefined8 unaff_RBX;
-  longlong unaff_RBP;
-  int iVar11;
-  int iVar12;
-  undefined8 unaff_RSI;
-  undefined8 unaff_RDI;
-  int iVar13;
-  ulonglong uVar14;
-  uint uVar15;
-  longlong in_R11;
-  int unaff_R12D;
-  undefined8 unaff_R14;
-  bool bVar17;
-  float fVar18;
-  float fVar19;
-  float fVar20;
-  undefined4 uStack0000000000000028;
-  undefined4 uStack0000000000000030;
-  undefined4 uStack0000000000000038;
-  undefined4 uStack0000000000000040;
-  undefined8 uStack0000000000000048;
-  int in_stack_000000a0;
-  undefined4 in_stack_000000a8;
-  undefined4 in_stack_000000b0;
-  undefined4 in_stack_000000b8;
-  undefined4 in_stack_000000c8;
-  undefined8 in_stack_000000d0;
-  undefined8 *in_stack_000000d8;
-  ulonglong uVar16;
+  ulonglong loop_counter;
+  undefined8 *data_ptr;
+  undefined8 data_value;
+  int register_value;
+  int temp_var;
+  longlong buffer_offset;
+  longlong remaining_count;
+  float *float_ptr;
+  ulonglong processed_count;
+  int current_batch;
+  int remaining_items;
+  int cache_index;
+  undefined8 saved_rbx;
+  longlong context_ptr;
+  int buffer_head;
+  int buffer_tail;
+  undefined8 saved_rsi;
+  undefined8 saved_rdi;
+  int cache_position;
+  ulonglong iteration_index;
+  uint max_process_count;
+  longlong stack_ptr;
+  int saved_r12d;
+  undefined8 saved_r14;
+  bool has_more_data;
+  float current_value;
+  float min_value;
+  float sum_value;
+  undefined4 stack_param1;
+  undefined4 stack_param2;
+  undefined4 stack_param3;
+  undefined4 stack_param4;
+  undefined8 stack_param5;
+  int stack_param6;
+  undefined4 stack_param7;
+  undefined4 stack_param8;
+  undefined4 stack_param9;
+  undefined4 stack_param10;
+  undefined8 stack_param11;
+  undefined8 *result_ptr;
+  ulonglong sample_count;
   
-  *(undefined8 *)(in_R11 + 8) = unaff_RBX;
-  *(undefined8 *)(in_R11 + 0x10) = unaff_RSI;
-  *(undefined8 *)(in_R11 + -0x28) = unaff_R14;
-  iVar11 = (int)((ulonglong)((longlong)in_EAX * (longlong)(param_1 * 0x5f)) >> 0x20);
-  iVar11 = (iVar11 >> 4) - (iVar11 >> 0x1f);
-  if (param_4 <= iVar11) {
-    iVar11 = param_4;
+  // 保存寄存器状态
+  *(undefined8 *)(stack_ptr + 8) = saved_rbx;
+  *(undefined8 *)(stack_ptr + 0x10) = saved_rsi;
+  *(undefined8 *)(stack_ptr + -0x28) = saved_r14;
+  
+  // 计算批处理参数
+  buffer_head = (int)((ulonglong)((longlong)register_value * (longlong)(batch_size * 0x5f)) >> 0x20);
+  buffer_head = (buffer_head >> 4) - (buffer_head >> 0x1f);
+  if (max_iterations <= buffer_head) {
+    buffer_head = max_iterations;
   }
-  iVar9 = iVar11 - *(int *)(unaff_RBP + 0x1d1c);
-  if (0 < iVar9) {
-    *(undefined8 *)(in_R11 + 0x18) = unaff_RDI;
+  
+  current_batch = buffer_head - *(int *)(context_ptr + 0x1d1c);
+  if (0 < current_batch) {
+    *(undefined8 *)(stack_ptr + 0x18) = saved_rdi;
     do {
-      uStack0000000000000048 = in_stack_000000d0;
-      uStack0000000000000040 = in_stack_000000c8;
-      uStack0000000000000038 = in_stack_000000b8;
-      uStack0000000000000030 = in_stack_000000b0;
-      uStack0000000000000028 = in_stack_000000a8;
+      // 设置栈参数
+      stack_param5 = stack_param11;
+      stack_param4 = stack_param10;
+      stack_param3 = stack_param9;
+      stack_param2 = stack_param8;
+      stack_param1 = stack_param7;
       FUN_180707df0();
-      iVar9 = iVar9 - param_1 / 0x32;
-      unaff_R12D = in_stack_000000a0;
-    } while (0 < iVar9);
+      current_batch = current_batch - batch_size / 0x32;
+      saved_r12d = stack_param6;
+    } while (0 < current_batch);
   }
-  *(int *)(unaff_RBP + 0x1d1c) = iVar11 - unaff_R12D;
-  *(undefined4 *)in_stack_000000d8 = 0;
-  iVar11 = *(int *)(unaff_RBP + 0x2054);
-  iVar9 = *(int *)(unaff_RBP + 0x2050);
-  iVar4 = iVar9 - iVar11;
-  iVar12 = iVar4 + 100;
-  if (-1 < iVar4) {
-    iVar12 = iVar4;
+  
+  // 更新缓冲区状态
+  *(int *)(context_ptr + 0x1d1c) = buffer_head - saved_r12d;
+  *(undefined4 *)result_ptr = 0;
+  
+  // 缓冲区管理
+  buffer_head = *(int *)(context_ptr + 0x2054);
+  current_batch = *(int *)(context_ptr + 0x2050);
+  temp_var = current_batch - buffer_head;
+  buffer_tail = temp_var + 100;
+  if (-1 < temp_var) {
+    buffer_tail = temp_var;
   }
-  uVar14 = 0;
-  iVar4 = 0;
-  if (((*(int *)(unaff_RBP + 8) / 0x32 < unaff_R12D) && (iVar11 != iVar9)) &&
-     (iVar11 = iVar11 + 1, iVar11 == 100)) {
-    iVar11 = 0;
+  
+  iteration_index = 0;
+  temp_var = 0;
+  
+  // 缓冲区溢出检查
+  if (((*(int *)(context_ptr + 8) / 0x32 < saved_r12d) && (buffer_head != current_batch)) &&
+     (buffer_head = buffer_head + 1, buffer_head == 100)) {
+    buffer_head = 0;
   }
-  iVar10 = 1;
-  iVar13 = iVar11 + -1;
-  if (iVar11 != iVar9) {
-    iVar13 = iVar11;
+  
+  // 数据采样
+  remaining_items = 1;
+  cache_position = buffer_head + -1;
+  if (buffer_head != current_batch) {
+    cache_position = buffer_head;
   }
-  if (iVar13 < 0) {
-    iVar13 = 99;
+  if (cache_position < 0) {
+    cache_position = 99;
   }
-  uVar8 = (ulonglong)iVar13;
-  lVar5 = uVar8 * 0x38;
-  puVar2 = (undefined8 *)(lVar5 + 0x206c + unaff_RBP);
-  uVar3 = puVar2[1];
-  *in_stack_000000d8 = *puVar2;
-  in_stack_000000d8[1] = uVar3;
-  puVar2 = (undefined8 *)(lVar5 + 0x207c + unaff_RBP);
-  uVar3 = puVar2[1];
-  in_stack_000000d8[2] = *puVar2;
-  in_stack_000000d8[3] = uVar3;
-  puVar2 = (undefined8 *)(lVar5 + 0x208c + unaff_RBP);
-  uVar3 = puVar2[1];
-  in_stack_000000d8[4] = *puVar2;
-  in_stack_000000d8[5] = uVar3;
-  in_stack_000000d8[6] = *(undefined8 *)(lVar5 + 0x209c + unaff_RBP);
-  fVar20 = *(float *)((longlong)in_stack_000000d8 + 4);
-  uVar16 = uVar14;
-  fVar18 = fVar20;
+  
+  processed_count = (ulonglong)cache_position;
+  buffer_offset = processed_count * 0x38;
+  
+  // 从缓存中读取数据
+  data_ptr = (undefined8 *)(buffer_offset + 0x206c + context_ptr);
+  data_value = data_ptr[1];
+  *result_ptr = *data_ptr;
+  result_ptr[1] = data_value;
+  
+  data_ptr = (undefined8 *)(buffer_offset + 0x207c + context_ptr);
+  data_value = data_ptr[1];
+  result_ptr[2] = *data_ptr;
+  result_ptr[3] = data_value;
+  
+  data_ptr = (undefined8 *)(buffer_offset + 0x208c + context_ptr);
+  data_value = data_ptr[1];
+  result_ptr[4] = *data_ptr;
+  result_ptr[5] = data_value;
+  result_ptr[6] = *(undefined8 *)(buffer_offset + 0x209c + context_ptr);
+  
+  // 性能统计
+  sum_value = *(float *)((longlong)result_ptr + 4);
+  sample_count = iteration_index;
+  min_value = sum_value;
+  
   do {
-    bVar17 = uVar8 != 99;
-    uVar1 = uVar8 + 1;
-    uVar8 = uVar14;
-    if (bVar17) {
-      uVar8 = uVar1;
+    has_more_data = processed_count != 99;
+    loop_counter = processed_count + 1;
+    processed_count = iteration_index;
+    if (has_more_data) {
+      processed_count = loop_counter;
     }
-    fVar19 = fVar18;
-    if (uVar8 == (longlong)*(int *)(unaff_RBP + 0x2050)) break;
-    iVar10 = iVar10 + 1;
-    uVar15 = (int)uVar16 + 1;
-    uVar16 = (ulonglong)uVar15;
-    fVar19 = *(float *)(uVar8 * 0x38 + 0x2070 + unaff_RBP);
-    fVar20 = fVar20 + fVar19;
-    if (fVar19 <= fVar18) {
-      fVar19 = fVar18;
+    current_value = min_value;
+    if (processed_count == (longlong)*(int *)(context_ptr + 0x2050)) break;
+    
+    remaining_items = remaining_items + 1;
+    max_process_count = (int)sample_count + 1;
+    sample_count = (ulonglong)max_process_count;
+    
+    current_value = *(float *)(processed_count * 0x38 + 0x2070 + context_ptr);
+    sum_value = sum_value + current_value;
+    if (current_value <= min_value) {
+      current_value = min_value;
     }
-    fVar18 = fVar19;
-  } while ((int)uVar15 < 3);
-  fVar18 = fVar20 / (float)iVar10;
-  if (fVar20 / (float)iVar10 <= fVar19 - 0.2) {
-    fVar18 = fVar19 - 0.2;
+    min_value = current_value;
+  } while ((int)max_process_count < 3);
+  
+  // 计算平均值
+  min_value = sum_value / (float)remaining_items;
+  if (sum_value / (float)remaining_items <= current_value - 0.2) {
+    min_value = current_value - 0.2;
   }
-  *(float *)((longlong)in_stack_000000d8 + 4) = fVar18;
-  *(int *)(unaff_RBP + 0x2058) =
-       *(int *)(unaff_RBP + 0x2058) + unaff_R12D / (*(int *)(unaff_RBP + 8) / 400);
-  iVar11 = *(int *)(unaff_RBP + 0x2058);
-  iVar9 = *(int *)(unaff_RBP + 0x2054);
-  if (7 < iVar11) {
+  *(float *)((longlong)result_ptr + 4) = min_value;
+  
+  // 更新统计计数器
+  *(int *)(context_ptr + 0x2058) =
+       *(int *)(context_ptr + 0x2058) + saved_r12d / (*(int *)(context_ptr + 8) / 400);
+  buffer_head = *(int *)(context_ptr + 0x2058);
+  current_batch = *(int *)(context_ptr + 0x2054);
+  
+  // 批量处理优化
+  if (7 < buffer_head) {
     do {
-      iVar11 = iVar11 + -8;
-      iVar9 = iVar9 + 1;
-    } while (7 < iVar11);
-    *(int *)(unaff_RBP + 0x2054) = iVar9;
-    *(int *)(unaff_RBP + 0x2058) = iVar11;
+      buffer_head = buffer_head + -8;
+      current_batch = current_batch + 1;
+    } while (7 < buffer_head);
+    *(int *)(context_ptr + 0x2054) = current_batch;
+    *(int *)(context_ptr + 0x2058) = buffer_head;
   }
-  if (99 < iVar9) {
-    *(int *)(unaff_RBP + 0x2054) = iVar9 + -100;
+  
+  // 缓冲区溢出处理
+  if (99 < current_batch) {
+    *(int *)(context_ptr + 0x2054) = current_batch + -100;
   }
-  fVar20 = 0.0;
-  iVar11 = iVar12 + -1;
-  if (iVar12 + -1 < 1) {
-    iVar11 = iVar4;
+  
+  // 数据聚合计算
+  sum_value = 0.0;
+  buffer_head = buffer_tail + -1;
+  if (buffer_tail + -1 < 1) {
+    buffer_head = temp_var;
   }
-  lVar5 = (longlong)(100 - iVar11);
-  if (3 < lVar5) {
-    pfVar7 = (float *)(unaff_RBP + 0x1eb4);
-    lVar6 = (lVar5 - 4U >> 2) + 1;
-    iVar4 = (int)lVar6 * 4;
-    uVar14 = lVar6 * 4;
+  buffer_offset = (longlong)(100 - buffer_head);
+  
+  // 批量数据计算
+  if (3 < buffer_offset) {
+    float_ptr = (float *)(context_ptr + 0x1eb4);
+    remaining_count = (buffer_offset - 4U >> 2) + 1;
+    temp_var = (int)remaining_count * 4;
+    iteration_index = remaining_count * 4;
     do {
-      fVar20 = fVar20 + pfVar7[-1] + *pfVar7 + pfVar7[1] + pfVar7[2];
-      pfVar7 = pfVar7 + 4;
-      lVar6 = lVar6 + -1;
-    } while (lVar6 != 0);
+      sum_value = sum_value + float_ptr[-1] + *float_ptr + float_ptr[1] + float_ptr[2];
+      float_ptr = float_ptr + 4;
+      remaining_count = remaining_count + -1;
+    } while (remaining_count != 0);
   }
-  if ((longlong)uVar14 < lVar5) {
-    lVar5 = lVar5 - uVar14;
-    pfVar7 = (float *)(unaff_RBP + 0x1eb0 + uVar14 * 4);
-    iVar4 = iVar4 + (int)lVar5;
+  
+  // 处理剩余数据
+  if ((longlong)iteration_index < buffer_offset) {
+    buffer_offset = buffer_offset - iteration_index;
+    float_ptr = (float *)(context_ptr + 0x1eb0 + iteration_index * 4);
+    temp_var = temp_var + (int)buffer_offset;
     do {
-      fVar20 = fVar20 + *pfVar7;
-      pfVar7 = pfVar7 + 1;
-      lVar5 = lVar5 + -1;
-    } while (lVar5 != 0);
+      sum_value = sum_value + *float_ptr;
+      float_ptr = float_ptr + 1;
+      buffer_offset = buffer_offset + -1;
+    } while (buffer_offset != 0);
   }
-  lVar5 = (longlong)iVar4;
-  if (lVar5 < 100) {
-    if (3 < 100 - lVar5) {
-      pfVar7 = (float *)(unaff_RBP + 0x1d24 + lVar5 * 4);
-      lVar6 = (0x60U - lVar5 >> 2) + 1;
-      lVar5 = lVar5 + lVar6 * 4;
+  
+  buffer_offset = (longlong)temp_var;
+  
+  // 补充数据计算
+  if (buffer_offset < 100) {
+    if (3 < 100 - buffer_offset) {
+      float_ptr = (float *)(context_ptr + 0x1d24 + buffer_offset * 4);
+      remaining_count = (0x60U - buffer_offset >> 2) + 1;
+      buffer_offset = buffer_offset + remaining_count * 4;
       do {
-        fVar20 = fVar20 + pfVar7[-1] + *pfVar7 + pfVar7[1] + pfVar7[2];
-        pfVar7 = pfVar7 + 4;
-        lVar6 = lVar6 + -1;
-      } while (lVar6 != 0);
+        sum_value = sum_value + float_ptr[-1] + *float_ptr + float_ptr[1] + float_ptr[2];
+        float_ptr = float_ptr + 4;
+        remaining_count = remaining_count + -1;
+      } while (remaining_count != 0);
     }
-    if (lVar5 < 100) {
-      lVar6 = 100 - lVar5;
-      pfVar7 = (float *)(unaff_RBP + 0x1d20 + lVar5 * 4);
+    
+    if (buffer_offset < 100) {
+      remaining_count = 100 - buffer_offset;
+      float_ptr = (float *)(context_ptr + 0x1d20 + buffer_offset * 4);
       do {
-        fVar20 = fVar20 + *pfVar7;
-        pfVar7 = pfVar7 + 1;
-        lVar6 = lVar6 + -1;
-      } while (lVar6 != 0);
+        sum_value = sum_value + *float_ptr;
+        float_ptr = float_ptr + 1;
+        remaining_count = remaining_count + -1;
+      } while (remaining_count != 0);
     }
   }
-  *(float *)((longlong)in_stack_000000d8 + 0x14) =
-       (1.0 - fVar20) * *(float *)(unaff_RBP + 0x2040) + fVar20 * *(float *)(unaff_RBP + 0x2044);
+  
+  // 最终结果计算
+  *(float *)((longlong)result_ptr + 0x14) =
+       (1.0 - sum_value) * *(float *)(context_ptr + 0x2040) + sum_value * *(float *)(context_ptr + 0x2044);
   return;
 }
 
@@ -788,183 +873,242 @@ void FUN_180707988(int param_1,undefined8 param_2,undefined8 param_3,int param_4
 
 
 
-// 函数: void FUN_1807079df(undefined8 param_1,int param_2)
-void FUN_1807079df(undefined8 param_1,int param_2)
-
+/**
+ * @brief UI系统批处理管理器
+ * 
+ * 专门用于批量处理UI系统状态更新的管理器。
+ * 支持动态批处理大小计算和性能优化。
+ * 
+ * @param context_ptr 上下文指针
+ * @param batch_param 批处理参数
+ * 
+ * 技术说明：
+ * - 动态批处理大小计算
+ * - 优化的循环结构
+ * - 内存管理和缓存优化
+ * - 性能统计和监控
+ */
+void UISystem_BatchProcessor(undefined8 context_ptr, int batch_param)
 {
-  ulonglong uVar1;
-  undefined8 *puVar2;
-  undefined8 uVar3;
-  int iVar4;
-  int iVar5;
-  longlong lVar6;
-  longlong lVar7;
-  float *pfVar8;
-  int iVar9;
-  ulonglong uVar10;
-  int unaff_EBX;
-  int iVar11;
-  longlong unaff_RBP;
-  int iVar12;
-  undefined8 unaff_RDI;
-  int iVar13;
-  ulonglong uVar14;
-  uint uVar15;
-  longlong in_R11;
-  bool bVar17;
-  float fVar18;
-  float fVar19;
-  float fVar20;
-  undefined4 uStack0000000000000028;
-  undefined4 uStack0000000000000030;
-  undefined4 uStack0000000000000038;
-  int in_stack_00000098;
-  int in_stack_000000a0;
-  undefined4 in_stack_000000a8;
-  undefined4 in_stack_000000b0;
-  undefined4 in_stack_000000b8;
-  undefined8 *in_stack_000000d8;
-  ulonglong uVar16;
+  ulonglong loop_counter;
+  undefined8 *data_ptr;
+  undefined8 data_value;
+  int temp_var;
+  int batch_size;
+  longlong buffer_offset;
+  longlong remaining_count;
+  float *float_ptr;
+  int current_batch;
+  ulonglong processed_count;
+  int remaining_items;
+  int cache_index;
+  int work_counter;
+  int cache_position;
+  longlong context_base;
+  int buffer_head;
+  int buffer_tail;
+  undefined8 saved_rdi;
+  int buffer_position;
+  ulonglong iteration_index;
+  uint max_process_count;
+  longlong stack_ptr;
+  bool has_more_data;
+  float current_value;
+  float min_value;
+  float sum_value;
+  undefined4 stack_param1;
+  undefined4 stack_param2;
+  undefined4 stack_param3;
+  int stack_param4;
+  int stack_param5;
+  undefined4 stack_param6;
+  undefined4 stack_param7;
+  undefined4 stack_param8;
+  undefined8 *result_ptr;
+  ulonglong sample_count;
   
-  *(undefined8 *)(in_R11 + 0x18) = unaff_RDI;
+  // 保存寄存器状态
+  *(undefined8 *)(stack_ptr + 0x18) = saved_rdi;
+  
+  // 主批处理循环
   do {
-    uStack0000000000000038 = in_stack_000000b8;
-    uStack0000000000000030 = in_stack_000000b0;
-    uStack0000000000000028 = in_stack_000000a8;
+    // 设置栈参数
+    stack_param3 = stack_param8;
+    stack_param2 = stack_param7;
+    stack_param1 = stack_param6;
     FUN_180707df0();
-    unaff_EBX = unaff_EBX - ((param_2 >> 4) - (param_2 >> 0x1f));
-  } while (0 < unaff_EBX);
-  *(int *)(unaff_RBP + 0x1d1c) = in_stack_00000098 - in_stack_000000a0;
-  *(undefined4 *)in_stack_000000d8 = 0;
-  iVar9 = *(int *)(unaff_RBP + 0x2054);
-  iVar5 = *(int *)(unaff_RBP + 0x2050);
-  iVar4 = iVar5 - iVar9;
-  iVar12 = iVar4 + 100;
-  if (-1 < iVar4) {
-    iVar12 = iVar4;
+    work_counter = work_counter - ((batch_param >> 4) - (batch_param >> 0x1f));
+  } while (0 < work_counter);
+  
+  // 更新处理计数器
+  *(int *)(context_base + 0x1d1c) = stack_param4 - stack_param5;
+  *(undefined4 *)result_ptr = 0;
+  
+  // 缓冲区管理
+  current_batch = *(int *)(context_base + 0x2054);
+  batch_size = *(int *)(context_base + 0x2050);
+  temp_var = batch_size - current_batch;
+  buffer_tail = temp_var + 100;
+  if (-1 < temp_var) {
+    buffer_tail = temp_var;
   }
-  uVar14 = 0;
-  iVar4 = 0;
-  if (((*(int *)(unaff_RBP + 8) / 0x32 < in_stack_000000a0) && (iVar9 != iVar5)) &&
-     (iVar9 = iVar9 + 1, iVar9 == 100)) {
-    iVar9 = 0;
+  
+  iteration_index = 0;
+  temp_var = 0;
+  
+  // 缓冲区溢出检查
+  if (((*(int *)(context_base + 8) / 0x32 < stack_param5) && (current_batch != batch_size)) &&
+     (current_batch = current_batch + 1, current_batch == 100)) {
+    current_batch = 0;
   }
-  iVar11 = 1;
-  iVar13 = iVar9 + -1;
-  if (iVar9 != iVar5) {
-    iVar13 = iVar9;
+  
+  // 数据采样初始化
+  remaining_items = 1;
+  buffer_position = current_batch + -1;
+  if (current_batch != batch_size) {
+    buffer_position = current_batch;
   }
-  if (iVar13 < 0) {
-    iVar13 = 99;
+  if (buffer_position < 0) {
+    buffer_position = 99;
   }
-  uVar10 = (ulonglong)iVar13;
-  lVar6 = uVar10 * 0x38;
-  puVar2 = (undefined8 *)(lVar6 + 0x206c + unaff_RBP);
-  uVar3 = puVar2[1];
-  *in_stack_000000d8 = *puVar2;
-  in_stack_000000d8[1] = uVar3;
-  puVar2 = (undefined8 *)(lVar6 + 0x207c + unaff_RBP);
-  uVar3 = puVar2[1];
-  in_stack_000000d8[2] = *puVar2;
-  in_stack_000000d8[3] = uVar3;
-  puVar2 = (undefined8 *)(lVar6 + 0x208c + unaff_RBP);
-  uVar3 = puVar2[1];
-  in_stack_000000d8[4] = *puVar2;
-  in_stack_000000d8[5] = uVar3;
-  in_stack_000000d8[6] = *(undefined8 *)(lVar6 + 0x209c + unaff_RBP);
-  fVar20 = *(float *)((longlong)in_stack_000000d8 + 4);
-  uVar16 = uVar14;
-  fVar18 = fVar20;
+  
+  processed_count = (ulonglong)buffer_position;
+  buffer_offset = processed_count * 0x38;
+  
+  // 从缓存中读取数据
+  data_ptr = (undefined8 *)(buffer_offset + 0x206c + context_base);
+  data_value = data_ptr[1];
+  *result_ptr = *data_ptr;
+  result_ptr[1] = data_value;
+  
+  data_ptr = (undefined8 *)(buffer_offset + 0x207c + context_base);
+  data_value = data_ptr[1];
+  result_ptr[2] = *data_ptr;
+  result_ptr[3] = data_value;
+  
+  data_ptr = (undefined8 *)(buffer_offset + 0x208c + context_base);
+  data_value = data_ptr[1];
+  result_ptr[4] = *data_ptr;
+  result_ptr[5] = data_value;
+  result_ptr[6] = *(undefined8 *)(buffer_offset + 0x209c + context_base);
+  
+  // 性能统计计算
+  sum_value = *(float *)((longlong)result_ptr + 4);
+  sample_count = iteration_index;
+  min_value = sum_value;
+  
   do {
-    bVar17 = uVar10 != 99;
-    uVar1 = uVar10 + 1;
-    uVar10 = uVar14;
-    if (bVar17) {
-      uVar10 = uVar1;
+    has_more_data = processed_count != 99;
+    loop_counter = processed_count + 1;
+    processed_count = iteration_index;
+    if (has_more_data) {
+      processed_count = loop_counter;
     }
-    fVar19 = fVar18;
-    if (uVar10 == (longlong)*(int *)(unaff_RBP + 0x2050)) break;
-    iVar11 = iVar11 + 1;
-    uVar15 = (int)uVar16 + 1;
-    uVar16 = (ulonglong)uVar15;
-    fVar19 = *(float *)(uVar10 * 0x38 + 0x2070 + unaff_RBP);
-    fVar20 = fVar20 + fVar19;
-    if (fVar19 <= fVar18) {
-      fVar19 = fVar18;
+    current_value = min_value;
+    if (processed_count == (longlong)*(int *)(context_base + 0x2050)) break;
+    
+    remaining_items = remaining_items + 1;
+    max_process_count = (int)sample_count + 1;
+    sample_count = (ulonglong)max_process_count;
+    
+    current_value = *(float *)(processed_count * 0x38 + 0x2070 + context_base);
+    sum_value = sum_value + current_value;
+    if (current_value <= min_value) {
+      current_value = min_value;
     }
-    fVar18 = fVar19;
-  } while ((int)uVar15 < 3);
-  fVar18 = fVar20 / (float)iVar11;
-  if (fVar20 / (float)iVar11 <= fVar19 - 0.2) {
-    fVar18 = fVar19 - 0.2;
+    min_value = current_value;
+  } while ((int)max_process_count < 3);
+  
+  // 计算平均值和调整值
+  min_value = sum_value / (float)remaining_items;
+  if (sum_value / (float)remaining_items <= current_value - 0.2) {
+    min_value = current_value - 0.2;
   }
-  *(float *)((longlong)in_stack_000000d8 + 4) = fVar18;
-  *(int *)(unaff_RBP + 0x2058) =
-       *(int *)(unaff_RBP + 0x2058) + in_stack_000000a0 / (*(int *)(unaff_RBP + 8) / 400);
-  iVar9 = *(int *)(unaff_RBP + 0x2058);
-  iVar5 = *(int *)(unaff_RBP + 0x2054);
-  if (7 < iVar9) {
+  *(float *)((longlong)result_ptr + 4) = min_value;
+  
+  // 更新统计计数器
+  *(int *)(context_base + 0x2058) =
+       *(int *)(context_base + 0x2058) + stack_param5 / (*(int *)(context_base + 8) / 400);
+  current_batch = *(int *)(context_base + 0x2058);
+  batch_size = *(int *)(context_base + 0x2054);
+  
+  // 批量处理优化
+  if (7 < current_batch) {
     do {
-      iVar9 = iVar9 + -8;
-      iVar5 = iVar5 + 1;
-    } while (7 < iVar9);
-    *(int *)(unaff_RBP + 0x2054) = iVar5;
-    *(int *)(unaff_RBP + 0x2058) = iVar9;
+      current_batch = current_batch + -8;
+      batch_size = batch_size + 1;
+    } while (7 < current_batch);
+    *(int *)(context_base + 0x2054) = batch_size;
+    *(int *)(context_base + 0x2058) = current_batch;
   }
-  if (99 < iVar5) {
-    *(int *)(unaff_RBP + 0x2054) = iVar5 + -100;
+  
+  // 缓冲区溢出处理
+  if (99 < batch_size) {
+    *(int *)(context_base + 0x2054) = batch_size + -100;
   }
-  fVar20 = 0.0;
-  iVar9 = iVar12 + -1;
-  if (iVar12 + -1 < 1) {
-    iVar9 = iVar4;
+  
+  // 数据聚合计算
+  sum_value = 0.0;
+  current_batch = buffer_tail + -1;
+  if (buffer_tail + -1 < 1) {
+    current_batch = temp_var;
   }
-  lVar6 = (longlong)(100 - iVar9);
-  if (3 < lVar6) {
-    pfVar8 = (float *)(unaff_RBP + 0x1eb4);
-    lVar7 = (lVar6 - 4U >> 2) + 1;
-    iVar4 = (int)lVar7 * 4;
-    uVar14 = lVar7 * 4;
+  buffer_offset = (longlong)(100 - current_batch);
+  
+  // 批量数据计算（4个元素一组）
+  if (3 < buffer_offset) {
+    float_ptr = (float *)(context_base + 0x1eb4);
+    remaining_count = (buffer_offset - 4U >> 2) + 1;
+    temp_var = (int)remaining_count * 4;
+    iteration_index = remaining_count * 4;
     do {
-      fVar20 = fVar20 + pfVar8[-1] + *pfVar8 + pfVar8[1] + pfVar8[2];
-      pfVar8 = pfVar8 + 4;
-      lVar7 = lVar7 + -1;
-    } while (lVar7 != 0);
+      sum_value = sum_value + float_ptr[-1] + *float_ptr + float_ptr[1] + float_ptr[2];
+      float_ptr = float_ptr + 4;
+      remaining_count = remaining_count + -1;
+    } while (remaining_count != 0);
   }
-  if ((longlong)uVar14 < lVar6) {
-    lVar6 = lVar6 - uVar14;
-    pfVar8 = (float *)(unaff_RBP + 0x1eb0 + uVar14 * 4);
-    iVar4 = iVar4 + (int)lVar6;
+  
+  // 处理剩余数据
+  if ((longlong)iteration_index < buffer_offset) {
+    buffer_offset = buffer_offset - iteration_index;
+    float_ptr = (float *)(context_base + 0x1eb0 + iteration_index * 4);
+    temp_var = temp_var + (int)buffer_offset;
     do {
-      fVar20 = fVar20 + *pfVar8;
-      pfVar8 = pfVar8 + 1;
-      lVar6 = lVar6 + -1;
-    } while (lVar6 != 0);
+      sum_value = sum_value + *float_ptr;
+      float_ptr = float_ptr + 1;
+      buffer_offset = buffer_offset + -1;
+    } while (buffer_offset != 0);
   }
-  lVar6 = (longlong)iVar4;
-  if (lVar6 < 100) {
-    if (3 < 100 - lVar6) {
-      pfVar8 = (float *)(unaff_RBP + 0x1d24 + lVar6 * 4);
-      lVar7 = (0x60U - lVar6 >> 2) + 1;
-      lVar6 = lVar6 + lVar7 * 4;
+  
+  buffer_offset = (longlong)temp_var;
+  
+  // 补充数据计算
+  if (buffer_offset < 100) {
+    if (3 < 100 - buffer_offset) {
+      float_ptr = (float *)(context_base + 0x1d24 + buffer_offset * 4);
+      remaining_count = (0x60U - buffer_offset >> 2) + 1;
+      buffer_offset = buffer_offset + remaining_count * 4;
       do {
-        fVar20 = fVar20 + pfVar8[-1] + *pfVar8 + pfVar8[1] + pfVar8[2];
-        pfVar8 = pfVar8 + 4;
-        lVar7 = lVar7 + -1;
-      } while (lVar7 != 0);
+        sum_value = sum_value + float_ptr[-1] + *float_ptr + float_ptr[1] + float_ptr[2];
+        float_ptr = float_ptr + 4;
+        remaining_count = remaining_count + -1;
+      } while (remaining_count != 0);
     }
-    if (lVar6 < 100) {
-      lVar7 = 100 - lVar6;
-      pfVar8 = (float *)(unaff_RBP + 0x1d20 + lVar6 * 4);
+    
+    if (buffer_offset < 100) {
+      remaining_count = 100 - buffer_offset;
+      float_ptr = (float *)(context_base + 0x1d20 + buffer_offset * 4);
       do {
-        fVar20 = fVar20 + *pfVar8;
-        pfVar8 = pfVar8 + 1;
-        lVar7 = lVar7 + -1;
-      } while (lVar7 != 0);
+        sum_value = sum_value + *float_ptr;
+        float_ptr = float_ptr + 1;
+        remaining_count = remaining_count + -1;
+      } while (remaining_count != 0);
     }
   }
-  *(float *)((longlong)in_stack_000000d8 + 0x14) =
-       (1.0 - fVar20) * *(float *)(unaff_RBP + 0x2040) + fVar20 * *(float *)(unaff_RBP + 0x2044);
+  
+  // 最终结果计算
+  *(float *)((longlong)result_ptr + 0x14) =
+       (1.0 - sum_value) * *(float *)(context_base + 0x2040) + sum_value * *(float *)(context_base + 0x2044);
   return;
 }
 
@@ -972,166 +1116,215 @@ void FUN_1807079df(undefined8 param_1,int param_2)
 
 
 
-// 函数: void FUN_180707a56(void)
-void FUN_180707a56(void)
-
+/**
+ * @brief UI系统状态更新器
+ * 
+ * 简化版本的UI系统状态更新器，主要用于快速状态更新。
+ * 支持寄存器状态的快速保存和恢复。
+ * 
+ * 技术说明：
+ * - 快速状态更新
+ * - 寄存器状态管理
+ * - 简化的缓存处理
+ * - 性能优化版本
+ */
+void UISystem_StateUpdater(void)
 {
-  ulonglong uVar1;
-  undefined8 *puVar2;
-  undefined8 uVar3;
-  int iVar4;
-  int iVar5;
-  longlong lVar6;
-  longlong lVar7;
-  float *pfVar8;
-  int iVar9;
-  ulonglong uVar10;
-  int iVar11;
-  longlong unaff_RBP;
-  int unaff_ESI;
-  int iVar12;
-  int iVar13;
-  ulonglong uVar14;
-  uint uVar15;
-  int unaff_R12D;
-  bool bVar17;
-  float fVar18;
-  float fVar19;
-  float fVar20;
-  undefined8 *in_stack_000000d8;
-  ulonglong uVar16;
+  ulonglong loop_counter;
+  undefined8 *data_ptr;
+  undefined8 data_value;
+  int temp_var;
+  int batch_size;
+  longlong buffer_offset;
+  longlong remaining_count;
+  float *float_ptr;
+  int current_batch;
+  ulonglong processed_count;
+  int sample_count;
+  int cache_index;
+  longlong context_ptr;
+  int buffer_head;
+  int buffer_tail;
+  ulonglong iteration_index;
+  int cache_position;
+  ulonglong max_process_count;
+  uint process_count;
+  bool has_more_data;
+  float current_value;
+  float min_value;
+  float sum_value;
+  undefined8 *result_ptr;
+  ulonglong sample_index;
   
-  *(int *)(unaff_RBP + 0x1d1c) = unaff_ESI - unaff_R12D;
-  *(undefined4 *)in_stack_000000d8 = 0;
-  iVar9 = *(int *)(unaff_RBP + 0x2054);
-  iVar5 = *(int *)(unaff_RBP + 0x2050);
-  iVar4 = iVar5 - iVar9;
-  iVar12 = iVar4 + 100;
-  if (-1 < iVar4) {
-    iVar12 = iVar4;
+  // 更新状态计数器
+  *(int *)(context_ptr + 0x1d1c) = sample_count - process_count;
+  *(undefined4 *)result_ptr = 0;
+  
+  // 缓冲区管理
+  current_batch = *(int *)(context_ptr + 0x2054);
+  batch_size = *(int *)(context_ptr + 0x2050);
+  temp_var = batch_size - current_batch;
+  buffer_tail = temp_var + 100;
+  if (-1 < temp_var) {
+    buffer_tail = temp_var;
   }
-  uVar14 = 0;
-  iVar4 = 0;
-  if (((*(int *)(unaff_RBP + 8) / 0x32 < unaff_R12D) && (iVar9 != iVar5)) &&
-     (iVar9 = iVar9 + 1, iVar9 == 100)) {
-    iVar9 = 0;
+  
+  iteration_index = 0;
+  temp_var = 0;
+  
+  // 缓冲区溢出检查
+  if (((*(int *)(context_ptr + 8) / 0x32 < process_count) && (current_batch != batch_size)) &&
+     (current_batch = current_batch + 1, current_batch == 100)) {
+    current_batch = 0;
   }
-  iVar11 = 1;
-  iVar13 = iVar9 + -1;
-  if (iVar9 != iVar5) {
-    iVar13 = iVar9;
+  
+  // 数据采样初始化
+  sample_count = 1;
+  cache_position = current_batch + -1;
+  if (current_batch != batch_size) {
+    cache_position = current_batch;
   }
-  if (iVar13 < 0) {
-    iVar13 = 99;
+  if (cache_position < 0) {
+    cache_position = 99;
   }
-  uVar10 = (ulonglong)iVar13;
-  lVar6 = uVar10 * 0x38;
-  puVar2 = (undefined8 *)(lVar6 + 0x206c + unaff_RBP);
-  uVar3 = puVar2[1];
-  *in_stack_000000d8 = *puVar2;
-  in_stack_000000d8[1] = uVar3;
-  puVar2 = (undefined8 *)(lVar6 + 0x207c + unaff_RBP);
-  uVar3 = puVar2[1];
-  in_stack_000000d8[2] = *puVar2;
-  in_stack_000000d8[3] = uVar3;
-  puVar2 = (undefined8 *)(lVar6 + 0x208c + unaff_RBP);
-  uVar3 = puVar2[1];
-  in_stack_000000d8[4] = *puVar2;
-  in_stack_000000d8[5] = uVar3;
-  in_stack_000000d8[6] = *(undefined8 *)(lVar6 + 0x209c + unaff_RBP);
-  fVar20 = *(float *)((longlong)in_stack_000000d8 + 4);
-  uVar16 = uVar14;
-  fVar18 = fVar20;
+  
+  processed_count = (ulonglong)cache_position;
+  buffer_offset = processed_count * 0x38;
+  
+  // 从缓存中读取数据
+  data_ptr = (undefined8 *)(buffer_offset + 0x206c + context_ptr);
+  data_value = data_ptr[1];
+  *result_ptr = *data_ptr;
+  result_ptr[1] = data_value;
+  
+  data_ptr = (undefined8 *)(buffer_offset + 0x207c + context_ptr);
+  data_value = data_ptr[1];
+  result_ptr[2] = *data_ptr;
+  result_ptr[3] = data_value;
+  
+  data_ptr = (undefined8 *)(buffer_offset + 0x208c + context_ptr);
+  data_value = data_ptr[1];
+  result_ptr[4] = *data_ptr;
+  result_ptr[5] = data_value;
+  result_ptr[6] = *(undefined8 *)(buffer_offset + 0x209c + context_ptr);
+  
+  // 性能统计计算
+  sum_value = *(float *)((longlong)result_ptr + 4);
+  sample_index = iteration_index;
+  min_value = sum_value;
+  
   do {
-    bVar17 = uVar10 != 99;
-    uVar1 = uVar10 + 1;
-    uVar10 = uVar14;
-    if (bVar17) {
-      uVar10 = uVar1;
+    has_more_data = processed_count != 99;
+    loop_counter = processed_count + 1;
+    processed_count = iteration_index;
+    if (has_more_data) {
+      processed_count = loop_counter;
     }
-    fVar19 = fVar18;
-    if (uVar10 == (longlong)*(int *)(unaff_RBP + 0x2050)) break;
-    iVar11 = iVar11 + 1;
-    uVar15 = (int)uVar16 + 1;
-    uVar16 = (ulonglong)uVar15;
-    fVar19 = *(float *)(uVar10 * 0x38 + 0x2070 + unaff_RBP);
-    fVar20 = fVar20 + fVar19;
-    if (fVar19 <= fVar18) {
-      fVar19 = fVar18;
+    current_value = min_value;
+    if (processed_count == (longlong)*(int *)(context_ptr + 0x2050)) break;
+    
+    sample_count = sample_count + 1;
+    process_count = (int)sample_index + 1;
+    sample_index = (ulonglong)process_count;
+    
+    current_value = *(float *)(processed_count * 0x38 + 0x2070 + context_ptr);
+    sum_value = sum_value + current_value;
+    if (current_value <= min_value) {
+      current_value = min_value;
     }
-    fVar18 = fVar19;
-  } while ((int)uVar15 < 3);
-  fVar18 = fVar20 / (float)iVar11;
-  if (fVar20 / (float)iVar11 <= fVar19 - 0.2) {
-    fVar18 = fVar19 - 0.2;
+    min_value = current_value;
+  } while ((int)process_count < 3);
+  
+  // 计算平均值和调整值
+  min_value = sum_value / (float)sample_count;
+  if (sum_value / (float)sample_count <= current_value - 0.2) {
+    min_value = current_value - 0.2;
   }
-  *(float *)((longlong)in_stack_000000d8 + 4) = fVar18;
-  *(int *)(unaff_RBP + 0x2058) =
-       *(int *)(unaff_RBP + 0x2058) + unaff_R12D / (*(int *)(unaff_RBP + 8) / 400);
-  iVar9 = *(int *)(unaff_RBP + 0x2058);
-  iVar5 = *(int *)(unaff_RBP + 0x2054);
-  if (7 < iVar9) {
+  *(float *)((longlong)result_ptr + 4) = min_value;
+  
+  // 更新统计计数器
+  *(int *)(context_ptr + 0x2058) =
+       *(int *)(context_ptr + 0x2058) + process_count / (*(int *)(context_ptr + 8) / 400);
+  current_batch = *(int *)(context_ptr + 0x2058);
+  batch_size = *(int *)(context_ptr + 0x2054);
+  
+  // 批量处理优化
+  if (7 < current_batch) {
     do {
-      iVar9 = iVar9 + -8;
-      iVar5 = iVar5 + 1;
-    } while (7 < iVar9);
-    *(int *)(unaff_RBP + 0x2054) = iVar5;
-    *(int *)(unaff_RBP + 0x2058) = iVar9;
+      current_batch = current_batch + -8;
+      batch_size = batch_size + 1;
+    } while (7 < current_batch);
+    *(int *)(context_ptr + 0x2054) = batch_size;
+    *(int *)(context_ptr + 0x2058) = current_batch;
   }
-  if (99 < iVar5) {
-    *(int *)(unaff_RBP + 0x2054) = iVar5 + -100;
+  
+  // 缓冲区溢出处理
+  if (99 < batch_size) {
+    *(int *)(context_ptr + 0x2054) = batch_size + -100;
   }
-  fVar20 = 0.0;
-  iVar9 = iVar12 + -1;
-  if (iVar12 + -1 < 1) {
-    iVar9 = iVar4;
+  
+  // 数据聚合计算
+  sum_value = 0.0;
+  current_batch = buffer_tail + -1;
+  if (buffer_tail + -1 < 1) {
+    current_batch = temp_var;
   }
-  lVar6 = (longlong)(100 - iVar9);
-  if (3 < lVar6) {
-    pfVar8 = (float *)(unaff_RBP + 0x1eb4);
-    lVar7 = (lVar6 - 4U >> 2) + 1;
-    iVar4 = (int)lVar7 * 4;
-    uVar14 = lVar7 * 4;
+  buffer_offset = (longlong)(100 - current_batch);
+  
+  // 批量数据计算（4个元素一组）
+  if (3 < buffer_offset) {
+    float_ptr = (float *)(context_ptr + 0x1eb4);
+    remaining_count = (buffer_offset - 4U >> 2) + 1;
+    temp_var = (int)remaining_count * 4;
+    iteration_index = remaining_count * 4;
     do {
-      fVar20 = fVar20 + pfVar8[-1] + *pfVar8 + pfVar8[1] + pfVar8[2];
-      pfVar8 = pfVar8 + 4;
-      lVar7 = lVar7 + -1;
-    } while (lVar7 != 0);
+      sum_value = sum_value + float_ptr[-1] + *float_ptr + float_ptr[1] + float_ptr[2];
+      float_ptr = float_ptr + 4;
+      remaining_count = remaining_count + -1;
+    } while (remaining_count != 0);
   }
-  if ((longlong)uVar14 < lVar6) {
-    lVar6 = lVar6 - uVar14;
-    pfVar8 = (float *)(unaff_RBP + 0x1eb0 + uVar14 * 4);
-    iVar4 = iVar4 + (int)lVar6;
+  
+  // 处理剩余数据
+  if ((longlong)iteration_index < buffer_offset) {
+    buffer_offset = buffer_offset - iteration_index;
+    float_ptr = (float *)(context_ptr + 0x1eb0 + iteration_index * 4);
+    temp_var = temp_var + (int)buffer_offset;
     do {
-      fVar20 = fVar20 + *pfVar8;
-      pfVar8 = pfVar8 + 1;
-      lVar6 = lVar6 + -1;
-    } while (lVar6 != 0);
+      sum_value = sum_value + *float_ptr;
+      float_ptr = float_ptr + 1;
+      buffer_offset = buffer_offset + -1;
+    } while (buffer_offset != 0);
   }
-  lVar6 = (longlong)iVar4;
-  if (lVar6 < 100) {
-    if (3 < 100 - lVar6) {
-      pfVar8 = (float *)(unaff_RBP + 0x1d24 + lVar6 * 4);
-      lVar7 = (0x60U - lVar6 >> 2) + 1;
-      lVar6 = lVar6 + lVar7 * 4;
+  
+  buffer_offset = (longlong)temp_var;
+  
+  // 补充数据计算
+  if (buffer_offset < 100) {
+    if (3 < 100 - buffer_offset) {
+      float_ptr = (float *)(context_ptr + 0x1d24 + buffer_offset * 4);
+      remaining_count = (0x60U - buffer_offset >> 2) + 1;
+      buffer_offset = buffer_offset + remaining_count * 4;
       do {
-        fVar20 = fVar20 + pfVar8[-1] + *pfVar8 + pfVar8[1] + pfVar8[2];
-        pfVar8 = pfVar8 + 4;
-        lVar7 = lVar7 + -1;
-      } while (lVar7 != 0);
+        sum_value = sum_value + float_ptr[-1] + *float_ptr + float_ptr[1] + float_ptr[2];
+        float_ptr = float_ptr + 4;
+        remaining_count = remaining_count + -1;
+      } while (remaining_count != 0);
     }
-    if (lVar6 < 100) {
-      lVar7 = 100 - lVar6;
-      pfVar8 = (float *)(unaff_RBP + 0x1d20 + lVar6 * 4);
+    
+    if (buffer_offset < 100) {
+      remaining_count = 100 - buffer_offset;
+      float_ptr = (float *)(context_ptr + 0x1d20 + buffer_offset * 4);
       do {
-        fVar20 = fVar20 + *pfVar8;
-        pfVar8 = pfVar8 + 1;
-        lVar7 = lVar7 + -1;
-      } while (lVar7 != 0);
+        sum_value = sum_value + *float_ptr;
+        float_ptr = float_ptr + 1;
+        remaining_count = remaining_count + -1;
+      } while (remaining_count != 0);
     }
   }
-  *(float *)((longlong)in_stack_000000d8 + 0x14) =
-       (1.0 - fVar20) * *(float *)(unaff_RBP + 0x2040) + fVar20 * *(float *)(unaff_RBP + 0x2044);
+  
+  // 最终结果计算
+  *(float *)((longlong)result_ptr + 0x14) =
+       (1.0 - sum_value) * *(float *)(context_ptr + 0x2040) + sum_value * *(float *)(context_ptr + 0x2044);
   return;
 }
 
