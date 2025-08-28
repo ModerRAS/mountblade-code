@@ -1235,7 +1235,7 @@ void FUN_180941b90(void)
 
 {
   // 重置系统配置模式并设置为默认值
-  _DAT_180bf7250 = &UNK_18098bcb0;  // 设置默认配置模式指针
+  *system_config_mode_ptr = SYSTEM_DEFAULT_VALUE;  // 设置默认配置模式指针
   return;
 }
 

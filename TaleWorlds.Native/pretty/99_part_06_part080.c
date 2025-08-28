@@ -442,39 +442,54 @@ void UIEventHandler_ProcessEvent(longlong *uiContext, longlong eventData)
   int8_t eventDataBuffer [136];
   ulonglong securityChecksum;
   
-  uStack_e8 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_158;
-  FUN_1801f9270();
-  puStack_d8 = &UNK_1809fcc28;
-  puStack_d0 = auStack_c0;
-  auStack_c0[0] = 0;
-  uStack_c8 = *(uint *)(param_1 + 4);
-  puVar7 = &DAT_18098bc73;
-  if ((void *)param_1[3] != (void *)0x0) {
-    puVar7 = (void *)param_1[3];
+  /* 初始化安全检查和内存管理 */
+  memoryFlags = 0xfffffffffffffffe;
+  securityChecksum = _DAT_180bf00a8 ^ (ulonglong)securityBuffer;
+  UIEventSystem_Initialize();
+  
+  /* 初始化事件缓冲区 */
+  uiResource = &UIResource_DefaultHandler;
+  eventBuffer = eventDataBuffer;
+  eventDataBuffer[0] = 0;
+  bufferSize = *(uint *)(uiContext + 4);
+  eventName = &EventName_Default;
+  
+  /* 获取UI元素名称 */
+  if ((void *)uiContext[3] != (void *)0x0) {
+    eventName = (void *)uiContext[3];
   }
-  strcpy_s(auStack_c0,0x80,puVar7);
-  uVar5 = (ulonglong)uStack_c8;
-  uVar6 = uStack_c8 + 1;
-  if (uVar6 < 0x7f) {
-    *(int16_t *)(puStack_d0 + uVar5) = 0x5f;
-    uVar5 = (ulonglong)uVar6;
-    uStack_c8 = uVar6;
+  
+  /* 复制UI元素名称到事件缓冲区 */
+  strcpy_s(eventDataBuffer, 0x80, eventName);
+  eventNameLength = (ulonglong)bufferSize;
+  eventNameHash = bufferSize + 1;
+  
+  /* 添加下划线分隔符（如果缓冲区空间足够） */
+  if (eventNameHash < 0x7f) {
+    *(int16_t *)(eventBuffer + eventNameLength) = 0x5f;
+    eventNameLength = (ulonglong)eventNameHash;
+    bufferSize = eventNameHash;
   }
-  puVar7 = &DAT_18098bc73;
-  if (*(void **)(param_2 + 0x3528) != (void *)0x0) {
-    puVar7 = *(void **)(param_2 + 0x3528);
+  
+  /* 获取事件名称 */
+  eventName = &EventName_Default;
+  if (*(void **)(eventData + 0x3528) != (void *)0x0) {
+    eventName = *(void **)(eventData + 0x3528);
   }
-  lVar2 = -1;
+  
+  /* 计算事件名称长度 */
+  eventLength = -1;
   do {
-    lVar2 = lVar2 + 1;
-  } while (puVar7[lVar2] != '\0');
-  iVar4 = (int)lVar2;
-  if ((0 < iVar4) && ((uint)((int)uVar5 + iVar4) < 0x7f)) {
-                    // WARNING: Subroutine does not return
-    memcpy(puStack_d0 + uVar5,puVar7,(longlong)(iVar4 + 1));
+    eventLength = eventLength + 1;
+  } while (eventName[eventLength] != '\0');
+  eventType = (int)eventLength;
+  
+  /* 复制事件名称到缓冲区（如果空间足够） */
+  if ((0 < eventType) && ((uint)((int)eventNameLength + eventType) < 0x7f)) {
+    memcpy(eventBuffer + eventNameLength, eventName, (longlong)(eventType + 1));
   }
-  if (*(char *)((longlong)param_1 + 0x4d) == '\0') {
+  
+  /* 处理特殊事件类型 */
     iVar4 = (int)param_1[0x37];
     if (iVar4 == -1) {
       uStack_118 = 1;
