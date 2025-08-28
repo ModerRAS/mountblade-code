@@ -149,9 +149,9 @@ void rendering_parameter_calculator_type1(void)
     int int_param6;
     uint64_t temp_var;
     longlong *long_ptr;
-    uint64_t *undefined_ptr1;
-    uint64_t *undefined_ptr2;
-    uint64_t *undefined_ptr3;
+    uint64_t *render_data_ptr1;
+    uint64_t *render_data_ptr2;
+    uint64_t *render_data_ptr3;
     uint64_t *base_ptr;
     longlong base_long;
     longlong loop_counter1;
@@ -174,7 +174,7 @@ void rendering_parameter_calculator_type1(void)
         
         // 主要参数计算循环
         do {
-            undefined_ptr1 = (uint64_t *)base_ptr[RENDERING_INDEX_2];
+            render_data_ptr1 = (uint64_t *)base_ptr[RENDERING_INDEX_2];
             undefined_ptr2 = base_ptr;
             
             // 链表遍历算法
@@ -423,8 +423,8 @@ void rendering_parameter_calculator_type2(void)
     int32_t temp_uint2;
     int32_t temp_uint3;
     uint64_t temp_var;
-    uint64_t *undefined_ptr1;
-    uint64_t *undefined_ptr2;
+    uint64_t *render_data_ptr1;
+    uint64_t *render_data_ptr2;
     uint64_t *base_ptr;
     longlong base_long;
     longlong loop_counter;
@@ -521,7 +521,7 @@ void rendering_parameter_calculator_type2(void)
         temp_float = *(float *)(*(longlong *)(temp_long1 + (longlong)undefined_ptr1) + RENDERING_INDEX_8);
         
         // 第四次链表遍历
-        undefined_ptr1 = (uint64_t *)base_ptr[RENDERING_INDEX_2];
+        render_data_ptr1 = (uint64_t *)base_ptr[RENDERING_INDEX_2];
         undefined_ptr2 = base_ptr;
         
         if (undefined_ptr1 != (uint64_t *)0x0) {
@@ -644,10 +644,10 @@ void rendering_data_processor(longlong param_1, uint64_t param_2, longlong param
     int int_param1;
     int int_param2;
     longlong long_param1;
-    uint64_t *undefined_ptr1;
+    uint64_t *render_data_ptr1;
     longlong long_param2;
     longlong long_param3;
-    uint64_t *undefined_ptr2;
+    uint64_t *render_data_ptr2;
     char stack_char [8];
     longlong stack_long;
     uint64_t stack_undefined;

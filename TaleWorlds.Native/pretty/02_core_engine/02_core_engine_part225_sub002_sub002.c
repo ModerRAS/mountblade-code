@@ -1294,14 +1294,26 @@ uint32_t EntityDataTransfer(EntityContextPtr entity_data)
 
 
 
-// 函数: uint64_t cleanup_entity_resources(uint64_t resource_ptr, ulonglong cleanup_flags, uint64_t param_3, uint64_t param_4)
-// 清理实体资源，根据标志位决定是否释放内存
-// 参数:
-//   resource_ptr - 资源指针
-//   cleanup_flags - 清理标志位
-//   param_3, param_4 - 附加参数
-// 返回: 资源指针
-uint64_t cleanup_entity_resources(uint64_t resource_ptr, ulonglong cleanup_flags, uint64_t param_3, uint64_t param_4)
+/**
+ * @brief 实体资源清理器
+ * 
+ * 清理实体占用的系统资源，根据标志位决定是否释放内存：
+ * - 资源引用计数的管理
+ * - 内存资源的释放
+ * - 系统句柄的清理
+ * - 清理标志位的处理
+ * 
+ * @param resource_ptr 资源指针，指向要清理的资源
+ * @param cleanup_flags 清理标志位，控制清理行为
+ * @param param_3 附加参数3，用于扩展清理功能
+ * @param param_4 附加参数4，用于扩展清理功能
+ * @return uint64_t 返回原始资源指针，用于链式操作
+ * 
+ * @note 该函数支持有条件的资源清理
+ * @warning 错误的资源清理可能导致内存泄漏或系统不稳定
+ * @see EntityInitializationProcessor, EntityDataTransfer
+ */
+uint64_t EntityResourceCleanup(uint64_t resource_ptr, ResourceCleanupFlags cleanup_flags, uint64_t param_3, uint64_t param_4)
 
 {
   uint64_t temp_uint64_t;  // 临时变量
