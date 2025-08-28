@@ -59,7 +59,7 @@
 // UI系统内存管理器
 #define ui_system_memory_manager FUN_18066cdf0
 
-// UI系统数据格式转换器
+// UI系统数据格式代码分析器
 #define ui_system_data_format_converter FUN_18066cf80
 
 // UI系统数据验证器
@@ -257,7 +257,7 @@ int ui_system_memory_manager(longlong system_ptr, longlong *resource_ptr)
     return UI_SYSTEM_STATUS_ERROR;
 }
 
-// ==================== UI系统数据格式转换器 ====================
+// ==================== UI系统数据格式代码分析器 ====================
 // 
 // 函数功能：UI系统数据格式转换和处理
 // 

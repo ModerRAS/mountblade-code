@@ -280,7 +280,7 @@ extern uint8_t UNK_18029ad30;           /* 系统资源管理器 */
 extern uint8_t UNK_18029de40;           /* 系统状态更新器 */
 extern uint8_t UNK_18029fc10;           /* 系统配置管理器 */
 extern uint8_t UNK_1801f7d20;           /* 系统参数处理器 */
-extern uint8_t UNK_180627ae0;           /* 系统数据转换器 */
+extern uint8_t UNK_180627ae0;           /* 系统数据代码分析器 */
 extern uint8_t UNK_180299eb0;           /* 系统数据优化器 */
 extern uint8_t UNK_18029d150;           /* 系统渲染管理器 */
 extern uint8_t UNK_18029d000;           /* 系统资源释放器 */

@@ -19,7 +19,7 @@
 // - UISystemControlValidator: UI系统控件验证器 (FUN_180848dc0)
 // - UISystemStringProcessor: UI系统字符串处理器 (FUN_180848e50)
 // - UISystemStringFormatter: UI系统字符串格式化器 (FUN_180848e82)
-// - UISystemDataConverter: UI系统数据转换器 (FUN_180848f4e)
+// - UISystemDataConverter: UI系统数据代码分析器 (FUN_180848f4e)
 // - UISystemErrorHandler: UI系统错误处理器 (FUN_180848ff1)
 // - UISystemResourceCleaner: UI系统资源清理器 (FUN_18084900b)
 // - UISystemMemoryAllocator: UI系统内存分配器 (FUN_180849030)
@@ -353,7 +353,7 @@ FUN_180848ff1:
 
 
 /**
- * UI系统数据转换器
+ * UI系统数据代码分析器
  * 转换UI系统中的数据格式，进行类型转换和数据验证
  * 
  * @return void 无返回值
@@ -1307,7 +1307,7 @@ LAB_180849c81:
 // UI系统字符串格式化器别名
 #define UISystemStringFormatter FUN_180848e82
 
-// UI系统数据转换器别名
+// UI系统数据代码分析器别名
 #define UISystemDataConverter FUN_180848f4e
 
 // UI系统错误处理器别名

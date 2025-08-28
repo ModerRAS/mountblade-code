@@ -507,7 +507,7 @@ uint32_t AudioChannelMixer(void* mixer_params)
 }
 
 /**
- * @brief 音频格式转换器
+ * @brief 音频格式代码分析器
  * 
  * 处理音频格式的转换，包括：
  * - 采样率转换

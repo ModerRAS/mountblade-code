@@ -292,7 +292,7 @@ typedef struct {
 
 /** 主要功能函数别名 */
 #define RenderingAdvancedImageProcessor FUN_180430124                /**< 渲染高级图像处理器 */
-#define ImageColorSpaceConverter FUN_180430a4b                       /**< 图像颜色空间转换器 */
+#define ImageColorSpaceConverter FUN_180430a4b                       /**< 图像颜色空间代码分析器 */
 #define ImageDataEncoder FUN_18043107a                               /**< 图像数据编码器 */
 
 /** 质量处理函数别名 */
@@ -308,7 +308,7 @@ typedef struct {
 #define ImageSamplingAdjuster AdjustImageSampling                   /**< 图像采样调整器 */
 
 /** 颜色转换函数别名 */
-#define ImageColorConverter ConvertImageColor                       /**< 图像颜色转换器 */
+#define ImageColorConverter ConvertImageColor                       /**< 图像颜色代码分析器 */
 #define ImageColorOptimizer OptimizeImageColor                      /**< 图像颜色优化器 */
 #define ImageColorValidator ValidateImageColor                      /**< 图像颜色验证器 */
 #define ImageColorAdjuster AdjustImageColor                         /**< 图像颜色调整器 */
@@ -348,7 +348,7 @@ extern void* UNK_180a28e60;                              /**< 未知数据指针
 
 /** 主要功能函数 */
 void RenderingAdvancedImageProcessor(void);                              /**< 渲染高级图像处理器 */
-void ImageColorSpaceConverter(int param_1, int param_2, longlong param_3); /**< 图像颜色空间转换器 */
+void ImageColorSpaceConverter(int param_1, int param_2, longlong param_3); /**< 图像颜色空间代码分析器 */
 void ImageDataEncoder(uint64_t param_1, uint64_t param_2, uint param_3); /**< 图像数据编码器 */
 
 /** 质量处理函数 */
@@ -774,7 +774,7 @@ void RenderingAdvancedImageProcessor(void)
 }
 
 /**
- * @brief 图像颜色空间转换器
+ * @brief 图像颜色空间代码分析器
  * 
  * 本函数实现了图像颜色空间转换功能，主要完成：
  * 1. RGB到YUV颜色空间转换

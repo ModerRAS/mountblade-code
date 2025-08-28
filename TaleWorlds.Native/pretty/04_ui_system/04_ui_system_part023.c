@@ -1,7 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 04_ui_system_part023.c - UI系统高级安全管理和数据处理模块
-// 包含9个核心函数：UI系统安全初始化器、UI系统内存分配器、UI系统数据验证器、UI系统状态管理器、UI系统资源清理器、UI系统参数处理器、UI系统数据转换器、UI系统安全检查器、UI系统内存释放器
+// 包含9个核心函数：UI系统安全初始化器、UI系统内存分配器、UI系统数据验证器、UI系统状态管理器、UI系统资源清理器、UI系统参数处理器、UI系统数据代码分析器、UI系统安全检查器、UI系统内存释放器
 // 主要功能：安全初始化、内存管理、数据验证、状态管理、资源清理、参数处理、数据转换、安全检查、内存释放
 
 // 常量定义
@@ -268,7 +268,7 @@ void ui_system_parameter_processor(uint64_t param_context, float param_delta, ui
   return;
 }
 
-// UI系统数据转换器 - 转换UI系统中的数据格式和结构
+// UI系统数据代码分析器 - 转换UI系统中的数据格式和结构
 // 该函数实现了数据转换功能，包括格式转换、数据映射和结构转换
 void ui_system_data_transformer(uint64_t transform_context, uint64_t transform_flags)
 {

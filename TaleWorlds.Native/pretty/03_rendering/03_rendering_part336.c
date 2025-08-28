@@ -20,7 +20,7 @@
 // 15. 渲染系统资源分配器 (FUN_180447850)
 // 16. 渲染系统数据处理器3 (FUN_180447990)
 // 17. 渲染系统对象创建器3 (FUN_180447b80)
-// 18. 渲染系统数据转换器 (FUN_180447c00)
+// 18. 渲染系统数据代码分析器 (FUN_180447c00)
 // 19. 渲染系统对象初始化器 (FUN_180447ca0)
 // 20. 渲染系统颜色设置器 (FUN_180447d40)
 // 21. 渲染系统属性获取器1 (FUN_180447de0)
@@ -99,7 +99,7 @@
 #define RenderingSystem_ResourceAllocator FUN_180447850                 // 渲染系统资源分配器
 #define RenderingSystem_DataProcessor3 FUN_180447990                    // 渲染系统数据处理器3
 #define RenderingSystem_ObjectCreator3 FUN_180447b80                   // 渲染系统对象创建器3
-#define RenderingSystem_DataTransformer FUN_180447c00                  // 渲染系统数据转换器
+#define RenderingSystem_DataTransformer FUN_180447c00                  // 渲染系统数据代码分析器
 #define RenderingSystem_ObjectInitializer FUN_180447ca0                // 渲染系统对象初始化器
 #define RenderingSystem_ColorSetter FUN_180447d40                      // 渲染系统颜色设置器
 #define RenderingSystem_PropertyGetter1 FUN_180447de0                  // 渲染系统属性获取器1
@@ -922,7 +922,7 @@ int32_t * RenderingSystem_ObjectCreator3(int32_t *param_1, int8_t param_2, uint6
 }
 
 /**
- * 渲染系统数据转换器 - 简化实现
+ * 渲染系统数据代码分析器 - 简化实现
  * 
  * 该函数负责渲染系统数据的转换操作。
  * 支持动态数据转换和格式处理。

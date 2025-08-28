@@ -87,7 +87,7 @@ typedef uint64_t                            serialization_context_t; /**< 序列
 /** 函数指针类型别名 */
 typedef status_t (*data_processor_t)(data_buffer_t, data_size_t);           /**< 数据处理器函数指针 */
 typedef status_t (*data_validator_t)(const_data_buffer_t, data_size_t);     /**< 数据验证器函数指针 */
-typedef status_t (*data_converter_t)(data_buffer_t, data_buffer_t, data_size_t); /**< 数据转换器函数指针 */
+typedef status_t (*data_converter_t)(data_buffer_t, data_buffer_t, data_size_t); /**< 数据代码分析器函数指针 */
 
 /* ================================================ */
 /* 枚举定义 - 系统状态和模式 */

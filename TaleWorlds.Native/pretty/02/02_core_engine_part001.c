@@ -32,7 +32,7 @@ uint8_t core_engine_memory_tracker;                  // 内存跟踪器
 uint8_t core_engine_data_serializer;                  // 数据序列化器
 uint8_t core_engine_data_deserializer;                // 数据反序列化器
 uint8_t core_engine_data_validator;                   // 数据验证器
-uint8_t core_engine_data_transformer;                 // 数据转换器
+uint8_t core_engine_data_transformer;                 // 数据代码分析器
 uint8_t core_engine_data_compressor;                  // 数据压缩器
 
 // 系统调用函数组

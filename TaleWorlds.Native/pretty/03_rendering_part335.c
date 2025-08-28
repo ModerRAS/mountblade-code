@@ -231,7 +231,7 @@ int32_t * RenderingSystem_CreateColorBuffer(int32_t *param_1,longlong *param_2)
 
 
 /**
- * 渲染系统颜色转换器（ARGB格式）
+ * 渲染系统颜色代码分析器（ARGB格式）
  * 
  * 将浮点颜色值转换为ARGB格式，支持颜色分量标准化。
  * 
@@ -287,7 +287,7 @@ void RenderingSystem_ConvertColorToARGB(longlong param_1,int32_t param_2,uint64_
 
 
 /**
- * 渲染系统颜色转换器（RGBA格式）
+ * 渲染系统颜色代码分析器（RGBA格式）
  * 
  * 将浮点颜色值转换为RGBA格式，支持颜色分量标准化和格式转换。
  * 
@@ -796,7 +796,7 @@ void RenderingSystem_SetBlendMode(longlong param_1,uint64_t param_2,uint64_t par
 
 
 /**
- * 渲染系统预乘Alpha转换器
+ * 渲染系统预乘Alpha代码分析器
  * 
  * 将颜色转换为预乘Alpha格式，用于优化的混合操作。
  * 
@@ -2007,8 +2007,8 @@ void RenderingSystem_SetResourceParameters(longlong param_1,int32_t param_2,int3
 #define RenderingSystem_ProcessColorTransform          FUN_180445570  // 渲染系统颜色变换处理器
 #define RenderingSystem_AllocateResourceMemory          FUN_180445610  // 渲染系统资源内存分配器
 #define RenderingSystem_CreateColorBuffer               FUN_180445680  // 渲染系统颜色缓冲区创建器
-#define RenderingSystem_ConvertColorToARGB              FUN_1804457b0  // 渲染系统颜色转换器(ARGB)
-#define RenderingSystem_ConvertColorToRGBA              FUN_180445870  // 渲染系统颜色转换器(RGBA)
+#define RenderingSystem_ConvertColorToARGB              FUN_1804457b0  // 渲染系统颜色代码分析器(ARGB)
+#define RenderingSystem_ConvertColorToRGBA              FUN_180445870  // 渲染系统颜色代码分析器(RGBA)
 #define RenderingSystem_ProcessMultiColorData           FUN_180445970  // 渲染系统多颜色数据处理器
 #define RenderingSystem_SetColorParameter               FUN_180445cd0  // 渲染系统颜色参数设置器
 #define RenderingSystem_UpdateColorChannel              FUN_180445dc0  // 渲染系统颜色通道更新器
@@ -2020,7 +2020,7 @@ void RenderingSystem_SetResourceParameters(longlong param_1,int32_t param_2,int3
 #define RenderingSystem_InitializeColorMatrix            FUN_180446080  // 渲染系统颜色矩阵初始化器
 #define RenderingSystem_ApplyColorFilter                 FUN_1804460c0  // 渲染系统颜色滤镜应用器
 #define RenderingSystem_SetBlendMode                     FUN_1804460f0  // 渲染系统混合模式设置器
-#define RenderingSystem_ConvertToPremultipliedAlpha      FUN_180446120  // 渲染系统预乘Alpha转换器
+#define RenderingSystem_ConvertToPremultipliedAlpha      FUN_180446120  // 渲染系统预乘Alpha代码分析器
 #define RenderingSystem_SetStandardBlendMode             FUN_180446160  // 渲染系统标准混合模式设置器
 #define RenderingSystem_SetColorValue                    FUN_1804461b0  // 渲染系统颜色值设置器
 #define RenderingSystem_SetDefaultColor                  FUN_1804462a0  // 渲染系统默认颜色设置器

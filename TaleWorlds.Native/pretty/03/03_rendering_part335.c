@@ -171,7 +171,7 @@ int32_t *RenderingSystem_MaterialProcessor(int32_t *param_1, longlong *param_2)
 }
 
 /**
- * 渲染系统颜色转换器
+ * 渲染系统颜色代码分析器
  * 原始函数名: FUN_1804457b0
  * 功能: 转换渲染系统的颜色数据
  * 参数: param_1 - 长整型参数，param_2 - 无符号4位参数，param_3 - 无符号8位参数，param_4 - 浮点数指针参数，param_5 - 无符号8位参数
@@ -1432,7 +1432,7 @@ void RenderingSystem_RenderParameterSetter(longlong param_1, int32_t param_2, in
  * 核心函数：
  * - RenderingSystem_AdvancedRenderer：高级渲染效果处理器
  * - RenderingSystem_MaterialProcessor：材质处理器
- * - RenderingSystem_ColorConverter：颜色转换器
+ * - RenderingSystem_ColorConverter：颜色代码分析器
  * - RenderingSystem_ParameterSetter：参数设置器
  * - RenderingSystem_ResourceManager：资源管理器
  * - RenderingSystem_ArrayManager：数组管理器

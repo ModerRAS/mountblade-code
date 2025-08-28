@@ -86,19 +86,19 @@
 /** 渲染系统纹理处理器 */
 #define rendering_system_texture_processor FUN_1804375f0
 
-/** 渲染系统颜色转换器类型1 */
+/** 渲染系统颜色代码分析器类型1 */
 #define rendering_system_color_converter_type1 FUN_180437680
 
-/** 渲染系统颜色转换器类型2 */
+/** 渲染系统颜色代码分析器类型2 */
 #define rendering_system_color_converter_type2 FUN_18043768d
 
 /** 渲染系统空操作函数类型1 */
 #define rendering_system_no_operation_type1 FUN_1804377a1
 
-/** 渲染系统颜色转换器类型3 */
+/** 渲染系统颜色代码分析器类型3 */
 #define rendering_system_color_converter_type3 FUN_1804377b0
 
-/** 渲染系统颜色转换器类型4 */
+/** 渲染系统颜色代码分析器类型4 */
 #define rendering_system_color_converter_type4 FUN_1804377bd
 
 /** 渲染系统空操作函数类型2 */
@@ -765,7 +765,7 @@ void rendering_system_texture_processor(
 }
 
 /**
- * 渲染系统颜色转换器类型1
+ * 渲染系统颜色代码分析器类型1
  * 
  * 将渲染系统中的颜色值从线性空间转换到伽马空间。
  * 
@@ -832,7 +832,7 @@ uint rendering_system_color_converter_type1(longlong conversion_param) {
 }
 
 /**
- * 渲染系统颜色转换器类型2
+ * 渲染系统颜色代码分析器类型2
  * 
  * 将渲染系统中的颜色值从线性空间转换到伽马空间（无参数版本）。
  * 
@@ -905,7 +905,7 @@ uint64_t rendering_system_no_operation_type1(void) {
 }
 
 /**
- * 渲染系统颜色转换器类型3
+ * 渲染系统颜色代码分析器类型3
  * 
  * 将渲染系统中的颜色值从线性空间转换到伽马空间（替代版本）。
  * 
@@ -972,7 +972,7 @@ uint rendering_system_color_converter_type3(longlong conversion_param) {
 }
 
 /**
- * 渲染系统颜色转换器类型4
+ * 渲染系统颜色代码分析器类型4
  * 
  * 将渲染系统中的颜色值从线性空间转换到伽马空间（无参数替代版本）。
  * 

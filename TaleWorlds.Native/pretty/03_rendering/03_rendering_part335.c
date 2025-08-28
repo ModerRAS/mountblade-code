@@ -231,7 +231,7 @@ int32_t * RenderingSystem_CreateColorBuffer(int32_t *param_1,longlong *param_2)
 
 
 /**
- * 渲染系统颜色转换器（ARGB格式）
+ * 渲染系统颜色代码分析器（ARGB格式）
  * 
  * 将浮点颜色值转换为ARGB格式，支持颜色分量标准化。
  * 
@@ -322,7 +322,7 @@ void FUN_180445870(longlong param_1,int32_t param_2,uint64_t param_3,uint64_t pa
 }
 
 /**
- * 渲染系统颜色转换器（RGBA格式）
+ * 渲染系统颜色代码分析器（RGBA格式）
  * 
  * 将浮点颜色值转换为RGBA格式，支持颜色分量标准化。
  * 
@@ -916,7 +916,7 @@ void RenderingSystem_SetBlendMode(longlong param_1,uint64_t param_2,uint64_t par
 
 
 /**
- * 渲染系统预乘Alpha转换器
+ * 渲染系统预乘Alpha代码分析器
  * 
  * 将颜色值转换为预乘Alpha格式，支持透明度处理。
  * 
@@ -2427,8 +2427,8 @@ void RenderingSystem_SetResourceParameters(longlong param_1,int32_t param_2,int3
 #define RenderingSystem_ProcessColorTransform          FUN_180445570  // 渲染系统颜色变换处理器
 #define RenderingSystem_AllocateResourceMemory          FUN_180445610  // 渲染系统资源内存分配器
 #define RenderingSystem_CreateColorBuffer               FUN_180445680  // 渲染系统颜色缓冲区创建器
-#define RenderingSystem_ConvertColorToARGB              FUN_1804457b0  // 渲染系统颜色转换器(ARGB)
-#define RenderingSystem_ConvertColorToRGBA              FUN_180445870  // 渲染系统颜色转换器(RGBA)
+#define RenderingSystem_ConvertColorToARGB              FUN_1804457b0  // 渲染系统颜色代码分析器(ARGB)
+#define RenderingSystem_ConvertColorToRGBA              FUN_180445870  // 渲染系统颜色代码分析器(RGBA)
 #define RenderingSystem_SetRenderParameter               FUN_180445fd0  // 渲染系统参数设置器
 #define RenderingSystem_ClearRenderState                 FUN_180446010  // 渲染系统状态清理器
 #define RenderingSystem_SetPixelColor                   FUN_180446480  // 渲染系统像素颜色设置器

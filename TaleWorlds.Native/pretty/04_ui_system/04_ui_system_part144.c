@@ -120,7 +120,7 @@
 #define ui_system_control_updater               FUN_180750d6b      /**< UI系统控件更新器 */
 #define ui_system_error_handler                 FUN_180750eac      /**< UI系统错误处理器 */
 #define ui_system_control_enumerator            FUN_180750ee0      /**< UI系统控件枚举器 */
-#define ui_system_data_converter                FUN_180750fa0      /**< UI系统数据转换器 */
+#define ui_system_data_converter                FUN_180750fa0      /**< UI系统数据代码分析器 */
 #define ui_system_advanced_data_processor       FUN_180751170      /**< UI系统高级数据处理器 */
 #define ui_system_buffer_manager                FUN_180751310      /**< UI系统缓冲区管理器 */
 #define ui_system_memory_optimizer              FUN_1807513d1      /**< UI系统内存优化器 */
@@ -967,7 +967,7 @@ uint64_t ui_system_control_enumerator(longlong *param_1, int param_2, uint64_t *
 }
 
 /**
- * @brief UI系统数据转换器
+ * @brief UI系统数据代码分析器
  * 
  * 转换UI系统中的数据格式，包括类型转换、单位转换、
  * 格式化转换等。支持多种数据类型的相互转换。

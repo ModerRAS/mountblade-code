@@ -499,7 +499,7 @@ uint ui_system_parameter_optimizer(float *optimization_params, uint target_value
   return result;
 }
 
-// UI系统数据转换器 - 转换UI系统中的数据格式和结构
+// UI系统数据代码分析器 - 转换UI系统中的数据格式和结构
 // 该函数实现了数据转换功能，包括格式转换、边界检查和数据验证
 int8_t *ui_system_data_transformer(float *transform_params, int8_t *output_buffer, uint input_value, int param_4, int param_5)
 {

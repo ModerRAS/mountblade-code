@@ -879,7 +879,7 @@ int32_t *FUN_18043c820(int32_t *param_1, longlong param_2)
 }
 
 /**
- * @brief 渲染系统颜色格式转换器
+ * @brief 渲染系统颜色格式代码分析器
  * 
  * 将浮点颜色格式转换为整数颜色格式，支持gamma校正。
  * 
@@ -944,7 +944,7 @@ uint FUN_18043c8e0(longlong param_1)
 }
 
 /**
- * @brief 渲染系统颜色格式转换器扩展
+ * @brief 渲染系统颜色格式代码分析器扩展
  * 
  * 将浮点颜色格式转换为整数颜色格式，支持线性空间转换。
  * 
@@ -1128,10 +1128,10 @@ void FUN_18043caa0(longlong param_1, int32_t param_2, int32_t param_3, int32_t p
 /** 渲染系统资源创建器 */
 #define RenderingSystemCreateResources FUN_18043c820
 
-/** 渲染系统颜色格式转换器 */
+/** 渲染系统颜色格式代码分析器 */
 #define RenderingSystemConvertColorFormat FUN_18043c8e0
 
-/** 渲染系统颜色格式转换器扩展 */
+/** 渲染系统颜色格式代码分析器扩展 */
 #define RenderingSystemConvertColorFormatEx FUN_18043c8f5
 
 /** 渲染系统空句柄获取器 */

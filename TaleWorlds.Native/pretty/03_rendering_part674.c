@@ -940,7 +940,7 @@ typedef uint64_t RenderOptimizer;          // 渲染优化器 - 用于优化渲�
 // 渲染系统核心函数别名
 #define RenderSystemAdvancedDataProcessor     FUN_180650a70  // 渲染系统高级数据处理器
 #define RenderSystemDataCopier                FUN_180650aa0  // 渲染系统数据复制器
-#define RenderSystemAdvancedDataConverter     FUN_180650b30  // 渲染系统高级数据转换器
+#define RenderSystemAdvancedDataConverter     FUN_180650b30  // 渲染系统高级数据代码分析器
 #define RenderSystemMemoryManager             FUN_180650c00  // 渲染系统内存管理器
 #define RenderSystemDataValidator             FUN_180650d00  // 渲染系统数据验证器
 #define RenderSystemStateManager              FUN_180650e00  // 渲染系统状态管理器

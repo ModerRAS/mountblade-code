@@ -180,7 +180,7 @@ ulonglong ui_event_simplified_processor(void);
 /** @{ */
 
 /**
- * @brief UI数据验证和转换器
+ * @brief UI数据验证和代码分析器
  * 
  * 验证UI系统数据的有效性，处理数据转换和格式化。
  * 支持多种数据格式和验证规则。

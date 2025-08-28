@@ -326,7 +326,7 @@ void register_system_communication_components(void)
  * 
  * 注册的组件包括：
  * - 数据库管理器
- * - 数据转换器
+ * - 数据代码分析器
  * - 数据验证器
  * - 数据同步器
  */
@@ -536,7 +536,7 @@ void register_system_communication_components_backup(void)
  * 
  * 用于系统数据冗余：
  * - 备份数据库
- * - 冗余数据转换器
+ * - 冗余数据代码分析器
  * - 数据验证器
  * - 数据同步器
  */
@@ -746,7 +746,7 @@ void register_system_communication_components_third(void)
  * 
  * 用于系统数据的三重冗余：
  * - 第三重数据库
- * - 三重数据转换器
+ * - 三重数据代码分析器
  * - 数据验证器
  * - 数据同步器
  */

@@ -989,7 +989,7 @@ SystemError SystemDeviceInitializerAndConfigurator(SystemDevice* device)
 
 
 
-// 函数14: 系统模式切换器和状态转换器
+// 函数14: 系统模式切换器和状态代码分析器
 // 功能：切换系统模式和转换状态，包括模式验证、状态更新、转换处理等
 SystemError SystemModeSwitcherAndStateTransformer(SystemHandle handle, SystemMode mode, SystemState* states)
 {

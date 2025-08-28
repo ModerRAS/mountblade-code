@@ -266,7 +266,7 @@ static void ui_system_simd_data_storer(const int8_t* src, int8_t* dest, int size
 }
 
 /**
- * UI系统色彩空间转换器
+ * UI系统色彩空间代码分析器
  * 
  * 执行RGB到YUV色彩空间转换
  * 

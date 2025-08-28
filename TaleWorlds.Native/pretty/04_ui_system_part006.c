@@ -440,7 +440,7 @@ uint64_t * UISystem_StringFinder(uint64_t search_context, longlong *target_strin
 void UISystem_DataStructureManager(uint64_t management_context, uint64_t *resource_type, uint64_t operation_flag, uint64_t validation_flag);
 
 /**
- * @brief UI系统字符串转换器
+ * @brief UI系统字符串代码分析器
  * 
  * 该函数负责转换字符串：
  * - 转换字符串格式
@@ -1409,7 +1409,7 @@ void UISystem_DataStructureManager(uint64_t management_context, uint64_t *resour
 }
 
 /**
- * @brief UI系统字符串转换器
+ * @brief UI系统字符串代码分析器
  * 
  * 该函数负责转换字符串：
  * - 转换字符串格式

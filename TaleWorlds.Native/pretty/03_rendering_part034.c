@@ -96,7 +96,7 @@ typedef struct {
 /** 渲染系统视图矩阵计算器 */
 #define RenderingSystemViewMatrixCalculator FUN_180287020
 
-/** 渲染系统世界坐标到屏幕坐标转换器 */
+/** 渲染系统世界坐标到屏幕坐标代码分析器 */
 #define RenderingSystemWorldToScreenConverter FUN_180287320
 
 /** 渲染系统视锥体裁剪测试器 */
@@ -875,7 +875,7 @@ void RenderingSystemViewMatrixCalculator(longlong param_1, float *param_2, float
 }
 
 /**
- * @brief 渲染系统世界坐标到屏幕坐标转换器
+ * @brief 渲染系统世界坐标到屏幕坐标代码分析器
  * 
  * 将3D世界坐标转换为2D屏幕坐标。
  * 支持透视投影和正交投影的坐标转换。

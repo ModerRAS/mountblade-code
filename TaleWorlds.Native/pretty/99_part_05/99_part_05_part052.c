@@ -616,7 +616,7 @@ void ErrorDetectorAndRecoverer(void) {
 }
 
 /**
- * @brief 数据验证和转换器
+ * @brief 数据验证和代码分析器
  * 
  * 验证数据有效性并执行格式转换。
  * 
@@ -827,7 +827,7 @@ void SystemCleanupAndFinalizer(void) {
 // 错误检测和恢复器别名
 #define ErrorDetectorAndRecovererAlias FUN_1802fad00
 
-// 数据验证和转换器别名
+// 数据验证和代码分析器别名
 #define DataValidatorAndConverterAlias FUN_1802fae10
 
 // 性能监控和优化器别名

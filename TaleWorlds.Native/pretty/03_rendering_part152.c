@@ -94,7 +94,7 @@ typedef void* RenderingSystemMemoryManager;
 /** 渲染系统状态管理器类型 */
 typedef void* RenderingSystemStateManager;
 
-/** 渲染系统坐标转换器类型 */
+/** 渲染系统坐标代码分析器类型 */
 typedef void* RenderingSystemCoordinateTransformer;
 
 /** 渲染系统优化器类型 */
