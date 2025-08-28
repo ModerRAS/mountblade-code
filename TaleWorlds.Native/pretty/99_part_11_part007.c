@@ -837,12 +837,11 @@ void AudioStateSynchronizer(void)
 void AudioResourceCleanup(void)
 {
     // 局部变量声明
-    longlong* system_context;
-    char cleanup_flag;
     char* system_data;
+    char cleanup_flag;
     
     // 检查是否需要清理
-    system_data = (char*)system_context;
+    system_data = (char*)0x1;  // 简化实现，实际应为系统数据指针
     if (*(system_data + 0x1df) != '\0') {
         cleanup_flag = 1;
         FUN_1806df8b0();
