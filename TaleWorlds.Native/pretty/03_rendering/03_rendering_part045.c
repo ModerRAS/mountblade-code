@@ -182,85 +182,100 @@ ulonglong parse_rendering_data_block(longlong data_block, int block_size, undefi
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-longlong FUN_18028fd52(void)
-
+/**
+ * 处理渲染数据块的内部函数
+ * @return 处理结果指针
+ */
+longlong process_rendering_data_internal(void)
 {
-  char cVar1;
-  short sVar2;
-  longlong lVar3;
-  int unaff_EBX;
-  longlong lVar4;
-  longlong unaff_RSI;
-  longlong unaff_RDI;
-  longlong lVar5;
-  longlong lVar6;
-  longlong unaff_R12;
-  longlong unaff_R13;
-  longlong *unaff_R14;
-  int unaff_R15D;
-  int in_stack_000000e8;
-  
-  do {
-    if (unaff_R15D == 1) {
-      if (_DAT_180c8a9b0 != 0) {
-        *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
-      }
-      unaff_RDI = func_0x000180120ce0((longlong)unaff_EBX << 3,_DAT_180c8a9a8);
-      if (unaff_RDI == 0) {
-                    // WARNING: Subroutine does not return
-        FUN_180059ba0(0,_DAT_180c8a9a8);
-      }
-    }
-    unaff_EBX = 0;
-    in_stack_000000e8 = 0;
-    lVar6 = -1;
-    if (0 < unaff_R12) {
-      lVar5 = unaff_R13 + 10;
-      lVar4 = unaff_R12;
-      do {
-        cVar1 = *(char *)(lVar5 + 2);
-        if (cVar1 == '\x01') {
-          if (-1 < lVar6) {
-            *(int *)(*unaff_R14 + lVar6 * 4) = unaff_EBX - (int)unaff_RSI;
-          }
-          lVar6 = lVar6 + 1;
-          unaff_RSI = (longlong)unaff_EBX;
-          sVar2 = *(short *)(lVar5 + -8);
-          in_stack_000000e8 = unaff_EBX + 1;
-          unaff_EBX = in_stack_000000e8;
-          if (unaff_RDI != 0) {
-            *(float *)(unaff_RDI + unaff_RSI * 8) = (float)(int)*(short *)(lVar5 + -10);
-            *(float *)(unaff_RDI + 4 + unaff_RSI * 8) = (float)(int)sVar2;
-          }
+    char data_type;
+    short data_value;
+    longlong block_size;
+    int data_offset;
+    longlong data_count;
+    longlong data_position;
+    longlong buffer_ptr;
+    longlong config_ptr;
+    longlong result_ptr;
+    longlong *output_ptr;
+    int output_count;
+    int stack_value;
+    
+    do {
+        if (output_count == 1) {
+            if (g_rendering_memory_manager != 0) {
+                *(int *)(g_rendering_memory_manager + 0x3a8) = *(int *)(g_rendering_memory_manager + 0x3a8) + 1;
+            }
+            
+            // 分配处理缓冲区
+            config_ptr = allocate_rendering_memory((longlong)data_offset << 3, g_rendering_allocator);
+            if (config_ptr == 0) {
+                // 内存分配失败，调用错误处理
+                handle_rendering_error(0, g_rendering_allocator);
+            }
         }
-        else if (cVar1 == '\x02') {
-          sVar2 = *(short *)(lVar5 + -8);
-          lVar3 = (longlong)unaff_EBX;
-          in_stack_000000e8 = unaff_EBX + 1;
-          unaff_EBX = in_stack_000000e8;
-          if (unaff_RDI != 0) {
-            *(float *)(unaff_RDI + lVar3 * 8) = (float)(int)*(short *)(lVar5 + -10);
-            *(float *)(unaff_RDI + 4 + lVar3 * 8) = (float)(int)sVar2;
-          }
+        
+        data_offset = 0;
+        stack_value = 0;
+        block_size = -1;
+        
+        if (0 < data_count) {
+            buffer_ptr = data_position + 10;
+            result_ptr = data_count;
+            
+            do {
+                data_type = *(char *)(buffer_ptr + 2);
+                
+                if (data_type == '\x01') {
+                    // 类型1数据处理
+                    if (-1 < block_size) {
+                        *(int *)(*output_ptr + block_size * 4) = data_offset - (int)config_ptr;
+                    }
+                    
+                    block_size = block_size + 1;
+                    config_ptr = (longlong)data_offset;
+                    data_value = *(short *)(buffer_ptr + -8);
+                    stack_value = data_offset + 1;
+                    data_offset = stack_value;
+                    
+                    if (buffer_ptr != 0) {
+                        *(float *)(buffer_ptr + config_ptr * 8) = (float)(int)*(short *)(buffer_ptr + -10);
+                        *(float *)(buffer_ptr + 4 + config_ptr * 8) = (float)(int)data_value;
+                    }
+                }
+                else if (data_type == '\x02') {
+                    // 类型2数据处理
+                    data_value = *(short *)(buffer_ptr + -8);
+                    buffer_ptr = (longlong)data_offset;
+                    stack_value = data_offset + 1;
+                    data_offset = stack_value;
+                    
+                    if (buffer_ptr != 0) {
+                        *(float *)(buffer_ptr + buffer_ptr * 8) = (float)(int)*(short *)(buffer_ptr + -10);
+                        *(float *)(buffer_ptr + 4 + buffer_ptr * 8) = (float)(int)data_value;
+                    }
+                }
+                else if (data_type == '\x03') {
+                    // 类型3数据处理
+                    process_rendering_data_type3(buffer_ptr, &stack_value);
+                    data_offset = stack_value;
+                }
+                else if (data_type == '\x04') {
+                    // 类型4数据处理
+                    process_rendering_data_type4(buffer_ptr, &stack_value);
+                    data_offset = stack_value;
+                }
+                
+                buffer_ptr = buffer_ptr + 0xe;
+                result_ptr = result_ptr - 1;
+            } while (result_ptr != 0);
         }
-        else if (cVar1 == '\x03') {
-          FUN_18028f6d0(unaff_RDI,&stack0x000000e8);
-          unaff_EBX = in_stack_000000e8;
-        }
-        else if (cVar1 == '\x04') {
-          FUN_18028f8f0(unaff_RDI,&stack0x000000e8);
-          unaff_EBX = in_stack_000000e8;
-        }
-        lVar5 = lVar5 + 0xe;
-        lVar4 = lVar4 + -1;
-      } while (lVar4 != 0);
-    }
-    unaff_R15D = unaff_R15D + 1;
-    *(int *)(*unaff_R14 + lVar6 * 4) = unaff_EBX - (int)unaff_RSI;
-  } while (unaff_R15D < 2);
-  return unaff_RDI;
+        
+        output_count = output_count + 1;
+        *(int *)(*output_ptr + block_size * 4) = data_offset - (int)config_ptr;
+    } while (output_count < 2);
+    
+    return buffer_ptr;
 }
 
 
