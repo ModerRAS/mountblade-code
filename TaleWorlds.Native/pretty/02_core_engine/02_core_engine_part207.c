@@ -1,9 +1,15 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part207.c - 5 个函数
+// 02_core_engine_part207.c - 核心引擎模块第207部分
+// 本文件包含数据结构管理、内存分配和树形结构操作相关函数
 
-// 函数: void FUN_18018a130(undefined8 param_1,undefined8 param_2,undefined8 *param_3)
-void FUN_18018a130(undefined8 param_1,undefined8 param_2,undefined8 *param_3)
+/**
+ * 初始化字符串数据结构
+ * @param param_1 上下文参数
+ * @param param_2 保留参数
+ * @param param_3 字符串数据指针
+ */
+void initialize_string_structure(undefined8 param_1, undefined8 param_2, undefined8 *param_3)
 
 {
   undefined8 uVar1;

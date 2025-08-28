@@ -217,117 +217,117 @@ void ResourceManager_Free(longlong resource_manager, undefined8 param_2, undefin
 
 
 
-// 函数: void FUN_180186880(undefined8 param_1,undefined8 *param_2,undefined8 *param_3)
-void FUN_180186880(undefined8 param_1,undefined8 *param_2,undefined8 *param_3)
-
+// 函数: 双资源管理器初始化 (原: FUN_180186880)
+// 功能: 初始化双资源管理器，处理两个资源的字符串和内存分配
+void DualResourceManager_Initialize(undefined8 param_1, undefined8 *resource1, undefined8 *resource2)
 {
-  longlong *plVar1;
-  longlong lVar2;
-  undefined *puVar3;
-  longlong lVar4;
-  longlong lVar5;
-  undefined1 auStack_e8 [32];
+  longlong *global_ptr;
+  longlong global_data;
+  undefined *string_data;
+  longlong str_length1;
+  longlong str_length2;
+  undefined1 stack_buffer1 [32];
   undefined8 uStack_c8;
-  undefined8 *puStack_c0;
-  undefined8 *puStack_b8;
-  undefined **ppuStack_b0;
-  undefined *puStack_a8;
-  longlong lStack_a0;
-  undefined **ppuStack_70;
-  undefined1 auStack_68 [16];
-  undefined8 uStack_58;
-  undefined8 uStack_50;
-  undefined1 auStack_48 [16];
-  undefined8 uStack_38;
-  undefined8 uStack_30;
-  ulonglong uStack_28;
+  undefined8 *resource1_ptr;
+  undefined8 *resource2_ptr;
+  undefined **temp_ptr1;
+  undefined *temp_resource1;
+  longlong temp_var1;
+  undefined **temp_ptr2;
+  undefined1 stack_buffer2 [16];
+  undefined8 temp_var2;
+  undefined8 temp_var3;
+  undefined1 stack_buffer3 [16];
+  undefined8 temp_var4;
+  undefined8 temp_var5;
+  ulonglong security_cookie;
   
-  lVar2 = _DAT_180c8a9e0;
+  global_data = GLOBAL_ENGINE_CONTEXT;
   uStack_c8 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_e8;
-  puStack_c0 = param_2;
-  puStack_b8 = param_3;
-  if (*(longlong *)(_DAT_180c8a9e0 + 8) == 0) {
-    *param_2 = &UNK_180a3c3e0;
-    if (param_2[1] != 0) {
-                    // WARNING: Subroutine does not return
+  security_cookie = SECURITY_COOKIE ^ (ulonglong)stack_buffer1;
+  resource1_ptr = resource1;
+  resource2_ptr = resource2;
+  if (*(longlong *)(GLOBAL_ENGINE_CONTEXT + 8) == 0) {
+    *resource1 = &EMPTY_STRING_CONST;
+    if (resource1[1] != 0) {
+      // 资源1错误处理
       FUN_18064e900();
     }
-    param_2[1] = 0;
-    *(undefined4 *)(param_2 + 3) = 0;
-    *param_2 = &UNK_18098bcb0;
-    *param_3 = &UNK_180a3c3e0;
-    if (param_3[1] != 0) {
-                    // WARNING: Subroutine does not return
+    resource1[1] = 0;
+    *(undefined4 *)(resource1 + 3) = 0;
+    *resource1 = &STRING_END_CONST;
+    *resource2 = &EMPTY_STRING_CONST;
+    if (resource2[1] != 0) {
+      // 资源2错误处理
       FUN_18064e900();
     }
-    param_3[1] = 0;
-    *(undefined4 *)(param_3 + 3) = 0;
+    resource2[1] = 0;
+    *(undefined4 *)(resource2 + 3) = 0;
   }
   else {
-    uStack_58 = 0;
-    uStack_50 = 0xf;
-    auStack_68[0] = 0;
-    uStack_38 = 0;
-    uStack_30 = 0xf;
-    auStack_48[0] = 0;
-    puVar3 = &DAT_18098bc73;
-    if ((undefined *)param_3[1] != (undefined *)0x0) {
-      puVar3 = (undefined *)param_3[1];
+    temp_var2 = 0;
+    temp_var3 = 0xf;
+    stack_buffer2[0] = 0;
+    temp_var4 = 0;
+    temp_var5 = 0xf;
+    stack_buffer3[0] = 0;
+    string_data = &DEFAULT_STRING_DATA;
+    if ((undefined *)resource2[1] != (undefined *)0x0) {
+      string_data = (undefined *)resource2[1];
     }
-    lVar4 = -1;
-    lVar5 = -1;
+    str_length1 = -1;
+    str_length2 = -1;
     do {
-      lVar5 = lVar5 + 1;
-    } while (puVar3[lVar5] != '\0');
-    FUN_1800671b0(auStack_68);
-    puVar3 = &DAT_18098bc73;
-    if ((undefined *)param_2[1] != (undefined *)0x0) {
-      puVar3 = (undefined *)param_2[1];
+      str_length2 = str_length2 + 1;
+    } while (string_data[str_length2] != '\0');
+    FUN_1800671b0(stack_buffer2);
+    string_data = &DEFAULT_STRING_DATA;
+    if ((undefined *)resource1[1] != (undefined *)0x0) {
+      string_data = (undefined *)resource1[1];
     }
     do {
-      lVar4 = lVar4 + 1;
-    } while (puVar3[lVar4] != '\0');
-    FUN_1800671b0(auStack_48,puVar3,lVar4);
-    plVar1 = *(longlong **)(lVar2 + 8);
-    ppuStack_b0 = &puStack_a8;
-    puStack_a8 = &UNK_180a0ab70;
-    lStack_a0 = lVar2;
-    ppuStack_70 = &puStack_a8;
-    (**(code **)(*plVar1 + 0x28))(plVar1,auStack_68,&puStack_a8,0);
-    FUN_180067070(auStack_48);
-    FUN_180067070(auStack_68);
-    *param_2 = &UNK_180a3c3e0;
-    if (param_2[1] != 0) {
-                    // WARNING: Subroutine does not return
+      str_length1 = str_length1 + 1;
+    } while (string_data[str_length1] != '\0');
+    FUN_1800671b0(stack_buffer3, string_data, str_length1);
+    global_ptr = *(longlong **)(global_data + 8);
+    temp_ptr1 = &temp_resource1;
+    temp_resource1 = &DUAL_RESOURCE_HANDLER_CONST;
+    temp_var1 = global_data;
+    temp_ptr2 = &temp_resource1;
+    (**(code **)(*global_ptr + 0x28))(global_ptr, stack_buffer2, &temp_resource1, 0);
+    FUN_180067070(stack_buffer3);
+    FUN_180067070(stack_buffer2);
+    *resource1 = &EMPTY_STRING_CONST;
+    if (resource1[1] != 0) {
+      // 资源1错误处理
       FUN_18064e900();
     }
-    param_2[1] = 0;
-    *(undefined4 *)(param_2 + 3) = 0;
-    *param_2 = &UNK_18098bcb0;
-    *param_3 = &UNK_180a3c3e0;
-    if (param_3[1] != 0) {
-                    // WARNING: Subroutine does not return
+    resource1[1] = 0;
+    *(undefined4 *)(resource1 + 3) = 0;
+    *resource1 = &STRING_END_CONST;
+    *resource2 = &EMPTY_STRING_CONST;
+    if (resource2[1] != 0) {
+      // 资源2错误处理
       FUN_18064e900();
     }
-    param_3[1] = 0;
-    *(undefined4 *)(param_3 + 3) = 0;
+    resource2[1] = 0;
+    *(undefined4 *)(resource2 + 3) = 0;
   }
-  *param_3 = &UNK_18098bcb0;
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_e8);
+  *resource2 = &STRING_END_CONST;
+  // 安全检查结束
+  FUN_1808fc050(security_cookie ^ (ulonglong)stack_buffer1);
 }
 
 
 
 
 
-// 函数: void FUN_180186a90(longlong param_1)
-void FUN_180186a90(longlong param_1)
-
+// 函数: 引擎上下文清理 (原: FUN_180186a90)
+// 功能: 清理引擎上下文相关的资源
+void EngineContext_Cleanup(longlong context_handle)
 {
-  FUN_180067070(param_1 + 0x20);
-  FUN_180067070(param_1);
+  FUN_180067070(context_handle + 0x20);
+  FUN_180067070(context_handle);
   return;
 }
 
@@ -337,110 +337,109 @@ void FUN_180186a90(longlong param_1)
 
 
 
-// 函数: void FUN_180186ac0(undefined8 param_1,undefined8 *param_2,undefined8 *param_3,undefined4 param_4,
-void FUN_180186ac0(undefined8 param_1,undefined8 *param_2,undefined8 *param_3,undefined4 param_4,
-                  undefined4 param_5)
-
+// 函数: 参数化资源管理器初始化 (原: FUN_180186ac0)
+// 功能: 初始化带参数的资源管理器，处理两个资源和参数化配置
+void ParameterizedResourceManager_Initialize(undefined8 param_1, undefined8 *resource1, undefined8 *resource2, undefined4 param4, undefined4 param5)
 {
-  longlong *plVar1;
-  longlong lVar2;
-  undefined *puVar3;
-  longlong lVar4;
-  longlong lVar5;
-  undefined1 auStack_108 [32];
+  longlong *global_ptr;
+  longlong global_data;
+  undefined *string_data;
+  longlong str_length1;
+  longlong str_length2;
+  undefined1 stack_buffer1 [32];
   undefined8 uStack_e8;
-  undefined8 *puStack_e0;
-  undefined8 *puStack_d8;
-  undefined **ppuStack_d0;
-  undefined *puStack_c8;
-  longlong lStack_c0;
-  undefined **ppuStack_90;
-  undefined1 auStack_88 [16];
-  undefined8 uStack_78;
-  undefined8 uStack_70;
-  undefined1 auStack_68 [16];
-  undefined8 uStack_58;
-  undefined8 uStack_50;
-  undefined4 uStack_48;
-  undefined4 uStack_44;
-  ulonglong uStack_38;
+  undefined8 *resource1_ptr;
+  undefined8 *resource2_ptr;
+  undefined **temp_ptr1;
+  undefined *temp_resource1;
+  longlong temp_var1;
+  undefined **temp_ptr2;
+  undefined1 stack_buffer2 [16];
+  undefined8 temp_var2;
+  undefined8 temp_var3;
+  undefined1 stack_buffer3 [16];
+  undefined8 temp_var4;
+  undefined8 temp_var5;
+  undefined4 config_param1;
+  undefined4 config_param2;
+  ulonglong security_cookie;
   
-  lVar2 = _DAT_180c8a9e0;
+  global_data = GLOBAL_ENGINE_CONTEXT;
   uStack_e8 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_108;
-  puStack_e0 = param_2;
-  puStack_d8 = param_3;
-  if (*(longlong *)(_DAT_180c8a9e0 + 8) == 0) {
-    *param_2 = &UNK_180a3c3e0;
-    if (param_2[1] != 0) {
-                    // WARNING: Subroutine does not return
+  security_cookie = SECURITY_COOKIE ^ (ulonglong)stack_buffer1;
+  resource1_ptr = resource1;
+  resource2_ptr = resource2;
+  if (*(longlong *)(GLOBAL_ENGINE_CONTEXT + 8) == 0) {
+    *resource1 = &EMPTY_STRING_CONST;
+    if (resource1[1] != 0) {
+      // 资源1错误处理
       FUN_18064e900();
     }
-    param_2[1] = 0;
-    *(undefined4 *)(param_2 + 3) = 0;
-    *param_2 = &UNK_18098bcb0;
-    *param_3 = &UNK_180a3c3e0;
-    if (param_3[1] != 0) {
-                    // WARNING: Subroutine does not return
+    resource1[1] = 0;
+    *(undefined4 *)(resource1 + 3) = 0;
+    *resource1 = &STRING_END_CONST;
+    *resource2 = &EMPTY_STRING_CONST;
+    if (resource2[1] != 0) {
+      // 资源2错误处理
       FUN_18064e900();
     }
-    param_3[1] = 0;
-    *(undefined4 *)(param_3 + 3) = 0;
+    resource2[1] = 0;
+    *(undefined4 *)(resource2 + 3) = 0;
   }
   else {
-    uStack_78 = 0;
-    uStack_70 = 0xf;
-    auStack_88[0] = 0;
-    uStack_58 = 0;
-    uStack_50 = 0xf;
-    auStack_68[0] = 0;
-    uStack_44 = param_5;
-    puVar3 = &DAT_18098bc73;
-    if ((undefined *)param_3[1] != (undefined *)0x0) {
-      puVar3 = (undefined *)param_3[1];
+    temp_var2 = 0;
+    temp_var3 = 0xf;
+    stack_buffer2[0] = 0;
+    temp_var4 = 0;
+    temp_var5 = 0xf;
+    stack_buffer3[0] = 0;
+    config_param2 = param5;
+    string_data = &DEFAULT_STRING_DATA;
+    if ((undefined *)resource2[1] != (undefined *)0x0) {
+      string_data = (undefined *)resource2[1];
     }
-    lVar4 = -1;
-    lVar5 = -1;
+    str_length1 = -1;
+    str_length2 = -1;
     do {
-      lVar5 = lVar5 + 1;
-    } while (puVar3[lVar5] != '\0');
-    uStack_48 = param_4;
-    FUN_1800671b0(auStack_88);
-    puVar3 = &DAT_18098bc73;
-    if ((undefined *)param_2[1] != (undefined *)0x0) {
-      puVar3 = (undefined *)param_2[1];
+      str_length2 = str_length2 + 1;
+    } while (string_data[str_length2] != '\0');
+    config_param1 = param4;
+    FUN_1800671b0(stack_buffer2);
+    string_data = &DEFAULT_STRING_DATA;
+    if ((undefined *)resource1[1] != (undefined *)0x0) {
+      string_data = (undefined *)resource1[1];
     }
     do {
-      lVar4 = lVar4 + 1;
-    } while (puVar3[lVar4] != '\0');
-    FUN_1800671b0(auStack_68,puVar3,lVar4);
-    plVar1 = *(longlong **)(lVar2 + 8);
-    ppuStack_d0 = &puStack_c8;
-    puStack_c8 = &UNK_180a0aba8;
-    lStack_c0 = lVar2;
-    ppuStack_90 = &puStack_c8;
-    (**(code **)(*plVar1 + 0x30))(plVar1,auStack_88,&puStack_c8,0);
-    FUN_180067070(auStack_68);
-    FUN_180067070(auStack_88);
-    *param_2 = &UNK_180a3c3e0;
-    if (param_2[1] != 0) {
-                    // WARNING: Subroutine does not return
+      str_length1 = str_length1 + 1;
+    } while (string_data[str_length1] != '\0');
+    FUN_1800671b0(stack_buffer3, string_data, str_length1);
+    global_ptr = *(longlong **)(global_data + 8);
+    temp_ptr1 = &temp_resource1;
+    temp_resource1 = &PARAMETERIZED_RESOURCE_HANDLER_CONST;
+    temp_var1 = global_data;
+    temp_ptr2 = &temp_resource1;
+    (**(code **)(*global_ptr + 0x30))(global_ptr, stack_buffer2, &temp_resource1, 0);
+    FUN_180067070(stack_buffer3);
+    FUN_180067070(stack_buffer2);
+    *resource1 = &EMPTY_STRING_CONST;
+    if (resource1[1] != 0) {
+      // 资源1错误处理
       FUN_18064e900();
     }
-    param_2[1] = 0;
-    *(undefined4 *)(param_2 + 3) = 0;
-    *param_2 = &UNK_18098bcb0;
-    *param_3 = &UNK_180a3c3e0;
-    if (param_3[1] != 0) {
-                    // WARNING: Subroutine does not return
+    resource1[1] = 0;
+    *(undefined4 *)(resource1 + 3) = 0;
+    *resource1 = &STRING_END_CONST;
+    *resource2 = &EMPTY_STRING_CONST;
+    if (resource2[1] != 0) {
+      // 资源2错误处理
       FUN_18064e900();
     }
-    param_3[1] = 0;
-    *(undefined4 *)(param_3 + 3) = 0;
+    resource2[1] = 0;
+    *(undefined4 *)(resource2 + 3) = 0;
   }
-  *param_3 = &UNK_18098bcb0;
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_108);
+  *resource2 = &STRING_END_CONST;
+  // 安全检查结束
+  FUN_1808fc050(security_cookie ^ (ulonglong)stack_buffer1);
 }
 
 
@@ -449,94 +448,94 @@ void FUN_180186ac0(undefined8 param_1,undefined8 *param_2,undefined8 *param_3,un
 
 
 
-// 函数: void FUN_180186ca0(undefined8 param_1,longlong param_2,ulonglong param_3)
-void FUN_180186ca0(undefined8 param_1,longlong param_2,ulonglong param_3)
-
+// 函数: 多字符串处理器 (原: FUN_180186ca0)
+// 功能: 处理多个字符串参数，进行字符串操作和内存管理
+void MultiStringProcessor(undefined8 param_1, longlong string_array, ulonglong string_count)
 {
-  longlong *plVar1;
-  longlong lVar2;
-  undefined **ppuVar3;
-  undefined **ppuVar4;
-  ulonglong uVar5;
-  longlong lVar6;
-  undefined1 auStack_b8 [32];
-  undefined **ppuStack_98;
-  undefined **ppuStack_90;
-  undefined **ppuStack_88;
-  undefined **ppuStack_80;
-  undefined8 uStack_78;
-  undefined *puStack_70;
-  longlong lStack_68;
-  undefined8 uStack_60;
-  undefined8 uStack_58;
-  undefined8 uStack_50;
-  undefined **ppuStack_38;
-  ulonglong uStack_30;
+  longlong *global_ptr;
+  longlong global_data;
+  undefined **string_list1;
+  undefined **string_list2;
+  ulonglong string_index;
+  longlong str_length;
+  undefined1 stack_buffer [32];
+  undefined **main_list;
+  undefined **temp_list;
+  undefined **list_end;
+  undefined **list_current;
+  undefined8 cleanup_flag;
+  undefined *string_buffer;
+  longlong temp_var1;
+  undefined8 temp_var2;
+  undefined8 temp_var3;
+  undefined8 temp_var4;
+  undefined **temp_ptr;
+  ulonglong security_cookie;
   
-  lVar2 = _DAT_180c8a9e0;
-  uStack_78 = 0xfffffffffffffffe;
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_b8;
-  if (*(longlong *)(_DAT_180c8a9e0 + 8) != 0) {
-    ppuStack_98 = (undefined **)0x0;
-    ppuStack_90 = (undefined **)0x0;
-    uVar5 = 0;
-    ppuStack_88 = (undefined **)0x0;
-    if (param_3 != 0) {
+  global_data = GLOBAL_ENGINE_CONTEXT;
+  cleanup_flag = 0xfffffffffffffffe;
+  security_cookie = SECURITY_COOKIE ^ (ulonglong)stack_buffer;
+  if (*(longlong *)(GLOBAL_ENGINE_CONTEXT + 8) != 0) {
+    main_list = (undefined **)0x0;
+    temp_list = (undefined **)0x0;
+    string_index = 0;
+    list_end = (undefined **)0x0;
+    if (string_count != 0) {
       do {
-        uStack_60 = 0;
-        uStack_58 = 0xf;
-        puStack_70 = (undefined *)((ulonglong)puStack_70 & 0xffffffffffffff00);
-        uStack_50 = 0;
-        lVar6 = -1;
+        temp_var2 = 0;
+        temp_var3 = 0xf;
+        string_buffer = (undefined *)((ulonglong)string_buffer & 0xffffffffffffff00);
+        temp_var4 = 0;
+        str_length = -1;
         do {
-          lVar6 = lVar6 + 1;
-        } while (*(char *)(*(longlong *)(param_2 + uVar5 * 8) + lVar6) != '\0');
-        FUN_1800671b0(&puStack_70);
-        ppuVar4 = ppuStack_90;
-        if (ppuStack_88 == ppuStack_90) {
-          FUN_180188f60(&ppuStack_98,ppuStack_90,&puStack_70);
+          str_length = str_length + 1;
+        } while (*(char *)(*(longlong *)(string_array + string_index * 8) + str_length) != '\0');
+        FUN_1800671b0(&string_buffer);
+        string_list2 = temp_list;
+        if (list_end == temp_list) {
+          FUN_180188f60(&main_list, temp_list, &string_buffer);
         }
         else {
-          ppuStack_80 = ppuStack_90;
-          FUN_18018b350(ppuStack_90,&puStack_70);
-          *(undefined4 *)(ppuVar4 + 4) = (undefined4)uStack_50;
-          *(undefined4 *)((longlong)ppuVar4 + 0x24) = uStack_50._4_4_;
-          ppuStack_90 = ppuStack_90 + 5;
+          list_current = temp_list;
+          FUN_18018b350(temp_list, &string_buffer);
+          *(undefined4 *)(string_list2 + 4) = (undefined4)temp_var4;
+          *(undefined4 *)((longlong)string_list2 + 0x24) = temp_var4._4_4_;
+          temp_list = temp_list + 5;
         }
-        FUN_180067070(&puStack_70);
-        uVar5 = uVar5 + 1;
-      } while (uVar5 < param_3);
+        FUN_180067070(&string_buffer);
+        string_index = string_index + 1;
+      } while (string_index < string_count);
     }
-    plVar1 = *(longlong **)(lVar2 + 8);
-    ppuStack_80 = &puStack_70;
-    puStack_70 = &UNK_180a0ab00;
-    lStack_68 = lVar2;
-    ppuStack_38 = &puStack_70;
-    (**(code **)(*plVar1 + 0x38))(plVar1,&ppuStack_98,&puStack_70,0);
-    ppuVar3 = ppuStack_90;
-    ppuVar4 = ppuStack_98;
-    if (ppuStack_98 != (undefined **)0x0) {
-      for (; ppuStack_80 = ppuVar4, ppuVar4 != ppuVar3; ppuVar4 = ppuVar4 + 5) {
-        FUN_180067070(ppuVar4);
+    global_ptr = *(longlong **)(global_data + 8);
+    list_current = &string_buffer;
+    string_buffer = &MULTI_STRING_HANDLER_CONST;
+    temp_var1 = global_data;
+    temp_ptr = &string_buffer;
+    (**(code **)(*global_ptr + 0x38))(global_ptr, &main_list, &string_buffer, 0);
+    string_list1 = temp_list;
+    string_list2 = main_list;
+    if (main_list != (undefined **)0x0) {
+      for (; list_current = string_list2, string_list2 != string_list1; string_list2 = string_list2 + 5) {
+        FUN_180067070(string_list2);
       }
-      uVar5 = (((longlong)ppuStack_88 - (longlong)ppuStack_98) / 0x28) * 0x28;
-      ppuVar4 = ppuStack_98;
-      if (0xfff < uVar5) {
-        uVar5 = uVar5 + 0x27;
-        ppuVar4 = (undefined **)ppuStack_98[-1];
-        if (0x1f < (ulonglong)((longlong)ppuStack_98 + (-8 - (longlong)ppuVar4))) {
-                    // WARNING: Subroutine does not return
+      string_index = (((longlong)list_end - (longlong)main_list) / 0x28) * 0x28;
+      string_list2 = main_list;
+      if (0xfff < string_index) {
+        string_index = string_index + 0x27;
+        string_list2 = (undefined **)main_list[-1];
+        if (0x1f < (ulonglong)((longlong)main_list + (-8 - (longlong)string_list2))) {
+          // 内存边界检查失败
           _invalid_parameter_noinfo_noreturn();
         }
       }
-      free(ppuVar4,uVar5);
-      ppuStack_98 = (undefined **)0x0;
-      ppuStack_90 = (undefined **)0x0;
-      ppuStack_88 = (undefined **)0x0;
+      free(string_list2, string_index);
+      main_list = (undefined **)0x0;
+      temp_list = (undefined **)0x0;
+      list_end = (undefined **)0x0;
     }
   }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_30 ^ (ulonglong)auStack_b8);
+  // 安全检查结束
+  FUN_1808fc050(security_cookie ^ (ulonglong)stack_buffer);
 }
 
 
@@ -545,15 +544,15 @@ void FUN_180186ca0(undefined8 param_1,longlong param_2,ulonglong param_3)
 
 
 
-// 函数: void FUN_180186eb0(void)
-void FUN_180186eb0(void)
-
+// 函数: 引擎数据结构工厂创建 (原: FUN_180186eb0)
+// 功能: 创建引擎数据结构工厂实例
+void EngineDataStructureFactory_Create(void)
 {
-  longlong lVar1;
+  longlong factory_handle;
   
-  lVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x88,8,3,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
-  memset(lVar1 + 0x14,0,0x74);
+  factory_handle = FUN_18062b1e0(ENGINE_FACTORY_DATA, 0x88, 8, 3, 0xfffffffffffffffe);
+  // 初始化工厂数据结构
+  memset(factory_handle + 0x14, 0, 0x74);
 }
 
 
