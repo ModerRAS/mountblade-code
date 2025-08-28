@@ -863,7 +863,7 @@ int32_t InitializationSystem_ValidateConfig(void)
  * 
  * @return undefined 分配结果状态
  */
-undefined InitializationSystem_AllocateResource(void)
+int32_t InitializationSystem_AllocateResource(void)
 {
     // 资源分配逻辑实现
     

@@ -336,7 +336,7 @@ uint64_t GameLogic_EventHandler(uint64_t event_context, uint64_t event_type, uin
  * @param update_flag 更新标志
  * @param delta_time 时间增量
  * @param update_param 更新参数
- * @return undefined 状态更新结果
+ * @return uint64_t 状态更新结果
  * 
  * @note 此函数在游戏主循环中被调用
  * @warning 错误的状态更新可能导致游戏逻辑错误
@@ -485,7 +485,7 @@ uint64_t GameLogic_EventHandler(uint64_t event_context, uint64_t event_type, uin
  * @param update_flag 更新标志
  * @param delta_time 时间增量
  * @param update_param 更新参数
- * @return undefined 状态更新结果
+ * @return uint64_t 状态更新结果
  */
 uint64_t GameLogic_StateUpdater(uint64_t state_context, uint64_t update_flag, uint64_t delta_time, uint64_t update_param)
 
