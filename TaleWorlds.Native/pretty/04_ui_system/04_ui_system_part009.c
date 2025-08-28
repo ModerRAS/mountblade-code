@@ -1,59 +1,46 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 04_ui_system_part009.c - UI系统高级向量处理和动画控制模块
-// 包含4个核心函数，涵盖UI向量归一化处理、动画权重计算、角度插值等高级UI功能
+// 04_ui_system_part009.c - UI系统向量归一化和处理模块
 
-/**
- * 向量归一化和缩放处理函数
- * 对输入的向量数组进行归一化处理并应用缩放因子
- * 
- * @param vector_array 向量数组指针
- * @param scale_factor 缩放因子
+/*
+ * UI系统向量归一化函数
+ * 功能：对UI系统中的向量进行归一化处理，确保向量长度为1
+ * 参数：vector_data - 指向向量数据结构的指针
+ *       scale_factor - 缩放因子
+ * 返回值：无
  */
-void normalize_and_scale_vector_array(longlong *vector_array, float scale_factor)
+void normalize_ui_vectors(longlong *vector_data, float scale_factor)
+
 {
-  ulonglong current_offset;
-  longlong array_start;
-  uint element_index;
-  ulonglong element_count;
-  float vector_x;
-  float vector_y;
-  float vector_length_squared;
-  float inverse_sqrt_result;
-  float normalized_scale;
-  float scaled_x;
-  float scaled_y;
+  ulonglong uVar1;
+  longlong lVar2;
+  uint uVar3;
+  ulonglong uVar4;
+  float fVar5;
+  float fVar6;
+  undefined1 auVar7 [16];
+  float fStackX_8;
+  float fStackX_c;
   
-  array_start = *vector_array;
-  current_offset = 0;
-  element_count = current_offset;
-  
-  // 计算数组元素数量（每个元素8字节）
-  if (vector_array[1] - array_start >> 3 != 0) {
+  lVar2 = *param_1;
+  uVar1 = 0;
+  uVar4 = uVar1;
+  if (param_1[1] - lVar2 >> 3 != 0) {
     do {
-      element_index = (int)element_count + 1;
-      
-      // 提取向量分量（高32位为Y，低32位为X）
-      vector_y = (float)((ulonglong)*(undefined8 *)(current_offset + array_start) >> 0x20);
-      vector_x = (float)*(undefined8 *)(current_offset + array_start);
-      
-      // 计算向量长度的平方
-      vector_length_squared = vector_y * vector_y + vector_x * vector_x;
-      
-      // 使用快速平方根倒数进行归一化
-      inverse_sqrt_result = rsqrtss(ZEXT416((uint)vector_length_squared), ZEXT416((uint)vector_length_squared))._0_4_;
-      normalized_scale = inverse_sqrt_result * 0.5f * (3.0f - vector_length_squared * inverse_sqrt_result * inverse_sqrt_result);
-      
-      // 应用缩放并存储结果
-      scaled_x = normalized_scale * vector_x * scale_factor + *(float *)(current_offset + array_start);
-      scaled_y = normalized_scale * vector_y * scale_factor + *(float *)(current_offset + 4 + array_start);
-      
-      *(ulonglong *)(current_offset + vector_array[0x11]) = CONCAT44(scaled_y, scaled_x);
-      
-      current_offset = current_offset + 8;
-      array_start = *vector_array;
-      element_count = (ulonglong)element_index;
-    } while ((ulonglong)(longlong)(int)element_index < (ulonglong)(vector_array[1] - array_start >> 3));
+      uVar3 = (int)uVar4 + 1;
+      fStackX_c = (float)((ulonglong)*(undefined8 *)(uVar1 + lVar2) >> 0x20);
+      fStackX_8 = (float)*(undefined8 *)(uVar1 + lVar2);
+      fVar5 = fStackX_c * fStackX_c + fStackX_8 * fStackX_8;
+      auVar7 = rsqrtss(ZEXT416((uint)fVar5),ZEXT416((uint)fVar5));
+      fVar6 = auVar7._0_4_;
+      fVar5 = fVar6 * 0.5 * (3.0 - fVar5 * fVar6 * fVar6);
+      *(ulonglong *)(uVar1 + param_1[0x11]) =
+           CONCAT44(fVar5 * fStackX_c * param_2 + *(float *)(uVar1 + 4 + lVar2),
+                    fVar5 * fStackX_8 * param_2 + *(float *)(uVar1 + lVar2));
+      uVar1 = uVar1 + 8;
+      lVar2 = *param_1;
+      uVar4 = (ulonglong)uVar3;
+    } while ((ulonglong)(longlong)(int)uVar3 < (ulonglong)(param_1[1] - lVar2 >> 3));
   }
   return;
 }
@@ -62,55 +49,43 @@ void normalize_and_scale_vector_array(longlong *vector_array, float scale_factor
 
 
 
-/**
- * UI向量处理变体函数
- * 对向量数组进行归一化处理并应用预定义的缩放因子
- * 
- * @param context_ptr 上下文指针（未使用）
- * @param vector_array 向量数组指针
- * @param scale_param 缩放参数（未使用）
- * @param base_offset 基础偏移量
+/*
+ * UI系统向量处理函数（替代版本）
+ * 功能：对UI系统中的向量进行归一化处理的另一种实现
+ * 参数：context - 上下文参数
+ *       vector_data - 指向向量数据结构的指针
+ *       param_3 - 未知参数
+ *       base_address - 基地址
+ * 返回值：无
  */
-void ui_vector_process_variant(undefined8 context_ptr, longlong *vector_array, undefined8 scale_param, longlong base_offset)
+void process_ui_vectors_alternative(undefined8 context, longlong *vector_data, undefined8 param_3, longlong base_address)
+
 {
-  ulonglong current_offset;
-  uint element_index;
-  float vector_x;
-  float vector_y;
-  float vector_length_squared;
-  undefined1 inverse_sqrt_buffer[16];
-  float scale_factor;
-  float temp_vector_x;
-  float temp_vector_y;
+  ulonglong uVar1;
+  uint in_R10D;
+  float fVar2;
+  float fVar3;
+  undefined1 auVar4 [16];
+  float unaff_XMM7_Da;
+  float fStack0000000000000050;
+  float fStack0000000000000054;
   
-  current_offset = 0;
-  element_index = 0;
-  
-  // 遍历向量数组进行归一化处理
+  uVar1 = (ulonglong)in_R10D;
   do {
-    element_index = element_index + 1;
-    
-    // 提取向量分量（高32位为Y，低32位为X）
-    temp_vector_y = (float)((ulonglong)*(undefined8 *)(current_offset + base_offset) >> 0x20);
-    temp_vector_x = (float)*(undefined8 *)(current_offset + base_offset);
-    
-    // 计算向量长度的平方
-    vector_length_squared = temp_vector_y * temp_vector_y + temp_vector_x * temp_vector_x;
-    
-    // 使用快速平方根倒数进行归一化
-    inverse_sqrt_buffer = rsqrtss(ZEXT416((uint)vector_length_squared), ZEXT416((uint)vector_length_squared));
-    scale_factor = inverse_sqrt_buffer._0_4_;
-    scale_factor = scale_factor * 0.5 * (3.0 - vector_length_squared * scale_factor * scale_factor);
-    
-    // 应用缩放并存储结果
-    *(ulonglong *)(current_offset + vector_array[0x11]) = 
-         CONCAT44(scale_factor * temp_vector_y * unaff_XMM7_Da + *(float *)(current_offset + 4 + base_offset),
-                  scale_factor * temp_vector_x * unaff_XMM7_Da + *(float *)(current_offset + base_offset));
-    
-    current_offset = current_offset + 8;
-    base_offset = *vector_array;
-  } while ((ulonglong)(longlong)(int)element_index < (ulonglong)(vector_array[1] - base_offset >> 3));
-  
+    in_R10D = in_R10D + 1;
+    fStack0000000000000054 = (float)((ulonglong)*(undefined8 *)(uVar1 + param_4) >> 0x20);
+    fStack0000000000000050 = (float)*(undefined8 *)(uVar1 + param_4);
+    fVar2 = fStack0000000000000054 * fStack0000000000000054 +
+            fStack0000000000000050 * fStack0000000000000050;
+    auVar4 = rsqrtss(ZEXT416((uint)fVar2),ZEXT416((uint)fVar2));
+    fVar3 = auVar4._0_4_;
+    fVar2 = fVar3 * 0.5 * (3.0 - fVar2 * fVar3 * fVar3);
+    *(ulonglong *)(uVar1 + param_2[0x11]) =
+         CONCAT44(fVar2 * fStack0000000000000054 * unaff_XMM7_Da + *(float *)(uVar1 + 4 + param_4),
+                  fVar2 * fStack0000000000000050 * unaff_XMM7_Da + *(float *)(uVar1 + param_4));
+    uVar1 = uVar1 + 8;
+    param_4 = *param_2;
+  } while ((ulonglong)(longlong)(int)in_R10D < (ulonglong)(param_2[1] - param_4 >> 3));
   return;
 }
 
@@ -118,11 +93,14 @@ void ui_vector_process_variant(undefined8 context_ptr, longlong *vector_array, u
 
 
 
-/**
- * UI系统占位函数
- * 空函数，用于系统架构占位
+/*
+ * UI系统空函数（占位符）
+ * 功能：空的占位符函数，可能用于接口兼容性
+ * 参数：无
+ * 返回值：无
  */
 void ui_system_placeholder_function(void)
+
 {
   return;
 }
@@ -133,137 +111,129 @@ void ui_system_placeholder_function(void)
 
 
 
-/**
- * UI元素高级处理和动画控制函数
- * 
- * 这是UI系统中最复杂的函数，负责处理UI元素的各种高级操作，
- * 包括位置计算、旋转、缩放、动画插值、权重计算等。
- * 
- * @param ui_element UI元素数据指针
- * @param delta_time 时间增量，用于动画计算
- * @param context 上下文参数
- * @param flag1 标志位1，控制特定行为
- * @param flag2 标志位2，控制特定行为
- * @param flag3 标志位3，控制特定行为
- * @param unused_param1 未使用的参数
- * @param unused_param2 未使用的参数
- * @param blend_factor 混合因子，用于动画插值
- * @param unused_param3 未使用的参数
+/*
+ * UI系统复杂元素处理函数
+ * 功能：处理UI系统中的复杂元素，包括向量计算、归一化、动画等
+ * 参数：ui_element - UI元素数据指针
+ *       time_delta - 时间增量
+ *       context - 上下文参数
+ *       flag_1 - 标志位1
+ *       flag_2 - 标志位2
+ *       flag_3 - 标志位3
+ *       param_7 - 参数7
+ *       param_8 - 参数8
+ *       param_9 - 参数9
+ *       param_10 - 参数10
+ * 返回值：无
  */
-void process_ui_element_advanced(float *ui_element, float delta_time, longlong context, char flag1, char flag2,
-                                 char flag3, undefined8 unused_param1, undefined8 unused_param2, float blend_factor,
-                                 undefined8 unused_param3)
+void process_complex_ui_element(float *ui_element, float time_delta, longlong context, char flag_1, char flag_2,
+                               char flag_3, undefined8 param_7, undefined8 param_8, float param_9,
+                               undefined8 param_10)
 
 {
-  undefined8 temp_var1;
-  undefined8 temp_var2;
-  bool use_advanced_processing;
-  char temp_char;
-  int index;
-  longlong temp_long1;
-  longlong temp_long2;
-  longlong temp_long3;
-  float *float_ptr1;
-  longlong element_data;
-  longlong element_count;
-  float *float_ptr2;
-  int temp_int;
-  ulonglong temp_ulong;
-  float temp_float1;
-  float temp_float2;
-  float temp_float3;
-  float temp_float4;
-  float temp_float5;
-  float temp_float6;
-  float temp_float7;
-  float temp_float8;
-  float temp_float9;
-  float temp_float10;
-  float temp_float11;
-  undefined1 rsqrt_result [16];
-  float temp_float12;
-  float temp_float13;
-  float temp_float14;
-  float temp_float15;
-  float working_buffer [6200];
-  undefined8 stack_var1;
-  undefined1 stack_buffer1 [32];
-  float stack_float1;
-  float *float_ptr3;
-  char stack_char;
-  float stack_float2;
-  undefined8 stack_var2;
-  float stack_float3;
-  undefined8 stack_var3;
-  float stack_float4;
-  float stack_float5;
-  float stack_float6;
-  float stack_float7;
-  float stack_float8;
-  undefined8 stack_var4;
-  float stack_float9;
-  float stack_float10;
-  float stack_float11;
-  float stack_float12;
-  float stack_float13;
-  float stack_float14;
-  float stack_float15;
-  float stack_float16;
-  float stack_float17;
-  float stack_float18;
-  ulonglong stack_ulong;
+  undefined8 uVar1;
+  undefined8 uVar2;
+  bool bVar3;
+  char cVar4;
+  int iVar5;
+  longlong lVar6;
+  float *pfVar7;
+  longlong lVar8;
+  longlong lVar9;
+  float *pfVar10;
+  int iVar11;
+  ulonglong uVar12;
+  float fVar13;
+  float fVar14;
+  float fVar15;
+  float fVar16;
+  float fVar17;
+  float fVar18;
+  float fVar19;
+  float fVar20;
+  float fVar21;
+  undefined1 auVar22 [16];
+  float fVar23;
+  float fVar24;
+  float fVar25;
+  float afStack_6260 [6200];
+  undefined8 uStack_180;
+  undefined1 auStack_178 [32];
+  float fStack_158;
+  float *pfStack_150;
+  char cStack_148;
+  float fStack_144;
+  undefined8 uStack_140;
+  float fStack_138;
+  undefined8 uStack_130;
+  float fStack_128;
+  float fStack_124;
+  float fStack_120;
+  float fStack_11c;
+  undefined8 uStack_118;
+  float fStack_110;
+  float fStack_10c;
+  float fStack_108;
+  float fStack_104;
+  float fStack_100;
+  float fStack_fc;
+  float fStack_f8;
+  float fStack_f4;
+  float fStack_f0;
+  float fStack_ec;
+  ulonglong uStack_e8;
   
-  stack_ulong = _DAT_180bf00a8 ^ (ulonglong)stack_buffer1;
-  temp_float15 = 0.0;
-  index = 0;
-  stack_var4 = unused_param3;
-  stack_char = flag1;
-  stack_float2 = delta_time;
-  if (0 < (int)ui_element[0x18]) {
-    float_ptr1 = ui_element + 0x1b;
-    float_ptr2 = float_ptr1;
-    temp_int = index;
+  uStack_e8 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  fVar25 = 0.0;
+  iVar5 = 0;
+  uStack_118 = param_10;
+  cStack_148 = param_4;
+  fStack_144 = param_2;
+  if (0 < (int)param_1[0x18]) {
+    pfVar7 = param_1 + 0x1b;
+    pfVar10 = pfVar7;
+    iVar11 = iVar5;
     do {
-      temp_float5 = float_ptr2[1];
-      temp_float1 = *float_ptr2;
-      stack_float1 = ui_element[0x11];
-      if (temp_float5 <= temp_float1) {
-        temp_float1 = temp_float1 - delta_time * 4.0;
-        if (temp_float1 <= temp_float5) {
-          temp_float1 = temp_float5;
+      fVar19 = pfVar10[1];
+      fVar13 = *pfVar10;
+      fStack_158 = param_1[0x11];
+      if (fVar19 <= fVar13) {
+        fVar13 = fVar13 - param_2 * 4.0;
+        if (fVar13 <= fVar19) {
+          fVar13 = fVar19;
         }
       }
       else {
-        temp_float1 = delta_time * 4.0 + temp_float1;
-        if (temp_float5 <= temp_float1) {
-          temp_float1 = temp_float5;
+        fVar13 = param_2 * 4.0 + fVar13;
+        if (fVar19 <= fVar13) {
+          fVar13 = fVar19;
         }
       }
-      float_ptr3 = float_ptr2 + 0x4c9;
-      *float_ptr2 = temp_float1;
-      stack_var1 = 0x1806597d3;
-      FUN_18065ee60(*(undefined8 *)(float_ptr2 + 0x495), ui_element + 0x1854);
-      if ((*(char *)(float_ptr2 + 0x4af) == '\0') && (*(char *)(float_ptr2 + 0x4ce) != '\0')) {
-        *(undefined1 *)(float_ptr2 + 0x4af) = 1;
+      pfStack_150 = pfVar10 + 0x4c9;
+      *pfVar10 = fVar13;
+      uStack_180 = 0x1806597d3;
+      FUN_18065ee60(*(undefined8 *)(pfVar10 + 0x495),param_1 + 0x1854);
+      if ((*(char *)(pfVar10 + 0x4af) == '\0') && (*(char *)(pfVar10 + 0x4ce) != '\0')) {
+        *(undefined1 *)(pfVar10 + 0x4af) = 1;
       }
-      if ((*(char *)(float_ptr2 + 0x4c8) == '\0') && (*(char *)(float_ptr2 + 0x4d4) != '\0')) {
-        *(undefined1 *)(float_ptr2 + 0x4c8) = 1;
+      if ((*(char *)(pfVar10 + 0x4c8) == '\0') && (*(char *)(pfVar10 + 0x4d4) != '\0')) {
+        *(undefined1 *)(pfVar10 + 0x4c8) = 1;
       }
-      temp_float15 = temp_float15 + *float_ptr2;
-      float_ptr2 = float_ptr2 + 0x4d6;
-      temp_int = temp_int + 1;
-    } while (temp_int < (int)ui_element[0x18]);
-    if (((0.0 < temp_float15) && (temp_float15 != 1.0)) && (0 < (int)ui_element[0x18])) {
+      fVar25 = fVar25 + *pfVar10;
+      pfVar10 = pfVar10 + 0x4d6;
+      iVar11 = iVar11 + 1;
+    } while (iVar11 < (int)param_1[0x18]);
+    if (((0.0 < fVar25) && (fVar25 != 1.0)) && (0 < (int)param_1[0x18])) {
       do {
-        index = index + 1;
-        *float_ptr1 = (1.0 / temp_float15) * *float_ptr1;
-        float_ptr1 = float_ptr1 + 0x4d6;
-      } while (index < (int)ui_element[0x18]);
+        iVar5 = iVar5 + 1;
+        *pfVar7 = (1.0 / fVar25) * *pfVar7;
+        pfVar7 = pfVar7 + 0x4d6;
+      } while (iVar5 < (int)param_1[0x18]);
     }
   }
-  temp_char = stack_char;
-  stack_var1 = 0x18065986c;
-  FUN_18065cb80(ui_element);
+  cVar4 = cStack_148;
+  uStack_180 = 0x18065986c;
+  FUN_18065cb80(param_1);
   if (((param_1[4] == 0.0) && (param_1[5] == 0.0)) &&
      (0.25 < param_1[2] * param_1[2] + param_1[3] * param_1[3])) {
     *(undefined8 *)(param_1 + 4) = *(undefined8 *)(param_1 + 2);
