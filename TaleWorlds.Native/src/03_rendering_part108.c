@@ -141,10 +141,10 @@ void RenderingSystem_ProcessResourceData(longlong render_context, longlong outpu
                 }
             }
             resource_offset = *(longlong *)(resource_offset + 0x10);
-      piVar12 = *(int **)(lVar22 + lVar23 * 8);
+      piVar12 = *(int **)(data_offset + resource_offset * 8);
 LAB_180331625:
-      if ((piVar12 != *(int **)(lVar22 + lVar23 * 8)) &&
-         (lVar23 = *(longlong *)(piVar12 + 2), lVar23 != 0)) {
+        if ((piVar12 != *(int **)(data_offset + resource_offset * 8)) &&
+            (resource_offset = *(longlong *)(piVar12 + 2), resource_offset != 0)) {
         if (puStack_110 < puStack_108) {
           *(undefined4 *)puStack_110 = *puVar16;
           puVar7 = puStack_110;
