@@ -149,94 +149,101 @@ void process_object_state_and_callbacks(undefined8 context_ptr, longlong *object
 
 
 
-// 函数: void FUN_18005e770(undefined8 param_1,longlong *param_2,char param_3)
-void FUN_18005e770(undefined8 param_1,longlong *param_2,char param_3)
+// 函数: 批量处理对象状态
+// 参数: context_ptr - 上下文指针, object_array_ptr - 对象数组指针, 
+//        process_flag - 处理标志
+// 功能: 遍历对象数组，处理每个对象的状态变化
+void batch_process_object_states(undefined8 context_ptr, longlong *object_array_ptr, char process_flag)
 
 {
-  code *pcVar1;
-  bool bVar2;
-  longlong *plVar3;
-  ulonglong uVar4;
-  longlong lVar5;
-  longlong lVar6;
-  char cVar7;
+  code *status_check_func;
+  bool has_processed;
+  longlong *current_object;
+  ulonglong object_index;
+  longlong array_start;
+  longlong array_end;
+  char is_ready;
   
-  lVar6 = param_2[1];
-  lVar5 = *param_2;
+  array_end = object_array_ptr[1];
+  array_start = *object_array_ptr;
   do {
-    bVar2 = false;
-    uVar4 = 0;
-    if (lVar6 - lVar5 >> 3 == 0) {
+    has_processed = false;
+    object_index = 0;
+    if (array_end - array_start >> 3 == 0) {
       return;
     }
     do {
-      plVar3 = *(longlong **)(uVar4 * 8 + lVar5);
-      pcVar1 = *(code **)(*plVar3 + 0x68);
-      if (pcVar1 == (code *)&UNK_1800467f0) {
-        cVar7 = (char)plVar3[2] != '\0';
+      current_object = *(longlong **)(object_index * 8 + array_start);
+      status_check_func = *(code **)(*current_object + 0x68);
+      if (status_check_func == (code *)&DEFAULT_STATUS_CHECKER) {
+        is_ready = (char)current_object[2] != '\0';
       }
       else {
-        cVar7 = (*pcVar1)();
+        is_ready = (*status_check_func)();
       }
-      if (cVar7 == '\0') {
-        bVar2 = true;
-        plVar3 = (longlong *)FUN_18005e890(param_1);
-        if (param_3 == '\0') {
-          cVar7 = (**(code **)(*plVar3 + 0x20))(plVar3,0);
+      if (is_ready == '\0') {
+        has_processed = true;
+        current_object = (longlong *)get_thread_local_context(context_ptr);
+        if (process_flag == '\0') {
+          is_ready = (**(code **)(*current_object + 0x20))(current_object, 0);
         }
         else {
-          cVar7 = FUN_18020ee40();
+          is_ready = get_global_status_flag();
         }
-        if (cVar7 == '\0') {
-          plVar3 = *(longlong **)(uVar4 * 8 + *param_2);
-          pcVar1 = *(code **)(*plVar3 + 0x80);
-          if (pcVar1 == (code *)&UNK_180049760) {
-            FUN_1800496b0(plVar3 + 4);
+        if (is_ready == '\0') {
+          current_object = *(longlong **)(object_index * 8 + *object_array_ptr);
+          status_check_func = *(code **)(*current_object + 0x80);
+          if (status_check_func == (code *)&DEFAULT_CLEANUP_HANDLER) {
+            cleanup_object_resources(current_object + 4);
           }
           else {
-            (*pcVar1)();
+            (*status_check_func)();
           }
         }
       }
-      lVar6 = param_2[1];
-      uVar4 = (ulonglong)((int)uVar4 + 1);
-      lVar5 = *param_2;
-    } while (uVar4 < (ulonglong)(lVar6 - lVar5 >> 3));
-  } while (bVar2);
+      array_end = object_array_ptr[1];
+      object_index = (ulonglong)((int)object_index + 1);
+      array_start = *object_array_ptr;
+    } while (object_index < (ulonglong)(array_end - array_start >> 3));
+  } while (has_processed);
   return;
 }
 
 
 
-longlong FUN_18005e890(longlong param_1)
+// 函数: 获取线程本地上下文
+// 参数: context_manager_ptr - 上下文管理器指针
+// 返回值: 找到的线程本地上下文指针，如果未找到则返回0
+// 功能: 在主池和辅助池中查找属于当前线程的上下文
+longlong get_thread_local_context(longlong context_manager_ptr)
 
 {
-  longlong lVar1;
-  int iVar2;
-  ulonglong uVar3;
-  ulonglong uVar4;
+  longlong context_ptr;
+  int current_thread_id;
+  ulonglong primary_index;
+  ulonglong secondary_index;
   
-  uVar4 = 0;
-  uVar3 = uVar4;
-  if (*(longlong *)(param_1 + 0x10) - *(longlong *)(param_1 + 8) >> 3 != 0) {
+  secondary_index = 0;
+  primary_index = secondary_index;
+  if (*(longlong *)(context_manager_ptr + 0x10) - *(longlong *)(context_manager_ptr + 8) >> 3 != 0) {
     do {
-      iVar2 = _Thrd_id();
-      lVar1 = *(longlong *)(*(longlong *)(param_1 + 8) + uVar3 * 8);
-      if (*(int *)(lVar1 + 0x48) == iVar2) {
-        return lVar1;
+      current_thread_id = _Thrd_id();
+      context_ptr = *(longlong *)(*(longlong *)(context_manager_ptr + 8) + primary_index * 8);
+      if (*(int *)(context_ptr + 0x48) == current_thread_id) {
+        return context_ptr;
       }
-      uVar3 = (ulonglong)((int)uVar3 + 1);
-    } while (uVar3 < (ulonglong)(*(longlong *)(param_1 + 0x10) - *(longlong *)(param_1 + 8) >> 3));
+      primary_index = (ulonglong)((int)primary_index + 1);
+    } while (primary_index < (ulonglong)(*(longlong *)(context_manager_ptr + 0x10) - *(longlong *)(context_manager_ptr + 8) >> 3));
   }
-  if (*(longlong *)(param_1 + 0x30) - *(longlong *)(param_1 + 0x28) >> 3 != 0) {
+  if (*(longlong *)(context_manager_ptr + 0x30) - *(longlong *)(context_manager_ptr + 0x28) >> 3 != 0) {
     do {
-      iVar2 = _Thrd_id();
-      lVar1 = *(longlong *)(*(longlong *)(param_1 + 0x28) + uVar4 * 8);
-      if (*(int *)(lVar1 + 0x48) == iVar2) {
-        return lVar1;
+      current_thread_id = _Thrd_id();
+      context_ptr = *(longlong *)(*(longlong *)(context_manager_ptr + 0x28) + secondary_index * 8);
+      if (*(int *)(context_ptr + 0x48) == current_thread_id) {
+        return context_ptr;
       }
-      uVar4 = (ulonglong)((int)uVar4 + 1);
-    } while (uVar4 < (ulonglong)(*(longlong *)(param_1 + 0x30) - *(longlong *)(param_1 + 0x28) >> 3)
+      secondary_index = (ulonglong)((int)secondary_index + 1);
+    } while (secondary_index < (ulonglong)(*(longlong *)(context_manager_ptr + 0x30) - *(longlong *)(context_manager_ptr + 0x28) >> 3)
             );
   }
   return 0;
@@ -246,79 +253,83 @@ longlong FUN_18005e890(longlong param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_18005e950(undefined8 *param_1)
+// 函数: 初始化对象管理器结构
+// 参数: manager_ptr - 管理器指针
+// 返回值: 初始化完成的管理器指针
+// 功能: 初始化对象管理器的各个字段和内部结构
+undefined8 * initialize_object_manager(undefined8 *manager_ptr)
 
 {
-  undefined8 uVar1;
-  ulonglong uVar2;
-  undefined8 *puVar3;
-  ulonglong uVar4;
-  ulonglong uVar5;
-  undefined8 *puVar6;
-  longlong lVar7;
-  longlong lVar8;
+  undefined8 heap_base;
+  ulonglong buffer_size;
+  undefined8 *data_array;
+  ulonglong slot_index;
+  ulonglong memory_block;
+  undefined8 *array_ptr;
+  longlong init_count;
+  longlong array_size;
   
-  uVar5 = 0;
-  puVar3 = param_1 + 0xb;
-  *param_1 = 0;
-  lVar8 = 0x20;
-  *(undefined4 *)(param_1 + 1) = 0;
-  param_1[2] = 0;
-  param_1[5] = 0;
-  lVar7 = 0x20;
-  puVar6 = puVar3;
+  memory_block = 0;
+  data_array = manager_ptr + 0xb;
+  *manager_ptr = 0;
+  array_size = 0x20;
+  *(undefined4 *)(manager_ptr + 1) = 0;
+  manager_ptr[2] = 0;
+  manager_ptr[5] = 0;
+  init_count = 0x20;
+  array_ptr = data_array;
   do {
-    func_0x000180059bb0(puVar6);
-    puVar6 = puVar6 + 2;
-    lVar7 = lVar7 + -1;
-  } while (lVar7 != 0);
-  *(undefined8 *)((longlong)param_1 + 0x25c) = 0;
-  *(undefined4 *)(param_1 + 0x4b) = 0;
-  param_1[7] = 0;
-  param_1[8] = 0x20;
-  param_1[9] = puVar3;
+    initialize_array_slot(array_ptr);
+    array_ptr = array_ptr + 2;
+    init_count = init_count + -1;
+  } while (init_count != 0);
+  *(undefined8 *)((longlong)manager_ptr + 0x25c) = 0;
+  *(undefined4 *)(manager_ptr + 0x4b) = 0;
+  manager_ptr[7] = 0;
+  manager_ptr[8] = 0x20;
+  manager_ptr[9] = data_array;
   do {
-    *(undefined4 *)puVar3 = 0;
-    uVar1 = _DAT_180c8ed18;
-    puVar3 = puVar3 + 2;
-    lVar8 = lVar8 + -1;
-  } while (lVar8 != 0);
-  lVar7 = 6;
-  param_1[10] = 0;
-  param_1[6] = param_1 + 8;
-  param_1[4] = 6;
-  uVar2 = FUN_18062b420(uVar1,0x7b0,10);
-  uVar4 = uVar5;
-  if (uVar2 != 0) {
-    puVar3 = (undefined8 *)(uVar2 + 0x108);
+    *(undefined4 *)data_array = 0;
+    heap_base = GLOBAL_HEAP_BASE_ADDRESS;
+    data_array = data_array + 2;
+    array_size = array_size + -1;
+  } while (array_size != 0);
+  init_count = 6;
+  manager_ptr[10] = 0;
+  manager_ptr[6] = manager_ptr + 8;
+  manager_ptr[4] = 6;
+  buffer_size = allocate_memory_buffer(heap_base, 0x7b0, 10);
+  slot_index = memory_block;
+  if (buffer_size != 0) {
+    data_array = (undefined8 *)(buffer_size + 0x108);
     do {
-      puVar3[-1] = 0;
-      *puVar3 = 0;
-      *(undefined4 *)(puVar3 + 5) = 0;
-      puVar3[6] = 0;
-      *(undefined2 *)(puVar3 + 7) = 0x100;
-      puVar3 = puVar3 + 0x29;
-      lVar7 = lVar7 + -1;
-      uVar4 = uVar2;
-    } while (lVar7 != 0);
+      data_array[-1] = 0;
+      *data_array = 0;
+      *(undefined4 *)(data_array + 5) = 0;
+      data_array[6] = 0;
+      *(undefined2 *)(data_array + 7) = 0x100;
+      data_array = data_array + 0x29;
+      init_count = init_count + -1;
+      slot_index = buffer_size;
+    } while (init_count != 0);
   }
-  param_1[3] = uVar4;
-  if (uVar4 == 0) {
-    param_1[4] = 0;
-    uVar4 = uVar5;
+  manager_ptr[3] = slot_index;
+  if (slot_index == 0) {
+    manager_ptr[4] = 0;
+    slot_index = memory_block;
   }
   else {
-    uVar4 = param_1[4];
+    slot_index = manager_ptr[4];
   }
-  uVar2 = uVar5;
-  if (uVar4 != 0) {
+  buffer_size = memory_block;
+  if (slot_index != 0) {
     do {
-      uVar2 = uVar2 + 1;
-      *(undefined1 *)(uVar5 + 0x141 + param_1[3]) = 0;
-      uVar5 = uVar5 + 0x148;
-    } while (uVar2 < (ulonglong)param_1[4]);
+      buffer_size = buffer_size + 1;
+      *(undefined1 *)(memory_block + 0x141 + manager_ptr[3]) = 0;
+      memory_block = memory_block + 0x148;
+    } while (buffer_size < (ulonglong)manager_ptr[4]);
   }
-  return param_1;
+  return manager_ptr;
 }
 
 
