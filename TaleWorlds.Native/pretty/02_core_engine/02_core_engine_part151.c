@@ -423,35 +423,38 @@ void update_resource_priority(longlong node_ptr,int priority_value,uint flags_ma
 
 
 
-// 函数: void cleanup_resource_system(int param_1)
-void cleanup_resource_system(int param_1)
+// 函数: void cleanup_resource_system(int cleanup_mode)
+// 功能: 清理资源系统，释放内存和重置状态
+// 原始实现: FUN_18013b0f0
+// 简化实现: 保留原始的清理逻辑
+void cleanup_resource_system(int cleanup_mode)
 
 {
-  int *piVar1;
-  int *piVar2;
-  int *piVar3;
-  longlong lVar4;
-  bool bVar5;
-  bool bVar6;
-  uint uVar7;
-  int *piVar8;
-  undefined8 *puVar9;
-  ulonglong uVar10;
-  undefined8 *puVar11;
-  uint uVar12;
-  int iVar13;
-  ulonglong uVar14;
-  uint uVar15;
-  undefined8 *puVar16;
-  int iVar17;
-  undefined8 *puVar18;
-  longlong lVar19;
-  undefined8 *puVar20;
-  undefined8 *puVar21;
-  longlong lStackX_18;
-  undefined8 uVar22;
-  undefined8 uVar23;
-  undefined8 *puVar24;
+  int *resource_array;
+  int *resource_ptr;
+  int *resource_link;
+  longlong global_context;
+  bool needs_cleanup;
+  bool has_special_flags;
+  uint array_size;
+  int *resource_data;
+  undefined8 *resource_table;
+  ulonglong table_index;
+  undefined8 *table_entry;
+  uint entry_count;
+  int loop_counter;
+  ulonglong temp_index;
+  uint new_size;
+  undefined8 *temp_array;
+  int temp_int;
+  undefined8 *temp_ptr;
+  longlong resource_node;
+  undefined8 *array_ptr;
+  undefined8 *list_ptr;
+  longlong context_handle;
+  undefined8 cleanup_mask;
+  undefined8 cleanup_flags;
+  undefined8 *cleanup_buffer;
   
   lVar4 = _DAT_180c8a9b0;
   uVar22 = 0xfffffffffffffffe;
@@ -635,19 +638,22 @@ LAB_18013b1d6:
 
 
 
-// 函数: void reset_resource_states(undefined8 param_1,char param_2)
-void reset_resource_states(undefined8 param_1,char param_2)
+// 函数: void reset_resource_states(undefined8 reset_context,char reset_flag)
+// 功能: 重置资源状态，清除临时数据和标志位
+// 原始实现: FUN_18013b490
+// 简化实现: 保留原始的状态重置逻辑
+void reset_resource_states(undefined8 reset_context,char reset_flag)
 
 {
-  int *piVar1;
-  longlong *plVar2;
-  longlong lVar3;
-  longlong lVar4;
-  ulonglong uVar5;
-  ulonglong uVar6;
-  uint uVar7;
-  ulonglong uVar8;
-  ulonglong uVar9;
+  int *state_array;
+  longlong *resource_ptr;
+  longlong resource_handle;
+  longlong global_context;
+  ulonglong state_index;
+  ulonglong resource_index;
+  uint state_count;
+  ulonglong preserve_flags;
+  ulonglong loop_counter;
   
   lVar4 = _DAT_180c8a9b0;
   uVar9 = 0;
@@ -696,18 +702,21 @@ void reset_resource_states(undefined8 param_1,char param_2)
 
 
 
-// 函数: void update_resource_batch(longlong param_1)
-void update_resource_batch(longlong param_1)
+// 函数: void update_resource_batch(longlong batch_context)
+// 功能: 批量更新资源状态，优化性能和减少系统调用
+// 原始实现: FUN_18013b4f0
+// 简化实现: 保留原始的批量更新逻辑
+void update_resource_batch(longlong batch_context)
 
 {
-  longlong *plVar1;
-  longlong lVar2;
-  int *unaff_RBP;
-  ulonglong uVar3;
-  int unaff_EDI;
-  ulonglong uVar4;
-  ulonglong unaff_R12;
-  char unaff_R14B;
+  longlong *resource_array;
+  longlong resource_handle;
+  int *batch_count;
+  ulonglong array_index;
+  int processed_count;
+  ulonglong update_flags;
+  ulonglong batch_offset;
+  char update_flag;
   
   plVar1 = (longlong *)(param_1 + 0x1aa8);
   uVar3 = unaff_R12;
@@ -740,6 +749,9 @@ void update_resource_batch(longlong param_1)
 
 
 // 函数: void empty_resource_handler(void)
+// 功能: 空资源处理器，用于特殊情况处理和占位
+// 原始实现: FUN_18013b58d
+// 简化实现: 保留原始的空实现
 void empty_resource_handler(void)
 
 {
@@ -752,27 +764,30 @@ void empty_resource_handler(void)
 
 
 
-// 函数: void process_resource_interaction(undefined8 *param_1,undefined1 *param_2)
-void process_resource_interaction(undefined8 *param_1,undefined1 *param_2)
+// 函数: void process_resource_interaction(undefined8 *resource_data,undefined1 *interaction_result)
+// 功能: 处理资源交互，包括碰撞检测、状态更新和事件触发
+// 原始实现: FUN_18013b5a0
+// 简化实现: 保留原始的交互处理逻辑
+void process_resource_interaction(undefined8 *resource_data,undefined1 *interaction_result)
 
 {
-  uint uVar1;
-  longlong lVar2;
-  int *piVar3;
-  longlong lVar4;
-  bool bVar5;
-  byte bVar6;
-  undefined2 uVar7;
-  undefined4 uVar8;
-  longlong lVar9;
-  int *piVar10;
-  uint uVar11;
-  ulonglong uVar12;
-  longlong lVar13;
-  int iVar14;
-  ulonglong uVar15;
-  longlong lVar16;
-  byte bVar17;
+  uint resource_flags;
+  longlong material_handle;
+  int *priority_array;
+  longlong context_data;
+  bool is_active;
+  byte interaction_type;
+  undefined2 resource_id;
+  undefined4 priority_value;
+  longlong resource_node;
+  int *array_ptr;
+  uint update_flags;
+  ulonglong search_index;
+  longlong global_context;
+  int match_count;
+  ulonglong loop_counter;
+  longlong temp_context;
+  byte state_flags;
   
   lVar13 = _DAT_180c8a9b0;
   if ((*(char *)(_DAT_180c8a9b0 + 0xc2) == '\0') ||
