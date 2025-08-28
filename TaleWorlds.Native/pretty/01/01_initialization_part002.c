@@ -857,50 +857,57 @@ void register_module_system_component(void)
 
 
 
-// 函数: void FUN_18002e2e0(void)
-void FUN_18002e2e0(void)
+// 函数：注册游戏逻辑系统组件
+void register_game_logic_system_component(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  code *pcStackX_18;
+  char component_flag;
+  undefined8 *component_root;
+  int compare_result;
+  longlong *system_manager;
+  longlong allocation_size;
+  undefined8 *current_node;
+  undefined8 *next_node;
+  undefined8 *temp_node;
+  undefined8 *new_component;
+  code *game_logic_handler;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_180262b00;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a00b88,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  // 获取系统管理器指针
+  system_manager = (longlong *)get_system_manager();
+  component_root = (undefined8 *)*system_manager;
+  component_flag = *(char *)((longlong)component_root[1] + 0x19);
+  game_logic_handler = game_logic_component_handler;
+  next_node = component_root;
+  current_node = (undefined8 *)component_root[1];
+  
+  // 遍历组件树查找合适位置
+  while (component_flag == '\0') {
+    compare_result = memcmp(current_node + 4,&GAME_LOGIC_COMPONENT_ID,0x10);
+    if (compare_result < 0) {
+      temp_node = (undefined8 *)current_node[2];
+      current_node = next_node;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      temp_node = (undefined8 *)*current_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    next_node = current_node;
+    current_node = temp_node;
+    component_flag = *(char *)((longlong)temp_node + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00b88,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  
+  // 如果需要创建新组件节点
+  if ((next_node == component_root) || (compare_result = memcmp(&GAME_LOGIC_COMPONENT_ID,next_node + 4,0x10), compare_result < 0)) {
+    allocation_size = allocate_component_memory(system_manager);
+    create_component_node(system_manager,&new_component,next_node,allocation_size + 0x20,allocation_size);
+    next_node = new_component;
   }
-  puVar7[6] = 0x4e33c4803e67a08f;
-  puVar7[7] = 0x703a29a844ce399;
-  puVar7[8] = &UNK_180a004c0;
-  puVar7[9] = 3;
-  puVar7[10] = pcStackX_18;
+  
+  // 设置游戏逻辑组件属性
+  next_node[6] = 0x4e33c4803e67a08f;  // 游戏逻辑组件类型标识
+  next_node[7] = 0x703a29a844ce399;  // 游戏逻辑组件版本
+  next_node[8] = &GAME_LOGIC_COMPONENT_DATA;  // 游戏逻辑组件数据指针
+  next_node[9] = 3;  // 优先级
+  next_node[10] = game_logic_handler;  // 游戏逻辑处理函数
   return;
 }
 
