@@ -41,11 +41,11 @@ typedef struct {
     float transform_offset_y; // 变换偏移Y
     int transform_current_x;  // 当前变换X
     int transform_current_y;  // 当前变换Y
-    int transform_target_x;   // 目标变换X
-    int transform_target_y;   // 目标变换Y
-    int transform_reserved1;  // 保留字段1
-    int transform_reserved2;  // 保留字段2
-    void* transform_data;     // 变换数据指针
+    int transform_min_x;      // 变换最小X
+    int transform_min_y;      // 变换最小Y
+    int transform_max_x;      // 变换最大X
+    int transform_max_y;      // 变换最大Y
+    int transform_active;     // 变换激活状态
     int transform_data_count; // 变换数据计数
 } render_transform_t;
 
@@ -61,6 +61,18 @@ typedef struct {
     int stream_flags;         // 流标志
     int stream_reserved;      // 保留字段
 } render_data_stream_t;
+
+// 函数别名定义 - 保持向后兼容性
+void* FUN_18028d0b0 = update_render_boundary;
+void* FUN_18028d0c8 = process_render_boundary_data;
+void* FUN_18028d19a = add_render_data_entry;
+void* FUN_18028d290 = update_render_transform;
+void* FUN_18028d400 = process_render_transform_data;
+void* FUN_18028d4a0 = extract_render_data_info;
+void* FUN_18028d533 = process_render_data_stream;
+void* FUN_18028d5a4 = process_render_data_stream_alt;
+void* FUN_18028d617 = initialize_render_data_processor;
+void* FUN_18028d61f = finalize_render_data_processor;
 
 // 函数声明
 void update_render_boundary(render_boundary_t* boundary, char boundary_type, 
@@ -86,7 +98,7 @@ void process_render_data_stream_alt(int position, void* stream, int stream_size,
 void initialize_render_data_processor(void);
 void finalize_render_data_processor(void);
 
-// 函数: 更新渲染边界
+// 函数: 更新渲染边界 (FUN_18028d0b0)
 // 功能: 根据输入坐标更新渲染边界信息，支持边界扩展和收缩
 // 参数: boundary - 渲染边界结构指针, boundary_type - 边界类型
 //       x1,y1,x2,y2,x3,y3 - 边界坐标点
@@ -167,7 +179,7 @@ void update_render_boundary(render_boundary_t* boundary, char boundary_type,
     return;
 }
 
-// 函数: 处理渲染边界数据
+// 函数: 处理渲染边界数据 (FUN_18028d0c8)
 // 功能: 处理渲染边界数据，更新边界范围和状态
 // 参数: context - 上下文指针, params - 参数指针
 //       min_x,min_y,max_x,max_y - 边界范围
@@ -237,7 +249,7 @@ void process_render_boundary_data(void* context, void* params,
     return;
 }
 
-// 函数: 添加渲染数据条目
+// 函数: 添加渲染数据条目 (FUN_18028d19a)
 // 功能: 向渲染数据结构中添加新的数据条目
 // 参数: context - 上下文指针, params - 参数指针, data - 数据指针
 //       x1,y1,x2,y2,x3,x4,x5 - 条目坐标
@@ -262,7 +274,7 @@ void add_render_data_entry(void* context, void* params, void* data,
     return;
 }
 
-// 函数: 更新渲染变换
+// 函数: 更新渲染变换 (FUN_18028d290)
 // 功能: 更新渲染变换结构，应用坐标变换
 // 参数: transform - 渲染变换结构指针, delta_x - X方向增量, delta_y - Y方向增量
 void update_render_transform(render_transform_t* transform, 
@@ -320,7 +332,7 @@ void update_render_transform(render_transform_t* transform,
     return;
 }
 
-// 函数: 处理渲染变换数据
+// 函数: 处理渲染变换数据 (FUN_18028d400)
 // 功能: 处理渲染变换数据，更新变换参数
 // 参数: context - 上下文指针, offset_x,offset_y - 变换偏移
 //       size_x,size_y - 变换大小, delta_x,delta_y - 变换增量
@@ -347,7 +359,7 @@ void process_render_transform_data(void* context, float offset_x, float offset_y
     return;
 }
 
-// 函数: 提取渲染数据信息
+// 函数: 提取渲染数据信息 (FUN_18028d4a0)
 // 功能: 从数据流中提取渲染数据信息
 // 参数: result - 结果指针数组, context - 上下文指针, offset - 数据偏移
 // 返回: 提取的数据信息指针

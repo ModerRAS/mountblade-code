@@ -406,314 +406,408 @@ int optimize_rendering_layout(longlong render_context, longlong optimization_dat
 
 
 
-ulonglong FUN_18028adf9(void)
-
+// 函数: ulonglong process_advanced_rendering_data(void *render_context, void *data_buffer, int data_count, void *sort_context)
+// 渲染系统高级数据处理函数 - 处理复杂的渲染数据分区和优化
+// 参数:
+//   render_context - 渲染上下文指针
+//   data_buffer - 数据缓冲区
+//   data_count - 数据计数
+//   sort_context - 排序上下文
+// 返回值: 处理结果状态码
+ulonglong process_advanced_rendering_data(void *render_context, void *data_buffer, int data_count, void *sort_context)
 {
-  ushort *puVar1;
-  ushort uVar2;
-  ushort uVar3;
-  short *psVar4;
-  undefined8 uVar5;
-  longlong *plVar6;
-  undefined8 *puVar7;
-  ushort *puVar8;
-  uint uVar9;
-  uint uVar10;
-  ushort *puVar11;
-  longlong unaff_RBX;
-  short *psVar12;
-  longlong unaff_RSI;
-  longlong lVar13;
-  short sVar14;
-  int iVar15;
-  short sVar16;
-  ulonglong unaff_R12;
-  uint unaff_R14D;
-  longlong unaff_R15;
-  longlong in_stack_00000088;
+  ushort *texture_ptr;
+  ushort texture_width;
+  ushort texture_height;
+  short *partition_data;
+  uint64_t mapping_result;
+  longlong *texture_chain;
+  uint64_t *texture_info;
+  ushort *texture_node;
+  uint result_flag;
+  uint success_flag;
+  ushort *next_texture;
+  void *data_start;
+  short *current_partition;
+  void *render_context_local;
+  longlong remaining_count;
+  short position_y;
+  int position_x;
+  short dimension_height;
+  uint64_t loop_counter;
+  uint status_flag;
+  longlong total_count;
+  void *sort_buffer;
   
-  psVar12 = (short *)(unaff_RBX + 10);
-  lVar13 = unaff_R15;
+  // 初始化分区数据指针
+  current_partition = (short *)((longlong)data_start + 10);
+  remaining_count = total_count;
+  
   do {
-    uVar2 = psVar12[-3];
-    if ((uVar2 == 0) || (uVar3 = psVar12[-2], uVar3 == 0)) {
-      psVar12[-1] = 0;
-      psVar12[0] = 0;
+    // 获取纹理尺寸信息
+    texture_width = current_partition[-3];
+    if ((texture_width == 0) || (texture_height = current_partition[-2], texture_height == 0)) {
+      // 无效尺寸，标记为失败
+      current_partition[-1] = 0;
+      current_partition[0] = 0;
     }
     else {
-      puVar7 = (undefined8 *)FUN_18028aaf0(&stack0x00000030);
-      uVar5 = *puVar7;
-      plVar6 = (longlong *)puVar7[1];
-      if (((plVar6 == (longlong *)0x0) ||
-          (*(int *)(unaff_RSI + 4) < (int)((int)((ulonglong)uVar5 >> 0x20) + (uint)uVar3))) ||
-         (psVar4 = *(short **)(unaff_RSI + 0x20), psVar4 == (short *)0x0)) {
-        unaff_R14D = 0;
-        psVar12[-1] = -1;
-        psVar12[0] = -1;
+      // 计算纹理映射
+      texture_info = (uint64_t *)calculate_texture_mapping(&stack_buffer, render_context_local, texture_width, texture_height);
+      mapping_result = *texture_info;
+      texture_chain = (longlong *)texture_info[1];
+      
+      // 检查映射结果的有效性
+      if (((texture_chain == (longlong *)0x0) ||
+          (*(int *)(render_context_local + 4) < (int)((int)(mapping_result >> 0x20) + (uint)texture_height))) ||
+         (partition_data = *(short **)(render_context_local + 0x20), partition_data == (short *)0x0)) {
+        // 映射失败，标记为错误
+        status_flag = 0;
+        current_partition[-1] = -1;
+        current_partition[0] = -1;
       }
       else {
-        sVar16 = (short)((ulonglong)uVar5 >> 0x20);
-        psVar4[1] = uVar3 + sVar16;
-        sVar14 = (short)uVar5;
-        *psVar4 = sVar14;
-        *(undefined8 *)(unaff_RSI + 0x20) = *(undefined8 *)(psVar4 + 4);
-        puVar8 = (ushort *)*plVar6;
-        iVar15 = (int)uVar5;
-        if ((int)(uint)*puVar8 < iVar15) {
-          puVar11 = puVar8 + 4;
-          puVar8 = *(ushort **)(puVar8 + 4);
-          *(short **)puVar11 = psVar4;
+        // 成功映射，设置分区数据
+        dimension_height = (short)(mapping_result >> 0x20);
+        partition_data[1] = texture_height + dimension_height;
+        position_y = (short)mapping_result;
+        *partition_data = position_y;
+        
+        // 更新渲染上下文中的链表
+        *(uint64_t *)(render_context_local + 0x20) = *(uint64_t *)(partition_data + 4);
+        texture_node = (ushort *)*texture_chain;
+        position_x = (int)mapping_result;
+        
+        // 插入纹理节点到链表
+        if ((int)(uint)*texture_node < position_x) {
+          next_texture = texture_node + 4;
+          texture_node = *(ushort **)(texture_node + 4);
+          *(short **)next_texture = partition_data;
         }
         else {
-          *plVar6 = (longlong)psVar4;
+          *texture_chain = (longlong)partition_data;
         }
-        if (*(ushort **)(puVar8 + 4) != (ushort *)0x0) {
-          puVar11 = *(ushort **)(puVar8 + 4);
+        
+        // 优化纹理链表结构
+        if (*(ushort **)(texture_node + 4) != (ushort *)0x0) {
+          next_texture = *(ushort **)(texture_node + 4);
           do {
-            if ((int)(iVar15 + (uint)uVar2) < (int)(uint)*puVar11) break;
-            *(undefined8 *)(puVar8 + 4) = *(undefined8 *)(unaff_RSI + 0x20);
-            *(ushort **)(unaff_RSI + 0x20) = puVar8;
-            puVar1 = puVar11 + 4;
-            puVar8 = puVar11;
-            puVar11 = *(ushort **)puVar1;
-          } while (*(ushort **)puVar1 != (ushort *)0x0);
+            if ((int)(position_x + (uint)texture_width) < (int)(uint)*next_texture) break;
+            *(uint64_t *)(texture_node + 4) = *(uint64_t *)(render_context_local + 0x20);
+            *(ushort **)(render_context_local + 0x20) = texture_node;
+            texture_ptr = next_texture + 4;
+            texture_node = next_texture;
+            next_texture = *(ushort **)texture_ptr;
+          } while (*(ushort **)texture_ptr != (ushort *)0x0);
         }
-        *(ushort **)(psVar4 + 4) = puVar8;
-        if ((int)(uint)*puVar8 < (int)(iVar15 + (uint)uVar2)) {
-          *puVar8 = uVar2 + sVar14;
+        
+        // 设置分区纹理链接
+        *(ushort **)(partition_data + 4) = texture_node;
+        if ((int)(uint)*texture_node < (int)(position_x + (uint)texture_width)) {
+          *texture_node = texture_width + position_y;
         }
-        unaff_R14D = 0;
-        psVar12[-1] = sVar14;
-        *psVar12 = sVar16;
+        
+        status_flag = 0;
+        current_partition[-1] = position_y;
+        *current_partition = dimension_height;
       }
     }
-    psVar12 = psVar12 + 8;
-    lVar13 = lVar13 - unaff_R12;
-    if (lVar13 == 0) {
-      qsort(in_stack_00000088);
-      if (0 < unaff_R15) {
-        psVar12 = (short *)(in_stack_00000088 + 10);
+    
+    // 移动到下一个分区
+    current_partition = current_partition + 8;
+    remaining_count = remaining_count - loop_counter;
+    
+    if (remaining_count == 0) {
+      // 对数据进行排序
+      qsort(sort_buffer);
+      
+      // 验证排序结果
+      if (0 < total_count) {
+        current_partition = (short *)((longlong)sort_buffer + 10);
         do {
-          if ((psVar12[-1] != -1) || (uVar10 = unaff_R14D, *psVar12 != -1)) {
-            uVar10 = 1;
+          if ((current_partition[-1] != -1) || (success_flag = status_flag, *current_partition != -1)) {
+            success_flag = 1;
           }
-          *(uint *)(psVar12 + 1) = uVar10;
-          uVar9 = unaff_R14D;
-          if (uVar10 != 0) {
-            uVar9 = (uint)unaff_R12;
+          *(uint *)(current_partition + 1) = success_flag;
+          result_flag = status_flag;
+          if (success_flag != 0) {
+            result_flag = (uint)loop_counter;
           }
-          psVar12 = psVar12 + 8;
-          unaff_R12 = (ulonglong)uVar9;
-          unaff_R15 = unaff_R15 + -1;
-        } while (unaff_R15 != 0);
+          current_partition = current_partition + 8;
+          loop_counter = (ulonglong)result_flag;
+          total_count = total_count + -1;
+        } while (total_count != 0);
       }
-      return unaff_R12 & 0xffffffff;
+      return loop_counter & 0xffffffff;
     }
   } while( true );
 }
 
 
 
-int FUN_18028af71(void)
-
+// 函数: int validate_rendering_partitions(void *data_buffer, void *sort_context, int partition_count, int validation_flag)
+// 渲染分区验证函数 - 验证渲染分区的有效性和一致性
+// 参数:
+//   data_buffer - 数据缓冲区
+//   sort_context - 排序上下文
+//   partition_count - 分区数量
+//   validation_flag - 验证标志
+// 返回值: 验证结果状态码
+int validate_rendering_partitions(void *data_buffer, void *sort_context, int partition_count, int validation_flag)
 {
-  short *psVar1;
-  int iVar2;
-  longlong unaff_RBX;
-  short unaff_DI;
-  int unaff_R12D;
-  int iVar3;
-  int unaff_R14D;
-  longlong unaff_R15;
+  short *partition_ptr;
+  int validation_result;
+  void *data_start;
+  short error_flag;
+  int status_flag;
+  int result;
+  int loop_counter;
+  int internal_flag;
+  longlong remaining_count;
   
-  qsort();
-  if (0 < unaff_R15) {
-    psVar1 = (short *)(unaff_RBX + 10);
-    iVar3 = unaff_R12D;
+  // 对分区数据进行排序
+  qsort(sort_context);
+  
+  if (0 < remaining_count) {
+    partition_ptr = (short *)((longlong)data_start + 10);
+    result = status_flag;
     do {
-      if ((psVar1[-1] != unaff_DI) || (iVar2 = unaff_R14D, *psVar1 != unaff_DI)) {
-        iVar2 = 1;
+      // 检查分区数据的有效性
+      if ((partition_ptr[-1] != error_flag) || (validation_result = internal_flag, *partition_ptr != error_flag)) {
+        validation_result = 1;
       }
-      *(int *)(psVar1 + 1) = iVar2;
-      unaff_R12D = unaff_R14D;
-      if (iVar2 != 0) {
-        unaff_R12D = iVar3;
+      *(int *)(partition_ptr + 1) = validation_result;
+      status_flag = internal_flag;
+      if (validation_result != 0) {
+        status_flag = result;
       }
-      psVar1 = psVar1 + 8;
-      unaff_R15 = unaff_R15 + -1;
-      iVar3 = unaff_R12D;
-    } while (unaff_R15 != 0);
+      partition_ptr = partition_ptr + 8;
+      remaining_count = remaining_count + -1;
+      result = status_flag;
+    } while (remaining_count != 0);
   }
-  return unaff_R12D;
+  return result;
 }
 
 
 
-int FUN_18028af94(void)
-
+// 函数: int optimize_partition_layout(void *data_buffer, int partition_count, int optimization_flag, int status_flag)
+// 分区布局优化函数 - 优化渲染分区的布局和排列
+// 参数:
+//   data_buffer - 数据缓冲区
+//   partition_count - 分区数量
+//   optimization_flag - 优化标志
+//   status_flag - 状态标志
+// 返回值: 优化结果状态码
+int optimize_partition_layout(void *data_buffer, int partition_count, int optimization_flag, int status_flag)
 {
-  short *psVar1;
-  int iVar2;
-  int iVar3;
-  longlong unaff_RBX;
-  short unaff_DI;
-  int unaff_R12D;
-  int unaff_R14D;
-  longlong unaff_R15;
+  short *partition_ptr;
+  int optimization_result;
+  int validation_result;
+  void *data_start;
+  short error_flag;
+  int internal_status;
+  int current_status;
+  longlong remaining_count;
   
-  psVar1 = (short *)(unaff_RBX + 10);
+  // 初始化分区指针
+  partition_ptr = (short *)((longlong)data_start + 10);
+  
   do {
-    if ((psVar1[-1] != unaff_DI) || (iVar3 = unaff_R14D, *psVar1 != unaff_DI)) {
-      iVar3 = 1;
+    // 检查并优化每个分区
+    if ((partition_ptr[-1] != error_flag) || (validation_result = status_flag, *partition_ptr != error_flag)) {
+      validation_result = 1;
     }
-    *(int *)(psVar1 + 1) = iVar3;
-    iVar2 = unaff_R14D;
-    if (iVar3 != 0) {
-      iVar2 = unaff_R12D;
+    *(int *)(partition_ptr + 1) = validation_result;
+    optimization_result = status_flag;
+    if (validation_result != 0) {
+      optimization_result = internal_status;
     }
-    psVar1 = psVar1 + 8;
-    unaff_R15 = unaff_R15 + -1;
-    unaff_R12D = iVar2;
-  } while (unaff_R15 != 0);
-  return iVar2;
+    partition_ptr = partition_ptr + 8;
+    remaining_count = remaining_count + -1;
+    internal_status = optimization_result;
+  } while (remaining_count != 0);
+  
+  return optimization_result;
 }
 
 
 
-longlong * FUN_18028b000(longlong *param_1,longlong *param_2)
-
+// 函数: longlong * extract_rendering_data_segment(longlong *output_buffer, longlong *input_stream)
+// 渲染数据段提取函数 - 从输入流中提取渲染数据段
+// 参数:
+//   output_buffer - 输出缓冲区
+//   input_stream - 输入数据流
+// 返回值: 输出缓冲区指针
+longlong * extract_rendering_data_segment(longlong *output_buffer, longlong *input_stream)
 {
-  int iVar1;
-  int iVar2;
-  undefined1 uVar3;
-  undefined1 uVar4;
-  byte bVar5;
-  longlong lVar6;
-  int iVar7;
-  ulonglong uVar8;
-  uint uVar9;
-  int iStack_c;
+  int current_position;
+  int stream_length;
+  uint8_t first_byte;
+  uint8_t second_byte;
+  uint8_t length_byte;
+  longlong data_pointer;
+  int new_position;
+  uint64_t remaining_bytes;
+  uint compressed_value;
+  int segment_length;
   
-  iVar1 = (int)param_2[1];
-  iVar2 = *(int *)((longlong)param_2 + 0xc);
-  if (iVar1 < iVar2) {
-    iVar7 = iVar1 + 1;
-    uVar3 = *(undefined1 *)((longlong)iVar1 + *param_2);
-    *(int *)(param_2 + 1) = iVar7;
+  // 获取当前位置和流长度
+  current_position = (int)input_stream[1];
+  stream_length = *(int *)((longlong)input_stream + 0xc);
+  
+  // 读取第一个字节
+  if (current_position < stream_length) {
+    new_position = current_position + 1;
+    first_byte = *(uint8_t *)((longlong)current_position + *input_stream);
+    *(int *)(input_stream + 1) = new_position;
   }
   else {
-    uVar3 = 0;
-    iVar7 = iVar1;
+    first_byte = 0;
+    new_position = current_position;
   }
-  if (iVar7 < iVar2) {
-    lVar6 = (longlong)iVar7;
-    iVar7 = iVar7 + 1;
-    uVar4 = *(undefined1 *)(lVar6 + *param_2);
-    *(int *)(param_2 + 1) = iVar7;
+  
+  // 读取第二个字节
+  if (new_position < stream_length) {
+    data_pointer = (longlong)new_position;
+    new_position = new_position + 1;
+    second_byte = *(uint8_t *)(data_pointer + *input_stream);
+    *(int *)(input_stream + 1) = new_position;
   }
   else {
-    uVar4 = 0;
+    second_byte = 0;
   }
-  if (CONCAT11(uVar3,uVar4) != 0) {
-    if (iVar7 < iVar2) {
-      lVar6 = (longlong)iVar7;
-      iVar7 = iVar7 + 1;
-      bVar5 = *(byte *)(lVar6 + *param_2);
+  
+  // 如果两个字节组合不为零，处理压缩数据
+  if (((uint)first_byte << 8 | (uint)second_byte) != 0) {
+    // 读取长度字节
+    if (new_position < stream_length) {
+      data_pointer = (longlong)new_position;
+      new_position = new_position + 1;
+      length_byte = *(uint8_t *)(data_pointer + *input_stream);
     }
     else {
-      bVar5 = 0;
+      length_byte = 0;
     }
-    uVar8 = (ulonglong)bVar5;
-    iVar7 = (uint)CONCAT11(uVar3,uVar4) * (uint)bVar5 + iVar7;
-    if ((iVar2 < iVar7) || (iVar7 < 0)) {
-      iVar7 = iVar2;
+    
+    remaining_bytes = (uint64_t)length_byte;
+    new_position = ((uint)first_byte << 8 | (uint)second_byte) * (uint)length_byte + new_position;
+    
+    // 边界检查
+    if ((stream_length < new_position) || (new_position < 0)) {
+      new_position = stream_length;
     }
-    uVar9 = 0;
-    *(int *)(param_2 + 1) = iVar7;
-    if (bVar5 != 0) {
+    
+    compressed_value = 0;
+    *(int *)(input_stream + 1) = new_position;
+    
+    // 解压数据
+    if (length_byte != 0) {
       do {
-        if (iVar7 < iVar2) {
-          lVar6 = (longlong)iVar7;
-          iVar7 = iVar7 + 1;
-          bVar5 = *(byte *)(lVar6 + *param_2);
-          *(int *)(param_2 + 1) = iVar7;
+        if (new_position < stream_length) {
+          data_pointer = (longlong)new_position;
+          new_position = new_position + 1;
+          length_byte = *(uint8_t *)(data_pointer + *input_stream);
+          *(int *)(input_stream + 1) = new_position;
         }
         else {
-          iVar7 = (int)param_2[1];
-          bVar5 = 0;
+          new_position = (int)input_stream[1];
+          length_byte = 0;
         }
-        uVar9 = uVar9 << 8 | (uint)bVar5;
-        uVar8 = uVar8 - 1;
-      } while (uVar8 != 0);
+        compressed_value = compressed_value << 8 | (uint)length_byte;
+        remaining_bytes = remaining_bytes - 1;
+      } while (remaining_bytes != 0);
     }
-    iVar7 = (uVar9 - 1) + iVar7;
-    if ((iVar2 < iVar7) || (iVar7 < 0)) {
-      iVar7 = iVar2;
+    
+    new_position = (compressed_value - 1) + new_position;
+    if ((stream_length < new_position) || (new_position < 0)) {
+      new_position = stream_length;
     }
-    *(int *)(param_2 + 1) = iVar7;
+    *(int *)(input_stream + 1) = new_position;
   }
-  iVar7 = iVar7 - iVar1;
-  iStack_c = 0;
-  lVar6 = 0;
-  if ((((-1 < iVar1) && (lVar6 = 0, -1 < iVar7)) && (iStack_c = 0, lVar6 = 0, iVar1 <= iVar2)) &&
-     (lVar6 = 0, iVar7 <= iVar2 - iVar1)) {
-    lVar6 = (longlong)iVar1 + *param_2;
-    iStack_c = iVar7;
+  
+  // 计算段长度
+  segment_length = new_position - current_position;
+  segment_length = 0;
+  data_pointer = 0;
+  
+  // 验证段的有效性
+  if ((((-1 < current_position) && (data_pointer = 0, -1 < segment_length)) && (segment_length = 0, data_pointer = 0, current_position <= stream_length)) &&
+     (data_pointer = 0, segment_length <= stream_length - current_position)) {
+    data_pointer = (longlong)current_position + *input_stream;
+    segment_length = segment_length;
   }
-  *param_1 = lVar6;
-  *(undefined4 *)(param_1 + 1) = 0;
-  *(int *)((longlong)param_1 + 0xc) = iStack_c;
-  return param_1;
+  
+  // 设置输出缓冲区
+  *output_buffer = data_pointer;
+  *(uint32_t *)(output_buffer + 1) = 0;
+  *(int *)((longlong)output_buffer + 0xc) = segment_length;
+  return output_buffer;
 }
 
 
 
 
 
-// 函数: void FUN_18028b091(undefined8 param_1,int param_2,uint param_3,longlong *param_4)
-void FUN_18028b091(undefined8 param_1,int param_2,uint param_3,longlong *param_4)
-
+// 函数: void process_rendering_bitstream(void *render_context, int bit_position, uint bit_pattern, longlong *bit_stream)
+// 渲染位流处理函数 - 处理渲染相关的位流数据
+// 参数:
+//   render_context - 渲染上下文
+//   bit_position - 位位置
+//   bit_pattern - 位模式
+//   bit_stream - 位流数据
+// 返回值: 无
+void process_rendering_bitstream(void *render_context, int bit_position, uint bit_pattern, longlong *bit_stream)
 {
-  byte bVar1;
-  longlong in_RAX;
-  longlong lVar2;
-  longlong *unaff_RDI;
-  int in_R10D;
-  int in_R11D;
-  undefined4 in_register_0000009c;
-  int iStackX_c;
+  uint8_t current_byte;
+  longlong bit_count;
+  longlong data_pointer;
+  longlong *output_buffer;
+  int stream_limit;
+  int start_position;
+  uint32_t segment_offset;
+  int processed_length;
   
+  // 读取位流数据
   do {
-    if (param_2 < in_R10D) {
-      lVar2 = (longlong)param_2;
-      param_2 = param_2 + 1;
-      bVar1 = *(byte *)(lVar2 + *param_4);
-      *(int *)(param_4 + 1) = param_2;
+    if (bit_position < stream_limit) {
+      data_pointer = (longlong)bit_position;
+      bit_position = bit_position + 1;
+      current_byte = *(uint8_t *)(data_pointer + *bit_stream);
+      *(int *)(bit_stream + 1) = bit_position;
     }
     else {
-      param_2 = (int)param_4[1];
-      bVar1 = 0;
+      bit_position = (int)bit_stream[1];
+      current_byte = 0;
     }
-    param_3 = param_3 << 8 | (uint)bVar1;
-    in_RAX = in_RAX + -1;
-  } while (in_RAX != 0);
-  param_2 = (param_3 - 1) + param_2;
-  if ((in_R10D < param_2) || (param_2 < 0)) {
-    param_2 = in_R10D;
+    bit_pattern = bit_pattern << 8 | (uint)current_byte;
+    bit_count = bit_count + -1;
+  } while (bit_count != 0);
+  
+  // 计算新的位位置
+  bit_position = (bit_pattern - 1) + bit_position;
+  if ((stream_limit < bit_position) || (bit_position < 0)) {
+    bit_position = stream_limit;
   }
-  *(int *)(param_4 + 1) = param_2;
-  param_2 = param_2 - in_R11D;
-  iStackX_c = 0;
-  lVar2 = 0;
-  if ((((-1 < in_R11D) && (lVar2 = 0, -1 < param_2)) &&
-      (iStackX_c = 0, lVar2 = 0, in_R11D <= in_R10D)) && (lVar2 = 0, param_2 <= in_R10D - in_R11D))
+  *(int *)(bit_stream + 1) = bit_position;
+  
+  // 计算处理长度
+  bit_position = bit_position - start_position;
+  processed_length = 0;
+  data_pointer = 0;
+  
+  // 验证数据段的有效性
+  if ((((-1 < start_position) && (data_pointer = 0, -1 < bit_position)) &&
+      (processed_length = 0, data_pointer = 0, start_position <= stream_limit)) && (data_pointer = 0, bit_position <= stream_limit - start_position))
   {
-    lVar2 = CONCAT44(in_register_0000009c,in_R11D) + *param_4;
-    iStackX_c = param_2;
+    data_pointer = ((uint64_t)segment_offset << 32 | (uint)start_position) + *bit_stream;
+    processed_length = bit_position;
   }
-  *unaff_RDI = lVar2;
-  *(undefined4 *)(unaff_RDI + 1) = 0;
-  *(int *)((longlong)unaff_RDI + 0xc) = iStackX_c;
+  
+  // 设置输出缓冲区
+  *output_buffer = data_pointer;
+  *(uint32_t *)(output_buffer + 1) = 0;
+  *(int *)((longlong)output_buffer + 0xc) = processed_length;
   return;
 }
 
@@ -722,6 +816,34 @@ void FUN_18028b091(undefined8 param_1,int param_2,uint param_3,longlong *param_4
 #define partition_comparator UNK_18028ad30
 #define partition_validator UNK_18028ad70
 #define stack_buffer stack0x00000030
+#define process_advanced_rendering_data FUN_18028adf9
+#define validate_rendering_partitions FUN_18028af71
+#define optimize_partition_layout FUN_18028af94
+#define extract_rendering_data_segment FUN_18028b000
+#define process_rendering_bitstream FUN_18028b091
+
+/**
+ * 渲染系统高级对象管理和字符串处理模块
+ * 
+ * 本模块包含以下核心功能：
+ * 1. 纹理映射计算和优化
+ * 2. 渲染分区处理和管理
+ * 3. 渲染布局优化
+ * 4. 高级数据处理和验证
+ * 5. 位流处理和数据提取
+ * 
+ * 主要函数：
+ * - calculate_texture_mapping: 计算最优纹理映射位置
+ * - process_rendering_partitions: 处理空间分区和渲染优化
+ * - optimize_rendering_layout: 优化渲染布局
+ * - process_advanced_rendering_data: 处理复杂的渲染数据分区和优化
+ * - validate_rendering_partitions: 验证渲染分区的有效性和一致性
+ * - optimize_partition_layout: 优化渲染分区的布局和排列
+ * - extract_rendering_data_segment: 从输入流中提取渲染数据段
+ * - process_rendering_bitstream: 处理渲染相关的位流数据
+ * 
+ * 注意：本模块为渲染系统的核心组件，负责高级对象管理和数据处理。
+ */
 
 
 
