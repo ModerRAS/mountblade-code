@@ -46,6 +46,9 @@
 #define apply_security_params   FUN_18074b6f0
 #define send_basic_packet       FUN_18083f850
 #define send_extended_packet    FUN_18083f8f0
+#define apply_connection_params  FUN_18088ece0
+#define apply_encryption_params FUN_18088ece0
+#define initialize_protocol_params func_0x00018088ecd0
 
 // 函数: void process_network_packet(undefined8 packet_ptr)
 // 处理网络数据包的接收和解析
@@ -208,7 +211,7 @@ int compress_network_data(longlong compression_info, longlong data_ptr, int data
   
   // 初始化压缩
   compressed_size = func_0x00018074b800(data_ptr, data_size, *(undefined4 *)(compression_info + 0x10));
-  processed_bytes = FUN_18074b880(data_ptr + compressed_size, data_size - compressed_size, &DAT_180a06434);
+  processed_bytes = process_compression(data_ptr + compressed_size, data_size - compressed_size, &DAT_180a06434);
   compressed_size = compressed_size + processed_bytes;
   
   // 执行压缩
@@ -229,7 +232,7 @@ int validate_packet_signature(longlong signature_info, longlong data_ptr, int da
   
   // 读取签名数据
   signature_size = func_0x00018074b800(data_ptr, data_size, *(undefined4 *)(signature_info + 0x10));
-  validated_bytes = FUN_18074b880(data_ptr + signature_size, data_size - signature_size, &DAT_180a06434);
+  validated_bytes = process_compression(data_ptr + signature_size, data_size - signature_size, &DAT_180a06434);
   signature_size = signature_size + validated_bytes;
   
   // 验证签名
@@ -250,7 +253,7 @@ int encode_network_data(longlong encoding_info, longlong data_ptr, int data_size
   
   // 初始化编码
   encoded_size = func_0x00018074b800(data_ptr, data_size, *(undefined4 *)(encoding_info + 0x10));
-  processed_bytes = FUN_18074b880(data_ptr + encoded_size, data_size - encoded_size, &DAT_180a06434);
+  processed_bytes = process_compression(data_ptr + encoded_size, data_size - encoded_size, &DAT_180a06434);
   encoded_size = encoded_size + processed_bytes;
   
   // 执行编码
@@ -271,7 +274,7 @@ int verify_data_integrity(longlong integrity_info, longlong data_ptr, int data_s
   
   // 初始化验证
   verified_size = func_0x00018074b800(data_ptr, data_size, *(undefined4 *)(integrity_info + 0x10));
-  processed_bytes = FUN_18074b880(data_ptr + verified_size, data_size - verified_size, &DAT_180a06434);
+  processed_bytes = process_compression(data_ptr + verified_size, data_size - verified_size, &DAT_180a06434);
   verified_size = verified_size + processed_bytes;
   
   // 执行完整性验证
@@ -294,7 +297,7 @@ int process_secure_connection(longlong security_info, longlong data_ptr, int dat
   
   // 初始化安全处理
   secure_size = func_0x00018074b800(data_ptr, data_size, *(undefined4 *)(security_info + 0x10));
-  processed_bytes = FUN_18074b880(secure_size + data_ptr, data_size - secure_size, &DAT_180a06434);
+  processed_bytes = process_compression(secure_size + data_ptr, data_size - secure_size, &DAT_180a06434);
   secure_size = secure_size + processed_bytes;
   
   // 应用主要安全层
@@ -302,7 +305,7 @@ int process_secure_connection(longlong security_info, longlong data_ptr, int dat
   secure_size = secure_size + processed_bytes;
   
   // 处理中间数据
-  processed_bytes = FUN_18074b880(secure_size + data_ptr, data_size - secure_size, &DAT_180a06434);
+  processed_bytes = process_compression(secure_size + data_ptr, data_size - secure_size, &DAT_180a06434);
   secure_size = secure_size + processed_bytes;
   
   // 应用次要安全层
@@ -325,7 +328,7 @@ int handle_network_handshake(longlong handshake_info, longlong data_ptr, int dat
   
   // 初始化握手过程
   handshake_size = func_0x00018074b800(data_ptr, data_size, *(undefined4 *)(handshake_info + 0x10));
-  processed_bytes = FUN_18074b880(handshake_size + data_ptr, data_size - handshake_size, &DAT_180a06434);
+  processed_bytes = process_compression(handshake_size + data_ptr, data_size - handshake_size, &DAT_180a06434);
   handshake_size = handshake_size + processed_bytes;
   
   // 服务器验证
@@ -333,7 +336,7 @@ int handle_network_handshake(longlong handshake_info, longlong data_ptr, int dat
   handshake_size = handshake_size + processed_bytes;
   
   // 处理中间数据
-  processed_bytes = FUN_18074b880(handshake_size + data_ptr, data_size - handshake_size, &DAT_180a06434);
+  processed_bytes = process_compression(handshake_size + data_ptr, data_size - handshake_size, &DAT_180a06434);
   handshake_size = handshake_size + processed_bytes;
   
   // 客户端验证
@@ -372,11 +375,11 @@ int initialize_network_protocol(longlong protocol_info, longlong data_ptr, int d
   
   // 初始化协议头
   protocol_size = func_0x00018074b800(data_ptr, data_size, *(undefined4 *)(protocol_info + 0x10));
-  processed_bytes = FUN_18074b880(data_ptr + protocol_size, data_size - protocol_size, &DAT_180a06434);
+  processed_bytes = process_compression(data_ptr + protocol_size, data_size - protocol_size, &DAT_180a06434);
   protocol_size = protocol_size + processed_bytes;
   
   // 设置协议参数
-  processed_bytes = FUN_18088ebb0(protocol_size + data_ptr, data_size - protocol_size, &protocol_version);
+  processed_bytes = apply_connection_params(protocol_size + data_ptr, data_size - protocol_size, &protocol_version);
   return processed_bytes + protocol_size;
 }
 
@@ -432,7 +435,7 @@ int process_encrypted_packet_validation(longlong encryption_config, longlong dat
   bytes_processed = bytes_processed + bytes_validated;
   
   // 应用加密参数
-  bytes_validated = FUN_18088ece0(bytes_processed + data_ptr, data_size - bytes_processed, &encryption_params);
+  bytes_validated = apply_encryption_params(bytes_processed + data_ptr, data_size - bytes_processed, &encryption_params);
   bytes_processed = bytes_processed + bytes_validated;
   
   // 处理加密数据
@@ -476,7 +479,7 @@ int process_secure_data_validation(longlong security_config, longlong data_ptr, 
   bytes_processed = bytes_processed + bytes_validated;
   
   // 应用安全参数
-  bytes_validated = FUN_18088ece0(bytes_processed + data_ptr, data_size - bytes_processed, &security_params);
+  bytes_validated = apply_encryption_params(bytes_processed + data_ptr, data_size - bytes_processed, &security_params);
   bytes_processed = bytes_processed + bytes_validated;
   
   // 处理安全数据
@@ -892,7 +895,7 @@ int process_extended_security_validation(longlong security_config, longlong data
   bytes_processed = bytes_processed + bytes_secured;
   
   // 应用连接信息
-  bytes_secured = FUN_18088ebb0(bytes_processed + data_ptr, data_size - bytes_processed, &connection_info);
+  bytes_secured = apply_connection_params(bytes_processed + data_ptr, data_size - bytes_processed, &connection_info);
   bytes_processed = bytes_processed + bytes_secured;
   
   // 处理连接信息后数据
@@ -959,7 +962,7 @@ int process_secure_connection_validation(longlong connection_config, longlong da
   encoding_key = *(undefined4 *)(connection_config + 0x18);
   
   // 应用连接参数
-  bytes_processed = FUN_18088ece0(data_ptr, data_size, &connection_params);
+  bytes_processed = apply_encryption_params(data_ptr, data_size, &connection_params);
   bytes_validated = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
   bytes_processed = bytes_processed + bytes_validated;
   
@@ -995,7 +998,7 @@ int process_extended_connection_validation(longlong connection_config, longlong 
   signature_flag = *(undefined1 *)(connection_config + 0x1c);
   
   // 应用连接参数
-  bytes_processed = FUN_18088ece0(data_ptr, data_size, &connection_params);
+  bytes_processed = apply_encryption_params(data_ptr, data_size, &connection_params);
   bytes_validated = process_checksum_data(bytes_processed + data_ptr, data_size - bytes_processed, &DATA_BUFFER_PTR);
   bytes_processed = bytes_processed + bytes_validated;
   
