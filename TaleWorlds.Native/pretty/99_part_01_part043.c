@@ -218,6 +218,16 @@ typedef struct {
 } ConfigInfo;
 
 /* ============================================================================
+ * 全局变量定义
+ * ============================================================================ */
+
+// 系统全局变量 - 用于系统状态管理和数据操作
+extern void* system_system_data_ui;          // 系统数据UI全局指针
+extern void* system_main_module_state;       // 系统主模块状态指针
+extern void* unknown_var_2560_ptr;           // 未知变量2560指针
+extern void* system_message_buffer;           // 系统消息缓冲区指针
+
+/* ============================================================================
  * 常量定义
  * ============================================================================ */
 #define SYSTEM_BUFFER_SIZE 0x20
@@ -640,8 +650,7 @@ STATE_HANDLER_COMPLETE:
     system_context = *(longlong *)(system_message_buffer + 0x1cd8);
     if (((*(longlong *)(system_context + 0x8558) != 0) || 
          (*(int *)(system_context + 0x88c8) != -1)) ||
-        (context_ptr = system_message_buffer, 
-         *(int *)(system_context + 0x8ac8) != 0x10)) {
+        (*(int *)(system_context + 0x8ac8) != 0x10)) {
       stack_data1 = 0;
       System_MethodCall(*(longlong **)(system_context + 0x8400), 0x40)
                 (*(longlong **)(system_context + 0x8400), 0x24, 1, &stack_data1);
@@ -743,7 +752,7 @@ STATE_HANDLER_COMPLETE:
   
   // 清理安全cookie并退出
   // WARNING: Subroutine does not return
-  SystemCleaner(security_cookie ^ (ulonglong)security_buffer);
+  SystemCleaner(security_cookie ^ (ulonglong)local_buffer);
 }
 
 
