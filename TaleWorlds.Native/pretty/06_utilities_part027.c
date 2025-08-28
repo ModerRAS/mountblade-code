@@ -655,7 +655,7 @@ void FUN_1809417a0(void)
   // WARNING: Treating indirect jump as call
   
   // 关闭系统句柄
-  CloseHandle(_DAT_180c91900);
+  CloseHandle(*system_handle_ptr);
   return;
 }
 
