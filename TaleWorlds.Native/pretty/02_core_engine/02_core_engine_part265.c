@@ -1101,140 +1101,246 @@ void 销毁场景对象(longlong object_ptr) {
 
 /**
  * 检查对象是否可见
- * @param object_ptr 对象指针
- * @return 可见性状态
+ * 检查场景对象在当前渲染帧中是否可见
+ * 
+ * @param object_ptr 对象指针，要检查可见性的对象
+ * @return 可见性状态，true表示可见，false表示不可见
+ * 
+ * 功能说明：
+ * 1. 检查缓存的可见性标志
+ * 2. 如果标志为-1，重新计算可见性
+ * 3. 检查多种可见性条件
+ * 4. 遍历活动组件列表进行详细检查
+ * 5. 缓存计算结果
+ * 
+ * 可见性检查条件：
+ * - 当前帧时间有效性
+ * - 对象状态和类型信息
+ * - 渲染器状态标志
+ * - 事件掩码和变换数据
+ * - 活动组件的可见性标志
+ * 
+ * 性能优化：
+ * - 使用缓存避免重复计算
+ * - 快速失败机制
+ * - 组件列表的批量检查
+ * 
+ * 注意事项：
+ * - 可见性检查考虑多种因素
+ * - 缓存机制提高性能
+ * - 需要考虑渲染管线状态
  */
-bool check_object_visibility(longlong object_ptr) {
-  char visibility_flag;
-  longlong *object_data;
-  longlong temp_value;
-  longlong range_value;
-  byte *component_data;
-  uint component_index;
-  ulonglong event_mask;
+bool 检查对象可见性(longlong object_ptr) {
+  char cached_visibility_flag;    // 缓存的可见性标志
+  longlong *active_component_list; // 活动组件列表
+  longlong object_type_info;      // 对象类型信息
+  longlong component_range;       // 组件范围值
+  byte *component_data_ptr;       // 组件数据指针
+  uint component_loop_index;      // 组件循环索引
+  ulonglong current_event_mask;   // 当前事件掩码
   
-  visibility_flag = *(char *)(object_ptr + 0x3c1);
-  if (visibility_flag == -1) {
-    temp_value = object_ptr;
-    visibility_flag = get_current_frame_time();
-    if ((((((visibility_flag == '\0') ||
-           (temp_value = *(longlong *)(temp_value + 0x1e0), 1 < *(int *)(temp_value + 0x1c4) - 1U)) ||
-          ((*(uint *)(temp_value + 0x1588) & 0x10000) != 0)) ||
-         (((*(uint *)(object_ptr + 0x388) >> 0x19 & 1) != 0 || (*(int *)(temp_value + 0x290) != 0)))) ||
-        ((*(char *)(object_ptr + 0x13c) != '\x06' && (*(char *)(object_ptr + 0x13c) != '\0')))) ||
-       ((*(ulonglong *)(object_ptr + 0x140) & *(ulonglong *)(object_ptr + 0x398)) != 0)) {
-    VISIBILITY_CHECK_FAILED:
-      visibility_flag = '\0';
+  // 获取缓存的可见性标志
+  cached_visibility_flag = *(char *)(object_ptr + OFFSET_OBJECT_VISIBILITY);
+  
+  // 如果标志为-1，需要重新计算可见性
+  if (cached_visibility_flag == -1) {
+    object_type_info = object_ptr;
+    cached_visibility_flag = get_current_frame_time();
+    
+    // 第一阶段：快速可见性检查
+    // 检查多种可能导致对象不可见的条件
+    if ((((((cached_visibility_flag == '\0') ||  // 帧时间无效
+           (object_type_info = *(longlong *)(object_type_info + OFFSET_OBJECT_TYPE_INFO), 
+            1 < *(int *)(object_type_info + 0x1c4) - 1U)) ||  // 对象类型检查
+          ((*(uint *)(object_type_info + 0x1588) & 0x10000) != 0)) ||  // 渲染器状态标志
+         (((*(uint *)(object_ptr + 0x388) >> 0x19 & 1) != 0 ||  // 对象状态位检查
+           (*(int *)(object_type_info + 0x290) != 0)))) ||  // 其他状态检查
+        ((*(char *)(object_ptr + 0x13c) != '\x06' &&  // 对象类型检查
+         (*(char *)(object_ptr + 0x13c) != '\0')))) ||  // 对象类型检查
+       ((*(ulonglong *)(object_ptr + OFFSET_OBJECT_EVENT_MASK) & 
+         *(ulonglong *)(object_ptr + OFFSET_OBJECT_TRANSFORM_DATA)) != 0)) {  // 事件掩码检查
+      
+    可见性检查失败:
+      cached_visibility_flag = '\0';  // 设置为不可见
     }
     else {
-      visibility_flag = '\x01';
-      object_data = (longlong *)get_active_component_list();
-      event_mask = 0;
-      range_value = object_data[1] - *object_data;
-      temp_value = range_value >> 0x3f;
-      range_value = range_value / 0x60 + temp_value;
-      if (range_value != temp_value) {
-        component_data = (byte *)(*object_data + 0x58);
+      // 第二阶段：详细组件可见性检查
+      cached_visibility_flag = '\x01';  // 默认设置为可见
+      
+      // 获取活动组件列表
+      active_component_list = (longlong *)get_active_component_list();
+      current_event_mask = 0;
+      
+      // 计算组件范围
+      component_range = active_component_list[1] - *active_component_list;
+      object_type_info = component_range >> 0x3f;  // 符号扩展
+      component_range = component_range / 0x60 + object_type_info;  // 每个组件0x60字节
+      
+      // 如果有活动组件，进行详细检查
+      if (component_range != object_type_info) {
+        component_data_ptr = (byte *)(*active_component_list + 0x58);  // 组件数据起始偏移
+        
         do {
-          if (((*(ulonglong *)(object_ptr + 0x140) >> (event_mask & 0x3f) & 1) != 0) && ((*component_data & 2) != 0)) {
-            goto VISIBILITY_CHECK_FAILED;
+          // 检查组件事件掩码和可见性标志
+          if (((*(ulonglong *)(object_ptr + OFFSET_OBJECT_EVENT_MASK) >> (current_event_mask & 0x3f) & 1) != 0) && 
+              ((*component_data_ptr & 2) != 0)) {  // 组件可见性标志
+            goto 可见性检查失败;
           }
-          component_index = (int)event_mask + 1;
-          event_mask = (ulonglong)component_index;
-          component_data = component_data + 0x60;
-        } while ((ulonglong)(longlong)(int)component_index < (ulonglong)(range_value - temp_value));
+          
+          component_loop_index = (int)current_event_mask + 1;
+          current_event_mask = (ulonglong)component_loop_index;
+          component_data_ptr = component_data_ptr + 0x60;  // 移动到下一个组件
+        } while ((ulonglong)(longlong)(int)component_loop_index < (ulonglong)(component_range - object_type_info));
       }
     }
-    *(char *)(object_ptr + 0x3c1) = visibility_flag;
+    
+    // 缓存计算结果
+    *(char *)(object_ptr + OFFSET_OBJECT_VISIBILITY) = cached_visibility_flag;
   }
-  return visibility_flag == '\x01';
+  
+  return cached_visibility_flag == '\x01';
 }
 
 /**
  * 处理对象更新事件
- * @param object_ptr 对象指针
- * @param event_params 事件参数
- * @return 处理的对象数量
+ * 处理场景对象的更新事件，包括组件更新和资源清理
+ * 
+ * @param object_ptr 对象指针，要处理更新事件的对象
+ * @param event_params 事件参数，包含更新相关的参数信息
+ * @return 处理的对象数量，表示成功处理的组件数量
+ * 
+ * 功能说明：
+ * 1. 初始化事件系统（如果需要）
+ * 2. 处理渲染器和物理资源的清理
+ * 3. 更新主组件数组（16个组件）
+ * 4. 处理特殊组件数组
+ * 5. 执行组件回调函数
+ * 
+ * 更新逻辑：
+ * - 根据事件参数决定更新模式
+ * - 检查组件的更新状态
+ * - 执行符合条件的组件更新
+ * - 处理资源释放和回调
+ * 
+ * 组件更新条件：
+ * - 组件指针有效
+ * - 更新状态检查通过
+ * - 组件类型符合要求
+ * - 特定组件的特殊处理
+ * 
+ * 注意事项：
+ * - 需要正确处理更新锁
+ * - 资源清理考虑生命周期状态
+ * - 组件回调可能涉及异步操作
  */
-uint process_object_update_events(longlong object_ptr, longlong *event_params) {
-  char update_flag;
-  longlong *component_array;
-  uint processed_count;
-  uint component_index;
-  longlong component_data;
-  undefined8 stack_param1;
-  undefined8 stack_param2;
-  code *callback_func;
-  code *guard_func;
+uint 处理对象更新事件(longlong object_ptr, longlong *event_params) {
+  char component_update_flag;       // 组件更新标志
+  longlong *main_component_array;  // 主组件数组
+  uint successfully_processed_count; // 成功处理的数量
+  uint current_component_index;    // 当前组件索引
+  longlong current_component_data;  // 当前组件数据
+  undefined8 callback_stack_param_1; // 回调堆栈参数1
+  undefined8 callback_stack_param_2; // 回调堆栈参数2
+  code *component_callback_func;    // 组件回调函数
+  code *guard_check_function;       // 保护检查函数
   
-  processed_count = 0;
+  successfully_processed_count = 0;
+  
+  // 第一阶段：初始化事件系统
   if ((*(byte *)(event_params + 1) & 1) != 0) {
     initialize_event_system();
   }
   
-  if (*(char *)(object_ptr + 0x460) == '\0') {
+  // 第二阶段：处理普通对象更新
+  if (*(char *)(object_ptr + OFFSET_OBJECT_COLLISION) == '\0') {
+    // 检查是否需要清理资源
     if ((char)event_params[2] != '\0') {
-      // 处理渲染器清理
-      if ((*(longlong *)(object_ptr + 0x3c8) != 0) &&
-          (((_DAT_180c8a9d0 == 0 || (*(char *)(_DAT_180c8a9d0 + 0x1f1) == '\0')) &&
-           (*(char *)(object_ptr + 0x1d8) == '\0'))) &&
-         ((*(int *)(object_ptr + 0x1d0) != -1 && (*(int *)(object_ptr + 0x1d0) != 0)))) {
-        release_renderer_resources(*(longlong *)(object_ptr + 0x3c8), 0xffffffff);
+      // 处理渲染器资源清理
+      if ((*(longlong *)(object_ptr + OFFSET_OBJECT_RENDERER) != 0) &&
+          (((LIFETIME_EVENT_ENABLED == 0 || (*(char *)(LIFETIME_EVENT_ENABLED + 0x1f1) == '\0')) &&
+           (*(char *)(object_ptr + 0x1d8) == '\0'))) &&  // 生命周期检查
+         ((*(int *)(object_ptr + OFFSET_OBJECT_LIFETIME_EVENT) != -1 && 
+           (*(int *)(object_ptr + OFFSET_OBJECT_LIFETIME_EVENT) != 0)))) {  // 事件状态检查
+        release_renderer_resources(*(longlong *)(object_ptr + OFFSET_OBJECT_RENDERER), 0xffffffff);
       }
       
       // 处理物理资源清理
-      if ((*(longlong *)(object_ptr + 0x3d0) != 0) &&
-          ((_DAT_180c8a9d0 == 0 || (*(char *)(_DAT_180c8a9d0 + 0x1f1) == '\0'))) &&
+      if ((*(longlong *)(object_ptr + OFFSET_OBJECT_PHYSICS) != 0) &&
+          ((LIFETIME_EVENT_ENABLED == 0 || (*(char *)(LIFETIME_EVENT_ENABLED + 0x1f1) == '\0'))) &&
          ((*(char *)(object_ptr + 0x1d8) == '\0' &&
-          ((*(int *)(object_ptr + 0x1d4) != -1 && (*(int *)(object_ptr + 0x1d4) != 0)))))) {
-        release_renderer_resources(*(longlong *)(object_ptr + 0x3d0), 0xffffffff);
+          ((*(int *)(object_ptr + 0x1d4) != -1 && (*(int *)(object_ptr + 0x1d4) != 0)))))) {  // 物理状态检查
+        release_renderer_resources(*(longlong *)(object_ptr + OFFSET_OBJECT_PHYSICS), 0xffffffff);
       }
     }
     
-    // 处理组件更新 (16个组件)
-    component_array = (longlong *)(object_ptr + 0xb8);
-    component_index = processed_count;
+    // 第三阶段：处理主组件数组更新（16个组件）
+    main_component_array = (longlong *)(object_ptr + OFFSET_OBJECT_COMPONENT_ARRAY);
+    current_component_index = successfully_processed_count;
+    
     do {
-      component_data = *component_array;
-      if (((component_data != 0) &&
-          (((update_flag = check_component_update_state(object_ptr, 0), update_flag == '\0' || ((component_index & 0xfffffff9) != 0))
-           || (component_index == 6)))) &&
-         ((((update_flag = check_component_update_state(object_ptr, 1), update_flag == '\0' ||
-            ((component_index - 1 & 0xfffffffd) != 0)) && (*(int *)(component_data + 0x380) != 2)) &&
-          ((*(int *)(*component_array + 0x380) != 3 && (*(longlong *)(*component_array + 0xa8) != 0)))))) {
-        processed_count = processed_count + 1;
+      current_component_data = *main_component_array;
+      
+      // 检查组件是否需要更新
+      if (((current_component_data != 0) &&  // 组件存在
+          (((component_update_flag = 检查组件更新状态(object_ptr, 0), 
+             component_update_flag == '\0' || ((current_component_index & 0xfffffff9) != 0)) ||  // 更新状态检查
+           (current_component_index == 6)))) &&  // 特殊组件处理
+         ((((component_update_flag = 检查组件更新状态(object_ptr, 1), 
+            component_update_flag == '\0' || ((current_component_index - 1 & 0xfffffffd) != 0)) &&  // 第二种更新状态
+           (*(int *)(current_component_data + 0x380) != 2)) &&  // 组件状态检查
+          ((*(int *)(*main_component_array + 0x380) != 3 &&  // 组件类型检查
+            (*(longlong *)(*main_component_array + 0xa8) != 0)))))) {  // 组件数据有效性
+        
+        // 成功处理一个组件
+        successfully_processed_count = successfully_processed_count + 1;
+        
+        // 获取更新锁（如果需要）
         if (*event_params != 0) {
           acquire_update_lock();
         }
+        
+        // 执行组件回调（如果需要）
         if ((char)event_params[2] != '\0') {
-          stack_param1 = 0;
-          stack_param2 = 0;
-          callback_func = (code *)0x0;
-          guard_func = _guard_check_icall;
-          execute_component_callback(*component_array, 0, *(undefined4 *)((longlong)event_params + 0x14), &stack_param1);
-          if (callback_func != (code *)0x0) {
-            (*callback_func)(&stack_param1, 0, 0);
+          callback_stack_param_1 = 0;
+          callback_stack_param_2 = 0;
+          component_callback_func = (code *)0x0;
+          guard_check_function = _guard_check_icall;
+          
+          // 执行组件回调函数
+          execute_component_callback(*main_component_array, 0, 
+                                   *(undefined4 *)((longlong)event_params + 0x14), 
+                                   &callback_stack_param_1);
+          
+          // 如果有回调函数，执行它
+          if (component_callback_func != (code *)0x0) {
+            (*component_callback_func)(&callback_stack_param_1, 0, 0);
           }
         }
       }
-      component_index = component_index + 1;
-      component_array = component_array + 1;
-    } while ((int)component_index < 0x10);
+      
+      current_component_index = current_component_index + 1;
+      main_component_array = main_component_array + 1;
+    } while ((int)current_component_index < COMPONENT_ARRAY_SIZE);  // 处理16个组件
   }
   else if ((*(byte *)(event_params + 1) & 1) != 0) {
-    // 处理特殊组件数组
-    component_array = (longlong *)(object_ptr + 0x3e0);
-    component_data = 0x10;
+    // 第四阶段：处理特殊组件数组
+    main_component_array = (longlong *)(object_ptr + OFFSET_OBJECT_RENDER_COMPONENT_ARRAY);
+    current_component_data = RENDER_COMPONENT_SIZE;  // 16个特殊组件
+    
     do {
-      if ((((component_array[-0x65] != 0) && (*component_array != 0)) && (*(int *)(*component_array + 0x380) != 2)) &&
-         (*(int *)(*component_array + 0x380) != 3)) {
-        processed_count = processed_count + 1;
+      // 检查特殊组件的有效性
+      if ((((main_component_array[-0x65] != 0) && (*main_component_array != 0)) &&  // 组件存在性检查
+           (*(int *)(*main_component_array + 0x380) != 2)) &&  // 组件状态检查
+         (*(int *)(*main_component_array + 0x380) != 3)) {  // 组件类型检查
+        successfully_processed_count = successfully_processed_count + 1;
       }
-      component_array = component_array + 1;
-      component_data = component_data + -1;
-    } while (component_data != 0);
+      
+      main_component_array = main_component_array + 1;
+      current_component_data = current_component_data + -1;
+    } while (current_component_data != 0);
   }
-  return processed_count;
+  
+  return successfully_processed_count;
 }
 
 /**

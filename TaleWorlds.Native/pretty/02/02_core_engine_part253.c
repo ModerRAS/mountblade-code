@@ -470,8 +470,11 @@ LAB_180219fcf:
 
 
 
-// 函数: void FUN_180219ff0(undefined8 *param_1)
-void FUN_180219ff0(undefined8 *param_1)
+/**
+ * 初始化数据结构
+ * @param param_1 数据结构指针
+ */
+void initialize_data_structure(undefined8 *param_1)
 
 {
   FUN_180211720(param_1 + 4);
@@ -490,75 +493,81 @@ void FUN_180219ff0(undefined8 *param_1)
 
 
 
-// 函数: void FUN_18021a050(longlong *param_1,longlong *param_2,longlong *param_3)
-void FUN_18021a050(longlong *param_1,longlong *param_2,longlong *param_3)
+/**
+ * 比较并交换三个元素
+ * 对三个元素进行比较并根据比较结果进行排序
+ * @param param_1 第一个元素指针
+ * @param param_2 第二个元素指针
+ * @param param_3 第三个元素指针
+ */
+void compare_and_swap_three_elements(longlong *param_1, longlong *param_2, longlong *param_3)
 
 {
-  byte bVar1;
-  longlong lVar2;
-  bool bVar3;
-  byte *pbVar4;
-  uint uVar5;
-  longlong lVar6;
-  longlong lVar7;
+  byte char_diff;
+  longlong element1;
+  bool should_swap;
+  byte *str1_ptr;
+  uint char_val2;
+  longlong str_diff;
+  longlong element2;
   
-  lVar2 = *param_1;
-  lVar7 = *param_2;
-  if (*(int *)(lVar2 + 0x10) != 0) {
-    if (*(int *)(lVar7 + 0x10) == 0) {
-      bVar3 = true;
+  element1 = *param_1;
+  element2 = *param_2;
+  if (*(int *)(element1 + 0x10) != 0) {
+    if (*(int *)(element2 + 0x10) == 0) {
+      should_swap = true;
     }
     else {
-      pbVar4 = *(byte **)(lVar2 + 8);
-      lVar6 = *(longlong *)(lVar7 + 8) - (longlong)pbVar4;
+      str1_ptr = *(byte **)(element1 + 8);
+      str_diff = *(longlong *)(element2 + 8) - (longlong)str1_ptr;
       do {
-        bVar1 = *pbVar4;
-        uVar5 = (uint)pbVar4[lVar6];
-        if (bVar1 != uVar5) break;
-        pbVar4 = pbVar4 + 1;
-      } while (uVar5 != 0);
-      bVar3 = 0 < (int)(bVar1 - uVar5);
+        char_diff = *str1_ptr;
+        char_val2 = (uint)str1_ptr[str_diff];
+        if (char_diff != char_val2) break;
+        str1_ptr = str1_ptr + 1;
+      } while (char_val2 != 0);
+      should_swap = 0 < (int)(char_diff - char_val2);
     }
-    if (bVar3) {
-      *param_2 = lVar2;
-      *param_1 = lVar7;
-      lVar7 = *param_2;
+    if (should_swap) {
+      *param_2 = element1;
+      *param_1 = element2;
+      element2 = *param_2;
     }
   }
-  lVar2 = *param_3;
-  if (*(int *)(lVar7 + 0x10) != 0) {
-    if (*(int *)(lVar2 + 0x10) != 0) {
-      pbVar4 = *(byte **)(lVar7 + 8);
-      lVar6 = *(longlong *)(lVar2 + 8) - (longlong)pbVar4;
+  element1 = *param_3;
+  if (*(int *)(element2 + 0x10) != 0) {
+    if (*(int *)(element1 + 0x10) != 0) {
+      str1_ptr = *(byte **)(element2 + 8);
+      str_diff = *(longlong *)(element1 + 8) - (longlong)str1_ptr;
       do {
-        bVar1 = *pbVar4;
-        uVar5 = (uint)pbVar4[lVar6];
-        if (bVar1 != uVar5) break;
-        pbVar4 = pbVar4 + 1;
-      } while (uVar5 != 0);
-      if ((int)(bVar1 - uVar5) < 1) {
+        char_diff = *str1_ptr;
+        char_val2 = (uint)str1_ptr[str_diff];
+        if (char_diff != char_val2) break;
+        str1_ptr = str1_ptr + 1;
+      } while (char_val2 != 0);
+      if ((int)(char_diff - char_val2) < 1) {
         return;
       }
     }
-    *param_3 = lVar7;
-    *param_2 = lVar2;
-    lVar7 = *param_1;
-    if (*(int *)(lVar7 + 0x10) != 0) {
-      if (*(int *)(lVar2 + 0x10) != 0) {
-        pbVar4 = *(byte **)(lVar7 + 8);
-        lVar6 = *(longlong *)(lVar2 + 8) - (longlong)pbVar4;
+    *param_3 = element2;
+    *param_2 = element1;
+    element2 = *param_1;
+    if (*(int *)(element2 + 0x10) != 0) {
+      if (*(int *)(element1 + 0x10) != 0) {
+        str1_ptr = *(byte **)(element2 + 8);
+        str_diff = *(longlong *)(element1 + 8) - (longlong)str1_ptr;
         do {
-          bVar1 = *pbVar4;
-          uVar5 = (uint)pbVar4[lVar6];
-          if (bVar1 != uVar5) break;
-          pbVar4 = pbVar4 + 1;
-        } while (uVar5 != 0);
-        if ((int)(bVar1 - uVar5) < 1) {
+          char_diff = *str1_ptr;
+          char_val2 = (uint)str1_ptr[str_diff];
+          if (char_diff != char_val2) break;
+          str1_ptr = str1_ptr + 1;
+        } while (char_val2 != 0);
+        if ((int)(char_diff - char_val2) < 1) {
           return;
         }
       }
-      *param_2 = lVar7;
-      *param_1 = lVar2;
+      *param_2 = element2;
+      *param_1 = element1;
     }
   }
   return;
@@ -566,17 +575,25 @@ void FUN_18021a050(longlong *param_1,longlong *param_2,longlong *param_3)
 
 
 
-undefined8 FUN_18021a590(undefined8 param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 分配并初始化内存
+ * @param param_1 内存指针
+ * @param param_2 分配标志
+ * @param param_3 参数3
+ * @param param_4 参数4
+ * @return 返回分配的内存指针
+ */
+undefined8 allocate_and_initialize_memory(undefined8 param_1, ulonglong param_2, undefined8 param_3, undefined8 param_4)
 
 {
-  undefined8 uVar1;
+  undefined8 stack_cookie;
   
-  uVar1 = 0xfffffffffffffffe;
+  stack_cookie = 0xfffffffffffffffe;
   FUN_180048980();
   FUN_18006b6f0();
   FUN_1801570c0(param_1);
   if ((param_2 & 1) != 0) {
-    free(param_1,0x2a0,param_3,param_4,uVar1);
+    free(param_1, 0x2a0, param_3, param_4, stack_cookie);
   }
   return param_1;
 }
@@ -587,122 +604,125 @@ undefined8 FUN_18021a590(undefined8 param_1,ulonglong param_2,undefined8 param_3
 
 
 
-// 函数: void FUN_18021a600(longlong param_1)
-void FUN_18021a600(longlong param_1)
+/**
+ * 处理配置文件
+ * @param param_1 配置处理上下文
+ */
+void process_configuration_file(longlong param_1)
 
 {
-  byte bVar1;
-  code *pcVar2;
-  longlong lVar3;
-  ulonglong uVar4;
-  int iVar5;
-  longlong lVar6;
-  longlong lVar7;
-  ulonglong uVar8;
-  undefined *puVar9;
-  undefined1 auStack_c78 [48];
-  undefined1 auStack_c48 [32];
-  undefined8 uStack_c28;
-  undefined8 uStack_c20;
-  longlong alStack_c18 [2];
-  byte abStack_c08 [8];
-  undefined1 auStack_c00 [128];
-  longlong lStack_b80;
-  undefined *puStack_af8;
-  undefined1 *puStack_af0;
-  uint uStack_ae8;
-  undefined1 auStack_ae0 [136];
-  undefined1 auStack_a58 [8];
-  undefined *puStack_a50;
-  char acStack_839 [513];
-  char acStack_638 [1024];
-  undefined1 auStack_238 [512];
-  ulonglong uStack_38;
+  byte stream_state;
+  code *exception_handler;
+  longlong index;
+  ulonglong string_len;
+  int compare_result;
+  longlong line_length;
+  longlong char_index;
+  ulonglong config_name_len;
+  undefined *default_ptr;
+  undefined1 stack_buffer1 [48];
+  undefined1 stack_buffer2 [32];
+  undefined8 stack_cookie1;
+  undefined8 allocated_buffer;
+  longlong stream_handle [2];
+  byte stream_flags [8];
+  undefined1 config_buffer [128];
+  longlong file_handle;
+  undefined *config_ptr;
+  undefined1 *config_name;
+  uint config_name_length;
+  undefined1 value_buffer [136];
+  undefined1 temp_buffer [8];
+  undefined *file_ptr;
+  char processed_line [513];
+  char line_buffer [1024];
+  undefined1 temp_buffer2 [512];
+  ulonglong stack_cookie2;
   
-  uStack_c28 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_c78;
+  stack_cookie1 = 0xfffffffffffffffe;
+  stack_cookie2 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer1;
   FUN_180217c40(param_1 + 0x260);
   FUN_1801596c0();
-  FUN_180624440(auStack_a58,auStack_c48);
-  FUN_1800c4720(alStack_c18);
-  puVar9 = &DAT_18098bc73;
-  if (puStack_a50 != (undefined *)0x0) {
-    puVar9 = puStack_a50;
+  FUN_180624440(temp_buffer, stack_buffer2);
+  FUN_1800c4720(stream_handle);
+  default_ptr = &DAT_18098bc73;
+  if (file_ptr != (undefined *)0x0) {
+    default_ptr = file_ptr;
   }
-  lVar6 = FUN_1800c4800(auStack_c00,puVar9,1);
-  if (lVar6 == 0) {
+  line_length = FUN_1800c4800(config_buffer, default_ptr, 1);
+  if (line_length == 0) {
     _setstate___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
-              ((longlong)alStack_c18 + (longlong)*(int *)(alStack_c18[0] + 4),2);
+              ((longlong)stream_handle + (longlong)*(int *)(stream_handle[0] + 4), 2);
   }
   else {
     _clear___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
-              ((longlong)alStack_c18 + (longlong)*(int *)(alStack_c18[0] + 4),0,0);
+              ((longlong)stream_handle + (longlong)*(int *)(stream_handle[0] + 4), 0, 0);
   }
-  if (lStack_b80 != 0) {
-    bVar1 = abStack_c08[*(int *)(alStack_c18[0] + 4)];
-    while ((bVar1 & 1) == 0) {
+  if (file_handle != 0) {
+    stream_state = stream_flags[*(int *)(stream_handle[0] + 4)];
+    while ((stream_state & 1) == 0) {
       _getline___basic_istream_DU__char_traits_D_std___std__QEAAAEAV12_PEAD_J_Z
-                (alStack_c18,acStack_638,0x400);
-      lVar6 = -1;
+                (stream_handle, line_buffer, 0x400);
+      line_length = -1;
       do {
-        lVar7 = lVar6 + 1;
-        lVar3 = lVar6 + 1;
-        lVar6 = lVar7;
-      } while (acStack_638[lVar3] != '\0');
-      if (lVar7 != 0) {
-        FUN_18010cbc0(acStack_638,&UNK_180a104f0,auStack_238,acStack_839 + 1);
-        uVar4 = 0xffffffffffffffff;
+        char_index = line_length + 1;
+        index = line_length + 1;
+        line_length = char_index;
+      } while (line_buffer[index] != '\0');
+      if (char_index != 0) {
+        FUN_18010cbc0(line_buffer, &UNK_180a104f0, temp_buffer2, processed_line + 1);
+        string_len = 0xffffffffffffffff;
         do {
-          uVar8 = uVar4;
-          uVar4 = uVar8 + 1;
-        } while (acStack_839[uVar8 + 2] != '\0');
-        if (acStack_839[uVar8 + 1] == '\r') {
-          if (0x1ff < uVar8) {
+          config_name_len = string_len;
+          string_len = config_name_len + 1;
+        } while (processed_line[config_name_len + 2] != '\0');
+        if (processed_line[config_name_len + 1] == '\r') {
+          if (0x1ff < config_name_len) {
             FUN_1808fcdc8();
-            pcVar2 = (code *)swi(3);
-            (*pcVar2)();
+            exception_handler = (code *)swi(3);
+            (*exception_handler)();
             return;
           }
-          acStack_839[uVar8 + 1] = '\0';
+          processed_line[config_name_len + 1] = '\0';
         }
-        puStack_af8 = &UNK_1809fcc28;
-        puStack_af0 = auStack_ae0;
-        uStack_ae8 = 0;
-        auStack_ae0[0] = 0;
-        lVar6 = -1;
+        config_ptr = &UNK_1809fcc28;
+        config_name = value_buffer;
+        config_name_length = 0;
+        value_buffer[0] = 0;
+        line_length = -1;
         do {
-          lVar7 = lVar6 + 1;
-          lVar3 = lVar6 + 2;
-          lVar6 = lVar7;
-        } while (acStack_839[lVar3] != '\0');
-        uStack_ae8 = (uint)lVar7;
-        strcpy_s(auStack_ae0,0x80,acStack_839 + 1);
-        if (6 < uStack_ae8) {
-          lVar6 = 0;
+          char_index = line_length + 1;
+          index = line_length + 2;
+          line_length = char_index;
+        } while (processed_line[index] != '\0');
+        config_name_length = (uint)char_index;
+        strcpy_s(value_buffer, 0x80, processed_line + 1);
+        if (6 < config_name_length) {
+          line_length = 0;
           do {
-            if ((&UNK_180a10500 + lVar6)[(longlong)(puStack_af0 + -0x180a10500)] !=
-                (&UNK_180a10500)[lVar6]) goto LAB_18021a863;
-            lVar6 = lVar6 + 1;
-          } while (lVar6 < 7);
-          if ((uStack_ae8 != 0xc) || (iVar5 = strcmp(puStack_af0,&UNK_180a104d0), iVar5 != 0)) {
-            FUN_180217f60(param_1 + 0x260,&puStack_af8);
+            if ((&UNK_180a10500 + line_length)[(longlong)(config_name + -0x180a10500)] !=
+                (&UNK_180a10500)[line_length]) goto LAB_18021a863;
+            line_length = line_length + 1;
+          } while (line_length < 7);
+          if ((config_name_length != 0xc) || (compare_result = strcmp(config_name, &UNK_180a104d0), compare_result != 0)) {
+            FUN_180217f60(param_1 + 0x260, &config_ptr);
           }
         }
 LAB_18021a863:
-        puStack_af8 = &UNK_18098bcb0;
+        config_ptr = &UNK_18098bcb0;
       }
-      bVar1 = abStack_c08[*(int *)(alStack_c18[0] + 4)];
+      stream_state = stream_flags[*(int *)(stream_handle[0] + 4)];
     }
-    lVar6 = FUN_1800a19c0(auStack_c00);
-    if (lVar6 == 0) {
+    line_length = FUN_1800a19c0(config_buffer);
+    if (line_length == 0) {
       _setstate___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
-                ((longlong)alStack_c18 + (longlong)*(int *)(alStack_c18[0] + 4),2);
+                ((longlong)stream_handle + (longlong)*(int *)(stream_handle[0] + 4), 2);
     }
   }
   FUN_180217db0(param_1 + 0x260);
-  uStack_c20 = FUN_18062b1e0(_DAT_180c8ed18,0x58,8,3);
+  allocated_buffer = FUN_18062b1e0(_DAT_180c8ed18, 0x58, 8, 3);
                     // WARNING: Subroutine does not return
-  memset(uStack_c20,0,0x58);
+  memset(allocated_buffer, 0, 0x58);
 }
 
 
@@ -711,8 +731,14 @@ LAB_18021a863:
 
 
 
-// 函数: void FUN_18021aa60(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18021aa60(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 处理资源文件
+ * @param param_1 资源管理器上下文
+ * @param param_2 参数2
+ * @param param_3 参数3
+ * @param param_4 参数4
+ */
+void process_resource_file(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 
 {
   ulonglong uVar1;
@@ -854,15 +880,21 @@ void FUN_18021aa60(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-longlong * FUN_18021ad90(longlong param_1,longlong *param_2)
+/**
+ * 获取数据结构指针
+ * @param param_1 数据结构容器
+ * @param param_2 输出参数，用于存储指针值
+ * @return 返回输出参数指针
+ */
+longlong * get_data_structure_pointer(longlong param_1, longlong *param_2)
 
 {
-  longlong *plVar1;
+  longlong *data_ptr;
   
-  plVar1 = *(longlong **)(param_1 + 0x1e8);
-  *param_2 = (longlong)plVar1;
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x28))();
+  data_ptr = *(longlong **)(param_1 + 0x1e8);
+  *param_2 = (longlong)data_ptr;
+  if (data_ptr != (longlong *)0x0) {
+    (**(code **)(*data_ptr + 0x28))();
   }
   return param_2;
 }
@@ -871,7 +903,13 @@ longlong * FUN_18021ad90(longlong param_1,longlong *param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18021ade0(longlong param_1,longlong param_2)
+/**
+ * 在数据集合中查找元素索引
+ * @param param_1 数据集合指针
+ * @param param_2 要查找的元素
+ * @return 返回找到的索引，未找到返回-1
+ */
+int find_element_index_in_collection(longlong param_1, longlong param_2)
 
 {
   byte *pbVar1;
@@ -931,7 +969,15 @@ LAB_18021ae8e:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18021ae2a(longlong param_1,undefined8 param_2,undefined8 param_3,longlong param_4)
+/**
+ * 在指定范围内查找元素索引
+ * @param param_1 范围大小参数
+ * @param param_2 参数2
+ * @param param_3 参数3
+ * @param param_4 数据集合指针
+ * @return 返回找到的索引，未找到返回-1
+ */
+int find_element_index_in_range(longlong param_1, undefined8 param_2, undefined8 param_3, longlong param_4)
 
 {
   byte *pbVar1;
@@ -988,19 +1034,29 @@ LAB_18021ae8e:
 
 
 
-undefined4 FUN_18021aef5(void)
+/**
+ * 获取寄存器值
+ * @return 返回EBX寄存器的值
+ */
+undefined4 get_register_value(void)
 
 {
-  undefined4 unaff_EBX;
+  undefined4 register_value;
   
-  return unaff_EBX;
+  return register_value;
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18021af10(longlong param_1,longlong param_2)
+/**
+ * 在链表中查找元素索引
+ * @param param_1 链表头指针
+ * @param param_2 要查找的元素
+ * @return 返回找到的索引，未找到返回-1
+ */
+int find_element_index_in_linked_list(longlong param_1, longlong param_2)
 
 {
   byte *pbVar1;
@@ -1056,8 +1112,11 @@ LAB_18021af9e:
 
 
 
-// 函数: void FUN_18021b070(void)
-void FUN_18021b070(void)
+/**
+ * 初始化系统模块1
+ * 初始化系统的第一个模块
+ */
+void initialize_system_module1(void)
 
 {
   FUN_1800f0e70();
@@ -1069,8 +1128,11 @@ void FUN_18021b070(void)
 
 
 
-// 函数: void FUN_18021b090(void)
-void FUN_18021b090(void)
+/**
+ * 初始化系统模块2
+ * 初始化系统的第二个模块
+ */
+void initialize_system_module2(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -1081,8 +1143,11 @@ void FUN_18021b090(void)
 
 
 
-// 函数: void FUN_18021b4f0(void)
-void FUN_18021b4f0(void)
+/**
+ * 初始化系统模块3
+ * 初始化系统的第三个模块
+ */
+void initialize_system_module3(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -1093,8 +1158,11 @@ void FUN_18021b4f0(void)
 
 
 
-// 函数: void FUN_18021b9c0(void)
-void FUN_18021b9c0(void)
+/**
+ * 初始化系统模块4
+ * 初始化系统的第四个模块
+ */
+void initialize_system_module4(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -1105,8 +1173,11 @@ void FUN_18021b9c0(void)
 
 
 
-// 函数: void FUN_18021bc50(void)
-void FUN_18021bc50(void)
+/**
+ * 初始化系统模块5
+ * 初始化系统的第五个模块
+ */
+void initialize_system_module5(void)
 
 {
                     // WARNING: Subroutine does not return
