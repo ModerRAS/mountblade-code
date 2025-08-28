@@ -338,7 +338,7 @@ LAB_180535d4e:
   if ((((bVar2) && (-1 < aiStackX_20[0])) && (aiStackX_20[0] < *(int *)(lVar1 + 0x52ed94))) &&
      (-1 < *(short *)(lVar1 + 0x52dda0 + (int64_t)aiStackX_20[0] * 2))) {
     lVar4 = lVar1 + 0x30a0 + (int64_t)aiStackX_20[0] * 0xa60;
-    FUN_180542260(*(uint64_t *)(lVar4 + 0x6d8));
+    Render_SceneProcessor(*(uint64_t *)(lVar4 + 0x6d8));
     FUN_1804ec4e0(lVar1,lVar4,auStack_18[0],lVar1 + 0x87a948,(char)auStackX_8[0],puVar5);
     if ((*(int *)(lVar4 + 0x720) != 3) &&
        (*(int32_t *)(lVar4 + 0x720) = 3, *(char *)(lVar4 + 0x984) != '\0')) {

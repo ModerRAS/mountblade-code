@@ -182,7 +182,7 @@ void FUN_1804ec4e0(int64_t param_1,int64_t param_2,int param_3,int64_t param_4,c
     }
     lVar9 = *(int64_t *)(param_1 + 0x87bd10) - *(int64_t *)(param_1 + 0x87bd08);
     lVar10 = lVar9 / 6 + (lVar9 >> 0x3f);
-    FUN_180542260(*(uint64_t *)(param_2 + 0x6d8));
+    Render_SceneProcessor(*(uint64_t *)(param_2 + 0x6d8));
     lVar9 = system_system_data_config;
     iVar6 = *(int *)(param_2 + 0x18);
     if ((iVar6 != 0) && (system_cache_buffer != 0)) {
