@@ -37,7 +37,7 @@
  * @param hash_table 哈希表指针
  * @return 无返回值
  */
-void RenderingData_CompressHashBased(longlong input_data, int data_size, int* output_size, longlong* hash_table)
+void RenderingData_CompressHashBased(int64_t input_data, int data_size, int* output_size, int64_t* hash_table)
 
 {
   int iVar1;
