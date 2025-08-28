@@ -448,138 +448,136 @@ void rendering_system_cleanup_render_object_controller(undefined8 *controller_pt
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-undefined8 FUN_18030d400(longlong param_1)
+// 函数: 创建渲染对象管理器
+// 参数: manager_handle - 管理器句柄
+// 返回值: 0表示成功
+undefined8 rendering_system_create_render_object_manager(longlong manager_handle)
 
 {
-  undefined8 uVar1;
-  longlong *plVar2;
-  longlong *plStackX_8;
+  undefined8 return_value;
+  longlong *manager_ptr;
+  longlong *temp_ptr;
   
-  plVar2 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,200,8,3,0xfffffffffffffffe);
-  FUN_180049830(plVar2);
-  *plVar2 = (longlong)&UNK_180a1a838;
-  plVar2[0x18] = param_1;
-  plStackX_8 = plVar2;
-  (**(code **)(*plVar2 + 0x28))(plVar2);
-  plStackX_8 = *(longlong **)(param_1 + 0x1b0);
-  *(longlong **)(param_1 + 0x1b0) = plVar2;
-  if (plStackX_8 != (longlong *)0x0) {
-    (**(code **)(*plStackX_8 + 0x38))();
+  manager_ptr = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 200, 8, 3, RENDER_OBJECT_FLAG_MASK);
+  FUN_180049830(manager_ptr);
+  *manager_ptr = (longlong)&UNK_180a1a838;
+  manager_ptr[0x18] = manager_handle;
+  temp_ptr = manager_ptr;
+  ((**(code **)(*manager_ptr + 0x28))(manager_ptr));
+  temp_ptr = *(longlong **)(manager_handle + 0x1b0);
+  *(longlong **)(manager_handle + 0x1b0) = manager_ptr;
+  if (temp_ptr != (longlong *)0x0) {
+    ((**(code **)(*temp_ptr + 0x38))();
   }
-  uVar1 = _DAT_180c82868;
-  plStackX_8 = *(longlong **)(param_1 + 0x1b0);
-  if (plStackX_8 != (longlong *)0x0) {
-    (**(code **)(*plStackX_8 + 0x28))();
+  return_value = _DAT_180c82868;
+  temp_ptr = *(longlong **)(manager_handle + 0x1b0);
+  if (temp_ptr != (longlong *)0x0) {
+    ((**(code **)(*temp_ptr + 0x28))());
   }
-  FUN_18005e110(uVar1,&plStackX_8);
+  FUN_18005e110(return_value, &temp_ptr);
   return 0;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18030d4d0(longlong param_1)
-void FUN_18030d4d0(longlong param_1)
+// 函数: 渲染系统批量处理渲染对象辅助函数
+// 参数: render_context - 渲染上下文
+void rendering_system_process_render_objects_batch_helper(longlong render_context)
 
 {
-  undefined8 uVar1;
-  longlong lVar2;
-  uint uVar3;
-  ulonglong uVar5;
-  longlong lVar6;
-  ulonglong uVar7;
-  ulonglong uVar8;
-  undefined8 uStack_d8;
-  undefined4 uStack_d0;
-  undefined2 uStack_cc;
-  undefined8 uStack_c8;
-  undefined8 uStack_c0;
-  undefined4 uStack_b8;
-  undefined1 uStack_b4;
-  undefined4 uStack_b0;
-  undefined8 uStack_ac;
-  undefined2 uStack_a4;
-  undefined8 uStack_a0;
-  undefined4 uStack_98;
-  undefined8 uStack_90;
-  undefined4 uStack_88;
-  undefined1 uStack_84;
-  undefined8 uStack_70;
-  undefined8 uStack_68;
-  undefined8 uStack_60;
-  undefined8 uStack_58;
-  undefined8 uStack_50;
-  undefined4 uStack_48;
-  undefined4 uStack_44;
-  undefined4 uStack_40;
-  undefined4 uStack_3c;
-  undefined4 uStack_38;
-  undefined4 uStack_34;
-  undefined4 uStack_30;
-  undefined4 uStack_2c;
-  ulonglong uVar4;
+  undefined8 render_manager;
+  longlong data_ptr;
+  uint loop_counter;
+  ulonglong data_index;
+  longlong object_array;
+  ulonglong array_index;
+  ulonglong object_count;
+  undefined8 stack_data_d8;
+  undefined4 stack_data_d0;
+  undefined2 stack_data_cc;
+  undefined8 stack_data_c8;
+  undefined8 stack_data_c0;
+  undefined4 stack_data_b8;
+  undefined1 stack_data_b4;
+  undefined4 stack_data_b0;
+  undefined8 stack_data_ac;
+  undefined2 stack_data_a4;
+  undefined8 stack_data_a0;
+  undefined4 stack_data_98;
+  undefined8 stack_data_90;
+  undefined4 stack_data_88;
+  undefined1 stack_data_84;
+  undefined8 stack_data_70;
+  undefined8 stack_data_68;
+  undefined8 stack_data_60;
+  undefined8 stack_data_58;
+  undefined8 stack_data_50;
+  undefined4 stack_data_48;
+  undefined4 stack_data_44;
+  undefined4 stack_data_40;
+  undefined4 stack_data_3c;
+  undefined4 stack_data_38;
+  undefined4 stack_data_34;
+  undefined4 stack_data_30;
+  undefined4 stack_data_2c;
+  ulonglong temp_var;
   
-  uVar7 = 0;
-  lVar6 = *(longlong *)(param_1 + 0xc0);
-  uVar1 = *(undefined8 *)(_DAT_180c86880 + 0x38);
-  uVar8 = uVar7;
-  if ((*(longlong **)(lVar6 + 0x110))[1] - **(longlong **)(lVar6 + 0x110) >> 3 != 0) {
+  object_count = 0;
+  object_array = *(longlong *)(render_context + 0xc0);
+  render_manager = *(undefined8 *)(_DAT_180c86880 + 0x38);
+  array_index = object_count;
+  if ((*(longlong **)(object_array + 0x110))[1] - **(longlong **)(object_array + 0x110) >> 3 != 0) {
     do {
-      uVar4 = 0;
-      lVar6 = *(longlong *)(uVar7 + **(longlong **)(lVar6 + 0x110));
-      lVar2 = *(longlong *)(lVar6 + 8);
-      uVar5 = uVar4;
-      if (*(longlong *)(lVar6 + 0x10) - lVar2 >> 3 != 0) {
+      temp_var = 0;
+      object_array = *(longlong *)(object_count + **(longlong **)(object_array + 0x110));
+      data_ptr = *(longlong *)(object_array + 8);
+      data_index = temp_var;
+      if (*(longlong *)(object_array + 0x10) - data_ptr >> 3 != 0) {
         do {
-          uStack_68 = 0x3f800000;
-          uStack_60 = 0;
-          uStack_58 = 0x3f80000000000000;
-          uStack_50 = 0;
-          uStack_c8 = 0;
-          uStack_a0 = 0;
-          uStack_98 = 0;
-          uStack_90 = 0;
-          uStack_70 = 0;
-          uStack_48 = 0;
-          uStack_44 = 0;
-          uStack_40 = 0x3f800000;
-          uStack_3c = 0;
-          uStack_38 = 0;
-          uStack_34 = 0;
-          uStack_30 = 0;
-          uStack_2c = 0x3f800000;
-          uStack_d8 = 0;
-          uStack_d0 = 0xffffffff;
-          uStack_cc = 0xff00;
-          uStack_c0 = 0xffffffffffffffff;
-          uStack_b8 = 0xffffffff;
-          uStack_b4 = 0xff;
-          uStack_b0 = 0xffffffff;
-          uStack_ac = 0;
-          uStack_a4 = 0x400;
-          uStack_88 = 0;
-          uStack_84 = 0;
-          FUN_180077750(*(undefined8 *)(*(longlong *)(lVar6 + 8) + uVar5),uVar1,&uStack_68,0,
-                        &uStack_d8);
-          lVar2 = *(longlong *)(lVar6 + 8);
-          uVar3 = (int)uVar4 + 1;
-          uVar4 = (ulonglong)uVar3;
-          uVar5 = uVar5 + 8;
-        } while ((ulonglong)(longlong)(int)uVar3 <
-                 (ulonglong)(*(longlong *)(lVar6 + 0x10) - lVar2 >> 3));
+          stack_data_68 = 0x3f800000;
+          stack_data_60 = 0;
+          stack_data_58 = 0x3f80000000000000;
+          stack_data_50 = 0;
+          stack_data_c8 = 0;
+          stack_data_a0 = 0;
+          stack_data_98 = 0;
+          stack_data_90 = 0;
+          stack_data_70 = 0;
+          stack_data_48 = 0;
+          stack_data_44 = 0;
+          stack_data_40 = 0x3f800000;
+          stack_data_3c = 0;
+          stack_data_38 = 0;
+          stack_data_34 = 0;
+          stack_data_30 = 0;
+          stack_data_2c = 0x3f800000;
+          stack_data_d8 = 0;
+          stack_data_d0 = 0xffffffff;
+          stack_data_cc = 0xff00;
+          stack_data_c0 = 0xffffffffffffffff;
+          stack_data_b8 = 0xffffffff;
+          stack_data_b4 = 0xff;
+          stack_data_b0 = 0xffffffff;
+          stack_data_ac = 0;
+          stack_data_a4 = 0x400;
+          stack_data_88 = 0;
+          stack_data_84 = 0;
+          FUN_180077750(*(undefined8 *)(*(longlong *)(object_array + 8) + data_index), render_manager, &stack_data_68, 0,
+                        &stack_data_d8);
+          data_ptr = *(longlong *)(object_array + 8);
+          loop_counter = (int)temp_var + 1;
+          temp_var = (ulonglong)loop_counter;
+          data_index = data_index + 8;
+        } while ((ulonglong)(longlong)(int)loop_counter <
+                 (ulonglong)(*(longlong *)(object_array + 0x10) - data_ptr >> 3));
       }
-      *(longlong *)(lVar6 + 0x10) = lVar2;
-      uVar3 = (int)uVar8 + 1;
-      lVar6 = *(longlong *)(param_1 + 0xc0);
-      uVar7 = uVar7 + 8;
-      uVar8 = (ulonglong)uVar3;
-    } while ((ulonglong)(longlong)(int)uVar3 <
-             (ulonglong)((*(longlong **)(lVar6 + 0x110))[1] - **(longlong **)(lVar6 + 0x110) >> 3));
+      *(longlong *)(object_array + 0x10) = data_ptr;
+      loop_counter = (int)array_index + 1;
+      object_array = *(longlong *)(render_context + 0xc0);
+      object_count = object_count + 8;
+      array_index = (ulonglong)loop_counter;
+    } while ((ulonglong)(longlong)(int)loop_counter <
+             (ulonglong)((*(longlong **)(object_array + 0x110))[1] - **(longlong **)(object_array + 0x110) >> 3));
   }
   return;
 }
@@ -588,84 +586,85 @@ void FUN_18030d4d0(longlong param_1)
 
 
 
-// 函数: void FUN_18030d51b(undefined8 param_1,undefined8 param_2,longlong param_3,ulonglong param_4)
-void FUN_18030d51b(undefined8 param_1,undefined8 param_2,longlong param_3,ulonglong param_4)
+// 函数: 渲染系统单个渲染对象处理辅助函数
+// 参数: param_1 - 参数1, param_2 - 参数2, render_context - 渲染上下文, param_4 - 参数4
+void rendering_system_process_render_objects_single_helper(undefined8 param_1, undefined8 param_2, longlong render_context, ulonglong param_4)
 
 {
-  longlong lVar1;
-  undefined8 uVar2;
-  longlong lVar3;
-  undefined8 unaff_RBX;
-  longlong unaff_RBP;
-  uint uVar4;
-  undefined8 unaff_RSI;
-  ulonglong uVar5;
-  undefined8 unaff_RDI;
-  ulonglong uVar6;
-  longlong in_R11;
-  longlong unaff_R13;
-  undefined8 unaff_R14;
-  ulonglong uVar7;
-  int unaff_R15D;
+  longlong object_ptr;
+  undefined8 object_data;
+  longlong data_start;
+  undefined8 register_rbx;
+  longlong register_rbp;
+  uint loop_counter;
+  undefined8 register_rsi;
+  ulonglong data_index;
+  undefined8 register_rdi;
+  ulonglong temp_var;
+  longlong register_r11;
+  longlong register_r13;
+  undefined8 register_r14;
+  ulonglong object_index;
+  int register_r15d;
   
-  *(undefined8 *)(in_R11 + 8) = unaff_RBX;
-  *(undefined8 *)(in_R11 + 0x10) = unaff_RSI;
-  *(undefined8 *)(in_R11 + 0x18) = unaff_RDI;
-  *(undefined8 *)(in_R11 + -0x28) = unaff_R14;
-  uVar7 = param_4 & 0xffffffff;
+  *(undefined8 *)(register_r11 + 8) = register_rbx;
+  *(undefined8 *)(register_r11 + 0x10) = register_rsi;
+  *(undefined8 *)(register_r11 + 0x18) = register_rdi;
+  *(undefined8 *)(register_r11 + -0x28) = register_r14;
+  object_index = param_4 & 0xffffffff;
   do {
-    uVar5 = param_4 & 0xffffffff;
-    lVar1 = *(longlong *)(uVar7 + **(longlong **)(param_3 + 0x110));
-    lVar3 = *(longlong *)(lVar1 + 8);
-    uVar6 = param_4;
-    if (*(longlong *)(lVar1 + 0x10) - lVar3 >> 3 != 0) {
+    data_index = param_4 & 0xffffffff;
+    object_ptr = *(longlong *)(object_index + **(longlong **)(render_context + 0x110));
+    data_start = *(longlong *)(object_ptr + 8);
+    temp_var = param_4;
+    if (*(longlong *)(object_ptr + 0x10) - data_start >> 3 != 0) {
       do {
-        lVar3 = *(longlong *)(lVar1 + 8);
-        *(undefined8 *)(unaff_RBP + -9) = 0x3f800000;
-        *(undefined8 *)(unaff_RBP + -1) = 0;
-        *(undefined8 *)(unaff_RBP + 7) = 0x3f80000000000000;
-        *(undefined8 *)(unaff_RBP + 0xf) = 0;
-        uVar2 = *(undefined8 *)(lVar3 + param_4);
-        *(ulonglong *)(unaff_RBP + -0x69) = uVar6;
-        *(ulonglong *)(unaff_RBP + -0x41) = uVar6;
-        *(int *)(unaff_RBP + -0x39) = (int)uVar6;
-        *(ulonglong *)(unaff_RBP + -0x31) = uVar6;
-        *(ulonglong *)(unaff_RBP + -0x11) = uVar6;
-        *(undefined4 *)(unaff_RBP + 0x17) = 0;
-        *(undefined4 *)(unaff_RBP + 0x1b) = 0;
-        *(undefined4 *)(unaff_RBP + 0x1f) = 0x3f800000;
-        *(undefined4 *)(unaff_RBP + 0x23) = 0;
-        *(undefined4 *)(unaff_RBP + 0x27) = 0;
-        *(undefined4 *)(unaff_RBP + 0x2b) = 0;
-        *(undefined4 *)(unaff_RBP + 0x2f) = 0;
-        *(undefined4 *)(unaff_RBP + 0x33) = 0x3f800000;
-        *(undefined8 *)(unaff_RBP + -0x79) = 0;
-        *(undefined4 *)(unaff_RBP + -0x71) = 0xffffffff;
-        *(undefined2 *)(unaff_RBP + -0x6d) = 0xff00;
-        *(undefined8 *)(unaff_RBP + -0x61) = 0xffffffffffffffff;
-        *(undefined4 *)(unaff_RBP + -0x59) = 0xffffffff;
-        *(undefined1 *)(unaff_RBP + -0x55) = 0xff;
-        *(undefined4 *)(unaff_RBP + -0x51) = 0xffffffff;
-        *(undefined8 *)(unaff_RBP + -0x4d) = 0;
-        *(undefined2 *)(unaff_RBP + -0x45) = 0x400;
-        *(undefined4 *)(unaff_RBP + -0x29) = 0;
-        *(undefined1 *)(unaff_RBP + -0x25) = 0;
-        FUN_180077750(uVar2,0,unaff_RBP + -9,0,unaff_RBP + -0x79);
-        lVar3 = *(longlong *)(lVar1 + 8);
+        data_start = *(longlong *)(object_ptr + 8);
+        *(undefined8 *)(register_rbp + -9) = 0x3f800000;
+        *(undefined8 *)(register_rbp + -1) = 0;
+        *(undefined8 *)(register_rbp + 7) = 0x3f80000000000000;
+        *(undefined8 *)(register_rbp + 0xf) = 0;
+        object_data = *(undefined8 *)(data_start + param_4);
+        *(ulonglong *)(register_rbp + -0x69) = temp_var;
+        *(ulonglong *)(register_rbp + -0x41) = temp_var;
+        *(int *)(register_rbp + -0x39) = (int)temp_var;
+        *(ulonglong *)(register_rbp + -0x31) = temp_var;
+        *(ulonglong *)(register_rbp + -0x11) = temp_var;
+        *(undefined4 *)(register_rbp + 0x17) = 0;
+        *(undefined4 *)(register_rbp + 0x1b) = 0;
+        *(undefined4 *)(register_rbp + 0x1f) = 0x3f800000;
+        *(undefined4 *)(register_rbp + 0x23) = 0;
+        *(undefined4 *)(register_rbp + 0x27) = 0;
+        *(undefined4 *)(register_rbp + 0x2b) = 0;
+        *(undefined4 *)(register_rbp + 0x2f) = 0;
+        *(undefined4 *)(register_rbp + 0x33) = 0x3f800000;
+        *(undefined8 *)(register_rbp + -0x79) = 0;
+        *(undefined4 *)(register_rbp + -0x71) = 0xffffffff;
+        *(undefined2 *)(register_rbp + -0x6d) = 0xff00;
+        *(undefined8 *)(register_rbp + -0x61) = 0xffffffffffffffff;
+        *(undefined4 *)(register_rbp + -0x59) = 0xffffffff;
+        *(undefined1 *)(register_rbp + -0x55) = 0xff;
+        *(undefined4 *)(register_rbp + -0x51) = 0xffffffff;
+        *(undefined8 *)(register_rbp + -0x4d) = 0;
+        *(undefined2 *)(register_rbp + -0x45) = 0x400;
+        *(undefined4 *)(register_rbp + -0x29) = 0;
+        *(undefined1 *)(register_rbp + -0x25) = 0;
+        FUN_180077750(object_data, 0, register_rbp + -9, 0, register_rbp + -0x79);
+        data_start = *(longlong *)(object_ptr + 8);
         param_4 = param_4 + 8;
-        uVar4 = (int)uVar5 + 1;
-        uVar5 = (ulonglong)uVar4;
-        uVar6 = 0;
-      } while ((ulonglong)(longlong)(int)uVar4 <
-               (ulonglong)(*(longlong *)(lVar1 + 0x10) - lVar3 >> 3));
+        loop_counter = (int)data_index + 1;
+        data_index = (ulonglong)loop_counter;
+        temp_var = 0;
+      } while ((ulonglong)(longlong)(int)loop_counter <
+               (ulonglong)(*(longlong *)(object_ptr + 0x10) - data_start >> 3));
     }
-    *(longlong *)(lVar1 + 0x10) = lVar3;
-    unaff_R15D = unaff_R15D + 1;
-    param_3 = *(longlong *)(unaff_R13 + 0xc0);
-    uVar7 = uVar7 + 8;
-    param_4 = uVar6;
-  } while ((ulonglong)(longlong)unaff_R15D <
-           (ulonglong)((*(longlong **)(param_3 + 0x110))[1] - **(longlong **)(param_3 + 0x110) >> 3)
+    *(longlong *)(object_ptr + 0x10) = data_start;
+    register_r15d = register_r15d + 1;
+    render_context = *(longlong *)(register_r13 + 0xc0);
+    object_index = object_index + 8;
+    param_4 = temp_var;
+  } while ((ulonglong)(longlong)register_r15d <
+           (ulonglong)((*(longlong **)(render_context + 0x110))[1] - **(longlong **)(render_context + 0x110) >> 3)
           );
   return;
 }

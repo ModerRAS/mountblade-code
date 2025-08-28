@@ -135,8 +135,6 @@ uint ui_system_calculate_bit_allocation(longlong *ui_context, uint bit_count)
   return result;
 }
 
-
-
 /**
  * @brief UI系统音频数据处理函数
  * @param audio_context 音频上下文参数
@@ -210,11 +208,9 @@ uint ui_system_process_audio_data(undefined8 audio_context, uint sample_count)
   return processed_bits;
 }
 
-
-
 /**
  * @brief UI系统状态设置函数
- * @return undefined4 返回状态码
+ * @return uint 返回状态码
  * 
  * 该函数用于设置UI系统的状态标志位
  */
@@ -226,8 +222,6 @@ uint ui_system_set_status_flag(void)
   *(uint *)(context_ptr + 0x30) = 1;
   return status_code;
 }
-
-
 
 /**
  * @brief UI系统音频流解码函数
@@ -293,809 +287,801 @@ SAMPLE_RATE_CALCULATION:
     }
     sample_rate = 0xb40;
   }
-  uVar15 = param_2 - 1;
-  pbVar14 = param_1 + 1;
-  bVar4 = 0;
-  uVar13 = uVar15;
-  if ((bVar1 & 3) == 0) {
-    uVar10 = 1;
-    uStackX_8 = uVar9;
+  
+  remaining_data = data_size - 1;
+  data_ptr = audio_data + 1;
+  channel_mode = 0;
+  total_frames = remaining_data;
+  
+  if ((format_header & 3) == 0) {
+    frame_count = 1;
+    skip_bytes = channels_per_frame;
   }
-  else if ((bVar1 & 3) == 1) {
-    uVar10 = 2;
-    bVar4 = 1;
-    uStackX_8 = uVar9;
-    if (param_3 == 0) {
-      if ((uVar15 & 1) != 0) {
+  else if ((format_header & 3) == 1) {
+    frame_count = 2;
+    channel_mode = 1;
+    skip_bytes = channels_per_frame;
+    if (decode_mode == 0) {
+      if ((remaining_data & 1) != 0) {
         return 0xfffffffc;
       }
-      *param_6 = (short)((int)uVar15 / 2);
-      uVar13 = (int)uVar15 / 2;
+      *channel_sizes = (short)((int)remaining_data / 2);
+      total_frames = (int)remaining_data / 2;
     }
   }
-  else if ((bVar1 & 3) == 2) {
-    uVar10 = 2;
-    iVar6 = func_0x0001807104d0(pbVar14,uVar15,param_6);
-    sVar3 = *param_6;
-    uVar15 = uVar15 - iVar6;
-    if (sVar3 < 0) {
+  else if ((format_header & 3) == 2) {
+    frame_count = 2;
+    sample_rate = func_0x0001807104d0(data_ptr, remaining_data, channel_sizes);
+    channel_size = *channel_sizes;
+    remaining_data = remaining_data - sample_rate;
+    if (channel_size < 0) {
       return 0xfffffffc;
     }
-    if ((int)uVar15 < (int)sVar3) {
+    if ((int)remaining_data < (int)channel_size) {
       return 0xfffffffc;
     }
-    pbVar14 = pbVar14 + iVar6;
-    uStackX_8 = uVar9;
-    uVar13 = uVar15 - (int)sVar3;
+    data_ptr = data_ptr + sample_rate;
+    skip_bytes = channels_per_frame;
+    total_frames = remaining_data - (int)channel_size;
   }
   else {
-    if ((int)uVar15 < 1) {
+    if ((int)remaining_data < 1) {
       return 0xfffffffc;
     }
-    bVar4 = *pbVar14;
-    pbVar14 = param_1 + 2;
-    uVar9 = bVar4 & 0x3f;
-    uVar10 = (ulonglong)uVar9;
-    if ((bVar4 & 0x3f) == 0) {
+    channel_mode = *data_ptr;
+    data_ptr = audio_data + 2;
+    channels_per_frame = channel_mode & 0x3f;
+    frame_count = (ulonglong)channels_per_frame;
+    if ((channel_mode & 0x3f) == 0) {
       return 0xfffffffc;
     }
-    if (0x1680 < (int)(iVar6 * uVar9)) {
+    if (UI_BITRATE_THRESHOLD < (int)(sample_rate * channels_per_frame)) {
       return 0xfffffffc;
     }
-    uVar15 = param_2 - 2;
-    uVar5 = uVar8;
-    if ((bVar4 & 0x40) != 0) {
+    remaining_data = data_size - 2;
+    result = 0;
+    if ((channel_mode & 0x40) != 0) {
       do {
-        if ((int)uVar15 < 1) {
+        if ((int)remaining_data < 1) {
           return 0xfffffffc;
         }
-        bVar2 = *pbVar14;
-        pbVar14 = pbVar14 + 1;
-        uVar11 = (uint)bVar2;
-        if (bVar2 == 0xff) {
-          uVar11 = 0xfe;
+        encoding_flag = *data_ptr;
+        data_ptr = data_ptr + 1;
+        frame_size = (uint)encoding_flag;
+        if (encoding_flag == 0xff) {
+          frame_size = 0xfe;
         }
-        uStackX_8 = (int)uVar5 + uVar11;
-        uVar15 = uVar15 + (-1 - uVar11);
-        uVar5 = (ulonglong)uStackX_8;
-      } while (bVar2 == 0xff);
+        skip_bytes = (int)result + frame_size;
+        remaining_data = remaining_data + (-1 - frame_size);
+        result = (ulonglong)skip_bytes;
+      } while (encoding_flag == 0xff);
     }
-    if ((int)uVar15 < 0) {
+    if ((int)remaining_data < 0) {
       return 0xfffffffc;
     }
-    bVar4 = ~(bVar4 >> 7) & 1;
-    if (bVar4 == 0) {
-      uVar5 = uVar8;
-      psVar12 = param_6;
-      uVar13 = uVar15;
-      if (0 < (int)(uVar9 - 1)) {
+    channel_mode = ~(channel_mode >> 7) & 1;
+    if (channel_mode == 0) {
+      result = 0;
+      channel_ptr = channel_sizes;
+      total_frames = remaining_data;
+      if (0 < (int)(channels_per_frame - 1)) {
         do {
-          iVar6 = func_0x0001807104d0(pbVar14,uVar15,param_6 + (int)uVar5);
-          sVar3 = *psVar12;
-          uVar15 = uVar15 - iVar6;
-          if (sVar3 < 0) {
+          sample_rate = func_0x0001807104d0(data_ptr, remaining_data, channel_sizes + (int)result);
+          channel_size = *channel_ptr;
+          remaining_data = remaining_data - sample_rate;
+          if (channel_size < 0) {
             return 0xfffffffc;
           }
-          if ((int)uVar15 < (int)sVar3) {
+          if ((int)remaining_data < (int)channel_size) {
             return 0xfffffffc;
           }
-          uVar11 = (int)uVar5 + 1;
-          pbVar14 = pbVar14 + iVar6;
-          uVar13 = uVar13 - (iVar6 + sVar3);
-          uVar5 = (ulonglong)uVar11;
-          psVar12 = psVar12 + 1;
-        } while ((int)uVar11 < (int)(uVar9 - 1));
+          frame_size = (int)result + 1;
+          data_ptr = data_ptr + sample_rate;
+          total_frames = total_frames - (sample_rate + channel_size);
+          result = (ulonglong)frame_size;
+          channel_ptr = channel_ptr + 1;
+        } while ((int)frame_size < (int)(channels_per_frame - 1));
       }
-      if ((int)uVar13 < 0) {
+      if ((int)total_frames < 0) {
+        return 0xfffffffc;
+      }
+    }
+    else if (decode_mode == 0) {
+      total_frames = (int)remaining_data / (int)channels_per_frame;
+      if (channels_per_frame * total_frames != remaining_data) {
+        return 0xfffffffc;
+      }
+      if (0 < (int)(channels_per_frame - 1)) {
+        channel_ptr = channel_sizes;
+        for (result = frame_count * 2 - 2 >> 1; result != 0; result = result - 1) {
+          *channel_ptr = (short)total_frames;
+          channel_ptr = channel_ptr + 1;
+        }
+      }
+    }
+  }
+  
+  if (decode_mode == 0) {
+    if ((int)total_frames < UI_MAX_CHANNEL_COUNT) {
+      channel_sizes[frame_count - 1] = (short)total_frames;
+      goto DECODE_SUCCESS;
+    }
+  }
+  else {
+    sample_rate = func_0x0001807104d0(data_ptr, remaining_data, channel_sizes + (frame_count - 1));
+    if ((-1 < channel_sizes[frame_count - 1]) &&
+       (bitrate = (int)channel_sizes[frame_count - 1], bitrate <= (int)(remaining_data - sample_rate))) {
+      data_ptr = data_ptr + sample_rate;
+      if (channel_mode == 0) {
+        if (sample_rate + bitrate <= (int)total_frames) goto DECODE_SUCCESS;
+      }
+      else if (bitrate * (int)frame_count <= (int)(remaining_data - sample_rate)) {
+        result = 0;
+        if (0 < (longlong)(frame_count - 1)) {
+          do {
+            channel_sizes[result] = channel_sizes[frame_count - 1];
+            result = result + 1;
+          } while ((longlong)result < (longlong)(frame_count - 1));
+        }
+DECODE_SUCCESS:
+        if (bytes_processed != (int *)0x0) {
+          *bytes_processed = (int)data_ptr - (int)audio_data;
+        }
+        if ((int)frame_count != 0) {
+          do {
+            if (buffer_ptr != 0) {
+              *(byte **)(buffer_ptr + result * 8) = data_ptr;
+            }
+            channel_ptr = channel_sizes + result;
+            result = result + 1;
+            data_ptr = data_ptr + *channel_ptr;
+          } while ((longlong)result < (longlong)frame_count);
+        }
+        if (total_size != (int *)0x0) {
+          *total_size = ((int)data_ptr - (int)audio_data) + skip_bytes;
+        }
+        if (format_output != (byte *)0x0) {
+          *format_output = format_header;
+          return frame_count;
+        }
+        return frame_count;
+      }
+    }
+  }
+  return 0xfffffffc;
+}
+
+/**
+ * @brief UI系统音频块处理函数
+ * @param param_1 参数1
+ * @param param_2 参数2
+ * @param param_3 参数3
+ * @return ulonglong 处理结果
+ * 
+ * 该函数处理音频数据块，用于UI系统的音频处理模块
+ */
+ulonglong ui_system_process_audio_chunk(undefined8 param_1, undefined8 param_2, int param_3)
+{
+  byte format_header;
+  byte encoding_flag;
+  short channel_size;
+  byte channel_mode;
+  ulonglong result;
+  int sample_rate;
+  int bitrate;
+  ulonglong frame_count;
+  uint frame_size;
+  short *channel_ptr;
+  uint remaining_data;
+  uint total_frames;
+  byte *data_ptr;
+  uint skip_bytes;
+  
+  format_header = *param_1;
+  if ((char)format_header < '\0') {
+    sample_rate = UI_SAMPLE_RATE_BASE << (format_header >> 3 & 3);
+    sample_rate = sample_rate / 400 + (sample_rate >> 0x1f);
+SAMPLE_RATE_PROCESSING:
+    sample_rate = sample_rate - (sample_rate >> 0x1f);
+  }
+  else if ((format_header & 0x60) == 0x60) {
+    sample_rate = 0x3c0;
+    if ((format_header & 8) == 0) {
+      sample_rate = 0x1e0;
+    }
+  }
+  else {
+    channel_mode = format_header >> 3 & 3;
+    if (channel_mode != 3) {
+      sample_rate = UI_SAMPLE_RATE_BASE << channel_mode;
+      sample_rate = sample_rate / 100 + (sample_rate >> 0x1f);
+      goto SAMPLE_RATE_PROCESSING;
+    }
+    sample_rate = 0xb40;
+  }
+  
+  remaining_data = param_3 - 1;
+  data_ptr = param_1 + 1;
+  total_frames = result;
+  
+  if ((format_header & 3) == 0) {
+    frame_count = 1;
+  }
+  else if ((format_header & 3) == 1) {
+    frame_count = 2;
+    total_frames = 1;
+    if (param_3 == 0) {
+      if ((remaining_data & 1) != 0) {
+        return 0xfffffffc;
+      }
+      *param_2 = (short)((int)remaining_data / 2);
+      total_frames = (int)remaining_data / 2;
+    }
+  }
+  else if ((format_header & 3) == 2) {
+    frame_count = 2;
+    sample_rate = func_0x0001807104d0(data_ptr, remaining_data);
+    channel_size = *param_2;
+    remaining_data = remaining_data - sample_rate;
+    if (channel_size < 0) {
+      return 0xfffffffc;
+    }
+    if ((int)remaining_data < (int)channel_size) {
+      return 0xfffffffc;
+    }
+    data_ptr = data_ptr + sample_rate;
+    total_frames = remaining_data - (int)channel_size;
+  }
+  else {
+    if ((int)remaining_data < 1) {
+      return 0xfffffffc;
+    }
+    channel_mode = *data_ptr;
+    data_ptr = param_1 + 2;
+    frame_size = channel_mode & 0x3f;
+    frame_count = (ulonglong)frame_size;
+    if ((channel_mode & 0x3f) == 0) {
+      return 0xfffffffc;
+    }
+    if (UI_BITRATE_THRESHOLD < (int)(sample_rate * frame_size)) {
+      return 0xfffffffc;
+    }
+    remaining_data = param_3 - 2;
+    if ((channel_mode & 0x40) != 0) {
+      do {
+        if ((int)remaining_data < 1) {
+          return 0xfffffffc;
+        }
+        encoding_flag = *data_ptr;
+        data_ptr = data_ptr + 1;
+        total_frames = (uint)encoding_flag;
+        if (encoding_flag == 0xff) {
+          total_frames = 0xfe;
+        }
+        param_3 = param_3 + total_frames;
+        remaining_data = remaining_data + (-1 - total_frames);
+      } while (encoding_flag == 0xff);
+    }
+    if ((int)remaining_data < 0) {
+      return 0xfffffffc;
+    }
+    total_frames = ~(uint)(channel_mode >> 7) & 1;
+    if (total_frames == 0) {
+      result = result & 0xffffffff;
+      channel_ptr = param_2;
+      total_frames = remaining_data;
+      if (0 < (int)(frame_size - 1)) {
+        do {
+          sample_rate = func_0x0001807104d0(data_ptr, remaining_data, param_2 + (int)result);
+          channel_size = *channel_ptr;
+          remaining_data = remaining_data - sample_rate;
+          if (channel_size < 0) {
+            return 0xfffffffc;
+          }
+          if ((int)remaining_data < (int)channel_size) {
+            return 0xfffffffc;
+          }
+          frame_size = (int)result + 1;
+          result = (ulonglong)frame_size;
+          data_ptr = data_ptr + sample_rate;
+          total_frames = total_frames - (sample_rate + channel_size);
+          channel_ptr = channel_ptr + 1;
+        } while ((int)frame_size < (int)(frame_size - 1));
+      }
+      if ((int)total_frames < 0) {
         return 0xfffffffc;
       }
     }
     else if (param_3 == 0) {
-      uVar13 = (int)uVar15 / (int)uVar9;
-      if (uVar9 * uVar13 != uVar15) {
+      total_frames = (int)remaining_data / (int)frame_size;
+      if (frame_size * total_frames != remaining_data) {
         return 0xfffffffc;
       }
-      if (0 < (int)(uVar9 - 1)) {
-        psVar12 = param_6;
-        for (uVar5 = uVar10 * 2 - 2 >> 1; uVar5 != 0; uVar5 = uVar5 - 1) {
-          *psVar12 = (short)uVar13;
-          psVar12 = psVar12 + 1;
+      if (0 < (int)(frame_size - 1)) {
+        channel_ptr = param_2;
+        for (result = frame_count * 2 - 2 >> 1; result != 0; result = result - 1) {
+          *channel_ptr = (short)total_frames;
+          channel_ptr = channel_ptr + 1;
         }
       }
     }
   }
+  
   if (param_3 == 0) {
-    if ((int)uVar13 < 0x4fc) {
-      param_6[uVar10 - 1] = (short)uVar13;
-      goto LAB_18070fb9d;
+    if ((int)total_frames < UI_MAX_CHANNEL_COUNT) {
+      param_2[frame_count - 1] = (short)total_frames;
+      goto PROCESSING_SUCCESS;
     }
   }
   else {
-    iVar6 = func_0x0001807104d0(pbVar14,uVar15,param_6 + (uVar10 - 1));
-    if ((-1 < param_6[uVar10 - 1]) &&
-       (iVar7 = (int)param_6[uVar10 - 1], iVar7 <= (int)(uVar15 - iVar6))) {
-      pbVar14 = pbVar14 + iVar6;
-      if (bVar4 == 0) {
-        if (iVar6 + iVar7 <= (int)uVar13) goto LAB_18070fb9d;
+    sample_rate = func_0x0001807104d0(data_ptr, remaining_data, param_2 + (frame_count - 1));
+    if ((-1 < param_2[frame_count - 1]) &&
+       (bitrate = (int)param_2[frame_count - 1], bitrate <= (int)(remaining_data - sample_rate))) {
+      data_ptr = data_ptr + sample_rate;
+      if (total_frames == 0) {
+        if (sample_rate + bitrate <= (int)total_frames) goto PROCESSING_SUCCESS;
       }
-      else if (iVar7 * (int)uVar10 <= (int)(uVar15 - iVar6)) {
-        uVar5 = uVar8;
-        if (0 < (longlong)(uVar10 - 1)) {
+      else if (bitrate * (int)frame_count <= (int)(remaining_data - sample_rate)) {
+        result = result & 0xffffffff;
+        if (0 < (longlong)(frame_count - 1)) {
           do {
-            param_6[uVar5] = param_6[uVar10 - 1];
-            uVar5 = uVar5 + 1;
-          } while ((longlong)uVar5 < (longlong)(uVar10 - 1));
+            param_2[result] = param_2[frame_count - 1];
+            result = result + 1;
+          } while ((longlong)result < (longlong)(frame_count - 1));
         }
-LAB_18070fb9d:
-        if (param_7 != (int *)0x0) {
-          *param_7 = (int)pbVar14 - (int)param_1;
+PROCESSING_SUCCESS:
+        if (bytes_processed != (int *)0x0) {
+          *bytes_processed = (int)data_ptr - (int)param_1;
         }
-        if ((int)uVar10 != 0) {
+        if ((int)frame_count != 0) {
           do {
-            if (param_5 != 0) {
-              *(byte **)(param_5 + uVar8 * 8) = pbVar14;
+            if (buffer_ptr != 0) {
+              *(byte **)(buffer_ptr + result * 8) = data_ptr;
             }
-            psVar12 = param_6 + uVar8;
-            uVar8 = uVar8 + 1;
-            pbVar14 = pbVar14 + *psVar12;
-          } while ((longlong)uVar8 < (longlong)uVar10);
+            channel_ptr = param_2 + result;
+            result = result + 1;
+            data_ptr = data_ptr + *channel_ptr;
+          } while ((longlong)result < (longlong)frame_count);
         }
-        if (param_8 != (int *)0x0) {
-          *param_8 = ((int)pbVar14 - (int)param_1) + uStackX_8;
+        if (total_size != (int *)0x0) {
+          *total_size = ((int)data_ptr - (int)param_1) + skip_bytes;
         }
-        if (param_4 != (byte *)0x0) {
-          *param_4 = bVar1;
-          return uVar10;
+        if (format_output != (byte *)0x0) {
+          *format_output = format_header;
+          return frame_count;
         }
-        return uVar10;
+        return frame_count;
       }
     }
   }
   return 0xfffffffc;
 }
 
-
-
-ulonglong FUN_18070f8a4(byte *param_1,undefined8 param_2,int param_3)
-
+/**
+ * @brief UI系统音频数据验证函数
+ * @return int 验证结果
+ * 
+ * 该函数验证音频数据的完整性和有效性
+ */
+int ui_system_validate_audio_data(void)
 {
-  byte bVar1;
-  byte bVar2;
-  short sVar3;
-  byte bVar4;
-  ulonglong uVar5;
-  int iVar6;
-  int iVar7;
-  ulonglong unaff_RBX;
-  uint uVar8;
-  ulonglong uVar9;
-  short *unaff_RSI;
-  uint uVar10;
-  short *psVar11;
-  uint uVar12;
-  longlong in_R10;
-  byte *pbVar13;
-  int in_R11D;
-  uint uVar14;
-  uint uVar15;
-  int unaff_R14D;
-  int unaff_R15D;
-  bool in_ZF;
-  int iStackX_20;
-  int in_stack_00000070;
-  int in_stack_00000080;
-  byte *in_stack_00000088;
-  longlong in_stack_00000090;
-  int *in_stack_000000a0;
-  int *in_stack_000000a8;
+  longlong context_ptr;
+  longlong result_ptr;
+  int channel_count;
+  longlong data_ptr;
+  int frame_count;
+  longlong output_ptr;
+  int sample_rate;
+  longlong buffer_offset;
+  undefined1 format_header;
+  longlong array_ptr;
+  int *bytes_processed;
+  longlong buffer_ptr;
+  int *total_size;
   
-  if (in_ZF) {
-    return 0xfffffffc;
-  }
-  bVar1 = *param_1;
-  if ((char)bVar1 < '\0') {
-    iVar6 = 48000 << (bVar1 >> 3 & 3);
-    iVar6 = iVar6 / 400 + (iVar6 >> 0x1f);
-LAB_18070f928:
-    iVar6 = iVar6 - (iVar6 >> 0x1f);
-  }
-  else if ((bVar1 & 0x60) == 0x60) {
-    iVar6 = 0x3c0;
-    if ((bVar1 & 8) == 0) {
-      iVar6 = 0x1e0;
+  if (frame_count < UI_MAX_CHANNEL_COUNT) {
+    *(short *)(data_ptr + -2 + result_ptr * 2) = (short)frame_count;
+    if (bytes_processed != (int *)0x0) {
+      *bytes_processed = (int)data_ptr - buffer_offset;
     }
-  }
-  else {
-    bVar4 = bVar1 >> 3 & 3;
-    if (bVar4 != 3) {
-      iVar6 = 48000 << bVar4;
-      iVar6 = iVar6 / 100 + (iVar6 >> 0x1f);
-      goto LAB_18070f928;
-    }
-    iVar6 = 0xb40;
-  }
-  uVar14 = in_R11D - 1;
-  pbVar13 = (byte *)(in_R10 + 1);
-  uVar15 = (uint)unaff_RBX;
-  uVar12 = uVar14;
-  if ((bVar1 & 3) == 0) {
-    uVar9 = 1;
-  }
-  else if ((bVar1 & 3) == 1) {
-    uVar9 = 2;
-    uVar15 = 1;
-    if (param_3 == 0) {
-      if ((uVar14 & 1) != 0) {
-        return 0xfffffffc;
-      }
-      *unaff_RSI = (short)((int)uVar14 / 2);
-      uVar12 = (int)uVar14 / 2;
-    }
-  }
-  else if ((bVar1 & 3) == 2) {
-    uVar9 = 2;
-    iVar6 = func_0x0001807104d0(pbVar13,uVar14);
-    sVar3 = *unaff_RSI;
-    uVar14 = uVar14 - iVar6;
-    if (sVar3 < 0) {
-      return 0xfffffffc;
-    }
-    if ((int)uVar14 < (int)sVar3) {
-      return 0xfffffffc;
-    }
-    pbVar13 = pbVar13 + iVar6;
-    uVar12 = uVar14 - (int)sVar3;
-  }
-  else {
-    if ((int)uVar14 < 1) {
-      return 0xfffffffc;
-    }
-    bVar4 = *pbVar13;
-    pbVar13 = (byte *)(in_R10 + 2);
-    uVar8 = bVar4 & 0x3f;
-    uVar9 = (ulonglong)uVar8;
-    if ((bVar4 & 0x3f) == 0) {
-      return 0xfffffffc;
-    }
-    if (0x1680 < (int)(iVar6 * uVar8)) {
-      return 0xfffffffc;
-    }
-    uVar14 = in_R11D - 2;
-    if ((bVar4 & 0x40) != 0) {
+    if (channel_count != 0) {
       do {
-        if ((int)uVar14 < 1) {
-          return 0xfffffffc;
+        if (buffer_ptr != 0) {
+          *(longlong *)(buffer_ptr + result_ptr * 8) = data_ptr;
         }
-        bVar2 = *pbVar13;
-        pbVar13 = pbVar13 + 1;
-        uVar15 = (uint)bVar2;
-        if (bVar2 == 0xff) {
-          uVar15 = 0xfe;
-        }
-        unaff_R15D = unaff_R15D + uVar15;
-        uVar14 = uVar14 + (-1 - uVar15);
-        in_stack_00000070 = unaff_R15D;
-      } while (bVar2 == 0xff);
+        array_ptr = result_ptr * 2;
+        result_ptr = result_ptr + 1;
+        data_ptr = data_ptr + *(short *)(data_ptr + array_ptr);
+      } while (result_ptr < frame_count);
     }
-    if ((int)uVar14 < 0) {
-      return 0xfffffffc;
+    if (total_size != (int *)0x0) {
+      *total_size = ((int)data_ptr - buffer_offset) + sample_rate;
     }
-    uVar15 = ~(uint)(bVar4 >> 7) & 1;
-    if (uVar15 == 0) {
-      uVar5 = unaff_RBX & 0xffffffff;
-      psVar11 = unaff_RSI;
-      uVar12 = uVar14;
-      if (0 < (int)(uVar8 - 1)) {
-        do {
-          iVar6 = func_0x0001807104d0(pbVar13,uVar14,unaff_RSI + (int)uVar5);
-          sVar3 = *psVar11;
-          uVar14 = uVar14 - iVar6;
-          if (sVar3 < 0) {
-            return 0xfffffffc;
-          }
-          if ((int)uVar14 < (int)sVar3) {
-            return 0xfffffffc;
-          }
-          uVar10 = (int)uVar5 + 1;
-          uVar5 = (ulonglong)uVar10;
-          pbVar13 = pbVar13 + iVar6;
-          uVar12 = uVar12 - (iVar6 + sVar3);
-          psVar11 = psVar11 + 1;
-          unaff_R14D = in_stack_00000080;
-        } while ((int)uVar10 < (int)(uVar8 - 1));
-      }
-      unaff_R15D = in_stack_00000070;
-      if ((int)uVar12 < 0) {
-        return 0xfffffffc;
-      }
-    }
-    else if (param_3 == 0) {
-      uVar12 = (int)uVar14 / (int)uVar8;
-      if (uVar8 * uVar12 != uVar14) {
-        return 0xfffffffc;
-      }
-      if (0 < (int)(uVar8 - 1)) {
-        psVar11 = unaff_RSI;
-        for (uVar5 = uVar9 * 2 - 2 >> 1; uVar5 != 0; uVar5 = uVar5 - 1) {
-          *psVar11 = (short)uVar12;
-          psVar11 = psVar11 + 1;
-        }
-      }
-    }
-  }
-  if (unaff_R14D == 0) {
-    if ((int)uVar12 < 0x4fc) {
-      unaff_RSI[uVar9 - 1] = (short)uVar12;
-      goto LAB_18070fb9d;
+    if (format_output != (undefined1 *)0x0) {
+      *format_output = format_header;
     }
   }
   else {
-    iVar6 = func_0x0001807104d0(pbVar13,uVar14,unaff_RSI + (uVar9 - 1));
-    if ((-1 < unaff_RSI[uVar9 - 1]) &&
-       (iVar7 = (int)unaff_RSI[uVar9 - 1], iVar7 <= (int)(uVar14 - iVar6))) {
-      pbVar13 = pbVar13 + iVar6;
-      if (uVar15 == 0) {
-        if (iVar6 + iVar7 <= (int)uVar12) goto LAB_18070fb9d;
-      }
-      else if (iVar7 * (int)uVar9 <= (int)(uVar14 - iVar6)) {
-        uVar5 = unaff_RBX;
-        if (0 < (longlong)(uVar9 - 1)) {
-          do {
-            unaff_RSI[uVar5] = unaff_RSI[uVar9 - 1];
-            uVar5 = uVar5 + 1;
-          } while ((longlong)uVar5 < (longlong)(uVar9 - 1));
-        }
-LAB_18070fb9d:
-        if (in_stack_000000a0 != (int *)0x0) {
-          *in_stack_000000a0 = (int)pbVar13 - iStackX_20;
-        }
-        if ((int)uVar9 != 0) {
-          do {
-            if (in_stack_00000090 != 0) {
-              *(byte **)(in_stack_00000090 + unaff_RBX * 8) = pbVar13;
-            }
-            psVar11 = unaff_RSI + unaff_RBX;
-            unaff_RBX = unaff_RBX + 1;
-            pbVar13 = pbVar13 + *psVar11;
-          } while ((longlong)unaff_RBX < (longlong)uVar9);
-        }
-        if (in_stack_000000a8 != (int *)0x0) {
-          *in_stack_000000a8 = ((int)pbVar13 - iStackX_20) + unaff_R15D;
-        }
-        if (in_stack_00000088 != (byte *)0x0) {
-          *in_stack_00000088 = bVar1;
-          return uVar9;
-        }
-        return uVar9;
-      }
-    }
+    channel_count = -4;
   }
-  return 0xfffffffc;
+  return channel_count;
 }
 
-
-
-int FUN_18070fb8e(void)
-
-{
-  longlong lVar1;
-  longlong unaff_RBX;
-  int unaff_EBP;
-  longlong unaff_RSI;
-  longlong unaff_RDI;
-  int in_R9D;
-  longlong in_R10;
-  undefined1 unaff_R13B;
-  int unaff_R15D;
-  undefined4 uStackX_20;
-  undefined1 *in_stack_00000088;
-  longlong in_stack_00000090;
-  int *in_stack_000000a0;
-  int *in_stack_000000a8;
-  
-  if (in_R9D < 0x4fc) {
-    *(short *)(unaff_RSI + -2 + unaff_RDI * 2) = (short)in_R9D;
-    if (in_stack_000000a0 != (int *)0x0) {
-      *in_stack_000000a0 = (int)in_R10 - uStackX_20;
-    }
-    if (unaff_EBP != 0) {
-      do {
-        if (in_stack_00000090 != 0) {
-          *(longlong *)(in_stack_00000090 + unaff_RBX * 8) = in_R10;
-        }
-        lVar1 = unaff_RBX * 2;
-        unaff_RBX = unaff_RBX + 1;
-        in_R10 = in_R10 + *(short *)(unaff_RSI + lVar1);
-      } while (unaff_RBX < unaff_RDI);
-    }
-    if (in_stack_000000a8 != (int *)0x0) {
-      *in_stack_000000a8 = ((int)in_R10 - uStackX_20) + unaff_R15D;
-    }
-    if (in_stack_00000088 != (undefined1 *)0x0) {
-      *in_stack_00000088 = unaff_R13B;
-    }
-  }
-  else {
-    unaff_EBP = -4;
-  }
-  return unaff_EBP;
-}
-
-
-
-undefined8 FUN_18070fc08(void)
-
+/**
+ * @brief UI系统错误码返回函数
+ * @return uint 错误码
+ * 
+ * 该函数返回UI系统的错误码
+ */
+uint ui_system_return_error_code(void)
 {
   return 0xffffffff;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18070fc20(longlong param_1,int param_2,int param_3,float *param_4)
-void FUN_18070fc20(longlong param_1,int param_2,int param_3,float *param_4)
-
+/**
+ * @brief UI系统浮点数组处理函数
+ * @param array_ptr 数组指针
+ * @param width 宽度
+ * @param height 高度
+ * @param output_buffer 输出缓冲区
+ * 
+ * 该函数处理浮点数组的限制和归一化，用于UI系统的数据处理
+ */
+void ui_system_process_float_array(longlong array_ptr, int width, int height, float *output_buffer)
 {
-  bool bVar1;
-  undefined1 auVar2 [16];
-  undefined1 auVar3 [16];
-  int iVar4;
-  undefined1 (*pauVar5) [16];
-  uint uVar6;
-  int iVar7;
-  longlong lVar8;
-  float *pfVar9;
-  float *pfVar10;
-  uint uVar11;
-  int iVar12;
-  longlong lVar13;
-  longlong lVar14;
-  int iVar15;
-  int iVar16;
-  ulonglong uVar17;
-  int iVar18;
-  longlong lVar19;
-  float fVar20;
-  float fVar21;
-  float fVar22;
-  float fVar23;
-  float fVar24;
-  undefined1 auVar25 [16];
-  float *pfStackX_20;
-  longlong lStack_a8;
+  bool needs_clamping;
+  undefined1 temp_array_1[16];
+  undefined1 temp_array_2[16];
+  int index;
+  undefined1 (*array_ptr_5)[16];
+  uint element_count;
+  int temp_value;
+  longlong offset;
+  float *float_ptr;
+  float *float_ptr_2;
+  uint remaining_elements;
+  int temp_index;
+  longlong offset_2;
+  longlong offset_3;
+  int temp_index_2;
+  int temp_index_3;
+  ulonglong loop_counter;
+  int temp_index_4;
+  longlong offset_4;
+  longlong offset_5;
+  int temp_index_5;
+  float float_value;
+  float float_value_2;
+  float float_value_3;
+  float float_value_4;
+  float float_value_5;
+  float float_value_6;
+  undefined1 temp_array_3[16];
+  float *stack_ptr;
+  longlong stack_offset;
   
-  auVar3 = _DAT_180a401b0;
-  auVar2 = _DAT_18094ed40;
-  lVar19 = (longlong)param_3;
-  if ((((0 < param_3) && (0 < param_2)) && (param_1 != 0)) && (param_4 != (float *)0x0)) {
-    uVar11 = param_2 * param_3;
-    iVar15 = 0;
-    if (0 < (int)uVar11) {
-      if (0xf < uVar11) {
-        uVar6 = uVar11 & 0x8000000f;
-        if ((int)uVar6 < 0) {
-          uVar6 = (uVar6 - 1 | 0xfffffff0) + 1;
+  temp_array_2 = _DAT_180a401b0;
+  temp_array_1 = _DAT_18094ed40;
+  offset_5 = (longlong)height;
+  if ((((0 < height) && (0 < width)) && (array_ptr != 0)) && (output_buffer != (float *)0x0)) {
+    element_count = width * height;
+    temp_index_5 = 0;
+    if (0 < (int)element_count) {
+      if (0xf < element_count) {
+        remaining_elements = element_count & 0x8000000f;
+        if ((int)remaining_elements < 0) {
+          remaining_elements = (remaining_elements - 1 | 0xfffffff0) + 1;
         }
-        lVar8 = 0;
-        pauVar5 = (undefined1 (*) [16])(param_1 + 0x20);
+        offset = 0;
+        array_ptr_5 = (undefined1 (*) [16])(array_ptr + 0x20);
         do {
-          iVar15 = iVar15 + 0x10;
-          auVar25 = minps(auVar3,pauVar5[-2]);
-          lVar8 = lVar8 + 0x10;
-          auVar25 = maxps(auVar2,auVar25);
-          pauVar5[-2] = auVar25;
-          auVar25 = minps(auVar3,pauVar5[-1]);
-          auVar25 = maxps(auVar2,auVar25);
-          pauVar5[-1] = auVar25;
-          auVar25 = minps(auVar3,*pauVar5);
-          auVar25 = maxps(auVar2,auVar25);
-          *pauVar5 = auVar25;
-          auVar25 = minps(auVar3,pauVar5[1]);
-          auVar25 = maxps(auVar2,auVar25);
-          pauVar5[1] = auVar25;
-          pauVar5 = pauVar5 + 4;
-        } while (lVar8 < (int)(uVar11 - uVar6));
+          temp_index_5 = temp_index_5 + 0x10;
+          temp_array_3 = minps(temp_array_2, array_ptr_5[-2]);
+          offset = offset + 0x10;
+          temp_array_3 = maxps(temp_array_1, temp_array_3);
+          array_ptr_5[-2] = temp_array_3;
+          temp_array_3 = minps(temp_array_2, array_ptr_5[-1]);
+          temp_array_3 = maxps(temp_array_1, temp_array_3);
+          array_ptr_5[-1] = temp_array_3;
+          temp_array_3 = minps(temp_array_2, *array_ptr_5);
+          temp_array_3 = maxps(temp_array_1, temp_array_3);
+          *array_ptr_5 = temp_array_3;
+          temp_array_3 = minps(temp_array_2, array_ptr_5[1]);
+          temp_array_3 = maxps(temp_array_1, temp_array_3);
+          array_ptr_5[1] = temp_array_3;
+          array_ptr_5 = array_ptr_5 + 4;
+        } while (offset < (int)(element_count - remaining_elements));
       }
-      if (iVar15 < (int)uVar11) {
-        if (3 < (int)(uVar11 - iVar15)) {
-          uVar6 = ((uVar11 - iVar15) - 4 >> 2) + 1;
-          pfVar9 = (float *)(param_1 + ((longlong)iVar15 + 2) * 4);
-          uVar17 = (ulonglong)uVar6;
-          iVar15 = iVar15 + uVar6 * 4;
+      if (temp_index_5 < (int)element_count) {
+        if (3 < (int)(element_count - temp_index_5)) {
+          remaining_elements = ((element_count - temp_index_5) - 4 >> 2) + 1;
+          float_ptr = (float *)(array_ptr + ((longlong)temp_index_5 + 2) * 4);
+          loop_counter = (ulonglong)remaining_elements;
+          temp_index_5 = temp_index_5 + remaining_elements * 4;
           do {
-            fVar22 = pfVar9[-2];
-            if (2.0 <= fVar22) {
-              fVar22 = 2.0;
+            float_value_3 = float_ptr[-2];
+            if (UI_FLOAT_CLAMP_VALUE <= float_value_3) {
+              float_value_3 = UI_FLOAT_CLAMP_VALUE;
             }
-            if (fVar22 < -2.0) {
-              fVar22 = -2.0;
+            if (float_value_3 < UI_FLOAT_MIN_VALUE) {
+              float_value_3 = UI_FLOAT_MIN_VALUE;
             }
-            fVar20 = pfVar9[-1];
-            if (2.0 <= fVar20) {
-              fVar20 = 2.0;
+            float_value = float_ptr[-1];
+            if (UI_FLOAT_CLAMP_VALUE <= float_value) {
+              float_value = UI_FLOAT_CLAMP_VALUE;
             }
-            pfVar9[-2] = fVar22;
-            if (fVar20 < -2.0) {
-              fVar20 = -2.0;
+            float_ptr[-2] = float_value_3;
+            if (float_value < UI_FLOAT_MIN_VALUE) {
+              float_value = UI_FLOAT_MIN_VALUE;
             }
-            fVar22 = *pfVar9;
-            if (2.0 <= fVar22) {
-              fVar22 = 2.0;
+            float_value_3 = *float_ptr;
+            if (UI_FLOAT_CLAMP_VALUE <= float_value_3) {
+              float_value_3 = UI_FLOAT_CLAMP_VALUE;
             }
-            pfVar9[-1] = fVar20;
-            if (fVar22 < -2.0) {
-              fVar22 = -2.0;
+            float_ptr[-1] = float_value;
+            if (float_value_3 < UI_FLOAT_MIN_VALUE) {
+              float_value_3 = UI_FLOAT_MIN_VALUE;
             }
-            *pfVar9 = fVar22;
-            fVar22 = pfVar9[1];
-            if (2.0 <= fVar22) {
-              fVar22 = 2.0;
+            *float_ptr = float_value_3;
+            float_value_3 = float_ptr[1];
+            if (UI_FLOAT_CLAMP_VALUE <= float_value_3) {
+              float_value_3 = UI_FLOAT_CLAMP_VALUE;
             }
-            if (fVar22 < -2.0) {
-              fVar22 = -2.0;
+            if (float_value_3 < UI_FLOAT_MIN_VALUE) {
+              float_value_3 = UI_FLOAT_MIN_VALUE;
             }
-            pfVar9[1] = fVar22;
-            pfVar9 = pfVar9 + 4;
-            uVar17 = uVar17 - 1;
-          } while (uVar17 != 0);
+            float_ptr[1] = float_value_3;
+            float_ptr = float_ptr + 4;
+            loop_counter = loop_counter - 1;
+          } while (loop_counter != 0);
         }
-        if (iVar15 < (int)uVar11) {
-          pfVar9 = (float *)(param_1 + (longlong)iVar15 * 4);
-          lVar8 = (longlong)(int)(uVar11 - iVar15);
+        if (temp_index_5 < (int)element_count) {
+          float_ptr = (float *)(array_ptr + (longlong)temp_index_5 * 4);
+          offset = (longlong)(int)(element_count - temp_index_5);
           do {
-            fVar22 = *pfVar9;
-            if (2.0 <= fVar22) {
-              fVar22 = 2.0;
+            float_value_3 = *float_ptr;
+            if (UI_FLOAT_CLAMP_VALUE <= float_value_3) {
+              float_value_3 = UI_FLOAT_CLAMP_VALUE;
             }
-            if (fVar22 < -2.0) {
-              fVar22 = -2.0;
+            if (float_value_3 < UI_FLOAT_MIN_VALUE) {
+              float_value_3 = UI_FLOAT_MIN_VALUE;
             }
-            *pfVar9 = fVar22;
-            pfVar9 = pfVar9 + 1;
-            lVar8 = lVar8 + -1;
-          } while (lVar8 != 0);
+            *float_ptr = float_value_3;
+            float_ptr = float_ptr + 1;
+            offset = offset + -1;
+          } while (offset != 0);
         }
       }
     }
-    if (0 < param_3) {
-      pfStackX_20 = param_4;
-      lStack_a8 = lVar19;
+    if (0 < height) {
+      stack_ptr = output_buffer;
+      stack_offset = offset_5;
       do {
-        fVar22 = *pfStackX_20;
-        pfVar9 = (float *)((param_1 - (longlong)param_4) + (longlong)pfStackX_20);
-        iVar15 = 0;
-        if (3 < param_2) {
-          iVar12 = param_3 * 2;
+        float_value_3 = *stack_ptr;
+        float_ptr = (float *)((array_ptr - (longlong)output_buffer) + (longlong)stack_ptr);
+        temp_index_5 = 0;
+        if (3 < width) {
+          temp_index_4 = height * 2;
           do {
-            iVar4 = param_3 * -2 + iVar12;
-            fVar20 = pfVar9[iVar4] * fVar22;
-            if (0.0 <= fVar20) goto LAB_18070ff9b;
-            pfVar9[iVar4] = (fVar20 + 1.0) * pfVar9[iVar4];
-            fVar20 = pfVar9[iVar12 - param_3] * fVar22;
-            if (0.0 <= fVar20) goto LAB_18070ff9b;
-            pfVar9[iVar12 - param_3] = (fVar20 + 1.0) * pfVar9[iVar12 - param_3];
-            fVar20 = pfVar9[iVar12] * fVar22;
-            if (0.0 <= fVar20) goto LAB_18070ff9b;
-            pfVar9[iVar12] = (fVar20 + 1.0) * pfVar9[iVar12];
-            iVar4 = iVar12 + param_3;
-            fVar20 = pfVar9[iVar4] * fVar22;
-            if (0.0 <= fVar20) goto LAB_18070ff9b;
-            iVar15 = iVar15 + 4;
-            iVar12 = iVar12 + param_3 * 4;
-            pfVar9[iVar4] = (fVar20 + 1.0) * pfVar9[iVar4];
-          } while (iVar15 < param_2 + -3);
+            index = height * -2 + temp_index_4;
+            float_value = float_ptr[index] * float_value_3;
+            if (0.0 <= float_value) goto CLAMPING_COMPLETE;
+            float_ptr[index] = (float_value + 1.0) * float_ptr[index];
+            float_value = float_ptr[temp_index_4 - height] * float_value_3;
+            if (0.0 <= float_value) goto CLAMPING_COMPLETE;
+            float_ptr[temp_index_4 - height] = (float_value + 1.0) * float_ptr[temp_index_4 - height];
+            float_value = float_ptr[temp_index_4] * float_value_3;
+            if (0.0 <= float_value) goto CLAMPING_COMPLETE;
+            float_ptr[temp_index_4] = (float_value + 1.0) * float_ptr[temp_index_4];
+            index = temp_index_4 + height;
+            float_value = float_ptr[index] * float_value_3;
+            if (0.0 <= float_value) goto CLAMPING_COMPLETE;
+            temp_index_5 = temp_index_5 + 4;
+            temp_index_4 = temp_index_4 + height * 4;
+            float_ptr[index] = (float_value + 1.0) * float_ptr[index];
+          } while (temp_index_5 < width + -3);
         }
-        if (iVar15 < param_2) {
-          iVar12 = iVar15 * param_3;
+        if (temp_index_5 < width) {
+          temp_index_4 = temp_index_5 * height;
           do {
-            fVar20 = pfVar9[iVar12] * fVar22;
-            if (0.0 <= fVar20) break;
-            iVar15 = iVar15 + 1;
-            pfVar9[iVar12] = (fVar20 + 1.0) * pfVar9[iVar12];
-            iVar12 = iVar12 + param_3;
-          } while (iVar15 < param_2);
+            float_value = float_ptr[temp_index_4] * float_value_3;
+            if (0.0 <= float_value) break;
+            temp_index_5 = temp_index_5 + 1;
+            float_ptr[temp_index_4] = (float_value + 1.0) * float_ptr[temp_index_4];
+            temp_index_4 = temp_index_4 + height;
+          } while (temp_index_5 < width);
         }
-LAB_18070ff9b:
-        fVar22 = *pfVar9;
-        iVar15 = 0;
+CLAMPING_COMPLETE:
+        float_value_3 = *float_ptr;
+        temp_index_5 = 0;
         do {
-          iVar12 = iVar15;
-          if (iVar15 < param_2) {
-            if (3 < param_2 - iVar15) {
-              iVar18 = iVar15 - (iVar15 + 2);
-              iVar4 = (iVar15 + 2) * param_3;
+          temp_index_4 = temp_index_5;
+          if (temp_index_5 < width) {
+            if (3 < width - temp_index_5) {
+              temp_index_2 = temp_index_5 - (temp_index_5 + 2);
+              index = (temp_index_5 + 2) * height;
               do {
-                if ((1.0 < pfVar9[iVar18 * param_3 + iVar4]) ||
-                   (pfVar9[iVar18 * param_3 + iVar4] < -1.0)) goto LAB_1807100a5;
-                if ((1.0 < pfVar9[(iVar18 + 1) * param_3 + iVar4]) ||
-                   (pfVar9[(iVar18 + 1) * param_3 + iVar4] < -1.0)) {
-                  iVar12 = iVar12 + 1;
-                  goto LAB_1807100a5;
+                if ((1.0 < float_ptr[temp_index_2 * height + index]) ||
+                   (float_ptr[temp_index_2 * height + index] < -1.0)) goto OUT_OF_BOUNDS;
+                if ((1.0 < float_ptr[(temp_index_2 + 1) * height + index]) ||
+                   (float_ptr[(temp_index_2 + 1) * height + index] < -1.0)) {
+                  temp_index_4 = temp_index_4 + 1;
+                  goto OUT_OF_BOUNDS;
                 }
-                if ((1.0 < pfVar9[iVar4]) || (pfVar9[iVar4] < -1.0)) {
-                  iVar12 = iVar12 + 2;
-                  goto LAB_1807100a5;
+                if ((1.0 < float_ptr[index]) || (float_ptr[index] < -1.0)) {
+                  temp_index_4 = temp_index_4 + 2;
+                  goto OUT_OF_BOUNDS;
                 }
-                if ((1.0 < pfVar9[(iVar18 + 3) * param_3 + iVar4]) ||
-                   (pfVar9[(iVar18 + 3) * param_3 + iVar4] < -1.0)) {
-                  iVar12 = iVar12 + 3;
-                  goto LAB_1807100a5;
+                if ((1.0 < float_ptr[(temp_index_2 + 3) * height + index]) ||
+                   (float_ptr[(temp_index_2 + 3) * height + index] < -1.0)) {
+                  temp_index_4 = temp_index_4 + 3;
+                  goto OUT_OF_BOUNDS;
                 }
-                iVar12 = iVar12 + 4;
-                iVar4 = iVar4 + param_3 * 4;
-              } while (iVar12 < param_2 + -3);
+                temp_index_4 = temp_index_4 + 4;
+                index = index + height * 4;
+              } while (temp_index_4 < width + -3);
             }
-            if (iVar12 < param_2) {
-              iVar4 = iVar12 * param_3;
+            if (temp_index_4 < width) {
+              index = temp_index_4 * height;
               do {
-                if ((1.0 < pfVar9[iVar4]) || (pfVar9[iVar4] < -1.0)) break;
-                iVar12 = iVar12 + 1;
-                iVar4 = iVar4 + param_3;
-              } while (iVar12 < param_2);
+                if ((1.0 < float_ptr[index]) || (float_ptr[index] < -1.0)) break;
+                temp_index_4 = temp_index_4 + 1;
+                index = index + height;
+              } while (temp_index_4 < width);
             }
           }
-LAB_1807100a5:
-          if (iVar12 == param_2) {
-            fVar20 = 0.0;
+OUT_OF_BOUNDS:
+          if (temp_index_4 == width) {
+            float_value = 0.0;
             break;
           }
-          iVar4 = iVar12 * param_3;
-          fVar24 = pfVar9[iVar4];
-          fVar20 = ABS(fVar24);
-          iVar18 = iVar12;
-          iVar16 = iVar12;
-          if (0 < iVar12) {
-            iVar7 = (iVar12 + -1) * param_3;
+          index = temp_index_4 * height;
+          float_value_5 = float_ptr[index];
+          float_value = ABS(float_value_5);
+          temp_index_2 = temp_index_4;
+          temp_index_3 = temp_index_4;
+          if (0 < temp_index_4) {
+            temp_index = (temp_index_4 + -1) * height;
             do {
-              if (fVar24 * pfVar9[iVar7] < 0.0) break;
-              iVar16 = iVar16 + -1;
-              iVar7 = iVar7 - param_3;
-            } while (0 < iVar16);
+              if (float_value_5 * float_ptr[temp_index] < 0.0) break;
+              temp_index_3 = temp_index_3 + -1;
+              temp_index = temp_index - height;
+            } while (0 < temp_index_3);
           }
-          while ((iVar7 = iVar18, iVar18 = iVar12, iVar18 < param_2 &&
-                 (0.0 <= fVar24 * pfVar9[iVar4]))) {
-            fVar23 = ABS(pfVar9[iVar4]);
-            fVar21 = fVar20;
-            if (fVar20 < fVar23) {
-              fVar21 = fVar23;
+          while ((temp_index = temp_index_2, temp_index_2 = temp_index_4, temp_index_2 < width &&
+                 (0.0 <= float_value_5 * float_ptr[index]))) {
+            float_value_4 = ABS(float_ptr[index]);
+            float_value_2 = float_value;
+            if (float_value < float_value_4) {
+              float_value_2 = float_value_4;
             }
-            iVar4 = iVar4 + param_3;
-            bVar1 = fVar23 <= fVar20;
-            fVar20 = fVar21;
-            iVar12 = iVar18 + 1;
-            if (bVar1) {
-              iVar18 = iVar7;
+            index = index + height;
+            needs_clamping = float_value_4 <= float_value;
+            float_value = float_value_2;
+            temp_index_4 = temp_index_2 + 1;
+            if (needs_clamping) {
+              temp_index_2 = temp_index;
             }
           }
-          if ((iVar16 != 0) || (fVar24 * *pfVar9 < 0.0)) {
-            bVar1 = false;
+          if ((temp_index_3 != 0) || (float_value_5 * *float_ptr < 0.0)) {
+            needs_clamping = false;
           }
           else {
-            bVar1 = true;
+            needs_clamping = true;
           }
-          fVar21 = (fVar20 - 1.0) / (fVar20 * fVar20);
-          fVar20 = fVar21 * 1.0000002;
-          if (0.0 < fVar24) {
-            fVar20 = fVar21 * -1.0000002;
+          float_value_2 = (float_value - 1.0) / (float_value * float_value);
+          float_value = float_value_2 * 1.0000002;
+          if (0.0 < float_value_5) {
+            float_value = float_value_2 * -1.0000002;
           }
-          if (iVar16 < iVar18) {
-            if (3 < iVar18 - iVar16) {
-              lVar8 = (longlong)((iVar16 + 2) * param_3);
-              pfVar10 = pfVar9 + lVar8;
-              lVar13 = (iVar16 + 1) * param_3 - lVar8;
-              lVar14 = (iVar16 + 3) * param_3 - lVar8;
-              lVar8 = iVar16 * param_3 - lVar8;
-              uVar11 = ((iVar18 - iVar16) - 4U >> 2) + 1;
-              uVar17 = (ulonglong)uVar11;
-              iVar16 = iVar16 + uVar11 * 4;
+          if (temp_index_3 < temp_index_2) {
+            if (3 < temp_index_2 - temp_index_3) {
+              offset = (longlong)((temp_index_3 + 2) * height);
+              float_ptr_2 = float_ptr + offset;
+              offset_2 = (temp_index_3 + 1) * height - offset;
+              offset_3 = (temp_index_3 + 3) * height - offset;
+              offset = temp_index_3 * height - offset;
+              remaining_elements = ((temp_index_2 - temp_index_3) - 4U >> 2) + 1;
+              loop_counter = (ulonglong)remaining_elements;
+              temp_index_3 = temp_index_3 + remaining_elements * 4;
               do {
-                pfVar10[lVar8] = (pfVar10[lVar8] * fVar20 + 1.0) * pfVar10[lVar8];
-                pfVar10[lVar13] = (pfVar10[lVar13] * fVar20 + 1.0) * pfVar10[lVar13];
-                *pfVar10 = (fVar20 * *pfVar10 + 1.0) * *pfVar10;
-                pfVar10[lVar14] = (pfVar10[lVar14] * fVar20 + 1.0) * pfVar10[lVar14];
-                pfVar10 = pfVar10 + param_3 * 4;
-                uVar17 = uVar17 - 1;
-              } while (uVar17 != 0);
+                float_ptr_2[offset] = (float_ptr_2[offset] * float_value + 1.0) * float_ptr_2[offset];
+                float_ptr_2[offset_2] = (float_ptr_2[offset_2] * float_value + 1.0) * float_ptr_2[offset_2];
+                *float_ptr_2 = (float_value * *float_ptr_2 + 1.0) * *float_ptr_2;
+                float_ptr_2[offset_3] = (float_ptr_2[offset_3] * float_value + 1.0) * float_ptr_2[offset_3];
+                float_ptr_2 = float_ptr_2 + height * 4;
+                loop_counter = loop_counter - 1;
+              } while (loop_counter != 0);
             }
-            if (iVar16 < iVar18) {
-              pfVar10 = pfVar9 + iVar16 * param_3;
-              lVar8 = (longlong)(iVar18 - iVar16);
+            if (temp_index_3 < temp_index_2) {
+              float_ptr_2 = float_ptr + temp_index_3 * height;
+              offset = (longlong)(temp_index_2 - temp_index_3);
               do {
-                *pfVar10 = (*pfVar10 * fVar20 + 1.0) * *pfVar10;
-                pfVar10 = pfVar10 + lVar19;
-                lVar8 = lVar8 + -1;
-              } while (lVar8 != 0);
+                *float_ptr_2 = (*float_ptr_2 * float_value + 1.0) * *float_ptr_2;
+                float_ptr_2 = float_ptr_2 + offset_5;
+                offset = offset + -1;
+              } while (offset != 0);
             }
           }
-          if ((bVar1) && (1 < iVar7)) {
-            fVar24 = fVar22 - *pfVar9;
-            fVar21 = fVar24 / (float)iVar7;
-            if (iVar15 < iVar7) {
-              if (3 < iVar7 - iVar15) {
-                lVar8 = (longlong)((iVar15 + 2) * param_3);
-                pfVar10 = pfVar9 + lVar8;
-                lVar13 = (iVar15 + 1) * param_3 - lVar8;
-                lVar14 = (iVar15 + 3) * param_3 - lVar8;
-                lVar8 = iVar15 * param_3 - lVar8;
-                uVar11 = ((iVar7 - iVar15) - 4U >> 2) + 1;
-                uVar17 = (ulonglong)uVar11;
-                iVar15 = iVar15 + uVar11 * 4;
+          if ((needs_clamping) && (1 < temp_index)) {
+            float_value_5 = float_value_3 - *float_ptr;
+            float_value_2 = float_value_5 / (float)temp_index;
+            if (temp_index_5 < temp_index) {
+              if (3 < temp_index - temp_index_5) {
+                offset = (longlong)((temp_index_5 + 2) * height);
+                float_ptr_2 = float_ptr + offset;
+                offset_2 = (temp_index_5 + 1) * height - offset;
+                offset_3 = (temp_index_5 + 3) * height - offset;
+                offset = temp_index_5 * height - offset;
+                remaining_elements = ((temp_index - temp_index_5) - 4U >> 2) + 1;
+                loop_counter = (ulonglong)remaining_elements;
+                temp_index_5 = temp_index_5 + remaining_elements * 4;
                 do {
-                  fVar23 = (fVar24 - fVar21) + pfVar10[lVar8];
-                  if (1.0 <= fVar23) {
-                    fVar23 = 1.0;
+                  float_value_4 = (float_value_5 - float_value_2) + float_ptr_2[offset];
+                  if (1.0 <= float_value_4) {
+                    float_value_4 = 1.0;
                   }
-                  if (fVar23 < -1.0) {
-                    fVar23 = -1.0;
+                  if (float_value_4 < -1.0) {
+                    float_value_4 = -1.0;
                   }
-                  pfVar10[lVar8] = fVar23;
-                  fVar24 = (fVar24 - fVar21) - fVar21;
-                  fVar23 = fVar24 + pfVar10[lVar13];
-                  if (1.0 <= fVar23) {
-                    fVar23 = 1.0;
+                  float_ptr_2[offset] = float_value_4;
+                  float_value_5 = (float_value_5 - float_value_2) - float_value_2;
+                  float_value_4 = float_value_5 + float_ptr_2[offset_2];
+                  if (1.0 <= float_value_4) {
+                    float_value_4 = 1.0;
                   }
-                  if (fVar23 < -1.0) {
-                    fVar23 = -1.0;
+                  if (float_value_4 < -1.0) {
+                    float_value_4 = -1.0;
                   }
-                  pfVar10[lVar13] = fVar23;
-                  fVar24 = fVar24 - fVar21;
-                  fVar23 = fVar24 + *pfVar10;
-                  if (1.0 <= fVar23) {
-                    fVar23 = 1.0;
+                  float_ptr_2[offset_2] = float_value_4;
+                  float_value_5 = float_value_5 - float_value_2;
+                  float_value_4 = float_value_5 + *float_ptr_2;
+                  if (1.0 <= float_value_4) {
+                    float_value_4 = 1.0;
                   }
-                  if (fVar23 < -1.0) {
-                    fVar23 = -1.0;
+                  if (float_value_4 < -1.0) {
+                    float_value_4 = -1.0;
                   }
-                  *pfVar10 = fVar23;
-                  fVar24 = fVar24 - fVar21;
-                  fVar23 = fVar24 + pfVar10[lVar14];
-                  if (1.0 <= fVar23) {
-                    fVar23 = 1.0;
+                  *float_ptr_2 = float_value_4;
+                  float_value_5 = float_value_5 - float_value_2;
+                  float_value_4 = float_value_5 + float_ptr_2[offset_3];
+                  if (1.0 <= float_value_4) {
+                    float_value_4 = 1.0;
                   }
-                  if (fVar23 < -1.0) {
-                    fVar23 = -1.0;
+                  if (float_value_4 < -1.0) {
+                    float_value_4 = -1.0;
                   }
-                  pfVar10[lVar14] = fVar23;
-                  pfVar10 = pfVar10 + param_3 * 4;
-                  uVar17 = uVar17 - 1;
-                } while (uVar17 != 0);
+                  float_ptr_2[offset_3] = float_value_4;
+                  float_ptr_2 = float_ptr_2 + height * 4;
+                  loop_counter = loop_counter - 1;
+                } while (loop_counter != 0);
               }
-              if (iVar15 < iVar7) {
-                pfVar10 = pfVar9 + iVar15 * param_3;
-                lVar8 = (longlong)(iVar7 - iVar15);
+              if (temp_index_5 < temp_index) {
+                float_ptr_2 = float_ptr + temp_index_5 * height;
+                offset = (longlong)(temp_index - temp_index_5);
                 do {
-                  fVar24 = fVar24 - fVar21;
-                  fVar23 = fVar24 + *pfVar10;
-                  if (1.0 <= fVar23) {
-                    fVar23 = 1.0;
+                  float_value_5 = float_value_5 - float_value_2;
+                  float_value_4 = float_value_5 + *float_ptr_2;
+                  if (1.0 <= float_value_4) {
+                    float_value_4 = 1.0;
                   }
-                  if (fVar23 < -1.0) {
-                    fVar23 = -1.0;
+                  if (float_value_4 < -1.0) {
+                    float_value_4 = -1.0;
                   }
-                  *pfVar10 = fVar23;
-                  pfVar10 = pfVar10 + lVar19;
-                  lVar8 = lVar8 + -1;
-                } while (lVar8 != 0);
+                  *float_ptr_2 = float_value_4;
+                  float_ptr_2 = float_ptr_2 + offset_5;
+                  offset = offset + -1;
+                } while (offset != 0);
               }
             }
           }
-          iVar15 = iVar18;
-        } while (iVar18 != param_2);
-        *pfStackX_20 = fVar20;
-        pfStackX_20 = pfStackX_20 + 1;
-        lStack_a8 = lStack_a8 + -1;
-      } while (lStack_a8 != 0);
+          temp_index_5 = temp_index_2;
+        } while (temp_index_2 != width);
+        *stack_ptr = float_value;
+        stack_ptr = stack_ptr + 1;
+        stack_offset = stack_offset + -1;
+      } while (stack_offset != 0);
     }
   }
   return;
 }
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
