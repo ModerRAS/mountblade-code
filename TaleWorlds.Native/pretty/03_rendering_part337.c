@@ -710,7 +710,7 @@ void RenderingSystem_DataValidator(int64_t *param_1)
  * - 验证状态的有效性
  * - 返回状态查询结果
  */
-unsigned char FUN_180448ea0(int64_t *param_1)
+unsigned char RenderingSystem_StatusChecker(int64_t *param_1)
 {
     unsigned char status_value;
     
@@ -965,7 +965,7 @@ void RenderingSystem_Finalizer(int64_t *param_1)
  * - 验证数据的完整性
  * - 返回构建结果
  */
-unsigned int* FUN_180449300(unsigned int *param_1, int param_2, unsigned int *param_3, 
+unsigned int* RenderingSystem_DataAllocator(unsigned int *param_1, int param_2, unsigned int *param_3, 
                            unsigned int param_4, unsigned int *param_5,
                            int param_6, int64_t param_7)
 {
@@ -1068,7 +1068,7 @@ unsigned int* FUN_180449300(unsigned int *param_1, int param_2, unsigned int *pa
  * - 验证数据的有效性
  * - 处理数据的副作用
  */
-void FUN_1804496f0(int64_t *param_1, unsigned int *param_2, unsigned char param_3, char param_4)
+void RenderingSystem_BatchProcessor(int64_t *param_1, unsigned int *param_2, unsigned char param_3, char param_4)
 {
     unsigned int data_value1, data_value2, data_value3;
     unsigned char status_flag;
@@ -1110,7 +1110,7 @@ void FUN_1804496f0(int64_t *param_1, unsigned int *param_2, unsigned char param_
  * - 重置系统状态
  * - 释放相关资源
  */
-void FUN_180449780(int64_t *param_1)
+void RenderingSystem_Resetter(int64_t *param_1)
 {
     if (param_1 == NULL) {
         return;
@@ -1140,7 +1140,7 @@ void FUN_180449780(int64_t *param_1)
  * - 设置对象的初始状态
  * - 返回创建的对象指针
  */
-int64_t* FUN_180449850(int64_t *param_1)
+int64_t* RenderingSystem_HandleManager(int64_t *param_1)
 {
     int64_t *object_ptr;
     
