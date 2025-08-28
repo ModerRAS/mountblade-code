@@ -1642,53 +1642,93 @@ undefined8 * RenderSystem_GetTexture(longlong param_1)
 
 
 
-// 函数: void FUN_180547a20(longlong param_1,undefined8 param_2,undefined4 param_3,undefined4 param_4)
-void FUN_180547a20(longlong param_1,undefined8 param_2,undefined4 param_3,undefined4 param_4)
-
+/*==============================================================================
+ * 函数: RenderSystem_SetBuffer - 渲染系统缓冲区设置函数
+ * 
+ * 功能描述：
+ *   设置渲染系统的缓冲区参数，用于绑定顶点缓冲区和索引缓冲区
+ *   这是一个缓冲区设置函数，通过渲染队列异步设置缓冲区参数
+ * 
+ * 参数：
+ *   param_1 - 渲染上下文指针
+ *   param_2 - 缓冲区参数（64位）
+ *   param_3 - 附加参数1（32位）
+ *   param_4 - 附加参数2（32位）
+ * 
+ * 返回值：
+ *   无
+ * 
+ * 处理流程：
+ *   1. 重置上下文中的缓冲区相关数据
+ *   2. 设置缓冲区处理回调函数
+ *   3. 准备缓冲区参数数组
+ *   4. 发送到渲染队列处理
+ *   5. 计算缓冲区边界框和距离
+ * 
+ * 注意事项：
+ *   - 使用复杂的缓冲区参数处理
+ *   - 支持异步缓冲区设置
+ *   - 包含边界框计算和距离计算
+ *   - 使用最大浮点数常量0x7f7fffff
+ * 
+ * 简化实现：
+ *   原始实现：复杂的缓冲区设置和边界框计算逻辑
+ *   简化实现：保持原有缓冲区设置逻辑，添加了详细的计算说明
+ =============================================================================*/
+void RenderSystem_SetBuffer(longlong param_1, undefined8 param_2, undefined4 param_3, undefined4 param_4)
 {
-  float *pfVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  longlong alStack_30 [2];
-  undefined *puStack_20;
-  code *pcStack_18;
-  
-  pfVar1 = (float *)(param_1 + 0x120);
-  *(undefined4 *)(param_1 + 0x150) = 0;
-  pfVar1[0] = 0.0;
-  pfVar1[1] = 0.0;
-  *(undefined8 *)(param_1 + 0x128) = 0;
-  *(undefined8 *)(param_1 + 0x130) = 0;
-  *(undefined8 *)(param_1 + 0x138) = 0;
-  *(undefined8 *)(param_1 + 0x140) = 0;
-  *(undefined8 *)(param_1 + 0x148) = 0;
-  puStack_20 = &UNK_18054ab80;
-  pcStack_18 = FUN_18054aab0;
-  alStack_30[0] = param_1;
-  FUN_18054a4b0(param_1 + 0xe0,alStack_30,param_3,param_4,0xfffffffffffffffe);
-  fVar4 = *(float *)(param_1 + 0x130);
-  if (*pfVar1 <= fVar4) {
-    fVar3 = (fVar4 + *pfVar1) * 0.5;
-    *(float *)(param_1 + 0x140) = fVar3;
-    *(float *)(param_1 + 0x144) = (*(float *)(param_1 + 0x134) + *(float *)(param_1 + 0x124)) * 0.5;
-    *(float *)(param_1 + 0x148) = (*(float *)(param_1 + 0x138) + *(float *)(param_1 + 0x128)) * 0.5;
-    *(undefined4 *)(param_1 + 0x14c) = 0x7f7fffff;
-    fVar4 = fVar4 - fVar3;
-    fVar3 = *(float *)(param_1 + 0x138) - *(float *)(param_1 + 0x148);
-    fVar2 = *(float *)(param_1 + 0x134) - *(float *)(param_1 + 0x144);
-    *(float *)(param_1 + 0x150) = SQRT(fVar2 * fVar2 + fVar4 * fVar4 + fVar3 * fVar3);
+    float *pfVar1;
+    float fVar2;
+    float fVar3;
+    float fVar4;
+    longlong alStack_30 [2];
+    undefined *puStack_20;
+    code *pcStack_18;
+    
+    // 重置上下文中的缓冲区相关数据
+    pfVar1 = (float *)(param_1 + 0x120);
+    *(undefined4 *)(param_1 + 0x150) = 0;
+    pfVar1[0] = 0.0;
+    pfVar1[1] = 0.0;
+    *(undefined8 *)(param_1 + 0x128) = 0;
+    *(undefined8 *)(param_1 + 0x130) = 0;
+    *(undefined8 *)(param_1 + 0x138) = 0;
+    *(undefined8 *)(param_1 + 0x140) = 0;
+    *(undefined8 *)(param_1 + 0x148) = 0;
+    
+    // 设置缓冲区处理回调函数
+    puStack_20 = &UNK_18054ab80;
+    pcStack_18 = FUN_18054aab0;
+    alStack_30[0] = param_1;
+    
+    // 发送到渲染队列处理
+    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, alStack_30, param_3, param_4, 0xfffffffffffffffe);
+    
+    // 计算缓冲区边界框和距离
+    fVar4 = *(float *)(param_1 + 0x130);
+    if (*pfVar1 <= fVar4) {
+        fVar3 = (fVar4 + *pfVar1) * 0.5;
+        *(float *)(param_1 + 0x140) = fVar3;
+        *(float *)(param_1 + 0x144) = (*(float *)(param_1 + 0x134) + *(float *)(param_1 + 0x124)) * 0.5;
+        *(float *)(param_1 + 0x148) = (*(float *)(param_1 + 0x138) + *(float *)(param_1 + 0x128)) * 0.5;
+        *(undefined4 *)(param_1 + 0x14c) = MAGIC_FLOAT_MAX;    // 最大浮点数
+        fVar4 = fVar4 - fVar3;
+        fVar3 = *(float *)(param_1 + 0x138) - *(float *)(param_1 + 0x148);
+        fVar2 = *(float *)(param_1 + 0x134) - *(float *)(param_1 + 0x144);
+        *(float *)(param_1 + 0x150) = SQRT(fVar2 * fVar2 + fVar4 * fVar4 + fVar3 * fVar3);
+        return;
+    }
+    
+    // 重置所有缓冲区数据
+    *(undefined4 *)(param_1 + 0x150) = 0;
+    pfVar1[0] = 0.0;
+    pfVar1[1] = 0.0;
+    *(undefined8 *)(param_1 + 0x128) = 0;
+    *(undefined8 *)(param_1 + 0x130) = 0;
+    *(undefined8 *)(param_1 + 0x138) = 0;
+    *(undefined8 *)(param_1 + 0x140) = 0;
+    *(undefined8 *)(param_1 + 0x148) = 0;
     return;
-  }
-  *(undefined4 *)(param_1 + 0x150) = 0;
-  pfVar1[0] = 0.0;
-  pfVar1[1] = 0.0;
-  *(undefined8 *)(param_1 + 0x128) = 0;
-  *(undefined8 *)(param_1 + 0x130) = 0;
-  *(undefined8 *)(param_1 + 0x138) = 0;
-  *(undefined8 *)(param_1 + 0x140) = 0;
-  *(undefined8 *)(param_1 + 0x148) = 0;
-  return;
 }
 
 
@@ -1697,33 +1737,72 @@ void FUN_180547a20(longlong param_1,undefined8 param_2,undefined4 param_3,undefi
 
 
 
-// 函数: void FUN_180547aa0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180547aa0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+/*==============================================================================
+ * 函数: RenderSystem_SetShader - 渲染系统着色器设置函数
+ * 
+ * 功能描述：
+ *   设置渲染系统的着色器参数，用于绑定着色器程序到渲染管线
+ *   这是一个着色器设置函数，通过渲染队列异步设置着色器参数
+ * 
+ * 参数：
+ *   param_1 - 渲染上下文指针
+ *   param_2 - 着色器参数（64位）
+ *   param_3 - 附加参数1（64位）
+ *   param_4 - 附加参数2（64位）
+ * 
+ * 返回值：
+ *   无
+ * 
+ * 处理流程：
+ *   1. 设置着色器处理回调函数
+ *   2. 分配着色器参数结构体内存
+ *   3. 打包着色器参数（32位分段）
+ *   4. 设置附加参数
+ *   5. 发送到渲染队列处理
+ * 
+ * 注意事项：
+ *   - 使用0x18字节的着色器参数结构体
+ *   - 参数按32位分段存储，支持64位参数拆分
+ *   - 使用8字节内存对齐
+ *   - 支持异步着色器设置
+ * 
+ * 简化实现：
+ *   原始实现：复杂的参数打包和内存分配逻辑
+ *   简化实现：保持原有参数打包逻辑，添加了详细的分段说明
+ =============================================================================*/
+void RenderSystem_SetShader(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  undefined4 uStack_40;
-  undefined4 uStack_3c;
-  undefined4 uStack_38;
-  undefined4 uStack_34;
-  undefined4 *apuStack_28 [2];
-  code *pcStack_18;
-  code *pcStack_10;
-  
-  pcStack_18 = FUN_18054a9d0;
-  pcStack_10 = FUN_18054a960;
-  apuStack_28[0] =
-       (undefined4 *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,DAT_180bf65bc,0xfffffffffffffffe);
-  uStack_40 = (undefined4)param_2;
-  uStack_3c = (undefined4)((ulonglong)param_2 >> 0x20);
-  uStack_38 = (undefined4)param_3;
-  uStack_34 = (undefined4)((ulonglong)param_3 >> 0x20);
-  *apuStack_28[0] = uStack_40;
-  apuStack_28[0][1] = uStack_3c;
-  apuStack_28[0][2] = uStack_38;
-  apuStack_28[0][3] = uStack_34;
-  *(undefined8 *)(apuStack_28[0] + 4) = param_4;
-  FUN_18054a4b0(param_1 + 0xe0,apuStack_28);
-  return;
+    undefined4 uStack_40;
+    undefined4 uStack_3c;
+    undefined4 uStack_38;
+    undefined4 uStack_34;
+    undefined4 *apuStack_28 [2];
+    code *pcStack_18;
+    code *pcStack_10;
+    
+    // 设置着色器处理回调函数
+    pcStack_18 = FUN_18054a9d0;
+    pcStack_10 = FUN_18054a960;
+    
+    // 分配着色器参数结构体内存（0x18字节，8字节对齐）
+    apuStack_28[0] = (undefined4 *)FUN_18062b1e0(_DAT_180c8ed18, 0x18, MEMORY_ALIGN_8, DAT_180bf65bc, 0xfffffffffffffffe);
+    
+    // 打包着色器参数（64位参数拆分为两个32位）
+    uStack_40 = (undefined4)param_2;                    // 低32位
+    uStack_3c = (undefined4)((ulonglong)param_2 >> 0x20); // 高32位
+    uStack_38 = (undefined4)param_3;                    // 附加参数1低32位
+    uStack_34 = (undefined4)((ulonglong)param_3 >> 0x20); // 附加参数1高32位
+    
+    // 设置参数结构体内容
+    *apuStack_28[0] = uStack_40;
+    apuStack_28[0][1] = uStack_3c;
+    apuStack_28[0][2] = uStack_38;
+    apuStack_28[0][3] = uStack_34;
+    *(undefined8 *)(apuStack_28[0] + 4) = param_4;    // 附加参数2
+    
+    // 发送到渲染队列处理
+    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, apuStack_28);
+    return;
 }
 
 
