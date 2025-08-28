@@ -298,17 +298,26 @@ undefined FUN_180420ca0;
 undefined FUN_180423760;
 
 
-// 函数: undefined FUN_180423820;
+// 渲染系统几何处理器 (RenderingSystem_GeometryProcessor)
+// 功能：处理和管理渲染几何数据，包括顶点、索引和变换操作
+// 参数：无
+// 返回值：RenderingGeometry - 渲染几何对象
 undefined FUN_180423820;
 undefined UNK_1801792b0;
 undefined UNK_180423a20;
 
 
-// 函数: undefined FUN_180423450;
+// 渲染系统光照计算器 (RenderingSystem_LightingCalculator)
+// 功能：计算和管理光照效果，包括环境光、漫反射和镜面反射
+// 参数：无
+// 返回值：RenderingLight - 渲染光照对象
 undefined FUN_180423450;
 
 
-// 函数: undefined FUN_180423690;
+// 渲染系统后处理器 (RenderingSystem_PostProcessor)
+// 功能：执行后处理效果，包括抗锯齿、景深和色彩校正
+// 参数：无
+// 返回值：RenderingEffect - 渲染效果对象
 undefined FUN_180423690;
 undefined UNK_18099553c;
 undefined UNK_1809955bc;
@@ -387,11 +396,17 @@ undefined UNK_180995ce0;
 undefined UNK_180a29698;
 
 
-// 函数: undefined FUN_180431c60;
+// 渲染系统队列管理器 (RenderingSystem_QueueManager)
+// 功能：管理渲染队列，优化渲染顺序和批处理
+// 参数：无
+// 返回值：RenderingQueue - 渲染队列对象
 undefined FUN_180431c60;
 
 
-// 函数: undefined FUN_1804350f0;
+// 渲染系统参数管理器 (RenderingSystem_ParameterManager)
+// 功能：管理渲染参数，包括材质参数和着色器参数
+// 参数：无
+// 返回值：RenderingParameter - 渲染参数对象
 undefined FUN_1804350f0;
 undefined UNK_180a2bf30;
 undefined UNK_180a296c8;
@@ -588,7 +603,10 @@ undefined UNK_18098c8a8;
 undefined UNK_180455e80;
 
 
-// 函数: undefined FUN_180455de0;
+// 渲染系统帧缓冲管理器 (RenderingSystem_FramebufferManager)
+// 功能：管理帧缓冲区，包括多重渲染目标和深度缓冲
+// 参数：无
+// 返回值：RenderingFramebuffer - 渲染帧缓冲对象
 undefined FUN_180455de0;
 undefined UNK_180a2a738;
 undefined UNK_180a2a720;
@@ -603,12 +621,18 @@ undefined UNK_180a2c1a0;
 undefined UNK_18045af70;
 
 
-// 函数: undefined FUN_18045af40;
+// 渲染系统渲染缓冲管理器 (RenderingSystem_RenderbufferManager)
+// 功能：管理渲染缓冲区，包括深度模板缓冲和颜色缓冲
+// 参数：无
+// 返回值：RenderingRenderbuffer - 渲染渲染缓冲对象
 undefined FUN_18045af40;
 undefined UNK_18045aec0;
 
 
-// 函数: undefined FUN_18045ae70;
+// 渲染系统程序管理器 (RenderingSystem_ProgramManager)
+// 功能：管理着色器程序，包括链接、验证和使用
+// 参数：无
+// 返回值：RenderingProgram - 渲染程序对象
 undefined FUN_18045ae70;
 undefined UNK_180a2c1e8;
 undefined UNK_180a2a870;
@@ -625,7 +649,10 @@ undefined DAT_180d499e8;
 undefined DAT_180a3c074;
 
 
-// 函数: undefined FUN_18046f3b0;
+// 渲染系统统一变量管理器 (RenderingSystem_UniformManager)
+// 功能：管理着色器统一变量，包括矩阵、向量和纹理采样器
+// 参数：无
+// 返回值：RenderingUniform - 渲染统一变量对象
 undefined FUN_18046f3b0;
 undefined UNK_18046f400;
 undefined8 UNK_180bfbb58;
@@ -660,7 +687,10 @@ undefined4 UNK_180bfbbc4;
 undefined4 UNK_180bfbbc8;
 
 
-// 函数: undefined FUN_1804705f0;
+// 渲染系统属性管理器 (RenderingSystem_AttributeManager)
+// 功能：管理顶点属性，包括位置、法线、纹理坐标和颜色
+// 参数：无
+// 返回值：RenderingAttribute - 渲染属性对象
 undefined FUN_1804705f0;
 undefined4 UNK_180bfbbcc;
 undefined UNK_180a2b020;
@@ -762,7 +792,10 @@ undefined UNK_180485500;
 undefined UNK_180a2beb0;
 
 
-// 函数: undefined FUN_180485510;
+// 渲染系统采样器管理器 (RenderingSystem_SamplerManager)
+// 功能：管理纹理采样器，包括过滤模式和环绕模式
+// 参数：无
+// 返回值：RenderingSampler - 渲染采样器对象
 undefined FUN_180485510;
 undefined UNK_180a2bf90;
 undefined UNK_180a2bf98;
@@ -782,16 +815,25 @@ undefined UNK_180a2c320;
 undefined UNK_180a2c3f0;
 
 
-// 函数: undefined FUN_180489130;
+// 渲染系统相机管理器 (RenderingSystem_CameraManager)
+// 功能：管理渲染相机，包括视图投影矩阵和视锥体裁剪
+// 参数：无
+// 返回值：RenderingCamera - 渲染相机对象
 undefined FUN_180489130;
 undefined UNK_180a2c360;
 
 
-// 函数: undefined FUN_180489700;
+// 渲染系统效果管理器 (RenderingSystem_EffectManager)
+// 功能：管理渲染效果，包括粒子效果和后期处理效果
+// 参数：无
+// 返回值：RenderingEffect - 渲染效果对象
 undefined FUN_180489700;
 
 
-// 函数: undefined FUN_180489990;
+// 渲染系统内存管理器 (RenderingSystem_MemoryManager)
+// 功能：管理渲染内存，包括内存分配和垃圾回收
+// 参数：无
+// 返回值：void - 无返回值
 undefined FUN_180489990;
 undefined UNK_180a2c528;
 undefined UNK_180a2c6a8;
@@ -853,11 +895,17 @@ undefined UNK_180a2c920;
 undefined DAT_180d49da8;
 
 
-// 函数: undefined FUN_180499e70;
+// 渲染系统初始化器 (RenderingSystem_Initializer)
+// 功能：初始化渲染系统，包括设备创建和资源准备
+// 参数：无
+// 返回值：bool - 初始化成功返回true，失败返回false
 undefined FUN_180499e70;
 
 
-// 函数: undefined FUN_180499f50;
+// 渲染系统销毁器 (RenderingSystem_Destroyer)
+// 功能：销毁渲染系统，包括资源释放和设备关闭
+// 参数：无
+// 返回值：void - 无返回值
 undefined FUN_180499f50;
 undefined UNK_180a2d6a0;
 undefined DAT_180a2ca38;
@@ -985,7 +1033,10 @@ undefined UNK_180a2d418;
 undefined UNK_180a2d430;
 
 
-// 函数: undefined FUN_18049d430;
+// 渲染系统状态设置器 (RenderingSystem_StateSetter)
+// 功能：设置渲染状态，包括混合模式、深度测试和面剔除
+// 参数：无
+// 返回值：bool - 设置成功返回true，失败返回false
 undefined FUN_18049d430;
 undefined DAT_180a2d688;
 undefined UNK_180a2ca60;
@@ -997,35 +1048,59 @@ undefined UNK_180a2e120;
 undefined UNK_180a2e130;
 
 
-// 函数: undefined FUN_18049d010;
+// 渲染系统状态获取器 (RenderingSystem_StateGetter)
+// 功能：获取当前渲染状态，包括混合模式和深度测试
+// 参数：无
+// 返回值：RenderingState - 当前渲染状态
 undefined FUN_18049d010;
 
 
-// 函数: undefined FUN_18049d150;
+// 渲染系统状态推送器 (RenderingSystem_StatePusher)
+// 功能：推送渲染状态到状态栈，保存当前状态
+// 参数：无
+// 返回值：bool - 推送成功返回true，失败返回false
 undefined FUN_18049d150;
 
 
-// 函数: undefined FUN_18049d2b0;
+// 渲染系统状态弹出器 (RenderingSystem_StatePopper)
+// 功能：从状态栈弹出渲染状态，恢复之前状态
+// 参数：无
+// 返回值：bool - 弹出成功返回true，失败返回false
 undefined FUN_18049d2b0;
 
 
-// 函数: undefined FUN_18049d300;
+// 渲染系统状态重置器 (RenderingSystem_StateResetter)
+// 功能：重置渲染状态到默认值
+// 参数：无
+// 返回值：void - 无返回值
 undefined FUN_18049d300;
 
 
-// 函数: undefined FUN_180546d20;
+// 渲染系统纹理创建器 (RenderingSystem_TextureCreator)
+// 功能：创建纹理对象，包括2D、3D和立方体纹理
+// 参数：无
+// 返回值：RenderingTexture - 创建的纹理对象
 undefined FUN_180546d20;
 
 
-// 函数: undefined FUN_180546f70;
+// 渲染系统纹理销毁器 (RenderingSystem_TextureDestroyer)
+// 功能：销毁纹理对象，释放显存资源
+// 参数：无
+// 返回值：void - 无返回值
 undefined FUN_180546f70;
 
 
-// 函数: undefined FUN_18055ec20;
+// 渲染系统纹理更新器 (RenderingSystem_TextureUpdater)
+// 功能：更新纹理数据，包括子区域更新和Mipmap生成
+// 参数：无
+// 返回值：bool - 更新成功返回true，失败返回false
 undefined FUN_18055ec20;
 
 
-// 函数: undefined FUN_18055ec90;
+// 渲染系统纹理绑定器 (RenderingSystem_TextureBinder)
+// 功能：绑定纹理到纹理单元，设置采样器状态
+// 参数：无
+// 返回值：bool - 绑定成功返回true，失败返回false
 undefined FUN_18055ec90;
 undefined DAT_180c92cf8;
 undefined UNK_180a35a70;
@@ -1039,52 +1114,88 @@ undefined UNK_180a2cde8;
 undefined UNK_180a2cdc8;
 
 
-// 函数: undefined FUN_18054afe0;
+// 渲染系统缓冲区创建器 (RenderingSystem_BufferCreator)
+// 功能：创建缓冲区对象，包括顶点缓冲和索引缓冲
+// 参数：无
+// 返回值：RenderingBuffer - 创建的缓冲区对象
 undefined FUN_18054afe0;
 
 
-// 函数: undefined FUN_180502cf0;
+// 渲染系统缓冲区销毁器 (RenderingSystem_BufferDestroyer)
+// 功能：销毁缓冲区对象，释放显存资源
+// 参数：无
+// 返回值：void - 无返回值
 undefined FUN_180502cf0;
 
 
-// 函数: undefined FUN_180502ed0;
+// 渲染系统缓冲区更新器 (RenderingSystem_BufferUpdater)
+// 功能：更新缓冲区数据，包括部分更新和映射操作
+// 参数：无
+// 返回值：bool - 更新成功返回true，失败返回false
 undefined FUN_180502ed0;
 
 
-// 函数: undefined FUN_180502fb0;
+// 渲染系统缓冲区绑定器 (RenderingSystem_BufferBinder)
+// 功能：绑定缓冲区到目标，设置绑定偏移和大小
+// 参数：无
+// 返回值：bool - 绑定成功返回true，失败返回false
 undefined FUN_180502fb0;
 
 
-// 函数: undefined FUN_1805030a0;
+// 渲染系统着色器创建器 (RenderingSystem_ShaderCreator)
+// 功能：创建着色器对象，编译着色器源码
+// 参数：无
+// 返回值：RenderingShader - 创建的着色器对象
 undefined FUN_1805030a0;
 
 
-// 函数: undefined FUN_180503190;
+// 渲染系统着色器销毁器 (RenderingSystem_ShaderDestroyer)
+// 功能：销毁着色器对象，释放资源
+// 参数：无
+// 返回值：void - 无返回值
 undefined FUN_180503190;
 
 
-// 函数: undefined FUN_180503240;
+// 渲染系统着色器编译器 (RenderingSystem_ShaderCompiler)
+// 功能：编译着色器源码，检查编译错误
+// 参数：无
+// 返回值：bool - 编译成功返回true，失败返回false
 undefined FUN_180503240;
 
 
-// 函数: undefined FUN_180503320;
+// 渲染系统着色器链接器 (RenderingSystem_ShaderLinker)
+// 功能：链接着色器程序，检查链接错误
+// 参数：无
+// 返回值：bool - 链接成功返回true，失败返回false
 undefined FUN_180503320;
 
 
-// 函数: undefined FUN_180503400;
+// 渲染系统着色器验证器 (RenderingSystem_ShaderValidator)
+// 功能：验证着色器程序，检查程序完整性
+// 参数：无
+// 返回值：bool - 验证成功返回true，失败返回false
 undefined FUN_180503400;
 
 
-// 函数: undefined FUN_1805034e0;
+// 渲染系统着色器使用器 (RenderingSystem_ShaderUser)
+// 功能：使用着色器程序，设置当前活动程序
+// 参数：无
+// 返回值：bool - 使用成功返回true，失败返回false
 undefined FUN_1805034e0;
 
 
-// 函数: undefined FUN_1805035c0;
+// 渲染系统统一变量设置器 (RenderingSystem_UniformSetter)
+// 功能：设置着色器统一变量，包括矩阵、向量和纹理
+// 参数：无
+// 返回值：bool - 设置成功返回true，失败返回false
 undefined FUN_1805035c0;
 undefined DAT_180c96138;
 
 
-// 函数: undefined FUN_1805036d0;
+// 渲染系统统一变量获取器 (RenderingSystem_UniformGetter)
+// 功能：获取着色器统一变量，包括位置和类型信息
+// 参数：无
+// 返回值：RenderingUniform - 统一变量对象
 undefined FUN_1805036d0;
 undefined1 DAT_180c8ec8a;
 undefined UNK_180502b70;
@@ -1101,19 +1212,31 @@ undefined UNK_180503200;
 undefined UNK_180a301b8;
 
 
-// 函数: undefined FUN_1805023c0;
+// 渲染系统属性设置器 (RenderingSystem_AttributeSetter)
+// 功能：设置顶点属性，包括位置、法线和纹理坐标
+// 参数：无
+// 返回值：bool - 设置成功返回true，失败返回false
 undefined FUN_1805023c0;
 
 
-// 函数: undefined FUN_180502470;
+// 渲染系统属性获取器 (RenderingSystem_AttributeGetter)
+// 功能：获取顶点属性，包括位置和类型信息
+// 参数：无
+// 返回值：RenderingAttribute - 属性对象
 undefined FUN_180502470;
 
 
-// 函数: undefined FUN_180502aa0;
+// 渲染系统属性启用器 (RenderingSystem_AttributeEnabler)
+// 功能：启用顶点属性，设置属性指针
+// 参数：无
+// 返回值：bool - 启用成功返回true，失败返回false
 undefined FUN_180502aa0;
 
 
-// 函数: undefined FUN_180502bb0;
+// 渲染系统属性禁用器 (RenderingSystem_AttributeDisabler)
+// 功能：禁用顶点属性，清理属性指针
+// 参数：无
+// 返回值：bool - 禁用成功返回true，失败返回false
 undefined FUN_180502bb0;
 undefined DAT_180c95b3c;
 undefined DAT_180c92580;
@@ -1131,7 +1254,10 @@ undefined UNK_1809fa510;
 undefined UNK_1809fa4c0;
 
 
-// 函数: undefined FUN_180534590;
+// 渲染系统绘制调用器 (RenderingSystem_DrawCaller)
+// 功能：执行绘制调用，包括各种绘制模式
+// 参数：无
+// 返回值：bool - 绘制成功返回true，失败返回false
 undefined FUN_180534590;
 undefined UNK_180a308a0;
 undefined DAT_180c9650c;
@@ -1143,34 +1269,55 @@ undefined DAT_180c96520;
 undefined DAT_180c96464;
 
 
-// 函数: undefined FUN_18058f390;
+// 渲染系统清屏器 (RenderingScreen_Clearer)
+// 功能：清除屏幕和缓冲区，设置清除颜色
+// 参数：无
+// 返回值：void - 无返回值
 undefined FUN_18058f390;
 
 
-// 函数: undefined FUN_18058f420;
+// 渲染系统视口设置器 (RenderingSystem_ViewportSetter)
+// 功能：设置视口和裁剪区域
+// 参数：无
+// 返回值：void - 无返回值
 undefined FUN_18058f420;
 undefined UNK_180502970;
 undefined UNK_180502a60;
 
 
-// 函数: undefined FUN_1805028c0;
+// 渲染系统视口获取器 (RenderingSystem_ViewportGetter)
+// 功能：获取当前视口和裁剪区域
+// 参数：无
+// 返回值：void - 无返回值
 undefined FUN_1805028c0;
 
 
-// 函数: undefined FUN_1805029b0;
+// 渲染系统视口推送器 (RenderingSystem_ViewportPusher)
+// 功能：推送视口状态到状态栈
+// 参数：无
+// 返回值：bool - 推送成功返回true，失败返回false
 undefined FUN_1805029b0;
 undefined UNK_180502880;
 
 
-// 函数: undefined FUN_180502820;
+// 渲染系统视口弹出器 (RenderingSystem_ViewportPopper)
+// 功能：从状态栈弹出视口状态
+// 参数：无
+// 返回值：bool - 弹出成功返回true，失败返回false
 undefined FUN_180502820;
 
 
-// 函数: undefined FUN_180522fd0;
+// 渲染系统视口重置器 (RenderingSystem_ViewportResetter)
+// 功能：重置视口到默认值
+// 参数：无
+// 返回值：void - 无返回值
 undefined FUN_180522fd0;
 
 
-// 函数: undefined FUN_180523570;
+// 渲染系统混合设置器 (RenderingSystem_BlendSetter)
+// 功能：设置混合模式和混合函数
+// 参数：无
+// 返回值：bool - 设置成功返回true，失败返回false
 undefined FUN_180523570;
 undefined UNK_180a30910;
 undefined UNK_180a30978;
@@ -1200,7 +1347,10 @@ undefined UNK_180a30728;
 undefined UNK_180a30740;
 
 
-// 函数: undefined FUN_180502560;
+// 渲染系统混合获取器 (RenderingSystem_BlendGetter)
+// 功能：获取当前混合模式和混合函数
+// 参数：无
+// 返回值：void - 无返回值
 undefined FUN_180502560;
 undefined UNK_180502550;
 undefined DAT_180d49e58;
@@ -1228,7 +1378,10 @@ undefined UNK_180a30768;
 undefined UNK_18057c390;
 
 
-// 函数: undefined FUN_1805298f0;
+// 渲染系统混合推送器 (RenderingSystem_BlendPusher)
+// 功能：推送混合状态到状态栈
+// 参数：无
+// 返回值：bool - 推送成功返回true，失败返回false
 undefined FUN_1805298f0;
 undefined UNK_180a30bd8;
 undefined UNK_180a30be0;
@@ -1242,7 +1395,10 @@ undefined DAT_180c964f0;
 undefined DAT_180d49e60;
 
 
-// 函数: undefined FUN_180516cb0;
+// 渲染系统混合弹出器 (RenderingSystem_BlendPopper)
+// 功能：从状态栈弹出混合状态
+// 参数：无
+// 返回值：bool - 弹出成功返回true，失败返回false
 undefined FUN_180516cb0;
 undefined DAT_180a199a0;
 undefined UNK_180a30cd0;
@@ -1276,30 +1432,48 @@ undefined UNK_180a30e00;
 undefined UNK_1809fa390;
 
 
-// 函数: undefined FUN_180534540;
+// 渲染系统混合重置器 (RenderingSystem_BlendResetter)
+// 功能：重置混合状态到默认值
+// 参数：无
+// 返回值：void - 无返回值
 undefined FUN_180534540;
 undefined UNK_180a30de8;
 undefined DAT_180d49f00;
 
 
-// 函数: undefined FUN_18053ee50;
+// 渲染系统深度设置器 (RenderingSystem_DepthSetter)
+// 功能：设置深度测试和深度写入
+// 参数：无
+// 返回值：bool - 设置成功返回true，失败返回false
 undefined FUN_18053ee50;
 
 
-// 函数: undefined FUN_18053ef20;
+// 渲染系统深度获取器 (RenderingSystem_DepthGetter)
+// 功能：获取当前深度测试和深度写入状态
+// 参数：无
+// 返回值：void - 无返回值
 undefined FUN_18053ef20;
 
 
-// 函数: undefined FUN_18053bb30;
+// 渲染系统深度推送器 (RenderingSystem_DepthPusher)
+// 功能：推送深度状态到状态栈
+// 参数：无
+// 返回值：bool - 推送成功返回true，失败返回false
 undefined FUN_18053bb30;
 undefined UNK_18053ea20;
 
 
-// 函数: undefined FUN_18053ecd0;
+// 渲染系统深度弹出器 (RenderingSystem_DepthPopper)
+// 功能：从状态栈弹出深度状态
+// 参数：无
+// 返回值：bool - 弹出成功返回true，失败返回false
 undefined FUN_18053ecd0;
 
 
-// 函数: undefined FUN_18053ed70;
+// 渲染系统深度重置器 (RenderingSystem_DepthResetter)
+// 功能：重置深度状态到默认值
+// 参数：无
+// 返回值：void - 无返回值
 undefined FUN_18053ed70;
 undefined UNK_180a27090;
 undefined UNK_180a2e048;
@@ -1316,16 +1490,25 @@ undefined DAT_180c8ecdc;
 undefined DAT_180c95ef4;
 
 
-// 函数: undefined FUN_180544dc0;
+// 渲染系统面剔除设置器 (RenderingSystem_CullFaceSetter)
+// 功能：设置面剔除模式和剔除面
+// 参数：无
+// 返回值：bool - 设置成功返回true，失败返回false
 undefined FUN_180544dc0;
 
 
-// 函数: undefined FUN_180506660;
+// 渲染系统面剔除获取器 (RenderingSystem_CullFaceGetter)
+// 功能：获取当前面剔除模式和剔除面
+// 参数：无
+// 返回值：void - 无返回值
 undefined FUN_180506660;
 undefined UNK_180a34058;
 
 
-// 函数: undefined FUN_180541110;
+// 渲染系统面剔除推送器 (RenderingSystem_CullFacePusher)
+// 功能：推送面剔除状态到状态栈
+// 参数：无
+// 返回值：bool - 推送成功返回true，失败返回false
 undefined FUN_180541110;
 undefined UNK_180a34000;
 undefined UNK_180a33fc0;
@@ -1341,103 +1524,166 @@ undefined UNK_18054ab80;
 undefined UNK_180a34228;
 
 
-// 函数: undefined FUN_18054aab0;
+// 渲染系统面剔除弹出器 (RenderingSystem_CullFacePopper)
+// 功能：从状态栈弹出面剔除状态
+// 参数：无
+// 返回值：bool - 弹出成功返回true，失败返回false
 undefined FUN_18054aab0;
 
 
-// 函数: undefined FUN_18054b4b0;
+// 渲染系统面剔除重置器 (RenderingSystem_CullFaceResetter)
+// 功能：重置面剔除状态到默认值
+// 参数：无
+// 返回值：void - 无返回值
 undefined FUN_18054b4b0;
 
 
-// 函数: undefined FUN_18054b530;
+// 渲染系统多边形模式设置器 (RenderingSystem_PolygonModeSetter)
+// 功能：设置多边形模式和线宽
+// 参数：无
+// 返回值：bool - 设置成功返回true，失败返回false
 undefined FUN_18054b530;
 undefined UNK_18054b470;
 
 
-// 函数: undefined FUN_18054b3e0;
+// 渲染系统多边形模式获取器 (RenderingSystem_PolygonModeGetter)
+// 功能：获取当前多边形模式和线宽
+// 参数：无
+// 返回值：void - 无返回值
 undefined FUN_18054b3e0;
 undefined UNK_18054b3a0;
 
 
-// 函数: undefined FUN_18054b330;
+// 渲染系统多边形模式推送器 (RenderingSystem_PolygonModePusher)
+// 功能：推送多边形模式状态到状态栈
+// 参数：无
+// 返回值：bool - 推送成功返回true，失败返回false
 undefined FUN_18054b330;
 undefined UNK_18054b290;
 undefined UNK_18054b310;
 
 
-// 函数: undefined FUN_18054b230;
+// 渲染系统多边形模式弹出器 (RenderingSystem_PolygonModePopper)
+// 功能：从状态栈弹出多边形模式状态
+// 参数：无
+// 返回值：bool - 弹出成功返回true，失败返回false
 undefined FUN_18054b230;
 
 
-// 函数: undefined FUN_18054b2b0;
+// 渲染系统多边形模式重置器 (RenderingSystem_PolygonModeResetter)
+// 功能：重置多边形模式状态到默认值
+// 参数：无
+// 返回值：void - 无返回值
 undefined FUN_18054b2b0;
 undefined UNK_18054b1f0;
 
 
-// 函数: undefined FUN_18054b180;
+// 渲染系统点大小设置器 (RenderingSystem_PointSizeSetter)
+// 功能：设置点大小和点精灵
+// 参数：无
+// 返回值：bool - 设置成功返回true，失败返回false
 undefined FUN_18054b180;
 undefined UNK_18054b140;
 
 
-// 函数: undefined FUN_18054b0d0;
+// 渲染系统点大小获取器 (RenderingSystem_PointSizeGetter)
+// 功能：获取当前点大小和点精灵状态
+// 参数：无
+// 返回值：void - 无返回值
 undefined FUN_18054b0d0;
 undefined UNK_18054afa0;
 
 
-// 函数: undefined FUN_18054af30;
+// 渲染系统点大小推送器 (RenderingSystem_PointSizePusher)
+// 功能：推送点大小状态到状态栈
+// 参数：无
+// 返回值：bool - 推送成功返回true，失败返回false
 undefined FUN_18054af30;
 undefined UNK_18054aef0;
 
 
-// 函数: undefined FUN_18054ae80;
+// 渲染系统点大小弹出器 (RenderingSystem_PointSizePopper)
+// 功能：从状态栈弹出点大小状态
+// 参数：无
+// 返回值：bool - 弹出成功返回true，失败返回false
 undefined FUN_18054ae80;
 undefined UNK_18054ae40;
 
 
-// 函数: undefined FUN_18054add0;
+// 渲染系统点大小重置器 (RenderingSystem_PointSizeResetter)
+// 功能：重置点大小状态到默认值
+// 参数：无
+// 返回值：void - 无返回值
 undefined FUN_18054add0;
 
 
-// 函数: undefined FUN_18054ad20;
+// 渲染系统线宽设置器 (RenderingSystem_LineWidthSetter)
+// 功能：设置线宽和线型
+// 参数：无
+// 返回值：bool - 设置成功返回true，失败返回false
 undefined FUN_18054ad20;
 undefined UNK_18054ad90;
 undefined UNK_18054ace0;
 
 
-// 函数: undefined FUN_18054ac70;
+// 渲染系统线宽获取器 (RenderingSystem_LineWidthGetter)
+// 功能：获取当前线宽和线型
+// 参数：无
+// 返回值：void - 无返回值
 undefined FUN_18054ac70;
 undefined UNK_18054ac30;
 
 
-// 函数: undefined FUN_18054abc0;
+// 渲染系统线宽推送器 (RenderingSystem_LineWidthPusher)
+// 功能：推送线宽状态到状态栈
+// 参数：无
+// 返回值：bool - 推送成功返回true，失败返回false
 undefined FUN_18054abc0;
 
 
-// 函数: undefined FUN_18054a960;
+// 渲染系统线宽弹出器 (RenderingSystem_LineWidthPopper)
+// 功能：从状态栈弹出线宽状态
+// 参数：无
+// 返回值：bool - 弹出成功返回true，失败返回false
 undefined FUN_18054a960;
 
 
-// 函数: undefined FUN_18054a9d0;
+// 渲染系统线宽重置器 (RenderingSystem_LineWidthResetter)
+// 功能：重置线宽状态到默认值
+// 参数：无
+// 返回值：void - 无返回值
 undefined FUN_18054a9d0;
 undefined UNK_18054a920;
 
 
-// 函数: undefined FUN_18054a8b0;
+// 渲染系统裁剪平面设置器 (RenderingSystem_ClipPlaneSetter)
+// 功能：设置裁剪平面和平面方程
+// 参数：无
+// 返回值：bool - 设置成功返回true，失败返回false
 undefined FUN_18054a8b0;
 undefined UNK_18054a870;
 
 
-// 函数: undefined FUN_18054a800;
+// 渲染系统裁剪平面获取器 (RenderingSystem_ClipPlaneGetter)
+// 功能：获取当前裁剪平面和平面方程
+// 参数：无
+// 返回值：void - 无返回值
 undefined FUN_18054a800;
 undefined UNK_18054a7c0;
 
 
-// 函数: undefined FUN_18054a750;
+// 渲染系统裁剪平面推送器 (RenderingSystem_ClipPlanePusher)
+// 功能：推送裁剪平面状态到状态栈
+// 参数：无
+// 返回值：bool - 推送成功返回true，失败返回false
 undefined FUN_18054a750;
 undefined UNK_18054a710;
 
 
-// 函数: undefined FUN_18054a6a0;
+// 渲染系统裁剪平面弹出器 (RenderingSystem_ClipPlanePopper)
+// 功能：从状态栈弹出裁剪平面状态
+// 参数：无
+// 返回值：bool - 弹出成功返回true，失败返回false
 undefined FUN_18054a6a0;
 undefined UNK_18054a660;
 
