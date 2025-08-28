@@ -660,7 +660,7 @@ LAB_skip_validation:
   *(uint64_t *)(string_length + 0x48) = *parent_node;
   *(int32_t *)(string_length + 0x60) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(string_length,current_node,record_manager,search_param,create_param,parent_node,parent_node);
+  SystemNetworkHandler(string_length,current_node,record_manager,search_param,create_param,parent_node,parent_node);
 }
 
 
@@ -710,7 +710,7 @@ LAB_skip_duplicate_check:
   *(uint64_t *)(string_length + 0x48) = *record_node;
   *(int32_t *)(string_length + 0x60) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(string_length,record_data,record_manager,insert_param,create_param,record_node);
+  SystemNetworkHandler(string_length,record_data,record_manager,insert_param,create_param,record_node);
 }
 
 
