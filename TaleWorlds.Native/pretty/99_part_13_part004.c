@@ -1,6 +1,36 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 99_part_13_part004.c - 6 个函数
+/**
+ * @file pretty/99_part_13_part004.c
+ * @brief 高级系统资源管理和数据处理模块（美化版本）
+ * 
+ * 本模块实现了系统级资源管理、数据处理、内存操作和状态同步等核心功能。
+ * 主要包括资源分配器、数据处理器、内存管理器、状态同步器等组件。
+ * 
+ * @module 系统资源管理
+ * @submodule 高级数据处理
+ * @version 1.0
+ * @date 2025-08-28
+ * 
+ * @note 这是一个简化实现版本，完整实现请参考 _beautified.c 文件
+ */
+
+/* ================================ */
+/* 系统常量定义 */
+/* ================================ */
+
+/** 系统错误码定义 */
+#define SYSTEM_SUCCESS                    0x00000000    /**< 操作成功 */
+#define SYSTEM_ERROR_INVALID_PARAM        0x0000000D    /**< 无效参数 */
+#define SYSTEM_ERROR_BUFFER_OVERFLOW      0x00000011    /**< 缓冲区溢出 */
+#define SYSTEM_ERROR_MEMORY_ALLOCATION    0x0000001C    /**< 内存分配失败 */
+#define SYSTEM_ERROR_RESOURCE_NOT_FOUND   0x00000026    /**< 资源未找到 */
+
+/** 资源管理常量 */
+#define MAX_RESOURCE_COUNT                0x000003FF    /**< 最大资源数量 */
+#define RESOURCE_POOL_SIZE                0x00000028    /**< 资源池大小 */
+#define MAGIC_IDCM                        0x43444D43    /**< IDCM魔数 */
+#define MAGIC_BDMC                        0x42444D43    /**< BDMC魔数 */
 
 // 函数: void FUN_1808a7dfd(void)
 void FUN_1808a7dfd(void)

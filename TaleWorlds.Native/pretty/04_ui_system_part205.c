@@ -1,59 +1,183 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 04_ui_system_part205.c - 6 个函数
+// 04_ui_system_part205.c - UI系统管理模块
+// 本模块包含UI系统的核心管理函数，负责UI初始化、事件处理、内存管理等功能
 
-// 函数: void FUN_180788e4d(void)
-void FUN_180788e4d(void)
+// 系统常量定义
+#define UI_SYSTEM_SUCCESS 0x0           // UI系统操作成功
+#define UI_SYSTEM_ERROR_INIT 0x1f        // UI系统初始化错误
+#define UI_SYSTEM_ERROR_MEMORY 0x26      // UI系统内存分配错误
+#define UI_SYSTEM_ERROR_STATE 0x42       // UI系统状态错误
+#define UI_SYSTEM_ERROR_PARAM 0x43       // UI系统参数错误
 
+// UI系统偏移量常量
+#define UI_OFFSET_VTABLE 0x400           // 虚函数表偏移量
+#define UI_OFFSET_STATUS 0x31            // 状态标志偏移量
+#define UI_OFFSET_SIZE 0x24              // 尺寸信息偏移量
+#define UI_OFFSET_COUNT 0x14             // 计数器偏移量
+#define UI_OFFSET_DATA 0x48              // 数据指针偏移量
+#define UI_OFFSET_WIDTH 0x280            // 宽度信息偏移量
+#define UI_OFFSET_CLEANUP 0x368          // 清理函数偏移量
+#define UI_OFFSET_HANDLER 0x3a8          // 事件处理器偏移量
+#define UI_OFFSET_RENDER 0x3b0           // 渲染器偏移量
+
+// UI系统组件类型定义
+typedef struct {
+    uint64_t* vtable;        // 虚函数表指针
+    uint32_t status;         // 组件状态
+    uint32_t size;           // 组件尺寸
+    uint32_t count;          // 元素计数
+    void* data;              // 数据指针
+    void* renderer;          // 渲染器指针
+    void* handler;          // 事件处理器
+} UIComponent;
+
+// UI系统内存管理器类型定义
+typedef struct {
+    void* primary_buffer;    // 主缓冲区
+    void* secondary_buffer;  // 次缓冲区
+    void* index_buffer;      // 索引缓冲区
+    uint32_t buffer_size;    // 缓冲区大小
+    uint32_t element_count;  // 元素数量
+} UIMemoryManager;
+
+// UI系统渲染器类型定义
+typedef struct {
+    float* vertex_buffer;    // 顶点缓冲区
+    float* texture_coords;   // 纹理坐标
+    uint32_t vertex_count;   // 顶点数量
+    uint32_t texture_id;     // 纹理ID
+} UIRenderer;
+
+// UI系统事件处理器类型定义
+typedef struct {
+    void (*on_click)(void*);     // 点击事件
+    void (*on_hover)(void*);     // 悬停事件
+    void (*on_scroll)(void*);    // 滚动事件
+    void (*on_focus)(void*);     // 焦点事件
+} UIEventHandler;
+
+// 函数别名定义
+#define UI_EmptyFunction FUN_180788e4d
+#define UI_InitializeSystem FUN_180788e60
+#define UI_ShutdownSystem FUN_180788f20
+#define UI_SecurityCheck FUN_180788f70
+#define UI_ProcessEvents FUN_180788fe0
+#define UI_TraverseComponents FUN_180789122
+#define UI_ProcessLoop FUN_18078913f
+#define UI_ReturnSuccess FUN_1807891b1
+#define UI_ReturnSuccess2 FUN_1807891bb
+#define UI_CleanupResources FUN_1807891d0
+#define UI_ReleaseResources FUN_180789205
+#define UI_ResetSystem FUN_180789221
+#define UI_ResetSystem2 FUN_18078922b
+#define UI_ClearSystem FUN_18078923c
+#define UI_BatchProcess FUN_180789283
+#define UI_ProcessLinkedList FUN_180789292
+#define UI_EmptyFunction2 FUN_1807892d1
+#define UI_EmptyFunction3 FUN_1807892d6
+#define UI_CheckStatus FUN_180789300
+#define UI_RecursiveProcess FUN_180789360
+#define UI_AllocateMemory FUN_180789470
+#define UI_AllocateMemory2 FUN_1807894bb
+#define UI_AllocateMemory3 FUN_1807894e0
+#define UI_EmptyFunction4 FUN_1807895a2
+#define UI_SetupMemory FUN_1807895b5
+#define UI_InitializeRenderer FUN_18078961b
+#define UI_InitializeRenderer2 FUN_1807896ae
+#define UI_InitializeRenderer3 FUN_18078971b
+#define UI_HandleMemoryError FUN_18078978e
+#define UI_HandleInitError FUN_180789798
+#define UI_ProcessData FUN_1807897b0
+
+/**
+ * UI_EmptyFunction - 空函数
+ * 
+ * 这是一个占位函数，不执行任何操作，仅用于保持API兼容性
+ * 
+ * 原始实现：FUN_180788e4d
+ */
+void UI_EmptyFunction(void)
 {
-  return;
+    return;
 }
 
 
 
-uint64_t FUN_180788e60(longlong param_1,longlong param_2)
-
+/**
+ * UI_InitializeSystem - UI系统初始化检查
+ * 
+ * 检查UI系统是否正确初始化，验证各个组件的状态
+ * 
+ * @param system_ptr 系统指针
+ * @param component_ptr 组件指针
+ * @return 初始化结果：0=成功，0x42=状态错误
+ * 
+ * 原始实现：FUN_180788e60
+ */
+uint64_t UI_InitializeSystem(longlong system_ptr, longlong component_ptr)
 {
-  int iVar1;
-  int iVar2;
-  int aiStackX_8 [2];
-  
-  if (*(code **)(param_1 + 0x400) == (code *)0x0) {
-    return 0x42;
-  }
-  if (*(int *)(param_2 + 0x24) == 0) {
-    return 0;
-  }
-  if (*(char *)(param_2 + 0x31) != '\0') {
-    return 0;
-  }
-  aiStackX_8[0] = 0;
-  iVar2 = (**(code **)(param_1 + 0x400))(param_1 + 8,param_2,aiStackX_8);
-  if (iVar2 == 0) {
-    iVar2 = aiStackX_8[0] - *(int *)(param_2 + 0x14);
-    if (((iVar2 < 0) && (iVar2 = iVar2 + *(int *)(param_2 + 0x24), iVar2 < 0)) ||
-       (*(int *)(param_2 + 0x24) < iVar2)) {
-      iVar2 = 0;
+    int result1;
+    int result2;
+    int temp_array[2];
+    
+    // 检查虚函数表是否初始化
+    if (*(code **)(system_ptr + UI_OFFSET_VTABLE) == (code *)0x0) {
+        return UI_SYSTEM_ERROR_STATE;
     }
-    if (*(longlong *)(param_2 + 0x48) == 0) {
-      if (iVar2 < 1) {
-        return 0;
-      }
+    
+    // 检查组件计数器
+    if (*(int *)(component_ptr + UI_OFFSET_COUNT) == 0) {
+        return UI_SYSTEM_SUCCESS;
     }
-    else {
-      iVar1 = *(int *)(*(longlong *)(param_2 + 0x48) + 0x280);
-      if (iVar2 < iVar1 * 3) {
-        return 0;
-      }
-      iVar2 = iVar2 - (iVar2 % iVar1 + iVar1);
+    
+    // 检查状态标志
+    if (*(char *)(component_ptr + UI_OFFSET_STATUS) != '\0') {
+        return UI_SYSTEM_SUCCESS;
     }
-    iVar2 = FUN_1807881c0(param_1,param_2,iVar2);
-    if (iVar2 == 0) {
-      return 0;
+    
+    // 初始化临时数组
+    temp_array[0] = 0;
+    
+    // 调用初始化函数
+    result2 = (**(code **)(system_ptr + UI_OFFSET_VTABLE))(system_ptr + 8, component_ptr, temp_array);
+    
+    if (result2 == 0) {
+        // 计算偏移量
+        result2 = temp_array[0] - *(int *)(component_ptr + UI_OFFSET_SIZE);
+        
+        // 边界检查
+        if (((result2 < 0) && (result2 = result2 + *(int *)(component_ptr + UI_OFFSET_SIZE), result2 < 0)) ||
+            (*(int *)(component_ptr + UI_OFFSET_SIZE) < result2)) {
+            result2 = 0;
+        }
+        
+        // 检查数据指针
+        if (*(longlong *)(component_ptr + UI_OFFSET_DATA) == 0) {
+            if (result2 < 1) {
+                return UI_SYSTEM_SUCCESS;
+            }
+        } else {
+            // 获取宽度信息
+            result1 = *(int *)(*(longlong *)(component_ptr + UI_OFFSET_DATA) + UI_OFFSET_WIDTH);
+            if (result2 < result1 * 3) {
+                return UI_SYSTEM_SUCCESS;
+            }
+            
+            // 调整结果值
+            result2 = result2 - (result2 % result1 + result1);
+        }
+        
+        // 处理初始化结果
+        result2 = FUN_1807881c0(system_ptr, component_ptr, result2);
+        if (result2 == 0) {
+            return UI_SYSTEM_SUCCESS;
+        }
     }
-  }
-  *(int8_t *)(param_2 + 0x31) = 1;
-  return 0;
+    
+    // 设置状态标志
+    *(int8_t *)(component_ptr + UI_OFFSET_STATUS) = 1;
+    return UI_SYSTEM_SUCCESS;
 }
 
 
