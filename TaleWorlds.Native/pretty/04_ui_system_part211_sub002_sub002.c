@@ -86,6 +86,7 @@ int UI_SetComponentProperties(void* context, uint32_t flags, void* properties, v
 #define UI_CreateSpecializedComponent FUN_18078d9d0
 #define UI_CreateRenderComponent FUN_18078de70
 #define UI_SetComponentProperties FUN_18078df30
+#define UI_SecurityCheck FUN_1808fc050
 
 // ==================== 高级函数别名 ====================
 #define UI_ComponentCreationHandler UI_CreateComponent
@@ -346,7 +347,7 @@ LAB_18078cd2a:
     
 LAB_18078cd39:
     // 安全检查：返回
-    FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
+    UI_SecurityCheck(security_key ^ (ulonglong)security_buffer);
 }
 
 /**
@@ -630,7 +631,7 @@ LAB_18078d107:
 void* UI_AllocateComponent(void* component)
 {
     // 初始化组件内存
-    func_0x000180768c10();
+    UI_InitializeComponentMemory();
     
     // 设置组件虚函数表
     *component = &UNK_18095afe8;

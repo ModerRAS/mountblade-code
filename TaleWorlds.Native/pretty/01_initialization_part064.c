@@ -368,7 +368,7 @@ int32_t InitializationSystem_ErrorHandler(void);
  * 
  * @return void 无返回值
  */
-void FUN_1800591c0(void);
+void InitializationSystem_PrepareInit(void);
 
 /**
  * @brief 系统错误处理函数
@@ -377,7 +377,7 @@ void FUN_1800591c0(void);
  * 
  * @return void 无返回值
  */
-void FUN_18064e900(void);
+void InitializationSystem_HandleInitError(void);
 
 /**
  * @brief 配置初始化函数
@@ -387,7 +387,7 @@ void FUN_18064e900(void);
  * @param param_1 配置参数指针
  * @return void 无返回值
  */
-void FUN_180057010(long long param_1);
+void InitializationSystem_InitConfig(long long param_1);
 
 /* ============================================================================
  * 辅助功能函数声明
@@ -1077,7 +1077,7 @@ void FUN_18004bb90(long long param_1)
  * 
  * @return void 无返回值
  */
-void FUN_1800591c0(void);
+void InitializationSystem_PrepareInit(void);
 
 /**
  * @brief 系统错误处理函数
@@ -1086,7 +1086,7 @@ void FUN_1800591c0(void);
  * 
  * @return void 无返回值
  */
-void FUN_18064e900(void);
+void InitializationSystem_HandleInitError(void);
 
 /**
  * @brief 配置初始化函数
@@ -1096,7 +1096,7 @@ void FUN_18064e900(void);
  * @param param_1 配置参数指针
  * @return void 无返回值
  */
-void FUN_180057010(long long param_1);
+void InitializationSystem_InitConfig(long long param_1);
 
 /**
  * @brief 资源管理函数
@@ -1110,7 +1110,7 @@ void FUN_180057010(long long param_1);
  * @param param_5 资源参数5
  * @return void 无返回值
  */
-void FUN_1800582b0(long long param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5);
+void InitializationSystem_ManageResource(long long param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5);
 
 /**
  * @brief 状态管理函数
@@ -1124,7 +1124,7 @@ void FUN_1800582b0(long long param_1, uint64_t param_2, uint64_t param_3, uint64
  * @param param_5 状态参数5
  * @return void 无返回值
  */
-void FUN_180058370(long long param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5);
+void InitializationSystem_ManageState(long long param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5);
 
 /**
  * @brief 错误处理函数
