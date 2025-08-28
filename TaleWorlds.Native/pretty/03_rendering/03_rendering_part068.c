@@ -789,8 +789,9 @@ LAB_180306bfe:
 
 
 
-// 函数: void FUN_180306c30(longlong param_1)
-void FUN_180306c30(longlong param_1)
+// 渲染系统清理渲染队列
+// 参数: render_context - 渲染上下文指针
+void rendering_system_cleanup_render_queue(longlong render_context)
 
 {
   longlong lVar1;
@@ -839,7 +840,11 @@ void FUN_180306c30(longlong param_1)
 
 
 
-bool FUN_180306d20(longlong *param_1,longlong *param_2)
+// 渲染系统比较渲染优先级
+// 参数: object_a - 渲染对象A指针
+//       object_b - 渲染对象B指针
+// 返回: bool - 优先级比较结果
+bool rendering_system_compare_render_priority(longlong *object_a, longlong *object_b)
 
 {
   uint uVar1;
