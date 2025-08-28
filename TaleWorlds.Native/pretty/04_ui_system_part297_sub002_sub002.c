@@ -1982,7 +1982,7 @@ uint64_t FUN_180831300(uint64_t param_1,int64_t param_2)
   uVar2 = 0;
   if (*(uint64_t **)(param_2 + 0x70) != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_1807c41d0(param_1,**(uint64_t **)(param_2 + 0x70));
+    UISystem_MemoryDeallocator(param_1,**(uint64_t **)(param_2 + 0x70));
   }
   if (*(int *)(param_2 + 0x68) != 0) {
     lVar1 = FUN_1807c4260(param_1,*(uint64_t *)(param_2 + 0x58),
@@ -2012,7 +2012,7 @@ uint64_t FUN_180831311(uint64_t param_1,int64_t param_2)
   uVar2 = unaff_R15 & 0xffffffff;
   if (*(uint64_t **)(param_2 + 0x70) != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_1807c41d0(param_1,**(uint64_t **)(param_2 + 0x70));
+    UISystem_MemoryDeallocator(param_1,**(uint64_t **)(param_2 + 0x70));
   }
   if (*(int *)(param_2 + 0x68) != 0) {
     lVar1 = FUN_1807c4260(param_1,*(uint64_t *)(param_2 + 0x58),

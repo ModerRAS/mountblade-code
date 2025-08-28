@@ -387,11 +387,11 @@ LAB_180096e94:
         } while (queue_handle != 0);
         
         // 系统数据处理
-        system_ptr1 = &unknown_var_1980_ptr;
+        system_ptr1 = system_queue_data_ptr;
         processing_data1 = 0x3f0000003f000000;
         processing_data2 = 0x3f8000003f000000;
         queue_data1 = core_data_ptr[0xf];
-        system_ptr2 = &unknown_var_1972_ptr;
+        system_ptr2 = system_buffer_data_ptr;
         processing_data3 = 0x3f0000003f000000;
         queue_data2 = 0x3f8000003f000000;
         queue_data3 = core_data_ptr[0x13];
@@ -404,10 +404,10 @@ LAB_180096e94:
         }
         core_data_ptr[4] = buffer_size - 4;
         
-        FUN_180626f80(&unknown_var_2016_ptr);
+        FUN_180626f80(system_resource_data_ptr);
         processing_value = (float)core_system_memory;
         FUN_1800571e0(core_data_ptr + 3, &processing_value);
-        system_ptr3 = &unknown_var_1992_ptr;
+        system_ptr3 = system_sync_data_ptr;
         queue_data4 = 0x3f4ccccd3e4ccccd;
         queue_data5 = 0x3f8000003f000000;
         queue_data6 = core_data_ptr[3];
