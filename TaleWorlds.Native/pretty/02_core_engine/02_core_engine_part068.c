@@ -1,50 +1,57 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part068.c - 12 个函数
+// 02_core_engine_part068.c - 核心引擎缓冲区管理函数
+// 本文件包含缓冲区操作、内存管理和流处理相关函数
 
-// 函数: void FUN_18009f020(undefined8 *param_1,undefined1 param_2)
-void FUN_18009f020(undefined8 *param_1,undefined1 param_2)
+/**
+ * 向缓冲区追加字符
+ * @param buffer_ptr 缓冲区指针
+ * @param char_value 要追加的字符值
+ */
+void append_char_to_buffer(undefined8 *buffer_ptr, undefined1 char_value)
 
 {
-  ulonglong uVar1;
-  ulonglong uVar2;
-  ulonglong uVar3;
-  code *pcVar4;
-  undefined8 uVar5;
-  ulonglong uVar6;
-  ulonglong uVar7;
+  ulonglong current_pos;
+  ulonglong buffer_capacity;
+  ulonglong new_capacity;
+  code *error_handler;
+  undefined8 new_buffer;
+  ulonglong capacity_check;
+  ulonglong final_capacity;
   
-  uVar2 = param_1[2];
-  uVar3 = param_1[3];
-  if (uVar2 < uVar3) {
-    param_1[2] = uVar2 + 1;
-    if (0xf < uVar3) {
-      param_1 = (undefined8 *)*param_1;
+  current_pos = buffer_ptr[2];
+  buffer_capacity = buffer_ptr[3];
+  if (current_pos < buffer_capacity) {
+    buffer_ptr[2] = current_pos + 1;
+    if (0xf < buffer_capacity) {
+      buffer_ptr = (undefined8 *)*buffer_ptr;
     }
-    *(undefined1 *)((longlong)param_1 + uVar2) = param_2;
-    *(undefined1 *)((longlong)param_1 + uVar2 + 1) = 0;
+    *(undefined1 *)((longlong)buffer_ptr + current_pos) = char_value;
+    *(undefined1 *)((longlong)buffer_ptr + current_pos + 1) = 0;
     return;
   }
-  if (uVar2 != 0x7fffffffffffffff) {
-    uVar6 = uVar2 + 1 | 0xf;
-    uVar7 = 0x7fffffffffffffff;
-    if (((uVar6 < 0x8000000000000000) && (uVar3 <= 0x7fffffffffffffff - (uVar3 >> 1))) &&
-       (uVar1 = (uVar3 >> 1) + uVar3, uVar7 = uVar6, uVar6 < uVar1)) {
-      uVar7 = uVar1;
+  if (current_pos != 0x7fffffffffffffff) {
+    new_capacity = current_pos + 1 | 0xf;
+    final_capacity = 0x7fffffffffffffff;
+    if (((new_capacity < 0x8000000000000000) && 
+         (buffer_capacity <= 0x7fffffffffffffff - (buffer_capacity >> 1))) &&
+        (capacity_check = (buffer_capacity >> 1) + buffer_capacity, 
+         final_capacity = new_capacity, new_capacity < capacity_check)) {
+      final_capacity = capacity_check;
     }
-    uVar5 = FUN_180067110(uVar7 + 1);
-    param_1[2] = uVar2 + 1;
-    param_1[3] = uVar7;
-    if (0xf < uVar3) {
-                    // WARNING: Subroutine does not return
-      memcpy(uVar5,*param_1,uVar2);
+    new_buffer = allocate_memory(final_capacity + 1);
+    buffer_ptr[2] = current_pos + 1;
+    buffer_ptr[3] = final_capacity;
+    if (0xf < buffer_capacity) {
+      // 警告：子函数不返回
+      memcpy(new_buffer, *buffer_ptr, current_pos);
     }
-                    // WARNING: Subroutine does not return
-    memcpy(uVar5,param_1,uVar2);
+    // 警告：子函数不返回
+    memcpy(new_buffer, buffer_ptr, current_pos);
   }
-  FUN_1800670f0();
-  pcVar4 = (code *)swi(3);
-  (*pcVar4)();
+  handle_memory_error();
+  error_handler = (code *)swi(3);
+  (*error_handler)();
   return;
 }
 
