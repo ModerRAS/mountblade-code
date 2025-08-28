@@ -1,24 +1,27 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part042.c - 14 个函数
+// 02_core_engine_part042.c - 核心引擎模块 - 容器和数据处理组件
 
-// 函数: void FUN_1800810b0(longlong *param_1)
-void FUN_1800810b0(longlong *param_1)
+// 函数: validate_container_integrity - 验证容器完整性
+// 原始函数名: FUN_1800810b0
+// 功能: 检查容器指针数组的有效性，如果发现非零指针则触发错误
+void validate_container_integrity(longlong *container_ptr)
 
 {
-  longlong *plVar1;
+  longlong *current_ptr;
   
-  for (plVar1 = (longlong *)*param_1; plVar1 != (longlong *)param_1[1]; plVar1 = plVar1 + 4) {
-    if (*plVar1 != 0) {
+  // 遍历容器中的所有指针，检查是否有非零指针
+  for (current_ptr = (longlong *)*container_ptr; current_ptr != (longlong *)container_ptr[1]; current_ptr = current_ptr + 4) {
+    if (*current_ptr != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      trigger_critical_error();  // FUN_18064e900
     }
   }
-  if (*param_1 == 0) {
+  if (*container_ptr == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  trigger_critical_error();  // FUN_18064e900
 }
 
 
@@ -26,36 +29,39 @@ void FUN_1800810b0(longlong *param_1)
 // WARNING: Removing unreachable block (ram,0x0001800811eb)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_180081120(undefined8 *param_1,undefined8 *param_2)
+// 函数: create_data_container - 创建数据容器
+// 原始函数名: FUN_180081120
+// 功能: 创建一个新的数据容器，初始化相关函数指针和内存分配
+undefined8 * create_data_container(undefined8 *container_out,undefined8 *source_data)
 
 {
-  undefined1 uVar1;
-  undefined8 uVar2;
-  undefined8 uVar3;
-  undefined8 uVar4;
-  undefined8 *puVar5;
+  undefined1 byte_flag;
+  undefined8 data_value1;
+  undefined8 data_value2;
+  undefined8 data_value3;
+  undefined8 *new_container;
   
-  uVar2 = *param_2;
-  uVar1 = *(undefined1 *)(param_2 + 1);
-  uVar3 = param_2[2];
-  param_2[2] = 0;
-  uVar4 = param_2[3];
-  param_2[3] = 0;
-  param_1[2] = FUN_180083260;
-  param_1[3] = FUN_1800831c0;
-  puVar5 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x20,8,DAT_180bf65bc,0xfffffffffffffffe);
-  *puVar5 = uVar2;
-  *(undefined1 *)(puVar5 + 1) = uVar1;
-  puVar5[2] = uVar3;
-  puVar5[3] = uVar4;
-  *param_1 = puVar5;
-  if ((longlong *)param_2[3] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)param_2[3] + 0x38))();
+  data_value1 = *source_data;
+  byte_flag = *(undefined1 *)(source_data + 1);
+  data_value2 = source_data[2];
+  source_data[2] = 0;
+  data_value3 = source_data[3];
+  source_data[3] = 0;
+  container_out[2] = get_container_handler_vtable();  // FUN_180083260
+  container_out[3] = get_container_destructor();  // FUN_1800831c0
+  new_container = (undefined8 *)allocate_container_memory(_DAT_180c8ed18,0x20,8,DAT_180bf65bc,0xfffffffffffffffe);  // FUN_18062b1e0
+  *new_container = data_value1;
+  *(undefined1 *)(new_container + 1) = byte_flag;
+  new_container[2] = data_value2;
+  new_container[3] = data_value3;
+  *container_out = new_container;
+  if ((longlong *)source_data[3] != (longlong *)0x0) {
+    (**(code **)(*(longlong *)source_data[3] + 0x38))();
   }
-  if ((longlong *)param_2[2] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)param_2[2] + 0x38))();
+  if ((longlong *)source_data[2] != (longlong *)0x0) {
+    (**(code **)(*(longlong *)source_data[2] + 0x38))();
   }
-  return param_1;
+  return container_out;
 }
 
 
@@ -64,44 +70,46 @@ undefined8 * FUN_180081120(undefined8 *param_1,undefined8 *param_2)
 
 
 
-// 函数: void FUN_180081220(undefined8 param_1,longlong *param_2,int param_3)
-void FUN_180081220(undefined8 param_1,longlong *param_2,int param_3)
+// 函数: process_integer_array_4x - 处理4倍整数数组
+// 原始函数名: FUN_180081220
+// 功能: 处理整数数组，将输入数据乘以4后存储到新分配的内存中
+void process_integer_array_4x(undefined8 context,longlong *output_ptr,int element_count)
 
 {
-  undefined8 uVar1;
-  undefined8 uVar2;
-  undefined1 auStack_c8 [32];
-  undefined4 uStack_a8;
-  undefined8 uStack_a0;
-  longlong *plStack_98;
-  undefined *puStack_88;
-  undefined1 *puStack_80;
-  undefined4 uStack_78;
-  undefined1 auStack_70 [72];
-  ulonglong uStack_28;
+  undefined8 system_context;
+  undefined8 memory_allocator;
+  undefined1 security_stack [32];
+  undefined4 stack_flag;
+  undefined8 stack_canary;
+  longlong *temp_ptr;
+  undefined *debug_info;
+  undefined1 *buffer_ptr;
+  undefined4 buffer_size;
+  undefined1 temp_buffer [72];
+  ulonglong security_cookie;
   
-  uVar1 = _DAT_180c8a998;
-  uStack_a0 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
-  uStack_a8 = 0;
-  param_3 = param_3 * 4;
-  puStack_88 = &UNK_1809fcc58;
-  puStack_80 = auStack_70;
-  auStack_70[0] = 0;
-  uStack_78 = 0x1c;
-  plStack_98 = param_2;
-  strcpy_s(auStack_70,0x40,&DAT_1809ffc60);
-  FUN_1802037e0();
-  puStack_88 = &UNK_18098bcb0;
-  uVar2 = FUN_18062b1e0(_DAT_180c8ed18,param_3,0x10,3);
-  FUN_180082aa0(uVar1,param_2);
-  *(undefined8 *)(*param_2 + 0x10) = uVar2;
-  *(int *)(*param_2 + 0x18) = param_3;
-  *(int *)(*param_2 + 0x1c) = param_3;
-  *(undefined1 *)(*param_2 + 0x20) = 0;
-  uStack_a8 = 1;
+  system_context = _DAT_180c8a998;  // 系统上下文
+  stack_canary = 0xfffffffffffffffe;  // 栈保护
+  security_cookie = _DAT_180bf00a8 ^ (ulonglong)security_stack;  // 安全cookie
+  stack_flag = 0;
+  element_count = element_count * 4;  // 元素数量乘以4
+  debug_info = &UNK_1809fcc58;  // 调试信息
+  buffer_ptr = temp_buffer;
+  temp_buffer[0] = 0;
+  buffer_size = 0x1c;
+  temp_ptr = output_ptr;
+  strcpy_s(temp_buffer,0x40,&DAT_1809ffc60);  // 复制字符串
+  initialize_security_context();  // FUN_1802037e0
+  debug_info = &UNK_18098bcb0;
+  memory_allocator = allocate_buffer_memory(_DAT_180c8ed18,element_count,0x10,3);  // FUN_18062b1e0
+  process_array_data_4x(system_context,output_ptr);  // FUN_180082aa0
+  *(undefined8 *)(*output_ptr + 0x10) = memory_allocator;
+  *(int *)(*output_ptr + 0x18) = element_count;
+  *(int *)(*output_ptr + 0x1c) = element_count;
+  *(undefined1 *)(*output_ptr + 0x20) = 0;
+  stack_flag = 1;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_c8);
+  security_check_exit(security_cookie ^ (ulonglong)security_stack);  // FUN_1808fc050
 }
 
 
@@ -110,44 +118,46 @@ void FUN_180081220(undefined8 param_1,longlong *param_2,int param_3)
 
 
 
-// 函数: void FUN_180081350(undefined8 param_1,longlong *param_2,int param_3)
-void FUN_180081350(undefined8 param_1,longlong *param_2,int param_3)
+// 函数: process_integer_array_2x - 处理2倍整数数组
+// 原始函数名: FUN_180081350
+// 功能: 处理整数数组，将输入数据乘以2后存储到新分配的内存中
+void process_integer_array_2x(undefined8 context,longlong *output_ptr,int element_count)
 
 {
-  undefined8 uVar1;
-  undefined8 uVar2;
-  undefined1 auStack_c8 [32];
-  undefined4 uStack_a8;
-  undefined8 uStack_a0;
-  longlong *plStack_98;
-  undefined *puStack_88;
-  undefined1 *puStack_80;
-  undefined4 uStack_78;
-  undefined1 auStack_70 [72];
-  ulonglong uStack_28;
+  undefined8 system_context;
+  undefined8 memory_allocator;
+  undefined1 security_stack [32];
+  undefined4 stack_flag;
+  undefined8 stack_canary;
+  longlong *temp_ptr;
+  undefined *debug_info;
+  undefined1 *buffer_ptr;
+  undefined4 buffer_size;
+  undefined1 temp_buffer [72];
+  ulonglong security_cookie;
   
-  uVar1 = _DAT_180c8a998;
-  uStack_a0 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
-  uStack_a8 = 0;
-  param_3 = param_3 * 2;
-  puStack_88 = &UNK_1809fcc58;
-  puStack_80 = auStack_70;
-  auStack_70[0] = 0;
-  uStack_78 = 0x1c;
-  plStack_98 = param_2;
-  strcpy_s(auStack_70,0x40,&DAT_1809ffc60);
-  FUN_1802037e0();
-  puStack_88 = &UNK_18098bcb0;
-  uVar2 = FUN_18062b1e0(_DAT_180c8ed18,param_3,0x10,3);
-  FUN_180082c20(uVar1,param_2);
-  *(undefined8 *)(*param_2 + 0x10) = uVar2;
-  *(int *)(*param_2 + 0x18) = param_3;
-  *(int *)(*param_2 + 0x1c) = param_3;
-  *(undefined1 *)(*param_2 + 0x20) = 0;
-  uStack_a8 = 1;
+  system_context = _DAT_180c8a998;  // 系统上下文
+  stack_canary = 0xfffffffffffffffe;  // 栈保护
+  security_cookie = _DAT_180bf00a8 ^ (ulonglong)security_stack;  // 安全cookie
+  stack_flag = 0;
+  element_count = element_count * 2;  // 元素数量乘以2
+  debug_info = &UNK_1809fcc58;  // 调试信息
+  buffer_ptr = temp_buffer;
+  temp_buffer[0] = 0;
+  buffer_size = 0x1c;
+  temp_ptr = output_ptr;
+  strcpy_s(temp_buffer,0x40,&DAT_1809ffc60);  // 复制字符串
+  initialize_security_context();  // FUN_1802037e0
+  debug_info = &UNK_18098bcb0;
+  memory_allocator = allocate_buffer_memory(_DAT_180c8ed18,element_count,0x10,3);  // FUN_18062b1e0
+  process_array_data_2x(system_context,output_ptr);  // FUN_180082c20
+  *(undefined8 *)(*output_ptr + 0x10) = memory_allocator;
+  *(int *)(*output_ptr + 0x18) = element_count;
+  *(int *)(*output_ptr + 0x1c) = element_count;
+  *(undefined1 *)(*output_ptr + 0x20) = 0;
+  stack_flag = 1;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_c8);
+  security_check_exit(security_cookie ^ (ulonglong)security_stack);  // FUN_1808fc050
 }
 
 
@@ -156,41 +166,43 @@ void FUN_180081350(undefined8 param_1,longlong *param_2,int param_3)
 
 
 
-// 函数: void FUN_180081480(undefined8 param_1,longlong *param_2,undefined4 param_3)
-void FUN_180081480(undefined8 param_1,longlong *param_2,undefined4 param_3)
+// 函数: process_data_array_direct - 直接处理数据数组
+// 原始函数名: FUN_180081480
+// 功能: 直接处理数据数组，不进行倍数转换
+void process_data_array_direct(undefined8 context,longlong *output_ptr,undefined4 data_size)
 
 {
-  undefined8 uVar1;
-  undefined1 auStack_c8 [32];
-  undefined4 uStack_a8;
-  undefined8 uStack_a0;
-  longlong *plStack_98;
-  undefined *puStack_88;
-  undefined1 *puStack_80;
-  undefined4 uStack_78;
-  undefined1 auStack_70 [72];
-  ulonglong uStack_28;
+  undefined8 memory_allocator;
+  undefined1 security_stack [32];
+  undefined4 stack_flag;
+  undefined8 stack_canary;
+  longlong *temp_ptr;
+  undefined *debug_info;
+  undefined1 *buffer_ptr;
+  undefined4 buffer_size;
+  undefined1 temp_buffer [72];
+  ulonglong security_cookie;
   
-  uStack_a0 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
-  uStack_a8 = 0;
-  puStack_88 = &UNK_1809fcc58;
-  puStack_80 = auStack_70;
-  auStack_70[0] = 0;
-  uStack_78 = 0x1c;
-  plStack_98 = param_2;
-  strcpy_s(auStack_70,0x40,&DAT_1809ffc60);
-  FUN_1802037e0();
-  puStack_88 = &UNK_18098bcb0;
-  uVar1 = FUN_18062b1e0(_DAT_180c8ed18,param_3,0x10,3);
-  FUN_1800828d0(param_1,param_2);
-  uStack_a8 = 1;
-  *(undefined8 *)(*param_2 + 0x10) = uVar1;
-  *(undefined4 *)(*param_2 + 0x18) = param_3;
-  *(undefined4 *)(*param_2 + 0x1c) = param_3;
-  *(undefined1 *)(*param_2 + 0x20) = 0;
+  stack_canary = 0xfffffffffffffffe;  // 栈保护
+  security_cookie = _DAT_180bf00a8 ^ (ulonglong)security_stack;  // 安全cookie
+  stack_flag = 0;
+  debug_info = &UNK_1809fcc58;  // 调试信息
+  buffer_ptr = temp_buffer;
+  temp_buffer[0] = 0;
+  buffer_size = 0x1c;
+  temp_ptr = output_ptr;
+  strcpy_s(temp_buffer,0x40,&DAT_1809ffc60);  // 复制字符串
+  initialize_security_context();  // FUN_1802037e0
+  debug_info = &UNK_18098bcb0;
+  memory_allocator = allocate_buffer_memory(_DAT_180c8ed18,data_size,0x10,3);  // FUN_18062b1e0
+  process_direct_array_data(context,output_ptr);  // FUN_1800828d0
+  stack_flag = 1;
+  *(undefined8 *)(*output_ptr + 0x10) = memory_allocator;
+  *(undefined4 *)(*output_ptr + 0x18) = data_size;
+  *(undefined4 *)(*output_ptr + 0x1c) = data_size;
+  *(undefined1 *)(*output_ptr + 0x20) = 0;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_c8);
+  security_check_exit(security_cookie ^ (ulonglong)security_stack);  // FUN_1808fc050
 }
 
 
@@ -199,43 +211,45 @@ void FUN_180081480(undefined8 param_1,longlong *param_2,undefined4 param_3)
 
 
 
-// 函数: void FUN_180081590(undefined8 param_1,longlong *param_2,undefined4 param_3)
-void FUN_180081590(undefined8 param_1,longlong *param_2,undefined4 param_3)
+// 函数: process_data_array_extended - 扩展处理数据数组
+// 原始函数名: FUN_180081590
+// 功能: 扩展处理数据数组，使用32字节对齐的内存分配
+void process_data_array_extended(undefined8 context,longlong *output_ptr,undefined4 data_size)
 
 {
-  undefined8 uVar1;
-  undefined8 uVar2;
-  undefined1 auStack_c8 [32];
-  undefined4 uStack_a8;
-  undefined8 uStack_a0;
-  longlong *plStack_98;
-  undefined *puStack_88;
-  undefined1 *puStack_80;
-  undefined4 uStack_78;
-  undefined1 auStack_70 [72];
-  ulonglong uStack_28;
+  undefined8 system_context;
+  undefined8 memory_allocator;
+  undefined1 security_stack [32];
+  undefined4 stack_flag;
+  undefined8 stack_canary;
+  longlong *temp_ptr;
+  undefined *debug_info;
+  undefined1 *buffer_ptr;
+  undefined4 buffer_size;
+  undefined1 temp_buffer [72];
+  ulonglong security_cookie;
   
-  uVar1 = _DAT_180c8a998;
-  uStack_a0 = 0xfffffffffffffffe;
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
-  uStack_a8 = 0;
-  puStack_88 = &UNK_1809fcc58;
-  puStack_80 = auStack_70;
-  auStack_70[0] = 0;
-  uStack_78 = 0x1c;
-  plStack_98 = param_2;
-  strcpy_s(auStack_70,0x40,&DAT_1809ffc60);
-  FUN_1802037e0();
-  puStack_88 = &UNK_18098bcb0;
-  uVar2 = FUN_18062b1e0(_DAT_180c8ed18,param_3,0x10,0x20);
-  FUN_1800828d0(uVar1,param_2);
-  *(undefined8 *)(*param_2 + 0x10) = uVar2;
-  *(undefined4 *)(*param_2 + 0x18) = param_3;
-  *(undefined4 *)(*param_2 + 0x1c) = param_3;
-  *(undefined1 *)(*param_2 + 0x20) = 0;
-  uStack_a8 = 1;
+  system_context = _DAT_180c8a998;  // 系统上下文
+  stack_canary = 0xfffffffffffffffe;  // 栈保护
+  security_cookie = _DAT_180bf00a8 ^ (ulonglong)security_stack;  // 安全cookie
+  stack_flag = 0;
+  debug_info = &UNK_1809fcc58;  // 调试信息
+  buffer_ptr = temp_buffer;
+  temp_buffer[0] = 0;
+  buffer_size = 0x1c;
+  temp_ptr = output_ptr;
+  strcpy_s(temp_buffer,0x40,&DAT_1809ffc60);  // 复制字符串
+  initialize_security_context();  // FUN_1802037e0
+  debug_info = &UNK_18098bcb0;
+  memory_allocator = allocate_buffer_memory(_DAT_180c8ed18,data_size,0x10,0x20);  // FUN_18062b1e0
+  process_direct_array_data(system_context,output_ptr);  // FUN_1800828d0
+  *(undefined8 *)(*output_ptr + 0x10) = memory_allocator;
+  *(undefined4 *)(*output_ptr + 0x18) = data_size;
+  *(undefined4 *)(*output_ptr + 0x1c) = data_size;
+  *(undefined1 *)(*output_ptr + 0x20) = 0;
+  stack_flag = 1;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_c8);
+  security_check_exit(security_cookie ^ (ulonglong)security_stack);  // FUN_1808fc050
 }
 
 

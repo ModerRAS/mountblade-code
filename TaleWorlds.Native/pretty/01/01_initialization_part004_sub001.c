@@ -1,56 +1,65 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 01_initialization_part004_sub001.c - 30 个函数
+// 01_initialization_part004_sub001.c - 初始化模块第4部分子文件1
+// 本文件包含各种系统组件的初始化函数，主要用于注册和管理系统模块
 
-#include "TaleWorlds.Native.Split.h"
-
-// 01_initialization_part004.c - 30 个函数
-
-
-// 函数: void FUN_180031d10(void)
-void FUN_180031d10(void)
+/**
+ * 初始化音频系统组件
+ * 注册音频相关的系统模块和参数
+ */
+void initialize_audio_system(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  code *pcStackX_18;
+  char is_initialized;
+  void **module_registry;
+  int compare_result;
+  longlong *system_handle;
+  longlong allocation_size;
+  void **current_node;
+  void **parent_node;
+  void **next_node;
+  void **new_node;
+  void (*audio_handler)(void);
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_1802285e0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_1809ff9c0,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  // 获取系统句柄
+  system_handle = (longlong *)get_system_handle();
+  module_registry = (void **)*system_handle;
+  
+  // 检查根节点是否已初始化
+  is_initialized = *(char *)((longlong)module_registry[1] + 0x19);
+  audio_handler = process_audio_data;
+  parent_node = module_registry;
+  current_node = (void **)module_registry[1];
+  
+  // 在注册表中查找音频模块位置
+  while (is_initialized == '\0') {
+    compare_result = memcmp(current_node + 4, &AUDIO_MODULE_ID, 0x10);
+    if (compare_result < 0) {
+      next_node = (void **)current_node[2];
+      current_node = parent_node;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      next_node = (void **)*current_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    parent_node = current_node;
+    current_node = next_node;
+    is_initialized = *(char *)((longlong)next_node + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809ff9c0,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  
+  // 如果未找到或需要插入，创建新节点
+  if ((parent_node == module_registry) || 
+      (compare_result = memcmp(&AUDIO_MODULE_ID, parent_node + 4, 0x10), compare_result < 0)) {
+    allocation_size = allocate_memory(system_handle);
+    insert_registry_node(system_handle, &new_node, parent_node, allocation_size + 0x20, allocation_size);
+    parent_node = new_node;
   }
-  puVar7[6] = 0x40afa5469b6ac06d;
-  puVar7[7] = 0x2f4bab01d34055a5;
-  puVar7[8] = &UNK_1809ff990;
-  puVar7[9] = 3;
-  puVar7[10] = pcStackX_18;
+  
+  // 设置音频模块参数
+  parent_node[6] = 0x40afa5469b6ac06d;  // 音频模块标识符
+  parent_node[7] = 0x2f4bab01d34055a5;  // 音频模块版本
+  parent_node[8] = &audio_config_data;  // 音频配置数据指针
+  parent_node[9] = 3;                  // 音频优先级
+  parent_node[10] = audio_handler;     // 音频处理函数
   return;
 }
 

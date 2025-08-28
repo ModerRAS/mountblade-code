@@ -1,10 +1,12 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part054.c - 15 个函数
+// 02_core_engine_part054.c - 核心引擎模块第054部分
+// 包含15个函数，主要涉及数据结构操作、内存管理和线程同步
 
-// 函数: void FUN_18008fbc0(longlong param_1,longlong param_2,longlong param_3,longlong param_4,
-void FUN_18008fbc0(longlong param_1,longlong param_2,longlong param_3,longlong param_4,
-                  longlong *param_5)
+// 函数：堆排序插入操作
+// 用于在堆数据结构中插入元素并维护堆性质
+void heap_insert_and_balance(longlong heap_base, longlong heap_size, longlong capacity, 
+                            longlong index, longlong *new_element)
 
 {
   int iVar1;

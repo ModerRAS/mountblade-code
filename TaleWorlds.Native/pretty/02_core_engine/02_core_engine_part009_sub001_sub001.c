@@ -529,17 +529,20 @@ int initialize_system_data_array(void)
 
 
 // 函数: void FUN_180043c00(void)
-void FUN_180043c00(void)
-
+/**
+ * 初始化系统模块8
+ * 功能：初始化系统模块8，根据条件选择不同的实现
+ */
+void initialize_system_module_8(void)
 {
-  int iVar1;
-  
-  iVar1 = FUN_1807681a0(0);
-  _DAT_180c4ea58 = 0x180bebac8;
-  if (iVar1 != 0) {
-    _DAT_180c4ea58 = 0x180bebad8;
-  }
-  return;
+    int condition_result;
+    
+    condition_result = FUN_1807681a0(0);
+    _DAT_180c4ea58 = 0x180bebac8;
+    if (condition_result != 0) {
+        _DAT_180c4ea58 = 0x180bebad8;
+    }
+    return;
 }
 
 
@@ -551,51 +554,62 @@ void FUN_180043c00(void)
 
 
 // 函数: void FUN_180043c30(void)
-void FUN_180043c30(void)
-
+/**
+ * 初始化系统模块9
+ * 功能：初始化系统模块9，根据多重条件选择不同的实现
+ */
+void initialize_system_module_9(void)
 {
-  int iVar1;
-  
-  iVar1 = FUN_1807681a0(3);
-  if (iVar1 != 0) {
-    _DAT_180c4ea60 = 0x180bebc10;
+    int condition_result;
+    
+    condition_result = FUN_1807681a0(3);
+    if (condition_result != 0) {
+        _DAT_180c4ea60 = 0x180bebc10;
+        return;
+    }
+    condition_result = FUN_1807681a0(2);
+    if (condition_result != 0) {
+        _DAT_180c4ea60 = 0x180bebbb0;
+        return;
+    }
+    condition_result = FUN_1807681a0(0);
+    _DAT_180c4ea60 = 0x180bebaf0;
+    if (condition_result != 0) {
+        _DAT_180c4ea60 = 0x180bebb50;
+    }
     return;
-  }
-  iVar1 = FUN_1807681a0(2);
-  if (iVar1 != 0) {
-    _DAT_180c4ea60 = 0x180bebbb0;
-    return;
-  }
-  iVar1 = FUN_1807681a0(0);
-  _DAT_180c4ea60 = 0x180bebaf0;
-  if (iVar1 != 0) {
-    _DAT_180c4ea60 = 0x180bebb50;
-  }
-  return;
 }
 
 
 
-int FUN_180043cc0(void)
-
+/**
+ * 初始化调试系统
+ * 功能：初始化系统调试功能
+ * 返回值：初始化成功返回0，失败返回-1
+ */
+int initialize_debug_system(void)
 {
-  longlong lVar1;
-  
-  FUN_1808dbcd0(0x180c4f510);
-  lVar1 = FUN_1808fc7d0(&UNK_180943310);
-  return (lVar1 != 0) - 1;
+    longlong result;
+    
+    FUN_1808dbcd0(0x180c4f510);
+    result = FUN_1808fc7d0(&UNK_180943310);
+    return (result != 0) - 1;
 }
 
 
 
-int FUN_180043ce0(void)
-
+/**
+ * 初始化第三个互斥锁
+ * 功能：初始化系统中的第三个互斥锁
+ * 返回值：初始化成功返回0，失败返回-1
+ */
+int initialize_third_mutex(void)
 {
-  longlong lVar1;
-  
-  _Mtx_init_in_situ(0x180c82170,2);
-  lVar1 = FUN_1808fc7d0(&UNK_180943320);
-  return (lVar1 != 0) - 1;
+    longlong result;
+    
+    _Mtx_init_in_situ(0x180c82170, 2);
+    result = FUN_1808fc7d0(&UNK_180943320);
+    return (result != 0) - 1;
 }
 
 
@@ -611,100 +625,122 @@ void WotsMainSDLL(undefined8 param_1)
 
 
 // 函数: void FUN_180043d40(longlong param_1)
-void FUN_180043d40(longlong param_1)
-
+/**
+ * 处理系统初始化完成事件
+ * 功能：处理系统初始化完成后的清理和资源管理
+ * 参数：param_1 - 事件参数
+ */
+void handle_system_initialization_complete(longlong param_1)
 {
-  longlong lVar1;
-  longlong *plVar2;
-  char cVar3;
-  longlong *plStackX_8;
-  longlong **pplStackX_10;
-  longlong *plStackX_18;
-  longlong *plStackX_20;
-  undefined8 uVar4;
-  
-  uVar4 = 0xfffffffffffffffe;
-  FUN_180046e20();
-  _DAT_180c82864 = _DAT_180c82864 + 1;
-  FUN_180050b00();
-  if (_DAT_180c91048 != (longlong *)0x0) {
+    longlong lVar1;
+    longlong *plVar2;
+    char cVar3;
+    longlong *plStackX_8;
+    longlong **pplStackX_10;
+    longlong *plStackX_18;
+    longlong *plStackX_20;
+    undefined8 uVar4;
+    
+    uVar4 = 0xfffffffffffffffe;
+    FUN_180046e20();
+    _DAT_180c82864 = _DAT_180c82864 + 1;
+    FUN_180050b00();
+    
+    // 检查全局状态
+    if (_DAT_180c91048 != (longlong *)0x0) {
+        if ((undefined *)*_DAT_180c91048 == &UNK_1809fe100) {
+            cVar3 = (char)_DAT_180c91048[2] != '\0';
+        }
+        else {
+            cVar3 = (**(code **)((undefined *)*_DAT_180c91048 + 0x68))();
+        }
+        if (cVar3 == '\0') goto LAB_180043e47;
+    }
+    
+    // 分配内存并初始化
+    plVar2 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 0xc0, 8, 3, uVar4);
+    plStackX_20 = plVar2;
+    FUN_180049830(plVar2);
+    *plVar2 = (longlong)&UNK_1809fe100;
+    plVar2[3] = -4;
+    pplStackX_10 = (longlong **)plVar2;
+    (**(code **)(*plVar2 + 0x28))(plVar2);
+    
+    // 更新全局状态
+    pplStackX_10 = (longlong **)_DAT_180c91048;
+    if (_DAT_180c91048 != (longlong *)0x0) {
+        lVar1 = *_DAT_180c91048;
+        _DAT_180c91048 = plVar2;
+        (**(code **)(lVar1 + 0x38))();
+        plVar2 = _DAT_180c91048;
+    }
+    
+    _DAT_180c91048 = plVar2;
     if ((undefined *)*_DAT_180c91048 == &UNK_1809fe100) {
-      cVar3 = (char)_DAT_180c91048[2] != '\0';
+        if (_DAT_180c86948 != 0) {
+            FUN_18006e990();
+        }
     }
     else {
-      cVar3 = (**(code **)((undefined *)*_DAT_180c91048 + 0x68))();
+        (**(code **)((undefined *)*_DAT_180c91048 + 0x60))();
     }
-    if (cVar3 == '\0') goto LAB_180043e47;
-  }
-  plVar2 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0xc0,8,3,uVar4);
-  plStackX_20 = plVar2;
-  FUN_180049830(plVar2);
-  *plVar2 = (longlong)&UNK_1809fe100;
-  plVar2[3] = -4;
-  pplStackX_10 = (longlong **)plVar2;
-  (**(code **)(*plVar2 + 0x28))(plVar2);
-  pplStackX_10 = (longlong **)_DAT_180c91048;
-  if (_DAT_180c91048 != (longlong *)0x0) {
-    lVar1 = *_DAT_180c91048;
-    _DAT_180c91048 = plVar2;
-    (**(code **)(lVar1 + 0x38))();
+    
+    // 清理资源
     plVar2 = _DAT_180c91048;
-  }
-  _DAT_180c91048 = plVar2;
-  if ((undefined *)*_DAT_180c91048 == &UNK_1809fe100) {
-    if (_DAT_180c86948 != 0) {
-      FUN_18006e990();
+    plStackX_18 = _DAT_180c91048;
+    _DAT_180c91048 = (longlong *)0x0;
+    if (plVar2 != (longlong *)0x0) {
+        (**(code **)(*plVar2 + 0x38))();
     }
-  }
-  else {
-    (**(code **)((undefined *)*_DAT_180c91048 + 0x60))();
-  }
-  plVar2 = _DAT_180c91048;
-  plStackX_18 = _DAT_180c91048;
-  _DAT_180c91048 = (longlong *)0x0;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x38))();
-  }
 LAB_180043e47:
-  FUN_1800466d0(*(undefined8 *)(param_1 + 0x20));
-  if (*(char *)(_DAT_180c86870 + 0x1ed) != '\0') {
-    plVar2 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x28,8,3);
-    *plVar2 = (longlong)&UNK_180a21690;
-    *plVar2 = (longlong)&UNK_180a21720;
-    *(undefined4 *)(plVar2 + 1) = 0;
-    *plVar2 = (longlong)&UNK_18098bdc8;
-    LOCK();
-    *(undefined1 *)(plVar2 + 2) = 0;
-    UNLOCK();
-    plVar2[3] = -1;
-    *plVar2 = (longlong)&UNK_18098bd40;
-    plVar2[4] = 0x180c91060;
-    plStackX_20 = plVar2;
-    (**(code **)(*plVar2 + 0x28))(plVar2);
-    uVar4 = _DAT_180c82868;
-    pplStackX_10 = &plStackX_8;
-    plStackX_8 = plVar2;
-    (**(code **)(*plVar2 + 0x28))(plVar2);
-    FUN_18005e300(uVar4,&plStackX_8);
-    (**(code **)(*plVar2 + 0x38))(plVar2);
-  }
-  return;
+    FUN_1800466d0(*(undefined8 *)(param_1 + 0x20));
+    
+    // 处理额外资源
+    if (*(char *)(_DAT_180c86870 + 0x1ed) != '\0') {
+        plVar2 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 0x28, 8, 3);
+        *plVar2 = (longlong)&UNK_180a21690;
+        *plVar2 = (longlong)&UNK_180a21720;
+        *(undefined4 *)(plVar2 + 1) = 0;
+        *plVar2 = (longlong)&UNK_18098bdc8;
+        LOCK();
+        *(undefined1 *)(plVar2 + 2) = 0;
+        UNLOCK();
+        plVar2[3] = -1;
+        *plVar2 = (longlong)&UNK_18098bd40;
+        plVar2[4] = 0x180c91060;
+        plStackX_20 = plVar2;
+        (**(code **)(*plVar2 + 0x28))(plVar2);
+        uVar4 = _DAT_180c82868;
+        pplStackX_10 = &plStackX_8;
+        plStackX_8 = plVar2;
+        (**(code **)(*plVar2 + 0x28))(plVar2);
+        FUN_18005e300(uVar4, &plStackX_8);
+        (**(code **)(*plVar2 + 0x38))(plVar2);
+    }
+    return;
 }
 
 
 
-undefined8 *
-FUN_180043f30(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * 清理内存资源
+ * 功能：清理和释放内存资源
+ * 参数：param_1 - 内存指针，param_2 - 标志，param_3 - 参数3，param_4 - 参数4
+ * 返回值：返回清理后的内存指针
+ */
+undefined8 *cleanup_memory_resources(undefined8 *param_1, ulonglong param_2, undefined8 param_3, undefined8 param_4)
 {
-  *param_1 = &UNK_18098bd40;
-  *param_1 = &UNK_18098bdc8;
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x28,param_3,param_4,0xfffffffffffffffe);
-  }
-  return param_1;
+    // 清理多个内存资源
+    *param_1 = &UNK_18098bd40;
+    *param_1 = &UNK_18098bdc8;
+    *param_1 = &UNK_180a21720;
+    *param_1 = &UNK_180a21690;
+    
+    // 如果需要，释放内存
+    if ((param_2 & 1) != 0) {
+        free(param_1, 0x28, param_3, param_4, 0xfffffffffffffffe);
+    }
+    return param_1;
 }
 
 
@@ -714,11 +750,14 @@ FUN_180043f30(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
 
 
 // 函数: void FUN_180043f90(void)
-void FUN_180043f90(void)
-
+/**
+ * 系统终止函数
+ * 功能：终止系统运行，不返回
+ */
+void system_terminate(void)
 {
-                    // WARNING: Subroutine does not return
-  FUN_1808fd200();
+    // 调用系统终止函数，不返回
+    FUN_1808fd200();
 }
 
 
