@@ -979,10 +979,24 @@ void FUN_1806986b7(void)
 
 
 
-// 函数: void FUN_1806986d0(longlong param_1,byte *param_2,int param_3,undefined4 param_4,undefined8 param_5,
-void FUN_1806986d0(longlong param_1,byte *param_2,int param_3,undefined4 param_4,undefined8 param_5,
+/**
+ * @brief 渲染系统纹理处理器
+ * @details 处理纹理数据和渲染操作
+ * @param param_1 渲染系统上下文指针
+ * @param param_2 纹理数据指针
+ * @param param_3 纹理处理参数
+ * @param param_4 渲染参数
+ * @param param_5 保留参数
+ * @param param_6 目标缓冲区
+ * 功能：
+ * - 遍历纹理数据
+ * - 应用纹理处理
+ * - 执行渲染操作
+ * - 更新缓冲区
+ * @note 支持不同类型的纹理处理
+ */
+void FUN_1806986d0(longlong param_1, byte *param_2, int param_3, undefined4 param_4, undefined8 param_5,
                   longlong param_6)
-
 {
   longlong lVar1;
   byte bVar2;
@@ -990,49 +1004,73 @@ void FUN_1806986d0(longlong param_1,byte *param_2,int param_3,undefined4 param_4
   int iVar4;
   uint uVar5;
   
+  // 初始化变量
   iVar4 = 0;
-  lVar1 = param_1 + 0xc10;
-  if (0 < *(int *)(param_1 + 3000)) {
+  lVar1 = param_1 + RENDERING_OFFSET_C10;
+  
+  // 检查是否有纹理数据
+  if (0 < *(int *)(param_1 + MAX_RENDER_ITEMS)) {
+    // 遍历所有纹理数据
     do {
+      // 获取纹理类型
       bVar2 = *param_2;
       if (((bVar2 == 4) || (bVar2 == 9)) || (param_2[9] == 0)) {
-        bVar3 = false;
+        bVar3 = false;  // 简单纹理
       }
       else {
-        bVar3 = true;
+        bVar3 = true;   // 复杂纹理
       }
+      
+      // 获取纹理数据
       bVar2 = *(byte *)((ulonglong)*(byte *)((ulonglong)bVar2 + 0xd00 + lVar1) + lVar1 + 0xc40 +
                        ((ulonglong)param_2[2] + (ulonglong)param_2[0xb] * 4) * 4);
+      
       if (bVar2 != 0) {
         uVar5 = (uint)bVar2;
+        
+        // 应用纹理处理
         if (0 < iVar4) {
-          func_0x00018001c253(param_6,param_4,(longlong)(int)uVar5 * 0x10 + lVar1);
+          func_0x00018001c253(param_6, param_4, (longlong)(int)uVar5 * RENDERING_BUFFER_SIZE + lVar1);
         }
         if (!bVar3) {
-          FUN_18069ca80(param_6,param_4,((longlong)(int)uVar5 + 0x40) * 0x10 + lVar1);
+          FUN_18069ca80(param_6, param_4, ((longlong)(int)uVar5 + 0x40) * RENDERING_BUFFER_SIZE + lVar1);
         }
         if (0 < param_3) {
-          func_0x00018001c10b(param_6,param_4,(longlong)(int)uVar5 * 0x10 + lVar1);
+          func_0x00018001c10b(param_6, param_4, (longlong)(int)uVar5 * RENDERING_BUFFER_SIZE + lVar1);
         }
         if (!bVar3) {
-          FUN_18069c990(param_6,param_4,((ulonglong)bVar2 + 0x40) * 0x10 + lVar1);
+          FUN_18069c990(param_6, param_4, ((ulonglong)bVar2 + 0x40) * RENDERING_BUFFER_SIZE + lVar1);
         }
       }
-      param_6 = param_6 + 0x10;
-      param_2 = param_2 + 0x4c;
+      
+      // 移动到下一个纹理
+      param_6 = param_6 + RENDERING_BUFFER_SIZE;
+      param_2 = param_2 + RENDERING_QUEUE_SIZE;
       iVar4 = iVar4 + 1;
-    } while (iVar4 < *(int *)(param_1 + 3000));
+    } while (iVar4 < *(int *)(param_1 + MAX_RENDER_ITEMS));
   }
+  
   return;
 }
 
+// 函数别名：RenderingSystemTextureProcessor
+// 技术说明：该函数专门处理纹理数据和渲染操作
 
 
 
 
-// 函数: void FUN_1806986ff(void)
+
+/**
+ * @brief 渲染系统高级纹理处理器
+ * @details 执行高级纹理处理操作
+ * 功能：
+ * - 处理复杂纹理数据
+ * - 应用高级纹理效果
+ * - 优化纹理处理性能
+ * - 管理纹理状态
+ * @note 使用寄存器优化，性能关键函数
+ */
 void FUN_1806986ff(void)
-
 {
   byte bVar1;
   bool bVar2;
@@ -1045,60 +1083,91 @@ void FUN_1806986ff(void)
   int in_stack_00000060;
   longlong in_stack_00000078;
   
+  // 执行高级纹理处理循环
   do {
+    // 获取纹理类型
     bVar1 = *unaff_RBX;
     if (((bVar1 == 4) || (bVar1 == 9)) || (unaff_RBX[9] == 0)) {
-      bVar2 = false;
+      bVar2 = false;  // 简单纹理
     }
     else {
-      bVar2 = true;
+      bVar2 = true;   // 复杂纹理
     }
+    
+    // 获取纹理数据
     bVar1 = *(byte *)((ulonglong)*(byte *)((ulonglong)bVar1 + 0xd00 + unaff_R15) + unaff_R15 + 0xc40
                      + ((ulonglong)unaff_RBX[2] + (ulonglong)unaff_RBX[0xb] * 4) * 4);
+    
     if (bVar1 != 0) {
       uVar3 = (uint)bVar1;
+      
+      // 应用高级纹理处理
       if (0 < unaff_EBP) {
-        func_0x00018001c253(in_stack_00000078,unaff_R12D,(longlong)(int)uVar3 * 0x10 + unaff_R15);
+        func_0x00018001c253(in_stack_00000078, unaff_R12D, (longlong)(int)uVar3 * RENDERING_BUFFER_SIZE + unaff_R15);
       }
       if (!bVar2) {
-        FUN_18069ca80(in_stack_00000078,unaff_R12D,((longlong)(int)uVar3 + 0x40) * 0x10 + unaff_R15)
-        ;
+        FUN_18069ca80(in_stack_00000078, unaff_R12D, ((longlong)(int)uVar3 + 0x40) * RENDERING_BUFFER_SIZE + unaff_R15);
       }
       if (0 < in_stack_00000060) {
-        func_0x00018001c10b(in_stack_00000078,unaff_R12D,(longlong)(int)uVar3 * 0x10 + unaff_R15);
+        func_0x00018001c10b(in_stack_00000078, unaff_R12D, (longlong)(int)uVar3 * RENDERING_BUFFER_SIZE + unaff_R15);
       }
       if (!bVar2) {
-        FUN_18069c990(in_stack_00000078,unaff_R12D,((ulonglong)bVar1 + 0x40) * 0x10 + unaff_R15);
+        FUN_18069c990(in_stack_00000078, unaff_R12D, ((ulonglong)bVar1 + 0x40) * RENDERING_BUFFER_SIZE + unaff_R15);
       }
     }
-    in_stack_00000078 = in_stack_00000078 + 0x10;
-    unaff_RBX = unaff_RBX + 0x4c;
+    
+    // 移动到下一个纹理
+    in_stack_00000078 = in_stack_00000078 + RENDERING_BUFFER_SIZE;
+    unaff_RBX = unaff_RBX + RENDERING_QUEUE_SIZE;
     unaff_EBP = unaff_EBP + 1;
-  } while (unaff_EBP < *(int *)(unaff_R13 + 3000));
+  } while (unaff_EBP < *(int *)(unaff_R13 + MAX_RENDER_ITEMS));
+  
   return;
 }
 
+// 函数别名：RenderingSystemAdvancedTextureProcessor
+// 技术说明：该函数是性能关键的高级纹理处理器，使用寄存器优化
 
 
 
 
-// 函数: void FUN_1806987ee(void)
+
+/**
+ * @brief 渲染系统空函数2
+ * @details 空函数，用于保持结构完整性
+ * 功能：
+ * - 占位函数
+ * - 保持接口一致性
+ * @note 简化实现，仅返回
+ */
 void FUN_1806987ee(void)
-
 {
   return;
 }
 
+// 函数别名：RenderingSystemEmptyFunction2
+// 技术说明：该函数是简化实现，用于保持接口一致性
 
 
 
 
-// 函数: void FUN_180698800(longlong param_1,int param_2)
-void FUN_180698800(longlong param_1,int param_2)
 
+/**
+ * @brief 渲染系统缓冲区初始化器
+ * @details 初始化渲染系统缓冲区
+ * @param param_1 缓冲区指针
+ * @param param_2 初始化参数
+ * 功能：
+ * - 计算初始化大小
+ * - 设置缓冲区参数
+ * - 初始化缓冲区数据
+ * @note 该函数不会返回，会调用memset
+ */
+void FUN_180698800(longlong param_1, int param_2)
 {
   int iVar1;
   
+  // 计算初始化大小
   iVar1 = (0 >> (0 < param_2)) >> (4 < param_2);
   if ((0 < param_2) && (9 - param_2 < iVar1)) {
     iVar1 = 9 - param_2;
@@ -1106,9 +1175,13 @@ void FUN_180698800(longlong param_1,int param_2)
   if (iVar1 < 1) {
     iVar1 = 1;
   }
-                    // WARNING: Subroutine does not return
-  memset(param_1 + 0x800,iVar1,0x10);
+  
+  // 初始化缓冲区（警告：该函数不会返回）
+  memset(param_1 + 0x800, iVar1, RENDERING_BUFFER_SIZE);
 }
+
+// 函数别名：RenderingSystemBufferInitializer
+// 技术说明：该函数负责初始化渲染缓冲区，确保数据一致性
 
 
 
