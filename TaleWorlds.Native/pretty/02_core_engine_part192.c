@@ -330,7 +330,7 @@ void SystemConfigProcessor(uint64_t system_context,int64_t config_data)
   puStack_130 = auStack_120;
   auStack_120[0] = 0;
   uStack_128 = 9;
-  strcpy_s(auStack_120,0x80,&system_config_template_ptr);
+  strcpy_s(auStack_120,0x80,&system_log_template_ptr);
   lVar1 = -1;
   do {
     lVar3 = lVar1;
@@ -381,7 +381,7 @@ void SystemLogger(uint64_t system_context,int64_t log_data)
   puStack_130 = auStack_120;
   auStack_120[0] = 0;
   uStack_128 = 9;
-  strcpy_s(auStack_120,0x80,&system_config_template_ptr);
+  strcpy_s(auStack_120,0x80,&system_log_template_ptr);
   lVar1 = -1;
   do {
     lVar3 = lVar1;
@@ -399,7 +399,9 @@ void SystemLogger(uint64_t system_context,int64_t log_data)
 
 
 
-uint64_t * FUN_1801753d0(uint64_t *param_1,uint param_2)
+// 函数: uint64_t* SystemComponentManager(uint64_t *component_array,uint component_flags)
+// 功能: 系统组件管理器，负责组件初始化、清理和内存管理
+uint64_t * SystemComponentManager(uint64_t *component_array,uint component_flags)
 
 {
   int64_t *plVar1;
@@ -408,7 +410,7 @@ uint64_t * FUN_1801753d0(uint64_t *param_1,uint param_2)
   uint64_t uVar4;
   
   uVar4 = 0xfffffffffffffffe;
-  *param_1 = &unknown_var_5128_ptr;
+  *param_1 = &system_component_data_ptr;
   uVar3 = 0;
   plVar2 = param_1 + 5;
   do {
