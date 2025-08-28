@@ -241,15 +241,15 @@ typedef struct SystemState {
 #define SystemStringRFind strrchr
 
 /** 内存管理函数别名 */
-#define SystemMemoryAllocate FUN_18062b420
-#define SystemMemoryDeallocate FUN_18064e900
+#define SystemMemoryAllocate CoreEngineMemoryPoolAllocator
+#define SystemMemoryDeallocate CoreEngineMemoryPoolCleaner
 #define SystemMemoryCopy memmove
 #define SystemMemorySet memset
 #define SystemMemoryZero memset
 
 /** 系统工具函数别名 */
 #define SystemLogOutput FUN_180627020
-#define SystemTimeGet FUN_18064e990
+#define SystemTimeGet CoreEngineSystemCleanup
 #define SystemProcessCreate FUN_180627c50
 #define SystemProcessExecute FUN_1800b6de0
 #define SystemProcessWait FUN_180275a60

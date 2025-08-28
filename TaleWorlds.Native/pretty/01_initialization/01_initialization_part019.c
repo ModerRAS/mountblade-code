@@ -22,7 +22,7 @@ void cleanup_resource_array(int64_t resource_context)
         do {
             resource_pointer = *(int64_t *)(resource_pointer + index * 8);
             if (resource_pointer != 0) {
-                FUN_18064e900(resource_pointer);
+                CoreEngineMemoryPoolCleaner(resource_pointer);
             }
             *(uint64_t *)(resource_pointer + index * 8) = 0;
             index = index + 1;
@@ -41,7 +41,7 @@ void cleanup_resource_array(int64_t resource_context)
                 reference_count = (int *)(memory_block + 0x18);
                 *reference_count = *reference_count + -1;
                 if (*reference_count == 0) {
-                    FUN_18064d630();
+                    SystemDataCleaner();
                     return;
                 }
             }
@@ -263,7 +263,7 @@ void cleanup_system_handles(int64_t system_context)
             reference_count = (int *)(memory_block + 0x18);
             *reference_count = *reference_count + -1;
             if (*reference_count == 0) {
-                FUN_18064d630();
+                SystemDataCleaner();
                 return;
             }
         }
@@ -317,13 +317,13 @@ uint64_t * copy_resource_data(uint64_t *destination, uint64_t *source)
                 copy_size = 0;
             }
             else {
-                copy_size = FUN_18062b420(system_memory_pool_ptr,required_size * 4,*(int8_t *)(destination + 0x46));
+                copy_size = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,required_size * 4,*(int8_t *)(destination + 0x46));
             }
             if (source_end != source_start) {
                 memmove(copy_size,source_end,copy_size);
             }
             if (*dest_ptr != 0) {
-                FUN_18064e900();
+                CoreEngineMemoryPoolCleaner();
             }
             source_start = copy_size + required_size * 4;
             *dest_ptr = copy_size;
@@ -379,13 +379,13 @@ void expand_resource_array(int64_t array_start, int64_t array_end, int64_t capac
             new_buffer = 0;
         }
         else {
-            new_buffer = FUN_18062b420(system_memory_pool_ptr,required_size * 4,(char)context_ptr[3]);
+            new_buffer = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,required_size * 4,(char)context_ptr[3]);
         }
         if (source_end != source_start) {
             memmove(new_buffer,source_end,buffer_size);
         }
         if (*context_ptr != 0) {
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         source_start = new_buffer + required_size * 4;
         *context_ptr = new_buffer;
@@ -435,13 +435,13 @@ void reallocate_resource_array(int64_t new_buffer, int64_t source_data, int64_t 
         data_size = 0;
     }
     else {
-        data_size = FUN_18062b420(system_memory_pool_ptr,buffer_size * 4,(char)resource_ptr[3]);
+        data_size = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,buffer_size * 4,(char)resource_ptr[3]);
     }
     if (source_data != dest_data) {
         memmove(data_size);
     }
     if (*resource_ptr != 0) {
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     allocated_buffer = data_size + buffer_size * 4;
     *resource_ptr = data_size;
@@ -567,14 +567,14 @@ STATUS_VALID:
     if (string_buffer == (byte *)0x0) {
         return current_entry != status_array;
     }
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
 }
 
 // 函数13: 初始化系统模块
 // 原始实现: FUN_180052020 - 初始化系统模块
 uint64_t initialize_system_module(uint64_t module_handle, uint64_t module_data, uint64_t init_params, uint64_t context_data)
 {
-    FUN_180627ae0(module_data,system_main_module_state + 0x2c0,init_params,context_data,0,0xfffffffffffffffe);
+    CoreEngineDataTransformer(module_data,system_main_module_state + 0x2c0,init_params,context_data,0,0xfffffffffffffffe);
     return module_data;
 }
 
@@ -595,10 +595,10 @@ void execute_module_initialization(int64_t module_context)
     stack_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)temp_buffer;
     init_flag = 0;
     context_ptr = module_context;
-    FUN_180627ae0(module_context,system_main_module_state + 0x170);
+    CoreEngineDataTransformer(module_context,system_main_module_state + 0x170);
     init_flag = 1;
     init_result = *(int *)(module_context + 0x10) + 8;
-    FUN_1806277c0(module_context,init_result);
+    CoreEngineDataBufferProcessor(module_context,init_result);
     module_manager = (uint64_t *)((uint64_t)*(uint *)(module_context + 0x10) + *(int64_t *)(module_context + 8));
     *module_manager = 0x2f73656873617263;
     *(int8_t *)(module_manager + 1) = 0;
@@ -637,7 +637,7 @@ void process_module_data(int64_t module_context, int64_t data_source, uint64_t d
             do {
                 if (*(uint64_t *)(data_source + 8) < *(uint64_t *)(data_source + 0x10)) {
                     *(uint64_t *)(data_source + 8) = *(uint64_t *)(data_source + 8) + 0x20;
-                    FUN_180627ae0();
+                    CoreEngineDataTransformer();
                 }
                 else {
                     FUN_180059820(data_source,*data_pointer + transfer_size);
@@ -652,10 +652,10 @@ void process_module_data(int64_t module_context, int64_t data_source, uint64_t d
     source_data = 0;
     source_buffer = (uint64_t *)0x0;
     source_flag = 0;
-    data_buffer = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13,context_data,0xfffffffffffffffe);
+    data_buffer = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13,context_data,0xfffffffffffffffe);
     *(int8_t *)data_buffer = 0;
     source_buffer = data_buffer;
-    process_flag = FUN_18064e990(data_buffer);
+    process_flag = CoreEngineSystemCleanup(data_buffer);
     source_data = CONCAT44(source_data._4_4_,process_flag);
     *data_buffer = 0x53454c55444f4d5f;
     *(int16_t *)(data_buffer + 1) = 0x2a5f;
@@ -667,10 +667,10 @@ void process_module_data(int64_t module_context, int64_t data_source, uint64_t d
         target_data = 0;
         target_buffer = (uint64_t *)0x0;
         target_flag = 0;
-        data_buffer = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13,context_data,transfer_status);
+        data_buffer = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13,context_data,transfer_status);
         *(int8_t *)data_buffer = 0;
         target_buffer = data_buffer;
-        process_flag = FUN_18064e990(data_buffer);
+        process_flag = CoreEngineSystemCleanup(data_buffer);
         target_data = CONCAT44(target_data._4_4_,process_flag);
         *data_buffer = 0x454c55444f4d5f2a;
         *(int16_t *)(data_buffer + 1) = 0x5f53;
@@ -678,10 +678,10 @@ void process_module_data(int64_t module_context, int64_t data_source, uint64_t d
         target_flag = 10;
         FUN_180628d60(module_context + 0x2c0,&context_ptr);
         context_ptr = &system_data_buffer_ptr;
-        FUN_18064e900(data_buffer);
+        CoreEngineMemoryPoolCleaner(data_buffer);
     }
     source_ptr = &system_data_buffer_ptr;
-    FUN_18064e900(data_buffer);
+    CoreEngineMemoryPoolCleaner(data_buffer);
 }
 
 // 函数16: 注册系统模块
@@ -703,17 +703,17 @@ uint64_t register_system_module(uint64_t module_handle, uint64_t module_data)
     
     system_context = system_main_module_state;
     if (*(int *)(system_main_module_state + 200) != 0) {
-        FUN_180627ae0(module_data,system_main_module_state + 0xb8);
+        CoreEngineDataTransformer(module_data,system_main_module_state + 0xb8);
         return module_data;
     }
     source_ptr = &system_data_buffer_ptr;
     source_data = 0;
     source_buffer = (uint64_t *)0x0;
     source_flag = 0;
-    module_info = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
+    module_info = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13);
     *(int8_t *)module_info = 0;
     source_buffer = module_info;
-    register_flag = FUN_18064e990(module_info);
+    register_flag = CoreEngineSystemCleanup(module_info);
     source_data = CONCAT44(source_data._4_4_,register_flag);
     *module_info = 0x53454c55444f4d5f;
     *(int16_t *)(module_info + 1) = 0x2a5f;
@@ -725,10 +725,10 @@ uint64_t register_system_module(uint64_t module_handle, uint64_t module_data)
         target_data = 0;
         target_buffer = (uint64_t *)0x0;
         target_flag = 0;
-        module_info = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
+        module_info = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13);
         *(int8_t *)module_info = 0;
         target_buffer = module_info;
-        register_flag = FUN_18064e990(module_info);
+        register_flag = CoreEngineSystemCleanup(module_info);
         target_data = CONCAT44(target_data._4_4_,register_flag);
         *module_info = 0x454c55444f4d5f2a;
         *(int16_t *)(module_info + 1) = 0x5f53;
@@ -736,8 +736,8 @@ uint64_t register_system_module(uint64_t module_handle, uint64_t module_data)
         target_flag = 10;
         FUN_180628d60(system_context + 0x2c0,&context_ptr);
         context_ptr = &system_data_buffer_ptr;
-        FUN_18064e900(module_info);
+        CoreEngineMemoryPoolCleaner(module_info);
     }
     source_ptr = &system_data_buffer_ptr;
-    FUN_18064e900(module_info);
+    CoreEngineMemoryPoolCleaner(module_info);
 }

@@ -591,7 +591,7 @@ void RenderingSystem_AdvancedVertexProcessor(int64_t renderContext, int64_t rend
                   lVar8 = 1;
 LAB_18035f156:
                   // 重新分配更大的缓冲区（当前大小的2倍）
-                  auVar9 = (int8_t  [8])FUN_18062b420(system_memory_pool_ptr,lVar8 * 8,3);
+                  auVar9 = (int8_t  [8])CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,lVar8 * 8,3);
                 }
                 else {
                   lVar8 = lVar8 * 2;
@@ -612,7 +612,7 @@ LAB_18035f156:
                 // 释放旧的缓冲区内存
                 if (puVar19 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-                  FUN_18064e900(puVar19);
+                  CoreEngineMemoryPoolCleaner(puVar19);
                 }
                 
                 // 更新缓冲区指针和状态
@@ -641,7 +641,7 @@ LAB_18035f156:
       ppplStack_430 = &pplStack_400;
       pfStack_438 = (float *)&uStack_410;
       FUN_18046a8c0();
-      uVar11 = FUN_18062b1e0(system_memory_pool_ptr,0x3d0,8,0x16);
+      uVar11 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x3d0,8,0x16);
       plVar12 = (int64_t *)FUN_180275090(uVar11);
       plStack_288 = plVar12;
       if (plVar12 != (int64_t *)0x0) {
@@ -658,7 +658,7 @@ LAB_18035f156:
         (**(code **)(*plStack_3b8 + 0x38))();
       }
       (**(code **)(*plVar12 + 0xd8))(plVar12);
-      uVar11 = FUN_18062b1e0(system_memory_pool_ptr,0x300,0x10,3);
+      uVar11 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x300,0x10,3);
       plVar13 = (int64_t *)FUN_180075030(uVar11,1);
       plStack_278 = plVar13;
       if (plVar13 != (int64_t *)0x0) {
@@ -929,13 +929,13 @@ LAB_18035f156:
       (**(code **)(*plVar12 + 0x38))(plVar12);
       if (pfStack_270 != (float *)0x0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
       }
       auVar9 = auStack_3d8;
     }
     if (auVar9 != (int8_t  [8])0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900(auVar9);
+      CoreEngineMemoryPoolCleaner(auVar9);
     }
   }
   // 第六阶段：渲染资源清理和状态同步
@@ -956,7 +956,7 @@ LAB_18035f156:
   if (uStack_138._1_1_ == '\0') {
     if (((char)uStack_138 == '\0') && (puStack_148 != (void *)0x0)) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();                                    // 释放渲染资源内存
+      CoreEngineMemoryPoolCleaner();                                    // 释放渲染资源内存
     }
     // 重置资源管理器状态
     puStack_148 = (void *)0x0;                        // 清空资源指针
@@ -969,7 +969,7 @@ LAB_18035f156:
   if (uStack_1a8._1_1_ == '\0') {
     if (((char)uStack_1a8 == '\0') && (alStack_1b8[0] != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();                                    // 释放管线数组内存
+      CoreEngineMemoryPoolCleaner();                                    // 释放管线数组内存
     }
     // 重置管线数组状态
     alStack_1b8[0] = 0;                                   // 清空管线数组第一项
@@ -980,7 +980,7 @@ LAB_18035f156:
   // 使用内存保护密钥进行最终验证，确保内存访问的安全性
   // 这是一个反调试和内存保护机制，防止非法访问和修改
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_d8 ^ (uint64_t)auStack_458);      // 内存保护验证函数
+  SystemSecurityChecker(uStack_d8 ^ (uint64_t)auStack_458);      // 内存保护验证函数
 }
 
 

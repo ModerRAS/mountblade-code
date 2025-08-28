@@ -1000,7 +1000,7 @@ void FUN_180703510(int64_t param_1,int64_t param_2,int param_3,int param_4,int p
   } while (iVar11 < param_6);
   aiStack_b8[0] = param_3;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (uint64_t)aiStack_b8,in_XMM1_Da,in_XMM2_Da);
+  SystemSecurityChecker(uStack_38 ^ (uint64_t)aiStack_b8,in_XMM1_Da,in_XMM2_Da);
 }
 
 

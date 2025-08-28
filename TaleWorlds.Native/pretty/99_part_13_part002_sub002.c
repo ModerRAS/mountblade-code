@@ -19,7 +19,7 @@ void FUN_1808a736f(void)
   unaff_RBX[1] = (int64_t)unaff_RBX;
   *unaff_RBX = (int64_t)unaff_RBX;
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
+  SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
 }
 
 

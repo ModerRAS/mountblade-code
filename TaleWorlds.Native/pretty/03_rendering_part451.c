@@ -359,17 +359,17 @@ LAB_18051210c:
             uStack_bc = 0;
             puStack_d0 = (int32_t *)0x0;
             uStack_c8 = 0;
-            puVar16 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
+            puVar16 = (int32_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13);
             *(int8_t *)puVar16 = 0;
             puStack_d0 = puVar16;
-            uStack_c0 = FUN_18064e990(puVar16);
+            uStack_c0 = CoreEngineSystemCleanup(puVar16);
             *puVar16 = 0x6c6c6559;
             *(int8_t *)(puVar16 + 1) = 0;
             uStack_c8 = 4;
             render_system_config_config = FUN_180571e20(&system_ptr_60c0,&puStack_d8);
             puStack_d8 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
-            FUN_18064e900(puVar16);
+            CoreEngineMemoryPoolCleaner(puVar16);
           }
           func_0x0001805084b0(param_1,render_system_config_config);
         }

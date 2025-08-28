@@ -651,7 +651,7 @@ void FUN_180272bd0(int64_t *param_1,int64_t param_2,uint *param_3)
   *(uint **)(param_2 + 8) = *(uint **)(param_2 + 8) + 1;
   if (uVar3 != 0) {
     do {
-      puStack_468 = &unknown_var_336_ptr;
+      puStack_468 = &rendering_ripple_ptr;
       pbStack_460 = abStack_450;
       iStack_458 = 0;
       abStack_450[0] = 0;

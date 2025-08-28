@@ -947,7 +947,7 @@ float RenderingSystem_GetData(void)
 void RenderingSystem_ErrorHandler(unsigned long long param1)
 {
     // 简化实现：错误处理
-    // 原始实现：FUN_1808fc050(param1);
+    // 原始实现：SystemSecurityChecker(param1);
     // 这是一个简化实现，实际功能需要根据原始FUN_函数的具体实现来完成
     // 错误处理逻辑
 }
@@ -1000,7 +1000,7 @@ float RenderingSystem_GetData(void)
 void RenderingSystem_ErrorHandler(unsigned long long param1)
 {
     // 简化实现：错误处理
-    // 原始实现：FUN_1808fc050(param1);
+    // 原始实现：SystemSecurityChecker(param1);
     // 这是一个简化实现，实际功能需要根据原始FUN_函数的具体实现来完成
     // 错误处理逻辑
 }

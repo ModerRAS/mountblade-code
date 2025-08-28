@@ -142,7 +142,7 @@ typedef struct {
 #define RenderingSystemHardwareAccelerator         FUN_1805162e0
 #define RenderingSystemQualityEnhancer            FUN_180515880
 #define RenderingSystemPerformanceOptimizer       FUN_180514a60
-#define RenderingSystemFinalizer                  FUN_1808fc050
+#define RenderingSystemFinalizer                  SystemSecurityChecker
 
 // =============================================================================
 // 核心函数实现

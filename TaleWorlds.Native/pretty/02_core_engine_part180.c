@@ -1,7 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
-// 02_core_engine_part180.c - 1 个函数
+// 02_core_engine_part180.c - 核心引擎系统函数 - 7 个函数
 
 /**
  * 系统初始化函数
@@ -805,8 +805,19 @@ CoreEngineSystemStateHandler(uint64_t param_1,uint64_t *param_2,uint64_t param_3
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * 数据处理函数变体2
+ * 处理系统数据，进行数据过滤和转换（变体2）
+ * 
+ * @param param_1 系统参数1
+ * @param param_2 数据缓冲区指针
+ * @param param_3 系统参数3
+ * @param param_4 系统参数4
+ * @return 处理后的数据缓冲区指针
+ */
+// 函数: uint64_t* CoreEngineDataProcessorVariant2(uint64_t, uint64_t*, uint64_t, uint64_t)
 uint64_t *
-FUN_180166b10(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
+CoreEngineDataProcessorVariant2(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
   int64_t *plVar1;

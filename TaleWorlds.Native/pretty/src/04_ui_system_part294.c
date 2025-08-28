@@ -191,7 +191,7 @@ typedef UI_SYSTEM_RESULT (*CONTROL_PROCESSOR)(CONTROL_STATE* control, void* user
 #define UISystem_DataProcess FUN_1807c4170
 
 /** UI系统安全验证函数 */
-#define UISystem_SecurityValidate FUN_1808fc050
+#define UISystem_SecurityValidate SystemSecurityChecker
 
 /** UI系统索引查找函数 */
 #define UISystem_FindIndex FUN_18082f650

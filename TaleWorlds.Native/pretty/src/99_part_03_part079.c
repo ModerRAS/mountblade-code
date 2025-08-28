@@ -190,10 +190,10 @@ typedef struct {
 
 // 系统函数指针别名定义
 #define SystemCoreFunctionInitializer FUN_1802436f0                    // 系统核心函数初始化器
-#define SystemErrorHandler FUN_18064e900                              // 系统错误处理器
+#define SystemErrorHandler CoreEngineMemoryPoolCleaner                              // 系统错误处理器
 #define SystemMemoryPoolInitializer FUN_180049470                    // 系统内存池初始化器
 #define SystemResourceMonitorHandler FUN_1800b1230                   // 系统资源监控处理器
-#define SystemSecurityStackChecker FUN_1808fc050                     // 系统安全栈检查器
+#define SystemSecurityStackChecker SystemSecurityChecker                     // 系统安全栈检查器
 #define SystemResourceDescriptorGenerator FUN_180244ff0               // 系统资源描述符生成器
 #define SystemResourceCleanupHandler FUN_1800b1d80                  // 系统资源清理处理器
 #define SystemStringFormatter FUN_1800ba3b0                          // 系统字符串格式化器
@@ -258,7 +258,7 @@ SystemInt32 SystemCoreFunctionInitializer(SystemHandle context)
 /**
  * @brief 系统错误处理器 - 简化实现
  * 
- * 原始实现：FUN_18064e900
+ * 原始实现：CoreEngineMemoryPoolCleaner
  * 简化实现：SystemErrorHandler
  * 
  * 功能描述：
@@ -343,7 +343,7 @@ SystemHandle SystemResourceMonitorHandler(SystemHandle resource_key, SystemHandl
 /**
  * @brief 系统安全栈检查器 - 简化实现
  * 
- * 原始实现：FUN_1808fc050
+ * 原始实现：SystemSecurityChecker
  * 简化实现：SystemSecurityStackChecker
  * 
  * 功能描述：
@@ -1130,10 +1130,10 @@ void SystemResourceManager_ReleaseAll(SystemHandle context)
  * 
  * @简化实现说明：
  * - SystemCoreFunctionInitializer: 替代FUN_1802436f0，简化核心函数初始化
- * - SystemErrorHandler: 替代FUN_18064e900，简化错误处理逻辑
+ * - SystemErrorHandler: 替代CoreEngineMemoryPoolCleaner，简化错误处理逻辑
  * - SystemMemoryPoolInitializer: 替代FUN_180049470，简化内存池初始化
  * - SystemResourceMonitorHandler: 替代FUN_1800b1230，简化资源监控处理
- * - SystemSecurityStackChecker: 替代FUN_1808fc050，简化栈安全检查
+ * - SystemSecurityStackChecker: 替代SystemSecurityChecker，简化栈安全检查
  * - SystemResourceDescriptorGenerator: 替代FUN_180244ff0，简化资源描述符生成
  * - SystemResourceCleanupHandler: 替代FUN_1800b1d80，简化资源清理处理
  * - SystemStringFormatter: 替代FUN_1800ba3b0，简化字符串格式化

@@ -30,7 +30,7 @@ void FUN_1805435c0(int64_t param_1,byte *param_2,int64_t param_3)
     uVar6 = FUN_1804bc380(0x180c95de0,*(int32_t *)(param_2 + 0x24),
                           *(int32_t *)(param_2 + 0x20),*(int32_t *)(param_3 + 0x53c),0,
                           0xfffffffffffffffe);
-    uVar7 = FUN_18062b1e0(system_memory_pool_ptr,0x3d0,8,0x16);
+    uVar7 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x3d0,8,0x16);
     plVar8 = (int64_t *)FUN_180275090(uVar7);
     plStackX_20 = plVar8;
     if (plVar8 != (int64_t *)0x0) {
@@ -68,7 +68,7 @@ void FUN_1805435c0(int64_t param_1,byte *param_2,int64_t param_3)
       }
       if (uStack_58 != (int64_t **)0x0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
       }
     }
     uStack_58 = aplStackX_10;
@@ -293,7 +293,7 @@ void FUN_1805439d0(int64_t param_1,int64_t param_2,int64_t param_3,int8_t param_
       (**(code **)(*plStackX_8 + 0x38))();
     }
   }
-  uVar11 = FUN_18062b1e0(system_memory_pool_ptr,0x1a8,8,0x12);
+  uVar11 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x1a8,8,0x12);
   uVar1 = *(int8_t *)(param_1 + 0x8bc);
   pplStack_a0 = &plStackX_8;
   plStackX_8 = plVar9;
@@ -511,7 +511,7 @@ LAB_180544017:
     } while (lVar15 < 4);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_78);
+  SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_78);
 }
 
 
@@ -649,7 +649,7 @@ LAB_180544017:
     piVar16 = piVar16 + 1;
     if (3 < lVar15) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000050 ^ (uint64_t)&stack0x00000000);
+      SystemSecurityChecker(in_stack_00000050 ^ (uint64_t)&stack0x00000000);
     }
   } while( true );
 }
@@ -665,7 +665,7 @@ void FUN_18054404f(void)
   uint64_t in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000050 ^ (uint64_t)&stack0x00000000);
 }
 
 

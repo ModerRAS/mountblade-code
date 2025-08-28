@@ -260,7 +260,7 @@ uint64_t * GetThreadLocalStorageData(int64_t *thread_context)
           } while ((uVar4 & 0x7fffffffffffffff) <= uVar6);
           
           // 分配新的哈希表内存
-          puVar7 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,uVar4 * 0x20 + 0x1f,10);
+          puVar7 = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,uVar4 * 0x20 + 0x1f,10);
           if (puVar7 == (uint64_t *)0x0) {
             // 分配失败，回滚计数器
             LOCK();
@@ -310,7 +310,7 @@ uint64_t * GetThreadLocalStorageData(int64_t *thread_context)
   
   // 没有找到可用槽位，创建新的线程数据结构
   bVar17 = false;
-  puVar8 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x68,10);
+  puVar8 = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x68,10);
   puVar11 = puVar15;
   if (puVar8 != (uint64_t *)0x0) {
     // 初始化新的线程数据结构

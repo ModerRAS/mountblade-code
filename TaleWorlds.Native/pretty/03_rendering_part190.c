@@ -44,7 +44,7 @@ FUN_18037ad90(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
     lVar2 = 0;
   }
   else {
-    lVar2 = FUN_18062b420(system_memory_pool_ptr,lVar3 << 5,uVar1 & 0xff,param_4,0xfffffffffffffffe);
+    lVar2 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,lVar3 << 5,uVar1 & 0xff,param_4,0xfffffffffffffffe);
   }
   param_1[1] = lVar2;
   param_1[2] = lVar2;

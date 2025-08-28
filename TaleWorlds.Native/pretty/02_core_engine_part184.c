@@ -139,14 +139,14 @@
  * 函数别名定义 - 用于代码可读性和维护性
  * ============================================================================ */
 
-/* FUN_18064e900 - 错误处理函数 */
-#define ErrorHandler FUN_18064e900
+/* CoreEngineMemoryPoolCleaner - 错误处理函数 */
+#define ErrorHandler CoreEngineMemoryPoolCleaner
 
-/* FUN_18062b420 - 内存分配函数 */
-#define MemoryAllocator FUN_18062b420
+/* CoreEngineMemoryPoolAllocator - 内存分配函数 */
+#define MemoryAllocator CoreEngineMemoryPoolAllocator
 
-/* FUN_18064e990 - 格式化处理函数 */
-#define FormatProcessor FUN_18064e990
+/* CoreEngineSystemCleanup - 格式化处理函数 */
+#define FormatProcessor CoreEngineSystemCleanup
 
 /* FUN_180627ce0 - 数据上下文创建函数 */
 #define DataContextCreator FUN_180627ce0
@@ -169,8 +169,8 @@
 /* FUN_18062b8b0 - 内存重分配函数 */
 #define MemoryReallocator FUN_18062b8b0
 
-/* FUN_1806277c0 - 配置块初始化函数 */
-#define ConfigBlockInitializer FUN_1806277c0
+/* CoreEngineDataBufferProcessor - 配置块初始化函数 */
+#define ConfigBlockInitializer CoreEngineDataBufferProcessor
 
 /* FUN_180059780 - 数据大小计算函数 */
 #define DataSizeCalculator FUN_180059780
@@ -184,8 +184,8 @@
 /* FUN_180057f30 - 资源释放函数 */
 #define ResourceReleaser FUN_180057f30
 
-/* FUN_180627ae0 - 字符串初始化函数 */
-#define StringInitializer FUN_180627ae0
+/* CoreEngineDataTransformer - 字符串初始化函数 */
+#define StringInitializer CoreEngineDataTransformer
 
 /* FUN_180629c00 - 字符串格式化函数 */
 #define StringFormatter FUN_180629c00
