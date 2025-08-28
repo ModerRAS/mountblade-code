@@ -886,23 +886,34 @@ void FUN_180349a50(undefined8 param_1)
 
 
 
-// 函数: void FUN_180349c70(undefined8 param_1,longlong param_2)
+// =============================================================================
+// 渲染系统消息处理器 (RenderingSystemMessageHandler)
+// =============================================================================
+// 功能：处理渲染系统消息，支持多种消息类型的路由和处理
+// 参数：param_1 - 渲染系统上下文，param_2 - 消息数据
+// 返回值：无
+// =============================================================================
 void FUN_180349c70(undefined8 param_1,longlong param_2)
 
 {
   int iVar1;
   
+  // 处理长度为8的消息
   if (*(int *)(param_2 + 0x10) == 8) {
     iVar1 = _stricmp(*(undefined8 *)(param_2 + 8),&DAT_180a00410);
     if (iVar1 == 0) {
       FUN_1803499b0(param_1);
     }
   }
+  
+  // 处理长度为6的消息
   iVar1 = *(int *)(param_2 + 0x10);
   if (iVar1 == 6) {
     _stricmp(*(undefined8 *)(param_2 + 8),&DAT_180a1d218);
     iVar1 = *(int *)(param_2 + 0x10);
   }
+  
+  // 处理长度为7的消息
   if (iVar1 == 7) {
     _stricmp(*(undefined8 *)(param_2 + 8),&DAT_180a1d220);
   }
@@ -915,7 +926,13 @@ void FUN_180349c70(undefined8 param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180349ce0(undefined8 *param_1,longlong param_2)
+// =============================================================================
+// 渲染系统纹理对象初始化器 (RenderingSystemTextureObjectInitializer)
+// =============================================================================
+// 功能：初始化纹理对象，设置纹理坐标、着色器参数和材质属性
+// 参数：param_1 - 纹理对象指针，param_2 - 纹理参数
+// 返回值：无
+// =============================================================================
 void FUN_180349ce0(undefined8 *param_1,longlong param_2)
 
 {
@@ -950,16 +967,20 @@ void FUN_180349ce0(undefined8 *param_1,longlong param_2)
   puVar1 = param_1;
   puStack_140 = param_1;
   FUN_1803456e0();
+  
+  // 初始化纹理对象基本信息
   *puVar1 = &UNK_180a1d3f0;
   *(undefined2 *)(puVar1 + 0x12) = 0;
   *(undefined1 *)((longlong)puVar1 + 0x92) = 0;
   *(bool *)((longlong)puVar1 + 0x93) = *(char *)(param_2 + 0x2e5) == '\0';
   *(undefined4 *)(puVar1 + 0x13) = 0;
   *(undefined1 *)((longlong)puVar1 + 0x94) = 0;
-  *(undefined4 *)((longlong)puVar1 + 0x8c) = 0x3f800000;
+  *(undefined4 *)((longlong)puVar1 + 0x8c) = RENDERING_DEFAULT_SHADER_ID;
   puVar1[0xf] = 0;
   puVar1[0x10] = 0;
-  *(undefined4 *)(puVar1 + 0x11) = 0x41a00000;
+  *(undefined4 *)(puVar1 + 0x11) = RENDERING_MAX_TEXTURE_COORD;
+  
+  // 设置纹理名称和属性
   puStack_138 = &UNK_1809fdc18;
   puStack_130 = auStack_120;
   auStack_120[0] = 0;
@@ -967,6 +988,8 @@ void FUN_180349ce0(undefined8 *param_1,longlong param_2)
   strcpy_s(auStack_120,0x10,&UNK_180a18cc8);
   FUN_1803460a0(param_1,&puStack_138,param_1 + 0x12,3);
   puStack_138 = &UNK_18098bcb0;
+  
+  // 设置纹理参数
   puStack_110 = &UNK_18098bc80;
   puStack_108 = auStack_f8;
   auStack_f8[0] = 0;
@@ -974,6 +997,8 @@ void FUN_180349ce0(undefined8 *param_1,longlong param_2)
   strcpy_s(auStack_f8,0x20,&UNK_180a1d3d0);
   FUN_1803460a0(param_1,&puStack_110,(longlong)param_1 + 0x92,3);
   puStack_110 = &UNK_18098bcb0;
+  
+  // 设置着色器参数
   puStack_d8 = &UNK_18098bc80;
   puStack_d0 = auStack_c0;
   auStack_c0[0] = 0;
@@ -981,6 +1006,8 @@ void FUN_180349ce0(undefined8 *param_1,longlong param_2)
   strcpy_s(auStack_c0,0x20,&UNK_180a1d3b8);
   FUN_1803460a0(param_1,&puStack_d8,(longlong)param_1 + 0x8c,2);
   puStack_d8 = &UNK_18098bcb0;
+  
+  // 设置纹理坐标
   puStack_a0 = &UNK_18098bc80;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
@@ -988,6 +1015,8 @@ void FUN_180349ce0(undefined8 *param_1,longlong param_2)
   strcpy_s(auStack_88,0x20,&UNK_180a1d3a8);
   FUN_1803460a0(param_1,&puStack_a0,param_1 + 0x11,2);
   puStack_a0 = &UNK_18098bcb0;
+  
+  // 设置材质属性
   puStack_68 = &UNK_18098bc80;
   puStack_60 = auStack_50;
   auStack_50[0] = 0;
@@ -995,12 +1024,18 @@ void FUN_180349ce0(undefined8 *param_1,longlong param_2)
   strcpy_s(auStack_50,0x20,&UNK_180a1d398);
   FUN_1803460a0(param_1,&puStack_68,param_1 + 0xf,5);
   puStack_68 = &UNK_18098bcb0;
-                    // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_30 ^ (ulonglong)auStack_168);
 }
 
 
 
+// =============================================================================
+// 渲染系统内存释放器 (RenderingSystemMemoryReleaser)
+// =============================================================================
+// 功能：释放渲染系统内存，支持条件释放和内存清理
+// 参数：param_1 - 内存指针，param_2 - 释放标志，param_3/4 - 清理参数
+// 返回值：释放的内存指针
+// =============================================================================
 undefined8 FUN_180349fb0(undefined8 param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -1018,7 +1053,13 @@ undefined8 FUN_180349fb0(undefined8 param_1,ulonglong param_2,undefined8 param_3
 
 
 
-// 函数: void FUN_18034a000(longlong param_1)
+// =============================================================================
+// 渲染系统纹理参数同步器 (RenderingSystemTextureParameterSynchronizer)
+// =============================================================================
+// 功能：同步纹理参数和渲染状态，确保渲染一致性
+// 参数：param_1 - 纹理对象
+// 返回值：无
+// =============================================================================
 void FUN_18034a000(longlong param_1)
 
 {
@@ -1028,13 +1069,17 @@ void FUN_18034a000(longlong param_1)
   undefined4 uVar4;
   undefined8 uVar5;
   
+  // 检查是否需要同步纹理参数
   if (*(char *)(param_1 + 0x93) == '\0') {
+    // 获取纹理管理器
     uVar5 = FUN_1803191b0(*(longlong *)(*(longlong *)(param_1 + 0x18) + 0x20) + 0x60c10);
     *(undefined8 *)(param_1 + 0x70) = uVar5;
     FUN_18031b950(uVar5,*(longlong *)(param_1 + 0x18) + 0x70,1);
+    
+    // 同步纹理属性
     lVar1 = *(longlong *)(param_1 + 0x70);
     *(undefined4 *)(lVar1 + 0x144) = *(undefined4 *)(param_1 + 0x8c);
-    uVar4 = 0x14;
+    uVar4 = RENDERING_MESH_TYPE_MASK;
     if (*(int *)(lVar1 + 0x4c) != 0x18) {
       uVar4 = 0;
     }
@@ -1042,9 +1087,13 @@ void FUN_18034a000(longlong param_1)
     lVar1 = *(longlong *)(param_1 + 0x70);
     *(undefined4 *)(lVar1 + 0x60) = *(undefined4 *)(param_1 + 0x88);
     *(undefined1 *)(lVar1 + 0x50) = 1;
+    
+    // 同步纹理状态标志
     *(undefined1 *)(*(longlong *)(param_1 + 0x70) + 0x148) = *(undefined1 *)(param_1 + 0x90);
     *(undefined1 *)(*(longlong *)(param_1 + 0x70) + 0x149) = *(undefined1 *)(param_1 + 0x92);
     *(undefined1 *)(*(longlong *)(param_1 + 0x70) + 0x14a) = *(undefined1 *)(param_1 + 0x91);
+    
+    // 同步材质参数
     lVar1 = *(longlong *)(param_1 + 0x70);
     uVar4 = *(undefined4 *)(param_1 + 0x7c);
     uVar2 = *(undefined4 *)(param_1 + 0x80);
@@ -1054,6 +1103,8 @@ void FUN_18034a000(longlong param_1)
     *(undefined4 *)(lVar1 + 0xec) = uVar2;
     *(undefined4 *)(lVar1 + 0xf0) = uVar3;
     FUN_18031bc40();
+    
+    // 同步渲染矩阵和变换参数
     lVar1 = *(longlong *)(param_1 + 0x18);
     uVar5 = *(undefined8 *)(lVar1 + 0x78);
     *(undefined8 *)(param_1 + 0x9c) = *(undefined8 *)(lVar1 + 0x70);
@@ -1075,7 +1126,13 @@ void FUN_18034a000(longlong param_1)
 
 
 
-// 函数: void FUN_18034a100(undefined8 *param_1)
+// =============================================================================
+// 渲染系统纹理对象更新器 (RenderingSystemTextureObjectUpdater)
+// =============================================================================
+// 功能：更新纹理对象参数，支持多态调用和状态同步
+// 参数：param_1 - 纹理对象指针
+// 返回值：无
+// =============================================================================
 void FUN_18034a100(undefined8 *param_1)
 
 {
@@ -1085,14 +1142,18 @@ void FUN_18034a100(undefined8 *param_1)
   undefined4 uVar4;
   undefined8 uVar5;
   
+  // 检查对象类型并调用相应的更新方法
   if ((undefined *)*param_1 == &UNK_180a1d3f0) {
     if (*(char *)((longlong)param_1 + 0x93) == '\0') {
+      // 获取纹理管理器
       uVar5 = FUN_1803191b0(*(longlong *)(param_1[3] + 0x20) + 0x60c10);
       param_1[0xe] = uVar5;
       FUN_18031b950(uVar5,param_1[3] + 0x70,1);
+      
+      // 更新纹理属性
       lVar1 = param_1[0xe];
       *(undefined4 *)(lVar1 + 0x144) = *(undefined4 *)((longlong)param_1 + 0x8c);
-      uVar4 = 0x14;
+      uVar4 = RENDERING_MESH_TYPE_MASK;
       if (*(int *)(lVar1 + 0x4c) != 0x18) {
         uVar4 = 0;
       }
@@ -1100,9 +1161,13 @@ void FUN_18034a100(undefined8 *param_1)
       lVar1 = param_1[0xe];
       *(undefined4 *)(lVar1 + 0x60) = *(undefined4 *)(param_1 + 0x11);
       *(undefined1 *)(lVar1 + 0x50) = 1;
+      
+      // 更新纹理状态标志
       *(undefined1 *)(param_1[0xe] + 0x148) = *(undefined1 *)(param_1 + 0x12);
       *(undefined1 *)(param_1[0xe] + 0x149) = *(undefined1 *)((longlong)param_1 + 0x92);
       *(undefined1 *)(param_1[0xe] + 0x14a) = *(undefined1 *)((longlong)param_1 + 0x91);
+      
+      // 更新材质参数
       lVar1 = param_1[0xe];
       uVar4 = *(undefined4 *)((longlong)param_1 + 0x7c);
       uVar2 = *(undefined4 *)(param_1 + 0x10);
@@ -1112,6 +1177,8 @@ void FUN_18034a100(undefined8 *param_1)
       *(undefined4 *)(lVar1 + 0xec) = uVar2;
       *(undefined4 *)(lVar1 + 0xf0) = uVar3;
       FUN_18031bc40();
+      
+      // 更新渲染矩阵和变换参数
       lVar1 = param_1[3];
       uVar5 = *(undefined8 *)(lVar1 + 0x78);
       *(undefined8 *)((longlong)param_1 + 0x9c) = *(undefined8 *)(lVar1 + 0x70);
@@ -1128,8 +1195,11 @@ void FUN_18034a100(undefined8 *param_1)
     }
   }
   else {
+    // 调用多态更新方法
     (**(code **)((undefined *)*param_1 + 0x70))(param_1);
   }
+  
+  // 同步渲染状态
   lVar1 = param_1[3];
   uVar5 = *(undefined8 *)(lVar1 + 0x78);
   *(undefined8 *)((longlong)param_1 + 0x9c) = *(undefined8 *)(lVar1 + 0x70);
@@ -1150,7 +1220,13 @@ void FUN_18034a100(undefined8 *param_1)
 
 
 
-// 函数: void FUN_18034a260(longlong param_1,float param_2)
+// =============================================================================
+// 渲染系统纹理时间更新器 (RenderingSystemTextureTimeUpdater)
+// =============================================================================
+// 功能：更新纹理的时间参数，处理动画和过渡效果
+// 参数：param_1 - 纹理对象，param_2 - 时间增量
+// 返回值：无
+// =============================================================================
 void FUN_18034a260(longlong param_1,float param_2)
 
 {
@@ -1158,10 +1234,13 @@ void FUN_18034a260(longlong param_1,float param_2)
   undefined8 uVar2;
   char cVar3;
   
+  // 检查是否需要更新时间参数
   if (*(char *)(param_1 + 0x93) == '\0') {
     lVar1 = *(longlong *)(param_1 + 0x18);
     cVar3 = func_0x000180285f10(param_1 + 0x9c,lVar1 + 0x70,0x3c23d70a);
+    
     if (cVar3 == '\0') {
+      // 初始化时间参数
       *(undefined4 *)(param_1 + 0x98) = 0x40000000;
       if (*(int *)(*(longlong *)(param_1 + 0x70) + 0x4c) != 0) {
         *(undefined1 *)(param_1 + 0x94) = 1;
@@ -1169,8 +1248,11 @@ void FUN_18034a260(longlong param_1,float param_2)
       FUN_18031b950(*(longlong *)(param_1 + 0x70),lVar1 + 0x70,0);
     }
     else {
+      // 更新时间参数
       *(float *)(param_1 + 0x98) = *(float *)(param_1 + 0x98) - param_2;
     }
+    
+    // 同步渲染状态
     uVar2 = *(undefined8 *)(lVar1 + 0x78);
     *(undefined8 *)(param_1 + 0x9c) = *(undefined8 *)(lVar1 + 0x70);
     *(undefined8 *)(param_1 + 0xa4) = uVar2;
@@ -1183,6 +1265,8 @@ void FUN_18034a260(longlong param_1,float param_2)
     uVar2 = *(undefined8 *)(lVar1 + 0xa8);
     *(undefined8 *)(param_1 + 0xcc) = *(undefined8 *)(lVar1 + 0xa0);
     *(undefined8 *)(param_1 + 0xd4) = uVar2;
+    
+    // 检查时间是否结束，清理状态
     if ((*(char *)(param_1 + 0x94) != '\0') &&
        (*(float *)(param_1 + 0x98) <= 0.0 && *(float *)(param_1 + 0x98) != 0.0)) {
       *(undefined1 *)(param_1 + 0x94) = 0;
