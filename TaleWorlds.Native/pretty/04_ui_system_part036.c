@@ -517,7 +517,7 @@ void FUN_180675570(longlong param_1,longlong param_2,longlong param_3,longlong p
   int8_t auVar12 [12];
   int8_t auVar13 [12];
   int16_t uVar14;
-  undefined6 uVar15;
+  uint8_t uVar15;
   int8_t auVar16 [12];
   ulonglong *puVar17;
   ulonglong uVar18;

@@ -955,7 +955,7 @@ void RenderingSystem_EffectController(longlong param_1, byte param_2, int param_
     uint64_t effect_textures[8];
     int32_t effect_control;
     int16_t effect_control_2;
-    undefined6 effect_control_3;
+    uint8_t effect_control_3;
     uint64_t effect_system;
     uint64_t effect_memory[8];
     uint64_t effect_allocator[8];

@@ -274,7 +274,7 @@ void ui_system_movement_processor_advanced(longlong param_1, longlong *param_2)
     short vector_component_14;
     short vector_component_15;
     short vector_component_16;
-    undefined6 transform_result;
+    uint8_t transform_result;
     int8_t vector_data_1[16];
     ushort weight_1;
     ushort weight_2;

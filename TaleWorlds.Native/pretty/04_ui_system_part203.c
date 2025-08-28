@@ -505,7 +505,7 @@ int FUN_180787e40(longlong param_1,int32_t param_2,longlong *param_3,longlong *p
   char cVar11;
   char cVar12;
   longlong *unaff_RBX;
-  undefined6 uVar13;
+  uint8_t uVar13;
   int8_t *puVar14;
   longlong *unaff_RBP;
   ulonglong unaff_RSI;
@@ -538,7 +538,7 @@ LAB_180787ed7:
   }
   else {
     cVar12 = (char)((uint)param_2 >> 8);
-    uVar13 = (undefined6)((ulonglong)unaff_RBX >> 0x10);
+    uVar13 = (uint8_t)((ulonglong)unaff_RBX >> 0x10);
     cVar10 = (char)unaff_RBX;
     cVar11 = (char)((ulonglong)unaff_RBX >> 8) + cVar12;
     unaff_RBX = (longlong *)CONCAT62(uVar13,CONCAT11(cVar11,cVar10));

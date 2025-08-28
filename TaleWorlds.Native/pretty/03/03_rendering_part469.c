@@ -868,7 +868,7 @@ void rendering_system_execute_render_command(
     int32_t performance_metrics[4];
     int32_t timing_data[4];
     int16_t vsync_interval;
-    undefined6 padding;
+    uint8_t padding;
     uint64_t memory_pool[8];
     uint64_t texture_pool[8];
     uint64_t buffer_pool[8];

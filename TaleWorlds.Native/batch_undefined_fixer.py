@@ -13,6 +13,7 @@ TYPE_MAPPING = {
     'undefined': 'uint8_t',      # 默认映射到 uint8_t
     'undefined1': 'uint8_t',     # 1字节 -> uint8_t
     'undefined2': 'uint16_t',    # 2字节 -> uint16_t
+    'undefined3': 'uint32_t',    # 3字节 -> uint32_t (4字节对齐)
     'undefined4': 'uint32_t',    # 4字节 -> uint32_t
     'undefined8': 'uint64_t',    # 8字节 -> uint64_t
     'undefined5': 'uint8_t',     # 特殊情况，可能是位域或对齐
@@ -46,11 +47,12 @@ def fix_undefined_types_in_file(file_path):
         for undefined_type, correct_type in TYPE_MAPPING.items():
             # 匹配变量声明或类型转换中的 undefined 类型
             # 例如：undefined var1; 或 (undefined)expression
-            pattern = r'\b' + re.escape(undefined_type) + r'\b(?!\s*\*)'
+            pattern = r'\b' + re.escape(undefined_type) + r'\b'
             
             def replace_match(match):
                 nonlocal changes_made
                 changes_made = True
+                print(f"替换: {match.group()} -> {correct_type}")
                 return correct_type
             
             content = re.sub(pattern, replace_match, content)

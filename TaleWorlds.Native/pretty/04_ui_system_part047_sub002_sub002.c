@@ -71,7 +71,7 @@ void FUN_18068d2b0(int8_t (*param_1) [16],int param_2,int8_t (*param_3) [16],int
   int8_t auVar15 [16];
   int8_t auVar16 [16];
   int32_t uVar18;
-  undefined6 uVar19;
+  uint8_t uVar19;
   uint64_t uVar20;
   int8_t auVar21 [12];
   int8_t auVar22 [14];
@@ -83,7 +83,7 @@ void FUN_18068d2b0(int8_t (*param_1) [16],int param_2,int8_t (*param_3) [16],int
   int8_t auVar29 [16];
   int8_t auVar30 [16];
   int32_t uVar33;
-  undefined6 uVar34;
+  uint8_t uVar34;
   uint64_t uVar35;
   int8_t auVar36 [12];
   int8_t auVar37 [14];
@@ -1342,7 +1342,7 @@ ulonglong FUN_18068fe10(int8_t (*param_1) [16],int param_2,longlong param_3,int 
   int8_t auVar19 [16];
   int8_t auVar20 [16];
   int32_t uVar22;
-  undefined6 uVar23;
+  uint8_t uVar23;
   uint64_t uVar24;
   int8_t auVar25 [12];
   int8_t auVar26 [14];
@@ -1354,7 +1354,7 @@ ulonglong FUN_18068fe10(int8_t (*param_1) [16],int param_2,longlong param_3,int 
   int8_t auVar33 [16];
   int8_t auVar34 [16];
   int32_t uVar37;
-  undefined6 uVar38;
+  uint8_t uVar38;
   uint64_t uVar39;
   int8_t auVar40 [12];
   int8_t auVar41 [14];
@@ -1635,7 +1635,7 @@ ulonglong FUN_18068ff60(longlong param_1,int param_2,longlong param_3,int param_
   int8_t auVar23 [16];
   int8_t auVar24 [16];
   int32_t uVar26;
-  undefined6 uVar27;
+  uint8_t uVar27;
   uint64_t uVar28;
   int8_t auVar29 [12];
   int8_t auVar30 [14];
@@ -1647,7 +1647,7 @@ ulonglong FUN_18068ff60(longlong param_1,int param_2,longlong param_3,int param_
   int8_t auVar37 [16];
   int8_t auVar38 [16];
   int32_t uVar41;
-  undefined6 uVar42;
+  uint8_t uVar42;
   uint64_t uVar43;
   int8_t auVar44 [12];
   int8_t auVar45 [14];
@@ -1937,7 +1937,7 @@ ulonglong FUN_180690200(longlong param_1,int param_2,longlong param_3,int param_
   int8_t auVar23 [16];
   int8_t auVar24 [16];
   int32_t uVar26;
-  undefined6 uVar27;
+  uint8_t uVar27;
   uint64_t uVar28;
   int8_t auVar29 [12];
   int8_t auVar30 [14];
@@ -1949,7 +1949,7 @@ ulonglong FUN_180690200(longlong param_1,int param_2,longlong param_3,int param_
   int8_t auVar37 [16];
   int8_t auVar38 [16];
   int32_t uVar41;
-  undefined6 uVar42;
+  uint8_t uVar42;
   uint64_t uVar43;
   int8_t auVar44 [12];
   int8_t auVar45 [14];
@@ -2239,7 +2239,7 @@ ulonglong FUN_1806903c0(longlong param_1,int param_2,longlong param_3,int param_
   int8_t auVar23 [16];
   int8_t auVar24 [16];
   int32_t uVar26;
-  undefined6 uVar27;
+  uint8_t uVar27;
   uint64_t uVar28;
   int8_t auVar29 [12];
   int8_t auVar30 [14];
@@ -2251,7 +2251,7 @@ ulonglong FUN_1806903c0(longlong param_1,int param_2,longlong param_3,int param_
   int8_t auVar37 [16];
   int8_t auVar38 [16];
   int32_t uVar41;
-  undefined6 uVar42;
+  uint8_t uVar42;
   uint64_t uVar43;
   int8_t auVar44 [12];
   int8_t auVar45 [14];

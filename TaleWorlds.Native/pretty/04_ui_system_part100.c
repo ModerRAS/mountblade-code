@@ -366,7 +366,7 @@ float FUN_180727f29(uint64_t param_1,uint64_t param_2,float param_3)
   uint in_R8D;
   uint uVar4;
   short in_R10W;
-  undefined6 in_register_00000092;
+  uint8_t in_register_00000092;
   short sVar5;
   uint uVar6;
   float fVar7;

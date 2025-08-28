@@ -614,7 +614,7 @@ void FUN_180074309(void)
   uint64_t uVar1;
   ulonglong uVar2;
   int16_t unaff_BP;
-  undefined6 unaff_0000002a;
+  uint8_t unaff_0000002a;
   uint64_t unaff_RSI;
   longlong unaff_RDI;
   longlong unaff_R15;

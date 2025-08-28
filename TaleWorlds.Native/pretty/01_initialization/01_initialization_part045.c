@@ -654,7 +654,7 @@ void FinalizeObjectArrayProcessing(void)
   uint64_t alloc_result;
   ulonglong alloc_size;
   int16_t array_size;
-  undefined6 padding;
+  uint8_t padding;
   uint64_t zero_value;
   longlong data_stream;
   longlong target_object;

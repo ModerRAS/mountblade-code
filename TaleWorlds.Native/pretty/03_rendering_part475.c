@@ -765,7 +765,7 @@ void FUN_180520e60(longlong param_1,int32_t *param_2,longlong param_3,uint param
   int32_t uStack_1a0;
   int32_t uStack_19c;
   int16_t uStack_198;
-  undefined6 uStack_196;
+  uint8_t uStack_196;
   int32_t uStack_190;
   int32_t uStack_18c;
   float fStack_188;

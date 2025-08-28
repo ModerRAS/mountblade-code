@@ -697,7 +697,7 @@ void configure_resource_manager(longlong manager_handle)
 
 {
   longlong lVar1;
-  undefined6 uVar2;
+  uint8_t uVar2;
   int32_t uVar3;
   uint64_t uVar4;
   uint64_t uVar5;
