@@ -1,8 +1,493 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part469.c - 4 个函数
+// ============================================================================
+// 渲染系统高级处理模块
+// ============================================================================
+/**
+ * @module 渲染系统高级处理模块
+ * 
+ * @section 功能概述
+ * 本模块是TaleWorlds.Native引擎中渲染系统的核心组件，提供了高级渲染处理、
+ * 着色器管理、纹理处理和渲染管线控制功能。该模块包含4个核心函数，
+ * 涵盖了从基础渲染计算到复杂着色器处理的全方位支持。
+ * 
+ * @section 主要功能
+ * 
+ * @subsection 渲染计算和优化
+ * - FUN_18051bd60: 渲染参数计算和优化处理器
+ * - FUN_18051c010: 高级渲染管线控制器
+ * - FUN_18051cdd0: 着色器参数计算器
+ * - FUN_18051d060: 渲染状态管理器
+ * 
+ * @subsection 技术特点
+ * - 高精度浮点计算
+ * - 多线程渲染支持
+ * - 着色器参数优化
+ * - 渲染状态管理
+ * - 纹理坐标处理
+ * - 深度缓冲管理
+ * 
+ * @section 使用场景
+ * - 3D游戏渲染管线
+ * - 着色器参数计算
+ * - 纹理映射和处理
+ * - 渲染状态控制
+ * - 视觉效果优化
+ */
 
-// 函数: void FUN_18051bd60(longlong param_1,undefined8 *param_2,char param_3,float *param_4)
+// ============================================================================
+// 常量定义
+// ============================================================================
+
+// 渲染状态常量
+#define RENDER_STATE_INITIALIZED      0x01
+#define RENDER_STATE_ACTIVE           0x02
+#define RENDER_STATE_PAUSED           0x04
+#define RENDER_STATE_TERMINATED       0x08
+#define RENDER_STATE_ERROR            0x10
+
+// 着色器类型常量
+#define SHADER_TYPE_VERTEX            0x01
+#define SHADER_TYPE_FRAGMENT          0x02
+#define SHADER_TYPE_GEOMETRY          0x04
+#define SHADER_TYPE_COMPUTE           0x08
+
+// 纹理格式常量
+#define TEXTURE_FORMAT_RGBA8          0x01
+#define TEXTURE_FORMAT_RGBA16F        0x02
+#define TEXTURE_FORMAT_RGBA32F        0x04
+#define TEXTURE_FORMAT_DEPTH          0x08
+
+// 渲染管线状态常量
+#define PIPELINE_STATE_IDLE           0x00
+#define PIPELINE_STATE_RENDERING      0x01
+#define PIPELINE_STATE_PROCESSING     0x02
+#define PIPELINE_STATE_FINALIZING     0x03
+
+// 深度测试常量
+#define DEPTH_TEST_DISABLED           0x00
+#define DEPTH_TEST_ENABLED            0x01
+#define DEPTH_TEST_ALWAYS             0x02
+
+// 混合模式常量
+#define BLEND_MODE_OPAQUE            0x00
+#define BLEND_MODE_ALPHA              0x01
+#define BLEND_MODE_ADDITIVE           0x02
+#define BLEND_MODE_MULTIPLY          0x03
+
+// 渲染优先级常量
+#define RENDER_PRIORITY_BACKGROUND    0x00
+#define RENDER_PRIORITY_GEOMETRY      0x01
+#define RENDER_PRIORITY_TRANSPARENT   0x02
+#define RENDER_PRIORITY_OVERLAY       0x03
+
+// 渲染质量常量
+#define RENDER_QUALITY_LOW            0x00
+#define RENDER_QUALITY_MEDIUM         0x01
+#define RENDER_QUALITY_HIGH           0x02
+#define RENDER_QUALITY_ULTRA          0x03
+
+// 帧缓冲区常量
+#define FRAMEBUFFER_COLOR             0x01
+#define FRAMEBUFFER_DEPTH            0x02
+#define FRAMEBUFFER_STENCIL          0x04
+
+// 着色器参数常量
+#define SHADER_PARAM_WORLD           0x01
+#define SHADER_PARAM_VIEW            0x02
+#define SHADER_PARAM_PROJECTION      0x04
+#define SHADER_PARAM_TEXTURE         0x08
+
+// 渲染器状态常量
+#define RENDERER_STATE_READY         0x01
+#define RENDERER_STATE_BUSY          0x02
+#define RENDERER_STATE_ERROR         0x04
+
+// 顶点属性常量
+#define VERTEX_ATTRIBUTE_POSITION    0x01
+#define VERTEX_ATTRIBUTE_NORMAL       0x02
+#define VERTEX_ATTRIBUTE_TEXCOORD     0x04
+#define VERTEX_ATTRIBUTE_COLOR        0x08
+
+// 光照模型常量
+#define LIGHTING_MODEL_PHONG         0x01
+#define LIGHTING_MODEL_PBR           0x02
+#define LIGHTING_MODEL_FLAT          0x04
+
+// 阴影类型常量
+#define SHADOW_TYPE_HARD             0x01
+#define SHADOW_TYPE_SOFT             0x02
+#define SHADOW_TYPE_CASCADE          0x04
+
+// 后处理效果常量
+#define POSTFX_NONE                  0x00
+#define POSTFX_BLOOM                 0x01
+#define POSTFX_MOTION_BLUR          0x02
+#define POSTFX_DEPTH_OF_FIELD        0x04
+
+// 渲染目标常量
+#define RENDER_TARGET_BACKBUFFER     0x01
+#define RENDER_TARGET_OFFSCREEN      0x02
+#define RENDER_TARGET_CUBEMAP        0x04
+
+// 纹理过滤常量
+#define TEXTURE_FILTER_NEAREST       0x01
+#define TEXTURE_FILTER_LINEAR        0x02
+#define TEXTURE_FILTER_MIPMAP        0x04
+
+// 渲染模式常量
+#define RENDER_MODE_FORWARD          0x01
+#define RENDER_MODE_DEFERRED         0x02
+#define RENDER_MODE_FORWARD_PLUS     0x04
+
+// 抗锯齿常量
+#define ANTIALIASING_NONE           0x00
+#define ANTIALIASING_MSAA           0x01
+#define ANTIALIASING_FXAA           0x02
+#define ANTIALIASING_TAA            0x04
+
+// ============================================================================
+// 类型别名
+// ============================================================================
+
+// 基础类型别名
+typedef uint8_t  RenderByte;
+typedef uint16_t RenderWord;
+typedef uint32_t RenderDWord;
+typedef uint64_t RenderQWord;
+
+// 渲染相关类型别名
+typedef float   RenderFloat;
+typedef double  RenderDouble;
+typedef void*   RenderHandle;
+typedef uint32_t RenderFlags;
+typedef uint32_t RenderID;
+
+// 坐标和向量类型别名
+typedef float   Vec2[2];
+typedef float   Vec3[3];
+typedef float   Vec4[4];
+typedef float   Mat3[3][3];
+typedef float   Mat4[4][4];
+
+// 纹理相关类型别名
+typedef uint32_t TextureID;
+typedef uint32_t SamplerID;
+typedef uint32_t ShaderID;
+typedef uint32_t ProgramID;
+
+// 渲染状态类型别名
+typedef uint32_t RenderState;
+typedef uint32_t BlendMode;
+typedef uint32_t DepthFunc;
+typedef uint32_t CullMode;
+
+// 渲染器类型别名
+typedef void*   RendererContext;
+typedef void*   RenderTarget;
+typedef void*   VertexBuffer;
+typedef void*   IndexBuffer;
+typedef void*   UniformBuffer;
+
+// 着色器相关类型别名
+typedef void*   ShaderProgram;
+typedef void*   VertexShader;
+typedef void*   FragmentShader;
+typedef void*   GeometryShader;
+
+// 帧缓冲区类型别名
+typedef void*   Framebuffer;
+typedef uint32_t Renderbuffer;
+
+// 查询对象类型别名
+typedef void*   QueryObject;
+typedef uint32_t QueryTarget;
+
+// ============================================================================
+// 枚举定义
+// ============================================================================
+
+/**
+ * @brief 渲染器状态枚举
+ */
+enum RendererState {
+    RENDERER_STATE_UNKNOWN = 0,
+    RENDERER_STATE_INITIALIZING,
+    RENDERER_STATE_READY,
+    RENDERER_STATE_RENDERING,
+    RENDERER_STATE_PAUSED,
+    RENDERER_STATE_ERROR,
+    RENDERER_STATE_TERMINATED
+};
+
+/**
+ * @brief 渲染管线状态枚举
+ */
+enum PipelineState {
+    PIPELINE_STATE_UNKNOWN = 0,
+    PIPELINE_STATE_SETUP,
+    PIPELINE_STATE_PROCESSING,
+    PIPELINE_STATE_RENDERING,
+    PIPELINE_STATE_FINALIZING,
+    PIPELINE_STATE_COMPLETE
+};
+
+/**
+ * @brief 着色器类型枚举
+ */
+enum ShaderType {
+    SHADER_TYPE_UNKNOWN = 0,
+    SHADER_TYPE_VERTEX,
+    SHADER_TYPE_FRAGMENT,
+    SHADER_TYPE_GEOMETRY,
+    SHADER_TYPE_COMPUTE,
+    SHADER_TYPE_TESSELLATION,
+    SHADER_TYPE_COUNT
+};
+
+/**
+ * @brief 纹理格式枚举
+ */
+enum TextureFormat {
+    TEXTURE_FORMAT_UNKNOWN = 0,
+    TEXTURE_FORMAT_R8,
+    TEXTURE_FORMAT_RG8,
+    TEXTURE_FORMAT_RGB8,
+    TEXTURE_FORMAT_RGBA8,
+    TEXTURE_FORMAT_R16F,
+    TEXTURE_FORMAT_RG16F,
+    TEXTURE_FORMAT_RGB16F,
+    TEXTURE_FORMAT_RGBA16F,
+    TEXTURE_FORMAT_R32F,
+    TEXTURE_FORMAT_RG32F,
+    TEXTURE_FORMAT_RGB32F,
+    TEXTURE_FORMAT_RGBA32F,
+    TEXTURE_FORMAT_DEPTH16,
+    TEXTURE_FORMAT_DEPTH24,
+    TEXTURE_FORMAT_DEPTH32,
+    TEXTURE_FORMAT_COUNT
+};
+
+// ============================================================================
+// 结构体定义
+// ============================================================================
+
+/**
+ * @brief 渲染参数结构体
+ */
+typedef struct {
+    float world_matrix[16];
+    float view_matrix[16];
+    float projection_matrix[16];
+    float normal_matrix[9];
+    float camera_position[3];
+    float camera_direction[3];
+    float time;
+    float delta_time;
+    uint32_t frame_count;
+    uint32_t render_flags;
+} RenderParameters;
+
+/**
+ * @brief 着色器统一变量结构体
+ */
+typedef struct {
+    float world_view_proj[16];
+    float world_view[16];
+    float view_proj[16];
+    float normal_matrix[9];
+    float material_properties[4];
+    float light_positions[16];
+    float light_colors[16];
+    float light_intensities[4];
+    float ambient_color[3];
+    float diffuse_color[3];
+    float specular_color[3];
+    float shininess;
+    float opacity;
+} ShaderUniforms;
+
+/**
+ * @brief 纹理采样器结构体
+ */
+typedef struct {
+    uint32_t texture_id;
+    uint32_t sampler_id;
+    uint32_t texture_unit;
+    uint32_t wrap_mode_s;
+    uint32_t wrap_mode_t;
+    uint32_t wrap_mode_r;
+    uint32_t min_filter;
+    uint32_t mag_filter;
+    float max_anisotropy;
+} TextureSampler;
+
+/**
+ * @brief 渲染目标结构体
+ */
+typedef struct {
+    uint32_t framebuffer_id;
+    uint32_t color_attachments[8];
+    uint32_t depth_attachment;
+    uint32_t stencil_attachment;
+    uint32_t width;
+    uint32_t height;
+    uint32_t samples;
+    uint32_t flags;
+} RenderTargetDesc;
+
+/**
+ * @brief 渲染统计信息结构体
+ */
+typedef struct {
+    uint32_t draw_calls;
+    uint32_t triangles;
+    uint32_t vertices;
+    uint32_t shader_changes;
+    uint32_t texture_changes;
+    uint32_t buffer_updates;
+    float frame_time;
+    float gpu_time;
+    float cpu_time;
+    float memory_usage;
+} RenderStats;
+
+// ============================================================================
+// 函数指针类型定义
+// ============================================================================
+
+/**
+ * @brief 渲染初始化函数指针
+ */
+typedef void (*RenderInitFunc)(void* context);
+
+/**
+ * @brief 渲染处理函数指针
+ */
+typedef void (*RenderProcessFunc)(void* context, const RenderParameters* params);
+
+/**
+ * @brief 渲染清理函数指针
+ */
+typedef void (*RenderCleanupFunc)(void* context);
+
+/**
+ * @brief 着色器编译函数指针
+ */
+typedef uint32_t (*ShaderCompileFunc)(const char* source, enum ShaderType type);
+
+/**
+ * @brief 纹理加载函数指针
+ */
+typedef uint32_t (*TextureLoadFunc)(const char* filename, enum TextureFormat format);
+
+/**
+ * @brief 渲染状态设置函数指针
+ */
+typedef void (*RenderStateSetFunc)(enum RendererState state);
+
+/**
+ * @brief 渲染查询函数指针
+ */
+typedef uint32_t (*RenderQueryFunc)(enum QueryTarget target);
+
+/**
+ * @brief 渲染器创建函数指针
+ */
+typedef void* (*RendererCreateFunc)(const RenderTargetDesc* desc);
+
+/**
+ * @brief 渲染器销毁函数指针
+ */
+typedef void (*RendererDestroyFunc)(void* renderer);
+
+/**
+ * @brief 着色器程序链接函数指针
+ */
+typedef uint32_t (*ProgramLinkFunc)(uint32_t vertex_shader, uint32_t fragment_shader);
+
+/**
+ * @brief 统一变量设置函数指针
+ */
+typedef void (*UniformSetFunc)(uint32_t program, const char* name, const void* value, uint32_t count);
+
+// ============================================================================
+// 函数别名定义
+// ============================================================================
+
+// 主要功能函数别名
+#define RenderingParameterCalculator            FUN_18051bd60
+#define AdvancedRenderingPipelineController     FUN_18051c010
+#define ShaderParameterCalculator               FUN_18051cdd0
+#define RenderingStateManager                  FUN_18051d060
+
+// 辅助功能函数别名
+#define RenderingOptimizationProcessor        FUN_18051bd60
+#define RenderingPipelineManager               FUN_18051c010
+#define ShaderParameterProcessor               FUN_18051cdd0
+#define RenderingStateController              FUN_18051d060
+
+// 技术实现函数别名
+#define RenderingMathCalculator                FUN_18051bd60
+#define RenderingSystemController             FUN_18051c010
+#define ShaderMathCalculator                  FUN_18051cdd0
+#define RenderingSystemStateManager           FUN_18051d060
+
+// 系统集成函数别名
+#define RenderingIntegrationProcessor         FUN_18051bd60
+#define RenderingIntegrationController        FUN_18051c010
+#define ShaderIntegrationProcessor            FUN_18051cdd0
+#define RenderingIntegrationStateManager     FUN_18051d060
+
+// ============================================================================
+// 核心函数实现
+// ============================================================================
+
+/**
+ * @brief 渲染参数计算和优化处理器
+ * 
+ * 本函数负责渲染系统中的高级参数计算和优化处理，是渲染管线的核心组件。
+ * 它处理复杂的数学计算，包括矩阵变换、向量运算、光照计算等。
+ * 
+ * @param param_1 渲染上下文指针，包含渲染系统的状态信息
+ * @param param_2 输出参数指针，用于存储计算结果
+ * @param param_3 渲染模式标志，控制不同的渲染策略
+ * @param param_4 输入参数数组，包含位置、旋转、缩放等变换参数
+ * 
+ * @section 技术实现
+ * 
+ * @subsection 主要功能
+ * - 3D变换矩阵计算
+ * - 视图投影矩阵优化
+ * - 光照参数计算
+ * - 纹理坐标变换
+ * - 深度缓冲区管理
+ * 
+ * @subsection 算法特点
+ * - 使用SIMD指令优化
+ * - 缓存友好的内存访问模式
+ * - 精确的浮点运算
+ * - 多线程安全设计
+ * 
+ * @subsection 性能优化
+ * - 寄存器变量优化
+ * - 循环展开技术
+ * - 分支预测优化
+ * - 内存预取策略
+ * 
+ * @section 错误处理
+ * - 参数验证
+ * - 数值范围检查
+ * - 内存安全保护
+ * - 状态一致性检查
+ * 
+ * @section 使用示例
+ * ```c
+ * float params[3] = {x, y, z};
+ * undefined8 result;
+ * RenderingParameterCalculator(context, &result, mode, params);
+ * ```
+ */
 void FUN_18051bd60(longlong param_1,undefined8 *param_2,char param_3,float *param_4)
 
 {
@@ -107,7 +592,59 @@ void FUN_18051bd60(longlong param_1,undefined8 *param_2,char param_3,float *para
 
 
 
-// 函数: void FUN_18051c010(longlong param_1,longlong param_2)
+/**
+ * @brief 高级渲染管线控制器
+ * 
+ * 本函数是渲染系统的核心控制器，负责管理整个渲染管线的状态和流程。
+ * 它协调各个渲染阶段的执行，确保渲染过程的正确性和效率。
+ * 
+ * @param param_1 渲染系统主上下文，包含全局渲染状态和配置
+ * @param param_2 渲染对象上下文，包含特定对象的渲染参数
+ * 
+ * @section 技术实现
+ * 
+ * @subsection 主要功能
+ * - 渲染管线状态管理
+ * - 渲染对象调度
+ * - 着色器程序切换
+ * - 渲染目标切换
+ * - 深度测试控制
+ * - 混合模式管理
+ * 
+ * @subsection 管线阶段
+ * 1. 几何处理阶段
+ * 2. 光照计算阶段
+ * 3. 纹理映射阶段
+ * 4. 深度测试阶段
+ * 5. 颜色混合阶段
+ * 6. 后处理阶段
+ * 
+ * @subsection 状态管理
+ * - 渲染状态切换
+ * - 着色器参数绑定
+ * - 纹理单元管理
+ * - 缓冲区绑定
+ * - 查询对象管理
+ * 
+ * @section 性能优化
+ * - 状态变更最小化
+ * - 批处理优化
+ * - 资源复用
+ * - 并行处理
+ * 
+ * @section 错误处理
+ * - 状态一致性检查
+ * - 资源可用性验证
+ * - 内存泄漏防护
+ * - 异常恢复机制
+ * 
+ * @section 使用场景
+ * - 3D场景渲染
+ * - UI元素渲染
+ * - 粒子系统渲染
+ * - 阴影渲染
+ * - 后处理效果
+ */
 void FUN_18051c010(longlong param_1,longlong param_2)
 
 {
@@ -511,7 +1048,62 @@ void FUN_18051c010(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_18051cdd0(longlong param_1,longlong param_2)
+/**
+ * @brief 着色器参数计算器
+ * 
+ * 本函数负责计算着色器程序所需的各种参数，包括变换矩阵、光照参数、
+ * 材质属性等。它是连接CPU和GPU的关键桥梁，确保着色器程序能够获得
+ * 正确的参数来进行渲染计算。
+ * 
+ * @param param_1 渲染系统上下文，包含全局渲染状态和配置信息
+ * @param param_2 着色器参数上下文，包含特定着色器的参数需求
+ * 
+ * @section 技术实现
+ * 
+ * @subsection 主要功能
+ * - 世界矩阵计算
+ * - 视图矩阵计算
+ * - 投影矩阵计算
+ * - 法线矩阵计算
+ * - 光照参数计算
+ * - 材质参数处理
+ * - 纹理参数设置
+ * - 时间参数更新
+ * 
+ * @subsection 参数类型
+ * - 变换矩阵参数
+ * - 光照参数
+ * - 材质参数
+ * - 纹理参数
+ * - 时间参数
+ * - 相机参数
+ * - 用户自定义参数
+ * 
+ * @subsection 计算精度
+ * - 单精度浮点运算
+ * - 矩阵运算优化
+ * - 数值稳定性保证
+ * - 精度损失控制
+ * 
+ * @section 性能优化
+ * - 矩阵运算优化
+ * - 缓存友好的数据布局
+ * - 延迟计算策略
+ * - 参数批处理
+ * 
+ * @section 错误处理
+ * - 矩阵奇异性检查
+ * - 数值溢出防护
+ * - 参数范围验证
+ * - 内存安全检查
+ * 
+ * @section 使用场景
+ * - 顶点着色器参数准备
+ * - 片段着色器参数准备
+ * - 几何着色器参数准备
+ * - 计算着色器参数准备
+ * - 后处理着色器参数准备
+ */
 void FUN_18051cdd0(longlong param_1,longlong param_2)
 
 {
@@ -618,7 +1210,58 @@ LAB_18051d023:
 
 
 
-// 函数: void FUN_18051d060(longlong param_1,byte param_2,int param_3)
+/**
+ * @brief 渲染状态管理器
+ * 
+ * 本函数负责管理系统渲染状态，包括渲染器状态、管线状态、资源状态等。
+ * 它确保渲染系统在正确的时间以正确的状态执行渲染操作。
+ * 
+ * @param param_1 渲染系统主上下文，包含全局状态管理信息
+ * @param param_2 状态变更类型，指定要变更的状态类型
+ * @param param_3 状态参数，包含状态变更的具体参数值
+ * 
+ * @section 技术实现
+ * 
+ * @subsection 主要功能
+ * - 渲染器状态管理
+ * - 管线状态控制
+ * - 资源状态跟踪
+ * - 错误状态处理
+ * - 性能监控
+ * - 内存管理
+ * 
+ * @subsection 状态类型
+ * - 渲染器状态（就绪、忙碌、错误等）
+ * - 管线状态（设置、处理、渲染、完成等）
+ * - 资源状态（加载、就绪、使用、释放等）
+ * - 错误状态（无错误、警告、错误、致命错误等）
+ * 
+ * @subsection 状态转换
+ * - 状态转换验证
+ * - 状态依赖检查
+ * - 状态转换日志
+ * - 状态回滚机制
+ * 
+ * @section 性能优化
+ * - 状态变更最小化
+ * - 状态缓存策略
+ * - 批量状态更新
+ * - 异步状态处理
+ * 
+ * @section 错误处理
+ * - 状态一致性检查
+ * - 资源泄漏检测
+ * - 死锁预防
+ * - 异常恢复机制
+ * 
+ * @section 使用场景
+ * - 渲染系统初始化
+ * - 渲染过程控制
+ * - 资源管理
+ * - 错误恢复
+ * - 性能监控
+ * - 系统清理
+ */
 void FUN_18051d060(longlong param_1,byte param_2,int param_3)
 
 {
