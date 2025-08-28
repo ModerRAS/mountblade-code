@@ -1,9 +1,19 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part139.c - 4 个函数
+// 02_core_engine_part139.c - 核心引擎模块第139部分
+// 本文件包含4个函数，主要处理游戏对象的位置更新、动画状态管理和渲染相关操作
 
-// 函数: void FUN_180133893(float param_1)
-void FUN_180133893(float param_1)
+// 全局变量声明
+ulonglong *global_engine_context;          // 全局引擎上下文指针
+ulonglong global_render_state;            // 全局渲染状态
+float global_time_scale;                  // 全局时间缩放因子
+float global_animation_speed;            // 全局动画速度
+int global_object_flags;                 // 全局对象标志位
+
+// 函数: void update_object_position_and_animation_state(float time_delta)
+// 功能: 根据时间增量更新对象位置和动画状态
+// 参数: time_delta - 时间增量
+void update_object_position_and_animation_state(float time_delta)
 
 {
   ulonglong *puVar1;
@@ -271,8 +281,9 @@ LAB_180133d4a:
 
 
 
-// 函数: void FUN_18013396e(void)
-void FUN_18013396e(void)
+// 函数: void process_animation_state_transition(void)
+// 功能: 处理动画状态转换逻辑
+void process_animation_state_transition(void)
 
 {
   ulonglong *puVar1;
@@ -301,58 +312,63 @@ void FUN_18013396e(void)
   float unaff_XMM8_Da;
   ulonglong uVar11;
   
-  fVar18 = unaff_XMM7_Da * 20.0;
-  if (unaff_XMM6_Da <= fVar18) {
-    if (unaff_XMM8_Da <= fVar18) {
-      fVar18 = unaff_XMM8_Da;
+  // 计算动画过渡插值因子
+  float transition_factor = animation_speed * 20.0;
+  if (min_threshold <= transition_factor) {
+    if (max_threshold <= transition_factor) {
+      transition_factor = max_threshold;
     }
   }
   else {
-    fVar18 = 0.0;
+    transition_factor = 0.0;
   }
-  if (fVar18 <= *(float *)(unaff_RBX + 0x1cf4)) {
-    fVar18 = *(float *)(unaff_RBX + 0x1cf4);
+  // 更新动画插值因子
+  if (transition_factor <= *(float *)(object_context + 0x1cf4)) {
+    transition_factor = *(float *)(object_context + 0x1cf4);
   }
-  *(float *)(unaff_RBX + 0x1cf4) = fVar18;
-  fVar17 = *(float *)(unaff_RBX + 0x14b8);
-  if (unaff_XMM6_Da <= fVar17) {
-    iVar7 = func_0x000180128180(fVar17,fVar17 - *(float *)(unaff_RBX + 0x18),
-                                *(undefined4 *)(unaff_RBX + 0x90),
-                                *(float *)(unaff_RBX + 0x94) + *(float *)(unaff_RBX + 0x94));
-    fVar17 = (float)iVar7;
-  }
-  else {
-    fVar17 = 0.0;
-  }
-  fVar16 = *(float *)(unaff_RBX + 0x14bc);
-  if (unaff_XMM6_Da <= fVar16) {
-    iVar7 = func_0x000180128180(fVar16,fVar16 - *(float *)(unaff_RBX + 0x18),
-                                *(undefined4 *)(unaff_RBX + 0x90),
-                                *(float *)(unaff_RBX + 0x94) + *(float *)(unaff_RBX + 0x94));
-    fVar16 = (float)iVar7;
+  *(float *)(object_context + 0x1cf4) = transition_factor;
+  // 计算水平和垂直动画权重
+  float horizontal_weight = *(float *)(object_context + 0x14b8);
+  if (min_threshold <= horizontal_weight) {
+    weight_index = calculate_animation_weight(horizontal_weight,horizontal_weight - *(float *)(object_context + 0x18),
+                                *(undefined4 *)(object_context + 0x90),
+                                *(float *)(object_context + 0x94) + *(float *)(object_context + 0x94));
+    horizontal_weight = (float)weight_index;
   }
   else {
-    fVar16 = 0.0;
+    horizontal_weight = 0.0;
   }
-  iVar7 = (int)unaff_R15;
-  uVar3 = (undefined7)(unaff_R15 >> 8);
-  if ((int)CONCAT71(uVar3,unaff_XMM6_Da < fVar17) != (int)CONCAT71(uVar3,unaff_XMM6_Da < fVar16)) {
-    FUN_180133680();
-    *(undefined4 *)(unaff_RBX + 0x1cf4) = 0x3f800000;
-    fVar18 = unaff_XMM8_Da;
+  float vertical_weight = *(float *)(object_context + 0x14bc);
+  if (min_threshold <= vertical_weight) {
+    weight_index = calculate_animation_weight(vertical_weight,vertical_weight - *(float *)(object_context + 0x18),
+                                *(undefined4 *)(object_context + 0x90),
+                                *(float *)(object_context + 0x94) + *(float *)(object_context + 0x94));
+    vertical_weight = (float)weight_index;
   }
-  if (*(float *)(unaff_RBX + 0x344) <= unaff_XMM6_Da) {
-    bVar4 = fVar18 < unaff_XMM8_Da & *(byte *)(unaff_RBX + 0x1cf8);
-    *(byte *)(unaff_RBX + 0x1cf8) = bVar4;
-    if ((bVar4 == 0) || (*(longlong *)(unaff_RBX + 0x1c98) == unaff_RDI)) {
-      if (bVar4 == 0) {
-        unaff_RDI = *(longlong *)(unaff_RBX + 0x1cd8);
+  else {
+    vertical_weight = 0.0;
+  }
+  // 检查动画权重变化并触发状态更新
+  weight_index = (int)object_id;
+  animation_flags = (undefined7)(object_id >> 8);
+  if ((int)CONCAT71(animation_flags,min_threshold < horizontal_weight) != (int)CONCAT71(animation_flags,min_threshold < vertical_weight)) {
+    trigger_animation_state_update();
+    *(undefined4 *)(object_context + 0x1cf4) = 0x3f800000;
+    transition_factor = max_threshold;
+  }
+  // 更新动画状态标志
+  if (*(float *)(object_context + 0x344) <= min_threshold) {
+    animation_active = transition_factor < max_threshold & *(byte *)(object_context + 0x1cf8);
+    *(byte *)(object_context + 0x1cf8) = animation_active;
+    if ((animation_active == 0) || (*(longlong *)(object_context + 0x1c98) == target_object)) {
+      if (animation_active == 0) {
+        target_object = *(longlong *)(object_context + 0x1cd8);
       }
     }
     else {
-      unaff_R14B = '\x01';
+      state_changed = '\x01';
     }
-    *(ulonglong *)(unaff_RBX + 0x1cd8) = unaff_R15;
+    *(ulonglong *)(object_context + 0x1cd8) = object_id;
   }
   lVar13 = *(longlong *)(unaff_RBX + 0x1cd8);
   cVar15 = (char)unaff_R15;
@@ -513,8 +529,9 @@ LAB_180133d4a:
 
 
 
-// 函数: void FUN_180133a2f(void)
-void FUN_180133a2f(void)
+// 函数: void reset_animation_state(void)
+// 功能: 重置动画状态到初始值
+void reset_animation_state(void)
 
 {
   ulonglong *puVar1;
@@ -539,41 +556,44 @@ void FUN_180133a2f(void)
   float unaff_XMM8_Da;
   ulonglong uVar8;
   
-  FUN_180133680();
-  *(undefined4 *)(unaff_RBX + 0x1cf4) = 0x3f800000;
-  if (*(float *)(unaff_RBX + 0x344) <= unaff_XMM6_Da) {
-    *(undefined1 *)(unaff_RBX + 0x1cf8) = 0;
-    unaff_RDI = *(longlong *)(unaff_RBX + 0x1cd8);
-    *(ulonglong *)(unaff_RBX + 0x1cd8) = unaff_R15;
+  // 触发动画状态更新并重置插值因子
+  trigger_animation_state_update();
+  *(undefined4 *)(object_context + 0x1cf4) = 0x3f800000;
+  if (*(float *)(object_context + 0x344) <= min_threshold) {
+    *(undefined1 *)(object_context + 0x1cf8) = 0;
+    target_object = *(longlong *)(object_context + 0x1cd8);
+    *(ulonglong *)(object_context + 0x1cd8) = object_id;
   }
-  lVar10 = *(longlong *)(unaff_RBX + 0x1cd8);
-  cVar12 = (char)unaff_R15;
-  if ((lVar10 != 0) && (*(int *)(unaff_RBX + 0x1cc0) == 3)) {
-    fVar14 = (*(float *)(unaff_RBX + 0x1cf0) - 0.2) * 20.0;
-    if (unaff_XMM6_Da <= fVar14) {
-      if (unaff_XMM8_Da <= fVar14) {
-        fVar14 = unaff_XMM8_Da;
+  // 获取当前动画对象并计算重置插值
+  current_object = *(longlong *)(object_context + 0x1cd8);
+  object_flag = (char)object_id;
+  if ((current_object != 0) && (*(int *)(object_context + 0x1cc0) == 3)) {
+    reset_factor = (*(float *)(object_context + 0x1cf0) - 0.2) * 20.0;
+    if (min_threshold <= reset_factor) {
+      if (max_threshold <= reset_factor) {
+        reset_factor = max_threshold;
       }
     }
     else {
-      fVar14 = 0.0;
+      reset_factor = 0.0;
     }
-    if (fVar14 <= *(float *)(unaff_RBX + 0x1cf4)) {
-      fVar14 = *(float *)(unaff_RBX + 0x1cf4);
+    if (reset_factor <= *(float *)(object_context + 0x1cf4)) {
+      reset_factor = *(float *)(object_context + 0x1cf4);
     }
-    *(float *)(unaff_RBX + 0x1cf4) = fVar14;
-    if (*(int *)(unaff_RBX + 0x3c) < 0) {
-      cVar3 = '\0';
+    *(float *)(object_context + 0x1cf4) = reset_factor;
+    // 检查动画状态并更新目标对象
+    if (*(int *)(object_context + 0x3c) < 0) {
+      animation_enabled = '\0';
     }
     else {
-      cVar3 = func_0x0001801281d0(*(int *)(unaff_RBX + 0x3c),1);
+      animation_enabled = check_animation_enabled(*(int *)(object_context + 0x3c),1);
     }
-    if (cVar3 != '\0') {
-      FUN_180133680();
-      lVar10 = *(longlong *)(unaff_RBX + 0x1cd8);
+    if (animation_enabled != '\0') {
+      trigger_animation_state_update();
+      current_object = *(longlong *)(object_context + 0x1cd8);
     }
-    if (*(char *)(unaff_RBX + 0x134) == cVar12) {
-      unaff_RDI = lVar10;
+    if (*(char *)(object_context + 0x134) == object_flag) {
+      target_object = current_object;
     }
   }
   if ((unaff_XMM6_Da <= *(float *)(unaff_RBX + 0x14c8)) &&
@@ -703,8 +723,9 @@ LAB_180133d4a:
 
 
 
-// 函数: void FUN_180133a9b(void)
-void FUN_180133a9b(void)
+// 函数: void update_animation_with_parameters(void)
+// 功能: 使用指定参数更新动画状态
+void update_animation_with_parameters(void)
 
 {
   ulonglong *puVar1;
@@ -731,39 +752,42 @@ void FUN_180133a9b(void)
   float unaff_XMM8_Da;
   ulonglong uVar9;
   
-  cVar11 = (char)unaff_R12D;
-  cVar12 = (char)unaff_R15;
-  if (*(int *)(unaff_RBX + 0x1cc0) == 3) {
-    fVar14 = (*(float *)(unaff_RBX + 0x1cf0) - 0.2) * 20.0;
-    if (unaff_XMM6_Da <= fVar14) {
-      if (unaff_XMM8_Da <= fVar14) {
-        fVar14 = unaff_XMM8_Da;
+  // 获取动画参数并计算更新因子
+  parameter_flag = (char)animation_parameter;
+  object_flag = (char)object_id;
+  if (*(int *)(object_context + 0x1cc0) == 3) {
+    update_factor = (*(float *)(object_context + 0x1cf0) - 0.2) * 20.0;
+    if (min_threshold <= update_factor) {
+      if (max_threshold <= update_factor) {
+        update_factor = max_threshold;
       }
     }
     else {
-      fVar14 = 0.0;
+      update_factor = 0.0;
     }
-    if (fVar14 <= *(float *)(unaff_RBX + 0x1cf4)) {
-      fVar14 = *(float *)(unaff_RBX + 0x1cf4);
+    if (update_factor <= *(float *)(object_context + 0x1cf4)) {
+      update_factor = *(float *)(object_context + 0x1cf4);
     }
-    *(float *)(unaff_RBX + 0x1cf4) = fVar14;
-    if (*(int *)(unaff_RBX + 0x3c) < 0) {
-      cVar4 = '\0';
+    *(float *)(object_context + 0x1cf4) = update_factor;
+    // 使用参数检查动画状态并更新
+    if (*(int *)(object_context + 0x3c) < 0) {
+      animation_enabled = '\0';
     }
     else {
-      cVar4 = func_0x0001801281d0(*(int *)(unaff_RBX + 0x3c),unaff_R12D & 0xff);
+      animation_enabled = check_animation_enabled(*(int *)(object_context + 0x3c),animation_parameter & 0xff);
     }
-    if (cVar4 != '\0') {
-      FUN_180133680();
-      unaff_RSI = *(longlong *)(unaff_RBX + 0x1cd8);
+    if (animation_enabled != '\0') {
+      trigger_animation_state_update();
+      current_object = *(longlong *)(object_context + 0x1cd8);
     }
-    if (*(char *)(unaff_RBX + 0x134) == cVar12) {
-      unaff_RDI = unaff_RSI;
+    if (*(char *)(object_context + 0x134) == object_flag) {
+      target_object = current_object;
     }
   }
-  if ((unaff_XMM6_Da <= *(float *)(unaff_RBX + 0x14c8)) &&
-     (*(float *)(unaff_RBX + 0x14c8) == unaff_XMM6_Da)) {
-    *(char *)(unaff_RBX + 0x1cf8) = cVar11;
+  // 更新动画状态标志
+  if ((min_threshold <= *(float *)(object_context + 0x14c8)) &&
+     (*(float *)(object_context + 0x14c8) == min_threshold)) {
+    *(char *)(object_context + 0x1cf8) = parameter_flag;
   }
   iVar13 = (int)unaff_R15;
   if ((((*(int *)(unaff_RBX + 0x1b2c) == iVar13) || (*(char *)(unaff_RBX + 0x1b3d) != cVar12)) &&
