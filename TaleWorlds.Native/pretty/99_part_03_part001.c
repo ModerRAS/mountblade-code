@@ -141,7 +141,8 @@ void DataStructureInitializer(uint64_t **param_1, longlong param_2)
     code *pcStack_50;
     uint64_t uStack_48;
     
-    puVar1 = _DAT_180c8aa08;
+    // 系统全局数据指针
+    puVar1 = system_global_data_ptr;
     uStack_48 = 0xfffffffffffffffe;
     uVar9 = 0;
     iVar2 = *(int *)(param_2 + 0x10);
@@ -150,7 +151,7 @@ void DataStructureInitializer(uint64_t **param_1, longlong param_2)
         lVar3 = 0;
         do {
             lVar8 = lVar3 + 1;
-            if (*(char *)(*(longlong *)(param_2 + 8) + lVar3) != (&UNK_180a0ce90)[lVar3])
+            if (*(char *)(*(longlong *)(param_2 + 8) + lVar3) != system_config_string_1[lVar3])
                 goto LAB_1801c4476;
             lVar3 = lVar8;
         } while (lVar8 != 8);
@@ -161,7 +162,7 @@ void DataStructureInitializer(uint64_t **param_1, longlong param_2)
             lVar3 = 0;
             do {
                 lVar8 = lVar3 + 1;
-                if (*(char *)(*(longlong *)(param_2 + 8) + lVar3) != (&UNK_180a0ce64)[lVar3])
+                if (*(char *)(*(longlong *)(param_2 + 8) + lVar3) != system_config_string_2[lVar3])
                     goto LAB_1801c44a6;
                 lVar3 = lVar8;
             } while (lVar8 != 6);
@@ -169,21 +170,21 @@ void DataStructureInitializer(uint64_t **param_1, longlong param_2)
         else {
         LAB_1801c44a6:
             if ((iVar2 != 8) ||
-                ((iVar2 = strcmp(*(uint64_t *)(param_2 + 8),&UNK_180a0ce70), iVar2 != 0 &&
-                 (iVar2 = strcmp(*(uint64_t *)(param_2 + 8),&UNK_180a0cf50), iVar2 != 0))))
+                ((iVar2 = strcmp(*(uint64_t *)(param_2 + 8), system_config_string_3), iVar2 != 0 &&
+                 (iVar2 = strcmp(*(uint64_t *)(param_2 + 8), system_config_string_4), iVar2 != 0))))
                 goto LAB_1801c44da;
         }
     }
     uVar9 = 1;
 LAB_1801c44da:
-    SystemInitializer(_DAT_180c82868);
+    SystemInitializer(system_context_ptr);
     SystemResourceTracker(puVar1);
-    uVar4 = SystemMemoryAllocator(_DAT_180c8ed18,0x580,8,3);
+    uVar4 = SystemMemoryAllocator(system_memory_pool_ptr,0x580,8,3);
     plVar5 = (longlong *)SystemDataManager(uVar4,param_2);
     *puVar1 = plVar5;
     (**(code **)(*plVar5 + 0x28))(plVar5);
-    *(int8_t *)(_DAT_180c86870 + 0x60) = 1;
-    uVar4 = SystemMemoryAllocator(_DAT_180c8ed18,0xe0,8,3);
+    *(int8_t *)(system_state_ptr + 0x60) = 1;
+    uVar4 = SystemMemoryAllocator(system_memory_pool_ptr,0xe0,8,3);
     ppuStackX_8 = apuStack_68;
     pppuStackX_10 = (uint64_t ***)&puStack_98;
     puStack_98 = puVar1;
