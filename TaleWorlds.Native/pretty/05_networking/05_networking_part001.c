@@ -1037,3 +1037,6 @@ void monitor_connection_status(longlong connection_handle)
   // 清理安全密钥
   cleanup_security_key(security_key ^ (ulonglong)security_data);
 }
+
+// 警告：类型传播算法未收敛
+// 警告：全局变量与其他符号在相同地址重叠
