@@ -949,7 +949,7 @@ longlong *core_engine_resource_manager(uint64_t resource_type, longlong *resourc
     longlong stack_data_6;
     int32_t stack_data_7;
     
-    resource_handle = _DAT_180c868f8;
+    resource_handle = core_engine_resource_handle;
     ContextInitializer(&stack_data_1, config_data, config_data, resource_flags, 0, 0xfffffffffffffffe);
     resource_count = ResourceCounter(resource_handle, &stack_data_1);
     stack_data_1 = &core_engine_vtable_default;
@@ -1390,7 +1390,7 @@ longlong *core_engine_data_manager(uint64_t manager_type, longlong *data_ptr, ui
     int32_t stack_data_16;
     uint64_t stack_data_17;
     
-    data_id = _DAT_180c868f8;
+    data_id = core_engine_resource_handle;
     stack_data_17 = 0xfffffffffffffffe;
     temp_ptr_2 = (longlong *)0x0;
     stack_data_8 = 0;

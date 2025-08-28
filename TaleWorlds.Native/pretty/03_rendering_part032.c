@@ -289,7 +289,7 @@ void RenderingSystemAddMatrixData(ulonglong *param_1, uint64_t *param_2)
     }
     
     // 分配新的内存空间
-    puVar5 = (uint64_t *)AdvancedMemoryAllocator(_DAT_180c8ed18, lVar8 << 4, (char)param_1[3]);
+    puVar5 = (uint64_t *)AdvancedMemoryAllocator(RenderingSystemGlobalData, lVar8 << 4, (char)param_1[3]);
     puVar9 = (uint64_t *)param_1[1];
     puVar6 = (uint64_t *)*param_1;
     puVar7 = puVar5;
@@ -363,7 +363,7 @@ void RenderingSystemResizeDataArray(longlong *param_1, ulonglong param_2)
         puVar3 = (uint64_t *)0x0;
         if (uVar10 != 0) {
             puVar3 = (uint64_t *)
-                     AdvancedMemoryAllocator(_DAT_180c8ed18, uVar10 << 4, (char)param_1[3], puVar5, 0xfffffffffffffffe);
+                     AdvancedMemoryAllocator(RenderingSystemGlobalData, uVar10 << 4, (char)param_1[3], puVar5, 0xfffffffffffffffe);
             puVar5 = (uint64_t *)param_1[1];
             puVar4 = (uint64_t *)*param_1;
         }
