@@ -723,342 +723,443 @@ void rendering_system_optimize_render_data(longlong *param_1, longlong param_2, 
 
 
 
-// 函数: void FUN_180309520(longlong *param_1)
-void FUN_180309520(longlong *param_1)
-
+// 渲染数据清理函数 - 清理渲染数据结构，释放相关资源
+void rendering_system_cleanup_render_data(longlong *render_data_ptr)
 {
-  undefined8 *puVar1;
-  undefined8 *puVar2;
-  
-  puVar1 = (undefined8 *)param_1[1];
-  for (puVar2 = (undefined8 *)*param_1; puVar2 != puVar1; puVar2 = puVar2 + 7) {
-    *puVar2 = &UNK_180a3c3e0;
-    if (puVar2[1] != 0) {
-                    // WARNING: Subroutine does not return
-      FUN_18064e900();
+    undefined8 *data_end_ptr;
+    undefined8 *data_current_ptr;
+    
+    // 获取数据结束指针
+    data_end_ptr = (undefined8 *)render_data_ptr[1];
+    
+    // 遍历并清理所有数据块
+    for (data_current_ptr = (undefined8 *)*render_data_ptr; data_current_ptr != data_end_ptr; data_current_ptr = data_current_ptr + 7) {
+        // 设置数据块为清理状态
+        *data_current_ptr = &g_rendering_system_state_manager;
+        
+        // 检查数据块是否正在使用
+        if (data_current_ptr[1] != 0) {
+            // 警告：子程序不返回
+            FUN_18064e900();
+        }
+        
+        // 重置数据块
+        data_current_ptr[1] = 0;
+        *(undefined4 *)(data_current_ptr + 3) = 0;
+        *data_current_ptr = &g_rendering_system_state_manager;
     }
-    puVar2[1] = 0;
-    *(undefined4 *)(puVar2 + 3) = 0;
-    *puVar2 = &UNK_18098bcb0;
-  }
-  if (*param_1 != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
-  }
-  return;
-}
-
-
-
-
-
-// 函数: void FUN_1803095c0(longlong *param_1)
-void FUN_1803095c0(longlong *param_1)
-
-{
-  undefined8 *puVar1;
-  undefined8 *puVar2;
-  
-  puVar1 = (undefined8 *)param_1[1];
-  for (puVar2 = (undefined8 *)*param_1; puVar2 != puVar1; puVar2 = puVar2 + 7) {
-    *puVar2 = &UNK_180a3c3e0;
-    if (puVar2[1] != 0) {
-                    // WARNING: Subroutine does not return
-      FUN_18064e900();
+    
+    // 检查渲染数据指针是否有效
+    if (*render_data_ptr != 0) {
+        // 警告：子程序不返回
+        FUN_18064e900();
     }
-    puVar2[1] = 0;
-    *(undefined4 *)(puVar2 + 3) = 0;
-    *puVar2 = &UNK_18098bcb0;
-  }
-  if (*param_1 != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
-  }
-  return;
-}
-
-
-
-undefined8 *
-FUN_1803095e0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
-
-{
-  *param_1 = &UNK_180a1a2f0;
-  if (param_1[1] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
-  }
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x68,param_3,param_4,0xfffffffffffffffe);
-  }
-  return param_1;
-}
-
-
-
-
-
-// 函数: void FUN_180309640(undefined8 *param_1)
-void FUN_180309640(undefined8 *param_1)
-
-{
-  int *piVar1;
-  undefined8 *puVar2;
-  longlong lVar3;
-  ulonglong uVar4;
-  
-  *param_1 = &UNK_180a1a2f0;
-  puVar2 = (undefined8 *)param_1[1];
-  if (puVar2 == (undefined8 *)0x0) {
+    
     return;
-  }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
-        FUN_18064d630();
+}
+
+
+
+
+
+// 渲染数据释放函数 - 释放渲染数据占用的内存资源
+void rendering_system_release_render_data(longlong *render_data_ptr)
+{
+    undefined8 *data_end_ptr;
+    undefined8 *data_current_ptr;
+    
+    // 获取数据结束指针
+    data_end_ptr = (undefined8 *)render_data_ptr[1];
+    
+    // 遍历并释放所有数据块
+    for (data_current_ptr = (undefined8 *)*render_data_ptr; data_current_ptr != data_end_ptr; data_current_ptr = data_current_ptr + 7) {
+        // 设置数据块为释放状态
+        *data_current_ptr = &g_rendering_system_state_manager;
+        
+        // 检查数据块是否正在使用
+        if (data_current_ptr[1] != 0) {
+            // 警告：子程序不返回
+            FUN_18064e900();
+        }
+        
+        // 重置数据块
+        data_current_ptr[1] = 0;
+        *(undefined4 *)(data_current_ptr + 3) = 0;
+        *data_current_ptr = &g_rendering_system_state_manager;
+    }
+    
+    // 检查渲染数据指针是否有效
+    if (*render_data_ptr != 0) {
+        // 警告：子程序不返回
+        FUN_18064e900();
+    }
+    
+    return;
+}
+
+
+
+// 渲染数据初始化函数 - 初始化渲染数据结构，分配必要的内存资源
+undefined8 *rendering_system_initialize_render_data(undefined8 *render_data_ptr, ulonglong memory_flags, undefined8 param_3, undefined8 param_4)
+{
+    // 设置渲染数据表指针
+    *render_data_ptr = &g_rendering_system_data_table;
+    
+    // 检查数据结构是否有效
+    if (render_data_ptr[1] != 0) {
+        // 警告：子程序不返回
+        FUN_18064e900();
+    }
+    
+    // 根据内存标志释放内存
+    if ((memory_flags & 1) != 0) {
+        free(render_data_ptr, 0x68, param_3, param_4, 0xfffffffffffffffe);
+    }
+    
+    return render_data_ptr;
+}
+
+
+
+
+
+// 渲染数据销毁函数 - 销毁渲染数据结构，释放所有相关资源
+void rendering_system_destroy_render_data(undefined8 *render_data_ptr)
+{
+    int *reference_count;
+    undefined8 *data_ptr;
+    longlong memory_block;
+    ulonglong memory_base;
+    
+    // 设置渲染数据表指针
+    *render_data_ptr = &g_rendering_system_data_table;
+    data_ptr = (undefined8 *)render_data_ptr[1];
+    
+    // 检查数据指针是否有效
+    if (data_ptr == (undefined8 *)0x0) {
         return;
-      }
     }
-    else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+    
+    // 计算内存基地址
+    memory_base = (ulonglong)data_ptr & 0xffffffffffc00000;
+    if (memory_base != 0) {
+        // 计算内存块位置
+        memory_block = memory_base + 0x80 + ((longlong)data_ptr - memory_base >> 0x10) * 0x50;
+        memory_block = memory_block - (ulonglong)*(uint *)(memory_block + 4);
+        
+        // 检查异常列表和内存状态
+        if ((*(void ***)(memory_base + 0x70) == &ExceptionList) && (*(char *)(memory_block + 0xe) == '\0')) {
+            // 更新内存链表
+            *data_ptr = *(undefined8 *)(memory_block + 0x20);
+            *(undefined8 **)(memory_block + 0x20) = data_ptr;
+            
+            // 更新引用计数
+            reference_count = (int *)(memory_block + 0x18);
+            *reference_count = *reference_count + -1;
+            if (*reference_count == 0) {
+                FUN_18064d630();
+                return;
+            }
+        }
+        else {
+            // 调用内存释放函数
+            func_0x00018064e870(memory_base, CONCAT71(0xff000000, *(void ***)(memory_base + 0x70) == &ExceptionList),
+                              data_ptr, memory_base, 0xfffffffffffffffe);
+        }
     }
-  }
-  return;
+    
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_1803096a0(longlong param_1)
-void FUN_1803096a0(longlong param_1)
-
+// 渲染队列处理函数 - 处理渲染队列中的所有渲染任务，确保线程安全
+void rendering_system_process_render_queue(longlong render_queue_handle)
 {
-  longlong *plVar1;
-  int iVar2;
-  longlong *plVar3;
-  
-  iVar2 = _Mtx_lock();
-  if (iVar2 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar2);
-  }
-  plVar1 = *(longlong **)(param_1 + 0x90);
-  plVar3 = *(longlong **)(param_1 + 0x88);
-  if (plVar3 != plVar1) {
-    do {
-      if ((longlong *)*plVar3 != (longlong *)0x0) {
-        (**(code **)(*(longlong *)*plVar3 + 0x38))();
-      }
-      plVar3 = plVar3 + 1;
-    } while (plVar3 != plVar1);
-    plVar3 = *(longlong **)(param_1 + 0x88);
-  }
-  *(longlong **)(param_1 + 0x90) = plVar3;
-  iVar2 = _Mtx_unlock(param_1);
-  if (iVar2 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar2);
-  }
-  return;
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-undefined8 *
-FUN_180309740(undefined8 *param_1,int param_2,undefined4 param_3,undefined4 param_4,
-             undefined4 param_5)
-
-{
-  int *piVar1;
-  
-  *param_1 = &UNK_180a21690;
-  *param_1 = &UNK_180a21720;
-  *(undefined4 *)(param_1 + 1) = 0;
-  *param_1 = &UNK_180a1a3d0;
-  *(int *)(param_1 + 3) = param_2;
-  *(undefined4 *)((longlong)param_1 + 0x1c) = param_3;
-  *(undefined4 *)(param_1 + 4) = param_4;
-  *(undefined4 *)((longlong)param_1 + 0x24) = param_5;
-  param_1[5] = 0x3f800000;
-  param_1[6] = 0;
-  param_1[7] = 0x3f80000000000000;
-  param_1[8] = 0;
-  param_1[9] = 0;
-  param_1[10] = 0x3f800000;
-  param_1[0xb] = 0;
-  param_1[0xc] = 0x3f80000000000000;
-  *(undefined4 *)((longlong)param_1 + 0x11c) = 0xffffffff;
-  *(undefined4 *)(param_1 + 2) = 0;
-  *(undefined4 *)(param_1 + 0x24) = 0;
-  *(undefined4 *)((longlong)param_1 + 0x114) = 0;
-  *(undefined1 *)((longlong)param_1 + 0x13d) = 0;
-  *(undefined8 *)((longlong)param_1 + 300) = 0xffffffffffffffff;
-  param_1[0x12] = 0x3f800000;
-  param_1[0x13] = 0;
-  param_1[0x14] = 0x3f80000000000000;
-  param_1[0x15] = 0;
-  param_1[0x16] = 0;
-  param_1[0x17] = 0x3f800000;
-  param_1[0x18] = 0;
-  param_1[0x19] = 0x3f80000000000000;
-  param_1[0x1a] = 0x3f800000;
-  param_1[0x1b] = 0;
-  param_1[0x1c] = 0x3f80000000000000;
-  param_1[0x1d] = 0;
-  param_1[0x1e] = 0;
-  param_1[0x1f] = 0x3f800000;
-  param_1[0x20] = 0;
-  param_1[0x21] = 0x3f80000000000000;
-  param_1[0xf] = 0;
-  param_1[0x10] = 0;
-  param_1[0xd] = 0;
-  param_1[0xe] = 0;
-  *(undefined4 *)(param_1 + 0x11) = 0xbf800000;
-  *(undefined4 *)((longlong)param_1 + 0x8c) = 0x3f800000;
-  *(undefined4 *)(param_1 + 0x23) = 0;
-  *(undefined8 *)((longlong)param_1 + 0x124) = 0;
-  *(undefined4 *)((longlong)param_1 + 0x14) = 0;
-  *(undefined4 *)((longlong)param_1 + 0x134) = 0xffffffff;
-  *(undefined4 *)(param_1 + 0x27) = 0;
-  *(undefined4 *)(param_1 + 0x22) = 0;
-  LOCK();
-  piVar1 = (int *)(*(longlong *)(*(longlong *)(_DAT_180c8a980 + 0x140) + (longlong)param_2 * 8) +
-                  0x1a0);
-  *piVar1 = *piVar1 + 1;
-  UNLOCK();
-  if (*(int *)((longlong)param_1 + 0x1c) != -1) {
-    LOCK();
-    piVar1 = (int *)(*(longlong *)
-                      (*(longlong *)(_DAT_180c8a980 + 0x160) +
-                      (longlong)*(int *)((longlong)param_1 + 0x1c) * 8) + 0x18);
-    *piVar1 = *piVar1 + 1;
-    UNLOCK();
-  }
-  return param_1;
-}
-
-
-
-undefined8 FUN_180309910(undefined8 param_1,ulonglong param_2)
-
-{
-  FUN_180309950();
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x140);
-  }
-  return param_1;
+    longlong *queue_end_ptr;
+    int lock_result;
+    longlong *queue_start_ptr;
+    
+    // 获取互斥锁
+    lock_result = _Mtx_lock();
+    if (lock_result != 0) {
+        // 锁定失败，抛出异常
+        __Throw_C_error_std__YAXH_Z(lock_result);
+    }
+    
+    // 获取队列指针
+    queue_end_ptr = *(longlong **)(render_queue_handle + 0x90);
+    queue_start_ptr = *(longlong **)(render_queue_handle + 0x88);
+    
+    // 处理队列中的所有渲染任务
+    if (queue_start_ptr != queue_end_ptr) {
+        do {
+            // 检查渲染任务是否有效
+            if ((longlong *)*queue_start_ptr != (longlong *)0x0) {
+                // 执行渲染任务的处理函数
+                (**(code **)(*(longlong *)*queue_start_ptr + 0x38))();
+            }
+            queue_start_ptr = queue_start_ptr + 1;
+        } while (queue_start_ptr != queue_end_ptr);
+        
+        // 重置队列起始指针
+        queue_start_ptr = *(longlong **)(render_queue_handle + 0x88);
+    }
+    
+    // 更新队列结束指针
+    *(longlong **)(render_queue_handle + 0x90) = queue_start_ptr;
+    
+    // 释放互斥锁
+    lock_result = _Mtx_unlock(render_queue_handle);
+    if (lock_result != 0) {
+        // 解锁失败，抛出异常
+        __Throw_C_error_std__YAXH_Z(lock_result);
+    }
+    
+    return;
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-
-
-// 函数: void FUN_180309950(undefined8 *param_1)
-void FUN_180309950(undefined8 *param_1)
-
+// 渲染对象创建函数 - 创建渲染对象并初始化其属性和资源引用
+undefined8 *rendering_system_create_render_object(undefined8 *render_object_ptr, int object_type, undefined4 param_3, undefined4 param_4, undefined4 param_5)
 {
-  longlong lVar1;
-  int *piVar2;
-  longlong lVar3;
-  int iVar4;
-  longlong lVar5;
-  int iVar6;
-  longlong lVar7;
-  longlong lVar8;
-  int aiStackX_10 [2];
-  longlong *plStackX_18;
-  longlong *plStackX_20;
-  
-  *param_1 = &UNK_180a1a3d0;
-  lVar5 = _DAT_180c8a980;
-  iVar6 = *(int *)((longlong)param_1 + 0x24);
-  lVar7 = (longlong)iVar6;
-  if ((iVar6 != -1) && (*(int *)((longlong)param_1 + 0x14) == 0)) {
-    lVar1 = _DAT_180c8a980 + 0x2b8;
-    aiStackX_10[0] = iVar6;
-    AcquireSRWLockExclusive(lVar1);
-    *(undefined1 *)(lVar5 + 3) = 1;
-    *(undefined1 *)(*(longlong *)(lVar5 + 0x1a0) + lVar7 * 0x10) = 0;
-    lVar8 = *(longlong *)(lVar5 + 0x1a0);
-    lVar3 = lVar8 + lVar7 * 0x10;
-    if (*(int *)(lVar3 + 4) != -1) {
-      FUN_18030a460(lVar5 + 0x58,*(undefined8 *)(lVar3 + 4));
-      lVar8 = *(longlong *)(lVar5 + 0x1a0);
-    }
-    plStackX_18 = (longlong *)0xffffffffffffffff;
-    *(undefined8 *)(lVar8 + 4 + lVar7 * 0x10) = 0xffffffffffffffff;
-    FUN_1800571e0(lVar5 + 0x120,aiStackX_10);
-    *(undefined4 *)((longlong)param_1 + 0x24) = 0xffffffff;
-    ReleaseSRWLockExclusive(lVar1);
-  }
-  lVar5 = _DAT_180c8a980;
-  iVar4 = *(int *)(param_1 + 3);
-  LOCK();
-  piVar2 = (int *)(*(longlong *)(*(longlong *)(_DAT_180c8a980 + 0x140) + (longlong)iVar4 * 8) +
-                  0x1a0);
-  iVar6 = *piVar2;
-  *piVar2 = *piVar2 + -1;
-  UNLOCK();
-  if (iVar6 == 1) {
-    iVar6 = _Mtx_lock(lVar5 + 0x1c0);
-    if (iVar6 != 0) {
-      __Throw_C_error_std__YAXH_Z(iVar6);
-    }
-    plStackX_18 = *(longlong **)
-                   (*(longlong *)((longlong)iVar4 * 8 + *(longlong *)(lVar5 + 0x140)) + 0x1a8);
-    if (plStackX_18 != (longlong *)0x0) {
-      (**(code **)(*plStackX_18 + 0x28))();
-    }
-    FUN_1800b87c0(lVar5 + 0x210,&plStackX_18);
-    if (plStackX_18 != (longlong *)0x0) {
-      (**(code **)(*plStackX_18 + 0x38))();
-    }
-    iVar6 = _Mtx_unlock(lVar5 + 0x1c0);
-    if (iVar6 != 0) {
-      __Throw_C_error_std__YAXH_Z(iVar6);
-    }
-  }
-  lVar5 = _DAT_180c8a980;
-  if (*(int *)((longlong)param_1 + 0x1c) != -1) {
-    lVar7 = (longlong)*(int *)((longlong)param_1 + 0x1c) * 8;
+    int *reference_counter;
+    
+    // 初始化渲染对象的基础结构
+    *render_object_ptr = &g_rendering_system_string_constants;
+    *render_object_ptr = &g_rendering_system_string_table;
+    *(undefined4 *)(render_object_ptr + 1) = 0;
+    *render_object_ptr = &g_rendering_system_name_registry;
+    
+    // 设置对象类型和属性
+    *(int *)(render_object_ptr + 3) = object_type;
+    *(undefined4 *)((longlong)render_object_ptr + 0x1c) = param_3;
+    *(undefined4 *)(render_object_ptr + 4) = param_4;
+    *(undefined4 *)((longlong)render_object_ptr + 0x24) = param_5;
+    
+    // 初始化浮点数值属性
+    render_object_ptr[5] = 0x3f800000;        // 1.0f
+    render_object_ptr[6] = 0;                 // 0.0f
+    render_object_ptr[7] = 0x3f80000000000000; // 1.0
+    render_object_ptr[8] = 0;                 // 0.0
+    render_object_ptr[9] = 0;                 // 0.0
+    render_object_ptr[10] = 0x3f800000;       // 1.0f
+    render_object_ptr[0xb] = 0;               // 0.0f
+    render_object_ptr[0xc] = 0x3f80000000000000; // 1.0
+    
+    // 设置渲染状态标志
+    *(undefined4 *)((longlong)render_object_ptr + 0x11c) = 0xffffffff;
+    *(undefined4 *)(render_object_ptr + 2) = 0;
+    *(undefined4 *)(render_object_ptr + 0x24) = 0;
+    *(undefined4 *)((longlong)render_object_ptr + 0x114) = 0;
+    *(undefined1 *)((longlong)render_object_ptr + 0x13d) = 0;
+    *(undefined8 *)((longlong)render_object_ptr + 300) = 0xffffffffffffffff;
+    
+    // 初始化更多的浮点属性
+    render_object_ptr[0x12] = 0x3f800000;    // 1.0f
+    render_object_ptr[0x13] = 0;              // 0.0f
+    render_object_ptr[0x14] = 0x3f80000000000000; // 1.0
+    render_object_ptr[0x15] = 0;              // 0.0
+    render_object_ptr[0x16] = 0;              // 0.0
+    render_object_ptr[0x17] = 0x3f800000;    // 1.0f
+    render_object_ptr[0x18] = 0;              // 0.0f
+    render_object_ptr[0x19] = 0x3f80000000000000; // 1.0
+    render_object_ptr[0x1a] = 0x3f800000;    // 1.0f
+    render_object_ptr[0x1b] = 0;              // 0.0f
+    render_object_ptr[0x1c] = 0x3f80000000000000; // 1.0
+    render_object_ptr[0x1d] = 0;              // 0.0
+    render_object_ptr[0x1e] = 0;              // 0.0
+    render_object_ptr[0x1f] = 0x3f800000;    // 1.0f
+    render_object_ptr[0x20] = 0;              // 0.0f
+    render_object_ptr[0x21] = 0x3f80000000000000; // 1.0
+    
+    // 重置位置和偏移属性
+    render_object_ptr[0xf] = 0;              // 0.0f
+    render_object_ptr[0x10] = 0;             // 0.0f
+    render_object_ptr[0xd] = 0;              // 0.0f
+    render_object_ptr[0xe] = 0;              // 0.0f
+    *(undefined4 *)(render_object_ptr + 0x11) = 0xbf800000; // -1.0f
+    *(undefined4 *)((longlong)render_object_ptr + 0x8c) = 0x3f800000; // 1.0f
+    *(undefined4 *)(render_object_ptr + 0x23) = 0;
+    *(undefined8 *)((longlong)render_object_ptr + 0x124) = 0;
+    *(undefined4 *)((longlong)render_object_ptr + 0x14) = 0;
+    *(undefined4 *)((longlong)render_object_ptr + 0x134) = 0xffffffff;
+    *(undefined4 *)(render_object_ptr + 0x27) = 0;
+    *(undefined4 *)(render_object_ptr + 0x22) = 0;
+    
+    // 获取资源管理锁并增加引用计数
     LOCK();
-    piVar2 = (int *)(*(longlong *)(lVar7 + *(longlong *)(_DAT_180c8a980 + 0x160)) + 0x18);
-    iVar6 = *piVar2;
-    *piVar2 = *piVar2 + -1;
+    reference_counter = (int *)(*(longlong *)(*(longlong *)(g_rendering_system_global_state + 0x140) + (longlong)object_type * 8) +
+                            0x1a0);
+    *reference_counter = *reference_counter + 1;
     UNLOCK();
-    if (iVar6 == 1) {
-      iVar6 = _Mtx_lock(lVar5 + 0x1c0);
-      if (iVar6 != 0) {
-        __Throw_C_error_std__YAXH_Z(iVar6);
-      }
-      plStackX_20 = *(longlong **)(*(longlong *)(lVar7 + *(longlong *)(lVar5 + 0x160)) + 0x20);
-      if (plStackX_20 != (longlong *)0x0) {
-        (**(code **)(*plStackX_20 + 0x28))();
-      }
-      FUN_1800b87c0(lVar5 + 0x230,&plStackX_20);
-      if (plStackX_20 != (longlong *)0x0) {
-        (**(code **)(*plStackX_20 + 0x38))();
-      }
-      iVar6 = _Mtx_unlock(lVar5 + 0x1c0);
-      if (iVar6 != 0) {
-        __Throw_C_error_std__YAXH_Z(iVar6);
-      }
+    
+    // 如果有纹理引用，增加纹理引用计数
+    if (*(int *)((longlong)render_object_ptr + 0x1c) != -1) {
+        LOCK();
+        reference_counter = (int *)(*(longlong *)
+                                  (*(longlong *)(g_rendering_system_global_state + 0x160) +
+                                  (longlong)*(int *)((longlong)render_object_ptr + 0x1c) * 8) + 0x18);
+        *reference_counter = *reference_counter + 1;
+        UNLOCK();
     }
-  }
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
-  return;
+    
+    return render_object_ptr;
+}
+
+
+
+// 渲染对象释放函数 - 释放渲染对象及其相关资源
+undefined8 rendering_system_free_render_object(undefined8 render_object, ulonglong memory_flags)
+{
+    // 清理渲染对象
+    rendering_system_cleanup_render_object(&render_object);
+    
+    // 根据内存标志释放内存
+    if ((memory_flags & 1) != 0) {
+        free(render_object, 0x140);
+    }
+    
+    return render_object;
+}
+
+
+
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+
+
+// 渲染对象清理函数 - 清理渲染对象的资源引用和相关数据结构
+void rendering_system_cleanup_render_object(undefined8 *render_object_ptr)
+{
+    longlong srw_lock_ptr;
+    int *reference_counter;
+    longlong resource_array_ptr;
+    int object_type;
+    longlong texture_manager_ptr;
+    int texture_id;
+    longlong texture_offset;
+    int cleanup_index[2];
+    longlong *resource_ptr_1;
+    longlong *resource_ptr_2;
+    
+    // 重置渲染对象指针
+    *render_object_ptr = &g_rendering_system_name_registry;
+    texture_manager_ptr = g_rendering_system_global_state;
+    texture_id = *(int *)((longlong)render_object_ptr + 0x24);
+    texture_offset = (longlong)texture_id;
+    
+    // 清理纹理资源（如果存在）
+    if ((texture_id != -1) && (*(int *)((longlong)render_object_ptr + 0x14) == 0)) {
+        srw_lock_ptr = g_rendering_system_global_state + 0x2b8;
+        cleanup_index[0] = texture_id;
+        
+        // 获取独占锁
+        AcquireSRWLockExclusive(srw_lock_ptr);
+        *(undefined1 *)(texture_manager_ptr + 3) = 1;
+        *(undefined1 *)(*(longlong *)(texture_manager_ptr + 0x1a0) + texture_offset * 0x10) = 0;
+        
+        resource_array_ptr = *(longlong *)(texture_manager_ptr + 0x1a0);
+        resource_array_ptr = resource_array_ptr + texture_offset * 0x10;
+        
+        // 清理纹理资源
+        if (*(int *)(resource_array_ptr + 4) != -1) {
+            FUN_18030a460(texture_manager_ptr + 0x58, *(undefined8 *)(resource_array_ptr + 4));
+            resource_array_ptr = *(longlong *)(texture_manager_ptr + 0x1a0);
+        }
+        
+        // 重置资源指针
+        resource_ptr_1 = (longlong *)0xffffffffffffffff;
+        *(undefined8 *)(resource_array_ptr + 4 + texture_offset * 0x10) = 0xffffffffffffffff;
+        FUN_1800571e0(texture_manager_ptr + 0x120, cleanup_index);
+        *(undefined4 *)((longlong)render_object_ptr + 0x24) = 0xffffffff;
+        
+        // 释放独占锁
+        ReleaseSRWLockExclusive(srw_lock_ptr);
+    }
+    
+    // 清理对象类型引用
+    texture_manager_ptr = g_rendering_system_global_state;
+    object_type = *(int *)(render_object_ptr + 3);
+    
+    // 减少对象类型引用计数
+    LOCK();
+    reference_counter = (int *)(*(longlong *)(*(longlong *)(g_rendering_system_global_state + 0x140) + (longlong)object_type * 8) +
+                            0x1a0);
+    texture_id = *reference_counter;
+    *reference_counter = *reference_counter + -1;
+    UNLOCK();
+    
+    // 如果引用计数为1，清理对象类型资源
+    if (texture_id == 1) {
+        texture_id = _Mtx_lock(texture_manager_ptr + 0x1c0);
+        if (texture_id != 0) {
+            __Throw_C_error_std__YAXH_Z(texture_id);
+        }
+        
+        resource_ptr_1 = *(longlong **)
+                       (*(longlong *)((longlong)object_type * 8 + *(longlong *)(texture_manager_ptr + 0x140)) + 0x1a8);
+        if (resource_ptr_1 != (longlong *)0x0) {
+            (**(code **)(*resource_ptr_1 + 0x28))();
+        }
+        
+        FUN_1800b87c0(texture_manager_ptr + 0x210, &resource_ptr_1);
+        if (resource_ptr_1 != (longlong *)0x0) {
+            (**(code **)(*resource_ptr_1 + 0x38))();
+        }
+        
+        texture_id = _Mtx_unlock(texture_manager_ptr + 0x1c0);
+        if (texture_id != 0) {
+            __Throw_C_error_std__YAXH_Z(texture_id);
+        }
+    }
+    
+    // 清理纹理引用
+    texture_manager_ptr = g_rendering_system_global_state;
+    if (*(int *)((longlong)render_object_ptr + 0x1c) != -1) {
+        texture_offset = (longlong)*(int *)((longlong)render_object_ptr + 0x1c) * 8;
+        
+        // 减少纹理引用计数
+        LOCK();
+        reference_counter = (int *)(*(longlong *)(texture_offset + *(longlong *)(g_rendering_system_global_state + 0x160)) + 0x18);
+        texture_id = *reference_counter;
+        *reference_counter = *reference_counter + -1;
+        UNLOCK();
+        
+        // 如果引用计数为1，清理纹理资源
+        if (texture_id == 1) {
+            texture_id = _Mtx_lock(texture_manager_ptr + 0x1c0);
+            if (texture_id != 0) {
+                __Throw_C_error_std__YAXH_Z(texture_id);
+            }
+            
+            resource_ptr_2 = *(longlong **)(*(longlong *)(texture_offset + *(longlong *)(texture_manager_ptr + 0x160)) + 0x20);
+            if (resource_ptr_2 != (longlong *)0x0) {
+                (**(code **)(*resource_ptr_2 + 0x28))();
+            }
+            
+            FUN_1800b87c0(texture_manager_ptr + 0x230, &resource_ptr_2);
+            if (resource_ptr_2 != (longlong *)0x0) {
+                (**(code **)(*resource_ptr_2 + 0x38))();
+            }
+            
+            texture_id = _Mtx_unlock(texture_manager_ptr + 0x1c0);
+            if (texture_id != 0) {
+                __Throw_C_error_std__YAXH_Z(texture_id);
+            }
+        }
+    }
+    
+    // 最终清理渲染对象指针
+    *render_object_ptr = &g_rendering_system_string_table;
+    *render_object_ptr = &g_rendering_system_string_constants;
+    
+    return;
 }
 
 
